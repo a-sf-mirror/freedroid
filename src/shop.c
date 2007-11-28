@@ -1,6 +1,7 @@
 /* 
  *
  *   Copyright (c) 2002, 2003 Johannes Prix
+ *   Copyright (c) 2004-2007 Arthur Huillet 
  *
  *
  *  This file is part of Freedroid
@@ -548,7 +549,7 @@ Error loading flag image.",
 	{
 	if ( use_open_gl )
 	    {
-            blit_open_gl_texture_to_screen_position ( &equipped_icon , TargetRectangle . x + TargetRectangle . w - 24, TargetRectangle . y , TRUE );
+            draw_gl_textured_quad_at_screen_position ( &equipped_icon , TargetRectangle . x + TargetRectangle . w - 24, TargetRectangle . y );
     	    }
         else
             {

@@ -2,6 +2,7 @@
  *
  *   Copyright (c) 1994, 2002, 2003 Johannes Prix
  *   Copyright (c) 1994, 2002 Reinhard Prix
+ *   Copyright (c) 2004-2007 Arthur Huillet 
  *
  *
  *  This file is part of Freedroid
@@ -1103,6 +1104,16 @@ int KP6Pressed () { keyboard_update(); return ((key_pressed_real_frame[SDLK_KP6]
 int KP7Pressed () { keyboard_update(); return ((key_pressed_real_frame[SDLK_KP7]));}
 int KP8Pressed () { keyboard_update(); return ((key_pressed_real_frame[SDLK_KP8])) ;}
 int KP9Pressed () { keyboard_update(); return ((key_pressed_real_frame[SDLK_KP9])) ;}
+int KP0Hit () { return (!(key_pressed_last_frame[SDLK_KP0]) && (key_pressed_this_frame[SDLK_KP0])); }
+int KP1Hit () { return (!(key_pressed_last_frame[SDLK_KP1]) && (key_pressed_this_frame[SDLK_KP1])); }
+int KP2Hit () { return (!(key_pressed_last_frame[SDLK_KP2]) && (key_pressed_this_frame[SDLK_KP2])); }
+int KP3Hit () { return (!(key_pressed_last_frame[SDLK_KP3]) && (key_pressed_this_frame[SDLK_KP3])); }
+int KP4Hit () { return (!(key_pressed_last_frame[SDLK_KP4]) && (key_pressed_this_frame[SDLK_KP4])); }
+int KP5Hit () { return (!(key_pressed_last_frame[SDLK_KP5]) && (key_pressed_this_frame[SDLK_KP5])); }
+int KP6Hit () { return (!(key_pressed_last_frame[SDLK_KP6]) && (key_pressed_this_frame[SDLK_KP6])); }
+int KP7Hit () { return (!(key_pressed_last_frame[SDLK_KP7]) && (key_pressed_this_frame[SDLK_KP7])); }
+int KP8Hit () { return (!(key_pressed_last_frame[SDLK_KP8]) && (key_pressed_this_frame[SDLK_KP8])); }
+int KP9Hit () { return (!(key_pressed_last_frame[SDLK_KP9]) && (key_pressed_this_frame[SDLK_KP9])); }
 int F1Pressed () { keyboard_update(); return ((key_pressed_real_frame[SDLK_F1])) ;}
 int F2Pressed () { keyboard_update(); return ((key_pressed_real_frame[SDLK_F2])) ;}
 int F3Pressed () { keyboard_update(); return ((key_pressed_real_frame[SDLK_F3])) ;}
@@ -1119,6 +1130,7 @@ int APressed () { keyboard_update(); return ((key_pressed_real_frame[SDLK_a]));}
 int BPressed () { keyboard_update(); return ((key_pressed_real_frame[SDLK_b])) ;}
 int CPressed () { keyboard_update(); return ((key_pressed_real_frame[SDLK_c])) ;}
 int DPressed () { keyboard_update(); return ((key_pressed_real_frame[SDLK_d]));}
+int DHit () { return (!(key_pressed_last_frame[SDLK_d]) && (key_pressed_this_frame[SDLK_d])); }
 int EPressed () { keyboard_update(); return ((key_pressed_real_frame[SDLK_e])) ;}
 int FPressed () { keyboard_update(); return ((key_pressed_real_frame[SDLK_f])) ;}
 int GPressed () { keyboard_update(); return ((key_pressed_real_frame[SDLK_g]));}

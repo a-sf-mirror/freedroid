@@ -1,7 +1,7 @@
 /* 
  *
  *   Copyright (c) 2002, 2003 Johannes Prix
- *
+ *   Copyright (c) 2004-2007 Arthur Huillet
  *
  *  This file is part of Freedroid
  *
@@ -88,17 +88,10 @@ InitiateNewCharacter (int CharacterClass )
     int i;
     int MissionTargetIndex;
     
-    //--------------------
-    // We set the coordinates to the generic starting point for all players....
-    //
-    Me . pos. x = 2 ;
-    Me . pos. y = 3 ;
+    Me . pos. x = 0 ;
+    Me . pos. y = 0 ;
     Me . pos. z = 0 ;
     
-    //--------------------
-    // At first, we clear out any inventory items, that may still be equipped
-    // for this one character.
-    //
     for ( i = 0 ; i < MAX_ITEMS_IN_INVENTORY ; i ++ )
     {
 	Me . Inventory [ i ] . type = -1 ;
@@ -679,7 +672,7 @@ update_damage_tux_can_do ()
 	// Maybe that should be changed for something more suitable
 	// at some point...
 	//
-	Me . base_damage = 1;
+	Me . base_damage = 0;
 	Me . damage_modifier = 1;
     }
 }; // void update_damage_tux_can_do ( )

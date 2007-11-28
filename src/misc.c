@@ -2,6 +2,7 @@
  *
  *   Copyright (c) 1994, 2002, 2003 Johannes Prix
  *   Copyright (c) 1994, 2002 Reinhard Prix
+ *   Copyright (c) 2004-2007 Arthur Huillet 
  *
  *
  *  This file is part of Freedroid
@@ -670,7 +671,7 @@ This is an indication of a severe bug/installation problem of freedroid.",
 
     if ( use_open_gl )
     {
-	blit_open_gl_texture_to_screen_position ( &AllMousePressButtons [ ButtonIndex ] . button_image , Temp_Blitting_Rect . x , Temp_Blitting_Rect . y , TRUE ) ;
+	draw_gl_textured_quad_at_screen_position ( &AllMousePressButtons [ ButtonIndex ] . button_image , Temp_Blitting_Rect . x , Temp_Blitting_Rect . y ) ;
     }
     else
     {
@@ -729,21 +730,16 @@ find_file (char *fname, char *subdir, char * File_Path, int silent)
     FILE *fp;  // this is the file we want to find?
     
     *File_Path=0;
-    if (!fname)
-    {
-	GiveStandardErrorMessage ( __FUNCTION__  , "\
-A find_file call has been issued to generate the full path name of a\n\
-certain file, but the file name given is an empty string!\n\
-This is indicates a severe bug in Freedroid.",  PLEASE_INFORM, IS_FATAL );
-    }
     if (!subdir)
 	subdir = "";
     
-    for ( i = 0 ; i < 2 ; i++ )
+    for ( i = 0 ; i < 3 ; i++ )
     {
 	if (i==0)
 	    sprintf ((File_Path), "..");   /* first try local subdirs */
 	if (i==1)
+	    sprintf ((File_Path), "../..");   /* first try local subdirs */
+	if (i==2)
 	    sprintf ((File_Path), "%s", FD_DATADIR); /* then the DATADIR */
 	
 	strcat ((File_Path), "/");
@@ -760,14 +756,14 @@ This is indicates a severe bug in Freedroid.",  PLEASE_INFORM, IS_FATAL );
 	}
 	else
 	{
-	    if ( i == 0 )
+	    if ( i == 0 || i == 1)
 		DebugPrintf( 1 , "\nfind_file could not succeed with LOCAL path: %s." , File_Path );
 	    else
 		{
                 if ( ! silent )
 	    	    {
 		    DebugPrintf ( -4 , "The file name was: %s.\n" , fname );
-		    GiveStandardErrorMessage ( __FUNCTION__  , "File not found even in data dir (2nd attempt).", 
+		    GiveStandardErrorMessage ( __FUNCTION__  , "File not found ", 
 					   NO_NEED_TO_INFORM , IS_WARNING_ONLY );
 		    }
 		return 1;
@@ -807,7 +803,6 @@ Pause ( void )
 	AnimateCyclingMapTiles ();
 	DisplayBanner ( );
 	AssembleCombatPicture ( USE_OWN_MOUSE_CURSOR );
-/*	CenteredPutStringFont ( Screen , Message_BFont , 200 , "G A M E     P A U S E D" ) ;*/
 	CenteredPutStringFont ( Screen , Menu_BFont , 200 , _("GAME PAUSED") );
 	our_SDL_flip_wrapper ( Screen );
 	
@@ -1648,11 +1643,8 @@ SaveGameConfig (void)
 	printf("It seems that the game couldn't start up at all... therefore we need not save any config information.\n\n");
 	SDL_Quit();
 #if __WIN32__
-/*ExitCode undeclared says mingw32	if ( ExitCode == ERR )
-	{*/
 	    system ( "notepad stderr.txt" );
 	    system ( "notepad stdout.txt" );
-	/*}*/
 #endif
 	exit ( ERR );
     }

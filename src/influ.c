@@ -2,6 +2,7 @@
  *
  *   Copyright (c) 1994, 2002, 2003 Johannes Prix
  *   Copyright (c) 1994, 2002 Reinhard Prix
+ *   Copyright (c) 2004-2007 Arthur Huillet 
  *
  *
  *  This file is part of Freedroid
@@ -2179,8 +2180,6 @@ adapt_global_mode_for_player ( )
 	else if ( global_ingame_mode == GLOBAL_INGAME_MODE_UNLOCK )	
 	    global_ingame_mode = GLOBAL_INGAME_MODE_TALK ;
 	else if ( global_ingame_mode == GLOBAL_INGAME_MODE_TALK )	
-	    global_ingame_mode = GLOBAL_INGAME_MODE_FIRST_AID ;
-	else if ( global_ingame_mode == GLOBAL_INGAME_MODE_FIRST_AID )	
 	    global_ingame_mode = GLOBAL_INGAME_MODE_ATTACK ;
 	else if ( global_ingame_mode == GLOBAL_INGAME_MODE_ATTACK )	
 	    global_ingame_mode = GLOBAL_INGAME_MODE_PICKPOCKET ;
@@ -2443,9 +2442,9 @@ start_tux_death_explosions (void)
 	}
 	AllBlasts[counter].type = DRUIDBLAST;
 	AllBlasts[counter].pos.x =
-	    Me.pos.x - Druid_Radius_X / 2 + MyRandom (10)*0.05;
+	    Me.pos.x - 0.125 / 2 + MyRandom (10)*0.05;
 	AllBlasts[counter].pos.y =
-	Me.pos.y - Druid_Radius_Y / 2 + MyRandom (10)*0.05;
+	Me.pos.y - 0.125 / 2 + MyRandom (10)*0.05;
 	AllBlasts[counter].phase = i;
     }
 
@@ -2502,8 +2501,8 @@ check_tux_enemy_collision (void)
 	// if ( dist2 > 2 * Druid_Radius_X )
 	// continue;
 	//
-	if ( ( fabsf( xdist ) >= 2.0*Druid_Radius_X ) ||
-	     ( fabsf( ydist ) >= 2.0*Druid_Radius_Y ) ) 
+	if ( ( fabsf( xdist ) >= 2.0*0.25 ) ||
+	     ( fabsf( ydist ) >= 2.0*0.25 ) ) 
 	    continue;
 	
 	// move the influencer a little bit out of the enemy AND the enemy a little bit out of the influ
@@ -3881,86 +3880,6 @@ handle_player_talk_command ( )
 }; // void handle_player_talk_command ( ) 
 
 /* ----------------------------------------------------------------------
- * When the player has actiavted global mode first aid and clicked the
- * left button, the first aid command must be executed.  This function
- * should deal with the effects of one such first aid click by the player.
- * ---------------------------------------------------------------------- */
-void
-handle_player_first_aid_command ( ) 
-{
-    int obstacle_index ;
-    obstacle* our_obstacle;
-    char game_message_text[ 2000 ] ;
-    int our_enemy_index;
-    enemy* this_enemy;
-    int heal_amount;
-    int reward = 35 ;
-
-    //--------------------
-    // Maybe there is a robot/character below the current mouse cursor.
-    // In this case we try to heal that bot/character.
-    //
-    our_enemy_index = GetLivingDroidBelowMouseCursor ( ) ;
-    if ( our_enemy_index != (-1) )
-    {
-	this_enemy = & ( AllEnemys [ our_enemy_index ] );
-	
-	//--------------------
-	// Is it a hostile bot?  Then the bot will not let you do
-	// the first aid thing!  After all, he got no reason to trust
-	// you, right?
-	//
-	if ( ! this_enemy -> is_friendly )
-	{
-	    sprintf ( game_message_text , _("The hostile %s won't let you apply your first aid skill.  Maybe it doesn't trust you?"), Druidmap [ this_enemy -> type ] . druidname );
-	    append_new_game_message ( game_message_text );
-	    return;
-	}
-
-	if ( (int) (this_enemy -> energy) < (int) (Druidmap [ this_enemy -> type ] . maxenergy ) )
-	{
-	    heal_amount = MyRandom ( 10 ) + 5 ;
-	    if ( heal_amount > Druidmap [ this_enemy -> type ] . maxenergy - this_enemy -> energy )
-		heal_amount = Druidmap [ this_enemy -> type ] . maxenergy - this_enemy -> energy ;
-
-	    this_enemy -> energy += heal_amount ;
-	    reward = heal_amount * 3 ;
-	    sprintf ( game_message_text , _("You healed %d damage on the %s.  For successfully applying your first aid skill you receive %d experience."), heal_amount , Druidmap [ this_enemy -> type ] . druidname , reward );
-	    Me . Experience += reward ;
-	    append_new_game_message ( game_message_text );
-	    return;
-	}
-	else
-	{
-	    sprintf ( game_message_text , _("Any injury on %s is purely cosmetic and must heal over time."), Druidmap [ this_enemy -> type ] . druidname );
-	    append_new_game_message ( game_message_text );
-	    return;
-	}
-    }
-
-    //--------------------
-    // Now if there wasn't any enemy below the mouse cursor (and only then)
-    // we look for an obstacle to apply our first-aid skill to.  Most likely
-    // this will not do anything, but for completeness we handle the case.
-    //
-    obstacle_index = GetObstacleBelowMouseCursor ( ) ;
-    if ( obstacle_index == (-1) )
-    {
-	GiveStandardErrorMessage ( __FUNCTION__  , 
-				   "First aid command received, but there isn't any person or obstacle under the current mouse cursor.  Has it maybe moved away?  I'll simply ignore this request." ,
-				   NO_NEED_TO_INFORM, IS_WARNING_ONLY );
-	return;
-    }
-    our_obstacle = & ( curShip . AllLevels [ Me . pos . z ] -> obstacle_list [ obstacle_index ] ) ;
-
-    DebugPrintf ( -4 , "\n%s(): applying first aid to obstacle of type : %d. " , __FUNCTION__ , our_obstacle -> type );
-    
-    sprintf ( game_message_text , _("Applying first aid to obstacle of type %d.  Ok.  You've made sure it doesn't bleed.  That's what you wanted, right?"), our_obstacle -> type );
-    append_new_game_message ( game_message_text );
-
-}; // void handle_player_first_aid_command ( ) 
-
-/* ----------------------------------------------------------------------
  * When the player has actiavted global attack mode and clicked the
  * left button, the attack command must be executed.  This function
  * should deal with the effects of one such attack click by the player.
@@ -4128,19 +4047,6 @@ AnalyzePlayersMouseClick ( )
 	    // if ( ButtonPressWasNotMeantAsFire( ) ) return;
 	    DebugPrintf ( -4 , "\n%s(): received talk command." , __FUNCTION__ );
 	    handle_player_talk_command ( 0 ) ;
-	    global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL ;
-	    
-	    //--------------------
-	    // To stop any movement, we wait for the release of the 
-	    // mouse button.
-	    //
-	    while ( SpacePressed() || MouseLeftPressed() || MouseRightPressed());
-	    Activate_Conservative_Frame_Computation();
-
-	    break;
-	case GLOBAL_INGAME_MODE_FIRST_AID:
-	    DebugPrintf ( -4 , "\n%s(): received first aid command." , __FUNCTION__ );
-	    handle_player_first_aid_command ( 0 ) ;
 	    global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL ;
 	    
 	    //--------------------

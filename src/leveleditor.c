@@ -1,6 +1,7 @@
 /* 
  *
  *   Copyright (c) 2002, 2003 Johannes Prix
+ *   Copyright (c) 2004-2007 Arthur Huillet
  *
  *
  *  This file is part of Freedroid
@@ -1756,7 +1757,8 @@ ShowLevelEditorTopMenu( int Highlight )
     unsigned int num_blocks = GameConfig.screen_width / INITIAL_BLOCK_WIDTH - 1;
     for ( i = 0 ; i < num_blocks ; i ++ )
     {
-	if ( selected_index >= number_of_walls [ GameConfig . level_editor_edit_mode ] ) break;
+	if ( selected_index >= number_of_walls [ GameConfig . level_editor_edit_mode ] ) 
+	    break;
 
 	TargetRectangle.x = INITIAL_BLOCK_WIDTH/2 + INITIAL_BLOCK_WIDTH * i ;
 	TargetRectangle.y = INITIAL_BLOCK_HEIGHT/3 ;
@@ -1808,8 +1810,8 @@ ShowLevelEditorTopMenu( int Highlight )
 
 		if ( use_open_gl )
 		{
-	        blit_zoomed_open_gl_texture_to_screen_position ( img , TargetRectangle . x , 
-                    y_off, TRUE , zoom_factor) ;
+	        draw_gl_scaled_textured_quad_at_screen_position ( img , TargetRectangle . x , 
+                    y_off, zoom_factor) ;
 		//additionally in the ALL tab, display object number
 		if ( GameConfig . level_editor_edit_mode == LEVEL_EDITOR_SELECTION_ALL)
 			{
@@ -3603,10 +3605,10 @@ Unable to load the level editor floor cursor.", PLEASE_INFORM, IS_FATAL);
   if (mask & ZOOM_OUT)
     {
       if (use_open_gl)
-        blit_zoomed_open_gl_texture_to_map_position (&level_editor_cursor,
+        draw_gl_textured_quad_at_map_position (&level_editor_cursor,
                                                      Me.pos.x, Me.pos.y,
                                                      1.0, 1.0, 1.0, 0,
-                                                     FALSE);
+                                                     FALSE, ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT);
       else
         blit_zoomed_iso_image_to_map_position (&level_editor_cursor,
                                                Me.pos.x, Me.pos.y);
@@ -3614,9 +3616,9 @@ Unable to load the level editor floor cursor.", PLEASE_INFORM, IS_FATAL);
   else
     {
       if (use_open_gl)
-        blit_open_gl_texture_to_map_position (&level_editor_cursor,
+        draw_gl_textured_quad_at_map_position (&level_editor_cursor,
                                               Me.pos.x, Me.pos.y, 1.0,
-                                              1.0, 1.0, 0, FALSE);
+                                              1.0, 1.0, 0, FALSE, 1.0);
       else
         blit_iso_image_to_map_position (&level_editor_cursor, Me.pos.x,
                                         Me.pos.y);
@@ -3680,16 +3682,16 @@ Unable to load the level editor waypoint dot cursor.",
 	if ( mask & ZOOM_OUT )
 	{
 	    if ( use_open_gl )
-		blit_zoomed_open_gl_texture_to_map_position ( &level_editor_dot_cursor , x , y ,
-							      1.0 , 1.0 , 1.0 , 0.25 , FALSE);
+		draw_gl_textured_quad_at_map_position ( &level_editor_dot_cursor , x , y ,
+							      1.0 , 1.0 , 1.0 , 0.25 , FALSE, ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT);
 	    else
 		blit_iso_image_to_map_position ( &level_editor_dot_cursor , x , y);
 	}
 	else
 	{
 	    if ( use_open_gl )
-		blit_open_gl_texture_to_map_position ( &level_editor_dot_cursor , x , y ,
-						       1.0 , 1.0 , 1.0 , TRUE , FALSE);
+		draw_gl_textured_quad_at_map_position ( &level_editor_dot_cursor , x , y ,
+						       1.0 , 1.0 , 1.0 , TRUE , FALSE, 1.0);
 	    else
 		blit_iso_image_to_map_position ( &level_editor_dot_cursor , x , y);
 	}
@@ -3756,9 +3758,9 @@ Unable to load the level editor waypoint cursor.",
 	{
 	    if ( use_open_gl )
 	    {
-		blit_zoomed_open_gl_texture_to_map_position ( 
+		draw_gl_textured_quad_at_map_position ( 
                         &level_editor_waypoint_cursor [ this_wp -> suppress_random_spawn ] , 
-							      this_wp->x + 0.5 , this_wp->y + 0.5 , 1.0 , 1.0 , 1.0 , 0.25, FALSE ) ;
+							      this_wp->x + 0.5 , this_wp->y + 0.5 , 1.0 , 1.0 , 1.0 , 0.25, FALSE, ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT ) ;
 	    }
 	    else
 	    {
@@ -3770,8 +3772,8 @@ Unable to load the level editor waypoint cursor.",
 	else
 	{
 	    if ( use_open_gl )
-		blit_open_gl_texture_to_map_position ( &level_editor_waypoint_cursor [ this_wp -> suppress_random_spawn ]  , 
-						       this_wp->x + 0.5 , this_wp->y + 0.5 , 1.0 , 1.0 , 1.0 , 0 , FALSE) ;
+		draw_gl_textured_quad_at_map_position ( &level_editor_waypoint_cursor [ this_wp -> suppress_random_spawn ]  , 
+						       this_wp->x + 0.5 , this_wp->y + 0.5 , 1.0 , 1.0 , 1.0 , 0 , FALSE, 1.0) ;
 	    else
 		blit_iso_image_to_map_position ( &level_editor_waypoint_cursor [ this_wp -> suppress_random_spawn ] , 
 						 this_wp->x + 0.5 , this_wp->y + 0.5 ) ;
@@ -3875,8 +3877,8 @@ ShowMapLabels( int mask )
 	if ( ! ( mask && ZOOM_OUT ) )
 	{
 	    if ( use_open_gl )
-		blit_open_gl_texture_to_map_position ( &map_label_indicator , EditLevel -> labels [ LabelNr ] . pos . x + 0.5 , 
-						       EditLevel -> labels [ LabelNr ] . pos . y + 0.5 , 1.0, 1.0 , 1.0 , FALSE , FALSE);
+		draw_gl_textured_quad_at_map_position ( &map_label_indicator , EditLevel -> labels [ LabelNr ] . pos . x + 0.5 , 
+						       EditLevel -> labels [ LabelNr ] . pos . y + 0.5 , 1.0, 1.0 , 1.0 , FALSE , FALSE, 1.);
 	    else
 		blit_iso_image_to_map_position ( &map_label_indicator , EditLevel -> labels [ LabelNr ] . pos . x + 0.5 , 
 						 EditLevel -> labels [ LabelNr ] . pos . y + 0.5 );
@@ -3884,8 +3886,8 @@ ShowMapLabels( int mask )
 	else
 	{
 	    if ( use_open_gl )
-		blit_zoomed_open_gl_texture_to_map_position ( &map_label_indicator , EditLevel -> labels [ LabelNr ] . pos . x + 0.5 , 
-							      EditLevel -> labels [ LabelNr ] . pos . y + 0.5 , 1.0 , 1.0 , 1.0 , 0.25, FALSE );
+		draw_gl_textured_quad_at_map_position ( &map_label_indicator , EditLevel -> labels [ LabelNr ] . pos . x + 0.5 , 
+							      EditLevel -> labels [ LabelNr ] . pos . y + 0.5 , 1.0 , 1.0 , 1.0 , 0.25, FALSE, ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT );
 	    else
 		blit_zoomed_iso_image_to_map_position ( & ( map_label_indicator ) , EditLevel -> labels [ LabelNr ] . pos . x + 0.5 , 
 							EditLevel -> labels [ LabelNr ] . pos . y + 0.5 );
@@ -3901,57 +3903,48 @@ ShowMapLabels( int mask )
 void
 HandleMapTileEditingKeys ( Level EditLevel , int BlockX , int BlockY )
 {
-    if ( TPressed() ) 
+    if ( THit() ) 
     {
 	GameConfig . level_editor_edit_mode = LEVEL_EDITOR_SELECTION_MACHINERY ;
 	FirstBlock = Highlight = ISO_TELEPORTER_1 ;
     }
-    if ( KP1Pressed() ) 
+    if ( KP1Hit() ) 
     {
 	create_new_obstacle_on_level ( EditLevel , -1 , ((int)Me.pos.x) , ((int)Me.pos.y) + 1.0 );
-	while ( KP1Pressed() );
     }
-    if (KP2Pressed()) 
+    if (KP2Hit()) 
     {
 	create_new_obstacle_on_level ( EditLevel , -1 , ((int)Me.pos.x) + 0.5 , ((int)Me.pos.y) + 1.0 );
-	while ( KP2Pressed() );
     }
-    if (KP3Pressed()) 
+    if (KP3Hit()) 
     {
 	create_new_obstacle_on_level ( EditLevel , -1 , ((int)Me.pos.x) + 1.0 , ((int)Me.pos.y) + 1.0 );
-	while ( KP3Pressed() );
     }
-    if (KP4Pressed()) 
+    if (KP4Hit()) 
     {
 	create_new_obstacle_on_level ( EditLevel , -1 , ((int)Me.pos.x) , ((int)Me.pos.y) + 0.5 );
-	while ( KP4Pressed() );
     }
-    if (KP5Pressed()) 
+    if (KP5Hit()) 
     {
 	create_new_obstacle_on_level ( EditLevel , -1 , ((int)Me.pos.x) + 0.5 , ((int)Me.pos.y) + 0.5 );
-	while ( KP5Pressed() );
     }
-    if (KP6Pressed()) 
+    if (KP6Hit()) 
     {
 	create_new_obstacle_on_level ( EditLevel , -1 , ((int)Me.pos.x) + 1.0 , ((int)Me.pos.y) + 0.5 );
-	while ( KP6Pressed() );
     }
-    if (KP7Pressed()) 
+    if (KP7Hit()) 
     {
 	create_new_obstacle_on_level ( EditLevel , -1 , ((int)Me.pos.x) , ((int)Me.pos.y) );
-	while ( KP7Pressed() ); 
     }
-    if ( KP8Pressed() ) 
+    if ( KP8Hit() ) 
     {
 	create_new_obstacle_on_level ( EditLevel , -1 , ((int)Me.pos.x) + 0.5 , ((int)Me.pos.y) );
-	while ( KP8Pressed() ); 
     }
-    if (KP9Pressed()) 
+    if (KP9Hit()) 
     {
 	create_new_obstacle_on_level ( EditLevel , -1 , ((int)Me.pos.x) + 1.0 , ((int)Me.pos.y) );
-	while ( KP9Pressed() ); 
     }
-    if (DPressed())
+    if (DHit())
     {
 	if ( !CtrlWasPressed())
 	{
@@ -3967,7 +3960,6 @@ HandleMapTileEditingKeys ( Level EditLevel , int BlockX , int BlockY )
 	    else 
 		create_new_obstacle_on_level ( EditLevel , ISO_H_DOOR_LOCKED , ((int)Me.pos.x) + 0.5 , ((int)Me.pos.y) );
 	}
-	while ( DPressed() );
     }
     
 }; // void HandleMapTileEditingKeys ( Level EditLevel , int BlockX , int BlockY )
@@ -5285,6 +5277,7 @@ LevelEditor(void)
 	main_menu_requested = FALSE ;
 	while ( ( !level_editor_done ) && ( ! main_menu_requested ) )
 	{
+            track_last_frame_input_status();
 	    //--------------------
 	    // Even the level editor might be fast or slow or too slow, so we'd like to 
 	    // know speed in here too, so that we can identify possible unnescessary lags
@@ -5299,7 +5292,7 @@ LevelEditor(void)
 	    // We can do with less, cause there are no objects supposed to be 
 	    // moving fluently anyway.  Therefore we introduce some rest for the CPU.
 	    //
-	    if ( ! GameConfig . hog_CPU ) SDL_Delay (3);
+	    if ( ! GameConfig . hog_CPU ) SDL_Delay (1);
 	    
 	    BlockX = rintf ( Me . pos . x - 0.5 );
 	    BlockY = rintf ( Me . pos . y - 0.5 );
@@ -5347,7 +5340,6 @@ LevelEditor(void)
 	    VanishingMessageDisplayTime += ( SDL_GetTicks ( ) - OldTicks ) / 1000.0 ;
 	    OldTicks = SDL_GetTicks ( ) ;
 	    
-	    ClearUserFenster();
 	    AssembleCombatPicture ( ONLY_SHOW_MAP_AND_TEXT | SHOW_GRID | SHOW_ITEMS | GameConfig.omit_tux_in_level_editor * OMIT_TUX | GameConfig.omit_obstacles_in_level_editor * OMIT_OBSTACLES | GameConfig.omit_enemies_in_level_editor * OMIT_ENEMIES | SHOW_OBSTACLE_NAMES | ZOOM_OUT * GameConfig . zoom_is_on | OMIT_BLASTS | SKIP_LIGHT_RADIUS );
 	    
 	    Highlight_Current_Block(ZOOM_OUT * GameConfig . zoom_is_on );
@@ -5657,7 +5649,7 @@ LevelEditor(void)
 	    LeftMousePressedPreviousFrame = MouseLeftPressed(); 
 	    RightMousePressedPreviousFrame = MouseRightPressed() ;
 	    
-	} // while ( ... )
+	}
 	while( EscapePressed() );
 	
 	//--------------------

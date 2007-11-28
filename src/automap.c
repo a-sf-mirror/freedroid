@@ -1,6 +1,6 @@
 
 /* 
- *
+ *   Copyright (c) 2004-2007 Arthur Huillet
  *   Copyright (c) 2004 Johannes Prix
  *
  *
@@ -55,7 +55,6 @@
 // So we're using larger textures, assuming that most people will have
 // decen graphics adapters. Vodoo users can recompile the game for their needs...
 //
-#define AUTOMAP_ZOOM_OUT_FACT 8.0
 int AUTOMAP_TEXTURE_WIDTH=2048;
 int AUTOMAP_TEXTURE_HEIGHT=1024;
 
@@ -66,19 +65,7 @@ int AUTOMAP_TEXTURE_HEIGHT=1024;
 void 
 ClearAutomapData( void )
 {
-/*    int x , y , level ;
-
-    for ( level = 0 ; level < MAX_LEVELS ; level ++ )
-    {
-	for ( y = 0 ; y < 200 ; y ++ )
-	{
-	    for ( x = 0 ; x < 200 ; x ++ )
-	    {
-		Me . Automap[level][y][x] = 0 ;
-	    }
-	}
-    }*/
-memset ( Me . Automap, 0, MAX_LEVELS * 100 * 100);
+ memset ( Me . Automap, 0, MAX_LEVELS * 100 * 100);
     
 }; // void ClearAutomapData ( void )
 
@@ -135,14 +122,6 @@ set_up_texture_for_automap ( void )
     //
     glPixelStorei( GL_UNPACK_ALIGNMENT,1 );
 
-    //--------------------
-    // We must not call glGenTextures more than once in all of Freedroid,
-    // according to the nehe docu and also confirmed instances of textures
-    // getting overwritten.  So all the gentexture stuff is now in the
-    // initialzize_our_default_open_gl_parameters function and we'll use stuff from there.
-    //
-    // glGenTextures( 1, & our_image -> texture );
-    //
     automap_texture = & ( all_freedroid_textures [ next_texture_index_to_use ] ) ;
     next_texture_index_to_use ++ ;
 
@@ -172,19 +151,12 @@ set_up_texture_for_automap ( void )
     // We will use the 'GL_REPLACE' texturing environment or get 
     // unusable (and slow) results.
     //
-    // glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL );
-    // glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_BLEND );
-    // glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE );
-    glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE );
-
     // Generate The Texture 
     glTexImage2D( GL_TEXTURE_2D, 0, 4, pure_surface -> w,
 		  pure_surface -> h, 0, GL_BGRA,
 		  GL_UNSIGNED_BYTE, pure_surface -> pixels );
 
     SDL_FreeSurface ( pure_surface );
-
-    DebugPrintf ( 1 , "\n%s(): Texture has been set up..." , __FUNCTION__ );
 
 #endif
 
@@ -218,14 +190,12 @@ clear_automap_texture_completely ( void )
     if ( ! empty_texture_is_available ) 
     {
 	empty_texture_is_available = TRUE ;
-	// pure_surface = SDL_CreateRGBSurface( 0 , AUTOMAP_TEXTURE_WIDTH , AUTOMAP_TEXTURE_HEIGHT , 32, 0x0FF000000 , 0x000FF0000  , 0x00000FF00 , 0x000FF );
 	empty_automap_surface = MyMalloc ( 4 * ( ( AUTOMAP_TEXTURE_WIDTH + 2 )  * ( AUTOMAP_TEXTURE_HEIGHT + 2 ) ) ) ;
 	memset ( empty_automap_surface , 0 , 4 * AUTOMAP_TEXTURE_WIDTH * AUTOMAP_TEXTURE_HEIGHT ) ;
     }
 
     DebugPrintf ( 1 , "\n%s(): starting to clear automap." , __FUNCTION__ );
 
-    glEnable ( GL_TEXTURE_2D );
     glBindTexture ( GL_TEXTURE_2D , *automap_texture );
     glTexSubImage2D ( GL_TEXTURE_2D , 0 , 
 		      0 , 
@@ -396,7 +366,6 @@ automap_update_texture_for_square ( int x , int y )
     int i;
     Level automap_level = curShip . AllLevels [ Me . pos . z ] ;
     obstacle* our_obstacle ;
-    static int first_call = TRUE;
 
     //---------------------
     // If there is no OpenGL graphics output, then there is also no need
@@ -404,15 +373,6 @@ automap_update_texture_for_square ( int x , int y )
     // a segmentation fault.
     //
     if ( ! use_open_gl ) return;
-
-    if ( first_call )
-    {
-	first_call = FALSE ;
-	DebugPrintf ( 1 , "\n%s(): iso_floor_tile_width: %f. iso_floor_tile_height: %f." , 
-		      __FUNCTION__ , iso_floor_tile_width , iso_floor_tile_height );
-    }
-
-    // DebugPrintf ( -4 , "x: %d. y: %d. ** " , x , y ) ;
 
     for ( i = 0 ; i < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE ; i ++ )
     {
@@ -432,7 +392,6 @@ automap_update_texture_for_square ( int x , int y )
 	    // 0 , obstacle_map [ our_obstacle -> type ] . automap_version -> w *
 	    // obstacle_map [ our_obstacle -> type ] . automap_version -> h );
 	    // 
-	    glEnable ( GL_TEXTURE_2D );
 	    glBindTexture ( GL_TEXTURE_2D , *automap_texture );
 	    glTexSubImage2D ( GL_TEXTURE_2D , 0 , 
 			      ( AUTOMAP_TEXTURE_WIDTH / 2 ) + ( our_obstacle -> pos . x - our_obstacle -> pos . y ) * ( iso_floor_tile_width / ( 2.0 * AUTOMAP_ZOOM_OUT_FACT ) ) ,

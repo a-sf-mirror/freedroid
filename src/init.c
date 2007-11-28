@@ -1,5 +1,6 @@
 /* 
  *
+ *   Copyright (c) 2004-2007 Arthur Huillet
  *   Copyright (c) 1994, 2002, 2003 Johannes Prix
  *   Copyright (c) 1994, 2002 Reinhard Prix
  *
@@ -181,15 +182,6 @@ init_character_descriptions ( void )
 
     character_descriptions [ PERSON_MS_FACILITY_GATE_GUARD_LEADER ] = _("The armor hides his body.");
 
-    /*
-    Note: Those are not used in the game.
-    Maybe for the best, most are badly written. 
-    PERSON_MER,
-    PERSON_ERNIE,
-    PERSON_STANDARD_NEW_TOWN_GATE_GUARD,
-    PERSON_HEA,
-    */
-
 }; // void init_character_descriptions ( void )
 
 /* ---------------------------------------------------------------------- 
@@ -200,7 +192,7 @@ void
 ShowStartupPercentage ( int Percentage )
 {
     SDL_Rect Bar_Rect;
-    Uint32 FillColor = SDL_MapRGB( Screen->format, 0 , 255 , 0 ) ; 
+    Uint32 FillColor = SDL_MapRGB( Screen->format, 150 , 200 , 225 ) ; 
     
 #if __WIN32__
     if ( use_open_gl)
@@ -324,61 +316,6 @@ char fpath[2048];
    free ( TitleFilePointer ) ;
   
 }; // void PlayATitleFile ( char* Filename )
-
-/* ----------------------------------------------------------------------
- * This function loads all the constant variables of the game from
- * a data file, that should be optimally human readable.
- * ---------------------------------------------------------------------- */
-void
-Get_General_Game_Constants ( void* DataPointer )
-{
-  char *ConstantPointer;
-  char *EndOfDataPointer;
-
-#define CONSTANTS_SECTION_BEGIN_STRING "*** Start of General Game Constants Section: ***"
-#define CONSTANTS_SECTION_END_STRING "*** End of General Game Constants Section: ***"
-#define COLLISION_LOSE_ENERGY_CALIBRATOR_STRING "Energy-Loss-factor for Collisions of Influ with hostile robots="
-#define BLAST_RADIUS_SPECIFICATION_STRING "Radius of explosions (as far as damage is concerned) in multiples of tiles="
-#define DRUID_RADIUS_X_SPECIFICATION_STRING "'Radius' of droids in x direction="
-#define DRUID_RADIUS_Y_SPECIFICATION_STRING "'Radius' of droids in x direction="
-#define BLAST_DAMAGE_SPECIFICATION_STRING "Amount of damage done by contact to a blast per second of time="
-#define TIME_FOR_DOOR_MOVEMENT_SPECIFICATION_STRING "Time for the doors to move by one subphase of their movement="
-
-
-  ConstantPointer = LocateStringInData ( DataPointer , CONSTANTS_SECTION_BEGIN_STRING );
-  EndOfDataPointer = LocateStringInData ( DataPointer , CONSTANTS_SECTION_END_STRING );
-
-  DebugPrintf ( 2 , "\n\nStarting to read contents of General Game Constants section\n\n");
-
-  // Now we read in the speed calibration factor for all bullets
-  ReadValueFromString( DataPointer , COLLISION_LOSE_ENERGY_CALIBRATOR_STRING , "%lf" , 
-		       &collision_lose_energy_calibrator , EndOfDataPointer );
-
-  // Now we read in the blast radius
-  ReadValueFromString( DataPointer , BLAST_RADIUS_SPECIFICATION_STRING , "%lf" , 
-		       &Blast_Radius , EndOfDataPointer );
-
-  // Now we read in the druid 'radius' in x direction
-  ReadValueFromString( DataPointer , DRUID_RADIUS_X_SPECIFICATION_STRING , "%lf" , 
-		       &Druid_Radius_X , EndOfDataPointer );
-  ReadValueFromString( DataPointer , DRUID_RADIUS_Y_SPECIFICATION_STRING , "%lf" , 
-		       &Druid_Radius_Y , EndOfDataPointer );
-
-  // Now we read in the blast damage amount per 'second' of contact with the blast
-  ReadValueFromString( DataPointer ,  BLAST_DAMAGE_SPECIFICATION_STRING , "%lf" , 
-		       &Blast_Damage_Per_Second , EndOfDataPointer );
-
-  // Now we read in the speed of the conveyor belt
-  ReadValueFromString( DataPointer ,  "Conveyor belt speed (in squares per second )=", "%lf" , 
-		       &Conveyor_Belt_Speed , EndOfDataPointer );
-
-  // Now we read in the time is takes for the door to move one phase 
-  ReadValueFromString( DataPointer ,  TIME_FOR_DOOR_MOVEMENT_SPECIFICATION_STRING , "%lf" , 
-		       &Time_For_Each_Phase_Of_Door_Movement , EndOfDataPointer );
-
-  DebugPrintf( 1 , "\nvoid Get_General_Game_Constants ( void* DataPointer ): end of function reached." );
-
-} // void Get_General_Game_Constants ( void* DataPointer )
 
 /*----------------------------------------------------------------------
  * This function reads in all the bullet data from the freedroid.ruleset file,
@@ -1240,16 +1177,6 @@ char fpath[2048];
 #define INIT_GAME_DATA_DEBUG 1 
 
   //--------------------
-  // First we load the general game constants
-  //
-  find_file ("freedroid.ruleset" , MAP_DIR, fpath, 0);
-  DebugPrintf ( INIT_GAME_DATA_DEBUG , "\nvoid Init_Game_Data:  Data will be taken from file : %s.  Commencing... \n" ,
-		fpath );
-  Data = ReadAndMallocAndTerminateFile( fpath , "*** End of this Freedroid data File ***" ); 
-  Get_General_Game_Constants( Data );
-  free ( Data );
-  
-  //--------------------
   // Load magical items informations
   //
   find_file ("freedroid.prefix_archetypes" , MAP_DIR , fpath, 0 );
@@ -1454,8 +1381,15 @@ ParseCommandLine (int argc, char *const argv[])
                             command_line_override_for_screen_resolution = TRUE ;
                             GameConfig . screen_width = 1280 ;
                             GameConfig . screen_height = 800 ;
-                            DebugPrintf ( 1 , "\n%s(): Command line argument -r 4 recognized." , __FUNCTION__ );
+                            DebugPrintf ( 1 , "\n%s(): Command line argument -r 5 recognized." , __FUNCTION__ );
                             break;
+			case 6: 
+                            command_line_override_for_screen_resolution = TRUE ;
+                            GameConfig . screen_width = 1280 ;
+                            GameConfig . screen_height =1024 ;
+                            DebugPrintf ( 1 , "\n%s(): Command line argument -r 6 recognized." , __FUNCTION__ );
+                            break;
+
 
 
 			default:
@@ -1738,7 +1672,6 @@ PrepareStartOfNewCharacter ( void )
     Me . TextVisibleTime = 0;
     Me . readied_skill = 0;
     Me . walk_cycle_phase = 0 ;
-    // CurLevel = NULL;  // please leave this here.  It indicates, that the map is not yet initialized!!!
     Me . TextToBeDisplayed = _("Linux Kernel booted.  001 transfer-tech modules loaded.  System up and running.");
     
     //--------------------
@@ -1767,8 +1700,7 @@ PrepareStartOfNewCharacter ( void )
     DebugPrintf ( 1 , "\n%s():  Shuffling droids on all %d levels!" , __FUNCTION__ , curShip.num_levels );
     for ( i = 0 ; i < curShip.num_levels ; i ++ )
     {
-	// ShuffleEnemys( Me.pos.z ); // NOTE: THIS REQUIRES CurLevel TO BE INITIALIZED !! --> NOT ANY MORE!!!
-	ShuffleEnemys( i ); // NOTE: THIS REQUIRES CurLevel TO BE INITIALIZED !! --> NOT ANY MORE!!!
+	ShuffleEnemys( i );
     }
     
     
@@ -1902,14 +1834,6 @@ InitFreedroid ( int argc, char ** argv )
     DebugPrintf ( -4 , "\nHello, this is FreedroidRPG, version %s." , VERSION );
 		  
 
-    //--------------------
-    // WARNING!  We're using a GNU extension of standard (ANSI?) C here.  That
-    //           means the following 'feenableexcept' might not be completely
-    //           portable (and also cause a warning about missing prototype at
-    //           compile time).  However, this is not severe.  The feenableexcept
-    //           just helps for debugging the code.  Feel free to slimply cut away
-    //           these instructions in case they give you any porting problems...
-    //--------------------
 #ifndef __WIN32__
 
     //--------------------
@@ -1977,31 +1901,7 @@ InitFreedroid ( int argc, char ** argv )
     // like...
     //
     implant_backtrace_into_signal_handlers ( ) ;
-
-    //--------------------
-    // That will cause the memory to be allocated later...
-    //
-    Bulletmap = NULL;  
-
-    //--------------------
-    // We set these dummy values, so that when the title plays (and banner and
-    // therefore energy bars are displayed, there won't be any floating point
-    // exception problems...)
-    //
-    Me . temperature = 0 ;
-    Me . max_temperature = 10 ;
-    Me . energy = 1 ;
-    Me . maxenergy = 10 ;
     
-    //--------------------
-    // It might happen, that the uninitialized AllBullets array contains a 1
-    // somewhere and that the bullet is deleted and the surface freed, where
-    // it never has been allocated, resulting in a SEGFAULT.  This has never
-    // happend, but for security, we add this loop to clean out these important 
-    // flags.       It should be sufficient to do this here, since the flag
-    // will never be set again if not Surfaces are allocated too and then they
-    // can of course also be freed as well.
-    //
     GameConfig . level_editor_edit_mode = LEVEL_EDITOR_SELECTION_FLOOR ;
 
     init_character_descriptions ( );
@@ -2015,21 +1915,11 @@ InitFreedroid ( int argc, char ** argv )
     
     Overall_Average = 0.041 ;
     SkipAFewFrames = 0;
-    Me . TextVisibleTime = 0;
-    Me . readied_skill = 0;
-    Me . walk_cycle_phase = 0 ;
-    CurLevel = NULL;  // please leave this here.  It indicates, that the map is not yet initialized!!!
-    Me . TextToBeDisplayed = _("Linux Kernel booted.  001 transfer-tech modules loaded.  System up and running.");
+    Me . TextToBeDisplayed = _("");
     
-    // --------------------
-    //
     InventorySize.x = INVENTORY_GRID_WIDTH ;
     InventorySize.y = INVENTORY_GRID_HEIGHT ;
     
-    //--------------------
-    // Load some default configuration values and override them with
-    // the loaded config file, if one exists...
-    //
     ResetGameConfigToDefaultValues ();
 
 #if __WIN32__
@@ -2122,10 +2012,6 @@ I will not be able to load or save games or configurations\n\
     Init_Game_Data(); 
     
     ShowStartupPercentage ( 16 ) ; 
-    
-    // The default should be, that no rescaling of the
-    // combat window at all is done.
-    CurrentCombatScaleFactor = 1;
     
     /* 
      * Initialise random-number generator in order to make 

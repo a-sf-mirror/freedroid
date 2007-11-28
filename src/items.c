@@ -1,6 +1,7 @@
 /* 
  *
  *   Copyright (c) 2002, 2003 Johannes Prix
+ *   Copyright (c) 2004-2007 Arthur Huillet 
  *
  *
  *  This file is part of Freedroid
@@ -1475,11 +1476,6 @@ Quick_ApplyItem( int ItemKey )
     //
     FoundItemNr = GetInventoryItemAt ( ItemKey -1 , INVENTORY_GRID_HEIGHT -1 );
     if ( FoundItemNr == (-1) ) return;
-    
-    //--------------------
-    // Now that we have found the discusses item, we can just apply
-    // it...
-    //
     
     ApplyItem ( & ( Me.Inventory[ FoundItemNr ] ) );
 

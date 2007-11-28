@@ -2,6 +2,7 @@
  *
  *   Copyright (c) 1994, 2002, 2003 Johannes Prix
  *   Copyright (c) 1994, 2002 Reinhard Prix
+ *   Copyright (c) 2004-2007 Arthur Huillet 
  *
  *
  *  This file is part of Freedroid
@@ -808,19 +809,5 @@ ShowItemInfo ( item* ShowItem , int Displacement , char ShowArrows , int backgro
     }
     
 }; // void ShowItemInfo ( ... )
-
-/* ----------------------------------------------------------------------
- * This function fills the whole User_Rect with color 0 = black.
- * ---------------------------------------------------------------------- */
-void
-ClearUserFenster (void)
-{
-  SDL_Rect tmp;
-  
-  Copy_Rect (User_Rect, tmp)
-
-  our_SDL_fill_rect_wrapper( Screen , &tmp, 0 );
-
-}; // void ClearUserFenster( void )
 
 #undef _ship_c

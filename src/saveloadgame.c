@@ -1,6 +1,7 @@
 /* 
  *
  *   Copyright (c) 2002, 2003 Johannes Prix
+ *   Copyright (c) 2004-2007 Arthur Huillet 
  *
  *  This file is part of Freedroid
  *
@@ -245,7 +246,7 @@ SaveThumbnailOfGame ( void )
 	// upside down again.  Now that won't be much of a problem, since we've already
 	// dealt with is several times, using the following flipping code.
 	//
-	flip_image_horizontally ( NewThumbnail );
+	flip_image_vertically ( NewThumbnail );
 	swap_red_and_blue_for_open_gl ( NewThumbnail );
 	
 	SDL_FreeSurface ( FullView ) ;

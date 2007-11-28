@@ -1,5 +1,6 @@
 /*
  *
+ *   Copyright (c) 2007 Arthur Huillet
  *   Copyright (c) 2003 Johannes Prix
  *
  *
@@ -88,8 +89,7 @@ our_SDL_blit_surface_wrapper(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *d
 	    // fflush ( stdout );
 	    
 	    if ( dstrect == NULL )
-		// glRasterPos2f( 0 , 480 );
-		glRasterPos2f( 1 , 479 );
+		glRasterPos2f( 1 , GameConfig . screen_height - 1 );
 	    else
 	    {
 		if ( dstrect -> x == 0 )
@@ -98,7 +98,6 @@ our_SDL_blit_surface_wrapper(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *d
 		    target_x = dstrect -> x ;
 		
 		target_y = dstrect -> y + src -> h ;
-		// target_y = 479 - dstrect -> y ;
 		
 		//--------------------
 		// Here we add some extra security against raster positions (e.g. for
@@ -119,9 +118,6 @@ our_SDL_blit_surface_wrapper(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *d
 		return ( 0 ) ;
 	    }
 	    
-	    // DebugPrintf ( -1 , "\nSurface has bytes: %d. " , bytes );
-	    // fflush ( stdout );
-	    
 	    if ( srcrect != NULL )
 	    {
 		DebugPrintf ( -4 , "\nNon-Null source rect encountered. --> doing nothing." );
@@ -129,11 +125,14 @@ our_SDL_blit_surface_wrapper(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *d
 		return ( 0 ) ;
 	    }
 	    
+	    glDisable ( GL_TEXTURE_2D ); 
+
 	    if ( bytes == 4 )
 	    {
 		glEnable( GL_ALPHA_TEST );  
-		glAlphaFunc ( GL_GREATER , 0.5 ) ;
-		glDrawPixels( src -> w , src -> h, GL_BGRA , GL_UNSIGNED_BYTE , src -> pixels );
+		glDrawPixels( src -> w , src -> h, GL_BGRA , GL_UNSIGNED_BYTE , src -> pixels );		
+		glDisable( GL_ALPHA_TEST );  
+
 	    }
 	    else if ( bytes == 3 )
 	    {
@@ -152,7 +151,7 @@ our_SDL_blit_surface_wrapper(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *d
 		DebugPrintf ( -4 , "\nSurface has bytes: %d.--> doing nothing. " , bytes );
 		fflush ( stdout );
 	    }
-	    
+	    glEnable ( GL_TEXTURE_2D );  
 	    return ( 0 ) ;
 	}
 	
@@ -207,14 +206,9 @@ our_SDL_fill_rect_wrapper (SDL_Surface *dst, SDL_Rect *dstrect, Uint32 color)
       if ( dst == Screen )
 	{
 	  glDisable( GL_TEXTURE_2D );
-	  glDisable(GL_DEPTH_TEST);
-	  glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_BLEND );
-	  glDisable( GL_ALPHA_TEST );  
 	  glEnable(GL_BLEND);
-	  glBlendFunc( GL_SRC_ALPHA , GL_ONE_MINUS_SRC_ALPHA );
-	  
+
 	  SDL_GetRGBA( color, Screen -> format , &r, &g, &b, &a);
-	  glRasterPos2i ( 0 , 0 ); 
 	  glColor4ub( r , g , b , a );
 	  if ( dstrect == NULL )
 	    {
@@ -234,6 +228,8 @@ our_SDL_fill_rect_wrapper (SDL_Surface *dst, SDL_Rect *dstrect, Uint32 color)
 	      glVertex2i( dstrect -> x + dstrect -> w , dstrect -> y );
 	      glEnd( );
 	    }
+	  glEnable( GL_TEXTURE_2D );
+	  glDisable(GL_BLEND);
 	  return ( 0 );
 	}
 #endif
@@ -242,6 +238,7 @@ our_SDL_fill_rect_wrapper (SDL_Surface *dst, SDL_Rect *dstrect, Uint32 color)
   return ( SDL_FillRect ( dst, dstrect, color) ) ;
 
 }; // int our_SDL_fill_rect_wrapper (SDL_Surface *dst, SDL_Rect *dstrect, Uint32 color)
+
 
 
 /* ----------------------------------------------------------------------
@@ -260,21 +257,18 @@ blit_quad ( int x1 , int y1 , int x2, int y2, int x3, int y3, int x4 , int y4 , 
     {
 #ifdef HAVE_LIBGL
 	glDisable( GL_TEXTURE_2D );
-	glDisable(GL_DEPTH_TEST);
-	glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_BLEND );
-	glDisable( GL_ALPHA_TEST );  
-	glEnable(GL_BLEND);
-	glBlendFunc( GL_SRC_ALPHA , GL_ONE_MINUS_SRC_ALPHA );
 	
 	SDL_GetRGBA( color, Screen -> format , &r, &g, &b, &a);
-	glRasterPos2i ( 0 , 0 ); 
 	glColor4ub( r , g , b , a );
+
 	glBegin(GL_QUADS);
 	glVertex2i( x1 , y1 );
 	glVertex2i( x2 , y2 );
 	glVertex2i( x3 , y3 );
 	glVertex2i( x4 , y4 );
 	glEnd( );
+
+	glEnable( GL_TEXTURE_2D );
 	return ( 0 );
 #endif
     }
@@ -337,11 +331,10 @@ drawIsoEnergyBar(int dir, int x, int y, int z, int h, int d, int length, float f
     int l2 = (int) length * (1.0-fill) ;
     int lcos, lsin, l2cos, l2sin ;
     glEnable(GL_BLEND) ;
-    glDisable( GL_DEPTH_TEST );
-    glDisable( GL_ALPHA_TEST) ;
     glColor4ub(c1->r, c1->g, c1->b, c1->a ) ;
+    glDisable( GL_TEXTURE_2D );
     glBegin(GL_QUADS) ;
-    
+
     // the rest of this is trig to work out the x,y,z co-ordinates of the quads
     if ( dir == X_DIR ) 
     {
@@ -390,35 +383,13 @@ drawIsoEnergyBar(int dir, int x, int y, int z, int h, int d, int length, float f
 	drawISOXZQuad( x+ lcos , y - lsin -h,z, d,l2) ;
     }
     glEnd() ;
+    glEnable( GL_TEXTURE_2D );
+    glDisable(GL_BLEND) ;
+
 #endif
 }; // void drawIsoEnergyBar(int dir, int x, int y, int z, int h, int d, int length, float fill, myColor *c1, myColor *c2  ) 
 
 
-
-/* ----------------------------------------------------------------------
- *
- *
- * ---------------------------------------------------------------------- */
-SDL_Surface*
-our_SDL_display_format_wrapper ( SDL_Surface *surface )
-{
-  if ( use_open_gl )
-    {
-      if ( surface == Screen ) return ( NULL );
-      return ( SDL_DisplayFormat ( surface ) ) ; 
-    }
-  else
-    {
-      return ( SDL_DisplayFormat ( surface ) ) ; 
-    }
-
-  return ( NULL );
-}; // SDL_Surface* our_SDL_display_format_wrapper ( SDL_Surface *surface )
-
-/* ----------------------------------------------------------------------
- *
- *
- * ---------------------------------------------------------------------- */
 SDL_Surface*
 our_SDL_display_format_wrapperAlpha ( SDL_Surface *surface )
 {
@@ -441,7 +412,7 @@ our_SDL_display_format_wrapperAlpha ( SDL_Surface *surface )
 }; // SDL_Surface* our_SDL_display_format_wrapperAlpha ( SDL_Surface *surface )
 
 /* ----------------------------------------------------------------------
- * This function flips a given SDL_Surface around the x-axis, i.e. up-down.
+ * This function flips a given SDL_Surface.
  * 
  * This is particularly nescessary, since OpenGL has a different native
  * coordinate system than SDL and therefore images often appear flipped
@@ -450,64 +421,30 @@ our_SDL_display_format_wrapperAlpha ( SDL_Surface *surface )
  * does.
  * ---------------------------------------------------------------------- */
 void
-flip_image_horizontally ( SDL_Surface* tmp1 ) 
+flip_image_vertically ( SDL_Surface* tmp1 ) 
 {
-    int x , y ;
-    int bpp = tmp1->format->BytesPerPixel;
-    Uint32 temp32;
-    Uint16 temp16;
-    Uint8 temp8;
-    switch ( bpp ) {
-	case 4:
-	    for ( y = 0 ; y < ( tmp1 -> h ) / 2 ; y ++ )
-	        {
-		for ( x = 0 ; x < (tmp1 -> w ) ; x ++ )
-	            {
-		    temp32 = FdGetPixel32 ( tmp1 , x , y ) ;
-		    PutPixel32 ( tmp1 , x , y , FdGetPixel32 ( tmp1 , x , ( tmp1 -> h - y - 1 ) ) ) ;
-		    PutPixel32 ( tmp1 , x , ( tmp1 -> h - y - 1 ) , temp32 ) ;
-		    }
-		}
-	    break;
- 
-	case 3:
-	    for ( y = 0 ; y < ( tmp1 -> h ) / 2 ; y ++ )
-	        {
-		for ( x = 0 ; x < (tmp1 -> w ) ; x ++ )
-	            {
-		    temp32 = FdGetPixel24 ( tmp1 , x , y ) ;
-		    PutPixel24 ( tmp1 , x , y , FdGetPixel24 ( tmp1 , x , ( tmp1 -> h - y - 1 ) ) ) ;
-		    PutPixel24 ( tmp1 , x , ( tmp1 -> h - y - 1 ) , temp32 ) ;
-		    }
-		}
-	    break;
+SDL_LockSurface(tmp1);
 
-	case 2:
-	    for ( y = 0 ; y < ( tmp1 -> h ) / 2 ; y ++ )
-	        {
-		for ( x = 0 ; x < (tmp1 -> w ) ; x ++ )
-	            {
-		    temp16 = FdGetPixel16 ( tmp1 , x , y ) ;
-		    PutPixel16 ( tmp1 , x , y , FdGetPixel16 ( tmp1 , x , ( tmp1 -> h - y - 1 ) ) ) ;
-		    PutPixel16 ( tmp1 , x , ( tmp1 -> h - y - 1 ) , temp16 ) ;
-		    }
-		}
-	    break;
+int nHH = tmp1->h >> 1;
+int nPitch = tmp1->pitch;
 
-	case 1:
-	    for ( y = 0 ; y < ( tmp1 -> h ) / 2 ; y ++ )
-	        {
-		for ( x = 0 ; x < (tmp1 -> w ) ; x ++ )
-	            {
-		    temp8 = FdGetPixel8 ( tmp1 , x , y ) ;
-		    PutPixel8 ( tmp1 , x , y , FdGetPixel8 ( tmp1 , x , ( tmp1 -> h - y - 1 ) ) ) ;
-		    PutPixel8 ( tmp1 , x , ( tmp1 -> h - y - 1 ) , temp8 ) ;
-	 	    }
-		}
-	    break;
+unsigned char pBuf[nPitch + 1];
+unsigned char * pSrc = (unsigned char *) tmp1->pixels;
+unsigned char * pDst = (unsigned char *) tmp1->pixels + nPitch*(tmp1->h - 1);
 
-	    };
-}; // void flip_image_horizontally ( SDL_Surface* tmp1 ) 
+while (nHH--)
+    {
+    memcpy(pBuf, pSrc, nPitch);
+    memcpy(pSrc, pDst, nPitch);
+    memcpy(pDst, pBuf, nPitch);
+
+    pSrc += nPitch;
+    pDst -= nPitch;
+    }
+
+SDL_UnlockSurface(tmp1);
+
+}; // void flip_image_vertically ( SDL_Surface* tmp1 ) 
 
 /* ----------------------------------------------------------------------
  *
@@ -524,7 +461,7 @@ our_IMG_load_wrapper( const char *file )
 	
 	if ( tmp1 == NULL ) return ( NULL );
 	
-	flip_image_horizontally ( tmp1 ) ;
+	flip_image_vertically ( tmp1 ) ;
 	
 	return ( tmp1 ) ;
     }
@@ -545,68 +482,26 @@ our_IMG_load_wrapper( const char *file )
 SDL_Surface*
 pad_image_for_texture ( SDL_Surface* our_surface ) 
 {
-    int i ; 
     int x = 1 ;
     int y = 1 ;
     SDL_Surface* padded_surf;
     SDL_Surface* tmp_surf;
     SDL_Rect dest;
-    Uint32 target_color;
     
-    for ( i = 1 ; i < 100 ; i ++ )
-    {
-	if ( x >= our_surface -> w )
-	    break;
-	x = x << 1 ;
-    }
-    
-    for ( i = 1 ; i < 100 ; i ++ )
-    {
-	if ( y >= our_surface -> h )
-	    break;
-	y = y << 1 ;
-    }
+    while ( x < our_surface -> w ) x <<= 1;
+    while ( y < our_surface -> h ) y <<= 1;
 
-    if ( x < 64 )
-    {
-	DebugPrintf ( 1 , "\nWARNING!  Texture x < 64 encountered.  Raising to 64 x." ) ;
-	x = 64 ;
-    }
-    if ( y < 64 )
-    {
-	DebugPrintf ( 1 , "\nWARNING!  Texture y < 64 encountered.  Raising to 64 y." ) ;
-	y = 64 ;
-    }
-    
-    DebugPrintf ( 1 , "\nPadding image to texture size: final is x=%d, y=%d." , x , y );
-    
     padded_surf = SDL_CreateRGBSurface( 0 , x , y , 32, 0x0FF000000 , 0x000FF0000  , 0x00000FF00 , 0x000FF );
     tmp_surf = SDL_DisplayFormatAlpha ( padded_surf ) ;
     SDL_FreeSurface ( padded_surf );
     
     SDL_SetAlpha( our_surface , 0 , 0 );
     SDL_SetColorKey( our_surface , 0 , 0x0FF );
-    
     dest . x = 0;
     dest . y = y - our_surface -> h ;
     dest . w = our_surface -> w ;
     dest . h = our_surface -> h ;
-    
-    target_color = SDL_MapRGBA( tmp_surf -> format, 0, 0, 0, 0 );
-/*    for ( x = 0 ; x < tmp_surf -> w ; x ++ )
-    {
-	for ( y = 0 ; y < tmp_surf -> h ; y ++ )
-	{
-	    PutPixel ( tmp_surf , x , y , target_color ) ;
-	}
-    }*/
-    SDL_Rect all_tmp_surf;
-    all_tmp_surf . x = 0;
-    all_tmp_surf . y = 0;
-    all_tmp_surf . w = tmp_surf -> w;
-    all_tmp_surf . h = tmp_surf -> h;
-    SDL_FillRect ( tmp_surf, &all_tmp_surf, target_color ) ;
-    
+                   
     our_SDL_blit_surface_wrapper ( our_surface, NULL , tmp_surf , & dest );
     
     return ( tmp_surf );
@@ -615,63 +510,19 @@ pad_image_for_texture ( SDL_Surface* our_surface )
 
 /* ----------------------------------------------------------------------
  * If OpenGL is in use, we need to make textured quads out of our normal
- * SDL surfaces, so that the image information can reside in texture 
- * memory and that means ON THE GRAPHICS CARD, avoiding the bottleneck
- * of the AGP port for *much* faster blitting of the graphics.
+ * SDL surfaces.
  * 
- * So this function should create appropriate OpenGL textures.  It relys
- * on and checks the fact, that a proper amount of OpenGL textures has
- * been requested in the beginning, knowing that this texture creation
- * call MUST ONLY BE CALLED AT MOST ONCE, SEE NEHE TUTORIALS AND SIMILAR
- * SOURCES, OR YOUR OLD TEXTURES WILL GET OVERWRITTEN AGAIN AND AGAIN!
- *
- * There is need to do some padding, cause OpenGL textures need to have
- * a format: width and length both each a power of two.  Therefore some
- * extra alpha to the sides must be inserted.
- *
+ * make_texture_out_of_surface and make_texture_out_of_prepadded_image are
+ * the entry points for this function.
  * ---------------------------------------------------------------------- */
-void
-make_texture_out_of_surface ( iso_image* our_image ) 
+static void
+do_make_texture_out_of_surface ( iso_image* our_image, int txw, int txh, void * data) 
 {
-    SDL_Surface* right_sized_image ;
-    
+
 #ifdef HAVE_LIBGL
 
-    if ( ! use_open_gl ) return;
-    
-    //--------------------
-    // If the texture has been created before and this function is called
-    // for the second time, this is a major error, that is considered a
-    // cause for immediate program termination.
-    //
-    if ( our_image -> texture_has_been_created )
-    {
-	GiveStandardErrorMessage ( __FUNCTION__  , 
-				   "Texture has been created already according to flag...\n\
-hmmm... either the surface has been freed and the pointer moved cleanly to NULL\n\
-(which is good for bug detection) or something is not right here...",
-				   PLEASE_INFORM, IS_FATAL ); // WARNING_ONLY );
-	return;
-    }
-    
-    //--------------------
-    // This fill up the image with transparent material, so that 
-    // it will have powers of 2 as the dimensions, which is a requirement
-    // for textures on most OpenGL capable cards.
-    //
-    right_sized_image = pad_image_for_texture ( our_image -> surface ) ;
-    our_image -> texture_width = right_sized_image -> w ;
-    our_image -> texture_height = right_sized_image -> h ;
-    our_image -> original_image_width = our_image -> surface -> w ;
-    our_image -> original_image_height = our_image -> surface -> h ;
-    
-    //--------------------
-    // Having prepared the raw image it's now time to create the real
-    // textures.
-    //
     glPixelStorei ( GL_UNPACK_ALIGNMENT , 1 );
     
-
     if ( our_image -> texture ) 
 	if ( * our_image-> texture )
 		{
@@ -695,47 +546,51 @@ hmmm... either the surface has been freed and the pointer moved cleanly to NULL\
     reuse_tex:
     DebugPrintf ( 1 , "Using texture %d\n", *our_image->texture);
    
-    //--------------------
-    // Typical Texture Generation Using Data From The Bitmap 
-    //
     glBindTexture( GL_TEXTURE_2D, * ( our_image -> texture ) );
     
-    //--------------------
-    // Maybe we will want to set some storage parameters, but I`m not
-    // completely sure if they would really help us in any way...
-    //
-    // glPixelStorei(GL_UNPACK_ALIGNMENT, 0);
-    // glPixelStorei(GL_UNPACK_ROW_LENGTH, 0);
-    // glPixelStorei(GL_UNPACK_SKIP_ROWS, 0);
-    // glPixelStorei(GL_UNPACK_SKIP_PIXELS, 0);
-    
-    //--------------------
-    // Setting texture parameters like in NeHe tutorial...
-    //
+    // We tend to scale those textures a lot, so we use linear filtering otherwise
+    // the result is not so good.
     glTexParameteri( GL_TEXTURE_2D , GL_TEXTURE_MAG_FILTER , GL_LINEAR );
     glTexParameteri( GL_TEXTURE_2D , GL_TEXTURE_MIN_FILTER , GL_LINEAR );
     
-    //--------------------
-    // We will use the 'GL_REPLACE' texturing environment or get 
-    // unusable (and slow) results.
-    //
-    // glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL );
-    // glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_BLEND );
-    // glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE );
-    glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE );
-    
     // Generate The Texture 
-    glTexImage2D( GL_TEXTURE_2D, 0, 4, right_sized_image ->w ,
-		  right_sized_image -> h , 0, GL_BGRA,
-		  GL_UNSIGNED_BYTE, right_sized_image -> pixels );
+    glTexImage2D( GL_TEXTURE_2D, 0, 4, txw ,  txh , 0, GL_BGRA,  GL_UNSIGNED_BYTE, data);
+
+    open_gl_check_error_status ( __FUNCTION__ ); 
+
+#endif
+
+}
+
+void
+make_texture_out_of_surface ( iso_image* our_image ) 
+{
+    SDL_Surface* right_sized_image ;
     
+#ifdef HAVE_LIBGL
+
+    //--------------------
+    // This fills up the image with transparent material, so that 
+    // it will have powers of 2 as the dimensions, which is a requirement
+    // for textures on most OpenGL capable cards.
+    //
+    right_sized_image = pad_image_for_texture ( our_image -> surface ) ;
+    our_image -> texture_width = right_sized_image -> w ;
+    our_image -> texture_height = right_sized_image -> h ;
+    our_image -> original_image_width = our_image -> surface -> w ;
+    our_image -> original_image_height = our_image -> surface -> h ;
+    
+    //--------------------
+    // Having prepared the raw image it's now time to create the real
+    // textures.
+    //
+    do_make_texture_out_of_surface ( our_image, right_sized_image -> w, right_sized_image -> h, right_sized_image -> pixels );
     SDL_FreeSurface ( right_sized_image );
     
     //--------------------
     // Now that the texture has been created, we assume that the image is
-    // not needed any more and can be freed now!  BEWARE!  Keep this in mind,
-    // that creating the texture now removes the surface...
-    //
+    // not needed any more and can be freed now!  
+
     // So as to detect any occurances of access to the surface once the 
     // texture has been created, we set the surface to the NULL pointer to
     // ENCOURAGE SEGMENTATION FAULTS when doing this so as to eliminate
@@ -743,170 +598,18 @@ hmmm... either the surface has been freed and the pointer moved cleanly to NULL\
     //
     SDL_FreeSurface ( our_image -> surface );
     our_image -> surface = NULL ;
-    
-    open_gl_check_error_status ( __FUNCTION__ );
     
 #endif
     
 }; // void make_texture_out_of_surface ( iso_image* our_image )
 
-/* ----------------------------------------------------------------------
- * If OpenGL is in use, we need to make textured quads out of our normal
- * SDL surfaces, so that the image information can reside in texture 
- * memory and that means ON THE GRAPHICS CARD, avoiding the bottleneck
- * of the AGP port for *much* faster blitting of the graphics.
- * 
- * So this function should create appropriate OpenGL textures.  It relys
- * on and checks the fact, that a proper amount of OpenGL textures has
- * been requested in the beginning, knowing that this texture creation
- * call MUST ONLY BE CALLED AT MOST ONCE, SEE NEHE TUTORIALS AND SIMILAR
- * SOURCES, OR YOUR OLD TEXTURES WILL GET OVERWRITTEN AGAIN AND AGAIN!
- *
- * ALSO THIS FUNCTION EXPECTS PRE-PADDED IMAGE SIZES!  An outside tool
- * like gluem must have preprated the images in question in advance for
- * better loading times, or this function will simply fail (with proper
- * error message of course...)
- *
- * ---------------------------------------------------------------------- */
-void
-make_texture_out_of_prepadded_image ( iso_image* our_image ) 
+void make_texture_out_of_prepadded_image ( iso_image * our_image )
 {
-    int factor;
-
-#ifdef HAVE_LIBGL
-    
-    if ( ! use_open_gl ) return;
-    
-    //--------------------
-    // If the texture has been created before and this function is called
-    // for the second time, this is a major error, that is considered a
-    // cause for immediate program termination.
-    //
-    if ( our_image -> texture_has_been_created )
-    {
-	GiveStandardErrorMessage ( __FUNCTION__  , 
-				   "Texture has been created already according to flag...\n\
-hmmm... either the surface has been freed and the pointer moved cleanly to NULL\n\
-(which is good for bug detection) or something is not right here...",
-				   PLEASE_INFORM, IS_FATAL ); // WARNING_ONLY );
-	return;
-    }
-    
-    //--------------------
-    // Now we check if the image received really has the desired form, i.e. if
-    // the width and height of the image are really powers of two.  We do that
-    // by testing for the prime factors of the size and width received...
-    //
-    for ( factor = 3 ; factor < sqrt ( our_image -> surface -> w ) + 1 ; factor ++ )
-    {
-	if ( ! ( our_image -> surface -> w / factor ) )
-	{
-	    GiveStandardErrorMessage ( __FUNCTION__  , 
-				       "ERROR!  Prime factor unequal 2 identified in the image width...\n\
-hmmm... this does not seem like a pre-padded OpenGL-prepared surface.  Breaking off... " ,
-				       PLEASE_INFORM, IS_FATAL );
-	return;
-	}
-    }
-    for ( factor = 3 ; factor < sqrt ( our_image -> surface -> h ) + 1 ; factor ++ )
-    {
-	if ( ! ( our_image -> surface -> h / factor ) )
-	{
-	    GiveStandardErrorMessage ( __FUNCTION__  , 
-				       "ERROR!  Prime factor unequal 2 identified in the image height...\n\
-hmmm... this does not seem like a pre-padded OpenGL-prepared surface.  Breaking off... " ,
-				       PLEASE_INFORM, IS_FATAL );
-	return;
-	}
-    }
-
-    //--------------------
-    // The image data in question is already arranged to have dimensions
-    // which are powers of two, so all we need to do is fill the image
-    // specs from the parameter list into the image struct.
-    //
-    our_image -> texture_width = our_image -> surface -> w ;
-    our_image -> texture_height = our_image -> surface -> h ;
-    
-    //--------------------
-    // Having prepared the raw image it s now time to create the real 
-    // textures
-    //
-    glPixelStorei( GL_UNPACK_ALIGNMENT,1 );
-    
-    //--------------------
-    // We must not call glGenTextures more than once in all of Freedroid,
-    // according to the nehe docu and also confirmed instances of textures
-    // getting overwritten.  So all the gentexture stuff is now in the
-    // initialzize_our_default_open_gl_parameters function and we will use 
-    // stuff from there.
-    //
-    // glGenTextures( 1, & our_image -> texture );
-    //
-    our_image -> texture = & ( all_freedroid_textures [ next_texture_index_to_use ] ) ;
-    our_image -> texture_has_been_created = TRUE ;
-    next_texture_index_to_use ++ ;
-    if ( next_texture_index_to_use >= MAX_AMOUNT_OF_TEXTURES_WE_WILL_USE )
-    {
-	GiveStandardErrorMessage ( __FUNCTION__  , 
-				   "Ran out of initialized texture positions to use for new textures.",
-				   PLEASE_INFORM, IS_FATAL );
-    }
-    else
-    {
-	DebugPrintf ( 0 , "\nTexture positions remaining: %d." , MAX_AMOUNT_OF_TEXTURES_WE_WILL_USE - next_texture_index_to_use );
-    }
-    
-    //--------------------
-    // Typical Texture Generation Using Data From The Bitmap 
-    //
-    glBindTexture( GL_TEXTURE_2D, * ( our_image -> texture ) );
-    
-    //--------------------
-    // Maybe we will want to set some storage parameters, but I am not
-    // completely sure if they would really help us in any way...
-    //
-    // glPixelStorei(GL_UNPACK_ALIGNMENT, 0);
-    // glPixelStorei(GL_UNPACK_ROW_LENGTH, 0);
-    // glPixelStorei(GL_UNPACK_SKIP_ROWS, 0);
-    // glPixelStorei(GL_UNPACK_SKIP_PIXELS, 0);
-    
-    //--------------------
-    // Setting texture parameters like in NeHe tutorial...
-    //
-    glTexParameteri( GL_TEXTURE_2D , GL_TEXTURE_MAG_FILTER , GL_LINEAR );
-    glTexParameteri( GL_TEXTURE_2D , GL_TEXTURE_MIN_FILTER , GL_LINEAR );
-    
-    //--------------------
-    // We will use the 'GL_REPLACE' texturing environment or get 
-    // unusable (and slow) results.
-    //
-    // glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL );
-    // glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_BLEND );
-    // glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE );
-    glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE );
-    
-    // Generate The Texture 
-    glTexImage2D( GL_TEXTURE_2D, 0, 4, our_image -> surface -> w,
-		  our_image -> surface -> h , 0, GL_BGRA,
-		  GL_UNSIGNED_BYTE, our_image -> surface -> pixels );
-    
-    //--------------------
-    // Now that the texture has been created, we assume that the image is
-    // not needed any more and can be freed now!  BEWARE!  Keep this in mind,
-    // that creating the texture now removes the surface...
-    //
-    // So as to detect any occurances of access to the surface once the 
-    // texture has been created, we set the surface to the NULL pointer to
-    // ENCOURAGE SEGMENTATION FAULTS when doing this so as to eliminate
-    // these occurances with the debugger...
-    //
-    SDL_FreeSurface ( our_image -> surface );
-    our_image -> surface = NULL ;
-    
-#endif
+//the image is prepadded we have nothing to do    
+    do_make_texture_out_of_surface ( our_image, our_image->surface->w, our_image->surface->h, our_image->surface->pixels);
     
 }; // void make_texture_out_of_prepadded_image (...)
+
 
 /* ----------------------------------------------------------------------
  * This function checks the error status of the OpenGL driver.  An error
@@ -917,7 +620,6 @@ void
 open_gl_check_error_status ( const char* name_of_calling_function  )
 {
 
-    // return;
 #ifdef HAVE_LIBGL
     
     switch ( glGetError( ) )
@@ -985,11 +687,6 @@ clear_screen( void ) {
 	glClearColor( 0.0f, 0.0f, 0.0f, 0.0f );
 	glClear(GL_COLOR_BUFFER_BIT);
 
-	//--------------------
-	// If there's danger of errors with some graphics cards, we best make
-	// a check, to be safe from surprises...
-	//
-	open_gl_check_error_status ( __FUNCTION__ );
     }
 
 #endif
@@ -1032,38 +729,17 @@ safely_set_some_open_gl_flags_and_shade_model ( void )
 
 #ifdef HAVE_LIBGL
 
-    //--------------------
-    // We turn off a lot of stuff for faster blitting.  All this can
-    // be turned on again later anyway as needed.  
-    //
-    // (Well, yes, the above is true, but function call overhead might
-    //  be enourmous!  So don't change too much inside of quick loops
-    //  if it can be avoided.)
-    //
-    glDisable ( GL_BLEND );  // this is OK, according to docu...
-    glDisable ( GL_DITHER );  // this is OK, according to docu...
-    glDisable ( GL_FOG );  // this is OK, according to docu...
-    glDisable ( GL_LIGHTING );  // this is OK, according to docu...
-    glDisable ( GL_TEXTURE_1D );  // this is OK, according to docu...
-    glDisable ( GL_TEXTURE_2D );  // this is OK, according to docu...
-    glShadeModel ( GL_FLAT );  // this is OK, according to docu...
-    //--------------------
-    // This might be causing some invalid enums on some Microsoft GDI
-    // OpenGL 'driver' or driver-wannabe.  Therefore we skip doing this...
-    //
-    // glDisable ( GL_TEXTURE_3D_EXT );
-    
-    //--------------------
-    // We disable depth test for all purposes.
-    //
-    glDisable( GL_DEPTH_TEST );  // this is OK, according to docu...
-    
-    //--------------------
-    // The default output method will be alpha test with threshold 0.5.
-    //
-    glEnable( GL_ALPHA_TEST );  // this is OK, according to docu...
-    glAlphaFunc ( GL_GREATER , 0.5 ) ;  // this is OK, according to docu...
+    glEnable ( GL_TEXTURE_2D );
+	
+    glShadeModel ( GL_FLAT );
 
+    glDisable( GL_ALPHA_TEST );
+    glAlphaFunc ( GL_GREATER , 0.499999 ) ;
+
+    glDisable ( GL_BLEND );
+    glBlendFunc ( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA ) ;
+
+    glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE );
     open_gl_check_error_status ( __FUNCTION__ );
 
 #endif
@@ -1082,34 +758,11 @@ safely_initialize_our_default_open_gl_parameters ( void )
     //
     safely_set_open_gl_viewport_and_matrix_mode ();
     
-    //--------------------
-    // We turn off a lot of stuff for faster blitting.  All this can
-    // be turned on again later anyway as needed.  
-    //
-    // (Well, yes, the above is true, but function call overhead might
-    //  be enourmous!  So don't change too much inside of quick loops
-    //  if it can be avoided.)
-    //
     safely_set_some_open_gl_flags_and_shade_model ();
     
-    //--------------------
-    // NeHe docu reveals, that it can happen (and it does happen) that textures
-    // get deleted and overwritten when there are multiple calls to glgentexture.
-    // So we can't have that any more.  We need to create all the textures we 
-    // need once and forall and then later never again call glgentextures.
-    // 
-    // So we do the texture generation (not the texture loading) here once and
-    // for all:
-    //
     glGenTextures( MAX_AMOUNT_OF_TEXTURES_WE_WILL_USE , & ( all_freedroid_textures [ 0 ] ) );  
     
-    //--------------------
-    // Also we must initialize an index to the texture array, so that we can keep
-    // track of which textures have been created and bound already.
-    //
-    // BEWARE:  Index 0 must not be used according to some docu...
-    //
-    next_texture_index_to_use = 1 ;
+    next_texture_index_to_use = 0 ;
     
     open_gl_check_error_status ( __FUNCTION__ );
     
@@ -1119,389 +772,127 @@ safely_initialize_our_default_open_gl_parameters ( void )
 
 }; // int safely_initialize_our_default_open_gl_parameters ( void )
 
-/* ----------------------------------------------------------------------
- * 
- *
- * ---------------------------------------------------------------------- */
+
+/* This function draws a textured quad on screen. */
+
+#ifdef HAVE_LIBGL
+static inline void 
+draw_gl_textured_quad_helper ( int x0, int y0, int x1, int y1 ) 
+{
+  
+    glBegin(GL_QUADS);
+    glTexCoord2i( 0.0f, 1.0 ); 
+    glVertex2i( x0, y0 );
+    glTexCoord2i( 0.0f, 0.0 ); 
+    glVertex2i( x0, y1 );
+    glTexCoord2i( 1.0f, 0.0 ); 
+    glVertex2i( x1, y1 );
+    glTexCoord2f( 1.0f, 1.0 ); 
+    glVertex2i( x1, y0 );
+    glEnd( );
+
+};
+#endif
+
+
 void
-blit_open_gl_texture_to_map_position ( iso_image * our_floor_iso_image , 
+draw_gl_textured_quad_at_map_position ( iso_image * our_floor_iso_image , 
 				       float our_col , float our_line , 
 				       float r, float g , float b , 
-				       int highlight_texture, int blend ) 
+				       int highlight_texture, int blend, float zoom_factor ) 
 {
 
 #ifdef HAVE_LIBGL
+    float a = 1.0;
+    int x, y;
+    glEnable(GL_ALPHA_TEST);
 
-    SDL_Rect target_rectangle;
-    float texture_start_y;
-    float texture_end_y;
-    int image_start_x;
-    int image_end_x;
-    int image_start_y;
-    int image_end_y;
-    
-    //--------------------
-    // At first we need to enable texture mapping for all of the following.
-    // Without that, we'd just get (faster, but plain white) rectangles.
-    //
-    glEnable( GL_TEXTURE_2D );
-    
-    //--------------------
-    // Linear Filtering is slow and maybe not nescessary here, so we
-    // stick to the faster 'nearest' variant.
-    //
-    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST );
-    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
-    
     if ( ( blend == TRANSPARENCY_FOR_WALLS ) && GameConfig . transparency ) 
     {
 	glEnable ( GL_BLEND ) ;
-	glBlendFunc( GL_SRC_ALPHA , GL_DST_ALPHA);
+	a = 0.50;
     }
     else if ( blend == TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS ) 
     {
-	//--------------------
-	// Sometimes some obstacles are partly transparent.  In that case
-	// alpha test is not the right thing but rather true blending is
-	// to be used...
-	//
 	glEnable ( GL_BLEND ) ;
-	glDisable( GL_ALPHA_TEST );  
-	// glBlendFunc( GL_SRC_ALPHA , GL_DST_ALPHA);
-	glBlendFunc ( GL_SRC_ALPHA , GL_ONE_MINUS_SRC_ALPHA );
     }
 
-
   
-  
-    //--------------------
-    // Now of course we need to find out the proper target position.
-    //
-    target_rectangle . x = 
-	translate_map_point_to_screen_pixel_x ( our_col , our_line ) + 
-	our_floor_iso_image -> offset_x ;
-    target_rectangle . y = 
-	translate_map_point_to_screen_pixel_y ( our_col , our_line ) +
-	our_floor_iso_image -> offset_y ;
+    translate_map_point_to_screen_pixel ( our_col , our_line , &x, &y, zoom_factor ); 
+    x +=  our_floor_iso_image -> offset_x * zoom_factor ; 
+    y +=  our_floor_iso_image -> offset_y * zoom_factor ; 
     
-    // glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
-    // glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
-    
-    //--------------------
-    // Depending on whether to highlight the object in question, we
-    // set a different color for the way the texture is applied.
-    //
-    //glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE );
-    //glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_BLEND );
     glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE );
-    glColor3d( r , g , b );
-        
-    //--------------------
-    // Now we can begin to draw the actual textured rectangle.
-    //
-    image_start_x = target_rectangle . x ;
-    image_end_x = target_rectangle . x + our_floor_iso_image -> texture_width ; 
-    image_start_y = target_rectangle . y ;
-    image_end_y = target_rectangle . y + our_floor_iso_image -> texture_height ;
-    
-    texture_start_y = 1.0 ;
-    texture_end_y = 0.0 ;
+    glColor4f( r , g , b, a );
 
     glBindTexture( GL_TEXTURE_2D, * ( our_floor_iso_image -> texture ) );
     
-    glBegin(GL_QUADS);
-    
-    glTexCoord2i( 0.0f, texture_start_y ); 
-    glVertex2i( image_start_x , image_start_y );
-    glTexCoord2i( 0.0f, texture_end_y ); 
-    glVertex2i( image_start_x , image_end_y );
-    glTexCoord2i( 1.0f, texture_end_y ); 
-    glVertex2i( image_end_x , image_end_y );
-    glTexCoord2f( 1.0f, texture_start_y ); 
-    glVertex2i( image_end_x , image_start_y );
-    
-    glEnd( );
+    draw_gl_textured_quad_helper ( x, y, x + our_floor_iso_image -> texture_width * zoom_factor,
+				y + our_floor_iso_image -> texture_height * zoom_factor) ;
 
-    //--------------------
-    // Now following the hint from opengl.org beginner forums...
-    //
     if ( highlight_texture )
     {
-	//--------------------
-	// We set the mode to blending and set the blend mode to 'additive'
-	// i.e. enable SRC and DEST factor to one.
-	// 
 	glEnable( GL_BLEND );
 	glBlendFunc( GL_ONE , GL_ONE );
 
 	//--------------------
 	// Now we draw our quad AGAIN!
 	//
-	glBegin(GL_QUADS);
-	glTexCoord2i( 0.0f, texture_start_y ); 
-	glVertex2i( image_start_x , image_start_y );
-	glTexCoord2i( 0.0f, texture_end_y ); 
-	glVertex2i( image_start_x , image_end_y );
-	glTexCoord2i( 1.0f, texture_end_y ); 
-	glVertex2i( image_end_x , image_end_y );
-	glTexCoord2f( 1.0f, texture_start_y ); 
-	glVertex2i( image_end_x , image_start_y );
-	glEnd( );
-
-	//--------------------
-	// Of course we must restore the blend function afterwards, so
-	// as not to impair the rest of the blitting...
-	//
+    	draw_gl_textured_quad_helper ( x, y, x + our_floor_iso_image -> texture_width * zoom_factor,
+				y + our_floor_iso_image -> texture_height * zoom_factor) ;
 	glBlendFunc( GL_SRC_ALPHA , GL_ONE_MINUS_SRC_ALPHA );
+
     }
 
-    //--------------------
-    // But for the rest of the drawing function, the peripherals and other
-    // things that are to be blitted after that, we should not forget to
-    // disable the texturing things again, or HORRIBLE framerates will result...
-    //
-    // So we revert everything that we might have touched to normal state.
-    //
-    glDisable( GL_TEXTURE_2D );
     glDisable( GL_BLEND );
-    glEnable( GL_ALPHA_TEST );  
-    glAlphaFunc ( GL_GREATER , 0.5 ) ;
-    
+    glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE );
+    glDisable(GL_ALPHA_TEST);
+
 #endif
 
-}; // void blit_open_gl_texture_to_map_position ( ... )
+}; // void draw_gl_textured_quad_at_map_position ( ... )
 
-/* ----------------------------------------------------------------------
- *
- *
- * ---------------------------------------------------------------------- */
+
+/* ------------------------------------------------------------
+ * Draw an open gl textured quad at the given screen position
+ * */
 void
-blit_zoomed_open_gl_texture_to_map_position ( iso_image * our_floor_iso_image , float our_col , float our_line , float r, float g , float b , int highlight_texture , int blend ) 
+draw_gl_textured_quad_at_screen_position ( iso_image * our_floor_iso_image , int x , int y ) 
 {
 #ifdef HAVE_LIBGL
-    SDL_Rect target_rectangle;
-    float texture_start_y;
-    float texture_end_y;
-    int image_start_x;
-    int image_end_x;
-    int image_start_y;
-    int image_end_y;
-    float zoom_factor = ( 1.0 / LEVEL_EDITOR_ZOOM_OUT_FACT ) ;
-    
-    //--------------------
-    // At first we need to enable texture mapping for all of the following.
-    // Without that, we'd just get (faster, but plain white) rectangles.
-    //
-    glEnable( GL_TEXTURE_2D );
-    
-    //--------------------
-    // Linear Filtering is slow and maybe not nescessary here, so we
-    // stick to the faster 'nearest' variant.
-    //
-    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST );
-    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
-    
-    //--------------------
-    // Blending can be used, if there is no suitable alpha checking so that
-    // I could get it to work right....
-    //
-    // But alpha check functions ARE a bit faster, even on my hardware, so
-    // let's stick with that possibility for now, especially with the floor.
-    //
-    //
-    if ( blend && GameConfig . transparency ) 	 
-	    { 	 
-	    glEnable(GL_BLEND); 	 
-	    glBlendFunc( GL_SRC_ALPHA , GL_ONE ); 	 
-	    }
-    
-    glEnable( GL_ALPHA_TEST );  
-    glAlphaFunc ( GL_GREATER , 0.5 ) ;
-    
-    // glDisable(GL_BLEND);
-    // glDisable( GL_ALPHA_TEST );  
-    
-    //--------------------
-    // Now of course we need to find out the proper target position.
-    //
-    int ii,jj;
-    translate_map_point_to_screen_pixel ( our_col , our_line , &ii, &jj, zoom_factor ); 
-    target_rectangle . x = ii + our_floor_iso_image -> offset_x * zoom_factor ;
-    target_rectangle . y = jj + our_floor_iso_image -> offset_y * zoom_factor ;
-    
-    // glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
-    // glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
-    
-    //--------------------
-    // Depending on whether to highlight the object in question, we
-    // set a different color for the way the texture is applied.
-    //
-    // glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL );
-    // glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE );
-    // glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_BLEND );
-    glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE );
-    glColor3f( r , g , b );
-    
-    //--------------------
-    // Now we can begin to draw the actual textured rectangle.
-    //
-    image_start_x = target_rectangle . x ;
-    image_end_x = target_rectangle . x + our_floor_iso_image -> texture_width * zoom_factor ;
-    image_start_y = target_rectangle . y ;
-    image_end_y = target_rectangle . y + our_floor_iso_image -> texture_height * zoom_factor ;
-    
-    texture_start_y = 1.0 ;
-    texture_end_y = 0.0 ;
-    
-    
-    glBindTexture( GL_TEXTURE_2D, * ( our_floor_iso_image -> texture ) );
-    
-    glBegin(GL_QUADS);
-    glTexCoord2i( 0.0f, texture_start_y ); 
-    glVertex2i( image_start_x , image_start_y );
-    glTexCoord2i( 0.0f, texture_end_y ); 
-    glVertex2i( image_start_x , image_end_y );
-    glTexCoord2i( 1.0f, texture_end_y ); 
-    glVertex2i( image_end_x , image_end_y );
-    glTexCoord2f( 1.0f, texture_start_y ); 
-    glVertex2i( image_end_x , image_start_y );
-    glEnd( );
-    
-    //--------------------
-    // Now following the hint from opengl.org beginner forums...
-    //
-    if ( highlight_texture )
-    {
-	//--------------------
-	// We set the mode to blending and set the blend mode to 'additive'
-	// i.e. enable SRC and DEST factor to one.
-	// 
-	glEnable( GL_BLEND );
-	glBlendFunc( GL_ONE , GL_ONE );
-	
-	//--------------------
-	// Now we draw our quad AGAIN!
-	//
-	glBegin(GL_QUADS);
-	glTexCoord2i( 0.0f, texture_start_y ); 
-	glVertex2i( image_start_x , image_start_y );
-	glTexCoord2i( 0.0f, texture_end_y ); 
-	glVertex2i( image_start_x , image_end_y );
-	glTexCoord2i( 1.0f, texture_end_y ); 
-	glVertex2i( image_end_x , image_end_y );
-	glTexCoord2f( 1.0f, texture_start_y ); 
-	glVertex2i( image_end_x , image_start_y );
-	glEnd( );
-	
-	//--------------------
-	// Of course we must restore the blend function afterwards, so
-	// as not to impair the rest of the blitting...
-	//
-	glBlendFunc( GL_SRC_ALPHA , GL_ONE_MINUS_SRC_ALPHA );
-    }
-    
-    //--------------------
-    // But for the rest of the drawing function, the peripherals and other
-    // things that are to be blitted after that, we should not forget to
-    // disable the texturing things again, or HORRIBLE framerates will result...
-    //
-    // So we revert everything that we might have touched to normal state.
-    //
-    glDisable( GL_TEXTURE_2D );
-    glDisable( GL_BLEND );
-    glEnable( GL_ALPHA_TEST );  
-    glAlphaFunc ( GL_GREATER , 0.5 ) ;
-    
-#endif
-
-}; // void blit_zoomed_open_gl_texture_to_map_position ( iso_image * our_floor_iso_image , float our_col , float our_line ) 
-
-/* ----------------------------------------------------------------------
- *
- *
- * ---------------------------------------------------------------------- */
-void
-blit_open_gl_texture_to_screen_position ( iso_image * our_floor_iso_image , int x , int y , int set_gl_parameters ) 
-{
-
-#ifdef HAVE_LIBGL
-
-    SDL_Rect target_rectangle;
-    float texture_start_y;
-    float texture_end_y;
-    int image_start_x;
-    int image_end_x;
-    int image_start_y;
-    int image_end_y;
-    
-    if ( set_gl_parameters )
-    {
-	//--------------------
-	// At first we need to enable texture mapping for all of the following.
-	// Without that, we'd just get (faster, but plain white) rectangles.
-	//
-	glEnable( GL_TEXTURE_2D );
-	
-	// glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL );
-	// glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_BLEND );
-	// glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE );
-	glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE );
 
 	glEnable ( GL_BLEND );
-	glDisable ( GL_ALPHA_TEST );
-	
-	// glDisable ( GL_BLEND );
-	// glEnable ( GL_ALPHA_TEST );
 
-	glBlendFunc( GL_SRC_ALPHA , GL_ONE_MINUS_SRC_ALPHA );
-    }
-    
-    //--------------------
-    // Now of course we need to find out the proper target position.
-    //
-    target_rectangle . x = x ;
-    target_rectangle . y = y ;
-    
-    //--------------------
-    // Now we can begin to draw the actual textured rectangle.
-    //
-    image_start_x = target_rectangle . x ;
-    image_end_x = target_rectangle . x + our_floor_iso_image -> texture_width ; // * LIGHT_RADIUS_CRUDENESS_FACTOR  ; // + 255
-    image_start_y = target_rectangle . y ;
-    image_end_y = target_rectangle . y + our_floor_iso_image -> texture_height ; // * LIGHT_RADIUS_CRUDENESS_FACTOR ; // + 127
-    
-    if ( image_start_x > GameConfig . screen_width ) return ;
-    if ( image_end_x < 0 ) return ;
-    if ( image_start_y > GameConfig . screen_height ) return;
-    if ( image_end_y < 0 ) return;
+	glBindTexture( GL_TEXTURE_2D, *our_floor_iso_image -> texture);
+        draw_gl_textured_quad_helper ( x, y, x + our_floor_iso_image -> texture_width, 
+			y + our_floor_iso_image -> texture_height);
+	glDisable ( GL_BLEND );
 
-    // DebugPrintf ( -1 , "\nheight: %d." , our_floor_iso_image -> surface -> h ) ;
-    
-    texture_start_y = 1.0 ; // 1 - ((float)(our_floor_iso_image . surface -> h)) / 127.0 ; // 1.0 
-    texture_end_y = 0.0 ;
+#endif
+}
 
-    // glColor3f( 1 , 1 , 1 );
+/* ----------------------------------------------------------------------
+ *
+ *
+ * ---------------------------------------------------------------------- */
+void
+draw_gl_scaled_textured_quad_at_screen_position ( iso_image * our_floor_iso_image , int x , int y , float scale_factor ) 
+{
+
+#ifdef HAVE_LIBGL
+    
+    glEnable ( GL_BLEND );
 
     glBindTexture( GL_TEXTURE_2D, * ( our_floor_iso_image -> texture ) );
-    glBegin(GL_QUADS);
-    glTexCoord2i( 0.0f, texture_start_y ); 
-    glVertex2i( image_start_x , image_start_y );
-    glTexCoord2i( 0.0f, texture_end_y ); 
-    glVertex2i( image_start_x , image_end_y );
-    glTexCoord2i( 1.0f, texture_end_y ); 
-    glVertex2i( image_end_x , image_end_y );
-    glTexCoord2f( 1.0f, texture_start_y ); 
-    glVertex2i( image_end_x , image_start_y );
-    glEnd( );
-    
-    if ( set_gl_parameters )
-    {
-	glDisable( GL_TEXTURE_2D );
-    }
+
+    draw_gl_textured_quad_helper(x, y, x + our_floor_iso_image -> texture_width * scale_factor,
+			y + our_floor_iso_image -> texture_height * scale_factor);
+
+    glDisable ( GL_BLEND );
     
 #endif
-
-}; // void blit_open_gl_texture_to_screen_position ( iso_image * our_floor_iso_image , int x , int y , int set_gl_parameters ) 
+    
+};
 
 /* ----------------------------------------------------------------------
  * This function blits some texture to the screen, but instead of using
@@ -1510,86 +901,39 @@ blit_open_gl_texture_to_screen_position ( iso_image * our_floor_iso_image , int 
  * screen dimension.
  * ---------------------------------------------------------------------- */
 void
-blit_open_gl_texture_to_full_screen ( iso_image * our_floor_iso_image , int x , int y , int set_gl_parameters ) 
+draw_gl_bg_textured_quad_at_screen_position ( iso_image * our_floor_iso_image , int x , int y ) 
 {
 
 #ifdef HAVE_LIBGL
-
-    SDL_Rect target_rectangle;
-    float texture_start_y;
-    float texture_end_y;
-    int image_start_x;
     int image_end_x;
-    int image_start_y;
     int image_end_y;
-    
-    if ( set_gl_parameters )
-    {
-	//--------------------
-	// At first we need to enable texture mapping for all of the following.
-	// Without that, we'd just get (faster, but plain white) rectangles.
-	//
-	glEnable( GL_TEXTURE_2D );
-	glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE );
-	glEnable ( GL_BLEND );
-	glDisable ( GL_ALPHA_TEST );
-	glBlendFunc( GL_SRC_ALPHA , GL_ONE_MINUS_SRC_ALPHA );
-    }
-    
-    //--------------------
-    // Now of course we need to find out the proper target position.
-    //
-    target_rectangle . x = x ;
-    target_rectangle . y = y ;
-    
-    //--------------------
-    // Now we can begin to draw the actual textured rectangle.
-    //
+
+    glEnable ( GL_BLEND );
+
     if ( our_floor_iso_image -> texture_height == 1024 ) //then the image is 1024x768
-	{
-        image_end_x = target_rectangle . x + our_floor_iso_image -> texture_width * GameConfig . screen_width / 1024 ;
-        image_end_y = target_rectangle . y + our_floor_iso_image -> texture_height * GameConfig . screen_height / 768 ;
+	{ /*dirty hack for better scaling*/
+        image_end_x = x + our_floor_iso_image -> texture_width * GameConfig . screen_width / 1024 ;
+        image_end_y = y + our_floor_iso_image -> texture_height * GameConfig . screen_height / 768 ;
 	}
     else
 	{
-        image_end_x = target_rectangle . x + our_floor_iso_image -> texture_width * GameConfig . screen_width / 640 ;
-        image_end_y = target_rectangle . y + our_floor_iso_image -> texture_height * GameConfig . screen_height / 480 ;
+        image_end_x = x + our_floor_iso_image -> texture_width * GameConfig . screen_width / 640 ;
+        image_end_y = y + our_floor_iso_image -> texture_height * GameConfig . screen_height / 480 ;
 	}
-    image_start_x = target_rectangle . x ;
-    image_start_y = target_rectangle . y ;
-    
-    if ( image_start_x > GameConfig . screen_width ) return ;
-    if ( image_end_x < 0 ) return ;
-    if ( image_start_y > GameConfig . screen_height ) return;
-    if ( image_end_y < 0 ) return;
 
-    texture_start_y = 1.0 ;
-    texture_end_y = 0.0 ;
+    glBindTexture(GL_TEXTURE_2D, *(our_floor_iso_image -> texture));
+    draw_gl_textured_quad_helper ( x, y, image_end_x, 
+			image_end_y);
 
-    glBindTexture( GL_TEXTURE_2D, * ( our_floor_iso_image -> texture ) );
-    glBegin(GL_QUADS);
-    glTexCoord2i( 0.0f, texture_start_y ); 
-    glVertex2i( image_start_x , image_start_y );
-    glTexCoord2i( 0.0f, texture_end_y ); 
-    glVertex2i( image_start_x , image_end_y );
-    glTexCoord2i( 1.0f, texture_end_y ); 
-    glVertex2i( image_end_x , image_end_y );
-    glTexCoord2f( 1.0f, texture_start_y ); 
-    glVertex2i( image_end_x , image_start_y );
-    glEnd( );
-    
-    if ( set_gl_parameters )
-    {
-	glDisable( GL_TEXTURE_2D );
-    }
-    
+    glDisable ( GL_BLEND );
+
 #endif
 
-}; // void blit_open_gl_texture_to_full_screen ( iso_image * our_floor_iso_image , int x , int y , int set_gl_parameters ) 
+}
 
 /* ----------------------------------------------------------------------
- *
- *
+ *  draws a textured quad at the given screen position, after 
+ * setting blend mode to additive
  * ---------------------------------------------------------------------- */
 void
 blit_semitransparent_open_gl_texture_to_screen_position ( iso_image * our_floor_iso_image , int x , int y , float scale_factor ) 
@@ -1597,270 +941,13 @@ blit_semitransparent_open_gl_texture_to_screen_position ( iso_image * our_floor_
 
 #ifdef HAVE_LIBGL
 
-    SDL_Rect target_rectangle;
-    float texture_start_y;
-    float texture_end_y;
-    int image_start_x;
-    int image_end_x;
-    int image_start_y;
-    int image_end_y;
-    
-    //--------------------
-    // At first we need to enable texture mapping for all of the following.
-    // Without that, we'd just get (faster, but plain white) rectangles.
-    //
-    glEnable( GL_TEXTURE_2D );
-    
-    // glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL );
-    // glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_BLEND );
-    // glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE );
-    glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE );
-    
-    glEnable ( GL_BLEND );
-    glBlendFunc( GL_SRC_ALPHA , GL_DST_ALPHA);
-    glDisable ( GL_ALPHA_TEST );
-    
-    //--------------------
-    // Now of course we need to find out the proper target position.
-    //
-    target_rectangle . x = x ;
-    target_rectangle . y = y ;
-    
-    //--------------------
-    // Now we can begin to draw the actual textured rectangle.
-    //
-    image_start_x = target_rectangle . x ;
-    image_end_x = target_rectangle . x + our_floor_iso_image -> texture_width * scale_factor ; 
-    image_start_y = target_rectangle . y ;
-    image_end_y = target_rectangle . y + our_floor_iso_image -> texture_height * scale_factor ;
-    
-    if ( image_start_x > GameConfig . screen_width ) return ;
-    if ( image_end_x < 0 ) return ;
-    if ( image_start_y > GameConfig . screen_height ) return;
-    if ( image_end_y < 0 ) return;
-
-    // DebugPrintf ( -1 , "\nheight: %d." , our_floor_iso_image -> surface -> h ) ;
-    
-    texture_start_y = 1.0 ; // 1 - ((float)(our_floor_iso_image . surface -> h)) / 127.0 ; // 1.0 
-    texture_end_y = 0.0 ;
-
-    // glColor3f( 1 , 1 , 1 );
-
-    glBindTexture( GL_TEXTURE_2D, * ( our_floor_iso_image -> texture ) );
-    glBegin(GL_QUADS);
-    glTexCoord2i( 0.0f, texture_start_y ); 
-    glVertex2i( image_start_x , image_start_y );
-    glTexCoord2i( 0.0f, texture_end_y ); 
-    glVertex2i( image_start_x , image_end_y );
-    glTexCoord2i( 1.0f, texture_end_y ); 
-    glVertex2i( image_end_x , image_end_y );
-    glTexCoord2f( 1.0f, texture_start_y ); 
-    glVertex2i( image_end_x , image_start_y );
-    glEnd( );
-    
-
-    glDisable ( GL_BLEND );
-    glEnable ( GL_ALPHA_TEST );
-    glDisable( GL_TEXTURE_2D );
+    glBlendFunc ( GL_ONE, GL_ONE );
+    draw_gl_scaled_textured_quad_at_screen_position ( our_floor_iso_image , x , y , scale_factor ) ;
+    glBlendFunc ( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
 
 #endif
 
 }; // void blit_semitransparent_open_gl_texture_to_screen_position ( ... )
-
-/* ----------------------------------------------------------------------
- *
- *
- * ---------------------------------------------------------------------- */
-void
-blit_zoomed_open_gl_texture_to_screen_position ( iso_image * our_floor_iso_image , int x , int y , int set_gl_parameters , float zoom_factor ) 
-{
-
-#ifdef HAVE_LIBGL
-
-    SDL_Rect target_rectangle;
-    float texture_start_y;
-    float texture_end_y;
-    int image_start_x;
-    int image_end_x;
-    int image_start_y;
-    int image_end_y;
-    
-    if ( set_gl_parameters )
-    {
-	//--------------------
-	// At first we need to enable texture mapping for all of the following.
-	// Without that, we'd just get (faster, but plain white) rectangles.
-	//
-	glEnable( GL_TEXTURE_2D );
-	
-	// glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL );
-	// glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_BLEND );
-	// glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE );
-	glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE );
-	
-	glEnable ( GL_BLEND );
-	glDisable ( GL_ALPHA_TEST );
-    }
-    
-    //--------------------
-    // Now of course we need to find out the proper target position.
-    //
-    target_rectangle . x = x ;
-    target_rectangle . y = y ;
-    
-    //--------------------
-    // Now we can begin to draw the actual textured rectangle.
-    //
-    image_start_x = target_rectangle . x ;
-    image_end_x = target_rectangle . x + our_floor_iso_image -> texture_width * zoom_factor ; // * LIGHT_RADIUS_CRUDENESS_FACTOR  ; // + 255
-    image_start_y = target_rectangle . y ;
-    image_end_y = target_rectangle . y + our_floor_iso_image -> texture_height * zoom_factor ; // * LIGHT_RADIUS_CRUDENESS_FACTOR ; // + 127
-    
-    if ( image_start_x > GameConfig . screen_width ) return ;
-    if ( image_end_x < 0 ) return ;
-    if ( image_start_y > GameConfig . screen_height ) return;
-    if ( image_end_y < 0 ) return;
-    
-    // DebugPrintf ( -1 , "\nheight: %d." , our_floor_iso_image . surface -> h ) ;
-    
-    texture_start_y = 1.0 ; // 1 - ((float)(our_floor_iso_image . surface -> h)) / 127.0 ; // 1.0 
-    texture_end_y = 0.0 ;
-    
-    // glColor3f( 1 , 1 , 1 );
-    
-    glBindTexture( GL_TEXTURE_2D, * ( our_floor_iso_image -> texture ) );
-    glBegin(GL_QUADS);
-    glTexCoord2i( 0.0f, texture_start_y ); 
-    glVertex2i( image_start_x , image_start_y );
-    glTexCoord2i( 0.0f, texture_end_y ); 
-    glVertex2i( image_start_x , image_end_y );
-    glTexCoord2i( 1.0f, texture_end_y ); 
-    glVertex2i( image_end_x , image_end_y );
-    glTexCoord2f( 1.0f, texture_start_y ); 
-    glVertex2i( image_end_x , image_start_y );
-    glEnd( );
-    
-    if ( set_gl_parameters )
-    {
-	glDisable( GL_TEXTURE_2D );
-    }
-    
-#endif
-    
-}; // void blit_zoomed_open_gl_texture_to_screen_position ( iso_image our_floor_iso_image , int x , int y , int set_gl_parameters , float zoom_factor ) 
-
-/* ----------------------------------------------------------------------
- * Currently we're offering an analogous display for the energy and mana
- * level of the Tux.  This requires that the 'arrows' or 'needles' on the
- * display be rotated according to current energy and mana levels.  So we
- * need a function to blit a texture to the screen with a rotation applied
- * to it.  This function should do exactly this trick.
- * ---------------------------------------------------------------------- */
-void
-blit_rotated_open_gl_texture_with_center ( iso_image * our_iso_image , int x , int y , float angle_in_degree ) 
-{
-
-#ifdef HAVE_LIBGL
-
-    SDL_Rect target_rectangle;
-    float texture_start_y;
-    float texture_end_y;
-    
-    int image_start_x;
-    int image_end_x;
-    int image_start_y;
-    int image_end_y;
-    
-    moderately_finepoint corner1, corner2, corner3, corner4;
-    
-    glEnable( GL_TEXTURE_2D );  
-    
-    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
-    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
-    
-    //--------------------
-    // Linear Filtering is slow and maybe not nescessary here, so we
-    // stick to the faster 'nearest' variant.
-    //
-    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST );
-    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
-    
-    glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE );
-    // glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_BLEND );
-    // glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE );
-    // glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL );
-    
-    glDisable(GL_BLEND);
-    glDisable(GL_DEPTH_TEST);
-    
-    glEnable( GL_ALPHA_TEST );  
-    glAlphaFunc ( GL_GREATER , 0.5 ) ;
-    
-    // glBlendFunc( GL_SRC_ALPHA , GL_ONE_MINUS_SRC_ALPHA );
-    // glBlendFunc( GL_SRC_ALPHA , GL_ONE );
-    
-    glColor4f( 1, 1, 1 , 0 );
-    
-    //--------------------
-    // Now of course we need to find out the proper target position.
-    //
-    target_rectangle . x = x ;
-    target_rectangle . y = y ;
-    
-    //--------------------
-    // Now we can begin to draw the actual textured rectangle.
-    //
-    image_start_x = target_rectangle . x ;
-    image_end_x = target_rectangle . x + our_iso_image -> texture_width ; 
-    image_start_y = target_rectangle . y ;
-    image_end_y = target_rectangle . y + our_iso_image -> texture_height ;
-    
-    corner1 . x = 0 - our_iso_image -> original_image_width / 2 ;
-    corner1 . y = 0 - our_iso_image -> original_image_height / 2 ;
-    corner2 . x = 0 - our_iso_image -> original_image_width / 2 ;
-    corner2 . y = 0 + our_iso_image -> original_image_height / 2 + ( our_iso_image -> texture_height - our_iso_image -> original_image_height );
-    corner3 . x = 0 + our_iso_image -> original_image_width / 2 + ( our_iso_image -> texture_width - our_iso_image -> original_image_width );
-    corner3 . y = 0 + our_iso_image -> original_image_height / 2 + ( our_iso_image -> texture_height - our_iso_image -> original_image_height );
-    corner4 . x = 0 + our_iso_image -> original_image_width / 2 + ( our_iso_image -> texture_width - our_iso_image -> original_image_width );
-    corner4 . y = 0 - our_iso_image -> original_image_height / 2 ;
-    
-    RotateVectorByAngle ( & corner1 , angle_in_degree );
-    RotateVectorByAngle ( & corner2 , angle_in_degree );
-    RotateVectorByAngle ( & corner3 , angle_in_degree );
-    RotateVectorByAngle ( & corner4 , angle_in_degree );
-    
-    corner1 . x += x ;
-    corner1 . y += y ;
-    corner2 . x += x ;
-    corner2 . y += y ;
-    corner3 . x += x ;
-    corner3 . y += y ;
-    corner4 . x += x ;
-    corner4 . y += y ;
-    
-    if ( image_start_x > GameConfig . screen_width ) return ;
-    if ( image_end_x < 0 ) return ;
-    if ( image_start_y > GameConfig . screen_height ) return;
-    if ( image_end_y < 0 ) return;
-    
-    texture_start_y = 1.0 ; // 1 - ((float)(our_iso_image . original_image_height)) / 127.0 ; // 1.0 
-    texture_end_y = 0.0 ;
-    
-    glBindTexture( GL_TEXTURE_2D, * ( our_iso_image -> texture ) );
-    glBegin(GL_QUADS);
-    glTexCoord2i( 0.0f, texture_start_y ); 
-    glVertex2i( corner1 . x , corner1 . y );
-    glTexCoord2i( 0.0f, texture_end_y ); 
-    glVertex2i( corner2 . x , corner2 . y );
-    glTexCoord2i( 1.0f, texture_end_y ); 
-    glVertex2i( corner3 . x , corner3 . y );
-    glTexCoord2f( 1.0f, texture_start_y ); 
-    glVertex2i( corner4 . x , corner4 . y );
-    glEnd( );
-    
-#endif
-
-}; // void blit_rotated_open_gl_texture_with_center ( iso_image our_iso_image , int x , int y , float angle_in_degree ) 
 
 /* ----------------------------------------------------------------------
  * This function restores the menu background, that must have been stored
@@ -1872,29 +959,21 @@ RestoreMenuBackground ( int backup_slot )
     if ( use_open_gl )
     {
 #ifdef HAVE_LIBGL
-    
-/* Our new approach simply draws a textured quad with the proper texture */
-    glEnable( GL_TEXTURE_2D );
-    glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE );
-    glEnable ( GL_BLEND );
-    glDisable ( GL_ALPHA_TEST );
-    glBlendFunc( GL_SRC_ALPHA , GL_ONE_MINUS_SRC_ALPHA );
+
     glBindTexture( GL_TEXTURE_2D, * ( StoredMenuBackgroundTex [ backup_slot ] ) );
+
     glBegin(GL_QUADS);
-    glTexCoord2i( 0.0f, 1.0f ); 
+    glTexCoord2i( 0.0f, 1.0f );
     glVertex2i( 0 , 0 );
-    glTexCoord2i( 0.0f, 0.0 ); 
+    glTexCoord2i( 0.0f, 0.0 );
     glVertex2i( 0 , 1024 );
-    glTexCoord2i( 1.0f, 0.0 ); 
+    glTexCoord2i( 1.0f, 0.0 );
     glVertex2i( 1024 , 1024 );
-    glTexCoord2f( 1.0f, 1.0 ); 
+    glTexCoord2f( 1.0f, 1.0 );
     glVertex2i( 1024 , 0 );
     glEnd( );
-    
 
     glDisable ( GL_BLEND );
-    glEnable ( GL_ALPHA_TEST );
-    glDisable( GL_TEXTURE_2D );
 
 #endif
     }
@@ -1928,9 +1007,10 @@ StoreMenuBackground ( int backup_slot )
 	is that it's awfully slow, and subsequent RestoreMenuBackground will be slow as well. Here, we hope the
 	graphics card has enough RAM, and just create a big texture to store the image.
 	*/
+
 	if ( StoredMenuBackgroundTex [ backup_slot ] == 0 )
 		{ 
-		StoredMenuBackgroundTex [ backup_slot ]= &all_freedroid_textures [ next_texture_index_to_use ] ;
+		StoredMenuBackgroundTex [ backup_slot ] = &all_freedroid_textures [ next_texture_index_to_use ] ;
 	        next_texture_index_to_use ++ ;
 		if ( next_texture_index_to_use >= MAX_AMOUNT_OF_TEXTURES_WE_WILL_USE )
 		    {
@@ -1939,10 +1019,12 @@ StoreMenuBackground ( int backup_slot )
                                    PLEASE_INFORM, IS_FATAL );
                     } 
 		}
+
+	glEnable(GL_TEXTURE_2D);
 	glBindTexture( GL_TEXTURE_2D, *StoredMenuBackgroundTex [ backup_slot ]);
-	glTexParameteri( GL_TEXTURE_2D , GL_TEXTURE_MAG_FILTER , GL_LINEAR );
-	glTexParameteri( GL_TEXTURE_2D , GL_TEXTURE_MIN_FILTER , GL_LINEAR );
-	glBindTexture( GL_TEXTURE_2D, *StoredMenuBackgroundTex [ backup_slot ]);
+        glTexParameteri( GL_TEXTURE_2D , GL_TEXTURE_MAG_FILTER , GL_NEAREST );
+        glTexParameteri( GL_TEXTURE_2D , GL_TEXTURE_MIN_FILTER , GL_NEAREST );
+
 	glCopyTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 0, GameConfig.screen_height - 1024,  1024,  1024, 0);
 	open_gl_check_error_status(__FUNCTION__);
 
@@ -1958,96 +1040,16 @@ StoreMenuBackground ( int backup_slot )
 	//
 	if ( StoredMenuBackground [ backup_slot ] == NULL )
 	{
-	    StoredMenuBackground [ backup_slot ] = our_SDL_display_format_wrapper ( Screen );
+	    StoredMenuBackground [ backup_slot ] = SDL_DisplayFormat ( Screen );
 	}
 	else
 	{
 	    SDL_FreeSurface ( StoredMenuBackground [ backup_slot ] );
-	    StoredMenuBackground [ backup_slot ] = our_SDL_display_format_wrapper ( Screen );
+	    StoredMenuBackground [ backup_slot ] = SDL_DisplayFormat ( Screen );
 	}
     }
     
 }; // void StoreMenuBackground ( int backup_slot )
-
-/* ----------------------------------------------------------------------
- * In general, setting OpenGL modes and blitting parameters can be a very
- * time-consuming process, especially if the graphics card is rather old 
- * or if you're doing it for every texture you wish to blit into the 
- * image.  Therefore in some time-critical functions (like blitting the
- * light radius, where all light chunks require the same gl parameters), 
- * it might be useful so set the desired blitting parameters once, do all
- * the blitting and then remove them again.  This function is supposed
- * to help out with that.
- * ---------------------------------------------------------------------- */
-void
-remove_open_gl_blending_mode_again ( void )
-{
-
-#ifdef HAVE_LIBGL
-
-    //--------------------
-    // But for the rest of the drawing function, the peripherals and other
-    // things that are to be blitted after that, we should not forget to
-    // disable the texturing things again, or HORRIBLE framerates will result...
-    //
-    // So we revert everything that we might have touched to normal state.
-    //
-    glDisable( GL_TEXTURE_2D );
-    glDisable( GL_BLEND );
-    glEnable( GL_ALPHA_TEST );  
-    glAlphaFunc ( GL_GREATER , 0.5 ) ;
-    
-#endif 
-
-}; // void remove_open_gl_blending_mode_again ( void )
-
-/* ----------------------------------------------------------------------
- *
- *
- * ---------------------------------------------------------------------- */
-void
-prepare_open_gl_for_light_radius ( void )
-{
-
-#ifdef HAVE_LIBGL
-
-    glDisable( GL_TEXTURE_2D );  
-    glEnable(GL_BLEND);
-    glDisable( GL_ALPHA_TEST );  
-    glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE );
-    glBlendFunc( GL_SRC_ALPHA , GL_ONE_MINUS_SRC_ALPHA );
-
-#endif
-  
-}; // void prepare_open_gl_for_light_radius ( void )
-/* ----------------------------------------------------------------------
- *
- *
- * ---------------------------------------------------------------------- */
-void
-prepare_open_gl_for_blending_textures( void )
-{
-#ifdef HAVE_LIBGL
-
-    //--------------------
-    // Linear Filtering is slow and maybe not nescessary here, so we
-    // stick to the faster 'nearest' variant.
-    //
-    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST );
-    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
-    
-    glEnable( GL_TEXTURE_2D );  
-    glEnable(GL_BLEND);
-    glDisable( GL_ALPHA_TEST );  
-    
-    // glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_BLEND );
-    glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE );
-    // glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE );
-    glBlendFunc( GL_SRC_ALPHA , GL_ONE_MINUS_SRC_ALPHA );
-
-#endif
-
-}; // void prepare_open_gl_for_blending_textures( void )
 
 /* ----------------------------------------------------------------------
  * Following a suggestion from Simon, we're now implementing one single
@@ -2098,14 +1100,6 @@ set_up_stretched_texture_for_light_radius ( void )
     //
     glPixelStorei( GL_UNPACK_ALIGNMENT , 1 );
 
-    //--------------------
-    // We must not call glGenTextures more than once in all of Freedroid,
-    // according to the nehe docu and also confirmed instances of textures
-    // getting overwritten.  So all the gentexture stuff is now in the
-    // initialzize_our_default_open_gl_parameters function and we'll use stuff from there.
-    //
-    // glGenTextures( 1, & our_image -> texture );
-    //
     light_radius_stretch_texture = & ( all_freedroid_textures [ next_texture_index_to_use ] ) ;
     next_texture_index_to_use ++ ;
 
@@ -2120,32 +1114,16 @@ set_up_stretched_texture_for_light_radius ( void )
 	DebugPrintf ( 0 , "\nTexture positions remaining: %d." , MAX_AMOUNT_OF_TEXTURES_WE_WILL_USE - next_texture_index_to_use );
     }
     
-    //--------------------
-    // Typical Texture Generation Using Data From The Bitmap 
-    //
     glBindTexture( GL_TEXTURE_2D, * ( light_radius_stretch_texture ) );
   
-    //--------------------
-    // Setting texture parameters like in NeHe tutorial...
-    //
     glTexParameteri( GL_TEXTURE_2D , GL_TEXTURE_MAG_FILTER , GL_LINEAR );
     glTexParameteri( GL_TEXTURE_2D , GL_TEXTURE_MIN_FILTER , GL_LINEAR );
-
-    //--------------------
-    // We will use the 'GL_REPLACE' texturing environment or get 
-    // unusable (and slow) results.
-    //
-    // glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL );
-    // glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_BLEND );
-    // glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE );
-    glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE );
 
     // Generate The Texture 
     glTexImage2D( GL_TEXTURE_2D, 0, 4, light_radius_stretch_surface -> w,
 		  light_radius_stretch_surface -> h, 0, GL_BGRA,
 		  GL_UNSIGNED_BYTE, light_radius_stretch_surface -> pixels );
 
-    DebugPrintf ( 1 , "\n%s(): Texture has been set up..." , __FUNCTION__ );
 
 #endif
 
@@ -2195,7 +1173,6 @@ light_radius_update_stretched_texture ( void )
 	}
     }
 
-    glEnable ( GL_TEXTURE_2D );
     glBindTexture ( GL_TEXTURE_2D , *light_radius_stretch_texture );
     glTexSubImage2D ( GL_TEXTURE_2D , 0 , 
 		      0  , 0 ,
@@ -2246,218 +1223,18 @@ blit_open_gl_stretched_texture_light_radius ( void )
     local_iso_image . offset_x = 0 ;    
     local_iso_image . offset_y = 0 ;
 
-    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
-    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
-    
     glEnable ( GL_BLEND ) ;
-    glDisable( GL_ALPHA_TEST );  
-    // glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE );
-    glBlendFunc( GL_SRC_ALPHA , GL_ONE_MINUS_SRC_ALPHA );
 
-
-    blit_zoomed_open_gl_texture_to_screen_position ( 
+    draw_gl_scaled_textured_quad_at_screen_position ( 
 	& local_iso_image , 
 	0,
 	-60 * (GameConfig . screen_height / 768),
-	TRUE ,
 	((float)GameConfig . screen_width) / ((float)LIGHT_RADIUS_STRETCH_TEXTURE_WIDTH) );
+    glDisable ( GL_BLEND ) ;
 
 #endif
 
 }; // void blit_open_gl_stretched_texture_light_radius ( void )
-
-/* ----------------------------------------------------------------------
- *
- *
- * ---------------------------------------------------------------------- */
-void
-blit_open_gl_cheap_multi_quad_light_radius ( void )
-{
-#ifdef HAVE_LIBGL
-    int our_height, our_width;
-    int light_strength;
-    int window_offset_x;
-    Uint8 r , g , b , a ;
-    moderately_finepoint target_pos;
-    
-    prepare_open_gl_for_light_radius ();
-    
-    window_offset_x = - ( GameConfig . screen_width / 2 ) + UserCenter_x ;
-    
-#define SHADOW_SQUARE_HEIGHT 12
-#define SHADOW_SQUARE_WIDTH 16
-    
-    for ( our_height = 0 ; our_height < GameConfig . screen_height/SHADOW_SQUARE_HEIGHT ; our_height ++ )
-    {
-	for ( our_width = 0 ; our_width < GameConfig . screen_width/SHADOW_SQUARE_WIDTH ; our_width ++ )
-	{
-	    if ( our_width % LIGHT_RADIUS_CRUDENESS_FACTOR ) continue;
-	    if ( our_height % LIGHT_RADIUS_CRUDENESS_FACTOR ) continue;
-	    
-	    target_pos . x = translate_pixel_to_map_location ( ( 0 + our_width ) * SHADOW_SQUARE_WIDTH - UserCenter_x + SHADOW_SQUARE_WIDTH ,
-							       ( 0 + our_height ) * SHADOW_SQUARE_HEIGHT - UserCenter_y + SHADOW_SQUARE_WIDTH , TRUE );
-	    target_pos . y = translate_pixel_to_map_location ( ( 0 + our_width ) * SHADOW_SQUARE_WIDTH - UserCenter_x + SHADOW_SQUARE_WIDTH ,
-							       ( 0 + our_height ) * SHADOW_SQUARE_HEIGHT - UserCenter_y + SHADOW_SQUARE_WIDTH , FALSE );
-	    
-	    light_strength = get_light_strength ( target_pos );
-	    
-	    if ( light_strength >= NUMBER_OF_SHADOW_IMAGES ) light_strength = NUMBER_OF_SHADOW_IMAGES -1 ;
-	    if ( light_strength <= 0 ) continue ;
-	    
-	    r = 0 ; b = 0 ; g = 0 ; a = ( 255.0 / ( (float) NUMBER_OF_SHADOW_IMAGES ) ) * ( (float) light_strength ) ; 
-	    
-	    glDisable ( GL_ALPHA_TEST );
-	    glColor4ub( r , g , b , a );
-	    
-	    glBegin(GL_QUADS);
-	    glVertex2i( ( 0 + our_width ) * SHADOW_SQUARE_WIDTH , ( 1 + our_height ) * SHADOW_SQUARE_HEIGHT ) ;
-	    glVertex2i( ( 0 + our_width ) * SHADOW_SQUARE_WIDTH , ( 0 + our_height ) * SHADOW_SQUARE_HEIGHT ) ;
-	    glVertex2i( ( 1 + our_width ) * SHADOW_SQUARE_WIDTH , ( 0 + our_height ) * SHADOW_SQUARE_HEIGHT ) ;
-	    glVertex2i( ( 1 + our_width ) * SHADOW_SQUARE_WIDTH , ( 1 + our_height ) * SHADOW_SQUARE_HEIGHT ) ;
-	    glEnd( );
-	    
-	}
-    }
-    
-    remove_open_gl_blending_mode_again ( ) ;
-    
-#endif
-
-}; // void blit_open_gl_multi_quad_light_radius ( void )
-
-/* ----------------------------------------------------------------------
- *
- *
- * ---------------------------------------------------------------------- */
-void
-blit_open_gl_light_radius ( void )
-{
-
-#ifdef HAVE_LIBGL
-
-    static int first_call = TRUE ;
-    int i, j ;
-char fpath[2048];
-    char constructed_file_name[2000];
-    int our_height, our_width, our_max_height, our_max_width;
-    int light_strength;
-    moderately_finepoint target_pos;
-    static int pos_x_grid [ (int)(MAX_FLOOR_TILES_VISIBLE_AROUND_TUX * ( 1.0 / LIGHT_RADIUS_CHUNK_SIZE ) * 2) ] [ (int)(MAX_FLOOR_TILES_VISIBLE_AROUND_TUX * ( 1.0 / LIGHT_RADIUS_CHUNK_SIZE ) * 2 ) ] ;
-    static int pos_y_grid [ (int)(MAX_FLOOR_TILES_VISIBLE_AROUND_TUX * ( 1.0 / LIGHT_RADIUS_CHUNK_SIZE ) * 2) ] [ (int)(MAX_FLOOR_TILES_VISIBLE_AROUND_TUX * ( 1.0 / LIGHT_RADIUS_CHUNK_SIZE ) * 2 ) ] ;
-    static SDL_Rect target_rectangle;
-    int chunk_size_x;
-    int chunk_size_y;
-    int window_offset_x;
-    int light_bonus = curShip . AllLevels [ Me . pos . z ] -> light_radius_bonus ;
-    SDL_Surface* tmp;
-    
-    //--------------------
-    // At first we need to enable texture mapping for all of the following.
-    // Without that, we'd just get (faster, but plain white) rectangles.
-    //
-    glEnable( GL_TEXTURE_2D );
-    //--------------------
-    // We disable depth test for all purposes.
-    //
-    glDisable(GL_DEPTH_TEST);
-    
-    //--------------------
-    // We will use the 'GL_REPLACE' texturing environment or get 
-    // unusable (and slow) results.
-    //
-    // glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL );
-    glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_BLEND );
-    // glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE );
-    // glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE );
-    
-    //--------------------
-    // Blending can be used, if there is no suitable alpha checking so that
-    // I could get it to work right....
-    //
-    // But alpha check functions ARE a bit faster, even on my hardware, so
-    // let's stick with that possibility for now, especially with the floor.
-    //
-    glDisable( GL_ALPHA_TEST );  
-    glEnable(GL_BLEND);
-    glBlendFunc( GL_SRC_ALPHA , GL_ONE_MINUS_SRC_ALPHA );
-    
-    //--------------------
-    // If the darkenss chunks have not yet been loaded, we load them...
-    //
-    if ( first_call )
-    {
-	first_call = FALSE;
-	for ( i = 0 ; i < NUMBER_OF_SHADOW_IMAGES ; i ++ )
-	{
-	    sprintf ( constructed_file_name , "light_radius_chunks/iso_light_radius_darkness_%04d.png" , i + 1 );
-	    find_file (constructed_file_name , GRAPHICS_DIR , fpath, 0 );
-	    get_iso_image_from_file_and_path ( fpath , & ( light_radius_chunk [ i ] ) , TRUE ) ;
-	    tmp = light_radius_chunk [ i ] . surface ;
-	    light_radius_chunk [ i ] . surface = SDL_DisplayFormatAlpha ( light_radius_chunk [ i ] . surface ) ; 
-	    SDL_FreeSurface ( tmp ) ;
-	    make_texture_out_of_surface ( & ( light_radius_chunk [ i ] ) ) ;
-	}
-	
-	pos_x_grid [ 0 ] [ 0 ] = translate_map_point_to_screen_pixel_x ( Me . pos . x - ( FLOOR_TILES_VISIBLE_AROUND_TUX ) , Me . pos . y - ( FLOOR_TILES_VISIBLE_AROUND_TUX ) ) - 10 ;
-	pos_y_grid [ 0 ] [ 0 ] = translate_map_point_to_screen_pixel_y ( Me . pos . x - ( FLOOR_TILES_VISIBLE_AROUND_TUX ) , Me . pos . y - ( FLOOR_TILES_VISIBLE_AROUND_TUX ) ) - 42 ;
-	
-	chunk_size_x = 26 /2 + 1 ;
-	chunk_size_y = 14 /2 ; 
-	
-	for ( i = 0 ; i < (int)(FLOOR_TILES_VISIBLE_AROUND_TUX * ( 1.0 / LIGHT_RADIUS_CHUNK_SIZE ) * 2) ; i ++ )
-	{
-	    for ( j = 0 ; j < (int)(FLOOR_TILES_VISIBLE_AROUND_TUX * ( 1.0 / LIGHT_RADIUS_CHUNK_SIZE ) * 2) ; j ++ )
-	    {
-		pos_x_grid [ i ] [ j ] = pos_x_grid [ 0 ] [ 0 ] + ( i - j ) * chunk_size_x ;
-		pos_y_grid [ i ] [ j ] = pos_y_grid [ 0 ] [ 0 ] + ( i + j ) * chunk_size_y ;
-	    }
-	}
-    }
-    
-    //--------------------
-    // Now it's time to apply the light radius
-    //
-    our_max_width = FLOOR_TILES_VISIBLE_AROUND_TUX * ( 1.0 / LIGHT_RADIUS_CHUNK_SIZE ) * 2 ;
-    our_max_height = our_max_width;
-    
-    window_offset_x = - ( GameConfig . screen_width / 2 ) + UserCenter_x ;
-    
-    for ( our_height = 0 ; our_height < our_max_height ; our_height ++ )
-    {
-	for ( our_width = 0 ; our_width < our_max_width ; our_width ++ )
-	{
-	    if ( our_width % LIGHT_RADIUS_CRUDENESS_FACTOR ) continue;
-	    if ( our_height % LIGHT_RADIUS_CRUDENESS_FACTOR ) continue;
-	    
-	    target_pos . x = Me . pos . x - ( FLOOR_TILES_VISIBLE_AROUND_TUX ) + our_width * LIGHT_RADIUS_CHUNK_SIZE ;
-	    target_pos . y = Me . pos . y - ( FLOOR_TILES_VISIBLE_AROUND_TUX ) + our_height * LIGHT_RADIUS_CHUNK_SIZE;
-	    light_strength = (int) ( sqrt ( ( Me . pos . x - target_pos . x ) * ( Me . pos . x - target_pos . x ) + ( Me . pos . y - target_pos . y ) * ( Me . pos . y - target_pos . y ) ) * 4.0 ) - light_bonus ;
-	    if ( light_strength >= NUMBER_OF_SHADOW_IMAGES ) light_strength = NUMBER_OF_SHADOW_IMAGES -1 ;
-	    if ( light_strength <= 0 ) continue ;
-	    
-	    // blit_iso_image_to_map_position ( light_radius_chunk [ light_strength ] , target_pos . x , target_pos . y );
-	    target_rectangle . x = pos_x_grid [ our_width ] [ our_height ] + window_offset_x ;
-	    target_rectangle . y = pos_y_grid [ our_width ] [ our_height ] ;
-	    
-	    blit_open_gl_texture_to_screen_position ( &light_radius_chunk [ light_strength ] , target_rectangle . x , target_rectangle . y , FALSE ) ;
-	}
-    }
-    
-    //--------------------
-    // But for the rest of the drawing function, the peripherals and other
-    // things that are to be blitted after that, we should not forget to
-    // disable the texturing things again, or HORRIBLE framerates will result...
-    //
-    // So we revert everything that we might have touched to normal state.
-    //
-    glDisable( GL_TEXTURE_2D );
-    glDisable( GL_BLEND );
-    glEnable( GL_ALPHA_TEST );  
-    glAlphaFunc ( GL_GREATER , 0.5 ) ;
-    
-#endif
-    
-}; // void blit_open_gl_light_radius ( void )
 
 /* ----------------------------------------------------------------------
  * This function should help to do 'putpixel' even with OpenGL graphics
@@ -2470,7 +1247,6 @@ PutPixel_open_gl ( int x, int y, Uint32 pixel)
 
 #ifdef HAVE_LIBGL
     glRasterPos2i( x , y ) ;
-    // glDrawPixels( 1 , 1, GL_RGBA , GL_UNSIGNED_BYTE , & pixel );
     glDrawPixels( 1 , 1, GL_RGB , GL_UNSIGNED_BYTE , & pixel );
 #endif
     
@@ -2484,35 +1260,25 @@ PutPixel_open_gl ( int x, int y, Uint32 pixel)
  * right over it.  This function can be used to draw that rectangle.
  * ---------------------------------------------------------------------- */
 void
-GL_HighlightRectangle ( SDL_Surface* Surface , SDL_Rect Area , unsigned char r , unsigned char g , unsigned char b , unsigned char alpha )
+GL_HighlightRectangle ( SDL_Surface* Surface , SDL_Rect * dstrect , unsigned char r , unsigned char g , unsigned char b , unsigned char alpha )
 {
 #ifdef HAVE_LIBGL
-    SDL_Rect* dstrect = & Area ;
-    
-    glRasterPos2i ( 0 , 0 ); 
-    glDisable ( GL_ALPHA_TEST );
+
+    glDisable ( GL_TEXTURE_2D );
     glEnable ( GL_BLEND );
-    glBlendFunc( GL_SRC_ALPHA , GL_ONE_MINUS_SRC_ALPHA );
     
     glColor4ub( r , g , b , alpha );
-    if ( dstrect == NULL )
-    {
-	glBegin(GL_QUADS);
-	glVertex2i( 0       , GameConfig . screen_height );
-	glVertex2i( 0       ,   0 );
-	glVertex2i( 0 + GameConfig . screen_width ,   0 );
-	glVertex2i( 0 + GameConfig . screen_width , GameConfig . screen_height );
-	glEnd( );
-    }
-    else
-    {
-	glBegin(GL_QUADS);
-	glVertex2i( dstrect -> x                , dstrect -> y );
-	glVertex2i( dstrect -> x                , dstrect -> y + dstrect -> h );
-	glVertex2i( dstrect -> x + dstrect -> w , dstrect -> y + dstrect -> h );
-	glVertex2i( dstrect -> x + dstrect -> w , dstrect -> y );
-	glEnd( );
-    }
+
+    glBegin(GL_QUADS);
+    glVertex2i( dstrect -> x                , dstrect -> y );
+    glVertex2i( dstrect -> x                , dstrect -> y + dstrect -> h );
+    glVertex2i( dstrect -> x + dstrect -> w , dstrect -> y + dstrect -> h );
+    glVertex2i( dstrect -> x + dstrect -> w , dstrect -> y );
+    glEnd( );
+
+    glEnable( GL_TEXTURE_2D );
+    glDisable ( GL_BLEND );
+
 #endif
 
     return;
@@ -2656,7 +1422,7 @@ char fpath[2048];
 	    { ( 0 * GameConfig . screen_width ) / 640 , GameConfig . screen_height - ( 118 * GameConfig . screen_height) / 480 , 500 , 70 }           // 32
 	} ;
   
-    int need_scaling [ ALL_KNOWN_BACKGROUNDS ] = 
+    const int need_scaling [ ALL_KNOWN_BACKGROUNDS ] = 
 	{
 	    FALSE , // 0
 	    FALSE , // 1
@@ -2746,16 +1512,16 @@ char fpath[2048];
     {
 	if ( need_scaling [ background_code ] )
 	{
-	    blit_open_gl_texture_to_full_screen ( 
+	    draw_gl_bg_textured_quad_at_screen_position ( 
 		&our_backgrounds [ background_code ] , 
 		our_background_rects [ background_code ] . x , 
-		our_background_rects [ background_code ] . y , TRUE ) ;
+		our_background_rects [ background_code ] . y ) ;
 	}
 	else
-	    blit_open_gl_texture_to_screen_position ( 
+	    draw_gl_textured_quad_at_screen_position ( 
 		&our_backgrounds [ background_code ] , 
 		our_background_rects [ background_code ] . x , 
-		our_background_rects [ background_code ] . y , TRUE ) ;
+		our_background_rects [ background_code ] . y ) ;
     }
     else
     {

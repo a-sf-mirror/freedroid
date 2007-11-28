@@ -2,6 +2,7 @@
  *
  *   Copyright (c) 1994, 2002, 2003 Johannes Prix
  *   Copyright (c) 1994, 2002 Reinhard Prix
+ *   Copyright (c) 2004-2007 Arthur Huillet
  *
  *
  *  This file is part of Freedroid
@@ -131,9 +132,6 @@ EXTERN int classic_user_rect;   // use the User-Rect dimensions of the original 
 #define EXTERN extern
 #endif
 
-//--------------------
-// These two guys must be declared manually in text_public.c !!!@
-//
 EXTERN int Number_Of_Item_Types;
 EXTERN itemspec* ItemMap;
 EXTERN item_bonus * PrefixList;
@@ -160,18 +158,12 @@ EXTERN point InventorySize;
 EXTERN iso_image MouseCursorImageList[ NUMBER_OF_MOUSE_CURSOR_PICTURES ];
 EXTERN iso_image SpellLevelButtonImageList[ NUMBER_OF_SKILL_PAGES ];
 
-EXTERN double Conveyor_Belt_Speed;
 EXTERN int Number_Of_Droids_On_Ship;
 EXTERN double Time_For_Each_Phase_Of_Door_Movement;
 EXTERN double Blast_Damage_Per_Second;
-EXTERN double Blast_Radius;
-EXTERN double Druid_Radius_X;
-EXTERN double Druid_Radius_Y;
 EXTERN float LevelDoorsNotMovedTime;
 EXTERN float LevelGunsNotFiredTime;
-EXTERN double collision_lose_energy_calibrator;
 EXTERN configuration_for_freedroid GameConfig;
-EXTERN float CurrentCombatScaleFactor;
 EXTERN int MaxMessageTime;
 EXTERN int MinMessageTime;
 EXTERN BFont_Info *Menu_BFont;
@@ -197,7 +189,6 @@ EXTERN int global_ingame_mode ;
 #endif
 EXTERN iso_image light_radius_chunk[ NUMBER_OF_SHADOW_IMAGES ];
 EXTERN SDL_Rect InventoryRect;
-EXTERN SDL_Rect SkillScreenRect;
 EXTERN SDL_Rect CharacterRect;
 #ifdef HAVE_LIBGL
 EXTERN GLuint *automap_texture;  // this is to store an open_gl texture...
@@ -338,5 +329,13 @@ EXTERN int always_show_items_text;
 #define EXTERN extern
 #endif
 
+#undef EXTERN
+#ifdef _skills_c
+#define EXTERN
+#else
+#define EXTERN extern
+#endif
+
+EXTERN SDL_Rect SkillScreenRect;
 
 #endif  // _global_h

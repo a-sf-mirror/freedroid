@@ -2,6 +2,7 @@
  *
  *   Copyright (c) 1994, 2002, 2003 Johannes Prix
  *   Copyright (c) 1994, 2002 Reinhard Prix
+ *   Copyright (c) 2004-2007 Arthur Huillet 
  *
  *
  *  This file is part of Freedroid
@@ -206,7 +207,7 @@ DoMenuSelection( char* InitialText , char* MenuTexts[] , int FirstItem , int bac
     
     print_menu_text ( InitialText , MenuTexts , first_menu_item_pos_y , background_code , MenuFont ) ;
     
-    if ( ! use_open_gl ) StoreMenuBackground ( 0 );
+    StoreMenuBackground ( 0 );
     
 
     
@@ -218,10 +219,7 @@ DoMenuSelection( char* InitialText , char* MenuTexts[] , int FirstItem , int bac
 	// in the open_gl case or by restoring what we have saved earlier, in the 
 	// SDL output case.
 	//
-	if ( ! use_open_gl ) 
-	    RestoreMenuBackground ( 0 );
-	else
-	    print_menu_text ( InitialText , MenuTexts , FirstItem , background_code , MenuFont ) ;
+        RestoreMenuBackground ( 0 );
 	
 	//--------------------
 	// Maybe we should display some thumbnails with the saved games entries?
@@ -483,19 +481,6 @@ Warning.  Received empty or nearly empty string!",
  * This function performs a menu for the player to select from, using the
  * keyboard or mouse wheel.
  *
- * Some complaints have been made about earlier versions of this menu
- * reacting very slow and sluggish AND also backgrounds not appearing when
- * using OpenGL output method.  These concerns have been addressed in the
- * following manner:
- *
- * 1. There is STILL a loop with the graphics being completely redrawn,
- *    because buffering the graphics seems to cause said above OpenGL pixel
- *    operation problems.
- * 2. The loop mentioned in 1. has been fitted with an inner wait loop, 
- *    that will wait until the mouse cursor (or some other event) has made
- *    redrawing the scene nescessary, while still polling the mouse and
- *    keyboard input.
- *
  * The rest of the menu is made particularly unclear by the fact that there
  * can be some multi-line options too and also there is scrolling up and
  * down possible, when there are more menu options than fit onto one
@@ -530,9 +515,6 @@ ChatDoMenuSelection( char* MenuTexts[ MAX_ANSWERS_PER_PERSON ] ,
     int mouse_has_moved = FALSE ;
     int old_mouse_x = (-1) ;
     int old_mouse_y = (-1) ;
-#if __WIN32__
-    int win32_iterations = 0 ;
-#endif
     
     //--------------------
     // First we initialize the menu positions
@@ -553,7 +535,6 @@ ChatDoMenuSelection( char* MenuTexts[ MAX_ANSWERS_PER_PERSON ] ,
     Choice_Window . w = ( 640 - 70 ) * GameConfig . screen_width / 640 ; 
     Choice_Window . h = 140 * GameConfig . screen_height / 480 ;
     MaxLinesInMenuRectangle = Choice_Window . h / ( FontHeight ( GetCurrentFont() ) * TEXT_STRETCH ) ;
-//    MaxLinesInMenuRectangle = 5;
     DebugPrintf ( 1 , "\nComputed number of lines in choice window at most: %d." , MaxLinesInMenuRectangle );
     
     //--------------------
@@ -602,22 +583,7 @@ ChatDoMenuSelection( char* MenuTexts[ MAX_ANSWERS_PER_PERSON ] ,
     while ( 1 )
     {
     SDL_Delay(1);
-#if __WIN32__
-      for ( win32_iterations = 0 ; win32_iterations < 2 ; win32_iterations ++ ) 
-      {
-#endif
-
-	  if ( ! use_open_gl ) 
-	      RestoreMenuBackground ( 0 );
-	  else 
-	  {
-	      //--------------------
-	      // This will re-blit the background and then put the current chat protocol
-	      // right over it.  However a screen-update/flip is not performed unless we
-	      // would request it, which we don't do YET.
-	      //
-	      display_current_chat_protocol ( CHAT_DIALOG_BACKGROUND_PICTURE_CODE , ChatDroid , FALSE );
-	  }
+          RestoreMenuBackground ( 0 );
 
 	  //--------------------
 	  // Now that the possible font-changing chat protocol display is
@@ -700,10 +666,6 @@ ChatDoMenuSelection( char* MenuTexts[ MAX_ANSWERS_PER_PERSON ] ,
 	  //
 	  our_SDL_flip_wrapper( Screen );
 	  
-#if __WIN32__
-      }  // doing display twice for win32 platform...
-#endif
-      
       //--------------------
       // In order to reduce processor load during chat menus and also in order to
       // make menus lag less, we introduce a new loop here, so that the drawing thing
@@ -853,6 +815,7 @@ ChatDoMenuSelection( char* MenuTexts[ MAX_ANSWERS_PER_PERSON ] ,
 	       ( BreakOffCauseNoRoom ) )
 	  {
 	      OptionOffset ++ ;
+
 	  }
 	  else if ( ( MouseCursorIsOnButton ( SCROLL_DIALOG_MENU_UP_BUTTON , GetMousePos_x ()  , GetMousePos_y ()  ) ) &&
 		    ( OptionOffset ) )
@@ -864,12 +827,18 @@ ChatDoMenuSelection( char* MenuTexts[ MAX_ANSWERS_PER_PERSON ] ,
 					    GetMousePos_y ()  ) )
 	  {
 	      chat_protocol_scroll_override_from_user -- ;
+              display_current_chat_protocol ( CHAT_DIALOG_BACKGROUND_PICTURE_CODE , ChatDroid , FALSE );
+	      our_SDL_flip_wrapper( Screen );
+	      StoreMenuBackground(0);
 	  }
 	  else if ( MouseCursorIsOnButton ( CHAT_PROTOCOL_SCROLL_DOWN_BUTTON , 
 					    GetMousePos_x ()  , 
 					    GetMousePos_y ()  ) )
 	  {
 	      chat_protocol_scroll_override_from_user ++ ;
+              display_current_chat_protocol ( CHAT_DIALOG_BACKGROUND_PICTURE_CODE , ChatDroid , FALSE );
+              our_SDL_flip_wrapper( Screen );
+	      StoreMenuBackground(0);
 	  }
 	  //--------------------
 	  // If not, then maybe it was a click into the options window.  That alone
@@ -2617,14 +2586,11 @@ Load_Existing_Hero_Menu ( void )
     
     //--------------------
     // We use empty strings to denote the end of any menu selection, 
-    // therefore also for the end of the list of saved characters.  So
-    // We prepare such a list now by initializing the list with empty
-    // strings.  Memory leak at this point can be neglected.  Really.
+    // therefore also for the end of the list of saved characters.
     //
     for ( n = 0 ; n < MAX_SAVED_CHARACTERS_ON_DISK + 1 ; n ++ )
     {
-	MenuTexts [ n ] = malloc ( strlen ( "" ) + 1 ) ;
-	strcpy ( MenuTexts [ n ] , "" );
+	MenuTexts [ n ] = "";
     }
 
     //--------------------

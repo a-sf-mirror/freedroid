@@ -2,6 +2,7 @@
  *
  *   Copyright (c) 1994, 2002, 2003 Johannes Prix
  *   Copyright (c) 1994, 2002 Reinhard Prix
+ *   Copyright (c) 2004-2007 Arthur Huillet
  *
  *
  *  This file is part of Freedroid
@@ -996,19 +997,7 @@ PrepareMultipleChoiceDialog ( Enemy ChatDroid , int with_flip )
     
     if ( with_flip ) 
 	our_SDL_flip_wrapper( Screen );
-    
-#if __WIN32__
-    //--------------------
-    // When using win32, after flipping we may have a damaged (or rather out of date)
-    // screen in the other buffer or something... dunno... well, we just paint the
-    // same background a second time.  That should resolve the problem in all cases.
-    //
-    blit_special_background ( CHAT_DIALOG_BACKGROUND_PICTURE_CODE );
-    our_SDL_blit_surface_wrapper ( chat_portrait_of_droid [ ChatDroid -> type ] . surface , NULL , 
-				   Screen , &Droid_Image_Window );
-    if ( with_flip ) our_SDL_flip_wrapper( Screen );
-#endif
-    
+        
 }; // void PrepareMultipleChoiceDialog ( int Enum )
 
 /* ----------------------------------------------------------------------

@@ -2,6 +2,7 @@
  *
  *   Copyright (c) 1994, 2002, 2003 Johannes Prix
  *   Copyright (c) 1994, 2002 Reinhard Prix
+ *   Copyright (c) 2004-2007 Arthur Huillet 
  *
  *  This file is part of Freedroid
  *
@@ -97,10 +98,10 @@ EXTERN void start_tux_death_explosions (void);
 #define translate_map_point_to_screen_pixel_macro(X,Y,x_res,y_res,zoom_factor) {\
   if((x_res)!=NULL)\
     (*(x_res)) = rintf ((UserCenter_x) + \
-      ( (X) + Me.pos.y - Me.pos.x - (Y) ) * iso_floor_tile_width*0.5*(zoom_factor)) ;\
+      ( (X) + Me.pos.y - Me.pos.x - (Y) ) * iso_floor_tile_width_over_two *(zoom_factor)) ;\
   if((y_res)!=NULL)\
     (*(y_res)) = rintf ((UserCenter_y) + \
-      ( (X) + (Y) - Me.pos.x - Me.pos.y ) * iso_floor_tile_height*0.5*(zoom_factor)) ;\
+      ( (X) + (Y) - Me.pos.x - Me.pos.y ) * iso_floor_tile_height_over_two *(zoom_factor)) ;\
 }
 #define translate_map_point_to_screen_pixel_x(X,Y)  ( UserCenter_x + rintf(( (X) + Me . pos . y - Me . pos . x - (Y) ) * (iso_floor_tile_width_over_two) ) )
 #define translate_map_point_to_screen_pixel_y(X,Y)  ( UserCenter_y + rintf(( (X) + (Y) - Me . pos . x - Me . pos . y ) * (iso_floor_tile_height_over_two))) 
@@ -194,33 +195,27 @@ EXTERN int our_SDL_fill_rect_wrapper (SDL_Surface *dst, SDL_Rect *dstrect, Uint3
 EXTERN int blit_quad ( int x1 , int y1 , int x2, int y2, int x3, int y3, int x4 , int y4 , Uint32 color );
 EXTERN void drawIsoEnergyBar(int dir, int x, int y, int z, int w, int d, int length, float fill, myColor *c1, myColor *c2  ) ;
 
-EXTERN SDL_Surface* our_SDL_display_format_wrapper ( SDL_Surface *surface );
 EXTERN SDL_Surface* our_SDL_display_format_wrapperAlpha ( SDL_Surface *surface );
 EXTERN SDL_Surface* our_IMG_load_wrapper( const char *file );
-EXTERN void flip_image_horizontally ( SDL_Surface* tmp1 ) ;
+EXTERN void flip_image_vertically ( SDL_Surface* tmp1 ) ;
 EXTERN void make_texture_out_of_surface ( iso_image* our_image ) ;
 EXTERN void make_texture_out_of_prepadded_image ( iso_image* our_image ) ;
 EXTERN SDL_Surface* pad_image_for_texture ( SDL_Surface* our_surface ) ;
 EXTERN void clear_screen (void) ;
-EXTERN void blit_open_gl_light_radius ( void );
 EXTERN void blit_open_gl_stretched_texture_light_radius ( void ) ;
 EXTERN void PutPixel_open_gl ( int x, int y, Uint32 pixel);
-EXTERN void blit_rotated_open_gl_texture_with_center ( iso_image * our_floor_iso_image , int x , int y , float angle_in_degree ) ;
-EXTERN void remove_open_gl_blending_mode_again ( void );
-EXTERN void prepare_open_gl_for_blending_textures( void );
-EXTERN void GL_HighlightRectangle ( SDL_Surface* Surface , SDL_Rect Area , unsigned char r , unsigned char g , unsigned char b , unsigned char alpha );
+EXTERN void GL_HighlightRectangle ( SDL_Surface* Surface , SDL_Rect * Area , unsigned char r , unsigned char g , unsigned char b , unsigned char alpha );
 EXTERN void ShowInventoryScreenBackground ( void );
 EXTERN void show_character_screen_background ( void );
 EXTERN int safely_initialize_our_default_open_gl_parameters ( void ) ;
-EXTERN void blit_open_gl_texture_to_map_position ( iso_image * our_floor_iso_image , float our_col , float our_line , float r , float g , float b , int highlight_texture, int blend ) ;
-EXTERN void blit_zoomed_open_gl_texture_to_map_position ( iso_image * our_floor_iso_image , float our_col , float our_line , float r , float g , float b , int highlight_texture, int blend ) ;
-EXTERN void blit_open_gl_texture_to_screen_position ( iso_image * our_floor_iso_image , int x , int y , int set_gl_parameters ) ;
+EXTERN void draw_gl_textured_quad_at_map_position ( iso_image * our_floor_iso_image , float our_col , float our_line , float r , float g , float b , int highlight_texture, int blend, float zoom_factor ) ;
+EXTERN void draw_gl_textured_quad_at_screen_position ( iso_image * our_floor_iso_image , int x , int y ) ;
+EXTERN void draw_gl_scaled_textured_quad_at_screen_position ( iso_image * our_floor_iso_image , int x , int y , float scale_factor ) ;
 EXTERN void blit_semitransparent_open_gl_texture_to_screen_position ( iso_image * our_floor_iso_image , int x , int y , float scale_factor ) ;
-EXTERN void blit_zoomed_open_gl_texture_to_screen_position ( iso_image * our_floor_iso_image , int x , int y , int set_gl_parameters , float zoom_factor ) ;
 EXTERN void blit_special_background ( int background_code );
 EXTERN void flush_background_image_cache ( void );
 EXTERN void open_gl_check_error_status ( const char* name_of_calling_function );
-EXTERN void blit_open_gl_texture_to_full_screen ( iso_image * our_floor_iso_image , int x , int y , int set_gl_parameters ) ;
+EXTERN void draw_gl_bg_textured_quad_at_screen_position ( iso_image * our_floor_iso_image , int x , int y ) ;
 
 // blocks.c 
 #undef EXTERN
@@ -594,6 +589,16 @@ EXTERN int KP6Pressed () ;
 EXTERN int KP7Pressed () ;
 EXTERN int KP8Pressed () ;
 EXTERN int KP9Pressed () ;
+EXTERN int KP0Hit() ;
+EXTERN int KP1Hit() ;
+EXTERN int KP2Hit() ;
+EXTERN int KP3Hit() ;
+EXTERN int KP4Hit() ;
+EXTERN int KP5Hit() ;
+EXTERN int KP6Hit() ;
+EXTERN int KP7Hit() ;
+EXTERN int KP8Hit() ;
+EXTERN int KP9Hit() ;
 EXTERN int F1Pressed () ;
 EXTERN int F2Pressed () ;
 EXTERN int F3Pressed () ;
@@ -610,6 +615,7 @@ EXTERN int APressed () ;
 EXTERN int BPressed () ;
 EXTERN int CPressed () ;
 EXTERN int DPressed () ;
+EXTERN int DHit () ;
 EXTERN int EPressed () ;
 EXTERN int FPressed () ;
 EXTERN int GPressed () ;
@@ -746,7 +752,6 @@ EXTERN void EnterItemIdentificationBooth( void );
 EXTERN void EnterCodepanel (void);
 EXTERN void EnterConsole (void);
 EXTERN void AlleLevelsGleichFaerben (void);
-EXTERN void ClearUserFenster (void);
 void ShowDroidInfo (int droidtype, int page , char ShowArrows );
 void PaintConsoleMenu (int menu_pos);
 EXTERN void write_full_item_name_into_string ( item* ShowItem , char* full_item_name ) ;

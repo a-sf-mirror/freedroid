@@ -2,7 +2,7 @@
  *
  *   Copyright (c) 1994, 2002, 2003 Johannes Prix
  *   Copyright (c) 1994, 2002 Reinhard Prix
- *
+ *   Copyright (c) 2004-2007 Arthur Huillet
  *
  *  This file is part of Freedroid
  *
@@ -37,7 +37,7 @@
 
 /* Distances for hitting a druid */
 #define MORE		(4/64.0)
-#define DRUIDHITDIST2		(0.3+MORE)*(Druid_Radius_Y+MORE)
+#define DRUIDHITDIST2		(0.3+MORE)*(0.25+MORE)
 
 /* ----------------------------------------------------------------------
  *
@@ -233,7 +233,7 @@ DeleteBullet ( int Bulletnumber , int ShallWeStartABlast )
   //
   int type = (CurBullet->type == 4) ? OWNBLAST : BULLETBLAST;
   
-  if ( ShallWeStartABlast ) StartBlast ( CurBullet->pos.x, CurBullet->pos.y, CurBullet->pos.z , type, (type == OWNBLAST) ? (CurBullet -> damage * 1) : Blast_Damage_Per_Second );
+  if ( ShallWeStartABlast ) StartBlast ( CurBullet->pos.x, CurBullet->pos.y, CurBullet->pos.z , type, (type == OWNBLAST) ? (CurBullet -> damage * 1) : 2.0 );
 
   //--------------------
   // maybe, the bullet had several SDL_Surfaces attached to it.  Then we need to 
@@ -1037,7 +1037,7 @@ CheckBlastCollisions (int num)
     Blast CurBlast = &(AllBlasts[num]);
     // int level = CurLevel->levelnum;
     int level = CurBlast->pos.z;
-    
+    static const float Blast_Radius = 0.3;
     //--------------------
     // At first, we check for collisions of this blast with all bullets 
     //

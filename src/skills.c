@@ -1,6 +1,7 @@
 /* 
  *
  *   Copyright (c) 2002, 2003 Johannes Prix
+ *   Copyright (c) 2004-2007 Arthur Huillet 
  *
  *  This file is part of Freedroid
  *
@@ -69,8 +70,6 @@
 #define SPELL_LEVEL_BUTTON_WIDTH 30
 
 int Override_Power_Limit=0;
-
-SDL_Rect SkillScreenRect;
 
 /* ----------------------------------------------------------------------
  * This function improves a generic skill (hack melee ranged magic) by one
@@ -289,7 +288,7 @@ DoSkill(int skill_index, int SpellCost)
 	}
 
 
-    if ( ! strcmp ( SpellSkillMap [ skill_index ] . effect, "talk_or_takeover" ) )
+    if ( ! strcmp ( SpellSkillMap [ skill_index ] . effect, "takeover" ) )
    	{
 	if (! MouseCursorIsInUserRect ( GetMousePos_x() , GetMousePos_y() ) ) goto out;
 	index_of_droid_below_mouse_cursor = GetLivingDroidBelowMouseCursor ( ) ;
@@ -304,16 +303,17 @@ DoSkill(int skill_index, int SpellCost)
 		goto out;
 
 
-	if ( AllEnemys [ index_of_droid_below_mouse_cursor ] . is_friendly )
-		ChatWithFriendlyDroid( & ( AllEnemys [ index_of_droid_below_mouse_cursor ] ) );
-	else
+	if ( ! AllEnemys [ index_of_droid_below_mouse_cursor ] . is_friendly && ! ( Druidmap [ AllEnemys [ index_of_droid_below_mouse_cursor ] . type ] . is_human ))
 	    {
 	    //--------------------
 	    // Only droids can be hacked.  Humans can't be 
 	    // hacked.
 	    //
-	    if ( ! ( Druidmap [ AllEnemys [ index_of_droid_below_mouse_cursor ] . type ] . is_human ) )
-	        Takeover ( index_of_droid_below_mouse_cursor ) ;
+	    Takeover ( index_of_droid_below_mouse_cursor ) ;
+	    }
+	else 
+	    {
+	    Me . temperature -= SpellCost; //pretend nothing happened
 	    }
 	goto out;
 	}
@@ -371,15 +371,10 @@ DoSkill(int skill_index, int SpellCost)
 
     if ( ! strcmp ( SpellSkillMap [ skill_index ] . effect, "teleport_home" ) )
    	{
-               TeleportHome (  ) ;
+        TeleportHome (  ) ;
 	goto out;
 	}
 
-
-
-/*    if ( ! strcmp ( SpellSkillMap [ skill_index ] . effect, "" ) )
-   	{
-	}*/
 
 out:
 
@@ -488,8 +483,8 @@ ShowSkillsExplanationScreen( void )
     
     if ( use_open_gl )
     {
-	blit_open_gl_texture_to_screen_position ( &SpellSkillMap [ Me . readied_skill ] . icon_surface , 
-						  TargetSkillRect . x , TargetSkillRect . y , TRUE );
+	draw_gl_textured_quad_at_screen_position ( &SpellSkillMap [ Me . readied_skill ] . icon_surface , 
+						  TargetSkillRect . x , TargetSkillRect . y );
     }
     else
     {
@@ -683,9 +678,9 @@ ShowSkillsScreen ( void )
 	
 	if ( use_open_gl )
 	{
-	    blit_open_gl_texture_to_screen_position ( 
+	    draw_gl_textured_quad_at_screen_position ( 
 		&SpellSkillMap [ SkillOfThisSlot ] . icon_surface , 
-		ButtonRect . x , ButtonRect . y , TRUE );
+		ButtonRect . x , ButtonRect . y );
 	}
 	else
 	{

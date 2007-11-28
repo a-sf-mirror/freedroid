@@ -2,6 +2,7 @@
  *
  *   Copyright (c) 1994, 2002, 2003 Johannes Prix
  *   Copyright (c) 1994, 2002 Reinhard Prix
+ *   Copyright (c) 2004-2007 Arthur Huillet
  *
  *
  *  This file is part of Freedroid
@@ -1024,7 +1025,7 @@ smash_obstacles_only_on_tile ( float x , float y , int map_x , int map_y )
 	// removed, we may start a blast at this position.  Otherwise we would
 	// run into trouble, see the warning further above.
 	//
-	StartBlast( blast_start_pos . x , blast_start_pos . y , BoxLevel->levelnum , DRUIDBLAST, Blast_Damage_Per_Second );
+	StartBlast( blast_start_pos . x , blast_start_pos . y , BoxLevel->levelnum , DRUIDBLAST, 2.0);
 	
     }
 
@@ -3098,7 +3099,7 @@ MoveLevelDoors ( )
   // The constant should be replaced by a variable, that can be
   // set from within the theme, but that may be done later...
   //
-  if ( LevelDoorsNotMovedTime < Time_For_Each_Phase_Of_Door_Movement ) return;
+  if ( LevelDoorsNotMovedTime < 0.05 ) return;
 
   LevelDoorsNotMovedTime=0;
 

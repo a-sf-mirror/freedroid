@@ -2,6 +2,7 @@
  *
  *   Copyright (c) 1994, 2002, 2003, 2004 Johannes Prix
  *   Copyright (c) 1994, 2002 Reinhard Prix
+ *   Copyright (c) 2004-2007 Arthur Huillet 
  *
  *
  *  This file is part of Freedroid
@@ -45,6 +46,8 @@
 
 #define PUT_ONLY_THROWN_ITEMS 3
 #define PUT_NO_THROWN_ITEMS 4
+
+#include <zlib.h>
 
 char* 
 part_group_strings [ ALL_PART_GROUPS ] = 
@@ -320,24 +323,6 @@ ShowCombatScreenTexts ( int mask )
 
 }; // void ShowCombatScreenTexts ( int mask )
 
-/* ----------------------------------------------------------------------
- * When blitting the floor to the screen, we can of course use the map
- * position of each map tile to compute the right position.  That is what
- * the blit_this_floor_tile_to_screen(...) function does.
- * ---------------------------------------------------------------------- */
-static inline void
-blit_this_floor_tile_to_screen ( iso_image * our_floor_iso_image ,
-				 float our_col, float our_line )
-{
-    if ( use_open_gl )
-    {
-	blit_open_gl_texture_to_map_position ( our_floor_iso_image , our_col , our_line , 1.0 , 1.0 , 1.0 , FALSE , FALSE) ;
-    }
-    else
-    {
-	blit_iso_image_to_map_position ( our_floor_iso_image , our_col , our_line ) ;
-    }
-}; // void blit_this_floor_tile_to_screen ( iso_image * our_floor_iso_image , float our_col, float our_line )
 
 void
 get_floor_boundaries(int mask, int* LineStart, int* LineEnd, int* ColStart, int* ColEnd)
@@ -370,7 +355,6 @@ isometric_show_floor_around_tux_without_doublebuffering (int mask)
     
   get_floor_boundaries (mask, &LineStart, &LineEnd, &ColStart, &ColEnd);
 
-
   SDL_SetClipRect (Screen, &User_Rect);
     
   for (line = LineStart; line < LineEnd; line++)
@@ -380,27 +364,23 @@ isometric_show_floor_around_tux_without_doublebuffering (int mask)
             MapBrick = GetMapBrick (DisplayLevel, col, line);
 	    if ( MapBrick == ISO_COMPLETELY_DARK)
 		continue;
-				
-    	    if (mask & ZOOM_OUT)
-                {
-                if (use_open_gl)
-	 	    {
-                    blit_zoomed_open_gl_texture_to_map_position ( &floor_iso_images[MapBrick % ALL_ISOMETRIC_FLOOR_TILES],
-				                    ((float) col) + 0.5, ((float) line) + 0.5, 1.0, 1.0, 1.0,
-        	        							    FALSE, FALSE);
-		    }
-		else
-		    {
+
+	    if ( use_open_gl ) 
+		{
+                draw_gl_textured_quad_at_map_position ( &floor_iso_images[MapBrick % ALL_ISOMETRIC_FLOOR_TILES],
+		   ((float) col) + 0.5, ((float) line) + 0.5, 1.0, 1.0, 1.0, FALSE, FALSE,
+		   (mask & ZOOM_OUT) ?  ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT : 1.0);
+		}
+	    else
+		{			
+		if (mask & ZOOM_OUT)
                     blit_zoomed_iso_image_to_map_position ( &(floor_iso_images[MapBrick % ALL_ISOMETRIC_FLOOR_TILES]),
-                    ((float) col) + 0.5, ((float) line) + 0.5);
-        	    }
-               }
-           else
-               {
-               blit_this_floor_tile_to_screen ( &floor_iso_images[MapBrick % ALL_ISOMETRIC_FLOOR_TILES],
-	                ((float) col) + 0.5, ((float) line) + 0.5);
-               }
-           }
+                        ((float) col) + 0.5, ((float) line) + 0.5);
+                else
+		    blit_iso_image_to_map_position ( &(floor_iso_images[MapBrick % ALL_ISOMETRIC_FLOOR_TILES]),
+                        ((float) col) + 0.5, ((float) line) + 0.5 ) ;
+		}
+	    }
       }
 }; // void isometric_show_floor_around_tux_without_doublebuffering ( int mask )
 
@@ -410,25 +390,26 @@ skew_and_blit_line (float x1, float y1, float x2, float y2, Uint32 color)
 if ( ! use_open_gl ) return;
   int r, c;
   float rr, gg, bb, zoom_factor;
-  zoom_factor = (GameConfig.zoom_is_on ? 1.0/LEVEL_EDITOR_ZOOM_OUT_FACT : 1.0);
+  zoom_factor = (GameConfig.zoom_is_on ? ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT : 1.0);
   rr = ((color & 0xff0000) >> 16) / 255.0;
   gg = ((color & 0xff00) >> 8) / 255.0;
   bb = (color & 0xff) / 255.0;
 #ifdef HAVE_LIBGL
   glLineWidth (1);
   glColor3f (rr, gg, bb);
-//  glEnable(GL_LINE_STIPPLE);
-//  glLineStipple(1,0x3F);
+
+  glDisable (GL_TEXTURE_2D);
 
   glBegin (GL_LINES);
   translate_map_point_to_screen_pixel(x1,y1,&r,&c,zoom_factor);
   glVertex2i (r, c);
   translate_map_point_to_screen_pixel(x2,y2,&r,&c,zoom_factor);
   glVertex2i (r, c);
-
   glEnd ();
+
+  glEnable (GL_TEXTURE_2D);
+
 #endif
-//  glDisable(GL_LINE_STIPPLE);
 }
 /* ----------------------------------------------------------------------
  * More for debugging purposes than for real gameplay, we add some 
@@ -438,7 +419,7 @@ if ( ! use_open_gl ) return;
 void 
 skew_and_blit_rect( float x1, float y1, float x2, float y2, Uint32 color)
 {
-    float zoom_factor = (GameConfig.zoom_is_on ? 1.0/LEVEL_EDITOR_ZOOM_OUT_FACT : 1.0);
+    float zoom_factor = (GameConfig.zoom_is_on ? ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT : 1.0);
     int r1, r2, r3, r4, c1, c2, c3, c4 ;
     translate_map_point_to_screen_pixel ( x1 , y1 , &r1, &c1, zoom_factor);
     translate_map_point_to_screen_pixel ( x1 , y2 , &r2, &c2, zoom_factor);
@@ -554,11 +535,11 @@ There was an obstacle type given, that exceeds the number of\n\
 
 	if ( use_open_gl )
 	{
-	    blit_open_gl_texture_to_map_position ( &obstacle_map [ our_obstacle -> type ] . image , 
+	    draw_gl_textured_quad_at_map_position ( &obstacle_map [ our_obstacle -> type ] . image , 
 						   obs_onscreen_position . x , obs_onscreen_position . y , 
 						   ( SDL_GetTicks() % 3) / 2.0  , 
 						   ( ( SDL_GetTicks() + 1 ) % 3) / 2.0 , 
-						   ( ( SDL_GetTicks() + 2 ) % 3) / 2.0 , TRUE , FALSE) ;
+						   ( ( SDL_GetTicks() + 2 ) % 3) / 2.0 , TRUE , FALSE, 1.0) ;
 	}
 	else
 	{
@@ -597,9 +578,9 @@ There was an obstacle type given, that exceeds the number of\n\
 		locy = translate_map_point_to_screen_pixel_deviation_tracking( our_obstacle -> pos . x, our_obstacle->pos.y, FALSE);
 		endlocx = (locx - UserCenter_x) / (float) iso_floor_tile_width + Me.pos.x + (locy - UserCenter_y ) / (float) iso_floor_tile_height;
 		endlocy = (- locx + UserCenter_x) / (float) iso_floor_tile_width + Me.pos.y + (locy - UserCenter_y) / (float) iso_floor_tile_height;
-		blit_open_gl_texture_to_map_position ( 
+		draw_gl_textured_quad_at_map_position ( 
 		    &obstacle_map [ our_obstacle -> type ] . image , endlocx, endlocy, 1,1,1 , FALSE, 
-		    obstacle_map [ our_obstacle -> type ] . transparent ) ;
+		    obstacle_map [ our_obstacle -> type ] . transparent, 1.0 ) ;
 
 		}
 		else
@@ -610,9 +591,9 @@ There was an obstacle type given, that exceeds the number of\n\
 		locy = translate_map_point_to_screen_pixel_deviation_tracking( our_obstacle -> pos . x, our_obstacle->pos.y, FALSE);
 		endlocx = (locx - UserCenter_x) / (float) iso_floor_tile_width + Me.pos.x + (locy - UserCenter_y ) / (float) iso_floor_tile_height;
 		endlocy = (- locx + UserCenter_x) / (float) iso_floor_tile_width + Me.pos.y + (locy - UserCenter_y) / (float) iso_floor_tile_height;
-		blit_open_gl_texture_to_map_position ( 
+		draw_gl_textured_quad_at_map_position ( 
 		    &obstacle_map [ our_obstacle -> type ] . image , endlocx, endlocy, 1,1,1 , FALSE, 
-		    0 ) ;
+		    0, 1.0 ) ;
 
 		}
 	    }
@@ -624,9 +605,9 @@ There was an obstacle type given, that exceeds the number of\n\
 		locy = translate_map_point_to_screen_pixel_deviation_tracking( our_obstacle -> pos . x, our_obstacle->pos.y, FALSE);
 		endlocx = (locx - UserCenter_x) / (float) iso_floor_tile_width + Me.pos.x + (locy - UserCenter_y ) / (float) iso_floor_tile_height;
 		endlocy = (- locx + UserCenter_x) / (float) iso_floor_tile_width + Me.pos.y + (locy - UserCenter_y) / (float) iso_floor_tile_height;
-		blit_open_gl_texture_to_map_position ( 
+		draw_gl_textured_quad_at_map_position ( 
 		    &obstacle_map [ our_obstacle -> type ] . image , endlocx, endlocy, 1,1,1 , FALSE, 
-		    obstacle_map [ our_obstacle -> type ] . transparent ) ;
+		    obstacle_map [ our_obstacle -> type ] . transparent, 1.000000000 ) ;
 	    }
 	}
 	else
@@ -674,8 +655,8 @@ There was an obstacle type given, that exceeds the number of\n\
     
     if ( use_open_gl )
     {
-	blit_open_gl_texture_to_map_position ( &obstacle_map [ our_obstacle -> type ] . image , 
-					       our_obstacle -> pos . x , our_obstacle -> pos . y , 1.0 , 1.0 , 1.0 , TRUE, FALSE ) ;
+	draw_gl_textured_quad_at_map_position ( &obstacle_map [ our_obstacle -> type ] . image , 
+					       our_obstacle -> pos . x , our_obstacle -> pos . y , 1.0 , 1.0 , 1.0 , TRUE, FALSE, 1.0 ) ;
     }
     else
     {
@@ -720,9 +701,9 @@ There was an obstacle type given, that exceeds the number of\n\
 	
 	if ( use_open_gl )
 	{
-	    blit_zoomed_open_gl_texture_to_map_position ( &obstacle_map [ our_obstacle -> type ] . image ,
+	    draw_gl_textured_quad_at_map_position ( &obstacle_map [ our_obstacle -> type ] . image ,
 							  our_obstacle -> pos . x , our_obstacle -> pos . y , 
-							  1.0 , 1.0, 1.0 , 0.25, FALSE );
+							  1.0 , 1.0, 1.0 , 0.25, FALSE, ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT );
 	}
 	else
 	{
@@ -750,8 +731,8 @@ There was an obstacle type given, that exceeds the number of\n\
     {
 	if ( use_open_gl )
 	{
-	    blit_zoomed_open_gl_texture_to_map_position ( &obstacle_map [ our_obstacle -> type ] . image ,
-							  our_obstacle -> pos . x , our_obstacle -> pos . y , 1.0 , 1.0, 1.0 , 0.25, obstacle_map[our_obstacle->type].transparent  );
+	    draw_gl_textured_quad_at_map_position ( &obstacle_map [ our_obstacle -> type ] . image ,
+							  our_obstacle -> pos . x , our_obstacle -> pos . y , 1.0 , 1.0, 1.0 , 0.25, obstacle_map[our_obstacle->type].transparent,ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT  );
 	}
 	else
 	{
@@ -1125,15 +1106,6 @@ insert_enemies_into_blitting_list ( void )
 	    
 	    if ( ! level_is_partly_visible ( ThisRobot -> pos . z ) ) continue;
 
-	    // if ( ThisRobot -> pos . z != Me . pos . z )
-	    // DebugPrintf ( -4 , "\n%s(): (possibly) inserting truly virtual bot..." , __FUNCTION__ );
-
-	    if ( ( ThisRobot -> Status == INFOUT ) && ( ! Druidmap [ ThisRobot -> type ] . use_image_archive_file ) ) 
-	    {
-		// DebugPrintf ( -4 , "\n%s():  enemy blitting suppressed because of status and no animation..." , __FUNCTION__ );
-		// continue;
-	    }
-	    
 	    //--------------------
 	    // We update the virtual position of this bot, such that we can handle it 
 	    // with easier expressions later...
@@ -1287,15 +1259,15 @@ blit_preput_objects_according_to_blitting_list ( int mask )
 		    if ( obstacle_map [ our_obstacle -> type ] . shadow_image . texture_has_been_created )
 		    {
 			if ( mask & ZOOM_OUT )
-			    blit_zoomed_open_gl_texture_to_map_position (   
+			    draw_gl_textured_quad_at_map_position (   
                             &obstacle_map [ our_obstacle -> type ] . shadow_image ,
                             our_obstacle -> pos . x , our_obstacle -> pos . y ,   
-                            1.0 , 1.0, 1.0 , FALSE, TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS );
+                            1.0 , 1.0, 1.0 , FALSE, TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS,ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT );
 
-			else blit_open_gl_texture_to_map_position ( 
+			else draw_gl_textured_quad_at_map_position ( 
 			    &obstacle_map [ our_obstacle -> type ] . shadow_image , 
 			    our_obstacle -> pos . x , our_obstacle -> pos . y , 
-			    1.0 , 1.0, 1.0 , FALSE, TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS );
+			    1.0 , 1.0, 1.0 , FALSE, TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS, 1.0 );
 			// DebugPrintf ( -4 , "\n%s(): shadow has been drawn." , __FUNCTION__ );
 		    }
 		}
@@ -1584,7 +1556,12 @@ blit_all_item_slots ( void )
 	{
 	    if ( use_open_gl )
 	    {
-		GL_HighlightRectangle ( Screen , item_level -> ItemList [ i ] . text_slot_rectangle , 0 , 0 , 0 , BACKGROUND_TEXT_RECT_ALPHA );
+		if (( item_level -> ItemList [ i ] . text_slot_rectangle . x + item_level -> ItemList [ i ] . text_slot_rectangle . w <= 0 ) ||
+		    ( item_level -> ItemList [ i ] . text_slot_rectangle . y + item_level -> ItemList [ i ] . text_slot_rectangle . h <= 0 ) ||
+		    ( item_level -> ItemList [ i ] . text_slot_rectangle . x >= GameConfig . screen_width  ) ||
+		    ( item_level -> ItemList [ i ] . text_slot_rectangle . y >= GameConfig . screen_height  ) )
+			continue;
+		GL_HighlightRectangle ( Screen , &(item_level -> ItemList [ i ] . text_slot_rectangle) , 0 , 0 , 0 , BACKGROUND_TEXT_RECT_ALPHA );
 	    }
 	    else
 	    {
@@ -1747,7 +1724,7 @@ draw_grid_on_the_floor (int mask)
   if (!(draw_grid && (mask & SHOW_GRID)))
     return;
 
-  float zoom_factor = (GameConfig.zoom_is_on ? 1.0/LEVEL_EDITOR_ZOOM_OUT_FACT : 1.0);
+  float zoom_factor = (GameConfig.zoom_is_on ? ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT : 1.0);
   static iso_image grid_tile_SDL = { NULL, 0, 0 } ;
   int LineStart, LineEnd, ColStart, ColEnd, line, col;
   float x, y;
@@ -1939,9 +1916,9 @@ AssembleCombatPicture ( int mask )
     
     show_obstacle_labels ( mask );
 
-    if ( ! use_open_gl )
+      if ( ! use_open_gl )
 	show_automap_data_sdl ( ) ;
-    else
+      else
 	show_automap_data_ogl ( GameConfig . automap_display_scale ) ; 
     
     ShowCombatScreenTexts ( mask );
@@ -2046,8 +2023,8 @@ PutMouseMoveCursor ( void )
 	{
 	    TargetRectangle . x -= MouseCursorImageList [ 0 ] . original_image_width / 2 ;
 	    TargetRectangle . y -= MouseCursorImageList [ 0 ] . original_image_height / 2 ;
-	    blit_open_gl_texture_to_screen_position ( &MouseCursorImageList [ 0 ] , 
-						      TargetRectangle . x , TargetRectangle . y , TRUE );
+	    draw_gl_textured_quad_at_screen_position ( &MouseCursorImageList [ 0 ] , 
+						      TargetRectangle . x , TargetRectangle . y );
 	}
 	else
 	{
@@ -2071,8 +2048,8 @@ PutMouseMoveCursor ( void )
 	{
 	    TargetRectangle . x -= MouseCursorImageList [ 1 ] . original_image_width / 2 ;
 	    TargetRectangle . y -= MouseCursorImageList [ 1 ] . original_image_height / 2 ;
-	    blit_open_gl_texture_to_screen_position ( &MouseCursorImageList [ 1 ] , 
-						      TargetRectangle . x , TargetRectangle . y , TRUE );
+	    draw_gl_textured_quad_at_screen_position ( &MouseCursorImageList [ 1 ] , 
+						      TargetRectangle . x , TargetRectangle . y );
 	}
 	else
 	{
@@ -2261,7 +2238,7 @@ char fpath[2048];
     //--------------------
     // We need a file name!
     //
-    sprintf ( constructed_filename , "tux_motion_parts/%s/%s%s.tux_image_archive" , 
+    sprintf ( constructed_filename , "tux_motion_parts/%s/%s%s.tux_image_archive.z" , 
 	      motion_class_string [ motion_class ] , part_group_strings [ tux_part_group ] , 
 	      part_string );
     find_file (constructed_filename , GRAPHICS_DIR, fpath, 0 );
@@ -2306,7 +2283,8 @@ grab_tux_images_from_archive ( int tux_part_group , int motion_class , char* par
     char* tmp_buff;
     char archive_type_string [ 5 ] = { 0 , 0 , 0 , 0 , 0 } ;
     char ogl_support_string [ 5 ] = { 0 , 0 , 0 , 0 , 0 } ;
-    char *DataBuffer, *ptr;
+    char *DataBuffer, *ptr; 
+    unsigned char * src;
     int filelen, tmplen;
 
     Sint16 cooked_walk_object_phases;
@@ -2329,10 +2307,52 @@ grab_tux_images_from_archive ( int tux_part_group , int motion_class , char* par
     // Therefore we read the whole file into memory first then read out the 
     // numbers using SDLNet_Read..(). The file have to be written using SDLNet_Write..()
     DataFile = open_tux_image_archive_file ( tux_part_group , motion_class , part_string );
+
     filelen = FS_filelength (DataFile);
-    DataBuffer = MyMalloc(filelen);
-    fread ( DataBuffer, filelen, 1, DataFile );
-    fclose ( DataFile );
+         src = MyMalloc (filelen+1);
+         DataBuffer = malloc(30 * 1048576); //allocate 30MB max.
+         fread(src, filelen, 1, DataFile);
+         fclose( DataFile );
+
+         int ret;
+         z_stream strm;
+
+         /* allocate inflate state */
+         strm.zalloc = Z_NULL;
+         strm.zfree = Z_NULL;
+         strm.opaque = Z_NULL;
+         strm.avail_in = filelen;
+         strm.next_in = src;
+         strm.avail_out = 30 * 1048576;
+         strm.next_out = DataBuffer;
+ 
+         ret = inflateInit(&strm);
+         if (ret != Z_OK)
+             {
+             GiveStandardErrorMessage ( __FUNCTION__  , "\
+zlib was unable to start decompressing a tux archive file.\n\
+This indicates a serious bug in this installation of Freedroid.",
+                                   PLEASE_INFORM, IS_FATAL );
+ 
+             }
+ 
+          ret = inflate(&strm, Z_FINISH);
+          switch (ret) {
+                case Z_NEED_DICT:
+                    ret = Z_DATA_ERROR;     /* and fall through */
+                case Z_DATA_ERROR:
+                case Z_MEM_ERROR:
+                    (void)inflateEnd(&strm);
+ 
+             GiveStandardErrorMessage ( __FUNCTION__  , "\
+zlib was unable to decompress a tux archive file.\n\
+This indicates a serious bug in this installation of Freedroid.",
+                                   PLEASE_INFORM, IS_FATAL );
+
+                }
+                
+            (void)inflateEnd(&strm);
+            free ( src );
 
     ptr = DataBuffer;
     //--------------------
@@ -2441,13 +2461,6 @@ Received some non-positive Tux surface dimensions.  That's a bug for sure!",
 #               endif
 
 		
-		if ( ptr - DataBuffer > filelen )
-		  {
-		    GiveStandardErrorMessage ( __FUNCTION__  , "\
-Datafile-length seems inconsistent with size of contained graphics-data", 
-					       PLEASE_INFORM, IS_FATAL );
-		  }
-	
 		loaded_tux_images [ tux_part_group ] [ our_phase ] [ rotation_index ] . attached_pixel_data = tmp_buff ;
 		loaded_tux_images [ tux_part_group ] [ our_phase ] [ rotation_index ] . surface = 
 		    SDL_CreateRGBSurfaceFrom ( tmp_buff , img_xlen , img_ylen , 32, 4 * img_xlen , 
@@ -2479,7 +2492,7 @@ Creation of an Tux SDL software surface from pixel data failed.",
 		
 
 		if ( ! use_open_gl ) 		  
-		  flip_image_horizontally ( loaded_tux_images[tux_part_group][our_phase][rotation_index].surface ) ;
+		  flip_image_vertically ( loaded_tux_images[tux_part_group][our_phase][rotation_index].surface ) ;
 		else 
 		    {
 		    make_texture_out_of_surface(&loaded_tux_images [ tux_part_group ] [ our_phase ] [ rotation_index ]);
@@ -2527,7 +2540,9 @@ grab_enemy_images_from_archive ( int enemy_model_nr )
 char fpath[2048];
     char archive_type_string [ 5 ] = { 0 , 0 , 0 , 0 , 0 } ;
     char ogl_support_string [ 5 ] = { 0 , 0 , 0 , 0 , 0 } ;
-    char *DataBuffer, *ptr, *dest;
+    char *DataBuffer;
+    char *ptr, *dest;
+    unsigned char * src;
     int filelen, tmplen;
 
     Sint16 img_xlen;
@@ -2543,6 +2558,8 @@ char fpath[2048];
     Sint16 cooked_death_object_phases;
     Sint16 cooked_stand_object_phases;
 
+    int is_compressed = 1;
+
     //--------------------
     // A short message for debug purposes
     //
@@ -2551,10 +2568,18 @@ char fpath[2048];
     //--------------------
     // We need a file name!
     //
-    sprintf ( constructed_filename , "droids/%s/%s.tux_image_archive" , 
+    sprintf ( constructed_filename , "droids/%s/%s.tux_image_archive.z" , 
 	      PrefixToFilename [ enemy_model_nr ] ,
 	      PrefixToFilename [ enemy_model_nr ] );
-    find_file (constructed_filename , GRAPHICS_DIR, fpath, 0 );
+    if ( find_file (constructed_filename , GRAPHICS_DIR, fpath, 1 ) )
+	{
+	is_compressed = 0;
+	sprintf ( constructed_filename , "droids/%s/%s.tux_image_archive" ,
+              PrefixToFilename [ enemy_model_nr ] ,
+              PrefixToFilename [ enemy_model_nr ] );
+	find_file (constructed_filename , GRAPHICS_DIR, fpath, 0 );
+
+	}
     
     //--------------------
     // First we need to open the file
@@ -2573,13 +2598,76 @@ This indicates a serious bug in this installation of Freedroid.",
 	DebugPrintf ( 1 , "\n%s() : Opening file succeeded..." , __FUNCTION__ );
     }
 
-    /* read the whole file into memory, then use ReadSint16() for correct
-     * endianness of byte-reading 
-     */
+  
     filelen = FS_filelength (DataFile);
-    DataBuffer = MyMalloc(filelen);
-    fread ( DataBuffer, filelen, 1, DataFile );
-    fclose ( DataFile );
+
+    if ( ! is_compressed  )
+	{ //if we're not reading a zlib compressed file, read it directly
+        DataBuffer = MyMalloc(filelen);
+        fread ( DataBuffer, filelen, 1, DataFile );
+        fclose ( DataFile );
+	}	
+    else {
+	 src = MyMalloc (filelen);
+	 DataBuffer = malloc(30 * 1048576); //allocate 30MB max.
+	 fread(src, filelen, 1, DataFile);
+	 fclose( DataFile );
+
+	 int ret;
+         unsigned have;
+         z_stream strm;
+         
+         /* allocate inflate state */
+         strm.zalloc = Z_NULL;
+         strm.zfree = Z_NULL;
+         strm.opaque = Z_NULL;
+         strm.avail_in = filelen;
+         strm.next_in = src;
+         strm.avail_out = 30 * 1048576;
+         strm.next_out = DataBuffer;
+
+         ret = inflateInit(&strm);
+         if (ret != Z_OK)
+             {
+	     fprintf( stderr, "\n\nfilename: '%s'\n" , fpath );
+	
+	     GiveStandardErrorMessage ( __FUNCTION__  , "\
+zlib was unable to start decompressing an enemy archive file.\n\
+This indicates a serious bug in this installation of Freedroid.",
+				   PLEASE_INFORM, IS_FATAL );
+
+	     }
+    
+	  ret = inflate(&strm, Z_FINISH);
+          switch (ret) {
+                case Z_NEED_DICT:
+                    ret = Z_DATA_ERROR;     /* and fall through */
+                case Z_DATA_ERROR:
+                case Z_MEM_ERROR:
+                    (void)inflateEnd(&strm);
+                     fprintf( stderr, "\n\nfilename: '%s'\n" , fpath );
+         
+             GiveStandardErrorMessage ( __FUNCTION__  , "\
+zlib was unable to decompress an enemy archive file.\n\
+This indicates a serious bug in this installation of Freedroid.",
+                                   PLEASE_INFORM, IS_FATAL );
+
+                }
+
+#if 0            
+	    if (ret != Z_STREAM_END) 
+		{
+                fprintf( stderr, "\n\nfilename: '%s'\n" , fpath );
+             GiveStandardErrorMessage ( __FUNCTION__  , "\
+zlib could not decompress an enemy archive file, maybe because it was larger than 30MB .\n",
+                                   PLEASE_INFORM, IS_FATAL );
+		}
+#endif		
+
+	    (void)inflateEnd(&strm);
+            free ( src );
+	//printf("-%c%c%c%c%c%c%c%c-\n", *(DataBuffer+0),*(DataBuffer+1),*(DataBuffer+2),*(DataBuffer+3),*(DataBuffer+4),*(DataBuffer+5),*(DataBuffer+6),*(DataBuffer+7));
+	}
 
     ptr = DataBuffer;    
 
@@ -2717,7 +2805,7 @@ The number of images found in the image collection is bigger than currently allo
 	    
 	    if ( ! use_open_gl ) 		  
 	    {
-		flip_image_horizontally ( 
+		flip_image_vertically ( 
 		    enemy_iso_images [ enemy_model_nr ] [ rotation_index ] [ enemy_phase ] . surface ) ;
 	    }
 	    else
@@ -2854,26 +2942,29 @@ Empty part string received!",
 
 	    if ( Me . paralyze_duration ) 
 		{
-		r = 1.0;
 		g = 0.2;
 		b = 0.2;
 		}
 
-	    if ( Me . slowdown_duration ) 
+	    else if ( Me . slowdown_duration ) 
 		{
 		r = 0.2;
 		g = 0.2;
-		b = 1.0;
+		}
+
+	    else if ( Me . energy < Me . maxenergy * 0.25 )
+		{
+		g = b = ((SDL_GetTicks() >> 5) & 31) * 0.03;
 		}
 
             if ( x == (-1) )
     		{
-	        blit_open_gl_texture_to_map_position ( &loaded_tux_images [ tux_part_group ] [ our_phase ] [ rotation_index ] , 
-					     Me . pos . x , Me . pos . y, r, g, b, FALSE, FALSE );
+	        draw_gl_textured_quad_at_map_position ( &loaded_tux_images [ tux_part_group ] [ our_phase ] [ rotation_index ] , 
+					     Me . pos . x , Me . pos . y, r, g, b, FALSE, FALSE, 1.0 );
         	}
 	     else
 	        {
-	        blit_open_gl_texture_to_screen_position ( &loaded_tux_images [ tux_part_group ] [ our_phase ] [ rotation_index ] , x + loaded_tux_images [ tux_part_group ] [ our_phase ] [ rotation_index ] . offset_x , y + loaded_tux_images [ 			tux_part_group ] [ our_phase ] [ rotation_index ] . offset_y, TRUE );
+	        draw_gl_textured_quad_at_screen_position ( &loaded_tux_images [ tux_part_group ] [ our_phase ] [ rotation_index ] , x + loaded_tux_images [ tux_part_group ] [ our_phase ] [ rotation_index ] . offset_x , y + loaded_tux_images [ 			tux_part_group ] [ our_phase ] [ rotation_index ] . offset_y );
 	        }
 	    #endif
 	    }
@@ -3430,28 +3521,11 @@ blit_tux ( int x , int y )
     }
     
     //--------------------
-    // In case of transfer mode, we produce the transfer mode sound
-    // but of course only in some periodic intervall...
-    
-    if ( Me.status == TRANSFERMODE )
-    {
-	if ( Me.LastTransferSoundTime > TRANSFER_SOUND_INTERVAL )
-	{
-	    Me.LastTransferSoundTime = 0;
-	    TransferSound();
-	}
-    }
-    
-    //--------------------
     // Either we draw the classical influencer or we draw the more modern
     // tux, a descendant of the influencer :)
     //
     iso_put_tux ( x , y );
     
-    //--------------------
-    // Now that all fading effects are done, we can restore the blocks surface to OPAQUE,
-    // which is the oposite of TRANSPARENT :)
-    //
     
     //--------------------
     // Maybe the influencer has something to say :)
@@ -3750,6 +3824,8 @@ PutIndividuallyShapedDroidBody ( int Enum , SDL_Rect TargetRectangle , int mask 
     float darkness ;
     enemy* ThisRobot = & ( AllEnemys [ Enum ] ) ;
     moderately_finepoint bot_pos;
+    float zf = 1.0;
+    if ( mask & ZOOM_OUT ) zf = ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT;
 
     // if ( ThisRobot -> pos . z != Me . pos . z )
     // DebugPrintf ( -4 , "\n%s(): Now attempting to blit bot on truly virtual position..." , __FUNCTION__ );
@@ -3765,23 +3841,6 @@ PutIndividuallyShapedDroidBody ( int Enum , SDL_Rect TargetRectangle , int mask 
     //
     RotationModel = set_rotation_model_for_this_robot ( ThisRobot ) ;
     
-    //--------------------
-    // If the robot is dead and doesn't have a dead image, then we need not
-    // do anything else here...
-    //
-    if ( ( phase == DROID_PHASES ) &&
-	 ( ! Druidmap [ ThisRobot -> type ] . use_image_archive_file ) )
-    {
-	// asdf
-	// DebugPrintf ( -4 , "\n%s(): Droid blitting omitted because of no death and no animation." , __FUNCTION__ );
-	// return;
-    }
-    
-    //--------------------
-    // Some extra security against strange or undefined animation phases
-    //
-    
-
     //--------------------
     // Maybe the rotation model we're going to use now isn't yet loaded. 
     // Now in this case, we must load it immediately, or a segfault may
@@ -3823,7 +3882,7 @@ PutIndividuallyShapedDroidBody ( int Enum , SDL_Rect TargetRectangle , int mask 
     {
 	if ( use_open_gl )
 	{
-	    blit_open_gl_texture_to_screen_position ( &enemy_iso_images [ RotationModel ] [ RotationIndex ] [ 0 ] , TargetRectangle . x , TargetRectangle . y , TRUE );
+	    draw_gl_textured_quad_at_screen_position ( &enemy_iso_images [ RotationModel ] [ RotationIndex ] [ 0 ] , TargetRectangle . x , TargetRectangle . y );
 	}
 	else
 	{
@@ -3840,231 +3899,111 @@ PutIndividuallyShapedDroidBody ( int Enum , SDL_Rect TargetRectangle , int mask 
     //
     else
     {
-	
-	if ( mask & ZOOM_OUT )
-	{
-	    if ( use_open_gl )
+	if ( use_open_gl )
 	    {
-		if ( ThisRobot -> paralysation_duration_left != 0 ) 
-		{
-		    blit_zoomed_open_gl_texture_to_map_position ( &enemy_iso_images[ RotationModel ] [ RotationIndex ] [ 0 ] , ThisRobot -> virt_pos . x , ThisRobot -> virt_pos . y , 1.0 , 0.2 , 0.2 , highlight, FALSE ) ;
+
+	    if ( ThisRobot -> paralysation_duration_left != 0 ) 
+	        {
+		draw_gl_textured_quad_at_map_position ( &enemy_iso_images[ RotationModel ] [ RotationIndex ] [ (int) ThisRobot -> animation_phase ] , 
+							       ThisRobot -> virt_pos . x , ThisRobot -> virt_pos . y , 1.0 , 0.2 , 0.2 , highlight, FALSE, zf ) ;
 		}
-		else if ( ThisRobot -> poison_duration_left != 0 ) 
+	    else if ( ThisRobot -> poison_duration_left != 0 ) 
 		{
-		    blit_zoomed_open_gl_texture_to_map_position ( &enemy_iso_images[ RotationModel ] [ RotationIndex ] [ 0 ] , ThisRobot -> virt_pos . x , ThisRobot -> virt_pos . y , 0.2 , 1.0 , 0.2 , highlight, FALSE ) ;
+		draw_gl_textured_quad_at_map_position ( &enemy_iso_images[ RotationModel ] [ RotationIndex ] [ (int) ThisRobot -> animation_phase ] , 
+							       ThisRobot -> virt_pos . x , ThisRobot -> virt_pos . y , 0.2 , 1.0 , 0.2 , highlight, FALSE, zf ) ;
 		}
-		else if ( ThisRobot -> frozen != 0 ) 
-		{
-		    blit_zoomed_open_gl_texture_to_map_position ( &enemy_iso_images[ RotationModel ] [ RotationIndex ] [ 0 ] , ThisRobot -> virt_pos . x , ThisRobot -> virt_pos . y , 0.2 , 0.2 , 1.0 , highlight, FALSE ) ;
-		}
-		else
-		{
-		    blit_zoomed_open_gl_texture_to_map_position ( &enemy_iso_images[ RotationModel ] [ RotationIndex ] [ 0 ] , ThisRobot -> virt_pos . x , ThisRobot -> virt_pos . y , 1.0 , 1.0 , 1.0 , highlight, FALSE ) ;
-		}
-	    }
+	    else if ( ThisRobot -> frozen != 0 ) 
+	        {
+		draw_gl_textured_quad_at_map_position ( &enemy_iso_images[ RotationModel ] [ RotationIndex ] [ (int) ThisRobot -> animation_phase ] , 
+							       ThisRobot -> virt_pos . x , ThisRobot -> virt_pos . y , 0.2 , 0.2 , 1.0 , highlight , FALSE, zf) ;
+	        }
 	    else
-	    {
+	        {
+		//--------------------
+		// If we're using OpenGL, we can as well apply the darkness to the droids
+		// we're about to blit...
+		//
+		bot_pos . x = ThisRobot -> virt_pos . x ;
+		bot_pos . y = ThisRobot -> virt_pos . y ;
+	
+		darkness = 1.5 - 2.0 * ( ( (float) get_light_strength ( bot_pos ) ) / ( (float) NUMBER_OF_SHADOW_IMAGES ) ) ;
+		if ( darkness > 1 ) darkness = 1.0 ;
+		if ( darkness < 0 ) darkness = 0 ;
+		float locx, locy;
+                float endlocx, endlocy;
+                locx = translate_map_point_to_screen_pixel_deviation_tracking( bot_pos . x, bot_pos.y, TRUE);
+                locy = translate_map_point_to_screen_pixel_deviation_tracking( bot_pos . x, bot_pos.y, FALSE);
+                endlocx = (locx - UserCenter_x) / (float) iso_floor_tile_width + Me.pos.x + (locy - UserCenter_y ) / (float) iso_floor_tile_height;
+                endlocy = (- locx + UserCenter_x) / (float) iso_floor_tile_width + Me.pos.y + (locy - UserCenter_y) / (float) iso_floor_tile_height;
+		draw_gl_textured_quad_at_map_position ( 
+		    &enemy_iso_images [ RotationModel ] [ RotationIndex ] [ (int) ThisRobot -> animation_phase ] , 
+		    endlocx , endlocy , 
+		    darkness , darkness , darkness , highlight , FALSE, zf) ;
+		}
+
+	    }
+ 
+	else 
+ 	    { /*Using SDL*/
+ 	    if ( mask & ZOOM_OUT )
+		{
 		//--------------------
 		// When no OpenGL is used, we need to proceed with SDL for
 		// blitting the small enemies...
 		//
 		blit_zoomed_iso_image_to_map_position ( & ( enemy_iso_images[ RotationModel ] [ RotationIndex ] [ 0 ] ) , 
 							ThisRobot -> virt_pos . x , ThisRobot -> virt_pos . y );
-	    }
-	}
-	else
-	{
-	    
-	    //--------------------
-	    // Maybe we've got to do with some old bots, that don't have any movement
-	    // animation phases yet, until Basse will provide them at some later point.
-	    // This case must be handled separatedly...
-	    //
-	    if ( ! Druidmap [ ThisRobot -> type ] . use_image_archive_file )
-	    {
-		if ( use_open_gl )
-		{
-		    
-		    if ( ThisRobot -> paralysation_duration_left != 0 ) 
-		    {
-			blit_open_gl_texture_to_map_position ( &enemy_iso_images[ RotationModel ] [ RotationIndex ] [ 0 ] , ThisRobot -> virt_pos . x , ThisRobot -> virt_pos . y , 1.0 , 0.2 , 0.2 , highlight , FALSE) ;
-		    }
-		    else if ( ThisRobot -> poison_duration_left != 0 ) 
-		    {
-			blit_open_gl_texture_to_map_position ( &enemy_iso_images[ RotationModel ] [ RotationIndex ] [ 0 ] , ThisRobot -> virt_pos . x , ThisRobot -> virt_pos . y , 0.2 , 1.0 , 0.2 , highlight , FALSE) ;
-		    }
-		    else if ( ThisRobot -> frozen != 0 ) 
-		    {
-			blit_open_gl_texture_to_map_position ( &enemy_iso_images[ RotationModel ] [ RotationIndex ] [ 0 ] , ThisRobot -> virt_pos . x , ThisRobot -> virt_pos . y , 0.2 , 0.2 , 1.0 , highlight , FALSE) ;
-		    }
-		    else
-		    {
-			
-			//--------------------
-			// If we're using OpenGL, we can as well apply the darkness to the droids
-			// we're about to blit...
-			//
-			bot_pos . x = ThisRobot -> virt_pos . x ;
-			bot_pos . y = ThisRobot -> virt_pos . y ;
-			
-			darkness = 1.5 - 2.0 * ( ( (float) get_light_strength ( bot_pos ) ) / ( (float) NUMBER_OF_SHADOW_IMAGES ) ) ;
-			if ( darkness > 1 ) darkness = 1.0 ;
-			if ( darkness < 0 ) darkness = 0 ;
-			
-			blit_open_gl_texture_to_map_position ( &enemy_iso_images[ RotationModel ] [ RotationIndex ] [ 0 ] , ThisRobot -> virt_pos . x , ThisRobot -> virt_pos . y , darkness , darkness , darkness , highlight , FALSE) ;
-		    }		  
-		    
 		}
-		else // no open_gl
-		{
-		    
-		    //--------------------
-		    // First we catch the case of dead bots, then we can separate the
-		    // right color filter type, provided that the droid is still alive...
-		    //
-		    if ( ( ThisRobot -> energy <= 0 ) || ( ThisRobot -> Status ==  INFOUT ) )
-		    {
-			blit_iso_image_to_map_position ( &enemy_iso_images [ RotationModel ] [ RotationIndex ] [ (int) ThisRobot -> animation_phase ] , 
-							 ThisRobot -> virt_pos . x , ThisRobot -> virt_pos . y );
-			
-		    }
-		    else if ( ThisRobot -> paralysation_duration_left != 0 ) 
-		    {
-			LoadAndPrepareRedEnemyRotationModelNr ( RotationModel );
-			blit_iso_image_to_map_position ( &RedEnemyRotationSurfacePointer [ RotationModel ] [ RotationIndex ] [ 0 ] , 
-							 ThisRobot -> virt_pos . x , ThisRobot -> virt_pos . y );
-		    }
-		    else if ( ThisRobot -> poison_duration_left != 0 ) 
-		    {
-			LoadAndPrepareGreenEnemyRotationModelNr ( RotationModel );
-			blit_iso_image_to_map_position ( &GreenEnemyRotationSurfacePointer [ RotationModel ] [ RotationIndex ] [ 0 ] , 
-							 ThisRobot -> virt_pos . x , ThisRobot -> virt_pos . y );
-		    }
-		    else if ( ThisRobot -> frozen != 0 ) 
-		    {
-			LoadAndPrepareBlueEnemyRotationModelNr ( RotationModel );
-			blit_iso_image_to_map_position ( &BlueEnemyRotationSurfacePointer [ RotationModel ] [ RotationIndex ] [ 0 ] , 
-							 ThisRobot -> virt_pos . x , ThisRobot -> virt_pos . y );
-		    }
-		    else
-		    {
-			blit_iso_image_to_map_position ( &enemy_iso_images [ RotationModel ] [ RotationIndex ] [ (int) ThisRobot -> animation_phase ] , ThisRobot -> virt_pos . x , ThisRobot -> virt_pos . y );
-			if ( highlight )
-			    blit_outline_of_iso_image_to_map_position ( &enemy_iso_images [ RotationModel ] [ RotationIndex ] [ (int) ThisRobot -> animation_phase ] , ThisRobot -> virt_pos . x , ThisRobot -> virt_pos . y );
-		    }
-		    
-		    // blit_iso_image_to_map_position ( enemy_iso_images[ RotationModel ] [ RotationIndex ] [ 0 ] , ThisRobot -> virt_pos . x , ThisRobot -> virt_pos . y );
-		    
-		}
-	    }
-	    //--------------------
-	    // So here we got some animation phases, not only one image.  That's cool,
-	    // especially when using OpenGL for graphics output, since then we can have
-	    // fine color-filteres animation without extra effort.  With SDL output, the
-	    // color-filteres surfaces must be reduced to the first cycle image.
-	    //
 	    else
-	    {
-		if ( use_open_gl )
 		{
-		    if ( ThisRobot -> paralysation_duration_left != 0 ) 
+		    
+		//--------------------
+		// First we catch the case of a dead bot (no color filteres SDL surfaces
+		// availabe for that case).  In the other cases, we use the prepared color-
+		// filtered stuff...
+		// 
+		if ( ( ThisRobot -> energy <= 0 ) || ( ThisRobot -> Status == INFOUT ) )
 		    {
-			blit_open_gl_texture_to_map_position ( &enemy_iso_images[ RotationModel ] [ RotationIndex ] [ (int) ThisRobot -> animation_phase ] , 
-							       ThisRobot -> virt_pos . x , ThisRobot -> virt_pos . y , 1.0 , 0.2 , 0.2 , highlight, FALSE ) ;
+		    blit_iso_image_to_map_position ( &enemy_iso_images [ RotationModel ] [ RotationIndex ] [ (int) ThisRobot -> animation_phase ] , ThisRobot 
+			-> virt_pos . x , ThisRobot -> virt_pos . y );
 		    }
-		    else if ( ThisRobot -> poison_duration_left != 0 ) 
+		else if ( ThisRobot -> paralysation_duration_left != 0 ) 
 		    {
-			blit_open_gl_texture_to_map_position ( &enemy_iso_images[ RotationModel ] [ RotationIndex ] [ (int) ThisRobot -> animation_phase ] , 
-							       ThisRobot -> virt_pos . x , ThisRobot -> virt_pos . y , 0.2 , 1.0 , 0.2 , highlight, FALSE ) ;
+		    LoadAndPrepareRedEnemyRotationModelNr ( RotationModel );
+		    blit_iso_image_to_map_position ( &RedEnemyRotationSurfacePointer [ RotationModel ] [ RotationIndex ] [ 0 ] , 
+							 ThisRobot -> virt_pos . x , ThisRobot -> virt_pos . y );
 		    }
-		    else if ( ThisRobot -> frozen != 0 ) 
+		else if ( ThisRobot -> poison_duration_left != 0 ) 
 		    {
-			blit_open_gl_texture_to_map_position ( &enemy_iso_images[ RotationModel ] [ RotationIndex ] [ (int) ThisRobot -> animation_phase ] , 
-							       ThisRobot -> virt_pos . x , ThisRobot -> virt_pos . y , 0.2 , 0.2 , 1.0 , highlight , FALSE) ;
+		    LoadAndPrepareGreenEnemyRotationModelNr ( RotationModel );
+		    blit_iso_image_to_map_position ( &GreenEnemyRotationSurfacePointer [ RotationModel ] [ RotationIndex ] [ 0 ] , 
+							 ThisRobot -> virt_pos . x , ThisRobot -> virt_pos . y );
 		    }
-		    else
+		else if ( ThisRobot -> frozen != 0 ) 
 		    {
-			//--------------------
-			// If we're using OpenGL, we can as well apply the darkness to the droids
-			// we're about to blit...
-			//
-			bot_pos . x = ThisRobot -> virt_pos . x ;
-			bot_pos . y = ThisRobot -> virt_pos . y ;
-			
-			darkness = 1.5 - 2.0 * ( ( (float) get_light_strength ( bot_pos ) ) / ( (float) NUMBER_OF_SHADOW_IMAGES ) ) ;
-			if ( darkness > 1 ) darkness = 1.0 ;
-			if ( darkness < 0 ) darkness = 0 ;
-			float locx, locy;
-	                float endlocx, endlocy;
-        	        locx = translate_map_point_to_screen_pixel_deviation_tracking( bot_pos . x, bot_pos.y, TRUE);
-	                locy = translate_map_point_to_screen_pixel_deviation_tracking( bot_pos . x, bot_pos.y, FALSE);
-        	        endlocx = (locx - UserCenter_x) / (float) iso_floor_tile_width + Me.pos.x + (locy - UserCenter_y ) / (float) iso_floor_tile_height;
-	                endlocy = (- locx + UserCenter_x) / (float) iso_floor_tile_width + Me.pos.y + (locy - UserCenter_y) / (float) iso_floor_tile_height;
+		    LoadAndPrepareBlueEnemyRotationModelNr ( RotationModel );
+	    	    blit_iso_image_to_map_position ( &BlueEnemyRotationSurfacePointer [ RotationModel ] [ RotationIndex ] [ 0 ] , 
+							 ThisRobot -> virt_pos . x , ThisRobot -> virt_pos . y );
+		    }
+		else
+		    {
+		    blit_iso_image_to_map_position ( &enemy_iso_images [ RotationModel ] [ RotationIndex ] [ (int) ThisRobot -> animation_phase ] , ThisRobot -> virt_pos . x , ThisRobot -> virt_pos . y );
+		    if ( highlight )
+		        blit_outline_of_iso_image_to_map_position ( &enemy_iso_images [ RotationModel ] [ RotationIndex ] [ (int) ThisRobot -> animation_phase ] , ThisRobot -> virt_pos . x , ThisRobot -> virt_pos . y );
+		    }
+		    
+		}
 
-			blit_open_gl_texture_to_map_position ( 
-			    &enemy_iso_images [ RotationModel ] [ RotationIndex ] [ (int) ThisRobot -> animation_phase ] , 
-			    endlocx , endlocy , 
-			    darkness , darkness , darkness , highlight , FALSE) ;
-		    }
-		}
-		else // no OpenGL
-		{
-		    
-		    //--------------------
-		    // First we catch the case of a dead bot (no color filteres SDL surfaces
-		    // availabe for that case).  In the other cases, we use the prepared color-
-		    // filtered stuff...
-		    // 
-		    if ( ( ThisRobot -> energy <= 0 ) || ( ThisRobot -> Status == INFOUT ) )
-		    {
-			blit_iso_image_to_map_position ( &enemy_iso_images [ RotationModel ] [ RotationIndex ] [ (int) ThisRobot -> animation_phase ] , ThisRobot -> virt_pos . x , ThisRobot -> virt_pos . y );
-		    }
-		    else if ( ThisRobot -> paralysation_duration_left != 0 ) 
-		    {
-			LoadAndPrepareRedEnemyRotationModelNr ( RotationModel );
-			blit_iso_image_to_map_position ( &RedEnemyRotationSurfacePointer [ RotationModel ] [ RotationIndex ] [ 0 ] , 
-							 ThisRobot -> virt_pos . x , ThisRobot -> virt_pos . y );
-		    }
-		    else if ( ThisRobot -> poison_duration_left != 0 ) 
-		    {
-			LoadAndPrepareGreenEnemyRotationModelNr ( RotationModel );
-			blit_iso_image_to_map_position ( &GreenEnemyRotationSurfacePointer [ RotationModel ] [ RotationIndex ] [ 0 ] , 
-							 ThisRobot -> virt_pos . x , ThisRobot -> virt_pos . y );
-		    }
-		    else if ( ThisRobot -> frozen != 0 ) 
-		    {
-			LoadAndPrepareBlueEnemyRotationModelNr ( RotationModel );
-			blit_iso_image_to_map_position ( &BlueEnemyRotationSurfacePointer [ RotationModel ] [ RotationIndex ] [ 0 ] , 
-							 ThisRobot -> virt_pos . x , ThisRobot -> virt_pos . y );
-		    }
-		    else
-		    {
-			blit_iso_image_to_map_position ( &enemy_iso_images [ RotationModel ] [ RotationIndex ] [ (int) ThisRobot -> animation_phase ] , ThisRobot -> virt_pos . x , ThisRobot -> virt_pos . y );
-			if ( highlight )
-			    blit_outline_of_iso_image_to_map_position ( &enemy_iso_images [ RotationModel ] [ RotationIndex ] [ (int) ThisRobot -> animation_phase ] , ThisRobot -> virt_pos . x , ThisRobot -> virt_pos . y );
-		    }
-		    
-		}
 	    }
-	}
-	
-	TargetRectangle . x = 
-	    translate_map_point_to_screen_pixel_x ( ThisRobot -> virt_pos.x , ThisRobot -> virt_pos.y );
-	TargetRectangle . y = 
-	    translate_map_point_to_screen_pixel_y ( ThisRobot -> virt_pos.x , ThisRobot -> virt_pos.y ) ;
-	// - ENEMY_ENERGY_BAR_OFFSET_Y ;
+
+        translate_map_point_to_screen_pixel ( ThisRobot -> virt_pos.x , ThisRobot -> virt_pos.y, &(TargetRectangle.x), &(TargetRectangle.y), zf ) ;
 	  
 	if ( use_open_gl )
 	{
-	    //--------------------
-	    // Newly, we also make textures out of all enemy surfaces...
-	    // This will prove to be very handy for purposes of color filtered
-	    // output and such things...
-	    //
-	    TargetRectangle.x -= ( enemy_iso_images[ RotationModel ] [ RotationIndex ] [ 0 ] . original_image_width ) / 2 ;
-	    TargetRectangle.y -= ( enemy_iso_images[ RotationModel ] [ RotationIndex ] [ 0 ] . original_image_height ) / 1 ;
-	    TargetRectangle.w = enemy_iso_images[ RotationModel ] [ RotationIndex ] [ 0 ] . original_image_width ;
-	    TargetRectangle.h = enemy_iso_images[ RotationModel ] [ RotationIndex ] [ 0 ] . original_image_height ;
+	    TargetRectangle.x -= ( enemy_iso_images[ RotationModel ] [ RotationIndex ] [ 0 ] . original_image_width * zf) / 2 ;
+	    TargetRectangle.y -= ( enemy_iso_images[ RotationModel ] [ RotationIndex ] [ 0 ] . original_image_height * zf) / 1 ;
+	    TargetRectangle.w = enemy_iso_images[ RotationModel ] [ RotationIndex ] [ 0 ] . original_image_width * zf;
+	    TargetRectangle.h = enemy_iso_images[ RotationModel ] [ RotationIndex ] [ 0 ] . original_image_height * zf;
 	}
 	else
 	{
@@ -4255,8 +4194,8 @@ There was -1 item type given to blit.  This must be a mistake! ",
     {
 	if ( use_open_gl )
 	{
-	    blit_zoomed_open_gl_texture_to_map_position ( &ItemMap [ CurItem -> type ] . inv_image . ingame_iso_image , 
-							  CurItem -> pos . x , CurItem -> pos . y , 1.0 , 1.0 , 1.0 , 0.25, FALSE );
+	    draw_gl_textured_quad_at_map_position ( &ItemMap [ CurItem -> type ] . inv_image . ingame_iso_image , 
+							  CurItem -> pos . x , CurItem -> pos . y , 1.0 , 1.0 , 1.0 , 0.25, FALSE, ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT );
 	}
 	else
 	{
@@ -4268,10 +4207,10 @@ There was -1 item type given to blit.  This must be a mistake! ",
     {
 	if ( use_open_gl )
 	{
-	    blit_open_gl_texture_to_map_position ( &ItemMap [ CurItem -> type ] . inv_image . ingame_iso_image , 
+	    draw_gl_textured_quad_at_map_position ( &ItemMap [ CurItem -> type ] . inv_image . ingame_iso_image , 
 						   CurItem -> pos . x - 3.0 * sinf ( CurItem -> throw_time * 3.0 ) , 
 						   CurItem -> pos . y - 3.0 * sinf ( CurItem -> throw_time * 3.0 ) , 
-						   1.0 , 1.0 , 1.0 , highlight_item , FALSE);
+						   1.0 , 1.0 , 1.0 , highlight_item , FALSE, 1.0);
 	}
 	else
 	{
@@ -4287,11 +4226,6 @@ There was -1 item type given to blit.  This must be a mistake! ",
     
 }; // void PutItem( int ItemNumber );
 
-/* ----------------------------------------------------------------------
- * This function draws an item into the combat window.
- * The only given parameter is the number of the item within
- * the AllItems array.
- * ---------------------------------------------------------------------- */
 void
 PutRadialBlueSparks( float PosX, float PosY , float Radius , int SparkType , int active_direction [ RADIAL_SPELL_DIRECTIONS ], float age )
 {
@@ -4329,12 +4263,6 @@ char fpath[2048];
     {
 	for ( k = 0 ; k < FIXED_NUMBER_OF_PROTOTYPES ; k ++ )
 	{
-	    //--------------------
-	    // First a sanity check against illegal spark types, and 
-	    // ILLEGAL in this case means BIGGER THAN THE CONSTANT OF THE
-	    // STATIC ARRAY ABOVE!!!  Otherwise no segfault but crazy 
-	    // behaviour may follow....
-	    //
 	    if ( SparkType >= NUMBER_OF_SPARK_TYPES )
 	    {
 		fprintf( stderr, "\n\nSparkType: %d\n" , SparkType );
@@ -4395,7 +4323,7 @@ function used for this did not succeed.",
 		//
 		if ( use_open_gl )
 		{
-		    flip_image_horizontally ( PrerotatedSparkSurfaces [ SparkType ] [ k ] [ i ] . surface ) ;
+		    flip_image_vertically ( PrerotatedSparkSurfaces [ SparkType ] [ k ] [ i ] . surface ) ;
 		    make_texture_out_of_surface ( & ( PrerotatedSparkSurfaces [ SparkType ] [ k ] [ i ] ) ) ;
 		}
 		
@@ -4439,9 +4367,9 @@ function used for this did not succeed.",
 	
 	if ( use_open_gl )
 	{
-	    blit_open_gl_texture_to_screen_position ( &PrerotatedSparkSurfaces [ SparkType ] [ PictureType ] [ PrerotationIndex ] , 
+	    draw_gl_textured_quad_at_screen_position ( &PrerotatedSparkSurfaces [ SparkType ] [ PictureType ] [ PrerotationIndex ] , 
 						      TargetRectangle . x , 
-						      TargetRectangle . y , TRUE ) ;
+						      TargetRectangle . y ) ;
 	}
 	else
 	{
@@ -4620,11 +4548,11 @@ char fpath[2048];
     if ( use_open_gl )
     {
 	if ( ! bgcolor )
-	    GL_HighlightRectangle ( Screen , TargetRect , 127 , 127 , 127 , 100 );
+	    GL_HighlightRectangle ( Screen , &TargetRect , 127 , 127 , 127 , 100 );
 	if ( bgcolor & IS_MAGICAL ) 
-	    GL_HighlightRectangle ( Screen , TargetRect , 0 , 0 , 255, 100 );
+	    GL_HighlightRectangle ( Screen , &TargetRect , 0 , 0 , 255, 100 );
 	if ( bgcolor & REQUIREMENTS_NOT_MET )
-	    GL_HighlightRectangle ( Screen , TargetRect , 255 , 0 , 0 , 100 );
+	    GL_HighlightRectangle ( Screen , &TargetRect , 255 , 0 , 0 , 100 );
     }
     else
     {
@@ -4758,25 +4686,9 @@ ShowInventoryScreen( void )
 	    TargetRect.y = InventoryRect.y + SHIELD_RECT_Y;
 	    TargetRect.x += INV_SUBSQUARE_WIDTH * 0.5 * ( 2 - ItemMap [ Me . weapon_item . type ] . inv_image . inv_size . x ) ;
 	    TargetRect.y += INV_SUBSQUARE_HEIGHT * 0.5 * ( 3 - ItemMap [ Me . weapon_item . type ] . inv_image . inv_size . y ) ;
+	    TargetRect.w = ItemMap [ Me . weapon_item . type ] . inv_image . Surface -> w;
+	    TargetRect.h = ItemMap [ Me . weapon_item . type ] . inv_image . Surface -> h;
 	    our_SDL_blit_surface_wrapper( ItemMap [ Me . weapon_item . type ] . inv_image . Surface , NULL , Screen , &TargetRect );
-
-	    // Draw a grey quad
-	    #ifdef HAVE_LIBGL
-	    if ( use_open_gl )
-		{
-		glColor4f(0.4, 0.4, 0.4, 0.6);
-		glDisable( GL_ALPHA_TEST );
-	        glEnable(GL_BLEND);
-                glBlendFunc( GL_SRC_ALPHA , GL_ONE_MINUS_SRC_ALPHA );
-		glBegin(GL_QUADS);
-		glVertex2i(InventoryRect.x + SHIELD_RECT_X   - 1, InventoryRect.y + SHIELD_RECT_Y + 0);
-		glVertex2i(InventoryRect.x + SHIELD_RECT_X  -1, InventoryRect.y + SHIELD_RECT_Y + SHIELD_RECT_HEIGHT - 2);
-		glVertex2i(InventoryRect.x + SHIELD_RECT_X + SHIELD_RECT_WIDTH - 2, InventoryRect.y + SHIELD_RECT_Y + SHIELD_RECT_HEIGHT - 2);
-		glVertex2i(InventoryRect.x + SHIELD_RECT_X + SHIELD_RECT_WIDTH - 2,   InventoryRect.y + SHIELD_RECT_Y +0);
-		glEnd();
-		}
-	    #endif
-	
 
 	}
     }

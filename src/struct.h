@@ -2,6 +2,7 @@
  *
  *   Copyright (c) 1994, 2002, 2003 Johannes Prix
  *   Copyright (c) 1994, 2002 Reinhard Prix
+ *   Copyright (c) 2004-2007 Arthur Huillet 
  *
  *
  *  This file is part of Freedroid
@@ -562,7 +563,6 @@ typedef struct
     int is_human;
     int individual_shape_nr;
     int suppress_bullet_generation_when_attacking; // some bots have weapon and attack built into the animation images...
-    int use_image_archive_file;
 }
 druidspec, *Druidspec;
 

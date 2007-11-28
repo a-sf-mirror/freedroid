@@ -1,5 +1,6 @@
 /*
  *
+ *   Copyright (c) 2004-2007 Arthur Huillet
  *   Copyright (c) 1994, 2002, 2003 Johannes Prix
  *   Copyright (c) 1994, 2002 Reinhard Prix
  *
@@ -54,8 +55,8 @@ make_sure_zoomed_surface_is_there ( iso_image* our_iso_image )
 {
     if ( our_iso_image -> zoomed_out_surface == NULL )
     {
-	our_iso_image -> zoomed_out_surface = zoomSurface ( our_iso_image -> surface , ( 1.0 / LEVEL_EDITOR_ZOOM_OUT_FACT ) ,
-							    ( 1.0 / LEVEL_EDITOR_ZOOM_OUT_FACT ) , FALSE );
+	our_iso_image -> zoomed_out_surface = zoomSurface ( our_iso_image -> surface , ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT, 
+					ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT, FALSE );
     }
 }; // void make_sure_zoomed_surface_is_there ( iso_image* our_iso_image )
 
@@ -153,7 +154,7 @@ Inventory image specified above was not found!  That is fatal!",
 				 PLEASE_INFORM, IS_FATAL );
     }
 
-  if ( use_open_gl ) flip_image_horizontally ( original_img );
+  if ( use_open_gl ) flip_image_vertically ( original_img );
   
   //--------------------
   // Now we try to guess the inventory image tile sizes (in the 
@@ -756,7 +757,7 @@ blit_zoomed_iso_image_to_map_position ( iso_image* our_iso_image , float pos_x ,
 {
     SDL_Rect target_rectangle;
     int x,y;
-    float zoom_factor = 1.0 / LEVEL_EDITOR_ZOOM_OUT_FACT;
+    float zoom_factor = ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT;
 
     translate_map_point_to_screen_pixel ( pos_x , pos_y, &x, &y, zoom_factor);
     target_rectangle.x = x + our_iso_image -> offset_x * zoom_factor ;
@@ -765,8 +766,8 @@ blit_zoomed_iso_image_to_map_position ( iso_image* our_iso_image , float pos_x ,
     if ( use_open_gl )
     {
 	raise ( SIGSEGV );
-	blit_zoomed_open_gl_texture_to_screen_position ( our_iso_image , target_rectangle . x , 
-							 target_rectangle . y , TRUE , 0.25 ) ;
+	/*blit_zoomed_open_gl_texture_to_screen_position ( our_iso_image , target_rectangle . x , 
+							 target_rectangle . y , TRUE , 0.25 ) ;*/
     }
     else
     {
@@ -1000,7 +1001,7 @@ This error indicates some installation problem with freedroid.",
     our_iso_image -> force_color_key = TRUE ;
     
     SDL_SetAlpha( Whole_Image , 0 , SDL_ALPHA_OPAQUE );
-    our_iso_image -> surface = our_SDL_display_format_wrapper( Whole_Image ); // now we have an alpha-surf of right size
+    our_iso_image -> surface = SDL_DisplayFormat( Whole_Image ); // now we have an alpha-surf of right size
     
     color_key_value = SDL_MapRGB( our_iso_image -> surface -> format, 255 , 0 , 255 );
     
@@ -1052,12 +1053,9 @@ This error indicates some installation problem with freedroid.",
 void 
 LoadAndPrepareEnemyRotationModelNr ( int ModelNr )
 {
-    char ConstructedFileName[5000];
-    int i, j;
-    char fpath[2048];
+    int i;
     static int FirstCallEver = TRUE ;
     static int EnemyFullyPrepared [ ENEMY_ROTATION_MODELS_AVAILABLE ] ;
-    int source_direction_code;
     
     //--------------------
     // Maybe this function has just been called for the first time ever.
@@ -1096,178 +1094,9 @@ Freedroid received a rotation model number that does not exist!",
     EnemyFullyPrepared [ ModelNr ] = TRUE;
     Activate_Conservative_Frame_Computation();
     
-    //--------------------
-    // Maybe we got an image collection file for this enemy?  Then
-    // of course we'll use it and not bother with anything else...
-    //
-    if ( Druidmap [ ModelNr ] . use_image_archive_file )
-    {
-	grab_enemy_images_from_archive ( ModelNr );
-	return ;
-    }
+    grab_enemy_images_from_archive ( ModelNr );
+    return ;
     
-    //--------------------
-    // Now that we have the classic ball-shaped design completely done,
-    // we can start doing something new:  Let's try to use some pre-rotated
-    // enemy surfaces for a change.  That might work out to be cool.
-    //
-    for ( i = 0 ; i < ROTATION_ANGLES_PER_ROTATION_MODEL ; i ++ )
-    {
-	//--------------------
-	// If we don't have full animation cycles for this enemy yet, then of course we
-	// just load the old image, using the old file name.
-	//
-	if ( ! Druidmap [ ModelNr ] . use_image_archive_file )
-	{
-	    sprintf ( ConstructedFileName , "droids/%s/ingame_%04d.png" , PrefixToFilename [ ModelNr ] ,
-		      ( ModelMultiplier [ ModelNr ] * i ) + 1 );
-	    DebugPrintf ( 1 , "\nConstructedFileName = %s " , ConstructedFileName );
-	    find_file ( ConstructedFileName , GRAPHICS_DIR, fpath, 0 );
-	    get_iso_image_from_file_and_path ( fpath , & ( enemy_iso_images [ ModelNr ] [ i ] [ 0 ] ) , TRUE ) ;
-	    
-	    //--------------------
-	    // Newly, we also make textures out of all enemy surfaces...
-	    // This will prove to be very handy for purposes of color filtered
-	    // output and such things...
-	    //
-	    make_texture_out_of_surface ( & ( enemy_iso_images [ ModelNr ] [ i ] [ 0 ] ) ) ;
-	}
-	//--------------------
-	// But if we have an animation, maybe not complete animation but at least walkcycle 
-	// and the like, then we can start loading these images.
-	//
-	else
-	{
-	    for ( j = 0 ; j < last_stand_animation_image [ ModelNr ] ; j ++ )
-	    {
-		//--------------------
-		// Depending on which file numbering convention is being used
-		// for this model as far as directioning is concerned, we set
-		// the proper direction number for the files on disk.  302 uses
-		// the classical Tux direction number codes while the other ones
-		// use the old one-image-animation direction codes for enemies.
-		//
-		if ( ( ModelNr == 6 ) || ( ModelNr == 14 ) || ( ModelNr == 24 ) || ( ModelNr == 25 ) || ( ModelNr == 26 ) || ( ModelNr == 27 ) || ( ModelNr == 31 ) )
-		    source_direction_code = ModelMultiplier [ ModelNr ] * i * 2 ;
-		else
-		    source_direction_code = ( ModelMultiplier [ ModelNr ] * i ) + 0 ;
-		
-		//--------------------
-		// Now we can proceed to load the images for each animation phase
-		//
-		if ( j + 1 <= last_walk_animation_image [ ModelNr ] )
-		{
-		    sprintf ( ConstructedFileName , "droids/%s/walk_%02d_%04d.png" , 
-			      PrefixToFilename [ ModelNr ] ,
-			      source_direction_code , j + 1 );
-		}
-		else if ( j + 1 <= last_attack_animation_image [ ModelNr ] )
-		{
-		    //--------------------
-		    // If there is no attack animation cycle yet, then we need to use the first
-		    // walk animation image for the attack cycle and that's it.
-		    // But if there is some animation done and available, then we can use these
-		    // images of course.
-		    //
-		    if ( use_default_attack_image [ ModelNr ] )
-		    {
-			sprintf ( ConstructedFileName , "droids/%s/walk_%02d_0001.png" , 
-				  PrefixToFilename [ ModelNr ] ,
-				  source_direction_code );
-		    }
-		    else
-		    {
-			sprintf ( ConstructedFileName , "droids/%s/attack_%02d_%04d.png" , 
-				  PrefixToFilename [ ModelNr ] ,
-				  source_direction_code , j + 1 + 1 - first_attack_animation_image [ ModelNr ] );
-		    }
-		}
-		else if ( j + 1 <= last_gethit_animation_image [ ModelNr ] )
-		{
-		    //--------------------
-		    // If there is no gethit animation cycle yet, then we need to use the first
-		    // walk animation image for the attack cycle and that's it.
-		    // But if there is some animation done and available, then we can use these
-		    // images of course.
-		    //
-		    if ( use_default_gethit_image [ ModelNr ] )
-		    {
-			sprintf ( ConstructedFileName , "droids/%s/walk_%02d_0001.png" , 
-				  PrefixToFilename [ ModelNr ] ,
-				  source_direction_code );
-		    }
-		    else
-		    {
-			sprintf ( ConstructedFileName , "droids/%s/gethit_%02d_%04d.png" , 
-				  PrefixToFilename [ ModelNr ] ,
-				  source_direction_code , j + 1 + 1 - first_gethit_animation_image [ ModelNr ] );
-		    }
-		}
-		else if ( j + 1 <= last_death_animation_image [ ModelNr ] )
-		{
-		    //--------------------
-		    // If there is no gethit animation cycle yet, then we need to use the first
-		    // walk animation image for the attack cycle and that's it.
-		    // But if there is some animation done and available, then we can use these
-		    // images of course.
-		    //
-		    if ( use_default_death_image [ ModelNr ] )
-		    {
-			sprintf ( ConstructedFileName , "droids/default_dead_body_%02d_0001.png" , 
-				  ModelMultiplier [ ModelNr ] * i * 2 );
-		    }
-		    else
-		    {
-			sprintf ( ConstructedFileName , "droids/%s/death_%02d_%04d.png" , 
-				  PrefixToFilename [ ModelNr ] ,
-				  source_direction_code , j + 1 + 1 - first_death_animation_image [ ModelNr ] );
-			DebugPrintf ( 1 , "\nj=%d, i=%d, death_file_name=%s." , j , i , ConstructedFileName );
-		    }
-		}
-		else if ( j + 1 <= last_stand_animation_image [ ModelNr ] )
-		{
-		    //--------------------
-		    // If there is no stand animation cycle yet, then we need to use the first
-		    // walk animation image for the stand cycle and that's it.
-		    // But if there is some animation done and available, then we can use these
-		    // images of course.
-		    //
-		    if ( use_default_stand_image [ ModelNr ] )
-		    {
-			sprintf ( ConstructedFileName , "droids/%s/walk_%02d_0001.png" , 
-				  PrefixToFilename [ ModelNr ] ,
-				  source_direction_code );
-		    }
-		    else
-		    {
-			sprintf ( ConstructedFileName , "droids/%s/stand_%02d_%04d.png" , 
-				  PrefixToFilename [ ModelNr ] ,
-				  source_direction_code , j + 1 + 1 - first_stand_animation_image [ ModelNr ] );
-		    }
-		}
-		else
-		{
-		    fprintf ( stderr , "\n\nModelNr=%d.\nj=%d.\n" , ModelNr , j );
-		    GiveStandardErrorMessage ( __FUNCTION__  , "\
-Freedroid received a rotation model number that does not exist!",
-					       PLEASE_INFORM, IS_FATAL );
-		}
-		
-		
-		DebugPrintf ( 1 , "\nConstructedFileName = %s " , ConstructedFileName );
-		find_file ( ConstructedFileName , GRAPHICS_DIR, fpath, 0 );
-		get_iso_image_from_file_and_path ( fpath , & ( enemy_iso_images [ ModelNr ] [ i ] [ j ] ) , TRUE ) ;
-		
-		//--------------------
-		// Newly, we also make textures out of all enemy surfaces...
-		// This will prove to be very handy for purposes of color filtered
-		// output and such things...
-		//
-		make_texture_out_of_surface ( & ( enemy_iso_images [ ModelNr ] [ i ] [ j ] ) ) ;
-		
-	    }
-	}
-    }    
 }; // void LoadAndPrepareEnemyRotationModelNr ( int j )
 
 /* ----------------------------------------------------------------------
@@ -1525,54 +1354,10 @@ Load_Enemy_Surfaces( void )
     // This needs to be initialized once, and this just seems a good place
     // to do this, so we can use the i++ syntax.
     //
-    i = 0 ;
-    PrefixToFilename [ i ] = "001" ; // 0
-    first_walk_animation_image [ i ] = 1 ;
-    last_walk_animation_image [ i ] = 1 ;
-    first_attack_animation_image [ i ] = 1 ;
-    last_attack_animation_image [ i ] = 1 ;
-    first_gethit_animation_image [ i ] = 1 ;
-    last_gethit_animation_image [ i ] = 1 ;
-    first_death_animation_image [ i ] = 1 ;
-    last_death_animation_image [ i ] = 1 ;
-    first_stand_animation_image [ i ] = 1 ;
-    last_stand_animation_image [ i ] = 1 ;
-    use_default_attack_image [ i ] = TRUE ;
-    use_default_gethit_image [ i ] = TRUE ;
-    use_default_death_image [ i ] = TRUE ;
-    use_default_stand_image [ i ] = TRUE ;
-    Druidmap [ i ] . suppress_bullet_generation_when_attacking = FALSE ;
-    droid_walk_animation_speed_factor [ i ] = 5 ;
-    droid_attack_animation_speed_factor [ i ] = 5 ;
-    droid_gethit_animation_speed_factor [ i ] = 5 ;
-    droid_death_animation_speed_factor [ i ] = 5 ;
-    droid_stand_animation_speed_factor [ i ] = 5 ;
-    ModelMultiplier  [ i ] = 1 ; i++;
-
-    PrefixToFilename [ i ] = "123" ; // 1
-    //--------------------
-    // As the 123 now uses an image collection file, the information
-    // about the first and last animation images will be taken from
-    // the image collection archive anyway, so no need to hard-code
-    // anything here and changes in the image collection file will
-    // take effect immediately without code adaption...
-    //
-    // first_walk_animation_image [ i ] = 1 ;
-    // last_walk_animation_image [ i ] = 5 ;
-    // first_attack_animation_image [ i ] = 6 ;
-    // last_attack_animation_image [ i ] = 10 ;
-    // first_gethit_animation_image [ i ] = 11 ;
-    // last_gethit_animation_image [ i ] = 15 ;
-    // first_death_animation_image [ i ] = 16 ;
-    // last_death_animation_image [ i ] = 20 ;
-    // first_stand_animation_image [ i ] = 21 ;
-    // last_stand_animation_image [ i ] = 21 ;
-    // use_default_attack_image [ i ] = FALSE ;
-    // use_default_gethit_image [ i ] = FALSE ;
-    // use_default_death_image [ i ] = FALSE ;
-    // use_default_stand_image [ i ] = TRUE ;
+    i = 0;
+   
+    PrefixToFilename [ i ] = "123" ; // 0 
     Druidmap [ i ] . suppress_bullet_generation_when_attacking = TRUE ;
-    Druidmap [ i ] . use_image_archive_file = TRUE ;
     droid_walk_animation_speed_factor [ i ] = 5 ;
     droid_attack_animation_speed_factor [ i ] = 8 ;
     droid_gethit_animation_speed_factor [ i ] = 8 ;
@@ -1580,30 +1365,8 @@ Load_Enemy_Surfaces( void )
     droid_stand_animation_speed_factor [ i ] = 5 ;
     ModelMultiplier  [ i ] = 1 ; i++;
 
-    PrefixToFilename [ i ] = "139" ; // 2
-    //--------------------
-    // As the 139 now uses an image collection file, the information
-    // about the first and last animation images will be taken from
-    // the image collection archive anyway, so no need to hard-code
-    // anything here and changes in the image collection file will
-    // take effect immediately without code adaption...
-    //
-    // first_walk_animation_image [ i ] = 1 ;
-    // last_walk_animation_image [ i ] = 1 ;
-    // first_attack_animation_image [ i ] = 1 ;
-    // last_attack_animation_image [ i ] = 1 ;
-    // first_gethit_animation_image [ i ] = 1 ;
-    // last_gethit_animation_image [ i ] = 1 ;
-    // first_death_animation_image [ i ] = 1 ;
-    // last_death_animation_image [ i ] = 1 ;
-    // first_stand_animation_image [ i ] = 1 ;
-    // last_stand_animation_image [ i ] = 1 ;
-    // use_default_attack_image [ i ] = TRUE ;
-    // use_default_gethit_image [ i ] = TRUE ;
-    // use_default_death_image [ i ] = TRUE ;
-    // use_default_stand_image [ i ] = TRUE ;
+    PrefixToFilename [ i ] = "139" ; // 1
     Druidmap [ i ] . suppress_bullet_generation_when_attacking = FALSE ;
-    Druidmap [ i ] . use_image_archive_file = TRUE ;
     droid_walk_animation_speed_factor [ i ] = 5 ;
     droid_attack_animation_speed_factor [ i ] = 8 ;
     droid_gethit_animation_speed_factor [ i ] = 8 ;
@@ -1611,60 +1374,17 @@ Load_Enemy_Surfaces( void )
     droid_stand_animation_speed_factor [ i ] = 5 ;
     ModelMultiplier  [ i ] = 1 ; i++;
 
-    PrefixToFilename [ i ] = "247" ; // 3 
-    //--------------------
-    // As the 247 now uses an image collection file, the information
-    // about the first and last animation images will be taken from
-    // the image collection archive anyway, so no need to hard-code
-    // anything here and changes in the image collection file will
-    // take effect immediately without code adaption...
-    //
-    // first_walk_animation_image [ i ] = 1 ;
-    // last_walk_animation_image [ i ] = 5 ;
-    // first_attack_animation_image [ i ] = 6 ;
-    // last_attack_animation_image [ i ] = 10 ;
-    // first_gethit_animation_image [ i ] = 11 ;
-    // last_gethit_animation_image [ i ] = 15 ;
-    // first_death_animation_image [ i ] = 16 ;
-    // last_death_animation_image [ i ] = 16 ;
-    // first_stand_animation_image [ i ] = 17 ;
-    // last_stand_animation_image [ i ] = 17 ;
-    // use_default_attack_image [ i ] = FALSE ;
-    // use_default_gethit_image [ i ] = FALSE ;
-    // use_default_death_image [ i ] = TRUE ;
-    // use_default_stand_image [ i ] = TRUE ;
+    PrefixToFilename [ i ] = "247" ; // 2 
     Druidmap [ i ] . suppress_bullet_generation_when_attacking = TRUE ;
-    Druidmap [ i ] . use_image_archive_file = TRUE ;
     droid_walk_animation_speed_factor [ i ] = 5 ;
     droid_attack_animation_speed_factor [ i ] = 16 ;
     droid_gethit_animation_speed_factor [ i ] = 8 ;
     droid_death_animation_speed_factor [ i ] = 8 ;
     droid_stand_animation_speed_factor [ i ] = 5 ;
     ModelMultiplier  [ i ] = 1 ;i++;
-    PrefixToFilename [ i ] = "249" ; // 4
-    //--------------------
-    // As the 249 now uses an image collection file, the information
-    // about the first and last animation images will be taken from
-    // the image collection archive anyway, so no need to hard-code
-    // anything here and changes in the image collection file will
-    // take effect immediately without code adaption...
-    //
-    // first_walk_animation_image [ i ] = 1 ;
-    // last_walk_animation_image [ i ] = 5 ;
-    // first_attack_animation_image [ i ] = 6 ;
-    // last_attack_animation_image [ i ] = 6 ;
-    // first_gethit_animation_image [ i ] = 7 ;
-    // last_gethit_animation_image [ i ] = 7 ;
-    // first_death_animation_image [ i ] = 8 ;
-    // last_death_animation_image [ i ] = 8 ;
-    // first_stand_animation_image [ i ] = 9 ;
-    // last_stand_animation_image [ i ] = 9 ;
-    // use_default_attack_image [ i ] = TRUE ;
-    // use_default_gethit_image [ i ] = TRUE ;
-    // use_default_death_image [ i ] = TRUE ;
-    // use_default_stand_image [ i ] = TRUE ;
+
+    PrefixToFilename [ i ] = "249" ; // 3
     Druidmap [ i ] . suppress_bullet_generation_when_attacking = FALSE ;
-    Druidmap [ i ] . use_image_archive_file = TRUE ;
     droid_walk_animation_speed_factor [ i ] = 5 ;
     droid_attack_animation_speed_factor [ i ] = 8 ;
     droid_gethit_animation_speed_factor [ i ] = 8 ;
@@ -1672,21 +1392,7 @@ Load_Enemy_Surfaces( void )
     droid_stand_animation_speed_factor [ i ] = 5 ;
     ModelMultiplier  [ i ] = 1 ;i++;
 
-    PrefixToFilename [ i ] = "296" ; // 5
-    first_walk_animation_image [ i ] = 1 ;
-    last_walk_animation_image [ i ] = 5 ;
-    first_attack_animation_image [ i ] = 6 ;
-    last_attack_animation_image [ i ] = 6 ;
-    first_gethit_animation_image [ i ] = 7 ;
-    last_gethit_animation_image [ i ] = 7 ;
-    first_death_animation_image [ i ] = 8 ;
-    last_death_animation_image [ i ] = 8 ;
-    first_stand_animation_image [ i ] = 9 ;
-    last_stand_animation_image [ i ] = 9 ;
-    use_default_attack_image [ i ] = TRUE ;
-    use_default_gethit_image [ i ] = TRUE ;
-    use_default_death_image [ i ] = TRUE ;
-    use_default_stand_image [ i ] = TRUE ;
+    PrefixToFilename [ i ] = "296" ; // 4
     Druidmap [ i ] . suppress_bullet_generation_when_attacking = FALSE ;
     droid_walk_animation_speed_factor [ i ] = 5 ;
     droid_attack_animation_speed_factor [ i ] = 5 ;
@@ -1695,30 +1401,8 @@ Load_Enemy_Surfaces( void )
     droid_stand_animation_speed_factor [ i ] = 5 ;
     ModelMultiplier  [ i ] = 1 ;i++; 
 
-    PrefixToFilename [ i ] = "302" ; // 6
-    //--------------------
-    // As the 302 now uses an image collection file, the information
-    // about the first and last animation images will be taken from
-    // the image collection archive anyway, so no need to hard-code
-    // anything here and changes in the image collection file will
-    // take effect immediately without code adaption...
-    //
-    // first_walk_animation_image[ i ] = 1 ;
-    // last_walk_animation_image[ i ] = 1 ;
-    // first_attack_animation_image[ i ] = 2 ;
-    // last_attack_animation_image[ i ] = 16 ;
-    // first_gethit_animation_image[ i ] = 17 ;
-    // last_gethit_animation_image[ i ] = 24 ;
-    // first_death_animation_image[ i ] = 25 ;
-    // last_death_animation_image[ i ] = 31 ;
-    // first_stand_animation_image [ i ] = 32 ;
-    // last_stand_animation_image [ i ] = 32 ;
-    // use_default_attack_image [ i ] = FALSE ;
-    // use_default_gethit_image [ i ] = FALSE ;
-    // use_default_death_image [ i ] = FALSE ;
-    // use_default_stand_image [ i ] = TRUE ;
+    PrefixToFilename [ i ] = "302" ; // 5
     Druidmap [ i ] . suppress_bullet_generation_when_attacking = TRUE ;
-    Druidmap [ i ] . use_image_archive_file = TRUE ;
     droid_walk_animation_speed_factor [ i ] = 15 ;
     droid_attack_animation_speed_factor [ i ] = 15 ;
     droid_gethit_animation_speed_factor [ i ] = 15 ;
@@ -1726,30 +1410,8 @@ Load_Enemy_Surfaces( void )
     droid_stand_animation_speed_factor [ i ] = 15 ;
     ModelMultiplier  [ i ] = 1 ;i++;
 
-    PrefixToFilename [ i ] = "329" ; // 7
-    //--------------------
-    // As the 329 now uses an image collection file, the information
-    // about the first and last animation images will be taken from
-    // the image collection archive anyway, so no need to hard-code
-    // anything here and changes in the image collection file will
-    // take effect immediately without code adaption...
-    //
-    // first_walk_animation_image [ i ] = 1 ;
-    // last_walk_animation_image [ i ] = 1 ;
-    // first_attack_animation_image [ i ] = 1 ;
-    // last_attack_animation_image [ i ] = 1 ;
-    // first_gethit_animation_image [ i ] = 1 ;
-    // last_gethit_animation_image [ i ] = 1 ;
-    // first_death_animation_image [ i ] = 1 ;
-    // last_death_animation_image [ i ] = 1 ;
-    // first_stand_animation_image [ i ] = 1 ;
-    // last_stand_animation_image [ i ] = 1 ;
-    // use_default_attack_image [ i ] = TRUE ;
-    // use_default_gethit_image [ i ] = TRUE ;
-    // use_default_death_image [ i ] = TRUE ;
-    // use_default_stand_image [ i ] = TRUE ;
+    PrefixToFilename [ i ] = "329" ; // 6
     Druidmap [ i ] . suppress_bullet_generation_when_attacking = TRUE ;
-    Druidmap [ i ] . use_image_archive_file = TRUE ;
     droid_walk_animation_speed_factor [ i ] = 5 ;
     droid_attack_animation_speed_factor [ i ] = 8 ;
     droid_gethit_animation_speed_factor [ i ] = 8 ;
@@ -1757,30 +1419,8 @@ Load_Enemy_Surfaces( void )
     droid_stand_animation_speed_factor [ i ] = 5 ;
     ModelMultiplier  [ i ] = 1 ;i++;
 
-    PrefixToFilename [ i ] = "420" ; // 8 
-    //--------------------
-    // As the 420 now uses an image collection file, the information
-    // about the first and last animation images will be taken from
-    // the image collection archive anyway, so no need to hard-code
-    // anything here and changes in the image collection file will
-    // take effect immediately without code adaption...
-    //
-    // first_walk_animation_image [ i ] = 1 ;
-    // last_walk_animation_image [ i ] = 1 ;
-    // first_attack_animation_image [ i ] = 1 ;
-    // last_attack_animation_image [ i ] = 1 ;
-    // first_gethit_animation_image [ i ] = 1 ;
-    // last_gethit_animation_image [ i ] = 1 ;
-    // first_death_animation_image [ i ] = 1 ;
-    // last_death_animation_image [ i ] = 1 ;
-    // first_stand_animation_image [ i ] = 1 ;
-    // last_stand_animation_image [ i ] = 1 ;
-    // use_default_attack_image [ i ] = TRUE ;
-    // use_default_gethit_image [ i ] = TRUE ;
-    // use_default_death_image [ i ] = TRUE ;
-    // use_default_stand_image [ i ] = TRUE ;
+    PrefixToFilename [ i ] = "420" ; // 7 
     Druidmap [ i ] . suppress_bullet_generation_when_attacking = TRUE ;
-    Druidmap [ i ] . use_image_archive_file = TRUE ;
     droid_walk_animation_speed_factor [ i ] = 5 ;
     droid_attack_animation_speed_factor [ i ] = 5 ;
     droid_gethit_animation_speed_factor [ i ] = 5 ;
@@ -1788,21 +1428,7 @@ Load_Enemy_Surfaces( void )
     droid_stand_animation_speed_factor [ i ] = 5 ;
     ModelMultiplier  [ i ] = 1 ;i++;
 
-    PrefixToFilename [ i ] = "476" ; // 9 
-    first_walk_animation_image [ i ] = 1 ;
-    last_walk_animation_image [ i ] = 1 ;
-    first_attack_animation_image [ i ] = 1 ;
-    last_attack_animation_image [ i ] = 1 ;
-    first_gethit_animation_image [ i ] = 1 ;
-    last_gethit_animation_image [ i ] = 1 ;
-    first_death_animation_image [ i ] = 1 ;
-    last_death_animation_image [ i ] = 1 ;
-    first_stand_animation_image [ i ] = 1 ;
-    last_stand_animation_image [ i ] = 1 ;
-    use_default_attack_image [ i ] = TRUE ;
-    use_default_gethit_image [ i ] = TRUE ;
-    use_default_death_image [ i ] = TRUE ;
-    use_default_stand_image [ i ] = TRUE ;
+    PrefixToFilename [ i ] = "476" ; // 8 
     Druidmap [ i ] . suppress_bullet_generation_when_attacking = FALSE ;
     droid_walk_animation_speed_factor [ i ] = 5 ;
     droid_attack_animation_speed_factor [ i ] = 5 ;
@@ -1811,23 +1437,8 @@ Load_Enemy_Surfaces( void )
     droid_stand_animation_speed_factor [ i ] = 5 ;
     ModelMultiplier  [ i ] = 1 ;i++;
 
-    PrefixToFilename [ i ] = "493" ; // 10
-    first_walk_animation_image [ i ] = 1 ;
-    last_walk_animation_image [ i ] = 1 ;
-    first_attack_animation_image [ i ] = 1 ;
-    last_attack_animation_image [ i ] = 1 ;
-    first_gethit_animation_image [ i ] = 1 ;
-    last_gethit_animation_image [ i ] = 1 ;
-    first_death_animation_image [ i ] = 1 ;
-    last_death_animation_image [ i ] = 1 ;
-    first_stand_animation_image [ i ] = 1 ;
-    last_stand_animation_image [ i ] = 1 ;
-    use_default_attack_image [ i ] = TRUE ;
-    use_default_gethit_image [ i ] = TRUE ;
-    use_default_death_image [ i ] = TRUE ;
-    use_default_stand_image [ i ] = TRUE ;
+    PrefixToFilename [ i ] = "493" ; // 9
     Druidmap [ i ] . suppress_bullet_generation_when_attacking = TRUE ;
-    Druidmap [ i ] . use_image_archive_file = TRUE ;
     droid_walk_animation_speed_factor [ i ] = 6 ;
     droid_attack_animation_speed_factor [ i ] = 14 ;
     droid_gethit_animation_speed_factor [ i ] = 8 ;
@@ -1835,23 +1446,8 @@ Load_Enemy_Surfaces( void )
     droid_stand_animation_speed_factor [ i ] = 5 ;
     ModelMultiplier  [ i ] = 1 ;i++; 
 
-    PrefixToFilename [ i ] = "516" ; // 11
-    first_walk_animation_image [ i ] = 1 ;
-    last_walk_animation_image [ i ] = 1 ;
-    first_attack_animation_image [ i ] = 1 ;
-    last_attack_animation_image [ i ] = 1 ;
-    first_gethit_animation_image [ i ] = 1 ;
-    last_gethit_animation_image [ i ] = 1 ;
-    first_death_animation_image [ i ] = 1 ;
-    last_death_animation_image [ i ] = 1 ;
-    first_stand_animation_image [ i ] = 1 ;
-    last_stand_animation_image [ i ] = 1 ;
-    use_default_attack_image [ i ] = TRUE ;
-    use_default_gethit_image [ i ] = TRUE ;
-    use_default_death_image [ i ] = TRUE ;
-    use_default_stand_image [ i ] = TRUE ;
+    PrefixToFilename [ i ] = "516" ; // 10
     Druidmap [ i ] . suppress_bullet_generation_when_attacking = TRUE ;
-    Druidmap [ i ] . use_image_archive_file = TRUE ;
     droid_walk_animation_speed_factor [ i ] = 5 ;
     droid_attack_animation_speed_factor [ i ] = 5 ;
     droid_gethit_animation_speed_factor [ i ] = 5 ;
@@ -1859,23 +1455,8 @@ Load_Enemy_Surfaces( void )
     droid_stand_animation_speed_factor [ i ] = 5 ;
     ModelMultiplier  [ i ] = 1 ;i++;
 
-    PrefixToFilename [ i ] = "571" ; // 12
-    //first_walk_animation_image [ i ] = 1 ;
-    //last_walk_animation_image [ i ] = 1 ;
-    //first_attack_animation_image [ i ] = 1 ;
-    //last_attack_animation_image [ i ] = 1 ;
-    //first_gethit_animation_image [ i ] = 1 ;
-    //last_gethit_animation_image [ i ] = 1 ;
-    //first_death_animation_image [ i ] = 1 ;
-    //last_death_animation_image [ i ] = 1 ;
-    //first_stand_animation_image [ i ] = 1 ;
-    //last_stand_animation_image [ i ] = 1 ;
-    //use_default_attack_image [ i ] = TRUE ;
-    //use_default_gethit_image [ i ] = TRUE ;
-    //use_default_death_image [ i ] = TRUE ;
-    //use_default_stand_image [ i ] = TRUE ;
+    PrefixToFilename [ i ] = "571" ; // 11
     Druidmap [ i ] . suppress_bullet_generation_when_attacking = TRUE ;
-    Druidmap [ i ] . use_image_archive_file = TRUE ;
     droid_walk_animation_speed_factor [ i ] = 5 ;
     droid_attack_animation_speed_factor [ i ] = 5 ;
     droid_gethit_animation_speed_factor [ i ] = 5 ;
@@ -1883,30 +1464,8 @@ Load_Enemy_Surfaces( void )
     droid_stand_animation_speed_factor [ i ] = 5 ;
     ModelMultiplier  [ i ] = 1 ;i++;
 
-    PrefixToFilename [ i ] = "598" ; // 13
-    //--------------------
-    // As the 598 now uses an image collection file, the information
-    // about the first and last animation images will be taken from
-    // the image collection archive anyway, so no need to hard-code
-    // anything here and changes in the image collection file will
-    // take effect immediately without code adaption...
-    //
-    // first_walk_animation_image [ i ] = 1 ;
-    // last_walk_animation_image [ i ] = 1 ;
-    // first_attack_animation_image [ i ] = 1 ;
-    // last_attack_animation_image [ i ] = 1 ;
-    // first_gethit_animation_image [ i ] = 1 ;
-    // last_gethit_animation_image [ i ] = 1 ;
-    // first_death_animation_image [ i ] = 1 ;
-    // last_death_animation_image [ i ] = 1 ;
-    // first_stand_animation_image [ i ] = 1 ;
-    // last_stand_animation_image [ i ] = 1 ;
-    // use_default_attack_image [ i ] = TRUE ;
-    // use_default_gethit_image [ i ] = TRUE ;
-    // use_default_death_image [ i ] = TRUE ;
-    // use_default_stand_image [ i ] = TRUE ;
+    PrefixToFilename [ i ] = "598" ; // 12
     Druidmap [ i ] . suppress_bullet_generation_when_attacking = TRUE ;
-    Druidmap [ i ] . use_image_archive_file = TRUE ;
     droid_walk_animation_speed_factor [ i ] = 5 ;
     droid_attack_animation_speed_factor [ i ] = 8 ;
     droid_gethit_animation_speed_factor [ i ] = 8 ;
@@ -1914,30 +1473,8 @@ Load_Enemy_Surfaces( void )
     droid_stand_animation_speed_factor [ i ] = 5 ;
     ModelMultiplier  [ i ] = 1 ;i++;
     
-    PrefixToFilename [ i ] = "614" ; // 14
-    //--------------------
-    // As the 614 now uses an image collection file, the information
-    // about the first and last animation images will be taken from
-    // the image collection archive anyway, so no need to hard-code
-    // anything here and changes in the image collection file will
-    // take effect immediately without code adaption...
-    //
-    // first_walk_animation_image [ i ] = 1 ;
-    // last_walk_animation_image [ i ] = 5 ;
-    // first_attack_animation_image [ i ] = 6 ;
-    // last_attack_animation_image [ i ] = 6 ;
-    // first_gethit_animation_image [ i ] = 7 ;
-    // last_gethit_animation_image [ i ] = 7 ;
-    // first_death_animation_image [ i ] = 8 ;
-    // last_death_animation_image [ i ] = 8 ;
-    // first_stand_animation_image [ i ] = 9 ;
-    // last_stand_animation_image [ i ] = 18 ;
-    // use_default_attack_image [ i ] = TRUE ;
-    // use_default_gethit_image [ i ] = TRUE ;
-    // use_default_death_image [ i ] = TRUE ;
-    // use_default_stand_image [ i ] = FALSE ;
+    PrefixToFilename [ i ] = "614" ; // 13
     Druidmap [ i ] . suppress_bullet_generation_when_attacking = FALSE ;
-    Druidmap [ i ] . use_image_archive_file = TRUE ;
     droid_walk_animation_speed_factor [ i ] = 18 ;
     droid_attack_animation_speed_factor [ i ] = 5 ;
     droid_gethit_animation_speed_factor [ i ] = 5 ;
@@ -1945,21 +1482,7 @@ Load_Enemy_Surfaces( void )
     droid_stand_animation_speed_factor [ i ] = 3 ;
     ModelMultiplier  [ i ] = 1 ;i++;
     
-    PrefixToFilename [ i ] = "615" ; // 15
-    first_walk_animation_image [ i ] = 1 ;
-    last_walk_animation_image [ i ] = 1 ;
-    first_attack_animation_image [ i ] = 1 ;
-    last_attack_animation_image [ i ] = 1 ;
-    first_gethit_animation_image [ i ] = 1 ;
-    last_gethit_animation_image [ i ] = 1 ;
-    first_death_animation_image [ i ] = 1 ;
-    last_death_animation_image [ i ] = 1 ;
-    first_stand_animation_image [ i ] = 1 ;
-    last_stand_animation_image [ i ] = 1 ;
-    use_default_attack_image [ i ] = TRUE ;
-    use_default_gethit_image [ i ] = TRUE ;
-    use_default_death_image [ i ] = TRUE ;
-    use_default_stand_image [ i ] = TRUE ;
+    PrefixToFilename [ i ] = "615" ; // 14
     Druidmap [ i ] . suppress_bullet_generation_when_attacking = FALSE ;
     droid_walk_animation_speed_factor [ i ] = 5 ;
     droid_attack_animation_speed_factor [ i ] = 5 ;
@@ -1967,21 +1490,8 @@ Load_Enemy_Surfaces( void )
     droid_death_animation_speed_factor [ i ] = 5 ;
     droid_stand_animation_speed_factor [ i ] = 5 ;
     ModelMultiplier  [ i ] = 1 ;i++;
-    PrefixToFilename [ i ] = "629" ; // 16
-    first_walk_animation_image [ i ] = 1 ;
-    last_walk_animation_image [ i ] = 1 ;
-    first_attack_animation_image [ i ] = 1 ;
-    last_attack_animation_image [ i ] = 1 ;
-    first_gethit_animation_image [ i ] = 1 ;
-    last_gethit_animation_image [ i ] = 1 ;
-    first_death_animation_image [ i ] = 1 ;
-    last_death_animation_image [ i ] = 1 ;
-    first_stand_animation_image [ i ] = 1 ;
-    last_stand_animation_image [ i ] = 1 ;
-    use_default_attack_image [ i ] = TRUE ;
-    use_default_gethit_image [ i ] = TRUE ;
-    use_default_death_image [ i ] = TRUE ;
-    use_default_stand_image [ i ] = TRUE ;
+
+    PrefixToFilename [ i ] = "629" ; // 15
     Druidmap [ i ] . suppress_bullet_generation_when_attacking = FALSE ;
     droid_walk_animation_speed_factor [ i ] = 5 ;
     droid_attack_animation_speed_factor [ i ] = 5 ;
@@ -1989,21 +1499,8 @@ Load_Enemy_Surfaces( void )
     droid_death_animation_speed_factor [ i ] = 5 ;
     droid_stand_animation_speed_factor [ i ] = 5 ;
     ModelMultiplier  [ i ] = 1 ;i++;
-    PrefixToFilename [ i ] = "711" ; // 17
-    first_walk_animation_image [ i ] = 1 ;
-    last_walk_animation_image [ i ] = 1 ;
-    first_attack_animation_image [ i ] = 1 ;
-    last_attack_animation_image [ i ] = 1 ;
-    first_gethit_animation_image [ i ] = 1 ;
-    last_gethit_animation_image [ i ] = 1 ;
-    first_death_animation_image [ i ] = 1 ;
-    last_death_animation_image [ i ] = 1 ;
-    first_stand_animation_image [ i ] = 1 ;
-    last_stand_animation_image [ i ] = 1 ;
-    use_default_attack_image [ i ] = TRUE ;
-    use_default_gethit_image [ i ] = TRUE ;
-    use_default_death_image [ i ] = TRUE ;
-    use_default_stand_image [ i ] = TRUE ;
+
+    PrefixToFilename [ i ] = "711" ; // 16
     Druidmap [ i ] . suppress_bullet_generation_when_attacking = FALSE ;
     droid_walk_animation_speed_factor [ i ] = 5 ;
     droid_attack_animation_speed_factor [ i ] = 5 ;
@@ -2011,21 +1508,8 @@ Load_Enemy_Surfaces( void )
     droid_death_animation_speed_factor [ i ] = 5 ;
     droid_stand_animation_speed_factor [ i ] = 5 ;
     ModelMultiplier  [ i ] = 1 ;i++;
-    PrefixToFilename [ i ] = "742" ; // 18
-    first_walk_animation_image [ i ] = 1 ;
-    last_walk_animation_image [ i ] = 1 ;
-    first_attack_animation_image [ i ] = 1 ;
-    last_attack_animation_image [ i ] = 1 ;
-    first_gethit_animation_image [ i ] = 1 ;
-    last_gethit_animation_image [ i ] = 1 ;
-    first_death_animation_image [ i ] = 1 ;
-    last_death_animation_image [ i ] = 1 ;
-    first_stand_animation_image [ i ] = 1 ;
-    last_stand_animation_image [ i ] = 1 ;
-    use_default_attack_image [ i ] = TRUE ;
-    use_default_gethit_image [ i ] = TRUE ;
-    use_default_death_image [ i ] = TRUE ;
-    use_default_stand_image [ i ] = TRUE ;
+
+    PrefixToFilename [ i ] = "742" ; // 17
     Druidmap [ i ] . suppress_bullet_generation_when_attacking = FALSE ;
     droid_walk_animation_speed_factor [ i ] = 5 ;
     droid_attack_animation_speed_factor [ i ] = 5 ;
@@ -2033,21 +1517,8 @@ Load_Enemy_Surfaces( void )
     droid_death_animation_speed_factor [ i ] = 5 ;
     droid_stand_animation_speed_factor [ i ] = 5 ;
     ModelMultiplier  [ i ] = 1 ;i++;
-    PrefixToFilename [ i ] = "751" ; // 19
-    first_walk_animation_image [ i ] = 1 ;
-    last_walk_animation_image [ i ] = 1 ;
-    first_attack_animation_image [ i ] = 1 ;
-    last_attack_animation_image [ i ] = 1 ;
-    first_gethit_animation_image [ i ] = 1 ;
-    last_gethit_animation_image [ i ] = 1 ;
-    first_death_animation_image [ i ] = 1 ;
-    last_death_animation_image [ i ] = 1 ;
-    first_stand_animation_image [ i ] = 1 ;
-    last_stand_animation_image [ i ] = 1 ;
-    use_default_attack_image [ i ] = TRUE ;
-    use_default_gethit_image [ i ] = TRUE ;
-    use_default_death_image [ i ] = TRUE ;
-    use_default_stand_image [ i ] = TRUE ;
+
+    PrefixToFilename [ i ] = "751" ; // 18
     Druidmap [ i ] . suppress_bullet_generation_when_attacking = FALSE ;
     droid_walk_animation_speed_factor [ i ] = 5 ;
     droid_attack_animation_speed_factor [ i ] = 5 ;
@@ -2055,21 +1526,8 @@ Load_Enemy_Surfaces( void )
     droid_death_animation_speed_factor [ i ] = 5 ;
     droid_stand_animation_speed_factor [ i ] = 5 ;
     ModelMultiplier  [ i ] = 1 ;i++;
-    PrefixToFilename [ i ] = "821" ; // 20
-    first_walk_animation_image [ i ] = 1 ;
-    last_walk_animation_image [ i ] = 1 ;
-    first_attack_animation_image [ i ] = 1 ;
-    last_attack_animation_image [ i ] = 1 ;
-    first_gethit_animation_image [ i ] = 1 ;
-    last_gethit_animation_image [ i ] = 1 ;
-    first_death_animation_image [ i ] = 1 ;
-    last_death_animation_image [ i ] = 1 ;
-    first_stand_animation_image [ i ] = 1 ;
-    last_stand_animation_image [ i ] = 1 ;
-    use_default_attack_image [ i ] = TRUE ;
-    use_default_gethit_image [ i ] = TRUE ;
-    use_default_death_image [ i ] = TRUE ;
-    use_default_stand_image [ i ] = TRUE ;
+
+    PrefixToFilename [ i ] = "821" ; // 19
     Druidmap [ i ] . suppress_bullet_generation_when_attacking = FALSE ;
     droid_walk_animation_speed_factor [ i ] = 5 ;
     droid_attack_animation_speed_factor [ i ] = 5 ;
@@ -2077,21 +1535,8 @@ Load_Enemy_Surfaces( void )
     droid_death_animation_speed_factor [ i ] = 5 ;
     droid_stand_animation_speed_factor [ i ] = 5 ;
     ModelMultiplier  [ i ] = 1 ;i++;
-    PrefixToFilename [ i ] = "834" ; // 21
-    first_walk_animation_image [ i ] = 1 ;
-    last_walk_animation_image [ i ] = 1 ;
-    first_attack_animation_image [ i ] = 1 ;
-    last_attack_animation_image [ i ] = 1 ;
-    first_gethit_animation_image [ i ] = 1 ;
-    last_gethit_animation_image [ i ] = 1 ;
-    first_death_animation_image [ i ] = 1 ;
-    last_death_animation_image [ i ] = 1 ;
-    first_stand_animation_image [ i ] = 1 ;
-    last_stand_animation_image [ i ] = 1 ;
-    use_default_attack_image [ i ] = TRUE ;
-    use_default_gethit_image [ i ] = TRUE ;
-    use_default_death_image [ i ] = TRUE ;
-    use_default_stand_image [ i ] = TRUE ;
+
+    PrefixToFilename [ i ] = "834" ; // 20
     Druidmap [ i ] . suppress_bullet_generation_when_attacking = FALSE ;
     droid_walk_animation_speed_factor [ i ] = 5 ;
     droid_attack_animation_speed_factor [ i ] = 5 ;
@@ -2100,30 +1545,8 @@ Load_Enemy_Surfaces( void )
     droid_stand_animation_speed_factor [ i ] = 5 ;
     ModelMultiplier  [ i ] = 1 ;i++;
     
-    PrefixToFilename [ i ] = "883" ; // 22, the 'dallek' model...
-    //--------------------
-    // As the 999 now uses an image collection file, the information
-    // about the first and last animation images will be taken from
-    // the image collection archive anyway, so no need to hard-code
-    // anything here and changes in the image collection file will
-    // take effect immediately without code adaption...
-    //
-    // first_walk_animation_image [ i ] = 1 ;
-    // last_walk_animation_image [ i ] = 1 ;
-    // first_attack_animation_image [ i ] = 1 ;
-    // last_attack_animation_image [ i ] = 1 ;
-    // first_gethit_animation_image [ i ] = 1 ;
-    // last_gethit_animation_image [ i ] = 1 ;
-    // first_death_animation_image [ i ] = 1 ;
-    // last_death_animation_image [ i ] = 1 ;
-    // first_stand_animation_image [ i ] = 1 ;
-    // last_stand_animation_image [ i ] = 1 ;
-    // use_default_attack_image [ i ] = TRUE ;
-    // use_default_gethit_image [ i ] = TRUE ;
-    // use_default_death_image [ i ] = TRUE ;
-    // use_default_stand_image [ i ] = TRUE ;
+    PrefixToFilename [ i ] = "883" ; // 21, the 'dallek' model...
     Druidmap [ i ] . suppress_bullet_generation_when_attacking = FALSE ;
-    Druidmap [ i ] . use_image_archive_file = TRUE ;
     droid_walk_animation_speed_factor [ i ] = 5 ;
     droid_attack_animation_speed_factor [ i ] = 10 ;
     droid_gethit_animation_speed_factor [ i ] = 5 ;
@@ -2131,30 +1554,8 @@ Load_Enemy_Surfaces( void )
     droid_stand_animation_speed_factor [ i ] = 5 ;
     ModelMultiplier  [ i ] = 1 ;i++;
     
-    PrefixToFilename [ i ] = "999" ; // 23
-    //--------------------
-    // As the 999 now uses an image collection file, the information
-    // about the first and last animation images will be taken from
-    // the image collection archive anyway, so no need to hard-code
-    // anything here and changes in the image collection file will
-    // take effect immediately without code adaption...
-    //
-    // first_walk_animation_image [ i ] = 1 ;
-    // last_walk_animation_image [ i ] = 1 ;
-    // first_attack_animation_image [ i ] = 1 ;
-    // last_attack_animation_image [ i ] = 1 ;
-    // first_gethit_animation_image [ i ] = 1 ;
-    // last_gethit_animation_image [ i ] = 1 ;
-    // first_death_animation_image [ i ] = 1 ;
-    // last_death_animation_image [ i ] = 1 ;
-    // first_stand_animation_image [ i ] = 1 ;
-    // last_stand_animation_image [ i ] = 1 ;
-    // use_default_attack_image [ i ] = TRUE ;
-    // use_default_gethit_image [ i ] = TRUE ;
-    // use_default_death_image [ i ] = TRUE ;
-    // use_default_stand_image [ i ] = TRUE ;
+    PrefixToFilename [ i ] = "999" ; // 22
     Druidmap [ i ] . suppress_bullet_generation_when_attacking = FALSE ;
-    Druidmap [ i ] . use_image_archive_file = TRUE ;
     droid_walk_animation_speed_factor [ i ] = 5 ;
     droid_attack_animation_speed_factor [ i ] = 5 ;
     droid_gethit_animation_speed_factor [ i ] = 5 ;
@@ -2162,30 +1563,8 @@ Load_Enemy_Surfaces( void )
     droid_stand_animation_speed_factor [ i ] = 5 ;
     ModelMultiplier  [ i ] = 1 ;i++;
     
-    PrefixToFilename [ i ] = "professor" ; // 24
-    //--------------------
-    // As the professor now uses an image collection file, the information
-    // about the first and last animation images will be taken from
-    // the image collection archive anyway, so no need to hard-code
-    // anything here and changes in the image collection file will
-    // take effect immediately without code adaption...
-    //
-    // first_walk_animation_image [ i ] = 1 ;
-    // last_walk_animation_image [ i ] = 5 ;
-    // first_attack_animation_image [ i ] = 6 ;
-    // last_attack_animation_image [ i ] = 6 ;
-    // first_gethit_animation_image [ i ] = 7 ;
-    // last_gethit_animation_image [ i ] = 7 ;
-    // first_death_animation_image [ i ] = 8 ;
-    // last_death_animation_image [ i ] = 8 ;
-    // first_stand_animation_image [ i ] = 9 ;
-    // last_stand_animation_image [ i ] = 13 ;
-    // use_default_attack_image [ i ] = TRUE ;
-    // use_default_gethit_image [ i ] = TRUE ;
-    // use_default_death_image [ i ] = TRUE ;
-    // use_default_stand_image [ i ] = FALSE ;
+    PrefixToFilename [ i ] = "professor" ; // 23
     Druidmap [ i ] . suppress_bullet_generation_when_attacking = FALSE ;
-    Druidmap [ i ] . use_image_archive_file = TRUE ;
     droid_walk_animation_speed_factor [ i ] = 8 ;
     droid_attack_animation_speed_factor [ i ] = 5 ;
     droid_gethit_animation_speed_factor [ i ] = 5 ;
@@ -2193,30 +1572,8 @@ Load_Enemy_Surfaces( void )
     droid_stand_animation_speed_factor [ i ] = 2 ;
     ModelMultiplier  [ i ] = 1 ;i++;
     
-    PrefixToFilename [ i ] = "red_guard" ; // 25
-    //--------------------
-    // As the red_guard now uses an image collection file, the information
-    // about the first and last animation images will be taken from
-    // the image collection archive anyway, so no need to hard-code
-    // anything here and changes in the image collection file will
-    // take effect immediately without code adaption...
-    //
-    // first_walk_animation_image [ i ] = 1 ;
-    // last_walk_animation_image [ i ] = 5 ;
-    // first_attack_animation_image [ i ] = 6 ;
-    // last_attack_animation_image [ i ] = 10 ;
-    // first_gethit_animation_image [ i ] = 11 ;
-    // last_gethit_animation_image [ i ] = 15 ;
-    // first_death_animation_image [ i ] = 16 ;
-    // last_death_animation_image [ i ] = 20 ;
-    // first_stand_animation_image [ i ] = 21 ;
-    // last_stand_animation_image [ i ] = 25 ;
-    // use_default_attack_image [ i ] = FALSE ;
-    // use_default_gethit_image [ i ] = FALSE ;
-    // use_default_death_image [ i ] = FALSE ;
-    // use_default_stand_image [ i ] = FALSE ;
+    PrefixToFilename [ i ] = "red_guard" ; // 24
     Druidmap [ i ] . suppress_bullet_generation_when_attacking = FALSE ;
-    Druidmap [ i ] . use_image_archive_file = TRUE ;
     droid_walk_animation_speed_factor [ i ] = 8 ;
     droid_attack_animation_speed_factor [ i ] = 8 ;
     droid_gethit_animation_speed_factor [ i ] = 8 ;
@@ -2224,30 +1581,8 @@ Load_Enemy_Surfaces( void )
     droid_stand_animation_speed_factor [ i ] = 2 ;
     ModelMultiplier  [ i ] = 1 ; i++;
     
-    PrefixToFilename [ i ] = "hot_mama" ; // 26
-    //--------------------
-    // As the hot_mama now uses an image collection file, the information
-    // about the first and last animation images will be taken from
-    // the image collection archive anyway, so no need to hard-code
-    // anything here and changes in the image collection file will
-    // take effect immediately without code adaption...
-    //
-    // first_walk_animation_image [ i ] = 1 ;
-    // last_walk_animation_image [ i ] = 5 ;
-    // first_attack_animation_image [ i ] = 6 ;
-    // last_attack_animation_image [ i ] = 6 ;
-    // first_gethit_animation_image [ i ] = 7 ;
-    // last_gethit_animation_image [ i ] = 7 ;
-    // first_death_animation_image [ i ] = 8 ;
-    // last_death_animation_image [ i ] = 8 ;
-    // first_stand_animation_image [ i ] = 9 ;
-    // last_stand_animation_image [ i ] = 13 ;
-    // use_default_attack_image [ i ] = TRUE ;
-    // use_default_gethit_image [ i ] = TRUE ;
-    // use_default_death_image [ i ] = TRUE ;
-    // use_default_stand_image [ i ] = FALSE ;
+    PrefixToFilename [ i ] = "hot_mama" ; // 25
     Druidmap [ i ] . suppress_bullet_generation_when_attacking = FALSE ;
-    Druidmap [ i ] . use_image_archive_file = TRUE ;
     droid_walk_animation_speed_factor [ i ] = 5 ;
     droid_attack_animation_speed_factor [ i ] = 5 ;
     droid_gethit_animation_speed_factor [ i ] = 5 ;
@@ -2255,30 +1590,8 @@ Load_Enemy_Surfaces( void )
     droid_stand_animation_speed_factor [ i ] = 1 ;
     ModelMultiplier  [ i ] = 1 ;i++;
     
-    PrefixToFilename [ i ] = "female_scientist" ; // 27
-    //--------------------
-    // As the female_scientist now uses an image collection file, the information
-    // about the first and last animation images will be taken from
-    // the image collection archive anyway, so no need to hard-code
-    // anything here and changes in the image collection file will
-    // take effect immediately without code adaption...
-    //
-    // first_walk_animation_image [ i ] = 1 ;
-    // last_walk_animation_image [ i ] = 5 ;
-    // first_attack_animation_image [ i ] = 6 ;
-    // last_attack_animation_image [ i ] = 6 ;
-    // first_gethit_animation_image [ i ] = 7 ;
-    // last_gethit_animation_image [ i ] = 7 ;
-    // first_death_animation_image [ i ] = 8 ;
-    // last_death_animation_image [ i ] = 8 ;
-    // first_stand_animation_image [ i ] = 9 ;
-    // last_stand_animation_image [ i ] = 13 ;
-    // use_default_attack_image [ i ] = TRUE ;
-    // use_default_gethit_image [ i ] = TRUE ;
-    // use_default_death_image [ i ] = TRUE ;
-    // use_default_stand_image [ i ] = FALSE ;
+    PrefixToFilename [ i ] = "female_scientist" ; // 26
     Druidmap [ i ] . suppress_bullet_generation_when_attacking = TRUE ;
-    Druidmap [ i ] . use_image_archive_file = TRUE ;
     droid_walk_animation_speed_factor [ i ] = 5 ;
     droid_attack_animation_speed_factor [ i ] = 20 ;
     droid_gethit_animation_speed_factor [ i ] = 5 ;
@@ -2286,30 +1599,8 @@ Load_Enemy_Surfaces( void )
     droid_stand_animation_speed_factor [ i ] = 1 ;
     ModelMultiplier  [ i ] = 1 ;i++;
     
-    PrefixToFilename [ i ] = "default_male" ; // 28
-    //--------------------
-    // As the female_scientist now uses an image collection file, the information
-    // about the first and last animation images will be taken from
-    // the image collection archive anyway, so no need to hard-code
-    // anything here and changes in the image collection file will
-    // take effect immediately without code adaption...
-    //
-    // first_walk_animation_image [ i ] = 1 ;
-    // last_walk_animation_image [ i ] = 1 ;
-    // first_attack_animation_image [ i ] = 1 ;
-    // last_attack_animation_image [ i ] = 1 ;
-    // first_gethit_animation_image [ i ] = 1 ;
-    // last_gethit_animation_image [ i ] = 1 ;
-    // first_death_animation_image [ i ] = 1 ;
-    // last_death_animation_image [ i ] = 1 ;
-    // first_stand_animation_image [ i ] = 1 ;
-    // last_stand_animation_image [ i ] = 1 ;
-    // use_default_attack_image [ i ] = TRUE ;
-    // use_default_gethit_image [ i ] = TRUE ;
-    // use_default_death_image [ i ] = TRUE ;
-    // use_default_stand_image [ i ] = TRUE ;
+    PrefixToFilename [ i ] = "default_male" ; // 27
     Druidmap [ i ] . suppress_bullet_generation_when_attacking = FALSE ;
-    Druidmap [ i ] . use_image_archive_file = TRUE ;
     droid_walk_animation_speed_factor [ i ] = 5 ;
     droid_attack_animation_speed_factor [ i ] = 5 ;
     droid_gethit_animation_speed_factor [ i ] = 5 ;
@@ -2318,30 +1609,8 @@ Load_Enemy_Surfaces( void )
     ModelMultiplier  [ i ] = 1 ;i++;
     
 
-    PrefixToFilename [ i ] = "blue_guard" ; // 29
-    //--------------------
-    // As the female_scientist now uses an image collection file, the information
-    // about the first and last animation images will be taken from
-    // the image collection archive anyway, so no need to hard-code
-    // anything here and changes in the image collection file will
-    // take effect immediately without code adaption...
-    //
-    // first_walk_animation_image [ i ] = 1 ;
-    // last_walk_animation_image [ i ] = 1 ;
-    // first_attack_animation_image [ i ] = 1 ;
-    // last_attack_animation_image [ i ] = 1 ;
-    // first_gethit_animation_image [ i ] = 1 ;
-    // last_gethit_animation_image [ i ] = 1 ;
-    // first_death_animation_image [ i ] = 1 ;
-    // last_death_animation_image [ i ] = 1 ;
-    // first_stand_animation_image [ i ] = 1 ;
-    // last_stand_animation_image [ i ] = 1 ;
-    // use_default_attack_image [ i ] = TRUE ;
-    // use_default_gethit_image [ i ] = TRUE ;
-    // use_default_death_image [ i ] = TRUE ;
-    // use_default_stand_image [ i ] = TRUE ;
+    PrefixToFilename [ i ] = "blue_guard" ; // 28
     Druidmap [ i ] . suppress_bullet_generation_when_attacking = FALSE ;
-    Druidmap [ i ] . use_image_archive_file = TRUE ;
     droid_walk_animation_speed_factor [ i ] = 5 ;
     droid_attack_animation_speed_factor [ i ] = 5 ;
     droid_gethit_animation_speed_factor [ i ] = 5 ;
@@ -2349,52 +1618,8 @@ Load_Enemy_Surfaces( void )
     droid_stand_animation_speed_factor [ i ] = 5 ;
     ModelMultiplier  [ i ] = 1 ;i++;
     
-    PrefixToFilename [ i ] = "green_guard" ; // 30
-    first_walk_animation_image [ i ] = 1 ;
-    last_walk_animation_image [ i ] = 1 ;
-    first_attack_animation_image [ i ] = 1 ;
-    last_attack_animation_image [ i ] = 1 ;
-    first_gethit_animation_image [ i ] = 1 ;
-    last_gethit_animation_image [ i ] = 1 ;
-    first_death_animation_image [ i ] = 1 ;
-    last_death_animation_image [ i ] = 1 ;
-    first_stand_animation_image [ i ] = 1 ;
-    last_stand_animation_image [ i ] = 1 ;
-    use_default_attack_image [ i ] = TRUE ;
-    use_default_gethit_image [ i ] = TRUE ;
-    use_default_death_image [ i ] = TRUE ;
-    use_default_stand_image [ i ] = TRUE ;
-    droid_walk_animation_speed_factor [ i ] = 5 ;
-    droid_attack_animation_speed_factor [ i ] = 5 ;
-    droid_gethit_animation_speed_factor [ i ] = 5 ;
-    droid_death_animation_speed_factor [ i ] = 5 ;
-    droid_stand_animation_speed_factor [ i ] = 5 ;
-    ModelMultiplier  [ i ] = 1 ; i++;
-    
-    PrefixToFilename [ i ] = "cook" ; // 31
-    //--------------------
-    // As the cook now uses an image collection file, the information
-    // about the first and last animation images will be taken from
-    // the image collection archive anyway, so no need to hard-code
-    // anything here and changes in the image collection file will
-    // take effect immediately without code adaption...
-    //
-    // first_walk_animation_image [ i ] = 1 ;
-    // last_walk_animation_image [ i ] = 5 ;
-    // first_attack_animation_image [ i ] = 6 ;
-    // last_attack_animation_image [ i ] = 6 ;
-    // first_gethit_animation_image [ i ] = 7 ;
-    // last_gethit_animation_image [ i ] = 7 ;
-    // first_death_animation_image [ i ] = 8 ;
-    // last_death_animation_image [ i ] = 8 ;
-    // first_stand_animation_image [ i ] = 9 ;
-    // last_stand_animation_image [ i ] = 13 ;
-    // use_default_attack_image [ i ] = TRUE ;
-    // use_default_gethit_image [ i ] = TRUE ;
-    // use_default_death_image [ i ] = TRUE ;
-    // use_default_stand_image [ i ] = FALSE ;
+    PrefixToFilename [ i ] = "cook" ; // 29
     Druidmap [ i ] . suppress_bullet_generation_when_attacking = FALSE ;
-    Druidmap [ i ] . use_image_archive_file = TRUE ;
     droid_walk_animation_speed_factor [ i ] = 5 ;
     droid_attack_animation_speed_factor [ i ] = 5 ;
     droid_gethit_animation_speed_factor [ i ] = 5 ;
@@ -2402,30 +1627,8 @@ Load_Enemy_Surfaces( void )
     droid_stand_animation_speed_factor [ i ] = 1 ;
     ModelMultiplier  [ i ] = 1 ;i++;
 
-    PrefixToFilename [ i ] = "kevin" ; // 32
-    //--------------------
-    // As the kevin model now uses an image collection file, the information
-    // about the first and last animation images will be taken from
-    // the image collection archive anyway, so no need to hard-code
-    // anything here and changes in the image collection file will
-    // take effect immediately without code adaption...
-    //
-    // first_walk_animation_image [ i ] = 1 ;
-    // last_walk_animation_image [ i ] = 5 ;
-    // first_attack_animation_image [ i ] = 6 ;
-    // last_attack_animation_image [ i ] = 6 ;
-    // first_gethit_animation_image [ i ] = 7 ;
-    // last_gethit_animation_image [ i ] = 7 ;
-    // first_death_animation_image [ i ] = 8 ;
-    // last_death_animation_image [ i ] = 8 ;
-    // first_stand_animation_image [ i ] = 9 ;
-    // last_stand_animation_image [ i ] = 13 ;
-    // use_default_attack_image [ i ] = TRUE ;
-    // use_default_gethit_image [ i ] = TRUE ;
-    // use_default_death_image [ i ] = TRUE ;
-    // use_default_stand_image [ i ] = FALSE ;
+    PrefixToFilename [ i ] = "kevin" ; // 30
     Druidmap [ i ] . suppress_bullet_generation_when_attacking = TRUE ;
-    Druidmap [ i ] . use_image_archive_file = TRUE ;
     droid_walk_animation_speed_factor [ i ] = 8 ;
     droid_attack_animation_speed_factor [ i ] = 10 ;
     droid_gethit_animation_speed_factor [ i ] = 10 ;
@@ -2433,30 +1636,8 @@ Load_Enemy_Surfaces( void )
     droid_stand_animation_speed_factor [ i ] = 6 ;
     ModelMultiplier  [ i ] = 1 ;i++;
         
-    PrefixToFilename [ i ] = "jasmine" ; // 33
-    //--------------------
-    // As the kevin model now uses an image collection file, the information
-    // about the first and last animation images will be taken from
-    // the image collection archive anyway, so no need to hard-code
-    // anything here and changes in the image collection file will
-    // take effect immediately without code adaption...
-    //
-    // first_walk_animation_image [ i ] = 1 ;
-    // last_walk_animation_image [ i ] = 5 ;
-    // first_attack_animation_image [ i ] = 6 ;
-    // last_attack_animation_image [ i ] = 6 ;
-    // first_gethit_animation_image [ i ] = 7 ;
-    // last_gethit_animation_image [ i ] = 7 ;
-    // first_death_animation_image [ i ] = 8 ;
-    // last_death_animation_image [ i ] = 8 ;
-    // first_stand_animation_image [ i ] = 9 ;
-    // last_stand_animation_image [ i ] = 13 ;
-    // use_default_attack_image [ i ] = TRUE ;
-    // use_default_gethit_image [ i ] = TRUE ;
-    // use_default_death_image [ i ] = TRUE ;
-    // use_default_stand_image [ i ] = FALSE ;
+    PrefixToFilename [ i ] = "jasmine" ; // 31
     Druidmap [ i ] . suppress_bullet_generation_when_attacking = TRUE ;
-    Druidmap [ i ] . use_image_archive_file = TRUE ;
     droid_walk_animation_speed_factor [ i ] = 8 ;
     droid_attack_animation_speed_factor [ i ] = 10 ;
     droid_gethit_animation_speed_factor [ i ] = 10 ;
@@ -2464,9 +1645,8 @@ Load_Enemy_Surfaces( void )
     droid_stand_animation_speed_factor [ i ] = 6 ;
     ModelMultiplier  [ i ] = 1 ;i++;
 
-    PrefixToFilename [ i ] = "bartender" ; // 34
+    PrefixToFilename [ i ] = "bartender" ; // 32
     Druidmap [ i ] . suppress_bullet_generation_when_attacking = TRUE ;
-    Druidmap [ i ] . use_image_archive_file = TRUE ;
     droid_walk_animation_speed_factor [ i ] = 8 ;
     droid_attack_animation_speed_factor [ i ] = 10 ;
     droid_gethit_animation_speed_factor [ i ] = 10 ;
@@ -3072,7 +2252,7 @@ init_obstacle_data( void )
 //  obstacle_map [ ISO_V_DENSE_FENCE ] . obstacle_short_name = _("Fence");
 //  obstacle_map [ ISO_V_DENSE_FENCE ] . obstacle_long_description = _("To be filled once object appears ingame.");
   obstacle_map [ ISO_V_WIRE_FENCE ] . block_area_type = COLLISION_TYPE_RECTANGLE ;
-  obstacle_map [ ISO_V_WIRE_FENCE ] . block_area_parm_1 = 1.1 ;
+  obstacle_map [ ISO_V_WIRE_FENCE ] . block_area_parm_1 = 0.8 ;
   obstacle_map [ ISO_V_WIRE_FENCE ] . block_area_parm_2 = 2.2 ;
   obstacle_map [ ISO_V_WIRE_FENCE ] . block_vision_too = FALSE ;
   obstacle_map [ ISO_V_WIRE_FENCE ] . obstacle_short_name = _("Fence");
@@ -3095,7 +2275,7 @@ init_obstacle_data( void )
 //  obstacle_map [ ISO_H_MESH_FENCE ] . obstacle_long_description = _("To be filled once object appears ingame.");
   obstacle_map [ ISO_H_WIRE_FENCE ] . block_area_type = COLLISION_TYPE_RECTANGLE ;
   obstacle_map [ ISO_H_WIRE_FENCE ] . block_area_parm_1 = 2.2 ;
-  obstacle_map [ ISO_H_WIRE_FENCE ] . block_area_parm_2 = 1.10 ;
+  obstacle_map [ ISO_H_WIRE_FENCE ] . block_area_parm_2 = 0.8 ;
   obstacle_map [ ISO_H_WIRE_FENCE ] . block_vision_too = FALSE ;
   obstacle_map [ ISO_H_WIRE_FENCE ] . obstacle_short_name = _("Fence");
   obstacle_map [ ISO_H_WIRE_FENCE ] . obstacle_long_description = _("This type of a barrier constructed out of wire is called the chain link fence.");
@@ -4646,22 +3826,22 @@ init_obstacle_data( void )
   obstacle_map [ ISO_SHELF_SMALL_EMPTY_H ] . obstacle_short_name = _("Empty bookcase") ;
   obstacle_map [ ISO_SHELF_SMALL_EMPTY_H ] . obstacle_long_description = _("Dust to trees. Trees to pages. Pages to books. Books to dust.") ;
 
-  obstacle_map [ ISO_SIGN_1 ] . block_area_parm_1 = 1.1 ;
-  obstacle_map [ ISO_SIGN_1 ] . block_area_parm_2 = 1.1 ;
+  obstacle_map [ ISO_SIGN_1 ] . block_area_parm_1 = 0.9 ;
+  obstacle_map [ ISO_SIGN_1 ] . block_area_parm_2 = 0.9 ;
   obstacle_map [ ISO_SIGN_1 ] . filename = "iso_signs_0000.png" ;
   obstacle_map [ ISO_SIGN_1 ] . block_vision_too = FALSE ;
-  obstacle_map [ ISO_SIGN_2 ] . block_area_parm_1 = 1.1 ;
-  obstacle_map [ ISO_SIGN_2 ] . block_area_parm_2 = 1.1 ;
+  obstacle_map [ ISO_SIGN_1 ] . obstacle_short_name = _("Sign");
+  obstacle_map [ ISO_SIGN_1 ] . obstacle_long_description = _("");
+  obstacle_map [ ISO_SIGN_2 ] . block_area_parm_1 = 0.9 ;
+  obstacle_map [ ISO_SIGN_2 ] . block_area_parm_2 = 0.9 ;
   obstacle_map [ ISO_SIGN_2 ] . filename = "iso_signs_0001.png" ;
   obstacle_map [ ISO_SIGN_2 ] . block_vision_too = FALSE ;
-  obstacle_map [ ISO_SIGN_3 ] . block_area_parm_1 = 1.1 ;
-  obstacle_map [ ISO_SIGN_3 ] . block_area_parm_2 = 1.1 ;
+  obstacle_map [ ISO_SIGN_2 ] . obstacle_short_name = _("Sign");
+  obstacle_map [ ISO_SIGN_2 ] . obstacle_long_description = _("");
+  obstacle_map [ ISO_SIGN_3 ] . block_area_parm_1 = 0.9 ;
+  obstacle_map [ ISO_SIGN_3 ] . block_area_parm_2 = 0.9 ;
   obstacle_map [ ISO_SIGN_3 ] . filename = "iso_signs_0002.png" ;
   obstacle_map [ ISO_SIGN_3 ] . block_vision_too = FALSE ;
-  obstacle_map [ ISO_SIGN_1 ] . obstacle_short_name = _("Sign");
-  obstacle_map [ ISO_SIGN_1 ] . obstacle_long_description = _("The arrow points at a direction. Maybe you should follow it");
-  obstacle_map [ ISO_SIGN_2 ] . obstacle_short_name = _("Sign");
-  obstacle_map [ ISO_SIGN_2 ] . obstacle_long_description = _("The arrow points at a direction. Maybe you should follow it");
   obstacle_map [ ISO_SIGN_3 ] . obstacle_short_name = _("Sign");
   obstacle_map [ ISO_SIGN_3 ] . obstacle_long_description = _("The arrow points at a direction. Maybe you should follow it");
 

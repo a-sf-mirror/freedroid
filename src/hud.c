@@ -2,6 +2,7 @@
  *
  *   Copyright (c) 1994, 2002, 2003, 2004 Johannes Prix
  *   Copyright (c) 1994, 2002 Reinhard Prix
+ *   Copyright (c) 2004-2007 Arthur Huillet 
  *
  *
  *  This file is part of Freedroid
@@ -681,7 +682,7 @@ create_and_blit_droid_description ( int enemy_num )
     {
 	if ( use_open_gl )
 	{
-	    GL_HighlightRectangle ( Screen , temp_fill_rect , 0x99 , 0x00 , 0 , BACKGROUND_TEXT_RECT_ALPHA );
+	    GL_HighlightRectangle ( Screen , &temp_fill_rect , 0x99 , 0x00 , 0 , BACKGROUND_TEXT_RECT_ALPHA );
 	}
 	else
 	{
@@ -692,7 +693,7 @@ create_and_blit_droid_description ( int enemy_num )
     {
 	if ( use_open_gl )
 	{
-	    GL_HighlightRectangle ( Screen , temp_fill_rect , 0 , 0x55 , 0 , BACKGROUND_TEXT_RECT_ALPHA );
+	    GL_HighlightRectangle ( Screen , &temp_fill_rect , 0 , 0x55 , 0 , BACKGROUND_TEXT_RECT_ALPHA );
 	}
 	else
 	{
@@ -748,7 +749,7 @@ ShowCurrentSkill( void )
 
     if ( use_open_gl )
     {
-	blit_open_gl_texture_to_screen_position ( &SpellSkillMap [ Me.readied_skill ] . icon_surface , Target_Rect . x , Target_Rect . y , TRUE ) ;
+	draw_gl_textured_quad_at_screen_position ( &SpellSkillMap [ Me.readied_skill ] . icon_surface , Target_Rect . x , Target_Rect . y ) ;
     }
     else
 	our_SDL_blit_surface_wrapper ( SpellSkillMap [ Me.readied_skill ] . icon_surface . surface , NULL , Screen , &Target_Rect );
@@ -1448,7 +1449,7 @@ ShowCurrentTextWindow ( void )
     if ( strlen( ItemDescText ) > 1 )
     {
 	if ( use_open_gl ) 
-	    GL_HighlightRectangle ( Screen , Banner_Text_Rect , 0 , 0 , 0 , BACKGROUND_TEXT_RECT_ALPHA );
+	    GL_HighlightRectangle ( Screen , &Banner_Text_Rect , 0 , 0 , 0 , BACKGROUND_TEXT_RECT_ALPHA );
 	else
 	    our_SDL_fill_rect_wrapper( Screen , &Banner_Text_Rect , BANNER_TEXT_REC_BACKGROUNDCOLOR );
     }

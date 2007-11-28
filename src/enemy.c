@@ -1,7 +1,9 @@
 /* 
  *   Copyright (c) 1994, 2002, 2003 Johannes Prix
  *   Copyright (c) 1994, 2002 Reinhard Prix
+ *   Copyright (c) 2004-2007 Arthur Huillet 
  *
+ *  
  *  This file is part of Freedroid
  *
  *  Freedroid is free software; you can redistribute it and/or modify
@@ -84,7 +86,7 @@ TeleportToClosestWaypoint ( Enemy ThisRobot )
     ThisRobot -> pos . y = ThisLevel -> AllWaypoints [ BestWaypoint ] . y + 0.5 ;
     ThisRobot -> nextwaypoint = BestWaypoint ;
     ThisRobot -> lastwaypoint = BestWaypoint ;
-    DebugPrintf ( 1 , "\n%s(): Final teleport target: Wp no. %d poisition: %f/%f on level %d.", __FUNCTION__ ,
+    DebugPrintf ( 1 , "\n%s(): Final teleport target: Wp no. %d position: %f/%f on level %d.", __FUNCTION__ ,
 		  BestWaypoint, ThisRobot -> pos . x , ThisRobot -> pos . y , ThisRobot -> pos . z );
 }; // void TeleportToClosestWaypoint ( Enemy ThisRobot )
 
@@ -199,64 +201,6 @@ DirectLineWalkable( float x1 , float y1 , float x2 , float y2 , int z )
 
 }; // int DirectLineWalkable( float x1 , float y1 , float x2 , float y2 )
 
-
-/* ----------------------------------------------------------------------
- * This function tests, if the given Robot can go a direct straigt line 
- * to the next console.  If so, that way is set as his next 'parawaypoint'
- * and TRUE is returned.
- * Else nothing is done and FALSE is returned.
- * ----------------------------------------------------------------------*/
-int 
-SetDirectCourseToConsole( int EnemyNum )
-{
-  int i, j;
-  long TicksBefore;
-  Level ThisBotsLevel = curShip.AllLevels[ AllEnemys[ EnemyNum ].pos.z ];
-
-  TicksBefore = SDL_GetTicks();
-
-  DebugPrintf( 1 , "\nSetDirectCourseToConsole( int EnemyNum ): real function call confirmed.");
-  DebugPrintf( 1 , "\nSetDirectCourseToConsole( int EnemyNum ): Trying to find direct line to console...");
-
-  for ( i = 0 ; i < ThisBotsLevel->xlen ; i ++ )
-    {
-      for ( j = 0 ; j < ThisBotsLevel->ylen ; j ++ )
-	{
-	  switch ( ThisBotsLevel->map[j][i]  . floor_value )
-	    {
-	    case CONSOLE_D:
-	    case CONSOLE_U:
-	    case CONSOLE_R:
-	    case CONSOLE_L:
-	      DebugPrintf( 1 , "\nSetDirectCourseToConsole( int EnemyNum ): Console found: %d-%d.", i , j );
-	      if ( DirectLineWalkable( AllEnemys[EnemyNum].pos.x , AllEnemys[EnemyNum].pos.y , i , j , AllEnemys [ EnemyNum ] . pos . z ) )
-		{
-		  DebugPrintf( 1 , "\nSetDirectCourseToConsole( int EnemyNum ): Walkable is: %d-%d.",
-			       i , j );
-
-		  AllEnemys[ EnemyNum ].PrivatePathway[0].x = i;
-		  AllEnemys[ EnemyNum ].PrivatePathway[0].y = j;
-		  DebugPrintf( -4 , "\nSetDirectCourseToConsole: PrivatePathway has been updated." );
-
-		  return TRUE;
-
-		  // i=ThisBotsLevel->xlen;
-		  // j=ThisBotsLevel->ylen;
-		  // break;
-		}
-	      break;
-	      // default:
-	      // break;
-	    }
-	}
-    }
-
-  DebugPrintf( 1 , "\nSetDirectCourseToConsole: Ticks used: %d." , SDL_GetTicks() - TicksBefore );
-
-  return FALSE;
-
-}; // int SetDirectCourseToConsole ( int Enemynum )
-
 /* ----------------------------------------------------------------------
  * After an enemy gets hit, it might perform some special behaviour as
  * reaction to the hit.  Perhaps it might just say ouch, perhaps it
@@ -370,13 +314,8 @@ ClearEnemys ( void )
 
 
 /* -----------------------------------------------------------------
- * After a teleporter or lift transition but also after the ship
- * is loaded, the enemys on each deck get shuffled around.
- *
- * WARNING!! IT SHOULD BE NOTED THAT THIS FUNCTION REQUIRES THE
- * CURLEVEL STRUCTURE TO BE SET ALREADY, OR IT WILL SEGFAULT,
- * EVEN WHEN A RETURN IS PLACED AT THE START OF THE FUNCTION!!!!
- *
+ * Right after loading a ship (load game, start new game, etc.), 
+ * we tie every enemy to a given waypoint on the map.
  * -----------------------------------------------------------------*/
 void
 ShuffleEnemys ( int LevelNum )
@@ -449,9 +388,9 @@ ShuffleEnemys ( int LevelNum )
 	if ( nth_enemy < wp_num )
 	{
 	    //--------------------
-	    // Now if that waypoint is already useful for random-spawning
-	    // bots, that's good.  Otherwise we need to skip this waypoint
-	    // and try again...
+	    // If we can use this waypoint for random spawning
+	    // then we use it
+	    // "this waypoint" actually is the bot number in this level. 
 	    //
 	    if ( ! ShuffleLevel -> AllWaypoints [ nth_enemy ] . suppress_random_spawn )
 	    {
@@ -475,7 +414,6 @@ ShuffleEnemys ( int LevelNum )
 	
 	AllEnemys[i].lastwaypoint = wp;
 	AllEnemys[i].nextwaypoint = wp;
-	
     } // for ( MAX_ENEMYS_ON_SHIP ) 
     
 }; // void ShuffleEnemys ( void ) 
@@ -560,6 +498,8 @@ CheckIfWayIsFreeOfDroidsWithTuxchecking ( float x1 , float y1 , float x2 , float
     static int first_call = TRUE ;
     static float steps_per_square;
 
+    const float Druid_Radius_X = 0.25;
+    const float Druid_Radius_Y = 0.25;
     //--------------------
     // Upon the very first function call, we calibrate the density of steps, so that 
     // we cannot miss out a droid by stepping right over it.
@@ -650,7 +590,9 @@ CheckIfWayIsFreeOfDroidsWithoutTuxchecking ( float x1 , float y1 , float x2 , fl
     enemy* this_enemy;
     static int first_call = TRUE ;
     static float steps_per_square;
-    
+
+    const float Druid_Radius_X=0.25;    
+    const float Druid_Radius_Y=0.25;    
     //--------------------
     // Upon the very first function call, we calibrate the density of steps, so that 
     // we cannot miss out a droid by stepping right over it.
@@ -1344,14 +1286,9 @@ InitiateDeathOfEnemy ( Enemy ThisRobot )
 
     DebugPrintf ( 1 , "\n%s():  another death of a bot/human initiated..." , __FUNCTION__ );
 
-    //--------------------
-    // If the Tux has killed his friend, he will regret it, or at least
-    // say so.
-    //
     if ( ThisRobot->is_friendly )
     {
 	Activate_Conservative_Frame_Computation();
-	//PlayOnceNeededSoundSample( "Tux_Why_Did_I_0.ogg" , FALSE , TRUE );
 
 	sprintf ( game_message_text , _("Your friend %s has died."),
 		  Druidmap [ ThisRobot -> type ] . druidname );
@@ -1396,29 +1333,22 @@ InitiateDeathOfEnemy ( Enemy ThisRobot )
 	// Maybe this robot is already fully animated or has at least one
 	// 'death' image.  Then we'll activate it.
 	//
-	if ( Druidmap [ ThisRobot -> type ] . use_image_archive_file )
-	{
 
-	    //--------------------
-	    // NOTE:  We reset the animation phase to the first death animation image
-	    //        here.  But this may be WRONG!  In the case that the enemy graphics
-	    //        hasn't been loaded yet, this will result in '1' for the animation
-	    //        phase.  That however is unlikely to happen unless the bot is killed
-	    //        right now and hasn't been ever visible in the game yet.  Also it
-	    //        will lead only to minor 'prior animation' before the real death
-	    //        phase is reached and so serious bugs other than that, so I think it 
-	    //        will be tolerable this way.
-	    //
+    //--------------------
+    // NOTE:  We reset the animation phase to the first death animation image
+    //        here.  But this may be WRONG!  In the case that the enemy graphics
+    //        hasn't been loaded yet, this will result in '1' for the animation
+    //        phase.  That however is unlikely to happen unless the bot is killed
+    //        right now and hasn't been ever visible in the game yet.  Also it
+    //        will lead only to minor 'prior animation' before the real death
+    //        phase is reached and so serious bugs other than that, so I think it 
+    //        will be tolerable this way.
+    //
 	    ThisRobot -> animation_phase = ( ( float ) first_death_animation_image [ ThisRobot -> type ] ) - 1 + 0.1 ;
 	    ThisRobot -> animation_type = DEATH_ANIMATION;
 	    play_death_sound_for_bot ( ThisRobot );
 	    DebugPrintf ( 1 , "\n%s(): playing death sound because bot of type %d really died." , 
 			  __FUNCTION__ , ThisRobot -> type );
-	}
-	else
-	{
-	    StartBlast ( ThisRobot->pos.x , ThisRobot->pos.y , ThisRobot->pos.z , DRUIDBLAST, Blast_Damage_Per_Second );
-	}
 	
 	//--------------------
 	// And, not that the enemy is dead, some more blood will be spilled...
@@ -1535,10 +1465,6 @@ MoveEnemys ( void )
     //
     PermanentHealRobots ();  // enemy robots heal as time passes...
     
-    //--------------------
-    // Some robots like 302 are already partly animated.  These robots
-    // must be shifted in phase properly...
-    //
     AnimateEnemys ();
 
     //--------------------
@@ -2608,7 +2534,7 @@ enemy_say_current_state_on_screen ( enemy* ThisRobot )
 	    ThisRobot->TextToBeDisplayed = "state:  Wandering along waypoints." ;
 	    break;
 	case TURN_THOWARDS_NEXT_WAYPOINT:
-	    ThisRobot->TextToBeDisplayed = "state:  Turn thowards next WP." ;
+	    ThisRobot->TextToBeDisplayed = "state:  Turn towards next WP." ;
 	    break;
 	case RUSH_TUX_ON_SIGHT_AND_OPEN_TALK:
 	    ThisRobot->TextToBeDisplayed = "state:  Rush Tux on Sight and open Talk." ;
@@ -3466,19 +3392,6 @@ AnimateEnemys (void)
 	if ( ! level_is_partly_visible ( our_enemy -> pos . z ) )
 	    continue;
 
-	//--------------------
-	// While the old 'phase' doesn't have much meaning today any more, the
-	// new animation phase does.
-	//
-	// First the walkphases,
-	// Then the attack phases
-	// then the gethit phases
-	// finally the death phases
-	//
-	// if ( our_enemy -> animation_phase > 0 )
-	// {
-	if ( Druidmap [ our_enemy -> type ] . use_image_archive_file == TRUE )
-	{
 	    switch ( our_enemy -> animation_type )
 	    {
 		case WALK_ANIMATION:
@@ -3578,7 +3491,6 @@ That means:  Something is going *terribly* wrong!" ,
 					       PLEASE_INFORM, IS_FATAL );
 		    break;
 	    }
-	}
 	
 	
 	if ( our_enemy -> Status == INFOUT)

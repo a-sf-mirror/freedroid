@@ -2,6 +2,7 @@
  *
  *   Copyright (c) 1994, 2002, 2003 Johannes Prix
  *   Copyright (c) 1994, 2002 Reinhard Prix
+ *   Copyright (c) 2004-2007 Arthur Huillet 
  *
  *
  *  This file is part of Freedroid
@@ -308,9 +309,9 @@ Error loading flag image.",
 	case GLOBAL_INGAME_MODE_TALK:
 	    cursor_index = 8 ;
 	    break;
-	case GLOBAL_INGAME_MODE_FIRST_AID:
+	/*case GLOBAL_INGAME_MODE_FIRST_AID:
 	    cursor_index = 9 ;
-	    break;
+	    break;*/
 	case GLOBAL_INGAME_MODE_ATTACK:
 	    cursor_index = 10 ;
 	    break;
@@ -331,8 +332,8 @@ Error loading flag image.",
     //
     if ( use_open_gl )
     {
-	blit_open_gl_texture_to_screen_position ( &mouse_cursors [ cursor_index ] , 
-						  GetMousePos_x () , GetMousePos_y () , TRUE );
+	draw_gl_textured_quad_at_screen_position ( &mouse_cursors [ cursor_index ] , 
+						  GetMousePos_x () , GetMousePos_y () );
     }
     else
     {
@@ -422,8 +423,8 @@ Error loading flag image.",
 
 	if ( use_open_gl )
 	{
-	    blit_open_gl_texture_to_screen_position ( &mouse_cursor_coronas [ i ] , 
-						      GetMousePos_x () + offset_vector . x , GetMousePos_y () + offset_vector . y , TRUE );
+	    draw_gl_textured_quad_at_screen_position ( &mouse_cursor_coronas [ i ] , 
+						      GetMousePos_x () + offset_vector . x , GetMousePos_y () + offset_vector . y );
 	}
 	else
 	{
@@ -459,9 +460,7 @@ fade_out_using_gamma_ramp ( void )
     if ( !GameConfig . do_fadings ) return;
     int i = 0;
     Activate_Conservative_Frame_Computation( );
-    #ifdef HAVE_LIBGL
 	if ( ! use_open_gl ) 
-    #endif
 	    for ( i = 0 ; i < 100 ; i ++ ) 
 		    {
 		    SDL_SetGamma ( GameConfig . current_gamma_correction * 0.01 * ( (float) ( 100 - i ) ) , 
@@ -471,18 +470,18 @@ fade_out_using_gamma_ramp ( void )
 		    }
     #ifdef HAVE_LIBGL
 	else {
-	Uint8 val = 10;
-	while ( i < 55 )
+	i = 255;
+	StoreMenuBackground(0);
+	glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE );
+	while ( --i )
 		{
-		glPixelZoom ( GameConfig . screen_width, GameConfig . screen_height);
-		glRasterPos2i( 0 , GameConfig . screen_height - 1) ;
-	        glDrawPixels( 1 , 1, GL_ALPHA , GL_UNSIGNED_BYTE , & val );
+		glColor4ub(i,i,i,i);
+		RestoreMenuBackground(0); 		
 		SDL_GL_SwapBuffers();
-		SDL_Delay(5);
-		i++;
 		}
-	glPixelZoom (1, 1);
+        glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE );
 	}
+
     #endif 
 }; // void fade_out_using_gamma_ramp ( void )
 
@@ -514,20 +513,17 @@ Activate_Conservative_Frame_Computation( );
 	    }
     #ifdef HAVE_LIBGL
 	else {
-	Uint8 val = 255;
-	while ( val != 0 )
+	i = 0;
+	StoreMenuBackground(0);
+	glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE );
+	while ( i++ < 255 )
 		{
-		glPixelZoom ( GameConfig . screen_width, GameConfig . screen_height);
-		glRasterPos2i( 0 , GameConfig . screen_height - 1) ;
-	        glDrawPixels( 1 , 1, GL_ALPHA , GL_UNSIGNED_BYTE , & val );
+		glColor4ub(i,i,i,i);
+		RestoreMenuBackground(0); 		
 		SDL_GL_SwapBuffers();
-		glPixelZoom (1, 1);
-                RestoreMenuBackground(0);
-		if ( val >= 40)
-			val -= 15;
-		else if (val == 1) val = 0;
-		else val = 1;
 		}
+        glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE );
+
 	}
     #endif 
 
@@ -568,7 +564,7 @@ rip_rectangle_from_alpha_image ( SDL_Surface* our_surface , SDL_Rect our_rect )
 
   SDL_SetAlpha( tmp_surf , SDL_SRCALPHA , SDL_ALPHA_OPAQUE );
 
-  flip_image_horizontally ( tmp_surf ) ;
+  flip_image_vertically ( tmp_surf ) ;
 
   return ( tmp_surf );
 
@@ -1336,7 +1332,7 @@ TakeScreenshot( void )
       //
       FullView = SDL_CreateRGBSurfaceFrom( imgdata , GameConfig . screen_width , GameConfig . screen_height, 24, 3 * GameConfig . screen_width, 0x0FF0000, 0x0FF00, 0x0FF , 0 );
       free ( imgdata );
-      flip_image_horizontally ( FullView );
+      flip_image_vertically ( FullView );
       
       swap_red_and_blue_for_open_gl ( FullView );
 
@@ -1880,17 +1876,16 @@ set_video_mode_for_open_gl ( void )
     // we do need the SDL_GL_SetAttribute ( SDL_GL_DOUBLEBUFFER, 1 ) and NOT
     // this here...
     //
-    // video_flags |= SDL_GL_DOUBLEBUFFER; /* Enable double buffering */
-    
-    // video_flags |= SDL_HWPALETTE;       /* Store the palette in hardware */
-    //video_flags |= SDL_RESIZABLE;       /* Enable window resizing */
+
     if (GameConfig . fullscreen_on) video_flags |= SDL_FULLSCREEN;
     if ( vid_info->hw_available )
 	video_flags |= SDL_HWSURFACE;
-  else
+    else
       video_flags |= SDL_SWSURFACE;
+    
     if ( vid_info->blit_hw )
 	video_flags |= SDL_HWACCEL;
+
     //--------------------
     // We have 24 bit (or 32 bit) color depth in some of the graphics used,
     // like e.g. backgrounds produced by Basse, so we try to get close to
@@ -1907,7 +1902,7 @@ set_video_mode_for_open_gl ( void )
     {
 	case 0:
 	    GiveStandardErrorMessage ( __FUNCTION__  , "\
-SDL reported, that the video mode mentioned above is not supported UNDER ANY BIT COLOR DEPTH!\nBreaking off...",
+SDL reported, that the video mode mentioned above is not supported\nBreaking off...",
 				       PLEASE_INFORM, IS_FATAL );
 	    break;
 	default:
@@ -1953,13 +1948,6 @@ SDL reported, that the video mode mentioned above is not supported UNDER ANY BIT
 		 buffer_size , red_size, green_size, blue_size, alpha_size, depth_size );
     }
     
-    //--------------------
-    // Since the OpenGL stuff hasn't been initialized yet, it's normal
-    // to get an GL_INVALID_OPERATION here, if we would really do the
-    // check.  So better refrain from OpenGL error checking here...
-    //
-    // open_gl_check_error_status ( __FUNCTION__ );
-    
     safely_show_open_gl_driver_info ( );
     
     safely_initialize_our_default_open_gl_parameters ( );
@@ -1996,7 +1984,7 @@ InitVideo (void)
     const SDL_VideoInfo *vid_info;
     char vid_driver[81];
     Uint32 video_flags = 0 ;  // flags for SDL video mode 
-char fpath[2048];
+    char fpath[2048];
     char window_title_string[200];
     
     //--------------------
@@ -2200,7 +2188,7 @@ ShadowingRectangle ( SDL_Surface* Surface , SDL_Rect Area )
     DebugPrintf ( 2 , "\n%s(): x=%d, y=%d, w=%d, h=%d." , __FUNCTION__ ,
           Area . x , Area . y , Area . w , Area . h );
     if ( use_open_gl )
-    GL_HighlightRectangle (Surface, Area , 0 , 0 , 0 , 150 );
+    GL_HighlightRectangle (Surface, &Area , 0 , 0 , 0 , 150 );
     //else
     //SDL_HighlightRectangle ( Surface , Area );
 
@@ -2222,7 +2210,7 @@ HighlightRectangle ( SDL_Surface* Surface , SDL_Rect Area )
     DebugPrintf ( 2 , "\n%s(): x=%d, y=%d, w=%d, h=%d." , __FUNCTION__ ,
 		  Area . x , Area . y , Area . w , Area . h );
     if ( use_open_gl )
-	GL_HighlightRectangle (Surface, Area , 255 , 255 , 255 , 100 );
+	GL_HighlightRectangle (Surface, &Area , 255 , 255 , 255 , 100 );
     else
 	SDL_HighlightRectangle ( Surface , Area );
 

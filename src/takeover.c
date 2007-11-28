@@ -1,5 +1,6 @@
 /* 
  *
+ *   Copyright (c) 2004-2007 Arthur Huillet 
  *   Copyright (c) 1994, 2002, 2003 Johannes Prix
  *   Copyright (c) 1994, 2002 Reinhard Prix
  *
@@ -828,7 +829,7 @@ GetTakeoverGraphics (void)
   TempLoadSurface = our_IMG_load_wrapper ( fp ) ;
   to_blocks = our_SDL_display_format_wrapperAlpha ( TempLoadSurface ); // the surface is converted
   SDL_FreeSurface ( TempLoadSurface );
-  if ( use_open_gl ) flip_image_horizontally ( to_blocks );
+  if ( use_open_gl ) flip_image_vertically ( to_blocks );
 
   // Get the fill-blocks 
   for ( i = 0 ; i < NUM_FILL_BLOCKS ; i++ , curx += FILL_BLOCK_LEN + 2 )
@@ -940,8 +941,8 @@ ShowPlayground ( void )
 	       User_Rect.w, User_Rect.h);
     
     if ( use_open_gl ) 
-	blit_open_gl_texture_to_screen_position ( &ToGroundBlocks [ GELB_OBEN ] , Target_Rect . x ,
-						  Target_Rect . y , TRUE ) ;
+	draw_gl_textured_quad_at_screen_position ( &ToGroundBlocks [ GELB_OBEN ] , Target_Rect . x ,
+						  Target_Rect . y ) ;
     else
 	our_SDL_blit_surface_wrapper ( ToGroundBlocks [ GELB_OBEN ] . surface , NULL , Screen, &Target_Rect );
     
@@ -950,16 +951,16 @@ ShowPlayground ( void )
     for ( i = 0 ; i < 12 ; i++ )
     {
 	if ( use_open_gl ) 
-	    blit_open_gl_texture_to_screen_position ( &ToGroundBlocks [ GELB_MITTE ] , Target_Rect . x ,
-						      Target_Rect . y , TRUE ) ;
+	    draw_gl_textured_quad_at_screen_position ( &ToGroundBlocks [ GELB_MITTE ] , Target_Rect . x ,
+						      Target_Rect . y ) ;
 	else
 	    our_SDL_blit_surface_wrapper ( ToGroundBlocks [ GELB_MITTE ] . surface , NULL , Screen, &Target_Rect );
 	Target_Rect.y += GROUNDBLOCKHEIGHT;
     } 
     
     if ( use_open_gl ) 
-	blit_open_gl_texture_to_screen_position ( &ToGroundBlocks [ GELB_UNTEN ] , Target_Rect . x ,
-						  Target_Rect . y , TRUE ) ;
+	draw_gl_textured_quad_at_screen_position ( &ToGroundBlocks [ GELB_UNTEN ] , Target_Rect . x ,
+						  Target_Rect . y ) ;
     else
 	our_SDL_blit_surface_wrapper ( ToGroundBlocks [ GELB_UNTEN ] . surface , NULL , Screen, &Target_Rect );
     
@@ -967,8 +968,8 @@ ShowPlayground ( void )
     Set_Rect (Target_Rect, xoffs + MID_OFFS_X, yoffs + MID_OFFS_Y,0, 0);
     
     if ( use_open_gl ) 
-	blit_open_gl_texture_to_screen_position ( &ToLeaderBlock , Target_Rect . x ,
-						  Target_Rect . y , TRUE ) ;
+	draw_gl_textured_quad_at_screen_position ( &ToLeaderBlock , Target_Rect . x ,
+						  Target_Rect . y ) ;
     else
 	our_SDL_blit_surface_wrapper ( ToLeaderBlock . surface , NULL , Screen, &Target_Rect);
     
@@ -976,8 +977,8 @@ ShowPlayground ( void )
     for ( i = 0 ; i < 12 ; i++ , Target_Rect.y += COLUMNBLOCKHEIGHT )
     {
 	if ( use_open_gl ) 
-	    blit_open_gl_texture_to_screen_position ( &ToColumnBlock , Target_Rect . x ,
-						      Target_Rect . y , TRUE ) ;
+	    draw_gl_textured_quad_at_screen_position ( &ToColumnBlock , Target_Rect . x ,
+						      Target_Rect . y ) ;
 	else
 	    our_SDL_blit_surface_wrapper ( ToColumnBlock . surface , NULL , Screen, &Target_Rect );
     }
@@ -986,8 +987,8 @@ ShowPlayground ( void )
     // the right column
     Set_Rect ( Target_Rect , xoffs + RIGHT_OFFS_X , yoffs + RIGHT_OFFS_Y , 0 , 0 );
     if ( use_open_gl ) 
-	blit_open_gl_texture_to_screen_position ( &ToGroundBlocks [ VIOLETT_OBEN ] , Target_Rect . x ,
-						  Target_Rect . y , TRUE ) ;
+	draw_gl_textured_quad_at_screen_position ( &ToGroundBlocks [ VIOLETT_OBEN ] , Target_Rect . x ,
+						  Target_Rect . y ) ;
     else
 	our_SDL_blit_surface_wrapper ( ToGroundBlocks [ VIOLETT_OBEN ] . surface , NULL , Screen , &Target_Rect );
     
@@ -996,30 +997,30 @@ ShowPlayground ( void )
     for ( i = 0 ; i < 12 ; i++ , Target_Rect.y += GROUNDBLOCKHEIGHT )
     {
 	if ( use_open_gl ) 
-	    blit_open_gl_texture_to_screen_position ( &ToGroundBlocks [ VIOLETT_MITTE ] , Target_Rect . x ,
-						      Target_Rect . y , TRUE ) ;
+	    draw_gl_textured_quad_at_screen_position ( &ToGroundBlocks [ VIOLETT_MITTE ] , Target_Rect . x ,
+						      Target_Rect . y ) ;
 	else
 	    our_SDL_blit_surface_wrapper ( ToGroundBlocks [ VIOLETT_MITTE ] . surface , NULL , Screen, &Target_Rect );
     }
     
     if ( use_open_gl ) 
-	blit_open_gl_texture_to_screen_position ( &ToGroundBlocks [ VIOLETT_UNTEN ] , Target_Rect . x ,
-						  Target_Rect . y , TRUE ) ;
+	draw_gl_textured_quad_at_screen_position ( &ToGroundBlocks [ VIOLETT_UNTEN ] , Target_Rect . x ,
+						  Target_Rect . y ) ;
     else
 	our_SDL_blit_surface_wrapper ( ToGroundBlocks [ VIOLETT_UNTEN ] . surface , NULL , Screen, &Target_Rect );
     
     // Fill the leader-LED with its color 
     Set_Rect (Target_Rect, xoffs + LEADERLED_X, yoffs + LEADERLED_Y, 0, 0);
     if ( use_open_gl ) 
-	blit_open_gl_texture_to_screen_position ( &FillBlocks [ LeaderColor ] , Target_Rect . x ,
-						  Target_Rect . y , TRUE ) ;
+	draw_gl_textured_quad_at_screen_position ( &FillBlocks [ LeaderColor ] , Target_Rect . x ,
+						  Target_Rect . y ) ;
     else
 	our_SDL_blit_surface_wrapper ( FillBlocks [ LeaderColor ] . surface , NULL , Screen, &Target_Rect );
     
     Target_Rect.y += FILL_BLOCK_HEIGHT;
     if ( use_open_gl ) 
-	blit_open_gl_texture_to_screen_position ( &FillBlocks [ LeaderColor ] , Target_Rect . x ,
-						  Target_Rect . y , TRUE ) ;
+	draw_gl_textured_quad_at_screen_position ( &FillBlocks [ LeaderColor ] , Target_Rect . x ,
+						  Target_Rect . y ) ;
     else
 	our_SDL_blit_surface_wrapper ( FillBlocks [ LeaderColor ] . surface , NULL , Screen, &Target_Rect );
     
@@ -1030,8 +1031,8 @@ ShowPlayground ( void )
 		  yoffs + LEDCOLUMN_Y + i*(FILL_BLOCK_HEIGHT+2),
 		0, 0);
 	if ( use_open_gl ) 
-	    blit_open_gl_texture_to_screen_position ( &FillBlocks [ DisplayColumn [ i ] ] , Target_Rect . x ,
-						      Target_Rect . y , TRUE ) ;
+	    draw_gl_textured_quad_at_screen_position ( &FillBlocks [ DisplayColumn [ i ] ] , Target_Rect . x ,
+						      Target_Rect . y ) ;
 	else
 	    our_SDL_blit_surface_wrapper ( FillBlocks [ DisplayColumn [ i ] ] . surface , NULL , Screen, &Target_Rect );
     }
@@ -1045,8 +1046,8 @@ ShowPlayground ( void )
 		      yoffs + PlaygroundStart[GELB].y + j * TO_BLOCKHEIGHT, 0, 0);
 	    block = ToPlayground[GELB][i][j] + ActivationMap[GELB][i][j]*TO_BLOCKS;
 	    if ( use_open_gl ) 
-		blit_open_gl_texture_to_screen_position ( &ToGameBlocks [ block ] , Target_Rect . x ,
-							  Target_Rect . y , TRUE ) ;
+		draw_gl_textured_quad_at_screen_position ( &ToGameBlocks [ block ] , Target_Rect . x ,
+							  Target_Rect . y ) ;
 	    else
 		our_SDL_blit_surface_wrapper ( ToGameBlocks [ block ] . surface , NULL , Screen, &Target_Rect );
 	}
@@ -1062,8 +1063,8 @@ ShowPlayground ( void )
 	    block = ToPlayground[VIOLETT][i][j]+
 		(NUM_PHASES+ActivationMap[VIOLETT][i][j])*TO_BLOCKS;
 	    if ( use_open_gl ) 
-		blit_open_gl_texture_to_screen_position ( &ToGameBlocks [ block ] , Target_Rect . x ,
-							  Target_Rect . y , TRUE ) ;
+		draw_gl_textured_quad_at_screen_position ( &ToGameBlocks [ block ] , Target_Rect . x ,
+							  Target_Rect . y ) ;
 	    else
 		our_SDL_blit_surface_wrapper ( ToGameBlocks [ block ] . surface , NULL , Screen, &Target_Rect );
 	}
@@ -1082,8 +1083,8 @@ ShowPlayground ( void )
 	if ( NumCapsules [ player ] )
 	{
 	    if ( use_open_gl ) 
-		blit_open_gl_texture_to_screen_position ( &CapsuleBlocks [ color ] , Target_Rect . x ,
-							  Target_Rect . y , TRUE ) ;
+		draw_gl_textured_quad_at_screen_position ( &CapsuleBlocks [ color ] , Target_Rect . x ,
+							  Target_Rect . y ) ;
 	    else
 		our_SDL_blit_surface_wrapper ( CapsuleBlocks [ color ] . surface , NULL , Screen, &Target_Rect );
 	}
@@ -1093,8 +1094,8 @@ ShowPlayground ( void )
 	    Set_Rect ( Target_Rect , xoffs + LeftCapsulesStart [ color ] . x ,
 		       yoffs + LeftCapsulesStart [ color ] . y + i * CAPSULE_HEIGHT , 0 , 0 );
 	    if ( use_open_gl ) 
-		blit_open_gl_texture_to_screen_position ( &CapsuleBlocks [ color ] , Target_Rect . x ,
-							  Target_Rect . y , TRUE ) ;
+		draw_gl_textured_quad_at_screen_position ( &CapsuleBlocks [ color ] , Target_Rect . x ,
+							  Target_Rect . y ) ;
 	    else
 		our_SDL_blit_surface_wrapper ( CapsuleBlocks [ color ] . surface , NULL , Screen, &Target_Rect );
 	} // for capsules 

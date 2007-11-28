@@ -75,7 +75,7 @@ InitFont (BFont_Info * Font)
 	  SDL_SetAlpha( Font -> char_iso_image [ i ] . surface , SDL_SRCALPHA , SDL_ALPHA_OPAQUE );
 	  SDL_SetColorKey ( Font -> char_iso_image [ i ] . surface , 0 , 0 );
 
-	  flip_image_horizontally ( Font -> char_iso_image [ i ] . surface ) ;
+	  flip_image_vertically ( Font -> char_iso_image [ i ] . surface ) ;
 
 	  //--------------------
 	  // Now we can go on to the next char
@@ -370,14 +370,10 @@ PutCharFont (SDL_Surface * Surface, BFont_Info * Font, int x, int y, unsigned ch
 		  #ifdef HAVE_LIBGL
 		  glNewList(Font->list_base + c, GL_COMPILE);
 
-	          glEnable( GL_TEXTURE_2D );
 		  glBindTexture(GL_TEXTURE_2D, *(Font->char_iso_image[c] . texture));
 	          glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE );
         	  glEnable ( GL_BLEND );
-        	  glDisable ( GL_ALPHA_TEST );
  
-	          glBlendFunc( GL_SRC_ALPHA , GL_ONE_MINUS_SRC_ALPHA );
-
 		  glBegin(GL_QUADS);
 
 		  glTexCoord2f( 0, 1.0 );
@@ -390,13 +386,13 @@ PutCharFont (SDL_Surface * Surface, BFont_Info * Font, int x, int y, unsigned ch
 		  glVertex2i(  Font->char_iso_image[c] . texture_width , 0 );
 		
 		  glEnd( );
-	          glDisable( GL_TEXTURE_2D );
 		  glEndList();
+        	  glDisable ( GL_BLEND );
 
 		  #endif
 		}
 	      
-	      //blit_open_gl_texture_to_screen_position ( & (Font -> char_iso_image [ c ]) , dest . x , dest . y , TRUE ) ;
+	      //draw_gl_textured_quad_at_screen_position ( & (Font -> char_iso_image [ c ]) , dest . x , dest . y , TRUE ) ;
 	      #ifdef HAVE_LIBGL
 	      glPushMatrix();
 	      glMatrixMode(GL_MODELVIEW);

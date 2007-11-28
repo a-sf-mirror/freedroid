@@ -2,6 +2,7 @@
  *
  *   Copyright (c) 1994, 2002, 2003 Johannes Prix
  *   Copyright (c) 1994, 2002 Reinhard Prix
+ *   Copyright (c) 2004-2007 Arthur Huillet 
  *
  *
  *  This file is part of Freedroid
@@ -184,7 +185,6 @@ enum _global_ingame_modes
     GLOBAL_INGAME_MODE_REPAIR = 7129 ,
     GLOBAL_INGAME_MODE_UNLOCK = 7130 ,
     GLOBAL_INGAME_MODE_TALK = 7131 ,
-    GLOBAL_INGAME_MODE_FIRST_AID = 7132 ,
     GLOBAL_INGAME_MODE_ATTACK = 7133 ,
     GLOBAL_INGAME_MODE_PICKPOCKET = 7134 ,
 };
@@ -232,7 +232,8 @@ enum
 // a different update policy than the level editor, even strong zoom
 // will not be a problem here...
 //
-#define LEVEL_EDITOR_ZOOM_OUT_FACT 3.0
+#define LEVEL_EDITOR_ZOOM_OUT_FACT 2
+#define ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT 0.5
 
 #define AUTOMAP_ZOOM_OUT_FACT 8.0
 
@@ -701,7 +702,7 @@ enum
 
 #define MAX_SAVED_CHARACTERS_ON_DISK 7
 
-#define MAX_ENEMYS_ON_SHIP	1000
+#define MAX_ENEMYS_ON_SHIP	1200	
 #define MAX_INFLU_POSITION_HISTORY 10000
 #define MAX_MISSIONS_IN_GAME 12         // how many missions can there be at most in Freedroid
 #define MAX_MISSION_TRIGGERED_ACTIONS 10
@@ -709,8 +710,8 @@ enum
 
 #define MAX_LEVELS		39   	// how many map levels are allowed in one ship
 
-#define MAX_EVENT_TRIGGERS      100   // how many event triggers at most to allow
-#define MAX_TRIGGERED_ACTIONS_IN_GAME   100   // how many triggerable actions to allow at most
+#define MAX_EVENT_TRIGGERS      500   // how many event triggers at most to allow
+#define MAX_TRIGGERED_ACTIONS_IN_GAME   500   // how many triggerable actions to allow at most
 
 #define MAXWAYPOINTS 		200
 #define MAX_DOORS_ON_LEVEL 	120
@@ -783,7 +784,6 @@ enum _status
 {
     INFOUT=-30,
     MOBILE,
-    TRANSFERMODE,
     WEAPON,
     CAPTURED,
     COMPLETE,
