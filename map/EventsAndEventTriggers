@@ -38,7 +38,7 @@
 // This is a pure location trigger.  Copy and adapt is as you feel like it.
 * Start of an Event Trigger Subsection *
 Influencer must be at X=2 Y=11 Lev=0
-Use map location from map label="DisruptorShieldBaseAccess"asdf
+Use map location from map label="DisruptorShieldBaseAccess"
 Event Action to be triggered by this trigger="teleport_into_the_disruptor_base"
 Delete the event trigger after it has been triggered=-1
 * End of this Event Trigger Subsection *
@@ -67,26 +67,36 @@ Event Action to be triggered by this trigger="teleport_from_bunker"
 Delete the event trigger after it has been triggered=-1
 * End of this Event Trigger Subsection *
 
-// This is a pure location trigger.  Copy and adapt is as you feel like it.
 * Start of an Event Trigger Subsection *
 Influencer must be at X=2 Y=11 Lev=0
-Use map location from map label="DisruptorMachineLevelAccess"
+Use map location from map label="LvVOutExit"
 Event Action to be triggered by this trigger="teleport_into_disruptor_machine_level"
 Delete the event trigger after it has been triggered=-1
 * End of this Event Trigger Subsection *
 
-// This is a pure location trigger.  Copy and adapt is as you feel like it.
+* Start of an Event Trigger Subsection *
+Influencer must be at X=2 Y=11 Lev=0
+Use map location from map label="DisruptorLevelVAccess"
+Event Action to be triggered by this trigger="teleport_into_disruptor_lvV"
+Delete the event trigger after it has been triggered=-1
+* End of this Event Trigger Subsection *
+
 * Start of an Event Trigger Subsection *
 Influencer must be at X=2 Y=11 Lev=0
 Use map location from map label="DisruptorMachineLevelEscape"
+Event Action to be triggered by this trigger="teleport_back_to_disruptor_lvV"
+Delete the event trigger after it has been triggered=-1
+* End of this Event Trigger Subsection *
+
+* Start of an Event Trigger Subsection *
+Influencer must be at X=2 Y=11 Lev=0
+Use map location from map label="LvVInExit"
 Event Action to be triggered by this trigger="teleport_back_to_quarters"
 Delete the event trigger after it has been triggered=-1
 * End of this Event Trigger Subsection *
 
 
 
-
-// This is a pure location trigger.  Copy and adapt is as you feel like it.
 * Start of an Event Trigger Subsection *
 Influencer must be at X=2 Y=11 Lev=0
 Use map location from map label="TeleportIntoTheWarehouse"
@@ -94,7 +104,6 @@ Event Action to be triggered by this trigger="teleport_into_the_warehouse"
 Delete the event trigger after it has been triggered=-1
 * End of this Event Trigger Subsection *
 
-// This is a pure location trigger.  Copy and adapt is as you feel like it.
 * Start of an Event Trigger Subsection *
 Influencer must be at X=28 Y=2 Lev=1
 Use map location from map label="TeleportFromWarehouseToWood"
@@ -102,7 +111,6 @@ Event Action to be triggered by this trigger="teleport_out_from_warehouse"
 Delete the event trigger after it has been triggered=-1
 * End of this Event Trigger Subsection *
 
-// This is a pure location trigger.  Copy and adapt is as you feel like it.
 * Start of an Event Trigger Subsection *
 Influencer must be at X=63 Y=31 Lev=1
 Use map location from map label="TeleportToSecondCombatLevel"
@@ -110,7 +118,6 @@ Event Action to be triggered by this trigger="teleport_to_second_combat_lv"
 Delete the event trigger after it has been triggered=-1
 * End of this Event Trigger Subsection *
 
-// This is a pure location trigger.  Copy and adapt is as you feel like it.
 * Start of an Event Trigger Subsection *
 Influencer must be at X=20 Y=2 Lev=2
 Use map location from map label="TeleportBackToFirstCombatLevel"
@@ -118,7 +125,6 @@ Event Action to be triggered by this trigger="teleport_back_to_first_combat_lv"
 Delete the event trigger after it has been triggered=-1
 * End of this Event Trigger Subsection *
 
-// This is a pure location trigger.  Copy and adapt is as you feel like it.
 * Start of an Event Trigger Subsection *
 Influencer must be at X=33 Y=13 Lev=3
 Use map location from map label="TeleportBackToSecondCombatLevel"
@@ -126,7 +132,6 @@ Event Action to be triggered by this trigger="teleport_back_to_kevin_garden"
 Delete the event trigger after it has been triggered=-1
 * End of this Event Trigger Subsection *
 
-// This is a pure location trigger.  Copy and adapt is as you feel like it.
 * Start of an Event Trigger Subsection *
 Influencer must be at X=11 Y=3 Lev=3
 Use map location from map label="EntryToKevinsUndergroundStation"
@@ -134,7 +139,6 @@ Event Action to be triggered by this trigger="teleport_to_kevin_underground_stat
 Delete the event trigger after it has been triggered=-1
 * End of this Event Trigger Subsection *
 
-// This is a pure location trigger.  Copy and adapt is as you feel like it.
 * Start of an Event Trigger Subsection *
 Influencer must be at X=11 Y=3 Lev=3
 Use map location from map label="TeleportToKevinsEnergyStation"
@@ -142,7 +146,6 @@ Event Action to be triggered by this trigger="teleport_to_kevins_energy_source"
 Delete the event trigger after it has been triggered=-1
 * End of this Event Trigger Subsection *
 
-// This is a pure location trigger.  Copy and adapt is as you feel like it.
 * Start of an Event Trigger Subsection *
 Influencer must be at X=11 Y=3 Lev=3
 Use map location from map label="KevinEnergyExitPoint"
@@ -152,10 +155,6 @@ Delete the event trigger after it has been triggered=-1
 
 
 
-
-
-
-// This is a pure location trigger.  Copy and adapt is as you feel like it.
 * Start of an Event Trigger Subsection *
 Influencer must be at X=28 Y=2 Lev=5
 Use map location from map label="NO_LABEL_DEFINED_YET"
@@ -164,7 +163,6 @@ Delete the event trigger after it has been triggered=-1
 * End of this Event Trigger Subsection *
 
 
-// This is a pure location trigger.  Copy and adapt is as you feel like it.
 * Start of an Event Trigger Subsection *
 Influencer must be at X=3 Y=27 Lev=13
 Use map location from map label="NO_LABEL_DEFINED_YET"
@@ -172,7 +170,7 @@ Event Action to be triggered by this trigger="teleport_from_telemetry_to_two"
 Delete the event trigger after it has been triggered=-1
 * End of this Event Trigger Subsection *
 
-// This is a pure location trigger.  Copy and adapt is as you feel like it.
+
 * Start of an Event Trigger Subsection *
 Influencer must be at X=53 Y=27 Lev=13
 Use map location from map label="NO_LABEL_DEFINED_YET"
@@ -243,8 +241,6 @@ Use map location from map label="MasterArenaTeleportOutPoint"
 Event Action to be triggered by this trigger="teleport_from_master_arena_to_camp"
 Delete the event trigger after it has been triggered=-1
 * End of this Event Trigger Subsection *
-
-
 
 
 //--------------------
@@ -333,29 +329,6 @@ Use map location from map label="NO_LABEL_DEFINED_YET"
 Event Action to be triggered by this trigger="stepped_cable_tunnels"
 Delete the event trigger after it has been triggered=-1
 * End of this Event Trigger Subsection *
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 **********************************************************************
 **********************************************************************
@@ -493,11 +466,31 @@ Action is mission assignment=-1
 * End of this Event Action Subsection *
 
 * Start of an Event Action Subsection *
+Action label for this action="teleport_into_disruptor_lvV"
+Mapchange at X=-1 Y=-1 Lev=-1 to new value=-1
+Use map label for map change location="NO_LABEL_DEFINED_YET"
+Teleport to TelX=27 TelY=3 TelLev=1
+Use map label for teleport target="LvVInArr"
+Action is Influencer say="Now I should get teleported...."
+Action is mission assignment=-1
+* End of this Event Action Subsection *
+
+* Start of an Event Action Subsection *
+Action label for this action="teleport_back_to_disruptor_lvV"
+Mapchange at X=-1 Y=-1 Lev=-1 to new value=-1
+Use map label for map change location="NO_LABEL_DEFINED_YET"
+Teleport to TelX=27 TelY=3 TelLev=1
+Use map label for teleport target="LvVOutArr"
+Action is Influencer say="Now I should get teleported...."
+Action is mission assignment=-1
+* End of this Event Action Subsection *
+
+* Start of an Event Action Subsection *
 Action label for this action="teleport_back_to_quarters"
 Mapchange at X=-1 Y=-1 Lev=-1 to new value=-1
 Use map label for map change location="NO_LABEL_DEFINED_YET"
 Teleport to TelX=27 TelY=3 TelLev=1
-Use map label for teleport target="DisruptorMachineLevelReturnPoint"
+Use map label for teleport target="DisruptorLevelVReturnPoint"
 Action is Influencer say="Now I should get teleported...."
 Action is mission assignment=-1
 * End of this Event Action Subsection *
