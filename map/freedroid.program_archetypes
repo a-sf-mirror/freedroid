@@ -5,8 +5,8 @@ Program name="Hacking"
 Program description="Tux is gifted with the ability to hack any machine in no time.  To make use of this ability, select this skill. When a machine is close enough and this skill is activated by holding down the right mouse button, the takeover process will be initiated."
 Picture="TakeoverTalkSkill.png"
 Form="immediate"
-Cost=0
-Effect="talk_or_takeover"
+Cost=10
+Effect="takeover"
 Present at startup=1
 
 ** Start of new program specification subsection **
