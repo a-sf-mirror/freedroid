@@ -163,6 +163,7 @@ Minimum number of Random Droids=80
 Allowed Type of Random Droid for this level: 139
 Allowed Type of Random Droid for this level: 123
 Allowed Type of Random Droid for this level: 247
+Allowed Type of Random Droid for this level: 249
 ** End of this levels droid data **
 
 ----------------------------------------------------------------------
@@ -216,8 +217,12 @@ Allowed Type of Random Droid for this level: 302
 ** Beginning of new Level **
 Level=5
 Maximum number of Random Droids=80
-Minimum number of Random Droids=70
+Minimum number of Random Droids=80
+Allowed Type of Random Droid for this level: 249
 Allowed Type of Random Droid for this level: 302
+Allowed Type of Random Droid for this level: 516
+Allowed Type of Random Droid for this level: 615
+Allowed Type of Random Droid for this level: 629
 ** End of this levels droid data **
 
 ----------------------------------------------------------------------
@@ -245,8 +250,9 @@ SForce: T=883 Fixed=0 Marker=101 Friendly=0 StartUpAtLabel="ToolkitBossMonsterSt
 Level=7
 Maximum number of Random Droids=15
 Minimum number of Random Droids=15
-Allowed Type of Random Droid for this level: 247
+Allowed Type of Random Droid for this level: 629
 Allowed Type of Random Droid for this level: 516
+Allowed Type of Random Droid for this level: 249
 
 SForce: T=883 Fixed=0 Marker=9999 Friendly=0 StartUpAtLabel="MERStartGameSquare" RushTux="no" DialogSectionToUse="MER" ShortLabel="Disruptor Shield Base Defender" attack_run_only_when_direct_line="no"
 
@@ -335,10 +341,6 @@ Allowed Type of Random Droid for this level: 123
 Allowed Type of Random Droid for this level: 139
 Allowed Type of Random Droid for this level: 247
 
-SForce: T=751 Fixed=0 Marker=11 Friendly=0 StartUpAtLabel="751DestructorBot1StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Vile Sniper" attack_run_only_when_direct_line="no"
-SForce: T=751 Fixed=0 Marker=11 Friendly=0 StartUpAtLabel="751DestructorBot2StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Mean Bone Crusher" attack_run_only_when_direct_line="no"
-SForce: T=751 Fixed=0 Marker=11 Friendly=0 StartUpAtLabel="751DestructorBot3StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Vile Sniper" attack_run_only_when_direct_line="no"
-
 SForce: T=329 Fixed=0 Marker=22 Friendly=0 StartUpAtLabel="Level9Stalker1StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Stalker" attack_run_only_when_direct_line="no"
 SForce: T=302 Fixed=0 Marker=22 Friendly=0 StartUpAtLabel="Level9Stalker2StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Stalker" attack_run_only_when_direct_line="no"
 SForce: T=249 Fixed=0 Marker=22 Friendly=0 StartUpAtLabel="Level9Stalker3StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Stalker" attack_run_only_when_direct_line="no"
@@ -371,24 +373,6 @@ Maximum number of Random Droids=0
 Minimum number of Random Droids=0
 Allowed Type of Random Droid for this level: 123
 
-SForce: T=329 Fixed=0 Marker=15 Friendly=0 StartUpAtLabel="329RoadTroll1StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Road Troll Bot" attack_run_only_when_direct_line="no"
-SForce: T=329 Fixed=0 Marker=15 Friendly=0 StartUpAtLabel="329RoadTroll2StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Road Troll Bot" attack_run_only_when_direct_line="no"
-SForce: T=329 Fixed=0 Marker=15 Friendly=0 StartUpAtLabel="329RoadTroll3StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Road Troll Bot" attack_run_only_when_direct_line="no"
-SForce: T=329 Fixed=0 Marker=15 Friendly=0 StartUpAtLabel="329RoadTroll4StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Road Troll Bot" attack_run_only_when_direct_line="no"
-
-SForce: T=420 Fixed=0 Marker=51 Friendly=0 StartUpAtLabel="420LoneWolf1StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Lone Wolf Bot" attack_run_only_when_direct_line="no"
-
-SForce: T=329 Fixed=0 Marker=35 Friendly=0 StartUpAtLabel="Level11Stalker1StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Stalker Bot" attack_run_only_when_direct_line="no"
-SForce: T=302 Fixed=0 Marker=35 Friendly=0 StartUpAtLabel="Level11Stalker2StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Stalker Bot" attack_run_only_when_direct_line="no"
-SForce: T=249 Fixed=0 Marker=35 Friendly=0 StartUpAtLabel="Level11Stalker3StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Stalker Bot" attack_run_only_when_direct_line="no"
-SForce: T=247 Fixed=0 Marker=35 Friendly=0 StartUpAtLabel="Level11Stalker4StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Stalker Bot" attack_run_only_when_direct_line="no"
-
-SForce: T=123 Fixed=0 Marker=36 Friendly=0 StartUpAtLabel="Level11Wanderer1StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Wandering Bot" attack_run_only_when_direct_line="no"
-SForce: T=123 Fixed=0 Marker=36 Friendly=0 StartUpAtLabel="Level11Wanderer2StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Wandering Bot" attack_run_only_when_direct_line="no"
-SForce: T=123 Fixed=0 Marker=36 Friendly=0 StartUpAtLabel="Level11Wanderer3StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Wandering Bot" attack_run_only_when_direct_line="no"
-SForce: T=123 Fixed=0 Marker=36 Friendly=0 StartUpAtLabel="Level11Wanderer4StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Wandering Bot" attack_run_only_when_direct_line="no"
-SForce: T=123 Fixed=0 Marker=36 Friendly=0 StartUpAtLabel="Level11Wanderer5StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Wandering Bot" attack_run_only_when_direct_line="no"
-
 ** End of this levels droid data **
 
 ----------------------------------------------------------------------
@@ -397,8 +381,8 @@ SForce: T=123 Fixed=0 Marker=36 Friendly=0 StartUpAtLabel="Level11Wanderer5Start
 
 ** Beginning of new Level **
 Level=12
-Maximum number of Random Droids=5
-Minimum number of Random Droids=5
+Maximum number of Random Droids=0
+Minimum number of Random Droids=0
 Allowed Type of Random Droid for this level: 247
 Allowed Type of Random Droid for this level: 302
 Allowed Type of Random Droid for this level: 420
@@ -410,8 +394,8 @@ Allowed Type of Random Droid for this level: 420
 
 ** Beginning of new Level **
 Level=13
-Maximum number of Random Droids=35
-Minimum number of Random Droids=38
+Maximum number of Random Droids=0
+Minimum number of Random Droids=0
 Allowed Type of Random Droid for this level: 883
 ** End of this levels droid data **
 
@@ -510,7 +494,7 @@ SForce: T=821 Fixed=0 Marker=9998 Friendly=0 StartUpAtLabel="Kevins821StartGameS
 
 ** Beginning of new Level **
 Level=18
-Maximum number of Random Droids=3
+Maximum number of Random Droids=6
 Minimum number of Random Droids=2
 Allowed Type of Random Droid for this level: 571
 Allowed Type of Random Droid for this level: 476
@@ -526,14 +510,6 @@ Maximum number of Random Droids=0
 Minimum number of Random Droids=0
 Allowed Type of Random Droid for this level: 751
 
-SForce: T=296 Fixed=0 Marker=17 Friendly=0 StartUpAtLabel="296CrawlerBot1StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Crawler Bot" attack_run_only_when_direct_line="no"
-SForce: T=296 Fixed=0 Marker=17 Friendly=0 StartUpAtLabel="296CrawlerBot2StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Crawler Bot" attack_run_only_when_direct_line="no"
-SForce: T=296 Fixed=0 Marker=17 Friendly=0 StartUpAtLabel="296CrawlerBot3StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Crawler Bot" attack_run_only_when_direct_line="no"
-
-SForce: T=296 Fixed=0 Marker=18 Friendly=0 StartUpAtLabel="296CrawlerBot4StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Crawler Bot" attack_run_only_when_direct_line="no"
-SForce: T=296 Fixed=0 Marker=18 Friendly=0 StartUpAtLabel="296CrawlerBot5StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Crawler Bot" attack_run_only_when_direct_line="no"
-SForce: T=296 Fixed=0 Marker=18 Friendly=0 StartUpAtLabel="296CrawlerBot6StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Crawler Bot" attack_run_only_when_direct_line="no"
-
 ** End of this levels droid data **
 
 ----------------------------------------------------------------------
@@ -545,25 +521,6 @@ Level=22
 Maximum number of Random Droids=0
 Minimum number of Random Droids=0
 Allowed Type of Random Droid for this level: 751
-
-SForce: T=GUB Fixed=0 Marker=19 Friendly=1 StartUpAtLabel="NewTownGuard1StartGameSquare" RushTux="no" DialogSectionToUse="StandardNewTownGateGuard" ShortLabel="New Town Gate Guard" attack_run_only_when_direct_line="no"
-SForce: T=GUB Fixed=0 Marker=19 Friendly=1 StartUpAtLabel="NewTownGuard2StartGameSquare" RushTux="no" DialogSectionToUse="StandardNewTownGateGuard" ShortLabel="New Town Gate Guard" attack_run_only_when_direct_line="no"
-
-SForce: T=476 Fixed=0 Marker=20 Friendly=0 StartUpAtLabel="476MadCircleBot1StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Mad Circle Bot" attack_run_only_when_direct_line="no"
-SForce: T=476 Fixed=0 Marker=20 Friendly=0 StartUpAtLabel="476MadCircleBot2StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Mad Circle Bot" attack_run_only_when_direct_line="no"
-SForce: T=476 Fixed=0 Marker=20 Friendly=0 StartUpAtLabel="476MadCircleBot3StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Mad Circle Bot" attack_run_only_when_direct_line="no"
-SForce: T=476 Fixed=0 Marker=20 Friendly=0 StartUpAtLabel="476MadCircleBot4StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Mad Circle Bot" attack_run_only_when_direct_line="no"
-SForce: T=476 Fixed=0 Marker=20 Friendly=0 StartUpAtLabel="476MadCircleBot5StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Mad Circle Bot" attack_run_only_when_direct_line="no"
-
-SForce: T=329 Fixed=0 Marker=37 Friendly=0 StartUpAtLabel="Level22Lurker1StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Lurking Bot" attack_run_only_when_direct_line="no"
-SForce: T=420 Fixed=0 Marker=37 Friendly=0 StartUpAtLabel="Level22Lurker2StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Lurking Bot" attack_run_only_when_direct_line="no"
-SForce: T=329 Fixed=0 Marker=37 Friendly=0 StartUpAtLabel="Level22Lurker3StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Lurking Bot" attack_run_only_when_direct_line="no"
-SForce: T=420 Fixed=0 Marker=37 Friendly=0 StartUpAtLabel="Level22Lurker4StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Lurking Bot" attack_run_only_when_direct_line="no"
-
-SForce: T=329 Fixed=0 Marker=38 Friendly=0 StartUpAtLabel="Level22Stalker1StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Stalker Bot" attack_run_only_when_direct_line="no"
-SForce: T=302 Fixed=0 Marker=38 Friendly=0 StartUpAtLabel="Level22Stalker2StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Stalker Bot" attack_run_only_when_direct_line="no"
-SForce: T=249 Fixed=0 Marker=38 Friendly=0 StartUpAtLabel="Level22Stalker3StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Stalker Bot" attack_run_only_when_direct_line="no"
-SForce: T=247 Fixed=0 Marker=38 Friendly=0 StartUpAtLabel="Level22Stalker4StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Stalker Bot" attack_run_only_when_direct_line="no"
 
 ** End of this levels droid data **
 
@@ -577,21 +534,6 @@ Maximum number of Random Droids=0
 Minimum number of Random Droids=0
 Allowed Type of Random Droid for this level: 751
 
-SForce: T=516 Fixed=0 Marker=101 Friendly=0 StartUpAtLabel="516CaveTroll1StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Cave Troll" attack_run_only_when_direct_line="no"
-SForce: T=516 Fixed=0 Marker=101 Friendly=0 StartUpAtLabel="516CaveTroll2StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Cave Troll" attack_run_only_when_direct_line="no"
-SForce: T=516 Fixed=0 Marker=101 Friendly=0 StartUpAtLabel="516CaveTroll3StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Cave Troll" attack_run_only_when_direct_line="no"
-SForce: T=516 Fixed=0 Marker=101 Friendly=0 StartUpAtLabel="516CaveTroll4StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Cave Troll" attack_run_only_when_direct_line="no"
-SForce: T=516 Fixed=0 Marker=101 Friendly=0 StartUpAtLabel="516CaveTroll5StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Cave Troll" attack_run_only_when_direct_line="no"
-SForce: T=516 Fixed=0 Marker=101 Friendly=0 StartUpAtLabel="516CaveTroll6StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Cave Troll" attack_run_only_when_direct_line="no"
-SForce: T=516 Fixed=0 Marker=101 Friendly=0 StartUpAtLabel="516CaveTroll7StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Cave Troll" attack_run_only_when_direct_line="no"
-SForce: T=516 Fixed=0 Marker=101 Friendly=0 StartUpAtLabel="516CaveTroll8StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Cave Troll" attack_run_only_when_direct_line="no"
-SForce: T=516 Fixed=0 Marker=101 Friendly=0 StartUpAtLabel="516CaveTroll9StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Cave Troll" attack_run_only_when_direct_line="no"
-SForce: T=516 Fixed=0 Marker=101 Friendly=0 StartUpAtLabel="516CaveTroll10StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Cave Troll" attack_run_only_when_direct_line="no"
-SForce: T=516 Fixed=0 Marker=101 Friendly=0 StartUpAtLabel="516CaveTroll11StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Cave Troll" attack_run_only_when_direct_line="no"
-SForce: T=516 Fixed=0 Marker=101 Friendly=0 StartUpAtLabel="516CaveTroll12StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Cave Troll" attack_run_only_when_direct_line="no"
-SForce: T=516 Fixed=0 Marker=101 Friendly=0 StartUpAtLabel="516CaveTroll13StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Cave Troll" attack_run_only_when_direct_line="no"
-SForce: T=516 Fixed=0 Marker=101 Friendly=0 StartUpAtLabel="516CaveTroll14StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Cave Troll" attack_run_only_when_direct_line="no"
-
 ** End of this levels droid data **
 
 ----------------------------------------------------------------------
@@ -602,12 +544,9 @@ SForce: T=516 Fixed=0 Marker=101 Friendly=0 StartUpAtLabel="516CaveTroll14StartG
 Level=28
 Maximum number of Random Droids=0
 Minimum number of Random Droids=0
+Allowed Type of Random Droid for this level: 123
+Allowed Type of Random Droid for this level: 302
 Allowed Type of Random Droid for this level: 751
-
-SForce: T=999 Fixed=0 Marker=101 Friendly=0 StartUpAtLabel="MSExecutioner1StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="MS Executioner Bot" attack_run_only_when_direct_line="no"
-SForce: T=999 Fixed=0 Marker=101 Friendly=0 StartUpAtLabel="MSExecutioner2StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="MS Executioner Bot" attack_run_only_when_direct_line="no"
-SForce: T=999 Fixed=0 Marker=101 Friendly=0 StartUpAtLabel="MSExecutioner3StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="MS Executioner Bot" attack_run_only_when_direct_line="no"
-SForce: T=999 Fixed=0 Marker=101 Friendly=0 StartUpAtLabel="MSExecutioner4StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="MS Executioner Bot" attack_run_only_when_direct_line="no"
 
 ** End of this levels droid data **
 
@@ -703,7 +642,7 @@ Minimum number of Random Droids=0
 Allowed Type of Random Droid for this level: 476
 
 //--------------------
-// This is SADD - secreat area defence droid
+// This is SADD - secret area defence droid
 //
 SForce: T=883 Fixed=0 Marker=9997 Friendly=1 StartUpAtLabel="SADDStartGameSquare" RushTux="no" DialogSectionToUse="SADD" ShortLabel="SADD - Secret Area Defence Droid" attack_run_only_when_direct_line="no"
 
@@ -720,17 +659,17 @@ SForce: T=598 Fixed=0 Marker=9996 Friendly=0 StartUpAtLabel="SecretAreaDefenceCo
 //--------------------
 // This is Boris. Leader of scientists locked in secret area
 //
-SForce: T=WOR Fixed=0 Marker=9994 Friendly=1 StartUpAtLabel="BorisStartGameSquare" RushTux="no" DialogSectionToUse="Boris" ShortLabel="Boris -- scientists leader" attack_run_only_when_direct_line="no"
+//SForce: T=WOR Fixed=0 Marker=9994 Friendly=1 StartUpAtLabel="BorisStartGameSquare" RushTux="no" DialogSectionToUse="Boris" ShortLabel="Boris -- scientists leader" attack_run_only_when_direct_line="no"
 
 //--------------------
 // This is Lina -- librarian in secret area
 //
-SForce: T=FSC Fixed=0 Marker=9994 Friendly=1 StartUpAtLabel="LinaStartGameSquare" RushTux="no" DialogSectionToUse="Lina" ShortLabel="Lina -- librarian" attack_run_only_when_direct_line="no"
+//SForce: T=FSC Fixed=0 Marker=9994 Friendly=1 StartUpAtLabel="LinaStartGameSquare" RushTux="no" DialogSectionToUse="Lina" ShortLabel="Lina -- librarian" attack_run_only_when_direct_line="no"
 
 //--------------------
 // This is Serge -- storehouse keeper
 //
-SForce: T=WOR Fixed=0 Marker=9994 Friendly=1 StartUpAtLabel="SergeStartGameSquare" RushTux="no" DialogSectionToUse="Serge" ShortLabel="Serge -- storehouse keeper" attack_run_only_when_direct_line="no"
+//SForce: T=WOR Fixed=0 Marker=9994 Friendly=1 StartUpAtLabel="SergeStartGameSquare" RushTux="no" DialogSectionToUse="Serge" ShortLabel="Serge -- storehouse keeper" attack_run_only_when_direct_line="no"
 
 SForce: T=302 Fixed=0 Marker=44 Friendly=0 StartUpAtLabel="SecretAreaCollectorPassage2" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Nemesis" attack_run_only_when_direct_line="no"
 
