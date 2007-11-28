@@ -1,0 +1,3592 @@
+# French translations for freedroidRPG package
+# Traductions françaises du paquet freedroidRPG.
+# Copyright (C) 2007 Freedroid RPG Development Team
+# This file is distributed under the same license as the freedroidRPG package.
+#  <freedroid-discussion@lists.sourceforge.net>, 2007.
+#
+msgid ""
+msgstr ""
+"Report-Msgid-Bugs-To: freedroid-discussion@lists.sourceforge.net\n"
+"POT-Creation-Date: 2007-09-18 11:33+0200\n"
+"PO-Revision-Date: 2007-08-03 10:30+0200\n"
+"Last-Translator:  <freedroid-discussion@lists.sourceforge.net>\n"
+"Language-Team: French\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-15\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: ../src/blocks.c:2533 ../src/blocks.c:2539 ../src/blocks.c:2546
+#: ../src/blocks.c:3879 ../src/blocks.c:3881 ../src/blocks.c:3892
+#: ../src/blocks.c:3894
+msgid "Wall"
+msgstr "Un mur"
+
+#: ../src/blocks.c:2534 ../src/blocks.c:2540
+msgid "Hey ! This looks like...a WALL !"
+msgstr "He ! Ça ressemble ... à un mur !"
+
+#: ../src/blocks.c:2547
+msgid "Maybe you could use a door to go out. This wall seems pretty solid."
+msgstr ""
+"Peut-être pourriez-vous utiliser une porte pour sortir. Ce mur semble plutôt "
+"solide."
+
+#: ../src/blocks.c:2560 ../src/blocks.c:2568
+msgid "Glass wall"
+msgstr "Un mur en verre"
+
+#: ../src/blocks.c:2561 ../src/blocks.c:2569
+msgid "A wall made out of glass. It lets the light go through."
+msgstr "Un mur fait de verre. Il laisse passer la lumière."
+
+#: ../src/blocks.c:2617 ../src/blocks.c:2619 ../src/blocks.c:2621
+#: ../src/blocks.c:2623 ../src/blocks.c:2625 ../src/blocks.c:2627
+#: ../src/blocks.c:2629 ../src/blocks.c:2631
+msgid "Wall with a window"
+msgstr "Un mur avec une fenêtre"
+
+#: ../src/blocks.c:2618 ../src/blocks.c:2620 ../src/blocks.c:2622
+#: ../src/blocks.c:2624 ../src/blocks.c:2626 ../src/blocks.c:2628
+#: ../src/blocks.c:2630 ../src/blocks.c:2632
+msgid "Windows, are, besides a famous joke OS trademark, very useful things."
+msgstr ""
+"Les fenêtres sont, en plus de la traduction française du nom d'un OS "
+"risible, très utiles."
+
+#: ../src/blocks.c:2654
+msgid "Door"
+msgstr "Une porte"
+
+#: ../src/blocks.c:2655
+msgid "This is a door. Seems to open automatically when someone approaches."
+msgstr ""
+"C'est une porte. Elle semble s'ouvrir automatiquement lorsque quelqu'un s'en "
+"approche"
+
+#: ../src/blocks.c:2687
+msgid "Locked door"
+msgstr "Une porte fermée"
+
+#: ../src/blocks.c:2688
+msgid "The red color probably indicates that the door is locked."
+msgstr "La couleur rouge indique probablement que la porte est fermée."
+
+#: ../src/blocks.c:2714 ../src/blocks.c:2719
+msgid "Pillar"
+msgstr "Un pilier"
+
+#: ../src/blocks.c:2715 ../src/blocks.c:2720
+msgid "A pillar made out of gray concrete."
+msgstr "Un pilier fait de ciment gris."
+
+#: ../src/blocks.c:2728 ../src/blocks.c:2733 ../src/blocks.c:2738
+#: ../src/blocks.c:2743
+msgid "Supercluster terminal"
+msgstr "Un terminal de super-cluster."
+
+#: ../src/blocks.c:2729 ../src/blocks.c:2734 ../src/blocks.c:2739
+#: ../src/blocks.c:2744
+msgid ""
+"This is a small part of a gigantic computer cluster, maybe many square miles "
+"large..."
+msgstr ""
+" C'est une petite partie d'un gigantesque cluster d'ordinateurs, peut-être "
+"de plusieurs kilomètres carrés ..."
+
+#: ../src/blocks.c:2752 ../src/blocks.c:2758 ../src/blocks.c:2764
+#: ../src/blocks.c:2770
+msgid "Ray emitter"
+msgstr "Un emetteur de rayon"
+
+#: ../src/blocks.c:2753 ../src/blocks.c:2759 ../src/blocks.c:2765
+#: ../src/blocks.c:2771
+msgid "It appears to be in \"standby\" mode."
+msgstr "Il semble être en mode \"pause\""
+
+#: ../src/blocks.c:2798 ../src/blocks.c:2799 ../src/blocks.c:2800
+#: ../src/blocks.c:2801 ../src/blocks.c:2802
+msgid "Droid nest"
+msgstr "Un nid de droïdes"
+
+#: ../src/blocks.c:2803 ../src/blocks.c:2804 ../src/blocks.c:2805
+#: ../src/blocks.c:2806 ../src/blocks.c:2807
+msgid ""
+"This is a service droid case. You suppose it's of no use for your quest."
+msgstr ""
+"C'est un petit logement pour droïdes de service. Ça n'a probablement aucun interet pour "
+"votre quête."
+
+#: ../src/blocks.c:2835 ../src/blocks.c:2844 ../src/blocks.c:2852
+#: ../src/blocks.c:2860
+msgid "Chest"
+msgstr "Coffre"
+
+#: ../src/blocks.c:2836 ../src/blocks.c:2853
+msgid "This chest has already been opened"
+msgstr "Ce coffre a déjà été ouvert"
+
+#: ../src/blocks.c:2845 ../src/blocks.c:2861
+msgid "This chest is closed."
+msgstr "Ce coffre est fermé"
+
+#: ../src/blocks.c:2867 ../src/blocks.c:2873 ../src/blocks.c:2879
+#: ../src/blocks.c:2885 ../src/blocks.c:2892 ../src/blocks.c:2898
+#: ../src/blocks.c:2904 ../src/blocks.c:2910
+msgid "Autogun"
+msgstr "Une arme automatique"
+
+#: ../src/blocks.c:2868 ../src/blocks.c:2874 ../src/blocks.c:2880
+#: ../src/blocks.c:2886
+msgid "A not-that-nice autogun. Beware : it could be harmful."
+msgstr ""
+"Une arme automatique pas très rassurante. Attention, ça pourrait être "
+"dangereux."
+
+#: ../src/blocks.c:2893
+msgid "A not-that-nice autogun. It seems disabled for now."
+msgstr ""
+"Une arme automatique pas très rassurante. Elle semble désactivée pour "
+"l'instant."
+
+#: ../src/blocks.c:2899
+msgid "This killing machine is disabled. For now."
+msgstr "Cette machine de mort est désactivée. Pour l'instant."
+
+#: ../src/blocks.c:2905
+msgid ""
+"It is looking at you. You are sure it is looking at you. But it does not "
+"fire. For now."
+msgstr ""
+" Elle vous regarde. Vous êtes sûr qu'elle vous regarde. Mais elle ne tire "
+"pas. Pour l'instant."
+
+#: ../src/blocks.c:2911
+msgid "The autogun is disabled."
+msgstr "L'arme automatique est désactivée."
+
+#: ../src/blocks.c:2917 ../src/blocks.c:2923 ../src/blocks.c:2929
+#: ../src/blocks.c:2935 ../src/blocks.c:2941 ../src/blocks.c:2947
+msgid "Rock barrier"
+msgstr "Paroi rocheuse"
+
+#: ../src/blocks.c:2918 ../src/blocks.c:2924 ../src/blocks.c:2930
+#: ../src/blocks.c:2936 ../src/blocks.c:2942 ../src/blocks.c:2948
+msgid "No way to pass through. Find another path."
+msgstr "Impossible de traverser. Il faut trouver un autre chemin."
+
+#: ../src/blocks.c:2956
+msgid "Cooking pot"
+msgstr "Une marmite"
+
+#: ../src/blocks.c:2957
+msgid ""
+"This cauldron can be used for many good things. Cooking beef or pork for "
+"dinner are some of them. It can be also used for many evil things. Cooking "
+"Linarians for dinner is one of them."
+msgstr ""
+" Ce chaudron peut être utilisé pour beaucoup de choses. Cuisiner du boeuf ou "
+"du porc pour le diner en font partie. Il peut aussi être utilisé de manière "
+"diabolique. Cuisiner des Linariens pour le diner en fait partie."
+
+#: ../src/blocks.c:2964 ../src/blocks.c:2972 ../src/blocks.c:2980
+#: ../src/blocks.c:2988
+msgid "Terminal"
+msgstr "Un terminal"
+
+#: ../src/blocks.c:2965 ../src/blocks.c:2973 ../src/blocks.c:2981
+#: ../src/blocks.c:2989
+msgid "This is a Terminus 2 terminal. Made by Parafunken."
+msgstr "C'est un terminal 'Terminus 2'. Fabriqué par Parafunken."
+
+#: ../src/blocks.c:2993 ../src/blocks.c:2997
+msgid "Barrel"
+msgstr "Un baril"
+
+#: ../src/blocks.c:2994
+msgid "A painted barrel, protected from rust."
+msgstr "Un baril paint, protégé de la rouille."
+
+#: ../src/blocks.c:2998
+msgid "A rusty barrel."
+msgstr "Un baril rouillé."
+
+#: ../src/blocks.c:3003 ../src/blocks.c:3007
+msgid "Wooden crate"
+msgstr "Une caisse en bois"
+
+#: ../src/blocks.c:3004 ../src/blocks.c:3008
+msgid "This is a wooden crate that could contain interesting things. Or not."
+msgstr ""
+"C'est une caisse en bois qui pourrait contenir des choses intéressantes. Ou "
+"pas."
+
+#: ../src/blocks.c:3020 ../src/blocks.c:3028 ../src/blocks.c:3036
+#: ../src/blocks.c:3044
+msgid "Room lamp"
+msgstr "Lampe de bureau"
+
+#: ../src/blocks.c:3021
+msgid "This is a charming room lamp."
+msgstr "C'est une jolie lampe de bureau."
+
+#: ../src/blocks.c:3029
+msgid "This is a wonderful room lamp."
+msgstr "C'est une merveilleuse lampe de bureau."
+
+#: ../src/blocks.c:3037
+msgid "This is a great room lamp."
+msgstr "C'est une super lampe de bureau."
+
+#: ../src/blocks.c:3045
+msgid "This is a perfect room lamp."
+msgstr "C'est la lampe de bureau idéale."
+
+#: ../src/blocks.c:3060 ../src/blocks.c:3078 ../src/blocks.c:3083
+#: ../src/blocks.c:3100
+msgid "Fence"
+msgstr "Une barrière"
+
+#: ../src/blocks.c:3061
+msgid "This is a wooden fence. Find another path."
+msgstr "C'est une barrière en bois. Il faut trouver un autre chemin."
+
+#: ../src/blocks.c:3079 ../src/blocks.c:3101
+msgid ""
+"This type of a barrier constructed out of wire is called the chain link "
+"fence."
+msgstr "Ce type de barrière fait de fil de fer est appelé grillage."
+
+#: ../src/blocks.c:3084
+msgid "You can't break it. Find another way."
+msgstr "Impossible à casser. Il faut trouver un autre chemin."
+
+#: ../src/blocks.c:3109 ../src/blocks.c:3118 ../src/blocks.c:3125
+#: ../src/blocks.c:3132
+msgid "Small toilet"
+msgstr "De petites toilettes"
+
+#: ../src/blocks.c:3110 ../src/blocks.c:3119 ../src/blocks.c:3126
+#: ../src/blocks.c:3133
+msgid "Smells good."
+msgstr "Elles sentent bon."
+
+#: ../src/blocks.c:3159 ../src/blocks.c:3161 ../src/blocks.c:3163
+#: ../src/blocks.c:3165
+msgid "Toilet"
+msgstr "Des toilettes"
+
+#: ../src/blocks.c:3160 ../src/blocks.c:3162
+msgid "Feel like defecating ?"
+msgstr "Envie de déféquer ?"
+
+#: ../src/blocks.c:3164
+msgid "Yes, they are clean."
+msgstr "Oui, elles sont propres."
+
+#: ../src/blocks.c:3166
+msgid "Would you have something to empty ?"
+msgstr "Auriez-vous quelque chose à vider ?"
+
+#: ../src/blocks.c:3174 ../src/blocks.c:3182 ../src/blocks.c:3190
+#: ../src/blocks.c:3198 ../src/blocks.c:4406 ../src/blocks.c:4412
+#: ../src/blocks.c:4418 ../src/blocks.c:4424
+msgid "Chair"
+msgstr "Une chaise"
+
+#: ../src/blocks.c:3175 ../src/blocks.c:3183 ../src/blocks.c:3191
+#: ../src/blocks.c:3199
+msgid "This is an orange chair which does not look too comfortable"
+msgstr "C'est une chaise orange qui ne semble pas très confortable."
+
+#: ../src/blocks.c:3206 ../src/blocks.c:3214 ../src/blocks.c:3222
+#: ../src/blocks.c:3230
+msgid "Sofa"
+msgstr "Un canapé"
+
+#: ../src/blocks.c:3207 ../src/blocks.c:3215 ../src/blocks.c:3223
+#: ../src/blocks.c:3231
+msgid "A soft red sofa."
+msgstr "Un canapé rouge confortable."
+
+#: ../src/blocks.c:3263 ../src/blocks.c:3271 ../src/blocks.c:3279
+#: ../src/blocks.c:3287
+msgid "Plant"
+msgstr "Une plante"
+
+#: ../src/blocks.c:3264 ../src/blocks.c:3272 ../src/blocks.c:3280
+#: ../src/blocks.c:3288
+msgid ""
+"After all the humans are killed by the bots, only plants like this one will "
+"remain."
+msgstr ""
+" Lorsque tous les humains auront été tués par les robots, seules les plantes "
+"comme celle là resteront."
+
+#: ../src/blocks.c:3295 ../src/blocks.c:3302 ../src/blocks.c:3309
+#: ../src/blocks.c:3316
+msgid "Desk"
+msgstr "Un bureau"
+
+#: ../src/blocks.c:3296 ../src/blocks.c:3303 ../src/blocks.c:3310
+#: ../src/blocks.c:3317
+msgid "This desk is designed to handle extreme loads of office work."
+msgstr "Ce bureau est conçu pour supporter des charges extrêmes de travail."
+
+#: ../src/blocks.c:3365 ../src/blocks.c:3372 ../src/blocks.c:3379
+#: ../src/blocks.c:3386
+msgid "Bench"
+msgstr "Un banc"
+
+#: ../src/blocks.c:3366 ../src/blocks.c:3373 ../src/blocks.c:3380
+#: ../src/blocks.c:3387
+msgid "A simple white bench."
+msgstr "Un simple banc blanc."
+
+#: ../src/blocks.c:3395 ../src/blocks.c:3403 ../src/blocks.c:3412
+#: ../src/blocks.c:3421
+msgid "Bath tub"
+msgstr "Une baignoire"
+
+#: ../src/blocks.c:3396
+msgid "An idea of what comfort is"
+msgstr "Une idée du confort"
+
+#: ../src/blocks.c:3404 ../src/blocks.c:3413 ../src/blocks.c:3422
+msgid "Taking a bath is not your current quest - what a pity !"
+msgstr ""
+"Prendre un bain ne fait pas partie de la quête en cours - quel dommage !"
+
+#: ../src/blocks.c:3429 ../src/blocks.c:3437
+msgid "Washing tub"
+msgstr "Une bassine"
+
+#: ../src/blocks.c:3430 ../src/blocks.c:3438
+msgid "A metal tub. The washing machine of the post-assault 21st century."
+msgstr ""
+"Une bassine en métal. La machine à laver du 21ème siècle de l'après-assaut."
+
+#: ../src/blocks.c:3472 ../src/blocks.c:3478 ../src/blocks.c:3484
+#: ../src/blocks.c:3491 ../src/blocks.c:3497
+msgid "Tree"
+msgstr "Un arbre"
+
+#: ../src/blocks.c:3473
+msgid "This tree seems quite normal"
+msgstr "Cet arbre semble plutôt normal"
+
+#: ../src/blocks.c:3479
+msgid "This is a nice tree"
+msgstr "C'est un bel arbre"
+
+#: ../src/blocks.c:3485
+msgid "No, it definitely doesn't look like a droid"
+msgstr "Non, ça ne ressemble vraiment pas à un droïde"
+
+#: ../src/blocks.c:3492
+msgid "This tree does not look too healthy."
+msgstr "Cet arbre ne semble pas trop en forme."
+
+#: ../src/blocks.c:3498
+msgid "For some strange reason this tree has blue leaves."
+msgstr "Pour une raison mystérieuse, cet arbre a des feuilles bleues."
+
+#: ../src/blocks.c:3508 ../src/blocks.c:3514 ../src/blocks.c:3520
+#: ../src/blocks.c:3526 ../src/blocks.c:3532 ../src/blocks.c:3538
+#: ../src/blocks.c:3544 ../src/blocks.c:3550 ../src/blocks.c:3556
+#: ../src/blocks.c:3562
+msgid "Colony wall"
+msgstr "Un mur de la colonie"
+
+#: ../src/blocks.c:3509 ../src/blocks.c:3515 ../src/blocks.c:3521
+#: ../src/blocks.c:3527 ../src/blocks.c:3533 ../src/blocks.c:3539
+#: ../src/blocks.c:3545 ../src/blocks.c:3551 ../src/blocks.c:3557
+#: ../src/blocks.c:3563
+msgid "This is just a pink wall."
+msgstr "C'est juste un mur rose."
+
+#: ../src/blocks.c:3613
+msgid "Restaurant shelves"
+msgstr "Étagères de restaurant"
+
+#: ../src/blocks.c:3614
+msgid "This is but standard restaurant furniture."
+msgstr "Ce sont des équipements standards pour un restaurant."
+
+#: ../src/blocks.c:3623 ../src/blocks.c:3629 ../src/blocks.c:3635
+#: ../src/blocks.c:3641
+msgid "Rock wall"
+msgstr "Un mur de pierres"
+
+#: ../src/blocks.c:3624 ../src/blocks.c:3630 ../src/blocks.c:3636
+#: ../src/blocks.c:3642
+msgid ""
+"This rock is here now and forever, and it is not going anywhere. Go "
+"somewhere else."
+msgstr ""
+" Ce rocher est là maintenant et pour toujours, et il ne va nullepart. Allez "
+"ailleurs."
+
+#: ../src/blocks.c:3656 ../src/blocks.c:3657 ../src/blocks.c:3658
+#: ../src/blocks.c:3659
+msgid "Grey wall"
+msgstr "Un mur gris"
+
+#: ../src/blocks.c:3660 ../src/blocks.c:3661 ../src/blocks.c:3662
+#: ../src/blocks.c:3663
+msgid ""
+"This is grey and seems quite hard to destroy. People usually call it a wall. "
+"You have no chance to go through : there must be another path."
+msgstr ""
+" C'est gris, et semble assez dur à détruire. Les gens appellent ça un mur. "
+"Vous n'avez aucune chance de passer au travers : il doit y avoir un autre "
+"chemin."
+
+#: ../src/blocks.c:3704 ../src/blocks.c:3711 ../src/blocks.c:4157
+#: ../src/blocks.c:4158
+msgid "Green wall"
+msgstr "Un mur vert"
+
+#: ../src/blocks.c:3705 ../src/blocks.c:3712
+msgid "This wall is covered by an asparagus-green wallpaper."
+msgstr "Ce mur est couvert par un papier peint vert asperge."
+
+#: ../src/blocks.c:3718 ../src/blocks.c:3725 ../src/blocks.c:3732
+#: ../src/blocks.c:3739
+msgid "Groovy wall"
+msgstr "Un mur étrange"
+
+#: ../src/blocks.c:3719 ../src/blocks.c:3726 ../src/blocks.c:3733
+#: ../src/blocks.c:3740
+msgid "Man, dig that groovy wallpaper. It's a real blast!"
+msgstr "Hé, regarde ce papier peint épatant. C'est hallucinant !"
+
+#: ../src/blocks.c:3838
+msgid "Brick wall"
+msgstr "Un mur en briques"
+
+#: ../src/blocks.c:3839
+msgid ""
+"A badly constructed brick wall. It looks like it was built in a rush. The "
+"color is quite nice though."
+msgstr ""
+" Un mur en briques mal construit. On dirait qu'il a été construit à la va "
+"vite. La couleur, par contre, est plutôt jolie."
+
+#: ../src/blocks.c:3880 ../src/blocks.c:3882
+msgid "This wall is suffering. Finish it!"
+msgstr "Ce mur souffre. Il faut l'achever !"
+
+#: ../src/blocks.c:3893 ../src/blocks.c:3895
+msgid "Well ... it was not very resistant "
+msgstr "Et bien ... ce n'était pas très résistant "
+
+#: ../src/blocks.c:3953
+msgid "Blood"
+msgstr "Du sang"
+
+#: ../src/blocks.c:3954
+msgid "Do droids bleed? These do."
+msgstr "Est-ce que les droïdes saignent ? Ceux là, oui."
+
+#: ../src/blocks.c:4011
+msgid "Oil stains"
+msgstr "Des taches d'huile"
+
+#: ../src/blocks.c:4012
+msgid "Do droids bleed? These don't."
+msgstr "Est-ce que les droïdes saignent ? Ceux là, non."
+
+#: ../src/blocks.c:4034 ../src/blocks.c:4042
+msgid "Entrance"
+msgstr "Entrée"
+
+#: ../src/blocks.c:4035 ../src/blocks.c:4043
+msgid "It leads into the dark tunnels below..."
+msgstr "Ça conduit dans les conduits sombres en dessous ..."
+
+#: ../src/blocks.c:4051 ../src/blocks.c:4060
+msgid "Ladder"
+msgstr "Échelle"
+
+#: ../src/blocks.c:4052 ../src/blocks.c:4061
+msgid "It leads to the surface world."
+msgstr "Elle conduite à la surface."
+
+#: ../src/blocks.c:4074 ../src/blocks.c:4127
+msgid "Exotic plant"
+msgstr "Une plante exotique"
+
+#: ../src/blocks.c:4075
+msgid "A wonderful exotic plant. You can read \"Made by Basse\" on it"
+msgstr ""
+" Une merveilleuse plante exotique. On peut lire \"Fait par Basse\" dessus"
+
+#: ../src/blocks.c:4095
+msgid "Rocks"
+msgstr "Pierres"
+
+#: ../src/blocks.c:4096
+msgid ""
+"Do you think a rock can attack you ? No, MS droids can't hide themselves "
+"that way : they crash before."
+msgstr ""
+" Pensez-vous qu'un rocher peut vous attaquer ? Non, les droïdes MS ne "
+"peuvent se dissimuler de cette manière : ils plantent avant."
+
+#: ../src/blocks.c:4128
+msgid "Eating too much of that could lead to a kernel panic."
+msgstr "Trop en manger pourrait provoquer un crash du noyau."
+
+#: ../src/blocks.c:4153 ../src/blocks.c:4154
+msgid "Red wall"
+msgstr "Un mur rouge"
+
+#: ../src/blocks.c:4155 ../src/blocks.c:4156 ../src/blocks.c:4159
+#: ../src/blocks.c:4160
+msgid "You think it would be better with a penguin on it. You are right."
+msgstr ""
+" Vous pensez que ce serait mieux avec un manchot dessus. Vous avez raison."
+
+#: ../src/blocks.c:4170 ../src/blocks.c:4176
+msgid "Shop counter"
+msgstr "Comptoir de magasin"
+
+#: ../src/blocks.c:4171 ../src/blocks.c:4177
+msgid ""
+"This model of the counter features a built-in cash register and bright neon "
+"lights."
+msgstr "Ce modèle de comptoir intègre une caisse enregistreuse et un néon."
+
+#: ../src/blocks.c:4182 ../src/blocks.c:4187
+msgid "Set of shelves"
+msgstr "Des étagères"
+
+#: ../src/blocks.c:4183
+msgid ""
+"There is a lot of junk in here. Bot parts, medical supplies, scrap metal "
+"bits and other useless things like that."
+msgstr ""
+" Il y a beaucoup de bibelots là dedans. Morceaux de robots, médicaments, "
+"bouts de métal et d'autre choses inutiles du même genre."
+
+#: ../src/blocks.c:4188
+msgid ""
+"There is a lot of junk in here. Bot parts, gold bars, dead rodents, scrap "
+"metal bits and other useless things like that."
+msgstr ""
+" Il y a beaucoup de bibelots là dedans. Morceaux de robots, lingots d'or, "
+"rats morts et d'autre choses inutiles du même genre."
+
+#: ../src/blocks.c:4193 ../src/blocks.c:4198
+msgid "Empty shelves"
+msgstr "Étagères vides"
+
+#: ../src/blocks.c:4194
+msgid "Whatever was here before, is not here anymore."
+msgstr "Quoi qu'il y ait eu ici, ça n'y est plus."
+
+#: ../src/blocks.c:4199
+msgid ""
+"These are empty shelves. Silent and hollow they sleep in Spring. No thing "
+"remains here now."
+msgstr ""
+" Ce sont des étagères vides. Silencieuses et désertes, elles sommeillent. "
+"Plus rien ne reste maintenant."
+
+#: ../src/blocks.c:4220 ../src/blocks.c:4226 ../src/blocks.c:4232
+#: ../src/blocks.c:4238 ../src/blocks.c:4244 ../src/blocks.c:4250
+#: ../src/blocks.c:4256 ../src/blocks.c:4262 ../src/blocks.c:4268
+#: ../src/blocks.c:4274 ../src/blocks.c:4280 ../src/blocks.c:4286
+#: ../src/blocks.c:4292 ../src/blocks.c:4298 ../src/blocks.c:4304
+#: ../src/blocks.c:4310 ../src/blocks.c:4317 ../src/blocks.c:4323
+#: ../src/blocks.c:4329 ../src/blocks.c:4335
+msgid "Strong wall"
+msgstr "Un mur solide"
+
+#: ../src/blocks.c:4221 ../src/blocks.c:4227 ../src/blocks.c:4233
+#: ../src/blocks.c:4239 ../src/blocks.c:4245 ../src/blocks.c:4251
+#: ../src/blocks.c:4257 ../src/blocks.c:4263 ../src/blocks.c:4269
+#: ../src/blocks.c:4275 ../src/blocks.c:4281 ../src/blocks.c:4287
+#: ../src/blocks.c:4293 ../src/blocks.c:4299 ../src/blocks.c:4305
+#: ../src/blocks.c:4311 ../src/blocks.c:4318 ../src/blocks.c:4324
+#: ../src/blocks.c:4330 ../src/blocks.c:4336
+msgid ""
+"This great wall can withstand a swarm of rogue bots madly attacking it for "
+"weeks*! It can belong to you for only 299.99C$ + tax, per section. *( Your "
+"duration may vary. This wall comes with ABSOLUTELY NO WARRANTY! ) "
+msgstr ""
+" Ce mur fantastique peut arrêter un bataillon de robots fous "
+"pendant des semaines ! Vous pouvez l'acheter pour seulement 299.99C$ HT par "
+"section. (Ce mur est vendu SANS AUCUNE GARANTIE !) "
+
+#: ../src/blocks.c:4344 ../src/blocks.c:4348 ../src/blocks.c:4352
+#: ../src/blocks.c:4356 ../src/blocks.c:4361 ../src/blocks.c:4369
+#: ../src/blocks.c:4373 ../src/blocks.c:4377 ../src/blocks.c:4381
+#: ../src/blocks.c:4386 ../src/blocks.c:4393 ../src/blocks.c:4399
+msgid "Gate"
+msgstr "Porte"
+
+#: ../src/blocks.c:4345 ../src/blocks.c:4349 ../src/blocks.c:4353
+#: ../src/blocks.c:4357 ../src/blocks.c:4362 ../src/blocks.c:4370
+#: ../src/blocks.c:4374 ../src/blocks.c:4378 ../src/blocks.c:4382
+#: ../src/blocks.c:4387
+msgid "This gate is little more than just a big door. A very big door."
+msgstr ""
+" Cette porte n'est pas simplement une grosse porte. C'est une très grosse "
+"porte."
+
+#: ../src/blocks.c:4394 ../src/blocks.c:4400
+msgid ""
+"It is locked in order to keep something out. Or maybe to keep something in?"
+msgstr ""
+" C'est fermé afin d'empêcher quelque chose d'entrer. Ou peut-être de sortir ?"
+
+#: ../src/blocks.c:4407 ../src/blocks.c:4413 ../src/blocks.c:4419
+#: ../src/blocks.c:4425
+msgid "This yellow chair looks inviting."
+msgstr "Cette chaise jaune est attrayante."
+
+#: ../src/blocks.c:4431 ../src/blocks.c:4437 ../src/blocks.c:4443
+#: ../src/blocks.c:4449
+msgid "Red bench"
+msgstr "Un banc rouge"
+
+#: ../src/blocks.c:4432
+msgid ""
+"It is a soft bench, commonly seen in hospitals, shops and houses all around "
+"the world."
+msgstr ""
+" C'est un banc confortable, que l'on trouve souvent dans les hôpitaux, les "
+"magasins et les maisons du monde entier."
+
+#: ../src/blocks.c:4438
+msgid ""
+"It is a soft bench, commonly seen in hospitals, malls and houses all around "
+"the world."
+msgstr ""
+" C'est un banc confortable, que l'on trouve souvent dans les hôpitaux, les "
+"centre commerciaux et les maisons du monde entier."
+
+#: ../src/blocks.c:4444
+msgid ""
+"It is a soft bench, commonly seen in hospitals, barber shops and houses all "
+"around the world."
+msgstr ""
+" C'est un banc confortable, que l'on trouve souvent dans les hôpitaux, les "
+"échopes de barbiers et les maisons du monde entier."
+
+#: ../src/blocks.c:4450
+msgid ""
+"It is a soft bench, commonly seen in hospitals, coffee shops and houses all "
+"around the world."
+msgstr ""
+" C'est un banc confortable, que l'on trouve souvent dans les hôpitaux, les "
+"cafés et les maisons du monde entier."
+
+#: ../src/blocks.c:4457 ../src/blocks.c:4462 ../src/blocks.c:4467
+#: ../src/blocks.c:4472
+msgid "Dead member of the Red Guard"
+msgstr "Membre de la Garde Rouge. Mort."
+
+#: ../src/blocks.c:4458
+msgid ""
+"If not for the terrible wounds, you could think that he is just asleep..."
+msgstr ""
+" Sans les blessures terribles, on pourrait penser qu'il est simplement "
+"endormi ..."
+
+#: ../src/blocks.c:4463
+msgid "It looks like he fought to the bitter end..."
+msgstr "On dirait qu'il s'est battu jusqu'au bout ..."
+
+#: ../src/blocks.c:4468
+msgid "Numerous wounds cover the body of this brave warrior..."
+msgstr "Beaucoup de blessures couvrent le corps de ce brave guerrier ..."
+
+#: ../src/blocks.c:4473
+msgid ""
+"His body is charred and twisted... Such is the price of the service in the "
+"Red Guard..."
+msgstr ""
+" Son corps est carbonisé et mutilé ... Tel est le prix du service dans la "
+"Garde Rouge ..."
+
+#: ../src/blocks.c:4479 ../src/blocks.c:4485 ../src/blocks.c:4491
+#: ../src/blocks.c:4497
+msgid "Conference table"
+msgstr "Table de conférence"
+
+#: ../src/blocks.c:4480 ../src/blocks.c:4486 ../src/blocks.c:4492
+#: ../src/blocks.c:4498
+msgid "A round conference table with chairs and a computer at every seat."
+msgstr ""
+"Une table de conférence ronde avec des chaises et un ordinateur à chaque "
+"place."
+
+#: ../src/blocks.c:4514 ../src/blocks.c:4520 ../src/blocks.c:4526
+#: ../src/blocks.c:4532
+msgid "Bed"
+msgstr "Un lit"
+
+#: ../src/blocks.c:4515 ../src/blocks.c:4521 ../src/blocks.c:4527
+#: ../src/blocks.c:4533
+msgid "This is a standard sleeping capsule."
+msgstr "C'est une capsule de sommeil standard."
+
+#: ../src/blocks.c:4538 ../src/blocks.c:4544 ../src/blocks.c:4550
+#: ../src/blocks.c:4556
+msgid "Bunk beds"
+msgstr "Couchette"
+
+#: ../src/blocks.c:4539 ../src/blocks.c:4545 ../src/blocks.c:4551
+#: ../src/blocks.c:4557
+msgid ""
+"To save space on the floor two sleeping capsules were stacked vertically."
+msgstr ""
+" Pour économiser de l'espace au sol, deux capsules de sommeil ont été "
+"positionnées verticalement."
+
+#: ../src/blocks.c:4563 ../src/blocks.c:4569 ../src/blocks.c:4575
+#: ../src/blocks.c:4581
+msgid "Projector"
+msgstr "Un projecteur"
+
+#: ../src/blocks.c:4564 ../src/blocks.c:4570 ../src/blocks.c:4576
+#: ../src/blocks.c:4582
+msgid ""
+"This device is used for casting images onto a wall or a screen. It uses "
+"something looking like a film reel as a source of those images."
+msgstr ""
+" Cet objet est utilisé pour projeter des images sur un mur ou un écran. Ça "
+"utilise quelque chose qui ressemble a une bobine de film comme source "
+"d'images."
+
+#: ../src/blocks.c:4587 ../src/blocks.c:4592 ../src/blocks.c:4597
+#: ../src/blocks.c:4602
+msgid "Projector screen"
+msgstr "Un écran de projection"
+
+#: ../src/blocks.c:4588 ../src/blocks.c:4593 ../src/blocks.c:4598
+#: ../src/blocks.c:4603
+msgid ""
+"This is a projector screen, it allows to get better image quality than the "
+"wall."
+msgstr ""
+" C'est un écran de projection, ça permet d'avoir une meilleur qualité "
+"d'image que sur le mur."
+
+#: ../src/blocks.c:4608 ../src/blocks.c:4613 ../src/blocks.c:4630
+#: ../src/blocks.c:4635
+msgid "Bookcase"
+msgstr "Étagère à livres"
+
+#: ../src/blocks.c:4609
+msgid ""
+"There are many interesting books here, but none of them is a switch opening "
+"a secret passage."
+msgstr ""
+" Il y a beaucoup de livres intéressants ici, mais aucun d'eux n'ouvre de "
+"passage secret."
+
+#: ../src/blocks.c:4614
+msgid "There are exactly 451 books here."
+msgstr "Il y a exactement 451 livres ici."
+
+#: ../src/blocks.c:4619 ../src/blocks.c:4624 ../src/blocks.c:4641
+#: ../src/blocks.c:4646
+msgid "Empty bookcase"
+msgstr "Un étagère vide"
+
+#: ../src/blocks.c:4620 ../src/blocks.c:4625
+msgid "No books here, just dust."
+msgstr "Aucun livre ici, seulement de la poussière."
+
+#: ../src/blocks.c:4631 ../src/blocks.c:4636
+msgid ""
+"Only boring books like the Necronomicon are here. Yawn. Nothing interesting."
+msgstr ""
+" Que des livres ennuyeux comme le Necronomicon ! Bof. Rien d'interessant."
+
+#: ../src/blocks.c:4642 ../src/blocks.c:4647
+msgid "Dust to trees. Trees to pages. Pages to books. Books to dust."
+msgstr ""
+"De la poussière aux arbres. Des arbres au papier. Du papier aux livres. Des "
+"livres à la poussière."
+
+#: ../src/blocks.c:4661 ../src/blocks.c:4663 ../src/blocks.c:4665
+msgid "Sign"
+msgstr "Un signe"
+
+#: ../src/blocks.c:4662 ../src/blocks.c:4664 ../src/blocks.c:4666
+msgid "The arrow points at a direction. Maybe you should follow it"
+msgstr "La flèche pointe dans une direction. Peut-être devriez-vous la suivre"
+
+#: ../src/blocks.c:4671 ../src/blocks.c:4678 ../src/blocks.c:4684
+#: ../src/blocks.c:4690 ../src/blocks.c:4697 ../src/blocks.c:4703
+#: ../src/blocks.c:4709 ../src/blocks.c:4715 ../src/blocks.c:4722
+#: ../src/blocks.c:4728 ../src/blocks.c:4734 ../src/blocks.c:4740
+msgid "Counter"
+msgstr "Un comptoir"
+
+#: ../src/blocks.c:4672 ../src/blocks.c:4679 ../src/blocks.c:4685
+#: ../src/blocks.c:4691 ../src/blocks.c:4698 ../src/blocks.c:4704
+#: ../src/blocks.c:4710 ../src/blocks.c:4716 ../src/blocks.c:4723
+#: ../src/blocks.c:4729 ../src/blocks.c:4735 ../src/blocks.c:4741
+msgid "A counter."
+msgstr "Un comptoir."
+
+#: ../src/blocks.c:4748
+msgid "Bar table"
+msgstr "Une table de bar"
+
+#: ../src/blocks.c:4749
+msgid "You can see some food stains on this yellow round table."
+msgstr "On peut voir des traces de nourriture sur cette table jaune."
+
+#: ../src/blocks.c:4755 ../src/blocks.c:4762
+msgid "Table"
+msgstr "Table"
+
+#: ../src/blocks.c:4756 ../src/blocks.c:4763
+msgid ""
+"Tables such as this one have been used for centuries to store various items "
+"on top of them."
+msgstr ""
+" Des tables comme celle-ci ont été utilisées durant des siècles pour placer "
+"divers objets dessus."
+
+#: ../src/blocks.c:4771 ../src/blocks.c:4778
+msgid "Glass table"
+msgstr "Table en verre"
+
+#: ../src/blocks.c:4772 ../src/blocks.c:4779
+msgid "This table is made out of see-through glass."
+msgstr "Cette table est faite en verre transparent."
+
+#: ../src/blocks.c:4786
+msgid "Water"
+msgstr "De l'eau"
+
+#: ../src/blocks.c:4787
+msgid "This water seems dangerous. You will want to avoid going there. "
+msgstr "Cette eau semble dangereuse. Vous devriez éviter d'aller dedans."
+
+#: ../src/blocks.c:4813 ../src/blocks.c:4820 ../src/blocks.c:4827
+#: ../src/blocks.c:4834 ../src/blocks.c:4841 ../src/blocks.c:4848
+msgid "Crystal pillar"
+msgstr ""
+
+#: ../src/blocks.c:4814 ../src/blocks.c:4821 ../src/blocks.c:4828
+#: ../src/blocks.c:4835 ../src/blocks.c:4842 ../src/blocks.c:4849
+#, fuzzy
+msgid "A pillar made out of crystal."
+msgstr "Un pilier fait de ciment gris."
+
+#: ../src/blocks.c:4874
+#, c-format
+msgid "unnamed_obstacle"
+msgstr ""
+
+#: ../src/blocks.c:4880
+#, c-format
+msgid "This obstacle seems solid."
+msgstr "Cet obstacle semble solide."
+
+#: ../src/bullet.c:650
+#, c-format
+msgid "%s was destroyed by disruptor blast."
+msgstr "%s a été détruit par votre tir"
+
+#: ../src/bullet.c:663
+#, c-format
+msgid "Disruptor blast has hit you for %d damage."
+msgstr "Un tir vous a causé %d dommages."
+
+#: ../src/bullet.c:716
+msgid "That one went into the armour."
+msgstr "Celui-là a été arrêté par l'armure."
+
+#: ../src/bullet.c:858
+#, c-format
+msgid ""
+"%s was destroyed by your bullet.  For defeating your enemy, you receive %d "
+"experience."
+msgstr ""
+" %s a été détruit par votre balle. Pour avoir battu votre ennemi, vous "
+"recevez %d points d'experience."
+
+#: ../src/bullet.c:868
+#, c-format
+msgid "%s was destroyed by bullet from %s."
+msgstr "%s a été détruit par une balle de %s."
+
+#: ../src/bullet.c:916
+msgid "Haha, you missed me!"
+msgstr "Haha, tu m'as raté !"
+
+#: ../src/character.c:449
+msgid "Max level reached!"
+msgstr "Niveau maximum atteint !"
+
+#: ../src/character.c:492
+msgid "Level Gained!"
+msgstr "Niveau obtenu !"
+
+#: ../src/chat.c:641
+msgid "1 Item received (on floor)"
+msgstr "1 objet reçu (sur le sol)"
+
+#: ../src/chat.c:645
+msgid "1 Item received!"
+msgstr "1 objet reçu !"
+
+#: ../src/chat.c:1375
+msgid "What will you say?"
+msgstr "Qu'allez vous dire ?"
+
+#: ../src/enemy.c:1325
+#, c-format
+msgid "Your friend %s has died."
+msgstr "Votre ami %s est mort."
+
+#: ../src/enemy.c:1816
+#, c-format
+msgid "Hostile %s was destroyed by melee attack from friendly %s."
+msgstr "L'ennemi %s a été détruit par l'attaque de mêlée de l'allié %s."
+
+#: ../src/getopt.c:682
+#, c-format
+msgid "%s: option `%s' is ambiguous\n"
+msgstr "%s : l'option `%s' est ambigüe\n"
+
+#: ../src/getopt.c:707
+#, c-format
+msgid "%s: option `--%s' doesn't allow an argument\n"
+msgstr "%s : l'option `--%s' n'accepte pas d'argument\n"
+
+#: ../src/getopt.c:712
+#, c-format
+msgid "%s: option `%c%s' doesn't allow an argument\n"
+msgstr "%s : l'option `%c%s' n'accepte pas d'argument\n"
+
+#: ../src/getopt.c:730 ../src/getopt.c:903
+#, c-format
+msgid "%s: option `%s' requires an argument\n"
+msgstr "%s : l'option `%s' nécessite un argument\n"
+
+#: ../src/getopt.c:759
+#, c-format
+msgid "%s: unrecognized option `--%s'\n"
+msgstr "%s : option inconnue `--%s'\n"
+
+#: ../src/getopt.c:763
+#, c-format
+msgid "%s: unrecognized option `%c%s'\n"
+msgstr "%s : option inconnue `%c%s'\n"
+
+#: ../src/getopt.c:789
+#, c-format
+msgid "%s: illegal option -- %c\n"
+msgstr "%s : option interdite -- %c\n"
+
+#: ../src/getopt.c:792
+#, c-format
+msgid "%s: invalid option -- %c\n"
+msgstr "%s : option invalide -- %c\n"
+
+#: ../src/getopt.c:822 ../src/getopt.c:952
+#, c-format
+msgid "%s: option requires an argument -- %c\n"
+msgstr "%s : l'option nécessite un argument -- %c\n"
+
+#: ../src/getopt.c:869
+#, c-format
+msgid "%s: option `-W %s' is ambiguous\n"
+msgstr "%s : l'option `-W %s' est ambigüe\n"
+
+#: ../src/getopt.c:887
+#, c-format
+msgid "%s: option `-W %s' doesn't allow an argument\n"
+msgstr "%s: l'option `-W %s' n'accepte pas d'argument\n"
+
+#: ../src/hud.c:191
+#, c-format
+msgid "Damage: %d to %d \n"
+msgstr "Dommages : %d à %d \n"
+
+#: ../src/hud.c:193
+#, c-format
+msgid "Dam: %d-%d "
+msgstr "Dom: %d-%d "
+
+#: ../src/hud.c:199
+#, c-format
+msgid "Ammo : %d of %d\n"
+msgstr "Muni : %d sur %d\n"
+
+#: ../src/hud.c:210
+#, c-format
+msgid "Multiplicity: %d \n"
+msgstr "Nombre : %d \n"
+
+#: ../src/hud.c:220
+#, c-format
+msgid "Armour: %d"
+msgstr "Armure : %d"
+
+#: ../src/hud.c:232
+#, c-format
+msgid " Durability: %d of %d"
+msgstr " Durabilité : %d sur %d"
+
+#: ../src/hud.c:234
+#, c-format
+msgid " Dur: %d/%d"
+msgstr " Dur : %d/%d"
+
+#: ../src/hud.c:239
+msgid " Indestructible"
+msgstr " Indestructible"
+
+#: ../src/hud.c:249
+msgid " Required:"
+msgstr " Requis :"
+
+#: ../src/hud.c:253
+#, c-format
+msgid "   Str: %d"
+msgstr "   For: %d"
+
+#: ../src/hud.c:255
+#, c-format
+msgid " Required strength: %d "
+msgstr " Force requise : %d "
+
+#: ../src/hud.c:262
+#, c-format
+msgid "   Dex: %d"
+msgstr "   Dex : %d"
+
+#: ../src/hud.c:264
+#, fuzzy, c-format
+msgid " Required dexterity: %d "
+msgstr " Dextérité requise : %d "
+
+#: ../src/hud.c:311
+msgid " , No required attributes "
+msgstr " , aucun attribut requis "
+
+#: ../src/hud.c:325
+#, c-format
+msgid "Recover Health\n"
+msgstr "Rend de la vie\n"
+
+#: ../src/hud.c:330
+#, c-format
+msgid "Analyze one item\n"
+msgstr "Analyse un objet\n"
+
+#: ../src/hud.c:335
+#, c-format
+msgid "Teleports you to your sanctuary\n"
+msgstr "Vous téléporte dans votre sanctuaire\n"
+
+#: ../src/hud.c:342
+#, c-format
+msgid "Cooling aid\n"
+msgstr "Du liquide de refroidissement\n"
+
+#: ../src/hud.c:347
+#, c-format
+msgid ""
+"Recover Health, Force\n"
+"and Running Power\n"
+msgstr ""
+" Récupère de la santé, de la force\n"
+"et de la capacité à courir\n"
+
+#: ../src/hud.c:352
+#, c-format
+msgid "Recover Running Power\n"
+msgstr "Récupère la capacité à courir\n"
+
+#: ../src/hud.c:357
+#, c-format
+msgid "Temporary Boost to Strength\n"
+msgstr "Amélioration temporaire de la force\n"
+
+#: ../src/hud.c:362
+#, c-format
+msgid "Temporary Boost to Dexterity\n"
+msgstr "Amélioration temporaire de la dexterité\n"
+
+#: ../src/hud.c:367
+#, c-format
+msgid "To implant the automap device\n"
+msgstr "Implante la mini-carte\n"
+
+#: ../src/hud.c:372
+#, c-format
+msgid "Permanently gain +1 strength\n"
+msgstr "Gain permanent de force (+1)\n"
+
+#: ../src/hud.c:377
+#, c-format
+msgid "Permanently gain +1 dexterity\n"
+msgstr "Gain permanent de dextérité (+1)\n"
+
+#: ../src/hud.c:382
+#, c-format
+msgid "Permanently gain +1 CPU\n"
+msgstr "Gain permanent de CPU (+1)\n"
+
+#: ../src/hud.c:406
+#, c-format
+msgid "Permanently acquire/enhance this program\n"
+msgstr "Apprendre définitivement ce programme\n"
+
+#: ../src/hud.c:411
+#, c-format
+msgid "Electromagnetic pulse\n"
+msgstr "Impulsion électromagnétique\n"
+
+#: ../src/hud.c:416
+#, c-format
+msgid "Gas attack\n"
+msgstr "Attaque au gaz\n"
+
+#: ../src/hud.c:421
+#, c-format
+msgid "Huge explosion\n"
+msgstr "Grosse explosion\n"
+
+#: ../src/hud.c:426
+#, c-format
+msgid "USE UNDESCRIBED YET\n"
+msgstr "UTILISATION NON DÉCRITE POUR L'INSTANT\n"
+
+#: ../src/hud.c:430
+#, c-format
+msgid "Right click to use"
+msgstr "Clic droit pour utiliser"
+
+#: ../src/hud.c:472
+#, c-format
+msgid "%d to strength"
+msgstr "%d à la force"
+
+#: ../src/hud.c:482
+#, c-format
+msgid "%d to dexterity"
+msgstr "%d à la dextérité"
+
+#: ../src/hud.c:491
+#, c-format
+msgid "%d to CPU"
+msgstr "%d au CPU"
+
+#: ../src/hud.c:500
+#, fuzzy, c-format
+msgid "%d to life"
+msgstr "%d à la vitalité"
+
+#: ../src/hud.c:509
+#, c-format
+msgid "%d health points"
+msgstr "%d points de vie"
+
+#: ../src/hud.c:518
+#, c-format
+msgid "%0.1f health points per second"
+msgstr "%0.1f points de vie par seconde"
+
+#: ../src/hud.c:527
+#, c-format
+msgid "%0.1f cooling per second"
+msgstr "%0.1f refroidissement par seconde"
+
+#: ../src/hud.c:529
+#, c-format
+msgid "%0.1f heating per second"
+msgstr "%0.1f réchauffement par seconde"
+
+#: ../src/hud.c:538
+#, c-format
+msgid "%d Force"
+msgstr "%d Force"
+
+#: ../src/hud.c:547
+#, c-format
+msgid "%d%% to hit"
+msgstr "%d%% à l'attaque"
+
+#: ../src/hud.c:556
+#, c-format
+msgid "%d to all attributes"
+msgstr "%d à tous les attributs"
+
+#: ../src/hud.c:573
+#, c-format
+msgid "%d%% to armour"
+msgstr "%d%% à l'armure"
+
+#: ../src/hud.c:586
+#, c-format
+msgid "%d%% to damage"
+msgstr "%d%% aux dommages"
+
+#: ../src/hud.c:596
+#, c-format
+msgid "+%d to resist disruptor"
+msgstr "+%d à la résistance aux armes à distance"
+
+#: ../src/hud.c:605
+#, c-format
+msgid "+%d to resist fire"
+msgstr "+%d à la résistance au feu"
+
+#: ../src/hud.c:614
+#, c-format
+msgid "+%d to resist electricity"
+msgstr "+%d à la résistance à l'électricité"
+
+#: ../src/hud.c:632
+#, c-format
+msgid "%d to light radius"
+msgstr "%d à la portée de lumière"
+
+#: ../src/hud.c:642
+msgid " UNIDENTIFIED "
+msgstr " NON IDENTIFIÉ "
+
+#: ../src/hud.c:789
+#, c-format
+msgid "reloading"
+msgstr "recharge"
+
+#: ../src/hud.c:791
+#, c-format
+msgid " %sEMPTY"
+msgstr " %sVIDE"
+
+#: ../src/hud.c:1078
+#, c-format
+msgid "To %s...."
+msgstr "Vers %s...."
+
+#: ../src/hud.c:1104
+msgid "REQUIREMENTS NOT MET"
+msgstr "PRÉ-REQUIS NON SATISFAITS"
+
+#: ../src/hud.c:1237
+#, c-format
+msgid ""
+"Health\n"
+"%s%d/%d"
+msgstr ""
+" Santé\n"
+"%s%d/%d"
+
+#: ../src/hud.c:1247
+#, c-format
+msgid ""
+"Temperature \n"
+"%s%d/%d"
+msgstr ""
+" Température \n"
+"%s%d/%d"
+
+#: ../src/hud.c:1257
+#, c-format
+msgid ""
+"Run\n"
+"%s%d/%d"
+msgstr ""
+" Courir\n"
+"%s%d/%d"
+
+#: ../src/hud.c:1267
+#, c-format
+msgid ""
+"XP\n"
+"%ld/%ld"
+msgstr ""
+" XP\n"
+"%ld/%ld"
+
+#: ../src/hud.c:1310
+msgid " C H E S T "
+msgstr " C O F F R E "
+
+#: ../src/hud.c:1336
+msgid " B A R R E L "
+msgstr " B A R I L "
+
+#: ../src/hud.c:1340
+msgid " C R A T E "
+msgstr " C A I S S E "
+
+#: ../src/hud.c:1541
+#, c-format
+msgid "--- Message Protocol ---"
+msgstr "--- Message Protocol ---"
+
+#: ../src/hud.c:1570
+#, c-format
+msgid ""
+"This is the protocol.\n"
+"Oh yes, it is indeed!\n"
+"It has multiple lines too!\n"
+"Isn't that great?  But how long may any one line be?  Is there a limit for "
+"that?  Anyway, it looks good."
+msgstr ""
+" C'est le protocole.\n"
+"Eh oui, c'est le protocole.\n"
+"Il a plusieurs ligne en plus !\n"
+"C'est pas super ? Mais quelle longueur peut faire une ligne ? Y-a-t-il une "
+"limite pour ça ? Quoi qu'il en soit, ça à l'air bon. "
+
+#: ../src/hud.c:1644
+#, c-format
+msgid "%s (%03.1f:%03.1f:%d) day %d %02d:%02d "
+msgstr "%s (%03.1f:%03.1f:%d) jour %d %02d:%02d "
+
+#: ../src/influ.c:504
+msgid "Clip empty, reloading..."
+msgstr "Chargeur vide, rechargement ..."
+
+#: ../src/influ.c:2033
+msgid "Looting failed:  unable to reach loot target."
+msgstr "Le pillage a échoué : impossible d'atteindre la cible."
+
+#: ../src/influ.c:3119
+#, c-format
+msgid ""
+"%s was destroyed by your melee attack.  For defeating your enemy, you "
+"receive %d experience."
+msgstr ""
+" %s a été détruit par votre attaque de mêlée. Pour avoir battu votre ennemi, "
+"vous recevez %d points d'experience."
+
+#: ../src/influ.c:3225
+msgid "No more ammunition !"
+msgstr "Plus de munitions !"
+
+#: ../src/influ.c:3706
+#, c-format
+msgid "This is a %s. %s"
+msgstr "C'est un %s. %s"
+
+#: ../src/influ.c:3730 ../src/influ.c:3737
+#, c-format
+msgid "Examining %s.  %s"
+msgstr "Examine %s.  %s"
+
+#: ../src/influ.c:3750
+#, c-format
+msgid "You see the floor.  It should be perfectly safe to walk on it."
+msgstr "Vous voyez le sol. Marcher dessus devrait être sûr."
+
+#: ../src/influ.c:3780
+#, c-format
+msgid "Unlocking obstacle of type %d."
+msgstr "Débloque un obstacle de type %d."
+
+#: ../src/influ.c:3809
+#, c-format
+msgid "Repairing obstacle of type %d."
+msgstr "Répare un obstacle de type %d."
+
+#: ../src/influ.c:3846
+#, c-format
+msgid "You try to hack %s."
+msgstr "Vous essayez de pirater %s."
+
+#: ../src/influ.c:3863
+#, c-format
+msgid "You chat with %s."
+msgstr "Vous parlez avec %s."
+
+#: ../src/influ.c:3887
+#, c-format
+msgid ""
+"Talking to an obstacle of type %d.  Ok.  You've told it everything.  Maybe "
+"it just needs more time to digest the news."
+msgstr ""
+" Vous parlez à un obstacle de type %d. OK. Vous lui avez tout dit. Peut-être "
+"qu'il a besoin de temps pour digérer ces nouvelles."
+
+#: ../src/influ.c:3924
+#, c-format
+msgid ""
+"The hostile %s won't let you apply your first aid skill.  Maybe it doesn't "
+"trust you?"
+msgstr ""
+" L'ennemi %s ne vous laisse pas utiliser votre compétence de soin. Peut-être "
+"qu'il ne vous fait pas confiance ?"
+
+#: ../src/influ.c:3937
+#, c-format
+msgid ""
+"You healed %d damage on the %s.  For successfully applying your first aid "
+"skill you receive %d experience."
+msgstr ""
+" Vous avez soigné %d dommages sur %s. Pour avoir brillament appliqué votre "
+"compétence de soins, vous recevez %d experience."
+
+#: ../src/influ.c:3944
+#, c-format
+msgid "Any injury on %s is purely cosmetic and must heal over time."
+msgstr ""
+" Toutes les blessures infligées à %s sont purement cosmétiques et seront "
+"réparées avec le temps."
+
+#: ../src/influ.c:3967
+#, c-format
+msgid ""
+"Applying first aid to obstacle of type %d.  Ok.  You've made sure it doesn't "
+"bleed.  That's what you wanted, right?"
+msgstr ""
+" Soigne l'obstacle %d. OK. Vous vous êtes assuré qu'il ne saigne pas. C'est "
+"ce que vous vouliez non ?"
+
+#: ../src/influ.c:3996
+#, c-format
+msgid "Attacking obstacle of type %d."
+msgstr "Attaque l'obstacle de type %d."
+
+#: ../src/influ.c:4025
+#, c-format
+msgid "Picking pockets of obstacle of type %d."
+msgstr "Fouille les poches de l'obstacle de type %d."
+
+#: ../src/init.c:123
+msgid ""
+"My name is Bug. Software Bug. Please report me to the developers. Thank you."
+msgstr "Mon nom est bug. Bug dans le programme. Merci de me rapporter aux développeurs."
+
+#: ../src/init.c:126
+msgid "Hmm... This must be the token town sage."
+msgstr "Hmm ... Ça doit être le sage de la ville."
+
+#: ../src/init.c:128
+msgid ""
+"You see a legend. Sorenson Clark. One of the best human programmers that "
+"have ever lived. Just like Paganini she is said to have sold her soul to the "
+"devil for her skill. Whatever is the truth, her code is like magic, and "
+"there is no denying that."
+msgstr ""
+" Vous voyez une légende vivante. Sorenson Clark. Un des meilleurs "
+"programmeurs humains qui ait jamais existé. Tout comme Paganini, on dit "
+"qu'elle a vendu son âme au diable pour sa compétence. Quelle que soit la "
+"vérité, son code semble magique, et ça, c'est indéniable."
+
+#: ../src/init.c:130
+msgid ""
+"He is either a college student, a drug addict or a hacker. I bet he did not "
+"have a warm meal for days, he looks totally malnourished. His body keeps "
+"twitching. Must be the caffeine. I hope."
+msgstr ""
+" C'est soit un étudiant de fac, un drogué ou un hacker. Je parie qu'il n'a "
+"pas eu un repas chaud depuis des jours, il semble très mal nourri. Son corps "
+"tremble en permanence. Ça doit être la cafféine. J'espère."
+
+#: ../src/init.c:132
+msgid ""
+"Don't do steoroids or you will be just like him. The armor hides his body"
+msgstr ""
+" Ne prenez jamais de stéroides, vous finiriez comme lui. Son armure cache son "
+"corps"
+
+#: ../src/init.c:134
+msgid ""
+"There are at least 614 reasons to stay away from the 614 bot battle "
+"platform. There are also 614 reasons why a 614 bot battle platform can be "
+"your best friend during combat..."
+msgstr ""
+" Il y au moins 614 raisons pour rester loin d'un robot de combat 614. Il y a "
+"aussi 614 raisons pour lesquelles un 614 peut être votre meilleur ami lors "
+"d'un combat ..."
+
+#: ../src/init.c:136
+#, fuzzy
+msgid ""
+"Francis is not looking so good today. His tattered coat is not looking that "
+"much better either. The war is taking its toll on them both."
+msgstr ""
+"Francis n'a pas l'air très bien aujourd'hui. Son manteau en loques n'est pas "
+"en meilleur forme. La guerre fait leur effet sur eux deux."
+
+#: ../src/init.c:138
+msgid ""
+"What a strange person. He does not seem to really fit into this reality. "
+"There is something very eerie about him. And frightening."
+msgstr ""
+" Quelle personne étrange. Il ne semble pas vraiment coller à la réalité. Il "
+"y a quelque chose de très inquiétant le concernant. Et d'effrayant."
+
+#: ../src/init.c:140
+msgid ""
+"This person looks totally defeated. Tattered clothes surround his skeletal "
+"form. If there was a fifth raider of the apocalypse, it would be him and his "
+"name would be Hard Work."
+msgstr ""
+"Cette personne semble abattue. Des loques entourent sa forme squelettique. "
+"Si il y avait un cinquième cavalier de l'apocalypse, ce serait lui et son "
+"nom serait Dur Labeur."
+
+#: ../src/init.c:142
+msgid ""
+"It seems that even during the end of the world the species known as "
+"'Salesman' is able to survive. Just his presence makes you want to kill all "
+"humans."
+msgstr ""
+"Il semble que même pendant la fin du monde, l'espèce connue sous le nom de "
+"'vendeurs' est capable de survivre. Sa simple présence vous donne envie de "
+"tuer tous les humains."
+
+#: ../src/init.c:144
+msgid ""
+"We are sorry for this character's graphics. The bartender look is coming "
+"soon. Freedroid Dev Team."
+msgstr ""
+
+#: ../src/init.c:146
+msgid ""
+"In some places of the world there exists a very interesting saying. 'Tough "
+"as nails.' However, in every place where the Stone trader family stays for a "
+"while, a new saying emerges. 'Tough as the Stones.'"
+msgstr ""
+"Dans certaines parties du monde, il existe un dicton disant 'Resistant comme "
+"les ongles'. Pourtant, partout ou la famille de commercants Stone réside "
+"pendant quelques temps, un nouveau dicton apparaît : 'Dur comme les Stones'."
+
+#: ../src/init.c:148
+msgid ""
+"It is very obvious that this is not a normal Red Guard. Most of them do not "
+"have oil stains on their armor and smell of alcohol."
+msgstr ""
+" Il est évident que ce n'est pas un Garde Rouge normal. La plupart d'entre "
+"eux n'ont pas de taches d'huiles sur leur armure et ne sentent pas l'alcool."
+
+#: ../src/init.c:150
+msgid ""
+"It looks like a 614. It moves like a 614. It even kills like a 614. Must be "
+"a 614 then."
+msgstr ""
+" Ça ressemble à un 614. Ça bouge comme un 614. Ça tue même comme un 614. Ça "
+"doit donc être un 614."
+
+#: ../src/init.c:152
+msgid ""
+"He must be the resident scientist. The only thing keeping his body alive is "
+"the massive coffee overdose that he takes early in the morning every day. "
+"The amount of cafeine that he has in his blood right now would be enough to "
+"kill ten humans, but since computer scientists are a different species, he "
+"is unharmed."
+msgstr ""
+"Ce doit être le scientifique de réserve. La seule chose qui garde son corps "
+"en vie est la surdose massive de café qu'il prend chaque matin. La quantité "
+"de caféine qu'il a dans le sang actuellement pourrait tuer une dizaine "
+"d'humains, mais puisque les informaticiens sont d'une espèce différente, ça "
+"ne lui pose pas de problème."
+
+#: ../src/init.c:154
+msgid ""
+"Something about him makes you think of angels. Except angels are usually "
+"sane, do not have an urge to kill everything around them and are much better "
+"at singing religious songs."
+msgstr ""
+"Quelque chose le concernant vous fait penser aux anges. Mis à part que les "
+"anges sont généralement sains d'esprit, n'on pas le désir de tuer tout ce "
+"qui les entoure et sont bien meilleurs pour chanter des chants religieux."
+
+#: ../src/init.c:156
+msgid ""
+"As you look at him, you cannot really belive he is there. If you turn your "
+"back on him he will vanish like a ghost into thin air and you will never see "
+"him again."
+msgstr ""
+"Lorsque vous le regardez, vous avez du mal à croire qu'il est vraiment là. "
+"Si vous vous retournez, il va disparaître tel un fantôme et vous ne le "
+"reverrez jamais."
+
+#: ../src/init.c:158
+msgid ""
+"His IQ is sometimes as high as a dog's. Only sometimes though. He smells "
+"like a dog too."
+msgstr ""
+" Son QI semble aussi élevé que celui d'un chien. Seulement parfois "
+"cependant. Il a aussi l'odeur d'un chien."
+
+#: ../src/init.c:160
+msgid ""
+"He seems to be the chief of the gate guards. Hard to say anything more, the "
+"armor hides his body."
+msgstr ""
+" Il semble être le chef des gardes de la porte. Difficile d'en deviner plus, "
+"l'armure cache son corps."
+
+#: ../src/init.c:162
+msgid "Just an another Red Guard. The armor hides his body."
+msgstr "Juste un autre garde rouge. Son armure cache son corps."
+
+#: ../src/init.c:164
+msgid ""
+"Some people say that every doctor is addicted to drugs. You estimate that "
+"right now this one is high on at least four different narcotics. Doc Moore "
+"seems very happy indeed..."
+msgstr ""
+" Certains disent que tous les médecins sont drogués. Celui-ci doit, en ce "
+"moment, être sous l'effet d'au moins quatre narcotiques différents. Docteur "
+"Moore semble très heureux en fait ..."
+
+#: ../src/init.c:166
+msgid ""
+"Yet another Red Guard. You cannot say anything more, the armor hides his "
+"body."
+msgstr ""
+" Encore un autre garde rouge. On ne peut pas en deviner plus, l'armure cache "
+"son corps."
+
+#: ../src/init.c:168
+msgid ""
+"He looks taller than most of the Red Guards, but you cannot really say "
+"anything more about him, the armor hides his body."
+msgstr ""
+" Il semble plus grand que la majeure partie des gardes rouges, mais on ne "
+"peut pas en deviner plus, l'armure cache son corps."
+
+#: ../src/init.c:170
+msgid ""
+"And now you know who is to be blamed for the truly awful food in here. You "
+"are in a killing mood. Oh yeah. The cook must die. The cook must die. Ha. "
+"Ha. Ha."
+msgstr ""
+" Maintenant vous savez qui blamer pour la nourriture exécrable ici. Vous "
+"êtes d'humeur massacrante. Oh oui. Le cuisinier doit mourir. Le cuisinier "
+"doit mourir. Ha Ha Ha."
+
+#: ../src/init.c:172
+msgid ""
+"This is a major bug. Please report this incident to the developers. Thank "
+"you."
+msgstr ""
+
+#: ../src/init.c:174
+msgid ""
+"Blood. Stone. Cog. The Blood has made the Cog from the Stone. Now the Cog is "
+"making more Stone from the Blood. I wonder what is the next step of the "
+"cycle..."
+msgstr ""
+" Sang. Pierre. Dent. Le sang à fait la dent à partir de pierre. Maintenant "
+"la dent fait plus de pierre avec du sang. Je me demande quelle est l'étape "
+"suivante de ce cycle ..."
+
+#: ../src/init.c:176 ../src/init.c:178 ../src/init.c:180 ../src/init.c:182
+msgid "The armor hides his body."
+msgstr "L'armure cache son corps."
+
+#: ../src/init.c:1681
+msgid "Huh? What?  Where am I?"
+msgstr "Hein ? Quoi ? Où suis-je ?"
+
+#: ../src/init.c:1747 ../src/init.c:2023
+msgid ""
+"Linux Kernel booted.  001 transfer-tech modules loaded.  System up and "
+"running."
+msgstr "Noyau démarré - manchot prêt."
+
+#: ../src/init.c:1805
+msgid "Updating Tux images"
+msgstr "Mise à jour des images de Tux"
+
+#: ../src/init.c:1806
+msgid "(this may take a little while...)"
+msgstr "(veuillez patienter ...)"
+
+#: ../src/init.c:1809
+msgid "Starting new game."
+msgstr "Début d'un nouveau jeu."
+
+#: ../src/init.c:2168
+msgid "Game over.\n"
+msgstr "Jeu terminé.\n"
+
+#: ../src/init.c:2272
+msgid "Game won.\n"
+msgstr "Vous avez gagné.\n"
+
+#: ../src/input.c:424
+msgid "Automap ON."
+msgstr "Automap activée"
+
+#: ../src/input.c:426
+msgid "Automap OFF."
+msgstr "Automap désactivée"
+
+#: ../src/input.c:430
+msgid "Sorry, you don't have automap yet:  map maker item not present."
+msgstr ""
+" Désolé, vous ne pouvez pas encore utiliser la carte auto : outil de "
+"cartographie non présent"
+
+#: ../src/items.c:1600
+msgid "I can't use this item here."
+msgstr "Je ne peux pas utiliser cet objet ici."
+
+#: ../src/items.c:1613
+#, c-format
+msgid "How do you expect to do two things at a time? You are "
+msgstr "Comment ésperez-vous faire deux choses en même temps ? Vous "
+
+#: ../src/items.c:1617
+msgid "drinking a potion!"
+msgstr "buvez une potion !"
+
+#: ../src/items.c:1620
+msgid "waiting for you weapon to fire again!"
+msgstr "attendez que votre arme tire !"
+
+#: ../src/items.c:1623
+msgid "reloading your weapon!"
+msgstr "rechargez votre arme !"
+
+#: ../src/items.c:1626
+msgid "throwing a grenade!"
+msgstr "lancez une grenade !"
+
+#: ../src/items.c:1629
+msgid "running a program!"
+msgstr "lancez un programme !"
+
+#: ../src/items.c:1632
+msgid "doing something so weird the game does not understand what it is"
+msgstr "faites quelque chose de si bizarre que je ne sais pas ce que c'est"
+
+#: ../src/items.c:2605 ../src/items.c:2644 ../src/items.c:2646
+msgid "Identified air."
+msgstr "L'air a été identifié."
+
+#: ../src/items.c:2665
+#, c-format
+msgid "You already know all there is to know about the %s."
+msgstr "Vous savez déjà tout ce qu'il faut savoir sur le %s"
+
+#: ../src/items.c:2671
+#, c-format
+msgid "Identified %s"
+msgstr "%s identifié"
+
+#: ../src/items.c:3114
+msgid "Two-handed weapon requirements not met: shield bonus doesn't count."
+msgstr ""
+"Pré-requis de l'arme à deux mains non satisfaits : le bonus du bouclier ne "
+"compte pas."
+
+#: ../src/items.c:3137
+msgid "You cannot fight with this!"
+msgstr "Vous ne pouvez pas vous battre avec ça !"
+
+#: ../src/items.c:3233
+msgid "Shield requirements not met: two-handed weapon bonus doesn't count."
+msgstr ""
+"Pré-requis pour le bouclier non satisfaits : le bonus de l'arme à deux mains "
+"ne compte pas."
+
+#: ../src/items.c:3457
+#, c-format
+msgid "Item taken: %s."
+msgstr "Objet ramassé : %s."
+
+#: ../src/items.c:3509 ../src/items.c:3683
+msgid "I can't carry any more."
+msgstr "Je ne peux plus rien porter."
+
+#: ../src/main.c:408
+msgid "Overheating!"
+msgstr "Surchauffe !"
+
+#: ../src/main.c:425
+msgid "Weapon reloaded"
+msgstr "Arme rechargée"
+
+#: ../src/map.c:3041
+msgid "Acolyte"
+msgstr "Acolyte"
+
+#: ../src/map.c:3042
+msgid "Templar"
+msgstr "Templier"
+
+#: ../src/map.c:3043
+msgid "Banshee"
+msgstr "Banshee"
+
+#: ../src/map.c:3044
+msgid "Chicago"
+msgstr "Chicago"
+
+#: ../src/map.c:3045
+msgid "Sawmill"
+msgstr "Scierie"
+
+#: ../src/map.c:3046
+msgid "Nemesis"
+msgstr "Nemesis"
+
+#: ../src/map.c:3047
+msgid "Sparkie"
+msgstr ""
+
+#: ../src/map.c:3048 ../src/map.c:3053 ../src/map.c:3054 ../src/map.c:3055
+#: ../src/map.c:3057 ../src/map.c:3059 ../src/map.c:3060 ../src/map.c:3061
+#: ../src/map.c:3062
+msgid "NaN"
+msgstr ""
+
+#: ../src/map.c:3049
+msgid "Coward"
+msgstr "Lâche"
+
+#: ../src/map.c:3050
+msgid "Spinster"
+msgstr ""
+
+#: ../src/map.c:3051
+msgid "Ghoul"
+msgstr "Goule"
+
+#: ../src/map.c:3052
+msgid "Apollo"
+msgstr ""
+
+#: ../src/map.c:3056
+msgid "If"
+msgstr ""
+
+#: ../src/map.c:3058
+msgid "Soviet"
+msgstr ""
+
+#: ../src/map.c:3063
+msgid "No Description For This One"
+msgstr "Aucune description pour celui-là"
+
+#: ../src/menu.c:57
+msgid "Play"
+msgstr "Jouer"
+
+#: ../src/menu.c:58
+msgid "The first 10 characters: "
+msgstr "Les 10 premiers personnages : "
+
+#: ../src/menu.c:59
+msgid "Select character to delete: "
+msgstr "Selectionnez le personnage à supprimer : "
+
+#: ../src/menu.c:114
+#, c-format
+msgid "OpenGL support compiled: "
+msgstr "Support OpenGL compilé : "
+
+#: ../src/menu.c:116 ../src/menu.c:123
+msgid " YES "
+msgstr " OUI "
+
+#: ../src/menu.c:118 ../src/menu.c:125
+msgid " NO "
+msgstr " NON "
+
+#: ../src/menu.c:121
+#, c-format
+msgid "OpenGL output active: "
+msgstr "Sortie OpenGL activée : "
+
+#: ../src/menu.c:1339 ../src/menu.c:1441
+msgid "Level Editor"
+msgstr "Éditeur de niveau"
+
+#: ../src/menu.c:1340 ../src/menu.c:1440
+msgid "Options"
+msgstr "Options"
+
+#: ../src/menu.c:1341
+msgid "Credits"
+msgstr "Crédits"
+
+#: ../src/menu.c:1342
+msgid "Contribute"
+msgstr "Contribuer"
+
+#: ../src/menu.c:1343
+msgid "Exit FreedroidRPG"
+msgstr "Quitter FreedroidRPG"
+
+#: ../src/menu.c:1438
+msgid "Save Game"
+msgstr "Sauvegarder la partie"
+
+#: ../src/menu.c:1439
+msgid "Resume Game"
+msgstr "Reprendre le jeu"
+
+#: ../src/menu.c:1442
+msgid "Load Game"
+msgstr "Charger une partie"
+
+#: ../src/menu.c:1443
+msgid "New Game"
+msgstr "Nouvelle partie"
+
+#: ../src/menu.c:1444
+msgid "Quit"
+msgstr "Quitter"
+
+#: ../src/menu.c:1523 ../src/menu.c:1642 ../src/menu.c:1790 ../src/menu.c:1921
+#: ../src/menu.c:2030 ../src/menu.c:2153 ../src/menu.c:2234 ../src/menu.c:2307
+#: ../src/menu.c:2669 ../src/menu.c:2781 ../src/menu.c:2860
+msgid "Back"
+msgstr "Retour"
+
+#: ../src/menu.c:1526 ../src/menu.c:1528
+msgid ""
+"Changes will take effect\n"
+"       when you next start the game"
+msgstr ""
+" Les changments prendront effet\n"
+" lorsque vous redémarrerez le jeu"
+
+#: ../src/menu.c:1541
+msgid ""
+"\n"
+"You selected 640x480 pixel.\n"
+"\n"
+"Change of screen resolution will\n"
+"take effect automatically when you next\n"
+"start FreedroidRPG.\n"
+"\n"
+"Thank you.\n"
+msgstr ""
+"\n"
+"Vous avez sélectionné 640x480.\n"
+"\n"
+"Le changement de résolution prendra effet automatiquement lorsque vous "
+"redémarrerez FreedroidRPG\n"
+"Merci.\n"
+
+#: ../src/menu.c:1555
+msgid ""
+"\n"
+"You selected 800x600 pixel.\n"
+"\n"
+"Change of screen resolution will\n"
+"take effect automatically when you next\n"
+"start FreedroidRPG.\n"
+"\n"
+"Thank you.\n"
+msgstr ""
+"\n"
+"Vous avez sélectionné 800x600.\n"
+"\n"
+"Le changement de résolution prendra effet automatiquement lorsque vous "
+"redémarrerez FreedroidRPG\n"
+"Merci.\n"
+
+#: ../src/menu.c:1569
+msgid ""
+"\n"
+"You selected 1024x768 pixel.\n"
+"\n"
+"Change of screen resolution will take\n"
+"effect automatically when you next\n"
+"start FreedroidRPG.\n"
+"\n"
+"Thank you.\n"
+msgstr ""
+"\n"
+"Vous avez sélectionné 1024x768.\n"
+"\n"
+"Le changement de résolution prendra effet automatiquement lorsque vous "
+"redémarrerez FreedroidRPG\n"
+"Merci.\n"
+
+#: ../src/menu.c:1630
+#, c-format
+msgid "Gamma Correction: %1.2f"
+msgstr "Correction gamma : %1.2f"
+
+#: ../src/menu.c:1631
+#, c-format
+msgid "Fullscreen Mode: %s"
+msgstr "Mode plein ecran : %s"
+
+#: ../src/menu.c:1632
+#, c-format
+msgid "Change Screen Resolution"
+msgstr "Changer la résolution"
+
+#: ../src/menu.c:1633
+#, c-format
+msgid "Show Blood: %s"
+msgstr "Montrer le sang : %s"
+
+#: ../src/menu.c:1634 ../src/menu.c:1783 ../src/menu.c:1785 ../src/menu.c:1906
+#: ../src/menu.c:1908 ../src/menu.c:1909 ../src/menu.c:1911 ../src/menu.c:1913
+msgid "YES"
+msgstr "OUI"
+
+#: ../src/menu.c:1634 ../src/menu.c:1783 ../src/menu.c:1785 ../src/menu.c:1906
+#: ../src/menu.c:1908 ../src/menu.c:1909 ../src/menu.c:1911 ../src/menu.c:1913
+msgid "NO"
+msgstr "NON"
+
+#: ../src/menu.c:1635
+#, c-format
+msgid "Automap Scale: %2.1f"
+msgstr "Échelle de la carte auto : %2.1f"
+
+#: ../src/menu.c:1680
+msgid ""
+"\n"
+"Unfortunately, fullscreen cannot be\n"
+"toggled at runtime under Windows.\n"
+"We apologise for this.\n"
+"\n"
+"There are good Linux distributions out there,\n"
+" please check them out.\n"
+"\n"
+"Or you can launch the game with the -w option.\n"
+"\n"
+"   Thank you.\n"
+msgstr ""
+"\n"
+"Malheureusement, le plein écran ne peut être activé/désactivé durant le jeu "
+"sous Windows.\n"
+"Nous vous prions de bien vouloir nous excuser pour ça.\n"
+"\n"
+"Il y a de bonne distributions de Linux, merci \n"
+"de les considérer.\n"
+"\n"
+"Vous pouvez aussi lancer le jeu avec l'option -w.\n"
+"\n"
+"   Merci.\n"
+
+#: ../src/menu.c:1690
+msgid ""
+"\n"
+"You are using SDL instead of OpenGL\n"
+"for graphics ouput right now.\n"
+"\n"
+"FreedroidRPG only supports 640x480\n"
+"in SDL mode.\n"
+"\n"
+"You might want to restart the game using\n"
+"OpenGL instead.\n"
+"\n"
+"\n"
+"Thank you.\n"
+msgstr ""
+"\n"
+"Vous utilisez SDL au lieu d'OpenGL\n"
+"pour la sortie graphique.\n"
+"\n"
+"FreedroidRPG supporte seulement le 640x480\n"
+"en mode SDL.\n"
+"\n"
+"Vous devriez peut-être redémarrer le jeu\n"
+"en utilisant OpenGL.\n"
+"\n"
+"\n"
+"Merci.\n"
+
+#: ../src/menu.c:1780
+#, c-format
+msgid "Background Music Volume: %1.2f"
+msgstr "Volume de la musique de fond : %1.2f"
+
+#: ../src/menu.c:1781
+#, c-format
+msgid "Sound Effects Volume: %1.2f"
+msgstr "Volume des effets sonores : %1.2f"
+
+#: ../src/menu.c:1782
+#, c-format
+msgid "Terminate On Missing Sample: %s"
+msgstr "Arrêter sur un son manquant : %s"
+
+#: ../src/menu.c:1784
+#, c-format
+msgid "Show Subtitles in Dialogs: %s"
+msgstr "Montrer les sous-titres : %s"
+
+#: ../src/menu.c:1905
+#, c-format
+msgid "Hog CPU for max. performance: %s"
+msgstr "Monopoliser le CPU : %s"
+
+#: ../src/menu.c:1907
+#, c-format
+msgid "Highlighting mode: %s"
+msgstr "Mode de surlignage : %s"
+
+#: ../src/menu.c:1907
+msgid "FULL"
+msgstr "COMPLET"
+
+#: ../src/menu.c:1907
+msgid "REDUCED"
+msgstr "RÉDUIT"
+
+#: ../src/menu.c:1908
+#, c-format
+msgid "Show quick inventory: %s"
+msgstr "Montrer l'inventaire rapide : %s"
+
+#: ../src/menu.c:1909
+#, c-format
+msgid "Skip light radius: %s"
+msgstr "Désactiver le halo lumineux : %s"
+
+#: ../src/menu.c:1910
+#, c-format
+msgid "Skip shadow blitting: %s"
+msgstr "Désactiver les ombrages : %s"
+
+#: ../src/menu.c:1912
+#, c-format
+msgid "Skip fadings: %s"
+msgstr "Désactiver les fondus : %s"
+
+#: ../src/menu.c:2018
+#, c-format
+msgid "Show Position: %s"
+msgstr "Afficher la position : %s"
+
+#: ../src/menu.c:2018 ../src/menu.c:2019 ../src/menu.c:2020 ../src/menu.c:2021
+#: ../src/menu.c:2141 ../src/menu.c:2142 ../src/menu.c:2143 ../src/menu.c:2144
+#: ../src/menu.c:2145 ../src/menu.c:2146
+msgid "ON"
+msgstr "ON"
+
+#: ../src/menu.c:2018 ../src/menu.c:2019 ../src/menu.c:2020 ../src/menu.c:2021
+#: ../src/menu.c:2141 ../src/menu.c:2142 ../src/menu.c:2143 ../src/menu.c:2144
+#: ../src/menu.c:2145 ../src/menu.c:2146
+msgid "OFF"
+msgstr "OFF"
+
+#: ../src/menu.c:2019
+#, c-format
+msgid "Show Framerate: %s"
+msgstr "Afficher les FPS : %s"
+
+#: ../src/menu.c:2020
+#, c-format
+msgid "Show Tux Energy: %s"
+msgstr "Montrer l'énergie de Tux : %s"
+
+#: ../src/menu.c:2021
+#, c-format
+msgid "Show Enemy Energy Bars: %s"
+msgstr "Montrer l'energie des ennemis : %s"
+
+#: ../src/menu.c:2022
+#, c-format
+msgid "Screen Messages at most: %d"
+msgstr "Maximum de messages affichés : %d"
+
+#: ../src/menu.c:2023
+#, c-format
+msgid "Screen Message time: %3.1f"
+msgstr "Temps d'affichage d'un message : %3.1f"
+
+#: ../src/menu.c:2141
+#, c-format
+msgid "Influencer Refresh Texts: %s"
+msgstr ""
+
+#: ../src/menu.c:2142
+#, c-format
+msgid "Influencer Blast Texts: %s"
+msgstr "Montrer la mort du joueur : %s"
+
+#: ../src/menu.c:2143
+#, c-format
+msgid "Enemy Hit Texts: %s"
+msgstr "Montrer lorsque l'ennemi tire : %s"
+
+#: ../src/menu.c:2144
+#, c-format
+msgid "Enemy Bumped Texts: %s"
+msgstr "Montre les collisions : %s"
+
+#: ../src/menu.c:2145
+#, c-format
+msgid "Enemy Aim Texts: %s"
+msgstr "Montrer lorsque l'ennemi vise : %s"
+
+#: ../src/menu.c:2146
+#, c-format
+msgid "All in-game Speech: %s"
+msgstr "Messages supplémentaires (debug) : %s"
+
+#: ../src/menu.c:2300
+msgid "Graphics Options"
+msgstr "Options graphiques"
+
+#: ../src/menu.c:2301
+msgid "Sound Options"
+msgstr "Options sonores"
+
+#: ../src/menu.c:2302
+msgid "Language"
+msgstr "Langue"
+
+#: ../src/menu.c:2303
+msgid "Droid Talk"
+msgstr "Texte complémentaire"
+
+#: ../src/menu.c:2304
+msgid "On-Screen Displays"
+msgstr "Affichage à l'écran"
+
+#: ../src/menu.c:2305
+msgid "Performance Tweaks"
+msgstr "Optimisation des performances"
+
+#: ../src/menu.c:2306
+msgid "Save Options"
+msgstr "Sauvegarder les options"
+
+#: ../src/menu.c:2400
+msgid ""
+"\n"
+" Please enter name of server to connect to:\n"
+" You can give an empty string for the local host.\n"
+" > "
+msgstr ""
+"\n"
+" Veuillez entrer le nom du serveur auquel se connecter : \n"
+" Vous pouvez donner une chaine vide pour l'hôte local.\n"
+" > "
+
+#: ../src/menu.c:2427
+msgid ""
+"\n"
+"     Please enter a name\n"
+"     for the new hero: \n"
+"     (ESCAPE to cancel.)\n"
+"\n"
+"     > "
+msgstr ""
+"\n"
+"     Veuillez entrer un nom\n"
+"     pour le nouveau héros : \n"
+"     (ECHAP pour annuler.)\n"
+"\n"
+"     > "
+
+#: ../src/menu.c:2693 ../src/menu.c:2799 ../src/menu.c:2814
+msgid "BACK"
+msgstr "RETOUR"
+
+#: ../src/menu.c:2697
+msgid ""
+"\n"
+"\n"
+"No saved games found!!  Loading Cancelled. "
+msgstr ""
+"\n"
+"\n"
+"Aucune sauvegarde trouvée !! Chargement annulé."
+
+#: ../src/menu.c:2798
+msgid "Sure!"
+msgstr "D'accord !"
+
+#: ../src/menu.c:2801
+#, c-format
+msgid "Really delete hero '%s'?"
+msgstr "Confirmez vous la suppression du héros '%s' ?"
+
+#: ../src/menu.c:2818
+msgid ""
+"\n"
+"\n"
+"No saved games found!!  Deletion Cancelled. "
+msgstr ""
+"\n"
+"\n"
+"Pas de sauvegarde trouvée !! Suppression annulée."
+
+#: ../src/menu.c:2857
+msgid "New Hero"
+msgstr "Nouveau héros"
+
+#: ../src/menu.c:2858
+msgid "Load existing Hero"
+msgstr "Charger un héros existant"
+
+#: ../src/menu.c:2859
+msgid "Delete existing Hero"
+msgstr "Supprimer un héros existant"
+
+#: ../src/menu.c:2935
+msgid ""
+"\n"
+"\n"
+"\n"
+"                                            CREDITS\n"
+"\n"
+"\n"
+"   PROGRAMMING:\n"
+"\n"
+"                                      Johannes Prix\n"
+"\n"
+"                                      Reinhard Prix\n"
+"\n"
+"                                      Arthur Huillet\n"
+"\n"
+"\n"
+"   ARTWORK:\n"
+"\n"
+"                                      Bastian Salmela\n"
+"\n"
+"\n"
+"   DIALOGUES AND MINOR TWEAKS:\n"
+"\n"
+"                                      Karol Swietlicki\n"
+"\n"
+"\n"
+"   PROFILING AND TESTING:\n"
+"\n"
+"                                      Clint Herron\n"
+"\n"
+"\n"
+"   SOUND EFFECTS:\n"
+"\n"
+"                                      Johannes Prix\n"
+"\n"
+"                                      Chris Hoeppner\n"
+"\n"
+"\n"
+"   VOICES:\n"
+"\n"
+"                                      Tiina Heinonen\n"
+"\n"
+"                                      Doris Stubenrauch\n"
+"\n"
+"                                      Andrew A. Gill\n"
+"\n"
+"                                      Johannes Prix\n"
+"\n"
+"                                      Mbrola\n"
+"                                       text-to-speech system\n"
+"\n"
+"                                      eSpeak\n"
+"                                       text-to-speech system\n"
+"\n"
+"\n"
+"   OGG COMPOSERS:\n"
+"\n"
+"                                      \"The Beginning\"\n"
+"                                        by 4t thieves\n"
+"                                        of kahvi collective\n"
+"                                      (www.kahvi.org)\n"
+"\n"
+"                                      \"Daybreak\"\n"
+"                                        by realsmokers\n"
+"                                        of kahvi collective\n"
+"                                      (www.realsmokers.de)\n"
+"                                      (www.kahvi.org)\n"
+"\n"
+"                                      \"Bleostrada\"\n"
+"                                        by stud\n"
+"                                        of kahvi collective\n"
+"                                      (www.atl3.com/stud)\n"
+"                                      (www.kahvi.org)\n"
+"\n"
+"                                        Arvid Picciani\n"
+"\n"
+"\n"
+"   VARIOUS OLDER CONTRIBUTIONS (PRE-0.9.13 people):\n"
+"\n"
+"                                      Ryan 'simcop2387' Voots\n"
+"\n"
+"                                      Andrew A. Gill\n"
+"\n"
+"                                      Zombie Ryushu\n"
+"\n"
+"                                      Ted Cipicchio\n"
+"\n"
+"                                      The Doctor\n"
+"\n"
+"                                      Simon Newton\n"
+"\n"
+"\n"
+"\n"
+"\n"
+msgstr ""
+"\n"
+"\n"
+"\n"
+"                                            CREDITS\n"
+"\n"
+"\n"
+"   PROGRAMMATION :\n"
+"\n"
+"                                      Johannes Prix\n"
+"\n"
+"                                      Reinhard Prix\n"
+"\n"
+"                                      Arthur Huillet\n"
+"\n"
+"\n"
+"   GRAPHISMES :\n"
+"\n"
+"                                      Bastian Salmela\n"
+"\n"
+"\n"
+"   DIALOGUES ET AJUSTEMENTS :\n"
+"\n"
+"                                      Karol Swietlicki\n"
+"\n"
+"\n"
+"   OPTIMISATION ET TESTS :\n"
+"\n"
+"                                      Clint Herron\n"
+"\n"
+"\n"
+"   EFFETS SONORES :\n"
+"\n"
+"                                      Johannes Prix\n"
+"\n"
+"                                      Chris Hoeppner\n"
+"\n"
+"\n"
+"   VOIX :\n"
+"\n"
+"                                      Tiina Heinonen\n"
+"\n"
+"                                      Doris Stubenrauch\n"
+"\n"
+"                                      Andrew A. Gill\n"
+"\n"
+"                                      Johannes Prix\n"
+"\n"
+"                                      Mbrola\n"
+"                                       text-to-speech system\n"
+"\n"
+"                                      eSpeak\n"
+"                                       text-to-speech system\n"
+"\n"
+"\n"
+"   MUSIQUE OGG :\n"
+"\n"
+"                                      \"The Beginning\"\n"
+"                                        by 4t thieves\n"
+"                                        of kahvi collective\n"
+"                                      (www.kahvi.org)\n"
+"\n"
+"                                      \"Daybreak\"\n"
+"                                        by realsmokers\n"
+"                                        of kahvi collective\n"
+"                                      (www.realsmokers.de)\n"
+"                                      (www.kahvi.org)\n"
+"\n"
+"                                      \"Bleostrada\"\n"
+"                                        by stud\n"
+"                                        of kahvi collective\n"
+"                                      (www.atl3.com/stud)\n"
+"                                      (www.kahvi.org)\n"
+"\n"
+"                                        Arvid Picciani\n"
+"\n"
+"\n"
+"   AUTRE CONTRIBUTIONS (PRE-0.9.13):\n"
+"\n"
+"                                      Ryan 'simcop2387' Voots\n"
+"\n"
+"                                      Andrew A. Gill\n"
+"\n"
+"                                      Zombie Ryushu\n"
+"\n"
+"                                      Ted Cipicchio\n"
+"\n"
+"                                      The Doctor\n"
+"\n"
+"                                      Simon Newton\n"
+"\n"
+"\n"
+"\n"
+"\n"
+
+#: ../src/menu.c:3008
+msgid ""
+"\n"
+"\n"
+"                       HOW TO CONTRIBUTE\n"
+"\n"
+"\n"
+"FreedroidRPG is entirely free software and free artwork.\n"
+"It is developed exclusively by volunteers in their leisure time.\n"
+"\n"
+"FreedroidRPG depends on these contributions to become a better game.  If you "
+"would like to contribute something, but are not completely sure how, here's "
+"a list of things:\n"
+"\n"
+"\n"
+"   TESTING AND BUG REPORTING:\n"
+"\n"
+"We need people to try out the game and report anything that does not work "
+"correctly or seems to be unstable. This includes minor things, such as "
+"spelling mistakes and the like. The task of testing is growing with the size "
+"of FreedroidRPG. We need your help.\n"
+"\n"
+"\n"
+"   MAP IMPROVEMENTS:\n"
+"\n"
+"We are looking for people who would make maps for us. There is already an "
+"editor built into the game. Feel free to try it, and if you like it make "
+"sure to get back to us.\n"
+"\n"
+"\n"
+"   VOICE SAMPLES:\n"
+"\n"
+"Currently we are not accepting new speech. All of the dialogues are being "
+"rewritten, we will add voice to them later. If you are one of our old voice "
+"actors, then please get in touch with the team.\n"
+"\n"
+"\n"
+"   SOUND EFFECTS:\n"
+"\n"
+"We sure could use some sound effects. If you want to contribute some to a "
+"good cause we will not say no to that. :) \n"
+"\n"
+"\n"
+"   CONTACT:\n"
+"\n"
+"If you would like to contribute something or give some feedback concerning "
+"the game, you can easily get in contact with the developers. Just send an e-"
+"mail to the following address:\n"
+"\n"
+"freedroid-discussion@lists.sourceforge.net\n"
+"\n"
+"Or, if you prefer that, you might want to pop into our IRC channel "
+"(#freedroid on irc.freenode.net) Everyone's invited. Bring your friends and "
+"coke, beer for Basse and Arthur.\n"
+"\n"
+"Thank you,\n"
+"\n"
+"                The FreedroidRPG dev team.\n"
+"                                      \n"
+"\n"
+"\n"
+"\n"
+"\n"
+msgstr ""
+"\n"
+"\n"
+"                      COMMENT CONTRIBUER\n"
+"\n"
+"\n"
+"FreedroidRPG est entièrement libre (code, graphiques, sons).\n"
+"Ce jeu est développé uniquement par des volontaires sur leur temps libre.\n"
+"\n"
+"FreedroidRPG dépends de ces contributions pour devenir un meilleur jeu. Si "
+"vous désirez contribuer mais n'êtes pas sûr de la manière de procéder, voici "
+"une liste de possibilités : \n"
+"\n"
+"\n"
+"   TESTER ET RAPPORTER DES BUGS :\n"
+"\n"
+"Nous avons besoin de ressources pour essayer le jeu et rapporter tout ce qui "
+"ne marche pas correctement ou semble instable. Ça inclu des choses mineures "
+"comme les fautes de frappes. Cette tâche grandit au fur et à mesure que "
+"FreedroidRPG progresse. Nous avons besoin de votre aide.\n"
+"\n"
+"\n"
+"   AMÉLIORATIONS DES CARTES :\n"
+"\n"
+"Nous recherchons des gens qui pourraient faire des cartes pour nous. Il y a "
+"déjà un éditeur dans le jeu. N'hésitez pas à l'essayer et si ça vous plait "
+"n'oubliez pas de nous faire parvenir vos contributions.\n"
+"\n"
+"\n"
+"   ÉCHANTILLONS DE VOIX :\n"
+"\n"
+"Pour l'instant, nous n'acceptons plus de nouveaux échantillons de voix. Tous "
+"les dialogues sont en cours de réécriture, nous ajouterons la voix ensuite. "
+"Si vous êtes un de nos ancien fournisseur d'échantillons, merci de rester en "
+"contact avec l'équipe.\n"
+"\n"
+"\n"
+"   EFFETS SONORES :\n"
+"\n"
+"Nous ferions bon usage de quelques effets sonores. Si vous voulez contribuer "
+"à une bonne cause, nous ne dirons pas non. :)\n"
+"\n"
+"\n"
+"   CONTACT :\n"
+"\n"
+"Si vous voulez contribuer au jeu ou fournir des informations le concernant, "
+"vous pouvez facilement entrer en contact avec les développeurs. Envoyez "
+"simplement un mail à l'adresse suivante : \n"
+"\n"
+"freedroid-discussion@lists.sourceforge.net\n"
+"\n"
+"Ou, si vous préférez, vous pourriez nous rejoindre sur notre channel IRC "
+"(#freedroid on irc.freenode.net) Tout le monde est invité. Amenez vos amis "
+"du coca, et de la bière pour Basse et Arthur.\n"
+"(L'anglais est la langue préconisée, mais si vous ne parlez que français, "
+"vous en trouverez probablement, il en traine toujours quelques uns)\n"
+"Merci,\n"
+"\n"
+"                L'équipe de développement de FreedroidRPG.\n"
+"                                      \n"
+"\n"
+"\n"
+"\n"
+"\n"
+
+#: ../src/menu.c:3166
+msgid ""
+"This is the record of all missions you have been assigned:\n"
+"\n"
+msgstr ""
+"Voici la liste de toutes les missions qui vous ont été assignées :\n"
+"\n"
+
+#: ../src/menu.c:3181
+msgid "SOLVED: "
+msgstr "RÉSOLUES : "
+
+#: ../src/menu.c:3185
+msgid "FAILED: "
+msgstr "ÉCHOUÉES : "
+
+#: ../src/menu.c:3189
+msgid "ASSIGNED: "
+msgstr "ASSIGNÉES : "
+
+#: ../src/menu.c:3193
+msgid "UNASSIGNED: "
+msgstr "NON ASSIGNÉES : "
+
+#: ../src/menu.c:3201
+msgid ""
+"\n"
+"\n"
+"--- Currently no missions beyond that ---"
+msgstr ""
+"\n"
+"\n"
+"--- Aucune mission au delà pour l'instant---"
+
+#: ../src/misc.c:800
+msgid "Pausing game..."
+msgstr "Jeu en pause ..."
+
+#: ../src/misc.c:811
+msgid "GAME PAUSED"
+msgstr "JEU EN PAUSE"
+
+#: ../src/misc.c:841
+msgid "Game resumed."
+msgstr "Jeu repris."
+
+#: ../src/misc.c:1467
+#, c-format
+msgid "Arrived at %s."
+msgstr "Arrivé à %s."
+
+#: ../src/mission.c:112
+msgid ""
+"\n"
+"   See quest log: \n"
+msgstr ""
+"\n"
+"   Voir les logs de quête : \n"
+
+#: ../src/mission.c:129
+msgid ""
+"\n"
+"* Mission completed: "
+msgstr ""
+"\n"
+"* Mission terminée : "
+
+#: ../src/mission.c:133
+msgid ""
+"\n"
+"* Mission failed: "
+msgstr ""
+"\n"
+"* Mission échouée : "
+
+#: ../src/mission.c:137
+msgid ""
+"\n"
+"* Mission not yet assigned: "
+msgstr ""
+"\n"
+"* Mission non assignée : "
+
+#: ../src/mission.c:140
+msgid ""
+"\n"
+"* Mission assigned: "
+msgstr ""
+"\n"
+"* Mission assignée : "
+
+#: ../src/mission.c:170 ../src/mission.c:221
+msgid "Mission: "
+msgstr "Mission : "
+
+#: ../src/mission.c:172
+msgid ""
+"\n"
+"Status: "
+msgstr ""
+"\n"
+"Status : "
+
+#: ../src/mission.c:174 ../src/mission.c:234
+msgid "COMPLETE"
+msgstr "TERMINÉE"
+
+#: ../src/mission.c:176 ../src/mission.c:236
+msgid "FAILED"
+msgstr "ÉCHOUÉE"
+
+#: ../src/mission.c:178 ../src/mission.c:238
+msgid "STILL OPEN"
+msgstr "EN COURS"
+
+#: ../src/mission.c:179 ../src/mission.c:239
+msgid ""
+"\n"
+"Details: "
+msgstr ""
+"\n"
+"Détails : "
+
+#: ../src/mission.c:232
+msgid "Status: "
+msgstr "Status : "
+
+#: ../src/mission.c:391
+msgid "No open quests yet."
+msgstr "Aucune quête en cours pour l'instant."
+
+#: ../src/mission.c:394
+msgid "No completed quests yet."
+msgstr "Aucune quête terminée pour l'instant."
+
+#: ../src/mission.c:397
+msgid "No notes yet."
+msgstr "Aucune note pour l'instant."
+
+#: ../src/saveloadgame.c:295
+msgid ""
+"\n"
+"\n"
+"    Surely you do not really want do save a game \n"
+"\n"
+"    where your tux is dead, do you?"
+msgstr ""
+"\n"
+"\n"
+"    Vous ne voulez probablement pas sauvegarder une partie \n"
+"\n"
+"    où tux est mort, n'est-ce pas ?"
+
+#: ../src/saveloadgame.c:459
+msgid "Game saved."
+msgstr "Jeu sauvegardé."
+
+#: ../src/saveloadgame.c:547
+msgid "Failed to load old game."
+msgstr "Échec du chargement de l'ancienne partie."
+
+#: ../src/saveloadgame.c:653
+msgid ""
+"Error: Version or structsize mismatch! The saved game in question appears to "
+"be from a (slightly?) different version of FreedroidRPG.\n"
+"Sorry, but I refuse to load it for safety/stability reasons...\n"
+"For Recovery, a blank game will be loaded...(please disregard)\n"
+msgstr ""
+
+#: ../src/saveloadgame.c:713
+msgid "Updating Tux images (this may take a little while...)"
+msgstr "Mise à jour des images de Tux (veuillez patienter ...)"
+
+#: ../src/saveloadgame.c:725
+msgid "Game loaded."
+msgstr "Jeu chargé."
+
+#: ../src/ship.c:74 ../src/shop.c:1261 ../src/shop.c:1288 ../src/shop.c:1325
+#: ../src/shop.c:1555 ../src/shop.c:1744 ../src/shop.c:1864 ../src/shop.c:1956
+msgid "Yes"
+msgstr "Oui"
+
+#: ../src/ship.c:75 ../src/shop.c:1262 ../src/shop.c:1289 ../src/shop.c:1326
+#: ../src/shop.c:1556 ../src/shop.c:1745 ../src/shop.c:1865 ../src/shop.c:1957
+msgid "No"
+msgstr "Non"
+
+#: ../src/ship.c:90 ../src/shop.c:1197 ../src/shop.c:1269 ../src/shop.c:1296
+#: ../src/shop.c:1495 ../src/shop.c:1581 ../src/shop.c:1810 ../src/shop.c:1915
+#: ../src/shop.c:1990
+msgid " BACK "
+msgstr " RETOUR "
+
+#: ../src/ship.c:92
+msgid " YOU DONT HAVE ANYTHING IN INVENTORY, THAT COULD BE VIEWED. "
+msgstr " VOUS N'AVEZ RIEN DANS VOTRE INVENTAIRE QUI PUISSE ÊTRE VU. "
+
+#: ../src/ship.c:230
+#, c-format
+msgid ""
+"Unit type %s - %s\n"
+"Entry : %d\n"
+"Class : %s\n"
+"Drive : %s \n"
+"Brain : %s"
+msgstr ""
+" Type d'unité %s - %s\n"
+"Entrée : %d\n"
+"Classe : %s\n"
+"Chassis : %s \n"
+"Cerveau : %s"
+
+#: ../src/ship.c:245
+#, c-format
+msgid ""
+"\n"
+"Armamant : %s\n"
+"Sensors  1: %s\n"
+"          2: %s\n"
+"          3: %s"
+msgstr ""
+"\n"
+"Armement : %s\n"
+"Capteurs  1: %s\n"
+"          2: %s\n"
+"          3: %s"
+
+#: ../src/ship.c:253
+#, c-format
+msgid ""
+"\n"
+"Notes: %s\n"
+msgstr ""
+"\n"
+"Notes : %s\n"
+
+#: ../src/ship.c:566
+msgid " (Unidentified)"
+msgstr " (Non identifié)"
+
+#: ../src/ship.c:610 ../src/vars.h:127
+msgid "Weapon"
+msgstr "Arme"
+
+#: ../src/ship.c:612
+msgid "Drive"
+msgstr "Chassis"
+
+#: ../src/ship.c:614
+msgid "Armour"
+msgstr "Armure"
+
+#: ../src/ship.c:616
+msgid "Shield"
+msgstr "Bouclier"
+
+#: ../src/ship.c:618
+msgid "Helm"
+msgstr "Heaume"
+
+#: ../src/ship.c:620
+msgid "Wristband/Collar"
+msgstr "Bracelet/Collier"
+
+#: ../src/ship.c:621
+msgid "Miscellaneous"
+msgstr "Divers"
+
+#: ../src/ship.c:624
+#, c-format
+msgid ""
+"Item: %s \n"
+"Class: %s\n"
+msgstr ""
+" Objet : %s \n"
+"Classe : %s\n"
+
+#: ../src/ship.c:638
+msgid "Specials:"
+msgstr "Spécial : "
+
+#: ../src/ship.c:650
+msgid "Multiplicity: "
+msgstr "Nombre : "
+
+#: ../src/ship.c:657
+msgid "Duration: "
+msgstr "Solidité : "
+
+#: ../src/ship.c:663
+#, c-format
+msgid "Indestructible\n"
+msgstr "Indestructible\n"
+
+#: ../src/ship.c:668
+msgid "Attributes required: "
+msgstr "Attributs requis : "
+
+#: ../src/ship.c:674
+msgid "NONE\n"
+msgstr "AUCUN\n"
+
+#: ../src/ship.c:680
+#, c-format
+msgid "Str: %d "
+msgstr "For: %d "
+
+#: ../src/ship.c:685
+#, c-format
+msgid "Dex: %d "
+msgstr "Dex : %d "
+
+#: ../src/ship.c:690
+#, c-format
+msgid "Mag: %d "
+msgstr "Mag : %d "
+
+#: ../src/ship.c:728
+#, c-format
+msgid "Base list price: %ld\n"
+msgstr "Valeur de base : %ld\n"
+
+#: ../src/ship.c:731
+#, c-format
+msgid "Sell value: %ld\n"
+msgstr "Valeur de vente : %ld\n"
+
+#: ../src/ship.c:739
+#, c-format
+msgid "Repair cost: %ld\n"
+msgstr "Coût de réparation : %ld\n"
+
+#: ../src/ship.c:744
+#, c-format
+msgid "Unsellable\n"
+msgstr "Invendable\n"
+
+#: ../src/ship.c:753
+#, c-format
+msgid "Damage: %d - %d\n"
+msgstr "Dommages : %d - %d\n"
+
+#: ../src/ship.c:762
+#, c-format
+msgid "Recharge time: %3.2f\n"
+msgstr "Temps de rechargement : %3.2f\n"
+
+#: ../src/ship.c:769
+#, c-format
+msgid "Time to reload ammo clip: %3.2f\n"
+msgstr "Temps de changement de chargeur : %3.2f\n"
+
+#: ../src/ship.c:776
+#, c-format
+msgid "Defense bonus: %d\n"
+msgstr "Bonus de défense : %d\n"
+
+#: ../src/ship.c:780
+#, c-format
+msgid "Notes: %s"
+msgstr "Notes : %s"
+
+#: ../src/ship.c:787
+msgid " This weapon requires standard plasma ammunition."
+msgstr " Cette arme nécessite des munitions de plasma standards."
+
+#: ../src/ship.c:790
+msgid " This weapon requires standard laser crystal ammunition."
+msgstr " Cette arme nécessite des munitions de laser standards."
+
+#: ../src/ship.c:793
+msgid " This weapon requires standard exterminator ammunition spheres."
+msgstr " Cette arme nécessite des munition d'exterminator standards."
+
+#: ../src/shop.c:1272
+msgid ""
+"\n"
+"\n"
+"You can't afford to have this item repaired! "
+msgstr ""
+"\n"
+"\n"
+"Vous n'avez pas de quoi faire réparer cet objet !"
+
+#: ../src/shop.c:1299
+msgid "You can't afford to have this item identified! "
+msgstr "Vous n'avez pas de quoi faire identifier cet objet ! "
+
+#: ../src/shop.c:1368
+msgid ""
+"\n"
+"\n"
+"    Are you sure you wish to sell this/(some of these) item(s)?"
+msgstr ""
+"\n"
+"\n"
+"Êtes-vous sûr de vouloi vendre cet/(ces) objet(s) ?"
+
+#: ../src/shop.c:1498
+msgid ""
+"\n"
+"\n"
+"   No room for this item in inventory!"
+msgstr ""
+"\n"
+"\n"
+"Vous n'avez pas de place pour cet objet dans votre inventaire !"
+
+#: ../src/shop.c:1522
+msgid ""
+"\n"
+"Tried to take 0 items of a kind from chest or cointainer... doing nothing... "
+msgstr ""
+"\n"
+"Impossible de ramasser 0 objet d'un coffre ou d'un container ... "
+
+#: ../src/shop.c:1584
+msgid ""
+"\n"
+"\n"
+"    You can't afford to purchase this item!"
+msgstr ""
+"\n"
+"\n"
+"Vous n'avez pas de quoi acheter cet objet !"
+
+#: ../src/shop.c:1812
+msgid " YOU DONT HAVE ANYTHING THAT WOULD NEED REPAIR "
+msgstr " VOUS N'AVEZ RIEN QUI AIT BESOIN D'ÊTRE RÉPARÉ "
+
+#: ../src/shop.c:1917
+msgid " YOU DONT HAVE ANYTHING THAT WOULD NEED TO BE IDENTIFIED!"
+msgstr " VOUS N'AVEZ RIEN QUI AIT BESOIN D'ETRE IDENTIFIÉ "
+
+#: ../src/shop.c:1929
+#, c-format
+msgid " I COULD IDENTIFY THESE ITEMS             YOUR GOLD:  %4ld"
+msgstr " JE POURRAIS IDENTIFIER CES OBJETS        VOTRE ARGENT :  %4ld"
+
+#: ../src/shop.c:1992
+msgid ""
+" YOU DONT HAVE ANYTHING IN INVENTORY (I.E. NOT WORN), THAT COULD BE SOLD. "
+msgstr ""
+"  VOUS N'AVEZ RIEN DANS VOTRE INVENTAIRE (NON PORTÉ), QUI PUISSE ÊTRE VENDU. "
+
+#: ../src/shop.c:2005
+#, c-format
+msgid " I WOULD BUY FROM YOU THESE ITEMS        YOUR GOLD:  %4ld"
+msgstr " JE VOUS ACHÈTERAI CES OBJETS            VOTRE ARGENT :  %4ld"
+
+#: ../src/shop.c:2048
+msgid "Buy Basic Items"
+msgstr "Acheter des objets basiques"
+
+#: ../src/shop.c:2049
+msgid "Buy Premium Items"
+msgstr "Acheter des objets premiums"
+
+#: ../src/shop.c:2050
+msgid "Sell Items"
+msgstr "Vendre des objets"
+
+#: ../src/shop.c:2051
+msgid "Repair Items"
+msgstr "Réparer des objets"
+
+#: ../src/shop.c:2052
+msgid "Leave the Sales Representative"
+msgstr "Quitter le représentant"
+
+#: ../src/shop.c:2053
+msgid "Identify Items"
+msgstr "Identifier des objets"
+
+#: ../src/skills.c:712
+#, c-format
+msgid "Program revision: %d "
+msgstr "Révision du programme : %d"
+
+#: ../src/skills.c:715
+#, c-format
+msgid "Heat produced: %d "
+msgstr "Chaleur produite : %d"
+
+#: ../src/takeover.c:306
+#, c-format
+msgid "For taking control of your enemy, you receive %d experience."
+msgstr ""
+"Pour avoir pris le contrôle de votre ennemi, vous recevez %d points "
+"d'experience."
+
+#: ../src/takeover.c:353
+msgid "You cheat"
+msgstr "Vous avez triché"
+
+#: ../src/takeover.c:355 ../src/vars.h:129
+msgid "Complete"
+msgstr "Réussi"
+
+#: ../src/takeover.c:365 ../src/vars.h:130
+msgid "Rejected"
+msgstr "Rejeté"
+
+#: ../src/takeover.c:373
+msgid "Deadlock"
+msgstr "Bloqué"
+
+#: ../src/takeover.c:436
+#, c-format
+msgid "Color-%d"
+msgstr "Couleur-%d"
+
+#: ../src/takeover.c:473
+#, c-format
+msgid "Subliminal"
+msgstr ""
+
+#: ../src/takeover.c:510
+#, c-format
+msgid "Finish-%d"
+msgstr "Fin-%d"
+
+#: ../src/takeover.c:1753
+#, c-format
+msgid "Score"
+msgstr "Score"
+
+#: ../src/text.c:193
+msgid "Unhandled exception fault.  Press ok to reboot."
+msgstr "Exception non contolée. Appuyer sur ok pour redémarrer."
+
+#: ../src/text.c:196
+msgid "System fault. Please buy a newer version."
+msgstr "Erreur système. Veuillez acheter une nouvelle version."
+
+#: ../src/text.c:199
+msgid "System error. Might be a virus."
+msgstr "Erreur système. Cela pourrait être dû à un virus."
+
+#: ../src/text.c:202
+msgid "System error. Please buy an upgrade from MS."
+msgstr "Erreur système. Veuiller acheter une mise à jour au près de MS."
+
+#: ../src/text.c:205
+msgid "System error. Press any key to reboot."
+msgstr "Erreur système. Appuyer sur une touche pour redémarrer."
+
+#: ../src/text.c:209
+msgid "Aargh, I got hit.  Ugh, I got a bad feeling..."
+msgstr "Aargh, j'ai été touché. Ugh, je me sens mal ..."
+
+#: ../src/text.c:227
+msgid "Ah, good, that we have an open collision avoiding standard, isn't it."
+msgstr ""
+"Ah, c'est une bonne chose que nous ayons un standard ouvert d'évitement de "
+"collisions, n'est-ce pas ?"
+
+#: ../src/text.c:234
+msgid "Hey, I'm from MS! Walk outa my way!"
+msgstr "Hé, je suis de MS ! Hors de mon chemin !"
+
+#: ../src/text.c:237
+msgid "Hey, I know the big MS boss! You better go."
+msgstr "Hé, je connais le grand chef de MS ! Tu ferais mieux de partir."
+
+#: ../src/text.c:259
+msgid "Yeah, stay like that, haha."
+msgstr "Oui, reste comme ça, haha."
+
+#: ../src/text.c:263
+msgid "Stand still while I aim at you."
+msgstr "Reste tranquille pendant que je te vise."
+
+#: ../src/text.c:285
+msgid "Aaarrgh, aah, that burnt me!"
+msgstr "Aaarrgh, aah, ça me brule !"
+
+#: ../src/text.c:288
+msgid "Hell, that blast was hot!"
+msgstr "Diable, cette rafale était chaude !"
+
+#: ../src/text.c:291
+msgid "Ghaart, I hate to stain my chassis like that."
+msgstr "Ghaart, je déteste souiller mon chassis comme ça."
+
+#: ../src/text.c:294
+msgid "Oh no!  I think I've burnt a cable!"
+msgstr "Oh non ! Je crois que j'ai grillé un cable !"
+
+#: ../src/text.c:297
+msgid "Oh no, my poor transfer connectors smolder!"
+msgstr "Oh non, mon pauvre connecteur de transfert est grillé !"
+
+#: ../src/text.c:300
+msgid "I hope that didn't melt any circuits!"
+msgstr "J'espère que ça n'a fait fondre aucun circuit !"
+
+#: ../src/text.c:303
+msgid "So that gives some more black scars on me ol' dented chassis!"
+msgstr ""
+"Ça me donne donc de nouvelles cicatrices noires sur mon vieux chassis "
+"bosselé !"
+
+#: ../src/vars.h:125
+msgid "Mobile"
+msgstr ""
+
+#: ../src/vars.h:126
+msgid "Transfer"
+msgstr ""
+
+#: ../src/vars.h:128
+msgid "Captured"
+msgstr ""
+
+#: ../src/vars.h:131
+msgid "Logged In"
+msgstr ""
+
+#: ../src/vars.h:132
+msgid "Debriefing"
+msgstr ""
+
+#: ../src/vars.h:133
+msgid "Terminated"
+msgstr ""
+
+#: ../src/vars.h:134
+msgid "Pause"
+msgstr ""
+
+#: ../src/vars.h:135
+msgid "Cheese"
+msgstr ""
+
+#: ../src/vars.h:136
+msgid "Elevator"
+msgstr ""
+
+#: ../src/vars.h:137
+msgid "Briefing"
+msgstr ""
+
+#: ../src/vars.h:138
+msgid "Menu"
+msgstr ""
+
+#: ../src/vars.h:139
+msgid "Fresh Net"
+msgstr ""
+
+#: ../src/vars.h:140
+msgid "Name Tran"
+msgstr ""
+
+#: ../src/vars.h:156
+msgid "Influence device"
+msgstr ""
+
+#: ../src/vars.h:157
+msgid "Disposal robot"
+msgstr "Robot multi-usages"
+
+#: ../src/vars.h:158
+msgid "Servant robot"
+msgstr "Robot de service"
+
+#: ../src/vars.h:159
+msgid "Messenger robot"
+msgstr "Robot messager"
+
+#: ../src/vars.h:160
+msgid "Maintenance robot"
+msgstr "Robot de maintenance"
+
+#: ../src/vars.h:161
+msgid "Crew droid"
+msgstr "Robot d'equipage"
+
+#: ../src/vars.h:162
+msgid "Sentinel droid"
+msgstr "Robot sentinelle"
+
+#: ../src/vars.h:163
+msgid "Battle droid"
+msgstr "Robot de combat"
+
+#: ../src/vars.h:164
+msgid "Security droid"
+msgstr "Robot de sécurité"
+
+#: ../src/vars.h:165
+msgid "Command Cyborg"
+msgstr ""
+
+#: ../src/vars.h:166
+msgid "Peaceful Human"
+msgstr "Humain pacifique"
+
+#: ../src/vars.h:167
+msgid "Cold MS Force"
+msgstr ""
+
+#: ../src/vars.h:168
+msgid "Mrs. Stone, Shopowner"
+msgstr "Mrs. Stone, Commerçante"
+
+#: ../src/vars.h:169
+msgid "Resistance Founder"
+msgstr "Fondateur de la résistance"
+
+#: ../src/vars.h:170
+msgid "Town Healer"
+msgstr "Soigneur de la ville"
+
+#: ../src/vars.h:171
+msgid "Sorenson, Master of Magic"
+msgstr "Sorenson, Maître de la magie"
+
+#: ../src/vars.h:172
+msgid "Pendragon, Rebel Fighter"
+msgstr "Pendragon, Combattant rebelle"
+
+#: ../src/vars.h:173
+msgid "Dixon, Teleporter Service Man"
+msgstr "Dixon, Agent de service du téléporteur"
+
+#: ../src/vars.h:174
+msgid "Chandra, Tourist Guide"
+msgstr "Chandra, Guide touristique"
+
+#: ../src/vars.h:179
+msgid "influence"
+msgstr ""
+
+#: ../src/vars.h:180
+msgid "disposal"
+msgstr "multi-service"
+
+#: ../src/vars.h:181
+msgid "servant"
+msgstr "serviteur"
+
+#: ../src/vars.h:182
+msgid "messenger"
+msgstr "messager"
+
+#: ../src/vars.h:183
+msgid "maintenance"
+msgstr "maintenance"
+
+#: ../src/vars.h:184
+msgid "crew"
+msgstr "équipage"
+
+#: ../src/vars.h:185
+msgid "sentinel"
+msgstr "sentinelle"
+
+#: ../src/vars.h:186
+msgid "battle"
+msgstr "combat"
+
+#: ../src/vars.h:187
+msgid "security"
+msgstr "sécurité"
+
+#: ../src/vars.h:188
+msgid "command"
+msgstr ""
+
+#: ../src/vars.h:189 ../src/vars.h:199 ../src/vars.h:209 ../src/vars.h:216
+#: ../src/vars.h:225
+msgid "error"
+msgstr "erreur"
+
+#: ../src/vars.h:193 ../src/vars.h:213 ../src/vars.h:220
+msgid "none"
+msgstr "aucun"
+
+#: ../src/vars.h:194
+msgid "tracks"
+msgstr "chenilles"
+
+#: ../src/vars.h:195
+msgid "anti-grav"
+msgstr "anti-gravité"
+
+#: ../src/vars.h:196
+msgid "tripedal"
+msgstr "tri-pédales"
+
+#: ../src/vars.h:197
+msgid "wheels"
+msgstr "roues"
+
+#: ../src/vars.h:198
+msgid "bipedal"
+msgstr "bi-pédales"
+
+#: ../src/vars.h:203
+msgid " - "
+msgstr " - "
+
+#: ../src/vars.h:204
+msgid "spectral"
+msgstr "spectral"
+
+#: ../src/vars.h:205
+msgid "infra-red"
+msgstr "infra-rouge"
+
+#: ../src/vars.h:206
+msgid "subsonic"
+msgstr "sub-sonique"
+
+#: ../src/vars.h:207
+msgid "ultra-sonic"
+msgstr "super-sonique"
+
+#: ../src/vars.h:208
+msgid "radar"
+msgstr "radar"
+
+#: ../src/vars.h:214
+msgid "neutronic"
+msgstr "neutronique"
+
+#: ../src/vars.h:215
+msgid "primode"
+msgstr ""
+
+#: ../src/vars.h:221
+msgid "lasers"
+msgstr "lasers"
+
+#: ../src/vars.h:222
+msgid "laser rifle"
+msgstr "fusil laser"
+
+#: ../src/vars.h:223
+msgid "disruptor"
+msgstr ""
+
+#: ../src/vars.h:224
+msgid "exterminator"
+msgstr ""
+
+#: ../src/vars.h:230
+msgid "novice"
+msgstr "débutant"
+
+#: ../src/vars.h:231
+msgid "average"
+msgstr "initié"
+
+#: ../src/vars.h:232
+msgid "experienced"
+msgstr "avancé"
+
+#: ../src/vars.h:233
+msgid "skilled"
+msgstr "expérimenté"
+
+#: ../src/vars.h:234
+msgid "adept"
+msgstr "adepte"
+
+#: ../src/vars.h:235
+msgid "masterful"
+msgstr "maître"
+
+#: ../src/vars.h:236
+msgid "inhuman"
+msgstr "inhumain"
+
+#: ../src/vars.h:237
+msgid "god-like"
+msgstr "divin"
+
+#: ../src/vars.h:238
+msgid "super-god-like"
+msgstr "super-divin"
+
+#: ../src/vars.h:239
+msgid "wicked sick"
+msgstr "sacrément atteint"
+
+#: ../src/view.c:255
+#, c-format
+msgid "FPS: %d"
+msgstr "FPS : %d"
+
+#: ../src/view.c:262
+#, c-format
+msgid "Energy: %d "
+msgstr "Energie : %d"
+
+#: ../src/view.c:272
+#, c-format
+msgid "GPS: X=%3.1f Y=%3.1f Lev=%d"
+msgstr ""
+
+#: ../src/view.c:293
+#, c-format
+msgid "Time to hold out still: %2d:%2d "
+msgstr ""
+
+#: ../src/view.c:312
+#, c-format
+msgid "Bots remaining on level: %d"
+msgstr "Robots restant dans le niveau : %d"
+
+#~ msgid "Start as a Server"
+#~ msgstr "Démarrer en tant que serveur"
+
+#~ msgid "Join existing Multiplayer game"
+#~ msgstr "Rejoundre une partie multi-joueurs existante"
+
+#~ msgid "List known Servers"
+#~ msgstr "Lister les serveurs connus"
+
+#~ msgid ""
+#~ "\n"
+#~ "W A R N I N G !\n"
+#~ "\n"
+#~ "Multiplayer and network play is still very much experimental code.\n"
+#~ "Currently we are not continuing the networking code, simply because our "
+#~ "team does not have enough manpower for this additional task and because "
+#~ "it slows down development of new features of the single player game a lot."
+#~ msgstr ""
+#~ "\n"
+#~ "A T T E N T I O N !\n"
+#~ "\n"
+#~ "Le mode multijoueur et le jeu en réseau sont encore des parties très "
+#~ "expérimentales.\n"
+#~ "Pour l'instant, nous ne travaillons qu'assez peu sur cette partie car "
+#~ "notre équipe manque de ressources pour cette tâche et que ça ralentirait "
+#~ "beaucoup le développement de nouvelles fonctionnalités et du jeu "
+#~ "monojoueur."

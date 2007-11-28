@@ -1,0 +1,36 @@
+/// Package Version Information
+#define PACKAGE "${PACKAGE}"
+#define PACKAGE_NAME "${PACKAGE_NAME}"
+#define PACKAGE_VERSION "${PACKAGE_VERSION}"
+
+/// Package Version Information (Deprecated)
+#define VERSION "${PACKAGE_VERSION}"
+
+/// Optional Features
+#cmakedefine HAVE_BACKTRACE 1
+#cmakedefine ENABLE_OPENGL 1
+#cmakedefine ENABLE_SOUND 1
+#cmakedefine ENABLE_NLS 1
+
+/// Optional Features (Deprecated)
+#cmakedefine HAVE_LIBGL 1
+#cmakedefine HAVE_LIBSDL_MIXER 1
+
+/// System Information
+#cmakedefine HAVE_ALPHASORT 1
+#cmakedefine HAVE_SCANDIR 1
+#cmakedefine HAVE_DIRENT_H 1
+#cmakedefine HAVE_EXECINFO_H 1
+#cmakedefine HAVE_FCNTL_H 1
+#cmakedefine HAVE_LOCALE_H 1
+#cmakedefine HAVE_SIGNAL_H 1
+#cmakedefine HAVE_STDLIB_H 1
+#cmakedefine HAVE_STRINGS_H 1
+#cmakedefine HAVE_STRING_H 1
+#cmakedefine HAVE_SYS_IOCTL_H 1
+#cmakedefine HAVE_SYS_SOUNDCARD_H 1
+#cmakedefine HAVE_SYS_STAT_H 1
+#cmakedefine HAVE_SYS_TIME_H 1
+#cmakedefine HAVE_SYS_TYPES_H 1
+#cmakedefine HAVE_TIME_H 1
+#cmakedefine HAVE_UNISTD_H 1

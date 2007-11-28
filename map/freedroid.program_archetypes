@@ -1,0 +1,260 @@
+*** Start of program data section: ***
+
+** Start of new program specification subsection **
+Program name="Hacking"  
+Program description="Tux is gifted with the ability to hack any machine in no time.  To make use of this ability, select this skill. When a machine is close enough and this skill is activated by holding down the right mouse button, the takeover process will be initiated."
+Picture="TakeoverTalkSkill.png"
+Form="immediate"
+Cost=0
+Effect="talk_or_takeover"
+Present at startup=1
+
+** Start of new program specification subsection **
+Program name="Repair equipment"  
+Program description="This skill allows to repair an item from the inventory. To use this skill, select it, then open the inventory screen and then right click the mouse on the item you wish to repair. While repair doesn't 'cost' anything, the item will still lose some of its maximum duration in the process, but the current duration will be restored to this new maximum value."
+Picture="RepairSkill.png"
+Form="immediate"
+Cost=0
+Effect="repair"
+Present at startup=1
+
+** Start of new program specification subsection **
+Program name="Use weapon"  
+Program description="Using this skill allows you to force an attack on something. You can attack friendly targets by using it."
+Picture="WeaponSkill.png"
+Form="immediate"
+Cost=0
+Effect="weapon"
+Present at startup=1
+
+** Start of new program specification subsection **
+Program name="Extract bot parts"  
+Program description="With a little knowledge, you can extract some useful parts out of the robots you kill. With each bot there is some hope of a part falling out."
+Picture="ExtractBotParts.png"
+Form="self"
+Effect="none"
+Cost=0
+
+** Start of new program specification subsection **
+Program name="Calculate Pi"  
+Program description="It is not a big problem to make a badly designed system to go hunting for the impossible, causing a performance impact."
+Picture="Calculate_PI.png"
+Form="bullet"
+Effect="slowdown"
+Base damage=4
+Mod damage=7
+Damage per level=10
+Hurt bots=1
+Hurt humans=1
+Cost=10
+Cost per level=5
+#12 is blue bullet
+Artwork internal code=12
+
+
+** Start of new program specification subsection **
+Program name="Blue Screen"
+Program description="With a little touch a war machine comes crashing down to a halt. For a while."
+Picture="BlueScreen.png"
+Effect="paralyze"
+Form="bullet"
+Cost=15
+Artwork internal code=12
+Base damage=0
+
+** Start of new program specification subsection **
+Program name="Malformed packet"
+Program description="When computers are presented with the unexpected they can damage themselves."
+Picture="BadPacket.png"
+Effect="none"
+Form="bullet"
+Cost=2
+#14 is white bullet
+Artwork internal code=14
+Base damage=3
+
+** Start of new program specification subsection **
+Program name="Check system integrity"
+Program description="While repairing damage you must remember that patience is a virtue."
+Picture="FirstAidSpell.png"
+Effect="none"
+Form="self"
+Cost=40
+Base damage=-40
+Cost per level=-3
+
+** Start of new program specification subsection **
+Program name="Analyze item"
+Program description="There are very few items which have labels on them. Unless you happen to have an item labeled 'USE ME', you better make sure what it is before using it..."
+Picture="IdentifySkill.png"
+Effect="identify"
+Form="self"
+Cost=65
+Cost per level=-3
+
+** Start of new program specification subsection **
+Program name="Nethack"
+Program description="The open source game called Nethack is one of the world's greatest wasters of time. Machines don't care about it, but humans can get sucked in quite deeply."
+Picture="Nethack.png"
+Form="bullet"
+Effect="paralyze"
+Cost=10
+Artwork internal code=5
+
+** Start of new program specification subsection **
+Program name="Dispell smoke"
+Program description="By heating up the chips with a malformed program you can cause them to release the magic smoke which keeps the bot running. "
+Picture="DispellSmoke.png"
+Form="immediate"
+Effect="none"
+Cost=40
+Base damage=40
+
+** Start of new program specification subsection **
+Program name="Killer poke"
+Program description="Messing around with the bot's memory can cause it to damage itself, but the damage is greatly variable."
+Picture="Poke.png"
+Form="bullet"
+Effect="none"
+Cost=20
+Artwork internal code=4
+Base damage=40
+
+
+** Start of new program specification subsection **
+Program name="Broadcast killer poke"
+Program description="The radio network is a wonderful invention for the people who like to blow up a lot of stuff at once."
+Picture="NoSkillAvailable.png"
+Form="radial"
+Effect="none"
+Cost=100
+Base damage=250
+
+** Start of new program specification subsection **
+Program name="Ricer CFLAGS"
+Program description="This does nothing in this version of freedroidRPG. Optimization is the root of all evil. You can gain some temporary improvements to your 
+system, but in the end you are only likely to cause permanent damage."
+Picture="cflag.png"
+Form="self"
+Effect="burnup"
+Cost=0
+
+** Start of new program specification subsection **
+Program name="Plasma discharge"
+Program description="The overload setting exists for emergencies. The plasma does not discriminate between bots and humans. Everything is equal to it."
+Picture="RadialPlasmaWaveSpell.png"
+Form="radial"
+Effect="none"
+Cost=30
+Base damage=500
+Artwork internal code=2
+
+** Start of new program specification subsection **
+Program name="Invisibility"
+Program description="This does nothing in this version of freedroidRPG. I am not the Linarian you are looking for."
+Picture="Invisibility.png"
+Form="self"
+Effect="invisibility"
+Cost=30
+
+** Start of new program specification subsection **
+Program name="Sanctuary"
+Program description="The art of rapidly moving away from danger is very useful. Even when used in reverse it has it's uses."
+Picture="TeleportHomeSpell.png"
+Form="self"
+Effect="teleport_home"
+Cost=30
+Cost per level=-3
+
+** Start of new program specification subsection **
+Program name="Virus"
+Program description="This is not just a firmware upgrade, my dear bot. You are about to find out what exactly I want to give you."
+Picture="Virus.png"
+Form="bullet"
+Effect="none"
+Cost=10
+Base damage=15
+Artwork internal code=13
+
+
+** Start of new program specification subsection **
+Program name="Broadcast virus"
+Program description="The network is wide and dangerous. Many traps await for the weak and unprepared."
+Picture="BroadcastVirus.png"
+Form="radial"
+Effect="none"
+Cost=40
+Base damage=30
+Artwork internal code=1
+
+** Start of new program specification subsection **
+Program name="Reverse-engineer"
+Program description="There is some dark magic in the art of turning bots inside-out to learn all their secrets."
+Picture="ReverseEngineer.png"
+Form="immediate"
+Effect="none"
+Cost=60
+Base damage=80
+
+** Start of new program specification subsection **
+Program name="Emergency shutdown"
+Program description="Everyone needs to blow some steam every now and then."
+Picture="Shutdown.png"
+Form="self"
+Effect="paralyze"
+Cost=-100
+Base damage=0
+
+** Start of new program specification subsection **
+Program name="Light"
+Program description="This does nothing in this version of freedroidRPG. Let there be light..."
+Picture="Light.png"
+Form="bullet"
+Effect="light"
+Cost=3
+Base damage=0
+Artwork internal code=14
+
+** Start of new program specification subsection **
+Program name="Satellite image"
+Program description="This does nothing in this version of freedroidRPG. Getting a map of an area is pretty easy when you can look at everything from above."
+Picture="SatelliteImage.png"
+Form="immediate"
+Effect="maplevel"
+Cost=40
+Base damage=0
+
+** Start of new program specification subsection **
+Program name="Plasma grenade"
+Program description="This is a bug, report this to the developers, unless you cheated, in which case you deserve to see this stupid description."
+Picture="NoSkillAvailable.png"
+Form="radial"
+Effect="none"
+Cost=400
+Base damage=400
+Artwork internal code=2
+
+** Start of new program specification subsection **
+Program name="Gas grenade"
+Program description="This is a bug, report this to the developers, unless you cheated, in which case you deserve to see this stupid description."
+Picture="NoSkillAvailable.png"
+Form="radial"
+Effect="none"
+Cost=400
+Base damage=300
+Artwork internal code=1
+
+** Start of new program specification subsection **
+Program name="EMP grenade"
+Program description="This is a bug, report this to the developers, unless you cheated, in which case you deserve to see this stupid description."
+Picture="NoSkillAvailable.png"
+Form="radial"
+Effect="none"
+Cost=400
+Base damage=300
+Artwork internal code=0
+
+
+
+*** End of program data section ***
+*** End of this Freedroid data File ***

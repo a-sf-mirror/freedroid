@@ -1,0 +1,1290 @@
+
+ * ----------------------------------------------------------------------
+ *
+ *   Copyright (c) 2002, 2003 Johannes Prix
+ *   Copyright (c) 2002 Reinhard Prix
+ *   Copyright (c) 2004-2007 Arthur Huillet
+ *
+ *  This file is part of Freedroid
+ *
+ *  Freedroid is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ *  Freedroid is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with Freedroid; see the file COPYING. If not, write to the 
+ *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
+ *  MA  02111-1307  USA
+ *
+ * 
+ * Feel free to make any modifications you like.  If you set up 
+ * something cool, please send your file in to the Freedroid project.
+ *
+ * ----------------------------------------------------------------------
+
+You can edit it with a standard text editor of your choice.
+Feel free to make any modifications you like.
+Freedroid will still accept you modified game dada file as long
+as you stick to the following rules:
+1.) the text indicating the Start of the Robot Data Section must not
+    be removed or changed.  It is needed by Freedroid in order to find
+    the robot section in your modified file.
+2.) the text indicating the end of the data file must not be removed.
+    It is needed by Freedroid to ensure the integrity of this data file.
+3.) Every new robot must begin with the typical "Start of new Robot"
+    string AND the asterisks as you see in the existing robots.
+    Best copy an existing robots data to a new location at the end
+    of the robot data section and modify the values to your liking. 
+
+YOU CAN INSERT EXTRA LINES WITH EXTRA TEXT anywhere you like in this file.
+That will not cause any problems.  
+
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+
+*** Start of Robot Data Section: *** 
+
+This is the header part of the robot data section:
+Here we have some constants which allow you to multiply a
+factor to ALL robot's values simultanously.  If you want to
+modify only ONE PARTICULAR droid, please seek that droid 
+value in the detailed description of each robot further below
+and make your modifiactions there.
+
+Common factor for all droids maxspeed values: 0.5
+Common factor for all droids acceleration values: 3.0
+Common factor for all droids maximum energy values: 0.8
+Common factor for all droids energyloss values: 0.05
+Common factor for all droids aggression values: 1.0
+Common factor for all droids experience_reward values: 0.5
+Common factor for all droids recovery time after hit: 1.0
+Common factor for all droids range of vision: 1.4
+Co**mmon factor for all droids range of vision: 0.2
+
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+
+Now we come to the description of all the droids:
+
+** Start of new Robot: ** 
+Droidname: 001
+Droid uses portrait rotation series with prefix="001"
+Maximum speed of this droid: 5.1
+Class of this droid: 0
+Maximum acceleration of this droid: 1.1
+Maximum energy of this droid: 100.1
+Maximum mana of this droid: 100.1
+Rate of healing: 0.0
+Weapon type this droid uses: 0
+Aggression rate of this droid: 0
+Physical (base) damage an attack of this droid will do: 10.0
+Experience_Reward gained for destroying one of this type: 5
+Monster Level and maximum treasure chest to pick from=0
+Range of vision of this droid=3
+Time spent eyeing Tux=3.0
+Minimal distance hostile bots are tolerated=6
+Drive of this droid : 0
+Brain of this droid : 0
+Sensor 1 of this droid : 0
+Sensor 2 of this droid : 0
+Armament of this droid : 0
+Drive item=5
+Weapon item=22
+Greeting Sound number=-1
+Got Hit Sound number=-1
+Death sound file name="none"
+Attack animation sound file name="none"
+Chance of this robot scoring a hit=50
+Chance modifier, that this robot gets hit=30
+Time to recover after getting hit=0.30
+Is this 'droid' a human : 0
+Individual shape of this droid or just -1 for classic ball shaped : 0
+Notes concerning this droid : Robot activity influence device. This helmet is self-powered and will control any robot for a short time. Lasers are turret-mounted.
+
+** Start of new Robot: ** 
+Droidname: 123
+Droid uses portrait rotation series with prefix="123"
+Maximum speed of this droid: 2.1
+Class of this droid: 1
+Maximum acceleration of this droid: 1.1
+Maximum energy of this droid: 10.1
+Maximum mana of this droid: 10.1
+Rate of healing: 2.1
+Weapon type this droid uses: 0
+Aggression rate of this droid: 99
+Physical (base) damage an attack of this droid will do: 3.0
+Experience_Reward gained for destroying one of this type: 40
+Monster Level and maximum treasure chest to pick from=1
+Range of vision of this droid=6
+Time spent eyeing Tux=1.0
+Minimal distance hostile bots are tolerated=6
+Drive of this droid : 1
+Brain of this droid : 0
+Sensor 2 of this droid : 2
+Armament of this droid : 0
+Drive item=10
+W**eapon item=22
+Weapon item=28
+Number of Plasma Transistors=2
+Number of Superconductors=3
+Greeting Sound number=0
+Got Hit Sound number=0
+Death sound file name="death_sound_123.ogg"
+Attack animation sound file name="death_sound_123.ogg"
+Chance of this robot scoring a hit=60
+Chance modifier, that this robot gets hit=30
+Time to recover after getting hit=0.30
+Is this 'droid' a human : 0
+Individual shape of this droid or just -1 for classic ball shaped : 1
+Notes concerning this droid : simple rubbish diposal robot. Common device in most space craft to maintain a clean ship. 
+
+** Start of new Robot: ** 
+Droidname: 139
+Droid uses portrait rotation series with prefix="139"
+Maximum speed of this droid: 2.1
+Class of this droid: 1
+Maximum acceleration of this droid: 1.1
+Maximum energy of this droid: 15.1
+Maximum mana of this droid: 15.1
+Rate of healing: 2.1
+Weapon type this droid uses: 0
+Aggression rate of this droid: 65
+Physical (base) damage an attack of this droid will do: 0.0
+Experience_Reward gained for destroying one of this type: 50
+Monster Level and maximum treasure chest to pick from=1
+Range of vision of this droid=3.25
+Time spent eyeing Tux=1.0
+Minimal distance hostile bots are tolerated=6
+Drive of this droid : 2
+Brain of this droid : 0
+Sensor 2 of this droid : 0
+Armament of this droid : 0
+Drive item=10
+Weapon item=115
+Number of Superconductors=3
+Number of Antimatter-Matter Converters=4
+Greeting Sound number=1
+Got Hit Sound number=1
+Death sound file name="none"
+Attack animation sound file name="none"
+Chance of this robot scoring a hit=60
+Chance modifier, that this robot gets hit=30
+Time to recover after getting hit=0.30
+Is this 'droid' a human : 0
+Individual shape of this droid or just -1 for classic ball shaped : 2
+Notes concerning this droid : created by Dr. Masternak to clean up large heaps of rubbish. Its large scoop is used to collect rubbish. It is then crushed internally. 
+
+** Start of new Robot: ** 
+Droidname: 247
+Droid uses portrait rotation series with prefix="247"
+Maximum speed of this droid: 5.1
+Class of this droid: 2
+Maximum acceleration of this droid: 1.1
+Maximum energy of this droid: 16.1
+Maximum mana of this droid: 16.1
+Rate of healing: 2.1
+Weapon type this droid uses: 0
+Aggression rate of this droid: 82
+Physical (base) damage an attack of this droid will do: 4.0
+Experience_Reward gained for destroying one of this type: 70
+Monster Level and maximum treasure chest to pick from=1
+Range of vision of this droid=3.5
+Time spent eyeing Tux=1.0
+Minimal distance hostile bots are tolerated=6
+Drive of this droid : 2
+Sensor 2 of this droid : 0
+Armament of this droid : 0
+Drive item=5
+Weapon item=101
+Number of Antimatter-Matter Converters=4
+Number of Entropy Inverters=5
+Greeting Sound number=9
+Got Hit Sound number=-1
+Death sound file name="death_sound_247.ogg"
+Attack animation sound file name="death_sound_247.ogg"
+Chance of this robot scoring a hit=80
+Chance modifier, that this robot gets hit=20
+Time to recover after getting hit=0.30
+Is this 'droid' a human : 0
+Individual shape of this droid or just -1 for classic ball shaped : 3
+Notes concerning this droid : light duty servant robot. One of the first to use the anti-grav system. 
+
+** Start of new Robot: ** 
+Droidname: 249
+Droid uses portrait rotation series with prefix="249"
+Maximum speed of this droid: 3.1
+Class of this droid: 2
+Maximum acceleration of this droid: 1.1
+Maximum energy of this droid: 20.1
+Maximum mana of this droid: 20.1
+Rate of healing: 2.1
+Weapon type this droid uses: 0
+Aggression rate of this droid: 84
+Physical (base) damage an attack of this droid will do: 7.0
+Experience_Reward gained for destroying one of this type: 90
+Monster Level and maximum treasure chest to pick from=1
+Range of vision of this droid=3.75
+Time spent eyeing Tux=1.0
+Minimal distance hostile bots are tolerated=6
+Drive of this droid : 3
+Sensor 2 of this droid : 0
+Armament of this droid : 0
+Drive item=8
+Weapon item=116
+Number of Entropy Inverters=5
+Number of Tach. Condensators=6
+Greeting Sound number=10
+Got Hit Sound number=0
+Death sound file name="none"
+Attack animation sound file name="none"
+Chance of this robot scoring a hit=82
+Chance modifier, that this robot gets hit=10
+Time to recover after getting hit=0.30
+Is this 'droid' a human : 0
+Individual shape of this droid or just -1 for classic ball shaped : 4
+Notes concerning this droid : cheaper version of the anti-grav servant robot. 
+
+** Start of new Robot: ** 
+Droidname: 296
+Droid uses portrait rotation series with prefix="296"
+Maximum speed of this droid: 2.1
+Class of this droid: 2
+Maximum acceleration of this droid: 1.1
+Maximum energy of this droid: 300.1
+Maximum mana of this droid: 30.1
+Rate of healing: 2.1
+Weapon type this droid uses: 0
+Aggression rate of this droid: 80
+Physical (base) damage an attack of this droid will do: 8.0
+Experience_Reward gained for destroying one of this type: 250
+Monster Level and maximum treasure chest to pick from=4
+Range of vision of this droid=10.0
+Time spent eyeing Tux=1.0
+Minimal distance hostile bots are tolerated=6
+Drive of this droid : 1
+Sensor 2 of this droid : 0
+Armament of this droid : 0
+Drive item=10
+Weapon item=102
+Greeting Sound number=11
+Got Hit Sound number=-1
+Death sound file name="none"
+Attack animation sound file name="none"
+Chance of this robot scoring a hit=50
+Chance modifier, that this robot gets hit=30
+Time to recover after getting hit=0.30
+Is this 'droid' a human : 0
+Individual shape of this droid or just -1 for classic ball shaped : 5
+Notes concerning this droid : Run away! This bot will kill you! 
+
+** Start of new Robot: ** 
+Droidname: 302
+Droid uses portrait rotation series with prefix="302"
+Maximum speed of this droid: 6.1
+Class of this droid: 3
+Maximum acceleration of this droid: 2.1
+Maximum energy of this droid: 30.1
+Maximum mana of this droid: 30.1
+Rate of healing: 2.1
+Weapon type this droid uses: 2
+Aggression rate of this droid: 75
+Physical (base) damage an attack of this droid will do: 4.5
+Experience_Reward gained for destroying one of this type: 200
+Monster Level and maximum treasure chest to pick from=2
+Range of vision of this droid=4.25
+Time spent eyeing Tux=0.25
+Minimal distance hostile bots are tolerated=6
+Drive of this droid : 2
+Brain of this droid : 0
+Sensor 2 of this droid : 0
+Armament of this droid : 0
+Drive item=11
+W**eapon item=12
+W**eapon item=27
+W**eapon item=24
+Weapon item=103
+Greeting Sound number=12
+Got Hit Sound number=-1
+Death sound file name="death_sound_302.ogg"
+Attack animation sound file name="death_sound_302.ogg"
+Chance of this robot scoring a hit=85
+Chance modifier, that this robot gets hit=-25
+Time to recover after getting hit=0.30
+Is this 'droid' a human : 0
+Individual shape of this droid or just -1 for classic ball shaped : 6
+Notes concerning this droid : common device for moving small packages. Clamp is mounted on the lower body. 
+
+** Start of new Robot: ** 
+Droidname: 329
+Droid uses portrait rotation series with prefix="329"
+Maximum speed of this droid: 0.8
+Class of this droid: 3
+Maximum acceleration of this droid: 1.1
+Maximum energy of this droid: 35.1
+Maximum mana of this droid: 35.1
+Rate of healing: 2.1
+Weapon type this droid uses: 0
+Aggression rate of this droid: 93
+Physical (base) damage an attack of this droid will do: 7.0
+Experience_Reward gained for destroying one of this type: 250
+Monster Level and maximum treasure chest to pick from=2
+Range of vision of this droid=4.5
+Time spent eyeing Tux=2.75
+Minimal distance hostile bots are tolerated=6
+Drive of this droid : 4
+Brain of this droid : 0
+Sensor 2 of this droid : 0
+Armament of this droid : 0
+Drive item=7
+Weapon item=104
+Greeting Sound number=13
+Got Hit Sound number=-1
+Death sound file name="none"
+Attack animation sound file name="none"
+Chance of this robot scoring a hit=50
+Chance modifier, that this robot gets hit=30
+Time to recover after getting hit=0.30
+Is this 'droid' a human : 0
+Individual shape of this droid or just -1 for classic ball shaped : 7
+Notes concerning this droid : early type messenger robot. Large wheels impede motion on small craft.
+
+** Start of new Robot: ** 
+Droidname: 420
+Droid uses portrait rotation series with prefix="420"
+Maximum speed of this droid: 2.1
+Class of this droid: 4
+Maximum acceleration of this droid: 1.1
+Maximum energy of this droid: 40.1
+Maximum mana of this droid: 40.1
+Rate of healing: 2.1
+Weapon type this droid uses: 0
+Aggression rate of this droid: 99
+Physical (base) damage an attack of this droid will do: 13.0
+Is this droid immune to disruptor blasts? 1
+Experience_Reward gained for destroying one of this type: 300
+Monster Level and maximum treasure chest to pick from=3
+Range of vision of this droid=4.75
+Time spent eyeing Tux=2.0
+Minimal distance hostile bots are tolerated=6
+Drive of this droid : 1
+Sensor 2 of this droid : 0
+Armament of this droid : 0
+Drive item=10
+Weapon item=105
+Greeting Sound number=14
+Got Hit Sound number=-1
+Death sound file name="none"
+Attack animation sound file name="none"
+Chance of this robot scoring a hit=50
+Chance modifier, that this robot gets hit=30
+Time to recover after getting hit=0.30
+Is this 'droid' a human : 0
+Individual shape of this droid or just -1 for classic ball shaped : 8
+Notes concerning this droid : slow maintenance robot. Confined to drive maintenance during flight. 
+
+** Start of new Robot: ** 
+Droidname: 476
+Droid uses portrait rotation series with prefix="476"
+Maximum speed of this droid: 3.1
+Class of this droid: 4
+Maximum acceleration of this droid: 1.1
+Maximum energy of this droid: 15.1
+Maximum mana of this droid: 15.1
+Rate of healing: 2.1
+Weapon type this droid uses: 1
+Aggression rate of this droid: 90
+Physical (base) damage an attack of this droid will do: 16.0
+Experience_Reward gained for destroying one of this type: 400
+Monster Level and maximum treasure chest to pick from=3
+Range of vision of this droid=5.0
+Time spent eyeing Tux=1.0
+Minimal distance hostile bots are tolerated=6
+Drive of this droid : 2
+Sensor 2 of this droid : 2
+Armament of this droid : 1
+Drive item=5
+Weapon item=118
+Greeting Sound number=15
+Got Hit Sound number=-1
+Death sound file name="none"
+Attack animation sound file name="none"
+Chance of this robot scoring a hit=70
+Chance modifier, that this robot gets hit=10
+Time to recover after getting hit=0.30
+Is this 'droid' a human : 0
+Individual shape of this droid or just -1 for classic ball shaped : 9
+Notes concerning this droid : ship maintenance robot. Fitted with multiple arms to carry out repairs to the ship efficiently. All craft built after the Jupiter-incident are supplied with a team of these. 
+
+** Start of new Robot: ** 
+Droidname: 493
+Droid uses portrait rotation series with prefix="493"
+Maximum speed of this droid: 3.1
+Class of this droid: 4
+Maximum acceleration of this droid: 1.1
+Maximum energy of this droid: 80.1
+Maximum mana of this droid: 80.1
+Rate of healing: 3.1
+Weapon type this droid uses: 0
+Aggression rate of this droid: 94
+Physical (base) damage an attack of this droid will do: 18.0
+Experience_Reward gained for destroying one of this type: 600
+Monster Level and maximum treasure chest to pick from=4
+Range of vision of this droid=5.25
+Time spent eyeing Tux=1.75
+Minimal distance hostile bots are tolerated=6
+Drive of this droid : 2
+Sensor 2 of this droid : 0
+Armament of this droid : 0
+Drive item=5
+Weapon item=106
+Greeting Sound number=16
+Got Hit Sound number=-1
+Death sound file name="none"
+Attack animation sound file name="none"
+Chance of this robot scoring a hit=50
+Chance modifier, that this robot gets hit=30
+Time to recover after getting hit=0.30
+Is this 'droid' a human : 0
+Individual shape of this droid or just -1 for classic ball shaped : 10
+Notes concerning this droid : slave maintenance droid. Standard version will carry its own toolbox. 
+
+** Start of new Robot: ** 
+Droidname: 516
+Droid uses portrait rotation series with prefix="516"
+Maximum speed of this droid: 3.6
+Class of this droid: 5
+Maximum acceleration of this droid: 1.1
+Maximum energy of this droid: 70.1
+Maximum mana of this droid: 70.1
+Rate of healing: 3.1
+Weapon type this droid uses: 0
+Aggression rate of this droid: 98
+Physical (base) damage an attack of this droid will do: 5.0
+Experience_Reward gained for destroying one of this type: 600
+Monster Level and maximum treasure chest to pick from=4
+Range of vision of this droid=5.5
+Time spent eyeing Tux=1.0
+Minimal distance hostile bots are tolerated=6
+Drive of this droid : 5
+Sensor 2 of this droid : 0
+Armament of this droid : 0
+Drive item=9
+Weapon item=107
+Greeting Sound number=17
+Got Hit Sound number=-1
+Death sound file name="none"
+Attack animation sound file name="none"
+Chance of this robot scoring a hit=50
+Chance modifier, that this robot gets hit=30
+Time to recover after getting hit=0.30
+Is this 'droid' a human : 0
+Individual shape of this droid or just -1 for classic ball shaped : 11
+Notes concerning this droid : early crew droid. Able to carry out simple flight checks only. No longer supplied. 
+
+** Start of new Robot: ** 
+Droidname: 571
+Droid uses portrait rotation series with prefix="571"
+Maximum speed of this droid: 4.1
+Class of this droid: 5
+Maximum acceleration of this droid: 1.1
+Maximum energy of this droid: 50.1
+Maximum mana of this droid: 50.1
+Rate of healing: 3.1
+Weapon type this droid uses: 0
+Aggression rate of this droid: 81
+Physical (base) damage an attack of this droid will do: 14.0
+Experience_Reward gained for destroying one of this type: 320
+Monster Level and maximum treasure chest to pick from=4
+Range of vision of this droid=5.75
+Time spent eyeing Tux=1.5
+Minimal distance hostile bots are tolerated=6
+Drive of this droid : 5
+Sensor 2 of this droid : 0
+Armament of this droid : 0
+Drive item=9
+Weapon item=108
+Greeting Sound number=18
+Got Hit Sound number=-1
+Death sound file name="none"
+Attack animation sound file name="none"
+Chance of this robot scoring a hit=50
+Chance modifier, that this robot gets hit=30
+Time to recover after getting hit=0.30
+Is this 'droid' a human : 0
+Individual shape of this droid or just -1 for classic ball shaped : 12
+Notes concerning this droid : standard crew droid. Supplied with the ship. 
+
+** Start of new Robot: ** 
+Droidname: 598
+Droid uses portrait rotation series with prefix="598"
+Maximum speed of this droid: 3.1
+Class of this droid: 5
+Maximum acceleration of this droid: 1.1
+Maximum energy of this droid: 120.1
+Maximum mana of this droid: 120.1
+Rate of healing: 3.1
+Weapon type this droid uses: 0
+Aggression rate of this droid: 0
+Physical (base) damage an attack of this droid will do: 24.0
+Experience_Reward gained for destroying one of this type: 400
+Monster Level and maximum treasure chest to pick from=4
+Range of vision of this droid=6.0
+Time spent eyeing Tux=1.5
+Minimal distance hostile bots are tolerated=6
+Drive of this droid : 5
+Sensor 2 of this droid : 0
+Armament of this droid : 0
+Drive item=9
+Weapon item=109
+Greeting Sound number=-1
+Got Hit Sound number=-1
+Death sound file name="none"
+Attack animation sound file name="none"
+Chance of this robot scoring a hit=50
+Chance modifier, that this robot gets hit=30
+Time to recover after getting hit=0.30
+Is this 'droid' a human : 0
+Individual shape of this droid or just -1 for classic ball shaped : 13
+Notes concerning this droid : a highly sophisticated device. Able to control the Robo-Freighter on its own. 
+
+** Start of new Robot: ** 
+Droidname: 614
+Droid uses portrait rotation series with prefix="614"
+Maximum speed of this droid: 2.0
+Class of this droid: 6
+Maximum acceleration of this droid: 1.1
+Maximum energy of this droid: 130.1
+Maximum mana of this droid: 130.1
+Rate of healing: 3.1
+Weapon type this droid uses: 5
+Aggression rate of this droid: 90
+Physical (base) damage an attack of this droid will do: 26.0
+Experience_Reward gained for destroying one of this type: 460
+Monster Level and maximum treasure chest to pick from=4
+Range of vision of this droid=6.25
+Time spent eyeing Tux=1.25
+Minimal distance hostile bots are tolerated=6
+Drive of this droid : 4
+Sensor 2 of this droid : 3
+Armament of this droid : 2
+Drive item=7
+Weapon item=60
+Greeting Sound number=5
+Got Hit Sound number=-1
+Death sound file name="none"
+Attack animation sound file name="none"
+Chance of this robot scoring a hit=50
+Chance modifier, that this robot gets hit=30
+Time to recover after getting hit=0.30
+Is this 'droid' a human : 0
+Individual shape of this droid or just -1 for classic ball shaped : 14
+Notes concerning this droid : low security sentinel droid. Used to protect areas of the ship from intruders. A slow but sure device. 
+
+** Start of new Robot: ** 
+Droidname: 615
+Droid uses portrait rotation series with prefix="615"
+Maximum speed of this droid: 4.1
+Class of this droid: 6
+Maximum acceleration of this droid: 1.1
+Maximum energy of this droid: 140.1
+Maximum mana of this droid: 140.1
+Rate of healing: 3.1
+Weapon type this droid uses: 1
+Aggression rate of this droid: 30
+Physical (base) damage an attack of this droid will do: 28.0
+Experience_Reward gained for destroying one of this type: 500
+Monster Level and maximum treasure chest to pick from=4
+Range of vision of this droid=6.5
+Time spent eyeing Tux=1.25
+Minimal distance hostile bots are tolerated=6
+Drive of this droid : 2
+Sensor 2 of this droid : 2
+Armament of this droid : 1
+Drive item=5
+Weapon item=16
+Greeting Sound number=-1
+Got Hit Sound number=-1
+Death sound file name="none"
+Attack animation sound file name="none"
+Chance of this robot scoring a hit=50
+Chance modifier, that this robot gets hit=30
+Time to recover after getting hit=0.30
+Is this 'droid' a human : 0
+Individual shape of this droid or just -1 for classic ball shaped : 15
+Notes concerning this droid : sophisticated sentinel droid. Only 2000 built by the Nicholson Company. these are now very rare.
+
+** Start of new Robot: ** 
+Droidname: 629
+Droid uses portrait rotation series with prefix="629"
+Maximum speed of this droid: 2.1
+Class of this droid: 6
+Maximum acceleration of this droid: 1.1
+Maximum energy of this droid: 160.1
+Maximum mana of this droid: 160.1
+Rate of healing: 3.1
+Weapon type this droid uses: 2
+Aggression rate of this droid: 40
+Physical (base) damage an attack of this droid will do: 30.0
+Experience_Reward gained for destroying one of this type: 600
+Monster Level and maximum treasure chest to pick from=4
+Range of vision of this droid=6.75
+Time spent eyeing Tux=1.0
+Minimal distance hostile bots are tolerated=6
+Drive of this droid : 1
+Sensor 2 of this droid : 3
+Armament of this droid : 1
+Drive item=10
+Weapon item=15
+Greeting Sound number=-1
+Got Hit Sound number=-1
+Death sound file name="none"
+Attack animation sound file name="none"
+Chance of this robot scoring a hit=50
+Chance modifier, that this robot gets hit=30
+Time to recover after getting hit=0.30
+Is this 'droid' a human : 0
+Individual shape of this droid or just -1 for classic ball shaped : 16
+Notes concerning this droid : low sentinel droid. Lasers are built into the turret. These are mounted on a small tank body. May be fitted with an auto-cannon on-the Gillen version. 
+
+** Start of new Robot: ** 
+Droidname: 711
+Droid uses portrait rotation series with prefix="711"
+Maximum speed of this droid: 5.1
+Class of this droid: 7
+Maximum acceleration of this droid: 1.1
+Maximum energy of this droid: 180.1
+Maximum mana of this droid: 180.1
+Rate of healing: 4.1
+Weapon type this droid uses: 3
+Aggression rate of this droid: 60
+Physical (base) damage an attack of this droid will do: 32.0
+Is this droid immune to disruptor blasts? 1
+Experience_Reward gained for destroying one of this type: 650
+Monster Level and maximum treasure chest to pick from=4
+Range of vision of this droid=7.0
+Time spent eyeing Tux=1.0
+Minimal distance hostile bots are tolerated=6
+Drive of this droid : 5
+Sensor 1 of this droid : 4
+Armament of this droid : 3
+Drive item=9
+Weapon item=14
+Greeting Sound number=-1
+Got Hit Sound number=-1
+Death sound file name="none"
+Attack animation sound file name="none"
+Chance of this robot scoring a hit=50
+Chance modifier, that this robot gets hit=300
+Time to recover after getting hit=0.30
+Is this 'droid' a human : 0
+Individual shape of this droid or just -1 for classic ball shaped : 17
+Notes concerning this droid : heavy duty battle droid. Disruptor is built into the head. One of the first in service with the Military. 
+
+** Start of new Robot: ** 
+Droidname: 742
+Droid uses portrait rotation series with prefix="742"
+Maximum speed of this droid: 4.1
+Class of this droid: 7
+Maximum acceleration of this droid: 1.1
+Maximum energy of this droid: 210.1
+Maximum mana of this droid: 210.1
+Rate of healing: 4.1
+Weapon type this droid uses: 3
+Aggression rate of this droid: 60
+Physical (base) damage an attack of this droid will do: 34.0
+Is this droid immune to disruptor blasts? 1
+Experience_Reward gained for destroying one of this type: 700
+Monster Level and maximum treasure chest to pick from=4
+Range of vision of this droid=7.25
+Time spent eyeing Tux=0.75
+Minimal distance hostile bots are tolerated=6
+Drive of this droid : 5
+Armament of this droid : 3
+Drive item=9
+Weapon item=14
+Greeting Sound number=-1
+Got Hit Sound number=-1
+Death sound file name="none"
+Attack animation sound file name="none"
+Chance of this robot scoring a hit=50
+Chance modifier, that this robot gets hit=30
+Time to recover after getting hit=0.30
+Is this 'droid' a human : 0
+Individual shape of this droid or just -1 for classic ball shaped : 18
+Notes concerning this droid : this version is the one mainly used by the Military. 
+
+** Start of new Robot: ** 
+Droidname: 751
+Droid uses portrait rotation series with prefix="751"
+Maximum speed of this droid: 5.1
+Class of this droid: 7
+Maximum acceleration of this droid: 1.1
+Maximum energy of this droid: 150.1
+Maximum mana of this droid: 150.1
+Rate of healing: 4.1
+Weapon type this droid uses: 1
+Aggression rate of this droid: 80
+Physical (base) damage an attack of this droid will do: 36.0
+Experience_Reward gained for destroying one of this type: 800
+Monster Level and maximum treasure chest to pick from=4
+Range of vision of this droid=7.5
+Time spent eyeing Tux=0.75
+Minimal distance hostile bots are tolerated=6
+Drive of this droid : 5
+Sensor 2 of this droid : 0
+Armament of this droid : 1
+Drive item=9
+Weapon item=16
+Greeting Sound number=-1
+Got Hit Sound number=-1
+Death sound file name="none"
+Attack animation sound file name="none"
+Chance of this robot scoring a hit=50
+Chance modifier, that this robot gets hit=500
+Time to recover after getting hit=0.30
+Is this 'droid' a human : 0
+Individual shape of this droid or just -1 for classic ball shaped : 19
+Notes concerning this droid : very heavy duty battle droid. Only a few have so far entered service. These are the most powerful battle units ever built. 
+
+** Start of new Robot: ** 
+Droidname: 821
+Droid uses portrait rotation series with prefix="821"
+Maximum speed of this droid: 6.1
+Class of this droid: 8
+Maximum acceleration of this droid: 2.1
+Maximum energy of this droid: 200.1
+Maximum mana of this droid: 200.1
+Rate of healing: 4.1
+Weapon type this droid uses: 2
+Aggression rate of this droid: 65
+Physical (base) damage an attack of this droid will do: 38.0
+Is this droid immune to disruptor blasts? 1
+Experience_Reward gained for destroying one of this type: 1000
+Monster Level and maximum treasure chest to pick from=4
+Range of vision of this droid=7.75
+Time spent eyeing Tux=0.5
+Minimal distance hostile bots are tolerated=6
+Drive of this droid : 2
+Sensor 3 of this droid : 2
+Armament of this droid : 1
+Drive item=11
+Weapon item=15
+Greeting Sound number=-1
+Got Hit Sound number=-1
+Death sound file name="none"
+Attack animation sound file name="none"
+Chance of this robot scoring a hit=50
+Chance modifier, that this robot gets hit=800
+Time to recover after getting hit=0.30
+Is this 'droid' a human : 0
+Individual shape of this droid or just -1 for classic ball shaped : 20
+Notes concerning this droid : a very reliable anti-grav unit is fitted into this droid. It will patrol the ship and eliminate intruders as soon as detected by powerful sensors. 
+
+** Start of new Robot: ** 
+Droidname: 834
+Droid uses portrait rotation series with prefix="834"
+Maximum speed of this droid: 7.1
+Class of this droid: 8
+Maximum acceleration of this droid: 1.1
+Maximum energy of this droid: 220.1
+Maximum mana of this droid: 220.1
+Rate of healing: 4.1
+Weapon type this droid uses: 1
+Aggression rate of this droid: 55
+Physical (base) damage an attack of this droid will do: 40.0
+Experience_Reward gained for destroying one of this type: 1200
+Monster Level and maximum treasure chest to pick from=4
+Range of vision of this droid=8.0
+Time spent eyeing Tux=0.5
+Minimal distance hostile bots are tolerated=6
+Drive of this droid : 2
+Armament of this droid : 1
+Drive item=5
+Weapon item=16
+Greeting Sound number=-1
+Got Hit Sound number=-1
+Death sound file name="none"
+Attack animation sound file name="none"
+Chance of this robot scoring a hit=50
+Chance modifier, that this robot gets hit=1000
+Time to recover after getting hit=0.30
+Is this 'droid' a human : 0
+Individual shape of this droid or just -1 for classic ball shaped : 21
+Notes concerning this droid : early type anti-grav security droid. Fitted with an over-driven anti-grav unit. This droid is very fast but is not reliable. 
+
+** Start of new Robot: ** 
+Droidname: 883
+Droid uses portrait rotation series with prefix="883"
+Maximum speed of this droid: 2.1
+Class of this droid: 8
+Maximum acceleration of this droid: 1.1
+Maximum energy of this droid: 120.1
+Maximum mana of this droid: 120.1
+Rate of healing: 4.1
+Weapon type this droid uses: 4
+Aggression rate of this droid: 92
+Physical (base) damage an attack of this droid will do: 42.0
+Experience_Reward gained for destroying one of this type: 1500
+Monster Level and maximum treasure chest to pick from=4
+Force how many additional magic items to be dropped=1
+Range of vision of this droid=8.25
+Time spent eyeing Tux=0.25
+Minimal distance hostile bots are tolerated=6
+Drive of this droid : 4
+Armament of this droid : 4
+Drive item=7
+Weapon item=117
+Greeting Sound number=2
+Got Hit Sound number=-1
+Death sound file name="none"
+Attack animation sound file name="none"
+Chance of this robot scoring a hit=80
+Chance modifier, that this robot gets hit=30
+Time to recover after getting hit=0.30
+Is this 'droid' a human : 0
+Individual shape of this droid or just -1 for classic ball shaped : 22
+Notes concerning this droid : this droid was designed from archive data. For some unknown reason it instils great fear in Human adversaries. 
+
+** Start of new Robot: ** 
+Droidname: 999
+Droid uses portrait rotation series with prefix="999"
+Maximum speed of this droid: 6.1
+Class of this droid: 9
+Maximum acceleration of this droid: 2.1
+Maximum energy of this droid: 300.1
+Maximum mana of this droid: 300.1
+Rate of healing: 15.1
+Weapon type this droid uses: 2
+Aggression rate of this droid: 90
+Physical (base) damage an attack of this droid will do: 44.0
+Is this droid immune to disruptor blasts? 1
+Experience_Reward gained for destroying one of this type: 2000
+Monster Level and maximum treasure chest to pick from=4
+Range of vision of this droid=8.5
+Time spent eyeing Tux=0.25
+Minimal distance hostile bots are tolerated=6
+Drive of this droid : 2
+Brain of this droid : 2
+Sensor 1 of this droid : 2
+Sensor 3 of this droid : 3
+Armament of this droid : 1
+Drive item=11
+Weapon item=15
+Greeting Sound number=-1
+Got Hit Sound number=-1
+Death sound file name="none"
+Attack animation sound file name="none"
+Chance of this robot scoring a hit=50
+Chance modifier, that this robot gets hit=30
+Time to recover after getting hit=0.30
+Is this 'droid' a human : 0
+Individual shape of this droid or just -1 for classic ball shaped : 23
+Notes concerning this droid : experimental command cyborg. Fitted with a new tipe of brain. Mounted on a security droid anti-grav unit for convenience. warning: the influence device may not control a primode brain for long. 
+
+** Start of new Robot: ** 
+Droidname: PRO
+Droid uses portrait rotation series with prefix="NONE_AVAILABLE_YET"
+Maximum speed of this droid: 6.1
+Class of this droid: 18
+Maximum acceleration of this droid: 2.1
+Maximum energy of this droid: 100.1
+Maximum mana of this droid: 100.1
+Rate of healing: 15.1
+Weapon type this droid uses: 4
+Aggression rate of this droid: 92
+Physical (base) damage an attack of this droid will do: 10.0
+Experience_Reward gained for destroying one of this type: 200
+Monster Level and maximum treasure chest to pick from=4
+Range of vision of this droid=2
+Time spent eyeing Tux=3
+Minimal distance hostile bots are tolerated=6
+Drive of this droid : 2
+Brain of this droid : 2
+Sensor 1 of this droid : 2
+Sensor 3 of this droid : 3
+Drive item=7
+Weapon item=13
+Greeting Sound number=4
+Got Hit Sound number=-1
+Death sound file name="none"
+Attack animation sound file name="none"
+Chance of this robot scoring a hit=50
+Chance modifier, that this robot gets hit=30
+Time to recover after getting hit=0.30
+Armament of this droid : 1
+Is this 'droid' a human : 1
+Individual shape of this droid or just -1 for classic ball shaped : 24
+Notes concerning this droid : This is a typical professor/sage character of some older age.  They are not armed as powerfully as e.g. the red guards.
+
+** Start of new Robot: ** 
+Droidname: GUA
+Droid uses portrait rotation series with prefix="NONE_AVAILABLE_YET"
+Maximum speed of this droid: 6.1
+Class of this droid: 18
+Maximum acceleration of this droid: 2.1
+Maximum energy of this droid: 100.1
+Maximum mana of this droid: 100.1
+Rate of healing: 15.1
+Weapon type this droid uses: 4
+Aggression rate of this droid: 92
+Physical (base) damage an attack of this droid will do: 10.0
+Experience_Reward gained for destroying one of this type: 200
+Monster Level and maximum treasure chest to pick from=4
+Range of vision of this droid=2
+Time spent eyeing Tux=3
+Minimal distance hostile bots are tolerated=6
+Drive of this droid : 2
+Brain of this droid : 2
+Sensor 1 of this droid : 2
+Sensor 3 of this droid : 3
+Drive item=7
+Weapon item=60
+Greeting Sound number=6
+Got Hit Sound number=-1
+Death sound file name="none"
+Attack animation sound file name="none"
+Chance of this robot scoring a hit=50
+Chance modifier, that this robot gets hit=30
+Time to recover after getting hit=0.30
+Armament of this droid : 1
+Is this 'droid' a human : 1
+Individual shape of this droid or just -1 for classic ball shaped : 25
+Notes concerning this droid : This is a typical red (male) guard/fighter character.  They are equipped with powerful PowerExterminators.
+
+** Start of new Robot: ** 
+Droidname: MUM
+Droid uses portrait rotation series with prefix="NONE_AVAILABLE_YET"
+Maximum speed of this droid: 3.1
+Class of this droid: 18
+Maximum acceleration of this droid: 2.1
+Maximum energy of this droid: 100.1
+Maximum mana of this droid: 100.1
+Rate of healing: 15.1
+Weapon type this droid uses: 4
+Aggression rate of this droid: 92
+Physical (base) damage an attack of this droid will do: 10.0
+Experience_Reward gained for destroying one of this type: 200
+Monster Level and maximum treasure chest to pick from=4
+Range of vision of this droid=2
+Time spent eyeing Tux=3
+Minimal distance hostile bots are tolerated=6
+Drive of this droid : 2
+Brain of this droid : 2
+Sensor 1 of this droid : 2
+Sensor 3 of this droid : 3
+Drive item=7
+Weapon item=60
+Greeting Sound number=-1
+Got Hit Sound number=-1
+Death sound file name="none"
+Attack animation sound file name="none"
+Chance of this robot scoring a hit=50
+Chance modifier, that this robot gets hit=30
+Time to recover after getting hit=0.30
+Armament of this droid : 1
+Is this 'droid' a human : 1
+Individual shape of this droid or just -1 for classic ball shaped : 26
+Notes concerning this droid : This is the hot_mama shopkeeper character model.
+
+** Start of new Robot: ** 
+Droidname: FSC
+Droid uses portrait rotation series with prefix="NONE_AVAILABLE_YET"
+Maximum speed of this droid: 3.1
+Class of this droid: 18
+Maximum acceleration of this droid: 2.1
+Maximum energy of this droid: 100.1
+Maximum mana of this droid: 100.1
+Rate of healing: 15.1
+Weapon type this droid uses: 4
+Aggression rate of this droid: 92
+Physical (base) damage an attack of this droid will do: 10.0
+Experience_Reward gained for destroying one of this type: 200
+Monster Level and maximum treasure chest to pick from=4
+Range of vision of this droid=2
+Time spent eyeing Tux=3
+Minimal distance hostile bots are tolerated=6
+Drive of this droid : 2
+Brain of this droid : 2
+Sensor 1 of this droid : 2
+Sensor 3 of this droid : 3
+Drive item=7
+Weapon item=27
+Greeting Sound number=-1
+Got Hit Sound number=-1
+Death sound file name="none"
+Attack animation sound file name="none"
+Chance of this robot scoring a hit=50
+Chance modifier, that this robot gets hit=30
+Time to recover after getting hit=0.30
+Armament of this droid : 1
+Is this 'droid' a human : 1
+Individual shape of this droid or just -1 for classic ball shaped : 27
+Notes concerning this droid : This is the female scientist character model.  They are not armed as powerfully as e.g. the red guards.
+
+** Start of new Robot: ** 
+Droidname: WOR
+Droid uses portrait rotation series with prefix="NONE_AVAILABLE_YET"
+Maximum speed of this droid: 6.1
+Class of this droid: 18
+Maximum acceleration of this droid: 2.1
+Maximum energy of this droid: 100.1
+Maximum mana of this droid: 100.1
+Rate of healing: 15.1
+Weapon type this droid uses: 4
+Aggression rate of this droid: 92
+Physical (base) damage an attack of this droid will do: 10.0
+Experience_Reward gained for destroying one of this type: 200
+Monster Level and maximum treasure chest to pick from=4
+Range of vision of this droid=2
+Time spent eyeing Tux=3
+Minimal distance hostile bots are tolerated=6
+Drive of this droid : 2
+Brain of this droid : 2
+Sensor 1 of this droid : 2
+Sensor 3 of this droid : 3
+Drive item=7
+Weapon item=13
+Greeting Sound number=8
+Got Hit Sound number=-1
+Death sound file name="none"
+Attack animation sound file name="none"
+Chance of this robot scoring a hit=50
+Chance modifier, that this robot gets hit=30
+Time to recover after getting hit=0.30
+Armament of this droid : 1
+Is this 'droid' a human : 1
+Individual shape of this droid or just -1 for classic ball shaped : 28
+Notes concerning this droid : This is the brown worker model.  They are not armed as powerfully as e.g. the red guards.
+
+** Start of new Robot: ** 
+Droidname: GUB
+Droid uses portrait rotation series with prefix="NONE_AVAILABLE_YET"
+Maximum speed of this droid: 6.1
+Class of this droid: 18
+Maximum acceleration of this droid: 2.1
+Maximum energy of this droid: 100.1
+Maximum mana of this droid: 100.1
+Rate of healing: 15.1
+Weapon type this droid uses: 4
+Aggression rate of this droid: 92
+Physical (base) damage an attack of this droid will do: 10.0
+Experience_Reward gained for destroying one of this type: 200
+Monster Level and maximum treasure chest to pick from=4
+Range of vision of this droid=2
+Time spent eyeing Tux=3
+Minimal distance hostile bots are tolerated=6
+Drive of this droid : 2
+Brain of this droid : 2
+Sensor 1 of this droid : 2
+Sensor 3 of this droid : 3
+Drive item=7
+Weapon item=13
+Greeting Sound number=7
+Got Hit Sound number=-1
+Death sound file name="none"
+Attack animation sound file name="none"
+Chance of this robot scoring a hit=50
+Chance modifier, that this robot gets hit=30
+Time to recover after getting hit=0.30
+Armament of this droid : 1
+Is this 'droid' a human : 1
+Individual shape of this droid or just -1 for classic ball shaped : 29
+Notes concerning this droid : This is the blue guard model used e.g. for Darwin and fiend outside of town.  They are not armed as powerfully as e.g. the red guards.
+
+** Start of new Robot: ** 
+Droidname: GUG
+Droid uses portrait rotation series with prefix="NONE_AVAILABLE_YET"
+Maximum speed of this droid: 6.1
+Class of this droid: 18
+Maximum acceleration of this droid: 2.1
+Maximum energy of this droid: 100.1
+Maximum mana of this droid: 100.1
+Rate of healing: 15.1
+Weapon type this droid uses: 4
+Aggression rate of this droid: 92
+Physical (base) damage an attack of this droid will do: 10.0
+Experience_Reward gained for destroying one of this type: 200
+Monster Level and maximum treasure chest to pick from=4
+Range of vision of this droid=2
+Time spent eyeing Tux=3
+Minimal distance hostile bots are tolerated=6
+Drive of this droid : 2
+Brain of this droid : 2
+Sensor 1 of this droid : 2
+Sensor 3 of this droid : 3
+Drive item=7
+Weapon item=60
+Greeting Sound number=7
+Got Hit Sound number=-1
+Death sound file name="none"
+Attack animation sound file name="none"
+Chance of this robot scoring a hit=50
+Chance modifier, that this robot gets hit=30
+Time to recover after getting hit=0.30
+Armament of this droid : 1
+Is this 'droid' a human : 1
+Individual shape of this droid or just -1 for classic ball shaped : 30
+Notes concerning this droid : This is a typical green (male) guard/fighter character.
+
+** Start of new Robot: ** 
+Droidname: COO
+Droid uses portrait rotation series with prefix="NONE_AVAILABLE_YET"
+Maximum speed of this droid: 3.1
+Class of this droid: 18
+Maximum acceleration of this droid: 2.1
+Maximum energy of this droid: 100.1
+Maximum mana of this droid: 100.1
+Rate of healing: 15.1
+Weapon type this droid uses: 4
+Aggression rate of this droid: 92
+Physical (base) damage an attack of this droid will do: 10.0
+Experience_Reward gained for destroying one of this type: 200
+Monster Level and maximum treasure chest to pick from=4
+Range of vision of this droid=2
+Time spent eyeing Tux=3
+Minimal distance hostile bots are tolerated=6
+Drive of this droid : 2
+Brain of this droid : 2
+Sensor 1 of this droid : 2
+Sensor 3 of this droid : 3
+Drive item=7
+Weapon item=13
+Greeting Sound number=6
+Got Hit Sound number=-1
+Death sound file name="none"
+Attack animation sound file name="none"
+Chance of this robot scoring a hit=50
+Chance modifier, that this robot gets hit=30
+Time to recover after getting hit=0.30
+Armament of this droid : 1
+Is this 'droid' a human : 1
+Individual shape of this droid or just -1 for classic ball shaped : 31
+Notes concerning this droid : This is the cook.
+
+** Start of new Robot: ** 
+Droidname: KEV
+Droid uses portrait rotation series with prefix="NONE_AVAILABLE_YET"
+Maximum speed of this droid: 6.1
+Class of this droid: 18
+Maximum acceleration of this droid: 2.1
+Maximum energy of this droid: 100.1
+Maximum mana of this droid: 100.1
+Rate of healing: 15.1
+Weapon type this droid uses: 24
+Aggression rate of this droid: 92
+Physical (base) damage an attack of this droid will do: 10.0
+Experience_Reward gained for destroying one of this type: 200
+Monster Level and maximum treasure chest to pick from=4
+Range of vision of this droid=2
+Time spent eyeing Tux=3
+Minimal distance hostile bots are tolerated=6
+Drive of this droid : 2
+Brain of this droid : 2
+Sensor 1 of this droid : 2
+Sensor 3 of this droid : 3
+Drive item=7
+Weapon item=24
+Greeting Sound number=4
+Got Hit Sound number=-1
+Death sound file name="none"
+Attack animation sound file name="none"
+Chance of this robot scoring a hit=50
+Chance modifier, that this robot gets hit=30
+Time to recover after getting hit=0.30
+Armament of this droid : 1
+Is this 'droid' a human : 1
+Individual shape of this droid or just -1 for classic ball shaped : 32
+Notes concerning this droid : This is a typical professor/sage character of some older age.  They are not armed as powerfully as e.g. the red guards.
+
+** Start of new Robot: ** 
+Droidname: JAS
+Droid uses portrait rotation series with prefix="NONE_AVAILABLE_YET"
+Maximum speed of this droid: 6.1
+Class of this droid: 18
+Maximum acceleration of this droid: 2.1
+Maximum energy of this droid: 100.1
+Maximum mana of this droid: 100.1
+Rate of healing: 15.1
+Weapon type this droid uses: 27
+Aggression rate of this droid: 92
+Physical (base) damage an attack of this droid will do: 10.0
+Experience_Reward gained for destroying one of this type: 200
+Monster Level and maximum treasure chest to pick from=4
+Range of vision of this droid=2
+Time spent eyeing Tux=3
+Minimal distance hostile bots are tolerated=6
+Drive of this droid : 2
+Brain of this droid : 2
+Sensor 1 of this droid : 2
+Sensor 3 of this droid : 3
+Drive item=7
+Weapon item=27
+Greeting Sound number=4
+Got Hit Sound number=-1
+Death sound file name="none"
+Attack animation sound file name="none"
+Chance of this robot scoring a hit=50
+Chance modifier, that this robot gets hit=30
+Time to recover after getting hit=0.30
+Armament of this droid : 1
+Is this 'droid' a human : 1
+Individual shape of this droid or just -1 for classic ball shaped : 33
+Notes concerning this droid : This is a typical sex bomb.  This one is even armed.
+
+** Start of new Robot: ** 
+Droidname: BAR
+Droid uses portrait rotation series with prefix="NONE_AVAILABLE_YET"
+Maximum speed of this droid: 2.1
+Class of this droid: 18
+Maximum acceleration of this droid: 2.1
+Maximum energy of this droid: 100.1
+Maximum mana of this droid: 100.1
+Rate of healing: 15.1
+Weapon type this droid uses: 27
+Aggression rate of this droid: 92
+Physical (base) damage an attack of this droid will do: 10.0
+Experience_Reward gained for destroying one of this type: 200
+Monster Level and maximum treasure chest to pick from=4
+Range of vision of this droid=2
+Time spent eyeing Tux=3
+Minimal distance hostile bots are tolerated=6
+Drive of this droid : 2
+Brain of this droid : 2
+Sensor 1 of this droid : 2
+Sensor 3 of this droid : 3
+Drive item=7
+Weapon item=27
+Greeting Sound number=6
+Got Hit Sound number=-1
+Death sound file name="none"
+Attack animation sound file name="none"
+Chance of this robot scoring a hit=50
+Chance modifier, that this robot gets hit=30
+Time to recover after getting hit=0.30
+Armament of this droid : 1
+Is this 'droid' a human : 1
+Individual shape of this droid or just -1 for classic ball shaped : 34
+Notes concerning this droid : This is the bartender.
+
+
+
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+*** End of Robot Data Section: ***
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+*** End of this Freedroid data File ***
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+

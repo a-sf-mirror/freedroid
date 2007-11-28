@@ -1,0 +1,145 @@
+
+ *  --------------------------------------------------
+ *
+ *   Copyright (c) 2002, 2003 Johannes Prix
+ *   Copyright (c) 2003 Pete Spicer
+ *
+ *  This file is part of Freedroid
+ *
+ *  Freedroid is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ *  Freedroid is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with Freedroid; see the file COPYING. If not, write to the 
+ *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
+ *  MA  02111-1307  USA
+ *
+ =
+ =  Feel free to make any modifications you like.  If you set up 
+ =  something cool, please send your file in to the Freedroid project.
+ = 
+ * --------------------------------------------------
+
+The title picture in the graphics subdirectory for this mission is : backgrounds/scientist.jpg
+The title song in the sound subdirectory for this mission is : TheBeginning.ogg
+Song name to play in the end title if the mission is completed: TheBeginning.ogg
+
+
+--------------------
+--------------------
+--------------------
+*** START OF PURE SCROLLTEXT DATA ***
+
+  Was für ein großartiger Tag.
+    Oh ja, ich bin ein wenig zynisch.
+      Der ganze Planet steht nun in Flammen.
+        Millionen von Menschen sind tot, mausetot.
+         Qwerty und Arensito antworten immer noch nicht.
+
+        Ah, ja. Beinahe hätte ich noch etwas vergessen.
+       Die verfluchten Bots haben mich schon wieder geortet.
+      Ich bin nicht zufrieden damit. Ganz und gar nicht zufrieden.
+     Ich fürchte, ich muss schon wieder vortäuschen ich wäre ein Stein.
+    Findest du nicht auch, das wäre der richtige Zeitpunkt, um aufzuwachen?
+   Wach auf! Finde zu mir. Rette mich.
+  Ich bitte dich!
+
+    Dvorak, 1. KI
+
+
+
+
+   Kontrollen
+
+ Bewegung:
+
+ Das Spiel wird mit der Maus gesteuert: klicken Sie mit der linken Maustaste auf die Stelle, zu der Tux gehen soll. Halten Sie die Maustaste, um weiter in diese Richtung zu gehen. Ein zusätzliches Drücken der CTRL/STRG-Taste schaltet in den Modus 'Laufen'.
+
+ Angreifen:
+
+ Linksklick auf einen Gegner veranlasst Tux, zu diesem aufzuschließen und ihn mit der gerade verfügbaren Waffe anzugreifen. Ist es eine Schusswaffe, so bleibt Tux stehen wo er ist und beginnt auf den Robot zu schießen.
+ 
+ Spezial-Funktionen:
+
+ Verwenden Sie die rechte Maustaste, um spezielle Kräfte, Fähigkeiten oder Zaubersprüche einzusetzen. Mit dem Mausrad oder den Cursortasten können Sie umschalten auf die Funktionen 'Untersuchen' und 'Manipulieren'.
+
+ Andere Tasten:
+
+ I ... öffnet/schließt Ausrüstungs-Anzeige
+ C ... öffnet/schließt Charakter-Anzeige
+ S ... öffnet/schließt Fähigkeiten-Anzeige
+ Q ... blendet Missions-Statusanzeige ein
+ P ... schaltet Pause ein/aus
+ A ... 'A'-Taste halten, um aus dem Stand anzugreifen
+ R ... Waffe nachladen
+ T ... macht Wände bei Annäherung durchscheinend
+ Tab ... Automap-Anzeige ein/aus
+ LINKS SHIFT ... Gegenstände auf dem Boden anzeigen
+ Escape ... Hauptmenü anzeigen
+ F1-F9 ... Schnellschaltung zu Fähigkeiten/Fertigkeiten/Zaubersprüche
+ 1-9 ... Sofortnutzung von Dingen im Quick-Inventory
+ Space ... alle offenen Anzeigen schließen
+ F12 ... Bildschirm-Schnappschuss machen
+
+ Sprüche & Fähigkeiten:
+
+ Übernahme/Kontakt:
+Um mit einem freundlichen Bot zu kommunizieren, genügt es ihn anzuklicken. 
+Um einen feindlichen Bot zu hacken, Übernahme-Icon im Fähigkeiten-Menü (Level1) anwählen, dann rechte Maustaste auf dem Opfer klicken, um die Übernahme einzuleiten.
+Im Hackerspiel können Sie das Mausrad oder die Cursortasten benutzen.
+
+ Rückteleportation:
+Wählen Sie die Fähigkeit und rechtsklicken Sie irgendwo auf die Karte, um in die Stadt zu teleportieren. Innerhalb der Stadt verwendet, gelangt man mit dem Spruch dorthin zurück, wo man ihn zuletzt einsetzte.
+
+ Heilerspruch:
+im Fähigkeiten-Menu auswählen und irgendwo auf dem Bildschirm rechtsklicken.
+
+ Angriffs-Sprüche:
+hier gibt es viele Variationen, die Sie selbst entdecken sollten. Um sie zu einzusetzen, genügt für gewöhnlich ein Rechtsklick auf einen anzugreifenden Feind; jedoch gibt es Ausnahmen von dieser Regel.
+
+
+Falls Sie nicht mehr weiterkommen und Hilfe benötigen, besuchen Sie uns einfach als  #freedroid  im  irc.freenode.net  und fragen um Rat.
+
+Das wärs, wir wünschen schönes Spiel!
+
+
+    Irgendeine Taste drücken.
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ Falls Sie immer noch nach 'irgendeiner' Taste suchen sollten, verkaufen Sie bitte Ihren PC und stellen Sie sicher, dass Sie sich nicht reproduzieren.
+ Vielen Dank.
+
+
+
+*** END OF PURE SCROLLTEXT DATA ***
+
+*** END OF TITLE FILE *** LEAVE THIS TERMINATOR IN HERE ***
