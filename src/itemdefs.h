@@ -1,7 +1,7 @@
 /* 
  *
  *   Copyright (c) 2003 Johannes Prix
- *   Copyright (c) 2004-2007 Arthur Huillet 
+ *   Copyright (c) 2004-2007 Arthur Huillet
  *
  *
  *  This file is part of Freedroid
@@ -49,14 +49,14 @@
 
 #define ITEM_LASER_PISTOL 22
 #define ITEM_TWIN_LASER 3
-#define ITEM_ADVANCED_SINGLE_LASER 16
+#define ITEM_ADVANCED_SINGLE_LASER 115
 #define ITEM_LASER_RIFLE 12
 
 #define ITEM_PLASMA_PISTOL 23
 
 #define ITEM_EXTERMINATOR 13
 
-#define ITEM_ANTIGRAV_POD 112
+#define ITEM_ANTIGRAV_POD 28
 
 #define ITEM_SHOES 5
 #define ITEM_BOOTS 11
@@ -83,24 +83,47 @@
 #define ITEM_RED_GUARD_LIGHT_ARMOUR 31
 #define ITEM_RED_GUARD_HEAVY_ARMOUR 18
 
-#define ITEM_DAGGER 37       // very low sword
-#define ITEM_SHORT_SWORD 27  // lowest sword
-#define ITEM_SCIMITAR 34     // low sword
-#define ITEM_SABER 35        // medium sword
-#define ITEM_FALCHION 36     // good sword
-#define ITEM_LONG_SWORD 24  // 
-#define ITEM_CLAYMORE 26  // 
+/*Cutting*/
+#define ITEM_SHORT_SWORD 130
+#define ITEM_LONG_SWORD 131
+#define ITEM_GREAT_SWORD 132
+//#define ITEM_CHAINSAW 133
+#define ITEM_CLAYMORE 133 //temporary entry until IDByName & class dropping is implemented
+/*Cleaving*/
+#define ITEM_MEAT_CLEAVER 134
+//#define ITEM_SMALL_AXE 135
+#define ITEM_SCIMITAR 135 //temporary entry until IDByName & class dropping is implemented
+//#define ITEM_AXE 136
+#define ITEM_FALCHION 136 //temporary entry until IDByName & class dropping is implemented
+#define ITEM_LARGE_AXE 137
+/*Piercing*/
+#define ITEM_DAGGER 138
+//#define ITEM_WOODEN_SPEAR 139
+#define ITEM_STAFF 139 //temporary entry until IDByName & class dropping is implemented
+#define ITEM_METAL_SPEAR 140
+/*Impact*/
+//#define ITEM_CROWBAR 141
+#define ITEM_SABER 141
+#define ITEM_IRON_PIPE 142
+#define ITEM_GOLF_CLUB 143
+//#define ITEM_TREE_BRANCH 144
+#define ITEM_CLUB 144 //temporary entry until IDByName & class dropping is implemented
+#define ITEM_TABLE_LEG 145
+#define ITEM_BASEBALL_BAT 146
+#define ITEM_IRON_BAR 147
+#define ITEM_MACE 148
+#define ITEM_FLAIL 149
+#define ITEM_SLEDGEHAMMER 150
+/*Energy*/
+#define ITEM_LIGHTSABER 151
+#define ITEM_LASERSTAFF 152
 
-#define ITEM_MACE 113  // mace
-#define ITEM_CLUB 38 // club
 
 #define ITEM_CAP 20
 #define ITEM_SMALL_HELM 50
 #define ITEM_IRON_HAT 53
 #define ITEM_IRON_HELM 54
 #define ITEM_POTHELM 55
-
-#define ITEM_STAFF 39
 
 #define ITEM_SPELLBOOK_OF_CHECK_SYSTEM_INTEGRITY 44
 #define ITEM_SPELLBOOK_OF_CALCULATE_PI 46
