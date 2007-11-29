@@ -302,7 +302,7 @@ Takeover ( int enemynum )
 	    Me . type = AllEnemys [ enemynum ] . type;
 	    Me . marker = AllEnemys [ enemynum ] . marker;
 
-	    reward = Druidmap [ AllEnemys [ enemynum ] . type ] . experience_reward * 3 ;
+	    reward = Druidmap [ AllEnemys [ enemynum ] . type ] . experience_reward * 1 ;
 	    Me . Experience += reward;
 	    sprintf ( game_message_text , _("For taking control of your enemy, you receive %d experience."),
 		      reward );
