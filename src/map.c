@@ -2832,6 +2832,8 @@ file you use.",
       AllEnemys[ FreeAllEnemysPosition ].pos.x = StartupLocation.x;
       AllEnemys[ FreeAllEnemysPosition ].pos.y = StartupLocation.y;
 
+      free ( StartMapLabel );
+
       YesNoString = ReadAndMallocStringFromData ( SearchPointer , "RushTux=\"" , "\"" ) ;
       if ( strcmp( YesNoString , "yes" ) == 0 )
 	{
@@ -2850,6 +2852,8 @@ This indicated a corrupted freedroid.ruleset file with an error at least in\n\
 the item specification section.",
 				     PLEASE_INFORM, IS_FATAL );
 	}
+
+      free ( YesNoString );
 
       DialogSection = 
 	ReadAndMallocStringFromData ( SearchPointer , "DialogSectionToUse=\"" , "\"" ) ;
@@ -2896,6 +2900,7 @@ the item specification section.",
 				     PLEASE_INFORM, IS_FATAL );
 	}
 
+      free ( YesNoString ) ;
       ReadValueFromStringWithDefault ( SearchPointer , "on_death_drop_item_code=" , "%d", "-1",
 			    &AllEnemys[ FreeAllEnemysPosition ].on_death_drop_item_code , EndOfThisLevelData );
 
@@ -3540,7 +3545,7 @@ position_collides_with_obstacles_on_square ( float x, float y , int x_tile , int
 int
 IsPassable ( float x , float y , int z )
 {
-    if ( z < 0 ) { fprintf ( stderr, "%s: got a negative z. Probable GCC4 bug.", __FUNCTION__); return FALSE; }
+    if ( z < 0 ) { fprintf ( stderr, "%s: got a negative z.", __FUNCTION__); return FALSE; }
     Level PassLevel = curShip . AllLevels [ z ] ;
     int x_tile_start, y_tile_start;
     int x_tile_end, y_tile_end;

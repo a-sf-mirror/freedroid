@@ -287,6 +287,7 @@ char fpath[2048];
     TitleSongName = ReadAndMallocStringFromData ( TitleFilePointer, "The title song in the sound subdirectory for this mission is : " , "\n" ) ;
     
     SwitchBackgroundMusicTo ( TitleSongName );
+    free ( TitleSongName );
     
     SDL_SetClipRect ( Screen, NULL );
     Me.status=BRIEFING;
@@ -524,7 +525,7 @@ decode_all_event_actions ( char* EventSectionPointer )
 	  DebugPrintf ( 1 , "\nMapchange label unused..." );
 	}
 
-
+      free ( TempMapLabelName ); 
       //--------------------
       // Now we see if maybe there was an obstacle label given, that should be used
       // to change an obstacle later.  We take a look if that is the case at all, and
@@ -555,6 +556,7 @@ Leave out the label entry for obstacles if you don't want to use it!" );
 	  ReadValueFromString( EventPointer , MODIFY_OBSTACLE_TO_TYPE_STRING , "%d" , 
 			       & ( AllTriggeredActions[ EventActionNumber ] . modify_obstacle_to_type ) , EndOfEvent );
 	  DebugPrintf ( 1 , "\nObstacle will be modified to type: %d." , AllTriggeredActions[ EventActionNumber ] . modify_obstacle_to_type );
+	  free ( TempMapLabelName ); 
 	}
       else
 	{
@@ -586,6 +588,8 @@ Leave out the label entry for obstacles if you don't want to use it!" );
 	{
 	  DebugPrintf ( 1 , "\nTeleport target label unused..." );
 	}
+
+      free(TempMapLabelName);
 
       if ( ! strstr( EventPointer, EVENT_ACTION_MODIFY_EVENT_TRIGGER_STRING ) ) //if there is no event trigger modified
 	{
@@ -682,7 +686,8 @@ decode_all_event_triggers ( char* EventSectionPointer )
 	{
 	    DebugPrintf ( 1 , "\nTrigger label unused..." );
 	}
-	
+
+	free ( TempMapLabelName );	
 	
 	// Now we read whether or not to delete the trigger after being triggerd
 	ReadValueFromString( EventPointer , EVENT_TRIGGER_DELETED_AFTER_TRIGGERING , "%d" , 
@@ -802,6 +807,8 @@ There are more skills defined, than the maximum number specified in the code!",
 		ProgramToFill ->  form = PROGRAM_FORM_RADIAL;
 	    if ( !strcmp(pform, "self") ) 
 		ProgramToFill ->  form = PROGRAM_FORM_SELF;
+
+	    free ( pform );
 
             ReadValueFromStringWithDefault( ProgramPointer , "Base damage=" , "%d" , "0",
                              & ProgramToFill -> damage_base  , EndOfProgramData );

@@ -880,7 +880,8 @@ GetQuestList ( char* QuestListFilename )
     int ActionNr;
     char* ActionLabel;
     char* MissionTargetPointer;
-char fpath[2048];
+    char fpath[2048];
+    char* MissionFileContents;
     char InnerPreservedLetter=0;
     int diary_entry_nr;
     char* next_diary_entry_pointer;
@@ -915,8 +916,8 @@ char fpath[2048];
     // At first we must load the quest list file given...
     //
     find_file (QuestListFilename , MAP_DIR , fpath, 0 );
-    MissionTargetPointer = 
-	ReadAndMallocAndTerminateFile( fpath , "*** END OF QUEST LIST *** LEAVE THIS TERMINATOR IN HERE ***" ) ;
+    MissionFileContents = ReadAndMallocAndTerminateFile( fpath , "*** END OF QUEST LIST *** LEAVE THIS TERMINATOR IN HERE ***" ) ;
+    MissionTargetPointer = MissionFileContents;
 
     for ( MissionTargetIndex = 0 ; MissionTargetIndex < MAX_MISSIONS_IN_GAME ; MissionTargetIndex ++ )
     {
@@ -939,8 +940,9 @@ char fpath[2048];
 	
 	// Me.AllMissions[ MissionTargetIndex ].MissionName = 
 	// ReadAndMallocStringFromData ( MissionTargetPointer , MISSION_TARGET_NAME_INITIALIZER , "\"" ) ;
-	strcpy ( Me.AllMissions[ MissionTargetIndex ].MissionName , ReadAndMallocStringFromData ( MissionTargetPointer , MISSION_TARGET_NAME_INITIALIZER , "\"" ) ) ;
-	
+	char * tmname =  ReadAndMallocStringFromData ( MissionTargetPointer , MISSION_TARGET_NAME_INITIALIZER , "\"" );
+	strcpy ( Me.AllMissions[ MissionTargetIndex ].MissionName , tmname ) ;
+	free ( tmname ) ;
 	//--------------------
 	// No we read in if this mission should be assigned to the influencer
 	// automatically at the game start and without the influencer having to apply
@@ -1045,6 +1047,7 @@ char fpath[2048];
 	    
 	    NumberOfEventsToTriggerAtThisCompletition ++;
 	    NextEventPointer ++;
+	    free ( ActionLabel );
 	}
 	DebugPrintf ( 1 , "\nDetected %d events to be triggered at this mission completition." , 
 		      NumberOfEventsToTriggerAtThisCompletition );
@@ -1097,7 +1100,7 @@ char fpath[2048];
     // Finally we record the number of mission targets scanned and are done with this function
     DebugPrintf ( 1 , "\nNUMBER OF MISSION TARGETS FOUND: %d.\n" , MissionTargetIndex );
     fflush( stdout );
-    
+    free ( MissionFileContents );
 }; // void Get_Mission_Targets( ... )
 
 

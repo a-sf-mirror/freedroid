@@ -76,7 +76,8 @@ InitFont (BFont_Info * Font)
 	  SDL_SetColorKey ( Font -> char_iso_image [ i ] . surface , 0 , 0 );
 
 	  flip_image_vertically ( Font -> char_iso_image [ i ] . surface ) ;
-
+	  
+	  SDL_FreeSurface ( tmp_char1 );
 	  //--------------------
 	  // Now we can go on to the next char
 	  //

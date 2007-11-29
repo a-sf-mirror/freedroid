@@ -911,6 +911,7 @@ answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.\n\
 This indicated a corrupted FreedroidRPG dialog.",
 					   PLEASE_INFORM, IS_FATAL );
 	    }
+	    free ( YesNoString ) ;
 	}
 	else
 	{
