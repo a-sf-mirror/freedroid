@@ -1367,16 +1367,17 @@ ParseCommandLine (int argc, char *const argv[])
 			    break;
 			case 3:
 	                    command_line_override_for_screen_resolution = TRUE ;
-                            GameConfig . screen_width = 720 ;
-                            GameConfig . screen_height = 480 ;
+                            GameConfig . screen_width = 1280 ;
+                            GameConfig . screen_height = 1024 ;
                             DebugPrintf ( 1 , "\n%s(): Command line argument -r 3 recognized." , __FUNCTION__ );
                             break;
 			case 4:
                             command_line_override_for_screen_resolution = TRUE ;
-                            GameConfig . screen_width = 720 ;
-                            GameConfig . screen_height = 576 ;
+                            GameConfig . screen_width = 1280 ;
+                            GameConfig . screen_height = 800 ;
                             DebugPrintf ( 1 , "\n%s(): Command line argument -r 4 recognized." , __FUNCTION__ );
                             break;
+#if 0			
 			case 5: 
                             command_line_override_for_screen_resolution = TRUE ;
                             GameConfig . screen_width = 1280 ;
@@ -1389,18 +1390,18 @@ ParseCommandLine (int argc, char *const argv[])
                             GameConfig . screen_height =1024 ;
                             DebugPrintf ( 1 , "\n%s(): Command line argument -r 6 recognized." , __FUNCTION__ );
                             break;
-
+#endif
 
 
 			default:
 			    fprintf( stderr, "\nresolution code received: %d" , resolution_code );
 			    GiveStandardErrorMessage ( __FUNCTION__  , "\
 The resolution identifier given is not a valid resolution code.\n\
-Please enter one of the options 0, 1 or 2 as the resolution code.\n\
 These codes correspond to the following resolutions available:\n\
      0 = 640 x 480 (default with SDL)\n\
      1 = 800 x 600 (default with OpenGL)\n\
      2 = 1024 x 748 \n\
+     3 = 1280 x 1024 \n\
 Anything else will not be accepted right now, but you can send in\n\
 your suggestion to the FreedroidRPG dev team to enable new resolutions.",
 						       NO_NEED_TO_INFORM , IS_FATAL );

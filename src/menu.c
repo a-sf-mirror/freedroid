@@ -645,9 +645,8 @@ ChatDoMenuSelection( char* MenuTexts[ MAX_ANSWERS_PER_PERSON ] ,
 	  HighlightRect.y = MenuPosY[ menu_position_to_remember -1 ] ;
 	  HighlightRect.w = TextWidth ( MenuTexts [ menu_position_to_remember - 1 ] ) + 0 * h ;
 	  if ( HighlightRect . w > 580 * GameConfig . screen_width / 640 ) HighlightRect . w = 580 * GameConfig . screen_width / 640 ;
-	  HighlightRect.h = MenuOptionLineRequirement [ menu_position_to_remember - 1 ] * 
-	      ( FontHeight ( GetCurrentFont() ) * TEXT_STRETCH ) ;	    
-	  if ( HighlightRect . h + HighlightRect.y > UNIVERSAL_COORD_H(458) ) HighlightRect . h = UNIVERSAL_COORD_H(458) - HighlightRect.y;
+	  HighlightRect.h = MenuOptionLineRequirement [ menu_position_to_remember - 1 ] * ( FontHeight ( GetCurrentFont() ) * TEXT_STRETCH ) ;	    
+	  if ( HighlightRect . h + HighlightRect.y > UNIVERSAL_COORD_H(457) ) HighlightRect . h = UNIVERSAL_COORD_H(457) - HighlightRect.y;
 	  HighlightRectangle ( Screen , HighlightRect );
 	  // Display again the highlighted line
 	  DisplayText ( MenuTexts [ menu_position_to_remember -1 ] , MenuPosX [ menu_position_to_remember - 1 ], MenuPosY [ menu_position_to_remember - 1 ] , &Choice_Window , TEXT_STRETCH);	  
@@ -1477,6 +1476,7 @@ Change_Screen_Resolution_Menu ( void )
 	    SET_640_480 = 1 , 
 	    SET_800_600, 
 	    SET_1024_768,
+	    SET_1280_1024,
 	    LEAVE_OPTIONS_MENU 
 	};
     
@@ -1487,8 +1487,9 @@ Change_Screen_Resolution_Menu ( void )
 	MenuTexts[0]="640x480";
 	MenuTexts[1]="800x600";
 	MenuTexts[2]="1024x768";
-	MenuTexts[3]=_("Back");
-	MenuTexts[4]="";
+	MenuTexts[3]="1280x1024";
+	MenuTexts[4]=_("Back");
+	MenuTexts[5]="";
 	
 	if ( GameOver == TRUE ) MenuPosition = DoMenuSelection( _("Changes will take effect\n       when you next start the game"), 
 					MenuTexts , -1 , NE_TITLE_PIC_BACKGROUND_CODE , NULL );
@@ -1542,7 +1543,21 @@ start FreedroidRPG.\n\
 Thank you.\n"));
 		SetCurrentFont ( Menu_BFont );
 		break;
-		
+
+	    case SET_1280_1024:
+	                while ( EnterPressed( ) || SpacePressed( ) );
+	                GameConfig . next_time_width_of_screen = 1280 ;
+	                GameConfig . next_time_height_of_screen = 1024 ;
+		                GiveMouseAlertWindow ( _("\n\
+You selected 1280x1024 pixel.\n\n\
+Change of screen resolution will take\n\
+effect automatically when you next\n\
+start FreedroidRPG.\n\
+\n\
+Thank you.\n"));
+                SetCurrentFont ( Menu_BFont );
+                break;
+						
 	    case LEAVE_OPTIONS_MENU:
 		while (EnterPressed() || SpacePressed() );
 		can_continue=TRUE;

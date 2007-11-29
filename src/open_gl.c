@@ -959,18 +959,20 @@ RestoreMenuBackground ( int backup_slot )
     if ( use_open_gl )
     {
 #ifdef HAVE_LIBGL
-
+    int h = (GameConfig . screen_height > 1024 ) ? 2048 : 1024;
+    int w = (GameConfig . screen_width > 1024 ) ? 2048 : 1024;
+    
     glBindTexture( GL_TEXTURE_2D, * ( StoredMenuBackgroundTex [ backup_slot ] ) );
 
     glBegin(GL_QUADS);
     glTexCoord2i( 0.0f, 1.0f );
     glVertex2i( 0 , 0 );
     glTexCoord2i( 0.0f, 0.0 );
-    glVertex2i( 0 , 1024 );
+    glVertex2i( 0 , h );
     glTexCoord2i( 1.0f, 0.0 );
-    glVertex2i( 1024 , 1024 );
+    glVertex2i( w , h );
     glTexCoord2f( 1.0f, 1.0 );
-    glVertex2i( 1024 , 0 );
+    glVertex2i( w , 0 );
     glEnd( );
 
     glDisable ( GL_BLEND );
@@ -1025,7 +1027,11 @@ StoreMenuBackground ( int backup_slot )
         glTexParameteri( GL_TEXTURE_2D , GL_TEXTURE_MAG_FILTER , GL_NEAREST );
         glTexParameteri( GL_TEXTURE_2D , GL_TEXTURE_MIN_FILTER , GL_NEAREST );
 
-	glCopyTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 0, GameConfig.screen_height - 1024,  1024,  1024, 0);
+	// We assume the GL setup supports 2048x2048 textures. If it's not the case, heh... change your graphics card :)
+	int txw = (GameConfig . screen_width > 1024) ? 2048 : 1024;
+	int txh = (GameConfig . screen_height > 1024 ) ? 2048 : 1024;
+
+	glCopyTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 0, GameConfig.screen_height - txh, txw,  txh, 0);
 	open_gl_check_error_status(__FUNCTION__);
 
 #endif
