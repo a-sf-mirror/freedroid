@@ -582,7 +582,7 @@ ChatDoMenuSelection( char* MenuTexts[ MAX_ANSWERS_PER_PERSON ] ,
     OptionOffset = 0 ;
     while ( 1 )
     {
-    SDL_Delay(1);
+          SDL_Delay(1);
           RestoreMenuBackground ( 0 );
 
 	  //--------------------
@@ -828,7 +828,6 @@ ChatDoMenuSelection( char* MenuTexts[ MAX_ANSWERS_PER_PERSON ] ,
 	  {
 	      chat_protocol_scroll_override_from_user -- ;
               display_current_chat_protocol ( CHAT_DIALOG_BACKGROUND_PICTURE_CODE , ChatDroid , FALSE );
-	      our_SDL_flip_wrapper( Screen );
 	      StoreMenuBackground(0);
 	  }
 	  else if ( MouseCursorIsOnButton ( CHAT_PROTOCOL_SCROLL_DOWN_BUTTON , 
@@ -837,7 +836,6 @@ ChatDoMenuSelection( char* MenuTexts[ MAX_ANSWERS_PER_PERSON ] ,
 	  {
 	      chat_protocol_scroll_override_from_user ++ ;
               display_current_chat_protocol ( CHAT_DIALOG_BACKGROUND_PICTURE_CODE , ChatDroid , FALSE );
-              our_SDL_flip_wrapper( Screen );
 	      StoreMenuBackground(0);
 	  }
 	  //--------------------
