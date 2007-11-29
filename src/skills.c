@@ -309,7 +309,11 @@ DoSkill(int skill_index, int SpellCost)
 	    // Only droids can be hacked.  Humans can't be 
 	    // hacked.
 	    //
-	    Takeover ( index_of_droid_below_mouse_cursor ) ;
+	    if ( Takeover ( index_of_droid_below_mouse_cursor ) )
+		    {
+		    // upon successful takeover, we restore original heat
+		    Me . temperature -= SpellCost;
+		    }
 	    }
 	else 
 	    {
