@@ -902,7 +902,7 @@ RawSetNewRandomWaypoint ( Enemy ThisRobot )
     // following change of target waypoint procedure
     if (  num_conn == 0 ) // no connections found!
     {
-	fprintf ( stderr , "\nThe offending waypoint nr. is: %d.", nextwp );
+	fprintf ( stderr , "\nThe offending waypoint nr. is: %d at %d, %d.", nextwp, WpList [ nextwp ] . x, WpList [ nextwp ] . y );
 	fprintf ( stderr , "\nThe map level in question got nr.: %d.", ThisRobot -> pos . z );
 	if ( ThisRobot -> stick_to_waypoint_system_by_default )
 	{
