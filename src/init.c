@@ -883,7 +883,6 @@ Get_Robot_Data ( void* DataPointer )
 #define MAXENERGY_BEGIN_STRING "Maximum energy of this droid: "
 #define MAXMANA_BEGIN_STRING "Maximum mana of this droid: "
 #define LOSEHEALTH_BEGIN_STRING "Rate of healing: "
-#define GUN_BEGIN_STRING "Weapon type this droid uses: "
 #define AGGRESSION_BEGIN_STRING "Aggression rate of this droid: "
 #define BASE_PHYSICAL_DAMAGE_BEGIN_STRING "Physical (base) damage an attack of this droid will do: "
 #define FLASHIMMUNE_BEGIN_STRING "Is this droid immune to disruptor blasts? "
