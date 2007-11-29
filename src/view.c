@@ -2324,7 +2324,7 @@ grab_tux_images_from_archive ( int tux_part_group , int motion_class , char* par
          strm.avail_in = filelen;
          strm.next_in = src;
          strm.avail_out = 30 * 1048576;
-         strm.next_out = DataBuffer;
+         strm.next_out = (Bytef*) DataBuffer;
  
          ret = inflateInit(&strm);
          if (ret != Z_OK)
@@ -2614,7 +2614,6 @@ This indicates a serious bug in this installation of Freedroid.",
 	 fclose( DataFile );
 
 	 int ret;
-         unsigned have;
          z_stream strm;
          
          /* allocate inflate state */
@@ -2624,7 +2623,7 @@ This indicates a serious bug in this installation of Freedroid.",
          strm.avail_in = filelen;
          strm.next_in = src;
          strm.avail_out = 30 * 1048576;
-         strm.next_out = DataBuffer;
+         strm.next_out = (Bytef*) DataBuffer;
 
          ret = inflateInit(&strm);
          if (ret != Z_OK)
@@ -3818,7 +3817,6 @@ There was a rotation model type given, that exceeds the number of rotation model
 void
 PutIndividuallyShapedDroidBody ( int Enum , SDL_Rect TargetRectangle , int mask , int highlight )
 {
-    int phase = AllEnemys [ Enum ] . phase;
     int RotationModel;
     int RotationIndex;
     float darkness ;
