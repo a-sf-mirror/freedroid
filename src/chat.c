@@ -746,7 +746,7 @@ ExecuteChatExtra ( char* ExtraCommandString , Enemy ChatDroid )
 	TempMessage = ReadAndMallocStringFromData ( ExtraCommandString , "AddBigScreenMessageBUT_WITH_TERMINATION_CHARACTER_PLEASE:" , ":" ) ;
 	DebugPrintf( CHAT_DEBUG_LEVEL , "\n...decoding...message is: %s." , TempMessage );
 	SetNewBigScreenMessage ( TempMessage );
-	/*XXX memory leak*/
+	free ( TempMessage ) ;
     }
     else if ( CountStringOccurences ( ExtraCommandString , "AddBaseMagic:" ) )
     {
