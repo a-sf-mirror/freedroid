@@ -3831,13 +3831,13 @@ init_obstacle_data( void )
   obstacle_map [ ISO_SIGN_1 ] . filename = "iso_signs_0000.png" ;
   obstacle_map [ ISO_SIGN_1 ] . block_vision_too = FALSE ;
   obstacle_map [ ISO_SIGN_1 ] . obstacle_short_name = _("Sign");
-  obstacle_map [ ISO_SIGN_1 ] . obstacle_long_description = _("");
+  obstacle_map [ ISO_SIGN_1 ] . obstacle_long_description = _("A sign.");
   obstacle_map [ ISO_SIGN_2 ] . block_area_parm_1 = 0.9 ;
   obstacle_map [ ISO_SIGN_2 ] . block_area_parm_2 = 0.9 ;
   obstacle_map [ ISO_SIGN_2 ] . filename = "iso_signs_0001.png" ;
   obstacle_map [ ISO_SIGN_2 ] . block_vision_too = FALSE ;
   obstacle_map [ ISO_SIGN_2 ] . obstacle_short_name = _("Sign");
-  obstacle_map [ ISO_SIGN_2 ] . obstacle_long_description = _("");
+  obstacle_map [ ISO_SIGN_2 ] . obstacle_long_description = _("A sign.");
   obstacle_map [ ISO_SIGN_3 ] . block_area_parm_1 = 0.9 ;
   obstacle_map [ ISO_SIGN_3 ] . block_area_parm_2 = 0.9 ;
   obstacle_map [ ISO_SIGN_3 ] . filename = "iso_signs_0002.png" ;

@@ -1922,7 +1922,7 @@ InitFreedroid ( int argc, char ** argv )
     
     Overall_Average = 0.041 ;
     SkipAFewFrames = 0;
-    Me . TextToBeDisplayed = _("");
+    Me . TextToBeDisplayed = "";
     
     InventorySize.x = INVENTORY_GRID_WIDTH ;
     InventorySize.y = INVENTORY_GRID_HEIGHT ;
