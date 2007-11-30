@@ -500,6 +500,7 @@ decode_all_event_actions ( char* EventSectionPointer )
       AllTriggeredActions[ EventActionNumber].ActionLabel =
 	ReadAndMallocStringFromData ( EventPointer , ACTION_LABEL_INDICATION_STRING , "\"" ) ;
 
+      //printf ( "Reading action label %s\n", AllTriggeredActions[ EventActionNumber].ActionLabel);
       //--------------------
       // Now we read in the map changing position in x and y and level coordinates
       //
@@ -525,6 +526,7 @@ decode_all_event_actions ( char* EventSectionPointer )
 	  DebugPrintf ( 1 , "\nMapchange label unused..." );
 	}
 
+      //printf ( "Got map label %s\n", TempMapLabelName);
       free ( TempMapLabelName ); 
       //--------------------
       // Now we see if maybe there was an obstacle label given, that should be used
@@ -538,6 +540,7 @@ decode_all_event_actions ( char* EventSectionPointer )
 	  DebugPrintf ( 1 , "\nOBSTACLE LABEL FOUND IN THIS EVENT ACTION!" );
 	  TempMapLabelName = 
 	    ReadAndMallocStringFromData ( EventPointer , MODIFY_OBSTACLE_WITH_LABEL_STRING , "\"" ) ;
+	  //printf("Got obs label %s\n", TempMapLabelName);
 	  if ( strcmp ( TempMapLabelName , "NO_LABEL_DEFINED_YET" ) )
 	    {
 	      AllTriggeredActions [ EventActionNumber ] . modify_obstacle_with_label = TempMapLabelName ;
@@ -556,7 +559,6 @@ Leave out the label entry for obstacles if you don't want to use it!" );
 	  ReadValueFromString( EventPointer , MODIFY_OBSTACLE_TO_TYPE_STRING , "%d" , 
 			       & ( AllTriggeredActions[ EventActionNumber ] . modify_obstacle_to_type ) , EndOfEvent );
 	  DebugPrintf ( 1 , "\nObstacle will be modified to type: %d." , AllTriggeredActions[ EventActionNumber ] . modify_obstacle_to_type );
-	  free ( TempMapLabelName ); 
 	}
       else
 	{
