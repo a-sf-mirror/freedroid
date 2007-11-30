@@ -206,7 +206,7 @@ exist really (i.e. has a type = (-1) ).",
     //
     if ( ItemMap [ CurItem->type ] . item_group_together_in_inventory )
     {
-	if ( CurItem->type != ITEM_MONEY )
+	if ( ! MatchItemWithName(CurItem->type, "Cyberbucks") )
 		{
 		sprintf( linebuf , _("Multiplicity: %d \n"), CurItem->multiplicity );
 		strcat( ItemDescText , linebuf );
@@ -1204,24 +1204,6 @@ prepare_text_window_content ( char* ItemDescText )
 		GiveItemDescription ( ItemDescText , & ( Me.special_item) , FALSE );
 		best_banner_pos_x = HELMET_RECT_X + 30 + HELMET_RECT_WIDTH ;
 		best_banner_pos_y = HELMET_RECT_Y - 30 ;
-	    }
-	}
-	else if ( MouseCursorIsOnButton ( AUX1_RECT_BUTTON , CurPos.x , CurPos.y ) )
-	{
-	    if ( Me.aux1_item.type > 0 )
-	    {
-		GiveItemDescription ( ItemDescText , & ( Me.aux1_item) , FALSE );
-		best_banner_pos_x = AUX1_RECT_X + 30 + AUX1_RECT_WIDTH ;
-		best_banner_pos_y = AUX1_RECT_Y - 30 ;
-	    }
-	}
-	else if ( MouseCursorIsOnButton ( AUX2_RECT_BUTTON , CurPos.x , CurPos.y ) )
-	{
-	    if ( Me.aux2_item.type > 0 )
-	    {
-		GiveItemDescription ( ItemDescText , & ( Me.aux2_item) , FALSE );
-		best_banner_pos_x = AUX2_RECT_X + 30 + AUX2_RECT_WIDTH ;
-		best_banner_pos_y = AUX2_RECT_Y - 30 ;
 	    }
 	}
 	

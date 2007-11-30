@@ -311,8 +311,6 @@ check_for_cheat_keys( void )
 	Me.shield_item.is_identified = TRUE;
 	Me.armour_item.is_identified = TRUE;
 	Me.special_item.is_identified = TRUE;
-	Me.aux1_item.is_identified = TRUE;
-	Me.aux2_item.is_identified = TRUE;
 	Me.drive_item.is_identified = TRUE;
 	while ( IPressed() );
     }

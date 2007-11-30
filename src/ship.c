@@ -543,7 +543,7 @@ write_full_item_name_into_string ( item* ShowItem , char* full_item_name )
       strcat ( full_item_name , font_switchto_neon );
     }
 
-  if ( ShowItem->type == ITEM_MONEY ) sprintf( full_item_name , "%d " , ShowItem->multiplicity );
+  if ( MatchItemWithName(ShowItem->type, "Cyberbucks") ) sprintf( full_item_name , "%d " , ShowItem->multiplicity );
 
   //--------------------
   // If the item is is magical, we give the prefix name of course.
@@ -646,7 +646,7 @@ ShowItemInfo ( item* ShowItem , int Displacement , char ShowArrows , int backgro
     
     if ( ItemMap [ ShowItem->type ] . item_group_together_in_inventory )
     {
-	if ( ShowItem -> type != ITEM_MONEY )
+	if ( ! MatchItemWithName(ShowItem -> type, "Cyberbucks") )
 		{
 		strcat ( InfoText , _("Multiplicity: "));
 		sprintf( TextChunk, "%d \n" , 

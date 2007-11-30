@@ -1501,7 +1501,7 @@ ItemDropFromLevelEditor( void )
     
     if ( ItemMap [ NewItemCode ] . item_group_together_in_inventory )
     {
-	our_multiplicity = do_graphical_number_selection_in_range ( 1 , NewItemCode != ITEM_MONEY ? 100 : 1000, 1 );
+	our_multiplicity = do_graphical_number_selection_in_range ( 1 , (!MatchItemWithName(NewItemCode, "Cyberbucks")) ? 100 : 1000, 1 );
 	if ( our_multiplicity == 0 ) our_multiplicity = 1;
     }
     DropItemAt( NewItemCode , Me . pos . z , rintf( Me.pos.x ) , rintf( Me.pos.y ) , 

@@ -545,8 +545,6 @@ typedef struct
     item armour_item;
     item shield_item;
     item special_item;
-    item aux1_item;
-    item aux2_item;
     
     int amount_of_plasma_transistors;
     int amount_of_superconductors;
@@ -678,8 +676,6 @@ typedef struct
     item armour_item;
     item shield_item;
     item special_item;
-    item aux1_item;
-    item aux2_item;
     
     //--------------------
     // A record of when and if the tux has been on some maps...

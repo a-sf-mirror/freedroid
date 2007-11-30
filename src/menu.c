@@ -2485,32 +2485,24 @@ clear_player_inventory_and_stats ( void )
     Me . drive_item.type = ( -1 ) ;
     Me . armour_item.type = ( -1 ) ;
     Me . shield_item.type = ( -1 ) ;
-    Me . aux1_item.type = ( -1 ) ;
-    Me . aux2_item.type = ( -1 ) ;
     Me . special_item.type = ( -1 ) ;
     
     Me . weapon_item.prefix_code = ( -1 ) ;
     Me . drive_item.prefix_code = ( -1 ) ;
     Me . armour_item.prefix_code = ( -1 ) ;
     Me . shield_item.prefix_code = ( -1 ) ;
-    Me . aux1_item.prefix_code = ( -1 ) ;
-    Me . aux2_item.prefix_code = ( -1 ) ;
     Me . special_item.prefix_code = ( -1 ) ;
     
     Me . weapon_item.suffix_code = ( -1 ) ;
     Me . drive_item.suffix_code = ( -1 ) ;
     Me . armour_item.suffix_code = ( -1 ) ;
     Me . shield_item.suffix_code = ( -1 ) ;
-    Me . aux1_item.suffix_code = ( -1 ) ;
-    Me . aux2_item.suffix_code = ( -1 ) ;
     Me . special_item.suffix_code = ( -1 ) ;
     
     Me . weapon_item.currently_held_in_hand = ( -1 ) ;
     Me . drive_item.currently_held_in_hand = ( -1 ) ;
     Me . armour_item.currently_held_in_hand = ( -1 ) ;
     Me . shield_item.currently_held_in_hand = ( -1 ) ;
-    Me . aux1_item.currently_held_in_hand = ( -1 ) ;
-    Me . aux2_item.currently_held_in_hand = ( -1 ) ;
     Me . special_item.currently_held_in_hand = ( -1 ) ;
     
     Me . character_class = WAR_BOT ;

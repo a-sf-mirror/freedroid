@@ -31,8 +31,6 @@
 // appearing in the game.
 //
 
-#define ITEM_MONEY 6
-
 #define ITEM_SMALL_HEALTH_POTION 1
 #define ITEM_SMALL_MANA_POTION 41
 #define ITEM_MEDIUM_HEALTH_POTION 48
@@ -269,22 +267,6 @@
 #define HELMET_RECT_HEIGHT 64
 #define HELMET_RECT_X 25
 #define HELMET_RECT_Y 22
-
-//--------------------
-// Now these are the 'bracelet' rectangles, where you could put
-// some wristbands and the like.  But since there are no such things
-// available in the game right now, these slots don't really have a 
-// meaning and therefore currently don't need to appear in the inventory
-// screen.
-//
-#define AUX1_RECT_WIDTH 64
-#define AUX1_RECT_HEIGHT 64
-#define AUX1_RECT_X 32
-#define AUX1_RECT_Y 25
-#define AUX2_RECT_WIDTH 64
-#define AUX2_RECT_HEIGHT 64
-#define AUX2_RECT_X 47
-#define AUX2_RECT_Y 210
 
 #endif
 // Nothing more from here on 

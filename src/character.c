@@ -323,14 +323,11 @@ update_all_primary_stats ()
     AddInfluencerItemAttributeBonus( & Me . drive_item );
     AddInfluencerItemAttributeBonus( & Me . shield_item );
     AddInfluencerItemAttributeBonus( & Me . special_item );
-    AddInfluencerItemAttributeBonus( & Me . aux1_item );
-    AddInfluencerItemAttributeBonus( & Me . aux2_item );
 
-    item * itrot [7] = {  & Me . armour_item,  & Me . weapon_item ,  & Me . drive_item ,  
-    		& Me . shield_item , & Me . special_item ,  & Me . aux1_item ,
-		& Me . aux2_item };
+    item * itrot [5] = {  & Me . armour_item,  & Me . weapon_item ,  & Me . drive_item ,  
+    		& Me . shield_item , & Me . special_item };
     i = 0;
-    while ( i < 7 ) 
+    while ( i < 5 ) 
 	{
 	if ( itrot [ i ] -> type == -1 ) 
 		{
@@ -510,14 +507,6 @@ update_tux_armour_class ()
     {
 	Me . AC += Me . special_item . ac_bonus;
     }
-    if ( Me . aux1_item.type != (-1) )
-    {
-        Me . AC += Me . aux1_item . ac_bonus;
-    }
-    if ( Me . aux2_item.type != (-1) )
-    {
-        Me . AC += Me . aux2_item . ac_bonus;
-    }
     if ( Me . drive_item.type != (-1) )
     {
         Me . AC += Me . drive_item . ac_bonus;
@@ -579,8 +568,6 @@ UpdateAllCharacterStats ()
     AddInfluencerItemSecondaryBonus( & Me . drive_item );
     AddInfluencerItemSecondaryBonus( & Me . shield_item );
     AddInfluencerItemSecondaryBonus( & Me . special_item );
-    AddInfluencerItemSecondaryBonus( & Me . aux1_item );
-    AddInfluencerItemSecondaryBonus( & Me . aux2_item );
 
     //--------------------
     // There also should be an upper limit to disruptor protection,

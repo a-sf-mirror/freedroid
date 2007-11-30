@@ -93,8 +93,6 @@ silently_unhold_all_items ( void )
     Me . armour_item . currently_held_in_hand = FALSE ;
     Me . shield_item . currently_held_in_hand = FALSE ;
     Me . special_item . currently_held_in_hand = FALSE ;
-    Me . aux1_item . currently_held_in_hand = FALSE ;
-    Me . aux2_item . currently_held_in_hand = FALSE ;
 
 }; // void silently_unhold_all_items ( void )
 
@@ -137,14 +135,6 @@ GetPositionCode ( Item ItemPointer )
     else if ( & ( Me . special_item ) == ItemPointer )
     {
 	return SPECIAL_SLOT;
-    }
-    else if ( & ( Me . aux1_item ) == ItemPointer )
-    {
-	return AUX1_SLOT;
-    }
-    else if ( & ( Me . aux2_item ) == ItemPointer )
-    {
-	return AUX2_SLOT;
     }
     else if ( & ( Me . drive_item ) == ItemPointer )
     {
@@ -236,12 +226,6 @@ FindPointerToPositionCode ( int SlotCode )
 	    DebugPrintf ( 0 , "\nItem Found! It's of type %d. It's from armour slot. " , 
 			  Me . armour_item . type ) ;
 	    return ( & ( Me . armour_item ) ) ;
-	    break;
-	case AUX1_SLOT:
-	    return ( & ( Me . aux1_item ) ) ;
-	    break;
-	case AUX2_SLOT:
-	    return ( & ( Me . aux2_item ) ) ;
 	    break;
 	case DRIVE_SLOT:
 	    return ( & ( Me . drive_item ) ) ;
@@ -699,7 +683,7 @@ Couldn't find another array entry to drop another item.",
     //--------------------
     // In case of cyberbucks, we have to specify the amount of cyberbucks
     //
-    if ( ItemType == ITEM_MONEY )
+    if ( MatchItemWithName(ItemType, "Cyberbucks") )
     {
 	multiplicity = 20 * TreasureChestRange + MyRandom( 20 ) + 1;
     }
@@ -842,7 +826,7 @@ DropRandomItem( int level_num , float x , float y , int TreasureChestRange , int
     //
     if ( ( !ForceDrop ) && ( DropDecision < 100 - ITEM_DROP_PERCENTAGE ) )
     {
-	DropItemAt( ITEM_MONEY , level_num , x , y , -1 , -1 , TreasureChestRange ,
+	DropItemAt( GetItemIndexByName("Cyberbucks") , level_num , x , y , -1 , -1 , TreasureChestRange ,
 		    20 * TreasureChestRange + MyRandom( 20 ) + 1);
 	return;
     }
@@ -1242,8 +1226,6 @@ DamageAllEquipment( )
     DamageItem ( & ( Me . shield_item  ) );
     DamageItem ( & ( Me . drive_item   ) );
     DamageItem ( & ( Me . special_item ) );
-    DamageItem ( & ( Me . aux1_item    ) );
-    DamageItem ( & ( Me . aux2_item    ) );
 
 }; // void DamageAllEquipment( void )
 
@@ -1365,16 +1347,6 @@ GetHeldItemPointer( void )
     {
 	// DebugPrintf( 2 , "\nitem* GetHeldItemPointer( void ) : An item in weapon slot was held in hand.  Good.");
 	return ( & ( Me.special_item ) );
-    }
-    else if ( Me.aux1_item.currently_held_in_hand > 0 )
-    {
-	// DebugPrintf( 2 , "\nitem* GetHeldItemPointer( void ) : An item in weapon slot was held in hand.  Good.");
-	return ( & ( Me.aux1_item ) );
-    }
-    else if ( Me.aux2_item.currently_held_in_hand > 0 )
-    {
-	// DebugPrintf( 2 , "\nitem* GetHeldItemPointer( void ) : An item in weapon slot was held in hand.  Good.");
-	return ( & ( Me.aux2_item ) );
     }
     else
     {
@@ -2662,7 +2634,7 @@ handle_player_identification_command( )
 	char iname[500];
 	*iname = '\0';
 
-	if ( GrabbedItem->type == ITEM_MONEY ) sprintf( iname , "%d " , GrabbedItem->multiplicity );
+	if ( MatchItemWithName(GrabbedItem->type, "Cyberbucks")) sprintf( iname , "%d " , GrabbedItem->multiplicity );
     
 	if ( ( GrabbedItem->prefix_code != (-1) ) )
 	strcat( iname , PrefixList[ GrabbedItem->prefix_code ].bonus_name );
@@ -2929,34 +2901,6 @@ HandleInventoryScreen ( void )
 		Me.special_item.currently_held_in_hand = TRUE;
 	    }
 	}
-	else if ( MouseCursorIsOnButton( AUX1_RECT_BUTTON , CurPos.x , CurPos.y ) )
-	{
-	    //DebugPrintf( -1 , "\nGrabbing in aux1 rect!" );
-	    if ( Me.aux1_item.type > 0 )
-	    {
-		//--------------------
-		// At this point we know, that we have just grabbed something from the weapon rect
-		// So we set, that something should be displayed in the 'hand', and it should of
-		// course be the image of the item grabbed from inventory.
-		//
-		Item_Held_In_Hand = Me . aux1_item . type ;
-		Me.aux1_item.currently_held_in_hand = TRUE;
-	    }
-	}
-	else if ( MouseCursorIsOnButton( AUX2_RECT_BUTTON , CurPos.x , CurPos.y ) )
-	{
-	    //DebugPrintf( -1 , "\nGrabbing in aux2 rect!" );
-	    if ( Me.aux2_item.type > 0 )
-	    {
-		//--------------------
-		// At this point we know, that we have just grabbed something from the weapon rect
-		// So we set, that something should be displayed in the 'hand', and it should of
-		// course be the image of the item grabbed from inventory.
-		//
-		Item_Held_In_Hand = Me . aux2_item . type ;
-		Me . aux2_item . currently_held_in_hand = TRUE;
-	    }
-	}
 	else if ( MouseCursorIsInUserRect( CurPos.x , CurPos.y ) )
 	{
 	    //DebugPrintf( 1 , "\nGrabbing in user rect!" );
@@ -2978,7 +2922,7 @@ HandleInventoryScreen ( void )
 		if ( ( fabsf( MapPositionOfMouse . x - Me . pos . x ) < ITEM_TAKE_DIST ) &&
 			( fabsf( MapPositionOfMouse . y - Me . pos . y ) < ITEM_TAKE_DIST ) )
 		   	    {
-			    if ( PlayerLevel -> ItemList [ index_of_item_under_mouse_cursor ] . type == ITEM_MONEY )
+			    if ( MatchItemWithName(PlayerLevel -> ItemList [ index_of_item_under_mouse_cursor ] . type, "Cyberbucks") )
 				{
 				AddFloorItemDirectlyToInventory( & ( PlayerLevel -> ItemList [ index_of_item_under_mouse_cursor ] ) );
 				return;
@@ -3284,54 +3228,6 @@ HandleInventoryScreen ( void )
 	    }
 	}
 	
-	//--------------------
-	// If the cursor is in the aux1 rect, i.e. the small box to the left middle, then
-	// the item should be dropped onto the players current aux1 slot
-	//
-	if ( MouseCursorIsOnButton ( AUX1_RECT_BUTTON , CurPos.x , CurPos.y ) )
-	{
-	    DebugPrintf( 1 , "\nItem dropped onto the aux1 rectangle!" );
-	    DebugPrintf( 1 , "\nGetHeldItemCode: %d." , GetHeldItemCode() );
-	    if ( ( GetHeldItemCode() != (-1) ) &&
-		 ( ItemMap[ GetHeldItemCode() ].item_can_be_installed_in_aux_slot ) )
-	    {
-		if ( HeldItemUsageRequirementsMet(  ) )
-		{
-		    Item_Held_In_Hand = ( -1 );
-		    // DropHeldItemToAux1Slot ( );
-		    DropHeldItemToSlot ( & ( Me.aux1_item ) );
-		}
-	    }
-	    else
-	    {
-		// If the item can't be used as a weapon, we don't do anything
-	    }
-	}
-	
-	//--------------------
-	// If the cursor is in the aux2 rect, i.e. the small box to the left middle, then
-	// the item should be dropped onto the players current aux1 slot
-	//
-	if ( MouseCursorIsOnButton ( AUX2_RECT_BUTTON , CurPos.x , CurPos.y ) )
-	{
-	    DebugPrintf( 1 , "\nItem dropped onto the aux2 rectangle!" );
-	    DebugPrintf( 1 , "\nGetHeldItemCode: %d." , GetHeldItemCode() );
-	    if ( ( GetHeldItemCode() != (-1) ) &&
-		 ( ItemMap[ GetHeldItemCode() ].item_can_be_installed_in_aux_slot ) )
-	    {
-		if ( HeldItemUsageRequirementsMet(  ) )
-		{
-		    Item_Held_In_Hand = ( -1 );
-		    // DropHeldItemToAux2Slot ( );
-		    DropHeldItemToSlot ( & ( Me.aux2_item ) );
-		}
-	    }
-	    else
-	    {
-		// If the item can't be used as a weapon, we don't do anything
-	    }
-	}
-	
     } // if release things...
     
  NoMoreReleasing:
@@ -3403,18 +3299,6 @@ HandleInventoryScreen ( void )
 		    DebugPrintf( 0 , "\nItem repair requested for the special rectangle!" );
 		    if ( Me . special_item . type != (-1) )
 			HomeMadeItemRepair ( & ( Me . special_item ) );
-		}
-		else if ( MouseCursorIsOnButton ( AUX1_RECT_BUTTON , CurPos.x , CurPos.y ) )
-		{
-		    DebugPrintf( 0 , "\nItem repair requested for the Aux1 rectangle!" );
-		    if ( Me . aux1_item . type != (-1) )
-			HomeMadeItemRepair ( & ( Me . aux1_item ) );
-		}
-		else if ( MouseCursorIsOnButton ( AUX2_RECT_BUTTON , CurPos.x , CurPos.y ) )
-		{
-		    DebugPrintf( 0 , "\nItem repair requested for the Aux2 rectangle!" );
-		    if ( Me . aux2_item . type != (-1) )
-			HomeMadeItemRepair ( & ( Me . aux2_item ) );
 		}
 	}
 	else 
@@ -3550,7 +3434,7 @@ AddFloorItemDirectlyToInventory( item* ItemPointer )
     // In the special case of money, we add the amount of money to our
     // money counter and eliminate the item on the floor.
     //
-    if ( ItemPointer->type == ITEM_MONEY )
+    if ( MatchItemWithName(ItemPointer->type, "Cyberbucks") )
     {
 	play_item_sound( ItemPointer -> type );
 	Me . Gold += ItemPointer->multiplicity;
@@ -3708,7 +3592,7 @@ return 0;
 int item_is_currently_equipped( item* Item )
 {
     if ( ( & ( Me .weapon_item ) == Item ) ||  ( & ( Me .drive_item ) == Item ) || ( & ( Me .armour_item ) == Item )  
-	|| ( & ( Me .shield_item ) == Item ) || ( & ( Me .special_item ) == Item ) || ( & ( Me .aux1_item ) == Item  ) || ( & ( Me .aux2_item ) == Item ) )
+	|| ( & ( Me .shield_item ) == Item ) || ( & ( Me .special_item ) == Item )  )
 	return 1;
 
 return 0;

@@ -359,18 +359,6 @@ AssemblePointerListForItemShow ( item** ItemPointerListPointer , int IncludeWorn
 	  CurrentItemPointer ++;
 	  NumberOfItems ++;
 	}
-      if ( Me .aux1_item.type != ( -1 ) )
-	{
-	  *CurrentItemPointer = & ( Me .aux1_item );
-	  CurrentItemPointer ++;
-	  NumberOfItems ++;
-	}
-      if ( Me .aux2_item.type != ( -1 ) )
-	{
-	  *CurrentItemPointer = & ( Me .aux2_item );
-	  CurrentItemPointer ++;
-	  NumberOfItems ++;
-	}
     }
   
   //--------------------

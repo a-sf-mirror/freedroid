@@ -1083,14 +1083,6 @@ Get_Robot_Data ( void* DataPointer )
       ReadValueFromStringWithDefault( RobotPointer , ARMOUR_ITEM_BEGIN_STRING , "%d" , "-1",
 			   &Druidmap[RobotIndex].armour_item.type , EndOfDataPointer );
 
-      // Now we read in the aux1 item of this droid type
-      ReadValueFromStringWithDefault( RobotPointer , AUX1_ITEM_BEGIN_STRING , "%d" , "-1",
-			   &Druidmap[RobotIndex].aux1_item.type , EndOfDataPointer );
-
-      // Now we read in the aux2 item of this droid type
-      ReadValueFromStringWithDefault( RobotPointer , AUX2_ITEM_BEGIN_STRING , "%d" , "-1",
-			   &Druidmap[RobotIndex].aux2_item.type , EndOfDataPointer );
-
       // Now we read in the special item of this droid type
       ReadValueFromStringWithDefault( RobotPointer , SPECIAL_ITEM_BEGIN_STRING , "%d" , "-1", 
 			   &Druidmap[RobotIndex].special_item.type , EndOfDataPointer );
@@ -1692,15 +1684,11 @@ PrepareStartOfNewCharacter ( void )
     Me . shield_item  . type = -1; 
     Me . special_item . type = -1; 
     Me . drive_item   . type = -1; 
-    Me . aux1_item    . type = -1; 
-    Me . aux2_item    . type = -1; 
     Me . weapon_item  . currently_held_in_hand = FALSE;
     Me . armour_item  . currently_held_in_hand = FALSE;
     Me . shield_item  . currently_held_in_hand = FALSE;
     Me . special_item . currently_held_in_hand = FALSE;
     Me . drive_item   . currently_held_in_hand = FALSE;
-    Me . aux1_item    . currently_held_in_hand = FALSE;
-    Me . aux2_item    . currently_held_in_hand = FALSE;
     Item_Held_In_Hand = ( -1 );
     
     
@@ -2097,19 +2085,9 @@ ThouArtDefeated (void)
 	DropItemAt ( Me . special_item . type , Me . pos . z , 
 		     Me . pos . x - 0.5 , Me . pos . y       , -1 , -1 , 0 , 1 );
     }
-    if ( Me . aux1_item . type > 0 )
-    {
-	DropItemAt ( Me . aux1_item    . type , Me . pos . z , 
-		     Me . pos . x + 0.5 , Me . pos . y       , -1 , -1 , 0 , 1 );
-    }
-    if ( Me . aux2_item . type > 0 )
-    {
-	DropItemAt ( Me . aux2_item    . type , Me . pos . z , 
-		     Me . pos . x       , Me . pos . y - 0.5 , -1 , -1 , 0 , 1 );
-    }
     if ( Me . Gold > 0 )
     {
-	DropItemAt ( ITEM_MONEY                     , Me . pos . z , 
+	DropItemAt ( GetItemIndexByName("Cyberbucks")                     , Me . pos . z , 
 		     Me . pos . x       , Me . pos . y       , -1 , -1 , 0 , 1 );
     }
 

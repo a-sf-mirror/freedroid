@@ -4728,26 +4728,6 @@ ShowInventoryScreen( void )
     }
     
     //--------------------
-    // Now we display the item in the influencers aux1 slot
-    //
-    TargetRect.x = InventoryRect.x + AUX1_RECT_X ;
-    TargetRect.y = InventoryRect.y + AUX1_RECT_Y ;
-    if ( ( ! Me.aux1_item.currently_held_in_hand ) && ( Me.aux1_item.type != (-1) ) )
-    {
-	our_SDL_blit_surface_wrapper( ItemMap [ Me . aux1_item . type ] . inv_image . Surface , NULL , Screen , &TargetRect );
-    }
-    
-    //--------------------
-    // Now we display the item in the influencers aux2 slot
-    //
-    TargetRect.x = InventoryRect.x + AUX2_RECT_X ;
-    TargetRect.y = InventoryRect.y + AUX2_RECT_Y ;
-    if ( ( ! Me.aux2_item.currently_held_in_hand ) && ( Me.aux2_item.type != (-1) ) )
-    {
-	our_SDL_blit_surface_wrapper( ItemMap [ Me . aux2_item . type ] . inv_image . Surface , NULL , Screen , &TargetRect );
-    }
-    
-    //--------------------
     // Now we display all the items the influencer is carrying with him
     //
     for ( SlotNum = 0 ; SlotNum < MAX_ITEMS_IN_INVENTORY -1 ; SlotNum ++ )
