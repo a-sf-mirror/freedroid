@@ -818,19 +818,19 @@ DropRandomItem( int level_num , float x , float y , int TreasureChestRange , int
 	switch ( MyRandom ( 4 ) )
 	{
 	    case 0:
-		DropChestItemAt( ITEM_DROID_PART_1 , x , y , -1 , -1 , TreasureChestRange );
+		DropChestItemAt( GetItemIndexByName("Plasma Transistor") , x , y , -1 , -1 , TreasureChestRange );
 		break;
 	    case 1:
-		DropChestItemAt( ITEM_DROID_PART_2 , x , y , -1 , -1 , TreasureChestRange );
+		DropChestItemAt( GetItemIndexByName("Superconducting Relay Unit") , x , y , -1 , -1 , TreasureChestRange );
 		break;
 	    case 2:
-		DropChestItemAt( ITEM_DROID_PART_3 , x , y , -1 , -1 , TreasureChestRange );
+		DropChestItemAt( GetItemIndexByName("Antimatter-Matter Converter") , x , y , -1 , -1 , TreasureChestRange );
 		break;
 	    case 3:
-		DropChestItemAt( ITEM_DROID_PART_4 , x , y , -1 , -1 , TreasureChestRange );
+		DropChestItemAt( GetItemIndexByName("Entropy Inverter") , x , y , -1 , -1 , TreasureChestRange );
 		break;
 	    case 4:
-		DropChestItemAt( ITEM_DROID_PART_5 , x , y , -1 , -1 , TreasureChestRange );
+		DropChestItemAt( GetItemIndexByName("Tachyon Condensator") , x , y , -1 , -1 , TreasureChestRange );
 		break;
 	}
 	return;
@@ -1578,6 +1578,41 @@ requirements_for_item_application_met ( item* CurItem )
 }; // int requirements_for_item_application_met ( item* CurItem ) 
 
 /* ----------------------------------------------------------------------
+ * This function checks whether a given item has the name specified. This is
+ * used to match an item which its type in a flexible way (match by name instead
+ * of matching by index value)
+ */
+int GetItemIndexByName ( const char * name )
+{
+    int cidx = 0;
+    
+    for ( ; cidx < Number_Of_Item_Types; cidx ++ )
+	{
+	if ( ! strcmp ( ItemMap [ cidx ] . item_name, name ) )
+	    return cidx;
+	}
+
+    printf("Item name: %s\n", name);
+    GiveStandardErrorMessage ( __FUNCTION__  , "Unable to find a given item name.",
+	                                                      PLEASE_INFORM, IS_FATAL );
+    return -1;
+}
+
+/* ----------------------------------------------------------------------
+ * This function checks whether a given item has the name specified. This is
+ * used to match an item which its type in a flexible way (match by name instead
+ * of matching by index value)
+ */
+int MatchItemWithName ( int type, const char * name )
+{
+    if ( type < 0 || type >= Number_Of_Item_Types) return 0;
+
+    if ( ! strcmp ( ItemMap [ type ] . item_name, name ) )
+	return 1;
+    else return 0;
+}
+
+/* ----------------------------------------------------------------------
  * This function applies a given item (to the influencer) and maybe 
  * eliminates the item after that, if it's an item that gets used up.
  * ---------------------------------------------------------------------- */
@@ -1588,7 +1623,7 @@ ApplyItem( item* CurItem )
     DebugPrintf( 1 , "\n%s(): function call confirmed." , __FUNCTION__ );
 
     // If the inventory slot is not at all filled, we need not do anything more...
-    if ( CurItem->type == (-1) ) return;
+    if ( CurItem->type < 0 ) return;
     
     if ( ItemMap[ CurItem->type ] . item_can_be_applied_in_combat == FALSE ) 
     {
@@ -1636,7 +1671,7 @@ ApplyItem( item* CurItem )
     // and therefore all we need to do from here on is execute the item effect
     // upon the influencer or his environment.
     //
-    if ( CurItem->type == ITEM_BLUE_ENERGY_DRINK )
+    if ( MatchItemWithName ( CurItem->type, "Barf's Energy Drink" ) )
     {
 	Me . health += 15;
 	Me . energy += 15;
@@ -1645,140 +1680,121 @@ ApplyItem( item* CurItem )
 	Me . busy_time = 1;
 	Me . busy_type = DRINKING_POTION;
     }
-    if ( CurItem->type == ITEM_SMALL_HEALTH_POTION )
+    if ( MatchItemWithName ( CurItem->type, "Diet supplement" ) )
     {
 	Me . health += 25;
 	Me . energy += 25;
 	Me . busy_type = DRINKING_POTION;
 	Me . busy_time = 1;
     }
-    else if ( CurItem->type == ITEM_MEDIUM_HEALTH_POTION )
+    else if ( MatchItemWithName ( CurItem->type, "Antibiotic" ))
     {
 	Me . health += 50;
 	Me . energy += 50;
 	Me . busy_time = 1;
 	Me . busy_type = DRINKING_POTION;
     }
-    else if ( CurItem->type == ITEM_FULL_HEALTH_POTION )
+    else if ( MatchItemWithName ( CurItem->type, "Doc-in-a-can" ))
     {
 	Me.health += Me.maxenergy;
 	Me.energy += Me.maxenergy;
 	Me . busy_time = 1;
 	Me . busy_type = DRINKING_POTION;
     }
-    else if ( CurItem->type == ITEM_SMALL_MANA_POTION )
+    else if ( MatchItemWithName ( CurItem->type, "Bottled ice" ))
     {
 	Me.temperature -= 25;
 	Me . busy_time = 1;
 	Me . busy_type = DRINKING_POTION;
     }
-    else if ( CurItem->type == ITEM_MEDIUM_MANA_POTION )
+    else if ( MatchItemWithName ( CurItem->type, "Industrial coolant"))
     {
 	Me.temperature -= 50;
 	Me . busy_time = 1;
 	Me . busy_type = DRINKING_POTION;
     }
-    else if ( CurItem->type == ITEM_FULL_MANA_POTION )
+    else if ( MatchItemWithName ( CurItem->type, "Liquid nitrogen"))
     {
 	Me.temperature = 0;
 	Me . busy_time = 1;
 	Me . busy_type = DRINKING_POTION;
     }
-    else if ( CurItem->type == ITEM_RUNNING_POWER_POTION )
+    else if ( MatchItemWithName ( CurItem->type, "Running Power Capsule"))
     {
 	Me . running_power = Me . max_running_power;
 	Me . running_must_rest = FALSE ;
 	Me . busy_time = 1;
 	Me . busy_type = DRINKING_POTION;
     }
-    else if ( CurItem->type == ITEM_TEMP_STRENGTH_POTION )
+    else if (  MatchItemWithName ( CurItem->type, "Strength Capsule" ) )
     {
 	Me . current_power_bonus = 30 ;
 	Me . power_bonus_end_date = Me . current_game_date + 2.0 * 60 ; 
 	Me . busy_time = 1;
 	Me . busy_type = DRINKING_POTION;
     }
-    else if ( CurItem->type == ITEM_TEMP_DEXTERITY_POTION )
+    else if (  MatchItemWithName ( CurItem->type, "Dexterity Capsule") )
     {
 	Me . current_dexterity_bonus = 30 ;
 	Me . dexterity_bonus_end_date = Me . current_game_date + 2.0 * 60 ; 
 	Me . busy_time = 1;
 	Me . busy_type = DRINKING_POTION;
     }
-    else if ( CurItem->type == ITEM_MAP_MAKER_SIMPLE )
+    else if ( MatchItemWithName ( CurItem->type, "Map Maker") )
     {
 	Me . map_maker_is_present = TRUE ;
 	GameConfig . Automap_Visible = TRUE ;
 	Play_Spell_ForceToEnergy_Sound( );
     }
-    else if ( CurItem->type == ITEM_VMX_GAS_GRENADE )
+    else if ( MatchItemWithName ( CurItem->type, "VMX Gas Grenade" ) )
     {
 	DoSkill(get_program_index_with_name("Gas grenade"), 0);
 	Me . busy_time = 1;
 	Me . busy_type = THROWING_GRENADE;
     }
-    else if ( CurItem->type == ITEM_EMP_SHOCK_GRENADE )
+    else if ( MatchItemWithName ( CurItem->type, "EMP Shock Grenade" ) )
     {
 	DoSkill(get_program_index_with_name("EMP grenade"), 0);
 	Me . busy_time = 1;
 	Me . busy_type = THROWING_GRENADE;
     }
-    else if ( CurItem->type == ITEM_PLASMA_GRENADE )
+    else if ( MatchItemWithName ( CurItem->type, "Plasma Grenade" ) )
     {
 	DoSkill(get_program_index_with_name("Plasma grenade"), 0);
 	Me . busy_time = 1;
 	Me . busy_type = THROWING_GRENADE;
     }
-    else if ( CurItem->type == ITEM_STRENGTH_PILL )
+    else if ( MatchItemWithName ( CurItem->type, "Strength Pill" ) )
     {
 	Me . base_strength ++ ;
     }
-    else if ( CurItem->type == ITEM_DEXTERITY_PILL )
+    else if ( MatchItemWithName ( CurItem->type, "Dexterity Pill" ) )
     {
 	Me . base_dexterity ++ ;
     }
-    else if ( CurItem->type == ITEM_MAGIC_PILL )
+    else if ( MatchItemWithName ( CurItem->type, "Code Pill" ) )
     {
 	Me . base_magic ++ ;
     }
-    else if ( CurItem->type == ITEM_SCRIPT_OF_IDENTIFY )
+    else if ( MatchItemWithName ( CurItem->type, "Identification Script" ) )
     {
 	DoSkill(get_program_index_with_name("Analyze item"), 0);
     }	
-    else if ( CurItem->type == ITEM_SCRIPT_OF_TELEPORT_HOME )
+    else if ( MatchItemWithName ( CurItem->type, "Evacuation script" ) )
     {
 	DoSkill(get_program_index_with_name("Sanctuary"), 0);
     }
-    else if ( (CurItem->type == ITEM_SPELLBOOK_OF_CHECK_SYSTEM_INTEGRITY) || 
-	(CurItem->type == ITEM_SPELLBOOK_OF_CALCULATE_PI) || 
-	(CurItem->type == ITEM_SPELLBOOK_OF_BLUE_SCREEN) || 
-	(CurItem->type == ITEM_SPELLBOOK_OF_TELEPORT_HOME) || 
-	(CurItem->type == ITEM_SPELLBOOK_OF_MALFORMED_PACKET) || 
-	(CurItem->type == ITEM_SPELLBOOK_OF_ANALYZE_ITEM) || 
-	(CurItem->type == ITEM_SPELLBOOK_OF_NETHACK) || 
-	(CurItem->type == ITEM_SPELLBOOK_OF_DISPELL_SMOKE) || 
-	(CurItem->type == ITEM_SPELLBOOK_OF_KILLER_POKE) || 
-	(CurItem->type == ITEM_SPELLBOOK_OF_BROADCAST_KILLER_POKE) || 
-	(CurItem->type == ITEM_SPELLBOOK_OF_RICER_CFLAGS) || 
-	(CurItem->type == ITEM_SPELLBOOK_OF_PLASMA_DISCHARGE) || 
-	(CurItem->type == ITEM_SPELLBOOK_OF_INVISIBILITY) || 
-	(CurItem->type == ITEM_SPELLBOOK_OF_SANCTUARY) || 
-	(CurItem->type == ITEM_SPELLBOOK_OF_VIRUS) || 
-	(CurItem->type == ITEM_SPELLBOOK_OF_BROADCAST_VIRUS) || 
-	(CurItem->type == ITEM_SPELLBOOK_OF_REVERSE_ENGINEER) || 
-	(CurItem->type == ITEM_SPELLBOOK_OF_EMERGENCY_SHUTDOWN) || 
-	(CurItem->type == ITEM_SPELLBOOK_OF_LIGHT) || 
-	(CurItem->type == ITEM_SPELLBOOK_OF_SATELLITE_IMAGE) )
-
+    else if ( strstr( ItemMap [ CurItem->type ] . item_name , "Source Book of" ) )
     {
-	Me . base_skill_level [ associate_skill_with_item ( CurItem -> type) ] ++ ;
+    	int sidx = associate_skill_with_item ( CurItem -> type);
+	if ( sidx >= 0 )
+		Me . base_skill_level [ associate_skill_with_item ( CurItem -> type) ] ++ ;
 	Play_Spell_ForceToEnergy_Sound( );
     }
     
     if ( Me.energy > Me.maxenergy ) Me.energy = Me.maxenergy ;
     if ( Me.temperature < 0 ) Me.temperature = 0 ;
     
-    // PlayItemSound( ItemMap[ CurItem->type ].sound_number );
     play_item_sound( CurItem -> type );
     
     //--------------------
@@ -1791,7 +1807,7 @@ ApplyItem( item* CurItem )
     else DeleteItem ( CurItem );
 
     while ( MouseRightPressed() ) SDL_Delay(1);    
-}; // void ApplyItemFromInventory( int ItemNum )
+}; // void ApplyItem( int ItemNum )
 
 /* ----------------------------------------------------------------------
  * This function checks if a given coordinate within the influencers

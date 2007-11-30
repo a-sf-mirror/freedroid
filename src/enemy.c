@@ -1183,23 +1183,23 @@ DropEnemyTreasure ( Enemy ThisRobot )
 	case 6:
 	case 5:
 	if ( Druidmap [ ThisRobot->type ] . amount_of_tachyon_condensators && ( ! MyRandom ( 10 ) == 1 )  )
-	    DropItemAt( ITEM_DROID_PART_5 , ThisRobot -> pos . z , 
+	    DropItemAt( GetItemIndexByName("Tachyon Condensator"), ThisRobot -> pos . z , 
 			ThisRobot->virt_pos.x , ThisRobot->virt_pos.y , -1 , -1 , 2 , 1 );
 	case 4:
 	if ( Druidmap [ ThisRobot->type ] . amount_of_entropy_inverters && ( ! MyRandom ( 10 ) == 1 )  )
-	    DropItemAt( ITEM_DROID_PART_4 , ThisRobot -> pos . z , 
+	    DropItemAt( GetItemIndexByName("Entropy Inverter") , ThisRobot -> pos . z , 
 			ThisRobot->virt_pos.x , ThisRobot->virt_pos.y , -1 , -1 , 2 , 1 );
 	case 3:
 	if ( Druidmap [ ThisRobot->type ] . amount_of_antimatter_converters && ( ! MyRandom ( 10 ) == 1 )  )
-	    DropItemAt( ITEM_DROID_PART_3 , ThisRobot -> pos . z , 
+	    DropItemAt( GetItemIndexByName("Antimatter-Matter Converter") , ThisRobot -> pos . z , 
 			ThisRobot->virt_pos.x , ThisRobot->virt_pos.y , -1 , -1 , 2 , 1 );
 	case 2:
 	if ( Druidmap [ ThisRobot->type ] . amount_of_superconductors && ( ! MyRandom ( 10 ) == 1 )  )
-	    DropItemAt( ITEM_DROID_PART_2 , ThisRobot -> pos . z , 
+	    DropItemAt( GetItemIndexByName("Superconducting Relay Unit") , ThisRobot -> pos . z , 
 			ThisRobot->virt_pos.x , ThisRobot->virt_pos.y , -1 , -1 , 2 , 1 );
 	case 1:    
 	if ( Druidmap [ ThisRobot->type ] . amount_of_plasma_transistors && ( MyRandom ( 10 ) == 1 ) )
-	    DropItemAt( ITEM_DROID_PART_1 , ThisRobot -> pos . z , 
+	    DropItemAt( GetItemIndexByName("Plasma Transistor") , ThisRobot -> pos . z , 
 			ThisRobot->virt_pos.x , ThisRobot->virt_pos.y , -1 , -1 , 2 , 1 );
 	case 0: break;
 	}

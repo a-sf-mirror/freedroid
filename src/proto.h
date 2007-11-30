@@ -430,6 +430,8 @@ EXTERN void DamageAllEquipment( ) ;
 EXTERN void DropChestItemAt( int ItemType , float x , float y , int prefix , int suffix , int TreasureChestRange );
 EXTERN void DropItemAt( int ItemType , int level_num , float x , float y , int prefix , int suffix , int TreasureChestRange , int multiplicity );
 EXTERN void Quick_ApplyItem( int ItemKey );
+EXTERN int MatchItemWithName ( int type, const char * name );
+EXTERN int GetItemIndexByName ( const char * name );
 EXTERN void ApplyItem( item* CurItem );
 EXTERN int Inv_Pos_Is_Free( int x , int y );
 EXTERN int GetInventoryItemAt ( int x , int y );
@@ -464,7 +466,6 @@ EXTERN int Get_Prefixes_Data ( char * DataPointer );
 #else
 #define EXTERN extern
 #endif
-EXTERN void InitiateNewCharacter ( int CharacterClass );
 EXTERN void DisplayButtons( void );
 EXTERN void UpdateAllCharacterStats ( );
 EXTERN void ShowCharacterScreen ( );
