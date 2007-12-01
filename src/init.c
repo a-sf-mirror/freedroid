@@ -899,8 +899,6 @@ Get_Robot_Data ( void* DataPointer )
 #define WEAPON_ITEM_BEGIN_STRING "Weapon item="
 #define SHIELD_ITEM_BEGIN_STRING "Shield item="
 #define ARMOUR_ITEM_BEGIN_STRING "Armour item="
-#define AUX1_ITEM_BEGIN_STRING "Aux1 item="
-#define AUX2_ITEM_BEGIN_STRING "Aux2 item="
 #define SPECIAL_ITEM_BEGIN_STRING "Special item="
 #define GREETING_SOUND_STRING "Greeting Sound number="
 #define ENEMY_GOT_HIT_SOUND_STRING "Got Hit Sound number="

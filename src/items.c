@@ -44,8 +44,6 @@ enum
     SHIELD_SLOT , 
     SPECIAL_SLOT , 
     ARMOUR_SLOT , 
-    AUX1_SLOT , 
-    AUX2_SLOT , 
     DRIVE_SLOT ,
     FIRST_INV_SLOT 
 };
@@ -107,10 +105,8 @@ silently_unhold_all_items ( void )
  * 0: WEAPON_SLOT
  * 1: SHIELD_SLOT
  * 2: SPECIAL_SLOT
- * 3: AUX1_SLOT
- * 4: AUX2_SLOT
- * 5: DRIVE_SLOT
- * 6-5+MAX_ITEMS_IN_INVENTORY: inventory of player
+ * 3: DRIVE_SLOT
+ * 4-5+MAX_ITEMS_IN_INVENTORY: inventory of player
  * ?? perhaps afterwards: items on the floor of the current level?  maybe not.
  *
  * ---------------------------------------------------------------------- */
@@ -709,7 +705,6 @@ item_type_cannot_be_equipped ( int drop_item_type )
     if ( ItemMap [ drop_item_type ] . item_can_be_installed_in_armour_slot ) return ( FALSE ) ;
     if ( ItemMap [ drop_item_type ] . item_can_be_installed_in_shield_slot ) return ( FALSE ) ;
     if ( ItemMap [ drop_item_type ] . item_can_be_installed_in_special_slot ) return ( FALSE ) ;
-    if ( ItemMap [ drop_item_type ] . item_can_be_installed_in_aux_slot ) return ( FALSE ) ;
     
     return ( TRUE ) ;
 }; // int item_type_cannot_be_equipped ( int drop_item_type )

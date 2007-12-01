@@ -987,7 +987,6 @@ Get_Item_Data ( char* DataPointer )
 #define ITEM_CAN_BE_INSTALLED_IN_ARMOUR_SLOT "Item can be installed in armour slot=\""
 #define ITEM_CAN_BE_INSTALLED_IN_SHIELD_SLOT "Item can be installed in shield slot=\""
 #define ITEM_CAN_BE_INSTALLED_IN_SPECIAL_SLOT "Item can be installed in special slot=\""
-#define ITEM_CAN_BE_INSTALLED_IN_AUX_SLOT "Item can be installed in aux slot=\""
     
 #define ITEM_CAN_BE_INSTALLED_IN_SLOT_WITH_NAME "Item can be installed in slot with name=\""
 #define ITEM_ROTATION_SERIES_NAME_PREFIX "Item uses rotation series with prefix=\""
@@ -1085,7 +1084,6 @@ Get_Item_Data ( char* DataPointer )
 	ItemMap[ItemIndex].item_can_be_installed_in_drive_slot = FALSE;
 	ItemMap[ItemIndex].item_can_be_installed_in_armour_slot = FALSE;
 	ItemMap[ItemIndex].item_can_be_installed_in_special_slot = FALSE;
-	ItemMap[ItemIndex].item_can_be_installed_in_aux_slot = FALSE;
 	if ( strcmp( YesNoString , "weapon" ) == 0 )
 	{
 	    ItemMap[ItemIndex].item_can_be_installed_in_weapon_slot = TRUE;
@@ -1106,10 +1104,6 @@ Get_Item_Data ( char* DataPointer )
 	{
 	    ItemMap[ItemIndex].item_can_be_installed_in_special_slot = TRUE;
 	}
-	else if ( strcmp( YesNoString , "aux" ) == 0 )
-	{
-	    ItemMap[ItemIndex].item_can_be_installed_in_aux_slot = TRUE;
-	}
 	else if ( strcmp( YesNoString , "none" ) == 0 )
 	{
 	    // good.  Everything is ok, as long as at least 'none' was found
@@ -1117,7 +1111,7 @@ Get_Item_Data ( char* DataPointer )
 	else
 	{
 	    fprintf(stderr, "\n\nItemIndex: %d.\n" ,ItemIndex ); 
-	    GiveStandardErrorMessage ( __FUNCTION__  , "The item specification of an item in freedroid.ruleset should contain an \nanswer for the slot installation possiblieties, that was neither \n'weapon' nor 'armour' nor 'shield' nor 'aux' nor 'special' nor 'drive' nor 'none'.",
+	    GiveStandardErrorMessage ( __FUNCTION__  , "The item specification of an item in freedroid.ruleset should contain an \nanswer for the slot installation possiblieties, that was neither \n'weapon' nor 'armour' nor 'shield' nor 'special' nor 'drive' nor 'none'.",
 				       PLEASE_INFORM, IS_FATAL );
 	}
 	free ( YesNoString ) ;

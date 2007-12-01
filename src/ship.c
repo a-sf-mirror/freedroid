@@ -612,13 +612,11 @@ ShowItemInfo ( item* ShowItem , int Displacement , char ShowArrows , int backgro
     else if ( ItemMap [ ShowItem->type ] . item_can_be_installed_in_drive_slot )
 	ClassString = _("Drive"); 
     else if ( ItemMap [ ShowItem->type ] . item_can_be_installed_in_armour_slot )
-	ClassString = _("Armour"); 
+	ClassString = _("Armor"); 
     else if ( ItemMap [ ShowItem->type ] . item_can_be_installed_in_shield_slot )
 	ClassString = _("Shield"); 
     else if ( ItemMap [ ShowItem->type ] . item_can_be_installed_in_special_slot )
 	ClassString = _("Helm"); 
-    else if ( ItemMap [ ShowItem->type ] . item_can_be_installed_in_aux_slot )
-	ClassString = _("Wristband/Collar"); 
     else ClassString = _("Miscellaneous"); 
     
     write_full_item_name_into_string ( ShowItem , TextChunk ) ;

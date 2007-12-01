@@ -424,7 +424,6 @@ typedef struct
     int item_can_be_installed_in_armour_slot;
     int item_can_be_installed_in_shield_slot;
     int item_can_be_installed_in_special_slot;
-    int item_can_be_installed_in_aux_slot;
     
     int item_group_together_in_inventory;
     
