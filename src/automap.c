@@ -127,7 +127,7 @@ set_up_texture_for_automap ( void )
 
     if ( next_texture_index_to_use >= MAX_AMOUNT_OF_TEXTURES_WE_WILL_USE )
     {
-	GiveStandardErrorMessage ( __FUNCTION__  , 
+	ErrorMessage ( __FUNCTION__  , 
 				   "Ran out of initialized texture positions to use for new textures.",
 				   PLEASE_INFORM, IS_FATAL );
     }

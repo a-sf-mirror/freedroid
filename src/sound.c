@@ -133,7 +133,7 @@ InitAudio( void )
 		fprintf( stderr, "\n\nSDL just reported a problem.\n\
 				 The error string from SDL_GetError\nwas: %s \n\
 				 The error string from the SDL mixer subsystem was: %s \n" , SDL_GetError() , Mix_GetError() );
-		GiveStandardErrorMessage ( __FUNCTION__ , "\
+		ErrorMessage ( __FUNCTION__ , "\
 								   The SDL AUDIO SUBSYSTEM COULD NOT BE INITIALIZED.\n\
 								   \n\
 								   Please check that your sound card is properly configured,\n\
@@ -162,7 +162,7 @@ InitAudio( void )
 		fprintf( stderr, "\n\nSDL just reported a problem.\n\
 				 The error string from SDL_GetError\nwas: %s \n\
 				 The error string from the SDL mixer subsystem was: %s \n" , SDL_GetError() , Mix_GetError() );
-		GiveStandardErrorMessage ( __FUNCTION__ , "\
+		ErrorMessage ( __FUNCTION__ , "\
 								   The SDL AUDIO CHANNEL COULD NOT BE OPEND.\n\
 								   \n\
 								   Please check that your sound card is properly configured,\n\
@@ -555,7 +555,7 @@ void PlayOnceNeededSoundSample( char* SoundSampleFileName , int With_Waiting , i
 					}
 				else
 					{
-					GiveStandardErrorMessage ( __FUNCTION__ , "\
+					ErrorMessage ( __FUNCTION__ , "\
 Corrupt sound file encountered!  The file is there, \n\
 but the SDL MIXER was unable to LOAD it.",
 											   NO_NEED_TO_INFORM , IS_WARNING_ONLY );
@@ -580,7 +580,7 @@ but the SDL MIXER was unable to LOAD it.",
 		if ( strcmp ( SoundSampleFileName , "Sorry_No_Voice_Sample_Yet_0.wav" ) )
 			{
 			fprintf( stderr, "\n\nSoundSampleFileName: '%s'" , SoundSampleFileName );
-                       GiveStandardErrorMessage ( __FUNCTION__ , "\
+                       ErrorMessage ( __FUNCTION__ , "\
 There seems to be a sound file missing.",
 									   NO_NEED_TO_INFORM, GameConfig.terminate_on_missing_speech_sample );
 			}
@@ -644,7 +644,7 @@ There seems to be a sound file missing.",
 	if ( Newest_Sound_Channel <= -1 )
 		{
 		fprintf( stderr, "\n\nSoundSampleFileName: '%s' Mix_GetError(): %s \n" , SoundSampleFileName , Mix_GetError() );
-		GiveStandardErrorMessage ( __FUNCTION__ , "\
+		ErrorMessage ( __FUNCTION__ , "\
 								   The SDL MIXER WAS UNABLE TO PLAY A CERTAIN FILE LOADED INTO MEMORY FOR PLAYING ONCE.\n",
 								   PLEASE_INFORM, IS_WARNING_ONLY );
 
@@ -793,7 +793,7 @@ play_sample_using_WAV_cache_v( char* SoundSampleFileName , int With_Waiting , in
 		if ( dynamic_WAV_cache [ next_free_position_in_cache ] == NULL )
 			{
 			fprintf( stderr, "\n\nfpath: '%s'\n" , fpath );
-			GiveStandardErrorMessage ( __FUNCTION__ , "\
+			ErrorMessage ( __FUNCTION__ , "\
 			                           The SDL MIXER WAS UNABLE TO LOAD A CERTAIN SOUND FILE INTO MEMORY.\n\
 			                           This should not happen for samples that are supposed to be cached...",
 			                           NO_NEED_TO_INFORM , IS_WARNING_ONLY );
@@ -832,7 +832,7 @@ play_sample_using_WAV_cache_v( char* SoundSampleFileName , int With_Waiting , in
 		if ( next_free_position_in_cache >= MAX_SOUNDS_IN_DYNAMIC_WAV_CACHE )
 			{
 			fprintf( stderr, "\n\nnext_free_position_in_cache: %d,\n" , next_free_position_in_cache );
-			GiveStandardErrorMessage ( __FUNCTION__ , "\
+			ErrorMessage ( __FUNCTION__ , "\
 			                           ALERT!  Ran out of space in the dynamic wav sample cache!  Cache size too small?",
 			                           PLEASE_INFORM, IS_FATAL );
 			}
@@ -849,7 +849,7 @@ play_sample_using_WAV_cache_v( char* SoundSampleFileName , int With_Waiting , in
 	if ( Newest_Sound_Channel <= -1 )
 		{
 		fprintf( stderr, "\n\nSoundSampleFileName: '%s' Mix_GetError(): %s \n" , SoundSampleFileName , Mix_GetError() );
-		GiveStandardErrorMessage ( __FUNCTION__ , "\
+		ErrorMessage ( __FUNCTION__ , "\
 		                           The SDL mixer was unable to play a certain sound sample file, that was supposed to be cached for later.\n",
 		                           NO_NEED_TO_INFORM, IS_WARNING_ONLY );
 		} // if ( ... = -1

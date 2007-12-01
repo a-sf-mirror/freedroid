@@ -550,7 +550,7 @@ toggle_game_config_screen_visibility ( int screen_visible )
 	    GameConfig . Inventory_Visible = FALSE;
 	    break;
 	default:
-	    GiveStandardErrorMessage ( __FUNCTION__  , "\
+	    ErrorMessage ( __FUNCTION__  , "\
 unhandled skill screen code received.  something is going VERY wrong!",
 				       PLEASE_INFORM, IS_FATAL );
 	    break;

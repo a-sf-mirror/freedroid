@@ -142,7 +142,7 @@ LoadAndShowStats ( char* CoreFilename )
     if ( stat ( filename , & ( FileInfoBuffer) ) )
     {
 	fprintf( stderr, "\n\nfilename: %s. \n" , filename );
-	GiveStandardErrorMessage ( __FUNCTION__  , "\
+	ErrorMessage ( __FUNCTION__  , "\
 Freedroid was unable to determine the time of the last modification on\n\
 your saved game file.\n\
 This is either a bug in Freedroid or an indication, that the directory\n\
@@ -174,7 +174,7 @@ or file permissions of ~/.freedroid_rpg are somehow not right.",
     if ( stat ( filename , & ( FileInfoBuffer) ) )
     {
 	fprintf( stderr, "\n\nfilename: %s. \n" , filename );
-	GiveStandardErrorMessage ( __FUNCTION__  , "\
+	ErrorMessage ( __FUNCTION__  , "\
 Freedroid was unable to determine the time of the last modification on\n\
 your saved game file.\n\
 This is either a bug in Freedroid or an indication, that the directory\n\
@@ -326,7 +326,7 @@ SaveGame( void )
 
     if ( SaveShip( filename ) != OK )
     {
-	GiveStandardErrorMessage ( __FUNCTION__  , "\
+	ErrorMessage ( __FUNCTION__  , "\
 The SAVING OF THE SHIP DATA FOR THE SAVED GAME FAILED!\n\
 This is either a bug in Freedroid or an indication, that the directory\n\
 or file permissions of ~/.freedroid_rpg are somehow not right.",

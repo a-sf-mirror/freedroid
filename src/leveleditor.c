@@ -1004,7 +1004,7 @@ create_new_obstacle_on_level ( Level EditLevel , int our_obstacle_type , float p
 		our_obstacle_type = wall_indices [ GameConfig . level_editor_edit_mode ] [ Highlight ] ;
 		break;
 	    default:
-		GiveStandardErrorMessage ( __FUNCTION__  , "\
+		ErrorMessage ( __FUNCTION__  , "\
 Illegal level editor mode encountered!" , 
 					   PLEASE_INFORM , IS_FATAL );
 		break;
@@ -1024,7 +1024,7 @@ Illegal level editor mode encountered!" ,
     }
   if ( free_index < 0 )
     {
-      GiveStandardErrorMessage ( __FUNCTION__  , "\
+      ErrorMessage ( __FUNCTION__  , "\
 Ran out of obstacles!   Too bad!  Raise max obstacles constant!" , 
 				 PLEASE_INFORM , IS_FATAL );
     }
@@ -1583,7 +1583,7 @@ update_number_of_walls ( void )
 			wall_indices [ group_index ] [ inside_index ] = (-1);
 		    break;
 		default:
-		    GiveStandardErrorMessage ( __FUNCTION__  , "\
+		    ErrorMessage ( __FUNCTION__  , "\
 Unhandled level editor edit mode received.",
 					       PLEASE_INFORM , IS_FATAL );
 		    break;
@@ -1783,7 +1783,7 @@ ShowLevelEditorTopMenu( int Highlight )
                 img = &(obstacle_map [wall_indices [ GameConfig . level_editor_edit_mode ] [ selected_index ] ] . image);
                 break;
 	    default:
-		GiveStandardErrorMessage ( __FUNCTION__  , 
+		ErrorMessage ( __FUNCTION__  , 
 					   "Unhandled level editor edit mode received.",
 					   PLEASE_INFORM , IS_FATAL );
 		break;
@@ -3595,7 +3595,7 @@ Highlight_Current_Block (int mask)
       get_iso_image_from_file_and_path (fpath, &(level_editor_cursor), TRUE);
       if (level_editor_cursor.surface == NULL)
 	{
-          GiveStandardErrorMessage (__FUNCTION__, "\
+          ErrorMessage (__FUNCTION__, "\
 Unable to load the level editor floor cursor.", PLEASE_INFORM, IS_FATAL);
 	}
       if (use_open_gl)
@@ -3652,7 +3652,7 @@ draw_connection_between_tiles ( float x1 , float y1 , float x2 , float y2 , int 
 	get_iso_image_from_file_and_path ( fpath , & ( level_editor_dot_cursor ) , TRUE ) ;
 	if ( level_editor_dot_cursor . surface == NULL )
 	{
-	    GiveStandardErrorMessage ( __FUNCTION__  , "\
+	    ErrorMessage ( __FUNCTION__  , "\
 Unable to load the level editor waypoint dot cursor.",
 				       PLEASE_INFORM, IS_FATAL );
 	}
@@ -3736,7 +3736,7 @@ ShowWaypoints( int PrintConnectionList , int mask )
 	    
 	    if ( level_editor_waypoint_cursor [ i ] . surface == NULL )
 	    {
-		GiveStandardErrorMessage ( __FUNCTION__  , "\
+		ErrorMessage ( __FUNCTION__  , "\
 Unable to load the level editor waypoint cursor.",
 					   PLEASE_INFORM, IS_FATAL );
 	    }
@@ -4178,7 +4178,7 @@ EditMapLabelData ( Level EditLevel )
 	{
 	    if ( ! strcmp ( NewCommentOnThisSquare , EditLevel -> labels [ check_double ] . label_name ) )
 	    {
-		GiveStandardErrorMessage ( __FUNCTION__  , "\
+		ErrorMessage ( __FUNCTION__  , "\
 The label just entered did already exist on this map!  Deleting old entry in favour of the new one!",
 					   PLEASE_INFORM , IS_WARNING_ONLY );
 		i = check_double ;
@@ -4470,7 +4470,7 @@ add_obstacle ( Level EditLevel , float x , float y , int new_obstacle_type )
 	}
     }
     
-    GiveStandardErrorMessage ( __FUNCTION__  , "\
+    ErrorMessage ( __FUNCTION__  , "\
 Ran out of obstacle positions in target level!",
 			       PLEASE_INFORM , IS_FATAL );
     return ( NULL );
@@ -4512,7 +4512,7 @@ delete_obstacle ( level* EditLevel , obstacle* our_obstacle )
     //
     if ( obstacle_index == (-1) )
     {
-	GiveStandardErrorMessage ( __FUNCTION__  , "\
+	ErrorMessage ( __FUNCTION__  , "\
 Unable to find the obstacle in question within the obstacle list!",
 				   PLEASE_INFORM , IS_FATAL );
     }
@@ -4665,7 +4665,7 @@ give_new_name_to_obstacle ( Level EditLevel , obstacle* our_obstacle , char* pre
 	if ( ! strcmp ( EditLevel -> obstacle_name_list [ free_index ] , 
 			EditLevel -> obstacle_name_list [ check_double ] ) )
 	{
-	    GiveStandardErrorMessage ( __FUNCTION__  , "\
+	    ErrorMessage ( __FUNCTION__  , "\
 The label just entered did already exist on this map!  Deleting old entry in favour of the new one!",
 				       NO_NEED_TO_INFORM , IS_WARNING_ONLY );
 	    EditLevel -> obstacle_name_list [ free_index ] = NULL ;
@@ -4711,7 +4711,7 @@ give_new_description_to_obstacle ( Level EditLevel , obstacle* our_obstacle , ch
 	}
 	if ( free_index < 0 ) 
 	{
-	    GiveStandardErrorMessage ( __FUNCTION__  , "\
+	    ErrorMessage ( __FUNCTION__  , "\
 Ran out of obstacle description positions on this map level!",
 				       PLEASE_INFORM , IS_WARNING_ONLY );
 	    return;

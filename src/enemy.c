@@ -906,14 +906,14 @@ RawSetNewRandomWaypoint ( Enemy ThisRobot )
 	fprintf ( stderr , "\nThe map level in question got nr.: %d.", ThisRobot -> pos . z );
 	if ( ThisRobot -> stick_to_waypoint_system_by_default )
 	{
-	    GiveStandardErrorMessage ( __FUNCTION__  , "\
+	    ErrorMessage ( __FUNCTION__  , "\
 There was a droid on a waypoint, that apparently has no connections to other waypoints...\n\
 Since it was a waypoint-based bot, this is a fatal message in this case.",
 				       NO_NEED_TO_INFORM, IS_FATAL );
 	}
 	else
 	{
-	    GiveStandardErrorMessage ( __FUNCTION__  , "\
+	    ErrorMessage ( __FUNCTION__  , "\
 There was a droid on a waypoint, that apparently has no connections to other waypoints...\n\
 Since it was NOT a waypoint-based bot, this is NOT a fatal message in this case.",
 				       NO_NEED_TO_INFORM, IS_WARNING_ONLY );
@@ -1213,7 +1213,7 @@ DropEnemyTreasure ( Enemy ThisRobot )
 	     ( ThisRobot -> on_death_drop_item_code >= Number_Of_Item_Types ) )
 	{
 	    DebugPrintf ( -1000 , "\n%s(): item type found: %d." , ThisRobot -> on_death_drop_item_code );
-	    GiveStandardErrorMessage ( __FUNCTION__  , "\
+	    ErrorMessage ( __FUNCTION__  , "\
 Item to be dropped (forced for this bot) is of illegal type!" ,
 				       PLEASE_INFORM, IS_FATAL );
 	}
@@ -1251,7 +1251,7 @@ MakeSureEnemyIsInsideHisLevel ( Enemy ThisRobot )
 	 ( ThisRobot -> pos . y >= curShip . AllLevels [ ThisRobot -> pos . z ] -> ylen ) )
     {
 	
-	GiveStandardErrorMessage ( __FUNCTION__  , "\
+	ErrorMessage ( __FUNCTION__  , "\
 There was a droid found outside the bounds of this level (when dying).\n\
 This is an error and should not occur, but most likely it does since\n\
 the bots are allowed some motion without respect to existing waypoints\n\
@@ -1590,7 +1590,7 @@ find_free_bullet_index ( void )
     //--------------------
     // If this point is ever reached, there's a severe bug in here...
     //
-    GiveStandardErrorMessage ( __FUNCTION__  , "\
+    ErrorMessage ( __FUNCTION__  , "\
 I seem to have run out of free bullet entries.  This can't normally happen.  --> some bug in here, oh no..." ,
 			       PLEASE_INFORM, IS_FATAL );
     
@@ -1846,7 +1846,7 @@ RawStartEnemysShot( enemy* ThisRobot , float xdist , float ydist )
 		    break;
 		    
 		default:
-		    GiveStandardErrorMessage ( __FUNCTION__  , 
+		    ErrorMessage ( __FUNCTION__  , 
 					       "unhandled attack_target_type encountered!",
 					       PLEASE_INFORM, IS_FATAL );
 		    break;
@@ -2261,7 +2261,7 @@ MoveInCloserForOrAwayFromMeleeCombat ( Enemy ThisRobot , int enemynum , int Dire
     }
     else
     {
-	GiveStandardErrorMessage ( __FUNCTION__  , 
+	ErrorMessage ( __FUNCTION__  , 
 				   "Unhandled attack_target_type encountered!",
 				   PLEASE_INFORM, IS_FATAL );
     }
@@ -2626,12 +2626,12 @@ enemy_handle_stuck_in_walls ( enemy* ThisRobot )
 		    DebugPrintf ( -2 , "\nnextwaypoint=%d. lastwaypoint=%d. combat_%s. Status=%d." ,
 				  ThisRobot -> nextwaypoint , ThisRobot -> lastwaypoint , 
 				  ThisRobot -> TextToBeDisplayed , ThisRobot -> Status );
-		    GiveStandardErrorMessage ( __FUNCTION__  , "\
-There was a bot in MOVE_ALONG_RANDOM_WAYPOINTS or TURN_THOWARDS_NEXT_WAYPOINT \n\
-state, that was found to be inside a wall.  This might indicate, that the wapoints\n\
-on the position mentioned above are badly positioned or that something like combat\n\
-or collisions have pushed the bot into some kind of wall or obstacle.  \n" ,
-					       NO_NEED_TO_INFORM, IS_WARNING_ONLY );
+		    ErrorMessage ( __FUNCTION__  , "\
+There was a bot, that was found to be inside a wall. This may be a bug in waypoint placement\n\
+Type=%d. pos =  %f/%f/%d\n\
+has_greeted_influencer=%d  combat_%s. Status=%d\n\
+nextwaypoint=%d. lastwaypoint=%d\n" ,
+					       NO_NEED_TO_INFORM, IS_WARNING_ONLY, ThisRobot -> type,  ThisRobot -> pos . x , ThisRobot -> pos . y , ThisRobot -> pos.z, ThisRobot -> has_greeted_influencer, ThisRobot -> TextToBeDisplayed, ThisRobot -> Status, ThisRobot -> nextwaypoint, ThisRobot -> lastwaypoint );
 		    ThisRobot -> bot_stuck_in_wall_at_previous_check = TRUE ; 
 		    return;
 		    break;
@@ -2664,7 +2664,7 @@ or collisions have pushed the bot into some kind of wall or obstacle.  \n" ,
 	    DebugPrintf ( -2 , "\nnextwaypoint=%d. lastwaypoint=%d. combat_%s. Status=%d." ,
 			  ThisRobot -> nextwaypoint , ThisRobot -> lastwaypoint , 
 			  ThisRobot -> TextToBeDisplayed , ThisRobot -> Status );
-	    GiveStandardErrorMessage ( __FUNCTION__  , "\
+	    ErrorMessage ( __FUNCTION__  , "\
 There was a bot MOVING ON ITS OWN, that was found to be repeatedly inside a wall.\n\
 WARNING!  EMERGENCY FALLBACK ENABLED --> Teleporting back to closest waypoint." ,
 				       NO_NEED_TO_INFORM, IS_WARNING_ONLY );
@@ -3485,7 +3485,7 @@ AnimateEnemys (void)
 		    
 		default:
 		    fprintf ( stderr , "\nThe animation type found is: %d.", our_enemy -> animation_type );
-		    GiveStandardErrorMessage ( __FUNCTION__  , "\
+		    ErrorMessage ( __FUNCTION__  , "\
 There was an animation type encountered that isn't defined in FreedroidRPG.\n\
 That means:  Something is going *terribly* wrong!" ,
 					       PLEASE_INFORM, IS_FATAL );

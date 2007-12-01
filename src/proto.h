@@ -678,7 +678,7 @@ EXTERN int GetNumberOfTextLinesNeeded ( char* GivenText, SDL_Rect GivenRectangle
 EXTERN void print_trace ( int signum );
 EXTERN void implant_backtrace_into_signal_handlers ( void ) ;
 EXTERN void adapt_button_positions_to_screen_resolution( void );
-EXTERN void GiveStandardErrorMessage ( const char* FunctionName , const char* ProblemDescription, int InformDevelopers , int IsFatal );
+EXTERN void ErrorMessage ( const char* FunctionName , const char* ProblemDescription, int InformDevelopers , int IsFatal, ... );
 EXTERN void UpdateScreenOverButtonFromList ( int ButtonIndex );
 EXTERN void ShowGenericButtonFromList ( int ButtonIndex );
 EXTERN int MouseCursorIsInRect ( SDL_Rect* our_rect , int x , int y );

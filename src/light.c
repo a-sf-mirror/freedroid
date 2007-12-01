@@ -227,7 +227,7 @@ update_light_list ( )
 	//
 	if ( next_light_emitter_index >= MAX_NUMBER_OF_LIGHT_SOURCES - 1 )
 	{
-	    GiveStandardErrorMessage ( __FUNCTION__  , "\
+	    ErrorMessage ( __FUNCTION__  , "\
 WARNING!  End of light sources array reached!",
 				       NO_NEED_TO_INFORM, IS_WARNING_ONLY );
 	    return;
@@ -278,7 +278,7 @@ WARNING!  End of light sources array reached!",
 		//
 		if ( next_light_emitter_index >= MAX_NUMBER_OF_LIGHT_SOURCES - 1 )
 		{
-		    GiveStandardErrorMessage ( __FUNCTION__  , "\
+		    ErrorMessage ( __FUNCTION__  , "\
 WARNING!  End of light sources array reached!",
 					       NO_NEED_TO_INFORM, IS_WARNING_ONLY );
 		    return;
@@ -314,7 +314,7 @@ WARNING!  End of light sources array reached!",
 	//
 	if ( next_light_emitter_index >= MAX_NUMBER_OF_LIGHT_SOURCES - 1 )
 	{
-	    GiveStandardErrorMessage ( __FUNCTION__  , "\
+	    ErrorMessage ( __FUNCTION__  , "\
 WARNING!  End of light sources array reached!",
 				       NO_NEED_TO_INFORM, IS_WARNING_ONLY );
 	    return;

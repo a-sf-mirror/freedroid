@@ -70,14 +70,14 @@ quest_browser_enable_new_diary_entry ( int mis_num , int mis_diary_entry_num )
     if ( ( mis_num < 0 ) || ( mis_num >= MAX_MISSIONS_IN_GAME ) )
     {
 	fprintf ( stderr , "\nmission number received: %d." , mis_num );
-	GiveStandardErrorMessage ( __FUNCTION__  , "\
+	ErrorMessage ( __FUNCTION__  , "\
 There was an illegal mission number received.",
 				   PLEASE_INFORM, IS_FATAL );
     }
     if ( ( mis_diary_entry_num < 0 ) || ( mis_diary_entry_num >= MAX_MISSION_DESCRIPTION_TEXTS ) )
     {
 	fprintf ( stderr , "\nmission diary entry number received: %d." , mis_diary_entry_num );
-	GiveStandardErrorMessage ( __FUNCTION__  , "\
+	ErrorMessage ( __FUNCTION__  , "\
 There was an illegal mission diary entry number received.",
 				   PLEASE_INFORM, IS_FATAL );
     }
@@ -160,7 +160,7 @@ quest_browser_show_mission_info ( int mis_num )
     if ( ( mis_num < 0 ) || ( mis_num >= MAX_MISSIONS_IN_GAME ) )
     {
 	fprintf ( stderr , "\nmission number received: %d." , mis_num );
-	GiveStandardErrorMessage ( __FUNCTION__  , "\
+	ErrorMessage ( __FUNCTION__  , "\
 There was an illegal mission number received.",
 				   PLEASE_INFORM, IS_FATAL );
     }
@@ -211,7 +211,7 @@ quest_browser_append_mission_info ( int mis_num , int full_description )
     if ( ( mis_num < 0 ) || ( mis_num >= MAX_MISSIONS_IN_GAME ) )
     {
 	fprintf ( stderr , "\nmission number received: %d." , mis_num );
-	GiveStandardErrorMessage ( __FUNCTION__  , "\
+	ErrorMessage ( __FUNCTION__  , "\
 There was an illegal mission number received.",
 				   PLEASE_INFORM, IS_FATAL );
     }
@@ -398,7 +398,7 @@ quest_browser_display_mission_list ( int list_type )
 		DisplayText( _("No notes yet.") , -1 , -1 , &mission_description_rect , TEXT_STRETCH );
 		break;
 	    default:
-		GiveStandardErrorMessage ( __FUNCTION__  , "\
+		ErrorMessage ( __FUNCTION__  , "\
 Illegal quest browser status encountered.",
 					   PLEASE_INFORM, IS_FATAL );
 		break;
@@ -807,7 +807,7 @@ AssignMission( int MissNum )
     if ( ( MissNum < 0 ) || ( MissNum >= MAX_MISSIONS_IN_GAME ) )
     {
 	fprintf ( stderr , "\nmission number: %d." , MissNum ) ;
-	GiveStandardErrorMessage ( __FUNCTION__  , "\
+	ErrorMessage ( __FUNCTION__  , "\
 There was a mission number received that is outside the range of allowed values.",
 				   PLEASE_INFORM, IS_FATAL );
     }

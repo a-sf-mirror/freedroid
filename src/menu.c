@@ -437,7 +437,7 @@ GetNumberOfTextLinesNeeded ( char* GivenText, SDL_Rect GivenRectangle , float te
     if ( strlen ( GivenText ) <= 1 )
     {
 	/*
-	GiveStandardErrorMessage ( __FUNCTION__  , "\
+	ErrorMessage ( __FUNCTION__  , "\
 Warning.  Received empty or nearly empty string!",
 				   NO_NEED_TO_INFORM, IS_WARNING_ONLY );
 	*/

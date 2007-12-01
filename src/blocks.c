@@ -74,8 +74,8 @@ make_sure_automap_surface_is_there ( obstacle_spec* our_obstacle_spec )
 		      ( 1.0 / AUTOMAP_ZOOM_OUT_FACT ) , FALSE );
     if ( ! our_obstacle_spec -> automap_version )
     {
-	GiveStandardErrorMessage ( __FUNCTION__  , "\
-Creation of automap surface failed!  That is fatal!",
+	ErrorMessage ( __FUNCTION__  , "\
+Creation of automap surface failed",
 				   PLEASE_INFORM, IS_FATAL );
     }
 }; // void make_sure_automap_surface_is_there ( iso_image* our_iso_image )
@@ -148,10 +148,9 @@ load_item_surfaces_for_item_type ( int item_type )
   original_img = IMG_Load( fpath ); 
   if ( original_img == NULL )
     {
-      DebugPrintf ( -1000 , "\nitem_type=%d. fpath: %s." , item_type , fpath );
-      GiveStandardErrorMessage ( __FUNCTION__  , "\
-Inventory image specified above was not found!  That is fatal!",
-				 PLEASE_INFORM, IS_FATAL );
+      ErrorMessage ( __FUNCTION__  , "\
+Inventory image for item type %d, at path %s was not found",
+				 PLEASE_INFORM, IS_FATAL, item_type, fpath );
     }
 
   if ( use_open_gl ) flip_image_vertically ( original_img );
@@ -168,12 +167,11 @@ if( ! ItemMap [ item_type ] . inv_image . inv_size . x )
   {
   if ( original_img -> w % 32 )
     {
-      DebugPrintf ( -1000 , "\nitem_type=%d. fpath: %s." , item_type , fpath );
-      GiveStandardErrorMessage ( __FUNCTION__  , "\
-Inventory image given doesn not have a width, that is a multiple of 32!\n\
-But FreedroidRPG needs a width of this type, so it can associate the right\n\
-number of inventory screen tiles with the item!  Fatal!",
-				 PLEASE_INFORM, IS_FATAL );
+      ErrorMessage ( __FUNCTION__  , "\
+Inventory image for item %d (%s) given does not have a multiple-of-32 width.\n\
+FreedroidRPG needs a width of this type, so it can associate the right\n\
+number of inventory screen tiles with the item.",
+				 PLEASE_INFORM, IS_FATAL, item_type, fpath );
     }
   else
     {
@@ -185,12 +183,11 @@ if( ! ItemMap [ item_type ] . inv_image . inv_size . y )
   {
   if ( original_img -> h % 32 )
     {
-      DebugPrintf ( -1000 , "\nitem_type=%d. fpath: %s." , item_type , fpath );
-      GiveStandardErrorMessage ( __FUNCTION__  , "\
-Inventory image given doesn not have a height, that is a multiple of 32!\n\
-But FreedroidRPG needs a height of this type, so it can associate the right\n\
-number of inventory screen tiles with the item!  Fatal!",
-				 PLEASE_INFORM, IS_FATAL );
+      ErrorMessage ( __FUNCTION__  , "\
+	      Inventory image for item %d (%s) given does not have a multiple-of-32 height.\n\
+	      FreedroidRPG needs a height of this type, so it can associate the right\n\
+	      number of inventory screen tiles with the item.",
+	      PLEASE_INFORM, IS_FATAL, item_type, fpath );
     }
   else
     {
@@ -254,11 +251,9 @@ try_to_load_ingame_item_surface ( int item_type )
   //
   if ( ( ItemMap [ item_type ] . inv_image . ingame_iso_image . surface != NULL ) || ( ItemMap [ item_type ] . inv_image . ingame_iso_image . texture_has_been_created ) )
     {
-      GiveStandardErrorMessage ( __FUNCTION__  , "\
-Surface has been loaded already!",
-				 PLEASE_INFORM, IS_FATAL );
-      // DebugPrintf ( 0 , "\ntry_to_load_ingame_item_surface (...): ERROR.  Surface appears to be loaded already..." );
-      // return;
+      ErrorMessage ( __FUNCTION__  , "\
+Surface for item type %d has been already loaded",
+				 PLEASE_INFORM, IS_FATAL, item_type );
     }
 
   //--------------------
@@ -279,17 +274,15 @@ Surface has been loaded already!",
   //
   if ( Whole_Image == NULL )
     {
-      DebugPrintf ( 1 , "\nNo luck trying to load .png item ingame image..." );
       //--------------------
       // No ingame item surface found? -- give error message and then use
       // the inventory item_surface for the job.
       //
-      DebugPrintf ( -1000 , "\nitem_type=%d. path tried=%s" , item_type , fpath );
-      GiveStandardErrorMessage ( __FUNCTION__  , "\
-Unable to load an item ingame surface on demand.\n\
+      ErrorMessage ( __FUNCTION__  , "\
+Unable to load item %d's ingame surface. (path tried %s)\n\
 Since there seems to be no ingame item surface yet, the inventory\n\
 item surface will be used as a substitute for now.",
-				 NO_NEED_TO_INFORM, IS_WARNING_ONLY );
+				 NO_NEED_TO_INFORM, IS_WARNING_ONLY, item_type, fpath );
 
       if ( use_open_gl )
 	{
@@ -515,11 +508,10 @@ LoadOneSkillSurfaceIfNotYetLoaded ( int SkillSpellNr )
   Whole_Image = our_IMG_load_wrapper( fpath ); // This is a surface with alpha channel, since the picture is one of this type
   if ( !Whole_Image )
     {
-      fprintf ( stderr , "\nfpath=%s." , fpath );
-      GiveStandardErrorMessage ( __FUNCTION__  , "\
-Freedroid was unable to load a certain skill surface into memory.\n\
+      ErrorMessage ( __FUNCTION__  , "\
+Freedroid was unable to load skill %d surface into memory\npath tried was %s\n\
 This error indicates some installation problem with freedroid.",
-				 PLEASE_INFORM, IS_FATAL );
+				 PLEASE_INFORM, IS_FATAL, SkillSpellNr, fpath );
     }
 
   SpellSkillMap [ SkillSpellNr ] . icon_surface . surface = our_SDL_display_format_wrapperAlpha ( Whole_Image );
@@ -844,35 +836,21 @@ get_offset_for_iso_image_from_file_and_path ( char* fpath , iso_image* our_iso_i
   // Let's see if we can find an offset file...
   //
   if ( ( OffsetFile = fopen ( offset_file_name , "rb") ) == NULL )
-    {
-      fprintf (stderr, "\nObtaining offset failed with file name '%s'." , offset_file_name );
-      GiveStandardErrorMessage ( __FUNCTION__  , "\
-Freedroid was unable to open a given offset file for an isometric image.\n\
+      {
+      ErrorMessage ( __FUNCTION__  , "\
+Freedroid was unable to open offset file %s for an isometric image.\n\
 Since the offset could not be obtained from the offset file, some default\n\
 values will be used instead.  This can lead to minor positioning pertubations\n\
 in graphics displayed, but FreedroidRPG will continue to work.",
-				 NO_NEED_TO_INFORM, IS_WARNING_ONLY );
+NO_NEED_TO_INFORM, IS_WARNING_ONLY, offset_file_name );
       our_iso_image -> offset_x = - INITIAL_BLOCK_WIDTH/2 ;
       our_iso_image -> offset_y = - INITIAL_BLOCK_HEIGHT/2 ;
       return ;
-    }
+      }
   else
-    {
-      DebugPrintf ( 1 , "\nThe offset file seems to be there at least.....");
-
-      if ( fclose ( OffsetFile ) == EOF)
-	{
-	  fprintf( stderr, "\n\noffset_file_name: '%s'\n" , offset_file_name );
-	  GiveStandardErrorMessage ( __FUNCTION__  , "\
-Freedroid was unable to close an offset file.\nThis is a very strange occasion!",
-				     PLEASE_INFORM, IS_FATAL );
-	}
-      else
-	{
-	  DebugPrintf( 1 , "\nThe offset file, that is there, was closed again successfully...");
-	}
-
-    }
+      {
+      fclose ( OffsetFile );
+      }
 
   //--------------------
   // So at this point we can be certain, that the offset file is there.
@@ -914,8 +892,8 @@ get_iso_image_from_file_and_path ( char* fpath , iso_image* our_iso_image , int 
     if ( Whole_Image == NULL )
     {
 	fprintf( stderr, "\n\nfpath: '%s'\n" , fpath );
-	GiveStandardErrorMessage ( __FUNCTION__  ,  
-				   va ( "Could not load image: File name: see next line\n%s \n" , fpath ) , PLEASE_INFORM, IS_FATAL );
+	ErrorMessage ( __FUNCTION__  ,  
+				   "Could not load image\n File name: %s \n" , PLEASE_INFORM, IS_FATAL, fpath );
     }
 
     //--------------------
@@ -985,11 +963,10 @@ get_iso_image_with_colorkey_from_file_and_path ( char* fpath , iso_image* our_is
     Whole_Image = our_IMG_load_wrapper( fpath ); // This is a surface with alpha channel, since the picture is one of this type
     if ( Whole_Image == NULL )
     {
-	fprintf( stderr, "\n\nfpath: '%s'\n" , fpath );
-	GiveStandardErrorMessage ( __FUNCTION__  , "\
-Freedroid was unable to load a certain image file from hard disk into memory.\n\
+	ErrorMessage ( __FUNCTION__  , "\
+Freedroid was unable to load file %s into memory.\n\
 This error indicates some installation problem with freedroid.",
-				   PLEASE_INFORM, IS_FATAL );
+				   PLEASE_INFORM, IS_FATAL, fpath );
     }
     
     //--------------------
@@ -1078,10 +1055,9 @@ LoadAndPrepareEnemyRotationModelNr ( int ModelNr )
     //
     if ( ( ModelNr < 0 ) || ( ModelNr >= ENEMY_ROTATION_MODELS_AVAILABLE ) )
     {
-	fprintf ( stderr , "\n\nModelNr=%d.\n\n" , ModelNr );
-	GiveStandardErrorMessage ( __FUNCTION__  , "\
-Freedroid received a rotation model number that does not exist!",
-				   PLEASE_INFORM, IS_FATAL );
+	ErrorMessage ( __FUNCTION__  , "\
+Freedroid received a rotation model number that does not exist: %d\n",
+				   PLEASE_INFORM, IS_FATAL, ModelNr );
     }
     
     //--------------------
@@ -1123,18 +1099,6 @@ LoadAndPrepareGreenEnemyRotationModelNr ( int ModelNr )
 	  EnemyFullyPrepared [ i ] = FALSE ;
 	}
       FirstCallEver = FALSE ;
-    }
-
-  //--------------------
-  // Now a sanity check against using rotation types, that don't exist
-  // in Freedroid RPG at all!
-  //
-  if ( ( ModelNr < 0 ) || ( ModelNr >= ENEMY_ROTATION_MODELS_AVAILABLE ) )
-    {
-      fprintf ( stderr , "\n\nModelNr=%d.\n\n" , ModelNr );
-      GiveStandardErrorMessage ( __FUNCTION__  , "\
-Freedroid received a rotation model number that does not exist!",
-				 PLEASE_INFORM, IS_FATAL );
     }
 
   //--------------------
@@ -1197,18 +1161,6 @@ LoadAndPrepareBlueEnemyRotationModelNr ( int ModelNr )
     }
 
   //--------------------
-  // Now a sanity check against using rotation types, that don't exist
-  // in Freedroid RPG at all!
-  //
-  if ( ( ModelNr < 0 ) || ( ModelNr >= ENEMY_ROTATION_MODELS_AVAILABLE ) )
-    {
-      fprintf ( stderr , "\n\nModelNr=%d.\n\n" , ModelNr );
-      GiveStandardErrorMessage ( __FUNCTION__  , "\
-Freedroid received a rotation model number that does not exist!",
-				 PLEASE_INFORM, IS_FATAL );
-    }
-
-  //--------------------
   // Now we can check if the given rotation model type was perhaps already
   // allocated and loaded and fully prepared.  Then of course we need not 
   // do anything here...  Otherwise we can have trust and mark it as loaded
@@ -1258,18 +1210,6 @@ LoadAndPrepareRedEnemyRotationModelNr ( int ModelNr )
 	  EnemyFullyPrepared [ i ] = FALSE ;
 	}
       FirstCallEver = FALSE ;
-    }
-
-  //--------------------
-  // Now a sanity check against using rotation types, that don't exist
-  // in Freedroid RPG at all!
-  //
-  if ( ( ModelNr < 0 ) || ( ModelNr >= ENEMY_ROTATION_MODELS_AVAILABLE ) )
-    {
-      fprintf ( stderr , "\n\nModelNr=%d.\n\n" , ModelNr );
-      GiveStandardErrorMessage ( __FUNCTION__  , "\
-Freedroid received a rotation model number that does not exist!",
-				 PLEASE_INFORM, IS_FATAL );
     }
 
   //--------------------
@@ -1660,11 +1600,11 @@ Load_Enemy_Surfaces( void )
     //
     if ( i > ENEMY_ROTATION_MODELS_AVAILABLE )
     {
-	GiveStandardErrorMessage ( __FUNCTION__  , "\
+	ErrorMessage ( __FUNCTION__  , "\
 There seem to be a bit more models mentioned in the game than\n\
-currently allowed in defs.h (ENEMY_ROTATION_MODELS_AVAILABLE).\n\
+currently allowed (ENEMY_ROTATION_MODELS_AVAILABLE = %d in defs.h).\n\
 This should be investigated as soon as possible.",
-				   PLEASE_INFORM, IS_FATAL );
+				   PLEASE_INFORM, IS_FATAL, ENEMY_ROTATION_MODELS_AVAILABLE );
     }
 }; // void LoadEnemySurfaces( void )
 

@@ -603,7 +603,7 @@ show_character_screen_skills ( )
 	 ( Me . melee_weapon_skill >= NUMBER_OF_SKILL_LEVELS ) )
     {
 	fprintf ( stderr , "\nmelee_weapon_skill: %d." , Me . melee_weapon_skill );
-	GiveStandardErrorMessage ( __FUNCTION__ , "\
+	ErrorMessage ( __FUNCTION__ , "\
 Error: melee weapon skill seems out of bounds.",
 				   PLEASE_INFORM, IS_FATAL );
     }
@@ -618,7 +618,7 @@ Error: melee weapon skill seems out of bounds.",
 	 ( Me . ranged_weapon_skill >= NUMBER_OF_SKILL_LEVELS ) )
     {
 	fprintf ( stderr , "\nranged_weapon_skill: %d." , Me . ranged_weapon_skill );
-	GiveStandardErrorMessage ( __FUNCTION__ , "\
+	ErrorMessage ( __FUNCTION__ , "\
 Error: ranged weapon skill seems out of bounds.",
 				   PLEASE_INFORM, IS_FATAL );
     }
@@ -633,7 +633,7 @@ Error: ranged weapon skill seems out of bounds.",
 	 ( Me . spellcasting_skill >= NUMBER_OF_SKILL_LEVELS ) )
     {
 	fprintf ( stderr , "\nProgramming_Skill: %d." , Me . spellcasting_skill );
-	GiveStandardErrorMessage ( __FUNCTION__ , "\
+	ErrorMessage ( __FUNCTION__ , "\
 Error: Programming_Skill skill seems out of bounds.",
 				   PLEASE_INFORM, IS_FATAL );
     }
@@ -648,7 +648,7 @@ Error: Programming_Skill skill seems out of bounds.",
 	 ( Me . hacking_skill >= NUMBER_OF_SKILL_LEVELS ) )
     {
 	fprintf ( stderr , "\nhacking_skill: %d." , Me . hacking_skill );
-	GiveStandardErrorMessage ( __FUNCTION__ , "\
+	ErrorMessage ( __FUNCTION__ , "\
 Error: hacking skill seems out of bounds.",
 				   PLEASE_INFORM, IS_FATAL );
     }

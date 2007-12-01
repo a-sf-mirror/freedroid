@@ -534,7 +534,7 @@ do_make_texture_out_of_surface ( iso_image* our_image, int txw, int txh, void * 
     next_texture_index_to_use ++ ;
     if ( next_texture_index_to_use >= MAX_AMOUNT_OF_TEXTURES_WE_WILL_USE )
     {
-	GiveStandardErrorMessage ( __FUNCTION__  , 
+	ErrorMessage ( __FUNCTION__  , 
 				   "Ran out of initialized texture positions to use for new textures.",
 				   PLEASE_INFORM, IS_FATAL );
     }
@@ -630,38 +630,38 @@ open_gl_check_error_status ( const char* name_of_calling_function  )
 	    break;
 	case GL_INVALID_ENUM:
 	    fprintf ( stderr , "\nCheck occured in function: %s." , name_of_calling_function );
-	    GiveStandardErrorMessage ( __FUNCTION__  , 
+	    ErrorMessage ( __FUNCTION__  , 
 				       "Error code GL_INVALID_ENUM received!", PLEASE_INFORM, IS_WARNING_ONLY );
 	    break;
 	case GL_INVALID_VALUE:
 	    fprintf ( stderr , "\nCheck occured in function: %s." , name_of_calling_function );
-	    GiveStandardErrorMessage ( __FUNCTION__  , 
+	    ErrorMessage ( __FUNCTION__  , 
 				       "Error code GL_INVALID_VALUE received!", PLEASE_INFORM, IS_WARNING_ONLY );
 	    break;
 	case GL_INVALID_OPERATION:
 	    fprintf ( stderr , "\nCheck occured in function: %s." , name_of_calling_function );
-	    GiveStandardErrorMessage ( __FUNCTION__  , 
+	    ErrorMessage ( __FUNCTION__  , 
 				       "Error code GL_INVALID_OPERATION received!", PLEASE_INFORM, IS_WARNING_ONLY );
 	    break;
 	case GL_STACK_OVERFLOW:
 	    fprintf ( stderr , "\nCheck occured in function: %s." , name_of_calling_function );
-	    GiveStandardErrorMessage ( __FUNCTION__  , 
+	    ErrorMessage ( __FUNCTION__  , 
 				       "Error code GL_STACK_OVERFLOW received!", PLEASE_INFORM, IS_FATAL );
 	    break;
 	case GL_STACK_UNDERFLOW:
 	    fprintf ( stderr , "\nCheck occured in function: %s." , name_of_calling_function );
-	    GiveStandardErrorMessage ( __FUNCTION__  , 
+	    ErrorMessage ( __FUNCTION__  , 
 				       "Error code GL_STACK_UNDERFLOW received!", PLEASE_INFORM, IS_FATAL );
 	    break;
 	case GL_OUT_OF_MEMORY:
 	    fprintf ( stderr , "\nCheck occured in function: %s." , name_of_calling_function );
-	    GiveStandardErrorMessage ( __FUNCTION__  , 
+	    ErrorMessage ( __FUNCTION__  , 
 				       "Error code GL_OUT_OF_MEMORY received!", PLEASE_INFORM, IS_FATAL );
 	    // raise ( SIGSEGV );
 	    break;
 	default:
 	    fprintf ( stderr , "\nCheck occured in function: %s." , name_of_calling_function );
-	    GiveStandardErrorMessage ( __FUNCTION__  , 
+	    ErrorMessage ( __FUNCTION__  , 
 				       "Unhandled error code received!", PLEASE_INFORM, IS_FATAL );
 	    break;
     }
@@ -1016,7 +1016,7 @@ StoreMenuBackground ( int backup_slot )
 	        next_texture_index_to_use ++ ;
 		if ( next_texture_index_to_use >= MAX_AMOUNT_OF_TEXTURES_WE_WILL_USE )
 		    {
-                    GiveStandardErrorMessage ( __FUNCTION__  ,
+                    ErrorMessage ( __FUNCTION__  ,
                                    "Ran out of initialized texture positions to use for new textures.",
                                    PLEASE_INFORM, IS_FATAL );
                     } 
@@ -1111,7 +1111,7 @@ set_up_stretched_texture_for_light_radius ( void )
 
     if ( next_texture_index_to_use >= MAX_AMOUNT_OF_TEXTURES_WE_WILL_USE )
     {
-	GiveStandardErrorMessage ( __FUNCTION__  , 
+	ErrorMessage ( __FUNCTION__  , 
 				   "Ran out of initialized texture positions to use for new textures.",
 				   PLEASE_INFORM, IS_FATAL );
     }
@@ -1344,7 +1344,7 @@ char fpath[2048];
 
     if ( background_code >= ALL_KNOWN_BACKGROUNDS ) 
 	{
-	GiveStandardErrorMessage ( __FUNCTION__  ,
+	ErrorMessage ( __FUNCTION__  ,
                                    "Received a request to display a background that does not exist.",
                                    PLEASE_INFORM, IS_FATAL );
 	exit(1);

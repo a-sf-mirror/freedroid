@@ -364,8 +364,8 @@ PutCharFont (SDL_Surface * Surface, BFont_Info * Font, int x, int y, unsigned ch
 		{
 		  if ( Font -> char_iso_image [ c ] . surface == NULL )
 		    {
-		      GiveStandardErrorMessage ( __FUNCTION__  , "Surface was NULL pointer!",
-						 PLEASE_INFORM, IS_FATAL );
+		      ErrorMessage ( __FUNCTION__  , "Surface for character %d was NULL pointer!",
+						 PLEASE_INFORM, IS_FATAL, c );
 		    }
 		  make_texture_out_of_surface ( & ( Font -> char_iso_image [ c ] ) ) ;
 		  #ifdef HAVE_LIBGL

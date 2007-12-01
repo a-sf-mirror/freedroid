@@ -52,7 +52,6 @@ void *
 MyMalloc ( long Mamount )
 {
     void *Mptr = NULL;
-    // static long total_so_far = 0 ;
     
     // make Gnu-compatible even if on a broken system:
     if (Mamount == 0)
@@ -65,11 +64,6 @@ MyMalloc ( long Mamount )
 	Terminate(ERR);
     }
 
-    // total_so_far += Mamount ;
-    // if ( Mamount > 10000 )
-    // {
-    // DebugPrintf ( -4 , "\n%s(): big malloc: %ld. total: %ld " , __FUNCTION__ , Mamount , total_so_far );
-    // }
   
     return Mptr;
 
@@ -77,21 +71,18 @@ MyMalloc ( long Mamount )
 
 /* ----------------------------------------------------------------------
  * This function is used for debugging purposes.  It writes the
- * given string either into a file, on the screen, or simply does
+ * given string on the screen, or simply does
  * nothing according to currently set debug level.
  * ---------------------------------------------------------------------- */
 void
 DebugPrintf ( int db_level, const char *fmt, ...)
 {
     va_list args;
-    static char buffer[5000+1];
     va_start (args, fmt);
     
     if (db_level <= debug_level)
     {
-	vsnprintf (buffer, 5000, fmt, args);
-	fprintf (stderr, buffer);
-	fflush (stderr);
+	vfprintf (stderr, fmt, args);
     }
     
     va_end (args);
@@ -102,29 +93,26 @@ DebugPrintf ( int db_level, const char *fmt, ...)
  * messages possible in Freedroid RPG.
  * ---------------------------------------------------------------------- */
 void
-GiveStandardErrorMessage ( const char* FunctionName , const char* ProblemDescription, int InformDevelopers , int IsFatal )
+ErrorMessage ( const char* FunctionName , const char* fmt, int InformDevelopers , int IsFatal, ... )
 {
-    
-    // rp: suppress all non-essential warnings if debug_level > 0
-    // if ( !IsFatal && !InformDevelopers && (debug_level<=0) )
-    // return;
+    va_list args;
+    va_start(args, IsFatal);
 
     fprintf (stderr, "\n----------------------------------------------------------------------\n\
 Freedroid has encountered a problem:\n" );
-    // fprintf (stderr, "In Function: %s.\n" , FunctionName );
     fprintf (stderr, "In Function: %s.\n" , FunctionName );
     fprintf (stderr, "FreedroidRPG package and version number: %s %s.\n" , PACKAGE , VERSION );
-    fprintf (stderr, "Problem Description: %s.\n\n" , ProblemDescription );
+    vfprintf (stderr, fmt, args );
     
     if ( InformDevelopers )
     {
 	fprintf (stderr, "\
 If you encounter this message, please inform the Freedroid developers\n\
-about the problem, best by sending e-mail to \n\
+about the problem, by sending e-mail to \n\
 \n\
 freedroid-discussion@lists.sourceforge.net\n\
 \n\
-Or you might mention it to someone of the developers on our\n\
+Or you can mention it to someone of the developers on our\n\
 IRC channel.  The channel is:\n\
 \n\
 channel: #freedroid on irc.freenode.net\n\
@@ -136,22 +124,23 @@ Thanks a lot!\n\n" );
     {
 	fprintf (stderr, 
 		 "Freedroid will terminate now to draw attention to the problems it could\n\
-not resolve.  Sorry if that interrupts a major game of yours...\nA final stack backtrace looks like this:\n" );
+not resolve.  Sorry if that interrupts a major game of yours...\nBacktrace:\n" );
 	print_trace( FREEDROID_INTERNAL_ERROR_SIGNAL );
 	
     }
     else
     {
 	fprintf (stderr, 
-		 "The error mentioned above is not a big problem for Freedroid.  Therefore\n\
-we'll continue execution right now.\n" );
+		 "The problem mentionned above is not fatal, we continue the execution.\n" );
     }
     
     fprintf (stderr, "----------------------------------------------------------------------\n" );
     
+    va_end(args);
+
     if ( IsFatal ) Terminate ( ERR );
     
-}; // void GiveStandardErrorMessage ( ... )
+}; // void ErrorMessage ( ... )
 
 
 /* ----------------------------------------------------------------------
@@ -224,7 +213,7 @@ ReadAndMallocStringFromData ( char* SearchString , const char* StartIndicationSt
   if ( (SearchPointer = strstr ( SearchString , StartIndicationString )) == NULL )
     {
       fprintf( stderr, "\n\nStartIndicationString: '%s'\n" , StartIndicationString );
-      GiveStandardErrorMessage ( __FUNCTION__  , "\
+      ErrorMessage ( __FUNCTION__  , "\
 The string that is supposed to prefix an entry in a text data file\n\
 of Freedroid was not found within this text data file.\n\
 This indicates some corruption in the data file in question.",
@@ -239,7 +228,7 @@ This indicates some corruption in the data file in question.",
       if ( (EndOfStringPointer = strstr( SearchPointer , EndIndicationString ) ) == NULL )
 	{
 	  fprintf( stderr, "\n\nEndIndicationString: '%s'\n" , EndIndicationString );
-	  GiveStandardErrorMessage ( __FUNCTION__  , "\
+	  ErrorMessage ( __FUNCTION__  , "\
 The string that is supposed to terminate an entry in a text data file\n\
 of Freedroid was not found within this text data file.\n\
 This indicates some corruption in the data file in question.",
@@ -310,7 +299,7 @@ ReadAndMallocAndTerminateFile( char* filename , const char* File_End_String )
     {
 	fprintf( stderr, "\n\nfilename: '%s'\n" , filename );
 
-	GiveStandardErrorMessage ( __FUNCTION__  , "\
+	ErrorMessage ( __FUNCTION__  , "\
 Freedroid was unable to open a given text file,\n\
 that should be there and should be accessible.\n\
 This indicates a serious bug in this installation of Freedroid.",
@@ -331,7 +320,7 @@ This indicates a serious bug in this installation of Freedroid.",
     if ( fclose ( DataFile ) == EOF)
     {
 	fprintf( stderr, "\n\nfilename: '%s'\n" , filename );
-	GiveStandardErrorMessage ( __FUNCTION__  , "\
+	ErrorMessage ( __FUNCTION__  , "\
 Freedroid was unable to close a given text file, that should be there and\n\
 should be accessible.\n\
 This indicates a strange bug in this installation of Freedroid, that is\n\
@@ -353,7 +342,7 @@ belonging to Freedroid.",
 	fprintf( stderr, "\n\nfilename: '%s'\n" , filename );
 	fprintf( stderr, "File_End_String: '%s'\n" , File_End_String );
 
-	GiveStandardErrorMessage ( __FUNCTION__  , "\
+	ErrorMessage ( __FUNCTION__  , "\
 Freedroid was unable to find the string, that should indicate the end of\n\
 the given text file within this file.\n\
 This indicates a corrupt or outdated data or saved game file.", PLEASE_INFORM, IS_FATAL );
@@ -386,7 +375,7 @@ LocateStringInData ( char* SearchBeginPointer, const char* SearchTextPointer )
   if ( ( temp = strstr ( SearchBeginPointer , SearchTextPointer ) ) == NULL)
     {
       fprintf( stderr, "\n\nSearchTextPointer: '%s'\n" , SearchTextPointer );
-      GiveStandardErrorMessage ( __FUNCTION__  , "\
+      ErrorMessage ( __FUNCTION__  , "\
 The string that was supposed to be in the text data file could not be found.\n\
 This indicates a corrupted or seriously outdated game data or saved game file.",
 				 PLEASE_INFORM, IS_FATAL );
@@ -424,7 +413,7 @@ ReadValueFromStringWithDefault( char* SearchBeginPointer , const char* ValuePrec
     {
 	fprintf( stderr, "\n\nFormatString: '%s'\n" , FormatString );
 	fprintf( stderr, "ValuePreceedText: '%s'\n" , ValuePreceedText );
-	GiveStandardErrorMessage ( __FUNCTION__  , "\
+	ErrorMessage ( __FUNCTION__  , "\
 sscanf using a certain format string failed!\n\
 This indicates a corrupted or seriously outdated game data or saved game file.",
 				 PLEASE_INFORM, IS_FATAL );
@@ -461,7 +450,7 @@ ReadValueFromString( char* SearchBeginPointer , const char* ValuePreceedText , c
     {
 	fprintf( stderr, "\n\nFormatString: '%s'\n" , FormatString );
 	fprintf( stderr, "ValuePreceedText: '%s'\n" , ValuePreceedText );
-	GiveStandardErrorMessage ( __FUNCTION__  , "\
+	ErrorMessage ( __FUNCTION__  , "\
 sscanf using a certain format string failed!\n\
 This indicates a corrupted or seriously outdated game data or saved game file.",
 				 PLEASE_INFORM, IS_FATAL );
@@ -747,7 +736,7 @@ Therefore we need not add an additional termination character now." );
 	{
 	    fprintf( stderr, "\n\nNumberOfReplySamples: %d NumberOfReplySubtitles: %d \n" , NumberOfReplySamples , NumberOfReplySubtitles );
 	    fprintf( stderr, "The section in question looks like this: \n%s\n\n" , SectionPointer );
-	    GiveStandardErrorMessage ( __FUNCTION__  , "\
+	    ErrorMessage ( __FUNCTION__  , "\
 There were an unequal number of reply samples and subtitles specified\n\
 within a section of the Freedroid.dialogues file.\n\
 This is currently not allowed in Freedroid and therefore indicates a\n\
@@ -791,7 +780,7 @@ found in this option of the dialogue, which is fine.", NumberOfReplySamples );
 	if ( NumberOfOptionChanges != NumberOfNewOptionValues )
 	{
 	    fprintf( stderr, "\n\nNumberOfOptionChanges: %d NumberOfNewOptionValues: %d \n" , NumberOfOptionChanges , NumberOfNewOptionValues );
-	    GiveStandardErrorMessage ( __FUNCTION__  , "\
+	    ErrorMessage ( __FUNCTION__  , "\
 There was number of option changes but an unequal number of new option\n\
 values specified in a section within the Freedroid.dialogues file.\n\
 This is currently not allowed in Freedroid and therefore indicates a\n\
@@ -902,7 +891,7 @@ found in this option of the dialogue, which is fine.", NumberOfOptionChanges );
 	    }
 	    else
 	    {
-		GiveStandardErrorMessage ( __FUNCTION__  , "\
+		ErrorMessage ( __FUNCTION__  , "\
 The text should contain an \n\
 answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.\n\
 This indicated a corrupted FreedroidRPG dialog.",
@@ -947,7 +936,7 @@ This indicated a corrupted FreedroidRPG dialog.",
     if ( strlen ( ChatRoster [ 0 ] . option_text ) <= 0 )
     {
 	DebugPrintf ( -4 , "\n%s(): Dialog file in question: %s." , __FUNCTION__ , FullPathAndFullFilename );
-	GiveStandardErrorMessage ( __FUNCTION__  , "\
+	ErrorMessage ( __FUNCTION__  , "\
 The '0' dialog node was empty!",
 				     PLEASE_INFORM, IS_FATAL );
     }
@@ -1053,7 +1042,7 @@ Get_Item_Data ( char* DataPointer )
 	}
 	else
 	{
-	    GiveStandardErrorMessage ( __FUNCTION__  , "The item specification of an item in freedroid.item_archetypes should contain an \nanswer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.\nThis indicated a corrupted freedroid.ruleset file with an error at least in\nthe item specification section.",
+	    ErrorMessage ( __FUNCTION__  , "The item specification of an item in freedroid.item_archetypes should contain an \nanswer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.\nThis indicated a corrupted freedroid.ruleset file with an error at least in\nthe item specification section.",
 				       PLEASE_INFORM, IS_FATAL );
 	}
 	free ( YesNoString ) ;
@@ -1069,7 +1058,7 @@ Get_Item_Data ( char* DataPointer )
 	}
 	else
 	{
-	    GiveStandardErrorMessage ( __FUNCTION__  , "The item specification of an item in freedroid.item_archetypes should contain an \nanswer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.\nThis indicated a corrupted freedroid.ruleset file with an error at least in\nthe item specification section.",
+	    ErrorMessage ( __FUNCTION__  , "The item specification of an item in freedroid.item_archetypes should contain an \nanswer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.\nThis indicated a corrupted freedroid.ruleset file with an error at least in\nthe item specification section.",
 				       PLEASE_INFORM, IS_FATAL );
 	}
 	free ( YesNoString ) ;
@@ -1108,7 +1097,7 @@ Get_Item_Data ( char* DataPointer )
 	else
 	{
 	    fprintf(stderr, "\n\nItemIndex: %d.\n" ,ItemIndex ); 
-	    GiveStandardErrorMessage ( __FUNCTION__  , "The item specification of an item in freedroid.ruleset should contain an \nanswer for the slot installation possiblieties, that was neither \n'weapon' nor 'armour' nor 'shield' nor 'special' nor 'drive' nor 'none'.",
+	    ErrorMessage ( __FUNCTION__  , "The item specification of an item in freedroid.ruleset should contain an \nanswer for the slot installation possiblieties, that was neither \n'weapon' nor 'armour' nor 'shield' nor 'special' nor 'drive' nor 'none'.",
 				       PLEASE_INFORM, IS_FATAL );
 	}
 	free ( YesNoString ) ;
@@ -1133,7 +1122,7 @@ Get_Item_Data ( char* DataPointer )
 	}
 	else
 	{
-	    GiveStandardErrorMessage ( __FUNCTION__  , "\
+	    ErrorMessage ( __FUNCTION__  , "\
 The item specification of an item in freedroid.ruleset should contain an \n\
 answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.",
 				       PLEASE_INFORM, IS_FATAL );
@@ -1185,7 +1174,7 @@ answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.",
 	    }
 	    else
 	    {
-		GiveStandardErrorMessage ( __FUNCTION__  , "\
+		ErrorMessage ( __FUNCTION__  , "\
 The item specification of an item in freedroid.ruleset should contain an \n\
 answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.",
 					   PLEASE_INFORM, IS_FATAL );
@@ -1204,7 +1193,7 @@ answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.",
 	    }
 	    else
 	    {
-		GiveStandardErrorMessage ( __FUNCTION__  , "\
+		ErrorMessage ( __FUNCTION__  , "\
 The item specification of an item in freedroid.ruleset should contain an \n\
 answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.",
 					   PLEASE_INFORM, IS_FATAL );
@@ -1223,7 +1212,7 @@ answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.",
 	    }
 	    else
 	    {
-		GiveStandardErrorMessage ( __FUNCTION__  , "\
+		ErrorMessage ( __FUNCTION__  , "\
 The item specification of an item in freedroid.ruleset should contain an \n\
 answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.",
 					   PLEASE_INFORM, IS_FATAL );
@@ -1242,7 +1231,7 @@ answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.",
 	    }
 	    else
 	    {
-		GiveStandardErrorMessage ( __FUNCTION__  , "\
+		ErrorMessage ( __FUNCTION__  , "\
 The item specification of an item in freedroid.ruleset should contain an \n\
 answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.",
 					   PLEASE_INFORM, IS_FATAL );
@@ -1292,7 +1281,7 @@ answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.",
 	    }
 	    else
 	    {
-		GiveStandardErrorMessage ( __FUNCTION__  , "\
+		ErrorMessage ( __FUNCTION__  , "\
 The item specification of an item in freedroid.item_archetypes should contain an \n\
 answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.",
 					   PLEASE_INFORM, IS_FATAL );
@@ -1311,7 +1300,7 @@ answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.",
 	    }
 	    else
 	    {
-		GiveStandardErrorMessage ( __FUNCTION__  , "\
+		ErrorMessage ( __FUNCTION__  , "\
 The item specification of an item in freedroid.item_archetypes should contain an \n\
 answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.",
 					   PLEASE_INFORM, IS_FATAL );

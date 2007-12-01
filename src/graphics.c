@@ -194,7 +194,7 @@ set_mouse_cursor_to_shape ( int given_shape )
 	    current_mouse_cursor_shape = MOUSE_CURSOR_ARROW_SHAPE ;
 	    break;
 	default:
-	    GiveStandardErrorMessage ( __FUNCTION__  , "\
+	    ErrorMessage ( __FUNCTION__  , "\
 ERROR: Unhandled mouse cursor shape type received.",
 				       PLEASE_INFORM, IS_FATAL );
 	    SDL_SetCursor( init_system_cursor( crosshair_mouse_cursor ) );
@@ -266,7 +266,7 @@ blit_our_own_mouse_cursor ( void )
 	    if ( mouse_cursors [ i ] . surface == NULL ) 
 	    {
 		fprintf ( stderr , "\nFull path used: %s." , fpath );
-		GiveStandardErrorMessage ( __FUNCTION__ , "\
+		ErrorMessage ( __FUNCTION__ , "\
 Error loading flag image.",
 					   PLEASE_INFORM, IS_FATAL );
 	    }
@@ -321,7 +321,7 @@ Error loading flag image.",
 	default:
 	    DebugPrintf ( -4 , "\n%s(): global_ingame_mode: %d." , __FUNCTION__ , 
 			  global_ingame_mode );
-	    GiveStandardErrorMessage ( __FUNCTION__  , 
+	    ErrorMessage ( __FUNCTION__  , 
 				       "Illegal global ingame mode encountered!" ,
 				       PLEASE_INFORM, IS_FATAL );
 	    break;
@@ -383,7 +383,7 @@ char fpath[2048];
 	    if ( mouse_cursor_coronas [ i ] . surface == NULL ) 
 	    {
 		fprintf ( stderr , "\nFull path used: %s." , fpath );
-		GiveStandardErrorMessage ( __FUNCTION__ , "\
+		ErrorMessage ( __FUNCTION__ , "\
 Error loading flag image.",
 					   PLEASE_INFORM, IS_FATAL );
 	    }
@@ -613,7 +613,7 @@ do_graphical_number_selection_in_range ( int lower_range , int upper_range, int 
     if ( SelectionKnob == NULL )
     {
 	fprintf( stderr, "\n\nSDL_GetError: %s \n" , SDL_GetError() );
-	GiveStandardErrorMessage ( __FUNCTION__  , "\
+	ErrorMessage ( __FUNCTION__  , "\
 ERROR LOADING SELECTION KNOB IMAGE FILE!",
 				   PLEASE_INFORM, IS_FATAL );
     }
@@ -1495,7 +1495,7 @@ get_standard_iso_floor_tile_size ( void )
     if ( standard_floor_tile == NULL )
     {
 	fprintf( stderr, "\n\nSDL_GetError: %s \n" , SDL_GetError() );
-	GiveStandardErrorMessage ( __FUNCTION__  , "\
+	ErrorMessage ( __FUNCTION__  , "\
 UNABLE TO LOAD STANDARD TILE!",
 				   PLEASE_INFORM, IS_FATAL );
     }
@@ -1642,7 +1642,7 @@ char fpath[2048];
 	        if ( find_file (constructed_fname , GRAPHICS_DIR , fpath, 0) != 0 ) 
 			{
 		        fprintf (stderr, "\n\nFont file: '%s'.\n" , MenuFontFiles [ i ] );
-			GiveStandardErrorMessage ( __FUNCTION__  , "\
+			ErrorMessage ( __FUNCTION__  , "\
 A font file for the BFont library was not found.",
                                        PLEASE_INFORM, IS_FATAL );
 			}
@@ -1651,7 +1651,7 @@ A font file for the BFont library was not found.",
 	if ( ( *MenuFontPointers [ i ] = LoadFont ( fpath ) ) == NULL )
 	{
 	    fprintf (stderr, "\n\nFont file: '%s'.\n" , MenuFontFiles [ i ] );
-	    GiveStandardErrorMessage ( __FUNCTION__  , "\
+	    ErrorMessage ( __FUNCTION__  , "\
 A font file for the BFont library could not be loaded.",
 				       PLEASE_INFORM, IS_FATAL );
 	} 
@@ -1819,7 +1819,7 @@ safely_set_double_buffering_attribute ( void )
 
     if ( SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 1 ) )
     {
-	GiveStandardErrorMessage ( __FUNCTION__  , "\
+	ErrorMessage ( __FUNCTION__  , "\
 Unable to set SDL_GL_DOUBLEBUFFER attribute!",
 				   PLEASE_INFORM, IS_FATAL );
     }
@@ -1901,7 +1901,7 @@ set_video_mode_for_open_gl ( void )
     switch ( video_mode_ok_check_result )
     {
 	case 0:
-	    GiveStandardErrorMessage ( __FUNCTION__  , "\
+	    ErrorMessage ( __FUNCTION__  , "\
 SDL reported, that the video mode mentioned above is not supported\nBreaking off...",
 				       PLEASE_INFORM, IS_FATAL );
 	    break;
@@ -1915,7 +1915,7 @@ SDL reported, that the video mode mentioned above is not supported\nBreaking off
 	    {
 		DebugPrintf ( -4 , "NO! \nThe closest we will get is %d bits per pixel." , video_mode_ok_check_result );
 		/*
-		  GiveStandardErrorMessage ( __FUNCTION__  , "\
+		  ErrorMessage ( __FUNCTION__  , "\
 		  SDL reported, that the video mode mentioned \nabove is not supported UNDER THE COLOR DEPTH MENTIONED ABOVE!\n\
 		  We'll be using the alternate color depth given above instead...",
 		  PLEASE_INFORM, IS_WARNING_ONLY );

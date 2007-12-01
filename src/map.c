@@ -221,7 +221,7 @@ ResolveMapLabelOnShip ( char* MapLabel , location* PositionPointer )
     }
     
     fprintf ( stderr, "\n\nMapLabel: '%s'.\n" , MapLabel );
-    GiveStandardErrorMessage ( __FUNCTION__  , "\
+    ErrorMessage ( __FUNCTION__  , "\
 Resolving a certain map label failed on the complete ship!\n\
 This is a severe error in the game data of Freedroid.",
 			       PLEASE_INFORM, IS_FATAL );
@@ -360,7 +360,7 @@ DecodeDimensionsOfThisLevel ( Level loadlevel , char* DataPointer )
 */
     if ( loadlevel->ylen >= MAX_MAP_LINES ) 
     {
-	GiveStandardErrorMessage ( __FUNCTION__  , "\
+	ErrorMessage ( __FUNCTION__  , "\
 A maplevel Freedroid was supposed to load has more map lines than allowed\n\
 for a map level as by the constant MAX_MAP_LINES in defs.h.\n\
 Sorry, but unless this constant is raised, Freedroid will refuse to load this map.",
@@ -787,7 +787,7 @@ glue_obstacles_to_floor_tiles_for_level ( int level_num )
 	    //   
 	    /*
 	      DebugPrintf ( 0 , "The position where the problem occured is: x_tile=%d, y_tile=%d." , x_tile , y_tile );
-	      GiveStandardErrorMessage ( __FUNCTION__  , "\
+	      ErrorMessage ( __FUNCTION__  , "\
 	      FreedroidRPG was unable to glue a certain obstacle to the nearest map tile.\n\
 	      This bug can be resolved by simply raising a contant by one, but it needs to be done :)",
 	      PLEASE_INFORM, IS_WARNING_ONLY );
@@ -1102,7 +1102,7 @@ GetMapBrick ( Level deck , float x , float y )
     if ( BrickWanted >= ALL_ISOMETRIC_FLOOR_TILES )
     {
 	fprintf( stderr , "\nBrickWanted: %d at pos X=%d Y=%d Z=%d." , BrickWanted , RoundX , RoundY , deck->levelnum );
-	GiveStandardErrorMessage ( __FUNCTION__  , "\
+	ErrorMessage ( __FUNCTION__  , "\
 A maplevel in Freedroid contained a brick type, that does not have a\n\
 real graphical representation.  This is a severe error, that really \n\
 shouldn't be occuring in normal game, except perhaps if the level editor\n\
@@ -1211,7 +1211,7 @@ AnimateRefresh ( void )
 		//
 		break;
 	    default:
-		GiveStandardErrorMessage ( __FUNCTION__  , "\
+		ErrorMessage ( __FUNCTION__  , "\
 Error:  A refresh index pointing not to a refresh obstacles found.",
 					   PLEASE_INFORM, IS_FATAL );
 		break;
@@ -1256,7 +1256,7 @@ AnimateTeleports ( void )
 		//
 		break;
 	    default:
-		GiveStandardErrorMessage ( __FUNCTION__  , "\
+		ErrorMessage ( __FUNCTION__  , "\
 Error:  A teleporter index pointing not to a teleporter obstacle found.",
 					   PLEASE_INFORM, IS_FATAL );
 		break;
@@ -1804,7 +1804,7 @@ EncodeLevelForSaving(Level Lev)
     //
     if ( ( LevelMem = (char*) MyMalloc ( MemAmount ) ) == NULL ) 
     {
-	GiveStandardErrorMessage ( __FUNCTION__  , 
+	ErrorMessage ( __FUNCTION__  , 
 				   "Did not get any more memory." ,
 				   PLEASE_INFORM, IS_FATAL );
 	return ( NULL ) ;
@@ -1927,7 +1927,7 @@ use underground lighting: %d\n",
     //
     if ( strlen ( LevelMem ) >= MemAmount ) 
     {
-	GiveStandardErrorMessage ( __FUNCTION__  , 
+	ErrorMessage ( __FUNCTION__  , 
 				   "Estimate of needed memory was wrong!  How stupid!" ,
 				   PLEASE_INFORM, IS_FATAL );
 	return ( NULL ) ;
@@ -1971,7 +1971,7 @@ SaveShip(const char *filename)
     if ( ( ShipFile = fopen ( filename , "wb" ) ) == NULL ) 
     {
 	fprintf( stderr , "\nShip file filename: %s\n" , filename );
-	GiveStandardErrorMessage ( __FUNCTION__  , "Error opening ship file." ,
+	ErrorMessage ( __FUNCTION__  , "Error opening ship file." ,
 				   PLEASE_INFORM, IS_FATAL );
 	return ERR;
     }
@@ -2009,7 +2009,7 @@ SaveShip(const char *filename)
 	    {
 		if( array_num != -1 ) 
 		{
-		    GiveStandardErrorMessage ( __FUNCTION__  , "Two identical levelnumbers found!" ,
+		    ErrorMessage ( __FUNCTION__  , "Two identical levelnumbers found!" ,
 					       PLEASE_INFORM, IS_FATAL );
 		    return ERR;
 		} 
@@ -2018,7 +2018,7 @@ SaveShip(const char *filename)
 	} // while 
 	if ( array_num == -1 ) 
 	{
-	    GiveStandardErrorMessage ( __FUNCTION__  , "Levelnumber is missing!" ,
+	    ErrorMessage ( __FUNCTION__  , "Levelnumber is missing!" ,
 				       PLEASE_INFORM, IS_FATAL );
 	    level_anz ++;
 	    continue;
@@ -2048,7 +2048,7 @@ SaveShip(const char *filename)
     
     if ( fclose ( ShipFile ) == EOF ) 
     {
-	GiveStandardErrorMessage ( __FUNCTION__  , "Closing of ship file failed!" ,
+	ErrorMessage ( __FUNCTION__  , "Closing of ship file failed!" ,
 				   PLEASE_INFORM, IS_FATAL );
 	return ERR;
     }
@@ -2274,7 +2274,7 @@ DecodeLoadedLeveldata ( char *data )
     DataPointer = strstr( data , "Levelnumber:" );
     if ( DataPointer == NULL )
     {
-	GiveStandardErrorMessage ( __FUNCTION__  , "No levelnumber entry found!",
+	ErrorMessage ( __FUNCTION__  , "No levelnumber entry found!",
 				   PLEASE_INFORM, IS_FATAL );
     }
     
@@ -2534,7 +2534,7 @@ GetAllAnimatedMapTiles ( Level Lev )
 	    {
 	      fprintf( stderr , "\n\nLev->levelnum : %d MAX_DOORS_ON_LEVEL: %d \n" , 
 		       Lev -> levelnum , MAX_DOORS_ON_LEVEL );
-	      GiveStandardErrorMessage ( __FUNCTION__  , "\
+	      ErrorMessage ( __FUNCTION__  , "\
 The number of doors found in a level seems to be greater than the number\n\
 of doors currently allowed in a Freedroid map.",
 					 PLEASE_INFORM, IS_FATAL );
@@ -2558,7 +2558,7 @@ of doors currently allowed in a Freedroid map.",
 	    {
 	      fprintf( stderr , "\n\nLev->levelnum : %d MAX_REFRESHES_ON_LEVEL: %d \n" , 
 		       Lev -> levelnum , MAX_REFRESHES_ON_LEVEL );
-	      GiveStandardErrorMessage ( __FUNCTION__  , "\
+	      ErrorMessage ( __FUNCTION__  , "\
 The number of refreshes found in a level seems to be greater than the number\n\
 of refreshes currently allowed in a Freedroid map.",
 					 PLEASE_INFORM, IS_FATAL );
@@ -2580,7 +2580,7 @@ of refreshes currently allowed in a Freedroid map.",
 	    {
 	      fprintf( stderr , "\n\nLev->levelnum : %d MAX_TELEPORTERS_ON_LEVEL: %d \n" , 
 		       Lev -> levelnum , MAX_TELEPORTERS_ON_LEVEL );
-	      GiveStandardErrorMessage ( __FUNCTION__  , "\
+	      ErrorMessage ( __FUNCTION__  , "\
 The number of teleporters found in a level seems to be greater than the number\n\
 of teleporters currently allowed in a Freedroid map.",
 					 PLEASE_INFORM, IS_FATAL );
@@ -2601,7 +2601,7 @@ of teleporters currently allowed in a Freedroid map.",
 	    {
 	      fprintf( stderr , "\n\nLev->levelnum : %d MAX_AUTOGUNS_ON_LEVEL: %d \n" , 
 		       Lev -> levelnum , MAX_AUTOGUNS_ON_LEVEL );
-	      GiveStandardErrorMessage ( __FUNCTION__  , "\
+	      ErrorMessage ( __FUNCTION__  , "\
 The number of autoguns found in a level seems to be greater than the number\n\
 of autoguns currently allowed in a Freedroid map.",
 					 PLEASE_INFORM, IS_FATAL );
@@ -2744,7 +2744,7 @@ GetCrew (char *filename)
 	EndOfThisDroidSectionPointer = strstr ( DroidSectionPointer , DROIDS_LEVEL_DESCRIPTION_END_STRING ) ;
 	if ( EndOfThisDroidSectionPointer == NULL )
 	{
-	    GiveStandardErrorMessage ( __FUNCTION__  , "Unterminated droid section encountered!" ,
+	    ErrorMessage ( __FUNCTION__  , "Unterminated droid section encountered!" ,
 				       PLEASE_INFORM, IS_FATAL );
 	}
 	// EndOfThisDroidSectionPointer[0]=0;
@@ -2797,7 +2797,7 @@ GetThisLevelsSpecialForces ( char* SearchPointer , int OurLevelNumber , int Free
 	{
 	  fprintf ( stderr, "\n\nTypeIndicationString: '%s' OurLevelNumber: %d .\n" , 
 		    TypeIndicationString , OurLevelNumber );
-	  GiveStandardErrorMessage ( __FUNCTION__  , "\
+	  ErrorMessage ( __FUNCTION__  , "\
 The function reading and interpreting the crew file stunbled into something:\n\
 It was unable to assign the SPECIAL FORCE droid type identification string '%s' found \n\
 in the entry of the droid types allowed for level %d to an entry in\n\
@@ -2817,7 +2817,7 @@ file you use.",
 	}
       if ( FreeAllEnemysPosition == MAX_ENEMYS_ON_SHIP )
 	{
-	  GiveStandardErrorMessage ( __FUNCTION__  , 
+	  ErrorMessage ( __FUNCTION__  , 
 				     "No more free position to fill special forces into in GetCrew." ,
 				     PLEASE_INFORM, IS_FATAL );
 	}
@@ -2845,7 +2845,7 @@ file you use.",
 	}
       else
 	{
-	  GiveStandardErrorMessage ( __FUNCTION__  , "\
+	  ErrorMessage ( __FUNCTION__  , "\
 The droid specification of a droid in ReturnOfTux.droids should contain an \n\
 answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.\n\
 This indicated a corrupted freedroid.ruleset file with an error at least in\n\
@@ -2859,7 +2859,7 @@ the item specification section.",
 	ReadAndMallocStringFromData ( SearchPointer , "DialogSectionToUse=\"" , "\"" ) ;
       if ( strlen ( DialogSection ) >= MAX_LENGTH_FOR_DIALOG_SECTION_NAME-1 )
 	{
-	  GiveStandardErrorMessage ( __FUNCTION__  , "\
+	  ErrorMessage ( __FUNCTION__  , "\
 The dialog section specification string for a bot was too large.\n\
 This indicated a corrupted ReturnOfTux.droids file with an error when specifying\n\
 the dialog section name for one special force droid/character.",
@@ -2872,7 +2872,7 @@ the dialog section name for one special force droid/character.",
 	ReadAndMallocStringFromData ( SearchPointer , "ShortLabel=\"" , "\"" ) ;
       if ( strlen ( ShortDescription ) >= MAX_LENGTH_OF_SHORT_DESCRIPTION_STRING )
 	{
-	  GiveStandardErrorMessage ( __FUNCTION__  , "\
+	  ErrorMessage ( __FUNCTION__  , "\
 The short description specification string for a bot was too large.\n\
 This indicated a corrupted ReturnOfTux.droids file with an error when specifying\n\
 the dialog section name for one special force droid/character.",
@@ -2892,7 +2892,7 @@ the dialog section name for one special force droid/character.",
 	}
       else
 	{
-	  GiveStandardErrorMessage ( __FUNCTION__  , "\
+	  ErrorMessage ( __FUNCTION__  , "\
 The droid specification of a droid in ReturnOfTux.droids should contain an \n\
 answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.\n\
 This indicated a corrupted freedroid.ruleset file with an error at least in\n\
@@ -2989,7 +2989,7 @@ GetThisLevelsDroids( char* SectionPointer )
 	{
 	    fprintf ( stderr, "\n\nTypeIndicationString: '%s' OurLevelNumber: %d .\n" , 
 		      TypeIndicationString , OurLevelNumber );
-	    GiveStandardErrorMessage ( __FUNCTION__  , "\
+	    ErrorMessage ( __FUNCTION__  , "\
 The function reading and interpreting the crew file stunbled into something:\n\
 It was unable to assign the droid type identification string '%s' found \n\
 in the entry of the droid types allowed for level %d to an entry in\n\
@@ -3025,7 +3025,7 @@ game data file with all droid type specifications.",
 	}
 	if ( FreeAllEnemysPosition == MAX_ENEMYS_ON_SHIP )
 	{
-	    GiveStandardErrorMessage ( __FUNCTION__  , 
+	    ErrorMessage ( __FUNCTION__  , 
 				       "No more free position to fill random droids into in GetCrew." ,
 				       PLEASE_INFORM, IS_FATAL );
 	}
@@ -3175,7 +3175,7 @@ MoveLevelDoors ( )
 	  
 	default:
 	  fprintf ( stderr, "\n*Pos: '%d'.\ni: %d\nlevelnum: %d\nObstacle index: %d" , *Pos , i , DoorLevel -> levelnum , door_obstacle_index );
-	  GiveStandardErrorMessage ( __FUNCTION__  , "\
+	  ErrorMessage ( __FUNCTION__  , "\
 Error:  Doors pointing not to door obstacles found.",
 				     PLEASE_INFORM, IS_FATAL );
 	  break;
@@ -3419,7 +3419,7 @@ WorkLevelGuns ( )
 	  break;
 	default:
 	  fprintf ( stderr, "\n*AutogunType: '%d'.\n" , *AutogunType );
-	  GiveStandardErrorMessage ( __FUNCTION__  , "\
+	  ErrorMessage ( __FUNCTION__  , "\
 There seems to be an autogun in the autogun list of this level, but it\n\
 is not really an autogun.  Instead it's something else.",
 				     PLEASE_INFORM, IS_FATAL );
@@ -3493,7 +3493,7 @@ position_collides_with_this_obstacle ( float x , float y , obstacle* our_obstacl
       if ( obstacle_map [ obs_type ] . block_area_type != COLLISION_TYPE_RECTANGLE )
       {
       fprintf ( stderr, "\n\nCollision_area_type: %d.\n" , obstacle_map [ obs_type ] . block_area_type );
-      GiveStandardErrorMessage ( __FUNCTION__  , "\
+      ErrorMessage ( __FUNCTION__  , "\
       Error:  Unsupported type of collision area given.",
       PLEASE_INFORM, IS_FATAL );
       }

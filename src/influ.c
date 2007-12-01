@@ -150,7 +150,7 @@ find_free_floor_items_index ( int levelnum )
     // we don't overwrite the same position again and again.  A bit of 
     // randomisation should do the trick...
     //
-    // GiveStandardErrorMessage ( __FUNCTION__  , "FreedroidRPG failed to find a free items index for an item it wanted to put on the floor.\nThis case means that there are too many items on the floor of this level for the current game engine.\nA constant needs to be raised or the engine improved.", PLEASE_INFORM, IS_FATAL );
+    // ErrorMessage ( __FUNCTION__  , "FreedroidRPG failed to find a free items index for an item it wanted to put on the floor.\nThis case means that there are too many items on the floor of this level for the current game engine.\nA constant needs to be raised or the engine improved.", PLEASE_INFORM, IS_FATAL );
     //
     i = MyRandom ( MAX_ITEMS_PER_LEVEL - 2 );
     DebugPrintf ( 1 , "\n%s():  NOTE:  lots of items on the floor of this level.  Overwriting position %d." ,
@@ -187,7 +187,7 @@ throw_out_all_chest_content ( int obst_index )
       break;
     default: 
       // no chest handed as the chest obstacle!  Clearly a severe error.!
-      GiveStandardErrorMessage ( __FUNCTION__  , "Obstacle given to empty is not really a chest!" ,
+      ErrorMessage ( __FUNCTION__  , "Obstacle given to empty is not really a chest!" ,
 				 PLEASE_INFORM, IS_FATAL );
       break;
     }
@@ -985,7 +985,7 @@ CheckForTuxOutOfMap ( )
 		Me . pos . x ,
 		Me . pos . y ,
 		Me . pos . z );
-      GiveStandardErrorMessage ( __FUNCTION__  , "\
+      ErrorMessage ( __FUNCTION__  , "\
 A player's Tux was found outside the map.\n\
 This indicates either a bug in the Freedroid RPG code or\n\
 a bug in the currently used map system of Freedroid RPG.",
@@ -2008,7 +2008,7 @@ move_tux_thowards_intermediate_point ( )
 		if ( ( obstacle_index <= (-1) ) || ( obstacle_index >= MAX_OBSTACLES_ON_MAP ) )
 		{
 		    fprintf ( stderr , "\nobstacle_index: %d." , obstacle_index );
-		    GiveStandardErrorMessage ( __FUNCTION__  , "\
+		    ErrorMessage ( __FUNCTION__  , "\
  Received obstacle index, that doesn't correspond to obstacle." ,
 					       PLEASE_INFORM, IS_FATAL );
 		}
@@ -2059,7 +2059,7 @@ move_tux_thowards_intermediate_point ( )
 		Me . mouse_move_target_combo_action_type = NO_COMBO_ACTION_SET ;
 		break;
 	    default:
-		GiveStandardErrorMessage ( __FUNCTION__  , 
+		ErrorMessage ( __FUNCTION__  , 
 					   "Unhandled combo action for intermediate course encountered!" ,
 					   PLEASE_INFORM, IS_FATAL );
 		break;
@@ -2436,7 +2436,7 @@ start_tux_death_explosions (void)
 	counter -= 1;
 	if (counter >= MAXBLASTS)
 	{
-	    GiveStandardErrorMessage ( __FUNCTION__  , 
+	    ErrorMessage ( __FUNCTION__  , 
 				       "Ran out of blasts!!!" ,
 				       PLEASE_INFORM, IS_FATAL );
 	}
@@ -3218,7 +3218,7 @@ void TuxReloadWeapon()
 	    munition_type = GetItemIndexByName("2 mm Exterminator Ammunition");
 	    break;
 	default:
-	    GiveStandardErrorMessage ( __FUNCTION__  , "Got an unknown munition type for your current weapon.",
+	    ErrorMessage ( __FUNCTION__  , "Got an unknown munition type for your current weapon.",
 						                                          PLEASE_INFORM, IS_FATAL );
 	}
 
@@ -3408,7 +3408,7 @@ check_for_chests_to_open ( int chest_index )
 		    
 		    break;
 		default:
-		    GiveStandardErrorMessage ( __FUNCTION__  , 
+		    ErrorMessage ( __FUNCTION__  , 
 					       "chest to be approached is not a chest obstacle!!" ,
 					       PLEASE_INFORM, IS_FATAL );
 		    break;
@@ -3776,7 +3776,7 @@ handle_player_unlock_command ( )
     obstacle_index = GetObstacleBelowMouseCursor ( ) ;
     if ( obstacle_index == (-1) )
     {
-	GiveStandardErrorMessage ( __FUNCTION__  , 
+	ErrorMessage ( __FUNCTION__  , 
 				   "Unlock command received, but there isn't any obstacle under the current mouse cursor.  Has it maybe moved away?  I'll simply ignore this request." ,
 				   NO_NEED_TO_INFORM, IS_WARNING_ONLY );
 	return;
@@ -3805,7 +3805,7 @@ handle_player_repair_command ( )
     obstacle_index = GetObstacleBelowMouseCursor ( ) ;
     if ( obstacle_index == (-1) )
     {
-	GiveStandardErrorMessage ( __FUNCTION__  , 
+	ErrorMessage ( __FUNCTION__  , 
 				   "Repair command received, but there isn't any obstacle under the current mouse cursor.  Has it maybe moved away?  I'll simply ignore this request." ,
 				   NO_NEED_TO_INFORM, IS_WARNING_ONLY );
 	return;
@@ -3883,7 +3883,7 @@ handle_player_talk_command ( )
     obstacle_index = GetObstacleBelowMouseCursor ( ) ;
     if ( obstacle_index == (-1) )
     {
-	GiveStandardErrorMessage ( __FUNCTION__  , 
+	ErrorMessage ( __FUNCTION__  , 
 				   "Talk command received, but there isn't any person or obstacle under the current mouse cursor.  Has it maybe moved away?  I'll simply ignore this request." ,
 				   NO_NEED_TO_INFORM, IS_WARNING_ONLY );
 	return;
@@ -3912,7 +3912,7 @@ handle_player_attack_command ( )
     obstacle_index = GetObstacleBelowMouseCursor ( ) ;
     if ( obstacle_index == (-1) )
     {
-	GiveStandardErrorMessage ( __FUNCTION__  , 
+	ErrorMessage ( __FUNCTION__  , 
 				   "Attack command received, but there isn't any obstacle under the current mouse cursor.  Has it maybe moved away?  I'll simply ignore this request." ,
 				   NO_NEED_TO_INFORM, IS_WARNING_ONLY );
 	return;
@@ -3941,7 +3941,7 @@ handle_player_pickpocket_command ( )
     obstacle_index = GetObstacleBelowMouseCursor ( ) ;
     if ( obstacle_index == (-1) )
     {
-	GiveStandardErrorMessage ( __FUNCTION__  , 
+	ErrorMessage ( __FUNCTION__  , 
 				   "Pickpocket command received, but there isn't any obstacle under the current mouse cursor.  Has it maybe moved away?  I'll simply ignore this request." ,
 				   NO_NEED_TO_INFORM, IS_WARNING_ONLY );
 	return;
@@ -4104,7 +4104,7 @@ AnalyzePlayersMouseClick ( )
 	default:
 	    DebugPrintf ( -4 , "\n%s(): global_ingame_mode: %d." , __FUNCTION__ , 
 			  global_ingame_mode );
-	    GiveStandardErrorMessage ( __FUNCTION__  , 
+	    ErrorMessage ( __FUNCTION__  , 
 				       "Illegal global ingame mode encountered!" ,
 				       PLEASE_INFORM, IS_FATAL );
 	    break;

@@ -161,7 +161,7 @@ GiveItemDescription ( char* ItemDescText , item* CurItem , int ForShop )
     if ( CurItem == NULL ) return;
     if ( CurItem->type == (-1) ) 
     {
-	GiveStandardErrorMessage ( __FUNCTION__  , "\
+	ErrorMessage ( __FUNCTION__  , "\
 An item description was requested for an item, that does not seem to \n\
 exist really (i.e. has a type = (-1) ).",
 				   PLEASE_INFORM, IS_FATAL );
@@ -1258,7 +1258,7 @@ prepare_text_window_content ( char* ItemDescText )
 		    break;
 		default:
 		    fprintf ( stderr , "\nobs_type: %d." , obs_type );
-		    GiveStandardErrorMessage ( __FUNCTION__  , "\
+		    ErrorMessage ( __FUNCTION__  , "\
 A barrel was detected, but the barrel type was not valid.",
 					       PLEASE_INFORM, IS_FATAL );
 			break;

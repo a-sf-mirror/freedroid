@@ -236,7 +236,7 @@ ShowStartupPercentage ( int Percentage )
 			  ( 205 ) * GameConfig . screen_height / 480 + 10 , "%d%%", Percentage ) ;
 	    break;
 	default:
-	    GiveStandardErrorMessage ( __FUNCTION__  , "\
+	    ErrorMessage ( __FUNCTION__  , "\
 The resolution found is none of\n\
      0 = 640 x 480 (default with SDL)\n\
      1 = 800 x 600 (default with OpenGL)\n\
@@ -773,7 +773,7 @@ int Get_Programs_Data ( char * DataPointer )
 
     if ( Number_Of_Programs >= MAX_NUMBER_OF_PROGRAMS ) 
 	{
-	GiveStandardErrorMessage ( __FUNCTION__  , "\
+	ErrorMessage ( __FUNCTION__  , "\
 There are more skills defined, than the maximum number specified in the code!",
                                    PLEASE_INFORM, IS_FATAL );
 	}
@@ -1393,7 +1393,7 @@ ParseCommandLine (int argc, char *const argv[])
 
 			default:
 			    fprintf( stderr, "\nresolution code received: %d" , resolution_code );
-			    GiveStandardErrorMessage ( __FUNCTION__  , "\
+			    ErrorMessage ( __FUNCTION__  , "\
 The resolution identifier given is not a valid resolution code.\n\
 These codes correspond to the following resolutions available:\n\
      0 = 640 x 480 (default with SDL)\n\
@@ -1436,7 +1436,7 @@ your suggestion to the FreedroidRPG dev team to enable new resolutions.",
 	GameConfig . screen_height = 480 ;
 	GameConfig . next_time_width_of_screen = 640; 
 	GameConfig . next_time_height_of_screen = 480 ;
-	GiveStandardErrorMessage ( __FUNCTION__  , "\
+	ErrorMessage ( __FUNCTION__  , "\
 You are using SDL instead of OpenGL for graphics output.  For this\n\
 output method, no other screen resolutions than 640x480 is available.\n\
 Therefore your setting will be overridden and 640x480 will be used.\n\

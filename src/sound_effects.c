@@ -373,7 +373,7 @@ play_item_sound (int item_type)
   if (item_type < 0)
     {
       fprintf (stderr, "\n\nitem_type %d \n", item_type);
-      GiveStandardErrorMessage (__FUNCTION__, "\
+      ErrorMessage (__FUNCTION__, "\
 		                           negative item type received!\n", PLEASE_INFORM, IS_FATAL);
     }
 

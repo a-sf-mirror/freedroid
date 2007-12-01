@@ -548,7 +548,7 @@ DropItemAt( int ItemType , int level_num , float x , float y , int prefix , int 
     {
 	DebugPrintf ( -1000 , "\n\nItemType received: %d." , ItemType );
 	// raise ( SIGSEGV );
-	GiveStandardErrorMessage ( __FUNCTION__  , "\
+	ErrorMessage ( __FUNCTION__  , "\
 Received an item type that was outside of range of the allowed item types.",
 				   PLEASE_INFORM, IS_FATAL );
     }
@@ -579,7 +579,7 @@ Received an item type that was outside of range of the allowed item types.",
     if ( ItemType >= Number_Of_Item_Types ) 
     {
 	fprintf ( stderr, "\n\nItemType: '%d'.\n" , ItemType );
-	GiveStandardErrorMessage ( __FUNCTION__  , "\
+	ErrorMessage ( __FUNCTION__  , "\
 There was an item code for an item to drop given to the function \n\
 DropItemAt( ... ), which is pointing beyond the scope of the known\n\
 item types.  This indicates a severe bug in Freedroid.",
@@ -599,7 +599,7 @@ item types.  This indicates a severe bug in Freedroid.",
     }
     if ( i >= MAX_ITEMS_PER_LEVEL )
     {
-	GiveStandardErrorMessage ( __FUNCTION__  , "\
+	ErrorMessage ( __FUNCTION__  , "\
 Couldn't find another array entry to drop another item.",
 				   PLEASE_INFORM, IS_FATAL );
     }
@@ -642,7 +642,7 @@ DropChestItemAt( int ItemType , float x , float y , int prefix , int suffix , in
     if ( ItemType >= Number_Of_Item_Types ) 
     {
 	fprintf ( stderr, "\n\nItemType: '%d'.\n" , ItemType );
-	GiveStandardErrorMessage ( __FUNCTION__  , "\
+	ErrorMessage ( __FUNCTION__  , "\
 There was an item code for an item to drop given to the function \n\
 DropItemAt( ... ), which is pointing beyond the scope of the known\n\
 item types.  This indicates a severe bug in Freedroid.",
@@ -662,7 +662,7 @@ item types.  This indicates a severe bug in Freedroid.",
     }
     if ( i >= MAX_ITEMS_PER_LEVEL )
     {
-	GiveStandardErrorMessage ( __FUNCTION__  , "\
+	ErrorMessage ( __FUNCTION__  , "\
 Couldn't find another array entry to drop another item.",
 				   PLEASE_INFORM, IS_FATAL );
     }
@@ -726,7 +726,7 @@ find_suitable_bonus_for_item ( int drop_item_type , int TreasureChestRange, item
 	return ( -1 );
 
     if ( btype != SuffixList && btype != PrefixList ) 
-	GiveStandardErrorMessage( __FUNCTION__, "The bonus list to choose a prefix from is incorrect.\n", PLEASE_INFORM, IS_FATAL);
+	ErrorMessage( __FUNCTION__, "The bonus list to choose a prefix from is incorrect.\n", PLEASE_INFORM, IS_FATAL);
 
     int bcount = 0;
     int i = 0;
@@ -1145,7 +1145,7 @@ DropRandomItem( int level_num , float x , float y , int TreasureChestRange , int
 	    } // inner switch
 	    break;
 	default:
-	    GiveStandardErrorMessage ( __FUNCTION__  , "\
+	    ErrorMessage ( __FUNCTION__  , "\
 Unhandled treasure chest encountered!  This isn't supposed to happen.",
 				       PLEASE_INFORM, IS_FATAL );
 	    break;
@@ -1510,7 +1510,7 @@ required_magic_stat_for_next_level_and_item ( int item_type )
     else
     {
 	fprintf ( stderr , "\nlevel_index=%d." , level_index );
-	GiveStandardErrorMessage ( __FUNCTION__  , "\
+	ErrorMessage ( __FUNCTION__  , "\
 There was a skill level mentioned, that exceeds the range of allowed skill levels.",
 				   PLEASE_INFORM, IS_FATAL );
     }
@@ -1557,7 +1557,7 @@ int GetItemIndexByName ( const char * name )
 	}
 
     printf("Item name: %s\n", name);
-    GiveStandardErrorMessage ( __FUNCTION__  , "Unable to find a given item name.",
+    ErrorMessage ( __FUNCTION__  , "Unable to find a given item name.",
 	                                                      PLEASE_INFORM, IS_FATAL );
     return -1;
 }
@@ -1883,7 +1883,7 @@ FindFirstInventoryIndexWithItemType ( int Itemtype )
     // Severe error:  Item type NOT found in inventory!!!
     //
     fprintf ( stderr, "\n\nItemType: '%d'.\n" , Itemtype );
-    GiveStandardErrorMessage ( __FUNCTION__  , "\
+    ErrorMessage ( __FUNCTION__  , "\
 There was an item code for an item to locate in inventory, but inventory\n\
 did not contain this item type at all!  This indicates a severe bug in Freedroid.",
 			       PLEASE_INFORM, IS_FATAL );
@@ -1937,7 +1937,7 @@ DeleteOneInventoryItemsOfType( int Itemtype )
     // This point must never be reached or a severe error has occured...
     //
     fprintf ( stderr, "\n\nItemType: '%d'.\n" , Itemtype );
-    GiveStandardErrorMessage ( __FUNCTION__  , "\
+    ErrorMessage ( __FUNCTION__  , "\
 One single item of all the items of a given type in the Tux inventory\n\
 should be removed, but there was not even one such item ever found in\n\
 Tux invenrtory.  Something must have gone awry...",
@@ -2316,7 +2316,7 @@ GetFreeInventoryIndex( void )
     // occured, an error message must be printed out and the program
     // must be terminated.
     //
-    GiveStandardErrorMessage ( __FUNCTION__  , "\
+    ErrorMessage ( __FUNCTION__  , "\
 A FREE INVENTORY INDEX POSITION COULD NOT BE FOUND.\n\
 This is an internal error, that must never happen unless there are\n\
 severe bugs in the inventory system.",

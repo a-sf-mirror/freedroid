@@ -136,7 +136,7 @@ TryToPutItem( item* SellItem , int AmountToSellAtMost , moderately_finepoint pos
   //
   if ( FreeIndex == (-1) )
     {
-      GiveStandardErrorMessage ( __FUNCTION__  , "\
+      ErrorMessage ( __FUNCTION__  , "\
 The function used to put items into chests and containers encountered the\n\
 case that there was no more room in the list of items in containers of this\n\
 level.  We didn't think that this case would ever be reached, so we also didn't\n\
@@ -274,7 +274,7 @@ AssembleItemListForTradeCharacter ( item* ListToBeFilled , int ShopCharacterCode
 	}
     else
 	{
-	GiveStandardErrorMessage ( __FUNCTION__  , "\
+	ErrorMessage ( __FUNCTION__  , "\
 		The function has received an unexpected character code.  This is not handled\n\
 		currently and therefore initiates immediate termination now...",
 		PLEASE_INFORM, IS_FATAL );
@@ -488,7 +488,7 @@ ShowRescaledItem ( int position , int TuxItemRow , item* ShowItem )
             if ( equipped_icon . surface == NULL )
             {
                 fprintf ( stderr , "\nFull path used: %s." , fpath );
-                GiveStandardErrorMessage ( __FUNCTION__ , "\
+                ErrorMessage ( __FUNCTION__ , "\
 Error loading flag image.",   
                                            PLEASE_INFORM, IS_FATAL );
             }
@@ -984,7 +984,7 @@ ClickedMenuItemPosition( void )
   // if this point is ever reached, a severe error has occured, and Freedroid
   // should therefore also say so.
   //
-  GiveStandardErrorMessage ( __FUNCTION__  , "\
+  ErrorMessage ( __FUNCTION__  , "\
 The MENU CODE was unable to properly resolve a mouse button press.",
 				 PLEASE_INFORM, IS_FATAL );
 
@@ -1330,7 +1330,7 @@ TryToSellItem( item* SellItem , int WithBacktalk , int AmountToSellAtMost )
     //
     if ( SellItem -> multiplicity < 1 )
     {
-	GiveStandardErrorMessage ( __FUNCTION__  , "\
+	ErrorMessage ( __FUNCTION__  , "\
 An item sold seemed to have multiplicity < 1.  This might be due to some\n\
 fatal errors in the engine OR it might be due to some items droped on the\n\
 maps somewhere long ago still had multiplicity=0 setting, which should not\n\

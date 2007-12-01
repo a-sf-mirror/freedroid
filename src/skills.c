@@ -115,7 +115,7 @@ int get_program_index_with_name ( const char * pname )
 
 	fprintf(stderr, "%s\n", pname);
 
-	 GiveStandardErrorMessage ( __FUNCTION__  , "\
+	 ErrorMessage ( __FUNCTION__  , "\
 FreedroidRPG could not find the program name above in the program spec array!",
                                  PLEASE_INFORM, IS_FATAL );
      return -1;

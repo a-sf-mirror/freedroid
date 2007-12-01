@@ -518,7 +518,7 @@ MouseCursorIsOnButton( int ButtonIndex , int x , int y )
     //
     if ( ( ButtonIndex >= MAX_MOUSE_PRESS_BUTTONS ) || ( ButtonIndex < 0 ) )
     {
-	GiveStandardErrorMessage ( __FUNCTION__  , "\
+	ErrorMessage ( __FUNCTION__  , "\
 A Button that should be checked for mouse contact was requested, but the\n\
 button index given exceeds the number of buttons defined in freedroid.",
 				   PLEASE_INFORM, IS_FATAL );
@@ -579,7 +579,7 @@ char fpath[2048];
     //
     if ( ( ButtonIndex >= MAX_MOUSE_PRESS_BUTTONS ) || ( ButtonIndex < 0 ) )
     {
-	GiveStandardErrorMessage ( __FUNCTION__  , 
+	ErrorMessage ( __FUNCTION__  , 
 				   "A Button that should be displayed on the screen was requested, but the\n\
 button index given exceeds the number of buttons defined in freedroid.",
 				   PLEASE_INFORM, IS_FATAL );
@@ -607,7 +607,7 @@ button index given exceeds the number of buttons defined in freedroid.",
 	if ( tmp == NULL )
 	{
 	    fprintf ( stderr , "\nfpath: %s.\nButton Index: %d.\n" , fpath , ButtonIndex ) ;
-	    GiveStandardErrorMessage ( __FUNCTION__  , "\
+	    ErrorMessage ( __FUNCTION__  , "\
 An image file for a button that should be displayed on the screen couldn't\n\
 be successfully loaded into memory.\n\
 This is an indication of a severe bug/installation problem of freedroid.",
@@ -761,7 +761,7 @@ find_file (char *fname, char *subdir, char * File_Path, int silent)
                 if ( ! silent )
 	    	    {
 		    DebugPrintf ( -4 , "The file name was: %s.\n" , fname );
-		    GiveStandardErrorMessage ( __FUNCTION__  , "File not found ", 
+		    ErrorMessage ( __FUNCTION__  , "File not found ", 
 					   NO_NEED_TO_INFORM , IS_WARNING_ONLY );
 		    }
 		return 1;
@@ -1127,7 +1127,7 @@ move_all_items_in_area ( Level source_level ,
 	  }
 	if ( j >= MAX_ITEMS_PER_LEVEL )
 	  {
-	    GiveStandardErrorMessage ( __FUNCTION__  , 
+	    ErrorMessage ( __FUNCTION__  , 
 				       "No more free item entries in target level!" ,
 				       PLEASE_INFORM, IS_FATAL );
 	  }
@@ -1351,7 +1351,7 @@ Teleport ( int LNum , float X , float Y , int with_sound_and_fading )
 	    fprintf( stderr, "\n\ntarget location was: lev=%d x=%f y=%f.\n" , LNum , X , Y );
 	    fprintf( stderr, "source location was: lev=%d x=%f y=%f." , Me . pos . z , 
 		     Me . pos . x , Me . pos . y );
-	    GiveStandardErrorMessage ( __FUNCTION__  , "\
+	    ErrorMessage ( __FUNCTION__  , "\
 A Teleport was requested, but the location to teleport to lies outside\n\
 the bounds of this 'ship' which means the current collection of levels.\n\
 This indicates an error in the map system of Freedroid.",
@@ -1536,7 +1536,7 @@ LoadGameConfig (void)
     if ( ( mystrnlen ( GameConfig.freedroid_version_string , 100 ) != strlen ( VERSION ) ) ||
 	 ( memcmp ( GameConfig.freedroid_version_string , VERSION , strlen ( VERSION ) ) ) )
     {
-	GiveStandardErrorMessage ( __FUNCTION__  , "\
+	ErrorMessage ( __FUNCTION__  , "\
 Settings file found in your ~/.freedroid_rpg dir does not\n\
 seem to be from the same version a this installation of freedroid.\n\
 This is perfectly normal if you have just upgraded your version of\n\
@@ -1582,7 +1582,7 @@ settings file will be generated.",
 	GameConfig . screen_height = 480 ;
 	GameConfig . next_time_width_of_screen = 640; 
 	GameConfig . next_time_height_of_screen = 480 ;
-	GiveStandardErrorMessage ( __FUNCTION__  , "\
+	ErrorMessage ( __FUNCTION__  , "\
 You are using SDL instead of OpenGL for graphics output.  For this\n\
 output method, no other screen resolutions than 640x480 is available.\n\
 Therefore your setting will be overridden and 640x480 will be used.\n\
@@ -1774,7 +1774,7 @@ GiveNumberToThisActionLabel ( char* ActionLabel )
   if ( i >= MAX_TRIGGERED_ACTIONS_IN_GAME )
     {
       fprintf( stderr, "\n\nActionLabel: '%s'\n" , ActionLabel );
-      GiveStandardErrorMessage ( __FUNCTION__  , "\
+      ErrorMessage ( __FUNCTION__  , "\
 The label that should reference an action for later execution could not\n\
 be identified as valid reference to an existing action.",
 				 PLEASE_INFORM, IS_FATAL );
@@ -1830,7 +1830,7 @@ give_pointer_to_obstacle_with_label ( char* obstacle_label )
 		  // pointing to this obstacle label (any more).
 		  //
 		  fprintf ( stderr , "\nlabel=\"%s\"" , obstacle_label );
-		  GiveStandardErrorMessage ( __FUNCTION__  , "\
+		  ErrorMessage ( __FUNCTION__  , "\
 The obstacle label was found in the label list,\n but no obstacle seems to point to this label.\nA possible reason for this could be a duplicate entry in the label list.\nDevelopers will have to fix manually..." ,
 					     PLEASE_INFORM, IS_FATAL );
 		}
@@ -1842,7 +1842,7 @@ The obstacle label was found in the label list,\n but no obstacle seems to point
   // So here we've encountered an error!  There seems to be no obstacle
   // pointing to this obstacle label (any more).
   //
-  GiveStandardErrorMessage ( __FUNCTION__  , "\
+  ErrorMessage ( __FUNCTION__  , "\
 The obstacle label given was NOT found in any levels obstacle label list." ,
 			     PLEASE_INFORM, IS_FATAL );
   return ( NULL ) ;
@@ -1886,7 +1886,7 @@ give_level_of_obstacle_with_label ( char* obstacle_label )
 		  // So here we've encountered an error!  There seems to be no obstacle
 		  // pointing to this obstacle label (any more).
 		  //
-		  GiveStandardErrorMessage ( __FUNCTION__  , "\
+		  ErrorMessage ( __FUNCTION__  , "\
 The obstacle label was found in the label list,\n but no obstacle seems to point to this label." ,
 					     PLEASE_INFORM, IS_FATAL );
 		}
@@ -1898,7 +1898,7 @@ The obstacle label was found in the label list,\n but no obstacle seems to point
   // So here we've encountered an error!  There seems to be no obstacle
   // pointing to this obstacle label (any more).
   //
-  GiveStandardErrorMessage ( __FUNCTION__  , "\
+  ErrorMessage ( __FUNCTION__  , "\
 The obstacle label given was NOT found in any levels obstacle label list." ,
 			     PLEASE_INFORM, IS_FATAL );
   return ( -1 ) ;

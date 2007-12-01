@@ -487,7 +487,7 @@ blit_one_obstacle ( obstacle* our_obstacle )
     if ( ( our_obstacle-> type <= (-1) ) || ( our_obstacle-> type >= NUMBER_OF_OBSTACLE_TYPES ) )
     {
 	fprintf ( stderr , "\nobstacle_type found=%d." , our_obstacle-> type ) ;
-	GiveStandardErrorMessage ( __FUNCTION__  , "\
+	ErrorMessage ( __FUNCTION__  , "\
 There was an obstacle type given, that exceeds the number of\n\
  obstacle types allowed and loaded in Freedroid.",
 				   PLEASE_INFORM, IS_FATAL );
@@ -637,7 +637,7 @@ blit_one_obstacle_highlighted ( obstacle* our_obstacle )
 
     if ( ( our_obstacle-> type <= (-1) ) || ( our_obstacle-> type >= NUMBER_OF_OBSTACLE_TYPES ) )
     {
-	GiveStandardErrorMessage ( __FUNCTION__  , "\
+	ErrorMessage ( __FUNCTION__  , "\
 There was an obstacle type given, that exceeds the number of\n\
  obstacle types allowed and loaded in Freedroid.",
 				   PLEASE_INFORM, IS_FATAL );
@@ -682,7 +682,7 @@ blit_one_obstacle_zoomed ( obstacle* our_obstacle )
     
     if ( ( our_obstacle-> type <= (-1) ) || ( our_obstacle-> type >= NUMBER_OF_OBSTACLE_TYPES ) )
     {
-	GiveStandardErrorMessage ( __FUNCTION__  , "\
+	ErrorMessage ( __FUNCTION__  , "\
 There was an obstacle type given, that exceeds the number of\n\
  obstacle types allowed and loaded in Freedroid.",
 				   PLEASE_INFORM, IS_FATAL );
@@ -796,7 +796,7 @@ insert_obstacles_into_blitting_list ( int mask )
 		{
 		    if ( i >= MAX_ELEMENTS_IN_BLITTING_LIST )
 		    {
-			GiveStandardErrorMessage ( __FUNCTION__  , "\
+			ErrorMessage ( __FUNCTION__  , "\
 The blitting list size was exceeded!",
 						   PLEASE_INFORM, IS_FATAL );
 		    }
@@ -861,7 +861,7 @@ insert_new_element_into_blitting_list ( float new_element_norm ,
 	    //
 	    if ( i >= MAX_ELEMENTS_IN_BLITTING_LIST - 1 )
 	    {
-		GiveStandardErrorMessage ( __FUNCTION__  , "\
+		ErrorMessage ( __FUNCTION__  , "\
 The blitting list size was exceeded!",
 					   PLEASE_INFORM, IS_FATAL );
 	    }
@@ -1241,7 +1241,7 @@ blit_preput_objects_according_to_blitting_list ( int mask )
 	    {
 		fprintf ( stderr , "\nerrorneous obstacle type to blit: %d." , 
 			  ( (obstacle*)  blitting_list [ i ] . element_pointer ) -> type );
-		GiveStandardErrorMessage ( __FUNCTION__  , 
+		ErrorMessage ( __FUNCTION__  , 
 					   "The blitting list contained an illegal blitting object type.",
 					   PLEASE_INFORM, IS_FATAL );
 	    }
@@ -1374,7 +1374,7 @@ blit_nonpreput_objects_according_to_blitting_list ( int mask )
 		{
 		    fprintf ( stderr , "\nerrorneous obstacle type to blit: %d." , 
 			      ( (obstacle*)  blitting_list [ i ] . element_pointer ) -> type );
-		    GiveStandardErrorMessage ( __FUNCTION__  , 
+		    ErrorMessage ( __FUNCTION__  , 
 					       "The blitting list contained an illegal blitting object type.",
 					       PLEASE_INFORM, IS_FATAL );
 		}
@@ -1446,7 +1446,7 @@ blit_nonpreput_objects_according_to_blitting_list ( int mask )
 		// DebugPrintf ( -1 , "\nThrown item now blitted..." );
 		break;
 	    default:
-		GiveStandardErrorMessage ( __FUNCTION__  , "\
+		ErrorMessage ( __FUNCTION__  , "\
 The blitting list contained an illegal blitting object type.",
 					   PLEASE_INFORM, IS_FATAL );
 		break;
@@ -1494,7 +1494,7 @@ show_obstacle_labels ( int mask )
 	    //
 	    if ( EditLevel -> obstacle_description_list [ level_editor_marked_obstacle -> description_index ] == NULL )
 	    {
-		GiveStandardErrorMessage ( __FUNCTION__  , "\
+		ErrorMessage ( __FUNCTION__  , "\
 WARNING!  Null string for description found.  Deleting description index in question.",
 					   NO_NEED_TO_INFORM, IS_WARNING_ONLY );
 		level_editor_marked_obstacle -> description_index = (-1) ;
@@ -1743,7 +1743,7 @@ draw_grid_on_the_floor (int mask)
         get_iso_image_from_file_and_path (fpath, &(grid_tile_SDL), TRUE);
         if (grid_tile_SDL.surface == NULL)
         	{
-          GiveStandardErrorMessage (__FUNCTION__, "\
+          ErrorMessage (__FUNCTION__, "\
 Unable to load the grid tile.", PLEASE_INFORM, IS_FATAL);
         	}
 	}
@@ -2250,7 +2250,7 @@ char fpath[2048];
     {
 	fprintf( stderr, "\n\nfilename: '%s'\n" , fpath );
 	
-	GiveStandardErrorMessage ( __FUNCTION__  , "\
+	ErrorMessage ( __FUNCTION__  , "\
 Freedroid was unable to open a given tux image archive.\n\
 This indicates a serious bug in this installation of Freedroid.",
 				   PLEASE_INFORM, IS_FATAL );
@@ -2329,7 +2329,7 @@ grab_tux_images_from_archive ( int tux_part_group , int motion_class , char* par
          ret = inflateInit(&strm);
          if (ret != Z_OK)
              {
-             GiveStandardErrorMessage ( __FUNCTION__  , "\
+             ErrorMessage ( __FUNCTION__  , "\
 zlib was unable to start decompressing a tux archive file.\n\
 This indicates a serious bug in this installation of Freedroid.",
                                    PLEASE_INFORM, IS_FATAL );
@@ -2344,7 +2344,7 @@ This indicates a serious bug in this installation of Freedroid.",
                 case Z_MEM_ERROR:
                     (void)inflateEnd(&strm);
  
-             GiveStandardErrorMessage ( __FUNCTION__  , "\
+             ErrorMessage ( __FUNCTION__  , "\
 zlib was unable to decompress a tux archive file.\n\
 This indicates a serious bug in this installation of Freedroid.",
                                    PLEASE_INFORM, IS_FATAL );
@@ -2378,7 +2378,7 @@ This indicates a serious bug in this installation of Freedroid.",
     //
     if ( strncmp ( "tuxX" , archive_type_string , 4 ) )
     {
-	GiveStandardErrorMessage ( __FUNCTION__  , "\
+	ErrorMessage ( __FUNCTION__  , "\
 Initial archive type string doesn't look like it's from an image archive of TUX type.\n\
 This indicates a serious bug in this installation of Freedroid.",
 				   PLEASE_INFORM, IS_FATAL );
@@ -2388,7 +2388,7 @@ This indicates a serious bug in this installation of Freedroid.",
     //
     if ( strncmp ( "sdlX" , ogl_support_string , 4 ) )
     {
-	GiveStandardErrorMessage ( __FUNCTION__  , "\
+	ErrorMessage ( __FUNCTION__  , "\
 Initial archive type string doesn't look like this is a pure-SDL\n\
 arranged image archive.  While this is not impossible to use, it's\n\
 still quite inefficient, and I can only recommend to use sdl-sized\n\
@@ -2443,7 +2443,7 @@ images.  Therefore I refuse to process this file any further here.",
 		//
 		if ( ( img_xlen <= 0 ) || ( img_ylen <= 0 ) )
 		  {
-		    GiveStandardErrorMessage ( __FUNCTION__  , "\
+		    ErrorMessage ( __FUNCTION__  , "\
 Received some non-positive Tux surface dimensions.  That's a bug for sure!",
 					       PLEASE_INFORM, IS_FATAL );
 		}
@@ -2469,7 +2469,7 @@ Received some non-positive Tux surface dimensions.  That's a bug for sure!",
 		if ( loaded_tux_images [ tux_part_group ] [ our_phase ] [ rotation_index ] . surface == NULL )
 		{
 		    DebugPrintf ( -1000 , "\n\nError code from SDL: %s." , SDL_GetError() );
-		    GiveStandardErrorMessage ( __FUNCTION__  , "\
+		    ErrorMessage ( __FUNCTION__  , "\
 Creation of an Tux SDL software surface from pixel data failed.",
 					       PLEASE_INFORM, IS_FATAL );
 		}
@@ -2505,7 +2505,7 @@ Creation of an Tux SDL software surface from pixel data failed.",
 		// obviously something with the initialisation was wrong in the first
 		// place...
 		//
-		GiveStandardErrorMessage ( __FUNCTION__  , "\
+		ErrorMessage ( __FUNCTION__  , "\
 Surface to be loaded didn't have empty (NULL) pointer in the first place.",
 					   PLEASE_INFORM, IS_FATAL );
 
@@ -2588,7 +2588,7 @@ char fpath[2048];
     {
 	fprintf( stderr, "\n\nfilename: '%s'\n" , fpath );
 	
-	GiveStandardErrorMessage ( __FUNCTION__  , "\
+	ErrorMessage ( __FUNCTION__  , "\
 Freedroid was unable to open a given enemy image archive.\n\
 This indicates a serious bug in this installation of Freedroid.",
 				   PLEASE_INFORM, IS_FATAL );
@@ -2630,7 +2630,7 @@ This indicates a serious bug in this installation of Freedroid.",
              {
 	     fprintf( stderr, "\n\nfilename: '%s'\n" , fpath );
 	
-	     GiveStandardErrorMessage ( __FUNCTION__  , "\
+	     ErrorMessage ( __FUNCTION__  , "\
 zlib was unable to start decompressing an enemy archive file.\n\
 This indicates a serious bug in this installation of Freedroid.",
 				   PLEASE_INFORM, IS_FATAL );
@@ -2646,7 +2646,7 @@ This indicates a serious bug in this installation of Freedroid.",
                     (void)inflateEnd(&strm);
                      fprintf( stderr, "\n\nfilename: '%s'\n" , fpath );
          
-             GiveStandardErrorMessage ( __FUNCTION__  , "\
+             ErrorMessage ( __FUNCTION__  , "\
 zlib was unable to decompress an enemy archive file.\n\
 This indicates a serious bug in this installation of Freedroid.",
                                    PLEASE_INFORM, IS_FATAL );
@@ -2657,7 +2657,7 @@ This indicates a serious bug in this installation of Freedroid.",
 	    if (ret != Z_STREAM_END) 
 		{
                 fprintf( stderr, "\n\nfilename: '%s'\n" , fpath );
-             GiveStandardErrorMessage ( __FUNCTION__  , "\
+             ErrorMessage ( __FUNCTION__  , "\
 zlib could not decompress an enemy archive file, maybe because it was larger than 30MB .\n",
                                    PLEASE_INFORM, IS_FATAL );
 		}
@@ -2685,7 +2685,7 @@ zlib could not decompress an enemy archive file, maybe because it was larger tha
     //
     if ( strncmp ( "eneX" , archive_type_string , 4 ) )
     {
-	GiveStandardErrorMessage ( __FUNCTION__  , "\
+	ErrorMessage ( __FUNCTION__  , "\
 Initial archive type string doesn't look like it's from an image archive of ENEMY type.\n\
 This indicates a serious bug in this installation of Freedroid.",
 				   PLEASE_INFORM, IS_FATAL );
@@ -2730,7 +2730,7 @@ This indicates a serious bug in this installation of Freedroid.",
     if ( last_stand_animation_image [ enemy_model_nr ] >= MAX_ENEMY_MOVEMENT_PHASES )
     {
 	DebugPrintf( -4 , "\nenemy_model_nr=%d." , enemy_model_nr );
-	GiveStandardErrorMessage ( __FUNCTION__  , "\
+	ErrorMessage ( __FUNCTION__  , "\
 The number of images found in the image collection is bigger than currently allowed.",
 				   PLEASE_INFORM, IS_FATAL );
     }
@@ -2827,7 +2827,7 @@ The number of images found in the image collection is bigger than currently allo
 		    // make_texture_out_of_surface ( 
 		    // & ( enemy_iso_images [ enemy_model_nr ] [ rotation_index ] [ enemy_phase ] ) ) ;
 		    //
-		    GiveStandardErrorMessage ( __FUNCTION__  , "\
+		    ErrorMessage ( __FUNCTION__  , "\
 This image collection archive is not optimized for OpenGL usage\n\
 but still used in conjunction with OpenGL graphics output.\n\
 This is strange.  While of course we could handle this (a bit)\n\
@@ -2888,7 +2888,7 @@ iso_put_tux_part ( int tux_part_group , char* part_string , int x , int y , int 
     //
     if ( strlen ( part_string ) == 0 )
     {
-	GiveStandardErrorMessage ( __FUNCTION__  , "\
+	ErrorMessage ( __FUNCTION__  , "\
 Empty part string received!",
 				   PLEASE_INFORM, IS_FATAL );
     }
@@ -2970,7 +2970,7 @@ Empty part string received!",
     }
     else
     {
-	GiveStandardErrorMessage ( __FUNCTION__  , "Unable to load tux part!", PLEASE_INFORM, IS_FATAL );
+	ErrorMessage ( __FUNCTION__  , "Unable to load tux part!", PLEASE_INFORM, IS_FATAL );
     }
     
 }; // void iso_put_tux_part ( char* part_string , int x , int y )
@@ -3090,7 +3090,7 @@ iso_put_tux_shieldarm ( int x , int y , int rotation_index )
     else
 	{
 	fprintf ( stderr , "Shield item code: %d " , Me . shield_item . type ) ;
-	GiveStandardErrorMessage ( __FUNCTION__  , "This shield type is not yet rendered for Tux." ,
+	ErrorMessage ( __FUNCTION__  , "This shield type is not yet rendered for Tux." ,
 		PLEASE_INFORM, IS_FATAL );
 	}
 	
@@ -3219,7 +3219,7 @@ iso_put_all_tux_parts_for_sword_motion ( int x , int y , int rotation_index )
 	    
 	default:
 	    fprintf ( stderr , "Suspicious rotation index: %d " , rotation_index );
-	    GiveStandardErrorMessage ( __FUNCTION__  , "\
+	    ErrorMessage ( __FUNCTION__  , "\
 Suspicious rotation index encountered!",
 				       PLEASE_INFORM, IS_FATAL );
 	    break;
@@ -3391,7 +3391,7 @@ iso_put_all_tux_parts_for_gun_motion ( int x , int y , int rotation_index )
 	    
 	default:
 	    fprintf ( stderr , "Suspicious rotation index: %d " , rotation_index );
-	    GiveStandardErrorMessage ( __FUNCTION__  , "\
+	    ErrorMessage ( __FUNCTION__  , "\
 Suspicious rotation index encountered!",
 				       PLEASE_INFORM, IS_FATAL );
 	    break;
@@ -3822,7 +3822,7 @@ set_rotation_model_for_this_robot ( enemy* ThisRobot )
     //
     if ( ( RotationModel < 0 ) || ( RotationModel >= ENEMY_ROTATION_MODELS_AVAILABLE ) )
     {
-	GiveStandardErrorMessage ( __FUNCTION__  , "\
+	ErrorMessage ( __FUNCTION__  , "\
 There was a rotation model type given, that exceeds the number of rotation models allowed and loaded in Freedroid.",
 				   PLEASE_INFORM, IS_FATAL );
     }
@@ -4066,7 +4066,7 @@ PutEnemy ( int Enum , int x , int y , int mask , int highlight )
     //
     if ( AllEnemys[Enum].type >= Number_Of_Droid_Types )
     {
-	GiveStandardErrorMessage ( __FUNCTION__  , "\
+	ErrorMessage ( __FUNCTION__  , "\
 There was a droid type on this level, that does not really exist.",
 				   PLEASE_INFORM, IS_FATAL );
 	AllEnemys[Enum].type = 0;
@@ -4141,7 +4141,7 @@ PutBullet ( int bullet_index , int mask )
     {
 	fprintf ( stderr , "\nPutBullet:  bullet type received: %d." , CurBullet -> type );
 	fflush ( stderr );
-	GiveStandardErrorMessage ( __FUNCTION__  , "\
+	ErrorMessage ( __FUNCTION__  , "\
 There was a bullet to be blitted of a type that does not really exist.",
 				   PLEASE_INFORM, IS_FATAL );
     };
@@ -4182,7 +4182,7 @@ PutItem( int ItemNumber , int mask , int put_thrown_items_flag , int highlight_i
     {
 	return;
 	fprintf( stderr, "\n\nItemNumber '%d'\n" , ItemNumber );
-	GiveStandardErrorMessage ( __FUNCTION__  , "\
+	ErrorMessage ( __FUNCTION__  , "\
 There was -1 item type given to blit.  This must be a mistake! ",
 				   PLEASE_INFORM, IS_FATAL );
     }
@@ -4288,7 +4288,7 @@ char fpath[2048];
 	    if ( SparkType >= NUMBER_OF_SPARK_TYPES )
 	    {
 		fprintf( stderr, "\n\nSparkType: %d\n" , SparkType );
-		GiveStandardErrorMessage ( __FUNCTION__  , "\
+		ErrorMessage ( __FUNCTION__  , "\
 Freedroid encountered a radial wave type that exceeds the CONSTANT for wave types.",
 					   PLEASE_INFORM, IS_FATAL );
 	    }
@@ -4306,7 +4306,7 @@ Freedroid encountered a radial wave type that exceeds the CONSTANT for wave type
 		    break;
 		default:
 		    fprintf( stderr, "\n\nSparkType: %d\n" , SparkType );
-		    GiveStandardErrorMessage ( __FUNCTION__  , "\
+		    ErrorMessage ( __FUNCTION__  , "\
 Freedroid encountered a radial wave type that does not exist in Freedroid.",
 					       PLEASE_INFORM, IS_FATAL );
 	    }	      
@@ -4317,7 +4317,7 @@ Freedroid encountered a radial wave type that does not exist in Freedroid.",
 	    if ( tmp_surf == NULL )
 	    {
 		fprintf( stderr, "\n\nfpath: '%s'\n" , fpath );
-		GiveStandardErrorMessage ( __FUNCTION__  , "\
+		ErrorMessage ( __FUNCTION__  , "\
 Freedroid wanted to load a certain image file into memory, but the SDL\n\
 function used for this did not succeed.",
 					   PLEASE_INFORM, IS_FATAL );
@@ -4437,7 +4437,7 @@ char fpath[2048];
 	if ( tmp_surf == NULL )
 	{
 	    fprintf( stderr, "\n\nfpath: '%s'\n" , fpath );
-	    GiveStandardErrorMessage ( __FUNCTION__  , "\
+	    ErrorMessage ( __FUNCTION__  , "\
 Freedroid wanted to load a certain image file into memory, but the SDL\n\
 function used for this did not succeed.",
 				       PLEASE_INFORM, IS_FATAL );
@@ -4503,7 +4503,7 @@ PutBlast (int Blast_number)
     // DebugPrintf( 0 , "\nBulletType before calculating phase : %d." , CurBullet->type );
     if ( CurBlast->type >= ALLBLASTTYPES ) 
     {
-	GiveStandardErrorMessage ( __FUNCTION__  , "\
+	ErrorMessage ( __FUNCTION__  , "\
 The PutBlast function should blit a blast of a type that does not\n\
 exist at all.",
 				   PLEASE_INFORM, IS_FATAL );
@@ -4593,7 +4593,7 @@ char fpath[2048];
 	    if ( !tmp )
 	    {
 		fprintf( stderr, "\n\nfname1: '%s'\n" , fname1 );
-		GiveStandardErrorMessage ( __FUNCTION__  , "\
+		ErrorMessage ( __FUNCTION__  , "\
 The red transparent plate for the inventory could not be loaded.  This is a fatal error.",
 					   PLEASE_INFORM, IS_FATAL );
 	    }
@@ -4608,7 +4608,7 @@ The red transparent plate for the inventory could not be loaded.  This is a fata
 	    if ( !tmp )
 	    {
 		fprintf( stderr, "\n\nfname2: '%s'\n" , fname2 );
-		GiveStandardErrorMessage ( __FUNCTION__  , "\
+		ErrorMessage ( __FUNCTION__  , "\
 The blue transparent plate for the inventory could not be loaded.  This is a fatal error.",
 					   PLEASE_INFORM, IS_FATAL );
 	    }
@@ -4623,7 +4623,7 @@ The blue transparent plate for the inventory could not be loaded.  This is a fat
 	    if ( !tmp )
 	    {
 		fprintf( stderr, "\n\nfname3: '%s'\n" , fname3 );
-		GiveStandardErrorMessage ( __FUNCTION__  , "\
+		ErrorMessage ( __FUNCTION__  , "\
 The grey transparent plate for the inventory could not be loaded.  This is a fatal error.",
 					   PLEASE_INFORM, IS_FATAL );
 	    }
