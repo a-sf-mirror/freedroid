@@ -347,7 +347,7 @@ plus duration modifier=10
 File or directory name for inventory image="exterminator_simple/inv_image.png"
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=1001
-Item description text="This bad boy has been known to blow away enemies with a single blast. A dangerous weapon that you dont want to be on the receiving end of."
+Item description text="This bad boy has been known to blow away enemies with a single blast. A dangerous weapon that you don't want to be on the receiving end of."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.150000
 Item as gun: reloading time=5.000000
@@ -406,7 +406,7 @@ inventory_size_y=2
 inventory_size_x=2
 Item uses drop sound with filename="Item_Armour_Put_Sound_0.ogg"
 Base list price=30
-Item description text="This shield is a compilation of various objects which happened to be around. It has tubes, bolts and parts of metal, all slapped together to provide a small bit of protection from enemies. It's very simple and rough, but some sensors and lights have been added to let the wielder know when the item is getting hit, and how long it willl remain operational and other cool stuff like that."
+Item description text="This shield is a compilation of various objects which happened to be around. It has tubes, bolts and parts of metal, all slapped together to provide a small bit of protection from enemies. It's very simple and rough, but some sensors and lights have been added to let the wielder know when the item is getting hit, and how long it will remain operational and other cool stuff like that."
 ** End of new item specification subsection **
 
 // Item No. 20
@@ -589,7 +589,7 @@ Item description text=""
 
 // Item No. 27
 ** Start of new item specification subsection **
-Item name="Short Lasersword"
+Item name="Short Laser sword"
 Item can be applied in combat="no"
 Item can be installed in influ="yes"
 Item can be installed in slot with name="weapon"
@@ -1122,7 +1122,7 @@ Items of this type collect together in inventory="yes"
 File or directory name for inventory image="blue_energy_drink/inv_image.png"
 Item uses drop sound with filename="drop_potion_sound.ogg"
 Base list price=50
-Item description text="Warning! These energy dinks contain high doses of caffeine! The average person drops dead after consuming 12 grams of caffeine. One of these bottles contains over double that amount."
+Item description text="Warning! These energy drinks contain high doses of caffeine! The average person drops dead after consuming 12 grams of caffeine. One of these bottles contains over double that amount."
 ** End of new item specification subsection **
 
 // Item No. 59
@@ -1523,7 +1523,7 @@ inventory_size_y=2
 
 // Item No. 86
 ** Start of new item specification subsection **
-Item name="Source Book of Dispell smoke"
+Item name="Source Book of Dispel smoke"
 Item can be applied in combat="yes"
 Item can be installed in influ="no"
 Item can be installed in slot with name="none"
@@ -1756,7 +1756,7 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="datacube/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=0
-Item description text="This data cube contains confidential government data on the installations around the colony. Kevin hopes that when the data is evaluated properly a way out of the current crisismight be found. However, the amount of data is so vast, it can only be evaluated properly using a large cluster of computers. The Red Guard base is said to store a suitable infrastructure for this purpose."
+Item description text="This data cube contains confidential government data on the installations around the colony. Kevin hopes that when the data is evaluated properly a way out of the current crisis might be found. However, the amount of data is so vast, it can only be evaluated properly using a large cluster of computers. The Red Guard base is said to store a suitable infrastructure for this purpose."
 ** End of new item specification subsection **
 
 // Item No. 101
@@ -1874,7 +1874,7 @@ Item as gun: weapon requires both hands="yes"
 
 // Item No. 104
 ** Start of new item specification subsection **
-Item name="Droid weaponry - 249 (Laser mashinegun)"
+Item name="Droid weaponry - 249 (Laser machinegun)"
 Item min class of droid for drop=9999
 Item can be applied in combat="no"
 Item can be installed in influ="yes"
@@ -2507,7 +2507,7 @@ Item as gun: weapon requires both hands="no"
 
 // Item No. 121
 ** Start of new item specification subsection **
-Item name="Laserscalpel"
+Item name="Laser scalpel"
 Item can be applied in combat="no"
 Item can be installed in influ="yes"
 Item can be installed in slot with name="weapon"
@@ -2687,7 +2687,7 @@ inventory_size_y=3
 inventory_size_x=1
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=30
-Item description text="Light and manueverable in combat, but unfortunately not very effective in cutting through steel as well as quickly reaching the point of breaking if you try. Though for sure better then hitting at metal with your bare fists."
+Item description text="Light and maneuverable in combat, but unfortunately not very effective in cutting through steel as well as quickly reaching the point of breaking if you try. Though for sure better then hitting at metal with your bare fists."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.400000
 Item as gun: reloading time=0.000000
@@ -2719,7 +2719,7 @@ Item can be installed in influ="yes"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="laser_sword_red"
 Items of this type collect together in inventory="no"
-Strength minimum required to wear/wield this item=15
+Strength minimum required to wear/wield this item=10
 Dexterity minimum required to wear/wield this item=20
 Base item duration=8
 plus duration modifier=4
@@ -2728,9 +2728,9 @@ inventory_size_y=4
 inventory_size_x=1
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=60
-Item description text="Long reach while remaining manueverable enough in combat to find the weak spots in droid armour are the advantages that partially makes up for the inability of a cutting blade to incure lots of damage on a heavily protected target. Repeadly striking at metal quickly damages the blade though."
+Item description text="Long reach while remaining maneuverable enough in combat to find the weak spots in droid armour are the advantages that partially makes up for the inability of a cutting blade to incur lots of damage on a heavily protected target. Repeatedly striking at metal quickly damages the blade though."
 ----- the following part is only relevant for weapons -----
-Item as gun: recharging time=0.600000
+Item as gun: recharging time=0.550000
 Item as gun: reloading time=0.000000
 Item as gun: speed of bullets=0.100000
 Item as gun: angle change of bullets=720.000000
@@ -2769,9 +2769,9 @@ inventory_size_y=5
 inventory_size_x=2
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=300
-Item description text="The size and kinetical force achivable with this 2 handed sword is enough to cleave straight through the armour of a low level droid. The strain on the sword from high impact hits into metal will however require frequent maintainance to not have it break in half exactly when it's most needed."
+Item description text="The size and kinetic force achievable with this 2 handed sword is enough to cleave straight through the armour of a low level droid. The strain on the sword from high impact hits into metal will however require frequent maintenance to not have it break in half exactly when it's most needed."
 ----- the following part is only relevant for weapons -----
-Item as gun: recharging time=0.900000
+Item as gun: recharging time=0.800000
 Item as gun: reloading time=0.000000
 Item as gun: speed of bullets=0.100000
 Item as gun: angle change of bullets=720.000000
@@ -2803,21 +2803,21 @@ Item uses rotation series with prefix="laser_sword_red"
 Items of this type collect together in inventory="no"
 Strength minimum required to wear/wield this item=20
 Dexterity minimum required to wear/wield this item=20
-Base item duration=4
-plus duration modifier=2
+Base item duration=5
+plus duration modifier=1
 File or directory name for inventory image="laser_sword_red/inv_image.png"
 inventory_size_y=4
 inventory_size_x=2
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=500
-Item description text="Quite efficient at separating limbs off even a droid body or digging through weaker armoured parts to cause massive damage on internal electronics. But the chain wears out very quickly when used on materials harder then wood and supply shortages of new chains makes it expensive to maintain."
+Item description text="Quite efficient at separating limbs off even a droid body or digging through weaker armoured parts to cause massive damage on internal electronics. But the chain wears out very quickly when used on materials harder then wood and supply shortages of new chains and other parts makes it expensive to maintain."
 ----- the following part is only relevant for weapons -----
-Item as gun: recharging time=0.200000
+Item as gun: recharging time=0.150000
 Item as gun: reloading time=0.000000
 Item as gun: speed of bullets=0.100000
 Item as gun: angle change of bullets=720.000000
-Item as gun: damage of bullets=3
-Item as gun: modifier for damage of bullets=2
+Item as gun: damage of bullets=2
+Item as gun: modifier for damage of bullets=1
 Item as gun: one_shot_only=0
 Item as gun: bullet_image_type=8
 Item as gun: bullet_lifetime=0.200000
@@ -2853,7 +2853,7 @@ inventory_size_y=2
 inventory_size_x=2
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=30
-Item description text="Designed to chop through meat and bones, it's not as fragile as swords when used against metal enemies. Though it is a bit more slow and clumsy to use then the gracefull swords."
+Item description text="Designed to chop through meat and bones, it's not as fragile as swords when used against metal enemies. Though it is a bit more slow and clumsy to use then the grace full swords."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.600000
 Item as gun: reloading time=0.000000
@@ -2885,8 +2885,8 @@ Item can be installed in influ="yes"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="laser_sword_red"
 Items of this type collect together in inventory="no"
-Strength minimum required to wear/wield this item=0
-Dexterity minimum required to wear/wield this item=0
+Strength minimum required to wear/wield this item=12
+Dexterity minimum required to wear/wield this item=15
 Base item duration=10
 plus duration modifier=5
 File or directory name for inventory image="laser_sword_red/inv_image.png"
@@ -2894,7 +2894,7 @@ inventory_size_y=2
 inventory_size_x=2
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=40
-Item description text="While this axe was made for splitting wood, with some luck it can damage vital parts of a druid as well."
+Item description text="While this axe was made for splitting wood, with some luck it can damage vital parts of a droid as well."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.600000
 Item as gun: reloading time=0.000000
@@ -2935,7 +2935,7 @@ inventory_size_y=3
 inventory_size_x=2
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=80
-Item description text="Designed to chop through meat and bones, it's not as fragile as swords when used against metal enemies. Though it is a bit more slow and clumsy to use then the gracefull swords."
+Item description text="Big enough to fell a small tree, it's also capable of leaving big dents in a droid."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.900000
 Item as gun: reloading time=0.000000
@@ -3019,14 +3019,14 @@ inventory_size_y=2
 inventory_size_x=1
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=25
-Item description text="A short stabbing weapon like a dagger doesnt have much effect on the metal body of a droid, but with luck you might damage some wires or hozes in less protected areas so it's still better then trying to take on the machines with bare hands."
+Item description text="A short stabbing weapon like a dagger doesn't have much effect on the metal body of a droid, but with luck you might damage some wires or hoses in less protected areas so it's still better then trying to take on the machines with bare hands."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.400000
 Item as gun: reloading time=0.000000
 Item as gun: speed of bullets=0.100000
 Item as gun: angle change of bullets=720.000000
-Item as gun: damage of bullets=1
-Item as gun: modifier for damage of bullets=1
+Item as gun: damage of bullets=0
+Item as gun: modifier for damage of bullets=2
 Item as gun: one_shot_only=0
 Item as gun: bullet_image_type=8
 Item as gun: bullet_lifetime=0.200000
@@ -3054,20 +3054,20 @@ Items of this type collect together in inventory="no"
 Strength minimum required to wear/wield this item=0
 Dexterity minimum required to wear/wield this item=22
 Base item duration=3
-plus duration modifier=5
+plus duration modifier=4
 File or directory name for inventory image="laser_sword_red/inv_image.png"
 inventory_size_y=5
 inventory_size_x=1
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=15
-Item description text="The best to be said about a wooden spear is that it will keep you far enough away from the enemy to jab at a single enemy without giving him much chanse to hit back. Neighter damage nor durability is very much to write home about."
+Item description text="The best to be said about a wooden spear is that it will keep you far enough away from the enemy to jab at a single enemy without giving him much chance to hit back. Neither damage nor durability is very much to write home about."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.300000
 Item as gun: reloading time=0.000000
 Item as gun: speed of bullets=0.100000
 Item as gun: angle change of bullets=720.000000
-Item as gun: damage of bullets=1
-Item as gun: modifier for damage of bullets=1
+Item as gun: damage of bullets=0
+Item as gun: modifier for damage of bullets=2
 Item as gun: one_shot_only=0
 Item as gun: bullet_image_type=8
 Item as gun: bullet_lifetime=0.200000
@@ -3101,7 +3101,7 @@ inventory_size_y=5
 inventory_size_x=1
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=80
-Item description text="A spear forged from metal considerably improves from the wooden spears damage and durability, but the increased weigth does make it somewhat slower and more cumbersome to use. It's still a fast weapon though compaired to most other."
+Item description text="A spear forged from metal considerably improves from the wooden spears damage and durability, but the increased weight does make it somewhat slower and more cumbersome to use. It's still a fast weapon though compared to most other."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.400000
 Item as gun: reloading time=0.000000
@@ -3144,7 +3144,7 @@ inventory_size_y=3
 inventory_size_x=1
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=80
-Item description text="Something originally intended for breaking up doors or pulling out nails can also be used to break open droid skulls or give enough leaverage to pull off their extremities."
+Item description text="Something originally intended for breaking up doors or pulling out nails can also be used to break open droid skulls or give enough leverage to pull off their extremities."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.600000
 Item as gun: reloading time=0.000000
@@ -3185,7 +3185,7 @@ inventory_size_y=3
 inventory_size_x=1
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=20
-Item description text="Something originally intended for breaking up doors or pulling out nails can also be used to break open droid skulls or give enough leaverage to pull off their extremities."
+Item description text="A medium sized water pipe from iron can turn into an effective weapon even vs a metal opponent since the impact force can still damage and shake loose circuit boards and weldings beneath the protective metal layer."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.600000
 Item as gun: reloading time=0.000000
@@ -3267,7 +3267,7 @@ inventory_size_y=3
 inventory_size_x=2
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=5
-Item description text="A club from a tree branch is sertainly not your prefered choise of weapon to use, but it might be your only..."
+Item description text="A club from a tree branch is certainly not your preferred choice of weapon to use, but it might be your only..."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.500000
 Item as gun: reloading time=0.000000
@@ -3349,7 +3349,7 @@ inventory_size_y=4
 inventory_size_x=2
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=25
-Item description text="With 1-2 good twohanded swings a former droids head might fly far enough for you to score a home run. Just make sure to bring a backup weapon becuase wooden bats have a predilaction for easily splitting in two after too many hard hits."
+Item description text="With 1-2 good two handed swings a former droids head might fly far enough for you to score a home run. Just make sure to bring a backup weapon because wooden bats have a predilection for easily splitting in two after too many hard hits."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.700000
 Item as gun: reloading time=0.000000
@@ -3431,7 +3431,7 @@ inventory_size_y=3
 inventory_size_x=1
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=150
-Item description text="The mace proved already on the medieval battelfield that it was good at crushing even heavily armoured skulls. Unfortunately for the droids this old knowledge still holds true."
+Item description text="The mace proved already on the medieval battlefield that it was good at crushing even heavily armoured skulls. Unfortunately for the droids this old knowledge still holds true."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.800000
 Item as gun: reloading time=0.000000
@@ -3472,7 +3472,7 @@ inventory_size_y=3
 inventory_size_x=2
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=150
-Item description text="1-3 spiked heavy metal balls connected to a rod via chains might require skill to control, but once you do it sure is effective vs man and mashine alike..."
+Item description text="1-3 spiked heavy metal balls connected to a rod via chains might require skill to control, but once you do it sure is effective vs man and machine alike..."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.800000
 Item as gun: reloading time=0.000000
@@ -3556,7 +3556,7 @@ inventory_size_y=2
 inventory_size_x=1
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=1500
-Item description text="In the hands of a true master, this excellent technological craftmanship is as deadly as it is beutiful."
+Item description text="In the hands of a true master, this excellent technological craftsmanship is as deadly as it is beautiful."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.500000
 Item as gun: reloading time=0.000000
