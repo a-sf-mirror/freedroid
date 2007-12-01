@@ -273,38 +273,14 @@ exist really (i.e. has a type = (-1) ).",
 	// Maybe it's an applicable item, that still has some stat
 	// requirements.  Typically spellbooks fall into that category.
 	//
-	switch ( CurItem -> type )
+	if ( strstr(ItemMap [ CurItem->type ] . item_name, "Source Book of") )
 	{
-case ITEM_SPELLBOOK_OF_CHECK_SYSTEM_INTEGRITY:
-case ITEM_SPELLBOOK_OF_CALCULATE_PI:
-case ITEM_SPELLBOOK_OF_BLUE_SCREEN:
-case ITEM_SPELLBOOK_OF_TELEPORT_HOME:
-case ITEM_SPELLBOOK_OF_MALFORMED_PACKET:
-case ITEM_SPELLBOOK_OF_ANALYZE_ITEM:
-case ITEM_SPELLBOOK_OF_NETHACK:
-case ITEM_SPELLBOOK_OF_DISPELL_SMOKE:
-case ITEM_SPELLBOOK_OF_KILLER_POKE:
-case ITEM_SPELLBOOK_OF_BROADCAST_KILLER_POKE:
-case ITEM_SPELLBOOK_OF_RICER_CFLAGS:
-case ITEM_SPELLBOOK_OF_PLASMA_DISCHARGE:
-case ITEM_SPELLBOOK_OF_INVISIBILITY:
-case ITEM_SPELLBOOK_OF_SANCTUARY:
-case ITEM_SPELLBOOK_OF_VIRUS:
-case ITEM_SPELLBOOK_OF_BROADCAST_VIRUS:
-case ITEM_SPELLBOOK_OF_REVERSE_ENGINEER:
-case ITEM_SPELLBOOK_OF_EMERGENCY_SHUTDOWN:
-case ITEM_SPELLBOOK_OF_LIGHT:
-case ITEM_SPELLBOOK_OF_SATELLITE_IMAGE:
-
 /*		sprintf( linebuf , "Program execution status: %s\n " ,  
 			 _(AllSkillTexts [ required_spellcasting_skill_for_item ( CurItem -> type ) ]));
 		strcat( ItemDescText , linebuf );*/
 /*		sprintf( linebuf , "Required for next upgrade: %d\n " ,  
 			 required_magic_stat_for_next_level_and_item ( CurItem -> type ) );
 		strcat( ItemDescText , linebuf );*/
-		break;
-	    default:
-		break;
 	}
     }
     else if ( ForShop )
@@ -317,140 +293,98 @@ case ITEM_SPELLBOOK_OF_SATELLITE_IMAGE:
     // If it's a usable item, then we say, that it can be used via right-clicking on it
     //
     if ( ( ItemMap[ CurItem->type ].item_can_be_applied_in_combat ) && ( !ForShop ) )
-    {
-	switch ( CurItem->type )
-	{
-	    case ITEM_SMALL_HEALTH_POTION:
-	    case ITEM_MEDIUM_HEALTH_POTION:
-	    case ITEM_FULL_HEALTH_POTION:
-		sprintf( linebuf , _("Recover Health\n") );
-		strcat( ItemDescText , linebuf );
-		break;
-		
-	    case ITEM_SCRIPT_OF_IDENTIFY:
-		sprintf( linebuf , _("Analyze one item\n") );
-		strcat( ItemDescText , linebuf );
-		break;
+        {
+	if ( MatchItemWithName ( CurItem->type, "Diet supplement" ) || MatchItemWithName ( CurItem->type, "Antibiotic" ) || MatchItemWithName ( CurItem->type, "Doc-in-a-can" ))
+	    {
+	    sprintf( linebuf , _("Recover Health\n") );
+	    strcat( ItemDescText , linebuf );
+	    }
+	else if ( MatchItemWithName ( CurItem->type, "Identification Script" ) )
+	    {
+	    sprintf( linebuf , _("Analyze one item\n") );
+	    strcat( ItemDescText , linebuf );
+	    }
+	else if ( MatchItemWithName ( CurItem->type, "Evacuation script" ) )
+	    {
+	    sprintf( linebuf , _("Teleports you to a safe place, or back from your safe place\n") );
+	    strcat( ItemDescText , linebuf );
+	    }
+	else if ( MatchItemWithName ( CurItem->type, "Bottled ice" ) || MatchItemWithName ( CurItem->type, "Industrial coolant") || MatchItemWithName ( CurItem->type, "Liquid nitrogen"))
+	    {
+	    sprintf( linebuf , _("Cooling aid\n") );
+	    strcat( ItemDescText , linebuf );
+	    }
+	else     if ( MatchItemWithName ( CurItem->type, "Barf's Energy Drink" ) )
+	    {
+	    sprintf( linebuf , _("Recover Health, Force\nand Running Power\n") );
+	    strcat( ItemDescText , linebuf );
+	    }
+	else if ( MatchItemWithName ( CurItem->type, "Running Power Capsule"))
+	    {
+	    sprintf( linebuf , _("Recover Running Power\n") );
+	    strcat( ItemDescText , linebuf );
+	    }
+	else if (  MatchItemWithName ( CurItem->type, "Strength Capsule" ) )
+	    {
+	    sprintf( linebuf , _("Temporary Boost to Strength\n") );
+	    strcat( ItemDescText , linebuf );
+	    }
+	else if (  MatchItemWithName ( CurItem->type, "Dexterity Capsule") )
+	    {
+	    sprintf( linebuf , _("Temporary Boost to Dexterity\n") );
+	    strcat( ItemDescText , linebuf );
+	    }
+	else if ( MatchItemWithName ( CurItem->type, "Map Maker") )
+	    {
+	    sprintf( linebuf , _("To implant the automap device\n") );
+	    strcat( ItemDescText , linebuf );
+	    }
+	else if ( MatchItemWithName ( CurItem->type, "Strength Pill" ) )
+	    {
+	    sprintf( linebuf , _("Increase strength\n") );
+	    strcat( ItemDescText , linebuf );
+	    }	
+	else if ( MatchItemWithName ( CurItem->type, "Dexterity Pill" ) )
+	    {
+	    sprintf( linebuf , _("Increase dexterity\n") );
+	    strcat( ItemDescText , linebuf );
+	    }
+	else if ( MatchItemWithName ( CurItem->type, "Code Pill" ) )
+	    {
+	    sprintf( linebuf , _("Permanently gain +1 CPU\n") );
+	    strcat( ItemDescText , linebuf );
+	    }
+	else if ( strstr( ItemMap [ CurItem->type ] . item_name , "Source Book of" ) )
+	    {
+	    sprintf( linebuf , _("Permanently acquire/enhance this program\n") );
+	    strcat( ItemDescText , linebuf );
+	    }
+	else if ( MatchItemWithName ( CurItem->type, "EMP Shock Grenade" ) )
+	    {
+	    sprintf( linebuf , _("Electromagnetic pulse\n") );
+	    strcat( ItemDescText , linebuf );
+	    }
+	else if ( MatchItemWithName ( CurItem->type, "VMX Gas Grenade" ) )
+	    {
 
-	    case ITEM_SCRIPT_OF_TELEPORT_HOME:
-		sprintf( linebuf , _("Teleports you to your sanctuary\n") );
-		strcat( ItemDescText , linebuf );
-		break;
-		
-	    case ITEM_MEDIUM_MANA_POTION:
-	    case ITEM_FULL_MANA_POTION:
-	    case ITEM_SMALL_MANA_POTION:
-		sprintf( linebuf , _("Cooling aid\n") );
-		strcat( ItemDescText , linebuf );
-		break;
+	    sprintf( linebuf , _("Gas attack\n") );
+	    strcat( ItemDescText , linebuf );
+	    }
+	else if ( MatchItemWithName ( CurItem->type, "Plasma Grenade" ) )
+	    {
+	    sprintf( linebuf , _("Huge explosion\n") );
+	    strcat( ItemDescText , linebuf );
+	    }
 
-	    case ITEM_BLUE_ENERGY_DRINK:
-		sprintf( linebuf , _("Recover Health, Force\nand Running Power\n") );
-		strcat( ItemDescText , linebuf );
-		break;
-		
-	    case ITEM_RUNNING_POWER_POTION:
-		sprintf( linebuf , _("Recover Running Power\n") );
-		strcat( ItemDescText , linebuf );
-		break;
-		
-	    case ITEM_TEMP_STRENGTH_POTION:
-		sprintf( linebuf , _("Temporary Boost to Strength\n") );
-		strcat( ItemDescText , linebuf );
-		break;
-		
-	    case ITEM_TEMP_DEXTERITY_POTION:
-		sprintf( linebuf , _("Temporary Boost to Dexterity\n") );
-		strcat( ItemDescText , linebuf );
-		break;
-		
-	    case ITEM_MAP_MAKER_SIMPLE:
-		sprintf( linebuf , _("To implant the automap device\n") );
-		strcat( ItemDescText , linebuf );
-		break;
-		
-	    case ITEM_STRENGTH_PILL:
-		sprintf( linebuf , _("Permanently gain +1 strength\n") );
-		strcat( ItemDescText , linebuf );
-		break;
-		
-	    case ITEM_DEXTERITY_PILL:
-		sprintf( linebuf , _("Permanently gain +1 dexterity\n") );
-		strcat( ItemDescText , linebuf );
-		break;
-		
-	    case ITEM_MAGIC_PILL:
-		sprintf( linebuf , _("Permanently gain +1 CPU\n") );
-		strcat( ItemDescText , linebuf );
-		break;
-		
-	case ITEM_SPELLBOOK_OF_CHECK_SYSTEM_INTEGRITY:
-	case ITEM_SPELLBOOK_OF_CALCULATE_PI:
-	case ITEM_SPELLBOOK_OF_BLUE_SCREEN:
-	case ITEM_SPELLBOOK_OF_TELEPORT_HOME:
-	case ITEM_SPELLBOOK_OF_MALFORMED_PACKET:
-	case ITEM_SPELLBOOK_OF_ANALYZE_ITEM:
-	case ITEM_SPELLBOOK_OF_NETHACK:
-	case ITEM_SPELLBOOK_OF_DISPELL_SMOKE:
-	case ITEM_SPELLBOOK_OF_KILLER_POKE:
-	case ITEM_SPELLBOOK_OF_BROADCAST_KILLER_POKE:
-	case ITEM_SPELLBOOK_OF_RICER_CFLAGS:
-	case ITEM_SPELLBOOK_OF_PLASMA_DISCHARGE:
-	case ITEM_SPELLBOOK_OF_INVISIBILITY:
-	case ITEM_SPELLBOOK_OF_SANCTUARY:
-	case ITEM_SPELLBOOK_OF_VIRUS:
-	case ITEM_SPELLBOOK_OF_BROADCAST_VIRUS:
-	case ITEM_SPELLBOOK_OF_REVERSE_ENGINEER:
-	case ITEM_SPELLBOOK_OF_EMERGENCY_SHUTDOWN:
-	case ITEM_SPELLBOOK_OF_LIGHT:
-	case ITEM_SPELLBOOK_OF_SATELLITE_IMAGE:
-		sprintf( linebuf , _("Permanently acquire/enhance this program\n") );
-		strcat( ItemDescText , linebuf );
-		break;
+	else
+	    {
+	    sprintf( linebuf , _("USE UNDESCRIBED YET (bug)\n") );
+	    strcat( ItemDescText , linebuf );
 
-	    case ITEM_EMP_SHOCK_GRENADE:
-    		sprintf( linebuf , _("Electromagnetic pulse\n") );
-		strcat( ItemDescText , linebuf );
-		break;
-
-	    case ITEM_VMX_GAS_GRENADE:
-		sprintf( linebuf , _("Gas attack\n") );
-		strcat( ItemDescText , linebuf );
-		break;
-
-	    case ITEM_PLASMA_GRENADE:
-		sprintf( linebuf , _("Huge explosion\n") );
-		strcat( ItemDescText , linebuf );
-		break;
-
-	    default:
-		sprintf( linebuf , _("USE UNDESCRIBED YET\n") );
-		strcat( ItemDescText , linebuf );
-		break;
-	}
+	    }
 	sprintf( linebuf , _("Right click to use") );
 	strcat( ItemDescText , linebuf );
     }
-    
-    //--------------------
-    // Maybe it's a special unique plugin, then we print out this items use
-    //
-/*    if ( ( CurItem->type == ITEM_START_PLUGIN_WARRIOR ) && ( !ForShop ) )
-    {
-	sprintf( linebuf , _("\nFreezes targets after melee hit") );
-	strcat( ItemDescText , linebuf );
-    }
-    if ( ( CurItem->type == ITEM_START_PLUGIN_SNIPER ) && ( !ForShop ) )
-    {
-	sprintf( linebuf , _("\nAdds double damage to ranged attacks") );
-	strcat( ItemDescText , linebuf );
-    }
-    if ( ( CurItem->type == ITEM_START_PLUGIN_HACKER ) && ( !ForShop ) )
-    {
-	sprintf( linebuf , _("\nAdds two levels to all spells") );
-	strcat( ItemDescText , linebuf );
-    }*/
-    
     
     //--------------------
     // If the item has some suffixes, we describe these as well, but ONLY IF
@@ -729,7 +663,7 @@ create_and_blit_droid_description ( int enemy_num )
 /* ----------------------------------------------------------------------
  * This function displays the icon of the current readied skill 
  * The dimensions and location of the picture are
- * specified in itemdefs.h
+ * specified in defs.h
  * ---------------------------------------------------------------------- */
 void 
 ShowCurrentSkill( void )
@@ -762,7 +696,7 @@ ShowCurrentSkill( void )
  * This function displays the icon of the current readied weapon, 
  * and the state of the charger
  * The dimensions and location of the picture are
- * specified in itemdefs.h
+ * specified in defs.h
  * ---------------------------------------------------------------------- */
 void 
 ShowCurrentWeapon( void )

@@ -230,10 +230,11 @@ DoSkill(int skill_index, int SpellCost)
 		target_location . y = translate_pixel_to_map_location ( input_axis.x , input_axis.y , FALSE ) ;
 		
 		bullet bul_parms;
+		/*XXX hardcoded laser pistol type*/
 		if (  SpellSkillMap [ skill_index ] . graphics_code != -1 ) 
-			FillInDefaultBulletStruct( &bul_parms,  SpellSkillMap [ skill_index ] . graphics_code, ITEM_LASER_PISTOL );
+			FillInDefaultBulletStruct( &bul_parms,  SpellSkillMap [ skill_index ] . graphics_code, GetItemIndexByName("Laser pistol") );
 		else
-			FillInDefaultBulletStruct( &bul_parms, MAGENTA_BULLET, ITEM_LASER_PISTOL );
+			FillInDefaultBulletStruct( &bul_parms, MAGENTA_BULLET, GetItemIndexByName("Laser pistol"));
 	
 		bul_parms.freezing_level = strcmp( SpellSkillMap [ skill_index ] . effect, "slowdown" ) ? 0 : 10;
 		bul_parms.poison_duration = strcmp ( SpellSkillMap [ skill_index ] . effect, "poison" ) ? 0 : 10;
@@ -242,7 +243,7 @@ DoSkill(int skill_index, int SpellCost)
 		bul_parms.damage = calculate_program_hit_damage ( skill_index ) ;
 		bul_parms.to_hit = SpellHitPercentageTable [ Me . spellcasting_skill ];
 
-		FireTuxRangedWeaponRaw ( ITEM_LASER_PISTOL , -1 , &bul_parms, target_location); 
+		FireTuxRangedWeaponRaw ( GetItemIndexByName("Laser pistol") , -1 , &bul_parms, target_location); 
 		
 		return 1; //no extra effects
 

@@ -151,15 +151,6 @@ enum
 
 #define MAX_BIG_SCREEN_MESSAGES 10
 
-
-#ifndef _itemdefs_h
-#include "itemdefs.h"
-#endif
-
-#define WAR_BOT 1
-#define SNIPER_BOT 2
-#define MIND_BOT 3
-
 #define NUMBER_OF_SKILL_LEVELS 10
 #define NUMBER_OF_SKILL_PAGES 8
 #define NUMBER_OF_SKILLS_PER_SKILL_PAGE 5
@@ -732,6 +723,97 @@ enum
 #define UNIVERSAL_COORD_W(W) (int)((float)W * ((float)(GameConfig . screen_width) / 640.0))
 #define UNIVERSAL_COORD_H(H) (int)((float)H * ((float)(GameConfig . screen_height) / 480.0))
 
+//--------------------
+// And now we put here all the rectangle definitions and that...
+//
+// the inventory rect is the rectangle inside the inventory screen,
+// where all the items "in the backpack" including the quick inventory
+// are displayed.  it's relative to the top left corner, as always.
+//
+
+#define INVENTORY_RECT_Y 260
+#define INVENTORY_RECT_X 8
+
+#define CURRENT_SKILL_RECT_X 537
+#define CURRENT_SKILL_RECT_Y (GameConfig . screen_height - 80 * GameConfig . screen_height / 480)
+#define CURRENT_SKILL_RECT_W 64
+#define CURRENT_SKILL_RECT_H 64
+
+#define CURRENT_WEAPON_RECT_X 32
+#define CURRENT_WEAPON_RECT_Y 400
+#define CURRENT_WEAPON_RECT_W 64
+#define CURRENT_WEAPON_RECT_H 64
+
+#define WHOLE_HEALTH_RECT_Y (480-85)
+#define WHOLE_HEALTH_RECT_W 6
+#define WHOLE_HEALTH_RECT_H 50
+#define WHOLE_HEALTH_RECT_X 614
+#define HEALTH_RECT_COLOR (63*64*64 + 64*8)
+
+#define GOLDEN_SCHNITT ((sqrt(5)-1)/2)
+
+#define WHOLE_RUNNING_POWER_RECT_X 6
+#define WHOLE_RUNNING_POWER_RECT_Y (480-85)
+#define WHOLE_RUNNING_POWER_RECT_W 6
+#define WHOLE_RUNNING_POWER_RECT_H 50
+
+#define WHOLE_EXPERIENCE_COUNTDOWN_RECT_X 19
+#define WHOLE_EXPERIENCE_COUNTDOWN_RECT_Y WHOLE_RUNNING_POWER_RECT_Y
+#define WHOLE_EXPERIENCE_COUNTDOWN_RECT_W WHOLE_RUNNING_POWER_RECT_W
+#define WHOLE_EXPERIENCE_COUNTDOWN_RECT_H WHOLE_RUNNING_POWER_RECT_H
+
+#define WHOLE_FORCE_RECT_Y ( WHOLE_HEALTH_RECT_Y )
+#define WHOLE_FORCE_RECT_W ( WHOLE_HEALTH_RECT_W )
+#define WHOLE_FORCE_RECT_H ( WHOLE_HEALTH_RECT_H )
+#define WHOLE_FORCE_RECT_X ( 640-12)
+#define FORCE_RECT_COLOR ( 0 * 64 * 64 + 64 * 0 + 63 )
+
+//--------------------
+// The weapon rectangle is of course for the weapon the Tux is
+// using.  When using a 2-handed weapon, the 'shield' rectangle
+// will ALSO be used to show this weapon, since the shield-hand
+// is also needed to wield such a thing.
+//
+#define WEAPON_RECT_WIDTH 67
+#define WEAPON_RECT_HEIGHT 112
+#define WEAPON_RECT_X 25
+#define WEAPON_RECT_Y 117
+
+//--------------------
+// The armour rectangle is where you can place some armour
+// for the body of the Tux.
+//
+#define ARMOUR_RECT_WIDTH 66
+#define ARMOUR_RECT_HEIGHT 92
+#define ARMOUR_RECT_X 130
+#define ARMOUR_RECT_Y 70
+
+//--------------------
+// The shield rectangle is obviously for the shields, but not only
+// that:  when using a 2-handed weapon, its also good for the weapon
+// again, to indicate, that no shield can be used in conjunction with
+// such a 2-handed weapon.
+//
+#define SHIELD_RECT_WIDTH 70
+#define SHIELD_RECT_HEIGHT 112
+#define SHIELD_RECT_X 230
+#define SHIELD_RECT_Y 116
+
+//--------------------
+// The 'drive' rectangle is actually for the footwear.
+//
+#define DRIVE_RECT_WIDTH 64
+#define DRIVE_RECT_HEIGHT 64
+#define DRIVE_RECT_X 130
+#define DRIVE_RECT_Y 175
+
+//--------------------
+// Now this is the 'helmet' rectangle.
+//
+#define HELMET_RECT_WIDTH 64
+#define HELMET_RECT_HEIGHT 64
+#define HELMET_RECT_X 25
+#define HELMET_RECT_Y 22
 
 //--------------------
 // bullet types

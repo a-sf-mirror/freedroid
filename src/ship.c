@@ -782,16 +782,14 @@ ShowItemInfo ( item* ShowItem , int Displacement , char ShowArrows , int backgro
     
     switch ( ItemMap [ ShowItem->type ] . item_gun_use_ammunition )
     {
-	case ITEM_PLASMA_AMMUNITION:
+	case 2:
 	    strcat ( InfoText, _(" This weapon requires standard plasma ammunition."));
 	    break;
-	case ITEM_LASER_AMMUNITION:
+	case 1:
 	    strcat ( InfoText, _(" This weapon requires standard laser crystal ammunition."));
 	    break;
-	case ITEM_EXTERMINATOR_AMMUNITION:
+	case 3:
 	    strcat ( InfoText, _(" This weapon requires standard exterminator ammunition spheres."));
-	    break;
-	default:
 	    break;
     }
     

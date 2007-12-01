@@ -198,90 +198,87 @@ AssembleItemListForTradeCharacter ( item* ListToBeFilled , int ShopCharacterCode
     //
     ListPointer = ListToBeFilled;
     if ( ShopCharacterCode == PERSON_STONE )
-    {
-	ListPointer->type = ITEM_DAGGER; ListPointer++;
-	ListPointer->type = ITEM_SHORT_SWORD; ListPointer++;
-	ListPointer->type = ITEM_SCIMITAR; ListPointer++;
-	ListPointer->type = ITEM_CLUB; ListPointer++;
-	ListPointer->type = ITEM_MACE; ListPointer++;
-	ListPointer->type = ITEM_STAFF; ListPointer++;
-	ListPointer->type = ITEM_CAP; ListPointer++;
-	ListPointer->type = ITEM_BUCKLER; ListPointer++;
-	ListPointer->type = ITEM_ARMOR_SIMPLE_JACKET; ListPointer++;
-	
-    }
+	{
+	ListPointer->type = GetItemIndexByName("Dagger"); ListPointer++;
+	ListPointer->type = GetItemIndexByName("Short sword"); ListPointer++;
+	ListPointer->type = GetItemIndexByName("Small axe"); ListPointer++;
+	ListPointer->type = GetItemIndexByName("Tree branch"); ListPointer++;
+	ListPointer->type = GetItemIndexByName("Mace"); ListPointer++;
+	ListPointer->type = GetItemIndexByName("Wooden spear"); ListPointer++;
+	ListPointer->type = GetItemIndexByName("Cap"); ListPointer++;
+	ListPointer->type = GetItemIndexByName("Buckler"); ListPointer++;
+	ListPointer->type = GetItemIndexByName("Simple Jacket"); ListPointer++;
+
+	}
     else if ( ShopCharacterCode == PERSON_DOC_MOORE )
-    {
-	ListPointer->type = ITEM_SMALL_HEALTH_POTION; ListPointer++;
-	ListPointer->type = ITEM_MEDIUM_HEALTH_POTION; ListPointer++;
-	ListPointer->type = ITEM_FULL_HEALTH_POTION; ListPointer++;
-
-    }
+	{
+	ListPointer->type = GetItemIndexByName("Diet supplement"); ListPointer++;
+	ListPointer->type = GetItemIndexByName("Antibiotic"); ListPointer++;
+	ListPointer->type = GetItemIndexByName("Doc-in-a-can"); ListPointer++;
+	}
     else if ( ShopCharacterCode == PERSON_LUKAS )
-    {
-	ListPointer->type = ITEM_LASER_PISTOL; ListPointer++;
-	ListPointer->type = ITEM_PLASMA_PISTOL; ListPointer++;
-	ListPointer->type = ITEM_LASER_AMMUNITION; ListPointer++;
-	ListPointer->type = ITEM_PLASMA_AMMUNITION; ListPointer++;
-	ListPointer->type = ITEM_RED_GUARD_LIGHT_ARMOUR; ListPointer++;
-	ListPointer->type = ITEM_RED_GUARD_HEAVY_ARMOUR; ListPointer++;
-    }
+	{
+	ListPointer->type = GetItemIndexByName("Laser pistol"); ListPointer++;
+	ListPointer->type = GetItemIndexByName("Plasma pistol"); ListPointer++;
+	ListPointer->type = GetItemIndexByName("Laser Weapon Ammunition"); ListPointer++;
+	ListPointer->type = GetItemIndexByName("Plasma Weapon Ammunition"); ListPointer++;
+	ListPointer->type = GetItemIndexByName("Red Guard's Light Robe"); ListPointer++;
+	ListPointer->type = GetItemIndexByName("Red Guard's Heavy Robe"); ListPointer++;
+	}
     else if ( ShopCharacterCode == PERSON_SKIPPY )
-    {
-	ListPointer->type = ITEM_MAP_MAKER_SIMPLE; ListPointer++;
-    }
+	{
+	ListPointer->type = GetItemIndexByName("Map Maker"); ListPointer++;
+	}
     else if ( ShopCharacterCode == PERSON_DUNCAN )
-    {
-	ListPointer->type = ITEM_VMX_GAS_GRENADE; ListPointer++;
-	ListPointer->type = ITEM_EMP_SHOCK_GRENADE; ListPointer++;
-	ListPointer->type = ITEM_PLASMA_GRENADE; ListPointer++;
-    }
+	{
+	ListPointer->type = GetItemIndexByName("VMX Gas Grenade"); ListPointer++;
+	ListPointer->type = GetItemIndexByName("EMP Shock Grenade"); ListPointer++;
+	ListPointer->type = GetItemIndexByName("Plasma Grenade"); ListPointer++;
+	}
     else if ( ShopCharacterCode == PERSON_EWALD )
-    {
-	ListPointer->type = ITEM_SMALL_MANA_POTION; ListPointer++;
-	ListPointer->type = ITEM_MEDIUM_MANA_POTION; ListPointer++;
-	ListPointer->type = ITEM_FULL_MANA_POTION; ListPointer++;
-	ListPointer->type = ITEM_BLUE_ENERGY_DRINK; ListPointer++;
-	ListPointer->type = ITEM_RUNNING_POWER_POTION; ListPointer++;
-	ListPointer->type = ITEM_TEMP_STRENGTH_POTION; ListPointer++;
-	ListPointer->type = ITEM_TEMP_DEXTERITY_POTION; ListPointer++;
+	{
+	ListPointer->type = GetItemIndexByName("Bottled ice"); ListPointer++;
+	ListPointer->type = GetItemIndexByName("Industrial coolant"); ListPointer++;
+	ListPointer->type = GetItemIndexByName("Liquid nitrogen"); ListPointer++;
+	ListPointer->type = GetItemIndexByName("Barf's Energy Drink"); ListPointer++;
+	ListPointer->type = GetItemIndexByName("Running Power Capsule"); ListPointer++;
+	ListPointer->type = GetItemIndexByName("Strength Capsule"); ListPointer++;
+	ListPointer->type = GetItemIndexByName("Dexterity Capsule"); ListPointer++;
 
-	ListPointer->type = ITEM_EATING_FORK; ListPointer++;
-	ListPointer->type = ITEM_EATING_PLATE; ListPointer++;
-	ListPointer->type = ITEM_DRINKING_MUG; ListPointer++;
-
-	
-    }
+	ListPointer->type = GetItemIndexByName("Fork"); ListPointer++;
+	ListPointer->type = GetItemIndexByName("Plate"); ListPointer++;
+	ListPointer->type = GetItemIndexByName("Mug"); ListPointer++;
+	}
     else if ( ShopCharacterCode == PERSON_SORENSON )
-    {
-	ListPointer->type = ITEM_SPELLBOOK_OF_CHECK_SYSTEM_INTEGRITY; ListPointer++; 
-	ListPointer->type = ITEM_SPELLBOOK_OF_CALCULATE_PI; ListPointer++; 
-	ListPointer->type = ITEM_SPELLBOOK_OF_BLUE_SCREEN; ListPointer++; 
-	ListPointer->type = ITEM_SPELLBOOK_OF_TELEPORT_HOME; ListPointer++; 
-	ListPointer->type = ITEM_SPELLBOOK_OF_MALFORMED_PACKET; ListPointer++; 
-	ListPointer->type = ITEM_SPELLBOOK_OF_ANALYZE_ITEM; ListPointer++; 
-	ListPointer->type = ITEM_SPELLBOOK_OF_NETHACK; ListPointer++; 
-	ListPointer->type = ITEM_SPELLBOOK_OF_DISPELL_SMOKE; ListPointer++; 
-	ListPointer->type = ITEM_SPELLBOOK_OF_KILLER_POKE; ListPointer++; 
-	ListPointer->type = ITEM_SPELLBOOK_OF_BROADCAST_KILLER_POKE; ListPointer++; 
-	ListPointer->type = ITEM_SPELLBOOK_OF_RICER_CFLAGS; ListPointer++; 
-	ListPointer->type = ITEM_SPELLBOOK_OF_PLASMA_DISCHARGE; ListPointer++; 
-	ListPointer->type = ITEM_SPELLBOOK_OF_INVISIBILITY; ListPointer++; 
-	ListPointer->type = ITEM_SPELLBOOK_OF_SANCTUARY; ListPointer++; 
-	ListPointer->type = ITEM_SPELLBOOK_OF_VIRUS; ListPointer++; 
-	ListPointer->type = ITEM_SPELLBOOK_OF_BROADCAST_VIRUS; ListPointer++; 
-	ListPointer->type = ITEM_SPELLBOOK_OF_REVERSE_ENGINEER; ListPointer++; 
-	ListPointer->type = ITEM_SPELLBOOK_OF_EMERGENCY_SHUTDOWN; ListPointer++; 
-	ListPointer->type = ITEM_SPELLBOOK_OF_LIGHT; ListPointer++; 
-	ListPointer->type = ITEM_SPELLBOOK_OF_SATELLITE_IMAGE; ListPointer++; 
-    }
+	{
+	ListPointer->type = GetItemIndexByName("Source Book of Check system integrity"); ListPointer++;
+	ListPointer->type = GetItemIndexByName("Source Book of Sanctuary"); ListPointer++;
+	ListPointer->type = GetItemIndexByName("Source Book of Calculate Pi"); ListPointer++;
+	ListPointer->type = GetItemIndexByName("Source Book of Blue Screen"); ListPointer++;
+	ListPointer->type = GetItemIndexByName("Source Book of Malformed packet"); ListPointer++;
+	ListPointer->type = GetItemIndexByName("Source Book of Analyze item"); ListPointer++;
+	ListPointer->type = GetItemIndexByName("Source Book of Nethack"); ListPointer++;
+	ListPointer->type = GetItemIndexByName("Source Book of Dispell smoke"); ListPointer++;
+	ListPointer->type = GetItemIndexByName("Source Book of Killer poke"); ListPointer++;
+	ListPointer->type = GetItemIndexByName("Source Book of Broadcast killer poke"); ListPointer++;
+	ListPointer->type = GetItemIndexByName("Source Book of Ricer CFLAGS"); ListPointer++;
+	ListPointer->type = GetItemIndexByName("Source Book of Plasma discharge"); ListPointer++;
+	ListPointer->type = GetItemIndexByName("Source Book of Invisibility"); ListPointer++;
+	ListPointer->type = GetItemIndexByName("Source Book of Sanctuary"); ListPointer++;
+	ListPointer->type = GetItemIndexByName("Source Book of Virus"); ListPointer++;
+	ListPointer->type = GetItemIndexByName("Source Book of Broadcast virus"); ListPointer++;
+	ListPointer->type = GetItemIndexByName("Source Book of Reverse-engineer"); ListPointer++;
+	ListPointer->type = GetItemIndexByName("Source Book of Emergency shutdown"); ListPointer++;
+	ListPointer->type = GetItemIndexByName("Source Book of Light"); ListPointer++;
+	ListPointer->type = GetItemIndexByName("Source Book of Satellite image"); ListPointer++;
+	}
     else
-    {
+	{
 	GiveStandardErrorMessage ( __FUNCTION__  , "\
-The function has received an unexpected character code.  This is not handled\n\
-currently and therefore initiates immediate termination now...",
-				   PLEASE_INFORM, IS_FATAL );
-    }
+		The function has received an unexpected character code.  This is not handled\n\
+		currently and therefore initiates immediate termination now...",
+		PLEASE_INFORM, IS_FATAL );
+	}
     
     //--------------------
     // Now it's time to fill in the correct item properties and set

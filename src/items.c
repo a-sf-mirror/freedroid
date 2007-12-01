@@ -829,71 +829,68 @@ DropRandomItem( int level_num , float x , float y , int TreasureChestRange , int
     switch ( MyRandom ( TreasureChestRange ) )
     {
 	case 0:
-	    switch ( MyRandom ( 17 ) )
+	    switch ( MyRandom ( 16 ) )
 	    {
 		case 0:
-		    drop_item_type = ITEM_SMALL_HEALTH_POTION ;
+		    drop_item_type = GetItemIndexByName("Diet supplement");
 		    drop_item_multiplicity =  1 ;
 		    break;
 		case 1:
 		case 2:
-		    drop_item_type = ITEM_SMALL_HEALTH_POTION ;
+		    drop_item_type = GetItemIndexByName("Diet supplement");
 		    drop_item_multiplicity =  1 ;
 		    break;
 		case 3:
 		case 4:
-		    drop_item_type = ITEM_SMALL_MANA_POTION ;
+		    drop_item_type = GetItemIndexByName("Bottled ice") ;
 		    drop_item_multiplicity =  1 ;
 		    break;
 		case 5:
-		    drop_item_type = ITEM_DAGGER ;
+		    drop_item_type = GetItemIndexByName("Dagger");
 		    drop_item_multiplicity =  1 ;
 		    break;
 		case 6:
-		    drop_item_type = ITEM_CAP ;
+		    drop_item_type = GetItemIndexByName("Cap");
 		    drop_item_multiplicity =  1 ;
 		    break;
 		case 7:
-		    drop_item_type = ITEM_STAFF ;
+		    drop_item_type = GetItemIndexByName("Tree branch") ;
 		    drop_item_multiplicity =  1 ;
 		    break;
 		case 8:
-		    drop_item_type = ITEM_ARMOR_SIMPLE_JACKET ;
+		    drop_item_type = GetItemIndexByName("Simple Jacket");
 		    drop_item_multiplicity =  1 ;
 		    break;
 		case 9:
-		    drop_item_type = ITEM_SCRIPT_OF_IDENTIFY ;
+		    drop_item_type = GetItemIndexByName("Identification Script");
 		    drop_item_multiplicity =  1 ;
 		    break;
 		case 10:
-	            break;
+		    drop_item_type = GetItemIndexByName("Wooden spear") ;
+		    drop_item_multiplicity =  1 ;
+		    break;
 		case 11:
-		    drop_item_type = ITEM_CLUB ;
+		    drop_item_type = GetItemIndexByName("Shoes") ;
 		    drop_item_multiplicity =  1 ;
 		    break;
 		case 12:
-		    drop_item_type = ITEM_SHOES ;
+		    drop_item_type = GetItemIndexByName("Identification Script") ;
 		    drop_item_multiplicity =  1 ;
 		    break;
 		case 13:
-		    drop_item_type = ITEM_SCRIPT_OF_IDENTIFY ;
+		    drop_item_type = GetItemIndexByName("Barf's Energy Drink") ;
 		    drop_item_multiplicity =  1 ;
 		    break;
 		case 14:
-		    drop_item_type = ITEM_BLUE_ENERGY_DRINK ;
+		    drop_item_type = GetItemIndexByName("Buckler") ;
 		    drop_item_multiplicity =  1 ;
 		    break;
 		case 15:
-		    drop_item_type = ITEM_BUCKLER ;
+		    drop_item_type = GetItemIndexByName("Short sword") ;
 		    drop_item_multiplicity =  1 ;
 		    break;
 		case 16:
-		    drop_item_type = ITEM_SHORT_SWORD ;
-		    drop_item_multiplicity =  1 ;
-		    break;
-		case 17:
-		default:
-		    drop_item_type = ITEM_RUNNING_POWER_POTION ;
+		    drop_item_type = GetItemIndexByName("Running Power Capsule") ;
 		    drop_item_multiplicity =  1 ;
 		    break;
 	    } // inner switch
@@ -902,66 +899,66 @@ DropRandomItem( int level_num , float x , float y , int TreasureChestRange , int
 	    switch ( MyRandom ( 16 ) )
 	    {
 		case 0:
-		    drop_item_type = ITEM_SMALL_HELM ;
+		    drop_item_type = GetItemIndexByName("Small Helm") ;
 		    drop_item_multiplicity = 1 ;
 		    break;
 		case 1:
 		case 2:
-		    drop_item_type = ITEM_MEDIUM_HEALTH_POTION ;
+		    drop_item_type = GetItemIndexByName("Antibiotic");
 		    drop_item_multiplicity =  1 ;
 		    break;
 		case 3:
 		case 4:
-		    drop_item_type = ITEM_MEDIUM_MANA_POTION ;
+		    drop_item_type = GetItemIndexByName("Industrial coolant") ;
 		    drop_item_multiplicity =  1 ;
 		    break;
 		case 5:
-		    drop_item_type = ITEM_SMALL_HELM ;
+		    drop_item_type = GetItemIndexByName("Small Helm");
 		    drop_item_multiplicity =  1 ;
 		    break;
 		case 6:
-		    drop_item_type = ITEM_ARMOR_REINFORCED_JACKET ;
+		    drop_item_type = GetItemIndexByName("Reinforced Jacket") ;
 		    drop_item_multiplicity =  1 ;
 		    break;
 		case 7:
-		    drop_item_type = ITEM_PLASMA_AMMUNITION ;
+		    drop_item_type = GetItemIndexByName("Plasma Weapon Ammunition");
 		    drop_item_multiplicity =  10 + MyRandom ( 9 ) ;
 		    break;
 		case 8:
-		    drop_item_type = ITEM_LASER_AMMUNITION ;
+		    drop_item_type = GetItemIndexByName("Laser Weapon Ammunition");
 		    drop_item_multiplicity =  10 + MyRandom ( 9 ) ;
 		    break;
 		case 9:
-		    drop_item_type = ITEM_SCRIPT_OF_IDENTIFY ;
+		    drop_item_type = GetItemIndexByName("Identification Script");
 		    drop_item_multiplicity =  1 ;
 		    break;
 		case 10:
-		    drop_item_type = ITEM_MACE ;
+		    drop_item_type = GetItemIndexByName("Mace");
 		    drop_item_multiplicity = 1 ;
 		    break;
 		case 11:
-		    drop_item_type = ITEM_LIGHT_BOOTS ;
+		    drop_item_type = GetItemIndexByName("Light Boots");
 		    drop_item_multiplicity =  1 ;
 		    break;
 		case 12:
-		    drop_item_type = ITEM_SMALL_HEALTH_POTION ;
+		    drop_item_type = GetItemIndexByName("Diet supplement");
 		    drop_item_multiplicity =  1 ;
 		    break;
 		case 13:
-		    drop_item_type = ITEM_SCRIPT_OF_TELEPORT_HOME ;
+		    drop_item_type = GetItemIndexByName("Evacuation script");
 		    drop_item_multiplicity =  1 ;
 		    break;
 		case 14:
-		    drop_item_type = ITEM_SMALL_SHIELD ;
+		    drop_item_type = GetItemIndexByName("Small Shield");
 		    drop_item_multiplicity =  1 ;
 		    break;
 		case 15:
-		    drop_item_type = ITEM_SCIMITAR ;
+		    drop_item_type = GetItemIndexByName("Long sword") ;
 		    drop_item_multiplicity =  1 ;
 		    break;
 		case 16:
 		default:
-		    drop_item_type = ITEM_SMALL_MANA_POTION ;
+		    drop_item_type = GetItemIndexByName("Bottled ice");
 		    drop_item_multiplicity =  1 ;
 		    break;
 	    } // inner switch
@@ -970,74 +967,74 @@ DropRandomItem( int level_num , float x , float y , int TreasureChestRange , int
 	    switch ( MyRandom ( 18 ) )
 	    {
 		case 0:
-		    drop_item_type = ITEM_MEDIUM_MANA_POTION ;
+		    drop_item_type = GetItemIndexByName("Industrial coolant");
 		    drop_item_multiplicity =  1 ;
 		    break;
 		case 1:
 		case 2:
-		    drop_item_type = ITEM_FULL_HEALTH_POTION ;
+		    drop_item_type = GetItemIndexByName("Doc-in-a-can");
 		    drop_item_multiplicity =  1 ;
 		    break;
 		case 3:
 		case 4:
-		    drop_item_type = ITEM_FULL_MANA_POTION ;
+		    drop_item_type = GetItemIndexByName("Liquid nitrogen");
 		    drop_item_multiplicity =  1 ;
 		    break;
 		case 5:
-		    drop_item_type = ITEM_IRON_HAT ;
+		    drop_item_type = GetItemIndexByName("Iron Hat");
 		    drop_item_multiplicity =  1 ;
 		    break;
 		case 6:
-		    drop_item_type = ITEM_ARMOR_PROTECTIVE_JACKET ;
+		    drop_item_type = GetItemIndexByName("Protective Jacket");
 		    drop_item_multiplicity =  1 ;
 		    break;
 		case 7:
-		    drop_item_type = ITEM_STANDARD_SHIELD ;
+		    drop_item_type = GetItemIndexByName("Standard Shield");
 		    drop_item_multiplicity =  1 ;
 		    break;
 		case 8:
-		    drop_item_type = ITEM_PLASMA_AMMUNITION ;
+		    drop_item_type = GetItemIndexByName("Plasma Weapon Ammunition");
 		    drop_item_multiplicity =  20 + MyRandom ( 9 );
 		    break;
 		case 9:
-		    drop_item_type = ITEM_LASER_AMMUNITION ;
+		    drop_item_type = GetItemIndexByName("Laser Weapon Ammunition");
 		    drop_item_multiplicity =  20 + MyRandom ( 9 ) ;
 		    break;
 		case 10:
-		    drop_item_type = ITEM_EXTERMINATOR_AMMUNITION ;
+		    drop_item_type = GetItemIndexByName("2 mm Exterminator Ammunition");
 		    drop_item_multiplicity =  20 + MyRandom ( 9 ) ;
 		    break;
 		case 11:
-		    drop_item_type = ITEM_SMALL_HEALTH_POTION ;
+		    drop_item_type = GetItemIndexByName("Diet supplement");
 		    drop_item_multiplicity =  1 ;
 		    break;
 		case 12:
-		    drop_item_type = ITEM_SMALL_MANA_POTION ;
+		    drop_item_type = GetItemIndexByName("Bottled ice");
 		    drop_item_multiplicity =  1 ;
 		    break;
 		case 13:
-		    drop_item_type = ITEM_MEDIUM_HEALTH_POTION ;
+		    drop_item_type = GetItemIndexByName("Antibiotic");
 		    drop_item_multiplicity =  1 ;
 		    break;
 		case 14:
-		    drop_item_type = ITEM_MEDIUM_MANA_POTION ;
+		    drop_item_type = GetItemIndexByName("Industrial coolant");
 		    drop_item_multiplicity =  1 ;
 		    break;
 		case 15:
-		    drop_item_type = ITEM_BOOTS ;
+		    drop_item_type = GetItemIndexByName("Boots");
 		    drop_item_multiplicity =  1 ;
 		    break;
 		case 16:
-		    drop_item_type = ITEM_SMALL_SHIELD ;
+		    drop_item_type = GetItemIndexByName("Small Shield");
 		    drop_item_multiplicity =  1 ;
 		    break;
 		case 17:
-		    drop_item_type = ITEM_SABER ;
+		    drop_item_type = GetItemIndexByName("Meat cleaver") ;
 		    drop_item_multiplicity =  1 ;
 		    break;
 		case 18:
 		default:
-		    drop_item_type = ITEM_RUNNING_POWER_POTION ;
+		    drop_item_type = GetItemIndexByName("Running Power Capsule") ;
 		    drop_item_multiplicity =  1 ;
 		    break;
 	    } // inner switch
@@ -1046,66 +1043,66 @@ DropRandomItem( int level_num , float x , float y , int TreasureChestRange , int
 	    switch ( MyRandom ( 16 ) )
 	    {
 		case 0:
-		    drop_item_type = ITEM_ANTIGRAV_POD ;
+		    drop_item_type = GetItemIndexByName("Source Book of Check system integrity");
 		    drop_item_multiplicity =  1 ;
 		    break;
 		case 1:
 		case 2:
-		    drop_item_type = ITEM_FULL_HEALTH_POTION ;
+		    drop_item_type = GetItemIndexByName("Doc-in-a-can");
 		    drop_item_multiplicity =  1 ;
 		    break;
 		case 3:
 		case 4:
-		    drop_item_type = ITEM_FULL_MANA_POTION ;
+		    drop_item_type = GetItemIndexByName("Liquid nitrogen");
 		    drop_item_multiplicity =  1 ;
 		    break;
 		case 5:
-		    drop_item_type = ITEM_IRON_HELM ;
+		    drop_item_type = GetItemIndexByName("Iron Helm");
 		    drop_item_multiplicity =  1 ;
 		    break;
 		case 6:
-		    drop_item_type = ITEM_REINFORCED_BOOTS ;
+		    drop_item_type = GetItemIndexByName("Reinforced Boots");
 		    drop_item_multiplicity =  1 ;
 		    break;
 		case 7:
-		    drop_item_type = ITEM_MEDIUM_SHIELD ;
+		    drop_item_type = GetItemIndexByName("Medium Shield");
 		    drop_item_multiplicity =  1 ;
 		    break;
 		case 8:
-		    drop_item_type = ITEM_PLASMA_AMMUNITION ;
+		    drop_item_type = GetItemIndexByName("Plasma Weapon Ammunition");
 		    drop_item_multiplicity = 30 + MyRandom ( 9 ) ;
 		    break;
 		case 9:
-		    drop_item_type = ITEM_LASER_AMMUNITION ;
+		    drop_item_type = GetItemIndexByName("Laser Weapon Ammunition") ;
 		    drop_item_multiplicity = 30 + MyRandom ( 9 ) ;
 		    break;
 		case 10:
-		    drop_item_type = ITEM_EXTERMINATOR_AMMUNITION ;
+		    drop_item_type = GetItemIndexByName("2 mm Exterminator Ammunition");
 		    drop_item_multiplicity = 30 + MyRandom ( 9 ) ;
 		    break;
 		case 11:
-		    drop_item_type = ITEM_SMALL_HEALTH_POTION ;
+		    drop_item_type = GetItemIndexByName("Diet supplement");
 		    drop_item_multiplicity =  1 ;
 		    break;
 		case 12:
-		    drop_item_type = ITEM_SMALL_MANA_POTION ;
+		    drop_item_type = GetItemIndexByName("Bottled ice");
 		    drop_item_multiplicity =  1 ;
 		    break;
 		case 13:
-		    drop_item_type = ITEM_MEDIUM_HEALTH_POTION ;
+		    drop_item_type = GetItemIndexByName("Antibiotic");
 		    drop_item_multiplicity =  1 ;
 		    break;
 		case 14:
-		    drop_item_type = ITEM_SMALL_SHIELD ;
+		    drop_item_type = GetItemIndexByName("Small Shield");
 		    drop_item_multiplicity =  1 ;
 		    break;
 		case 15:
-		    drop_item_type = ITEM_FALCHION ;
+		    drop_item_type = GetItemIndexByName("Great sword");
 		    drop_item_multiplicity =  1 ;
 		    break;
 		case 16:
 		default:
-		    drop_item_type = ITEM_MEDIUM_MANA_POTION ;
+		    drop_item_type = GetItemIndexByName("Industrial coolant");
 		    drop_item_multiplicity =  1 ;
 		    break;
 	    } // inner switch
@@ -1114,35 +1111,35 @@ DropRandomItem( int level_num , float x , float y , int TreasureChestRange , int
 	    switch ( MyRandom ( 8 ) )
 	    {
 		case 0:
-		    drop_item_type = ITEM_HIKING_BOOTS ;
+		    drop_item_type = GetItemIndexByName("Hiking Boots");
 		    drop_item_multiplicity =  1 ;
 		    break;
 		case 1:
-		    drop_item_type = ITEM_FULL_MANA_POTION ;
+		    drop_item_type = GetItemIndexByName("Liquid nitrogen");
 		    drop_item_multiplicity =  1 ;
 		    break;
 		case 2:
-		    drop_item_type = ITEM_FULL_HEALTH_POTION ;
+		    drop_item_type = GetItemIndexByName("Doc-in-a-can");
 		    drop_item_multiplicity =  1 ;
 		    break;
 		case 3:
-		    drop_item_type = ITEM_LARGE_SHIELD ;
+		    drop_item_type = GetItemIndexByName("Large Shield");
 		    drop_item_multiplicity =  1 ;
 		    break;
 		case 4:
-		    drop_item_type = ITEM_PLASMA_GRENADE ;
+		    drop_item_type = GetItemIndexByName("Plasma Grenade");
 		    drop_item_multiplicity =  1 ;
 		    break;
 		case 5:
-		    drop_item_type = ITEM_VMX_GAS_GRENADE ;
+		    drop_item_type = GetItemIndexByName("VMX Gas Grenade");
 		    drop_item_multiplicity =  1 ;
 		    break;
 		case 6:
-		    drop_item_type = ITEM_EMP_SHOCK_GRENADE ;
+		    drop_item_type = GetItemIndexByName("EMP Shock Grenade");
 		    drop_item_multiplicity =  1 ;
 		    break;
 		default:
-		    drop_item_type = ITEM_MEDIUM_MANA_POTION ;
+		    drop_item_type = GetItemIndexByName("Industrial coolant") ;
 		    drop_item_multiplicity =  1 ;
 		    break;
 	    } // inner switch

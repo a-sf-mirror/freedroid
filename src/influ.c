@@ -3201,27 +3201,45 @@ PerformTuxAttackRaw ( int use_mouse_cursor_for_targeting )
 
 void TuxReloadWeapon()
 {
-if(ItemMap [ Me . weapon_item . type ] . item_gun_ammo_clip_size == Me . weapon_item . ammo_clip)
+    int munition_type = -1;
+
+    if ( ItemMap [ Me . weapon_item . type ] . item_gun_ammo_clip_size == Me . weapon_item . ammo_clip )
 	return ; //clip full, return without reloading 
+	
+    switch ( ItemMap [ Me . weapon_item . type ] . item_gun_use_ammunition )
+	{
+	case 1: //laser
+	    munition_type = GetItemIndexByName("Laser Weapon Ammunition");
+	    break;
+	case 2: //plasma
+	    munition_type = GetItemIndexByName("Plasma Weapon Ammunition");
+	    break;
+	case 3: //exterminator
+	    munition_type = GetItemIndexByName("2 mm Exterminator Ammunition");
+	    break;
+	default:
+	    GiveStandardErrorMessage ( __FUNCTION__  , "Got an unknown munition type for your current weapon.",
+						                                          PLEASE_INFORM, IS_FATAL );
+	}
 
-int count = CountItemtypeInInventory ( ItemMap [ Me . weapon_item . type ] . item_gun_use_ammunition ); 
-if(count > ItemMap [ Me . weapon_item . type ] . item_gun_ammo_clip_size - Me . weapon_item . ammo_clip )
-    count =  ItemMap [ Me . weapon_item . type ] . item_gun_ammo_clip_size - Me . weapon_item . ammo_clip;
+    int count = CountItemtypeInInventory ( munition_type ); 
+    if(count > ItemMap [ Me . weapon_item . type ] . item_gun_ammo_clip_size - Me . weapon_item . ammo_clip )
+	count =  ItemMap [ Me . weapon_item . type ] . item_gun_ammo_clip_size - Me . weapon_item . ammo_clip;
 
-if(!count) //no ammo found, tell the player that he "has it in the baba"
-        {
-        No_Ammo_Sound( );
-        No_Ammo_Sound( );
+    if(!count) //no ammo found, tell the player that he "has it in the baba"
+	{
+	No_Ammo_Sound( );
+	No_Ammo_Sound( );
 	append_new_game_message(_("No more ammunition !"));
 	return;
-        }
-int i;
-for(i = 0; i < count; i++)
-	DeleteOneInventoryItemsOfType( ItemMap [ Me . weapon_item . type ] . item_gun_use_ammunition );
-Me . weapon_item . ammo_clip += count;
-Me . busy_time = ItemMap[ Me . weapon_item . type ].item_gun_reloading_time;
-Me . busy_time *= RangedRechargeMultiplierTable [ Me . ranged_weapon_skill ] ;
-Me . busy_type = WEAPON_RELOAD;
+	}
+    int i;
+    for(i = 0; i < count; i++)
+	DeleteOneInventoryItemsOfType( munition_type );
+    Me . weapon_item . ammo_clip += count;
+    Me . busy_time = ItemMap[ Me . weapon_item . type ].item_gun_reloading_time;
+    Me . busy_time *= RangedRechargeMultiplierTable [ Me . ranged_weapon_skill ] ;
+    Me . busy_type = WEAPON_RELOAD;
 }
 
 

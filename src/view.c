@@ -2989,24 +2989,33 @@ Empty part string received!",
 void
 iso_put_tux_torso ( int x , int y , int rotation_index )
 {
-    switch ( Me . armour_item . type )
-    {
-	case -1 :
-	    iso_put_tux_part ( PART_GROUP_TORSO , "iso_torso" , x , y , rotation_index );
-	    break;
-	case ITEM_ARMOR_SIMPLE_JACKET:
-	case ITEM_ARMOR_REINFORCED_JACKET:
-	case ITEM_ARMOR_PROTECTIVE_JACKET:
-	    iso_put_tux_part ( PART_GROUP_TORSO , "iso_armour1" , x , y , rotation_index );
-	    break;
-	case ITEM_RED_GUARD_LIGHT_ARMOUR:
-	case ITEM_RED_GUARD_HEAVY_ARMOUR:
-	    iso_put_tux_part ( PART_GROUP_TORSO , "iso_robe" , x , y , rotation_index );
-	    break;
-	default:
-	    iso_put_tux_part ( PART_GROUP_TORSO , "iso_armour1" , x , y , rotation_index );
-	    break;
-    }
+    static int first_call = 1;
+    static int jacket1,jacket2, jacket3, robe1, robe2;
+    if ( first_call ) 
+	{
+	jacket1 = GetItemIndexByName("Simple Jacket");
+	jacket2 = GetItemIndexByName("Reinforced Jacket");
+	jacket3 = GetItemIndexByName("Protective Jacket");
+	robe1 = GetItemIndexByName("Red Guard's Light Robe");
+	robe2 = GetItemIndexByName("Red Guard's Heavy Robe");
+	first_call = 0;
+	}
+    
+    if ( Me . armour_item . type == -1 )
+	{
+	iso_put_tux_part ( PART_GROUP_TORSO , "iso_torso" , x , y , rotation_index );
+	}
+    else if ( Me . armour_item . type == jacket1 ||  Me . armour_item . type == jacket2 ||  Me . armour_item . type == jacket3 )
+	{
+	iso_put_tux_part ( PART_GROUP_TORSO , "iso_armour1" , x , y , rotation_index );
+	}
+    else if (  Me . armour_item . type == robe1 || Me . armour_item . type == robe2 )
+	{
+	iso_put_tux_part ( PART_GROUP_TORSO , "iso_robe" , x , y , rotation_index );
+	}
+    else
+	iso_put_tux_part ( PART_GROUP_TORSO , "iso_armour1" , x , y , rotation_index );
+	
     
 }; // void iso_put_tux_torso ( int x , int y , int rotation_index )
 
@@ -3017,15 +3026,28 @@ iso_put_tux_torso ( int x , int y , int rotation_index )
 void
 iso_put_tux_shieldarm ( int x , int y , int rotation_index )
 {
+    static int first_call = 1;
+    static int shield1, shield2, shield3, shield4, shield5;
+
+    if ( first_call )
+	{
+	shield1 = GetItemIndexByName("Buckler");
+	shield2 = GetItemIndexByName("Small Shield");
+	shield3 = GetItemIndexByName("Medium Shield");
+	shield4 = GetItemIndexByName("Standard Shield");
+	shield5 = GetItemIndexByName("Large Shield");
+	first_call = 0;
+	}
+
     //--------------------
     // In case of no shielditem present at all, it's clear that we'll just
     // display the empty shieldarm.
     //
     if ( Me . shield_item . type == (-1) )
-    {
+    	{
 	iso_put_tux_part ( PART_GROUP_SHIELD , "iso_shieldarm" , x , y , rotation_index );
 	return;
-    }
+	}
     
     //--------------------
     // If there is no weapon item present, we just need to blit the shield, cause
@@ -3033,43 +3055,45 @@ iso_put_tux_shieldarm ( int x , int y , int rotation_index )
     //
     
     if ( Me . weapon_item . type != (-1) )
-    {
+	{
 	//--------------------
 	// In case of a weapon item present, we need to look up the weapon item motion class
 	// and then decide which shield to use.
 	//
 	if ( ItemMap [ Me . weapon_item . type ] . item_gun_angle_change == 0 )
-	{
+	    {
 	    iso_put_tux_part ( PART_GROUP_SHIELD , "iso_shieldarm" , x , y , rotation_index );
 	    return;
+	    }
 	}
-    }
     
     //--------------------
     // Now at this point we know, that a 'sword motion class' item is present, and that
     // we therefore need to blit the shield details.
     //
-    switch ( Me . shield_item . type )
-    {
-	case ITEM_BUCKLER:
-	    iso_put_tux_part ( PART_GROUP_SHIELD , "iso_buckler" , x , y , rotation_index );
-	    break;
-	case ITEM_SMALL_SHIELD:
-	case ITEM_MEDIUM_SHIELD:
-	    iso_put_tux_part ( PART_GROUP_SHIELD , "iso_small_shield" , x , y , rotation_index );
-	    break;
-	case ITEM_STANDARD_SHIELD:
-	    iso_put_tux_part ( PART_GROUP_SHIELD , "iso_standard_shield" , x , y , rotation_index );
-	    break;
-	case ITEM_LARGE_SHIELD:
-	    iso_put_tux_part ( PART_GROUP_SHIELD , "iso_large_shield" , x , y , rotation_index );
-	    break;
-	default:
-	    fprintf ( stderr , "Shield item code: %d " , Me . shield_item . type ) ;
-	    GiveStandardErrorMessage ( __FUNCTION__  , "This shield type is not yet rendered for Tux." ,
-				       PLEASE_INFORM, IS_FATAL );
-	    break;
-    }
+    if ( Me . shield_item . type == shield1 )
+	{
+	iso_put_tux_part ( PART_GROUP_SHIELD , "iso_buckler" , x , y , rotation_index );
+	}
+    else if ( Me . shield_item . type == shield2 || Me . shield_item . type == shield3 )
+	{
+	iso_put_tux_part ( PART_GROUP_SHIELD , "iso_small_shield" , x , y , rotation_index );
+	}
+    else if ( Me . shield_item . type == shield4)
+	{
+	iso_put_tux_part ( PART_GROUP_SHIELD , "iso_standard_shield" , x , y , rotation_index );
+	}
+    else if ( Me . shield_item . type == shield5)
+	{
+	iso_put_tux_part ( PART_GROUP_SHIELD , "iso_large_shield" , x , y , rotation_index );
+	}
+    else
+	{
+	fprintf ( stderr , "Shield item code: %d " , Me . shield_item . type ) ;
+	GiveStandardErrorMessage ( __FUNCTION__  , "This shield type is not yet rendered for Tux." ,
+		PLEASE_INFORM, IS_FATAL );
+	}
+	
 
 }; // void iso_put_tux_shieldarm ( int x , int y , int rotation_index )
 
@@ -3112,7 +3136,7 @@ iso_put_tux_weapon ( int x , int y , int rotation_index )
     {
 	if ( ItemMap [ Me . weapon_item . type ] . item_gun_angle_change != 0 )
 	{
-	    if ( Me . weapon_item . type == ITEM_MACE )
+	    if ( MatchItemWithName(Me . weapon_item . type, "Mace") )
 		iso_put_tux_part ( PART_GROUP_WEAPON , "iso_mace" , x , y , rotation_index );
 	    else
 		iso_put_tux_part ( PART_GROUP_WEAPON , "iso_sword" , x , y , rotation_index );
