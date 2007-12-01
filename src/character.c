@@ -36,13 +36,9 @@
 #include "global.h"
 #include "proto.h"
 
-//--------------------
-// Now we give some definitions for the computation of the
-// character stats
-//                                      For Warrior  For Sniper  For Hacker
-float Energy_Gain_Per_Vit_Point[]={ -1 ,     2 ,        1.5 ,        1 };
-float Mana_Gain_Per_Magic_Point[]={ -1 ,     2 ,        1.5 ,        2 };
-float AC_Gain_Per_Dex_Point[]={     -1 ,     0.5 ,         0.5  ,       0.5 };
+#define Energy_Gain_Per_Vit_Point 2;
+#define Maxtemp_Gain_Per_CPU_Point 2;
+#define AC_Gain_Per_Dex_Point 0.5;
 
 #define RECHARGE_SPEED_PERCENT_PER_DEX_POINT 0
 #define TOHIT_PERCENT_PER_DEX_POINT (0.5)
@@ -378,13 +374,13 @@ update_secondary_stats_from_primary_stats ()
     // How many life points can this character aquire currently
     //
     Me . maxenergy = 
-	( Me . Vitality ) * Energy_Gain_Per_Vit_Point [ Me . character_class ];
+	( Me . Vitality ) * Energy_Gain_Per_Vit_Point;
     
     //--------------------
     // The maximum mana value computed from the primary stats
     //
     Me . max_temperature = 
-	( Me . Magic )    * Mana_Gain_Per_Magic_Point [ Me . character_class ];
+	( Me . Magic )    * Maxtemp_Gain_Per_CPU_Point;
 
     //--------------------
     // How long can this character run until he must take a break and
@@ -488,8 +484,7 @@ update_tux_armour_class ()
     // using the dexterity value (and the 'character class')
     //
     Me . AC = 
-	( Me . Dexterity - 15 ) * 
-	AC_Gain_Per_Dex_Point [ Me . character_class ];
+	( Me . Dexterity - 15 ) * AC_Gain_Per_Dex_Point ;
 
     //--------------------
     // Now we apply the armour bonuses from the currently equipped
@@ -822,51 +817,29 @@ HandleCharacterScreen ( )
 	{
 	    Me.base_strength++;
 	    Me.points_to_distribute--;
-	    if ( Me.points_to_distribute <= 0 )
-	    {
-		while ( MouseLeftPressed() );
-	    }
 	}
 	if ( MouseCursorIsOnButton( MORE_DEX_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) && MouseLeftClicked() )
 	{
 	    Me.base_dexterity++;
 	    Me.points_to_distribute--;
-	    if ( Me.points_to_distribute <= 0 )
-	    {
-		while ( MouseLeftPressed() );
-	    }
 	}
 	if ( MouseCursorIsOnButton( MORE_MAG_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) && MouseLeftClicked() )
 	{
 	    Me.base_magic++;
 	    Me.points_to_distribute--;
-	    Me.max_temperature += Mana_Gain_Per_Magic_Point [ Me . character_class ];
-	    if ( Me.points_to_distribute <= 0 )
-	    {
-		while ( MouseLeftPressed() );
-	    }
 	}
 	if ( MouseCursorIsOnButton( MORE_VIT_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) && MouseLeftClicked() )
 	{
 	    Me.base_vitality++;
 	    Me.points_to_distribute--;
-	    // Me.health += Energy_Gain_Per_Vit_Point [ Me . character_class ];	  
-	    // Me.energy += Energy_Gain_Per_Vit_Point [ Me . character_class ];	  
-	    Me.health += Energy_Gain_Per_Vit_Point [ Me . character_class ];	  
-	    Me.energy += Energy_Gain_Per_Vit_Point [ Me . character_class ];	  
-	    if ( Me.points_to_distribute <= 0 )
-	    {
-		while ( MouseLeftPressed() );
-	    }
 	}
 	
-	//--------------------
-	// It might happen that the last str point was just spent.  Then we can
-	// automatically close the character window for convenience of the player.
-	// Update by A.H.: inverted this behavior for convenience of the player
-	// if ( Me.points_to_distribute == 0 ) GameConfig.CharacterScreen_Visible = FALSE;
     }
-    
+
+    if ( Me.points_to_distribute <= 0 )
+	{
+	while ( MouseLeftPressed() );
+	}
     
 }; // HandleCharacterScreen ( void )
 

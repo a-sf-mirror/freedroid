@@ -446,7 +446,7 @@ typedef struct
     double item_gun_angle_change;	// how fast to do a melee weapon swing
     double item_gun_start_angle_modifier;	// where to start with a melee weapon swing
     double item_gun_fixed_offset;         // how far away from the swinger should a melee weapon swing occur?
-    int    item_gun_use_ammunition; // which ammunition does this gun use?
+    int    item_gun_use_ammunition; // which ammunition does this gun use? - 1 laser 2 plasma 3 exterminator
     int    item_gun_requires_both_hands; // is this a (strictly) 2-handed weapon?
     
     // how good is the item as armour or shield or other protection???
@@ -566,7 +566,6 @@ druidspec, *Druidspec;
 typedef struct
 {
     Sint8 type;			  // ... currently unused ...
-    Sint8 character_class;        // ... currently unused ...
     Sint8 status;		  // ... only little meaning any more ...
     
     float current_game_date;      // seconds since game start, will be printed as a different 'date'

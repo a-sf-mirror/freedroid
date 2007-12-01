@@ -971,9 +971,10 @@ Cheatmenu (void)
 {
     char *input;		// string input from user 
     int can_continue;
-    int LNum, X, Y, num;
+    int LNum, X, Y;
     int i, l;
     int x0, y0, line;
+    int skip_dead = 0;
     Waypoint WpList;      // pointer on current waypoint-list  
 
     //--------------------
@@ -998,13 +999,12 @@ Cheatmenu (void)
 	ClearGraphMem ();
 	printf_SDL (Screen, x0, y0, "Current position: Level=%d, X=%d, Y=%d\n",
 		    CurLevel->levelnum, (int)Me.pos.x, (int)Me.pos.y);
-	printf_SDL (Screen, -1, -1, " a. Armageddon (alle Robots sprengen)\n");
+	printf_SDL (Screen, -1, -1, " a. Armageddon (kill everybody)\n");
 	printf_SDL (Screen, -1, -1, " l. robot list of current level\n");
+	printf_SDL (Screen, -1, -1, " L. alive robot list of current level\n");
 	printf_SDL (Screen, -1, -1, " g. complete robot list\n");
 	printf_SDL (Screen, -1, -1, " d. destroy robots on current level\n");
 	printf_SDL (Screen, -1, -1, " t. Teleportation\n");
-	printf_SDL (Screen, -1, -1, " r. change to new robot type\n");
-	printf_SDL (Screen, -1, -1, " e. set energy\n");
 	printf_SDL (Screen, -1, -1, " h. Auto-aquire all skills\n" );
 	printf_SDL (Screen, -1, -1, " n. No hidden droids: %s",
 		    show_all_droids ? "ON\n" : "OFF\n" ); 
@@ -1030,13 +1030,18 @@ Cheatmenu (void)
 		can_continue = 1;
 		Armageddon ();
 		break;
-		
+
+	    case 'L':
+		skip_dead = 1;		
 	    case 'l': // robot list of this deck 
 		l = 0;  // l is counter for lines of display of enemy output
 		for ( i = 0 ; i < MAX_ENEMYS_ON_SHIP ; i ++ )
 		{
 		    if ( AllEnemys [ i ] . pos . z == CurLevel -> levelnum ) 
 		    {
+		        if ( skip_dead && AllEnemys[i].Status == INFOUT )
+			    continue;
+
 			if (l && !(l%20)) 
 			{
 			    printf_SDL (Screen, -1, -1, " --- MORE --- \n");
@@ -1165,44 +1170,8 @@ Cheatmenu (void)
 		Teleport ( LNum , X , Y , TRUE ) ;
 		break;
 		
-	    case 'r': // change to new robot type 
-		ClearGraphMem ();
-		input = GetString ( 40 , 2 , NE_TITLE_PIC_BACKGROUND_CODE , "Type number of new robot: ");
-		if ( input == NULL ) break ; // We take into account the possibility of escape being pressed...
-		for (i = 0; i < Number_Of_Droid_Types ; i++)
-		    if (!strcmp (Druidmap[i].druidname, input))
-			break;
-		
-		if ( i == Number_Of_Droid_Types )
-		{
-		    printf_SDL (Screen, x0, y0+20,
-				"Unrecognized robot-type: %s", input);
-		    getchar_raw ();
-		    ClearGraphMem();
-		}
-		else
-		{
-		    Me.type = i;
-		    Me.energy = Me.maxenergy;
-		    Me.health = Me.energy;
-		    printf_SDL (Screen, x0, y0+20, "You are now a %s. Have fun!\n", input);
-		    getchar_raw ();
-		}
-		free (input);
-		break;
-		
-	    case 'e': // set current energy to arbitrary value
-		ClearGraphMem();
-		input = GetString ( 40 , 2 , NE_TITLE_PIC_BACKGROUND_CODE , "Enter your new energy: " );
-		if ( input == NULL ) break ; // We take into account the possibility of escape being pressed...
-		sscanf (input, "%d", &num);
-		free (input);
-		Me . energy = (double) num;
-		if ( Me . energy > Me . health ) Me . health = Me . energy;
-		break;
-		
 	    case 'h': // auto-aquire all skills
-		for ( i = 0 ; i < number_of_skills ; i ++ ) Me . base_skill_level [ i ] = 1 ;
+		for ( i = 0 ; i < number_of_skills ; i ++ ) Me . base_skill_level [ i ]  ++;
 		break;
 		
 	    case 'n': // toggle display of all droids 
@@ -2505,7 +2474,6 @@ clear_player_inventory_and_stats ( void )
     Me . shield_item.currently_held_in_hand = ( -1 ) ;
     Me . special_item.currently_held_in_hand = ( -1 ) ;
     
-    Me . character_class = WAR_BOT ;
     Me . base_vitality = 25 ;
     Me . base_strength = 10 ;
     Me . base_dexterity = 15 ;
