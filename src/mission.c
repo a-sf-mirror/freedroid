@@ -894,7 +894,7 @@ GetQuestList ( char* QuestListFilename )
 #define MISSION_TARGET_NAME_INITIALIZER "Mission Name=\""
 
 #define MISSION_AUTOMATICALLY_ASSIGN_STRING "Assign this mission to influencer automatically at start : "
-#define MISSION_TARGET_FETCH_ITEM_STRING "Mission target is to fetch item : "
+#define MISSION_TARGET_FETCH_ITEM_STRING "Mission target is to fetch item : \""
 #define MISSION_TARGET_KILL_ALL_STRING "Mission target is to kill all droids : "
 #define MISSION_TARGET_KILL_CLASS_STRING "Mission target is to kill class of droids : "
 #define MISSION_TARGET_KILL_ONE_STRING "Mission target is to kill droids with marker : "
@@ -959,8 +959,13 @@ GetQuestList ( char* QuestListFilename )
 	// From here on we read the details of the mission target, i.e. what the
 	// influencer has to do, so that the mission can be thought of as completed
 	//
-	ReadValueFromString( MissionTargetPointer , MISSION_TARGET_FETCH_ITEM_STRING , "%d" , 
-			     &Me.AllMissions[ MissionTargetIndex ].fetch_item , EndOfMissionTargetPointer );
+	if ( strstr( MissionTargetPointer, MISSION_TARGET_FETCH_ITEM_STRING ) )
+	    {
+	    char * iname = ReadAndMallocStringFromData ( MissionTargetPointer , MISSION_TARGET_FETCH_ITEM_STRING , "\"");
+	    Me.AllMissions[ MissionTargetIndex ].fetch_item = GetItemIndexByName(iname);
+	    free ( iname ); 
+	    }
+	else Me.AllMissions[ MissionTargetIndex ].fetch_item = -1; 
 	
 	ReadValueFromString( MissionTargetPointer , MISSION_TARGET_KILL_ALL_STRING , "%d" , 
 			     &Me.AllMissions[ MissionTargetIndex ].KillAll , EndOfMissionTargetPointer );
