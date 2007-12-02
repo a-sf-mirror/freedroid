@@ -896,7 +896,7 @@ Get_Robot_Data ( void* DataPointer )
 #define SENSOR3_BEGIN_STRING "Sensor 3 of this droid : "
 #define ARMAMENT_BEGIN_STRING "Armament of this droid : "
 #define DRIVE_ITEM_BEGIN_STRING "Drive item="
-#define WEAPON_ITEM_BEGIN_STRING "Weapon item="
+#define WEAPON_ITEM_BEGIN_STRING "Weapon item=\""
 #define SHIELD_ITEM_BEGIN_STRING "Shield item="
 #define ARMOUR_ITEM_BEGIN_STRING "Armour item="
 #define SPECIAL_ITEM_BEGIN_STRING "Special item="
@@ -1067,25 +1067,9 @@ Get_Robot_Data ( void* DataPointer )
       ReadValueFromStringWithDefault( RobotPointer , SENSOR3_BEGIN_STRING , "%d" , "0",
 			   &Druidmap[RobotIndex].sensor3, EndOfDataPointer );
 
-      // Now we read in the drive item of this droid type
-      ReadValueFromString( RobotPointer , DRIVE_ITEM_BEGIN_STRING , "%d" , 
-			   &Druidmap[RobotIndex].drive_item.type , EndOfDataPointer );
-
-      // Now we read in the weapon item of this droid type
-      ReadValueFromString( RobotPointer , WEAPON_ITEM_BEGIN_STRING , "%d" , 
-			   &Druidmap[RobotIndex].weapon_item.type , EndOfDataPointer );
-
-      // Now we read in the shield item of this droid type
-      ReadValueFromStringWithDefault( RobotPointer , SHIELD_ITEM_BEGIN_STRING , "%d" , "-1", 
-			   &Druidmap[RobotIndex].shield_item.type , EndOfDataPointer );
-
-      // Now we read in the armour item of this droid type
-      ReadValueFromStringWithDefault( RobotPointer , ARMOUR_ITEM_BEGIN_STRING , "%d" , "-1",
-			   &Druidmap[RobotIndex].armour_item.type , EndOfDataPointer );
-
-      // Now we read in the special item of this droid type
-      ReadValueFromStringWithDefault( RobotPointer , SPECIAL_ITEM_BEGIN_STRING , "%d" , "-1", 
-			   &Druidmap[RobotIndex].special_item.type , EndOfDataPointer );
+      char * tmp_item_name = ReadAndMallocStringFromData ( RobotPointer , WEAPON_ITEM_BEGIN_STRING , "\"" ) ;
+      Druidmap[RobotIndex].weapon_item.type = GetItemIndexByName ( tmp_item_name );
+      free ( tmp_item_name );
 
       // Now we read in the number of plasma transistors
       ReadValueFromStringWithDefault( RobotPointer , "Number of Plasma Transistors=" , "%d" , "0",

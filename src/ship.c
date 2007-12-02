@@ -231,11 +231,8 @@ ShowDroidInfo ( int droidtype, int Displacement , char ShowArrows )
     sprintf( InfoText, _("\
 Unit type %s - %s\n\
 Entry : %d\n\
-Class : %s\n\
-Drive : %s \n\
 Brain : %s"), Druidmap[droidtype].druidname, _(Classname[Druidmap[ droidtype ].class]),
-	     droidtype+1, _(Classes[Druidmap[droidtype].class]),
-	     ItemMap [ Druidmap[ droidtype ].drive_item.type ].item_name,
+	     droidtype+1,
 	     _(Brainnames[ Druidmap[droidtype].brain ]));
     
     if ( (type = Druidmap[droidtype].weapon_item.type) >= 0) // make sure item=-1 

@@ -539,11 +539,7 @@ typedef struct
     short int monster_level;
     short int forced_magic_items;
     
-    item drive_item;
     item weapon_item;
-    item armour_item;
-    item shield_item;
-    item special_item;
     
     int amount_of_plasma_transistors;
     int amount_of_superconductors;
