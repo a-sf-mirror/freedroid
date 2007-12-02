@@ -22,7 +22,6 @@ SRCFILES = ../src/BFont.c \
 		../src/influ.c \
 		../src/init.c \
 		../src/input.c \
-		../src/itemdefs.h \
 		../src/items.c \
 		../src/lang.h \
 		../src/leveleditor.c \
