@@ -793,7 +793,6 @@ EXTERN char *PreviousLine (char *textstart, char *text);
 EXTERN char *NextLine (char *text);
 EXTERN char *GetString ( int max_len , int echo , int background_code , const char* text_for_overhead_promt ) ;
 EXTERN void printf_SDL (SDL_Surface *screen, int x, int y, const char *fmt, ...);
-EXTERN int putchar_SDL (SDL_Surface *Surface, int x, int y, int c);
 
 // text_public.c 
 #undef EXTERN

@@ -460,12 +460,14 @@ decode_obstacles_of_this_level ( Level loadlevel , char* DataPointer )
     while ( *curfield != '/' )
     {
 	//structure of obstacle entry is :	// t59 x2.50 y63.50 l-1 d-1 
+	//we read the type
 	curfield ++;
 	curfieldend = curfield;
 	while ( (*curfieldend) != ' ' ) curfieldend ++;
 	(*curfieldend) = 0;
 	loadlevel -> obstacle_list [ i ] . type = atoi(curfield);
 	
+	//we read the X position
 	curfield = curfieldend + 2;
 	(*curfieldend) = ' ';
 	curfieldend += 2;
@@ -473,6 +475,7 @@ decode_obstacles_of_this_level ( Level loadlevel , char* DataPointer )
 	(*curfieldend) = 0;
 	loadlevel -> obstacle_list [ i ] . pos . x = atof(curfield);
 
+	//Y position
 	curfield = curfieldend + 2;
 	(*curfieldend) = ' ';
 	curfieldend += 2;
@@ -480,6 +483,7 @@ decode_obstacles_of_this_level ( Level loadlevel , char* DataPointer )
 	(*curfieldend) = 0;
 	loadlevel -> obstacle_list [ i ] . pos . y = atof(curfield);
 
+	//label #
 	curfield = curfieldend + 2;
 	(*curfieldend) = ' ';
 	curfieldend += 2;
@@ -487,6 +491,7 @@ decode_obstacles_of_this_level ( Level loadlevel , char* DataPointer )
 	(*curfieldend) = 0;
 	loadlevel -> obstacle_list [ i ] . name_index = atoi(curfield);
 
+	//description #
 	curfield = curfieldend + 2;
 	(*curfieldend) = ' ';
 	curfieldend += 2;

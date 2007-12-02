@@ -629,19 +629,19 @@ DisplayText ( const char *Text, int startx, int starty, const SDL_Rect *clip , f
     // we just set the clipping rect to contain the whole screen.
     //
     if ( clip != NULL )
-    {
+	{
 	SDL_SetClipRect ( Screen , clip );
-    }
+	}
     else
-    {
+	{
 	clip = & Temp_Clipping_Rect;
 	Temp_Clipping_Rect.x=0;
 	Temp_Clipping_Rect.y=0;
 	Temp_Clipping_Rect.w=GameConfig . screen_width;
 	Temp_Clipping_Rect.h=GameConfig . screen_height;
-    }
+	}
 
-    
+
     //--------------------
     // Now we can start to print the actual text to the screen.
     //
@@ -649,38 +649,29 @@ DisplayText ( const char *Text, int startx, int starty, const SDL_Rect *clip , f
     //
     tmp = (char*) Text;  // this is no longer a 'const' char*, but only a char*
     while ( *tmp && ( MyCursorY < clip -> y + clip -> h ) )
-    {
-	if ( *tmp == '\n' )
 	{
+	if ( *tmp == '\n' )
+	    {
 	    MyCursorX = clip->x;
 	    MyCursorY += FontHeight ( GetCurrentFont() ) * text_stretch ;
 	    nblines ++;
-	}
+	    }
 	else 
 	    {
-	    if ( MyCursorY > clip -> y - FontHeight ( GetCurrentFont() ) * text_stretch) 
-      	        DisplayChar (*tmp);
-	    else 
-		{
-                MyCursorX += CharWidth ( GetCurrentFont() , *tmp) ;                                
-		switch ( * tmp ) 
-		    {
-		    case 1: SetCurrentFont(Red_BFont); break;
-		    case 2: SetCurrentFont(Blue_BFont); break;
-		    case 3: SetCurrentFont(FPS_Display_BFont); break;
-		    }
-		}
+	    /*if ( MyCursorY <= clip -> y - FontHeight ( GetCurrentFont() ) * text_stretch) 
+		display_char_disabled = TRUE;*/
+	    DisplayChar (*tmp);
 	    }
 
-	
+
 	tmp++;
-	
-        if(ImprovedCheckLineBreak( tmp , clip , text_stretch ) == 1)   // dont write over right border 
-		{ /*THE CALL ABOVE HAS DONE THE CARRIAGE RETURN FOR US !!!*/
-		nblines ++;
-		}
-	
-    }
+
+	if(ImprovedCheckLineBreak( tmp , clip , text_stretch ) == 1)   // dont write over right border 
+	    { /*THE CALL ABOVE HAS DONE THE CARRIAGE RETURN FOR US !!!*/
+	    nblines ++;
+	    }
+
+	}
     
     SDL_SetClipRect (Screen, &store_clip); // restore previous clip-rect 
     
@@ -705,40 +696,40 @@ DisplayChar (unsigned char c)
 {
     
     if ( c == 1 ) 
-    {
+	{
 	SetCurrentFont ( Red_BFont );
 	return;
-    }
+	}
     else if ( c == 2 ) 
-    {
+	{
 	SetCurrentFont ( Blue_BFont );
 	return;
-    }
+	}
     else if ( c == 3 ) 
-    {
+	{
 	SetCurrentFont ( FPS_Display_BFont );
 	return;
-    }
-    
+	}
+
     // stupid kerning hack, to get smooth font, but tighter look
     int kerning = 0;
     if (GetCurrentFont()==FPS_Display_BFont || GetCurrentFont()==Blue_BFont || GetCurrentFont()==Red_BFont) kerning = -2;
-    
-    if( c < ' ' || c > GetCurrentFont()->number_of_chars-1){
-        printf("l: %u of %u \n",c,GetCurrentFont()->number_of_chars);
-       c = '.';
-    }
-	if ( ! display_char_disabled ) 
-		PutChar ( Screen, MyCursorX, MyCursorY, c );
 
-    
+    if( c < ' ' || c > GetCurrentFont()->number_of_chars-1){
+	printf("l: %u of %u \n",c,GetCurrentFont()->number_of_chars);
+	c = '.';
+    }
+    if ( ! display_char_disabled ) 
+	PutChar ( Screen, MyCursorX, MyCursorY, c );
+
+
     // DebugPrintf( 0 , "%c" , c );
-    
+
     // After the char has been displayed, we must move the cursor to its
     // new position.  That depends of course on the char displayed.
     //
     MyCursorX += CharWidth ( GetCurrentFont() , c) +kerning;
-    
+
 }; // void DisplayChar(...)
 
 /* ----------------------------------------------------------------------
@@ -747,10 +738,6 @@ DisplayChar (unsigned char c)
  * Very handy and convenient, for that means it is no longer nescessary
  * to enter \n in the text every time its time for a newline. cool.
  *  
- * The function could perhaps still need a little improvement.  But for
- * now its good enough and improvement enough in comparison to the old
- * CheckLineBreak function.
- *
  * rp: added argument clip, which contains the text-window we're writing in
  *     (formerly known as "TextBorder")
  *
@@ -759,30 +746,27 @@ DisplayChar (unsigned char c)
 int
 ImprovedCheckLineBreak (char* Resttext, const SDL_Rect *clip, float text_stretch )
 {
-    int i;
-    int NeededSpace=0;
-#define MAX_WORD_LENGTH 100
-    
-  // In case of a space, see if the next word will still fit on the line
-  // and do a carriage return/line feed if not
-    if ( *Resttext == ' ' ) {
-	for ( i = 1 ; i < MAX_WORD_LENGTH ; i ++ ) 
-	{
-	    if ( ( Resttext [ i ] != ' ') && ( Resttext [ i ] != '\n') && ( Resttext [ i ] != 0 ) )
+    int NeededSpace = 0;
+   
+    if ( *Resttext != ' ' ) return 0;
+    else //in case of a space, compute the size taken by the next word, counting the current space
+	{	
+	NeededSpace = CharWidth ( GetCurrentFont(), ' ');
+	Resttext ++;
+	while ( ( *Resttext != ' ') && ( *Resttext != '\n') && ( *Resttext != 0 ) )
 	    { 
-		NeededSpace += CharWidth ( GetCurrentFont() , Resttext [ i ] );
-		if ( MyCursorX + NeededSpace > clip->x + clip->w - 10 )
-		{
-		    MyCursorX = clip->x;
-		    MyCursorY += FontHeight ( GetCurrentFont() ) * text_stretch ;
-		    return 1;
-		}
+	    NeededSpace += CharWidth ( GetCurrentFont() , *Resttext );
+	    Resttext ++;
 	    }
-	    else 
-		return FALSE;
 	}
-    }
-return 0;
+
+    if ( (MyCursorX + NeededSpace) > (clip->x + clip->w + 10) )
+	{
+	MyCursorX = clip->x;
+	MyCursorY += FontHeight ( GetCurrentFont() ) * text_stretch ;
+	return 1;
+	}
+    return 0;
 }; // int ImprovedCheckLineBreak()
 
 /* -----------------------------------------------------------------
@@ -1083,31 +1067,6 @@ GetEditableStringInPopupWindow ( int MaxLen , char* PopupWindowTitle , char* Def
     return ( input );
     
 }; // char* GetEditableStringInPopupWindow ( int MaxLen , char* PopupWindowTitle )
-
-/* -----------------------------------------------------------------
- * This function is similar to putchar(), but uses the SDL via the 
- * BFont-fct PutChar() instead.
- *
- * Is sets MyCursor[XY], and allows passing (-1,-1) as coords to indicate
- * using the current cursor position.
- * ----------------------------------------------------------------- */
-int
-putchar_SDL (SDL_Surface *Surface, int x, int y, int c)
-{
-    int ret;
-    if (x == -1) x = MyCursorX;
-    if (y == -1) y = MyCursorY;
-    
-    MyCursorX = x + CharWidth (GetCurrentFont(), c);
-    MyCursorY = y;
-    
-    ret = PutChar (Surface, x, y, c);
-    
-    our_SDL_flip_wrapper (Surface);
-    
-    return (ret);
-}; // int putchar_SDL (SDL_Surface *Surface, int x, int y, int c)
-
 
 /* -----------------------------------------------------------------
  * behaves similarly as gl_printf() of svgalib, using the BFont

@@ -610,10 +610,10 @@ enum
     MAX_MOUSE_PRESS_BUTTONS
   };
 
-#define CHAT_SUBDIALOG_WINDOW_X ((260)*GameConfig . screen_width/640)
-#define CHAT_SUBDIALOG_WINDOW_Y ((42)*GameConfig . screen_height/480)
-#define CHAT_SUBDIALOG_WINDOW_W ((337)*GameConfig . screen_width/640)
-#define CHAT_SUBDIALOG_WINDOW_H ((216)*GameConfig . screen_height/480)
+#define CHAT_SUBDIALOG_WINDOW_X ((260)*GameConfig . screen_width/640.0)
+#define CHAT_SUBDIALOG_WINDOW_Y ((42)*GameConfig . screen_height/480.0)
+#define CHAT_SUBDIALOG_WINDOW_W ((337)*GameConfig . screen_width/640.0)
+#define CHAT_SUBDIALOG_WINDOW_H ((216)*GameConfig . screen_height/480.0)
 
 #define STR_X 95
 #define STR_Y 141

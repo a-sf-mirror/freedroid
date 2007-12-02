@@ -301,51 +301,6 @@ RestoreChatVariableToInitialValue( )
 }; // void RestoreChatVariableToInitialValue( )
 
 /* ----------------------------------------------------------------------
- * This function displays a subtitle for the ChatWithFriendlyDroid interface,
- * so that you can also understand everything with sound disabled.
- * ---------------------------------------------------------------------- */
-void
-DisplaySubtitle( char* SubtitleText , int subtitle_background )
-{
-    SDL_Rect Subtitle_Window;
-    
-    //--------------------
-    // If the user has disabled the subtitles in the dialogs, we need
-    // not do anything and just return...
-    // 
-    if ( ! GameConfig . show_subtitles_in_dialogs ) return;
-    
-    //--------------------
-    // First we define our subtitle window.  We formerly had a small
-    // narrow subtitle window of a format like this:
-    //
-    Subtitle_Window . x = CHAT_SUBDIALOG_WINDOW_X; 
-    Subtitle_Window . y = CHAT_SUBDIALOG_WINDOW_Y; 
-    Subtitle_Window . w = CHAT_SUBDIALOG_WINDOW_W;
-    Subtitle_Window . h = CHAT_SUBDIALOG_WINDOW_H;
-
-    //--------------------
-    // Now we need to clear this window, cause there might still be some
-    // garbage from the previous subtitle in there...
-    //
-    // our_SDL_blit_surface_wrapper ( SubtitleBackground , &Subtitle_Window , Screen , &Subtitle_Window );
-    
-    // our_SDL_fill_rect_wrapper ( Screen , &Subtitle_Window , 0 );
-    
-    // our_SDL_fill_rect_wrapper (SDL_Surface *dst, SDL_Rect *dstrect, Uint32 color)
-    
-    blit_special_background ( CHAT_DIALOG_BACKGROUND_EXCERPT_CODE ) ;
-    
-    //--------------------
-    // Now we can display the text and update the screen...
-    //
-    SDL_SetClipRect( Screen, NULL );
-    DisplayText ( SubtitleText , Subtitle_Window.x , Subtitle_Window.y , &Subtitle_Window , TEXT_STRETCH );
-    our_SDL_update_rect_wrapper ( Screen , Subtitle_Window.x , Subtitle_Window.y , Subtitle_Window.w , Subtitle_Window.h );
-    
-}; // void DisplaySubtitle( char* SubtitleText , void* SubtitleBackground )
-
-/* ----------------------------------------------------------------------
  * During the Chat with a friendly droid or human, there is a window with
  * the full text transcript of the conversation so far.  This function is
  * here to display said text window and it's content, scrolled to the
@@ -358,16 +313,12 @@ display_current_chat_protocol ( int background_picture_code , enemy* ChatDroid ,
     int lines_needed ;
     int protocol_offset ;
     
-#define AVERAGE_LINES_IN_PROTOCOL_WINDOW 9*GameConfig . screen_height/480
+#define AVERAGE_LINES_IN_PROTOCOL_WINDOW (UNIVERSAL_COORD_H(9))
 
     if ( ! GameConfig . show_subtitles_in_dialogs ) return;
     
     SetCurrentFont( FPS_Display_BFont );
     
-    //--------------------
-    // First we define our subtitle window.  We formerly had a small
-    // narrow subtitle window of a format like this:
-    //
     Subtitle_Window . x = CHAT_SUBDIALOG_WINDOW_X; 
     Subtitle_Window . y = CHAT_SUBDIALOG_WINDOW_Y; 
     Subtitle_Window . w = CHAT_SUBDIALOG_WINDOW_W;
@@ -390,24 +341,25 @@ display_current_chat_protocol ( int background_picture_code , enemy* ChatDroid ,
 	chat_protocol_scroll_override_from_user = 0 ;
     }
     else
-	protocol_offset = ( FontHeight ( GetCurrentFont() ) * TEXT_STRETCH ) 
-	    * ( lines_needed - AVERAGE_LINES_IN_PROTOCOL_WINDOW + chat_protocol_scroll_override_from_user ) * 1.04 ;
+	protocol_offset = ((int) ( 0.99 + FontHeight ( GetCurrentFont() ) * TEXT_STRETCH ) *
+	     ( lines_needed - AVERAGE_LINES_IN_PROTOCOL_WINDOW + chat_protocol_scroll_override_from_user )) ;
 
+    //printf("Poffset %d, sco %d, fh %d\n", protocol_offset, chat_protocol_scroll_override_from_user, FontHeight(GetCurrentFont()));
+    
     //--------------------
-    // Now if the protocol offset is really negative, we don't really want
-    // that and force the user offset back to something sane again.
+    // Prevent the player from scrolling 
+    // too high (negative protocol offset)
     //
     if ( protocol_offset < 0 )
     {
 	chat_protocol_scroll_override_from_user ++ ;
 	protocol_offset = 0 ;
     }
-    
+   
     //--------------------
     // Now we need to clear this window, cause there might still be some
     // garbage from the previous subtitle in there...
     //
-    // blit_special_background ( CHAT_DIALOG_BACKGROUND_EXCERPT_CODE ) ;
     PrepareMultipleChoiceDialog ( ChatDroid , FALSE );
     
     //--------------------
@@ -445,7 +397,6 @@ GiveSubtitleNSample( char* SubtitleText , char* SampleFilename , enemy* ChatDroi
     
     if ( strcmp ( SubtitleText , "NO_SUBTITLE_AND_NO_WAITING_EITHER" ) )
     {
-	// DisplaySubtitle ( SubtitleText , CHAT_DIALOG_BACKGROUND_PICTURE_CODE );
 	display_current_chat_protocol ( CHAT_DIALOG_BACKGROUND_PICTURE_CODE , ChatDroid , with_update );
 	PlayOnceNeededSoundSample( SampleFilename , TRUE , FALSE );
     }
