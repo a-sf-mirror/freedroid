@@ -52,7 +52,7 @@
 
 #define ITEMS_SECTION_BEGIN_STRING "piteminfolvl"
 #define ITEMS_SECTION_END_STRING "/piteminfolvl"
-#define ITEM_CODE_STRING "it: t="
+#define ITEM_NAME_STRING "it: n=\""
 #define ITEM_POS_X_STRING " X="
 #define ITEM_POS_Y_STRING " Y="
 #define ITEM_AC_BONUS_STRING " AC="
