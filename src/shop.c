@@ -201,14 +201,12 @@ AssembleItemListForTradeCharacter ( item* ListToBeFilled , int ShopCharacterCode
 	{
 	ListPointer->type = GetItemIndexByName("Dagger"); ListPointer++;
 	ListPointer->type = GetItemIndexByName("Short sword"); ListPointer++;
-	ListPointer->type = GetItemIndexByName("Small axe"); ListPointer++;
-	ListPointer->type = GetItemIndexByName("Tree branch"); ListPointer++;
-	ListPointer->type = GetItemIndexByName("Mace"); ListPointer++;
-	ListPointer->type = GetItemIndexByName("Wooden spear"); ListPointer++;
+	ListPointer->type = GetItemIndexByName("Meat cleaver"); ListPointer++;
+	ListPointer->type = GetItemIndexByName("Crowbar"); ListPointer++;
+	ListPointer->type = GetItemIndexByName("Iron pipe"); ListPointer++;
 	ListPointer->type = GetItemIndexByName("Cap"); ListPointer++;
 	ListPointer->type = GetItemIndexByName("Buckler"); ListPointer++;
 	ListPointer->type = GetItemIndexByName("Simple Jacket"); ListPointer++;
-
 	}
     else if ( ShopCharacterCode == PERSON_DOC_MOORE )
 	{
@@ -242,8 +240,6 @@ AssembleItemListForTradeCharacter ( item* ListToBeFilled , int ShopCharacterCode
 	ListPointer->type = GetItemIndexByName("Liquid nitrogen"); ListPointer++;
 	ListPointer->type = GetItemIndexByName("Barf's Energy Drink"); ListPointer++;
 	ListPointer->type = GetItemIndexByName("Running Power Capsule"); ListPointer++;
-	ListPointer->type = GetItemIndexByName("Strength Capsule"); ListPointer++;
-	ListPointer->type = GetItemIndexByName("Dexterity Capsule"); ListPointer++;
 
 	ListPointer->type = GetItemIndexByName("Fork"); ListPointer++;
 	ListPointer->type = GetItemIndexByName("Plate"); ListPointer++;
@@ -252,13 +248,12 @@ AssembleItemListForTradeCharacter ( item* ListToBeFilled , int ShopCharacterCode
     else if ( ShopCharacterCode == PERSON_SORENSON )
 	{
 	ListPointer->type = GetItemIndexByName("Source Book of Check system integrity"); ListPointer++;
-	ListPointer->type = GetItemIndexByName("Source Book of Sanctuary"); ListPointer++;
 	ListPointer->type = GetItemIndexByName("Source Book of Calculate Pi"); ListPointer++;
 	ListPointer->type = GetItemIndexByName("Source Book of Blue Screen"); ListPointer++;
 	ListPointer->type = GetItemIndexByName("Source Book of Malformed packet"); ListPointer++;
 	ListPointer->type = GetItemIndexByName("Source Book of Analyze item"); ListPointer++;
 	ListPointer->type = GetItemIndexByName("Source Book of Nethack"); ListPointer++;
-	ListPointer->type = GetItemIndexByName("Source Book of Dispell smoke"); ListPointer++;
+	ListPointer->type = GetItemIndexByName("Source Book of Dispel smoke"); ListPointer++;
 	ListPointer->type = GetItemIndexByName("Source Book of Killer poke"); ListPointer++;
 	ListPointer->type = GetItemIndexByName("Source Book of Broadcast killer poke"); ListPointer++;
 	ListPointer->type = GetItemIndexByName("Source Book of Ricer CFLAGS"); ListPointer++;
