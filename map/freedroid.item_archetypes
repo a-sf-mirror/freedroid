@@ -10,22 +10,781 @@ Common factor for all ranged weapons bullet speed values: 1.0
 Common factor for all ranged weapons bullet damage values: 1.0
 Common factor for all melee weapons damage values: 1.0
 
-
-// Item No. 0
+// Item No. 24 + 27 -> 0
 ** Start of new item specification subsection **
-Item name="none present"
+Item name="NPC Hand to hand weapon"
 Item can be applied in combat="no"
-Item can be installed in influ="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="NONE_AVAILABLE_YET"
+Item can be installed in influ="yes"
+Item can be installed in slot with name="weapon"
+Item uses rotation series with prefix="laser_sword_red"
 Items of this type collect together in inventory="no"
-File or directory name for inventory image="inventory_image_7.png"
-Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
-Base list price=0
-Item description text="Dummy item. If you see this, report a bug."
+Base item duration=35
+plus duration modifier=10
+File or directory name for inventory image="laser_sword_red/inv_image.png"
+inventory_size_y=2
+inventory_size_x=2
+Item uses drop sound with filename="drop_sword_sound.ogg"
+Base list price=350
+Item description text="Bot use only"
+----- the following part is only relevant for weapons -----
+Item as gun: recharging time=0.450000
+Item as gun: reloading time=0.000000
+Item as gun: speed of bullets=0.100000
+Item as gun: angle change of bullets=720.000000
+Item as gun: damage of bullets=3
+Item as gun: modifier for damage of bullets=5
+Item as gun: one_shot_only=0
+Item as gun: bullet_image_type=8
+Item as gun: bullet_lifetime=0.200000
+Item as gun: offset for melee weapon=1.050000
+Item as gun: modifier for starting angle=-60.000000
+Item as gun: ignore collisions with wall="yes"
+Item as gun: reflect other bullets="yes"
+Item as gun: pass through explosions="yes"
+Item as gun: pass through hit bodies="yes"
+Item as gun: required ammunition type="none"
+Item as gun: ammo clip size=0
+Item as gun: weapon requires both hands="no"
+----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
-// Item No. 1
+// Item No. 101 -> 1
+** Start of new item specification subsection **
+Item name="Droid weaponry - 123"
+Item min class of droid for drop=9999
+Item can be applied in combat="no"
+Item can be installed in influ="yes"
+Item can be installed in slot with name="weapon"
+Item uses rotation series with prefix="NONE_AVAILABLE_YET"
+Items of this type collect together in inventory="no"
+Base item duration=20
+plus duration modifier=10
+File or directory name for inventory image="inventory_image_25.png"
+Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
+Base list price=120
+Item description text="A nice handy weapon, a good swing every now and then will prove useful in critical hits."
+----- the following part is only relevant for weapons -----
+Item as gun: recharging time=0.950000
+Item as gun: reloading time=0.000000
+Item as gun: speed of bullets=0.010000
+Item as gun: angle change of bullets=720.000000
+Item as gun: damage of bullets=2
+Item as gun: modifier for damage of bullets=8
+Item as gun: one_shot_only=0
+Item as gun: bullet_image_type=9
+Item as gun: bullet_lifetime=0.200000
+Item as gun: offset for melee weapon=0.850000
+Item as gun: modifier for starting angle=-60.000000
+Item as gun: ignore collisions with wall="yes"
+Item as gun: reflect other bullets="yes"
+Item as gun: pass through explosions="yes"
+Item as gun: pass through hit bodies="yes"
+Item as gun: required ammunition type="none"
+Item as gun: ammo clip size=0
+Item as gun: weapon requires both hands="yes"
+----- end of part only relevant for weapons -----
+** End of new item specification subsection **
+
+// Item No. 102 -> 2
+** Start of new item specification subsection **
+Item name="Droid weaponry - 139 (Plasma gun)"
+Item min class of droid for drop=9999
+Item can be applied in combat="no"
+Item can be installed in influ="yes"
+Item can be installed in slot with name="weapon"
+Item uses rotation series with prefix="plasma_single"
+Items of this type collect together in inventory="no"
+Base item duration=10
+plus duration modifier=10
+File or directory name for inventory image="inventory_image_18.png"
+Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
+Base list price=40
+Item description text="For bot use only."
+----- the following part is only relevant for weapons -----
+Item as gun: recharging time=0.350000
+Item as gun: reloading time=7.000000
+Item as gun: speed of bullets=12.000000
+Item as gun: angle change of bullets=0.000000
+Item as gun: damage of bullets=2
+Item as gun: modifier for damage of bullets=2
+Item as gun: one_shot_only=0
+Item as gun: bullet_image_type=7
+Item as gun: bullet_lifetime=2.000000
+Item as gun: offset for melee weapon=0.000000
+Item as gun: modifier for starting angle=0.000000
+Item as gun: ignore collisions with wall="no"
+Item as gun: reflect other bullets="no"
+Item as gun: pass through explosions="no"
+Item as gun: pass through hit bodies="no"
+Item as gun: required ammunition type="plasma_ammunition"
+Item as gun: ammo clip size=3
+Item as gun: weapon requires both hands="yes"
+----- end of part only relevant for weapons -----
+** End of new item specification subsection **
+
+// Item No. 103 -> 3
+** Start of new item specification subsection **
+Item name="Droid weaponry - 247"
+Item min class of droid for drop=9999
+Item can be applied in combat="no"
+Item can be installed in influ="yes"
+Item can be installed in slot with name="weapon"
+Item uses rotation series with prefix="laser_sword_yellow"
+Items of this type collect together in inventory="no"
+Base item duration=10
+plus duration modifier=10
+File or directory name for inventory image="laser_sword_yellow/inv_image.png"
+inventory_size_y=2
+inventory_size_x=2
+Item uses drop sound with filename="drop_sword_sound.ogg"
+Base list price=120
+Item description text="A true to technology modern sword. Can cut through the most impossible objects like a knife through butter."
+----- the following part is only relevant for weapons -----
+Item as gun: recharging time=0.600000
+Item as gun: reloading time=0.000000
+Item as gun: speed of bullets=0.010000
+Item as gun: angle change of bullets=720.000000
+Item as gun: damage of bullets=2
+Item as gun: modifier for damage of bullets=5
+Item as gun: one_shot_only=0
+Item as gun: bullet_image_type=8
+Item as gun: bullet_lifetime=0.200000
+Item as gun: offset for melee weapon=0.850000
+Item as gun: modifier for starting angle=-60.000000
+Item as gun: ignore collisions with wall="yes"
+Item as gun: reflect other bullets="yes"
+Item as gun: pass through explosions="yes"
+Item as gun: pass through hit bodies="yes"
+Item as gun: required ammunition type="none"
+Item as gun: ammo clip size=0
+Item as gun: weapon requires both hands="yes"
+----- end of part only relevant for weapons -----
+** End of new item specification subsection **
+
+// Item No. 104 -> 4
+** Start of new item specification subsection **
+Item name="Droid weaponry - 249 (Laser machinegun)"
+Item min class of droid for drop=9999
+Item can be applied in combat="no"
+Item can be installed in influ="yes"
+Item can be installed in slot with name="weapon"
+Item uses rotation series with prefix="plasma_single"
+Items of this type collect together in inventory="no"
+Base item duration=10
+plus duration modifier=10
+File or directory name for inventory image="inventory_image_18.png"
+Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
+Base list price=100
+Item description text="For bot use only"
+----- the following part is only relevant for weapons -----
+Item as gun: recharging time=0.100000
+Item as gun: reloading time=5.000000
+Item as gun: speed of bullets=20.000000
+Item as gun: angle change of bullets=0.000000
+Item as gun: damage of bullets=1
+Item as gun: modifier for damage of bullets=0
+Item as gun: one_shot_only=0
+Item as gun: bullet_image_type=6
+Item as gun: bullet_lifetime=2.00000
+Item as gun: offset for melee weapon=0.000000
+Item as gun: modifier for starting angle=0.000000
+Item as gun: ignore collisions with wall="no"
+Item as gun: reflect other bullets="no"
+Item as gun: pass through explosions="no"
+Item as gun: pass through hit bodies="no"
+Item as gun: required ammunition type="laser_ammunition"
+Item as gun: ammo clip size=15
+Item as gun: weapon requires both hands="yes"
+----- end of part only relevant for weapons -----
+** End of new item specification subsection **
+
+// Item No. 105  -> 5
+** Start of new item specification subsection **
+Item name="Droid weaponry - 296"
+Item min class of droid for drop=9999
+Item can be applied in combat="no"
+Item can be installed in influ="yes"
+Item can be installed in slot with name="weapon"
+Item uses rotation series with prefix="laser_sword_yellow"
+Items of this type collect together in inventory="no"
+Base item duration=10
+plus duration modifier=10
+File or directory name for inventory image="laser_sword_yellow/inv_image.png"
+inventory_size_y=2
+inventory_size_x=2
+Item uses drop sound with filename="drop_sword_sound.ogg"
+Base list price=120
+Item description text="A true to technology modern sword. Can cut through the most impossible objects like a knife through butter."
+----- the following part is only relevant for weapons -----
+Item as gun: recharging time=0.600000
+Item as gun: reloading time=0.000000
+Item as gun: speed of bullets=0.010000
+Item as gun: angle change of bullets=720.000000
+Item as gun: damage of bullets=4
+Item as gun: modifier for damage of bullets=5
+Item as gun: one_shot_only=0
+Item as gun: bullet_image_type=8
+Item as gun: bullet_lifetime=0.200000
+Item as gun: offset for melee weapon=0.850000
+Item as gun: modifier for starting angle=-60.000000
+Item as gun: ignore collisions with wall="yes"
+Item as gun: reflect other bullets="yes"
+Item as gun: pass through explosions="yes"
+Item as gun: pass through hit bodies="yes"
+Item as gun: required ammunition type="none"
+Item as gun: ammo clip size=0
+Item as gun: weapon requires both hands="yes"
+----- end of part only relevant for weapons -----
+** End of new item specification subsection **
+
+// Item No. 106 -> 6
+** Start of new item specification subsection **
+Item name="Droid weaponry - 302"
+Item min class of droid for drop=9999
+Item can be applied in combat="no"
+Item can be installed in influ="yes"
+Item can be installed in slot with name="weapon"
+Item uses rotation series with prefix="laser_sword_yellow"
+Items of this type collect together in inventory="no"
+Base item duration=10
+plus duration modifier=10
+File or directory name for inventory image="laser_sword_yellow/inv_image.png"
+inventory_size_y=2
+inventory_size_x=2
+Item uses drop sound with filename="drop_sword_sound.ogg"
+Base list price=120
+Item description text="A true to technology modern sword. Can cut through the most impossible objects like a knife through butter."
+----- the following part is only relevant for weapons -----
+Item as gun: recharging time=0.600000
+Item as gun: reloading time=0.000000
+Item as gun: speed of bullets=0.010000
+Item as gun: angle change of bullets=720.000000
+Item as gun: damage of bullets=6
+Item as gun: modifier for damage of bullets=5
+Item as gun: one_shot_only=0
+Item as gun: bullet_image_type=8
+Item as gun: bullet_lifetime=0.200000
+Item as gun: offset for melee weapon=0.850000
+Item as gun: modifier for starting angle=-60.000000
+Item as gun: ignore collisions with wall="yes"
+Item as gun: reflect other bullets="yes"
+Item as gun: pass through explosions="yes"
+Item as gun: pass through hit bodies="yes"
+Item as gun: required ammunition type="none"
+Item as gun: ammo clip size=0
+Item as gun: weapon requires both hands="yes"
+----- end of part only relevant for weapons -----
+** End of new item specification subsection **
+
+// Item No. 107 -> 7
+** Start of new item specification subsection **
+Item name="Droid weaponry - 329"
+Item min class of droid for drop=9999
+Item can be applied in combat="no"
+Item can be installed in influ="yes"
+Item can be installed in slot with name="weapon"
+Item uses rotation series with prefix="laser_sword_yellow"
+Items of this type collect together in inventory="no"
+Base item duration=10
+plus duration modifier=10
+File or directory name for inventory image="laser_sword_yellow/inv_image.png"
+inventory_size_y=2
+inventory_size_x=2
+Item uses drop sound with filename="drop_sword_sound.ogg"
+Base list price=120
+Item description text="A true to technology modern sword. Can cut through the most impossible objects like a knife through butter."
+----- the following part is only relevant for weapons -----
+Item as gun: recharging time=0.600000
+Item as gun: reloading time=0.000000
+Item as gun: speed of bullets=0.010000
+Item as gun: angle change of bullets=720.000000
+Item as gun: damage of bullets=8
+Item as gun: modifier for damage of bullets=5
+Item as gun: one_shot_only=0
+Item as gun: bullet_image_type=8
+Item as gun: bullet_lifetime=0.200000
+Item as gun: offset for melee weapon=0.850000
+Item as gun: modifier for starting angle=-60.000000
+Item as gun: ignore collisions with wall="yes"
+Item as gun: reflect other bullets="yes"
+Item as gun: pass through explosions="yes"
+Item as gun: pass through hit bodies="yes"
+Item as gun: required ammunition type="none"
+Item as gun: ammo clip size=0
+Item as gun: weapon requires both hands="yes"
+----- end of part only relevant for weapons -----
+** End of new item specification subsection **
+
+// Item No. 108 -> 8
+** Start of new item specification subsection **
+Item name="Droid weaponry - 420"
+Item min class of droid for drop=9999
+Item can be applied in combat="no"
+Item can be installed in influ="yes"
+Item can be installed in slot with name="weapon"
+Item uses rotation series with prefix="laser_sword_yellow"
+Items of this type collect together in inventory="no"
+Base item duration=10
+plus duration modifier=10
+File or directory name for inventory image="laser_sword_yellow/inv_image.png"
+inventory_size_y=2
+inventory_size_x=2
+Item uses drop sound with filename="drop_sword_sound.ogg"
+Base list price=120
+Item description text="A true to technology modern sword. Can cut through the most impossible objects like a knife through butter."
+----- the following part is only relevant for weapons -----
+Item as gun: recharging time=0.600000
+Item as gun: reloading time=0.000000
+Item as gun: speed of bullets=0.010000
+Item as gun: angle change of bullets=720.000000
+Item as gun: damage of bullets=10
+Item as gun: modifier for damage of bullets=5
+Item as gun: one_shot_only=0
+Item as gun: bullet_image_type=8
+Item as gun: bullet_lifetime=0.200000
+Item as gun: offset for melee weapon=0.850000
+Item as gun: modifier for starting angle=-60.000000
+Item as gun: ignore collisions with wall="yes"
+Item as gun: reflect other bullets="yes"
+Item as gun: pass through explosions="yes"
+Item as gun: pass through hit bodies="yes"
+Item as gun: required ammunition type="none"
+Item as gun: ammo clip size=0
+Item as gun: weapon requires both hands="yes"
+----- end of part only relevant for weapons -----
+** End of new item specification subsection **
+
+// Item No. 109 -> 9
+** Start of new item specification subsection **
+Item name="Droid weaponry - 476 (Small Single Laser)"
+Item min class of droid for drop=9999
+Item can be applied in combat="no"
+Item can be installed in influ="yes"
+Item can be installed in slot with name="weapon"
+Item uses rotation series with prefix="plasma_single"
+Items of this type collect together in inventory="no"
+Base item duration=10
+plus duration modifier=10
+File or directory name for inventory image="inventory_image_2.png"
+Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
+Base list price=250
+Item description text="More of a mediocre addition to the laser family, this is best summed up as a backup weapon."
+----- the following part is only relevant for weapons -----
+Item as gun: recharging time=1.200000
+Item as gun: reloading time=2.400000
+Item as gun: speed of bullets=32.000000
+Item as gun: angle change of bullets=0.000000
+Item as gun: damage of bullets=3
+Item as gun: modifier for damage of bullets=3
+Item as gun: one_shot_only=0
+Item as gun: bullet_image_type=1
+Item as gun: bullet_lifetime=-1.000000
+Item as gun: offset for melee weapon=0.000000
+Item as gun: modifier for starting angle=0.000000
+Item as gun: ignore collisions with wall="no"
+Item as gun: reflect other bullets="no"
+Item as gun: pass through explosions="no"
+Item as gun: pass through hit bodies="no"
+Item as gun: required ammunition type="laser_ammunition"
+Item as gun: ammo clip size=5
+Item as gun: weapon requires both hands="yes"
+----- end of part only relevant for weapons -----
+** End of new item specification subsection **
+
+// Item No. 110 -> 10
+** Start of new item specification subsection **
+Item name="Droid weaponry - 493"
+Item min class of droid for drop=9999
+Item can be applied in combat="no"
+Item can be installed in influ="yes"
+Item can be installed in slot with name="weapon"
+Item uses rotation series with prefix="laser_sword_yellow"
+Items of this type collect together in inventory="no"
+Base item duration=10
+plus duration modifier=10
+File or directory name for inventory image="laser_sword_yellow/inv_image.png"
+inventory_size_y=2
+inventory_size_x=2
+Item uses drop sound with filename="drop_sword_sound.ogg"
+Base list price=120
+Item description text="A true to technology modern sword. Can cut through the most impossible objects like a knife through butter."
+----- the following part is only relevant for weapons -----
+Item as gun: recharging time=6.00000
+Item as gun: reloading time=0.000000
+Item as gun: speed of bullets=0.010000
+Item as gun: angle change of bullets=720.000000
+Item as gun: damage of bullets=12
+Item as gun: modifier for damage of bullets=5
+Item as gun: one_shot_only=0
+Item as gun: bullet_image_type=8
+Item as gun: bullet_lifetime=0.200000
+Item as gun: offset for melee weapon=0.850000
+Item as gun: modifier for starting angle=-60.000000
+Item as gun: ignore collisions with wall="yes"
+Item as gun: reflect other bullets="yes"
+Item as gun: pass through explosions="yes"
+Item as gun: pass through hit bodies="yes"
+Item as gun: required ammunition type="none"
+Item as gun: ammo clip size=0
+Item as gun: weapon requires both hands="yes"
+----- end of part only relevant for weapons -----
+** End of new item specification subsection **
+
+// Item No. 111 -> 11
+** Start of new item specification subsection **
+Item name="Droid weaponry - 516"
+Item min class of droid for drop=9999
+Item can be applied in combat="no"
+Item can be installed in influ="yes"
+Item can be installed in slot with name="weapon"
+Item uses rotation series with prefix="laser_sword_yellow"
+Items of this type collect together in inventory="no"
+Base item duration=10
+plus duration modifier=10
+File or directory name for inventory image="laser_sword_yellow/inv_image.png"
+inventory_size_y=2
+inventory_size_x=2
+Item uses drop sound with filename="drop_sword_sound.ogg"
+Base list price=120
+Item description text="A true to technology modern sword. Can cut through the most impossible objects like a knife through butter."
+----- the following part is only relevant for weapons -----
+Item as gun: recharging time=0.600000
+Item as gun: reloading time=0.000000
+Item as gun: speed of bullets=0.010000
+Item as gun: angle change of bullets=720.000000
+Item as gun: damage of bullets=14
+Item as gun: modifier for damage of bullets=5
+Item as gun: one_shot_only=0
+Item as gun: bullet_image_type=8
+Item as gun: bullet_lifetime=0.200000
+Item as gun: offset for melee weapon=0.850000
+Item as gun: modifier for starting angle=-60.000000
+Item as gun: ignore collisions with wall="yes"
+Item as gun: reflect other bullets="yes"
+Item as gun: pass through explosions="yes"
+Item as gun: pass through hit bodies="yes"
+Item as gun: required ammunition type="none"
+Item as gun: ammo clip size=0
+Item as gun: weapon requires both hands="yes"
+----- end of part only relevant for weapons -----
+** End of new item specification subsection **
+
+// Item No. 112 -> 12
+** Start of new item specification subsection **
+Item name="Droid weaponry - 571"
+Item min class of droid for drop=9999
+Item can be applied in combat="no"
+Item can be installed in influ="yes"
+Item can be installed in slot with name="weapon"
+Item uses rotation series with prefix="laser_sword_yellow"
+Items of this type collect together in inventory="no"
+Base item duration=10
+plus duration modifier=10
+File or directory name for inventory image="laser_sword_yellow/inv_image.png"
+inventory_size_y=2
+inventory_size_x=2
+Item uses drop sound with filename="drop_sword_sound.ogg"
+Base list price=120
+Item description text="A true to technology modern sword. Can cut through the most impossible objects like a knife through butter."
+----- the following part is only relevant for weapons -----
+Item as gun: recharging time=0.600000
+Item as gun: reloading time=0.000000
+Item as gun: speed of bullets=0.010000
+Item as gun: angle change of bullets=720.000000
+Item as gun: damage of bullets=16
+Item as gun: modifier for damage of bullets=5
+Item as gun: one_shot_only=0
+Item as gun: bullet_image_type=8
+Item as gun: bullet_lifetime=0.200000
+Item as gun: offset for melee weapon=0.850000
+Item as gun: modifier for starting angle=-60.000000
+Item as gun: ignore collisions with wall="yes"
+Item as gun: reflect other bullets="yes"
+Item as gun: pass through explosions="yes"
+Item as gun: pass through hit bodies="yes"
+Item as gun: required ammunition type="none"
+Item as gun: ammo clip size=0
+Item as gun: weapon requires both hands="yes"
+----- end of part only relevant for weapons -----
+** End of new item specification subsection **
+
+// Item No. 113 -> 13
+** Start of new item specification subsection **
+Item name="Droid weaponry - 598"
+Item min class of droid for drop=9999
+Item can be applied in combat="no"
+Item can be installed in influ="yes"
+Item can be installed in slot with name="weapon"
+Item uses rotation series with prefix="laser_sword_yellow"
+Items of this type collect together in inventory="no"
+Base item duration=10
+plus duration modifier=10
+File or directory name for inventory image="laser_sword_yellow/inv_image.png"
+inventory_size_y=2
+inventory_size_x=2
+Item uses drop sound with filename="drop_sword_sound.ogg"
+Base list price=120
+Item description text="A true to technology modern sword. Can cut through the most impossible objects like a knife through butter."
+----- the following part is only relevant for weapons -----
+Item as gun: recharging time=0.600000
+Item as gun: reloading time=0.000000
+Item as gun: speed of bullets=0.010000
+Item as gun: angle change of bullets=720.000000
+Item as gun: damage of bullets=18
+Item as gun: modifier for damage of bullets=5
+Item as gun: one_shot_only=0
+Item as gun: bullet_image_type=8
+Item as gun: bullet_lifetime=0.200000
+Item as gun: offset for melee weapon=0.850000
+Item as gun: modifier for starting angle=-60.000000
+Item as gun: ignore collisions with wall="yes"
+Item as gun: reflect other bullets="yes"
+Item as gun: pass through explosions="yes"
+Item as gun: pass through hit bodies="yes"
+Item as gun: required ammunition type="none"
+Item as gun: ammo clip size=0
+Item as gun: weapon requires both hands="yes"
+----- end of part only relevant for weapons -----
+** End of new item specification subsection **
+
+// Item No. 114 -> 14
+** Start of new item specification subsection **
+Item name="Droid weaponry - 614,GUA,MUM (Power Exterminator)"
+Item min class of droid for drop=9999
+Item can be applied in combat="no"
+Item can be installed in influ="yes"
+Item can be installed in slot with name="weapon"
+Item uses rotation series with prefix="exterminator_simple"
+Items of this type collect together in inventory="no"
+Strength minimum required to wear/wield this item=20
+Dexterity minimum required to wear/wield this item=45
+Base item duration=10
+plus duration modifier=10
+File or directory name for inventory image="exterminator_simple/inv_image.png"
+Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
+Base list price=1001
+Item description text="This is one of the most powerful ranged weapons out there."
+----- the following part is only relevant for weapons -----
+Item as gun: recharging time=0.50000
+Item as gun: reloading time=5.000000
+Item as gun: speed of bullets=35.000000
+Item as gun: angle change of bullets=0.000000
+Item as gun: damage of bullets=80
+Item as gun: modifier for damage of bullets=20
+Item as gun: one_shot_only=0
+Item as gun: bullet_image_type=4
+Item as gun: bullet_lifetime=-1.000000
+Item as gun: offset for melee weapon=0.000000
+Item as gun: modifier for starting angle=0.000000
+Item as gun: ignore collisions with wall="no"
+Item as gun: reflect other bullets="no"
+Item as gun: pass through explosions="no"
+Item as gun: pass through hit bodies="no"
+Item as gun: required ammunition type="exterminator_ammunition"
+Item as gun: ammo clip size=2
+Item as gun: weapon requires both hands="yes"
+----- end of part only relevant for weapons -----
+** End of new item specification subsection **
+
+// Item No. 115 -> 15
+** Start of new item specification subsection **
+Item name="Droid weaponry - 615,751,834 (Advanced Single Laser)"
+Item min class of droid for drop=9999
+Item can be applied in combat="no"
+Item can be installed in influ="yes"
+Item can be installed in slot with name="weapon"
+Item uses rotation series with prefix="plasma_single"
+Items of this type collect together in inventory="no"
+Base item duration=10
+plus duration modifier=10
+File or directory name for inventory image="inventory_image_2.png"
+Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
+Base list price=250
+Item description text="If you do not mind waiting for a while in the heat of battle, this weapon is for you."
+----- the following part is only relevant for weapons -----
+Item as gun: recharging time=1.200000
+Item as gun: reloading time=2.000000
+Item as gun: speed of bullets=16.000000
+Item as gun: angle change of bullets=0.000000
+Item as gun: damage of bullets=6
+Item as gun: modifier for damage of bullets=18
+Item as gun: one_shot_only=0
+Item as gun: bullet_image_type=1
+Item as gun: bullet_lifetime=-1.000000
+Item as gun: offset for melee weapon=0.000000
+Item as gun: modifier for starting angle=0.000000
+Item as gun: ignore collisions with wall="no"
+Item as gun: reflect other bullets="no"
+Item as gun: pass through explosions="no"
+Item as gun: pass through hit bodies="no"
+Item as gun: required ammunition type="laser_ammunition"
+Item as gun: ammo clip size=30
+Item as gun: weapon requires both hands="yes"
+----- end of part only relevant for weapons -----
+** End of new item specification subsection **
+
+// Item No. 116 -> 16
+** Start of new item specification subsection **
+Item name="Droid weaponry - 629,821,999 (Advanced Twin Laser)"
+Item min class of droid for drop=9999
+Item can be applied in combat="no"
+Item can be installed in influ="yes"
+Item can be installed in slot with name="weapon"
+Item uses rotation series with prefix="plasma_double"
+Items of this type collect together in inventory="no"
+Strength minimum required to wear/wield this item=30
+Dexterity minimum required to wear/wield this item=40
+Base item duration=10
+plus duration modifier=10
+File or directory name for inventory image="inventory_image_14.png"
+Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
+Base list price=800
+inventory_size_x=2
+inventory_size_y=2
+Item description text="Think of a twin laser with twice the power. Now make it shoot half as often. What you have is the 'Advanced' twin laser."
+----- the following part is only relevant for weapons -----
+Item as gun: recharging time=1.400000
+Item as gun: reloading time=3
+Item as gun: speed of bullets=16.000000
+Item as gun: angle change of bullets=0.000000
+Item as gun: damage of bullets=10
+Item as gun: modifier for damage of bullets=12
+Item as gun: one_shot_only=0
+Item as gun: bullet_image_type=2
+Item as gun: bullet_lifetime=-1.000000
+Item as gun: offset for melee weapon=0.000000
+Item as gun: modifier for starting angle=0.000000
+Item as gun: ignore collisions with wall="no"
+Item as gun: reflect other bullets="no"
+Item as gun: pass through explosions="no"
+Item as gun: pass through hit bodies="no"
+Item as gun: required ammunition type="laser_ammunition"
+Item as gun: ammo clip size=30
+Item as gun: weapon requires both hands="yes"
+----- end of part only relevant for weapons -----
+** End of new item specification subsection **
+
+// Item No. 117 -> 17
+** Start of new item specification subsection **
+Item name="Droid weaponry - 711,742 (Disruptor Class Alpha)"
+Item min class of droid for drop=9999
+Item can be applied in combat="no"
+Item can be installed in influ="yes"
+Item can be installed in slot with name="weapon"
+Item uses rotation series with prefix="NONE_AVAILABLE_YET"
+Items of this type collect together in inventory="no"
+Base item duration=10
+plus duration modifier=10
+File or directory name for inventory image="inventory_image_13.png"
+Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
+Base list price=2500
+Item description text=" This weapons name speaks for itself-more of a brute force weapon than most, it is best used on high defense enemies."
+----- the following part is only relevant for weapons -----
+Item as gun: recharging time=1.000000
+Item as gun: reloading time=1.000000
+Item as gun: speed of bullets=16.000000
+Item as gun: angle change of bullets=0.000000
+Item as gun: damage of bullets=80
+Item as gun: modifier for damage of bullets=24
+Item as gun: one_shot_only=0
+Item as gun: bullet_image_type=3
+Item as gun: bullet_lifetime=-1.000000
+Item as gun: offset for melee weapon=0.000000
+Item as gun: modifier for starting angle=0.000000
+Item as gun: ignore collisions with wall="no"
+Item as gun: reflect other bullets="no"
+Item as gun: pass through explosions="no"
+Item as gun: pass through hit bodies="no"
+Item as gun: required ammunition type="none"
+Item as gun: ammo clip size=0
+Item as gun: weapon requires both hands="yes"
+----- end of part only relevant for weapons -----
+** End of new item specification subsection **
+
+// Item No. 118 -> 18
+** Start of new item specification subsection **
+Item name="Droid weaponry - 883 (Bot exterminator)"
+Item min class of droid for drop=9999
+Item can be applied in combat="no"
+Item can be installed in influ="yes"
+Item can be installed in slot with name="weapon"
+Item uses rotation series with prefix="exterminator_simple"
+Items of this type collect together in inventory="no"
+Strength minimum required to wear/wield this item=20
+Dexterity minimum required to wear/wield this item=45
+Base item duration=10
+plus duration modifier=10
+File or directory name for inventory image="exterminator_simple/inv_image.png"
+Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
+Base list price=1001
+Item description text="Bot use only"
+----- the following part is only relevant for weapons -----
+Item as gun: recharging time=1.00000
+Item as gun: reloading time=4.000000
+Item as gun: speed of bullets=35.000000
+Item as gun: angle change of bullets=0.000000
+Item as gun: damage of bullets=4
+Item as gun: modifier for damage of bullets=4
+Item as gun: one_shot_only=0
+Item as gun: bullet_image_type=4
+Item as gun: bullet_lifetime=-1.000000
+Item as gun: offset for melee weapon=0.000000
+Item as gun: modifier for starting angle=0.000000
+Item as gun: ignore collisions with wall="no"
+Item as gun: reflect other bullets="no"
+Item as gun: pass through explosions="no"
+Item as gun: pass through hit bodies="no"
+Item as gun: required ammunition type="exterminator_ammunition"
+Item as gun: ammo clip size=2
+Item as gun: weapon requires both hands="yes"
+----- end of part only relevant for weapons -----
+** End of new item specification subsection **
+
+// Item No. 13 -> 19
+** Start of new item specification subsection **
+Item name="Exterminator"
+Item can be applied in combat="no"
+Item can be installed in influ="yes"
+Item can be installed in slot with name="weapon"
+Item uses rotation series with prefix="exterminator_simple"
+Items of this type collect together in inventory="no"
+Base item duration=10
+plus duration modifier=10
+File or directory name for inventory image="exterminator_simple/inv_image.png"
+Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
+Base list price=1001
+Item description text="While this weapon is capable of firing really powerful shots, beware of the exceptionally long reloading times. (Don't get swarmed by enemies with this weapon unless you have powerful armor!)"
+----- the following part is only relevant for weapons -----
+Item as gun: recharging time=0.5000000
+Item as gun: reloading time=4.000000
+Item as gun: speed of bullets=35.000000
+Item as gun: angle change of bullets=0.000000
+Item as gun: damage of bullets=8
+Item as gun: modifier for damage of bullets=40
+Item as gun: one_shot_only=0
+Item as gun: bullet_image_type=4
+Item as gun: bullet_lifetime=-1.000000
+Item as gun: offset for melee weapon=0.000000
+Item as gun: modifier for starting angle=0.000000
+Item as gun: ignore collisions with wall="no"
+Item as gun: reflect other bullets="no"
+Item as gun: pass through explosions="no"
+Item as gun: pass through hit bodies="no"
+Item as gun: required ammunition type="exterminator_ammunition"
+Item as gun: ammo clip size=2
+Item as gun: weapon requires both hands="yes"
+----- end of part only relevant for weapons -----
+** End of new item specification subsection **
+
+
+
+/********************************************
+*                Potions                    *
+*********************************************/
+
+
+
+// Item No. 1 -> 20
 ** Start of new item specification subsection **
 Item name="Diet supplement"
 Item can be applied in combat="yes"
@@ -41,7 +800,23 @@ Base list price=20
 Item description text="Only proper vitamin and mineral intake can keep you healthy during the apocalypse. This can cure a cold."
 ** End of new item specification subsection **
 
-// Item No. 2
+// Item No. 48 -> 21
+** Start of new item specification subsection **
+Item name="Antibiotic"
+Item can be applied in combat="yes"
+Item can be installed in influ="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="health_capsule"
+Items of this type collect together in inventory="yes"
+File or directory name for inventory image="health_capsule/inv_image_medium.png"
+inventory_size_y=1
+inventory_size_x=1
+Item uses drop sound with filename="drop_potion_sound.ogg"
+Base list price=40
+Item description text="Truly wonderful things can be extracted from molds. This can cure lethal food poisoning. Wish you had that in your last Nethack game, eh?"
+** End of new item specification subsection **
+
+// Item No. 2 -> 22
 ** Start of new item specification subsection **
 Item name="Doc-in-a-can"
 Item can be applied in combat="yes"
@@ -57,7 +832,1205 @@ Base list price=60
 Item description text="This is a drink filled with nanobots designed to heal any damage that they notice inside you. It can cure decapitation. Most of the time."
 ** End of new item specification subsection **
 
-// Item No. 3
+// Item No. 41 -> 23
+** Start of new item specification subsection **
+Item name="Bottled ice"
+Item can be applied in combat="yes"
+Item can be installed in influ="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="force_capsule"
+Items of this type collect together in inventory="yes"
+File or directory name for inventory image="force_capsule/inv_image_small.png"
+inventory_size_y=1
+inventory_size_x=1
+Item uses drop sound with filename="drop_potion_sound.ogg"
+Base list price=15
+Item description text="This bottle is filled with ice. It can keep you cool during a warm summer day."
+** End of new item specification subsection **
+
+// Item No. 49 -> 24
+** Start of new item specification subsection **
+Item name="Industrial coolant"
+Item can be applied in combat="yes"
+Item can be installed in influ="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="force_capsule"
+Items of this type collect together in inventory="yes"
+File or directory name for inventory image="force_capsule/inv_image_medium.png"
+inventory_size_y=1
+inventory_size_x=1
+Item uses drop sound with filename="drop_potion_sound.ogg"
+Base list price=30
+Item description text="Bartenders around the world add this to drinks to get them cold very fast. Plus the coolant is much cheaper. It can keep you cool inside a nuclear reactor."
+** End of new item specification subsection **
+
+// Item No. 42 -> 25
+** Start of new item specification subsection **
+Item name="Liquid nitrogen"
+Item can be applied in combat="yes"
+Item can be installed in influ="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="force_capsule"
+Items of this type collect together in inventory="yes"
+File or directory name for inventory image="force_capsule/inv_image_big.png"
+inventory_size_y=1
+inventory_size_x=1
+Item uses drop sound with filename="drop_potion_sound.ogg"
+Base list price=45
+Item description text="When you want something frozen solid, this is what you need. It can keep you cool even inside a class M star."
+** End of new item specification subsection **
+
+// Item No. 58 -> 26
+** Start of new item specification subsection **
+Item name="Barf's Energy Drink"
+Item can be applied in combat="yes"
+Item can be installed in influ="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="blue_energy_drink"
+Items of this type collect together in inventory="yes"
+File or directory name for inventory image="blue_energy_drink/inv_image.png"
+Item uses drop sound with filename="drop_potion_sound.ogg"
+Base list price=50
+Item description text="Warning! These energy drinks contain high doses of caffeine! The average person drops dead after consuming 12 grams of caffeine. One of these bottles contains over double that amount."
+** End of new item specification subsection **
+
+// Item No. 57 -> 27
+** Start of new item specification subsection **
+Item name="Running Power Capsule"
+Item can be applied in combat="yes"
+Item can be installed in influ="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="energy_capsule"
+Items of this type collect together in inventory="yes"
+File or directory name for inventory image="inventory_image_1.png"
+Item uses drop sound with filename="drop_potion_sound.ogg"
+Base list price=45
+Item description text="These small containers hold purified running strength.  Each capsule can be used only once, but multiple of those items can be grouped together like one item in inventory."
+** End of new item specification subsection **
+
+// Item No. 92 -> 28
+** Start of new item specification subsection **
+Item name="Strength Capsule"
+Item can be applied in combat="yes"
+Item can be installed in influ="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="energy_capsule"
+Items of this type collect together in inventory="yes"
+File or directory name for inventory image="inventory_image_1.png"
+Item uses drop sound with filename="drop_potion_sound.ogg"
+Base list price=150
+Item description text="These small containers hold purified strength.  This item will give a temporary boost to strength.  Each capsule can be used only once, but multiple of those items can be grouped together like one item in inventory."
+** End of new item specification subsection **
+
+// Item No. 93 -> 29
+** Start of new item specification subsection **
+Item name="Dexterity Capsule"
+Item can be applied in combat="yes"
+Item can be installed in influ="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="energy_capsule"
+Items of this type collect together in inventory="yes"
+File or directory name for inventory image="inventory_image_1.png"
+Item uses drop sound with filename="drop_potion_sound.ogg"
+Base list price=150
+Item description text="These small containers hold purified dexterity.  This item will give a temporary bonus to dexterity.  Each capsule can be used only once, but multiple of those items can be grouped together like one item in inventory."
+** End of new item specification subsection **
+
+
+
+/********************************************
+*                 Special                   *
+*********************************************/
+
+
+
+// Item No. 4 -> 30
+** Start of new item specification subsection **
+Item name="Droid Energetic Heart Class Beta"
+Item can be applied in combat="no"
+Item can be installed in influ="yes"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="NONE_AVAILABLE_YET"
+Items of this type collect together in inventory="no"
+File or directory name for inventory image="inventory_image_3.png"
+Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
+Base list price=900
+Item description text=""
+** End of new item specification subsection **
+
+// Item No. 6 -> 31
+** Start of new item specification subsection **
+Item name="Cyberbucks"
+Item can be applied in combat="no"
+Item can be installed in influ="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="cyberbucks"
+Items of this type collect together in inventory="yes"
+File or directory name for inventory image="cyberbucks/inv_image.png"
+Item uses drop sound with filename="Item_Drop_Sound_2.ogg"
+Base list price=1
+Item description text=""
+** End of new item specification subsection **
+
+// Item No. 112 -> 28 -> 32
+** Start of new item specification subsection **
+Item name="Anti-grav Pod for Droids"
+Item can be applied in combat="no"
+Item can be installed in influ="yes"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="antigrav_unit"
+Items of this type collect together in inventory="no"
+File or directory name for inventory image="antigrav_unit/inv_image.png"
+Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
+Base list price=450
+Item description text="The bots use this to hover around."
+** End of new item specification subsection **
+
+// Item No. 59 -> 33
+** Start of new item specification subsection **
+Item name="Dixon's Toolbox"
+Item can be applied in combat="no"
+Item can be installed in influ="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="dixons_toolbox"
+Items of this type collect together in inventory="no"
+File or directory name for inventory image="dixons_toolbox/inv_image.png"
+Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
+Base list price=0
+Item description text="This is a teleporter service toolbox. It's complete and orderly, though a few dents on the outside give prof of frequent use. 'C. Dixon' is carved into the outside with fine print."
+** End of new item specification subsection **
+
+// Item No. 61 -> 34
+** Start of new item specification subsection **
+Item name="Plasma Transistor"
+Item can be applied in combat="no"
+Item can be installed in influ="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="plasma_transistor"
+Items of this type collect together in inventory="yes"
+File or directory name for inventory image="plasma_transistor/inv_image.png"
+Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
+Base list price=100
+Item description text="This is an standard part within many robots types."
+** End of new item specification subsection **
+
+// Item No. 62 -> 35
+** Start of new item specification subsection **
+Item name="Superconducting Relay Unit"
+Item can be applied in combat="no"
+Item can be installed in influ="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="superconducting_relay_unit"
+Items of this type collect together in inventory="yes"
+File or directory name for inventory image="superconducting_relay_unit/inv_image.png"
+Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
+Base list price=100
+Item description text="This is an standard part within many robots types."
+** End of new item specification subsection **
+
+// Item No. 63 -> 36
+** Start of new item specification subsection **
+Item name="Antimatter-Matter Converter"
+Item can be applied in combat="no"
+Item can be installed in influ="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="antimatter_matter_converter"
+Items of this type collect together in inventory="yes"
+File or directory name for inventory image="antimatter_matter_converter/inv_image.png"
+Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
+Base list price=100
+Item description text="This is an standard part within many robot types."
+** End of new item specification subsection **
+
+// Item No. 64 -> 37
+** Start of new item specification subsection **
+Item name="Entropy Inverter"
+Item can be applied in combat="no"
+Item can be installed in influ="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="entropy_inverter"
+Items of this type collect together in inventory="yes"
+File or directory name for inventory image="entropy_inverter/inv_image.png"
+Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
+Base list price=100
+Item description text="This is an standard part within many robots types."
+** End of new item specification subsection **
+
+// Item No. 65 -> 38
+** Start of new item specification subsection **
+Item name="Tachyon Condensator"
+Item can be applied in combat="no"
+Item can be installed in influ="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="tachyon_converter"
+Items of this type collect together in inventory="yes"
+File or directory name for inventory image="tachyon_converter/inv_image.png"
+Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
+Base list price=100
+Item description text="This is an standard part within many robots types."
+** End of new item specification subsection **
+
+// Item No. 71 -> 39
+** Start of new item specification subsection **
+Item name="Desk Lamp"
+Item can be applied in combat="no"
+Item can be installed in influ="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="desk_lamp"
+Items of this type collect together in inventory="no"
+File or directory name for inventory image="desk_lamp/inv_image.png"
+Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
+Base list price=32
+Item description text="What would modern science be without this important item?"
+** End of new item specification subsection **
+
+// Item No. 73 -> 40
+** Start of new item specification subsection **
+Item name="Common Monkey Wrench"
+Item can be applied in combat="no"
+Item can be installed in influ="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="monkey_wrench"
+Items of this type collect together in inventory="no"
+File or directory name for inventory image="monkey_wrench/inv_image.png"
+Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
+Base list price=32
+Item description text="Even the most primitive civilisations cannot survive for long without a large supply of those."
+** End of new item specification subsection **
+
+// Item No. 74 -> 41
+** Start of new item specification subsection **
+Item name="Red Dilitium Crystal"
+Item can be applied in combat="no"
+Item can be installed in influ="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="red_dilitium_crystal"
+Items of this type collect together in inventory="yes"
+File or directory name for inventory image="red_dilitium_crystal/inv_image.png"
+Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
+Base list price=18
+Item description text="These dilitium crystals are used as energy source in many modern electricity or heat based devices. Energy is extracted from the crystal by making use of the energy contained in the order of the crystal molecules. This principle has allowed to build devices that consume a lot of energy but do not need to be connected to a power line."
+** End of new item specification subsection **
+
+// Item No. 75 -> 42
+** Start of new item specification subsection **
+Item name="Map Maker"
+Item can be applied in combat="yes"
+Item can be installed in influ="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="map_maker"
+Items of this type collect together in inventory="no"
+File or directory name for inventory image="map_maker/inv_image.png"
+inventory_size_y=2
+inventory_size_x=2
+Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
+Base list price=18
+Item description text="This small device automatically collects data about the area within a range of 7 times 7 meters and draws a small-scale plan of the immediate surroundings. Because of it's very tiny display, it needs to be held closely to the eye and the image will then be projected directly into the eyeball of the user. Still, the collected map data will be split up by the device into several sectors for convenient viewing."
+** End of new item specification subsection **
+
+// Item No. 76 -> 43
+** Start of new item specification subsection **
+Item name="Strength Pill"
+Item can be applied in combat="yes"
+Item can be installed in influ="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="pill_strength"
+Items of this type collect together in inventory="yes"
+File or directory name for inventory image="pill_strength/inv_image.png"
+Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
+Base list price=250
+Item description text="These pills permanently raise strength within a person. They work on a nano-technological basis. Consult you physician, the receipt or pharmacy experts for details on intended effects, possible interactions and side effects of this drug."
+** End of new item specification subsection **
+
+// Item No. 77 -> 44
+** Start of new item specification subsection **
+Item name="Dexterity Pill"
+Item can be applied in combat="yes"
+Item can be installed in influ="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="pill_dexterity"
+Items of this type collect together in inventory="yes"
+File or directory name for inventory image="pill_dexterity/inv_image.png"
+Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
+Base list price=250
+Item description text="These pills permanently raise dexterity within a person. They work on a nano-technological basis. Consult you physician, the receipt or pharmacy experts for details on intended effects, possible interactions and side effects of this drug."
+** End of new item specification subsection **
+
+// Item No. 78 -> 45
+** Start of new item specification subsection **
+Item name="Code Pill"
+Item can be applied in combat="yes"
+Item can be installed in influ="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="pill_magic"
+Items of this type collect together in inventory="yes"
+File or directory name for inventory image="pill_magic/inv_image.png"
+Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
+Base list price=250
+Item description text="Dude! This fab food will totally bump up your code skills, man! A real blast. Scarf those down to see the code."
+** End of new item specification subsection **
+
+// Item No. 79 -> 46
+** Start of new item specification subsection **
+Item name="Brain Enlargement Pills Antidote"
+Item can be applied in combat="no"
+Item can be installed in influ="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="brain_enlargement_antidode"
+Items of this type collect together in inventory="yes"
+File or directory name for inventory image="brain_enlargement_antidode/inv_image.png"
+Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
+Base list price=50
+Item description text="These pills can reverse the harmful effects of the 'brain enlargement pills' that are publicly sold via the internet. The planet-wide guild of medics has recommended not to respond to these ads at all, while attempts to entirely ban the distribution of those pills were never completely successful."
+** End of new item specification subsection **
+
+// Item No. 80 -> 47
+** Start of new item specification subsection **
+Item name="Fork"
+Item can be applied in combat="no"
+Item can be installed in influ="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="eating_fork"
+Items of this type collect together in inventory="yes"
+File or directory name for inventory image="eating_fork/inv_image.png"
+Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
+Base list price=50
+Item description text="This item is part of the 'Self Cleaning Kitchen' (SCK) project from before the Great Assault.  All of the items in the SCK project have an inner mechanism that will clean the object automatically if left alone for a given time.  It comes with it's own power supply and has a supposed duration of 200 years."
+** End of new item specification subsection **
+
+// Item No. 81 -> 48
+** Start of new item specification subsection **
+Item name="Plate"
+Item can be applied in combat="no"
+Item can be installed in influ="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="eating_plate"
+Items of this type collect together in inventory="yes"
+File or directory name for inventory image="eating_plate/inv_image.png"
+Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
+Base list price=50
+Item description text="This item is part of the 'Self Cleaning Kitchen' (SCK) project from before the Great Assault.  All of the items in the SCK project have an inner mechanism that will clean the object automatically if left alone for a given time.  It comes with it's own power supply and has a supposed duration of 200 years."
+** End of new item specification subsection **
+
+// Item No. 82 -> 49
+** Start of new item specification subsection **
+Item name="Mug"
+Item can be applied in combat="no"
+Item can be installed in influ="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="drinking_mug"
+Items of this type collect together in inventory="yes"
+File or directory name for inventory image="drinking_mug/inv_image.png"
+Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
+Base list price=50
+Item description text="This item is part of the 'Self Cleaning Kitchen' (SCK) project from before the Great Assault.  All of the items in the SCK project have an inner mechanism that will clean the object automatically if left alone for a given time.  It comes with it's own power supply and has a supposed duration of 200 years."
+** End of new item specification subsection **
+
+// Item No. 98 -> 50
+** Start of new item specification subsection **
+Item name="Identification Script"
+Item can be applied in combat="yes"
+Item can be installed in influ="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="script"
+Items of this type collect together in inventory="yes"
+File or directory name for inventory image="script/inv_image.png"
+Item uses drop sound with filename="drop_book_sound.ogg"
+Base list price=25
+Item description text="Point and click. Point and know anything. Point, and I will show you the correct path. Point, and I will be there. Point, and I will protect you."
+** End of new item specification subsection **
+
+// Item No. 99 -> 51
+** Start of new item specification subsection **
+Item name="Evacuation script"
+Item can be applied in combat="yes"
+Item can be installed in influ="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="script"
+Items of this type collect together in inventory="yes"
+File or directory name for inventory image="script/inv_image.png"
+Item uses drop sound with filename="drop_book_sound.ogg"
+Base list price=40
+Item description text="This script can invoke stored powers to teleport one person back to the center of the nearest town. The stored powers are expended in the process and the script becomes useless afterwards.  Note:  Multiple of those may be grouped together in inventory."
+** End of new item specification subsection **
+
+// Item No. 100 -> 52
+** Start of new item specification subsection **
+Item name="Kevin's Data Cube"
+Item can be applied in combat="no"
+Item can be installed in influ="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="datacube"
+Items of this type collect together in inventory="no"
+File or directory name for inventory image="datacube/inv_image.png"
+Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
+Base list price=0
+Item description text="This data cube contains confidential government data on the installations around the colony. Kevin hopes that when the data is evaluated properly a way out of the current crisis might be found. However, the amount of data is so vast, it can only be evaluated properly using a large cluster of computers. The Red Guard base is said to store a suitable infrastructure for this purpose."
+** End of new item specification subsection **
+
+// Item No. 129 -> 111 -> 53
+** Start of new item specification subsection **
+Item name="Pandora's Cube"
+inventory_size_y=6
+inventory_size_x=6
+Item can be applied in combat="no"
+Item can be installed in influ="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="datacube"
+Items of this type collect together in inventory="no"
+File or directory name for inventory image="datacube/inv_image.png"
+Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
+Base list price=0
+Item description text="This is heavy. Cannot the end of the world come in a smaller package? It would be a great time for Duncan to explain a few things..."
+** End of new item specification subsection **
+
+
+
+/********************************************
+*                 Books                     *
+*********************************************/
+
+
+
+// Item No. 44 -> 54
+** Start of new item specification subsection **
+Item name="Source Book of Check system integrity"
+Item can be applied in combat="yes"
+Item can be installed in influ="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="spellbook"
+Items of this type collect together in inventory="no"
+File or directory name for inventory image="spellbook/inv_image.png"
+Item uses drop sound with filename="drop_book_sound.ogg"
+Base list price=250
+Item description text="An incredible healing spell, probably only one you will ever need."
+inventory_size_x=2
+inventory_size_y=2
+** End of new item specification subsection **
+
+// Item No. 45 -> 55
+** Start of new item specification subsection **
+Item name="Source Book of Sanctuary"
+Item can be applied in combat="yes"
+Item can be installed in influ="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="spellbook"
+Items of this type collect together in inventory="no"
+File or directory name for inventory image="spellbook/inv_image.png"
+Item uses drop sound with filename="drop_book_sound.ogg"
+Base list price=225
+Item description text="Teleporting takes on a whole new face with this book-use it wisely."
+inventory_size_x=2
+inventory_size_y=2
+** End of new item specification subsection **
+
+// Item No. 46 -> 56
+** Start of new item specification subsection **
+Item name="Source Book of Calculate Pi"
+Item can be applied in combat="yes"
+Item can be installed in influ="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="spellbook"
+Items of this type collect together in inventory="no"
+File or directory name for inventory image="spellbook/inv_image.png"
+Item uses drop sound with filename="drop_book_sound.ogg"
+Base list price=225
+Item description text="It is not a big problem to make a badly designed system to go hunting for the impossible, causing a performance impact."
+inventory_size_x=2
+inventory_size_y=2
+** End of new item specification subsection **
+
+// Item No. 47 -> 57
+** Start of new item specification subsection **
+Item name="Source Book of Blue Screen"
+Item can be applied in combat="yes"
+Item can be installed in influ="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="spellbook"
+Items of this type collect together in inventory="no"
+File or directory name for inventory image="spellbook/inv_image.png"
+Item uses drop sound with filename="drop_book_sound.ogg"
+Base list price=100
+Item description text="With a little touch a war machine comes crashing down to a halt. For a while."
+inventory_size_x=2
+inventory_size_y=2
+** End of new item specification subsection **
+
+// Item No. 83 -> 58
+** Start of new item specification subsection **
+Item name="Source Book of Malformed packet"
+Item can be applied in combat="yes"
+Item can be installed in influ="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="spellbook"
+Items of this type collect together in inventory="no"
+File or directory name for inventory image="spellbook/inv_image.png"
+Item uses drop sound with filename="drop_book_sound.ogg"
+Base list price=400
+Item description text="When computers are presented with the unexpected they can damage themselves."
+inventory_size_x=2
+inventory_size_y=2
+** End of new item specification subsection **
+
+// Item No. 84 -> 59
+** Start of new item specification subsection **
+Item name="Source Book of Analyze item"
+Item can be applied in combat="yes"
+Item can be installed in influ="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="spellbook"
+Items of this type collect together in inventory="no"
+File or directory name for inventory image="spellbook/inv_image.png"
+Item uses drop sound with filename="drop_book_sound.ogg"
+Base list price=450
+Item description text="There are very few items which have labels on them. Unless you happen to have an item labeled 'USE ME', you better make sure what it is before using it..."
+inventory_size_x=2
+inventory_size_y=2
+** End of new item specification subsection **
+
+// Item No. 85 -> 60
+** Start of new item specification subsection **
+Item name="Source Book of Nethack"
+Item can be applied in combat="yes"
+Item can be installed in influ="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="spellbook"
+Items of this type collect together in inventory="no"
+File or directory name for inventory image="spellbook/inv_image.png"
+Item uses drop sound with filename="drop_book_sound.ogg"
+Base list price=450
+Item description text="The open source game called Nethack is one of the world's greatest wasters of time. Machines don't care about it, but humans can get sucked in quite deeply."
+inventory_size_x=2
+inventory_size_y=2
+** End of new item specification subsection **
+
+// Item No. 86 -> 61
+** Start of new item specification subsection **
+Item name="Source Book of Dispel smoke"
+Item can be applied in combat="yes"
+Item can be installed in influ="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="spellbook"
+Items of this type collect together in inventory="no"
+File or directory name for inventory image="spellbook/inv_image.png"
+Item uses drop sound with filename="drop_book_sound.ogg"
+Base list price=450
+Item description text="By heating up the chips with a malformed program you can cause them to release the magic smoke which keeps the bot running."
+inventory_size_x=2
+inventory_size_y=2
+** End of new item specification subsection **
+
+// Item No. 87 -> 62
+** Start of new item specification subsection **
+Item name="Source Book of Killer poke"
+Item can be applied in combat="yes"
+Item can be installed in influ="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="spellbook"
+Items of this type collect together in inventory="no"
+File or directory name for inventory image="spellbook/inv_image.png"
+Item uses drop sound with filename="drop_book_sound.ogg"
+Base list price=600
+Item description text="Messing around with the bot's memory can cause it to damage itself, but the damage is greatly variable."
+inventory_size_x=2
+inventory_size_y=2
+** End of new item specification subsection **
+
+// Item No. 88 -> 63
+** Start of new item specification subsection **
+Item name="Source Book of Broadcast killer poke"
+Item can be applied in combat="yes"
+Item can be installed in influ="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="spellbook"
+Items of this type collect together in inventory="no"
+File or directory name for inventory image="spellbook/inv_image.png"
+Item uses drop sound with filename="drop_book_sound.ogg"
+Base list price=600
+Item description text="The radio network is a wonderful invention for the people who like to blow up a lot of stuff at once."
+inventory_size_x=2
+inventory_size_y=2
+** End of new item specification subsection **
+
+// Item No. 89 -> 64
+** Start of new item specification subsection **
+Item name="Source Book of Ricer CFLAGS"
+Item can be applied in combat="yes"
+Item can be installed in influ="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="spellbook"
+Items of this type collect together in inventory="no"
+File or directory name for inventory image="spellbook/inv_image.png"
+Item uses drop sound with filename="drop_book_sound.ogg"
+Base list price=600
+Item description text="Optimization is the root of all evil. You can gain some temporary improvements to your system, but in the end you are only likely to cause permanent damage."
+inventory_size_x=2
+inventory_size_y=2
+** End of new item specification subsection **
+
+// Item No. 90 -> 65
+** Start of new item specification subsection **
+Item name="Source Book of Plasma discharge"
+Item can be applied in combat="yes"
+Item can be installed in influ="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="spellbook"
+Items of this type collect together in inventory="no"
+File or directory name for inventory image="spellbook/inv_image.png"
+Item uses drop sound with filename="drop_book_sound.ogg"
+Base list price=200
+Item description text="The overload setting exists for emergencies. The plasma does not discriminate between bots and humans. Everything is equal to it."
+inventory_size_x=2
+inventory_size_y=2
+** End of new item specification subsection **
+
+// Item No. 91 -> 66
+** Start of new item specification subsection **
+Item name="Source Book of Invisibility"
+Item can be applied in combat="yes"
+Item can be installed in influ="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="spellbook"
+Items of this type collect together in inventory="no"
+File or directory name for inventory image="spellbook/inv_image.png"
+Item uses drop sound with filename="drop_book_sound.ogg"
+Base list price=225
+Item description text="I am not the Linarian you are looking for."
+inventory_size_x=2
+inventory_size_y=2
+** End of new item specification subsection **
+
+// Item No. 122 -> 104 -> 67
+** Start of new item specification subsection **
+Item name="Source Book of Sanctuary"
+Item can be applied in combat="yes"
+Item can be installed in influ="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="spellbook"
+Items of this type collect together in inventory="no"
+File or directory name for inventory image="spellbook/inv_image.png"
+Item uses drop sound with filename="drop_book_sound.ogg"
+Base list price=450
+Item description text="The art of rapidly moving away from danger is very useful. Even when used in reverse it has it's uses."
+inventory_size_x=2
+inventory_size_y=2
+** End of new item specification subsection **
+
+// Item No. 123 -> 105 -> 68
+** Start of new item specification subsection **
+Item name="Source Book of Virus"
+Item can be applied in combat="yes"
+Item can be installed in influ="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="spellbook"
+Items of this type collect together in inventory="no"
+File or directory name for inventory image="spellbook/inv_image.png"
+Item uses drop sound with filename="drop_book_sound.ogg"
+Base list price=450
+Item description text="This is not just a firmware upgrade, my dear bot. You are about to find out what exactly I want to give you."
+inventory_size_x=2
+inventory_size_y=2
+** End of new item specification subsection **
+
+// Item No. 124 -> 106 -> 69
+** Start of new item specification subsection **
+Item name="Source Book of Broadcast virus"
+Item can be applied in combat="yes"
+Item can be installed in influ="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="spellbook"
+Items of this type collect together in inventory="no"
+File or directory name for inventory image="spellbook/inv_image.png"
+Item uses drop sound with filename="drop_book_sound.ogg"
+Base list price=450
+Item description text="The network is wide and dangerous. Many traps await for the weak and unprepared."
+inventory_size_x=2
+inventory_size_y=2
+** End of new item specification subsection **
+
+// Item No. 125 -> 107 -> 70
+** Start of new item specification subsection **
+Item name="Source Book of Reverse-engineer"
+Item can be applied in combat="yes"
+Item can be installed in influ="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="spellbook"
+Items of this type collect together in inventory="no"
+File or directory name for inventory image="spellbook/inv_image.png"
+Item uses drop sound with filename="drop_book_sound.ogg"
+Base list price=450
+Item description text="There is some dark magic in the art of turning bots inside-out to learn all their secrets."
+inventory_size_x=2
+inventory_size_y=2
+** End of new item specification subsection **
+
+// Item No. 126 -> 108 -> 71
+** Start of new item specification subsection **
+Item name="Source Book of Emergency shutdown"
+Item can be applied in combat="yes"
+Item can be installed in influ="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="spellbook"
+Items of this type collect together in inventory="no"
+File or directory name for inventory image="spellbook/inv_image.png"
+Item uses drop sound with filename="drop_book_sound.ogg"
+Base list price=450
+Item description text="Everyone needs to blow some steam every now and then."
+inventory_size_x=2
+inventory_size_y=2
+** End of new item specification subsection **
+
+// Item No. 127 -> 109 -> 72
+** Start of new item specification subsection **
+Item name="Source Book of Light"
+Item can be applied in combat="yes"
+Item can be installed in influ="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="spellbook"
+Items of this type collect together in inventory="no"
+File or directory name for inventory image="spellbook/inv_image.png"
+Item uses drop sound with filename="drop_book_sound.ogg"
+Base list price=450
+Item description text="Let there be light..."
+inventory_size_x=2
+inventory_size_y=2
+** End of new item specification subsection **
+
+// Item No. 128 -> 110 -> 73
+** Start of new item specification subsection **
+Item name="Source Book of Satellite image"
+Item can be applied in combat="yes"
+Item can be installed in influ="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="spellbook"
+Items of this type collect together in inventory="no"
+File or directory name for inventory image="spellbook/inv_image.png"
+Item uses drop sound with filename="drop_book_sound.ogg"
+Base list price=300
+Item description text="Getting a map of an area is pretty easy when you can look at everything from above."
+inventory_size_x=2
+inventory_size_y=2
+** End of new item specification subsection **
+
+
+/********************************************
+*                 Armour                    *
+*********************************************/
+
+// FEET
+
+// Item No. 5 -> 23 -> 74
+** Start of new item specification subsection **
+Item name="Shoes"
+Item can be applied in combat="no"
+Item can be installed in influ="yes"
+Item can be installed in slot with name="drive"
+Item uses rotation series with prefix="boots_simple"
+Items of this type collect together in inventory="no"
+Item as defensive item: base_ac_bonus=2
+Item as defensive item: ac_bonus_modifier=2
+Base item duration=10
+plus duration modifier=5
+File or directory name for inventory image="boots_simple/inv_image.png"
+Item uses drop sound with filename="Item_Drop_Sound_1.ogg"
+Base list price=27
+Item description text="These simple boots are designed for comfort of the wearer more than to give actual protection."
+** End of new item specification subsection **
+
+// Item No. 94 -> 75
+** Start of new item specification subsection **
+Item name="Light Boots"
+Item can be applied in combat="no"
+Item can be installed in influ="yes"
+Item can be installed in slot with name="drive"
+Item uses rotation series with prefix="boots_simple"
+Items of this type collect together in inventory="no"
+Item as defensive item: base_ac_bonus=4
+Item as defensive item: ac_bonus_modifier=3
+Base item duration=13
+plus duration modifier=5
+File or directory name for inventory image="boots_simple/inv_image.png"
+Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
+Base list price=65
+Item description text="These boots are a bit lighter than the normal version, giving of course worse protection but certainly extra comfort for the wearer."
+** End of new item specification subsection **
+
+// Item No. 11 -> 25 -> 76
+** Start of new item specification subsection **
+Item name="Boots"
+Item can be applied in combat="no"
+Item can be installed in influ="yes"
+Item can be installed in slot with name="drive"
+Item uses rotation series with prefix="boots_simple"
+Items of this type collect together in inventory="no"
+Item as defensive item: base_ac_bonus=6
+Item as defensive item: ac_bonus_modifier=3
+Base item duration=23
+plus duration modifier=5
+File or directory name for inventory image="boots_simple/inv_image.png"
+Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
+Base list price=65
+Item description text="These boots are similar to the simple shoes, but the material they are made of is hardened for extra protection."
+** End of new item specification subsection **
+
+// Item No. 95 -> 77
+** Start of new item specification subsection **
+Item name="Reinforced Boots"
+Item can be applied in combat="no"
+Item can be installed in influ="yes"
+Item can be installed in slot with name="drive"
+Item uses rotation series with prefix="boots_simple"
+Items of this type collect together in inventory="no"
+Item as defensive item: base_ac_bonus=12
+Item as defensive item: ac_bonus_modifier=5
+Base item duration=27
+plus duration modifier=5
+File or directory name for inventory image="boots_simple/inv_image.png"
+Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
+Base list price=175
+Item description text="These boots were originally normal boots, but have been fitted with some extra reinforcements to give better protection to the wearer.  Of course this makes them a bit less elegant and also less comfy to wear, but the extra protection might be worth it, at not the full price of hiking boots."
+** End of new item specification subsection **
+
+// Item No. 96 -> 78
+** Start of new item specification subsection **
+Item name="Hiking Boots"
+Item can be applied in combat="no"
+Item can be installed in influ="yes"
+Item can be installed in slot with name="drive"
+Item uses rotation series with prefix="boots_simple"
+Items of this type collect together in inventory="no"
+Item as defensive item: base_ac_bonus=17
+Item as defensive item: ac_bonus_modifier=5
+Base item duration=37
+plus duration modifier=5
+File or directory name for inventory image="boots_simple/inv_image.png"
+Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
+Base list price=275
+Item description text="These hiking boots are a very sophisticated product, combining optimal comfort for the wearer with a good protection from collisions with blunt objects like stones, which of course also makes for a higher price."
+** End of new item specification subsection **
+
+
+// BODY
+
+// Item No. 25 -> 34 -> 79
+** Start of new item specification subsection **
+Item name="Simple Jacket"
+Item can be applied in combat="no"
+Item can be installed in influ="yes"
+Item can be installed in slot with name="armour"
+Item uses rotation series with prefix="basic_armour"
+Items of this type collect together in inventory="no"
+Item as defensive item: base_ac_bonus=3
+Item as defensive item: ac_bonus_modifier=4
+Base item duration=18
+plus duration modifier=1
+File or directory name for inventory image="basic_armour/inv_image.png"
+Item uses drop sound with filename="Item_Armour_Put_Sound_0.ogg"
+Base list price=40
+inventory_size_x=2
+inventory_size_y=2
+Item description text="Does a decent job of protection. I guess. Maybe. I'm not sure."
+** End of new item specification subsection **
+
+// Item No. 29 -> 37 -> 80
+** Start of new item specification subsection **
+Item name="Reinforced Jacket"
+Item can be applied in combat="no"
+Item can be installed in influ="yes"
+Item can be installed in slot with name="armour"
+Item uses rotation series with prefix="basic_armour2"
+Items of this type collect together in inventory="no"
+Item as defensive item: base_ac_bonus=8
+Item as defensive item: ac_bonus_modifier=4
+Base item duration=20
+plus duration modifier=10
+File or directory name for inventory image="basic_armour2/inv_image.png"
+Item uses drop sound with filename="Item_Armour_Put_Sound_0.ogg"
+Base list price=75
+inventory_size_x=2
+inventory_size_y=2
+Item description text="One step up from a normal jacket."
+** End of new item specification subsection **
+
+// Item No. 30 -> 38 -> 81
+** Start of new item specification subsection **
+Item name="Protective Jacket"
+Item can be applied in combat="no"
+Item can be installed in influ="yes"
+Item can be installed in slot with name="armour"
+Item uses rotation series with prefix="basic_armour3"
+Items of this type collect together in inventory="no"
+Item as defensive item: base_ac_bonus=13
+Item as defensive item: ac_bonus_modifier=4
+Base item duration=30
+plus duration modifier=10
+File or directory name for inventory image="basic_armour3/inv_image.png"
+Item uses drop sound with filename="Item_Armour_Put_Sound_0.ogg"
+Base list price=200
+inventory_size_x=2
+inventory_size_y=2
+Item description text="Very strong for its size, does a good job of absorbing basic blows."
+** End of new item specification subsection **
+
+// Item No. 31 -> 39 -> 82
+** Start of new item specification subsection **
+Item name="Red Guard's Light Robe"
+Item can be applied in combat="no"
+Item can be installed in influ="yes"
+Item can be installed in slot with name="armour"
+Item uses rotation series with prefix="green_armour"
+Items of this type collect together in inventory="no"
+Item as defensive item: base_ac_bonus=18
+Item as defensive item: ac_bonus_modifier=6
+Base item duration=30
+plus duration modifier=10
+File or directory name for inventory image="inventory_image_26.png"
+Item uses drop sound with filename="Item_Armour_Put_Sound_0.ogg"
+Base list price=300
+Item description text="Tough as nails and able to withstand most blows."
+** End of new item specification subsection **
+
+// Item No. 18 -> 28 -> 83
+** Start of new item specification subsection **
+Item name="Red Guard's Heavy Robe"
+Item can be applied in combat="no"
+Item can be installed in influ="yes"
+Item can be installed in slot with name="armour"
+Item uses rotation series with prefix="green_armour"
+Items of this type collect together in inventory="no"
+Strength minimum required to wear/wield this item=40
+Item as defensive item: base_ac_bonus=33
+Item as defensive item: ac_bonus_modifier=6
+Base item duration=30
+plus duration modifier=15
+File or directory name for inventory image="green_armour/inv_image.png"
+Item uses drop sound with filename="Item_Armour_Put_Sound_0.ogg"
+Base list price=1001
+Item description text="Defense is acquired at a high level with this durable piece of armor."
+** End of new item specification subsection **
+
+
+// HEAD
+
+// Item No. 20 -> 30 -> 84
+** Start of new item specification subsection **
+Item name="Cap"
+Item can be applied in combat="no"
+Item can be installed in influ="yes"
+Item can be installed in slot with name="special"
+Item uses rotation series with prefix="helmet_yellow"
+Items of this type collect together in inventory="no"
+Item as defensive item: base_ac_bonus=1
+Item as defensive item: ac_bonus_modifier=2
+Base item duration=10
+plus duration modifier=10
+File or directory name for inventory image="helmet_yellow/inv_image.png"
+inventory_size_y=2
+inventory_size_x=2
+Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
+Base list price=25
+Item description text="A simple cover for your head. Don't expect to be incognito."
+** End of new item specification subsection **
+
+// Item No. 50 -> 85
+** Start of new item specification subsection **
+Item name="Small Helm"
+Item can be applied in combat="no"
+Item can be installed in influ="yes"
+Item can be installed in slot with name="special"
+Item uses rotation series with prefix="helmet_yellow2"
+Items of this type collect together in inventory="no"
+Item as defensive item: base_ac_bonus=5
+Item as defensive item: ac_bonus_modifier=3
+Base item duration=18
+plus duration modifier=10
+File or directory name for inventory image="helmet_yellow2/inv_image.png"
+inventory_size_y=2
+inventory_size_x=2
+Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
+Base list price=75
+Item description text="A rather useful helmet, has a few defense issues here and there but mainly is worth the wear."
+** End of new item specification subsection **
+
+// Item No. 54 -> 86
+** Start of new item specification subsection **
+Item name="Iron Helm"
+Item can be applied in combat="no"
+Item can be installed in influ="yes"
+Item can be installed in slot with name="special"
+Item uses rotation series with prefix="helmet_skull_cap"
+Items of this type collect together in inventory="no"
+Item as defensive item: base_ac_bonus=6
+Item as defensive item: ac_bonus_modifier=8
+Base item duration=28
+plus duration modifier=15
+File or directory name for inventory image="helmet_skull_cap/inv_image.png"
+Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
+Base list price=275
+Item description text="Top of the line head gear, manages to protect against a myriad of close range and long range attacks."
+** End of new item specification subsection **
+
+// Item No. 55 -> 87
+** Start of new item specification subsection **
+Item name="Pot-Helm"
+Item can be applied in combat="no"
+Item can be installed in influ="yes"
+Item can be installed in slot with name="special"
+Item uses rotation series with prefix="helmet_yellow4"
+Items of this type collect together in inventory="no"
+Item as defensive item: base_ac_bonus=13
+Item as defensive item: ac_bonus_modifier=3
+Base item duration=38
+plus duration modifier=20
+File or directory name for inventory image="helmet_yellow4/inv_image.png"
+Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
+Base list price=375
+Item description text="It might look a bit silly, but it will save your life many times"
+** End of new item specification subsection **
+
+// Item No. 53 -> 88
+** Start of new item specification subsection **
+Item name="Iron Hat"
+Item can be applied in combat="no"
+Item can be installed in influ="yes"
+Item can be installed in slot with name="special"
+Item uses rotation series with prefix="helmet_yellow3"
+Items of this type collect together in inventory="no"
+Item as defensive item: base_ac_bonus=18
+Item as defensive item: ac_bonus_modifier=4
+Base item duration=18
+plus duration modifier=10
+File or directory name for inventory image="helmet_yellow3/inv_image.png"
+Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
+Base list price=175
+Item description text="Now this is head protection. Feel safe with sturdy iron protecting your head. Not as comfortable as other hats"
+** End of new item specification subsection **
+
+// Item No. 119 -> 101 -> 89
+** Start of new item specification subsection **
+Item name="Dixon's helmet"
+Item can be applied in combat="no"
+Item can be installed in influ="yes"
+Item can be installed in slot with name="special"
+Item uses rotation series with prefix="helmet_yellow4"
+Items of this type collect together in inventory="no"
+Item as defensive item: base_ac_bonus=75
+Base item duration=3
+plus duration modifier=0
+File or directory name for inventory image="helmet_yellow4/inv_image.png"
+Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
+Base list price=5
+Item description text="A gift from Dixon. It looks like it is about to turn into dust."
+** End of new item specification subsection **
+
+
+// HAND
+
+// Item No. 19 -> 29 -> 90
+** Start of new item specification subsection **
+Item name="Buckler"
+Item can be applied in combat="no"
+Item can be installed in influ="yes"
+Item can be installed in slot with name="shield"
+Item uses rotation series with prefix="buckler"
+Items of this type collect together in inventory="no"
+Item as defensive item: base_ac_bonus=3
+Item as defensive item: ac_bonus_modifier=2
+Base item duration=10
+plus duration modifier=8
+File or directory name for inventory image="buckler/inv_image.png"
+inventory_size_y=2
+inventory_size_x=2
+Item uses drop sound with filename="Item_Armour_Put_Sound_0.ogg"
+Base list price=30
+Item description text="This shield is a compilation of various objects which happened to be around. It has tubes, bolts and parts of metal, all slapped together to provide a small bit of protection from enemies. It's very simple and rough, but some sensors and lights have been added to let the wielder know when the item is getting hit, and how long it will remain operational and other cool stuff like that."
+** End of new item specification subsection **
+
+// Item No. 43 -> 91
+** Start of new item specification subsection **
+Item name="Small Shield"
+Item can be applied in combat="no"
+Item can be installed in influ="yes"
+Item can be installed in slot with name="shield"
+Item uses rotation series with prefix="small_shield"
+Items of this type collect together in inventory="no"
+Item as defensive item: base_ac_bonus=6
+Item as defensive item: ac_bonus_modifier=4
+Base item duration=10
+plus duration modifier=8
+File or directory name for inventory image="small_shield/inv_image.png"
+Item uses drop sound with filename="Item_Armour_Put_Sound_0.ogg"
+Base list price=90
+Item description text="A small, lightweight and pretty straightforward shield. Provides decent protection."
+** End of new item specification subsection **
+
+// Item No. 33 -> 40 -> 92
+** Start of new item specification subsection **
+Item name="Standard Shield"
+Item can be applied in combat="no"
+Item can be installed in influ="yes"
+Item can be installed in slot with name="shield"
+Item uses rotation series with prefix="standard_shield"
+Items of this type collect together in inventory="no"
+Strength minimum required to wear/wield this item=25
+Dexterity minimum required to wear/wield this item=25
+Item as defensive item: base_ac_bonus=12
+Item as defensive item: ac_bonus_modifier=8
+Base item duration=25
+plus duration modifier=10
+File or directory name for inventory image="standard_shield/inv_image.png"
+Item uses drop sound with filename="Item_Armour_Put_Sound_0.ogg"
+Base list price=250
+Item description text="Better than a buckler, and a lot more effective."
+** End of new item specification subsection **
+
+// Item No. 97 -> 93
+** Start of new item specification subsection **
+Item name="Medium Shield"
+Item can be applied in combat="no"
+Item can be installed in influ="yes"
+Item can be installed in slot with name="shield"
+Item uses rotation series with prefix="small_shield"
+Items of this type collect together in inventory="no"
+Item as defensive item: base_ac_bonus=17
+Item as defensive item: ac_bonus_modifier=4
+Base item duration=30
+plus duration modifier=8
+File or directory name for inventory image="small_shield/inv_image.png"
+Item uses drop sound with filename="Item_Armour_Put_Sound_0.ogg"
+Base list price=330
+Item description text="A medium sized, lightweight and pretty straightforward shield. Provides decent protection."
+** End of new item specification subsection **
+
+// Item No. 56 -> 94
+** Start of new item specification subsection **
+Item name="Large Shield"
+Item can be applied in combat="no"
+Item can be installed in influ="yes"
+Item can be installed in slot with name="shield"
+Item uses rotation series with prefix="large_shield"
+Items of this type collect together in inventory="no"
+Strength minimum required to wear/wield this item=45
+Dexterity minimum required to wear/wield this item=30
+Item as defensive item: base_ac_bonus=24
+Item as defensive item: ac_bonus_modifier=4
+Base item duration=35
+plus duration modifier=20
+File or directory name for inventory image="large_shield/inv_image.png"
+Item uses drop sound with filename="Item_Armour_Put_Sound_0.ogg"
+Base list price=450
+Item description text="A powerful shield."
+** End of new item specification subsection **
+
+
+
+/********************************************
+*                 Weapons                   *
+*********************************************/
+
+
+
+// Item No. 3 -> 21 -> 95
 ** Start of new item specification subsection **
 Item name="Twin Laser"
 Item can be applied in combat="no"
@@ -96,127 +2069,7 @@ Item as gun: weapon requires both hands="yes"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
-// Item No. 4
-** Start of new item specification subsection **
-Item name="Droid Energetic Heart Class Beta"
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="NONE_AVAILABLE_YET"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="inventory_image_3.png"
-Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
-Base list price=900
-Item description text=""
-** End of new item specification subsection **
-
-// Item No. 5
-** Start of new item specification subsection **
-Item name="Shoes"
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="drive"
-Item uses rotation series with prefix="boots_simple"
-Items of this type collect together in inventory="no"
-Item as defensive item: base_ac_bonus=2
-Item as defensive item: ac_bonus_modifier=2
-Base item duration=10
-plus duration modifier=5
-File or directory name for inventory image="boots_simple/inv_image.png"
-Item uses drop sound with filename="Item_Drop_Sound_1.ogg"
-Base list price=27
-Item description text="These simple boots are designed for comfort of the wearer more than to give actual protection."
-** End of new item specification subsection **
-
-// Item No. 6
-** Start of new item specification subsection **
-Item name="Cyberbucks"
-Item can be applied in combat="no"
-Item can be installed in influ="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="cyberbucks"
-Items of this type collect together in inventory="yes"
-File or directory name for inventory image="cyberbucks/inv_image.png"
-Item uses drop sound with filename="Item_Drop_Sound_2.ogg"
-Base list price=1
-Item description text=""
-** End of new item specification subsection **
-
-// Item No. 7
-** Start of new item specification subsection **
-Item name="THIS ITEM DOES NOT EXIST"
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="NONE_AVAILABLE_YET"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="inventory_image_7.png"
-Item uses drop sound with filename="Item_Wheels_Put_Sound_0.ogg"
-Base list price=100
-Item description text="This is a droid part used for locomotion. The wheel drive is slow, but not very complicated and easy to construct or repair."
-** End of new item specification subsection **
-
-// Item No. 8
-** Start of new item specification subsection **
-Item name="THIS ITEM DOES NOT EXIST"
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="NONE_AVAILABLE_YET"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="inventory_image_7.png"
-Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
-Base list price=250
-Item description text="This is a nightmare. Some crazed inventor had a problem with the stability of a bipedial drive. She solved it by adding a third leg to the drive unit. A real mess to maintain and unreliable as hell, but at least it walks."
-** End of new item specification subsection **
-
-// Item No. 9
-** Start of new item specification subsection **
-Item name="THIS_ITEM_DOES_NOT_EXIST"
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="NONE_AVAILABLE_YET"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="inventory_image_7.png"
-Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
-Base list price=300
-Item description text="This type of drive is de facto the standard in humanoid machine industry."
-** End of new item specification subsection **
-
-// Item No. 10
-** Start of new item specification subsection **
-Item name="THIS ITEM DOES NOT EXIST"
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="NONE_AVAILABLE_YET"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="inventory_image_7.png"
-Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
-Base list price=65
-Item description text="The track drive. Good for all types of terrain. Except lava, acid, landmines and the like."
-** End of new item specification subsection **
-
-// Item No. 11
-** Start of new item specification subsection **
-Item name="Boots"
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="drive"
-Item uses rotation series with prefix="boots_simple"
-Items of this type collect together in inventory="no"
-Item as defensive item: base_ac_bonus=6
-Item as defensive item: ac_bonus_modifier=3
-Base item duration=23
-plus duration modifier=5
-File or directory name for inventory image="boots_simple/inv_image.png"
-Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
-Base list price=65
-Item description text="These boots are similar to the simple shoes, but the material they are made of is hardened for extra protection."
-** End of new item specification subsection **
-
-// Item No. 12
+// Item No. 12 -> 26
 ** Start of new item specification subsection **
 Item name="Laser Rifle"
 Item can be applied in combat="no"
@@ -254,85 +2107,7 @@ Item as gun: weapon requires both hands="yes"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
-// Item No. 13
-** Start of new item specification subsection **
-Item name="Exterminator"
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="weapon"
-Item uses rotation series with prefix="exterminator_simple"
-Items of this type collect together in inventory="no"
-Base item duration=10
-plus duration modifier=10
-File or directory name for inventory image="exterminator_simple/inv_image.png"
-Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
-Base list price=1001
-Item description text="While this weapon is capable of firing really powerful shots, beware of the exceptionally long reloading times. (Don't get swarmed by enemies with this weapon unless you have powerful armor!)"
------ the following part is only relevant for weapons -----
-Item as gun: recharging time=0.5000000
-Item as gun: reloading time=4.000000
-Item as gun: speed of bullets=35.000000
-Item as gun: angle change of bullets=0.000000
-Item as gun: damage of bullets=8
-Item as gun: modifier for damage of bullets=40
-Item as gun: one_shot_only=0
-Item as gun: bullet_image_type=4
-Item as gun: bullet_lifetime=-1.000000
-Item as gun: offset for melee weapon=0.000000
-Item as gun: modifier for starting angle=0.000000
-Item as gun: ignore collisions with wall="no"
-Item as gun: reflect other bullets="no"
-Item as gun: pass through explosions="no"
-Item as gun: pass through hit bodies="no"
-Item as gun: required ammunition type="exterminator_ammunition"
-Item as gun: ammo clip size=2
-Item as gun: weapon requires both hands="yes"
------ end of part only relevant for weapons -----
-** End of new item specification subsection **
-
-// Item No. 14
-** Start of new item specification subsection **
-Item name="THIS_ITEM_DOES_NOT_EXIST"
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="NONE_AVAILABLE_YET"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="inventory_image_7.png"
-Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
-Base list price=300
-Item description text="This type of drive is de facto the standard in humanoid machine industry."
-** End of new item specification subsection **
-
-// Item No. 15
-** Start of new item specification subsection **
-Item name="THIS_ITEM_DOES_NOT_EXIST"
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="NONE_AVAILABLE_YET"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="inventory_image_7.png"
-Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
-Base list price=300
-Item description text="This type of drive is de facto the standard in humanoid machine industry."
-** End of new item specification subsection **
-
-// Item No. 16
-** Start of new item specification subsection **
-Item name="THIS_ITEM_DOES_NOT_EXIST"
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="NONE_AVAILABLE_YET"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="inventory_image_7.png"
-Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
-Base list price=300
-Item description text="This type of drive is de facto the standard in humanoid machine industry."
-** End of new item specification subsection **
-
-// Item No. 17
+// Item No. 17 -> 27
 ** Start of new item specification subsection **
 Item name="The Super Exterminator!!!"
 Item can be applied in combat="no"
@@ -370,80 +2145,7 @@ Item as gun: weapon requires both hands="yes"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
-// Item No. 18
-** Start of new item specification subsection **
-Item name="Red Guard's Heavy Robe"
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="armour"
-Item uses rotation series with prefix="green_armour"
-Items of this type collect together in inventory="no"
-Strength minimum required to wear/wield this item=40
-Item as defensive item: base_ac_bonus=33
-Item as defensive item: ac_bonus_modifier=6
-Base item duration=30
-plus duration modifier=15
-File or directory name for inventory image="green_armour/inv_image.png"
-Item uses drop sound with filename="Item_Armour_Put_Sound_0.ogg"
-Base list price=1001
-Item description text="Defense is acquired at a high level with this durable piece of armor."
-** End of new item specification subsection **
-
-// Item No. 19
-** Start of new item specification subsection **
-Item name="Buckler"
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="shield"
-Item uses rotation series with prefix="buckler"
-Items of this type collect together in inventory="no"
-Item as defensive item: base_ac_bonus=3
-Item as defensive item: ac_bonus_modifier=2
-Base item duration=10
-plus duration modifier=8
-File or directory name for inventory image="buckler/inv_image.png"
-inventory_size_y=2
-inventory_size_x=2
-Item uses drop sound with filename="Item_Armour_Put_Sound_0.ogg"
-Base list price=30
-Item description text="This shield is a compilation of various objects which happened to be around. It has tubes, bolts and parts of metal, all slapped together to provide a small bit of protection from enemies. It's very simple and rough, but some sensors and lights have been added to let the wielder know when the item is getting hit, and how long it will remain operational and other cool stuff like that."
-** End of new item specification subsection **
-
-// Item No. 20
-** Start of new item specification subsection **
-Item name="Cap"
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="special"
-Item uses rotation series with prefix="helmet_yellow"
-Items of this type collect together in inventory="no"
-Item as defensive item: base_ac_bonus=1
-Item as defensive item: ac_bonus_modifier=2
-Base item duration=10
-plus duration modifier=10
-File or directory name for inventory image="helmet_yellow/inv_image.png"
-inventory_size_y=2
-inventory_size_x=2
-Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
-Base list price=25
-Item description text="A simple cover for your head. Don't expect to be incognito."
-** End of new item specification subsection **
-
-// Item No. 21
-** Start of new item specification subsection **
-Item name="THIS ITEM DOES NOT EXIST"
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="NONE_AVAILABLE_YET"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="inventory_image_7.png"
-Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
-Base list price=0
-Item description text=""
-** End of new item specification subsection **
-
-// Item No. 22
+// Item No. 22 -> 31
 ** Start of new item specification subsection **
 Item name="Laser pistol"
 Item can be applied in combat="no"
@@ -479,7 +2181,7 @@ Item as gun: weapon requires both hands="yes"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
-// Item No. 23
+// Item No. 23 -> 32
 ** Start of new item specification subsection **
 Item name="Plasma pistol"
 Item can be applied in combat="no"
@@ -515,79 +2217,7 @@ Item as gun: weapon requires both hands="yes"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
-// Item No. 24
-** Start of new item specification subsection **
-Item name="Long sword"
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="weapon"
-Item uses rotation series with prefix="laser_sword_red"
-Items of this type collect together in inventory="no"
-Base item duration=35
-plus duration modifier=10
-File or directory name for inventory image="laser_sword_red/inv_image.png"
-inventory_size_y=2
-inventory_size_x=2
-Item uses drop sound with filename="drop_sword_sound.ogg"
-Base list price=350
-Item description text="In an age of high tech guns and lasers, this modified sword should never be underestimated."
------ the following part is only relevant for weapons -----
-Item as gun: recharging time=0.450000
-Item as gun: reloading time=0.000000
-Item as gun: speed of bullets=0.100000
-Item as gun: angle change of bullets=720.000000
-Item as gun: damage of bullets=2
-Item as gun: modifier for damage of bullets=10
-Item as gun: one_shot_only=0
-Item as gun: bullet_image_type=8
-Item as gun: bullet_lifetime=0.200000
-Item as gun: offset for melee weapon=1.050000
-Item as gun: modifier for starting angle=-60.000000
-Item as gun: ignore collisions with wall="yes"
-Item as gun: reflect other bullets="yes"
-Item as gun: pass through explosions="yes"
-Item as gun: pass through hit bodies="yes"
-Item as gun: required ammunition type="none"
-Item as gun: ammo clip size=0
-Item as gun: weapon requires both hands="no"
------ end of part only relevant for weapons -----
-** End of new item specification subsection **
-
-// Item No. 25
-** Start of new item specification subsection **
-Item name="Simple Jacket"
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="armour"
-Item uses rotation series with prefix="basic_armour"
-Items of this type collect together in inventory="no"
-Item as defensive item: base_ac_bonus=3
-Item as defensive item: ac_bonus_modifier=4
-Base item duration=18
-plus duration modifier=1
-File or directory name for inventory image="basic_armour/inv_image.png"
-Item uses drop sound with filename="Item_Armour_Put_Sound_0.ogg"
-Base list price=40
-inventory_size_x=2
-inventory_size_y=2
-Item description text="Does a decent job of protection. I guess. Maybe. I'm not sure."
-** End of new item specification subsection **
-
-// Item No. 26
-** Start of new item specification subsection **
-Item name="THIS ITEM DOES NOT EXIST"
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="NONE_AVAILABLE_YET"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="inventory_image_7.png"
-Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
-Base list price=0
-Item description text=""
-** End of new item specification subsection **
-
-// Item No. 27
+// Item No. 27 -> 35
 ** Start of new item specification subsection **
 Item name="Short Laser sword"
 Item can be applied in combat="no"
@@ -623,604 +2253,6 @@ Item as gun: required ammunition type="none"
 Item as gun: ammo clip size=0
 Item as gun: weapon requires both hands="no"
 ----- end of part only relevant for weapons -----
-** End of new item specification subsection **
-
-// Item No. 112 -> 28
-** Start of new item specification subsection **
-Item name="Anti-grav Pod for Droids"
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="antigrav_unit"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="antigrav_unit/inv_image.png"
-Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
-Base list price=450
-Item description text="The bots use this to hover around."
-** End of new item specification subsection **
-
-// Item No. 29
-** Start of new item specification subsection **
-Item name="Reinforced Jacket"
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="armour"
-Item uses rotation series with prefix="basic_armour2"
-Items of this type collect together in inventory="no"
-Item as defensive item: base_ac_bonus=8
-Item as defensive item: ac_bonus_modifier=4
-Base item duration=20
-plus duration modifier=10
-File or directory name for inventory image="basic_armour2/inv_image.png"
-Item uses drop sound with filename="Item_Armour_Put_Sound_0.ogg"
-Base list price=75
-inventory_size_x=2
-inventory_size_y=2
-Item description text="One step up from a normal jacket."
-** End of new item specification subsection **
-
-// Item No. 30
-** Start of new item specification subsection **
-Item name="Protective Jacket"
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="armour"
-Item uses rotation series with prefix="basic_armour3"
-Items of this type collect together in inventory="no"
-Item as defensive item: base_ac_bonus=13
-Item as defensive item: ac_bonus_modifier=4
-Base item duration=30
-plus duration modifier=10
-File or directory name for inventory image="basic_armour3/inv_image.png"
-Item uses drop sound with filename="Item_Armour_Put_Sound_0.ogg"
-Base list price=200
-inventory_size_x=2
-inventory_size_y=2
-Item description text="Very strong for its size, does a good job of absorbing basic blows."
-** End of new item specification subsection **
-
-// Item No. 31
-** Start of new item specification subsection **
-Item name="Red Guard's Light Robe"
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="armour"
-Item uses rotation series with prefix="green_armour"
-Items of this type collect together in inventory="no"
-Item as defensive item: base_ac_bonus=18
-Item as defensive item: ac_bonus_modifier=6
-Base item duration=30
-plus duration modifier=10
-File or directory name for inventory image="inventory_image_26.png"
-Item uses drop sound with filename="Item_Armour_Put_Sound_0.ogg"
-Base list price=300
-Item description text="Tough as nails and able to withstand most blows."
-** End of new item specification subsection **
-
-// Item No. 32
-** Start of new item specification subsection **
-Item name="THIS ITEM DOES NOT EXIST"
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="NONE_AVAILABLE_YET"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="inventory_image_7.png"
-Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
-Base list price=0
-Item description text=""
-** End of new item specification subsection **
-
-// Item No. 33
-** Start of new item specification subsection **
-Item name="Standard Shield"
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="shield"
-Item uses rotation series with prefix="standard_shield"
-Items of this type collect together in inventory="no"
-Strength minimum required to wear/wield this item=25
-Dexterity minimum required to wear/wield this item=25
-Item as defensive item: base_ac_bonus=12
-Item as defensive item: ac_bonus_modifier=8
-Base item duration=25
-plus duration modifier=10
-File or directory name for inventory image="standard_shield/inv_image.png"
-Item uses drop sound with filename="Item_Armour_Put_Sound_0.ogg"
-Base list price=250
-Item description text="Better than a buckler, and a lot more effective."
-** End of new item specification subsection **
-
-// Item No. 34
-** Start of new item specification subsection **
-Item name="THIS ITEM DOES NOT EXIST"
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="NONE_AVAILABLE_YET"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="inventory_image_7.png"
-Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
-Base list price=0
-Item description text=""
-** End of new item specification subsection **
-
-// Item No. 35
-** Start of new item specification subsection **
-Item name="THIS ITEM DOES NOT EXIST"
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="NONE_AVAILABLE_YET"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="inventory_image_7.png"
-Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
-Base list price=0
-Item description text=""
-** End of new item specification subsection **
-
-// Item No. 36
-** Start of new item specification subsection **
-Item name="THIS ITEM DOES NOT EXIST"
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="NONE_AVAILABLE_YET"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="inventory_image_7.png"
-Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
-Base list price=0
-Item description text=""
-** End of new item specification subsection **
-
-// Item No. 37
-** Start of new item specification subsection **
-Item name="THIS ITEM DOES NOT EXIST"
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="NONE_AVAILABLE_YET"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="inventory_image_7.png"
-Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
-Base list price=0
-Item description text=""
-** End of new item specification subsection **
-
-// Item No. 38
-** Start of new item specification subsection **
-Item name="THIS ITEM DOES NOT EXIST"
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="NONE_AVAILABLE_YET"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="inventory_image_7.png"
-Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
-Base list price=0
-Item description text=""
-** End of new item specification subsection **
-
-// Item No. 39
-** Start of new item specification subsection **
-Item name="THIS ITEM DOES NOT EXIST"
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="NONE_AVAILABLE_YET"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="inventory_image_7.png"
-Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
-Base list price=0
-Item description text=""
-** End of new item specification subsection **
-
-// Item No. 40
-** Start of new item specification subsection **
-Item name="THIS ITEM DOES NOT EXIST"
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="NONE_AVAILABLE_YET"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="inventory_image_7.png"
-Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
-Base list price=0
-Item description text=""
-** End of new item specification subsection **
-
-// Item No. 41
-** Start of new item specification subsection **
-Item name="Bottled ice"
-Item can be applied in combat="yes"
-Item can be installed in influ="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="force_capsule"
-Items of this type collect together in inventory="yes"
-File or directory name for inventory image="force_capsule/inv_image_small.png"
-inventory_size_y=1
-inventory_size_x=1
-Item uses drop sound with filename="drop_potion_sound.ogg"
-Base list price=15
-Item description text="This bottle is filled with ice. It can keep you cool during a warm summer day."
-** End of new item specification subsection **
-
-// Item No. 42
-** Start of new item specification subsection **
-Item name="Liquid nitrogen"
-Item can be applied in combat="yes"
-Item can be installed in influ="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="force_capsule"
-Items of this type collect together in inventory="yes"
-File or directory name for inventory image="force_capsule/inv_image_big.png"
-inventory_size_y=1
-inventory_size_x=1
-Item uses drop sound with filename="drop_potion_sound.ogg"
-Base list price=45
-Item description text="When you want something frozen solid, this is what you need. It can keep you cool even inside a class M star."
-** End of new item specification subsection **
-
-// Item No. 43
-** Start of new item specification subsection **
-Item name="Small Shield"
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="shield"
-Item uses rotation series with prefix="small_shield"
-Items of this type collect together in inventory="no"
-Item as defensive item: base_ac_bonus=6
-Item as defensive item: ac_bonus_modifier=4
-Base item duration=10
-plus duration modifier=8
-File or directory name for inventory image="small_shield/inv_image.png"
-Item uses drop sound with filename="Item_Armour_Put_Sound_0.ogg"
-Base list price=90
-Item description text="A small, lightweight and pretty straightforward shield. Provides decent protection."
-** End of new item specification subsection **
-
-// Item No. 44
-** Start of new item specification subsection **
-Item name="Source Book of Check system integrity"
-Item can be applied in combat="yes"
-Item can be installed in influ="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="spellbook"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="spellbook/inv_image.png"
-Item uses drop sound with filename="drop_book_sound.ogg"
-Base list price=250
-Item description text="An incredible healing spell, probably only one you will ever need."
-inventory_size_x=2
-inventory_size_y=2
-** End of new item specification subsection **
-
-// Item No. 45
-** Start of new item specification subsection **
-Item name="Source Book of Sanctuary"
-Item can be applied in combat="yes"
-Item can be installed in influ="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="spellbook"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="spellbook/inv_image.png"
-Item uses drop sound with filename="drop_book_sound.ogg"
-Base list price=225
-Item description text="Teleporting takes on a whole new face with this book-use it wisely."
-inventory_size_x=2
-inventory_size_y=2
-** End of new item specification subsection **
-
-// Item No. 46
-** Start of new item specification subsection **
-Item name="Source Book of Calculate Pi"
-Item can be applied in combat="yes"
-Item can be installed in influ="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="spellbook"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="spellbook/inv_image.png"
-Item uses drop sound with filename="drop_book_sound.ogg"
-Base list price=225
-Item description text="It is not a big problem to make a badly designed system to go hunting for the impossible, causing a performance impact."
-inventory_size_x=2
-inventory_size_y=2
-** End of new item specification subsection **
-
-// Item No. 47
-** Start of new item specification subsection **
-Item name="Source Book of Blue Screen"
-Item can be applied in combat="yes"
-Item can be installed in influ="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="spellbook"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="spellbook/inv_image.png"
-Item uses drop sound with filename="drop_book_sound.ogg"
-Base list price=100
-Item description text="With a little touch a war machine comes crashing down to a halt. For a while."
-inventory_size_x=2
-inventory_size_y=2
-** End of new item specification subsection **
-
-// Item No. 48
-** Start of new item specification subsection **
-Item name="Antibiotic"
-Item can be applied in combat="yes"
-Item can be installed in influ="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="health_capsule"
-Items of this type collect together in inventory="yes"
-File or directory name for inventory image="health_capsule/inv_image_medium.png"
-inventory_size_y=1
-inventory_size_x=1
-Item uses drop sound with filename="drop_potion_sound.ogg"
-Base list price=40
-Item description text="Truly wonderful things can be extracted from molds. This can cure lethal food poisoning. Wish you had that in your last Nethack game, eh?"
-** End of new item specification subsection **
-
-// Item No. 49
-** Start of new item specification subsection **
-Item name="Industrial coolant"
-Item can be applied in combat="yes"
-Item can be installed in influ="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="force_capsule"
-Items of this type collect together in inventory="yes"
-File or directory name for inventory image="force_capsule/inv_image_medium.png"
-inventory_size_y=1
-inventory_size_x=1
-Item uses drop sound with filename="drop_potion_sound.ogg"
-Base list price=30
-Item description text="Bartenders around the world add this to drinks to get them cold very fast. Plus the coolant is much cheaper. It can keep you cool inside a nuclear reactor."
-** End of new item specification subsection **
-
-// Item No. 50
-** Start of new item specification subsection **
-Item name="Small Helm"
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="special"
-Item uses rotation series with prefix="helmet_yellow2"
-Items of this type collect together in inventory="no"
-Item as defensive item: base_ac_bonus=5
-Item as defensive item: ac_bonus_modifier=3
-Base item duration=18
-plus duration modifier=10
-File or directory name for inventory image="helmet_yellow2/inv_image.png"
-inventory_size_y=2
-inventory_size_x=2
-Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
-Base list price=75
-Item description text="A rather useful helmet, has a few defense issues here and there but mainly is worth the wear."
-** End of new item specification subsection **
-
-// Item No. 51
-** Start of new item specification subsection **
-Item name="THIS ITEM DOES NOT EXIST"
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="NONE_AVAILABLE_YET"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="inventory_image_7.png"
-Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
-Base list price=0
-Item description text=""
-** End of new item specification subsection **
-
-// Item No. 52
-** Start of new item specification subsection **
-Item name="THIS ITEM DOES NOT EXIST"
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="NONE_AVAILABLE_YET"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="inventory_image_7.png"
-Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
-Base list price=0
-Item description text=""
-** End of new item specification subsection **
-
-// Item No. 53
-** Start of new item specification subsection **
-Item name="Iron Hat"
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="special"
-Item uses rotation series with prefix="helmet_yellow3"
-Items of this type collect together in inventory="no"
-Item as defensive item: base_ac_bonus=18
-Item as defensive item: ac_bonus_modifier=4
-Base item duration=18
-plus duration modifier=10
-File or directory name for inventory image="helmet_yellow3/inv_image.png"
-Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
-Base list price=175
-Item description text="Now this is head protection. Feel safe with sturdy iron protecting your head. Not as comfortable as other hats"
-** End of new item specification subsection **
-
-// Item No. 54
-** Start of new item specification subsection **
-Item name="Iron Helm"
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="special"
-Item uses rotation series with prefix="helmet_skull_cap"
-Items of this type collect together in inventory="no"
-Item as defensive item: base_ac_bonus=6
-Item as defensive item: ac_bonus_modifier=8
-Base item duration=28
-plus duration modifier=15
-File or directory name for inventory image="helmet_skull_cap/inv_image.png"
-Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
-Base list price=275
-Item description text="Top of the line head gear, manages to protect against a myriad of close range and long range attacks."
-** End of new item specification subsection **
-
-// Item No. 55
-** Start of new item specification subsection **
-Item name="Pot-Helm"
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="special"
-Item uses rotation series with prefix="helmet_yellow4"
-Items of this type collect together in inventory="no"
-Item as defensive item: base_ac_bonus=13
-Item as defensive item: ac_bonus_modifier=3
-Base item duration=38
-plus duration modifier=20
-File or directory name for inventory image="helmet_yellow4/inv_image.png"
-Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
-Base list price=375
-Item description text="It might look a bit silly, but it will save your life many times"
-** End of new item specification subsection **
-
-// Item No. 56
-** Start of new item specification subsection **
-Item name="Large Shield"
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="shield"
-Item uses rotation series with prefix="large_shield"
-Items of this type collect together in inventory="no"
-Strength minimum required to wear/wield this item=45
-Dexterity minimum required to wear/wield this item=30
-Item as defensive item: base_ac_bonus=24
-Item as defensive item: ac_bonus_modifier=4
-Base item duration=35
-plus duration modifier=20
-File or directory name for inventory image="large_shield/inv_image.png"
-Item uses drop sound with filename="Item_Armour_Put_Sound_0.ogg"
-Base list price=450
-Item description text="A powerful shield."
-** End of new item specification subsection **
-
-// Item No. 57
-** Start of new item specification subsection **
-Item name="Running Power Capsule"
-Item can be applied in combat="yes"
-Item can be installed in influ="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="energy_capsule"
-Items of this type collect together in inventory="yes"
-File or directory name for inventory image="inventory_image_1.png"
-Item uses drop sound with filename="drop_potion_sound.ogg"
-Base list price=45
-Item description text="These small containers hold purified running strength.  Each capsule can be used only once, but multiple of those items can be grouped together like one item in inventory."
-** End of new item specification subsection **
-
-// Item No. 58
-** Start of new item specification subsection **
-Item name="Barf's Energy Drink"
-Item can be applied in combat="yes"
-Item can be installed in influ="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="blue_energy_drink"
-Items of this type collect together in inventory="yes"
-File or directory name for inventory image="blue_energy_drink/inv_image.png"
-Item uses drop sound with filename="drop_potion_sound.ogg"
-Base list price=50
-Item description text="Warning! These energy drinks contain high doses of caffeine! The average person drops dead after consuming 12 grams of caffeine. One of these bottles contains over double that amount."
-** End of new item specification subsection **
-
-// Item No. 59
-** Start of new item specification subsection **
-Item name="Dixon's Toolbox"
-Item can be applied in combat="no"
-Item can be installed in influ="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="dixons_toolbox"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="dixons_toolbox/inv_image.png"
-Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
-Base list price=0
-Item description text="This is a teleporter service toolbox. It's complete and orderly, though a few dents on the outside give prof of frequent use. 'C. Dixon' is carved into the outside with fine print."
-** End of new item specification subsection **
-
-// Item No. 60
-** Start of new item specification subsection **
-Item name="THIS_ITEM_DOES_NOT_EXIST"
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="NONE_AVAILABLE_YET"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="inventory_image_7.png"
-Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
-Base list price=300
-Item description text="This type of drive is de facto the standard in humanoid machine industry."
-** End of new item specification subsection **
-
-// Item No. 61
-** Start of new item specification subsection **
-Item name="Plasma Transistor"
-Item can be applied in combat="no"
-Item can be installed in influ="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="plasma_transistor"
-Items of this type collect together in inventory="yes"
-File or directory name for inventory image="plasma_transistor/inv_image.png"
-Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
-Base list price=100
-Item description text="This is an standard part within many robots types."
-** End of new item specification subsection **
-
-// Item No. 62
-** Start of new item specification subsection **
-Item name="Superconducting Relay Unit"
-Item can be applied in combat="no"
-Item can be installed in influ="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="superconducting_relay_unit"
-Items of this type collect together in inventory="yes"
-File or directory name for inventory image="superconducting_relay_unit/inv_image.png"
-Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
-Base list price=100
-Item description text="This is an standard part within many robots types."
-** End of new item specification subsection **
-
-// Item No. 63
-** Start of new item specification subsection **
-Item name="Antimatter-Matter Converter"
-Item can be applied in combat="no"
-Item can be installed in influ="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="antimatter_matter_converter"
-Items of this type collect together in inventory="yes"
-File or directory name for inventory image="antimatter_matter_converter/inv_image.png"
-Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
-Base list price=100
-Item description text="This is an standard part within many robot types."
-** End of new item specification subsection **
-
-// Item No. 64
-** Start of new item specification subsection **
-Item name="Entropy Inverter"
-Item can be applied in combat="no"
-Item can be installed in influ="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="entropy_inverter"
-Items of this type collect together in inventory="yes"
-File or directory name for inventory image="entropy_inverter/inv_image.png"
-Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
-Base list price=100
-Item description text="This is an standard part within many robots types."
-** End of new item specification subsection **
-
-// Item No. 65
-** Start of new item specification subsection **
-Item name="Tachyon Condensator"
-Item can be applied in combat="no"
-Item can be installed in influ="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="tachyon_converter"
-Items of this type collect together in inventory="yes"
-File or directory name for inventory image="tachyon_converter/inv_image.png"
-Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
-Base list price=100
-Item description text="This is an standard part within many robots types."
 ** End of new item specification subsection **
 
 // Item No. 66
@@ -1301,20 +2333,6 @@ Base list price=150
 Item description text="This sphere contains a few strange bits of technology invented by Nikola Tesla in the early 20th century. The magnetic pulse that it generates can destroy most electronic devices in just one blast."
 ** End of new item specification subsection **
 
-// Item No. 71
-** Start of new item specification subsection **
-Item name="Desk Lamp"
-Item can be applied in combat="no"
-Item can be installed in influ="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="desk_lamp"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="desk_lamp/inv_image.png"
-Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
-Base list price=32
-Item description text="What would modern science be without this important item?"
-** End of new item specification subsection **
-
 // Item No. 72
 ** Start of new item specification subsection **
 Item name="Plasma Grenade"
@@ -1331,1144 +2349,7 @@ Base list price=250
 Item description text="Said to the downscaled version of the original Pandora's Sphere, this device extinguishes life with superheated plasma."
 ** End of new item specification subsection **
 
-// Item No. 73
-** Start of new item specification subsection **
-Item name="Common Monkey Wrench"
-Item can be applied in combat="no"
-Item can be installed in influ="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="monkey_wrench"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="monkey_wrench/inv_image.png"
-Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
-Base list price=32
-Item description text="Even the most primitive civilisations cannot survive for long without a large supply of those."
-** End of new item specification subsection **
-
-// Item No. 74
-** Start of new item specification subsection **
-Item name="Red Dilitium Crystal"
-Item can be applied in combat="no"
-Item can be installed in influ="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="red_dilitium_crystal"
-Items of this type collect together in inventory="yes"
-File or directory name for inventory image="red_dilitium_crystal/inv_image.png"
-Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
-Base list price=18
-Item description text="These dilitium crystals are used as energy source in many modern electricity or heat based devices. Energy is extracted from the crystal by making use of the energy contained in the order of the crystal molecules. This principle has allowed to build devices that consume a lot of energy but do not need to be connected to a power line."
-** End of new item specification subsection **
-
-// Item No. 75
-** Start of new item specification subsection **
-Item name="Map Maker"
-Item can be applied in combat="yes"
-Item can be installed in influ="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="map_maker"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="map_maker/inv_image.png"
-inventory_size_y=2
-inventory_size_x=2
-Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
-Base list price=18
-Item description text="This small device automatically collects data about the area within a range of 7 times 7 meters and draws a small-scale plan of the immediate surroundings. Because of it's very tiny display, it needs to be held closely to the eye and the image will then be projected directly into the eyeball of the user. Still, the collected map data will be split up by the device into several sectors for convenient viewing."
-** End of new item specification subsection **
-
-// Item No. 76
-** Start of new item specification subsection **
-Item name="Strength Pill"
-Item can be applied in combat="yes"
-Item can be installed in influ="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="pill_strength"
-Items of this type collect together in inventory="yes"
-File or directory name for inventory image="pill_strength/inv_image.png"
-Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
-Base list price=250
-Item description text="These pills permanently raise strength within a person. They work on a nano-technological basis. Consult you physician, the receipt or pharmacy experts for details on intended effects, possible interactions and side effects of this drug."
-** End of new item specification subsection **
-
-// Item No. 77
-** Start of new item specification subsection **
-Item name="Dexterity Pill"
-Item can be applied in combat="yes"
-Item can be installed in influ="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="pill_dexterity"
-Items of this type collect together in inventory="yes"
-File or directory name for inventory image="pill_dexterity/inv_image.png"
-Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
-Base list price=250
-Item description text="These pills permanently raise dexterity within a person. They work on a nano-technological basis. Consult you physician, the receipt or pharmacy experts for details on intended effects, possible interactions and side effects of this drug."
-** End of new item specification subsection **
-
-// Item No. 78
-** Start of new item specification subsection **
-Item name="Code Pill"
-Item can be applied in combat="yes"
-Item can be installed in influ="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="pill_magic"
-Items of this type collect together in inventory="yes"
-File or directory name for inventory image="pill_magic/inv_image.png"
-Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
-Base list price=250
-Item description text="Dude! This fab food will totally bump up your code skills, man! A real blast. Scarf those down to see the code."
-** End of new item specification subsection **
-
-// Item No. 79
-** Start of new item specification subsection **
-Item name="Brain Enlargement Pills Antidote"
-Item can be applied in combat="no"
-Item can be installed in influ="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="brain_enlargement_antidode"
-Items of this type collect together in inventory="yes"
-File or directory name for inventory image="brain_enlargement_antidode/inv_image.png"
-Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
-Base list price=50
-Item description text="These pills can reverse the harmful effects of the 'brain enlargement pills' that are publicly sold via the internet. The planet-wide guild of medics has recommended not to respond to these ads at all, while attempts to entirely ban the distribution of those pills were never completely successful."
-** End of new item specification subsection **
-
-// Item No. 80
-** Start of new item specification subsection **
-Item name="Fork"
-Item can be applied in combat="no"
-Item can be installed in influ="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="eating_fork"
-Items of this type collect together in inventory="yes"
-File or directory name for inventory image="eating_fork/inv_image.png"
-Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
-Base list price=50
-Item description text="This item is part of the 'Self Cleaning Kitchen' (SCK) project from before the Great Assault.  All of the items in the SCK project have an inner mechanism that will clean the object automatically if left alone for a given time.  It comes with it's own power supply and has a supposed duration of 200 years."
-** End of new item specification subsection **
-
-// Item No. 81
-** Start of new item specification subsection **
-Item name="Plate"
-Item can be applied in combat="no"
-Item can be installed in influ="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="eating_plate"
-Items of this type collect together in inventory="yes"
-File or directory name for inventory image="eating_plate/inv_image.png"
-Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
-Base list price=50
-Item description text="This item is part of the 'Self Cleaning Kitchen' (SCK) project from before the Great Assault.  All of the items in the SCK project have an inner mechanism that will clean the object automatically if left alone for a given time.  It comes with it's own power supply and has a supposed duration of 200 years."
-** End of new item specification subsection **
-
-// Item No. 82
-** Start of new item specification subsection **
-Item name="Mug"
-Item can be applied in combat="no"
-Item can be installed in influ="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="drinking_mug"
-Items of this type collect together in inventory="yes"
-File or directory name for inventory image="drinking_mug/inv_image.png"
-Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
-Base list price=50
-Item description text="This item is part of the 'Self Cleaning Kitchen' (SCK) project from before the Great Assault.  All of the items in the SCK project have an inner mechanism that will clean the object automatically if left alone for a given time.  It comes with it's own power supply and has a supposed duration of 200 years."
-** End of new item specification subsection **
-
-// Item No. 83
-** Start of new item specification subsection **
-Item name="Source Book of Malformed packet"
-Item can be applied in combat="yes"
-Item can be installed in influ="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="spellbook"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="spellbook/inv_image.png"
-Item uses drop sound with filename="drop_book_sound.ogg"
-Base list price=400
-Item description text="When computers are presented with the unexpected they can damage themselves."
-inventory_size_x=2
-inventory_size_y=2
-** End of new item specification subsection **
-
-// Item No. 84
-** Start of new item specification subsection **
-Item name="Source Book of Analyze item"
-Item can be applied in combat="yes"
-Item can be installed in influ="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="spellbook"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="spellbook/inv_image.png"
-Item uses drop sound with filename="drop_book_sound.ogg"
-Base list price=450
-Item description text="There are very few items which have labels on them. Unless you happen to have an item labeled 'USE ME', you better make sure what it is before using it..."
-inventory_size_x=2
-inventory_size_y=2
-** End of new item specification subsection **
-
-// Item No. 85
-** Start of new item specification subsection **
-Item name="Source Book of Nethack"
-Item can be applied in combat="yes"
-Item can be installed in influ="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="spellbook"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="spellbook/inv_image.png"
-Item uses drop sound with filename="drop_book_sound.ogg"
-Base list price=450
-Item description text="The open source game called Nethack is one of the world's greatest wasters of time. Machines don't care about it, but humans can get sucked in quite deeply."
-inventory_size_x=2
-inventory_size_y=2
-** End of new item specification subsection **
-
-// Item No. 86
-** Start of new item specification subsection **
-Item name="Source Book of Dispel smoke"
-Item can be applied in combat="yes"
-Item can be installed in influ="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="spellbook"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="spellbook/inv_image.png"
-Item uses drop sound with filename="drop_book_sound.ogg"
-Base list price=450
-Item description text="By heating up the chips with a malformed program you can cause them to release the magic smoke which keeps the bot running."
-inventory_size_x=2
-inventory_size_y=2
-** End of new item specification subsection **
-
-// Item No. 87
-** Start of new item specification subsection **
-Item name="Source Book of Killer poke"
-Item can be applied in combat="yes"
-Item can be installed in influ="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="spellbook"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="spellbook/inv_image.png"
-Item uses drop sound with filename="drop_book_sound.ogg"
-Base list price=600
-Item description text="Messing around with the bot's memory can cause it to damage itself, but the damage is greatly variable."
-inventory_size_x=2
-inventory_size_y=2
-** End of new item specification subsection **
-
-// Item No. 88
-** Start of new item specification subsection **
-Item name="Source Book of Broadcast killer poke"
-Item can be applied in combat="yes"
-Item can be installed in influ="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="spellbook"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="spellbook/inv_image.png"
-Item uses drop sound with filename="drop_book_sound.ogg"
-Base list price=600
-Item description text="The radio network is a wonderful invention for the people who like to blow up a lot of stuff at once."
-inventory_size_x=2
-inventory_size_y=2
-** End of new item specification subsection **
-
-// Item No. 89
-** Start of new item specification subsection **
-Item name="Source Book of Ricer CFLAGS"
-Item can be applied in combat="yes"
-Item can be installed in influ="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="spellbook"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="spellbook/inv_image.png"
-Item uses drop sound with filename="drop_book_sound.ogg"
-Base list price=600
-Item description text="Optimization is the root of all evil. You can gain some temporary improvements to your system, but in the end you are only likely to cause permanent damage."
-inventory_size_x=2
-inventory_size_y=2
-** End of new item specification subsection **
-
-// Item No. 90
-** Start of new item specification subsection **
-Item name="Source Book of Plasma discharge"
-Item can be applied in combat="yes"
-Item can be installed in influ="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="spellbook"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="spellbook/inv_image.png"
-Item uses drop sound with filename="drop_book_sound.ogg"
-Base list price=200
-Item description text="The overload setting exists for emergencies. The plasma does not discriminate between bots and humans. Everything is equal to it."
-inventory_size_x=2
-inventory_size_y=2
-** End of new item specification subsection **
-
-// Item No. 91
-** Start of new item specification subsection **
-Item name="Source Book of Invisibility"
-Item can be applied in combat="yes"
-Item can be installed in influ="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="spellbook"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="spellbook/inv_image.png"
-Item uses drop sound with filename="drop_book_sound.ogg"
-Base list price=225
-Item description text="I am not the Linarian you are looking for."
-inventory_size_x=2
-inventory_size_y=2
-** End of new item specification subsection **
-
-// Item No. 92
-** Start of new item specification subsection **
-Item name="Strength Capsule"
-Item can be applied in combat="yes"
-Item can be installed in influ="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="energy_capsule"
-Items of this type collect together in inventory="yes"
-File or directory name for inventory image="inventory_image_1.png"
-Item uses drop sound with filename="drop_potion_sound.ogg"
-Base list price=150
-Item description text="These small containers hold purified strength.  This item will give a temporary boost to strength.  Each capsule can be used only once, but multiple of those items can be grouped together like one item in inventory."
-** End of new item specification subsection **
-
-// Item No. 93
-** Start of new item specification subsection **
-Item name="Dexterity Capsule"
-Item can be applied in combat="yes"
-Item can be installed in influ="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="energy_capsule"
-Items of this type collect together in inventory="yes"
-File or directory name for inventory image="inventory_image_1.png"
-Item uses drop sound with filename="drop_potion_sound.ogg"
-Base list price=150
-Item description text="These small containers hold purified dexterity.  This item will give a temporary bonus to dexterity.  Each capsule can be used only once, but multiple of those items can be grouped together like one item in inventory."
-** End of new item specification subsection **
-
-// Item No. 94
-** Start of new item specification subsection **
-Item name="Light Boots"
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="drive"
-Item uses rotation series with prefix="boots_simple"
-Items of this type collect together in inventory="no"
-Item as defensive item: base_ac_bonus=4
-Item as defensive item: ac_bonus_modifier=3
-Base item duration=13
-plus duration modifier=5
-File or directory name for inventory image="boots_simple/inv_image.png"
-Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
-Base list price=65
-Item description text="These boots are a bit lighter than the normal version, giving of course worse protection but certainly extra comfort for the wearer."
-** End of new item specification subsection **
-
-// Item No. 95
-** Start of new item specification subsection **
-Item name="Reinforced Boots"
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="drive"
-Item uses rotation series with prefix="boots_simple"
-Items of this type collect together in inventory="no"
-Item as defensive item: base_ac_bonus=12
-Item as defensive item: ac_bonus_modifier=5
-Base item duration=27
-plus duration modifier=5
-File or directory name for inventory image="boots_simple/inv_image.png"
-Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
-Base list price=175
-Item description text="These boots were originally normal boots, but have been fitted with some extra reinforcements to give better protection to the wearer.  Of course this makes them a bit less elegant and also less comfy to wear, but the extra protection might be worth it, at not the full price of hiking boots."
-** End of new item specification subsection **
-
-// Item No. 96
-** Start of new item specification subsection **
-Item name="Hiking Boots"
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="drive"
-Item uses rotation series with prefix="boots_simple"
-Items of this type collect together in inventory="no"
-Item as defensive item: base_ac_bonus=17
-Item as defensive item: ac_bonus_modifier=5
-Base item duration=37
-plus duration modifier=5
-File or directory name for inventory image="boots_simple/inv_image.png"
-Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
-Base list price=275
-Item description text="These hiking boots are a very sophisticated product, combining optimal comfort for the wearer with a good protection from collisions with blunt objects like stones, which of course also makes for a higher price."
-** End of new item specification subsection **
-
-// Item No. 97
-** Start of new item specification subsection **
-Item name="Medium Shield"
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="shield"
-Item uses rotation series with prefix="small_shield"
-Items of this type collect together in inventory="no"
-Item as defensive item: base_ac_bonus=17
-Item as defensive item: ac_bonus_modifier=4
-Base item duration=30
-plus duration modifier=8
-File or directory name for inventory image="small_shield/inv_image.png"
-Item uses drop sound with filename="Item_Armour_Put_Sound_0.ogg"
-Base list price=330
-Item description text="A medium sized, lightweight and pretty straightforward shield. Provides decent protection."
-** End of new item specification subsection **
-
-// Item No. 98
-** Start of new item specification subsection **
-Item name="Identification Script"
-Item can be applied in combat="yes"
-Item can be installed in influ="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="script"
-Items of this type collect together in inventory="yes"
-File or directory name for inventory image="script/inv_image.png"
-Item uses drop sound with filename="drop_book_sound.ogg"
-Base list price=25
-Item description text="Point and click. Point and know anything. Point, and I will show you the correct path. Point, and I will be there. Point, and I will protect you."
-** End of new item specification subsection **
-
-// Item No. 99
-** Start of new item specification subsection **
-Item name="Evacuation script"
-Item can be applied in combat="yes"
-Item can be installed in influ="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="script"
-Items of this type collect together in inventory="yes"
-File or directory name for inventory image="script/inv_image.png"
-Item uses drop sound with filename="drop_book_sound.ogg"
-Base list price=40
-Item description text="This script can invoke stored powers to teleport one person back to the center of the nearest town. The stored powers are expended in the process and the script becomes useless afterwards.  Note:  Multiple of those may be grouped together in inventory."
-** End of new item specification subsection **
-
-// Item No. 100
-** Start of new item specification subsection **
-Item name="Kevin's Data Cube"
-Item can be applied in combat="no"
-Item can be installed in influ="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="datacube"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="datacube/inv_image.png"
-Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
-Base list price=0
-Item description text="This data cube contains confidential government data on the installations around the colony. Kevin hopes that when the data is evaluated properly a way out of the current crisis might be found. However, the amount of data is so vast, it can only be evaluated properly using a large cluster of computers. The Red Guard base is said to store a suitable infrastructure for this purpose."
-** End of new item specification subsection **
-
-// Item No. 101
-** Start of new item specification subsection **
-Item name="Droid weaponry - 123"
-Item min class of droid for drop=9999
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="weapon"
-Item uses rotation series with prefix="NONE_AVAILABLE_YET"
-Items of this type collect together in inventory="no"
-Base item duration=20
-plus duration modifier=10
-File or directory name for inventory image="inventory_image_25.png"
-Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
-Base list price=120
-Item description text="A nice handy weapon, a good swing every now and then will prove useful in critical hits."
------ the following part is only relevant for weapons -----
-Item as gun: recharging time=0.950000
-Item as gun: reloading time=0.000000
-Item as gun: speed of bullets=0.010000
-Item as gun: angle change of bullets=720.000000
-Item as gun: damage of bullets=2
-Item as gun: modifier for damage of bullets=8
-Item as gun: one_shot_only=0
-Item as gun: bullet_image_type=9
-Item as gun: bullet_lifetime=0.200000
-Item as gun: offset for melee weapon=0.850000
-Item as gun: modifier for starting angle=-60.000000
-Item as gun: ignore collisions with wall="yes"
-Item as gun: reflect other bullets="yes"
-Item as gun: pass through explosions="yes"
-Item as gun: pass through hit bodies="yes"
-Item as gun: required ammunition type="none"
-Item as gun: ammo clip size=0
-Item as gun: weapon requires both hands="yes"
------ end of part only relevant for weapons -----
-** End of new item specification subsection **
-
-// Item No. 102
-** Start of new item specification subsection **
-Item name="Droid weaponry - 139 (Plasma gun)"
-Item min class of droid for drop=9999
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="weapon"
-Item uses rotation series with prefix="plasma_single"
-Items of this type collect together in inventory="no"
-Base item duration=10
-plus duration modifier=10
-File or directory name for inventory image="inventory_image_18.png"
-Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
-Base list price=40
-Item description text="For bot use only."
------ the following part is only relevant for weapons -----
-Item as gun: recharging time=0.350000
-Item as gun: reloading time=7.000000
-Item as gun: speed of bullets=12.000000
-Item as gun: angle change of bullets=0.000000
-Item as gun: damage of bullets=2
-Item as gun: modifier for damage of bullets=2
-Item as gun: one_shot_only=0
-Item as gun: bullet_image_type=7
-Item as gun: bullet_lifetime=2.000000
-Item as gun: offset for melee weapon=0.000000
-Item as gun: modifier for starting angle=0.000000
-Item as gun: ignore collisions with wall="no"
-Item as gun: reflect other bullets="no"
-Item as gun: pass through explosions="no"
-Item as gun: pass through hit bodies="no"
-Item as gun: required ammunition type="plasma_ammunition"
-Item as gun: ammo clip size=3
-Item as gun: weapon requires both hands="yes"
------ end of part only relevant for weapons -----
-** End of new item specification subsection **
-
-// Item No. 103
-** Start of new item specification subsection **
-Item name="Droid weaponry - 247"
-Item min class of droid for drop=9999
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="weapon"
-Item uses rotation series with prefix="laser_sword_yellow"
-Items of this type collect together in inventory="no"
-Base item duration=10
-plus duration modifier=10
-File or directory name for inventory image="laser_sword_yellow/inv_image.png"
-inventory_size_y=2
-inventory_size_x=2
-Item uses drop sound with filename="drop_sword_sound.ogg"
-Base list price=120
-Item description text="A true to technology modern sword. Can cut through the most impossible objects like a knife through butter."
------ the following part is only relevant for weapons -----
-Item as gun: recharging time=0.600000
-Item as gun: reloading time=0.000000
-Item as gun: speed of bullets=0.010000
-Item as gun: angle change of bullets=720.000000
-Item as gun: damage of bullets=2
-Item as gun: modifier for damage of bullets=5
-Item as gun: one_shot_only=0
-Item as gun: bullet_image_type=8
-Item as gun: bullet_lifetime=0.200000
-Item as gun: offset for melee weapon=0.850000
-Item as gun: modifier for starting angle=-60.000000
-Item as gun: ignore collisions with wall="yes"
-Item as gun: reflect other bullets="yes"
-Item as gun: pass through explosions="yes"
-Item as gun: pass through hit bodies="yes"
-Item as gun: required ammunition type="none"
-Item as gun: ammo clip size=0
-Item as gun: weapon requires both hands="yes"
------ end of part only relevant for weapons -----
-** End of new item specification subsection **
-
-// Item No. 104
-** Start of new item specification subsection **
-Item name="Droid weaponry - 249 (Laser machinegun)"
-Item min class of droid for drop=9999
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="weapon"
-Item uses rotation series with prefix="plasma_single"
-Items of this type collect together in inventory="no"
-Base item duration=10
-plus duration modifier=10
-File or directory name for inventory image="inventory_image_18.png"
-Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
-Base list price=100
-Item description text="For bot use only"
------ the following part is only relevant for weapons -----
-Item as gun: recharging time=0.100000
-Item as gun: reloading time=5.000000
-Item as gun: speed of bullets=20.000000
-Item as gun: angle change of bullets=0.000000
-Item as gun: damage of bullets=1
-Item as gun: modifier for damage of bullets=0
-Item as gun: one_shot_only=0
-Item as gun: bullet_image_type=6
-Item as gun: bullet_lifetime=2.00000
-Item as gun: offset for melee weapon=0.000000
-Item as gun: modifier for starting angle=0.000000
-Item as gun: ignore collisions with wall="no"
-Item as gun: reflect other bullets="no"
-Item as gun: pass through explosions="no"
-Item as gun: pass through hit bodies="no"
-Item as gun: required ammunition type="laser_ammunition"
-Item as gun: ammo clip size=15
-Item as gun: weapon requires both hands="yes"
------ end of part only relevant for weapons -----
-** End of new item specification subsection **
-
-// Item No. 105
-** Start of new item specification subsection **
-Item name="Droid weaponry - 296"
-Item min class of droid for drop=9999
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="weapon"
-Item uses rotation series with prefix="laser_sword_yellow"
-Items of this type collect together in inventory="no"
-Base item duration=10
-plus duration modifier=10
-File or directory name for inventory image="laser_sword_yellow/inv_image.png"
-inventory_size_y=2
-inventory_size_x=2
-Item uses drop sound with filename="drop_sword_sound.ogg"
-Base list price=120
-Item description text="A true to technology modern sword. Can cut through the most impossible objects like a knife through butter."
------ the following part is only relevant for weapons -----
-Item as gun: recharging time=0.600000
-Item as gun: reloading time=0.000000
-Item as gun: speed of bullets=0.010000
-Item as gun: angle change of bullets=720.000000
-Item as gun: damage of bullets=4
-Item as gun: modifier for damage of bullets=5
-Item as gun: one_shot_only=0
-Item as gun: bullet_image_type=8
-Item as gun: bullet_lifetime=0.200000
-Item as gun: offset for melee weapon=0.850000
-Item as gun: modifier for starting angle=-60.000000
-Item as gun: ignore collisions with wall="yes"
-Item as gun: reflect other bullets="yes"
-Item as gun: pass through explosions="yes"
-Item as gun: pass through hit bodies="yes"
-Item as gun: required ammunition type="none"
-Item as gun: ammo clip size=0
-Item as gun: weapon requires both hands="yes"
------ end of part only relevant for weapons -----
-** End of new item specification subsection **
-
-// Item No. 106
-** Start of new item specification subsection **
-Item name="Droid weaponry - 302"
-Item min class of droid for drop=9999
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="weapon"
-Item uses rotation series with prefix="laser_sword_yellow"
-Items of this type collect together in inventory="no"
-Base item duration=10
-plus duration modifier=10
-File or directory name for inventory image="laser_sword_yellow/inv_image.png"
-inventory_size_y=2
-inventory_size_x=2
-Item uses drop sound with filename="drop_sword_sound.ogg"
-Base list price=120
-Item description text="A true to technology modern sword. Can cut through the most impossible objects like a knife through butter."
------ the following part is only relevant for weapons -----
-Item as gun: recharging time=0.600000
-Item as gun: reloading time=0.000000
-Item as gun: speed of bullets=0.010000
-Item as gun: angle change of bullets=720.000000
-Item as gun: damage of bullets=6
-Item as gun: modifier for damage of bullets=5
-Item as gun: one_shot_only=0
-Item as gun: bullet_image_type=8
-Item as gun: bullet_lifetime=0.200000
-Item as gun: offset for melee weapon=0.850000
-Item as gun: modifier for starting angle=-60.000000
-Item as gun: ignore collisions with wall="yes"
-Item as gun: reflect other bullets="yes"
-Item as gun: pass through explosions="yes"
-Item as gun: pass through hit bodies="yes"
-Item as gun: required ammunition type="none"
-Item as gun: ammo clip size=0
-Item as gun: weapon requires both hands="yes"
------ end of part only relevant for weapons -----
-** End of new item specification subsection **
-
-// Item No. 107
-** Start of new item specification subsection **
-Item name="Droid weaponry - 329"
-Item min class of droid for drop=9999
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="weapon"
-Item uses rotation series with prefix="laser_sword_yellow"
-Items of this type collect together in inventory="no"
-Base item duration=10
-plus duration modifier=10
-File or directory name for inventory image="laser_sword_yellow/inv_image.png"
-inventory_size_y=2
-inventory_size_x=2
-Item uses drop sound with filename="drop_sword_sound.ogg"
-Base list price=120
-Item description text="A true to technology modern sword. Can cut through the most impossible objects like a knife through butter."
------ the following part is only relevant for weapons -----
-Item as gun: recharging time=0.600000
-Item as gun: reloading time=0.000000
-Item as gun: speed of bullets=0.010000
-Item as gun: angle change of bullets=720.000000
-Item as gun: damage of bullets=8
-Item as gun: modifier for damage of bullets=5
-Item as gun: one_shot_only=0
-Item as gun: bullet_image_type=8
-Item as gun: bullet_lifetime=0.200000
-Item as gun: offset for melee weapon=0.850000
-Item as gun: modifier for starting angle=-60.000000
-Item as gun: ignore collisions with wall="yes"
-Item as gun: reflect other bullets="yes"
-Item as gun: pass through explosions="yes"
-Item as gun: pass through hit bodies="yes"
-Item as gun: required ammunition type="none"
-Item as gun: ammo clip size=0
-Item as gun: weapon requires both hands="yes"
------ end of part only relevant for weapons -----
-** End of new item specification subsection **
-
-// Item No. 108
-** Start of new item specification subsection **
-Item name="Droid weaponry - 420"
-Item min class of droid for drop=9999
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="weapon"
-Item uses rotation series with prefix="laser_sword_yellow"
-Items of this type collect together in inventory="no"
-Base item duration=10
-plus duration modifier=10
-File or directory name for inventory image="laser_sword_yellow/inv_image.png"
-inventory_size_y=2
-inventory_size_x=2
-Item uses drop sound with filename="drop_sword_sound.ogg"
-Base list price=120
-Item description text="A true to technology modern sword. Can cut through the most impossible objects like a knife through butter."
------ the following part is only relevant for weapons -----
-Item as gun: recharging time=0.600000
-Item as gun: reloading time=0.000000
-Item as gun: speed of bullets=0.010000
-Item as gun: angle change of bullets=720.000000
-Item as gun: damage of bullets=10
-Item as gun: modifier for damage of bullets=5
-Item as gun: one_shot_only=0
-Item as gun: bullet_image_type=8
-Item as gun: bullet_lifetime=0.200000
-Item as gun: offset for melee weapon=0.850000
-Item as gun: modifier for starting angle=-60.000000
-Item as gun: ignore collisions with wall="yes"
-Item as gun: reflect other bullets="yes"
-Item as gun: pass through explosions="yes"
-Item as gun: pass through hit bodies="yes"
-Item as gun: required ammunition type="none"
-Item as gun: ammo clip size=0
-Item as gun: weapon requires both hands="yes"
------ end of part only relevant for weapons -----
-** End of new item specification subsection **
-
-// Item No. 109
-** Start of new item specification subsection **
-Item name="Droid weaponry - 476 (Small Single Laser)"
-Item min class of droid for drop=9999
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="weapon"
-Item uses rotation series with prefix="plasma_single"
-Items of this type collect together in inventory="no"
-Base item duration=10
-plus duration modifier=10
-File or directory name for inventory image="inventory_image_2.png"
-Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
-Base list price=250
-Item description text="More of a mediocre addition to the laser family, this is best summed up as a backup weapon."
------ the following part is only relevant for weapons -----
-Item as gun: recharging time=1.200000
-Item as gun: reloading time=2.400000
-Item as gun: speed of bullets=32.000000
-Item as gun: angle change of bullets=0.000000
-Item as gun: damage of bullets=3
-Item as gun: modifier for damage of bullets=3
-Item as gun: one_shot_only=0
-Item as gun: bullet_image_type=1
-Item as gun: bullet_lifetime=-1.000000
-Item as gun: offset for melee weapon=0.000000
-Item as gun: modifier for starting angle=0.000000
-Item as gun: ignore collisions with wall="no"
-Item as gun: reflect other bullets="no"
-Item as gun: pass through explosions="no"
-Item as gun: pass through hit bodies="no"
-Item as gun: required ammunition type="laser_ammunition"
-Item as gun: ammo clip size=5
-Item as gun: weapon requires both hands="yes"
------ end of part only relevant for weapons -----
-** End of new item specification subsection **
-
-// Item No. 110
-** Start of new item specification subsection **
-Item name="Droid weaponry - 493"
-Item min class of droid for drop=9999
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="weapon"
-Item uses rotation series with prefix="laser_sword_yellow"
-Items of this type collect together in inventory="no"
-Base item duration=10
-plus duration modifier=10
-File or directory name for inventory image="laser_sword_yellow/inv_image.png"
-inventory_size_y=2
-inventory_size_x=2
-Item uses drop sound with filename="drop_sword_sound.ogg"
-Base list price=120
-Item description text="A true to technology modern sword. Can cut through the most impossible objects like a knife through butter."
------ the following part is only relevant for weapons -----
-Item as gun: recharging time=6.00000
-Item as gun: reloading time=0.000000
-Item as gun: speed of bullets=0.010000
-Item as gun: angle change of bullets=720.000000
-Item as gun: damage of bullets=12
-Item as gun: modifier for damage of bullets=5
-Item as gun: one_shot_only=0
-Item as gun: bullet_image_type=8
-Item as gun: bullet_lifetime=0.200000
-Item as gun: offset for melee weapon=0.850000
-Item as gun: modifier for starting angle=-60.000000
-Item as gun: ignore collisions with wall="yes"
-Item as gun: reflect other bullets="yes"
-Item as gun: pass through explosions="yes"
-Item as gun: pass through hit bodies="yes"
-Item as gun: required ammunition type="none"
-Item as gun: ammo clip size=0
-Item as gun: weapon requires both hands="yes"
------ end of part only relevant for weapons -----
-** End of new item specification subsection **
-
-// Item No. 111
-** Start of new item specification subsection **
-Item name="Droid weaponry - 516"
-Item min class of droid for drop=9999
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="weapon"
-Item uses rotation series with prefix="laser_sword_yellow"
-Items of this type collect together in inventory="no"
-Base item duration=10
-plus duration modifier=10
-File or directory name for inventory image="laser_sword_yellow/inv_image.png"
-inventory_size_y=2
-inventory_size_x=2
-Item uses drop sound with filename="drop_sword_sound.ogg"
-Base list price=120
-Item description text="A true to technology modern sword. Can cut through the most impossible objects like a knife through butter."
------ the following part is only relevant for weapons -----
-Item as gun: recharging time=0.600000
-Item as gun: reloading time=0.000000
-Item as gun: speed of bullets=0.010000
-Item as gun: angle change of bullets=720.000000
-Item as gun: damage of bullets=14
-Item as gun: modifier for damage of bullets=5
-Item as gun: one_shot_only=0
-Item as gun: bullet_image_type=8
-Item as gun: bullet_lifetime=0.200000
-Item as gun: offset for melee weapon=0.850000
-Item as gun: modifier for starting angle=-60.000000
-Item as gun: ignore collisions with wall="yes"
-Item as gun: reflect other bullets="yes"
-Item as gun: pass through explosions="yes"
-Item as gun: pass through hit bodies="yes"
-Item as gun: required ammunition type="none"
-Item as gun: ammo clip size=0
-Item as gun: weapon requires both hands="yes"
------ end of part only relevant for weapons -----
-** End of new item specification subsection **
-
-// Item No. 112
-** Start of new item specification subsection **
-Item name="Droid weaponry - 571"
-Item min class of droid for drop=9999
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="weapon"
-Item uses rotation series with prefix="laser_sword_yellow"
-Items of this type collect together in inventory="no"
-Base item duration=10
-plus duration modifier=10
-File or directory name for inventory image="laser_sword_yellow/inv_image.png"
-inventory_size_y=2
-inventory_size_x=2
-Item uses drop sound with filename="drop_sword_sound.ogg"
-Base list price=120
-Item description text="A true to technology modern sword. Can cut through the most impossible objects like a knife through butter."
------ the following part is only relevant for weapons -----
-Item as gun: recharging time=0.600000
-Item as gun: reloading time=0.000000
-Item as gun: speed of bullets=0.010000
-Item as gun: angle change of bullets=720.000000
-Item as gun: damage of bullets=16
-Item as gun: modifier for damage of bullets=5
-Item as gun: one_shot_only=0
-Item as gun: bullet_image_type=8
-Item as gun: bullet_lifetime=0.200000
-Item as gun: offset for melee weapon=0.850000
-Item as gun: modifier for starting angle=-60.000000
-Item as gun: ignore collisions with wall="yes"
-Item as gun: reflect other bullets="yes"
-Item as gun: pass through explosions="yes"
-Item as gun: pass through hit bodies="yes"
-Item as gun: required ammunition type="none"
-Item as gun: ammo clip size=0
-Item as gun: weapon requires both hands="yes"
------ end of part only relevant for weapons -----
-** End of new item specification subsection **
-
-// Item No. 113
-** Start of new item specification subsection **
-Item name="Droid weaponry - 598"
-Item min class of droid for drop=9999
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="weapon"
-Item uses rotation series with prefix="laser_sword_yellow"
-Items of this type collect together in inventory="no"
-Base item duration=10
-plus duration modifier=10
-File or directory name for inventory image="laser_sword_yellow/inv_image.png"
-inventory_size_y=2
-inventory_size_x=2
-Item uses drop sound with filename="drop_sword_sound.ogg"
-Base list price=120
-Item description text="A true to technology modern sword. Can cut through the most impossible objects like a knife through butter."
------ the following part is only relevant for weapons -----
-Item as gun: recharging time=0.600000
-Item as gun: reloading time=0.000000
-Item as gun: speed of bullets=0.010000
-Item as gun: angle change of bullets=720.000000
-Item as gun: damage of bullets=18
-Item as gun: modifier for damage of bullets=5
-Item as gun: one_shot_only=0
-Item as gun: bullet_image_type=8
-Item as gun: bullet_lifetime=0.200000
-Item as gun: offset for melee weapon=0.850000
-Item as gun: modifier for starting angle=-60.000000
-Item as gun: ignore collisions with wall="yes"
-Item as gun: reflect other bullets="yes"
-Item as gun: pass through explosions="yes"
-Item as gun: pass through hit bodies="yes"
-Item as gun: required ammunition type="none"
-Item as gun: ammo clip size=0
-Item as gun: weapon requires both hands="yes"
------ end of part only relevant for weapons -----
-** End of new item specification subsection **
-
-// Item No. 114
-** Start of new item specification subsection **
-Item name="Droid weaponry - 614,GUA,MUM (Power Exterminator)"
-Item min class of droid for drop=9999
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="weapon"
-Item uses rotation series with prefix="exterminator_simple"
-Items of this type collect together in inventory="no"
-Strength minimum required to wear/wield this item=20
-Dexterity minimum required to wear/wield this item=45
-Base item duration=10
-plus duration modifier=10
-File or directory name for inventory image="exterminator_simple/inv_image.png"
-Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
-Base list price=1001
-Item description text="This is one of the most powerful ranged weapons out there."
------ the following part is only relevant for weapons -----
-Item as gun: recharging time=0.50000
-Item as gun: reloading time=5.000000
-Item as gun: speed of bullets=35.000000
-Item as gun: angle change of bullets=0.000000
-Item as gun: damage of bullets=80
-Item as gun: modifier for damage of bullets=20
-Item as gun: one_shot_only=0
-Item as gun: bullet_image_type=4
-Item as gun: bullet_lifetime=-1.000000
-Item as gun: offset for melee weapon=0.000000
-Item as gun: modifier for starting angle=0.000000
-Item as gun: ignore collisions with wall="no"
-Item as gun: reflect other bullets="no"
-Item as gun: pass through explosions="no"
-Item as gun: pass through hit bodies="no"
-Item as gun: required ammunition type="exterminator_ammunition"
-Item as gun: ammo clip size=2
-Item as gun: weapon requires both hands="yes"
------ end of part only relevant for weapons -----
-** End of new item specification subsection **
-
-// Item No. 115
-** Start of new item specification subsection **
-Item name="Droid weaponry - 615,751,834 (Advanced Single Laser)"
-Item min class of droid for drop=9999
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="weapon"
-Item uses rotation series with prefix="plasma_single"
-Items of this type collect together in inventory="no"
-Base item duration=10
-plus duration modifier=10
-File or directory name for inventory image="inventory_image_2.png"
-Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
-Base list price=250
-Item description text="If you do not mind waiting for a while in the heat of battle, this weapon is for you."
------ the following part is only relevant for weapons -----
-Item as gun: recharging time=1.200000
-Item as gun: reloading time=2.000000
-Item as gun: speed of bullets=16.000000
-Item as gun: angle change of bullets=0.000000
-Item as gun: damage of bullets=6
-Item as gun: modifier for damage of bullets=18
-Item as gun: one_shot_only=0
-Item as gun: bullet_image_type=1
-Item as gun: bullet_lifetime=-1.000000
-Item as gun: offset for melee weapon=0.000000
-Item as gun: modifier for starting angle=0.000000
-Item as gun: ignore collisions with wall="no"
-Item as gun: reflect other bullets="no"
-Item as gun: pass through explosions="no"
-Item as gun: pass through hit bodies="no"
-Item as gun: required ammunition type="laser_ammunition"
-Item as gun: ammo clip size=30
-Item as gun: weapon requires both hands="yes"
------ end of part only relevant for weapons -----
-** End of new item specification subsection **
-
-// Item No. 116
-** Start of new item specification subsection **
-Item name="Droid weaponry - 629,821,999 (Advanced Twin Laser)"
-Item min class of droid for drop=9999
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="weapon"
-Item uses rotation series with prefix="plasma_double"
-Items of this type collect together in inventory="no"
-Strength minimum required to wear/wield this item=30
-Dexterity minimum required to wear/wield this item=40
-Base item duration=10
-plus duration modifier=10
-File or directory name for inventory image="inventory_image_14.png"
-Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
-Base list price=800
-inventory_size_x=2
-inventory_size_y=2
-Item description text="Think of a twin laser with twice the power. Now make it shoot half as often. What you have is the 'Advanced' twin laser."
------ the following part is only relevant for weapons -----
-Item as gun: recharging time=1.400000
-Item as gun: reloading time=3
-Item as gun: speed of bullets=16.000000
-Item as gun: angle change of bullets=0.000000
-Item as gun: damage of bullets=10
-Item as gun: modifier for damage of bullets=12
-Item as gun: one_shot_only=0
-Item as gun: bullet_image_type=2
-Item as gun: bullet_lifetime=-1.000000
-Item as gun: offset for melee weapon=0.000000
-Item as gun: modifier for starting angle=0.000000
-Item as gun: ignore collisions with wall="no"
-Item as gun: reflect other bullets="no"
-Item as gun: pass through explosions="no"
-Item as gun: pass through hit bodies="no"
-Item as gun: required ammunition type="laser_ammunition"
-Item as gun: ammo clip size=30
-Item as gun: weapon requires both hands="yes"
------ end of part only relevant for weapons -----
-** End of new item specification subsection **
-
-// Item No. 117
-** Start of new item specification subsection **
-Item name="Droid weaponry - 711,742 (Disruptor Class Alpha)"
-Item min class of droid for drop=9999
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="weapon"
-Item uses rotation series with prefix="NONE_AVAILABLE_YET"
-Items of this type collect together in inventory="no"
-Base item duration=10
-plus duration modifier=10
-File or directory name for inventory image="inventory_image_13.png"
-Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
-Base list price=2500
-Item description text=" This weapons name speaks for itself-more of a brute force weapon than most, it is best used on high defense enemies."
------ the following part is only relevant for weapons -----
-Item as gun: recharging time=1.000000
-Item as gun: reloading time=1.000000
-Item as gun: speed of bullets=16.000000
-Item as gun: angle change of bullets=0.000000
-Item as gun: damage of bullets=80
-Item as gun: modifier for damage of bullets=24
-Item as gun: one_shot_only=0
-Item as gun: bullet_image_type=3
-Item as gun: bullet_lifetime=-1.000000
-Item as gun: offset for melee weapon=0.000000
-Item as gun: modifier for starting angle=0.000000
-Item as gun: ignore collisions with wall="no"
-Item as gun: reflect other bullets="no"
-Item as gun: pass through explosions="no"
-Item as gun: pass through hit bodies="no"
-Item as gun: required ammunition type="none"
-Item as gun: ammo clip size=0
-Item as gun: weapon requires both hands="yes"
------ end of part only relevant for weapons -----
-** End of new item specification subsection **
-
-// Item No. 118
-** Start of new item specification subsection **
-Item name="Droid weaponry - 883 (Bot exterminator)"
-Item min class of droid for drop=9999
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="weapon"
-Item uses rotation series with prefix="exterminator_simple"
-Items of this type collect together in inventory="no"
-Strength minimum required to wear/wield this item=20
-Dexterity minimum required to wear/wield this item=45
-Base item duration=10
-plus duration modifier=10
-File or directory name for inventory image="exterminator_simple/inv_image.png"
-Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
-Base list price=1001
-Item description text="Bot use only"
------ the following part is only relevant for weapons -----
-Item as gun: recharging time=1.00000
-Item as gun: reloading time=4.000000
-Item as gun: speed of bullets=35.000000
-Item as gun: angle change of bullets=0.000000
-Item as gun: damage of bullets=4
-Item as gun: modifier for damage of bullets=4
-Item as gun: one_shot_only=0
-Item as gun: bullet_image_type=4
-Item as gun: bullet_lifetime=-1.000000
-Item as gun: offset for melee weapon=0.000000
-Item as gun: modifier for starting angle=0.000000
-Item as gun: ignore collisions with wall="no"
-Item as gun: reflect other bullets="no"
-Item as gun: pass through explosions="no"
-Item as gun: pass through hit bodies="no"
-Item as gun: required ammunition type="exterminator_ammunition"
-Item as gun: ammo clip size=2
-Item as gun: weapon requires both hands="yes"
------ end of part only relevant for weapons -----
-** End of new item specification subsection **
-
-// Item No. 119
-** Start of new item specification subsection **
-Item name="Dixon's helmet"
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="special"
-Item uses rotation series with prefix="helmet_yellow4"
-Items of this type collect together in inventory="no"
-Item as defensive item: base_ac_bonus=75
-Base item duration=3
-plus duration modifier=0
-File or directory name for inventory image="helmet_yellow4/inv_image.png"
-Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
-Base list price=5
-Item description text="A gift from Dixon. It looks like it is about to turn into dust."
-** End of new item specification subsection **
-
-// Item No. 120
+// Item No. 120 -> 102
 ** Start of new item specification subsection **
 Item name="Nobody's edge"
 Item can be applied in combat="no"
@@ -2505,7 +2386,7 @@ Item as gun: weapon requires both hands="no"
 ** End of new item specification subsection **
 
 
-// Item No. 121
+// Item No. 121 -> 103
 ** Start of new item specification subsection **
 Item name="Laser scalpel"
 Item can be applied in combat="no"
@@ -2541,134 +2422,6 @@ Item as gun: weapon requires both hands="no"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
-// Item No. 122
-** Start of new item specification subsection **
-Item name="Source Book of Sanctuary"
-Item can be applied in combat="yes"
-Item can be installed in influ="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="spellbook"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="spellbook/inv_image.png"
-Item uses drop sound with filename="drop_book_sound.ogg"
-Base list price=450
-Item description text="The art of rapidly moving away from danger is very useful. Even when used in reverse it has it's uses."
-inventory_size_x=2
-inventory_size_y=2
-** End of new item specification subsection **
-
-// Item No. 123
-** Start of new item specification subsection **
-Item name="Source Book of Virus"
-Item can be applied in combat="yes"
-Item can be installed in influ="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="spellbook"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="spellbook/inv_image.png"
-Item uses drop sound with filename="drop_book_sound.ogg"
-Base list price=450
-Item description text="This is not just a firmware upgrade, my dear bot. You are about to find out what exactly I want to give you."
-inventory_size_x=2
-inventory_size_y=2
-** End of new item specification subsection **
-
-// Item No. 124
-** Start of new item specification subsection **
-Item name="Source Book of Broadcast virus"
-Item can be applied in combat="yes"
-Item can be installed in influ="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="spellbook"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="spellbook/inv_image.png"
-Item uses drop sound with filename="drop_book_sound.ogg"
-Base list price=450
-Item description text="The network is wide and dangerous. Many traps await for the weak and unprepared."
-inventory_size_x=2
-inventory_size_y=2
-** End of new item specification subsection **
-
-// Item No. 125
-** Start of new item specification subsection **
-Item name="Source Book of Reverse-engineer"
-Item can be applied in combat="yes"
-Item can be installed in influ="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="spellbook"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="spellbook/inv_image.png"
-Item uses drop sound with filename="drop_book_sound.ogg"
-Base list price=450
-Item description text="There is some dark magic in the art of turning bots inside-out to learn all their secrets."
-inventory_size_x=2
-inventory_size_y=2
-** End of new item specification subsection **
-
-// Item No. 126
-** Start of new item specification subsection **
-Item name="Source Book of Emergency shutdown"
-Item can be applied in combat="yes"
-Item can be installed in influ="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="spellbook"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="spellbook/inv_image.png"
-Item uses drop sound with filename="drop_book_sound.ogg"
-Base list price=450
-Item description text="Everyone needs to blow some steam every now and then."
-inventory_size_x=2
-inventory_size_y=2
-** End of new item specification subsection **
-
-// Item No. 127
-** Start of new item specification subsection **
-Item name="Source Book of Light"
-Item can be applied in combat="yes"
-Item can be installed in influ="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="spellbook"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="spellbook/inv_image.png"
-Item uses drop sound with filename="drop_book_sound.ogg"
-Base list price=450
-Item description text="Let there be light..."
-inventory_size_x=2
-inventory_size_y=2
-** End of new item specification subsection **
-
-// Item No. 128
-** Start of new item specification subsection **
-Item name="Source Book of Satellite image"
-Item can be applied in combat="yes"
-Item can be installed in influ="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="spellbook"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="spellbook/inv_image.png"
-Item uses drop sound with filename="drop_book_sound.ogg"
-Base list price=300
-Item description text="Getting a map of an area is pretty easy when you can look at everything from above."
-inventory_size_x=2
-inventory_size_y=2
-** End of new item specification subsection **
-
-// Item No. 129
-** Start of new item specification subsection **
-Item name="Pandora's Cube"
-inventory_size_y=6
-inventory_size_x=6
-Item can be applied in combat="no"
-Item can be installed in influ="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="datacube"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="datacube/inv_image.png"
-Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
-Base list price=0
-Item description text="This is heavy. Cannot the end of the world come in a smaller package? It would be a great time for Duncan to explain a few things..."
-** End of new item specification subsection **
-
 // Cutting hand to hand weapons 
 
 // Item No. 130
@@ -2687,7 +2440,7 @@ inventory_size_y=3
 inventory_size_x=1
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=30
-Item description text="Light and maneuverable in combat, but unfortunately not very effective in cutting through steel as well as quickly reaching the point of breaking if you try. Though for sure better then hitting at metal with your bare fists."
+Item description text="Light and maneuverable in combat, but unfortunately not very effective in cutting through steel as well as quickly reaching the point of breaking if you try. Though for sure better than hitting at metal with your bare fists."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.400000
 Item as gun: reloading time=0.000000
