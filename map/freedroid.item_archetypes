@@ -4,6 +4,23 @@ Copyright (c) 2004-2007 Arthur Huillet
 Copyright (c) 2007 Karol Swietlicki
 Copyright (c) 2007 Stefan Huszics
 
+/*********************************************
+*                                            *
+* If you change a name of an item make sure  *
+* to check so you dont break things.         *
+* From the source root folder do:            *
+*                                            *
+* grep -Rn old_name dialogs/ map/ src/       *
+* or                                         *
+* grep -Rn old_name *                        *
+*                                            *
+* eg                                         *
+* grep -Rn Droid\ weaponry\ - *              *
+*                                            *
+* And remember, names are CASE sensitive     *
+*                                            *
+*********************************************/
+
 *** Start of item data section: ***
 
 Common factor for all ranged weapons bullet speed values: 1.0
@@ -1300,7 +1317,7 @@ Item can be installed in influ="no"
 Item can be installed in slot with name="none"
 Item uses rotation series with prefix="spellbook"
 Items of this type collect together in inventory="no"
-File or directory name for inventory image="spellbook/inv_image.png"
+File or directory name for inventory image="spellbook/inv_image_green.png"
 Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=250
 Item description text="An incredible healing spell, probably only one you will ever need."
@@ -1308,23 +1325,7 @@ inventory_size_x=2
 inventory_size_y=2
 ** End of new item specification subsection **
 
-// Item No. 45 -> 55
-** Start of new item specification subsection **
-Item name="Source Book of Sanctuary"
-Item can be applied in combat="yes"
-Item can be installed in influ="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="spellbook"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="spellbook/inv_image.png"
-Item uses drop sound with filename="drop_book_sound.ogg"
-Base list price=225
-Item description text="Teleporting takes on a whole new face with this book-use it wisely."
-inventory_size_x=2
-inventory_size_y=2
-** End of new item specification subsection **
-
-// Item No. 46 -> 56
+// Item No. 46 -> 55
 ** Start of new item specification subsection **
 Item name="Source Book of Calculate Pi"
 Item can be applied in combat="yes"
@@ -1332,7 +1333,7 @@ Item can be installed in influ="no"
 Item can be installed in slot with name="none"
 Item uses rotation series with prefix="spellbook"
 Items of this type collect together in inventory="no"
-File or directory name for inventory image="spellbook/inv_image.png"
+File or directory name for inventory image="spellbook/inv_image_orange.png"
 Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=225
 Item description text="It is not a big problem to make a badly designed system to go hunting for the impossible, causing a performance impact."
@@ -1340,7 +1341,7 @@ inventory_size_x=2
 inventory_size_y=2
 ** End of new item specification subsection **
 
-// Item No. 47 -> 57
+// Item No. 47 -> 56
 ** Start of new item specification subsection **
 Item name="Source Book of Blue Screen"
 Item can be applied in combat="yes"
@@ -1348,7 +1349,7 @@ Item can be installed in influ="no"
 Item can be installed in slot with name="none"
 Item uses rotation series with prefix="spellbook"
 Items of this type collect together in inventory="no"
-File or directory name for inventory image="spellbook/inv_image.png"
+File or directory name for inventory image="spellbook/inv_image_orange.png"
 Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=100
 Item description text="With a little touch a war machine comes crashing down to a halt. For a while."
@@ -1356,7 +1357,7 @@ inventory_size_x=2
 inventory_size_y=2
 ** End of new item specification subsection **
 
-// Item No. 83 -> 58
+// Item No. 83 -> 57
 ** Start of new item specification subsection **
 Item name="Source Book of Malformed packet"
 Item can be applied in combat="yes"
@@ -1364,7 +1365,7 @@ Item can be installed in influ="no"
 Item can be installed in slot with name="none"
 Item uses rotation series with prefix="spellbook"
 Items of this type collect together in inventory="no"
-File or directory name for inventory image="spellbook/inv_image.png"
+File or directory name for inventory image="spellbook/inv_image_red.png"
 Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=400
 Item description text="When computers are presented with the unexpected they can damage themselves."
@@ -1372,7 +1373,7 @@ inventory_size_x=2
 inventory_size_y=2
 ** End of new item specification subsection **
 
-// Item No. 84 -> 59
+// Item No. 84 -> 58
 ** Start of new item specification subsection **
 Item name="Source Book of Analyze item"
 Item can be applied in combat="yes"
@@ -1380,7 +1381,7 @@ Item can be installed in influ="no"
 Item can be installed in slot with name="none"
 Item uses rotation series with prefix="spellbook"
 Items of this type collect together in inventory="no"
-File or directory name for inventory image="spellbook/inv_image.png"
+File or directory name for inventory image="spellbook/inv_image_green.png"
 Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=450
 Item description text="There are very few items which have labels on them. Unless you happen to have an item labeled 'USE ME', you better make sure what it is before using it..."
@@ -1388,7 +1389,7 @@ inventory_size_x=2
 inventory_size_y=2
 ** End of new item specification subsection **
 
-// Item No. 85 -> 60
+// Item No. 85 -> 59
 ** Start of new item specification subsection **
 Item name="Source Book of Nethack"
 Item can be applied in combat="yes"
@@ -1404,7 +1405,7 @@ inventory_size_x=2
 inventory_size_y=2
 ** End of new item specification subsection **
 
-// Item No. 86 -> 61
+// Item No. 86 -> 60
 ** Start of new item specification subsection **
 Item name="Source Book of Dispel smoke"
 Item can be applied in combat="yes"
@@ -1412,7 +1413,7 @@ Item can be installed in influ="no"
 Item can be installed in slot with name="none"
 Item uses rotation series with prefix="spellbook"
 Items of this type collect together in inventory="no"
-File or directory name for inventory image="spellbook/inv_image.png"
+File or directory name for inventory image="spellbook/inv_image_red.png"
 Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=450
 Item description text="By heating up the chips with a malformed program you can cause them to release the magic smoke which keeps the bot running."
@@ -1420,7 +1421,7 @@ inventory_size_x=2
 inventory_size_y=2
 ** End of new item specification subsection **
 
-// Item No. 87 -> 62
+// Item No. 87 -> 61
 ** Start of new item specification subsection **
 Item name="Source Book of Killer poke"
 Item can be applied in combat="yes"
@@ -1428,7 +1429,7 @@ Item can be installed in influ="no"
 Item can be installed in slot with name="none"
 Item uses rotation series with prefix="spellbook"
 Items of this type collect together in inventory="no"
-File or directory name for inventory image="spellbook/inv_image.png"
+File or directory name for inventory image="spellbook/inv_image_red.png"
 Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=600
 Item description text="Messing around with the bot's memory can cause it to damage itself, but the damage is greatly variable."
@@ -1436,7 +1437,7 @@ inventory_size_x=2
 inventory_size_y=2
 ** End of new item specification subsection **
 
-// Item No. 88 -> 63
+// Item No. 88 -> 62
 ** Start of new item specification subsection **
 Item name="Source Book of Broadcast killer poke"
 Item can be applied in combat="yes"
@@ -1452,7 +1453,7 @@ inventory_size_x=2
 inventory_size_y=2
 ** End of new item specification subsection **
 
-// Item No. 89 -> 64
+// Item No. 89 -> 63
 ** Start of new item specification subsection **
 Item name="Source Book of Ricer CFLAGS"
 Item can be applied in combat="yes"
@@ -1468,7 +1469,7 @@ inventory_size_x=2
 inventory_size_y=2
 ** End of new item specification subsection **
 
-// Item No. 90 -> 65
+// Item No. 90 -> 64
 ** Start of new item specification subsection **
 Item name="Source Book of Plasma discharge"
 Item can be applied in combat="yes"
@@ -1484,7 +1485,7 @@ inventory_size_x=2
 inventory_size_y=2
 ** End of new item specification subsection **
 
-// Item No. 91 -> 66
+// Item No. 91 -> 65
 ** Start of new item specification subsection **
 Item name="Source Book of Invisibility"
 Item can be applied in combat="yes"
@@ -1500,7 +1501,7 @@ inventory_size_x=2
 inventory_size_y=2
 ** End of new item specification subsection **
 
-// Item No. 122 -> 104 -> 67
+// Item No. 122 -> 104 -> 66
 ** Start of new item specification subsection **
 Item name="Source Book of Sanctuary"
 Item can be applied in combat="yes"
@@ -1508,7 +1509,7 @@ Item can be installed in influ="no"
 Item can be installed in slot with name="none"
 Item uses rotation series with prefix="spellbook"
 Items of this type collect together in inventory="no"
-File or directory name for inventory image="spellbook/inv_image.png"
+File or directory name for inventory image="spellbook/inv_image_green.png"
 Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=450
 Item description text="The art of rapidly moving away from danger is very useful. Even when used in reverse it has it's uses."
@@ -1516,7 +1517,7 @@ inventory_size_x=2
 inventory_size_y=2
 ** End of new item specification subsection **
 
-// Item No. 123 -> 105 -> 68
+// Item No. 123 -> 105 -> 67
 ** Start of new item specification subsection **
 Item name="Source Book of Virus"
 Item can be applied in combat="yes"
@@ -1524,7 +1525,7 @@ Item can be installed in influ="no"
 Item can be installed in slot with name="none"
 Item uses rotation series with prefix="spellbook"
 Items of this type collect together in inventory="no"
-File or directory name for inventory image="spellbook/inv_image.png"
+File or directory name for inventory image="spellbook/inv_image_red.png"
 Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=450
 Item description text="This is not just a firmware upgrade, my dear bot. You are about to find out what exactly I want to give you."
@@ -1532,7 +1533,7 @@ inventory_size_x=2
 inventory_size_y=2
 ** End of new item specification subsection **
 
-// Item No. 124 -> 106 -> 69
+// Item No. 124 -> 106 -> 68
 ** Start of new item specification subsection **
 Item name="Source Book of Broadcast virus"
 Item can be applied in combat="yes"
@@ -1540,7 +1541,7 @@ Item can be installed in influ="no"
 Item can be installed in slot with name="none"
 Item uses rotation series with prefix="spellbook"
 Items of this type collect together in inventory="no"
-File or directory name for inventory image="spellbook/inv_image.png"
+File or directory name for inventory image="spellbook/inv_image_red.png"
 Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=450
 Item description text="The network is wide and dangerous. Many traps await for the weak and unprepared."
@@ -1548,7 +1549,7 @@ inventory_size_x=2
 inventory_size_y=2
 ** End of new item specification subsection **
 
-// Item No. 125 -> 107 -> 70
+// Item No. 125 -> 107 -> 69
 ** Start of new item specification subsection **
 Item name="Source Book of Reverse-engineer"
 Item can be applied in combat="yes"
@@ -1556,7 +1557,7 @@ Item can be installed in influ="no"
 Item can be installed in slot with name="none"
 Item uses rotation series with prefix="spellbook"
 Items of this type collect together in inventory="no"
-File or directory name for inventory image="spellbook/inv_image.png"
+File or directory name for inventory image="spellbook/inv_image_red.png"
 Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=450
 Item description text="There is some dark magic in the art of turning bots inside-out to learn all their secrets."
@@ -1564,7 +1565,7 @@ inventory_size_x=2
 inventory_size_y=2
 ** End of new item specification subsection **
 
-// Item No. 126 -> 108 -> 71
+// Item No. 126 -> 108 -> 70
 ** Start of new item specification subsection **
 Item name="Source Book of Emergency shutdown"
 Item can be applied in combat="yes"
@@ -1572,7 +1573,7 @@ Item can be installed in influ="no"
 Item can be installed in slot with name="none"
 Item uses rotation series with prefix="spellbook"
 Items of this type collect together in inventory="no"
-File or directory name for inventory image="spellbook/inv_image.png"
+File or directory name for inventory image="spellbook/inv_image_green.png"
 Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=450
 Item description text="Everyone needs to blow some steam every now and then."
@@ -1580,7 +1581,7 @@ inventory_size_x=2
 inventory_size_y=2
 ** End of new item specification subsection **
 
-// Item No. 127 -> 109 -> 72
+// Item No. 127 -> 109 -> 71
 ** Start of new item specification subsection **
 Item name="Source Book of Light"
 Item can be applied in combat="yes"
@@ -1588,7 +1589,7 @@ Item can be installed in influ="no"
 Item can be installed in slot with name="none"
 Item uses rotation series with prefix="spellbook"
 Items of this type collect together in inventory="no"
-File or directory name for inventory image="spellbook/inv_image.png"
+File or directory name for inventory image="spellbook/inv_image_green.png"
 Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=450
 Item description text="Let there be light..."
@@ -1596,7 +1597,7 @@ inventory_size_x=2
 inventory_size_y=2
 ** End of new item specification subsection **
 
-// Item No. 128 -> 110 -> 73
+// Item No. 128 -> 110 -> 72
 ** Start of new item specification subsection **
 Item name="Source Book of Satellite image"
 Item can be applied in combat="yes"
@@ -1604,7 +1605,7 @@ Item can be installed in influ="no"
 Item can be installed in slot with name="none"
 Item uses rotation series with prefix="spellbook"
 Items of this type collect together in inventory="no"
-File or directory name for inventory image="spellbook/inv_image.png"
+File or directory name for inventory image="spellbook/inv_image_green.png"
 Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=300
 Item description text="Getting a map of an area is pretty easy when you can look at everything from above."
@@ -1619,7 +1620,7 @@ inventory_size_y=2
 
 // FEET
 
-// Item No. 5 -> 23 -> 74
+// Item No. 5 -> 23 -> 73
 ** Start of new item specification subsection **
 Item name="Shoes"
 Item can be applied in combat="no"
@@ -1637,7 +1638,7 @@ Base list price=27
 Item description text="These simple boots are designed for comfort of the wearer more than to give actual protection."
 ** End of new item specification subsection **
 
-// Item No. 94 -> 75
+// Item No. 94 -> 74
 ** Start of new item specification subsection **
 Item name="Light Boots"
 Item can be applied in combat="no"
@@ -1655,7 +1656,7 @@ Base list price=65
 Item description text="These boots are a bit lighter than the normal version, giving of course worse protection but certainly extra comfort for the wearer."
 ** End of new item specification subsection **
 
-// Item No. 11 -> 25 -> 76
+// Item No. 11 -> 25 -> 75
 ** Start of new item specification subsection **
 Item name="Boots"
 Item can be applied in combat="no"
@@ -1673,7 +1674,7 @@ Base list price=65
 Item description text="These boots are similar to the simple shoes, but the material they are made of is hardened for extra protection."
 ** End of new item specification subsection **
 
-// Item No. 95 -> 77
+// Item No. 95 -> 76
 ** Start of new item specification subsection **
 Item name="Reinforced Boots"
 Item can be applied in combat="no"
@@ -1691,7 +1692,7 @@ Base list price=175
 Item description text="These boots were originally normal boots, but have been fitted with some extra reinforcements to give better protection to the wearer.  Of course this makes them a bit less elegant and also less comfy to wear, but the extra protection might be worth it, at not the full price of hiking boots."
 ** End of new item specification subsection **
 
-// Item No. 96 -> 78
+// Item No. 96 -> 77
 ** Start of new item specification subsection **
 Item name="Hiking Boots"
 Item can be applied in combat="no"
@@ -1712,7 +1713,7 @@ Item description text="These hiking boots are a very sophisticated product, comb
 
 // BODY
 
-// Item No. 25 -> 34 -> 79
+// Item No. 25 -> 34 -> 78
 ** Start of new item specification subsection **
 Item name="Simple Jacket"
 Item can be applied in combat="no"
@@ -1732,7 +1733,7 @@ inventory_size_y=2
 Item description text="Does a decent job of protection. I guess. Maybe. I'm not sure."
 ** End of new item specification subsection **
 
-// Item No. 29 -> 37 -> 80
+// Item No. 29 -> 37 -> 79
 ** Start of new item specification subsection **
 Item name="Reinforced Jacket"
 Item can be applied in combat="no"
@@ -1752,7 +1753,7 @@ inventory_size_y=2
 Item description text="One step up from a normal jacket."
 ** End of new item specification subsection **
 
-// Item No. 30 -> 38 -> 81
+// Item No. 30 -> 38 -> 80
 ** Start of new item specification subsection **
 Item name="Protective Jacket"
 Item can be applied in combat="no"
@@ -1772,7 +1773,7 @@ inventory_size_y=2
 Item description text="Very strong for its size, does a good job of absorbing basic blows."
 ** End of new item specification subsection **
 
-// Item No. 31 -> 39 -> 82
+// Item No. 31 -> 39 -> 8
 ** Start of new item specification subsection **
 Item name="Red Guard's Light Robe"
 Item can be applied in combat="no"
@@ -2761,13 +2762,13 @@ Item min class of droid for drop=0
 Item can be applied in combat="no"
 Item can be installed in influ="yes"
 Item can be installed in slot with name="weapon"
-Item uses rotation series with prefix="laser_sword_red"
+Item uses rotation series with prefix="laser_dagger"
 Items of this type collect together in inventory="no"
 Strength minimum required to wear/wield this item=0
 Dexterity minimum required to wear/wield this item=0
 Base item duration=6
 plus duration modifier=4
-File or directory name for inventory image="laser_sword_red/inv_image.png"
+File or directory name for inventory image="laser_dagger/inv_image.png"
 inventory_size_y=2
 inventory_size_x=1
 Item uses drop sound with filename="drop_sword_sound.ogg"
