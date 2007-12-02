@@ -136,8 +136,7 @@ ChangeOption=21 ChangeToValue=0
 ChangeOption=31 ChangeToValue=1
 ChangeOption=26 ChangeToValue=0
 DoSomethingExtra="ExecuteActionWithLabel:unlock_northern_maintainance_door"
-DoSomethingExtra="GiveItem:72"
-DoSomethingExtra="GiveItem:72"
+DoSomethingExtra="GiveItem:Plasma Grenade:2"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -369,7 +368,7 @@ ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=34 ChangeToValue=0
 DoSomethingExtra="AddGold:150"
 DoSomethingExtra="MarkMissionComplete:1"
-DoSomethingExtra="DeleteItem:59"
+DoSomethingExtra="DeleteItem:Dixon's Toolbox"
 DoSomethingExtra="OpenQuestDiaryEntry:M1E4:"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -391,8 +390,8 @@ ChangeOption=36 ChangeToValue=0
 DoSomethingExtra="MarkMissionComplete:1"
 DoSomethingExtra="PlantCookie:singularity_dead"
 DoSomethingExtra="AddGold:100"
-DoSomethingExtra="GiveItem:119"
-DoSomethingExtra="DeleteItem:59"
+DoSomethingExtra="GiveItem:Dixon's helmet"
+DoSomethingExtra="DeleteItem:Dixon's Toolbox"
 DoSomethingExtra="OpenQuestDiaryEntry:M1E5:"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -441,7 +440,7 @@ ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=38 ChangeToValue=0
 ChangeOption=41 ChangeToValue=0
 DoSomethingExtra="MarkMissionComplete:1"
-DoSomethingExtra="DeleteItem:59"
+DoSomethingExtra="DeleteItem:Dixon's Toolbox"
 DoSomethingExtra="AddGold:250"
 DoSomethingExtra="EndDialog"
 DoSomethingExtra="OpenQuestDiaryEntry:M1E6:"
@@ -459,7 +458,7 @@ ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=39 ChangeToValue=0
 ChangeOption=42 ChangeToValue=0
 DoSomethingExtra="MarkMissionComplete:1"
-DoSomethingExtra="DeleteItem:59"
+DoSomethingExtra="DeleteItem:Dixon's Toolbox"
 DoSomethingExtra="AddGold:350"
 DoSomethingExtra="OpenQuestDiaryEntry:M1E7:"
 DoSomethingExtra="EndDialog"
@@ -480,7 +479,7 @@ ChangeOption=40 ChangeToValue=0
 DoSomethingExtra="MarkMissionComplete:1"
 DoSomethingExtra="PlantCookie:dixon_very_angry"
 DoSomethingExtra="AddGold:400"
-DoSomethingExtra="DeleteItem:59"
+DoSomethingExtra="DeleteItem:Dixon's Toolbox"
 DoSomethingExtra="OpenQuestDiaryEntry:M1E8:"
 DoSomethingExtra="EndDialog"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
@@ -615,7 +614,7 @@ New Option Nr=60  OptionText="IS THE TOOLKIT WITH TUX?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
 ChangeOption=60 ChangeToValue=0
-OnCondition="HaveItemWithCode:59" JumpToOption=61 ElseGoto=80
+OnCondition="HaveItemWithName:Dixon's Toolbox" JumpToOption=61 ElseGoto=80
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------

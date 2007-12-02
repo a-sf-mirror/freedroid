@@ -349,8 +349,8 @@ ChangeOption=27 ChangeToValue=0
 DoSomethingExtra="MarkMissionComplete:10"
 DoSomethingExtra="AddBigScreenMessageBUT_WITH_TERMINATION_CHARACTER_PLEASE:Tania is now free!:"
 DoSomethingExtra="AddExperienceBonus:1500"
-DoSomethingExtra="GiveItem:44"
-DoSomethingExtra="GiveItem:45"
+DoSomethingExtra="GiveItem:Source Book of Check system integrity"
+DoSomethingExtra="GiveItem:Source Book of Sanctuary"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------

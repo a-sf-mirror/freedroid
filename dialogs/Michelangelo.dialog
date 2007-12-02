@@ -255,7 +255,7 @@ Subtitle="Thank you, Linarian. As soon as the food cubes are ready I will be abl
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=29 ChangeToValue=0
 DoSomethingExtra="MarkMissionComplete:2"
-DoSomethingExtra="DeleteItem:74"
+DoSomethingExtra="DeleteItem:Red Dilitium Crystal"
 DoSomethingExtra="AddBigScreenMessageBUT_WITH_TERMINATION_CHARACTER_PLEASE:Restored Michaelangelo's power supply:"
 DoSomethingExtra="AddExperienceBonus:350"
 DoSomethingExtra="OpenQuestDiaryEntry:M2E1:"
@@ -267,7 +267,7 @@ New Option Nr=30  OptionText="HAVE THE CRYSTALS"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=1216  PositionY=125  
 ChangeOption=30 ChangeToValue=0
-OnCondition="HaveItemWithCode:74" JumpToOption=32 ElseGoto=33
+OnCondition="HaveItemWithName:Red Dilitium Crystal" JumpToOption=32 ElseGoto=33
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------

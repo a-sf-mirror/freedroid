@@ -61,7 +61,7 @@ New Option Nr=5  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=109  PositionY=116  
 ChangeOption=5 ChangeToValue=0
-OnCondition="HaveItemWithCode:100" JumpToOption=8 ElseGoto=7
+OnCondition="HaveItemWithName:Kevin's Data Cube" JumpToOption=8 ElseGoto=7
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
@@ -79,7 +79,7 @@ ChangeOption=6 ChangeToValue=0
 ChangeOption=9 ChangeToValue=1
 DoSomethingExtra="MarkMissionComplete:7"
 DoSomethingExtra="OpenQuestDiaryEntry:M7E1:"
-DoSomethingExtra="DeleteItem:100"
+DoSomethingExtra="DeleteItem:Kevin's Data Cube"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------

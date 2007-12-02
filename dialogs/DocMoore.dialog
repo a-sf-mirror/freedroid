@@ -98,7 +98,7 @@ Subtitle="Should you take that junk again, I won't feel responsible for what hap
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=4 ChangeToValue=0
 ChangeOption=2 ChangeToValue=0
-DoSomethingExtra="GiveItem:79"
+DoSomethingExtra="GiveItem:Brain Enlargement Pills Antidote"
 DoSomethingExtra="PlantCookie:doc_healed_tux:"
 DoSomethingExtra="OpenQuestDiaryEntry:M0E1:"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
@@ -295,11 +295,11 @@ PositionX=200  PositionY=200
 Subtitle=" . . . "
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=27 ChangeToValue=0
-DoSomethingExtra="GiveItem:1:15"
-DoSomethingExtra="GiveItem:2:10"
-DoSomethingExtra="GiveItem:48:10"
-DoSomethingExtra="GiveItem:79:5"
-DoSomethingExtra="GiveItem:121"
+DoSomethingExtra="GiveItem:Diet supplement:15"
+DoSomethingExtra="GiveItem:Doc-in-a-can:10"
+DoSomethingExtra="GiveItem:Antibiotic:10"
+DoSomethingExtra="GiveItem:Brain Enlargement Pills Antidote:5"
+DoSomethingExtra="GiveItem:Laserscalpel"
 DoSomethingExtra="DropDead"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 

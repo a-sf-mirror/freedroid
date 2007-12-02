@@ -176,9 +176,8 @@ ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle="Thanks, man!"
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=9 ChangeToValue=0
-DoSomethingExtra="GiveItem:76"
-DoSomethingExtra="GiveItem:76"
-DoSomethingExtra="DeleteItem:79"
+DoSomethingExtra="GiveItem:Strength Pill:2"
+DoSomethingExtra="DeleteItem:Brain Enlargement Pills Antidote"
 DoSomethingExtra="AddExperienceBonus:150"
 DoSomethingExtra="MarkMissionComplete:0"
 DoSomethingExtra="OpenQuestDiaryEntry:M0E3:"
@@ -285,7 +284,7 @@ ChangeOption=1 ChangeToValue=0
 ChangeOption=3 ChangeToValue=0
 ChangeOption=2 ChangeToValue=0
 ChangeOption=4 ChangeToValue=0
-OnCondition="HaveItemWithCode:79" JumpToOption=20 ElseGoto=19
+OnCondition="HaveItemWithName:Brain Enlargement Pills Antidote" JumpToOption=20 ElseGoto=19
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------

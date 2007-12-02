@@ -64,7 +64,7 @@ New Option Nr=7  OptionText="GOT THE CUBE?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
 ChangeOption=7 ChangeToValue=0
-OnCondition="HaveItemWithCode:129" JumpToOption=8 ElseGoto=1
+OnCondition="HaveItemWithName:Pandora's Cube" JumpToOption=8 ElseGoto=1
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
@@ -86,7 +86,7 @@ Subtitle="Yes. I appreciate your help."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=10 ChangeToValue=0
 DoSomethingExtra="AddExperienceBonus:3000"
-DoSomethingExtra="DeleteItem:129"
+DoSomethingExtra="DeleteItem:Pandora's Cube"
 DoSomethingExtra="EndDialog"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -161,7 +161,7 @@ Subtitle="I will."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=60 ChangeToValue=0
 DoSomethingExtra="AddExperienceBonus:3000"
-DoSomethingExtra="DeleteItem:129"
+DoSomethingExtra="DeleteItem:Pandora's Cube"
 DoSomethingExtra="EndDialog"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
