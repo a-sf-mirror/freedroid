@@ -819,7 +819,7 @@ get_offset_for_iso_image_from_file_and_path ( char* fpath , iso_image* our_iso_i
   if ( ( OffsetFile = fopen ( offset_file_name , "rb") ) == NULL )
     {
       fprintf (stderr, "\nObtaining offset failed with file name '%s'." , offset_file_name );
-      GiveStandardErrorMessage ( __FUNCTION__ , "\
+      ErrorMessage ( __FUNCTION__ , "\
 Freedroid was unable to open a given offset file for an isometric image.\n\
 Since the offset could not be obtained from the offset file, some default\n\
 values will be used instead.  This can lead to minor positioning pertubations\n\
@@ -836,7 +836,7 @@ in graphics displayed, but FreedroidRPG will continue to work.",
       if ( fclose ( OffsetFile ) == EOF)
 	{
 	  fprintf( stderr, "\n\noffset_file_name: '%s'\n" , offset_file_name );
-	  GiveStandardErrorMessage ( __FUNCTION__ , "\
+	  ErrorMessage ( __FUNCTION__ , "\
 Freedroid was unable to close an offset file.\nThis is a very strange occasion!",
 				     PLEASE_INFORM, IS_FATAL );
 	}
@@ -1108,7 +1108,7 @@ main (int argc, char *const argv[])
 		{
 		    local_prefix = "UNHANDLED_CASE" ;
 		    local_index = 999 ;
-		    GiveStandardErrorMessage ( __FUNCTION__ , "\
+		    ErrorMessage ( __FUNCTION__ , "\
 Unhandled case in the AUTO image prefix code encountered!",
 					       PLEASE_INFORM, IS_FATAL );
 		}
