@@ -1556,9 +1556,8 @@ int GetItemIndexByName ( const char * name )
 	    return cidx;
 	}
 
-    printf("Item name: %s\n", name);
-    ErrorMessage ( __FUNCTION__  , "Unable to find a given item name.",
-	                                                      PLEASE_INFORM, IS_FATAL );
+    ErrorMessage ( __FUNCTION__  , "Unable to find item name %s\n",
+	                                                      PLEASE_INFORM, IS_FATAL, name );
     return -1;
 }
 

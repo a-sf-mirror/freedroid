@@ -530,22 +530,26 @@ ExecuteChatExtra ( char* ExtraCommandString , Enemy ChatDroid )
     {
 	char * pos = strstr(ExtraCommandString, "DeleteItem");
 	pos += strlen("DeleteItem:");
-	while ( ! isdigit(*pos) ) pos ++;
+	while ( isspace(*pos) ) pos ++;
+	if ( isdigit( * pos ) )
+	    ErrorMessage(__FUNCTION__, "A chat extra command tried to specify an item type number, but would be required to use a name instead. This command was %s\n", PLEASE_INFORM, IS_FATAL, ExtraCommandString);
+
 	char * pos2 = pos;
-	while ( isdigit(*pos2) ) pos2 ++;
-	
-	char pname[15];
+	while ( (*pos2) != ':' && *pos2 != '\0' ) 
+	    pos2 ++;
+
+	char pname[100];
 	int multiplicity = 1;
 
 	strncpy(pname, pos, pos2-pos);
 	pname[pos2-pos] = 0;
-	TempValue = atoi(pname);
+	TempValue = GetItemIndexByName(pname);
 
 	if(*pos2 == ':')
 	    {
 	    pos=pos2 + 1;
 	    pos2 ++;
-            while( isdigit(*pos2) ) pos2++;
+	    while( isdigit(*pos2) ) pos2++;
 	    strncpy(pname, pos, pos2-pos);
 	    multiplicity = atoi(pname);
 	    }
@@ -557,16 +561,20 @@ ExecuteChatExtra ( char* ExtraCommandString , Enemy ChatDroid )
     {
 	char * pos = strstr(ExtraCommandString, "GiveItem");
 	pos += strlen("GiveItem:");
-	while ( ! isdigit(*pos) ) pos ++;
+	while ( isspace(*pos) ) pos ++;
+	if ( isdigit( * pos ) )
+	    ErrorMessage(__FUNCTION__, "A chat extra command tried to specify an item type number, but would be required to use a name instead. This command was %s\n", PLEASE_INFORM, IS_FATAL, ExtraCommandString);
+
 	char * pos2 = pos;
-	while ( isdigit(*pos2) ) pos2 ++;
-	
-	char pname[15];
+	while ((*pos2) != ':' && *pos2 != '\0') 
+	    {
+	    pos2 ++;
+	    }
+	char pname[100];
 	strncpy(pname, pos, pos2-pos);
 	pname[pos2-pos] = 0;
-	TempValue = atoi(pname);
 
-	NewItem.type = TempValue  ;
+	NewItem.type = GetItemIndexByName(pname)  ;
 	NewItem.prefix_code = (-1);
 	NewItem.suffix_code = (-1);
 	FillInItemProperties ( &NewItem , TRUE , 0 , 1);
@@ -575,7 +583,7 @@ ExecuteChatExtra ( char* ExtraCommandString , Enemy ChatDroid )
 	    {
 	    pos=pos2 + 1;
 	    pos2 ++;
-            while( isdigit(*pos2) ) pos2++;
+	    while( isdigit(*pos2) ) pos2++;
 	    strncpy(pname, pos, pos2-pos);
 	    NewItem.multiplicity = atoi(pname);
 	    }
@@ -588,12 +596,12 @@ ExecuteChatExtra ( char* ExtraCommandString , Enemy ChatDroid )
 	// the current Tux position.  That can't fail, right?
 	//
 	if ( !TryToIntegrateItemIntoInventory ( & NewItem , NewItem.multiplicity ) )
-	{
+	    {
 	    DropItemToTheFloor ( &NewItem , Me . pos . x , Me . pos . y , Me . pos. z ) ;
 	    SetNewBigScreenMessage( _("1 Item received (on floor)") );
-	}
+	    }
 	else
-	{
+	    {
 	    SetNewBigScreenMessage( _("1 Item received!") );
 	}
     }
@@ -991,17 +999,28 @@ TextConditionIsTrue ( char* ConditionString )
 	else
 	    return ( FALSE );
     }
-    else if ( CountStringOccurences ( ConditionString , "HaveItemWithCode" ) )
+    else if ( CountStringOccurences ( ConditionString , "HaveItemWithName" ) )
     {
-	DebugPrintf ( CHAT_DEBUG_LEVEL , "\nCondition String identified as question for have item in inventory." );
-	ReadValueFromString( ConditionString , ":", "%d" , 
-			     &TempValue , ConditionString + strlen ( ConditionString ) );
-	DebugPrintf ( CHAT_DEBUG_LEVEL , "\nCondition String referred to item code: %d." , TempValue );
-	
-	if ( CountItemtypeInInventory ( TempValue ) )
-	    return ( TRUE );
-	else
-	    return ( FALSE );
+
+    char * pos = strstr(ConditionString, "HaveItemWithName");
+    pos += strlen("HaveItemWithName:");
+    while ( isspace(*pos) ) pos ++;
+    if ( isdigit( * pos ) )
+	ErrorMessage(__FUNCTION__, "A chat extra command tried to specify an item type number, but would be required to use a name instead. This command was %s\n", PLEASE_INFORM, IS_FATAL, ConditionString);
+
+    char * pos2 = pos;
+    while ((*pos2) != ':' && *pos2 != '\0')
+	{
+	pos2 ++;
+	}
+    char pname[100];
+    strncpy(pname, pos, pos2-pos);
+    pname[pos2-pos] = 0;
+
+    if ( CountItemtypeInInventory ( GetItemIndexByName(pname) ) )
+	return ( TRUE );
+    else
+	return ( FALSE );
     }
     else if ( CountStringOccurences ( ConditionString , "PointsToDistributeAtLeast" ) )
     {
