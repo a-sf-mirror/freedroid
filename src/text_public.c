@@ -1263,19 +1263,17 @@ answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.",
 	    // examined next...
 	    //
 	    YesNoString = ReadAndMallocStringFromData ( ItemPointer , "Item as gun: required ammunition type=\"" , "\"" ) ;
-	    if ( ! strcmp( YesNoString , "none" ) == 0 )
+	    if ( strcmp( YesNoString , "none" ) == 0 )
 	    {
 		ItemMap[ItemIndex].item_gun_use_ammunition = 0;
-	    }
-	    else if ( ! strcmp( YesNoString , "plasma_ammunition" ) == 0 )
 	    {
 		ItemMap[ItemIndex].item_gun_use_ammunition = 2;
 	    }
-	    else if ( ! strcmp( YesNoString , "laser_ammunition" ) == 0 )
+	    else if ( strcmp( YesNoString , "laser_ammunition" ) == 0 )
 	    {
 		ItemMap[ItemIndex].item_gun_use_ammunition = 1;
 	    }
-	    else if ( ! strcmp( YesNoString , "exterminator_ammunition" ) == 0 )
+	    else if ( strcmp( YesNoString , "exterminator_ammunition" ) == 0 )
 	    {
 		ItemMap[ItemIndex].item_gun_use_ammunition = 3;
 	    }
