@@ -1266,6 +1266,8 @@ answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.",
 	    if ( strcmp( YesNoString , "none" ) == 0 )
 	    {
 		ItemMap[ItemIndex].item_gun_use_ammunition = 0;
+	    }
+	    else if ( strcmp( YesNoString , "plasma_ammunition" ) == 0 )
 	    {
 		ItemMap[ItemIndex].item_gun_use_ammunition = 2;
 	    }
