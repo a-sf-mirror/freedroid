@@ -230,8 +230,11 @@ AssembleItemListForTradeCharacter ( item* ListToBeFilled , int ShopCharacterCode
     else if ( ShopCharacterCode == PERSON_DUNCAN )
 	{
 	ListPointer->type = GetItemIndexByName("VMX Gas Grenade"); ListPointer++;
+//	ListPointer->type = GetItemIndexByName("Teleporter locking beacon"); ListPointer++;
 	ListPointer->type = GetItemIndexByName("EMP Shock Grenade"); ListPointer++;
+//	ListPointer->type = GetItemIndexByName("EMP Shockwave Generator"); ListPointer++;
 	ListPointer->type = GetItemIndexByName("Plasma Grenade"); ListPointer++;
+
 	}
     else if ( ShopCharacterCode == PERSON_EWALD )
 	{
@@ -256,7 +259,7 @@ AssembleItemListForTradeCharacter ( item* ListToBeFilled , int ShopCharacterCode
 	ListPointer->type = GetItemIndexByName("Source Book of Dispel smoke"); ListPointer++;
 	ListPointer->type = GetItemIndexByName("Source Book of Killer poke"); ListPointer++;
 	ListPointer->type = GetItemIndexByName("Source Book of Broadcast killer poke"); ListPointer++;
-	ListPointer->type = GetItemIndexByName("Source Book of Ricer CFLAGS"); ListPointer++;
+//	ListPointer->type = GetItemIndexByName("Source Book of Ricer CFLAGS"); ListPointer++;
 	ListPointer->type = GetItemIndexByName("Source Book of Plasma discharge"); ListPointer++;
 	ListPointer->type = GetItemIndexByName("Source Book of Invisibility"); ListPointer++;
 	ListPointer->type = GetItemIndexByName("Source Book of Sanctuary"); ListPointer++;
@@ -264,8 +267,8 @@ AssembleItemListForTradeCharacter ( item* ListToBeFilled , int ShopCharacterCode
 	ListPointer->type = GetItemIndexByName("Source Book of Broadcast virus"); ListPointer++;
 	ListPointer->type = GetItemIndexByName("Source Book of Reverse-engineer"); ListPointer++;
 	ListPointer->type = GetItemIndexByName("Source Book of Emergency shutdown"); ListPointer++;
-	ListPointer->type = GetItemIndexByName("Source Book of Light"); ListPointer++;
-	ListPointer->type = GetItemIndexByName("Source Book of Satellite image"); ListPointer++;
+//	ListPointer->type = GetItemIndexByName("Source Book of Light"); ListPointer++;
+//	ListPointer->type = GetItemIndexByName("Source Book of Satellite image"); ListPointer++;
 	}
     else
 	{
