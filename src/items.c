@@ -945,7 +945,7 @@ DropRandomItem( int level_num , float x , float y , int TreasureChestRange , int
 		    drop_item_multiplicity =  1 ;
 		    break;
 		case 13:
-		    drop_item_type = GetItemIndexByName("Teleporter locking beacon");
+		    drop_item_type = GetItemIndexByName("Teleporter homing beacon");
 		    drop_item_multiplicity =  1 ;
 		    break;
 		case 14:
@@ -1743,7 +1743,7 @@ ApplyItem( item* CurItem )
     {
 	DoSkill(get_program_index_with_name("Analyze item"), 0);
     }	
-    else if ( MatchItemWithName ( CurItem->type, "Teleporter locking beacon" ) )
+    else if ( MatchItemWithName ( CurItem->type, "Teleporter homing beacon" ) )
     {
 	DoSkill(get_program_index_with_name("Sanctuary"), 0);
     }

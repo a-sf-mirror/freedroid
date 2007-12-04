@@ -304,7 +304,7 @@ exist really (i.e. has a type = (-1) ).",
 	    sprintf( linebuf , _("Analyze one item\n") );
 	    strcat( ItemDescText , linebuf );
 	    }
-	else if ( MatchItemWithName ( CurItem->type, "Teleporter locking beacon" ) )
+	else if ( MatchItemWithName ( CurItem->type, "Teleporter homing beacon" ) )
 	    {
 	    sprintf( linebuf , _("Teleports you to a safe place, or back to your previous position from your safe place\n") );
 	    strcat( ItemDescText , linebuf );

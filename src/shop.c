@@ -226,15 +226,14 @@ AssembleItemListForTradeCharacter ( item* ListToBeFilled , int ShopCharacterCode
     else if ( ShopCharacterCode == PERSON_SKIPPY )
 	{
 	ListPointer->type = GetItemIndexByName("Map Maker"); ListPointer++;
+	ListPointer->type = GetItemIndexByName("Teleporter homing beacon"); ListPointer++;
 	}
     else if ( ShopCharacterCode == PERSON_DUNCAN )
 	{
 	ListPointer->type = GetItemIndexByName("VMX Gas Grenade"); ListPointer++;
-//	ListPointer->type = GetItemIndexByName("Teleporter locking beacon"); ListPointer++;
 	ListPointer->type = GetItemIndexByName("EMP Shock Grenade"); ListPointer++;
 //	ListPointer->type = GetItemIndexByName("EMP Shockwave Generator"); ListPointer++;
 	ListPointer->type = GetItemIndexByName("Plasma Grenade"); ListPointer++;
-
 	}
     else if ( ShopCharacterCode == PERSON_EWALD )
 	{
