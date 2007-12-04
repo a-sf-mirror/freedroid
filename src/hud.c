@@ -304,9 +304,9 @@ exist really (i.e. has a type = (-1) ).",
 	    sprintf( linebuf , _("Analyze one item\n") );
 	    strcat( ItemDescText , linebuf );
 	    }
-	else if ( MatchItemWithName ( CurItem->type, "Evacuation script" ) )
+	else if ( MatchItemWithName ( CurItem->type, "Teleporter locking beacon" ) )
 	    {
-	    sprintf( linebuf , _("Teleports you to a safe place, or back from your safe place\n") );
+	    sprintf( linebuf , _("Teleports you to a safe place, or back to your previous position from your safe place\n") );
 	    strcat( ItemDescText , linebuf );
 	    }
 	else if ( MatchItemWithName ( CurItem->type, "Bottled ice" ) || MatchItemWithName ( CurItem->type, "Industrial coolant") || MatchItemWithName ( CurItem->type, "Liquid nitrogen"))
