@@ -1676,8 +1676,9 @@ Item as gun: weapon requires both hands="yes"
 
 ** Start of new item specification subsection **
 Item name="VMX Gas Grenade"
-Item min class for drop=9999
-Item max class for drop=9999
+It**em name="Acid Grenade"
+Item min class for drop=4
+Item max class for drop=9
 Item can be applied in combat="yes"
 Item can be installed in influ="no"
 Item can be installed in slot with name="none"
@@ -1694,8 +1695,8 @@ Item description text="The gas does not look terrifying. It even smells somewhat
 ** Start of new item specification subsection **
 Item name="EMP Shock Grenade"
 I**tem name="EMP Shockwave Generator"
-Item min class for drop=8888
-Item max class for drop=9999
+Item min class for drop=4
+Item max class for drop=9
 Item can be applied in combat="yes"
 Item can be installed in influ="no"
 Item can be installed in slot with name="none"
@@ -1713,8 +1714,8 @@ Item description text="This sphere contains a few strange bits of technology inv
 Item name="Plasma Grenade"
 It**em name="Plasma Bomb"
 // Remake into something you drop, run away from and then explode 3-5s later. Possibly attach it to a friendly droid and have it move somewhere before exploding?
-Item min class for drop=8888
-Item max class for drop=9999
+Item min class for drop=4
+Item max class for drop=9
 Item can be applied in combat="yes"
 Item can be installed in influ="no"
 Item can be installed in slot with name="none"
@@ -3431,21 +3432,6 @@ Item description text="These small containers hold purified dexterity.  This ite
  **********************************************************************************************************/
 
 ** Start of new item specification subsection **
-Item name="Droid Energetic Heart Class Beta"
-Item min class for drop=8888
-Item max class for drop=9999
-Item can be applied in combat="no"
-Item can be installed in influ="yes"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="NONE_AVAILABLE_YET"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="inventory_image_3.png"
-Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
-Base list price=900
-Item description text=""
-** End of new item specification subsection **
-
-** Start of new item specification subsection **
 Item name="Cyberbucks"
 Item min class for drop=0
 Item max class for drop=9
@@ -3748,8 +3734,7 @@ Item description text="Point and click. Point and know anything. Point, and I wi
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-I**tem name="Evacuation script"
-Item name="Teleporter locking beacon"
+Item name="Teleporter homing beacon"
 Item min class for drop=0
 Item max class for drop=7
 Item can be applied in combat="yes"
@@ -3760,9 +3745,9 @@ Items of this type collect together in inventory="yes"
 File or directory name for inventory image="vmx_grenade/inv_image.png"
 Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=40
-It**em description text="This script can invoke stored powers to teleport one person back to the center of the nearest town. The stored powers are expended in the process and the script becomes useless afterwards.  Note:  Multiple of those may be grouped together in inventory."
-Item description text="This device sends a signal to a nearby teleporter requesting a transportation and then helping with locking on and boosting the signal to ensure the teleportation attempt is succcessful. The battery inside is enough for one use only and the device becomes useless afterwards.  Note:  Multiple of these may be grouped together in the inventory."
+Item description text="This device sends a signal to a nearby teleporter requesting a transportation and then helping with locking on and boosting the signal to ensure the teleportation attempt is succcessful. The battery inside is enough for one use only and the device becomes useless afterwards. At least, most people dont even try to use them twice, and those few who do usually end up with parts of their body missing or attached in the wrong place.  Note:  Multiple of these may be grouped together in the inventory."
 ** End of new item specification subsection **
+
 
 ** Start of new item specification subsection **
 Item name="Kevin's Data Cube"
