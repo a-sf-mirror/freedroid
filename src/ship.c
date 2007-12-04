@@ -788,6 +788,9 @@ ShowItemInfo ( item* ShowItem , int Displacement , char ShowArrows , int backgro
 	case 3:
 	    strcat ( InfoText, _(" This weapon requires standard exterminator ammunition spheres."));
 	    break;
+	case 4:
+	    strcat ( InfoText, _(" This weapon requires .22 Long Rifle rounds."));
+	    break;
     }
     
     // SetCurrentFont( Para_BFont );

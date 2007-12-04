@@ -3205,9 +3205,13 @@ void TuxReloadWeapon()
 
     if ( ItemMap [ Me . weapon_item . type ] . item_gun_ammo_clip_size == Me . weapon_item . ammo_clip )
 	return ; //clip full, return without reloading 
-	
+
+    
     switch ( ItemMap [ Me . weapon_item . type ] . item_gun_use_ammunition )
 	{
+	case 0: //no ammo
+	    return; //no reloading occurs
+	    break;
 	case 1: //laser
 	    munition_type = GetItemIndexByName("Laser Weapon Ammunition");
 	    break;
@@ -3217,9 +3221,11 @@ void TuxReloadWeapon()
 	case 3: //exterminator
 	    munition_type = GetItemIndexByName("2 mm Exterminator Ammunition");
 	    break;
+	case 4: //22LR
+	    munition_type = GetItemIndexByName(".22 LR Ammunition"); 
+	    break; 
 	default:
-	    ErrorMessage ( __FUNCTION__  , "Got an unknown munition type for your current weapon.",
-						                                          PLEASE_INFORM, IS_FATAL );
+	    ErrorMessage ( __FUNCTION__  , "Got an unknown munition type %d for your current weapon.",						                                          PLEASE_INFORM, IS_FATAL, ItemMap [ Me . weapon_item . type ] . item_gun_use_ammunition );
 	}
 
     int count = CountItemtypeInInventory ( munition_type ); 
