@@ -410,59 +410,38 @@ clear_out_all_events_and_actions( void )
     }
     for ( i = 0 ; i < MAX_TRIGGERED_ACTIONS_IN_GAME ; i++ )
     {
-	// Maybe the triggered event consists of the influencer saying something
 	AllTriggeredActions[i].ActionLabel="";
-	AllTriggeredActions[i].InfluencerSayText="";
-
+	AllTriggeredActions[i].TeleportTarget.x = -1;
+	AllTriggeredActions[i].TeleportTarget.y = -1;
+	AllTriggeredActions[i].TeleportTargetLevel = -1;
 	AllTriggeredActions[i].also_execute_action_label="";
 	
-	// Maybe the triggered action will change some obstacle on some level...
 	AllTriggeredActions[i].modify_obstacle_with_label="";
 	AllTriggeredActions[i].modify_obstacle_to_type=-1;
 	AllTriggeredActions[i].modify_event_trigger_with_action_label="";
 	AllTriggeredActions[i].modify_event_trigger_value=-1;
 	
-	// Maybe the triggered event consists of the map beeing changed at some tile
-	AllTriggeredActions[i].ChangeMapLevel=-1;
-	AllTriggeredActions[i].ChangeMapLocation.x=-1;
-	AllTriggeredActions[i].ChangeMapLocation.y=-1;
-	AllTriggeredActions[i].ChangeMapTo=-1;
-	AllTriggeredActions[i].AssignWhichMission=-1;
-	// Maybe the triggered event consists of ??????
     }
 }; // void clear_out_all_events_and_actions( void )
 
-#define EVENT_TRIGGER_BEGIN_STRING "* Start of an Event Trigger Subsection *"
-#define EVENT_TRIGGER_END_STRING "* End of this Event Trigger Subsection *"
-#define EVENT_ACTION_BEGIN_STRING "* Start of an Event Action Subsection *"
-#define EVENT_ACTION_END_STRING "* End of this Event Action Subsection *"
+#define EVENT_TRIGGER_BEGIN_STRING "* New event trigger *"
+#define EVENT_TRIGGER_END_STRING "* End of trigger *"
+#define EVENT_ACTION_BEGIN_STRING "* New event action *"
+#define EVENT_ACTION_END_STRING "* End of action *"
 
-#define EVENT_ACTION_MAPCHANGE_POS_X_STRING "Mapchange at X="
-#define EVENT_ACTION_MAPCHANGE_POS_Y_STRING " Y="
-#define EVENT_ACTION_MAPCHANGE_MAPLEVEL_STRING " Lev="
-#define EVENT_ACTION_MAPCHANGE_TO_WHAT_STRING " to new value="
-#define MAPCHANGE_LABEL_STRING "Use map label for map change location=\""
 
-#define EVENT_ACTION_TELEPORT_POS_X_STRING "Teleport to TelX="
-#define EVENT_ACTION_TELEPORT_POS_Y_STRING " TelY="
-#define EVENT_ACTION_TELEPORT_LEVEL_STRING " TelLev="
-#define EVENT_ACTION_TELEPORT_TARGET_LABEL_STRING "Use map label for teleport target=\""
+#define EVENT_ACTION_TELEPORT_TARGET_LABEL_STRING "Teleport to=\""
 
 #define EVENT_ACTION_MODIFY_EVENT_TRIGGER_STRING "modify_event_trigger_with_action_label=\""
 #define EVENT_ACTION_MODIFY_EVENT_TRIGGER_VALUE_STRING "modify_event_trigger_to="
 
 #define EVENT_ACTION_ALSO_EXECUTE_ACTION_LABEL "Also execute action with label=\""
 
-#define EVENT_ACTION_INFLUENCER_SAY_TEXT "Action is Influencer say=\""
-#define EVENT_ACTION_ASSIGN_WHICH_MISSION "Action is mission assignment="
-#define ACTION_LABEL_INDICATION_STRING "Action label for this action=\""
+#define ACTION_LABEL_INDICATION_STRING "Name=\""
 
-#define EVENT_TRIGGER_POS_X_STRING "Influencer must be at X="
-#define EVENT_TRIGGER_POS_Y_STRING " Y="
-#define EVENT_TRIGGER_POS_MAPLEVEL_STRING " Lev="
 #define EVENT_TRIGGER_DELETED_AFTER_TRIGGERING "Delete the event trigger after it has been triggered="
-#define TRIGGER_WHICH_TARGET_LABEL "Event Action to be triggered by this trigger=\""
-#define EVENT_TRIGGER_LABEL_STRING "Use map location from map label=\""
+#define TRIGGER_WHICH_TARGET_LABEL "Action=\""
+#define EVENT_TRIGGER_LABEL_STRING "Trigger at label=\""
 #define EVENT_TRIGGER_ENABLED_STRING "Enable this trigger by default="
 
 #define MODIFY_OBSTACLE_WITH_LABEL_STRING "modify_obstacle_with_label=\""
@@ -475,166 +454,102 @@ clear_out_all_events_and_actions( void )
 void
 decode_all_event_actions ( char* EventSectionPointer )
 {
-  char *EventPointer;
-  char *EndOfEvent;
-  int EventActionNumber;
-  char* TempMapLabelName;
-  location TempLocation;
-  char temp_save_char;
+    char *EventPointer;
+    char *EndOfEvent;
+    int EventActionNumber;
+    char* TempMapLabelName;
+    location TempLocation;
 
-  EventPointer=EventSectionPointer;
-  EventActionNumber=0;
-  while ( ( EventPointer = strstr ( EventPointer , EVENT_ACTION_BEGIN_STRING ) ) != NULL)
-    {
-      DebugPrintf(1, "\nBegin of a new Event Action Section found. Good. ");
-      EventPointer += strlen( EVENT_ACTION_BEGIN_STRING ) + 1;
-
-      // EndOfEvent = LocateStringInData ( EventSectionPointer , EVENT_ACTION_END_STRING );
-      EndOfEvent = LocateStringInData ( EventPointer , EVENT_ACTION_END_STRING );
-
-      DebugPrintf (1, "\n\nStarting to read details of this event action section\n\n");
-
-      //--------------------
-      // Now we decode the details of this event action section
-      //
-      AllTriggeredActions[ EventActionNumber].ActionLabel =
-	ReadAndMallocStringFromData ( EventPointer , ACTION_LABEL_INDICATION_STRING , "\"" ) ;
-
-      //printf ( "Reading action label %s\n", AllTriggeredActions[ EventActionNumber].ActionLabel);
-      //--------------------
-      // Now we read in the map changing position in x and y and level coordinates
-      //
-      ReadValueFromString( EventPointer , EVENT_ACTION_MAPCHANGE_POS_X_STRING , "%d" , 
-			   &AllTriggeredActions[ EventActionNumber ].ChangeMapLocation.x , EndOfEvent );
-      ReadValueFromString( EventPointer , EVENT_ACTION_MAPCHANGE_POS_Y_STRING , "%d" , 
-			   &AllTriggeredActions[ EventActionNumber ].ChangeMapLocation.y , EndOfEvent );
-      ReadValueFromString( EventPointer , EVENT_ACTION_MAPCHANGE_MAPLEVEL_STRING , "%d" , 
-			   &AllTriggeredActions[ EventActionNumber ].ChangeMapLevel , EndOfEvent );
-      // but maybe there was a label given.  This will override the pure coordinates...
-      TempMapLabelName = 
-	ReadAndMallocStringFromData ( EventPointer , MAPCHANGE_LABEL_STRING , "\"" ) ;
-      if ( strcmp ( TempMapLabelName , "NO_LABEL_DEFINED_YET" ) )
+    EventPointer=EventSectionPointer;
+    EventActionNumber=0;
+    while ( ( EventPointer = strstr ( EventPointer , EVENT_ACTION_BEGIN_STRING ) ) != NULL)
 	{
-	  DebugPrintf ( 1 , "\nMapchange coordinates overridden by map label %s." , TempMapLabelName );
-	  ResolveMapLabelOnShip ( TempMapLabelName , &TempLocation );
-	  AllTriggeredActions[ EventActionNumber ] . ChangeMapLocation . x = TempLocation . x ;
-	  AllTriggeredActions[ EventActionNumber ] . ChangeMapLocation . y = TempLocation . y ;
-	  AllTriggeredActions[ EventActionNumber ] . ChangeMapLevel = TempLocation . level ;
-	}
-      else
-	{
-	  DebugPrintf ( 1 , "\nMapchange label unused..." );
-	}
+	EventPointer += strlen( EVENT_ACTION_BEGIN_STRING ) + 1;
 
-      //printf ( "Got map label %s\n", TempMapLabelName);
-      free ( TempMapLabelName ); 
-      //--------------------
-      // Now we see if maybe there was an obstacle label given, that should be used
-      // to change an obstacle later.  We take a look if that is the case at all, and
-      // if it is, we'll read in the corresponding obstacle label of course.
-      //
-      temp_save_char = *EndOfEvent ;
-      *EndOfEvent = 0 ;
-      if ( CountStringOccurences ( EventPointer , MODIFY_OBSTACLE_WITH_LABEL_STRING ) )
-	{
-	  DebugPrintf ( 1 , "\nOBSTACLE LABEL FOUND IN THIS EVENT ACTION!" );
-	  TempMapLabelName = 
-	    ReadAndMallocStringFromData ( EventPointer , MODIFY_OBSTACLE_WITH_LABEL_STRING , "\"" ) ;
-	  //printf("Got obs label %s\n", TempMapLabelName);
-	  if ( strcmp ( TempMapLabelName , "NO_LABEL_DEFINED_YET" ) )
+	EndOfEvent = LocateStringInData ( EventPointer , EVENT_ACTION_END_STRING );
+	*EndOfEvent = 0;
+	DebugPrintf (1, "\n\nStarting to read details of this event action section\n\n");
+
+	//--------------------
+	// Now we decode the details of this event action section
+	//
+	AllTriggeredActions[ EventActionNumber].ActionLabel =
+	    ReadAndMallocStringFromData ( EventPointer , ACTION_LABEL_INDICATION_STRING , "\"" ) ;
+
+	//--------------------
+	// Now we see if maybe there was an obstacle label given, that should be used
+	// to change an obstacle later.  We take a look if that is the case at all, and
+	// if it is, we'll read in the corresponding obstacle label of course.
+	//
+	if ( CountStringOccurences ( EventPointer , MODIFY_OBSTACLE_WITH_LABEL_STRING ) )
 	    {
-	      AllTriggeredActions [ EventActionNumber ] . modify_obstacle_with_label = TempMapLabelName ;
-	      DebugPrintf ( 1 , "\nThe label reads: %s." , AllTriggeredActions [ EventActionNumber ] . modify_obstacle_with_label );
+	    DebugPrintf ( 1 , "\nOBSTACLE LABEL FOUND IN THIS EVENT ACTION!" );
+	    TempMapLabelName = 
+		ReadAndMallocStringFromData ( EventPointer , MODIFY_OBSTACLE_WITH_LABEL_STRING , "\"" ) ;
+	    AllTriggeredActions [ EventActionNumber ] . modify_obstacle_with_label = TempMapLabelName ;
+	    DebugPrintf ( 1 , "\nThe label reads: %s." , AllTriggeredActions [ EventActionNumber ] . modify_obstacle_with_label );
+	    //--------------------
+	    // But if such an obstacle label has been given, we also need to decode the new type that
+	    // this obstacle should be made into.  So we do it here:
+	    //
+	    ReadValueFromString( EventPointer , MODIFY_OBSTACLE_TO_TYPE_STRING , "%d" , 
+		    & ( AllTriggeredActions[ EventActionNumber ] . modify_obstacle_to_type ) , EndOfEvent );
+	    DebugPrintf ( 1 , "\nObstacle will be modified to type: %d." , AllTriggeredActions[ EventActionNumber ] . modify_obstacle_to_type );
 	    }
-	  else
+
+	//--------------------
+	// Now we read in the teleport target position in x and y and level coordinates
+	//
+	if ( CountStringOccurences ( EventPointer , EVENT_ACTION_TELEPORT_TARGET_LABEL_STRING) )
 	    {
-	      DebugPrintf ( 0 , "\nERROR:  Improper label given.\n\
-Leave out the label entry for obstacles if you don't want to use it!" );
-	      Terminate ( ERR );
+	    TempMapLabelName = 
+		ReadAndMallocStringFromData ( EventPointer , EVENT_ACTION_TELEPORT_TARGET_LABEL_STRING , "\"" ) ;
+	    if ( strcmp ( TempMapLabelName , "NO_LABEL_DEFINED_YET" ) )
+		{
+		ResolveMapLabelOnShip ( TempMapLabelName , &TempLocation );
+		AllTriggeredActions [ EventActionNumber ] . TeleportTarget . x = TempLocation . x ;
+		AllTriggeredActions [ EventActionNumber ] . TeleportTarget . y = TempLocation . y ;
+		AllTriggeredActions [ EventActionNumber ] . TeleportTargetLevel = TempLocation . level ;
+		}
+	    else 
+		ErrorMessage(__FUNCTION__, "An action used NO_LABEL_DEFINED_YET map label teleport target.\n", PLEASE_INFORM, IS_FATAL);
+	    free(TempMapLabelName);
 	    }
-	  //--------------------
-	  // But if such an obstacle label has been given, we also need to decode the new type that
-	  // this obstacle should be made into.  So we do it here:
-	  //
-	  ReadValueFromString( EventPointer , MODIFY_OBSTACLE_TO_TYPE_STRING , "%d" , 
-			       & ( AllTriggeredActions[ EventActionNumber ] . modify_obstacle_to_type ) , EndOfEvent );
-	  DebugPrintf ( 1 , "\nObstacle will be modified to type: %d." , AllTriggeredActions[ EventActionNumber ] . modify_obstacle_to_type );
-	}
-      else
-	{
-	  DebugPrintf ( 1 , "\nNO OBSTACLE LABEL FOUND IN THIS EVENT ACTION!" );
-	}
-      *EndOfEvent = temp_save_char;
+	else
+	    {
+	    AllTriggeredActions [ EventActionNumber ] . TeleportTarget . x = -1 ;
+	    AllTriggeredActions [ EventActionNumber ] . TeleportTarget . y = -1;
+	    }
 
-      //--------------------
-      // Now we read in the teleport target position in x and y and level coordinates
-      //
-      ReadValueFromString( EventPointer , EVENT_ACTION_TELEPORT_POS_X_STRING , "%d" , 
-			   &AllTriggeredActions[ EventActionNumber ].TeleportTarget.x , EndOfEvent );
-      ReadValueFromString( EventPointer , EVENT_ACTION_TELEPORT_POS_Y_STRING , "%d" , 
-			   &AllTriggeredActions[ EventActionNumber ].TeleportTarget.y , EndOfEvent );
-      ReadValueFromString( EventPointer , EVENT_ACTION_TELEPORT_LEVEL_STRING , "%d" , 
-			   &AllTriggeredActions[ EventActionNumber ].TeleportTargetLevel , EndOfEvent );
-      // but maybe there was a label given.  This will override the pure coordinates...
-      TempMapLabelName = 
-	ReadAndMallocStringFromData ( EventPointer , EVENT_ACTION_TELEPORT_TARGET_LABEL_STRING , "\"" ) ;
-      if ( strcmp ( TempMapLabelName , "NO_LABEL_DEFINED_YET" ) )
-	{
-	  DebugPrintf ( 1 , "\nTeleport target coordinates overridden by map label %s." , TempMapLabelName );
-	  ResolveMapLabelOnShip ( TempMapLabelName , &TempLocation );
-	  AllTriggeredActions [ EventActionNumber ] . TeleportTarget . x = TempLocation . x ;
-	  AllTriggeredActions [ EventActionNumber ] . TeleportTarget . y = TempLocation . y ;
-	  AllTriggeredActions [ EventActionNumber ] . TeleportTargetLevel = TempLocation . level ;
-	}
-      else
-	{
-	  DebugPrintf ( 1 , "\nTeleport target label unused..." );
-	}
+	if ( ! strstr( EventPointer, EVENT_ACTION_MODIFY_EVENT_TRIGGER_STRING ) ) //if there is no event trigger modified
+	    {
+	    AllTriggeredActions[ EventActionNumber ].modify_event_trigger_with_action_label = "";
+	    }
+	else  
+	    {
+	    AllTriggeredActions[ EventActionNumber ].modify_event_trigger_with_action_label =  	ReadAndMallocStringFromData ( EventPointer , 
+		    EVENT_ACTION_MODIFY_EVENT_TRIGGER_STRING , "\"" ) ;
+	    ReadValueFromStringWithDefault( EventPointer , EVENT_ACTION_MODIFY_EVENT_TRIGGER_VALUE_STRING , "%d" , "0",
+		    &AllTriggeredActions[ EventActionNumber ].modify_event_trigger_value , EndOfEvent );
 
-      free(TempMapLabelName);
+	    }
 
-      if ( ! strstr( EventPointer, EVENT_ACTION_MODIFY_EVENT_TRIGGER_STRING ) ) //if there is no event trigger modified
-	{
-	AllTriggeredActions[ EventActionNumber ].modify_event_trigger_with_action_label = "";
-	}
-      else  
-	{
-	AllTriggeredActions[ EventActionNumber ].modify_event_trigger_with_action_label =  	ReadAndMallocStringFromData ( EventPointer , 
-			EVENT_ACTION_MODIFY_EVENT_TRIGGER_STRING , "\"" ) ;
-	}
+	if ( ! strstr( EventPointer, EVENT_ACTION_ALSO_EXECUTE_ACTION_LABEL ) ) //if there is no linked action
+	    {
+	    AllTriggeredActions[ EventActionNumber ].also_execute_action_label = "";
+	    }
+	else
+	    {
+	    AllTriggeredActions[ EventActionNumber ].also_execute_action_label = ReadAndMallocStringFromData ( EventPointer , 
+		    EVENT_ACTION_ALSO_EXECUTE_ACTION_LABEL , "\"" ) ;
+	    }
+
+	EventActionNumber++;
+	*EndOfEvent = EVENT_ACTION_END_STRING[0];
+	} // While Event action begin string found...
 
 
-      ReadValueFromStringWithDefault( EventPointer , EVENT_ACTION_MODIFY_EVENT_TRIGGER_VALUE_STRING , "%d" , "0", 
-			   &AllTriggeredActions[ EventActionNumber ].modify_event_trigger_value , EndOfEvent );
-
-      if ( ! strstr( EventPointer, EVENT_ACTION_ALSO_EXECUTE_ACTION_LABEL ) ) //if there is no linked action
-	{
-	AllTriggeredActions[ EventActionNumber ].also_execute_action_label = "";
-	}
-      else
-	{
-	AllTriggeredActions[ EventActionNumber ].also_execute_action_label = ReadAndMallocStringFromData ( EventPointer , 
-				EVENT_ACTION_ALSO_EXECUTE_ACTION_LABEL , "\"" ) ;
-	}
-
-
-      // Now we read in the new value for that map tile
-      ReadValueFromString( EventPointer , EVENT_ACTION_MAPCHANGE_TO_WHAT_STRING , "%d" , 
-			   &AllTriggeredActions[ EventActionNumber ].ChangeMapTo , EndOfEvent );
-
-      // Now we read in if the text for the influencer to say
-      AllTriggeredActions[ EventActionNumber].InfluencerSayText =
-	ReadAndMallocStringFromData ( EventPointer , EVENT_ACTION_INFLUENCER_SAY_TEXT , "\"" ) ;
-
-      // Now we read in the new mission to assign to the influencer on that event 
-      ReadValueFromString( EventPointer , EVENT_ACTION_ASSIGN_WHICH_MISSION , "%d" , 
-			   &AllTriggeredActions[ EventActionNumber ].AssignWhichMission , EndOfEvent );
-
-      EventActionNumber++;
-    } // While Event action begin string found...
-
-
-  DebugPrintf (1, "\nThat must have been the last Event Action section.\nWe can now start with the Triggers. Good.");  
+    DebugPrintf (1, "\nThat must have been the last Event Action section.\nWe can now start with the Triggers. Good.");  
 
 }; // void decode_all_event_actions ( char* EventSectionPointer )
 
@@ -650,16 +565,18 @@ decode_all_event_triggers ( char* EventSectionPointer )
     int EventTriggerNumber;
     char* TempMapLabelName;
     location TempLocation;
-    
+    char s;
+
     EventPointer=EventSectionPointer;
     EventTriggerNumber=0;
     while ( ( EventPointer = strstr ( EventPointer , EVENT_TRIGGER_BEGIN_STRING ) ) != NULL)
     {
-	DebugPrintf(1, "\nBegin of a new Event Trigger Section found. Good. ");
 	EventPointer += strlen( EVENT_TRIGGER_BEGIN_STRING ) + 1;
 	
-	EndOfEvent = LocateStringInData ( EventSectionPointer , EVENT_TRIGGER_END_STRING );
-	
+	EndOfEvent = LocateStringInData ( EventPointer , EVENT_TRIGGER_END_STRING );
+	s = EndOfEvent[strlen(EVENT_TRIGGER_END_STRING)-1];
+        EndOfEvent[strlen(EVENT_TRIGGER_END_STRING)-1]	= 0;
+
 	DebugPrintf ( 1 , "\nStarting to read details of this event trigger section\n\n");
 	
 	//--------------------
@@ -667,37 +584,18 @@ decode_all_event_triggers ( char* EventSectionPointer )
 	//
 	
 	// Now we read in the triggering position in x and y and z coordinates
-	ReadValueFromString( EventPointer , EVENT_TRIGGER_POS_X_STRING , "%d" , 
-			     &AllEventTriggers[ EventTriggerNumber ].Influ_Must_Be_At_Point.x , EndOfEvent );
-	ReadValueFromString( EventPointer , EVENT_TRIGGER_POS_Y_STRING , "%d" , 
-			     &AllEventTriggers[ EventTriggerNumber ].Influ_Must_Be_At_Point.y , EndOfEvent );
-	ReadValueFromString( EventPointer , EVENT_TRIGGER_POS_MAPLEVEL_STRING , "%d" , 
-			     &AllEventTriggers[ EventTriggerNumber ].Influ_Must_Be_At_Level , EndOfEvent );
-	// but maybe there was a label given.  This will override the pure coordinates...
 	TempMapLabelName = 
 	    ReadAndMallocStringFromData ( EventPointer , EVENT_TRIGGER_LABEL_STRING , "\"" ) ;
-	if ( strcmp ( TempMapLabelName , "NO_LABEL_DEFINED_YET" ) )
-	{
-	    DebugPrintf ( 1 , "\nTrigger coordinates overridden by map label %s." , TempMapLabelName );
 	    ResolveMapLabelOnShip ( TempMapLabelName , &TempLocation );
 	    AllEventTriggers [ EventTriggerNumber ] . Influ_Must_Be_At_Point . x = TempLocation . x ;
 	    AllEventTriggers [ EventTriggerNumber ] . Influ_Must_Be_At_Point . y = TempLocation . y ;
 	    AllEventTriggers[ EventTriggerNumber ] . Influ_Must_Be_At_Level = TempLocation . level ;
-	}
-	else
-	{
-	    DebugPrintf ( 1 , "\nTrigger label unused..." );
-	}
 
 	free ( TempMapLabelName );	
 	
-	// Now we read whether or not to delete the trigger after being triggerd
-	ReadValueFromString( EventPointer , EVENT_TRIGGER_DELETED_AFTER_TRIGGERING , "%d" , 
+	ReadValueFromStringWithDefault( EventPointer , EVENT_TRIGGER_DELETED_AFTER_TRIGGERING , "%d" , "0",
 			     &AllEventTriggers[ EventTriggerNumber ].DeleteTriggerAfterExecution , EndOfEvent );
 	
-	// Now we read in the action to be invoked by this trigger
-	// ReadValueFromString( EventPointer , EVENT_TRIGGER_WHICH_ACTION_STRING , "%d" , 
-	// &AllEventTriggers[ EventTriggerNumber ].EventNumber , EndOfEvent );
 	AllEventTriggers[ EventTriggerNumber ].TargetActionLabel = 
 	    ReadAndMallocStringFromData ( EventPointer , TRIGGER_WHICH_TARGET_LABEL , "\"" ) ;
 
@@ -705,9 +603,11 @@ decode_all_event_triggers ( char* EventSectionPointer )
 			     &AllEventTriggers[ EventTriggerNumber ].enabled , EndOfEvent );
 	
 	EventTriggerNumber++;
+	        EndOfEvent[strlen(EVENT_TRIGGER_END_STRING)-1] = '\0';
+
+	EndOfEvent[strlen(EVENT_TRIGGER_END_STRING)-1] = s;
     } // While Event trigger begin string found...
     
-    DebugPrintf ( 1 , "\nThat must have been the last Event Trigger section.");
 
 }; // void decode_all_event_triggers ( char* EventSectionPointer )
 

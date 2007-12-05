@@ -1920,26 +1920,6 @@ ExecuteEvent ( int EventNumber )
     // Do nothing in case of the empty action (-1) given.
     if ( EventNumber == (-1) ) return;
     
-    // Does the action include a change of a map tile?
-    if ( AllTriggeredActions [ EventNumber ] . ChangeMapTo != -1 )
-    {
-	//YES.  So we need to check, if the location has been supplied fully first.
-	if ( ( AllTriggeredActions[ EventNumber ].ChangeMapLocation.x == (-1) ) ||
-	     ( AllTriggeredActions[ EventNumber ].ChangeMapLocation.y == (-1) ) ||
-	     ( AllTriggeredActions[ EventNumber ].ChangeMapLevel == (-1) ) )
-	{
-	    DebugPrintf( 0 , "\n\nSorry! There has been a corrupt event specification!\n\nTerminating...\n\n");
-	    Terminate(ERR);
-	}
-	else
-	{
-	    DebugPrintf( 1 , "\nvoid ExecuteEvent ( int EventNumber ) : Change map Event correctly specified. confirmed.");
-	    curShip.AllLevels[ AllTriggeredActions[ EventNumber ].ChangeMapLevel ]->map [ AllTriggeredActions[ EventNumber ].ChangeMapLocation.y ] [ AllTriggeredActions[ EventNumber ].ChangeMapLocation.x ]  . floor_value  = AllTriggeredActions[ EventNumber ].ChangeMapTo ;
-	    
-	    GetAllAnimatedMapTiles ( curShip.AllLevels[ AllTriggeredActions[ EventNumber ].ChangeMapLevel ]  );
-	}
-    }
-    
     //--------------------
     // Maybe the action will cause a map obstacle to change type.  If that is so, we
     // do it here...
@@ -1983,20 +1963,6 @@ ExecuteEvent ( int EventNumber )
 		   TRUE );
     }
     
-    // Does the defined action assign the influencer a mission?
-    if ( AllTriggeredActions[ EventNumber ].AssignWhichMission != (-1) )
-    {
-	AssignMission( AllTriggeredActions[ EventNumber ].AssignWhichMission );
-    }
-    
-    // Does the defined action make the influencer say something?
-    if ( strlen ( AllTriggeredActions[ EventNumber ].InfluencerSayText ) > 0 )
-    {
-	//YES. So we need to output his sentence as usual
-	Me.TextVisibleTime=0;
-	Me.TextToBeDisplayed=AllTriggeredActions[ EventNumber ].InfluencerSayText;
-    }
-
     // Does the defined action change another action trigger?
     if ( strlen ( AllTriggeredActions[ EventNumber ] . modify_event_trigger_with_action_label ) > 0 )
 	{

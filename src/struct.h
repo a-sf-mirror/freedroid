@@ -256,14 +256,6 @@ typedef struct
 {
     char* ActionLabel;  // this is a better reference than a number
     
-    // Maybe the triggered event consists of the influencer saying something
-    char* InfluencerSayText;
-    
-    // Maybe the triggered event consists of the map beeing changed at some tile
-    point ChangeMapLocation;
-    int ChangeMapTo;
-    int ChangeMapLevel;
-    
     // Maybe the triggered action will change some obstacle on some level...
     char* modify_obstacle_with_label;
     int modify_obstacle_to_type;
@@ -275,9 +267,6 @@ typedef struct
     point TeleportTarget;
     int TeleportTargetLevel;
     
-    // Maybe the triggered action consists of a mission assignment
-    int AssignWhichMission;
-
     char * also_execute_action_label; //execute another action (linked action)
     
 }
