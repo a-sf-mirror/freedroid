@@ -306,7 +306,6 @@ exist really (i.e. has a type = (-1) ).",
 	    }
 	else if ( MatchItemWithName ( CurItem->type, "Teleporter homing beacon" ) )
 	    {
-	    sprintf( linebuf , _("Teleports you to a safe place, or back to your previous position from your safe place\n") );
 	    sprintf( linebuf , _("Teleports you to town or from town\n back to your previous position\n") );
 	    strcat( ItemDescText , linebuf );
 	    }
