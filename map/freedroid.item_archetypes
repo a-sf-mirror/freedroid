@@ -5,6 +5,19 @@ Copyright (c) 2007 Karol Swietlicki
 Copyright (c) 2007 Stefan Huszics
 
 /****************************************************************************************
+ * General file layout                                                                  *
+ *     Weapons                                                                          *
+ *       - Hand to hand                                                                 *
+ *       - Ranged                                                                       *
+ *       - Grenades/bombs                                                               *
+ *       - Droids & NPC                                                                 *
+ *     Armour                                                                           *
+ *     Potions                                                                          *
+ *     Books                                                                            *
+ *     Other                                                                            *
+ ****************************************************************************************/
+
+/****************************************************************************************
  * If you change a name (CASE sensitive) make sure to check so you dont break things.   *
  * From the source root folder do:  grep -Rn old_name *                                 *
  * or to save time                                                                      *
@@ -13,6 +26,8 @@ Copyright (c) 2007 Stefan Huszics
  * eg:  grep -Rn Droid\ weaponry                                                        *
  ****************************************************************************************/
 
+
+
 *** Start of item data section: ***
 
 Common factor for all ranged weapons bullet speed values: 1.0
@@ -20,20 +35,35 @@ Common factor for all ranged weapons bullet damage values: 1.0
 Common factor for all melee weapons damage values: 1.0
 
 
+/*
+First ID blocked from use, makes game crash when spawned or dropped in editor
+ItemType received: 0.
+----------------------------------------------------------------------
+Freedroid has encountered a problem:
+In Function: DropItemAt.
+FreedroidRPG package and version number: freedroidrpg 0.10.4cvs.
+Received an item type that was outside of range of the allowed item types.
+*/
+
+** Start of new item specification subsection **
+Item name="Spawning item index 0 in editor or drop ingame causes CTD! Dont click this!"
+Item min class for drop=9999
+Item max class for drop=9999
+Item can be applied in combat="no"
+Item can be installed in influ="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="NONE_AVAILABLE_YET"
+Items of this type collect together in inventory="no"
+File or directory name for inventory image="inventory_image_7.png"
+Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
+Base list price=0
+Item description text="Dummy item. If you see this, report a bug."
+** End of new item specification subsection **
+
 
 /**********************************************************************************************************
- *   Weapons                                                                                              *
- *     - Hand to hand                                                                                     *
- *     - Ranged                                                                                           *
- *     - Grenades/bombs                                                                                   *
- *     - Droids & NPC                                                                                     *
- *   Armour                                                                                               *
- *   Potions                                                                                              *
- *   Books                                                                                                *
- *   Other                                                                                                *
+ *       Weapons                                                                                          *
  **********************************************************************************************************/
-
-
 
 /****** Hand to hand ********************************************************************************
 
@@ -1890,7 +1920,7 @@ Item as gun: weapon requires both hands="yes"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Droid weaponry - 249 (Laser machinegun)"
+Item name="Droid weaponry - 249 (Laser pulse welder)"
 Item min class for drop=9999
 Item max class for drop=9999
 Item can be applied in combat="no"
@@ -3448,7 +3478,7 @@ Item description text=""
 
 ** Start of new item specification subsection **
 Item name="Anti-grav Pod for Droids"
-Item min class for drop=2
+Item min class for drop=3
 Item max class for drop=9
 Item can be applied in combat="no"
 Item can be installed in influ="yes"
@@ -3478,7 +3508,7 @@ Item description text="This is a teleporter service toolbox. It's complete and o
 
 ** Start of new item specification subsection **
 Item name="Plasma Transistor"
-Item min class for drop=0
+Item min class for drop=1
 Item max class for drop=9
 Item can be applied in combat="no"
 Item can be installed in influ="no"
@@ -3493,7 +3523,7 @@ Item description text="This is an standard part within many robots types."
 
 ** Start of new item specification subsection **
 Item name="Superconducting Relay Unit"
-Item min class for drop=0
+Item min class for drop=1
 Item max class for drop=9
 Item can be applied in combat="no"
 Item can be installed in influ="no"
@@ -3508,7 +3538,7 @@ Item description text="This is an standard part within many robots types."
 
 ** Start of new item specification subsection **
 Item name="Antimatter-Matter Converter"
-Item min class for drop=0
+Item min class for drop=1
 Item max class for drop=9
 Item can be applied in combat="no"
 Item can be installed in influ="no"
@@ -3523,7 +3553,7 @@ Item description text="This is an standard part within many robot types."
 
 ** Start of new item specification subsection **
 Item name="Entropy Inverter"
-Item min class for drop=0
+Item min class for drop=1
 Item max class for drop=9
 Item can be applied in combat="no"
 Item can be installed in influ="no"
@@ -3538,7 +3568,7 @@ Item description text="This is an standard part within many robots types."
 
 ** Start of new item specification subsection **
 Item name="Tachyon Condensator"
-Item min class for drop=0
+Item min class for drop=1
 Item max class for drop=9
 Item can be applied in combat="no"
 Item can be installed in influ="no"
@@ -3742,9 +3772,11 @@ Item can be installed in influ="no"
 Item can be installed in slot with name="none"
 Item uses rotation series with prefix="vmx_grenade"
 Items of this type collect together in inventory="yes"
-File or directory name for inventory image="vmx_grenade/inv_image.png"
+File or directory name for inventory image="vmx_grenade/beacon-inv_image.png"
 Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=40
+inventory_size_y=1
+inventory_size_x=1
 Item description text="This device sends a signal to a nearby teleporter requesting a transportation and then helping with locking on and boosting the signal to ensure the teleportation attempt is succcessful. The battery inside is enough for one use only and the device becomes useless afterwards. At least, most people dont even try to use them twice, and those few who do usually end up with parts of their body missing or attached in the wrong place.  Note:  Multiple of these may be grouped together in the inventory."
 ** End of new item specification subsection **
 

@@ -64,7 +64,7 @@ Common factor for all droids acceleration values: 3.0
 Common factor for all droids maximum energy values: 0.8
 Common factor for all droids energyloss values: 0.05
 Common factor for all droids aggression values: 1.0
-Common factor for all droids experience_reward values: 0.5
+Common factor for all droids experience_reward values: 0.8
 Common factor for all droids recovery time after hit: 1.0
 Common factor for all droids range of vision: 1.4
 Co**mmon factor for all droids range of vision: 0.2
@@ -199,7 +199,7 @@ Drive of this droid : 3
 Sensor 2 of this droid : 0
 Armament of this droid : 0
 Drive item=8
-Weapon item="Droid weaponry - 249 (Laser machinegun)"
+Weapon item="Droid weaponry - 249 (Laser pulse welder)"
 Number of Entropy Inverters=5
 Number of Tach. Condensators=6
 Greeting Sound number=10
