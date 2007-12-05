@@ -30,11 +30,11 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-New Option Nr=0  OptionText=" Login : tux  Password : *******"
+New Option Nr=0  OptionText="Login : tux  Password : *******
+Last login from dev/ttyS0 on Sun, 23 mar 2057.
+tux@hacked_bot: ~ #"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=71  PositionY=177  
-Subtitle="Last login from dev/ttyS0 on Sun, 23 mar 2057. tux@hacked_bot: ~ #"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=0 ChangeToValue=0
 ChangeOption=1 ChangeToValue=1
 ChangeOption=2 ChangeToValue=1
@@ -50,6 +50,9 @@ PositionX=155  PositionY=186
 Subtitle="Pulling breaks, using script V 1.0.2 (c) gnu.org, 2054 Checking requirements. Energy on breaks. Done. Status: All movement suppressed."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=1 ChangeToValue=0
+ChangeOption=2 ChangeToValue=1
+ChangeOption=3 ChangeToValue=1
+ChangeOption=4 ChangeToValue=1
 DoSomethingExtra="SetCompletelyFixedProperty"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -60,7 +63,10 @@ OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=156  PositionY=107  
 Subtitle="Initiating tracking sequence. Energy on breaks removed. Trying to keep up with Tux position now. Ok. Following Tux."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
+ChangeOption=1 ChangeToValue=1
 ChangeOption=2 ChangeToValue=0
+ChangeOption=3 ChangeToValue=1
+ChangeOption=4 ChangeToValue=1
 DoSomethingExtra="SetFollowTuxProperty"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -71,22 +77,23 @@ OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=155  PositionY=250  
 Subtitle="Removing energy from breaks. Resuming normal patrol operations. Done. Status: Patrolling."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
+ChangeOption=1 ChangeToValue=1
+ChangeOption=2 ChangeToValue=1
 ChangeOption=3 ChangeToValue=0
+ChangeOption=4 ChangeToValue=1
 DoSomethingExtra="SetMoveFreelyProperty"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=4  OptionText=" ./hcf.py"
+New Option Nr=4  OptionText=" ./self_destruct.py"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=200  PositionY=200  
-Subtitle="Executing: Halt and Catch Fire."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="Cooling subsystems disabled."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="Warning! Spontaneous oxidization witH emis$ion of light aND heAt detecteddd in THE#main| procesIng unit,"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="SsTeM=#faiPure%^#n 3 S 1()$++"
+Subtitle="> Executing: Turn off Cooling.
+Warning! Cooling subsystems disabled.
+> Executing: System stress test.
+Warning! Spontaneous oxidization witH emis$ion of light aND heAt detecteddd in THE#main| procesIng unit.
+WArn|n*! SsTeM=#faiPure%^#n 3 S 1()$++"
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=4 ChangeToValue=0
 LinkedTo:10
