@@ -1190,20 +1190,21 @@ Pump action      - lvl 5 - 2H - Dam: 2-14 - Recharge: 0.6 - Reload: 4.0 - Clip: 
 Heavysniperrifle - lvl 8 - 2H - Dam:40-240- Recharge: 1.2 - Reload: 4.0 - Clip: 10 - Size 2x6 - Dur 10-20 - 2000
 
 *** Energy ***
-Laser Ammo       - lvl 6 - Speed: 45                                                                      - 2 
+Laser Ammo       - lvl 4 - Speed: 45                                                                      - 2 
 Laser Pistol     - lvl 6 - 1H - Dam: 4-10 - Recharge: 0.4 - Reload: 3.0 - Clip: 12 - Size 1x2 - Dur 10-20 - 500
 Laser Rifle      - lvl 7 - 2H - Dam: 8-16 - Recharge: 0.6 - Reload: 4.0 - Clip: 24 - Size 1x4 - Dur 10-20 - 1000
-Small Pulslaser  - lvl 7 - 2H - Dam: 3-8  - Recharge: 0.2 - Reload: 3.0 - Clip: 60 - Size 2x3 - Dur 10-20 - 1000
-Puls Laser       - lvl 8 - 2H - Dam: 6-14 - Recharge: 0.2 - Reload: 4.0 - Clip: 60 - Size 2x4 - Dur 10-20 - 2000
+Small Pulslaser  - lvl 7 - 2H - Dam: 3-8  - Recharge: 0.15- Reload: 3.0 - Clip: 60 - Size 2x3 - Dur 10-20 - 1000
+Puls Laser       - lvl 8 - 2H - Dam: 6-14 - Recharge: 0.15- Reload: 4.0 - Clip: 60 - Size 2x4 - Dur 10-20 - 2000
 
-Plasma Ammo      - lvl 6 - Speed: 15                                                                      - 4 
+Plasma Ammo      - lvl 4 - Speed: 15                                                                      - 4 
 Plasma Pistol    - lvl 6 - 1H - Dam:12-18 - Recharge: 0.75- Reload: 3.0 - Clip:  6 - Size 1x2 - Dur 10-20 - 750
-Plasma Cannon    - lvl 7 - 2H - Dam:16-22 - Recharge: 0.75- Reload: 4.0 - Clip: 24 - Size 2x5 - Dur 10-20 - 1500
+Plasma Gun       - lvl 7 - 2H - Dam:24-30 - Recharge: 1.0 - Reload: 3.0 - Clip:  8 - Size 2x3 - Dur 10-20 - 1200
+Plasma Cannon    - lvl 8 - 2H - Dam:50-80 - Recharge: 1.5 - Reload: 4.0 - Clip:  8 - Size 2x5 - Dur 10-20 - 1800
 
 *** Caseless & Magnetic etc ***  Implement more later?
 Exterminator Ammo- lvl 6 - Speed: 30                                                                      - 5 
-Exterminator     - lvl 8 - 2H - Dam: 8-48  -Recharge: 0.15- Reload: 5.0 - Clip:  2 - Size ?   - Dur 10-20 - 1000
-Super Ext        - lvl 9 - 2H - Dam:90-140 -Recharge: 0.15- Reload: 5.0 - Clip:  2 - Size ?   - Dur 10-20 - 3000
+Exterminator     - lvl 8 - 2H - Dam: 8-48  -Recharge: 0.5 - Reload: 5.0 - Clip:  2 - Size ?   - Dur 10-20 - 1000
+Super Ext        - lvl 9 - 2H - Dam:90-140 -Recharge: 0.5 - Reload: 5.0 - Clip:  2 - Size ?   - Dur 10-20 - 3000
 
 
 ******************************************************************************************************/
@@ -1719,7 +1720,7 @@ Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=2000
 inventory_size_x=2
 inventory_size_y=6
-Item description text=""
+Item description text="Powerfull enough to stop a truck, literally, the likelyness of even a battle droid surviving more than 2 hits by this weapon is quite slim. It doesnt even matter if the pesky droid is cowering behind a wall, the bullets will break right through and make the bot ready for the scrap heap in notime."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=1.200000
 Item as gun: reloading time=4.000000
@@ -1744,8 +1745,8 @@ Item as gun: weapon requires both hands="yes"
 
 ** Start of new item specification subsection **
 Item name="Laser Weapon Ammunition"
-Item min class for drop=8888
-Item max class for drop=9999
+Item min class for drop=4
+Item max class for drop=9
 Item number dropped min=10
 Item number dropped max=20
 Item can be applied in combat="no"
@@ -1761,8 +1762,8 @@ Item description text="Energy crystal load for laser rifles. Each round fired co
 
 ** Start of new item specification subsection **
 Item name="Laser pistol"
-Item min class for drop=8888
-Item max class for drop=9999
+Item min class for drop=6
+Item max class for drop=8
 Item can be applied in combat="no"
 Item can be installed in influ="yes"
 Item can be installed in slot with name="weapon"
@@ -1773,14 +1774,16 @@ plus duration modifier=10
 File or directory name for inventory image="inventory_image_18.png"
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=500
+inventory_size_x=1
+inventory_size_y=2
 Item description text="A basic laser, but it has good uses in certain situations. No warranty of any kind though."
 ----- the following part is only relevant for weapons -----
-Item as gun: recharging time=0.900000
+Item as gun: recharging time=0.400000
 Item as gun: reloading time=3.000000
-Item as gun: speed of bullets=32.000000
+Item as gun: speed of bullets=45.000000
 Item as gun: angle change of bullets=0.000000
-Item as gun: damage of bullets=6
-Item as gun: modifier for damage of bullets=9
+Item as gun: damage of bullets=4
+Item as gun: modifier for damage of bullets=6
 Item as gun: one_shot_only=0
 Item as gun: bullet_image_type=6
 Item as gun: bullet_lifetime=-1.000000
@@ -1792,14 +1795,14 @@ Item as gun: pass through explosions="no"
 Item as gun: pass through hit bodies="no"
 Item as gun: required ammunition type="laser_ammunition"
 Item as gun: ammo clip size=12
-Item as gun: weapon requires both hands="yes"
+Item as gun: weapon requires both hands="no"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
 Item name="Laser Rifle"
-Item min class for drop=8888
-Item max class for drop=9999
+Item min class for drop=7
+Item max class for drop=9
 Item can be applied in combat="no"
 Item can be installed in influ="yes"
 Item can be installed in slot with name="weapon"
@@ -1809,14 +1812,14 @@ Base item duration=10
 plus duration modifier=10
 File or directory name for inventory image="inventory_image_14.png"
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
-Base list price=600
-inventory_size_x=2
-inventory_size_y=2
+Base list price=1000
+inventory_size_x=1
+inventory_size_y=4
 Item description text="This rifle is a high-end laser weapon. There is only one problem with it: Shooting it is too much fun. People often end up with no ammunition in the middle of a battle."
 ----- the following part is only relevant for weapons -----
-Item as gun: recharging time=0.500000
-Item as gun: reloading time=3.000000
-Item as gun: speed of bullets=32.000000
+Item as gun: recharging time=0.600000
+Item as gun: reloading time=4.000000
+Item as gun: speed of bullets=45.000000
 Item as gun: angle change of bullets=0.000000
 Item as gun: damage of bullets=8
 Item as gun: modifier for damage of bullets=8
@@ -1830,17 +1833,54 @@ Item as gun: reflect other bullets="no"
 Item as gun: pass through explosions="no"
 Item as gun: pass through hit bodies="no"
 Item as gun: required ammunition type="laser_ammunition"
-Item as gun: ammo clip size=30
+Item as gun: ammo clip size=24
 Item as gun: weapon requires both hands="yes"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
-//Pulslaser
+** Start of new item specification subsection **
+Item name="Small Puls Laser"
+Item min class for drop=7
+Item max class for drop=9
+Item can be applied in combat="no"
+Item can be installed in influ="yes"
+Item can be installed in slot with name="weapon"
+Item uses rotation series with prefix="plasma_double"
+Items of this type collect together in inventory="no"
+Base item duration=10
+plus duration modifier=10
+File or directory name for inventory image="inventory_image_14.png"
+Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
+Base list price=1000
+Item description text="The pulse laser technology, allowing for many repreated short burts without the weapon overheating, makes this quite a useful weapon. The damage from each shot is noticably less then from a Laser rifle, but the firing rate more then makes up for it."
+inventory_size_x=2
+inventory_size_y=3
+----- the following part is only relevant for weapons -----
+Item as gun: recharging time=0.150000
+Item as gun: reloading time=3.000000
+Item as gun: speed of bullets=45.000000
+Item as gun: angle change of bullets=0.000000
+Item as gun: damage of bullets=3
+Item as gun: modifier for damage of bullets=5
+Item as gun: one_shot_only=0
+Item as gun: bullet_image_type=0
+Item as gun: bullet_lifetime=-1.000000
+Item as gun: offset for melee weapon=0.000000
+Item as gun: modifier for starting angle=0.000000
+Item as gun: ignore collisions with wall="no"
+Item as gun: reflect other bullets="no"
+Item as gun: pass through explosions="no"
+Item as gun: pass through hit bodies="no"
+Item as gun: required ammunition type="laser_ammunition"
+Item as gun: ammo clip size=60
+Item as gun: weapon requires both hands="yes"
+----- end of part only relevant for weapons -----
+** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Twin Laser"
-Item min class for drop=8888
-Item max class for drop=9999
+Item name="Puls Laser"
+Item min class for drop=8
+Item max class for drop=9
 Item can be applied in combat="no"
 Item can be installed in influ="yes"
 Item can be installed in slot with name="weapon"
@@ -1851,16 +1891,16 @@ Base item duration=10
 plus duration modifier=10
 File or directory name for inventory image="inventory_image_14.png"
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
-Base list price=350
-Item description text="The twin laser is small, but does its job. A somewhat cheap but effective weapon."
+Base list price=2000
+Item description text="The pulse laser technology, allowing for many repeated short burts without the weapon overheating, combined with a design for military purpuse makes this weapon the perfered choise for most soldiers. It's recoil free, quick firing, large mag & killing power makes it the ideal weapon for cleansing out big droid infestations in mere minutes."
 inventory_size_x=2
-inventory_size_y=2
+inventory_size_y=4
 ----- the following part is only relevant for weapons -----
-Item as gun: recharging time=0.950000
-Item as gun: reloading time=3.000000
-Item as gun: speed of bullets=16.000000
+Item as gun: recharging time=0.150000
+Item as gun: reloading time=4.000000
+Item as gun: speed of bullets=45.000000
 Item as gun: angle change of bullets=0.000000
-Item as gun: damage of bullets=4
+Item as gun: damage of bullets=6
 Item as gun: modifier for damage of bullets=8
 Item as gun: one_shot_only=0
 Item as gun: bullet_image_type=0
@@ -1872,15 +1912,15 @@ Item as gun: reflect other bullets="no"
 Item as gun: pass through explosions="no"
 Item as gun: pass through hit bodies="no"
 Item as gun: required ammunition type="laser_ammunition"
-Item as gun: ammo clip size=30
+Item as gun: ammo clip size=60
 Item as gun: weapon requires both hands="yes"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
 Item name="Plasma Weapon Ammunition"
-Item min class for drop=8888
-Item max class for drop=9999
+Item min class for drop=4
+Item max class for drop=9
 Item number dropped min=10
 Item number dropped max=20
 Item can be applied in combat="no"
@@ -1898,8 +1938,8 @@ Item description text="Plasma crystal load. This is the most common way of loadi
 
 ** Start of new item specification subsection **
 Item name="Plasma pistol"
-Item min class for drop=8888
-Item max class for drop=9999
+Item min class for drop=6
+Item max class for drop=8
 Item can be applied in combat="no"
 Item can be installed in influ="yes"
 Item can be installed in slot with name="weapon"
@@ -1910,11 +1950,13 @@ plus duration modifier=10
 File or directory name for inventory image="inventory_image_18.png"
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=750
-Item description text="The basic plasma gun."
+inventory_size_x=1
+inventory_size_y=3
+Item description text="The basic plasma weapon in a conveniently small package."
 the following part is only relevant for weapons -----
 Item as gun: recharging time=0.750000
-Item as gun: reloading time=2.500000
-Item as gun: speed of bullets=16.000000
+Item as gun: reloading time=3.000000
+Item as gun: speed of bullets=15.000000
 Item as gun: angle change of bullets=0.000000
 Item as gun: damage of bullets=12
 Item as gun: modifier for damage of bullets=6
@@ -1929,16 +1971,92 @@ Item as gun: pass through explosions="no"
 Item as gun: pass through hit bodies="no"
 Item as gun: required ammunition type="plasma_ammunition"
 Item as gun: ammo clip size=6
+Item as gun: weapon requires both hands="no"
+----- end of part only relevant for weapons -----
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
+Item name="Plasma gun"
+Item min class for drop=7
+Item max class for drop=9
+Item can be applied in combat="no"
+Item can be installed in influ="yes"
+Item can be installed in slot with name="weapon"
+Item uses rotation series with prefix="plasma_single"
+Items of this type collect together in inventory="no"
+Base item duration=10
+plus duration modifier=10
+File or directory name for inventory image="inventory_image_18.png"
+Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
+Base list price=1200
+inventory_size_x=2
+inventory_size_y=3
+Item description text="A somewhat slow weapon, but once you do hit plenty a bot just melts down on the spot. A good alternative to a pulse laser for the skilled marksman."
+the following part is only relevant for weapons -----
+Item as gun: recharging time=1.000000
+Item as gun: reloading time=3.000000
+Item as gun: speed of bullets=15.000000
+Item as gun: angle change of bullets=0.000000
+Item as gun: damage of bullets=24
+Item as gun: modifier for damage of bullets=6
+Item as gun: one_shot_only=0
+Item as gun: bullet_image_type=7
+Item as gun: bullet_lifetime=-1.000000
+Item as gun: offset for melee weapon=0.000000
+Item as gun: modifier for starting angle=0.000000
+Item as gun: ignore collisions with wall="no"
+Item as gun: reflect other bullets="no"
+Item as gun: pass through explosions="no"
+Item as gun: pass through hit bodies="no"
+Item as gun: required ammunition type="plasma_ammunition"
+Item as gun: ammo clip size=8
 Item as gun: weapon requires both hands="yes"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
-//Item name="Plasma cannon"
+** Start of new item specification subsection **
+Item name="Plasma cannon"
+Item min class for drop=8
+Item max class for drop=9
+Item can be applied in combat="no"
+Item can be installed in influ="yes"
+Item can be installed in slot with name="weapon"
+Item uses rotation series with prefix="plasma_single"
+Items of this type collect together in inventory="no"
+Base item duration=10
+plus duration modifier=10
+File or directory name for inventory image="inventory_image_18.png"
+Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
+Base list price=1800
+inventory_size_x=2
+inventory_size_y=5
+Item description text="The very slow firing rate is made up pleanty by the awesome power of this weapon. Its main use in the military is as a close support weapon complementing the soldiers bread&butter pulse lasers, especially when attacking enemies behind cover."
+the following part is only relevant for weapons -----
+Item as gun: recharging time=1.000000
+Item as gun: reloading time=4.000000
+Item as gun: speed of bullets=15.000000
+Item as gun: angle change of bullets=0.000000
+Item as gun: damage of bullets=50
+Item as gun: modifier for damage of bullets=30
+Item as gun: one_shot_only=0
+Item as gun: bullet_image_type=7
+Item as gun: bullet_lifetime=-1.000000
+Item as gun: offset for melee weapon=0.000000
+Item as gun: modifier for starting angle=0.000000
+Item as gun: ignore collisions with wall="yes"
+Item as gun: reflect other bullets="no"
+Item as gun: pass through explosions="no"
+Item as gun: pass through hit bodies="no"
+Item as gun: required ammunition type="plasma_ammunition"
+Item as gun: ammo clip size=8
+Item as gun: weapon requires both hands="yes"
+----- end of part only relevant for weapons -----
+** End of new item specification subsection **
 
 ** Start of new item specification subsection **
 Item name="2 mm Exterminator Ammunition"
-Item min class for drop=8888
-Item max class for drop=9999
+Item min class for drop=6
+Item max class for drop=9
 Item number dropped min=5
 Item number dropped max=10
 Item can be applied in combat="no"
@@ -1956,8 +2074,8 @@ Item description text="Exterminators need this kind of ammunition. It can cause 
 
 ** Start of new item specification subsection **
 Item name="Exterminator"
-Item min class for drop=8888
-Item max class for drop=9999
+Item min class for drop=8
+Item max class for drop=9
 Item can be applied in combat="no"
 Item can be installed in influ="yes"
 Item can be installed in slot with name="weapon"
@@ -1967,12 +2085,12 @@ Base item duration=10
 plus duration modifier=10
 File or directory name for inventory image="exterminator_simple/inv_image.png"
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
-Base list price=1001
+Base list price=1000
 Item description text="While this weapon is capable of firing really powerful shots, beware of the exceptionally long reloading times. (Don't get swarmed by enemies with this weapon unless you have powerful armor!)"
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.5000000
 Item as gun: reloading time=4.000000
-Item as gun: speed of bullets=35.000000
+Item as gun: speed of bullets=30.000000
 Item as gun: angle change of bullets=0.000000
 Item as gun: damage of bullets=8
 Item as gun: modifier for damage of bullets=40
@@ -2000,18 +2118,16 @@ Item can be installed in influ="yes"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="exterminator_simple"
 Items of this type collect together in inventory="no"
-Strength minimum required to wear/wield this item=20
-Dexterity minimum required to wear/wield this item=45
 Base item duration=10
 plus duration modifier=10
 File or directory name for inventory image="exterminator_simple/inv_image.png"
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
-Base list price=1001
+Base list price=3000
 Item description text="This bad boy has been known to blow away enemies with a single blast. A dangerous weapon that you don't want to be on the receiving end of."
 ----- the following part is only relevant for weapons -----
-Item as gun: recharging time=0.150000
+Item as gun: recharging time=0.500000
 Item as gun: reloading time=5.000000
-Item as gun: speed of bullets=35.000000
+Item as gun: speed of bullets=30.000000
 Item as gun: angle change of bullets=0.000000
 Item as gun: damage of bullets=90
 Item as gun: modifier for damage of bullets=50
