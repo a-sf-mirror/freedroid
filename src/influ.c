@@ -3233,7 +3233,7 @@ void TuxReloadWeapon()
 	case 7: //7.62mm
 	    munition_type = GetItemIndexByName("7.62x39mm Ammunition"); 
 	    break;
-	case 7: //50BMG
+	case 8: //50BMG
 	    munition_type = GetItemIndexByName(".50 BMG (12.7x99mm) Ammunition"); 
 	    break;
 	default:
