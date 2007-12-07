@@ -35,7 +35,7 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=267  PositionY=283  
 ChangeOption=0 ChangeToValue=0
 ChangeOption=99 ChangeToValue=1
-OnCondition="GoldIsLessThan:50" JumpToOption=90 ElseGoto=1
+OnCondition="CookieIsPlanted:know_extract5:" JumpToOption=75 ElseGoto=76
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
@@ -232,6 +232,14 @@ PositionX=478  PositionY=77
 Subtitle="Nein, I told you everything I know about that. No use asking me twice, ja?"
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=75 ChangeToValue=0
+AlwaysExecuteThisOptionPriorToDialogStart="no"
+
+----------------------------------------------------------------------
+
+New Option Nr=76  OptionText="CHECK IF MONEY ENOUGH"
+OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+PositionX=267  PositionY=283  
+OnCondition="GoldIsLessThan:50" JumpToOption=90 ElseGoto=1
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
