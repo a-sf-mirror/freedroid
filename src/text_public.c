@@ -1283,7 +1283,7 @@ answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.",
 		{
 		ItemMap[ItemIndex].item_gun_use_ammunition = 4;
 		}
-	    else if ( strcmp( YesNoString, "Sshells" ) == 0 )
+	    else if ( strcmp( YesNoString, "Sshell" ) == 0 )
 		{
 		ItemMap[ItemIndex].item_gun_use_ammunition = 5;
 		}

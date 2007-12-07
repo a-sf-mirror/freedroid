@@ -1328,9 +1328,9 @@ Item number dropped max=20
 Item can be applied in combat="no"
 Item can be installed in influ="no"
 Item can be installed in slot with name="none"
-Item uses rotation series with prefix="ammo_laser_bullet"
+Item uses rotation series with prefix="ammo_laser_crystal"
 Items of this type collect together in inventory="yes"
-File or directory name for inventory image="ammo_laser_bullet/inv_image.png"
+File or directory name for inventory image="ammo_laser_crystal/inv_image.png"
 inventory_size_x=2
 inventory_size_y=2
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
@@ -1536,7 +1536,7 @@ Item as gun: weapon requires both hands="no"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="9mm Automatic"
+Item name="9mm Sub Machine Gun"
 Item min class for drop=6
 Item max class for drop=8
 Item can be applied in combat="no"
