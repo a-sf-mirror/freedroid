@@ -124,8 +124,8 @@ Items of this type collect together in inventory="no"
 Base item duration=7
 plus duration modifier=2
 File or directory name for inventory image="laser_sword_red/inv_image.png"
-inventory_size_y=3
 inventory_size_x=1
+inventory_size_y=3
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=30
 Item description text="Light and maneuverable in combat, but unfortunately not very effective in cutting through steel as well as quickly reaching the point of breaking if you try. Though for sure better than hitting at metal with your bare fists."
@@ -165,8 +165,8 @@ Dexterity minimum required to wear/wield this item=20
 Base item duration=8
 plus duration modifier=4
 File or directory name for inventory image="laser_sword_red/inv_image.png"
-inventory_size_y=4
 inventory_size_x=1
+inventory_size_y=4
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=60
 Item description text="Long reach while remaining maneuverable enough in combat to find the weak spots in droid armour are the advantages that partially makes up for the inability of a cutting blade to incur lots of damage on a heavily protected target. Repeatedly striking at metal quickly damages the blade though."
@@ -206,8 +206,8 @@ Dexterity minimum required to wear/wield this item=20
 Base item duration=10
 plus duration modifier=5
 File or directory name for inventory image="laser_sword_red/inv_image.png"
-inventory_size_y=5
 inventory_size_x=2
+inventory_size_y=5
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=300
 Item description text="The size and kinetic force achievable with this 2 handed sword is enough to cleave straight through the armour of a low level droid. The strain on the sword from high impact hits into metal will however require frequent maintenance to not have it break in half exactly when it's most needed."
@@ -247,8 +247,8 @@ Dexterity minimum required to wear/wield this item=20
 Base item duration=5
 plus duration modifier=1
 File or directory name for inventory image="laser_sword_red/inv_image.png"
-inventory_size_y=4
 inventory_size_x=2
+inventory_size_y=4
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=500
 Item description text="Quite efficient at separating limbs off even a droid body or digging through weaker armoured parts to cause massive damage on internal electronics. But the chain wears out very quickly when used on materials harder then wood and supply shortages of new chains and other parts makes it expensive to maintain."
@@ -294,8 +294,8 @@ Dexterity minimum required to wear/wield this item=0
 Base item duration=10
 plus duration modifier=5
 File or directory name for inventory image="laser_sword_red/inv_image.png"
-inventory_size_y=2
 inventory_size_x=2
+inventory_size_y=2
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=30
 Item description text="Designed to chop through meat and bones, it's not as fragile as swords when used against metal enemies. Though it is a bit more slow and clumsy to use then the grace full swords."
@@ -335,8 +335,8 @@ Dexterity minimum required to wear/wield this item=15
 Base item duration=10
 plus duration modifier=5
 File or directory name for inventory image="laser_sword_red/inv_image.png"
-inventory_size_y=2
 inventory_size_x=2
+inventory_size_y=2
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=40
 Item description text="While this axe was made for splitting wood, with some luck it can damage vital parts of a droid as well."
@@ -376,8 +376,8 @@ Dexterity minimum required to wear/wield this item=15
 Base item duration=12
 plus duration modifier=5
 File or directory name for inventory image="laser_sword_red/inv_image.png"
-inventory_size_y=3
 inventory_size_x=2
+inventory_size_y=3
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=80
 Item description text="Big enough to fell a small tree, it's also capable of leaving big dents in a droid."
@@ -417,8 +417,8 @@ Dexterity minimum required to wear/wield this item=20
 Base item duration=14
 plus duration modifier=5
 File or directory name for inventory image="laser_sword_red/inv_image.png"
-inventory_size_y=4
 inventory_size_x=2
+inventory_size_y=4
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=120
 Item description text="While this weapon is somewhat slow and cumbersome to use, it does pack a pretty good punch, many times capable of taking out lesser droids in 1 single hit"
@@ -464,8 +464,8 @@ Dexterity minimum required to wear/wield this item=0
 Base item duration=6
 plus duration modifier=4
 File or directory name for inventory image="laser_dagger/inv_image.png"
-inventory_size_y=2
 inventory_size_x=1
+inventory_size_y=2
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=25
 Item description text="A short stabbing weapon like a dagger doesn't have much effect on the metal body of a droid, but with luck you might damage some wires or hoses in less protected areas so it's still better then trying to take on the machines with bare hands."
@@ -505,8 +505,8 @@ Dexterity minimum required to wear/wield this item=22
 Base item duration=3
 plus duration modifier=4
 File or directory name for inventory image="laser_sword_red/inv_image.png"
-inventory_size_y=5
 inventory_size_x=1
+inventory_size_y=5
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=15
 Item description text="The best to be said about a wooden spear is that it will allow you to stand far enough away to jab at a single enemy without giving him much chance to hit back. Neither damage nor durability is very much to write home about."
@@ -546,8 +546,8 @@ Dexterity minimum required to wear/wield this item=27
 Base item duration=15
 plus duration modifier=5
 File or directory name for inventory image="laser_sword_red/inv_image.png"
-inventory_size_y=5
 inventory_size_x=1
+inventory_size_y=5
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=80
 Item description text="A spear forged from metal considerably improves from the wooden spears damage and durability, but the increased weight does make it somewhat slower and more cumbersome to use. It's still a fast weapon though compared to most other."
@@ -593,8 +593,8 @@ Dexterity minimum required to wear/wield this item=0
 Base item duration=15
 plus duration modifier=5
 File or directory name for inventory image="laser_sword_yellow/inv_image.png"
-inventory_size_y=3
 inventory_size_x=1
+inventory_size_y=3
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=80
 Item description text="Something originally intended for breaking up doors or pulling out nails can also be used to break open droid skulls or give enough leverage to pull off their extremities."
@@ -634,8 +634,8 @@ Dexterity minimum required to wear/wield this item=0
 Base item duration=12
 plus duration modifier=5
 File or directory name for inventory image="laser_sword_yellow/inv_image.png"
-inventory_size_y=3
 inventory_size_x=1
+inventory_size_y=3
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=20
 Item description text="A medium sized water pipe from iron can turn into an effective weapon even vs a metal opponent. While not likely to penetrate the armour of a bot, the impact force alone can still damage and shake loose circuit boards and weldings beneath the protective metal layer."
@@ -675,8 +675,8 @@ Dexterity minimum required to wear/wield this item=23
 Base item duration=6
 plus duration modifier=4
 File or directory name for inventory image="laser_sword_yellow/inv_image.png"
-inventory_size_y=4
 inventory_size_x=1
+inventory_size_y=4
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=100
 Item description text="It might not be so sturdy, but if you manage to get in a good hit the kinetic energy might be enough to damage internal electronics even if there is a small dent on the outside."
@@ -716,8 +716,8 @@ Dexterity minimum required to wear/wield this item=0
 Base item duration=5
 plus duration modifier=5
 File or directory name for inventory image="laser_sword_yellow/inv_image.png"
-inventory_size_y=3
 inventory_size_x=2
+inventory_size_y=3
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=5
 Item description text="A club from a tree branch is certainly not your preferred choice of weapon to use, but it might be your only..."
@@ -757,8 +757,8 @@ Dexterity minimum required to wear/wield this item=0
 Base item duration=5
 plus duration modifier=5
 File or directory name for inventory image="laser_sword_yellow/inv_image.png"
-inventory_size_y=4
 inventory_size_x=1
+inventory_size_y=4
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=5
 Item description text="In desperate situations even ordinary objects can turn into makeshift weapons."
@@ -798,8 +798,8 @@ Dexterity minimum required to wear/wield this item=20
 Base item duration=5
 plus duration modifier=5
 File or directory name for inventory image="club/inv_image.png"
-inventory_size_y=4
 inventory_size_x=2
+inventory_size_y=4
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=25
 Item description text="With 1-2 good two handed swings a former droids head might fly far enough for you to score a home run. Just make sure to bring a backup weapon because wooden bats have a predilection for easily splitting in two after too many hard hits."
@@ -839,8 +839,8 @@ Dexterity minimum required to wear/wield this item=15
 Base item duration=20
 plus duration modifier=5
 File or directory name for inventory image="laser_sword_yellow/inv_image.png"
-inventory_size_y=5
 inventory_size_x=1
+inventory_size_y=5
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=70
 Item description text="A bit slow and cumbersome to use and prohibiting the security of a shield to cower behind, this weapon isn't always a good option. But once you do hit you are sure to do more then just a scratch."
@@ -880,8 +880,8 @@ Dexterity minimum required to wear/wield this item=15
 Base item duration=20
 plus duration modifier=5
 File or directory name for inventory image="mace/inv_image.png"
-inventory_size_y=3
 inventory_size_x=1
+inventory_size_y=3
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=150
 Item description text="The mace proved already on the medieval battlefield that it was good at crushing even heavily armoured skulls. Unfortunately for the droids this old knowledge still holds true."
@@ -962,8 +962,8 @@ Dexterity minimum required to wear/wield this item=20
 Base item duration=30
 plus duration modifier=35
 File or directory name for inventory image="laser_sword_yellow/inv_image.png"
-inventory_size_y=5
 inventory_size_x=2
+inventory_size_y=5
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=200
 Item description text="Very slow and only for the strongest, but only the thougher droids can survive more then 1-2 direct hits."
@@ -1009,8 +1009,8 @@ Dexterity minimum required to wear/wield this item=40
 Base item duration=100
 plus duration modifier=0
 File or directory name for inventory image="laser_sword_green/inv_image.png"
-inventory_size_y=2
 inventory_size_x=1
+inventory_size_y=2
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=1500
 Item description text="In the hands of a true master, this excellent technological craftsmanship is as deadly as it is beautiful."
@@ -1050,8 +1050,8 @@ Dexterity minimum required to wear/wield this item=50
 Base item duration=100
 plus duration modifier=0
 File or directory name for inventory image="laser_staff/inv_image.png"
+
 inventory_size_y=3
-inventory_size_x=1
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=2000
 Item description text="A close combat master with this weapon in his hands is a pure whirling dervish of death."
@@ -1093,8 +1093,8 @@ Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="laser_dagger"
 Items of this type collect together in inventory="no"
 File or directory name for inventory image="laser_dagger/inv_image.png"
-inventory_size_y=2
 inventory_size_x=2
+inventory_size_y=2
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=0
 Item description text="This blade pulses with evil. That power. That energy. Nothing can stop you now."
@@ -1130,8 +1130,8 @@ Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="laser_dagger"
 Items of this type collect together in inventory="no"
 File or directory name for inventory image="laser_dagger/inv_image.png"
-inventory_size_y=1
 inventory_size_x=1
+inventory_size_y=1
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=50
 Item description text="I murdered the only person within a thousand miles who can heal me, and all I got was this lousy scalpel."
@@ -1163,7 +1163,7 @@ Item as gun: weapon requires both hands="no"
 
 /****** Ranged **************************************************************************************
 
-Ranged weaps durability test not done!
+Ranged weaps durability balancing not done! Need code change (weapons wear down during use, not when char hit)
 Conventional main disadvantage - Expensive ammo!!
 
 *** Conventional ***
@@ -1172,33 +1172,33 @@ Conventional main disadvantage - Expensive ammo!!
 .22 LR Rifle     - lvl 4 - 2H - Dam: 1-4  - Recharge: 0.2 - Reload:10.0 - Clip: 11 - Size 1x5 - Dur 10-20 - 250
 
 Shotgun Ammo     - lvl 4 - Speed: 30                                                                      - 12
-Saw off          - lvl 4 - 1H - Dam: 2-10 - Recharge: 0.2 - Reload: 5.0 - Clip:  2 - Size 1x5 - Dur 10-20 - 200
-2 barrel         - lvl 4 - 2H - Dam: 2-18 - Recharge: 0.2 - Reload: 5.0 - Clip:  2 - Size 1x5 - Dur 10-20 - 250
-Pump action      - lvl 5 - 2H - Dam: 2-14 - Recharge: 0.4 - Reload: 4.0 - Clip:  8 - Size 1x5 - Dur 10-20 - 300
+Saw off          - lvl 4 - 1H - Dam: 2-10 - Recharge: 0.1 - Reload: 5.0 - Clip:  2 - Size 2x2 - Dur 10-20 - 200
+2 barrel         - lvl 4 - 2H - Dam: 2-18 - Recharge: 0.1 - Reload: 5.0 - Clip:  2 - Size 2x4 - Dur 10-20 - 250
+Pump action      - lvl 5 - 2H - Dam: 2-14 - Recharge: 0.4 - Reload: 4.0 - Clip:  8 - Size 2x4 - Dur 10-20 - 300
 
 9x19mm Ammo      - lvl 5 - Speed: 30                                                                      - 18 
 9mm Automatic    - lvl 5 - 1H - Dam: 4-10 - Recharge: 0.3 - Reload: 3.0 - Clip: 19 - Size 1x2 - Dur 10-20 - 400
 9mm SMG          - lvl 6 - 2H - Dam: 3-8  - Recharge: 0.1 - Reload: 3.0 - Clip: 30 - Size 2x3 - Dur 10-20 - 950
 
 7.62x39mm Ammo   - lvl 6 - Speed: 30                                                                      - 24 
-7.62mm Rifle     - lvl 6 - 2H - Dam:10-16 - Recharge: 0.5 - Reload: 5.0 - Clip:  5 - Size 1x6 - Dur 10-20 - 800
-7.62mm AK-47     - lvl 7 - 2H - Dam: 6-12 - Recharge: 0.1 - Reload: 3.0 - Clip: 30 - Size 2x4 - Dur 10-20 - 1400
+7.62mm Rifle     - lvl 6 - 2H - Dam:10-16 - Recharge: 0.5 - Reload: 5.0 - Clip:  5 - Size 1x7 - Dur 10-20 - 800
+7.62mm AK-47     - lvl 7 - 2H - Dam: 6-12 - Recharge: 0.1 - Reload: 3.0 - Clip: 30 - Size 2x5 - Dur 10-20 - 1400
 
 //5.56x45mm Ammo - Skipped due to too many & more common ammotypes already
 
 .50 BMG Ammo     - lvl 7 - Speed: 30  no stack, pass through                                              - 200
-Heavysniperrifle - lvl 8 - 2H - Dam:40-240- Recharge: 0.8 - Reload: 4.0 - Clip: 10 - Size 3x6 - Dur 10-20 - 2000
+Heavysniperrifle - lvl 8 - 2H - Dam:40-240- Recharge: 0.8 - Reload: 4.0 - Clip: 10 - Size 2x8 - Dur 10-20 - 2000
 
 *** Energy ***
 Laser Ammo       - lvl 6 - Speed: 45                                                                      - 2 
 Laser Pistol     - lvl 6 - 1H - Dam: 4-10 - Recharge: 0.4 - Reload: 3.0 - Clip: 12 - Size 1x2 - Dur 10-20 - 500
 Laser Rifle      - lvl 7 - 2H - Dam: 8-16 - Recharge: 0.5 - Reload: 4.0 - Clip: 24 - Size 1x4 - Dur 10-20 - 1000
 Small Pulslaser  - lvl 7 - 2H - Dam: 3-8  - Recharge: 0.2 - Reload: 3.0 - Clip: 60 - Size 2x3 - Dur 10-20 - 1000
-Puls Laser       - lvl 8 - 2H - Dam: 6-14 - Recharge: 0.2 - Reload: 4.0 - Clip: 60 - Size 2x4 - Dur 10-20 - 2000
+Puls Laser       - lvl 8 - 2H - Dam: 6-14 - Recharge: 0.2 - Reload: 4.0 - Clip: 60 - Size 2x5 - Dur 10-20 - 2000
 
 Plasma Ammo      - lvl 6 - Speed: 15                                                                      - 4 
 Plasma Pistol    - lvl 6 - 1H - Dam:12-18 - Recharge: 0.75- Reload: 3.0 - Clip:  6 - Size 1x2 - Dur 10-20 - 750
-Plasma Cannon    - lvl 7 - 2H - Dam:16-22 - Recharge: 0.75- Reload: 4.0 - Clip: 24 - Size 2x5 - Dur 10-20 - 1500
+Plasma Cannon    - lvl 7 - 2H - Dam:16-22 - Recharge: 0.75- Reload: 4.0 - Clip: 24 - Size 2x6 - Dur 10-20 - 1500
 
 *** Caseless & Magnetic etc ***  Implement more later?
 Exterminator Ammo- lvl 6 - Speed: 30                                                                      - 5 
@@ -1216,6 +1216,8 @@ Super Ext        - lvl 9 - 2H - Dam:90-140 -Recharge: 0.15- Reload: 5.0 - Clip: 
 Item name=".22 LR Ammunition"
 Item min class for drop=3
 Item max class for drop=6
+Item number dropped min=10
+Item number dropped max=60
 Item can be applied in combat="no"
 Item can be installed in influ="no"
 Item can be installed in slot with name="none"
@@ -1225,7 +1227,7 @@ File or directory name for inventory image="ammo_exterminator_sphere/inv_image.p
 inventory_size_x=1
 inventory_size_y=1
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
-Base list price=3
+Base list price=4
 Item description text=".22 Long Rifle ammunition used to be a very common ammo for targetpratice, mainly because it was cheap and gave little recoil. It's just too weak to penetrate any real droid armour though."
 ** End of new item specification subsection **
 
@@ -1272,7 +1274,7 @@ Item as gun: ignore collisions with wall="no"
 Item as gun: reflect other bullets="no"
 Item as gun: pass through explosions="no"
 Item as gun: pass through hit bodies="no"
-Item as gun: required ammunition type=".22 LR ammunition"
+Item as gun: required ammunition type="22LR"
 Item as gun: ammo clip size=11
 Item as gun: weapon requires both hands="no"
 ----- end of part only relevant for weapons -----
@@ -1311,27 +1313,29 @@ Item as gun: ignore collisions with wall="no"
 Item as gun: reflect other bullets="no"
 Item as gun: pass through explosions="no"
 Item as gun: pass through hit bodies="no"
-Item as gun: required ammunition type=".22 LR ammunition"
+Item as gun: required ammunition type="22LR"
 Item as gun: ammo clip size=11
 Item as gun: weapon requires both hands="yes"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Shotgun cartridges"
+Item name="Shotgun shells"
 Item min class for drop=4
 Item max class for drop=7
+Item number dropped min=10
+Item number dropped max=20
 Item can be applied in combat="no"
 Item can be installed in influ="no"
 Item can be installed in slot with name="none"
 Item uses rotation series with prefix="ammo_laser_bullet"
 Items of this type collect together in inventory="yes"
 File or directory name for inventory image="ammo_laser_bullet/inv_image.png"
-inventory_size_y=2
 inventory_size_x=2
+inventory_size_y=2
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
-Base list price=6
-Item description text="While solid slugs or possibly 8-10 Gauge would be the most effective vs armoursed targets, beggars can't be choosers. One just has to use any type you are lucky enough to stumbles across. Even 20+ Gauge cartridges mostly used for bird hunting can with luck damage a bot."
+Base list price=12
+Item description text="While solid slugs or possibly 8-10 Gauge would be the most effective vs armoursed targets, beggars can't be choosers. One just has to use any type of shell one is lucky enough to stumbles across. And even 20+ Gauge cartridges mostly used for bird hunting can with luck damage a bot."
 ** End of new item specification subsection **
 
 /*
@@ -1361,17 +1365,161 @@ Base item duration=10
 plus duration modifier=10
 File or directory name for inventory image="inventory_image_14.png"
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
-Base list price=600
-inventory_size_x=1
-inventory_size_y=5
+Base list price=200
+inventory_size_x=2
+inventory_size_y=2
 Item description text=""
 ----- the following part is only relevant for weapons -----
-Item as gun: recharging time=0.500000
+Item as gun: recharging time=0.100000
+Item as gun: reloading time=5.000000
+Item as gun: speed of bullets=30.000000
+Item as gun: angle change of bullets=0.000000
+Item as gun: damage of bullets=2
+Item as gun: modifier for damage of bullets=8
+Item as gun: one_shot_only=0
+Item as gun: bullet_image_type=5
+Item as gun: bullet_lifetime=-1.000000
+Item as gun: offset for melee weapon=0.000000
+Item as gun: modifier for starting angle=0.000000
+Item as gun: ignore collisions with wall="no"
+Item as gun: reflect other bullets="yes"
+Item as gun: pass through explosions="no"
+Item as gun: pass through hit bodies="no"
+Item as gun: required ammunition type="Sshell"
+Item as gun: ammo clip size=2
+Item as gun: weapon requires both hands="no"
+----- end of part only relevant for weapons -----
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
+Item name="2 Barrel shotgun"
+Item min class for drop=4
+Item max class for drop=6
+Item can be applied in combat="no"
+Item can be installed in influ="yes"
+Item can be installed in slot with name="weapon"
+Item uses rotation series with prefix="plasma_double"
+Items of this type collect together in inventory="no"
+Base item duration=10
+plus duration modifier=10
+File or directory name for inventory image="inventory_image_14.png"
+Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
+Base list price=250
+inventory_size_x=2
+inventory_size_y=4
+Item description text=""
+----- the following part is only relevant for weapons -----
+Item as gun: recharging time=0.100000
+Item as gun: reloading time=5.000000
+Item as gun: speed of bullets=30.000000
+Item as gun: angle change of bullets=0.000000
+Item as gun: damage of bullets=2
+Item as gun: modifier for damage of bullets=16
+Item as gun: one_shot_only=0
+Item as gun: bullet_image_type=5
+Item as gun: bullet_lifetime=-1.000000
+Item as gun: offset for melee weapon=0.000000
+Item as gun: modifier for starting angle=0.000000
+Item as gun: ignore collisions with wall="no"
+Item as gun: reflect other bullets="yes"
+Item as gun: pass through explosions="no"
+Item as gun: pass through hit bodies="no"
+Item as gun: required ammunition type="Sshell"
+Item as gun: ammo clip size=2
+Item as gun: weapon requires both hands="yes"
+----- end of part only relevant for weapons -----
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
+Item name="Pump action shotgun"
+Item min class for drop=5
+Item max class for drop=7
+Item can be applied in combat="no"
+Item can be installed in influ="yes"
+Item can be installed in slot with name="weapon"
+Item uses rotation series with prefix="plasma_double"
+Items of this type collect together in inventory="no"
+Base item duration=10
+plus duration modifier=10
+File or directory name for inventory image="inventory_image_14.png"
+Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
+Base list price=300
+inventory_size_x=2
+inventory_size_y=4
+Item description text=""
+----- the following part is only relevant for weapons -----
+Item as gun: recharging time=0.400000
+Item as gun: reloading time=4.000000
+Item as gun: speed of bullets=30.000000
+Item as gun: angle change of bullets=0.000000
+Item as gun: damage of bullets=2
+Item as gun: modifier for damage of bullets=12
+Item as gun: one_shot_only=0
+Item as gun: bullet_image_type=5
+Item as gun: bullet_lifetime=-1.000000
+Item as gun: offset for melee weapon=0.000000
+Item as gun: modifier for starting angle=0.000000
+Item as gun: ignore collisions with wall="no"
+Item as gun: reflect other bullets="yes"
+Item as gun: pass through explosions="no"
+Item as gun: pass through hit bodies="no"
+Item as gun: required ammunition type="Sshell"
+Item as gun: ammo clip size=8
+Item as gun: weapon requires both hands="yes"
+----- end of part only relevant for weapons -----
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
+Item name="9x19mm Ammunition"
+Item min class for drop=5
+Item max class for drop=8
+Item number dropped min=10
+Item number dropped max=20
+Item can be applied in combat="no"
+Item can be installed in influ="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="ammo_exterminator_sphere"
+Items of this type collect together in inventory="yes"
+File or directory name for inventory image="ammo_exterminator_sphere/inv_image.png"
+inventory_size_x=1
+inventory_size_y=3
+Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
+Base list price=18
+Item description text="Plasma crystal load. This is the most common way of loading a plasma weapon."
+** End of new item specification subsection **
+
+/*
+Image inspiration
+Glock 17 (9mm) Automatic (5) - reliable 
+http://soldf.com/pistol88.html
+9mm Sub Machinegun (6) 30
+http://en.wikipedia.org/wiki/Heckler_%26_Koch_MP5
+*/
+
+** Start of new item specification subsection **
+Item name="9mm Automatic"
+Item min class for drop=5
+Item max class for drop=7
+Item can be applied in combat="no"
+Item can be installed in influ="yes"
+Item can be installed in slot with name="weapon"
+Item uses rotation series with prefix="plasma_double"
+Items of this type collect together in inventory="no"
+Base item duration=10
+plus duration modifier=10
+File or directory name for inventory image="inventory_image_14.png"
+Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
+Base list price=400
+inventory_size_x=1
+inventory_size_y=2
+Item description text=""
+----- the following part is only relevant for weapons -----
+Item as gun: recharging time=0.300000
 Item as gun: reloading time=3.000000
 Item as gun: speed of bullets=30.000000
 Item as gun: angle change of bullets=0.000000
-Item as gun: damage of bullets=8
-Item as gun: modifier for damage of bullets=8
+Item as gun: damage of bullets=4
+Item as gun: modifier for damage of bullets=6
 Item as gun: one_shot_only=0
 Item as gun: bullet_image_type=5
 Item as gun: bullet_lifetime=-1.000000
@@ -1381,54 +1529,72 @@ Item as gun: ignore collisions with wall="no"
 Item as gun: reflect other bullets="no"
 Item as gun: pass through explosions="no"
 Item as gun: pass through hit bodies="no"
-Item as gun: required ammunition type=".22 LR ammunition"
+Item as gun: required ammunition type="9mm"
+Item as gun: ammo clip size=19
+Item as gun: weapon requires both hands="no"
+----- end of part only relevant for weapons -----
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
+Item name="9mm Automatic"
+Item min class for drop=6
+Item max class for drop=8
+Item can be applied in combat="no"
+Item can be installed in influ="yes"
+Item can be installed in slot with name="weapon"
+Item uses rotation series with prefix="plasma_double"
+Items of this type collect together in inventory="no"
+Base item duration=10
+plus duration modifier=10
+File or directory name for inventory image="inventory_image_14.png"
+Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
+Base list price=950
+inventory_size_x=2
+inventory_size_y=3
+Item description text=""
+----- the following part is only relevant for weapons -----
+Item as gun: recharging time=0.100000
+Item as gun: reloading time=3.000000
+Item as gun: speed of bullets=30.000000
+Item as gun: angle change of bullets=0.000000
+Item as gun: damage of bullets=3
+Item as gun: modifier for damage of bullets=5
+Item as gun: one_shot_only=0
+Item as gun: bullet_image_type=5
+Item as gun: bullet_lifetime=-1.000000
+Item as gun: offset for melee weapon=0.000000
+Item as gun: modifier for starting angle=0.000000
+Item as gun: ignore collisions with wall="no"
+Item as gun: reflect other bullets="no"
+Item as gun: pass through explosions="no"
+Item as gun: pass through hit bodies="no"
+Item as gun: required ammunition type="9mm"
 Item as gun: ammo clip size=30
 Item as gun: weapon requires both hands="yes"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="9x19mm Ammunition"
-Item min class for drop=5
-Item max class for drop=8
-Item can be applied in combat="no"
-Item can be installed in influ="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="ammo_exterminator_sphere"
-Items of this type collect together in inventory="yes"
-File or directory name for inventory image="ammo_exterminator_sphere/inv_image.png"
-inventory_size_y=3
-inventory_size_x=1
-Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
-Base list price=8
-Item description text="Plasma crystal load. This is the most common way of loading a plasma weapon."
-** End of new item specification subsection **
-
-/*
-Glock 17 (9mm) Automatic (5) - reliable 19 
-http://soldf.com/pistol88.html
-9mm Sub Machinegun (6) 30
-http://en.wikipedia.org/wiki/Heckler_%26_Koch_MP5
-*/
-
-** Start of new item specification subsection **
 Item name="7.62x39mm Ammunition"
 Item min class for drop=6
 Item max class for drop=9
+Item number dropped min=10
+Item number dropped max=20
 Item can be applied in combat="no"
 Item can be installed in influ="no"
 Item can be installed in slot with name="none"
 Item uses rotation series with prefix="ammo_exterminator_sphere"
 Items of this type collect together in inventory="yes"
 File or directory name for inventory image="ammo_exterminator_sphere/inv_image.png"
-inventory_size_y=4
 inventory_size_x=1
+inventory_size_y=4
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
-Base list price=12
+Base list price=24
 Item description text="Plasma crystal load. This is the most common way of loading a plasma weapon."
 ** End of new item specification subsection **
 
 /*
+Image inspiration
 CZ 527 Hunting rifle (7.62) - (6) 1.5 7 5
 http://www.theothersideofkim.com/index.php/ggps/5956/
 AK47 Assault rifle (7.62) - (7) 0.25 5 30
@@ -1436,19 +1602,99 @@ http://en.wikipedia.org/wiki/AK-47
 */
 
 ** Start of new item specification subsection **
+Item name="7.62mm Hunting rifle"
+Item min class for drop=6
+Item max class for drop=8
+Item can be applied in combat="no"
+Item can be installed in influ="yes"
+Item can be installed in slot with name="weapon"
+Item uses rotation series with prefix="plasma_double"
+Items of this type collect together in inventory="no"
+Base item duration=10
+plus duration modifier=10
+File or directory name for inventory image="inventory_image_14.png"
+Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
+Base list price=800
+inventory_size_x=1
+inventory_size_y=7
+Item description text=""
+----- the following part is only relevant for weapons -----
+Item as gun: recharging time=0.500000
+Item as gun: reloading time=5.000000
+Item as gun: speed of bullets=30.000000
+Item as gun: angle change of bullets=0.000000
+Item as gun: damage of bullets=10
+Item as gun: modifier for damage of bullets=6
+Item as gun: one_shot_only=0
+Item as gun: bullet_image_type=5
+Item as gun: bullet_lifetime=-1.000000
+Item as gun: offset for melee weapon=0.000000
+Item as gun: modifier for starting angle=0.000000
+Item as gun: ignore collisions with wall="no"
+Item as gun: reflect other bullets="no"
+Item as gun: pass through explosions="no"
+Item as gun: pass through hit bodies="no"
+Item as gun: required ammunition type="7.62mm"
+Item as gun: ammo clip size=5
+Item as gun: weapon requires both hands="yes"
+----- end of part only relevant for weapons -----
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
+Item name="7.62mm AK-47"
+Item min class for drop=7
+Item max class for drop=9
+Item can be applied in combat="no"
+Item can be installed in influ="yes"
+Item can be installed in slot with name="weapon"
+Item uses rotation series with prefix="plasma_double"
+Items of this type collect together in inventory="no"
+Base item duration=10
+plus duration modifier=10
+File or directory name for inventory image="inventory_image_14.png"
+Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
+Base list price=1400
+inventory_size_x=2
+inventory_size_y=5
+Item description text=""
+----- the following part is only relevant for weapons -----
+Item as gun: recharging time=0.100000
+Item as gun: reloading time=3.000000
+Item as gun: speed of bullets=30.000000
+Item as gun: angle change of bullets=0.000000
+Item as gun: damage of bullets=6
+Item as gun: modifier for damage of bullets=6
+Item as gun: one_shot_only=0
+Item as gun: bullet_image_type=5
+Item as gun: bullet_lifetime=-1.000000
+Item as gun: offset for melee weapon=0.000000
+Item as gun: modifier for starting angle=0.000000
+Item as gun: ignore collisions with wall="no"
+Item as gun: reflect other bullets="no"
+Item as gun: pass through explosions="no"
+Item as gun: pass through hit bodies="no"
+Item as gun: required ammunition type="7.62mm"
+Item as gun: ammo clip size=30
+Item as gun: weapon requires both hands="yes"
+----- end of part only relevant for weapons -----
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
 Item name=".50 BMG (12.7x99mm) Ammunition"
 Item min class for drop=7
 Item max class for drop=9
+Item number dropped min=1
+Item number dropped max=2
 Item can be applied in combat="no"
 Item can be installed in influ="no"
 Item can be installed in slot with name="none"
 Item uses rotation series with prefix="ammo_exterminator_sphere"
 Items of this type collect together in inventory="no"
 File or directory name for inventory image="ammo_exterminator_sphere/inv_image.png"
-inventory_size_y=1
 inventory_size_x=1
+inventory_size_y=1
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
-Base list price=100
+Base list price=200
 Item description text="Plasma crystal load. This is the most common way of loading a plasma weapon."
 ** End of new item specification subsection **
 
@@ -1458,9 +1704,50 @@ http://en.wikipedia.org/wiki/M82_Barrett_rifle
 */
 
 ** Start of new item specification subsection **
+Item name="Barrett M82 Sniper Rifle"
+Item min class for drop=8
+Item max class for drop=9
+Item can be applied in combat="no"
+Item can be installed in influ="yes"
+Item can be installed in slot with name="weapon"
+Item uses rotation series with prefix="plasma_double"
+Items of this type collect together in inventory="no"
+Base item duration=10
+plus duration modifier=10
+File or directory name for inventory image="inventory_image_14.png"
+Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
+Base list price=2000
+inventory_size_x=2
+inventory_size_y=8
+Item description text=""
+----- the following part is only relevant for weapons -----
+Item as gun: recharging time=0.800000
+Item as gun: reloading time=4.000000
+Item as gun: speed of bullets=30.000000
+Item as gun: angle change of bullets=0.000000
+Item as gun: damage of bullets=40
+Item as gun: modifier for damage of bullets=200
+Item as gun: one_shot_only=0
+Item as gun: bullet_image_type=5
+Item as gun: bullet_lifetime=-1.000000
+Item as gun: offset for melee weapon=0.000000
+Item as gun: modifier for starting angle=0.000000
+Item as gun: ignore collisions with wall="yes"
+Item as gun: reflect other bullets="no"
+Item as gun: pass through explosions="yes"
+Item as gun: pass through hit bodies="yes"
+Item as gun: required ammunition type="50BMG"
+Item as gun: ammo clip size=10
+Item as gun: weapon requires both hands="yes"
+----- end of part only relevant for weapons -----
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
 Item name="Laser Weapon Ammunition"
 Item min class for drop=8888
 Item max class for drop=9999
+Item number dropped min=10
+Item number dropped max=20
 Item can be applied in combat="no"
 Item can be installed in influ="no"
 Item can be installed in slot with name="none"
@@ -1594,14 +1881,16 @@ Item as gun: weapon requires both hands="yes"
 Item name="Plasma Weapon Ammunition"
 Item min class for drop=8888
 Item max class for drop=9999
+Item number dropped min=10
+Item number dropped max=20
 Item can be applied in combat="no"
 Item can be installed in influ="no"
 Item can be installed in slot with name="none"
 Item uses rotation series with prefix="ammo_plasma_bullet"
 Items of this type collect together in inventory="yes"
 File or directory name for inventory image="ammo_plasma_bullet/inv_image.png"
-inventory_size_y=2
 inventory_size_x=2
+inventory_size_y=2
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=4
 Item description text="Plasma crystal load. This is the most common way of loading a plasma weapon."
@@ -1650,14 +1939,16 @@ Item as gun: weapon requires both hands="yes"
 Item name="2 mm Exterminator Ammunition"
 Item min class for drop=8888
 Item max class for drop=9999
+Item number dropped min=5
+Item number dropped max=10
 Item can be applied in combat="no"
 Item can be installed in influ="no"
 Item can be installed in slot with name="none"
 Item uses rotation series with prefix="ammo_exterminator_sphere"
 Items of this type collect together in inventory="yes"
 File or directory name for inventory image="ammo_exterminator_sphere/inv_image.png"
-inventory_size_y=1
 inventory_size_x=1
+inventory_size_y=1
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=5
 Item description text="Exterminators need this kind of ammunition. It can cause skin irritations due to leaking extermination radiation when carried close to the body for long time."
@@ -1758,8 +2049,8 @@ Item can be installed in slot with name="none"
 Item uses rotation series with prefix="vmx_grenade"
 Items of this type collect together in inventory="yes"
 File or directory name for inventory image="vmx_grenade/inv_image.png"
-inventory_size_y=1
 inventory_size_x=1
+inventory_size_y=1
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=250
 Item description text="The gas does not look terrifying. It even smells somewhat nice. And then you die. You die a most horrible death, never knowing what killed you."
@@ -1776,8 +2067,8 @@ Item can be installed in slot with name="none"
 Item uses rotation series with prefix="emp_grenade"
 Items of this type collect together in inventory="yes"
 File or directory name for inventory image="emp_grenade/inv_image.png"
-inventory_size_y=1
 inventory_size_x=1
+inventory_size_y=1
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=150
 Item description text="This sphere contains a few strange bits of technology invented by Nikola Tesla in the early 20th century. The magnetic pulse that it generates can destroy most electronic devices in just one blast."
@@ -1795,8 +2086,8 @@ Item can be installed in slot with name="none"
 Item uses rotation series with prefix="plasma_grenade"
 Items of this type collect together in inventory="yes"
 File or directory name for inventory image="plasma_grenade/inv_image.png"
-inventory_size_y=1
 inventory_size_x=1
+inventory_size_y=1
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=250
 Item description text="Said to the downscaled version of the original Pandora's Sphere, this device extinguishes life with superheated plasma."
@@ -1822,8 +2113,8 @@ Items of this type collect together in inventory="no"
 Base item duration=35
 plus duration modifier=10
 File or directory name for inventory image="laser_sword_red/inv_image.png"
-inventory_size_y=2
 inventory_size_x=2
+inventory_size_y=2
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=350
 Item description text="Bot use only"
@@ -1935,8 +2226,8 @@ Items of this type collect together in inventory="no"
 Base item duration=10
 plus duration modifier=10
 File or directory name for inventory image="laser_sword_yellow/inv_image.png"
-inventory_size_y=2
 inventory_size_x=2
+inventory_size_y=2
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=120
 Item description text="A true to technology modern sword. Can cut through the most impossible objects like a knife through butter."
@@ -2011,8 +2302,8 @@ Items of this type collect together in inventory="no"
 Base item duration=10
 plus duration modifier=10
 File or directory name for inventory image="laser_sword_yellow/inv_image.png"
-inventory_size_y=2
 inventory_size_x=2
+inventory_size_y=2
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=120
 Item description text="A true to technology modern sword. Can cut through the most impossible objects like a knife through butter."
@@ -2050,8 +2341,8 @@ Items of this type collect together in inventory="no"
 Base item duration=10
 plus duration modifier=10
 File or directory name for inventory image="laser_sword_yellow/inv_image.png"
-inventory_size_y=2
 inventory_size_x=2
+inventory_size_y=2
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=120
 Item description text="A true to technology modern sword. Can cut through the most impossible objects like a knife through butter."
@@ -2089,8 +2380,8 @@ Items of this type collect together in inventory="no"
 Base item duration=10
 plus duration modifier=10
 File or directory name for inventory image="laser_sword_yellow/inv_image.png"
-inventory_size_y=2
 inventory_size_x=2
+inventory_size_y=2
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=120
 Item description text="A true to technology modern sword. Can cut through the most impossible objects like a knife through butter."
@@ -2128,8 +2419,8 @@ Items of this type collect together in inventory="no"
 Base item duration=10
 plus duration modifier=10
 File or directory name for inventory image="laser_sword_yellow/inv_image.png"
-inventory_size_y=2
 inventory_size_x=2
+inventory_size_y=2
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=120
 Item description text="A true to technology modern sword. Can cut through the most impossible objects like a knife through butter."
@@ -2204,8 +2495,8 @@ Items of this type collect together in inventory="no"
 Base item duration=10
 plus duration modifier=10
 File or directory name for inventory image="laser_sword_yellow/inv_image.png"
-inventory_size_y=2
 inventory_size_x=2
+inventory_size_y=2
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=120
 Item description text="A true to technology modern sword. Can cut through the most impossible objects like a knife through butter."
@@ -2243,8 +2534,8 @@ Items of this type collect together in inventory="no"
 Base item duration=10
 plus duration modifier=10
 File or directory name for inventory image="laser_sword_yellow/inv_image.png"
-inventory_size_y=2
 inventory_size_x=2
+inventory_size_y=2
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=120
 Item description text="A true to technology modern sword. Can cut through the most impossible objects like a knife through butter."
@@ -2282,8 +2573,8 @@ Items of this type collect together in inventory="no"
 Base item duration=10
 plus duration modifier=10
 File or directory name for inventory image="laser_sword_yellow/inv_image.png"
-inventory_size_y=2
 inventory_size_x=2
+inventory_size_y=2
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=120
 Item description text="A true to technology modern sword. Can cut through the most impossible objects like a knife through butter."
@@ -2321,8 +2612,8 @@ Items of this type collect together in inventory="no"
 Base item duration=10
 plus duration modifier=10
 File or directory name for inventory image="laser_sword_yellow/inv_image.png"
-inventory_size_y=2
 inventory_size_x=2
+inventory_size_y=2
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=120
 Item description text="A true to technology modern sword. Can cut through the most impossible objects like a knife through butter."
@@ -2679,8 +2970,8 @@ Item as defensive item: ac_bonus_modifier=2
 Base item duration=10
 plus duration modifier=10
 File or directory name for inventory image="helmet_yellow/inv_image.png"
-inventory_size_y=2
 inventory_size_x=2
+inventory_size_y=2
 Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
 Base list price=25
 Item description text="A simple cover for your head. Don't expect to be incognito."
@@ -2700,8 +2991,8 @@ Item as defensive item: ac_bonus_modifier=3
 Base item duration=18
 plus duration modifier=10
 File or directory name for inventory image="helmet_yellow2/inv_image.png"
-inventory_size_y=2
 inventory_size_x=2
+inventory_size_y=2
 Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
 Base list price=75
 Item description text="A rather useful helmet, has a few defense issues here and there but mainly is worth the wear."
@@ -2802,8 +3093,8 @@ Item as defensive item: ac_bonus_modifier=2
 Base item duration=10
 plus duration modifier=8
 File or directory name for inventory image="buckler/inv_image.png"
-inventory_size_y=2
 inventory_size_x=2
+inventory_size_y=2
 Item uses drop sound with filename="Item_Armour_Put_Sound_0.ogg"
 Base list price=30
 Item description text="This shield is a compilation of various objects which happened to be around. It has tubes, bolts and parts of metal, all slapped together to provide a small bit of protection from enemies. It's very simple and rough, but some sensors and lights have been added to let the wielder know when the item is getting hit, and how long it will remain operational and other cool stuff like that."
@@ -3344,8 +3635,8 @@ Item can be installed in slot with name="none"
 Item uses rotation series with prefix="health_capsule"
 Items of this type collect together in inventory="yes"
 File or directory name for inventory image="health_capsule/inv_image_small.png"
-inventory_size_y=1
 inventory_size_x=1
+inventory_size_y=1
 Item uses drop sound with filename="drop_potion_sound.ogg"
 Base list price=20
 Item description text="Only proper vitamin and mineral intake can keep you healthy during the apocalypse. This can cure a cold."
@@ -3361,8 +3652,8 @@ Item can be installed in slot with name="none"
 Item uses rotation series with prefix="health_capsule"
 Items of this type collect together in inventory="yes"
 File or directory name for inventory image="health_capsule/inv_image_medium.png"
-inventory_size_y=1
 inventory_size_x=1
+inventory_size_y=1
 Item uses drop sound with filename="drop_potion_sound.ogg"
 Base list price=40
 Item description text="Truly wonderful things can be extracted from molds. This can cure lethal food poisoning. Wish you had that in your last Nethack game, eh?"
@@ -3378,8 +3669,8 @@ Item can be installed in slot with name="none"
 Item uses rotation series with prefix="health_capsule"
 Items of this type collect together in inventory="yes"
 File or directory name for inventory image="health_capsule/inv_image_big.png"
-inventory_size_y=1
 inventory_size_x=1
+inventory_size_y=1
 Item uses drop sound with filename="drop_potion_sound.ogg"
 Base list price=60
 Item description text="This is a drink filled with nanobots designed to heal any damage that they notice inside you. It can cure decapitation. Most of the time."
@@ -3395,8 +3686,8 @@ Item can be installed in slot with name="none"
 Item uses rotation series with prefix="force_capsule"
 Items of this type collect together in inventory="yes"
 File or directory name for inventory image="force_capsule/inv_image_small.png"
-inventory_size_y=1
 inventory_size_x=1
+inventory_size_y=1
 Item uses drop sound with filename="drop_potion_sound.ogg"
 Base list price=15
 Item description text="This bottle is filled with ice. It can keep you cool during a warm summer day."
@@ -3412,8 +3703,8 @@ Item can be installed in slot with name="none"
 Item uses rotation series with prefix="force_capsule"
 Items of this type collect together in inventory="yes"
 File or directory name for inventory image="force_capsule/inv_image_medium.png"
-inventory_size_y=1
 inventory_size_x=1
+inventory_size_y=1
 Item uses drop sound with filename="drop_potion_sound.ogg"
 Base list price=30
 Item description text="Bartenders around the world add this to drinks to get them cold very fast. Plus the coolant is much cheaper. It can keep you cool inside a nuclear reactor."
@@ -3429,8 +3720,8 @@ Item can be installed in slot with name="none"
 Item uses rotation series with prefix="force_capsule"
 Items of this type collect together in inventory="yes"
 File or directory name for inventory image="force_capsule/inv_image_big.png"
-inventory_size_y=1
 inventory_size_x=1
+inventory_size_y=1
 Item uses drop sound with filename="drop_potion_sound.ogg"
 Base list price=45
 Item description text="When you want something frozen solid, this is what you need. It can keep you cool even inside a class M star."
@@ -3679,8 +3970,8 @@ Item can be installed in slot with name="none"
 Item uses rotation series with prefix="map_maker"
 Items of this type collect together in inventory="no"
 File or directory name for inventory image="map_maker/inv_image.png"
-inventory_size_y=2
 inventory_size_x=2
+inventory_size_y=2
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=18
 Item description text="This small device automatically collects data about the area within a range of 7 times 7 meters and draws a small-scale plan of the immediate surroundings. Because of it's very tiny display, it needs to be held closely to the eye and the image will then be projected directly into the eyeball of the user. Still, the collected map data will be split up by the device into several sectors for convenient viewing."
@@ -3818,8 +4109,8 @@ Items of this type collect together in inventory="yes"
 File or directory name for inventory image="vmx_grenade/beacon-inv_image.png"
 Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=40
-inventory_size_y=1
 inventory_size_x=1
+inventory_size_y=1
 Item description text="This device sends a signal to a nearby teleporter requesting a transportation and then helping with locking on and boosting the signal to ensure the teleportation attempt is succcessful. The battery inside is enough for one use only and the device becomes useless afterwards. At least, most people dont even try to use them twice, and those few who do usually end up with parts of their body missing or attached in the wrong place.  Note:  Multiple of these may be grouped together in the inventory."
 ** End of new item specification subsection **
 
@@ -3841,8 +4132,8 @@ Item description text="This data cube contains confidential government data on t
 
 ** Start of new item specification subsection **
 Item name="Pandora's Cube"
-inventory_size_y=6
 inventory_size_x=6
+inventory_size_y=6
 Item max class for drop=9999
 Item can be applied in combat="no"
 Item can be installed in influ="no"

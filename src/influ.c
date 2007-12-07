@@ -3224,6 +3224,18 @@ void TuxReloadWeapon()
 	case 4: //22LR
 	    munition_type = GetItemIndexByName(".22 LR Ammunition"); 
 	    break; 
+	case 5: //Sshell
+	    munition_type = GetItemIndexByName("Shotgun shells"); 
+	    break; 
+	case 6: //9mm
+	    munition_type = GetItemIndexByName("9x19mm Ammunition"); 
+	    break;
+	case 7: //7.62mm
+	    munition_type = GetItemIndexByName("7.62x39mm Ammunition"); 
+	    break;
+	case 7: //50BMG
+	    munition_type = GetItemIndexByName(".50 BMG (12.7x99mm) Ammunition"); 
+	    break;
 	default:
 	    ErrorMessage ( __FUNCTION__  , "Got an unknown munition type %d for your current weapon.",						                                          PLEASE_INFORM, IS_FATAL, ItemMap [ Me . weapon_item . type ] . item_gun_use_ammunition );
 	}

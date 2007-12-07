@@ -1279,9 +1279,25 @@ answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.",
 		{
 		ItemMap[ItemIndex].item_gun_use_ammunition = 3;
 		}
-	    else if ( strcmp( YesNoString, ".22 LR ammunition" ) == 0 )
+	    else if ( strcmp( YesNoString, "22LR" ) == 0 )
 		{
 		ItemMap[ItemIndex].item_gun_use_ammunition = 4;
+		}
+	    else if ( strcmp( YesNoString, "Sshells" ) == 0 )
+		{
+		ItemMap[ItemIndex].item_gun_use_ammunition = 5;
+		}
+	    else if ( strcmp( YesNoString, "9mm" ) == 0 )
+		{
+		ItemMap[ItemIndex].item_gun_use_ammunition = 6;
+		}
+	    else if ( strcmp( YesNoString, "7.62mm" ) == 0 )
+		{
+		ItemMap[ItemIndex].item_gun_use_ammunition = 7;
+		}
+	    else if ( strcmp( YesNoString, "50BMG" ) == 0 )
+		{
+		ItemMap[ItemIndex].item_gun_use_ammunition = 8;
 		}
 	    else
 	    {
