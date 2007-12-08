@@ -1,8 +1,12 @@
 *** Start of program data section: ***
 
+# Heatcosts base and per lvl are somewhere multiplied with +50%! MUSTFIX!
+
 ** Start of new program specification subsection **
 Program name="Hacking"  
-Program description="Tux is gifted with the ability to hack any machine in no time.  To make use of this ability, select this skill. When a machine is close enough and this skill is activated by holding down the right mouse button, the takeover process will be initiated."
+Program description="Type: Target
+Effect: Takeover 3 (+1) charges
+Tux is gifted with the ability to hack any machine in no time.  To make use of this ability, select this skill. When a machine is close enough and this skill is activated by holding down the right mouse button, the takeover process will be initiated."
 Picture="TakeoverTalkSkill.png"
 Form="immediate"
 Cost=10
@@ -11,7 +15,8 @@ Present at startup=1
 
 ** Start of new program specification subsection **
 Program name="Repair equipment"  
-Program description="This skill allows to repair an item from the inventory. To use this skill, select it, then open the inventory screen and then right click the mouse on the item you wish to repair. While repair doesn't 'cost' anything, the item will still lose some of its maximum duration in the process, but the current duration will be restored to this new maximum value."
+Program description="Type: Target
+This skill allows to repair an item from the inventory. To use this skill, select it, then open the inventory screen and then right click the mouse on the item you wish to repair. While repair doesn't 'cost' anything, the item will still lose some of its maximum duration in the process, but the current duration will be restored to this new maximum value."
 Picture="RepairSkill.png"
 Form="immediate"
 Cost=0
@@ -20,7 +25,8 @@ Present at startup=1
 
 ** Start of new program specification subsection **
 Program name="Use weapon"  
-Program description="Using this skill allows you to force an attack on something. You can attack friendly targets by using it."
+Program description="Type: Target
+Using this skill allows you to force an attack on something or for single shot firing with automatic weapons. You can also attack friendly targets by using it."
 Picture="WeaponSkill.png"
 Form="immediate"
 Cost=0
@@ -29,7 +35,8 @@ Present at startup=1
 
 ** Start of new program specification subsection **
 Program name="Extract bot parts"  
-Program description="With a little knowledge, you can extract some useful parts out of the robots you kill. With each bot there is some hope of a part falling out."
+Program description="Type: Passive
+With a little knowledge, you can extract some useful parts out of the robots you kill. With each bot there is some hope of a part falling out."
 Picture="ExtractBotParts.png"
 Form="self"
 Effect="none"
@@ -37,7 +44,11 @@ Cost=0
 
 ** Start of new program specification subsection **
 Program name="Calculate Pi"  
-Program description="It is not a big problem to make a badly designed system to go hunting for the impossible, causing a performance impact."
+Program description="Type: Projectile
+Effect: Slowdown
+Damage: 4-11 (+10)
+Heat: 10 (+5)
+It is not a big problem to make a badly designed system to go hunting for the impossible, causing a performance impact."
 Picture="Calculate_PI.png"
 Form="bullet"
 Effect="slowdown"
@@ -45,26 +56,33 @@ Base damage=4
 Mod damage=7
 Damage per level=10
 Hurt bots=1
-Hurt humans=1
+Hurt humans=0
 Cost=10
 Cost per level=5
 #12 is blue bullet
 Artwork internal code=12
 
-
 ** Start of new program specification subsection **
 Program name="Blue Screen"
-Program description="With a little touch a war machine comes crashing down to a halt. For a while."
+Program description="Type: Projectile
+Effect: Paralyze Bot
+Heat: 15
+With a little touch a war machine comes crashing down to a halt. For a while."
 Picture="BlueScreen.png"
 Effect="paralyze"
 Form="bullet"
 Cost=15
 Artwork internal code=12
 Base damage=0
+Hurt bots=1
+Hurt humans=0
 
 ** Start of new program specification subsection **
 Program name="Malformed packet"
-Program description="When computers are presented with the unexpected they can damage themselves."
+Program description="Type: Projectile
+Damage: 3
+Heat: 2
+When computers are presented with the unexpected they can damage themselves."
 Picture="BadPacket.png"
 Effect="none"
 Form="bullet"
@@ -72,63 +90,90 @@ Cost=2
 #14 is white bullet
 Artwork internal code=14
 Base damage=3
+Hurt bots=1
+Hurt humans=0
 
 ** Start of new program specification subsection **
 Program name="Check system integrity"
-Program description="While repairing damage you must remember that patience is a virtue."
+Program description="Type: Self
+Effect: Heal 40
+Heat: 40 (-5)
+While repairing damage you must remember that patience is a virtue."
 Picture="FirstAidSpell.png"
 Effect="none"
 Form="self"
 Cost=40
 Base damage=-40
-Cost per level=-3
+Cost per level=-5
 
 ** Start of new program specification subsection **
 Program name="Analyze item"
-Program description="There are very few items which have labels on them. Unless you happen to have an item labeled 'USE ME', you better make sure what it is before using it..."
+Program description="Type: Target
+Effect: Identify
+Heat: 65 (-5)
+There are very few items which have labels on them. Unless you happen to have an item labeled 'USE ME', you better make sure what it is before using it..."
 Picture="IdentifySkill.png"
 Effect="identify"
 Form="self"
 Cost=65
-Cost per level=-3
+Cost per level=-5
 
 ** Start of new program specification subsection **
 Program name="Nethack"
-Program description="The open source game called Nethack is one of the world's greatest wasters of time. Machines don't care about it, but humans can get sucked in quite deeply."
+Program description="Type: Projectile
+Effect: Paralyze Human
+Heat: 10
+The open source game called Nethack is one of the world's greatest wasters of time. Machines don't care about it, but humans can get sucked in quite deeply."
 Picture="Nethack.png"
 Form="bullet"
 Effect="paralyze"
 Cost=10
 Artwork internal code=5
+Hurt bots=0
+Hurt humans=1
 
 ** Start of new program specification subsection **
 Program name="Dispel smoke"
-Program description="By heating up the chips with a malformed program you can cause them to release the magic smoke which keeps the bot running. "
+Program description="Type: Target
+Damage: 40
+Heat: 40
+By heating up the chips with a malformed program you can cause them to release the magic smoke which keeps the bot running. "
 Picture="DispellSmoke.png"
 Form="immediate"
 Effect="none"
 Cost=40
 Base damage=40
+Hurt bots=1
+Hurt humans=0
 
 ** Start of new program specification subsection **
 Program name="Killer poke"
-Program description="Messing around with the bot's memory can cause it to damage itself, but the damage is greatly variable."
+Program description="Type: Projectile
+Damage: 40
+Heat: 20
+Messing around with the bot's memory can cause it to damage itself, but the damage is greatly variable."
 Picture="Poke.png"
 Form="bullet"
 Effect="none"
 Cost=20
 Artwork internal code=4
 Base damage=40
-
+Hurt bots=1
+Hurt humans=0
 
 ** Start of new program specification subsection **
 Program name="Broadcast killer poke"
-Program description="The radio network is a wonderful invention for the people who like to blow up a lot of stuff at once."
+Program description="Type: Radial
+Damage: 250
+Heat: 100
+The radio network is a wonderful invention for the people who like to blow up a lot of stuff at once."
 Picture="NoSkillAvailable.png"
 Form="radial"
 Effect="none"
 Cost=100
 Base damage=250
+Hurt bots=1
+Hurt humans=0
 
 ** Start of new program specification subsection **
 Program name="Ricer CFLAGS"
