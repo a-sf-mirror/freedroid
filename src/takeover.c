@@ -379,9 +379,11 @@ Takeover ( int enemynum )
 	our_SDL_flip_wrapper (Screen);
 	
     }	// while !FinishTakeover 
+
+    ChatWithFriendlyDroid ( & ( AllEnemys [ enemynum ] ) ) ;     
     
     ClearGraphMem();
-    
+
     SwitchBackgroundMusicTo ( CurLevel -> Background_Song_Name );
     
     if ( LeaderColor == YourColor )
