@@ -791,6 +791,18 @@ ShowItemInfo ( item* ShowItem , int Displacement , char ShowArrows , int backgro
 	case 4:
 	    strcat ( InfoText, _(" This weapon requires .22 Long Rifle rounds."));
 	    break;
+	case 5: 
+	    strcat ( InfoText, _(" This weapon requires Shotgun shells."));
+	    break; 
+	case 6: 
+            strcat ( InfoText, _(" This weapon requires 9x19mm rounds."));
+	    break;
+	case 7:
+            strcat ( InfoText, _(" This weapon requires 7.62x39mm rounds."));
+	    break;
+	case 8:
+            strcat ( InfoText, _(" This weapon requires .50 (12.7x99mm) Browning Machine Gun rounds."));
+	    break;
     }
     
     // SetCurrentFont( Para_BFont );
