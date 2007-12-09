@@ -380,8 +380,6 @@ Takeover ( int enemynum )
 	
     }	// while !FinishTakeover 
 
-    ChatWithFriendlyDroid ( & ( AllEnemys [ enemynum ] ) ) ;     
-    
     ClearGraphMem();
 
     SwitchBackgroundMusicTo ( CurLevel -> Background_Song_Name );

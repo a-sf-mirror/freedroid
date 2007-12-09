@@ -313,8 +313,11 @@ DoSkill(int skill_index, int SpellCost)
 	    //
 	    if ( Takeover ( index_of_droid_below_mouse_cursor ) )
 		    {
-		    // upon successful takeover, we restore original heat
+		    // upon successful takeover
+                    // restore original heat
 		    Me . temperature -= SpellCost;
+                    // go directly to chat to choose droid program
+                    ChatWithFriendlyDroid ( & ( AllEnemys [ enemynum ] ) ) ;     
 		    }
 	    }
 	else 
