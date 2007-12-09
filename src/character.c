@@ -37,7 +37,7 @@
 #include "proto.h"
 
 #define Energy_Gain_Per_Vit_Point 2;
-#define Maxtemp_Gain_Per_CPU_Point 2;
+#define Maxtemp_Gain_Per_CPU_Point 4;
 #define AC_Gain_Per_Dex_Point 0.5;
 
 #define RECHARGE_SPEED_PERCENT_PER_DEX_POINT 0
@@ -396,7 +396,7 @@ update_secondary_stats_from_primary_stats ()
     //--------------------
     // base regeneration speed set to 0.2 points per second
     Me . health_recovery_rate = 0.2;
-    Me . cooling_rate = 0.2;
+    Me . cooling_rate = 1.0;
 }; // void update_secondary_stats_from_primary_stats ( )
 
 /* ----------------------------------------------------------------------
@@ -703,26 +703,6 @@ ShowCharacterScreen ( )
     SetCurrentFont ( Menu_BFont );
     DisplayText( Me.character_name , 20 + CharacterRect.x , 12 + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
     SetCurrentFont ( Message_BFont );
-    
-    
-    /*
-      switch ( Me.character_class )
-      {
-      case WAR_BOT:
-      DisplayText( "War Bot" , CLASS_X + CharacterRect.x , 18 + CharacterRect.y , &CharacterRect );
-      break;
-      case SNIPER_BOT:
-      DisplayText( "Sniper Bot" , CLASS_X + CharacterRect.x , 18 + CharacterRect.y , &CharacterRect );
-      break;
-      case MIND_BOT:
-      DisplayText( "Mind Bot" , CLASS_X + CharacterRect.x , 18 + CharacterRect.y , &CharacterRect );
-      break;
-      default:
-      DebugPrintf( 0 , "\n\nILLEGAL CHARACTER CLASS FOUND!!! ERROR!!! TERMINATING....." );
-      Terminate( ERR );
-      break;
-      }
-    */
     
     sprintf( CharText , "%d", Me.exp_level );
     DisplayText( CharText , 110 + CharacterRect.x , 73 + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
