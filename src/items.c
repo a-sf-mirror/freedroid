@@ -1666,13 +1666,13 @@ ApplyItem( item* CurItem )
     }
     else if ( MatchItemWithName ( CurItem->type, "Bottled ice" ))
     {
-	Me.temperature -= 25;
+	Me.temperature -= 50;
 	Me . busy_time = 1;
 	Me . busy_type = DRINKING_POTION;
     }
     else if ( MatchItemWithName ( CurItem->type, "Industrial coolant"))
     {
-	Me.temperature -= 50;
+	Me.temperature -= 100;
 	Me . busy_time = 1;
 	Me . busy_type = DRINKING_POTION;
     }
