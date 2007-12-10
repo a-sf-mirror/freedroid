@@ -247,15 +247,18 @@ char* AllSkillTexts [ NUMBER_OF_SKILL_LEVELS ] =
 // does, by applying a multiplier to the normal computed damage.
 // These multipliers are given by the table below.
 //
+// 0.9^x -> 1.0, 0.9, 0.81, 0.73, 0.66, 0.59, 0.53, 0.48, 0.43, 0.39
+// 1.1^x -> 1.0, 1.1, 1.21, 1.33, 1.46, 1.61, 1.77, 1.95, 2.14, 2,36
+
 float MeleeDamageMultiplierTable [  ] =
-  {  1.0 , 1.2 , 1.3 , 1.5 , 1.5 , 1.6 , 2.0 , 2.5 , 3.0 } ;
+  {  1.0, 1.1, 1.21, 1.33, 1.46, 1.61, 1.77, 1.95, 2.14, 2,36 } ;
 float MeleeRechargeMultiplierTable [  ] =
-  {  1.0 , 0.9 , 0.8 , 0.8 , 0.7 , 0.6 , 0.5 , 0.50 , 0.5 } ;
+  {  1.0, 0.9, 0.81, 0.73, 0.66, 0.59, 0.53, 0.48, 0.43, 0.39 } ;
 
 float RangedDamageMultiplierTable [  ] =
-  {  1.0 , 1.2 , 1.3 , 1.5 , 1.7 , 1.8 , 2.0  , 2.5 , 3.0} ;
+  {  1.0, 1.1, 1.21, 1.33, 1.46, 1.61, 1.77, 1.95, 2.14, 2,36 } ;
 float RangedRechargeMultiplierTable [  ] =
-  {  1.0 , 0.9 , 0.8 , 0.8 , 0.7 , 0.6 , 0.5 , 0.5 , 0.5 } ;
+  {  1.0, 0.9, 0.81, 0.73, 0.66, 0.59, 0.53, 0.48, 0.43, 0.39 } ;
 
 //--------------------
 // In the game, many spells are still internally similar
