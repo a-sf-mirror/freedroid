@@ -88,8 +88,8 @@ ImproveSkill( int * skill )
  * -----------------*/
 int calculate_program_heat_cost ( int program_id )
 {
-//  float cost_ratio [ NUMBER_OF_SKILL_LEVELS ] = { 1.5, 1.3, 1.2, 1.0, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4 };
-    float cost_ratio [ NUMBER_OF_SKILL_LEVELS ] = { 1.0, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1 };
+//                                               0.9^0, 0.9^1, 0.9^2 ... ...0.9^9
+    float cost_ratio [ NUMBER_OF_SKILL_LEVELS ] = { 1.0, 0.9, 0.81, 0.73, 0.66, 0.59, 0.53, 0.48, 0.43, 0.39 };
     return cost_ratio [ Me . spellcasting_skill ]* ( SpellSkillMap[ program_id ] . heat_cost  + SpellSkillMap[ program_id ] . heat_cost_per_level * (Me . SkillLevel [ program_id ] - 1 ));
 };
 
@@ -315,7 +315,7 @@ DoSkill(int skill_index, int SpellCost)
 		    {
 		    // upon successful takeover
                     // restore original heat
-		    Me . temperature -= SpellCost;
+		    // Me . temperature -= SpellCost;
                     // go directly to chat to choose droid program
                     ChatWithFriendlyDroid ( & ( AllEnemys [ index_of_droid_below_mouse_cursor ] ) ) ;     
 		    }
