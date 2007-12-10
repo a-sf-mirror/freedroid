@@ -1839,7 +1839,7 @@ Item as gun: weapon requires both hands="yes"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Small Puls Laser"
+Item name="Small Pulse Laser"
 Item min class for drop=7
 Item max class for drop=9
 Item can be applied in combat="no"
@@ -1878,7 +1878,7 @@ Item as gun: weapon requires both hands="yes"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Puls Laser"
+Item name="Pulse Laser"
 Item min class for drop=8
 Item max class for drop=9
 Item can be applied in combat="no"
@@ -3408,8 +3408,8 @@ Item description text="These hiking boots are a very sophisticated product, comb
 
 ** Start of new item specification subsection **
 Item name="Source Book of Check system integrity"
-Item min class for drop=8888
-Item max class for drop=9999
+Item min class for drop=2
+Item max class for drop=9
 Item can be applied in combat="yes"
 Item can be installed in influ="no"
 Item can be installed in slot with name="none"
@@ -3425,8 +3425,8 @@ inventory_size_y=2
 
 ** Start of new item specification subsection **
 Item name="Source Book of Calculate Pi"
-Item min class for drop=8888
-Item max class for drop=9999
+Item min class for drop=4
+Item max class for drop=9
 Item can be applied in combat="yes"
 Item can be installed in influ="no"
 Item can be installed in slot with name="none"
@@ -3442,8 +3442,25 @@ inventory_size_y=2
 
 ** Start of new item specification subsection **
 Item name="Source Book of Blue Screen"
-Item min class for drop=8888
-Item max class for drop=9999
+Item min class for drop=2
+Item max class for drop=9
+Item can be applied in combat="yes"
+Item can be installed in influ="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="spellbook"
+Items of this type collect together in inventory="no"
+File or directory name for inventory image="spellbook/inv_image_blue.png"
+Item uses drop sound with filename="drop_book_sound.ogg"
+Base list price=100
+Item description text="With a little touch a war machine comes crashing down to a halt. For a while."
+inventory_size_x=2
+inventory_size_y=2
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
+Item name="Source Book of Broadcast Blue Screen"
+Item min class for drop=4
+Item max class for drop=9
 Item can be applied in combat="yes"
 Item can be installed in influ="no"
 Item can be installed in slot with name="none"
@@ -3459,8 +3476,8 @@ inventory_size_y=2
 
 ** Start of new item specification subsection **
 Item name="Source Book of Malformed packet"
-Item min class for drop=8888
-Item max class for drop=9999
+Item min class for drop=2
+Item max class for drop=9
 Item can be applied in combat="yes"
 Item can be installed in influ="no"
 Item can be installed in slot with name="none"
@@ -3476,8 +3493,8 @@ inventory_size_y=2
 
 ** Start of new item specification subsection **
 Item name="Source Book of Analyze item"
-Item min class for drop=8888
-Item max class for drop=9999
+Item min class for drop=2
+Item max class for drop=9
 Item can be applied in combat="yes"
 Item can be installed in influ="no"
 Item can be installed in slot with name="none"
@@ -3493,8 +3510,8 @@ inventory_size_y=2
 
 ** Start of new item specification subsection **
 Item name="Source Book of Nethack"
-Item min class for drop=8888
-Item max class for drop=9999
+Item min class for drop=2
+Item max class for drop=9
 Item can be applied in combat="yes"
 Item can be installed in influ="no"
 Item can be installed in slot with name="none"
@@ -3510,8 +3527,8 @@ inventory_size_y=2
 
 ** Start of new item specification subsection **
 Item name="Source Book of Dispel smoke"
-Item min class for drop=8888
-Item max class for drop=9999
+Item min class for drop=2
+Item max class for drop=9
 Item can be applied in combat="yes"
 Item can be installed in influ="no"
 Item can be installed in slot with name="none"
@@ -3527,8 +3544,8 @@ inventory_size_y=2
 
 ** Start of new item specification subsection **
 Item name="Source Book of Killer poke"
-Item min class for drop=8888
-Item max class for drop=9999
+Item min class for drop=2
+Item max class for drop=9
 Item can be applied in combat="yes"
 Item can be installed in influ="no"
 Item can be installed in slot with name="none"
@@ -3538,23 +3555,6 @@ File or directory name for inventory image="spellbook/inv_image_greenblue.png"
 Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=600
 Item description text="Messing around with the bot's memory can cause it to damage itself, but the damage is greatly variable."
-inventory_size_x=2
-inventory_size_y=2
-** End of new item specification subsection **
-
-** Start of new item specification subsection **
-Item name="Source Book of Broadcast killer poke"
-Item min class for drop=8888
-Item max class for drop=9999
-Item can be applied in combat="yes"
-Item can be installed in influ="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="spellbook"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="spellbook/inv_image_greenblue.png"
-Item uses drop sound with filename="drop_book_sound.ogg"
-Base list price=600
-Item description text="The radio network is a wonderful invention for the people who like to blow up a lot of stuff at once."
 inventory_size_x=2
 inventory_size_y=2
 ** End of new item specification subsection **
@@ -3612,8 +3612,8 @@ inventory_size_y=2
 
 ** Start of new item specification subsection **
 Item name="Source Book of Sanctuary"
-Item min class for drop=8888
-Item max class for drop=9999
+Item min class for drop=2
+Item max class for drop=9
 Item can be applied in combat="yes"
 Item can be installed in influ="no"
 Item can be installed in slot with name="none"
@@ -3629,8 +3629,8 @@ inventory_size_y=2
 
 ** Start of new item specification subsection **
 Item name="Source Book of Virus"
-Item min class for drop=8888
-Item max class for drop=9999
+Item min class for drop=2
+Item max class for drop=9
 Item can be applied in combat="yes"
 Item can be installed in influ="no"
 Item can be installed in slot with name="none"
@@ -3646,8 +3646,8 @@ inventory_size_y=2
 
 ** Start of new item specification subsection **
 Item name="Source Book of Broadcast virus"
-Item min class for drop=8888
-Item max class for drop=9999
+Item min class for drop=2
+Item max class for drop=9
 Item can be applied in combat="yes"
 Item can be installed in influ="no"
 Item can be installed in slot with name="none"
@@ -3680,8 +3680,8 @@ inventory_size_y=2
 
 ** Start of new item specification subsection **
 Item name="Source Book of Emergency shutdown"
-Item min class for drop=8888
-Item max class for drop=9999
+Item min class for drop=2
+Item max class for drop=9
 Item can be applied in combat="yes"
 Item can be installed in influ="no"
 Item can be installed in slot with name="none"
