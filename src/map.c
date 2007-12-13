@@ -2950,8 +2950,13 @@ the item specification section.",
 	}
 
       free ( YesNoString ) ;
-      ReadValueFromStringWithDefault ( SearchPointer , "on_death_drop_item_code=" , "%d", "-1",
-			    &AllEnemys[ FreeAllEnemysPosition ].on_death_drop_item_code , EndOfThisLevelData );
+      if ( strstr( SearchPointer, "on_death_drop_item_name" ) )
+	  {
+	  YesNoString = ReadAndMallocStringFromData ( SearchPointer , "on_death_drop_item_name=\"" , "\"" ) ;
+	  AllEnemys[ FreeAllEnemysPosition ].on_death_drop_item_code = GetItemIndexByName(YesNoString);
+	  free ( YesNoString ) ;
+	  }
+      else AllEnemys[ FreeAllEnemysPosition ].on_death_drop_item_code = -1;
 
       AllEnemys [ FreeAllEnemysPosition ] . type = ListIndex;
       AllEnemys [ FreeAllEnemysPosition ] . pos.z = OurLevelNumber;
