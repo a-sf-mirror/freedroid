@@ -238,7 +238,7 @@ Allowed Type of Random Droid for this level: 123
 Allowed Type of Random Droid for this level: 247
 Allowed Type of Random Droid for this level: 249
 
-SForce: T=883 Fixed=0 Marker=101 Friendly=0 StartUpAtLabel="ToolkitBossMonsterStartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="The Singularity" attack_run_only_when_direct_line="no" on_death_drop_item_code=59
+SForce: T=883 Fixed=0 Marker=101 Friendly=0 StartUpAtLabel="ToolkitBossMonsterStartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="The Singularity" attack_run_only_when_direct_line="no" on_death_drop_item_name="Dixon's Toolbox"
 
 ** End of this levels droid data **
 
@@ -627,7 +627,7 @@ Maximum number of Random Droids=0
 Minimum number of Random Droids=0
 Allowed Type of Random Droid for this level: 123
 
-SForce: T=WOR Fixed=1 Marker=9999 Friendly=1 StartUpAtLabel="Koan" RushTux="no" DialogSectionToUse="Koan" ShortLabel="Koan" attack_run_only_when_direct_line="no" on_death_drop_item_code=129
+SForce: T=WOR Fixed=1 Marker=9999 Friendly=1 StartUpAtLabel="Koan" RushTux="no" DialogSectionToUse="Koan" ShortLabel="Koan" attack_run_only_when_direct_line="no" on_death_drop_item_name="Pandora's Cube"
 
 ** End of this levels droid data **
 
