@@ -26,6 +26,7 @@
 #include "../src/getopt.h"
 #include "../src/struct.h"
 #include "../src/proto.h"
+#include "../src/global.h"
 
 void Terminate (int ExitCode);
 
