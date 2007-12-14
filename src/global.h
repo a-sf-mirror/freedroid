@@ -132,10 +132,6 @@ EXTERN int classic_user_rect;   // use the User-Rect dimensions of the original 
 #define EXTERN extern
 #endif
 
-EXTERN int Number_Of_Item_Types;
-EXTERN itemspec* ItemMap;
-EXTERN item_bonus * PrefixList;
-EXTERN item_bonus * SuffixList;
 EXTERN float timeout_from_item_drop;
 EXTERN int use_open_gl;
 EXTERN int command_line_override_for_screen_resolution;
@@ -337,5 +333,19 @@ EXTERN int always_show_items_text;
 #endif
 
 EXTERN SDL_Rect SkillScreenRect;
+
+#undef EXTERN
+#ifdef _items_c
+#define EXTERN
+#else
+#define EXTERN extern
+#endif
+
+
+EXTERN int Number_Of_Item_Types;
+EXTERN itemspec* ItemMap;
+EXTERN short int item_count_per_class[10];
+EXTERN item_bonus * PrefixList;
+EXTERN item_bonus * SuffixList;
 
 #endif  // _global_h

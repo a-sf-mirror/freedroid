@@ -65,6 +65,7 @@ EXTERN void ThouArtDefeated ( void );
 EXTERN void ThouHastWon ( void );
 EXTERN void GetEventsAndEventTriggers ( char* EventsAndEventTriggersFilename );
 EXTERN void PlayATitleFile ( char* Filename );
+EXTERN void Get_Item_Data ( char* DataPointer );
 
 // influ.c 
 #undef EXTERN
@@ -425,10 +426,9 @@ EXTERN int ItemCanBeDroppedInInv ( int ItemType , int InvPos_x , int InvPos_y );
 EXTERN long calculate_item_buy_price ( item* BuyItem );
 EXTERN long calculate_item_repair_price ( item* repair_item );
 EXTERN long calculate_item_sell_price ( item* BuyItem );
-EXTERN void FillInItemProperties( item* ThisItem , int FullDuration , int TreasureChestRange , int multiplicity);
+EXTERN void FillInItemProperties( item* ThisItem , int FullDuration , int multiplicity);
 EXTERN void DamageAllEquipment( ) ;
-EXTERN void DropChestItemAt( int ItemType , float x , float y , int prefix , int suffix , int TreasureChestRange );
-EXTERN void DropItemAt( int ItemType , int level_num , float x , float y , int prefix , int suffix , int TreasureChestRange , int multiplicity );
+EXTERN void DropItemAt( int ItemType , int level_num , float x , float y , int prefix , int suffix , int multiplicity );
 EXTERN void Quick_ApplyItem( int ItemKey );
 EXTERN int MatchItemWithName ( int type, const char * name );
 EXTERN int GetItemIndexByName ( const char * name );
@@ -454,7 +454,7 @@ EXTERN void HandleInventoryScreen ( void );
 EXTERN int AddFloorItemDirectlyToInventory( item* ItemPointer );
 EXTERN void CopyItem( item* SourceItem , item* DestItem , int MakeSound );
 EXTERN void DeleteItem( item* Item );
-EXTERN void DropRandomItem( int level_num , float x , float y , int TreasureChestRange , int ForceMagical , int ForceDrop , int ChestItem );
+EXTERN void DropRandomItem( int level_num , float x , float y , int class , int ForceMagical );
 EXTERN int get_floor_item_index_under_mouse_cursor ( );
 EXTERN int item_is_currently_equipped( item* Item );
 EXTERN int Get_Prefixes_Data ( char * DataPointer );
@@ -805,7 +805,6 @@ EXTERN void printf_SDL (SDL_Surface *screen, int x, int y, const char *fmt, ...)
 EXTERN void LoadChatRosterWithChatSequence ( char* FullPathAndFullFilename );
 EXTERN void delete_one_dialog_option ( int i , int FirstInitialisation );
 EXTERN void InitChatRosterForNewDialogue( void );
-EXTERN void Get_Item_Data ( char* DataPointer );
 EXTERN void DebugPrintf (int db_level, const char *fmt, ...);
 EXTERN void *MyMalloc (long);
 EXTERN void PrepareMultipleChoiceDialog ( Enemy ChatDroid , int with_flip );

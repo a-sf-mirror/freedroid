@@ -53,7 +53,6 @@
 #define DEBUG_TUX_PATHFINDING 1  // debug level for tux pathfinding...
 
 void InfluEnemyCollisionLoseEnergy (int enemynum);	/* influ can lose energy on coll. */
-int NoInfluBulletOnWay (void);
 void limit_tux_speed_to_a_maximum ( );
 int autorun_activated = 0;
 int set_up_intermediate_course_for_tux ( );
@@ -230,7 +229,7 @@ throw_out_all_chest_content ( int obst_index )
 		throw_out_offset_vector . y -= 0.05;
 		}
 	}
-  DropRandomItem( Me . pos . z , Me . pos . x + throw_out_offset_vector . x , Me . pos . y + throw_out_offset_vector . y, 1 , FALSE  , FALSE , FALSE ) ;
+  DropRandomItem( Me . pos . z , Me . pos . x + throw_out_offset_vector . x , Me . pos . y + throw_out_offset_vector . y, 1 , FALSE );
 
 
   //--------------------
@@ -2302,29 +2301,6 @@ move_tux ( )
     
     animate_tux ( ) ;	// move the "phase" of influencers rotation
 }; // void move_tux( );
-
-/* ----------------------------------------------------------------------
- * This function checks if there is a bullet from the influencer still
- * flying around somewhere.  This is needed in case no new shot can be
- * made until the old one has passed out, a feature which is currently
- * not used anywhere in the code I think.
- * ---------------------------------------------------------------------- */
-int
-NoInfluBulletOnWay (void)
-{
-  int i;
-
-  if ( ! ItemMap[ Me.weapon_item.type ].item_gun_oneshotonly )
-    return TRUE;
-
-  for (i = 0; i < MAXBULLETS; i++)
-    {
-      if ((AllBullets[i].type != INFOUT) && (AllBullets[i].mine))
-	return FALSE;
-    }
-
-  return TRUE;
-}; // int NoInfluBulletOnWay( void )
 
 /* ----------------------------------------------------------------------
  * This function does the 'rotation' of the influencer, according to the

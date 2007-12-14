@@ -320,7 +320,7 @@ Takeover ( int enemynum )
 		DropItemAt( AllEnemys [ enemynum ] . on_death_drop_item_code , 
 			    AllEnemys [ enemynum ] . pos . z ,
 			    AllEnemys [ enemynum ] . pos . x , 
-			    AllEnemys [ enemynum ] . pos . y , -1 , -1 , 2 , 1 );
+			    AllEnemys [ enemynum ] . pos . y , -1 , -1 , 1 );
 		AllEnemys [ enemynum ] . on_death_drop_item_code = -1;
 	    }  
 

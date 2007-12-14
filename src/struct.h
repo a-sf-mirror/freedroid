@@ -406,55 +406,56 @@ typedef struct
     char* item_drop_sound_file_name;
     char* item_inv_file_name;
     
-    int item_can_be_applied_in_combat;
-    int item_can_be_installed_in_influ;
-    int item_can_be_installed_in_weapon_slot;
-    int item_can_be_installed_in_drive_slot;
-    int item_can_be_installed_in_armour_slot;
-    int item_can_be_installed_in_shield_slot;
-    int item_can_be_installed_in_special_slot;
+    char item_can_be_applied_in_combat;
+    char item_can_be_installed_in_weapon_slot;
+    char item_can_be_installed_in_drive_slot;
+    char item_can_be_installed_in_armour_slot;
+    char item_can_be_installed_in_shield_slot;
+    char item_can_be_installed_in_special_slot;
     
-    int item_group_together_in_inventory;
+    char item_group_together_in_inventory;
     
     // How good is the item as weapon???
     double item_gun_recharging_time;       // time until the next shot can be made, measures in seconds
     double item_gun_reloading_time;       // time needed to put a new charger
-    int    item_gun_bullet_image_type;       // which type of image to use for displaying this bullet
-    int    item_gun_oneshotonly;	        // if this is set, there is only 1 shot 
+    short    item_gun_bullet_image_type;       // which type of image to use for displaying this bullet
     double item_gun_speed; // how fast should a bullet move straightforward?
-    int    base_item_gun_damage; //	damage done by this bullettype 
-    int    item_gun_damage_modifier; // modifier to the damage done by this bullettype 
+    short    base_item_gun_damage; //	damage done by this bullettype 
+    short    item_gun_damage_modifier; // modifier to the damage done by this bullettype 
     double item_gun_bullet_lifetime;      // how long does a 'bullet' from this gun type live?
-    int    item_gun_bullet_reflect_other_bullets; // can this 'bullet' reflect other bullets
-    int    item_gun_bullet_pass_through_explosions; // can this 'bullet' reflect other bullets
-    int    item_gun_bullet_pass_through_hit_bodies; // does this bullet go through hit bodies (e.g. like a laser sword)
-    int    item_gun_bullet_ignore_wall_collisions; // can this bullet pass through walls and map barriers?
-    int    item_gun_ammo_clip_size; //max. number of bullets in the charger
+    char    item_gun_bullet_reflect_other_bullets; // can this 'bullet' reflect other bullets
+    char    item_gun_bullet_pass_through_explosions; // can this 'bullet' reflect other bullets
+    char    item_gun_bullet_pass_through_hit_bodies; // does this bullet go through hit bodies (e.g. like a laser sword)
+    char    item_gun_bullet_ignore_wall_collisions; // can this bullet pass through walls and map barriers?
+    short    item_gun_ammo_clip_size; //max. number of bullets in the charger
     
     // the following values have only relevance in case of a melee weapon
     double item_gun_angle_change;	// how fast to do a melee weapon swing
     double item_gun_start_angle_modifier;	// where to start with a melee weapon swing
     double item_gun_fixed_offset;         // how far away from the swinger should a melee weapon swing occur?
-    int    item_gun_use_ammunition; // which ammunition does this gun use? - 1 laser 2 plasma 3 exterminator
-    int    item_gun_requires_both_hands; // is this a (strictly) 2-handed weapon?
+    short    item_gun_use_ammunition; // which ammunition does this gun use? - 1 laser 2 plasma 3 exterminator
+    char    item_gun_requires_both_hands; // is this a (strictly) 2-handed weapon?
     
     // how good is the item as armour or shield or other protection???
-    int base_ac_bonus;
-    int ac_bonus_modifier;
+    short base_ac_bonus;
+    short ac_bonus_modifier;
     
     // which requirement for strength, dexterity and magic (force) does the item have?
-    int item_require_strength;
-    int item_require_dexterity;
-    int item_require_magic;
+    short int item_require_strength;
+    short int item_require_dexterity;
+    short int item_require_magic;
     
     // what duration does the item have?
-    int base_item_duration;
-    int item_duration_modifier;
+    short int base_item_duration;
+    short int item_duration_modifier;
     
     // Which picture to use for this item, when it's lying on the floor?
     // int picture_number;
     item_image_spec inv_image ;
-    int base_list_price;         // the base price of this item at the shop
+    short int base_list_price;         // the base price of this item at the shop
+
+    short int min_drop_class;
+    short int max_drop_class;
     
 } itemspec , *Itemspec;
 

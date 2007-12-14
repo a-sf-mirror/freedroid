@@ -286,9 +286,9 @@ check_for_cheat_keys( void )
     if ( RPressed() && CtrlWasPressed() ) 
     {
 	if ( ShiftWasPressed() )
-	    DropRandomItem( Me . pos . z , Me . pos . x , Me . pos . y , 3 , TRUE  , FALSE , FALSE ) ;
+	    DropRandomItem( Me . pos . z , Me . pos . x , Me . pos . y , 3 , TRUE ) ;
 	else
-	    DropRandomItem( Me . pos . z , Me . pos . x , Me . pos . y , 3 , FALSE , FALSE , FALSE ) ;
+	    DropRandomItem( Me . pos . z , Me . pos . x , Me . pos . y , 3 , FALSE) ;
 	
 	//--------------------
 	// here our cheat key for immediately forcing respawning of the

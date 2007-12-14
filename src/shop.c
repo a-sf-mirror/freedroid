@@ -291,7 +291,7 @@ AssembleItemListForTradeCharacter ( item* ListToBeFilled , int ShopCharacterCode
     for ( i = 0 ; i < MAX_ITEMS_IN_INVENTORY ; i ++ )
     {
 	if ( ListPointer->type == (-1) ) break;
-	FillInItemProperties( ListPointer , TRUE , 0 , 1);
+	FillInItemProperties( ListPointer , TRUE ,  1);
 	ListPointer -> is_identified = TRUE;
 	ListPointer++;
     }

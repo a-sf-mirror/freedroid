@@ -48,13 +48,6 @@ enum
     FIRST_INV_SLOT 
 };
 
-/*
- *
- * FIRST_INV_SLOT - FIRST_INV_SLOT + MAX_ITEMS_IN_INVENTORY: inventory of player
- * ?? perhaps afterwards: items on the floor of the current level?  maybe not.
- *
- */
-
 /* ----------------------------------------------------------------------
  * When the player closes the inventory screen, items currently held in 
  * hand should not be held in hand any more.  This is what this function
@@ -66,11 +59,7 @@ silently_unhold_all_items ( void )
     int i;
     Level ItemLevel = curShip . AllLevels [ Me . pos . z ] ;
     
-    //--------------------
-    // At first we disable the picture at the mouse cursor location.  This
-    // really is the picture only, nothing else so far.
-    //
-    Item_Held_In_Hand = ( -1 ); // ItemMap[ PlayerLevel->ItemList[ i ].type ].picture_number ;
+    Item_Held_In_Hand = ( -1 );
     
     //--------------------
     // Now we remove all 'currently held' markers from all
@@ -401,7 +390,7 @@ calculate_item_repair_price ( item* repair_item )
  *
  * ---------------------------------------------------------------------- */
 void
-FillInItemProperties( item* ThisItem , int FullDuration , int TreasureChestRange, int multiplicity )
+FillInItemProperties( item* ThisItem , int FullDuration, int multiplicity )
 {
     if ( ThisItem -> type < 0 ) return;
 
@@ -473,11 +462,9 @@ FillInItemProperties( item* ThisItem , int FullDuration , int TreasureChestRange
 	ThisItem->bonus_to_life += SuffixList [ ThisItem -> suffix_code ].base_bonus_to_life +
 	    MyRandom ( SuffixList [ ThisItem -> suffix_code ].modifier_to_bonus_to_life ) ;
 	ThisItem->bonus_to_health_recovery += SuffixList [ ThisItem -> suffix_code ].base_bonus_to_health_recovery;
-//	    + MyRandom ( SuffixList [ ThisItem -> suffix_code ].modifier_to_bonus_to_health_recovery ) ;
 	ThisItem->bonus_to_force += SuffixList [ ThisItem -> suffix_code ].base_bonus_to_force +
 	    MyRandom ( SuffixList [ ThisItem -> suffix_code ].modifier_to_bonus_to_force ) ;
 	ThisItem->bonus_to_cooling_rate += SuffixList [ ThisItem -> suffix_code ].base_bonus_to_cooling_rate;
-//	    + MyRandom ( SuffixList [ ThisItem -> suffix_code ].modifier_to_bonus_to_mana_recovery ) ;
 
 	ThisItem->bonus_to_tohit += SuffixList [ ThisItem -> suffix_code ].base_bonus_to_tohit +
            MyRandom ( SuffixList [ ThisItem -> suffix_code ].modifier_to_bonus_to_tohit ) ;
@@ -528,14 +515,14 @@ FillInItemProperties( item* ThisItem , int FullDuration , int TreasureChestRange
 	ThisItem->is_identified = FALSE;
     }
     
-}; // void FillInItemProperties( item* ThisItem , int FullDuration , int TreasureChestRange )
+}; // void FillInItemProperties( item* ThisItem , int FullDuration )
 
 /* ----------------------------------------------------------------------
  * This function drops an item at a given place, assigning it the given
  * suffix and prefix code.
  * ---------------------------------------------------------------------- */
 void
-DropItemAt( int ItemType , int level_num , float x , float y , int prefix , int suffix , int TreasureChestRange , int multiplicity )
+DropItemAt( int ItemType , int level_num , float x , float y , int prefix , int suffix , int multiplicity )
 {
     int i;
     gps item_pos;
@@ -547,7 +534,6 @@ DropItemAt( int ItemType , int level_num , float x , float y , int prefix , int 
     if ( ( ItemType <= 0 ) || ( ItemType >= Number_Of_Item_Types ) )
     {
 	DebugPrintf ( -1000 , "\n\nItemType received: %d." , ItemType );
-	// raise ( SIGSEGV );
 	ErrorMessage ( __FUNCTION__  , "\
 Received an item type that was outside of range of the allowed item types.",
 				   PLEASE_INFORM, IS_FATAL );
@@ -613,7 +599,7 @@ Couldn't find another array entry to drop another item.",
     item_drop_map_level -> ItemList [ i ] . prefix_code = prefix;
     item_drop_map_level -> ItemList [ i ] . suffix_code = suffix;
 
-    FillInItemProperties ( & ( item_drop_map_level->ItemList[ i ] ) , FALSE, TreasureChestRange, multiplicity );
+    FillInItemProperties ( & ( item_drop_map_level->ItemList[ i ] ) , FALSE, multiplicity );
     
     item_drop_map_level -> ItemList [ i ] . throw_time = 0.01 ; // something > 0 
     if ( ( prefix == (-1) ) && ( suffix == (-1) ) ) item_drop_map_level -> ItemList [ i ] . is_identified = TRUE ;
@@ -622,75 +608,7 @@ Couldn't find another array entry to drop another item.",
     // PlayItemSound( ItemMap[ ItemType ].sound_number );
     play_item_sound ( ItemType );
     
-}; // void DropItemAt( int ItemType , int x , int y , int prefix , int suffix , int TreasureChestRange )
-
-/* ----------------------------------------------------------------------
- * This function drops an item at a given place, assigning it the given
- * suffix and prefix code.
- * ---------------------------------------------------------------------- */
-void
-DropChestItemAt( int ItemType , float x , float y , int prefix , int suffix , int TreasureChestRange )
-{
-    int i;
-    int multiplicity;
-    
-    //--------------------
-    // If given a non-existent item type, we don't do anything
-    // of course (and also don't produce a SEGFAULT or something...)
-    //
-    if ( ItemType == ( -1 ) ) return;
-    if ( ItemType >= Number_Of_Item_Types ) 
-    {
-	fprintf ( stderr, "\n\nItemType: '%d'.\n" , ItemType );
-	ErrorMessage ( __FUNCTION__  , "\
-There was an item code for an item to drop given to the function \n\
-DropItemAt( ... ), which is pointing beyond the scope of the known\n\
-item types.  This indicates a severe bug in Freedroid.",
-				   PLEASE_INFORM, IS_FATAL );
-    }
-    
-    //--------------------
-    // At first we must find a free item index on this level,
-    // so that we can enter the new item there.
-    //
-    for ( i = 0 ; i < MAX_ITEMS_PER_LEVEL ; i ++ )
-    {
-	if ( CurLevel->ChestItemList[ i ].type == (-1) ) 
-	{
-	    break;
-	}
-    }
-    if ( i >= MAX_ITEMS_PER_LEVEL )
-    {
-	ErrorMessage ( __FUNCTION__  , "\
-Couldn't find another array entry to drop another item.",
-				   PLEASE_INFORM, IS_FATAL );
-    }
-    
-    //--------------------
-    // Now we can construct the new item
-    //
-    CurLevel -> ChestItemList [ i ] . type = ItemType;
-    CurLevel -> ChestItemList [ i ] . pos.x = x;
-    CurLevel -> ChestItemList [ i ] . pos.y = y;
-    CurLevel -> ChestItemList [ i ] . prefix_code = prefix;
-    CurLevel -> ChestItemList [ i ] . suffix_code = suffix;
-    
-    //--------------------
-    // In case of cyberbucks, we have to specify the amount of cyberbucks
-    //
-    if ( MatchItemWithName(ItemType, "Cyberbucks") )
-    {
-	multiplicity = 20 * TreasureChestRange + MyRandom( 20 ) + 1;
-    }
-    else multiplicity = 1;
-
-    FillInItemProperties ( & ( CurLevel->ChestItemList[ i ] ) , FALSE , TreasureChestRange, multiplicity );
-    
-    // PlayItemSound( ItemMap[ ItemType ].sound_number );
-    play_item_sound ( ItemType );
-    
-}; // void DropChestItemAt( int ItemType , int x , int y , int prefix , int suffix , int TreasureChestRange )
+}; // void DropItemAt( int ItemType , int x , int y , int prefix , int suffix )
 
 /* ----------------------------------------------------------------------
  * This function checks whether a given item can be equipped.
@@ -759,6 +677,36 @@ TreasureChestRange, btype, btype[0].bonus_name);
 return 0; //by default, return bonus number 0
 }; // int find_suitable_bonus_for_item ( int drop_item_type , int TreasureChestRange, item_bonus * btype )
 
+int get_random_item_type ( int class )
+{
+
+    if ( class > 9 )
+	{
+	ErrorMessage(__FUNCTION__, "Random item class %d exceeds 9.\n", class, PLEASE_INFORM, IS_FATAL);
+	}
+
+    int a = MyRandom( item_count_per_class[class] );
+
+    //printf("Choosing in class %d among %d items, taking item %d\n", class, item_count_per_class[class], a);
+
+    int i;
+    for ( i = 0; i < Number_Of_Item_Types; i ++)
+	{
+	if ( ItemMap[i] . min_drop_class != -1 )
+	    {
+	    if ( ItemMap[i] . min_drop_class <= class && ItemMap[i] . max_drop_class >= class)
+		a --;
+	    if ( ! a ) break;
+	    }
+	}
+
+    if ( a )
+	{
+	ErrorMessage(__FUNCTION__, "Looking for random item #%d with class %d, a = %d after the loop.", PLEASE_INFORM, IS_FATAL);
+	}
+
+    return i;
+}
 
 /* ----------------------------------------------------------------------
  * This function drops a random item to the floor of the current level
@@ -769,7 +717,7 @@ return 0; //by default, return bonus number 0
  *
  * ---------------------------------------------------------------------- */
 void
-DropRandomItem( int level_num , float x , float y , int TreasureChestRange , int ForceMagical , int ForceDrop , int ChestItem )
+DropRandomItem( int level_num , float x , float y , int class,  int ForceMagical )
 {
     int Suf; int Pre;
     int DropDecision;
@@ -786,391 +734,37 @@ DropRandomItem( int level_num , float x , float y , int TreasureChestRange , int
     //--------------------
     // We decide whether we drop something at all or not
     //
-    if ( ( ! ForceDrop ) && ( DropDecision < 100 - GOLD_DROP_PERCENTAGE - ITEM_DROP_PERCENTAGE ) ) return;
-    
-    //--------------------
-    // Since we don't drop real treasure any more, we just 
-    // drop some minimal stuff
-    //
-    if ( ChestItem ) 
-    {
-	switch ( MyRandom ( 4 ) )
-	{
-	    case 0:
-		DropChestItemAt( GetItemIndexByName("Plasma Transistor") , x , y , -1 , -1 , TreasureChestRange );
-		break;
-	    case 1:
-		DropChestItemAt( GetItemIndexByName("Superconducting Relay Unit") , x , y , -1 , -1 , TreasureChestRange );
-		break;
-	    case 2:
-		DropChestItemAt( GetItemIndexByName("Antimatter-Matter Converter") , x , y , -1 , -1 , TreasureChestRange );
-		break;
-	    case 3:
-		DropChestItemAt( GetItemIndexByName("Entropy Inverter") , x , y , -1 , -1 , TreasureChestRange );
-		break;
-	    case 4:
-		DropChestItemAt( GetItemIndexByName("Tachyon Condensator") , x , y , -1 , -1 , TreasureChestRange );
-		break;
-	}
-	return;
-    }
+    if ( ( DropDecision < 100 - GOLD_DROP_PERCENTAGE ) && ( DropDecision > ITEM_DROP_PERCENTAGE ) ) return;
     
     //--------------------
     // Perhaps it's some gold that will be dropped.  That's rather
     // simple, so we do this first.
     //
-    if ( ( !ForceDrop ) && ( DropDecision < 100 - ITEM_DROP_PERCENTAGE ) )
+    if ( ( DropDecision > 100 - GOLD_DROP_PERCENTAGE ) )
     {
-	DropItemAt( GetItemIndexByName("Cyberbucks") , level_num , x , y , -1 , -1 , TreasureChestRange ,
-		    20 * TreasureChestRange + MyRandom( 20 ) + 1);
-	return;
+	DropItemAt( GetItemIndexByName("Cyberbucks") , level_num , x , y , -1 , -1 , 20 * class + MyRandom( 20 ) + 1);
     }
+  
+    if ( ( DropDecision < ITEM_DROP_PERCENTAGE ) )
+	{
+	drop_item_type = get_random_item_type ( class );
+	drop_item_multiplicity = 1; //for now...  
+
+	Suf = ( -1 );
+	Pre = ( -1 ) ;
+	if ( ForceMagical || ( MyRandom ( 14 ) <= 2 ) )
+	    {
+	    Suf = find_suitable_bonus_for_item ( drop_item_type , class, SuffixList );
+	    }
+	if ( ForceMagical || ( MyRandom ( 14 ) <= 2 ) )
+	    {
+	    Pre = find_suitable_bonus_for_item ( drop_item_type , class, PrefixList );
+	    }
+
+	DropItemAt ( drop_item_type , level_num , x , y , Pre , Suf , drop_item_multiplicity );
+	}
     
-    switch ( MyRandom ( TreasureChestRange ) )
-    {
-	case 0:
-	    switch ( MyRandom ( 16 ) )
-	    {
-		case 0:
-		    drop_item_type = GetItemIndexByName("Diet supplement");
-		    drop_item_multiplicity =  1 ;
-		    break;
-		case 1:
-		case 2:
-		    drop_item_type = GetItemIndexByName("Diet supplement");
-		    drop_item_multiplicity =  1 ;
-		    break;
-		case 3:
-		case 4:
-		    drop_item_type = GetItemIndexByName("Bottled ice") ;
-		    drop_item_multiplicity =  1 ;
-		    break;
-		case 5:
-		    drop_item_type = GetItemIndexByName("Dagger");
-		    drop_item_multiplicity =  1 ;
-		    break;
-		case 6:
-		    drop_item_type = GetItemIndexByName("Cap");
-		    drop_item_multiplicity =  1 ;
-		    break;
-		case 7:
-		    drop_item_type = GetItemIndexByName("Tree branch") ;
-		    drop_item_multiplicity =  1 ;
-		    break;
-		case 8:
-		    drop_item_type = GetItemIndexByName("Simple Jacket");
-		    drop_item_multiplicity =  1 ;
-		    break;
-		case 9:
-		    drop_item_type = GetItemIndexByName("Identification Script");
-		    drop_item_multiplicity =  1 ;
-		    break;
-		case 10:
-		    drop_item_type = GetItemIndexByName("Wooden spear") ;
-		    drop_item_multiplicity =  1 ;
-		    break;
-		case 11:
-		    drop_item_type = GetItemIndexByName("Shoes") ;
-		    drop_item_multiplicity =  1 ;
-		    break;
-		case 12:
-		    drop_item_type = GetItemIndexByName("Identification Script") ;
-		    drop_item_multiplicity =  1 ;
-		    break;
-		case 13:
-		    drop_item_type = GetItemIndexByName("Barf's Energy Drink") ;
-		    drop_item_multiplicity =  1 ;
-		    break;
-		case 14:
-		    drop_item_type = GetItemIndexByName("Buckler") ;
-		    drop_item_multiplicity =  1 ;
-		    break;
-		case 15:
-		    drop_item_type = GetItemIndexByName("Short sword") ;
-		    drop_item_multiplicity =  1 ;
-		    break;
-		case 16:
-		    drop_item_type = GetItemIndexByName("Running Power Capsule") ;
-		    drop_item_multiplicity =  1 ;
-		    break;
-	    } // inner switch
-	    break;
-	case 1:
-	    switch ( MyRandom ( 16 ) )
-	    {
-		case 0:
-		    drop_item_type = GetItemIndexByName("Small Helm") ;
-		    drop_item_multiplicity = 1 ;
-		    break;
-		case 1:
-		case 2:
-		    drop_item_type = GetItemIndexByName("Antibiotic");
-		    drop_item_multiplicity =  1 ;
-		    break;
-		case 3:
-		case 4:
-		    drop_item_type = GetItemIndexByName("Industrial coolant") ;
-		    drop_item_multiplicity =  1 ;
-		    break;
-		case 5:
-		    drop_item_type = GetItemIndexByName("Small Helm");
-		    drop_item_multiplicity =  1 ;
-		    break;
-		case 6:
-		    drop_item_type = GetItemIndexByName("Reinforced Jacket") ;
-		    drop_item_multiplicity =  1 ;
-		    break;
-		case 7:
-		    drop_item_type = GetItemIndexByName("Plasma Weapon Ammunition");
-		    drop_item_multiplicity =  10 + MyRandom ( 9 ) ;
-		    break;
-		case 8:
-		    drop_item_type = GetItemIndexByName("Laser Weapon Ammunition");
-		    drop_item_multiplicity =  10 + MyRandom ( 9 ) ;
-		    break;
-		case 9:
-		    drop_item_type = GetItemIndexByName("Identification Script");
-		    drop_item_multiplicity =  1 ;
-		    break;
-		case 10:
-		    drop_item_type = GetItemIndexByName("Mace");
-		    drop_item_multiplicity = 1 ;
-		    break;
-		case 11:
-		    drop_item_type = GetItemIndexByName("Light Boots");
-		    drop_item_multiplicity =  1 ;
-		    break;
-		case 12:
-		    drop_item_type = GetItemIndexByName("Diet supplement");
-		    drop_item_multiplicity =  1 ;
-		    break;
-		case 13:
-		    drop_item_type = GetItemIndexByName("Teleporter homing beacon");
-		    drop_item_multiplicity =  1 ;
-		    break;
-		case 14:
-		    drop_item_type = GetItemIndexByName("Small Shield");
-		    drop_item_multiplicity =  1 ;
-		    break;
-		case 15:
-		    drop_item_type = GetItemIndexByName("Long sword") ;
-		    drop_item_multiplicity =  1 ;
-		    break;
-		case 16:
-		default:
-		    drop_item_type = GetItemIndexByName("Bottled ice");
-		    drop_item_multiplicity =  1 ;
-		    break;
-	    } // inner switch
-	    break;
-	case 2:
-	    switch ( MyRandom ( 18 ) )
-	    {
-		case 0:
-		    drop_item_type = GetItemIndexByName("Industrial coolant");
-		    drop_item_multiplicity =  1 ;
-		    break;
-		case 1:
-		case 2:
-		    drop_item_type = GetItemIndexByName("Doc-in-a-can");
-		    drop_item_multiplicity =  1 ;
-		    break;
-		case 3:
-		case 4:
-		    drop_item_type = GetItemIndexByName("Liquid nitrogen");
-		    drop_item_multiplicity =  1 ;
-		    break;
-		case 5:
-		    drop_item_type = GetItemIndexByName("Iron Hat");
-		    drop_item_multiplicity =  1 ;
-		    break;
-		case 6:
-		    drop_item_type = GetItemIndexByName("Protective Jacket");
-		    drop_item_multiplicity =  1 ;
-		    break;
-		case 7:
-		    drop_item_type = GetItemIndexByName("Standard Shield");
-		    drop_item_multiplicity =  1 ;
-		    break;
-		case 8:
-		    drop_item_type = GetItemIndexByName("Plasma Weapon Ammunition");
-		    drop_item_multiplicity =  20 + MyRandom ( 9 );
-		    break;
-		case 9:
-		    drop_item_type = GetItemIndexByName("Laser Weapon Ammunition");
-		    drop_item_multiplicity =  20 + MyRandom ( 9 ) ;
-		    break;
-		case 10:
-		    drop_item_type = GetItemIndexByName("2 mm Exterminator Ammunition");
-		    drop_item_multiplicity =  20 + MyRandom ( 9 ) ;
-		    break;
-		case 11:
-		    drop_item_type = GetItemIndexByName("Diet supplement");
-		    drop_item_multiplicity =  1 ;
-		    break;
-		case 12:
-		    drop_item_type = GetItemIndexByName("Bottled ice");
-		    drop_item_multiplicity =  1 ;
-		    break;
-		case 13:
-		    drop_item_type = GetItemIndexByName("Antibiotic");
-		    drop_item_multiplicity =  1 ;
-		    break;
-		case 14:
-		    drop_item_type = GetItemIndexByName("Industrial coolant");
-		    drop_item_multiplicity =  1 ;
-		    break;
-		case 15:
-		    drop_item_type = GetItemIndexByName("Boots");
-		    drop_item_multiplicity =  1 ;
-		    break;
-		case 16:
-		    drop_item_type = GetItemIndexByName("Small Shield");
-		    drop_item_multiplicity =  1 ;
-		    break;
-		case 17:
-		    drop_item_type = GetItemIndexByName("Meat cleaver") ;
-		    drop_item_multiplicity =  1 ;
-		    break;
-		case 18:
-		default:
-		    drop_item_type = GetItemIndexByName("Running Power Capsule") ;
-		    drop_item_multiplicity =  1 ;
-		    break;
-	    } // inner switch
-	    break;
-	case 3:
-	    switch ( MyRandom ( 16 ) )
-	    {
-		case 0:
-		    drop_item_type = GetItemIndexByName("Source Book of Check system integrity");
-		    drop_item_multiplicity =  1 ;
-		    break;
-		case 1:
-		case 2:
-		    drop_item_type = GetItemIndexByName("Doc-in-a-can");
-		    drop_item_multiplicity =  1 ;
-		    break;
-		case 3:
-		case 4:
-		    drop_item_type = GetItemIndexByName("Liquid nitrogen");
-		    drop_item_multiplicity =  1 ;
-		    break;
-		case 5:
-		    drop_item_type = GetItemIndexByName("Iron Helm");
-		    drop_item_multiplicity =  1 ;
-		    break;
-		case 6:
-		    drop_item_type = GetItemIndexByName("Reinforced Boots");
-		    drop_item_multiplicity =  1 ;
-		    break;
-		case 7:
-		    drop_item_type = GetItemIndexByName("Medium Shield");
-		    drop_item_multiplicity =  1 ;
-		    break;
-		case 8:
-		    drop_item_type = GetItemIndexByName("Plasma Weapon Ammunition");
-		    drop_item_multiplicity = 30 + MyRandom ( 9 ) ;
-		    break;
-		case 9:
-		    drop_item_type = GetItemIndexByName("Laser Weapon Ammunition") ;
-		    drop_item_multiplicity = 30 + MyRandom ( 9 ) ;
-		    break;
-		case 10:
-		    drop_item_type = GetItemIndexByName("2 mm Exterminator Ammunition");
-		    drop_item_multiplicity = 30 + MyRandom ( 9 ) ;
-		    break;
-		case 11:
-		    drop_item_type = GetItemIndexByName("Diet supplement");
-		    drop_item_multiplicity =  1 ;
-		    break;
-		case 12:
-		    drop_item_type = GetItemIndexByName("Bottled ice");
-		    drop_item_multiplicity =  1 ;
-		    break;
-		case 13:
-		    drop_item_type = GetItemIndexByName("Antibiotic");
-		    drop_item_multiplicity =  1 ;
-		    break;
-		case 14:
-		    drop_item_type = GetItemIndexByName("Small Shield");
-		    drop_item_multiplicity =  1 ;
-		    break;
-		case 15:
-		    drop_item_type = GetItemIndexByName("Great sword");
-		    drop_item_multiplicity =  1 ;
-		    break;
-		case 16:
-		default:
-		    drop_item_type = GetItemIndexByName("Industrial coolant");
-		    drop_item_multiplicity =  1 ;
-		    break;
-	    } // inner switch
-	    break;
-	case 4:
-	    switch ( MyRandom ( 8 ) )
-	    {
-		case 0:
-		    drop_item_type = GetItemIndexByName("Hiking Boots");
-		    drop_item_multiplicity =  1 ;
-		    break;
-		case 1:
-		    drop_item_type = GetItemIndexByName("Liquid nitrogen");
-		    drop_item_multiplicity =  1 ;
-		    break;
-		case 2:
-		    drop_item_type = GetItemIndexByName("Doc-in-a-can");
-		    drop_item_multiplicity =  1 ;
-		    break;
-		case 3:
-		    drop_item_type = GetItemIndexByName("Large Shield");
-		    drop_item_multiplicity =  1 ;
-		    break;
-		case 4:
-		    drop_item_type = GetItemIndexByName("Plasma Grenade");
-		    drop_item_multiplicity =  1 ;
-		    break;
-		case 5:
-		    drop_item_type = GetItemIndexByName("VMX Gas Grenade");
-		    drop_item_multiplicity =  1 ;
-		    break;
-		case 6:
-		    drop_item_type = GetItemIndexByName("EMP Shock Grenade");
-		    drop_item_multiplicity =  1 ;
-		    break;
-		default:
-		    drop_item_type = GetItemIndexByName("Industrial coolant") ;
-		    drop_item_multiplicity =  1 ;
-		    break;
-	    } // inner switch
-	    break;
-	default:
-	    ErrorMessage ( __FUNCTION__  , "\
-Unhandled treasure chest encountered!  This isn't supposed to happen.",
-				       PLEASE_INFORM, IS_FATAL );
-	    break;
-    } // switch
-    
-    //--------------------
-    // So at this point we know, that an item will be dropped...
-    //
-    // Since there are no prefixes set up yet, we just need to consider
-    // the suffixes.  In case 
-    //
-    Suf = ( -1 );
-    Pre = ( -1 ) ;
-    if ( ForceMagical || ( MyRandom ( 14 ) <= 2 ) )
-    {
-	Suf = find_suitable_bonus_for_item ( drop_item_type , TreasureChestRange, SuffixList );
-    }
-    if ( ForceMagical || ( MyRandom ( 14 ) <= 2 ) )
-    {
-	Pre = find_suitable_bonus_for_item ( drop_item_type , TreasureChestRange, PrefixList );
-    }
-    
-    DropItemAt ( drop_item_type , level_num , x , y , Pre , Suf , TreasureChestRange , drop_item_multiplicity );
-    
-}; // void DropRandomItem( int x , int y )
+}; 
 
 /* ----------------------------------------------------------------------
  * When the influencer gets hit, all of his equipment suffers some damage.
@@ -1469,7 +1063,6 @@ associate_skill_with_item ( int item_type )
     char * pos = strstr( ItemMap [ item_type ] . item_name, "Source Book of" );
     pos += strlen ("Source Book of ");
     
-//    DebugPrintf(-1, "Associating item %d with program %s\n", item_type, pos);
     associated_skill = get_program_index_with_name(pos);
 
     return ( associated_skill );
@@ -2474,7 +2067,7 @@ ShowQuickInventory ( void )
     // active skill screen of course.  That would be irritating.
     // This does not apply to high resolutions though.
 
-    if ( GameConfig . screen_width == 640 && (( GameConfig.SkillScreen_Visible ) || ( GameConfig.CharacterScreen_Visible ) || ( GameConfig.Inventory_Visible ) )) return;
+    if ( GameConfig . screen_height == 480 && (( GameConfig.SkillScreen_Visible ) || ( GameConfig.CharacterScreen_Visible ) || ( GameConfig.Inventory_Visible ) )) return;
     
     //--------------------
     // Now we can blit all the objects in the quick inventory, but of course only
@@ -2607,10 +2200,6 @@ handle_player_identification_command( )
 		GrabbedItem = & Me . armour_item;
 	if ( MouseCursorIsOnButton(HELMET_RECT_BUTTON , CurPos.x , CurPos.y ) )
 		GrabbedItem = & Me . special_item;
-	/*if ( MouseCursorIsOnButton(AUX1_RECT_BUTTON , CurPos.x , CurPos.y ) )
-		GrabbedItem = & Me . aux1_item;
-	if ( MouseCursorIsOnButton(AUX2_RECT_BUTTON , CurPos.x , CurPos.y ) )
-		GrabbedItem = & Me . aux2_item;*/
 
 	}
 

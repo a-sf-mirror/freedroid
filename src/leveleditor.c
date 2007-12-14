@@ -1505,7 +1505,7 @@ ItemDropFromLevelEditor( void )
 	if ( our_multiplicity == 0 ) our_multiplicity = 1;
     }
     DropItemAt( NewItemCode , Me . pos . z , rintf( Me.pos.x ) , rintf( Me.pos.y ) , 
-		previous_prefix_selected , previous_suffix_selected , 0 , our_multiplicity );
+		previous_prefix_selected , previous_suffix_selected , our_multiplicity );
     
     while ( SpacePressed() || MouseLeftPressed() ) SDL_Delay(1);
     

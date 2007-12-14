@@ -1184,23 +1184,23 @@ DropEnemyTreasure ( Enemy ThisRobot )
 	case 5:
 	if ( Druidmap [ ThisRobot->type ] . amount_of_tachyon_condensators && ( ! MyRandom ( 10 ) == 1 )  )
 	    DropItemAt( GetItemIndexByName("Tachyon Condensator"), ThisRobot -> pos . z , 
-			ThisRobot->virt_pos.x , ThisRobot->virt_pos.y , -1 , -1 , 2 , 1 );
+			ThisRobot->virt_pos.x , ThisRobot->virt_pos.y , -1 , -1 , 1 );
 	case 4:
 	if ( Druidmap [ ThisRobot->type ] . amount_of_entropy_inverters && ( ! MyRandom ( 10 ) == 1 )  )
 	    DropItemAt( GetItemIndexByName("Entropy Inverter") , ThisRobot -> pos . z , 
-			ThisRobot->virt_pos.x , ThisRobot->virt_pos.y , -1 , -1 , 2 , 1 );
+			ThisRobot->virt_pos.x , ThisRobot->virt_pos.y , -1 , -1 , 1 );
 	case 3:
 	if ( Druidmap [ ThisRobot->type ] . amount_of_antimatter_converters && ( ! MyRandom ( 10 ) == 1 )  )
 	    DropItemAt( GetItemIndexByName("Antimatter-Matter Converter") , ThisRobot -> pos . z , 
-			ThisRobot->virt_pos.x , ThisRobot->virt_pos.y , -1 , -1 , 2 , 1 );
+			ThisRobot->virt_pos.x , ThisRobot->virt_pos.y , -1 , -1 , 1 );
 	case 2:
 	if ( Druidmap [ ThisRobot->type ] . amount_of_superconductors && ( ! MyRandom ( 10 ) == 1 )  )
 	    DropItemAt( GetItemIndexByName("Superconducting Relay Unit") , ThisRobot -> pos . z , 
-			ThisRobot->virt_pos.x , ThisRobot->virt_pos.y , -1 , -1 , 2 , 1 );
+			ThisRobot->virt_pos.x , ThisRobot->virt_pos.y , -1 , -1 , 1 );
 	case 1:    
 	if ( Druidmap [ ThisRobot->type ] . amount_of_plasma_transistors && ( MyRandom ( 10 ) == 1 ) )
 	    DropItemAt( GetItemIndexByName("Plasma Transistor") , ThisRobot -> pos . z , 
-			ThisRobot->virt_pos.x , ThisRobot->virt_pos.y , -1 , -1 , 2 , 1 );
+			ThisRobot->virt_pos.x , ThisRobot->virt_pos.y , -1 , -1 , 1 );
 	case 0: break;
 	}
 
@@ -1220,7 +1220,7 @@ Item to be dropped (forced for this bot) is of illegal type!" ,
 
 	DropItemAt( ThisRobot -> on_death_drop_item_code , ThisRobot -> pos . z , 
 		    ThisRobot -> virt_pos . x , 
-		    ThisRobot -> virt_pos . y , -1 , -1 , 2 , 1 );
+		    ThisRobot -> virt_pos . y , -1 , -1 , 1 );
 	ThisRobot -> on_death_drop_item_code = -1;
     }  
     
@@ -1229,7 +1229,7 @@ Item to be dropped (forced for this bot) is of illegal type!" ,
     // there is still some chance, that the enemy will have (and drop) some other
     // valuables, that the Tux can then collect afterwards.
     //
-    DropRandomItem ( ThisRobot -> pos . z , ThisRobot -> virt_pos . x , ThisRobot -> virt_pos . y , Druidmap [ ThisRobot -> type ] . monster_level , FALSE , FALSE , FALSE );
+    DropRandomItem ( ThisRobot -> pos . z , ThisRobot -> virt_pos . x , ThisRobot -> virt_pos . y , Druidmap [ ThisRobot -> type ] . monster_level , FALSE );
     
 
 }; // void DropEnemyTreasure ( Enemy ThisRobot )

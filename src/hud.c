@@ -235,7 +235,7 @@ exist really (i.e. has a type = (-1) ).",
 	    sprintf( linebuf , _(" Dur: %d/%d"), (int) CurItem->current_duration , (int) CurItem->max_duration );
 	strcat( ItemDescText , linebuf );
     }
-    else if ( ItemMap [ CurItem->type ].item_can_be_installed_in_influ )
+    else 
     {
 	strcat( ItemDescText , _(" Indestructible") );
     };
