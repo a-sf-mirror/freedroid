@@ -684,7 +684,7 @@ int get_random_item_type ( int class )
 	ErrorMessage(__FUNCTION__, "Random item class %d exceeds 9.\n", class, PLEASE_INFORM, IS_FATAL);
 	}
 
-    int a = MyRandom( item_count_per_class[class] ) + 1;
+    int a = MyRandom( item_count_per_class[class] - 1 ) + 1;
 
     //printf("Choosing in class %d among %d items, taking item %d\n", class, item_count_per_class[class], a);
 
