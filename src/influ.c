@@ -953,9 +953,9 @@ CheckIfCharacterIsStillOk ( )
 	return;
     }
 
-	if ( Me . AllMissions [ 8 ] . MissionIsComplete )
+    if ( Me . AllMissions [ 8 ] . MissionIsComplete )
 	{
-	    ThouHastWon ();
+	ThouHastWon ();
 	}
 	    
 }; // void CheckIfCharacterIsStillOk ( )
