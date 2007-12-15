@@ -65,6 +65,12 @@ push_or_pop_chat_roster ( int push_or_pop )
     if ( push_or_pop == PUSH_ROSTER )
     {
 	memcpy ( LocalChatRoster , ChatRoster , sizeof ( dialogue_option ) * MAX_DIALOGUE_OPTIONS_IN_ROSTER ) ;
+	int i;
+	for ( i = 0 ; i < MAX_DIALOGUE_OPTIONS_IN_ROSTER ; i ++ )
+	    {
+	    delete_one_dialog_option ( i , TRUE );
+	    }
+
     }
     else if ( push_or_pop == POP_ROSTER )
     {
@@ -633,11 +639,6 @@ ExecuteChatExtra ( char* ExtraCommandString , Enemy ChatDroid )
 	char finaldir[50];
 	sprintf(finaldir, "%s%s", DIALOG_DIR, language_dirs[GameConfig.language]);
 	find_file (tmp_filename , finaldir, fpath, 0);
-	
-	for ( i = 0 ; i < MAX_DIALOGUE_OPTIONS_IN_ROSTER ; i ++ )
-	{
-	    delete_one_dialog_option ( i , TRUE ); // this must be done so, that no freeing is done...
-	}
 	
 	for ( i = 0 ; i < MAX_ANSWERS_PER_PERSON ; i ++ )
 	{
@@ -1283,7 +1284,7 @@ DoChatFromChatRosterData( int ChatPartnerCode , Enemy ChatDroid , int clear_prot
 	SetCurrentFont ( FPS_Display_BFont );
     }
     
-    PrepareMultipleChoiceDialog ( ChatDroid , TRUE );
+    display_current_chat_protocol ( CHAT_DIALOG_BACKGROUND_PICTURE_CODE , ChatDroid , FALSE );
     
     Chat_Window . x = 242 ; Chat_Window . y = 100 ; Chat_Window . w = 380; Chat_Window . h = 314 ;
     
@@ -1348,12 +1349,6 @@ DoChatFromChatRosterData( int ChatPartnerCode , Enemy ChatDroid , int clear_prot
 	    return;
 	}
 	
-//	if ( ! ChatDroid -> is_friendly ) return ;
-	
-//	if ( MenuSelection == END_ANSWER )
-//	{
-//	    return;
-//	}
     }
     
 }; // void DoChatFromChatRosterData( ... )
