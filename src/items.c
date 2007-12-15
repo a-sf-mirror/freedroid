@@ -2256,6 +2256,14 @@ HandleInventoryScreen ( void )
     Level PlayerLevel = curShip . AllLevels [ Me . pos . z ] ;
     int index_of_item_under_mouse_cursor = (-1) ;
     
+    struct { int buttonidx; item * slot; } allslots[] = /*list of all slots and their associated item*/
+	{ { WEAPON_RECT_BUTTON, &(Me.weapon_item) } ,
+	    { DRIVE_RECT_BUTTON, &(Me.drive_item) },
+	    { SHIELD_RECT_BUTTON, &(Me.shield_item) },
+	    { ARMOUR_RECT_BUTTON, &(Me.armour_item) },
+	    { HELMET_RECT_BUTTON, &(Me.special_item) },
+	};
+    
     DebugPrintf ( 2 , "\n%s(): Function call confirmed." , __FUNCTION__ );
    
     //--------------------
@@ -2373,13 +2381,6 @@ HandleInventoryScreen ( void )
 	}
 	else
 	    {
-	    struct { int buttonidx; item * slot; } allslots[] =
-		{ { WEAPON_RECT_BUTTON, &(Me.weapon_item) } ,
-		  { DRIVE_RECT_BUTTON, &(Me.drive_item) },
-		  { SHIELD_RECT_BUTTON, &(Me.shield_item) },
-		  { ARMOUR_RECT_BUTTON, &(Me.armour_item) },
-		  { HELMET_RECT_BUTTON, &(Me.special_item) },
-		};
 	    int i;
 
 	    for ( i = 0; i < sizeof(allslots)/sizeof(allslots[0]); i ++ )
@@ -2390,6 +2391,7 @@ HandleInventoryScreen ( void )
 			{
 			Item_Held_In_Hand = allslots[i].slot -> type;
 			allslots[i].slot -> currently_held_in_hand = TRUE;
+			break; 
 			}
 		    }
 		}
@@ -2404,12 +2406,6 @@ HandleInventoryScreen ( void )
     if ( MouseLeftClicked() && ( Item_Held_In_Hand != (-1) ) ) 
     {
 	//--------------------
-	// In case the user didn't hold anything in his hand, then nothing
-	// needs to be released as well...
-	//
-	if ( Item_Held_In_Hand == ( -1 ) ) goto NoMoreReleasing;
-	
-	//--------------------
 	// If the cursor is in the inventory window again, then we must see if 
 	// the item was dropped onto a correct inventory location and should from
 	// then on not only no longer be in the players hand but also remain at
@@ -2417,7 +2413,6 @@ HandleInventoryScreen ( void )
 	//
 	if ( MouseCursorIsInInventoryGrid( CurPos.x , CurPos.y ) )
 	{
-	    //DebugPrintf( -1 , "\nItem dropped in inventory window!" );
 	    Item_Held_In_Hand = ( -1 );
 	    DropHeldItemToInventory( );
 	}
@@ -2430,7 +2425,6 @@ HandleInventoryScreen ( void )
 	{
             if ( ! DropHeldItemToTheFloor( ) )
 		{
-                //DebugPrintf( -1 , "\nItem dropped onto the floor of the combat window!" );
 	        Item_Held_In_Hand = ( -1 );
 		}
 	}
@@ -2444,8 +2438,6 @@ HandleInventoryScreen ( void )
 	    if ( ( GetHeldItemCode() != (-1) ) &&
 		 ( ItemMap[ GetHeldItemCode() ].item_can_be_installed_in_weapon_slot ) )
 	    {
-	    //DebugPrintf( 1 , "\nItem dropped onto the weapons rectangle!" );
-	    //DebugPrintf( 1 , "\nGetHeldItemCode: %d." , GetHeldItemCode() );
 		if ( HeldItemUsageRequirementsMet(  ) )
 		{
 		    //--------------------
@@ -2496,10 +2488,6 @@ HandleInventoryScreen ( void )
 			    }
 			    else
 			    {
-				//--------------------
-				// Since a sword and a shield are both equipped, we must refuse to
-				// equip this 2-handed weapon here and now...
-				//
 				PlayOnceNeededSoundSample ( "effects/tux_ingame_comments/ThisItemRequiresBothHands.ogg" , FALSE , FALSE );
 			    }
 			}
@@ -2514,62 +2502,9 @@ HandleInventoryScreen ( void )
 	    else
 	    {
 		append_new_game_message(_("You cannot fight with this!"));
-		// If the item can't be used as a weapon, we don't do anything
 	    }
 	}
 	
-	//--------------------
-	// If the cursor is in the drive rect, i.e. the small box to the right, then
-	// the item should be dropped onto the players current weapon slot
-	//
-	if ( MouseCursorIsOnButton ( DRIVE_RECT_BUTTON, CurPos.x , CurPos.y ) )
-	{
-	    DebugPrintf( 1 , "\nItem dropped onto the drive rectangle!" );
-	    DebugPrintf( 1 , "\nGetHeldItemCode: %d." , GetHeldItemCode() );
-	    if ( ( GetHeldItemCode() != (-1) ) &&
-		 ( ItemMap[ GetHeldItemCode() ].item_can_be_installed_in_drive_slot ) )
-	    {
-		if ( HeldItemUsageRequirementsMet(  ) )
-		{
-		    Item_Held_In_Hand = ( -1 );
-		    // DropHeldItemToDriveSlot ( );
-		    DropHeldItemToSlot ( & ( Me.drive_item ) );
-		}
-	    }
-	    else
-	    {
-		// If the item can't be used as a weapon, we don't do anything
-	    }
-	}
-	
-	//--------------------
-	// If the cursor is in the armour rect, then
-	// the item should be dropped onto the players current weapon slot
-	//
-	if ( MouseCursorIsOnButton ( ARMOUR_RECT_BUTTON , CurPos.x , CurPos.y ) )
-	{
-	    DebugPrintf( 1 , "\nItem dropped onto the armour rectangle!" );
-	    DebugPrintf( 1 , "\nGetHeldItemCode: %d." , GetHeldItemCode() );
-	    if ( ( GetHeldItemCode() != (-1) ) &&
-		 ( ItemMap[ GetHeldItemCode() ].item_can_be_installed_in_armour_slot ) )
-	    {
-		if ( HeldItemUsageRequirementsMet(  ) )
-		{
-		    Item_Held_In_Hand = ( -1 );
-		    // DropHeldItemToArmourSlot ( );
-		    DropHeldItemToSlot ( & ( Me.armour_item ) );
-		}
-	    }
-	    else
-	    {
-		// If the item can't be used as a weapon, we don't do anything
-	    }
-	}
-	
-	//--------------------
-	// If the cursor is in the shield rect, i.e. the small box to the top right, then
-	// the item should be dropped onto the players current weapon slot
-	//
 	if ( MouseCursorIsOnButton ( SHIELD_RECT_BUTTON , CurPos.x , CurPos.y ) )
 	{
 	    if ( ( GetHeldItemCode() != (-1) ) &&
@@ -2621,39 +2556,31 @@ HandleInventoryScreen ( void )
 		    }
 		}
 	    }
-	    else
-	    {
-		// If the item can't be used as a weapon, we don't do anything
-	    }
 	}
-	
-	//--------------------
-	// If the cursor is in the special rect, i.e. the small box to the top left, then
-	// the item should be dropped onto the players current weapon slot
-	//
-	if ( MouseCursorIsOnButton ( HELMET_RECT_BUTTON , CurPos.x , CurPos.y ) )
-	{
-	    DebugPrintf( 1 , "\nItem dropped onto the special rectangle!" );
-	    DebugPrintf( 1 , "\nGetHeldItemCode: %d." , GetHeldItemCode() );
-	    if ( ( GetHeldItemCode() != (-1) ) &&
-		 ( ItemMap[ GetHeldItemCode() ].item_can_be_installed_in_special_slot ) )
+
+	if ( GetHeldItemCode() != -1 )
 	    {
-		if ( HeldItemUsageRequirementsMet(  ) )
+	    itemspec * tocheck = &ItemMap[ GetHeldItemCode() ];
+	    struct { int btnidx; char propcheck; item * slot; } dropslots[] =
+		{   { DRIVE_RECT_BUTTON, tocheck -> item_can_be_installed_in_drive_slot, &(Me.drive_item) },
+		    { ARMOUR_RECT_BUTTON, tocheck -> item_can_be_installed_in_armour_slot, &(Me.armour_item) },
+		    { HELMET_RECT_BUTTON, tocheck -> item_can_be_installed_in_special_slot, &(Me.special_item) },
+		};
+	    int i;
+	    for ( i = 0; i < sizeof(dropslots)/sizeof(dropslots[0]); i ++)
 		{
-		    Item_Held_In_Hand = ( -1 );
-		    // DropHeldItemToSpecialSlot ( );
-		    DropHeldItemToSlot ( & ( Me.special_item ) );
+		if ( MouseCursorIsOnButton ( dropslots[i].btnidx, CurPos.x, CurPos.y ) && dropslots[i].propcheck && HeldItemUsageRequirementsMet())
+		    {
+		    Item_Held_In_Hand = -1;
+		    DropHeldItemToSlot( dropslots[i].slot );
+		    break;
+		    }
 		}
 	    }
-	    else
-	    {
-		// If the item can't be used as a weapon, we don't do anything
-	    }
-	}
-	
+		
+
     } // if release things...
     
- NoMoreReleasing:
  NoMoreGrabbing:
     if ( ! GameConfig . Inventory_Visible ) return; 
     
@@ -2693,61 +2620,28 @@ HandleInventoryScreen ( void )
 			else  ApplyItem( & ( Me.Inventory[ Grabbed_InvPos ] ) );
 		    }
 		}
-		else if ( MouseCursorIsOnButton ( WEAPON_RECT_BUTTON , CurPos.x , CurPos.y ) )
-		{
-		    DebugPrintf( 0 , "\nItem repair requested for the weapons rectangle!" );
-		    if ( Me . weapon_item . type != (-1) )
-			HomeMadeItemRepair ( & ( Me . weapon_item ) );
-		}
-		else if ( MouseCursorIsOnButton ( DRIVE_RECT_BUTTON , CurPos.x , CurPos.y ) )
-		{
-		    DebugPrintf( 0 , "\nItem repair requested for the drive rectangle!" );
-		    if ( Me . drive_item . type != (-1) )
-			HomeMadeItemRepair ( & ( Me . drive_item ) );
-		}
-		else if ( MouseCursorIsOnButton ( SHIELD_RECT_BUTTON , CurPos.x , CurPos.y ) )
-		{
-		    DebugPrintf( 0 , "\nItem repair requested for the shield rectangle!" );
-		    if ( Me . shield_item . type != (-1) )
-			HomeMadeItemRepair ( & ( Me . shield_item ) );
-		}
-		else if ( MouseCursorIsOnButton ( ARMOUR_RECT_BUTTON , CurPos.x , CurPos.y ) )
-		{
-		    DebugPrintf( 0 , "\nItem repair requested for the armour rectangle!" );
-		    if ( Me . armour_item . type != (-1) )
-			HomeMadeItemRepair ( & ( Me . armour_item ) );
-		}
-		else if ( MouseCursorIsOnButton ( HELMET_RECT_BUTTON , CurPos.x , CurPos.y ) )
-		{
-		    DebugPrintf( 0 , "\nItem repair requested for the special rectangle!" );
-		    if ( Me . special_item . type != (-1) )
-			HomeMadeItemRepair ( & ( Me . special_item ) );
-		}
+		else 
+		    {
+		    int i;
+		    for ( i = 0; i < sizeof(allslots)/sizeof(allslots[0]); i ++ )
+			{
+			if ( MouseCursorIsOnButton ( allslots[i].buttonidx, CurPos.x, CurPos.y ) && allslots[i].slot->type != -1 )
+			    {
+			    HomeMadeItemRepair ( allslots[i].slot ); 
+			    break;
+			    }
+			}
+		    }
 	}
 	else 
-		{
-		//--------------------
-		// The default behaviour for right mouse clicks (i.e. when no repair or
-		// identify skills are selected) is to try to 'apply' the item in combat, 
-		// i.e. expend the item, if it can be used up just so like a potion.  So
-		// we do this here.
-		//
 		if ( MouseCursorIsInInventoryGrid( CurPos.x , CurPos.y ) )
 		{
 		    Inv_GrabLoc.x = GetInventorySquare_x ( CurPos.x );
 		    Inv_GrabLoc.y = GetInventorySquare_y ( CurPos.y );
 		    
-		    DebugPrintf( 0 , "\nApplying item at inv-pos: %d %d." , Inv_GrabLoc.x , Inv_GrabLoc.y );
-		    
 		    Grabbed_InvPos = GetInventoryItemAt ( Inv_GrabLoc.x , Inv_GrabLoc.y );
-		    DebugPrintf( 0 , "\nApplying inventory entry no.: %d." , Grabbed_InvPos );
 		    
-		    if ( Grabbed_InvPos == (-1) )
-		    {
-			// Nothing grabbed, so we need not do anything more here..
-			DebugPrintf( 0 , "\nApplying in INVENTORY grid FAILED:  NO ITEM AT THIS POSITION FOUND!" );
-		    }
-		    else
+		    if ( Grabbed_InvPos != - 1)
 		    {
 			//--------------------
 			// At this point we know, that we have just applied something from the inventory
@@ -2755,10 +2649,8 @@ HandleInventoryScreen ( void )
 			ApplyItem( & ( Me.Inventory[ Grabbed_InvPos ] ) );
 		    }
 		}
-		
-		}
 	
-	}    
+    }    
 }; // void HandleInventoryScreen ( void );
 
 
