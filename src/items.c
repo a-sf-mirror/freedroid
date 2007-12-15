@@ -2250,7 +2250,12 @@ HandleInventoryScreen ( void )
     int index_of_item_under_mouse_cursor = (-1) ;
     
     DebugPrintf ( 2 , "\n%s(): Function call confirmed." , __FUNCTION__ );
-    
+   
+   
+    MapPositionOfMouse . x = translate_pixel_to_map_location ( input_axis.x , 
+								       input_axis.y , TRUE ) ;
+    MapPositionOfMouse . y = translate_pixel_to_map_location ( input_axis.x , 
+								       input_axis.y , FALSE ) ;
     //--------------------
     // In case the Tux is dead already, we do not need to display any inventory screen
     // or even to pick up any stuff for the Tux...
@@ -2266,26 +2271,14 @@ HandleInventoryScreen ( void )
     CurPos . x = GetMousePos_x() ;
     CurPos . y = GetMousePos_y()  ;
     
-    //--------------------
-    // If the log is not set to visible right now, we do not need to 
-    // do anything more, but to see if there is an object directly under
-    // the mouse cursor, and in case this is so, we just try to add it
-    // to inventory instead of giving it into the players 'hand' for
-    // drag and drop and individual placing.
-    //
+    // If the inventory is not visible we don't handle the screen itself but we still pick up items on the ground
     if ( GameConfig.Inventory_Visible == FALSE ) 
     {
 	
 	silently_unhold_all_items ( );
 	
-	// DebugPrintf( 2 , "\nINVENTORY NOT VISIBLE!!" );
 	if ( MouseLeftClicked() && ( Item_Held_In_Hand == (-1) ) )
 	{
-	    // DebugPrintf( 1 , "\nCollecting items for direct addition to the inventory without grabbing." );
-	    MapPositionOfMouse . x = translate_pixel_to_map_location ( input_axis.x , 
-								       input_axis.y , TRUE ) ;
-	    MapPositionOfMouse . y = translate_pixel_to_map_location ( input_axis.x , 
-								       input_axis.y , FALSE ) ;
 	    
 	    //--------------------
 	    // We only take items directly, when they are close enough ...
@@ -2303,11 +2296,8 @@ HandleInventoryScreen ( void )
 		    // We will only do something there, if the way from the Tux
 		    // to the item in question is really free
 		    //
-		    if ( DirectLineWalkable ( PlayerLevel -> ItemList [ index_of_item_under_mouse_cursor ] . pos . x , PlayerLevel -> ItemList [ index_of_item_under_mouse_cursor ] . pos . y , 
-					Me . pos . x , Me . pos . y , 
-					Me . pos . z ) )
+		    if ( DirectLineWalkable ( PlayerLevel -> ItemList [ index_of_item_under_mouse_cursor ] . pos . x , PlayerLevel -> ItemList [ index_of_item_under_mouse_cursor ] . pos . y , Me . pos . x , Me . pos . y , 	Me . pos . z ) )
 		    {
-			Item_Held_In_Hand = ( -1 ); 
 			AddFloorItemDirectlyToInventory( & ( PlayerLevel -> ItemList [ index_of_item_under_mouse_cursor ] ) );
 			return;
 		    }
@@ -2330,8 +2320,7 @@ HandleInventoryScreen ( void )
 		if ( index_of_item_under_mouse_cursor != (-1) )
 		{
 		    //--------------------
-		    // We set course to the item in question, directly to it's location,
-		    // not somewhere remote, just for simplicity (for now)...
+		    // We set course to the item in question, directly to its location,
 		    //
 		    Me . mouse_move_target . x = 
 			PlayerLevel -> ItemList [ index_of_item_under_mouse_cursor ] . pos . x ;
@@ -2341,9 +2330,6 @@ HandleInventoryScreen ( void )
 			Me . pos . z ;
 		    set_up_intermediate_course_for_tux ( 0 ) ;
 		    
-		    //--------------------
-		    // We set up the combo_action, so that the barrel can be smashed later...
-		    //
 		    Me . current_enemy_target = ( -1 ) ;
 		    Me . mouse_move_target_combo_action_type = COMBO_ACTION_PICK_UP_ITEM ;
 		    Me . mouse_move_target_combo_action_parameter = index_of_item_under_mouse_cursor ;
@@ -2364,23 +2350,17 @@ HandleInventoryScreen ( void )
 	 ( Item_Held_In_Hand == (-1) ) &&
 	 ( global_ingame_mode != GLOBAL_INGAME_MODE_IDENTIFY ) )
     {
-	///DebugPrintf( -1 , "\nTrying to 'grab' the item below the mouse cursor.");
 	
 	if ( MouseCursorIsInInventoryGrid( CurPos.x , CurPos.y ) )
 	{
 	    Inv_GrabLoc.x = GetInventorySquare_x ( CurPos.x );
 	    Inv_GrabLoc.y = GetInventorySquare_y ( CurPos.y );
 	    
-	    //DebugPrintf( -1 , "\nGrabbing at inv-pos: %d %d." , Inv_GrabLoc.x , Inv_GrabLoc.y );
-	    
 	    Grabbed_InvPos = GetInventoryItemAt ( Inv_GrabLoc.x , Inv_GrabLoc.y );
-	    //DebugPrintf( -1 , "\nGrabbing inventory entry no.: %d." , Grabbed_InvPos );
 	    
 	    if ( Grabbed_InvPos == (-1) )
 	    {
-		// Nothing grabbed, so we need not do anything more here..
 		Item_Held_In_Hand = ( -1 );
-		//DebugPrintf( -1 , "\nGrabbing in INVENTORY grid FAILED!" );
 	    }
 	    else
 	    {
@@ -2390,49 +2370,30 @@ HandleInventoryScreen ( void )
 		// course be the image of the item grabbed from inventory.
 		//
 		Item_Held_In_Hand = Me . Inventory [ Grabbed_InvPos ] . type ;
-		// PlayItemSound( ItemMap[ Me.Inventory[ Grabbed_InvPos ].type ].sound_number );
 		play_item_sound( Me.Inventory[ Grabbed_InvPos ].type );
 		Me.Inventory[ Grabbed_InvPos ].currently_held_in_hand = TRUE;
 	    }
 	}
 	else if ( MouseCursorIsOnButton ( WEAPON_RECT_BUTTON , CurPos.x , CurPos.y ) )
 	{
-	    //DebugPrintf( -1 , "\nGrabbing in weapons rect!" );
 	    if ( Me.weapon_item.type > 0 )
 	    {
-		//--------------------
-		// At this point we know, that we have just grabbed something from the weapon rect
-		// So we set, that something should be displayed in the 'hand', and it should of
-		// course be the image of the item grabbed from inventory.
-		//
 		Item_Held_In_Hand = Me . weapon_item . type ;
 		Me.weapon_item.currently_held_in_hand = TRUE;
 	    }
 	}
 	else if ( MouseCursorIsOnButton ( DRIVE_RECT_BUTTON , CurPos.x , CurPos.y ) )
 	{
-	    //DebugPrintf( -1 , "\nGrabbing in drive rect!" );
 	    if ( Me.drive_item.type > 0 )
 	    {
-		//--------------------
-		// At this point we know, that we have just grabbed something from the weapon rect
-		// So we set, that something should be displayed in the 'hand', and it should of
-		// course be the image of the item grabbed from inventory.
-		//
 		Item_Held_In_Hand = Me . drive_item . type ;
 		Me.drive_item.currently_held_in_hand = TRUE;
 	    }
 	}
 	else if ( MouseCursorIsOnButton( SHIELD_RECT_BUTTON , CurPos.x , CurPos.y ) )
 	{
-	    //DebugPrintf( -1 , "\nGrabbing in shield rect!" );
 	    if ( Me.shield_item.type > 0 )
 	    {
-		//--------------------
-		// At this point we know, that we have just grabbed something from the weapon rect
-		// So we set, that something should be displayed in the 'hand', and it should of
-		// course be the image of the item grabbed from inventory.
-		//
 		Item_Held_In_Hand = Me . shield_item . type ;
 		Me.shield_item.currently_held_in_hand = TRUE;
 	    }
@@ -2456,36 +2417,22 @@ HandleInventoryScreen ( void )
 	}
 	else if ( MouseCursorIsOnButton( ARMOUR_RECT_BUTTON , CurPos.x , CurPos.y ) )
 	{
-	    //DebugPrintf( -1 , "\nGrabbing in armour rect!" );
 	    if ( Me.armour_item.type > 0 )
 	    {
-		//--------------------
-		// At this point we know, that we have just grabbed something from the weapon rect
-		// So we set, that something should be displayed in the 'hand', and it should of
-		// course be the image of the item grabbed from inventory.
-		//
 		Item_Held_In_Hand = Me . armour_item . type ;
 		Me.armour_item.currently_held_in_hand = TRUE;
 	    }
 	}
 	else if ( MouseCursorIsOnButton( HELMET_RECT_BUTTON , CurPos.x , CurPos.y ) )
 	{
-	    //DebugPrintf( -1 , "\nGrabbing in special rect!" );
 	    if ( Me.special_item.type > 0 )
 	    {
-		//--------------------
-		// At this point we know, that we have just grabbed something from the weapon rect
-		// So we set, that something should be displayed in the 'hand', and it should of
-		// course be the image of the item grabbed from inventory.
-		//
 		Item_Held_In_Hand = Me . special_item . type ;
 		Me.special_item.currently_held_in_hand = TRUE;
 	    }
 	}
 	else if ( MouseCursorIsInUserRect( CurPos.x , CurPos.y ) )
 	{
-	    //DebugPrintf( 1 , "\nGrabbing in user rect!" );
-	    //DebugPrintf( 1  , "\nMouse in map at: %f %f." , MapPositionOfMouse.x , MapPositionOfMouse.y );
 	    
 	    index_of_item_under_mouse_cursor = get_floor_item_index_under_mouse_cursor ( 0 );
 	    
