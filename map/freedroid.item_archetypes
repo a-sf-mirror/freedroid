@@ -3895,7 +3895,7 @@ Item description text="This small device automatically collects data about the a
 
 ** Start of new item specification subsection **
 Item name="Strength Pill"
-Item min class for drop=1
+Item min class for drop=2
 Item max class for drop=9
 Item can be applied in combat="yes"
 Item can be installed in slot with name="none"
@@ -3909,7 +3909,7 @@ Item description text="These pills permanently raise strength within a person. T
 
 ** Start of new item specification subsection **
 Item name="Dexterity Pill"
-Item min class for drop=1
+Item min class for drop=2
 Item max class for drop=9
 Item can be applied in combat="yes"
 Item can be installed in slot with name="none"
@@ -3923,7 +3923,7 @@ Item description text="These pills permanently raise dexterity within a person. 
 
 ** Start of new item specification subsection **
 Item name="Code Pill"
-Item min class for drop=1
+Item min class for drop=2
 Item max class for drop=9
 Item can be applied in combat="yes"
 Item can be installed in slot with name="none"
