@@ -702,9 +702,10 @@ int get_random_item_type ( int class )
 
     if ( a )
 	{
-	ErrorMessage(__FUNCTION__, "Looking for random item #%d with class %d, a = %d after the loop.", PLEASE_INFORM, IS_FATAL);
+	ErrorMessage(__FUNCTION__, "Looking for random item with class %d, a = %d after the loop.", PLEASE_INFORM, IS_FATAL, class, a);
 	}
 
+    //printf("Dropping item %s (%d <= class <= %d), class %d\n", ItemMap[i].item_name, ItemMap[i].min_drop_class, ItemMap[i].max_drop_class, class);
     return i;
 }
 

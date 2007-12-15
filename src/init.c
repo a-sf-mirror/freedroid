@@ -1217,16 +1217,16 @@ answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.",
 	//--------------------
 	// Now we read in minimum strength, dex and magic required to wear/wield this item
 	//
-	ReadValueFromStringWithDefault( ItemPointer , "Strength minimum required to wear/wield this item=" , "%d" , "-1",
+	ReadValueFromStringWithDefault( ItemPointer , "Strength minimum required to wear/wield this item=" , "%hd" , "-1",
 			     &ItemMap[ItemIndex].item_require_strength , EndOfItemData );
-	ReadValueFromStringWithDefault( ItemPointer , "Dexterity minimum required to wear/wield this item=" , "%d" , "-1", 
+	ReadValueFromStringWithDefault( ItemPointer , "Dexterity minimum required to wear/wield this item=" , "%hd" , "-1", 
 			     &ItemMap[ItemIndex].item_require_dexterity , EndOfItemData );
-	ReadValueFromStringWithDefault( ItemPointer , "Magic minimum required to wear/wield this item=" , "%d" , "-1",
+	ReadValueFromStringWithDefault( ItemPointer , "Magic minimum required to wear/wield this item=" , "%hd" , "-1",
 			     &ItemMap[ItemIndex].item_require_magic , EndOfItemData );
 
 
-	ReadValueFromStringWithDefault( ItemPointer, "Item min class for drop=", "%d", "-1", &ItemMap[ItemIndex].min_drop_class, EndOfItemData);
-	ReadValueFromStringWithDefault( ItemPointer, "Item max class for drop=", "%d", "-1", &ItemMap[ItemIndex].max_drop_class, EndOfItemData);
+	ReadValueFromStringWithDefault( ItemPointer, "Item min class for drop=", "%hd", "-1", &ItemMap[ItemIndex].min_drop_class, EndOfItemData);
+	ReadValueFromStringWithDefault( ItemPointer, "Item max class for drop=", "%hd", "-1", &ItemMap[ItemIndex].max_drop_class, EndOfItemData);
 
 	if ( ItemMap[ItemIndex].min_drop_class != -1 )
 	    {
@@ -1235,7 +1235,8 @@ answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.",
 		{
 		if ( cc > ItemMap[ItemIndex].max_drop_class ) break;
 		if ( cc < ItemMap[ItemIndex].min_drop_class ) continue;
-		else item_count_per_class[cc] ++;
+		else 
+		    item_count_per_class[cc] ++;
 		}
 	    }
 
@@ -1246,9 +1247,9 @@ answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.",
 	if ( ItemMap[ItemIndex].item_can_be_installed_in_weapon_slot == TRUE )
 	{
 	    // Now we read in the damage bullets from this gun will do
-	    ReadValueFromStringWithDefault( ItemPointer ,  "Item as gun: damage of bullets=" , "%d" , "0",
+	    ReadValueFromStringWithDefault( ItemPointer ,  "Item as gun: damage of bullets=" , "%hd" , "0",
 				 &ItemMap[ItemIndex].base_item_gun_damage , EndOfItemData );
-	    ReadValueFromStringWithDefault( ItemPointer ,  "Item as gun: modifier for damage of bullets=" , "%d" , "0",
+	    ReadValueFromStringWithDefault( ItemPointer ,  "Item as gun: modifier for damage of bullets=" , "%hd" , "0",
 				 &ItemMap[ItemIndex].item_gun_damage_modifier , EndOfItemData );
 	    
 	    // Now we read in the speed this bullet will go
@@ -1348,7 +1349,7 @@ answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.",
 				 &ItemMap[ItemIndex].item_gun_reloading_time , EndOfItemData );
 	    
 	    // Now we read in the image type that should be generated for this bullet
-	    ReadValueFromString( ItemPointer ,  "Item as gun: bullet_image_type=" , "%d" , 
+	    ReadValueFromString( ItemPointer ,  "Item as gun: bullet_image_type=" , "%hd" , 
 				 &ItemMap[ItemIndex].item_gun_bullet_image_type , EndOfItemData );
 	    
 	    // Now we read in the image type that should be generated for this bullet
@@ -1356,7 +1357,7 @@ answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.",
 				 &ItemMap[ItemIndex].item_gun_bullet_lifetime , EndOfItemData );
 
 	    // Now we read in the image type that should be generated for this bullet
-	    ReadValueFromString( ItemPointer ,  "Item as gun: ammo clip size=" , "%d" , 
+	    ReadValueFromString( ItemPointer ,  "Item as gun: ammo clip size=" , "%hd" , 
 				 &ItemMap[ItemIndex].item_gun_ammo_clip_size , EndOfItemData );
 	    
 	    //--------------------
@@ -1454,15 +1455,15 @@ answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.",
 	}
 	
 	// Now we read in the armour value of this item as armour or shield or whatever
-	ReadValueFromStringWithDefault( ItemPointer ,  "Item as defensive item: base_ac_bonus=" , "%d" , "0",
+	ReadValueFromStringWithDefault( ItemPointer ,  "Item as defensive item: base_ac_bonus=" , "%hd" , "0",
 			     &ItemMap[ItemIndex].base_ac_bonus , EndOfItemData );
-	ReadValueFromStringWithDefault( ItemPointer ,  "Item as defensive item: ac_bonus_modifier=" , "%d" , "0",
+	ReadValueFromStringWithDefault( ItemPointer ,  "Item as defensive item: ac_bonus_modifier=" , "%hd" , "0",
 			     &ItemMap[ItemIndex].ac_bonus_modifier , EndOfItemData );
 	
 	// Now we read in the base item duration and the duration modifier
-	ReadValueFromStringWithDefault( ItemPointer ,  "Base item duration=" , "%d" , "-1", 
+	ReadValueFromStringWithDefault( ItemPointer ,  "Base item duration=" , "%hd" , "-1", 
 			     &ItemMap[ItemIndex].base_item_duration , EndOfItemData );
-	ReadValueFromStringWithDefault( ItemPointer ,  "plus duration modifier=" , "%d" , "0",
+	ReadValueFromStringWithDefault( ItemPointer ,  "plus duration modifier=" , "%hd" , "0",
 			     &ItemMap[ItemIndex].item_duration_modifier , EndOfItemData );
 	
 	//--------------------
@@ -1486,7 +1487,7 @@ answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.",
 
 
 	// Now we read in the base list price for this item
-	ReadValueFromString( ItemPointer ,  "Base list price=" , "%d" , 
+	ReadValueFromString( ItemPointer ,  "Base list price=" , "%hd" , 
 			     &ItemMap[ItemIndex].base_list_price , EndOfItemData );
 	
 	// Now we read in the description string of this item
