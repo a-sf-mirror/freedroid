@@ -340,6 +340,10 @@ quest_browser_display_mission_list ( int list_type )
             SDL_Rect * rect_short = &(AllMousePressButtons [ QUEST_BROWSER_ITEM_SHORT_BUTTON ] . button_rect);
             SDL_Rect * rect_long = &(AllMousePressButtons [ QUEST_BROWSER_ITEM_LONG_BUTTON ] . button_rect);
 	    if ( ! Me . AllMissions [ mis_num ] . MissionWasAssigned ) continue ;
+	    if ( ( list_type == QUEST_BROWSER_SHOW_OPEN_MISSIONS ) &&
+		                 ( Me . AllMissions[ mis_num ] . MissionIsComplete == TRUE ) ) continue;
+	    if ( ( list_type == QUEST_BROWSER_SHOW_DONE_MISSIONS ) &&
+		                 ( Me . AllMissions[ mis_num ] . MissionIsComplete == FALSE ) ) continue;
 	    //--------------------
 	    // At first we bring the short/long buttons into position.
 	    // This position might be well off the screen.  That's no
@@ -373,13 +377,13 @@ quest_browser_display_mission_list ( int list_type )
 	    else
 		ShowGenericButtonFromList ( QUEST_BROWSER_ITEM_SHORT_BUTTON );
 
-	    if ( SpacePressed() || MouseLeftPressed() )
+	    if ( MouseLeftPressed() )
 	    {
 		if ( MouseCursorIsOnButton ( QUEST_BROWSER_ITEM_SHORT_BUTTON , GetMousePos_x() , GetMousePos_y() ) )
 		{
 		    Me . AllMissions [ mis_num ] . expanded_display_for_this_mission =
 			! Me . AllMissions [ mis_num ] . expanded_display_for_this_mission ;
-		    while ( SpacePressed() || MouseLeftPressed() );
+		    while ( MouseLeftPressed() );
 		}
 	    }
 	}
@@ -448,6 +452,8 @@ quest_browser_interface ( void )
     while ( ! back_to_game )
     {
 	track_last_frame_input_status(); //enable use of *WasPressed functions
+	
+	SDL_Delay ( 1 ); 
 
 	RestoreMenuBackground ( 1 );
 	if ( current_quest_browser_mode == QUEST_BROWSER_SHOW_OPEN_MISSIONS )
@@ -495,19 +501,19 @@ quest_browser_interface ( void )
 	    {
 		current_quest_browser_mode = QUEST_BROWSER_SHOW_NOTES ;
 		mission_list_scroll_override_from_user = 0 ;
-		while ( SpacePressed() || MouseLeftPressed() ) SDL_Delay(1);
+		while ( MouseLeftPressed() ) SDL_Delay(1);
 	    }
 	    if ( MouseCursorIsOnButton ( QUEST_BROWSER_SCROLL_UP_BUTTON , GetMousePos_x() , GetMousePos_y() ) )
 	    {
 		mission_list_scroll_override_from_user -- ;
 		if ( mission_list_scroll_override_from_user < 0 )
 		    mission_list_scroll_override_from_user = 0; 
-		while ( SpacePressed() || MouseLeftPressed() ) SDL_Delay(1);
+		while ( MouseLeftPressed() ) SDL_Delay(1);
 	    }
 	    if ( MouseCursorIsOnButton ( QUEST_BROWSER_SCROLL_DOWN_BUTTON , GetMousePos_x() , GetMousePos_y() ) )
 	    {
 		mission_list_scroll_override_from_user ++ ;
-		while ( SpacePressed() || MouseLeftPressed() ) SDL_Delay(1);
+		while ( MouseLeftPressed() ) SDL_Delay(1);
 	    }
 
             if ( MouseCursorIsOnButton ( QUEST_BROWSER_EXIT_BUTTON , GetMousePos_x() , GetMousePos_y() ) )
