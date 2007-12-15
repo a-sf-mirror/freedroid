@@ -451,23 +451,19 @@ ExecuteChatExtra ( char* ExtraCommandString , Enemy ChatDroid )
     }
     else if ( ! strcmp ( ExtraCommandString , "SetCompletelyFixedProperty" ) )
     {
-	DebugPrintf ( -1000 , "\nThis bot will now pull its breaks and not move any more." );
 	ChatDroid -> CompletelyFixed = TRUE ;
     }
     else if ( ! strcmp ( ExtraCommandString , "UnsetCompletelyFixedProperty" ) )
     {
-	DebugPrintf ( -1000 , "\nThis bot will now move again." );
 	ChatDroid -> CompletelyFixed = FALSE ;
     }
     else if ( ! strcmp ( ExtraCommandString , "SetFollowTuxProperty" ) )
     {
-	DebugPrintf ( -1000 , "\nThis bot will now follow Tux." );
 	ChatDroid -> follow_tux = TRUE ;
 	ChatDroid -> CompletelyFixed = FALSE ;
     }
     else if ( ! strcmp ( ExtraCommandString , "SetMoveFreelyProperty" ) )
     {
-	DebugPrintf ( -1000 , "\nThis bot will now move freely." );
 	ChatDroid -> CompletelyFixed = FALSE ;
 	ChatDroid -> follow_tux = FALSE ;
     }
@@ -477,7 +473,6 @@ ExecuteChatExtra ( char* ExtraCommandString , Enemy ChatDroid )
     }
     else if ( ! strcmp ( ExtraCommandString , "MakeTuxTownGuardMember" ) )
     {
-	DebugPrintf ( -1000 , "\nTux should now be a member of the old town's guard." );
 	Me . is_town_guard_member = TRUE ;
 	Mission_Status_Change_Sound();
     }
@@ -494,7 +489,7 @@ ExecuteChatExtra ( char* ExtraCommandString , Enemy ChatDroid )
     else if ( ! strcmp ( ExtraCommandString , "IncreaseSpellcastingSkill" ) )
     {
 	ImproveSkill(&Me . spellcasting_skill); 
-	SetNewBigScreenMessage( "Programming skill increased!" );
+	SetNewBigScreenMessage( "Programming ability improved!" );
     }
     else if ( ! strcmp ( ExtraCommandString , "IncreaseHackingSkill" ) )
     {
@@ -607,12 +602,12 @@ ExecuteChatExtra ( char* ExtraCommandString , Enemy ChatDroid )
     }
     else if ( CountStringOccurences ( ExtraCommandString , "OpenQuestDiaryEntry:" ) )
     {
-	DebugPrintf( -4 , "\nExtra invoked enabling a new quest diary entry: %s." ,
+	DebugPrintf( CHAT_DEBUG_LEVEL , "\nExtra invoked enabling a new quest diary entry: %s." ,
 		     ExtraCommandString + strlen ( "OpenQuestDiaryEntry:" ) );
 	strncpy ( WorkString , ExtraCommandString + strlen ( "OpenQuestDiaryEntry:" ) , 10 );
 	WorkString [ 10 ] = 0 ;
 	sscanf ( WorkString , "M%dE%d:" , &mis_num , &mis_diary_entry_num );
-	DebugPrintf ( -4 , "\nreceived mission number: %d and diary entry number: %d." , 
+	DebugPrintf ( CHAT_DEBUG_LEVEL	, "\nreceived mission number: %d and diary entry number: %d." , 
 		      mis_num , mis_diary_entry_num );
 	quest_browser_enable_new_diary_entry ( mis_num , mis_diary_entry_num );
     }
@@ -651,9 +646,11 @@ ExecuteChatExtra ( char* ExtraCommandString , Enemy ChatDroid )
 	
 	LoadChatRosterWithChatSequence ( fpath );
 	DoChatFromChatRosterData( PERSON_SUBDIALOG_DUMMY , ChatDroid , FALSE );
+	
+	push_or_pop_chat_roster ( POP_ROSTER );
+	
 	if ( ! ChatDroid -> energy ) //if the droid was killed, end the chat
 		return 1;
-	push_or_pop_chat_roster ( POP_ROSTER );
 	
     }
     else if ( CountStringOccurences ( ExtraCommandString , "PlantCookie:" ) )
@@ -1208,7 +1205,7 @@ ProcessThisChatOption ( int MenuSelection , int ChatPartnerCode , Enemy ChatDroi
 	if ( !strlen ( ChatRoster [ MenuSelection ] . extra_list [ i ] ) )
 	    break;
 	
-	DebugPrintf ( CHAT_DEBUG_LEVEL , "\nWARNING!  Starting to invoke extra.  Text is: %s." ,
+	DebugPrintf ( CHAT_DEBUG_LEVEL	, "\nWARNING!  Starting to invoke extra.  Text is: %s." ,
 		      ChatRoster [ MenuSelection ] . extra_list[i] );
 	
 	if ( ExecuteChatExtra ( ChatRoster [ MenuSelection ] . extra_list[i] , ChatDroid ) == 1 )
@@ -1224,7 +1221,7 @@ ProcessThisChatOption ( int MenuSelection , int ChatPartnerCode , Enemy ChatDroi
 	//--------------------
 	// It can't hurt to have the overall background redrawn after each extra command
 	// which could have destroyed the background by drawing e.g. a shop interface
-	PrepareMultipleChoiceDialog ( ChatDroid , FALSE ) ;
+	display_current_chat_protocol ( CHAT_DIALOG_BACKGROUND_PICTURE_CODE , ChatDroid , FALSE );
     }
     
     //--------------------
@@ -1310,7 +1307,7 @@ DoChatFromChatRosterData( int ChatPartnerCode , Enemy ChatDroid , int clear_prot
     {
 	if ( ChatRoster [ i ] . always_execute_this_option_prior_to_dialog_start )
 	{
-	    DebugPrintf ( 0 , "\nExecuting option no. %d prior to dialog start.\n" , i );
+	    DebugPrintf ( CHAT_DEBUG_LEVEL , "\nExecuting option no. %d prior to dialog start.\n" , i );
 	    if (( ProcessThisChatOption ( i , ChatPartnerCode , ChatDroid ) == 1))
 		return;
 	}
@@ -1555,10 +1552,8 @@ ChatWithFriendlyDroid( Enemy ChatDroid )
     // that are there without any prerequisite and that can be played
     // through again and again without any modification.
     //
-    RestoreChatVariableToInitialValue( 0 ); // Me=0 for now.
+    RestoreChatVariableToInitialValue( 0 ); 
     
-    // From initiating transfer mode, space might still have been pressed. 
-    // So we wait till it's released...
     while ( MouseLeftPressed ( ) || MouseRightPressed() );
     
     //--------------------
@@ -1610,13 +1605,6 @@ ChatWithFriendlyDroid( Enemy ChatDroid )
 			Me . Chat_Flags [ ChatFlagsIndex ] [ ChatRoster [ i ] . link_target ] = 0;
 		}
 
-/*	for ( i = 0; i < MAX_ANSWERS_PER_PERSON; i ++)
-		{
-		if(Me.Chat_Flags[ChatFlagsIndex][i] == 1)
-			fprintf(stderr, "Node %d is active\n", i);
-		else	fprintf(stderr, "Node %d is inactive\n", i);
-
-		}*/
         Me . chat_character_initialized [ ChatFlagsIndex ] = 1;
 	}
 
