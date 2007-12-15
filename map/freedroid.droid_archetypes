@@ -95,7 +95,7 @@ Drive of this droid : 1
 Brain of this droid : 0
 Sensor 2 of this droid : 2
 Armament of this droid : 0
-Drive item=10
+Drive item=1
 Weapon item="Droid weaponry - 123"
 Number of Plasma Transistors=2
 Number of Superconductors=3
@@ -130,8 +130,8 @@ Drive of this droid : 2
 Brain of this droid : 0
 Sensor 2 of this droid : 0
 Armament of this droid : 0
-Drive item=10
-Weapon item="Droid weaponry - 139 (Plasma gun)"
+Drive item=2
+Weapon item="Droid weaponry - 139 :Trash compactor plasma overload"
 Number of Superconductors=3
 Number of Antimatter-Matter Converters=4
 Greeting Sound number=1

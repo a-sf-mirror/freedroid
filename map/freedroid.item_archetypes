@@ -47,8 +47,7 @@ Received an item type that was outside of range of the allowed item types.
 
 ** Start of new item specification subsection **
 Item name="Spawning item index 0 in editor or drop ingame causes CTD! Dont click this!"
-Item min class for drop=9999
-Item max class for drop=9999
+Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
 Item uses rotation series with prefix="NONE_AVAILABLE_YET"
@@ -2119,8 +2118,7 @@ Item description text="Said to the downscaled version of the original Pandora's 
 
 ** Start of new item specification subsection **
 Item name="NPC Hand to hand weapon"
-Item min class for drop=9999
-Item max class for drop=9999
+Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="laser_sword_red"
@@ -2156,8 +2154,7 @@ Item as gun: weapon requires both hands="no"
 
 ** Start of new item specification subsection **
 Item name="Droid weaponry - 123"
-Item min class for drop=9999
-Item max class for drop=9999
+Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="NONE_AVAILABLE_YET"
@@ -2190,9 +2187,8 @@ Item as gun: weapon requires both hands="yes"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Droid weaponry - 139 (Plasma gun)"
-Item min class for drop=9999
-Item max class for drop=9999
+Item name="Droid weaponry - 139 :Trash compactor plasma overload"
+Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="plasma_single"
@@ -2226,8 +2222,7 @@ Item as gun: weapon requires both hands="yes"
 
 ** Start of new item specification subsection **
 Item name="Droid weaponry - 247"
-Item min class for drop=9999
-Item max class for drop=9999
+Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="laser_sword_yellow"
@@ -2263,8 +2258,7 @@ Item as gun: weapon requires both hands="yes"
 
 ** Start of new item specification subsection **
 Item name="Droid weaponry - 249 (Laser pulse welder)"
-Item min class for drop=9999
-Item max class for drop=9999
+Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="plasma_single"
@@ -2298,8 +2292,7 @@ Item as gun: weapon requires both hands="yes"
 
 ** Start of new item specification subsection **
 Item name="Droid weaponry - 296"
-Item min class for drop=9999
-Item max class for drop=9999
+Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="laser_sword_yellow"
@@ -2335,8 +2328,7 @@ Item as gun: weapon requires both hands="yes"
 
 ** Start of new item specification subsection **
 Item name="Droid weaponry - 302"
-Item min class for drop=9999
-Item max class for drop=9999
+Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="laser_sword_yellow"
@@ -2372,8 +2364,7 @@ Item as gun: weapon requires both hands="yes"
 
 ** Start of new item specification subsection **
 Item name="Droid weaponry - 329"
-Item min class for drop=9999
-Item max class for drop=9999
+Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="laser_sword_yellow"
@@ -2409,8 +2400,7 @@ Item as gun: weapon requires both hands="yes"
 
 ** Start of new item specification subsection **
 Item name="Droid weaponry - 420"
-Item min class for drop=9999
-Item max class for drop=9999
+Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="laser_sword_yellow"
@@ -2446,8 +2436,7 @@ Item as gun: weapon requires both hands="yes"
 
 ** Start of new item specification subsection **
 Item name="Droid weaponry - 476 (Small Single Laser)"
-Item min class for drop=9999
-Item max class for drop=9999
+Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="plasma_single"
@@ -2481,8 +2470,7 @@ Item as gun: weapon requires both hands="yes"
 
 ** Start of new item specification subsection **
 Item name="Droid weaponry - 493"
-Item min class for drop=9999
-Item max class for drop=9999
+Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="laser_sword_yellow"
@@ -2518,8 +2506,7 @@ Item as gun: weapon requires both hands="yes"
 
 ** Start of new item specification subsection **
 Item name="Droid weaponry - 516"
-Item min class for drop=9999
-Item max class for drop=9999
+Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="laser_sword_yellow"
@@ -2555,8 +2542,7 @@ Item as gun: weapon requires both hands="yes"
 
 ** Start of new item specification subsection **
 Item name="Droid weaponry - 571"
-Item min class for drop=9999
-Item max class for drop=9999
+Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="laser_sword_yellow"
@@ -2592,8 +2578,7 @@ Item as gun: weapon requires both hands="yes"
 
 ** Start of new item specification subsection **
 Item name="Droid weaponry - 598"
-Item min class for drop=9999
-Item max class for drop=9999
+Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="laser_sword_yellow"
@@ -2629,8 +2614,7 @@ Item as gun: weapon requires both hands="yes"
 
 ** Start of new item specification subsection **
 Item name="Droid weaponry - 614,GUA,MUM (Power Exterminator)"
-Item min class for drop=9999
-Item max class for drop=9999
+Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="exterminator_simple"
@@ -2666,8 +2650,7 @@ Item as gun: weapon requires both hands="yes"
 
 ** Start of new item specification subsection **
 Item name="Droid weaponry - 615,751,834 (Advanced Single Laser)"
-Item min class for drop=9999
-Item max class for drop=9999
+Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="plasma_single"
@@ -2701,8 +2684,7 @@ Item as gun: weapon requires both hands="yes"
 
 ** Start of new item specification subsection **
 Item name="Droid weaponry - 629,821,999 (Advanced Twin Laser)"
-Item min class for drop=9999
-Item max class for drop=9999
+Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="plasma_double"
@@ -2740,8 +2722,7 @@ Item as gun: weapon requires both hands="yes"
 
 ** Start of new item specification subsection **
 Item name="Droid weaponry - 711,742 (Disruptor Class Alpha)"
-Item min class for drop=9999
-Item max class for drop=9999
+Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="NONE_AVAILABLE_YET"
@@ -2775,8 +2756,7 @@ Item as gun: weapon requires both hands="yes"
 
 ** Start of new item specification subsection **
 Item name="Droid weaponry - 883 (Bot exterminator)"
-Item min class for drop=9999
-Item max class for drop=9999
+Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="exterminator_simple"
@@ -3025,8 +3005,7 @@ Item description text="Now this is head protection. Feel safe with sturdy iron p
 
 ** Start of new item specification subsection **
 Item name="Dixon's helmet"
-Item min class for drop=9999
-Item max class for drop=9999
+Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="special"
 Item uses rotation series with prefix="helmet_yellow4"
@@ -3725,8 +3704,7 @@ Item description text="These small containers hold purified dexterity.  This ite
 
 ** Start of new item specification subsection **
 Item name="Cyberbucks"
-Item min class for drop=0
-Item max class for drop=9
+Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
 Item uses rotation series with prefix="cyberbucks"
@@ -3753,8 +3731,7 @@ Item description text="The bots use this to hover around."
 
 ** Start of new item specification subsection **
 Item name="Dixon's Toolbox"
-Item min class for drop=9999
-Item max class for drop=9999
+Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
 Item uses rotation series with prefix="dixons_toolbox"
@@ -3767,8 +3744,7 @@ Item description text="This is a teleporter service toolbox. It's complete and o
 
 ** Start of new item specification subsection **
 Item name="Plasma Transistor"
-Item min class for drop=1
-Item max class for drop=9
+Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
 Item uses rotation series with prefix="plasma_transistor"
@@ -3781,8 +3757,7 @@ Item description text="This is an standard part within many robots types."
 
 ** Start of new item specification subsection **
 Item name="Superconducting Relay Unit"
-Item min class for drop=1
-Item max class for drop=9
+Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
 Item uses rotation series with prefix="superconducting_relay_unit"
@@ -3795,8 +3770,7 @@ Item description text="This is an standard part within many robots types."
 
 ** Start of new item specification subsection **
 Item name="Antimatter-Matter Converter"
-Item min class for drop=1
-Item max class for drop=9
+Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
 Item uses rotation series with prefix="antimatter_matter_converter"
@@ -3809,8 +3783,7 @@ Item description text="This is an standard part within many robot types."
 
 ** Start of new item specification subsection **
 Item name="Entropy Inverter"
-Item min class for drop=1
-Item max class for drop=9
+Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
 Item uses rotation series with prefix="entropy_inverter"
@@ -3823,8 +3796,7 @@ Item description text="This is an standard part within many robots types."
 
 ** Start of new item specification subsection **
 Item name="Tachyon Condensator"
-Item min class for drop=1
-Item max class for drop=9
+Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
 Item uses rotation series with prefix="tachyon_converter"
@@ -3837,8 +3809,7 @@ Item description text="This is an standard part within many robots types."
 
 ** Start of new item specification subsection **
 Item name="Desk Lamp"
-Item min class for drop=9999
-Item max class for drop=9999
+Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
 Item uses rotation series with prefix="desk_lamp"
@@ -3851,8 +3822,7 @@ Item description text="What would modern science be without this important item?
 
 ** Start of new item specification subsection **
 Item name="Common Monkey Wrench"
-Item min class for drop=9999
-Item max class for drop=9999
+Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
 Item uses rotation series with prefix="monkey_wrench"
@@ -3865,8 +3835,7 @@ Item description text="Even the most primitive civilisations cannot survive for 
 
 ** Start of new item specification subsection **
 Item name="Red Dilitium Crystal"
-Item min class for drop=9999
-Item max class for drop=9999
+Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
 Item uses rotation series with prefix="red_dilitium_crystal"
@@ -3879,8 +3848,7 @@ Item description text="These dilitium crystals are used as energy source in many
 
 ** Start of new item specification subsection **
 Item name="Map Maker"
-Item min class for drop=9999
-Item max class for drop=9999
+Item min class for drop=-1
 Item can be applied in combat="yes"
 Item can be installed in slot with name="none"
 Item uses rotation series with prefix="map_maker"
@@ -3937,8 +3905,7 @@ Item description text="Dude! This fab food will totally bump up your code skills
 
 ** Start of new item specification subsection **
 Item name="Brain Enlargement Pills Antidote"
-Item min class for drop=9999
-Item max class for drop=9999
+Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
 Item uses rotation series with prefix="brain_enlargement_antidode"
@@ -3951,8 +3918,7 @@ Item description text="These pills can reverse the harmful effects of the 'brain
 
 ** Start of new item specification subsection **
 Item name="Fork"
-Item min class for drop=0
-Item max class for drop=4
+Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
 Item uses rotation series with prefix="eating_fork"
@@ -3965,8 +3931,7 @@ Item description text="This item is part of the 'Self Cleaning Kitchen' (SCK) pr
 
 ** Start of new item specification subsection **
 Item name="Plate"
-Item min class for drop=0
-Item max class for drop=4
+Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
 Item uses rotation series with prefix="eating_plate"
@@ -3979,8 +3944,7 @@ Item description text="This item is part of the 'Self Cleaning Kitchen' (SCK) pr
 
 ** Start of new item specification subsection **
 Item name="Mug"
-Item min class for drop=0
-Item max class for drop=4
+Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
 Item uses rotation series with prefix="drinking_mug"
@@ -4021,11 +3985,9 @@ inventory_size_y=1
 Item description text="This device sends a signal to a nearby teleporter requesting a transportation and then helping with locking on and boosting the signal to ensure the teleportation attempt is succcessful. The battery inside is enough for one use only and the device becomes useless afterwards. At least, most people dont even try to use them twice, and those few who do usually end up with parts of their body missing or attached in the wrong place.  Note:  Multiple of these may be grouped together in the inventory."
 ** End of new item specification subsection **
 
-
 ** Start of new item specification subsection **
 Item name="Kevin's Data Cube"
-Item min class for drop=8888
-Item max class for drop=9999
+Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
 Item uses rotation series with prefix="datacube"
@@ -4040,7 +4002,7 @@ Item description text="This data cube contains confidential government data on t
 Item name="Pandora's Cube"
 inventory_size_x=6
 inventory_size_y=6
-Item max class for drop=9999
+Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
 Item uses rotation series with prefix="datacube"
