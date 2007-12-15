@@ -180,7 +180,7 @@ better than nothing.  Thanks anyway for your interest in FreedroidRPG.\n\
 	    move_tux ( );	
 	
 	    HandleInventoryScreen ();
-	    HandleCharacterScreen ( 0 );
+	    HandleCharacterScreen ( );
 
 	    UpdateAllCharacterStats ( 0 );
 	    

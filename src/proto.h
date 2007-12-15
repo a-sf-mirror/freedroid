@@ -469,7 +469,7 @@ EXTERN int Get_Prefixes_Data ( char * DataPointer );
 EXTERN void DisplayButtons( void );
 EXTERN void UpdateAllCharacterStats ( );
 EXTERN void ShowCharacterScreen ( );
-EXTERN void HandleCharacterScreen ( );
+EXTERN void HandleCharacterScreen ( void );
 
 // character.c
 #undef EXTERN

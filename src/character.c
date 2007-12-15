@@ -782,7 +782,7 @@ ShowCharacterScreen ( )
  * This function handles input for the character screen.
  * ---------------------------------------------------------------------- */
 void
-HandleCharacterScreen ( )
+HandleCharacterScreen ( void )
 {
 
     if ( ! GameConfig . CharacterScreen_Visible ) return;
