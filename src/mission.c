@@ -500,6 +500,8 @@ quest_browser_interface ( void )
 	    if ( MouseCursorIsOnButton ( QUEST_BROWSER_SCROLL_UP_BUTTON , GetMousePos_x() , GetMousePos_y() ) )
 	    {
 		mission_list_scroll_override_from_user -- ;
+		if ( mission_list_scroll_override_from_user < 0 )
+		    mission_list_scroll_override_from_user = 0; 
 		while ( SpacePressed() || MouseLeftPressed() ) SDL_Delay(1);
 	    }
 	    if ( MouseCursorIsOnButton ( QUEST_BROWSER_SCROLL_DOWN_BUTTON , GetMousePos_x() , GetMousePos_y() ) )
