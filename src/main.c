@@ -160,7 +160,7 @@ better than nothing.  Thanks anyway for your interest in FreedroidRPG.\n\
 	    
 	    UpdateCountersForThisFrame ( ) ;
 	    
-	    CollectAutomapData (); // this is a pure client issue.  Only do it for the main player...
+	    CollectAutomapData ();
 	    
 	    DoAllMovementAndAnimations();
 	    
@@ -170,13 +170,6 @@ better than nothing.  Thanks anyway for your interest in FreedroidRPG.\n\
 		our_SDL_flip_wrapper ( Screen );
 	    }
 	    
-	    //--------------------
-	    // This will now be done inside the move bullets function, because there
-	    // might be need to check for collisions on several positions whenever a
-	    // bullet is moving very fast...
-	    //
-	    // for (i = 0; i < MAXBULLETS; i++) CheckBulletCollisions (i);
-	    
 	    move_tux ( );	
 	
 	    HandleInventoryScreen ();
@@ -184,7 +177,6 @@ better than nothing.  Thanks anyway for your interest in FreedroidRPG.\n\
 
 	    UpdateAllCharacterStats ( 0 );
 	    
-	    // Move_Influencers_Friends (); // Transport followers to next level
 	    
 	    MoveEnemys ();	// move all the enemys:
 	    // also do attacks on influ and also move "phase" or their rotation
