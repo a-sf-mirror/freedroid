@@ -36,7 +36,7 @@ PositionX=61  PositionY=200
 ChangeOption=0 ChangeToValue=0
 ChangeOption=99 ChangeToValue=1
 ChangeOption=1 ChangeToValue=1
-AlwaysExecuteThisOptionPriorToDialogStart="no"
+AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
