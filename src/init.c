@@ -130,7 +130,7 @@ init_character_descriptions ( void )
 
     character_descriptions [ PERSON_KEVIN ] = _("He is either a college student, a drug addict or a hacker. I bet he did not have a warm meal for days, he looks totally malnourished. His body keeps twitching. Must be the caffeine. I hope.");
 
-    character_descriptions [ PERSON_BENDER ] = _("Don't do steoroids or you will be just like him. The armor hides his body");
+    character_descriptions [ PERSON_BENDER ] = _("Don't do steroids or you will be just like him.");
 
     character_descriptions [ PERSON_614 ] = _("There are at least 614 reasons to stay away from the 614 bot battle platform. There are also 614 reasons why a 614 bot battle platform can be your best friend during combat...");
 
@@ -142,7 +142,7 @@ init_character_descriptions ( void )
 
     character_descriptions [ PERSON_SKIPPY ] = _("It seems that even during the end of the world the species known as 'Salesman' is able to survive. Just his presence makes you want to kill all humans.");
     
-    character_descriptions [ PERSON_EWALD ] = _("We are sorry for this character's graphics. The bartender look is coming soon. Freedroid Dev Team.");
+    character_descriptions [ PERSON_EWALD ] = _("He looks unexplicably happy.");
 
     character_descriptions [ PERSON_STONE ] = _("In some places of the world there exists a very interesting saying. 'Tough as nails.' However, in every place where the Stone trader family stays for a while, a new saying emerges. 'Tough as the Stones.'");
 
@@ -2091,7 +2091,6 @@ PrepareStartOfNewCharacter ( void )
     our_SDL_flip_wrapper ( Screen );
     
     append_new_game_message ( _("Starting new game.") );
-
 }; // void PrepareStartOfNewCharacter ( char* MissionName )
 
 /* ----------------------------------------------------------------------
