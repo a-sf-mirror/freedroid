@@ -362,7 +362,7 @@ isometric_show_floor_around_tux_without_doublebuffering (int mask)
 	for (col = ColStart; col < ColEnd; col++)
 	    {
             MapBrick = GetMapBrick (DisplayLevel, col, line);
-	    if ( MapBrick == ISO_COMPLETELY_DARK)
+	    if ( MapBrick == ISO_COMPLETELY_DARK && use_open_gl )
 		continue;
 
 	    if ( use_open_gl ) 
