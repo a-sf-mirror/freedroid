@@ -230,14 +230,14 @@ exist really (i.e. has a type = (-1) ).",
     if ( CurItem->max_duration != (-1) )
     {
 	if ( ! ForShop ) 
-	    sprintf( linebuf , _(" Durability: %d of %d"), (int) CurItem->current_duration , (int) CurItem->max_duration );
+	    sprintf( linebuf , _(" Durability: %d of %d\n"), (int) CurItem->current_duration , (int) CurItem->max_duration );
 	else
-	    sprintf( linebuf , _(" Dur: %d/%d"), (int) CurItem->current_duration , (int) CurItem->max_duration );
+	    sprintf( linebuf , _(" Dur: %d/%d\n"), (int) CurItem->current_duration , (int) CurItem->max_duration );
 	strcat( ItemDescText , linebuf );
     }
     else 
     {
-	strcat( ItemDescText , _(" Indestructible") );
+	strcat( ItemDescText , _(" Indestructible\n") );
     };
     
     // --------------------
@@ -306,7 +306,7 @@ exist really (i.e. has a type = (-1) ).",
 	    }
 	else if ( MatchItemWithName ( CurItem->type, "Teleporter homing beacon" ) )
 	    {
-	    sprintf( linebuf , _("Teleports you to town or from town\n back to your previous position\n") );
+	    sprintf( linebuf , _("Teleports you to a safe place or\n back to your previous position\n") );
 	    strcat( ItemDescText , linebuf );
 	    }
 	else if ( MatchItemWithName ( CurItem->type, "Bottled ice" ) || MatchItemWithName ( CurItem->type, "Industrial coolant") || MatchItemWithName ( CurItem->type, "Liquid nitrogen"))
