@@ -784,11 +784,7 @@ HandleCharacterScreen ( void )
 {
 
     if ( ! GameConfig . CharacterScreen_Visible ) return;
-    //--------------------
-    // It might be the case, that the character has some points to distribute upon the character
-    // stats.  Then of course, we must display the plus button instead of all character 'now' values
-    //
-    // Me.points_to_distribute = 5;
+    
     if ( Me.points_to_distribute > 0 )
     {
 	if ( MouseCursorIsOnButton( MORE_STR_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) && MouseLeftClicked() )
@@ -814,10 +810,6 @@ HandleCharacterScreen ( void )
 	
     }
 
-    if ( Me.points_to_distribute <= 0 )
-	{
-	while ( MouseLeftPressed() );
-	}
     
 }; // HandleCharacterScreen ( void )
 
