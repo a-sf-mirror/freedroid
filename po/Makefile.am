@@ -1,4 +1,5 @@
-POFILES = fr_FR/LC_MESSAGES/freedroidrpg.po
+POFILES = fr_FR/LC_MESSAGES/freedroidrpg.po \
+          de_DE/LC_MESSAGES/freedroidrpg.po
 
 MOFILES = $(POFILES:.po=.mo)
 

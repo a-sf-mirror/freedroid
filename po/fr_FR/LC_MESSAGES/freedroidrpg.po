@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: freedroid-discussion@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-12-16 13:26+0100\n"
+"POT-Creation-Date: 2007-12-16 15:22+0100\n"
 "PO-Revision-Date: 2007-08-03 10:30+0200\n"
 "Last-Translator:  <freedroid-discussion@lists.sourceforge.net>\n"
 "Language-Team: French\n"
@@ -1468,8 +1468,8 @@ msgstr ""
 "tremble en permanence. Ça doit être la cafféine. J'espère."
 
 #: ../src/init.c:133
-msgid ""
-"Don't do steoroids or you will be just like him. The armor hides his body"
+#, fuzzy
+msgid "Don't do steroids or you will be just like him."
 msgstr ""
 " Ne prenez jamais de stéroides, vous finiriez comme lui. Son armure cache "
 "son corps"
@@ -1522,9 +1522,7 @@ msgstr ""
 "tuer tous les humains."
 
 #: ../src/init.c:145
-msgid ""
-"We are sorry for this character's graphics. The bartender look is coming "
-"soon. Freedroid Dev Team."
+msgid "He looks unexplicably happy."
 msgstr ""
 
 #: ../src/init.c:147

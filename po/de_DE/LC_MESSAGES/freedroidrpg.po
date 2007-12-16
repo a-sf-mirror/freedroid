@@ -1,20 +1,21 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR Freedroid RPG Development Team
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# German translations for freedroidRPG package
+# German messages for freedroidRPG.
+# Copyright (C) 2007 Freedroid RPG Development Team
+# This file is distributed under the same license as the freedroidRPG package.
+#  <ahuillet@freedroid.org>, 2007.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: freedroidRPG 0.10.4cvs\n"
 "Report-Msgid-Bugs-To: freedroid-discussion@lists.sourceforge.net\n"
 "POT-Creation-Date: 2007-12-16 15:22+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2007-12-16 13:29+0100\n"
+"Last-Translator:  <ahuillet@freedroid.org>\n"
+"Language-Team: German\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../src/blocks.c:1653 ../src/blocks.c:1659 ../src/blocks.c:1666
 #: ../src/blocks.c:2999 ../src/blocks.c:3001 ../src/blocks.c:3012
