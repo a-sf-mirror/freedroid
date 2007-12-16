@@ -48,8 +48,6 @@
 // which character stats in the character screen...
 //
 
-#define CLASS_X 175
-
 #define EXPERIENCE_Y 56
 #define NEXT_LEVEL_Y 82
 
