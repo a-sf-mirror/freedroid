@@ -231,7 +231,7 @@ ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle="Ich werde Ihnen den Datenwürfel mitgeben. Bringen Sie ihn zu den Administratoren des Rechnerzentrums; sie werden wissen, was zu tun ist. Und - erwähnen Sie dort nicht meinen Namen!"
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=15 ChangeToValue=0
-DoSomethingExtra="GiveItem:100"
+DoSomethingExtra="GiveItem:Kevin's Data Cube"
 DoSomethingExtra="AssignMission:7"
 DoSomethingExtra="OpenQuestDiaryEntry:M7E0:"
 AlwaysExecuteThisOptionPriorToDialogStart="no"

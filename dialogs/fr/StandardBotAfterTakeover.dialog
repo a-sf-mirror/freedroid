@@ -163,7 +163,7 @@ PositionX=200  PositionY=200
 Subtitle="()%#@(% L'ÉPÉE EST À TOI. )##%*&%*!"
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=17 ChangeToValue=0
-DoSomethingExtra="GiveItem:120"
+DoSomethingExtra="GiveItem:Nobody's edge"
 DoSomethingExtra="PlantCookie:tux_has_edge"
 DoSomethingExtra="DropDead"
 AlwaysExecuteThisOptionPriorToDialogStart="no"

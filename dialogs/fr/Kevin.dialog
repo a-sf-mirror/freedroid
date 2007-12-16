@@ -231,7 +231,7 @@ ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle="Je vais te donner le cube de données. Porte-le au personnel de l'administration du cluster. Ils sauront quoi en faire. Et ne mentionne pas mon nom."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=15 ChangeToValue=0
-DoSomethingExtra="GiveItem:100"
+DoSomethingExtra="GiveItem:Kevin's Data Cube"
 DoSomethingExtra="AssignMission:7"
 DoSomethingExtra="OpenQuestDiaryEntry:M7E0:"
 AlwaysExecuteThisOptionPriorToDialogStart="no"

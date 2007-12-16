@@ -179,7 +179,7 @@ New Option Nr=60  OptionText="TEST FOR BOX OR SAVING KOAN"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
 ChangeOption=60 ChangeToValue=0
-OnCondition="HaveItemWithCode:129" JumpToOption=61 ElseGoto=62
+OnCondition="HaveItemWithName:Pandora's Cube" JumpToOption=61 ElseGoto=62
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
