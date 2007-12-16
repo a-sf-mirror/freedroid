@@ -39,7 +39,7 @@ ChangeOption=0 ChangeToValue=0
 ChangeOption=40 ChangeToValue=1
 OnCondition="CookieIsPlanted:koan_spared:" JumpToOption=5 ElseGoto=1
 DoSomethingExtra="PlantCookie:koan_quest_done"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
+AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
@@ -121,10 +121,10 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=40  OptionText=" 'Quelques' robots ? La place regorgeait de Scimouleurs ! J'ai failli être tué !"
+New Option Nr=40  OptionText=" 'Quelques' robots ? C'était plein de scimouleurs ! J'ai failli être tué !"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=200  PositionY=200  
-Subtitle="Il y a seulement quarante robots dans le désert. Ça peut difficilement être qualifié de 'un grand nombre'."
+Subtitle="Il y avait seulement quarante robots dans le désert. Ça peut difficilement être qualifié de 'un grand nombre'."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=40 ChangeToValue=0
 ChangeOption=41 ChangeToValue=1

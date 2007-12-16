@@ -39,7 +39,7 @@ ChangeOption=0 ChangeToValue=0
 ChangeOption=40 ChangeToValue=1
 OnCondition="CookieIsPlanted:koan_spared:" JumpToOption=5 ElseGoto=1
 DoSomethingExtra="PlantCookie:koan_quest_done"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
+AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
