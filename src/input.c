@@ -686,12 +686,14 @@ ReactToSpecialKeys(void)
 
 
     //--------------------
-    // Trying to Cut'n'paste fullscreen toggle
-
+    // F11 fullscreen toggle for non Windows OS
+    //
     if ( F11Pressed() ) 
-    {
+    {		
+        #ifndef __WIN32__
 	SDL_WM_ToggleFullScreen ( Screen );
 	GameConfig . fullscreen_on = ! GameConfig . fullscreen_on;
+	#endif
     }
     
     //--------------------
