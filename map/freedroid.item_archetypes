@@ -1037,8 +1037,7 @@ Item as gun: weapon requires both hands="yes"
 
 ** Start of new item specification subsection **
 Item name="Nobody's edge"
-Item min class for drop=8888
-Item max class for drop=9999
+Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="laser_dagger"
@@ -1072,8 +1071,7 @@ Item as gun: weapon requires both hands="no"
 
 ** Start of new item specification subsection **
 Item name="Laser scalpel"
-Item min class for drop=8888
-Item max class for drop=9999
+Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="laser_dagger"
@@ -1801,7 +1799,6 @@ Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="plasma_double"
 Items of this type collect together in inventory="no"
-Dexterity minimum required to wear/wield this item=28
 Base item duration=10
 plus duration modifier=10
 File or directory name for inventory image="inventory_image_14.png"
@@ -2187,7 +2184,7 @@ Item as gun: weapon requires both hands="yes"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Droid weaponry - 139 :Trash compactor plasma overload"
+Item name="Droid weaponry - 139 : Trash compactor plasma overload"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"

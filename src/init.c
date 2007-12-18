@@ -948,7 +948,7 @@ Get_Robot_Data ( void* DataPointer )
 			   &Druidmap[RobotIndex].experience_reward, EndOfDataPointer );
 
       // Now we read in the monster level = maximum treasure chest to pick from
-      ReadValueFromString( RobotPointer , "Monster Level and maximum treasure chest to pick from=" , "%d" , 
+      ReadValueFromString( RobotPointer , "Drops item class=" , "%d" , 
 			   &Druidmap[RobotIndex].monster_level , EndOfDataPointer );
 
       // Now we read in the number of additional magical items this monster type must drop
