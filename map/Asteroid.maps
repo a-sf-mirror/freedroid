@@ -3391,7 +3391,7 @@ X=64 Y=2 Msg="I think I can see a teleporter in the far distance to the south."
 /pstmtinfolvl
 
 piteminfolvl
-it: n="Source Book of Killer poke"  X=71.986771  Y=49.527508  Dmg=0  DmgMod=0  MDur=-1  CDur=1.000000  AClip=0  Multi=1  IsIdent=1 
+it: n="Source Book of Blue Screen"  X=71.986771  Y=49.527508  Dmg=0  DmgMod=0  MDur=-1  CDur=1.000000  AClip=0  Multi=1  IsIdent=1 
 /piteminfolvl
 pchestinfolvl
 /pchestinfolvl
