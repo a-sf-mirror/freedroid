@@ -317,7 +317,8 @@ DoSkill(int skill_index, int SpellCost)
                     // restore original heat
 		    // Me . temperature -= SpellCost;
                     // go directly to chat to choose droid program
-                    ChatWithFriendlyDroid ( & ( AllEnemys [ index_of_droid_below_mouse_cursor ] ) ) ;     
+                    if ( GameConfig . talk_to_bots_after_takeover )
+			    ChatWithFriendlyDroid ( & ( AllEnemys [ index_of_droid_below_mouse_cursor ] ) ) ;     
 		    }
 	    }
 	else 

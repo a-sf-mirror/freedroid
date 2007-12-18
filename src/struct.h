@@ -171,6 +171,7 @@ typedef struct
     int do_fadings; // do the screen fadings
     int auto_display_to_help; // display the takeover help
     int fullscreen_on;
+    int talk_to_bots_after_takeover;
 }
 configuration_for_freedroid , *Configuration_for_freedroid;
 

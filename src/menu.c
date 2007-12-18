@@ -2074,6 +2074,7 @@ Droid_Talk_Options_Menu (void)
   char Options3[1000];
   char Options4[1000];
   char Options5[1000];
+  char Options6[1000];
   char* MenuTexts[10]={ "" , "" , "" , "" , "" ,
 			"" , "" , "" , "" , "" };
   enum
@@ -2084,6 +2085,7 @@ Droid_Talk_Options_Menu (void)
       ENEMY_BUMP_TEXT,
       ENEMY_AIM_TEXT,
       ALL_TEXTS,
+      TALK_AFTER_TO,
       LEAVE_DROID_TALK_OPTIONS_MENU 
     };
 
@@ -2095,13 +2097,15 @@ Droid_Talk_Options_Menu (void)
       sprintf( Options3 , _("Enemy Bumped Texts: %s"), GameConfig.Enemy_Bump_Text ? _("ON") : _("OFF") );
       sprintf( Options4 , _("Enemy Aim Texts: %s"), GameConfig.Enemy_Aim_Text ? _("ON") : _("OFF") );
       sprintf( Options5 , _("All in-game Speech: %s"), GameConfig.All_Texts_Switch ? _("ON") : _("OFF") );
+      sprintf( Options6, _("Reprogram bots after takeover: %s"), GameConfig.talk_to_bots_after_takeover ? _("ON") : _("OFF"));
       MenuTexts[0]=Options0;
       MenuTexts[1]=Options1;
       MenuTexts[2]=Options2;
       MenuTexts[3]=Options3;
       MenuTexts[4]=Options4;
       MenuTexts[5]=Options5;
-      MenuTexts[6]=_("Back");
+      MenuTexts[6]=Options6;
+      MenuTexts[7]=_("Back");
 
 	if ( GameOver == TRUE ) 
                 MenuPosition = DoMenuSelection( "" , MenuTexts , -1 , NE_TITLE_PIC_BACKGROUND_CODE, NULL );     
@@ -2135,6 +2139,10 @@ Droid_Talk_Options_Menu (void)
 	case ALL_TEXTS:
 	  while (EnterPressed() || SpacePressed() || MouseLeftPressed() );
 	  GameConfig.All_Texts_Switch=!GameConfig.All_Texts_Switch;
+	  break;
+	case TALK_AFTER_TO:
+	  while(EnterPressed() || SpacePressed() || MouseLeftPressed());
+	  GameConfig.talk_to_bots_after_takeover = !GameConfig.talk_to_bots_after_takeover;
 	  break;
 	case LEAVE_DROID_TALK_OPTIONS_MENU:
 	  while (EnterPressed() || SpacePressed() || MouseLeftPressed());
