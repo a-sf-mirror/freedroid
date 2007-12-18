@@ -54,12 +54,12 @@ New Option Nr=2  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=322  PositionY=259  
 ChangeOption=2 ChangeToValue=0
-OnCondition="PointsToDistributeAtLeast:10" JumpToOption=5 ElseGoto=6
+OnCondition="PointsToDistributeAtLeast:5" JumpToOption=5 ElseGoto=6
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=4  OptionText=" Improve Hacking Ability (cost 300 cash, 10 ability points)"
+New Option Nr=4  OptionText=" Improve Hacking Ability (cost 300 cash, 5 ability points)"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=195  PositionY=184  
 ChangeOption=4 ChangeToValue=1
@@ -80,7 +80,7 @@ Subtitle="Now I see your hacking skill has already improved a lot."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=5 ChangeToValue=0
 DoSomethingExtra="IncreaseHackingSkill"
-DoSomethingExtra="SubtractPointsToDistribute:10"
+DoSomethingExtra="SubtractPointsToDistribute:5"
 DoSomethingExtra="SubtractGold:300"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
