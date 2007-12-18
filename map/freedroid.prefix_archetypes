@@ -567,7 +567,7 @@ Bonus to tohit modifier=0
 Bonus to armor class or damage=0
 Bonus to armor class or damage modifier=0
 Bonus to life recovery=0
-Bonus to mana recovery=-2
+Bonus to mana recovery=-0.5
 Light radius bonus=0
 Price factor=1.4
 Level=2
@@ -929,10 +929,11 @@ Bonus to life=0
 Bonus to life modifier=0
 Bonus to mana=0
 Bonus to mana modifier=0
-Bonus to life recovery=0
+Bonus to life recovery=-0.1
 Bonus to mana recovery=0
+Bonus to armor class or damage=1
 Light radius bonus=0
-Price factor=1
+Price factor=1.2
 Level=2
 ** End of new suffix specification subsection **
 
@@ -955,7 +956,7 @@ Bonus to mana modifier=0
 Bonus to life recovery=0
 Bonus to mana recovery=0
 Light radius bonus=0
-Price factor=1
+Price factor=0.5
 Level=3
 ** End of new suffix specification subsection **
 
@@ -1164,6 +1165,98 @@ Bonus to mana recovery=0
 Light radius bonus=0
 Price factor=0.01
 Level=3
+** End of new suffix specification subsection **
+
+** Start of new prefix specification subsection **
+Prefix name="Cool "
+Bonus to dexterity=0
+Bonus to dexterity modifier=0
+Bonus to vitality=0
+Bonus to vitality modifier=0
+Bonus to magic=0
+Bonus to magic modifier=0
+Bonus to strength=0
+Bonus to strength modifier=0
+Bonus to all attributes=0
+Bonus to all attributes modifier=0
+Bonus to life=0
+Bonus to life modifier=0
+Bonus to mana=0
+Bonus to mana modifier=0
+Bonus to life recovery=0
+Bonus to mana recovery=0.2
+Light radius bonus=0
+Price factor=1.2
+Level=2
+** End of new prefix specification subsection **
+
+** Start of new prefix specification subsection **
+Prefix name="Frozen "
+Bonus to dexterity=0
+Bonus to dexterity modifier=0
+Bonus to vitality=0
+Bonus to vitality modifier=0
+Bonus to magic=0
+Bonus to magic modifier=0
+Bonus to strength=0
+Bonus to strength modifier=0
+Bonus to all attributes=0
+Bonus to all attributes modifier=0
+Bonus to life=0
+Bonus to life modifier=0
+Bonus to mana=0
+Bonus to mana modifier=0
+Bonus to life recovery=0
+Bonus to mana recovery=0.5
+Light radius bonus=0
+Price factor=1.5
+Level=3
+** End of new prefix specification subsection **
+
+** Start of new suffix specification subsection **
+Prefix name=" of ice"
+Bonus to dexterity=0
+Bonus to dexterity modifier=0
+Bonus to vitality=0
+Bonus to vitality modifier=0
+Bonus to magic=0
+Bonus to magic modifier=0
+Bonus to strength=0
+Bonus to strength modifier=0
+Bonus to all attributes=0
+Bonus to all attributes modifier=0
+Bonus to life=0
+Bonus to life modifier=0
+Bonus to mana=0
+Bonus to mana modifier=0
+Bonus to life recovery=0
+Bonus to mana recovery=0.5
+Light radius bonus=0
+Price factor=1.5
+Level=3
+** End of new suffix specification subsection **
+
+** Start of new suffix specification subsection **
+Prefix name=" of chills"
+Bonus to dexterity=0
+Bonus to dexterity modifier=0
+Bonus to vitality=0
+Bonus to vitality modifier=0
+Bonus to magic=0
+Bonus to magic modifier=0
+Bonus to strength=0
+Bonus to strength modifier=0
+Bonus to all attributes=0
+Bonus to all attributes modifier=0
+Bonus to life=0
+Bonus to life modifier=0
+Bonus to mana=0
+Bonus to mana modifier=0
+Bonus to life recovery=0
+Bonus to mana recovery=0.2
+Light radius bonus=0
+Price factor=1.2
+Level=2
 ** End of new suffix specification subsection **
 
 *** End of presuff data section ***
