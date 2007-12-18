@@ -626,7 +626,7 @@ ExecuteChatExtra ( char* ExtraCommandString , Enemy ChatDroid )
     else if ( CountStringOccurences ( ExtraCommandString , "ExecuteSubdialog:" ) )
     {
 	strcpy ( tmp_filename , ExtraCommandString + strlen ( "ExecuteSubdialog:" ) ) ;
-	DebugPrintf( 0 , "\nExtra invoked start of SUBDIALOG! with label: %s. Doing it... " ,
+	DebugPrintf( CHAT_DEBUG_LEVEL , "\nExtra invoked start of SUBDIALOG! with label: %s. Doing it... " ,
 		     tmp_filename );
 	
 	push_or_pop_chat_roster ( PUSH_ROSTER );
@@ -640,11 +640,34 @@ ExecuteChatExtra ( char* ExtraCommandString , Enemy ChatDroid )
 	sprintf(finaldir, "%s%s", DIALOG_DIR, language_dirs[GameConfig.language]);
 	find_file (tmp_filename , finaldir, fpath, 0);
 	
-	for ( i = 0 ; i < MAX_ANSWERS_PER_PERSON ; i ++ )
-	{
-	    Me . Chat_Flags [ PERSON_SUBDIALOG_DUMMY ] [ i ] = 0 ;
-	}
-	
+	int i, j;
+	for (i = 0; i < MAX_ANSWERS_PER_PERSON; i ++)
+	    {
+	    if ( ChatRoster [ i ] . position_x != -1 ) Me . Chat_Flags [ PERSON_SUBDIALOG_DUMMY	] [ i ] = 1;
+	    }
+
+	for (i = 0; i < MAX_ANSWERS_PER_PERSON; i ++)
+	    {
+	    for (j = 0; j < MAX_ANSWERS_PER_PERSON; j ++)
+		{
+		if( i == (ChatRoster [ i ] . change_option_nr [ j ])) continue;
+		if(ChatRoster [ i ] . change_option_nr [ j ] > 0  &&  ChatRoster [ i ] . change_option_to_value [ j ] == 1)
+		    {
+		    Me . Chat_Flags [ PERSON_SUBDIALOG_DUMMY ] [ ChatRoster [ i ] . change_option_nr [ j ] ] = 0;
+		    }
+		}
+
+	    if ( strlen ( ChatRoster [ i ] . on_goto_condition ) )
+		{
+		Me . Chat_Flags [ PERSON_SUBDIALOG_DUMMY ] [ ChatRoster [ i ] . on_goto_first_target ] = 0;
+		Me . Chat_Flags [ PERSON_SUBDIALOG_DUMMY ] [ ChatRoster [ i ] . on_goto_second_target ] = 0;
+		}
+
+	    if ( ChatRoster [ i ] . link_target )
+		Me . Chat_Flags [ PERSON_SUBDIALOG_DUMMY ] [ ChatRoster [ i ] . link_target ] = 0;
+	    }
+
+
 	LoadChatRosterWithChatSequence ( fpath );
 	DoChatFromChatRosterData( PERSON_SUBDIALOG_DUMMY , ChatDroid , FALSE );
 	
@@ -1147,6 +1170,7 @@ ProcessThisChatOption ( int MenuSelection , int ChatPartnerCode , Enemy ChatDroi
     // But it might be the case that this option is more technical and not accompanied
     // by any reply.  This case must also be caught.
     //
+    printf("Processing option %d with partner %d\n", MenuSelection, ChatPartnerCode);
     if ( strcmp ( ChatRoster [ MenuSelection ] . option_sample_file_name , "NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER" ) )
     {
 	// PlayOnceNeededSoundSample( ChatRoster [ MenuSelection ] . option_sample_file_name , TRUE );
@@ -1206,18 +1230,14 @@ ProcessThisChatOption ( int MenuSelection , int ChatPartnerCode , Enemy ChatDroi
 	if ( !strlen ( ChatRoster [ MenuSelection ] . extra_list [ i ] ) )
 	    break;
 	
-	DebugPrintf ( CHAT_DEBUG_LEVEL	, "\nWARNING!  Starting to invoke extra.  Text is: %s." ,
+	DebugPrintf ( CHAT_DEBUG_LEVEL	, "\nStarting to invoke extra.  Text is: %s.\n" ,
 		      ChatRoster [ MenuSelection ] . extra_list[i] );
 	
 	if ( ExecuteChatExtra ( ChatRoster [ MenuSelection ] . extra_list[i] , ChatDroid ) == 1 )
-	enddialog = 1;
+		enddialog = 1;
 	
-	//--------------------
-	// Maybe the chat extra has annoyed the chat partner and he is now
-	//
-	//
 	if ( ! ChatDroid -> is_friendly )
-	    enddialog = 1 ;
+		enddialog = 1 ;
 	
 	//--------------------
 	// It can't hurt to have the overall background redrawn after each extra command
