@@ -74,7 +74,7 @@ Chainsaw       - lvl 4 - str20 dex20 - 2H - Dam: 2-3 - Recharge: 0.15- Inv size 
 *** Cleaving ***
 Meat cleaver   - lvl 0 - str 0 dex 0 - 1H - Dam: 1-3 - Recharge: 0.6 - Inv size 2x2 - Dur 10-15 - 30
 Small Axe      - lvl 1 - str12 dex15 - 1H - Dam: 1-5 - Recharge: 0.6 - Inv size 2x2 - Dur 10-15 - 40 
-Axe            - lvl 2 - str20 dex15 - 1H - Dam: 3-7 - Recharge: 0.9 - Inv size 2x3 - Dur 12-17 - 80
+Axe            - lvl 2 - str20 dex15 - 1H - Dam: 3-7 - Recharge: 0.8 - Inv size 2x3 - Dur 12-17 - 80
 Large Axe      - lvl 3 - str30 dex20 - 2H - Dam:10-20- Recharge: 1.2 - Inv size 2x4 - Dur 14-19 -120
 
 *** Piercing ***
@@ -87,8 +87,8 @@ Crowbar        - lvl 0 - str 0 dex 0 - 1H - Dam: 1-3 - Recharge: 0.6 - Inv size 
 Iron pipe      - lvl 0 - str18 dex 0 - 1H - Dam: 1-4 - Recharge: 0.6 - Inv size 1x3 - Dur 12-17 - 20
 Golf club      - lvl 1 - str 0 dex23 - 1H - Dam: 1-5 - Recharge: 0.6 - Inv size 1x4 - Dur  6-10 -100 
 //Monkey wrench
-Tree branch    - lvl 1 - str 0 dex 0 - 1H - Dam: 1-2 - Recharge: 0.5 - Inv size 2x3 - Dur  5-10 -  5
-Table leg      - lvl 1 - str 0 dex 0 - 1H - Dam: 1-2 - Recharge: 0.5 - Inv size 1x4 - Dur  5-10 -  5
+Tree branch    - lvl 1 - str 0 dex 0 - 1H - Dam: 0-3 - Recharge: 0.7 - Inv size 2x3 - Dur  5-10 -  5
+Table leg      - lvl 1 - str 0 dex 0 - 1H - Dam: 0-2 - Recharge: 0.5 - Inv size 1x4 - Dur  5-10 - 10
 Baseball bat   - lvl 1 - str15 dex20 - 2H - Dam: 4-10- Recharge: 0.7 - Inv size 2x4 - Dur  5-10 - 25
 Iron bar       - lvl 2 - str25 dex15 - 2H - Dam: 6-12- Recharge: 1.0 - Inv size 1x5 - Dur 20-25 - 70
 Mace           - lvl 3 - str25 dex15 - 1H - Dam: 3-8 - Recharge: 0.8 - Inv size 1x3 - Dur 20-25 -150
@@ -367,7 +367,7 @@ Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=80
 Item description text="Big enough to fell a small tree, it's also capable of leaving big dents in a droid."
 ----- the following part is only relevant for weapons -----
-Item as gun: recharging time=0.900000
+Item as gun: recharging time=0.800000
 Item as gun: reloading time=0.000000
 Item as gun: speed of bullets=0.100000
 Item as gun: angle change of bullets=720.000000
@@ -691,12 +691,12 @@ Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=5
 Item description text="A club from a tree branch is certainly not your preferred choice of weapon to use, but it might be your only..."
 ----- the following part is only relevant for weapons -----
-Item as gun: recharging time=0.500000
+Item as gun: recharging time=0.700000
 Item as gun: reloading time=0.000000
 Item as gun: speed of bullets=0.100000
 Item as gun: angle change of bullets=720.000000
-Item as gun: damage of bullets=1
-Item as gun: modifier for damage of bullets=1
+Item as gun: damage of bullets=0
+Item as gun: modifier for damage of bullets=3
 Item as gun: bullet_image_type=8
 Item as gun: bullet_lifetime=0.200000
 Item as gun: offset for melee weapon=1.050000
@@ -727,15 +727,15 @@ File or directory name for inventory image="laser_sword_yellow/inv_image.png"
 inventory_size_x=1
 inventory_size_y=4
 Item uses drop sound with filename="drop_sword_sound.ogg"
-Base list price=5
+Base list price=10
 Item description text="In desperate situations even ordinary objects can turn into makeshift weapons."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.500000
 Item as gun: reloading time=0.000000
 Item as gun: speed of bullets=0.100000
 Item as gun: angle change of bullets=720.000000
-Item as gun: damage of bullets=1
-Item as gun: modifier for damage of bullets=1
+Item as gun: damage of bullets=0
+Item as gun: modifier for damage of bullets=2
 Item as gun: bullet_image_type=8
 Item as gun: bullet_lifetime=0.200000
 Item as gun: offset for melee weapon=1.050000
@@ -806,7 +806,7 @@ inventory_size_x=1
 inventory_size_y=5
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=70
-Item description text="A bit slow and cumbersome to use and prohibiting the security of a shield to cower behind, this weapon isn't always a good option. But once you do hit you are sure to do more then just a scratch."
+Item description text="A bit slow and cumbersome to use and prohibiting the security of a shield to cower behind, this weapon isn't always a good option. But if you do hit you are sure to do more damage then just a scratch."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=1.000000
 Item as gun: reloading time=0.000000
@@ -3224,6 +3224,22 @@ Item description text="These hiking boots are a very sophisticated product, comb
  **********************************************************************************************************/
 
 ** Start of new item specification subsection **
+Item name="Source Book of Emergency shutdown"
+Item min class for drop=2
+Item max class for drop=9
+Item can be applied in combat="yes"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="spellbook"
+Items of this type collect together in inventory="no"
+File or directory name for inventory image="spellbook/inv_image_green.png"
+Item uses drop sound with filename="drop_book_sound.ogg"
+Base list price=500
+Item description text="Everyone needs to blow some steam every now and then."
+inventory_size_x=2
+inventory_size_y=2
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
 Item name="Source Book of Check system integrity"
 Item min class for drop=2
 Item max class for drop=9
@@ -3240,72 +3256,8 @@ inventory_size_y=2
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Source Book of Calculate Pi"
-Item min class for drop=4
-Item max class for drop=9
-Item can be applied in combat="yes"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="spellbook"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="spellbook/inv_image_orange.png"
-Item uses drop sound with filename="drop_book_sound.ogg"
-Base list price=225
-Item description text="It is not a big problem to make a badly designed system to go hunting for the impossible, causing a performance impact."
-inventory_size_x=2
-inventory_size_y=2
-** End of new item specification subsection **
-
-** Start of new item specification subsection **
-Item name="Source Book of Blue Screen"
-Item min class for drop=2
-Item max class for drop=9
-Item can be applied in combat="yes"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="spellbook"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="spellbook/inv_image_blue.png"
-Item uses drop sound with filename="drop_book_sound.ogg"
-Base list price=100
-Item description text="With a little touch a war machine comes crashing down to a halt. For a while."
-inventory_size_x=2
-inventory_size_y=2
-** End of new item specification subsection **
-
-** Start of new item specification subsection **
-Item name="Source Book of Broadcast Blue Screen"
-Item min class for drop=4
-Item max class for drop=9
-Item can be applied in combat="yes"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="spellbook"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="spellbook/inv_image_blue.png"
-Item uses drop sound with filename="drop_book_sound.ogg"
-Base list price=100
-Item description text="With a little touch a war machine comes crashing down to a halt. For a while."
-inventory_size_x=2
-inventory_size_y=2
-** End of new item specification subsection **
-
-** Start of new item specification subsection **
-Item name="Source Book of Malformed packet"
-Item min class for drop=2
-Item max class for drop=9
-Item can be applied in combat="yes"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="spellbook"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="spellbook/inv_image_purple.png"
-Item uses drop sound with filename="drop_book_sound.ogg"
-Base list price=400
-Item description text="When computers are presented with the unexpected they can damage themselves."
-inventory_size_x=2
-inventory_size_y=2
-** End of new item specification subsection **
-
-** Start of new item specification subsection **
 Item name="Source Book of Analyze item"
-Item min class for drop=2
+Item min class for drop=3
 Item max class for drop=9
 Item can be applied in combat="yes"
 Item can be installed in slot with name="none"
@@ -3315,102 +3267,6 @@ File or directory name for inventory image="spellbook/inv_image_green.png"
 Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=450
 Item description text="There are very few items which have labels on them. Unless you happen to have an item labeled 'USE ME', you better make sure what it is before using it..."
-inventory_size_x=2
-inventory_size_y=2
-** End of new item specification subsection **
-
-** Start of new item specification subsection **
-Item name="Source Book of Nethack"
-Item min class for drop=2
-Item max class for drop=9
-Item can be applied in combat="yes"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="spellbook"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="spellbook/inv_image_yellow.png"
-Item uses drop sound with filename="drop_book_sound.ogg"
-Base list price=450
-Item description text="The open source game called Nethack is one of the world's greatest wasters of time. Machines don't care about it, but humans can get sucked in quite deeply."
-inventory_size_x=2
-inventory_size_y=2
-** End of new item specification subsection **
-
-** Start of new item specification subsection **
-Item name="Source Book of Dispel smoke"
-Item min class for drop=2
-Item max class for drop=9
-Item can be applied in combat="yes"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="spellbook"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="spellbook/inv_image_grey.png"
-Item uses drop sound with filename="drop_book_sound.ogg"
-Base list price=450
-Item description text="By heating up the chips with a malformed program you can cause them to release the magic smoke which keeps the bot running."
-inventory_size_x=2
-inventory_size_y=2
-** End of new item specification subsection **
-
-** Start of new item specification subsection **
-Item name="Source Book of Killer poke"
-Item min class for drop=2
-Item max class for drop=9
-Item can be applied in combat="yes"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="spellbook"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="spellbook/inv_image_greenblue.png"
-Item uses drop sound with filename="drop_book_sound.ogg"
-Base list price=600
-Item description text="Messing around with the bot's memory can cause it to damage itself, but the damage is greatly variable."
-inventory_size_x=2
-inventory_size_y=2
-** End of new item specification subsection **
-
-** Start of new item specification subsection **
-Item name="Source Book of Ricer CFLAGS"
-Item min class for drop=8888
-Item max class for drop=9999
-Item can be applied in combat="yes"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="spellbook"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="spellbook/inv_image.png"
-Item uses drop sound with filename="drop_book_sound.ogg"
-Base list price=600
-Item description text="Optimization is the root of all evil. You can gain some temporary improvements to your system, but in the end you are only likely to cause permanent damage."
-inventory_size_x=2
-inventory_size_y=2
-** End of new item specification subsection **
-
-** Start of new item specification subsection **
-Item name="Source Book of Plasma discharge"
-Item min class for drop=8888
-Item max class for drop=9999
-Item can be applied in combat="yes"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="spellbook"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="spellbook/inv_image.png"
-Item uses drop sound with filename="drop_book_sound.ogg"
-Base list price=200
-Item description text="The overload setting exists for emergencies. The plasma does not discriminate between bots and humans. Everything is equal to it."
-inventory_size_x=2
-inventory_size_y=2
-** End of new item specification subsection **
-
-** Start of new item specification subsection **
-Item name="Source Book of Invisibility"
-Item min class for drop=8888
-Item max class for drop=9999
-Item can be applied in combat="yes"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="spellbook"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="spellbook/inv_image.png"
-Item uses drop sound with filename="drop_book_sound.ogg"
-Base list price=225
-Item description text="I am not the Linarian you are looking for."
 inventory_size_x=2
 inventory_size_y=2
 ** End of new item specification subsection **
@@ -3432,8 +3288,72 @@ inventory_size_y=2
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Source Book of Virus"
+Item name="Source Book of Malformed packet"
 Item min class for drop=2
+Item max class for drop=9
+Item can be applied in combat="yes"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="spellbook"
+Items of this type collect together in inventory="no"
+File or directory name for inventory image="spellbook/inv_image_purple.png"
+Item uses drop sound with filename="drop_book_sound.ogg"
+Base list price=300
+Item description text="When computers are presented with the unexpected they can damage themselves."
+inventory_size_x=2
+inventory_size_y=2
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
+Item name="Source Book of Calculate Pi"
+Item min class for drop=2
+Item max class for drop=9
+Item can be applied in combat="yes"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="spellbook"
+Items of this type collect together in inventory="no"
+File or directory name for inventory image="spellbook/inv_image_orange.png"
+Item uses drop sound with filename="drop_book_sound.ogg"
+Base list price=300
+Item description text="It is not a big problem to make a badly designed system to go hunting for the impossible, causing a performance impact."
+inventory_size_x=2
+inventory_size_y=2
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
+Item name="Source Book of Blue Screen"
+Item min class for drop=3
+Item max class for drop=9
+Item can be applied in combat="yes"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="spellbook"
+Items of this type collect together in inventory="no"
+File or directory name for inventory image="spellbook/inv_image_blue.png"
+Item uses drop sound with filename="drop_book_sound.ogg"
+Base list price=300
+Item description text="With a little touch a war machine comes crashing down to a halt. For a while."
+inventory_size_x=2
+inventory_size_y=2
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
+Item name="Source Book of Broadcast Blue Screen"
+Item min class for drop=5
+Item max class for drop=9
+Item can be applied in combat="yes"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="spellbook"
+Items of this type collect together in inventory="no"
+File or directory name for inventory image="spellbook/inv_image_blue.png"
+Item uses drop sound with filename="drop_book_sound.ogg"
+Base list price=900
+Item description text="With a little touch a war machine comes crashing down to a halt. For a while."
+inventory_size_x=2
+inventory_size_y=2
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
+Item name="Source Book of Virus"
+Item min class for drop=4
 Item max class for drop=9
 Item can be applied in combat="yes"
 Item can be installed in slot with name="none"
@@ -3449,7 +3369,7 @@ inventory_size_y=2
 
 ** Start of new item specification subsection **
 Item name="Source Book of Broadcast virus"
-Item min class for drop=2
+Item min class for drop=6
 Item max class for drop=9
 Item can be applied in combat="yes"
 Item can be installed in slot with name="none"
@@ -3457,8 +3377,104 @@ Item uses rotation series with prefix="spellbook"
 Items of this type collect together in inventory="no"
 File or directory name for inventory image="spellbook/inv_image_red.png"
 Item uses drop sound with filename="drop_book_sound.ogg"
-Base list price=450
+Base list price=1350
 Item description text="The network is wide and dangerous. Many traps await for the weak and unprepared."
+inventory_size_x=2
+inventory_size_y=2
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
+Item name="Source Book of Dispel smoke"
+Item min class for drop=3
+Item max class for drop=9
+Item can be applied in combat="yes"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="spellbook"
+Items of this type collect together in inventory="no"
+File or directory name for inventory image="spellbook/inv_image_grey.png"
+Item uses drop sound with filename="drop_book_sound.ogg"
+Base list price=600
+Item description text="By heating up the chips with a malformed program you can cause them to release the magic smoke which keeps the bot running."
+inventory_size_x=2
+inventory_size_y=2
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
+Item name="Source Book of Killer poke"
+Item min class for drop=5
+Item max class for drop=9
+Item can be applied in combat="yes"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="spellbook"
+Items of this type collect together in inventory="no"
+File or directory name for inventory image="spellbook/inv_image_greenblue.png"
+Item uses drop sound with filename="drop_book_sound.ogg"
+Base list price=1200
+Item description text="Messing around with the bot's memory can cause it to damage itself, but the damage is greatly variable."
+inventory_size_x=2
+inventory_size_y=2
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
+Item name="Source Book of Nethack"
+Item min class for drop=4
+Item max class for drop=9
+Item can be applied in combat="yes"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="spellbook"
+Items of this type collect together in inventory="no"
+File or directory name for inventory image="spellbook/inv_image_yellow.png"
+Item uses drop sound with filename="drop_book_sound.ogg"
+Base list price=450
+Item description text="The open source game called Nethack is one of the world's greatest wasters of time. Machines don't care about it, but humans can get sucked in quite deeply."
+inventory_size_x=2
+inventory_size_y=2
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
+Item name="Source Book of Plasma discharge"
+Item min class for drop=8888
+Item max class for drop=9999
+Item can be applied in combat="yes"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="spellbook"
+Items of this type collect together in inventory="no"
+File or directory name for inventory image="spellbook/inv_image.png"
+Item uses drop sound with filename="drop_book_sound.ogg"
+Base list price=600
+Item description text="The overload setting exists for emergencies. The plasma does not discriminate between bots and humans. Everything is equal to it."
+inventory_size_x=2
+inventory_size_y=2
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
+Item name="Source Book of Ricer CFLAGS"
+Item min class for drop=8888
+Item max class for drop=9999
+Item can be applied in combat="yes"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="spellbook"
+Items of this type collect together in inventory="no"
+File or directory name for inventory image="spellbook/inv_image.png"
+Item uses drop sound with filename="drop_book_sound.ogg"
+Base list price=600
+Item description text="Optimization is the root of all evil. You can gain some temporary improvements to your system, but in the end you are only likely to cause permanent damage."
+inventory_size_x=2
+inventory_size_y=2
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
+Item name="Source Book of Invisibility"
+Item min class for drop=8888
+Item max class for drop=9999
+Item can be applied in combat="yes"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="spellbook"
+Items of this type collect together in inventory="no"
+File or directory name for inventory image="spellbook/inv_image.png"
+Item uses drop sound with filename="drop_book_sound.ogg"
+Base list price=225
+Item description text="I am not the Linarian you are looking for."
 inventory_size_x=2
 inventory_size_y=2
 ** End of new item specification subsection **
@@ -3475,22 +3491,6 @@ File or directory name for inventory image="spellbook/inv_image_orange.png"
 Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=450
 Item description text="There is some dark magic in the art of turning bots inside-out to learn all their secrets."
-inventory_size_x=2
-inventory_size_y=2
-** End of new item specification subsection **
-
-** Start of new item specification subsection **
-Item name="Source Book of Emergency shutdown"
-Item min class for drop=2
-Item max class for drop=9
-Item can be applied in combat="yes"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="spellbook"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="spellbook/inv_image_green.png"
-Item uses drop sound with filename="drop_book_sound.ogg"
-Base list price=450
-Item description text="Everyone needs to blow some steam every now and then."
 inventory_size_x=2
 inventory_size_y=2
 ** End of new item specification subsection **

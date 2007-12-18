@@ -36,7 +36,7 @@ Present at startup=1
 ** Start of new program specification subsection **
 Program name="Emergency shutdown"
 Program description="Target: Self
-Effect: Cooldown 100 +10/rev
+Effect: Temperature -100 -10/rev
 Paralyze: 15s  -1/rev
 Everyone needs to turn off and cool down a bit now and then. Just be careful so you are not still offline when enemy bots close in..."
 Picture="Shutdown.png"
@@ -52,16 +52,17 @@ Present at startup=1
 ** Start of new program specification subsection **
 Program name="Check system integrity"
 Program description="Type: Self
-Heal: 30  +5/rev
-Paralyze: 5s
+Heal: 30  +3/rev
+Paralyze: 3s  -0.3/rev
 Heat: 40
 While repairing damage you must remember that patience is a virtue."
 Picture="FirstAidSpell.png"
 Effect="none"
 Form="self"
-Base damage=-25
-Damage per level=-5
-Paralyse duration=15
+Base damage=-30
+Damage per level=-3
+Paralyse duration=3
+Paralyse duration per level=-0.3
 Cost=40
 Cost per level=0
 
@@ -90,21 +91,60 @@ Cost=100
 Cost per level=-10
 
 ** Start of new program specification subsection **
-Program name="Blue Screen"
+Program name="Malformed packet"
 Program description="Type: Projectile
-Paralyze: Bot 10s  +4/rev
-Heat: 15  -1/rev
+Damage: 3  +2/rev
+Heat: 2  +1/rev
+When computers are presented with the unexpected they can damage themselves."
+Picture="BadPacket.png"
+Effect="none"
+Form="bullet"
+Affect bots=1
+Affect humans=0
+#14 is white bullet
+Artwork internal code=14
+Base damage=3
+Damage per level=2
+Cost=2
+Cost per level=1
+
+** Start of new program specification subsection **
+Program name="Calculate Pi"  
+Program description="Type: Target
+Slowdown: 4s +2s/rev
+Heat: 10 +2/rev
+It is not a big problem to make a badly designed system to go hunting for the impossible, causing a performance impact."
+Picture="Calculate_PI.png"
+Form="immediate"
+Effect="slowdown"
+#12 is blue bullet
+Artwork internal code=12
+Affect bots=1
+Affect humans=0
+Base damage=0
+Mod damage=0
+Damage per level=0
+Slowdown_duration=10
+Slowdown_duration per level=2
+Cost=10
+Cost per level=2
+
+** Start of new program specification subsection **
+Program name="Blue Screen"
+Program description="Type: Target
+Paralyze: Bot 5s  +2/rev
+Heat: 25  -1/rev
 With a little touch a war machine comes crashing down to a halt. For a while."
 Picture="BlueScreen.png"
-Form="bullet"
+Form="immediate"
 Artwork internal code=12
 Affect bots=1
 Affect humans=0
 Base damage=0
 Effect="paralyze"
-Paralyse duration=10
-Paralyse duration per level=4
-Cost=15
+Paralyse duration=5
+Paralyse duration per level=2
+Cost=25
 Cost per level=-1
 
 ** Start of new program specification subsection **
@@ -126,53 +166,14 @@ Cost=45
 Cost per level=-3
 
 ** Start of new program specification subsection **
-Program name="Malformed packet"
-Program description="Type: Projectile
-Damage: 3  +2/rev
-Heat: 2  +1/rev
-When computers are presented with the unexpected they can damage themselves."
-Picture="BadPacket.png"
-Effect="none"
-Form="bullet"
-Affect bots=1
-Affect humans=0
-#14 is white bullet
-Artwork internal code=14
-Base damage=3
-Damage per level=2
-Cost=2
-Cost per level=1
-
-** Start of new program specification subsection **
-Program name="Calculate Pi"  
-Program description="Type: Projectile
-Slowdown: 10s +2s/rev
-Damage: 0-5 +3/rev
-Heat: 20 +2/rev
-It is not a big problem to make a badly designed system to go hunting for the impossible, causing a performance impact."
-Picture="Calculate_PI.png"
-Form="bullet"
-Effect="slowdown"
-#12 is blue bullet
-Artwork internal code=12
-Affect bots=1
-Affect humans=0
-Base damage=0
-Mod damage=5
-Damage per level=3
-Slowdown_duration=10
-Slowdown_duration per level=1
-Cost=20
-Cost per level=2
-
-** Start of new program specification subsection **
 Program name="Virus"
-Program description="Target: Projectile
+Program description="Target: Target
 Poison: 2x15s  +1s/rev
 Slowdown: 15s  +1s/rev
+Heat: 50
 This is not just a firmware upgrade, my dear bot. You are about to find out what exactly I want to give you."
 Picture="Virus.png"
-Form="bullet"
+Form="immediate"
 Effect="slowdown"
 Poison_damage/s=2
 Poison_duration=15
@@ -182,7 +183,7 @@ Slowdown_duration per level=1
 Base damage=0
 Affect bots=1
 Affect humans=0
-Cost=30
+Cost=50
 Artwork internal code=13
 
 ** Start of new program specification subsection **
@@ -190,6 +191,7 @@ Program name="Broadcast virus"
 Program description="Program description="Target: Radial wave
 Poison: 2x10s  +1s/rev
 Slowdown: 10s  +1s/rev
+Heat: 90
 The network is wide and dangerous. Many traps await for the weak and unprepared."
 Picture="BroadcastVirus.png"
 Form="radial"
@@ -252,7 +254,6 @@ E**ffect="transform"
 Base damage=0
 Cost=100
 
-
 ** Start of new program specification subsection **
 Program name="Plasma discharge"
 Program description="Type: Radial wave
@@ -294,7 +295,7 @@ Cost per level=-5
 ** Start of new program specification subsection **
 Program name="Extract bot parts"  
 Program description="Type: Passive
-With a little knowledge, you can extract some useful parts out of the robots you kill. With each bot there is some hope of a part falling out."
+With a little knowledge, you can extract some useful parts out of the robots you kill. With each bot there is some hope of a part falling out. This skill is always active even when not selected."
 Picture="ExtractBotParts.png"
 Form="self"
 Effect="none"
