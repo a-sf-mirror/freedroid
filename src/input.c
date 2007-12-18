@@ -683,6 +683,16 @@ ReactToSpecialKeys(void)
     if ( F10Pressed() ) activate_nth_aquired_skill ( 9 );
     
     handle_quick_appy_inventory_keys();
+
+
+    //--------------------
+    // Trying to Cut'n'paste fullscreen toggle
+
+    if ( F11Pressed() ) 
+    {
+	SDL_WM_ToggleFullScreen ( Screen );
+	GameConfig . fullscreen_on = ! GameConfig . fullscreen_on;
+    }
     
     //--------------------
     // For debugging purposes as well, the F key will print out information
