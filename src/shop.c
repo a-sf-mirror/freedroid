@@ -207,6 +207,8 @@ AssembleItemListForTradeCharacter ( item* ListToBeFilled , int ShopCharacterCode
 	ListPointer->type = GetItemIndexByName("Cap"); ListPointer++;
 	ListPointer->type = GetItemIndexByName("Buckler"); ListPointer++;
 	ListPointer->type = GetItemIndexByName("Simple Jacket"); ListPointer++;
+	ListPointer->type = GetItemIndexByName(".22 LR Ammunition"); ListPointer++;
+	ListPointer->type = GetItemIndexByName("Shotgun shells"); ListPointer++;
 	}
     else if ( ShopCharacterCode == PERSON_DOC_MOORE )
 	{
@@ -220,8 +222,6 @@ AssembleItemListForTradeCharacter ( item* ListToBeFilled , int ShopCharacterCode
 	ListPointer->type = GetItemIndexByName("Plasma pistol"); ListPointer++;
 	ListPointer->type = GetItemIndexByName("Laser Weapon Ammunition"); ListPointer++;
 	ListPointer->type = GetItemIndexByName("Plasma Weapon Ammunition"); ListPointer++;
-	ListPointer->type = GetItemIndexByName(".22 LR Ammunition"); ListPointer++;
-	ListPointer->type = GetItemIndexByName("Shotgun shells"); ListPointer++;
 	ListPointer->type = GetItemIndexByName("9x19mm Ammunition"); ListPointer++;
 	ListPointer->type = GetItemIndexByName("7.62x39mm Ammunition"); ListPointer++;
 	ListPointer->type = GetItemIndexByName("Plasma Weapon Ammunition"); ListPointer++;
