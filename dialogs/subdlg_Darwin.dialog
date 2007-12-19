@@ -58,7 +58,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=20  OptionText=" I'm ready. Please show me how to extract bot parts."
+New Option Nr=20  OptionText=" I'm ready. Please show me how to extract bot parts. (cost 50 cash, 1 ability points)"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=200  PositionY=200  
 ChangeOption=20 ChangeToValue=0
@@ -89,7 +89,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=30  OptionText=" Sure. Teach me all that you know."
+New Option Nr=30  OptionText=" Sure. Teach me all that you know. (cost 50 cash, 1 ability points)"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=200  PositionY=200  
 ChangeOption=30 ChangeToValue=0
