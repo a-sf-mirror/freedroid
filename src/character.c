@@ -231,7 +231,7 @@ AddInfluencerItemSecondaryBonus( item* BonusItem )
 void
 check_for_new_experience_level_reached ()
 {
-    int BaseExpRequired = 400;
+    int BaseExpRequired = 500;
 
     if ( Me . exp_level >= 24 )
 	{
