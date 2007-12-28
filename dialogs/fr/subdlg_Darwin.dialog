@@ -34,8 +34,8 @@ New Option Nr=0  OptionText="STARTING NODE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=267  PositionY=283  
 ChangeOption=0 ChangeToValue=0
-ChangeOption=99 ChangeToValue=1
-OnCondition="GoldIsLessThan:50" JumpToOption=90 ElseGoto=1
+ChangeOption=99 ChangeToValue=0
+OnCondition="CookieIsPlanted:know_extract5:" JumpToOption=75 ElseGoto=76
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
@@ -58,7 +58,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=20  OptionText=" I'm ready. Please show me how to extract bot parts."
+New Option Nr=20  OptionText=" I'm ready. S'il te plaît, montre-moi comment extraire des pièces de robot. (coûte 50 de cash, donne 1 point de capacité)"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=200  PositionY=200  
 ChangeOption=20 ChangeToValue=0
@@ -89,7 +89,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=30  OptionText=" Sure. Teach me all that you know."
+New Option Nr=30  OptionText=" Certainement. Apprends-moi tout ce que tu sais. (coûte 50 de cash, donne 1 point de capacité)"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=200  PositionY=200  
 ChangeOption=30 ChangeToValue=0
@@ -232,16 +232,25 @@ PositionX=478  PositionY=77
 Subtitle="Nein, je t'ai dit tout ce que je savais àce propos. Inutile de me demander deux fois, ja ?"
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=75 ChangeToValue=0
+DoSomethingExtra="EndDialog"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=90  OptionText="TUX IS TOO POOR TO TRAIN"
+New Option Nr=76  OptionText="CHECK IF MONEY ENOUGH"
+OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+PositionX=267  PositionY=283  
+OnCondition="GoldIsLessThan:50" JumpToOption=90 ElseGoto=1
+AlwaysExecuteThisOptionPriorToDialogStart="no"
+
+----------------------------------------------------------------------
+
+New Option Nr=90  OptionText=" Peut-être une autre fois."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
 Subtitle="Hmmm..."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="Kein geld, Keine hilfe."
+Subtitle="Pas d'argent, pas d'aide"
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle="Reviens avec de l'argent."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
@@ -256,7 +265,7 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
 Subtitle="Hmmm..."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="Tu semble inexpérimenté. Endurcis-toi un peu. Entraîne-toi, tue des robots."
+Subtitle="Tu parais être débutant. Endurcis-toi. Acquiers de l'expérience, tu quelques robots."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle="Alors nous pouvons parler."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
@@ -266,7 +275,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=99  OptionText=" Peut-être une autre fois."
+New Option Nr=99  OptionText="Peut-être une autre fois."
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=419  PositionY=116  
 ChangeOption=99 ChangeToValue=1

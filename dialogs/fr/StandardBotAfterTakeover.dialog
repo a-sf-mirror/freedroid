@@ -31,10 +31,10 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 New Option Nr=0  OptionText=" Identifiant : tux  Mot de Passe : *******" 
+Last login from dev/ttyS0 on Sun, 23 mar 2057.
+tux@hacked_bot: ~ #"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=71  PositionY=177  
-Subtitle="Dernière connexion sur dev/ttyS0 le Dim, 23 mar 2057. tux@hacked_bot: ~ #" 
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=0 ChangeToValue=0
 ChangeOption=1 ChangeToValue=1
 ChangeOption=2 ChangeToValue=1
@@ -47,9 +47,12 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 New Option Nr=1  OptionText=" ./pull_breaks.sh"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=155  PositionY=186  
-Subtitle="Exploitation des failles, utilisant le script V 1.0.2 (c) gnu.org, 2054 vérification requises. Énergie sur les failles. Fait. Ètat : Tout mouvemement interrompu."
+Subtitle="Exploitation des failles, utilisation du script V 1.0.2 (c) gnu.org, 2054 vérification requises. Énergie sur les failles. Fait. État : Tout mouvemement interrompu."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=1 ChangeToValue=0
+ChangeOption=2 ChangeToValue=1
+ChangeOption=3 ChangeToValue=1
+ChangeOption=4 ChangeToValue=1
 DoSomethingExtra="SetCompletelyFixedProperty"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -58,9 +61,12 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=2  OptionText=" ./follow_me.sh"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=156  PositionY=107  
-Subtitle="Initialisation de la séquence de suivi. Énergie sur la faille déplacée. Tentative de rejoindre le camp de Tux. D'accord. Tux est le chef."
+Subtitle="Initialisation de la séquence de suivi. Énergie sur les failles enlevée. En mode gardiennaga autour de Tux. Ok. Avec Tux."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
+ChangeOption=1 ChangeToValue=1
 ChangeOption=2 ChangeToValue=0
+ChangeOption=3 ChangeToValue=1
+ChangeOption=4 ChangeToValue=1
 DoSomethingExtra="SetFollowTuxProperty"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -69,9 +75,12 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=3  OptionText=" ./move_freely.sh"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=155  PositionY=250  
-Subtitle="Enlève l'énergie de la faille. Arrêt des opération de routine de patrouille. Fait. État : en patrouille."
+Subtitle="()%#@(% L'ÉPÉE EST À TOI. )##%*&%*!"
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
+ChangeOption=1 ChangeToValue=1
+ChangeOption=2 ChangeToValue=1
 ChangeOption=3 ChangeToValue=0
+ChangeOption=4 ChangeToValue=1
 DoSomethingExtra="SetMoveFreelyProperty"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -80,13 +89,10 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=4  OptionText=" ./hcf.py"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=200  PositionY=200  
-Subtitle="Exécute : arrêt des tirs."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="Sous-systèmes de refroidissement désactivés."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="Attention ! Oxydation spontanée avec émis$ion de lumière eT de chAleUr détectéeee dans L#'unité| de caLcUl principale,"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="SysTèMe=#ÉcHec%^#n 3 S 1()$++"
+Subtitle="Exécute : Cesser le feu"
+Warning! Cooling subsystems disabled.
+Warning! Spontaneous oxidization witH emis$ion of light aND heAt detecteddd in THE#main| procesIng unit.
+WArn|n*! SsTeM=#faiPure%^#n 3 S 1()$++"
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=4 ChangeToValue=0
 LinkedTo:10
