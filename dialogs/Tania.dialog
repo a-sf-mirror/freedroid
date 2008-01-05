@@ -224,7 +224,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=16  OptionText="How can I disable the guns?"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=61  PositionY=200  
-Subtitle="Somewhere in distant part of the lab should be SACD - secret area control droid. It controls all defence perimeters of tha base. If you manage to overtake him, you would be able to control the base. But it s very hard to fin him."
+Subtitle="Somewhere in distant part of the lab should be SACD - secret area control droid. It controls all defence perimeters of the base. If you manage to overtake him, you would be able to control the base. But it's very hard to find him."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=16 ChangeToValue=0
 ChangeOption=17 ChangeToValue=1
