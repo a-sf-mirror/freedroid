@@ -40,14 +40,14 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-New Option Nr=1  OptionText=" Dis m'en plus." 
+New Option Nr=1  OptionText=" Dis m'en plus."
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=200  PositionY=200  
-Subtitle="Ah, excellent." 
+Subtitle="Ah, excellent."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle="Un... ami à moi, Koan, ma dérobé quelque chose qui a une grande valeur à mes yeux."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="Il se cache quelque part dans le désert, je ne sais pas exactement à quel endroit." 
+Subtitle="Il se cache quelque part dans le désert, je ne sais pas exactement à quel endroit."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=1 ChangeToValue=0
 ChangeOption=2 ChangeToValue=1

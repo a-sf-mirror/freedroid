@@ -33,7 +33,7 @@ Beginning of new chat dialog for character="XXXXX"
 New Option Nr=0  OptionText=" Bonjour ! Je suis nouveau ici."
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=73  PositionY=220  
-Subtitle="Excellent. Maintenant retourne d'où tu viens. Ce n'est pas un endroit qui te convient." 
+Subtitle="Excellent. Maintenant retourne d'où tu viens. Ce n'est pas un endroit qui te convient."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=0 ChangeToValue=0
 ChangeOption=1 ChangeToValue=1

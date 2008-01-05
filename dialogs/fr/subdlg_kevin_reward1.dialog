@@ -45,7 +45,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=1  OptionText=" Je veux devenir un hacker."
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=278  PositionY=93  
-Subtitle="Ton désir de collecter des informations m'amuse. Je vais exaucer ton souhait. Je t'accepte comme élève hacker." 
+Subtitle="Ton désir de collecter des informations m'amuse. Je vais exaucer ton souhait. Je t'accepte comme élève hacker."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle="Tu dois savoir que le hack est un art. C'est facile de découper ton ennemi en morceau avec une épée ou de le désintégrer avec une grenade... Mais le hack nécessite des compétences."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"

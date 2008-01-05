@@ -129,7 +129,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=70  OptionText="FIRST LESSON"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=686  PositionY=264  
-Subtitle="Laisse nous commencer avec l'inverseur d'entropie. C'est vraiment simple." 
+Subtitle="Laisse nous commencer avec l'inverseur d'entropie. C'est vraiment simple."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle="Prends juste un marteau et tape sur le robot sehr fort sur la tête."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"

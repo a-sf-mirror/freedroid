@@ -111,7 +111,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=6  OptionText="Tu as mentionné un exterminateur. Qu'est-ce que c'est?
+New Option Nr=6  OptionText="Tu as mentionné un exterminateur. Qu'est-ce que c'est?"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=498  PositionY=357  
 Subtitle="C'est la meilleure arme que possède la Garde Rouge pour affronter les robots."

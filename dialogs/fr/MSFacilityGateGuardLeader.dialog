@@ -45,7 +45,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=1  OptionText="Je ne fais que regarder." 
+New Option Nr=1  OptionText="Je ne fais que regarder."
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=120  PositionY=378  
 Subtitle="Oh, regarde. L'oiseau veut aller faire un tour."

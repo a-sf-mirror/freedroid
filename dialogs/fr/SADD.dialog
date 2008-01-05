@@ -47,7 +47,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=5  OptionText=" Tu n'es pas un ennemi ?
+New Option Nr=5  OptionText=" Tu n'es pas un ennemi ?"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=512  PositionY=290  
 Subtitle=" Hostile ? Que veux tu dire ?"
@@ -204,7 +204,7 @@ LinkedTo:13
 
 ----------------------------------------------------------------------
 
-New Option Nr=13  OptionText=" Quel ton second objectif, idiot ?!
+New Option Nr=13  OptionText=" Quel ta seconde règle, idiot ?!"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=512  PositionY=290  
 Subtitle=" OBJECTIF PRIORITAIRE 2 : le personnel doit toujours pouvoir accéder à cette zone."
@@ -422,7 +422,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=33  OptionText=" J'ai les cristaux ! Ce n'était pas facile d'en trouver."'
+New Option Nr=33  OptionText=" J'ai les cristaux ! Ce n'était pas facile d'en trouver."
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=1215  PositionY=195  
 Subtitle=" Génial ! Merci. Je t'ai ouvert la porte du dépôt, j'espère que tu trouveras quelque chose d'intéressant. C'est tout ce que je peux faire pour toi."

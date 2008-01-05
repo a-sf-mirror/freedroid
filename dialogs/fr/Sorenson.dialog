@@ -30,10 +30,10 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-New Option Nr=0  OptionText=" Um... Bonjour ?" 
+New Option Nr=0  OptionText=" Um... Bonjour ?"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=64  PositionY=224  
-Subtitle="AH ! Des visiteurs ! Entrez ! Entrez !" 
+Subtitle="AH ! Des visiteurs ! Entrez ! Entrez !"
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=0 ChangeToValue=0
 LinkedTo:1

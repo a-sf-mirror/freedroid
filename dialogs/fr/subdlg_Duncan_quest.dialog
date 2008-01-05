@@ -33,7 +33,7 @@ Beginning of new chat dialog for character="XXXXX"
 New Option Nr=0  OptionText="HERE WE GO"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=61  PositionY=200  
-Subtitle="Alors... Des nouvelles de l'affaire de Koan ?" 
+Subtitle="Alors... Des nouvelles de l'affaire de Koan ?"
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=0 ChangeToValue=0
 ChangeOption=40 ChangeToValue=1
@@ -79,7 +79,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=10  OptionText="Ouais. Je l'ai. Je pense que c'est ton cube." 
+New Option Nr=10  OptionText="Ouais. Je l'ai. Je pense que c'est ton cube."
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=200  PositionY=200  
 Subtitle="Oui. J'apprécie ton aide."

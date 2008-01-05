@@ -59,7 +59,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=4  OptionText=" Augmente les capacités de hack (coûte 300 en liquide, 10 points de compétence supplémentaires)" 
+New Option Nr=4  OptionText=" Augmente les capacités de hack (coûte 300 en liquide, 10 points de compétence supplémentaires)"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=195  PositionY=184  
 ChangeOption=4 ChangeToValue=1

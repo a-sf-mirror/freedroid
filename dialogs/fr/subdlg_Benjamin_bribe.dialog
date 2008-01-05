@@ -47,7 +47,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=1  OptionText=" Combien d'exterminateurs possède la Garde Rouge ?" 
+New Option Nr=1  OptionText=" Combien d'exterminateurs possède la Garde Rouge ?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=699  PositionY=283  
 ChangeOption=1 ChangeToValue=0

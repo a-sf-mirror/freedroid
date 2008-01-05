@@ -30,10 +30,10 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-New Option Nr=0  OptionText=" Bonjour ! Je suis nouveau ici." 
+New Option Nr=0  OptionText=" Bonjour ! Je suis nouveau ici."
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=173  PositionY=239  
-Subtitle="Bienvenue dans ce camp ! Je suis Mlle Stone. Je suis la gérante de ce commerce." 
+Subtitle="Bienvenue dans ce camp ! Je suis Mlle Stone. Je suis la gérante de ce commerce."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=0 ChangeToValue=0
 ChangeOption=1 ChangeToValue=1

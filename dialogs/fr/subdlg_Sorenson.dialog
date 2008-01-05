@@ -43,7 +43,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=1  OptionText=" Certainement. Je le signerai."
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=200  PositionY=200  
-Subtitle="Bi3n. V0il4 le con7rat. S1gne !" 
+Subtitle="Bi3n. V0il4 le con7rat. S1gne !"
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=1 ChangeToValue=0
 LinkedTo:20
@@ -199,7 +199,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=60  OptionText=" Erm. J'ai un aveu à faire? Mon nom n'est pas Francis."
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=200  PositionY=200  
-Subtitle="N00000000NN!!!!!!" 
+Subtitle="N000000000N!!!!!!!"
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=60 ChangeToValue=0
 DoSomethingExtra="BreakOffAndBecomeHostile"
