@@ -647,7 +647,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=70  OptionText=" IS THE TOOLKIT MISSION DONE?""
+New Option Nr=70  OptionText=" IS THE TOOLKIT MISSION DONE?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
 ChangeOption=70 ChangeToValue=0
@@ -758,7 +758,7 @@ Subtitle="GET."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle="LOST."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="AU NOM DE MON PUTAIN DE PACIFISME IND�CROTTABLE, JE VAIS TE TUER MAINTENANT !"
+Subtitle="FI SOIT FAIT DE MON PACIFISME IND�CROTTABLE, JE VAIS TE TUER MAINTENANT !"
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle="AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA !"
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
@@ -789,7 +789,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-New Option Nr=95  OptionText="CHECK IF DIXON TALKED ALREADY""
+New Option Nr=95  OptionText="CHECK IF DIXON TALKED ALREADY"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
 ChangeOption=95 ChangeToValue=0

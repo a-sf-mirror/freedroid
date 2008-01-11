@@ -48,7 +48,7 @@ OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=209  PositionY=280  
 Subtitle="Un cluster est un groupe d'ordinateurs, connectés d'une façon qui les aide à collaborer dans la résolution de problèmes."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="Comme ils disent, "deux mains sont mieux que une seule'. Et nous avons beaucoup de mains ici."
+Subtitle="Comme ils disent, 'deux mains sont plus fortes qu'une seule'. Et nous avons beaucoup de mains ici."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle="C'est pourquoi j'appelle ce cluster 'L'Hydre' . Il y beaucoup de têtes à l'intérieur."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
@@ -85,7 +85,6 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=7  OptionText="DO NOTHING HERE..."
-"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=206  PositionY=62  
 ChangeOption=7 ChangeToValue=0
