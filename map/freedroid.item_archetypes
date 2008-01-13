@@ -1070,7 +1070,7 @@ Item as gun: weapon requires both hands="no"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Laser scalpel"
+Item name="Laserscalpel"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
