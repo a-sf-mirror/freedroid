@@ -122,26 +122,6 @@ char* floor_tile_filenames [ ALL_ISOMETRIC_FLOOR_TILES ] =
 
 tux_t Me ;
 
-char *InfluenceModeNames[] = {
-  N_("Mobile"),
-  N_("Transfer"),
-  N_("Weapon"),
-  N_("Captured"),
-  N_("Complete"),
-  N_("Rejected"),
-  N_("Logged In"),
-  N_("Debriefing"),
-  N_("Terminated"),
-  N_("Pause"),
-  N_("Cheese"),
-  N_("Elevator"),
-  N_("Briefing"),
-  N_("Menu"),
-  N_("Fresh Net"),
-  N_("Name Tran"),
-  NULL
-};
-
 // Debug string, no need for translation
 char *NetworkClientStatusNames[] = {
   "Network ERROR" ,

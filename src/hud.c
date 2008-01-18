@@ -57,8 +57,6 @@
 #define LOWER_BANNER_TEXT_RECT_H UPPER_BANNER_TEXT_RECT_H
 #define BANNER_TEXT_REC_BACKGROUNDCOLOR 0x00
 
-extern char *InfluenceModeNames[];
-
 int best_banner_pos_x, best_banner_pos_y;
 char* game_message_protocol = NULL ;
 
