@@ -88,7 +88,7 @@ Iron pipe      - lvl 0 - str18 dex 0 - 1H - Dam: 1-4 - Recharge: 0.6 - Inv size 
 Golf club      - lvl 1 - str 0 dex23 - 1H - Dam: 1-5 - Recharge: 0.6 - Inv size 1x4 - Dur  6-10 -100 
 //Monkey wrench
 Tree branch    - lvl 1 - str 0 dex 0 - 1H - Dam: 0-3 - Recharge: 0.7 - Inv size 2x3 - Dur  5-10 -  5
-Table leg      - lvl 1 - str 0 dex 0 - 1H - Dam: 0-2 - Recharge: 0.5 - Inv size 1x4 - Dur  5-10 - 10
+Table leg      - lvl 1 - str 0 dex 0 - 1H - Dam: 1-2 - Recharge: 0.5 - Inv size 1x4 - Dur  5-10 - 10
 Baseball bat   - lvl 1 - str15 dex20 - 2H - Dam: 4-10- Recharge: 0.7 - Inv size 2x4 - Dur  5-10 - 25
 Iron bar       - lvl 2 - str25 dex15 - 2H - Dam: 6-12- Recharge: 1.0 - Inv size 1x5 - Dur 20-25 - 70
 Mace           - lvl 3 - str25 dex15 - 1H - Dam: 3-8 - Recharge: 0.8 - Inv size 1x3 - Dur 20-25 -150
@@ -734,8 +734,8 @@ Item as gun: recharging time=0.500000
 Item as gun: reloading time=0.000000
 Item as gun: speed of bullets=0.100000
 Item as gun: angle change of bullets=720.000000
-Item as gun: damage of bullets=0
-Item as gun: modifier for damage of bullets=2
+Item as gun: damage of bullets=1
+Item as gun: modifier for damage of bullets=1
 Item as gun: bullet_image_type=8
 Item as gun: bullet_lifetime=0.200000
 Item as gun: offset for melee weapon=1.050000

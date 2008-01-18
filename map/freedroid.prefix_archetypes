@@ -439,7 +439,7 @@ Level=3
 ** End of new prefix specification subsection **
 
 ** Start of new prefix specification subsection **
-Prefix name="Razor "
+Prefix name="Razor sharp "
 Bonus to dexterity=0
 Bonus to dexterity modifier=0
 Bonus to vitality=0
@@ -929,11 +929,12 @@ Bonus to life=0
 Bonus to life modifier=0
 Bonus to mana=0
 Bonus to mana modifier=0
-Bonus to life recovery=-0.1
+Bonus to life recovery=-0.2
 Bonus to mana recovery=0
-Bonus to armor class or damage=1
+Bonus to armor class or damage=10
+Bonus to armor class or damage modifier=10
 Light radius bonus=0
-Price factor=1.2
+Price factor=1.0
 Level=2
 ** End of new suffix specification subsection **
 
