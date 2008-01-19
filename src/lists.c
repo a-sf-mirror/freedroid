@@ -9,7 +9,7 @@
 #include "proto.h"
 
 #define add_obj_to_list_head(TYPE) { \
-    TYPE * newobj = calloc(1, sizeof(TYPE));\
+    TYPE * newobj = malloc(sizeof(TYPE));\
     memcpy(newobj, toadd, sizeof(TYPE));\
     newobj->NEXT = head;\
     newobj->PREV = NULL;\
@@ -57,28 +57,6 @@
     }\
     return 0;
 
-/* Usage as follows :
- * type * add_type_to_head(type * head, type * toadd)
- * {
- * add_obj_to_list(type)
- * }
- *
- * wall * del_wall(wall * head, wall * todelete)
- * {
- *  you can touch todelete here if you want !
- * rem_obj_from_list()
- * }
- *
- *
- * int free_wall_list(wall * head)
- *  {
- *  free_obj_list1(wall)
- *  destroy_bitmap(objrot->sprite);
- *  free_obj_list2(wall)
- *  }
- *
- */
-
 enemy * add_enemy_head(enemy * head, enemy * toadd)
 {
     add_obj_to_list_head(enemy)
@@ -94,6 +72,30 @@ int free_enemy_list(enemy * head)
     free_obj_list1(enemy);
     free_obj_list2(enemy);
 }
+
+int move_enemy(enemy ** newhead, enemy * src, enemy ** srchead)
+{
+	if ( src == *srchead ) 
+	    { /*we're moving the head of the source list*/
+	    (*srchead) = src->NEXT;
+	    }
+
+	if ( * newhead )
+	    (*newhead)->PREV = src;
+
+	if ( src->PREV )
+	    src->PREV->NEXT = src->NEXT;
+
+	if ( src->NEXT )
+	    src->NEXT->PREV = src->PREV;
+
+	src->PREV = NULL;
+	src->NEXT = (*newhead);
+	(*newhead) = src;
+
+	return 0;
+}
+
 
 #undef _LISTS_C
 
