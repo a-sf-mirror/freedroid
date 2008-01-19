@@ -358,7 +358,7 @@ blit_mouse_cursor_corona ( void )
 char fpath[2048];
     moderately_finepoint offset_vector;
     int our_obstacle_index ;
-    int our_enemy_index;
+    enemy * our_enemy;
 
     return ;
 
@@ -403,8 +403,8 @@ Error loading flag image.",
     // special functions.  Obstacles have a lower priority and only get taken
     // into account if there isn't any person present as well.
     //
-    our_enemy_index = GetLivingDroidBelowMouseCursor ( 0 ) ;
-    if ( our_enemy_index == (-1) )
+    our_enemy = GetLivingDroidBelowMouseCursor ( ) ;
+    if ( our_enemy == NULL )
     {
 	our_obstacle_index = GetObstacleBelowMouseCursor ( 0 ) ;
 	if ( our_obstacle_index == (-1) ) return;

@@ -192,14 +192,14 @@ return;
 int 
 DoSkill(int skill_index, int SpellCost)
 {
-    int index_of_droid_below_mouse_cursor = ( -1 ) ;
+    enemy * droid_below_mouse_cursor = NULL;
 
     /*we handle the form of the program now*/
     switch ( SpellSkillMap [ skill_index ] . form ) 
 	{
 	case PROGRAM_FORM_IMMEDIATE:
-		index_of_droid_below_mouse_cursor = GetLivingDroidBelowMouseCursor ( 0 ) ;
-		if ( index_of_droid_below_mouse_cursor == ( -1 ) ) 
+		droid_below_mouse_cursor = GetLivingDroidBelowMouseCursor ( 0 ) ;
+		if ( droid_below_mouse_cursor == NULL ) 
 			goto done_handling_instant_hits;
 		if ( ! DirectLineWalkable ( Me . pos . x ,
 					    Me . pos . y ,
@@ -212,7 +212,7 @@ DoSkill(int skill_index, int SpellCost)
 					    Me . pos . z))
 		    goto done_handling_instant_hits;
 
-		AllEnemys [ index_of_droid_below_mouse_cursor ] . energy -= calculate_program_hit_damage ( skill_index ) ;
+		hit_enemy(droid_below_mouse_cursor, calculate_program_hit_damage ( skill_index ), 1, 0);
 	        Me . temperature += SpellCost;
 		break;
 	
@@ -293,8 +293,8 @@ DoSkill(int skill_index, int SpellCost)
     if ( ! strcmp ( SpellSkillMap [ skill_index ] . effect, "takeover" ) )
    	{
 	if (! MouseCursorIsInUserRect ( GetMousePos_x() , GetMousePos_y() ) ) goto out;
-	index_of_droid_below_mouse_cursor = GetLivingDroidBelowMouseCursor ( ) ;
-	if ( index_of_droid_below_mouse_cursor == ( -1 ) ) goto out;
+	droid_below_mouse_cursor = GetLivingDroidBelowMouseCursor ( ) ;
+	if ( droid_below_mouse_cursor == NULL ) goto out;
 	if ( ! DirectLineWalkable ( Me . pos . x,
 				    Me . pos . y,
 				    translate_pixel_to_map_location ( (float) input_axis.x ,
@@ -305,20 +305,20 @@ DoSkill(int skill_index, int SpellCost)
 		goto out;
 
 
-	if ( ! AllEnemys [ index_of_droid_below_mouse_cursor ] . is_friendly && ! ( Druidmap [ AllEnemys [ index_of_droid_below_mouse_cursor ] . type ] . is_human ))
+	if ( ! droid_below_mouse_cursor-> is_friendly && ! ( Druidmap [ droid_below_mouse_cursor->type ] . is_human ))
 	    {
 	    //--------------------
 	    // Only droids can be hacked.  Humans can't be 
 	    // hacked.
 	    //
-	    if ( Takeover ( index_of_droid_below_mouse_cursor ) )
+	    if ( Takeover ( droid_below_mouse_cursor ) )
 		    {
 		    // upon successful takeover
                     // restore original heat
 		    // Me . temperature -= SpellCost;
                     // go directly to chat to choose droid program
                     if ( GameConfig . talk_to_bots_after_takeover )
-			    ChatWithFriendlyDroid ( & ( AllEnemys [ index_of_droid_below_mouse_cursor ] ) ) ;     
+			    ChatWithFriendlyDroid ( droid_below_mouse_cursor ) ;     
 		    }
 	    }
 	else 

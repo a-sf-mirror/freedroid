@@ -75,7 +75,7 @@ EXTERN void Get_Item_Data ( char* DataPointer );
 #define EXTERN extern
 #endif
 EXTERN float vect_len ( moderately_finepoint our_vector );
-EXTERN int GetLivingDroidBelowMouseCursor ( );
+EXTERN enemy * GetLivingDroidBelowMouseCursor ( );
 EXTERN int GetObstacleBelowMouseCursor ( );
 EXTERN int find_free_floor_items_index ( int levelnum ) ;
 EXTERN int closed_chest_below_mouse_cursor ( ) ;
@@ -155,7 +155,7 @@ EXTERN void blit_tux ( int x , int y );
 EXTERN void PutBullet ( int Bullet_number , int mask );
 EXTERN void PutItem ( int ItemNumber , int mask , int put_thrown_items_flag , int highlight_item );
 EXTERN void PutBlast (int);
-EXTERN void PutEnemy (int Enum, int x , int y , int mask , int highlight );
+EXTERN void PutEnemy (enemy * e, int x , int y , int mask , int highlight );
 EXTERN void PutMouseMoveCursor ( void ) ;
 EXTERN void ShowInventoryScreen ( void );
 EXTERN void clear_all_loaded_tux_images ( int with_free );
@@ -700,7 +700,6 @@ EXTERN float Frame_Time (void);
 EXTERN void Activate_Conservative_Frame_Computation(void);
 EXTERN void gotoxy (int, int);
 EXTERN int MyRandom (int);
-EXTERN void Armageddon (void);
 EXTERN void Teleport ( int LNum , float X , float Y , int WithSound ) ;
 EXTERN int SaveGameConfig (void);
 EXTERN int LoadGameConfig (void);
@@ -721,14 +720,14 @@ EXTERN void endian_swap(char * pdata, size_t dsize, size_t nelements);
 #else
 #define EXTERN extern
 #endif
-EXTERN void robot_group_turn_hostile ( int enemy_num );
+EXTERN void robot_group_turn_hostile ( enemy * );
 EXTERN void SetRestOfGroupToState ( Enemy ThisRobot , int NewState );
 EXTERN int MakeSureEnemyIsInsideHisLevel ( Enemy ThisRobot );
-EXTERN void Enemy_Post_Bullethit_Behaviour( int EnemyNum );
 EXTERN void ShuffleEnemys ( int LevelNum );
-EXTERN int CheckEnemyEnemyCollision (int enemynum);
+EXTERN int CheckEnemyEnemyCollision (enemy *);
 EXTERN void MoveEnemys (void);
 EXTERN void ClearEnemys (void);
+EXTERN void InitEnemy (enemy *);
 EXTERN int DirectLineWalkable( float x1 , float y1 , float x2 , float y2 , int z );
 EXTERN int CheckIfWayIsFreeOfDroidsWithTuxchecking ( float x1 , float y1 , float x2 , float y2 , int OurLevel , Enemy ExceptedRobot ) ;
 EXTERN int CheckIfWayIsFreeOfDroidsWithoutTuxchecking ( float x1 , float y1 , float x2 , float y2 , int OurLevel , Enemy ExceptedRobot ) ;
@@ -736,7 +735,7 @@ EXTERN void start_gethit_animation_if_applicable ( enemy* ThisRobot ) ;
 EXTERN int find_free_bullet_index ( void ) ;
 EXTERN int IsActiveLevel ( int levelnum ) ;
 EXTERN void AnimateEnemys ( void ) ;
-EXTERN void occasionally_update_first_and_last_bot_indices ( void );
+EXTERN void hit_enemy ( enemy * target, float hit, char givexp, int killertype);
 
 // ship.c 
 #undef EXTERN
@@ -773,10 +772,10 @@ EXTERN void SetNewBigScreenMessage( char* ScreenMessageText );
 EXTERN void DisplayBigScreenMessage( void );
 EXTERN char* GetChatWindowInput( SDL_Surface* Background , SDL_Rect* Chat_Window_Pointer );
 EXTERN void ChatWithFriendlyDroid( Enemy ChatDroid );
-EXTERN void EnemyHitByBulletText( int Enum );
-EXTERN void EnemyInfluCollisionText ( int Enum );
+EXTERN void EnemyHitByBulletText( enemy * );
+EXTERN void EnemyInfluCollisionText ( enemy * );
 EXTERN void AddInfluBurntText( void );
-EXTERN void AddStandingAndAimingText ( int Enum );
+EXTERN void AddStandingAndAimingText ( enemy * );
 
 EXTERN void SetTextCursor (int x, int y);
 EXTERN void SetLineLength (int);
@@ -850,7 +849,7 @@ EXTERN void EnterChest ( moderately_finepoint pos );
 #define EXTERN extern
 #endif
 
-EXTERN int Takeover (int enemynum);
+EXTERN int Takeover (enemy *);
 EXTERN void ChooseColor (void);
 EXTERN void PlayGame (void);
 EXTERN void EnemyMovements (void);
@@ -884,6 +883,19 @@ EXTERN inline void PutPixel16 (SDL_Surface * surface, int x, int y, Uint32 pixel
 EXTERN inline void PutPixel8 (SDL_Surface * surface, int x, int y, Uint32 pixel);
 EXTERN Uint32 FdGetPixel (SDL_Surface * Surface, Sint32 X, Sint32 Y);
 EXTERN void PutPixel (SDL_Surface * surface, int x, int y, Uint32 pixel);
+
+#undef EXTERN
+#ifdef _LISTS_C
+#define EXTERN
+#else
+#define EXTERN extern
+#endif
+EXTERN enemy * add_enemy_head(enemy * head, enemy * toadd);
+EXTERN enemy * del_enemy(enemy * head, enemy * todelete);
+EXTERN int free_enemy_list(enemy * head);
+EXTERN int move_enemy(enemy **, enemy *, enemy **);
+#define GETNEXT(X) ((X)->NEXT)
+#define GETPREV(X) ((X)->PREV)
 
 //--------------------
 // Leave this final endif in here!  It's the wrapper of the whole

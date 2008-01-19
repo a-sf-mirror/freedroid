@@ -39,6 +39,7 @@
 #include "takeover.h"
 #include "map.h"
 
+enemy * cDroid; 
 Uint32 cur_time;  		// current time in ms 
 SDL_Surface *to_blocks;         // the global surface containing all game-blocks 
 
@@ -121,7 +122,7 @@ int LeaderColor = GELB;		/* momentary leading color */
 int YourColor = GELB;
 int OpponentColor = VIOLETT;
 int OpponentType;		/* The druid-type of your opponent */
-int DroidNum;
+enemy * cdroid;
 
 /* the display  column */
 int DisplayColumn[NUM_LINES] = {
@@ -149,7 +150,7 @@ void AdvancedEnemyTakeoverMovements (void);
  *
  *-----------------------------------------------------------------*/
 int
-Takeover ( int enemynum )
+Takeover ( enemy * target )
 {
     int row;
     int FinishTakeover = FALSE;
@@ -158,7 +159,7 @@ Takeover ( int enemynum )
     int WasPressed = FALSE ;
     int Displacement = 0 ;
     int reward = 0;
-    char game_message_text [ 5000 ] ;
+    char game_message_text [ 500 ] ;
 
     //--------------------
     // Prevent distortion of framerate by the delay coming from 
@@ -199,7 +200,7 @@ Takeover ( int enemynum )
 
     while ( !Finished )
     {
-	ShowDroidInfo ( AllEnemys[enemynum].type, Displacement , TRUE );
+	ShowDroidInfo ( target->type, Displacement , TRUE );
 	ShowGenericButtonFromList ( TAKEOVER_HELP_BUTTON ) ;
 	blit_our_own_mouse_cursor ( );
 	our_SDL_flip_wrapper ( Screen );
@@ -249,8 +250,8 @@ Takeover ( int enemynum )
 	CapsuleCurRow[GELB] = 0;
 	CapsuleCurRow[VIOLETT] = 0;
 	
-	DroidNum = enemynum;
-	OpponentType = AllEnemys [ enemynum ] . type;
+	OpponentType = target->type;
+	cDroid = target;
 	// NumCapsules[YOU] = 3 + ClassOfDruid (Me.type);
 	NumCapsules[YOU] = 3 + Me . hacking_skill ;
 	NumCapsules[ENEMY] = 2 + Druidmap [ OpponentType ] . class ;
@@ -287,7 +288,7 @@ Takeover ( int enemynum )
 	    // other droid, since all previous damage must be due to fighting damage,
 	    // and this is exactly the sort of damage can usually be cured in refreshes.
 	    //
-	    Me . energy += AllEnemys [ enemynum ] . energy;
+	    Me . energy += target->energy;
 	    Me . health += Druidmap [ OpponentType ] . maxenergy;
 	    
 	    //--------------------
@@ -299,10 +300,10 @@ Takeover ( int enemynum )
 	    if ( Me . health > Me . maxenergy ) 
 		Me . health = Me . maxenergy;
 	    
-	    Me . type = AllEnemys [ enemynum ] . type;
-	    Me . marker = AllEnemys [ enemynum ] . marker;
+	    Me . type = target->type;
+	    Me . marker = target->marker;
 
-	    reward = Druidmap [ AllEnemys [ enemynum ] . type ] . experience_reward * 1 ;
+	    reward = Druidmap [ target->type ] . experience_reward * 1 ;
 	    Me . Experience += reward;
 	    sprintf ( game_message_text , _("For taking control of your enemy, you receive %d experience."),
 		      reward );
@@ -315,35 +316,35 @@ Takeover ( int enemynum )
 	    // should be dropped after the successful takeover process, even if the
 	    // enemy isn't completely dead yet...
 	    //
-	    if ( AllEnemys [ enemynum ] . on_death_drop_item_code != (-1) )
+	    if ( target->on_death_drop_item_code != (-1) )
 	    {
-		DropItemAt( AllEnemys [ enemynum ] . on_death_drop_item_code , 
-			    AllEnemys [ enemynum ] . pos . z ,
-			    AllEnemys [ enemynum ] . pos . x , 
-			    AllEnemys [ enemynum ] . pos . y , -1 , -1 , 1 );
-		AllEnemys [ enemynum ] . on_death_drop_item_code = -1;
+		DropItemAt( target->on_death_drop_item_code , 
+			    target->pos . z ,
+			    target->pos . x , 
+			    target->pos . y , -1 , -1 , 1 );
+		target->on_death_drop_item_code = -1;
 	    }  
 
-	    AllEnemys [ enemynum ] . energy =  Druidmap [ AllEnemys [ enemynum ] . type ] . maxenergy ; 
+	    target->energy =  Druidmap [ target->type ] . maxenergy ; 
 
 	    //--------------------
 	    // After takeover, the enemy suddenly becomes friendly and will also have
 	    // a much nicer default 'combat state'...  the enemy can still start to
 	    // fight from that nicer state, maybe on the Tux side, this time :)
 	    //
-	    AllEnemys [ enemynum ] . is_friendly = TRUE ;
-	    AllEnemys [ enemynum ] . has_been_taken_over = TRUE ; 
-	    if ( AllEnemys [ enemynum ] .  stick_to_waypoint_system_by_default )
-		AllEnemys [ enemynum ] . combat_state = MOVE_ALONG_RANDOM_WAYPOINTS ;
+	    target->is_friendly = TRUE ;
+	    target->has_been_taken_over = TRUE ; 
+	    if ( target-> stick_to_waypoint_system_by_default )
+		target->combat_state = MOVE_ALONG_RANDOM_WAYPOINTS ;
 	    else
-		AllEnemys [ enemynum ] . combat_state = WAYPOINTLESS_WANDERING ;
+		target->combat_state = WAYPOINTLESS_WANDERING ;
 
 	    //--------------------
 	    // When the bot is taken over, it should not turn hostile when
 	    // the rest of his former combat group (identified by having the
 	    // same marker) is attacked by the Tux.
 	    //
-	    AllEnemys [ enemynum ] . marker = 0 ;
+	    target->marker = 0 ;
 
 	    //--------------------
 	    // The takeover game earlier had some status banner, where the 
@@ -365,7 +366,7 @@ Takeover ( int enemynum )
 	    Takeover_Game_Lost_Sound ();
 	    message = _("Rejected");
 	    Me . energy *= 0.5 ;
-	    AllEnemys [ enemynum ] . energy = Druidmap [ AllEnemys [ enemynum ] . type ] . maxenergy ;
+	    target->energy = Druidmap [ target->type ] . maxenergy ;
 	    FinishTakeover = TRUE;
 	}			// if LeadColor == OpponentColor 
 	else
@@ -933,8 +934,7 @@ ShowPlayground ( void )
     blit_tux ( xoffs + DruidStart [ YourColor ] . x ,
 	       yoffs + DruidStart [ YourColor ] . y + 30);
 
-    if ( AllEnemys [ DroidNum ] . Status != INFOUT )
-	PutEnemy (DroidNum, xoffs + DruidStart[!YourColor].x,
+    PutEnemy (cDroid, xoffs + DruidStart[!YourColor].x,
 		  yoffs + DruidStart[!YourColor].y , FALSE , FALSE );
     
     Set_Rect ( Target_Rect, xoffs + LEFT_OFFS_X, yoffs + LEFT_OFFS_Y,

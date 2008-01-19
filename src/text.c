@@ -180,10 +180,8 @@ CutDownStringToMaximalSize ( char* StringToCut , int LengthInPixels )
  * is has been hit.  This can be turned off via a switch in GameConfig.
  * ---------------------------------------------------------------------- */
 void 
-EnemyHitByBulletText( int Enum )
+EnemyHitByBulletText( enemy * ThisRobot )
 {
-    Enemy ThisRobot=&AllEnemys[ Enum ];
-
     if ( !GameConfig.Enemy_Hit_Text ) return;
     
     ThisRobot->TextVisibleTime=0;
@@ -215,10 +213,8 @@ EnemyHitByBulletText( int Enum )
  * it has bumped into the player.  This can be turned off via a switch in GameConfig.
  * ---------------------------------------------------------------------- */
 void 
-EnemyInfluCollisionText ( int Enum )
+EnemyInfluCollisionText ( enemy * ThisRobot)
 {
-    Enemy ThisRobot=&AllEnemys[ Enum ];
-    
     if ( !GameConfig.Enemy_Bump_Text ) return;
     
     ThisRobot->TextVisibleTime=0;
@@ -247,10 +243,8 @@ EnemyInfluCollisionText ( int Enum )
  * standing and aiming for player.  This can be turned off via a switch in GameConfig.
  * ---------------------------------------------------------------------- */
 void 
-AddStandingAndAimingText ( int Enum )
+AddStandingAndAimingText ( enemy * ThisRobot )
 {
-    Enemy ThisRobot=&AllEnemys[ Enum ];
-    
     if ( !GameConfig.Enemy_Aim_Text ) return;
     
     ThisRobot->TextVisibleTime=0;

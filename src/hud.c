@@ -582,15 +582,14 @@ exist really (i.e. has a type = (-1) ).",
  * string.
  * ---------------------------------------------------------------------- */
 void 
-create_and_blit_droid_description ( int enemy_num )
+create_and_blit_droid_description ( enemy * cur_enemy )
 {
     int text_length;
     SDL_Rect temp_fill_rect;
-    Enemy cur_enemy = & AllEnemys [ enemy_num ] ;
     BFont_Info* BFont_to_use = Blue_BFont ;
     
-    text_length = TextWidthFont ( BFont_to_use , AllEnemys [ enemy_num ] . short_description_text );
-    // strcpy( ItemDescText , AllEnemys [ index_of_droid_below_mouse_cursor ] . short_description_text );
+    text_length = TextWidthFont ( BFont_to_use , cur_enemy->short_description_text );
+    
     temp_fill_rect . h = FontHeight ( BFont_to_use ) ;
     temp_fill_rect . w = ( text_length * cur_enemy -> energy ) / Druidmap [ cur_enemy -> type ] . maxenergy ;
     if ( cur_enemy -> energy <= 0 ) temp_fill_rect . w = 0 ;
@@ -603,7 +602,7 @@ create_and_blit_droid_description ( int enemy_num )
     // temp_fill_rect . x = UserCenter_x - text_length / 2 ;
     //
     temp_fill_rect . x = translate_map_point_to_screen_pixel_x ( cur_enemy -> pos . x , cur_enemy -> pos . y ) - text_length / 2 ;;
-    temp_fill_rect . y = translate_map_point_to_screen_pixel_y ( cur_enemy -> pos . x , cur_enemy -> pos . y ) + enemy_iso_images [ AllEnemys [ enemy_num ] . type ] [ 0 ] [ 0 ] . offset_y - 2.5 * FontHeight ( BFont_to_use ) ;
+    temp_fill_rect . y = translate_map_point_to_screen_pixel_y ( cur_enemy -> pos . x , cur_enemy -> pos . y ) + enemy_iso_images [ cur_enemy->type ] [ 0 ] [ 0 ] . offset_y - 2.5 * FontHeight ( BFont_to_use ) ;
     
     //--------------------
     // If the 'enemy' is hostile, then we use red underlying color.  If
@@ -653,7 +652,7 @@ create_and_blit_droid_description ( int enemy_num )
     // temp_fill_rect . x = UserCenter_x - text_length / 2 ;
     temp_fill_rect . x = translate_map_point_to_screen_pixel_x ( cur_enemy -> pos . x , cur_enemy -> pos . y ) - text_length / 2 ; 
     PutStringFont ( Screen , BFont_to_use , temp_fill_rect . x , temp_fill_rect . y , 
-		    AllEnemys [ enemy_num ] . short_description_text );
+		    cur_enemy->short_description_text );
     
 }; // void GiveDroidDescription ( char* ItemDescText , item* CurItem )
 
@@ -1027,7 +1026,7 @@ prepare_text_window_content ( char* ItemDescText )
     point CurPos;
     point inv_square;
     int InvIndex;
-    int index_of_droid_below_mouse_cursor = GetLivingDroidBelowMouseCursor ( 0 ) ;
+    enemy * droid_below_mouse_cursor = GetLivingDroidBelowMouseCursor ( ) ;
     int index_of_floor_item_below_mouse_cursor = ( -1 );
     int index_of_chest_below_mouse_cursor = ( -1 );
     int index_of_barrel_below_mouse_cursor = ( -1 );
@@ -1288,9 +1287,9 @@ A barrel was detected, but the barrel type was not valid.",
 	// as a good way to check whether the 'droid below mouse cursor' functions are
 	// doing a good job or not.
 	//
-	if ( index_of_droid_below_mouse_cursor != (-1) )
+	if ( droid_below_mouse_cursor != NULL )
 	{
-	    create_and_blit_droid_description ( index_of_droid_below_mouse_cursor ) ;
+	    create_and_blit_droid_description ( droid_below_mouse_cursor ) ;
 	    return;
 	}
     }

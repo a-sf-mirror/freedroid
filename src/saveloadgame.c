@@ -419,10 +419,13 @@ freedroid-discussion@lists.sourceforge.net\n\
     // Now we write the enemy raw data start string out to the file and of course
     // then the real raw enemy data follow suit afterwards.
     //
+    /* XXX */
+    /*
     fwrite ( ALLENEMYS_RAW_DATA_STRING , strlen( ALLENEMYS_RAW_DATA_STRING ), 
 	     sizeof(char), SaveGameFile );  
     fwrite ( &(AllEnemys) , sizeof( enemy ) * MAX_ENEMYS_ON_SHIP , sizeof( char ) , SaveGameFile );  
-    
+    */
+
     // ShowSaveGameProgressMeter( 60 ) ;
     
     // --------------------
@@ -594,11 +597,14 @@ LoadGame( void )
     // We assume, that our target strings will be found, so we give 3000000 as the search area
     // length, since we do not know it exactly
     //
+    /*XXX*/
+    /*
     EnemyRawDataPointer = MyMemmem( LoadGameData , 30000000 , ALLENEMYS_RAW_DATA_STRING , 
 				    strlen ( ALLENEMYS_RAW_DATA_STRING ) );
     EnemyRawDataPointer += strlen ( ALLENEMYS_RAW_DATA_STRING ) ;
     memcpy( &(AllEnemys) , EnemyRawDataPointer , sizeof ( enemy ) * MAX_ENEMYS_ON_SHIP );
-    
+    */
+
     //--------------------
     // Now we decode the bullet information.
     // We assume, that our target strings will be found, so we give 10000000 as the search area
@@ -617,16 +623,19 @@ LoadGame( void )
     //
     DebugPrintf ( SAVE_LOAD_GAME_DEBUG , "\n%s(): now correcting dangerous pointers...." , __FUNCTION__ );
     Me . TextToBeDisplayed = "";
-    for ( i = 0 ; i < MAX_ENEMYS_ON_SHIP ; i++ )
+    enemy * erot = alive_bots_head;
+    while ( erot )
     {
-	AllEnemys[ i ].TextToBeDisplayed = "" ;
-	AllEnemys[ i ].TextVisibleTime = 0;
+	erot->TextToBeDisplayed = "" ;
+	erot->TextVisibleTime = 0;
+	erot = GETNEXT(erot);
     }
     for ( i = 0 ; i < MAXBULLETS ; i++ )
     {
 	//--------------------
 	// This might mean a slight memory loss, but I guess we can live with that...
 	//
+	/* XXX no we can't*/
 	AllBullets [ i ] . Surfaces_were_generated = FALSE;
 	if ( AllBullets[ i ].angle_change_rate != 0 ) DeleteBullet( i , FALSE );
     }

@@ -1073,29 +1073,6 @@ MyRandom (int UpperBound)
 
 
 /* ----------------------------------------------------------------------
- * This function is kills all enemy robots on the whole ship.
- * It querys the user once for safety.
- * ---------------------------------------------------------------------- */
-void
-Armageddon (void)
-{
-  char key =' ';
-  int i;
-
-  printf ("\nKill all droids on ship (y/n) ? \n");
-  while ((key != 'y') && (key != 'n'))
-    key = getchar_raw ();
-  if (key == 'n')
-    return;
-  else
-    for (i = 0; i < MAX_ENEMYS_ON_SHIP; i++)
-      {
-	AllEnemys[i].energy = -10;
-	// AllEnemys[i].Status = OUT;
-      }
-}; // void Armageddon(void)
-
-/* ----------------------------------------------------------------------
  *
  *
  * ---------------------------------------------------------------------- */
@@ -1278,7 +1255,7 @@ Teleport ( int LNum , float X , float Y , int with_sound_and_fading )
     int array_num = 0;
     Level tmp;
     int i;
-    char game_message_text [ 5000 ] ;
+    char game_message_text [ 500 ] ;
 
     //--------------------
     // Maybe the 'teleport' really comes from a teleportation device or

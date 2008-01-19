@@ -112,7 +112,6 @@ remove_blood_obstacles_for_respawning ( int level_num )
 void
 respawn_level ( int level_num )
 {
-    int i;
 
     //--------------------
     // First we remove all the blood obstacles...
@@ -122,40 +121,49 @@ respawn_level ( int level_num )
     //--------------------
     // Now we can start to fill the enemies on this level with new life...
     //
-    for ( i = 0 ; i < MAX_ENEMYS_ON_SHIP ; i ++ )
-    {
-	if ( AllEnemys [ i ] . pos . z != level_num ) continue;
-	if ( AllEnemys [ i ] . type == (-1) ) continue;
-	if ( Druidmap [ AllEnemys [ i ] . type ] . is_human ) continue;
-	//--------------------
-	// So now we've found some bot to respawn.  Let's do it:
-	// new energy
-	// new 'phase' for not dead
-	// new status
-	// new tasks and commands..
-	//
-	AllEnemys [ i ] . energy = Druidmap [ AllEnemys [ i ] . type ] . maxenergy ;
-	AllEnemys [ i ] . Status = MOBILE ;
-	AllEnemys [ i ] . phase = 0 ;
-	AllEnemys [ i ] . animation_phase = 0 ;
-	AllEnemys [ i ] . animation_type = WALK_ANIMATION ; 
-        if( AllEnemys [ i ] . has_been_taken_over == TRUE)
+    enemy * erot = dead_bots_head;
+    enemy * next = NULL;
+    for ( ; erot; erot = next )
+	{
+	next = GETNEXT(erot);
+
+	if ( erot -> pos  . z != level_num )
+	    continue;
+	if ( Druidmap[ erot->type ] . is_human )
+	    continue;
+
+	move_enemy(&alive_bots_head, erot, &dead_bots_head);
+	}
+    
+    erot = alive_bots_head;
+    for ( ; erot; erot = GETNEXT(erot))
+	{
+	if ( erot -> pos  . z != level_num )
+	    continue;
+		
+	erot->energy = Druidmap [ erot->type ] . maxenergy ;
+	erot-> Status = MOBILE ;
+	erot-> phase = 0 ;
+	erot->animation_phase = 0 ;
+	erot->animation_type = WALK_ANIMATION ; 
+        if( erot->has_been_taken_over == TRUE)
 		{
-                AllEnemys [ i ] . is_friendly = FALSE ;
-                AllEnemys [ i ] . has_been_taken_over = FALSE ;
+                erot->is_friendly = FALSE ;
+                erot->has_been_taken_over = FALSE ;
 		}
 
-	if ( ! AllEnemys [ i ] . is_friendly )
+	if ( ! erot->is_friendly )
 	{
-	    if ( AllEnemys [ i ] . stick_to_waypoint_system_by_default )
-		AllEnemys [ i ] . combat_state = MOVE_ALONG_RANDOM_WAYPOINTS ;
+	    if ( erot->stick_to_waypoint_system_by_default )
+		erot->combat_state = MOVE_ALONG_RANDOM_WAYPOINTS ;
 	    else
-		AllEnemys [ i ] . combat_state = WAYPOINTLESS_WANDERING ;
+		erot-> combat_state = WAYPOINTLESS_WANDERING ;
 
-	    AllEnemys [ i ] . has_greeted_influencer = FALSE ;
-	    AllEnemys [ i ] . state_timeout = 0 ;
+	    erot->has_greeted_influencer = FALSE ;
+	    erot->state_timeout = 0 ;
 	}
-    }
+	
+        }
     
 }; // void respawn_level ( int level_num )
 
@@ -2695,45 +2703,31 @@ TranslateToHumanReadable ( Uint16* HumanReadable , map_tile* MapInfo, int LineLe
 void
 CountNumberOfDroidsOnShip ( void )
 {
-    int i;
-    int type;
-    
     Number_Of_Droids_On_Ship=0;
-    for ( i = 0 ; i < MAX_ENEMYS_ON_SHIP ; i++ )
+
+    enemy * erot = alive_bots_head;
+    while ( erot )
     {
-	type = AllEnemys [ i ] . type ;
-	if ( type == ( -1 ) ) continue;  // Do nothing to unused entries
 	Number_Of_Droids_On_Ship++;
+	erot = GETNEXT(erot);
     }
+
+    erot = dead_bots_head;
+    while ( erot )
+	{
+	Number_Of_Droids_On_Ship++;
+	erot = GETNEXT(erot);
+	}
+
 }; // void CountNumberOfDroidsOnShip ( void )
 
-/* ----------------------------------------------------------------------
- * This function is used to calculate the number of the droids on the 
- * ship, which is a global variable.
- * ---------------------------------------------------------------------- */
 void
 ReviveAllDroidsOnShip ( void )
 {
   int i;
-  int type;
 
-  for ( i = 0 ; i < MAX_ENEMYS_ON_SHIP ; i++ )
-    {
-      type = AllEnemys [ i ] . type;
-      if ( type == (-1) ) continue;  // Do nothing to unused entries
-      AllEnemys [ i ] . energy = Druidmap [ type ] . maxenergy;
-      AllEnemys [ i ] . Status = MOBILE ; // !OUT;
-      AllEnemys [ i ] . has_greeted_influencer = FALSE ;
-
-      if ( AllEnemys [ i ] . stick_to_waypoint_system_by_default )
-	  AllEnemys [ i ] . combat_state = MOVE_ALONG_RANDOM_WAYPOINTS ;
-      else
-	  AllEnemys [ i ] . combat_state = WAYPOINTLESS_WANDERING ;
-
-      AllEnemys [ i ] . state_timeout = 0 ;
-      AllEnemys [ i ] . animation_phase = 0 ;
-      AllEnemys [ i ] . ammo_left = ItemMap [ Druidmap [ AllEnemys[i] . type ] . weapon_item . type ] . item_gun_ammo_clip_size  ;
-    }
+  for ( i = 0 ; i < curShip.num_levels ; i ++ )
+	respawn_level(i);
 
 }; // void ReviveAllDroidsOnShip ( void )
 
@@ -2819,7 +2813,7 @@ GetCrew (char *filename)
  *
  * ---------------------------------------------------------------------- */
 void
-GetThisLevelsSpecialForces ( char* SearchPointer , int OurLevelNumber , int FreeAllEnemysPosition , char* EndOfThisLevelData )
+GetThisLevelsSpecialForces ( char* SearchPointer , int OurLevelNumber , char* EndOfThisLevelData )
 {
   char TypeIndicationString[1000];
   int ListIndex;
@@ -2829,8 +2823,11 @@ GetThisLevelsSpecialForces ( char* SearchPointer , int OurLevelNumber , int Free
   char* DialogSection;
   char* ShortDescription;
 
+  enemy newen;
+
   while ( ( SearchPointer = strstr ( SearchPointer , SPECIAL_FORCE_INDICATION_STRING)) != NULL)
     {
+      InitEnemy(&newen);
       SearchPointer += strlen ( SPECIAL_FORCE_INDICATION_STRING );
       strncpy( TypeIndicationString , SearchPointer , 3 ); // Every type is 3 characters long
       TypeIndicationString[3]=0;
@@ -2860,37 +2857,26 @@ file you use.",
 		       TypeIndicationString , ListIndex );
 	}
 
-      for ( FreeAllEnemysPosition=0 ; FreeAllEnemysPosition < MAX_ENEMYS_ON_SHIP ; FreeAllEnemysPosition++ )
-	{
-	  if ( AllEnemys[ FreeAllEnemysPosition ].Status == INFOUT ) break;
-	}
-      if ( FreeAllEnemysPosition == MAX_ENEMYS_ON_SHIP )
-	{
-	  ErrorMessage ( __FUNCTION__  , 
-				     "No more free position to fill special forces into in GetCrew." ,
-				     PLEASE_INFORM, IS_FATAL );
-	}
-
-      ReadValueFromString ( SearchPointer ,"Fixed=","%d", &AllEnemys[ FreeAllEnemysPosition ].CompletelyFixed , EndOfThisLevelData );
-      ReadValueFromString ( SearchPointer ,"Marker=","%d", &AllEnemys[ FreeAllEnemysPosition ] . marker , EndOfThisLevelData );
-      ReadValueFromStringWithDefault ( SearchPointer ,"MaxDistanceToHome=","%d", "-1", &AllEnemys[ FreeAllEnemysPosition ].max_distance_to_home , EndOfThisLevelData );
-      ReadValueFromString ( SearchPointer ,"Friendly=","%d", &AllEnemys[ FreeAllEnemysPosition ].is_friendly , EndOfThisLevelData );
+      ReadValueFromString ( SearchPointer ,"Fixed=","%d", &newen.CompletelyFixed , EndOfThisLevelData );
+      ReadValueFromString ( SearchPointer ,"Marker=","%d", &newen . marker , EndOfThisLevelData );
+      ReadValueFromStringWithDefault ( SearchPointer ,"MaxDistanceToHome=","%d", "0", &newen.max_distance_to_home , EndOfThisLevelData );
+      ReadValueFromString ( SearchPointer ,"Friendly=","%d", &newen.is_friendly , EndOfThisLevelData );
       StartMapLabel = 
 	ReadAndMallocStringFromData ( SearchPointer , "StartUpAtLabel=\"" , "\"" ) ;
       ResolveMapLabelOnShip ( StartMapLabel , &StartupLocation );
-      AllEnemys[ FreeAllEnemysPosition ].pos.x = StartupLocation.x;
-      AllEnemys[ FreeAllEnemysPosition ].pos.y = StartupLocation.y;
+      newen.pos.x = StartupLocation.x;
+      newen.pos.y = StartupLocation.y;
 
       free ( StartMapLabel );
 
       YesNoString = ReadAndMallocStringFromData ( SearchPointer , "RushTux=\"" , "\"" ) ;
       if ( strcmp( YesNoString , "yes" ) == 0 )
 	{
-	  AllEnemys[ FreeAllEnemysPosition ] . will_rush_tux = TRUE;
+	  newen . will_rush_tux = TRUE;
 	}
       else if ( strcmp( YesNoString , "no" ) == 0 )
 	{
-	  AllEnemys[ FreeAllEnemysPosition ] . will_rush_tux = FALSE;
+	  newen . will_rush_tux = FALSE;
 	}
       else
 	{
@@ -2914,7 +2900,7 @@ This indicated a corrupted ReturnOfTux.droids file with an error when specifying
 the dialog section name for one special force droid/character.",
 				     PLEASE_INFORM, IS_FATAL );
 	}
-      strcpy ( AllEnemys[ FreeAllEnemysPosition ].dialog_section_name , DialogSection );
+      strcpy ( newen.dialog_section_name , DialogSection );
       free ( DialogSection );
 
       ShortDescription = 
@@ -2927,17 +2913,17 @@ This indicated a corrupted ReturnOfTux.droids file with an error when specifying
 the dialog section name for one special force droid/character.",
 				     PLEASE_INFORM, IS_FATAL );
 	}
-      strcpy ( AllEnemys[ FreeAllEnemysPosition ].short_description_text , ShortDescription );
+      strcpy ( newen.short_description_text , ShortDescription );
       free ( ShortDescription );
 
       YesNoString = ReadAndMallocStringFromData ( SearchPointer , "attack_run_only_when_direct_line=\"" , "\"" ) ;
       if ( strcmp( YesNoString , "yes" ) == 0 )
 	{
-	  AllEnemys[ FreeAllEnemysPosition ] . attack_run_only_when_direct_line = TRUE;
+	  newen . attack_run_only_when_direct_line = TRUE;
 	}
       else if ( strcmp( YesNoString , "no" ) == 0 )
 	{
-	  AllEnemys[ FreeAllEnemysPosition ] . attack_run_only_when_direct_line = FALSE;
+	  newen . attack_run_only_when_direct_line = FALSE;
 	}
       else
 	{
@@ -2953,15 +2939,15 @@ the item specification section.",
       if ( strstr( SearchPointer, "on_death_drop_item_name" ) )
 	  {
 	  YesNoString = ReadAndMallocStringFromData ( SearchPointer , "on_death_drop_item_name=\"" , "\"" ) ;
-	  AllEnemys[ FreeAllEnemysPosition ].on_death_drop_item_code = GetItemIndexByName(YesNoString);
+	  newen.on_death_drop_item_code = GetItemIndexByName(YesNoString);
 	  free ( YesNoString ) ;
 	  }
-      else AllEnemys[ FreeAllEnemysPosition ].on_death_drop_item_code = -1;
+      else newen.on_death_drop_item_code = -1;
 
-      AllEnemys [ FreeAllEnemysPosition ] . type = ListIndex;
-      AllEnemys [ FreeAllEnemysPosition ] . pos.z = OurLevelNumber;
-      AllEnemys [ FreeAllEnemysPosition ] . Status = MOBILE ; // !OUT;
-      AllEnemys [ FreeAllEnemysPosition ] . SpecialForce = 1;
+      newen. type = ListIndex;
+      newen.pos.z = OurLevelNumber;
+      newen. Status = MOBILE ; // !OUT;
+      newen. SpecialForce = 1;
 
       //--------------------
       // By default, friendly bots will stick to the waypoint system while
@@ -2969,10 +2955,14 @@ the item specification section.",
       // more intelligent later, like e.g. selecting the property from the
       // ReturnOfTux.droids file.
       //
-      if ( AllEnemys [ FreeAllEnemysPosition ] . is_friendly ) 
-	  AllEnemys [ FreeAllEnemysPosition ] . stick_to_waypoint_system_by_default = TRUE ;
+      if ( newen. is_friendly ) 
+	  newen . stick_to_waypoint_system_by_default = TRUE ;
       else
-	  AllEnemys [ FreeAllEnemysPosition ] . stick_to_waypoint_system_by_default = FALSE ;
+	  newen . stick_to_waypoint_system_by_default = FALSE ;
+
+      newen . has_been_taken_over = FALSE;
+
+      alive_bots_head = add_enemy_head(alive_bots_head, &newen);
 
     } // while Special force droid found...
 
@@ -2999,8 +2989,8 @@ GetThisLevelsDroids( char* SectionPointer )
     int ListIndex;
     char TypeIndicationString[1000];
     int ListOfTypesAllowed[1000];
-    int FreeAllEnemysPosition = 0 ;
-    
+    enemy newen;
+
 #define DROIDS_LEVEL_INDICATION_STRING "Level="
 #define DROIDS_LEVEL_END_INDICATION_STRING "** End of this levels droid data **"
 #define DROIDS_MAXRAND_INDICATION_STRING "Maximum number of Random Droids="
@@ -3028,6 +3018,7 @@ GetThisLevelsDroids( char* SectionPointer )
     SearchPointer = SectionPointer;
     while ( ( SearchPointer = strstr ( SearchPointer , ALLOWED_TYPE_INDICATION_STRING)) != NULL)
     {
+	InitEnemy(&newen);
 	SearchPointer += strlen ( ALLOWED_TYPE_INDICATION_STRING );
 	strncpy( TypeIndicationString , SearchPointer , 3 ); // Every type is 3 characters long
 	TypeIndicationString[3]=0;
@@ -3073,60 +3064,51 @@ game data file with all droid type specifications.",
     
     while ( RealNumberOfRandomDroids-- )
     {
-	for ( FreeAllEnemysPosition=0 ; FreeAllEnemysPosition < MAX_ENEMYS_ON_SHIP ; FreeAllEnemysPosition++ )
-	{
-	    if ( AllEnemys [ FreeAllEnemysPosition ] . Status == INFOUT ) break;
-	}
-	if ( FreeAllEnemysPosition == MAX_ENEMYS_ON_SHIP )
-	{
-	    ErrorMessage ( __FUNCTION__  , 
-				       "No more free position to fill random droids into in GetCrew." ,
-				       PLEASE_INFORM, IS_FATAL );
-	}
-	
-	AllEnemys [ FreeAllEnemysPosition ] . type = ListOfTypesAllowed[MyRandom ( DifferentRandomTypes - 1 ) ];
-	AllEnemys [ FreeAllEnemysPosition ] . pos . z = OurLevelNumber;
-	AllEnemys [ FreeAllEnemysPosition ] . Status = MOBILE ; // !OUT;
-	AllEnemys [ FreeAllEnemysPosition ] . on_death_drop_item_code = (-1) ;
-	AllEnemys [ FreeAllEnemysPosition ] . ammo_left = ItemMap [ Druidmap [ AllEnemys [ FreeAllEnemysPosition ] . type ] . weapon_item . type ] . item_gun_ammo_clip_size ;
-	if ( AllEnemys [ FreeAllEnemysPosition ] . is_friendly ) 
-	    AllEnemys [ FreeAllEnemysPosition ] . stick_to_waypoint_system_by_default = TRUE ;
+	newen . type = ListOfTypesAllowed[MyRandom ( DifferentRandomTypes - 1 ) ];
+	newen . pos . z = OurLevelNumber;
+	newen . Status = MOBILE ; // !OUT;
+	newen . on_death_drop_item_code = (-1) ;
+	newen . ammo_left = ItemMap [ Druidmap [ newen . type ] . weapon_item . type ] . item_gun_ammo_clip_size ;
+	if ( newen . is_friendly ) 
+	    newen . stick_to_waypoint_system_by_default = TRUE ;
 	else
-	    AllEnemys [ FreeAllEnemysPosition ] . stick_to_waypoint_system_by_default = FALSE ;
+	    newen . stick_to_waypoint_system_by_default = FALSE ;
 	
-	strcpy ( AllEnemys[ FreeAllEnemysPosition ] . dialog_section_name , "StandardBotAfterTakeover" );
+	strcpy ( newen . dialog_section_name , "StandardBotAfterTakeover" );
 	
-	switch ( atoi ( Druidmap [ AllEnemys[ FreeAllEnemysPosition ] . type ] . druidname )) 
+	switch ( atoi ( Druidmap [ newen . type ] . druidname )) 
 		{
-                case 123: strcpy ( AllEnemys[ FreeAllEnemysPosition ] . short_description_text , _("Acolyte") ); break;
-                case 139: strcpy ( AllEnemys[ FreeAllEnemysPosition ] . short_description_text , _("Templar") ); break;
-                case 247: strcpy ( AllEnemys[ FreeAllEnemysPosition ] . short_description_text , _("Banshee") ); break;
-                case 249: strcpy ( AllEnemys[ FreeAllEnemysPosition ] . short_description_text , _("Chicago") ); break;
-                case 296: strcpy ( AllEnemys[ FreeAllEnemysPosition ] . short_description_text , _("Sawmill") ); break;
-                case 302: strcpy ( AllEnemys[ FreeAllEnemysPosition ] . short_description_text , _("Nemesis") ); break;
-                case 329: strcpy ( AllEnemys[ FreeAllEnemysPosition ] . short_description_text , _("Sparkie") ); break;
-                case 420: strcpy ( AllEnemys[ FreeAllEnemysPosition ] . short_description_text , _("NaN") ); break;
-                case 476: strcpy ( AllEnemys[ FreeAllEnemysPosition ] . short_description_text , _("Coward") ); break;
-                case 493: strcpy ( AllEnemys[ FreeAllEnemysPosition ] . short_description_text , _("Spinster") ); break;
-                case 516: strcpy ( AllEnemys[ FreeAllEnemysPosition ] . short_description_text , _("Ghoul") ); break;
-                case 571: strcpy ( AllEnemys[ FreeAllEnemysPosition ] . short_description_text , _("Apollo") ); break;
-                case 598: strcpy ( AllEnemys[ FreeAllEnemysPosition ] . short_description_text , _("NaN") ); break;
-                case 615: strcpy ( AllEnemys[ FreeAllEnemysPosition ] . short_description_text , _("NaN") ); break;
-                case 629: strcpy ( AllEnemys[ FreeAllEnemysPosition ] . short_description_text , _("NaN") ); break;
-                case 711: strcpy ( AllEnemys[ FreeAllEnemysPosition ] . short_description_text , _("If") ); break;
-                case 742: strcpy ( AllEnemys[ FreeAllEnemysPosition ] . short_description_text , _("NaN") ); break;
-                case 751: strcpy ( AllEnemys[ FreeAllEnemysPosition ] . short_description_text , _("Soviet") ); break;
-                case 821: strcpy ( AllEnemys[ FreeAllEnemysPosition ] . short_description_text , _("NaN") ); break;
-                case 834: strcpy ( AllEnemys[ FreeAllEnemysPosition ] . short_description_text , _("NaN") ); break;
-                case 883: strcpy ( AllEnemys[ FreeAllEnemysPosition ] . short_description_text , _("NaN") ); break;
-                case 999: strcpy ( AllEnemys[ FreeAllEnemysPosition ] . short_description_text , _("NaN") ); break;
-                default: strcpy ( AllEnemys[ FreeAllEnemysPosition ] . short_description_text , _("No Description For This One") );
-		};	
+                case 123: strcpy ( newen . short_description_text , _("Acolyte") ); break;
+                case 139: strcpy ( newen . short_description_text , _("Templar") ); break;
+                case 247: strcpy ( newen . short_description_text , _("Banshee") ); break;
+                case 249: strcpy ( newen . short_description_text , _("Chicago") ); break;
+                case 296: strcpy ( newen . short_description_text , _("Sawmill") ); break;
+                case 302: strcpy ( newen . short_description_text , _("Nemesis") ); break;
+                case 329: strcpy ( newen . short_description_text , _("Sparkie") ); break;
+                case 420: strcpy ( newen . short_description_text , _("NaN") ); break;
+                case 476: strcpy ( newen . short_description_text , _("Coward") ); break;
+                case 493: strcpy ( newen . short_description_text , _("Spinster") ); break;
+                case 516: strcpy ( newen . short_description_text , _("Ghoul") ); break;
+                case 571: strcpy ( newen . short_description_text , _("Apollo") ); break;
+                case 598: strcpy ( newen . short_description_text , _("NaN") ); break;
+                case 615: strcpy ( newen . short_description_text , _("NaN") ); break;
+                case 629: strcpy ( newen . short_description_text , _("NaN") ); break;
+                case 711: strcpy ( newen . short_description_text , _("If") ); break;
+                case 742: strcpy ( newen . short_description_text , _("NaN") ); break;
+                case 751: strcpy ( newen . short_description_text , _("Soviet") ); break;
+                case 821: strcpy ( newen . short_description_text , _("NaN") ); break;
+                case 834: strcpy ( newen . short_description_text , _("NaN") ); break;
+                case 883: strcpy ( newen . short_description_text , _("NaN") ); break;
+                case 999: strcpy ( newen . short_description_text , _("NaN") ); break;
+                default: strcpy ( newen . short_description_text , _("No Description For This One") );
+		};
+
+	alive_bots_head = add_enemy_head(alive_bots_head, &newen);	
     }  // while (enemy-limit of this level not reached) 
     
     SearchPointer = SectionPointer;
     
-    GetThisLevelsSpecialForces ( SearchPointer , OurLevelNumber , FreeAllEnemysPosition , EndOfThisLevelData );
+    GetThisLevelsSpecialForces ( SearchPointer , OurLevelNumber , EndOfThisLevelData );
     
 }; // void GetThisLevelsDroids( char* SectionPointer )
 
@@ -3142,7 +3124,7 @@ game data file with all droid type specifications.",
 void
 MoveLevelDoors ( )
 {
-  int i, j;
+  int i;
   float xdist, ydist;
   float dist2;
   int *Pos;
@@ -3165,12 +3147,6 @@ MoveLevelDoors ( )
   if ( Me . status == INFOUT ) return;
 
   // DebugPrintf ( 0 , "\nMoving Doors for Me %d on level %d . != %d " , DoorLevel -> levelnum , Me . pos . z );
-
-  //--------------------
-  // We make sure the 'first' and 'last' indices of bots on the
-  // level in question are at least halfway correct.
-  //
-  occasionally_update_first_and_last_bot_indices ( );
 
   //--------------------
   // Now we go through the whole prepared list of doors for this
@@ -3276,25 +3252,26 @@ Error:  Doors pointing not to door obstacles found.",
 	  // the door would still get opened instead of closed.
 	  //
 	  some_bot_was_close_to_this_door = FALSE ;
-	  for ( j  = first_index_of_bot_on_level [ DoorLevel->levelnum ] ; 
-		j <=  last_index_of_bot_on_level [ DoorLevel->levelnum ] ; j ++ )	    
+
+	    enemy * erot = alive_bots_head;
+	    for ( ; erot; erot = GETNEXT(erot))
 	    {
 	      //--------------------
 	      // ignore druids that are dead or on other levels 
 	      //
-	      if ( ( AllEnemys[j].Status == INFOUT ) ||
-		   ( AllEnemys[j].pos.z  != DoorLevel->levelnum ) )
-		continue;
+	      if ( ( erot->Status == INFOUT ) ||
+		   ( erot->pos.z  != DoorLevel->levelnum ) )
+		  continue;
 
 	      //--------------------
 	      // We will only consider droids, that are at least within a range of
 	      // say 2 squares in each direction.  Anything beyond that distance
 	      // can be safely ignored for this door.
 	      //
-	      xdist = abs ( AllEnemys [ j ] . pos . x - DoorLevel -> obstacle_list [ door_obstacle_index ] . pos . x ) ;
+	      xdist = abs ( erot->pos . x - DoorLevel -> obstacle_list [ door_obstacle_index ] . pos . x ) ;
 	      if ( xdist < 2.0 )
 		{
-		  ydist = abs ( AllEnemys [ j ] . pos . y - DoorLevel -> obstacle_list [ door_obstacle_index ] . pos . y ) ;
+		  ydist = abs ( erot->pos . y - DoorLevel -> obstacle_list [ door_obstacle_index ] . pos . y ) ;
 		  if ( ydist < 2.0 )
 		    {
 		      
@@ -3320,7 +3297,8 @@ Error:  Doors pointing not to door obstacles found.",
 
 		    } // ydist < 2.0
 		} // xdist < 2.0
-	    } // for bots...
+
+	    } // bots
 
 	  //--------------------
 	  // So if the whole loop when through, that means that no bot was close

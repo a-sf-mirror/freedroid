@@ -999,10 +999,9 @@ Cheatmenu (void)
 	ClearGraphMem ();
 	printf_SDL (Screen, x0, y0, "Current position: Level=%d, X=%d, Y=%d\n",
 		    CurLevel->levelnum, (int)Me.pos.x, (int)Me.pos.y);
-	printf_SDL (Screen, -1, -1, " a. Armageddon (kill everybody)\n");
 	printf_SDL (Screen, -1, -1, " l. robot list of current level\n");
 	printf_SDL (Screen, -1, -1, " L. alive robot list of current level\n");
-	printf_SDL (Screen, -1, -1, " g. complete robot list\n");
+	printf_SDL (Screen, -1, -1, " k. dead robot list of current level\n");
 	printf_SDL (Screen, -1, -1, " d. destroy robots on current level\n");
 	printf_SDL (Screen, -1, -1, " t. Teleportation\n");
 	printf_SDL (Screen, -1, -1, " h. Auto-aquire all skills\n" );
@@ -1026,88 +1025,86 @@ Cheatmenu (void)
 		xray_vision_for_tux = !xray_vision_for_tux;
 		break;
 
-	    case 'a': // armageddon: kills all robots on ship...
-		can_continue = 1;
-		Armageddon ();
-		break;
-
+	    case 'k':
+		skip_dead = 2;
 	    case 'L':
-		skip_dead = 1;		
+		if ( skip_dead == 0 )
+			skip_dead = 1;		
 	    case 'l': // robot list of this deck 
 		l = 0;  // l is counter for lines of display of enemy output
-		for ( i = 0 ; i < MAX_ENEMYS_ON_SHIP ; i ++ )
-		{
-		    if ( AllEnemys [ i ] . pos . z == CurLevel -> levelnum ) 
+		for ( i = ((skip_dead == 1)? 1 : 0); i < ((skip_dead == 2) ? 1 : 2) ; i ++ )
 		    {
-		        if ( skip_dead && AllEnemys[i].Status == INFOUT )
-			    continue;
+		    enemy * erot = (i) ? alive_bots_head : dead_bots_head;
+		    for ( ; erot; erot = GETNEXT(erot) )
+			{
+			if ( erot->pos . z == CurLevel -> levelnum ) 
+			    {
 
-			if (l && !(l%20)) 
-			{
-			    printf_SDL (Screen, -1, -1, " --- MORE --- \n");
-			    our_SDL_flip_wrapper ( Screen );
-			    if( getchar_raw () == 'q')
-				break;
-			}
-			if (!(l % 20) )  
-			{
-			    ClearGraphMem ();
-			    printf_SDL (Screen, x0, y0,
-					"NR.   ID  X    Y   ENERGY   speedX Status Friendly An-type An-Phase \n");
-			    printf_SDL (Screen, -1, -1,
+			    if (l && !(l%((GameConfig.screen_height == 768) ? 25 : 16))) 
+				{
+				printf_SDL (Screen, -1, -1, " --- MORE --- \n");
+				our_SDL_flip_wrapper ( Screen );
+				if( getchar_raw () == 'q')
+				    break;
+				}
+			    if (!(l % ((GameConfig.screen_height == 768) ? 25 : 16)) )  
+				{
+				ClearGraphMem ();
+				printf_SDL (Screen, 15, y0,
+					"ID    X     Y    ENERGY   speedX  Status  Friendly An-type An-Phase \n");
+				printf_SDL (Screen, -1, -1,
 					"---------------------------------------------\n");
-			}
-			
-			l ++;
-			if ( ( AllEnemys [ i ] . type >= 0 ) &&
-			     ( AllEnemys [ i ] . type <= Number_Of_Droid_Types ) )
-			{
-			    printf_SDL (Screen, 15, -1,
-					"%4d. %s   %3.1f   %3.1f   %4d    %g ", 
-					i,
-					Druidmap[AllEnemys[i].type].druidname,
-					AllEnemys[i].pos.x,
-					AllEnemys[i].pos.y,
-					(int)AllEnemys[i].energy,
-					AllEnemys[i].speed.x );
-			}
-			else
-			{
-			    printf_SDL ( Screen , 15 , -1 , "SEVERE ERROR: Type=%d. " , 
-					 AllEnemys [ i ] . type ) ;
-			}
-			if ( AllEnemys[i].Status == MOBILE ) printf_SDL (Screen, -1, -1, "MOB" );
-			else if ( AllEnemys[i].Status == INFOUT ) printf_SDL (Screen, -1, -1, "OUT" );
-			else printf_SDL (Screen, -1, -1, "ERROR-UNKNOWN" );
-			if ( AllEnemys[i].is_friendly ) printf_SDL (Screen, -1, -1, " YES" );
-			else printf_SDL (Screen, -1, -1, "  NO" );
-			switch ( AllEnemys [ i ] . animation_type ) 
-			{
-			    case WALK_ANIMATION:
-				printf_SDL (Screen, -1, -1, " Walk" );
-				break;
-			    case ATTACK_ANIMATION:
-				printf_SDL (Screen, -1, -1, " Atta" );
-				break;
-			    case GETHIT_ANIMATION:
-				printf_SDL (Screen, -1, -1, " GHit" );
-				break;
-			    case DEATH_ANIMATION:
-				printf_SDL (Screen, -1, -1, " Deth" );
-				break;
-			    case STAND_ANIMATION:
-				printf_SDL (Screen, -1, -1, " Stnd" );
-				break;
-			    default:
-				printf_SDL (Screen, -1, -1, " ERROR!" );
-				break;
-			}
-			printf_SDL (Screen, -1, -1, " %4.1f" , AllEnemys [ i ] . animation_phase );
-			printf_SDL (Screen, -1, -1, "\n" );
-			
-		    } // if (enemy on current level)  
-		} // for ( i < MAX_ENEMYS_ON_SHIP ) 
-		
+				}
+
+			    l ++;
+			    if ( ( erot-> type >= 0 ) &&
+				    ( erot-> type <= Number_Of_Droid_Types ) )
+				{
+				printf_SDL (Screen, 15, -1,
+					"%s  %3.1f  %3.1f  %4d  %g ",
+					Druidmap[erot->type].druidname,
+					erot->pos.x,
+					erot->pos.y,
+					(int)erot->energy,
+					erot->speed.x );
+				}
+			    else
+				{
+				printf_SDL ( Screen , 15 , -1 , "SEVERE ERROR: Type=%d. " , 
+					erot->type ) ;
+				}
+			    if ( erot->Status == MOBILE ) printf_SDL (Screen, -1, -1, "MOB" );
+			    else if ( erot->Status == INFOUT ) printf_SDL (Screen, -1, -1, "OUT" );
+			    else printf_SDL (Screen, -1, -1, "ERROR-UNKNOWN" );
+			    if ( erot->is_friendly ) printf_SDL (Screen, -1, -1, " YES" );
+			    else printf_SDL (Screen, -1, -1, "  NO" );
+			    switch ( erot-> animation_type ) 
+				{
+				case WALK_ANIMATION:
+				    printf_SDL (Screen, -1, -1, " Walk" );
+				    break;
+				case ATTACK_ANIMATION:
+				    printf_SDL (Screen, -1, -1, " Atta" );
+				    break;
+				case GETHIT_ANIMATION:
+				    printf_SDL (Screen, -1, -1, " GHit" );
+				    break;
+				case DEATH_ANIMATION:
+				    printf_SDL (Screen, -1, -1, " Deth" );
+				    break;
+				case STAND_ANIMATION:
+				    printf_SDL (Screen, -1, -1, " Stnd" );
+				    break;
+				default:
+				    printf_SDL (Screen, -1, -1, " ERROR!" );
+				    break;
+				}
+			    printf_SDL (Screen, -1, -1, " %4.1f" , erot->animation_phase );
+			    printf_SDL (Screen, -1, -1, "\n" );
+
+			    } // if (enemy on current level)  
+			}}
+
 		printf_SDL (Screen, 15, -1," --- END --- \n");
 		CountNumberOfDroidsOnShip ( );
 		printf_SDL (Screen, 15, -1," BTW:  Number_Of_Droids_On_Ship: %d \n" , Number_Of_Droids_On_Ship );
@@ -1117,48 +1114,22 @@ Cheatmenu (void)
 		break;
 		
 	    case 'g': // complete robot list of this ship 
-		for (i = 0; i < MAX_ENEMYS_ON_SHIP ; i++)
-		{
-		    if ( AllEnemys[i].type == (-1) ) continue;
-		    
-		    if (i && !(i%13)) 
-		    {
-			printf_SDL (Screen, -1, -1, " --- MORE --- ('q' to quit)\n");
-			our_SDL_flip_wrapper ( Screen );
-			if (getchar_raw () == 'q')
-			    break;
-		    }
-		    if ( !(i % 13) )
-		    {
-			ClearGraphMem ();
-			printf_SDL (Screen, x0, y0, "Nr.  Lev. ID  Energy  Speed.x\n");
-			printf_SDL (Screen, -1, -1, "------------------------------\n");
-		    }
-		    
-		    printf_SDL (Screen, -1, -1, "%d  %d  %s  %d  %g\n",
-				i, AllEnemys[i].pos.z,
-				Druidmap[AllEnemys[i].type].druidname,
-				(int)AllEnemys[i].energy,
-				AllEnemys[i].speed.x);
-		} // for ( i < MAX_ENEMYS_ON_SHIP ) 
-		
-		printf_SDL (Screen, -1, -1, " --- END ---\n");
-		our_SDL_flip_wrapper ( Screen );
-		getchar_raw ();
-		break;
-		
 		
 	    case 'd': // destroy all robots on this level, very useful
-		// for ( i = 0 ; i < Number_Of_Droids_On_Ship ; i ++ )
-		for ( i = 0 ; i < MAX_ENEMYS_ON_SHIP ; i ++ )
-		{
-		    if (AllEnemys[i].pos.z == CurLevel->levelnum)
-			AllEnemys[i].energy = -100;
-		}
-		printf_SDL (Screen, -1, -1, "All robots on this deck killed!\n");
-		our_SDL_flip_wrapper ( Screen );
-		getchar_raw ();
+		    {
+		    enemy * erot = alive_bots_head;
+		    for ( ; erot; erot = GETNEXT(erot) )
+			{
+			if ( erot->pos.z == CurLevel->levelnum)
+			    hit_enemy(erot, erot->energy + 1, 0, -1);
+			}
+
+		    printf_SDL (Screen, -1, -1, "All robots on this deck killed!\n");
+		    our_SDL_flip_wrapper ( Screen );
+		    getchar_raw ();
+		    }
 		break;
+
 		
 		
 	    case 't': // Teleportation 
@@ -1403,7 +1374,6 @@ enum
 	  can_continue = TRUE ;
 	  break;
 	case NEW_GAME_POSITION:
-	  Me . energy = 100 ;
 	  GameOver = TRUE ;
 	  can_continue = TRUE;
 	  break;

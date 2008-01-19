@@ -431,7 +431,6 @@ ExecuteChatExtra ( char* ExtraCommandString , Enemy ChatDroid )
     item NewItem;
     char tmp_filename [ 5000 ] ;
     char fpath[2048];
-    int i;
     int mis_num , mis_diary_entry_num;
     
     if ( ! strcmp ( ExtraCommandString , "BreakOffAndBecomeHostile" ) )
@@ -442,17 +441,19 @@ ExecuteChatExtra ( char* ExtraCommandString , Enemy ChatDroid )
     }
     else if ( ! strcmp ( ExtraCommandString , "DropDead" ) )
     {
+        hit_enemy(ChatDroid, ChatDroid->energy + 1, 0, -1);
 	ChatDroid -> energy = 0;
         return (1);
     }
     else if ( ! strcmp ( ExtraCommandString , "EverybodyBecomesHostile" ) )
     {
-	DebugPrintf ( -1000 , "\nEverybody SHOULD NOW BE HOSTILE!" );
-	for ( i = 0 ; i < MAX_ENEMYS_ON_SHIP ; i ++ )
-	{
-	    AllEnemys [ i ] . is_friendly = FALSE ;
-	    AllEnemys [ i ] . combat_state = MAKE_ATTACK_RUN ;
-	}
+	enemy * erot = alive_bots_head;
+	while ( erot )
+	    {
+	    erot -> is_friendly = FALSE ;
+	    erot->combat_state = MAKE_ATTACK_RUN ;
+	    erot = GETNEXT(erot);
+	    }
 	SwitchBackgroundMusicTo(BIGFIGHT_BACKGROUND_MUSIC_SOUND);
     }
     else if ( ! strcmp ( ExtraCommandString , "SetCompletelyFixedProperty" ) )
@@ -1170,7 +1171,7 @@ ProcessThisChatOption ( int MenuSelection , int ChatPartnerCode , Enemy ChatDroi
     // But it might be the case that this option is more technical and not accompanied
     // by any reply.  This case must also be caught.
     //
-    printf("Processing option %d with partner %d\n", MenuSelection, ChatPartnerCode);
+    //printf("Processing option %d with partner %d\n", MenuSelection, ChatPartnerCode);
     if ( strcmp ( ChatRoster [ MenuSelection ] . option_sample_file_name , "NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER" ) )
     {
 	// PlayOnceNeededSoundSample( ChatRoster [ MenuSelection ] . option_sample_file_name , TRUE );

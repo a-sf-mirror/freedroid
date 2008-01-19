@@ -401,7 +401,7 @@ DeleteBlast (int BlastNum)
 void
 MoveActiveSpells (void)
 {
-    int i , j ;
+    int i ;
     float PassedTime;
     float DistanceFromCenter;
     PassedTime = Frame_Time ();
@@ -409,7 +409,6 @@ MoveActiveSpells (void)
     moderately_finepoint Displacement;
     moderately_finepoint final_point;
     float Angle;
-    char game_message_text [ 5000 ] ;
 
     for ( i = 0; i < MAX_ACTIVE_SPELLS; i++ )
     {
@@ -449,63 +448,49 @@ MoveActiveSpells (void)
 	    //--------------------
 	    // Here we also do the spell damage application here
 	    //
-	    for ( j = 0 ; j < MAX_ENEMYS_ON_SHIP ; j ++ )
-	    {
-		if ( AllEnemys [ j ] . Status == INFOUT ) continue;
-		if ( AllEnemys [ j ] . pos . z != Me . pos . z ) continue;
-		
-		DistanceFromCenter = sqrt ( ( AllActiveSpells [ i ] . spell_center . x - AllEnemys [ j ] . pos . x ) *
-					    ( AllActiveSpells [ i ] . spell_center . x - AllEnemys [ j ] . pos . x ) +
-					    ( AllActiveSpells [ i ] . spell_center . y - AllEnemys [ j ] . pos . y ) *
-					    ( AllActiveSpells [ i ] . spell_center . y - AllEnemys [ j ] . pos . y ) );
-		
-		if ( fabsf ( DistanceFromCenter - AllActiveSpells [ i ] . spell_radius ) < 0.4 )
+	    enemy * erot = alive_bots_head;
+	    for ( ; erot; erot = GETNEXT(erot))
 		{
+		if ( erot->pos . z != Me . pos . z )
+		    continue;
+		
+		DistanceFromCenter = sqrt ( ( AllActiveSpells [ i ] . spell_center . x - erot->pos . x ) *
+			( AllActiveSpells [ i ] . spell_center . x - erot->pos . x ) +
+			( AllActiveSpells [ i ] . spell_center . y - erot->pos . y ) *
+			( AllActiveSpells [ i ] . spell_center . y - erot->pos . y ) );
+
+
+		if ( fabsf ( DistanceFromCenter - AllActiveSpells [ i ] . spell_radius ) < 0.4 )
+		    {
 
 		    //--------------------
 		    // Let's see if that enemy has a direction, that is still
-		    // active for the spell.  If not, then the enemy got away
-		    // for this time at least...
-		    //
+		    // active for the spell. 
 		    // We get the angle in radians but with zero at the 'north' direction.
 		    //
-		    Displacement . x = AllEnemys [ j ] . pos . x - AllActiveSpells [ i ] . spell_center . x ;
-		    Displacement . y = AllEnemys [ j ] . pos . y - AllActiveSpells [ i ] . spell_center . y ;
+		    Displacement . x = erot->pos . x - AllActiveSpells [ i ] . spell_center . x ;
+		    Displacement . y = erot->pos . y - AllActiveSpells [ i ] . spell_center . y ;
 		    Angle = atan2 ( Displacement . y , Displacement . x ) + M_PI + 3 * M_PI / 2 ;
 		    while ( Angle >= 2 * M_PI ) Angle -= 2 * M_PI ;
 		    //
 		    // Now we convert the angle to a normal direction index
 		    //
 		    direction_index = (int) ( ( Angle * RADIAL_SPELL_DIRECTIONS ) / ( 2 * M_PI ) ) ;
-		    DebugPrintf ( 1 , "\n%s():Enemy found at angle=%f, i.e. direction index: %d." , 
-				  __FUNCTION__ , Angle, direction_index );
+		    
 		    if ( AllActiveSpells [ i ] . active_directions [ direction_index ] )
-		    {
-			DebugPrintf ( 1 , "\n%s(): Bot is affected.  Doing damage... " , __FUNCTION__ );
-			//--------------------
-			// We do some damage to the enemy in question
-			//
-			if ( AllActiveSpells [ i ] . mine ) 
-				robot_group_turn_hostile(j);
-			AllEnemys [ j ] . energy -= AllActiveSpells [ i ] . damage * Frame_Time();
-			AllEnemys [ j ] . poison_duration_left += AllActiveSpells [ i ] . poison_duration;
-			AllEnemys [ j ] . poison_damage_per_sec = AllActiveSpells [ i ] . damage;
-			AllEnemys [ j ] . frozen += AllActiveSpells [ i ] . freeze_duration;
-			AllEnemys [ j ] . paralysation_duration_left += AllActiveSpells [ i ] . paralyze_duration;
+			{
+			/* we hit the enemy. the owner is set to NULL because for now we assume it can only be the player.*/
+			hit_enemy(erot, AllActiveSpells [ i ] . damage * Frame_Time(), AllActiveSpells [ i ] . mine ? 1 : 0 /*givexp*/,  AllActiveSpells [ i ] . mine ? 0 : -1); 
+			
+			erot->poison_duration_left += AllActiveSpells [ i ] . poison_duration;
+			erot->poison_damage_per_sec = AllActiveSpells [ i ] . damage;
+			erot->frozen += AllActiveSpells [ i ] . freeze_duration;
+			erot->paralysation_duration_left += AllActiveSpells [ i ] . paralyze_duration;
 
-			if ( AllEnemys [ j ] . energy < 0 )  
-                                {
-				int reward = Druidmap [ AllEnemys[j].type ] . experience_reward;
-                                Me . Experience += reward;
-		                sprintf ( game_message_text , "For defeating your enemy %s, you receive %d experience.",
-                		          Druidmap [ AllEnemys [ j ] . type ] . druidname , reward );
-		                append_new_game_message ( game_message_text );
-				}
-			if(AllEnemys [ j ] . firewait < Druidmap [ AllEnemys [ j ] . type ] . recover_time_after_getting_hit)
-				AllEnemys [ j ] . firewait = Druidmap [ AllEnemys [ j ] . type ] . recover_time_after_getting_hit ;
+			}
 		    }
+
 		}
-	    }
 	    
 	    //--------------------
 	    // Such a spell can not live for longer than 1.0 seconds, say
@@ -583,8 +568,7 @@ enemy_spray_blood ( Enemy CurEnemy )
 void
 handle_flash_effects ( bullet* CurBullet )
 {
-    int i;
-    char game_message_text[5000];
+    char game_message_text[500];
     float my_damage;
 
     //--------------------
@@ -613,45 +597,19 @@ handle_flash_effects ( bullet* CurBullet )
     //
     if ( CurBullet->time_in_frames != 1 ) return; // we only do the damage once and thats at frame nr. 1 of the flash
     
-    //--------------------
-    // We make sure that the first and last index numbers for each
-    // level are halfway correct...
-    //
-    occasionally_update_first_and_last_bot_indices ( );
 
-    for ( i  = first_index_of_bot_on_level [ CurBullet -> pos . z ] ; 
-	  i <=  last_index_of_bot_on_level [ CurBullet -> pos . z ] ; i++ )
-    {
-	//--------------------
-	// Bots on other levels need not be affected by the flash
-	// weapon on this level...
-	//
-	if ( AllEnemys [ i ] . pos . z != CurBullet -> pos . z ) continue ;
-	if ( AllEnemys [ i ] . type == (-1) ) continue ;
-	
-	//--------------------
-	// The flash weapon will only take effect, if there is a direct
-	// line of sigh between the bullet (the firing bot that is...)
-	// and the target bot.
-	//
-	if ( IsVisible ( & AllEnemys [ i ] . pos) &&
-	     ( ! Druidmap [ AllEnemys [ i ] . type ] . flashimmune ) ) 
+    enemy * erot = alive_bots_head;
+    for ( ; erot; erot = GETNEXT(erot))
 	{
-	    AllEnemys [ i ] . energy -= CurBullet -> damage ;
-
-	    //--------------------
-	    // Since the enemy just got hit, it might as well say so 
-	    // and also spray some blood all around... :)
-	    //
-	    EnemyHitByBulletText( i );
-	    enemy_spray_blood ( & ( AllEnemys [ i ] ) ) ;
-	    if ( AllEnemys [ i ] . energy < 0 )
-	    {
-		sprintf ( game_message_text , _("%s was destroyed by disruptor blast."),
-			  Druidmap [ AllEnemys[i].type ] . druidname );
-		append_new_game_message ( game_message_text );
-	    }
+	if ( erot->pos . z != CurBullet -> pos . z ) continue ;
+	if ( erot->type == (-1) ) continue ;
+	
+	if ( IsVisible ( & erot->pos) &&
+	     ( ! Druidmap [ erot->type ] . flashimmune ) ) 
+	{
+	    hit_enemy ( erot, CurBullet->damage, CurBullet->mine ? 1 : 0 /*givexp*/, CurBullet->owner );
 	}
+
     }
     
     //--------------------
@@ -803,23 +761,17 @@ check_bullet_player_collisions ( bullet* CurBullet , int num )
 void
 check_bullet_enemy_collisions ( bullet* CurBullet , int num )
 {
-    int i;
     double xdist, ydist;
     int level = CurBullet -> pos.z ;
     static int FBTZaehler = 0;
     enemy* ThisRobot;
-    char game_message_text[5000];
-    int reward;
-
+    
     //--------------------
     // Check for collision with enemys
     //
-    ThisRobot = & ( AllEnemys [ 0 ] ) ;
-    ThisRobot -- ;
-    // for ( i = 0; i < Number_Of_Droids_On_Ship; i++ )
-    for ( i = 0; i < MAX_ENEMYS_ON_SHIP ; i++ )
+    ThisRobot = alive_bots_head	;
+    for ( ; ThisRobot; ThisRobot = GETNEXT(ThisRobot))
     {
-	ThisRobot ++ ;
 	if ( ThisRobot -> Status == INFOUT || ThisRobot -> pos . z != level)
 	    continue;
 	
@@ -827,98 +779,50 @@ check_bullet_enemy_collisions ( bullet* CurBullet , int num )
 	ydist = CurBullet->pos.y - ThisRobot -> pos . y;
 	
 	if ( (xdist * xdist + ydist * ydist) < DRUIDHITDIST2 )
-	{
+	    {
 #ifdef USE_MISS_HIT_ARRAYS
 	    if ( CurBullet->total_miss_hit[ i ] == UNCHECKED )
-	    {
-		if ( MyRandom ( 100 ) < CurBullet->to_hit + Druidmap [ ThisRobot -> type ] . getting_hit_modifier )
 		{
+		if ( MyRandom ( 100 ) < CurBullet->to_hit + Druidmap [ ThisRobot -> type ] . getting_hit_modifier )
+		    {
 		    CurBullet->total_miss_hit[ i ] = HIT;
 #endif
+		    hit_enemy(ThisRobot, CurBullet->damage, (CurBullet->mine ? 1 : 0) /*givexp*/, CurBullet->owner);
+
+		    ThisRobot -> frozen += CurBullet -> freezing_level;
+
+		    ThisRobot -> poison_duration_left += CurBullet->poison_duration;
+		    ThisRobot -> poison_damage_per_sec += CurBullet->poison_damage_per_sec;
+
+		    ThisRobot -> paralysation_duration_left += CurBullet->paralysation_duration;
+
 		    //--------------------
-		    // The enemy who was hit, loses some energy, depending on the bullet, and 
-		    // also gets stunned from the hit, which only means that the enemy can't
-		    // fire immediately now but takes (double?) normal time for the next shot.
+		    // If the blade can pass through dead and not dead bodies, it will so
+		    // so and create a small explosion passing by.  But if it can't, it should
+		    // be completely deleted of course, with the same small explosion as well
 		    //
-		    ThisRobot -> energy -= CurBullet->damage;		  
-		    enemy_spray_blood ( ThisRobot ) ;
-		    
-		    //--------------------
-		    // If it was a friend, and the bullet came from Tux, the friend
-		    // might now become very angry...
-		    //
-		    if ( CurBullet -> mine ) 
-		    {
-			robot_group_turn_hostile ( i );
-			if ( ThisRobot -> energy < 0 )
+		    if ( CurBullet -> pass_through_hit_bodies )
+			StartBlast ( CurBullet -> pos.x , CurBullet -> pos.y , CurBullet -> pos.z , BULLETBLAST, 0 );
+		    else DeleteBullet( num , TRUE ); // we want a bullet-explosion
+
+		    if (!CurBullet->mine)
 			{
-			    reward = Druidmap [ ThisRobot -> type ] . experience_reward;
-			    Me . Experience += reward;
-			    sprintf ( game_message_text , 
-				      _("%s was destroyed by your bullet.  For defeating your enemy, you receive %d experience."),
-				      Druidmap [ ThisRobot -> type ] . druidname , 
-				      reward );
-			    append_new_game_message ( game_message_text );
-		      }
-		  }
-		  else
-		  {
-		      if ( ThisRobot -> energy < 0 && CurBullet -> owner > 0)
-		      {
-			  sprintf ( game_message_text , _("%s was destroyed by bullet from %s."),
-				    Druidmap [ ThisRobot -> type ] . druidname ,
-				    Druidmap [ CurBullet -> owner ] . druidname );
-			  append_new_game_message ( game_message_text );
-		      }
-		  }
-		  
-		  ThisRobot -> frozen += CurBullet -> freezing_level;
-		  
-		  ThisRobot -> poison_duration_left += CurBullet->poison_duration;
-		  ThisRobot -> poison_damage_per_sec += CurBullet->poison_damage_per_sec;
-		  
-		  ThisRobot -> paralysation_duration_left += CurBullet->paralysation_duration;
-		  
-		  // ThisRobot -> firewait =
-		  // 1 * ItemMap [ Druidmap [ ThisRobot -> type ].weapon_item.type ].item_gun_recharging_time ;
-		  
-		  if(ThisRobot -> firewait < Druidmap [ ThisRobot -> type ] . recover_time_after_getting_hit && MyRandom(100) <= 60)
-			  ThisRobot -> firewait = Druidmap [ ThisRobot -> type ] . recover_time_after_getting_hit ;
-
-		  start_gethit_animation_if_applicable ( ThisRobot ) ;
-
-		  // We might also start a little bullet-blast even after the
-		  // collision of the bullet with an enemy (not in Paradroid)
-		  
-		  //--------------------
-		  // If the blade can pass through dead and not dead bodies, it will so
-		  // so and create a small explosion passing by.  But if it can't, it should
-		  // be completely deleted of course, with the same small explosion as well
-		  //
-		  if ( CurBullet -> pass_through_hit_bodies )
-		    StartBlast ( CurBullet -> pos.x , CurBullet -> pos.y , CurBullet -> pos.z , BULLETBLAST, 0 );
-		  else DeleteBullet( num , TRUE ); // we want a bullet-explosion
-		  
-		  Enemy_Post_Bullethit_Behaviour( i );
-		  
-		  if (!CurBullet->mine)
-		    {
-		      FBTZaehler++;
-		    }
-		  return;
+			FBTZaehler++;
+			}
+		    return;
 #ifdef USE_MISS_HIT_ARRAYS
+		    }
+
+		else
+		    {
+		    CurBullet -> total_miss_hit[ i ] = MISS;
+		    ThisRobot -> TextVisibleTime = 0;
+		    ThisRobot -> TextToBeDisplayed = _("Haha, you missed me!");
+		    }
 		}
-	      
-	      else
-		{
-		  CurBullet -> total_miss_hit[ i ] = MISS;
-		  ThisRobot -> TextVisibleTime = 0;
-		  ThisRobot -> TextToBeDisplayed = _("Haha, you missed me!");
-		}
-	    }
 #endif
 	} // if distance low enough to possibly be at hit
-    }  /* for AllEnemys */
+    } 
 }; // void check_bullet_enemy_collisions ( CurBullet , num )
 
 /* ----------------------------------------------------------------------
@@ -1067,22 +971,21 @@ CheckBlastCollisions (int num)
     // Now we check for enemys, that might have stepped into this
     // one blasts area of effect...
     //
-    // for ( i = 0 ; i < Number_Of_Droids_On_Ship ; i ++ )
-    for ( i = 0 ; i < MAX_ENEMYS_ON_SHIP ; i ++ )
-    {
-	if ((AllEnemys[i].Status == INFOUT)
-	    || (AllEnemys[i].pos.z != level))
+    enemy * erot = alive_bots_head;
+    for ( ; erot; erot = GETNEXT(erot))
+	{
+	if ((erot->Status == INFOUT)
+	    || (erot->pos.z != level))
 	    continue;
 	
-	if ( ( fabsf (AllEnemys[i].pos.x - CurBlast->pos.x ) < Blast_Radius ) &&
-	     ( fabsf (AllEnemys[i].pos.y - CurBlast->pos.y ) < Blast_Radius ) )
+	if ( ( fabsf (erot->pos.x - CurBlast->pos.x ) < Blast_Radius ) &&
+	     ( fabsf (erot->pos.y - CurBlast->pos.y ) < Blast_Radius ) )
 	{
-	    //--------------------
-	    // drag energy of enemy 
-	    //
-	    AllEnemys[i].energy -= CurBlast -> damage_per_second * Frame_Time ();
+	    /* we have no support for blast ownership yet, so we give no XP *and* don't know who killed the guy */
+	    hit_enemy(erot, CurBlast -> damage_per_second * Frame_Time (), 0, -1);
 	}
-    }
+
+       }
     
     //--------------------
     // Now we check, if perhaps the influencer has stepped into the area

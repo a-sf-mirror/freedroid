@@ -52,7 +52,6 @@
 
 #define DEBUG_TUX_PATHFINDING 1  // debug level for tux pathfinding...
 
-void InfluEnemyCollisionLoseEnergy (int enemynum);	/* influ can lose energy on coll. */
 void limit_tux_speed_to_a_maximum ( );
 int autorun_activated = 0;
 int set_up_intermediate_course_for_tux ( );
@@ -648,7 +647,7 @@ correct_tux_position_according_to_jump_thresholds ( )
 	// combo-action).
 	//
 	if ( ( Me . mouse_move_target_combo_action_type == NO_COMBO_ACTION_SET ) &&
-	     ( Me . current_enemy_target == (-1) ) )
+	     ( Me . current_enemy_target == NULL ) )
 	{
 	    Me . mouse_move_target . z = Me . pos . z ;
 	    Me . mouse_move_target . x = old_mouse_move_target . x ;
@@ -712,7 +711,7 @@ correct_tux_position_according_to_jump_thresholds ( )
 	// combo-action).
 	//
 	if ( ( Me . mouse_move_target_combo_action_type == NO_COMBO_ACTION_SET ) &&
-	     ( Me . current_enemy_target == (-1) ) )
+	     ( Me . current_enemy_target == NULL ) )
 	{
 	    Me . mouse_move_target . z = Me . pos . z ;
 	    Me . mouse_move_target . x = old_mouse_move_target . x ;
@@ -777,7 +776,7 @@ correct_tux_position_according_to_jump_thresholds ( )
 	// combo-action).
 	//
 	if ( ( Me . mouse_move_target_combo_action_type == NO_COMBO_ACTION_SET ) &&
-	     ( Me . current_enemy_target == (-1) ) )
+	     ( Me . current_enemy_target == NULL ) )
 	{
 	    Me . mouse_move_target . z = Me . pos . z ;
 	    Me . mouse_move_target . y = old_mouse_move_target . y ;
@@ -838,7 +837,7 @@ correct_tux_position_according_to_jump_thresholds ( )
 	// combo-action).
 	//
 	if ( ( Me . mouse_move_target_combo_action_type == NO_COMBO_ACTION_SET ) &&
-	     ( Me . current_enemy_target == (-1) ) )
+	     ( Me . current_enemy_target == NULL ) )
 	{
 	    Me . mouse_move_target . z = Me . pos . z ;
 	    Me . mouse_move_target . y = old_mouse_move_target . y ;
@@ -1008,11 +1007,11 @@ UpdateMouseMoveTargetAccordingToEnemy ( )
     // if that should be done.
     //
     
-    if ( ( AllEnemys [ Me . current_enemy_target ] . Status == INFOUT ) ||
-	 ( AllEnemys [ Me . current_enemy_target ] . pos . z != 
+    if ( ( Me . current_enemy_target -> Status == INFOUT ) ||
+	 ( Me . current_enemy_target -> pos . z != 
 	   Me . pos . z ) )
 	    {
-		Me . current_enemy_target = ( -1 ) ;
+		Me . current_enemy_target = NULL ;
 		DebugPrintf ( 1 , "\n%s(): enemy mouse move target disabled because of OUT/out_of_level." , __FUNCTION__ );
 		return;
 	    }
@@ -1026,7 +1025,7 @@ UpdateMouseMoveTargetAccordingToEnemy ( )
     {
 	if ( ItemMap [ Me . weapon_item . type ] . item_gun_angle_change == 0 )
 	{
-	    if ( ! AllEnemys [ Me . current_enemy_target ] . is_friendly )
+	    if ( ! Me . current_enemy_target -> is_friendly )
 		tux_wants_to_attack_now ( FALSE ) ;
 	}
     }
@@ -1047,8 +1046,8 @@ UpdateMouseMoveTargetAccordingToEnemy ( )
 	return;
 	}
 
-    RemainingWay . x = Me . pos . x - AllEnemys [ Me . current_enemy_target ] . pos . x ;
-    RemainingWay . y = Me . pos . y - AllEnemys [ Me . current_enemy_target ] . pos . y ;
+    RemainingWay . x = Me . pos . x - Me . current_enemy_target -> pos . x ;
+    RemainingWay . y = Me . pos . y - Me . current_enemy_target -> pos . y ;
     
     RemainingWayLength = sqrtf ( ( RemainingWay . x ) * ( RemainingWay . x ) +
 				 ( RemainingWay . y ) * ( RemainingWay . y ) ) ;
@@ -1073,7 +1072,7 @@ UpdateMouseMoveTargetAccordingToEnemy ( )
     //
     set_up_intermediate_course_for_tux ( ) ;
     Me . mouse_move_target . x = -1;
-    if ( ( RemainingWayLength <= BEST_MELEE_DISTANCE * sqrt(2) + 0.01 ) && ( ! AllEnemys [ Me . current_enemy_target ] . is_friendly ) )
+    if ( ( RemainingWayLength <= BEST_MELEE_DISTANCE * sqrt(2) + 0.01 ) && ( ! Me . current_enemy_target->is_friendly ) )
     {
 	tux_wants_to_attack_now ( FALSE ) ;
     } 
@@ -2109,7 +2108,7 @@ adapt_global_mode_for_player ( )
     int obstacle_index;
     static int right_pressed_previous_frame = FALSE ;
     static int left_pressed_previous_frame = FALSE ;
-    int our_enemy_index ;
+    enemy * our_enemy ;
 
     //--------------------
     // At first we check if maybe the player is scrolling the game
@@ -2140,8 +2139,8 @@ adapt_global_mode_for_player ( )
 	global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL ;
     }
 
-    our_enemy_index = GetLivingDroidBelowMouseCursor ( 0 ) ;
-    if ( our_enemy_index == (-1) )
+    our_enemy = GetLivingDroidBelowMouseCursor ( 0 ) ;
+    if ( our_enemy == NULL )
     {
 	//--------------------
 	// Now we need to find the obstacle under the current mouse
@@ -2233,7 +2232,7 @@ move_tux ( )
     // a living droid set as a target, and if yes, we correct the move
     // target to something suiting that new droids position.
     //
-    if ( Me . current_enemy_target != (-1) )
+    if ( Me . current_enemy_target != NULL )
 	UpdateMouseMoveTargetAccordingToEnemy ( );
 
     //--------------------
@@ -2279,7 +2278,7 @@ move_tux ( )
 	Me . mouse_move_target . x = Me . pos . x ;
 	Me . mouse_move_target . y = Me . pos . y ;
 	Me . mouse_move_target . z = Me . pos . z ;
-	Me . current_enemy_target = (-1) ;
+	Me . current_enemy_target = NULL ;
 	// clear_out_intermediate_points ( );
 	return; 
     }
@@ -2435,34 +2434,30 @@ start_tux_death_explosions (void)
 void
 check_tux_enemy_collision (void)
 {
-    int i;
     float xdist;
     float ydist;
     float max_step_size;
     
-    //--------------------
-    // We need to go through the whole list of enemys...
-    //
-    // for (i = 0; i < Number_Of_Droids_On_Ship ; i++)
-    for (i = 0; i < MAX_ENEMYS_ON_SHIP ; i++)
+    enemy * erot = alive_bots_head;
+    for ( ; erot ; erot = GETNEXT(erot))
     {
 	
 	//--------------------
 	// ignore enemy that are not on this level or dead 
 	//
-	if ( AllEnemys[i].pos.z != CurLevel->levelnum )
+	if ( erot->pos.z != CurLevel->levelnum )
 	    continue;
-	if ( AllEnemys[i].type == ( -1 ) )
+	if ( erot->type == ( -1 ) )
 	    continue;
-	if ( AllEnemys[i].Status == INFOUT )
+	if ( erot->Status == INFOUT )
 	    continue;
 	
 	//--------------------
 	// We determine the distance and back out immediately if there
 	// is still one whole square distance or even more...
 	//
-	xdist = Me . pos . x - AllEnemys [ i ] . pos . x;
-	ydist = Me . pos . y - AllEnemys [ i ] . pos . y;
+	xdist = Me . pos . x - erot-> pos . x;
+	ydist = Me . pos . y - erot-> pos . y;
 	if (abs (xdist) > 1)
 	    continue;
 	if (abs (ydist) > 1)
@@ -2483,42 +2478,24 @@ check_tux_enemy_collision (void)
 	
 	// move the influencer a little bit out of the enemy AND the enemy a little bit out of the influ
 	max_step_size = ((Frame_Time()) < ( MAXIMAL_STEP_SIZE ) ? (Frame_Time()) : ( MAXIMAL_STEP_SIZE )) ; 
-	// Me.pos.x += copysignf( max_step_size , Me.pos.x - AllEnemys[i].pos.x ) ;
-	// Me.pos.y += copysignf( max_step_size , Me.pos.y - AllEnemys[i].pos.y ) ;
-	// evasion_vector . x = Me . speed . x ;
-	// evasion_vector . y = Me . speed . y ;
-	// evasion_vector . x *= Frame_Time();
-	// evasion_vector . y *= Frame_Time();
 	
-	AllEnemys[i].pos.x -= copysignf( 0.6 * Frame_Time() , Me.pos.x - AllEnemys[i].pos.x ) ;
-	AllEnemys[i].pos.y -= copysignf( 0.6 * Frame_Time() , Me.pos.y - AllEnemys[i].pos.y ) ;
+	erot->pos.x -= copysignf( 0.6 * Frame_Time() , Me.pos.x - erot->pos.x ) ;
+	erot->pos.y -= copysignf( 0.6 * Frame_Time() , Me.pos.y - erot->pos.y ) ;
 	
-	// AllEnemys[i].pos.x += evasion_vector . x ;
-	// AllEnemys[i].pos.y += evasion_vector . y ;copysignf( 5.1 * Frame_Time() , Me.pos.y - AllEnemys[i].pos.y ) ;
 	
-	// BounceSound ();
 	
 	DebugPrintf ( 1 , "\n%s(): Collision of enemy with Tux detected.  Fixing..." , __FUNCTION__ );
 
 	//--------------------
 	// shortly stop this enemy, then send him back to previous waypoint
 	//
-	if ( ! AllEnemys[i].pure_wait )
+	if ( ! erot->pure_wait )
 	{
-	    AllEnemys[i].pure_wait = WAIT_COLLISION;
-	    // swap = AllEnemys[i].nextwaypoint;
-	    // AllEnemys[i].nextwaypoint = AllEnemys[i].lastwaypoint;
-	    // AllEnemys[i].lastwaypoint = swap;
-	    
-	    //--------------------
-	    // Maybe we add some fun collision text, but only
-	    // sometimes and only if configured to do so...
-	    //
-	    EnemyInfluCollisionText ( i );
+	    erot->pure_wait = WAIT_COLLISION;
+	    EnemyInfluCollisionText ( erot );
 	    
 	}
-	
-    }				/* for */
+    }			
 
 }; // void check_tux_enemy_collision( void )
 
@@ -2535,12 +2512,10 @@ check_tux_enemy_collision (void)
  * of the mouse any more... except maybe to exclude some bots from the start.
  *
  * ---------------------------------------------------------------------- */
-int 
+enemy * 
 GetLivingDroidBelowMouseCursor ( )
 {
-    int i;
     float Mouse_Blocks_X, Mouse_Blocks_Y;
-    int TargetFound = (-1);
     // float DistanceFound = 1000;
     // float CurrentDistance;
     enemy* this_bot;
@@ -2553,19 +2528,10 @@ GetLivingDroidBelowMouseCursor ( )
     Mouse_Blocks_Y = translate_pixel_to_map_location ( (float) input_axis.x ,
 						       (float) input_axis.y , FALSE ) ;
     
-    //--------------------
-    // We make sure the first and last but indices for the current 
-    // level are at least halfway correct...
-    //
-    occasionally_update_first_and_last_bot_indices ( );
-    
-    // for (i = 0; i < MAX_ENEMYS_ON_SHIP; i++)
-    // for (i = 0; i < Number_Of_Droids_On_Ship; i++)
-    for ( i  = first_index_of_bot_on_level [ Me . pos . z ] ; 
-	  i <=  last_index_of_bot_on_level [ Me . pos . z ] ; i ++ )
+
+    this_bot = alive_bots_head;
+    for ( ; this_bot; this_bot = GETNEXT(this_bot))
     {
-	this_bot = & ( AllEnemys [ i ] );
-	
 	if ( this_bot -> Status == INFOUT)
 	    continue;
 	if ( this_bot -> pos . z != Me . pos . z )
@@ -2592,15 +2558,11 @@ GetLivingDroidBelowMouseCursor ( )
 						 this_bot -> pos . y , 
 						 our_iso_image ) )
 	{
-	    TargetFound = i;
+	    return this_bot;
 	}
     }
     
-    //--------------------
-    // It seems that we were unable to locate a living droid under the mouse 
-    // cursor.  So we return, giving this very same message.
-    //
-    return ( TargetFound );
+    return ( NULL );
     
 }; // int GetLivingDroidBelowMouseCursor ( )
 
@@ -2901,13 +2863,10 @@ PerformTuxAttackRaw ( int use_mouse_cursor_for_targeting )
     float angle;
     moderately_finepoint Weapon_Target_Vector ;
     moderately_finepoint target_location ;
-    int i;
+    enemy * droid_under_melee_attack_cursor = NULL;
     int melee_weapon_hit_something = FALSE ;
-    int droid_under_melee_attack_cursor; 
     int do_melee_strike ;
     finepoint MapPositionOfMouse;
-    char game_message_text[5000];
-    int reward; 
 
 #define PERFORM_TUX_ATTACK_RAW_DEBUG 1
 
@@ -2962,7 +2921,7 @@ PerformTuxAttackRaw ( int use_mouse_cursor_for_targeting )
 
 	//--------------------
 	//
-	if ( Me . current_enemy_target != (-1) )
+	if ( Me . current_enemy_target != NULL )
 	{
 	    droid_under_melee_attack_cursor = Me . current_enemy_target ;
 	    DebugPrintf ( 1 , "\n%s(): using MOUSE MOVE TARGET at X=%d Y=%d for attack direction of tux." , __FUNCTION__ , (int) Me . mouse_move_target . x , (int) Me . mouse_move_target . y );
@@ -2974,14 +2933,14 @@ PerformTuxAttackRaw ( int use_mouse_cursor_for_targeting )
 	}
 	
 	
-	if ( droid_under_melee_attack_cursor != (-1) )
+	if ( droid_under_melee_attack_cursor != NULL )
 	{
 	    angle = - ( atan2 ( Me . pos . y - 
-				AllEnemys [ droid_under_melee_attack_cursor ] . pos . y ,
+				droid_under_melee_attack_cursor->pos . y ,
 				Me . pos . x - 
-				AllEnemys [ droid_under_melee_attack_cursor ] . pos . x ) * 180 / M_PI - 90 + 22.5 );
-	    target_location . x = AllEnemys [ droid_under_melee_attack_cursor ] . pos . x ;
-	    target_location . y = AllEnemys [ droid_under_melee_attack_cursor ] . pos . y ; 
+				droid_under_melee_attack_cursor->pos . x ) * 180 / M_PI - 90 + 22.5 );
+	    target_location . x = droid_under_melee_attack_cursor->pos . x ;
+	    target_location . y = droid_under_melee_attack_cursor->pos . y ; 
 	}
 	else
 	{
@@ -3059,69 +3018,43 @@ PerformTuxAttackRaw ( int use_mouse_cursor_for_targeting )
 		return;
 		}
 	
-	// for ( i = 0 ; i < Number_Of_Droids_On_Ship ; i ++ )
-	for ( i = 0 ; i < MAX_ENEMYS_ON_SHIP ; i ++ )
+	enemy * erot = alive_bots_head;
+	for ( ; erot ; erot = GETNEXT(erot))
 	{
-	    if ( AllEnemys [ i ] . Status == INFOUT ) continue;
-	    if ( AllEnemys [ i ] . pos . z != Me . pos . z ) continue;
-	    if ( fabsf ( AllEnemys [ i ] . pos . x - Weapon_Target_Vector.x ) > 0.5 ) continue;
-	    if ( fabsf ( AllEnemys [ i ] . pos . y - Weapon_Target_Vector.y ) > 0.5 ) continue;
+	    if (( erot-> pos . z != Me . pos . z ) ||
+	    		( fabsf ( erot-> pos . x - Weapon_Target_Vector.x ) > 0.5 ) ||
+	    		( fabsf ( erot->pos . y - Weapon_Target_Vector.y ) > 0.5 ))
+		continue;
+
 	    //--------------------
 	    // So here we know, that the Tux weapon swing might actually hit something
 	    // as far as only 'area of attack' and position of possible target is 
 	    // concerned.  So now we check, whether this weapon swing really is a 'hit'
 	    // in the sense of AD&D games, that something can either hit or miss.
 	    //
-	    if ( MyRandom ( 100 ) > Me . to_hit ) continue ; 
+	    if ( MyRandom ( 100 ) > Me . to_hit ) 
+		continue;
 	    
-	    AllEnemys [ i ] . energy -= Me . base_damage + MyRandom ( Me . damage_modifier );
-	    if ( MyRandom( 2 ) != 2 )enemy_spray_blood ( & ( AllEnemys [ i ] ) ) ;
-	    
-	    if ( AllEnemys [ i ] . energy <= 0 )
-	    {
-		reward = Druidmap [ AllEnemys [ i ] . type ] . experience_reward;
-		Me . Experience += reward;
-		sprintf ( game_message_text , 
-			  _("%s was destroyed by your melee attack.  For defeating your enemy, you receive %d experience."),
-			  Druidmap [ AllEnemys [ i ] . type ] . druidname , 
-			  reward );
-		append_new_game_message ( game_message_text );
-	    }
+	    int damage = Me . base_damage + MyRandom ( Me . damage_modifier );
+	    hit_enemy ( erot, damage, 1 /*givexp*/, -1);
 	    
 	    melee_weapon_hit_something = TRUE;
 	    
-	    start_gethit_animation_if_applicable ( & ( AllEnemys [ i ] ) ) ; 
-	    
-	    // AllEnemys[ i ] . is_friendly = 0 ;
-	    // AllEnemys[ i ] . combat_state = MAKE_ATTACK_RUN ;
-	    robot_group_turn_hostile ( i );
-	    SetRestOfGroupToState ( & ( AllEnemys[i] ) , MAKE_ATTACK_RUN );
-	    
-	    //--------------------
 	    // We'll launch the attack cry of this bot...
 	    //
-	    if ( Druidmap[ AllEnemys[ i ] . type ].greeting_sound_type != (-1) && ! AllEnemys [ i ] . paralysation_duration_left )
+	    if ( Druidmap[ erot->type ].greeting_sound_type != (-1) && ! erot->paralysation_duration_left )
 	    {
 		DebugPrintf ( 1 , "\n%s(): playing enter_attack_run sound for tux attack victing of type %d." ,
-			      __FUNCTION__ , AllEnemys [ i ] . type );
-		play_enter_attack_run_state_sound ( Druidmap[ AllEnemys[ i ] . type ].greeting_sound_type );
+			      __FUNCTION__ , erot->type );
+		play_enter_attack_run_state_sound ( Druidmap[ erot->type ].greeting_sound_type );
 	    }
 	    
 	    //--------------------
 	    // War tux freezes enemys with the appropriate plugin...
-	    AllEnemys[ i ] . frozen += Me . freezing_melee_targets ; 
+	    erot->frozen += Me . freezing_melee_targets ; 
 	    
-	    AllEnemys[ i ] . firewait += 
-		1 * ItemMap [ Druidmap [ AllEnemys [ i ] . type ] . weapon_item.type ] . item_gun_recharging_time ;
-	    // 2 * ItemMap [ Druidmap [ AllEnemys [ i ] . type ] . weapon_item.type ] . item_gun_recharging_time ;
-	    
-	    //--------------------
-	    // Only if the Tux didn't kill the poor bot, we'll play the 'got-hit-sound' of
-	    // that enemy, otherwise the InitaiteDeathOfThisEnemy function will play the 
-	    // death sound for this enemy anyway.
-	    //
-	    if ( AllEnemys[ i ] . energy > 0 )
-		PlayEnemyGotHitSound ( Druidmap [ AllEnemys [ i ] . type ] . got_hit_sound_type );
+	    erot->firewait += 
+		1 * ItemMap [ Druidmap [ erot->type ] . weapon_item.type ] . item_gun_recharging_time ;
 	    
 	    DebugPrintf( PERFORM_TUX_ATTACK_RAW_DEBUG , "\n===> Fire Bullet hit something.... melee ... " ) ;
 	}
@@ -3383,7 +3316,7 @@ check_for_chests_to_open ( int chest_index )
 		    Me . mouse_move_target . x += 0.8 ;
 		    set_up_intermediate_course_for_tux ( ) ;
 		    
-		    Me . current_enemy_target = ( -1 ) ;
+		    Me . current_enemy_target = NULL;
 		    Me . mouse_move_target_combo_action_type = COMBO_ACTION_OPEN_CHEST ;
 		    Me . mouse_move_target_combo_action_parameter = chest_index ;
 		    
@@ -3396,7 +3329,7 @@ check_for_chests_to_open ( int chest_index )
 		    Me . mouse_move_target . y += 0.8 ;
 		    set_up_intermediate_course_for_tux ( ) ;
 		    
-		    Me . current_enemy_target = ( -1 ) ;
+		    Me . current_enemy_target = NULL;
 		    Me . mouse_move_target_combo_action_type = COMBO_ACTION_OPEN_CHEST ;
 		    Me . mouse_move_target_combo_action_parameter = chest_index ;
 		    
@@ -3487,7 +3420,7 @@ check_for_barrels_to_smash ( int barrel_index )
 		    //--------------------
 		    // We set up the combo_action, so that the barrel can be smashed later...
 		    //
-		    Me . current_enemy_target = ( -1 ) ;
+		    Me . current_enemy_target = NULL ;
 		    Me . mouse_move_target_combo_action_type = COMBO_ACTION_SMASH_BARREL ;
 		    Me . mouse_move_target_combo_action_parameter = barrel_index ;
 		    break;
@@ -3557,7 +3490,7 @@ check_for_barrels_to_smash ( int barrel_index )
 void
 check_for_droids_to_attack_or_talk_with ( ) 
 {
-    int index_of_droid_below_mouse_cursor = GetLivingDroidBelowMouseCursor ( ) ;
+    enemy *droid_below_mouse_cursor = GetLivingDroidBelowMouseCursor ( ) ;
 
     //--------------------
     // Now the new mouse move: If there is 
@@ -3569,7 +3502,7 @@ check_for_droids_to_attack_or_talk_with ( )
     // a move to that location, not a fire command, 
     // so only new target will be set and return without attack motion.
     //
-    if ( index_of_droid_below_mouse_cursor == (-1) && (!APressed()) )
+    if ( droid_below_mouse_cursor == NULL && (!APressed()) )
     {
 	Me . mouse_move_target . x = 
 	    translate_pixel_to_map_location ( input_axis.x , input_axis.y , TRUE ) ;
@@ -3577,7 +3510,7 @@ check_for_droids_to_attack_or_talk_with ( )
 	    translate_pixel_to_map_location ( input_axis.x , input_axis.y , FALSE ) ;
 	Me . mouse_move_target . z = Me . pos . z ;
 	if ( ! ShiftPressed() )
-		Me . current_enemy_target = (-1);
+		Me . current_enemy_target = NULL;
 	
 	// clear_out_intermediate_points ( ) ;
 	
@@ -3590,13 +3523,13 @@ check_for_droids_to_attack_or_talk_with ( )
 	tux_wants_to_attack_now ( TRUE ) ;
     }
     
-    if ( index_of_droid_below_mouse_cursor != (-1) )
+    if ( droid_below_mouse_cursor != NULL )
     {
 	//--------------------
 	// We assign the target robot of the coming attack operation.
 	// In case of no robot, we should get (-1), which is also serving us well.
 	//
-	Me . current_enemy_target = index_of_droid_below_mouse_cursor ;
+	Me . current_enemy_target = droid_below_mouse_cursor ;
 	
 	//--------------------
 	// If the click was onto a friendly droid, we initiate talk, no matter if the
@@ -3607,18 +3540,18 @@ check_for_droids_to_attack_or_talk_with ( )
 	// to always initiate talk.  This should require a true click.  Therefore we
 	// check if the button has been released just before it came to this check.
 	//
-	if ( AllEnemys [ Me . current_enemy_target ] . is_friendly ) 
+	if ( Me . current_enemy_target->is_friendly ) 
 	{
 	    
 	    if ( no_left_button_press_in_previous_analyze_mouse_click )
 	    {
-		ChatWithFriendlyDroid ( & ( AllEnemys [ Me . current_enemy_target ] ) ) ;
+		ChatWithFriendlyDroid ( Me . current_enemy_target ) ;
 		
 		//--------------------
 		// and then we deactivate this current_enemy_target to prevent
 		// immediate recurrence of the very same chat.
 		//
-		Me . current_enemy_target = (-1) ;
+		Me . current_enemy_target = NULL;
 	    }
 	    
 	    return ;
@@ -3628,8 +3561,8 @@ check_for_droids_to_attack_or_talk_with ( )
 	{
 	    if ( ( ItemMap [ Me . weapon_item . type ] . item_gun_angle_change ) &&
 		 ( calc_euklid_distance ( Me . pos . x , Me . pos . y , 
-					  AllEnemys [ index_of_droid_below_mouse_cursor ] . pos . x ,
-					  AllEnemys [ index_of_droid_below_mouse_cursor ] . pos . y ) 
+					  droid_below_mouse_cursor->pos . x ,
+					  droid_below_mouse_cursor->pos . y ) 
 		   > BEST_MELEE_DISTANCE+0.1 ) )
 	    {
 		//--------------------
@@ -3645,8 +3578,8 @@ check_for_droids_to_attack_or_talk_with ( )
 	    }
 	}
 	else if ( calc_euklid_distance ( Me . pos . x , Me . pos . y , 
-					 AllEnemys [ index_of_droid_below_mouse_cursor ] . pos . x ,
-					 AllEnemys [ index_of_droid_below_mouse_cursor ] . pos . y ) 
+					 droid_below_mouse_cursor->pos . x ,
+					 droid_below_mouse_cursor->pos . y ) 
 		  > BEST_MELEE_DISTANCE+0.1 )
 	{
 	    //--------------------
@@ -3679,17 +3612,17 @@ handle_player_examine_command ( )
 {
     int obstacle_index ;
     obstacle* our_obstacle;
-    char game_message_text[ 10000 ] ;
+    char game_message_text[ 1000 ] ;
     int chat_section;
     Level obstacle_level;
-    int final_bot_found=(-1);
+    enemy * final_bot_found = NULL;
 
     //--------------------
     // The highest priority is other droids and characters.  If one
     // of those is under the mouse cursor, then the examine/look command
     // is interpretet to
     final_bot_found = GetLivingDroidBelowMouseCursor ( ) ;
-    if ( final_bot_found != (-1) )
+    if ( final_bot_found != NULL)
     {
 	//--------------------
 	// If the character encountered is a character with a 
@@ -3699,13 +3632,13 @@ handle_player_examine_command ( )
 	// Otherwise we will revert to using the standard droid
 	// model description found in the droid archetypes.
 	//
-	chat_section = ResolveDialogSectionToChatFlagsIndex ( AllEnemys [ final_bot_found ] . dialog_section_name ) ; 
+	chat_section = ResolveDialogSectionToChatFlagsIndex ( final_bot_found -> dialog_section_name ) ; 
 	if ( chat_section != PERSON_STANDARD_BOT_AFTER_TAKEOVER )
 	{
 	    sprintf( game_message_text , "%s" , character_descriptions [ chat_section ] );
 	}
 	else
-	    sprintf( game_message_text , _("This is a %s. %s") , Druidmap [ AllEnemys [ final_bot_found ] . type ] . druidname , Druidmap [ AllEnemys [ final_bot_found ] . type ] . notes );
+	    sprintf( game_message_text , _("This is a %s. %s") , Druidmap [ final_bot_found -> type ] . druidname , Druidmap [ final_bot_found -> type ] . notes );
 
 	append_new_game_message ( game_message_text );
 	return;
@@ -3759,6 +3692,7 @@ handle_player_examine_command ( )
  * When the player has actiavted global mode unlock and clicked the
  * left button, the unlock command must be executed.  This function
  * should deal with the effects of one such unlock click by the player.
+ *
  * ---------------------------------------------------------------------- */
 void
 handle_player_unlock_command ( ) 
@@ -3824,18 +3758,15 @@ handle_player_talk_command ( )
     int obstacle_index ;
     obstacle* our_obstacle;
     char game_message_text[ 2000 ] ;
-    int our_enemy_index;
     enemy* this_enemy;
 
     //--------------------
     // Maybe there is a robot/character below the current mouse cursor.
     // In this case we try to talk to that bot/character.
     //
-    our_enemy_index = GetLivingDroidBelowMouseCursor ( ) ;
-    if ( our_enemy_index != (-1) )
+    this_enemy = GetLivingDroidBelowMouseCursor ( ) ;
+    if ( this_enemy != NULL )
     {
-	this_enemy = & ( AllEnemys [ our_enemy_index ] );
-	
 	//--------------------
 	// Is it a hostile bot?  Then the bot will not let you do
 	// the first aid thing!  After all, he got no reason to trust
@@ -3847,7 +3778,7 @@ handle_player_talk_command ( )
 	    {
 		sprintf ( game_message_text , _("You try to hack %s."), Druidmap [ this_enemy -> type ] . druidname );
 		append_new_game_message ( game_message_text );
-		Takeover ( our_enemy_index );
+		Takeover ( this_enemy );
 	    }
 	    else
 	    {

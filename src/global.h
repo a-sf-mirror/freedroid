@@ -96,7 +96,9 @@ EXTERN int GameOver;
 EXTERN int AlertLevel;
 EXTERN int RespectVisibilityOnMap;
 
-EXTERN enemy AllEnemys[ MAX_ENEMYS_ON_SHIP ];
+EXTERN enemy * alive_bots_head;
+EXTERN enemy * dead_bots_head;
+
 EXTERN spell_active AllActiveSpells[ MAX_ACTIVE_SPELLS ];
 EXTERN event_trigger AllEventTriggers[ MAX_EVENT_TRIGGERS ];
 EXTERN triggered_action AllTriggeredActions[ MAX_TRIGGERED_ACTIONS_IN_GAME ];
@@ -205,9 +207,6 @@ EXTERN SDL_Surface* light_radius_stretch_surface ;
 #else
 #define EXTERN extern
 #endif
-
-EXTERN int first_index_of_bot_on_level [ MAX_LEVELS ] ;
-EXTERN int last_index_of_bot_on_level [ MAX_LEVELS ] ;
 
 #undef EXTERN
 #ifdef _graphics_c

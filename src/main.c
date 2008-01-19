@@ -115,11 +115,6 @@ better than nothing.  Thanks anyway for your interest in FreedroidRPG.\n\
 --start of real debug log--\n\n" );
 #endif
     
-    DebugPrintf ( 1 , "\nNumber of obstacles: %d." , NUMBER_OF_OBSTACLE_TYPES ) ;
-    DebugPrintf ( 1 , "\nNumber of ISO_V_BATHTUB : %d." , ISO_V_BATHTUB ) ;
-    DebugPrintf ( 1 , "\nNumber of ISO_ROOM_WALL_V_RED : %d." , ISO_ROOM_WALL_V_RED ) ;
-    DebugPrintf ( 1 , "\nNumber of  ISO_OUTER_DOOR_V_00 : %d." , ISO_OUTER_DOOR_V_00 ) ;
-    
     GameOver = FALSE;
     QuitProgram = FALSE;
     xray_vision_for_tux = FALSE ;
@@ -164,11 +159,8 @@ better than nothing.  Thanks anyway for your interest in FreedroidRPG.\n\
 	    
 	    DoAllMovementAndAnimations();
 	    
-	    if ( ! GameOver ) 
-	    {
-		AssembleCombatPicture ( SHOW_ITEMS | USE_OWN_MOUSE_CURSOR ); 
-		our_SDL_flip_wrapper ( Screen );
-	    }
+	    AssembleCombatPicture ( SHOW_ITEMS | USE_OWN_MOUSE_CURSOR ); 
+	    our_SDL_flip_wrapper ( Screen );
 	    
 	    move_tux ( );	
 	
@@ -177,9 +169,7 @@ better than nothing.  Thanks anyway for your interest in FreedroidRPG.\n\
 
 	    UpdateAllCharacterStats ( 0 );
 	    
-	    
 	    MoveEnemys ();	// move all the enemys:
-	    // also do attacks on influ and also move "phase" or their rotation
 	    
 	    check_tux_enemy_collision ();
 	    
@@ -187,7 +177,8 @@ better than nothing.  Thanks anyway for your interest in FreedroidRPG.\n\
 	    
 	    CheckIfMissionIsComplete (); 
 	    
-	    if ( ! GameConfig.hog_CPU ) SDL_Delay (1); // we allow the CPU to also do something else..
+	    if ( ! GameConfig.hog_CPU ) 
+		SDL_Delay (1); // we allow the CPU to also do something else..
 	    
 	    ComputeFPSForThisFrame();
 	    
@@ -217,18 +208,12 @@ better than nothing.  Thanks anyway for your interest in FreedroidRPG.\n\
 void
 update_timeouts_for_bots_on_level ( int level_num , float latest_frame_time ) 
 {
-    int i;
-    enemy* this_bot;
-    occasionally_update_first_and_last_bot_indices ( );
+    enemy* this_bot = alive_bots_head;
 
-    for ( i  = first_index_of_bot_on_level [ level_num ] ; 
-	  i <=  last_index_of_bot_on_level [ level_num ] ; i++ )
+    for ( ; this_bot; this_bot = GETNEXT(this_bot))
     {
-	this_bot = & ( AllEnemys [ i ] );
-	
-	if ( this_bot -> Status == INFOUT ) continue;
-	
-	if ( this_bot -> pos . z != level_num ) continue ;
+	if ( this_bot -> pos . z != level_num )
+	    continue;
 
 	if ( this_bot -> pure_wait > 0 ) 
 	{

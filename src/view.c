@@ -240,7 +240,6 @@ ShowCombatScreenTexts ( int mask )
     int minutes;
     int seconds;
     int i;
-    int k;
     int remaining_bots;
     
     if ( GameConfig.Draw_Framerate )
@@ -301,14 +300,16 @@ ShowCombatScreenTexts ( int mask )
 	{
 	    remaining_bots = 0 ;
 	    
-	    // for ( k = 0 ; k < Number_Of_Droids_On_Ship ; k ++ )
-	    for ( k = 0 ; k < MAX_ENEMYS_ON_SHIP ; k ++ )
+	    enemy * erot = alive_bots_head;
+	    while ( erot )
 	    {
-		if ( ( AllEnemys [ k ] . pos . z == Me . pos . z ) &&
-		     ( AllEnemys [ k ] . Status != INFOUT ) &&
-		     ( AllEnemys [ k ] . energy > 0 ) &&
-		     ( ! AllEnemys [ k ] . is_friendly ) )
+		if ( ( erot->pos . z == Me . pos . z ) &&
+		     ( erot->Status != INFOUT ) &&
+		     ( erot->energy > 0 ) &&
+		     ( ! erot->is_friendly ) )
 		    remaining_bots ++ ;
+
+		erot = GETNEXT(erot);
 	    }
 	    PrintStringFont( Screen , FPS_Display_BFont , User_Rect.x , 
 			     User_Rect.y + 0*FontHeight( FPS_Display_BFont ), 
@@ -906,13 +907,13 @@ insert_tux_into_blitting_list ( void )
  *
  * ---------------------------------------------------------------------- */
 void
-insert_one_enemy_into_blitting_list ( int enemy_num )
+insert_one_enemy_into_blitting_list ( enemy * erot )
 {
     float enemy_norm;
 
-    enemy_norm = AllEnemys [ enemy_num ] . virt_pos . x + AllEnemys [ enemy_num ] . virt_pos . y ;
+    enemy_norm = erot->virt_pos . x + erot->virt_pos . y ;
     
-    insert_new_element_into_blitting_list ( enemy_norm , BLITTING_TYPE_ENEMY , & ( AllEnemys [ enemy_num ] ) , enemy_num );
+    insert_new_element_into_blitting_list ( enemy_norm , BLITTING_TYPE_ENEMY , erot , 0);
     
 }; // void insert_one_enemy_into_blitting_list ( int enemy_num )
 
@@ -1085,7 +1086,6 @@ insert_enemies_into_blitting_list ( void )
 {
     int i;
     enemy* ThisRobot;
-    int level_num ;
 
     //--------------------
     // Now that we plan to also show bots on other levels, we must be
@@ -1094,36 +1094,32 @@ insert_enemies_into_blitting_list ( void )
     // Those levels not in question will be filtered out anyway inside
     // the loop...
     //
-    for ( level_num = 0 ; level_num < MAX_LEVELS ; level_num ++ )
-    {
 
-	if ( ! level_is_partly_visible ( level_num ) ) continue ;
-
-	for ( i = first_index_of_bot_on_level [ level_num ] ; 
-	      i <= last_index_of_bot_on_level [ level_num ] ; i ++ )
+    for ( i = 0; i < 2; i ++)
 	{
-	    ThisRobot = & ( AllEnemys [ i ] ) ; 
-	    
-	    if ( ! level_is_partly_visible ( ThisRobot -> pos . z ) ) continue;
+	ThisRobot = (i) ? dead_bots_head : alive_bots_head;
+	for ( ; ThisRobot; ThisRobot = GETNEXT(ThisRobot))
+	    {
+	    if ( ! level_is_partly_visible ( ThisRobot -> pos . z ) ) 
+		continue;
 
 	    //--------------------
 	    // We update the virtual position of this bot, such that we can handle it 
 	    // with easier expressions later...
 	    //
 	    update_virtual_position ( & ( ThisRobot -> virt_pos ) ,
-				      & ( ThisRobot -> pos ) , Me . pos . z );
+		    & ( ThisRobot -> pos ) , Me . pos . z );
 
 	    if ( fabsf ( ThisRobot -> virt_pos . x - Me . pos . x ) > 
-		 FLOOR_TILES_VISIBLE_AROUND_TUX + FLOOR_TILES_VISIBLE_AROUND_TUX ) continue;
+		    FLOOR_TILES_VISIBLE_AROUND_TUX + FLOOR_TILES_VISIBLE_AROUND_TUX ) 
+		continue;
 	    if ( fabsf ( ThisRobot -> virt_pos . y - Me . pos . y ) > 
-		 FLOOR_TILES_VISIBLE_AROUND_TUX + FLOOR_TILES_VISIBLE_AROUND_TUX ) continue;
+		    FLOOR_TILES_VISIBLE_AROUND_TUX + FLOOR_TILES_VISIBLE_AROUND_TUX )
+		continue;
 
-	    // if ( ThisRobot -> pos . z != Me . pos . z )
-	    // DebugPrintf ( -4 , "\n%s(): (possibly) inserting truly virtual bot..." , __FUNCTION__ );
-	    
-	    insert_one_enemy_into_blitting_list ( i );
+	    insert_one_enemy_into_blitting_list ( ThisRobot );
+	    }
 	}
-    }
 
 }; // void insert_enemies_into_blitting_list ( void )
 
@@ -1326,7 +1322,7 @@ blit_preput_objects_according_to_blitting_list ( int mask )
 	{
 	    if ( ! ( mask & OMIT_ENEMIES ) ) 
 	    {
-		PutEnemy ( blitting_list [ i ] . code_number , -1 , -1 , mask , FALSE ); 
+		PutEnemy ( (enemy *)(blitting_list [ i ] .  element_pointer), -1 , -1 , mask , FALSE ); 
 	    }
 	}
     }
@@ -1341,7 +1337,7 @@ void
 blit_nonpreput_objects_according_to_blitting_list ( int mask )
 {
     int i;
-    int enemy_under_cursor = -1;
+    enemy * enemy_under_cursor = NULL;
     int barrel_under_cursor = -1;
     int chest_under_cursor = -1;
     int item_under_cursor = -1; 
@@ -1350,7 +1346,7 @@ blit_nonpreput_objects_according_to_blitting_list ( int mask )
     // We memorize which 'enemy' is currently under the mouse target, so that we
     // can properly highlight this enemy...
     //
-    enemy_under_cursor = GetLivingDroidBelowMouseCursor ( 0 ) ;
+    enemy_under_cursor = GetLivingDroidBelowMouseCursor ( ) ;
     barrel_under_cursor = smashable_barrel_below_mouse_cursor ( 0 ) ;
     chest_under_cursor = closed_chest_below_mouse_cursor ( 0 ) ;
     item_under_cursor = get_floor_item_index_under_mouse_cursor ( 0 );
@@ -1423,10 +1419,11 @@ blit_nonpreput_objects_according_to_blitting_list ( int mask )
 		    // A droid can either be rendered in normal mode or in highlighted
 		    // mode, depending in whether the mouse cursor is right over it or not.
 		    //
-		    if ( blitting_list [ i ] . code_number == enemy_under_cursor )
-			PutEnemy ( blitting_list [ i ] . code_number , -1 , -1 , mask , TRUE ); 
+		    /* XXX */
+		    if ( blitting_list [ i ] . element_pointer == enemy_under_cursor )
+			PutEnemy ( (enemy *)blitting_list [ i ] . element_pointer , -1 , -1 , mask , TRUE ); 
 		    else
-			PutEnemy ( blitting_list [ i ] . code_number , -1 , -1 , mask , FALSE ); 
+			PutEnemy ( (enemy*) blitting_list [ i ] . element_pointer , -1 , -1 , mask , FALSE ); 
 		}
 		break;
 	    case BLITTING_TYPE_BULLET:
@@ -2008,7 +2005,7 @@ PutMouseMoveCursor ( void )
     SDL_Rect TargetRectangle;
     
     if ( ( Me . mouse_move_target . x == (-1) ) &&
-	 ( Me . current_enemy_target == (-1) ) )
+	 ( Me . current_enemy_target == NULL) )
     {
 	return;
     }
@@ -2034,16 +2031,16 @@ PutMouseMoveCursor ( void )
 	}
     }
     
-    if ( Me . current_enemy_target != (-1) ) 
+    if ( Me . current_enemy_target != NULL ) 
     {
 	// translate_map_point_to_screen_pixel ( float x_map_pos , float y_map_pos , int give_x )
 	
 	TargetRectangle . x = 
-	    translate_map_point_to_screen_pixel_x ( AllEnemys [ Me . current_enemy_target ] . pos . x , 
-						  AllEnemys [ Me . current_enemy_target ] . pos . y );
+	    translate_map_point_to_screen_pixel_x ( Me . current_enemy_target->pos . x , 
+						    Me . current_enemy_target->pos . y );
 	TargetRectangle . y = 
-	    translate_map_point_to_screen_pixel_y ( AllEnemys [ Me . current_enemy_target ] . pos . x , 
-						  AllEnemys [ Me . current_enemy_target ] . pos . y );
+	    translate_map_point_to_screen_pixel_y ( Me . current_enemy_target->pos . x , 
+						  Me . current_enemy_target->pos . y );
 	if ( use_open_gl )
 	{
 	    TargetRectangle . x -= MouseCursorImageList [ 1 ] . original_image_width / 2 ;
@@ -3572,10 +3569,9 @@ blit_tux ( int x , int y )
  * comments, that must have been set before, to the screen.
  * ---------------------------------------------------------------------- */
 void
-PrintCommentOfThisEnemy ( int Enum )
+PrintCommentOfThisEnemy ( enemy * e )
 {
     int x_pos, y_pos;
-    char phase_text[200];
     
     //--------------------
     // At this point we can assume, that the enemys has been blittet to the
@@ -3583,11 +3579,15 @@ PrintCommentOfThisEnemy ( int Enum )
     // 
     // So now we can add some text the enemys says.  That might be fun.
     //
-    if ( ( AllEnemys [ Enum ] . TextVisibleTime < GameConfig . WantedTextVisibleTime )
+    if ( ! (e -> TextToBeDisplayed ) )
+	return;
+    if ( e -> TextToBeDisplayed [ 0 ] == '\0' )
+	return; 
+    if ( ( e->TextVisibleTime < GameConfig . WantedTextVisibleTime )
 	 && GameConfig . All_Texts_Switch )
     {
-	x_pos = translate_map_point_to_screen_pixel_x ( AllEnemys[ Enum ] . virt_pos . x , AllEnemys [ Enum ] . virt_pos . y );
-	y_pos = translate_map_point_to_screen_pixel_y ( AllEnemys[ Enum ] . virt_pos . x , AllEnemys [ Enum ] . virt_pos . y )
+	x_pos = translate_map_point_to_screen_pixel_x ( e->virt_pos . x , e->virt_pos . y );
+	y_pos = translate_map_point_to_screen_pixel_y ( e->virt_pos . x , e->virt_pos . y )
 	    - 100 ;
 	
 	//--------------------
@@ -3595,21 +3595,7 @@ PrintCommentOfThisEnemy ( int Enum )
 	//
 	PutStringFont ( Screen , FPS_Display_BFont , 
 			x_pos , y_pos ,  
-			AllEnemys[Enum].TextToBeDisplayed );
-	
-	//--------------------
-	// Now we add some more debug info here...
-	//
-	sprintf ( phase_text , "a-phase: %3.3f a-type: %d" , AllEnemys [ Enum ] . animation_phase , AllEnemys [ Enum ] . animation_type );
-	/*
-	  PutStringFont ( Screen , FPS_Display_BFont , 
-	  x_pos , y_pos + FontHeight ( FPS_Display_BFont ) ,  
-	  phase_text );
-	  sprintf ( phase_text , "speed: %3.3fx %3.3fy" , AllEnemys [ Enum ] . speed . x , AllEnemys [ Enum ] . speed . y );
-	  PutStringFont ( Screen , FPS_Display_BFont , 
-	  x_pos , y_pos + 2 * FontHeight ( FPS_Display_BFont ) ,  
-	  phase_text );
-	*/
+			e->TextToBeDisplayed );
     }
     
 }; // void PrintCommentOfThisEnemy ( int Enum, int x, int y )
@@ -3620,24 +3606,24 @@ PrintCommentOfThisEnemy ( int Enum )
  * or whether we can skip it.
  * ---------------------------------------------------------------------- */
 int
-ThisEnemyNeedsToBeBlitted ( int Enum , int x , int y )
+ThisEnemyNeedsToBeBlitted ( enemy * e , int x , int y )
 {
     // if enemy is on other level, return 
-    if ( AllEnemys [ Enum ] . virt_pos . z != Me . pos . z )
+    if ( e-> virt_pos . z != Me . pos . z )
     {
 	return FALSE;
     }
     
     // if enemy is of type (-1), return 
-    if ( AllEnemys[Enum].type == ( -1 ) )
+    if ( e->type == ( -1 ) )
     {
 	return FALSE ;
     }
     
-    if ( ! MakeSureEnemyIsInsideHisLevel ( &(AllEnemys[Enum] ) ) ) return ( FALSE );
+    if ( ! MakeSureEnemyIsInsideHisLevel ( e ) ) return ( FALSE );
     
     // if the enemy is out of sight, we need not do anything more here
-    if ( ( ! show_all_droids ) && ( ! IsVisible ( & AllEnemys [ Enum ] . virt_pos ) ) )
+    if ( ( ! show_all_droids ) && ( ! IsVisible ( & e->virt_pos ) ) )
     {
 	return FALSE ;
     }
@@ -3651,7 +3637,7 @@ ThisEnemyNeedsToBeBlitted ( int Enum , int x , int y )
  *
  * ---------------------------------------------------------------------- */
 void
-PutEnemyEnergyBar ( int Enum , SDL_Rect TargetRectangle )
+PutEnemyEnergyBar ( enemy * e , SDL_Rect TargetRectangle )
 {
     float Percentage;
     SDL_Rect FillRect;
@@ -3672,8 +3658,8 @@ PutEnemyEnergyBar ( int Enum , SDL_Rect TargetRectangle )
     //--------------------
     // If the enemy is dead already, there's nothing to do here...
     //
-    if ( AllEnemys [ Enum ] . Status == INFOUT ) return;
-    if ( AllEnemys [ Enum ] . energy <= 0 ) return;
+    if ( e->Status == INFOUT ) return;
+    if ( e->energy <= 0 ) return; /*XXX*/
     
     //--------------------
     // Now we need to find the right colors to fill our bars with...
@@ -3685,7 +3671,7 @@ PutEnemyEnergyBar ( int Enum , SDL_Rect TargetRectangle )
     //--------------------
     // work out the percentage health
     //
-    Percentage = ( AllEnemys [ Enum ] . energy ) / Druidmap [ AllEnemys [ Enum ] . type ] . maxenergy ;
+    Percentage = ( e->energy ) / Druidmap [ e->type ] . maxenergy ;
     
     if ( use_open_gl ) {
 	
@@ -3702,7 +3688,7 @@ PutEnemyEnergyBar ( int Enum , SDL_Rect TargetRectangle )
 		w = TargetRectangle . w ;
 		h = TargetRectangle . h ;
 	
-		if ( AllEnemys [ Enum ] . is_friendly ) 
+		if ( e->is_friendly ) 
 		    c1.g = 255;
 		else
 		    c1.r = 255;
@@ -3728,7 +3714,7 @@ PutEnemyEnergyBar ( int Enum , SDL_Rect TargetRectangle )
 	// If the enemy is friendly, then we needn't display his health, right?
 	// Or better yet, we might show a green energy bar instead.  That's even
 	// better!
-	if ( AllEnemys [ Enum ] . is_friendly ) 
+	if ( e->is_friendly ) 
 	    our_SDL_fill_rect_wrapper ( Screen , &FillRect , full_color_friend ) ;
 	else
 	    our_SDL_fill_rect_wrapper ( Screen , &FillRect , full_color_enemy ) ;
@@ -3839,12 +3825,11 @@ There was a rotation model type given, that exceeds the number of rotation model
  * everthing a little bit more complicated.
  * ---------------------------------------------------------------------- */
 void
-PutIndividuallyShapedDroidBody ( int Enum , SDL_Rect TargetRectangle , int mask , int highlight )
+PutIndividuallyShapedDroidBody ( enemy * ThisRobot , SDL_Rect TargetRectangle , int mask , int highlight )
 {
     int RotationModel;
     int RotationIndex;
     float darkness ;
-    enemy* ThisRobot = & ( AllEnemys [ Enum ] ) ;
     moderately_finepoint bot_pos;
     float zf = 1.0;
     if ( mask & ZOOM_OUT ) zf = ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT;
@@ -4036,7 +4021,7 @@ PutIndividuallyShapedDroidBody ( int Enum , SDL_Rect TargetRectangle , int mask 
 	}
 	
 	if ( GameConfig . enemy_energy_bars_visible )
-	    PutEnemyEnergyBar ( Enum , TargetRectangle );
+	    PutEnemyEnergyBar ( ThisRobot , TargetRectangle );
 	return;
     }
     
@@ -4048,7 +4033,7 @@ PutIndividuallyShapedDroidBody ( int Enum , SDL_Rect TargetRectangle , int mask 
  * AllEnemys array. Everything else is computed in here.
  * ---------------------------------------------------------------------- */
 void
-PutEnemy ( int Enum , int x , int y , int mask , int highlight )
+PutEnemy ( enemy * e , int x , int y , int mask , int highlight )
 {
     SDL_Rect TargetRectangle;
     
@@ -4058,18 +4043,18 @@ PutEnemy ( int Enum , int x , int y , int mask , int highlight )
     // the screen or not.  Since there are many things to consider, we
     // got a special function for this job.
     //
-    if ( ( ! ThisEnemyNeedsToBeBlitted ( Enum , x , y ) ) && ( !xray_vision_for_tux ) ) return;
+    if ( ( ! ThisEnemyNeedsToBeBlitted ( e , x , y ) ) && ( !xray_vision_for_tux ) ) return;
     
     //--------------------
     // We check for incorrect droid types, which sometimes might occor, especially after
     // heavy editing of the crew initialisation functions ;)
     //
-    if ( AllEnemys[Enum].type >= Number_Of_Droid_Types )
+    if ( e->type >= Number_Of_Droid_Types )
     {
 	ErrorMessage ( __FUNCTION__  , "\
 There was a droid type on this level, that does not really exist.",
 				   PLEASE_INFORM, IS_FATAL );
-	AllEnemys[Enum].type = 0;
+	e->type = 0;
     }
     
     //--------------------
@@ -4088,13 +4073,13 @@ There was a droid type on this level, that does not really exist.",
 	TargetRectangle.y = y ;
     }
     
-    PutIndividuallyShapedDroidBody ( Enum , TargetRectangle , mask , highlight );
+    PutIndividuallyShapedDroidBody ( e , TargetRectangle , mask , highlight );
     
     //--------------------
     // Only if this robot is not dead, we consider printing the comments
     // this robot might have to make on the current situation.
     //
-    if ( AllEnemys [ Enum ] . Status != INFOUT) PrintCommentOfThisEnemy ( Enum );
+    if ( e->Status != INFOUT) PrintCommentOfThisEnemy ( e );
     
 }; // void PutEnemy(int Enum , int x , int y) 
 

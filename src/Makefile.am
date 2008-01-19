@@ -14,4 +14,4 @@ freedroidRPG_SOURCES = menu.c shop.c items.c character.c skills.c saveloadgame.c
 	proto.h struct.h system.h BFont.h \
 	SDL_rotozoom.c SDL_rotozoom.h open_gl.c mission.c chat.c light.c \
 	getopt.c getopt1.c getopt.h scandir.c scandir.h sound.h sound_effects.c \
-	lang.h
+	lang.h lists.c

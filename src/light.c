@@ -287,25 +287,23 @@ WARNING!  End of light sources array reached!",
 	}
     }
     
-    //--------------------
-    // Now we can proceed with the enemies:  They should give light too,
-    // even if only in small amounts...
-    //
-    occasionally_update_first_and_last_bot_indices ( ) ;
-    for ( i = first_index_of_bot_on_level [ Me . pos . z ] ; 
-	  i <  last_index_of_bot_on_level [ Me . pos . z ] ; i ++ )
+    enemy * erot = alive_bots_head;
+    for ( ; erot; erot = GETNEXT(erot))
     {
-	if ( AllEnemys [ i ] . Status == INFOUT ) continue;
+	if ( Me . pos . z != erot->pos . z ) 
+	    continue;
 
-	if ( Me . pos . z != AllEnemys [ i ] . pos . z ) continue ;
-	if ( fabsf ( Me . pos . x - AllEnemys [ i ] . pos . x ) >= 12 ) continue ;
-	if ( fabsf ( Me . pos . y - AllEnemys [ i ] . pos . y ) >= 12 ) continue ;
+	if ( fabsf ( Me . pos . x - erot->pos . x ) >= 12 ) 
+	    continue;
+
+	if ( fabsf ( Me . pos . y - erot->pos . y ) >= 12 )
+	    continue;
 
 	//--------------------
 	// Now we know that this one needs to be inserted!
 	//
-	light_sources [ next_light_emitter_index ] . x = AllEnemys [ i ] . pos . x ;
-	light_sources [ next_light_emitter_index ] . y = AllEnemys [ i ] . pos . y ;
+	light_sources [ next_light_emitter_index ] . x = erot->pos . x ;
+	light_sources [ next_light_emitter_index ] . y = erot->pos . y ;
 	light_source_strengthes [ next_light_emitter_index ] = -14 ;
 	next_light_emitter_index ++ ;
 

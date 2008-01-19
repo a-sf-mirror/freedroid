@@ -65,7 +65,7 @@ typedef struct tColorY {
  * so that later changes to the struct can be made with minimal effort 
  * and mistakes.
  * ---------------------------------------------------------------------- */
-typedef struct
+typedef struct iso_image_s
 {
     SDL_Surface* surface;
     int offset_x;
@@ -88,9 +88,8 @@ iso_image, *Iso_image;
 #define UNLOADED_ISO_IMAGE { NULL , 0 , 0 , NULL , 0 , 0 , 0 }
 
 
-typedef struct
+typedef struct mouse_press_button_s
 {
-    // SDL_Surface *button_surface;
     iso_image button_image;
     char *button_image_file_name;
     SDL_Rect button_rect;
@@ -99,7 +98,7 @@ typedef struct
 }
 mouse_press_button, *Mouse_press_button;
 
-typedef struct
+typedef struct configuration_for_freedroid_s
 {
     float WantedTextVisibleTime;
     int Draw_Framerate;
@@ -175,35 +174,35 @@ typedef struct
 }
 configuration_for_freedroid , *Configuration_for_freedroid;
 
-typedef struct
+typedef struct point_s
 {
     int x;
     int y;
 }
 point, *Point;
 
-typedef struct
+typedef struct moderately_finepoint_s
 {
     float x;
     float y;
 }
 moderately_finepoint, *Moderately_finepoint;
 
-typedef struct
+typedef struct finepoint_s
 {
     double x;
     double y;
 }
 finepoint, *Finepoint;
 
-typedef struct
+typedef struct gps_s
 {
     double x;
     double y;
     int z;
 } gps, *GPS;
 
-typedef struct
+typedef struct location_s
 {
     byte level;			
     int x;			
@@ -211,14 +210,14 @@ typedef struct
 }
 location, *Location;
 
-typedef struct
+typedef struct map_label_s
 {
     char* label_name;
     point pos; // how many blocks does this big map insert cover?
 }
 map_label, *Map_Label;
 
-typedef struct
+typedef struct mission_s
 {
     char MissionName[500];  // this should be the name of the mission, currently uninitialized
     int MissionWasAssigned; // has be influencer been assigned to this mission? , currently uninitialized
@@ -253,7 +252,7 @@ mission, *Mission;
 // This structure can contain things, that might be triggered by a special
 // condition, that can be specified in the mission file as well.
 //
-typedef struct
+typedef struct triggered_action_s
 {
     char* ActionLabel;  // this is a better reference than a number
     
@@ -277,7 +276,7 @@ triggered_action , *Triggered_action;
 // This structure can contain conditions that must be fulfilled, so that a special
 // event is triggered.  Such conditions may be specified in the mission file as well
 //
-typedef struct
+typedef struct even_trigger_s
 {
     // Maybe the event is triggerd by the influencer stepping somewhere
     int Influ_Must_Be_At_Level;
@@ -297,14 +296,14 @@ typedef struct
 }
 event_trigger , *Event_trigger;
 
-typedef struct
+typedef struct map_statement_s
 {
     int x;
     int y;
     char* Statement_Text;
 } map_statement , *Map_statement;
 
-typedef struct
+typedef struct obstacle_spec_s
 {
     iso_image image;
     iso_image shadow_image;
@@ -350,7 +349,7 @@ typedef struct
 }
 obstacle_spec, *Obstacle_spec;
 
-typedef struct
+typedef struct item_image_spec_s
 {
     point inv_size;
     SDL_Surface* Surface;
@@ -358,7 +357,7 @@ typedef struct
     SDL_Surface* scaled_surface_for_shop;
 } item_image_spec , *Item_image_spec;
 
-typedef struct
+typedef struct item_bonus_s
 {
     char* bonus_name;
     int base_bonus_to_dex;
@@ -399,8 +398,8 @@ typedef struct
     int level; //"level" of the prefix (is it good or not)
 } item_bonus , *Item_bonus;
 
-typedef struct
-{
+typedef struct itemspec_s
+{ 
     char* item_name;
     char* item_rotation_series_prefix;
     char* item_description;
@@ -460,7 +459,7 @@ typedef struct
     
 } itemspec , *Itemspec;
 
-typedef struct
+typedef struct item_s
 {
     // Here are the rather short-lived properties of the item
     finepoint pos;
@@ -499,7 +498,7 @@ typedef struct
     point inventory_position;
 } item, *Item;
 
-typedef struct
+typedef struct druidspec_s
 {
     char *druidname;
     char *droid_portrait_rotation_series_prefix;
@@ -550,7 +549,76 @@ typedef struct
 }
 druidspec, *Druidspec;
 
-typedef struct
+
+typedef struct enemy_s
+{
+    int type;			// the number of the droid specifications in Druidmap 
+    gps pos;		        // coordinates of the current position in the level
+    gps virt_pos;		// the virtual position with respect to remote levels
+    finepoint speed;		// current speed  
+    double energy;		// current energy of this droid
+    
+    double phase;	                // current phase of rotation of this droid
+    float animation_phase;        // the current animation frame for this enemy (starting at 0 of course...)
+    int animation_type;           // walk-animation, attack-animation, gethit animation, death animation
+    
+    int nextwaypoint;		// the next waypoint target
+    int lastwaypoint;		// the waypoint from whence this robot just came
+    int homewaypoint;		// the waypoint this robot started at
+    int max_distance_to_home;	// how far this robot will go before returning to it's home waypoint
+    int Status;			// current status like OUT=TERMINATED or not OUT
+    
+    int combat_state;             // MOVE_ALONG_RANDOM_WAYPOINTS, BACK_OFF_AFTER_GETTING_HIT, MAKE_ATTACK_RUN, SEEK_BETTER_POSITION...
+    float state_timeout;          // when will this state automatically time out...
+    
+    float frozen;                 // is this droid currently frozen and for how long will it stay this way?
+    float poison_duration_left;   // is this droid currently poisoned and for how long will it stay this way?
+    float poison_damage_per_sec;  // is this droid currently poisoned and how much poison is at work?
+    float paralysation_duration_left;  // is this droid currently paralyzed and for how long will it stay this way?
+    double pure_wait;		// time till the droid will start to move again
+    double firewait;		// time this robot still takes until it's gun/weapon will be fully reloaded
+    int ammo_left; 		  // ammunition left in the charger
+    
+    int CompletelyFixed;          // set this flat to make the robot entirely immobile
+    int follow_tux;               // does this robot try to follow tux via it's random movements?
+    int FollowingInflusTail;      // does this robot follow influs tail? (trott behind him? )
+    int SpecialForce;             // This flag will exclude the droid from initial shuffling of droids
+    int on_death_drop_item_code;  // drop a pre-determined item when dying?
+    
+    int marker;                   // This provides a marker for special mission targets
+    
+    int is_friendly;              // is this a friendly droid or is it a MS controlled one?
+    int has_been_taken_over;      // has the Tux made this a friendly bot via takeover subgame?
+    int attack_target_type ;      // attack NOTHING, PLAYER, or BOT
+    struct enemy_s * bot_target ; 
+    int attack_run_only_when_direct_line; // require direct line to target before switching into attach run mode
+    char dialog_section_name[ MAX_LENGTH_FOR_DIALOG_SECTION_NAME ]; // This should indicate one of the many sections of the Freedroid.dialogues file
+    char short_description_text[ MAX_LENGTH_OF_SHORT_DESCRIPTION_STRING ]; // This should indicate one of the many sections of the Freedroid.dialogues file
+    int will_rush_tux;            // will this robot approach the Tux on sight and open communication?
+    int persuing_given_course;    // is this robot persuing a given course via PersueGivenCourse( EnemyNum )?
+    int StayHowManyFramesBehind;  // how many frames shall this droid trott behind the influ when follwing his tail?
+    int StayHowManySecondsBehind;  // how many seconds shall this droid trott behind the influ when follwing his tail?
+    int has_greeted_influencer;   // has this robot issued his first-time-see-the-Tux message?
+    float previous_angle;         // which angle has this robot been facing the frame before?
+    float current_angle;          // which angle will the robot be facing now?
+    float last_phase_change;      // when did the robot last change his (8-way-)direction of facing
+    float previous_phase;         // which (8-way) direction did the robot face before?
+    float last_combat_step;       // when did this robot last make a step to move in closer or farther away from Tux in combat?
+    
+    float TextVisibleTime;
+    char* TextToBeDisplayed;
+    moderately_finepoint PrivatePathway[ MAX_STEPS_IN_GIVEN_COURSE ];
+    int stick_to_waypoint_system_by_default;
+
+    int bot_stuck_in_wall_at_previous_check;
+    float time_since_previous_stuck_in_wall_check;
+
+    struct enemy_s * NEXT;
+    struct enemy_s * PREV;
+}
+enemy, *Enemy;
+
+typedef struct tux_s
 {
     Sint8 type;			  // ... currently unused ...
     Sint8 status;		  // ... only little meaning any more ...
@@ -566,7 +634,7 @@ typedef struct
     gps pos;		          // current position in the whole ship 
     gps teleport_anchor;            // where from have you last teleported home
     gps mouse_move_target;          // where the tux is going automatically by virtue of mouse move 
-    int current_enemy_target; // which enemy has been targeted (for a melee shot) (DIFFERS FROM ABOVE !)
+    enemy * current_enemy_target; // which enemy has been targeted (for a melee shot) (DIFFERS FROM ABOVE !)
     int mouse_move_target_combo_action_type; // what extra action has to be done upon arrival?
     int mouse_move_target_combo_action_parameter; // extra data to use for the combo action
     
@@ -698,76 +766,8 @@ typedef struct
 }
 tux_t, *Tux_t;
 
-typedef struct
-{
-    int type;			// the number of the droid specifications in Druidmap 
-    gps pos;		        // coordinates of the current position in the level
-    gps virt_pos;		// the virtual position with respect to remote levels
-    finepoint speed;		// current speed  
-    double energy;		// current energy of this droid
-    
-    double phase;	                // current phase of rotation of this droid
-    float animation_phase;        // the current animation frame for this enemy (starting at 0 of course...)
-    int animation_type;           // walk-animation, attack-animation, gethit animation, death animation
-    
-    int nextwaypoint;		// the next waypoint target
-    int lastwaypoint;		// the waypoint from whence this robot just came
-    int homewaypoint;		// the waypoint this robot started at
-    int max_distance_to_home;	// how far this robot will go before returning to it's home waypoint
-    int Status;			// current status like OUT=TERMINATED or not OUT
-    
-    int combat_state;             // MOVE_ALONG_RANDOM_WAYPOINTS, BACK_OFF_AFTER_GETTING_HIT, MAKE_ATTACK_RUN, SEEK_BETTER_POSITION...
-    float state_timeout;          // when will this state automatically time out...
-    
-    float frozen;                 // is this droid currently frozen and for how long will it stay this way?
-    float poison_duration_left;   // is this droid currently poisoned and for how long will it stay this way?
-    float poison_damage_per_sec;  // is this droid currently poisoned and how much poison is at work?
-    float paralysation_duration_left;  // is this droid currently paralyzed and for how long will it stay this way?
-    double pure_wait;		// time till the droid will start to move again
-    double firewait;		// time this robot still takes until it's gun/weapon will be fully reloaded
-    int ammo_left; 		  // ammunition left in the charger
-    
-    int CompletelyFixed;          // set this flat to make the robot entirely immobile
-    int follow_tux;               // does this robot try to follow tux via it's random movements?
-    int FollowingInflusTail;      // does this robot follow influs tail? (trott behind him? )
-    int SpecialForce;             // This flag will exclude the droid from initial shuffling of droids
-    int on_death_drop_item_code;  // drop a pre-determined item when dying?
-    
-    int marker;                   // This provides a marker for special mission targets
-    
-    int is_friendly;              // is this a friendly droid or is it a MS controlled one?
-    int has_been_taken_over;      // has the Tux made this a friendly bot via takeover subgame?
-    int attack_target_type ;      // attack NOTHING, PLAYER, or BOT
-    int attack_target_index ;     // index of bot or (-1) if there is no target
-    int attack_run_only_when_direct_line; // require direct line to target before switching into attach run mode
-    char dialog_section_name[ MAX_LENGTH_FOR_DIALOG_SECTION_NAME ]; // This should indicate one of the many sections of the Freedroid.dialogues file
-    char short_description_text[ MAX_LENGTH_OF_SHORT_DESCRIPTION_STRING ]; // This should indicate one of the many sections of the Freedroid.dialogues file
-    int will_rush_tux;            // will this robot approach the Tux on sight and open communication?
-    int persuing_given_course;    // is this robot persuing a given course via PersueGivenCourse( EnemyNum )?
-    int StayHowManyFramesBehind;  // how many frames shall this droid trott behind the influ when follwing his tail?
-    int StayHowManySecondsBehind;  // how many seconds shall this droid trott behind the influ when follwing his tail?
-    int has_greeted_influencer;   // has this robot issued his first-time-see-the-Tux message?
-    float previous_angle;         // which angle has this robot been facing the frame before?
-    float current_angle;          // which angle will the robot be facing now?
-    float last_phase_change;      // when did the robot last change his (8-way-)direction of facing
-    float previous_phase;         // which (8-way) direction did the robot face before?
-    float last_combat_step;       // when did this robot last make a step to move in closer or farther away from Tux in combat?
-    
-    //--------------------
-    // FROM HERE ON, THERE IS ONLY INFORMATION, THAT DOES NOT NEED TO BE
-    // COMMUNICATED BETWEEN THE CLIENT AND THE SERVER
-    //
-    float TextVisibleTime;
-    char* TextToBeDisplayed;
-    moderately_finepoint PrivatePathway[ MAX_STEPS_IN_GIVEN_COURSE ];
-    int stick_to_waypoint_system_by_default;
 
-    int bot_stuck_in_wall_at_previous_check;
-    float time_since_previous_stuck_in_wall_check;
-}
-enemy, *Enemy;
-
-typedef struct
+typedef struct bulletspec_s
 {
     int phases;			// how many phases in motion to show 
     double phase_changes_per_second; // how many different phases to display every second
@@ -775,7 +775,7 @@ typedef struct
 } 
 bulletspec, *Bulletspec;
 
-typedef struct
+typedef struct bullet_s
 {
     int type;
     gps pos;
@@ -815,7 +815,7 @@ typedef struct
 }
 bullet, *Bullet;
 
-typedef struct
+typedef struct blastspec_s
 {
     int phases;
     double total_animation_time;
@@ -823,7 +823,7 @@ typedef struct
 }
 blastspec, *Blastspec;
 
-typedef struct
+typedef struct blast_s
 {
     gps pos;
     int type;
@@ -833,7 +833,7 @@ typedef struct
 }
 blast, *Blast;
 
-typedef struct
+typedef struct spell_active_s
 {
     int img_type; // what type of spell is active?
     int damage;
@@ -849,7 +849,7 @@ typedef struct
 }
 spell_active, *Spell_Active;
 
-typedef struct
+typedef struct spell_skill_spec_s
 {
     char* name;
     char* icon_name;
@@ -869,7 +869,7 @@ typedef struct
 }
 spell_skill_spec, *Spell_Skill_Spec;
 
-typedef struct
+typedef struct waypoint_s
 {
     int x;			
     int y;
@@ -879,7 +879,7 @@ typedef struct
 }
 waypoint, *Waypoint;
 
-typedef struct
+typedef struct obstacle_s
 {
     int type;
     moderately_finepoint pos;
@@ -888,14 +888,14 @@ typedef struct
 }
 obstacle, *Obstacle;
 
-typedef struct
+typedef struct map_tile_s
 {
     Uint16 floor_value;
     int obstacles_glued_to_here [ MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE ];
 }
 map_tile, *Map_tile;
 
-typedef struct
+typedef struct level_s
 {
     int levelnum;
     int xlen;
@@ -940,7 +940,7 @@ typedef struct
 }
 level, *Level;
 
-typedef struct
+typedef struct ship_s
 {
     int num_levels;
     char* AreaName;
@@ -948,7 +948,7 @@ typedef struct
 }
 ship, *Ship;
 
-typedef struct
+typedef struct dialogue_option_s
 {
     int position_x;
     int position_y;

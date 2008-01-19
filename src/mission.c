@@ -539,7 +539,7 @@ quest_browser_interface ( void )
 void 
 CheckIfMissionIsComplete (void)
 {
-    int Robot_Counter;
+    enemy * erot = NULL;
     int ItemCounter;
     int mis_num;
     int ActionNum;
@@ -576,16 +576,19 @@ CheckIfMissionIsComplete (void)
 	//
 	if ( Me . AllMissions [ mis_num ].KillOne != (-1) )
 	{
-	    for ( Robot_Counter=0 ; Robot_Counter < MAX_ENEMYS_ON_SHIP ; Robot_Counter++ )
+	    erot = alive_bots_head;
+	    while ( erot )
 	    {
-		if ( ( AllEnemys[Robot_Counter].energy > 0 ) && 
-		     ( AllEnemys[Robot_Counter].Status != INFOUT ) && 
-		     ( AllEnemys[Robot_Counter] . marker == Me . AllMissions [ mis_num ] . KillOne ) )
+		if ( ( erot->energy > 0 ) && 
+		     ( erot->Status != INFOUT ) && 
+		     ( erot->marker == Me . AllMissions [ mis_num ] . KillOne ) )
 		{
 		    DebugPrintf ( MIS_COMPLETE_DEBUG , "\nOne of the marked droids is still alive...");
 		    this_mission_seems_completed = FALSE ;
 		    break;
 		}
+
+		erot = GETNEXT(erot);
 	    }
 	}
 	
@@ -615,16 +618,16 @@ CheckIfMissionIsComplete (void)
 	//
 	if ( Me.AllMissions[ mis_num ].KillAll != (-1) )
 	{
-	    for ( Robot_Counter=0 ; Robot_Counter < MAX_ENEMYS_ON_SHIP ; Robot_Counter++ )
+	    enemy * erot = alive_bots_head;
+	    while ( erot )
 	    {
-		if ( ( AllEnemys[Robot_Counter].energy > 0 ) && ( AllEnemys[Robot_Counter].is_friendly == FALSE ) )
+		if ( ( erot->energy > 0 ) && ( erot->is_friendly == FALSE ) )
 		{
-		    DebugPrintf ( MIS_COMPLETE_DEBUG , "\nThere are some robots still alive, and you should kill them all...");
-		    fflush(stdout);
-		    
 		    this_mission_seems_completed = FALSE ;
 		    break;
 		}
+
+		erot = GETNEXT(erot);
 	    }
 	}
 	
@@ -633,18 +636,18 @@ CheckIfMissionIsComplete (void)
 	//
 	if ( Me.AllMissions[ mis_num ].KillClass != (-1) )
 	{
-	    for ( Robot_Counter=0 ; Robot_Counter < MAX_ENEMYS_ON_SHIP ; Robot_Counter++ )
+	    enemy * erot = alive_bots_head;
+	    while ( erot )
 	    {
-		if ( ( AllEnemys[Robot_Counter].energy > 0 ) && 
-		     ( AllEnemys[Robot_Counter].Status != INFOUT ) && 
-		     ( Druidmap[AllEnemys[Robot_Counter].type].class == Me.AllMissions[ mis_num ].KillClass ) ) 
+		if ( ( erot->energy > 0 ) && 
+		     ( erot->Status != INFOUT ) && 
+		     ( Druidmap[erot->type].class == Me.AllMissions[ mis_num ].KillClass ) ) 
 		{
-		    DebugPrintf ( MIS_COMPLETE_DEBUG , "\nOne of that class is still alive: Nr=%d Lev=%d X=%f Y=%f." , 
-				  Robot_Counter , AllEnemys [ Robot_Counter ] . pos . z , 
-				  AllEnemys [ Robot_Counter ] . pos . x , AllEnemys [ Robot_Counter ] . pos . y );
 		    this_mission_seems_completed = FALSE ;
 		    break;
 		}
+
+		erot = GETNEXT(erot);
 	    }
 	}
 	
@@ -653,19 +656,18 @@ CheckIfMissionIsComplete (void)
 	//
 	if ( Me.AllMissions[ mis_num ]. must_clear_first_level != (-1) )
 	{
-	    for ( Robot_Counter=0 ; Robot_Counter < MAX_ENEMYS_ON_SHIP ; Robot_Counter++ )
+	    enemy * erot = alive_bots_head;
+	    while ( erot ) 
 	    {
-		if ( ( AllEnemys[Robot_Counter].energy > 0 ) && 
-		     ( AllEnemys[Robot_Counter].Status != INFOUT ) && 
-		     ( ! AllEnemys[Robot_Counter]. is_friendly ) && 
-		     ( AllEnemys[Robot_Counter] . pos . z == Me.AllMissions[ mis_num ].must_clear_first_level ) ) 
+	    	if ( ( erot->energy > 0 ) && 
+		     ( erot->Status != INFOUT ) && 
+		     ( ! erot->is_friendly ) && 
+		     ( erot->pos . z == Me.AllMissions[ mis_num ].must_clear_first_level ) ) 
 		{
-		    DebugPrintf ( MIS_COMPLETE_DEBUG , "\nOne bot on that first level is still alive: Nr=%d Lev=%d X=%f Y=%f." , 
-				  Robot_Counter , AllEnemys[Robot_Counter].pos.z , 
-				  AllEnemys[Robot_Counter].pos.x , AllEnemys[Robot_Counter].pos.y );
 		    this_mission_seems_completed = FALSE ;
 		    break;
 		}
+		erot = GETNEXT(erot);
 	    }
 	}
 	
@@ -674,19 +676,19 @@ CheckIfMissionIsComplete (void)
 	//
 	if ( Me.AllMissions[ mis_num ]. must_clear_second_level != (-1) )
 	{
-	    for ( Robot_Counter=0 ; Robot_Counter < MAX_ENEMYS_ON_SHIP ; Robot_Counter++ )
+	    enemy * erot = alive_bots_head;
+	    while ( erot )
 	    {
-		if ( ( AllEnemys[Robot_Counter].energy > 0 ) && 
-		     ( AllEnemys[Robot_Counter].Status != INFOUT ) && 
-		     ( ! AllEnemys[Robot_Counter]. is_friendly ) && 
-		     ( AllEnemys[Robot_Counter] . pos . z == Me.AllMissions[ mis_num ].must_clear_second_level ) ) 
+		if ( ( erot->energy > 0 ) && 
+		     ( erot->Status != INFOUT ) && 
+		     ( ! erot->is_friendly ) && 
+		     ( erot->pos . z == Me.AllMissions[ mis_num ].must_clear_second_level ) ) 
 		{
-		    DebugPrintf ( MIS_COMPLETE_DEBUG , "\nOne bot on that second level is still alive: Nr=%d Lev=%d X=%f Y=%f." , 
-				  Robot_Counter , AllEnemys[Robot_Counter].pos.z , 
-				  AllEnemys[Robot_Counter].pos.x , AllEnemys[Robot_Counter].pos.y );
 		    this_mission_seems_completed = FALSE ;
 		    break;
 		}
+
+		erot = GETNEXT(erot);
 	    }
 	}
 	

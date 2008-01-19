@@ -37,24 +37,6 @@
 #include "map.h"
 #include "SDL_rotozoom.h"
 
-//--------------------
-// This controls the zoom factor for the automap.  Since this uses
-// a different update policy than the level editor, even strong zoom
-// will not be a problem here...
-//
-// However some other considerations must be taken into account:  OPENGL
-// DOES IN GENERAL NOT WORK WELL ANY MORE WITH TEXTURES LARGER THAN 1024
-// AND SOMETIMES EVEN NOT WELL WITH ANYTHING > 256 (old vodoo cards!!!)
-// EVEN GEFORCE II HAS PROBLEMS WITH 2048 TEXTURE SIZE.
-//
-// Therefore some sanity-factor is introduced here:  it will scale down
-// the internal automap texture but scale it up again when the acutal
-// part-transparent blit is being done.  Using 0.25 for the sanity factor
-// should be the safest bet.  However quality is poor:  you get lots of
-// rectangular blocks where a wall/door/tree would be.
-// So we're using larger textures, assuming that most people will have
-// decen graphics adapters. Vodoo users can recompile the game for their needs...
-//
 int AUTOMAP_TEXTURE_WIDTH=2048;
 int AUTOMAP_TEXTURE_HEIGHT=1024;
 
@@ -230,7 +212,6 @@ show_automap_data_sdl ( void )
   int x , y ;
 #define AUTOMAP_SQUARE_SIZE 3
 #define AUTOMAP_COLOR 0x0FFFF
-  int i;
   int TuxColor = SDL_MapRGB( Screen->format, 0 , 0 , 255 ); 
   int FriendColor = SDL_MapRGB( Screen->format, 0 , 255 , 0 ); 
   //int BoogyColor = SDL_MapRGB( Screen->format, 255 , 0 , 0 ); 
@@ -307,34 +288,24 @@ show_automap_data_sdl ( void )
 	}
     }
 
-  //--------------------
-  // Now that the pure map data has been drawn, we add red dots for 
-  // the ememys around.
-  //
-  // for ( i = 0 ; i < Number_Of_Droids_On_Ship ; i ++ )
-  for ( i = 0 ; i < MAX_ENEMYS_ON_SHIP ; i ++ )
-  {
-      if ( AllEnemys [ i ] . Status  == INFOUT ) continue;
-      if ( AllEnemys [ i ] . type == (-1) ) continue;
-      if ( AllEnemys [ i ] . pos . z != automap_level -> levelnum ) continue;
+  enemy * erot = alive_bots_head;
+  for ( ; erot; erot = GETNEXT(erot))
+      {
+      if ( erot->type == (-1) || (erot->pos . z != automap_level -> levelnum ))
+	  continue;
 
       for ( x = 0 ; x < AUTOMAP_SQUARE_SIZE ; x ++ )
-	{
+	  {       
 	  for ( y = 0 ; y < AUTOMAP_SQUARE_SIZE ; y ++ )
-	    {
-	      if ( AllEnemys [ i ] . is_friendly )
-		{
-		  PutPixel ( Screen , AUTOMAP_SQUARE_SIZE * AllEnemys[i].pos.x + AUTOMAP_SQUARE_SIZE * ( automap_level -> ylen - AllEnemys[i].pos.y ) + x , 
-			     AUTOMAP_SQUARE_SIZE * AllEnemys[i].pos.x + AUTOMAP_SQUARE_SIZE * AllEnemys[i].pos.y + y , FriendColor );
-		}
-	      else
-		{
-		    // PutPixel ( Screen , AUTOMAP_SQUARE_SIZE * AllEnemys[i].pos.x + AUTOMAP_SQUARE_SIZE * ( automap_level -> ylen - AllEnemys[i].pos.y ) + x , 
-		    // AUTOMAP_SQUARE_SIZE * AllEnemys[i].pos.x + AUTOMAP_SQUARE_SIZE * AllEnemys[i].pos.y + y , BoogyColor );
-		}
-	    }
-	}
-    }
+	      {   
+	      if ( erot->is_friendly )
+		  {
+		  PutPixel ( Screen , AUTOMAP_SQUARE_SIZE * erot->pos.x + AUTOMAP_SQUARE_SIZE * ( automap_level -> ylen - erot->pos.y ) + x ,
+			  AUTOMAP_SQUARE_SIZE * erot->pos.x + AUTOMAP_SQUARE_SIZE * erot->pos.y + y , FriendColor );
+		  }
+	      }
+	  }
+      }
 
   //--------------------
   // Now that the automap is drawn so far, we add a blue dot for the
