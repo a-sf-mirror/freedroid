@@ -1007,7 +1007,7 @@ UpdateMouseMoveTargetAccordingToEnemy ( )
     // if that should be done.
     //
     
-    if ( ( Me . current_enemy_target -> Status == INFOUT ) ||
+    if ( ( Me . current_enemy_target -> energy <= 0 ) ||
 	 ( Me . current_enemy_target -> pos . z != 
 	   Me . pos . z ) )
 	    {
@@ -2445,8 +2445,6 @@ check_tux_enemy_collision (void)
 	    continue;
 	if ( erot->type == ( -1 ) )
 	    continue;
-	if ( erot->Status == INFOUT )
-	    continue;
 	
 	//--------------------
 	// We determine the distance and back out immediately if there
@@ -2528,8 +2526,6 @@ GetLivingDroidBelowMouseCursor ( )
     this_bot = alive_bots_head;
     for ( ; this_bot; this_bot = GETNEXT(this_bot))
     {
-	if ( this_bot -> Status == INFOUT)
-	    continue;
 	if ( this_bot -> pos . z != Me . pos . z )
 	    continue;
 	if ( fabsf ( this_bot -> pos . x - ( Mouse_Blocks_X ) ) >= 5.0 )

@@ -304,8 +304,6 @@ ShowCombatScreenTexts ( int mask )
 	    while ( erot )
 	    {
 		if ( ( erot->pos . z == Me . pos . z ) &&
-		     ( erot->Status != INFOUT ) &&
-		     ( erot->energy > 0 ) &&
 		     ( ! erot->is_friendly ) )
 		    remaining_bots ++ ;
 
@@ -3605,8 +3603,6 @@ ThisEnemyNeedsToBeBlitted ( enemy * e , int x , int y )
 	return FALSE ;
     }
     
-    if ( ! MakeSureEnemyIsInsideHisLevel ( e ) ) return ( FALSE );
-    
     // if the enemy is out of sight, we need not do anything more here
     if ( ( ! show_all_droids ) && ( ! IsVisible ( & e->virt_pos ) ) )
     {
@@ -3643,8 +3639,7 @@ PutEnemyEnergyBar ( enemy * e , SDL_Rect TargetRectangle )
     //--------------------
     // If the enemy is dead already, there's nothing to do here...
     //
-    if ( e->Status == INFOUT ) return;
-    if ( e->energy <= 0 ) return; /*XXX*/
+    if ( e->energy <= 0 ) return;
     
     //--------------------
     // Now we need to find the right colors to fill our bars with...
@@ -3954,7 +3949,7 @@ PutIndividuallyShapedDroidBody ( enemy * ThisRobot , SDL_Rect TargetRectangle , 
 		// availabe for that case).  In the other cases, we use the prepared color-
 		// filtered stuff...
 		// 
-		if ( ( ThisRobot -> energy <= 0 ) || ( ThisRobot -> Status == INFOUT ) )
+		if ( ThisRobot -> energy <= 0 )
 		    {
 		    blit_iso_image_to_map_position ( &enemy_iso_images [ RotationModel ] [ RotationIndex ] [ (int) ThisRobot -> animation_phase ] , ThisRobot 
 			-> virt_pos . x , ThisRobot -> virt_pos . y );
@@ -4064,7 +4059,7 @@ There was a droid type on this level, that does not really exist.",
     // Only if this robot is not dead, we consider printing the comments
     // this robot might have to make on the current situation.
     //
-    if ( e->Status != INFOUT) PrintCommentOfThisEnemy ( e );
+    if ( e->energy > 0) PrintCommentOfThisEnemy ( e );
     
 }; // void PutEnemy(int Enum , int x , int y) 
 

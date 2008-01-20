@@ -235,11 +235,6 @@ PermanentHealRobots (void)
   enemy * erot = alive_bots_head;
   while ( erot )
       {
-      if ( erot->Status == INFOUT)
-	{
-	erot = GETNEXT(erot);
-	continue;
-	}
       if ( erot->energy < Druidmap [ erot->type ] . maxenergy )
 	erot->energy += floor(Druidmap[erot->type ] . lose_health * HEAL_INTERVAL) ;
       if ( erot->energy > Druidmap [ erot->type ] . maxenergy )
@@ -259,7 +254,6 @@ InitEnemy ( enemy * our_bot )
     our_bot -> pos . z = our_bot -> virt_pos . z = our_bot -> energy = 0;
     our_bot -> nextwaypoint = our_bot -> lastwaypoint =  our_bot -> homewaypoint = 0;
     our_bot -> max_distance_to_home = 0;
-    our_bot -> Status = INFOUT;
     our_bot -> pure_wait = 0;
     our_bot -> frozen = 0;
     our_bot -> poison_duration_left = 0;
@@ -336,7 +330,7 @@ ShuffleEnemys ( int LevelNum )
     enemy * erot = alive_bots_head;
     for ( ; erot; erot = GETNEXT(erot))
     {
-	if ( ( erot-> Status == INFOUT ) || ( erot->pos . z != LevelNum ) )
+	if ( erot->pos . z != LevelNum )
 	    continue;		// dont handle dead enemys or on other level 
 	
 	erot-> persuing_given_course = FALSE; // since position is now completely mixed up,
@@ -565,7 +559,7 @@ CheckIfWayIsFreeOfDroidsWithoutTuxchecking ( float x1 , float y1 , float x2 , fl
     this_enemy = alive_bots_head;
     while ( this_enemy )
 	{
-	if (( this_enemy -> pos.z != OurLevel ) || ( this_enemy -> Status == INFOUT ) ||( this_enemy -> energy <= 0 ) || ( this_enemy -> pure_wait > 0 ) || ( this_enemy == ExceptedRobot ))
+	if (( this_enemy -> pos.z != OurLevel ) ||( this_enemy -> pure_wait > 0 ) || ( this_enemy == ExceptedRobot ))
 	    {
 	    this_enemy = GETNEXT(this_enemy);
 	    continue;
@@ -635,7 +629,7 @@ RawEnemyApproachPosition ( Enemy ThisRobot , finepoint next_target_spot )
 	ThisRobot -> animation_type = WALK_ANIMATION ;
 	ThisRobot -> animation_phase = 0.0 ;
 
-	if ( ( ThisRobot -> Status == INFOUT ) || ( ThisRobot -> animation_type == DEATH_ANIMATION ) )
+	if ( ( ThisRobot -> animation_type == DEATH_ANIMATION ) )
 	{
 	    DebugPrintf ( -4 , "\n%s(): WARNING: animation phase reset for INFOUT bot... " , __FUNCTION__ );
 	}
@@ -1189,14 +1183,7 @@ This is an error and should not occur, but most likely it does since\n\
 the bots are allowed some motion without respect to existing waypoints\n\
 in Freedroid RPG.\n",
 				   PLEASE_INFORM, IS_FATAL );
-	ThisRobot -> type = (-1) ;
-	ThisRobot -> Status = (INFOUT) ;
-	
-	//--------------------
-	// This droid must not be blitted!!
-	//
 	return ( FALSE );
-	// Terminate(ERR);
     }
 
     return ( TRUE );
@@ -1246,8 +1233,6 @@ static int kill_enemy(enemy * target, char givexp, int killertype)
 
     append_new_game_message ( game_message_text );
 
-    target -> Status = INFOUT;
-    
     if ( MakeSureEnemyIsInsideHisLevel ( target ) ) 
     {
 	Me . KillRecord [ target -> type ] ++ ;
@@ -1513,15 +1498,15 @@ enemy_handle_stuck_in_walls ( enemy* ThisRobot )
 		    DebugPrintf ( -2 , "\nMore details on this robot:  Type=%d. has_greeted_influencer=%d." ,
 				  ThisRobot -> type , ThisRobot -> has_greeted_influencer );
 		    enemy_say_current_state_on_screen ( ThisRobot ); // safety:  init the TextToBeDisplayed 
-		    DebugPrintf ( -2 , "\nnextwaypoint=%d. lastwaypoint=%d. combat_%s. Status=%d." ,
+		    DebugPrintf ( -2 , "\nnextwaypoint=%d. lastwaypoint=%d. combat_%s." ,
 				  ThisRobot -> nextwaypoint , ThisRobot -> lastwaypoint , 
-				  ThisRobot -> TextToBeDisplayed , ThisRobot -> Status );
+				  ThisRobot -> TextToBeDisplayed );
 		    ErrorMessage ( __FUNCTION__  , "\
 There was a bot, that was found to be inside a wall. This may be a bug in waypoint placement\n\
 Type=%d. pos =  %f/%f/%d\n\
-has_greeted_influencer=%d  combat_%s. Status=%d\n\
+has_greeted_influencer=%d  combat_%s. \n\
 nextwaypoint=%d. lastwaypoint=%d\n" ,
-					       NO_NEED_TO_INFORM, IS_WARNING_ONLY, ThisRobot -> type,  ThisRobot -> pos . x , ThisRobot -> pos . y , ThisRobot -> pos.z, ThisRobot -> has_greeted_influencer, ThisRobot -> TextToBeDisplayed, ThisRobot -> Status, ThisRobot -> nextwaypoint, ThisRobot -> lastwaypoint );
+					       NO_NEED_TO_INFORM, IS_WARNING_ONLY, ThisRobot -> type,  ThisRobot -> pos . x , ThisRobot -> pos . y , ThisRobot -> pos.z, ThisRobot -> has_greeted_influencer, ThisRobot -> TextToBeDisplayed, ThisRobot -> nextwaypoint, ThisRobot -> lastwaypoint );
 		    ThisRobot -> bot_stuck_in_wall_at_previous_check = TRUE ; 
 		    return;
 		    break;
@@ -1551,9 +1536,9 @@ nextwaypoint=%d. lastwaypoint=%d\n" ,
 			  ThisRobot -> nextwaypoint );
 
 	    enemy_say_current_state_on_screen ( ThisRobot ); // safety:  init the TextToBeDisplayed 
-	    DebugPrintf ( -2 , "\nnextwaypoint=%d. lastwaypoint=%d. combat_%s. Status=%d." ,
+	    DebugPrintf ( -2 , "\nnextwaypoint=%d. lastwaypoint=%d. combat_%s." ,
 			  ThisRobot -> nextwaypoint , ThisRobot -> lastwaypoint , 
-			  ThisRobot -> TextToBeDisplayed , ThisRobot -> Status );
+			  ThisRobot -> TextToBeDisplayed );
 	    ErrorMessage ( __FUNCTION__  , "\
 There was a bot MOVING ON ITS OWN, that was found to be repeatedly inside a wall.\n\
 WARNING!  EMERGENCY FALLBACK ENABLED --> Teleporting back to closest waypoint." ,
@@ -2349,8 +2334,7 @@ RawStartEnemysShot( enemy* ThisRobot , float xdist , float ydist )
 	    {
 	    /*XXX*/
 	    enemy * target_robot = ThisRobot->bot_target;
-	    if (!(( target_robot -> Status == INFOUT ) ||
-			( target_robot -> pos . z != ThisRobot -> pos . z ) ||
+	    if (!(( target_robot -> pos . z != ThisRobot -> pos . z ) ||
 			( fabsf ( (float) ( target_robot -> pos . x - ThisRobot -> pos . x ) ) > 2.5 ) ||
 			( fabsf ( target_robot -> pos . y - ThisRobot -> pos . y ) > 2.5 ) ||
 			( target_robot == ThisRobot )))
@@ -2469,8 +2453,6 @@ EnemyOfTuxCloseToThisRobot ( Enemy ThisRobot , moderately_finepoint* vect_to_tar
   enemy * erot = alive_bots_head;
   for ( ; erot ; erot = GETNEXT(erot) )
     {
-      if ( erot->Status == INFOUT ) 
-	  continue;
       if ( erot->is_friendly )
       	  continue;
       if ( erot->pos.z != ThisRobot->pos.z )
@@ -2520,8 +2502,6 @@ update_vector_to_shot_target_for_friend ( enemy* ThisRobot , moderately_finepoin
     enemy * erot = alive_bots_head;
     for ( ; erot; erot = GETNEXT(erot) )
     {
-	if ( erot->Status == INFOUT )
-	    continue;
 	if ( erot->is_friendly )
 	    continue;
 	if ( erot->pos.z != ThisRobot->pos.z )
@@ -3207,7 +3187,7 @@ start_gethit_animation_if_applicable ( enemy* ThisRobot )
     //
     if ( ( last_gethit_animation_image [ ThisRobot -> type ] - first_gethit_animation_image [ ThisRobot -> type ] > 0 ) )
     {
-	if ( ( ThisRobot -> Status == INFOUT ) || ( ThisRobot -> animation_type == DEATH_ANIMATION ) )
+	if ( ( ThisRobot -> animation_type == DEATH_ANIMATION ) )
 	{
 	    DebugPrintf ( -4 , "\n%s(): WARNING: animation phase reset for INFOUT bot... " , __FUNCTION__ );
 	}
@@ -3262,11 +3242,6 @@ AnimateEnemys (void)
 			// DebugPrintf ( -1000 , "\nSwitching to 'stand' now..." );
 			}
 
-		    if ( our_enemy -> Status == INFOUT )
-			{
-			DebugPrintf ( -4 , "\n%s(): WARNING: animation phase reset for INFOUT bot in WALK phase ... " , __FUNCTION__ );
-			}
-
 		    break;
 		case ATTACK_ANIMATION:
 		    our_enemy -> animation_phase += 
@@ -3278,11 +3253,6 @@ AnimateEnemys (void)
 			our_enemy -> animation_type = WALK_ANIMATION;
 			}
 
-		    if ( our_enemy -> Status == INFOUT )
-			{
-			DebugPrintf ( -4 , "\n%s(): WARNING: animation phase reset for INFOUT bot in ATTACK phase... " , __FUNCTION__ );
-			}
-
 		    break;
 		case GETHIT_ANIMATION:
 		    our_enemy -> animation_phase += 
@@ -3292,11 +3262,6 @@ AnimateEnemys (void)
 			{
 			our_enemy -> animation_phase = 0 ;
 			our_enemy -> animation_type = WALK_ANIMATION;
-			}
-
-		    if ( our_enemy -> Status == INFOUT )
-			{
-			DebugPrintf ( -4 , "\n%s(): WARNING: animation phase reset for INFOUT bot in GETHIT phase ... " , __FUNCTION__ );
 			}
 
 		    break;
@@ -3318,11 +3283,6 @@ AnimateEnemys (void)
 			{
 			our_enemy -> animation_phase = first_stand_animation_image [ our_enemy -> type ] - 1 ;
 			our_enemy -> animation_type = STAND_ANIMATION;
-			}
-
-		    if ( our_enemy -> Status == INFOUT )
-			{
-			DebugPrintf ( -4 , "\n%s(): WARNING: animation phase reset for INFOUT bot in STAND phase... " , __FUNCTION__ );
 			}
 
 		    break;

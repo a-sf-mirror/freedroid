@@ -2023,8 +2023,6 @@ BuySellMenu ( void )
     int MenuPosition=1;
     char* MenuTexts[10];
     
-    Me.status=MENU;
-    
     DebugPrintf (2, "\nvoid BuySellMenu(void): real function call confirmed."); 
     
     // Prevent distortion of framerate by the delay coming from 

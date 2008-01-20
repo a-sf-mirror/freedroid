@@ -63,7 +63,7 @@ EXTERN void InitFreedroid ( int, char ** );
 EXTERN void PrepareStartOfNewCharacter ( void ) ;
 EXTERN void ThouArtDefeated ( void );
 EXTERN void ThouHastWon ( void );
-EXTERN void GetEventsAndEventTriggers ( char* EventsAndEventTriggersFilename );
+EXTERN void GetEventsAndEventTriggers ( const char* EventsAndEventTriggersFilename );
 EXTERN void PlayATitleFile ( char* Filename );
 EXTERN void Get_Item_Data ( char* DataPointer );
 

@@ -220,7 +220,6 @@ typedef struct mission_s
     int AutomaticallyAssignThisMissionAtGameStart; // well...
     
     int fetch_item;
-    int KillAll;
     int KillClass;
     int KillOne;
     int must_clear_first_level;
@@ -554,7 +553,6 @@ typedef struct enemy_s
     short lastwaypoint;		// the waypoint from whence this robot just came
     short homewaypoint;		// the waypoint this robot started at
     short max_distance_to_home;	// how far this robot will go before returning to it's home waypoint
-    short Status;			// current status like OUT=TERMINATED or not OUT
     
     int combat_state;             // MOVE_ALONG_RANDOM_WAYPOINTS, BACK_OFF_AFTER_GETTING_HIT, MAKE_ATTACK_RUN, SEEK_BETTER_POSITION...
     float state_timeout;          // when will this state automatically time out...

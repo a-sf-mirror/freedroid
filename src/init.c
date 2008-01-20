@@ -45,7 +45,7 @@
 
 #include "getopt.h"
 
-void Init_Game_Data();
+void Init_Game_Data(void);
 void Get_Bullet_Data ( char* DataPointer );
 
 
@@ -76,7 +76,7 @@ extern int fedisableexcept (int TheExceptionFlags );
  *
  *
  * ---------------------------------------------------------------------- */
-void
+static void
 clear_out_arrays_for_fresh_game ( void )
 {
     int i;
@@ -114,7 +114,7 @@ clear_out_arrays_for_fresh_game ( void )
  * we set up a character description.  Initializing those needs to be
  * done only once.  We do it here.
  * ---------------------------------------------------------------------- */
-void
+static void
 init_character_descriptions ( void )
 {
     int i;
@@ -389,7 +389,7 @@ Get_Bullet_Data ( char* DataPointer )
 /* ----------------------------------------------------------------------
  * Delete all events and event triggers
  * ---------------------------------------------------------------------- */
-void
+static void
 clear_out_all_events_and_actions( void )
 {
     int i;
@@ -451,7 +451,7 @@ clear_out_all_events_and_actions( void )
  *
  *
  * ---------------------------------------------------------------------- */
-void
+static void
 decode_all_event_actions ( char* EventSectionPointer )
 {
     char *EventPointer;
@@ -557,7 +557,7 @@ decode_all_event_actions ( char* EventSectionPointer )
  *
  *
  * ---------------------------------------------------------------------- */
-void
+static void
 decode_all_event_triggers ( char* EventSectionPointer )
 {
     char *EventPointer;
@@ -616,7 +616,7 @@ decode_all_event_triggers ( char* EventSectionPointer )
  * under which some actions are triggered.
  * ---------------------------------------------------------------------- */
 void 
-GetEventsAndEventTriggers ( char* EventsAndEventTriggersFilename )
+GetEventsAndEventTriggers ( const char* EventsAndEventTriggersFilename )
 {
   char* EventSectionPointer;
 char fpath[2048];
@@ -654,7 +654,7 @@ char fpath[2048];
  * This function reads the descriptions of the different programs
  * (source and blobs) that are used for magic
  * ---------------------------------------------------------------------- */
-int Get_Programs_Data ( char * DataPointer )
+static int Get_Programs_Data ( char * DataPointer )
 {
     char *ProgramPointer;
     char *EndOfProgramData;
@@ -747,7 +747,7 @@ return 0;
  * This function loads all the constant concerning robot archetypes
  * from a section in memory to the actual archetype structures.
  * ---------------------------------------------------------------------- */
-void
+static void
 Get_Robot_Data ( void* DataPointer )
 {
   int RobotIndex = 0;
@@ -1822,7 +1822,7 @@ output.",
  * Now we initialize the skills of the new hero...
  * ---------------------------------------------------------------------- */
 void
-InitInfluencerStartupSkills( )
+InitInfluencerStartupSkills( void )
 {
     int i ;
     
@@ -1850,7 +1850,7 @@ InitInfluencerStartupSkills( )
  * except for the 0-chat alternative, which is always set to open.  WHY???????
  * ---------------------------------------------------------------------- */
 void
-InitInfluencerChatFlags( )
+InitInfluencerChatFlags( void )
 {
   int i , j;
 

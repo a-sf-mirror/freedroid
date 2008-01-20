@@ -789,7 +789,6 @@ Pause ( void )
     
     Activate_Conservative_Frame_Computation();
     
-    Me . status = PAUSE;
     AssembleCombatPicture ( DO_SCREEN_UPDATE | USE_OWN_MOUSE_CURSOR );
     append_new_game_message ( _("Pausing game...") );
     while ( PPressed () )
@@ -806,14 +805,12 @@ Pause ( void )
 	
 	if ( CPressed ( ) )
 	{
-	    Me . status = CHEESE;
 	    DisplayBanner ( ) ;
 	    AssembleCombatPicture ( DO_SCREEN_UPDATE | USE_OWN_MOUSE_CURSOR );
 	    
 	    while (!SpacePressed ()); /* stay CHEESE until Space pressed */
 	    while ( SpacePressed() ); /* then wait for Space released */
 	    
-	    Me.status = PAUSE;       /* return to normal PAUSE */
 	} 
 	
 	if ( SpacePressed() || PPressed() || EscapePressed() )

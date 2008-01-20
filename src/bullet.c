@@ -756,7 +756,7 @@ check_bullet_enemy_collisions ( bullet* CurBullet , int num )
     ThisRobot = alive_bots_head	;
     for ( ; ThisRobot; ThisRobot = GETNEXT(ThisRobot))
     {
-	if ( ThisRobot -> Status == INFOUT || ThisRobot -> pos . z != level)
+	if ( ThisRobot -> pos . z != level)
 	    continue;
 	
 	xdist = CurBullet->pos.x - ThisRobot -> pos . x;
@@ -940,8 +940,7 @@ CheckBlastCollisions (int num)
     enemy * erot = alive_bots_head;
     for ( ; erot; erot = GETNEXT(erot))
 	{
-	if ((erot->Status == INFOUT)
-	    || (erot->pos.z != level))
+	if (erot->pos.z != level)
 	    continue;
 	
 	if ( ( fabsf (erot->pos.x - CurBlast->pos.x ) < Blast_Radius ) &&

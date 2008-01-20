@@ -579,9 +579,7 @@ CheckIfMissionIsComplete (void)
 	    erot = alive_bots_head;
 	    while ( erot )
 	    {
-		if ( ( erot->energy > 0 ) && 
-		     ( erot->Status != INFOUT ) && 
-		     ( erot->marker == Me . AllMissions [ mis_num ] . KillOne ) )
+		if ( ( erot->marker == Me . AllMissions [ mis_num ] . KillOne ) )
 		{
 		    DebugPrintf ( MIS_COMPLETE_DEBUG , "\nOne of the marked droids is still alive...");
 		    this_mission_seems_completed = FALSE ;
@@ -614,24 +612,6 @@ CheckIfMissionIsComplete (void)
 	}
 	
 	//--------------------
-	// Continue if the Mission target KillAll is given but not fullfilled
-	//
-	if ( Me.AllMissions[ mis_num ].KillAll != (-1) )
-	{
-	    enemy * erot = alive_bots_head;
-	    while ( erot )
-	    {
-		if ( ( erot->energy > 0 ) && ( erot->is_friendly == FALSE ) )
-		{
-		    this_mission_seems_completed = FALSE ;
-		    break;
-		}
-
-		erot = GETNEXT(erot);
-	    }
-	}
-	
-	//--------------------
 	// Continue if the Mission target KillClass is given but not fullfilled
 	//
 	if ( Me.AllMissions[ mis_num ].KillClass != (-1) )
@@ -639,9 +619,7 @@ CheckIfMissionIsComplete (void)
 	    enemy * erot = alive_bots_head;
 	    while ( erot )
 	    {
-		if ( ( erot->energy > 0 ) && 
-		     ( erot->Status != INFOUT ) && 
-		     ( Druidmap[erot->type].class == Me.AllMissions[ mis_num ].KillClass ) ) 
+		if (  Druidmap[erot->type].class == Me.AllMissions[ mis_num ].KillClass )  
 		{
 		    this_mission_seems_completed = FALSE ;
 		    break;
@@ -659,9 +637,7 @@ CheckIfMissionIsComplete (void)
 	    enemy * erot = alive_bots_head;
 	    while ( erot ) 
 	    {
-	    	if ( ( erot->energy > 0 ) && 
-		     ( erot->Status != INFOUT ) && 
-		     ( ! erot->is_friendly ) && 
+	    	if ( ( ! erot->is_friendly ) && 
 		     ( erot->pos . z == Me.AllMissions[ mis_num ].must_clear_first_level ) ) 
 		{
 		    this_mission_seems_completed = FALSE ;
@@ -679,9 +655,7 @@ CheckIfMissionIsComplete (void)
 	    enemy * erot = alive_bots_head;
 	    while ( erot )
 	    {
-		if ( ( erot->energy > 0 ) && 
-		     ( erot->Status != INFOUT ) && 
-		     ( ! erot->is_friendly ) && 
+		if ( ( ! erot->is_friendly ) && 
 		     ( erot->pos . z == Me.AllMissions[ mis_num ].must_clear_second_level ) ) 
 		{
 		    this_mission_seems_completed = FALSE ;
@@ -905,7 +879,6 @@ GetQuestList ( char* QuestListFilename )
 
 #define MISSION_AUTOMATICALLY_ASSIGN_STRING "Assign this mission to influencer automatically at start : "
 #define MISSION_TARGET_FETCH_ITEM_STRING "Mission target is to fetch item : \""
-#define MISSION_TARGET_KILL_ALL_STRING "Mission target is to kill all droids : "
 #define MISSION_TARGET_KILL_CLASS_STRING "Mission target is to kill class of droids : "
 #define MISSION_TARGET_KILL_ONE_STRING "Mission target is to kill droids with marker : "
 #define MISSION_TARGET_MUST_CLEAR_FIRST_LEVEL "Mission target is to kill all hostile droids this first level : "
@@ -976,9 +949,6 @@ GetQuestList ( char* QuestListFilename )
 	    free ( iname ); 
 	    }
 	else Me.AllMissions[ MissionTargetIndex ].fetch_item = -1; 
-	
-	ReadValueFromString( MissionTargetPointer , MISSION_TARGET_KILL_ALL_STRING , "%d" , 
-			     &Me.AllMissions[ MissionTargetIndex ].KillAll , EndOfMissionTargetPointer );
 	
 	ReadValueFromString( MissionTargetPointer , MISSION_TARGET_KILL_CLASS_STRING , "%d" , 
 			     &Me.AllMissions[ MissionTargetIndex ].KillClass , EndOfMissionTargetPointer );

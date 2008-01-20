@@ -1689,8 +1689,8 @@ show_open_gl_driver_info ( void )
  * in a separate function, so that eventual errors (and bug reports) from
  * the OpenGL error checking can be attributed to a source more easily.
  * ---------------------------------------------------------------------- */
-void
-safely_set_double_buffering_attribute ( void )
+static void
+set_double_buffering_attribute ( void )
 {
     
 #ifdef HAVE_LIBGL
@@ -1721,7 +1721,7 @@ Unable to set SDL_GL_DOUBLEBUFFER attribute!",
  * is a peculiar OpenGL driver used, mostly under the Windows operating
  * system.
  * ---------------------------------------------------------------------- */
-void
+static void
 set_video_mode_for_open_gl ( void )
 {
 #ifdef HAVE_LIBGL
@@ -1734,7 +1734,7 @@ set_video_mode_for_open_gl ( void )
     // card/driver is present or some bad emulation.  Anyway, we'll
     // break off...
     //
-    safely_set_double_buffering_attribute();
+    set_double_buffering_attribute();
 
     //--------------------
     // Now we start setting up the proper OpenGL flags to pass to the

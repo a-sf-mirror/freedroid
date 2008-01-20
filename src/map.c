@@ -142,7 +142,6 @@ respawn_level ( int level_num )
 	    continue;
 		
 	erot->energy = Druidmap [ erot->type ] . maxenergy ;
-	erot-> Status = MOBILE ;
 	erot-> phase = 0 ;
 	erot->animation_phase = 0 ;
 	erot->animation_type = WALK_ANIMATION ; 
@@ -2881,7 +2880,6 @@ the item specification section.",
 
       newen. type = ListIndex;
       newen.pos.z = OurLevelNumber;
-      newen. Status = MOBILE ; // !OUT;
       newen. SpecialForce = 1;
 
       //--------------------
@@ -3001,7 +2999,6 @@ game data file with all droid type specifications.",
     {
 	newen . type = ListOfTypesAllowed[MyRandom ( DifferentRandomTypes - 1 ) ];
 	newen . pos . z = OurLevelNumber;
-	newen . Status = MOBILE ; // !OUT;
 	newen . on_death_drop_item_code = (-1) ;
 	newen . ammo_left = ItemMap [ Druidmap [ newen . type ] . weapon_item . type ] . item_gun_ammo_clip_size ;
 	if ( newen . is_friendly ) 
@@ -3194,8 +3191,7 @@ Error:  Doors pointing not to door obstacles found.",
 	      //--------------------
 	      // ignore druids that are dead or on other levels 
 	      //
-	      if ( ( erot->Status == INFOUT ) ||
-		   ( erot->pos.z  != DoorLevel->levelnum ) )
+	      if ( ( erot->pos.z  != DoorLevel->levelnum ) )
 		  continue;
 
 	      //--------------------

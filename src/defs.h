@@ -858,17 +858,7 @@ enum _status
 {
     INFOUT=-30,
     MOBILE,
-    WEAPON,
-    CAPTURED,
-    COMPLETE,
-    REJECTED,
-    CONSOLE,
-    DEBRIEFING,
-    PAUSE,
-    CHEESE,
-    ELEVATOR,
     BRIEFING,
-    MENU
 };
 
 enum _busytype

@@ -1073,9 +1073,6 @@ Cheatmenu (void)
 				printf_SDL ( Screen , 15 , -1 , "SEVERE ERROR: Type=%d. " , 
 					erot->type ) ;
 				}
-			    if ( erot->Status == MOBILE ) printf_SDL (Screen, -1, -1, "MOB" );
-			    else if ( erot->Status == INFOUT ) printf_SDL (Screen, -1, -1, "OUT" );
-			    else printf_SDL (Screen, -1, -1, "ERROR-UNKNOWN" );
 			    if ( erot->is_friendly ) printf_SDL (Screen, -1, -1, " YES" );
 			    else printf_SDL (Screen, -1, -1, "  NO" );
 			    switch ( erot-> animation_type ) 
@@ -1225,8 +1222,6 @@ StartupMenu (void)
     int MenuPosition = 1 ;
     char* MenuTexts [ 10 ] ;
     
-    Me . status = MENU ;
-    
     DebugPrintf ( 1 , "\nvoid StartupMenu ( void ): real function call confirmed. "); 
     
     SDL_SetClipRect( Screen , NULL );
@@ -1321,8 +1316,6 @@ enum
   char* MenuTexts[10];
   int oldmode = global_ingame_mode;
   global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL;
-
-  Me . status = MENU;
 
   DebugPrintf (2, "\nvoid EscapeMenu(void): real function call confirmed."); 
 
@@ -3002,10 +2995,6 @@ Show_Mission_Details ( int MissionNumber )
 	//InitiateMenu();
 	
 	CenteredPutString ( Screen ,  1*FontHeight(Menu_BFont),    "MISSION DETAILS");
-	
-	printf_SDL ( Screen , User_Rect.x , 3 *FontHeight(Menu_BFont) , "Kill all droids : ");
-	if ( Me.AllMissions[ MissionNumber ].KillAll != (-1) ) printf_SDL( Screen , -1 , -1 , "YES" ); 
-	else printf_SDL( Screen , -1 , -1 , "NO" );
 	
 	printf_SDL ( Screen , User_Rect.x , 4 *FontHeight(Menu_BFont) , "Kill special : "  );
 	if ( Me.AllMissions[ MissionNumber ].KillOne != (-1) ) printf_SDL( Screen , -1 , -1 , "YES" ); 
