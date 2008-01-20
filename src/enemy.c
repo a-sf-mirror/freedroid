@@ -1187,9 +1187,8 @@ MakeSureEnemyIsInsideHisLevel ( Enemy ThisRobot )
 There was a droid found outside the bounds of this level (when dying).\n\
 This is an error and should not occur, but most likely it does since\n\
 the bots are allowed some motion without respect to existing waypoints\n\
-in Freedroid RPG.\n\
-The offending bot will be deleted silently.",
-				   NO_NEED_TO_INFORM, IS_WARNING_ONLY );
+in Freedroid RPG.\n",
+				   PLEASE_INFORM, IS_FATAL );
 	ThisRobot -> type = (-1) ;
 	ThisRobot -> Status = (INFOUT) ;
 	
@@ -1247,13 +1246,8 @@ static int kill_enemy(enemy * target, char givexp, int killertype)
 
     append_new_game_message ( game_message_text );
 
-
     target -> Status = INFOUT;
     
-    //--------------------
-    // The dead enemy will now explode and drop treasure, provided that 
-    // it was still on this map
-    //
     if ( MakeSureEnemyIsInsideHisLevel ( target ) ) 
     {
 	Me . KillRecord [ target -> type ] ++ ;
@@ -1276,11 +1270,13 @@ static int kill_enemy(enemy * target, char givexp, int killertype)
 	    play_death_sound_for_bot ( target );
 	    DebugPrintf ( 1 , "\n%s(): playing death sound because bot of type %d really died." , 
 			  __FUNCTION__ , target -> type );
-	
-	enemy_spray_blood ( target ) ;
+
+        if ( MyRandom(15) == 1) 	    
+		enemy_spray_blood ( target ) ;
     }
 
     move_enemy(&dead_bots_head, target, &alive_bots_head);
+
     return 0;
 }; // void InitiateDeathOfEnemy ( Enemy ThisRobot )
 
