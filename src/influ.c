@@ -1062,6 +1062,7 @@ UpdateMouseMoveTargetAccordingToEnemy ( )
     
     Me . mouse_move_target . x = Me . pos . x - RemainingWay . x ;
     Me . mouse_move_target . y = Me . pos . y - RemainingWay . y ;
+    Me . mouse_move_target . z = Me . current_enemy_target -> pos . z;
     
     //--------------------
     // Now that the mouse move target has implicitly affected the recursive
@@ -3484,17 +3485,6 @@ void
 check_for_droids_to_attack_or_talk_with ( ) 
 {
     enemy *droid_below_mouse_cursor = GetLivingDroidBelowMouseCursor ( ) ;
-
-    //--------------------
-    // Now the new mouse move: If there is 
-    //
-    // * NO enemy below the mouse cursor, 
-    // * NO box below the mouse cursor
-    // * AND also shift was NOT pressed
-    //
-    // a move to that location, not a fire command, 
-    // so only new target will be set and return without attack motion.
-    //
     if ( droid_below_mouse_cursor == NULL && (!APressed()) )
     {
 	Me . mouse_move_target . x = 
@@ -3505,11 +3495,9 @@ check_for_droids_to_attack_or_talk_with ( )
 	if ( ! ShiftPressed() )
 		Me . current_enemy_target = NULL;
 	
-	// clear_out_intermediate_points ( ) ;
-	
 	set_up_intermediate_course_for_tux ( ) ;
 	
-	return; // no attack motion since no target given!!
+	return; 
     }
     else if ( APressed() )
     {
@@ -3518,38 +3506,25 @@ check_for_droids_to_attack_or_talk_with ( )
     
     if ( droid_below_mouse_cursor != NULL )
     {
-	//--------------------
-	// We assign the target robot of the coming attack operation.
-	// In case of no robot, we should get (-1), which is also serving us well.
-	//
 	Me . current_enemy_target = droid_below_mouse_cursor ;
 	
-	//--------------------
-	// If the click was onto a friendly droid, we initiate talk, no matter if the
-	// TAKEOVER skill was actiavted or if the TRANSFERMODE state of the tux was 
-	// present.  Left click should do this, other methods for talking are depreciated.
-	//
-	// However, we do not want an accidential mouse move while button is held down
-	// to always initiate talk.  This should require a true click.  Therefore we
-	// check if the button has been released just before it came to this check.
-	//
 	if ( Me . current_enemy_target->is_friendly ) 
 	{
-	    
 	    if ( no_left_button_press_in_previous_analyze_mouse_click )
 	    {
 		ChatWithFriendlyDroid ( Me . current_enemy_target ) ;
-		
-		//--------------------
-		// and then we deactivate this current_enemy_target to prevent
-		// immediate recurrence of the very same chat.
-		//
 		Me . current_enemy_target = NULL;
 	    }
 	    
 	    return ;
 	}
 	
+	if ( ! ShiftPressed() )
+	    {
+	    Me . mouse_move_target .x = -1;
+	    Me . mouse_move_target .y = -1;
+	    }
+
 	if ( Me . weapon_item . type >= 0 )
 	{
 	    if ( ( ItemMap [ Me . weapon_item . type ] . item_gun_angle_change ) &&
@@ -3558,12 +3533,6 @@ check_for_droids_to_attack_or_talk_with ( )
 					  droid_below_mouse_cursor->pos . y ) 
 		   > BEST_MELEE_DISTANCE+0.1 ) )
 	    {
-		//--------------------
-		// In the case where we can't reach the clicked hostile enemy with
-		// our melee weapon/empty hands right now, we need to set up a course
-		// to the enemy and then start the attack upon arrival, i.e. use a
-		// standard combo-action for this again...
-		//
 		
 		
 
@@ -3575,12 +3544,6 @@ check_for_droids_to_attack_or_talk_with ( )
 					 droid_below_mouse_cursor->pos . y ) 
 		  > BEST_MELEE_DISTANCE+0.1 )
 	{
-	    //--------------------
-	    // In the case where we can't reach the clicked hostile enemy with
-	    // our melee weapon/empty hands right now, we need to set up a course
-	    // to the enemy and then start the attack upon arrival, i.e. use a
-	    // standard combo-action for this again...
-	    //
 	    
 
 
@@ -3893,11 +3856,6 @@ AnalyzePlayersMouseClick ( )
 	    if(no_left_button_press_in_previous_analyze_mouse_click)
 		    {
 		    game_message_protocol_scroll_override_from_user -- ;
-		    //--------------------
-		    // To stop any movement, we wait for the release of the 
-		    // mouse button.
-		    //
-		//    while ( SpacePressed() );
 		    Activate_Conservative_Frame_Computation();
 		    }
 
@@ -3907,11 +3865,6 @@ AnalyzePlayersMouseClick ( )
 	    if(no_left_button_press_in_previous_analyze_mouse_click)
 		{
     	        game_message_protocol_scroll_override_from_user ++ ;
-	        //--------------------
-                // To stop any movement, we wait for the release of the 
-	        // mouse button.
-                //
-	      //  while ( SpacePressed() );
 	        Activate_Conservative_Frame_Computation();
 		}
 	    break;
@@ -3920,10 +3873,6 @@ AnalyzePlayersMouseClick ( )
 	    handle_player_identification_command( );
 	    global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL ;
 
-	    //--------------------
-	    // To stop any movement, we wait for the release of the 
-	    // mouse button.
-	    //
 	    while ( SpacePressed() || MouseLeftPressed() || MouseRightPressed());
 	    Activate_Conservative_Frame_Computation();
 
