@@ -319,7 +319,7 @@ SaveGame( void )
 	      (int) sizeof(enemy) ,
 	      (int) sizeof(bullet) ,
 	      (int) MAXBULLETS ,
-	      (int) MAX_ENEMYS_ON_SHIP );
+	      (int) 1200 );
     
     //--------------------
     sprintf( filename , "%s/%s%s", our_config_dir, Me.character_name, ".shp" );
@@ -656,7 +656,7 @@ LoadGame( void )
 	      (int) sizeof(enemy) ,
 	      (int) sizeof(bullet) ,
 	      (int) MAXBULLETS ,
-	      (int) MAX_ENEMYS_ON_SHIP );
+	      (int) 1200 );
     
     if ( strcmp ( Me . freedroid_version_string , version_check_string ) != 0 )
     {
