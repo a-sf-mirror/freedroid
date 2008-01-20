@@ -797,7 +797,7 @@ Pause ( void )
 
     while ( Pause )
     {
-	animate_tux ( 0 );
+	animate_tux ( );
 	AnimateCyclingMapTiles ();
 	DisplayBanner ( );
 	AssembleCombatPicture ( USE_OWN_MOUSE_CURSOR );

@@ -1347,9 +1347,9 @@ blit_nonpreput_objects_according_to_blitting_list ( int mask )
     // can properly highlight this enemy...
     //
     enemy_under_cursor = GetLivingDroidBelowMouseCursor ( ) ;
-    barrel_under_cursor = smashable_barrel_below_mouse_cursor ( 0 ) ;
-    chest_under_cursor = closed_chest_below_mouse_cursor ( 0 ) ;
-    item_under_cursor = get_floor_item_index_under_mouse_cursor ( 0 );
+    barrel_under_cursor = smashable_barrel_below_mouse_cursor ( ) ;
+    chest_under_cursor = closed_chest_below_mouse_cursor ( ) ;
+    item_under_cursor = get_floor_item_index_under_mouse_cursor ( );
     
     //--------------------
     // Now it's time to blit all the elements from the list...
@@ -1830,7 +1830,7 @@ void
 AssembleCombatPicture ( int mask )
 {
     int i;
-    int item_under_cursor = get_floor_item_index_under_mouse_cursor ( 0 );
+    int item_under_cursor = get_floor_item_index_under_mouse_cursor ( );
 
     DebugPrintf ( 2 , "\n%s(): inside display code now." , __FUNCTION__ );
     
@@ -1847,7 +1847,7 @@ AssembleCombatPicture ( int mask )
     // list once in the code and the to use it for all light computations
     // of this frame.
     //
-    update_light_list ( 0 );
+    update_light_list ( );
     
     //--------------------
     // Within all of this display code, we only check for LIGHT as far
@@ -1935,7 +1935,7 @@ AssembleCombatPicture ( int mask )
 	ShowItemAlarm();
 	// ShowQuickInventory ();
 	display_current_game_message_window ( ) ;
-	ShowCharacterScreen ( 0 );
+	ShowCharacterScreen ( );
 	ShowSkillsScreen ( );
 	ShowInventoryScreen ( );
 	DisplayButtons( );

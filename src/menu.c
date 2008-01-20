@@ -1262,7 +1262,7 @@ StartupMenu (void)
 	    case LVLEDIT_POSITION: //allow starting directly in leveleditor - the hack is a little dirty but it does its work.
 		    skip_initial_menus = 1;
 		    clear_player_inventory_and_stats ( ) ;
-                    UpdateAllCharacterStats ( 0 ) ;
+                    UpdateAllCharacterStats ( ) ;
 		    strcpy(Me.character_name, "MapEd");
                     char fp[2048];
                     find_file ( "Asteroid.maps" , MAP_DIR, fp, 0);
@@ -2469,7 +2469,7 @@ PrepareNewHero (void)
 
     clear_player_inventory_and_stats ( ) ;
 
-    UpdateAllCharacterStats ( 0 ) ;
+    UpdateAllCharacterStats ( ) ;
 
     Get_New_Character_Name( );
     

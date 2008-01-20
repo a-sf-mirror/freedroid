@@ -1199,7 +1199,7 @@ prepare_text_window_content ( char* ItemDescText )
 	MapPositionOfMouse.y = translate_pixel_to_map_location ( (float) input_axis.x , 
 								 (float) input_axis.y , FALSE );
 	
-	index_of_floor_item_below_mouse_cursor = get_floor_item_index_under_mouse_cursor ( 0 );
+	index_of_floor_item_below_mouse_cursor = get_floor_item_index_under_mouse_cursor ( );
 	
 	if ( index_of_floor_item_below_mouse_cursor != (-1) )
 	{
@@ -1218,7 +1218,7 @@ prepare_text_window_content ( char* ItemDescText )
 	// Maybe the cursor in the user rect is hovering right over a closed chest.
 	// In this case we say so in the top status banner.
 	//
-	index_of_chest_below_mouse_cursor = closed_chest_below_mouse_cursor ( 0 ) ;
+	index_of_chest_below_mouse_cursor = closed_chest_below_mouse_cursor ( ) ;
 	if ( index_of_chest_below_mouse_cursor != (-1) )
 	{
 	    strcpy ( ItemDescText , _(" C H E S T ") ); 
@@ -1235,7 +1235,7 @@ prepare_text_window_content ( char* ItemDescText )
 	// Maybe the cursor in the user rect is hovering right over a closed chest.
 	// In this case we say so in the top status banner.
 	//
-	index_of_barrel_below_mouse_cursor = smashable_barrel_below_mouse_cursor ( 0 ) ;
+	index_of_barrel_below_mouse_cursor = smashable_barrel_below_mouse_cursor ( ) ;
 	if ( index_of_barrel_below_mouse_cursor != (-1) )
 	{
 	    //--------------------

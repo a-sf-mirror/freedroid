@@ -680,7 +680,7 @@ LoadGame( void )
 	if ( load_game_command_came_from_inside_running_game )
 	{
 	    clear_player_inventory_and_stats ( ) ;
-	    UpdateAllCharacterStats ( 0 ) ;
+	    UpdateAllCharacterStats ( ) ;
 	    char fp[2048];
 	    find_file ( "Asteroid.maps", MAP_DIR, fp, 0 );
 	    LoadShip ( fp ) ;

@@ -167,13 +167,13 @@ better than nothing.  Thanks anyway for your interest in FreedroidRPG.\n\
 	    HandleInventoryScreen ();
 	    HandleCharacterScreen ( );
 
-	    UpdateAllCharacterStats ( 0 );
+	    UpdateAllCharacterStats ( );
 	    
 	    MoveEnemys ();	// move all the enemys:
 	    
 	    check_tux_enemy_collision ();
 	    
-	    correct_tux_position_according_to_jump_thresholds ( 0 );
+	    correct_tux_position_according_to_jump_thresholds ( );
 	    
 	    CheckIfMissionIsComplete (); 
 	    

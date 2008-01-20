@@ -198,7 +198,7 @@ DoSkill(int skill_index, int SpellCost)
     switch ( SpellSkillMap [ skill_index ] . form ) 
 	{
 	case PROGRAM_FORM_IMMEDIATE:
-		droid_below_mouse_cursor = GetLivingDroidBelowMouseCursor ( 0 ) ;
+		droid_below_mouse_cursor = GetLivingDroidBelowMouseCursor ( ) ;
 		if ( droid_below_mouse_cursor == NULL ) 
 			goto done_handling_instant_hits;
 		if ( ! DirectLineWalkable ( Me . pos . x ,
