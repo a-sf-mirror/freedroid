@@ -2290,8 +2290,6 @@ RawStartEnemysShot( enemy* ThisRobot , float xdist , float ydist )
     NewBullet->owner = ThisRobot -> type;
     NewBullet->ignore_wall_collisions = 
 	ItemMap[ Druidmap[ ThisRobot->type].weapon_item.type ].item_gun_bullet_ignore_wall_collisions;
-    memset( NewBullet->total_miss_hit , UNCHECKED , MAX_ENEMYS_ON_SHIP );
-    NewBullet->miss_hit_influencer = FALSE;
     NewBullet->to_hit = Druidmap [ ThisRobot->type ].to_hit ;
     NewBullet->was_reflected = FALSE;
     NewBullet->pass_through_explosions = 

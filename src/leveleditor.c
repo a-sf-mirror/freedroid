@@ -3520,10 +3520,6 @@ CreateNewMapLevel( void )
 	NewLevel -> ItemList [ i ] . type = ( -1 ) ;
 	NewLevel -> ItemList [ i ] . currently_held_in_hand = FALSE;
 	
-	NewLevel -> OldItemList [ i ] . pos.x = ( -1 ) ;
-	NewLevel -> OldItemList [ i ] . pos.y = ( -1 ) ;
-	NewLevel -> OldItemList [ i ] . type = ( -1 ) ;
-	NewLevel -> OldItemList [ i ] . currently_held_in_hand = FALSE;
     }
     //--------------------
     // Now we initialize the chest items arrays with 'empty' information

@@ -72,7 +72,7 @@ void FdFlashWindow (SDL_Color Flashcolor);
 void RecFlashFill (int LX, int LY, int Color, unsigned char *Parameter_Screen,
 		   int SBreite);
 int Cent (int);
-void PutRadialBlueSparks( float PosX, float PosY , float Radius , int SparkType , int active_directions [ RADIAL_SPELL_DIRECTIONS ], float age ) ;
+void PutRadialBlueSparks( float PosX, float PosY , float Radius , int SparkType , char active_directions [ RADIAL_SPELL_DIRECTIONS ], float age ) ;
 void insert_new_element_into_blitting_list ( float new_element_norm , int new_element_type , 
 					     void* new_element_pointer , int code_number );
 
@@ -2471,14 +2471,6 @@ Creation of an Tux SDL software surface from pixel data failed.",
 					       PLEASE_INFORM, IS_FATAL );
 		}
 
-		//--------------------
-		// Depending on whether this is supposed to work with faster but less
-		// quality color key or slower but more quality alpha channel, we set
-		// appropriate parameters in the SDL surfaces and also a reminder flag
-		// in the iso_image structure.
-		//
-		loaded_tux_images [ tux_part_group ] [ our_phase ] [ rotation_index ] . force_color_key = FALSE ;
-
 		loaded_tux_images [ tux_part_group ] [ our_phase ] [ rotation_index ] . zoomed_out_surface = NULL ;
 		loaded_tux_images [ tux_part_group ] [ our_phase ] [ rotation_index ] . texture_has_been_created = FALSE ;
 		loaded_tux_images [ tux_part_group ] [ our_phase ] [ rotation_index ] . offset_x = img_x_offs ;
@@ -2770,13 +2762,6 @@ The number of images found in the image collection is bigger than currently allo
 #           endif
 
 
-	    //--------------------
-	    // Depending on whether this is supposed to work with faster but less
-	    // quality color key or slower but more quality alpha channel, we set
-	    // appropriate parameters in the SDL surfaces and also a reminder flag
-	    // in the iso_image structure.
-	    //
-	    enemy_iso_images [ enemy_model_nr ] [ rotation_index ] [ enemy_phase ] . force_color_key = FALSE ;
 
 	    //--------------------
 	    // This might be useful later, when using only SDL output...
@@ -4234,7 +4219,7 @@ There was -1 item type given to blit.  This must be a mistake! ",
 }; // void PutItem( int ItemNumber );
 
 void
-PutRadialBlueSparks( float PosX, float PosY , float Radius , int SparkType , int active_direction [ RADIAL_SPELL_DIRECTIONS ], float age )
+PutRadialBlueSparks( float PosX, float PosY , float Radius , int SparkType , char active_direction [ RADIAL_SPELL_DIRECTIONS ], float age )
 {
 #define FIXED_NUMBER_OF_SPARK_ANGLES 12
 #define FIXED_NUMBER_OF_PROTOTYPES 4

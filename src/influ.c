@@ -2658,8 +2658,6 @@ void FillInDefaultBulletStruct ( bullet * CurBullet, int bullet_image_type, shor
     CurBullet->reflect_other_bullets   = ItemMap[ weapon_item_type ].item_gun_bullet_reflect_other_bullets;
     CurBullet->pass_through_explosions = ItemMap[ weapon_item_type ].item_gun_bullet_pass_through_explosions;
     CurBullet->pass_through_hit_bodies = ItemMap[ weapon_item_type ].item_gun_bullet_pass_through_hit_bodies;
-    CurBullet->miss_hit_influencer = UNCHECKED ;
-    memset( CurBullet->total_miss_hit , UNCHECKED , MAX_ENEMYS_ON_SHIP );
     
     CurBullet->time_in_frames = 0;
     CurBullet->time_in_seconds = 0;

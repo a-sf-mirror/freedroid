@@ -159,7 +159,7 @@ enum
 
 enum skill_forms
 {
-    PROGRAM_FORM_IMMEDIATE = 60000, //instant hit whatever behind cursor
+    PROGRAM_FORM_IMMEDIATE = 10, //instant hit whatever behind cursor
     PROGRAM_FORM_RADIAL, //nova
     PROGRAM_FORM_BULLET, //fire a bullet
     PROGRAM_FORM_SELF, //instant hit player
@@ -711,11 +711,6 @@ enum
 #define MAX_PHASES_IN_A_BULLET 12
 #define PHASES_OF_EACH_BLAST 20
 #define MAX_STEPS_IN_GIVEN_COURSE 100
-
-#undef USE_MISS_HIT_ARRAYS
-#define UNCHECKED 0
-#define HIT 1
-#define MISS 2
 
 #define ITEM_INVENTORY_IMAGE_FILE_NAME "File or directory name for inventory image=\""
 #define ITEM_DROP_SOUND_FILE_NAME "Item uses drop sound with filename=\""

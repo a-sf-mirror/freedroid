@@ -712,26 +712,26 @@ There are more skills defined, than the maximum number specified in the code!",
 
 	    free ( pform );
 
-            ReadValueFromStringWithDefault( ProgramPointer , "Base damage=" , "%d" , "0",
+            ReadValueFromStringWithDefault( ProgramPointer , "Base damage=" , "%hd" , "0",
                              & ProgramToFill -> damage_base  , EndOfProgramData );
-            ReadValueFromStringWithDefault( ProgramPointer , "Mod damage=" , "%d" , "0",
+            ReadValueFromStringWithDefault( ProgramPointer , "Mod damage=" , "%hd" , "0",
                              & ProgramToFill -> damage_mod  , EndOfProgramData );
-            ReadValueFromStringWithDefault( ProgramPointer , "Damage per level=" , "%d" , "0",
+            ReadValueFromStringWithDefault( ProgramPointer , "Damage per level=" , "%hd" , "0",
                              & ProgramToFill -> damage_per_level  , EndOfProgramData );
 
-            ReadValueFromStringWithDefault( ProgramPointer , "Affect bots=" , "%d" , "1",
+            ReadValueFromStringWithDefault( ProgramPointer , "Affect bots=" , "%hhd" , "1",
                              & ProgramToFill -> hurt_bots  , EndOfProgramData );
-            ReadValueFromStringWithDefault( ProgramPointer , "Affect humans=" , "%d" , "1",
+            ReadValueFromStringWithDefault( ProgramPointer , "Affect humans=" , "%hhd" , "1",
                              & ProgramToFill -> hurt_humans  , EndOfProgramData );
 
 
-            ReadValueFromStringWithDefault( ProgramPointer , "Cost=" , "%d" , "0",
+            ReadValueFromStringWithDefault( ProgramPointer , "Cost=" , "%hd" , "0",
                              & ProgramToFill -> heat_cost  , EndOfProgramData );
-            ReadValueFromStringWithDefault( ProgramPointer , "Cost per level=" , "%d" , "0",
+            ReadValueFromStringWithDefault( ProgramPointer , "Cost per level=" , "%hd" , "0",
                              & ProgramToFill -> heat_cost_per_level  , EndOfProgramData );
-            ReadValueFromStringWithDefault( ProgramPointer , "Present at startup=" , "%d" , "0",
+            ReadValueFromStringWithDefault( ProgramPointer , "Present at startup=" , "%hhd" , "0",
                              & ProgramToFill -> present_at_startup  , EndOfProgramData );
-            ReadValueFromStringWithDefault( ProgramPointer , "Artwork internal code=" , "%d" , "-1",
+            ReadValueFromStringWithDefault( ProgramPointer , "Artwork internal code=" , "%hhd" , "-1",
                              & ProgramToFill -> graphics_code  , EndOfProgramData );
             //ReadValueFromStringWithDefault( ProgramPointer , "Bonus to tohit modifier=" , "%d" , "0",
 	    

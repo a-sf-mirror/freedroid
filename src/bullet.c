@@ -440,8 +440,7 @@ MoveActiveSpells (void)
 		final_point . y = AllActiveSpells [ i ] . spell_center . y + Displacement . y ;
 		// current_active_direction = rintf ( ( Angle  ) * (float) RADIAL_SPELL_DIRECTIONS / 360.0 ); 
 		if ( ! IsPassable ( final_point . x , final_point . y , Me . pos . z ) )
-		    AllActiveSpells [ i ] . active_directions [ direction_index ] = 
-			FALSE ;
+		    AllActiveSpells [ i ] . active_directions [ direction_index ] = FALSE ;
 	    }
 
 	    
@@ -731,26 +730,11 @@ check_bullet_player_collisions ( bullet* CurBullet , int num )
       ydist = Me . pos . y - CurBullet -> pos . y ;
       if ((xdist * xdist + ydist * ydist) < DRUIDHITDIST2)
 	{
-#ifdef USE_MISS_HIT_ARRAYS
-	    if ( CurBullet->miss_hit_influencer == UNCHECKED ) 
-	    {
-		if ( MyRandom ( 100 ) < CurBullet->to_hit )
-		{
-		    CurBullet->miss_hit_influencer = HIT ;
-#endif			  
 		    
 		    apply_bullet_damage_to_player ( CurBullet-> damage, CurBullet->owner ) ;
 		    
 		    DeleteBullet ( num , TRUE ) ; // we want a bullet-explosion
 		    return;  // This bullet was deleted and does not need to be processed any further...
-#ifdef USE_MISS_HIT_ARRAYS
-		}
-		else
-		{
-		    CurBullet->miss_hit_influencer = MISS ;
-		}
-	    }
-#endif
 	}
 }; // check_bullet_player_collisions ( CurBullet , num )
 
@@ -780,13 +764,6 @@ check_bullet_enemy_collisions ( bullet* CurBullet , int num )
 	
 	if ( (xdist * xdist + ydist * ydist) < DRUIDHITDIST2 )
 	    {
-#ifdef USE_MISS_HIT_ARRAYS
-	    if ( CurBullet->total_miss_hit[ i ] == UNCHECKED )
-		{
-		if ( MyRandom ( 100 ) < CurBullet->to_hit + Druidmap [ ThisRobot -> type ] . getting_hit_modifier )
-		    {
-		    CurBullet->total_miss_hit[ i ] = HIT;
-#endif
 		    hit_enemy(ThisRobot, CurBullet->damage, (CurBullet->mine ? 1 : 0) /*givexp*/, CurBullet->owner);
 
 		    ThisRobot -> frozen += CurBullet -> freezing_level;
@@ -810,17 +787,6 @@ check_bullet_enemy_collisions ( bullet* CurBullet , int num )
 			FBTZaehler++;
 			}
 		    return;
-#ifdef USE_MISS_HIT_ARRAYS
-		    }
-
-		else
-		    {
-		    CurBullet -> total_miss_hit[ i ] = MISS;
-		    ThisRobot -> TextVisibleTime = 0;
-		    ThisRobot -> TextToBeDisplayed = _("Haha, you missed me!");
-		    }
-		}
-#endif
 	} // if distance low enough to possibly be at hit
     } 
 }; // void check_bullet_enemy_collisions ( CurBullet , num )

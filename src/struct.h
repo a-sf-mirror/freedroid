@@ -68,14 +68,13 @@ typedef struct tColorY {
 typedef struct iso_image_s
 {
     SDL_Surface* surface;
-    int offset_x;
-    int offset_y;
+    short offset_x;
+    short offset_y;
     SDL_Surface* zoomed_out_surface;
-    int texture_width;
-    int texture_height;
-    int original_image_width;
-    int original_image_height;
-    int force_color_key;
+    short texture_width;
+    short texture_height;
+    short original_image_width;
+    short original_image_height;
     int texture_has_been_created;
     void* attached_pixel_data;
 #ifdef HAVE_LIBGL
@@ -93,8 +92,8 @@ typedef struct mouse_press_button_s
     iso_image button_image;
     char *button_image_file_name;
     SDL_Rect button_rect;
-    int scale_this_button;
-    int use_true_alpha_blending;
+    char scale_this_button;
+    char use_true_alpha_blending;
 }
 mouse_press_button, *Mouse_press_button;
 
@@ -765,41 +764,34 @@ bulletspec, *Bulletspec;
 
 typedef struct bullet_s
 {
-    short type;
-    gps pos;
-    moderately_finepoint speed;
-    byte phase;
-    short damage; // damage done by this particular bullet 
-    short time_in_frames;    // how long does the bullet exist, measured in number of frames
-    float time_in_seconds; // how long does the bullet exist in seconds
-    float bullet_lifetime; // how long can this bullet exist at most
-    float time_to_hide_still; // countdown to when the bullet will actually appear
-    signed char mine;
-    short owner;
-    float angle;
-    byte total_miss_hit [ MAX_ENEMYS_ON_SHIP ] ;
-    byte miss_hit_influencer;
-    short to_hit;
-    
-    // collision behaviour of bullets
-    char pass_through_hit_bodies; // does this bullet go through hit bodies (e.g. like a laser sword stike)
-    char pass_through_explosions; // does this bullet go through explosions (e.g. laser sword stike though dead droid)
-    char ignore_wall_collisions; // does this bullet go through walls (e.g. a laser sword strike)
-    char was_reflected; // has this bullet been reflected once in it's lifetime?
-    char reflect_other_bullets; // does this bullet reflect other bullets in case of a collision?
-    short freezing_level;        // does this bullet freeze the target?
-    float poison_duration;
-    float poison_damage_per_sec;
-    float paralysation_duration;
-    
-    // these are values only of relevance in case of a melee weapon
-    float angle_change_rate;
-    float fixed_offset;
-    gps* owner_pos;
-    
-    // these are technical parameters, not for the game behaviour
-    SDL_Surface *SurfacePointer[ MAX_PHASES_IN_A_BULLET ];
-    char Surfaces_were_generated; // 
+    short int                  type; 
+    byte                       phase;                
+    signed char                mine;     
+    gps                        pos;     
+    moderately_finepoint       speed;  
+    short int                  time_in_frames; // how long does the bullet exist, measured in number of frames
+    short int                  damage;        // damage done by this particular bullet
+    float                      time_in_seconds; // how long does the bullet exist in seconds
+    float                      bullet_lifetime; // how long can this bullet exist at most
+    float                      time_to_hide_still; // countdown to when the bullet will actually appear
+    char                       reflect_other_bullets;
+    short int                  owner;              
+    float                      angle;             
+
+    char                       was_reflected;
+    char                       ignore_wall_collisions;
+    short int                  to_hit;              
+    char                       pass_through_hit_bodies;  // does this bullet go through hit bodies (e.g. like a laser sword stike)
+    char                       pass_through_explosions; // does this bullet go through explosions (e.g. laser sword stike though dead droid)
+    short int                  freezing_level;       // does this bullet freeze the target?
+    float                      poison_duration;     
+    float                      poison_damage_per_sec;
+    float                      paralysation_duration;
+    float                      angle_change_rate;   
+    float                      fixed_offset;     
+    gps *                      owner_pos;       
+    SDL_Surface *              SurfacePointer[ MAX_PHASES_IN_A_BULLET ];
+    char                       Surfaces_were_generated;
 }
 bullet, *Bullet;
 
@@ -832,7 +824,7 @@ typedef struct spell_active_s
     moderately_finepoint spell_center;
     float spell_radius;
     float spell_age;
-    int active_directions [ RADIAL_SPELL_DIRECTIONS ] ;
+    char active_directions [ RADIAL_SPELL_DIRECTIONS ] ;
     int mine;
 }
 spell_active, *Spell_Active;
@@ -842,18 +834,18 @@ typedef struct spell_skill_spec_s
     char* name;
     char* icon_name;
     iso_image icon_surface;
-    int heat_cost;
-    int heat_cost_per_level;
-    int damage_base;
-    int damage_mod;
-    int damage_per_level;
-    int hurt_bots;
-    int hurt_humans;
+    short heat_cost;
+    short heat_cost_per_level;
+    short damage_base;
+    short damage_mod;
+    short damage_per_level;
+    char hurt_bots;
+    char hurt_humans;
     char* description;
     char* effect;
-    int form;
-    int present_at_startup;
-    int graphics_code;
+    char form;
+    char present_at_startup;
+    char graphics_code;
 }
 spell_skill_spec, *Spell_Skill_Spec;
 
@@ -923,7 +915,6 @@ typedef struct level_s
     int num_waypoints;
     waypoint AllWaypoints[MAXWAYPOINTS];
     item    ItemList [ MAX_ITEMS_PER_LEVEL ] ;
-    item OldItemList [ MAX_ITEMS_PER_LEVEL ] ;
     item ChestItemList [ MAX_ITEMS_PER_LEVEL ] ;
 }
 level, *Level;

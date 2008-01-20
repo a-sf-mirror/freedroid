@@ -859,10 +859,10 @@ NO_NEED_TO_INFORM, IS_WARNING_ONLY, offset_file_name );
   //
   offset_data = ReadAndMallocAndTerminateFile( offset_file_name , END_OF_OFFSET_FILE_STRING ) ;
 
-  ReadValueFromString( offset_data ,  OFFSET_FILE_OFFSETX_STRING , "%d" , 
+  ReadValueFromString( offset_data ,  OFFSET_FILE_OFFSETX_STRING , "%hd" , 
 		       & ( our_iso_image -> offset_x ) , offset_data + 1000 );
 
-  ReadValueFromString( offset_data ,  OFFSET_FILE_OFFSETY_STRING , "%d" , 
+  ReadValueFromString( offset_data ,  OFFSET_FILE_OFFSETY_STRING , "%hd" , 
 		       & ( our_iso_image -> offset_y ) , offset_data + 1000 );
   free ( offset_data );
 
@@ -896,14 +896,6 @@ get_iso_image_from_file_and_path ( char* fpath , iso_image* our_iso_image , int 
 				   "Could not load image\n File name: %s \n" , PLEASE_INFORM, IS_FATAL, fpath );
     }
 
-    //--------------------
-    // Depending on whether this is supposed to work with faster but less
-    // quality color key or slower but more quality alpha channel, we set
-    // appropriate parameters in the SDL surfaces and also a reminder flag
-    // in the iso_image structure.
-    //
-    our_iso_image -> force_color_key = FALSE ;
-    
     SDL_SetAlpha( Whole_Image , 0 , SDL_ALPHA_OPAQUE );
     our_iso_image -> surface = our_SDL_display_format_wrapperAlpha( Whole_Image ); // now we have an alpha-surf of right size
     our_iso_image -> zoomed_out_surface = NULL ;
@@ -968,14 +960,6 @@ Freedroid was unable to load file %s into memory.\n\
 This error indicates some installation problem with freedroid.",
 				   PLEASE_INFORM, IS_FATAL, fpath );
     }
-    
-    //--------------------
-    // Depending on whether this is supposed to work with faster but less
-    // quality color key or slower but more quality alpha channel, we set
-    // appropriate parameters in the SDL surfaces and also a reminder flag
-    // in the iso_image structure.
-    //
-    our_iso_image -> force_color_key = TRUE ;
     
     SDL_SetAlpha( Whole_Image , 0 , SDL_ALPHA_OPAQUE );
     our_iso_image -> surface = SDL_DisplayFormat( Whole_Image ); // now we have an alpha-surf of right size
