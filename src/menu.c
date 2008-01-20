@@ -1113,8 +1113,6 @@ Cheatmenu (void)
 		while ( SpacePressed() || EscapePressed() || MouseLeftPressed());
 		break;
 		
-	    case 'g': // complete robot list of this ship 
-		
 	    case 'd': // destroy all robots on this level, very useful
 		    {
 		    enemy * erot = alive_bots_head;
