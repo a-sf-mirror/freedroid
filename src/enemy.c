@@ -70,7 +70,7 @@ TeleportToClosestWaypoint ( Enemy ThisRobot )
     float BestDistanceSqu = 10000;
     float NewDistance = 10000;
     Level ThisLevel = curShip . AllLevels [ ThisRobot -> pos . z ] ;
-    int BestWaypoint = ( -1 );
+    short BestWaypoint = ( -1 );
     
     for ( i = 0 ; i < ThisLevel->num_waypoints ; i ++ )
     {
@@ -1659,7 +1659,7 @@ ProcessAttackStateMachine ( enemy * ThisRobot )
 	    > ThisRobot->max_distance_to_home
 	 && ThisRobot->combat_state != RETURNING_HOME )
     {
-	DebugPrintf ( 1, "\n%s(): Bot returning home. Old state was %d", __FUNCTION__, ThisRobot -> combat_state );
+	DebugPrintf ( 1, "\n%s(): Bot returning home. Old state was %hd", __FUNCTION__, ThisRobot -> combat_state );
 	ThisRobot->persuing_given_course = TRUE ;
 	ThisRobot->PrivatePathway[0].x = curShip.AllLevels[ThisRobot->pos.z]->AllWaypoints[ThisRobot->homewaypoint].x + 0.5;
 	ThisRobot->PrivatePathway[0].y = curShip.AllLevels[ThisRobot->pos.z]->AllWaypoints[ThisRobot->homewaypoint].y + 0.5;
@@ -1998,7 +1998,7 @@ ProcessAttackStateMachine ( enemy * ThisRobot )
     }
     else
     {
-	DebugPrintf ( -1000 , "\nWARNING:  Unidentified combat_state encountered: code=%d!" , ThisRobot -> combat_state );
+	DebugPrintf ( -1000 , "\nWARNING:  Unidentified combat_state encountered: code=%hd!" , ThisRobot -> combat_state );
 	MoveThisEnemy ( ThisRobot ); // this will now be done in the attack state machine...
 	return;
     }
@@ -2390,7 +2390,7 @@ RawStartEnemysShot( enemy* ThisRobot , float xdist , float ydist )
 			// If the bot missed, the armor took the shot. Damage it.
 			//
 		        Me . TextToBeDisplayed = "Armor, thanks." ;
-			DamageAllEquipment ( 0 ) ;
+			DamageAllEquipment ( ) ;
 
 		    }
 	}
@@ -2975,7 +2975,7 @@ TurnABitThowardsPosition ( Enemy ThisRobot , float x , float y , float TurnSpeed
  * This transmission of information is handled here.
  * ---------------------------------------------------------------------- */
 void 
-SetRestOfGroupToState ( Enemy ThisRobot , int NewState )
+SetRestOfGroupToState ( Enemy ThisRobot , short NewState )
 {
   int MarkerCode;
 

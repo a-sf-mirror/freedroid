@@ -126,14 +126,8 @@ typedef struct configuration_for_freedroid_s
     float Mission_Log_Visible_Time;
     float Mission_Log_Visible_Max_Time;
     int Inventory_Visible;
-    float dummy1 ;
-    float dummy2 ;
     int CharacterScreen_Visible;
-    float dummy3 ;
-    float dummy4 ;
     int SkillScreen_Visible;
-    float dummy5 ;
-    float dummy6 ;
     int Automap_Visible;
     int spell_level_visible;
 
@@ -276,7 +270,7 @@ triggered_action , *Triggered_action;
 // This structure can contain conditions that must be fulfilled, so that a special
 // event is triggered.  Such conditions may be specified in the mission file as well
 //
-typedef struct even_trigger_s
+typedef struct event_trigger_s
 {
     // Maybe the event is triggerd by the influencer stepping somewhere
     int Influ_Must_Be_At_Level;
@@ -314,8 +308,6 @@ typedef struct obstacle_spec_s
     // (i.e. east-west=parm1) and height (i.e. north-south=parm2) of
     // the blocking rectangle can ge specified below.
     //
-    int block_area_type;
-    int block_vision_too;
     float block_area_parm_1;
     float block_area_parm_2;
     float upper_border ;
@@ -323,26 +315,23 @@ typedef struct obstacle_spec_s
     float left_border ;
     float right_border ;
     
-    //--------------------
-    // Some obstacles will explode when hit by a weapon swing or bullet
-    // and maybe they will even occasionally drop some treasure too...
-    //
-    int is_smashable;
+    char block_area_type;
+    char block_vision_too;
+    char is_smashable;
+    char drop_random_treasure;
     int result_type_after_smashing_once;
-    int drop_random_treasure;
     
     //--------------------
     // Some obstacles will emitt light.  Specify light strength here.
     // A value of 0 light will be sufficient in most cases...
     //
-    int emitted_light_strength;
-    
-    int transparent;
+    short emitted_light_strength;
+    short transparent;
     //--------------------
     // This is a special property for obstacles, that can be 
     // stepped on, like a rug or floor plate, for proper visibility...
     //
-    int needs_pre_put; 
+    char needs_pre_put; 
     char* filename;
     char* obstacle_short_name;
     char* obstacle_long_description;
@@ -360,42 +349,41 @@ typedef struct item_image_spec_s
 typedef struct item_bonus_s
 {
     char* bonus_name;
-    int base_bonus_to_dex;
-    int modifier_to_bonus_to_dex;
-    int base_bonus_to_str;
-    int modifier_to_bonus_to_str;
-    int base_bonus_to_vit;
-    int modifier_to_bonus_to_vit;
-    int base_bonus_to_mag;
-    int modifier_to_bonus_to_mag;
-    int base_bonus_to_all_attributes;
-    int modifier_to_bonus_to_all_attributes;
+    short base_bonus_to_dex;
+    short modifier_to_bonus_to_dex;
+    short base_bonus_to_str;
+    short modifier_to_bonus_to_str;
+    short base_bonus_to_vit;
+    short modifier_to_bonus_to_vit;
+    short base_bonus_to_mag;
+    short modifier_to_bonus_to_mag;
+    short base_bonus_to_all_attributes;
+    short modifier_to_bonus_to_all_attributes;
     
-    int base_bonus_to_life;
-    int modifier_to_bonus_to_life;
-    int base_bonus_to_force;
-    int modifier_to_bonus_to_force;
+    short base_bonus_to_life;
+    short modifier_to_bonus_to_life;
+    short base_bonus_to_force;
+    short modifier_to_bonus_to_force;
 
     float base_bonus_to_health_recovery;
     float base_bonus_to_cooling_rate;
     
+    short base_bonus_to_tohit;
+    short modifier_to_bonus_to_tohit;
+    short base_bonus_to_ac_or_damage; // this is a percentage
+    short modifier_to_bonus_to_ac_or_damage; // this is a percentage
 
-
-    int base_bonus_to_tohit;
-    int modifier_to_bonus_to_tohit;
-    int base_bonus_to_ac_or_damage; // this is a percentage
-    int modifier_to_bonus_to_ac_or_damage; // this is a percentage
-
-    int base_bonus_to_resist_fire;  // this is a percentage
-    int modifier_to_bonus_to_resist_fire;  // this is a percentage
-    int base_bonus_to_resist_electricity; // this is a percentage
-    int modifier_to_bonus_to_resist_electricity; // this is a percentage
-    int base_bonus_to_resist_disruptor; // this is a percentage
-    int modifier_to_bonus_to_resist_disruptor; // this is a percentage
-    int light_bonus_value;
+    char base_bonus_to_resist_fire;  // this is a percentage /*XXX bonus to resist whatever ARE NOT READ YET!*/
+    char modifier_to_bonus_to_resist_fire;  // this is a percentage
+    char base_bonus_to_resist_electricity; // this is a percentage
+    char modifier_to_bonus_to_resist_electricity; // this is a percentage
+    char base_bonus_to_resist_disruptor; // this is a percentage
+    char modifier_to_bonus_to_resist_disruptor; // this is a percentage
+    
+    char light_bonus_value;
     float price_factor;
 
-    int level; //"level" of the prefix (is it good or not)
+    char level; //"level" of the prefix (is it good or not)
 } item_bonus , *Item_bonus;
 
 typedef struct itemspec_s
@@ -505,18 +493,19 @@ typedef struct druidspec_s
     char *droid_death_sound_file_name;
     char *droid_attack_animation_sound_file_name;
     int class;
-    double maxenergy;		// the maximum energy the batteries can carry 
-    double max_temperature;		// the maximum force this droids mind can carry 
-    double lose_health;		// the energy/time the duid loses under influence-control 
+    float maxenergy;		// the maximum energy the batteries can carry 
+    float max_temperature;		// the maximum force this droids mind can carry 
+
+    float lose_health;		// the energy/time the droid gains (heals)
     
-    double maxspeed;
-    double accel;
+    float maxspeed;
+    float accel;
     
     float physical_damage;        // the amount of physical (base) damage an attack of this bot will do
     
     int aggression;		// The aggressiveness of this druidtype 
-    int flashimmune;		// is the droid immune to FLASH-bullets 
-    int experience_reward;			// experience_reward for the elimination of one droid of this type 
+    char flashimmune;		// is the droid immune to FLASH-bullets 
+    short experience_reward;			// experience_reward for the elimination of one droid of this type 
     unsigned char brain;
     unsigned char sensor1;
     unsigned char sensor2;
@@ -531,42 +520,42 @@ typedef struct druidspec_s
     
     item weapon_item;
     
-    int amount_of_plasma_transistors;
-    int amount_of_superconductors;
-    int amount_of_antimatter_converters;
-    int amount_of_entropy_inverters;
-    int amount_of_tachyon_condensators;
+    char amount_of_plasma_transistors;
+    char amount_of_superconductors;
+    char amount_of_antimatter_converters;
+    char amount_of_entropy_inverters;
+    char amount_of_tachyon_condensators;
     
-    int greeting_sound_type;              // which sample to play in order to 'greet' the influencer?
-    int got_hit_sound_type;               // which sample to play in order to 'greet' the influencer?
-    int to_hit;                           // chance that this droid hits an unarmoured target
-    int getting_hit_modifier;             // modifier for this droid to receive a hit from the player
+    short greeting_sound_type;              // which sample to play in order to 'greet' the influencer?
+    short got_hit_sound_type;               // which sample to play in order to 'greet' the influencer?
+    short to_hit;                           // chance that this droid hits an unarmoured target
+    short getting_hit_modifier;             // modifier for this droid to receive a hit from the player
     float recover_time_after_getting_hit;
     char *notes;			        // notes on the druid of this type 
-    int is_human;
-    int individual_shape_nr;
-    int suppress_bullet_generation_when_attacking; // some bots have weapon and attack built into the animation images...
+    char is_human;
+    short individual_shape_nr;
+    char suppress_bullet_generation_when_attacking; // some bots have weapon and attack built into the animation images...
 }
 druidspec, *Druidspec;
 
 
 typedef struct enemy_s
 {
-    int type;			// the number of the droid specifications in Druidmap 
+    short type;			// the number of the droid specifications in Druidmap 
     gps pos;		        // coordinates of the current position in the level
     gps virt_pos;		// the virtual position with respect to remote levels
     finepoint speed;		// current speed  
-    double energy;		// current energy of this droid
+    float energy;		// current energy of this droid
     
-    double phase;	                // current phase of rotation of this droid
+    float phase;	                // current phase of rotation of this droid
     float animation_phase;        // the current animation frame for this enemy (starting at 0 of course...)
-    int animation_type;           // walk-animation, attack-animation, gethit animation, death animation
+    short animation_type;           // walk-animation, attack-animation, gethit animation, death animation
     
-    int nextwaypoint;		// the next waypoint target
-    int lastwaypoint;		// the waypoint from whence this robot just came
-    int homewaypoint;		// the waypoint this robot started at
-    int max_distance_to_home;	// how far this robot will go before returning to it's home waypoint
-    int Status;			// current status like OUT=TERMINATED or not OUT
+    short nextwaypoint;		// the next waypoint target
+    short lastwaypoint;		// the waypoint from whence this robot just came
+    short homewaypoint;		// the waypoint this robot started at
+    short max_distance_to_home;	// how far this robot will go before returning to it's home waypoint
+    short Status;			// current status like OUT=TERMINATED or not OUT
     
     int combat_state;             // MOVE_ALONG_RANDOM_WAYPOINTS, BACK_OFF_AFTER_GETTING_HIT, MAKE_ATTACK_RUN, SEEK_BETTER_POSITION...
     float state_timeout;          // when will this state automatically time out...
@@ -575,30 +564,30 @@ typedef struct enemy_s
     float poison_duration_left;   // is this droid currently poisoned and for how long will it stay this way?
     float poison_damage_per_sec;  // is this droid currently poisoned and how much poison is at work?
     float paralysation_duration_left;  // is this droid currently paralyzed and for how long will it stay this way?
-    double pure_wait;		// time till the droid will start to move again
-    double firewait;		// time this robot still takes until it's gun/weapon will be fully reloaded
-    int ammo_left; 		  // ammunition left in the charger
+    float pure_wait;		// time till the droid will start to move again
+    float firewait;		// time this robot still takes until it's gun/weapon will be fully reloaded
+    short ammo_left; 		  // ammunition left in the charger
     
-    int CompletelyFixed;          // set this flat to make the robot entirely immobile
-    int follow_tux;               // does this robot try to follow tux via it's random movements?
-    int FollowingInflusTail;      // does this robot follow influs tail? (trott behind him? )
-    int SpecialForce;             // This flag will exclude the droid from initial shuffling of droids
-    int on_death_drop_item_code;  // drop a pre-determined item when dying?
+    char CompletelyFixed;          // set this flat to make the robot entirely immobile
+    char follow_tux;               // does this robot try to follow tux via it's random movements? /*XXX*/
+    char FollowingInflusTail;      // does this robot follow influs tail? (trott behind him? )
+    char SpecialForce;             // This flag will exclude the droid from initial shuffling of droids
+    short on_death_drop_item_code;  // drop a pre-determined item when dying?
     
-    int marker;                   // This provides a marker for special mission targets
+    int marker;                   // This provides a marker for special mission targets /*XXX*/
     
-    int is_friendly;              // is this a friendly droid or is it a MS controlled one?
-    int has_been_taken_over;      // has the Tux made this a friendly bot via takeover subgame?
-    int attack_target_type ;      // attack NOTHING, PLAYER, or BOT
+    char is_friendly;              // is this a friendly droid or is it a MS controlled one?
+    char has_been_taken_over;      // has the Tux made this a friendly bot via takeover subgame?
+    char attack_target_type ;      // attack NOTHING, PLAYER, or BOT
     struct enemy_s * bot_target ; 
-    int attack_run_only_when_direct_line; // require direct line to target before switching into attach run mode
+    char attack_run_only_when_direct_line; // require direct line to target before switching into attach run mode
     char dialog_section_name[ MAX_LENGTH_FOR_DIALOG_SECTION_NAME ]; // This should indicate one of the many sections of the Freedroid.dialogues file
     char short_description_text[ MAX_LENGTH_OF_SHORT_DESCRIPTION_STRING ]; // This should indicate one of the many sections of the Freedroid.dialogues file
-    int will_rush_tux;            // will this robot approach the Tux on sight and open communication?
-    int persuing_given_course;    // is this robot persuing a given course via PersueGivenCourse( EnemyNum )?
-    int StayHowManyFramesBehind;  // how many frames shall this droid trott behind the influ when follwing his tail?
-    int StayHowManySecondsBehind;  // how many seconds shall this droid trott behind the influ when follwing his tail?
-    int has_greeted_influencer;   // has this robot issued his first-time-see-the-Tux message?
+    char will_rush_tux;            // will this robot approach the Tux on sight and open communication?
+    char persuing_given_course;    // is this robot persuing a given course via PersueGivenCourse( EnemyNum )?
+    short StayHowManyFramesBehind;  // how many frames shall this droid trott behind the influ when follwing his tail? /*XXX*/
+    short StayHowManySecondsBehind;  // how many seconds shall this droid trott behind the influ when follwing his tail?/*XXX*/
+    char has_greeted_influencer;   // has this robot issued his first-time-see-the-Tux message?
     float previous_angle;         // which angle has this robot been facing the frame before?
     float current_angle;          // which angle will the robot be facing now?
     float last_phase_change;      // when did the robot last change his (8-way-)direction of facing
@@ -608,9 +597,9 @@ typedef struct enemy_s
     float TextVisibleTime;
     char* TextToBeDisplayed;
     moderately_finepoint PrivatePathway[ MAX_STEPS_IN_GIVEN_COURSE ];
-    int stick_to_waypoint_system_by_default;
+    char stick_to_waypoint_system_by_default;
 
-    int bot_stuck_in_wall_at_previous_check;
+    char bot_stuck_in_wall_at_previous_check;
     float time_since_previous_stuck_in_wall_check;
 
     struct enemy_s * NEXT;
@@ -641,9 +630,8 @@ typedef struct tux_s
     int light_bonus_from_tux ;
     int map_maker_is_present ;
     
-    double health;		  // the max. possible energy in the moment 
     float maxenergy; // current top limit for the influencers energy
-    double energy;		  // current energy level 
+    float energy;		  // current energy level 
     float max_temperature;   // current top limit for temperature (highest is better)
     float temperature;                    // current temperature
     float old_temperature;                    // current temperature
@@ -777,48 +765,48 @@ bulletspec, *Bulletspec;
 
 typedef struct bullet_s
 {
-    int type;
+    short type;
     gps pos;
     moderately_finepoint speed;
     byte phase;
-    int damage; // damage done by this particular bullet 
-    int time_in_frames;    // how long does the bullet exist, measured in number of frames
-    double time_in_seconds; // how long does the bullet exist in seconds
-    double bullet_lifetime; // how long can this bullet exist at most
+    short damage; // damage done by this particular bullet 
+    short time_in_frames;    // how long does the bullet exist, measured in number of frames
+    float time_in_seconds; // how long does the bullet exist in seconds
+    float bullet_lifetime; // how long can this bullet exist at most
     float time_to_hide_still; // countdown to when the bullet will actually appear
     signed char mine;
-    int owner;
-    double angle;
+    short owner;
+    float angle;
     byte total_miss_hit [ MAX_ENEMYS_ON_SHIP ] ;
     byte miss_hit_influencer;
-    int to_hit;
+    short to_hit;
     
     // collision behaviour of bullets
-    int pass_through_hit_bodies; // does this bullet go through hit bodies (e.g. like a laser sword stike)
-    int pass_through_explosions; // does this bullet go through explosions (e.g. laser sword stike though dead droid)
-    int ignore_wall_collisions; // does this bullet go through walls (e.g. a laser sword strike)
-    int was_reflected; // has this bullet been reflected once in it's lifetime?
-    int reflect_other_bullets; // does this bullet reflect other bullets in case of a collision?
-    int freezing_level;        // does this bullet freeze the target?
+    char pass_through_hit_bodies; // does this bullet go through hit bodies (e.g. like a laser sword stike)
+    char pass_through_explosions; // does this bullet go through explosions (e.g. laser sword stike though dead droid)
+    char ignore_wall_collisions; // does this bullet go through walls (e.g. a laser sword strike)
+    char was_reflected; // has this bullet been reflected once in it's lifetime?
+    char reflect_other_bullets; // does this bullet reflect other bullets in case of a collision?
+    short freezing_level;        // does this bullet freeze the target?
     float poison_duration;
     float poison_damage_per_sec;
     float paralysation_duration;
     
     // these are values only of relevance in case of a melee weapon
-    double angle_change_rate;
+    float angle_change_rate;
     float fixed_offset;
     gps* owner_pos;
     
     // these are technical parameters, not for the game behaviour
     SDL_Surface *SurfacePointer[ MAX_PHASES_IN_A_BULLET ];
-    int Surfaces_were_generated; // 
+    char Surfaces_were_generated; // 
 }
 bullet, *Bullet;
 
 typedef struct blastspec_s
 {
     int phases;
-    double total_animation_time;
+    float total_animation_time;
     iso_image image [ PHASES_OF_EACH_BLAST ] ;
 }
 blastspec, *Blastspec;
@@ -827,7 +815,7 @@ typedef struct blast_s
 {
     gps pos;
     int type;
-    double phase;
+    float phase;
     int MessageWasDone;
     float damage_per_second;
 }
@@ -897,12 +885,12 @@ map_tile, *Map_tile;
 
 typedef struct level_s
 {
-    int levelnum;
-    int xlen;
-    int ylen;
-    int light_radius_bonus;
-    int minimum_light_value;
-    int infinite_running_on_this_level;
+    short levelnum;
+    short xlen;
+    short ylen;
+    char light_radius_bonus;
+    char minimum_light_value;
+    char infinite_running_on_this_level;
     char *Levelname;
     char *Background_Song_Name;
     char *Level_Enter_Comment;
@@ -910,15 +898,15 @@ typedef struct level_s
     char *obstacle_name_list [ MAX_OBSTACLE_NAMES_PER_LEVEL ];
     char *obstacle_description_list [ MAX_OBSTACLE_DESCRIPTIONS_PER_LEVEL ];
     map_tile *map [ MAX_MAP_LINES ];	// this is a vector of pointers
-    int jump_threshold_north;
-    int jump_threshold_south;
-    int jump_threshold_east;
-    int jump_threshold_west;
-    int jump_target_north;
-    int jump_target_south;
-    int jump_target_east;
-    int jump_target_west;
-    int use_underground_lighting;
+    short jump_threshold_north;
+    short jump_threshold_south;
+    short jump_threshold_east;
+    short jump_threshold_west;
+    short jump_target_north;
+    short jump_target_south;
+    short jump_target_east;
+    short jump_target_west;
+    char use_underground_lighting;
     
     obstacle obstacle_list[ MAX_OBSTACLES_ON_MAP ];
     

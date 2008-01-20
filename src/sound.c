@@ -59,7 +59,7 @@ void SwitchBackgroundMusicTo ( char* filename_raw_parameter ){}
 void play_sample_using_WAV_cache( char* SoundSampleFileName , int With_Waiting , int no_double_catching ){}
 void play_sample_using_WAV_cache_v( char* SoundSampleFileName , int With_Waiting , int no_double_catching, double volume ){}
 void remove_all_samples_from_WAV_cache( void ){}
-void PlayOnceNeededSoundSample( char* SoundSampleFileName , int With_Waiting , int no_double_catching ){}
+void PlayOnceNeededSoundSample( const char* SoundSampleFileName , const int With_Waiting , const int no_double_catching ){}
 #endif
 
 
@@ -413,7 +413,7 @@ void SwitchBackgroundMusicTo ( char* filename_raw_parameter )
 // therefore be loaded and dumped on demand while the other sound samples
 // for the action parts of the game will be kept in memory all the time.
 // ----------------------------------------------------------------------
-void PlayOnceNeededSoundSample( char* SoundSampleFileName , int With_Waiting , int no_double_catching )
+void PlayOnceNeededSoundSample( const char* SoundSampleFileName , const int With_Waiting , const int no_double_catching )
 	{
 	int simulated_playback_starting_time;
 	static char PreviousFileName [ 1000 ] = "HalloHallo";

@@ -1229,7 +1229,6 @@ ApplyItem( item* CurItem )
     //
     if ( MatchItemWithName ( CurItem->type, "Barf's Energy Drink" ) )
     {
-	Me . health += 15;
 	Me . energy += 15;
 	Me . temperature -= 15;
 	Me . running_power += 15;
@@ -1238,21 +1237,18 @@ ApplyItem( item* CurItem )
     }
     if ( MatchItemWithName ( CurItem->type, "Diet supplement" ) )
     {
-	Me . health += 25;
 	Me . energy += 25;
 	Me . busy_type = DRINKING_POTION;
 	Me . busy_time = 1;
     }
     else if ( MatchItemWithName ( CurItem->type, "Antibiotic" ))
     {
-	Me . health += 50;
 	Me . energy += 50;
 	Me . busy_time = 1;
 	Me . busy_type = DRINKING_POTION;
     }
     else if ( MatchItemWithName ( CurItem->type, "Doc-in-a-can" ))
     {
-	Me.health += Me.maxenergy;
 	Me.energy += Me.maxenergy;
 	Me . busy_time = 1;
 	Me . busy_type = DRINKING_POTION;
@@ -2295,7 +2291,7 @@ HandleInventoryScreen ( void )
 		input_axis.y , TRUE ) ;
 	MapPositionOfMouse . y = translate_pixel_to_map_location ( input_axis.x , 
 		input_axis.y , FALSE ) ;
-	index_of_item_under_mouse_cursor = get_floor_item_index_under_mouse_cursor ( 0 );
+	index_of_item_under_mouse_cursor = get_floor_item_index_under_mouse_cursor ( );
 
 	if ( index_of_item_under_mouse_cursor != (-1) )
 	    { 
@@ -2335,7 +2331,7 @@ HandleInventoryScreen ( void )
 			    PlayerLevel -> ItemList [ index_of_item_under_mouse_cursor ] . pos . y ;
 			Me . mouse_move_target . z = 
 			    Me . pos . z ;
-			set_up_intermediate_course_for_tux ( 0 ) ;
+			set_up_intermediate_course_for_tux ( ) ;
 
 			//--------------------
 			// We set up the combo_action, so that the barrel can be smashed later...
@@ -2948,49 +2944,49 @@ int Get_Prefixes_Data ( char * DataPointer )
             char * EndOfThisPrefix = strstr ( PrefixPointer, whattogrep );
             if ( EndOfThisPrefix ) EndOfThisPrefix [ 0 ] = 0;
     
-            ReadValueFromStringWithDefault( PrefixPointer , "Bonus to dexterity=" , "%d" , "0",
+            ReadValueFromStringWithDefault( PrefixPointer , "Bonus to dexterity=" , "%hd" , "0",
                              & BonusToFill -> base_bonus_to_dex  , EndOfPrefixData );
-            ReadValueFromStringWithDefault( PrefixPointer , "Bonus to dexterity modifier=" , "%d" , "0",
+            ReadValueFromStringWithDefault( PrefixPointer , "Bonus to dexterity modifier=" , "%hd" , "0",
                              & BonusToFill -> modifier_to_bonus_to_dex  , EndOfPrefixData );
 
-            ReadValueFromStringWithDefault( PrefixPointer , "Bonus to strength=" , "%d" , "0",
+            ReadValueFromStringWithDefault( PrefixPointer , "Bonus to strength=" , "%hd" , "0",
                              & BonusToFill -> base_bonus_to_str  , EndOfPrefixData );
-            ReadValueFromStringWithDefault( PrefixPointer , "Bonus to strength modifier=" , "%d" , "0",
+            ReadValueFromStringWithDefault( PrefixPointer , "Bonus to strength modifier=" , "%hd" , "0",
                              & BonusToFill -> modifier_to_bonus_to_str  , EndOfPrefixData );
 
-            ReadValueFromStringWithDefault( PrefixPointer , "Bonus to vitality=" , "%d" , "0",
+            ReadValueFromStringWithDefault( PrefixPointer , "Bonus to vitality=" , "%hd" , "0",
                              & BonusToFill -> base_bonus_to_vit  , EndOfPrefixData );
-            ReadValueFromStringWithDefault( PrefixPointer , "Bonus to vitality modifier=" , "%d" , "0",
+            ReadValueFromStringWithDefault( PrefixPointer , "Bonus to vitality modifier=" , "%hd" , "0",
                              & BonusToFill -> modifier_to_bonus_to_vit  , EndOfPrefixData );
 
-            ReadValueFromStringWithDefault( PrefixPointer , "Bonus to magic=" , "%d" , "0",
+            ReadValueFromStringWithDefault( PrefixPointer , "Bonus to magic=" , "%hd" , "0",
                              & BonusToFill -> base_bonus_to_mag  , EndOfPrefixData );
-            ReadValueFromStringWithDefault( PrefixPointer , "Bonus to magic modifier=" , "%d" , "0",
+            ReadValueFromStringWithDefault( PrefixPointer , "Bonus to magic modifier=" , "%hd" , "0",
                              & BonusToFill -> modifier_to_bonus_to_mag  , EndOfPrefixData );
 
-            ReadValueFromStringWithDefault( PrefixPointer , "Bonus to all attributes=" , "%d" , "0",
+            ReadValueFromStringWithDefault( PrefixPointer , "Bonus to all attributes=" , "%hd" , "0",
                              & BonusToFill -> base_bonus_to_all_attributes  , EndOfPrefixData );
-            ReadValueFromStringWithDefault( PrefixPointer , "Bonus to all attributes modifier=" , "%d" , "0",
+            ReadValueFromStringWithDefault( PrefixPointer , "Bonus to all attributes modifier=" , "%hd" , "0",
                              & BonusToFill -> modifier_to_bonus_to_all_attributes  , EndOfPrefixData );
     
-            ReadValueFromStringWithDefault( PrefixPointer , "Bonus to tohit=" , "%d" , "0",
+            ReadValueFromStringWithDefault( PrefixPointer , "Bonus to tohit=" , "%hd" , "0",
                              & BonusToFill -> base_bonus_to_tohit  , EndOfPrefixData );
-            ReadValueFromStringWithDefault( PrefixPointer , "Bonus to tohit modifier=" , "%d" , "0",
+            ReadValueFromStringWithDefault( PrefixPointer , "Bonus to tohit modifier=" , "%hd" , "0",
                              & BonusToFill -> modifier_to_bonus_to_tohit  , EndOfPrefixData );
 
-            ReadValueFromStringWithDefault( PrefixPointer , "Bonus to armor class or damage=" , "%d" , "0",
+            ReadValueFromStringWithDefault( PrefixPointer , "Bonus to armor class or damage=" , "%hd" , "0",
                              & BonusToFill -> base_bonus_to_ac_or_damage  , EndOfPrefixData );
-            ReadValueFromStringWithDefault( PrefixPointer , "Bonus to armor class or damage modifier=" , "%d" , "0",
+            ReadValueFromStringWithDefault( PrefixPointer , "Bonus to armor class or damage modifier=" , "%hd" , "0",
                              & BonusToFill -> modifier_to_bonus_to_ac_or_damage  , EndOfPrefixData );
 
-            ReadValueFromStringWithDefault( PrefixPointer , "Bonus to life=" , "%d" , "0",
+            ReadValueFromStringWithDefault( PrefixPointer , "Bonus to life=" , "%hd" , "0",
                              & BonusToFill -> base_bonus_to_life  , EndOfPrefixData );
-            ReadValueFromStringWithDefault( PrefixPointer , "Bonus to life modifier=" , "%d" , "0",
+            ReadValueFromStringWithDefault( PrefixPointer , "Bonus to life modifier=" , "%hd" , "0",
                              & BonusToFill -> modifier_to_bonus_to_life  , EndOfPrefixData );
 
-            ReadValueFromStringWithDefault( PrefixPointer , "Bonus to mana=" , "%d" , "0",
+            ReadValueFromStringWithDefault( PrefixPointer , "Bonus to mana=" , "%hd" , "0",
                              & BonusToFill -> base_bonus_to_force  , EndOfPrefixData );
-            ReadValueFromStringWithDefault( PrefixPointer , "Bonus to mana modifier=" , "%d" , "0",
+            ReadValueFromStringWithDefault( PrefixPointer , "Bonus to mana modifier=" , "%hd" , "0",
                              & BonusToFill -> modifier_to_bonus_to_force  , EndOfPrefixData );
 
             ReadValueFromStringWithDefault( PrefixPointer , "Bonus to life recovery=" , "%f" , "0.000000",
@@ -3001,10 +2997,10 @@ int Get_Prefixes_Data ( char * DataPointer )
             ReadValueFromStringWithDefault( PrefixPointer , "Price factor=" , "%f" , "3.000000",
                              & BonusToFill -> price_factor  , EndOfPrefixData );
 
-            ReadValueFromStringWithDefault( PrefixPointer , "Light radius bonus=" , "%d" , "0",
+            ReadValueFromStringWithDefault( PrefixPointer , "Light radius bonus=" , "%hhd" , "0",
                              & BonusToFill -> light_bonus_value  , EndOfPrefixData );
 
-            ReadValueFromStringWithDefault( PrefixPointer , "Level=" , "%d" , "1",
+            ReadValueFromStringWithDefault( PrefixPointer , "Level=" , "%hhd" , "1",
                              & BonusToFill -> level  , EndOfPrefixData );
 
 

@@ -1732,7 +1732,7 @@ recursive_find_walkable_point ( float x1 , float y1 , float x2 , float y2 , int 
 		    if ( next_index_to_set_up >= MAX_INTERMEDIATE_WAYPOINTS_FOR_TUX )
 		    {
 			DebugPrintf ( DEBUG_TUX_PATHFINDING , "\nERROR!  Ran out of tux waypoints even with solutionfound!" );
-			clear_out_intermediate_points ( 0 ) ;
+			clear_out_intermediate_points ( ) ;
 			return ( FALSE );
 		    }
 		    
@@ -2139,7 +2139,7 @@ adapt_global_mode_for_player ( )
 	global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL ;
     }
 
-    our_enemy = GetLivingDroidBelowMouseCursor ( 0 ) ;
+    our_enemy = GetLivingDroidBelowMouseCursor ( ) ;
     if ( our_enemy == NULL )
     {
 	//--------------------
@@ -2292,11 +2292,6 @@ move_tux ( )
     limit_tux_speed_to_a_maximum ( ) ;
     
     MoveTuxAccordingToHisSpeed ( );
-    
-    //--------------------
-    // Check it the influ is on a special field like a lift, a console or a refresh or a conveyor belt
-    //
-    ActSpecialField ( ) ;
     
     animate_tux ( ) ;	// move the "phase" of influencers rotation
 }; // void move_tux( );
@@ -2636,7 +2631,7 @@ GetObstacleBelowMouseCursor ( )
     
 }; // int GetObstacleBelowMouseCursor ( )
 
-void FillInDefaultBulletStruct ( bullet * CurBullet, int bullet_image_type, int weapon_item_type ) 
+void FillInDefaultBulletStruct ( bullet * CurBullet, int bullet_image_type, short int weapon_item_type ) 
 {
 
     memset(CurBullet, 0, sizeof(bullet));
@@ -2683,7 +2678,7 @@ void FillInDefaultBulletStruct ( bullet * CurBullet, int bullet_image_type, int 
  * and SILENTLY TRUSTING THAT THIS TUX HAS A RANGED WEAPON EQUIPPED.
  * ---------------------------------------------------------------------- */
 void
-FireTuxRangedWeaponRaw ( int weapon_item_type , int bullet_image_type, bullet * bullet_parameters , moderately_finepoint target_location ) 
+FireTuxRangedWeaponRaw ( short int weapon_item_type , int bullet_image_type, bullet * bullet_parameters , moderately_finepoint target_location ) 
 {
     int i = 0;
     bullet * CurBullet = NULL;
@@ -3924,7 +3919,7 @@ AnalyzePlayersMouseClick ( )
 	    break;
 
 	case GLOBAL_INGAME_MODE_IDENTIFY:
-	    handle_player_identification_command( 0 );
+	    handle_player_identification_command( );
 	    global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL ;
 
 	    //--------------------

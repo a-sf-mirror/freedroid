@@ -289,7 +289,6 @@ Takeover ( enemy * target )
 	    // and this is exactly the sort of damage can usually be cured in refreshes.
 	    //
 	    Me . energy += target->energy;
-	    Me . health += Druidmap [ OpponentType ] . maxenergy;
 	    
 	    //--------------------
 	    // We provide some security agains too high energy/health values gained
@@ -297,8 +296,6 @@ Takeover ( enemy * target )
 	    //
 	    if ( Me . energy > Me . maxenergy ) 
 		Me . energy = Me . maxenergy;
-	    if ( Me . health > Me . maxenergy ) 
-		Me . health = Me . maxenergy;
 	    
 	    Me . type = target->type;
 	    Me . marker = target->marker;

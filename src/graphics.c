@@ -42,7 +42,7 @@
 #include "SDL_rotozoom.h"
 
 void swap_red_and_blue_for_open_gl ( SDL_Surface* FullView );
-
+static const SDL_VideoInfo * vid_info; 
 /* XPM */
 static const char *crosshair_mouse_cursor[] = {
   /* width height num_colors chars_per_pixel */
@@ -406,7 +406,7 @@ Error loading flag image.",
     our_enemy = GetLivingDroidBelowMouseCursor ( ) ;
     if ( our_enemy == NULL )
     {
-	our_obstacle_index = GetObstacleBelowMouseCursor ( 0 ) ;
+	our_obstacle_index = GetObstacleBelowMouseCursor ( ) ;
 	if ( our_obstacle_index == (-1) ) return;
     }
 	
@@ -434,16 +434,6 @@ Error loading flag image.",
     }
 
 }; // void blit_mouse_cursor_corona ( void )
-
-/* ----------------------------------------------------------------------
- *
- *
- * ---------------------------------------------------------------------- */
-void
-get_obstacle_below_mouse_cursor ( void ) 
-{
-    
-}; // void get_obstacle_below_mouse_cursor ( void ) 
 
 /* ----------------------------------------------------------------------
  * Occasionally it might come in handly to have the whole image fading
@@ -735,7 +725,7 @@ ERROR LOADING SELECTION KNOB IMAGE FILE!",
  * This function gives the green component of a pixel, using a value of
  * 255 for the most green pixel and 0 for the least green pixel.
  * ---------------------------------------------------------------------- */
-Uint8
+static Uint8
 GetGreenComponent ( SDL_Surface* surface , int x , int y )
 {
   SDL_PixelFormat *fmt;
@@ -776,7 +766,7 @@ GetGreenComponent ( SDL_Surface* surface , int x , int y )
  * This function gives the red component of a pixel, using a value of
  * 255 for the most red pixel and 0 for the least red pixel.
  * ---------------------------------------------------------------------- */
-Uint8
+static Uint8
 GetRedComponent ( SDL_Surface* surface , int x , int y )
 {
   SDL_PixelFormat *fmt;
@@ -815,7 +805,7 @@ GetRedComponent ( SDL_Surface* surface , int x , int y )
  * This function gives the blue component of a pixel, using a value of
  * 255 for the most blue pixel and 0 for the least blue pixel.
  * ---------------------------------------------------------------------- */
-Uint8
+static Uint8
 GetBlueComponent ( SDL_Surface* surface , int x , int y )
 {
   SDL_PixelFormat *fmt;
@@ -887,90 +877,6 @@ GetAlphaComponent ( SDL_Surface* surface , int x , int y )
   return ( alpha ) ;
 
 }; // Uint8 GetAlphaComponent ( SDL_Surface* SourceSurface , int x , int y )
-
-/* ----------------------------------------------------------------------
- * If you have two SDL surfaces with alpha channel (i.e. each pixel has
- * it's own alpha value) and you blit one surface over some background
- * and then the other surface over that, the result is the same, as if
- * you merge the two alpha surfaces with this function and then blit it
- * once over the background.
- *
- * This function will be very useful for pre-assembling the tux with all
- * it's equippment out of alpha channeled surfaces only.
- *
- * ---------------------------------------------------------------------- */
-SDL_Surface* 
-Slow_CreateAlphaCombinedSurface ( SDL_Surface* FirstSurface , SDL_Surface* SecondSurface )
-{
-  SDL_Surface* ThirdSurface; // this will be the surface we return to the calling function.
-  int x , y ; // for processing through the surface...
-  Uint8 red, green, blue;
-  float alpha1, alpha2, alpha3 ;
-
-  //--------------------
-  // First we check if the two surfaces have the same size.  If not, an
-  // error message will be generated and the program will halt.
-  //
-  if ( ( FirstSurface -> w != SecondSurface -> w ) ||
-       ( FirstSurface -> w != SecondSurface -> w ) )
-    {
-      DebugPrintf ( 0 , "\nERROR in SDL_Surface* CreateAlphaCombinedSurface ( SDL_Surface* FirstBlit , SDL_Surface* SecondBlit ):  Surface sizes do not match.... " );
-      Terminate ( ERR );
-    }
-
-  //--------------------
-  // Now we create a new surface, best in display format with alpha channel
-  // ready to be blitted.
-  //
-  ThirdSurface = our_SDL_display_format_wrapperAlpha ( FirstSurface );
-
-  //--------------------
-  // Now we start to process through the whole surface and examine each
-  // pixel.
-  //
-  for ( y = 0 ; y < FirstSurface -> h ; y ++ )
-    {
-      for ( x = 0 ; x < FirstSurface -> w ; x ++ )
-	{
-
-	  alpha1 = ( ( float ) GetAlphaComponent (  FirstSurface , x , y ) ) / 255.0 ;
-	  alpha2 = ( ( float ) GetAlphaComponent ( SecondSurface , x , y ) ) / 255.0 ;
-	  alpha3 = 1 - ( 1 - alpha1 ) * ( 1 - alpha2 ) ;
-
-	  //--------------------
-	  // In some cases we give exact alpha values...
-	  //
-	  /*
-	  if ( ( x == 64 ) && ( y == 96 ) )
-	    {
-	      DebugPrintf( 0 , "\nOldAlphaValue 1: %d OldAlphaValue 2: %d " , 
-			   GetAlphaComponent (  FirstSurface , x , y ) ,
-			   GetAlphaComponent ( SecondSurface , x , y ) 
-			   ) ;
-	    }
-	  */
-
-	  red =  ( alpha2 * GetRedComponent ( SecondSurface , x , y ) +
-		   ( 1 - alpha2 ) * alpha1 * GetRedComponent ( FirstSurface , x , y ) ) 
-	    / alpha3 ;
-
-	  green =  ( alpha2 * GetGreenComponent ( SecondSurface , x , y ) +
-		   ( 1 - alpha2 ) * alpha1 * GetGreenComponent ( FirstSurface , x , y ) ) 
-	    / alpha3 ;
-
-	  blue =  ( alpha2 * GetBlueComponent ( SecondSurface , x , y ) +
-		   ( 1 - alpha2 ) * alpha1 * GetBlueComponent ( FirstSurface , x , y ) ) 
-	    / alpha3 ;
-
-	  PutPixel ( ThirdSurface , x , y , 
-		     SDL_MapRGBA ( ThirdSurface -> format , red , green , blue , 255.0 * alpha3 ) ) ;
-
-	}
-    }
-
-  return ( ThirdSurface );
-
-}; // SDL_Surface* Slow_CreateAlphaCombinedSurface ( SDL_Surface* FirstBlit , SDL_Surface* SecondBlit )
 
 /* ----------------------------------------------------------------------
  * This function can be used to create a new surface that has a certain
@@ -1485,7 +1391,7 @@ DisplayImage( char *datafile )
  *
  *
  * ---------------------------------------------------------------------- */
-void
+static void
 get_standard_iso_floor_tile_size ( void )
 {
     SDL_Surface *standard_floor_tile;
@@ -1609,7 +1515,7 @@ InitOurBFonts ( void )
 
 char fpath[2048];
     int i;
-    char* MenuFontFiles[ALL_BFONTS_WE_LOAD] =
+    const char* MenuFontFiles[ALL_BFONTS_WE_LOAD] =
 	{
 	    MENU_FONT_FILE,
 	    MESSAGE_FONT_FILE,
@@ -1628,9 +1534,10 @@ char fpath[2048];
 	    &Blue_BFont
 	};
     
+    extern char * language_font_classes[];
+
     for ( i = 0 ; i < ALL_BFONTS_WE_LOAD ; i ++ )
     {
-	extern char * language_font_classes[];
         char constructed_fname[2048];
 	sprintf(constructed_fname, "%s", MenuFontFiles [ i ] );
 	strcat(constructed_fname, language_font_classes[GameConfig.language] );
@@ -1711,7 +1618,7 @@ InitTimer (void)
  * time) and request of OpenGL graphics output are compatible with each
  * other...  If not, we just disable OpenGL output method...
  * ---------------------------------------------------------------------- */
-void
+static void
 check_open_gl_libraries_present ( void )
 {
     //--------------------
@@ -1756,8 +1663,8 @@ check_open_gl_libraries_present ( void )
  * and that seem to be occuring so frequently are not coming from this 
  * chunk of code.
  * ---------------------------------------------------------------------- */
-void
-safely_show_open_gl_driver_info ( void )
+static void
+show_open_gl_driver_info ( void )
 {
 #ifdef HAVE_LIBGL
     //--------------------
@@ -1776,35 +1683,6 @@ safely_show_open_gl_driver_info ( void )
     fprintf( stderr , "\n\n" );
 #endif
 }; // void safely_show_open_gl_driver_info ( void )
-
-/* ----------------------------------------------------------------------
- * This function gets the video info from OpenGL.  We do this
- * in a separate function, so that eventual errors (and bug reports) from
- * the OpenGL error checking can be attributed to a source more easily.
- * ---------------------------------------------------------------------- */
-SDL_VideoInfo*
-safely_get_SDL_video_info ( void )
-{
-
-    SDL_VideoInfo *vid_info;
-
-    vid_info = (SDL_VideoInfo*) SDL_GetVideoInfo (); 
-    if ( !vid_info )
-    {
-	fprintf(stderr, "Could not obtain video info via SDL: %s\n", SDL_GetError ( ) );
-	Terminate(ERR);
-    }
-    
-    //--------------------
-    // Since the OpenGL stuff hasn't been initialized yet, it's normal
-    // to get an GL_INVALID_OPERATION here, if we would really do the
-    // check.  So better refrain from OpenGL error checking here...
-    //
-    // open_gl_check_error_status ( __FUNCTION__ );
-
-    return ( vid_info );
-
-}; // SDL_VideoInfo *safely_get_SDL_video_info ( void )
 
 /* ----------------------------------------------------------------------
  * This function sets the OpenGL double buffering attribute.  We do this
@@ -1847,16 +1725,9 @@ void
 set_video_mode_for_open_gl ( void )
 {
 #ifdef HAVE_LIBGL
-    SDL_VideoInfo *vid_info;
     Uint32 video_flags = 0 ;  // flags for SDL video mode 
     int video_mode_ok_check_result ;
     int buffer_size , depth_size, red_size, green_size, blue_size, alpha_size ;
-
-    //--------------------
-    // We query the available video configuration on this system.
-    //
-    vid_info = safely_get_SDL_video_info ();
-
     //--------------------
     // We need OpenGL double buffering, so we request it.  If we
     // can't get it, something must be wrong, maybe an extremely bad 
@@ -1948,7 +1819,7 @@ SDL reported, that the video mode mentioned above is not supported\nBreaking off
 		 buffer_size , red_size, green_size, blue_size, alpha_size, depth_size );
     }
     
-    safely_show_open_gl_driver_info ( );
+    show_open_gl_driver_info ( );
     
     safely_initialize_our_default_open_gl_parameters ( );
     
@@ -1981,7 +1852,6 @@ SDL reported, that the video mode mentioned above is not supported\nBreaking off
 void
 InitVideo (void)
 {
-    const SDL_VideoInfo *vid_info;
     char vid_driver[81];
     Uint32 video_flags = 0 ;  // flags for SDL video mode 
     char fpath[2048];
@@ -2034,24 +1904,6 @@ InitVideo (void)
     DebugPrintf ( -4 , "\nUsing screen resolution %d x %d." ,
 		  GameConfig . screen_width , GameConfig . screen_height );
     
-    if ( use_open_gl )
-    {
-	set_video_mode_for_open_gl();
-    }
-    else
-    {
-	// RP: let's try without those...
-	// video_flags = SDL_SWSURFACE | SDL_HWPALETTE ;
-	if (GameConfig . fullscreen_on) video_flags |= SDL_FULLSCREEN;
-	
-	if( !(Screen = SDL_SetVideoMode ( GameConfig . screen_width, GameConfig . screen_height , 0 , video_flags )) )
-	{
-	    fprintf(stderr, "Couldn't set (2*) 320x240*SCALE_FACTOR video mode: %s\n",
-		    SDL_GetError()); 
-	    Terminate ( ERR ) ; 
-	}
-    }
-    
     //--------------------
     // We query the available video configuration on this system.
     //
@@ -2060,6 +1912,23 @@ InitVideo (void)
     {
 	fprintf(stderr, "Could not obtain video info via SDL: %s\n",SDL_GetError());
 	Terminate(ERR);
+    }
+    
+    
+    if ( use_open_gl )
+    {
+	set_video_mode_for_open_gl();
+    }
+    else
+    {
+	if (GameConfig . fullscreen_on) video_flags |= SDL_FULLSCREEN;
+	
+	if( !(Screen = SDL_SetVideoMode ( GameConfig . screen_width, GameConfig . screen_height , 0 , video_flags )) )
+	{
+	    fprintf(stderr, "Couldn't set (2*) 320x240*SCALE_FACTOR video mode: %s\n",
+		    SDL_GetError()); 
+	    Terminate ( ERR ) ; 
+	}
     }
     
     vid_bpp = 32; /* start with the simplest */

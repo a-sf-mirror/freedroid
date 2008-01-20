@@ -1128,71 +1128,6 @@ map tiles.",
     
 }; // int GetMapBrick( ... ) 
 
-/* ---------------------------------------------------------------------- 
- * This function checks if something special has to be done, cause the
- * Influencer or tux has stepped on some special fields like a lifts or
- * a console or a refresh or something like that.
- * ---------------------------------------------------------------------- */
-void
-ActSpecialField ( )
-{
-    // unsigned char MapBrick;
-    // float cx, cy;			
-    // float x = Me . pos . x ;
-    // float y = Me . pos . y ;
-    // Level SpecialFieldLevel;
-    
-    // DebugPrintf (2, "\ActSpecialField():  Real function call confirmed." ) ;
-    
-    //--------------------
-    // We don't do anything for this player, if it's an
-    // inactive player.
-    //
-    if ( Me . status == INFOUT ) return;
-    
-    //--------------------
-    // If the player is on the one special teleporter square, that gets
-    // the player teleported back to where he came from, we will teleport
-    // him back there...
-    //
-
-    /*
-    if ( ( ((int) rintf(Me.pos.x) ) == 3 ) &&
-	 ( ((int) rintf(Me.pos.y) ) == 7 ) &&
-	 ( ((int) rintf(Me.pos.z) ) == 0 ) )
-    {
-	Teleport ( (int) Me.teleport_anchor.z , (int) Me.teleport_anchor.x , (int) Me.teleport_anchor.y , 0 , FALSE , TRUE );
-    }
-    
-    SpecialFieldLevel = curShip . AllLevels [ Me . pos . z ] ;
-    */
-
-    /*
-    MapBrick = GetMapBrick ( SpecialFieldLevel , x , y ) ;
-    
-    switch ( MapBrick )
-    {
-	case CONSUMER_1:
-	case CONSUMER_2:
-	case CONSUMER_3:
-	case CONSUMER_4:
-	    GameConfig.Inventory_Visible=FALSE;
-	    GameConfig.CharacterScreen_Visible=FALSE;
-	    GameConfig.Mission_Log_Visible=FALSE;
-	    GameOver=TRUE;
-	    PlayATitleFile ( "EndOfGame.title" );
-	    Credits_Menu();
-	    break;
-	    
-	default:
-	    break;
-    }	// switch 
-    */
-
-    DebugPrintf (2, "\nvoid ActSpecialField(int x, int y):  end of function reached.");
-    
-}; // void ActSpecialField ( ... )
-
 /* ----------------------------------------------------------------------
  * This function moves all the refresh fields to their next phase (if
  * it's time already).
@@ -2816,7 +2751,7 @@ void
 GetThisLevelsSpecialForces ( char* SearchPointer , int OurLevelNumber , char* EndOfThisLevelData )
 {
   char TypeIndicationString[1000];
-  int ListIndex;
+  short int ListIndex;
   char* StartMapLabel;
   char* YesNoString;
   location StartupLocation;
@@ -2857,10 +2792,10 @@ file you use.",
 		       TypeIndicationString , ListIndex );
 	}
 
-      ReadValueFromString ( SearchPointer ,"Fixed=","%d", &newen.CompletelyFixed , EndOfThisLevelData );
+      ReadValueFromString ( SearchPointer ,"Fixed=","%hhd", &newen.CompletelyFixed , EndOfThisLevelData );
       ReadValueFromString ( SearchPointer ,"Marker=","%d", &newen . marker , EndOfThisLevelData );
-      ReadValueFromStringWithDefault ( SearchPointer ,"MaxDistanceToHome=","%d", "0", &newen.max_distance_to_home , EndOfThisLevelData );
-      ReadValueFromString ( SearchPointer ,"Friendly=","%d", &newen.is_friendly , EndOfThisLevelData );
+      ReadValueFromStringWithDefault ( SearchPointer ,"MaxDistanceToHome=","%hd", "0", &newen.max_distance_to_home , EndOfThisLevelData );
+      ReadValueFromString ( SearchPointer ,"Friendly=","%hhd", &newen.is_friendly , EndOfThisLevelData );
       StartMapLabel = 
 	ReadAndMallocStringFromData ( SearchPointer , "StartUpAtLabel=\"" , "\"" ) ;
       ResolveMapLabelOnShip ( StartMapLabel , &StartupLocation );
@@ -2988,7 +2923,7 @@ GetThisLevelsDroids( char* SectionPointer )
     int DifferentRandomTypes;
     int ListIndex;
     char TypeIndicationString[1000];
-    int ListOfTypesAllowed[1000];
+    short int ListOfTypesAllowed[1000];
     enemy newen;
 
 #define DROIDS_LEVEL_INDICATION_STRING "Level="

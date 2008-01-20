@@ -758,16 +758,16 @@ Get_Robot_Data ( void* DataPointer )
   double maxspeed_calibrator;
   double acceleration_calibrator;
   double maxenergy_calibrator;
-  double energyloss_calibrator;
   double aggression_calibrator;
+  float energyloss_calibrator;
   double experience_reward_calibrator;
   double range_of_vision_calibrator;
 
 #define MAXSPEED_CALIBRATOR_STRING "Common factor for all droids maxspeed values: "
 #define ACCELERATION_CALIBRATOR_STRING "Common factor for all droids acceleration values: "
 #define MAXENERGY_CALIBRATOR_STRING "Common factor for all droids maximum energy values: "
-#define ENERGYLOSS_CALIBRATOR_STRING "Common factor for all droids energyloss values: "
 #define AGGRESSION_CALIBRATOR_STRING "Common factor for all droids aggression values: "
+#define ENERGYLOSS_CALIBRATOR_STRING "Common factor for all droids energyloss values: "
 #define EXPERIENCE_REWARD_CALIBRATOR_STRING "Common factor for all droids experience_reward values: "
 #define RANGE_OF_VISION_CALIBRATOR_STRING "Common factor for all droids range of vision: "
 
@@ -828,10 +828,9 @@ Get_Robot_Data ( void* DataPointer )
   // Now we read in the maxenergy calibration factor for all droids
   ReadValueFromString( RobotPointer , MAXENERGY_CALIBRATOR_STRING , "%lf" , 
 		       &maxenergy_calibrator , EndOfDataPointer );
-
   // Now we read in the energy_loss calibration factor for all droids
-  ReadValueFromString( RobotPointer , ENERGYLOSS_CALIBRATOR_STRING , "%lf" , 
-		       &energyloss_calibrator , EndOfDataPointer );
+  ReadValueFromString( RobotPointer , ENERGYLOSS_CALIBRATOR_STRING , "%f" ,
+	&energyloss_calibrator , EndOfDataPointer );
 
   // Now we read in the aggression calibration factor for all droids
   ReadValueFromString( RobotPointer , AGGRESSION_CALIBRATOR_STRING , "%lf" , 
@@ -896,7 +895,7 @@ Get_Robot_Data ( void* DataPointer )
 	ReadAndMallocStringFromData ( RobotPointer , DROID_ATTACK_ANIMATION_SOUND_FILE_NAME , "\"" ) ;
 
       // Now we read in the maximal speed this droid can go. 
-      ReadValueFromString( RobotPointer , MAXSPEED_BEGIN_STRING , "%lf" , 
+      ReadValueFromString( RobotPointer , MAXSPEED_BEGIN_STRING , "%f" , 
 			   &Druidmap[RobotIndex].maxspeed , EndOfDataPointer );
 
       // Now we read in the class of this droid.
@@ -904,19 +903,19 @@ Get_Robot_Data ( void* DataPointer )
 			   &Druidmap[RobotIndex].class , EndOfDataPointer );
 
       // Now we read in the maximal acceleration this droid can go. 
-      ReadValueFromString( RobotPointer , ACCELERATION_BEGIN_STRING , "%lf" , 
+      ReadValueFromString( RobotPointer , ACCELERATION_BEGIN_STRING , "%f" , 
 			   &Druidmap[RobotIndex].accel , EndOfDataPointer );
 
       // Now we read in the maximal energy this droid can store. 
-      ReadValueFromString( RobotPointer , MAXENERGY_BEGIN_STRING , "%lf" , 
+      ReadValueFromString( RobotPointer , MAXENERGY_BEGIN_STRING , "%f" , 
 			   &Druidmap[RobotIndex].maxenergy , EndOfDataPointer );
 
       // Now we read in the maximal mana this droid can store. 
-      ReadValueFromString( RobotPointer , MAXMANA_BEGIN_STRING , "%lf" , 
+      ReadValueFromString( RobotPointer , MAXMANA_BEGIN_STRING , "%f" , 
 			   &Druidmap[RobotIndex].max_temperature , EndOfDataPointer );
 
       // Now we read in the lose_health rate.
-      ReadValueFromString( RobotPointer , LOSEHEALTH_BEGIN_STRING , "%lf" , 
+      ReadValueFromString( RobotPointer , LOSEHEALTH_BEGIN_STRING , "%f" , 
 			   &Druidmap[RobotIndex].lose_health , EndOfDataPointer );
 
       // Now we read in the aggression rate of this droid.
@@ -940,11 +939,11 @@ Get_Robot_Data ( void* DataPointer )
 			   &Druidmap[RobotIndex].minimal_range_hostile_bots_are_ignored , EndOfDataPointer );
 
       // Now we read in the flash immunity of this droid.
-      ReadValueFromStringWithDefault( RobotPointer , FLASHIMMUNE_BEGIN_STRING , "%d" , "0",
+      ReadValueFromStringWithDefault( RobotPointer , FLASHIMMUNE_BEGIN_STRING , "%hhd" , "0",
 			   &Druidmap[RobotIndex].flashimmune , EndOfDataPointer );
 
       // Now we experience_reward to be had for destroying one droid of this type
-      ReadValueFromString( RobotPointer , EXPERIENCE_REWARD_BEGIN_STRING , "%d" , 
+      ReadValueFromString( RobotPointer , EXPERIENCE_REWARD_BEGIN_STRING , "%hd" , 
 			   &Druidmap[RobotIndex].experience_reward, EndOfDataPointer );
 
       // Now we read in the monster level = maximum treasure chest to pick from
@@ -972,39 +971,39 @@ Get_Robot_Data ( void* DataPointer )
       free ( tmp_item_name );
 
       // Now we read in the number of plasma transistors
-      ReadValueFromStringWithDefault( RobotPointer , "Number of Plasma Transistors=" , "%d" , "0",
+      ReadValueFromStringWithDefault( RobotPointer , "Number of Plasma Transistors=" , "%hhd" , "0",
 			   &Druidmap[RobotIndex].amount_of_plasma_transistors , EndOfDataPointer );
 
       // Now we read in the number of plasma transistors
-      ReadValueFromStringWithDefault( RobotPointer , "Number of Superconductors=" , "%d" , "0", 
+      ReadValueFromStringWithDefault( RobotPointer , "Number of Superconductors=" , "%hhd" , "0", 
 			   &Druidmap[RobotIndex].amount_of_superconductors , EndOfDataPointer );
 
       // Now we read in the number of plasma transistors
-      ReadValueFromStringWithDefault( RobotPointer , "Number of Antimatter-Matter Converters=" , "%d" , "0", 
+      ReadValueFromStringWithDefault( RobotPointer , "Number of Antimatter-Matter Converters=" , "%hhd" , "0", 
 			   &Druidmap[RobotIndex].amount_of_antimatter_converters , EndOfDataPointer );
 
       // Now we read in the number of plasma transistors
-      ReadValueFromStringWithDefault( RobotPointer , "Number of Entropy Inverters=" , "%d" , "0", 
+      ReadValueFromStringWithDefault( RobotPointer , "Number of Entropy Inverters=" , "%hhd" , "0", 
 			   &Druidmap[RobotIndex].amount_of_entropy_inverters , EndOfDataPointer );
 
       // Now we read in the number of plasma transistors
-      ReadValueFromStringWithDefault( RobotPointer , "Number of Tach. Condensators=" , "%d" , "0",
+      ReadValueFromStringWithDefault( RobotPointer , "Number of Tach. Condensators=" , "%hhd" , "0",
 			   &Druidmap[RobotIndex].amount_of_tachyon_condensators , EndOfDataPointer );
 
       // Now we read in the greeting sound type of this droid type
-      ReadValueFromString( RobotPointer , GREETING_SOUND_STRING , "%d" , 
+      ReadValueFromString( RobotPointer , GREETING_SOUND_STRING , "%hd" , 
 			   &Druidmap[RobotIndex].greeting_sound_type , EndOfDataPointer );
 
       // Now we read in the greeting sound type of this droid type
-      ReadValueFromString( RobotPointer , ENEMY_GOT_HIT_SOUND_STRING , "%d" , 
+      ReadValueFromString( RobotPointer , ENEMY_GOT_HIT_SOUND_STRING , "%hd" , 
 			   &Druidmap[RobotIndex].got_hit_sound_type , EndOfDataPointer );
 
       // Now we read in the to-hit chance this robot has in combat against an unarmoured target
-      ReadValueFromString( RobotPointer , TO_HIT_STRING , "%d" , 
+      ReadValueFromString( RobotPointer , TO_HIT_STRING , "%hd" , 
 			   &Druidmap[RobotIndex].to_hit , EndOfDataPointer );
 
       // Now we read in the modifier, that increases/decreases the chance of this robot getting hit
-      ReadValueFromString( RobotPointer , GETTING_HIT_MODIFIER_STRING , "%d" , 
+      ReadValueFromString( RobotPointer , GETTING_HIT_MODIFIER_STRING , "%hd" , 
 			   &Druidmap[RobotIndex].getting_hit_modifier , EndOfDataPointer );
 
       // Now we read in the modifier, that increases/decreases the chance of this robot getting hit
@@ -1012,11 +1011,11 @@ Get_Robot_Data ( void* DataPointer )
 			   &Druidmap[RobotIndex] . recover_time_after_getting_hit , EndOfDataPointer );
 
       // Now we read in the is_human flag of this droid type
-      ReadValueFromString( RobotPointer , IS_HUMAN_SPECIFICATION_STRING , "%d" , 
+      ReadValueFromString( RobotPointer , IS_HUMAN_SPECIFICATION_STRING , "%hhd" , 
 			   &Druidmap[RobotIndex].is_human , EndOfDataPointer );
 
       // Now we read in the is_human flag of this droid type
-      ReadValueFromString( RobotPointer , INDIVIDUAL_SHAPE_SPECIFICATION_STRING , "%d" , 
+      ReadValueFromString( RobotPointer , INDIVIDUAL_SHAPE_SPECIFICATION_STRING , "%hd" , 
 			   &Druidmap[RobotIndex].individual_shape_nr , EndOfDataPointer );
 
       // Now we read in the notes concerning this droid.  We consider as notes all the rest of the
@@ -1037,11 +1036,10 @@ Get_Robot_Data ( void* DataPointer )
     {
       Druidmap [ i ] . maxspeed *= maxspeed_calibrator;
       Druidmap [ i ] . maxenergy *= maxenergy_calibrator;
-      Druidmap [ i ] . lose_health *= energyloss_calibrator;
       Druidmap [ i ] . aggression *= aggression_calibrator;
       Druidmap [ i ] . experience_reward *= experience_reward_calibrator;
       Druidmap [ i ] . range_of_vision *= range_of_vision_calibrator;
-
+      Druidmap [ i ] . lose_health *= energyloss_calibrator;
       Druidmap [ i ] . weapon_item . currently_held_in_hand = FALSE ;
     }
 }; // int Get_Robot_Data ( void )
@@ -1993,26 +1991,26 @@ PrepareStartOfNewCharacter ( void )
     //--------------------
     // At this point the position history can be initialized
     //
-    InitInfluPositionHistory( 0 );
+    InitInfluPositionHistory( );
     
     //--------------------
     // Now we read in the mission targets for this mission
     // Several different targets may be specified simultaneously
     //
-    clear_tux_mission_info ( 0 );
+    clear_tux_mission_info ( );
     GetQuestList ( "QuestList" );
     
     SwitchBackgroundMusicTo ( curShip.AllLevels [ Me . pos . z ] -> Background_Song_Name );
     
-    InitHarmlessTuxStatusVariables( 0 );
+    InitHarmlessTuxStatusVariables( );
     
-    InitInfluencerStartupSkills( 0 );
+    InitInfluencerStartupSkills( );
     
-    UpdateAllCharacterStats( 0 );
+    UpdateAllCharacterStats( );
     
-    InitInfluencerChatFlags( 0 );
+    InitInfluencerChatFlags( );
     
-    clear_out_intermediate_points ( 0 ) ;
+    clear_out_intermediate_points ( ) ;
     
     for ( j = 0 ; j < MAX_COOKIES ; j ++ )
     {
@@ -2026,7 +2024,6 @@ PrepareStartOfNewCharacter ( void )
     Me . energy = Me . maxenergy;
     Me . temperature = 0;
     Me . running_power = Me . max_running_power ;
-    Me . health = Me . energy;
     Me . busy_time = 0 ;
     Me . busy_type = NONE ;
     
