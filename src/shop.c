@@ -1475,12 +1475,6 @@ TryToIntegrateItemIntoInventory ( item* BuyItem , int AmountToBuyAtMost )
 	}
     }
     
-    //--------------------
-    // If this point is ever reached, we know that an item has been selected 
-    // for buying and could be bought, if only ONE HAD ENOUGH ROOM IN INVENTORY!!
-    // Therefore a message must be displayed, saying what the problem is.
-    //
-    PlayOnceNeededSoundSample ( "Tux_Hold_On_I_0.ogg" , FALSE , FALSE );
     MenuTexts[0]=_(" BACK ");
     MenuTexts[1]="";
     GiveItemDescription( linebuf , BuyItem , TRUE );
