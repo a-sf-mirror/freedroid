@@ -37,20 +37,33 @@ find_members_rxp = re.compile(r'\s*' + c_type + r'\s+(' + c_id + r')(?:\[(\d+)\]
 # Special types replacements
 special_types = {
     'char_ptr': 'string',
-    'unsigned_int': 'uint',
+    #32 bit integers
+    'unsigned_int': 'uint32_t',
+    'int' : 'int32_t',
+    #16 bit
+    'short_int': 'int16_t',
+    'unsigned_short_int' : 'uint16_t',
+    'short': 'int16_t',
+    #8 bit
+    'char' : 'int8_t',
+    'unsigned char' : 'uint8_t'
 }
 
 only_dump_structs = [ "gps", "point", "moderately_finepoint", "finepoint", "tux_t", "item", "enemy", "bullet" ]
 
 def main():
     if len(sys.argv) < 3:
-        print "Usage: %s <input> <output>" % sys.argv[0]
+        print "Usage: %s <input.h> <output>" % sys.argv[0]
         sys.exit(1)
     
     # Filenames
     inpfn, outfn = sys.argv[1:]
     inpf = open(inpfn, 'r')
-    outf = open(outfn, 'w')
+    outf = open(outfn+'.c', 'w')
+    outh = open(outfn+'.h', 'w')
+
+    #Prelude
+    outf.write('#include "struct.h"\n#include "' + outfn + '.h"\nextern FILE * SaveGameFile;\n\n\n')
 
     data = {}
 
@@ -104,18 +117,20 @@ def main():
     # Writing loop
     for s_name in data.keys():
         str_save = str_read = ''
-        str_save += 'int save_%s(%s * target)\n{\nfprintf(zl_savefile, "<%s ");\n' % (s_name,s_name,s_name)
-        str_read += 'int read_%s(char* buffer, %s * target)\n{\n' % (s_name,s_name)
+	header = 'int save_%s(char *, %s *);\n int read_%s(char *, char *, %s *);\n' % (s_name, s_name, s_name, s_name)
+	str_save += 'int save_%s(char * tag, %s * target)\n{\nfprintf(SaveGameFile, "<%s %%s>\\n",tag?tag:"");\n' % (s_name,s_name,s_name)
+        str_read += 'int read_%s(char* buffer, char * tag, %s * target)\n{\n' % (s_name,s_name)
         for (type, field) in data[s_name]:
             size = None
             if "[" in type:
                 size = int(type.split('[')[1][:-1])
                 type = type.split('[')[0] + '_array'
-            str_save += 'save_%s("%s", target->%s%s);\n' % (type, field, field, (', %s' % size) if size else '')
+            str_save += 'save_%s("%s", &(target->%s%s));\n' % (type, field, field, (', %s' % size) if size else '')
             str_read += 'read_%s(buffer, "%s", &(target->%s)%s);\n' % (type, field, field, (', %s' % size) if size else '')
-        str_save += 'fprintf(zl_savefile, " >\\n");\nreturn 0;\n}\n\n'
+        str_save += 'fprintf(SaveGameFile, "</%s>\\n");\nreturn 0;\n}\n\n' % (s_name)
         str_read += 'return 0;\n}\n\n'
         outf.write(str_save)
         outf.write(str_read)
+	outh.write(header)
 
 if __name__ == '__main__': main()
