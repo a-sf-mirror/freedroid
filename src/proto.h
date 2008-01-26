@@ -303,6 +303,61 @@ EXTERN int LoadGame( void );
 EXTERN int DeleteGame( void );
 EXTERN void LoadAndShowStats ( char* CoreFilename );
 
+/* Primitive types*/
+#define save_pritype(Z,X,Y) fprintf(SaveGameFile, Z, X, *(Y));
+#define save_char(X,Y) save_pritype("%s: %hhd\n", X, Y)
+#define save_uchar(X,Y) save_pritype("%s: %hhu\n", X, Y)
+#define save_uint16_t(X,Y) save_pritype("%s: %hu\n", X, Y)
+#define save_int16_t(X,Y) save_pritype("%s: %hd\n", X, Y)
+#define save_int32_t(X,Y) save_pritype("%s: %d\n", X, Y)
+#define save_uint32_t(X,Y) save_pritype("%s: %u\n", X, Y)
+#define save_float(X,Y) save_pritype("%s: %f\n", X, Y)
+#define save_double(X,Y) save_pritype("%s: %lf\n", X, Y)
+#define save_string(X,Y) save_pritype("%s: %s\n", X, Y)
+
+#define read_char(X,Y,Z)
+#define read_uchar(X,Y,Z)
+#define read_int16_t(X,Y,Z)
+#define read_int32_t(X,Y,Z)
+#define read_uint32_t(X,Y,Z)
+#define read_float(X,Y,Z)
+#define read_double(X,Y,Z)
+#define read_string(X,Y,Z)
+
+/* Array writing/reading */
+EXTERN void save_moderately_finepoint_array(char *, moderately_finepoint *, int);
+EXTERN void read_moderately_finepoint_array(char *, char *, moderately_finepoint *, int);
+EXTERN void save_mission_array(char *, mission *, int);
+EXTERN void read_mission_array(char *, char *, mission *, int);
+EXTERN void save_int32_t_array(char *, int *, int);
+EXTERN void read_int32_t_array(char *, char *, int *, int);
+EXTERN void save_item_array(char *, item *, int);
+EXTERN void read_item_array(char *, char *, item *, int);
+EXTERN void save_uchar_array(char *, unsigned char *, int);
+EXTERN void read_uchar_array(char *, char *, unsigned char *, int);
+EXTERN void save_uint16_t_array(char *, uint16_t *, int);
+EXTERN void read_uint16_t_array(char *, char *, uint16_t *, int);
+EXTERN void save_gps_array(char *, gps *, int);
+EXTERN void read_gps_array(char *, char *, gps *, int);
+
+/* Ugly hacks */
+EXTERN void save_chatflags_t_array(char *, chatflags_t * , int);
+EXTERN void save_cookielist_t_array(char *, cookielist_t *, int);
+#define save_automap_data_t_array save_automap_data
+EXTERN void save_automap_data(char*, automap_data_t *, int);
+
+/* Types that go into oblivion */
+#define save_sdl_rect(X,Y)
+#define read_sdl_rect(X,Y,Z)
+#define save_gps_ptr(X,Y)
+#define save_enemy_s_ptr(X,Y) save_enemy_ptr(X,Y)
+EXTERN void save_enemy_ptr(char *, enemy **);
+#define read_enemy_s_ptr(X,Y,Z) read_enemy_ptr(X,Y,Z)
+EXTERN void read_enemy_ptr(char *, char *, enemy **);
+#define save_sdl_surface_ptr_array(X,Y,Z)
+
+
+
 // mission.c 
 #undef EXTERN
 #ifdef _mission_c

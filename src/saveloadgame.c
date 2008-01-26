@@ -1,7 +1,7 @@
 /* 
  *
  *   Copyright (c) 2002, 2003 Johannes Prix
- *   Copyright (c) 2004-2007 Arthur Huillet 
+ *   Copyright (c) 2004-2008 Arthur Huillet 
  *
  *  This file is part of Freedroid
  *
@@ -26,11 +26,6 @@
  * All functions that have to do with loading and saving of games.
  * ---------------------------------------------------------------------- */
 
-/*
- * This file should not contain any german, since it originates from
- * a time where we didn't use german for comments any more.
- *
- */
 
 #define _saveloadgame_c
 
@@ -42,12 +37,8 @@
 #include "proto.h"
 #include "SDL_rotozoom.h"
 #include "sys/stat.h"
+#include "savestruct.h"
 
-#define INFLUENCER_STRUCTURE_RAW_DATA_STRING "Now the raw data of the influencer structure:"
-#define ALLENEMYS_RAW_DATA_STRING "Now the raw AllEnemys data:"
-#define ALLBULLETS_RAW_DATA_STRING "Now the raw AllBullets data:"
-#define DROID001_RAW_DATA_STRING "Now the raw DROID001 data:"
-#define END_OF_SAVEDGAME_DATA_STRING "End of saved game data file."
 #define LEVELNUM_EXPL_STRING "Explicit number of the level the influ currently is in="
 
 #define SAVEDGAME_EXT ".savegame"
@@ -55,10 +46,8 @@
 
 int load_game_command_came_from_inside_running_game = FALSE ;
 
-/* ----------------------------------------------------------------------
- *
- *
- * ---------------------------------------------------------------------- */
+FILE *SaveGameFile;  // to this file we will save all the ship data...
+
 void
 ShowSaveLoadGameProgressMeter( int Percentage , int IsSavegame ) 
 {
@@ -78,10 +67,6 @@ ShowSaveLoadGameProgressMeter( int Percentage , int IsSavegame )
 
 }; // void ShowSaveGameProgressMeter( int Percentage ) 
 
-/* ----------------------------------------------------------------------
- *
- *
- * ---------------------------------------------------------------------- */
 void
 LoadAndShowThumbnail ( char* CoreFilename )
 {
@@ -92,18 +77,11 @@ LoadAndShowThumbnail ( char* CoreFilename )
     if ( ! our_config_dir )
 	return;
     
-    DebugPrintf ( 2 , "\nTrying to load thumbnail for character '%s'. " , CoreFilename );
-    
-    //--------------------
-    // First we save the full ship information, same as with the level editor
-    //
-    
     sprintf( filename , "%s/%s%s", our_config_dir , CoreFilename , SAVE_GAME_THUMBNAIL_EXT );
     
     NewThumbnail = our_IMG_load_wrapper ( filename );
     if ( NewThumbnail == NULL ) return;
     
-    // TargetRectangle.x = GameConfig . screen_width - NewThumbnail ->w ;
     TargetRectangle.x = 10 ;
     TargetRectangle.y = GameConfig . screen_height - NewThumbnail ->h - 10 ;
     
@@ -269,59 +247,23 @@ SaveThumbnailOfGame ( void )
 int 
 SaveGame( void )
 {
-    char *SaveGameHeaderString;
-    FILE *SaveGameFile;  // to this file we will save all the ship data...
     char filename[1000];
-    char linebuf[10000];
-    char* MenuTexts[10]={ "Back" , "" , "" , "" , "" , "" , "" , "" , "" , "" };
     
     if ( ! our_config_dir )
 	return (OK);
     
-    //--------------------
-    // Saving might take a while, therefore we activate the conservative
-    // frame rate, just to be sure, so that no sudden jumps occur, perhaps
-    // placing the influencer or some bullets outside the map even!
-    //
     Activate_Conservative_Frame_Computation();
     
-    DebugPrintf ( SAVE_LOAD_GAME_DEBUG , "\nint SaveGame( void ): real function call confirmed.");
-    
-    //--------------------
-    // Now we add a security question to prevent the player from (accidentially)
-    // saving a game where his character is already dead
-    //
-    if ( Me.energy <= 0 )
-    {
-	DoMenuSelection( _("\n\n    Surely you do not really want do save a game \n\n    where your tux is dead, do you?"), 
-			 MenuTexts , 1 , -1 , NULL );
-	return ( OK );
-    }
-    
-    //--------------------
-    // Now that we really start to save the game, it's time to display the save
-    // game progress meter...
-    //
     ShowSaveLoadGameProgressMeter( 0 , TRUE ) ;
     
-    //--------------------
-    // We must make sure the version string in the Me struct is set 
-    // correctly for later loading...
-    // But not only the version, but also some struct sizes and array
-    // lengthes should be checked as well, so that we have some extra
-    // protection against saved game data not fitting into some structs
-    // any more...
-    //
     sprintf ( Me . freedroid_version_string , 
-	      "%s;sizeof(tux_t)=%d;sizeof(enemy)=%d;sizeof(bullet)=%d;MAXBULLETS=%d;MAX_ENEMYS_ON_SHIP=%d\n", 
+	      "%s;sizeof(tux_t)=%d;sizeof(enemy)=%d;sizeof(bullet)=%d;MAXBULLETS=%d\n", 
 	      VERSION , 
 	      (int) sizeof(tux_t) , 
 	      (int) sizeof(enemy) ,
 	      (int) sizeof(bullet) ,
-	      (int) MAXBULLETS ,
-	      (int) 1200 );
+	      (int) MAXBULLETS );
     
-    //--------------------
     sprintf( filename , "%s/%s%s", our_config_dir, Me.character_name, ".shp" );
 
     if ( SaveShip( filename ) != OK )
@@ -336,123 +278,37 @@ or file permissions of ~/.freedroid_rpg are somehow not right.",
     {
 	DebugPrintf( SAVE_LOAD_GAME_DEBUG , "\nShip data for saved game seems to have been saved correctly.\n");
     }
-    // ShowSaveGameProgressMeter( 30 ) ;
     
-    //--------------------
-    // First, we must determine the save game file name
-    //
     sprintf ( filename , "%s/%s%s", our_config_dir , Me.character_name, ".savegame");
     
-    DebugPrintf ( SAVE_LOAD_GAME_DEBUG , "\nint SaveShip(char *shipname): now opening the savegame file for writing ..."); 
-    
-    //--------------------
-    // Now that we know which filename to use, we can open the save file for writing
-    //
     if( ( SaveGameFile = fopen(filename, "wb")) == NULL) {
 	printf("\n\nError opening save game file for writing...\n\nTerminating...\n\n");
 	Terminate(ERR);
-	// return ERR;
     }
     
-    //--------------------
-    // Now that the file is opend for writing, we can start writing.  And the first thing
-    // we will write to the file will be a fine header, indicating what this file is about
-    // and things like that...
-    //
-    SaveGameHeaderString="\n\
-----------------------------------------------------------------------\n\
- *\n\
- *   Copyright (c) 1994, 2002 Johannes Prix\n\
- *   Copyright (c) 1994, 2002 Reinhard Prix\n\
- *\n\
- *\n\
- *  This file is part of Freedroid\n\
- *\n\
- *  Freedroid is free software; you can redistribute it and/or modify\n\
- *  it under the terms of the GNU General Public License as published by\n\
- *  the Free Software Foundation; either version 2 of the License, or\n\
- *  (at your option) any later version.\n\
- *\n\
- *  Freedroid is distributed in the hope that it will be useful,\n\
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of\n\
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n\
- *  GNU General Public License for more details.\n\
- *\n\
- *  You should have received a copy of the GNU General Public License\n\
- *  along with Freedroid; see the file COPYING. If not, write to the \n\
- *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, \n\
- *  MA  02111-1307  USA\n\
- *\n\
-----------------------------------------------------------------------\n\
-\n\
-This file was generated using the Freedroid save level option.\n\
-If you have questions concerning Freedroid, please send mail to:\n\
-\n\
-freedroid-discussion@lists.sourceforge.net\n\
-\n";
-    fwrite ( SaveGameHeaderString , strlen( SaveGameHeaderString), sizeof(char), SaveGameFile);  
+    /* XXX write level number  */
+    fprintf(SaveGameFile, "%s%d\n", LEVELNUM_EXPL_STRING, CurLevel->levelnum);
     
-    //--------------------
-    // Since no other information than the dynamic pointer CurLevel is available
-    // to tell the current level number, we must write out that information explicitly
-    //
-    fwrite ( LEVELNUM_EXPL_STRING , strlen ( LEVELNUM_EXPL_STRING ) , sizeof(char), SaveGameFile);  
-    sprintf( linebuf , "%d\n", CurLevel->levelnum );
-    fwrite ( linebuf , strlen ( linebuf ) , sizeof(char), SaveGameFile);  
+    /* Write the version string */
+    fprintf(SaveGameFile, "Version string: %s\n\n", Me . freedroid_version_string);
     
-    // ShowSaveGameProgressMeter( 40 ) ;
-    
-    // --------------------
-    // Now we write the influencer raw data start string out to the file and of course
-    // then the real raw influencer data follow suit afterwards.
-    //
-    fwrite ( INFLUENCER_STRUCTURE_RAW_DATA_STRING , strlen( INFLUENCER_STRUCTURE_RAW_DATA_STRING ), 
-	     sizeof(char), SaveGameFile );  
-    fwrite ( &(Me) , sizeof( tux_t ) , sizeof( char ) , SaveGameFile );  
-    // fwrite ( DROID001_RAW_DATA_STRING , strlen( DROID001_RAW_DATA_STRING ), 
-    // sizeof(char), SaveGameFile );  
-    // fwrite ( &( Druidmap[ DRUID001 ]) , sizeof( druidspec ) , sizeof( char ) , SaveGameFile );  
-    
-    // ShowSaveGameProgressMeter( 50 ) ;
-    
-    // --------------------
-    // Now we write the enemy raw data start string out to the file and of course
-    // then the real raw enemy data follow suit afterwards.
-    //
-    /* XXX */
-    /*
-    fwrite ( ALLENEMYS_RAW_DATA_STRING , strlen( ALLENEMYS_RAW_DATA_STRING ), 
-	     sizeof(char), SaveGameFile );  
-    fwrite ( &(AllEnemys) , sizeof( enemy ) * MAX_ENEMYS_ON_SHIP , sizeof( char ) , SaveGameFile );  
-    */
+    /* Save tux*/
+    save_tux_t(NULL, &Me);
 
-    // ShowSaveGameProgressMeter( 60 ) ;
+    /* Save all enemies */
+    int i = 0;
+    for ( ; i < 2; i++ )
+	{
+	enemy * erot = i ? dead_bots_head : alive_bots_head;
+	for ( ; erot; erot = GETNEXT(erot) )
+	    save_enemy(NULL, erot);
+	}
+
+    /* Save all bullets */
+    for ( i = 0; i < MAXBULLETS; i ++)
+	save_bullet(NULL, &AllBullets[i]);
     
-    // --------------------
-    // Now we write the bullet raw data start string out to the file and of course
-    // then the real raw enemy data follow suit afterwards.
-    //
-    fwrite ( ALLBULLETS_RAW_DATA_STRING , strlen( ALLBULLETS_RAW_DATA_STRING ), 
-	     sizeof(char), SaveGameFile );  
-    fwrite ( & ( AllBullets ) , sizeof( bullet ) * MAXBULLETS , sizeof( char ) , SaveGameFile );  
-    
-    // ShowSaveGameProgressMeter( 70 ) ;
-    
-    //--------------------
-    // Now that all the nescessary information has been written to the save game file
-    // (hopefully), we can finally add the 'end of saved game file'-marker string, that
-    // will be needed by the loading function to detect the end of the file and that the
-    // file is really there and complete.  So we add this last string to the file:
-    //
-    fwrite ( END_OF_SAVEDGAME_DATA_STRING , strlen( END_OF_SAVEDGAME_DATA_STRING ), 
-	     sizeof(char), SaveGameFile );
-    
-    if( fclose( SaveGameFile ) == EOF) 
-    {
-	printf("\n\nClosing of save game file failed in SaveGame...\n\nTerminating\n\n");
-	Terminate(ERR);
-	// return ERR;
-    }
+    fclose( SaveGameFile );
     
     ShowSaveLoadGameProgressMeter( 99 , TRUE ); 
     
@@ -508,6 +364,7 @@ DeleteGame( void )
 int 
 LoadGame( void )
 {
+#if 0
     char version_check_string[1000];
     char *LoadGameData;
     char filename[1000];
@@ -733,8 +590,88 @@ LoadGame( void )
     load_game_command_came_from_inside_running_game = TRUE ;
 
     append_new_game_message ( _("Game loaded.") );
-
+#endif
     return OK;
 }; // int LoadGame ( void ) 
+
+/* Save complex simple types. Structured types are defined in savestruct.c, and
+ * primitive types are macros in proto.h
+ */
+void save_enemy_s_ptr(char * tag, enemy ** val)
+{
+/* Do nothing, at least for now*/
+}
+
+void read_enemy_s_ptr(char * buffer, char * tag, enemy ** val)
+{
+}
+
+/* Save arrays of simple types */
+#define define_save_xxx_array(X) void save_##X##_array(char * tag, X * val_ar, int size)\
+{\
+fprintf(SaveGameFile, "<%s array n=%d>\n", tag, size);\
+int i;\
+for ( i = 0; i < size; i ++)\
+	{\
+	char str[10];\
+	sprintf(str, "%i", i);\
+	fprintf(SaveGameFile, "\t");\
+	save_##X(str, &val_ar[i]);\
+	}\
+fprintf(SaveGameFile, "</%s>\n", tag);\
+}
+
+define_save_xxx_array(int32_t);
+define_save_xxx_array(uint32_t);
+define_save_xxx_array(int16_t);
+define_save_xxx_array(uint16_t);
+define_save_xxx_array(mission);
+define_save_xxx_array(item);
+define_save_xxx_array(gps);
+define_save_xxx_array(moderately_finepoint);
+
+void save_chatflags_t_array(char * tag, chatflags_t * chatflags, int size)
+{
+fprintf(SaveGameFile, "<ChatFlags n=%d>\n", MAX_PERSONS);
+int i, j;
+for ( i = 0; i < MAX_PERSONS; i ++)
+    {
+    for ( j = 0; j < MAX_ANSWERS_PER_PERSON; j ++)
+	{
+	fprintf(SaveGameFile, "%hhd ", (chatflags)[i][j]);
+	}
+    fprintf(SaveGameFile, "\n");
+    }
+fprintf(SaveGameFile, "</ChatFlags>\n");
+}
+
+void save_cookielist_t_array(char * tag, cookielist_t * cookielist, int size)
+{
+fprintf(SaveGameFile, "<cookielist>\n");
+int i;
+for ( i = 0; i < MAX_COOKIES; i ++)
+    {
+    if ( strlen ( cookielist[i] ) )
+	    fprintf(SaveGameFile, "%s\n", cookielist[i]);
+    }
+fprintf(SaveGameFile, "</cookielist>\n");
+}
+
+void save_automap_data(char * tag, automap_data_t * automapdata, int size)
+{
+fprintf(SaveGameFile, "<automap>\n");
+int i,j,k;
+for ( i = 0; i < MAX_LEVELS; i ++)
+   {
+   fprintf(SaveGameFile, "%d\n", i);
+   for ( j = 0; j < 100; j ++ )
+       {
+       for ( k = 0; k < 100; k ++)
+	       fprintf(SaveGameFile, "%hhd ", automapdata[i][j][k]);
+       fprintf(SaveGameFile, "\n");
+       }
+   }
+fprintf(SaveGameFile, "</automap>\n");
+}
 
 #undef _saveloadgame_c
