@@ -32,24 +32,27 @@ find_structure_rxp = re.compile(r'typedef struct .+?'
                                 r'\}'
                                 r'\s*(' + c_id + ').*?;', re.M | re.S)
 # Regexp which search for a field
-find_members_rxp = re.compile(r'\s*' + c_type + r'\s+(' + c_id + r')(?:\[(\d+)\])?\s*?;.*')
+find_members_rxp = re.compile(r'\s*' + c_type + r'\s+(' + c_id + r')(?:\[(.+)\])?\s*?;.*')
 
 # Special types replacements
 special_types = {
     'char_ptr': 'string',
+    'enemy_s_ptr' : 'enemy_ptr',
     #32 bit integers
     'unsigned_int': 'uint32_t',
+    'unsigned_long' : 'uint32_t',
+    'long' : 'int32_t',
     'int' : 'int32_t',
     #16 bit
     'short_int': 'int16_t',
     'unsigned_short_int' : 'uint16_t',
     'short': 'int16_t',
     #8 bit
-    'char' : 'int8_t',
-    'unsigned char' : 'uint8_t'
+    'signed_char' : 'char',
+    'unsigned_char' : 'uchar'
 }
 
-only_dump_structs = [ "gps", "point", "moderately_finepoint", "finepoint", "tux_t", "item", "enemy", "bullet" ]
+only_dump_structs = [ "gps", "point", "moderately_finepoint", "finepoint", "tux_t", "item", "enemy", "bullet", "mission", "configuration_for_freedroid" ]
 
 def main():
     if len(sys.argv) < 3:
@@ -63,7 +66,7 @@ def main():
     outh = open(outfn+'.h', 'w')
 
     #Prelude
-    outf.write('#include "struct.h"\n#include "' + outfn + '.h"\nextern FILE * SaveGameFile;\n\n\n')
+    outf.write('#include "struct.h"\n#include "proto.h"\n#include "' + outfn + '.h"\nextern FILE * SaveGameFile;\n\n\n')
 
     data = {}
 
@@ -106,12 +109,14 @@ def main():
             
             # Pointers
             if '*' in type:
-                type = type.replace('*', '').strip() + '_ptr'
+                #type = type.replace('*', '').strip() + '_ptr'
+		continue;
             # Spaces
             type = type.replace(' ', '_')
             if type in special_types.keys(): type = special_types[type]
             elif type == 'char' and size: type = "string" # HACK: char foo[SIZE] -> string
-            elif size: type += '[%s]' % size
+            
+	    if size and type != 'string': type += '[%s]' % size
             data[name].append((type, field))
     
     # Writing loop
@@ -123,10 +128,10 @@ def main():
         for (type, field) in data[s_name]:
             size = None
             if "[" in type:
-                size = int(type.split('[')[1][:-1])
+                size = type.split('[')[1][:-1]
                 type = type.split('[')[0] + '_array'
-            str_save += 'save_%s("%s", &(target->%s%s));\n' % (type, field, field, (', %s' % size) if size else '')
-            str_read += 'read_%s(buffer, "%s", &(target->%s)%s);\n' % (type, field, field, (', %s' % size) if size else '')
+            str_save += 'save_%s("%s", %s(target->%s)%s);\n' % (type, field, '' if size else '&', field, (', %s' % size) if size else '')
+            str_read += 'read_%s(buffer, "%s", %s(target->%s)%s);\n' % (type, field, '' if size else '&', field, (', %s' % size) if size else '')
         str_save += 'fprintf(SaveGameFile, "</%s>\\n");\nreturn 0;\n}\n\n' % (s_name)
         str_read += 'return 0;\n}\n\n'
         outf.write(str_save)
