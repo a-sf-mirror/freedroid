@@ -10,8 +10,6 @@
 #include <locale.h>
 #include <libintl.h>
 
-#define LOCALE_PACKAGE "freedroidrpg"
-
 #define LOCALE_DIR FD_DATADIR"/locale/"
 
 #define _(String) gettext(String)

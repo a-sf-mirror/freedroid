@@ -1065,7 +1065,7 @@ Get_Item_Data ( char* DataPointer )
 #define ITEM_SECTION_END_STRING "*** End of item data section: ***"
 #define NEW_ITEM_TYPE_BEGIN_STRING "** Start of new item specification subsection **"
     
-#define ITEM_NAME_INDICATION_STRING "Item name=\""
+#define ITEM_NAME_INDICATION_STRING "Item name=_\""
 #define ITEM_DESCRIPTION_INDICATION_STRING "Item description text=\""
 #define ITEM_CAN_BE_APPLIED_IN_COMBAT "Item can be applied in combat=\""
 #define ITEM_CAN_BE_INSTALLED_IN_WEAPON_SLOT "Item can be installed in weapon slot=\""
@@ -1127,7 +1127,9 @@ Get_Item_Data ( char* DataPointer )
         if ( EndOfThisItem ) EndOfThisItem [ 0 ] = 0;
 	
 	// Now we read in the name of this item
-	ItemMap[ItemIndex].item_name = ReadAndMallocStringFromData ( ItemPointer , ITEM_NAME_INDICATION_STRING , "\"" ) ;
+	char * temp = ReadAndMallocStringFromData ( ItemPointer , ITEM_NAME_INDICATION_STRING , "\"" ); 
+	ItemMap[ItemIndex].item_name = dgettext("freedroidrpg_data", temp);
+	if ( ItemMap[ItemIndex].item_name != temp ) free(temp);
 	
 	// Now we read in if this item can be used by the influ without help
 	YesNoString = ReadAndMallocStringFromData ( ItemPointer , ITEM_CAN_BE_APPLIED_IN_COMBAT , "\"" ) ;

@@ -86,12 +86,16 @@ main (int argc, char * argv[])
 	tmp_dir = opendir("../po");
 	if(tmp_dir != NULL) 
 	{
-		bindtextdomain(LOCALE_PACKAGE, "../po");
+		bindtextdomain("freedroidrpg", "../po");
+		bindtextdomain("freedroidrpg_data", "../po");
 		closedir(tmp_dir);
 	}
 	else 
-		bindtextdomain(LOCALE_PACKAGE, LOCALE_DIR);
-	textdomain(LOCALE_PACKAGE);
+		{
+		bindtextdomain("freedroidrpg", LOCALE_DIR);
+		bindtextdomain("freedroidrpg_data", LOCALE_DIR);
+		}
+	textdomain("freedroidrpg");
 #endif
 
     //--------------------
