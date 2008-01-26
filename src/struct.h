@@ -30,10 +30,6 @@
 #include "system.h"
 #include "defs.h"
 
-#ifndef _BYTE
-typedef unsigned char byte;
-#define _BYTE
-#endif
 #ifndef _WORD
 typedef unsigned word;
 #define _WORD
@@ -197,7 +193,7 @@ typedef struct gps_s
 
 typedef struct location_s
 {
-    byte level;			
+    unsigned char level;			
     int x;			
     int y;
 }
@@ -604,10 +600,15 @@ typedef struct enemy_s
 }
 enemy, *Enemy;
 
+typedef char automap_data_t[MAX_LEVELS][100];
+typedef char bigscrmsg_t[MAX_BIG_SCREEN_MESSAGES];
+typedef unsigned char chatflags_t[MAX_PERSONS];
+typedef char cookielist_t[MAX_COOKIES];
+
 typedef struct tux_s
 {
-    Sint8 type;			  // ... currently unused ...
-    Sint8 status;		  // ... only little meaning any more ...
+    char type;			  
+    char status;		  
     
     float current_game_date;      // seconds since game start, will be printed as a different 'date'
                                   // inside the game, like 14:23 is afternoon
@@ -640,8 +641,8 @@ typedef struct tux_s
     float health_recovery_rate; //points of health recovered each second
     float cooling_rate; //temperature points recovered each second
     
-    Sint16 LastMouse_X;             // mostly for other players:  Where was the last mouseclick...
-    Sint16 LastMouse_Y;             // mostly for other players:  Where was the last mouseclick...
+    int16_t LastMouse_X;             // mostly for other players:  Where was the last mouseclick...
+    int16_t LastMouse_Y;             // mostly for other players:  Where was the last mouseclick...
     
     double busy_time;		// time remaining, until the weapon is ready to fire again...
     int busy_type; 		// reason why tux is busy (enum)
@@ -680,7 +681,7 @@ typedef struct tux_s
     unsigned long ExpRequired;    // how much experience required for the next level?
     unsigned long ExpRequired_previously;    // how was required for the previous level?
     
-    long Gold;
+    unsigned long Gold;
     char character_name[ MAX_CHARACTER_NAME_LENGTH ];
     mission AllMissions[ MAX_MISSIONS_IN_GAME ];         // What must be done to fullfill this mission?
     int marker;                   // In case you've taken over a marked droid, this will contain the marker
@@ -727,8 +728,8 @@ typedef struct tux_s
     // set by the dialogs for coordination among each other, and also status
     // of the Tux like town guard member or not and the like...
     //
-    unsigned char Chat_Flags[ MAX_PERSONS ][ MAX_ANSWERS_PER_PERSON ];
-    char cookie_list[ MAX_COOKIES ] [ MAX_COOKIE_LENGTH ] ;
+    chatflags_t Chat_Flags[ MAX_ANSWERS_PER_PERSON ];
+    cookielist_t cookie_list[ MAX_COOKIE_LENGTH ] ;
     int is_town_guard_member;
     char chat_character_initialized [ MAX_PERSONS ]; 
     
@@ -737,13 +738,13 @@ typedef struct tux_s
     // TO BE COMMUNICATED FROM THE CLIENT TO THE SERVER OR VICE VERSA
     //
     moderately_finepoint next_intermediate_point [ MAX_INTERMEDIATE_WAYPOINTS_FOR_TUX ] ;  // waypoints for the tux, when target not directly reachable
-    Uint16 KillRecord[ 200 ];      // how many ( of the first 1000 monster types) have been killed yet?
-    Uint8 Automap [ MAX_LEVELS ] [ 100 ][ 100 ]; // this is the data for the automatic map
+    unsigned short int	KillRecord[ 200 ];      // how many ( of the first 1000 monster types) have been killed yet?
+    automap_data_t Automap[100];
     int current_zero_ring_index;
     gps Position_History_Ring_Buffer[ MAX_INFLU_POSITION_HISTORY ];
     
     int BigScreenMessageIndex;
-    char BigScreenMessage [ MAX_BIG_SCREEN_MESSAGES ] [ 5000 ];
+    bigscrmsg_t	BigScreenMessage [ 5000 ];
     float BigScreenMessageDuration [ MAX_BIG_SCREEN_MESSAGES ];
 
     float slowdown_duration;
@@ -763,7 +764,7 @@ bulletspec, *Bulletspec;
 typedef struct bullet_s
 {
     short int                  type; 
-    byte                       phase;                
+    unsigned char              phase;                
     signed char                mine;     
     gps                        pos;     
     moderately_finepoint       speed;  
