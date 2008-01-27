@@ -46,7 +46,7 @@ Received an item type that was outside of range of the allowed item types.
 */
 
 ** Start of new item specification subsection **
-Item name="Spawning item index 0 in editor or drop ingame causes CTD! Dont click this!"
+Item name=_"Spawning item index 0 in editor or drop ingame causes CTD! Dont click this!"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
@@ -55,7 +55,7 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="inventory_image_7.png"
 Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
 Base list price=0
-Item description text="Dummy item. If you see this, report a bug."
+Item description text=_"Dummy item. If you see this, report a bug."
 ** End of new item specification subsection **
 
 
@@ -111,7 +111,7 @@ Laser scalpel
 // *** Cutting ***
 
 ** Start of new item specification subsection **
-Item name="Short sword"
+Item name=_"Short sword"
 Item min class for drop=0
 Item max class for drop=4
 Item can be applied in combat="no"
@@ -125,7 +125,7 @@ inventory_size_x=1
 inventory_size_y=3
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=30
-Item description text="Light and maneuverable in combat, but unfortunately not very effective in cutting through steel as well as quickly reaching the point of breaking if you try. Though for sure better than hitting at metal with your bare fists."
+Item description text=_"Light and maneuverable in combat, but unfortunately not very effective in cutting through steel as well as quickly reaching the point of breaking if you try. Though for sure better than hitting at metal with your bare fists."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.400000
 Item as gun: reloading time=0.000000
@@ -148,7 +148,7 @@ Item as gun: weapon requires both hands="no"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Long sword"
+Item name=_"Long sword"
 Item min class for drop=1
 Item max class for drop=5
 Item can be applied in combat="no"
@@ -164,7 +164,7 @@ inventory_size_x=1
 inventory_size_y=4
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=60
-Item description text="Long reach while remaining maneuverable enough in combat to find the weak spots in droid armour are the advantages that partially makes up for the inability of a cutting blade to incur lots of damage on a heavily protected target. Repeatedly striking at metal quickly damages the blade though."
+Item description text=_"Long reach while remaining maneuverable enough in combat to find the weak spots in droid armour are the advantages that partially makes up for the inability of a cutting blade to incur lots of damage on a heavily protected target. Repeatedly striking at metal quickly damages the blade though."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.550000
 Item as gun: reloading time=0.000000
@@ -187,7 +187,7 @@ Item as gun: weapon requires both hands="no"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Great sword"
+Item name=_"Great sword"
 Item min class for drop=3
 Item max class for drop=7
 Item can be applied in combat="no"
@@ -203,7 +203,7 @@ inventory_size_x=2
 inventory_size_y=5
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=300
-Item description text="The size and kinetic force achievable with this 2 handed sword is enough to cleave straight through the armour of a low level droid. The strain on the sword from high impact hits into metal will however require frequent maintenance to not have it break in half exactly when it's most needed."
+Item description text=_"The size and kinetic force achievable with this 2 handed sword is enough to cleave straight through the armour of a low level droid. The strain on the sword from high impact hits into metal will however require frequent maintenance to not have it break in half exactly when it's most needed."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.800000
 Item as gun: reloading time=0.000000
@@ -226,7 +226,7 @@ Item as gun: weapon requires both hands="yes"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Chainsaw"
+Item name=_"Chainsaw"
 Item min class for drop=4
 Item max class for drop=9
 Item can be applied in combat="no"
@@ -242,7 +242,7 @@ inventory_size_x=2
 inventory_size_y=4
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=500
-Item description text="Quite efficient at separating limbs off even a droid body or digging through weaker armoured parts to cause massive damage on internal electronics. But the chain wears out very quickly when used on materials harder then wood and supply shortages of new chains and other parts makes it expensive to maintain."
+Item description text=_"Quite efficient at separating limbs off even a droid body or digging through weaker armoured parts to cause massive damage on internal electronics. But the chain wears out very quickly when used on materials harder then wood and supply shortages of new chains and other parts makes it expensive to maintain."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.150000
 Item as gun: reloading time=0.000000
@@ -271,7 +271,7 @@ Item as gun: weapon requires both hands="yes"
 // *** Cleaving ***
 
 ** Start of new item specification subsection **
-Item name="Meat cleaver"
+Item name=_"Meat cleaver"
 Item min class for drop=0
 Item max class for drop=3
 Item can be applied in combat="no"
@@ -287,7 +287,7 @@ inventory_size_x=2
 inventory_size_y=2
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=30
-Item description text="Designed to chop through meat and bones, it's not as fragile as swords when used against metal enemies. Though it is a bit more slow and clumsy to use then the grace full swords."
+Item description text=_"Designed to chop through meat and bones, it's not as fragile as swords when used against metal enemies. Though it is a bit more slow and clumsy to use then the grace full swords."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.600000
 Item as gun: reloading time=0.000000
@@ -310,7 +310,7 @@ Item as gun: weapon requires both hands="no"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Small axe"
+Item name=_"Small axe"
 Item min class for drop=1
 Item max class for drop=4
 Item can be applied in combat="no"
@@ -326,7 +326,7 @@ inventory_size_x=2
 inventory_size_y=2
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=40
-Item description text="While this axe was made for splitting wood, with some luck it can damage vital parts of a droid as well."
+Item description text=_"While this axe was made for splitting wood, with some luck it can damage vital parts of a droid as well."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.600000
 Item as gun: reloading time=0.000000
@@ -349,7 +349,7 @@ Item as gun: weapon requires both hands="no"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Axe"
+Item name=_"Axe"
 Item min class for drop=2
 Item max class for drop=6
 Item can be applied in combat="no"
@@ -365,7 +365,7 @@ inventory_size_x=2
 inventory_size_y=3
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=80
-Item description text="Big enough to fell a small tree, it's also capable of leaving big dents in a droid."
+Item description text=_"Big enough to fell a small tree, it's also capable of leaving big dents in a droid."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.800000
 Item as gun: reloading time=0.000000
@@ -388,7 +388,7 @@ Item as gun: weapon requires both hands="no"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Large Axe"
+Item name=_"Large Axe"
 Item min class for drop=3
 Item max class for drop=8
 Item can be applied in combat="no"
@@ -404,7 +404,7 @@ inventory_size_x=2
 inventory_size_y=4
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=120
-Item description text="While this weapon is somewhat slow and cumbersome to use, it does pack a pretty good punch, many times capable of taking out lesser droids in 1 single hit"
+Item description text=_"While this weapon is somewhat slow and cumbersome to use, it does pack a pretty good punch, many times capable of taking out lesser droids in 1 single hit"
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=1.200000
 Item as gun: reloading time=0.000000
@@ -433,7 +433,7 @@ Item as gun: weapon requires both hands="yes"
 // *** Piercing *** 
 
 ** Start of new item specification subsection **
-Item name="Dagger"
+Item name=_"Dagger"
 Item min class for drop=0
 Item max class for drop=3
 Item can be applied in combat="no"
@@ -449,7 +449,7 @@ inventory_size_x=1
 inventory_size_y=2
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=25
-Item description text="A short stabbing weapon like a dagger doesn't have much effect on the metal body of a droid, but with luck you might damage some wires or hoses in less protected areas so it's still better then trying to take on the machines with bare hands."
+Item description text=_"A short stabbing weapon like a dagger doesn't have much effect on the metal body of a droid, but with luck you might damage some wires or hoses in less protected areas so it's still better then trying to take on the machines with bare hands."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.400000
 Item as gun: reloading time=0.000000
@@ -472,7 +472,7 @@ Item as gun: weapon requires both hands="no"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Wooden spear"
+Item name=_"Wooden spear"
 Item min class for drop=1
 Item max class for drop=4
 Item can be applied in combat="no"
@@ -488,7 +488,7 @@ inventory_size_x=1
 inventory_size_y=5
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=15
-Item description text="The best to be said about a wooden spear is that it will allow you to stand far enough away to jab at a single enemy without giving him much chance to hit back. Neither damage nor durability is very much to write home about."
+Item description text=_"The best to be said about a wooden spear is that it will allow you to stand far enough away to jab at a single enemy without giving him much chance to hit back. Neither damage nor durability is very much to write home about."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.300000
 Item as gun: reloading time=0.000000
@@ -511,7 +511,7 @@ Item as gun: weapon requires both hands="no"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Metal spear"
+Item name=_"Metal spear"
 Item min class for drop=3
 Item max class for drop=6
 Item can be applied in combat="no"
@@ -527,7 +527,7 @@ inventory_size_x=1
 inventory_size_y=5
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=80
-Item description text="A spear forged from metal considerably improves from the wooden spears damage and durability, but the increased weight does make it somewhat slower and more cumbersome to use. It's still a fast weapon though compared to most other."
+Item description text=_"A spear forged from metal considerably improves from the wooden spears damage and durability, but the increased weight does make it somewhat slower and more cumbersome to use. It's still a fast weapon though compared to most other."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.400000
 Item as gun: reloading time=0.000000
@@ -556,7 +556,7 @@ Item as gun: weapon requires both hands="no"
 // *** Impact ***
 
 ** Start of new item specification subsection **
-Item name="Crowbar"
+Item name=_"Crowbar"
 Item min class for drop=0
 Item max class for drop=3
 Item can be applied in combat="no"
@@ -572,7 +572,7 @@ inventory_size_x=1
 inventory_size_y=3
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=80
-Item description text="Something originally intended for breaking up doors or pulling out nails can also be used to break open droid skulls or give enough leverage to pull off their extremities."
+Item description text=_"Something originally intended for breaking up doors or pulling out nails can also be used to break open droid skulls or give enough leverage to pull off their extremities."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.600000
 Item as gun: reloading time=0.000000
@@ -595,7 +595,7 @@ Item as gun: weapon requires both hands="no"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Iron pipe"
+Item name=_"Iron pipe"
 Item min class for drop=0
 Item max class for drop=3
 Item can be applied in combat="no"
@@ -611,7 +611,7 @@ inventory_size_x=1
 inventory_size_y=3
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=20
-Item description text="A medium sized water pipe from iron can turn into an effective weapon even vs a metal opponent. While not likely to penetrate the armour of a bot, the impact force alone can still damage and shake loose circuit boards and weldings beneath the protective metal layer."
+Item description text=_"A medium sized water pipe from iron can turn into an effective weapon even vs a metal opponent. While not likely to penetrate the armour of a bot, the impact force alone can still damage and shake loose circuit boards and weldings beneath the protective metal layer."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.600000
 Item as gun: reloading time=0.000000
@@ -634,7 +634,7 @@ Item as gun: weapon requires both hands="no"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Golf club"
+Item name=_"Golf club"
 Item min class for drop=1
 Item max class for drop=4
 Item can be applied in combat="no"
@@ -650,7 +650,7 @@ inventory_size_x=1
 inventory_size_y=4
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=100
-Item description text="It might not be so sturdy, but if you manage to get in a good hit the kinetic energy might be enough to damage internal electronics even if there is a small dent on the outside."
+Item description text=_"It might not be so sturdy, but if you manage to get in a good hit the kinetic energy might be enough to damage internal electronics even if there is a small dent on the outside."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.600000
 Item as gun: reloading time=0.000000
@@ -673,7 +673,7 @@ Item as gun: weapon requires both hands="no"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Tree branch"
+Item name=_"Tree branch"
 Item min class for drop=1
 Item max class for drop=3
 Item can be applied in combat="no"
@@ -689,7 +689,7 @@ inventory_size_x=2
 inventory_size_y=3
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=5
-Item description text="A club from a tree branch is certainly not your preferred choice of weapon to use, but it might be your only..."
+Item description text=_"A club from a tree branch is certainly not your preferred choice of weapon to use, but it might be your only..."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.700000
 Item as gun: reloading time=0.000000
@@ -712,7 +712,7 @@ Item as gun: weapon requires both hands="no"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Table leg"
+Item name=_"Table leg"
 Item min class for drop=1
 Item max class for drop=3
 Item can be applied in combat="no"
@@ -728,7 +728,7 @@ inventory_size_x=1
 inventory_size_y=4
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=10
-Item description text="In desperate situations even ordinary objects can turn into makeshift weapons."
+Item description text=_"In desperate situations even ordinary objects can turn into makeshift weapons."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.500000
 Item as gun: reloading time=0.000000
@@ -751,7 +751,7 @@ Item as gun: weapon requires both hands="no"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Baseball bat"
+Item name=_"Baseball bat"
 Item min class for drop=1
 Item max class for drop=5
 Item can be applied in combat="no"
@@ -767,7 +767,7 @@ inventory_size_x=2
 inventory_size_y=4
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=25
-Item description text="With 1-2 good two handed swings a former droids head might fly far enough for you to score a home run. Just make sure to bring a backup weapon because wooden bats have a predilection for easily splitting in two after too many hard hits."
+Item description text=_"With 1-2 good two handed swings a former droids head might fly far enough for you to score a home run. Just make sure to bring a backup weapon because wooden bats have a predilection for easily splitting in two after too many hard hits."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.700000
 Item as gun: reloading time=0.000000
@@ -790,7 +790,7 @@ Item as gun: weapon requires both hands="yes"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Iron bar"
+Item name=_"Iron bar"
 Item min class for drop=2
 Item max class for drop=6
 Item can be applied in combat="no"
@@ -806,7 +806,7 @@ inventory_size_x=1
 inventory_size_y=5
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=70
-Item description text="A bit slow and cumbersome to use and prohibiting the security of a shield to cower behind, this weapon isn't always a good option. But if you do hit you are sure to do more damage then just a scratch."
+Item description text=_"A bit slow and cumbersome to use and prohibiting the security of a shield to cower behind, this weapon isn't always a good option. But if you do hit you are sure to do more damage then just a scratch."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=1.000000
 Item as gun: reloading time=0.000000
@@ -829,7 +829,7 @@ Item as gun: weapon requires both hands="yes"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Mace"
+Item name=_"Mace"
 Item min class for drop=3
 Item max class for drop=7
 Item can be applied in combat="no"
@@ -845,7 +845,7 @@ inventory_size_x=1
 inventory_size_y=3
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=150
-Item description text="The mace proved already on the medieval battlefield that it was good at crushing even heavily armoured skulls. Unfortunately for the droids this old knowledge still holds true."
+Item description text=_"The mace proved already on the medieval battlefield that it was good at crushing even heavily armoured skulls. Unfortunately for the droids this old knowledge still holds true."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.800000
 Item as gun: reloading time=0.000000
@@ -868,7 +868,7 @@ Item as gun: weapon requires both hands="no"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Flail"
+Item name=_"Flail"
 Item min class for drop=4
 Item max class for drop=7
 Item can be applied in combat="no"
@@ -884,7 +884,7 @@ inventory_size_y=3
 inventory_size_x=2
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=150
-Item description text="1-3 spiked heavy metal balls connected to a rod via chains might require skill to control, but once you do it sure is effective vs man and machine alike..."
+Item description text=_"1-3 spiked heavy metal balls connected to a rod via chains might require skill to control, but once you do it sure is effective vs man and machine alike..."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.800000
 Item as gun: reloading time=0.000000
@@ -907,7 +907,7 @@ Item as gun: weapon requires both hands="no"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Sledgehammer"
+Item name=_"Sledgehammer"
 Item min class for drop=4
 Item max class for drop=8
 Item can be applied in combat="no"
@@ -923,7 +923,7 @@ inventory_size_x=2
 inventory_size_y=5
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=200
-Item description text="Very slow and only for the strongest, but only the thougher droids can survive more then 1-2 direct hits."
+Item description text=_"Very slow and only for the strongest, but only the thougher droids can survive more then 1-2 direct hits."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=1.500000
 Item as gun: reloading time=0.000000
@@ -952,7 +952,7 @@ Item as gun: weapon requires both hands="yes"
 // *** Energy ***
 
 ** Start of new item specification subsection **
-Item name="Lightsaber"
+Item name=_"Lightsaber"
 Item min class for drop=7
 Item max class for drop=9
 Item can be applied in combat="no"
@@ -968,7 +968,7 @@ inventory_size_x=1
 inventory_size_y=2
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=1500
-Item description text="In the hands of a true master, this excellent technological craftsmanship is as deadly as it is beautiful."
+Item description text=_"In the hands of a true master, this excellent technological craftsmanship is as deadly as it is beautiful."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.500000
 Item as gun: reloading time=0.000000
@@ -991,7 +991,7 @@ Item as gun: weapon requires both hands="yes"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Laserstaff"
+Item name=_"Laserstaff"
 Item min class for drop=8
 Item max class for drop=9
 Item can be applied in combat="no"
@@ -1007,7 +1007,7 @@ File or directory name for inventory image="laser_staff/inv_image.png"
 inventory_size_y=3
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=2000
-Item description text="A close combat master with this weapon in his hands is a pure whirling dervish of death."
+Item description text=_"A close combat master with this weapon in his hands is a pure whirling dervish of death."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.400000
 Item as gun: reloading time=0.000000
@@ -1036,7 +1036,7 @@ Item as gun: weapon requires both hands="yes"
 // *** Special ***
 
 ** Start of new item specification subsection **
-Item name="Nobody's edge"
+Item name=_"Nobody's edge"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
@@ -1047,7 +1047,7 @@ inventory_size_x=2
 inventory_size_y=2
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=0
-Item description text="This blade pulses with evil. That power. That energy. Nothing can stop you now."
+Item description text=_"This blade pulses with evil. That power. That energy. Nothing can stop you now."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.500000
 Item as gun: reloading time=0.000000
@@ -1070,7 +1070,7 @@ Item as gun: weapon requires both hands="no"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Laserscalpel"
+Item name=_"Laserscalpel"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
@@ -1081,7 +1081,7 @@ inventory_size_x=1
 inventory_size_y=1
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=50
-Item description text="I murdered the only person within a thousand miles who can heal me, and all I got was this lousy scalpel."
+Item description text=_"I murdered the only person within a thousand miles who can heal me, and all I got was this lousy scalpel."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.500000
 Item as gun: reloading time=0.000000
@@ -1160,7 +1160,7 @@ Super Ext        - lvl 9 - 2H - Dam:90-140 -Recharge: 0.5 - Reload: 5.0 - Clip: 
 // *** Conventional ***
 
 ** Start of new item specification subsection **
-Item name=".22 LR Ammunition"
+Item name=_".22 LR Ammunition"
 Item min class for drop=3
 Item max class for drop=6
 Item number dropped min=10
@@ -1174,7 +1174,7 @@ inventory_size_x=1
 inventory_size_y=1
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=4
-Item description text=".22 Long Rifle ammunition used to be a very common ammo for targetpratice, mainly because it was cheap and gave little recoil. It's just too weak to penetrate any real droid armour though."
+Item description text=_".22 Long Rifle ammunition used to be a very common ammo for targetpratice, mainly because it was cheap and gave little recoil. It's just too weak to penetrate any real droid armour though."
 ** End of new item specification subsection **
 
 /*
@@ -1188,7 +1188,7 @@ http://en.wikipedia.org/wiki/Ruger_10/22
 */
 
 ** Start of new item specification subsection **
-Item name=".22 Automatic"
+Item name=_".22 Automatic"
 Item min class for drop=3
 Item max class for drop=6
 Item can be applied in combat="no"
@@ -1202,7 +1202,7 @@ Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=150
 inventory_size_x=1
 inventory_size_y=2
-Item description text="With .22 ammo it's mostly dumb luck if you actually damage a bot with this pistol. On the bright side, you will get a LOT of target practise out of each bot before a bullet or two manages to find a weak enough spot to take the bot out."
+Item description text=_"With .22 ammo it's mostly dumb luck if you actually damage a bot with this pistol. On the bright side, you will get a LOT of target practise out of each bot before a bullet or two manages to find a weak enough spot to take the bot out."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.400000
 Item as gun: reloading time=3.000000
@@ -1225,7 +1225,7 @@ Item as gun: weapon requires both hands="no"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name=".22 Hunting Rifle"
+Item name=_".22 Hunting Rifle"
 Item min class for drop=4
 Item max class for drop=6
 Item can be applied in combat="no"
@@ -1239,7 +1239,7 @@ Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=250
 inventory_size_x=1
 inventory_size_y=5
-Item description text="A .22 hunting rifle was mainly used for sports shooting and for cheap training. As a hunting weapon it's main use was to kill small vermin such as rats and squirrels. It was also highly effective vs rabbits. Unfortunately you wont be hunting 'wabbits'..."
+Item description text=_"A .22 hunting rifle was mainly used for sports shooting and for cheap training. As a hunting weapon it's main use was to kill small vermin such as rats and squirrels. It was also highly effective vs rabbits. Unfortunately you wont be hunting 'wabbits'..."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.600000
 Item as gun: reloading time=10.000000
@@ -1262,7 +1262,7 @@ Item as gun: weapon requires both hands="yes"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Shotgun shells"
+Item name=_"Shotgun shells"
 Item min class for drop=4
 Item max class for drop=7
 Item number dropped min=10
@@ -1276,7 +1276,7 @@ inventory_size_x=2
 inventory_size_y=2
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=12
-Item description text="While solid slugs or possibly 8-10 Gauge would be the most effective vs armoursed targets, beggars can't be choosers. One just has to use any type of shell one is lucky enough to stumbles across. And even 20+ Gauge cartridges mostly used for bird hunting can with luck damage a bot."
+Item description text=_"While solid slugs or possibly 8-10 Gauge would be the most effective vs armoursed targets, beggars can't be choosers. One just has to use any type of shell one is lucky enough to stumbles across. And even 20+ Gauge cartridges mostly used for bird hunting can with luck damage a bot."
 ** End of new item specification subsection **
 
 /*
@@ -1294,7 +1294,7 @@ can make dents or disable bots by destroing their sensors
 */
 
 ** Start of new item specification subsection **
-Item name="2 Barrel sawn off shotgun"
+Item name=_"2 Barrel sawn off shotgun"
 Item min class for drop=4
 Item max class for drop=6
 Item can be applied in combat="no"
@@ -1308,7 +1308,7 @@ Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=200
 inventory_size_x=2
 inventory_size_y=2
-Item description text=""
+Item description text=_""
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.400000
 Item as gun: reloading time=5.000000
@@ -1331,7 +1331,7 @@ Item as gun: weapon requires both hands="no"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="2 Barrel shotgun"
+Item name=_"2 Barrel shotgun"
 Item min class for drop=4
 Item max class for drop=6
 Item can be applied in combat="no"
@@ -1345,7 +1345,7 @@ Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=250
 inventory_size_x=2
 inventory_size_y=4
-Item description text=""
+Item description text=_""
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.400000
 Item as gun: reloading time=5.000000
@@ -1368,7 +1368,7 @@ Item as gun: weapon requires both hands="yes"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Pump action shotgun"
+Item name=_"Pump action shotgun"
 Item min class for drop=5
 Item max class for drop=7
 Item can be applied in combat="no"
@@ -1382,7 +1382,7 @@ Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=300
 inventory_size_x=2
 inventory_size_y=4
-Item description text=""
+Item description text=_""
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.600000
 Item as gun: reloading time=4.000000
@@ -1405,7 +1405,7 @@ Item as gun: weapon requires both hands="yes"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="9x19mm Ammunition"
+Item name=_"9x19mm Ammunition"
 Item min class for drop=5
 Item max class for drop=8
 Item number dropped min=10
@@ -1419,7 +1419,7 @@ inventory_size_x=1
 inventory_size_y=3
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=18
-Item description text="Plasma crystal load. This is the most common way of loading a plasma weapon."
+Item description text=_"Plasma crystal load. This is the most common way of loading a plasma weapon."
 ** End of new item specification subsection **
 
 /*
@@ -1431,7 +1431,7 @@ http://en.wikipedia.org/wiki/Heckler_%26_Koch_MP5
 */
 
 ** Start of new item specification subsection **
-Item name="9mm Automatic"
+Item name=_"9mm Automatic"
 Item min class for drop=5
 Item max class for drop=7
 Item can be applied in combat="no"
@@ -1445,7 +1445,7 @@ Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=400
 inventory_size_x=1
 inventory_size_y=2
-Item description text=""
+Item description text=_""
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.500000
 Item as gun: reloading time=3.000000
@@ -1468,7 +1468,7 @@ Item as gun: weapon requires both hands="no"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="9mm Sub Machine Gun"
+Item name=_"9mm Sub Machine Gun"
 Item min class for drop=6
 Item max class for drop=8
 Item can be applied in combat="no"
@@ -1482,7 +1482,7 @@ Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=950
 inventory_size_x=2
 inventory_size_y=3
-Item description text=""
+Item description text=_""
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.200000
 Item as gun: reloading time=3.000000
@@ -1505,7 +1505,7 @@ Item as gun: weapon requires both hands="yes"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="7.62x39mm Ammunition"
+Item name=_"7.62x39mm Ammunition"
 Item min class for drop=6
 Item max class for drop=9
 Item number dropped min=10
@@ -1519,7 +1519,7 @@ inventory_size_x=1
 inventory_size_y=4
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=24
-Item description text="Plasma crystal load. This is the most common way of loading a plasma weapon."
+Item description text=_"Plasma crystal load. This is the most common way of loading a plasma weapon."
 ** End of new item specification subsection **
 
 /*
@@ -1531,7 +1531,7 @@ http://en.wikipedia.org/wiki/AK-47
 */
 
 ** Start of new item specification subsection **
-Item name="7.62mm Hunting rifle"
+Item name=_"7.62mm Hunting rifle"
 Item min class for drop=6
 Item max class for drop=8
 Item can be applied in combat="no"
@@ -1545,7 +1545,7 @@ Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=800
 inventory_size_x=1
 inventory_size_y=6
-Item description text=""
+Item description text=_""
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.800000
 Item as gun: reloading time=5.000000
@@ -1568,7 +1568,7 @@ Item as gun: weapon requires both hands="yes"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="7.62mm AK-47"
+Item name=_"7.62mm AK-47"
 Item min class for drop=7
 Item max class for drop=9
 Item can be applied in combat="no"
@@ -1582,7 +1582,7 @@ Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=1400
 inventory_size_x=2
 inventory_size_y=5
-Item description text=""
+Item description text=_""
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.200000
 Item as gun: reloading time=3.000000
@@ -1605,7 +1605,7 @@ Item as gun: weapon requires both hands="yes"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name=".50 BMG (12.7x99mm) Ammunition"
+Item name=_".50 BMG (12.7x99mm) Ammunition"
 Item min class for drop=7
 Item max class for drop=9
 Item number dropped min=1
@@ -1619,7 +1619,7 @@ inventory_size_x=1
 inventory_size_y=1
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=200
-Item description text="Plasma crystal load. This is the most common way of loading a plasma weapon."
+Item description text=_"Plasma crystal load. This is the most common way of loading a plasma weapon."
 ** End of new item specification subsection **
 
 /*
@@ -1628,7 +1628,7 @@ http://en.wikipedia.org/wiki/M82_Barrett_rifle
 */
 
 ** Start of new item specification subsection **
-Item name="Barrett M82 Sniper Rifle"
+Item name=_"Barrett M82 Sniper Rifle"
 Item min class for drop=8
 Item max class for drop=9
 Item can be applied in combat="no"
@@ -1642,7 +1642,7 @@ Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=2000
 inventory_size_x=2
 inventory_size_y=6
-Item description text="Powerfull enough to stop a truck, literally, the likelyness of even a battle droid surviving more than 2 hits by this weapon is quite slim. It doesnt even matter if the pesky droid is cowering behind a wall, the bullets will break right through and make the bot ready for the scrap heap in notime."
+Item description text=_"Powerfull enough to stop a truck, literally, the likelyness of even a battle droid surviving more than 2 hits by this weapon is quite slim. It doesnt even matter if the pesky droid is cowering behind a wall, the bullets will break right through and make the bot ready for the scrap heap in notime."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=1.200000
 Item as gun: reloading time=4.000000
@@ -1665,7 +1665,7 @@ Item as gun: weapon requires both hands="yes"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Laser Weapon Ammunition"
+Item name=_"Laser Weapon Ammunition"
 Item min class for drop=4
 Item max class for drop=9
 Item number dropped min=10
@@ -1677,11 +1677,11 @@ Items of this type collect together in inventory="yes"
 File or directory name for inventory image="ammo_laser_crystal/inv_image.png"
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=2
-Item description text="Energy crystal load for laser rifles. Each round fired consumes a load within the crystal."
+Item description text=_"Energy crystal load for laser rifles. Each round fired consumes a load within the crystal."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Laser pistol"
+Item name=_"Laser pistol"
 Item min class for drop=6
 Item max class for drop=8
 Item can be applied in combat="no"
@@ -1695,7 +1695,7 @@ Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=500
 inventory_size_x=1
 inventory_size_y=2
-Item description text="A basic laser, but it has good uses in certain situations. No warranty of any kind though."
+Item description text=_"A basic laser, but it has good uses in certain situations. No warranty of any kind though."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.400000
 Item as gun: reloading time=3.000000
@@ -1718,7 +1718,7 @@ Item as gun: weapon requires both hands="no"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Laser Rifle"
+Item name=_"Laser Rifle"
 Item min class for drop=7
 Item max class for drop=9
 Item can be applied in combat="no"
@@ -1732,7 +1732,7 @@ Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=1000
 inventory_size_x=1
 inventory_size_y=4
-Item description text="This rifle is a high-end laser weapon. There is only one problem with it: Shooting it is too much fun. People often end up with no ammunition in the middle of a battle."
+Item description text=_"This rifle is a high-end laser weapon. There is only one problem with it: Shooting it is too much fun. People often end up with no ammunition in the middle of a battle."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.600000
 Item as gun: reloading time=4.000000
@@ -1755,7 +1755,7 @@ Item as gun: weapon requires both hands="yes"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Small Pulse Laser"
+Item name=_"Small Pulse Laser"
 Item min class for drop=7
 Item max class for drop=9
 Item can be applied in combat="no"
@@ -1767,7 +1767,7 @@ plus duration modifier=10
 File or directory name for inventory image="inventory_image_14.png"
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=1000
-Item description text="The pulse laser technology, allowing for many repreated short burts without the weapon overheating, makes this quite a useful weapon. The damage from each shot is noticably less then from a Laser rifle, but the firing rate more then makes up for it."
+Item description text=_"The pulse laser technology, allowing for many repreated short burts without the weapon overheating, makes this quite a useful weapon. The damage from each shot is noticably less then from a Laser rifle, but the firing rate more then makes up for it."
 inventory_size_x=2
 inventory_size_y=3
 ----- the following part is only relevant for weapons -----
@@ -1792,7 +1792,7 @@ Item as gun: weapon requires both hands="yes"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Pulse Laser"
+Item name=_"Pulse Laser"
 Item min class for drop=8
 Item max class for drop=9
 Item can be applied in combat="no"
@@ -1804,7 +1804,7 @@ plus duration modifier=10
 File or directory name for inventory image="inventory_image_14.png"
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=2000
-Item description text="The pulse laser technology, allowing for many repeated short burts without the weapon overheating, combined with a design for military purpuse makes this weapon the perfered choise for most soldiers. It's recoil free, quick firing, large mag & killing power makes it the ideal weapon for cleansing out big droid infestations in mere minutes."
+Item description text=_"The pulse laser technology, allowing for many repeated short burts without the weapon overheating, combined with a design for military purpuse makes this weapon the perfered choise for most soldiers. It's recoil free, quick firing, large mag & killing power makes it the ideal weapon for cleansing out big droid infestations in mere minutes."
 inventory_size_x=2
 inventory_size_y=4
 ----- the following part is only relevant for weapons -----
@@ -1829,7 +1829,7 @@ Item as gun: weapon requires both hands="yes"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Plasma Weapon Ammunition"
+Item name=_"Plasma Weapon Ammunition"
 Item min class for drop=4
 Item max class for drop=9
 Item number dropped min=10
@@ -1843,11 +1843,11 @@ inventory_size_x=2
 inventory_size_y=2
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=4
-Item description text="Plasma crystal load. This is the most common way of loading a plasma weapon."
+Item description text=_"Plasma crystal load. This is the most common way of loading a plasma weapon."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Plasma pistol"
+Item name=_"Plasma pistol"
 Item min class for drop=6
 Item max class for drop=8
 Item can be applied in combat="no"
@@ -1861,7 +1861,7 @@ Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=750
 inventory_size_x=1
 inventory_size_y=3
-Item description text="The basic plasma weapon in a conveniently small package."
+Item description text=_"The basic plasma weapon in a conveniently small package."
 the following part is only relevant for weapons -----
 Item as gun: recharging time=0.750000
 Item as gun: reloading time=3.000000
@@ -1884,7 +1884,7 @@ Item as gun: weapon requires both hands="no"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Plasma gun"
+Item name=_"Plasma gun"
 Item min class for drop=7
 Item max class for drop=9
 Item can be applied in combat="no"
@@ -1898,7 +1898,7 @@ Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=1200
 inventory_size_x=2
 inventory_size_y=3
-Item description text="A somewhat slow weapon, but once you do hit plenty a bot just melts down on the spot. A good alternative to a pulse laser for the skilled marksman."
+Item description text=_"A somewhat slow weapon, but once you do hit plenty a bot just melts down on the spot. A good alternative to a pulse laser for the skilled marksman."
 the following part is only relevant for weapons -----
 Item as gun: recharging time=1.000000
 Item as gun: reloading time=3.000000
@@ -1921,7 +1921,7 @@ Item as gun: weapon requires both hands="yes"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Plasma cannon"
+Item name=_"Plasma cannon"
 Item min class for drop=8
 Item max class for drop=9
 Item can be applied in combat="no"
@@ -1935,7 +1935,7 @@ Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=1800
 inventory_size_x=2
 inventory_size_y=5
-Item description text="The very slow firing rate is made up pleanty by the awesome power of this weapon. Its main use in the military is as a close support weapon complementing the soldiers bread&butter pulse lasers, especially when attacking enemies behind cover."
+Item description text=_"The very slow firing rate is made up pleanty by the awesome power of this weapon. Its main use in the military is as a close support weapon complementing the soldiers bread&butter pulse lasers, especially when attacking enemies behind cover."
 the following part is only relevant for weapons -----
 Item as gun: recharging time=1.000000
 Item as gun: reloading time=4.000000
@@ -1958,7 +1958,7 @@ Item as gun: weapon requires both hands="yes"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="2 mm Exterminator Ammunition"
+Item name=_"2 mm Exterminator Ammunition"
 Item min class for drop=6
 Item max class for drop=9
 Item number dropped min=5
@@ -1972,11 +1972,11 @@ inventory_size_x=1
 inventory_size_y=1
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=5
-Item description text="Exterminators need this kind of ammunition. It can cause skin irritations due to leaking extermination radiation when carried close to the body for long time."
+Item description text=_"Exterminators need this kind of ammunition. It can cause skin irritations due to leaking extermination radiation when carried close to the body for long time."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Exterminator"
+Item name=_"Exterminator"
 Item min class for drop=8
 Item max class for drop=9
 Item can be applied in combat="no"
@@ -1988,7 +1988,7 @@ plus duration modifier=10
 File or directory name for inventory image="exterminator_simple/inv_image.png"
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=1000
-Item description text="While this weapon is capable of firing really powerful shots, beware of the exceptionally long reloading times. (Don't get swarmed by enemies with this weapon unless you have powerful armor!)"
+Item description text=_"While this weapon is capable of firing really powerful shots, beware of the exceptionally long reloading times. (Don't get swarmed by enemies with this weapon unless you have powerful armor!)"
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.5000000
 Item as gun: reloading time=4.000000
@@ -2011,7 +2011,7 @@ Item as gun: weapon requires both hands="yes"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="The Super Exterminator!!!"
+Item name=_"The Super Exterminator!!!"
 Item min class for drop=9
 Item max class for drop=9
 Item can be applied in combat="no"
@@ -2023,7 +2023,7 @@ plus duration modifier=10
 File or directory name for inventory image="exterminator_simple/inv_image.png"
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=3000
-Item description text="This bad boy has been known to blow away enemies with a single blast. A dangerous weapon that you don't want to be on the receiving end of."
+Item description text=_"This bad boy has been known to blow away enemies with a single blast. A dangerous weapon that you don't want to be on the receiving end of."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.500000
 Item as gun: reloading time=5.000000
@@ -2054,7 +2054,7 @@ Item as gun: weapon requires both hands="yes"
  **********************************************************************************************************/
 
 ** Start of new item specification subsection **
-Item name="VMX Gas Grenade"
+Item name=_"VMX Gas Grenade"
 It**em name="Acid Grenade"
 Item min class for drop=4
 Item max class for drop=9
@@ -2067,11 +2067,11 @@ inventory_size_x=1
 inventory_size_y=1
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=250
-Item description text="The gas does not look terrifying. It even smells somewhat nice. And then you die. You die a most horrible death, never knowing what killed you."
+Item description text=_"The gas does not look terrifying. It even smells somewhat nice. And then you die. You die a most horrible death, never knowing what killed you."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="EMP Shock Grenade"
+Item name=_"EMP Shock Grenade"
 I**tem name="EMP Shockwave Generator"
 Item min class for drop=4
 Item max class for drop=9
@@ -2084,11 +2084,11 @@ inventory_size_x=1
 inventory_size_y=1
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=150
-Item description text="This sphere contains a few strange bits of technology invented by Nikola Tesla in the early 20th century. The magnetic pulse that it generates can destroy most electronic devices in just one blast."
+Item description text=_"This sphere contains a few strange bits of technology invented by Nikola Tesla in the early 20th century. The magnetic pulse that it generates can destroy most electronic devices in just one blast."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Plasma Grenade"
+Item name=_"Plasma Grenade"
 It**em name="Plasma Bomb"
 // Remake into something you drop, run away from and then explode 3-5s later. Possibly attach it to a friendly droid and have it move somewhere before exploding?
 Item min class for drop=4
@@ -2102,7 +2102,7 @@ inventory_size_x=1
 inventory_size_y=1
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=250
-Item description text="Said to the downscaled version of the original Pandora's Sphere, this device extinguishes life with superheated plasma."
+Item description text=_"Said to the downscaled version of the original Pandora's Sphere, this device extinguishes life with superheated plasma."
 ** End of new item specification subsection **
 
 
@@ -2114,7 +2114,7 @@ Item description text="Said to the downscaled version of the original Pandora's 
  **********************************************************************************************************/
 
 ** Start of new item specification subsection **
-Item name="NPC Hand to hand weapon"
+Item name=_"NPC Hand to hand weapon"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
@@ -2127,7 +2127,7 @@ inventory_size_x=2
 inventory_size_y=2
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=350
-Item description text="Bot use only"
+Item description text=_"Bot use only"
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.450000
 Item as gun: reloading time=0.000000
@@ -2150,7 +2150,7 @@ Item as gun: weapon requires both hands="no"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Droid weaponry - 123"
+Item name=_"Droid weaponry - 123"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
@@ -2161,7 +2161,7 @@ plus duration modifier=10
 File or directory name for inventory image="inventory_image_25.png"
 Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
 Base list price=120
-Item description text="A nice handy weapon, a good swing every now and then will prove useful in critical hits."
+Item description text=_"A nice handy weapon, a good swing every now and then will prove useful in critical hits."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.950000
 Item as gun: reloading time=0.000000
@@ -2184,7 +2184,7 @@ Item as gun: weapon requires both hands="yes"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Droid weaponry - 139 : Trash compactor plasma overload"
+Item name=_"Droid weaponry - 139 : Trash compactor plasma overload"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
@@ -2195,7 +2195,7 @@ plus duration modifier=10
 File or directory name for inventory image="inventory_image_18.png"
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=40
-Item description text="For bot use only."
+Item description text=_"For bot use only."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.350000
 Item as gun: reloading time=7.000000
@@ -2218,7 +2218,7 @@ Item as gun: weapon requires both hands="yes"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Droid weaponry - 247"
+Item name=_"Droid weaponry - 247"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
@@ -2231,7 +2231,7 @@ inventory_size_x=2
 inventory_size_y=2
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=120
-Item description text="A true to technology modern sword. Can cut through the most impossible objects like a knife through butter."
+Item description text=_"A true to technology modern sword. Can cut through the most impossible objects like a knife through butter."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.600000
 Item as gun: reloading time=0.000000
@@ -2254,7 +2254,7 @@ Item as gun: weapon requires both hands="yes"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Droid weaponry - 249 (Laser pulse welder)"
+Item name=_"Droid weaponry - 249 (Laser pulse welder)"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
@@ -2265,7 +2265,7 @@ plus duration modifier=10
 File or directory name for inventory image="inventory_image_18.png"
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=100
-Item description text="For bot use only"
+Item description text=_"For bot use only"
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.150000
 Item as gun: reloading time=5.000000
@@ -2288,7 +2288,7 @@ Item as gun: weapon requires both hands="yes"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Droid weaponry - 296"
+Item name=_"Droid weaponry - 296"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
@@ -2301,7 +2301,7 @@ inventory_size_x=2
 inventory_size_y=2
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=120
-Item description text="A true to technology modern sword. Can cut through the most impossible objects like a knife through butter."
+Item description text=_"A true to technology modern sword. Can cut through the most impossible objects like a knife through butter."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.600000
 Item as gun: reloading time=0.000000
@@ -2324,7 +2324,7 @@ Item as gun: weapon requires both hands="yes"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Droid weaponry - 302"
+Item name=_"Droid weaponry - 302"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
@@ -2337,7 +2337,7 @@ inventory_size_x=2
 inventory_size_y=2
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=120
-Item description text="A true to technology modern sword. Can cut through the most impossible objects like a knife through butter."
+Item description text=_"A true to technology modern sword. Can cut through the most impossible objects like a knife through butter."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.600000
 Item as gun: reloading time=0.000000
@@ -2360,7 +2360,7 @@ Item as gun: weapon requires both hands="yes"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Droid weaponry - 329"
+Item name=_"Droid weaponry - 329"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
@@ -2373,7 +2373,7 @@ inventory_size_x=2
 inventory_size_y=2
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=120
-Item description text="A true to technology modern sword. Can cut through the most impossible objects like a knife through butter."
+Item description text=_"A true to technology modern sword. Can cut through the most impossible objects like a knife through butter."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.600000
 Item as gun: reloading time=0.000000
@@ -2396,7 +2396,7 @@ Item as gun: weapon requires both hands="yes"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Droid weaponry - 420"
+Item name=_"Droid weaponry - 420"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
@@ -2409,7 +2409,7 @@ inventory_size_x=2
 inventory_size_y=2
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=120
-Item description text="A true to technology modern sword. Can cut through the most impossible objects like a knife through butter."
+Item description text=_"A true to technology modern sword. Can cut through the most impossible objects like a knife through butter."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.600000
 Item as gun: reloading time=0.000000
@@ -2432,7 +2432,7 @@ Item as gun: weapon requires both hands="yes"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Droid weaponry - 476 (Small Single Laser)"
+Item name=_"Droid weaponry - 476 (Small Single Laser)"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
@@ -2443,7 +2443,7 @@ plus duration modifier=10
 File or directory name for inventory image="inventory_image_2.png"
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=250
-Item description text="More of a mediocre addition to the laser family, this is best summed up as a backup weapon."
+Item description text=_"More of a mediocre addition to the laser family, this is best summed up as a backup weapon."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=1.200000
 Item as gun: reloading time=2.400000
@@ -2466,7 +2466,7 @@ Item as gun: weapon requires both hands="yes"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Droid weaponry - 493"
+Item name=_"Droid weaponry - 493"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
@@ -2479,7 +2479,7 @@ inventory_size_x=2
 inventory_size_y=2
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=120
-Item description text="A true to technology modern sword. Can cut through the most impossible objects like a knife through butter."
+Item description text=_"A true to technology modern sword. Can cut through the most impossible objects like a knife through butter."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=6.00000
 Item as gun: reloading time=0.000000
@@ -2502,7 +2502,7 @@ Item as gun: weapon requires both hands="yes"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Droid weaponry - 516"
+Item name=_"Droid weaponry - 516"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
@@ -2515,7 +2515,7 @@ inventory_size_x=2
 inventory_size_y=2
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=120
-Item description text="A true to technology modern sword. Can cut through the most impossible objects like a knife through butter."
+Item description text=_"A true to technology modern sword. Can cut through the most impossible objects like a knife through butter."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.600000
 Item as gun: reloading time=0.000000
@@ -2538,7 +2538,7 @@ Item as gun: weapon requires both hands="yes"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Droid weaponry - 571"
+Item name=_"Droid weaponry - 571"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
@@ -2551,7 +2551,7 @@ inventory_size_x=2
 inventory_size_y=2
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=120
-Item description text="A true to technology modern sword. Can cut through the most impossible objects like a knife through butter."
+Item description text=_"A true to technology modern sword. Can cut through the most impossible objects like a knife through butter."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.600000
 Item as gun: reloading time=0.000000
@@ -2574,7 +2574,7 @@ Item as gun: weapon requires both hands="yes"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Droid weaponry - 598"
+Item name=_"Droid weaponry - 598"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
@@ -2587,7 +2587,7 @@ inventory_size_x=2
 inventory_size_y=2
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=120
-Item description text="A true to technology modern sword. Can cut through the most impossible objects like a knife through butter."
+Item description text=_"A true to technology modern sword. Can cut through the most impossible objects like a knife through butter."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.600000
 Item as gun: reloading time=0.000000
@@ -2610,7 +2610,7 @@ Item as gun: weapon requires both hands="yes"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Droid weaponry - 614,GUA,MUM (Power Exterminator)"
+Item name=_"Droid weaponry - 614,GUA,MUM (Power Exterminator)"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
@@ -2623,7 +2623,7 @@ plus duration modifier=10
 File or directory name for inventory image="exterminator_simple/inv_image.png"
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=1001
-Item description text="This is one of the most powerful ranged weapons out there."
+Item description text=_"This is one of the most powerful ranged weapons out there."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.50000
 Item as gun: reloading time=5.000000
@@ -2646,7 +2646,7 @@ Item as gun: weapon requires both hands="yes"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Droid weaponry - 615,751,834 (Advanced Single Laser)"
+Item name=_"Droid weaponry - 615,751,834 (Advanced Single Laser)"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
@@ -2657,7 +2657,7 @@ plus duration modifier=10
 File or directory name for inventory image="inventory_image_2.png"
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=250
-Item description text="If you do not mind waiting for a while in the heat of battle, this weapon is for you."
+Item description text=_"If you do not mind waiting for a while in the heat of battle, this weapon is for you."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=1.200000
 Item as gun: reloading time=2.000000
@@ -2680,7 +2680,7 @@ Item as gun: weapon requires both hands="yes"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Droid weaponry - 629,821,999 (Advanced Twin Laser)"
+Item name=_"Droid weaponry - 629,821,999 (Advanced Twin Laser)"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
@@ -2695,7 +2695,7 @@ Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=800
 inventory_size_x=2
 inventory_size_y=2
-Item description text="Think of a twin laser with twice the power. Now make it shoot half as often. What you have is the 'Advanced' twin laser."
+Item description text=_"Think of a twin laser with twice the power. Now make it shoot half as often. What you have is the 'Advanced' twin laser."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=1.400000
 Item as gun: reloading time=3
@@ -2718,7 +2718,7 @@ Item as gun: weapon requires both hands="yes"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Droid weaponry - 711,742 (Disruptor Class Alpha)"
+Item name=_"Droid weaponry - 711,742 (Disruptor Class Alpha)"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
@@ -2729,7 +2729,7 @@ plus duration modifier=10
 File or directory name for inventory image="inventory_image_13.png"
 Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
 Base list price=2500
-Item description text=" This weapons name speaks for itself-more of a brute force weapon than most, it is best used on high defense enemies."
+Item description text=_" This weapons name speaks for itself-more of a brute force weapon than most, it is best used on high defense enemies."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=1.000000
 Item as gun: reloading time=1.000000
@@ -2752,7 +2752,7 @@ Item as gun: weapon requires both hands="yes"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Droid weaponry - 883 (Bot exterminator)"
+Item name=_"Droid weaponry - 883 (Bot exterminator)"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
@@ -2765,7 +2765,7 @@ plus duration modifier=10
 File or directory name for inventory image="exterminator_simple/inv_image.png"
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=1001
-Item description text="Bot use only"
+Item description text=_"Bot use only"
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=1.00000
 Item as gun: reloading time=4.000000
@@ -2804,7 +2804,7 @@ Item as gun: weapon requires both hands="yes"
 // *** Body ***
 
 ** Start of new item specification subsection **
-Item name="Simple Jacket"
+Item name=_"Simple Jacket"
 Item min class for drop=0
 Item max class for drop=4
 Item can be applied in combat="no"
@@ -2820,11 +2820,11 @@ Item uses drop sound with filename="Item_Armour_Put_Sound_0.ogg"
 Base list price=40
 inventory_size_x=2
 inventory_size_y=2
-Item description text="Does a decent job of protection. I guess. Maybe. I'm not sure."
+Item description text=_"Does a decent job of protection. I guess. Maybe. I'm not sure."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Reinforced Jacket"
+Item name=_"Reinforced Jacket"
 Item min class for drop=2
 Item max class for drop=6
 Item can be applied in combat="no"
@@ -2840,11 +2840,11 @@ Item uses drop sound with filename="Item_Armour_Put_Sound_0.ogg"
 Base list price=75
 inventory_size_x=2
 inventory_size_y=2
-Item description text="One step up from a normal jacket."
+Item description text=_"One step up from a normal jacket."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Protective Jacket"
+Item name=_"Protective Jacket"
 Item min class for drop=4
 Item max class for drop=7
 Item can be applied in combat="no"
@@ -2860,11 +2860,11 @@ Item uses drop sound with filename="Item_Armour_Put_Sound_0.ogg"
 Base list price=200
 inventory_size_x=2
 inventory_size_y=2
-Item description text="Very strong for its size, does a good job of absorbing basic blows."
+Item description text=_"Very strong for its size, does a good job of absorbing basic blows."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Red Guard's Light Robe"
+Item name=_"Red Guard's Light Robe"
 Item min class for drop=6
 Item max class for drop=9
 Item can be applied in combat="no"
@@ -2878,11 +2878,11 @@ plus duration modifier=10
 File or directory name for inventory image="inventory_image_26.png"
 Item uses drop sound with filename="Item_Armour_Put_Sound_0.ogg"
 Base list price=300
-Item description text="Tough as nails and able to withstand most blows."
+Item description text=_"Tough as nails and able to withstand most blows."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Red Guard's Heavy Robe"
+Item name=_"Red Guard's Heavy Robe"
 Item min class for drop=7
 Item max class for drop=9
 Item can be applied in combat="no"
@@ -2897,7 +2897,7 @@ plus duration modifier=15
 File or directory name for inventory image="green_armour/inv_image.png"
 Item uses drop sound with filename="Item_Armour_Put_Sound_0.ogg"
 Base list price=1001
-Item description text="Defense is acquired at a high level with this durable piece of armor."
+Item description text=_"Defense is acquired at a high level with this durable piece of armor."
 ** End of new item specification subsection **
 
 
@@ -2907,7 +2907,7 @@ Item description text="Defense is acquired at a high level with this durable pie
 // *** Head ***
 
 ** Start of new item specification subsection **
-Item name="Cap"
+Item name=_"Cap"
 Item min class for drop=0
 Item max class for drop=3
 Item can be applied in combat="no"
@@ -2923,11 +2923,11 @@ inventory_size_x=2
 inventory_size_y=2
 Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
 Base list price=25
-Item description text="A simple cover for your head. Don't expect to be incognito."
+Item description text=_"A simple cover for your head. Don't expect to be incognito."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Small Helm"
+Item name=_"Small Helm"
 Item min class for drop=2
 Item max class for drop=5
 Item can be applied in combat="no"
@@ -2943,11 +2943,11 @@ inventory_size_x=2
 inventory_size_y=2
 Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
 Base list price=75
-Item description text="A rather useful helmet, has a few defense issues here and there but mainly is worth the wear."
+Item description text=_"A rather useful helmet, has a few defense issues here and there but mainly is worth the wear."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Iron Helm"
+Item name=_"Iron Helm"
 Item min class for drop=4
 Item max class for drop=7
 Item can be applied in combat="no"
@@ -2961,11 +2961,11 @@ plus duration modifier=15
 File or directory name for inventory image="helmet_skull_cap/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
 Base list price=275
-Item description text="Top of the line head gear, manages to protect against a myriad of close range and long range attacks."
+Item description text=_"Top of the line head gear, manages to protect against a myriad of close range and long range attacks."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Pot-Helm"
+Item name=_"Pot-Helm"
 Item min class for drop=5
 Item max class for drop=8
 Item can be applied in combat="no"
@@ -2979,11 +2979,11 @@ plus duration modifier=20
 File or directory name for inventory image="helmet_yellow4/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
 Base list price=375
-Item description text="It might look a bit silly, but it will save your life many times"
+Item description text=_"It might look a bit silly, but it will save your life many times"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Iron Hat"
+Item name=_"Iron Hat"
 Item min class for drop=6
 Item max class for drop=9
 Item can be applied in combat="no"
@@ -2997,11 +2997,11 @@ plus duration modifier=10
 File or directory name for inventory image="helmet_yellow3/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
 Base list price=175
-Item description text="Now this is head protection. Feel safe with sturdy iron protecting your head. Not as comfortable as other hats"
+Item description text=_"Now this is head protection. Feel safe with sturdy iron protecting your head. Not as comfortable as other hats"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Dixon's helmet"
+Item name=_"Dixon's helmet"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="special"
@@ -3013,7 +3013,7 @@ plus duration modifier=0
 File or directory name for inventory image="helmet_yellow4/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
 Base list price=5
-Item description text="A gift from Dixon. It looks like it is about to turn into dust."
+Item description text=_"A gift from Dixon. It looks like it is about to turn into dust."
 ** End of new item specification subsection **
 
 
@@ -3023,7 +3023,7 @@ Item description text="A gift from Dixon. It looks like it is about to turn into
 // *** Hand ***
 
 ** Start of new item specification subsection **
-Item name="Buckler"
+Item name=_"Buckler"
 Item min class for drop=0
 Item max class for drop=3
 Item can be applied in combat="no"
@@ -3039,11 +3039,11 @@ inventory_size_x=2
 inventory_size_y=2
 Item uses drop sound with filename="Item_Armour_Put_Sound_0.ogg"
 Base list price=30
-Item description text="This shield is a compilation of various objects which happened to be around. It has tubes, bolts and parts of metal, all slapped together to provide a small bit of protection from enemies. It's very simple and rough, but some sensors and lights have been added to let the wielder know when the item is getting hit, and how long it will remain operational and other cool stuff like that."
+Item description text=_"This shield is a compilation of various objects which happened to be around. It has tubes, bolts and parts of metal, all slapped together to provide a small bit of protection from enemies. It's very simple and rough, but some sensors and lights have been added to let the wielder know when the item is getting hit, and how long it will remain operational and other cool stuff like that."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Small Shield"
+Item name=_"Small Shield"
 Item min class for drop=2
 Item max class for drop=4
 Item can be applied in combat="no"
@@ -3057,11 +3057,11 @@ plus duration modifier=8
 File or directory name for inventory image="small_shield/inv_image.png"
 Item uses drop sound with filename="Item_Armour_Put_Sound_0.ogg"
 Base list price=90
-Item description text="A small, lightweight and pretty straightforward shield. Provides decent protection."
+Item description text=_"A small, lightweight and pretty straightforward shield. Provides decent protection."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Standard Shield"
+Item name=_"Standard Shield"
 Item min class for drop=4
 Item max class for drop=6
 Item can be applied in combat="no"
@@ -3077,11 +3077,11 @@ plus duration modifier=10
 File or directory name for inventory image="standard_shield/inv_image.png"
 Item uses drop sound with filename="Item_Armour_Put_Sound_0.ogg"
 Base list price=250
-Item description text="Better than a buckler, and a lot more effective."
+Item description text=_"Better than a buckler, and a lot more effective."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Medium Shield"
+Item name=_"Medium Shield"
 Item min class for drop=5
 Item max class for drop=7
 Item can be applied in combat="no"
@@ -3095,11 +3095,11 @@ plus duration modifier=8
 File or directory name for inventory image="small_shield/inv_image.png"
 Item uses drop sound with filename="Item_Armour_Put_Sound_0.ogg"
 Base list price=330
-Item description text="A medium sized, lightweight and pretty straightforward shield. Provides decent protection."
+Item description text=_"A medium sized, lightweight and pretty straightforward shield. Provides decent protection."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Large Shield"
+Item name=_"Large Shield"
 Item min class for drop=6
 Item max class for drop=9
 Item can be applied in combat="no"
@@ -3115,7 +3115,7 @@ plus duration modifier=20
 File or directory name for inventory image="large_shield/inv_image.png"
 Item uses drop sound with filename="Item_Armour_Put_Sound_0.ogg"
 Base list price=450
-Item description text="A powerful shield."
+Item description text=_"A powerful shield."
 ** End of new item specification subsection **
 
 
@@ -3125,7 +3125,7 @@ Item description text="A powerful shield."
 // *** Feet ***
 
 ** Start of new item specification subsection **
-Item name="Shoes"
+Item name=_"Shoes"
 Item min class for drop=0
 Item max class for drop=3
 Item can be applied in combat="no"
@@ -3139,11 +3139,11 @@ plus duration modifier=5
 File or directory name for inventory image="boots_simple/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_1.ogg"
 Base list price=27
-Item description text="These simple boots are designed for comfort of the wearer more than to give actual protection."
+Item description text=_"These simple boots are designed for comfort of the wearer more than to give actual protection."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Light Boots"
+Item name=_"Light Boots"
 Item min class for drop=2
 Item max class for drop=5
 Item can be applied in combat="no"
@@ -3157,11 +3157,11 @@ plus duration modifier=5
 File or directory name for inventory image="boots_simple/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
 Base list price=65
-Item description text="These boots are a bit lighter than the normal version, giving of course worse protection but certainly extra comfort for the wearer."
+Item description text=_"These boots are a bit lighter than the normal version, giving of course worse protection but certainly extra comfort for the wearer."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Boots"
+Item name=_"Boots"
 Item min class for drop=4
 Item max class for drop=7
 Item can be applied in combat="no"
@@ -3175,11 +3175,11 @@ plus duration modifier=5
 File or directory name for inventory image="boots_simple/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
 Base list price=65
-Item description text="These boots are similar to the simple shoes, but the material they are made of is hardened for extra protection."
+Item description text=_"These boots are similar to the simple shoes, but the material they are made of is hardened for extra protection."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Reinforced Boots"
+Item name=_"Reinforced Boots"
 Item min class for drop=5
 Item max class for drop=8
 Item can be applied in combat="no"
@@ -3193,11 +3193,11 @@ plus duration modifier=5
 File or directory name for inventory image="boots_simple/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
 Base list price=175
-Item description text="These boots were originally normal boots, but have been fitted with some extra reinforcements to give better protection to the wearer.  Of course this makes them a bit less elegant and also less comfy to wear, but the extra protection might be worth it, at not the full price of hiking boots."
+Item description text=_"These boots were originally normal boots, but have been fitted with some extra reinforcements to give better protection to the wearer.  Of course this makes them a bit less elegant and also less comfy to wear, but the extra protection might be worth it, at not the full price of hiking boots."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Hiking Boots"
+Item name=_"Hiking Boots"
 Item min class for drop=6
 Item max class for drop=9
 Item can be applied in combat="no"
@@ -3211,7 +3211,7 @@ plus duration modifier=5
 File or directory name for inventory image="boots_simple/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
 Base list price=275
-Item description text="These hiking boots are a very sophisticated product, combining optimal comfort for the wearer with a good protection from collisions with blunt objects like stones, which of course also makes for a higher price."
+Item description text=_"These hiking boots are a very sophisticated product, combining optimal comfort for the wearer with a good protection from collisions with blunt objects like stones, which of course also makes for a higher price."
 ** End of new item specification subsection **
 
 
@@ -3224,7 +3224,7 @@ Item description text="These hiking boots are a very sophisticated product, comb
  **********************************************************************************************************/
 
 ** Start of new item specification subsection **
-Item name="Source Book of Emergency shutdown"
+Item name=_"Source Book of Emergency shutdown"
 Item min class for drop=2
 Item max class for drop=9
 Item can be applied in combat="yes"
@@ -3234,13 +3234,13 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="spellbook/inv_image_green.png"
 Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=500
-Item description text="Everyone needs to blow some steam every now and then."
+Item description text=_"Everyone needs to blow some steam every now and then."
 inventory_size_x=2
 inventory_size_y=2
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Source Book of Check system integrity"
+Item name=_"Source Book of Check system integrity"
 Item min class for drop=2
 Item max class for drop=9
 Item can be applied in combat="yes"
@@ -3250,13 +3250,13 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="spellbook/inv_image_white.png"
 Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=250
-Item description text="An incredible healing spell, probably only one you will ever need."
+Item description text=_"An incredible healing spell, probably only one you will ever need."
 inventory_size_x=2
 inventory_size_y=2
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Source Book of Analyze item"
+Item name=_"Source Book of Analyze item"
 Item min class for drop=3
 Item max class for drop=9
 Item can be applied in combat="yes"
@@ -3266,13 +3266,13 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="spellbook/inv_image_green.png"
 Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=450
-Item description text="There are very few items which have labels on them. Unless you happen to have an item labeled 'USE ME', you better make sure what it is before using it..."
+Item description text=_"There are very few items which have labels on them. Unless you happen to have an item labeled 'USE ME', you better make sure what it is before using it..."
 inventory_size_x=2
 inventory_size_y=2
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Source Book of Sanctuary"
+Item name=_"Source Book of Sanctuary"
 Item min class for drop=2
 Item max class for drop=9
 Item can be applied in combat="yes"
@@ -3282,13 +3282,13 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="spellbook/inv_image_green.png"
 Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=450
-Item description text="The art of rapidly moving away from danger is very useful. Even when used in reverse it has it's uses."
+Item description text=_"The art of rapidly moving away from danger is very useful. Even when used in reverse it has it's uses."
 inventory_size_x=2
 inventory_size_y=2
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Source Book of Malformed packet"
+Item name=_"Source Book of Malformed packet"
 Item min class for drop=2
 Item max class for drop=9
 Item can be applied in combat="yes"
@@ -3298,13 +3298,13 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="spellbook/inv_image_purple.png"
 Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=300
-Item description text="When computers are presented with the unexpected they can damage themselves."
+Item description text=_"When computers are presented with the unexpected they can damage themselves."
 inventory_size_x=2
 inventory_size_y=2
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Source Book of Calculate Pi"
+Item name=_"Source Book of Calculate Pi"
 Item min class for drop=2
 Item max class for drop=9
 Item can be applied in combat="yes"
@@ -3314,13 +3314,13 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="spellbook/inv_image_orange.png"
 Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=300
-Item description text="It is not a big problem to make a badly designed system to go hunting for the impossible, causing a performance impact."
+Item description text=_"It is not a big problem to make a badly designed system to go hunting for the impossible, causing a performance impact."
 inventory_size_x=2
 inventory_size_y=2
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Source Book of Blue Screen"
+Item name=_"Source Book of Blue Screen"
 Item min class for drop=3
 Item max class for drop=9
 Item can be applied in combat="yes"
@@ -3330,13 +3330,13 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="spellbook/inv_image_blue.png"
 Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=300
-Item description text="With a little touch a war machine comes crashing down to a halt. For a while."
+Item description text=_"With a little touch a war machine comes crashing down to a halt. For a while."
 inventory_size_x=2
 inventory_size_y=2
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Source Book of Broadcast Blue Screen"
+Item name=_"Source Book of Broadcast Blue Screen"
 Item min class for drop=5
 Item max class for drop=9
 Item can be applied in combat="yes"
@@ -3346,13 +3346,13 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="spellbook/inv_image_blue.png"
 Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=900
-Item description text="With a little touch a war machine comes crashing down to a halt. For a while."
+Item description text=_"With a little touch a war machine comes crashing down to a halt. For a while."
 inventory_size_x=2
 inventory_size_y=2
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Source Book of Virus"
+Item name=_"Source Book of Virus"
 Item min class for drop=4
 Item max class for drop=9
 Item can be applied in combat="yes"
@@ -3362,13 +3362,13 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="spellbook/inv_image_red.png"
 Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=450
-Item description text="This is not just a firmware upgrade, my dear bot. You are about to find out what exactly I want to give you."
+Item description text=_"This is not just a firmware upgrade, my dear bot. You are about to find out what exactly I want to give you."
 inventory_size_x=2
 inventory_size_y=2
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Source Book of Broadcast virus"
+Item name=_"Source Book of Broadcast virus"
 Item min class for drop=6
 Item max class for drop=9
 Item can be applied in combat="yes"
@@ -3378,13 +3378,13 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="spellbook/inv_image_red.png"
 Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=1350
-Item description text="The network is wide and dangerous. Many traps await for the weak and unprepared."
+Item description text=_"The network is wide and dangerous. Many traps await for the weak and unprepared."
 inventory_size_x=2
 inventory_size_y=2
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Source Book of Dispel smoke"
+Item name=_"Source Book of Dispel smoke"
 Item min class for drop=3
 Item max class for drop=9
 Item can be applied in combat="yes"
@@ -3394,13 +3394,13 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="spellbook/inv_image_grey.png"
 Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=600
-Item description text="By heating up the chips with a malformed program you can cause them to release the magic smoke which keeps the bot running."
+Item description text=_"By heating up the chips with a malformed program you can cause them to release the magic smoke which keeps the bot running."
 inventory_size_x=2
 inventory_size_y=2
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Source Book of Killer poke"
+Item name=_"Source Book of Killer poke"
 Item min class for drop=5
 Item max class for drop=9
 Item can be applied in combat="yes"
@@ -3410,13 +3410,13 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="spellbook/inv_image_greenblue.png"
 Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=1200
-Item description text="Messing around with the bot's memory can cause it to damage itself, but the damage is greatly variable."
+Item description text=_"Messing around with the bot's memory can cause it to damage itself, but the damage is greatly variable."
 inventory_size_x=2
 inventory_size_y=2
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Source Book of Nethack"
+Item name=_"Source Book of Nethack"
 Item min class for drop=4
 Item max class for drop=9
 Item can be applied in combat="yes"
@@ -3426,13 +3426,13 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="spellbook/inv_image_yellow.png"
 Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=450
-Item description text="The open source game called Nethack is one of the world's greatest wasters of time. Machines don't care about it, but humans can get sucked in quite deeply."
+Item description text=_"The open source game called Nethack is one of the world's greatest wasters of time. Machines don't care about it, but humans can get sucked in quite deeply."
 inventory_size_x=2
 inventory_size_y=2
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Source Book of Plasma discharge"
+Item name=_"Source Book of Plasma discharge"
 Item min class for drop=8888
 Item max class for drop=9999
 Item can be applied in combat="yes"
@@ -3442,13 +3442,13 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="spellbook/inv_image.png"
 Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=600
-Item description text="The overload setting exists for emergencies. The plasma does not discriminate between bots and humans. Everything is equal to it."
+Item description text=_"The overload setting exists for emergencies. The plasma does not discriminate between bots and humans. Everything is equal to it."
 inventory_size_x=2
 inventory_size_y=2
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Source Book of Ricer CFLAGS"
+Item name=_"Source Book of Ricer CFLAGS"
 Item min class for drop=8888
 Item max class for drop=9999
 Item can be applied in combat="yes"
@@ -3458,13 +3458,13 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="spellbook/inv_image.png"
 Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=600
-Item description text="Optimization is the root of all evil. You can gain some temporary improvements to your system, but in the end you are only likely to cause permanent damage."
+Item description text=_"Optimization is the root of all evil. You can gain some temporary improvements to your system, but in the end you are only likely to cause permanent damage."
 inventory_size_x=2
 inventory_size_y=2
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Source Book of Invisibility"
+Item name=_"Source Book of Invisibility"
 Item min class for drop=8888
 Item max class for drop=9999
 Item can be applied in combat="yes"
@@ -3474,13 +3474,13 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="spellbook/inv_image.png"
 Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=225
-Item description text="I am not the Linarian you are looking for."
+Item description text=_"I am not the Linarian you are looking for."
 inventory_size_x=2
 inventory_size_y=2
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Source Book of Reverse-engineer"
+Item name=_"Source Book of Reverse-engineer"
 Item min class for drop=8888
 Item max class for drop=9999
 Item can be applied in combat="yes"
@@ -3490,13 +3490,13 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="spellbook/inv_image_orange.png"
 Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=450
-Item description text="There is some dark magic in the art of turning bots inside-out to learn all their secrets."
+Item description text=_"There is some dark magic in the art of turning bots inside-out to learn all their secrets."
 inventory_size_x=2
 inventory_size_y=2
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Source Book of Light"
+Item name=_"Source Book of Light"
 Item min class for drop=8888
 Item max class for drop=9999
 Item can be applied in combat="yes"
@@ -3506,13 +3506,13 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="spellbook/inv_image_white.png"
 Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=450
-Item description text="Let there be light..."
+Item description text=_"Let there be light..."
 inventory_size_x=2
 inventory_size_y=2
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Source Book of Satellite image"
+Item name=_"Source Book of Satellite image"
 Item min class for drop=8888
 Item max class for drop=9999
 Item can be applied in combat="yes"
@@ -3522,7 +3522,7 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="spellbook/inv_image_green.png"
 Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=300
-Item description text="Getting a map of an area is pretty easy when you can look at everything from above."
+Item description text=_"Getting a map of an area is pretty easy when you can look at everything from above."
 inventory_size_x=2
 inventory_size_y=2
 ** End of new item specification subsection **
@@ -3540,7 +3540,7 @@ inventory_size_y=2
 
 
 ** Start of new item specification subsection **
-Item name="Diet supplement"
+Item name=_"Diet supplement"
 Item min class for drop=0
 Item max class for drop=5
 Item can be applied in combat="yes"
@@ -3552,11 +3552,11 @@ inventory_size_x=1
 inventory_size_y=1
 Item uses drop sound with filename="drop_potion_sound.ogg"
 Base list price=20
-Item description text="Only proper vitamin and mineral intake can keep you healthy during the apocalypse. This can cure a cold."
+Item description text=_"Only proper vitamin and mineral intake can keep you healthy during the apocalypse. This can cure a cold."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Antibiotic"
+Item name=_"Antibiotic"
 Item min class for drop=4
 Item max class for drop=7
 Item can be applied in combat="yes"
@@ -3568,11 +3568,11 @@ inventory_size_x=1
 inventory_size_y=1
 Item uses drop sound with filename="drop_potion_sound.ogg"
 Base list price=40
-Item description text="Truly wonderful things can be extracted from molds. This can cure lethal food poisoning. Wish you had that in your last Nethack game, eh?"
+Item description text=_"Truly wonderful things can be extracted from molds. This can cure lethal food poisoning. Wish you had that in your last Nethack game, eh?"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Doc-in-a-can"
+Item name=_"Doc-in-a-can"
 Item min class for drop=6
 Item max class for drop=9
 Item can be applied in combat="yes"
@@ -3584,11 +3584,11 @@ inventory_size_x=1
 inventory_size_y=1
 Item uses drop sound with filename="drop_potion_sound.ogg"
 Base list price=60
-Item description text="This is a drink filled with nanobots designed to heal any damage that they notice inside you. It can cure decapitation. Most of the time."
+Item description text=_"This is a drink filled with nanobots designed to heal any damage that they notice inside you. It can cure decapitation. Most of the time."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Bottled ice"
+Item name=_"Bottled ice"
 Item min class for drop=0
 Item max class for drop=5
 Item can be applied in combat="yes"
@@ -3600,11 +3600,11 @@ inventory_size_x=1
 inventory_size_y=1
 Item uses drop sound with filename="drop_potion_sound.ogg"
 Base list price=15
-Item description text="This bottle is filled with ice. It can keep you cool during a warm summer day."
+Item description text=_"This bottle is filled with ice. It can keep you cool during a warm summer day."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Industrial coolant"
+Item name=_"Industrial coolant"
 Item min class for drop=4
 Item max class for drop=7
 Item can be applied in combat="yes"
@@ -3616,11 +3616,11 @@ inventory_size_x=1
 inventory_size_y=1
 Item uses drop sound with filename="drop_potion_sound.ogg"
 Base list price=30
-Item description text="Bartenders around the world add this to drinks to get them cold very fast. Plus the coolant is much cheaper. It can keep you cool inside a nuclear reactor."
+Item description text=_"Bartenders around the world add this to drinks to get them cold very fast. Plus the coolant is much cheaper. It can keep you cool inside a nuclear reactor."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Liquid nitrogen"
+Item name=_"Liquid nitrogen"
 Item min class for drop=6
 Item max class for drop=9
 Item can be applied in combat="yes"
@@ -3632,11 +3632,11 @@ inventory_size_x=1
 inventory_size_y=1
 Item uses drop sound with filename="drop_potion_sound.ogg"
 Base list price=45
-Item description text="When you want something frozen solid, this is what you need. It can keep you cool even inside a class M star."
+Item description text=_"When you want something frozen solid, this is what you need. It can keep you cool even inside a class M star."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Barf's Energy Drink"
+Item name=_"Barf's Energy Drink"
 Item min class for drop=2
 Item max class for drop=9
 Item can be applied in combat="yes"
@@ -3646,11 +3646,11 @@ Items of this type collect together in inventory="yes"
 File or directory name for inventory image="blue_energy_drink/inv_image.png"
 Item uses drop sound with filename="drop_potion_sound.ogg"
 Base list price=50
-Item description text="Warning! These energy drinks contain high doses of caffeine! The average person drops dead after consuming 12 grams of caffeine. One of these bottles contains over double that amount."
+Item description text=_"Warning! These energy drinks contain high doses of caffeine! The average person drops dead after consuming 12 grams of caffeine. One of these bottles contains over double that amount."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Running Power Capsule"
+Item name=_"Running Power Capsule"
 Item min class for drop=2
 Item max class for drop=9
 Item can be applied in combat="yes"
@@ -3660,11 +3660,11 @@ Items of this type collect together in inventory="yes"
 File or directory name for inventory image="inventory_image_1.png"
 Item uses drop sound with filename="drop_potion_sound.ogg"
 Base list price=45
-Item description text="These small containers hold purified running strength.  Each capsule can be used only once, but multiple of those items can be grouped together like one item in inventory."
+Item description text=_"These small containers hold purified running strength.  Each capsule can be used only once, but multiple of those items can be grouped together like one item in inventory."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Strength Capsule"
+Item name=_"Strength Capsule"
 Item min class for drop=2
 Item max class for drop=9
 Item can be applied in combat="yes"
@@ -3674,11 +3674,11 @@ Items of this type collect together in inventory="yes"
 File or directory name for inventory image="inventory_image_1.png"
 Item uses drop sound with filename="drop_potion_sound.ogg"
 Base list price=150
-Item description text="These small containers hold purified strength.  This item will give a temporary boost to strength.  Each capsule can be used only once, but multiple of those items can be grouped together like one item in inventory."
+Item description text=_"These small containers hold purified strength.  This item will give a temporary boost to strength.  Each capsule can be used only once, but multiple of those items can be grouped together like one item in inventory."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Dexterity Capsule"
+Item name=_"Dexterity Capsule"
 Item min class for drop=2
 Item max class for drop=9
 Item can be applied in combat="yes"
@@ -3688,7 +3688,7 @@ Items of this type collect together in inventory="yes"
 File or directory name for inventory image="inventory_image_1.png"
 Item uses drop sound with filename="drop_potion_sound.ogg"
 Base list price=150
-Item description text="These small containers hold purified dexterity.  This item will give a temporary bonus to dexterity.  Each capsule can be used only once, but multiple of those items can be grouped together like one item in inventory."
+Item description text=_"These small containers hold purified dexterity.  This item will give a temporary bonus to dexterity.  Each capsule can be used only once, but multiple of those items can be grouped together like one item in inventory."
 ** End of new item specification subsection **
 
 
@@ -3700,7 +3700,7 @@ Item description text="These small containers hold purified dexterity.  This ite
  **********************************************************************************************************/
 
 ** Start of new item specification subsection **
-Item name="Cyberbucks"
+Item name=_"Cyberbucks"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
@@ -3709,11 +3709,11 @@ Items of this type collect together in inventory="yes"
 File or directory name for inventory image="cyberbucks/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_2.ogg"
 Base list price=1
-Item description text=""
+Item description text=_""
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Anti-grav Pod for Droids"
+Item name=_"Anti-grav Pod for Droids"
 Item min class for drop=3
 Item max class for drop=9
 Item can be applied in combat="no"
@@ -3723,11 +3723,11 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="antigrav_unit/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
 Base list price=450
-Item description text="The bots use this to hover around."
+Item description text=_"The bots use this to hover around."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Dixon's Toolbox"
+Item name=_"Dixon's Toolbox"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
@@ -3736,11 +3736,11 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="dixons_toolbox/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=0
-Item description text="This is a teleporter service toolbox. It's complete and orderly, though a few dents on the outside give prof of frequent use. 'C. Dixon' is carved into the outside with fine print."
+Item description text=_"This is a teleporter service toolbox. It's complete and orderly, though a few dents on the outside give prof of frequent use. 'C. Dixon' is carved into the outside with fine print."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Plasma Transistor"
+Item name=_"Plasma Transistor"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
@@ -3749,11 +3749,11 @@ Items of this type collect together in inventory="yes"
 File or directory name for inventory image="plasma_transistor/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=100
-Item description text="This is an standard part within many robots types."
+Item description text=_"This is an standard part within many robots types."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Superconducting Relay Unit"
+Item name=_"Superconducting Relay Unit"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
@@ -3762,11 +3762,11 @@ Items of this type collect together in inventory="yes"
 File or directory name for inventory image="superconducting_relay_unit/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=100
-Item description text="This is an standard part within many robots types."
+Item description text=_"This is an standard part within many robots types."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Antimatter-Matter Converter"
+Item name=_"Antimatter-Matter Converter"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
@@ -3775,11 +3775,11 @@ Items of this type collect together in inventory="yes"
 File or directory name for inventory image="antimatter_matter_converter/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=100
-Item description text="This is an standard part within many robot types."
+Item description text=_"This is an standard part within many robot types."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Entropy Inverter"
+Item name=_"Entropy Inverter"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
@@ -3788,11 +3788,11 @@ Items of this type collect together in inventory="yes"
 File or directory name for inventory image="entropy_inverter/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=100
-Item description text="This is an standard part within many robots types."
+Item description text=_"This is an standard part within many robots types."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Tachyon Condensator"
+Item name=_"Tachyon Condensator"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
@@ -3801,11 +3801,11 @@ Items of this type collect together in inventory="yes"
 File or directory name for inventory image="tachyon_converter/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=100
-Item description text="This is an standard part within many robots types."
+Item description text=_"This is an standard part within many robots types."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Desk Lamp"
+Item name=_"Desk Lamp"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
@@ -3814,11 +3814,11 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="desk_lamp/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=32
-Item description text="What would modern science be without this important item?"
+Item description text=_"What would modern science be without this important item?"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Common Monkey Wrench"
+Item name=_"Common Monkey Wrench"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
@@ -3827,11 +3827,11 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="monkey_wrench/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=32
-Item description text="Even the most primitive civilisations cannot survive for long without a large supply of those."
+Item description text=_"Even the most primitive civilisations cannot survive for long without a large supply of those."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Red Dilitium Crystal"
+Item name=_"Red Dilitium Crystal"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
@@ -3840,11 +3840,11 @@ Items of this type collect together in inventory="yes"
 File or directory name for inventory image="red_dilitium_crystal/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=18
-Item description text="These dilitium crystals are used as energy source in many modern electricity or heat based devices. Energy is extracted from the crystal by making use of the energy contained in the order of the crystal molecules. This principle has allowed to build devices that consume a lot of energy but do not need to be connected to a power line."
+Item description text=_"These dilitium crystals are used as energy source in many modern electricity or heat based devices. Energy is extracted from the crystal by making use of the energy contained in the order of the crystal molecules. This principle has allowed to build devices that consume a lot of energy but do not need to be connected to a power line."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Map Maker"
+Item name=_"Map Maker"
 Item min class for drop=-1
 Item can be applied in combat="yes"
 Item can be installed in slot with name="none"
@@ -3855,11 +3855,11 @@ inventory_size_x=2
 inventory_size_y=2
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=18
-Item description text="This small device automatically collects data about the area within a range of 7 times 7 meters and draws a small-scale plan of the immediate surroundings. Because of it's very tiny display, it needs to be held closely to the eye and the image will then be projected directly into the eyeball of the user. Still, the collected map data will be split up by the device into several sectors for convenient viewing."
+Item description text=_"This small device automatically collects data about the area within a range of 7 times 7 meters and draws a small-scale plan of the immediate surroundings. Because of it's very tiny display, it needs to be held closely to the eye and the image will then be projected directly into the eyeball of the user. Still, the collected map data will be split up by the device into several sectors for convenient viewing."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Strength Pill"
+Item name=_"Strength Pill"
 Item min class for drop=2
 Item max class for drop=9
 Item can be applied in combat="yes"
@@ -3869,11 +3869,11 @@ Items of this type collect together in inventory="yes"
 File or directory name for inventory image="pill_strength/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=250
-Item description text="These pills permanently raise strength within a person. They work on a nano-technological basis. Consult you physician, the receipt or pharmacy experts for details on intended effects, possible interactions and side effects of this drug."
+Item description text=_"These pills permanently raise strength within a person. They work on a nano-technological basis. Consult you physician, the receipt or pharmacy experts for details on intended effects, possible interactions and side effects of this drug."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Dexterity Pill"
+Item name=_"Dexterity Pill"
 Item min class for drop=2
 Item max class for drop=9
 Item can be applied in combat="yes"
@@ -3883,11 +3883,11 @@ Items of this type collect together in inventory="yes"
 File or directory name for inventory image="pill_dexterity/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=250
-Item description text="These pills permanently raise dexterity within a person. They work on a nano-technological basis. Consult you physician, the receipt or pharmacy experts for details on intended effects, possible interactions and side effects of this drug."
+Item description text=_"These pills permanently raise dexterity within a person. They work on a nano-technological basis. Consult you physician, the receipt or pharmacy experts for details on intended effects, possible interactions and side effects of this drug."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Code Pill"
+Item name=_"Code Pill"
 Item min class for drop=2
 Item max class for drop=9
 Item can be applied in combat="yes"
@@ -3897,11 +3897,11 @@ Items of this type collect together in inventory="yes"
 File or directory name for inventory image="pill_magic/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=250
-Item description text="Dude! This fab food will totally bump up your code skills, man! A real blast. Scarf those down to see the code."
+Item description text=_"Dude! This fab food will totally bump up your code skills, man! A real blast. Scarf those down to see the code."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Brain Enlargement Pills Antidote"
+Item name=_"Brain Enlargement Pills Antidote"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
@@ -3910,11 +3910,11 @@ Items of this type collect together in inventory="yes"
 File or directory name for inventory image="brain_enlargement_antidode/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=50
-Item description text="These pills can reverse the harmful effects of the 'brain enlargement pills' that are publicly sold via the internet. The planet-wide guild of medics has recommended not to respond to these ads at all, while attempts to entirely ban the distribution of those pills were never completely successful."
+Item description text=_"These pills can reverse the harmful effects of the 'brain enlargement pills' that are publicly sold via the internet. The planet-wide guild of medics has recommended not to respond to these ads at all, while attempts to entirely ban the distribution of those pills were never completely successful."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Fork"
+Item name=_"Fork"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
@@ -3923,11 +3923,11 @@ Items of this type collect together in inventory="yes"
 File or directory name for inventory image="eating_fork/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=50
-Item description text="This item is part of the 'Self Cleaning Kitchen' (SCK) project from before the Great Assault.  All of the items in the SCK project have an inner mechanism that will clean the object automatically if left alone for a given time.  It comes with it's own power supply and has a supposed duration of 200 years."
+Item description text=_"This item is part of the 'Self Cleaning Kitchen' (SCK) project from before the Great Assault.  All of the items in the SCK project have an inner mechanism that will clean the object automatically if left alone for a given time.  It comes with it's own power supply and has a supposed duration of 200 years."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Plate"
+Item name=_"Plate"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
@@ -3936,11 +3936,11 @@ Items of this type collect together in inventory="yes"
 File or directory name for inventory image="eating_plate/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=50
-Item description text="This item is part of the 'Self Cleaning Kitchen' (SCK) project from before the Great Assault.  All of the items in the SCK project have an inner mechanism that will clean the object automatically if left alone for a given time.  It comes with it's own power supply and has a supposed duration of 200 years."
+Item description text=_"This item is part of the 'Self Cleaning Kitchen' (SCK) project from before the Great Assault.  All of the items in the SCK project have an inner mechanism that will clean the object automatically if left alone for a given time.  It comes with it's own power supply and has a supposed duration of 200 years."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Mug"
+Item name=_"Mug"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
@@ -3949,11 +3949,11 @@ Items of this type collect together in inventory="yes"
 File or directory name for inventory image="drinking_mug/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=50
-Item description text="This item is part of the 'Self Cleaning Kitchen' (SCK) project from before the Great Assault.  All of the items in the SCK project have an inner mechanism that will clean the object automatically if left alone for a given time.  It comes with it's own power supply and has a supposed duration of 200 years."
+Item description text=_"This item is part of the 'Self Cleaning Kitchen' (SCK) project from before the Great Assault.  All of the items in the SCK project have an inner mechanism that will clean the object automatically if left alone for a given time.  It comes with it's own power supply and has a supposed duration of 200 years."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Identification Script"
+Item name=_"Identification Script"
 Item min class for drop=0
 Item max class for drop=5
 Item can be applied in combat="yes"
@@ -3963,11 +3963,11 @@ Items of this type collect together in inventory="yes"
 File or directory name for inventory image="script/inv_image.png"
 Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=25
-Item description text="Point and click. Point and know anything. Point, and I will show you the correct path. Point, and I will be there. Point, and I will protect you."
+Item description text=_"Point and click. Point and know anything. Point, and I will show you the correct path. Point, and I will be there. Point, and I will protect you."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Teleporter homing beacon"
+Item name=_"Teleporter homing beacon"
 Item min class for drop=0
 Item max class for drop=7
 Item can be applied in combat="yes"
@@ -3979,11 +3979,11 @@ Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=40
 inventory_size_x=1
 inventory_size_y=1
-Item description text="This device sends a signal to a nearby teleporter requesting a transportation and then helping with locking on and boosting the signal to ensure the teleportation attempt is succcessful. The battery inside is enough for one use only and the device becomes useless afterwards. At least, most people dont even try to use them twice, and those few who do usually end up with parts of their body missing or attached in the wrong place.  Note:  Multiple of these may be grouped together in the inventory."
+Item description text=_"This device sends a signal to a nearby teleporter requesting a transportation and then helping with locking on and boosting the signal to ensure the teleportation attempt is succcessful. The battery inside is enough for one use only and the device becomes useless afterwards. At least, most people dont even try to use them twice, and those few who do usually end up with parts of their body missing or attached in the wrong place.  Note:  Multiple of these may be grouped together in the inventory."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Kevin's Data Cube"
+Item name=_"Kevin's Data Cube"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
@@ -3992,11 +3992,11 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="datacube/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=0
-Item description text="This data cube contains confidential government data on the installations around the colony. Kevin hopes that when the data is evaluated properly a way out of the current crisis might be found. However, the amount of data is so vast, it can only be evaluated properly using a large cluster of computers. The Red Guard base is said to store a suitable infrastructure for this purpose."
+Item description text=_"This data cube contains confidential government data on the installations around the colony. Kevin hopes that when the data is evaluated properly a way out of the current crisis might be found. However, the amount of data is so vast, it can only be evaluated properly using a large cluster of computers. The Red Guard base is said to store a suitable infrastructure for this purpose."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name="Pandora's Cube"
+Item name=_"Pandora's Cube"
 inventory_size_x=6
 inventory_size_y=6
 Item min class for drop=-1
@@ -4007,7 +4007,7 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="datacube/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=0
-Item description text="This is heavy. Cannot the end of the world come in a smaller package? It would be a great time for Duncan to explain a few things..."
+Item description text=_"This is heavy. Cannot the end of the world come in a smaller package? It would be a great time for Duncan to explain a few things..."
 ** End of new item specification subsection **
 
 *** End of item data section: ***

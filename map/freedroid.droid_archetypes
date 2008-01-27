@@ -108,7 +108,7 @@ Chance modifier, that this robot gets hit=30
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 0
-Notes concerning this droid : simple rubbish diposal robot. Common device in most space craft to maintain a clean ship. 
+Notes concerning this droid=_"simple rubbish diposal robot. Common device in most space craft to maintain a clean ship." 
 
 ** Start of new Robot: ** 
 Droidname: 139
@@ -143,7 +143,7 @@ Chance modifier, that this robot gets hit=30
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 1
-Notes concerning this droid : created by Dr. Masternak to clean up large heaps of rubbish. Its large scoop is used to collect rubbish. It is then crushed internally. 
+Notes concerning this droid=_"created by Dr. Masternak to clean up large heaps of rubbish. Its large scoop is used to collect rubbish. It is then crushed internally." 
 
 ** Start of new Robot: ** 
 Droidname: 247
@@ -177,7 +177,7 @@ Chance modifier, that this robot gets hit=20
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 2
-Notes concerning this droid : light duty servant robot. One of the first to use the anti-grav system. 
+Notes concerning this droid=_"light duty servant robot. One of the first to use the anti-grav system." 
 
 ** Start of new Robot: ** 
 Droidname: 249
@@ -211,7 +211,7 @@ Chance modifier, that this robot gets hit=10
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 3
-Notes concerning this droid : cheaper version of the anti-grav servant robot. 
+Notes concerning this droid=_"cheaper version of the anti-grav servant robot." 
 
 ** Start of new Robot: ** 
 Droidname: 296
@@ -243,7 +243,7 @@ Chance modifier, that this robot gets hit=30
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 4
-Notes concerning this droid : Run away! This bot will kill you! 
+Notes concerning this droid=_"Run away! This bot will kill you!" 
 
 ** Start of new Robot: ** 
 Droidname: 302
@@ -276,7 +276,7 @@ Chance modifier, that this robot gets hit=-25
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 5
-Notes concerning this droid : common device for moving small packages. Clamp is mounted on the lower body. 
+Notes concerning this droid=_"common device for moving small packages. Clamp is mounted on the lower body." 
 
 ** Start of new Robot: ** 
 Droidname: 329
@@ -309,7 +309,7 @@ Chance modifier, that this robot gets hit=30
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 6
-Notes concerning this droid : early type messenger robot. Large wheels impede motion on small craft.
+Notes concerning this droid=_"early type messenger robot. Large wheels impede motion on small craft."
 
 ** Start of new Robot: ** 
 Droidname: 420
@@ -342,7 +342,7 @@ Chance modifier, that this robot gets hit=30
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 7
-Notes concerning this droid : slow maintenance robot. Confined to drive maintenance during flight. 
+Notes concerning this droid=_"slow maintenance robot. Confined to drive maintenance during flight." 
 
 ** Start of new Robot: ** 
 Droidname: 476
@@ -374,7 +374,7 @@ Chance modifier, that this robot gets hit=10
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 8
-Notes concerning this droid : ship maintenance robot. Fitted with multiple arms to carry out repairs to the ship efficiently. All craft built after the Jupiter-incident are supplied with a team of these. 
+Notes concerning this droid=_"ship maintenance robot. Fitted with multiple arms to carry out repairs to the ship efficiently. All craft built after the Jupiter-incident are supplied with a team of these." 
 
 ** Start of new Robot: ** 
 Droidname: 493
@@ -406,7 +406,7 @@ Chance modifier, that this robot gets hit=30
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 9
-Notes concerning this droid : slave maintenance droid. Standard version will carry its own toolbox. 
+Notes concerning this droid=_"slave maintenance droid. Standard version will carry its own toolbox." 
 
 ** Start of new Robot: ** 
 Droidname: 516
@@ -438,7 +438,7 @@ Chance modifier, that this robot gets hit=30
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 10
-Notes concerning this droid : early crew droid. Able to carry out simple flight checks only. No longer supplied. 
+Notes concerning this droid=_"early crew droid. Able to carry out simple flight checks only. No longer supplied." 
 
 ** Start of new Robot: ** 
 Droidname: 571
@@ -470,7 +470,7 @@ Chance modifier, that this robot gets hit=30
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 11
-Notes concerning this droid : standard crew droid. Supplied with the ship. 
+Notes concerning this droid=_"standard crew droid. Supplied with the ship." 
 
 ** Start of new Robot: ** 
 Droidname: 598
@@ -502,7 +502,7 @@ Chance modifier, that this robot gets hit=30
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 12
-Notes concerning this droid : a highly sophisticated device. Able to control the Robo-Freighter on its own. 
+Notes concerning this droid=_"a highly sophisticated device. Able to control the Robo-Freighter on its own." 
 
 ** Start of new Robot: ** 
 Droidname: 614
@@ -534,7 +534,7 @@ Chance modifier, that this robot gets hit=30
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 13
-Notes concerning this droid : low security sentinel droid. Used to protect areas of the ship from intruders. A slow but sure device. 
+Notes concerning this droid=_"low security sentinel droid. Used to protect areas of the ship from intruders. A slow but sure device." 
 
 ** Start of new Robot: ** 
 Droidname: 615
@@ -566,7 +566,7 @@ Chance modifier, that this robot gets hit=30
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 14
-Notes concerning this droid : sophisticated sentinel droid. Only 2000 built by the Nicholson Company. these are now very rare.
+Notes concerning this droid=_"sophisticated sentinel droid. Only 2000 built by the Nicholson Company. these are now very rare."
 
 ** Start of new Robot: ** 
 Droidname: 629
@@ -598,7 +598,7 @@ Chance modifier, that this robot gets hit=30
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 15
-Notes concerning this droid : low sentinel droid. Lasers are built into the turret. These are mounted on a small tank body. May be fitted with an auto-cannon on-the Gillen version. 
+Notes concerning this droid=_"low sentinel droid. Lasers are built into the turret. These are mounted on a small tank body. May be fitted with an auto-cannon on-the Gillen version." 
 
 ** Start of new Robot: ** 
 Droidname: 711
@@ -631,7 +631,7 @@ Chance modifier, that this robot gets hit=300
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 16
-Notes concerning this droid : heavy duty battle droid. Disruptor is built into the head. One of the first in service with the Military. 
+Notes concerning this droid=_"heavy duty battle droid. Disruptor is built into the head. One of the first in service with the Military." 
 
 ** Start of new Robot: ** 
 Droidname: 742
@@ -663,7 +663,7 @@ Chance modifier, that this robot gets hit=30
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 17
-Notes concerning this droid : this version is the one mainly used by the Military. 
+Notes concerning this droid=_"this version is the one mainly used by the Military." 
 
 ** Start of new Robot: ** 
 Droidname: 751
@@ -695,7 +695,7 @@ Chance modifier, that this robot gets hit=500
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 18
-Notes concerning this droid : very heavy duty battle droid. Only a few have so far entered service. These are the most powerful battle units ever built. 
+Notes concerning this droid=_"very heavy duty battle droid. Only a few have so far entered service. These are the most powerful battle units ever built." 
 
 ** Start of new Robot: ** 
 Droidname: 821
@@ -728,7 +728,7 @@ Chance modifier, that this robot gets hit=800
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 19
-Notes concerning this droid : a very reliable anti-grav unit is fitted into this droid. It will patrol the ship and eliminate intruders as soon as detected by powerful sensors. 
+Notes concerning this droid=_"a very reliable anti-grav unit is fitted into this droid. It will patrol the ship and eliminate intruders as soon as detected by powerful sensors." 
 
 ** Start of new Robot: ** 
 Droidname: 834
@@ -759,7 +759,7 @@ Chance modifier, that this robot gets hit=1000
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 20
-Notes concerning this droid : early type anti-grav security droid. Fitted with an over-driven anti-grav unit. This droid is very fast but is not reliable. 
+Notes concerning this droid=_"early type anti-grav security droid. Fitted with an over-driven anti-grav unit. This droid is very fast but is not reliable." 
 
 ** Start of new Robot: ** 
 Droidname: 883
@@ -791,7 +791,7 @@ Chance modifier, that this robot gets hit=30
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 21
-Notes concerning this droid : this droid was designed from archive data. For some unknown reason it instils great fear in Human adversaries. 
+Notes concerning this droid=_"this droid was designed from archive data. For some unknown reason it instils great fear in Human adversaries." 
 
 ** Start of new Robot: ** 
 Droidname: 999
@@ -826,7 +826,7 @@ Chance modifier, that this robot gets hit=30
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 22
-Notes concerning this droid : experimental command cyborg. Fitted with a new type of brain. Mounted on a security droid anti-grav unit for convenience. warning: the influence device may not control a primode brain for long. 
+Notes concerning this droid=_"experimental command cyborg. Fitted with a new type of brain. Mounted on a security droid anti-grav unit for convenience. warning: the influence device may not control a primode brain for long." 
 
 ** Start of new Robot: ** 
 Droidname: PRO
@@ -860,7 +860,7 @@ Time to recover after getting hit=0.30
 Armament of this droid : 1
 Is this 'droid' a human : 1
 Individual shape of this droid or just -1 for classic ball shaped : 23
-Notes concerning this droid : This is a typical professor/sage character of some older age.  They are not armed as powerfully as e.g. the red guards.
+Notes concerning this droid=_"This is a typical professor/sage character of some older age.  They are not armed as powerfully as e.g. the red guards."
 
 ** Start of new Robot: ** 
 Droidname: GUA
@@ -894,7 +894,7 @@ Time to recover after getting hit=0.30
 Armament of this droid : 1
 Is this 'droid' a human : 1
 Individual shape of this droid or just -1 for classic ball shaped : 24
-Notes concerning this droid : This is a typical red (male) guard/fighter character.  They are equipped with powerful PowerExterminators.
+Notes concerning this droid=_"This is a typical red (male) guard/fighter character.  They are equipped with powerful PowerExterminators."
 
 ** Start of new Robot: ** 
 Droidname: MUM
@@ -928,7 +928,7 @@ Time to recover after getting hit=0.30
 Armament of this droid : 1
 Is this 'droid' a human : 1
 Individual shape of this droid or just -1 for classic ball shaped : 25
-Notes concerning this droid : This is the hot_mama shopkeeper character model.
+Notes concerning this droid=_"This is the hot_mama shopkeeper character model."
 
 ** Start of new Robot: ** 
 Droidname: FSC
@@ -962,7 +962,7 @@ Time to recover after getting hit=0.30
 Armament of this droid : 1
 Is this 'droid' a human : 1
 Individual shape of this droid or just -1 for classic ball shaped : 26
-Notes concerning this droid : This is the female scientist character model.  They are not armed as powerfully as e.g. the red guards.
+Notes concerning this droid=_"This is the female scientist character model.  They are not armed as powerfully as e.g. the red guards."
 
 ** Start of new Robot: ** 
 Droidname: WOR
@@ -996,7 +996,7 @@ Time to recover after getting hit=0.30
 Armament of this droid : 1
 Is this 'droid' a human : 1
 Individual shape of this droid or just -1 for classic ball shaped : 27
-Notes concerning this droid : This is the brown worker model.  They are not armed as powerfully as e.g. the red guards.
+Notes concerning this droid=_"This is the brown worker model.  They are not armed as powerfully as e.g. the red guards."
 
 ** Start of new Robot: ** 
 Droidname: GUB
@@ -1030,7 +1030,7 @@ Time to recover after getting hit=0.30
 Armament of this droid : 1
 Is this 'droid' a human : 1
 Individual shape of this droid or just -1 for classic ball shaped : 28
-Notes concerning this droid : This is the blue guard model used e.g. for Darwin and fiend outside of town.  They are not armed as powerfully as e.g. the red guards.
+Notes concerning this droid=_"This is the blue guard model used e.g. for Darwin and fiend outside of town.  They are not armed as powerfully as e.g. the red guards."
 
 ** Start of new Robot: ** 
 Droidname: COO
@@ -1064,7 +1064,8 @@ Time to recover after getting hit=0.30
 Armament of this droid : 1
 Is this 'droid' a human : 1
 Individual shape of this droid or just -1 for classic ball shaped : 29 
-Notes concerning this droid : This is the cook.
+Notes concerning this droid=_"This is the cook."
+
 
 ** Start of new Robot: ** 
 Droidname: KEV
@@ -1098,7 +1099,7 @@ Time to recover after getting hit=0.30
 Armament of this droid : 1
 Is this 'droid' a human : 1
 Individual shape of this droid or just -1 for classic ball shaped : 30
-Notes concerning this droid : This is a typical professor/sage character of some older age.  They are not armed as powerfully as e.g. the red guards.
+Notes concerning this droid=_"This is a typical professor/sage character of some older age.  They are not armed as powerfully as e.g. the red guards."
 
 ** Start of new Robot: ** 
 Droidname: JAS
@@ -1132,7 +1133,7 @@ Time to recover after getting hit=0.30
 Armament of this droid : 1
 Is this 'droid' a human : 1
 Individual shape of this droid or just -1 for classic ball shaped : 31
-Notes concerning this droid : This is a typical sex bomb.  This one is even armed.
+Notes concerning this droid=_"This is a typical sex bomb.  This one is even armed."
 
 ** Start of new Robot: ** 
 Droidname: BAR
@@ -1166,7 +1167,7 @@ Time to recover after getting hit=0.30
 Armament of this droid : 1
 Is this 'droid' a human : 1
 Individual shape of this droid or just -1 for classic ball shaped : 32
-Notes concerning this droid : This is the bartender.
+Notes concerning this droid=_"This is the bartender."
 
 
 
