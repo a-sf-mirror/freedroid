@@ -49,12 +49,12 @@ class TranslationStringCatalog(object):
             for o in occurences:
                 file, line = o
                 result += '#: %s:%s\n' % (file, line)
-            result += 'msgid "'
-            if len(li) > 1: result += '"\n"'
+            result += 'msgid '
+            if len(li) > 1: result += '""\n'
             for j,e in enumerate(li):
-                result += e
+                result += '"' + e + '"'
                 if j != len(li) - 1: result += "\n"
-            result += '"\nmsgstr ""\n\n'
+            result += '\nmsgstr ""\n\n'
         return result
 
 class POTFile(object):
