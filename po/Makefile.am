@@ -1,7 +1,11 @@
-POFILES = fr_FR/LC_MESSAGES/freedroidrpg.po \
-          de_DE/LC_MESSAGES/freedroidrpg.po
+POFILES_SRC =	fr_FR/LC_MESSAGES/freedroidrpg.po \
+		de_DE/LC_MESSAGES/freedroidrpg.po
 
-MOFILES = $(POFILES:.po=.mo)
+POFILES_DAT = 	fr_FR/LC_MESSAGES/freedroidrpg_data.po \
+      		de_DE/LC_MESSAGES/freedroidrpg_data.po 
+
+MOFILES_SRC = $(POFILES_SRC:.po=.mo)
+MOFILES_DAT = $(POFILES_DAT:.po=.mo)
 
 SRCFILES = ../src/BFont.c \
 		../src/BFont.h \
@@ -51,9 +55,9 @@ SRCFILES = ../src/BFont.c \
 		../src/text.c \
 		../src/text_public.c \
 		../src/vars.h \
-		../src/view.c
+		../src/view.c \
+		../src/savestruct.c
 
-DOMAIN = $(PACKAGE)
 
 COPYRIGHT_HOLDER = Freedroid RPG Development Team
 
@@ -61,7 +65,7 @@ MSGID_BUGS_ADDRESS = freedroid-discussion@lists.sourceforge.net
 
 LOCALEDIR=$(pkgdatadir)/locale
 
-EXTRA_DIST = $(DOMAIN).pot $(POFILES)
+EXTRA_DIST = freedroidrpg.pot freedroidrpg_data.pot $(POFILES_SRC) $(POFILES_DAT)
 
 MSGMERGE_OPTIONS = --quiet --update
 XGETTEXT_OPTIONS = --keyword=_ --keyword=N_ --force-po
@@ -70,30 +74,34 @@ SUFFIXES = .po .mo
 .po.mo:
 	$(MSGFMT) -o $@ $<
 
-$(POFILES): $(DOMAIN).pot
+$(POFILES_SRC): 
 	@lang=`echo $@ | sed 's/\.po$$//'`; \
-	test -f $${lang}.po && $(MSGMERGE) $(MSGMERGE_OPTIONS) $${lang}.po $(DOMAIN).pot
+	test -f $${lang}.po && $(MSGMERGE) $(MSGMERGE_OPTIONS) $${lang}.po freedroidrpg.pot
 
-$(DOMAIN).pot: $(SRCFILES) 
+$(POFILES_DAT): 
+	@lang=`echo $@ | sed 's/\.po$$//'`; \
+	test -f $${lang}.po && $(MSGMERGE) $(MSGMERGE_OPTIONS) $${lang}.po freedroidrpg_data.pot
+
+freedroidrpg.pot: $(SRCFILES) 
 	$(XGETTEXT) $(XGETTEXT_OPTIONS) --default-domain=$(DOMAIN) \
 	--copyright-holder='$(COPYRIGHT_HOLDER)' \
 	--msgid-bugs-address='$(MSGID_BUGS_ADDRESS)' \
-	-o $(DOMAIN).pot $(SRCFILES)
+	-o freedroidrpg.pot $(SRCFILES)
 
 all-local: all-local-@USE_NLS@
 all-local-no:
-all-local-yes: $(DOMAIN).pot $(MOFILES)
+all-local-yes: freedroidrpg.pot freedroidrpg_data.pot $(MOFILES_SRC) $(MOFILES_DAT)
 
 install-data-local: install-data-local-@USE_NLS@
 install-data-local-no: all-local
 install-data-local-yes: all-local
-	for file in $(MOFILES); do \
+	for file in $(MOFILES_SRC) $(MOFILES_DAT); do \
 		$(INSTALL_DATA) -D $$file $(LOCALEDIR)/$$file; \
 	done;
 
 uninstall-local: uninstall-local-@USE_NLS@
 uninstall-local-no:
 uninstall-local-yes:
-	for file in $(MOFILES); do \
+	for file in $(MOFILES_SRC) $(MOFILES_DAT); do \
 		rm -f $(LOCALEDIR)/$$file; \
 	done;
