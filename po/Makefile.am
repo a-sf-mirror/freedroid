@@ -7,6 +7,8 @@ POFILES_DAT = 	fr_FR/LC_MESSAGES/freedroidrpg_data.po \
 MOFILES_SRC = $(POFILES_SRC:.po=.mo)
 MOFILES_DAT = $(POFILES_DAT:.po=.mo)
 
+DATAFILES = ../map/*archetypes
+
 SRCFILES = ../src/BFont.c \
 		../src/BFont.h \
 		../src/SDL_rotozoom.c \
@@ -87,6 +89,9 @@ freedroidrpg.pot: $(SRCFILES)
 	--copyright-holder='$(COPYRIGHT_HOLDER)' \
 	--msgid-bugs-address='$(MSGID_BUGS_ADDRESS)' \
 	-o freedroidrpg.pot $(SRCFILES)
+
+freedroidrpg_data.pot: $(DATAFILES)
+	python extract-strings-from-data.py ../map freedroidrpg_data.pot
 
 all-local: all-local-@USE_NLS@
 all-local-no:
