@@ -2595,7 +2595,7 @@ I need to know that for saving. Abort.\n");
 	    if ( LoadGame ( ) == OK )
 	    {
 		GetEventsAndEventTriggers ( "EventsAndEventTriggers" );
-		GetQuestList ( "QuestList" );
+		GetQuestList ( "QuestList_archetypes" );
    		Item_Held_In_Hand = ( -1 );
 		return ( TRUE );
 	    }

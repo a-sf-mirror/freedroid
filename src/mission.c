@@ -189,7 +189,7 @@ There was an illegal mission number received.",
 		      get_hours_of_game_duration ( Me . AllMissions [ mis_num ] . mission_description_time [ mission_diary_index ] ) , 
 		      get_minutes_of_game_duration ( Me . AllMissions [ mis_num ] . mission_description_time [ mission_diary_index ] ) ) ;
 	    DisplayText( temp_text , -1 , -1 , &mission_description_rect , TEXT_STRETCH );	    
-	    DisplayText( mission_diary_texts [ mis_num ] [ mission_diary_index ], -1 , -1 , &mission_description_rect , TEXT_STRETCH );	    
+	    DisplayText( D_(mission_diary_texts [ mis_num ] [ mission_diary_index ]), -1 , -1 , &mission_description_rect , TEXT_STRETCH );	    
 	    DisplayText( "\n" , -1 , -1 , &mission_description_rect , TEXT_STRETCH );	    
 	}
     }
@@ -249,7 +249,7 @@ There was an illegal mission number received.",
 		      get_hours_of_game_duration ( Me . AllMissions [ mis_num ] . mission_description_time [ mission_diary_index ] ) , 
 		      get_minutes_of_game_duration ( Me . AllMissions [ mis_num ] . mission_description_time [ mission_diary_index ] ) ) ;
 	    strcat ( complete_mission_display_text , temp_text );	    
-	    strcat ( complete_mission_display_text , mission_diary_texts [ mis_num ] [ mission_diary_index ]);
+	    strcat ( complete_mission_display_text , D_(mission_diary_texts [ mis_num ] [ mission_diary_index ]));
 	    strcat ( complete_mission_display_text , "\n" );
 	}
     }
