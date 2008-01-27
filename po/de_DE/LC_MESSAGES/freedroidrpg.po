@@ -8,291 +8,321 @@ msgid ""
 msgstr ""
 "Project-Id-Version: freedroidRPG 0.10.4cvs\n"
 "Report-Msgid-Bugs-To: freedroid-discussion@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-01-26 22:32+0100\n"
-"PO-Revision-Date: 2007-12-16 13:29+0100\n"
-"Last-Translator:  <ahuillet@freedroid.org>\n"
+"POT-Creation-Date: 2008-01-27 20:31+0100\n"
+"PO-Revision-Date: 2008-01-27 09:48+0000\n"
+"Last-Translator: <ahuillet@freedroid.org>\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Launchpad-Export-Date: 2008-01-27 19:28+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
 
 #: ../src/blocks.c:1637 ../src/blocks.c:1643 ../src/blocks.c:1650
 #: ../src/blocks.c:2983 ../src/blocks.c:2985 ../src/blocks.c:2996
 #: ../src/blocks.c:2998
 msgid "Wall"
-msgstr ""
+msgstr "Wand"
 
 #: ../src/blocks.c:1638 ../src/blocks.c:1644
 msgid "Hey ! This looks like...a WALL !"
-msgstr ""
+msgstr "Hey! Das sieht aus wie... eine Wand!"
 
 #: ../src/blocks.c:1651
 msgid "Maybe you could use a door to go out. This wall seems pretty solid."
 msgstr ""
+"Vielleicht  kannst du eine Tür benutzen, um den Raum zu verlassen. Diese "
+"Wand sieht sehr massiv aus."
 
 #: ../src/blocks.c:1664 ../src/blocks.c:1672
 msgid "Glass wall"
-msgstr ""
+msgstr "Glaswand"
 
 #: ../src/blocks.c:1665 ../src/blocks.c:1673
 msgid "A wall made out of glass. It lets the light go through."
-msgstr ""
+msgstr "Eine Wand aus Glas. Sie ist lichtdurchlässig."
 
 #: ../src/blocks.c:1721 ../src/blocks.c:1723 ../src/blocks.c:1725
 #: ../src/blocks.c:1727 ../src/blocks.c:1729 ../src/blocks.c:1731
 #: ../src/blocks.c:1733 ../src/blocks.c:1735
 msgid "Wall with a window"
-msgstr ""
+msgstr "Wand mit Fenster"
 
 #: ../src/blocks.c:1722 ../src/blocks.c:1724 ../src/blocks.c:1726
 #: ../src/blocks.c:1728 ../src/blocks.c:1730 ../src/blocks.c:1732
 #: ../src/blocks.c:1734 ../src/blocks.c:1736
 msgid "Windows, are, besides a famous joke OS trademark, very useful things."
 msgstr ""
+"Fenster sind, außgenommen einer berühmten Witz-Betriebssystemmarke, sehr "
+"wichtige Dinge."
 
 #: ../src/blocks.c:1758
 msgid "Door"
-msgstr ""
+msgstr "Tür"
 
 #: ../src/blocks.c:1759
 msgid "This is a door. Seems to open automatically when someone approaches."
 msgstr ""
+"Das ist eine Tür. Scheint automatisch zu öffnen, wenn sich jemand nähert."
 
 #: ../src/blocks.c:1791
 msgid "Locked door"
-msgstr ""
+msgstr "Verschlossene Tür"
 
 #: ../src/blocks.c:1792
+#, fuzzy
 msgid "The red color probably indicates that the door is locked."
-msgstr ""
+msgstr "Die rote Farbe zeigt wohl an, dass die Tür verschlossen ist."
 
 #: ../src/blocks.c:1818 ../src/blocks.c:1823
 msgid "Pillar"
-msgstr ""
+msgstr "Säule"
 
 #: ../src/blocks.c:1819 ../src/blocks.c:1824
 msgid "A pillar made out of gray concrete."
-msgstr ""
+msgstr "Eine Säule aus grauem Beton."
 
 #: ../src/blocks.c:1832 ../src/blocks.c:1837 ../src/blocks.c:1842
 #: ../src/blocks.c:1847
 msgid "Supercluster terminal"
-msgstr ""
+msgstr "Supercluster Terminal"
 
 #: ../src/blocks.c:1833 ../src/blocks.c:1838 ../src/blocks.c:1843
 #: ../src/blocks.c:1848
+#, fuzzy
 msgid ""
 "This is a small part of a gigantic computer cluster, maybe many square miles "
 "large..."
 msgstr ""
+"Das ist ein kleiner Teil eines gigantischen Computerclusters, wahrscheinlich "
+"viele Quadratmeilen groß..."
 
 #: ../src/blocks.c:1856 ../src/blocks.c:1862 ../src/blocks.c:1868
 #: ../src/blocks.c:1874
+#, fuzzy
 msgid "Ray emitter"
-msgstr ""
+msgstr "Strahlenkanone"
 
 #: ../src/blocks.c:1857 ../src/blocks.c:1863 ../src/blocks.c:1869
 #: ../src/blocks.c:1875
 msgid "It appears to be in \"standby\" mode."
-msgstr ""
+msgstr "Es scheint im \"Standby\"-Modus zu sein"
 
 #: ../src/blocks.c:1902 ../src/blocks.c:1903 ../src/blocks.c:1904
 #: ../src/blocks.c:1905 ../src/blocks.c:1906
 msgid "Droid nest"
-msgstr ""
+msgstr "Droidennest"
 
 #: ../src/blocks.c:1907 ../src/blocks.c:1908 ../src/blocks.c:1909
 #: ../src/blocks.c:1910 ../src/blocks.c:1911
 msgid ""
 "This is a service droid case. You suppose it's of no use for your quest."
 msgstr ""
+"Das ist ein Servicedroidengehäuse. Du nimmst an, es erfüllt keinen Zweck für "
+"deinen Auftrag."
 
 #: ../src/blocks.c:1939 ../src/blocks.c:1948 ../src/blocks.c:1956
 #: ../src/blocks.c:1964
 msgid "Chest"
-msgstr ""
+msgstr "Truhe"
 
 #: ../src/blocks.c:1940 ../src/blocks.c:1957
 msgid "This chest has already been opened"
-msgstr ""
+msgstr "Diese Truhe wurde schon geöffnet"
 
 #: ../src/blocks.c:1949 ../src/blocks.c:1965
 msgid "This chest is closed."
-msgstr ""
+msgstr "Diese Truhe ist verschlossen"
 
 #: ../src/blocks.c:1971 ../src/blocks.c:1977 ../src/blocks.c:1983
 #: ../src/blocks.c:1989 ../src/blocks.c:1996 ../src/blocks.c:2002
 #: ../src/blocks.c:2008 ../src/blocks.c:2014
 msgid "Autogun"
-msgstr ""
+msgstr "Automatikgeschütz"
 
 #: ../src/blocks.c:1972 ../src/blocks.c:1978 ../src/blocks.c:1984
 #: ../src/blocks.c:1990
 msgid "A not-that-nice autogun. Beware : it could be harmful."
 msgstr ""
+"Ein nicht so nettes Automatikgeschütz. Vorsicht: Es könnte schmerzhaft "
+"werden."
 
 #: ../src/blocks.c:1997
 msgid "A not-that-nice autogun. It seems disabled for now."
 msgstr ""
+"Ein nicht so nettes Automatikgeschütz. Es scheint momentan deaktiviert zu "
+"sein."
 
 #: ../src/blocks.c:2003
 msgid "This killing machine is disabled. For now."
-msgstr ""
+msgstr "Diese Tötungsmaschine ist deaktiviert. Im Augenblick."
 
 #: ../src/blocks.c:2009
 msgid ""
 "It is looking at you. You are sure it is looking at you. But it does not "
 "fire. For now."
 msgstr ""
+"Es schaut dich an. Du bist dir sicher, dass es dich anschaut. Aber es feuert "
+"nicht. Im Augenblick."
 
 #: ../src/blocks.c:2015
 msgid "The autogun is disabled."
-msgstr ""
+msgstr "Das Automatikgeschütz ist deaktiviert."
 
 #: ../src/blocks.c:2021 ../src/blocks.c:2027 ../src/blocks.c:2033
 #: ../src/blocks.c:2039 ../src/blocks.c:2045 ../src/blocks.c:2051
 msgid "Rock barrier"
-msgstr ""
+msgstr "Felsbarriere"
 
 #: ../src/blocks.c:2022 ../src/blocks.c:2028 ../src/blocks.c:2034
 #: ../src/blocks.c:2040 ../src/blocks.c:2046 ../src/blocks.c:2052
 msgid "No way to pass through. Find another path."
-msgstr ""
+msgstr "Kein Durchkommen. Finde einen anderen Weg"
 
 #: ../src/blocks.c:2060
 msgid "Cooking pot"
-msgstr ""
+msgstr "Kochtopf"
 
 #: ../src/blocks.c:2061
+#, fuzzy
 msgid ""
 "This cauldron can be used for many good things. Cooking beef or pork for "
 "dinner are some of them. It can be also used for many evil things. Cooking "
 "Linarians for dinner is one of them."
 msgstr ""
+"Dieser Kessel kann für viel Gutes benutzt werden. Rind- oder Schweinefleisch "
+"für das Abendessen zu kochen, sind einige davon. Ebenso kann er für viel "
+"Böses benutzt werden. Linarianer für das Abendessen zu kochen ist eins davon."
 
 #: ../src/blocks.c:2068 ../src/blocks.c:2076 ../src/blocks.c:2084
 #: ../src/blocks.c:2092
 msgid "Terminal"
-msgstr ""
+msgstr "Terminal"
 
 #: ../src/blocks.c:2069 ../src/blocks.c:2077 ../src/blocks.c:2085
 #: ../src/blocks.c:2093
 msgid "This is a Terminus 2 terminal. Made by Parafunken."
-msgstr ""
+msgstr "Das ist ein Terminus 2 Terminal. Hergestellt von Parafunken."
 
 #: ../src/blocks.c:2097 ../src/blocks.c:2101
 msgid "Barrel"
-msgstr ""
+msgstr "Fass"
 
 #: ../src/blocks.c:2098
 msgid "A painted barrel, protected from rust."
-msgstr ""
+msgstr "Ein gestrichenes Fass, geschützt vor Rost."
 
 #: ../src/blocks.c:2102
 msgid "A rusty barrel."
-msgstr ""
+msgstr "Ein rostiges Fass."
 
 #: ../src/blocks.c:2107 ../src/blocks.c:2111
 msgid "Wooden crate"
-msgstr ""
+msgstr "Holzkiste"
 
 #: ../src/blocks.c:2108 ../src/blocks.c:2112
 msgid "This is a wooden crate that could contain interesting things. Or not."
 msgstr ""
+"Das ist eine Holzkiste, welche interresante Dinge beinhalten könnte. Oder "
+"auch nicht."
 
 #: ../src/blocks.c:2124 ../src/blocks.c:2132 ../src/blocks.c:2140
 #: ../src/blocks.c:2148
 msgid "Room lamp"
-msgstr ""
+msgstr "Zimmerlampe"
 
 #: ../src/blocks.c:2125
 msgid "This is a charming room lamp."
-msgstr ""
+msgstr "Das ist eine entzückende Zimmerlampe."
 
 #: ../src/blocks.c:2133
 msgid "This is a wonderful room lamp."
-msgstr ""
+msgstr "Das ist eine wundervolle Zimmerlampe."
 
 #: ../src/blocks.c:2141
 msgid "This is a great room lamp."
-msgstr ""
+msgstr "Das ist eine großartige Zimmerlampe."
 
 #: ../src/blocks.c:2149
 msgid "This is a perfect room lamp."
-msgstr ""
+msgstr "Das ist eine perfekte Zimmerlampe"
 
 #: ../src/blocks.c:2164 ../src/blocks.c:2182 ../src/blocks.c:2187
 #: ../src/blocks.c:2204
 msgid "Fence"
-msgstr ""
+msgstr "Zaun"
 
 #: ../src/blocks.c:2165
 msgid "This is a wooden fence. Find another path."
-msgstr ""
+msgstr "Das ist ein Holzzaun. Finde einen andren Weg."
 
 #: ../src/blocks.c:2183 ../src/blocks.c:2205
 msgid ""
 "This type of a barrier constructed out of wire is called the chain link "
 "fence."
 msgstr ""
+"Dieser Typ von Barriere, konstruiert aus Drähten, wird Maschendrahtzaun "
+"genannt."
 
 #: ../src/blocks.c:2188
+#, fuzzy
 msgid "You can't break it. Find another way."
-msgstr ""
+msgstr "Du kannst nicht Durchbrechen. Finde einen anderen Weg."
 
 #: ../src/blocks.c:2213 ../src/blocks.c:2222 ../src/blocks.c:2229
 #: ../src/blocks.c:2236
 msgid "Small toilet"
-msgstr ""
+msgstr "Kleines Klo"
 
 #: ../src/blocks.c:2214 ../src/blocks.c:2223 ../src/blocks.c:2230
 #: ../src/blocks.c:2237
 msgid "Smells good."
-msgstr ""
+msgstr "Riecht gut."
 
 #: ../src/blocks.c:2263 ../src/blocks.c:2265 ../src/blocks.c:2267
 #: ../src/blocks.c:2269
 msgid "Toilet"
-msgstr ""
+msgstr "Klo"
 
 #: ../src/blocks.c:2264 ../src/blocks.c:2266
+#, fuzzy
 msgid "Feel like defecating ?"
-msgstr ""
+msgstr "Hast du lust auf Scheißen?"
 
 #: ../src/blocks.c:2268
 msgid "Yes, they are clean."
-msgstr ""
+msgstr "Ja, sie sind sauber."
 
 #: ../src/blocks.c:2270
+#, fuzzy
 msgid "Would you have something to empty ?"
-msgstr ""
+msgstr "Hast du etwas zu leeren?"
 
 #: ../src/blocks.c:2278 ../src/blocks.c:2286 ../src/blocks.c:2294
 #: ../src/blocks.c:2302 ../src/blocks.c:3510 ../src/blocks.c:3516
 #: ../src/blocks.c:3522 ../src/blocks.c:3528
 msgid "Chair"
-msgstr ""
+msgstr "Stuhl"
 
 #: ../src/blocks.c:2279 ../src/blocks.c:2287 ../src/blocks.c:2295
 #: ../src/blocks.c:2303
 msgid "This is an orange chair which does not look too comfortable"
-msgstr ""
+msgstr "Das ist ein oranger Stuhl welcher nicht sehr komfotabel aussieht"
 
 #: ../src/blocks.c:2310 ../src/blocks.c:2318 ../src/blocks.c:2326
 #: ../src/blocks.c:2334
 msgid "Sofa"
-msgstr ""
+msgstr "Sofa"
 
 #: ../src/blocks.c:2311 ../src/blocks.c:2319 ../src/blocks.c:2327
 #: ../src/blocks.c:2335
 msgid "A soft red sofa."
-msgstr ""
+msgstr "Ein weiches, rotes Sofa."
 
 #: ../src/blocks.c:2367 ../src/blocks.c:2375 ../src/blocks.c:2383
 #: ../src/blocks.c:2391
 msgid "Plant"
-msgstr ""
+msgstr "Pflanze"
 
 #: ../src/blocks.c:2368 ../src/blocks.c:2376 ../src/blocks.c:2384
 #: ../src/blocks.c:2392
@@ -300,99 +330,106 @@ msgid ""
 "After all the humans are killed by the bots, only plants like this one will "
 "remain."
 msgstr ""
+"Nachdem alle Menschen von den Bots getötet wurden, sind nur Pflanzen, wie "
+"diese, übrig geblieben."
 
 #: ../src/blocks.c:2399 ../src/blocks.c:2406 ../src/blocks.c:2413
 #: ../src/blocks.c:2420
 msgid "Desk"
-msgstr ""
+msgstr "Schreibtisch"
 
 #: ../src/blocks.c:2400 ../src/blocks.c:2407 ../src/blocks.c:2414
 #: ../src/blocks.c:2421
 msgid "This desk is designed to handle extreme loads of office work."
 msgstr ""
+"Dieser Schreibtisch ist konstruiert, um extreme Mengen Büroarbeit zu "
+"bewältigen."
 
 #: ../src/blocks.c:2469 ../src/blocks.c:2476 ../src/blocks.c:2483
 #: ../src/blocks.c:2490
 msgid "Bench"
-msgstr ""
+msgstr "Bank"
 
 #: ../src/blocks.c:2470 ../src/blocks.c:2477 ../src/blocks.c:2484
 #: ../src/blocks.c:2491
 msgid "A simple white bench."
-msgstr ""
+msgstr "Eine einfache, weiße Bank."
 
 #: ../src/blocks.c:2499 ../src/blocks.c:2507 ../src/blocks.c:2516
 #: ../src/blocks.c:2525
 msgid "Bath tub"
-msgstr ""
+msgstr "Badewanne"
 
 #: ../src/blocks.c:2500
+#, fuzzy
 msgid "An idea of what comfort is"
-msgstr ""
+msgstr "Eine Idee aus was Komfort ist"
 
 #: ../src/blocks.c:2508 ../src/blocks.c:2517 ../src/blocks.c:2526
 msgid "Taking a bath is not your current quest - what a pity !"
-msgstr ""
+msgstr "Ein Bad nehmen ist nicht deine aktuelle Aufgabe - wie schade!"
 
 #: ../src/blocks.c:2533 ../src/blocks.c:2541
+#, fuzzy
 msgid "Washing tub"
-msgstr ""
+msgstr "Waschzuber"
 
 #: ../src/blocks.c:2534 ../src/blocks.c:2542
+#, fuzzy
 msgid "A metal tub. The washing machine of the post-assault 21st century."
-msgstr ""
+msgstr "Eine Metallwanne. Die Waschmaschine des Nachkriegsjarhunderts 21."
 
 #: ../src/blocks.c:2576 ../src/blocks.c:2582 ../src/blocks.c:2588
 #: ../src/blocks.c:2595 ../src/blocks.c:2601
 msgid "Tree"
-msgstr ""
+msgstr "Baum"
 
 #: ../src/blocks.c:2577
 msgid "This tree seems quite normal"
-msgstr ""
+msgstr "Dieser Baum sieht sehr normal aus"
 
 #: ../src/blocks.c:2583
 msgid "This is a nice tree"
-msgstr ""
+msgstr "Das ist ein schöner Baum"
 
 #: ../src/blocks.c:2589
 msgid "No, it definitely doesn't look like a droid"
-msgstr ""
+msgstr "Nein, es sieht defenitif nicht wie ein Droide aus"
 
 #: ../src/blocks.c:2596
 msgid "This tree does not look too healthy."
-msgstr ""
+msgstr "Dieser Baum sieht nicht besonderst gesund aus."
 
 #: ../src/blocks.c:2602
 msgid "For some strange reason this tree has blue leaves."
-msgstr ""
+msgstr "Aus irgenteinem selstamen Grund hat dieser Baum blaue Blätter."
 
 #: ../src/blocks.c:2612 ../src/blocks.c:2618 ../src/blocks.c:2624
 #: ../src/blocks.c:2630 ../src/blocks.c:2636 ../src/blocks.c:2642
 #: ../src/blocks.c:2648 ../src/blocks.c:2654 ../src/blocks.c:2660
 #: ../src/blocks.c:2666
 msgid "Colony wall"
-msgstr ""
+msgstr "Siedlungswall"
 
 #: ../src/blocks.c:2613 ../src/blocks.c:2619 ../src/blocks.c:2625
 #: ../src/blocks.c:2631 ../src/blocks.c:2637 ../src/blocks.c:2643
 #: ../src/blocks.c:2649 ../src/blocks.c:2655 ../src/blocks.c:2661
 #: ../src/blocks.c:2667
 msgid "This is just a pink wall."
-msgstr ""
+msgstr "Das ist nur eine pinke Wand."
 
 #: ../src/blocks.c:2717
 msgid "Restaurant shelves"
-msgstr ""
+msgstr "Restaurantregale"
 
 #: ../src/blocks.c:2718
 msgid "This is but standard restaurant furniture."
-msgstr ""
+msgstr "Das ist aber einheitliche Restauranteinrichtung"
 
 #: ../src/blocks.c:2727 ../src/blocks.c:2733 ../src/blocks.c:2739
 #: ../src/blocks.c:2745
 msgid "Rock wall"
-msgstr ""
+msgstr "Seinwand"
 
 #: ../src/blocks.c:2728 ../src/blocks.c:2734 ../src/blocks.c:2740
 #: ../src/blocks.c:2746
@@ -400,11 +437,13 @@ msgid ""
 "This rock is here now and forever, and it is not going anywhere. Go "
 "somewhere else."
 msgstr ""
+"Dieser Fels ist hier auf immer und ewig, und er verschwindet nicht. Geh "
+"irgendwo anderst hin."
 
 #: ../src/blocks.c:2760 ../src/blocks.c:2761 ../src/blocks.c:2762
 #: ../src/blocks.c:2763
 msgid "Grey wall"
-msgstr ""
+msgstr "Graue Wand"
 
 #: ../src/blocks.c:2764 ../src/blocks.c:2765 ../src/blocks.c:2766
 #: ../src/blocks.c:2767
@@ -412,93 +451,101 @@ msgid ""
 "This is grey and seems quite hard to destroy. People usually call it a wall. "
 "You have no chance to go through : there must be another path."
 msgstr ""
+"Es ist Grau und sieht sehr robust aus. Man nennt es gewöhnlich Mauer. Du "
+"hast keine möglichkeit durchzugehen: es muss noch einen anderen Weg geben."
 
 #: ../src/blocks.c:2808 ../src/blocks.c:2815 ../src/blocks.c:3261
 #: ../src/blocks.c:3262
 msgid "Green wall"
-msgstr ""
+msgstr "Grüne Wand"
 
 #: ../src/blocks.c:2809 ../src/blocks.c:2816
 msgid "This wall is covered by an asparagus-green wallpaper."
-msgstr ""
+msgstr "Diese Wand ist mit einer spargelgrünen Tapete beklebt."
 
 #: ../src/blocks.c:2822 ../src/blocks.c:2829 ../src/blocks.c:2836
 #: ../src/blocks.c:2843
 msgid "Groovy wall"
-msgstr ""
+msgstr "Groovy Wand"
 
 #: ../src/blocks.c:2823 ../src/blocks.c:2830 ../src/blocks.c:2837
 #: ../src/blocks.c:2844
 msgid "Man, dig that groovy wallpaper. It's a real blast!"
-msgstr ""
+msgstr "Man, vergrab diese groovy Tapete, Die haut einen um!"
 
 #: ../src/blocks.c:2942
 msgid "Brick wall"
-msgstr ""
+msgstr "Gemauerte Wand."
 
 #: ../src/blocks.c:2943
 msgid ""
 "A badly constructed brick wall. It looks like it was built in a rush. The "
 "color is quite nice though."
 msgstr ""
+"Eine schlecht gemauerte Wand. Sieht aus, als währe sie auf die Schnelle "
+"gebaut. Allerdings ist die Farbe recht schön."
 
 #: ../src/blocks.c:2984 ../src/blocks.c:2986
 msgid "This wall is suffering. Finish it!"
-msgstr ""
+msgstr "Diese Wand ist am Ende. Mach sie fertig!"
 
 #: ../src/blocks.c:2997 ../src/blocks.c:2999
 msgid "Well ... it was not very resistant "
-msgstr ""
+msgstr "Nun gut ... er war nicht sehr wiederstandsfähig "
 
 #: ../src/blocks.c:3057
 msgid "Blood"
-msgstr ""
+msgstr "Blut"
 
 #: ../src/blocks.c:3058
 msgid "Do droids bleed ? These do."
-msgstr ""
+msgstr "Bluten Droiden? Diese schon."
 
 #: ../src/blocks.c:3115
 msgid "Oil stains"
-msgstr ""
+msgstr "Ölflecken"
 
 #: ../src/blocks.c:3116
 msgid "Do droids bleed? These don't."
-msgstr ""
+msgstr "Bluten Droiden? Diese nicht."
 
 #: ../src/blocks.c:3138 ../src/blocks.c:3146
 msgid "Entrance"
-msgstr ""
+msgstr "Eingang"
 
 #: ../src/blocks.c:3139 ../src/blocks.c:3147
 msgid "It leads into the dark tunnels below..."
-msgstr ""
+msgstr "Es führt in die dunklen Tunnel unterhalb..."
 
 #: ../src/blocks.c:3155 ../src/blocks.c:3164
 msgid "Ladder"
-msgstr ""
+msgstr "Leiter"
 
 #: ../src/blocks.c:3156 ../src/blocks.c:3165
 msgid "It leads to the surface world."
-msgstr ""
+msgstr "Es führt zur Oberfläche."
 
 #: ../src/blocks.c:3178 ../src/blocks.c:3231
 msgid "Exotic plant"
-msgstr ""
+msgstr "Exotische Pflanze"
 
 #: ../src/blocks.c:3179
 msgid "A wonderful exotic plant. You can read \"Made by Basse\" on it"
 msgstr ""
+"Eine wunderschöne exotische Pflanze. Du kannst \"Hergestellt von Basse\" auf "
+"ihr lesen."
 
 #: ../src/blocks.c:3199
 msgid "Rocks"
-msgstr ""
+msgstr "Felsen"
 
 #: ../src/blocks.c:3200
 msgid ""
 "Do you think a rock can attack you ? No, MS droids can't hide themselves "
 "that way : they crash before."
 msgstr ""
+"Glaubst du ein Fels kann dich angreifen? Nein, MS-Droiden können sich auf "
+"diese Art nicht verstecken: sie stürzen vorher ab."
 
 #: ../src/blocks.c:3232
 msgid "Eating too much of that could lead to a kernel panic."
@@ -506,7 +553,7 @@ msgstr ""
 
 #: ../src/blocks.c:3257 ../src/blocks.c:3258
 msgid "Red wall"
-msgstr ""
+msgstr "Rote Wand"
 
 #: ../src/blocks.c:3259 ../src/blocks.c:3260 ../src/blocks.c:3263
 #: ../src/blocks.c:3264
@@ -846,7 +893,7 @@ msgstr ""
 msgid "1 Item received!"
 msgstr ""
 
-#: ../src/chat.c:1354
+#: ../src/chat.c:1355
 msgid "What will you say?"
 msgstr ""
 
@@ -1604,11 +1651,11 @@ msgstr ""
 msgid "I can't carry any more."
 msgstr ""
 
-#: ../src/main.c:386
+#: ../src/main.c:390
 msgid "Overheating!"
 msgstr ""
 
-#: ../src/main.c:403
+#: ../src/main.c:407
 msgid "Weapon reloaded"
 msgstr ""
 
