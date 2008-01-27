@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: freedroid-discussion@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-01-26 22:32+0100\n"
+"POT-Creation-Date: 2008-01-27 20:31+0100\n"
 "PO-Revision-Date: 2007-08-03 10:30+0200\n"
 "Last-Translator:  <freedroid-discussion@lists.sourceforge.net>\n"
 "Language-Team: French\n"
@@ -923,7 +923,7 @@ msgstr "1 objet reçu (sur le sol)"
 msgid "1 Item received!"
 msgstr "1 objet reçu !"
 
-#: ../src/chat.c:1354
+#: ../src/chat.c:1355
 msgid "What will you say?"
 msgstr "Qu'allez vous dire ?"
 
@@ -1768,11 +1768,11 @@ msgstr "Objet ramassé : %s."
 msgid "I can't carry any more."
 msgstr "Je ne peux plus rien porter."
 
-#: ../src/main.c:386
+#: ../src/main.c:390
 msgid "Overheating!"
 msgstr "Surchauffe !"
 
-#: ../src/main.c:403
+#: ../src/main.c:407
 msgid "Weapon reloaded"
 msgstr "Arme rechargée"
 
