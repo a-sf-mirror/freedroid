@@ -3013,9 +3013,6 @@ Show_Mission_Details ( int MissionNumber )
 	printf_SDL ( Screen , User_Rect.x , 6 *FontHeight(Menu_BFont) , "Live Time : "  );
 	if ( Me.AllMissions[ MissionNumber ].MustLiveTime != (-1) ) printf_SDL( Screen , -1 , -1 , "%4.0f" , Me.AllMissions[ MissionNumber ].MustLiveTime ); 
 	else printf_SDL( Screen , -1 , -1 , "NONE" );
-	printf_SDL ( Screen , User_Rect.x , 7 *FontHeight(Menu_BFont) , "Must be class : "  );
-	if ( Me.AllMissions[ MissionNumber ].MustBeClass != (-1) ) printf_SDL( Screen , -1 , -1 , "%d\n" , Me.AllMissions[ MissionNumber ].MustBeClass );
-	else printf_SDL( Screen , -1 , -1 , "NONE\n" );
 	
 	printf_SDL ( Screen , User_Rect.x , 8 *FontHeight(Menu_BFont) , "Must be type : "  );
 	if ( Me.AllMissions[ MissionNumber ].MustBeType != (-1) ) printf_SDL( Screen , -1 , -1 , "%d" , Me.AllMissions[ MissionNumber ].MustBeType ); 

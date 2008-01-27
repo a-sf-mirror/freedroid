@@ -223,7 +223,6 @@ typedef struct mission_s
     int   MustReachLevel;
     point MustReachPoint;
     double MustLiveTime;
-    int MustBeClass;
     int MustBeType;
     int MustBeOne;
     
