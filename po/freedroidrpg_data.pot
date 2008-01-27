@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CHANGE THIS\n"
 "Report-Msgid-Bugs-To: CHANGE THIS TOO\n"
-"POT-Creation-Date: 2008-01-27 21:03+0000\n"
-"PO-Revision-Date: 2008-01-27 21:03+0000\n"
+"POT-Creation-Date: 2008-01-27 21:20+0000\n"
+"PO-Revision-Date: 2008-01-27 21:20+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -203,135 +203,135 @@ msgstr ""
 msgid "First aid "
 msgstr ""
 
-#: ../map/freedroid.prefix_archetypes:442
+#: ../map/freedroid.prefix_archetypes:443
 msgid "Razor "
 msgstr ""
 
-#: ../map/freedroid.prefix_archetypes:469
+#: ../map/freedroid.prefix_archetypes:473
 msgid "Light "
 msgstr ""
 
-#: ../map/freedroid.prefix_archetypes:496
+#: ../map/freedroid.prefix_archetypes:500
 msgid "Beautiful "
 msgstr ""
 
-#: ../map/freedroid.prefix_archetypes:523
+#: ../map/freedroid.prefix_archetypes:527
 msgid "Howling "
 msgstr ""
 
-#: ../map/freedroid.prefix_archetypes:550
+#: ../map/freedroid.prefix_archetypes:554
 msgid "Accelerating "
 msgstr ""
 
-#: ../map/freedroid.prefix_archetypes:577
+#: ../map/freedroid.prefix_archetypes:581
 msgid "Colorful "
 msgstr ""
 
-#: ../map/freedroid.prefix_archetypes:604
+#: ../map/freedroid.prefix_archetypes:608
 msgid "Rainbow "
 msgstr ""
 
-#: ../map/freedroid.prefix_archetypes:631
+#: ../map/freedroid.prefix_archetypes:635
 msgid "Suicide "
 msgstr ""
 
-#: ../map/freedroid.prefix_archetypes:658
+#: ../map/freedroid.prefix_archetypes:662
 msgid "Broken "
 msgstr ""
 
-#: ../map/freedroid.prefix_archetypes:685
+#: ../map/freedroid.prefix_archetypes:689
 msgid "Fluorescent "
 msgstr ""
 
-#: ../map/freedroid.prefix_archetypes:712
+#: ../map/freedroid.prefix_archetypes:716
 msgid "Luminescent "
 msgstr ""
 
-#: ../map/freedroid.prefix_archetypes:739
+#: ../map/freedroid.prefix_archetypes:743
 msgid "Blazing "
 msgstr ""
 
-#: ../map/freedroid.prefix_archetypes:766
+#: ../map/freedroid.prefix_archetypes:770
 msgid "Hungry "
 msgstr ""
 
-#: ../map/freedroid.prefix_archetypes:793
+#: ../map/freedroid.prefix_archetypes:797
 msgid "Devouring "
 msgstr ""
 
-#: ../map/freedroid.prefix_archetypes:820
+#: ../map/freedroid.prefix_archetypes:824
 msgid "Ravenous "
 msgstr ""
 
-#: ../map/freedroid.prefix_archetypes:847
+#: ../map/freedroid.prefix_archetypes:851
 msgid " of good design"
 msgstr ""
 
-#: ../map/freedroid.prefix_archetypes:870
+#: ../map/freedroid.prefix_archetypes:874
 msgid " (C)MegaSys"
 msgstr ""
 
-#: ../map/freedroid.prefix_archetypes:894
+#: ../map/freedroid.prefix_archetypes:898
 msgid " with no suffix"
 msgstr ""
 
-#: ../map/freedroid.prefix_archetypes:917
+#: ../map/freedroid.prefix_archetypes:921
 msgid " with sharp edges"
 msgstr ""
 
-#: ../map/freedroid.prefix_archetypes:941
+#: ../map/freedroid.prefix_archetypes:946
 msgid " covered in blood"
 msgstr ""
 
-#: ../map/freedroid.prefix_archetypes:964
+#: ../map/freedroid.prefix_archetypes:969
 msgid " covered in oil"
 msgstr ""
 
-#: ../map/freedroid.prefix_archetypes:987
+#: ../map/freedroid.prefix_archetypes:992
 msgid ", 'the Murderer'"
 msgstr ""
 
-#: ../map/freedroid.prefix_archetypes:1010
+#: ../map/freedroid.prefix_archetypes:1015
 msgid ", 'the Healer'"
 msgstr ""
 
-#: ../map/freedroid.prefix_archetypes:1033
+#: ../map/freedroid.prefix_archetypes:1038
 msgid ", 'the Rabbit'"
 msgstr ""
 
-#: ../map/freedroid.prefix_archetypes:1056
+#: ../map/freedroid.prefix_archetypes:1061
 msgid ", 'the Seeker'"
 msgstr ""
 
-#: ../map/freedroid.prefix_archetypes:1079
+#: ../map/freedroid.prefix_archetypes:1084
 msgid ", 'the World'"
 msgstr ""
 
-#: ../map/freedroid.prefix_archetypes:1102
+#: ../map/freedroid.prefix_archetypes:1107
 msgid " from hell"
 msgstr ""
 
-#: ../map/freedroid.prefix_archetypes:1125
+#: ../map/freedroid.prefix_archetypes:1130
 msgid " with strange runes"
 msgstr ""
 
-#: ../map/freedroid.prefix_archetypes:1148
+#: ../map/freedroid.prefix_archetypes:1153
 msgid " with a curse"
 msgstr ""
 
-#: ../map/freedroid.prefix_archetypes:1171
+#: ../map/freedroid.prefix_archetypes:1176
 msgid "Cool "
 msgstr ""
 
-#: ../map/freedroid.prefix_archetypes:1194
+#: ../map/freedroid.prefix_archetypes:1199
 msgid "Frozen "
 msgstr ""
 
-#: ../map/freedroid.prefix_archetypes:1217
+#: ../map/freedroid.prefix_archetypes:1222
 msgid " of ice"
 msgstr ""
 
-#: ../map/freedroid.prefix_archetypes:1240
+#: ../map/freedroid.prefix_archetypes:1245
 msgid " of chills"
 msgstr ""
 
@@ -1858,5 +1858,189 @@ msgstr ""
 
 #: ../map/freedroid.droid_archetypes:1170
 msgid "This is the bartender."
+msgstr ""
+
+#: ../map/QuestList_archetypes:53
+msgid ""
+"I met a Red Guard named Bender. He poisoned himself with some brain enlargemen"
+"t pills, which turned out to highly cancirogenic. The city doctor will not giv"
+"e him the antidote, so it is up to me to save him."
+msgstr ""
+
+#: ../map/QuestList_archetypes:54
+msgid "The doctor was easily fooled. I have the pills that Bender needs."
+msgstr ""
+
+#: ../map/QuestList_archetypes:55
+msgid ""
+"I killed the doctor. I feel sick. What a disgusting mess. At least I get to he"
+"lp Bender now."
+msgstr ""
+
+#: ../map/QuestList_archetypes:56
+msgid ""
+"Bender is fine now. He gave me some muscle enlargement pills in return for my "
+"help. Hmm..."
+msgstr ""
+
+#: ../map/QuestList_archetypes:78
+msgid ""
+"Dixon, the leader of the Red Guard technical division lost his yellow toolkit "
+"in the city's maintenance tunnels. I am supposed to get it from there."
+msgstr ""
+
+#: ../map/QuestList_archetypes:79
+msgid ""
+"The bots in the tunnels might be sentient. I cannot wait to extinguish an emer"
+"ging life form. This will be fun."
+msgstr ""
+
+#: ../map/QuestList_archetypes:80
+msgid ""
+"I refused to get the toolkit from the bots in the tunnels because I think they"
+" might be sentient. Life is precious and should be preserved."
+msgstr ""
+
+#: ../map/QuestList_archetypes:81
+msgid ""
+"The tunnels bots seem to be working together with Dixon in keeping the city wo"
+"rking. All is well that ends well."
+msgstr ""
+
+#: ../map/QuestList_archetypes:82
+msgid ""
+"Finally. I am tired, covered in bruises and oil... But finally I made sure the"
+" bots will not survive. It felt great to break their metal bodies and crush th"
+"eir circuits. Dixon seemed not too happy about this solution, but I don't care"
+". It was fun killing the bots. Nothing else matters."
+msgstr ""
+
+#: ../map/QuestList_archetypes:83
+msgid ""
+"I gave the toolkit to Dixon. He was very happy to have his autotools back. I g"
+"ot his helmet as a gift. I guess this is better than nothing."
+msgstr ""
+
+#: ../map/QuestList_archetypes:84
+msgid "I sold the toolkit to Dixon for a nice sum of money. Life is good."
+msgstr ""
+
+#: ../map/QuestList_archetypes:85
+msgid "I sold the toolkit to Dixon for a huge sum of money. Life is great."
+msgstr ""
+
+#: ../map/QuestList_archetypes:86
+msgid ""
+"I sold the toolkit to Dixon for a enormous sum of money. Life is truly grand. "
+"I better stay away from Dixon for now. He seemed very angry at me."
+msgstr ""
+
+#: ../map/QuestList_archetypes:108
+msgid ""
+"I am supposed to get some dilithium crystals for that cook. Without them he ca"
+"nnot cook anything in his macrowave oven. And without his cooking the whole ci"
+"ty is stuck eating army snacks. Many people have committed suicide because of "
+"the horrible food. This madness must stop."
+msgstr ""
+
+#: ../map/QuestList_archetypes:109
+msgid ""
+"I gave him enough dilithium to last him a decade. The evil spectre of eating a"
+"rmy snacks is lifted from the city."
+msgstr ""
+
+#: ../map/QuestList_archetypes:131
+msgid ""
+"Fighting in the arena is not something I would usually do, but I feel like doi"
+"ng it for a change. Why not?"
+msgstr ""
+
+#: ../map/QuestList_archetypes:132
+msgid ""
+"Now that was easy. Yawn. I nearly fell asleep. No problem at all, the bots are"
+" dead."
+msgstr ""
+
+#: ../map/QuestList_archetypes:154
+msgid ""
+"I told the arena master to let me into his master arena. He agreed. Now all th"
+"at remains to do is to enter the teleport and wait for death herself to come o"
+"n her black wings and claim my soul. You know, now that I think about it... Ma"
+"ybe I should stay out of there?"
+msgstr ""
+
+#: ../map/QuestList_archetypes:155
+msgid "I survived the master arena. A miracle. Whew."
+msgstr ""
+
+#: ../map/QuestList_archetypes:176
+msgid "I am supposed to clean out the first level of some warehouse. Sounds easy."
+msgstr ""
+
+#: ../map/QuestList_archetypes:177
+msgid "Ouch. It wasn't. At least I am alive and the warehouse is clear. Whew."
+msgstr ""
+
+#: ../map/QuestList_archetypes:198
+msgid ""
+"Kevin has a problem with his energy supply. His bots keep rebooting the system"
+" and he cannot conduct any experiments with unstable power supply. My job is t"
+"o stabilize the power. I think that implies removing the stupid bots."
+msgstr ""
+
+#: ../map/QuestList_archetypes:199
+msgid "Everything is back to normal for now. Kevin can work in peace now."
+msgstr ""
+
+#: ../map/QuestList_archetypes:224
+msgid ""
+"Yes, that was simple. I wish everything else went as smoothly as this one did."
+".."
+msgstr ""
+
+#: ../map/QuestList_archetypes:246
+msgid ""
+"Spencer has revealed the information from the data cube evaluation to me.  It "
+"seems there is an old military research facility near the colony.  If we can a"
+"ctivate the disruptor shield, there is a good chance that the bots will wander"
+" off and leave the colony alone."
+msgstr ""
+
+#: ../map/QuestList_archetypes:247
+msgid "There, I've founda and entered the base."
+msgstr ""
+
+#: ../map/QuestList_archetypes:248
+msgid "description text 3 here"
+msgstr ""
+
+#: ../map/QuestList_archetypes:249
+msgid "description text 4 here"
+msgstr ""
+
+#: ../map/QuestList_archetypes:250
+msgid "description text 5 here"
+msgstr ""
+
+#: ../map/QuestList_archetypes:272
+msgid "I am supposed to get some dilithium crystals for that SADD."
+msgstr ""
+
+#: ../map/QuestList_archetypes:273
+msgid "Done. He looks happy."
+msgstr ""
+
+#: ../map/QuestList_archetypes:294
+msgid ""
+"I have met a girl locked in secret area. If I manage to disable autoguns, she "
+"would be able to go to the surface, look at sun again."
+msgstr ""
+
+#: ../map/QuestList_archetypes:295
+msgid "I have found that SACD and overtooked him."
+msgstr ""
+
+#: ../map/QuestList_archetypes:296
+msgid "Tania is free now!"
 msgstr ""
 
