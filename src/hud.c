@@ -1049,7 +1049,7 @@ prepare_text_window_content ( char* ItemDescText )
     if ( GetHeldItemPointer( ) != NULL )
     {
 	if ( ItemUsageRequirementsMet( GetHeldItemPointer( ) , FALSE ) )
-	    strcpy( ItemDescText , ItemMap [ GetHeldItemCode() ] . item_name );
+	    strcpy( ItemDescText , D_(ItemMap [ GetHeldItemCode() ] . item_name));
 	else 
 	{
 	    strcpy( ItemDescText , REQUIREMENTS_NOT_MET_TEXT  );

@@ -1572,7 +1572,7 @@ blit_all_item_slots ( void )
 	//
 	PutStringFont ( Screen , FPS_Display_BFont , item_level -> ItemList [ i ] . text_slot_rectangle . x , 
 			item_level -> ItemList [ i ] . text_slot_rectangle . y , 
-			ItemMap [ item_level -> ItemList [ i ] . type ] . item_name );
+			D_(ItemMap [ item_level -> ItemList [ i ] . type ] . item_name ));
 
     }
     
@@ -1673,7 +1673,7 @@ update_item_text_slot_positions ( void )
 	//
 	cur_item -> text_slot_rectangle . h = FontHeight ( BFont_to_use ) ;
 	cur_item -> text_slot_rectangle . w = 
-	    TextWidthFont ( BFont_to_use , ItemMap [ cur_item -> type ] . item_name );
+	    TextWidthFont ( BFont_to_use , D_(ItemMap [ cur_item -> type ] . item_name ));
 	cur_item -> text_slot_rectangle . x = 
 	    translate_map_point_to_screen_pixel_x ( 
 		cur_item -> pos . x , 

@@ -15,10 +15,14 @@
 #define _(String) gettext(String)
 #define N_(String) String
 
+#define D_(String) dgettext("freedroidrpg_data", String)
+
 #else
 
 #define _(String) String
 #define N_(String) String
+
+#define D_(String) String
 
 #endif
 

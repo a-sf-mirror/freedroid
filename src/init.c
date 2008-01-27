@@ -1066,7 +1066,7 @@ Get_Item_Data ( char* DataPointer )
 #define NEW_ITEM_TYPE_BEGIN_STRING "** Start of new item specification subsection **"
     
 #define ITEM_NAME_INDICATION_STRING "Item name=_\""
-#define ITEM_DESCRIPTION_INDICATION_STRING "Item description text=\""
+#define ITEM_DESCRIPTION_INDICATION_STRING "Item description text=_\""
 #define ITEM_CAN_BE_APPLIED_IN_COMBAT "Item can be applied in combat=\""
 #define ITEM_CAN_BE_INSTALLED_IN_WEAPON_SLOT "Item can be installed in weapon slot=\""
 #define ITEM_CAN_BE_INSTALLED_IN_DRIVE_SLOT "Item can be installed in drive slot=\""
@@ -1127,9 +1127,10 @@ Get_Item_Data ( char* DataPointer )
         if ( EndOfThisItem ) EndOfThisItem [ 0 ] = 0;
 	
 	// Now we read in the name of this item
-	char * temp = ReadAndMallocStringFromData ( ItemPointer , ITEM_NAME_INDICATION_STRING , "\"" ); 
-	ItemMap[ItemIndex].item_name = dgettext("freedroidrpg_data", temp);
-	if ( ItemMap[ItemIndex].item_name != temp ) free(temp);
+	ItemMap[ItemIndex].item_name = ReadAndMallocStringFromData ( ItemPointer , ITEM_NAME_INDICATION_STRING , "\"" ); 
+	
+	// Now we read in the description string of this item
+	ItemMap[ItemIndex].item_description = ReadAndMallocStringFromData ( ItemPointer , ITEM_DESCRIPTION_INDICATION_STRING , "\"" ) ;
 	
 	// Now we read in if this item can be used by the influ without help
 	YesNoString = ReadAndMallocStringFromData ( ItemPointer , ITEM_CAN_BE_APPLIED_IN_COMBAT , "\"" ) ;
@@ -1489,9 +1490,6 @@ answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.",
 	// Now we read in the base list price for this item
 	ReadValueFromString( ItemPointer ,  "Base list price=" , "%hd" , 
 			     &ItemMap[ItemIndex].base_list_price , EndOfItemData );
-	
-	// Now we read in the description string of this item
-	ItemMap[ItemIndex].item_description = ReadAndMallocStringFromData ( ItemPointer , ITEM_DESCRIPTION_INDICATION_STRING , "\"" ) ;
 	
 	//--------------------
 	// Now that the picture name has been loaded, we can already load the

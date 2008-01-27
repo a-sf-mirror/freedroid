@@ -236,9 +236,9 @@ Brain : %s"), Druidmap[droidtype].druidname, _(Classname[Druidmap[ droidtype ].c
 	     _(Brainnames[ Druidmap[droidtype].brain ]));
     
     if ( (type = Druidmap[droidtype].weapon_item.type) >= 0) // make sure item=-1 
-	item_name = ItemMap[type].item_name;                 // does not segfault 
+	item_name = D_(ItemMap[type].item_name);                 // does not segfault 
     else 
-	item_name = "none";
+	item_name = _("none");
     
     sprintf( TextChunk , _("\nArmamant : %s\n\
 Sensors  1: %s\n          2: %s\n          3: %s"),
@@ -550,7 +550,7 @@ write_full_item_name_into_string ( item* ShowItem , char* full_item_name )
   //
   if ( ( ShowItem->prefix_code != (-1) ) && ( ShowItem->is_identified ) )
     strcat( full_item_name , PrefixList[ ShowItem->prefix_code ].bonus_name );
-  strcat( full_item_name , ItemMap[ ShowItem->type ].item_name );
+  strcat( full_item_name , D_(ItemMap[ ShowItem->type ].item_name ));
   if ( ( ShowItem->suffix_code != (-1) ) && ( ShowItem->is_identified ) )
     strcat( full_item_name , SuffixList[ ShowItem->suffix_code ].bonus_name );
 
@@ -596,7 +596,7 @@ ShowItemInfo ( item* ShowItem , int Displacement , char ShowArrows , int backgro
     if ( title_text_flag )
     {
 	SetCurrentFont ( Menu_BFont );
-	strcpy ( TextChunk , ItemMap [ ShowItem->type ] . item_name );
+	strcpy ( TextChunk , D_(ItemMap [ ShowItem->type ] . item_name ));
 	CutDownStringToMaximalSize ( TextChunk , 225 );
 	PutString ( Screen , 330, 38, TextChunk );
     }
@@ -774,7 +774,7 @@ ShowItemInfo ( item* ShowItem , int Displacement , char ShowArrows , int backgro
     }
     
     sprintf ( TextChunk, _("Notes: %s"), 
-	      ItemMap [ ShowItem->type ] . item_description );
+	      D_(ItemMap [ ShowItem->type ] . item_description) );
     strcat ( InfoText, TextChunk );
     
     switch ( ItemMap [ ShowItem->type ] . item_gun_use_ammunition )

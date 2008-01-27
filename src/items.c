@@ -2661,7 +2661,7 @@ raw_move_picked_up_item_to_entry ( item* ItemPointer , item* TargetPointer , poi
     
     // We announce that we have taken the item
     Me . TextVisibleTime = 0;
-    sprintf ( TempText , _("Item taken: %s."), ItemMap[ ItemPointer->type ].item_name );
+    sprintf ( TempText , _("Item taken: %s."), D_(ItemMap[ ItemPointer->type ].item_name ));
     append_new_game_message ( TempText ); // this can be freed/destroyed afterwards.  it's ok.
     Me . TextToBeDisplayed = MyMalloc ( strlen( TempText ) + 1 );
     strcpy ( Me . TextToBeDisplayed , TempText );

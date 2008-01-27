@@ -1385,7 +1385,7 @@ ItemDropFromLevelEditor( void )
 	    {
 		previous_mouse_position_index = Number_Of_Item_Types - 1 ;
 	    }
-	    PutStringFont ( Screen , FPS_Display_BFont , 20 , 440 * GameConfig . screen_height / 480 , ItemMap [ previous_mouse_position_index ] . item_name ) ;
+	    PutStringFont ( Screen , FPS_Display_BFont , 20 , 440 * GameConfig . screen_height / 480 , D_(ItemMap [ previous_mouse_position_index ] . item_name )) ;
 	}
 
 	if ( previous_prefix_selected != (-1) )
