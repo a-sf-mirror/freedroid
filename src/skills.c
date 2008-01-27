@@ -505,7 +505,7 @@ ShowSkillsExplanationScreen( void )
     
     TargetSkillRect.w = 320 - 15 - 15;
     TargetSkillRect.h = 480 - 15 ;
-    DisplayText( SpellSkillMap [ Me . readied_skill ] . description , 16 , 16+64+16, 
+    DisplayText( D_(SpellSkillMap [ Me . readied_skill ] . description) , 16 , 16+64+16, 
 		 &TargetSkillRect , TEXT_STRETCH );
 
 
@@ -705,7 +705,7 @@ ShowSkillsScreen ( void )
     //SetCurrentFont ( Menu_BFont );
     SetCurrentFont ( FPS_Display_BFont );
     
-	DisplayText( SpellSkillMap [ SkillOfThisSlot ] . name , 
+	DisplayText( D_(SpellSkillMap [ SkillOfThisSlot ] . name) , 
 		     16 + 64 + 16 + SkillScreenRect.x , 
 		     FIRST_SKILLRECT_Y + i * (64 + INTER_SKILLRECT_DIST) + SkillScreenRect.y , 
 		     &SkillScreenRect , TEXT_STRETCH );

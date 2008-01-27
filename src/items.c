@@ -3004,7 +3004,7 @@ int Get_Prefixes_Data ( char * DataPointer )
                              & BonusToFill -> level  , EndOfPrefixData );
 
 
-            BonusToFill -> bonus_name = ReadAndMallocStringFromData ( PrefixPointer , "Prefix name=\"" , "\"" ) ;
+            BonusToFill -> bonus_name = ReadAndMallocStringFromData ( PrefixPointer , "Prefix name=_\"" , "\"" ) ;
             
 	    BonusToFill ++;
 	    if ( EndOfThisPrefix ) EndOfThisPrefix [ 0 ] = '*'; // We put back the star at its place

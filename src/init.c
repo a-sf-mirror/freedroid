@@ -689,8 +689,8 @@ There are more skills defined, than the maximum number specified in the code!",
 
 	    if ( EndOfThisProgram ) EndOfThisProgram [ 0 ] = 0;
 
-	    ProgramToFill -> name = ReadAndMallocStringFromData ( ProgramPointer , "Program name=\"" , "\"" ) ;
-	    ProgramToFill -> description = ReadAndMallocStringFromData ( ProgramPointer , "Program description=\"" , "\"" ) ;
+	    ProgramToFill -> name = ReadAndMallocStringFromData ( ProgramPointer , "Program name=_\"" , "\"" ) ;
+	    ProgramToFill -> description = ReadAndMallocStringFromData ( ProgramPointer , "Program description=_\"" , "\"" ) ;
 	    ProgramToFill -> icon_name = ReadAndMallocStringFromData ( ProgramPointer , "Picture=\"" , "\"" ) ;
 
 	    ProgramToFill -> icon_surface . surface = NULL;
@@ -808,7 +808,7 @@ Get_Robot_Data ( void* DataPointer )
 #define GETTING_HIT_MODIFIER_STRING "Chance modifier, that this robot gets hit="
 #define IS_HUMAN_SPECIFICATION_STRING "Is this 'droid' a human : "
 #define INDIVIDUAL_SHAPE_SPECIFICATION_STRING "Individual shape of this droid or just -1 for classic ball shaped : "
-#define NOTES_BEGIN_STRING "Notes concerning this droid : "
+#define NOTES_BEGIN_STRING "Notes concerning this droid=_\""
 
   
   RobotPointer = LocateStringInData ( DataPointer , ROBOT_SECTION_BEGIN_STRING );
@@ -1018,10 +1018,8 @@ Get_Robot_Data ( void* DataPointer )
       ReadValueFromString( RobotPointer , INDIVIDUAL_SHAPE_SPECIFICATION_STRING , "%hd" , 
 			   &Druidmap[RobotIndex].individual_shape_nr , EndOfDataPointer );
 
-      // Now we read in the notes concerning this droid.  We consider as notes all the rest of the
-      // line after the NOTES_BEGIN_STRING until the "\n" is found.
       Druidmap[RobotIndex].notes = 
-	ReadAndMallocStringFromData ( RobotPointer , NOTES_BEGIN_STRING , "\n" ) ;
+	ReadAndMallocStringFromData ( RobotPointer , NOTES_BEGIN_STRING , "\"" ) ;
 
       // Now we're potentially ready to process the next droid.  Therefore we proceed to
       // the next number in the Droidmap array.

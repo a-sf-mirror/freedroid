@@ -248,7 +248,7 @@ Sensors  1: %s\n          2: %s\n          3: %s"),
 	     _(Sensornames[ Druidmap[droidtype].sensor3 ]));
     strcat ( InfoText , TextChunk );
     
-    sprintf ( TextChunk , _("\nNotes: %s\n"), Druidmap[droidtype].notes);
+    sprintf ( TextChunk , _("\nNotes: %s\n"), D_(Druidmap[droidtype].notes));
     strcat ( InfoText , TextChunk );
     
     SetCurrentFont( FPS_Display_BFont );
@@ -549,10 +549,10 @@ write_full_item_name_into_string ( item* ShowItem , char* full_item_name )
   // string.
   //
   if ( ( ShowItem->prefix_code != (-1) ) && ( ShowItem->is_identified ) )
-    strcat( full_item_name , PrefixList[ ShowItem->prefix_code ].bonus_name );
+    strcat( full_item_name , D_(PrefixList[ ShowItem->prefix_code ].bonus_name) );
   strcat( full_item_name , D_(ItemMap[ ShowItem->type ].item_name ));
   if ( ( ShowItem->suffix_code != (-1) ) && ( ShowItem->is_identified ) )
-    strcat( full_item_name , SuffixList[ ShowItem->suffix_code ].bonus_name );
+    strcat( full_item_name , D_(SuffixList[ ShowItem->suffix_code ].bonus_name) );
 
   //--------------------
   // If the item is magical but not identified, we might add the word
