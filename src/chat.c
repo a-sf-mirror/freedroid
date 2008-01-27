@@ -1314,6 +1314,7 @@ DoChatFromChatRosterData( int ChatPartnerCode , Enemy ChatDroid , int clear_prot
     //
     for ( i = 0 ; i < MAX_ANSWERS_PER_PERSON ; i ++ )
     {
+    	DialogMenuTexts[i] = "";
 	if ( strlen ( ChatRoster [ i ] . option_text ) )
 	{
 	    DialogMenuTexts [ i ] = ChatRoster [ i ] . option_text ;
