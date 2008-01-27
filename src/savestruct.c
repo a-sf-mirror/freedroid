@@ -224,7 +224,6 @@ save_int32_t("must_clear_second_level", &(target->must_clear_second_level));
 save_int32_t("MustReachLevel", &(target->MustReachLevel));
 save_point("MustReachPoint", &(target->MustReachPoint));
 save_double("MustLiveTime", &(target->MustLiveTime));
-save_int32_t("MustBeClass", &(target->MustBeClass));
 save_int32_t("MustBeType", &(target->MustBeType));
 save_int32_t("MustBeOne", &(target->MustBeOne));
 save_int32_t_array("ListOfActionsToBeTriggeredAtAssignment", (target->ListOfActionsToBeTriggeredAtAssignment),  MAX_MISSION_TRIGGERED_ACTIONS );
