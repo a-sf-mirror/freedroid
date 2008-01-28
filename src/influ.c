@@ -2129,72 +2129,25 @@ adapt_global_mode_for_player ( )
 		global_ingame_mode = GLOBAL_INGAME_MODE_SCROLL_DOWN ;
 	return;
     }
-    //--------------------
-    // Now at this point, we know that the cursor is *not* in the text message
-    // window any more, so we can normalize the current state to no scroll mode
-    // at this point already.
-    //
+    
     if ( ( global_ingame_mode == GLOBAL_INGAME_MODE_SCROLL_UP ) ||
 	 ( global_ingame_mode == GLOBAL_INGAME_MODE_SCROLL_DOWN ) )
     {
 	global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL ;
     }
 
-    our_enemy = GetLivingDroidBelowMouseCursor ( ) ;
-    if ( our_enemy == NULL )
-    {
-	//--------------------
-	// Now we need to find the obstacle under the current mouse
-	// cursor.  If there isn't any obstacle under it, then the global
-	// mode can be (more or less) reset.
-	//
-	obstacle_index = GetObstacleBelowMouseCursor ( ) ;
-	if ( obstacle_index == (-1) )
-	{
-	    /*
-	    if ( global_ingame_mode != GLOBAL_INGAME_MODE_IDENTIFY )
-		global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL ;
-	    return;
-	    */
-	}
-    }
-
     if ( ( RightPressed ( ) && ( ! right_pressed_previous_frame) ) || MouseWheelDownPressed ( ) )
     {
-	//--------------------
-	// Now we cut down on the available major modes for the game,
-	// until those are implemented properly.
-	//
 	if ( global_ingame_mode == GLOBAL_INGAME_MODE_NORMAL )	
 	    global_ingame_mode = GLOBAL_INGAME_MODE_EXAMINE ;
 	else if ( global_ingame_mode == GLOBAL_INGAME_MODE_EXAMINE )	
-	    global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL ;
-	else if ( global_ingame_mode == GLOBAL_INGAME_MODE_LOOT )	
-	    // global_ingame_mode = GLOBAL_INGAME_MODE_REPAIR ;
-	    global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL ;
-
-
-	else if ( global_ingame_mode == GLOBAL_INGAME_MODE_REPAIR )	
-	    global_ingame_mode = GLOBAL_INGAME_MODE_UNLOCK ;
-	else if ( global_ingame_mode == GLOBAL_INGAME_MODE_UNLOCK )	
-	    global_ingame_mode = GLOBAL_INGAME_MODE_TALK ;
-	else if ( global_ingame_mode == GLOBAL_INGAME_MODE_TALK )	
-	    global_ingame_mode = GLOBAL_INGAME_MODE_ATTACK ;
-	else if ( global_ingame_mode == GLOBAL_INGAME_MODE_ATTACK )	
-	    global_ingame_mode = GLOBAL_INGAME_MODE_PICKPOCKET ;
-	else
 	    global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL ;
     }
 
 
     if ( ( LeftPressed ( ) && ( ! left_pressed_previous_frame ) ) || MouseWheelUpPressed ( ) )
     {
-	//--------------------
-	// Now we cut down on the available major modes for the game,
-	// until those are implemented properly.
-	//
 	if ( global_ingame_mode == GLOBAL_INGAME_MODE_NORMAL )	
-	    // global_ingame_mode = GLOBAL_INGAME_MODE_PICKPOCKET ;
 	    global_ingame_mode = GLOBAL_INGAME_MODE_EXAMINE ;
 	else
 	    global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL ;
@@ -3560,7 +3513,7 @@ check_for_droids_to_attack_or_talk_with ( )
  * should deal with the effects of one such examine click by the player.
  * ---------------------------------------------------------------------- */
 void
-handle_player_examine_command ( ) 
+handle_player_examine_command ( void ) 
 {
     int obstacle_index ;
     obstacle* our_obstacle;
@@ -3568,6 +3521,9 @@ handle_player_examine_command ( )
     int chat_section;
     Level obstacle_level;
     enemy * final_bot_found = NULL;
+
+    if ( ! MouseCursorIsInUserRect(GetMousePos_x(), GetMousePos_y()))
+	return;
 
     //--------------------
     // The highest priority is other droids and characters.  If one
@@ -3592,6 +3548,7 @@ handle_player_examine_command ( )
 	else
 	    sprintf( game_message_text , _("This is a %s. %s") , Druidmap [ final_bot_found -> type ] . druidname , Druidmap [ final_bot_found -> type ] . notes );
 
+	global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL; 
 	append_new_game_message ( game_message_text );
 	return;
     }
@@ -3626,6 +3583,8 @@ handle_player_examine_command ( )
 		      obstacle_map [ our_obstacle -> type ] . obstacle_long_description ) ;
 	    append_new_game_message ( game_message_text );
 	}
+
+	global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL;
 	return;
     }
 
@@ -3636,7 +3595,7 @@ handle_player_examine_command ( )
     //
     sprintf ( game_message_text , _("You see the floor.  It should be perfectly safe to walk on it.")) ;
     append_new_game_message ( game_message_text );
-
+    global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL;
 }; // void handle_player_examine_command ( ) 
 
 
@@ -3880,18 +3839,8 @@ AnalyzePlayersMouseClick ( )
 	    check_for_droids_to_attack_or_talk_with ( ) ;
 	    break;
 	case GLOBAL_INGAME_MODE_EXAMINE:
-	    // if ( ButtonPressWasNotMeantAsFire( ) ) return;
-	    DebugPrintf ( -4 , "\n%s(): received examine command." , __FUNCTION__ );
-	    handle_player_examine_command ( 0 ) ;
-	    global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL ;
+	    handle_player_examine_command ( ) ;
 	    
-	    //--------------------
-	    // To stop any movement, we wait for the release of the 
-	    // mouse button.
-	    //
-	    while ( SpacePressed() || MouseLeftPressed() || MouseRightPressed());
-	    Activate_Conservative_Frame_Computation();
-
 	    break;
 
         case GLOBAL_INGAME_MODE_LOOT: break;

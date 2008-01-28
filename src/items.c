@@ -2260,8 +2260,6 @@ HandleInventoryScreen ( void )
 	    { HELMET_RECT_BUTTON, &(Me.special_item) },
 	};
     
-    DebugPrintf ( 2 , "\n%s(): Function call confirmed." , __FUNCTION__ );
-   
     //--------------------
     // In case the Tux is dead already, we do not need to display any inventory screen
     // or even to pick up any stuff for the Tux...
@@ -2346,19 +2344,16 @@ HandleInventoryScreen ( void )
 	    }
 	}
 
-    
     if ( MouseLeftClicked() && 
 	 ( Item_Held_In_Hand == (-1) ) &&
 	 ( global_ingame_mode != GLOBAL_INGAME_MODE_IDENTIFY ) && MouseCursorIsInInvRect( CurPos.x , CurPos.y ))
     { /*Grab from inventory screen (grid and player slots)*/
-	
 	if ( MouseCursorIsInInventoryGrid( CurPos.x , CurPos.y ) )
 	{
 	    Inv_GrabLoc.x = GetInventorySquare_x ( CurPos.x );
 	    Inv_GrabLoc.y = GetInventorySquare_y ( CurPos.y );
 	    
 	    Grabbed_InvPos = GetInventoryItemAt ( Inv_GrabLoc.x , Inv_GrabLoc.y );
-	    
 	    if ( Grabbed_InvPos == (-1) )
 	    {
 		Item_Held_In_Hand = ( -1 );
@@ -2370,9 +2365,18 @@ HandleInventoryScreen ( void )
 		// So we set, that something should be displayed in the 'hand', and it should of
 		// course be the image of the item grabbed from inventory.
 		//
-		Item_Held_In_Hand = Me . Inventory [ Grabbed_InvPos ] . type ;
-		play_item_sound( Me.Inventory[ Grabbed_InvPos ].type );
-		Me.Inventory[ Grabbed_InvPos ].currently_held_in_hand = TRUE;
+		if ( global_ingame_mode == GLOBAL_INGAME_MODE_NORMAL )
+		    {
+			Item_Held_In_Hand = Me . Inventory [ Grabbed_InvPos ] . type ;
+			play_item_sound( Me.Inventory[ Grabbed_InvPos ].type );
+			Me.Inventory[ Grabbed_InvPos ].currently_held_in_hand = TRUE;
+		    }
+		else if (global_ingame_mode == GLOBAL_INGAME_MODE_EXAMINE)
+		    {
+		    char ngm[500];
+		    sprintf(ngm, "Examining %s: %s.", D_(ItemMap[Me . Inventory [ Grabbed_InvPos ] . type].item_name), D_(ItemMap[Me . Inventory [ Grabbed_InvPos ] . type].item_description));
+		    append_new_game_message(ngm);
+		    }
 	    }
 	}
 	else
