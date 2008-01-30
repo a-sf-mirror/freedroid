@@ -212,7 +212,8 @@ DoSkill(int skill_index, int SpellCost)
 					    Me . pos . z))
 		    goto done_handling_instant_hits;
 
-		hit_enemy(droid_below_mouse_cursor, calculate_program_hit_damage ( skill_index ), 1, 0);
+		if ( calculate_program_hit_damage ( skill_index ) )
+		    hit_enemy(droid_below_mouse_cursor, calculate_program_hit_damage ( skill_index ), 1, 0);
 	        Me . temperature += SpellCost;
 		break;
 	
