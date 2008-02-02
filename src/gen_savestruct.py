@@ -109,8 +109,8 @@ def main():
             
             # Pointers
             if '*' in type:
-                #type = type.replace('*', '').strip() + '_ptr'
-		continue;
+                type = type.replace('*', '').strip() + '_ptr'
+		#continue;
             # Spaces
             type = type.replace(' ', '_')
             if type in special_types.keys(): type = special_types[type]
