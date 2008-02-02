@@ -37,6 +37,7 @@ save_int32_t("marker", &(target->marker));
 save_char("is_friendly", &(target->is_friendly));
 save_char("has_been_taken_over", &(target->has_been_taken_over));
 save_char("attack_target_type", &(target->attack_target_type));
+save_enemy_ptr("bot_target", &(target->bot_target));
 save_char("attack_run_only_when_direct_line", &(target->attack_run_only_when_direct_line));
 save_string("dialog_section_name", &(target->dialog_section_name));
 save_string("short_description_text", &(target->short_description_text));
@@ -51,15 +52,17 @@ save_float("last_phase_change", &(target->last_phase_change));
 save_float("previous_phase", &(target->previous_phase));
 save_float("last_combat_step", &(target->last_combat_step));
 save_float("TextVisibleTime", &(target->TextVisibleTime));
+save_string("TextToBeDisplayed", &(target->TextToBeDisplayed));
 save_moderately_finepoint_array("PrivatePathway", (target->PrivatePathway),  MAX_STEPS_IN_GIVEN_COURSE );
 save_char("stick_to_waypoint_system_by_default", &(target->stick_to_waypoint_system_by_default));
 save_char("bot_stuck_in_wall_at_previous_check", &(target->bot_stuck_in_wall_at_previous_check));
 save_float("time_since_previous_stuck_in_wall_check", &(target->time_since_previous_stuck_in_wall_check));
+save_enemy_ptr("NEXT", &(target->NEXT));
+save_enemy_ptr("PREV", &(target->PREV));
 fprintf(SaveGameFile, "</enemy>\n");
 return 0;
 }
-
-/*
+#if 0
 int read_enemy(char* buffer, char * tag, enemy * target)
 {
 read_int16_t(buffer, "type", &(target->type));
@@ -92,6 +95,7 @@ read_int32_t(buffer, "marker", &(target->marker));
 read_char(buffer, "is_friendly", &(target->is_friendly));
 read_char(buffer, "has_been_taken_over", &(target->has_been_taken_over));
 read_char(buffer, "attack_target_type", &(target->attack_target_type));
+read_enemy_ptr(buffer, "bot_target", &(target->bot_target));
 read_char(buffer, "attack_run_only_when_direct_line", &(target->attack_run_only_when_direct_line));
 read_string(buffer, "dialog_section_name", &(target->dialog_section_name));
 read_string(buffer, "short_description_text", &(target->short_description_text));
@@ -106,13 +110,16 @@ read_float(buffer, "last_phase_change", &(target->last_phase_change));
 read_float(buffer, "previous_phase", &(target->previous_phase));
 read_float(buffer, "last_combat_step", &(target->last_combat_step));
 read_float(buffer, "TextVisibleTime", &(target->TextVisibleTime));
+read_string(buffer, "TextToBeDisplayed", &(target->TextToBeDisplayed));
 read_moderately_finepoint_array(buffer, "PrivatePathway", (target->PrivatePathway),  MAX_STEPS_IN_GIVEN_COURSE );
 read_char(buffer, "stick_to_waypoint_system_by_default", &(target->stick_to_waypoint_system_by_default));
 read_char(buffer, "bot_stuck_in_wall_at_previous_check", &(target->bot_stuck_in_wall_at_previous_check));
 read_float(buffer, "time_since_previous_stuck_in_wall_check", &(target->time_since_previous_stuck_in_wall_check));
+read_enemy_ptr(buffer, "NEXT", &(target->NEXT));
+read_enemy_ptr(buffer, "PREV", &(target->PREV));
 return 0;
-}*/
-
+}
+#endif
 int save_bullet(char * tag, bullet * target)
 {
 fprintf(SaveGameFile, "<bullet %s>\n",tag?tag:"");
@@ -140,11 +147,14 @@ save_float("poison_damage_per_sec", &(target->poison_damage_per_sec));
 save_float("paralysation_duration", &(target->paralysation_duration));
 save_float("angle_change_rate", &(target->angle_change_rate));
 save_float("fixed_offset", &(target->fixed_offset));
+save_gps_ptr("owner_pos", &(target->owner_pos));
+save_sdl_surface_ptr_array("SurfacePointer", (target->SurfacePointer),  MAX_PHASES_IN_A_BULLET );
 save_char("Surfaces_were_generated", &(target->Surfaces_were_generated));
 fprintf(SaveGameFile, "</bullet>\n");
 return 0;
 }
-/*
+
+#if 0
 int read_bullet(char* buffer, char * tag, bullet * target)
 {
 read_int16_t(buffer, "type", &(target->type));
@@ -171,10 +181,12 @@ read_float(buffer, "poison_damage_per_sec", &(target->poison_damage_per_sec));
 read_float(buffer, "paralysation_duration", &(target->paralysation_duration));
 read_float(buffer, "angle_change_rate", &(target->angle_change_rate));
 read_float(buffer, "fixed_offset", &(target->fixed_offset));
+read_gps_ptr(buffer, "owner_pos", &(target->owner_pos));
+read_sdl_surface_ptr_array(buffer, "SurfacePointer", (target->SurfacePointer),  MAX_PHASES_IN_A_BULLET );
 read_char(buffer, "Surfaces_were_generated", &(target->Surfaces_were_generated));
 return 0;
 }
-*/
+#endif
 int save_point(char * tag, point * target)
 {
 fprintf(SaveGameFile, "<point %s>\n",tag?tag:"");
@@ -183,14 +195,7 @@ save_int32_t("y", &(target->y));
 fprintf(SaveGameFile, "</point>\n");
 return 0;
 }
-/*
-int read_point(char* buffer, char * tag, point * target)
-{
-read_int32_t(buffer, "x", &(target->x));
-read_int32_t(buffer, "y", &(target->y));
-return 0;
-}
-*/
+
 int save_moderately_finepoint(char * tag, moderately_finepoint * target)
 {
 fprintf(SaveGameFile, "<moderately_finepoint %s>\n",tag?tag:"");
@@ -199,14 +204,7 @@ save_float("y", &(target->y));
 fprintf(SaveGameFile, "</moderately_finepoint>\n");
 return 0;
 }
-/*
-int read_moderately_finepoint(char* buffer, char * tag, moderately_finepoint * target)
-{
-read_float(buffer, "x", &(target->x));
-read_float(buffer, "y", &(target->y));
-return 0;
-}
-*/
+
 int save_mission(char * tag, mission * target)
 {
 fprintf(SaveGameFile, "<mission %s>\n",tag?tag:"");
@@ -232,32 +230,7 @@ save_int32_t("expanded_display_for_this_mission", &(target->expanded_display_for
 fprintf(SaveGameFile, "</mission>\n");
 return 0;
 }
-/*
-int read_mission(char* buffer, char * tag, mission * target)
-{
-read_string(buffer, "MissionName", &(target->MissionName));
-read_int32_t(buffer, "MissionWasAssigned", &(target->MissionWasAssigned));
-read_int32_t(buffer, "MissionIsComplete", &(target->MissionIsComplete));
-read_int32_t(buffer, "MissionWasFailed", &(target->MissionWasFailed));
-read_int32_t(buffer, "MissionExistsAtAll", &(target->MissionExistsAtAll));
-read_int32_t(buffer, "AutomaticallyAssignThisMissionAtGameStart", &(target->AutomaticallyAssignThisMissionAtGameStart));
-read_int32_t(buffer, "fetch_item", &(target->fetch_item));
-read_int32_t(buffer, "KillClass", &(target->KillClass));
-read_int32_t(buffer, "KillOne", &(target->KillOne));
-read_int32_t(buffer, "must_clear_first_level", &(target->must_clear_first_level));
-read_int32_t(buffer, "must_clear_second_level", &(target->must_clear_second_level));
-read_int32_t(buffer, "MustReachLevel", &(target->MustReachLevel));
-read_point(buffer, "MustReachPoint", &(target->MustReachPoint));
-read_double(buffer, "MustLiveTime", &(target->MustLiveTime));
-read_int32_t(buffer, "MustBeClass", &(target->MustBeClass));
-read_int32_t(buffer, "MustBeType", &(target->MustBeType));
-read_int32_t(buffer, "MustBeOne", &(target->MustBeOne));
-read_int32_t_array(buffer, "ListOfActionsToBeTriggeredAtAssignment", (target->ListOfActionsToBeTriggeredAtAssignment),  MAX_MISSION_TRIGGERED_ACTIONS );
-read_int32_t_array(buffer, "ListOfActionsToBeTriggeredAtCompletition", (target->ListOfActionsToBeTriggeredAtCompletition),  MAX_MISSION_TRIGGERED_ACTIONS );
-read_int32_t(buffer, "expanded_display_for_this_mission", &(target->expanded_display_for_this_mission));
-return 0;
-}
-*/
+
 int save_tux_t(char * tag, tux_t * target)
 {
 fprintf(SaveGameFile, "<tux_t %s>\n",tag?tag:"");
@@ -272,6 +245,7 @@ save_finepoint("speed", &(target->speed));
 save_gps("pos", &(target->pos));
 save_gps("teleport_anchor", &(target->teleport_anchor));
 save_gps("mouse_move_target", &(target->mouse_move_target));
+save_enemy_ptr("current_enemy_target", &(target->current_enemy_target));
 save_int32_t("mouse_move_target_combo_action_type", &(target->mouse_move_target_combo_action_type));
 save_int32_t("mouse_move_target_combo_action_parameter", &(target->mouse_move_target_combo_action_parameter));
 save_int32_t("light_bonus_from_tux", &(target->light_bonus_from_tux));
@@ -328,6 +302,7 @@ save_int32_t("marker", &(target->marker));
 save_float("LastCrysoundTime", &(target->LastCrysoundTime));
 save_float("LastTransferSoundTime", &(target->LastTransferSoundTime));
 save_float("TextVisibleTime", &(target->TextVisibleTime));
+save_string("TextToBeDisplayed", &(target->TextToBeDisplayed));
 save_float("Current_Victim_Resistance_Factor", &(target->Current_Victim_Resistance_Factor));
 save_int32_t("FramesOnThisLevel", &(target->FramesOnThisLevel));
 save_int32_t("readied_skill", &(target->readied_skill));
@@ -356,104 +331,7 @@ save_float("paralyze_duration", &(target->paralyze_duration));
 fprintf(SaveGameFile, "</tux_t>\n");
 return 0;
 }
-/*
-int read_tux_t(char* buffer, char * tag, tux_t * target)
-{
-read_char(buffer, "type", &(target->type));
-read_char(buffer, "status", &(target->status));
-read_float(buffer, "current_game_date", &(target->current_game_date));
-read_int32_t(buffer, "current_power_bonus", &(target->current_power_bonus));
-read_float(buffer, "power_bonus_end_date", &(target->power_bonus_end_date));
-read_int32_t(buffer, "current_dexterity_bonus", &(target->current_dexterity_bonus));
-read_float(buffer, "dexterity_bonus_end_date", &(target->dexterity_bonus_end_date));
-read_finepoint(buffer, "speed", &(target->speed));
-read_gps(buffer, "pos", &(target->pos));
-read_gps(buffer, "teleport_anchor", &(target->teleport_anchor));
-read_gps(buffer, "mouse_move_target", &(target->mouse_move_target));
-read_int32_t(buffer, "mouse_move_target_combo_action_type", &(target->mouse_move_target_combo_action_type));
-read_int32_t(buffer, "mouse_move_target_combo_action_parameter", &(target->mouse_move_target_combo_action_parameter));
-read_int32_t(buffer, "light_bonus_from_tux", &(target->light_bonus_from_tux));
-read_int32_t(buffer, "map_maker_is_present", &(target->map_maker_is_present));
-read_float(buffer, "maxenergy", &(target->maxenergy));
-read_float(buffer, "energy", &(target->energy));
-read_float(buffer, "max_temperature", &(target->max_temperature));
-read_float(buffer, "temperature", &(target->temperature));
-read_float(buffer, "old_temperature", &(target->old_temperature));
-read_float(buffer, "max_running_power", &(target->max_running_power));
-read_float(buffer, "running_power", &(target->running_power));
-read_int32_t(buffer, "running_must_rest", &(target->running_must_rest));
-read_int32_t(buffer, "running_power_bonus", &(target->running_power_bonus));
-read_float(buffer, "health_recovery_rate", &(target->health_recovery_rate));
-read_float(buffer, "cooling_rate", &(target->cooling_rate));
-read_int16_t(buffer, "LastMouse_X", &(target->LastMouse_X));
-read_int16_t(buffer, "LastMouse_Y", &(target->LastMouse_Y));
-read_double(buffer, "busy_time", &(target->busy_time));
-read_int32_t(buffer, "busy_type", &(target->busy_type));
-read_double(buffer, "phase", &(target->phase));
-read_float(buffer, "angle", &(target->angle));
-read_float(buffer, "walk_cycle_phase", &(target->walk_cycle_phase));
-read_float(buffer, "weapon_swing_time", &(target->weapon_swing_time));
-read_float(buffer, "MissionTimeElapsed", &(target->MissionTimeElapsed));
-read_float(buffer, "got_hit_time", &(target->got_hit_time));
-read_string(buffer, "freedroid_version_string", &(target->freedroid_version_string));
-read_int32_t(buffer, "Strength", &(target->Strength));
-read_int32_t(buffer, "Magic", &(target->Magic));
-read_int32_t(buffer, "Dexterity", &(target->Dexterity));
-read_int32_t(buffer, "base_vitality", &(target->base_vitality));
-read_int32_t(buffer, "base_strength", &(target->base_strength));
-read_int32_t(buffer, "base_magic", &(target->base_magic));
-read_int32_t(buffer, "base_dexterity", &(target->base_dexterity));
-read_int32_t(buffer, "Vitality", &(target->Vitality));
-read_int32_t(buffer, "points_to_distribute", &(target->points_to_distribute));
-read_float(buffer, "base_damage", &(target->base_damage));
-read_float(buffer, "damage_modifier", &(target->damage_modifier));
-read_float(buffer, "AC", &(target->AC));
-read_float(buffer, "to_hit", &(target->to_hit));
-read_int32_t(buffer, "lv_1_bot_will_hit_percentage", &(target->lv_1_bot_will_hit_percentage));
-read_int32_t(buffer, "resist_disruptor", &(target->resist_disruptor));
-read_int32_t(buffer, "resist_fire", &(target->resist_fire));
-read_int32_t(buffer, "resist_electricity", &(target->resist_electricity));
-read_int32_t(buffer, "freezing_melee_targets", &(target->freezing_melee_targets));
-read_int32_t(buffer, "double_ranged_damage", &(target->double_ranged_damage));
-read_uint32_t(buffer, "Experience", &(target->Experience));
-read_int32_t(buffer, "exp_level", &(target->exp_level));
-read_uint32_t(buffer, "ExpRequired", &(target->ExpRequired));
-read_uint32_t(buffer, "ExpRequired_previously", &(target->ExpRequired_previously));
-read_uint32_t(buffer, "Gold", &(target->Gold));
-read_string(buffer, "character_name", &(target->character_name));
-read_mission_array(buffer, "AllMissions", (target->AllMissions),  MAX_MISSIONS_IN_GAME );
-read_int32_t(buffer, "marker", &(target->marker));
-read_float(buffer, "LastCrysoundTime", &(target->LastCrysoundTime));
-read_float(buffer, "LastTransferSoundTime", &(target->LastTransferSoundTime));
-read_float(buffer, "TextVisibleTime", &(target->TextVisibleTime));
-read_float(buffer, "Current_Victim_Resistance_Factor", &(target->Current_Victim_Resistance_Factor));
-read_int32_t(buffer, "FramesOnThisLevel", &(target->FramesOnThisLevel));
-read_int32_t(buffer, "readied_skill", &(target->readied_skill));
-read_int32_t_array(buffer, "SkillLevel", (target->SkillLevel), MAX_NUMBER_OF_PROGRAMS);
-read_int32_t_array(buffer, "base_skill_level", (target->base_skill_level), MAX_NUMBER_OF_PROGRAMS);
-read_int32_t(buffer, "melee_weapon_skill", &(target->melee_weapon_skill));
-read_int32_t(buffer, "ranged_weapon_skill", &(target->ranged_weapon_skill));
-read_int32_t(buffer, "spellcasting_skill", &(target->spellcasting_skill));
-read_int32_t(buffer, "hacking_skill", &(target->hacking_skill));
-read_item_array(buffer, "Inventory", (target->Inventory),  MAX_ITEMS_IN_INVENTORY );
-read_item(buffer, "weapon_item", &(target->weapon_item));
-read_item(buffer, "drive_item", &(target->drive_item));
-read_item(buffer, "armour_item", &(target->armour_item));
-read_item(buffer, "shield_item", &(target->shield_item));
-read_item(buffer, "special_item", &(target->special_item));
-read_chatflags_t_array(buffer, "Chat_Flags", (target->Chat_Flags),  MAX_ANSWERS_PER_PERSON );
-read_cookielist_t_array(buffer, "cookie_list", (target->cookie_list),  MAX_COOKIE_LENGTH );
-read_int32_t(buffer, "is_town_guard_member", &(target->is_town_guard_member));
-read_uint16_t_array(buffer, "KillRecord", (target->KillRecord),  200 );
-read_automap_data_t_array(buffer, "Automap", (target->Automap), 100);
-read_int32_t(buffer, "current_zero_ring_index", &(target->current_zero_ring_index));
-read_gps_array(buffer, "Position_History_Ring_Buffer", (target->Position_History_Ring_Buffer),  MAX_INFLU_POSITION_HISTORY );
-read_int32_t(buffer, "BigScreenMessageIndex", &(target->BigScreenMessageIndex));
-read_float(buffer, "slowdown_duration", &(target->slowdown_duration));
-read_float(buffer, "paralyze_duration", &(target->paralyze_duration));
-return 0;
-}
-*/
+
 int save_item(char * tag, item * target)
 {
 fprintf(SaveGameFile, "<item %s>\n",tag?tag:"");
@@ -490,42 +368,7 @@ save_point("inventory_position", &(target->inventory_position));
 fprintf(SaveGameFile, "</item>\n");
 return 0;
 }
-/*
-int read_item(char* buffer, char * tag, item * target)
-{
-read_finepoint(buffer, "pos", &(target->pos));
-read_sdl_rect(buffer, "text_slot_rectangle", &(target->text_slot_rectangle));
-read_int32_t(buffer, "type", &(target->type));
-read_int32_t(buffer, "currently_held_in_hand", &(target->currently_held_in_hand));
-read_int32_t(buffer, "is_identified", &(target->is_identified));
-read_int32_t(buffer, "max_duration", &(target->max_duration));
-read_float(buffer, "current_duration", &(target->current_duration));
-read_float(buffer, "throw_time", &(target->throw_time));
-read_int32_t(buffer, "prefix_code", &(target->prefix_code));
-read_int32_t(buffer, "suffix_code", &(target->suffix_code));
-read_int32_t(buffer, "bonus_to_dex", &(target->bonus_to_dex));
-read_int32_t(buffer, "bonus_to_str", &(target->bonus_to_str));
-read_int32_t(buffer, "bonus_to_vit", &(target->bonus_to_vit));
-read_int32_t(buffer, "bonus_to_mag", &(target->bonus_to_mag));
-read_int32_t(buffer, "bonus_to_life", &(target->bonus_to_life));
-read_int32_t(buffer, "bonus_to_force", &(target->bonus_to_force));
-read_float(buffer, "bonus_to_health_recovery", &(target->bonus_to_health_recovery));
-read_float(buffer, "bonus_to_cooling_rate", &(target->bonus_to_cooling_rate));
-read_int32_t(buffer, "bonus_to_tohit", &(target->bonus_to_tohit));
-read_int32_t(buffer, "bonus_to_all_attributes", &(target->bonus_to_all_attributes));
-read_int32_t(buffer, "bonus_to_ac_or_damage", &(target->bonus_to_ac_or_damage));
-read_int32_t(buffer, "bonus_to_resist_fire", &(target->bonus_to_resist_fire));
-read_int32_t(buffer, "bonus_to_resist_electricity", &(target->bonus_to_resist_electricity));
-read_int32_t(buffer, "bonus_to_resist_disruptor", &(target->bonus_to_resist_disruptor));
-read_int32_t(buffer, "ac_bonus", &(target->ac_bonus));
-read_int32_t(buffer, "damage", &(target->damage));
-read_int32_t(buffer, "damage_modifier", &(target->damage_modifier));
-read_int32_t(buffer, "multiplicity", &(target->multiplicity));
-read_int32_t(buffer, "ammo_clip", &(target->ammo_clip));
-read_point(buffer, "inventory_position", &(target->inventory_position));
-return 0;
-}
-*/
+
 int save_finepoint(char * tag, finepoint * target)
 {
 fprintf(SaveGameFile, "<finepoint %s>\n",tag?tag:"");
@@ -534,14 +377,7 @@ save_double("y", &(target->y));
 fprintf(SaveGameFile, "</finepoint>\n");
 return 0;
 }
-/*
-int read_finepoint(char* buffer, char * tag, finepoint * target)
-{
-read_double(buffer, "x", &(target->x));
-read_double(buffer, "y", &(target->y));
-return 0;
-}
-*/
+
 int save_configuration_for_freedroid(char * tag, configuration_for_freedroid * target)
 {
 fprintf(SaveGameFile, "<configuration_for_freedroid %s>\n",tag?tag:"");
@@ -606,70 +442,7 @@ save_int32_t("talk_to_bots_after_takeover", &(target->talk_to_bots_after_takeove
 fprintf(SaveGameFile, "</configuration_for_freedroid>\n");
 return 0;
 }
-/*
-int read_configuration_for_freedroid(char* buffer, char * tag, configuration_for_freedroid * target)
-{
-read_float(buffer, "WantedTextVisibleTime", &(target->WantedTextVisibleTime));
-read_int32_t(buffer, "Draw_Framerate", &(target->Draw_Framerate));
-read_int32_t(buffer, "Draw_Energy", &(target->Draw_Energy));
-read_int32_t(buffer, "Draw_Position", &(target->Draw_Position));
-read_int32_t(buffer, "Influencer_Refresh_Text", &(target->Influencer_Refresh_Text));
-read_int32_t(buffer, "Influencer_Blast_Text", &(target->Influencer_Blast_Text));
-read_int32_t(buffer, "Enemy_Hit_Text", &(target->Enemy_Hit_Text));
-read_int32_t(buffer, "Enemy_Bump_Text", &(target->Enemy_Bump_Text));
-read_int32_t(buffer, "Enemy_Aim_Text", &(target->Enemy_Aim_Text));
-read_int32_t(buffer, "All_Texts_Switch", &(target->All_Texts_Switch));
-read_float(buffer, "Current_BG_Music_Volume", &(target->Current_BG_Music_Volume));
-read_float(buffer, "Current_Sound_FX_Volume", &(target->Current_Sound_FX_Volume));
-read_float(buffer, "current_gamma_correction", &(target->current_gamma_correction));
-read_int32_t(buffer, "StandardEnemyMessages_On_Off", &(target->StandardEnemyMessages_On_Off));
-read_int32_t(buffer, "StandardInfluencerMessages_On_Off", &(target->StandardInfluencerMessages_On_Off));
-read_int32_t(buffer, "Mouse_Input_Permitted", &(target->Mouse_Input_Permitted));
-read_int32_t(buffer, "Mission_Log_Visible", &(target->Mission_Log_Visible));
-read_float(buffer, "Mission_Log_Visible_Time", &(target->Mission_Log_Visible_Time));
-read_float(buffer, "Mission_Log_Visible_Max_Time", &(target->Mission_Log_Visible_Max_Time));
-read_int32_t(buffer, "Inventory_Visible", &(target->Inventory_Visible));
-read_int32_t(buffer, "CharacterScreen_Visible", &(target->CharacterScreen_Visible));
-read_int32_t(buffer, "SkillScreen_Visible", &(target->SkillScreen_Visible));
-read_int32_t(buffer, "Automap_Visible", &(target->Automap_Visible));
-read_int32_t(buffer, "spell_level_visible", &(target->spell_level_visible));
-read_int32_t(buffer, "terminate_on_missing_speech_sample", &(target->terminate_on_missing_speech_sample));
-read_int32_t(buffer, "show_subtitles_in_dialogs", &(target->show_subtitles_in_dialogs));
-read_string(buffer, "freedroid_version_string", &(target->freedroid_version_string));
-read_int32_t(buffer, "skip_light_radius", &(target->skip_light_radius));
-read_int32_t(buffer, "skill_explanation_screen_visible", &(target->skill_explanation_screen_visible));
-read_int32_t(buffer, "enemy_energy_bars_visible", &(target->enemy_energy_bars_visible));
-read_int32_t(buffer, "hog_CPU", &(target->hog_CPU));
-read_int32_t(buffer, "highlighting_mode_full", &(target->highlighting_mode_full));
-read_int32_t(buffer, "omit_tux_in_level_editor", &(target->omit_tux_in_level_editor));
-read_int32_t(buffer, "omit_obstacles_in_level_editor", &(target->omit_obstacles_in_level_editor));
-read_int32_t(buffer, "omit_enemies_in_level_editor", &(target->omit_enemies_in_level_editor));
-read_int32_t(buffer, "level_editor_edit_mode", &(target->level_editor_edit_mode));
-read_int32_t(buffer, "zoom_is_on", &(target->zoom_is_on));
-read_int32_t(buffer, "show_quick_inventory", &(target->show_quick_inventory));
-read_int32_t(buffer, "show_blood", &(target->show_blood));
-read_int32_t(buffer, "show_tooltips", &(target->show_tooltips));
-read_int32_t(buffer, "tux_image_update_policy", &(target->tux_image_update_policy));
-read_int32_t(buffer, "number_of_big_screen_messages", &(target->number_of_big_screen_messages));
-read_float(buffer, "delay_for_big_screen_messages", &(target->delay_for_big_screen_messages));
-read_int32_t(buffer, "enable_cheatkeys", &(target->enable_cheatkeys));
-read_int32_t(buffer, "transparency", &(target->transparency));
-read_int32_t(buffer, "automap_manual_shift_x", &(target->automap_manual_shift_x));
-read_int32_t(buffer, "automap_manual_shift_y", &(target->automap_manual_shift_y));
-read_int32_t(buffer, "screen_width", &(target->screen_width));
-read_int32_t(buffer, "screen_height", &(target->screen_height));
-read_int32_t(buffer, "next_time_width_of_screen", &(target->next_time_width_of_screen));
-read_int32_t(buffer, "next_time_height_of_screen", &(target->next_time_height_of_screen));
-read_float(buffer, "automap_display_scale", &(target->automap_display_scale));
-read_int32_t(buffer, "skip_shadow_blitting", &(target->skip_shadow_blitting));
-read_int32_t(buffer, "language", &(target->language));
-read_int32_t(buffer, "do_fadings", &(target->do_fadings));
-read_int32_t(buffer, "auto_display_to_help", &(target->auto_display_to_help));
-read_int32_t(buffer, "fullscreen_on", &(target->fullscreen_on));
-read_int32_t(buffer, "talk_to_bots_after_takeover", &(target->talk_to_bots_after_takeover));
-return 0;
-}
-*/
+
 int save_gps(char * tag, gps * target)
 {
 fprintf(SaveGameFile, "<gps %s>\n",tag?tag:"");
@@ -679,12 +452,5 @@ save_int32_t("z", &(target->z));
 fprintf(SaveGameFile, "</gps>\n");
 return 0;
 }
-/*
-int read_gps(char* buffer, char * tag, gps * target)
-{
-read_double(buffer, "x", &(target->x));
-read_double(buffer, "y", &(target->y));
-read_int32_t(buffer, "z", &(target->z));
-return 0;
-}
-*/
+
+
