@@ -679,7 +679,7 @@ LoadChatRosterWithChatSequence ( char* FullPathAndFullFilename )
 	// cause this will be done by the next 'InitChatRoster' function anyway.
 	//
 	ChatRoster[ OptionIndex ] . option_text = 
-	    ReadAndMallocStringFromData ( SectionPointer , "OptionText=\"" , "\"" ) ;
+	    ReadAndMallocStringFromData ( SectionPointer , "OptionText=_\"" , "\"" ) ;
 	DebugPrintf( CHAT_DEBUG_LEVEL , "\nOptionText found : \"%s\"." , ChatRoster[ OptionIndex ] . option_text );
 	ChatRoster[ OptionIndex ] . option_sample_file_name = 
 	    ReadAndMallocStringFromData ( SectionPointer , "OptionSample=\"" , "\"" ) ;
@@ -724,7 +724,7 @@ Therefore we need not add an additional termination character now." );
 	}
 	
 #define NEW_REPLY_SAMPLE_STRING "ReplySample=\""
-#define NEW_REPLY_SUBTITLE_STRING "Subtitle=\""
+#define NEW_REPLY_SUBTITLE_STRING "Subtitle=_\""
 	
 	//--------------------
 	// We count the number of Subtitle and Sample combinations and then
@@ -757,7 +757,7 @@ found in this option of the dialogue, which is fine.", NumberOfReplySamples );
 	for ( j = 0 ; j < NumberOfReplySamples ; j ++ )
 	{
 	    ChatRoster[ OptionIndex ] . reply_subtitle_list [ j ] =
-		ReadAndMallocStringFromData ( ReplyPointer , "Subtitle=\"" , "\"" ) ;
+		ReadAndMallocStringFromData ( ReplyPointer , "Subtitle=_\"" , "\"" ) ;
 	    DebugPrintf( CHAT_DEBUG_LEVEL , "\nReplySubtitle found : \"%s\"." , ChatRoster[ OptionIndex ] . reply_subtitle_list [ j ] );
 	    ChatRoster[ OptionIndex ] . reply_sample_list [ j ] =
 		ReadAndMallocStringFromData ( ReplyPointer , "ReplySample=\"" , "\"" ) ;
