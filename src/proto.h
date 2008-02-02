@@ -350,9 +350,7 @@ EXTERN void save_automap_data(char*, automap_data_t *, int);
 #define save_sdl_rect(X,Y)
 #define read_sdl_rect(X,Y,Z)
 #define save_gps_ptr(X,Y)
-#define save_enemy_s_ptr(X,Y) save_enemy_ptr(X,Y)
 EXTERN void save_enemy_ptr(char *, enemy **);
-#define read_enemy_s_ptr(X,Y,Z) read_enemy_ptr(X,Y,Z)
 EXTERN void read_enemy_ptr(char *, char *, enemy **);
 #define save_sdl_surface_ptr_array(X,Y,Z)
 

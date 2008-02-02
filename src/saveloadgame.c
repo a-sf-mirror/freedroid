@@ -597,12 +597,13 @@ LoadGame( void )
 /* Save complex simple types. Structured types are defined in savestruct.c, and
  * primitive types are macros in proto.h
  */
-void save_enemy_s_ptr(char * tag, enemy ** val)
+void save_enemy_ptr(char * tag, enemy ** val)
 {
 /* Do nothing, at least for now*/
+fprintf(SaveGameFile, "%s: @%p\n", tag, (void *)(*val));
 }
 
-void read_enemy_s_ptr(char * buffer, char * tag, enemy ** val)
+void read_enemy_ptr(char * buffer, char * tag, enemy ** val)
 {
 }
 
