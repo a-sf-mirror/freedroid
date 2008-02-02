@@ -30,10 +30,10 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-New Option Nr=0  OptionText="THIS WILL NEVER BE VISIBLE"
+New Option Nr=0  OptionText=_"THIS WILL NEVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=76  PositionY=241  
-Subtitle="Hey you!  Linarian!  What do you want here?"
+Subtitle=_"Hey you!  Linarian!  What do you want here?"
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=0 ChangeToValue=0
 ChangeOption=1 ChangeToValue=1
@@ -44,10 +44,10 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=1  OptionText="Just taking a look around."
+New Option Nr=1  OptionText=_"Just taking a look around."
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=175  PositionY=358  
-Subtitle="Ok!  But don't make any trouble!  Or you'll be in trouble!"
+Subtitle=_"Ok!  But don't make any trouble!  Or you'll be in trouble!"
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=1 ChangeToValue=0
 ChangeOption=2 ChangeToValue=0
@@ -57,10 +57,10 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=2  OptionText="I'd like to get into the mine."
+New Option Nr=2  OptionText=_"I'd like to get into the mine."
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=217  PositionY=216  
-Subtitle="Ok!  But don't make any trouble!  Or you'll be in trouble!"
+Subtitle=_"Ok!  But don't make any trouble!  Or you'll be in trouble!"
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=1 ChangeToValue=0
 ChangeOption=2 ChangeToValue=0
@@ -70,10 +70,10 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=3  OptionText="I'm here to make an end to your mining business."
+New Option Nr=3  OptionText=_"I'm here to make an end to your mining business."
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=182  PositionY=103  
-Subtitle="Ok Linarian!  You wanted it that way!  And I don't like penguins anyway!"
+Subtitle=_"Ok Linarian!  You wanted it that way!  And I don't like penguins anyway!"
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=1 ChangeToValue=0
 ChangeOption=2 ChangeToValue=0
@@ -84,10 +84,10 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=99  OptionText="I'll be going then."
+New Option Nr=99  OptionText=_"I'll be going then."
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=409  PositionY=243  
-Subtitle="Mhmmm."
+Subtitle=_"Mhmmm."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=2 ChangeToValue=1
 AlwaysExecuteThisOptionPriorToDialogStart="no"

@@ -30,10 +30,10 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-New Option Nr=0  OptionText=" Um... Hello?"
+New Option Nr=0  OptionText=_" Um... Hello?"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=64  PositionY=224  
-Subtitle="AH! Visitors! Come in! Come in!"
+Subtitle=_"AH! Visitors! Come in! Come in!"
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=0 ChangeToValue=0
 LinkedTo:1
@@ -41,12 +41,12 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-New Option Nr=1  OptionText=" I think I must go now. Right now. See you later."
+New Option Nr=1  OptionText=_" I think I must go now. Right now. See you later."
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=152  PositionY=170  
-Subtitle="No, don't go. I will not let you go before we talk. Important things."
+Subtitle=_"No, don't go. I will not let you go before we talk. Important things."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="I can help you understand computers... Greater than ever before."
+Subtitle=_"I can help you understand computers... Greater than ever before."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=20 ChangeToValue=1
 ChangeOption=99 ChangeToValue=1
@@ -57,14 +57,14 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=20  OptionText=" Who are you?"
+New Option Nr=20  OptionText=_" Who are you?"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=200  PositionY=200  
-Subtitle="I? Sorenson is a great computer person."
+Subtitle=_"I? Sorenson is a great computer person."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="Knows the deep codes. Walks the paths."
+Subtitle=_"Knows the deep codes. Walks the paths."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="Sees the light of all chips. Knows how to use every keyboard."
+Subtitle=_"Sees the light of all chips. Knows how to use every keyboard."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=20 ChangeToValue=0
 LinkedTo:21
@@ -72,14 +72,14 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=21  OptionText=" Erm..."
+New Option Nr=21  OptionText=_" Erm..."
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=200  PositionY=200  
-Subtitle="Sees the bit. Knows the bytes. Explores the great networks."
+Subtitle=_"Sees the bit. Knows the bytes. Explores the great networks."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="The best friend of the clean and pure code."
+Subtitle=_"The best friend of the clean and pure code."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="The great light on the night sky of the hollow web of computer power."
+Subtitle=_"The great light on the night sky of the hollow web of computer power."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=21 ChangeToValue=0
 LinkedTo:22
@@ -87,12 +87,12 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=22  OptionText=" Yes, I get the idea..."
+New Option Nr=22  OptionText=_" Yes, I get the idea..."
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=200  PositionY=200  
-Subtitle="Seeker of clean languages. The great knower of obscure secrets."
+Subtitle=_"Seeker of clean languages. The great knower of obscure secrets."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="The one who speaks to hard drives. The best --"
+Subtitle=_"The one who speaks to hard drives. The best --"
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=22 ChangeToValue=0
 LinkedTo:23
@@ -100,16 +100,16 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=23  OptionText=" I KNOW! I KNOW!"
+New Option Nr=23  OptionText=_" I KNOW! I KNOW!"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=200  PositionY=200  
-Subtitle="Oh."
+Subtitle=_"Oh."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="Sorenson did not tell you most yet."
+Subtitle=_"Sorenson did not tell you most yet."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="She did not tell you she is the great controler of light."
+Subtitle=_"She did not tell you she is the great controler of light."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="She did not tell you she is the walker of the dark corridors --"
+Subtitle=_"She did not tell you she is the walker of the dark corridors --"
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=23 ChangeToValue=0
 LinkedTo:24
@@ -117,28 +117,28 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=24  OptionText=" STOP! STOP! I CANNOT TAKE THIS ANYMORE! MY HEAD HURTS!"
+New Option Nr=24  OptionText=_" STOP! STOP! I CANNOT TAKE THIS ANYMORE! MY HEAD HURTS!"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=200  PositionY=200  
-Subtitle="Apology is being extended by me. Sorenson overdid it."
+Subtitle=_"Apology is being extended by me. Sorenson overdid it."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="Sorenson the coder greets you."
+Subtitle=_"Sorenson the coder greets you."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=24 ChangeToValue=0
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=30  OptionText=" Why are you like this? What happened to you?"
+New Option Nr=30  OptionText=_" Why are you like this? What happened to you?"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=200  PositionY=200  
-Subtitle="Was learning COBOL. Pain. Torture. Horrible screaming."
+Subtitle=_"Was learning COBOL. Pain. Torture. Horrible screaming."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="Sorenson ask for help. Many days and nights."
+Subtitle=_"Sorenson ask for help. Many days and nights."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="Light arrived. Light offered help. Sorenson changed."
+Subtitle=_"Light arrived. Light offered help. Sorenson changed."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="Free person now."
+Subtitle=_"Free person now."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=30 ChangeToValue=0
 ChangeOption=31 ChangeToValue=1
@@ -146,22 +146,22 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=31  OptionText=" What is this COBOL?"
+New Option Nr=31  OptionText=_" What is this COBOL?"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=200  PositionY=200  
-Subtitle="COBOL is the mind-crippler."
+Subtitle=_"COBOL is the mind-crippler."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="Don't use it. Forget the cursed name. COBOL is pain. COBOL is hate."
+Subtitle=_"Don't use it. Forget the cursed name. COBOL is pain. COBOL is hate."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=31 ChangeToValue=0
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=40  OptionText=" I see you have a huge book collection. Mind if I buy some from you?"
+New Option Nr=40  OptionText=_" I see you have a huge book collection. Mind if I buy some from you?"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=200  PositionY=200  
-Subtitle="Of course. Trade is good."
+Subtitle=_"Of course. Trade is good."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=40 ChangeToValue=0
 ChangeOption=41 ChangeToValue=1
@@ -170,10 +170,10 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=41  OptionText=" Can I take a look at your books again?"
+New Option Nr=41  OptionText=_" Can I take a look at your books again?"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=200  PositionY=200  
-Subtitle="Yes. Sure. Of course."
+Subtitle=_"Yes. Sure. Of course."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=41 ChangeToValue=1
 DoSomethingExtra="InitTradeWithCharacter:Sorenson"
@@ -181,12 +181,12 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=50  OptionText=" You got me curious. How can you help me understand computers better?"
+New Option Nr=50  OptionText=_" You got me curious. How can you help me understand computers better?"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=200  PositionY=200  
-Subtitle="Simplicity! Sign this contract. No need to read it."
+Subtitle=_"Simplicity! Sign this contract. No need to read it."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="You trust Sorenson, right?"
+Subtitle=_"You trust Sorenson, right?"
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=50 ChangeToValue=0
 DoSomethingExtra="ExecuteSubdialog:subdlg_Sorenson"
@@ -194,10 +194,10 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=99  OptionText=" I really must be going now. Goodbye."
+New Option Nr=99  OptionText=_" I really must be going now. Goodbye."
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=347  PositionY=250  
-Subtitle="Please come back later, Linarian. We must talk again."
+Subtitle=_"Please come back later, Linarian. We must talk again."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=99 ChangeToValue=1
 DoSomethingExtra="EndDialog"

@@ -30,7 +30,7 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-New Option Nr=0  OptionText="STARTING NODE"
+New Option Nr=0  OptionText=_"STARTING NODE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=267  PositionY=283  
 ChangeOption=0 ChangeToValue=0
@@ -40,7 +40,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-New Option Nr=1  OptionText="GOT EXPERIENCE POINTS?"
+New Option Nr=1  OptionText=_"GOT EXPERIENCE POINTS?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
 ChangeOption=1 ChangeToValue=0
@@ -49,7 +49,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=2  OptionText="ALREADY TAUGHT?"
+New Option Nr=2  OptionText=_"ALREADY TAUGHT?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
 ChangeOption=2 ChangeToValue=0
@@ -58,7 +58,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=20  OptionText=" I'm ready. Please show me how to extract bot parts. (cost 50 cash, 1 ability points)"
+New Option Nr=20  OptionText=_" I'm ready. Please show me how to extract bot parts. (cost 50 cash, 1 ability points)"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=200  PositionY=200  
 ChangeOption=20 ChangeToValue=0
@@ -69,7 +69,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=25  OptionText="TEACHING THE FIRST TIME"
+New Option Nr=25  OptionText=_"TEACHING THE FIRST TIME"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
 ChangeOption=20 ChangeToValue=1
@@ -79,7 +79,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=26  OptionText="TEACHING MORE"
+New Option Nr=26  OptionText=_"TEACHING MORE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
 ChangeOption=26 ChangeToValue=0
@@ -89,7 +89,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=30  OptionText=" Sure. Teach me all that you know. (cost 50 cash, 1 ability points)"
+New Option Nr=30  OptionText=_" Sure. Teach me all that you know. (cost 50 cash, 1 ability points)"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=200  PositionY=200  
 ChangeOption=30 ChangeToValue=0
@@ -99,7 +99,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=62  OptionText="KNOW LESSON TWO"
+New Option Nr=62  OptionText=_"KNOW LESSON TWO"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
 ChangeOption=62 ChangeToValue=0
@@ -108,7 +108,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=63  OptionText="KNOW LESSON THREE"
+New Option Nr=63  OptionText=_"KNOW LESSON THREE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
 ChangeOption=63 ChangeToValue=0
@@ -117,7 +117,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=64  OptionText="KNOW LESSON FOUR"
+New Option Nr=64  OptionText=_"KNOW LESSON FOUR"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
 ChangeOption=64 ChangeToValue=0
@@ -126,14 +126,14 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=70  OptionText="FIRST LESSON"
+New Option Nr=70  OptionText=_"FIRST LESSON"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=686  PositionY=264  
-Subtitle="Let us start with entropy inverters. This is quite simple."
+Subtitle=_"Let us start with entropy inverters. This is quite simple."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="Just take a hammer and hit the bot sehr hard on the head."
+Subtitle=_"Just take a hammer and hit the bot sehr hard on the head."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="When you have the head open wide, look around for a part which looks like two circles around a cube. That is what you are looking for."
+Subtitle=_"When you have the head open wide, look around for a part which looks like two circles around a cube. That is what you are looking for."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=70 ChangeToValue=0
 DoSomethingExtra="SubtractPointsToDistribute:1"
@@ -144,14 +144,14 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=71  OptionText="SECOND LESSON"
+New Option Nr=71  OptionText=_"SECOND LESSON"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=685  PositionY=414  
-Subtitle="How about... Plasma transistors? Trivial."
+Subtitle=_"How about... Plasma transistors? Trivial."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="Remove the bot's engine and look around somewhere close to the battery."
+Subtitle=_"Remove the bot's engine and look around somewhere close to the battery."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="Plasma transistors are shaped like the letter Y. Just rip them out, it's safe."
+Subtitle=_"Plasma transistors are shaped like the letter Y. Just rip them out, it's safe."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=71 ChangeToValue=0
 DoSomethingExtra="SubtractPointsToDistribute:1"
@@ -162,16 +162,16 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=72  OptionText="THIRD LESSON"
+New Option Nr=72  OptionText=_"THIRD LESSON"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=690  PositionY=369  
-Subtitle="Hmmm... Ah, gut. Superconductors."
+Subtitle=_"Hmmm... Ah, gut. Superconductors."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="They are relatively easy to get out."
+Subtitle=_"They are relatively easy to get out."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="Look around the electric system. Power coils, capacitors, generators and the like. Usually there are plenty of sehr gut parts there."
+Subtitle=_"Look around the electric system. Power coils, capacitors, generators and the like. Usually there are plenty of sehr gut parts there."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="Wear rubber gloves. Just in case, you know."
+Subtitle=_"Wear rubber gloves. Just in case, you know."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=72 ChangeToValue=0
 DoSomethingExtra="SubtractPointsToDistribute:1"
@@ -182,18 +182,18 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=73  OptionText="FOURTH LESSON"
+New Option Nr=73  OptionText=_"FOURTH LESSON"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=682  PositionY=321  
-Subtitle="I will tell you everything about matter-antimatter converters."
+Subtitle=_"I will tell you everything about matter-antimatter converters."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="Yes... Converters are a problem."
+Subtitle=_"Yes... Converters are a problem."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="They are easy to find, all you have to do is to get to the engine. But you must remember something very important:"
+Subtitle=_"They are easy to find, all you have to do is to get to the engine. But you must remember something very important:"
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="Make sure you turn the converter off before you remove it."
+Subtitle=_"Make sure you turn the converter off before you remove it."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="If you do not do that, you will only succeed in converting yourself to anti-matter. And as you know, there is no coming back from there."
+Subtitle=_"If you do not do that, you will only succeed in converting yourself to anti-matter. And as you know, there is no coming back from there."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=73 ChangeToValue=0
 DoSomethingExtra="SubtractPointsToDistribute:1"
@@ -204,18 +204,18 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=74  OptionText="FINAL LESSON"
+New Option Nr=74  OptionText=_"FINAL LESSON"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=682  PositionY=469  
-Subtitle="I will teach you about tachyon converters."
+Subtitle=_"I will teach you about tachyon converters."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="Tachyons are very interesting particles. Many stories have been told about them."
+Subtitle=_"Tachyons are very interesting particles. Many stories have been told about them."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="I have no idea why bots have them inside. They are usually not connected to anything and serve no function."
+Subtitle=_"I have no idea why bots have them inside. They are usually not connected to anything and serve no function."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="They are usually quite hot when you get them out, but they cool down quickly, so handling them is not a big deal."
+Subtitle=_"They are usually quite hot when you get them out, but they cool down quickly, so handling them is not a big deal."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="They can be installed just about anywhere, so you have to spend some time digging through the circuits to find one."
+Subtitle=_"They can be installed just about anywhere, so you have to spend some time digging through the circuits to find one."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=74 ChangeToValue=0
 DoSomethingExtra="SubtractPointsToDistribute:1"
@@ -226,10 +226,10 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=75  OptionText="NO MORE LESSONS"
+New Option Nr=75  OptionText=_"NO MORE LESSONS"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=478  PositionY=77  
-Subtitle="Nein, I told you everything I know about that. No use asking me twice, ja?"
+Subtitle=_"Nein, I told you everything I know about that. No use asking me twice, ja?"
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=75 ChangeToValue=0
 DoSomethingExtra="EndDialog"
@@ -237,7 +237,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=76  OptionText="CHECK IF MONEY ENOUGH"
+New Option Nr=76  OptionText=_"CHECK IF MONEY ENOUGH"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=267  PositionY=283  
 OnCondition="GoldIsLessThan:50" JumpToOption=90 ElseGoto=1
@@ -245,14 +245,14 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=90  OptionText="TUX IS TOO POOR TO TRAIN"
+New Option Nr=90  OptionText=_"TUX IS TOO POOR TO TRAIN"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
-Subtitle="Hmmm..."
+Subtitle=_"Hmmm..."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="Kein geld, Keine hilfe."
+Subtitle=_"Kein geld, Keine hilfe."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="Come back with some money."
+Subtitle=_"Come back with some money."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=90 ChangeToValue=0
 DoSomethingExtra="EndDialog"
@@ -260,14 +260,14 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=91  OptionText="NO FREE POINTS"
+New Option Nr=91  OptionText=_"NO FREE POINTS"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
-Subtitle="Hmmm..."
+Subtitle=_"Hmmm..."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="You look green. Toughen up. Get some experience, kill some bots."
+Subtitle=_"You look green. Toughen up. Get some experience, kill some bots."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="Then we can talk."
+Subtitle=_"Then we can talk."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=91 ChangeToValue=0
 DoSomethingExtra="EndDialog"
@@ -275,7 +275,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=99  OptionText=" Maybe another time."
+New Option Nr=99  OptionText=_" Maybe another time."
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=419  PositionY=116  
 ChangeOption=99 ChangeToValue=1

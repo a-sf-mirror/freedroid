@@ -30,10 +30,10 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-New Option Nr=0  OptionText=" Login : admin  Password : *******"
+New Option Nr=0  OptionText=_" Login : admin  Password : *******"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=71  PositionY=177  
-Subtitle="Last login from dev/ttyS0 on Sun, 23 mar 2057. admin@sadefence: ~ #"
+Subtitle=_"Last login from dev/ttyS0 on Sun, 23 mar 2057. admin@sadefence: ~ #"
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=0 ChangeToValue=0
 ChangeOption=1 ChangeToValue=1
@@ -44,14 +44,14 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-New Option Nr=1  OptionText=" /usr/bin/guns --disable"
+New Option Nr=1  OptionText=_" /usr/bin/guns --disable"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=155  PositionY=186
-Subtitle="Disabling guns..."
+Subtitle=_"Disabling guns..."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="Connecting to perepherial controller..."
+Subtitle=_"Connecting to perepherial controller..."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="Guns disabled."
+Subtitle=_"Guns disabled."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=1 ChangeToValue=0
 ChangeOption=2 ChangeToValue=1
@@ -62,14 +62,14 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=2  OptionText=" /usr/bin/guns --enable"
+New Option Nr=2  OptionText=_" /usr/bin/guns --enable"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=155  PositionY=186
-Subtitle="Enabling guns..."
+Subtitle=_"Enabling guns..."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="Connecting to perepherial controller..."
+Subtitle=_"Connecting to perepherial controller..."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="Guns enabled."
+Subtitle=_"Guns enabled."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=2 ChangeToValue=0
 ChangeOption=1 ChangeToValue=1
@@ -80,30 +80,30 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=3  OptionText=" /usr/bin/hermodoors --open"
+New Option Nr=3  OptionText=_" /usr/bin/hermodoors --open"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=155  PositionY=186
-Subtitle="Opening doors..."
+Subtitle=_"Opening doors..."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="Connecting to perepherial controller..."
+Subtitle=_"Connecting to perepherial controller..."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="Please enter unlock security password:"
+Subtitle=_"Please enter unlock security password:"
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 LinkedTo:5
 
 ----------------------------------------------------------------------
 
-New Option Nr=4  OptionText=" ./hcf.py"
+New Option Nr=4  OptionText=_" ./hcf.py"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=200  PositionY=200  
-Subtitle="Executing: Halt and Catch Fire."
+Subtitle=_"Executing: Halt and Catch Fire."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="Cooling subsystems disabled."
+Subtitle=_"Cooling subsystems disabled."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="Warning! Spontaneous oxidization witH emis$ion of light aND heAt detecteddd in THE#main| procesIng unit,"
+Subtitle=_"Warning! Spontaneous oxidization witH emis$ion of light aND heAt detecteddd in THE#main| procesIng unit,"
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="SsTeM=#faiPure%^#n 3 S 1()$++"
+Subtitle=_"SsTeM=#faiPure%^#n 3 S 1()$++"
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=4 ChangeToValue=0
 DoSomethingExtra="DropDead"
@@ -111,17 +111,17 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=5  OptionText=" ctrl+c"
+New Option Nr=5  OptionText=_" ctrl+c"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=155  PositionY=186
-Subtitle="An error occured while opening doors."
+Subtitle=_"An error occured while opening doors."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=5 ChangeToValue=0
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=6 OptionText="THIS WILL NOT EVER BE VISIBLE"
+New Option Nr=6 OptionText=_"THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=358  PositionY=238  
 ChangeOption=6 ChangeToValue=0
@@ -130,7 +130,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-New Option Nr=7 OptionText="THIS WILL NOT EVER BE VISIBLE"
+New Option Nr=7 OptionText=_"THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=358  PositionY=238  
 ChangeOption=7 ChangeToValue=0
@@ -139,7 +139,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=8 OptionText="DO NOTHING"
+New Option Nr=8 OptionText=_"DO NOTHING"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=358  PositionY=238  
 ChangeOption=8 ChangeToValue=0
@@ -147,7 +147,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=9 OptionText="IS THIS FIRST DIALOG?"
+New Option Nr=9 OptionText=_"IS THIS FIRST DIALOG?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=358  PositionY=238  
 ChangeOption=9 ChangeToValue=0
@@ -156,7 +156,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-New Option Nr=10 OptionText="DO NOTHING"
+New Option Nr=10 OptionText=_"DO NOTHING"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=358  PositionY=238  
 ChangeOption=10 ChangeToValue=0
@@ -167,7 +167,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=99  OptionText=" logout"
+New Option Nr=99  OptionText=_" logout"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=351  PositionY=231  
 ChangeOption=99 ChangeToValue=1

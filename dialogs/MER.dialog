@@ -30,17 +30,17 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-New Option Nr=0  OptionText=" Hi!  I'm new here. "
+New Option Nr=0  OptionText=_" Hi!  I'm new here. "
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=121  PositionY=241  
-Subtitle="Welcome them!  I'm called MER.  My dialog isn't done though."
+Subtitle=_"Welcome them!  I'm called MER.  My dialog isn't done though."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=0 ChangeToValue=0
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=99  OptionText=" END "
+New Option Nr=99  OptionText=_" END "
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=523  PositionY=231  
 AlwaysExecuteThisOptionPriorToDialogStart="no"

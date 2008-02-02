@@ -30,7 +30,7 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-New Option Nr=0  OptionText="THIS WILL NOT EVER BE VISIBLE"
+New Option Nr=0  OptionText=_"THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=385  PositionY=202  
 ChangeOption=99 ChangeToValue=1
@@ -40,7 +40,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=5  OptionText=" Improve ranged weapon skill (cost 5 training points, 100 cash) "
+New Option Nr=5  OptionText=_" Improve ranged weapon skill (cost 5 training points, 100 cash) "
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=477  PositionY=203  
 OnCondition="GoldIsLessThan:100" JumpToOption=10 ElseGoto=11
@@ -48,10 +48,10 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=7  OptionText="THIS WILL NOT EVER BE VISIBLE"
+New Option Nr=7  OptionText=_"THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=636  PositionY=469  
-Subtitle="Done. Small improvements of dexterity are not so hard to achieve after all."
+Subtitle=_"Done. Small improvements of dexterity are not so hard to achieve after all."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=7 ChangeToValue=0
 DoSomethingExtra="SubtractPointsToDistribute:1"
@@ -60,27 +60,27 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=8  OptionText="THIS WILL NOT EVER BE VISIBLE"
+New Option Nr=8  OptionText=_"THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=635  PositionY=361  
-Subtitle="You don't have enough experience. Come here after you see some more action."
+Subtitle=_"You don't have enough experience. Come here after you see some more action."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=8 ChangeToValue=0
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=10  OptionText="THIS WILL NOT EVER BE VISIBLE"
+New Option Nr=10  OptionText=_"THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=557  PositionY=98  
-Subtitle="You don't have enough money! I cannot afford to just give away training for free."
+Subtitle=_"You don't have enough money! I cannot afford to just give away training for free."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=10 ChangeToValue=0
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=11  OptionText="THIS WILL NOT EVER BE VISIBLE"
+New Option Nr=11  OptionText=_"THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=555  PositionY=277  
 ChangeOption=11 ChangeToValue=0
@@ -89,22 +89,22 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=12  OptionText="THIS WILL NOT EVER BE VISIBLE"
+New Option Nr=12  OptionText=_"THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=639  PositionY=189  
-Subtitle="Now the most important thing is that you turn off the auto-aim on your weapon, like this."
+Subtitle=_"Now the most important thing is that you turn off the auto-aim on your weapon, like this."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="Otherwise your weapon might 'help' you and shoot somewhere you didn't intend to fire."
+Subtitle=_"Otherwise your weapon might 'help' you and shoot somewhere you didn't intend to fire."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="Next important thing is to remember how to properly fire a shot."
+Subtitle=_"Next important thing is to remember how to properly fire a shot."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="Watch your target closely.  Pretend you're moving with it. Aim for the head."
+Subtitle=_"Watch your target closely.  Pretend you're moving with it. Aim for the head."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="When you feel completely in sync with your target, then you pull the trigger."
+Subtitle=_"When you feel completely in sync with your target, then you pull the trigger."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="Good. You are learning fast. Try it a few more times."
+Subtitle=_"Good. You are learning fast. Try it a few more times."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle="Good. I think that it is enough for today."
+Subtitle=_"Good. I think that it is enough for today."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=12 ChangeToValue=0
 DoSomethingExtra="SubtractPointsToDistribute:5"
@@ -114,7 +114,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=99  OptionText=" BACK"
+New Option Nr=99  OptionText=_" BACK"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=385  PositionY=111  
 ChangeOption=99 ChangeToValue=1
