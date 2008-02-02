@@ -2133,6 +2133,7 @@ Language_Options_Menu (void)
   char Options0[1000];
   char Options1[1000];
   char Options2[1000];
+  char Options3[1000];
   char* MenuTexts[10]={ "" , "" , "" , "" , "" ,
 			"" , "" , "" , "" , "" };
   enum
@@ -2140,6 +2141,7 @@ Language_Options_Menu (void)
       ENGLISH=1,
       GERMAN,
       FRENCH, 
+      SWEDISH,
       LEAVE_LANGUAGE_OPTIONS_MENU 
     };
 
@@ -2148,10 +2150,12 @@ Language_Options_Menu (void)
       sprintf( Options0 , "English");
       sprintf( Options1 , "Deutsch");
       sprintf( Options2 , "Français");
+      sprintf( Options3 , "Swedish");
       MenuTexts[0]=Options0;
       MenuTexts[1]=Options1;
       MenuTexts[2]=Options2;
-      MenuTexts[3]=_("Back");
+      MenuTexts[3]=Options3;
+      MenuTexts[4]=_("Back");
 
 	if ( GameOver == TRUE ) 
                 MenuPosition = DoMenuSelection( "" , MenuTexts , -1 , NE_TITLE_PIC_BACKGROUND_CODE, NULL );     
@@ -2202,6 +2206,19 @@ Language_Options_Menu (void)
 	  InitOurBFonts();
 	  break;
 
+	case SWEDISH:
+	  while (EnterPressed() || SpacePressed() || MouseLeftPressed() );
+	  can_continue=TRUE;
+	  GameConfig . language = 3;
+#if ENABLE_NLS
+	  setlocale(LC_MESSAGES, "sv_SE");
+	  setlocale(LC_CTYPE, "sv_SE");
+#endif
+	  //Reload fonts
+	  FreeOurBFonts();
+	  InitOurBFonts();
+	  break;
+	  
 	case LEAVE_LANGUAGE_OPTIONS_MENU:
 	  while (EnterPressed() || SpacePressed() || MouseLeftPressed() );
 	  can_continue=TRUE;
