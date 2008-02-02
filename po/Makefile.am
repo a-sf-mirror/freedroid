@@ -1,5 +1,6 @@
 POFILES_SRC =	fr_FR/LC_MESSAGES/freedroidrpg.po \
-		de_DE/LC_MESSAGES/freedroidrpg.po
+		de_DE/LC_MESSAGES/freedroidrpg.po \
+		sv_SE/LC_MESSAGES/freedroidrpg.po
 
 POFILES_DAT = 	fr_FR/LC_MESSAGES/freedroidrpg_data.po \
       		de_DE/LC_MESSAGES/freedroidrpg_data.po 
