@@ -92,7 +92,7 @@ freedroidrpg.pot: $(SRCFILES)
 	-o freedroidrpg.pot $(SRCFILES)
 
 freedroidrpg_data.pot: $(DATAFILES)
-	python extract-strings-from-data.py ../map freedroidrpg_data.pot
+	python extract-strings-from-data.py ../map _archetypes freedroidrpg_data.pot
 
 all-local: all-local-@USE_NLS@
 all-local-no:
