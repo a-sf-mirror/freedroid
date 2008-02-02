@@ -5,10 +5,15 @@ POFILES_SRC =	fr_FR/LC_MESSAGES/freedroidrpg.po \
 POFILES_DAT = 	fr_FR/LC_MESSAGES/freedroidrpg_data.po \
       		de_DE/LC_MESSAGES/freedroidrpg_data.po 
 
+POFILES_DIA = 	fr_FR/LC_MESSAGES/freedroidrpg_dialogs.po \
+      		de_DE/LC_MESSAGES/freedroidrpg_dialogs.po 
+
 MOFILES_SRC = $(POFILES_SRC:.po=.mo)
 MOFILES_DAT = $(POFILES_DAT:.po=.mo)
 
 DATAFILES = ../map/*archetypes
+
+DIALOGFILES = ../dialogs/*.dialog
 
 SRCFILES = ../src/BFont.c \
 		../src/BFont.h \
@@ -85,6 +90,10 @@ $(POFILES_DAT):
 	@lang=`echo $@ | sed 's/\.po$$//'`; \
 	test -f $${lang}.po && $(MSGMERGE) $(MSGMERGE_OPTIONS) $${lang}.po freedroidrpg_data.pot
 
+$(POFILES_DIA):
+	@lang=`echo $@ | sed 's/\.po$$//'`; \
+	test -f $${lang}.po && $(MSGMERGE) $(MSGMERGE_OPTIONS) $${lang}.po freedroidrpg_dialogs.pot
+
 freedroidrpg.pot: $(SRCFILES) 
 	$(XGETTEXT) $(XGETTEXT_OPTIONS) --default-domain=$(DOMAIN) \
 	--copyright-holder='$(COPYRIGHT_HOLDER)' \
@@ -94,9 +103,12 @@ freedroidrpg.pot: $(SRCFILES)
 freedroidrpg_data.pot: $(DATAFILES)
 	python extract-strings-from-data.py ../map _archetypes freedroidrpg_data.pot
 
+freedroidrpg_dialogs.pot: $(DIALOGFILES)
+	python extract-strings-from-data.py ../dialogs .dialog freedroidrpg_dialogs.pot
+
 all-local: all-local-@USE_NLS@
 all-local-no:
-all-local-yes: freedroidrpg.pot freedroidrpg_data.pot $(MOFILES_SRC) $(MOFILES_DAT)
+all-local-yes: freedroidrpg.pot freedroidrpg_data.pot freedroidrpg_dialogs.pot $(MOFILES_SRC) $(MOFILES_DAT)
 
 install-data-local: install-data-local-@USE_NLS@
 install-data-local-no: all-local
