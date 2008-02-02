@@ -10,6 +10,7 @@ POFILES_DIA = 	fr_FR/LC_MESSAGES/freedroidrpg_dialogs.po \
 
 MOFILES_SRC = $(POFILES_SRC:.po=.mo)
 MOFILES_DAT = $(POFILES_DAT:.po=.mo)
+MOFILES_DIA = $(POFILES_DIA:.po=.mo)
 
 DATAFILES = ../map/*archetypes
 
@@ -73,7 +74,7 @@ MSGID_BUGS_ADDRESS = freedroid-discussion@lists.sourceforge.net
 
 LOCALEDIR=$(pkgdatadir)/locale
 
-EXTRA_DIST = freedroidrpg.pot freedroidrpg_data.pot $(POFILES_SRC) $(POFILES_DAT)
+EXTRA_DIST = freedroidrpg.pot freedroidrpg_data.pot freedroidrpg_dialogs.pot $(POFILES_SRC) $(POFILES_DAT) $(POFILES_DIA)
 
 MSGMERGE_OPTIONS = --quiet --update
 XGETTEXT_OPTIONS = --keyword=_ --keyword=N_ --force-po
@@ -108,7 +109,7 @@ freedroidrpg_dialogs.pot: $(DIALOGFILES)
 
 all-local: all-local-@USE_NLS@
 all-local-no:
-all-local-yes: freedroidrpg.pot freedroidrpg_data.pot freedroidrpg_dialogs.pot $(MOFILES_SRC) $(MOFILES_DAT)
+all-local-yes: freedroidrpg.pot freedroidrpg_data.pot freedroidrpg_dialogs.pot $(MOFILES_SRC) $(MOFILES_DAT) $(MOFILES_DIA)
 
 install-data-local: install-data-local-@USE_NLS@
 install-data-local-no: all-local
