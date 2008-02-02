@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: freedroid-discussion@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-01-26 22:32+0100\n"
+"POT-Creation-Date: 2008-02-02 19:17+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -845,7 +845,7 @@ msgstr ""
 msgid "1 Item received!"
 msgstr ""
 
-#: ../src/chat.c:1354
+#: ../src/chat.c:1355
 msgid "What will you say?"
 msgstr ""
 
@@ -1271,58 +1271,58 @@ msgstr ""
 msgid "Looting failed:  unable to reach loot target."
 msgstr ""
 
-#: ../src/influ.c:3150
+#: ../src/influ.c:3103
 msgid "No more ammunition !"
 msgstr ""
 
-#: ../src/influ.c:3593
+#: ../src/influ.c:3549
 #, c-format
 msgid "This is a %s. %s"
 msgstr ""
 
-#: ../src/influ.c:3617 ../src/influ.c:3624
+#: ../src/influ.c:3574 ../src/influ.c:3581
 #, c-format
 msgid "Examining %s.  %s"
 msgstr ""
 
-#: ../src/influ.c:3637
+#: ../src/influ.c:3596
 #, c-format
 msgid "You see the floor.  It should be perfectly safe to walk on it."
 msgstr ""
 
-#: ../src/influ.c:3668
+#: ../src/influ.c:3627
 #, c-format
 msgid "Unlocking obstacle of type %d."
 msgstr ""
 
-#: ../src/influ.c:3697
+#: ../src/influ.c:3656
 #, c-format
 msgid "Repairing obstacle of type %d."
 msgstr ""
 
-#: ../src/influ.c:3731
+#: ../src/influ.c:3690
 #, c-format
 msgid "You try to hack %s."
 msgstr ""
 
-#: ../src/influ.c:3748
+#: ../src/influ.c:3707
 #, c-format
 msgid "You chat with %s."
 msgstr ""
 
-#: ../src/influ.c:3772
+#: ../src/influ.c:3731
 #, c-format
 msgid ""
 "Talking to an obstacle of type %d.  Ok.  You've told it everything.  Maybe "
 "it just needs more time to digest the news."
 msgstr ""
 
-#: ../src/influ.c:3801
+#: ../src/influ.c:3760
 #, c-format
 msgid "Attacking obstacle of type %d."
 msgstr ""
 
-#: ../src/influ.c:3830
+#: ../src/influ.c:3789
 #, c-format
 msgid "Picking pockets of obstacle of type %d."
 msgstr ""
@@ -1493,33 +1493,33 @@ msgstr ""
 msgid "The armor hides his body."
 msgstr ""
 
-#: ../src/init.c:1971
+#: ../src/init.c:1967
 msgid "Huh? What?  Where am I?"
 msgstr ""
 
-#: ../src/init.c:2035
+#: ../src/init.c:2031
 msgid ""
 "Linux Kernel booted.  001 transfer-tech modules loaded.  System up and "
 "running."
 msgstr ""
 
-#: ../src/init.c:2088
+#: ../src/init.c:2084
 msgid "Updating Tux images"
 msgstr ""
 
-#: ../src/init.c:2089
+#: ../src/init.c:2085
 msgid "(this may take a little while...)"
 msgstr ""
 
-#: ../src/init.c:2092
+#: ../src/init.c:2088
 msgid "Starting new game."
 msgstr ""
 
-#: ../src/init.c:2410
+#: ../src/init.c:2406
 msgid "Game over.\n"
 msgstr ""
 
-#: ../src/init.c:2504
+#: ../src/init.c:2500
 msgid "Game won.\n"
 msgstr ""
 
@@ -1582,32 +1582,32 @@ msgstr ""
 msgid "Identified %s"
 msgstr ""
 
-#: ../src/items.c:2481
+#: ../src/items.c:2485
 msgid "Two-handed weapon requirements not met: shield bonus doesn't count."
 msgstr ""
 
-#: ../src/items.c:2500
+#: ../src/items.c:2504
 msgid "You cannot fight with this!"
 msgstr ""
 
-#: ../src/items.c:2543
+#: ../src/items.c:2547
 msgid "Shield requirements not met: two-handed weapon bonus doesn't count."
 msgstr ""
 
-#: ../src/items.c:2664
+#: ../src/items.c:2668
 #, c-format
 msgid "Item taken: %s."
 msgstr ""
 
-#: ../src/items.c:2716 ../src/items.c:2890
+#: ../src/items.c:2720 ../src/items.c:2894
 msgid "I can't carry any more."
 msgstr ""
 
-#: ../src/main.c:386
+#: ../src/main.c:390
 msgid "Overheating!"
 msgstr ""
 
-#: ../src/main.c:403
+#: ../src/main.c:407
 msgid "Weapon reloaded"
 msgstr ""
 
@@ -1744,8 +1744,8 @@ msgid "Quit"
 msgstr ""
 
 #: ../src/menu.c:1421 ../src/menu.c:1554 ../src/menu.c:1702 ../src/menu.c:1833
-#: ../src/menu.c:1942 ../src/menu.c:2069 ../src/menu.c:2154 ../src/menu.c:2233
-#: ../src/menu.c:2583 ../src/menu.c:2695 ../src/menu.c:2774
+#: ../src/menu.c:1942 ../src/menu.c:2069 ../src/menu.c:2158 ../src/menu.c:2250
+#: ../src/menu.c:2600 ../src/menu.c:2712 ../src/menu.c:2791
 msgid "Back"
 msgstr ""
 
@@ -2004,35 +2004,35 @@ msgstr ""
 msgid "Reprogram bots after takeover: %s"
 msgstr ""
 
-#: ../src/menu.c:2226
+#: ../src/menu.c:2243
 msgid "Graphics Options"
 msgstr ""
 
-#: ../src/menu.c:2227
+#: ../src/menu.c:2244
 msgid "Sound Options"
 msgstr ""
 
-#: ../src/menu.c:2228
+#: ../src/menu.c:2245
 msgid "Language"
 msgstr ""
 
-#: ../src/menu.c:2229
+#: ../src/menu.c:2246
 msgid "Droid Talk"
 msgstr ""
 
-#: ../src/menu.c:2230
+#: ../src/menu.c:2247
 msgid "On-Screen Displays"
 msgstr ""
 
-#: ../src/menu.c:2231
+#: ../src/menu.c:2248
 msgid "Performance Tweaks"
 msgstr ""
 
-#: ../src/menu.c:2232
+#: ../src/menu.c:2249
 msgid "Save Options"
 msgstr ""
 
-#: ../src/menu.c:2326
+#: ../src/menu.c:2343
 msgid ""
 "\n"
 " Please enter name of server to connect to:\n"
@@ -2040,7 +2040,7 @@ msgid ""
 " > "
 msgstr ""
 
-#: ../src/menu.c:2353
+#: ../src/menu.c:2370
 msgid ""
 "\n"
 "     Please enter a name\n"
@@ -2050,46 +2050,46 @@ msgid ""
 "     > "
 msgstr ""
 
-#: ../src/menu.c:2607 ../src/menu.c:2713 ../src/menu.c:2728
+#: ../src/menu.c:2624 ../src/menu.c:2730 ../src/menu.c:2745
 msgid "BACK"
 msgstr ""
 
-#: ../src/menu.c:2611
+#: ../src/menu.c:2628
 msgid ""
 "\n"
 "\n"
 "No saved games found!!  Loading Cancelled. "
 msgstr ""
 
-#: ../src/menu.c:2712
+#: ../src/menu.c:2729
 msgid "Sure!"
 msgstr ""
 
-#: ../src/menu.c:2715
+#: ../src/menu.c:2732
 #, c-format
 msgid "Really delete hero '%s'?"
 msgstr ""
 
-#: ../src/menu.c:2732
+#: ../src/menu.c:2749
 msgid ""
 "\n"
 "\n"
 "No saved games found!!  Deletion Cancelled. "
 msgstr ""
 
-#: ../src/menu.c:2771
+#: ../src/menu.c:2788
 msgid "New Hero"
 msgstr ""
 
-#: ../src/menu.c:2772
+#: ../src/menu.c:2789
 msgid "Load existing Hero"
 msgstr ""
 
-#: ../src/menu.c:2773
+#: ../src/menu.c:2790
 msgid "Delete existing Hero"
 msgstr ""
 
-#: ../src/menu.c:2849
+#: ../src/menu.c:2866
 msgid ""
 "\n"
 "\n"
@@ -2186,7 +2186,7 @@ msgid ""
 "\n"
 msgstr ""
 
-#: ../src/menu.c:2922
+#: ../src/menu.c:2939
 msgid ""
 "\n"
 "\n"
@@ -2251,29 +2251,29 @@ msgid ""
 "\n"
 msgstr ""
 
-#: ../src/menu.c:3076
+#: ../src/menu.c:3090
 msgid ""
 "This is the record of all missions you have been assigned:\n"
 "\n"
 msgstr ""
 
-#: ../src/menu.c:3091
+#: ../src/menu.c:3105
 msgid "SOLVED: "
 msgstr ""
 
-#: ../src/menu.c:3095
+#: ../src/menu.c:3109
 msgid "FAILED: "
 msgstr ""
 
-#: ../src/menu.c:3099
+#: ../src/menu.c:3113
 msgid "ASSIGNED: "
 msgstr ""
 
-#: ../src/menu.c:3103
+#: ../src/menu.c:3117
 msgid "UNASSIGNED: "
 msgstr ""
 
-#: ../src/menu.c:3111
+#: ../src/menu.c:3125
 msgid ""
 "\n"
 "\n"
@@ -2421,6 +2421,10 @@ msgid ""
 "Unit type %s - %s\n"
 "Entry : %d\n"
 "Brain : %s"
+msgstr ""
+
+#: ../src/ship.c:241 ../src/vars.h:174 ../src/vars.h:194 ../src/vars.h:201
+msgid "none"
 msgstr ""
 
 #: ../src/ship.c:243
@@ -2677,12 +2681,12 @@ msgstr ""
 msgid "Identify Items"
 msgstr ""
 
-#: ../src/skills.c:717
+#: ../src/skills.c:718
 #, c-format
 msgid "Program revision: %d "
 msgstr ""
 
-#: ../src/skills.c:720
+#: ../src/skills.c:721
 #, c-format
 msgid "Heat produced: %d "
 msgstr ""
@@ -2919,10 +2923,6 @@ msgstr ""
 #: ../src/vars.h:170 ../src/vars.h:180 ../src/vars.h:190 ../src/vars.h:197
 #: ../src/vars.h:206
 msgid "error"
-msgstr ""
-
-#: ../src/vars.h:174 ../src/vars.h:194 ../src/vars.h:201
-msgid "none"
 msgstr ""
 
 #: ../src/vars.h:175
