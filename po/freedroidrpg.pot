@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: freedroid-discussion@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-02-02 19:17+0100\n"
+"POT-Creation-Date: 2008-02-02 22:55+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -837,15 +837,15 @@ msgstr ""
 msgid "Level Gained!"
 msgstr ""
 
-#: ../src/chat.c:603
+#: ../src/chat.c:602
 msgid "1 Item received (on floor)"
 msgstr ""
 
-#: ../src/chat.c:607
+#: ../src/chat.c:606
 msgid "1 Item received!"
 msgstr ""
 
-#: ../src/chat.c:1355
+#: ../src/chat.c:1354
 msgid "What will you say?"
 msgstr ""
 
@@ -1493,33 +1493,33 @@ msgstr ""
 msgid "The armor hides his body."
 msgstr ""
 
-#: ../src/init.c:1967
+#: ../src/init.c:1966
 msgid "Huh? What?  Where am I?"
 msgstr ""
 
-#: ../src/init.c:2031
+#: ../src/init.c:2030
 msgid ""
 "Linux Kernel booted.  001 transfer-tech modules loaded.  System up and "
 "running."
 msgstr ""
 
-#: ../src/init.c:2084
+#: ../src/init.c:2083
 msgid "Updating Tux images"
 msgstr ""
 
-#: ../src/init.c:2085
+#: ../src/init.c:2084
 msgid "(this may take a little while...)"
 msgstr ""
 
-#: ../src/init.c:2088
+#: ../src/init.c:2087
 msgid "Starting new game."
 msgstr ""
 
-#: ../src/init.c:2406
+#: ../src/init.c:2405
 msgid "Game over.\n"
 msgstr ""
 
-#: ../src/init.c:2500
+#: ../src/init.c:2499
 msgid "Game won.\n"
 msgstr ""
 

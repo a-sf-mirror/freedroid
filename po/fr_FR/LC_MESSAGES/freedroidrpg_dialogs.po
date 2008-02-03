@@ -23,7 +23,7 @@ msgstr ""
 
 #: ../dialogs/Benjamin.dialog:46
 msgid " What are you doing here alone? "
-msgstr ""
+msgstr " Que fais-tu ici tout seul? "
 
 #: ../dialogs/Benjamin.dialog:49
 msgid ""
