@@ -47,8 +47,10 @@ def main():
             got_translation = False
             f = open(os.path.join(input_dir, filename), 'r')
             in_lines = [s.strip() for s in f.readlines()]
-            translation = between(in_lines[linenum - 1], '"', '"')
-            out_po_contents[i] = 'msgstr "%s"' % translation
+            try:
+                translation = between(in_lines[linenum - 1], '"', '"')
+                out_po_contents[i] = 'msgstr "%s"' % translation
+            except: pass
     
     open(out_po, 'w').write('\n'.join(out_po_contents)) 
     return 0
