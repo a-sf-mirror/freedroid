@@ -103,7 +103,7 @@ class ArchetypeFile(object):
 ## SCRIPT MAIN FUNCTION
 #############################################################################
 def main():
-    if len(sys.argv) < 3:
+    if len(sys.argv) < 4:
         print "Usage: %s <input-dir> <extension> <output-file>" % sys.argv[0]
         sys.exit(1)
     input_dir, extension, output_file = sys.argv[1:]
