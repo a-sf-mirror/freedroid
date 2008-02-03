@@ -637,7 +637,7 @@ ExecuteChatExtra ( char* ExtraCommandString , Enemy ChatDroid )
 	// InitChatRosterForNewDialogue(  );
 	strcat ( tmp_filename , ".dialog" );
 	char finaldir[50];
-	sprintf(finaldir, "%s%s", DIALOG_DIR, language_dirs[GameConfig.language]);
+	sprintf(finaldir, "%s", DIALOG_DIR);
 	find_file (tmp_filename , finaldir, fpath, 0);
 	
 	int i, j;
@@ -1175,7 +1175,7 @@ ProcessThisChatOption ( int MenuSelection , int ChatPartnerCode , Enemy ChatDroi
     {
 	// PlayOnceNeededSoundSample( ChatRoster [ MenuSelection ] . option_sample_file_name , TRUE );
 	strcat ( chat_protocol , "\1TUX:" );
-	GiveSubtitleNSample ( ChatRoster [ MenuSelection ] . option_text ,
+	GiveSubtitleNSample ( L_(ChatRoster [ MenuSelection ] . option_text) ,
 			      ChatRoster [ MenuSelection ] . option_sample_file_name , ChatDroid , TRUE ) ;
 	strcat ( chat_protocol , "\2" );
     }
@@ -1193,7 +1193,7 @@ ProcessThisChatOption ( int MenuSelection , int ChatPartnerCode , Enemy ChatDroi
 	if ( ! strlen ( ChatRoster [ MenuSelection ] . reply_subtitle_list [ i ] ) ) 
 	    break;
 	
-	GiveSubtitleNSample ( ChatRoster [ MenuSelection ] . reply_subtitle_list [ i ] ,
+	GiveSubtitleNSample ( L_(ChatRoster [ MenuSelection ] . reply_subtitle_list [ i ]) ,
 			      ChatRoster [ MenuSelection ] . reply_sample_list [ i ] , ChatDroid , TRUE ) ;
     }
     
@@ -1316,7 +1316,7 @@ DoChatFromChatRosterData( int ChatPartnerCode , Enemy ChatDroid , int clear_prot
     	DialogMenuTexts[i] = "";
 	if ( strlen ( ChatRoster [ i ] . option_text ) )
 	{
-	    DialogMenuTexts [ i ] = ChatRoster [ i ] . option_text ;
+	    DialogMenuTexts [ i ] = L_(ChatRoster [ i ] . option_text) ;
 	}
     }
     // DialogMenuTexts [ MAX_ANSWERS_PER_PERSON - 1 ] = " END ";

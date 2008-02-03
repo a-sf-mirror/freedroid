@@ -17,12 +17,16 @@
 
 #define D_(String) dgettext("freedroidrpg_data", String)
 
+#define L_(String) dgettext("freedroidrpg_dialogs", String)
+
 #else
 
 #define _(String) String
 #define N_(String) String
 
 #define D_(String) String
+
+#define L_(String) String
 
 #endif
 

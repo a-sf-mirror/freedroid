@@ -272,11 +272,10 @@ char fpath[2048];
     char* TerminationPointer;
     char* TitleSongName;
     int ThisTextLength;
-    extern char * language_dirs[];
     char finaldir[50];
     while ( SpacePressed() || MouseLeftPressed());
 
-    snprintf(finaldir, 50, "%s%s", TITLES_DIR,  language_dirs[GameConfig.language]);
+    snprintf(finaldir, 50, "%s", TITLES_DIR);
     //--------------------
     // Now its time to start loading the title file...
     //

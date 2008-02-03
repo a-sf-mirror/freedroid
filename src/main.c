@@ -88,12 +88,14 @@ main (int argc, char * argv[])
 	{
 		bindtextdomain("freedroidrpg", "../po");
 		bindtextdomain("freedroidrpg_data", "../po");
+		bindtextdomain("freedroidrpg_dialogs", "../po");
 		closedir(tmp_dir);
 	}
 	else 
 		{
 		bindtextdomain("freedroidrpg", LOCALE_DIR);
 		bindtextdomain("freedroidrpg_data", LOCALE_DIR);
+		bindtextdomain("freedroidrpg_dialogs", LOCALE_DIR);
 		}
 	textdomain("freedroidrpg");
 #endif
