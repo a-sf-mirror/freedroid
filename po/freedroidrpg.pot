@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: freedroid-discussion@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-02-02 22:55+0100\n"
+"POT-Creation-Date: 2008-02-03 11:19+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1603,11 +1603,246 @@ msgstr ""
 msgid "I can't carry any more."
 msgstr ""
 
-#: ../src/main.c:390
+#: ../src/leveleditor.c:1684
+msgid "FLOOR"
+msgstr ""
+
+#: ../src/leveleditor.c:1685
+msgid "WALLS"
+msgstr ""
+
+#: ../src/leveleditor.c:1686
+msgid "MACHINERY"
+msgstr ""
+
+#: ../src/leveleditor.c:1687
+msgid "FURNITURE"
+msgstr ""
+
+#: ../src/leveleditor.c:1688
+msgid "CONTAINERS"
+msgstr ""
+
+#: ../src/leveleditor.c:1689
+msgid "NATURE"
+msgstr ""
+
+#: ../src/leveleditor.c:1690
+msgid "ALL"
+msgstr ""
+
+#: ../src/leveleditor.c:1691
+msgid "QUICK"
+msgstr ""
+
+#: ../src/leveleditor.c:3560
+#, c-format
+msgid ""
+"\n"
+" Map label information: \n"
+" label_name=\"%s\"."
+msgstr ""
+
+#: ../src/leveleditor.c:4302
+msgid ""
+"Use this button to move one level north, i.e. to the level that is glued to "
+"the northern side of this level."
+msgstr ""
+
+#: ../src/leveleditor.c:4307
+msgid ""
+"Use this button to move one level south, i.e. to the level that is glued to "
+"the southern side of this level."
+msgstr ""
+
+#: ../src/leveleditor.c:4312
+msgid ""
+"Use this button to move one level east, i.e. to the level that is glued to "
+"the eastern side of this level."
+msgstr ""
+
+#: ../src/leveleditor.c:4317
+msgid ""
+"Use this button to move one level west, i.e. to the level that is glued to "
+"the western side of this level."
+msgstr ""
+
+#: ../src/leveleditor.c:4322
+msgid ""
+"In FreedroidRPG maps can be glued together to form one big map.  But that "
+"requires that the maps are identical where they overlap.  This button will "
+"copy the borders of this level to the borders of the neighbouring levels, so "
+"that the maps are in sync again."
+msgstr ""
+
+#: ../src/leveleditor.c:4327
+msgid ""
+"This button will save your current ship over the file '../map/Asteroid.maps' "
+"from your current working directory."
+msgstr ""
+
+#: ../src/leveleditor.c:4332
+msgid ""
+"\n"
+"Use this button to toggle waypoints on the current cursor location.  "
+"Waypoints are marked with a white (or multicolored) 4-direction arrow.\n"
+"\n"
+"You can also use the W key for this."
+msgstr ""
+
+#: ../src/leveleditor.c:4339
+msgid ""
+"\n"
+"Use this button to start a connection between waypoints, so that droids can "
+"move along this connection.\n"
+"\n"
+"You can also use the C key for this."
+msgstr ""
+
+#: ../src/leveleditor.c:4341
+msgid ""
+"\n"
+"You have currently a connection attempt going on already.  Go to the desired "
+"destination waypoint and hit this button again to establish the connection.\n"
+"\n"
+"You can also use the C key for this."
+msgstr ""
+
+#: ../src/leveleditor.c:4347
+msgid ""
+"\n"
+"Use this button to delete the currently marked obstacle.\n"
+"\n"
+"You can also use the X key for this."
+msgstr ""
+
+#: ../src/leveleditor.c:4352
+msgid ""
+"\n"
+"Use this button to cycle the currently marked obstacle.\n"
+"\n"
+"You can also use the N key for this."
+msgstr ""
+
+#: ../src/leveleditor.c:4357
+msgid ""
+"\n"
+"Use this button to 'beautify' rough edges of the grass-sand tiles on this "
+"entire level automatically.  The function will attempt to create 'round' "
+"borders and corners.\n"
+"\n"
+"You can also use Ctrl-B for this."
+msgstr ""
+
+#: ../src/leveleditor.c:4362
+msgid ""
+"\n"
+"Use this button to zoom INTO or OUT of the level.\n"
+"\n"
+"You can also use the hotkey 'O' for this."
+msgstr ""
+
+#: ../src/leveleditor.c:4367
+msgid ""
+"Use this button to fill a certain area of the map with the currently "
+"selected map tile.  Filling will proceed from the cursor in all direction "
+"until a change of map tile is encountered."
+msgstr ""
+
+#: ../src/leveleditor.c:4372
+msgid ""
+"Use this button to attach a label to the currently marked obstacle.  These "
+"obstacle labels can be used to define obstacles to be modified by events.\n"
+" Note that you can also use the hotkey 'h' for this."
+msgstr ""
+
+#: ../src/leveleditor.c:4377
+msgid ""
+"Use this button to attach a new map label to the current cursor position.  "
+"These map labels can be used to define starting points for bots and "
+"characters or also to define locations for events and triggers."
+msgstr ""
+
+#: ../src/leveleditor.c:4382
+msgid ""
+"Use this button to drop a new item to the floor.  You can also use the "
+"hotkey 'G' for this."
+msgstr ""
+
+#: ../src/leveleditor.c:4387
+msgid ""
+"Use this button to enter the main menu of the level editor.\n"
+" Note, that you can also use the Escape key to enter the level editor main "
+"menu."
+msgstr ""
+
+#: ../src/leveleditor.c:4392
+msgid ""
+"Use this button to enter the level resize menu.  Levels can be resized in "
+"various ways so as not to destroy your current map too much and so as to "
+"insert the new space where you would best like it to be."
+msgstr ""
+
+#: ../src/leveleditor.c:4397
+msgid "Use this button to enter the level editor keymap display."
+msgstr ""
+
+#: ../src/leveleditor.c:4402
+msgid ""
+"Use this button to quit the level editor and back to continue the normal "
+"game in normal mode.  Useful for e.g. putting objects into boxes.  You can "
+"always re-enter the level editor."
+msgstr ""
+
+#: ../src/leveleditor.c:4407
+msgid ""
+"Use this button to toggle underground lighting, i.e. shadows coming from the "
+"light that the tux emanates.  \n"
+"\n"
+"There isn't any key to toggle this on the keyboard."
+msgstr ""
+
+#: ../src/leveleditor.c:4413
+msgid ""
+"Use this button to toggle between enemies displayed in level editor or "
+"enemies hidden in level editor."
+msgstr ""
+
+#: ../src/leveleditor.c:4419
+msgid ""
+"Use this button to toggle between obstacles displayed in level editor or "
+"obstacles hidden in level editor."
+msgstr ""
+
+#: ../src/leveleditor.c:4425
+msgid ""
+"Use this button to toggle between Tux displayed in level editor or Tux "
+"hidden in level editor."
+msgstr ""
+
+#: ../src/leveleditor.c:4431
+msgid "Use this button to toggle these annoying help windows on and off."
+msgstr ""
+
+#: ../src/leveleditor.c:4437
+msgid "Use this button to toggle the visible collision rectangles on and off."
+msgstr ""
+
+#: ../src/leveleditor.c:5353
+#, c-format
+msgid " Source waypoint selected : NONE"
+msgstr ""
+
+#: ../src/leveleditor.c:5357
+#, c-format
+msgid " Source waypoint selected : X=%d Y=%d. "
+msgstr ""
+
+#: ../src/main.c:392
 msgid "Overheating!"
 msgstr ""
 
-#: ../src/main.c:407
+#: ../src/main.c:409
 msgid "Weapon reloaded"
 msgstr ""
 
