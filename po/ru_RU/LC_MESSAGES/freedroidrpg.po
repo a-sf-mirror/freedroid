@@ -1,0 +1,3294 @@
+# Russian translations for freedroidRPG package
+# Английские переводы для пакета freedroidRPG.
+# Copyright (C) 2008 Freedroid RPG Development Team
+# This file is distributed under the same license as the freedroidRPG package.
+#  <arthur.huillet@free.fr>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: freedroidRPG 0.10.4cvs\n"
+"Report-Msgid-Bugs-To: freedroid-discussion@lists.sourceforge.net\n"
+"POT-Creation-Date: 2008-02-05 13:54+0100\n"
+"PO-Revision-Date: 2008-02-05 22:13+0100\n"
+"Last-Translator:  <arthur.huillet@free.fr>\n"
+"Language-Team: Russian\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-5\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: ../src/blocks.c:1637 ../src/blocks.c:1643 ../src/blocks.c:1650
+#: ../src/blocks.c:2983 ../src/blocks.c:2985 ../src/blocks.c:2996
+#: ../src/blocks.c:2998
+msgid "Wall"
+msgstr ""
+
+#: ../src/blocks.c:1638 ../src/blocks.c:1644
+msgid "Hey ! This looks like...a WALL !"
+msgstr ""
+
+#: ../src/blocks.c:1651
+msgid "Maybe you could use a door to go out. This wall seems pretty solid."
+msgstr ""
+
+#: ../src/blocks.c:1664 ../src/blocks.c:1672
+msgid "Glass wall"
+msgstr ""
+
+#: ../src/blocks.c:1665 ../src/blocks.c:1673
+msgid "A wall made out of glass. It lets the light go through."
+msgstr ""
+
+#: ../src/blocks.c:1721 ../src/blocks.c:1723 ../src/blocks.c:1725
+#: ../src/blocks.c:1727 ../src/blocks.c:1729 ../src/blocks.c:1731
+#: ../src/blocks.c:1733 ../src/blocks.c:1735
+msgid "Wall with a window"
+msgstr ""
+
+#: ../src/blocks.c:1722 ../src/blocks.c:1724 ../src/blocks.c:1726
+#: ../src/blocks.c:1728 ../src/blocks.c:1730 ../src/blocks.c:1732
+#: ../src/blocks.c:1734 ../src/blocks.c:1736
+msgid "Windows, are, besides a famous joke OS trademark, very useful things."
+msgstr ""
+
+#: ../src/blocks.c:1758
+msgid "Door"
+msgstr ""
+
+#: ../src/blocks.c:1759
+msgid "This is a door. Seems to open automatically when someone approaches."
+msgstr ""
+
+#: ../src/blocks.c:1791
+msgid "Locked door"
+msgstr ""
+
+#: ../src/blocks.c:1792
+msgid "The red color probably indicates that the door is locked."
+msgstr ""
+
+#: ../src/blocks.c:1818 ../src/blocks.c:1823
+msgid "Pillar"
+msgstr ""
+
+#: ../src/blocks.c:1819 ../src/blocks.c:1824
+msgid "A pillar made out of gray concrete."
+msgstr ""
+
+#: ../src/blocks.c:1832 ../src/blocks.c:1837 ../src/blocks.c:1842
+#: ../src/blocks.c:1847
+msgid "Supercluster terminal"
+msgstr ""
+
+#: ../src/blocks.c:1833 ../src/blocks.c:1838 ../src/blocks.c:1843
+#: ../src/blocks.c:1848
+msgid ""
+"This is a small part of a gigantic computer cluster, maybe many square miles "
+"large..."
+msgstr ""
+
+#: ../src/blocks.c:1856 ../src/blocks.c:1862 ../src/blocks.c:1868
+#: ../src/blocks.c:1874
+msgid "Ray emitter"
+msgstr ""
+
+#: ../src/blocks.c:1857 ../src/blocks.c:1863 ../src/blocks.c:1869
+#: ../src/blocks.c:1875
+msgid "It appears to be in \"standby\" mode."
+msgstr ""
+
+#: ../src/blocks.c:1902 ../src/blocks.c:1903 ../src/blocks.c:1904
+#: ../src/blocks.c:1905 ../src/blocks.c:1906
+msgid "Droid nest"
+msgstr ""
+
+#: ../src/blocks.c:1907 ../src/blocks.c:1908 ../src/blocks.c:1909
+#: ../src/blocks.c:1910 ../src/blocks.c:1911
+msgid ""
+"This is a service droid case. You suppose it's of no use for your quest."
+msgstr ""
+
+#: ../src/blocks.c:1939 ../src/blocks.c:1948 ../src/blocks.c:1956
+#: ../src/blocks.c:1964
+msgid "Chest"
+msgstr ""
+
+#: ../src/blocks.c:1940 ../src/blocks.c:1957
+msgid "This chest has already been opened"
+msgstr ""
+
+#: ../src/blocks.c:1949 ../src/blocks.c:1965
+msgid "This chest is closed."
+msgstr ""
+
+#: ../src/blocks.c:1971 ../src/blocks.c:1977 ../src/blocks.c:1983
+#: ../src/blocks.c:1989 ../src/blocks.c:1996 ../src/blocks.c:2002
+#: ../src/blocks.c:2008 ../src/blocks.c:2014
+msgid "Autogun"
+msgstr ""
+
+#: ../src/blocks.c:1972 ../src/blocks.c:1978 ../src/blocks.c:1984
+#: ../src/blocks.c:1990
+msgid "A not-that-nice autogun. Beware : it could be harmful."
+msgstr ""
+
+#: ../src/blocks.c:1997
+msgid "A not-that-nice autogun. It seems disabled for now."
+msgstr ""
+
+#: ../src/blocks.c:2003
+msgid "This killing machine is disabled. For now."
+msgstr ""
+
+#: ../src/blocks.c:2009
+msgid ""
+"It is looking at you. You are sure it is looking at you. But it does not "
+"fire. For now."
+msgstr ""
+
+#: ../src/blocks.c:2015
+msgid "The autogun is disabled."
+msgstr ""
+
+#: ../src/blocks.c:2021 ../src/blocks.c:2027 ../src/blocks.c:2033
+#: ../src/blocks.c:2039 ../src/blocks.c:2045 ../src/blocks.c:2051
+msgid "Rock barrier"
+msgstr ""
+
+#: ../src/blocks.c:2022 ../src/blocks.c:2028 ../src/blocks.c:2034
+#: ../src/blocks.c:2040 ../src/blocks.c:2046 ../src/blocks.c:2052
+msgid "No way to pass through. Find another path."
+msgstr ""
+
+#: ../src/blocks.c:2060
+msgid "Cooking pot"
+msgstr ""
+
+#: ../src/blocks.c:2061
+msgid ""
+"This cauldron can be used for many good things. Cooking beef or pork for "
+"dinner are some of them. It can be also used for many evil things. Cooking "
+"Linarians for dinner is one of them."
+msgstr ""
+
+#: ../src/blocks.c:2068 ../src/blocks.c:2076 ../src/blocks.c:2084
+#: ../src/blocks.c:2092
+msgid "Terminal"
+msgstr ""
+
+#: ../src/blocks.c:2069 ../src/blocks.c:2077 ../src/blocks.c:2085
+#: ../src/blocks.c:2093
+msgid "This is a Terminus 2 terminal. Made by Parafunken."
+msgstr ""
+
+#: ../src/blocks.c:2097 ../src/blocks.c:2101
+msgid "Barrel"
+msgstr ""
+
+#: ../src/blocks.c:2098
+msgid "A painted barrel, protected from rust."
+msgstr ""
+
+#: ../src/blocks.c:2102
+msgid "A rusty barrel."
+msgstr ""
+
+#: ../src/blocks.c:2107 ../src/blocks.c:2111
+msgid "Wooden crate"
+msgstr ""
+
+#: ../src/blocks.c:2108 ../src/blocks.c:2112
+msgid "This is a wooden crate that could contain interesting things. Or not."
+msgstr ""
+
+#: ../src/blocks.c:2124 ../src/blocks.c:2132 ../src/blocks.c:2140
+#: ../src/blocks.c:2148
+msgid "Room lamp"
+msgstr ""
+
+#: ../src/blocks.c:2125
+msgid "This is a charming room lamp."
+msgstr ""
+
+#: ../src/blocks.c:2133
+msgid "This is a wonderful room lamp."
+msgstr ""
+
+#: ../src/blocks.c:2141
+msgid "This is a great room lamp."
+msgstr ""
+
+#: ../src/blocks.c:2149
+msgid "This is a perfect room lamp."
+msgstr ""
+
+#: ../src/blocks.c:2164 ../src/blocks.c:2182 ../src/blocks.c:2187
+#: ../src/blocks.c:2204
+msgid "Fence"
+msgstr ""
+
+#: ../src/blocks.c:2165
+msgid "This is a wooden fence. Find another path."
+msgstr ""
+
+#: ../src/blocks.c:2183 ../src/blocks.c:2205
+msgid ""
+"This type of a barrier constructed out of wire is called the chain link "
+"fence."
+msgstr ""
+
+#: ../src/blocks.c:2188
+msgid "You can't break it. Find another way."
+msgstr ""
+
+#: ../src/blocks.c:2213 ../src/blocks.c:2222 ../src/blocks.c:2229
+#: ../src/blocks.c:2236
+msgid "Small toilet"
+msgstr ""
+
+#: ../src/blocks.c:2214 ../src/blocks.c:2223 ../src/blocks.c:2230
+#: ../src/blocks.c:2237
+msgid "Smells good."
+msgstr ""
+
+#: ../src/blocks.c:2263 ../src/blocks.c:2265 ../src/blocks.c:2267
+#: ../src/blocks.c:2269
+msgid "Toilet"
+msgstr ""
+
+#: ../src/blocks.c:2264 ../src/blocks.c:2266
+msgid "Feel like defecating ?"
+msgstr ""
+
+#: ../src/blocks.c:2268
+msgid "Yes, they are clean."
+msgstr ""
+
+#: ../src/blocks.c:2270
+msgid "Would you have something to empty ?"
+msgstr ""
+
+#: ../src/blocks.c:2278 ../src/blocks.c:2286 ../src/blocks.c:2294
+#: ../src/blocks.c:2302 ../src/blocks.c:3510 ../src/blocks.c:3516
+#: ../src/blocks.c:3522 ../src/blocks.c:3528
+msgid "Chair"
+msgstr ""
+
+#: ../src/blocks.c:2279 ../src/blocks.c:2287 ../src/blocks.c:2295
+#: ../src/blocks.c:2303
+msgid "This is an orange chair which does not look too comfortable"
+msgstr ""
+
+#: ../src/blocks.c:2310 ../src/blocks.c:2318 ../src/blocks.c:2326
+#: ../src/blocks.c:2334
+msgid "Sofa"
+msgstr ""
+
+#: ../src/blocks.c:2311 ../src/blocks.c:2319 ../src/blocks.c:2327
+#: ../src/blocks.c:2335
+msgid "A soft red sofa."
+msgstr ""
+
+#: ../src/blocks.c:2367 ../src/blocks.c:2375 ../src/blocks.c:2383
+#: ../src/blocks.c:2391
+msgid "Plant"
+msgstr ""
+
+#: ../src/blocks.c:2368 ../src/blocks.c:2376 ../src/blocks.c:2384
+#: ../src/blocks.c:2392
+msgid ""
+"After all the humans are killed by the bots, only plants like this one will "
+"remain."
+msgstr ""
+
+#: ../src/blocks.c:2399 ../src/blocks.c:2406 ../src/blocks.c:2413
+#: ../src/blocks.c:2420
+msgid "Desk"
+msgstr ""
+
+#: ../src/blocks.c:2400 ../src/blocks.c:2407 ../src/blocks.c:2414
+#: ../src/blocks.c:2421
+msgid "This desk is designed to handle extreme loads of office work."
+msgstr ""
+
+#: ../src/blocks.c:2469 ../src/blocks.c:2476 ../src/blocks.c:2483
+#: ../src/blocks.c:2490
+msgid "Bench"
+msgstr ""
+
+#: ../src/blocks.c:2470 ../src/blocks.c:2477 ../src/blocks.c:2484
+#: ../src/blocks.c:2491
+msgid "A simple white bench."
+msgstr ""
+
+#: ../src/blocks.c:2499 ../src/blocks.c:2507 ../src/blocks.c:2516
+#: ../src/blocks.c:2525
+msgid "Bath tub"
+msgstr ""
+
+#: ../src/blocks.c:2500
+msgid "An idea of what comfort is"
+msgstr ""
+
+#: ../src/blocks.c:2508 ../src/blocks.c:2517 ../src/blocks.c:2526
+msgid "Taking a bath is not your current quest - what a pity !"
+msgstr ""
+
+#: ../src/blocks.c:2533 ../src/blocks.c:2541
+msgid "Washing tub"
+msgstr ""
+
+#: ../src/blocks.c:2534 ../src/blocks.c:2542
+msgid "A metal tub. The washing machine of the post-assault 21st century."
+msgstr ""
+
+#: ../src/blocks.c:2576 ../src/blocks.c:2582 ../src/blocks.c:2588
+#: ../src/blocks.c:2595 ../src/blocks.c:2601
+msgid "Tree"
+msgstr ""
+
+#: ../src/blocks.c:2577
+msgid "This tree seems quite normal"
+msgstr ""
+
+#: ../src/blocks.c:2583
+msgid "This is a nice tree"
+msgstr ""
+
+#: ../src/blocks.c:2589
+msgid "No, it definitely doesn't look like a droid"
+msgstr ""
+
+#: ../src/blocks.c:2596
+msgid "This tree does not look too healthy."
+msgstr ""
+
+#: ../src/blocks.c:2602
+msgid "For some strange reason this tree has blue leaves."
+msgstr ""
+
+#: ../src/blocks.c:2612 ../src/blocks.c:2618 ../src/blocks.c:2624
+#: ../src/blocks.c:2630 ../src/blocks.c:2636 ../src/blocks.c:2642
+#: ../src/blocks.c:2648 ../src/blocks.c:2654 ../src/blocks.c:2660
+#: ../src/blocks.c:2666
+msgid "Colony wall"
+msgstr ""
+
+#: ../src/blocks.c:2613 ../src/blocks.c:2619 ../src/blocks.c:2625
+#: ../src/blocks.c:2631 ../src/blocks.c:2637 ../src/blocks.c:2643
+#: ../src/blocks.c:2649 ../src/blocks.c:2655 ../src/blocks.c:2661
+#: ../src/blocks.c:2667
+msgid "This is just a pink wall."
+msgstr ""
+
+#: ../src/blocks.c:2717
+msgid "Restaurant shelves"
+msgstr ""
+
+#: ../src/blocks.c:2718
+msgid "This is but standard restaurant furniture."
+msgstr ""
+
+#: ../src/blocks.c:2727 ../src/blocks.c:2733 ../src/blocks.c:2739
+#: ../src/blocks.c:2745
+msgid "Rock wall"
+msgstr ""
+
+#: ../src/blocks.c:2728 ../src/blocks.c:2734 ../src/blocks.c:2740
+#: ../src/blocks.c:2746
+msgid ""
+"This rock is here now and forever, and it is not going anywhere. Go "
+"somewhere else."
+msgstr ""
+
+#: ../src/blocks.c:2760 ../src/blocks.c:2761 ../src/blocks.c:2762
+#: ../src/blocks.c:2763
+msgid "Grey wall"
+msgstr ""
+
+#: ../src/blocks.c:2764 ../src/blocks.c:2765 ../src/blocks.c:2766
+#: ../src/blocks.c:2767
+msgid ""
+"This is grey and seems quite hard to destroy. People usually call it a wall. "
+"You have no chance to go through : there must be another path."
+msgstr ""
+
+#: ../src/blocks.c:2808 ../src/blocks.c:2815 ../src/blocks.c:3261
+#: ../src/blocks.c:3262
+msgid "Green wall"
+msgstr ""
+
+#: ../src/blocks.c:2809 ../src/blocks.c:2816
+msgid "This wall is covered by an asparagus-green wallpaper."
+msgstr ""
+
+#: ../src/blocks.c:2822 ../src/blocks.c:2829 ../src/blocks.c:2836
+#: ../src/blocks.c:2843
+msgid "Groovy wall"
+msgstr ""
+
+#: ../src/blocks.c:2823 ../src/blocks.c:2830 ../src/blocks.c:2837
+#: ../src/blocks.c:2844
+msgid "Man, dig that groovy wallpaper. It's a real blast!"
+msgstr ""
+
+#: ../src/blocks.c:2942
+msgid "Brick wall"
+msgstr ""
+
+#: ../src/blocks.c:2943
+msgid ""
+"A badly constructed brick wall. It looks like it was built in a rush. The "
+"color is quite nice though."
+msgstr ""
+
+#: ../src/blocks.c:2984 ../src/blocks.c:2986
+msgid "This wall is suffering. Finish it!"
+msgstr ""
+
+#: ../src/blocks.c:2997 ../src/blocks.c:2999
+msgid "Well ... it was not very resistant "
+msgstr ""
+
+#: ../src/blocks.c:3057
+msgid "Blood"
+msgstr ""
+
+#: ../src/blocks.c:3058
+msgid "Do droids bleed ? These do."
+msgstr ""
+
+#: ../src/blocks.c:3115
+msgid "Oil stains"
+msgstr ""
+
+#: ../src/blocks.c:3116
+msgid "Do droids bleed? These don't."
+msgstr ""
+
+#: ../src/blocks.c:3138 ../src/blocks.c:3146
+msgid "Entrance"
+msgstr ""
+
+#: ../src/blocks.c:3139 ../src/blocks.c:3147
+msgid "It leads into the dark tunnels below..."
+msgstr ""
+
+#: ../src/blocks.c:3155 ../src/blocks.c:3164
+msgid "Ladder"
+msgstr ""
+
+#: ../src/blocks.c:3156 ../src/blocks.c:3165
+msgid "It leads to the surface world."
+msgstr ""
+
+#: ../src/blocks.c:3178 ../src/blocks.c:3231
+msgid "Exotic plant"
+msgstr ""
+
+#: ../src/blocks.c:3179
+msgid "A wonderful exotic plant. You can read \"Made by Basse\" on it"
+msgstr ""
+
+#: ../src/blocks.c:3199
+msgid "Rocks"
+msgstr ""
+
+#: ../src/blocks.c:3200
+msgid ""
+"Do you think a rock can attack you ? No, MS droids can't hide themselves "
+"that way : they crash before."
+msgstr ""
+
+#: ../src/blocks.c:3232
+msgid "Eating too much of that could lead to a kernel panic."
+msgstr ""
+
+#: ../src/blocks.c:3257 ../src/blocks.c:3258
+msgid "Red wall"
+msgstr ""
+
+#: ../src/blocks.c:3259 ../src/blocks.c:3260 ../src/blocks.c:3263
+#: ../src/blocks.c:3264
+msgid "You think it would be better with a penguin on it. You are right."
+msgstr ""
+
+#: ../src/blocks.c:3274 ../src/blocks.c:3280
+msgid "Shop counter"
+msgstr ""
+
+#: ../src/blocks.c:3275 ../src/blocks.c:3281
+msgid ""
+"This model of the counter features a built-in cash register and bright neon "
+"lights."
+msgstr ""
+
+#: ../src/blocks.c:3286 ../src/blocks.c:3291
+msgid "Set of shelves"
+msgstr ""
+
+#: ../src/blocks.c:3287
+msgid ""
+"There is a lot of junk in here. Bot parts, medical supplies, scrap metal "
+"bits and other useless things like that."
+msgstr ""
+
+#: ../src/blocks.c:3292
+msgid ""
+"There is a lot of junk in here. Bot parts, gold bars, dead rodents, scrap "
+"metal bits and other useless things like that."
+msgstr ""
+
+#: ../src/blocks.c:3297 ../src/blocks.c:3302
+msgid "Empty shelves"
+msgstr ""
+
+#: ../src/blocks.c:3298
+msgid "Whatever was here before, is not here anymore."
+msgstr ""
+
+#: ../src/blocks.c:3303
+msgid ""
+"These are empty shelves. Silent and hollow they sleep in Spring. No thing "
+"remains here now."
+msgstr ""
+
+#: ../src/blocks.c:3324 ../src/blocks.c:3330 ../src/blocks.c:3336
+#: ../src/blocks.c:3342 ../src/blocks.c:3348 ../src/blocks.c:3354
+#: ../src/blocks.c:3360 ../src/blocks.c:3366 ../src/blocks.c:3372
+#: ../src/blocks.c:3378 ../src/blocks.c:3384 ../src/blocks.c:3390
+#: ../src/blocks.c:3396 ../src/blocks.c:3402 ../src/blocks.c:3408
+#: ../src/blocks.c:3414 ../src/blocks.c:3421 ../src/blocks.c:3427
+#: ../src/blocks.c:3433 ../src/blocks.c:3439
+msgid "Strong wall"
+msgstr ""
+
+#: ../src/blocks.c:3325 ../src/blocks.c:3331 ../src/blocks.c:3337
+#: ../src/blocks.c:3343 ../src/blocks.c:3349 ../src/blocks.c:3355
+#: ../src/blocks.c:3361 ../src/blocks.c:3367 ../src/blocks.c:3373
+#: ../src/blocks.c:3379 ../src/blocks.c:3385 ../src/blocks.c:3391
+#: ../src/blocks.c:3397 ../src/blocks.c:3403 ../src/blocks.c:3409
+#: ../src/blocks.c:3415 ../src/blocks.c:3422 ../src/blocks.c:3428
+#: ../src/blocks.c:3434 ../src/blocks.c:3440
+msgid ""
+"This great wall can withstand a swarm of rogue bots madly attacking it for "
+"weeks*! It can belong to you for only 299.99C$ + tax, per section. *( Your "
+"duration may vary. This wall comes with ABSOLUTELY NO WARRANTY! ) "
+msgstr ""
+
+#: ../src/blocks.c:3448 ../src/blocks.c:3452 ../src/blocks.c:3456
+#: ../src/blocks.c:3460 ../src/blocks.c:3465 ../src/blocks.c:3473
+#: ../src/blocks.c:3477 ../src/blocks.c:3481 ../src/blocks.c:3485
+#: ../src/blocks.c:3490 ../src/blocks.c:3497 ../src/blocks.c:3503
+msgid "Gate"
+msgstr ""
+
+#: ../src/blocks.c:3449 ../src/blocks.c:3453 ../src/blocks.c:3457
+#: ../src/blocks.c:3461 ../src/blocks.c:3466 ../src/blocks.c:3474
+#: ../src/blocks.c:3478 ../src/blocks.c:3482 ../src/blocks.c:3486
+#: ../src/blocks.c:3491
+msgid "This gate is little more than just a big door. A very big door."
+msgstr ""
+
+#: ../src/blocks.c:3498 ../src/blocks.c:3504
+msgid ""
+"It is locked in order to keep something out. Or maybe to keep something in?"
+msgstr ""
+
+#: ../src/blocks.c:3511 ../src/blocks.c:3517 ../src/blocks.c:3523
+#: ../src/blocks.c:3529
+msgid "This yellow chair looks inviting."
+msgstr ""
+
+#: ../src/blocks.c:3535 ../src/blocks.c:3541 ../src/blocks.c:3547
+#: ../src/blocks.c:3553
+msgid "Red bench"
+msgstr ""
+
+#: ../src/blocks.c:3536
+msgid ""
+"It is a soft bench, commonly seen in hospitals, shops and houses all around "
+"the world."
+msgstr ""
+
+#: ../src/blocks.c:3542
+msgid ""
+"It is a soft bench, commonly seen in hospitals, malls and houses all around "
+"the world."
+msgstr ""
+
+#: ../src/blocks.c:3548
+msgid ""
+"It is a soft bench, commonly seen in hospitals, barber shops and houses all "
+"around the world."
+msgstr ""
+
+#: ../src/blocks.c:3554
+msgid ""
+"It is a soft bench, commonly seen in hospitals, coffee shops and houses all "
+"around the world."
+msgstr ""
+
+#: ../src/blocks.c:3561 ../src/blocks.c:3566 ../src/blocks.c:3571
+#: ../src/blocks.c:3576
+msgid "Dead member of the Red Guard"
+msgstr ""
+
+#: ../src/blocks.c:3562
+msgid ""
+"If not for the terrible wounds, you could think that he is just asleep..."
+msgstr ""
+
+#: ../src/blocks.c:3567
+msgid "It looks like he fought to the bitter end..."
+msgstr ""
+
+#: ../src/blocks.c:3572
+msgid "Numerous wounds cover the body of this brave warrior..."
+msgstr ""
+
+#: ../src/blocks.c:3577
+msgid ""
+"His body is charred and twisted... Such is the price of the service in the "
+"Red Guard..."
+msgstr ""
+
+#: ../src/blocks.c:3583 ../src/blocks.c:3589 ../src/blocks.c:3595
+#: ../src/blocks.c:3601
+msgid "Conference table"
+msgstr ""
+
+#: ../src/blocks.c:3584 ../src/blocks.c:3590 ../src/blocks.c:3596
+#: ../src/blocks.c:3602
+msgid "A round conference table with chairs and a computer at every seat."
+msgstr ""
+
+#: ../src/blocks.c:3618 ../src/blocks.c:3624 ../src/blocks.c:3630
+#: ../src/blocks.c:3636
+msgid "Bed"
+msgstr ""
+
+#: ../src/blocks.c:3619 ../src/blocks.c:3625 ../src/blocks.c:3631
+#: ../src/blocks.c:3637
+msgid "This is a standard sleeping capsule."
+msgstr ""
+
+#: ../src/blocks.c:3642 ../src/blocks.c:3648 ../src/blocks.c:3654
+#: ../src/blocks.c:3660
+msgid "Bunk beds"
+msgstr ""
+
+#: ../src/blocks.c:3643 ../src/blocks.c:3649 ../src/blocks.c:3655
+#: ../src/blocks.c:3661
+msgid ""
+"To save space on the floor two sleeping capsules were stacked vertically."
+msgstr ""
+
+#: ../src/blocks.c:3667 ../src/blocks.c:3673 ../src/blocks.c:3679
+#: ../src/blocks.c:3685
+msgid "Projector"
+msgstr ""
+
+#: ../src/blocks.c:3668 ../src/blocks.c:3674 ../src/blocks.c:3680
+#: ../src/blocks.c:3686
+msgid ""
+"This device is used for casting images onto a wall or a screen. It uses "
+"something looking like a film reel as a source of those images."
+msgstr ""
+
+#: ../src/blocks.c:3691 ../src/blocks.c:3696 ../src/blocks.c:3701
+#: ../src/blocks.c:3706
+msgid "Projector screen"
+msgstr ""
+
+#: ../src/blocks.c:3692 ../src/blocks.c:3697 ../src/blocks.c:3702
+#: ../src/blocks.c:3707
+msgid ""
+"This is a projector screen, it allows to get better image quality than the "
+"wall."
+msgstr ""
+
+#: ../src/blocks.c:3712 ../src/blocks.c:3717 ../src/blocks.c:3734
+#: ../src/blocks.c:3739
+msgid "Bookcase"
+msgstr ""
+
+#: ../src/blocks.c:3713
+msgid ""
+"There are many interesting books here, but none of them is a switch opening "
+"a secret passage."
+msgstr ""
+
+#: ../src/blocks.c:3718
+msgid "There are exactly 451 books here."
+msgstr ""
+
+#: ../src/blocks.c:3723 ../src/blocks.c:3728 ../src/blocks.c:3745
+#: ../src/blocks.c:3750
+msgid "Empty bookcase"
+msgstr ""
+
+#: ../src/blocks.c:3724 ../src/blocks.c:3729
+msgid "No books here, just dust."
+msgstr ""
+
+#: ../src/blocks.c:3735 ../src/blocks.c:3740
+msgid ""
+"Only boring books like the Necronomicon are here. Yawn. Nothing interesting."
+msgstr ""
+
+#: ../src/blocks.c:3746 ../src/blocks.c:3751
+msgid "Dust to trees. Trees to pages. Pages to books. Books to dust."
+msgstr ""
+
+#: ../src/blocks.c:3757 ../src/blocks.c:3763 ../src/blocks.c:3769
+msgid "Sign"
+msgstr ""
+
+#: ../src/blocks.c:3758 ../src/blocks.c:3764
+msgid "A sign."
+msgstr ""
+
+#: ../src/blocks.c:3770
+msgid "The arrow points at a direction. Maybe you should follow it"
+msgstr ""
+
+#: ../src/blocks.c:3775 ../src/blocks.c:3782 ../src/blocks.c:3788
+#: ../src/blocks.c:3794 ../src/blocks.c:3801 ../src/blocks.c:3807
+#: ../src/blocks.c:3813 ../src/blocks.c:3819 ../src/blocks.c:3826
+#: ../src/blocks.c:3832 ../src/blocks.c:3838 ../src/blocks.c:3844
+msgid "Counter"
+msgstr ""
+
+#: ../src/blocks.c:3776 ../src/blocks.c:3783 ../src/blocks.c:3789
+#: ../src/blocks.c:3795 ../src/blocks.c:3802 ../src/blocks.c:3808
+#: ../src/blocks.c:3814 ../src/blocks.c:3820 ../src/blocks.c:3827
+#: ../src/blocks.c:3833 ../src/blocks.c:3839 ../src/blocks.c:3845
+msgid "A counter."
+msgstr ""
+
+#: ../src/blocks.c:3852
+msgid "Bar table"
+msgstr ""
+
+#: ../src/blocks.c:3853
+msgid "You can see some food stains on this yellow round table."
+msgstr ""
+
+#: ../src/blocks.c:3859 ../src/blocks.c:3866
+msgid "Table"
+msgstr ""
+
+#: ../src/blocks.c:3860 ../src/blocks.c:3867
+msgid ""
+"Tables such as this one have been used for centuries to store various items "
+"on top of them."
+msgstr ""
+
+#: ../src/blocks.c:3875 ../src/blocks.c:3882
+msgid "Glass table"
+msgstr ""
+
+#: ../src/blocks.c:3876 ../src/blocks.c:3883
+msgid "This table is made out of see-through glass."
+msgstr ""
+
+#: ../src/blocks.c:3890
+msgid "Water"
+msgstr ""
+
+#: ../src/blocks.c:3891
+msgid "This water seems dangerous. You will want to avoid going there. "
+msgstr ""
+
+#: ../src/blocks.c:3917 ../src/blocks.c:3924 ../src/blocks.c:3931
+#: ../src/blocks.c:3938 ../src/blocks.c:3945 ../src/blocks.c:3952
+msgid "Crystal pillar"
+msgstr ""
+
+#: ../src/blocks.c:3918 ../src/blocks.c:3925 ../src/blocks.c:3932
+#: ../src/blocks.c:3939 ../src/blocks.c:3946 ../src/blocks.c:3953
+msgid "A pillar made out of crystal."
+msgstr ""
+
+#: ../src/blocks.c:3978
+#, c-format
+msgid "unnamed_obstacle"
+msgstr ""
+
+#: ../src/blocks.c:3984
+#, c-format
+msgid "This obstacle seems solid."
+msgstr ""
+
+#: ../src/bullet.c:620
+#, c-format
+msgid "Disruptor blast has hit you for %d damage."
+msgstr ""
+
+#: ../src/bullet.c:673
+msgid "That one went into the armour."
+msgstr ""
+
+#: ../src/character.c:238
+msgid "Max level reached!"
+msgstr ""
+
+#: ../src/character.c:281
+msgid "Level Gained!"
+msgstr ""
+
+#: ../src/chat.c:602
+msgid "1 Item received (on floor)"
+msgstr ""
+
+#: ../src/chat.c:606
+msgid "1 Item received!"
+msgstr ""
+
+#: ../src/chat.c:1354
+msgid "What will you say?"
+msgstr ""
+
+#: ../src/enemy.c:1218
+#, c-format
+msgid "Your friend %s was killed by %s."
+msgstr ""
+
+#: ../src/enemy.c:1220
+#, c-format
+msgid "You killed %s."
+msgstr ""
+
+#: ../src/enemy.c:1222
+#, c-format
+msgid "%s is dead."
+msgstr ""
+
+#: ../src/enemy.c:1227
+#, c-format
+msgid "For defeating %s, you receive %d experience."
+msgstr ""
+
+#: ../src/enemy.c:1230
+#, c-format
+msgid "%s was killed by %s."
+msgstr ""
+
+#: ../src/enemy.c:1231
+#, c-format
+msgid "%s died."
+msgstr ""
+
+#: ../src/getopt.c:682
+#, c-format
+msgid "%s: option `%s' is ambiguous\n"
+msgstr ""
+
+#: ../src/getopt.c:707
+#, c-format
+msgid "%s: option `--%s' doesn't allow an argument\n"
+msgstr ""
+
+#: ../src/getopt.c:712
+#, c-format
+msgid "%s: option `%c%s' doesn't allow an argument\n"
+msgstr ""
+
+#: ../src/getopt.c:730 ../src/getopt.c:903
+#, c-format
+msgid "%s: option `%s' requires an argument\n"
+msgstr ""
+
+#: ../src/getopt.c:759
+#, c-format
+msgid "%s: unrecognized option `--%s'\n"
+msgstr ""
+
+#: ../src/getopt.c:763
+#, c-format
+msgid "%s: unrecognized option `%c%s'\n"
+msgstr ""
+
+#: ../src/getopt.c:789
+#, c-format
+msgid "%s: illegal option -- %c\n"
+msgstr ""
+
+#: ../src/getopt.c:792
+#, c-format
+msgid "%s: invalid option -- %c\n"
+msgstr ""
+
+#: ../src/getopt.c:822 ../src/getopt.c:952
+#, c-format
+msgid "%s: option requires an argument -- %c\n"
+msgstr ""
+
+#: ../src/getopt.c:869
+#, c-format
+msgid "%s: option `-W %s' is ambiguous\n"
+msgstr ""
+
+#: ../src/getopt.c:887
+#, c-format
+msgid "%s: option `-W %s' doesn't allow an argument\n"
+msgstr ""
+
+#: ../src/hud.c:190
+#, c-format
+msgid "Damage: %d to %d \n"
+msgstr ""
+
+#: ../src/hud.c:192
+#, c-format
+msgid "Dam: %d-%d "
+msgstr ""
+
+#: ../src/hud.c:198
+#, c-format
+msgid "Ammo : %d of %d\n"
+msgstr ""
+
+#: ../src/hud.c:209
+#, c-format
+msgid "Multiplicity: %d \n"
+msgstr ""
+
+#: ../src/hud.c:219
+#, c-format
+msgid "Armour: %d"
+msgstr ""
+
+#: ../src/hud.c:231
+#, c-format
+msgid " Durability: %d of %d\n"
+msgstr ""
+
+#: ../src/hud.c:233
+#, c-format
+msgid " Dur: %d/%d\n"
+msgstr ""
+
+#: ../src/hud.c:238
+msgid " Indestructible\n"
+msgstr ""
+
+#: ../src/hud.c:248
+msgid " Required:"
+msgstr ""
+
+#: ../src/hud.c:252
+#, c-format
+msgid "   Str: %d"
+msgstr ""
+
+#: ../src/hud.c:254
+#, c-format
+msgid " Required strength: %d "
+msgstr ""
+
+#: ../src/hud.c:261
+#, c-format
+msgid "   Dex: %d"
+msgstr ""
+
+#: ../src/hud.c:263
+#, c-format
+msgid " Required dexterity: %d "
+msgstr ""
+
+#: ../src/hud.c:286
+msgid " , No required attributes "
+msgstr ""
+
+#: ../src/hud.c:297
+#, c-format
+msgid "Recover Health\n"
+msgstr ""
+
+#: ../src/hud.c:302
+#, c-format
+msgid "Analyze one item\n"
+msgstr ""
+
+#: ../src/hud.c:307
+#, c-format
+msgid ""
+"Teleports you to a safe place or\n"
+" back to your previous position\n"
+msgstr ""
+
+#: ../src/hud.c:312
+#, c-format
+msgid "Cooling aid\n"
+msgstr ""
+
+#: ../src/hud.c:317
+#, c-format
+msgid ""
+"Recover Health, Force\n"
+"and Running Power\n"
+msgstr ""
+
+#: ../src/hud.c:322
+#, c-format
+msgid "Recover Running Power\n"
+msgstr ""
+
+#: ../src/hud.c:327
+#, c-format
+msgid "Temporary Boost to Strength\n"
+msgstr ""
+
+#: ../src/hud.c:332
+#, c-format
+msgid "Temporary Boost to Dexterity\n"
+msgstr ""
+
+#: ../src/hud.c:337
+#, c-format
+msgid "To implant the automap device\n"
+msgstr ""
+
+#: ../src/hud.c:342
+#, c-format
+msgid "Increase strength\n"
+msgstr ""
+
+#: ../src/hud.c:347
+#, c-format
+msgid "Increase dexterity\n"
+msgstr ""
+
+#: ../src/hud.c:352
+#, c-format
+msgid "Permanently gain +1 CPU\n"
+msgstr ""
+
+#: ../src/hud.c:357
+#, c-format
+msgid "Permanently acquire/enhance this program\n"
+msgstr ""
+
+#: ../src/hud.c:362
+#, c-format
+msgid "Electromagnetic pulse\n"
+msgstr ""
+
+#: ../src/hud.c:368
+#, c-format
+msgid "Gas attack\n"
+msgstr ""
+
+#: ../src/hud.c:373
+#, c-format
+msgid "Huge explosion\n"
+msgstr ""
+
+#: ../src/hud.c:379
+#, c-format
+msgid "USE UNDESCRIBED YET (bug)\n"
+msgstr ""
+
+#: ../src/hud.c:383
+#, c-format
+msgid "Right click to use"
+msgstr ""
+
+#: ../src/hud.c:405
+#, c-format
+msgid "%d to strength"
+msgstr ""
+
+#: ../src/hud.c:415
+#, c-format
+msgid "%d to dexterity"
+msgstr ""
+
+#: ../src/hud.c:424
+#, c-format
+msgid "%d to CPU"
+msgstr ""
+
+#: ../src/hud.c:433
+#, c-format
+msgid "%d to life"
+msgstr ""
+
+#: ../src/hud.c:442
+#, c-format
+msgid "%d health points"
+msgstr ""
+
+#: ../src/hud.c:451
+#, c-format
+msgid "%0.1f health points per second"
+msgstr ""
+
+#: ../src/hud.c:460
+#, c-format
+msgid "%0.1f cooling per second"
+msgstr ""
+
+#: ../src/hud.c:462
+#, c-format
+msgid "%0.1f heating per second"
+msgstr ""
+
+#: ../src/hud.c:471
+#, c-format
+msgid "%d Force"
+msgstr ""
+
+#: ../src/hud.c:480
+#, c-format
+msgid "%d%% to hit"
+msgstr ""
+
+#: ../src/hud.c:489
+#, c-format
+msgid "%d to all attributes"
+msgstr ""
+
+#: ../src/hud.c:506
+#, c-format
+msgid "%d%% to armour"
+msgstr ""
+
+#: ../src/hud.c:519
+#, c-format
+msgid "%d%% to damage"
+msgstr ""
+
+#: ../src/hud.c:529
+#, c-format
+msgid "+%d to resist disruptor"
+msgstr ""
+
+#: ../src/hud.c:538
+#, c-format
+msgid "+%d to resist fire"
+msgstr ""
+
+#: ../src/hud.c:547
+#, c-format
+msgid "+%d to resist electricity"
+msgstr ""
+
+#: ../src/hud.c:565
+#, c-format
+msgid "%d to light radius"
+msgstr ""
+
+#: ../src/hud.c:575
+msgid " UNIDENTIFIED "
+msgstr ""
+
+#: ../src/hud.c:721
+#, c-format
+msgid "reloading"
+msgstr ""
+
+#: ../src/hud.c:723
+#, c-format
+msgid " %sEMPTY"
+msgstr ""
+
+#: ../src/hud.c:1010
+#, c-format
+msgid "To %s...."
+msgstr ""
+
+#: ../src/hud.c:1036
+msgid "REQUIREMENTS NOT MET"
+msgstr ""
+
+#: ../src/hud.c:1151
+#, c-format
+msgid ""
+"Health\n"
+"%s%d/%d"
+msgstr ""
+
+#: ../src/hud.c:1161
+#, c-format
+msgid ""
+"Temperature \n"
+"%s%d/%d"
+msgstr ""
+
+#: ../src/hud.c:1171
+#, c-format
+msgid ""
+"Run\n"
+"%s%d/%d"
+msgstr ""
+
+#: ../src/hud.c:1181
+#, c-format
+msgid ""
+"XP\n"
+"%ld/%ld"
+msgstr ""
+
+#: ../src/hud.c:1224
+msgid " C H E S T "
+msgstr ""
+
+#: ../src/hud.c:1250
+msgid " B A R R E L "
+msgstr ""
+
+#: ../src/hud.c:1254
+msgid " C R A T E "
+msgstr ""
+
+#: ../src/hud.c:1455
+#, c-format
+msgid "--- Message Protocol ---"
+msgstr ""
+
+#: ../src/hud.c:1484
+#, c-format
+msgid ""
+"This is the protocol.\n"
+"Oh yes, it is indeed!\n"
+"It has multiple lines too!\n"
+"Isn't that great?  But how long may any one line be?  Is there a limit for "
+"that?  Anyway, it looks good."
+msgstr ""
+
+#: ../src/hud.c:1558
+#, c-format
+msgid "%s (%03.1f:%03.1f:%d) day %d %02d:%02d "
+msgstr ""
+
+#: ../src/influ.c:494
+msgid "Clip empty, reloading..."
+msgstr ""
+
+#: ../src/influ.c:2024
+msgid "Looting failed:  unable to reach loot target."
+msgstr ""
+
+#: ../src/influ.c:3103
+msgid "No more ammunition !"
+msgstr ""
+
+#: ../src/influ.c:3549
+#, c-format
+msgid "This is a %s. %s"
+msgstr ""
+
+#: ../src/influ.c:3574 ../src/influ.c:3581
+#, c-format
+msgid "Examining %s.  %s"
+msgstr ""
+
+#: ../src/influ.c:3596
+#, c-format
+msgid "You see the floor.  It should be perfectly safe to walk on it."
+msgstr ""
+
+#: ../src/influ.c:3627
+#, c-format
+msgid "Unlocking obstacle of type %d."
+msgstr ""
+
+#: ../src/influ.c:3656
+#, c-format
+msgid "Repairing obstacle of type %d."
+msgstr ""
+
+#: ../src/influ.c:3690
+#, c-format
+msgid "You try to hack %s."
+msgstr ""
+
+#: ../src/influ.c:3707
+#, c-format
+msgid "You chat with %s."
+msgstr ""
+
+#: ../src/influ.c:3731
+#, c-format
+msgid ""
+"Talking to an obstacle of type %d.  Ok.  You've told it everything.  Maybe "
+"it just needs more time to digest the news."
+msgstr ""
+
+#: ../src/influ.c:3760
+#, c-format
+msgid "Attacking obstacle of type %d."
+msgstr ""
+
+#: ../src/influ.c:3789
+#, c-format
+msgid "Picking pockets of obstacle of type %d."
+msgstr ""
+
+#: ../src/init.c:124
+msgid ""
+"My name is Bug. Software Bug. Please report me to the developers. Thank you."
+msgstr ""
+
+#: ../src/init.c:127
+msgid "Hmm... This must be the token town sage."
+msgstr ""
+
+#: ../src/init.c:129
+msgid ""
+"You see a legend. Sorenson Clark. One of the best human programmers that "
+"have ever lived. Just like Paganini she is said to have sold her soul to the "
+"devil for her skill. Whatever is the truth, her code is like magic, and "
+"there is no denying that."
+msgstr ""
+
+#: ../src/init.c:131
+msgid ""
+"He is either a college student, a drug addict or a hacker. I bet he did not "
+"have a warm meal for days, he looks totally malnourished. His body keeps "
+"twitching. Must be the caffeine. I hope."
+msgstr ""
+
+#: ../src/init.c:133
+msgid "Don't do steroids or you will be just like him."
+msgstr ""
+
+#: ../src/init.c:135
+msgid ""
+"There are at least 614 reasons to stay away from the 614 bot battle "
+"platform. There are also 614 reasons why a 614 bot battle platform can be "
+"your best friend during combat..."
+msgstr ""
+
+#: ../src/init.c:137
+msgid ""
+"Francis is not looking so good today. His tattered coat is not looking that "
+"much better either. The war is taking its toll on them both."
+msgstr ""
+
+#: ../src/init.c:139
+msgid ""
+"What a strange person. He does not seem to really fit into this reality. "
+"There is something very eerie about him. And frightening."
+msgstr ""
+
+#: ../src/init.c:141
+msgid ""
+"This person looks totally defeated. Tattered clothes surround his skeletal "
+"form. If there was a fifth raider of the apocalypse, it would be him and his "
+"name would be Hard Work."
+msgstr ""
+
+#: ../src/init.c:143
+msgid ""
+"It seems that even during the end of the world the species known as "
+"'Salesman' is able to survive. Just his presence makes you want to kill all "
+"humans."
+msgstr ""
+
+#: ../src/init.c:145
+msgid "He looks unexplicably happy."
+msgstr ""
+
+#: ../src/init.c:147
+msgid ""
+"In some places of the world there exists a very interesting saying. 'Tough "
+"as nails.' However, in every place where the Stone trader family stays for a "
+"while, a new saying emerges. 'Tough as the Stones.'"
+msgstr ""
+
+#: ../src/init.c:149
+msgid ""
+"It is very obvious that this is not a normal Red Guard. Most of them do not "
+"have oil stains on their armor and smell of alcohol."
+msgstr ""
+
+#: ../src/init.c:151
+msgid ""
+"It looks like a 614. It moves like a 614. It even kills like a 614. Must be "
+"a 614 then."
+msgstr ""
+
+#: ../src/init.c:153
+msgid ""
+"He must be the resident scientist. The only thing keeping his body alive is "
+"the massive coffee overdose that he takes early in the morning every day. "
+"The amount of cafeine that he has in his blood right now would be enough to "
+"kill ten humans, but since computer scientists are a different species, he "
+"is unharmed."
+msgstr ""
+
+#: ../src/init.c:155
+msgid ""
+"Something about him makes you think of angels. Except angels are usually "
+"sane, do not have an urge to kill everything around them and are much better "
+"at singing religious songs."
+msgstr ""
+
+#: ../src/init.c:157
+msgid ""
+"As you look at him, you cannot really belive he is there. If you turn your "
+"back on him he will vanish like a ghost into thin air and you will never see "
+"him again."
+msgstr ""
+
+#: ../src/init.c:159
+msgid ""
+"His IQ is sometimes as high as a dog's. Only sometimes though. He smells "
+"like a dog too."
+msgstr ""
+
+#: ../src/init.c:161
+msgid ""
+"He seems to be the chief of the gate guards. Hard to say anything more, the "
+"armor hides his body."
+msgstr ""
+
+#: ../src/init.c:163
+msgid "Just an another Red Guard. The armor hides his body."
+msgstr ""
+
+#: ../src/init.c:165
+msgid ""
+"Some people say that every doctor is addicted to drugs. You estimate that "
+"right now this one is high on at least four different narcotics. Doc Moore "
+"seems very happy indeed..."
+msgstr ""
+
+#: ../src/init.c:167
+msgid ""
+"Yet another Red Guard. You cannot say anything more, the armor hides his "
+"body."
+msgstr ""
+
+#: ../src/init.c:169
+msgid ""
+"He looks taller than most of the Red Guards, but you cannot really say "
+"anything more about him, the armor hides his body."
+msgstr ""
+
+#: ../src/init.c:171
+msgid ""
+"And now you know who is to be blamed for the truly awful food in here. You "
+"are in a killing mood. Oh yeah. The cook must die. The cook must die. Ha. "
+"Ha. Ha."
+msgstr ""
+
+#: ../src/init.c:173
+msgid ""
+"This is a major bug. Please report this incident to the developers. Thank "
+"you."
+msgstr ""
+
+#: ../src/init.c:175
+msgid ""
+"Blood. Stone. Cog. The Blood has made the Cog from the Stone. Now the Cog is "
+"making more Stone from the Blood. I wonder what is the next step of the "
+"cycle..."
+msgstr ""
+
+#: ../src/init.c:177 ../src/init.c:179 ../src/init.c:181 ../src/init.c:183
+msgid "The armor hides his body."
+msgstr ""
+
+#: ../src/init.c:1966
+msgid "Huh? What?  Where am I?"
+msgstr ""
+
+#: ../src/init.c:2030
+msgid ""
+"Linux Kernel booted.  001 transfer-tech modules loaded.  System up and "
+"running."
+msgstr ""
+
+#: ../src/init.c:2083
+msgid "Updating Tux images"
+msgstr ""
+
+#: ../src/init.c:2084
+msgid "(this may take a little while...)"
+msgstr ""
+
+#: ../src/init.c:2087
+msgid "Starting new game."
+msgstr ""
+
+#: ../src/init.c:2405
+msgid "Game over.\n"
+msgstr ""
+
+#: ../src/init.c:2499
+msgid "Game won.\n"
+msgstr ""
+
+#: ../src/input.c:423
+msgid "Automap ON."
+msgstr ""
+
+#: ../src/input.c:425
+msgid "Automap OFF."
+msgstr ""
+
+#: ../src/input.c:429
+msgid "Sorry, you don't have automap yet:  map maker item not present."
+msgstr ""
+
+#: ../src/items.c:1187
+msgid "I can't use this item here."
+msgstr ""
+
+#: ../src/items.c:1200
+#, c-format
+msgid "How do you expect to do two things at a time? You are "
+msgstr ""
+
+#: ../src/items.c:1204
+msgid "drinking a potion!"
+msgstr ""
+
+#: ../src/items.c:1207
+msgid "waiting for you weapon to fire again!"
+msgstr ""
+
+#: ../src/items.c:1210
+msgid "reloading your weapon!"
+msgstr ""
+
+#: ../src/items.c:1213
+msgid "throwing a grenade!"
+msgstr ""
+
+#: ../src/items.c:1216
+msgid "running a program!"
+msgstr ""
+
+#: ../src/items.c:1219
+msgid "doing something so weird the game does not understand what it is"
+msgstr ""
+
+#: ../src/items.c:2173 ../src/items.c:2208 ../src/items.c:2210
+msgid "Identified air."
+msgstr ""
+
+#: ../src/items.c:2229
+#, c-format
+msgid "You already know all there is to know about the %s."
+msgstr ""
+
+#: ../src/items.c:2235
+#, c-format
+msgid "Identified %s"
+msgstr ""
+
+#: ../src/items.c:2485
+msgid "Two-handed weapon requirements not met: shield bonus doesn't count."
+msgstr ""
+
+#: ../src/items.c:2504
+msgid "You cannot fight with this!"
+msgstr ""
+
+#: ../src/items.c:2547
+msgid "Shield requirements not met: two-handed weapon bonus doesn't count."
+msgstr ""
+
+#: ../src/items.c:2668
+#, c-format
+msgid "Item taken: %s."
+msgstr ""
+
+#: ../src/items.c:2720 ../src/items.c:2894
+msgid "I can't carry any more."
+msgstr ""
+
+#: ../src/leveleditor.c:1684
+msgid "FLOOR"
+msgstr ""
+
+#: ../src/leveleditor.c:1685
+msgid "WALLS"
+msgstr ""
+
+#: ../src/leveleditor.c:1686
+msgid "MACHINERY"
+msgstr ""
+
+#: ../src/leveleditor.c:1687
+msgid "FURNITURE"
+msgstr ""
+
+#: ../src/leveleditor.c:1688
+msgid "CONTAINERS"
+msgstr ""
+
+#: ../src/leveleditor.c:1689
+msgid "NATURE"
+msgstr ""
+
+#: ../src/leveleditor.c:1690
+msgid "ALL"
+msgstr ""
+
+#: ../src/leveleditor.c:1691
+msgid "QUICK"
+msgstr ""
+
+#: ../src/leveleditor.c:3560
+#, c-format
+msgid ""
+"\n"
+" Map label information: \n"
+" label_name=\"%s\"."
+msgstr ""
+
+#: ../src/leveleditor.c:4302
+msgid ""
+"Use this button to move one level north, i.e. to the level that is glued to "
+"the northern side of this level."
+msgstr ""
+
+#: ../src/leveleditor.c:4307
+msgid ""
+"Use this button to move one level south, i.e. to the level that is glued to "
+"the southern side of this level."
+msgstr ""
+
+#: ../src/leveleditor.c:4312
+msgid ""
+"Use this button to move one level east, i.e. to the level that is glued to "
+"the eastern side of this level."
+msgstr ""
+
+#: ../src/leveleditor.c:4317
+msgid ""
+"Use this button to move one level west, i.e. to the level that is glued to "
+"the western side of this level."
+msgstr ""
+
+#: ../src/leveleditor.c:4322
+msgid ""
+"In FreedroidRPG maps can be glued together to form one big map.  But that "
+"requires that the maps are identical where they overlap.  This button will "
+"copy the borders of this level to the borders of the neighbouring levels, so "
+"that the maps are in sync again."
+msgstr ""
+
+#: ../src/leveleditor.c:4327
+msgid ""
+"This button will save your current ship over the file '../map/Asteroid.maps' "
+"from your current working directory."
+msgstr ""
+
+#: ../src/leveleditor.c:4332
+msgid ""
+"\n"
+"Use this button to toggle waypoints on the current cursor location.  "
+"Waypoints are marked with a white (or multicolored) 4-direction arrow.\n"
+"\n"
+"You can also use the W key for this."
+msgstr ""
+
+#: ../src/leveleditor.c:4339
+msgid ""
+"\n"
+"Use this button to start a connection between waypoints, so that droids can "
+"move along this connection.\n"
+"\n"
+"You can also use the C key for this."
+msgstr ""
+
+#: ../src/leveleditor.c:4341
+msgid ""
+"\n"
+"You have currently a connection attempt going on already.  Go to the desired "
+"destination waypoint and hit this button again to establish the connection.\n"
+"\n"
+"You can also use the C key for this."
+msgstr ""
+
+#: ../src/leveleditor.c:4347
+msgid ""
+"\n"
+"Use this button to delete the currently marked obstacle.\n"
+"\n"
+"You can also use the X key for this."
+msgstr ""
+
+#: ../src/leveleditor.c:4352
+msgid ""
+"\n"
+"Use this button to cycle the currently marked obstacle.\n"
+"\n"
+"You can also use the N key for this."
+msgstr ""
+
+#: ../src/leveleditor.c:4357
+msgid ""
+"\n"
+"Use this button to 'beautify' rough edges of the grass-sand tiles on this "
+"entire level automatically.  The function will attempt to create 'round' "
+"borders and corners.\n"
+"\n"
+"You can also use Ctrl-B for this."
+msgstr ""
+
+#: ../src/leveleditor.c:4362
+msgid ""
+"\n"
+"Use this button to zoom INTO or OUT of the level.\n"
+"\n"
+"You can also use the hotkey 'O' for this."
+msgstr ""
+
+#: ../src/leveleditor.c:4367
+msgid ""
+"Use this button to fill a certain area of the map with the currently "
+"selected map tile.  Filling will proceed from the cursor in all direction "
+"until a change of map tile is encountered."
+msgstr ""
+
+#: ../src/leveleditor.c:4372
+msgid ""
+"Use this button to attach a label to the currently marked obstacle.  These "
+"obstacle labels can be used to define obstacles to be modified by events.\n"
+" Note that you can also use the hotkey 'h' for this."
+msgstr ""
+
+#: ../src/leveleditor.c:4377
+msgid ""
+"Use this button to attach a new map label to the current cursor position.  "
+"These map labels can be used to define starting points for bots and "
+"characters or also to define locations for events and triggers."
+msgstr ""
+
+#: ../src/leveleditor.c:4382
+msgid ""
+"Use this button to drop a new item to the floor.  You can also use the "
+"hotkey 'G' for this."
+msgstr ""
+
+#: ../src/leveleditor.c:4387
+msgid ""
+"Use this button to enter the main menu of the level editor.\n"
+" Note, that you can also use the Escape key to enter the level editor main "
+"menu."
+msgstr ""
+
+#: ../src/leveleditor.c:4392
+msgid ""
+"Use this button to enter the level resize menu.  Levels can be resized in "
+"various ways so as not to destroy your current map too much and so as to "
+"insert the new space where you would best like it to be."
+msgstr ""
+
+#: ../src/leveleditor.c:4397
+msgid "Use this button to enter the level editor keymap display."
+msgstr ""
+
+#: ../src/leveleditor.c:4402
+msgid ""
+"Use this button to quit the level editor and back to continue the normal "
+"game in normal mode.  Useful for e.g. putting objects into boxes.  You can "
+"always re-enter the level editor."
+msgstr ""
+
+#: ../src/leveleditor.c:4407
+msgid ""
+"Use this button to toggle underground lighting, i.e. shadows coming from the "
+"light that the tux emanates.  \n"
+"\n"
+"There isn't any key to toggle this on the keyboard."
+msgstr ""
+
+#: ../src/leveleditor.c:4413
+msgid ""
+"Use this button to toggle between enemies displayed in level editor or "
+"enemies hidden in level editor."
+msgstr ""
+
+#: ../src/leveleditor.c:4419
+msgid ""
+"Use this button to toggle between obstacles displayed in level editor or "
+"obstacles hidden in level editor."
+msgstr ""
+
+#: ../src/leveleditor.c:4425
+msgid ""
+"Use this button to toggle between Tux displayed in level editor or Tux "
+"hidden in level editor."
+msgstr ""
+
+#: ../src/leveleditor.c:4431
+msgid "Use this button to toggle these annoying help windows on and off."
+msgstr ""
+
+#: ../src/leveleditor.c:4437
+msgid "Use this button to toggle the visible collision rectangles on and off."
+msgstr ""
+
+#: ../src/leveleditor.c:5353
+#, c-format
+msgid " Source waypoint selected : NONE"
+msgstr ""
+
+#: ../src/leveleditor.c:5357
+#, c-format
+msgid " Source waypoint selected : X=%d Y=%d. "
+msgstr ""
+
+#: ../src/main.c:392
+msgid "Overheating!"
+msgstr ""
+
+#: ../src/main.c:409
+msgid "Weapon reloaded"
+msgstr ""
+
+#: ../src/map.c:3013
+msgid "Acolyte"
+msgstr ""
+
+#: ../src/map.c:3014
+msgid "Templar"
+msgstr ""
+
+#: ../src/map.c:3015
+msgid "Banshee"
+msgstr ""
+
+#: ../src/map.c:3016
+msgid "Chicago"
+msgstr ""
+
+#: ../src/map.c:3017
+msgid "Sawmill"
+msgstr ""
+
+#: ../src/map.c:3018
+msgid "Nemesis"
+msgstr ""
+
+#: ../src/map.c:3019
+msgid "Sparkie"
+msgstr ""
+
+#: ../src/map.c:3020 ../src/map.c:3025 ../src/map.c:3026 ../src/map.c:3027
+#: ../src/map.c:3029 ../src/map.c:3031 ../src/map.c:3032 ../src/map.c:3033
+#: ../src/map.c:3034
+msgid "NaN"
+msgstr ""
+
+#: ../src/map.c:3021
+msgid "Coward"
+msgstr ""
+
+#: ../src/map.c:3022
+msgid "Spinster"
+msgstr ""
+
+#: ../src/map.c:3023
+msgid "Ghoul"
+msgstr ""
+
+#: ../src/map.c:3024
+msgid "Apollo"
+msgstr ""
+
+#: ../src/map.c:3028
+msgid "If"
+msgstr ""
+
+#: ../src/map.c:3030
+msgid "Soviet"
+msgstr ""
+
+#: ../src/map.c:3035
+msgid "No Description For This One"
+msgstr ""
+
+#: ../src/menu.c:58
+msgid "Play"
+msgstr ""
+
+#: ../src/menu.c:59
+msgid "The first 10 characters: "
+msgstr ""
+
+#: ../src/menu.c:60
+msgid "Select character to delete: "
+msgstr ""
+
+#: ../src/menu.c:115
+#, c-format
+msgid "OpenGL support compiled: "
+msgstr ""
+
+#: ../src/menu.c:117 ../src/menu.c:124
+msgid " YES "
+msgstr ""
+
+#: ../src/menu.c:119 ../src/menu.c:126
+msgid " NO "
+msgstr ""
+
+#: ../src/menu.c:122
+#, c-format
+msgid "OpenGL output active: "
+msgstr ""
+
+#: ../src/menu.c:1238 ../src/menu.c:1338
+msgid "Level Editor"
+msgstr ""
+
+#: ../src/menu.c:1239 ../src/menu.c:1337
+msgid "Options"
+msgstr ""
+
+#: ../src/menu.c:1240
+msgid "Credits"
+msgstr ""
+
+#: ../src/menu.c:1241
+msgid "Contribute"
+msgstr ""
+
+#: ../src/menu.c:1242
+msgid "Exit FreedroidRPG"
+msgstr ""
+
+#: ../src/menu.c:1335
+msgid "Save Game"
+msgstr ""
+
+#: ../src/menu.c:1336
+msgid "Resume Game"
+msgstr ""
+
+#: ../src/menu.c:1339
+msgid "Load Game"
+msgstr ""
+
+#: ../src/menu.c:1340
+msgid "New Game"
+msgstr ""
+
+#: ../src/menu.c:1341
+msgid "Quit"
+msgstr ""
+
+#: ../src/menu.c:1421 ../src/menu.c:1554 ../src/menu.c:1702 ../src/menu.c:1833
+#: ../src/menu.c:1942 ../src/menu.c:2069 ../src/menu.c:2158 ../src/menu.c:2250
+#: ../src/menu.c:2600 ../src/menu.c:2712 ../src/menu.c:2791
+msgid "Back"
+msgstr ""
+
+#: ../src/menu.c:1424 ../src/menu.c:1426
+msgid ""
+"Changes will take effect\n"
+"       when you next start the game"
+msgstr ""
+
+#: ../src/menu.c:1439
+msgid ""
+"\n"
+"You selected 640x480 pixel.\n"
+"\n"
+"Change of screen resolution will\n"
+"take effect automatically when you next\n"
+"start FreedroidRPG.\n"
+"\n"
+"Thank you.\n"
+msgstr ""
+
+#: ../src/menu.c:1453
+msgid ""
+"\n"
+"You selected 800x600 pixel.\n"
+"\n"
+"Change of screen resolution will\n"
+"take effect automatically when you next\n"
+"start FreedroidRPG.\n"
+"\n"
+"Thank you.\n"
+msgstr ""
+
+#: ../src/menu.c:1467
+msgid ""
+"\n"
+"You selected 1024x768 pixel.\n"
+"\n"
+"Change of screen resolution will take\n"
+"effect automatically when you next\n"
+"start FreedroidRPG.\n"
+"\n"
+"Thank you.\n"
+msgstr ""
+
+#: ../src/menu.c:1481
+msgid ""
+"\n"
+"You selected 1280x1024 pixel.\n"
+"\n"
+"Change of screen resolution will take\n"
+"effect automatically when you next\n"
+"start FreedroidRPG.\n"
+"\n"
+"Thank you.\n"
+msgstr ""
+
+#: ../src/menu.c:1542
+#, c-format
+msgid "Gamma Correction: %1.2f"
+msgstr ""
+
+#: ../src/menu.c:1543
+#, c-format
+msgid "Fullscreen Mode: %s"
+msgstr ""
+
+#: ../src/menu.c:1544
+#, c-format
+msgid "Change Screen Resolution"
+msgstr ""
+
+#: ../src/menu.c:1545
+#, c-format
+msgid "Show Blood: %s"
+msgstr ""
+
+#: ../src/menu.c:1546 ../src/menu.c:1695 ../src/menu.c:1697 ../src/menu.c:1818
+#: ../src/menu.c:1820 ../src/menu.c:1821 ../src/menu.c:1823 ../src/menu.c:1825
+msgid "YES"
+msgstr ""
+
+#: ../src/menu.c:1546 ../src/menu.c:1695 ../src/menu.c:1697 ../src/menu.c:1818
+#: ../src/menu.c:1820 ../src/menu.c:1821 ../src/menu.c:1823 ../src/menu.c:1825
+msgid "NO"
+msgstr ""
+
+#: ../src/menu.c:1547
+#, c-format
+msgid "Automap Scale: %2.1f"
+msgstr ""
+
+#: ../src/menu.c:1592
+msgid ""
+"\n"
+"Unfortunately, fullscreen cannot be\n"
+"toggled at runtime under Windows.\n"
+"We apologise for this.\n"
+"\n"
+"There are good Linux distributions out there,\n"
+" please check them out.\n"
+"\n"
+"Or you can launch the game with the -w option.\n"
+"\n"
+"   Thank you.\n"
+msgstr ""
+
+#: ../src/menu.c:1602
+msgid ""
+"\n"
+"You are using SDL instead of OpenGL\n"
+"for graphics ouput right now.\n"
+"\n"
+"FreedroidRPG only supports 640x480\n"
+"in SDL mode.\n"
+"\n"
+"You might want to restart the game using\n"
+"OpenGL instead.\n"
+"\n"
+"\n"
+"Thank you.\n"
+msgstr ""
+
+#: ../src/menu.c:1692
+#, c-format
+msgid "Background Music Volume: %1.2f"
+msgstr ""
+
+#: ../src/menu.c:1693
+#, c-format
+msgid "Sound Effects Volume: %1.2f"
+msgstr ""
+
+#: ../src/menu.c:1694
+#, c-format
+msgid "Terminate On Missing Sample: %s"
+msgstr ""
+
+#: ../src/menu.c:1696
+#, c-format
+msgid "Show Subtitles in Dialogs: %s"
+msgstr ""
+
+#: ../src/menu.c:1817
+#, c-format
+msgid "Hog CPU for max. performance: %s"
+msgstr ""
+
+#: ../src/menu.c:1819
+#, c-format
+msgid "Highlighting mode: %s"
+msgstr ""
+
+#: ../src/menu.c:1819
+msgid "FULL"
+msgstr ""
+
+#: ../src/menu.c:1819
+msgid "REDUCED"
+msgstr ""
+
+#: ../src/menu.c:1820
+#, c-format
+msgid "Show quick inventory: %s"
+msgstr ""
+
+#: ../src/menu.c:1821
+#, c-format
+msgid "Skip light radius: %s"
+msgstr ""
+
+#: ../src/menu.c:1822
+#, c-format
+msgid "Skip shadow blitting: %s"
+msgstr ""
+
+#: ../src/menu.c:1824
+#, c-format
+msgid "Skip fadings: %s"
+msgstr ""
+
+#: ../src/menu.c:1930
+#, c-format
+msgid "Show Position: %s"
+msgstr ""
+
+#: ../src/menu.c:1930 ../src/menu.c:1931 ../src/menu.c:1932 ../src/menu.c:1933
+#: ../src/menu.c:2055 ../src/menu.c:2056 ../src/menu.c:2057 ../src/menu.c:2058
+#: ../src/menu.c:2059 ../src/menu.c:2060 ../src/menu.c:2061
+msgid "ON"
+msgstr ""
+
+#: ../src/menu.c:1930 ../src/menu.c:1931 ../src/menu.c:1932 ../src/menu.c:1933
+#: ../src/menu.c:2055 ../src/menu.c:2056 ../src/menu.c:2057 ../src/menu.c:2058
+#: ../src/menu.c:2059 ../src/menu.c:2060 ../src/menu.c:2061
+msgid "OFF"
+msgstr ""
+
+#: ../src/menu.c:1931
+#, c-format
+msgid "Show Framerate: %s"
+msgstr ""
+
+#: ../src/menu.c:1932
+#, c-format
+msgid "Show Tux Energy: %s"
+msgstr ""
+
+#: ../src/menu.c:1933
+#, c-format
+msgid "Show Enemy Energy Bars: %s"
+msgstr ""
+
+#: ../src/menu.c:1934
+#, c-format
+msgid "Screen Messages at most: %d"
+msgstr ""
+
+#: ../src/menu.c:1935
+#, c-format
+msgid "Screen Message time: %3.1f"
+msgstr ""
+
+#: ../src/menu.c:2055
+#, c-format
+msgid "Influencer Refresh Texts: %s"
+msgstr ""
+
+#: ../src/menu.c:2056
+#, c-format
+msgid "Influencer Blast Texts: %s"
+msgstr ""
+
+#: ../src/menu.c:2057
+#, c-format
+msgid "Enemy Hit Texts: %s"
+msgstr ""
+
+#: ../src/menu.c:2058
+#, c-format
+msgid "Enemy Bumped Texts: %s"
+msgstr ""
+
+#: ../src/menu.c:2059
+#, c-format
+msgid "Enemy Aim Texts: %s"
+msgstr ""
+
+#: ../src/menu.c:2060
+#, c-format
+msgid "All in-game Speech: %s"
+msgstr ""
+
+#: ../src/menu.c:2061
+#, c-format
+msgid "Reprogram bots after takeover: %s"
+msgstr ""
+
+#: ../src/menu.c:2243
+msgid "Graphics Options"
+msgstr ""
+
+#: ../src/menu.c:2244
+msgid "Sound Options"
+msgstr ""
+
+#: ../src/menu.c:2245
+msgid "Language"
+msgstr ""
+
+#: ../src/menu.c:2246
+msgid "Droid Talk"
+msgstr ""
+
+#: ../src/menu.c:2247
+msgid "On-Screen Displays"
+msgstr ""
+
+#: ../src/menu.c:2248
+msgid "Performance Tweaks"
+msgstr ""
+
+#: ../src/menu.c:2249
+msgid "Save Options"
+msgstr ""
+
+#: ../src/menu.c:2343
+msgid ""
+"\n"
+" Please enter name of server to connect to:\n"
+" You can give an empty string for the local host.\n"
+" > "
+msgstr ""
+
+#: ../src/menu.c:2370
+msgid ""
+"\n"
+"     Please enter a name\n"
+"     for the new hero: \n"
+"     (ESCAPE to cancel.)\n"
+"\n"
+"     > "
+msgstr ""
+
+#: ../src/menu.c:2624 ../src/menu.c:2730 ../src/menu.c:2745
+msgid "BACK"
+msgstr ""
+
+#: ../src/menu.c:2628
+msgid ""
+"\n"
+"\n"
+"No saved games found!!  Loading Cancelled. "
+msgstr ""
+
+#: ../src/menu.c:2729
+msgid "Sure!"
+msgstr ""
+
+#: ../src/menu.c:2732
+#, c-format
+msgid "Really delete hero '%s'?"
+msgstr ""
+
+#: ../src/menu.c:2749
+msgid ""
+"\n"
+"\n"
+"No saved games found!!  Deletion Cancelled. "
+msgstr ""
+
+#: ../src/menu.c:2788
+msgid "New Hero"
+msgstr ""
+
+#: ../src/menu.c:2789
+msgid "Load existing Hero"
+msgstr ""
+
+#: ../src/menu.c:2790
+msgid "Delete existing Hero"
+msgstr ""
+
+#: ../src/menu.c:2866
+msgid ""
+"\n"
+"\n"
+"\n"
+"                                            CREDITS\n"
+"\n"
+"\n"
+"   PROGRAMMING:\n"
+"\n"
+"                                      Johannes Prix\n"
+"\n"
+"                                      Reinhard Prix\n"
+"\n"
+"                                      Arthur Huillet\n"
+"\n"
+"\n"
+"   ARTWORK:\n"
+"\n"
+"                                      Bastian Salmela\n"
+"\n"
+"\n"
+"   DIALOGUES AND MINOR TWEAKS:\n"
+"\n"
+"                                      Karol Swietlicki\n"
+"\n"
+"\n"
+"   PROFILING AND TESTING:\n"
+"\n"
+"                                      Clint Herron\n"
+"\n"
+"\n"
+"   SOUND EFFECTS:\n"
+"\n"
+"                                      Johannes Prix\n"
+"\n"
+"                                      Chris Hoeppner\n"
+"\n"
+"\n"
+"   VOICES:\n"
+"\n"
+"                                      Tiina Heinonen\n"
+"\n"
+"                                      Doris Stubenrauch\n"
+"\n"
+"                                      Andrew A. Gill\n"
+"\n"
+"                                      Johannes Prix\n"
+"\n"
+"                                      Mbrola\n"
+"                                       text-to-speech system\n"
+"\n"
+"                                      eSpeak\n"
+"                                       text-to-speech system\n"
+"\n"
+"\n"
+"   OGG COMPOSERS:\n"
+"\n"
+"                                      \"The Beginning\"\n"
+"                                        by 4t thieves\n"
+"                                        of kahvi collective\n"
+"                                      (www.kahvi.org)\n"
+"\n"
+"                                      \"Daybreak\"\n"
+"                                        by realsmokers\n"
+"                                        of kahvi collective\n"
+"                                      (www.realsmokers.de)\n"
+"                                      (www.kahvi.org)\n"
+"\n"
+"                                      \"Bleostrada\"\n"
+"                                        by stud\n"
+"                                        of kahvi collective\n"
+"                                      (www.atl3.com/stud)\n"
+"                                      (www.kahvi.org)\n"
+"\n"
+"                                        Arvid Picciani\n"
+"\n"
+"\n"
+"   VARIOUS OLDER CONTRIBUTIONS (PRE-0.9.13 people):\n"
+"\n"
+"                                      Ryan 'simcop2387' Voots\n"
+"\n"
+"                                      Andrew A. Gill\n"
+"\n"
+"                                      Zombie Ryushu\n"
+"\n"
+"                                      Ted Cipicchio\n"
+"\n"
+"                                      The Doctor\n"
+"\n"
+"                                      Simon Newton\n"
+"\n"
+"\n"
+"\n"
+"\n"
+msgstr ""
+
+#: ../src/menu.c:2939
+msgid ""
+"\n"
+"\n"
+"                       HOW TO CONTRIBUTE\n"
+"\n"
+"\n"
+"FreedroidRPG is entirely free software and free artwork.\n"
+"It is developed exclusively by volunteers in their leisure time.\n"
+"\n"
+"FreedroidRPG depends on these contributions to become a better game.  If you "
+"would like to contribute something, but are not completely sure how, here's "
+"a list of things:\n"
+"\n"
+"\n"
+"   TESTING AND BUG REPORTING:\n"
+"\n"
+"We need people to try out the game and report anything that does not work "
+"correctly or seems to be unstable. This includes minor things, such as "
+"spelling mistakes and the like. The task of testing is growing with the size "
+"of FreedroidRPG. We need your help.\n"
+"\n"
+"\n"
+"   MAP IMPROVEMENTS:\n"
+"\n"
+"We are looking for people who would make maps for us. There is already an "
+"editor built into the game. Feel free to try it, and if you like it make "
+"sure to get back to us.\n"
+"\n"
+"\n"
+"   VOICE SAMPLES:\n"
+"\n"
+"Currently we are not accepting new speech. All of the dialogues are being "
+"rewritten, we will add voice to them later. If you are one of our old voice "
+"actors, then please get in touch with the team.\n"
+"\n"
+"\n"
+"   SOUND EFFECTS:\n"
+"\n"
+"We sure could use some sound effects. If you want to contribute some to a "
+"good cause we will not say no to that. :) \n"
+"\n"
+"\n"
+"   CONTACT:\n"
+"\n"
+"If you would like to contribute something or give some feedback concerning "
+"the game, you can easily get in contact with the developers. Just send an e-"
+"mail to the following address:\n"
+"\n"
+"freedroid-discussion@lists.sourceforge.net\n"
+"\n"
+"Or, if you prefer that, you might want to pop into our IRC channel "
+"(#freedroid on irc.freenode.net) Everyone's invited. Bring your friends and "
+"coke, beer for Basse and Arthur.\n"
+"\n"
+"Thank you,\n"
+"\n"
+"                The FreedroidRPG dev team.\n"
+"                                      \n"
+"\n"
+"\n"
+"\n"
+"\n"
+msgstr ""
+
+#: ../src/menu.c:3090
+msgid ""
+"This is the record of all missions you have been assigned:\n"
+"\n"
+msgstr ""
+
+#: ../src/menu.c:3105
+msgid "SOLVED: "
+msgstr ""
+
+#: ../src/menu.c:3109
+msgid "FAILED: "
+msgstr ""
+
+#: ../src/menu.c:3113
+msgid "ASSIGNED: "
+msgstr ""
+
+#: ../src/menu.c:3117
+msgid "UNASSIGNED: "
+msgstr ""
+
+#: ../src/menu.c:3125
+msgid ""
+"\n"
+"\n"
+"--- Currently no missions beyond that ---"
+msgstr ""
+
+#: ../src/misc.c:793
+msgid "Pausing game..."
+msgstr ""
+
+#: ../src/misc.c:803
+msgid "GAME PAUSED"
+msgstr ""
+
+#: ../src/misc.c:831
+msgid "Game resumed."
+msgstr ""
+
+#: ../src/misc.c:1434
+#, c-format
+msgid "Arrived at %s."
+msgstr ""
+
+#: ../src/mission.c:113
+msgid ""
+"\n"
+"   See quest log: \n"
+msgstr ""
+
+#: ../src/mission.c:130
+msgid ""
+"\n"
+"* Mission completed: "
+msgstr ""
+
+#: ../src/mission.c:134
+msgid ""
+"\n"
+"* Mission failed: "
+msgstr ""
+
+#: ../src/mission.c:138
+msgid ""
+"\n"
+"* Mission not yet assigned: "
+msgstr ""
+
+#: ../src/mission.c:141
+msgid ""
+"\n"
+"* Mission assigned: "
+msgstr ""
+
+#: ../src/mission.c:171 ../src/mission.c:222
+msgid "Mission: "
+msgstr ""
+
+#: ../src/mission.c:173
+msgid ""
+"\n"
+"Status: "
+msgstr ""
+
+#: ../src/mission.c:175 ../src/mission.c:235
+msgid "COMPLETE"
+msgstr ""
+
+#: ../src/mission.c:177 ../src/mission.c:237
+msgid "FAILED"
+msgstr ""
+
+#: ../src/mission.c:179 ../src/mission.c:239
+msgid "STILL OPEN"
+msgstr ""
+
+#: ../src/mission.c:180 ../src/mission.c:240
+msgid ""
+"\n"
+"Details: "
+msgstr ""
+
+#: ../src/mission.c:233
+msgid "Status: "
+msgstr ""
+
+#: ../src/mission.c:396
+msgid "No open quests yet."
+msgstr ""
+
+#: ../src/mission.c:399
+msgid "No completed quests yet."
+msgstr ""
+
+#: ../src/mission.c:402
+msgid "No notes yet."
+msgstr ""
+
+#: ../src/saveloadgame.c:320
+msgid "Game saved."
+msgstr ""
+
+#: ../src/saveloadgame.c:396
+msgid "Failed to load old game."
+msgstr ""
+
+#: ../src/saveloadgame.c:477
+msgid ""
+"Version or structsize mismatch! The savegame is not from the same version of "
+"freedroidRPG... possible breakage.\n"
+msgstr ""
+
+#: ../src/saveloadgame.c:512
+msgid "Updating Tux images (this may take a little while...)"
+msgstr ""
+
+#: ../src/saveloadgame.c:524
+msgid "Game loaded."
+msgstr ""
+
+#: ../src/ship.c:75 ../src/shop.c:1250 ../src/shop.c:1277 ../src/shop.c:1314
+#: ../src/shop.c:1538 ../src/shop.c:1727 ../src/shop.c:1847 ../src/shop.c:1939
+msgid "Yes"
+msgstr ""
+
+#: ../src/ship.c:76 ../src/shop.c:1251 ../src/shop.c:1278 ../src/shop.c:1315
+#: ../src/shop.c:1539 ../src/shop.c:1728 ../src/shop.c:1848 ../src/shop.c:1940
+msgid "No"
+msgstr ""
+
+#: ../src/ship.c:91 ../src/shop.c:1186 ../src/shop.c:1258 ../src/shop.c:1285
+#: ../src/shop.c:1478 ../src/shop.c:1564 ../src/shop.c:1793 ../src/shop.c:1898
+#: ../src/shop.c:1973
+msgid " BACK "
+msgstr ""
+
+#: ../src/ship.c:93
+msgid " YOU DONT HAVE ANYTHING IN INVENTORY, THAT COULD BE VIEWED. "
+msgstr ""
+
+#: ../src/ship.c:231
+#, c-format
+msgid ""
+"Unit type %s - %s\n"
+"Entry : %d\n"
+"Brain : %s"
+msgstr ""
+
+#: ../src/ship.c:241 ../src/vars.h:174 ../src/vars.h:194 ../src/vars.h:201
+msgid "none"
+msgstr ""
+
+#: ../src/ship.c:243
+#, c-format
+msgid ""
+"\n"
+"Armamant : %s\n"
+"Sensors  1: %s\n"
+"          2: %s\n"
+"          3: %s"
+msgstr ""
+
+#: ../src/ship.c:251
+#, c-format
+msgid ""
+"\n"
+"Notes: %s\n"
+msgstr ""
+
+#: ../src/ship.c:564
+msgid " (Unidentified)"
+msgstr ""
+
+#: ../src/ship.c:608
+msgid "Weapon"
+msgstr ""
+
+#: ../src/ship.c:610
+msgid "Drive"
+msgstr ""
+
+#: ../src/ship.c:612
+msgid "Armor"
+msgstr ""
+
+#: ../src/ship.c:614
+msgid "Shield"
+msgstr ""
+
+#: ../src/ship.c:616
+msgid "Helm"
+msgstr ""
+
+#: ../src/ship.c:617
+msgid "Miscellaneous"
+msgstr ""
+
+#: ../src/ship.c:620
+#, c-format
+msgid ""
+"Item: %s \n"
+"Class: %s\n"
+msgstr ""
+
+#: ../src/ship.c:634
+msgid "Specials:"
+msgstr ""
+
+#: ../src/ship.c:646
+msgid "Multiplicity: "
+msgstr ""
+
+#: ../src/ship.c:653
+msgid "Duration: "
+msgstr ""
+
+#: ../src/ship.c:659
+#, c-format
+msgid "Indestructible\n"
+msgstr ""
+
+#: ../src/ship.c:664
+msgid "Attributes required: "
+msgstr ""
+
+#: ../src/ship.c:670
+msgid "NONE\n"
+msgstr ""
+
+#: ../src/ship.c:676
+#, c-format
+msgid "Str: %d "
+msgstr ""
+
+#: ../src/ship.c:681
+#, c-format
+msgid "Dex: %d "
+msgstr ""
+
+#: ../src/ship.c:686
+#, c-format
+msgid "Mag: %d "
+msgstr ""
+
+#: ../src/ship.c:724
+#, c-format
+msgid "Base list price: %ld\n"
+msgstr ""
+
+#: ../src/ship.c:727
+#, c-format
+msgid "Sell value: %ld\n"
+msgstr ""
+
+#: ../src/ship.c:735
+#, c-format
+msgid "Repair cost: %ld\n"
+msgstr ""
+
+#: ../src/ship.c:740
+#, c-format
+msgid "Unsellable\n"
+msgstr ""
+
+#: ../src/ship.c:749
+#, c-format
+msgid "Damage: %d - %d\n"
+msgstr ""
+
+#: ../src/ship.c:758
+#, c-format
+msgid "Recharge time: %3.2f\n"
+msgstr ""
+
+#: ../src/ship.c:765
+#, c-format
+msgid "Time to reload ammo clip: %3.2f\n"
+msgstr ""
+
+#: ../src/ship.c:772
+#, c-format
+msgid "Defense bonus: %d\n"
+msgstr ""
+
+#: ../src/ship.c:776
+#, c-format
+msgid "Notes: %s"
+msgstr ""
+
+#: ../src/ship.c:783
+msgid " This weapon requires standard plasma ammunition."
+msgstr ""
+
+#: ../src/ship.c:786
+msgid " This weapon requires standard laser crystal ammunition."
+msgstr ""
+
+#: ../src/ship.c:789
+msgid " This weapon requires standard exterminator ammunition spheres."
+msgstr ""
+
+#: ../src/ship.c:792
+msgid " This weapon requires .22 Long Rifle rounds."
+msgstr ""
+
+#: ../src/ship.c:795
+msgid " This weapon requires Shotgun shells."
+msgstr ""
+
+#: ../src/ship.c:798
+msgid " This weapon requires 9x19mm rounds."
+msgstr ""
+
+#: ../src/ship.c:801
+msgid " This weapon requires 7.62x39mm rounds."
+msgstr ""
+
+#: ../src/ship.c:804
+msgid " This weapon requires .50 (12.7x99mm) Browning Machine Gun rounds."
+msgstr ""
+
+#: ../src/shop.c:1261
+msgid ""
+"\n"
+"\n"
+"You can't afford to have this item repaired! "
+msgstr ""
+
+#: ../src/shop.c:1288
+msgid "You can't afford to have this item identified! "
+msgstr ""
+
+#: ../src/shop.c:1357
+msgid ""
+"\n"
+"\n"
+"    Are you sure you wish to sell this/(some of these) item(s)?"
+msgstr ""
+
+#: ../src/shop.c:1481
+msgid ""
+"\n"
+"\n"
+"   No room for this item in inventory!"
+msgstr ""
+
+#: ../src/shop.c:1505
+msgid ""
+"\n"
+"Tried to take 0 items of a kind from chest or cointainer... doing nothing... "
+msgstr ""
+
+#: ../src/shop.c:1567
+msgid ""
+"\n"
+"\n"
+"    You can't afford to purchase this item!"
+msgstr ""
+
+#: ../src/shop.c:1795
+msgid " YOU DONT HAVE ANYTHING THAT WOULD NEED REPAIR "
+msgstr ""
+
+#: ../src/shop.c:1900
+msgid " YOU DONT HAVE ANYTHING THAT WOULD NEED TO BE IDENTIFIED!"
+msgstr ""
+
+#: ../src/shop.c:1912
+#, c-format
+msgid " I COULD IDENTIFY THESE ITEMS             YOUR GOLD:  %4ld"
+msgstr ""
+
+#: ../src/shop.c:1975
+msgid ""
+" YOU DONT HAVE ANYTHING IN INVENTORY (I.E. NOT WORN), THAT COULD BE SOLD. "
+msgstr ""
+
+#: ../src/shop.c:1988
+#, c-format
+msgid " I WOULD BUY FROM YOU THESE ITEMS        YOUR GOLD:  %4ld"
+msgstr ""
+
+#: ../src/shop.c:2029
+msgid "Buy Basic Items"
+msgstr ""
+
+#: ../src/shop.c:2030
+msgid "Buy Premium Items"
+msgstr ""
+
+#: ../src/shop.c:2031
+msgid "Sell Items"
+msgstr ""
+
+#: ../src/shop.c:2032
+msgid "Repair Items"
+msgstr ""
+
+#: ../src/shop.c:2033
+msgid "Leave the Sales Representative"
+msgstr ""
+
+#: ../src/shop.c:2034
+msgid "Identify Items"
+msgstr ""
+
+#: ../src/skills.c:718
+#, c-format
+msgid "Program revision: %d "
+msgstr ""
+
+#: ../src/skills.c:721
+#, c-format
+msgid "Heat produced: %d "
+msgstr ""
+
+#: ../src/takeover.c:305
+#, c-format
+msgid "For taking control of your enemy, you receive %d experience."
+msgstr ""
+
+#: ../src/takeover.c:352
+msgid "You cheat"
+msgstr ""
+
+#: ../src/takeover.c:354
+msgid "Complete"
+msgstr ""
+
+#: ../src/takeover.c:364
+msgid "Rejected"
+msgstr ""
+
+#: ../src/takeover.c:372
+msgid "Deadlock"
+msgstr ""
+
+#: ../src/takeover.c:435
+#, c-format
+msgid "Color-%d"
+msgstr ""
+
+#: ../src/takeover.c:472
+#, c-format
+msgid "Subliminal"
+msgstr ""
+
+#: ../src/takeover.c:509
+#, c-format
+msgid "Finish-%d"
+msgstr ""
+
+#: ../src/takeover.c:1751
+#, c-format
+msgid "Score"
+msgstr ""
+
+#: ../src/text.c:192
+msgid "Unhandled exception fault.  Press ok to reboot."
+msgstr ""
+
+#: ../src/text.c:195
+msgid "System fault. Please buy a newer version."
+msgstr ""
+
+#: ../src/text.c:198
+msgid "System error. Might be a virus."
+msgstr ""
+
+#: ../src/text.c:201
+msgid "System error. Please buy an upgrade from MS."
+msgstr ""
+
+#: ../src/text.c:204
+msgid "System error. Press any key to reboot."
+msgstr ""
+
+#: ../src/text.c:208
+msgid "Aargh, I got hit.  Ugh, I got a bad feeling..."
+msgstr ""
+
+#: ../src/text.c:224
+msgid "Ah, good, that we have an open collision avoiding standard, isn't it."
+msgstr ""
+
+#: ../src/text.c:231
+msgid "Hey, I'm from MS! Walk outa my way!"
+msgstr ""
+
+#: ../src/text.c:234
+msgid "Hey, I know the big MS boss! You better go."
+msgstr ""
+
+#: ../src/text.c:254
+msgid "Yeah, stay like that, haha."
+msgstr ""
+
+#: ../src/text.c:258
+msgid "Stand still while I aim at you."
+msgstr ""
+
+#: ../src/text.c:280
+msgid "Aaarrgh, aah, that burnt me!"
+msgstr ""
+
+#: ../src/text.c:283
+msgid "Hell, that blast was hot!"
+msgstr ""
+
+#: ../src/text.c:286
+msgid "Ghaart, I hate to stain my chassis like that."
+msgstr ""
+
+#: ../src/text.c:289
+msgid "Oh no!  I think I've burnt a cable!"
+msgstr ""
+
+#: ../src/text.c:292
+msgid "Oh no, my poor transfer connectors smolder!"
+msgstr ""
+
+#: ../src/text.c:295
+msgid "I hope that didn't melt any circuits!"
+msgstr ""
+
+#: ../src/text.c:298
+msgid "So that gives some more black scars on me ol' dented chassis!"
+msgstr ""
+
+#: ../src/vars.h:137
+msgid "Influence device"
+msgstr ""
+
+#: ../src/vars.h:138
+msgid "Disposal robot"
+msgstr ""
+
+#: ../src/vars.h:139
+msgid "Servant robot"
+msgstr ""
+
+#: ../src/vars.h:140
+msgid "Messenger robot"
+msgstr ""
+
+#: ../src/vars.h:141
+msgid "Maintenance robot"
+msgstr ""
+
+#: ../src/vars.h:142
+msgid "Crew droid"
+msgstr ""
+
+#: ../src/vars.h:143
+msgid "Sentinel droid"
+msgstr ""
+
+#: ../src/vars.h:144
+msgid "Battle droid"
+msgstr ""
+
+#: ../src/vars.h:145
+msgid "Security droid"
+msgstr ""
+
+#: ../src/vars.h:146
+msgid "Command Cyborg"
+msgstr ""
+
+#: ../src/vars.h:147
+msgid "Peaceful Human"
+msgstr ""
+
+#: ../src/vars.h:148
+msgid "Cold MS Force"
+msgstr ""
+
+#: ../src/vars.h:149
+msgid "Mrs. Stone, Shopowner"
+msgstr ""
+
+#: ../src/vars.h:150
+msgid "Resistance Founder"
+msgstr ""
+
+#: ../src/vars.h:151
+msgid "Town Healer"
+msgstr ""
+
+#: ../src/vars.h:152
+msgid "Sorenson, Master of Magic"
+msgstr ""
+
+#: ../src/vars.h:153
+msgid "Pendragon, Rebel Fighter"
+msgstr ""
+
+#: ../src/vars.h:154
+msgid "Dixon, Teleporter Service Man"
+msgstr ""
+
+#: ../src/vars.h:155
+msgid "Chandra, Tourist Guide"
+msgstr ""
+
+#: ../src/vars.h:160
+msgid "influence"
+msgstr ""
+
+#: ../src/vars.h:161
+msgid "disposal"
+msgstr ""
+
+#: ../src/vars.h:162
+msgid "servant"
+msgstr ""
+
+#: ../src/vars.h:163
+msgid "messenger"
+msgstr ""
+
+#: ../src/vars.h:164
+msgid "maintenance"
+msgstr ""
+
+#: ../src/vars.h:165
+msgid "crew"
+msgstr ""
+
+#: ../src/vars.h:166
+msgid "sentinel"
+msgstr ""
+
+#: ../src/vars.h:167
+msgid "battle"
+msgstr ""
+
+#: ../src/vars.h:168
+msgid "security"
+msgstr ""
+
+#: ../src/vars.h:169
+msgid "command"
+msgstr ""
+
+#: ../src/vars.h:170 ../src/vars.h:180 ../src/vars.h:190 ../src/vars.h:197
+#: ../src/vars.h:206
+msgid "error"
+msgstr ""
+
+#: ../src/vars.h:175
+msgid "tracks"
+msgstr ""
+
+#: ../src/vars.h:176
+msgid "anti-grav"
+msgstr ""
+
+#: ../src/vars.h:177
+msgid "tripedal"
+msgstr ""
+
+#: ../src/vars.h:178
+msgid "wheels"
+msgstr ""
+
+#: ../src/vars.h:179
+msgid "bipedal"
+msgstr ""
+
+#: ../src/vars.h:184
+msgid " - "
+msgstr ""
+
+#: ../src/vars.h:185
+msgid "spectral"
+msgstr ""
+
+#: ../src/vars.h:186
+msgid "infra-red"
+msgstr ""
+
+#: ../src/vars.h:187
+msgid "subsonic"
+msgstr ""
+
+#: ../src/vars.h:188
+msgid "ultra-sonic"
+msgstr ""
+
+#: ../src/vars.h:189
+msgid "radar"
+msgstr ""
+
+#: ../src/vars.h:195
+msgid "neutronic"
+msgstr ""
+
+#: ../src/vars.h:196
+msgid "primode"
+msgstr ""
+
+#: ../src/vars.h:202
+msgid "lasers"
+msgstr ""
+
+#: ../src/vars.h:203
+msgid "laser rifle"
+msgstr ""
+
+#: ../src/vars.h:204
+msgid "disruptor"
+msgstr ""
+
+#: ../src/vars.h:205
+msgid "exterminator"
+msgstr ""
+
+#: ../src/vars.h:211
+msgid "novice"
+msgstr ""
+
+#: ../src/vars.h:212
+msgid "average"
+msgstr ""
+
+#: ../src/vars.h:213
+msgid "experienced"
+msgstr ""
+
+#: ../src/vars.h:214
+msgid "skilled"
+msgstr ""
+
+#: ../src/vars.h:215
+msgid "adept"
+msgstr ""
+
+#: ../src/vars.h:216
+msgid "masterful"
+msgstr ""
+
+#: ../src/vars.h:217
+msgid "inhuman"
+msgstr ""
+
+#: ../src/vars.h:218
+msgid "god-like"
+msgstr ""
+
+#: ../src/vars.h:219
+msgid "super-god-like"
+msgstr ""
+
+#: ../src/vars.h:220
+msgid "wicked sick"
+msgstr ""
+
+#: ../src/view.c:257
+#, c-format
+msgid "FPS: %d"
+msgstr ""
+
+#: ../src/view.c:264
+#, c-format
+msgid "Energy: %d "
+msgstr ""
+
+#: ../src/view.c:274
+#, c-format
+msgid "GPS: X=%3.1f Y=%3.1f Lev=%d"
+msgstr ""
+
+#: ../src/view.c:295
+#, c-format
+msgid "Time to hold out still: %2d:%2d "
+msgstr ""
+
+#: ../src/view.c:314
+#, c-format
+msgid "Bots remaining on level: %d"
+msgstr ""

@@ -1,12 +1,18 @@
 POFILES_SRC =	fr_FR/LC_MESSAGES/freedroidrpg.po \
 		de_DE/LC_MESSAGES/freedroidrpg.po \
-		sv_SE/LC_MESSAGES/freedroidrpg.po
+		sv_SE/LC_MESSAGES/freedroidrpg.po \
+		ru_RU/LC_MESSAGES/freedroidrpg.po
 
 POFILES_DAT = 	fr_FR/LC_MESSAGES/freedroidrpg_data.po \
-      		de_DE/LC_MESSAGES/freedroidrpg_data.po 
+      		de_DE/LC_MESSAGES/freedroidrpg_data.po \
+		sv_SE/LC_MESSAGES/freedroidrpg_data.po \
+		ru_RU/LC_MESSAGES/freedroidrpg_data.po
 
 POFILES_DIA = 	fr_FR/LC_MESSAGES/freedroidrpg_dialogs.po \
-      		de_DE/LC_MESSAGES/freedroidrpg_dialogs.po 
+      		de_DE/LC_MESSAGES/freedroidrpg_dialogs.po \
+		sv_SE/LC_MESSAGES/freedroidrpg_dialogs.po \
+		ru_RU/LC_MESSAGES/freedroidrpg_dialogs.po
+
 
 MOFILES_SRC = $(POFILES_SRC:.po=.mo)
 MOFILES_DAT = $(POFILES_DAT:.po=.mo)
