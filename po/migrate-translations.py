@@ -26,14 +26,17 @@ def between(s, sep1, sep2):
     return s1[:s1.find(sep2)]
 
 def main():
-    if len(sys.argv) < 4:
-        print "Usage: %s <input-pot> <input-dir> <out-po>" % sys.argv[0]
+    if len(sys.argv) < 5:
+        print "Usage: %s <input-pot> <input-dir> <out-po> <lang>" % sys.argv[0]
         return 0
-    input_pot, input_dir, out_po = sys.argv[1:]
+    input_pot, input_dir, out_po, lang = sys.argv[1:]
 
-    os.system("msginit -i %s -o %s" % (input_pot, out_po))
+    os.system("msginit -i %s -o %s -l %s" % (input_pot, out_po, lang))
 
-    out_po_contents = [s.strip() for s in open(out_po, 'r').readlines()]
+    out_po_f = open(out_po, 'r')
+    lines = out_po_f.readlines()
+    out_po_contents = [s.strip() for s in lines]
+    out_po_f.close()
     got_translation = False
     filename = ""
     linenum = 0
@@ -45,14 +48,25 @@ def main():
             got_translation = True
         if line.startswith('msgstr ') and got_translation:
             got_translation = False
-            f = open(os.path.join(input_dir, filename), 'r')
+	    translated_filepath = os.path.join(input_dir, filename)
+	    try:
+		f = open(translated_filepath, 'r')
+	    except IOError:
+		os.write(2, 'Could not open file %s\n' % (translated_filepath))
+		continue
+	    
             in_lines = [s.strip() for s in f.readlines()]
             try:
-                translation = between(in_lines[linenum - 1], '"', '"')
-                out_po_contents[i] = 'msgstr "%s"' % translation
-            except: pass
+            	translation = between(in_lines[linenum - 1], '"', '"')
+	    except IndexError:
+		os.write(2, 'File %s seems shorter than original, line %d\n' % (translated_filepath, linenum))
+	    
+            out_po_contents[i] = 'msgstr "%s"' % translation
+	    f.close()
     
-    open(out_po, 'w').write('\n'.join(out_po_contents)) 
+    out_po_f = open(out_po, 'w')
+    out_po_f.write('\n'.join(out_po_contents)) 
+    out_po_f.close()
     return 0
 
 if __name__ == "__main__": sys.exit(main())
