@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CHANGE THIS\n"
 "Report-Msgid-Bugs-To: CHANGE THIS TOO\n"
-"POT-Creation-Date: 2008-02-02 21:30+0000\n"
-"PO-Revision-Date: 2008-02-02 21:30+0000\n"
+"POT-Creation-Date: 2008-02-05 15:22+0000\n"
+"PO-Revision-Date: 2008-02-05 15:22+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -1706,47 +1706,66 @@ msgstr ""
 msgid " ./hcf.py"
 msgstr ""
 
-#: ../dialogs/StandardBotAfterTakeover.dialog:103
+#: ../dialogs/StandardBotAfterTakeover.dialog:92
+#: ../dialogs/SACD.dialog:100
+msgid "Executing: Halt and Catch Fire."
+msgstr ""
+
+#: ../dialogs/StandardBotAfterTakeover.dialog:94
+msgid "Warning! Cooling subsystems disabled."
+msgstr ""
+
+#: ../dialogs/StandardBotAfterTakeover.dialog:96
+msgid ""
+"Warning! Spontaneous oxidization witH emis$ion of light aND heAt detecteddd in"
+" THE#main| procesIng unit."
+msgstr ""
+
+#: ../dialogs/StandardBotAfterTakeover.dialog:98
+msgid "WArn|n*! SsTeM=#faiPure%^#n 3 S 1()$++"
+msgstr ""
+
+#: ../dialogs/StandardBotAfterTakeover.dialog:106
 msgid "DID TUX ANGER DIXON?"
 msgstr ""
 
-#: ../dialogs/StandardBotAfterTakeover.dialog:112
+#: ../dialogs/StandardBotAfterTakeover.dialog:115
 msgid "YES, DIXON IS ANGRY."
 msgstr ""
 
-#: ../dialogs/StandardBotAfterTakeover.dialog:121
+#: ../dialogs/StandardBotAfterTakeover.dialog:124
 msgid "DID TUX HURT BRUCE?"
 msgstr ""
 
-#: ../dialogs/StandardBotAfterTakeover.dialog:130
+#: ../dialogs/StandardBotAfterTakeover.dialog:133
 msgid "YES, BRUCE IS HURT"
 msgstr ""
 
-#: ../dialogs/StandardBotAfterTakeover.dialog:139
+#: ../dialogs/StandardBotAfterTakeover.dialog:142
 msgid "IS TUX ON THE FINAL MISSION?"
 msgstr ""
 
-#: ../dialogs/StandardBotAfterTakeover.dialog:148
+#: ../dialogs/StandardBotAfterTakeover.dialog:151
 msgid "YES, THIS IS THE FINAL MISSION."
 msgstr ""
 
-#: ../dialogs/StandardBotAfterTakeover.dialog:157
+#: ../dialogs/StandardBotAfterTakeover.dialog:160
 msgid "IS THIS THE FIRST TIME TUX GETS THE EDGE?"
 msgstr ""
 
-#: ../dialogs/StandardBotAfterTakeover.dialog:166
+#: ../dialogs/StandardBotAfterTakeover.dialog:169
 msgid "EVERYTHING IS READY."
 msgstr ""
 
-#: ../dialogs/StandardBotAfterTakeover.dialog:169
+#: ../dialogs/StandardBotAfterTakeover.dialog:172
 msgid "()%#@(% THE BLADE IS YOURS. )##%*&%*!"
 msgstr ""
 
-#: ../dialogs/StandardBotAfterTakeover.dialog:179
+#: ../dialogs/StandardBotAfterTakeover.dialog:182
 msgid "NO."
 msgstr ""
 
-#: ../dialogs/StandardBotAfterTakeover.dialog:188
+#: ../dialogs/StandardBotAfterTakeover.dialog:191
 #: ../dialogs/SACD.dialog:170
 msgid " logout"
 msgstr ""
@@ -4211,10 +4230,6 @@ msgstr ""
 
 #: ../dialogs/SACD.dialog:90
 msgid "Please enter unlock security password:"
-msgstr ""
-
-#: ../dialogs/SACD.dialog:100
-msgid "Executing: Halt and Catch Fire."
 msgstr ""
 
 #: ../dialogs/SACD.dialog:102
