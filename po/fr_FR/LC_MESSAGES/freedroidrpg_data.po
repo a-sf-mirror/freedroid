@@ -1,14 +1,17 @@
+# translation of freedroidrpg_data.po to
 msgid ""
 msgstr ""
-"Project-Id-Version: freedroidRPG 0.10.4 cvs\n"
+"Project-Id-Version: freedroidrpg_data\n"
 "Report-Msgid-Bugs-To: CHANGE THIS TOO\n"
 "POT-Creation-Date: 2008-01-27 21:16+0000\n"
-"PO-Revision-Date: 2008-02-03 12:13+0100\n"
-"Last-Translator: Arthur Huillet <arthur dot huillet at free dot fr>\n"
+"PO-Revision-Date: 2008-02-05 21:01+0100\n"
+"Last-Translator: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-15\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language-Team:  <en@li.org>\n"
+"X-Generator: KBabel 1.11.4\n"
 
 #: ../map/freedroid.program_archetypes:4
 msgid "Hacking"
@@ -1477,14 +1480,14 @@ msgstr "Ces petites boîtes contiennent de l'essence de force purifiée. Usage uni
 
 #: ../map/freedroid.item_archetypes:3681
 msgid "Dexterity Capsule"
-msgstr ""
+msgstr "Capsule de dexterité"
 
 #: ../map/freedroid.item_archetypes:3691
 msgid ""
 "These small containers hold purified dexterity.  This item will give a "
 "temporary bonus to dexterity.  Each capsule can be used only once, but "
 "multiple of those items can be grouped together like one item in inventory."
-msgstr ""
+msgstr "Ces petites boîtes contiennent de l'essence de dexterité purifiée. Usage unique."
 
 #: ../map/freedroid.item_archetypes:3703
 msgid "Cyberbucks"
@@ -1520,7 +1523,7 @@ msgstr ""
 
 #: ../map/freedroid.item_archetypes:3756
 msgid "Superconducting Relay Unit"
-msgstr ""
+msgstr "Relai à superconduction"
 
 #: ../map/freedroid.item_archetypes:3769
 msgid "Antimatter-Matter Converter"
@@ -1678,7 +1681,7 @@ msgstr ""
 
 #: ../map/freedroid.item_archetypes:3986
 msgid "Kevin's Data Cube"
-msgstr ""
+msgstr "Cube holographique de Kévin"
 
 #: ../map/freedroid.item_archetypes:3995
 msgid ""
@@ -1899,7 +1902,7 @@ msgid ""
 "Dixon, the leader of the Red Guard technical division lost his yellow "
 "toolkit in the city's maintenance tunnels. I am supposed to get it from "
 "there."
-msgstr ""
+msgstr "Dixon, le leader de la section technique de la Garde Rouge a perdu sa caisse à outil jaune dans les tunnels de maintenance de la ville. Je dois la récupérer là-bas."
 
 #: ../map/QuestList_archetypes:79
 msgid ""
@@ -1931,21 +1934,21 @@ msgstr ""
 msgid ""
 "I gave the toolkit to Dixon. He was very happy to have his autotools back. I "
 "got his helmet as a gift. I guess this is better than nothing."
-msgstr ""
+msgstr "J'ai rendu ses outils à Dixon. Il était très heureux de revoir ses autotools. Il m'a donné un casque en récompense... c'est mieux que rien, j'imagine."
 
 #: ../map/QuestList_archetypes:84
 msgid "I sold the toolkit to Dixon for a nice sum of money. Life is good."
-msgstr ""
+msgstr "J'ai revendu ses outils à Dixon pour une jolie somme. La vie est belle."
 
 #: ../map/QuestList_archetypes:85
 msgid "I sold the toolkit to Dixon for a huge sum of money. Life is great."
-msgstr ""
+msgstr "J'ai revendu ses outils à Dixon pour une très belle somme d'argent. La vie est vraiment belle."
 
 #: ../map/QuestList_archetypes:86
 msgid ""
 "I sold the toolkit to Dixon for a enormous sum of money. Life is truly "
 "grand. I better stay away from Dixon for now. He seemed very angry at me."
-msgstr ""
+msgstr "Dixon a dû me racheter ses outils pour une somme extraordinaire. La vie est vraiment géniale ! Je ferais bien de l'éviter, il avait l'air très en colère contre moi..."
 
 #: ../map/QuestList_archetypes:108
 msgid ""
@@ -1953,7 +1956,7 @@ msgid ""
 "cannot cook anything in his macrowave oven. And without his cooking the "
 "whole city is stuck eating army snacks. Many people have committed suicide "
 "because of the horrible food. This madness must stop."
-msgstr ""
+msgstr "Je dois récupérer des cristaux de dilitium pour le cuisinier. Sans eux il ne peut pas utiliser son four à macro-ondes, et s'il ne cuisine pas, tout la ville doit manger des rations militaires. De nombreuses personnes se sont suicidées à cause de la nourriture affreuse. Cette folie doit s'arrêter."
 
 #: ../map/QuestList_archetypes:109
 msgid ""
