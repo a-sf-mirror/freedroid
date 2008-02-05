@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: freedroid-discussion@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-02-03 11:19+0100\n"
+"POT-Creation-Date: 2008-02-05 13:54+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2606,27 +2606,25 @@ msgstr ""
 msgid "No notes yet."
 msgstr ""
 
-#: ../src/saveloadgame.c:319
+#: ../src/saveloadgame.c:320
 msgid "Game saved."
 msgstr ""
 
-#: ../src/saveloadgame.c:408
+#: ../src/saveloadgame.c:396
 msgid "Failed to load old game."
 msgstr ""
 
-#: ../src/saveloadgame.c:520
+#: ../src/saveloadgame.c:477
 msgid ""
-"Error: Version or structsize mismatch! The saved game in question appears to "
-"be from a (slightly?) different version of FreedroidRPG.\n"
-"Sorry, but I refuse to load it for safety/stability reasons...\n"
-"For Recovery, a blank game will be loaded...(please disregard)\n"
+"Version or structsize mismatch! The savegame is not from the same version of "
+"freedroidRPG... possible breakage.\n"
 msgstr ""
 
-#: ../src/saveloadgame.c:580
+#: ../src/saveloadgame.c:512
 msgid "Updating Tux images (this may take a little while...)"
 msgstr ""
 
-#: ../src/saveloadgame.c:592
+#: ../src/saveloadgame.c:524
 msgid "Game loaded."
 msgstr ""
 
