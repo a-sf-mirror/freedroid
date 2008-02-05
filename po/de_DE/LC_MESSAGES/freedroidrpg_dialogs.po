@@ -1,10 +1,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: freedroidRPG 0.10.4cvs\n"
-"Report-Msgid-Bugs-To: freedroid-discussion AT lists.sourceforge.net\n"
+"Report-Msgid-Bugs-To: CHANGE THIS TOO\n"
 "POT-Creation-Date: 2008-02-05 15:22+0000\n"
-"PO-Revision-Date: 2008-02-05 16:23+0100\n"
-"Last-Translator:  <arthur.huillet AT free.fr>\n"
+"PO-Revision-Date: 2008-02-05 17:24+0100\n"
+"Last-Translator:  <arthur.huillet@free.fr>\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
@@ -403,385 +403,385 @@ msgstr "Goodbye und viel gluck."
 #: ../dialogs/Ernie.dialog:33 ../dialogs/MSFacilityGateGuardLeader.dialog:33
 #: ../dialogs/DocMoore.dialog:86 ../dialogs/DocMoore.dialog:108
 msgid "THIS WILL NEVER BE VISIBLE"
-msgstr "THIS WILL NEVER BE VISIBLE"
+msgstr ""
 
 #: ../dialogs/Francis.dialog:36
 msgid "Oh, thank heavens! You are still alive. Maybe not all hope is lost."
-msgstr "Ah, dem Himmel sei Dank! Du bist noch am Leben! Vielleicht ist noch nicht alle Hoffnung verloren..."
+msgstr ""
 
 #: ../dialogs/Francis.dialog:47
 msgid " Who am I?"
-msgstr " W... wer bin ich?"
+msgstr ""
 
 #: ../dialogs/Francis.dialog:50
 msgid "Oh dear. This is not good. Not good."
-msgstr "Ach du liebe Güte. Das ist nicht gut... nicht gut!"
+msgstr ""
 
 #: ../dialogs/Francis.dialog:52
 msgid ""
 "*sigh* Long stasis sleep can cause neurological damage and impact the "
 "memory. Looks like that is what happened here."
-msgstr "*Seufz*... langer Cryoschlaf kann neurologische Schäden verursachen und das Gedächtnis in Mitleidenschaft ziehen. Sieht so aus, als wäre das hier passiert."
+msgstr ""
 
 #: ../dialogs/Francis.dialog:54
 msgid ""
 "It will all come back to you in a few hours, but I guess I will make it "
 "easier for you if I say what I know."
-msgstr "In ein paar Stunden wird sich alles wieder finden - aber ich nehme an es wird für dich leichter sein, wenn ich sage was ich weiss."
+msgstr ""
 
 #: ../dialogs/Francis.dialog:56
 msgid ""
 "You are a Linarian, a species not native to this planet. Twenty of you "
 "arrived here close to a century ago."
-msgstr "Du bist Linarianer, von einer Spezies die nicht von diesem Planeten stammt. Vor knapp einem Jahrhundert kamen 20 von euch hierher."
+msgstr ""
 
 #: ../dialogs/Francis.dialog:58
 msgid ""
 "There was a... misunderstanding of some sort and humans welcomed your "
 "expedition with blaster fire. A terrible mistake on our part."
-msgstr "Es gab irgendein... Missverständnis und die Menschen begrüssten eure Expedition mit Kanonenfeuer. Ein schrecklicher Fehler von unserer Seite!"
+msgstr ""
 
 #: ../dialogs/Francis.dialog:60
 msgid "A few of you survived the slaughter and went into hiding and obscurity."
-msgstr "Ein paar von euch überlebten das Gemetzel und gingen in den Untergrund oder gerieten in Vergessenheit."
+msgstr ""
 
 #: ../dialogs/Francis.dialog:62
 msgid ""
 "During that time Linarians became known as helpers and heroes. Of course now "
 "most people think it all was just a fairy tale."
-msgstr "Während dieser Zeit wurden die Linarianer als Helfer und Helden bekannt. Natürlich glauben die meisten Menschen jetzt, alles wäre nur ein schönes Märchen gewesen."
+msgstr ""
 
 #: ../dialogs/Francis.dialog:64
 msgid "If the computer is not lying, then your name is Tux."
-msgstr "Wenn der Computer die Wahrheit sagt, ist dein Name Tux."
+msgstr ""
 
 #: ../dialogs/Francis.dialog:72
 msgid " How did the war start?"
-msgstr " Wie fing der Krieg an?"
+msgstr ""
 
 #: ../dialogs/Francis.dialog:75
 msgid "It is a long story. It all happened five months ago."
-msgstr "Das ist eine lange Geschichte. Es begann alles vor fünf Monaten."
+msgstr ""
 
 #: ../dialogs/Francis.dialog:77
 msgid ""
 "I was at a protest against MegaSys, a computer company. They killed free "
 "software by finding a loophole in the GPL3.14 licence. It all became their "
 "property. Bastards."
-msgstr "Ich war bei einer Demonstration gegen MegaSys, eine Computerfirma, dabei. Sie hatten die freie Softwarebewegung ausgeschaltet, indem sie ein Schlupfloch in der GPL3.14 Lizenz fanden und ausnützten. Alles ging in ihr Eigentum über! Bastarde."
+msgstr ""
 
 #: ../dialogs/Francis.dialog:79
 msgid ""
 "Lots of people were angry about this. Protests and riots spread in waves all "
 "around the world."
-msgstr "Viele Leute waren wütend darüber. Proteste und Kundgebungen breiteten sich in mehreren Wellen über die ganze Welt aus."
+msgstr ""
 
 #: ../dialogs/Francis.dialog:81
 msgid ""
 "When the police bots approached at dawn, we thought that they were going to "
 "simply disperse the crowds. Instead, they started killing us."
-msgstr "Als die Polizeirobots am Abend eintrafen dachten wir zuerst, sie würden die Menge einfach zerstreuen. Stattdessen fingen sie an, uns niederzumetzeln!"
+msgstr ""
 
 #: ../dialogs/Francis.dialog:83
 msgid ""
 "I broke into a parked hover car and used it to escape. The sight from the "
 "air was horrible."
-msgstr "Ich brach einen geparkten Gleiter auf und flüchtete damit. Der Anblick aus der Luft war grauenhaft."
+msgstr ""
 
 #: ../dialogs/Francis.dialog:85
 msgid ""
 "The city was full of flames, flashes of gunfire and screaming people. That "
 "image still does not let me sleep at nights."
-msgstr "Die Stadt war übersät von Flammen und Gewehrblitzen und die Luft war erfüllt vom Geschrei der Menschen. Die Bilder lassen mich Nachts immer noch nicht einschlafen."
+msgstr ""
 
 #: ../dialogs/Francis.dialog:87
 msgid "First we made them, and then they unmade us. How ironic."
-msgstr "Erst erschufen wir sie, und dann schufen sie uns ab. Welche Ironie!"
+msgstr ""
 
 #: ../dialogs/Francis.dialog:96
 msgid " What happened then?"
-msgstr " Was passierte dann?"
+msgstr ""
 
 #: ../dialogs/Francis.dialog:99
 msgid "I got shot down and I crashed a few kilometers away from here."
-msgstr "Ich wurde abgeschossen und hatte eine Bruchlandung ein paar Kilometer entfernt von hier."
+msgstr ""
 
 #: ../dialogs/Francis.dialog:101
 msgid ""
 "Later I learned that the bots started attacking all around the globe. The "
 "journalists called it 'The Great Assault'. The name stuck."
-msgstr "Später erfuhr ich, dass die Bots in aller Welt zum Angriff übergegangen waren. Die Reporter nannten es den 'Grossen Angriff'. Der Name blieb bestehen."
+msgstr ""
 
 #: ../dialogs/Francis.dialog:103
 msgid ""
 "Then the bots started jamming our broadcasts and long distance communication "
 "became impossible."
-msgstr "Dann blockierten die Metallungeheuer unsere Sender und Langstreckenübertragungen wurden unmöglich."
+msgstr ""
 
 #: ../dialogs/Francis.dialog:105
 msgid "I have no idea what happened in the world after that. We are cut off."
-msgstr "Ich habe keine Ahnung, was danach auf der Welt geschah. Wir sind abgeschnitten."
+msgstr ""
 
 #: ../dialogs/Francis.dialog:107
 msgid "For all I know the war might be already over."
-msgstr "Nach allem was ich weiss dürfte der Krieg bereits vorbei sein."
+msgstr ""
 
 #: ../dialogs/Francis.dialog:114
 msgid " Where am I?"
-msgstr " Wo bin ich?"
+msgstr ""
 
 #: ../dialogs/Francis.dialog:117
 msgid ""
 "The locals call the place Temple Wood. We are located not too far away from "
 "a mining town where we have made a stand against the damn contraptions."
-msgstr "Die hiesige Bevölkerung nennt diesen Ort Tempelwald. Wir befinden uns nicht allzu weit entfernt von einer befestigten Bergbausiedlung, wo wir uns eine Zuflucht vor den verdammten Metallgebilden geschaffen haben."
+msgstr ""
 
 #: ../dialogs/Francis.dialog:119
 msgid ""
 "I am sorry to disappoint, but my knowledge of geography is a bit lacking, I "
 "have no idea where in the world we are."
-msgstr "Es tut mir leid dich enttäuschen zu müssen, aber meine Geographiekenntnisse sind ein wenig bescheiden. Ich habe keine Ahnung, wo genau wir uns auf dem Planeten befinden."
+msgstr ""
 
 #: ../dialogs/Francis.dialog:121
 msgid ""
 "Most people here have a German accent, so if I had to guess, I would say "
 "Europe."
-msgstr "Die meisten Menschen hier haben einen deutschen Akzent - also würde ich, müsste ich raten, Europa sagen."
+msgstr ""
 
 #: ../dialogs/Francis.dialog:130
 msgid " Why did the Linarians come to this world?"
-msgstr " Warum kamen die Linarianer auf diese Welt?"
+msgstr ""
 
 #: ../dialogs/Francis.dialog:133
 msgid ""
 "The planet you mean? No one knows that. None of you ever said anything about "
 "it."
-msgstr "Den Planeten meinst du? Das weiss keiner. Niemand von euch hat darüber je ein Wort verloren."
+msgstr ""
 
 #: ../dialogs/Francis.dialog:135
 msgid "Sorry, I cannot help you with that."
-msgstr "Tut mir leid, aber da kann ich dir nicht weiterhelfen."
+msgstr ""
 
 #: ../dialogs/Francis.dialog:142
 msgid " Where in the void is this world?"
-msgstr " Wo, zum Lisun, befindet sich diese Welt?"
+msgstr ""
 
 #: ../dialogs/Francis.dialog:145
 msgid "I guess you mean in the universe?"
-msgstr "Ich nehme an, du meinst wo im Universum?"
+msgstr ""
 
 #: ../dialogs/Francis.dialog:153
 msgid " Yes, I think that is your name for it."
-msgstr " Ja, ich glaube das ist eure Bezeichnung dafür."
+msgstr ""
 
 #: ../dialogs/Francis.dialog:156
 msgid ""
 "Well, we are in a barred spiral galaxy, twenty-six thousand light years away "
 "from the galactic core."
-msgstr "Nun, wir befinden uns in einer scheibenförmigen Spiralgalaxie, 26-tausend Lichtjahre entfernt vom galaktischen Kern."
+msgstr ""
 
 #: ../dialogs/Francis.dialog:158
 msgid ""
 "The galactic radius is 43,000 light years and the circumference is estimated "
 "at 270,000 light years."
-msgstr "Der galaktische Radius beträgt 43-tausend Lichtjahre und der Umfang wird auf 270-tausend Lichtjahre geschätzt."
+msgstr ""
 
 #: ../dialogs/Francis.dialog:160
 msgid ""
 "This is a planetary system of ten planets, and we are presently located on "
 "the fourth one from our star, Sun."
-msgstr "Dies ist ein Sonnensystem mit neun Planeten und momentan befinden wir uns auf dem dritten von unserem Stern, der Sonne aus gesehen."
+msgstr ""
 
 #: ../dialogs/Francis.dialog:162
 msgid ""
 "I am not an astronomer, so I can be wrong. I am too tired to keep track of "
 "what is a planet and what is just an overweight rock."
-msgstr "ChangeOption=10 ChangeToValue="
+msgstr ""
 
 #: ../dialogs/Francis.dialog:170
 msgid " Who are you? What is going on?"
-msgstr "PositionX=83  PositionY=19"
+msgstr ""
 
 #: ../dialogs/Francis.dialog:173
 msgid "I guess I will start with myself."
-msgstr "Francis. Francis Spark. Ich war Professor an einer kleinen Universität, bevor hier die Hölle losbrach."
+msgstr ""
 
 #: ../dialogs/Francis.dialog:175
 msgid ""
 "Francis. Francis Spark. I used to be a teacher at a small university before "
 "all hell broke loose."
-msgstr "Momentan sucht ein Vernichtungskrieg den gesamten Erdball heim. Die Menschheit kämpft gegen die Roboter."
+msgstr ""
 
 #: ../dialogs/Francis.dialog:177
 msgid ""
 "Currently, there is a war raging all around the globe. Humans are fighting "
 "against bots."
-msgstr "Und es sieht ganz danach aus, als ob wir diesen Krieg verlieren würden."
+msgstr ""
 
 #: ../dialogs/Francis.dialog:179
 msgid "And it looks like we are losing the war."
-msgstr "ChangeOption=11 ChangeToValue="
+msgstr ""
 
 #: ../dialogs/Francis.dialog:187
 msgid " This can be just about anywhere. Your description is too ambiguous."
-msgstr "PositionX=253  PositionY=26"
+msgstr ""
 
 #: ../dialogs/Francis.dialog:190
 msgid ""
 "Sorry, star sciences are my weak point. Maybe someone in the town might know "
 "something more."
-msgstr "ChangeOption=12 ChangeToValue="
+msgstr ""
 
 #: ../dialogs/Francis.dialog:197
 msgid ""
 " I feel terrible... Was I asleep? I remember nightmares. A meteor shower "
 "striking a planet full of life and killing everything on it..."
-msgstr "PositionX=28  PositionY=26"
+msgstr ""
 
 #: ../dialogs/Francis.dialog:200
 msgid ""
 "This is normal. You were in stasis sleep for over 70 years. Stasis is not "
 "too kind on the mind. Your strange dreams will keep recurring for several "
 "years."
-msgstr "Was auch immer der Grund dafür war, warum du dir das aufgeladen hast - es muss ein verdammt guter gewesen sein."
+msgstr ""
 
 #: ../dialogs/Francis.dialog:202
 msgid ""
 "Whatever was the reason for putting yourself through this, it must have been "
 "a damn good one."
-msgstr "Du hattest Glück, dass ich dich gefunden und aufgeweckt habe. Ein paar weitere Jahrzehnte da drinnen und du wärst dem Wahnsinn verfallen."
+msgstr ""
 
 #: ../dialogs/Francis.dialog:204
 msgid ""
 "You are lucky that I found you and woke you up. A few more decades in there "
 "and you would end up insane."
-msgstr "ChangeOption=13 ChangeToValue="
+msgstr ""
 
 #: ../dialogs/Francis.dialog:213
 msgid " Tell me more about the town you mentioned."
-msgstr "PositionX=252  PositionY=33"
+msgstr ""
 
 #: ../dialogs/Francis.dialog:216
 msgid "It is a small mining community with no more than 500 inhabitants..."
-msgstr "Durch einen glücklichen Zufall wurde sie nicht von den Robots zerstört. Wegen leerer Kassen konnte man sich damals keine neuen Modelle leisten."
+msgstr ""
 
 #: ../dialogs/Francis.dialog:218
 msgid ""
 "It was a stroke of luck that it did not get destroyed by the bots. Because "
 "of poor funding, the city could not afford new models."
-msgstr "Alles, was sie zur Zeit des Grossen Robot-Angriffs hier hatten, waren die Typ-614 Kampfandroiden. Auf ihnen lief ein altes Betriebssystem, das nicht davon beeinflusst wurde was auch immer die anderen Bots durchdrehen liess."
+msgstr ""
 
 #: ../dialogs/Francis.dialog:220
 msgid ""
 "All they had at the time of the bot attack were the 614 bot battle "
 "platforms. They were running an old operating system and were not affected "
 "by whatever caused the other bots to go crazy."
-msgstr "Im Moment wird dieser Ort von der Roten Wache verteidigt, einem Haufen von Freiwilligen. Ich kann allerdings nicht behaupten, dass ich mit ihren Methoden einverstanden wäre."
+msgstr ""
 
 #: ../dialogs/Francis.dialog:222
 msgid ""
 "Right now the place is protected by the Red Guard, a bunch of volunteers. I "
 "cannot say I agree with their methods."
-msgstr "Ich muss jedoch zugeben, dass es ziemlich angenehm ist Gefangener in einer ummauerten Stadt zu sein - verglichen mit der Alternative, bei lebendigem Leibe ausgeweidet zu werden."
+msgstr ""
 
 #: ../dialogs/Francis.dialog:224
 msgid ""
 "However, I must admit that being a prisoner of a walled town looks pretty "
 "good compared to the alternative of being eviscerated alive."
-msgstr "ChangeOption=14 ChangeToValue="
+msgstr ""
 
 #: ../dialogs/Francis.dialog:231
 msgid " Why did the bots attack?"
-msgstr "PositionX=83  PositionY=5"
+msgstr ""
 
 #: ../dialogs/Francis.dialog:234
 msgid "We don't really know the reason for this insanity. However..."
-msgstr "Auf allen der angreifenden Robots wurde ein Betriebssystem von MegaSys verwendet, so dass wir davon ausgehen, dass sie verantwortlich sind."
+msgstr ""
 
 #: ../dialogs/Francis.dialog:236
 msgid ""
 "All of the attacking bots are using a MegaSys operating system, so we think "
 "they are responsible."
-msgstr "Nicht gerade überraschenderweise allerdings, haben die Bastarde alles abgestritten."
+msgstr ""
 
 #: ../dialogs/Francis.dialog:238
 msgid "Not surprisingly, the bastards deny everything."
-msgstr "Und natürlich, weil praktisch auf jedem einzelnen Roboter weltweit dieser Müll installiert ist, sieht die Lage nicht sehr rosig aus!"
+msgstr ""
 
 #: ../dialogs/Francis.dialog:240
 msgid ""
 "Of course because nearly every single bot in the world runs on that junk, "
 "the situation does not look pretty."
-msgstr "ChangeOption=15 ChangeToValue="
+msgstr ""
 
 #: ../dialogs/Francis.dialog:248
 msgid " I also heard a voice... Someone calling himself Dvorak... "
-msgstr "PositionX=200  PositionY=20"
+msgstr ""
 
 #: ../dialogs/Francis.dialog:251
 msgid "Relax. Everything will be fine in a few hours."
-msgstr "Das ist völlig normal, wirklich."
+msgstr ""
 
 #: ../dialogs/Francis.dialog:253
 msgid "This is perfectly normal."
-msgstr "ChangeOption=16 ChangeToValue="
+msgstr ""
 
 #: ../dialogs/Francis.dialog:260
 msgid ""
 " It cannot be true. One company cannot control all of the bot software on a "
 "whole world."
-msgstr "PositionX=171  PositionY=5"
+msgstr ""
 
 #: ../dialogs/Francis.dialog:263
 msgid ""
 "It can. They got close to a monopoly 30 years ago, but their last "
 "competitor, the open source community, was defeated by them about a year ago."
-msgstr "Seither wurden alle neugebauten Roboter mit einer von MegaSys eingebrannten Schaltkreis-Firmware ausgeliefert."
+msgstr ""
 
 #: ../dialogs/Francis.dialog:265
 msgid ""
 "Since then all of the newly made bots have been made with MegaSys firmware "
 "burnt into their circuits."
-msgstr "ChangeOption=20 ChangeToValue="
+msgstr ""
 
 #: ../dialogs/Francis.dialog:272
 msgid " Why did you wake me up? "
-msgstr "PositionX=27  PositionY=33"
+msgstr ""
 
 #: ../dialogs/Francis.dialog:275
 msgid ""
 "The situation at the town is not good. The walls are crumbling and we have "
 "lost a lot of good people."
-msgstr "Wie ich hörte haben die Linarianer eine besondere Begabung für Computer und können sie deaktivieren, indem sie nur daran denken."
+msgstr ""
 
 #: ../dialogs/Francis.dialog:277
 msgid ""
 "I heard the Linarians have a special gift for computers and can disable them "
 "just by thinking about it."
-msgstr "Auch wenn das nur zum Teil zutreffen sollte, so brauchen wir diese Fähigkeiten. Die Situation sieht ziemlich übel aus."
+msgstr ""
 
 #: ../dialogs/Francis.dialog:279
 msgid ""
 "Even if this is only partly true, we need it. The situation is quite ugly."
-msgstr "Wir brauchen dich!"
+msgstr ""
 
 #: ../dialogs/Francis.dialog:281
 msgid "We need you."
-msgstr "ChangeOption=21 ChangeToValue="
+msgstr ""
 
 #: ../dialogs/Francis.dialog:288
 msgid " Thanks for the help. I'll be going now."
-msgstr "PositionX=244  PositionY=11"
+msgstr ""
 
 #: ../dialogs/Francis.dialog:291
 msgid ""
 "I am glad I could help you. You should be careful around here. Best head "
 "straight for our town."
-msgstr "Der Weg, der von diesem Haus wegführt, sollte dich direkt dorthin bringen."
+msgstr ""
 
 #: ../dialogs/Francis.dialog:293
 msgid "The path from this house should lead you directly to it."
-msgstr "ChangeOption=99 ChangeToValue="
+msgstr ""
 
 #: ../dialogs/Jasmine.dialog:33 ../dialogs/Michelangelo.dialog:33
 #: ../dialogs/Stone.dialog:33 ../dialogs/Spencer.dialog:33
@@ -1625,41 +1625,41 @@ msgstr "Ciao."
 
 #: ../dialogs/StandardBotAfterTakeover.dialog:47
 msgid " ./pull_breaks.sh"
-msgstr " ./zieh_bremse.sh"
+msgstr ""
 
 #: ../dialogs/StandardBotAfterTakeover.dialog:50
 msgid ""
 "Pulling breaks, using script V 1.0.2 (c) gnu.org, 2054 Checking "
 "requirements. Energy on breaks. Done. Status: All movement suppressed."
-msgstr "Ziehe Bremse, benutze Script V 1.0.2 (c) gnu.org, 2054. Prüfe Abhängigkeiten... Energie auf Bremsen. Fertig. Status: sämtliche Bewegungen angehalten."
+msgstr ""
 
 #: ../dialogs/StandardBotAfterTakeover.dialog:61
 msgid " ./follow_me.sh"
-msgstr "Leite Begleitsequenz ein. Energie an Bremsen abgeschaltet. Versuche jetzt, mit Position von Tux gleichauf zu bleiben... OK, folge Tux."
+msgstr ""
 
 #: ../dialogs/StandardBotAfterTakeover.dialog:64
 msgid ""
 "Initiating tracking sequence. Energy on breaks removed. Trying to keep up "
 "with Tux position now. Ok. Following Tux."
-msgstr "SetFollowTuxProperty"
+msgstr ""
 
 #: ../dialogs/StandardBotAfterTakeover.dialog:75
 msgid " ./move_freely.sh"
-msgstr "SetMoveFreelyProperty"
+msgstr ""
 
 #: ../dialogs/StandardBotAfterTakeover.dialog:78
 msgid ""
 "Removing energy from breaks. Resuming normal patrol operations. Done. "
 "Status: Patrolling."
-msgstr "---------------------------------------------------------------------"
+msgstr ""
 
 #: ../dialogs/StandardBotAfterTakeover.dialog:89 ../dialogs/SACD.dialog:97
 msgid " ./hcf.py"
-msgstr "SsYTeM=#feH1er%^#n 3 S 1()$++"
+msgstr ""
 
 #: ../dialogs/StandardBotAfterTakeover.dialog:92 ../dialogs/SACD.dialog:100
 msgid "Executing: Halt and Catch Fire."
-msgstr "LinkedTo:1"
+msgstr ""
 
 #: ../dialogs/StandardBotAfterTakeover.dialog:94
 msgid "Warning! Cooling subsystems disabled."
@@ -1673,39 +1673,39 @@ msgstr ""
 
 #: ../dialogs/StandardBotAfterTakeover.dialog:98
 msgid "WArn|n*! SsTeM=#faiPure%^#n 3 S 1()$++"
-msgstr "NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+msgstr ""
 
 #: ../dialogs/StandardBotAfterTakeover.dialog:106
 msgid "DID TUX ANGER DIXON?"
-msgstr "YES, DIXON IS ANGRY."
+msgstr ""
 
 #: ../dialogs/StandardBotAfterTakeover.dialog:115
 msgid "YES, DIXON IS ANGRY."
-msgstr "DID TUX HURT BRUCE?"
+msgstr ""
 
 #: ../dialogs/StandardBotAfterTakeover.dialog:124
 msgid "DID TUX HURT BRUCE?"
-msgstr "YES, BRUCE IS HURT"
+msgstr ""
 
 #: ../dialogs/StandardBotAfterTakeover.dialog:133
 msgid "YES, BRUCE IS HURT"
-msgstr "IS TUX ON THE FINAL MISSION?"
+msgstr ""
 
 #: ../dialogs/StandardBotAfterTakeover.dialog:142
 msgid "IS TUX ON THE FINAL MISSION?"
-msgstr "YES, THIS IS THE FINAL MISSION."
+msgstr ""
 
 #: ../dialogs/StandardBotAfterTakeover.dialog:151
 msgid "YES, THIS IS THE FINAL MISSION."
-msgstr "IS THIS THE FIRST TIME TUX GETS THE EDGE?"
+msgstr ""
 
 #: ../dialogs/StandardBotAfterTakeover.dialog:160
 msgid "IS THIS THE FIRST TIME TUX GETS THE EDGE?"
-msgstr "EVERYTHING IS READY."
+msgstr ""
 
 #: ../dialogs/StandardBotAfterTakeover.dialog:169
 msgid "EVERYTHING IS READY."
-msgstr "no"
+msgstr ""
 
 #: ../dialogs/StandardBotAfterTakeover.dialog:172
 msgid "()%#@(% THE BLADE IS YOURS. )##%*&%*!"
@@ -1713,11 +1713,11 @@ msgstr ""
 
 #: ../dialogs/StandardBotAfterTakeover.dialog:182
 msgid "NO."
-msgstr " logout"
+msgstr ""
 
 #: ../dialogs/StandardBotAfterTakeover.dialog:191 ../dialogs/SACD.dialog:170
 msgid " logout"
-msgstr "XXXXX"
+msgstr ""
 
 #: ../dialogs/Koan.dialog:33
 msgid "KILLING DOUBLE TALK"
