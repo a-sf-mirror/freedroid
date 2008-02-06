@@ -89,10 +89,13 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=4  OptionText=_" ./hcf.py"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=200  PositionY=200  
-Subtitle=_"Executing: Halt and Catch Fire.
-Warning! Cooling subsystems disabled.
-Warning! Spontaneous oxidization witH emis$ion of light aND heAt detecteddd in THE#main| procesIng unit.
-WArn|n*! SsTeM=#faiPure%^#n 3 S 1()$++"
+Subtitle=_"Executing: Halt and Catch Fire."
+ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
+Subtitle=_"Warning! Cooling subsystems disabled."
+ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
+Subtitle=_"Warning! Spontaneous oxidization witH emis$ion of light aND heAt detecteddd in THE#main| procesIng unit."
+ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
+Subtitle=_"WArn|n*! SsTeM=#faiPure%^#n 3 S 1()$++"
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=4 ChangeToValue=0
 LinkedTo:10
