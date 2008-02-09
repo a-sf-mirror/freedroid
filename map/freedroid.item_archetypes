@@ -242,7 +242,7 @@ inventory_size_x=2
 inventory_size_y=4
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=500
-Item description text=_"Quite efficient at separating limbs off even a droid body or digging through weaker armoured parts to cause massive damage on internal electronics. But the chain wears out very quickly when used on materials harder then wood and supply shortages of new chains and other parts makes it expensive to maintain."
+Item description text=_"Quite efficient at separating limbs off even a droid body or digging through weaker armoured parts to cause massive damage on internal electronics. But the chain wears out very quickly when used on materials harder than wood and supply shortages of new chains and other parts makes it expensive to maintain."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.150000
 Item as gun: reloading time=0.000000
