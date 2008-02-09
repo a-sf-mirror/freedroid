@@ -806,7 +806,7 @@ inventory_size_x=1
 inventory_size_y=5
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=70
-Item description text=_"A bit slow and cumbersome to use and prohibiting the security of a shield to cower behind, this weapon isn't always a good option. But if you do hit you are sure to do more damage then just a scratch."
+Item description text=_"A bit slow and cumbersome to use and prohibiting the security of a shield to cover behind, this weapon isn't always a good option. But if you do hit you are sure to do more damage then just a scratch."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=1.000000
 Item as gun: reloading time=0.000000
@@ -1642,7 +1642,7 @@ Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=2000
 inventory_size_x=2
 inventory_size_y=6
-Item description text=_"Powerfull enough to stop a truck, literally, the likelyness of even a battle droid surviving more than 2 hits by this weapon is quite slim. It doesnt even matter if the pesky droid is cowering behind a wall, the bullets will break right through and make the bot ready for the scrap heap in notime."
+Item description text=_"Powerfull enough to stop a truck, literally, the likelyness of even a battle droid surviving more than 2 hits by this weapon is quite slim. It doesnt even matter if the pesky droid is covering behind a wall, the bullets will break right through and make the bot ready for the scrap heap in notime."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=1.200000
 Item as gun: reloading time=4.000000
@@ -3282,7 +3282,7 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="spellbook/inv_image_green.png"
 Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=450
-Item description text=_"The art of rapidly moving away from danger is very useful. Even when used in reverse it has it's uses."
+Item description text=_"The art of rapidly moving away from danger is very useful. Even when used in reverse it has its uses."
 inventory_size_x=2
 inventory_size_y=2
 ** End of new item specification subsection **
@@ -3855,7 +3855,7 @@ inventory_size_x=2
 inventory_size_y=2
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=18
-Item description text=_"This small device automatically collects data about the area within a range of 7 times 7 meters and draws a small-scale plan of the immediate surroundings. Because of it's very tiny display, it needs to be held closely to the eye and the image will then be projected directly into the eyeball of the user. Still, the collected map data will be split up by the device into several sectors for convenient viewing."
+Item description text=_"This small device automatically collects data about the area within a range of 7 times 7 meters and draws a small-scale plan of the immediate surroundings. Because of its very tiny display, it needs to be held closely to the eye and the image will then be projected directly into the eyeball of the user. Still, the collected map data will be split up by the device into several sectors for convenient viewing."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
