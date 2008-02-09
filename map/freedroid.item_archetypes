@@ -3266,7 +3266,7 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="spellbook/inv_image_green.png"
 Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=450
-Item description text=_"There are very few items which have labels on them. Unless you happen to have an item labeled 'USE ME', you better make sure what it is before using it..."
+Item description text=_"A book explaining the basics of item analysis."
 inventory_size_x=2
 inventory_size_y=2
 ** End of new item specification subsection **
