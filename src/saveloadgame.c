@@ -293,7 +293,7 @@ or file permissions of ~/.freedroid_rpg are somehow not right.",
     fprintf(SaveGameFile, "Version string: %s\n\n", Me . freedroid_version_string);
     
     /* Save tux*/
-    save_tux_t(NULL, &Me);
+    save_tux_t("player", &Me);
 
     /* Save all enemies */
     int i = 0;
@@ -301,13 +301,14 @@ or file permissions of ~/.freedroid_rpg are somehow not right.",
 	{
 	enemy * erot = i ? dead_bots_head : alive_bots_head;
 	for ( ; erot; erot = GETNEXT(erot) )
-	    save_enemy(NULL, erot);
+	    save_enemy("en", erot);
 	}
 
     /* Save all bullets */
     for ( i = 0; i < MAXBULLETS; i ++)
-	save_bullet(NULL, &AllBullets[i]);
+	save_bullet("blt", &AllBullets[i]);
     
+    fprintf ( SaveGameFile, "End of freedroidRPG savefile\n");
     fclose( SaveGameFile );
     
     ShowSaveLoadGameProgressMeter( 99 , TRUE ); 
@@ -364,7 +365,6 @@ DeleteGame( void )
 int 
 LoadGame( void )
 {
-#if 0
     char version_check_string[1000];
     char *LoadGameData;
     char filename[1000];
@@ -383,25 +383,13 @@ LoadGame( void )
     
     DebugPrintf ( SAVE_LOAD_GAME_DEBUG , "\n%s(): function call confirmed...." , __FUNCTION__ );
     
-    //--------------------
-    // Loading might take a while, therefore we activate the conservative
-    // frame rate, just to be sure, so that no sudden jumps occur, perhaps
-    // placing the influencer or some bullets outside the map even!
-    //
     Activate_Conservative_Frame_Computation();
     global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL ;
     
     ShowSaveLoadGameProgressMeter( 0 , FALSE )  ;
  
-    //--------------------
-    // First we load the full ship information, same as with the level editor
-    
     sprintf( filename , "%s/%s%s", our_config_dir, Me . character_name, ".shp");
     
-    //--------------------
-    // Maybe there isn't any saved game by that name.  This case must be checked for
-    // and handled...
-    //
     if ((DataFile = fopen ( filename , "rb")) == NULL )
     {
 	GiveMouseAlertWindow ( "\nW A R N I N G !\n\nFreedroidRPG was unable to locate the saved game file you requested to load.\nThis might mean that it really isn't there cause you tried to load a game without ever having saved the game before.  \nThe other explanation of this error might be a severe error in FreedroidRPG.\nNothing will be done about it." );
@@ -414,20 +402,10 @@ LoadGame( void )
     }
     
     LoadShip( filename );
-    
-    //--------------------
-    // Now we must determine the savedgame data file name
-    //
+
     sprintf (filename, "%s/%s%s", our_config_dir, Me.character_name, SAVEDGAME_EXT);
     
-    DebugPrintf ( SAVE_LOAD_GAME_DEBUG , "\n%s(): starting to read savegame data...." , __FUNCTION__ );
-    
-    //--------------------
-    // Now we can read the whole savegame data into memory with one big flush
-    //
-    LoadGameData = ReadAndMallocAndTerminateFile( filename , END_OF_SAVEDGAME_DATA_STRING ) ;
-    
-    DebugPrintf ( SAVE_LOAD_GAME_DEBUG , "\n%s(): starting to decode savegame data...." , __FUNCTION__ );
+    LoadGameData = ReadAndMallocAndTerminateFile( filename , "End of freedroidRPG savefile\n" ) ;
     
     //--------------------
     // Before we start decoding the details, we get the former level-number where the
@@ -437,24 +415,26 @@ LoadGame( void )
 			 &current_geographics_levelnum , LoadGameData + 30000 );
     CurLevel = curShip.AllLevels[ current_geographics_levelnum ];
     
-    
-    //--------------------
-    // Now we start decoding our new game information and fill it into the apropriate structs
-    // We assume, that our target strings will be found, so we give 3000000 as the search area
-    // length, since we do not know it exactly
-    //
-    InfluencerRawDataPointer = MyMemmem( LoadGameData , 3000000 , INFLUENCER_STRUCTURE_RAW_DATA_STRING , 
-					 strlen ( INFLUENCER_STRUCTURE_RAW_DATA_STRING ) );
-    InfluencerRawDataPointer += strlen ( INFLUENCER_STRUCTURE_RAW_DATA_STRING ) ;
-    memcpy( &Me , InfluencerRawDataPointer , sizeof ( tux_t ) );
-    InfluencerRawDataPointer += sizeof ( tux_t );
-    
-    //--------------------
-    // Now we decode the enemy information.
-    // We assume, that our target strings will be found, so we give 3000000 as the search area
-    // length, since we do not know it exactly
-    //
-    /*XXX*/
+    printf("Curlevel is %d\n", current_geographics_levelnum);
+
+    /* read tux_t */
+    char * tux_str = strstr(LoadGameData, "<tux_t");
+    if ( ! tux_str ) 
+	ErrorMessage(__FUNCTION__, "Unable to localize player struct in savegame file.\n", PLEASE_INFORM, IS_FATAL);
+
+    char * tux_estr = strstr(tux_str, "</player");
+    if ( ! tux_estr ) 
+	ErrorMessage(__FUNCTION__, "Unable to localize end of player struct in savegame file.\n", PLEASE_INFORM, IS_FATAL);
+
+    while ( *tux_estr != '>' ) tux_estr ++;
+
+    char savechar = *(tux_estr+1);
+    *(tux_estr+1) = '\0';
+    memset(&Me, 0, sizeof(tux_t));
+    read_tux_t(tux_str, "player", &Me);
+    *(tux_estr+1) = savechar;
+#if 0 
+    /* read enemies */
     /*
     EnemyRawDataPointer = MyMemmem( LoadGameData , 30000000 , ALLENEMYS_RAW_DATA_STRING , 
 				    strlen ( ALLENEMYS_RAW_DATA_STRING ) );
@@ -462,22 +442,13 @@ LoadGame( void )
     memcpy( &(AllEnemys) , EnemyRawDataPointer , sizeof ( enemy ) * MAX_ENEMYS_ON_SHIP );
     */
 
-    //--------------------
-    // Now we decode the bullet information.
-    // We assume, that our target strings will be found, so we give 10000000 as the search area
-    // length, since we do not know it exactly
-    //
+    /* read bullets */
     BulletRawDataPointer = MyMemmem( LoadGameData , 30000000 , ALLBULLETS_RAW_DATA_STRING , 
 				     strlen ( ALLBULLETS_RAW_DATA_STRING ) );
     BulletRawDataPointer += strlen ( ALLBULLETS_RAW_DATA_STRING ) ;
     memcpy( &(AllBullets) , BulletRawDataPointer , sizeof ( bullet ) * MAXBULLETS );
-    
-    //--------------------
-    // When the original game was still going on, some dynamic things like pointers to some
-    // constructed text field might have been used.  Now these dynamic things somewhere in 
-    // memory of course do not exist, so any pointer previously refering to them, must be
-    // set to acceptable values before an accident (SEGFAULT) occurs!
-    //
+#endif
+    /* properly restore pointers and references*/
     DebugPrintf ( SAVE_LOAD_GAME_DEBUG , "\n%s(): now correcting dangerous pointers...." , __FUNCTION__ );
     Me . TextToBeDisplayed = "";
     enemy * erot = alive_bots_head;
@@ -496,17 +467,6 @@ LoadGame( void )
 	AllBullets [ i ] . Surfaces_were_generated = FALSE;
 	if ( AllBullets[ i ].angle_change_rate != 0 ) DeleteBullet( i , FALSE );
     }
-    
-    //--------------------
-    // Now we check if the loaded game is from a compatible version of FreedroidRPG, or
-    // if we maybe have a saved game from a different version, which would mean trouble
-    //
-    // NOTE:  WE MUST DO THIS BEFORE ANY REFERENCE TO THE LOADED GAME IS MADE, EVEN IF
-    //        THAT REFERENCE IS SO SMALL AS TO JUST SET BACKGROUND MUSIC ACCORDING TO
-    //        CURRENT TUX POSITION IN THE MAPS AS FOUND BELOW
-    //
-    //
-    //
     sprintf ( version_check_string , "%s;sizeof(tux_t)=%d;sizeof(enemy)=%d;sizeof(bullet)=%d;MAXBULLETS=%d;MAX_ENEMYS_ON_SHIP=%d\n", 
 	      VERSION , 
 	      (int) sizeof(tux_t) , 
@@ -517,33 +477,8 @@ LoadGame( void )
     
     if ( strcmp ( Me . freedroid_version_string , version_check_string ) != 0 )
     {
-	show_button_tooltip ( _("Error: Version or structsize mismatch! The saved game in question appears to be from a (slightly?) different version of FreedroidRPG.\nSorry, but I refuse to load it for safety/stability reasons...\nFor Recovery, a blank game will be loaded...(please disregard)\n") );
+	show_button_tooltip ( _("Version or structsize mismatch! The savegame is not from the same version of freedroidRPG... possible breakage.\n") );
 	our_SDL_flip_wrapper( Screen );
-	while ( SpacePressed() || MouseLeftPressed() ) SDL_Delay ( 3 );
-	while ( !SpacePressed() && ! MouseLeftPressed() ) SDL_Delay ( 3 );
-	while ( SpacePressed() || MouseLeftPressed()) SDL_Delay ( 3 );
-
-	//--------------------
-	// Now at this point the current Tux data has been junked
-	// around with from the failed loading attempt.  We must
-	// clear out the data and then safely exit out of the current
-	// game!
-	//
-	// WARNING!  If the game is already running, this really
-	// dangerous.  In that case the damaged data should best be
-	// completely overwritten with something sensible...
-	// (Otherwise Floating Point Exceptions and the like are likely...)
-	//
-	if ( load_game_command_came_from_inside_running_game )
-	{
-	    clear_player_inventory_and_stats ( ) ;
-	    UpdateAllCharacterStats ( ) ;
-	    char fp[2048];
-	    find_file ( "Asteroid.maps", MAP_DIR, fp, 0 );
-	    LoadShip ( fp ) ;
-	    PrepareStartOfNewCharacter (  ) ;
-	}
-	return ( ERR ) ;
     }
     
     //--------------------
@@ -590,7 +525,6 @@ LoadGame( void )
     load_game_command_came_from_inside_running_game = TRUE ;
 
     append_new_game_message ( _("Game loaded.") );
-#endif
     return OK;
 }; // int LoadGame ( void ) 
 
@@ -606,6 +540,102 @@ fprintf(SaveGameFile, "%s: @%p\n", tag, (void *)(*val));
 void read_enemy_ptr(char * buffer, char * tag, enemy ** val)
 {
 }
+
+void read_int32_t(char * buffer, char * tag, int32_t * val)
+{
+    char * pos = strstr(buffer, tag);
+    if ( ! pos ) return;
+    char * epos = pos;
+    while ( *epos != '\n' ) epos++;
+    *epos = '\0';
+    while ( ! isdigit(*pos) && *pos != '-') pos++;
+    *val = strtol(pos, NULL, 10);
+    *epos = '\n';
+}
+
+void read_int16_t(char * buffer, char * tag, int16_t * val)
+{
+    int32_t valt;
+    read_int32_t(buffer, tag, &valt);
+    *val = valt;
+}
+
+void read_char(char * buffer, char * tag, char * val)
+{
+    int32_t valt;
+    read_int32_t(buffer, tag, &valt);
+    *val = valt;
+}
+
+void read_uint32_t(char * buffer, char * tag, uint32_t * val)
+{
+    char * pos = strstr(buffer, tag);
+    if ( ! pos ) return;
+    char * epos = pos;
+    while ( *epos != '\n' ) epos++;
+    *epos = '\0';
+    while ( ! isdigit(*pos) ) pos++;
+    *val = strtol(pos, NULL, 10);
+    *epos = '\n';
+
+}
+
+void read_uint16_t(char * buffer, char * tag, uint16_t * val)
+{
+    uint32_t valt;
+    read_uint32_t(buffer, tag, &valt);
+    *val = valt;
+}
+
+void read_uchar(char * buffer, char * tag, unsigned char * val)
+{
+    uint32_t valt;
+    read_uint32_t(buffer, tag, &valt);
+    *val = valt;
+}
+
+
+void read_float(char * buffer, char * tag, float * val)
+{
+    char * pos = strstr(buffer, tag);
+    if ( ! pos ) return;
+    char * epos = pos;
+    while ( *epos != '\n' ) epos++;
+    *epos = '\0';
+    while ( ! isdigit(*pos) && *pos != '-' ) pos++;
+    *val = strtof(pos, NULL);
+    *epos = '\n';
+}
+
+
+
+void read_double(char * buffer, char * tag, double * val)
+{
+    char * pos = strstr(buffer, tag);
+    if ( ! pos ) return;
+    char * epos = pos;
+    while ( *epos != '\n' ) epos++;
+    *epos = '\0';
+    while ( ! isdigit(*pos) && *pos != '-') pos++;
+    *val = strtod(pos, NULL);
+    *epos = '\n';
+}
+
+#define string char *
+
+void read_string(char * buffer, char * tag, char * val)
+{
+    char * pos = strstr(buffer, tag);
+    if ( ! pos ) return;
+    char * epos = pos;
+    while ( *epos != '\n' ) epos++;
+    *epos = '\0';
+    while ( *pos != ':' ) pos++;
+    while ( isspace(*pos) ) pos++;
+    strcpy ( val, pos );
+    *epos = '\n';
+}
+
 
 /* Save arrays of simple types */
 #define define_save_xxx_array(X) void save_##X##_array(char * tag, X * val_ar, int size)\
@@ -631,6 +661,48 @@ define_save_xxx_array(item);
 define_save_xxx_array(gps);
 define_save_xxx_array(moderately_finepoint);
 
+/* Read arrays of simple types */
+#define define_read_xxx_array(X) void read_##X##_array(char * buffer, char * tag, X * val_ar, int size)\
+{\
+int i;\
+char search[strlen(tag) + 20];\
+sprintf(search, "<%s array", tag);\
+char * pos = strstr(buffer, search);\
+if ( ! pos ) ErrorMessage ( __FUNCTION__, "Unable to find array %s\n", PLEASE_INFORM, IS_FATAL, tag);\
+sprintf(search, "</%s>", tag);\
+char * epos = strstr(pos, search);\
+if ( ! epos ) ErrorMessage ( __FUNCTION__, "Unable to find array end %s\n", PLEASE_INFORM, IS_FATAL, tag);\
+epos += strlen(search);\
+char savechar = *(epos + 1);\
+*(epos+1) = '\0';\
+int nb = 0;\
+char *runp = pos + 1;\
+runp += strlen(tag) + 1 + strlen("array") + 1;\
+while ( ! isdigit(*runp) ) runp++;\
+char * erunp = runp;\
+while ( *erunp != '>' ) erunp ++;\
+*erunp = '\0';\
+nb = atoi(runp);\
+*erunp = '>';\
+if ( nb != size )  ErrorMessage ( __FUNCTION__, "Size mismatch for array %s, %d in file, %d in game\n", PLEASE_INFORM, IS_FATAL, tag, nb, size);\
+for ( i = 0; i < (nb <= size ? nb : size); i ++)\
+	{\
+	char str[10];\
+	sprintf(str, "%d", i);\
+	read_##X(pos, str, &val_ar[i]);\
+	}\
+*(epos+1) = savechar;\
+}
+
+define_read_xxx_array(int32_t);
+define_read_xxx_array(uint32_t);
+define_read_xxx_array(int16_t);
+define_read_xxx_array(uint16_t);
+define_read_xxx_array(mission);
+define_read_xxx_array(item);
+define_read_xxx_array(gps);
+define_read_xxx_array(moderately_finepoint);
+
 void save_chatflags_t_array(char * tag, chatflags_t * chatflags, int size)
 {
 fprintf(SaveGameFile, "<ChatFlags n=%d>\n", MAX_PERSONS);
@@ -646,6 +718,35 @@ for ( i = 0; i < MAX_PERSONS; i ++)
 fprintf(SaveGameFile, "</ChatFlags>\n");
 }
 
+void read_chatflags_t_array(char * buffer, char * tag, chatflags_t * chatflags, int size)
+{
+int i, j;
+#if 0
+char * pos = strstr(buffer, "<ChatFlags n");
+if ( ! pos )
+    ErrorMessage ( __FUNCTION__, "Unable to find chat flags in savegame\n", PLEASE_INFORM, IS_FATAL);
+
+char * epos = strstr(buffer, "</ChatFlags>");
+if ( ! epos )
+    ErrorMessage ( __FUNCTION__, "Unable to find end of chat flags in savegame\n", PLEASE_INFORM, IS_FATAL);
+*epos = '\0';
+
+while ( *pos && *pos != '\n' ) pos ++;
+pos ++;
+while ( *pos && *pos != '\n' )
+    {
+    char * abc = pos;
+    char a ;
+    while ( *abc && *abc != '\n' && *abc != ' ' ) abc ++;
+    a = *abc;
+    *abc = '\0';
+    (chatflags)[
+    }
+*epos = '<';
+#endif
+}
+
+
 void save_cookielist_t_array(char * tag, cookielist_t * cookielist, int size)
 {
 fprintf(SaveGameFile, "<cookielist>\n");
@@ -656,6 +757,10 @@ for ( i = 0; i < MAX_COOKIES; i ++)
 	    fprintf(SaveGameFile, "%s\n", cookielist[i]);
     }
 fprintf(SaveGameFile, "</cookielist>\n");
+}
+
+void read_cookielist_t_array(char * buffer, char * tag, cookielist_t * cookielist, int size)
+{
 }
 
 void save_automap_data(char * tag, automap_data_t * automapdata, int size)
@@ -673,6 +778,10 @@ for ( i = 0; i < MAX_LEVELS; i ++)
        }
    }
 fprintf(SaveGameFile, "</automap>\n");
+}
+
+void read_automap_data_t_array(char * tag, automap_data_t * automapdata, int size)
+{
 }
 
 #undef _saveloadgame_c

@@ -336,7 +336,6 @@ belonging to Freedroid.",
     // NOTE: Since we do not assume to always have pure text files here, we switched to
     // MyMemmem, so that we can handle 0 entries in the middle of the file content as well
     //
-    // if ( (ReadPointer = strstr( Data , File_End_String ) ) == NULL )
     if ( ( ReadPointer = MyMemmem ( Data, (size_t) MemoryAmount , (char*)File_End_String , (size_t)strlen( File_End_String ))) == NULL)
     {
 	fprintf( stderr, "\n\nfilename: '%s'\n" , filename );

@@ -304,7 +304,7 @@ EXTERN int DeleteGame( void );
 EXTERN void LoadAndShowStats ( char* CoreFilename );
 
 /* Primitive types*/
-#define save_pritype(Z,X,Y) fprintf(SaveGameFile, Z, X, *(Y));
+#define save_pritype(Z,X,Y) fprintf(SaveGameFile, Z, X, *(Y))
 #define save_char(X,Y) save_pritype("%s: %hhd\n", X, Y)
 #define save_uchar(X,Y) save_pritype("%s: %hhu\n", X, Y)
 #define save_uint16_t(X,Y) save_pritype("%s: %hu\n", X, Y)
@@ -315,14 +315,8 @@ EXTERN void LoadAndShowStats ( char* CoreFilename );
 #define save_double(X,Y) save_pritype("%s: %lf\n", X, Y)
 #define save_string(X,Y) save_pritype("%s: %s\n", X, Y)
 
-#define read_char(X,Y,Z)
-#define read_uchar(X,Y,Z)
-#define read_int16_t(X,Y,Z)
-#define read_int32_t(X,Y,Z)
-#define read_uint32_t(X,Y,Z)
-#define read_float(X,Y,Z)
-#define read_double(X,Y,Z)
-#define read_string(X,Y,Z)
+#define read_char read_int8_t
+#define read_uchar read_uint8_t
 
 /* Array writing/reading */
 EXTERN void save_moderately_finepoint_array(char *, moderately_finepoint *, int);
@@ -350,10 +344,11 @@ EXTERN void save_automap_data(char*, automap_data_t *, int);
 #define save_sdl_rect(X,Y)
 #define read_sdl_rect(X,Y,Z)
 #define save_gps_ptr(X,Y)
+#define read_gps_ptr(X,Y,Z)
 EXTERN void save_enemy_ptr(char *, enemy **);
 EXTERN void read_enemy_ptr(char *, char *, enemy **);
 #define save_sdl_surface_ptr_array(X,Y,Z)
-
+#define read_sdl_surface_ptr_array(X,Y,Z, T)
 
 
 // mission.c 

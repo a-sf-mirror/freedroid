@@ -124,16 +124,23 @@ def main():
         str_save = str_read = ''
 	header = 'int save_%s(char *, %s *);\n int read_%s(char *, char *, %s *);\n' % (s_name, s_name, s_name, s_name)
 	str_save += 'int save_%s(char * tag, %s * target)\n{\nfprintf(SaveGameFile, "<%s %%s>\\n",tag?tag:"");\n' % (s_name,s_name,s_name)
-        str_read += 'int read_%s(char* buffer, char * tag, %s * target)\n{\n' % (s_name,s_name)
+        str_read += '''int read_%s(char* buffer, char * tag, %s * target)\n{\n
+	        char * pos = strstr(buffer, tag);
+		if ( ! pos ) return 1;
+		char * epos = strstr ( pos + 1, tag);
+		if ( * (epos - 1) != '/' ) return 2;
+		while ( *epos != '>' ) epos++;
+		*(epos) = 0;''' % (s_name, s_name)
+
         for (type, field) in data[s_name]:
             size = None
             if "[" in type:
                 size = type.split('[')[1][:-1]
                 type = type.split('[')[0] + '_array'
             str_save += 'save_%s("%s", %s(target->%s)%s);\n' % (type, field, '' if size else '&', field, (', %s' % size) if size else '')
-            str_read += 'read_%s(buffer, "%s", %s(target->%s)%s);\n' % (type, field, '' if size else '&', field, (', %s' % size) if size else '')
-        str_save += 'fprintf(SaveGameFile, "</%s>\\n");\nreturn 0;\n}\n\n' % (s_name)
-        str_read += 'return 0;\n}\n\n'
+            str_read += 'read_%s(pos, "%s", %s(target->%s)%s);\n' % (type, field, '' if size else '&', field, (', %s' % size) if size else '')
+        str_save += 'fprintf(SaveGameFile, "</%s>\\n", tag);\nreturn 0;\n}\n\n'
+        str_read += '''*epos = '>'; \nreturn 0;\n}\n\n'''
         outf.write(str_save)
         outf.write(str_read)
 	outh.write(header)
