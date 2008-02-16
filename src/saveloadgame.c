@@ -677,8 +677,6 @@ define_save_xxx_array(mission);
 define_save_xxx_array(item);
 define_save_xxx_array(gps);
 define_save_xxx_array(moderately_finepoint);
-//typedef char * string;
-//define_save_xxx_array(string);
 
 /* Read arrays of simple types */
 #define define_read_xxx_array(X) void read_##X##_array(const char * buffer, const char * tag, X * val_ar, int size)\
@@ -725,11 +723,10 @@ define_read_xxx_array(mission);
 define_read_xxx_array(item);
 define_read_xxx_array(gps);
 define_read_xxx_array(moderately_finepoint);
-//define_read_xxx_array(string);
 
 void save_chatflags_t_array(char * tag, chatflags_t * chatflags, int size)
 {
-fprintf(SaveGameFile, "<ChatFlags n=%d>\n", MAX_PERSONS);
+fprintf(SaveGameFile, "<ChatFlags mpeople=%d manswers=%d>\n", MAX_PERSONS, MAX_ANSWERS_PER_PERSON);
 int i, j;
 for ( i = 0; i < MAX_PERSONS; i ++)
     {
@@ -744,31 +741,60 @@ fprintf(SaveGameFile, "</ChatFlags>\n");
 
 void read_chatflags_t_array(char * buffer, char * tag, chatflags_t * chatflags, int size)
 {
-int i, j;
-#if 0
-/* XXX */
-char * pos = strstr(buffer, "<ChatFlags n");
-if ( ! pos )
-    ErrorMessage ( __FUNCTION__, "Unable to find chat flags in savegame\n", PLEASE_INFORM, IS_FATAL);
+char * pos = strstr(buffer, "<ChatFlags mpeople=");
+if ( ! pos ) ErrorMessage ( __FUNCTION__, "Unable to find ChatFlags array\n", PLEASE_INFORM, IS_FATAL);
+char * epos = strstr(pos, "</ChatFlags>\n");
+if ( ! epos ) ErrorMessage ( __FUNCTION__, "Unable to find ChatFlags array end\n", PLEASE_INFORM, IS_FATAL);
+epos += strlen("</ChatFlags>\n");
+char savechar = *(epos + 1);
+*(epos+1) = '\0';
+int mp = 0;
+int ma = 0;
+char *runp = pos + 1;
+runp += strlen("ChatFlags n=");
+while ( ! isdigit(*runp) ) runp++;
+char * erunp = runp;
+while ( (*erunp) != ' ') erunp ++;
+*erunp = '\0';
+mp = atoi(runp);
+*erunp = ' ';
+runp = erunp;
+while ( ! isdigit(*runp) ) runp++;
+erunp = runp;
+while ( *erunp != '>' ) erunp ++;
+*erunp = '\0';
+ma = atoi(runp);
+*erunp = '>';
 
-char * epos = strstr(buffer, "</ChatFlags>");
-if ( ! epos )
-    ErrorMessage ( __FUNCTION__, "Unable to find end of chat flags in savegame\n", PLEASE_INFORM, IS_FATAL);
-*epos = '\0';
+if ( mp != MAX_PERSONS )  
+    ErrorMessage ( __FUNCTION__, "MAX_PERSONS mismatch for array ChatFlags, %d in file, %d in game\n", PLEASE_INFORM, IS_FATAL, mp, MAX_PERSONS);
+if ( ma != MAX_ANSWERS_PER_PERSON )
+    ErrorMessage ( __FUNCTION__, "MAX_ANSWERS_PER_PERSON mismatch for array ChatFlags, %d in file, %d in game\n", PLEASE_INFORM, IS_FATAL, ma, MAX_ANSWERS_PER_PERSON);
 
-while ( *pos && *pos != '\n' ) pos ++;
-pos ++;
-while ( *pos && *pos != '\n' )
-    {
-    char * abc = pos;
-    char a ;
-    while ( *abc && *abc != '\n' && *abc != ' ' ) abc ++;
-    a = *abc;
-    *abc = '\0';
-    (chatflags)[
-    }
-*epos = '<';
-#endif
+while ( *runp != '\n' ) runp++;
+runp++;
+
+int i = 0, j;
+while ( i < MAX_PERSONS )
+	{
+	j = 0;
+	while ( j < MAX_ANSWERS_PER_PERSON )
+	    {
+	    while ( ! isdigit(*runp) ) runp++;
+	    erunp = runp + 1;
+	    while ( *erunp != ' ' ) erunp++;
+	    *erunp = '\0';
+	    
+	    (chatflags)[i][j] = atoi(runp);
+	    *erunp = ' ';
+	    runp = erunp;
+	    j++;
+	    }
+
+	while ( *runp != '\n' ) runp++;
+	i++;
+	}
+*(epos+1) = savechar;
 }
 
 
