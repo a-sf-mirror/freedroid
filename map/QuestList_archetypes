@@ -40,7 +40,6 @@
 Mission Name="Bender's problem"
 Assign this mission to influencer automatically at start : 0
 Mission target is to fetch item : "Brain Enlargement Pills Antidote"
-Mission target is to kill class of droids : -1
 Mission target is to kill droids with marker : -1
 Mission target is to kill all hostile droids this first level : -1
 Mission target is to also kill all hostile droids on second level : -1
@@ -65,7 +64,6 @@ Mission diary entry=_"Bender is fine now. He gave me some muscle enlargement pil
 Mission Name="The yellow toolkit"
 Assign this mission to influencer automatically at start : 0
 Mission target is to fetch item : "Dixon's Toolbox"
-Mission target is to kill class of droids : -1
 Mission target is to kill droids with marker : -1
 Mission target is to kill all hostile droids this first level : -1
 Mission target is to also kill all hostile droids on second level : -1
@@ -95,7 +93,6 @@ Mission diary entry=_"I sold the toolkit to Dixon for a enormous sum of money. L
 Mission Name="Anything but the army snacks, please!"
 Assign this mission to influencer automatically at start : 0
 Mission target is to fetch item : "Red Dilitium Crystal"
-Mission target is to kill class of droids : -1
 Mission target is to kill droids with marker : -1
 Mission target is to kill all hostile droids this first level : -1
 Mission target is to also kill all hostile droids on second level : -1
@@ -117,7 +114,6 @@ Mission diary entry=_"I gave him enough dilithium to last him a decade. The evil
 +++ 
 Mission Name="Novice Arena"
 Assign this mission to influencer automatically at start : 0
-Mission target is to kill class of droids : -1
 Mission target is to kill droids with marker : 3
 Mission target is to kill all hostile droids this first level : -1
 Mission target is to also kill all hostile droids on second level : -1
@@ -140,7 +136,6 @@ Mission diary entry=_"Now that was easy. Yawn. I nearly fell asleep. No problem 
 +++ 
 Mission Name="Time to say goodnight"
 Assign this mission to influencer automatically at start : 0
-Mission target is to kill class of droids : -1
 Mission target is to kill droids with marker : 4
 Mission target is to kill all hostile droids this first level : -1
 Mission target is to also kill all hostile droids on second level : -1
@@ -163,7 +158,6 @@ Mission diary entry=_"I survived the master arena. A miracle. Whew."
 +++ 
 Mission Name="Opening a can of bots..."
 Assign this mission to influencer automatically at start : 0
-Mission target is to kill class of droids : -1
 Mission target is to kill droids with marker : -1
 Mission target is to kill all hostile droids this first level : 1
 Mission target is to also kill all hostile droids on second level : -1
@@ -185,7 +179,6 @@ Mission diary entry=_"Ouch. It wasn't. At least I am alive and the warehouse is 
 +++ 
 Mission Name="And there was light..."
 Assign this mission to influencer automatically at start : 0
-Mission target is to kill class of droids : -1
 Mission target is to kill droids with marker : -1
 Mission target is to kill all hostile droids this first level : 18
 Mission target is to also kill all hostile droids on second level : -1
@@ -209,7 +202,6 @@ Mission diary entry=_"Everything is back to normal for now. Kevin can work in pe
 +++ 
 Mission Name="A kingdom for a cluster!"
 Assign this mission to influencer automatically at start : 0
-Mission target is to kill class of droids : -1
 Mission target is to kill droids with marker : -1
 Mission target is to kill all hostile droids this first level : -1
 Mission target is to also kill all hostile droids on second level : -1
@@ -233,7 +225,6 @@ Mission diary entry=_"Yes, that was simple. I wish everything else went as smoot
 +++ 
 Mission Name="Disruptor Shield Activation"
 Assign this mission to influencer automatically at start : 0
-Mission target is to kill class of droids : -1
 Mission target is to kill droids with marker : -1
 Mission target is to kill all hostile droids this first level : 7
 Mission target is to also kill all hostile droids on second level : -1
@@ -259,7 +250,6 @@ Mission diary entry=_"description text 5 here"
 Mission Name="SADD's pover supply"
 Assign this mission to influencer automatically at start : 0
 Mission target is to fetch item : "Red Dilitium Crystal"
-Mission target is to kill class of droids : -1
 Mission target is to kill droids with marker : -1
 Mission target is to kill all hostile droids this first level : -1
 Mission target is to also kill all hostile droids on second level : -1
@@ -281,7 +271,6 @@ Mission diary entry=_"Done. He looks happy."
 +++ 
 Mission Name="Tanias sanitary"
 Assign this mission to influencer automatically at start : 0
-Mission target is to kill class of droids : -1
 Mission target is to kill droids with marker : -1
 Mission target is to kill all hostile droids this first level : -1
 Mission target is to also kill all hostile droids on second level : -1
