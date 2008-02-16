@@ -1178,7 +1178,7 @@ prepare_text_window_content ( char* ItemDescText )
         {
         best_banner_pos_x = ( WHOLE_EXPERIENCE_COUNTDOWN_RECT_X ) * GameConfig . screen_width / 640;
         best_banner_pos_y = ( WHOLE_EXPERIENCE_COUNTDOWN_RECT_Y - 25 ) * GameConfig . screen_height / 480;  
-        sprintf(ItemDescText, _("XP\n%ld/%ld"), Me.Experience, Me.ExpRequired);
+        sprintf(ItemDescText, _("XP\n%d/%d"), Me.Experience, Me.ExpRequired);
         }     
 
 

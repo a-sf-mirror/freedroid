@@ -675,12 +675,12 @@ typedef struct tux_s
     int freezing_melee_targets; // does this Tux freeze melee targets upon hit?
     int double_ranged_damage;   // does this Tux do double ranged weapon damage?
     
-    unsigned long Experience; // character Experience = 'spare droid elements found'
+    unsigned int Experience; // character Experience = 'spare droid elements found'
     int exp_level;       // which 'experience level' is the influencer currenly at?
-    unsigned long ExpRequired;    // how much experience required for the next level?
-    unsigned long ExpRequired_previously;    // how was required for the previous level?
+    unsigned int ExpRequired;    // how much experience required for the next level?
+    unsigned int ExpRequired_previously;    // how was required for the previous level?
     
-    unsigned long Gold;
+    unsigned int Gold;
     char character_name[ MAX_CHARACTER_NAME_LENGTH ];
     mission AllMissions[ MAX_MISSIONS_IN_GAME ];         // What must be done to fullfill this mission?
     int marker;                   // In case you've taken over a marked droid, this will contain the marker
@@ -743,7 +743,7 @@ typedef struct tux_s
     gps Position_History_Ring_Buffer[ MAX_INFLU_POSITION_HISTORY ];
     
     int BigScreenMessageIndex;
-    bigscrmsg_t	BigScreenMessage [ 5000 ];
+    bigscrmsg_t	BigScreenMessage [ 500 ];
     float BigScreenMessageDuration [ MAX_BIG_SCREEN_MESSAGES ];
 
     float slowdown_duration;

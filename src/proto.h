@@ -303,7 +303,9 @@ EXTERN int LoadGame( void );
 EXTERN int DeleteGame( void );
 EXTERN void LoadAndShowStats ( char* CoreFilename );
 
-/* Primitive types*/
+/* Primitive types */
+
+/* Saving is done via macros */
 #define save_pritype(Z,X,Y) fprintf(SaveGameFile, Z, X, *(Y))
 #define save_char(X,Y) save_pritype("%s: %hhd\n", X, Y)
 #define save_uchar(X,Y) save_pritype("%s: %hhu\n", X, Y)
@@ -314,25 +316,38 @@ EXTERN void LoadAndShowStats ( char* CoreFilename );
 #define save_float(X,Y) save_pritype("%s: %f\n", X, Y)
 #define save_double(X,Y) save_pritype("%s: %lf\n", X, Y)
 #define save_string(X,Y) save_pritype("%s: %s\n", X, Y)
+#define save_enemy_ptr(X,Y) save_pritype("%s: @%p\n", X, Y);
 
-#define read_char read_int8_t
-#define read_uchar read_uint8_t
+/* Reading is slightly more difficult so we do it with functions */
+EXTERN void read_int32_t(const char *, const char *, int32_t *);
+EXTERN void read_int16_t(const char *, const char *, int16_t *);
+EXTERN void read_char(const char *, const char *, char *);
+EXTERN void read_uint32_t(const char *, const char *, uint32_t *);
+EXTERN void read_uint16_t(const char *, const char *, uint16_t *);
+EXTERN void read_uchar(const char *, const char *, unsigned char *);
+EXTERN void read_double(const char *, const char *, double *);
+EXTERN void read_float(const char *, const char *, float *);
+EXTERN void read_string(const char *, const char *, char *);
+EXTERN void read_enemy_ptr(const char *, const char *, enemy **);
 
 /* Array writing/reading */
-EXTERN void save_moderately_finepoint_array(char *, moderately_finepoint *, int);
-EXTERN void read_moderately_finepoint_array(char *, char *, moderately_finepoint *, int);
-EXTERN void save_mission_array(char *, mission *, int);
-EXTERN void read_mission_array(char *, char *, mission *, int);
-EXTERN void save_int32_t_array(char *, int *, int);
-EXTERN void read_int32_t_array(char *, char *, int *, int);
-EXTERN void save_item_array(char *, item *, int);
-EXTERN void read_item_array(char *, char *, item *, int);
-EXTERN void save_uchar_array(char *, unsigned char *, int);
-EXTERN void read_uchar_array(char *, char *, unsigned char *, int);
-EXTERN void save_uint16_t_array(char *, uint16_t *, int);
-EXTERN void read_uint16_t_array(char *, char *, uint16_t *, int);
-EXTERN void save_gps_array(char *, gps *, int);
-EXTERN void read_gps_array(char *, char *, gps *, int);
+EXTERN void save_moderately_finepoint_array(const char *, moderately_finepoint *, int);
+EXTERN void read_moderately_finepoint_array(const char *, const char *, moderately_finepoint *, int);
+EXTERN void save_mission_array(const char *, mission *, int);
+EXTERN void read_mission_array(const char *, const char *, mission *, int);
+EXTERN void save_int32_t_array(const char *, int *, int);
+EXTERN void read_int32_t_array(const char *, const char *, int *, int);
+EXTERN void save_item_array(const char *, item *, int);
+EXTERN void read_item_array(const char *, const char *, item *, int);
+EXTERN void save_uchar_array(const char *, unsigned char *, int);
+EXTERN void read_uchar_array(const char *, const char *, unsigned char *, int);
+EXTERN void save_uint16_t_array(const char *, uint16_t *, int);
+EXTERN void read_uint16_t_array(const char *, const char *, uint16_t *, int);
+EXTERN void save_gps_array(const char *, gps *, int);
+EXTERN void read_gps_array(const char *, const char *, gps *, int);
+EXTERN void save_float_array(const char *, float *, int);
+EXTERN void read_float_array(const char *, const char *, float *, int);
+
 
 /* Ugly hacks */
 EXTERN void save_chatflags_t_array(char *, chatflags_t * , int);
@@ -345,8 +360,7 @@ EXTERN void save_automap_data(char*, automap_data_t *, int);
 #define read_sdl_rect(X,Y,Z)
 #define save_gps_ptr(X,Y)
 #define read_gps_ptr(X,Y,Z)
-EXTERN void save_enemy_ptr(char *, enemy **);
-EXTERN void read_enemy_ptr(char *, char *, enemy **);
+
 #define save_sdl_surface_ptr_array(X,Y,Z)
 #define read_sdl_surface_ptr_array(X,Y,Z, T)
 
@@ -708,7 +722,6 @@ EXTERN int ChatDoMenuSelectionFlagged( char* InitialText , char* MenuTexts[ MAX_
 				       int background_code , void* MenuFont , enemy* ChatDroid );
 EXTERN int ChatDoMenuSelection( char* MenuTexts[10] , int FirstItem , void* MenuFont , enemy* ChatDroid );
 EXTERN void StartupMenu (void);
-EXTERN void BuySellMenu ( void );
 EXTERN void InitiateMenu( int background_code );
 EXTERN void Cheatmenu (void);
 EXTERN void EscapeMenu (void);
@@ -883,9 +896,6 @@ EXTERN int TryToIntegrateItemIntoInventory ( item* BuyItem , int AmountToBuyAtMo
 EXTERN int AssemblePointerListForChestShow ( item** ItemPointerListPointer , moderately_finepoint chest_pos );
 EXTERN int AssemblePointerListForItemShow ( item** ItemPointerListPointer , int IncludeWornItems );
 EXTERN void InitTradeWithCharacter( int CharacterCode ) ;
-EXTERN void Sell_Items( int ForHealer );
-EXTERN void Repair_Items( void );
-EXTERN void Identify_Items ( void );
 EXTERN void EnterChest ( moderately_finepoint pos );
 
 // takeover.c 

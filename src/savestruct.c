@@ -6,7 +6,7 @@ extern FILE * SaveGameFile;
 
 int save_enemy(char * tag, enemy * target)
 {
-fprintf(SaveGameFile, "<enemy %s>\n",tag?tag:"");
+fprintf(SaveGameFile, "<%s>\n",tag);
 save_int16_t("type", &(target->type));
 save_gps("pos", &(target->pos));
 save_gps("virt_pos", &(target->virt_pos));
@@ -66,12 +66,16 @@ return 0;
 int read_enemy(char* buffer, char * tag, enemy * target)
 {
 
-	        char * pos = strstr(buffer, tag);
+		char search[strlen(tag) + 5];
+		sprintf(search, "<%s>", tag);
+	        char * pos = strstr(buffer, search);
 		if ( ! pos ) return 1;
-		char * epos = strstr ( pos + 1, tag);
-		if ( * (epos - 1) != '/' ) return 2;
-		while ( *epos != '>' ) epos++;
-		*(epos) = 0;read_int16_t(pos, "type", &(target->type));
+		pos += 1 + strlen(tag);
+		sprintf(search, "</%s>", tag);
+		char * epos = strstr(buffer, search);
+		if ( ! epos ) return 2;
+		*epos = 0;
+		read_int16_t(pos, "type", &(target->type));
 read_gps(pos, "pos", &(target->pos));
 read_gps(pos, "virt_pos", &(target->virt_pos));
 read_finepoint(pos, "speed", &(target->speed));
@@ -129,7 +133,7 @@ return 0;
 
 int save_bullet(char * tag, bullet * target)
 {
-fprintf(SaveGameFile, "<bullet %s>\n",tag?tag:"");
+fprintf(SaveGameFile, "<%s>\n",tag);
 save_int16_t("type", &(target->type));
 save_uchar("phase", &(target->phase));
 save_char("mine", &(target->mine));
@@ -164,12 +168,16 @@ return 0;
 int read_bullet(char* buffer, char * tag, bullet * target)
 {
 
-	        char * pos = strstr(buffer, tag);
+		char search[strlen(tag) + 5];
+		sprintf(search, "<%s>", tag);
+	        char * pos = strstr(buffer, search);
 		if ( ! pos ) return 1;
-		char * epos = strstr ( pos + 1, tag);
-		if ( * (epos - 1) != '/' ) return 2;
-		while ( *epos != '>' ) epos++;
-		*(epos) = 0;read_int16_t(pos, "type", &(target->type));
+		pos += 1 + strlen(tag);
+		sprintf(search, "</%s>", tag);
+		char * epos = strstr(buffer, search);
+		if ( ! epos ) return 2;
+		*epos = 0;
+		read_int16_t(pos, "type", &(target->type));
 read_uchar(pos, "phase", &(target->phase));
 read_char(pos, "mine", &(target->mine));
 read_gps(pos, "pos", &(target->pos));
@@ -202,7 +210,7 @@ return 0;
 
 int save_point(char * tag, point * target)
 {
-fprintf(SaveGameFile, "<point %s>\n",tag?tag:"");
+fprintf(SaveGameFile, "<%s>\n",tag);
 save_int32_t("x", &(target->x));
 save_int32_t("y", &(target->y));
 fprintf(SaveGameFile, "</%s>\n", tag);
@@ -212,12 +220,16 @@ return 0;
 int read_point(char* buffer, char * tag, point * target)
 {
 
-	        char * pos = strstr(buffer, tag);
+		char search[strlen(tag) + 5];
+		sprintf(search, "<%s>", tag);
+	        char * pos = strstr(buffer, search);
 		if ( ! pos ) return 1;
-		char * epos = strstr ( pos + 1, tag);
-		if ( * (epos - 1) != '/' ) return 2;
-		while ( *epos != '>' ) epos++;
-		*(epos) = 0;read_int32_t(pos, "x", &(target->x));
+		pos += 1 + strlen(tag);
+		sprintf(search, "</%s>", tag);
+		char * epos = strstr(buffer, search);
+		if ( ! epos ) return 2;
+		*epos = 0;
+		read_int32_t(pos, "x", &(target->x));
 read_int32_t(pos, "y", &(target->y));
 *epos = '>'; 
 return 0;
@@ -225,7 +237,7 @@ return 0;
 
 int save_moderately_finepoint(char * tag, moderately_finepoint * target)
 {
-fprintf(SaveGameFile, "<moderately_finepoint %s>\n",tag?tag:"");
+fprintf(SaveGameFile, "<%s>\n",tag);
 save_float("x", &(target->x));
 save_float("y", &(target->y));
 fprintf(SaveGameFile, "</%s>\n", tag);
@@ -235,12 +247,16 @@ return 0;
 int read_moderately_finepoint(char* buffer, char * tag, moderately_finepoint * target)
 {
 
-	        char * pos = strstr(buffer, tag);
+		char search[strlen(tag) + 5];
+		sprintf(search, "<%s>", tag);
+	        char * pos = strstr(buffer, search);
 		if ( ! pos ) return 1;
-		char * epos = strstr ( pos + 1, tag);
-		if ( * (epos - 1) != '/' ) return 2;
-		while ( *epos != '>' ) epos++;
-		*(epos) = 0;read_float(pos, "x", &(target->x));
+		pos += 1 + strlen(tag);
+		sprintf(search, "</%s>", tag);
+		char * epos = strstr(buffer, search);
+		if ( ! epos ) return 2;
+		*epos = 0;
+		read_float(pos, "x", &(target->x));
 read_float(pos, "y", &(target->y));
 *epos = '>'; 
 return 0;
@@ -248,7 +264,7 @@ return 0;
 
 int save_mission(char * tag, mission * target)
 {
-fprintf(SaveGameFile, "<mission %s>\n",tag?tag:"");
+fprintf(SaveGameFile, "<%s>\n",tag);
 save_string("MissionName", &(target->MissionName));
 save_int32_t("MissionWasAssigned", &(target->MissionWasAssigned));
 save_int32_t("MissionIsComplete", &(target->MissionIsComplete));
@@ -267,6 +283,8 @@ save_int32_t("MustBeType", &(target->MustBeType));
 save_int32_t("MustBeOne", &(target->MustBeOne));
 save_int32_t_array("ListOfActionsToBeTriggeredAtAssignment", (target->ListOfActionsToBeTriggeredAtAssignment),  MAX_MISSION_TRIGGERED_ACTIONS );
 save_int32_t_array("ListOfActionsToBeTriggeredAtCompletition", (target->ListOfActionsToBeTriggeredAtCompletition),  MAX_MISSION_TRIGGERED_ACTIONS );
+save_int32_t_array("mission_description_visible", (target->mission_description_visible),  MAX_MISSION_DESCRIPTION_TEXTS );
+save_float_array("mission_description_time", (target->mission_description_time),  MAX_MISSION_DESCRIPTION_TEXTS );
 save_int32_t("expanded_display_for_this_mission", &(target->expanded_display_for_this_mission));
 fprintf(SaveGameFile, "</%s>\n", tag);
 return 0;
@@ -275,12 +293,16 @@ return 0;
 int read_mission(char* buffer, char * tag, mission * target)
 {
 
-	        char * pos = strstr(buffer, tag);
+		char search[strlen(tag) + 5];
+		sprintf(search, "<%s>", tag);
+	        char * pos = strstr(buffer, search);
 		if ( ! pos ) return 1;
-		char * epos = strstr ( pos + 1, tag);
-		if ( * (epos - 1) != '/' ) return 2;
-		while ( *epos != '>' ) epos++;
-		*(epos) = 0;read_string(pos, "MissionName", &(target->MissionName));
+		pos += 1 + strlen(tag);
+		sprintf(search, "</%s>", tag);
+		char * epos = strstr(buffer, search);
+		if ( ! epos ) return 2;
+		*epos = 0;
+		read_string(pos, "MissionName", &(target->MissionName));
 read_int32_t(pos, "MissionWasAssigned", &(target->MissionWasAssigned));
 read_int32_t(pos, "MissionIsComplete", &(target->MissionIsComplete));
 read_int32_t(pos, "MissionWasFailed", &(target->MissionWasFailed));
@@ -298,6 +320,8 @@ read_int32_t(pos, "MustBeType", &(target->MustBeType));
 read_int32_t(pos, "MustBeOne", &(target->MustBeOne));
 read_int32_t_array(pos, "ListOfActionsToBeTriggeredAtAssignment", (target->ListOfActionsToBeTriggeredAtAssignment),  MAX_MISSION_TRIGGERED_ACTIONS );
 read_int32_t_array(pos, "ListOfActionsToBeTriggeredAtCompletition", (target->ListOfActionsToBeTriggeredAtCompletition),  MAX_MISSION_TRIGGERED_ACTIONS );
+read_int32_t_array(pos, "mission_description_visible", (target->mission_description_visible),  MAX_MISSION_DESCRIPTION_TEXTS );
+read_float_array(pos, "mission_description_time", (target->mission_description_time),  MAX_MISSION_DESCRIPTION_TEXTS );
 read_int32_t(pos, "expanded_display_for_this_mission", &(target->expanded_display_for_this_mission));
 *epos = '>'; 
 return 0;
@@ -305,7 +329,7 @@ return 0;
 
 int save_tux_t(char * tag, tux_t * target)
 {
-fprintf(SaveGameFile, "<tux_t %s>\n",tag?tag:"");
+fprintf(SaveGameFile, "<%s>\n",tag);
 save_char("type", &(target->type));
 save_char("status", &(target->status));
 save_float("current_game_date", &(target->current_game_date));
@@ -390,14 +414,20 @@ save_item("drive_item", &(target->drive_item));
 save_item("armour_item", &(target->armour_item));
 save_item("shield_item", &(target->shield_item));
 save_item("special_item", &(target->special_item));
+save_uchar_array("HaveBeenToLevel", (target->HaveBeenToLevel),  MAX_LEVELS );
+save_float_array("time_since_last_visit_or_respawn", (target->time_since_last_visit_or_respawn),  MAX_LEVELS );
 save_chatflags_t_array("Chat_Flags", (target->Chat_Flags),  MAX_ANSWERS_PER_PERSON );
 save_cookielist_t_array("cookie_list", (target->cookie_list),  MAX_COOKIE_LENGTH );
 save_int32_t("is_town_guard_member", &(target->is_town_guard_member));
+save_string("chat_character_initialized", &(target->chat_character_initialized));
+save_moderately_finepoint_array("next_intermediate_point", (target->next_intermediate_point),  MAX_INTERMEDIATE_WAYPOINTS_FOR_TUX );
 save_uint16_t_array("KillRecord", (target->KillRecord),  200 );
 save_automap_data_t_array("Automap", (target->Automap), 100);
 save_int32_t("current_zero_ring_index", &(target->current_zero_ring_index));
 save_gps_array("Position_History_Ring_Buffer", (target->Position_History_Ring_Buffer),  MAX_INFLU_POSITION_HISTORY );
 save_int32_t("BigScreenMessageIndex", &(target->BigScreenMessageIndex));
+save_bigscrmsg_t_array("BigScreenMessage", (target->BigScreenMessage),  500 );
+save_float_array("BigScreenMessageDuration", (target->BigScreenMessageDuration),  MAX_BIG_SCREEN_MESSAGES );
 save_float("slowdown_duration", &(target->slowdown_duration));
 save_float("paralyze_duration", &(target->paralyze_duration));
 fprintf(SaveGameFile, "</%s>\n", tag);
@@ -407,12 +437,16 @@ return 0;
 int read_tux_t(char* buffer, char * tag, tux_t * target)
 {
 
-	        char * pos = strstr(buffer, tag);
+		char search[strlen(tag) + 5];
+		sprintf(search, "<%s>", tag);
+	        char * pos = strstr(buffer, search);
 		if ( ! pos ) return 1;
-		char * epos = strstr ( pos + 1, tag);
-		if ( * (epos - 1) != '/' ) return 2;
-		while ( *epos != '>' ) epos++;
-		*(epos) = 0;read_char(pos, "type", &(target->type));
+		pos += 1 + strlen(tag);
+		sprintf(search, "</%s>", tag);
+		char * epos = strstr(buffer, search);
+		if ( ! epos ) return 2;
+		*epos = 0;
+		read_char(pos, "type", &(target->type));
 read_char(pos, "status", &(target->status));
 read_float(pos, "current_game_date", &(target->current_game_date));
 read_int32_t(pos, "current_power_bonus", &(target->current_power_bonus));
@@ -496,14 +530,20 @@ read_item(pos, "drive_item", &(target->drive_item));
 read_item(pos, "armour_item", &(target->armour_item));
 read_item(pos, "shield_item", &(target->shield_item));
 read_item(pos, "special_item", &(target->special_item));
+read_uchar_array(pos, "HaveBeenToLevel", (target->HaveBeenToLevel),  MAX_LEVELS );
+read_float_array(pos, "time_since_last_visit_or_respawn", (target->time_since_last_visit_or_respawn),  MAX_LEVELS );
 read_chatflags_t_array(pos, "Chat_Flags", (target->Chat_Flags),  MAX_ANSWERS_PER_PERSON );
 read_cookielist_t_array(pos, "cookie_list", (target->cookie_list),  MAX_COOKIE_LENGTH );
 read_int32_t(pos, "is_town_guard_member", &(target->is_town_guard_member));
+read_string(pos, "chat_character_initialized", &(target->chat_character_initialized));
+read_moderately_finepoint_array(pos, "next_intermediate_point", (target->next_intermediate_point),  MAX_INTERMEDIATE_WAYPOINTS_FOR_TUX );
 read_uint16_t_array(pos, "KillRecord", (target->KillRecord),  200 );
 read_automap_data_t_array(pos, "Automap", (target->Automap), 100);
 read_int32_t(pos, "current_zero_ring_index", &(target->current_zero_ring_index));
 read_gps_array(pos, "Position_History_Ring_Buffer", (target->Position_History_Ring_Buffer),  MAX_INFLU_POSITION_HISTORY );
 read_int32_t(pos, "BigScreenMessageIndex", &(target->BigScreenMessageIndex));
+read_bigscrmsg_t_array(pos, "BigScreenMessage", (target->BigScreenMessage),  500 );
+read_float_array(pos, "BigScreenMessageDuration", (target->BigScreenMessageDuration),  MAX_BIG_SCREEN_MESSAGES );
 read_float(pos, "slowdown_duration", &(target->slowdown_duration));
 read_float(pos, "paralyze_duration", &(target->paralyze_duration));
 *epos = '>'; 
@@ -512,7 +552,7 @@ return 0;
 
 int save_item(char * tag, item * target)
 {
-fprintf(SaveGameFile, "<item %s>\n",tag?tag:"");
+fprintf(SaveGameFile, "<%s>\n",tag);
 save_finepoint("pos", &(target->pos));
 save_sdl_rect("text_slot_rectangle", &(target->text_slot_rectangle));
 save_int32_t("type", &(target->type));
@@ -550,12 +590,16 @@ return 0;
 int read_item(char* buffer, char * tag, item * target)
 {
 
-	        char * pos = strstr(buffer, tag);
+		char search[strlen(tag) + 5];
+		sprintf(search, "<%s>", tag);
+	        char * pos = strstr(buffer, search);
 		if ( ! pos ) return 1;
-		char * epos = strstr ( pos + 1, tag);
-		if ( * (epos - 1) != '/' ) return 2;
-		while ( *epos != '>' ) epos++;
-		*(epos) = 0;read_finepoint(pos, "pos", &(target->pos));
+		pos += 1 + strlen(tag);
+		sprintf(search, "</%s>", tag);
+		char * epos = strstr(buffer, search);
+		if ( ! epos ) return 2;
+		*epos = 0;
+		read_finepoint(pos, "pos", &(target->pos));
 read_sdl_rect(pos, "text_slot_rectangle", &(target->text_slot_rectangle));
 read_int32_t(pos, "type", &(target->type));
 read_int32_t(pos, "currently_held_in_hand", &(target->currently_held_in_hand));
@@ -591,7 +635,7 @@ return 0;
 
 int save_finepoint(char * tag, finepoint * target)
 {
-fprintf(SaveGameFile, "<finepoint %s>\n",tag?tag:"");
+fprintf(SaveGameFile, "<%s>\n",tag);
 save_double("x", &(target->x));
 save_double("y", &(target->y));
 fprintf(SaveGameFile, "</%s>\n", tag);
@@ -601,12 +645,16 @@ return 0;
 int read_finepoint(char* buffer, char * tag, finepoint * target)
 {
 
-	        char * pos = strstr(buffer, tag);
+		char search[strlen(tag) + 5];
+		sprintf(search, "<%s>", tag);
+	        char * pos = strstr(buffer, search);
 		if ( ! pos ) return 1;
-		char * epos = strstr ( pos + 1, tag);
-		if ( * (epos - 1) != '/' ) return 2;
-		while ( *epos != '>' ) epos++;
-		*(epos) = 0;read_double(pos, "x", &(target->x));
+		pos += 1 + strlen(tag);
+		sprintf(search, "</%s>", tag);
+		char * epos = strstr(buffer, search);
+		if ( ! epos ) return 2;
+		*epos = 0;
+		read_double(pos, "x", &(target->x));
 read_double(pos, "y", &(target->y));
 *epos = '>'; 
 return 0;
@@ -614,7 +662,7 @@ return 0;
 
 int save_configuration_for_freedroid(char * tag, configuration_for_freedroid * target)
 {
-fprintf(SaveGameFile, "<configuration_for_freedroid %s>\n",tag?tag:"");
+fprintf(SaveGameFile, "<%s>\n",tag);
 save_float("WantedTextVisibleTime", &(target->WantedTextVisibleTime));
 save_int32_t("Draw_Framerate", &(target->Draw_Framerate));
 save_int32_t("Draw_Energy", &(target->Draw_Energy));
@@ -680,12 +728,16 @@ return 0;
 int read_configuration_for_freedroid(char* buffer, char * tag, configuration_for_freedroid * target)
 {
 
-	        char * pos = strstr(buffer, tag);
+		char search[strlen(tag) + 5];
+		sprintf(search, "<%s>", tag);
+	        char * pos = strstr(buffer, search);
 		if ( ! pos ) return 1;
-		char * epos = strstr ( pos + 1, tag);
-		if ( * (epos - 1) != '/' ) return 2;
-		while ( *epos != '>' ) epos++;
-		*(epos) = 0;read_float(pos, "WantedTextVisibleTime", &(target->WantedTextVisibleTime));
+		pos += 1 + strlen(tag);
+		sprintf(search, "</%s>", tag);
+		char * epos = strstr(buffer, search);
+		if ( ! epos ) return 2;
+		*epos = 0;
+		read_float(pos, "WantedTextVisibleTime", &(target->WantedTextVisibleTime));
 read_int32_t(pos, "Draw_Framerate", &(target->Draw_Framerate));
 read_int32_t(pos, "Draw_Energy", &(target->Draw_Energy));
 read_int32_t(pos, "Draw_Position", &(target->Draw_Position));
@@ -749,7 +801,7 @@ return 0;
 
 int save_gps(char * tag, gps * target)
 {
-fprintf(SaveGameFile, "<gps %s>\n",tag?tag:"");
+fprintf(SaveGameFile, "<%s>\n",tag);
 save_double("x", &(target->x));
 save_double("y", &(target->y));
 save_int32_t("z", &(target->z));
@@ -760,12 +812,16 @@ return 0;
 int read_gps(char* buffer, char * tag, gps * target)
 {
 
-	        char * pos = strstr(buffer, tag);
+		char search[strlen(tag) + 5];
+		sprintf(search, "<%s>", tag);
+	        char * pos = strstr(buffer, search);
 		if ( ! pos ) return 1;
-		char * epos = strstr ( pos + 1, tag);
-		if ( * (epos - 1) != '/' ) return 2;
-		while ( *epos != '>' ) epos++;
-		*(epos) = 0;read_double(pos, "x", &(target->x));
+		pos += 1 + strlen(tag);
+		sprintf(search, "</%s>", tag);
+		char * epos = strstr(buffer, search);
+		if ( ! epos ) return 2;
+		*epos = 0;
+		read_double(pos, "x", &(target->x));
 read_double(pos, "y", &(target->y));
 read_int32_t(pos, "z", &(target->z));
 *epos = '>'; 

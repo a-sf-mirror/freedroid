@@ -705,13 +705,13 @@ ShowCharacterScreen ( )
     sprintf( CharText , "%d", Me.exp_level );
     DisplayText( CharText , 110 + CharacterRect.x , 73 + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
     
-    sprintf( CharText , "%lu", Me.Experience ); 
+    sprintf( CharText , "%u", Me.Experience ); 
     DisplayText( CharText , 110 + CharacterRect.x ,  89 + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
     
-    sprintf( CharText , "%lu", Me.ExpRequired );
+    sprintf( CharText , "%u", Me.ExpRequired );
     DisplayText( CharText , 110 + CharacterRect.x ,  107 + CharacterRect.y , &CharacterRect , TEXT_STRETCH ) ;
     
-    sprintf( CharText , "%6ld", Me.Gold ); 
+    sprintf( CharText , "%6d", Me.Gold ); 
     DisplayText( CharText , 240 + CharacterRect.x ,  71 + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
     
     SetCurrentFont( Message_BFont) ;

@@ -296,17 +296,27 @@ or file permissions of ~/.freedroid_rpg are somehow not right.",
     save_tux_t("player", &Me);
 
     /* Save all enemies */
-    int i = 0;
-    for ( ; i < 2; i++ )
+    int i ;
+    int a = 0;
+    for ( i = 0; i < 2; i++ )
 	{
 	enemy * erot = i ? dead_bots_head : alive_bots_head;
 	for ( ; erot; erot = GETNEXT(erot) )
-	    save_enemy("en", erot);
+	    {
+	    char str[20];
+	    sprintf(str, "%s enemy %d", i ? "dead" : "alive", a);
+	    save_enemy(str, erot);
+	    a ++;
+	    }
 	}
 
     /* Save all bullets */
     for ( i = 0; i < MAXBULLETS; i ++)
-	save_bullet("blt", &AllBullets[i]);
+	{
+	char str[20];
+	sprintf(str, "blt%d", i);
+	save_bullet(str, &AllBullets[i]);
+	}
     
     fprintf ( SaveGameFile, "End of freedroidRPG savefile\n");
     fclose( SaveGameFile );
@@ -417,31 +427,47 @@ LoadGame( void )
     
     printf("Curlevel is %d\n", current_geographics_levelnum);
 
-    /* read tux_t */
-    char * tux_str = strstr(LoadGameData, "<tux_t");
-    if ( ! tux_str ) 
-	ErrorMessage(__FUNCTION__, "Unable to localize player struct in savegame file.\n", PLEASE_INFORM, IS_FATAL);
-
-    char * tux_estr = strstr(tux_str, "</player");
-    if ( ! tux_estr ) 
-	ErrorMessage(__FUNCTION__, "Unable to localize end of player struct in savegame file.\n", PLEASE_INFORM, IS_FATAL);
-
-    while ( *tux_estr != '>' ) tux_estr ++;
-
-    char savechar = *(tux_estr+1);
-    *(tux_estr+1) = '\0';
     memset(&Me, 0, sizeof(tux_t));
-    read_tux_t(tux_str, "player", &Me);
-    *(tux_estr+1) = savechar;
-#if 0 
-    /* read enemies */
-    /*
-    EnemyRawDataPointer = MyMemmem( LoadGameData , 30000000 , ALLENEMYS_RAW_DATA_STRING , 
-				    strlen ( ALLENEMYS_RAW_DATA_STRING ) );
-    EnemyRawDataPointer += strlen ( ALLENEMYS_RAW_DATA_STRING ) ;
-    memcpy( &(AllEnemys) , EnemyRawDataPointer , sizeof ( enemy ) * MAX_ENEMYS_ON_SHIP );
-    */
+    read_tux_t(LoadGameData, "player", &Me);
 
+    ShowSaveLoadGameProgressMeter( 20 , FALSE )  ;
+
+    /* read enemies */
+    free_enemy_list(alive_bots_head);
+    free_enemy_list(dead_bots_head);
+    alive_bots_head = NULL;
+    dead_bots_head = NULL;
+    enemy newen;
+    int done;
+    int a = 0;
+    for ( i = 0 ; i < 2; i ++ )
+	{
+	enemy ** ce = i ? &dead_bots_head : &alive_bots_head;
+	char * cpos = LoadGameData;
+	done = 0;
+	while ( ! done ) 
+	    {
+	    memset(&newen, 0, sizeof(enemy));
+	    char str[10];
+	    sprintf(str, "%s enemy %d", i ? "dead" : "alive", a);
+	    cpos = strstr(cpos, str);
+	    if ( ! cpos )
+		{
+		done = 1;
+		break;
+		}
+	    cpos -= 5;
+	    if ( read_enemy(cpos, str, &newen ) )
+		done = 1;
+	    else *ce = add_enemy_head(*ce, &newen);
+	    a++;
+	    }
+	}
+
+
+
+    
+#if 0
     /* read bullets */
     BulletRawDataPointer = MyMemmem( LoadGameData , 30000000 , ALLBULLETS_RAW_DATA_STRING , 
 				     strlen ( ALLBULLETS_RAW_DATA_STRING ) );
@@ -451,13 +477,17 @@ LoadGame( void )
     /* properly restore pointers and references*/
     DebugPrintf ( SAVE_LOAD_GAME_DEBUG , "\n%s(): now correcting dangerous pointers...." , __FUNCTION__ );
     Me . TextToBeDisplayed = "";
-    enemy * erot = alive_bots_head;
-    while ( erot )
-    {
-	erot->TextToBeDisplayed = "" ;
-	erot->TextVisibleTime = 0;
-	erot = GETNEXT(erot);
-    }
+    for ( i = 0; i < 2; i ++)
+	{
+	enemy * erot = i ? alive_bots_head : dead_bots_head;
+	while ( erot )
+	    {
+	    erot->TextToBeDisplayed = "" ;
+	    erot->TextVisibleTime = 0;
+	    erot = GETNEXT(erot);
+	    }
+	}
+
     for ( i = 0 ; i < MAXBULLETS ; i++ )
     {
 	//--------------------
@@ -528,23 +558,17 @@ LoadGame( void )
     return OK;
 }; // int LoadGame ( void ) 
 
-/* Save complex simple types. Structured types are defined in savestruct.c, and
- * primitive types are macros in proto.h
- */
-void save_enemy_ptr(char * tag, enemy ** val)
-{
-/* Do nothing, at least for now*/
-fprintf(SaveGameFile, "%s: @%p\n", tag, (void *)(*val));
-}
-
-void read_enemy_ptr(char * buffer, char * tag, enemy ** val)
+void read_enemy_ptr(const char * buffer, const char * tag, enemy ** val)
 {
 }
 
-void read_int32_t(char * buffer, char * tag, int32_t * val)
+void read_int32_t(const char * buffer, const char * tag, int32_t * val)
 {
-    char * pos = strstr(buffer, tag);
+    char search[strlen(tag) + 3];
+    sprintf(search, "\n%s:", tag);
+    char * pos = strstr(buffer, search);
     if ( ! pos ) return;
+    pos += 3 + strlen(tag);
     char * epos = pos;
     while ( *epos != '\n' ) epos++;
     *epos = '\0';
@@ -553,41 +577,35 @@ void read_int32_t(char * buffer, char * tag, int32_t * val)
     *epos = '\n';
 }
 
-void read_int16_t(char * buffer, char * tag, int16_t * val)
+void read_int16_t(const char * buffer, const char * tag, int16_t * val)
 {
     int32_t valt;
     read_int32_t(buffer, tag, &valt);
     *val = valt;
 }
 
-void read_char(char * buffer, char * tag, char * val)
+void read_char(const char * buffer, const char * tag, char * val)
 {
     int32_t valt;
     read_int32_t(buffer, tag, &valt);
     *val = valt;
 }
 
-void read_uint32_t(char * buffer, char * tag, uint32_t * val)
+void read_uint32_t(const char * buffer, const char * tag, uint32_t * val)
 {
-    char * pos = strstr(buffer, tag);
-    if ( ! pos ) return;
-    char * epos = pos;
-    while ( *epos != '\n' ) epos++;
-    *epos = '\0';
-    while ( ! isdigit(*pos) ) pos++;
-    *val = strtol(pos, NULL, 10);
-    *epos = '\n';
-
+    int32_t valt;
+    read_int32_t(buffer, tag, &valt);
+    *val = valt;
 }
 
-void read_uint16_t(char * buffer, char * tag, uint16_t * val)
+void read_uint16_t(const char * buffer, const char * tag, uint16_t * val)
 {
     uint32_t valt;
     read_uint32_t(buffer, tag, &valt);
     *val = valt;
 }
 
-void read_uchar(char * buffer, char * tag, unsigned char * val)
+void read_uchar(const char * buffer, const char * tag, unsigned char * val)
 {
     uint32_t valt;
     read_uint32_t(buffer, tag, &valt);
@@ -595,24 +613,14 @@ void read_uchar(char * buffer, char * tag, unsigned char * val)
 }
 
 
-void read_float(char * buffer, char * tag, float * val)
+
+void read_double(const char * buffer, const char * tag, double * val)
 {
-    char * pos = strstr(buffer, tag);
+    char search[strlen(tag) + 3];
+    sprintf(search, "\n%s:", tag);
+    char * pos = strstr(buffer, search);
     if ( ! pos ) return;
-    char * epos = pos;
-    while ( *epos != '\n' ) epos++;
-    *epos = '\0';
-    while ( ! isdigit(*pos) && *pos != '-' ) pos++;
-    *val = strtof(pos, NULL);
-    *epos = '\n';
-}
-
-
-
-void read_double(char * buffer, char * tag, double * val)
-{
-    char * pos = strstr(buffer, tag);
-    if ( ! pos ) return;
+    pos += 3 + strlen(tag);
     char * epos = pos;
     while ( *epos != '\n' ) epos++;
     *epos = '\0';
@@ -621,24 +629,31 @@ void read_double(char * buffer, char * tag, double * val)
     *epos = '\n';
 }
 
-#define string char *
-
-void read_string(char * buffer, char * tag, char * val)
+void read_float(const char * buffer, const char * tag, float * val)
 {
-    char * pos = strstr(buffer, tag);
+    double valt;
+    read_double(buffer, tag, &valt);
+    *val = valt;
+}
+
+
+void read_string(const char * buffer, const char * tag, char * val)
+{
+    char search[strlen(tag) + 3];
+    sprintf(search, "\n%s:", tag);
+    char * pos = strstr(buffer, search);
     if ( ! pos ) return;
+    pos += 3 + strlen(tag);
     char * epos = pos;
     while ( *epos != '\n' ) epos++;
     *epos = '\0';
-    while ( *pos != ':' ) pos++;
-    while ( isspace(*pos) ) pos++;
     strcpy ( val, pos );
     *epos = '\n';
 }
 
 
 /* Save arrays of simple types */
-#define define_save_xxx_array(X) void save_##X##_array(char * tag, X * val_ar, int size)\
+#define define_save_xxx_array(X) void save_##X##_array(const char * tag, X * val_ar, int size)\
 {\
 fprintf(SaveGameFile, "<%s array n=%d>\n", tag, size);\
 int i;\
@@ -646,7 +661,6 @@ for ( i = 0; i < size; i ++)\
 	{\
 	char str[10];\
 	sprintf(str, "%i", i);\
-	fprintf(SaveGameFile, "\t");\
 	save_##X(str, &val_ar[i]);\
 	}\
 fprintf(SaveGameFile, "</%s>\n", tag);\
@@ -656,13 +670,18 @@ define_save_xxx_array(int32_t);
 define_save_xxx_array(uint32_t);
 define_save_xxx_array(int16_t);
 define_save_xxx_array(uint16_t);
+typedef unsigned char uchar;
+define_save_xxx_array(float);
+define_save_xxx_array(uchar);
 define_save_xxx_array(mission);
 define_save_xxx_array(item);
 define_save_xxx_array(gps);
 define_save_xxx_array(moderately_finepoint);
+//typedef char * string;
+//define_save_xxx_array(string);
 
 /* Read arrays of simple types */
-#define define_read_xxx_array(X) void read_##X##_array(char * buffer, char * tag, X * val_ar, int size)\
+#define define_read_xxx_array(X) void read_##X##_array(const char * buffer, const char * tag, X * val_ar, int size)\
 {\
 int i;\
 char search[strlen(tag) + 20];\
@@ -689,6 +708,8 @@ for ( i = 0; i < (nb <= size ? nb : size); i ++)\
 	{\
 	char str[10];\
 	sprintf(str, "%d", i);\
+	pos = strstr(pos, str);\
+	pos -= 5;\
 	read_##X(pos, str, &val_ar[i]);\
 	}\
 *(epos+1) = savechar;\
@@ -698,10 +719,13 @@ define_read_xxx_array(int32_t);
 define_read_xxx_array(uint32_t);
 define_read_xxx_array(int16_t);
 define_read_xxx_array(uint16_t);
+define_read_xxx_array(float);
+define_read_xxx_array(uchar);
 define_read_xxx_array(mission);
 define_read_xxx_array(item);
 define_read_xxx_array(gps);
 define_read_xxx_array(moderately_finepoint);
+//define_read_xxx_array(string);
 
 void save_chatflags_t_array(char * tag, chatflags_t * chatflags, int size)
 {
@@ -722,6 +746,7 @@ void read_chatflags_t_array(char * buffer, char * tag, chatflags_t * chatflags, 
 {
 int i, j;
 #if 0
+/* XXX */
 char * pos = strstr(buffer, "<ChatFlags n");
 if ( ! pos )
     ErrorMessage ( __FUNCTION__, "Unable to find chat flags in savegame\n", PLEASE_INFORM, IS_FATAL);
@@ -761,6 +786,7 @@ fprintf(SaveGameFile, "</cookielist>\n");
 
 void read_cookielist_t_array(char * buffer, char * tag, cookielist_t * cookielist, int size)
 {
+/* XXX*/
 }
 
 void save_automap_data(char * tag, automap_data_t * automapdata, int size)
@@ -780,8 +806,26 @@ for ( i = 0; i < MAX_LEVELS; i ++)
 fprintf(SaveGameFile, "</automap>\n");
 }
 
-void read_automap_data_t_array(char * tag, automap_data_t * automapdata, int size)
+void read_automap_data_t_array(char * buffer, char * tag, automap_data_t * automapdata, int size)
 {
+/* XXX */
+}
+
+void read_bigscrmsg_t_array(char * buffer, char * tag, bigscrmsg_t * data, int size)
+{
+/*int i;
+for ( i = 0; i < MAX_BIG_SCREEN_MESSAGES; i ++ )
+    {
+
+    }*/
+}
+
+void save_bigscrmsg_t_array(char * tag, bigscrmsg_t * data, int size)
+{
+/*int i;
+for ( i = 0; i < MAX_BIG_SCREEN_MESSAGES; i ++ )
+    save_string(tag, data[i]);
+*/
 }
 
 #undef _saveloadgame_c

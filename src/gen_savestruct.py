@@ -32,7 +32,7 @@ find_structure_rxp = re.compile(r'typedef struct .+?'
                                 r'\}'
                                 r'\s*(' + c_id + ').*?;', re.M | re.S)
 # Regexp which search for a field
-find_members_rxp = re.compile(r'\s*' + c_type + r'\s+(' + c_id + r')(?:\[(.+)\])?\s*?;.*')
+find_members_rxp = re.compile(r'\s*' + c_type + r'\s+(' + c_id + r')(?:\s*\[(.+)\])?\s*?;.*')
 
 # Special types replacements
 special_types = {
@@ -110,7 +110,6 @@ def main():
             # Pointers
             if '*' in type:
                 type = type.replace('*', '').strip() + '_ptr'
-		#continue;
             # Spaces
             type = type.replace(' ', '_')
             if type in special_types.keys(): type = special_types[type]
@@ -118,19 +117,23 @@ def main():
             
 	    if size and type != 'string': type += '[%s]' % size
             data[name].append((type, field))
-    
+   
     # Writing loop
     for s_name in data.keys():
         str_save = str_read = ''
 	header = 'int save_%s(char *, %s *);\n int read_%s(char *, char *, %s *);\n' % (s_name, s_name, s_name, s_name)
-	str_save += 'int save_%s(char * tag, %s * target)\n{\nfprintf(SaveGameFile, "<%s %%s>\\n",tag?tag:"");\n' % (s_name,s_name,s_name)
+	str_save += 'int save_%s(char * tag, %s * target)\n{\nfprintf(SaveGameFile, "<%%s>\\n",tag);\n' % (s_name,s_name)
         str_read += '''int read_%s(char* buffer, char * tag, %s * target)\n{\n
-	        char * pos = strstr(buffer, tag);
+		char search[strlen(tag) + 5];
+		sprintf(search, "<%%s>", tag);
+	        char * pos = strstr(buffer, search);
 		if ( ! pos ) return 1;
-		char * epos = strstr ( pos + 1, tag);
-		if ( * (epos - 1) != '/' ) return 2;
-		while ( *epos != '>' ) epos++;
-		*(epos) = 0;''' % (s_name, s_name)
+		pos += 1 + strlen(tag);
+		sprintf(search, "</%%s>", tag);
+		char * epos = strstr(buffer, search);
+		if ( ! epos ) return 2;
+		*epos = 0;
+		''' % (s_name, s_name)
 
         for (type, field) in data[s_name]:
             size = None
