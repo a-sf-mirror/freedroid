@@ -1822,7 +1822,7 @@ msgstr "Weil dieser Ort geradezu ein kleines Paradies darstellt, habe ich mich "
 
 #: ../dialogs/Koan.dialog:126
 msgid "I do not want this wonderful bunker to become devoid of life again."
-msgstr "Ich möchte nicht, dass dieses wundervolle Gebäude wieder jeglichen 
+msgstr "Ich möchte nicht, dass dieses wundervolle Gebäude wieder jeglichen "
 "Lebens beraubt wird."
 
 #: ../dialogs/Koan.dialog:133
@@ -5157,7 +5157,7 @@ msgid ""
 "I was approached by a bot. It grabbed me and said 'Dixon, do not be afraid "
 "of me.'"
 msgstr "Plötzlich kam einer der Roboter auf mich zu. Er hielt mich fest und sagte: "
-""Dixon, hab keine Angst vor mir.""
+"Dixon, hab keine Angst vor mir."
 
 #: ../dialogs/Dixon.dialog:220
 msgid ""
@@ -7049,7 +7049,7 @@ msgstr "Du hast die Anfänger-Arena ja bereits bestanden. Aber da du dich tatsäch
 msgid ""
 "But you also might want to try the master arena now, maybe? If so, just say "
 "so."
-msgstr "Vielleicht willste es jetzt ja aber auch mal mit dem Meisterkampf probieren? 
+msgstr "Vielleicht willste es jetzt ja aber auch mal mit dem Meisterkampf probieren? "
 "Falls ja, sag einfach Bescheid - mein Federbett ist schon lang nicht mehr erneuert worden."
 
 #: ../dialogs/subdlg_Butch.dialog:115
@@ -8470,3 +8470,4 @@ msgstr " Wenn ich nur wüsste, wovon Sie reden."
 #: ../dialogs/Melfis.dialog:86
 msgid " I need to go now."
 msgstr " Ich muss los."
+
