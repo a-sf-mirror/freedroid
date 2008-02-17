@@ -534,21 +534,25 @@ DisplayTextWithScrolling ( char *Text , int startx , int starty , const SDL_Rect
 void
 SetNewBigScreenMessage( char* ScreenMessageText )
 {
-    int i;
+    int i = MAX_BIG_SCREEN_MESSAGES - 1;
 
-    //--------------------
-    // Instead of inserting the next big screen message at some fixed cursor position
-    // we will now just move the other big screen messages down and insert the new
-    // big screen message at the very top position of the row.
-    //
-    for ( i = 1 ; i < MAX_BIG_SCREEN_MESSAGES ; i ++ )
-    {
-	strcpy ( Me . BigScreenMessage [ MAX_BIG_SCREEN_MESSAGES - i ] ,
-		 Me . BigScreenMessage [ MAX_BIG_SCREEN_MESSAGES - i - 1 ] );
-	Me . BigScreenMessageDuration [ MAX_BIG_SCREEN_MESSAGES - i ] = 
-	    Me . BigScreenMessageDuration [ MAX_BIG_SCREEN_MESSAGES - i - 1 ] ;
-    }
-    strcpy ( Me . BigScreenMessage [ 0 ] , ScreenMessageText );
+    /* Free the last message that's going to be overwritten */
+    if ( Me . BigScreenMessage [ i ] )
+	{
+	free ( Me . BigScreenMessage [ i ] );
+	Me . BigScreenMessage [ i ] = NULL;
+	}
+
+    i = 0;
+    while ( i < MAX_BIG_SCREEN_MESSAGES - 1)
+	{
+	Me . BigScreenMessage [ i + 1 ] = Me . BigScreenMessage [ i ];
+	Me . BigScreenMessageDuration [ i + 1 ] = Me . BigScreenMessageDuration [ i ];
+	i ++;
+	} 
+
+    Me . BigScreenMessage [ 0 ] = MyMalloc(strlen(ScreenMessageText) + 1);
+    strcpy ( Me . BigScreenMessage [ 0 ], ScreenMessageText );
     Me . BigScreenMessageDuration [ 0 ] = 0 ;
 
 }; // void SetNewBigScreenMessage( char* ScreenMessageText )

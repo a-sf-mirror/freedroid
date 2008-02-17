@@ -612,24 +612,6 @@ CheckIfMissionIsComplete (void)
 	}
 	
 	//--------------------
-	// Continue if the Mission target KillClass is given but not fullfilled
-	//
-	if ( Me.AllMissions[ mis_num ].KillClass != (-1) )
-	{
-	    enemy * erot = alive_bots_head;
-	    while ( erot )
-	    {
-		if (  Druidmap[erot->type].class == Me.AllMissions[ mis_num ].KillClass )  
-		{
-		    this_mission_seems_completed = FALSE ;
-		    break;
-		}
-
-		erot = GETNEXT(erot);
-	    }
-	}
-	
-	//--------------------
 	// Continue if the Mission target must_clear_first_level is given but not fullfilled
 	//
 	if ( Me.AllMissions[ mis_num ]. must_clear_first_level != (-1) )
@@ -865,7 +847,6 @@ GetQuestList ( char* QuestListFilename )
 
 #define MISSION_AUTOMATICALLY_ASSIGN_STRING "Assign this mission to influencer automatically at start : "
 #define MISSION_TARGET_FETCH_ITEM_STRING "Mission target is to fetch item : \""
-#define MISSION_TARGET_KILL_CLASS_STRING "Mission target is to kill class of droids : "
 #define MISSION_TARGET_KILL_ONE_STRING "Mission target is to kill droids with marker : "
 #define MISSION_TARGET_MUST_CLEAR_FIRST_LEVEL "Mission target is to kill all hostile droids this first level : "
 #define MISSION_TARGET_MUST_CLEAR_SECOND_LEVEL "Mission target is to also kill all hostile droids on second level : "
@@ -934,9 +915,6 @@ GetQuestList ( char* QuestListFilename )
 	    free ( iname ); 
 	    }
 	else Me.AllMissions[ MissionTargetIndex ].fetch_item = -1; 
-	
-	ReadValueFromString( MissionTargetPointer , MISSION_TARGET_KILL_CLASS_STRING , "%d" , 
-			     &Me.AllMissions[ MissionTargetIndex ].KillClass , EndOfMissionTargetPointer );
 	
 	ReadValueFromString( MissionTargetPointer , MISSION_TARGET_KILL_ONE_STRING , "%d" , 
 			     &Me.AllMissions[ MissionTargetIndex ].KillOne , EndOfMissionTargetPointer );

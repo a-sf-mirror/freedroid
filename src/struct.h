@@ -216,7 +216,6 @@ typedef struct mission_s
     int AutomaticallyAssignThisMissionAtGameStart; // well...
     
     int fetch_item;
-    int KillClass;
     int KillOne;
     int must_clear_first_level;
     int must_clear_second_level;
@@ -600,7 +599,7 @@ typedef struct enemy_s
 enemy, *Enemy;
 
 typedef char automap_data_t[MAX_LEVELS][100];
-typedef char bigscrmsg_t[MAX_BIG_SCREEN_MESSAGES];
+typedef char * bigscrmsg_t[MAX_BIG_SCREEN_MESSAGES];
 typedef unsigned char chatflags_t[MAX_PERSONS];
 typedef char cookielist_t[MAX_COOKIES];
 
@@ -743,7 +742,7 @@ typedef struct tux_s
     gps Position_History_Ring_Buffer[ MAX_INFLU_POSITION_HISTORY ];
     
     int BigScreenMessageIndex;
-    bigscrmsg_t	BigScreenMessage [ 500 ];
+    bigscrmsg_t BigScreenMessage; // bitch
     float BigScreenMessageDuration [ MAX_BIG_SCREEN_MESSAGES ];
 
     float slowdown_duration;

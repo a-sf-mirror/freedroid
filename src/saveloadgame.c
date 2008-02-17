@@ -800,7 +800,7 @@ while ( i < MAX_PERSONS )
 
 void save_cookielist_t_array(char * tag, cookielist_t * cookielist, int size)
 {
-fprintf(SaveGameFile, "<cookielist>\n");
+fprintf(SaveGameFile, "<cookielist mc=%d>\n", MAX_COOKIES);
 int i;
 for ( i = 0; i < MAX_COOKIES; i ++)
     {
@@ -810,14 +810,97 @@ for ( i = 0; i < MAX_COOKIES; i ++)
 fprintf(SaveGameFile, "</cookielist>\n");
 }
 
-void read_cookielist_t_array(char * buffer, char * tag, cookielist_t * cookielist, int size)
+void read_cookielist_t_array(const char * buffer, const char * tag, cookielist_t * cookielist, int size)
 {
-/* XXX*/
+char * pos = strstr(buffer, "<cookielist mc=");
+if ( ! pos ) ErrorMessage ( __FUNCTION__, "Unable to find cookielist.\n", PLEASE_INFORM, IS_FATAL);
+char * epos = strstr(pos, "</cookielist>\n");
+if ( ! epos ) ErrorMessage ( __FUNCTION__, "Unable to find cookielist end.\n", PLEASE_INFORM, IS_FATAL);
+char savechar = *epos;
+*epos = '\0';
+int mc = 0;
+
+pos += strlen("<cookielist mc=");
+while ( ! isdigit(*pos) ) pos++;
+char * erunp = pos;
+while ( (*erunp) != '>') erunp ++;
+*erunp = '\0';
+mc = atoi(pos);
+*erunp = '>';
+pos = erunp;
+
+if ( mc != MAX_COOKIES )
+    ErrorMessage(__FUNCTION__, "Size mismatch for max number of cookies, file %d vs. game %d.\n", PLEASE_INFORM, IS_FATAL, mc, MAX_COOKIES);
+
+while ( *pos != '\n' ) pos ++;
+pos++;
+
+int i = 0;
+while ( pos < epos )
+    {
+    int j = 0;
+    while ( *pos != '\n' ) 
+	{
+	cookielist[i][j] = *pos;
+	pos++;
+	j++;
+	}
+    cookielist[i][j] = '\0';
+    pos ++;
+    i ++;
+    }
+
+*epos = savechar;
+}
+
+void save_bigscrmsg_t(char *tag, bigscrmsg_t * data)
+{
+/* bigscrmsg_t is an array (size MAX_BIG_SCREEN_MESSAGES) of strings */
+/* those messages are of very little interest which is why we will not save them.*/
+#if 0
+fprintf(SaveGameFile, "<bigscreenmessages m=%d>\n", MAX_BIG_SCREEN_MESSAGES);
+int i = 0;
+while ( (*data)[i] != NULL && strlen ( (* data) [ i ] ) )
+    {
+    fprintf(SaveGameFile, "%s", (*data) [ i ] );
+    }
+
+fprintf(SaveGameFile, "</bigscreenmessages>\n");
+#endif
+}
+
+void read_bigscrmsg_t(const char * buffer, const char * tag, bigscrmsg_t * data)
+{
+/* This function isn't even finished */
+#if 0
+char * pos = strstr(buffer, "<bigscreenmessages m=");
+if ( ! pos ) ErrorMessage ( __FUNCTION__, "Unable to find big screen messages.\n", PLEASE_INFORM, IS_FATAL);
+char * epos = strstr(pos, "</bigscreenmessages>\n");
+if ( ! epos ) ErrorMessage ( __FUNCTION__, "Unable to find big screen messages end.\n", PLEASE_INFORM, IS_FATAL);
+char savechar = *epos;
+*epos = '\0';
+int mc = 0;
+
+pos += strlen("<bigscreenmessages m=");
+while ( ! isdigit(*pos) ) pos++;
+char * erunp = pos;
+while ( (*erunp) != '>') erunp ++;
+*erunp = '\0';
+mc = atoi(pos);
+*erunp = '>';
+pos = erunp;
+
+if ( mc != MAX_BIG_SCREEN_MESSAGES )
+        ErrorMessage(__FUNCTION__, "Size mismatch for max number of big screen messages, file %d vs. game %d.\n", PLEASE_INFORM, IS_FATAL, mc, MAX_BIG_SCREEN_MESSAGES);
+
+while ( *pos != '\n' ) pos ++;
+pos++;
+#endif
 }
 
 void save_automap_data(char * tag, automap_data_t * automapdata, int size)
 {
-fprintf(SaveGameFile, "<automap>\n");
+fprintf(SaveGameFile, "<automap nl=%d sx=%d sy=%d>\n", MAX_LEVELS, 100, 100);
 int i,j,k;
 for ( i = 0; i < MAX_LEVELS; i ++)
    {
@@ -834,24 +917,64 @@ fprintf(SaveGameFile, "</automap>\n");
 
 void read_automap_data_t_array(char * buffer, char * tag, automap_data_t * automapdata, int size)
 {
-/* XXX */
+    char * pos = strstr(buffer, "<automap nl=");
+    if ( ! pos ) ErrorMessage ( __FUNCTION__, "Unable to find automap data\n", PLEASE_INFORM, IS_FATAL);
+    char * epos = strstr(pos, "</automap>\n");
+    if ( ! epos ) ErrorMessage ( __FUNCTION__, "Unable to find automap data end\n", PLEASE_INFORM, IS_FATAL);
+    epos += strlen("</automap>\n");
+    char savechar = *(epos + 1);
+    *(epos+1) = '\0';
+    char *runp = pos + 1;
+    runp += strlen("<automap");
+
+
+    while ( *runp != '\n' ) runp++;
+    *runp = '\0';
+    int nl, sx, sy;
+    sscanf(pos, "<automap nl=%d sx=%d sy=%d>", &nl, &sx, &sy);
+  
+    if ( nl != MAX_LEVELS )
+	ErrorMessage(__FUNCTION__, "Number of levels mismatch when reading automap data : file %d, game %d\n", PLEASE_INFORM, IS_FATAL, nl, MAX_LEVELS);
+    if ( sx != 100 || sy != 100 )
+	ErrorMessage(__FUNCTION__, "Size mismatch when reading automap data.\n", PLEASE_INFORM, IS_FATAL);
+
+    *runp = '\n';
+    runp++;
+    char * erunp;
+    int i = 0, j = 0, k = 0;
+    while ( i < MAX_LEVELS )
+	{
+	/* we're on level number */
+	while ( *runp != '\n' ) runp++;
+	runp++;
+	/*now on the actual data*/
+	j = 0;
+	while ( j < 100 )
+	    {
+	    k = 0;
+	    while ( k < 100 )
+		{
+		while ( ! isdigit(*runp) ) runp++;
+		erunp = runp + 1;
+		while ( *erunp != ' ' ) erunp++;
+		*erunp = '\0';
+
+		(automapdata)[i][j][k] = atoi(runp);
+		*erunp = ' ';
+		runp = erunp;
+		k++;
+		}
+	    while ( *runp != '\n' ) runp++;
+	    runp ++;
+	    j ++;
+	    }
+
+	while ( *runp != '\n' ) runp++;
+	i++;
+	}
+    *(epos+1) = savechar;
+
 }
 
-void read_bigscrmsg_t_array(char * buffer, char * tag, bigscrmsg_t * data, int size)
-{
-/*int i;
-for ( i = 0; i < MAX_BIG_SCREEN_MESSAGES; i ++ )
-    {
-
-    }*/
-}
-
-void save_bigscrmsg_t_array(char * tag, bigscrmsg_t * data, int size)
-{
-/*int i;
-for ( i = 0; i < MAX_BIG_SCREEN_MESSAGES; i ++ )
-    save_string(tag, data[i]);
-*/
-}
 
 #undef _saveloadgame_c

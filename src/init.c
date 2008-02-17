@@ -1943,7 +1943,14 @@ PrepareStartOfNewCharacter ( void )
     //
     Me . BigScreenMessageIndex = 0 ;
     for ( i = 0 ; i < MAX_BIG_SCREEN_MESSAGES ; i ++ )
+	{
+	if ( Me.BigScreenMessage [ i ] )
+	    {
+	    free ( Me.BigScreenMessage [ i ] );
+	    Me . BigScreenMessage [ i ] = NULL;
+	    }
 	Me . BigScreenMessageDuration [ i ] = 10000 ;
+	}
     
     //--------------------
     // We make sure we don't have garbage in our arrays from a 

@@ -3038,10 +3038,6 @@ Show_Mission_Details ( int MissionNumber )
 	if ( Me.AllMissions[ MissionNumber ].MustBeOne != (-1) ) printf_SDL( Screen , -1 , -1 , "YES" );
 	else printf_SDL( Screen , -1 , -1 , "NO\n" );
 	
-	printf_SDL ( Screen , User_Rect.x , 10 * FontHeight(Menu_BFont) , "Kill Class : "  );
-	if ( Me.AllMissions[ MissionNumber ].KillClass != (-1) ) printf_SDL( Screen , -1 , -1 , "%s" , _(Classname[Me.AllMissions[ MissionNumber ].KillClass]) ); 
-	else printf_SDL( Screen , -1 , -1 , "NONE\n" );
-	
 	our_SDL_flip_wrapper( Screen );
 	
 	while ( (!EscapePressed()) && (!EnterPressed()) && (!SpacePressed()) );

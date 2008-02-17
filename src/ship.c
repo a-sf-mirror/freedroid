@@ -229,23 +229,16 @@ ShowDroidInfo ( int droidtype, int Displacement , char ShowArrows )
     PutString ( Screen , 330 * GameConfig . screen_width / 640 , 38 * GameConfig . screen_height / 480 , TextChunk );
     
     sprintf( InfoText, _("\
-Unit type %s - %s\n\
-Entry : %d\n\
-Brain : %s"), Druidmap[droidtype].druidname, _(Classname[Druidmap[ droidtype ].class]),
-	     droidtype+1,
-	     _(Brainnames[ Druidmap[droidtype].brain ]));
+Unit type %s\n\
+Entry : %d\n"), Druidmap[droidtype].druidname, droidtype + 1);
     
     if ( (type = Druidmap[droidtype].weapon_item.type) >= 0) // make sure item=-1 
 	item_name = D_(ItemMap[type].item_name);                 // does not segfault 
     else 
 	item_name = _("none");
     
-    sprintf( TextChunk , _("\nArmamant : %s\n\
-Sensors  1: %s\n          2: %s\n          3: %s"),
-	     item_name,
-	     _(Sensornames[ Druidmap[droidtype].sensor1 ]),
-	     _(Sensornames[ Druidmap[droidtype].sensor2 ]),
-	     _(Sensornames[ Druidmap[droidtype].sensor3 ]));
+    sprintf( TextChunk , _("\nArmamant : %s\n"),
+	     item_name);
     strcat ( InfoText , TextChunk );
     
     sprintf ( TextChunk , _("\nNotes: %s\n"), D_(Druidmap[droidtype].notes));

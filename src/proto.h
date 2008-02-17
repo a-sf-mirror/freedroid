@@ -349,7 +349,7 @@ EXTERN void save_float_array(const char *, float *, int);
 EXTERN void read_float_array(const char *, const char *, float *, int);
 
 
-/* Ugly hacks */
+/* Hacks */
 EXTERN void save_chatflags_t_array(char *, chatflags_t * , int);
 EXTERN void save_cookielist_t_array(char *, cookielist_t *, int);
 #define save_automap_data_t_array save_automap_data
