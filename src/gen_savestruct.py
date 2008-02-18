@@ -37,7 +37,6 @@ find_members_rxp = re.compile(r'\s*' + c_type + r'\s+(' + c_id + r')(?:\s*\[(.+)
 # Special types replacements
 special_types = {
     'char_ptr': 'string',
-    'enemy_s_ptr' : 'enemy_ptr',
     #32 bit integers
     'unsigned_int': 'uint32_t',
     'unsigned_long' : 'uint32_t',
