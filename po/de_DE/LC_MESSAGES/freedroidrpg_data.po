@@ -18,43 +18,43 @@ msgstr ""
 
 #: ../map/freedroid.item_archetypes:114
 msgid "Short sword"
-msgstr ""
+msgstr "Kurzschwert"
 
 #: ../map/freedroid.item_archetypes:151
 msgid "Long sword"
-msgstr ""
+msgstr "Langschwert aus Resostahl"
 
 #: ../map/freedroid.item_archetypes:190
 msgid "Great sword"
-msgstr ""
+msgstr "Breitschwert"
 
 #: ../map/freedroid.item_archetypes:229
 msgid "Chainsaw"
-msgstr ""
+msgstr "Kettensäge"
 
 #: ../map/freedroid.item_archetypes:274
 msgid "Meat cleaver"
-msgstr ""
+msgstr "Metzgerbeil"
 
 #: ../map/freedroid.item_archetypes:313
 msgid "Small axe"
-msgstr ""
+msgstr "Kleine Axt"
 
 #: ../map/freedroid.item_archetypes:352
 msgid "Axe"
-msgstr ""
+msgstr "Axt"
 
 #: ../map/freedroid.item_archetypes:391
 msgid "Large Axe"
-msgstr ""
+msgstr "Große Axt"
 
 #: ../map/freedroid.item_archetypes:436
 msgid "Dagger"
-msgstr ""
+msgstr "Dolch"
 
 #: ../map/freedroid.item_archetypes:475
 msgid "Wooden spear"
-msgstr ""
+msgstr "Holzspeer"
 
 #: ../map/freedroid.item_archetypes:514
 msgid "Metal spear"
@@ -62,544 +62,544 @@ msgstr ""
 
 #: ../map/freedroid.item_archetypes:559
 msgid "Crowbar"
-msgstr ""
+msgstr "Brecheisen"
 
 #: ../map/freedroid.item_archetypes:598
 msgid "Iron pipe"
-msgstr ""
+msgstr "Eisenrohr"
 
 #: ../map/freedroid.item_archetypes:637
 msgid "Golf club"
-msgstr ""
+msgstr "Golfschläger"
 
 #: ../map/freedroid.item_archetypes:676
 msgid "Tree branch"
-msgstr ""
+msgstr "Ast"
 
 #: ../map/freedroid.item_archetypes:715
 msgid "Table leg"
-msgstr ""
+msgstr "Tischbein"
 
 #: ../map/freedroid.item_archetypes:754
 msgid "Baseball bat"
-msgstr ""
+msgstr "Baseballschläger"
 
 #: ../map/freedroid.item_archetypes:793
 msgid "Iron bar"
-msgstr ""
+msgstr "Eisenstange"
 
 #: ../map/freedroid.item_archetypes:832
 msgid "Mace"
-msgstr ""
+msgstr "Streitkolben"
 
 #: ../map/freedroid.item_archetypes:871
 msgid "Flail"
-msgstr ""
+msgstr "Dreschflegel"
 
 #: ../map/freedroid.item_archetypes:910
 msgid "Sledgehammer"
-msgstr ""
+msgstr "Vorschlaghammer"
 
 #: ../map/freedroid.item_archetypes:955
 msgid "Lightsaber"
-msgstr ""
+msgstr "Großer Lasersäbel"
 
 #: ../map/freedroid.item_archetypes:994
 msgid "Laserstaff"
-msgstr ""
+msgstr "Laser-Kampfstab"
 
 #: ../map/freedroid.item_archetypes:1039
 msgid "Nobody's edge"
-msgstr ""
+msgstr "Die Niemandsklinge"
 
 #: ../map/freedroid.item_archetypes:1073
 msgid "Laserscalpel"
-msgstr ""
+msgstr "Laserskalpell"
 
 #: ../map/freedroid.item_archetypes:1163
-msgid ".22 LR Ammunition"
-msgstr ""
+msgid "Caliber .22 LR ammunition"
+msgstr "Kaliber .22 Zoll Langgewehr-Munition"
 
 #: ../map/freedroid.item_archetypes:1191
-msgid ".22 Automatic"
-msgstr ""
+msgid "Caliber .22 Zoll automatic"
+msgstr "Kaliber .22 Zoll Automatik"
 
 #: ../map/freedroid.item_archetypes:1228
-msgid ".22 Hunting Rifle"
-msgstr ""
+msgid ".22 hunting rifle"
+msgstr "Kaliber .22 Zoll Jagdgewehr"
 
 #: ../map/freedroid.item_archetypes:1265
 msgid "Shotgun shells"
-msgstr ""
+msgstr "Satz Schrotpatronen"
 
 #: ../map/freedroid.item_archetypes:1297
-msgid "2 Barrel sawn off shotgun"
-msgstr ""
+msgid "Double barrel sawn off shotgun"
+msgstr "Abgesägtes Doppellauf-Schrotgewehr"
 
 #: ../map/freedroid.item_archetypes:1334
-msgid "2 Barrel shotgun"
-msgstr ""
+msgid "Double barrel shotgun"
+msgstr "Doppellauf-Schrotgewehr"
 
 #: ../map/freedroid.item_archetypes:1371
 msgid "Pump action shotgun"
-msgstr ""
+msgstr "Pumpgun-Schrotgewehr"
 
 #: ../map/freedroid.item_archetypes:1408
-msgid "9x19mm Ammunition"
-msgstr ""
+msgid "caliber 9x19mm ammunition clip"
+msgstr "Kaliber 9mm 'Parabellum' Magazin"
 
 #: ../map/freedroid.item_archetypes:1434
-msgid "9mm Automatic"
-msgstr ""
+msgid "9mm automatic"
+msgstr "Kaliber 9mm Automatik"
 
 #: ../map/freedroid.item_archetypes:1471
-msgid "9mm Sub Machine Gun"
-msgstr ""
+msgid "Submachine gun, caliber 9mm"
+msgstr "Kaliber 9mm Maschinenpistole"
 
 #: ../map/freedroid.item_archetypes:1508
-msgid "7.62x39mm Ammunition"
-msgstr ""
+msgid "caliber 7.62x39mm Ammunition"
+msgstr "Kaliber 7.62x39 mm Munition"
 
 #: ../map/freedroid.item_archetypes:1534
 msgid "7.62mm Hunting rifle"
-msgstr ""
+msgstr "Kaliber 7.62mm Jagdgewehr"
 
 #: ../map/freedroid.item_archetypes:1571
-msgid "7.62mm AK-47"
-msgstr ""
+msgid "AK-47 'Kalashnikow', caliber 7.62mm"
+msgstr "AK-47 'Kalaschnikow', Kaliber 7.62mm"
 
 #: ../map/freedroid.item_archetypes:1608
 msgid ".50 BMG (12.7x99mm) Ammunition"
-msgstr ""
+msgstr "Kaliber .50 BMG Munition"
 
 #: ../map/freedroid.item_archetypes:1631
-msgid "Barrett M82 Sniper Rifle"
-msgstr ""
+msgid "M82 'Barrett' sniper rifle"
+msgstr "M82 'Barrett' Scharfschützengewehr"
 
 #: ../map/freedroid.item_archetypes:1668
-msgid "Laser Weapon Ammunition"
-msgstr ""
+msgid "Laser weapon ammunition"
+msgstr "Laserwaffen-Munition"
 
 #: ../map/freedroid.item_archetypes:1684
-msgid "Laser pistol"
-msgstr ""
+msgid "Laser pistol MKI"
+msgstr "Laserpistole MKI"
 
 #: ../map/freedroid.item_archetypes:1721
-msgid "Laser Rifle"
-msgstr ""
+msgid "Laser rifle MKI"
+msgstr "Lasergewehr MKI"
 
 #: ../map/freedroid.item_archetypes:1758
-msgid "Small Pulse Laser"
-msgstr ""
+msgid "Pulse laser MKI"
+msgstr "Puls-Laser MKI"
 
 #: ../map/freedroid.item_archetypes:1795
-msgid "Pulse Laser"
-msgstr ""
+msgid "Pulse laser MKII"
+msgstr "Puls-Laser MKII"
 
 #: ../map/freedroid.item_archetypes:1832
-msgid "Plasma Weapon Ammunition"
-msgstr ""
+msgid "Plasma weapon ammunition"
+msgstr "Plasmawaffen-Munition"
 
 #: ../map/freedroid.item_archetypes:1850
-msgid "Plasma pistol"
-msgstr ""
+msgid "Plasma pistol MKI"
+msgstr "Plasmapistole MKI"
 
 #: ../map/freedroid.item_archetypes:1887
-msgid "Plasma gun"
-msgstr ""
+msgid "Plasma pistol MKII"
+msgstr "Plasmapistole MKII"
 
 #: ../map/freedroid.item_archetypes:1924
 msgid "Plasma cannon"
-msgstr ""
+msgstr "Plasmakanone"
 
 #: ../map/freedroid.item_archetypes:1961
-msgid "2 mm Exterminator Ammunition"
-msgstr ""
+msgid "Exterminator fission-spheres, caliber 2mm"
+msgstr "Kaliber 2mm Exterminator-Fissions-Kugeln"
 
 #: ../map/freedroid.item_archetypes:1979
 msgid "Exterminator"
-msgstr ""
+msgstr "Exterminator"
 
 #: ../map/freedroid.item_archetypes:2014
 msgid "The Super Exterminator!!!"
-msgstr ""
+msgstr "Der Super-Exterminator!!!"
 
 #: ../map/freedroid.item_archetypes:2057
-msgid "VMX Gas Grenade"
-msgstr ""
+msgid "VMX gas grenade"
+msgstr "VMX Gasgranate"
 
 #: ../map/freedroid.item_archetypes:2074
-msgid "EMP Shock Grenade"
-msgstr ""
+msgid "EMP shock grenade"
+msgstr "EMP-Schockgranate"
 
 #: ../map/freedroid.item_archetypes:2091
-msgid "Plasma Grenade"
-msgstr ""
+msgid "Plasma grenade"
+msgstr "Plasmagranate"
 
 #: ../map/freedroid.item_archetypes:2117
-msgid "NPC Hand to hand weapon"
+msgid "NPC hand-to-hand weapon"
 msgstr ""
 
 #: ../map/freedroid.item_archetypes:2153
-msgid "Droid weaponry - 123"
-msgstr ""
+msgid "Droid weaponry - 123: Metalclamps (punches)"
+msgstr "Androidenwaffe - 123: Metallgreifer (Prügel)"
 
 #: ../map/freedroid.item_archetypes:2187
-msgid "Droid weaponry - 139 : Trash compactor plasma overload"
-msgstr ""
+msgid "Droid weaponry - 139 : Plasma-overload trash vaporizer (burns)"
+msgstr "Androidenwaffe - 139: Plasmaüberdruck-Müllverdampfer (Verbrennungen)"
 
 #: ../map/freedroid.item_archetypes:2221
-msgid "Droid weaponry - 247"
-msgstr ""
+msgid "Droid weaponry - 247: Metalclaws (punches, bruises, cuts)"
+msgstr "Androidenwaffe - 247: Metallklauen (Hiebe, Quetschungen, Schnittwunden)"
 
 #: ../map/freedroid.item_archetypes:2257
-msgid "Droid weaponry - 249 (Laser pulse welder)"
-msgstr ""
+msgid "Droid weaponry - 249: Autocannon module"
+msgstr "Androidenwaffe - 249: Automatikwaffen-Modul"
 
 #: ../map/freedroid.item_archetypes:2291
-msgid "Droid weaponry - 296"
-msgstr ""
+msgid "Droid weaponry - 296: Metalclaws (punches, bruises)"
+msgstr "Androidenwaffe - 296: Metallklauen (Hiebe, Quetschungen)"
 
 #: ../map/freedroid.item_archetypes:2327
-msgid "Droid weaponry - 302"
-msgstr ""
+msgid "Droid weaponry - 302: Commlaser-module, metalclamp (light burns, blinding, bruises)"
+msgstr "Androidenwaffe - 302: Kommunikationslaser, Metallgreifer (leichte Verbrennungen, Blendung, Quetschungen)"
 
 #: ../map/freedroid.item_archetypes:2363
-msgid "Droid weaponry - 329"
-msgstr ""
+msgid "Droid weaponry - 329: Commlaser-module (burns, blinding)"
+msgstr "Androidenwaffe - 329: Kommunikationslaser (Verbrennungen, Blendung)"
 
 #: ../map/freedroid.item_archetypes:2399
-msgid "Droid weaponry - 420"
-msgstr ""
+msgid "Droid weaponry - 420: Plasma welder module (severe burns, gashes)"
+msgstr "Androidenwaffe - 420: Plasma-Schneidbrenner Modul (schwere Verbrennungen, tiefe Schnittwunden)"
 
 #: ../map/freedroid.item_archetypes:2435
-msgid "Droid weaponry - 476 (Small Single Laser)"
-msgstr ""
+msgid "Droid weaponry - 476: Laser welder module (severe burns, gashes)"
+msgstr "Androidenwaffe - 476: Laserschweißmodul (schwere Verbrennungen, tiefe Schnittwunden)"
 
 #: ../map/freedroid.item_archetypes:2469
-msgid "Droid weaponry - 493"
-msgstr ""
+msgid "Droid weaponry - 493: Metalclaws, Tools (punches, bruises, gashes, mutilations)"
+msgstr "Androidenwaffe - 493: Metallklauen, Werkzeuge (Hiebe, Quetschungen,tiefe Schnittwunden, Verstümmelungen)"
 
 #: ../map/freedroid.item_archetypes:2505
-msgid "Droid weaponry - 516"
-msgstr ""
+msgid "Droid weaponry - 516: Metalclaws (punches, bruises, mutilations)"
+msgstr "Androidenwaffe - 516: Metallklauen (Schläge, Quetschungen, Verstümmelungen)"
 
 #: ../map/freedroid.item_archetypes:2541
-msgid "Droid weaponry - 571"
-msgstr ""
+msgid "Droid weaponry - 571: Metalclaws (punches, bruises, mutilations)"
+msgstr "Androidenwaffe - 571: Metallklauen (Schläge, Quetschungen, Verstümmelungen)"
 
 #: ../map/freedroid.item_archetypes:2577
-msgid "Droid weaponry - 598"
-msgstr ""
+msgid "Droid weaponry - 598: Metalclaws (punches, bruises, mutilations)"
+msgstr "Androidenwaffe - 598: Metallklauen (Schläge, Quetschungen, Verstümmelungen)"
 
 #: ../map/freedroid.item_archetypes:2613
-msgid "Droid weaponry - 614,GUA,MUM (Power Exterminator)"
-msgstr ""
+msgid "Droid weaponry - 614,GUA,MUM: Exterminator (you don't wanna know!)"
+msgstr "Androidenwaffe - 614,GUA,MUM: Exterminator (will man lieber nicht wissen!)"
 
 #: ../map/freedroid.item_archetypes:2649
-msgid "Droid weaponry - 615,751,834 (Advanced Single Laser)"
-msgstr ""
+msgid "Droid weaponry - 615,751,834: Laser rifle MKI (severe burns, full body penetrations, mutilations)"
+msgstr "Androidenwaffe - 615,751,834: Lasergewehr MKI (schwere Verbrennungen, Durchschüsse, Verstümmelungen)"
 
 #: ../map/freedroid.item_archetypes:2683
-msgid "Droid weaponry - 629,821,999 (Advanced Twin Laser)"
-msgstr ""
+msgid "Droid weaponry - 629,821,999: Pulse laser MKII (severe burns, full body penetrations, mutilations and worse...)"
+msgstr "Androidenwaffe - Pulse-Laser MKII (schwere Verbrennungen, Durchschüsse, Verstümmelungen und Schlimmeres...)"
 
 #: ../map/freedroid.item_archetypes:2721
-msgid "Droid weaponry - 711,742 (Disruptor Class Alpha)"
-msgstr ""
+msgid "Droid weaponry - 711,742: Disruptor class Alpha (most severe internal burns, spontaneous vaporization)"
+msgstr "Androidenwaffe - 711,742: Disruptor-Klasse Alpha (schwerste innere Verbrennungen, spontane Verdampfung"
 
 #: ../map/freedroid.item_archetypes:2755
-msgid "Droid weaponry - 883 (Bot exterminator)"
-msgstr ""
+msgid "Droid weaponry - 883: Exterminator (you wouldn't wanna know...)"
+msgstr "Androidenwaffe - 883: Exterminator (möchte man lieber nicht wissen...)"
 
 #: ../map/freedroid.item_archetypes:2807
-msgid "Simple Jacket"
-msgstr ""
+msgid "Simple Jacket, colony standard model"
+msgstr "Einfache Jacke, Kolonie-Standardmodell"
 
 #: ../map/freedroid.item_archetypes:2827
-msgid "Reinforced Jacket"
-msgstr ""
+msgid "Reinforced Jacket, police standard model"
+msgstr "Schwere Jacke, Polizei-Standardmodell"
 
 #: ../map/freedroid.item_archetypes:2847
-msgid "Protective Jacket"
-msgstr ""
+msgid "Protective Jacket, army standard model"
+msgstr "Schutzweste, Armee-Standardmodell"
 
 #: ../map/freedroid.item_archetypes:2867
 msgid "Red Guard's Light Robe"
-msgstr ""
+msgstr "Leichter Schutzanzug der Roten Wache"
 
 #: ../map/freedroid.item_archetypes:2885
 msgid "Red Guard's Heavy Robe"
-msgstr ""
+msgstr "Schwerer Schutzanzug der Roten Wache"
 
 #: ../map/freedroid.item_archetypes:2910
 msgid "Cap"
-msgstr ""
+msgstr "Kappe"
 
 #: ../map/freedroid.item_archetypes:2930
-msgid "Small Helm"
-msgstr ""
+msgid "Small security standard helmet"
+msgstr "Kleiner Security-Standardhelm"
 
 #: ../map/freedroid.item_archetypes:2950
-msgid "Iron Helm"
-msgstr ""
+msgid "Police helmet, FerroSec"
+msgstr "Polizeihelm, FerroSec-Ausführung"
 
 #: ../map/freedroid.item_archetypes:2968
-msgid "Pot-Helm"
-msgstr ""
+msgid "Great helm, carbon-made"
+msgstr "Carbon-Topfhelm"
 
 #: ../map/freedroid.item_archetypes:2986
-msgid "Iron Hat"
-msgstr ""
+msgid "Resosteel(tm) helm"
+msgstr "Helm aus Resostahl(TM)"
 
 #: ../map/freedroid.item_archetypes:3004
 msgid "Dixon's helmet"
-msgstr ""
+msgstr "Dixons Wunderhelm"
 
 #: ../map/freedroid.item_archetypes:3026
-msgid "Buckler"
-msgstr ""
+msgid "Frisbee shield"
+msgstr "Frisbee-Schild"
 
 #: ../map/freedroid.item_archetypes:3046
-msgid "Small Shield"
-msgstr ""
+msgid "Small security standard shield"
+msgstr "Kleiner Security-Standardschild"
 
 #: ../map/freedroid.item_archetypes:3064
-msgid "Standard Shield"
-msgstr ""
+msgid "Police standard shield"
+msgstr "Polizei-Standardschild"
 
 #: ../map/freedroid.item_archetypes:3084
-msgid "Medium Shield"
-msgstr ""
+msgid "Mid-sized MP standard shield"
+msgstr "Mittelformat MP-Standardschild"
 
 #: ../map/freedroid.item_archetypes:3102
-msgid "Large Shield"
-msgstr ""
+msgid "Large metal shield 'barbarian's wall'"
+msgstr "Großer Metallschild - 'Barbarenmauer'"
 
 #: ../map/freedroid.item_archetypes:3128
-msgid "Shoes"
-msgstr ""
+msgid "Sheos, made from Syntho-leather(tm), colony standard model"
+msgstr "Syntholeder(TM)-Schuhe, Kolonie-Standardmodell"
 
 #: ../map/freedroid.item_archetypes:3146
-msgid "Light Boots"
-msgstr ""
+msgid "Syntho-leather(tm) boots, light edition"
+msgstr "Syntholeder(TM)-Stiefel, leichte Ausführung"
 
 #: ../map/freedroid.item_archetypes:3164
-msgid "Boots"
-msgstr ""
+msgid "Syntho-leather(tm) boots, colony standard model"
+msgstr "Syntholeder(TM)-Stiefel, Kolonie-Standardmodell"
 
 #: ../map/freedroid.item_archetypes:3182
-msgid "Reinforced Boots"
-msgstr ""
+msgid "Syntho-leather(tm) boots, reinforced edition"
+msgstr "Syntholeder(TM)-Stiefel, robuste Ausführung"
 
 #: ../map/freedroid.item_archetypes:3200
 msgid "Hiking Boots"
-msgstr ""
+msgstr "Hochgebirgs-Stiefel"
 
 #: ../map/freedroid.item_archetypes:3227
-msgid "Source Book of Emergency shutdown"
-msgstr ""
+msgid "Source book of Emergency shutdown"
+msgstr "Quellbuch der Notabschaltung"
 
 #: ../map/freedroid.item_archetypes:3243
-msgid "Source Book of Check system integrity"
-msgstr ""
+msgid "Source book of Check system integrity"
+msgstr "Quellbuch des System-Integritätstests"
 
 #: ../map/freedroid.item_archetypes:3259
-msgid "Source Book of Analyze item"
-msgstr ""
+msgid "Source book of Analyze item"
+msgstr "Quellbuch der Gegenstands-Analyse"
 
 #: ../map/freedroid.item_archetypes:3275
-msgid "Source Book of Sanctuary"
-msgstr ""
+msgid "Source book of Sanctuary"
+msgstr "Quellbuch des Schutzes"
 
 #: ../map/freedroid.item_archetypes:3291
-msgid "Source Book of Malformed packet"
-msgstr ""
+msgid "Source book of Malformed packet"
+msgstr "Quellbuch der verstümmelten Datenpakete"
 
 #: ../map/freedroid.item_archetypes:3307
-msgid "Source Book of Calculate Pi"
-msgstr ""
+msgid "Source book of Calculate Pi"
+msgstr "Quellbuch zur Berechnung der Zahl Pi"
 
 #: ../map/freedroid.item_archetypes:3323
-msgid "Source Book of Blue Screen"
-msgstr ""
+msgid "Source book of Blue Screen of Death (BSOD)"
+msgstr "Quellbuch des 'Blauen Bildschirm des Todes' (BSOD)"
 
 #: ../map/freedroid.item_archetypes:3339
-msgid "Source Book of Broadcast Blue Screen"
-msgstr ""
+msgid "Source book of Broadcast BSOD"
+msgstr "Quellbuch der BSOD-Übertragung"
 
 #: ../map/freedroid.item_archetypes:3355
 msgid "Source Book of Virus"
-msgstr ""
+msgstr "Quellbuch der Viren"
 
 #: ../map/freedroid.item_archetypes:3371
 msgid "Source Book of Broadcast virus"
-msgstr ""
+msgstr "Quellbuch der Virenübertragung"
 
 #: ../map/freedroid.item_archetypes:3387
 msgid "Source Book of Dispel smoke"
-msgstr ""
+msgstr "Quellbuch der Auflösung von Rauch"
 
 #: ../map/freedroid.item_archetypes:3403
 msgid "Source Book of Killer poke"
-msgstr ""
+msgstr "Quellbuch des Killer-Pokes"
 
 #: ../map/freedroid.item_archetypes:3419
 msgid "Source Book of Nethack"
-msgstr ""
+msgstr "Quellbuch des Nethacks"
 
 #: ../map/freedroid.item_archetypes:3435
 msgid "Source Book of Plasma discharge"
-msgstr ""
+msgstr "Quellbuch der Plasma-Entladung"
 
 #: ../map/freedroid.item_archetypes:3451
 msgid "Source Book of Ricer CFLAGS"
-msgstr ""
+msgstr "Quellbuch der Ricer CFLAGS"
 
 #: ../map/freedroid.item_archetypes:3467
 msgid "Source Book of Invisibility"
-msgstr ""
+msgstr "Quellbuch der Unsichtbarkeit"
 
 #: ../map/freedroid.item_archetypes:3483
 msgid "Source Book of Reverse-engineer"
-msgstr ""
+msgstr "Quellbuch des Reverse-Engineerings"
 
 #: ../map/freedroid.item_archetypes:3499
 msgid "Source Book of Light"
-msgstr ""
+msgstr "Quellbuch des Lichts"
 
 #: ../map/freedroid.item_archetypes:3515
 msgid "Source Book of Satellite image"
-msgstr ""
+msgstr "Quellbuch des Satellitenbildes"
 
 #: ../map/freedroid.item_archetypes:3543
 msgid "Diet supplement"
-msgstr ""
+msgstr "Vitamintabletten"
 
 #: ../map/freedroid.item_archetypes:3559
 msgid "Antibiotic"
-msgstr ""
+msgstr "Antibiotika"
 
 #: ../map/freedroid.item_archetypes:3575
 msgid "Doc-in-a-can"
-msgstr ""
+msgstr "Doktor-in-der-Dose"
 
 #: ../map/freedroid.item_archetypes:3591
 msgid "Bottled ice"
-msgstr ""
+msgstr "Eispackung"
 
 #: ../map/freedroid.item_archetypes:3607
 msgid "Industrial coolant"
-msgstr ""
+msgstr "Industrie-Kühlmittel"
 
 #: ../map/freedroid.item_archetypes:3623
 msgid "Liquid nitrogen"
-msgstr ""
+msgstr "Flüssigstickstoff"
 
 #: ../map/freedroid.item_archetypes:3639
-msgid "Barf's Energy Drink"
-msgstr ""
+msgid "Barf's energy drink"
+msgstr "Kotzos Energiedrink"
 
 #: ../map/freedroid.item_archetypes:3653
-msgid "Running Power Capsule"
-msgstr ""
+msgid "Running power capsule"
+msgstr "Marathon-Dopingkapsel"
 
 #: ../map/freedroid.item_archetypes:3667
-msgid "Strength Capsule"
-msgstr ""
+msgid "Strength capsule"
+msgstr "Stärkungskapsel"
 
 #: ../map/freedroid.item_archetypes:3681
-msgid "Dexterity Capsule"
-msgstr ""
+msgid "Dexterity capsule"
+msgstr "Agilitätskapsel"
 
 #: ../map/freedroid.item_archetypes:3703
-msgid "Cyberbucks"
-msgstr ""
+msgid "Tribucks"
+msgstr "Tribucks"
 
 #: ../map/freedroid.item_archetypes:3716
-msgid "Anti-grav Pod for Droids"
-msgstr ""
+msgid "Anti-grav pod for droids"
+msgstr "Robot-Antigrav-Antrieb"
 
 #: ../map/freedroid.item_archetypes:3730
-msgid "Dixon's Toolbox"
-msgstr ""
+msgid "Dixon's toolbox"
+msgstr "Dixons Auto-Servomatic-Werkzeugset"
 
 #: ../map/freedroid.item_archetypes:3743
-msgid "Plasma Transistor"
-msgstr ""
+msgid "Plasma transistor"
+msgstr "Plasmatransistor"
 
 #: ../map/freedroid.item_archetypes:3756
-msgid "Superconducting Relay Unit"
-msgstr ""
+msgid "Superconducting relay unit"
+msgstr "Supraleiter-Relais-Einheit"
 
 #: ../map/freedroid.item_archetypes:3769
-msgid "Antimatter-Matter Converter"
-msgstr ""
+msgid "Matter-antimatter converter (MAM)"
+msgstr "Materie-Antimaterie-Konverter (MAM)"
 
 #: ../map/freedroid.item_archetypes:3782
-msgid "Entropy Inverter"
-msgstr ""
+msgid "Entropy inverter"
+msgstr "Entropie-Inverter"
 
 #: ../map/freedroid.item_archetypes:3795
-msgid "Tachyon Condensator"
-msgstr ""
+msgid "Tachyon condenser"
+msgstr "Tachyonen-Kondensator"
 
 #: ../map/freedroid.item_archetypes:3808
-msgid "Desk Lamp"
-msgstr ""
+msgid "Desk lamp"
+msgstr "Tischlampe"
 
 #: ../map/freedroid.item_archetypes:3821
-msgid "Common Monkey Wrench"
-msgstr ""
+msgid "Common monkey wrench"
+msgstr "Varioschraubenschlüssel"
 
 #: ../map/freedroid.item_archetypes:3834
-msgid "Red Dilitium Crystal"
-msgstr ""
+msgid "Red Dilitium crystal"
+msgstr "Roter Diliziumkristall"
 
 #: ../map/freedroid.item_archetypes:3847
-msgid "Map Maker"
-msgstr ""
+msgid "Automap unit"
+msgstr "Automap-Einheit"
 
 #: ../map/freedroid.item_archetypes:3862
-msgid "Strength Pill"
-msgstr ""
+msgid "Nanotech(NT) strength pill"
+msgstr "Nanotech(NT) Kraftpille"
 
 #: ../map/freedroid.item_archetypes:3876
-msgid "Dexterity Pill"
-msgstr ""
+msgid "Nanotech(NT) dexterity pill"
+msgstr "Nanotech(NT) Geschicklichkeits-Pille"
 
 #: ../map/freedroid.item_archetypes:3890
-msgid "Code Pill"
-msgstr ""
+msgid "Nanotech(NT) code pill"
+msgstr "Nanotech(NT) Magiepille"
 
 #: ../map/freedroid.item_archetypes:3904
-msgid "Brain Enlargement Pills Antidote"
-msgstr ""
+msgid "Brain-enlargement pills antidote"
+msgstr "Gehirnbooster-Gegengift"
 
 #: ../map/freedroid.item_archetypes:3917
-msgid "Fork"
-msgstr ""
+msgid "DSK.Fork"
+msgstr "DSK.Gabel"
 
 #: ../map/freedroid.item_archetypes:3930
-msgid "Plate"
-msgstr ""
+msgid "DSK.Plate"
+msgstr "DSK.Teller"
 
 #: ../map/freedroid.item_archetypes:3943
-msgid "Mug"
-msgstr ""
+msgid "DSK.Mug"
+msgstr "DSK.Tasse"
 
 #: ../map/freedroid.item_archetypes:3956
-msgid "Identification Script"
-msgstr ""
+msgid "Identification script"
+msgstr "Objekterkennungs-Skriptkarte"
 
 #: ../map/freedroid.item_archetypes:3970
 msgid "Teleporter homing beacon"
-msgstr ""
+msgstr "Rückteleportations-Skriptkarte"
 
 #: ../map/freedroid.item_archetypes:3986
-msgid "Kevin's Data Cube"
-msgstr ""
+msgid "Kevin's data cube"
+msgstr "Kevins Datenkubus"
 
 #: ../map/freedroid.item_archetypes:3999
 msgid "Pandora's Cube"
-msgstr ""
+msgstr "Büchse der Pandora"
