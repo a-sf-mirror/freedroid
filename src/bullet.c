@@ -82,35 +82,6 @@ move_this_bullet_and_check_its_collisions ( int num )
       CheckBulletCollisions ( num ) ;
     }
 
-  //--------------------
-  // Now we move the angle-changing melee weapons.  These should leave the
-  // code anyway as soon as bastian can start doing the enemy movement cycles
-  // so we're a bit careless here for now...
-  //
-  if ( CurBullet->angle_change_rate > 0 )
-    {
-      //--------------------
-      // We change the angle of the bullet itself.  That's the easier part.
-      // Rotation by selecting angle.  Very easy indead.
-      //
-      DebugPrintf( 1 , "\n Angle change rate : %f " , CurBullet->angle_change_rate );
-      CurBullet->angle += CurBullet->angle_change_rate * Frame_Time();
-      
-      //--------------------
-      // Now we must rotate the bullet around the influence device or other
-      // owner as specified in the bullets owner pointer
-      //
-      dist_vector.x = 0;
-      dist_vector.y = - CurBullet->fixed_offset;
-      
-      DebugPrintf( 1 , "\n distance vector : (%f/%f) " , dist_vector.x , dist_vector.y );
-      
-      RotateVectorByAngle ( &dist_vector , CurBullet->angle );
-      
-      CurBullet->pos.x = CurBullet->owner_pos->x + dist_vector.x;
-      CurBullet->pos.y = CurBullet->owner_pos->y + dist_vector.y;
-      
-    }
 }; // void move_this_bullet_and_check_its_collisions ( CurBullet )
 
 /* ----------------------------------------------------------------------

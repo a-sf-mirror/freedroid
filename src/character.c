@@ -408,7 +408,7 @@ update_damage_tux_can_do ()
 {
     if ( Me . weapon_item . type != (-1) )
     {
-	if ( ItemMap[ Me . weapon_item . type ] . item_gun_angle_change != 0 )
+	if ( ItemMap[ Me . weapon_item . type ] . item_weapon_is_melee != 0 )
 	{
 	    //--------------------
 	    // Damage modifier in case of MELEE WEAPON is computed:  

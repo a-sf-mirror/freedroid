@@ -410,7 +410,7 @@ typedef struct itemspec_s
     short    item_gun_ammo_clip_size; //max. number of bullets in the charger
     
     // the following values have only relevance in case of a melee weapon
-    double item_gun_angle_change;	// how fast to do a melee weapon swing
+    char item_weapon_is_melee;	
     double item_gun_start_angle_modifier;	// where to start with a melee weapon swing
     double item_gun_fixed_offset;         // how far away from the swinger should a melee weapon swing occur?
     short    item_gun_use_ammunition; // which ammunition does this gun use? - 1 laser 2 plasma 3 exterminator
@@ -495,7 +495,6 @@ typedef struct druidspec_s
     
     float physical_damage;        // the amount of physical (base) damage an attack of this bot will do
     
-    int aggression;		// The aggressiveness of this druidtype 
     char flashimmune;		// is the droid immune to FLASH-bullets 
     short experience_reward;			// experience_reward for the elimination of one droid of this type 
     unsigned char brain;
@@ -526,7 +525,6 @@ typedef struct druidspec_s
     char *notes;			        // notes on the druid of this type 
     char is_human;
     short individual_shape_nr;
-    char suppress_bullet_generation_when_attacking; // some bots have weapon and attack built into the animation images...
 }
 druidspec, *Druidspec;
 
@@ -784,9 +782,7 @@ typedef struct bullet_s
     float                      poison_duration;     
     float                      poison_damage_per_sec;
     float                      paralysation_duration;
-    float                      angle_change_rate;   
     float                      fixed_offset;     
-    gps *                      owner_pos;       
 }
 bullet, *Bullet;
 

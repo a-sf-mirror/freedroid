@@ -1984,21 +1984,12 @@ ProcessAttackStateMachine ( enemy * ThisRobot )
 	return;
     }
     
-    //--------------------
-    // If the closes alive player is not alive at all, that's a sign
-    // that there is nothing to attack any more, but just return.
-    //
     if ( Me . status == INFOUT ) return;
-    
-    //--------------------
-    // If the closest alive player is not visible at all, then there is
-    // nothing to do and we just return.
-    //
+   
+   /*XXX what about friendly bots near the bot?*/ 
     if ( ! IsVisible ( & ThisRobot -> virt_pos ) && 
 	 ( ThisRobot -> is_friendly == FALSE ) ) 
 	return; 
-    
-    // if ( ThisRobot -> is_friendly ) return; 
     
     //--------------------
     // For melee weapons, we can't just stand anywhere and try to
@@ -2012,14 +2003,14 @@ ProcessAttackStateMachine ( enemy * ThisRobot )
     if ( ThisRobot -> last_combat_step > 0.20 )
     {
 	ThisRobot -> last_combat_step = 0 ; 
-	if ( ItemMap [ Druidmap [ ThisRobot -> type ] . weapon_item . type ] . item_gun_angle_change != 0 )
+	if ( ItemMap [ Druidmap [ ThisRobot -> type ] . weapon_item . type ] . item_weapon_is_melee )
 	{
 	    MoveInCloserForOrAwayFromMeleeCombat ( ThisRobot , (+1) );
-	} // if a melee weapon is given.
+	}
 	else if ( dist2 < 1.5 )
 	{
 	    MoveInCloserForOrAwayFromMeleeCombat ( ThisRobot , (-1) );
-	} // else the case, that no melee weapon 
+	} 
     }
     else
     {
@@ -2030,7 +2021,7 @@ ProcessAttackStateMachine ( enemy * ThisRobot )
     // Melee weapons have a certain limited range.  If such a weapon is used,
     // don't fire if the influencer is several squares away!
     //
-    if ( ( ItemMap [ Druidmap [ ThisRobot -> type ] . weapon_item . type ] . item_gun_angle_change != 0 ) && 
+    if ( ( ItemMap [ Druidmap [ ThisRobot -> type ] . weapon_item . type ] . item_weapon_is_melee ) && 
 	 ( dist2 > 1.5 ) ) return;
     
     if ( ThisRobot->firewait ) return;
@@ -2186,7 +2177,6 @@ RawStartEnemysShot( enemy* ThisRobot , float xdist , float ydist )
 {
     int guntype = ItemMap[ Druidmap[ThisRobot->type].weapon_item.type ].item_gun_bullet_image_type;
     float bullet_speed = (float) ItemMap[ Druidmap[ ThisRobot->type ].weapon_item.type ].item_gun_speed;
-    float OffsetFactor;
     bullet* NewBullet=NULL;
     int bullet_index = 0 ;
 
@@ -2196,140 +2186,84 @@ RawStartEnemysShot( enemy* ThisRobot , float xdist , float ydist )
     // shot/attack right now...
     //
     if ( ( ThisRobot -> animation_type != WALK_ANIMATION ) && 
-	 ( ThisRobot -> animation_type != STAND_ANIMATION ) ) return ;
-    
-    //--------------------
-    // find a bullet entry, that isn't currently used... 
-    //
-    bullet_index = find_free_bullet_index ();
-    NewBullet = & ( AllBullets [ bullet_index ] );
-    
-    //--------------------
-    // We send the bullet onto it's way thowards the given target
-    //
-    set_bullet_speed_to_target_direction ( NewBullet , bullet_speed , xdist , ydist );
-  
-    //--------------------
-    // Newly, also enemys have to respect the angle modifier in their weapons...
-    //
-    RotateVectorByAngle ( & ( NewBullet->speed ) , ItemMap[ Druidmap[ ThisRobot->type ].weapon_item.type ].item_gun_start_angle_modifier );    
-    NewBullet->angle = - ( 90 + 45 + 180 * atan2 ( NewBullet->speed.y,  NewBullet->speed.x ) / M_PI );  
-    
-    //--------------------
-    // At this point we mention, that when not moving anywhere, the robot should also
-    // face into the direction of the shot
-    //
-    ThisRobot->previous_angle = NewBullet -> angle + 180 ;
-  
-    // start all bullets in the center of the shooter first...
-    NewBullet -> pos . x = ThisRobot -> virt_pos . x;
-    NewBullet -> pos . y = ThisRobot -> virt_pos . y;
-    NewBullet -> pos . z = ThisRobot -> virt_pos . z;
+	    ( ThisRobot -> animation_type != STAND_ANIMATION ) ) return ;
 
-    //--------------------
-    // Maybe the position in question is true virtual, i.e. outside the current
-    // level.  As such bullets would (for now) get deleted, because bullets don't
-    // have a 'level' position yet, we suppress the bullet generation in that case
-    // and just print out a notification message.
-    //
-    if ( ThisRobot -> pos . z != Me . pos . z ) 
-    {
-	// DebugPrintf ( -4 , "\n%s(): bullet generation suppressed because from outside this level." , __FUNCTION__ );
-	return;
-    }
-    
-    // fire bullets so, that they don't hit the shooter...
-    if ( NewBullet -> angle_change_rate == 0 ) OffsetFactor = 0.5; else OffsetFactor = 1;
-    NewBullet->pos.x +=
-	( NewBullet -> speed.x) / ( bullet_speed ) * OffsetFactor ;
-    NewBullet->pos.y +=
-	( NewBullet -> speed.y) / ( bullet_speed ) * OffsetFactor ;
-
-    // now we set the bullet type right
-    // DebugPrintf( 0 , "Setting gun type : %d." , guntype );
-    NewBullet->type = guntype;
-    
-    // Now we set the damage of this bullet to the correct value
-    NewBullet->damage = ItemMap[ Druidmap[ ThisRobot->type ].weapon_item.type ].base_item_gun_damage + MyRandom( ItemMap[ Druidmap[ ThisRobot->type ].weapon_item.type ].item_gun_damage_modifier);
-    
-    NewBullet->time_in_seconds = 0;
-    NewBullet->time_in_frames = 0;
-    
-    //--------------------
-    // Most enemy shots will not have any special 'magic' property...
-    //
-    NewBullet->poison_duration = 0;
-    NewBullet->poison_damage_per_sec = 0;
-    NewBullet->freezing_level = 0;
-    NewBullet->paralysation_duration = 0;
-    
-    NewBullet->bullet_lifetime = ItemMap [ Druidmap[ThisRobot->type].weapon_item.type ].item_gun_bullet_lifetime;
-    
-    NewBullet->angle_change_rate = ItemMap[ Druidmap[ ThisRobot->type].weapon_item.type ].item_gun_angle_change;
-    NewBullet->fixed_offset = ItemMap[ Druidmap[ ThisRobot->type].weapon_item.type ].item_gun_fixed_offset;
-    NewBullet->owner_pos = & ( ThisRobot->pos );
-    NewBullet->owner = ThisRobot -> type;
-    NewBullet->ignore_wall_collisions = 
-	ItemMap[ Druidmap[ ThisRobot->type].weapon_item.type ].item_gun_bullet_ignore_wall_collisions;
-    NewBullet->to_hit = Druidmap [ ThisRobot->type ].to_hit ;
-    NewBullet->was_reflected = FALSE;
-    NewBullet->pass_through_explosions = 
-	ItemMap[ Druidmap[ ThisRobot->type].weapon_item.type ].item_gun_bullet_pass_through_explosions;
-    NewBullet->reflect_other_bullets = 
-	ItemMap[ Druidmap[ ThisRobot->type].weapon_item.type ].item_gun_bullet_reflect_other_bullets;
-    NewBullet->pass_through_hit_bodies = 
-	ItemMap[ Druidmap[ ThisRobot->type].weapon_item.type ].item_gun_bullet_pass_through_hit_bodies;
-    
-    // wait for as long as is usual for this weapon type until making the next shot
-    ThisRobot -> ammo_left --;
-
-    if( ThisRobot -> ammo_left > 0 )
-	{
-	    ThisRobot -> firewait += 
-		ItemMap [ Druidmap [ ThisRobot -> type ] . weapon_item . type ] . item_gun_recharging_time ;
-	}
-    else 
-	{
-	ThisRobot -> ammo_left = ItemMap [ Druidmap [ ThisRobot -> type ] . weapon_item . type ] . item_gun_ammo_clip_size ; 
-	if(ThisRobot -> firewait < ItemMap [ Druidmap [ ThisRobot -> type ] . weapon_item . type ] . item_gun_reloading_time)
-		ThisRobot -> firewait = ItemMap [ Druidmap [ ThisRobot -> type ] . weapon_item . type ] . item_gun_reloading_time ;
-	}
-    
-    
-    //--------------------
-    // In any case, if the robot has some (more than 1 image long) attack
-    // animation, the attack animation should be started now.
-    //
-    if ( last_attack_animation_image [ ThisRobot -> type ] - first_attack_animation_image [ ThisRobot -> type ] > 1 )
-    {
-	ThisRobot -> animation_phase = ((float)first_attack_animation_image [ ThisRobot -> type ]) + 0.1 ;
-	ThisRobot -> animation_type = ATTACK_ANIMATION;
-	ThisRobot -> current_angle = - ( - 90 + 180 * atan2 ( ydist ,  xdist ) / M_PI );  
-	// previous_angle = ;         // which angle has this robot been facing the frame before?
-    }
-
-    //--------------------
-    // Maybe this robot doesn't really generate any bullets, but rather the
-    // attack is built into the droid animation itself.  Then of course we
-    // can delete the bullet that might have been created and just apply some
-    // damage to the Tux if the Tux was sufficiently close
-    //
-    if ( Druidmap [ ThisRobot -> type ] . suppress_bullet_generation_when_attacking )
-    {
-	ThisRobot -> animation_phase = ((float)first_attack_animation_image [ ThisRobot -> type ]) + 0.1 ;
-	ThisRobot -> animation_type = ATTACK_ANIMATION;
-	
-	DeleteBullet ( bullet_index , FALSE );
+    /* First of all, check what kind of weapon the bot has : ranged or melee */
+    if ( ItemMap[ Druidmap[ ThisRobot->type ].weapon_item.type ].item_weapon_is_melee == 0 )
+	{ /* ranged */	
 	//--------------------
-	// Built-in attacks also don't use the recharge value of the
-	// weapon item.
+	// find a bullet entry, that isn't currently used... 
 	//
-	/* XXX */
-	if(ThisRobot -> firewait < 1.7)
-		ThisRobot -> firewait = 1.7 ;
-	
-	ThisRobot -> current_angle = - ( - 90 + 180 * atan2 ( ydist ,  xdist ) / M_PI );  
-	
+	bullet_index = find_free_bullet_index ();
+	NewBullet = & ( AllBullets [ bullet_index ] );
+
+	//--------------------
+	// We send the bullet onto it's way thowards the given target
+	//
+	set_bullet_speed_to_target_direction ( NewBullet , bullet_speed , xdist , ydist );
+
+	//--------------------
+	// Newly, also enemys have to respect the angle modifier in their weapons...
+	//
+	RotateVectorByAngle ( & ( NewBullet->speed ) , ItemMap[ Druidmap[ ThisRobot->type ].weapon_item.type ].item_gun_start_angle_modifier );    
+	NewBullet->angle = - ( 90 + 45 + 180 * atan2 ( NewBullet->speed.y,  NewBullet->speed.x ) / M_PI );  
+
+	//--------------------
+	// At this point we mention, that when not moving anywhere, the robot should also
+	// face into the direction of the shot
+	//
+	ThisRobot->previous_angle = NewBullet -> angle + 180 ;
+
+	// start all bullets in the center of the shooter first...
+	NewBullet -> pos . x = ThisRobot -> virt_pos . x;
+	NewBullet -> pos . y = ThisRobot -> virt_pos . y;
+	NewBullet -> pos . z = ThisRobot -> virt_pos . z;
+
+	if ( ThisRobot -> pos . z != Me . pos . z ) 
+	    {
+	    return;
+	    }
+
+	// fire bullets so, that they don't hit the shooter...
+	NewBullet->pos.x +=
+	    ( NewBullet -> speed.x) / ( bullet_speed ) * 0.5 ;
+	NewBullet->pos.y +=
+	    ( NewBullet -> speed.y) / ( bullet_speed ) * 0.5 ;
+
+	NewBullet->type = guntype;
+
+	// Now we set the damage of this bullet to the correct value
+	NewBullet->damage = ItemMap[ Druidmap[ ThisRobot->type ].weapon_item.type ].base_item_gun_damage + MyRandom( ItemMap[ Druidmap[ ThisRobot->type ].weapon_item.type ].item_gun_damage_modifier);
+
+	NewBullet->time_in_seconds = 0;
+	NewBullet->time_in_frames = 0;
+
+	//--------------------
+	// Most enemy shots will not have any special 'magic' property...
+	//
+	NewBullet->poison_duration = 0;
+	NewBullet->poison_damage_per_sec = 0;
+	NewBullet->freezing_level = 0;
+	NewBullet->paralysation_duration = 0;
+
+	NewBullet->bullet_lifetime = ItemMap [ Druidmap[ThisRobot->type].weapon_item.type ].item_gun_bullet_lifetime;
+
+	NewBullet->fixed_offset = ItemMap[ Druidmap[ ThisRobot->type].weapon_item.type ].item_gun_fixed_offset;
+	NewBullet->owner = ThisRobot -> type;
+	NewBullet->ignore_wall_collisions = 
+	    ItemMap[ Druidmap[ ThisRobot->type].weapon_item.type ].item_gun_bullet_ignore_wall_collisions;
+	NewBullet->to_hit = Druidmap [ ThisRobot->type ].to_hit ;
+	NewBullet->was_reflected = FALSE;
+	NewBullet->pass_through_explosions = 
+	    ItemMap[ Druidmap[ ThisRobot->type].weapon_item.type ].item_gun_bullet_pass_through_explosions;
+	NewBullet->reflect_other_bullets = 
+	    ItemMap[ Druidmap[ ThisRobot->type].weapon_item.type ].item_gun_bullet_reflect_other_bullets;
+	NewBullet->pass_through_hit_bodies = 
+	    ItemMap[ Druidmap[ ThisRobot->type].weapon_item.type ].item_gun_bullet_pass_through_hit_bodies;
+	}
+    else  /* melee weapon */
+	{
+
 	if ( ThisRobot -> is_friendly || ( (!(ThisRobot->is_friendly)) && (ThisRobot -> attack_target_type == ATTACK_TARGET_IS_ENEMY) ))
 	    {
 	    /*XXX*/
@@ -2342,37 +2276,37 @@ RawStartEnemysShot( enemy* ThisRobot , float xdist , float ydist )
 		    hit_enemy(target_robot, Druidmap [ ThisRobot -> type ] . physical_damage, 0, ThisRobot->type);
 
 	    }
-    	else
-	{ /* enemy bot attacking tux*/
-		    //--------------------
-		    // For now, we just damage the Tux according to this enemys 'damage' value.  We
-		    // don't fuss around whether the Tux is close at all or not.  
-		    // In later releases, a more complex ruleset,
-		    // taking into account position, maybe even bocks with the shield, should
-		    // be implemented here.
-		    //
-		    if ( MyRandom ( 100 ) / Druidmap [ ThisRobot -> type ] . monster_level <= Me . lv_1_bot_will_hit_percentage )
-		    {
-			//--------------------
-			// If the bot hit, we reduce the energy of the Tux and maybe there
-			// should also be some kind of scream of the Tux?
-			//
-			Me . energy -= Druidmap [ ThisRobot -> type ] . physical_damage ;
-			DebugPrintf ( 1 , "\n%s(): Tux took damage from melee: %f." , __FUNCTION__ , 
-				      Druidmap [ ThisRobot -> type ] . physical_damage );
-			if ( MyRandom ( 100 ) <= 20 ) tux_scream_sound ( );
-		    }
-		    else
-		    {
-			//--------------------
-			// If the bot missed, the armor took the shot. Damage it.
-			//
-		        Me . TextToBeDisplayed = "Armor, thanks." ;
-			DamageAllEquipment ( ) ;
+	else
+	    { /* enemy bot attacking tux*/
+	    //--------------------
+	    // For now, we just damage the Tux according to this enemys 'damage' value.  We
+	    // don't fuss around whether the Tux is close at all or not.  
+	    // In later releases, a more complex ruleset,
+	    // taking into account position, maybe even bocks with the shield, should
+	    // be implemented here.
+	    //
+	    if ( MyRandom ( 100 ) / Druidmap [ ThisRobot -> type ] . monster_level <= Me . lv_1_bot_will_hit_percentage )
+		{
+		//--------------------
+		// If the bot hit, we reduce the energy of the Tux and maybe there
+		// should also be some kind of scream of the Tux?
+		//
+		Me . energy -= Druidmap [ ThisRobot -> type ] . physical_damage ;
+		DebugPrintf ( 1 , "\n%s(): Tux took damage from melee: %f." , __FUNCTION__ , 
+			Druidmap [ ThisRobot -> type ] . physical_damage );
+		if ( MyRandom ( 100 ) <= 20 ) tux_scream_sound ( );
+		}
+	    else
+		{
+		//--------------------
+		// If the bot missed, the armor took the shot. Damage it.
+		//
+		Me . TextToBeDisplayed = "Armor, thanks." ;
+		DamageAllEquipment ( ) ;
 
-		    }
-	}
-	
+		}
+	    }
+
 	//--------------------
 	// While we don't have sound samples for individual attack motions,
 	// we'll use the death sound sample here too, even if noone is dying.
@@ -2380,19 +2314,38 @@ RawStartEnemysShot( enemy* ThisRobot , float xdist , float ydist )
 	// later bots could have separate attack and death sound samples, maybe
 	// in some later release...
 	//
+	/* You've got to be kidding ...
+	   DebugPrintf ( 1 , "\n%s(): playing enemy death sound for raw enemy attack for droid of type %d." , __FUNCTION__ , ThisRobot -> type ) ;
+	   play_death_sound_for_bot ( ThisRobot );
+	   */
+	}
 
-	DebugPrintf ( 1 , "\n%s(): playing enemy death sound for raw enemy attack for droid of type %d." , __FUNCTION__ , ThisRobot -> type ) ;
-	play_death_sound_for_bot ( ThisRobot );
-    }
-    else
-    {
-	//--------------------
-	// Only in case of a conventional sword strike, i.e. no real animation
-	// yet will we start the sound for that 'bullet'.
-	//
-	Fire_Bullet_Sound ( guntype );
-    }
-    
+
+    ThisRobot -> ammo_left --;
+
+    if( ThisRobot -> ammo_left > 0 )
+	{
+	ThisRobot -> firewait += 
+	    ItemMap [ Druidmap [ ThisRobot -> type ] . weapon_item . type ] . item_gun_recharging_time ;
+	}
+    else 
+	{
+	ThisRobot -> ammo_left = ItemMap [ Druidmap [ ThisRobot -> type ] . weapon_item . type ] . item_gun_ammo_clip_size ; 
+	if(ThisRobot -> firewait < ItemMap [ Druidmap [ ThisRobot -> type ] . weapon_item . type ] . item_gun_reloading_time)
+	    ThisRobot -> firewait = ItemMap [ Druidmap [ ThisRobot -> type ] . weapon_item . type ] . item_gun_reloading_time ;
+	}
+
+    if(ThisRobot -> firewait < ItemMap [ Druidmap [ ThisRobot -> type ] . weapon_item . type ] . item_gun_recharging_time)
+	ThisRobot -> firewait = ItemMap [ Druidmap [ ThisRobot -> type ] . weapon_item . type ] . item_gun_recharging_time;
+
+    if ( last_attack_animation_image [ ThisRobot -> type ] - first_attack_animation_image [ ThisRobot -> type ] > 1 )
+	{
+	ThisRobot -> animation_phase = ((float)first_attack_animation_image [ ThisRobot -> type ]) + 0.1 ;
+	ThisRobot -> animation_type = ATTACK_ANIMATION;
+	ThisRobot -> current_angle = - ( - 90 + 180 * atan2 ( ydist ,  xdist ) / M_PI );  
+	}
+
+    Fire_Bullet_Sound(guntype);
 }; // void RawStartEnemysShot( enemy* ThisRobot , float xdist , float ydist )
 
 /* ----------------------------------------------------------------------

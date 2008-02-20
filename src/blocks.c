@@ -1281,7 +1281,6 @@ Load_Enemy_Surfaces( void )
     i = 0;
    
     PrefixToFilename [ i ] = "123" ; // 0 
-    Druidmap [ i ] . suppress_bullet_generation_when_attacking = TRUE ;
     droid_walk_animation_speed_factor [ i ] = 5 ;
     droid_attack_animation_speed_factor [ i ] = 8 ;
     droid_gethit_animation_speed_factor [ i ] = 8 ;
@@ -1290,7 +1289,6 @@ Load_Enemy_Surfaces( void )
     ModelMultiplier  [ i ] = 1 ; i++;
 
     PrefixToFilename [ i ] = "139" ; // 1
-    Druidmap [ i ] . suppress_bullet_generation_when_attacking = FALSE ;
     droid_walk_animation_speed_factor [ i ] = 5 ;
     droid_attack_animation_speed_factor [ i ] = 8 ;
     droid_gethit_animation_speed_factor [ i ] = 8 ;
@@ -1299,7 +1297,6 @@ Load_Enemy_Surfaces( void )
     ModelMultiplier  [ i ] = 1 ; i++;
 
     PrefixToFilename [ i ] = "247" ; // 2 
-    Druidmap [ i ] . suppress_bullet_generation_when_attacking = TRUE ;
     droid_walk_animation_speed_factor [ i ] = 5 ;
     droid_attack_animation_speed_factor [ i ] = 16 ;
     droid_gethit_animation_speed_factor [ i ] = 8 ;
@@ -1308,7 +1305,6 @@ Load_Enemy_Surfaces( void )
     ModelMultiplier  [ i ] = 1 ;i++;
 
     PrefixToFilename [ i ] = "249" ; // 3
-    Druidmap [ i ] . suppress_bullet_generation_when_attacking = FALSE ;
     droid_walk_animation_speed_factor [ i ] = 5 ;
     droid_attack_animation_speed_factor [ i ] = 8 ;
     droid_gethit_animation_speed_factor [ i ] = 8 ;
@@ -1317,7 +1313,6 @@ Load_Enemy_Surfaces( void )
     ModelMultiplier  [ i ] = 1 ;i++;
 
     PrefixToFilename [ i ] = "296" ; // 4
-    Druidmap [ i ] . suppress_bullet_generation_when_attacking = FALSE ;
     droid_walk_animation_speed_factor [ i ] = 5 ;
     droid_attack_animation_speed_factor [ i ] = 5 ;
     droid_gethit_animation_speed_factor [ i ] = 5 ;
@@ -1326,7 +1321,6 @@ Load_Enemy_Surfaces( void )
     ModelMultiplier  [ i ] = 1 ;i++; 
 
     PrefixToFilename [ i ] = "302" ; // 5
-    Druidmap [ i ] . suppress_bullet_generation_when_attacking = TRUE ;
     droid_walk_animation_speed_factor [ i ] = 15 ;
     droid_attack_animation_speed_factor [ i ] = 15 ;
     droid_gethit_animation_speed_factor [ i ] = 15 ;
@@ -1335,7 +1329,6 @@ Load_Enemy_Surfaces( void )
     ModelMultiplier  [ i ] = 1 ;i++;
 
     PrefixToFilename [ i ] = "329" ; // 6
-    Druidmap [ i ] . suppress_bullet_generation_when_attacking = TRUE ;
     droid_walk_animation_speed_factor [ i ] = 5 ;
     droid_attack_animation_speed_factor [ i ] = 8 ;
     droid_gethit_animation_speed_factor [ i ] = 8 ;
@@ -1344,7 +1337,6 @@ Load_Enemy_Surfaces( void )
     ModelMultiplier  [ i ] = 1 ;i++;
 
     PrefixToFilename [ i ] = "420" ; // 7 
-    Druidmap [ i ] . suppress_bullet_generation_when_attacking = TRUE ;
     droid_walk_animation_speed_factor [ i ] = 5 ;
     droid_attack_animation_speed_factor [ i ] = 5 ;
     droid_gethit_animation_speed_factor [ i ] = 5 ;
@@ -1353,7 +1345,6 @@ Load_Enemy_Surfaces( void )
     ModelMultiplier  [ i ] = 1 ;i++;
 
     PrefixToFilename [ i ] = "476" ; // 8 
-    Druidmap [ i ] . suppress_bullet_generation_when_attacking = FALSE ;
     droid_walk_animation_speed_factor [ i ] = 5 ;
     droid_attack_animation_speed_factor [ i ] = 5 ;
     droid_gethit_animation_speed_factor [ i ] = 5 ;
@@ -1362,7 +1353,6 @@ Load_Enemy_Surfaces( void )
     ModelMultiplier  [ i ] = 1 ;i++;
 
     PrefixToFilename [ i ] = "493" ; // 9
-    Druidmap [ i ] . suppress_bullet_generation_when_attacking = TRUE ;
     droid_walk_animation_speed_factor [ i ] = 6 ;
     droid_attack_animation_speed_factor [ i ] = 14 ;
     droid_gethit_animation_speed_factor [ i ] = 8 ;
@@ -1371,7 +1361,6 @@ Load_Enemy_Surfaces( void )
     ModelMultiplier  [ i ] = 1 ;i++; 
 
     PrefixToFilename [ i ] = "516" ; // 10
-    Druidmap [ i ] . suppress_bullet_generation_when_attacking = TRUE ;
     droid_walk_animation_speed_factor [ i ] = 5 ;
     droid_attack_animation_speed_factor [ i ] = 5 ;
     droid_gethit_animation_speed_factor [ i ] = 5 ;
@@ -1380,7 +1369,6 @@ Load_Enemy_Surfaces( void )
     ModelMultiplier  [ i ] = 1 ;i++;
 
     PrefixToFilename [ i ] = "571" ; // 11
-    Druidmap [ i ] . suppress_bullet_generation_when_attacking = TRUE ;
     droid_walk_animation_speed_factor [ i ] = 5 ;
     droid_attack_animation_speed_factor [ i ] = 5 ;
     droid_gethit_animation_speed_factor [ i ] = 5 ;
@@ -1389,7 +1377,6 @@ Load_Enemy_Surfaces( void )
     ModelMultiplier  [ i ] = 1 ;i++;
 
     PrefixToFilename [ i ] = "598" ; // 12
-    Druidmap [ i ] . suppress_bullet_generation_when_attacking = TRUE ;
     droid_walk_animation_speed_factor [ i ] = 5 ;
     droid_attack_animation_speed_factor [ i ] = 8 ;
     droid_gethit_animation_speed_factor [ i ] = 8 ;
@@ -1398,7 +1385,6 @@ Load_Enemy_Surfaces( void )
     ModelMultiplier  [ i ] = 1 ;i++;
     
     PrefixToFilename [ i ] = "614" ; // 13
-    Druidmap [ i ] . suppress_bullet_generation_when_attacking = FALSE ;
     droid_walk_animation_speed_factor [ i ] = 18 ;
     droid_attack_animation_speed_factor [ i ] = 5 ;
     droid_gethit_animation_speed_factor [ i ] = 5 ;
@@ -1407,7 +1393,6 @@ Load_Enemy_Surfaces( void )
     ModelMultiplier  [ i ] = 1 ;i++;
     
     PrefixToFilename [ i ] = "615" ; // 14
-    Druidmap [ i ] . suppress_bullet_generation_when_attacking = FALSE ;
     droid_walk_animation_speed_factor [ i ] = 5 ;
     droid_attack_animation_speed_factor [ i ] = 5 ;
     droid_gethit_animation_speed_factor [ i ] = 5 ;
@@ -1416,7 +1401,6 @@ Load_Enemy_Surfaces( void )
     ModelMultiplier  [ i ] = 1 ;i++;
 
     PrefixToFilename [ i ] = "629" ; // 15
-    Druidmap [ i ] . suppress_bullet_generation_when_attacking = FALSE ;
     droid_walk_animation_speed_factor [ i ] = 5 ;
     droid_attack_animation_speed_factor [ i ] = 5 ;
     droid_gethit_animation_speed_factor [ i ] = 5 ;
@@ -1425,7 +1409,6 @@ Load_Enemy_Surfaces( void )
     ModelMultiplier  [ i ] = 1 ;i++;
 
     PrefixToFilename [ i ] = "711" ; // 16
-    Druidmap [ i ] . suppress_bullet_generation_when_attacking = FALSE ;
     droid_walk_animation_speed_factor [ i ] = 5 ;
     droid_attack_animation_speed_factor [ i ] = 5 ;
     droid_gethit_animation_speed_factor [ i ] = 5 ;
@@ -1434,7 +1417,6 @@ Load_Enemy_Surfaces( void )
     ModelMultiplier  [ i ] = 1 ;i++;
 
     PrefixToFilename [ i ] = "742" ; // 17
-    Druidmap [ i ] . suppress_bullet_generation_when_attacking = FALSE ;
     droid_walk_animation_speed_factor [ i ] = 5 ;
     droid_attack_animation_speed_factor [ i ] = 5 ;
     droid_gethit_animation_speed_factor [ i ] = 5 ;
@@ -1443,7 +1425,6 @@ Load_Enemy_Surfaces( void )
     ModelMultiplier  [ i ] = 1 ;i++;
 
     PrefixToFilename [ i ] = "751" ; // 18
-    Druidmap [ i ] . suppress_bullet_generation_when_attacking = FALSE ;
     droid_walk_animation_speed_factor [ i ] = 5 ;
     droid_attack_animation_speed_factor [ i ] = 5 ;
     droid_gethit_animation_speed_factor [ i ] = 5 ;
@@ -1452,7 +1433,6 @@ Load_Enemy_Surfaces( void )
     ModelMultiplier  [ i ] = 1 ;i++;
 
     PrefixToFilename [ i ] = "821" ; // 19
-    Druidmap [ i ] . suppress_bullet_generation_when_attacking = FALSE ;
     droid_walk_animation_speed_factor [ i ] = 5 ;
     droid_attack_animation_speed_factor [ i ] = 5 ;
     droid_gethit_animation_speed_factor [ i ] = 5 ;
@@ -1461,7 +1441,6 @@ Load_Enemy_Surfaces( void )
     ModelMultiplier  [ i ] = 1 ;i++;
 
     PrefixToFilename [ i ] = "834" ; // 20
-    Druidmap [ i ] . suppress_bullet_generation_when_attacking = FALSE ;
     droid_walk_animation_speed_factor [ i ] = 5 ;
     droid_attack_animation_speed_factor [ i ] = 5 ;
     droid_gethit_animation_speed_factor [ i ] = 5 ;
@@ -1470,7 +1449,6 @@ Load_Enemy_Surfaces( void )
     ModelMultiplier  [ i ] = 1 ;i++;
     
     PrefixToFilename [ i ] = "883" ; // 21, the 'dallek' model...
-    Druidmap [ i ] . suppress_bullet_generation_when_attacking = FALSE ;
     droid_walk_animation_speed_factor [ i ] = 5 ;
     droid_attack_animation_speed_factor [ i ] = 10 ;
     droid_gethit_animation_speed_factor [ i ] = 5 ;
@@ -1479,7 +1457,6 @@ Load_Enemy_Surfaces( void )
     ModelMultiplier  [ i ] = 1 ;i++;
     
     PrefixToFilename [ i ] = "999" ; // 22
-    Druidmap [ i ] . suppress_bullet_generation_when_attacking = FALSE ;
     droid_walk_animation_speed_factor [ i ] = 5 ;
     droid_attack_animation_speed_factor [ i ] = 5 ;
     droid_gethit_animation_speed_factor [ i ] = 5 ;
@@ -1488,7 +1465,6 @@ Load_Enemy_Surfaces( void )
     ModelMultiplier  [ i ] = 1 ;i++;
     
     PrefixToFilename [ i ] = "professor" ; // 23
-    Druidmap [ i ] . suppress_bullet_generation_when_attacking = FALSE ;
     droid_walk_animation_speed_factor [ i ] = 8 ;
     droid_attack_animation_speed_factor [ i ] = 5 ;
     droid_gethit_animation_speed_factor [ i ] = 5 ;
@@ -1497,7 +1473,6 @@ Load_Enemy_Surfaces( void )
     ModelMultiplier  [ i ] = 1 ;i++;
     
     PrefixToFilename [ i ] = "red_guard" ; // 24
-    Druidmap [ i ] . suppress_bullet_generation_when_attacking = FALSE ;
     droid_walk_animation_speed_factor [ i ] = 8 ;
     droid_attack_animation_speed_factor [ i ] = 8 ;
     droid_gethit_animation_speed_factor [ i ] = 8 ;
@@ -1506,7 +1481,6 @@ Load_Enemy_Surfaces( void )
     ModelMultiplier  [ i ] = 1 ; i++;
     
     PrefixToFilename [ i ] = "hot_mama" ; // 25
-    Druidmap [ i ] . suppress_bullet_generation_when_attacking = FALSE ;
     droid_walk_animation_speed_factor [ i ] = 5 ;
     droid_attack_animation_speed_factor [ i ] = 5 ;
     droid_gethit_animation_speed_factor [ i ] = 5 ;
@@ -1515,7 +1489,6 @@ Load_Enemy_Surfaces( void )
     ModelMultiplier  [ i ] = 1 ;i++;
     
     PrefixToFilename [ i ] = "female_scientist" ; // 26
-    Druidmap [ i ] . suppress_bullet_generation_when_attacking = TRUE ;
     droid_walk_animation_speed_factor [ i ] = 5 ;
     droid_attack_animation_speed_factor [ i ] = 20 ;
     droid_gethit_animation_speed_factor [ i ] = 5 ;
@@ -1524,7 +1497,6 @@ Load_Enemy_Surfaces( void )
     ModelMultiplier  [ i ] = 1 ;i++;
     
     PrefixToFilename [ i ] = "default_male" ; // 27
-    Druidmap [ i ] . suppress_bullet_generation_when_attacking = FALSE ;
     droid_walk_animation_speed_factor [ i ] = 5 ;
     droid_attack_animation_speed_factor [ i ] = 5 ;
     droid_gethit_animation_speed_factor [ i ] = 5 ;
@@ -1534,7 +1506,6 @@ Load_Enemy_Surfaces( void )
     
 
     PrefixToFilename [ i ] = "blue_guard" ; // 28
-    Druidmap [ i ] . suppress_bullet_generation_when_attacking = FALSE ;
     droid_walk_animation_speed_factor [ i ] = 5 ;
     droid_attack_animation_speed_factor [ i ] = 5 ;
     droid_gethit_animation_speed_factor [ i ] = 5 ;
@@ -1543,7 +1514,6 @@ Load_Enemy_Surfaces( void )
     ModelMultiplier  [ i ] = 1 ;i++;
     
     PrefixToFilename [ i ] = "cook" ; // 29
-    Druidmap [ i ] . suppress_bullet_generation_when_attacking = FALSE ;
     droid_walk_animation_speed_factor [ i ] = 5 ;
     droid_attack_animation_speed_factor [ i ] = 5 ;
     droid_gethit_animation_speed_factor [ i ] = 5 ;
@@ -1552,7 +1522,6 @@ Load_Enemy_Surfaces( void )
     ModelMultiplier  [ i ] = 1 ;i++;
 
     PrefixToFilename [ i ] = "kevin" ; // 30
-    Druidmap [ i ] . suppress_bullet_generation_when_attacking = TRUE ;
     droid_walk_animation_speed_factor [ i ] = 8 ;
     droid_attack_animation_speed_factor [ i ] = 10 ;
     droid_gethit_animation_speed_factor [ i ] = 10 ;
@@ -1561,7 +1530,6 @@ Load_Enemy_Surfaces( void )
     ModelMultiplier  [ i ] = 1 ;i++;
         
     PrefixToFilename [ i ] = "jasmine" ; // 31
-    Druidmap [ i ] . suppress_bullet_generation_when_attacking = TRUE ;
     droid_walk_animation_speed_factor [ i ] = 8 ;
     droid_attack_animation_speed_factor [ i ] = 10 ;
     droid_gethit_animation_speed_factor [ i ] = 10 ;
@@ -1570,7 +1538,6 @@ Load_Enemy_Surfaces( void )
     ModelMultiplier  [ i ] = 1 ;i++;
 
     PrefixToFilename [ i ] = "bartender" ; // 32
-    Druidmap [ i ] . suppress_bullet_generation_when_attacking = TRUE ;
     droid_walk_animation_speed_factor [ i ] = 8 ;
     droid_attack_animation_speed_factor [ i ] = 10 ;
     droid_gethit_animation_speed_factor [ i ] = 10 ;

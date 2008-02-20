@@ -494,7 +494,7 @@ LoadGame( void )
 
     for ( i = 0 ; i < MAXBULLETS ; i++ )
     {
-	if ( AllBullets[ i ].angle_change_rate != 0 ) DeleteBullet( i , FALSE );
+	DeleteBullet( i , FALSE );
     }
     sprintf ( version_check_string , "%s;sizeof(tux_t)=%d;sizeof(enemy)=%d;sizeof(bullet)=%d;MAXBULLETS=%d;MAX_ENEMYS_ON_SHIP=%d\n", 
 	      VERSION , 

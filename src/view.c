@@ -2200,7 +2200,7 @@ get_motion_class ( )
     }
     else
     {
-	if ( ItemMap [ weapon_type ] . item_gun_angle_change != 0 )
+	if ( ItemMap [ weapon_type ] . item_weapon_is_melee != 0 )
 	    motion_class = 0 ;
 	else
 	    motion_class = 1 ;
@@ -3040,7 +3040,7 @@ iso_put_tux_shieldarm ( int x , int y , int rotation_index )
 	// In case of a weapon item present, we need to look up the weapon item motion class
 	// and then decide which shield to use.
 	//
-	if ( ItemMap [ Me . weapon_item . type ] . item_gun_angle_change == 0 )
+	if ( ItemMap [ Me . weapon_item . type ] . item_weapon_is_melee == 0 )
 	    {
 	    iso_put_tux_part ( PART_GROUP_SHIELD , "iso_shieldarm" , x , y , rotation_index );
 	    return;
@@ -3114,7 +3114,7 @@ iso_put_tux_weapon ( int x , int y , int rotation_index )
 {
     if ( Me . weapon_item . type != (-1) )
     {
-	if ( ItemMap [ Me . weapon_item . type ] . item_gun_angle_change != 0 )
+	if ( ItemMap [ Me . weapon_item . type ] . item_weapon_is_melee != 0 )
 	{
 	    if ( MatchItemWithName(Me . weapon_item . type, "Mace") )
 		iso_put_tux_part ( PART_GROUP_WEAPON , "iso_mace" , x , y , rotation_index );
@@ -3433,7 +3433,7 @@ iso_put_tux ( int x , int y )
     }
     else
     {
-	if ( ItemMap [ Me . weapon_item . type ] . item_gun_angle_change > 0 )
+	if ( ItemMap [ Me . weapon_item . type ] . item_weapon_is_melee > 0 )
 	    iso_put_all_tux_parts_for_sword_motion ( x , y , rotation_index );
 	else
 	    iso_put_all_tux_parts_for_gun_motion ( x , y , rotation_index );

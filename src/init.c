@@ -764,7 +764,6 @@ Get_Robot_Data ( void* DataPointer )
 #define MAXSPEED_CALIBRATOR_STRING "Common factor for all droids maxspeed values: "
 #define ACCELERATION_CALIBRATOR_STRING "Common factor for all droids acceleration values: "
 #define MAXENERGY_CALIBRATOR_STRING "Common factor for all droids maximum energy values: "
-#define AGGRESSION_CALIBRATOR_STRING "Common factor for all droids aggression values: "
 #define ENERGYLOSS_CALIBRATOR_STRING "Common factor for all droids energyloss values: "
 #define EXPERIENCE_REWARD_CALIBRATOR_STRING "Common factor for all droids experience_reward values: "
 #define RANGE_OF_VISION_CALIBRATOR_STRING "Common factor for all droids range of vision: "
@@ -783,7 +782,6 @@ Get_Robot_Data ( void* DataPointer )
 #define MAXENERGY_BEGIN_STRING "Maximum energy of this droid: "
 #define MAXMANA_BEGIN_STRING "Maximum mana of this droid: "
 #define LOSEHEALTH_BEGIN_STRING "Rate of healing: "
-#define AGGRESSION_BEGIN_STRING "Aggression rate of this droid: "
 #define BASE_PHYSICAL_DAMAGE_BEGIN_STRING "Physical (base) damage an attack of this droid will do: "
 #define FLASHIMMUNE_BEGIN_STRING "Is this droid immune to disruptor blasts? "
 #define EXPERIENCE_REWARD_BEGIN_STRING "Experience_Reward gained for destroying one of this type: "
@@ -829,10 +827,6 @@ Get_Robot_Data ( void* DataPointer )
   // Now we read in the energy_loss calibration factor for all droids
   ReadValueFromString( RobotPointer , ENERGYLOSS_CALIBRATOR_STRING , "%f" ,
 	&energyloss_calibrator , EndOfDataPointer );
-
-  // Now we read in the aggression calibration factor for all droids
-  ReadValueFromString( RobotPointer , AGGRESSION_CALIBRATOR_STRING , "%lf" , 
-		       &aggression_calibrator , EndOfDataPointer );
 
   // Now we read in the experience_reward calibration factor for all droids
   ReadValueFromString( RobotPointer , EXPERIENCE_REWARD_CALIBRATOR_STRING , "%lf" , 
@@ -915,10 +909,6 @@ Get_Robot_Data ( void* DataPointer )
       // Now we read in the lose_health rate.
       ReadValueFromString( RobotPointer , LOSEHEALTH_BEGIN_STRING , "%f" , 
 			   &Druidmap[RobotIndex].lose_health , EndOfDataPointer );
-
-      // Now we read in the aggression rate of this droid.
-      ReadValueFromString( RobotPointer , AGGRESSION_BEGIN_STRING , "%d" , 
-			   &Druidmap[RobotIndex].aggression , EndOfDataPointer );
 
       // Now we read in the aggression rate of this droid.
       ReadValueFromString( RobotPointer , BASE_PHYSICAL_DAMAGE_BEGIN_STRING , "%f" , 
@@ -1032,7 +1022,6 @@ Get_Robot_Data ( void* DataPointer )
     {
       Druidmap [ i ] . maxspeed *= maxspeed_calibrator;
       Druidmap [ i ] . maxenergy *= maxenergy_calibrator;
-      Druidmap [ i ] . aggression *= aggression_calibrator;
       Druidmap [ i ] . experience_reward *= experience_reward_calibrator;
       Druidmap [ i ] . range_of_vision *= range_of_vision_calibrator;
       Druidmap [ i ] . lose_health *= energyloss_calibrator;
@@ -1254,8 +1243,8 @@ answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.",
 				 &ItemMap[ItemIndex].item_gun_speed , EndOfItemData );
 	    
 	    // Now we read in speed of melee application and melee offset from influ
-	    ReadValueFromStringWithDefault( ItemPointer ,  "Item as gun: angle change of bullets=" , "%lf" , "0.000000", 
-				 &ItemMap[ItemIndex].item_gun_angle_change , EndOfItemData );
+	    ReadValueFromStringWithDefault( ItemPointer ,  "Item as gun: is melee weapon=" , "%hhd" , "0", 
+				 &ItemMap[ItemIndex].item_weapon_is_melee , EndOfItemData );
 	    ReadValueFromStringWithDefault( ItemPointer ,  "Item as gun: offset for melee weapon=" , "%lf" , "0.000000",
 				 &ItemMap[ItemIndex].item_gun_fixed_offset , EndOfItemData );
 	    ReadValueFromStringWithDefault( ItemPointer ,  "Item as gun: modifier for starting angle=" , "%lf" , "0.000000",
@@ -1436,7 +1425,6 @@ answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.",
 	    ItemMap [ ItemIndex ] . base_item_gun_damage = 0 ;
 	    ItemMap [ ItemIndex ] . item_gun_damage_modifier = 0 ;
 	    ItemMap [ ItemIndex ] . item_gun_speed = 0 ;
-	    ItemMap [ ItemIndex ] . item_gun_angle_change = 0 ;
 	    ItemMap [ ItemIndex ] . item_gun_fixed_offset = 0 ;
 	    ItemMap [ ItemIndex ] . item_gun_start_angle_modifier = 0 ;
 	    ItemMap [ ItemIndex ] . item_gun_bullet_ignore_wall_collisions = FALSE ;
@@ -1504,7 +1492,7 @@ answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.",
     //
     for ( ItemIndex = 0 ; ItemIndex < Number_Of_Item_Types ; ItemIndex++ )
     {
-	if ( ItemMap [ ItemIndex ] . item_gun_angle_change )
+	if ( ItemMap [ ItemIndex ] . item_weapon_is_melee )
 	{
 	    ItemMap [ ItemIndex ] . base_item_gun_damage *= melee_weapon_damage_calibrator;
 	    ItemMap [ ItemIndex ] . item_gun_damage_modifier *= melee_weapon_damage_calibrator;
