@@ -424,13 +424,9 @@ LoadGame( void )
     ReadValueFromString( LoadGameData ,  LEVELNUM_EXPL_STRING , "%d" , 
 			 &current_geographics_levelnum , LoadGameData + 30000 );
     CurLevel = curShip.AllLevels[ current_geographics_levelnum ];
-    
-    printf("Curlevel is %d\n", current_geographics_levelnum);
 
     memset(&Me, 0, sizeof(tux_t));
     read_tux_t(LoadGameData, "player", &Me);
-
-    ShowSaveLoadGameProgressMeter( 20 , FALSE )  ;
 
     /* read enemies */
     free_enemy_list(alive_bots_head);
@@ -448,7 +444,7 @@ LoadGame( void )
 	while ( ! done ) 
 	    {
 	    memset(&newen, 0, sizeof(enemy));
-	    char str[10];
+	    char str[25];
 	    sprintf(str, "%s enemy %d", i ? "dead" : "alive", a);
 	    cpos = strstr(cpos, str);
 	    if ( ! cpos )
@@ -465,15 +461,23 @@ LoadGame( void )
 	}
 
 
-
-    
-#if 0
     /* read bullets */
-    BulletRawDataPointer = MyMemmem( LoadGameData , 30000000 , ALLBULLETS_RAW_DATA_STRING , 
-				     strlen ( ALLBULLETS_RAW_DATA_STRING ) );
-    BulletRawDataPointer += strlen ( ALLBULLETS_RAW_DATA_STRING ) ;
-    memcpy( &(AllBullets) , BulletRawDataPointer , sizeof ( bullet ) * MAXBULLETS );
-#endif
+    char * cpos = LoadGameData;
+    done = 0;
+    for ( i = 0; i < MAXBULLETS && ! done ; i ++)
+	{
+	char str[20];
+	sprintf(str, "blt%d", i);
+	cpos = strstr(cpos, str);
+	if ( ! cpos )
+	    {
+	    done = 1;
+	    break;
+	    }
+	cpos -= 5;
+	read_bullet(cpos, str, &AllBullets[i]);
+	}
+    
     /* properly restore pointers and references*/
     DebugPrintf ( SAVE_LOAD_GAME_DEBUG , "\n%s(): now correcting dangerous pointers...." , __FUNCTION__ );
     Me . TextToBeDisplayed = "";
@@ -490,11 +494,6 @@ LoadGame( void )
 
     for ( i = 0 ; i < MAXBULLETS ; i++ )
     {
-	//--------------------
-	// This might mean a slight memory loss, but I guess we can live with that...
-	//
-	/* XXX no we can't*/
-	AllBullets [ i ] . Surfaces_were_generated = FALSE;
 	if ( AllBullets[ i ].angle_change_rate != 0 ) DeleteBullet( i , FALSE );
     }
     sprintf ( version_check_string , "%s;sizeof(tux_t)=%d;sizeof(enemy)=%d;sizeof(bullet)=%d;MAXBULLETS=%d;MAX_ENEMYS_ON_SHIP=%d\n", 
@@ -724,7 +723,36 @@ define_read_xxx_array(item);
 define_read_xxx_array(gps);
 define_read_xxx_array(moderately_finepoint);
 
-void save_chatflags_t_array(char * tag, chatflags_t * chatflags, int size)
+void save_sdl_rect(const char * tag, SDL_Rect * target)
+{
+    fprintf(SaveGameFile, "<%s>\n",tag);
+    save_int16_t("x", &(target->x));
+    save_int16_t("y", &(target->y));
+    save_uint16_t("w", &(target->w));
+    save_uint16_t("h", &(target->h));
+    fprintf(SaveGameFile, "</%s>\n", tag);
+}
+
+int read_sdl_rect(const char * buffer, const char * tag, SDL_Rect * target)
+{
+    char search[strlen(tag) + 5];
+    sprintf(search, "<%s>", tag);
+    char * pos = strstr(buffer, search);
+    if ( ! pos ) return 1;
+    pos += 1 + strlen(tag);
+    sprintf(search, "</%s>", tag);
+    char * epos = strstr(buffer, search);
+    if ( ! epos ) return 2;
+    *epos = 0;
+    read_int16_t(pos, "x", &(target->x));
+    read_int16_t(pos, "y", &(target->y));
+    read_uint16_t(pos, "w", &(target->w));
+    read_uint16_t(pos, "h", &(target->h));
+    *epos = '>';
+    return 0;
+}
+
+void save_chatflags_t_array(const char * tag, chatflags_t * chatflags, int size)
 {
 fprintf(SaveGameFile, "<ChatFlags mpeople=%d manswers=%d>\n", MAX_PERSONS, MAX_ANSWERS_PER_PERSON);
 int i, j;
@@ -739,7 +767,7 @@ for ( i = 0; i < MAX_PERSONS; i ++)
 fprintf(SaveGameFile, "</ChatFlags>\n");
 }
 
-void read_chatflags_t_array(char * buffer, char * tag, chatflags_t * chatflags, int size)
+void read_chatflags_t_array(const char * buffer, const char * tag, chatflags_t * chatflags, int size)
 {
 char * pos = strstr(buffer, "<ChatFlags mpeople=");
 if ( ! pos ) ErrorMessage ( __FUNCTION__, "Unable to find ChatFlags array\n", PLEASE_INFORM, IS_FATAL);
@@ -798,7 +826,7 @@ while ( i < MAX_PERSONS )
 }
 
 
-void save_cookielist_t_array(char * tag, cookielist_t * cookielist, int size)
+void save_cookielist_t_array(const char * tag, cookielist_t * cookielist, int size)
 {
 fprintf(SaveGameFile, "<cookielist mc=%d>\n", MAX_COOKIES);
 int i;
@@ -853,7 +881,7 @@ while ( pos < epos )
 *epos = savechar;
 }
 
-void save_bigscrmsg_t(char *tag, bigscrmsg_t * data)
+void save_bigscrmsg_t(const char *tag, bigscrmsg_t * data)
 {
 /* bigscrmsg_t is an array (size MAX_BIG_SCREEN_MESSAGES) of strings */
 /* those messages are of very little interest which is why we will not save them.*/
@@ -898,7 +926,7 @@ pos++;
 #endif
 }
 
-void save_automap_data(char * tag, automap_data_t * automapdata, int size)
+void save_automap_data(const char * tag, automap_data_t * automapdata, int size)
 {
 fprintf(SaveGameFile, "<automap nl=%d sx=%d sy=%d>\n", MAX_LEVELS, 100, 100);
 int i,j,k;
@@ -975,6 +1003,5 @@ void read_automap_data_t_array(char * buffer, char * tag, automap_data_t * autom
     *(epos+1) = savechar;
 
 }
-
 
 #undef _saveloadgame_c
