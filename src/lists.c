@@ -1,5 +1,5 @@
 /*
- * Quick'n'dirty type-specific linked list code
+ * Quick'n'dirty linked list code based on macros
  * Copyright (c) 2008 Arthur Huillet
  */
 
@@ -8,7 +8,9 @@
 
 #include "proto.h"
 
-#define add_obj_to_list_head(TYPE) { \
+#define define_add_obj_to_list_head(TYPE) \
+TYPE * add_##TYPE##_head(TYPE * head, TYPE * toadd)\
+{ \
     TYPE * newobj = malloc(sizeof(TYPE));\
     memcpy(newobj, toadd, sizeof(TYPE));\
     newobj->NEXT = head;\
@@ -18,7 +20,9 @@
     return newobj;\
     }
 
-#define rem_obj_from_list() {\
+#define define_rem_obj_from_list(TYPE) \
+TYPE * del_##TYPE(TYPE * head, TYPE * todelete)\
+{\
     if(todelete == head)\
 	{ /*if the object is the first of the list*/\
 	head = GETNEXT(todelete);\
@@ -57,45 +61,40 @@
     }\
     return 0;
 
-enemy * add_enemy_head(enemy * head, enemy * toadd)
-{
-    add_obj_to_list_head(enemy)
+#define define_move_obj(TYPE)\
+    int move_##TYPE(TYPE ** newhead, TYPE * src, TYPE ** srchead)\
+{\
+    if ( src == *srchead )\
+	{ /*we're moving the head of the source list*/\
+	(*srchead) = src->NEXT;\
+	}\
+\
+    if ( * newhead )\
+	(*newhead)->PREV = src;\
+\
+    if ( src->PREV )\
+	src->PREV->NEXT = src->NEXT;\
+\
+    if ( src->NEXT )\
+	src->NEXT->PREV = src->PREV;\
+\
+    src->PREV = NULL;\
+    src->NEXT = (*newhead);\
+    (*newhead) = src;\
+\
+    return 0;\
 }
 
-enemy * del_enemy(enemy * head, enemy * todelete)
-{
-    rem_obj_from_list()
-}
+
+define_add_obj_to_list_head(enemy)
+define_rem_obj_from_list(enemy)
+define_move_obj(enemy)
 
 int free_enemy_list(enemy * head)
 {
     free_obj_list1(enemy);
     free_obj_list2(enemy);
 }
-
-int move_enemy(enemy ** newhead, enemy * src, enemy ** srchead)
-{
-	if ( src == *srchead ) 
-	    { /*we're moving the head of the source list*/
-	    (*srchead) = src->NEXT;
-	    }
-
-	if ( * newhead )
-	    (*newhead)->PREV = src;
-
-	if ( src->PREV )
-	    src->PREV->NEXT = src->NEXT;
-
-	if ( src->NEXT )
-	    src->NEXT->PREV = src->PREV;
-
-	src->PREV = NULL;
-	src->NEXT = (*newhead);
-	(*newhead) = src;
-
-	return 0;
-}
-
 
 #undef _LISTS_C
 
