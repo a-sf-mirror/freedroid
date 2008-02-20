@@ -84,7 +84,6 @@ clear_out_arrays_for_fresh_game ( void )
     level_editor_marked_obstacle = NULL ;
     for ( i = 0 ; i < MAXBULLETS ; i++ )
     {
-	AllBullets [ i ] . Surfaces_were_generated = FALSE;
 	DeleteBullet ( i , FALSE );
     }
     for ( i = 0 ; i < MAXBLASTS ; i++ )

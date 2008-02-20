@@ -110,12 +110,6 @@ move_this_bullet_and_check_its_collisions ( int num )
       CurBullet->pos.x = CurBullet->owner_pos->x + dist_vector.x;
       CurBullet->pos.y = CurBullet->owner_pos->y + dist_vector.y;
       
-      // We tell the graphics functions, that they shall generate new pictures...
-      if ( CurBullet->Surfaces_were_generated )
-	{
-	  SDL_FreeSurface( CurBullet->SurfacePointer[0] );
-	  CurBullet->Surfaces_were_generated = FALSE ;
-	}
     }
 }; // void move_this_bullet_and_check_its_collisions ( CurBullet )
 
@@ -235,20 +229,6 @@ DeleteBullet ( int Bulletnumber , int ShallWeStartABlast )
   
   if ( ShallWeStartABlast ) StartBlast ( CurBullet->pos.x, CurBullet->pos.y, CurBullet->pos.z , type, (type == OWNBLAST) ? (CurBullet -> damage * 1) : 2.0 );
 
-  //--------------------
-  // maybe, the bullet had several SDL_Surfaces attached to it.  Then we need to 
-  // free the SDL_Surfaces again as well...
-  //
-  if ( CurBullet->Surfaces_were_generated ) 
-    {
-      DebugPrintf( 1 , "\nvoid DeleteBullet(...): freeing this bullets attached surfaces...");
-      for ( i = 0 ; i < Bulletmap [ CurBullet->type ] . phases ; i++ )
-	{
-	  SDL_FreeSurface( CurBullet -> SurfacePointer [ i ] );
-	  CurBullet -> SurfacePointer [ i ] = NULL;
-	}
-      CurBullet -> Surfaces_were_generated = FALSE;
-    }
 
   CurBullet->type = INFOUT;
   CurBullet->time_in_seconds = 0;

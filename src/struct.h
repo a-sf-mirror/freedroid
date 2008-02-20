@@ -787,8 +787,6 @@ typedef struct bullet_s
     float                      angle_change_rate;   
     float                      fixed_offset;     
     gps *                      owner_pos;       
-    SDL_Surface *              SurfacePointer[ MAX_PHASES_IN_A_BULLET ];
-    char                       Surfaces_were_generated;
 }
 bullet, *Bullet;
 
