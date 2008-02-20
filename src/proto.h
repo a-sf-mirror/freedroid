@@ -350,20 +350,12 @@ EXTERN void read_float_array(const char *, const char *, float *, int);
 
 
 /* Hacks */
-EXTERN void save_chatflags_t_array(char *, chatflags_t * , int);
-EXTERN void save_cookielist_t_array(char *, cookielist_t *, int);
+EXTERN void save_chatflags_t_array(const char *, chatflags_t * , int);
+EXTERN void save_cookielist_t_array(const char *, cookielist_t *, int);
 #define save_automap_data_t_array save_automap_data
-EXTERN void save_automap_data(char*, automap_data_t *, int);
-
-/* Types that go into oblivion */
-#define save_sdl_rect(X,Y)
-#define read_sdl_rect(X,Y,Z)
-#define save_gps_ptr(X,Y)
-#define read_gps_ptr(X,Y,Z)
-
-#define save_sdl_surface_ptr_array(X,Y,Z)
-#define read_sdl_surface_ptr_array(X,Y,Z, T)
-
+EXTERN void save_automap_data(const char*, automap_data_t *, int);
+EXTERN void save_sdl_rect(const char *, SDL_Rect *);
+EXTERN int read_sdl_rect(const char *, const char *, SDL_Rect *);
 
 // mission.c 
 #undef EXTERN
