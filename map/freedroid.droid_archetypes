@@ -60,10 +60,9 @@ value in the detailed description of each robot further below
 and make your modifiactions there.
 
 Common factor for all droids maxspeed values: 0.5
-Common factor for all droids acceleration values: 3.0
 Common factor for all droids maximum energy values: 0.8
 Common factor for all droids energyloss values: 0.05
-Common factor for all droids aggression values: 1.0
+Common factor for all droids acceleration values: 3.0
 Common factor for all droids experience_reward values: 0.8
 Common factor for all droids recovery time after hit: 1.0
 Common factor for all droids range of vision: 1.4
@@ -85,7 +84,6 @@ Maximum acceleration of this droid: 1.1
 Maximum energy of this droid: 10.1
 Maximum mana of this droid: 10.1
 Rate of healing: 2.1
-Aggression rate of this droid: 99
 Physical (base) damage an attack of this droid will do: 3.0
 Experience_Reward gained for destroying one of this type: 40
 Range of vision of this droid=6
@@ -120,7 +118,6 @@ Maximum acceleration of this droid: 1.1
 Maximum energy of this droid: 15.1
 Maximum mana of this droid: 15.1
 Rate of healing: 2.1
-Aggression rate of this droid: 65
 Physical (base) damage an attack of this droid will do: 0.0
 Experience_Reward gained for destroying one of this type: 50
 Range of vision of this droid=3.25
@@ -155,7 +152,6 @@ Maximum acceleration of this droid: 1.1
 Maximum energy of this droid: 16.1
 Maximum mana of this droid: 16.1
 Rate of healing: 2.1
-Aggression rate of this droid: 82
 Physical (base) damage an attack of this droid will do: 4.0
 Experience_Reward gained for destroying one of this type: 70
 Range of vision of this droid=3.5
@@ -189,7 +185,6 @@ Maximum acceleration of this droid: 1.1
 Maximum energy of this droid: 20.1
 Maximum mana of this droid: 20.1
 Rate of healing: 2.1
-Aggression rate of this droid: 84
 Physical (base) damage an attack of this droid will do: 7.0
 Experience_Reward gained for destroying one of this type: 90
 Range of vision of this droid=3.75
@@ -223,8 +218,7 @@ Maximum acceleration of this droid: 1.1
 Maximum energy of this droid: 300.1
 Maximum mana of this droid: 30.1
 Rate of healing: 2.1
-Aggression rate of this droid: 80
-Physical (base) damage an attack of this droid will do: 8.0
+Physical (base) damage an attack of this droid will do: 9.0
 Experience_Reward gained for destroying one of this type: 250
 Range of vision of this droid=10.0
 Time spent eyeing Tux=1.0
@@ -240,7 +234,7 @@ Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=50
 Chance modifier, that this robot gets hit=30
-Time to recover after getting hit=0.30
+Time to recover after getting hit=0.03
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 4
 Notes concerning this droid=_"Run away! This bot will kill you!" 
@@ -255,7 +249,6 @@ Maximum acceleration of this droid: 2.1
 Maximum energy of this droid: 30.1
 Maximum mana of this droid: 30.1
 Rate of healing: 2.1
-Aggression rate of this droid: 75
 Physical (base) damage an attack of this droid will do: 4.5
 Experience_Reward gained for destroying one of this type: 200
 Range of vision of this droid=4.25
@@ -288,7 +281,6 @@ Maximum acceleration of this droid: 1.1
 Maximum energy of this droid: 35.1
 Maximum mana of this droid: 35.1
 Rate of healing: 2.1
-Aggression rate of this droid: 93
 Physical (base) damage an attack of this droid will do: 7.0
 Experience_Reward gained for destroying one of this type: 250
 Range of vision of this droid=4.5
@@ -321,7 +313,6 @@ Maximum acceleration of this droid: 1.1
 Maximum energy of this droid: 40.1
 Maximum mana of this droid: 40.1
 Rate of healing: 2.1
-Aggression rate of this droid: 99
 Physical (base) damage an attack of this droid will do: 13.0
 Is this droid immune to disruptor blasts? 1
 Experience_Reward gained for destroying one of this type: 300
@@ -354,7 +345,6 @@ Maximum acceleration of this droid: 1.1
 Maximum energy of this droid: 15.1
 Maximum mana of this droid: 15.1
 Rate of healing: 2.1
-Aggression rate of this droid: 90
 Physical (base) damage an attack of this droid will do: 16.0
 Experience_Reward gained for destroying one of this type: 400
 Range of vision of this droid=5.0
@@ -386,7 +376,6 @@ Maximum acceleration of this droid: 1.1
 Maximum energy of this droid: 80.1
 Maximum mana of this droid: 80.1
 Rate of healing: 3.1
-Aggression rate of this droid: 94
 Physical (base) damage an attack of this droid will do: 18.0
 Experience_Reward gained for destroying one of this type: 600
 Range of vision of this droid=5.25
@@ -418,7 +407,6 @@ Maximum acceleration of this droid: 1.1
 Maximum energy of this droid: 70.1
 Maximum mana of this droid: 70.1
 Rate of healing: 3.1
-Aggression rate of this droid: 98
 Physical (base) damage an attack of this droid will do: 5.0
 Experience_Reward gained for destroying one of this type: 600
 Range of vision of this droid=5.5
@@ -450,7 +438,6 @@ Maximum acceleration of this droid: 1.1
 Maximum energy of this droid: 50.1
 Maximum mana of this droid: 50.1
 Rate of healing: 3.1
-Aggression rate of this droid: 81
 Physical (base) damage an attack of this droid will do: 14.0
 Experience_Reward gained for destroying one of this type: 320
 Range of vision of this droid=5.75
@@ -482,7 +469,6 @@ Maximum acceleration of this droid: 1.1
 Maximum energy of this droid: 120.1
 Maximum mana of this droid: 120.1
 Rate of healing: 3.1
-Aggression rate of this droid: 0
 Physical (base) damage an attack of this droid will do: 24.0
 Experience_Reward gained for destroying one of this type: 400
 Range of vision of this droid=6.0
@@ -514,7 +500,6 @@ Maximum acceleration of this droid: 1.1
 Maximum energy of this droid: 130.1
 Maximum mana of this droid: 130.1
 Rate of healing: 3.1
-Aggression rate of this droid: 90
 Physical (base) damage an attack of this droid will do: 26.0
 Experience_Reward gained for destroying one of this type: 460
 Range of vision of this droid=6.25
@@ -546,7 +531,6 @@ Maximum acceleration of this droid: 1.1
 Maximum energy of this droid: 140.1
 Maximum mana of this droid: 140.1
 Rate of healing: 3.1
-Aggression rate of this droid: 30
 Physical (base) damage an attack of this droid will do: 28.0
 Experience_Reward gained for destroying one of this type: 500
 Range of vision of this droid=6.5
@@ -578,7 +562,6 @@ Maximum acceleration of this droid: 1.1
 Maximum energy of this droid: 160.1
 Maximum mana of this droid: 160.1
 Rate of healing: 3.1
-Aggression rate of this droid: 40
 Physical (base) damage an attack of this droid will do: 30.0
 Experience_Reward gained for destroying one of this type: 600
 Range of vision of this droid=6.75
@@ -610,7 +593,6 @@ Maximum acceleration of this droid: 1.1
 Maximum energy of this droid: 180.1
 Maximum mana of this droid: 180.1
 Rate of healing: 4.1
-Aggression rate of this droid: 60
 Physical (base) damage an attack of this droid will do: 32.0
 Is this droid immune to disruptor blasts? 1
 Experience_Reward gained for destroying one of this type: 650
@@ -643,7 +625,6 @@ Maximum acceleration of this droid: 1.1
 Maximum energy of this droid: 210.1
 Maximum mana of this droid: 210.1
 Rate of healing: 4.1
-Aggression rate of this droid: 60
 Physical (base) damage an attack of this droid will do: 34.0
 Is this droid immune to disruptor blasts? 1
 Experience_Reward gained for destroying one of this type: 700
@@ -675,7 +656,6 @@ Maximum acceleration of this droid: 1.1
 Maximum energy of this droid: 150.1
 Maximum mana of this droid: 150.1
 Rate of healing: 4.1
-Aggression rate of this droid: 80
 Physical (base) damage an attack of this droid will do: 36.0
 Experience_Reward gained for destroying one of this type: 800
 Range of vision of this droid=7.5
@@ -707,7 +687,6 @@ Maximum acceleration of this droid: 2.1
 Maximum energy of this droid: 200.1
 Maximum mana of this droid: 200.1
 Rate of healing: 4.1
-Aggression rate of this droid: 65
 Physical (base) damage an attack of this droid will do: 38.0
 Is this droid immune to disruptor blasts? 1
 Experience_Reward gained for destroying one of this type: 1000
@@ -740,7 +719,6 @@ Maximum acceleration of this droid: 1.1
 Maximum energy of this droid: 220.1
 Maximum mana of this droid: 220.1
 Rate of healing: 4.1
-Aggression rate of this droid: 55
 Physical (base) damage an attack of this droid will do: 40.0
 Experience_Reward gained for destroying one of this type: 1200
 Range of vision of this droid=8.0
@@ -771,7 +749,6 @@ Maximum acceleration of this droid: 1.1
 Maximum energy of this droid: 120.1
 Maximum mana of this droid: 120.1
 Rate of healing: 4.1
-Aggression rate of this droid: 92
 Physical (base) damage an attack of this droid will do: 42.0
 Experience_Reward gained for destroying one of this type: 1500
 Force how many additional magic items to be dropped=1
@@ -803,7 +780,6 @@ Maximum acceleration of this droid: 2.1
 Maximum energy of this droid: 300.1
 Maximum mana of this droid: 300.1
 Rate of healing: 15.1
-Aggression rate of this droid: 90
 Physical (base) damage an attack of this droid will do: 44.0
 Is this droid immune to disruptor blasts? 1
 Experience_Reward gained for destroying one of this type: 2000
@@ -838,7 +814,6 @@ Maximum acceleration of this droid: 2.1
 Maximum energy of this droid: 100.1
 Maximum mana of this droid: 100.1
 Rate of healing: 15.1
-Aggression rate of this droid: 92
 Physical (base) damage an attack of this droid will do: 10.0
 Experience_Reward gained for destroying one of this type: 200
 Range of vision of this droid=2
@@ -872,7 +847,6 @@ Maximum acceleration of this droid: 2.1
 Maximum energy of this droid: 100.1
 Maximum mana of this droid: 100.1
 Rate of healing: 15.1
-Aggression rate of this droid: 92
 Physical (base) damage an attack of this droid will do: 10.0
 Experience_Reward gained for destroying one of this type: 200
 Range of vision of this droid=2
@@ -906,7 +880,6 @@ Maximum acceleration of this droid: 2.1
 Maximum energy of this droid: 100.1
 Maximum mana of this droid: 100.1
 Rate of healing: 15.1
-Aggression rate of this droid: 92
 Physical (base) damage an attack of this droid will do: 10.0
 Experience_Reward gained for destroying one of this type: 200
 Range of vision of this droid=2
@@ -940,7 +913,6 @@ Maximum acceleration of this droid: 2.1
 Maximum energy of this droid: 100.1
 Maximum mana of this droid: 100.1
 Rate of healing: 15.1
-Aggression rate of this droid: 92
 Physical (base) damage an attack of this droid will do: 10.0
 Experience_Reward gained for destroying one of this type: 200
 Range of vision of this droid=2
@@ -974,7 +946,6 @@ Maximum acceleration of this droid: 2.1
 Maximum energy of this droid: 100.1
 Maximum mana of this droid: 100.1
 Rate of healing: 15.1
-Aggression rate of this droid: 92
 Physical (base) damage an attack of this droid will do: 10.0
 Experience_Reward gained for destroying one of this type: 200
 Range of vision of this droid=2
@@ -1008,7 +979,6 @@ Maximum acceleration of this droid: 2.1
 Maximum energy of this droid: 100.1
 Maximum mana of this droid: 100.1
 Rate of healing: 15.1
-Aggression rate of this droid: 92
 Physical (base) damage an attack of this droid will do: 10.0
 Experience_Reward gained for destroying one of this type: 200
 Range of vision of this droid=2
@@ -1042,7 +1012,6 @@ Maximum acceleration of this droid: 2.1
 Maximum energy of this droid: 100.1
 Maximum mana of this droid: 100.1
 Rate of healing: 15.1
-Aggression rate of this droid: 92
 Physical (base) damage an attack of this droid will do: 10.0
 Experience_Reward gained for destroying one of this type: 200
 Range of vision of this droid=2
@@ -1077,7 +1046,6 @@ Maximum acceleration of this droid: 2.1
 Maximum energy of this droid: 100.1
 Maximum mana of this droid: 100.1
 Rate of healing: 15.1
-Aggression rate of this droid: 92
 Physical (base) damage an attack of this droid will do: 10.0
 Experience_Reward gained for destroying one of this type: 200
 Range of vision of this droid=2
@@ -1111,7 +1079,6 @@ Maximum acceleration of this droid: 2.1
 Maximum energy of this droid: 100.1
 Maximum mana of this droid: 100.1
 Rate of healing: 15.1
-Aggression rate of this droid: 92
 Physical (base) damage an attack of this droid will do: 10.0
 Experience_Reward gained for destroying one of this type: 200
 Range of vision of this droid=2
@@ -1145,7 +1112,6 @@ Maximum acceleration of this droid: 2.1
 Maximum energy of this droid: 100.1
 Maximum mana of this droid: 100.1
 Rate of healing: 15.1
-Aggression rate of this droid: 92
 Physical (base) damage an attack of this droid will do: 10.0
 Experience_Reward gained for destroying one of this type: 200
 Range of vision of this droid=2
