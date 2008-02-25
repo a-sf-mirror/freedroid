@@ -1288,7 +1288,7 @@ msgstr "Ich würde sie am liebsten alle mit bloßen Händen umbringen! Das hätten s
 
 #: ../dialogs/Michelangelo.dialog:105
 msgid "If only I had some dilithium to use as a backup power source..."
-msgstr "Wenn ich nur etwas Dilithium hätte, als Ersatz-Stromquelle..."
+msgstr "Wenn ich nur etwas Dilizium hätte, als Ersatz-Stromquelle..."
 
 #: ../dialogs/Michelangelo.dialog:117
 msgid " Why don't you send someone for the dilithium?"
@@ -1310,7 +1310,7 @@ msgstr "Die Blechfritzen haben Blutsalat aus ihm gemacht."
 
 #: ../dialogs/Michelangelo.dialog:131
 msgid " I can get you some dilithium."
-msgstr " Ich kann dir Dilithium bringen."
+msgstr " Ich kann dir Dilizium bringen."
 
 #: ../dialogs/Michelangelo.dialog:134
 msgid "Have you gotten overheated, Linarian?"
@@ -1464,7 +1464,7 @@ msgstr "Aber, wie du siehst, ist Farbe nicht essbar. Nur der Geschmack zählt."
 
 #: ../dialogs/Michelangelo.dialog:247
 msgid " I have the dilithium you wanted."
-msgstr " Ich habe das gewünschte Dilithium."
+msgstr " Ich habe das gewünschte Dilizium."
 
 #: ../dialogs/Michelangelo.dialog:250
 msgid ""
@@ -1494,7 +1494,7 @@ msgstr " Was brauchen Sie gleich nochmal?"
 msgid ""
 "Get me some dilithium before the whole stupid colony commits mass suicide "
 "because of poor food quality."
-msgstr "Besorg mir Dilithium, bevor die ganze dämliche Kolonie Massenselbstmord wegen diesem grauenhaften Fraß begeht!"
+msgstr "Besorg mir Dilizium, bevor die ganze dämliche Kolonie Massenselbstmord wegen diesem grauenhaften Fraß begeht!"
 
 #: ../dialogs/Michelangelo.dialog:280
 msgid ""
@@ -1535,7 +1535,7 @@ msgstr " Wo kann ich solche Kristalle finden?"
 msgid ""
 "There is an old dilithium mine to the east. I am sure there is lots of that "
 "stuff there."
-msgstr "Es gibt östlich von hier eine alte Dilithium-Mine. Ich bin mir sicher, dass es dort eine Menge von dem Kram gibt."
+msgstr "Es gibt östlich von hier eine alte Dilizium-Mine. Ich bin mir sicher, dass es dort eine Menge von dem Kram gibt."
 
 #: ../dialogs/Michelangelo.dialog:348
 msgid "I will talk to the guards, they will open the eastern gate for you."
@@ -1551,7 +1551,7 @@ msgstr "MISSION IS DONE #2"
 
 #: ../dialogs/Michelangelo.dialog:368
 msgid " What is this dilithium?"
-msgstr " Was ist das, Dilithium?"
+msgstr " Was ist das, Dilizium?"
 
 #: ../dialogs/Michelangelo.dialog:371
 msgid ""
@@ -1563,7 +1563,7 @@ msgstr "Das weißt du nicht? Ich glaubte immer, Linarianer wären unübertroffen in
 msgid ""
 "Dilithium is a substance which is usually seen in the form of a small "
 "crystal. "
-msgstr "Dilithium ist ein Stoff, der für gewöhnlich in Form kleiner, roter Kristalle in Erscheinung tritt."
+msgstr "Dilizium ist ein Stoff, der für gewöhnlich in Form kleiner, roter Kristalle in Erscheinung tritt."
 
 #: ../dialogs/Michelangelo.dialog:375
 msgid ""
@@ -8470,4 +8470,3 @@ msgstr " Wenn ich nur wüsste, wovon Sie reden."
 #: ../dialogs/Melfis.dialog:86
 msgid " I need to go now."
 msgstr " Ich muss los."
-
