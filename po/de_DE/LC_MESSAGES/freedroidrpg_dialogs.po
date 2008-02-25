@@ -792,7 +792,7 @@ msgstr "Der Weg, der von diesem Haus wegführt, sollte dich direkt dorthin bringe
 #: ../dialogs/StandardOldTownGateGuard.dialog:33 ../dialogs/Chandra.dialog:33
 #: ../dialogs/StandardMSFacilityGateGuard.dialog:33
 msgid " Hi! I'm new here."
-msgstr " Hallo, schöne Frau..."
+msgstr " Hallo, ich bin neu hier..."
 
 #: ../dialogs/Jasmine.dialog:36
 msgid "Yes. Hello. What do you want?"
@@ -876,7 +876,7 @@ msgstr "Bist du noch bei Trost??"
 #: ../dialogs/Duncan.dialog:280 ../dialogs/Duncan.dialog:318
 #: ../dialogs/614.dialog:98
 msgid " See you later."
-msgstr " Bis später, Süße!"
+msgstr " Bis später!"
 
 #: ../dialogs/Jasmine.dialog:131 ../dialogs/Jasmine.dialog:143
 msgid "Yeah. Whatever."
