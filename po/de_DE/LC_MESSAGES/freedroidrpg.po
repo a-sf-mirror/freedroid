@@ -100,13 +100,13 @@ msgstr "Scheint im 'Standby'-Modus zu sein."
 #: ../src/blocks.c:1918 ../src/blocks.c:1919 ../src/blocks.c:1920
 #: ../src/blocks.c:1921 ../src/blocks.c:1922
 msgid "Droid nest"
-msgstr "Roboter-Andockstation"
+msgstr "Roboter-Nest"
 
 #: ../src/blocks.c:1923 ../src/blocks.c:1924 ../src/blocks.c:1925
 #: ../src/blocks.c:1926 ../src/blocks.c:1927
 msgid ""
-"This is a service droid case. You suppose it's of no use for your quest."
-msgstr "Gehäuse eines Service-Androiden. Vermutlich für deine Aufgabe nicht von Bedeutung."
+"This is a droid service station. You suppose it's of no use for your quest."
+msgstr "Androiden-Servicestation. Vermutlich für deine Aufgabe nicht von Bedeutung."
 
 #: ../src/blocks.c:1955 ../src/blocks.c:1964 ../src/blocks.c:1972
 #: ../src/blocks.c:1980
@@ -868,7 +868,8 @@ msgstr "Der Treffer hat die Rüstung durchschlagen!"
 msgid ""
 "%s was destroyed by your bullet.  For defeating your enemy, you receive %d "
 "experience."
-msgstr "%s wurde durch dein Geschoss zerstört.  %d Erfahrungspunkte für das Ausschalten des Gegners."
+msgstr ""
+"%s wurde durch dein Geschoss zerstört.  %d Erfahrungspunkte für das Ausschalten des Gegners."
 
 #: ../src/bullet.c:868
 #, c-format
@@ -1209,7 +1210,7 @@ msgstr "+%d zur elektrischen Isolation"
 
 #: ../src/hud.c:567
 #, c-format
-msgid "%d to light radius"
+msgid "%d to illumination radius"
 msgstr "%d Plus an Leuchtradius"
 
 #: ../src/hud.c:577
@@ -1316,7 +1317,8 @@ msgstr "Plündern funktioniert nicht auf diese Entfernung."
 msgid ""
 "%s was destroyed by your melee attack.  For defeating your enemy, you "
 "receive %d experience."
-msgstr "%s wurde durch deine Attacke vernichtet.  Für die Liquidierung des Gegners "
+msgstr ""
+"%s wurde durch deine Attacke vernichtet.  Für die Liquidierung des Gegners "
 "erhälst du %d Erfahrungspunkte."
 
 #: ../src/influ.c:3227
@@ -2014,7 +2016,7 @@ msgstr "Lautstärke Soundeffekte: %1.2f"
 #: ../src/menu.c:1730
 #, c-format
 msgid "Terminate On Missing Sample: %s"
-msgstr "Bei fehlenden Samples abbrechen: %s"
+msgstr "Stop bei fehlenden Samples: %s"
 
 #: ../src/menu.c:1732
 #, c-format
@@ -2024,7 +2026,7 @@ msgstr "Untertitel in Dialogen: %s"
 #: ../src/menu.c:1853
 #, c-format
 msgid "Hog CPU for max. performance: %s"
-msgstr "CPU reservieren für max. Leistung: %s"
+msgstr "CPU besetzen für max. Leistung: %s"
 
 #: ../src/menu.c:1855
 #, c-format
@@ -2104,12 +2106,12 @@ msgstr "Nachrichten-Anzeigezeit: %3.1f"
 #: ../src/menu.c:2089
 #, c-format
 msgid "Influencer Refresh Texts: %s"
-msgstr "Tux-Auffrischungsexte: %s"
+msgstr "Meldungen - Tux-Auffrischung: %s"
 
 #: ../src/menu.c:2090
 #, c-format
 msgid "Influencer Blast Texts: %s"
-msgstr "Influenzer-Abschuss Text: %s"
+msgstr "Meldungen - Tux-Abschuss: %s"
 
 #: ../src/menu.c:2091
 #, c-format
@@ -2144,8 +2146,8 @@ msgid "Language"
 msgstr "Sprache"
 
 #: ../src/menu.c:2257
-msgid "Droid Talk"
-msgstr "Bots reden"
+msgid "Droid comments"
+msgstr "Kommentar-Optionen"
 
 #: ../src/menu.c:2258
 msgid "On-Screen Displays"
@@ -2157,7 +2159,7 @@ msgstr "Leistungs-Optionen"
 
 #: ../src/menu.c:2260
 msgid "Save Options"
-msgstr "Speicherungs-Optionen"
+msgstr "Optionen speichern"
 
 #: ../src/menu.c:2354
 msgid ""
