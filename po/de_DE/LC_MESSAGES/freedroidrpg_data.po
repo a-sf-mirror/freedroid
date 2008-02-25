@@ -14,7 +14,8 @@ msgstr ""
 #: ../map/freedroid.item_archetypes:49
 msgid ""
 "Spawning item index 0 in editor or drop ingame causes CTD! Dont click this!"
-msgstr ""
+msgstr "Generieren von Gegenstand mit Index 0 im Editor oder diesen "
+"im Spiel abzulegen verursacht CTD! Nicht klicken!"
 
 #: ../map/freedroid.item_archetypes:114
 msgid "Short sword"
@@ -58,7 +59,7 @@ msgstr "Holzspeer"
 
 #: ../map/freedroid.item_archetypes:514
 msgid "Metal spear"
-msgstr ""
+msgstr "Metallspeer"
 
 #: ../map/freedroid.item_archetypes:559
 msgid "Crowbar"
@@ -238,7 +239,7 @@ msgstr "Plasmagranate"
 
 #: ../map/freedroid.item_archetypes:2117
 msgid "NPC hand-to-hand weapon"
-msgstr ""
+msgstr "NPC Hand-zu-Hand Waffe"
 
 #: ../map/freedroid.item_archetypes:2153
 msgid "Droid weaponry - 123: Metalclamps (punches)"
