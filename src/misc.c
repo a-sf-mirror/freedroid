@@ -1469,7 +1469,6 @@ int
 LoadGameConfig (void)
 {
     char fname[5000];
-    FILE *config;
     int original_width_of_screen = 800 ;
     int original_height_of_screen = 600 ;
     
@@ -1478,24 +1477,21 @@ LoadGameConfig (void)
 	DebugPrintf (1, "No useable config-dir. No config-loading possible\n");
 	return (OK);
     }
-    
+   
+    extern FILE * SaveGameFile; 
     sprintf (fname, "%s/config", our_config_dir);
-    if( (config = fopen (fname, "rb")) == NULL)
+    if( (SaveGameFile = fopen (fname, "rb")) == NULL)
     {
 	DebugPrintf (0, "WARNING: failed to open config-file: %s\n");
 	return (ERR);
     }
     
-    //--------------------
-    // Now read the actual data
-    // ok, this is neither very portable nor very flexible, we just want that working...
-
-    /* NOTE: we don't have to worry about endian-ness for the config-file
-     * because this is usually written and read on the same machine ! 
-     * Therefore simply freading/fwriting it should be fine
-     */
-    fread ( &(GameConfig), sizeof (configuration_for_freedroid), sizeof(char), config);
-    fclose (config);
+    char * stuff = (char *)malloc(FS_filelength(SaveGameFile) + 1);
+    fread(stuff, FS_filelength(SaveGameFile), 1, SaveGameFile);
+    fclose(SaveGameFile);
+    read_configuration_for_freedroid(stuff, "GameConfig", &GameConfig);
+    SaveGameFile = NULL;
+    free(stuff);
     
     //--------------------
     // Now we do some extra security check:  Maybe the old settings file
@@ -1600,7 +1596,6 @@ int
 SaveGameConfig (void)
 {
     char fname[5000];
-    FILE *config;
     int current_width;
     int current_height;
 
@@ -1628,9 +1623,10 @@ SaveGameConfig (void)
     //
     if ( our_config_dir [ 0 ] == '\0' )
 	return (ERR);
-    
+   
+    extern FILE * SaveGameFile; 
     sprintf (fname, "%s/config", our_config_dir );
-    if( (config = fopen (fname, "wb")) == NULL)
+    if( (SaveGameFile = fopen (fname, "wb")) == NULL)
     {
 	DebugPrintf (0, "WARNING: failed to create config-file: %s\n");
 	return (ERR);
@@ -1655,11 +1651,10 @@ SaveGameConfig (void)
     GameConfig . screen_height = GameConfig . next_time_height_of_screen ;
     //--------------------
     // Now write the actual data
-    fwrite ( &(GameConfig), sizeof (configuration_for_freedroid), sizeof(char), config);
+    save_configuration_for_freedroid("GameConfig", &(GameConfig));
     GameConfig . screen_width = current_width ;
     GameConfig . screen_height = current_height ;
-
-    fclose (config);
+    fclose (SaveGameFile);
     
     return (OK);
     
