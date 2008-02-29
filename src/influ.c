@@ -2600,7 +2600,6 @@ void FillInDefaultBulletStruct ( bullet * CurBullet, int bullet_image_type, shor
     CurBullet->owner = -1;
     CurBullet -> time_to_hide_still = 0.3 ;
     CurBullet->bullet_lifetime        = ItemMap[ weapon_item_type ].item_gun_bullet_lifetime;
-    CurBullet->fixed_offset           = ItemMap[ weapon_item_type ].item_gun_fixed_offset;
     CurBullet->ignore_wall_collisions = ItemMap[ weapon_item_type ].item_gun_bullet_ignore_wall_collisions;
     CurBullet->was_reflected = FALSE;
     CurBullet->reflect_other_bullets   = ItemMap[ weapon_item_type ].item_gun_bullet_reflect_other_bullets;
@@ -2628,7 +2627,7 @@ FireTuxRangedWeaponRaw ( short int weapon_item_type , int bullet_image_type, bul
 {
     int i = 0;
     bullet * CurBullet = NULL;
-    double BulletSpeed = ItemMap [ weapon_item_type ] . item_gun_speed;
+    float BulletSpeed = ItemMap [ weapon_item_type ] . item_gun_speed;
     double speed_norm;
     moderately_finepoint speed;
     float OffsetFactor;

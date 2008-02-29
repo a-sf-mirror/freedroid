@@ -3266,7 +3266,7 @@ WorkLevelGuns ( )
   int weapon_item_type = GetItemIndexByName("Laser pistol") ;
   Bullet CurBullet = NULL;  // the bullet we're currentl dealing with
   int bullet_image_type = ItemMap[ weapon_item_type ].item_gun_bullet_image_type;   // which gun do we have ? 
-  double BulletSpeed = ItemMap[ weapon_item_type ].item_gun_speed;
+  float BulletSpeed = ItemMap[ weapon_item_type ].item_gun_speed;
   double speed_norm;
   moderately_finepoint speed;
 
@@ -3326,7 +3326,6 @@ WorkLevelGuns ( )
       CurBullet->mine = FALSE;
       CurBullet->owner = -1;
       CurBullet->bullet_lifetime        = ItemMap[ weapon_item_type ].item_gun_bullet_lifetime;
-      CurBullet->fixed_offset           = ItemMap[ weapon_item_type ].item_gun_fixed_offset;
       CurBullet->ignore_wall_collisions = ItemMap[ weapon_item_type ].item_gun_bullet_ignore_wall_collisions;
       CurBullet->time_in_frames = 0;
       CurBullet->time_in_seconds = 0;

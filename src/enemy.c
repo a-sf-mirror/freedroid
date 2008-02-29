@@ -2248,7 +2248,6 @@ RawStartEnemysShot( enemy* ThisRobot , float xdist , float ydist )
 
 	NewBullet->bullet_lifetime = ItemMap [ Druidmap[ThisRobot->type].weapon_item.type ].item_gun_bullet_lifetime;
 
-	NewBullet->fixed_offset = ItemMap[ Druidmap[ ThisRobot->type].weapon_item.type ].item_gun_fixed_offset;
 	NewBullet->owner = ThisRobot -> type;
 	NewBullet->ignore_wall_collisions = 
 	    ItemMap[ Druidmap[ ThisRobot->type].weapon_item.type ].item_gun_bullet_ignore_wall_collisions;

@@ -756,7 +756,6 @@ Get_Robot_Data ( void* DataPointer )
   double maxspeed_calibrator;
   double acceleration_calibrator;
   double maxenergy_calibrator;
-  double aggression_calibrator;
   float energyloss_calibrator;
   double experience_reward_calibrator;
   double range_of_vision_calibrator;
@@ -1239,14 +1238,12 @@ answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.",
 				 &ItemMap[ItemIndex].item_gun_damage_modifier , EndOfItemData );
 	    
 	    // Now we read in the speed this bullet will go
-	    ReadValueFromStringWithDefault( ItemPointer ,  "Item as gun: speed of bullets=" , "%lf" , "0.000000",
+	    ReadValueFromStringWithDefault( ItemPointer ,  "Item as gun: speed of bullets=" , "%f" , "0.000000",
 				 &ItemMap[ItemIndex].item_gun_speed , EndOfItemData );
 	    
 	    // Now we read in speed of melee application and melee offset from influ
 	    ReadValueFromStringWithDefault( ItemPointer ,  "Item as gun: is melee weapon=" , "%hhd" , "0", 
 				 &ItemMap[ItemIndex].item_weapon_is_melee , EndOfItemData );
-	    ReadValueFromStringWithDefault( ItemPointer ,  "Item as gun: offset for melee weapon=" , "%lf" , "0.000000",
-				 &ItemMap[ItemIndex].item_gun_fixed_offset , EndOfItemData );
 	    ReadValueFromStringWithDefault( ItemPointer ,  "Item as gun: modifier for starting angle=" , "%lf" , "0.000000",
 				 &ItemMap[ItemIndex].item_gun_start_angle_modifier , EndOfItemData );
 	    
@@ -1425,7 +1422,6 @@ answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.",
 	    ItemMap [ ItemIndex ] . base_item_gun_damage = 0 ;
 	    ItemMap [ ItemIndex ] . item_gun_damage_modifier = 0 ;
 	    ItemMap [ ItemIndex ] . item_gun_speed = 0 ;
-	    ItemMap [ ItemIndex ] . item_gun_fixed_offset = 0 ;
 	    ItemMap [ ItemIndex ] . item_gun_start_angle_modifier = 0 ;
 	    ItemMap [ ItemIndex ] . item_gun_bullet_ignore_wall_collisions = FALSE ;
 	    ItemMap [ ItemIndex ] . item_gun_bullet_reflect_other_bullets = FALSE ;

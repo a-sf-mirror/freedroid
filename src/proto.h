@@ -316,7 +316,6 @@ EXTERN void LoadAndShowStats ( char* CoreFilename );
 #define save_float(X,Y) save_pritype("%s: %f\n", X, Y)
 #define save_double(X,Y) save_pritype("%s: %lf\n", X, Y)
 #define save_string(X,Y) save_pritype("%s: %s\n", X, Y)
-#define save_enemy_ptr(X,Y) save_pritype("%s: @%p\n", X, Y);
 
 /* Reading is slightly more difficult so we do it with functions */
 EXTERN void read_int32_t(const char *, const char *, int32_t *);
@@ -347,7 +346,6 @@ EXTERN void save_gps_array(const char *, gps *, int);
 EXTERN void read_gps_array(const char *, const char *, gps *, int);
 EXTERN void save_float_array(const char *, float *, int);
 EXTERN void read_float_array(const char *, const char *, float *, int);
-
 
 /* Hacks */
 EXTERN void save_chatflags_t_array(const char *, chatflags_t * , int);

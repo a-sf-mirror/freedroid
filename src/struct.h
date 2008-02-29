@@ -318,7 +318,7 @@ typedef struct obstacle_spec_s
     // A value of 0 light will be sufficient in most cases...
     //
     short emitted_light_strength;
-    short transparent;
+    char transparent;
     //--------------------
     // This is a special property for obstacles, that can be 
     // stepped on, like a rug or floor plate, for proper visibility...
@@ -373,9 +373,10 @@ typedef struct item_bonus_s
     char modifier_to_bonus_to_resist_disruptor; // this is a percentage
     
     char light_bonus_value;
-    float price_factor;
 
     char level; //"level" of the prefix (is it good or not)
+    float price_factor;
+
 } item_bonus , *Item_bonus;
 
 typedef struct itemspec_s
@@ -396,13 +397,13 @@ typedef struct itemspec_s
     char item_group_together_in_inventory;
     
     // How good is the item as weapon???
-    double item_gun_recharging_time;       // time until the next shot can be made, measures in seconds
-    double item_gun_reloading_time;       // time needed to put a new charger
+    float item_gun_recharging_time;       // time until the next shot can be made, measures in seconds
+    float item_gun_reloading_time;       // time needed to put a new charger
     short    item_gun_bullet_image_type;       // which type of image to use for displaying this bullet
-    double item_gun_speed; // how fast should a bullet move straightforward?
+    float item_gun_speed; // how fast should a bullet move straightforward?
     short    base_item_gun_damage; //	damage done by this bullettype 
     short    item_gun_damage_modifier; // modifier to the damage done by this bullettype 
-    double item_gun_bullet_lifetime;      // how long does a 'bullet' from this gun type live?
+    float item_gun_bullet_lifetime;      // how long does a 'bullet' from this gun type live?
     char    item_gun_bullet_reflect_other_bullets; // can this 'bullet' reflect other bullets
     char    item_gun_bullet_pass_through_explosions; // can this 'bullet' reflect other bullets
     char    item_gun_bullet_pass_through_hit_bodies; // does this bullet go through hit bodies (e.g. like a laser sword)
@@ -411,9 +412,8 @@ typedef struct itemspec_s
     
     // the following values have only relevance in case of a melee weapon
     char item_weapon_is_melee;	
-    double item_gun_start_angle_modifier;	// where to start with a melee weapon swing
-    double item_gun_fixed_offset;         // how far away from the swinger should a melee weapon swing occur?
-    short    item_gun_use_ammunition; // which ammunition does this gun use? - 1 laser 2 plasma 3 exterminator
+    float item_gun_start_angle_modifier;	// where to start with a melee weapon swing
+    char    item_gun_use_ammunition; // which ammunition does this gun use? - 1 laser 2 plasma 3 exterminator etc.
     char    item_gun_requires_both_hands; // is this a (strictly) 2-handed weapon?
     
     // how good is the item as armour or shield or other protection???
@@ -782,7 +782,6 @@ typedef struct bullet_s
     float                      poison_duration;     
     float                      poison_damage_per_sec;
     float                      paralysation_duration;
-    float                      fixed_offset;     
 }
 bullet, *Bullet;
 

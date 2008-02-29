@@ -148,7 +148,6 @@ save_int16_t("freezing_level", &(target->freezing_level));
 save_float("poison_duration", &(target->poison_duration));
 save_float("poison_damage_per_sec", &(target->poison_damage_per_sec));
 save_float("paralysation_duration", &(target->paralysation_duration));
-save_float("fixed_offset", &(target->fixed_offset));
 fprintf(SaveGameFile, "</%s>\n", tag);
 return 0;
 }
@@ -187,7 +186,6 @@ read_int16_t(pos, "freezing_level", &(target->freezing_level));
 read_float(pos, "poison_duration", &(target->poison_duration));
 read_float(pos, "poison_damage_per_sec", &(target->poison_damage_per_sec));
 read_float(pos, "paralysation_duration", &(target->paralysation_duration));
-read_float(pos, "fixed_offset", &(target->fixed_offset));
 *epos = '>'; 
 return 0;
 }
