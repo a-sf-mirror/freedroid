@@ -244,8 +244,8 @@ SaveThumbnailOfGame ( void )
 /* ----------------------------------------------------------------------
  * This function saves the current game of Freedroid to a file.
  * ---------------------------------------------------------------------- */
-int 
-SaveGame( void )
+
+int SaveGame( void )
 {
     char filename[1000];
     
@@ -263,7 +263,7 @@ SaveGame( void )
 	      (int) sizeof(enemy) ,
 	      (int) sizeof(bullet) ,
 	      (int) MAXBULLETS );
-    
+
     sprintf( filename , "%s/%s%s", our_config_dir, Me.character_name, ".shp" );
 
     if ( SaveShip( filename ) != OK )
@@ -330,7 +330,6 @@ or file permissions of ~/.freedroid_rpg are somehow not right.",
     append_new_game_message ( _("Game saved.") );
 
     DebugPrintf ( SAVE_LOAD_GAME_DEBUG , "\nint SaveGame( void ): end of function reached.");
-    
     return OK;
 
 }; // int SaveGame( void )
@@ -378,9 +377,6 @@ LoadGame( void )
     char version_check_string[1000];
     char *LoadGameData;
     char filename[1000];
-    unsigned char* InfluencerRawDataPointer;
-    unsigned char* EnemyRawDataPointer;
-    unsigned char* BulletRawDataPointer;
     int i;
     int current_geographics_levelnum;
     FILE *DataFile;
@@ -496,13 +492,12 @@ LoadGame( void )
     {
 	DeleteBullet( i , FALSE );
     }
-    sprintf ( version_check_string , "%s;sizeof(tux_t)=%d;sizeof(enemy)=%d;sizeof(bullet)=%d;MAXBULLETS=%d;MAX_ENEMYS_ON_SHIP=%d\n", 
+    sprintf ( version_check_string , "%s;sizeof(tux_t)=%d;sizeof(enemy)=%d;sizeof(bullet)=%d;MAXBULLETS=%d\n", 
 	      VERSION , 
 	      (int) sizeof(tux_t) , 
 	      (int) sizeof(enemy) ,
 	      (int) sizeof(bullet) ,
-	      (int) MAXBULLETS ,
-	      (int) 1200 );
+	      (int) MAXBULLETS );
     
     if ( strcmp ( Me . freedroid_version_string , version_check_string ) != 0 )
     {
@@ -935,8 +930,9 @@ for ( i = 0; i < MAX_LEVELS; i ++)
    fprintf(SaveGameFile, "%d\n", i);
    for ( j = 0; j < 100; j ++ )
        {
-       for ( k = 0; k < 100; k ++)
-	       fprintf(SaveGameFile, "%hhd ", automapdata[i][j][k]);
+       for ( k = 0; k < 100; k += 5)
+	       fprintf(SaveGameFile, "%hhd %hhd %hhd %hhd %hhd ", automapdata[i][j][k], automapdata[i][j][k+1], automapdata[i][j][k+2], automapdata[i][j][k+3],
+		       automapdata[i][j][k+4]);
        fprintf(SaveGameFile, "\n");
        }
    }
