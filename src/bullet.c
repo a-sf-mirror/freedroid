@@ -527,7 +527,7 @@ handle_flash_effects ( bullet* CurBullet )
 	CurBullet->time_in_seconds = 0;
 	CurBullet->type = INFOUT;
 	CurBullet->mine = FALSE;
-	CurBullet->owner = -15000;
+	CurBullet->owner = -100;
 	return;
     }
     
