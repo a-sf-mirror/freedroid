@@ -569,7 +569,8 @@ typedef struct enemy_s
     char is_friendly;              // is this a friendly droid or is it a MS controlled one?
     char has_been_taken_over;      // has the Tux made this a friendly bot via takeover subgame?
     char attack_target_type ;      // attack NOTHING, PLAYER, or BOT
-    struct enemy_s * bot_target ; 
+    short int bot_target_n;
+    struct enemy_s * bot_target_addr ; 
     char attack_run_only_when_direct_line; // require direct line to target before switching into attach run mode
     char dialog_section_name[ MAX_LENGTH_FOR_DIALOG_SECTION_NAME ]; // This should indicate one of the many sections of the Freedroid.dialogues file
     char short_description_text[ MAX_LENGTH_OF_SHORT_DESCRIPTION_STRING ]; // This should indicate one of the many sections of the Freedroid.dialogues file

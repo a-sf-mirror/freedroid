@@ -267,7 +267,7 @@ InitEnemy ( enemy * our_bot )
     our_bot -> is_friendly = 0;
     our_bot -> has_been_taken_over = FALSE ;  // has the Tux made this a friendly bot via takeover subgame?
     our_bot -> attack_target_type = ATTACK_TARGET_IS_NOTHING ;
-    our_bot -> bot_target = NULL;
+    enemy_set_reference(&our_bot->bot_target_n, &our_bot->bot_target_addr, NULL);
     our_bot -> TextVisibleTime = 0;
     our_bot -> TextToBeDisplayed = "";
     our_bot -> persuing_given_course = FALSE;
@@ -2266,7 +2266,7 @@ RawStartEnemysShot( enemy* ThisRobot , float xdist , float ydist )
 	if ( ThisRobot -> is_friendly || ( (!(ThisRobot->is_friendly)) && (ThisRobot -> attack_target_type == ATTACK_TARGET_IS_ENEMY) ))
 	    {
 	    /*XXX*/
-	    enemy * target_robot = ThisRobot->bot_target;
+	    enemy * target_robot = enemy_resolve_address(ThisRobot->bot_target_n, &ThisRobot->bot_target_addr);
 	    if (!(( target_robot -> pos . z != ThisRobot -> pos . z ) ||
 			( fabsf ( (float) ( target_robot -> pos . x - ThisRobot -> pos . x ) ) > 2.5 ) ||
 			( fabsf ( target_robot -> pos . y - ThisRobot -> pos . y ) > 2.5 ) ||
@@ -2477,7 +2477,7 @@ update_vector_to_shot_target_for_friend ( enemy* ThisRobot , moderately_finepoin
     if ( found_some_target ) 
     {
 	ThisRobot -> attack_target_type = ATTACK_TARGET_IS_ENEMY ;
-	ThisRobot -> bot_target = erot ;
+	enemy_set_reference(&ThisRobot -> bot_target_n, &ThisRobot->bot_target_addr, erot);
     }
     else 
 	ThisRobot -> attack_target_type = ATTACK_TARGET_IS_NOTHING ;
@@ -2540,7 +2540,7 @@ update_vector_to_shot_target_for_enemy ( enemy* this_robot , moderately_finepoin
 	    vect_to_target -> x = erot->pos . x - this_robot -> pos . x ;
 	    vect_to_target -> y = erot->pos . y - this_robot -> pos . y ;
 	    this_robot -> attack_target_type = ATTACK_TARGET_IS_ENEMY ;
-	    this_robot -> bot_target = erot;
+	    enemy_set_reference(&this_robot->bot_target_n, &this_robot->bot_target_addr, erot);
 	}
 
     }
@@ -2673,8 +2673,8 @@ MoveInCloserForOrAwayFromMeleeCombat ( Enemy ThisRobot , int DirectionSign )
     }
     else if ( ThisRobot -> attack_target_type == ATTACK_TARGET_IS_ENEMY )
     {
-	VictimPosition . x = ThisRobot -> bot_target-> virt_pos . x ;
-	VictimPosition . y = ThisRobot -> bot_target-> virt_pos . y ;
+	VictimPosition . x = enemy_resolve_address(ThisRobot -> bot_target_n, &ThisRobot->bot_target_addr)-> virt_pos . x ;
+	VictimPosition . y = enemy_resolve_address(ThisRobot -> bot_target_n, &ThisRobot->bot_target_addr)-> virt_pos . y ;
     }
     else if ( ThisRobot -> attack_target_type == ATTACK_TARGET_IS_NOTHING )
     {
@@ -2992,7 +2992,7 @@ enemy_handle_trivial_state_switches ( enemy* ThisRobot )
     if ( ( ThisRobot -> combat_state == MAKE_ATTACK_RUN ) &&
 	 ( ThisRobot -> attack_target_type == ATTACK_TARGET_IS_ENEMY ) )
     {
-	bot_ptr = ThisRobot -> bot_target ;
+	bot_ptr = enemy_resolve_address(ThisRobot->bot_target_n, &ThisRobot->bot_target_addr);
 
 	if ( ! droid_can_walk_this_line ( bot_ptr -> pos . z , ThisRobot -> pos . x , ThisRobot -> pos . y , bot_ptr -> pos . x , bot_ptr-> pos . y ) )
 	{
