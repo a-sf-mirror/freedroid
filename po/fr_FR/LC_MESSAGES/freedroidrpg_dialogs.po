@@ -4,14 +4,14 @@ msgstr ""
 "Project-Id-Version: freedroidrpg_dialogs\n"
 "Report-Msgid-Bugs-To: CHANGE THIS TOO\n"
 "POT-Creation-Date: 2008-02-02 21:30+0000\n"
-"PO-Revision-Date: 2008-02-09 08:54+0000\n"
+"PO-Revision-Date: 2008-03-01 11:59+0100\n"
 "Last-Translator: \n"
-"Language-Team: <en@li.org>\n"
+"Language-Team:  <en@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-02-09 12:36+0000\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Launchpad-Export-Date: 2008-03-01 10:56+0000\n"
+"X-Generator: KBabel 1.11.4\n"
 
 #: ../dialogs/Benjamin.dialog:33
 #: ../dialogs/DocMoore.dialog:33
@@ -31,8 +31,7 @@ msgid " What are you doing here alone? "
 msgstr " Qu'est-ce que vous faites ici tout seul ? "
 
 #: ../dialogs/Benjamin.dialog:49
-msgid ""
-"I'm experimenting with new designs. I want to redesign the laser pistol."
+msgid "I'm experimenting with new designs. I want to redesign the laser pistol."
 msgstr ""
 "J'expérimente de nouveaux concepts. Je veux revoir la conception du pistolet "
 "laser."
@@ -57,8 +56,7 @@ msgstr ""
 
 #: ../dialogs/Benjamin.dialog:63
 msgid " Can you teach me how to properly use rifles and guns?"
-msgstr ""
-" Pouvez vous m'apprendre comment bien utiliser les fusils et les pistolets ?"
+msgstr " Pouvez vous m'apprendre comment bien utiliser les fusils et les pistolets ?"
 
 #: ../dialogs/Benjamin.dialog:66
 msgid ""
@@ -74,8 +72,8 @@ msgid ""
 "and for my time. Say... Hundred triangles should be enough."
 msgstr ""
 "Naturellement j'aurai besoin d'une compensation pour la dépense en munitions "
-"lors de l'entraînement et pour le temps perdu. Disons... Cent triangles "
-"devraient suffire."
+"lors de l'entraînement et pour mon horaire. Disons... Cent triangles "
+"devraient être suffisants."
 
 #: ../dialogs/Benjamin.dialog:76
 msgid ""
@@ -87,12 +85,11 @@ msgstr ""
 
 #: ../dialogs/Benjamin.dialog:79
 msgid "Hmm... There might be something in that idea. I will think about it."
-msgstr "Hmm... Il y a de l'idée. J'y repenserai."
+msgstr "Hmm... Il y a de l'idée. Je vais y songer."
 
 #: ../dialogs/Benjamin.dialog:89
 msgid " If I were you, I would focus my work on the firing rate."
-msgstr ""
-" Si j'étais vous, je concentrerais mon travail sur la puissance de feu."
+msgstr " Si j'étais vous, je concentrerais mon travail sur la puissance de feu."
 
 #: ../dialogs/Benjamin.dialog:92
 msgid "Hmm... I will think about it. Hmm..."
@@ -139,16 +136,13 @@ msgstr " Le plasma fait un bruit de mort."
 
 #: ../dialogs/Benjamin.dialog:133
 msgid "It is!"
-msgstr "C'est ça !"
+msgstr ""
 
 #: ../dialogs/Benjamin.dialog:135
 msgid ""
 "While many people find the ammunition canisters too big, and the bullets too "
 "slow. Even they cannot deny that once plasma hits, it leaves big holes."
 msgstr ""
-"Tant que la plupart des gens trouvent les réservoirs à munitions trop "
-"grands, et les balles trop lentes. De toutes façons, ils ne peuvent pas nier "
-"les avantages du plasma, ça laisse de gros trous."
 
 #: ../dialogs/Benjamin.dialog:137
 msgid ""
@@ -247,8 +241,7 @@ msgid " I am curious about the exterminator."
 msgstr " Je me pose des questions à propos de l'exterminateur."
 
 #: ../dialogs/Benjamin.dialog:173
-msgid ""
-"Sorry, but that is classified and confidential. I have said too much already."
+msgid "Sorry, but that is classified and confidential. I have said too much already."
 msgstr "Désolé, mais c'est classé confidentiel. Je t'en ai déjà trop dit."
 
 #: ../dialogs/Benjamin.dialog:181
@@ -371,8 +364,7 @@ msgstr ""
 msgid ""
 "The Rot Guard is the ruler there, and cruelty is their solution to "
 "everything."
-msgstr ""
-"La Rot Garde fait la loi là-bas, et la cruauté est leur seule réponse."
+msgstr "La Rot Garde fait la loi là-bas, et la cruauté est leur seule réponse."
 
 #: ../dialogs/Darwin.dialog:122
 msgid "Real freedom is really dead."
@@ -539,8 +531,7 @@ msgstr ""
 "avec des tirs de blaster. Une terrible erreur de notre part."
 
 #: ../dialogs/Francis.dialog:60
-msgid ""
-"A few of you survived the slaughter and went into hiding and obscurity."
+msgid "A few of you survived the slaughter and went into hiding and obscurity."
 msgstr ""
 "Quelques uns des tiens ont survécu au massacre et se sont réfugiés dans "
 "l'obscurité."
@@ -648,8 +639,7 @@ msgstr ""
 
 #: ../dialogs/Francis.dialog:107
 msgid "For all I know the war might be already over."
-msgstr ""
-"Pour ce que j'en sais, la guerre pourrait très bien être déjà terminée."
+msgstr "Pour ce que j'en sais, la guerre pourrait très bien être déjà terminée."
 
 #: ../dialogs/Francis.dialog:114
 msgid " Where am I?"
@@ -868,8 +858,7 @@ msgstr " Pourquoi est-ce que les robots ont attaqué ?"
 
 #: ../dialogs/Francis.dialog:234
 msgid "We don't really know the reason for this insanity. However..."
-msgstr ""
-"Nous ne connaissons pas réellement la raison de cette folie. Néanmoins..."
+msgstr "Nous ne connaissons pas réellement la raison de cette folie. Néanmoins..."
 
 #: ../dialogs/Francis.dialog:236
 msgid ""
@@ -893,8 +882,7 @@ msgstr ""
 
 #: ../dialogs/Francis.dialog:248
 msgid " I also heard a voice... Someone calling himself Dvorak... "
-msgstr ""
-" J'entendais également une voix... Quelqu'un s'appelant lui-même Dvorak... "
+msgstr " J'entendais également une voix... Quelqu'un s'appelant lui-même Dvorak... "
 
 #: ../dialogs/Francis.dialog:251
 msgid "Relax. Everything will be fine in a few hours."
@@ -949,8 +937,7 @@ msgstr ""
 "ordinateurs et peuvent les désactiver juste en y pensant."
 
 #: ../dialogs/Francis.dialog:279
-msgid ""
-"Even if this is only partly true, we need it. The situation is quite ugly."
+msgid "Even if this is only partly true, we need it. The situation is quite ugly."
 msgstr ""
 "Même si c'est seulement partiellement vrai, nous en avons besoin. La "
 "situation est foutrement mauvaise."
@@ -1029,8 +1016,7 @@ msgid "Shitty. Now leave me alone."
 msgstr "C'est nul. Maintenant, laisse-moi tranquille"
 
 #: ../dialogs/Jasmine.dialog:83
-msgid ""
-" Why does such a nice lady act so harshly? Cannot we all just get along?"
+msgid " Why does such a nice lady act so harshly? Cannot we all just get along?"
 msgstr ""
 " Comment une fille aussi charmante que toi peut être aussi dure ? Ne pouvons-"
 "nous pas nous entendre, tout simplement ?"
@@ -1434,8 +1420,7 @@ msgid " I'd like to get into town."
 msgstr " J'aimerai entrer dans la ville."
 
 #: ../dialogs/OldTownGateGuardLeader.dialog:71
-msgid ""
-"Funny, exactly the same could be said about all of the crazy bots out there."
+msgid "Funny, exactly the same could be said about all of the crazy bots out there."
 msgstr ""
 "Marrant, on pourrait dire exactement la même chose à propos de tous ces "
 "robots fous à l'extérieur."
@@ -1564,15 +1549,13 @@ msgstr ""
 "comme ça?"
 
 #: ../dialogs/Michelangelo.dialog:91
-msgid ""
-"Get a grip, the situation is bad and there is no use in pretending otherwise."
+msgid "Get a grip, the situation is bad and there is no use in pretending otherwise."
 msgstr ""
 "Reprends toi, la situation est mauvaise et il n'est pas possible d'envisager "
 "autre chose."
 
 #: ../dialogs/Michelangelo.dialog:98
-msgid ""
-" You are a cook. Stop complaining about the poor food! Make some yourself."
+msgid " You are a cook. Stop complaining about the poor food! Make some yourself."
 msgstr ""
 " Tu es un cuisinier. Arrête de te plaindre à propos de la nourriture "
 "médiocre ! Débrouille-toi."
@@ -1597,8 +1580,7 @@ msgstr ""
 
 #: ../dialogs/Michelangelo.dialog:117
 msgid " Why don't you send someone for the dilithium?"
-msgstr ""
-" Pourquoi est-ce que tu n'envoies pas quelqu'un chercher du dilithium?"
+msgstr " Pourquoi est-ce que tu n'envoies pas quelqu'un chercher du dilithium?"
 
 #: ../dialogs/Michelangelo.dialog:120
 #: ../dialogs/Michelangelo.dialog:407
@@ -1670,8 +1652,7 @@ msgstr ""
 "qu'ils étaient incinérés vivants à l'extérieur des murailles de la cité. "
 
 #: ../dialogs/Michelangelo.dialog:155
-msgid ""
-"The bots know no mercy. They cannot even define it, damn scrap metal fiends."
+msgid "The bots know no mercy. They cannot even define it, damn scrap metal fiends."
 msgstr ""
 "Les robots ne connaissent pas la pitié. Ils ne peuvent même pas la définir, "
 "ces démoniaques engins métalliques."
@@ -1689,8 +1670,7 @@ msgid " Got any food yet?"
 msgstr " Tu as quelque chose à manger ?"
 
 #: ../dialogs/Michelangelo.dialog:175
-msgid ""
-"I had prepared some delicacies, but the ravenous Red Guard ate it all."
+msgid "I had prepared some delicacies, but the ravenous Red Guard ate it all."
 msgstr ""
 "J'avais préparé quelques mets délicats, mais la vorace Garde Rouge a tout "
 "mangé."
@@ -1717,8 +1697,7 @@ msgstr " Puis-je acheter un peu de nourriture ici ?"
 
 #: ../dialogs/Michelangelo.dialog:189
 msgid "There is no food here, just the odious military rations."
-msgstr ""
-"Il n'y a pas de nourriture ici, seulement ces infâmes rations militaires."
+msgstr "Il n'y a pas de nourriture ici, seulement ces infâmes rations militaires."
 
 #: ../dialogs/Michelangelo.dialog:191
 msgid ""
@@ -1739,8 +1718,7 @@ msgstr ""
 
 #: ../dialogs/Michelangelo.dialog:195
 msgid "I can give you some, but it's not worthy of being called food."
-msgstr ""
-"Je peux t'en donner un peu, mais ça n'est pas digne d'être appelé nourriture."
+msgstr "Je peux t'en donner un peu, mais ça n'est pas digne d'être appelé nourriture."
 
 #: ../dialogs/Michelangelo.dialog:203
 msgid " I want some yummy army snacks!"
@@ -1987,8 +1965,7 @@ msgstr ""
 
 #: ../dialogs/Michelangelo.dialog:397
 msgid "And the only such thing around is the abhorrent military sludge."
-msgstr ""
-"Et le seul truc de ce genre par ici est l'exécrable ration militaire marron."
+msgstr "Et le seul truc de ce genre par ici est l'exécrable ration militaire marron."
 
 #: ../dialogs/Michelangelo.dialog:404
 msgid " Tell the Red Guard that you need your battery back."
@@ -2126,8 +2103,7 @@ msgstr ""
 "longtemps."
 
 #: ../dialogs/Koan.dialog:47
-msgid ""
-"Once I am gone this oasis of peace in the world will dry up and die. A shame."
+msgid "Once I am gone this oasis of peace in the world will dry up and die. A shame."
 msgstr ""
 "Et je me suis rendu dans cette oasis de paix dans le monde mourrant et se "
 "désertifiant. Quelle honte."
@@ -2162,8 +2138,7 @@ msgid "Feel free to stay here. There is no danger."
 msgstr "Tu es libre de rester ici. Il n'y a pas de danger."
 
 #: ../dialogs/Koan.dialog:86
-msgid ""
-"The water is safe to drink and the fruit from the tree is quite delicious."
+msgid "The water is safe to drink and the fruit from the tree is quite delicious."
 msgstr "L'eau est potable et les fruits de l'arbre sont vraiment délicieux."
 
 #: ../dialogs/Koan.dialog:98
@@ -2207,8 +2182,7 @@ msgstr ""
 "plantes rendent l'air très pur."
 
 #: ../dialogs/Koan.dialog:122
-msgid ""
-"As soon as I leave, everything will die. I have seen that happen before."
+msgid "As soon as I leave, everything will die. I have seen that happen before."
 msgstr ""
 "Aussitôt que je m'éloigne, chaque chose meurt. J'ai vu ce qui s'est passé "
 "avant."
@@ -2304,8 +2278,7 @@ msgstr ""
 "soumission."
 
 #: ../dialogs/Stone.dialog:91
-msgid ""
-"We all need to obey their rules. We need to work hard or they hurt us."
+msgid "We all need to obey their rules. We need to work hard or they hurt us."
 msgstr ""
 "Nous sommes tous obligés d'obéir à leurs règles. Nous sommes tous obligés de "
 "travailler dur, autrement ils nous frappent."
@@ -2431,8 +2404,7 @@ msgstr ""
 
 #: ../dialogs/Stone.dialog:231
 msgid " A pity that nothing can be done about your store."
-msgstr ""
-" Quelle dommage que nous ne puissions rien faire à propos de vote magasin."
+msgstr " Quelle dommage que nous ne puissions rien faire à propos de vote magasin."
 
 #: ../dialogs/Stone.dialog:234
 msgid "Yes. A tradition of six generations will die with this shop..."
@@ -2555,8 +2527,7 @@ msgid " I could use a drink. What is there to be had?"
 msgstr " Je pourrais prendre un verre. Où est le problème ?"
 
 #: ../dialogs/Ewald.dialog:84
-msgid ""
-"Well... We are a bit short on supplies right now... Erm... AH! I know!"
+msgid "Well... We are a bit short on supplies right now... Erm... AH! I know!"
 msgstr ""
 "Bien... On est un peu à court de fournisseurs en ce moment... Erm... AH! Je "
 "sais!"
@@ -2612,8 +2583,7 @@ msgid "Yeah, I thought you would like it. Here is more."
 msgstr "Ouais, je pensais bien que tu aimerais ça. Il y en a plus ici."
 
 #: ../dialogs/Ewald.dialog:157
-msgid ""
-" Hmm... Lots of ice. Give me one more double water, but now without any ice."
+msgid " Hmm... Lots of ice. Give me one more double water, but now without any ice."
 msgstr ""
 " Hmm... Beaucoup de glace. Donne moi une double eau en plus, mais maintenant "
 "sans glace."
@@ -2628,8 +2598,7 @@ msgstr " PLUS! Je veux plus d'eau !"
 
 #: ../dialogs/Ewald.dialog:171
 msgid "Erm... Ok... Here, have some of my special, water colada."
-msgstr ""
-"Euh... Ok... Ici, il a quelques unes des mes spécialités, eau colada."
+msgstr "Euh... Ok... Ici, il a quelques unes des mes spécialités, eau colada."
 
 #: ../dialogs/Ewald.dialog:179
 msgid " I am really thirsty! I want water."
@@ -2644,8 +2613,7 @@ msgstr ""
 "reste rien."
 
 #: ../dialogs/Ewald.dialog:184
-msgid ""
-"I heard Linarians can drink a lot of water, but seven liters is a lot."
+msgid "I heard Linarians can drink a lot of water, but seven liters is a lot."
 msgstr ""
 "J'ai entendu que les Linariens peuvent boire beaucoup d'eau, mais sept "
 "litres est vraiment une grande quantité."
@@ -2655,8 +2623,7 @@ msgid " MORE! MORE! MORE! I WANT MORE WATER. NOW!"
 msgstr " PLUS ! PLUS ! PLUS ! JE VEUX PLUS D'EAU. MAINTENANT !"
 
 #: ../dialogs/Ewald.dialog:195
-msgid ""
-"Eh... I think you had enough... Maybe you should just go for a walk for now?"
+msgid "Eh... I think you had enough... Maybe you should just go for a walk for now?"
 msgstr ""
 "Eh... Je pense que tu en as eu assez... Peut être que tu devrais aller faire "
 "quelques pas ?"
@@ -2847,8 +2814,7 @@ msgstr ""
 "avons besoin en ce moment. Tu nous as réellement tiré d'affaire."
 
 #: ../dialogs/Spencer.dialog:157
-msgid ""
-"Rest assured that we will never forget your brave activity for our community."
+msgid "Rest assured that we will never forget your brave activity for our community."
 msgstr ""
 "Crois bien que nous n'oublierons jamais tes courageuses prouesses réalisées "
 "en faveur de notre communauté."
@@ -2858,8 +2824,7 @@ msgid "GIVE_REWARD"
 msgstr "GIVE_REWARD"
 
 #: ../dialogs/Spencer.dialog:167
-msgid ""
-"Man, you really did it! I can hardly believe it, but all the bots are gone!"
+msgid "Man, you really did it! I can hardly believe it, but all the bots are gone!"
 msgstr ""
 "Eh mec, t'as vraiment réussi ! J'ai du mal à y croire, mais tous les robots "
 "sont partis !"
@@ -2884,8 +2849,7 @@ msgstr ""
 
 #: ../dialogs/Spencer.dialog:181
 msgid " Have I done enough quests to become a member now?"
-msgstr ""
-" Ai-je réussi suffisamment de quêtes pour devenir un membre de la Garde ?"
+msgstr " Ai-je réussi suffisamment de quêtes pour devenir un membre de la Garde ?"
 
 #: ../dialogs/Spencer.dialog:190
 #: ../dialogs/subdlg_Spencer_eval.dialog:50
@@ -2955,8 +2919,7 @@ msgid "TUX IS AN ARENA MASTER"
 msgstr "TUX IS AN ARENA MASTER"
 
 #: ../dialogs/Spencer.dialog:255
-msgid ""
-"From Butch I hear you've become a novice arena master. Congratulations."
+msgid "From Butch I hear you've become a novice arena master. Congratulations."
 msgstr ""
 "J'ai appris grâce à Butch que tu es devenu un maître d'arène novice. "
 "Félicitations!"
@@ -3294,8 +3257,7 @@ msgstr ""
 "TOUTES les pilules de force."
 
 #: ../dialogs/Bender.dialog:49
-msgid ""
-"But yet I might be dead soon. The doc warned me, but I didn't listen. Damn."
+msgid "But yet I might be dead soon. The doc warned me, but I didn't listen. Damn."
 msgstr ""
 "Mais je serai probablement mort dans peu de temps. Le doc m'avait averti, "
 "mais je ne l'ai pas écouté. Flûte."
@@ -3305,8 +3267,7 @@ msgid " You took too many strength pills and now you're sick?"
 msgstr " Tu as pris trop de pilules de force et tu es malade maintenant ?"
 
 #: ../dialogs/Bender.dialog:61
-msgid ""
-"Nah. The strength pills were fine. They made me strong. The doc said so."
+msgid "Nah. The strength pills were fine. They made me strong. The doc said so."
 msgstr ""
 "Non. Les pilules de force marchent parfaitement. Elles m'ont rendu plus "
 "fort. Le doc l'a dit aussi."
@@ -3353,8 +3314,7 @@ msgstr ""
 
 #: ../dialogs/Bender.dialog:97
 msgid "So I thought these pills might make them think differently about me."
-msgstr ""
-"Alors j'ai pensé que ces pilules les feraient changer d'avis à mon sujet."
+msgstr "Alors j'ai pensé que ces pilules les feraient changer d'avis à mon sujet."
 
 #: ../dialogs/Bender.dialog:106
 msgid " But if you aren't dumb, why the brain enlargement pills?"
@@ -3373,8 +3333,7 @@ msgid " Isn't there some doctor in town who could cure you?"
 msgstr " N'y a-t-il pas en ville un docteur qui pourrait te soigner ?"
 
 #: ../dialogs/Bender.dialog:119
-msgid ""
-"Yeah, the doc could help. But he won't. I've threatened him, but he won't."
+msgid "Yeah, the doc could help. But he won't. I've threatened him, but he won't."
 msgstr ""
 "Ouais, le doc pourrait faire quelque chose, c'est vrai. Mais il ne fera "
 "rien. Je l'ai menacé, mais il ne fera rien."
@@ -3424,8 +3383,7 @@ msgid " I'm sorry, but it looks like there's nothing I could do for you."
 msgstr " Je suis désolé, mais on dirait que je ne peux rien faire pour toi."
 
 #: ../dialogs/Bender.dialog:153
-msgid ""
-"Of course not. You're not a doctor. Only the doctor has the right medicine."
+msgid "Of course not. You're not a doctor. Only the doctor has the right medicine."
 msgstr ""
 "Bien sûr que non. Tu n'es pas docteur. Seuls les médecins ont la véritable "
 "science de la guérison."
@@ -3509,8 +3467,7 @@ msgstr ""
 "être même qu'il finira alors par m'aider!"
 
 #: ../dialogs/Bender.dialog:210
-msgid ""
-"Yes, he'll get a good beating. That will make him reconsider! That rat!"
+msgid "Yes, he'll get a good beating. That will make him reconsider! That rat!"
 msgstr ""
 "Ouais, il va recevoir une bonne raclée. Ce qui le fera réfléchir ! Cette "
 "charogne !"
@@ -3739,15 +3696,12 @@ msgid " I do not have to tell you anything, bot."
 msgstr " Je ne suis pas obligé de te dire quoi que ce soit, robot."
 
 #: ../dialogs/KevinGuard.dialog:253
-msgid ""
-"ENGAGING AGGRESSION CIRCUITS. YOU SHALL BE DISINTEGRATED IN TEN SECONDS."
-msgstr ""
-"ENGAGEMENT DES CIRCUITS D'ATTAQUE. VOUS SEREZ DÉSINTÉGRÉ DANS DIX SECONDES."
+msgid "ENGAGING AGGRESSION CIRCUITS. YOU SHALL BE DISINTEGRATED IN TEN SECONDS."
+msgstr "ENGAGEMENT DES CIRCUITS D'ATTAQUE. VOUS SEREZ DÉSINTÉGRÉ DANS DIX SECONDES."
 
 #: ../dialogs/KevinGuard.dialog:268
 msgid " I think I just found an error in your programming."
-msgstr ""
-" Je pense que j'ai simplement trouvé une erreur dans ta programmation."
+msgstr " Je pense que j'ai simplement trouvé une erreur dans ta programmation."
 
 #: ../dialogs/KevinGuard.dialog:279
 msgid " Thought so."
@@ -3790,8 +3744,7 @@ msgid " Why is the guardhouse locked most of the time?"
 msgstr " Pourquoi est-ce que le portail est fermé la plupart du temps ?"
 
 #: ../dialogs/Tybalt.dialog:48
-msgid ""
-"It's locked so no one can sneak inside while I'm not looking. That's why."
+msgid "It's locked so no one can sneak inside while I'm not looking. That's why."
 msgstr ""
 "C'est fermé, ainsi personne ne peut fouiner à l'intérieur tant que je "
 "surveille."
@@ -3916,8 +3869,7 @@ msgstr "Bon débarras."
 
 #: ../dialogs/Bruce.dialog:33
 msgid " Hi. Are you all right? You don't look too good."
-msgstr ""
-" Bonjour. Est-ce que tout va bien ? Tu ne sembles pas en bonne forme."
+msgstr " Bonjour. Est-ce que tout va bien ? Tu ne sembles pas en bonne forme."
 
 #: ../dialogs/Bruce.dialog:36
 msgid "Good day. I am Bruce."
@@ -3944,8 +3896,7 @@ msgstr ""
 "de travail dans les mines."
 
 #: ../dialogs/Bruce.dialog:62
-msgid ""
-"I feel really wiped, so maybe it would be better if you came some other day."
+msgid "I feel really wiped, so maybe it would be better if you came some other day."
 msgstr ""
 "Je suis vraiment épuisé, donc ce serait peut être mieux si tu venais un "
 "autre jour."
@@ -3962,8 +3913,7 @@ msgstr ""
 
 #: ../dialogs/Bruce.dialog:75
 msgid "If you do not work for a full work period, you will be in trouble."
-msgstr ""
-"Si tu ne travailles pas pendant une période pleine, tu auras des problèmes."
+msgstr "Si tu ne travailles pas pendant une période pleine, tu auras des problèmes."
 
 #: ../dialogs/Bruce.dialog:77
 msgid "But I have no choice. I do not want to be a soldier again."
@@ -4008,8 +3958,7 @@ msgstr " Tu as mentionné un exterminateur. Qu'est-ce que c'est?"
 
 #: ../dialogs/Bruce.dialog:117
 msgid "It is the best weapon that the Red Guard has against the bots."
-msgstr ""
-"C'est la meilleure arme que possède la Garde Rouge pour affronter les robots."
+msgstr "C'est la meilleure arme que possède la Garde Rouge pour affronter les robots."
 
 #: ../dialogs/Bruce.dialog:119
 msgid ""
@@ -4020,10 +3969,8 @@ msgstr ""
 "plupart des robots en éclats de métal."
 
 #: ../dialogs/Bruce.dialog:121
-msgid ""
-"Many of the great victories of the Red Guard are thanks to the exterminator."
-msgstr ""
-"Beaucoup des grandes victoires de la Garde Rouge sont dûes à l'exterminateur."
+msgid "Many of the great victories of the Red Guard are thanks to the exterminator."
+msgstr "Beaucoup des grandes victoires de la Garde Rouge sont dûes à l'exterminateur."
 
 #: ../dialogs/Bruce.dialog:123
 msgid ""
@@ -4089,8 +4036,7 @@ msgstr ""
 "suis résigné et j'ai commencé à travailler à la mine peu de temps après."
 
 #: ../dialogs/Bruce.dialog:145
-msgid ""
-"I do not want to face the anger of the Hell Fortress ever again. Never again."
+msgid "I do not want to face the anger of the Hell Fortress ever again. Never again."
 msgstr ""
 "Je ne voulais plus jamais affronter la fureur de la Forteresse de l'enfer. "
 "Plus jamais."
@@ -4230,8 +4176,7 @@ msgid " I don't want any reward. Just gratitude."
 msgstr " Je ne cherche pas de récompense. Seulement de la gratitude."
 
 #: ../dialogs/subdlg_kevin_reward1.dialog:74
-msgid ""
-"Of course you can have that. There, I'm most grateful to you. That should do."
+msgid "Of course you can have that. There, I'm most grateful to you. That should do."
 msgstr ""
 "Naturellement tu peux le prendre. Je te suis très reconnaissant. Ça te "
 "revient."
@@ -4261,8 +4206,7 @@ msgstr "Surveille juste les alentours."
 #: ../dialogs/Ernie.dialog:50
 #: ../dialogs/Ernie.dialog:63
 msgid "Ok!  But don't make any trouble!  Or you'll be in trouble!"
-msgstr ""
-"Ok ! Mais ne cause plus de problèmes ! Ou c'est toi qui auras des problèmes !"
+msgstr "Ok ! Mais ne cause plus de problèmes ! Ou c'est toi qui auras des problèmes !"
 
 #: ../dialogs/Ernie.dialog:60
 msgid "I'd like to get into the mine."
@@ -4273,8 +4217,7 @@ msgid "I'm here to make an end to your mining business."
 msgstr "Je suis ici pour mettre fin à ton commerce minier."
 
 #: ../dialogs/Ernie.dialog:76
-msgid ""
-"Ok Linarian!  You wanted it that way!  And I don't like penguins anyway!"
+msgid "Ok Linarian!  You wanted it that way!  And I don't like penguins anyway!"
 msgstr ""
 "Ok Linarien ! Tu le prends comme ça ! Et de toutes façons je n'aime pas les "
 "manchots !"
@@ -4289,8 +4232,7 @@ msgstr "Ouais, qu'est ce que tu veux, dï¿½butant ?"
 
 #: ../dialogs/Butch.dialog:45
 msgid " Say 'newbie' again and I will rip your spine out."
-msgstr ""
-" Appelle-moi 'dï¿½butant' encore une fois et je t'arracherais la colonne."
+msgstr " Appelle-moi 'dï¿½butant' encore une fois et je t'arracherais la colonne."
 
 #: ../dialogs/Butch.dialog:48
 msgid "Fine, newbie. You are greener than green and a total newbie."
@@ -4439,8 +4381,7 @@ msgid "Beacuse you ARE a newbie, newbie!"
 msgstr "Parce que tu ES un dï¿½butant, dï¿½butant !"
 
 #: ../dialogs/Butch.dialog:209
-msgid ""
-" Why the hell are you organizing fights? Enough people have died already!"
+msgid " Why the hell are you organizing fights? Enough people have died already!"
 msgstr ""
 " Pourquoi diable est ce que tu organises des combats ? Il y a eu assez de "
 "morts comme ï¿½a !"
@@ -4450,8 +4391,7 @@ msgid "I have a very good reason not to tell you."
 msgstr "J'ai une trï¿½s bonne raison de ne pas te le dire."
 
 #: ../dialogs/Butch.dialog:214
-msgid ""
-"Not like someone as inexperienced like you could understand it anyway."
+msgid "Not like someone as inexperienced like you could understand it anyway."
 msgstr ""
 "Personne d'aussi inexpï¿½rimentï¿½ que toi ne pourrait comprendre cela de "
 "toute faï¿½on."
@@ -4554,8 +4494,7 @@ msgstr ""
 
 #: ../dialogs/Sorenson.dialog:49
 msgid "I can help you understand computers... Greater than ever before."
-msgstr ""
-"Je peux t'aider à comprendre les ordinateurs... Mieux que jamais avant."
+msgstr "Je peux t'aider à comprendre les ordinateurs... Mieux que jamais avant."
 
 #: ../dialogs/Sorenson.dialog:63
 msgid "I? Sorenson is a great computer person."
@@ -4595,8 +4534,7 @@ msgstr " Oui, j'ai l'idée..."
 
 #: ../dialogs/Sorenson.dialog:93
 msgid "Seeker of clean languages. The great knower of obscure secrets."
-msgstr ""
-"À la recherche de languages clean. La grande connaissance de secrets obscurs."
+msgstr "À la recherche de languages clean. La grande connaissance de secrets obscurs."
 
 #: ../dialogs/Sorenson.dialog:95
 msgid "The one who speaks to hard drives. The best --"
@@ -4624,8 +4562,7 @@ msgstr "Elle ne t'a pas dit qu'elle parcourt les corridors sombres --"
 
 #: ../dialogs/Sorenson.dialog:120
 msgid " STOP! STOP! I CANNOT TAKE THIS ANYMORE! MY HEAD HURTS!"
-msgstr ""
-" ARRÊTE ! ARRÊTE ! JE NE PEUX PAS EN RECEVOIR PLUS ! MA TÊTE SOUFFRE !"
+msgstr " ARRÊTE ! ARRÊTE ! JE NE PEUX PAS EN RECEVOIR PLUS ! MA TÊTE SOUFFRE !"
 
 #: ../dialogs/Sorenson.dialog:123
 msgid "Apology is being extended by me. Sorenson overdid it."
@@ -4649,8 +4586,7 @@ msgstr "Sorenson demande assistance. Beaucoup de jours et de nuits."
 
 #: ../dialogs/Sorenson.dialog:139
 msgid "Light arrived. Light offered help. Sorenson changed."
-msgstr ""
-"La lumière est venue. La lumière a donné de l'aide. Sorenson a changé."
+msgstr "La lumière est venue. La lumière a donné de l'aide. Sorenson a changé."
 
 #: ../dialogs/Sorenson.dialog:141
 msgid "Free person now."
@@ -4666,8 +4602,7 @@ msgstr "COBOL cause des séquelles pour l'esprit."
 
 #: ../dialogs/Sorenson.dialog:154
 msgid "Don't use it. Forget the cursed name. COBOL is pain. COBOL is hate."
-msgstr ""
-"Ne l'utilise pas. Oublie le nom maudit. COBOL est le mal. COBOL est la haine."
+msgstr "Ne l'utilise pas. Oublie le nom maudit. COBOL est le mal. COBOL est la haine."
 
 #: ../dialogs/Sorenson.dialog:161
 msgid " I see you have a huge book collection. Mind if I buy some from you?"
@@ -4772,8 +4707,7 @@ msgstr ""
 
 #: ../dialogs/subdlg_Spencer_eval.dialog:94
 msgid "Please talk to our cook and try to fix the situation."
-msgstr ""
-"S'il te plaï¿½t, parle de notre cuisine et essaie d'arranger la situation."
+msgstr "S'il te plaï¿½t, parle de notre cuisine et essaie d'arranger la situation."
 
 #: ../dialogs/subdlg_Spencer_eval.dialog:123
 msgid "Congratulations on your victory in the arena."
@@ -4811,8 +4745,7 @@ msgstr ""
 
 #: ../dialogs/subdlg_Spencer_eval.dialog:171
 msgid "Oh, and please be careful, Bender is rather easy to anger."
-msgstr ""
-"Oh, et, s'il te plaï¿½t, prends garde, Bender est facile ï¿½ effrayer."
+msgstr "Oh, et, s'il te plaï¿½t, prends garde, Bender est facile ï¿½ effrayer."
 
 #: ../dialogs/subdlg_Spencer_eval.dialog:191
 msgid "We have moved 17 tons of supplies from the warehouse to the town."
@@ -4821,8 +4754,7 @@ msgstr ""
 "villle."
 
 #: ../dialogs/subdlg_Spencer_eval.dialog:193
-msgid ""
-"This means we can resist the bots for a month more. Quite a lot of time."
+msgid "This means we can resist the bots for a month more. Quite a lot of time."
 msgstr ""
 "Cela signifie que nous pouvons rï¿½sister aux robots pendant plus d'un mois. "
 "Sï¿½rement pas mal de temps."
@@ -4837,16 +4769,14 @@ msgstr "JOINING HERE"
 
 #: ../dialogs/subdlg_Spencer_eval.dialog:206
 msgid "Congratulations, you have convinced me you would be a good Red Guard."
-msgstr ""
-"Fï¿½licitations, tu m'as convaincu que tu pourras ï¿½tre une bon Garde Rouge."
+msgstr "Fï¿½licitations, tu m'as convaincu que tu pourras ï¿½tre une bon Garde Rouge."
 
 #: ../dialogs/subdlg_Spencer_eval.dialog:208
 msgid "Welcome on board."
 msgstr "Bienvenue ï¿½ bord."
 
 #: ../dialogs/subdlg_Spencer_eval.dialog:237
-msgid ""
-"Not bad, not bad at all. I am nearly convinced you would be a good member."
+msgid "Not bad, not bad at all. I am nearly convinced you would be a good member."
 msgstr ""
 "Pas mal, pas mal du tout. Je suis presque convaincu que tu deviendras un "
 "membre exemplaire."
@@ -4856,8 +4786,7 @@ msgid "Do a couple more tasks, and I will give you a membership."
 msgstr "Fais-en deux de plus, et je te donnerai un ï¿½quipage."
 
 #: ../dialogs/subdlg_Spencer_eval.dialog:249
-msgid ""
-"You still need to do a lot of work to earn your membership. Good luck."
+msgid "You still need to do a lot of work to earn your membership. Good luck."
 msgstr ""
 "Tu as encore besoin de beaucoup travailler pour gagner ton ï¿½quipage. Bonne "
 "chance."
@@ -4962,8 +4891,7 @@ msgstr " Identifiant : admin  Mot de passe : *******"
 
 #: ../dialogs/SACD.dialog:36
 msgid "Last login from dev/ttyS0 on Sun, 23 mar 2057. admin@sadefence: ~ #"
-msgstr ""
-"Dernière connexion depuis dev/ttyS0 le Dim, 23 mar 2057. admin@sadefence: ~ #"
+msgstr "Dernière connexion depuis dev/ttyS0 le Dim, 23 mar 2057. admin@sadefence: ~ #"
 
 #: ../dialogs/SACD.dialog:47
 msgid " /usr/bin/guns --disable"
@@ -5395,13 +5323,11 @@ msgstr " Oui. À présent, quitte cet endroit."
 
 #: ../dialogs/SADD.dialog:482
 msgid " This is rubbish! Nobody can use this dammed exteriminator!"
-msgstr ""
-" C'est un sale truc ! Personne ne peux utiliser ce satané exteriminator !"
+msgstr " C'est un sale truc ! Personne ne peux utiliser ce satané exteriminator !"
 
 #: ../dialogs/SADD.dialog:485
 msgid " The door is still open. You can put it where you took it and go."
-msgstr ""
-" La porte est encore ouverte. Tu peux le laisser ou le prendre et t'en aller."
+msgstr " La porte est encore ouverte. Tu peux le laisser ou le prendre et t'en aller."
 
 #: ../dialogs/SADD.dialog:493
 msgid ""
@@ -5413,8 +5339,7 @@ msgstr ""
 
 #: ../dialogs/SADD.dialog:496
 msgid " You can go, that's your revard. And DON'T TRY MY PATIENCE!"
-msgstr ""
-" Tu peux y aller, c'est ta récompense. Et N'ABUSE PAS DE MA PATIENCE !"
+msgstr " Tu peux y aller, c'est ta récompense. Et N'ABUSE PAS DE MA PATIENCE !"
 
 #: ../dialogs/SADD.dialog:504
 msgid " I'll kill you if you won't give me my gun!"
@@ -5434,8 +5359,7 @@ msgstr " Et que deviennent tes directives, particulièrement la seconde ?"
 
 #: ../dialogs/SADD.dialog:525
 msgid " Now I have tyme. When you die, I'll disable guns."
-msgstr ""
-" Maintenant j'ai du temps. Lorsque tu seras mort, je désactiverai les armes."
+msgstr " Maintenant j'ai du temps. Lorsque tu seras mort, je désactiverai les armes."
 
 #: ../dialogs/SADD.dialog:531
 msgid " Please forgive me!"
@@ -5460,8 +5384,7 @@ msgstr " Ok, je les désactiverai."
 
 #: ../dialogs/SADD.dialog:549
 msgid " I just need to make some preporations. You have to wait..."
-msgstr ""
-" J'ai seulement besoin de faire un peu de préparations. Tu dois attendre..."
+msgstr " J'ai seulement besoin de faire un peu de préparations. Tu dois attendre..."
 
 #: ../dialogs/SADD.dialog:551
 msgid " Untill you die!"
@@ -5479,8 +5402,7 @@ msgstr " Exactement."
 msgid ""
 "You don't have enough cash, cheapskate. Come back when you can afford to pay "
 "me."
-msgstr ""
-"Tu n'as pas assez d'argent. Reviens me voir quand tu auras de quoi me payer."
+msgstr "Tu n'as pas assez d'argent. Reviens me voir quand tu auras de quoi me payer."
 
 #: ../dialogs/subdlg_Kevin.dialog:62
 msgid " Improve Hacking Ability (cost 300 cash, 5 ability points)"
@@ -5509,16 +5431,14 @@ msgid "Now I see your hacking skill has already improved a lot."
 msgstr "Je vois que ton savoir en hack a déjà beaucoup augmenté."
 
 #: ../dialogs/subdlg_Kevin.dialog:92
-msgid ""
-"You don't have enough experience. I can't teach you anything more this way."
+msgid "You don't have enough experience. I can't teach you anything more this way."
 msgstr ""
 "Tu n'as pas assez d'expérience. Je ne peux pas t'apprendre quoi que ce soit "
 "de plus de cette façon."
 
 #: ../dialogs/Pendragon.dialog:36
 msgid "You don't say. I'm not living here either. I'm just on vacation."
-msgstr ""
-"Tu ne dis rien. Je ne vis pas non plus ici. Je suis seulement en vacances."
+msgstr "Tu ne dis rien. Je ne vis pas non plus ici. Je suis seulement en vacances."
 
 #: ../dialogs/Pendragon.dialog:38
 msgid ""
@@ -5563,8 +5483,7 @@ msgstr ""
 "suis ton nouveau meilleur ami !"
 
 #: ../dialogs/Skippy.dialog:38
-msgid ""
-"And as a special favour I'll sell you a mapping device for half price!"
+msgid "And as a special favour I'll sell you a mapping device for half price!"
 msgstr ""
 "Et comme petite faveur je vais te vendre un appareil de cartographie moitié "
 "prix!"
@@ -5640,14 +5559,11 @@ msgid " Nanotechnology? Isn't that dangerous?"
 msgstr " La nanotechnologie ? N'est-ce pas dangereux ?"
 
 #: ../dialogs/Skippy.dialog:98
-msgid ""
-"No way, man, I guarantee it. Don't believe anything you might have heard."
-msgstr ""
-"Non mec, je te le garantis. Ne crois pas à ce qu'on a pu te raconter."
+msgid "No way, man, I guarantee it. Don't believe anything you might have heard."
+msgstr "Non mec, je te le garantis. Ne crois pas à ce qu'on a pu te raconter."
 
 #: ../dialogs/Skippy.dialog:100
-msgid ""
-"This is a perfectly safe and tried technology. No risk at all! Really!"
+msgid "This is a perfectly safe and tried technology. No risk at all! Really!"
 msgstr ""
 "C'est une technologie testée et sécurisée. Elle ne présente aucun risque. "
 "Vraiment !"
@@ -5676,8 +5592,7 @@ msgstr "QUOI ? Mais je suis ton meilleur ami ! Tu dois me faire confiance !"
 
 #: ../dialogs/Skippy.dialog:123
 msgid " I still do not trust you. You are selling junk to people."
-msgstr ""
-" Je ne te fais toujours pas confiance. Tu vends de la camelote aux gens."
+msgstr " Je ne te fais toujours pas confiance. Tu vends de la camelote aux gens."
 
 #: ../dialogs/Skippy.dialog:126
 msgid ""
@@ -5736,8 +5651,7 @@ msgid "Don't come back. I hate you."
 msgstr "Ne reviens jamais. Je te déteste."
 
 #: ../dialogs/Skippy.dialog:209
-msgid ""
-"Yes, we'll meet again, my friend, and I'll have other great deals for you."
+msgid "Yes, we'll meet again, my friend, and I'll have other great deals for you."
 msgstr ""
 "Oui, nous nous rencontrerons à nouveau, mon ami, et nous ferons encore de "
 "bonnes affaires."
@@ -5767,8 +5681,7 @@ msgstr ""
 msgid ""
 "There are two kinds or armor, a heavy Red Guard robe and a light version of "
 "the same thing."
-msgstr ""
-"Il y a deux types d'armures : une armure lourde et une armure légère."
+msgstr "Il y a deux types d'armures : une armure lourde et une armure légère."
 
 #: ../dialogs/Lukas.dialog:52
 msgid "Now, what will it be?"
@@ -5890,8 +5803,7 @@ msgstr ""
 
 #: ../dialogs/Dixon.dialog:83
 msgid " Why are you wearing armor? Mechanics do not need it."
-msgstr ""
-" Pourquoi portes-tu une armure ? Les mï¿½caniciens n'en ont pas besoins."
+msgstr " Pourquoi portes-tu une armure ? Les mï¿½caniciens n'en ont pas besoins."
 
 #: ../dialogs/Dixon.dialog:86
 msgid "Ah... Yes. At first I thought that I did not need it either."
@@ -5930,8 +5842,7 @@ msgstr ""
 "sauver. Il m'a amputï¿½."
 
 #: ../dialogs/Dixon.dialog:96
-msgid ""
-"Now, while you cannot see it underneath the armor, my right leg runs NetBSD."
+msgid "Now, while you cannot see it underneath the armor, my right leg runs NetBSD."
 msgstr ""
 "ï¿½ prï¿½sent, tu ne peux pas le voir sous mon armure, mais ma jambe droite "
 "tourne sous NetBSD."
@@ -5947,8 +5858,7 @@ msgstr ""
 
 #: ../dialogs/Dixon.dialog:106
 msgid " You are very calm, talking about your leg and the bot attack."
-msgstr ""
-" Tu es trï¿½s calme, en parlant de ta jambe et de l'attaque des robots."
+msgstr " Tu es trï¿½s calme, en parlant de ta jambe et de l'attaque des robots."
 
 #: ../dialogs/Dixon.dialog:109
 msgid "Linarian, I cannot change the past, I can only change the future."
@@ -6038,8 +5948,7 @@ msgstr ""
 "gï¿½nial que tu puisse nous aider pendant quelques jours."
 
 #: ../dialogs/Dixon.dialog:149
-msgid ""
-"Now, what are your skills? Where do you think you could be the most useful?"
+msgid "Now, what are your skills? Where do you think you could be the most useful?"
 msgstr ""
 "Maintenant, quelles sont tes compï¿½tences ? ï¿½ quoi penses-tu que tu seras "
 "le plus utile?"
@@ -6062,8 +5971,7 @@ msgstr ""
 "Les choses comme ï¿½a ? "
 
 #: ../dialogs/Dixon.dialog:168
-msgid ""
-" Well... I can build an igloo and make pykrete out of snow... And... Umm..."
+msgid " Well... I can build an igloo and make pykrete out of snow... And... Umm..."
 msgstr ""
 " Eh bien... Je peux construire un igloo et faire des pykrete en dehors de la "
 "neige... Et... Hum..."
@@ -6104,8 +6012,7 @@ msgstr ""
 
 #: ../dialogs/Dixon.dialog:181
 msgid "If you could get it back for us, it would help the city very much."
-msgstr ""
-"Si tu pouvais nous la ramener, cela pourrait beaucoup aider pour la ville."
+msgstr "Si tu pouvais nous la ramener, cela pourrait beaucoup aider pour la ville."
 
 #: ../dialogs/Dixon.dialog:193
 msgid " Why are there rebel bots under the city?"
@@ -6155,8 +6062,7 @@ msgstr "Ils ont fortifiï¿½ les tunnels et il ne laissent personne entrer."
 #: ../dialogs/Dixon.dialog:213
 #: ../dialogs/Dixon.dialog:312
 msgid " How did it happen that the bots took your tools away?"
-msgstr ""
-" Qu'est-ce qui s'est passï¿½ lorsque les robots ont pris tes outils ?"
+msgstr " Qu'est-ce qui s'est passï¿½ lorsque les robots ont pris tes outils ?"
 
 #: ../dialogs/Dixon.dialog:216
 msgid ""
@@ -6231,8 +6137,7 @@ msgstr ""
 "Grand Assaut avait commencï¿½. Le reste est de l'histoire connue."
 
 #: ../dialogs/Dixon.dialog:238
-msgid ""
-" Hmm... You know... I think that the bots in the tunnels might be sentient."
+msgid " Hmm... You know... I think that the bots in the tunnels might be sentient."
 msgstr ""
 " Hmm... Tu sais... Je pense que les robots dans les tunnels ont peut ï¿½tre "
 "des sentiments."
@@ -6259,8 +6164,7 @@ msgid "OH MY GOD! Linarian, there is no time to lose!"
 msgstr "OH MON DIEU ! Linarien, il n'y a pas de temps ï¿½ perdre!"
 
 #: ../dialogs/Dixon.dialog:259
-msgid ""
-"I will call the military division and arrange a sweep of the tunnels at once."
+msgid "I will call the military division and arrange a sweep of the tunnels at once."
 msgstr ""
 "Je vais appeler la division militaire et organiser un balayage des tunnels "
 "en une seule fois."
@@ -6356,8 +6260,7 @@ msgstr ""
 "veux l'aide de la division militaire."
 
 #: ../dialogs/Dixon.dialog:327
-msgid ""
-"Erm... And aren't you being too aggressive? Maybe they do not wish us harm..."
+msgid "Erm... And aren't you being too aggressive? Maybe they do not wish us harm..."
 msgstr ""
 "Hem... Et est ce que tu n'es pas trop agressif ? Peut ï¿½tre qu'ils n'ont "
 "pas l'intention de nous faire de mal..."
@@ -6438,8 +6341,7 @@ msgstr ""
 
 #: ../dialogs/Dixon.dialog:366
 msgid "I am sorry, but I must go now. My duties call."
-msgstr ""
-"Je suis dï¿½solï¿½, mais je dois y aller maintenant. Le devoir m'appelle."
+msgstr "Je suis dï¿½solï¿½, mais je dois y aller maintenant. Le devoir m'appelle."
 
 #: ../dialogs/Dixon.dialog:377
 msgid " I got your toolkit. The bots were not a big problem."
@@ -6678,8 +6580,7 @@ msgid "Life is good right now."
 msgstr "La vie est belle maintenant."
 
 #: ../dialogs/Dixon.dialog:580
-msgid ""
-" What happened? Last time I asked, you said things are not going that well."
+msgid " What happened? Last time I asked, you said things are not going that well."
 msgstr ""
 " Que se passe-t-il ? La derniï¿½re fois que je t'ai demandï¿½, tu m'as dis "
 "que ï¿½a n'allait pas si bien que ï¿½a."
@@ -6689,8 +6590,7 @@ msgid " Yes, but now everything is different."
 msgstr " Oui, mais tout est diffï¿½rent maintenant."
 
 #: ../dialogs/Dixon.dialog:585
-msgid ""
-"I met someone who decided to join us in the fight against the MegaSys bots."
+msgid "I met someone who decided to join us in the fight against the MegaSys bots."
 msgstr ""
 "J'ai rencontrï¿½ quelqu'un qui a dï¿½cidï¿½ de se joindre ï¿½ nous dans le "
 "combat contre les robot de MegaSys."
@@ -6714,10 +6614,8 @@ msgid "Nope. Some things you just have to see with your own eyes."
 msgstr "Non. Des choses que tu dois voir de tes propres yeux."
 
 #: ../dialogs/Dixon.dialog:601
-msgid ""
-"The Library of Alexandria, the Colossus of Rhodes, the Black Island..."
-msgstr ""
-"La bibliothï¿½que d'Alexandrie, le Colosse de Rhodes, l'ï¿½le noire..."
+msgid "The Library of Alexandria, the Colossus of Rhodes, the Black Island..."
+msgstr "La bibliothï¿½que d'Alexandrie, le Colosse de Rhodes, l'ï¿½le noire..."
 
 #: ../dialogs/Dixon.dialog:603
 msgid "And this is just one of those things."
@@ -6813,8 +6711,7 @@ msgstr "LOST."
 
 #: ../dialogs/Dixon.dialog:761
 msgid "FUCK MY LIFELONG PACIFISM. I WILL FUCKING KILL YOU NOW!"
-msgstr ""
-"FI SOIT FAIT DE MON PACIFISME INDï¿½CROTTABLE, JE VAIS TE TUER MAINTENANT !"
+msgstr "FI SOIT FAIT DE MON PACIFISME INDï¿½CROTTABLE, JE VAIS TE TUER MAINTENANT !"
 
 #: ../dialogs/Dixon.dialog:763
 msgid "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA!"
@@ -6854,8 +6751,7 @@ msgstr " Bonjour ! Je suis nouveau ici. "
 
 #: ../dialogs/MER.dialog:36
 msgid "Welcome them!  I'm called MER.  My dialog isn't done though."
-msgstr ""
-"Bienvenue ici ! On m'appelle MER. Mes dialogues ne sont pas encore écrits."
+msgstr "Bienvenue ici ! On m'appelle MER. Mes dialogues ne sont pas encore écrits."
 
 #: ../dialogs/subdlg_Benjamin.dialog:43
 msgid " Improve ranged weapon skill (cost 5 training points, 100 cash) "
@@ -6864,14 +6760,11 @@ msgstr ""
 "d'entraînement, 100 billets) "
 
 #: ../dialogs/subdlg_Benjamin.dialog:54
-msgid ""
-"Done. Small improvements of dexterity are not so hard to achieve after all."
-msgstr ""
-"Fait. Améliorer un peu sa dextérité n'est pas si difficile après tout."
+msgid "Done. Small improvements of dexterity are not so hard to achieve after all."
+msgstr "Fait. Améliorer un peu sa dextérité n'est pas si difficile après tout."
 
 #: ../dialogs/subdlg_Benjamin.dialog:66
-msgid ""
-"You don't have enough experience. Come here after you see some more action."
+msgid "You don't have enough experience. Come here after you see some more action."
 msgstr ""
 "Tu n'as pas assez d'expérience. Reviens ici après que tu aies vu un peu plus "
 "de combats."
@@ -6907,17 +6800,14 @@ msgstr ""
 "proprement ton tir."
 
 #: ../dialogs/subdlg_Benjamin.dialog:101
-msgid ""
-"Watch your target closely.  Pretend you're moving with it. Aim for the head."
+msgid "Watch your target closely.  Pretend you're moving with it. Aim for the head."
 msgstr ""
 "Ne fixe que ta cible. Imagine que tu bouges avec elle. Ce doit être le but "
 "pour ton cerveau."
 
 #: ../dialogs/subdlg_Benjamin.dialog:103
-msgid ""
-"When you feel completely in sync with your target, then you pull the trigger."
-msgstr ""
-"Lorsque tu sens faire corps avec ta cible, alors enclenche le viseur."
+msgid "When you feel completely in sync with your target, then you pull the trigger."
+msgstr "Lorsque tu sens faire corps avec ta cible, alors enclenche le viseur."
 
 #: ../dialogs/subdlg_Benjamin.dialog:105
 msgid "Good. You are learning fast. Try it a few more times."
@@ -6984,8 +6874,7 @@ msgstr "FIRST LESSON"
 
 #: ../dialogs/subdlg_Darwin.dialog:132
 msgid "Let us start with entropy inverters. This is quite simple."
-msgstr ""
-"Laisse nous commencer avec l'inverseur d'entropie. C'est vraiment simple."
+msgstr "Laisse nous commencer avec l'inverseur d'entropie. C'est vraiment simple."
 
 #: ../dialogs/subdlg_Darwin.dialog:134
 msgid "Just take a hammer and hit the bot sehr hard on the head."
@@ -7008,8 +6897,7 @@ msgid "How about... Plasma transistors? Trivial."
 msgstr "Comment ça... Des transistors plasma ? Trivial."
 
 #: ../dialogs/subdlg_Darwin.dialog:152
-msgid ""
-"Remove the bot's engine and look around somewhere close to the battery."
+msgid "Remove the bot's engine and look around somewhere close to the battery."
 msgstr "Enlève le moteur du robot et recherche aux alentours de la batterie."
 
 #: ../dialogs/subdlg_Darwin.dialog:154
@@ -7051,8 +6939,7 @@ msgstr "FOURTH LESSON"
 
 #: ../dialogs/subdlg_Darwin.dialog:188
 msgid "I will tell you everything about matter-antimatter converters."
-msgstr ""
-"Je te raconterai tout à propos des convertisseurs matière-antimatière."
+msgstr "Je te raconterai tout à propos des convertisseurs matière-antimatière."
 
 #: ../dialogs/subdlg_Darwin.dialog:190
 msgid "Yes... Converters are a problem."
@@ -7124,8 +7011,7 @@ msgid "NO MORE LESSONS"
 msgstr "NO MORE LESSONS"
 
 #: ../dialogs/subdlg_Darwin.dialog:232
-msgid ""
-"Nein, I told you everything I know about that. No use asking me twice, ja?"
+msgid "Nein, I told you everything I know about that. No use asking me twice, ja?"
 msgstr ""
 "Nein, je t'ai dit tout ce que je savais àce propos. Inutile de me demander "
 "deux fois, ja ?"
@@ -7294,10 +7180,8 @@ msgid "Nothing that important."
 msgstr "Rien de très important."
 
 #: ../dialogs/subdlg_Duncan_quest.dialog:124
-msgid ""
-" A 'few' bots? The place was crawling with Sawmills! I nearly got killed!"
-msgstr ""
-" 'Quelques' robots ? C'était plein de scimouleurs ! J'ai failli être tué !"
+msgid " A 'few' bots? The place was crawling with Sawmills! I nearly got killed!"
+msgstr " 'Quelques' robots ? C'était plein de scimouleurs ! J'ai failli être tué !"
 
 #: ../dialogs/subdlg_Duncan_quest.dialog:127
 msgid ""
@@ -7343,8 +7227,7 @@ msgstr "Je veux."
 
 #: ../dialogs/subdlg_Duncan_quest.dialog:170
 msgid " WHAT? No way I am giving you a doomsday device! Forget about it."
-msgstr ""
-" QUOI ? Pas moyen que je te donne un de ces engins d'apocalypse ! Oublie ça."
+msgstr " QUOI ? Pas moyen que je te donne un de ces engins d'apocalypse ! Oublie ça."
 
 #: ../dialogs/subdlg_Duncan_quest.dialog:173
 msgid "I understand. So be it."
@@ -7532,8 +7415,7 @@ msgstr ""
 "pouvait faire une sortie avec ses propres mains."
 
 #: ../dialogs/Tania.dialog:149
-msgid ""
-"If you go further, you would find debris and a big stone. That is his grave."
+msgid "If you go further, you would find debris and a big stone. That is his grave."
 msgstr ""
 "Si tu vas plus loin, tu devrais rencontrer des débris et une grosse pierre. "
 "C'est sa sépulture."
@@ -7594,8 +7476,7 @@ msgid "It is strange to see a girl in such a beautiful dress here."
 msgstr "C'est étrange de voir une fille dans une si jolie robe ici."
 
 #: ../dialogs/Tania.dialog:206
-msgid ""
-"I'm going to spend all my life here! So forgive me some little weakneses."
+msgid "I'm going to spend all my life here! So forgive me some little weakneses."
 msgstr "J'ai passé toute ma vie ici ! Donc oublie moi quelques temps."
 
 #: ../dialogs/Tania.dialog:213
@@ -7750,8 +7631,7 @@ msgstr "That's ok. But please, please, come back. I'm so lonely."
 
 #: ../dialogs/RMS.dialog:36
 msgid "Welcome, welcome! I'm Richard. I'm the computer guy around here."
-msgstr ""
-"Bienvenue, bienvenue ! Je suis Richard. Je suis l'informaticien du coin."
+msgstr "Bienvenue, bienvenue ! Je suis Richard. Je suis l'informaticien du coin."
 
 #: ../dialogs/RMS.dialog:38
 msgid ""
@@ -7891,8 +7771,7 @@ msgstr " Où puis-je me procurer un meilleur équipement ?"
 msgid ""
 "The shop is to the east. Ms. Stone always has a good range of equipment "
 "there."
-msgstr ""
-"Le magasin est à l'est. Mlle Stone a toujours un bon choix d'équipement ici."
+msgstr "Le magasin est à l'est. Mlle Stone a toujours un bon choix d'équipement ici."
 
 #: ../dialogs/Chandra.dialog:65
 msgid ""
@@ -7938,8 +7817,7 @@ msgstr "... ALORS QUELQUE CHOSE N'EST PAS LOGIQUE !"
 
 #: ../dialogs/Chandra.dialog:91
 msgid " Calm down. There must be some logic behind this."
-msgstr ""
-" Calmez vous. Il y a peut être quelque chose de logique derrière tout ceci."
+msgstr " Calmez vous. Il y a peut être quelque chose de logique derrière tout ceci."
 
 #: ../dialogs/Chandra.dialog:94
 msgid "There is none!"
@@ -7947,8 +7825,7 @@ msgstr "Il n'y a rien !"
 
 #: ../dialogs/Chandra.dialog:96
 msgid "They could just enter the city and massacre everyone."
-msgstr ""
-"Ils pouraient simplement entrer dans la ville et massacrer tout le monde."
+msgstr "Ils pouraient simplement entrer dans la ville et massacrer tout le monde."
 
 #: ../dialogs/Chandra.dialog:98
 msgid "But they do not do so."
@@ -8065,15 +7942,12 @@ msgstr ""
 "impossible."
 
 #: ../dialogs/Chandra.dialog:167
-msgid ""
-"Most likely all of our cosmodromes have been destroyed in the bot attacks."
-msgstr ""
-"La plupart de nos cosmodromes ont été détruits dans l'attaque des robots."
+msgid "Most likely all of our cosmodromes have been destroyed in the bot attacks."
+msgstr "La plupart de nos cosmodromes ont été détruits dans l'attaque des robots."
 
 #: ../dialogs/Chandra.dialog:174
 msgid " I keep getting beaten up by the bots. What can I do?"
-msgstr ""
-" Je crois que je serai battu par les robots. Qu'est-ce que je peux faire?"
+msgstr " Je crois que je serai battu par les robots. Qu'est-ce que je peux faire?"
 
 #: ../dialogs/Chandra.dialog:177
 msgid ""
@@ -8123,8 +7997,7 @@ msgstr "Autrement, tu es livré à toi-même."
 
 #: ../dialogs/Chandra.dialog:194
 msgid " Do you think I could join the guardians of this town?"
-msgstr ""
-" Est-ce que tu penses que je pourrais rejoindre les gardiens de cette ville ?"
+msgstr " Est-ce que tu penses que je pourrais rejoindre les gardiens de cette ville ?"
 
 #: ../dialogs/Chandra.dialog:197
 msgid ""
@@ -8253,8 +8126,7 @@ msgstr "As tu complétement perdu l'esprit ?"
 
 #: ../dialogs/MSFacilityGateGuardLeader.dialog:70
 msgid "There are trillions of millions of quintillions of bots in there!"
-msgstr ""
-"Il y a des trillions de millions de quintillions de robots là-dedans !"
+msgstr "Il y a des trillions de millions de quintillions de robots là-dedans !"
 
 #: ../dialogs/MSFacilityGateGuardLeader.dialog:72
 msgid "Find a different gate to go through."
@@ -8509,8 +8381,7 @@ msgstr "N0 ! Dans le sang !"
 
 #: ../dialogs/subdlg_Sorenson.dialog:88
 msgid " Sure, no problem... Now, how shall I sign this?"
-msgstr ""
-" Certainement, pas de problème... Maintenant, comment pourrais-je signer ça ?"
+msgstr " Certainement, pas de problème... Maintenant, comment pourrais-je signer ça ?"
 
 #: ../dialogs/subdlg_Sorenson.dialog:107
 msgid " Tux."
@@ -8607,8 +8478,7 @@ msgstr " Hein ? J3 n3 m3 s3ns p4s bi3n."
 
 #: ../dialogs/subdlg_Sorenson.dialog:213
 msgid "Yes, fool! You have freed me! I can finally die! Goodbye idiot!"
-msgstr ""
-"Oui, fou ! Tu m'as libéré ! Je peux finalement mourir ! Salut crétin !"
+msgstr "Oui, fou ! Tu m'as libéré ! Je peux finalement mourir ! Salut crétin !"
 
 #: ../dialogs/subdlg_Sorenson.dialog:221
 msgid " W417... 1 f331... H0rr1b13..."
@@ -8627,10 +8497,8 @@ msgid "N00oo00oo0! T1m3 to d1e, m0rtal foo1!"
 msgstr "N00oo00oo0 ! 1l 3s7 73mps p0ur t01 de m0ur1r, p4uvr3 f0u !"
 
 #: ../dialogs/subdlg_Sorenson.dialog:242
-msgid ""
-" There is no way I will sign something without reading it. Forget about it."
-msgstr ""
-" Il n'y a pas moyen que je signe quoi que ce soit sans le lire. Oublie ça."
+msgid " There is no way I will sign something without reading it. Forget about it."
+msgstr " Il n'y a pas moyen que je signe quoi que ce soit sans le lire. Oublie ça."
 
 #: ../dialogs/subdlg_Sorenson.dialog:245
 msgid "N00oo00oo0! T1m3 to d1e, m0rta1 foo1!"
@@ -8638,8 +8506,7 @@ msgstr "N00oo00oo0 ! 1l 3s7 73mps p0ur t01 de m0ur1r, p4uvr3 f0u !"
 
 #: ../dialogs/DocMoore.dialog:36
 msgid "Hello. I'm Doc Moore. I'm the medic of this town."
-msgstr ""
-"Bonjour. Je suis le docteur Moore. Je suis le médecin de cette ville."
+msgstr "Bonjour. Je suis le docteur Moore. Je suis le médecin de cette ville."
 
 #: ../dialogs/DocMoore.dialog:45
 msgid " Do you also trade in medical equipment?"
@@ -8651,8 +8518,7 @@ msgstr "Bien sûr. Voici ce que j'ai à votre disposition en ce moment."
 
 #: ../dialogs/DocMoore.dialog:57
 msgid " Doc, I took some of those brain enlargement pills..."
-msgstr ""
-" Docteur, j'ai pris une de ces pilules d'augmentation du volume cérébral..."
+msgstr " Docteur, j'ai pris une de ces pilules d'augmentation du volume cérébral..."
 
 #: ../dialogs/DocMoore.dialog:66
 msgid " What can you tell me about strength pills?"
@@ -8752,10 +8618,8 @@ msgstr ""
 "suis pas responsable."
 
 #: ../dialogs/DocMoore.dialog:115
-msgid ""
-"As far as I am concerned, in this town everyone gets everything equally."
-msgstr ""
-"Pour ce qui me concerne, dans cette ville chacun est l'égal de l'autre."
+msgid "As far as I am concerned, in this town everyone gets everything equally."
+msgstr "Pour ce qui me concerne, dans cette ville chacun est l'égal de l'autre."
 
 #: ../dialogs/DocMoore.dialog:124
 msgid "ON MISSION 0 WAS ASSIGNED..."
@@ -8791,8 +8655,7 @@ msgstr ""
 #: ../dialogs/DocMoore.dialog:167
 #: ../dialogs/DocMoore.dialog:202
 msgid "There, it's done. You're completely fixed. You can go now."
-msgstr ""
-"Voilà, c'est bon. Tu es complètement guéri. Tu peux partir, maintenant."
+msgstr "Voilà, c'est bon. Tu es complètement guéri. Tu peux partir, maintenant."
 
 #: ../dialogs/DocMoore.dialog:179
 msgid " What do you mean, self-inflicted damage?"
@@ -8877,8 +8740,7 @@ msgstr "AAAAAAAAAAAAA !"
 
 #: ../dialogs/DocMoore.dialog:270
 msgid " Ugh. Human blood is disgusting. At least four liters. I feel sick."
-msgstr ""
-" Huh. Le sang humain est dégoûtant. Au moins quatre litres. Je me sens mal."
+msgstr " Huh. Le sang humain est dégoûtant. Au moins quatre litres. Je me sens mal."
 
 #: ../dialogs/DocMoore.dialog:281
 msgid ""
@@ -8909,8 +8771,7 @@ msgid " Hi... Erm... Who are you?"
 msgstr " Salut... Euh... Qui es-tu ?"
 
 #: ../dialogs/Duncan.dialog:36
-msgid ""
-"Duncan McNamara, The Red Guard's resident bomb maker, at your service."
+msgid "Duncan McNamara, The Red Guard's resident bomb maker, at your service."
 msgstr ""
 "Duncan McNamara, le fabriquant de bombes attitré de la garde rouge, à ton "
 "service."
@@ -8921,13 +8782,11 @@ msgstr " J'aimerai acheter une bombe."
 
 #: ../dialogs/Duncan.dialog:48
 msgid "Yes. I am sure we can arrange something. Take a look."
-msgstr ""
-"Oui. Je pense que nous pouvons arranger quelque chose. Voyons un peu."
+msgstr "Oui. Je pense que nous pouvons arranger quelque chose. Voyons un peu."
 
 #: ../dialogs/Duncan.dialog:58
 msgid " I see only grenades. Do you have something bigger?"
-msgstr ""
-" Je vois seulement des grenades. Tu n'as pas quelque chose de plus gros ?"
+msgstr " Je vois seulement des grenades. Tu n'as pas quelque chose de plus gros ?"
 
 #: ../dialogs/Duncan.dialog:61
 msgid "My deepest apologies, I do not."
@@ -8941,8 +8800,7 @@ msgstr ""
 
 #: ../dialogs/Duncan.dialog:65
 msgid "It is not yet the time for the fall of their rule, so I remain loyal."
-msgstr ""
-"La chute de leur règne n'est pas encore advenue, je reste donc loyal."
+msgstr "La chute de leur règne n'est pas encore advenue, je reste donc loyal."
 
 #: ../dialogs/Duncan.dialog:76
 msgid ""
@@ -8954,8 +8812,7 @@ msgstr ""
 
 #: ../dialogs/Duncan.dialog:79
 msgid "My word against yours. If you wish to try it, please, be my guest."
-msgstr ""
-"C'est ma parole contre la tienne. Si tu le veux bien, sois mon invité."
+msgstr "C'est ma parole contre la tienne. Si tu le veux bien, sois mon invité."
 
 #: ../dialogs/Duncan.dialog:81
 msgid ""
@@ -8966,8 +8823,7 @@ msgstr ""
 "inévitable."
 
 #: ../dialogs/Duncan.dialog:83
-msgid ""
-"I have taken part in many conflicts and I have seen how governments collapse."
+msgid "I have taken part in many conflicts and I have seen how governments collapse."
 msgstr ""
 "J'ai été engagé dans un grand nombre de conflits, et j'ai vu comment tombent "
 "les gouvernements."
@@ -9029,14 +8885,12 @@ msgid "Twenty years ago there was a conflict."
 msgstr "Il y a vingt ans, il y a eu une bataille."
 
 #: ../dialogs/Duncan.dialog:134
-msgid ""
-"A grenade I threw destroyed a being which killed many of... my people."
+msgid "A grenade I threw destroyed a being which killed many of... my people."
 msgstr "Autrefois, j'ai lancé une grenade qui tua un de ces assassins."
 
 #: ../dialogs/Duncan.dialog:136
 msgid "Now I make more to smash the destroyers."
-msgstr ""
-"À présent, j'en fabrique dans le but d'en annihiler le plus grand nombre."
+msgstr "À présent, j'en fabrique dans le but d'en annihiler le plus grand nombre."
 
 #: ../dialogs/Duncan.dialog:143
 msgid "KOAN QUEST"
@@ -9104,8 +8958,7 @@ msgstr " Qu'est-ce que tu veux dire ? Je suis Tux et personnne d'autre."
 
 #: ../dialogs/Duncan.dialog:242
 msgid "And I am Duncan McNamara, the maker of grenades and nothing else."
-msgstr ""
-"Et je suis Duncan McNamara, le fabricant de bombes, et pas autre chose."
+msgstr "Et je suis Duncan McNamara, le fabricant de bombes, et pas autre chose."
 
 #: ../dialogs/Duncan.dialog:244
 msgid "I believe the topic is thoroughly exhausted now."
@@ -9140,8 +8993,7 @@ msgid "I wish you cold winds."
 msgstr "Je te souhaite des vents froids."
 
 #: ../dialogs/Duncan.dialog:291
-msgid ""
-" Huh? How do you know the Linarian farewell? No one around here knows it."
+msgid " Huh? How do you know the Linarian farewell? No one around here knows it."
 msgstr ""
 " Hein ? Comment est-ce que tu sais que je suis Linarien ? Personne ici ne le "
 "sait."
@@ -9179,8 +9031,7 @@ msgstr ""
 "Forteresse du Diable."
 
 #: ../dialogs/StandardMSFacilityGateGuard.dialog:49
-msgid ""
-"You must be crazy if you want to get in there. That place is full of bots."
+msgid "You must be crazy if you want to get in there. That place is full of bots."
 msgstr ""
 "Tu es certainement fou si tu désires t'y rendre. Cet endroit est plein de "
 "robots."
@@ -9208,8 +9059,7 @@ msgid "Just remember to give me your valuables before you commit suicide."
 msgstr "Rappelle-toi seulement de me donner mes gages avant de te suicider."
 
 #: ../dialogs/StandardMSFacilityGateGuard.dialog:68
-msgid ""
-"You won't need any money once you're damn dead, and I could use it, eh?"
+msgid "You won't need any money once you're damn dead, and I could use it, eh?"
 msgstr ""
 "Tu n'auras pas besoin d'argent si tu es mort, et moi j'en aurai l'usage, pas "
 "vrai ?"
@@ -9255,15 +9105,13 @@ msgid " What can you tell me about the 614 type? "
 msgstr " Que pouvez-vous me dire à propos de la série des 614 ? "
 
 #: ../dialogs/614.dialog:57
-msgid ""
-"The official manual classifies the 614 as a high class security droid."
+msgid "The official manual classifies the 614 as a high class security droid."
 msgstr ""
 "Le manuel officiel classe les robots de la série des 614 comme des droïdes "
 "de sécurité haut de gamme."
 
 #: ../dialogs/614.dialog:59
-msgid ""
-"It was mainly used within ships to protect certain areas from intruders."
+msgid "It was mainly used within ships to protect certain areas from intruders."
 msgstr ""
 "Ils étaient utilisés principalement dans les vaisseaux pour protéger "
 "certains secteurs des intrus."
@@ -9324,8 +9172,7 @@ msgstr ""
 "série."
 
 #: ../dialogs/614.dialog:91
-msgid ""
-"Don't forget to buy products from Nicholson Company. They are the best."
+msgid "Don't forget to buy products from Nicholson Company. They are the best."
 msgstr ""
 "N'oubliez pas d'acheter des produits de la Compagnie Nicholson. Ce sont les "
 "meilleurs."
@@ -9472,8 +9319,7 @@ msgstr ""
 "ï¿½a. Les robots te pulvï¿½riserons si tu les approches."
 
 #: ../dialogs/Kevin.dialog:124
-msgid ""
-"Best make it quick. I'm already sick of stabilizing the stupid power grid."
+msgid "Best make it quick. I'm already sick of stabilizing the stupid power grid."
 msgstr ""
 "Fais au plus vite. Je me sens dï¿½jï¿½ mal de stabiliser ce stupide rï¿½seau "
 "ï¿½nergï¿½tique."
@@ -9587,8 +9433,7 @@ msgstr ""
 
 #: ../dialogs/Kevin.dialog:241
 msgid " Maybe I can help somehow to find a suitable cluster."
-msgstr ""
-" Peut-ï¿½tre puis-je t'ï¿½tre utile dans la recherche d'un cluster adï¿½quat."
+msgstr " Peut-ï¿½tre puis-je t'ï¿½tre utile dans la recherche d'un cluster adï¿½quat."
 
 #: ../dialogs/Kevin.dialog:253
 msgid ""
@@ -9649,8 +9494,7 @@ msgstr "Je crois que ï¿½a signifie un retour ï¿½ l'ï¿½valuation ..."
 
 #: ../dialogs/Kevin.dialog:310
 msgid " I thought you would be more worried about her death."
-msgstr ""
-" Je pensais que tu serais plus alarmï¿½ que ï¿½a par l'annonce de sa mort."
+msgstr " Je pensais que tu serais plus alarmï¿½ que ï¿½a par l'annonce de sa mort."
 
 #: ../dialogs/Kevin.dialog:313
 msgid "Why? I have backups from the last Friday. No reason to worry at all."
@@ -9659,8 +9503,7 @@ msgstr ""
 "n'y a aucune raison de s'inquiï¿½ter."
 
 #: ../dialogs/Kevin.dialog:315
-msgid ""
-"It will be a while till I get her together again, but she will be fine."
+msgid "It will be a while till I get her together again, but she will be fine."
 msgstr ""
 "ï¿½a prendra un peu de temps avant que je puisse les rassembler ï¿½ nouveau, "
 "mais tout ira bien."
@@ -9706,14 +9549,11 @@ msgstr ""
 "si tu veux vraiment plus d'entraînement."
 
 #: ../dialogs/subdlg_Pendragon.dialog:75
-msgid ""
-"You don't have enough bucks on you! Come back when you have the money."
-msgstr ""
-"Tu n'as pas assez de dollars avec toi ! Reviens lorsque tu auras de l'argent."
+msgid "You don't have enough bucks on you! Come back when you have the money."
+msgstr "Tu n'as pas assez de dollars avec toi ! Reviens lorsque tu auras de l'argent."
 
 #: ../dialogs/subdlg_Pendragon.dialog:94
-msgid ""
-"You don't have enough experience. I can't teach you anything more right now."
+msgid "You don't have enough experience. I can't teach you anything more right now."
 msgstr ""
 "Tu n'as pas assez d'expérience. Je ne peux pas t'apprendre quoi que ce soit "
 "dans ces conditions."
@@ -9736,8 +9576,7 @@ msgstr "HA !"
 
 #: ../dialogs/subdlg_Pendragon.dialog:121
 msgid " Teach me how to smash concrete blocks with my bare hands."
-msgstr ""
-" Apprends-moi comment frapper des blocs de béton avec mes mains nues."
+msgstr " Apprends-moi comment frapper des blocs de béton avec mes mains nues."
 
 #: ../dialogs/subdlg_Pendragon.dialog:124
 msgid "Oh, Linarian, you amuse me so."
@@ -9919,3 +9758,4 @@ msgstr " J'aurai aimé savoir de quoi vous parlez."
 #: ../dialogs/Melfis.dialog:86
 msgid " I need to go now."
 msgstr " Je dois y aller maintenant."
+
