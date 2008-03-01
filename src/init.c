@@ -2071,7 +2071,7 @@ PrepareStartOfNewCharacter ( void )
     Me . mouse_move_target . x = ( -1 ) ;
     Me . mouse_move_target . y = ( -1 ) ;
     Me . mouse_move_target . z = ( -1 ) ;
-    Me . current_enemy_target = NULL ;
+    enemy_set_reference(&Me . current_enemy_target_n, &Me . current_enemy_target_addr, NULL);
     Me . mouse_move_target_combo_action_type = NO_COMBO_ACTION_SET ; // what extra action has to be done upon arrival?
     Me . mouse_move_target_combo_action_parameter = (-1) ; // extra data to use for the combo action
     
