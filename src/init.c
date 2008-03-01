@@ -1005,7 +1005,7 @@ Get_Robot_Data ( void* DataPointer )
 			   &Druidmap[RobotIndex].getting_hit_modifier , EndOfDataPointer );
 
       // Now we read in the modifier, that increases/decreases the chance of this robot getting hit
-      ReadValueFromString( RobotPointer , "Time to recover after getting hit=" , "%lf" , 
+      ReadValueFromString( RobotPointer , "Time to recover after getting hit=" , "%f" , 
 			   &Druidmap[RobotIndex] . recover_time_after_getting_hit , EndOfDataPointer );
 
       // Now we read in the is_human flag of this droid type
@@ -1255,7 +1255,7 @@ answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.",
 	    // Now we read in speed of melee application and melee offset from influ
 	    ReadValueFromStringWithDefault( ItemPointer ,  "Item as gun: is melee weapon=" , "%hhd" , "0", 
 				 &ItemMap[ItemIndex].item_weapon_is_melee , EndOfItemData );
-	    ReadValueFromStringWithDefault( ItemPointer ,  "Item as gun: modifier for starting angle=" , "%lf" , "0.000000",
+	    ReadValueFromStringWithDefault( ItemPointer ,  "Item as gun: modifier for starting angle=" , "%f" , "0.000000",
 				 &ItemMap[ItemIndex].item_gun_start_angle_modifier , EndOfItemData );
 	    
 	    // Now we read in if this weapon can pass through walls or not...
@@ -1335,11 +1335,11 @@ answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.",
             free ( YesNoString ) ;
 	    
 	    // Now we read in the recharging time this weapon will need
-	    ReadValueFromString( ItemPointer ,  "Item as gun: recharging time=" , "%lf" , 
+	    ReadValueFromString( ItemPointer ,  "Item as gun: recharging time=" , "%f" , 
 				 &ItemMap[ItemIndex].item_gun_recharging_time , EndOfItemData );
 
 	    // Now we read in the reloading time this weapon will need
-	    ReadValueFromString( ItemPointer ,  "Item as gun: reloading time=" , "%lf" , 
+	    ReadValueFromString( ItemPointer ,  "Item as gun: reloading time=" , "%f" , 
 				 &ItemMap[ItemIndex].item_gun_reloading_time , EndOfItemData );
 	    
 	    // Now we read in the image type that should be generated for this bullet
@@ -1347,7 +1347,7 @@ answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.",
 				 &ItemMap[ItemIndex].item_gun_bullet_image_type , EndOfItemData );
 	    
 	    // Now we read in the image type that should be generated for this bullet
-	    ReadValueFromString( ItemPointer ,  "Item as gun: bullet_lifetime=" , "%lf" , 
+	    ReadValueFromString( ItemPointer ,  "Item as gun: bullet_lifetime=" , "%f" , 
 				 &ItemMap[ItemIndex].item_gun_bullet_lifetime , EndOfItemData );
 
 	    // Now we read in the image type that should be generated for this bullet
