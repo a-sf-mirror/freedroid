@@ -492,7 +492,7 @@ LoadGame( void )
     {
 	DeleteBullet( i , FALSE );
     }
-    sprintf ( version_check_string , "%s;sizeof(tux_t)=%d;sizeof(enemy)=%d;sizeof(bullet)=%d;MAXBULLETS=%d\n", 
+    sprintf ( version_check_string , "%s;sizeof(tux_t)=%d;sizeof(enemy)=%d;sizeof(bullet)=%d;MAXBULLETS=%d", 
 	      VERSION , 
 	      (int) sizeof(tux_t) , 
 	      (int) sizeof(enemy) ,
@@ -503,6 +503,7 @@ LoadGame( void )
     {
 	show_button_tooltip ( _("Version or structsize mismatch! The savegame is not from the same version of freedroidRPG... possible breakage.\n") );
 	our_SDL_flip_wrapper( Screen );
+	while ( ! MouseLeftPressed() ) SDL_Delay(1);
     }
     
     //--------------------
