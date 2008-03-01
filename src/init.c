@@ -274,11 +274,21 @@ char fpath[2048];
     char finaldir[50];
     while ( SpacePressed() || MouseLeftPressed());
 
-    snprintf(finaldir, 50, "%s", TITLES_DIR);
+    snprintf(finaldir, 50, "%s/", TITLES_DIR);
+
+    if ( strcmp(supported_languages[GameConfig.language].code, "C" ) )
+	strcat(finaldir, supported_languages[GameConfig.language].code);
+
     //--------------------
     // Now its time to start loading the title file...
     //
-    find_file (Filename , finaldir , fpath, 0 );
+    if ( find_file (Filename , finaldir , fpath, 0 ) )  //if file not found, retry with english version
+	{
+	snprintf(finaldir, 50, "%s/", TITLES_DIR);
+	find_file (Filename , finaldir , fpath, 0 );
+	}
+
+
     TitleFilePointer = 
 	ReadAndMallocAndTerminateFile( fpath , "*** END OF TITLE FILE *** LEAVE THIS TERMINATOR IN HERE ***" ) ;
     
@@ -305,8 +315,9 @@ char fpath[2048];
 	PreparedBriefingText = MyMalloc (ThisTextLength + 10);
 	strncpy ( PreparedBriefingText , NextSubsectionStartPointer , ThisTextLength );
 	PreparedBriefingText[ThisTextLength]=0;
-	fflush(stdout);
-	ScrollText ( PreparedBriefingText, SCROLLSTARTX, SCROLLSTARTY, NE_TITLE_PIC_BACKGROUND_CODE );
+
+
+	ScrollText ( (PreparedBriefingText), SCROLLSTARTX, SCROLLSTARTY, NE_TITLE_PIC_BACKGROUND_CODE );
 	free ( PreparedBriefingText );
     }
     
