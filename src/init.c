@@ -2143,12 +2143,18 @@ ResetGameConfigToDefaultValues ( void )
     #if ENABLE_NLS
     char *lang = setlocale(LC_MESSAGES, NULL);
 
-    if(lang && strstr(lang, "fr")) 
-	GameConfig . language = 2;
-    else if(lang && strstr(lang, "de"))
-	GameConfig . language = 1;
-    else
-	GameConfig . language = 0;
+
+    GameConfig.language = 0;
+    if ( lang ) 
+	{
+	int i = 0;
+	while ( supported_languages[i] . code != NULL )
+	    {
+	    if ( ! strcmp(lang, supported_languages[i].code ) )
+		GameConfig . language = i;
+	    i++;
+	    }
+	}
     #else
 	GameConfig . language = 0;
     #endif

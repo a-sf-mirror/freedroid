@@ -1562,27 +1562,15 @@ output.",
     }
 
 #if ENABLE_NLS
-    switch(GameConfig . language)
+    setlocale(LC_MESSAGES, "C");
+    setlocale(LC_CTYPE, "C");
+
+    if ( GameConfig . language > 0 )
 	{
-		case 0:
-			setlocale(LC_MESSAGES, "C");
-			setlocale(LC_CTYPE, "C");
-			break;
-		case 1:
-			setlocale(LC_MESSAGES, "de_DE");
-			setlocale(LC_CTYPE, "de_DE");
-			break;
-		case 2:
-			setlocale(LC_MESSAGES, "fr_FR");
-			setlocale(LC_CTYPE, "fr_FR");
-			break;
-		default:
-			// Shouldn't happen
-			setlocale(LC_MESSAGES, "C");
-			setlocale(LC_CTYPE, "C");
-			GameConfig . language = 0;
-			break;
+	setlocale(LC_MESSAGES, supported_languages[GameConfig.language].code);
+	setlocale(LC_CTYPE, supported_languages[GameConfig.language].code);
 	}
+
 #endif
     return (OK);
     
