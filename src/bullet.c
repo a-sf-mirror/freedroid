@@ -47,7 +47,6 @@ void
 move_this_bullet_and_check_its_collisions ( int num )
 {
   Bullet CurBullet = & ( AllBullets [ num ] ) ; 
-  moderately_finepoint dist_vector;
   moderately_finepoint bullet_step_vector;
   float whole_step_size;
   int i;
@@ -189,7 +188,6 @@ void
 DeleteBullet ( int Bulletnumber , int ShallWeStartABlast )
 {
   Bullet CurBullet = & ( AllBullets [ Bulletnumber ] ) ;
-  int i;
 
   //--------------------
   // At first we generate the blast at the collision spot of the bullet,

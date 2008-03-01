@@ -349,9 +349,14 @@ EXTERN void read_float_array(const char *, const char *, float *, int);
 
 /* Hacks */
 EXTERN void save_chatflags_t_array(const char *, chatflags_t * , int);
+EXTERN void read_chatflags_t_array(const char *, const char *, chatflags_t *, int);
 EXTERN void save_cookielist_t_array(const char *, cookielist_t *, int);
+EXTERN void read_cookielist_t_array(const char *, const char *, cookielist_t *, int);
 #define save_automap_data_t_array save_automap_data
 EXTERN void save_automap_data(const char*, automap_data_t *, int);
+EXTERN void read_automap_data_t_array(char *, char *, automap_data_t *, int);
+EXTERN void save_bigscrmsg_t(const char *, bigscrmsg_t *);
+EXTERN void read_bigscrmsg_t(const char *, const char *, bigscrmsg_t *);
 EXTERN void save_sdl_rect(const char *, SDL_Rect *);
 EXTERN int read_sdl_rect(const char *, const char *, SDL_Rect *);
 

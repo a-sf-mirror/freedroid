@@ -141,7 +141,7 @@ def main():
                 size = type.split('[')[1][:-1]
                 type = type.split('[')[0] + '_array'
             str_save += 'save_%s("%s", %s(target->%s)%s);\n' % (type, field, '' if size else '&', field, (', %s' % size) if size else '')
-            str_read += 'read_%s(pos, "%s", %s(target->%s)%s);\n' % (type, field, '' if size else '&', field, (', %s' % size) if size else '')
+            str_read += 'read_%s(pos, "%s", %s %s(target->%s)%s);\n' % (type, field, '(char*)' if type is "string" else '', '' if size else '&', field, (', %s' % size) if size else '')
         str_save += 'fprintf(SaveGameFile, "</%s>\\n", tag);\nreturn 0;\n}\n\n'
         str_read += '''*epos = '>'; \nreturn 0;\n}\n\n'''
         outf.write(str_save)

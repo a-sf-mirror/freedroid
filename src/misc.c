@@ -38,6 +38,7 @@
 #include "struct.h"
 #include "global.h"
 #include "proto.h"
+#include "savestruct.h"
 
 //--------------------
 // This header file is needed
