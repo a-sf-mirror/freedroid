@@ -2127,109 +2127,41 @@ Configure the language
 void
 Language_Options_Menu (void)
 {
+    int MenuPosition=1;
 
-  int can_continue = 0;
-  int MenuPosition=1;
-  char Options0[1000];
-  char Options1[1000];
-  char Options2[1000];
-  char Options3[1000];
-  char* MenuTexts[10]={ "" , "" , "" , "" , "" ,
-			"" , "" , "" , "" , "" };
-  enum
-    { 
-      ENGLISH=1,
-      GERMAN,
-      FRENCH, 
-      SWEDISH,
-      LEAVE_LANGUAGE_OPTIONS_MENU 
-    };
+    int nb_languages = 0;
+    while ( supported_languages[nb_languages].code != NULL )
+	nb_languages ++;
 
-  while (!can_continue)
-    {
-      sprintf( Options0 , "English");
-      sprintf( Options1 , "Deutsch");
-      sprintf( Options2 , "Français");
-      sprintf( Options3 , "Swedish");
-      MenuTexts[0]=Options0;
-      MenuTexts[1]=Options1;
-      MenuTexts[2]=Options2;
-      MenuTexts[3]=Options3;
-      MenuTexts[4]=_("Back");
+    char * MenuTexts[nb_languages + 2];
 
-	if ( GameOver == TRUE ) 
-                MenuPosition = DoMenuSelection( "" , MenuTexts , -1 , NE_TITLE_PIC_BACKGROUND_CODE, NULL );     
-        else    MenuPosition = DoMenuSelection( "" , MenuTexts , -1 , -1 , NULL );     
+    int i = 0;
 
-      switch (MenuPosition) 
+    for ( ; i < nb_languages; i++)
+	MenuTexts[i] = supported_languages[i].name; 
+
+    MenuTexts[nb_languages] = _("Back");
+    MenuTexts[nb_languages+1] = "";
+
+    if ( GameOver == TRUE ) 
+	MenuPosition = DoMenuSelection( "" , MenuTexts , -1 , NE_TITLE_PIC_BACKGROUND_CODE, NULL );     
+    else    MenuPosition = DoMenuSelection( "" , MenuTexts , -1 , -1 , NULL );     
+
+    while (EnterPressed() || SpacePressed() || MouseLeftPressed());
+
+    if ( MenuPosition < nb_languages && MenuPosition > 0 ) /*Not "back"*/
 	{
-	case (-1):
-	  can_continue=!can_continue;
-	  break;
-
-	case ENGLISH:
-	  while (EnterPressed() || SpacePressed() || MouseLeftPressed());
-	  can_continue=TRUE;
-	  GameConfig . language = 0;
-	  #if ENABLE_NLS
-	  setlocale(LC_MESSAGES, "C");
-	  setlocale(LC_CTYPE, "C");
-	  #endif
-	  //Reload fonts
-	  FreeOurBFonts();
-	  InitOurBFonts();
-	  break;
-
-	case GERMAN:
-	  while (EnterPressed() || SpacePressed() || MouseLeftPressed());
-	  can_continue=TRUE;
-	  GameConfig . language = 1;
-	  #if ENABLE_NLS
-	  setlocale(LC_MESSAGES, "de_DE");
-	  setlocale(LC_CTYPE, "de_DE");
-	  #endif
-	  //Reload fonts
-	  FreeOurBFonts();
-	  InitOurBFonts();
-	  break;
-
-	case FRENCH:
-	  while (EnterPressed() || SpacePressed() || MouseLeftPressed() );
-	  can_continue=TRUE;
-	  GameConfig . language = 2;
-	  #if ENABLE_NLS
-	  setlocale(LC_MESSAGES, "fr_FR");
-	  setlocale(LC_CTYPE, "fr_FR");
-	  #endif
-	  //Reload fonts
-	  FreeOurBFonts();
-	  InitOurBFonts();
-	  break;
-
-	case SWEDISH:
-	  while (EnterPressed() || SpacePressed() || MouseLeftPressed() );
-	  can_continue=TRUE;
-	  GameConfig . language = 3;
+	GameConfig . language = MenuPosition - 1;
 #if ENABLE_NLS
-	  setlocale(LC_MESSAGES, "sv_SE");
-	  setlocale(LC_CTYPE, "sv_SE");
+	setlocale(LC_MESSAGES, supported_languages[MenuPosition - 1] . code);
+	setlocale(LC_CTYPE, supported_languages[MenuPosition - 1] . code);
 #endif
-	  //Reload fonts
-	  FreeOurBFonts();
-	  InitOurBFonts();
-	  break;
-	  
-	case LEAVE_LANGUAGE_OPTIONS_MENU:
-	  while (EnterPressed() || SpacePressed() || MouseLeftPressed() );
-	  can_continue=TRUE;
-	  break;
-	default: 
-	  break;
-	} 
-    }
+	FreeOurBFonts();
+	InitOurBFonts();
+	}
 
-  ClearGraphMem ();
-  if ( GameOver == FALSE ) DisplayBanner ( ) ;
+    ClearGraphMem ();
+    if ( GameOver == FALSE ) DisplayBanner ( ) ;
 
 }; // Droid_Talk_Options_Menu
 

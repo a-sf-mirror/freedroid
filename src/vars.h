@@ -181,3 +181,10 @@ char font_switchto_neon [ 2 ] = { 3 , 0 };
 
 int skip_initial_menus = FALSE ;
 
+supported_languages_t supported_languages []=  {{ .code="C", .name="English", .font_class="" },
+					    	{ .code="fr_FR", .name="Français", .font_class="" },
+						{ .code="de_DE", .name="Deutsch", .font_class="" },
+					    	{ .code="sv_SE", .name="Swedish", .font_class="" },
+					    	{ .code="pl_PL", .name="Polish", .font_class=".8859-2" },
+					    	{ NULL, NULL, NULL}, };
+

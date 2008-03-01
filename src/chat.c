@@ -48,8 +48,7 @@ dialogue_option ChatRoster[MAX_DIALOGUE_OPTIONS_IN_ROSTER];
 EXTERN char *PrefixToFilename[ ENEMY_ROTATION_MODELS_AVAILABLE ];
 char* chat_protocol = NULL ;
 
-char *language_font_classes[] = { "" /*en*/, ""/*fr*/, ""/*german*/, ""/*swedish*/, ".8859-2"/*polish*/, "" };
- 
+
 void DoChatFromChatRosterData(int ChatPartnerCode , Enemy ChatDroid , int ClearProtocol );
 
 /* ----------------------------------------------------------------------

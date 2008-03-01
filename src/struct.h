@@ -940,4 +940,12 @@ typedef struct dialogue_option_s
 }
 dialogue_option, *Dialogue_option;
 
+typedef struct supported_languages_s 
+{ 
+    char * code; 
+    char * name;
+    char * font_class; 
+} supported_languages_t;
+
+
 #endif

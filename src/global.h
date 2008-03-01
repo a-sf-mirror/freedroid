@@ -72,6 +72,7 @@ EXTERN Bulletspec Bulletmap;
 EXTERN blastspec Blastmap[ALLBLASTTYPES];
 EXTERN int skip_initial_menus;
 EXTERN int number_of_skills;
+EXTERN supported_languages_t supported_languages[];
 #endif
 
 EXTERN SDL_Rect User_Rect;

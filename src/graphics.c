@@ -1534,13 +1534,11 @@ char fpath[2048];
 	    &Blue_BFont
 	};
     
-    extern char * language_font_classes[];
-
     for ( i = 0 ; i < ALL_BFONTS_WE_LOAD ; i ++ )
     {
         char constructed_fname[2048];
 	sprintf(constructed_fname, "%s", MenuFontFiles [ i ] );
-	strcat(constructed_fname, language_font_classes[GameConfig.language] );
+	strcat(constructed_fname, supported_languages[GameConfig.language].font_class );
 	strcat(constructed_fname, ".png");
 
 	if ( find_file (constructed_fname , GRAPHICS_DIR , fpath, 0) != 0 ) 
