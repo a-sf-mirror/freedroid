@@ -188,3 +188,5 @@ supported_languages_t supported_languages []=  {{ .code="C", .name="English", .f
 					    	{ .code="pl_PL", .name="Polish", .font_class=".8859-2" },
 					    	{ NULL, NULL, NULL}, };
 
+int last_bot_number;
+

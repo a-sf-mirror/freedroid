@@ -3269,4 +3269,56 @@ AnimateEnemys (void)
 	    }
 }; // void AnimateEnemys ( void )
 
+
+/******************************************************
+ * Resolve the address of an enemy, given its number (primary key) and 
+ * the cache value of its address. 
+ * 1- number == -1 means no enemy targetted, means we return NULL
+ * 2- if the cache value is not NULL, we return it
+ * 3- if the cache value is NULL, resolve the address by browsing the list and set the cache value
+ *********************************************************/
+enemy * enemy_resolve_address(short int enemy_number, enemy ** enemy_addr)
+{
+    if ( enemy_number == -1 )
+	{
+	*enemy_addr = NULL;
+	return NULL;
+	}
+
+    if ( ! (* enemy_addr ))
+	{
+	int i;
+	for ( i = 0; i < 2; i ++ )
+	    {
+	    enemy * erot = i ? dead_bots_head : alive_bots_head;
+	    for ( ; erot ; erot = GETNEXT(erot) )
+		if ( enemy_number == erot->id )
+		    {
+		    *enemy_addr = erot;
+		    }
+	    }
+	}
+
+    return *enemy_addr;
+}
+
+
+/********************************************
+ * Sets a reference to an enemy to the given address
+ * (we could use the number too)
+ * This sets both the cache value and the number.
+ ********************************/
+void enemy_set_reference(short int * enemy_number, enemy ** enemy_addr, enemy * addr)
+{
+    if ( addr == NULL )
+	{
+	*enemy_addr = NULL;
+	*enemy_number = -1;
+	}
+    else 
+	{
+	*enemy_addr = addr;
+	*enemy_number = addr->id;
+	}
+}
 #undef _enemy_c

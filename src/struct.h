@@ -531,6 +531,7 @@ druidspec, *Druidspec;
 
 typedef struct enemy_s
 {
+    short int id;
     short type;			// the number of the droid specifications in Druidmap 
     gps pos;		        // coordinates of the current position in the level
     gps virt_pos;		// the virtual position with respect to remote levels
@@ -616,8 +617,11 @@ typedef struct tux_s
     finepoint speed;		  // the current speed of the druid 
     gps pos;		          // current position in the whole ship 
     gps teleport_anchor;            // where from have you last teleported home
-    gps mouse_move_target;          // where the tux is going automatically by virtue of mouse move 
-    enemy * current_enemy_target; // which enemy has been targeted (for a melee shot) (DIFFERS FROM ABOVE !)
+    gps mouse_move_target;          // where the tux is going automatically by virtue of mouse move
+
+    short int current_enemy_target_n; //which enemy has been targeted 
+    enemy * current_enemy_target_addr; // which enemy has been targeted, address
+    
     int mouse_move_target_combo_action_type; // what extra action has to be done upon arrival?
     int mouse_move_target_combo_action_parameter; // extra data to use for the combo action
     

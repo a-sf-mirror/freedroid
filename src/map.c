@@ -2758,7 +2758,6 @@ GetThisLevelsSpecialForces ( char* SearchPointer , int OurLevelNumber , char* En
   char* ShortDescription;
 
   enemy newen;
-
   while ( ( SearchPointer = strstr ( SearchPointer , SPECIAL_FORCE_INDICATION_STRING)) != NULL)
     {
       InitEnemy(&newen);
@@ -2881,7 +2880,7 @@ the item specification section.",
       newen. type = ListIndex;
       newen.pos.z = OurLevelNumber;
       newen. SpecialForce = 1;
-
+      newen.id = last_bot_number;
       //--------------------
       // By default, friendly bots will stick to the waypoint system while
       // hostile bots will not.  Well, this is for now.  We might find something
@@ -2894,9 +2893,8 @@ the item specification section.",
 	  newen . stick_to_waypoint_system_by_default = FALSE ;
 
       newen . has_been_taken_over = FALSE;
-
-      alive_bots_head = add_enemy_head(alive_bots_head, &newen);
-
+      alive_bots_head = add_enemy_head(alive_bots_head, &newen); 
+      last_bot_number ++; 
     } // while Special force droid found...
 
   CountNumberOfDroidsOnShip (  );
@@ -3001,6 +2999,7 @@ game data file with all droid type specifications.",
 	newen . pos . z = OurLevelNumber;
 	newen . on_death_drop_item_code = (-1) ;
 	newen . ammo_left = ItemMap [ Druidmap [ newen . type ] . weapon_item . type ] . item_gun_ammo_clip_size ;
+	newen . id = last_bot_number + 1;
 	if ( newen . is_friendly ) 
 	    newen . stick_to_waypoint_system_by_default = TRUE ;
 	else
@@ -3036,6 +3035,7 @@ game data file with all droid type specifications.",
 		};
 
 	alive_bots_head = add_enemy_head(alive_bots_head, &newen);	
+	last_bot_number ++;
     }  // while (enemy-limit of this level not reached) 
     
     SearchPointer = SectionPointer;

@@ -647,7 +647,7 @@ correct_tux_position_according_to_jump_thresholds ( )
 	// combo-action).
 	//
 	if ( ( Me . mouse_move_target_combo_action_type == NO_COMBO_ACTION_SET ) &&
-	     ( Me . current_enemy_target == NULL ) )
+	     ( enemy_resolve_address(Me . current_enemy_target_n, &Me.current_enemy_target_addr) == NULL ) )
 	{
 	    Me . mouse_move_target . z = Me . pos . z ;
 	    Me . mouse_move_target . x = old_mouse_move_target . x ;
@@ -711,7 +711,7 @@ correct_tux_position_according_to_jump_thresholds ( )
 	// combo-action).
 	//
 	if ( ( Me . mouse_move_target_combo_action_type == NO_COMBO_ACTION_SET ) &&
-	     ( Me . current_enemy_target == NULL ) )
+	     ( enemy_resolve_address(Me . current_enemy_target_n, &Me.current_enemy_target_addr) == NULL ) )
 	{
 	    Me . mouse_move_target . z = Me . pos . z ;
 	    Me . mouse_move_target . x = old_mouse_move_target . x ;
@@ -776,7 +776,7 @@ correct_tux_position_according_to_jump_thresholds ( )
 	// combo-action).
 	//
 	if ( ( Me . mouse_move_target_combo_action_type == NO_COMBO_ACTION_SET ) &&
-	     ( Me . current_enemy_target == NULL ) )
+	     ( enemy_resolve_address ( Me.current_enemy_target_n, &Me.current_enemy_target_addr) == NULL ) )
 	{
 	    Me . mouse_move_target . z = Me . pos . z ;
 	    Me . mouse_move_target . y = old_mouse_move_target . y ;
@@ -837,7 +837,7 @@ correct_tux_position_according_to_jump_thresholds ( )
 	// combo-action).
 	//
 	if ( ( Me . mouse_move_target_combo_action_type == NO_COMBO_ACTION_SET ) &&
-	     ( Me . current_enemy_target == NULL ) )
+	     ( enemy_resolve_address ( Me.current_enemy_target_n, &Me.current_enemy_target_addr) == NULL ) )
 	{
 	    Me . mouse_move_target . z = Me . pos . z ;
 	    Me . mouse_move_target . y = old_mouse_move_target . y ;
@@ -1001,17 +1001,18 @@ UpdateMouseMoveTargetAccordingToEnemy ( )
 {
     moderately_finepoint RemainingWay;
     float RemainingWayLength;
-    //--------------------
-    // If the current target got destroyed, there's no reason
-    // to move toward it any more.  The use can request a new move
-    // if that should be done.
-    //
-    
-    if ( ( Me . current_enemy_target -> energy <= 0 ) ||
-	 ( Me . current_enemy_target -> pos . z != 
+ 
+    enemy * t = enemy_resolve_address(Me . current_enemy_target_n, & Me.current_enemy_target_addr);
+
+
+    if (! t)
+       return;
+
+    if ( ( t -> energy <= 0 ) ||
+	 ( t -> pos . z != 
 	   Me . pos . z ) )
 	    {
-		Me . current_enemy_target = NULL ;
+   	        enemy_set_reference( & Me.current_enemy_target_n, & Me . current_enemy_target_addr, NULL);
 		DebugPrintf ( 1 , "\n%s(): enemy mouse move target disabled because of OUT/out_of_level." , __FUNCTION__ );
 		return;
 	    }
@@ -1025,7 +1026,7 @@ UpdateMouseMoveTargetAccordingToEnemy ( )
     {
 	if ( ItemMap [ Me . weapon_item . type ] . item_weapon_is_melee == 0 )
 	{
-	    if ( ! Me . current_enemy_target -> is_friendly )
+	    if ( ! t -> is_friendly )
 		tux_wants_to_attack_now ( FALSE ) ;
 	}
     }
@@ -1046,8 +1047,8 @@ UpdateMouseMoveTargetAccordingToEnemy ( )
 	return;
 	}
 
-    RemainingWay . x = Me . pos . x - Me . current_enemy_target -> pos . x ;
-    RemainingWay . y = Me . pos . y - Me . current_enemy_target -> pos . y ;
+    RemainingWay . x = Me . pos . x - t -> pos . x ;
+    RemainingWay . y = Me . pos . y - t -> pos . y ;
     
     RemainingWayLength = sqrtf ( ( RemainingWay . x ) * ( RemainingWay . x ) +
 				 ( RemainingWay . y ) * ( RemainingWay . y ) ) ;
@@ -1062,7 +1063,7 @@ UpdateMouseMoveTargetAccordingToEnemy ( )
     
     Me . mouse_move_target . x = Me . pos . x - RemainingWay . x ;
     Me . mouse_move_target . y = Me . pos . y - RemainingWay . y ;
-    Me . mouse_move_target . z = Me . current_enemy_target -> pos . z;
+    Me . mouse_move_target . z = t -> pos . z;
     
     //--------------------
     // Now that the mouse move target has implicitly affected the recursive
@@ -1073,7 +1074,7 @@ UpdateMouseMoveTargetAccordingToEnemy ( )
     //
     set_up_intermediate_course_for_tux ( ) ;
     Me . mouse_move_target . x = -1;
-    if ( ( RemainingWayLength <= BEST_MELEE_DISTANCE * sqrt(2) + 0.01 ) && ( ! Me . current_enemy_target->is_friendly ) )
+    if ( ( RemainingWayLength <= BEST_MELEE_DISTANCE * sqrt(2) + 0.01 ) && ( ! t->is_friendly ) )
     {
 	tux_wants_to_attack_now ( FALSE ) ;
     } 
@@ -1838,7 +1839,6 @@ set_up_intermediate_course_for_tux ( )
     // By default, we clear out any combo action for the target position.
     // The calling function must set the combo action it has in mind.
     //
-    // Me . current_enemy_target = ( -1 ) ;
     Me . mouse_move_target_combo_action_type = NO_COMBO_ACTION_SET ;
     Me . mouse_move_target_combo_action_parameter = -1 ;
     
@@ -2106,10 +2106,8 @@ move_tux_thowards_intermediate_point ( )
 void
 adapt_global_mode_for_player ( )
 {
-    int obstacle_index;
     static int right_pressed_previous_frame = FALSE ;
     static int left_pressed_previous_frame = FALSE ;
-    enemy * our_enemy ;
 
     //--------------------
     // At first we check if maybe the player is scrolling the game
@@ -2186,8 +2184,7 @@ move_tux ( )
     // a living droid set as a target, and if yes, we correct the move
     // target to something suiting that new droids position.
     //
-    if ( Me . current_enemy_target != NULL )
-	UpdateMouseMoveTargetAccordingToEnemy ( );
+    UpdateMouseMoveTargetAccordingToEnemy ( );
 
     //--------------------
     // Perhaps the player has turned the mouse wheel.  In that case we might
@@ -2232,8 +2229,7 @@ move_tux ( )
 	Me . mouse_move_target . x = Me . pos . x ;
 	Me . mouse_move_target . y = Me . pos . y ;
 	Me . mouse_move_target . z = Me . pos . z ;
-	Me . current_enemy_target = NULL ;
-	// clear_out_intermediate_points ( );
+	enemy_set_reference(&Me . current_enemy_target_n, &Me . current_enemy_target_addr, NULL);
 	return; 
     }
     
@@ -2861,9 +2857,9 @@ PerformTuxAttackRaw ( int use_mouse_cursor_for_targeting )
 
 	//--------------------
 	//
-	if ( Me . current_enemy_target != NULL )
+	if ( enemy_resolve_address(Me . current_enemy_target_n, &Me.current_enemy_target_addr) != NULL )
 	{
-	    droid_under_melee_attack_cursor = Me . current_enemy_target ;
+	    droid_under_melee_attack_cursor = enemy_resolve_address(Me . current_enemy_target_n, &Me.current_enemy_target_addr) ;
 	    DebugPrintf ( 1 , "\n%s(): using MOUSE MOVE TARGET at X=%d Y=%d for attack direction of tux." , __FUNCTION__ , (int) Me . mouse_move_target . x , (int) Me . mouse_move_target . y );
 	}
 	else
@@ -3255,8 +3251,8 @@ check_for_chests_to_open ( int chest_index )
 		    Me . mouse_move_target . z = Me . pos . z ;
 		    Me . mouse_move_target . x += 0.8 ;
 		    set_up_intermediate_course_for_tux ( ) ;
-		    
-		    Me . current_enemy_target = NULL;
+		   
+		    enemy_set_reference(&Me . current_enemy_target_n, &Me . current_enemy_target_addr, NULL);
 		    Me . mouse_move_target_combo_action_type = COMBO_ACTION_OPEN_CHEST ;
 		    Me . mouse_move_target_combo_action_parameter = chest_index ;
 		    
@@ -3269,7 +3265,7 @@ check_for_chests_to_open ( int chest_index )
 		    Me . mouse_move_target . y += 0.8 ;
 		    set_up_intermediate_course_for_tux ( ) ;
 		    
-		    Me . current_enemy_target = NULL;
+		    enemy_set_reference(&Me . current_enemy_target_n, &Me . current_enemy_target_addr, NULL);
 		    Me . mouse_move_target_combo_action_type = COMBO_ACTION_OPEN_CHEST ;
 		    Me . mouse_move_target_combo_action_parameter = chest_index ;
 		    
@@ -3360,7 +3356,7 @@ check_for_barrels_to_smash ( int barrel_index )
 		    //--------------------
 		    // We set up the combo_action, so that the barrel can be smashed later...
 		    //
-		    Me . current_enemy_target = NULL ;
+		    enemy_set_reference(&Me . current_enemy_target_n, &Me . current_enemy_target_addr, NULL);
 		    Me . mouse_move_target_combo_action_type = COMBO_ACTION_SMASH_BARREL ;
 		    Me . mouse_move_target_combo_action_parameter = barrel_index ;
 		    break;
@@ -3439,8 +3435,10 @@ check_for_droids_to_attack_or_talk_with ( )
 	    translate_pixel_to_map_location ( input_axis.x , input_axis.y , FALSE ) ;
 	Me . mouse_move_target . z = Me . pos . z ;
 	if ( ! ShiftPressed() )
-		Me . current_enemy_target = NULL;
-	
+	    {
+	    enemy_set_reference(&Me . current_enemy_target_n, &Me . current_enemy_target_addr, NULL);
+	    }
+
 	set_up_intermediate_course_for_tux ( ) ;
 	
 	return; 
@@ -3452,14 +3450,15 @@ check_for_droids_to_attack_or_talk_with ( )
     
     if ( droid_below_mouse_cursor != NULL )
     {
-	Me . current_enemy_target = droid_below_mouse_cursor ;
+       
+   	enemy_set_reference(&Me.current_enemy_target_n, &Me.current_enemy_target_addr, droid_below_mouse_cursor); 
 	
-	if ( Me . current_enemy_target->is_friendly ) 
+	if ( enemy_resolve_address(Me.current_enemy_target_n, &Me.current_enemy_target_addr)->is_friendly ) 
 	{
 	    if ( no_left_button_press_in_previous_analyze_mouse_click )
 	    {
-		ChatWithFriendlyDroid ( Me . current_enemy_target ) ;
-		Me . current_enemy_target = NULL;
+		ChatWithFriendlyDroid ( enemy_resolve_address(Me.current_enemy_target_n, &Me.current_enemy_target_addr) ) ;
+		enemy_set_reference(&Me . current_enemy_target_n, &Me . current_enemy_target_addr, NULL);
 	    }
 	    
 	    return ;

@@ -2003,7 +2003,7 @@ PutMouseMoveCursor ( void )
     SDL_Rect TargetRectangle;
     
     if ( ( Me . mouse_move_target . x == (-1) ) &&
-	 ( Me . current_enemy_target == NULL) )
+	 ( enemy_resolve_address(Me.current_enemy_target_n, &Me.current_enemy_target_addr) == NULL) )
     {
 	return;
     }
@@ -2028,17 +2028,18 @@ PutMouseMoveCursor ( void )
 	    our_SDL_blit_surface_wrapper ( MouseCursorImageList [ 0 ] . surface , NULL , Screen , &TargetRectangle);
 	}
     }
-    
-    if ( Me . current_enemy_target != NULL ) 
+   
+    enemy * t = enemy_resolve_address(Me.current_enemy_target_n, &Me.current_enemy_target_addr); 
+    if ( t != NULL ) 
     {
 	// translate_map_point_to_screen_pixel ( float x_map_pos , float y_map_pos , int give_x )
 	
 	TargetRectangle . x = 
-	    translate_map_point_to_screen_pixel_x ( Me . current_enemy_target->pos . x , 
-						    Me . current_enemy_target->pos . y );
+	    translate_map_point_to_screen_pixel_x ( t->pos . x , 
+						    t->pos . y );
 	TargetRectangle . y = 
-	    translate_map_point_to_screen_pixel_y ( Me . current_enemy_target->pos . x , 
-						  Me . current_enemy_target->pos . y );
+	    translate_map_point_to_screen_pixel_y ( t->pos . x , 
+						    t->pos . y );
 	if ( use_open_gl )
 	{
 	    TargetRectangle . x -= MouseCursorImageList [ 1 ] . original_image_width / 2 ;
