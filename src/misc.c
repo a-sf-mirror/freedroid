@@ -722,7 +722,7 @@ char *our_config_dir = NULL;
  *
  * ----------------------------------------------------------------- */
 int
-find_file (char *fname, char *subdir, char * File_Path, int silent)
+find_file (const char *fname, const char *subdir, char * File_Path, int silent)
 {
     int i;
     FILE *fp;  // this is the file we want to find?

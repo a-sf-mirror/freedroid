@@ -740,7 +740,7 @@ EXTERN void ReadValueFromStringWithDefault( char* SearchBeginPointer , const cha
 EXTERN void ReadValueFromString( char* SearchBeginPointer , const char* ValuePreceedText , const char* FormatString , void* TargetValue , char* EndOfSearchSectionPointer );
 EXTERN char* ReadAndMallocAndTerminateFile( char* filename , const char* File_End_String ) ;
 EXTERN char* LocateStringInData ( char* SearchBeginPointer, const char* SearchTextPointer ) ;
-EXTERN int find_file (char *fname, char *datadir, char * File_Path, int silent);
+EXTERN int find_file (const char *fname, const char *datadir, char * File_Path, int silent);
 EXTERN void CheckForTriggeredEventsAndStatements (void);
 EXTERN void Pause (void);
 EXTERN void ComputeFPSForThisFrame(void);
