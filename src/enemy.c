@@ -286,7 +286,7 @@ InitEnemy ( enemy * our_bot )
     our_bot -> has_greeted_influencer = FALSE ;   // has this robot issued his first-time-see-the-Tux message?
     our_bot -> will_rush_tux = FALSE ;
     our_bot -> last_combat_step = 100 ;       // when did this robot last make a step to move in closer or farther away from Tux in combat?
-    for ( j = 0 ; j < MAX_STEPS_IN_GIVEN_COURSE ; j++ )
+    for ( j = 0 ; j < 2 ; j++ )
 	{
 	our_bot -> PrivatePathway [ j ] . x = 0 ;
 	our_bot -> PrivatePathway [ j ] . y = 0 ;

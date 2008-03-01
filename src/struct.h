@@ -585,7 +585,7 @@ typedef struct enemy_s
     
     float TextVisibleTime;
     char* TextToBeDisplayed;
-    moderately_finepoint PrivatePathway[ MAX_STEPS_IN_GIVEN_COURSE ];
+    moderately_finepoint PrivatePathway[ 2 ];
     char stick_to_waypoint_system_by_default;
 
     char bot_stuck_in_wall_at_previous_check;

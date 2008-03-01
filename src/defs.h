@@ -709,7 +709,6 @@ enum
 
 #define MAX_PHASES_IN_A_BULLET 12
 #define PHASES_OF_EACH_BLAST 20
-#define MAX_STEPS_IN_GIVEN_COURSE 100
 
 #define ITEM_INVENTORY_IMAGE_FILE_NAME "File or directory name for inventory image=\""
 #define ITEM_DROP_SOUND_FILE_NAME "Item uses drop sound with filename=\""
