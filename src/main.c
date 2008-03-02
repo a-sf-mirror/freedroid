@@ -279,134 +279,133 @@ UpdateCountersForThisFrame ( )
     float latest_frame_time = Frame_Time();
     int level_num;
 
-	GameConfig . Mission_Log_Visible_Time += latest_frame_time;
-	
-	// The next couter counts the frames displayed by freedroid during this
-	// whole run!!  DO NOT RESET THIS COUNTER WHEN THE GAME RESTARTS!!
-	Overall_Frames_Displayed++;
-	Overall_Average = ( Overall_Average * ( Overall_Frames_Displayed - 1 )
-			   + latest_frame_time ) / Overall_Frames_Displayed ;
-	
-	// Here are some things, that were previously done by some periodic */
-	// interrupt function
-	ThisMessageTime++;
-	
-	LastGotIntoBlastSound += latest_frame_time ;
-	LastRefreshSound += latest_frame_time ;
-	
-	LevelDoorsNotMovedTime += latest_frame_time;
-	LevelGunsNotFiredTime += latest_frame_time;
-	if ( SkipAFewFrames ) SkipAFewFrames--;
+    GameConfig . Mission_Log_Visible_Time += latest_frame_time;
 
-	//--------------------
-	// This is the timeout, that the tux should not start a movement
-	// some fraction of a second after an item drop.
-	//
-	if ( timeout_from_item_drop > 0 )
+    // The next couter counts the frames displayed by freedroid during this
+    // whole run!!  DO NOT RESET THIS COUNTER WHEN THE GAME RESTARTS!!
+    Overall_Frames_Displayed++;
+    Overall_Average = ( Overall_Average * ( Overall_Frames_Displayed - 1 )
+	    + latest_frame_time ) / Overall_Frames_Displayed ;
+
+    // Here are some things, that were previously done by some periodic */
+    // interrupt function
+    ThisMessageTime++;
+
+    LastGotIntoBlastSound += latest_frame_time ;
+    LastRefreshSound += latest_frame_time ;
+
+    LevelDoorsNotMovedTime += latest_frame_time;
+    LevelGunsNotFiredTime += latest_frame_time;
+    if ( SkipAFewFrames ) SkipAFewFrames--;
+
+    //--------------------
+    // This is the timeout, that the tux should not start a movement
+    // some fraction of a second after an item drop.
+    //
+    if ( timeout_from_item_drop > 0 )
 	{
-	    timeout_from_item_drop -= latest_frame_time ;
-	    if ( timeout_from_item_drop < 0 ) timeout_from_item_drop = 0 ; 
+	timeout_from_item_drop -= latest_frame_time ;
+	if ( timeout_from_item_drop < 0 ) timeout_from_item_drop = 0 ; 
 	}
 
-	
-	for ( i = 0 ; i < MAXBULLETS ; i ++ )
+
+    for ( i = 0 ; i < MAXBULLETS ; i ++ )
 	{
-	    if ( AllBullets [ i ] . time_to_hide_still > 0 )
+	if ( AllBullets [ i ] . time_to_hide_still > 0 )
 	    {
-		AllBullets [ i ] . time_to_hide_still -= latest_frame_time;
-		if ( AllBullets [ i ] . time_to_hide_still < 0 )
-		    AllBullets [ i ] . time_to_hide_still = 0 ; 
+	    AllBullets [ i ] . time_to_hide_still -= latest_frame_time;
+	    if ( AllBullets [ i ] . time_to_hide_still < 0 )
+		AllBullets [ i ] . time_to_hide_still = 0 ; 
 	    }
 	}
-	
-	//--------------------
-	// Maybe some items are just thrown in the air and still in the air.
-	// We need to keep track of the time the item has spent in the air so far.
-	//
-	for ( i = 0 ; i < MAX_ITEMS_PER_LEVEL ; i ++ )
+
+    //--------------------
+    // Maybe some items are just thrown in the air and still in the air.
+    // We need to keep track of the time the item has spent in the air so far.
+    //
+    for ( i = 0 ; i < MAX_ITEMS_PER_LEVEL ; i ++ )
 	{
-	    if ( item_level -> ItemList [ i ] . type == ( -1 ) ) continue;
-	    if ( item_level -> ItemList [ i ] . throw_time > 0 ) 
-		item_level -> ItemList [ i ] . throw_time += latest_frame_time;
-	    if ( item_level -> ItemList [ i ] . throw_time > ( M_PI / 3.0 ) ) 
-		item_level -> ItemList [ i ] . throw_time = 0 ;
+	if ( item_level -> ItemList [ i ] . type == ( -1 ) ) continue;
+	if ( item_level -> ItemList [ i ] . throw_time > 0 ) 
+	    item_level -> ItemList [ i ] . throw_time += latest_frame_time;
+	if ( item_level -> ItemList [ i ] . throw_time > ( M_PI / 3.0 ) ) 
+	    item_level -> ItemList [ i ] . throw_time = 0 ;
 	}
 
-	//--------------------
-	// Some bots might be frozen and some might be poisoned, some
-	// might still have a 'firewait' or a normal wait or a paralysation.
-	// In any case those counteres must be updated, but we'll only to 
-	// that for the Tux current level (at present).
-	//
-	for ( level_num = 0 ; level_num < MAX_LEVELS ; level_num ++ )
+    //--------------------
+    // Some bots might be frozen and some might be poisoned, some
+    // might still have a 'firewait' or a normal wait or a paralysation.
+    // In any case those counteres must be updated, but we'll only to 
+    // that for the Tux current level (at present).
+    //
+    for ( level_num = 0 ; level_num < MAX_LEVELS ; level_num ++ )
 	{
-	    if ( level_is_partly_visible ( level_num ) )
-		update_timeouts_for_bots_on_level ( level_num , latest_frame_time ) ;
+	if ( level_is_partly_visible ( level_num ) )
+	    update_timeouts_for_bots_on_level ( level_num , latest_frame_time ) ;
 	}
-    
+
     //--------------------
     // Now we do all the things, that need to be updated for each connected
     // player separatedly.
     //
     Me . current_game_date += latest_frame_time ;
 
-    Me . FramesOnThisLevel++;
     Me . LastCrysoundTime += latest_frame_time ;
     Me . MissionTimeElapsed += latest_frame_time;
     Me . LastTransferSoundTime += latest_frame_time;
     Me . TextVisibleTime += latest_frame_time;
-    
+
     //--------------------
     // We take care of the running stamina...
     //
     my_speed = sqrt ( Me . speed . x * Me . speed . x +
-		      Me . speed . y * Me . speed . y ) ;
+	    Me . speed . y * Me . speed . y ) ;
     if ( my_speed >= ( TUX_WALKING_SPEED + TUX_RUNNING_SPEED ) * 0.5 )
-    {
+	{
 	Me . running_power -= latest_frame_time * 3.0 ;
-    }
+	}
     else
-    {
+	{
 	Me . running_power += latest_frame_time * 3.0 ;
 	if ( Me . running_power > Me . max_running_power )
 	    Me . running_power = Me . max_running_power ;
 
 	if ( Me . running_power >= 20 )
 	    Me . running_must_rest = FALSE ;
-    }
-    
+	}
+
 
     //-------------------
     // Mana and health recover over time
     Me . energy += Me . health_recovery_rate * latest_frame_time;
     if ( Me . energy > Me . maxenergy )
-	    Me . energy = Me . maxenergy;
+	Me . energy = Me . maxenergy;
 
     Me . temperature -= Me . cooling_rate * latest_frame_time;
     if ( Me . temperature < 0 )
-	    Me . temperature = 0;
-    
+	Me . temperature = 0;
+
     if ( Me . temperature > Me . max_temperature ) //overheat, lose life
-	    {
-	    if ( Me . old_temperature < Me . max_temperature ) 
-		append_new_game_message(_("Overheating!"));
-	    Me . energy -= ( Me . temperature - Me.max_temperature ) * latest_frame_time / 10;
-	    }
-    
+	{
+	if ( Me . old_temperature < Me . max_temperature ) 
+	    append_new_game_message(_("Overheating!"));
+	Me . energy -= ( Me . temperature - Me.max_temperature ) * latest_frame_time / 10;
+	}
+
     Me . old_temperature = Me . temperature;
 
     if ( Me . weapon_swing_time != (-1) ) Me . weapon_swing_time += latest_frame_time;
     if ( Me . got_hit_time != (-1) ) Me . got_hit_time += latest_frame_time;
-    
+
     if ( Me . busy_time > 0 )
-    {
+	{
 	Me . busy_time -= latest_frame_time ;
 	if ( Me . busy_time < 0 ) Me . busy_time = 0 ;
-    }
+	}
     if ( Me . busy_time == 0)
 	{
 	if ( Me . busy_type == WEAPON_RELOAD )
-		append_new_game_message(_("Weapon reloaded"));
+	    append_new_game_message(_("Weapon reloaded"));
 	Me . busy_type = NONE;
 	}
 
@@ -423,35 +422,35 @@ UpdateCountersForThisFrame ( )
     // time actually spent passing frames...
     //
     for ( i = 0 ; i < MAX_LEVELS ; i ++ )
-    {
-	if ( Me . pos . z != i )
 	{
-	    if ( Me . time_since_last_visit_or_respawn [ i ] > (-1) )
+	if ( Me . pos . z != i )
 	    {
+	    if ( Me . time_since_last_visit_or_respawn [ i ] > (-1) )
+		{
 		Me . time_since_last_visit_or_respawn [ i ] += latest_frame_time ;
-	    }
-	    
+		}
+
 	    //--------------------
 	    // Now maybe it's time to respawn?  If we really have multiple
 	    // players of course, this check would have to look a bit different...
 	    //
 	    if ( Me . time_since_last_visit_or_respawn [ i ] > 600 )
-	    {
+		{
 		DebugPrintf ( -10 , "\nNow respawning all bots on level : %d. " , i ) ;
 		Me . time_since_last_visit_or_respawn [ i ] = 0 ;
 		respawn_level ( i ) ;
+		}
+
 	    }
-	  
-	}
 	else
-	{
+	    {
 	    //--------------------
 	    // When the Tux is right on this level, there is absolutely no need 
 	    // for respawning anything...
 	    //
 	    Me . time_since_last_visit_or_respawn [ i ] = 0 ;
+	    }
 	}
-    }
 
     //--------------------
     // On some maps, the Tux will have no enemies.  Therefore it would
@@ -459,9 +458,9 @@ UpdateCountersForThisFrame ( )
     // run out.
     //
     if ( curShip . AllLevels [ Me . pos . z ] -> infinite_running_on_this_level )
-    {
+	{
 	Me . running_power = Me . max_running_power ;
-    }
+	}
 
 }; // void UpdateCountersForThisFrame(...) 
 

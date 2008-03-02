@@ -691,7 +691,6 @@ typedef struct tux_s
     float TextVisibleTime;
     char* TextToBeDisplayed;
     float Current_Victim_Resistance_Factor;
-    int FramesOnThisLevel;        // how many frames has the influ spent on this level already?
     
     //--------------------
     // Here we note all the 'skill levels' of the Tux and also which skill is
