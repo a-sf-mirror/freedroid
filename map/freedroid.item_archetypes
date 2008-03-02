@@ -128,7 +128,7 @@ Base list price=30
 Item description text=_"Light and maneuverable in combat, but unfortunately not very effective in cutting through steel as well as quickly reaching the point of breaking if you try. Though for sure better than hitting at metal with your bare fists."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.400000
-Item as gun: reloading time=0.000000
+Item as gun: reloading time=1.000000
 Item as gun: speed of bullets=0.100000
 Item as gun: is melee weapon=1
 Item as gun: damage of bullets=1
@@ -947,10 +947,10 @@ inventory_size_x=1
 inventory_size_y=2
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=1500
-Item description text=_"In the hands of a true master, this excellent technological craftsmanship is as deadly as it is beautiful."
+Item description text=_"In the hands of a true master, this excellent technological craftsmanship is as deadly as it is beautiful. It requires laser crystals to work properly."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.500000
-Item as gun: reloading time=0.000000
+Item as gun: reloading time=1.000000
 Item as gun: speed of bullets=0.100000
 Item as gun: is melee weapon=1
 Item as gun: damage of bullets=30
@@ -962,8 +962,8 @@ Item as gun: ignore collisions with wall="yes"
 Item as gun: reflect other bullets="yes"
 Item as gun: pass through explosions="yes"
 Item as gun: pass through hit bodies="yes"
-Item as gun: required ammunition type="none"
-Item as gun: ammo clip size=0
+Item as gun: required ammunition type="laser_ammunition"
+Item as gun: ammo clip size=14
 Item as gun: weapon requires both hands="yes"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **

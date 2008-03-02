@@ -713,10 +713,8 @@ ShowCurrentWeapon( void )
     
     Mouse_Button_Pressed_Previous_Frame = MouseLeftPressed();
 	
-    //now we create and blit the ammo count
-    /* XXX melee weapons could have ammo without a problem */
-    if ( ItemMap[ Me . weapon_item . type ] . item_weapon_is_melee )
-	return; //Melee weapons don't have ammunition [yet]
+    if ( ! ItemMap[ Me . weapon_item . type ] . item_gun_use_ammunition )
+	return;
 
     if (Me . busy_type == WEAPON_RELOAD)
 	sprintf(current_ammo, _("reloading"));
