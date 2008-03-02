@@ -1204,7 +1204,6 @@ static int kill_enemy(enemy * target, char givexp, int killertype)
     int reward = 0;
 
     /* Give death message */
-    Activate_Conservative_Frame_Computation(); /*XXX check if we need that crap*/
     if ( givexp ) 
 	{
 	reward = Druidmap [ target -> type ] . experience_reward;
