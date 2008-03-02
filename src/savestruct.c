@@ -699,6 +699,7 @@ save_int32_t("do_fadings", &(target->do_fadings));
 save_int32_t("auto_display_to_help", &(target->auto_display_to_help));
 save_int32_t("fullscreen_on", &(target->fullscreen_on));
 save_int32_t("talk_to_bots_after_takeover", &(target->talk_to_bots_after_takeover));
+save_int32_t("force_sdl_automap", &(target->force_sdl_automap));
 fprintf(SaveGameFile, "</%s>\n", tag);
 return 0;
 }
@@ -773,6 +774,7 @@ read_int32_t(pos, "do_fadings",  &(target->do_fadings));
 read_int32_t(pos, "auto_display_to_help",  &(target->auto_display_to_help));
 read_int32_t(pos, "fullscreen_on",  &(target->fullscreen_on));
 read_int32_t(pos, "talk_to_bots_after_takeover",  &(target->talk_to_bots_after_takeover));
+read_int32_t(pos, "force_sdl_automap",  &(target->force_sdl_automap));
 *epos = '>'; 
 return 0;
 }
