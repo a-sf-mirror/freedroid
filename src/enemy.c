@@ -1291,6 +1291,9 @@ hit_enemy ( enemy * target, float hit, char givexp, int killertype)
     if ( !killertype || givexp) // tux hit ? we turn the group hostile ! and yes it's meant to be a logical OR
 	    robot_group_turn_hostile ( target );
 
+    if ( target->is_friendly && givexp )
+	givexp = 0; // force NO XP for killing a friendly bot
+
     enemy_spray_blood ( target ) ;
     
     if(target -> firewait < Druidmap [ target -> type ] . recover_time_after_getting_hit && MyRandom(100) <= 60)
