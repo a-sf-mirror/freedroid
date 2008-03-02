@@ -397,7 +397,8 @@ MoveActiveSpells (void)
 	    // Here we also do the spell damage application here
 	    //
 	    enemy * erot = alive_bots_head;
-	    for ( ; erot; erot = GETNEXT(erot))
+	    enemy * nerot = GETNEXT(erot); /* next element in the list, in case it gets modified*/
+	    for ( ; erot; erot = nerot, nerot = erot ? GETNEXT(erot) : NULL)
 		{
 		if ( erot->pos . z != Me . pos . z )
 		    continue;
@@ -547,7 +548,8 @@ handle_flash_effects ( bullet* CurBullet )
     
 
     enemy * erot = alive_bots_head;
-    for ( ; erot; erot = GETNEXT(erot))
+    enemy * nerot = GETNEXT(erot); /* next element in the list, in case it gets modified*/
+    for ( ; erot; erot = nerot, nerot = erot ? GETNEXT(erot) : NULL)
 	{
 	if ( erot->pos . z != CurBullet -> pos . z ) continue ;
 	if ( erot->type == (-1) ) continue ;
@@ -703,7 +705,8 @@ check_bullet_enemy_collisions ( bullet* CurBullet , int num )
     // Check for collision with enemys
     //
     ThisRobot = alive_bots_head	;
-    for ( ; ThisRobot; ThisRobot = GETNEXT(ThisRobot))
+    enemy * nerot = GETNEXT(ThisRobot); /* next element in the list, in case it gets modified*/
+    for ( ; ThisRobot; ThisRobot = nerot, nerot = ThisRobot ? GETNEXT(ThisRobot) : NULL)
     {
 	if ( ThisRobot -> pos . z != level)
 	    continue;
@@ -887,7 +890,8 @@ CheckBlastCollisions (int num)
     // one blasts area of effect...
     //
     enemy * erot = alive_bots_head;
-    for ( ; erot; erot = GETNEXT(erot))
+    enemy * nerot = GETNEXT(erot); /* next element in the list, in case it gets modified*/
+    for ( ; erot; erot = nerot, nerot = erot ? GETNEXT(erot) : NULL)
 	{
 	if (erot->pos.z != level)
 	    continue;

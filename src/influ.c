@@ -2964,7 +2964,8 @@ PerformTuxAttackRaw ( int use_mouse_cursor_for_targeting )
 		}
 	
 	enemy * erot = alive_bots_head;
-	for ( ; erot ; erot = GETNEXT(erot))
+	enemy * nerot = GETNEXT(erot); /* next element in the list, in case it gets modified*/
+	for ( ; erot; erot = nerot, nerot = erot ? GETNEXT(erot) : NULL)
 	{
 	    if (( erot-> pos . z != Me . pos . z ) ||
 	    		( fabsf ( erot-> pos . x - Weapon_Target_Vector.x ) > 0.5 ) ||
