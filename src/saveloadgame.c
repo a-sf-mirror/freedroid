@@ -412,10 +412,8 @@ LoadGame( void )
     read_tux_t(LoadGameData, "player", &Me);
 
     /* read enemies */
-    free_enemy_list(alive_bots_head);
-    free_enemy_list(dead_bots_head);
-    alive_bots_head = NULL;
-    dead_bots_head = NULL;
+    ClearEnemys();
+
     enemy newen;
     int done;
     int a = 0;
