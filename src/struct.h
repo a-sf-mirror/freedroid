@@ -534,7 +534,7 @@ typedef struct enemy_s
     short int id;
     short type;			// the number of the droid specifications in Druidmap 
     gps pos;		        // coordinates of the current position in the level
-    gps virt_pos;		// the virtual position with respect to remote levels
+    gps virt_pos;		// the virtual position (position of the bot if he was on this level, differs from above when it is on a neighboring level)
     finepoint speed;		// current speed  
     float energy;		// current energy of this droid
     
