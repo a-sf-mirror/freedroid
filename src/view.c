@@ -1911,7 +1911,7 @@ AssembleCombatPicture ( int mask )
     
     show_obstacle_labels ( mask );
 
-      if ( ! use_open_gl )
+      if ( ! use_open_gl || GameConfig.force_sdl_automap )
 	show_automap_data_sdl ( ) ;
       else
 	show_automap_data_ogl ( GameConfig . automap_display_scale ) ; 

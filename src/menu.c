@@ -61,6 +61,7 @@ extern int load_game_command_came_from_inside_running_game;
 
 #define MENU_SELECTION_DEBUG 1
 
+
 /* ----------------------------------------------------------------------
  * This function tells over which menu item the mouse cursor would be,
  * if there were infinitely many menu items.
@@ -1113,7 +1114,8 @@ Cheatmenu (void)
 	    case 'd': // destroy all robots on this level, very useful
 		    {
 		    enemy * erot = alive_bots_head;
-		    for ( ; erot; erot = GETNEXT(erot) )
+		    enemy * nerot = GETNEXT(erot); /* next element in the list, in case it gets modified*/
+		    for ( ; erot; erot = nerot, nerot = erot ? GETNEXT(erot) : NULL)
 			{
 			if ( erot->pos.z == CurLevel->levelnum)
 			    hit_enemy(erot, erot->energy + 1, 0, -1);
@@ -1793,6 +1795,7 @@ PerformanceTweaksOptionsMenu (void)
     char Options3[1000];
     char Options4[1000];
     char Options5[1000];
+    char Options6[1000];
     char* MenuTexts[10];
     enum
 	{ 
@@ -1802,6 +1805,7 @@ PerformanceTweaksOptionsMenu (void)
 	    SKIP_LIGHT_RADIUS_MODE,
 	    SKIP_SHADOWS,
 	    SKIP_FADINGS,
+	    USE_SDL_AUTOMAP,
 	    LEAVE_PERFORMANCE_TWEAKS_MENU 
 	};
     
@@ -1823,15 +1827,18 @@ PerformanceTweaksOptionsMenu (void)
 		  GameConfig . skip_shadow_blitting ? _("YES") : _("NO") );
 	sprintf( Options5 , _("Skip fadings: %s"), 
 		 GameConfig . do_fadings ? _("NO") : _("YES") );
-	
+	sprintf( Options6, _("Use SDL automap: %s"),
+		GameConfig . force_sdl_automap ? _("YES") : _("NO"));
+
 	MenuTexts[0]=Options0;
 	MenuTexts[1]=Options1;
 	MenuTexts[2]=Options2;
 	MenuTexts[3]=Options3;
 	MenuTexts[4]=Options4;
 	MenuTexts[5]=Options5;
-	MenuTexts[6]=_("Back");
-	MenuTexts[7]="";
+	MenuTexts[6]=Options6;
+	MenuTexts[7]=_("Back");
+	MenuTexts[8]="";
 	
         if ( GameOver == TRUE )      
                 MenuPosition = DoMenuSelection( "" , MenuTexts , -1 , NE_TITLE_PIC_BACKGROUND_CODE, NULL );      
@@ -1873,6 +1880,11 @@ PerformanceTweaksOptionsMenu (void)
 		GameConfig . do_fadings = ! GameConfig . do_fadings ;
 		break;
 	    
+	    case USE_SDL_AUTOMAP:
+		while (EnterPressed() || SpacePressed() || MouseLeftPressed() );
+		GameConfig . force_sdl_automap = ! GameConfig . force_sdl_automap ;
+		break;
+
 	    case LEAVE_PERFORMANCE_TWEAKS_MENU:
 		while (EnterPressed() || SpacePressed()|| MouseLeftPressed() );
 		can_continue=TRUE;

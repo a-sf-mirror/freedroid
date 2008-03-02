@@ -160,6 +160,7 @@ typedef struct configuration_for_freedroid_s
     int auto_display_to_help; // display the takeover help
     int fullscreen_on;
     int talk_to_bots_after_takeover;
+    int force_sdl_automap;
 }
 configuration_for_freedroid , *Configuration_for_freedroid;
 
