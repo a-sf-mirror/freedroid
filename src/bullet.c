@@ -396,9 +396,7 @@ MoveActiveSpells (void)
 	    //--------------------
 	    // Here we also do the spell damage application here
 	    //
-	    enemy * erot = alive_bots_head;
-	    enemy * nerot = GETNEXT(erot); /* next element in the list, in case it gets modified*/
-	    for ( ; erot; erot = nerot, nerot = erot ? GETNEXT(erot) : NULL)
+	    BROWSE_ALIVE_BOT_LIST(erot, nerot)
 		{
 		if ( erot->pos . z != Me . pos . z )
 		    continue;
@@ -547,20 +545,18 @@ handle_flash_effects ( bullet* CurBullet )
     if ( CurBullet->time_in_frames != 1 ) return; // we only do the damage once and thats at frame nr. 1 of the flash
     
 
-    enemy * erot = alive_bots_head;
-    enemy * nerot = GETNEXT(erot); /* next element in the list, in case it gets modified*/
-    for ( ; erot; erot = nerot, nerot = erot ? GETNEXT(erot) : NULL)
+    BROWSE_ALIVE_BOT_LIST(erot,nerot)
 	{
 	if ( erot->pos . z != CurBullet -> pos . z ) continue ;
 	if ( erot->type == (-1) ) continue ;
-	
-	if ( IsVisible ( & erot->pos) &&
-	     ( ! Druidmap [ erot->type ] . flashimmune ) ) 
-	{
-	    hit_enemy ( erot, CurBullet->damage, CurBullet->mine ? 1 : 0 /*givexp*/, CurBullet->owner );
-	}
 
-    }
+	if ( IsVisible ( & erot->pos) &&
+		( ! Druidmap [ erot->type ] . flashimmune ) ) 
+	    {
+	    hit_enemy ( erot, CurBullet->damage, CurBullet->mine ? 1 : 0 /*givexp*/, CurBullet->owner );
+	    }
+
+	}
     
     //--------------------
     // We do some damage to the Tux, depending on the current
@@ -699,14 +695,11 @@ check_bullet_enemy_collisions ( bullet* CurBullet , int num )
     double xdist, ydist;
     int level = CurBullet -> pos.z ;
     static int FBTZaehler = 0;
-    enemy* ThisRobot;
     
     //--------------------
     // Check for collision with enemys
     //
-    ThisRobot = alive_bots_head	;
-    enemy * nerot = GETNEXT(ThisRobot); /* next element in the list, in case it gets modified*/
-    for ( ; ThisRobot; ThisRobot = nerot, nerot = ThisRobot ? GETNEXT(ThisRobot) : NULL)
+    BROWSE_ALIVE_BOT_LIST(ThisRobot, nerot)
     {
 	if ( ThisRobot -> pos . z != level)
 	    continue;
@@ -889,21 +882,19 @@ CheckBlastCollisions (int num)
     // Now we check for enemys, that might have stepped into this
     // one blasts area of effect...
     //
-    enemy * erot = alive_bots_head;
-    enemy * nerot = GETNEXT(erot); /* next element in the list, in case it gets modified*/
-    for ( ; erot; erot = nerot, nerot = erot ? GETNEXT(erot) : NULL)
+    BROWSE_ALIVE_BOT_LIST(erot, nerot) 
 	{
 	if (erot->pos.z != level)
 	    continue;
-	
+
 	if ( ( fabsf (erot->pos.x - CurBlast->pos.x ) < Blast_Radius ) &&
-	     ( fabsf (erot->pos.y - CurBlast->pos.y ) < Blast_Radius ) )
-	{
+		( fabsf (erot->pos.y - CurBlast->pos.y ) < Blast_Radius ) )
+	    {
 	    /* we have no support for blast ownership yet, so we give no XP *and* don't know who killed the guy */
 	    hit_enemy(erot, CurBlast -> damage_per_second * Frame_Time (), 0, -1);
-	}
+	    }
 
-       }
+	}
     
     //--------------------
     // Now we check, if perhaps the influencer has stepped into the area

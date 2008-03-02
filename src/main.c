@@ -214,9 +214,8 @@ better than nothing.  Thanks anyway for your interest in FreedroidRPG.\n\
 void
 update_timeouts_for_bots_on_level ( int level_num , float latest_frame_time ) 
 {
-    enemy* this_bot = alive_bots_head;
 
-    for ( ; this_bot; this_bot = GETNEXT(this_bot))
+    BROWSE_ALIVE_BOT_LIST(this_bot,nerot)
     {
 	if ( this_bot -> pos . z != level_num )
 	    continue;

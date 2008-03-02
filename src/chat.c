@@ -430,79 +430,77 @@ ExecuteChatExtra ( char* ExtraCommandString , Enemy ChatDroid )
     char tmp_filename [ 5000 ] ;
     char fpath[2048];
     int mis_num , mis_diary_entry_num;
-    
+
     if ( ! strcmp ( ExtraCommandString , "BreakOffAndBecomeHostile" ) )
-    {
+	{
 	ChatDroid -> is_friendly = FALSE ;
 	ChatDroid -> combat_state = MAKE_ATTACK_RUN ;
-        return 1;
-    }
+	return 1;
+	}
     else if ( ! strcmp ( ExtraCommandString , "DropDead" ) )
-    {
-        hit_enemy(ChatDroid, ChatDroid->energy + 1, 0, -1);
+	{
+	hit_enemy(ChatDroid, ChatDroid->energy + 1, 0, -1);
 	ChatDroid -> energy = 0;
-        return (1);
-    }
+	return (1);
+	}
     else if ( ! strcmp ( ExtraCommandString , "EverybodyBecomesHostile" ) )
-    {
-	enemy * erot = alive_bots_head;
-	while ( erot )
+	{
+	BROWSE_ALIVE_BOT_LIST(erot, nerot)	
 	    {
 	    erot -> is_friendly = FALSE ;
 	    erot->combat_state = MAKE_ATTACK_RUN ;
-	    erot = GETNEXT(erot);
 	    }
 	SwitchBackgroundMusicTo(BIGFIGHT_BACKGROUND_MUSIC_SOUND);
-    }
+	}
     else if ( ! strcmp ( ExtraCommandString , "SetCompletelyFixedProperty" ) )
-    {
+	{
 	ChatDroid -> CompletelyFixed = TRUE ;
-    }
+	}
     else if ( ! strcmp ( ExtraCommandString , "UnsetCompletelyFixedProperty" ) )
-    {
+	{
 	ChatDroid -> CompletelyFixed = FALSE ;
-    }
+	}
     else if ( ! strcmp ( ExtraCommandString , "SetFollowTuxProperty" ) )
-    {
+	{
 	ChatDroid -> follow_tux = TRUE ;
 	ChatDroid -> CompletelyFixed = FALSE ;
-    }
+	}
     else if ( ! strcmp ( ExtraCommandString , "SetMoveFreelyProperty" ) )
-    {
+	{
 	ChatDroid -> CompletelyFixed = FALSE ;
 	ChatDroid -> follow_tux = FALSE ;
-    }
+	}
     else if ( ! strcmp ( ExtraCommandString , "KillTux" ) )
-    {
+	{
 	Me . energy = 0;
-    }
+	}
     else if ( ! strcmp ( ExtraCommandString , "MakeTuxTownGuardMember" ) )
-    {
+	{
 	Me . is_town_guard_member = TRUE ;
 	Mission_Status_Change_Sound();
-    }
+	}
     else if ( ! strcmp ( ExtraCommandString , "IncreaseMeleeWeaponSkill" ) )
-    {
+	{
 	ImproveSkill(&Me . melee_weapon_skill); 
 	SetNewBigScreenMessage( "Melee fighting ability improved!" );
-    }
+	}
     else if ( ! strcmp ( ExtraCommandString , "IncreaseRangedWeaponSkill" ) )
-    {
+	{
 	ImproveSkill(&Me . ranged_weapon_skill); 
 	SetNewBigScreenMessage( "Ranged combat ability improved!" );
-    }
+	}
     else if ( ! strcmp ( ExtraCommandString , "IncreaseSpellcastingSkill" ) )
-    {
+	{
 	ImproveSkill(&Me . spellcasting_skill); 
 	SetNewBigScreenMessage( "Programming ability improved!" );
-    }
+	}
     else if ( ! strcmp ( ExtraCommandString , "IncreaseHackingSkill" ) )
-    {
+	{
 	ImproveSkill(&Me . hacking_skill); 
 	SetNewBigScreenMessage( "Hacking ability improved!" );
-    }
+	}
     else if ( CountStringOccurences ( ExtraCommandString , "IncreaseProgramVersionName:" ) )
-    {
+	{
 	DebugPrintf( CHAT_DEBUG_LEVEL , "\nExtra invoked increasing program version. --> have to decode... " );
 	char * pos = strstr(ExtraCommandString, "IncreaseProgramVersionName");
 	pos += strlen("IncreaseProgramVersionName:");
@@ -513,9 +511,9 @@ ExecuteChatExtra ( char* ExtraCommandString , Enemy ChatDroid )
 	pname[pos2-pos] = 0;
 	DebugPrintf( CHAT_DEBUG_LEVEL , "\n...decoding...Program name is: %d." , pname );
 	Me . base_skill_level [ get_program_index_with_name(pname) ] ++;
-    }
+	}
     else if ( CountStringOccurences ( ExtraCommandString , "TuxLoseHP:" ) )
-    {
+	{
 	char * pos = strstr(ExtraCommandString, "TuxLoseHP");
 	pos += strlen("TuxLoseHP:");
 	while ( ! isdigit ( * pos ) || *pos != '-' ) pos ++;
@@ -525,9 +523,9 @@ ExecuteChatExtra ( char* ExtraCommandString , Enemy ChatDroid )
 	strncpy(pname, pos, pos2 - pos);
 	pname[pos2-pos] = 0;
 	Me . energy -= atoi ( pname ) ;
-    }
+	}
     else if ( CountStringOccurences ( ExtraCommandString , "DeleteItem:" ) )
-    {
+	{
 	char * pos = strstr(ExtraCommandString, "DeleteItem");
 	pos += strlen("DeleteItem:");
 	while ( isspace(*pos) ) pos ++;
@@ -556,9 +554,9 @@ ExecuteChatExtra ( char* ExtraCommandString , Enemy ChatDroid )
 	else multiplicity = 1;
 
 	DeleteInventoryItemsOfType( TempValue , multiplicity );
-    }
+	}
     else if ( CountStringOccurences ( ExtraCommandString , "GiveItem:" ) )
-    {
+	{
 	char * pos = strstr(ExtraCommandString, "GiveItem");
 	pos += strlen("GiveItem:");
 	while ( isspace(*pos) ) pos ++;
@@ -603,33 +601,33 @@ ExecuteChatExtra ( char* ExtraCommandString , Enemy ChatDroid )
 	else
 	    {
 	    SetNewBigScreenMessage( _("1 Item received!") );
+	    }
 	}
-    }
     else if ( CountStringOccurences ( ExtraCommandString , "OpenQuestDiaryEntry:" ) )
-    {
+	{
 	DebugPrintf( CHAT_DEBUG_LEVEL , "\nExtra invoked enabling a new quest diary entry: %s." ,
-		     ExtraCommandString + strlen ( "OpenQuestDiaryEntry:" ) );
+		ExtraCommandString + strlen ( "OpenQuestDiaryEntry:" ) );
 	strncpy ( WorkString , ExtraCommandString + strlen ( "OpenQuestDiaryEntry:" ) , 10 );
 	WorkString [ 10 ] = 0 ;
 	sscanf ( WorkString , "M%dE%d:" , &mis_num , &mis_diary_entry_num );
 	DebugPrintf ( CHAT_DEBUG_LEVEL	, "\nreceived mission number: %d and diary entry number: %d." , 
-		      mis_num , mis_diary_entry_num );
+		mis_num , mis_diary_entry_num );
 	quest_browser_enable_new_diary_entry ( mis_num , mis_diary_entry_num );
-    }
+	}
     else if ( CountStringOccurences ( ExtraCommandString , "ExecuteActionWithLabel:" ) )
-    {
+	{
 	DebugPrintf( CHAT_DEBUG_LEVEL , "\nExtra invoked execution of action with label: %s. Doing it... " ,
-		     ExtraCommandString + strlen ( "ExecuteActionWithLabel:" ) );
+		ExtraCommandString + strlen ( "ExecuteActionWithLabel:" ) );
 	ExecuteActionWithLabel ( ExtraCommandString + strlen ( "ExecuteActionWithLabel:" ) ) ;
-    }
+	}
     else if ( CountStringOccurences ( ExtraCommandString , "ExecuteSubdialog:" ) )
-    {
+	{
 	strcpy ( tmp_filename , ExtraCommandString + strlen ( "ExecuteSubdialog:" ) ) ;
 	DebugPrintf( CHAT_DEBUG_LEVEL , "\nExtra invoked start of SUBDIALOG! with label: %s. Doing it... " ,
-		     tmp_filename );
-	
+		tmp_filename );
+
 	push_or_pop_chat_roster ( PUSH_ROSTER );
-	
+
 	//--------------------
 	// We have to load the subdialog specified...
 	//
@@ -638,7 +636,7 @@ ExecuteChatExtra ( char* ExtraCommandString , Enemy ChatDroid )
 	char finaldir[50];
 	sprintf(finaldir, "%s", DIALOG_DIR);
 	find_file (tmp_filename , finaldir, fpath, 0);
-	
+
 	int i, j;
 	for (i = 0; i < MAX_ANSWERS_PER_PERSON; i ++)
 	    {
@@ -669,131 +667,131 @@ ExecuteChatExtra ( char* ExtraCommandString , Enemy ChatDroid )
 
 	LoadChatRosterWithChatSequence ( fpath );
 	DoChatFromChatRosterData( PERSON_SUBDIALOG_DUMMY , ChatDroid , FALSE );
-	
+
 	push_or_pop_chat_roster ( POP_ROSTER );
-	
+
 	if ( ! ChatDroid -> energy ) //if the droid was killed, end the chat
-		return 1;
-	
-    }
+	    return 1;
+
+	}
     else if ( CountStringOccurences ( ExtraCommandString , "PlantCookie:" ) )
-    {
+	{
 	DebugPrintf( CHAT_DEBUG_LEVEL , "\nExtra invoked planting of a cookie: %s. Doing it... " ,
-		     ExtraCommandString + strlen ( "PlantCookie:" ) );
+		ExtraCommandString + strlen ( "PlantCookie:" ) );
 	PlantCookie ( ExtraCommandString + strlen ( "PlantCookie:" ) ) ;
-    }
+	}
     else if ( CountStringOccurences ( ExtraCommandString , "DeleteCookie:" ) )
-    {
+	{
 	DebugPrintf( CHAT_DEBUG_LEVEL , "\nExtra invoked deleting of a cookie: %s. Doing it... " ,
-		     ExtraCommandString + strlen ( "DeleteCookie:" ) );
+		ExtraCommandString + strlen ( "DeleteCookie:" ) );
 	DeleteCookie ( ExtraCommandString + strlen ( "DeleteCookie:" ) ) ;
-    }
+	}
     else if ( CountStringOccurences ( ExtraCommandString , "InitTradeWithCharacter:" ) )
-    {
+	{
 	TempValue = ResolveDialogSectionToChatFlagsIndex ( ExtraCommandString + strlen ( "InitTradeWithCharacter:" ) ) ;
 	InitTradeWithCharacter( TempValue );
-    }
+	}
     else if ( CountStringOccurences ( ExtraCommandString , "AssignMission:" ) )
-    {
+	{
 	DebugPrintf( CHAT_DEBUG_LEVEL , "\nExtra invoked assigning of mission. --> have to decode... " );
 	ReadValueFromString( ExtraCommandString , "AssignMission:" , "%d" , 
-			     &TempValue , ExtraCommandString + strlen ( ExtraCommandString ) + 0 );
+		&TempValue , ExtraCommandString + strlen ( ExtraCommandString ) + 0 );
 	DebugPrintf( CHAT_DEBUG_LEVEL , "\n...decoding...Mission to assign is: %d." , TempValue );
 	AssignMission ( TempValue );
-    }
+	}
     else if ( CountStringOccurences ( ExtraCommandString , "MarkMissionComplete:" ) )
-    {
+	{
 	DebugPrintf( CHAT_DEBUG_LEVEL , "\nExtra invoked marking a mission as completed. --> have to decode... " );
 	ReadValueFromString( ExtraCommandString , "MarkMissionComplete:" , "%d" , 
-			     &TempValue , ExtraCommandString + strlen ( ExtraCommandString ) + 0 );
+		&TempValue , ExtraCommandString + strlen ( ExtraCommandString ) + 0 );
 	DebugPrintf( CHAT_DEBUG_LEVEL , "\n...decoding...Mission to mark as complete is: %d." , TempValue );
 	Me . AllMissions[ TempValue ] . MissionIsComplete = TRUE;
-    }
+	}
     else if ( CountStringOccurences ( ExtraCommandString , "AddExperienceBonus:" ) )
-    {
+	{
 	DebugPrintf( CHAT_DEBUG_LEVEL , "\nExtra invoked adding an exerpience bonus. --> have to decode... " );
 	ReadValueFromString( ExtraCommandString , "AddExperienceBonus:" , "%d" , 
-			     &TempValue , ExtraCommandString + strlen ( ExtraCommandString ) + 0 );
+		&TempValue , ExtraCommandString + strlen ( ExtraCommandString ) + 0 );
 	DebugPrintf( CHAT_DEBUG_LEVEL , "\n...decoding...bonus to add is: %d." , TempValue );
 	Me . Experience += TempValue;
 	sprintf( WorkString , "+%d Experience Points" , TempValue );
 	SetNewBigScreenMessage ( WorkString );
-    }
+	}
     else if ( CountStringOccurences ( ExtraCommandString , "AddBigScreenMessageBUT_WITH_TERMINATION_CHARACTER_PLEASE:" ) )
-    {
+	{
 	DebugPrintf( CHAT_DEBUG_LEVEL , "\nExtra invoked adding a big screen message. --> have to decode... " );
 	TempMessage = ReadAndMallocStringFromData ( ExtraCommandString , "AddBigScreenMessageBUT_WITH_TERMINATION_CHARACTER_PLEASE:" , ":" ) ;
 	DebugPrintf( CHAT_DEBUG_LEVEL , "\n...decoding...message is: %s." , TempMessage );
 	SetNewBigScreenMessage ( TempMessage );
 	free ( TempMessage ) ;
-    }
+	}
     else if ( CountStringOccurences ( ExtraCommandString , "AddBaseMagic:" ) )
-    {
+	{
 	DebugPrintf( CHAT_DEBUG_LEVEL , "\nExtra invoked adding some base magic points. --> have to decode... " );
 	ReadValueFromString( ExtraCommandString , "AddBaseMagic:" , "%d" , 
-			     &TempValue , ExtraCommandString + strlen ( ExtraCommandString ) + 0 );
+		&TempValue , ExtraCommandString + strlen ( ExtraCommandString ) + 0 );
 	DebugPrintf( CHAT_DEBUG_LEVEL , "\n...decoding... amount of magic points mentioned is: %d." , TempValue );
 	Me . base_magic += TempValue;
-    }
+	}
     else if ( CountStringOccurences ( ExtraCommandString , "AddBaseDexterity:" ) )
-    {
+	{
 	DebugPrintf( CHAT_DEBUG_LEVEL , "\nExtra invoked adding some base dexteritypoints. --> have to decode... " );
 	ReadValueFromString( ExtraCommandString , "AddBaseDexterity:" , "%d" , 
-			     &TempValue , ExtraCommandString + strlen ( ExtraCommandString ) + 0 );
+		&TempValue , ExtraCommandString + strlen ( ExtraCommandString ) + 0 );
 	DebugPrintf( CHAT_DEBUG_LEVEL , "\n...decoding... amount of dexterity points mentioned is: %d." , TempValue );
 	Me . base_dexterity += TempValue;
-    }
+	}
     else if ( CountStringOccurences ( ExtraCommandString , "SubtractPointsToDistribute:" ) )
-    {
+	{
 	DebugPrintf( CHAT_DEBUG_LEVEL , "\nExtra invoked subtracting points to distribute. --> have to decode... " );
 	ReadValueFromString( ExtraCommandString , "SubtractPointsToDistribute:" , "%d" , 
-			     &TempValue , ExtraCommandString + strlen ( ExtraCommandString ) + 0 );
+		&TempValue , ExtraCommandString + strlen ( ExtraCommandString ) + 0 );
 	DebugPrintf( CHAT_DEBUG_LEVEL , "\n...decoding... amount of points mentioned is: %d." , TempValue );
 	Me . points_to_distribute -= TempValue;
-    }
+	}
     else if ( CountStringOccurences ( ExtraCommandString , "SubtractGold:" ) )
-    {
+	{
 	DebugPrintf( CHAT_DEBUG_LEVEL , "\nExtra invoked subtracting gold. --> have to decode... " );
 	ReadValueFromString( ExtraCommandString , "SubtractGold:" , "%d" , 
-			     &TempValue , ExtraCommandString + strlen ( ExtraCommandString ) + 0 );
+		&TempValue , ExtraCommandString + strlen ( ExtraCommandString ) + 0 );
 	DebugPrintf( CHAT_DEBUG_LEVEL , "\n...decoding... amount of gold mentioned is: %d." , TempValue );
 	Me . Gold -= TempValue;
 	sprintf ( WorkString , "%d bucks given" , TempValue );
 	SetNewBigScreenMessage ( WorkString );
-    }
+	}
     else if ( CountStringOccurences ( ExtraCommandString , "ForceBotRespawnOnLevel:" ) )
-    {
+	{
 	DebugPrintf( CHAT_DEBUG_LEVEL , "\nExtra invoked forcing bot respawn on level --> have to decode... " );
 	ReadValueFromString( ExtraCommandString , "ForceBotRespawnOnLevel:" , "%d" , 
-			     &TempValue , ExtraCommandString + strlen ( ExtraCommandString ) + 0 );
+		&TempValue , ExtraCommandString + strlen ( ExtraCommandString ) + 0 );
 	DebugPrintf( CHAT_DEBUG_LEVEL , "\n...decoding...Level to respawn bots on is: %d." , TempValue );
 	respawn_level ( TempValue );
-    }
+	}
     else if ( CountStringOccurences ( ExtraCommandString , "AddGold:" ) )
-    {
+	{
 	DebugPrintf( CHAT_DEBUG_LEVEL , "\nExtra invoked adding gold. --> have to decode... " );
 	ReadValueFromString( ExtraCommandString , "AddGold:" , "%d" , 
-			     &TempValue , ExtraCommandString + strlen ( ExtraCommandString ) + 0 );
+		&TempValue , ExtraCommandString + strlen ( ExtraCommandString ) + 0 );
 	DebugPrintf( CHAT_DEBUG_LEVEL , "\n...decoding... amount of gold mentioned is: %d." , TempValue );
 	Me . Gold += TempValue;
 	sprintf ( WorkString , "%d bucks received" , TempValue );
 	SetNewBigScreenMessage ( WorkString );
-    }
+	}
     else if ( ! strcmp ( ExtraCommandString , "CompletelyHealTux" ) )
-    {
+	{
 	Me . energy = Me . maxenergy ;
-    }
+	}
     else if ( !strcmp ( ExtraCommandString , "EndDialog" ) )
-    {
+	{
 	return ( 1 );
-    }
+	}
     else 
-    {
+	{
 	fprintf( stderr, "\n\nExtraCommandString: %s \n" , ExtraCommandString );
 	ErrorMessage ( __FUNCTION__  , "\
-ERROR:  UNKNOWN COMMAND STRING GIVEN!",
-				   PLEASE_INFORM, IS_FATAL );
-    }
+		ERROR:  UNKNOWN COMMAND STRING GIVEN!",
+		PLEASE_INFORM, IS_FATAL );
+	}
     return ( 0 );
 }; // int ExecuteChatExtra ( char* ExtraCommandString )
 

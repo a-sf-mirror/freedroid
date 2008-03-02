@@ -539,7 +539,6 @@ quest_browser_interface ( void )
 void 
 CheckIfMissionIsComplete (void)
 {
-    enemy * erot = NULL;
     int ItemCounter;
     int mis_num;
     int ActionNum;
@@ -576,8 +575,7 @@ CheckIfMissionIsComplete (void)
 	//
 	if ( Me . AllMissions [ mis_num ].KillOne != (-1) )
 	{
-	    erot = alive_bots_head;
-	    while ( erot )
+	    BROWSE_ALIVE_BOT_LIST(erot,nerot)
 	    {
 		if ( ( erot->marker == Me . AllMissions [ mis_num ] . KillOne ) )
 		{
@@ -586,7 +584,6 @@ CheckIfMissionIsComplete (void)
 		    break;
 		}
 
-		erot = GETNEXT(erot);
 	    }
 	}
 	
@@ -616,8 +613,7 @@ CheckIfMissionIsComplete (void)
 	//
 	if ( Me.AllMissions[ mis_num ]. must_clear_first_level != (-1) )
 	{
-	    enemy * erot = alive_bots_head;
-	    while ( erot ) 
+	    BROWSE_ALIVE_BOT_LIST(erot,nerot)
 	    {
 	    	if ( ( ! erot->is_friendly ) && 
 		     ( erot->pos . z == Me.AllMissions[ mis_num ].must_clear_first_level ) ) 
@@ -625,7 +621,6 @@ CheckIfMissionIsComplete (void)
 		    this_mission_seems_completed = FALSE ;
 		    break;
 		}
-		erot = GETNEXT(erot);
 	    }
 	}
 	
@@ -634,8 +629,7 @@ CheckIfMissionIsComplete (void)
 	//
 	if ( Me.AllMissions[ mis_num ]. must_clear_second_level != (-1) )
 	{
-	    enemy * erot = alive_bots_head;
-	    while ( erot )
+	    BROWSE_ALIVE_BOT_LIST(erot,nerot)
 	    {
 		if ( ( ! erot->is_friendly ) && 
 		     ( erot->pos . z == Me.AllMissions[ mis_num ].must_clear_second_level ) ) 
@@ -643,8 +637,6 @@ CheckIfMissionIsComplete (void)
 		    this_mission_seems_completed = FALSE ;
 		    break;
 		}
-
-		erot = GETNEXT(erot);
 	    }
 	}
 	
