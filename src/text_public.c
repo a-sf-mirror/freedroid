@@ -37,6 +37,8 @@
 #include "proto.h"
 #include "global.h"
 
+#include <zlib.h>
+
 void load_item_surfaces_for_item_type ( int item_type );
 
 extern int Number_Of_Item_Types;
@@ -964,6 +966,69 @@ FS_filelength (FILE *f)
     return end;
 }; // int FS_filelength (FILE *f)
 
+/*-------------------------------------------------------------------------
+ * Inflate a given stream using zlib
+ *
+ * Takes DataFile file and points DataBuffer to a buffer containing the 
+ * uncompressed data. Sets 'size' to the size of said uncompressed data
+ * or does nothing is 'size' == NULL.
+ * This function closes DataFile.
+ * ----------------------------------------------------------------------*/
+void inflate_stream(FILE * DataFile, unsigned char ** DataBuffer, int * size)
+{
+    int filelen = FS_filelength (DataFile);
+    unsigned char * src = MyMalloc (filelen+1);
+    unsigned char * temp_dbuffer = malloc(30 * 1048576); //allocate 30MB max
+    fread(src, filelen, 1, DataFile);
+    fclose( DataFile );
 
+    int ret;
+    z_stream strm;
+
+    /* copy paste of public domain tool "zpipe" of which a copy is in fdRPG source tree*/
+    /* big thanks to zlib authors */
+    /* allocate inflate state */
+    strm.zalloc = Z_NULL;
+    strm.zfree = Z_NULL;
+    strm.opaque = Z_NULL;
+    strm.avail_in = filelen;
+    strm.next_in = src;
+    strm.avail_out = 30 * 1048576;
+    strm.next_out = (Bytef*) temp_dbuffer;
+
+    ret = inflateInit(&strm);
+    if (ret != Z_OK)
+	{
+	ErrorMessage ( __FUNCTION__  , "\
+		zlib was unable to start decompressing a stream.\n\
+		This indicates a serious bug in this installation of Freedroid.",
+		PLEASE_INFORM, IS_FATAL );
+
+	}
+
+    ret = inflate(&strm, Z_FINISH);
+    switch (ret) {
+	case Z_NEED_DICT:
+	    ret = Z_DATA_ERROR;     /* and fall through */
+	case Z_DATA_ERROR:
+	case Z_MEM_ERROR:
+	    (void)inflateEnd(&strm);
+
+	    ErrorMessage ( __FUNCTION__  , "\
+		    zlib was unable to decompress a stream\n\
+		    This indicates a serious bug in this installation of Freedroid.",
+		    PLEASE_INFORM, IS_FATAL );
+
+    }
+
+    (*DataBuffer) = (unsigned char *)malloc(strm.total_out + 1);
+    memcpy(*DataBuffer, temp_dbuffer, strm.total_out);
+    if ( size != NULL )
+	*size = strm.total_out;
+
+    (void)inflateEnd(&strm);
+    free ( src );
+    free( temp_dbuffer );
+}
 #undef _text_public_c
 

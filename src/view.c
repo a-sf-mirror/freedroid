@@ -2279,9 +2279,8 @@ grab_tux_images_from_archive ( int tux_part_group , int motion_class , char* par
     char* tmp_buff;
     char archive_type_string [ 5 ] = { 0 , 0 , 0 , 0 , 0 } ;
     char ogl_support_string [ 5 ] = { 0 , 0 , 0 , 0 , 0 } ;
-    char *DataBuffer, *ptr; 
-    unsigned char * src;
-    int filelen, tmplen;
+    unsigned char *DataBuffer, *ptr; 
+    int tmplen;
 
     Sint16 cooked_walk_object_phases;
     Sint16 cooked_attack_object_phases;
@@ -2304,52 +2303,7 @@ grab_tux_images_from_archive ( int tux_part_group , int motion_class , char* par
     // numbers using SDLNet_Read..(). The file have to be written using SDLNet_Write..()
     DataFile = open_tux_image_archive_file ( tux_part_group , motion_class , part_string );
 
-    filelen = FS_filelength (DataFile);
-         src = MyMalloc (filelen+1);
-         DataBuffer = malloc(30 * 1048576); //allocate 30MB max.
-         fread(src, filelen, 1, DataFile);
-         fclose( DataFile );
-
-         int ret;
-         z_stream strm;
-
-         /* allocate inflate state */
-         strm.zalloc = Z_NULL;
-         strm.zfree = Z_NULL;
-         strm.opaque = Z_NULL;
-         strm.avail_in = filelen;
-         strm.next_in = src;
-         strm.avail_out = 30 * 1048576;
-         strm.next_out = (Bytef*) DataBuffer;
- 
-         ret = inflateInit(&strm);
-         if (ret != Z_OK)
-             {
-             ErrorMessage ( __FUNCTION__  , "\
-zlib was unable to start decompressing a tux archive file.\n\
-This indicates a serious bug in this installation of Freedroid.",
-                                   PLEASE_INFORM, IS_FATAL );
- 
-             }
- 
-          ret = inflate(&strm, Z_FINISH);
-          switch (ret) {
-                case Z_NEED_DICT:
-                    ret = Z_DATA_ERROR;     /* and fall through */
-                case Z_DATA_ERROR:
-                case Z_MEM_ERROR:
-                    (void)inflateEnd(&strm);
- 
-             ErrorMessage ( __FUNCTION__  , "\
-zlib was unable to decompress a tux archive file.\n\
-This indicates a serious bug in this installation of Freedroid.",
-                                   PLEASE_INFORM, IS_FATAL );
-
-                }
-                
-            (void)inflateEnd(&strm);
-            free ( src );
-
+    inflate_stream(DataFile, &DataBuffer, NULL);
     ptr = DataBuffer;
     //--------------------
     // We store the currently loaded part string, so that we can later
@@ -2528,10 +2482,9 @@ grab_enemy_images_from_archive ( int enemy_model_nr )
 char fpath[2048];
     char archive_type_string [ 5 ] = { 0 , 0 , 0 , 0 , 0 } ;
     char ogl_support_string [ 5 ] = { 0 , 0 , 0 , 0 , 0 } ;
-    char *DataBuffer;
-    char *ptr, *dest;
-    unsigned char * src;
-    int filelen, tmplen;
+    unsigned char *DataBuffer;
+    unsigned char *ptr, *dest;
+    int tmplen;
 
     Sint16 img_xlen;
     Sint16 img_ylen;
@@ -2546,7 +2499,6 @@ char fpath[2048];
     Sint16 cooked_death_object_phases;
     Sint16 cooked_stand_object_phases;
 
-    int is_compressed = 1;
 
     //--------------------
     // A short message for debug purposes
@@ -2559,16 +2511,8 @@ char fpath[2048];
     sprintf ( constructed_filename , "droids/%s/%s.tux_image_archive.z" , 
 	      PrefixToFilename [ enemy_model_nr ] ,
 	      PrefixToFilename [ enemy_model_nr ] );
-    if ( find_file (constructed_filename , GRAPHICS_DIR, fpath, 1 ) )
-	{
-	is_compressed = 0;
-	sprintf ( constructed_filename , "droids/%s/%s.tux_image_archive" ,
-              PrefixToFilename [ enemy_model_nr ] ,
-              PrefixToFilename [ enemy_model_nr ] );
-	find_file (constructed_filename , GRAPHICS_DIR, fpath, 0 );
+    find_file (constructed_filename , GRAPHICS_DIR, fpath, 1 );
 
-	}
-    
     //--------------------
     // First we need to open the file
     //
@@ -2586,75 +2530,8 @@ This indicates a serious bug in this installation of Freedroid.",
 	DebugPrintf ( 1 , "\n%s() : Opening file succeeded..." , __FUNCTION__ );
     }
 
-  
-    filelen = FS_filelength (DataFile);
 
-    if ( ! is_compressed  )
-	{ //if we're not reading a zlib compressed file, read it directly
-        DataBuffer = MyMalloc(filelen);
-        fread ( DataBuffer, filelen, 1, DataFile );
-        fclose ( DataFile );
-	}	
-    else {
-	 src = MyMalloc (filelen);
-	 DataBuffer = malloc(30 * 1048576); //allocate 30MB max.
-	 fread(src, filelen, 1, DataFile);
-	 fclose( DataFile );
-
-	 int ret;
-         z_stream strm;
-         
-         /* allocate inflate state */
-         strm.zalloc = Z_NULL;
-         strm.zfree = Z_NULL;
-         strm.opaque = Z_NULL;
-         strm.avail_in = filelen;
-         strm.next_in = src;
-         strm.avail_out = 30 * 1048576;
-         strm.next_out = (Bytef*) DataBuffer;
-
-         ret = inflateInit(&strm);
-         if (ret != Z_OK)
-             {
-	     fprintf( stderr, "\n\nfilename: '%s'\n" , fpath );
-	
-	     ErrorMessage ( __FUNCTION__  , "\
-zlib was unable to start decompressing an enemy archive file.\n\
-This indicates a serious bug in this installation of Freedroid.",
-				   PLEASE_INFORM, IS_FATAL );
-
-	     }
-    
-	  ret = inflate(&strm, Z_FINISH);
-          switch (ret) {
-                case Z_NEED_DICT:
-                    ret = Z_DATA_ERROR;     /* and fall through */
-                case Z_DATA_ERROR:
-                case Z_MEM_ERROR:
-                    (void)inflateEnd(&strm);
-                     fprintf( stderr, "\n\nfilename: '%s'\n" , fpath );
-         
-             ErrorMessage ( __FUNCTION__  , "\
-zlib was unable to decompress an enemy archive file.\n\
-This indicates a serious bug in this installation of Freedroid.",
-                                   PLEASE_INFORM, IS_FATAL );
-
-                }
-
-#if 0            
-	    if (ret != Z_STREAM_END) 
-		{
-                fprintf( stderr, "\n\nfilename: '%s'\n" , fpath );
-             ErrorMessage ( __FUNCTION__  , "\
-zlib could not decompress an enemy archive file, maybe because it was larger than 30MB .\n",
-                                   PLEASE_INFORM, IS_FATAL );
-		}
-#endif		
-
-	    (void)inflateEnd(&strm);
-            free ( src );
-	//printf("-%c%c%c%c%c%c%c%c-\n", *(DataBuffer+0),*(DataBuffer+1),*(DataBuffer+2),*(DataBuffer+3),*(DataBuffer+4),*(DataBuffer+5),*(DataBuffer+6),*(DataBuffer+7));
-	}
+    inflate_stream(DataFile, &DataBuffer, NULL);
 
     ptr = DataBuffer;    
 

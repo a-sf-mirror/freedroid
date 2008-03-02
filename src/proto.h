@@ -865,6 +865,7 @@ EXTERN void DebugPrintf (int db_level, const char *fmt, ...);
 EXTERN void *MyMalloc (long);
 EXTERN void PrepareMultipleChoiceDialog ( Enemy ChatDroid , int with_flip );
 EXTERN int FS_filelength (FILE *f);
+EXTERN void inflate_stream(FILE *, unsigned char **, int *);
 
 // hud.c 
 #undef EXTERN
