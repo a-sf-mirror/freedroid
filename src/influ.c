@@ -895,6 +895,8 @@ GetInfluPositionHistoryX( int HowLongPast )
 {
   int RingPosition;
 
+  HowLongPast >>= 1;
+
   RingPosition = Me . current_zero_ring_index - HowLongPast;
 
   RingPosition += MAX_INFLU_POSITION_HISTORY; // We don't want any negative values, for safety
@@ -909,6 +911,7 @@ GetInfluPositionHistoryY( int HowLongPast )
 {
   int RingPosition;
 
+  HowLongPast >>= 1;
   RingPosition = Me . current_zero_ring_index - HowLongPast;
 
   RingPosition += MAX_INFLU_POSITION_HISTORY; // We don't want any negative values, for safety
@@ -923,6 +926,7 @@ GetInfluPositionHistoryZ( int HowLongPast )
 {
   int RingPosition;
 
+  HowLongPast >>= 1;
   RingPosition = Me . current_zero_ring_index - HowLongPast;
 
   RingPosition += MAX_INFLU_POSITION_HISTORY; // We don't want any negative values, for safety
@@ -2173,12 +2177,17 @@ move_tux ( )
     // We store the influencers position for the history record and so that others
     // can follow his trail.
     //
-    Me . current_zero_ring_index++;
-    Me . current_zero_ring_index %= MAX_INFLU_POSITION_HISTORY;
-    Me . Position_History_Ring_Buffer [ Me . current_zero_ring_index ] . x = Me .pos.x;
-    Me . Position_History_Ring_Buffer [ Me . current_zero_ring_index ] . y = Me .pos.y;
-    Me . Position_History_Ring_Buffer [ Me . current_zero_ring_index ] . z = MoveLevel->levelnum ;
-    
+    static int i = 0;
+    i++;
+    if ( i & 1 )
+	{
+	Me . current_zero_ring_index++;
+	Me . current_zero_ring_index %= MAX_INFLU_POSITION_HISTORY;
+	Me . Position_History_Ring_Buffer [ Me . current_zero_ring_index ] . x = Me .pos.x;
+	Me . Position_History_Ring_Buffer [ Me . current_zero_ring_index ] . y = Me .pos.y;
+	Me . Position_History_Ring_Buffer [ Me . current_zero_ring_index ] . z = MoveLevel->levelnum ;
+	}
+
     //--------------------
     // As a preparation for the later operations, we see if there is
     // a living droid set as a target, and if yes, we correct the move

@@ -1966,6 +1966,25 @@ AssembleCombatPicture ( int mask )
 	blit_mouse_cursor_corona ();
     }
 
+   
+    #if 0  
+    /* This code displays the player tracks with red dots. */
+    glDisable(GL_TEXTURE_2D);
+    glPointSize(2.0);
+    glBegin(GL_POINTS);
+    i = 0;
+    for ( ; i < MAX_INFLU_POSITION_HISTORY; i ++)
+	{
+	int x, y;
+	translate_map_point_to_screen_pixel ( Me.Position_History_Ring_Buffer[i].x , Me.Position_History_Ring_Buffer[i].y , &x, &y, 1.0 );
+	glColor3f(1.0, 0.0, 0.0);
+	glVertex2i(x, y);
+	}
+
+    glEnd();    
+    glEnable(GL_TEXTURE_2D);
+    #endif
+
     //--------------------
     // At this point we are done with the drawing procedure
     // and all that remains to be done is updating the screen.
