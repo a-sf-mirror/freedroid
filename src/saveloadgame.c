@@ -39,8 +39,6 @@
 #include "sys/stat.h"
 #include "savestruct.h"
 
-#define LEVELNUM_EXPL_STRING "Explicit number of the level the influ currently is in="
-
 #define SAVEDGAME_EXT ".savegame"
 #define SAVE_GAME_THUMBNAIL_EXT ".thumbnail.bmp"
 
@@ -286,8 +284,6 @@ or file permissions of ~/.freedroid_rpg are somehow not right.",
 	Terminate(ERR);
     }
     
-    /* XXX write level number  */
-    fprintf(SaveGameFile, "%s%d\n", LEVELNUM_EXPL_STRING, CurLevel->levelnum);
     
     /* Write the version string */
     fprintf(SaveGameFile, "Version string: %s\n\n", Me . freedroid_version_string);
@@ -378,7 +374,6 @@ LoadGame( void )
     char *LoadGameData;
     char filename[1000];
     int i;
-    int current_geographics_levelnum;
     FILE *DataFile;
     
     if ( ! our_config_dir )
@@ -413,14 +408,6 @@ LoadGame( void )
     
     LoadGameData = ReadAndMallocAndTerminateFile( filename , "End of freedroidRPG savefile\n" ) ;
     
-    //--------------------
-    // Before we start decoding the details, we get the former level-number where the
-    // influencer was walking and construct a new 'CurLevel' out of it.
-    //
-    ReadValueFromString( LoadGameData ,  LEVELNUM_EXPL_STRING , "%d" , 
-			 &current_geographics_levelnum , LoadGameData + 30000 );
-    CurLevel = curShip.AllLevels[ current_geographics_levelnum ];
-
     memset(&Me, 0, sizeof(tux_t));
     read_tux_t(LoadGameData, "player", &Me);
 
@@ -505,6 +492,8 @@ LoadGame( void )
 	our_SDL_flip_wrapper( Screen );
 	while ( ! MouseLeftPressed() ) SDL_Delay(1);
     }
+    
+    CurLevel = curShip.AllLevels[ Me . pos . z ];
     
     //--------------------
     // To prevent cheating, we remove all active spells, that might still be there
