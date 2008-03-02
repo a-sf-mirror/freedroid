@@ -300,14 +300,12 @@ ShowCombatScreenTexts ( int mask )
 	{
 	    remaining_bots = 0 ;
 	    
-	    enemy * erot = alive_bots_head;
-	    while ( erot )
+	    BROWSE_ALIVE_BOT_LIST(erot, nerot)
 	    {
 		if ( ( erot->pos . z == Me . pos . z ) &&
 		     ( ! erot->is_friendly ) )
 		    remaining_bots ++ ;
 
-		erot = GETNEXT(erot);
 	    }
 	    PrintStringFont( Screen , FPS_Display_BFont , User_Rect.x , 
 			     User_Rect.y + 0*FontHeight( FPS_Display_BFont ), 

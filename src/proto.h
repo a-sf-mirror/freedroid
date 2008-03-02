@@ -793,6 +793,11 @@ EXTERN void AnimateEnemys ( void ) ;
 EXTERN void hit_enemy ( enemy * target, float hit, char givexp, int killertype);
 EXTERN enemy * enemy_resolve_address ( short int enemy_number, enemy ** enemy_addr );
 EXTERN void enemy_set_reference ( short int * enemy_number, enemy ** enemy_addr, enemy * addr);
+#define BROWSE_ALIVE_BOT_LIST(X,Y) enemy * X = alive_bots_head; enemy * Y = GETNEXT(X); \
+					       for ( ; X ; X = Y, Y = X ? GETNEXT(X) : NULL )
+#define BROWSE_DEAD_BOT_LIST(X,Y) enemy * X = dead_bots_head; enemy * Y = GETNEXT(X); \
+					      for ( ; X ; X = Y, Y = X ? GETNEXT(X) : NULL )
+
 
 // ship.c 
 #undef EXTERN

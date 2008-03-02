@@ -288,8 +288,7 @@ show_automap_data_sdl ( void )
 	}
     }
 
-  enemy * erot = alive_bots_head;
-  for ( ; erot; erot = GETNEXT(erot))
+  BROWSE_ALIVE_BOT_LIST(erot, nerot)
       {
       if ( erot->type == (-1) || (erot->pos . z != automap_level -> levelnum ))
 	  continue;

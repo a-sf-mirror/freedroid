@@ -1113,9 +1113,7 @@ Cheatmenu (void)
 		
 	    case 'd': // destroy all robots on this level, very useful
 		    {
-		    enemy * erot = alive_bots_head;
-		    enemy * nerot = GETNEXT(erot); /* next element in the list, in case it gets modified*/
-		    for ( ; erot; erot = nerot, nerot = erot ? GETNEXT(erot) : NULL)
+		    BROWSE_ALIVE_BOT_LIST(erot,nerot)
 			{
 			if ( erot->pos.z == CurLevel->levelnum)
 			    hit_enemy(erot, erot->energy + 1, 0, -1);

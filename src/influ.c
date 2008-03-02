@@ -2391,9 +2391,8 @@ check_tux_enemy_collision (void)
     float xdist;
     float ydist;
     float max_step_size;
-    
-    enemy * erot = alive_bots_head;
-    for ( ; erot ; erot = GETNEXT(erot))
+   
+    BROWSE_ALIVE_BOT_LIST(erot, nerot) 
     {
 	
 	//--------------------
@@ -2470,7 +2469,6 @@ GetLivingDroidBelowMouseCursor ( )
     float Mouse_Blocks_X, Mouse_Blocks_Y;
     // float DistanceFound = 1000;
     // float CurrentDistance;
-    enemy* this_bot;
     // SDL_Rect enemy_screen_rectangle;
     int RotationModel, RotationIndex;
     iso_image* our_iso_image ;
@@ -2481,8 +2479,7 @@ GetLivingDroidBelowMouseCursor ( )
 						       (float) input_axis.y , FALSE ) ;
     
 
-    this_bot = alive_bots_head;
-    for ( ; this_bot; this_bot = GETNEXT(this_bot))
+    BROWSE_ALIVE_BOT_LIST(this_bot, nerot)
     {
 	if ( this_bot -> pos . z != Me . pos . z )
 	    continue;
@@ -2963,9 +2960,7 @@ PerformTuxAttackRaw ( int use_mouse_cursor_for_targeting )
 		return;
 		}
 	
-	enemy * erot = alive_bots_head;
-	enemy * nerot = GETNEXT(erot); /* next element in the list, in case it gets modified*/
-	for ( ; erot; erot = nerot, nerot = erot ? GETNEXT(erot) : NULL)
+	BROWSE_ALIVE_BOT_LIST(erot,nerot)
 	{
 	    if (( erot-> pos . z != Me . pos . z ) ||
 	    		( fabsf ( erot-> pos . x - Weapon_Target_Vector.x ) > 0.5 ) ||

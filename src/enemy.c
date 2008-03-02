@@ -232,16 +232,14 @@ PermanentHealRobots (void)
   if ( time_since_last_heal < HEAL_INTERVAL ) return;
   time_since_last_heal = 0 ;
 
-  enemy * erot = alive_bots_head;
-  while ( erot )
+  BROWSE_ALIVE_BOT_LIST(erot,nerot)
       {
       if ( erot->energy < Druidmap [ erot->type ] . maxenergy )
-	erot->energy += floor(Druidmap[erot->type ] . lose_health * HEAL_INTERVAL) ;
+	  erot->energy += floor(Druidmap[erot->type ] . lose_health * HEAL_INTERVAL) ;
       if ( erot->energy > Druidmap [ erot->type ] . maxenergy )
-	erot->energy = Druidmap [ erot->type ] . maxenergy ;
-      erot = GETNEXT(erot);
+	  erot->energy = Druidmap [ erot->type ] . maxenergy ;
       }
-      
+
 } // void PermanentHealRobots(void)
 
 void 
@@ -326,18 +324,18 @@ ShuffleEnemys ( int LevelNum )
     // get the number of waypoints on CurLevel
     wp_num = ShuffleLevel->num_waypoints;;
     nth_enemy = 0;
-    enemy * erot = alive_bots_head;
-    for ( ; erot; erot = GETNEXT(erot))
-    {
+
+    BROWSE_ALIVE_BOT_LIST(erot,nerot)
+	{
 	if ( erot->pos . z != LevelNum )
 	    continue;		// dont handle dead enemys or on other level 
-	
+
 	erot-> persuing_given_course = FALSE; // since position is now completely mixed up,
 	// the robot needs to forget about any previous given course.
-	
+
 	if ( erot->CompletelyFixed ) 
 	    continue;
-	
+
 	//--------------------
 	// A special force, that is not completely fixed, needs to be integrated
 	// into the waypoint system:  We find the closest waypoint for it and put
@@ -347,8 +345,8 @@ ShuffleEnemys ( int LevelNum )
 	erot->combat_state = TURN_THOWARDS_NEXT_WAYPOINT;
 	erot->homewaypoint = erot->lastwaypoint;
 	if ( erot->SpecialForce )
-	{
-	    
+	    {
+
 	    //--------------------
 	    // For every special force, that is exactly positioned in the map anyway,
 	    // we find the waypoint he's standing on.  That will be his current target
@@ -356,59 +354,59 @@ ShuffleEnemys ( int LevelNum )
 	    //
 	    BestWaypoint = 0;
 	    for ( j = 0 ; j < wp_num ; j ++ )
-	    {
+		{
 		if ( fabsf ( ( ShuffleLevel -> AllWaypoints[j].x  - erot->pos.x ) *
-			     ( ShuffleLevel -> AllWaypoints[j].x  - erot->pos.x ) +
-			     ( ShuffleLevel -> AllWaypoints[j].y - erot->pos.y ) *
-			     ( ShuffleLevel -> AllWaypoints[j].y - erot->pos.y ) ) < 
-		     fabsf ( ( ShuffleLevel -> AllWaypoints[ BestWaypoint ].x - erot->pos.x ) *
-			     ( ShuffleLevel -> AllWaypoints[ BestWaypoint ].x - erot->pos.x ) +
-			     ( ShuffleLevel -> AllWaypoints[ BestWaypoint ].y - erot->pos.y ) *
-			     ( ShuffleLevel -> AllWaypoints[ BestWaypoint ].y - erot->pos.y ) ) )
+			    ( ShuffleLevel -> AllWaypoints[j].x  - erot->pos.x ) +
+			    ( ShuffleLevel -> AllWaypoints[j].y - erot->pos.y ) *
+			    ( ShuffleLevel -> AllWaypoints[j].y - erot->pos.y ) ) < 
+			fabsf ( ( ShuffleLevel -> AllWaypoints[ BestWaypoint ].x - erot->pos.x ) *
+			    ( ShuffleLevel -> AllWaypoints[ BestWaypoint ].x - erot->pos.x ) +
+			    ( ShuffleLevel -> AllWaypoints[ BestWaypoint ].y - erot->pos.y ) *
+			    ( ShuffleLevel -> AllWaypoints[ BestWaypoint ].y - erot->pos.y ) ) )
 		    BestWaypoint = j;
-	    }
-	    
+		}
+
 	    erot->nextwaypoint = BestWaypoint;
 	    erot->lastwaypoint = BestWaypoint;
-	    
+
 	    erot->pos.x = ShuffleLevel->AllWaypoints[ BestWaypoint ].x;
 	    erot->pos.y = ShuffleLevel->AllWaypoints[ BestWaypoint ].y;
-	    
+
 	    continue;
-	}
-	
+	    }
+
 	nth_enemy++ ;
 	if ( nth_enemy < wp_num )
-	{
+	    {
 	    //--------------------
 	    // If we can use this waypoint for random spawning
 	    // then we use it
 	    // "this waypoint" actually is the bot number in this level. 
 	    //
 	    if ( ! ShuffleLevel -> AllWaypoints [ nth_enemy ] . suppress_random_spawn )
-	    {
+		{
 		wp = nth_enemy;
-	    }
+		}
 	    else
-	    {
+		{
 		i -- ;
 		continue ;
+		}
 	    }
-	}
 	else
-	{
+	    {
 	    DebugPrintf (0, "\nNumber of waypoints found: %d." , wp_num );
 	    DebugPrintf (0, "\nLess waypoints than enemys on level %d? !", ShuffleLevel->levelnum );
 	    Terminate (ERR);
-	}
-	
+	    }
+
 	erot->pos.x = ShuffleLevel->AllWaypoints[wp].x;
 	erot->pos.y = ShuffleLevel->AllWaypoints[wp].y;
-	
+
 	erot->lastwaypoint = wp;
 	erot->nextwaypoint = wp;
-    } 
-    
+	} 
+
 }; // void ShuffleEnemys ( void ) 
 
 /* ----------------------------------------------------------------------
@@ -427,7 +425,6 @@ CheckIfWayIsFreeOfDroidsWithTuxchecking ( float x1 , float y1 , float x2 , float
     int i;
     moderately_finepoint step;
     moderately_finepoint CheckPosition;
-    enemy* this_enemy;
     static int first_call = TRUE ;
     static float steps_per_square;
 
@@ -464,8 +461,7 @@ CheckIfWayIsFreeOfDroidsWithTuxchecking ( float x1 , float y1 , float x2 , float
     
     for ( i = 0 ; i < Steps + 1 ; i++ )
     {
-        this_enemy = alive_bots_head;
-	for ( ;this_enemy; this_enemy = GETNEXT(this_enemy))
+    	BROWSE_ALIVE_BOT_LIST(this_enemy, nerot);
 	{
 	    if (( this_enemy -> pos.z != OurLevel ) || ( this_enemy -> pure_wait > 0 ) || ( this_enemy == ExceptedRobot ))
 		continue;
@@ -514,7 +510,6 @@ CheckIfWayIsFreeOfDroidsWithoutTuxchecking ( float x1 , float y1 , float x2 , fl
     int i;
     moderately_finepoint step;
     moderately_finepoint CheckPosition;
-    enemy* this_enemy;
     static int first_call = TRUE ;
     static float steps_per_square;
 
@@ -555,8 +550,8 @@ CheckIfWayIsFreeOfDroidsWithoutTuxchecking ( float x1 , float y1 , float x2 , fl
 	// for ( j = 0 ; j < MAX_ENEMYS_ON_SHIP ; j ++ )
 	// for ( j = 0 ; j < Number_Of_Droids_On_Ship ; j ++ )
 
-    this_enemy = alive_bots_head;
-    while ( this_enemy )
+
+    BROWSE_ALIVE_BOT_LIST(this_enemy, nerot)
 	{
 	if (( this_enemy -> pos.z != OurLevel ) ||( this_enemy -> pure_wait > 0 ) || ( this_enemy == ExceptedRobot ))
 	    {
@@ -572,8 +567,8 @@ CheckIfWayIsFreeOfDroidsWithoutTuxchecking ( float x1 , float y1 , float x2 , fl
 	    return FALSE;
 	    }
 
-	this_enemy = GETNEXT(this_enemy);
 	}	    
+
 	CheckPosition . x += step . x;
 	CheckPosition . y += step . y;
     }
@@ -2038,8 +2033,6 @@ ProcessAttackStateMachine ( enemy * ThisRobot )
 void
 MoveEnemys ( void )
 {
-    Enemy ThisRobot;
-    
     //--------------------
     // We heal the robots again as time passes.  This function has been checked and
     // optimized for speed already....
@@ -2051,8 +2044,7 @@ MoveEnemys ( void )
     //--------------------
     // Now the pure movement stuff..
     //
-    ThisRobot = alive_bots_head;
-    for ( ; ThisRobot; ThisRobot = GETNEXT(ThisRobot))
+    BROWSE_ALIVE_BOT_LIST(ThisRobot, nerot)
     {
 	//--------------------
 	// Now check if the robot is still alive if the robot just got killed, 
@@ -2358,9 +2350,8 @@ ClosestOtherEnemyDroid ( Enemy ThisRobot )
   enemy * BestTarget = NULL ;
   float BestDistance = 100000 ;
   float FoundDistance;
-  
-  enemy * erot = alive_bots_head;
-  while ( erot )
+ 
+  BROWSE_ALIVE_BOT_LIST(erot, nerot) 
     {
       if ( ThisRobot -> pos . z != erot->pos . z )
 	  {
@@ -2387,7 +2378,6 @@ ClosestOtherEnemyDroid ( Enemy ThisRobot )
 	  BestDistance = FoundDistance ;
 	  BestTarget = erot;
 	}
-      erot = GETNEXT(erot);
     }
 
   return BestTarget ;
@@ -2403,8 +2393,7 @@ EnemyOfTuxCloseToThisRobot ( Enemy ThisRobot , moderately_finepoint* vect_to_tar
 {
   float IgnoreRange = Druidmap [ ThisRobot -> type ] . minimal_range_hostile_bots_are_ignored;
 
-  enemy * erot = alive_bots_head;
-  for ( ; erot ; erot = GETNEXT(erot) )
+  BROWSE_ALIVE_BOT_LIST(erot, nerot)
     {
       if ( erot->is_friendly )
       	  continue;
@@ -2448,12 +2437,7 @@ update_vector_to_shot_target_for_friend ( enemy* ThisRobot , moderately_finepoin
     vect_to_target -> x = -1000;
     vect_to_target -> y = -1000;
     
-    //--------------------
-    // Since it's a friendly device in this case, it will aim at the (closest?) of
-    // the MS bots.
-    //
-    enemy * erot = alive_bots_head;
-    for ( ; erot; erot = GETNEXT(erot) )
+    BROWSE_ALIVE_BOT_LIST(erot,nerot)
     {
 	if ( erot->is_friendly )
 	    continue;
@@ -2516,8 +2500,7 @@ update_vector_to_shot_target_for_enemy ( enemy* this_robot , moderately_finepoin
     // should attack this one instead, since it's much closer anyway.
     // Let's see...
     //
-    enemy * erot = alive_bots_head;
-    for ( ; erot; erot = GETNEXT(erot))
+    BROWSE_ALIVE_BOT_LIST(erot, nerot)
     {
 	if ( erot->pos . z != our_level ) 
 	    continue;
@@ -2910,13 +2893,10 @@ SetRestOfGroupToState ( Enemy ThisRobot , short NewState )
 
   if ( ( MarkerCode == 0 ) || ( MarkerCode == 101 ) )return ;
 
-  enemy * erot = alive_bots_head;
-  while ( erot )
+  BROWSE_ALIVE_BOT_LIST(erot,nerot)
       {
       if ( erot-> marker == MarkerCode )
-	erot->combat_state = NewState ;
-	
-      erot = GETNEXT(erot);
+	  erot->combat_state = NewState ;
       }
 
 }; // void SetRestOfGroupToState ( Enemy ThisRobot , int NewState )
@@ -2934,15 +2914,13 @@ robot_group_turn_hostile ( enemy * ThisRobot )
     MarkerCode = ThisRobot -> marker ;
     if (MarkerCode == 9999) SwitchBackgroundMusicTo(BIGFIGHT_BACKGROUND_MUSIC_SOUND);
 
-    enemy * erot = alive_bots_head;
-    while ( erot )
-        {
+    BROWSE_ALIVE_BOT_LIST(erot, nerot)
+	{
 	if ( erot->marker == MarkerCode && erot->has_been_taken_over == FALSE)
 	    erot->is_friendly = FALSE ;
-        if ( MarkerCode == 9999 ) 
+	if ( MarkerCode == 9999 ) 
 	    erot->combat_state = MAKE_ATTACK_RUN ;
-	erot = GETNEXT(erot);
-        }
+	}
 }; // void robot_group_turn_hostile ( int enemy_num )
 
 
@@ -3062,9 +3040,8 @@ CheckEnemyEnemyCollision ( enemy * OurBot )
     //--------------------
     // Now we check through all the other enemys on this level if 
     // there is perhaps a collision with them...
-    //
-    enemy * erot = alive_bots_head;
-    for ( ; erot; erot = GETNEXT(erot))
+    
+    BROWSE_ALIVE_BOT_LIST(erot, nerot)
     {
 	if ( erot -> pos . z != OurBot -> pos . z )
 	    continue;

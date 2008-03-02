@@ -121,22 +121,17 @@ respawn_level ( int level_num )
     //--------------------
     // Now we can start to fill the enemies on this level with new life...
     //
-    enemy * erot = dead_bots_head;
-    enemy * next = NULL;
-    for ( ; erot; erot = next )
+    BROWSE_DEAD_BOT_LIST(aerot, next)
 	{
-	next = GETNEXT(erot);
-
-	if ( erot -> pos  . z != level_num )
+	if ( aerot -> pos  . z != level_num )
 	    continue;
-	if ( Druidmap[ erot->type ] . is_human )
+	if ( Druidmap[ aerot->type ] . is_human )
 	    continue;
 
-	move_enemy(&alive_bots_head, erot, &dead_bots_head);
+	move_enemy(&alive_bots_head, aerot, &dead_bots_head);
 	}
     
-    erot = alive_bots_head;
-    for ( ; erot; erot = GETNEXT(erot))
+    BROWSE_ALIVE_BOT_LIST(erot,nerot)
 	{
 	if ( erot -> pos  . z != level_num )
 	    continue;
@@ -2639,18 +2634,14 @@ CountNumberOfDroidsOnShip ( void )
 {
     Number_Of_Droids_On_Ship=0;
 
-    enemy * erot = alive_bots_head;
-    while ( erot )
-    {
-	Number_Of_Droids_On_Ship++;
-	erot = GETNEXT(erot);
-    }
-
-    erot = dead_bots_head;
-    while ( erot )
+    BROWSE_ALIVE_BOT_LIST(erot,nerot)
 	{
 	Number_Of_Droids_On_Ship++;
-	erot = GETNEXT(erot);
+	}
+
+    BROWSE_DEAD_BOT_LIST(aerot, anerot)
+	{
+	Number_Of_Droids_On_Ship++;
 	}
 
 }; // void CountNumberOfDroidsOnShip ( void )
@@ -3185,8 +3176,7 @@ Error:  Doors pointing not to door obstacles found.",
 	  //
 	  some_bot_was_close_to_this_door = FALSE ;
 
-	    enemy * erot = alive_bots_head;
-	    for ( ; erot; erot = GETNEXT(erot))
+	  BROWSE_ALIVE_BOT_LIST(erot,nerot)
 	    {
 	      //--------------------
 	      // ignore druids that are dead or on other levels 
