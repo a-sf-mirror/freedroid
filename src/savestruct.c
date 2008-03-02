@@ -45,7 +45,6 @@ save_string("short_description_text", &(target->short_description_text));
 save_char("will_rush_tux", &(target->will_rush_tux));
 save_char("persuing_given_course", &(target->persuing_given_course));
 save_int16_t("StayHowManyFramesBehind", &(target->StayHowManyFramesBehind));
-save_int16_t("StayHowManySecondsBehind", &(target->StayHowManySecondsBehind));
 save_char("has_greeted_influencer", &(target->has_greeted_influencer));
 save_float("previous_angle", &(target->previous_angle));
 save_float("current_angle", &(target->current_angle));
@@ -111,7 +110,6 @@ read_string(pos, "short_description_text", (char*) &(target->short_description_t
 read_char(pos, "will_rush_tux",  &(target->will_rush_tux));
 read_char(pos, "persuing_given_course",  &(target->persuing_given_course));
 read_int16_t(pos, "StayHowManyFramesBehind",  &(target->StayHowManyFramesBehind));
-read_int16_t(pos, "StayHowManySecondsBehind",  &(target->StayHowManySecondsBehind));
 read_char(pos, "has_greeted_influencer",  &(target->has_greeted_influencer));
 read_float(pos, "previous_angle",  &(target->previous_angle));
 read_float(pos, "current_angle",  &(target->current_angle));

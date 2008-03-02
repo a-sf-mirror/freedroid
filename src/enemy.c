@@ -272,7 +272,6 @@ InitEnemy ( enemy * our_bot )
     our_bot -> TextToBeDisplayed = "";
     our_bot -> persuing_given_course = FALSE;
     our_bot -> FollowingInflusTail = FALSE;
-    our_bot -> StayHowManySecondsBehind = 5;
     our_bot -> ammo_left = 0;
 
     our_bot -> phase = 0;

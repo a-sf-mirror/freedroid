@@ -577,7 +577,6 @@ typedef struct enemy_s
     char will_rush_tux;            // will this robot approach the Tux on sight and open communication?
     char persuing_given_course;    // is this robot persuing a given course via PersueGivenCourse( EnemyNum )?
     short StayHowManyFramesBehind;  // how many frames shall this droid trott behind the influ when follwing his tail? /*XXX*/
-    short StayHowManySecondsBehind;  // how many seconds shall this droid trott behind the influ when follwing his tail?/*XXX*/
     char has_greeted_influencer;   // has this robot issued his first-time-see-the-Tux message?
     float previous_angle;         // which angle has this robot been facing the frame before?
     float current_angle;          // which angle will the robot be facing now?
