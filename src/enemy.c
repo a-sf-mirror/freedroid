@@ -461,7 +461,7 @@ CheckIfWayIsFreeOfDroidsWithTuxchecking ( float x1 , float y1 , float x2 , float
     
     for ( i = 0 ; i < Steps + 1 ; i++ )
     {
-    	BROWSE_ALIVE_BOT_LIST(this_enemy, nerot);
+    	BROWSE_ALIVE_BOT_LIST(this_enemy, nerot)
 	{
 	    if (( this_enemy -> pos.z != OurLevel ) || ( this_enemy -> pure_wait > 0 ) || ( this_enemy == ExceptedRobot ))
 		continue;
