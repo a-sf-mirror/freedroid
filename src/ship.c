@@ -66,7 +66,7 @@ GreatItemShow ( int NumberOfItems , item* ShowPointerList[ MAX_ITEMS_IN_INVENTOR
 {
     int ItemType;
     int Displacement=0;
-    bool finished = FALSE;
+    char finished = 0;
     static int WasPressed = FALSE ;
     // item* ShowPointerList[ MAX_ITEMS_IN_INVENTORY ];
     // int NumberOfItems;
