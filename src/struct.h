@@ -30,15 +30,6 @@
 #include "system.h"
 #include "defs.h"
 
-#ifndef _WORD
-typedef unsigned word;
-#define _WORD
-#endif
-#ifndef _BOOL
-typedef char bool;
-#define _BOOL
-#endif
-
 typedef struct tColorRGBA {
     Uint8 r;
     Uint8 g;
