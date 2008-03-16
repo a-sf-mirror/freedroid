@@ -148,7 +148,7 @@ print_menu_text ( char* InitialText , char* MenuTexts[] , int first_menu_item_po
  * 
  * ---------------------------------------------------------------------- */
 int
-DoMenuSelection( char* InitialText , char* MenuTexts[] , int FirstItem , int background_code , void* MenuFont )
+DoMenuSelection( char* InitialText , char **MenuTexts, int FirstItem , int background_code , void* MenuFont )
 {
     int h;
     int i;

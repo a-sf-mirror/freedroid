@@ -711,11 +711,11 @@ EXTERN int ResolveDialogSectionToChatFlagsIndex ( char* SectionName );
 EXTERN void clear_player_inventory_and_stats ( void );
 EXTERN void StoreMenuBackground ( int backup_slot );
 EXTERN void RestoreMenuBackground ( int backup_slot );
-EXTERN int DoMenuSelection( char* InitialText , char* MenuTexts[10] , int FirstItem , int background_code , void* MenuFont );
-EXTERN int ChatDoMenuSelectionFlagged( char* InitialText , char* MenuTexts[ MAX_ANSWERS_PER_PERSON] , 
-				       unsigned char Chat_Flags[ MAX_ANSWERS_PER_PERSON ] , int FirstItem , 
+EXTERN int DoMenuSelection( char* InitialText , char** MenuTexts, int FirstItem , int background_code , void* MenuFont );
+EXTERN int ChatDoMenuSelectionFlagged( char* InitialText , char** MenuTexts, 
+				       unsigned char * Chat_Flags, int FirstItem , 
 				       int background_code , void* MenuFont , enemy* ChatDroid );
-EXTERN int ChatDoMenuSelection( char* MenuTexts[10] , int FirstItem , void* MenuFont , enemy* ChatDroid );
+EXTERN int ChatDoMenuSelection( char **MenuTexts, int FirstItem , void* MenuFont , enemy* ChatDroid );
 EXTERN void StartupMenu (void);
 EXTERN void InitiateMenu( int background_code );
 EXTERN void Cheatmenu (void);
@@ -806,7 +806,7 @@ EXTERN void enemy_set_reference ( short int * enemy_number, enemy ** enemy_addr,
 #else
 #define EXTERN extern
 #endif
-EXTERN int GreatItemShow ( int NumberOfItems , item* ShowPointerList[ MAX_ITEMS_IN_INVENTORY ] );
+EXTERN int GreatItemShow ( int NumberOfItems , item** ShowPointerList );
 EXTERN void ShowDeckMap (void);
 EXTERN void ShowItemInfo ( item* ShowItem , int page , char ShowArrows , int background_code , int title_text_flag );
 EXTERN void EnterLift (void);
