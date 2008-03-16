@@ -556,7 +556,7 @@ GreatShopInterface ( int NumberOfItems , item* ShowPointerList[ MAX_ITEMS_IN_INV
 		     shop_decision* ShopOrder , int ShowChestButtons )
 {
     int Displacement=0;
-    bool finished = FALSE;
+    char finished = 0;
     static int WasPressed = FALSE ;
     int i;
     int ClickTarget;
