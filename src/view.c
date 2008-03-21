@@ -1965,7 +1965,7 @@ AssembleCombatPicture ( int mask )
     }
 
    
-    #if 0  
+#if 0  
     /* This code displays the player tracks with red dots. */
     glDisable(GL_TEXTURE_2D);
     glPointSize(2.0);
@@ -1981,7 +1981,29 @@ AssembleCombatPicture ( int mask )
 
     glEnd();    
     glEnable(GL_TEXTURE_2D);
-    #endif
+#endif
+
+#if 0
+    /* This code displays tux waypoints */ 
+    glDisable(GL_TEXTURE_2D);
+    glLineWidth(2.0);
+    glBegin(GL_LINE_STRIP);
+    i = 0;
+    int x, y;
+    translate_map_point_to_screen_pixel ( Me.pos.x , Me.pos.y , &x, &y, 1.0 );
+    glColor3f(0.0, 1.0, 0.0);
+    glVertex2i(x, y);
+    while ( Me.next_intermediate_point[i].x != -1 )
+	{
+	translate_map_point_to_screen_pixel ( Me.next_intermediate_point[i].x , Me.next_intermediate_point[i].y , &x, &y, 1.0 );
+	glColor3f(0.0, 1.0, 0.0);
+	glVertex2i(x, y);
+	i++;
+	}
+
+    glEnd();    
+    glEnable(GL_TEXTURE_2D);
+#endif
 
     //--------------------
     // At this point we are done with the drawing procedure
