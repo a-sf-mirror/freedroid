@@ -720,7 +720,6 @@ EXTERN void StartupMenu (void);
 EXTERN void InitiateMenu( int background_code );
 EXTERN void Cheatmenu (void);
 EXTERN void EscapeMenu (void);
-EXTERN void Credits_Menu (void);
 EXTERN int GetNumberOfTextLinesNeeded ( char* GivenText, SDL_Rect GivenRectangle , float text_stretch );
 
 // misc.c 

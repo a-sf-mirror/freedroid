@@ -42,8 +42,6 @@
 int New_Game_Requested = FALSE ;
 
 int Single_Player_Menu (void);
-void Credits_Menu (void);
-void Contribute_Menu (void);
 void Options_Menu (void);
 void Show_Mission_Log_Menu (void);
 
@@ -1341,10 +1339,10 @@ Startup_handle (int n)
     case OPTIONS_POSITION:
 	return MENU_OPTIONS;
     case CREDITS_POSITION:
-	Credits_Menu ();
+	PlayATitleFile ( "Credits.title" );
 	break;
     case CONTRIBUTE_POSITION:
-	Contribute_Menu ();
+	PlayATitleFile ( "Contribute.title" );
 	break;
     case (-1):
     case EXIT_FREEDROID_POSITION:
@@ -1960,79 +1958,6 @@ Droid_fill (char *MenuTexts[10])
 #define FIRST_MIS_SELECT_ITEM_POS_X (0.0)
 #define FIRST_MIS_SELECT_ITEM_POS_Y (BANNER_HEIGHT + FontHeight(Menu_BFont))
 
-
-/* ----------------------------------------------------------------------
- * This function provides the credits screen.  It is a submenu of
- * the big EscapeMenu.  Here you can see who helped developing the
- * game.
- * ---------------------------------------------------------------------- */
-void
-Credits_Menu (void)
-{
-    char* CreditsText = _("\n\n\n\
-                                            CREDITS\n\n\n\
-   PROGRAMMING:\n\n\
-                                      Johannes Prix\n\n\
-                                      Reinhard Prix\n\n\
-                                      Arthur Huillet\n\n\n\
-   ARTWORK:\n\n\
-                                      Bastian Salmela\n\n\n\
-   DIALOGUES AND MINOR TWEAKS:\n\n\
-                                      Karol Swietlicki\n\n\n\
-   PROFILING AND TESTING:\n\n\
-                                      Clint Herron\n\n\n\
-   SOUND EFFECTS:\n\n\
-                                      Johannes Prix\n\n\
-                                      Chris Hoeppner\n\n\n\
-   VOICES:\n\n\
-                                      Tiina Heinonen\n\n\
-                                      Doris Stubenrauch\n\n\
-                                      Andrew A. Gill\n\n\
-                                      Johannes Prix\n\n\
-                                      Mbrola\n\
-                                       text-to-speech system\n\n\
-                                      eSpeak\n\
-                                       text-to-speech system\n\n\n\
-   OGG COMPOSERS:\n\n\
-                                      \"The Beginning\"\n\
-                                        by 4t thieves\n\
-                                        of kahvi collective\n\
-                                      (www.kahvi.org)\n\n\
-                                      \"Daybreak\"\n\
-                                        by realsmokers\n\
-                                        of kahvi collective\n\
-                                      (www.realsmokers.de)\n\
-                                      (www.kahvi.org)\n\n\
-                                      \"Bleostrada\"\n\
-                                        by stud\n\
-                                        of kahvi collective\n\
-                                      (www.atl3.com/stud)\n\
-                                      (www.kahvi.org)\n\n\
-                                        Arvid Picciani\n\n\n\
-   VARIOUS OLDER CONTRIBUTIONS (PRE-0.9.13 people):\n\n\
-                                      Ryan 'simcop2387' Voots\n\n\
-                                      Andrew A. Gill\n\n\
-                                      Zombie Ryushu\n\n\
-                                      Ted Cipicchio\n\n\
-                                      The Doctor\n\n\
-                                      Simon Newton\n\n\n\n\n");
-    
-    User_Rect . x = Full_Screen_Rect . x ;
-    User_Rect . y = Full_Screen_Rect . y ;
-    User_Rect . w = Full_Screen_Rect . w ;
-    User_Rect . h = Full_Screen_Rect . h ;
-    
-    while( SpacePressed() || EscapePressed() ) ; /* wait for key release */
-    
-    // InitiateMenu();
-    
-    SwitchBackgroundMusicTo ( CREDITS_BACKGROUND_MUSIC_SOUND );
-    
-    ScrollText ( CreditsText , SCROLLSTARTX, SCROLLSTARTY, NE_CREDITS_PIC_BACKGROUND_CODE );
-    
-    while( SpacePressed() || EscapePressed() ) ; /* wait for key release */
-    
-}; // void Credits_Menu(void)
 /* ----------------------------------------------------------------------
  * This reads in the new name for the character...
  * ---------------------------------------------------------------------- */
@@ -2556,66 +2481,6 @@ Single_Player_Menu (void)
     }
     return ( TRUE );
 }; // void Single_Player_Menu ( void );
-
-/* ----------------------------------------------------------------------
- * This function provides the contribution screen.  It is a submenu of
- * the big EscapeMenu.  Here you can see who can help developing the
- * game into an even better game :)
- * ---------------------------------------------------------------------- */
-void
-Contribute_Menu (void)
-{
-    char* ContributeText = _("\n\n\
-                       HOW TO CONTRIBUTE\n\n\n\
-FreedroidRPG is entirely free software and free artwork.\n\
-It is developed exclusively by volunteers in their leisure time.\n\
-\n\
-FreedroidRPG depends on these contributions to become a better game.  \
-If you would like to contribute something, \
-but are not completely sure how, here's a list of things:\n\
-\n\
-\n\
-   TESTING AND BUG REPORTING:\n\
-\n\
-We need people to try out the game and report anything that does not work correctly or seems to be unstable. This includes minor things, such as spelling mistakes and the like. The task of testing is growing with the size of FreedroidRPG. We need your help.\n\
-\n\
-\n\
-   MAP IMPROVEMENTS:\n\
-\n\
-We are looking for people who would make maps for us. There is already an editor built into the game. Feel free to try it, and if you like it make sure to get back to us.\n\
-\n\
-\n\
-   VOICE SAMPLES:\n\
-\n\
-Currently we are not accepting new speech. All of the dialogues are being rewritten, we will add voice to them later. If you are one of our old voice actors, then please get in touch with the team.\n\
-\n\
-\n\
-   SOUND EFFECTS:\n\
-\n\
-We sure could use some sound effects. If you want to contribute some to a good cause we will not say no to that. :) \n\
-\n\
-\n\
-   CONTACT:\n\n\
-If you would like to contribute something or give some feedback concerning the game, you can easily get in contact with the developers. Just send an e-mail to the following address:\n\
-\n\
-freedroid-discussion@lists.sourceforge.net\n\
-\n\
-Or, if you prefer that, you might want to pop into our IRC channel (#freedroid on irc.freenode.net) Everyone's invited. Bring your friends and coke, beer for Basse and Arthur.\n\
-\n\
-Thank you,\n\
-\n\
-                The FreedroidRPG dev team.\n\
-                                      \n\n\n\n\n");
-    
-    while ( SpacePressed() || EscapePressed() ) ; 
-    
-    SwitchBackgroundMusicTo ( CREDITS_BACKGROUND_MUSIC_SOUND );
-    
-    ScrollText ( ContributeText , SCROLLSTARTX, SCROLLSTARTY, NE_CREDITS_PIC_BACKGROUND_CODE );
-
-    while ( SpacePressed() || EscapePressed() ) ; 
-  
-}; // void Contribute_Menu(void)
 
 /*@Function============================================================
 @Desc: This function provides the details of a mission that has been

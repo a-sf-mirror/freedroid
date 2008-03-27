@@ -2530,10 +2530,7 @@ ThouHastWon (void)
     //
     PlayATitleFile ( "EndOfGame.title" );
 
-    //--------------------
-    // Now it's time for the credits file
-    //
-    Credits_Menu();
+    PlayATitleFile("Credits.title");
 
     //--------------------
     // The automap doesn't need to be shown any more and also when
