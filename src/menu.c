@@ -55,7 +55,7 @@ extern int load_game_command_came_from_inside_running_game;
 #define SELL_PRICE_FACTOR (0.25)
 #define REPAIR_PRICE_FACTOR (0.5)
 
-#define SINGLE_PLAYER_STRING _("Play")
+#define SINGLE_PLAYER_STRING "Play"
 #define LOAD_EXISTING_HERO_STRING _("The first 10 characters: ")
 #define DELETE_EXISTING_HERO_STRING _("Select character to delete: ")
 
@@ -1164,8 +1164,7 @@ Cheatmenu (void)
 			ClearGraphMem ();
 			printf_SDL (Screen, x0, y0, "Nr.   X   Y      C1  C2  C3  C4\n");
 			printf_SDL (Screen, -1, -1, "------------------------------------\n");
-		    }
-		    printf_SDL (Screen, -1, -1, "%2d   %2d  %2d      %2d  %2d  %2d  %2d\n",
+		    }		    printf_SDL (Screen, -1, -1, "%2d   %2d  %2d      %2d  %2d  %2d  %2d\n",
 				i, WpList[i].x, WpList[i].y,
 				WpList[i].connections[0],
 				WpList[i].connections[1],
@@ -1199,988 +1198,220 @@ Cheatmenu (void)
     
     return;
 }; // void Cheatmenu() 
+	
+ 
+/***********************
+ * Menus : Most of the menus are split into two parts
+ * - handle, that handles the user selection
+ * - fill, that creates the names of the button.
+ *
+ * Because there is much code that must be generated for each "menu"
+ * like prototypes, enums, I use this trick to do the job, and this way
+ * I'm sure there is no mismatch in the orders
+ */
 
-/* ----------------------------------------------------------------------
- * This function lets you select whether you want to play the single player
- * mode or the multi player mode or the credits or the intro again or exit.
- * ---------------------------------------------------------------------- */
+#define MENU_LIST MENU(Startup, STARTUP) MENU(Escape, ESCAPE)		\
+    MENU(Options, OPTIONS) MENU(Resolution, RESOLUTION)			\
+    MENU(Graphics, GRAPHICS) MENU(Sound, SOUND)				\
+    MENU(Performance, PERFORMANCE) MENU(Language, LANGUAGE)		\
+    MENU(OSD, OSD) MENU(Droid, DROID)
+
+
+
+enum {
+	EXIT_MENU = -2,
+	CONTINUE_MENU = -1,
+#define MENU(x, y) MENU_##y, 
+	MENU_LIST
+#undef MENU
+	MENU_NUM
+};
+
+#define MENU(x, y) static int x##_handle (int); static void x##_fill (char *[10]);
+MENU_LIST
+#undef MENU
+
+struct Menu {
+    int (*HandleSelection) (int);
+    void (*FillText) (char *[10]);
+};
+
+struct Menu menus [] = { 
+#define MENU(x, y) { x##_handle, x##_fill },
+    MENU_LIST
+#undef MENU
+    { NULL, NULL }
+};
+
+
 void
-StartupMenu (void)
+RunSubMenu (int startup, char buffer[10][1024], int menu_id)
 {
-#define FIRST_MIS_SELECT_ITEM_POS_X (0.0)
-#define FIRST_MIS_SELECT_ITEM_POS_Y (BANNER_HEIGHT + FontHeight(Menu_BFont))
-    enum
-	{ 
-	    SINGLE_PLAYER_POSITION=1, 
-	    LVLEDIT_POSITION,
-	    OPTIONS_POSITION,
-	    CREDITS_POSITION,
-	    CONTRIBUTE_POSITION,
-	    EXIT_FREEDROID_POSITION
-	};
-    int can_continue = 0 ;
-    int MenuPosition = 1 ;
-    char* MenuTexts [ 10 ] ;
-    
-    DebugPrintf ( 1 , "\nvoid StartupMenu ( void ): real function call confirmed. "); 
-    
-    SDL_SetClipRect( Screen , NULL );
-    
-    // Prevent distortion of framerate by the delay coming from 
-    // the time spent in the menu.
-    Activate_Conservative_Frame_Computation ( ) ;
-    while (!can_continue)
+    int can_continue = 0;
+    char *texts[10];
+    int i = 0;
+    while ( ! can_continue )
     {
-	SetCurrentFont ( Menu_BFont );
-        SwitchBackgroundMusicTo( MENU_BACKGROUND_MUSIC_SOUND );
-
-	MenuTexts[0]= SINGLE_PLAYER_STRING ;
-	MenuTexts[1]=_("Level Editor");
-	MenuTexts[2]=_("Options");
-	MenuTexts[3]=_("Credits");
-	MenuTexts[4]=_("Contribute");
-	MenuTexts[5]=_("Exit FreedroidRPG");
-	MenuTexts[6]="";
+	int pos;
+	// We need to fill at each loop because
+	// several menus change their contents
+	for (i = 0; i < 9; i++) texts[i] = buffer[i];
+	menus [ menu_id ] . FillText ( texts );
 	
-	if ( ! skip_initial_menus )
-	    MenuPosition = DoMenuSelection( "" , MenuTexts , -1 , NE_TITLE_PIC_BACKGROUND_CODE , NULL );
+	if (startup)
+	    pos = DoMenuSelection ( "" , texts , -1, NE_TITLE_PIC_BACKGROUND_CODE , Menu_BFont);
 	else
-	    MenuPosition = SINGLE_PLAYER_POSITION ;
+	    pos = DoMenuSelection ( "", texts , 1 , -1 , Menu_BFont);
 	
-	switch (MenuPosition) 
+	int ret = menus [ menu_id ] . HandleSelection (pos);
+	
+	if (ret == EXIT_MENU) 
 	{
-	    case SINGLE_PLAYER_POSITION:
-		can_continue = Single_Player_Menu ( );
-		break;
-	    case LVLEDIT_POSITION: //allow starting directly in leveleditor - the hack is a little dirty but it does its work.
-		    skip_initial_menus = 1;
-		    clear_player_inventory_and_stats ( ) ;
-                    UpdateAllCharacterStats ( ) ;
-		    strcpy(Me.character_name, "MapEd");
-                    char fp[2048];
-                    find_file ( "Asteroid.maps" , MAP_DIR, fp, 0);
-                    LoadShip ( fp ) ;
-                    PrepareStartOfNewCharacter ( ) ;
-	            CurLevel = curShip.AllLevels [ Me . pos . z ];
-		    LevelEditor () ;
-                    can_continue=TRUE;  
-                break;  
-	    case OPTIONS_POSITION:
-		Options_Menu();
-		break;
-	    case CREDITS_POSITION:
-		Credits_Menu();
-		break;
-	    case CONTRIBUTE_POSITION:
-		Contribute_Menu();
-		break;
-	    case (-1):
-	    case EXIT_FREEDROID_POSITION:
-		Terminate( OK );
-		break;
-	    default: 
-		break;
-	} 
+	    can_continue = TRUE;
+	}
 	
+	if (ret > 0)
+	    RunSubMenu (startup, buffer, ret);
     }
-    
-    ClearGraphMem();
-    // Since we've faded out the whole scren, it can't hurt
-    // to have the top status bar redrawn...
-    Me.status=MOBILE;
-    
-    return;
-    
-}; // void StartupMenu( void );
+}
+void 
+RunMenu (int is_startup)
+{
+	// 1024 should be enough
+	char buffer [10][1024]; 
+	int start_menu = is_startup ? MENU_STARTUP : MENU_ESCAPE;
+	SetCurrentFont ( Menu_BFont );
+	Activate_Conservative_Frame_Computation ( ) ;	
+	if (is_startup) {
+		// Can the music be disabled by a submenu ?
+		SwitchBackgroundMusicTo( MENU_BACKGROUND_MUSIC_SOUND );		
+		SDL_SetClipRect ( Screen , NULL );
+		
+		if ( skip_initial_menus && Single_Player_Menu ( ))
+			return ;
+	} else {
+	    while ( EscapePressed() );
+	}
+	RunSubMenu (is_startup, buffer, start_menu);
+	Me.status=MOBILE;
+	ClearGraphMem();
+}
 
-/* ----------------------------------------------------------------------
- * This function provides a the big escape menu from where you can get 
- * into different submenus.
- * ---------------------------------------------------------------------- */
+void StartupMenu (void)
+{
+    RunMenu (1);
+}
+
 void
 EscapeMenu (void)
 {
-enum
-  { 
-    SAVE_GAME_POSITION=1,
-    RESUME_GAME_POSITION,
-    OPTIONS_POSITION, 
-    LEVEL_EDITOR_POSITION, 
-    LOAD_GAME_POSITION,
-    NEW_GAME_POSITION,
-    QUIT_POSITION
-  };
-
-  int can_continue = 0;
-  int MenuPosition=1;
-  char* MenuTexts[10];
-  int oldmode = global_ingame_mode;
-  global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL;
-
-  DebugPrintf (2, "\nvoid EscapeMenu(void): real function call confirmed."); 
-
-  //--------------------
-  // Prevent distortion of framerate by the delay coming from 
-  // the time spend in the menu.
-  Activate_Conservative_Frame_Computation();
-
-  //--------------------
-  // Escape must be expected to be pressed right now for this menu to
-  // to be entered, so we wait until the escape key is released...
-  //
-  while ( EscapePressed() );
-
-  while (!can_continue)
-    {
-      MenuTexts[0]=_("Save Game");
-      MenuTexts[1]=_("Resume Game");
-      MenuTexts[2]=_("Options");
-      MenuTexts[3]=_("Level Editor");
-      MenuTexts[4]=_("Load Game");
-      MenuTexts[5]=_("New Game");
-      MenuTexts[6]=_("Quit");
-      MenuTexts[7]="";
-
-      //MenuPosition = DoMenuSelection( "" , MenuTexts , 1 ,  NE_TITLE_PIC_BACKGROUND_CODE , Menu_BFont );
-      MenuPosition = DoMenuSelection( "" , MenuTexts , 1 ,  -1 , Menu_BFont );
-
-      switch (MenuPosition) 
-	{
-	case ( -1 ) :
-	case ( RESUME_GAME_POSITION ) :
-	  can_continue=!can_continue;
-	  break;
-	case OPTIONS_POSITION:
-	  while (EnterPressed() || SpacePressed() );
-	  Options_Menu();
-	  // can_continue = TRUE;   /* jp forgot this... ;) */
-	  break;
-	case LEVEL_EDITOR_POSITION:
-	  while (EnterPressed() || SpacePressed() );
-	  LevelEditor();
-	  can_continue = TRUE;  
-	  break;
-	case LOAD_GAME_POSITION:
-	  LoadGame ( ) ;
-	  can_continue = TRUE ;
-	  break;
-	case NEW_GAME_POSITION:
-	  GameOver = TRUE ;
-	  can_continue = TRUE;
-	  break;
-	case SAVE_GAME_POSITION:
-	  SaveGame(  );
-	  break;
-	case QUIT_POSITION:
-	  DebugPrintf (2, "\nvoid EscapeMenu( void ): Quit Requested by user.  Terminating...");
-	  Terminate(0);
-	  break;
-	default: 
-	  break;
-	} 
-
-    }
-
-  ClearGraphMem();
-  // Since we've faded out the whole scren, it can't hurt
-  // to have the top status bar redrawn...
-  Me.status=MOBILE;
-  global_ingame_mode=oldmode;
-  return;
-
-}; // void EscapeMenu( void )
-
-/* ----------------------------------------------------------------------
- * This menu allows the user to change the screen resolution of the game.
- * However this will only be available 
- *
- * ---------------------------------------------------------------------- */
-void
-Change_Screen_Resolution_Menu ( void )
+    RunMenu (0);
+}
+static int
+Startup_handle (int n)
 {
-    int can_continue = 0;
-    int MenuPosition=1;
-    char* MenuTexts[10];
     enum
-	{ 
-	    SET_640_480 = 1 , 
-	    SET_800_600, 
-	    SET_1024_768,
-	    SET_1280_1024,
-	    LEAVE_OPTIONS_MENU 
-	};
-    
-    while ( EscapePressed() );
-    
-    while (!can_continue)
-    {
-	MenuTexts[0]="640x480";
-	MenuTexts[1]="800x600";
-	MenuTexts[2]="1024x768";
-	MenuTexts[3]="1280x1024";
-	MenuTexts[4]=_("Back");
-	MenuTexts[5]="";
-	
-	if ( GameOver == TRUE ) MenuPosition = DoMenuSelection( _("Changes will take effect\n       when you next start the game"), 
-					MenuTexts , -1 , NE_TITLE_PIC_BACKGROUND_CODE , NULL );
-	else MenuPosition = DoMenuSelection( _("Changes will take effect\n       when you next start the game"), 
-					MenuTexts , -1 , -1 , NULL );
-	
-	switch (MenuPosition) 
-	{
-	    case (-1):
-		can_continue=!can_continue;
-		break;
-		
-	    case SET_640_480:
-		while ( EnterPressed( ) || SpacePressed( ) );
-		GameConfig . next_time_width_of_screen = 640 ;
-		GameConfig . next_time_height_of_screen = 480 ;
-		GiveMouseAlertWindow ( _("\n\
-You selected 640x480 pixel.\n\n\
-Change of screen resolution will\n\
-take effect automatically when you next\n\
-start FreedroidRPG.\n\
-\n\
-Thank you.\n"));
-		SetCurrentFont ( Menu_BFont );
-		break;
-		
-	    case SET_800_600:
-		while ( EnterPressed( ) || SpacePressed( ) );
-		GameConfig . next_time_width_of_screen = 800 ;
-		GameConfig . next_time_height_of_screen = 600 ;
-		GiveMouseAlertWindow ( _("\n\
-You selected 800x600 pixel.\n\n\
-Change of screen resolution will\n\
-take effect automatically when you next\n\
-start FreedroidRPG.\n\
-\n\
-Thank you.\n"));
-		SetCurrentFont ( Menu_BFont );
-		break;
-		
-	    case SET_1024_768:
-		while ( EnterPressed( ) || SpacePressed( ) );
-		GameConfig . next_time_width_of_screen = 1024 ;
-		GameConfig . next_time_height_of_screen = 768 ;
-		GiveMouseAlertWindow ( _("\n\
-You selected 1024x768 pixel.\n\n\
-Change of screen resolution will take\n\
-effect automatically when you next\n\
-start FreedroidRPG.\n\
-\n\
-Thank you.\n"));
-		SetCurrentFont ( Menu_BFont );
-		break;
-
-	    case SET_1280_1024:
-	                while ( EnterPressed( ) || SpacePressed( ) );
-	                GameConfig . next_time_width_of_screen = 1280 ;
-	                GameConfig . next_time_height_of_screen = 1024 ;
-		                GiveMouseAlertWindow ( _("\n\
-You selected 1280x1024 pixel.\n\n\
-Change of screen resolution will take\n\
-effect automatically when you next\n\
-start FreedroidRPG.\n\
-\n\
-Thank you.\n"));
-                SetCurrentFont ( Menu_BFont );
-                break;
-						
-	    case LEAVE_OPTIONS_MENU:
-		while (EnterPressed() || SpacePressed() );
-		can_continue=TRUE;
-		break;
-		
-	    default: 
-		break;
-		
-	} 
-    }
-    
-    ClearGraphMem ();
-    if ( ! GameOver ) DisplayBanner ( ) ;
-    
-}; // void Change_Screen_Resolution_Menu ( void )
-
-/* ----------------------------------------------------------------------
- * This function provides a the options menu.  This menu is a 
- * submenu of the big EscapeMenu.  Here you can change sound vol.,
- * gamma correction, fullscreen mode, display of FPS and such
- * things.
- * ---------------------------------------------------------------------- */
-void
-Graphics_Options_Menu (void)
-{
-    int can_continue = 0;
-    int MenuPosition=1;
-    char Options0[1000];
-    char Options1[1000];
-    char Options2[1000];
-    char Options3[1000];
-    char Options4[1000];
-    char* MenuTexts[10];
-    enum
-	{ 
-	    SET_GAMMA_CORRECTION = 1 , 
-	    SET_FULLSCREEN_FLAG, 
-	    CHANGE_SCREEN_RESOLUTION,
-	    SET_SHOW_BLOOD_FLAG,
-	    SET_AUTOMAP_SCALE,
-	    LEAVE_OPTIONS_MENU 
-	};
-    
-    // This is not some Debug Menu but an optically impressive 
-    // menu for the player.  Therefore I suggest we just fade out
-    // the game screen a little bit.
-    
-    while ( EscapePressed() );
-    
-    while (!can_continue)
-    {
-	sprintf( Options0 , _("Gamma Correction: %1.2f"), GameConfig.current_gamma_correction );
-	sprintf( Options1 , _("Fullscreen Mode: %s"), GameConfig . fullscreen_on ? "ON" : "OFF");
-	sprintf( Options2 , _("Change Screen Resolution") );
-	sprintf( Options3 , _("Show Blood: %s"), 
-		 GameConfig . show_blood ? _("YES") : _("NO") );
-	sprintf( Options4 , _("Automap Scale: %2.1f"), 
-		 GameConfig . automap_display_scale );
-	MenuTexts[0]=Options0;
-	MenuTexts[1]=Options1;
-	MenuTexts[2]=Options2;
-	MenuTexts[3]=Options3;
-	MenuTexts[4]=Options4;
-	MenuTexts[5]=_("Back");
-	MenuTexts[6]="";
-	
-        if ( GameOver == TRUE )
-                MenuPosition = DoMenuSelection( "" , MenuTexts , -1 , NE_TITLE_PIC_BACKGROUND_CODE, NULL );
-        else    MenuPosition = DoMenuSelection( "" , MenuTexts , -1 , -1 , NULL );
-
-	switch (MenuPosition) 
-	{
-	    
-	    case (-1):
-		can_continue=!can_continue;
-		break;
-		
-	    case SET_GAMMA_CORRECTION:
-		
-		if ( RightPressed() ) 
-		{
-		    while ( RightPressed());
-		    GameConfig.current_gamma_correction+=0.05;
-		    SDL_SetGamma( GameConfig.current_gamma_correction , GameConfig.current_gamma_correction , GameConfig.current_gamma_correction );
-		}
-		
-		if ( LeftPressed() ) 
-		{
-		    while (LeftPressed());
-		    GameConfig.current_gamma_correction-=0.05;
-		    SDL_SetGamma( GameConfig.current_gamma_correction , GameConfig.current_gamma_correction , GameConfig.current_gamma_correction );
-		}
-		
-		break;
-		
-	    case SET_FULLSCREEN_FLAG:
-		while ( EnterPressed( ) || SpacePressed( ) );
-		#ifndef __WIN32__
-		SDL_WM_ToggleFullScreen ( Screen );
-		GameConfig . fullscreen_on = ! GameConfig . fullscreen_on;
-		#else
-		GiveMouseAlertWindow(_("\nUnfortunately, fullscreen cannot be\ntoggled at runtime under Windows.\nWe apologise for this.\n\n\
-There are good Linux distributions out there,\n please check them out.\n\nOr you can launch the game with the -w option.\n\n   Thank you.\n"));
-                SetCurrentFont ( Menu_BFont );
-		#endif
-		break;
-		
-	    case CHANGE_SCREEN_RESOLUTION:
-		while ( EnterPressed() || SpacePressed() );
-		if ( ! use_open_gl )
-		{
-		    GiveMouseAlertWindow ( _("\n\
-You are using SDL instead of OpenGL\n\
-for graphics ouput right now.\n\
-\n\
-FreedroidRPG only supports 640x480\n\
-in SDL mode.\n\
-\n\
-You might want to restart the game using\n\
-OpenGL instead.\n\
-\n\
-\n\
-Thank you.\n"));
-		    SetCurrentFont ( Menu_BFont );
-		}
-		else
-		    Change_Screen_Resolution_Menu();
-		break;
-		
-	    case SET_SHOW_BLOOD_FLAG:
-		while (EnterPressed() || SpacePressed() );
-		GameConfig . show_blood = !GameConfig . show_blood;
-		break;
-		
-	    case SET_AUTOMAP_SCALE:
-		if ( RightPressed() ) 
-		{
-		    while ( RightPressed() );
-		    if ( GameConfig . automap_display_scale < 9.1 )
-			GameConfig . automap_display_scale += 1.0 ;
-		}
-		
-		if ( LeftPressed() ) 
-		{
-		    while (LeftPressed());
-		    if ( GameConfig . automap_display_scale >= 1.9 )
-		    GameConfig . automap_display_scale -= 1.0 ;
-		}
-		
-		break;
-		
-	    case LEAVE_OPTIONS_MENU:
-		while (EnterPressed() || SpacePressed() );
-		can_continue=TRUE;
-		break;
-		
-	    default: 
-		break;
-		
-	} 
-    }
-    
-    ClearGraphMem ();
-    if ( GameOver == FALSE ) DisplayBanner ( ) ;
-    
-}; // void Graphics_Options_Menu (void)
-
-/* ----------------------------------------------------------------------
- * This function provides a the options menu.  This menu is a 
- * submenu of the big EscapeMenu.  Here you can change sound vol.,
- * gamma correction, fullscreen mode, display of FPS and such
- * things.
- * ---------------------------------------------------------------------- */
-void
-Sound_Options_Menu (void)
-{
-    int can_continue = 0;
-    int MenuPosition=1;
-    char Options0[1000];
-    char Options1[1000];
-    char Options2[1000];
-    char Options3[1000];
-    char* MenuTexts[10];
-    enum
-	{ 
-	    SET_BG_MUSIC_VOLUME=1, 
-	    SET_SOUND_FX_VOLUME, 
-	    SET_TERMINATE_ON_MISSING_FLAG,
-	    SET_SHOW_SUBTITLE_FLAG,
-	    LEAVE_OPTIONS_MENU 
-	};
-    
-    // This is not some Debug Menu but an optically impressive 
-    // menu for the player.  Therefore I suggest we just fade out
-    // the game screen a little bit.
-    
-    while ( EscapePressed() );
-    
-    while (!can_continue)
-    {
-	
-	sprintf ( Options0 , _("Background Music Volume: %1.2f") , GameConfig.Current_BG_Music_Volume );
-	sprintf ( Options1 , _("Sound Effects Volume: %1.2f"), GameConfig.Current_Sound_FX_Volume );
-	sprintf( Options2 , _("Terminate On Missing Sample: %s"), 
-		 GameConfig.terminate_on_missing_speech_sample ? _("YES") : _("NO") );
-	sprintf( Options3 , _("Show Subtitles in Dialogs: %s"), 
-		 GameConfig.show_subtitles_in_dialogs ? _("YES") : _("NO") );
-	MenuTexts [ 0 ] = Options0;
-	MenuTexts [ 1 ] = Options1;
-	MenuTexts [ 2 ] = Options2;
-	MenuTexts [ 3 ] = Options3;
-	MenuTexts [ 4 ] = _("Back");
-	MenuTexts [ 5 ] = "";
-	
-	if ( GameOver == TRUE ) 
-                MenuPosition = DoMenuSelection( "" , MenuTexts , -1 , NE_TITLE_PIC_BACKGROUND_CODE, NULL );
-        else    MenuPosition = DoMenuSelection( "" , MenuTexts , -1 , -1 , NULL );
-	
-	switch (MenuPosition) 
-	{
-	    
-	    case (-1):
-		can_continue=!can_continue;
-		break;
-		
-	    case SET_BG_MUSIC_VOLUME:
-		
-		if ( RightPressed() ) 
-		{
-		    while ( RightPressed());
-		    if ( GameConfig.Current_BG_Music_Volume < 1 ) GameConfig.Current_BG_Music_Volume += 0.05;
-		    SetBGMusicVolume( GameConfig.Current_BG_Music_Volume );
-		}
-		
-		
-		if ( LeftPressed() ) 
-		{
-		    while (LeftPressed());
-		    if ( GameConfig.Current_BG_Music_Volume > 0 ) GameConfig.Current_BG_Music_Volume -= 0.05;
-		    SetBGMusicVolume( GameConfig.Current_BG_Music_Volume );
-		}
-		
-		break;
-		
-	    case SET_SOUND_FX_VOLUME:
-		
-		if ( RightPressed() ) 
-		{
-		    while ( RightPressed());
-		    if ( GameConfig.Current_Sound_FX_Volume < 1 ) GameConfig.Current_Sound_FX_Volume += 0.05;
-		    SetSoundFXVolume( GameConfig.Current_Sound_FX_Volume );
-		}
-		
-		if ( LeftPressed() ) 
-		{
-		    while (LeftPressed());
-		    if ( GameConfig.Current_Sound_FX_Volume > 0 ) GameConfig.Current_Sound_FX_Volume -= 0.05;
-		    SetSoundFXVolume( GameConfig.Current_Sound_FX_Volume );
-		}
-		
-		break;
-		
-	    case SET_TERMINATE_ON_MISSING_FLAG:
-		while (EnterPressed() || SpacePressed() );
-		GameConfig.terminate_on_missing_speech_sample = !GameConfig.terminate_on_missing_speech_sample;
-		break;
-		
-	    case SET_SHOW_SUBTITLE_FLAG:
-		while (EnterPressed() || SpacePressed() );
-		GameConfig.show_subtitles_in_dialogs = !GameConfig.show_subtitles_in_dialogs;
-		break;
-		
-	    case LEAVE_OPTIONS_MENU:
-		while (EnterPressed() || SpacePressed() );
-		can_continue=TRUE;
-		break;
-		
-	    default: 
-		break;
-		
-	} 
-    }
-    
-    ClearGraphMem ();
-    if ( GameOver == FALSE ) DisplayBanner ( ) ;
-    
-}; // void Sound_Options_Menu (void)
-
-/* ----------------------------------------------------------------------
- * This function provides a the options menu.  This menu is a 
- * submenu of the big EscapeMenu.  Here you can change sound vol.,
- * gamma correction, fullscreen mode, display of FPS and such
- * things.
- * ---------------------------------------------------------------------- */
-void
-PerformanceTweaksOptionsMenu (void)
-{
-    int can_continue = 0;
-    int MenuPosition=1;
-    char Options0[1000];
-    char Options1[1000];
-    char Options2[1000];
-    char Options3[1000];
-    char Options4[1000];
-    char Options5[1000];
-    char Options6[1000];
-    char* MenuTexts[10];
-    enum
-	{ 
-	    SET_HOG_CPU_FLAG = 1,
-	    SET_HIGHLIGHTING_MODE,
-	    SHOW_QUICK_INVENTORY_MODE,
-	    SKIP_LIGHT_RADIUS_MODE,
-	    SKIP_SHADOWS,
-	    SKIP_FADINGS,
-	    USE_SDL_AUTOMAP,
-	    LEAVE_PERFORMANCE_TWEAKS_MENU 
-	};
-    
-    // This is not some Debug Menu but an optically impressive 
-    // menu for the player.  Therefore I suggest we just fade out
-    // the game screen a little bit.
-    
-    while ( EscapePressed() );
-    
-    while (!can_continue)
-    {
-	
-	sprintf ( Options0 , _("Hog CPU for max. performance: %s"), 
-		  GameConfig.hog_CPU ? _("YES") : _("NO") );
-	sprintf ( Options1 , _("Highlighting mode: %s"), GameConfig.highlighting_mode_full ? _("FULL") : _("REDUCED") );
-	sprintf ( Options2 , _("Show quick inventory: %s"), GameConfig . show_quick_inventory ? _("YES") : _("NO") );
-	sprintf ( Options3 , _("Skip light radius: %s"), GameConfig . skip_light_radius ? _("YES") : _("NO") );
-	sprintf ( Options4 , _("Skip shadow blitting: %s"), 
-		  GameConfig . skip_shadow_blitting ? _("YES") : _("NO") );
-	sprintf( Options5 , _("Skip fadings: %s"), 
-		 GameConfig . do_fadings ? _("NO") : _("YES") );
-	sprintf( Options6, _("Use SDL automap: %s"),
-		GameConfig . force_sdl_automap ? _("YES") : _("NO"));
-
-	MenuTexts[0]=Options0;
-	MenuTexts[1]=Options1;
-	MenuTexts[2]=Options2;
-	MenuTexts[3]=Options3;
-	MenuTexts[4]=Options4;
-	MenuTexts[5]=Options5;
-	MenuTexts[6]=Options6;
-	MenuTexts[7]=_("Back");
-	MenuTexts[8]="";
-	
-        if ( GameOver == TRUE )      
-                MenuPosition = DoMenuSelection( "" , MenuTexts , -1 , NE_TITLE_PIC_BACKGROUND_CODE, NULL );      
-        else    MenuPosition = DoMenuSelection( "" , MenuTexts , -1 , -1 , NULL ); 
-	
-	switch (MenuPosition) 
-	{
-	    case (-1):
-		can_continue=!can_continue;
-		break;
-		
-	    case SET_HOG_CPU_FLAG:
-		while (EnterPressed() || SpacePressed() || MouseLeftPressed());
-		GameConfig . hog_CPU = ! GameConfig . hog_CPU ;
-		break;
-		
-	    case SET_HIGHLIGHTING_MODE:
-		while (EnterPressed() || SpacePressed() || MouseLeftPressed());
-		GameConfig . highlighting_mode_full = ! GameConfig . highlighting_mode_full ;
-		break;
-		
-	    case SHOW_QUICK_INVENTORY_MODE:
-		while (EnterPressed() || SpacePressed() || MouseLeftPressed());
-		GameConfig . show_quick_inventory = ! GameConfig . show_quick_inventory ;
-		break;
-		
-	    case SKIP_LIGHT_RADIUS_MODE:
-		while (EnterPressed() || SpacePressed()|| MouseLeftPressed() );
-		GameConfig . skip_light_radius = ! GameConfig . skip_light_radius ;
-		break;
-		
-	    case SKIP_SHADOWS:
-		while (EnterPressed() || SpacePressed()|| MouseLeftPressed() );
-		GameConfig . skip_shadow_blitting = ! GameConfig . skip_shadow_blitting ;
-		break;
-
-	    case SKIP_FADINGS:
-		while (EnterPressed() || SpacePressed() || MouseLeftPressed() );
-		GameConfig . do_fadings = ! GameConfig . do_fadings ;
-		break;
-	    
-	    case USE_SDL_AUTOMAP:
-		while (EnterPressed() || SpacePressed() || MouseLeftPressed() );
-		GameConfig . force_sdl_automap = ! GameConfig . force_sdl_automap ;
-		break;
-
-	    case LEAVE_PERFORMANCE_TWEAKS_MENU:
-		while (EnterPressed() || SpacePressed()|| MouseLeftPressed() );
-		can_continue=TRUE;
-		break;
-		
-	    default: 
-		break;
-		
-	} 
-    }
-    
-    ClearGraphMem ();
-    if ( GameOver == FALSE ) DisplayBanner ( ) ;
-    
-}; // void PerformanceTweaksOptionsMenu (void)
-
-/* ----------------------------------------------------------------------
- * This function provides a the options menu.  This menu is a 
- * submenu of the big EscapeMenu.  Here you can change sound vol.,
- * gamma correction, fullscreen mode, display of FPS and such
- * things.
- * ---------------------------------------------------------------------- */
-void
-On_Screen_Display_Options_Menu (void)
-{
-  int can_continue = 0;
-  int MenuPosition=1;
-  char Options0[1000];
-  char Options1[1000];
-  char Options2[1000];
-  char Options3[1000];
-  char Options4[1000];
-  char Options5[1000];
-  char* MenuTexts[10];
-  enum
     { 
-      SHOW_POSITION=1, 
-      SHOW_FRAMERATE, 
-      SHOW_TUX_ENERGY,
-      SHOW_ENEMY_ENERGY_BARS,
-      PARALLEL_BIG_SCREEN_MESSAGES_AT_MOST_POSITION,
-      BIG_SCREEN_MESSAGES_DURATION_POSITION,
-      LEAVE_OPTIONS_MENU 
+	SINGLE_PLAYER_POSITION=1, 
+	LVLEDIT_POSITION,
+	OPTIONS_POSITION,
+	CREDITS_POSITION,
+	CONTRIBUTE_POSITION,
+	EXIT_FREEDROID_POSITION
     };
-
-  // This is not some Debug Menu but an optically impressive 
-  // menu for the player.  Therefore I suggest we just fade out
-  // the game screen a little bit.
-
-  while ( EscapePressed() );
-
-  while (!can_continue)
+    switch (n) 
     {
+    case SINGLE_PLAYER_POSITION:
+	    if (  Single_Player_Menu ( ) )
+		return EXIT_MENU;
+	    break;
+    case LVLEDIT_POSITION: //allow starting directly in leveleditor - the hack is a little dirty but it does its work.
+	skip_initial_menus = 1;
+	clear_player_inventory_and_stats ( ) ;
+	UpdateAllCharacterStats ( ) ;
+	strcpy(Me.character_name, "MapEd");
+	char fp[2048];
+	find_file ( "Asteroid.maps" , MAP_DIR, fp, 0);
+	LoadShip ( fp ) ;
+	PrepareStartOfNewCharacter ( ) ;
+	CurLevel = curShip.AllLevels [ Me . pos . z ];
+	LevelEditor () ;
+	return EXIT_MENU;
+	break;  
+    case OPTIONS_POSITION:
+	return MENU_OPTIONS;
+    case CREDITS_POSITION:
+	Credits_Menu ();
+	break;
+    case CONTRIBUTE_POSITION:
+	Contribute_Menu ();
+	break;
+    case (-1):
+    case EXIT_FREEDROID_POSITION:
+	Terminate( OK );
+	break;
+    default: 
+	break;
+    } 
+    return CONTINUE_MENU;
+}
 
-      sprintf( Options0 , _("Show Position: %s"), GameConfig.Draw_Position ? _("ON") : _("OFF") );
-      sprintf( Options1 , _("Show Framerate: %s"), GameConfig.Draw_Framerate? _("ON") : _("OFF") );
-      sprintf( Options2 , _("Show Tux Energy: %s"), GameConfig.Draw_Energy? _("ON") : _("OFF") );
-      sprintf( Options3 , _("Show Enemy Energy Bars: %s"), GameConfig.enemy_energy_bars_visible? _("ON") : _("OFF") );
-      sprintf( Options4 , _("Screen Messages at most: %d"), GameConfig.number_of_big_screen_messages );
-      sprintf( Options5 , _("Screen Message time: %3.1f"), GameConfig.delay_for_big_screen_messages );
-      MenuTexts[0]=Options0;
-      MenuTexts[1]=Options1;
-      MenuTexts[2]=Options2;
-      MenuTexts[3]=Options3;
-      MenuTexts[4]=Options4;
-      MenuTexts[5]=Options5;
-      MenuTexts[6]=_("Back");
-      MenuTexts[7]="";
-
-        if ( GameOver == TRUE )
-                MenuPosition = DoMenuSelection( "" , MenuTexts , -1 , NE_TITLE_PIC_BACKGROUND_CODE, NULL );
-        else    MenuPosition = DoMenuSelection( "" , MenuTexts , -1 , -1 , NULL );
-
-      switch (MenuPosition) 
-	{
-	case (-1):
-	  can_continue=!can_continue;
-	  break;
-	case SHOW_POSITION:
-	  while (EnterPressed() || SpacePressed() );
-	  GameConfig.Draw_Position=!GameConfig.Draw_Position;
-	  break;
-	case SHOW_FRAMERATE:
-	  while (EnterPressed() || SpacePressed() );
-	  GameConfig.Draw_Framerate=!GameConfig.Draw_Framerate;
-	  break;
-	case SHOW_TUX_ENERGY:
-	  while (EnterPressed() || SpacePressed() );
-	  GameConfig.Draw_Energy=!GameConfig.Draw_Energy;
-	  break;
-	case SHOW_ENEMY_ENERGY_BARS:
-	  while (EnterPressed() || SpacePressed() );
-	  GameConfig . enemy_energy_bars_visible = ! GameConfig . enemy_energy_bars_visible ;
-	  break;
-
-	case PARALLEL_BIG_SCREEN_MESSAGES_AT_MOST_POSITION:
-	  if ( LeftPressed() )
-	    {
-	      while ( LeftPressed() );
-	      if ( GameConfig . number_of_big_screen_messages > 0 )
-		{
-		  GameConfig . number_of_big_screen_messages -- ;
-		}
-	    }
-	  else if ( RightPressed() )
-	    {
-	      while ( RightPressed() );
-	      if ( GameConfig . number_of_big_screen_messages < MAX_BIG_SCREEN_MESSAGES )
-		{
-		  GameConfig . number_of_big_screen_messages ++ ;
-		}
-	    }
-	  break;
-
-	case BIG_SCREEN_MESSAGES_DURATION_POSITION:
-	  if ( LeftPressed() )
-	    {
-	      while ( LeftPressed() );
-	      if ( GameConfig . delay_for_big_screen_messages >= 0.5 )
-		{
-		  GameConfig . delay_for_big_screen_messages -= 0.5 ;
-		}
-	    }
-	  else if ( RightPressed() )
-	    {
-	      while ( RightPressed() );
-	      GameConfig . delay_for_big_screen_messages += 0.5 ;
-	    }
-	  break;
-
-	case LEAVE_OPTIONS_MENU:
-	  while (EnterPressed() || SpacePressed() );
-	  can_continue=TRUE;
-	  break;
-	default: 
-	  break;
-	} 
-    }
-
-  ClearGraphMem ();
-  if ( GameOver == FALSE ) DisplayBanner ( ) ;
-
-}; // On_Screen_Display_Options_Menu
-
-/* ----------------------------------------------------------------------
- * This function provides a the options menu.  This menu is a 
- * submenu of the big EscapeMenu.  Here you can change sound vol.,
- * gamma correction, fullscreen mode, display of FPS and such
- * things.
- * ---------------------------------------------------------------------- */
-void
-Droid_Talk_Options_Menu (void)
+static void
+Startup_fill (char *MenuTexts[10])
 {
+    MenuTexts[0]= SINGLE_PLAYER_STRING ;
+    MenuTexts[1]=_("Level Editor");
+    MenuTexts[2]=_("Options");
+    MenuTexts[3]=_("Credits");
+    MenuTexts[4]=_("Contribute");
+    MenuTexts[5]=_("Exit FreedroidRPG");
+    MenuTexts[6]="";
+}
 
-  int can_continue = 0;
-  int MenuPosition=1;
-  char Options0[1000];
-  char Options1[1000];
-  char Options2[1000];
-  char Options3[1000];
-  char Options4[1000];
-  char Options5[1000];
-  char Options6[1000];
-  char* MenuTexts[10]={ "" , "" , "" , "" , "" ,
-			"" , "" , "" , "" , "" };
-  enum
-    { 
-      INFLU_REFRESH_TEXT=1,
-      INFLU_BLAST_TEXT,
-      ENEMY_HIT_TEXT,
-      ENEMY_BUMP_TEXT,
-      ENEMY_AIM_TEXT,
-      ALL_TEXTS,
-      TALK_AFTER_TO,
-      LEAVE_DROID_TALK_OPTIONS_MENU 
-    };
 
-  while (!can_continue)
+static int
+Options_handle (int n)
+{
+    enum
+	{ 
+	    GRAPHICS_OPTIONS=1, 
+	    SOUND_OPTIONS,
+	    LANGUAGE_OPTIONS,
+	    DROID_TALK_OPTIONS,
+	    ON_SCREEN_DISPLAYS,
+	    PERFORMANCE_TWEAKS_OPTIONS,
+	    SAVE_OPTIONS, 
+	    LEAVE_OPTIONS_MENU 
+	};
+    switch (n) 
     {
-      sprintf( Options0 , _("Influencer Refresh Texts: %s") , GameConfig.Influencer_Refresh_Text ? _("ON") : _("OFF") );
-      sprintf( Options1 , _("Influencer Blast Texts: %s"), GameConfig.Influencer_Blast_Text ? _("ON") : _("OFF") );
-      sprintf( Options2 , _("Enemy Hit Texts: %s"), GameConfig.Enemy_Hit_Text ? _("ON") : _("OFF") );
-      sprintf( Options3 , _("Enemy Bumped Texts: %s"), GameConfig.Enemy_Bump_Text ? _("ON") : _("OFF") );
-      sprintf( Options4 , _("Enemy Aim Texts: %s"), GameConfig.Enemy_Aim_Text ? _("ON") : _("OFF") );
-      sprintf( Options5 , _("All in-game Speech: %s"), GameConfig.All_Texts_Switch ? _("ON") : _("OFF") );
-      sprintf( Options6, _("Reprogram bots after takeover: %s"), GameConfig.talk_to_bots_after_takeover ? _("ON") : _("OFF"));
-      MenuTexts[0]=Options0;
-      MenuTexts[1]=Options1;
-      MenuTexts[2]=Options2;
-      MenuTexts[3]=Options3;
-      MenuTexts[4]=Options4;
-      MenuTexts[5]=Options5;
-      MenuTexts[6]=Options6;
-      MenuTexts[7]=_("Back");
-
-	if ( GameOver == TRUE ) 
-                MenuPosition = DoMenuSelection( "" , MenuTexts , -1 , NE_TITLE_PIC_BACKGROUND_CODE, NULL );     
-        else    MenuPosition = DoMenuSelection( "" , MenuTexts , -1 , -1 , NULL );     
-
-      switch (MenuPosition) 
-	{
-	case (-1):
-	  can_continue=!can_continue;
-	  break;
-	case INFLU_REFRESH_TEXT:
-	  while (EnterPressed() || SpacePressed() || MouseLeftPressed() );
-	  GameConfig.Influencer_Refresh_Text=!GameConfig.Influencer_Refresh_Text;
-	  break;
-	case INFLU_BLAST_TEXT:
-	  while (EnterPressed() || SpacePressed() || MouseLeftPressed() );
-	  GameConfig.Influencer_Blast_Text=!GameConfig.Influencer_Blast_Text;
-	  break;
-	case ENEMY_HIT_TEXT:
-	  while (EnterPressed() || SpacePressed() || MouseLeftPressed() );
-	  GameConfig.Enemy_Hit_Text=!GameConfig.Enemy_Hit_Text;
-	  break;
-	case ENEMY_BUMP_TEXT:
-	  while (EnterPressed() || SpacePressed() || MouseLeftPressed() );
-	  GameConfig.Enemy_Bump_Text=!GameConfig.Enemy_Bump_Text;
-	  break;
-	case ENEMY_AIM_TEXT:
-	  while (EnterPressed() || SpacePressed() || MouseLeftPressed() );
-	  GameConfig.Enemy_Aim_Text=!GameConfig.Enemy_Aim_Text;
-	  break;
-	case ALL_TEXTS:
-	  while (EnterPressed() || SpacePressed() || MouseLeftPressed() );
-	  GameConfig.All_Texts_Switch=!GameConfig.All_Texts_Switch;
-	  break;
-	case TALK_AFTER_TO:
-	  while(EnterPressed() || SpacePressed() || MouseLeftPressed());
-	  GameConfig.talk_to_bots_after_takeover = !GameConfig.talk_to_bots_after_takeover;
-	  break;
-	case LEAVE_DROID_TALK_OPTIONS_MENU:
-	  while (EnterPressed() || SpacePressed() || MouseLeftPressed());
-	  can_continue=TRUE;
-	  break;
-	default: 
-	  break;
-	} 
+    case (-1):
+	    return EXIT_MENU;
+	    break;
+    case GRAPHICS_OPTIONS:
+	    return MENU_GRAPHICS;
+    case SOUND_OPTIONS:
+	    return MENU_SOUND;
+    case LANGUAGE_OPTIONS:
+	    return MENU_LANGUAGE;
+    case DROID_TALK_OPTIONS:
+	    return MENU_DROID;
+    case ON_SCREEN_DISPLAYS:
+	    return MENU_OSD;
+    case PERFORMANCE_TWEAKS_OPTIONS:
+	    return MENU_PERFORMANCE;
+    case SAVE_OPTIONS:
+/*	    return MENU_SAVE;*/
+    case LEAVE_OPTIONS_MENU:
+	    return EXIT_MENU;
+    default: 
+	    break;
     }
+    return CONTINUE_MENU;
+}
 
-  ClearGraphMem ();
-  if ( GameOver == FALSE ) DisplayBanner ( ) ;
-
-}; // Droid_Talk_Options_Menu
-
-/************************************
-Configure the language
-**********************************/
-
-
-void
-Language_Options_Menu (void)
-{
-    int MenuPosition=1;
-
-    int nb_languages = 0;
-    while ( supported_languages[nb_languages].code != NULL )
-	nb_languages ++;
-
-    char * MenuTexts[nb_languages + 2];
-
-    int i = 0;
-
-    for ( ; i < nb_languages; i++)
-	MenuTexts[i] = supported_languages[i].name; 
-
-    MenuTexts[nb_languages] = _("Back");
-    MenuTexts[nb_languages+1] = "";
-
-    if ( GameOver == TRUE ) 
-	MenuPosition = DoMenuSelection( "" , MenuTexts , -1 , NE_TITLE_PIC_BACKGROUND_CODE, NULL );     
-    else    MenuPosition = DoMenuSelection( "" , MenuTexts , -1 , -1 , NULL );     
-
-    while (EnterPressed() || SpacePressed() || MouseLeftPressed());
-
-    if ( MenuPosition < nb_languages && MenuPosition > 0 ) /*Not "back"*/
-	{
-	GameConfig . language = MenuPosition - 1;
-#if ENABLE_NLS
-	setlocale(LC_MESSAGES, supported_languages[MenuPosition - 1] . code);
-	setlocale(LC_CTYPE, supported_languages[MenuPosition - 1] . code);
-#endif
-	FreeOurBFonts();
-	InitOurBFonts();
-	}
-
-    ClearGraphMem ();
-    if ( GameOver == FALSE ) DisplayBanner ( ) ;
-
-}; // Droid_Talk_Options_Menu
-
-/* ----------------------------------------------------------------------
- * This function init the text for Options menu entries.
- * We need this because these entries need to be updated when language
- * is modified.
- * ---------------------------------------------------------------------- */
-void init_Options_Menu_Texts (char *MenuTexts[10])
+static void
+Options_fill (char *MenuTexts [10])
 {
 	MenuTexts[0]=_("Graphics Options");
 	MenuTexts[1]=_("Sound Options");
@@ -2193,86 +1424,645 @@ void init_Options_Menu_Texts (char *MenuTexts[10])
 	MenuTexts[8]="";
 }
 
-/* ----------------------------------------------------------------------
- * This function provides a the options menu.  This menu is a 
- * submenu of the big EscapeMenu.  Here you can change sound vol.,
- * gamma correction, fullscreen mode, display of FPS and such
- * things.
- * ---------------------------------------------------------------------- */
-void
-Options_Menu (void)
+static int
+Escape_handle (int n)
 {
-    int can_continue = 0;
-    int MenuPosition=1;
-    char* MenuTexts[10];
+    enum
+    { 
+	SAVE_GAME_POSITION=1,
+	RESUME_GAME_POSITION,
+	OPTIONS_POSITION, 
+	LEVEL_EDITOR_POSITION, 
+	LOAD_GAME_POSITION,
+	NEW_GAME_POSITION,
+	QUIT_POSITION
+    };
+    switch (n)
+    {
+    case ( -1 ) :
+    case ( RESUME_GAME_POSITION ) :
+	return EXIT_MENU;
+    case OPTIONS_POSITION:
+	return MENU_OPTIONS;
+    case LEVEL_EDITOR_POSITION:
+	  while (EnterPressed() || SpacePressed() );
+	  LevelEditor();
+	  return EXIT_MENU;
+    case LOAD_GAME_POSITION:
+	  LoadGame ( ) ;
+	  return EXIT_MENU;
+    case NEW_GAME_POSITION:
+	GameOver = TRUE ;
+	return EXIT_MENU;
+    case SAVE_GAME_POSITION:
+	SaveGame(  );
+	break;
+    case QUIT_POSITION:
+	  DebugPrintf (2, "\nvoid EscapeMenu( void ): Quit Requested by user.  Terminating...");
+	  Terminate(0);
+	  break;
+	default: 
+	  break;
+    } 
+
+    return CONTINUE_MENU;
+}
+
+static void
+Escape_fill (char *MenuTexts [10])
+{
+      MenuTexts[0]=_("Save Game");
+      MenuTexts[1]=_("Resume Game");
+      MenuTexts[2]=_("Options");
+      MenuTexts[3]=_("Level Editor");
+      MenuTexts[4]=_("Load Game");
+      MenuTexts[5]=_("New Game");
+      MenuTexts[6]=_("Quit");
+      MenuTexts[7]="";
+}
+
+
+static int
+Resolution_handle (int n)
+{
     enum
 	{ 
-	    GRAPHICS_OPTIONS=1, 
-	    SOUND_OPTIONS,
-	    LANGUAGE_OPTIONS,
-	    DROID_TALK_OPTIONS,
-	    ON_SCREEN_DISPLAYS,
-	    PERFORMANCE_TWEAKS_OPTIONS,
-	    SAVE_OPTIONS, 
+	    SET_640_480 = 1 , 
+	    SET_800_600, 
+	    SET_1024_768,
+	    SET_1280_1024,
 	    LEAVE_OPTIONS_MENU 
 	};
-    
-	init_Options_Menu_Texts(MenuTexts);
-    
-    while ( !can_continue )
-    {
+#define MSG(x, y) "\n"				\
+	"You selected "#x "x" #y"pixel.\n\n"	\
+	"Change of screen resolution will\n"	\
+	"take effect automatically when you next\n"	\
+	"start FreedroidRPG.\n"				\
+	"\n"						\
+	"Thank you.\n"					\
 	
-	if ( GameOver == TRUE ) 
-		MenuPosition = DoMenuSelection( "" , MenuTexts , 1 , NE_TITLE_PIC_BACKGROUND_CODE, Menu_BFont );
-	else	MenuPosition = DoMenuSelection( "" , MenuTexts , 1 , -1 , Menu_BFont );
-	
-	switch (MenuPosition) 
-	{
-	    case (-1):
-		can_continue=!can_continue;
-		break;
-	    case GRAPHICS_OPTIONS:
-		while (EnterPressed() || SpacePressed() );
-		Graphics_Options_Menu();
-		break;
-	    case SOUND_OPTIONS:
-		while (EnterPressed() || SpacePressed() );
-		Sound_Options_Menu();
-		break;
-	    case LANGUAGE_OPTIONS:
-		while (EnterPressed() || SpacePressed() );
-		Language_Options_Menu();
-		init_Options_Menu_Texts(MenuTexts);
-		break;
-	    case DROID_TALK_OPTIONS:
-		while (EnterPressed() || SpacePressed() );
-		Droid_Talk_Options_Menu();
-		break;
-	    case ON_SCREEN_DISPLAYS:
-		while (EnterPressed() || SpacePressed() );
-		On_Screen_Display_Options_Menu();
-		break;
-	    case PERFORMANCE_TWEAKS_OPTIONS:
-		while (EnterPressed() || SpacePressed() );
-		PerformanceTweaksOptionsMenu();
-		break;
-	    case SAVE_OPTIONS:
-		while (EnterPressed() || SpacePressed() );
-		break;
-	    case LEAVE_OPTIONS_MENU:
-		while (EnterPressed() || SpacePressed() );
-		can_continue=TRUE;
-		break;
-	    default: 
-		break;
-	} 
-    }
-    
-    ClearGraphMem ();
-    if ( GameOver == FALSE ) DisplayBanner ( ) ;
-    
-} // Options_Menu
+#define CASE(x, y) case SET_##x##_##y:		\
+    while (EnterPressed ( ) || SpacePressed ( )); \
+    GameConfig . next_time_width_of_screen = x ;	\
+    GameConfig . next_time_height_of_screen = y ;	\
+    GiveMouseAlertWindow (_(MSG(x,y)));			\
+    break;
 
+    switch (n) 
+    {
+    case (-1):
+	return EXIT_MENU;
+	
+    CASE(640,480);
+    CASE(800,600);
+    CASE(1024,768);
+    CASE(1280,1024);
+    case LEAVE_OPTIONS_MENU:
+	while (EnterPressed() || SpacePressed() );
+	return EXIT_MENU;
+    default: 
+	break;
+    } 
+    return CONTINUE_MENU;
+}
+    
+static void
+Resolution_fill (char *MenuTexts[10])
+{
+    MenuTexts[0]="640x480";
+    MenuTexts[1]="800x600";
+    MenuTexts[2]="1024x768";
+    MenuTexts[3]="1280x1024";
+    MenuTexts[4]=_("Back");
+    MenuTexts[5]="";
+}
+
+
+static int
+Graphics_handle (int n)
+{
+    enum
+    { 
+	SET_GAMMA_CORRECTION = 1 , 
+	SET_FULLSCREEN_FLAG, 
+	CHANGE_SCREEN_RESOLUTION,
+	SET_SHOW_BLOOD_FLAG,
+	SET_AUTOMAP_SCALE,
+	LEAVE_OPTIONS_MENU 
+    };
+    switch (n) 
+    {
+    case (-1):
+	return EXIT_MENU;
+    case SET_GAMMA_CORRECTION:
+	if ( RightPressed() ) 
+	{
+	    while ( RightPressed());
+	    GameConfig.current_gamma_correction+=0.05;
+	    SDL_SetGamma( GameConfig.current_gamma_correction , GameConfig.current_gamma_correction , GameConfig.current_gamma_correction );
+	}
+	
+	if ( LeftPressed() ) 
+	{
+	    while (LeftPressed());
+	    GameConfig.current_gamma_correction-=0.05;
+	    SDL_SetGamma( GameConfig.current_gamma_correction , GameConfig.current_gamma_correction , GameConfig.current_gamma_correction );
+	}
+	
+	break;
+	
+    case SET_FULLSCREEN_FLAG:
+	while ( EnterPressed( ) || SpacePressed( ) );
+#ifndef __WIN32__
+	SDL_WM_ToggleFullScreen ( Screen );
+	GameConfig . fullscreen_on = ! GameConfig . fullscreen_on;
+#else
+	GiveMouseAlertWindow(_("\nUnfortunately, fullscreen cannot be\ntoggled at runtime under Windows.\nWe apologise for this.\n\n\
+There are good Linux distributions out there,\n please check them out.\n\nOr you can launch the game with the -w option.\n\n   Thank you.\n"));
+#endif
+		break;
+		
+    case CHANGE_SCREEN_RESOLUTION:
+	while ( EnterPressed() || SpacePressed() );
+	if ( ! use_open_gl )
+	{
+	    GiveMouseAlertWindow ( _("\n\
+You are using SDL instead of OpenGL\n	\
+for graphics ouput right now.\n		\
+\n					\
+FreedroidRPG only supports 640x480\n	\
+in SDL mode.\n				\
+\n						\
+You might want to restart the game using\n	\
+OpenGL instead.\n				\
+\n						\
+\n						\
+Thank you.\n"));
+	}
+	else
+	    return MENU_RESOLUTION;
+	break;
+	
+    case SET_SHOW_BLOOD_FLAG:
+	while (EnterPressed() || SpacePressed() );
+	GameConfig . show_blood = !GameConfig . show_blood;
+	break;
+	
+    case SET_AUTOMAP_SCALE:
+	if ( RightPressed() ) 
+	{
+	    while ( RightPressed() );
+	    if ( GameConfig . automap_display_scale < 9.1 )
+		GameConfig . automap_display_scale += 1.0 ;
+	}
+	
+	if ( LeftPressed() ) 
+	{
+	    while (LeftPressed());
+	    if ( GameConfig . automap_display_scale >= 1.9 )
+		GameConfig . automap_display_scale -= 1.0 ;
+	}
+	
+	break;
+	
+    case LEAVE_OPTIONS_MENU:
+	while (EnterPressed() || SpacePressed() );
+	return EXIT_MENU;
+	break;
+	
+    default: 
+	break;
+	
+    } 
+    return CONTINUE_MENU;
+}    
+static void
+Graphics_fill (char *MenuTexts[10])
+{
+	sprintf( MenuTexts[0] , _("Gamma Correction: %1.2f"), GameConfig.current_gamma_correction );
+	sprintf( MenuTexts[1] , _("Fullscreen Mode: %s"), GameConfig . fullscreen_on ? "ON" : "OFF");
+	sprintf( MenuTexts[2] , _("Change Screen Resolution") );
+	sprintf( MenuTexts[3] , _("Show Blood: %s"), 
+		 GameConfig . show_blood ? _("YES") : _("NO") );
+	sprintf( MenuTexts[4] , _("Automap Scale: %2.1f"), 
+		 GameConfig . automap_display_scale );
+	MenuTexts[5]=_("Back");
+	MenuTexts[6]="";
+}
+
+
+static int
+Sound_handle (int n)
+{
+    enum
+	{ 
+	    SET_BG_MUSIC_VOLUME=1, 
+	    SET_SOUND_FX_VOLUME, 
+	    SET_TERMINATE_ON_MISSING_FLAG,
+	    SET_SHOW_SUBTITLE_FLAG,
+	    LEAVE_OPTIONS_MENU 
+	};    
+    switch (n) 
+    {
+    case (-1):
+	return EXIT_MENU;
+    case SET_BG_MUSIC_VOLUME:
+	if ( RightPressed() ) 
+	{
+	    while ( RightPressed());
+	    if ( GameConfig.Current_BG_Music_Volume < 1 ) GameConfig.Current_BG_Music_Volume += 0.05;
+	    SetBGMusicVolume( GameConfig.Current_BG_Music_Volume );
+	}
+	
+	
+	if ( LeftPressed() ) 
+	{
+	    while (LeftPressed());
+	    if ( GameConfig.Current_BG_Music_Volume > 0 ) GameConfig.Current_BG_Music_Volume -= 0.05;
+	    SetBGMusicVolume( GameConfig.Current_BG_Music_Volume );
+	}
+	
+	break;
+	
+    case SET_SOUND_FX_VOLUME:
+	if ( RightPressed() ) 
+	{
+	    while ( RightPressed());
+	    if ( GameConfig.Current_Sound_FX_Volume < 1 ) GameConfig.Current_Sound_FX_Volume += 0.05;
+	    SetSoundFXVolume( GameConfig.Current_Sound_FX_Volume );
+	}
+	
+	if ( LeftPressed() ) 
+	{
+	    while (LeftPressed());
+	    if ( GameConfig.Current_Sound_FX_Volume > 0 ) GameConfig.Current_Sound_FX_Volume -= 0.05;
+	    SetSoundFXVolume( GameConfig.Current_Sound_FX_Volume );
+	}
+	break;
+
+    case SET_TERMINATE_ON_MISSING_FLAG:
+	while (EnterPressed() || SpacePressed() );
+	GameConfig.terminate_on_missing_speech_sample = !GameConfig.terminate_on_missing_speech_sample;
+	break;
+	
+    case SET_SHOW_SUBTITLE_FLAG:
+	while (EnterPressed() || SpacePressed() );
+	GameConfig.show_subtitles_in_dialogs = !GameConfig.show_subtitles_in_dialogs;
+	break;
+	
+    case LEAVE_OPTIONS_MENU:
+	while (EnterPressed() || SpacePressed() );
+	return EXIT_MENU;
+	break;
+	
+    default: 
+	break;
+    }
+    return CONTINUE_MENU;
+}
+
+static void
+Sound_fill (char *MenuTexts[10])
+{
+	sprintf ( MenuTexts[0] , _("Background Music Volume: %1.2f") , GameConfig.Current_BG_Music_Volume );
+	sprintf ( MenuTexts[1] , _("Sound Effects Volume: %1.2f"), GameConfig.Current_Sound_FX_Volume );
+	sprintf( MenuTexts[2] , _("Terminate On Missing Sample: %s"), 
+		 GameConfig.terminate_on_missing_speech_sample ? _("YES") : _("NO") );
+	sprintf( MenuTexts[3] , _("Show Subtitles in Dialogs: %s"), 
+		 GameConfig.show_subtitles_in_dialogs ? _("YES") : _("NO") );
+	MenuTexts [ 4 ] = _("Back");
+	MenuTexts [ 5 ] = "";
+}
+
+
+static int
+Performance_handle (int n)
+{
+    enum
+	{ 
+	    SET_HOG_CPU_FLAG = 1,
+	    SET_HIGHLIGHTING_MODE,
+	    SHOW_QUICK_INVENTORY_MODE,
+	    SKIP_LIGHT_RADIUS_MODE,
+	    SKIP_SHADOWS,
+	    SKIP_FADINGS,
+	    USE_SDL_AUTOMAP,
+	    LEAVE_PERFORMANCE_TWEAKS_MENU 
+	};
+    switch (n)
+    {
+    case (-1):
+	return EXIT_MENU;
+	
+    case SET_HOG_CPU_FLAG:
+	while (EnterPressed() || SpacePressed() || MouseLeftPressed());
+	GameConfig . hog_CPU = ! GameConfig . hog_CPU ;
+	break;
+		
+    case SET_HIGHLIGHTING_MODE:
+	while (EnterPressed() || SpacePressed() || MouseLeftPressed());
+	GameConfig . highlighting_mode_full = ! GameConfig . highlighting_mode_full ;
+	break;
+	
+    case SHOW_QUICK_INVENTORY_MODE:
+	while (EnterPressed() || SpacePressed() || MouseLeftPressed());
+	GameConfig . show_quick_inventory = ! GameConfig . show_quick_inventory ;
+	break;
+	
+    case SKIP_LIGHT_RADIUS_MODE:
+	while (EnterPressed() || SpacePressed()|| MouseLeftPressed() );
+	GameConfig . skip_light_radius = ! GameConfig . skip_light_radius ;
+	break;
+	
+    case SKIP_SHADOWS:
+	while (EnterPressed() || SpacePressed()|| MouseLeftPressed() );
+	GameConfig . skip_shadow_blitting = ! GameConfig . skip_shadow_blitting ;
+	break;
+	
+    case SKIP_FADINGS:
+	while (EnterPressed() || SpacePressed() || MouseLeftPressed() );
+	GameConfig . do_fadings = ! GameConfig . do_fadings ;
+	break;
+	
+    case USE_SDL_AUTOMAP:
+	while (EnterPressed() || SpacePressed() || MouseLeftPressed() );
+	GameConfig . force_sdl_automap = ! GameConfig . force_sdl_automap ;
+	break;
+	
+    case LEAVE_PERFORMANCE_TWEAKS_MENU:
+	while (EnterPressed() || SpacePressed()|| MouseLeftPressed() );
+	return EXIT_MENU;
+	break;
+	
+    default: 
+	break;
+	
+    } 
+    return CONTINUE_MENU;
+}
+    
+
+static void
+Performance_fill (char *MenuTexts[])
+{
+	sprintf ( MenuTexts[0] , _("Hog CPU for max. performance: %s"), 
+		  GameConfig.hog_CPU ? _("YES") : _("NO") );
+	sprintf ( MenuTexts[1] , _("Highlighting mode: %s"), GameConfig.highlighting_mode_full ? _("FULL") : _("REDUCED") );
+	sprintf ( MenuTexts[2] , _("Show quick inventory: %s"), GameConfig . show_quick_inventory ? _("YES") : _("NO") );
+	sprintf ( MenuTexts[3] , _("Skip light radius: %s"), GameConfig . skip_light_radius ? _("YES") : _("NO") );
+	sprintf ( MenuTexts[4] , _("Skip shadow blitting: %s"), 
+		  GameConfig . skip_shadow_blitting ? _("YES") : _("NO") );
+	sprintf( MenuTexts[5] , _("Skip fadings: %s"), 
+		 GameConfig . do_fadings ? _("NO") : _("YES") );
+	sprintf( MenuTexts[6] , _("Use SDL automap: %s"),
+		GameConfig . force_sdl_automap ? _("YES") : _("NO"));
+	MenuTexts[7]=_("Back");
+	MenuTexts[8]="";
+}
+
+static int
+Language_handle (int n)
+{
+    int nb_languages = 0;
+    while ( supported_languages[nb_languages].code != NULL )
+	nb_languages ++;
+    if ( n < nb_languages && n > 0) {
+	GameConfig . language = n - 1;
+#if ENABLE_NLS
+	setlocale(LC_MESSAGES, supported_languages[n - 1] . code);
+	setlocale(LC_CTYPE, supported_languages[n - 1] . code);
+#endif
+	FreeOurBFonts();
+	InitOurBFonts();
+    }
+    return EXIT_MENU;
+}
+
+static void
+Language_fill (char *MenuTexts[10])
+{
+    // If there are more than 8 languages supported,
+    // it may crash.
+    int i = 0;
+    while ( supported_languages[i].code != NULL )
+	{
+	MenuTexts[i] = supported_languages[i].name;
+	i ++;
+	}
+    MenuTexts[i] = "";
+}
+
+
+static int
+OSD_handle (int n)
+{
+  enum
+    { 
+      SHOW_POSITION=1, 
+      SHOW_FRAMERATE, 
+      SHOW_TUX_ENERGY,
+      SHOW_ENEMY_ENERGY_BARS,
+      PARALLEL_BIG_SCREEN_MESSAGES_AT_MOST_POSITION,
+      BIG_SCREEN_MESSAGES_DURATION_POSITION,
+      LEAVE_OPTIONS_MENU 
+    };
+
+  int *shows[4] = {
+	  &GameConfig.Draw_Position, &GameConfig.Draw_Framerate,
+	  &GameConfig.Draw_Energy, &GameConfig.enemy_energy_bars_visible
+  };
+
+  if (n < PARALLEL_BIG_SCREEN_MESSAGES_AT_MOST_POSITION) {
+	  while (EnterPressed () || SpacePressed ());
+	  *shows[n-1] = !*shows[n-1];
+  } else {
+      switch (n) {
+      case -1:
+	  return EXIT_MENU;
+      case PARALLEL_BIG_SCREEN_MESSAGES_AT_MOST_POSITION:
+	  if ( LeftPressed() )
+	  {
+	      while ( LeftPressed() );
+	      if ( GameConfig . number_of_big_screen_messages > 0 )
+	      {
+		  GameConfig . number_of_big_screen_messages -- ;
+	      }
+	  }
+	  else if ( RightPressed() )
+	  {
+	      while ( RightPressed() );
+	      if ( GameConfig . number_of_big_screen_messages < MAX_BIG_SCREEN_MESSAGES )
+	      {
+		  GameConfig . number_of_big_screen_messages ++ ;
+	      }
+	  }
+	  break;
+	  
+      case BIG_SCREEN_MESSAGES_DURATION_POSITION:
+	  if ( LeftPressed() )
+	  {
+	      while ( LeftPressed() );
+	      if ( GameConfig . delay_for_big_screen_messages >= 0.5 )
+	      {
+		  GameConfig . delay_for_big_screen_messages -= 0.5 ;
+	      }
+	  }
+	  else if ( RightPressed() )
+	  {
+	      while ( RightPressed() );
+	      GameConfig . delay_for_big_screen_messages += 0.5 ;
+	  }
+	  break;
+	  
+      case LEAVE_OPTIONS_MENU:
+	  while (EnterPressed() || SpacePressed() );
+	  return EXIT_MENU;
+      default: 
+	  break;
+      } 
+  }
+  return CONTINUE_MENU;
+}
+
+static void
+OSD_fill (char *MenuTexts[10])
+{
+      sprintf( MenuTexts[0] , _("Show Position: %s"), GameConfig.Draw_Position ? _("ON") : _("OFF") );
+      sprintf( MenuTexts[1] , _("Show Framerate: %s"), GameConfig.Draw_Framerate? _("ON") : _("OFF") );
+      sprintf( MenuTexts[2] , _("Show Tux Energy: %s"), GameConfig.Draw_Energy? _("ON") : _("OFF") );
+      sprintf( MenuTexts[3] , _("Show Enemy Energy Bars: %s"), GameConfig.enemy_energy_bars_visible? _("ON") : _("OFF") );
+      sprintf( MenuTexts[4] , _("Screen Messages at most: %d"), GameConfig.number_of_big_screen_messages );
+      sprintf( MenuTexts[5] , _("Screen Message time: %3.1f"), GameConfig.delay_for_big_screen_messages );
+      strcpy (MenuTexts[7], _("Back"));
+      MenuTexts[8][0]='\0';
+
+
+      MenuTexts[6]=_("Back");
+      MenuTexts[7]="";		  
+}
+
+static int
+Droid_handle (int n)
+{
+  enum
+    { 
+      INFLU_REFRESH_TEXT=1,
+      INFLU_BLAST_TEXT,
+      ENEMY_HIT_TEXT,
+      ENEMY_BUMP_TEXT,
+      ENEMY_AIM_TEXT,
+      ALL_TEXTS,
+      TALK_AFTER_TO,
+      LEAVE_DROID_TALK_OPTIONS_MENU 
+    };
+  int *ptrs [] = {
+      &GameConfig.Influencer_Refresh_Text,&GameConfig.Influencer_Blast_Text,
+      &GameConfig.Enemy_Hit_Text, &GameConfig.Enemy_Bump_Text,
+      &GameConfig.Enemy_Aim_Text, &GameConfig.All_Texts_Switch,
+      &GameConfig.talk_to_bots_after_takeover
+  };
+
+  if (n < LEAVE_DROID_TALK_OPTIONS_MENU && n > 0)
+      *ptrs[n-1] = ! *ptrs[n-1];
+  else {
+      while (EnterPressed () || SpacePressed () || MouseLeftPressed ());
+      return EXIT_MENU;
+  }
+  return CONTINUE_MENU;
+}
+      
+
+static void
+Droid_fill (char *MenuTexts[10])
+{
+      sprintf( MenuTexts[0] , _("Influencer Refresh Texts: %s") , GameConfig.Influencer_Refresh_Text ? _("ON") : _("OFF") );
+      sprintf( MenuTexts[1] , _("Influencer Blast Texts: %s"), GameConfig.Influencer_Blast_Text ? _("ON") : _("OFF") );
+      sprintf( MenuTexts[2] , _("Enemy Hit Texts: %s"), GameConfig.Enemy_Hit_Text ? _("ON") : _("OFF") );
+      sprintf( MenuTexts[3] , _("Enemy Bumped Texts: %s"), GameConfig.Enemy_Bump_Text ? _("ON") : _("OFF") );
+      sprintf( MenuTexts[4] , _("Enemy Aim Texts: %s"), GameConfig.Enemy_Aim_Text ? _("ON") : _("OFF") );
+      sprintf( MenuTexts[5] , _("All in-game Speech: %s"), GameConfig.All_Texts_Switch ? _("ON") : _("OFF") );
+      sprintf( MenuTexts[6], _("Reprogram bots after takeover: %s"), GameConfig.talk_to_bots_after_takeover ? _("ON") : _("OFF"));
+      MenuTexts[7] = _("Back");
+      MenuTexts[8] = "";
+}
+
+    
+#define FIRST_MIS_SELECT_ITEM_POS_X (0.0)
+#define FIRST_MIS_SELECT_ITEM_POS_Y (BANNER_HEIGHT + FontHeight(Menu_BFont))
+
+
+/* ----------------------------------------------------------------------
+ * This function provides the credits screen.  It is a submenu of
+ * the big EscapeMenu.  Here you can see who helped developing the
+ * game.
+ * ---------------------------------------------------------------------- */
+void
+Credits_Menu (void)
+{
+    char* CreditsText = _("\n\n\n\
+                                            CREDITS\n\n\n\
+   PROGRAMMING:\n\n\
+                                      Johannes Prix\n\n\
+                                      Reinhard Prix\n\n\
+                                      Arthur Huillet\n\n\n\
+   ARTWORK:\n\n\
+                                      Bastian Salmela\n\n\n\
+   DIALOGUES AND MINOR TWEAKS:\n\n\
+                                      Karol Swietlicki\n\n\n\
+   PROFILING AND TESTING:\n\n\
+                                      Clint Herron\n\n\n\
+   SOUND EFFECTS:\n\n\
+                                      Johannes Prix\n\n\
+                                      Chris Hoeppner\n\n\n\
+   VOICES:\n\n\
+                                      Tiina Heinonen\n\n\
+                                      Doris Stubenrauch\n\n\
+                                      Andrew A. Gill\n\n\
+                                      Johannes Prix\n\n\
+                                      Mbrola\n\
+                                       text-to-speech system\n\n\
+                                      eSpeak\n\
+                                       text-to-speech system\n\n\n\
+   OGG COMPOSERS:\n\n\
+                                      \"The Beginning\"\n\
+                                        by 4t thieves\n\
+                                        of kahvi collective\n\
+                                      (www.kahvi.org)\n\n\
+                                      \"Daybreak\"\n\
+                                        by realsmokers\n\
+                                        of kahvi collective\n\
+                                      (www.realsmokers.de)\n\
+                                      (www.kahvi.org)\n\n\
+                                      \"Bleostrada\"\n\
+                                        by stud\n\
+                                        of kahvi collective\n\
+                                      (www.atl3.com/stud)\n\
+                                      (www.kahvi.org)\n\n\
+                                        Arvid Picciani\n\n\n\
+   VARIOUS OLDER CONTRIBUTIONS (PRE-0.9.13 people):\n\n\
+                                      Ryan 'simcop2387' Voots\n\n\
+                                      Andrew A. Gill\n\n\
+                                      Zombie Ryushu\n\n\
+                                      Ted Cipicchio\n\n\
+                                      The Doctor\n\n\
+                                      Simon Newton\n\n\n\n\n");
+    
+    User_Rect . x = Full_Screen_Rect . x ;
+    User_Rect . y = Full_Screen_Rect . y ;
+    User_Rect . w = Full_Screen_Rect . w ;
+    User_Rect . h = Full_Screen_Rect . h ;
+    
+    while( SpacePressed() || EscapePressed() ) ; /* wait for key release */
+    
+    // InitiateMenu();
+    
+    SwitchBackgroundMusicTo ( CREDITS_BACKGROUND_MUSIC_SOUND );
+    
+    ScrollText ( CreditsText , SCROLLSTARTX, SCROLLSTARTY, NE_CREDITS_PIC_BACKGROUND_CODE );
+    
+    while( SpacePressed() || EscapePressed() ) ; /* wait for key release */
+    
+}; // void Credits_Menu(void)
 /* ----------------------------------------------------------------------
  * This reads in the new name for the character...
  * ---------------------------------------------------------------------- */
@@ -2796,79 +2586,6 @@ Single_Player_Menu (void)
     }
     return ( TRUE );
 }; // void Single_Player_Menu ( void );
-
-/* ----------------------------------------------------------------------
- * This function provides the credits screen.  It is a submenu of
- * the big EscapeMenu.  Here you can see who helped developing the
- * game.
- * ---------------------------------------------------------------------- */
-void
-Credits_Menu (void)
-{
-    char* CreditsText = _("\n\n\n\
-                                            CREDITS\n\n\n\
-   PROGRAMMING:\n\n\
-                                      Johannes Prix\n\n\
-                                      Reinhard Prix\n\n\
-                                      Arthur Huillet\n\n\n\
-   ARTWORK:\n\n\
-                                      Bastian Salmela\n\n\n\
-   DIALOGUES AND MINOR TWEAKS:\n\n\
-                                      Karol Swietlicki\n\n\n\
-   PROFILING AND TESTING:\n\n\
-                                      Clint Herron\n\n\n\
-   SOUND EFFECTS:\n\n\
-                                      Johannes Prix\n\n\
-                                      Chris Hoeppner\n\n\n\
-   VOICES:\n\n\
-                                      Tiina Heinonen\n\n\
-                                      Doris Stubenrauch\n\n\
-                                      Andrew A. Gill\n\n\
-                                      Johannes Prix\n\n\
-                                      Mbrola\n\
-                                       text-to-speech system\n\n\
-                                      eSpeak\n\
-                                       text-to-speech system\n\n\n\
-   OGG COMPOSERS:\n\n\
-                                      \"The Beginning\"\n\
-                                        by 4t thieves\n\
-                                        of kahvi collective\n\
-                                      (www.kahvi.org)\n\n\
-                                      \"Daybreak\"\n\
-                                        by realsmokers\n\
-                                        of kahvi collective\n\
-                                      (www.realsmokers.de)\n\
-                                      (www.kahvi.org)\n\n\
-                                      \"Bleostrada\"\n\
-                                        by stud\n\
-                                        of kahvi collective\n\
-                                      (www.atl3.com/stud)\n\
-                                      (www.kahvi.org)\n\n\
-                                        Arvid Picciani\n\n\n\
-   VARIOUS OLDER CONTRIBUTIONS (PRE-0.9.13 people):\n\n\
-                                      Ryan 'simcop2387' Voots\n\n\
-                                      Andrew A. Gill\n\n\
-                                      Zombie Ryushu\n\n\
-                                      Ted Cipicchio\n\n\
-                                      The Doctor\n\n\
-                                      Simon Newton\n\n\n\n\n");
-    
-    User_Rect . x = Full_Screen_Rect . x ;
-    User_Rect . y = Full_Screen_Rect . y ;
-    User_Rect . w = Full_Screen_Rect . w ;
-    User_Rect . h = Full_Screen_Rect . h ;
-    
-    while( SpacePressed() || EscapePressed() ) ; /* wait for key release */
-    
-    // InitiateMenu();
-    
-    SwitchBackgroundMusicTo ( CREDITS_BACKGROUND_MUSIC_SOUND );
-    
-    ScrollText ( CreditsText , SCROLLSTARTX, SCROLLSTARTY, NE_CREDITS_PIC_BACKGROUND_CODE );
-    
-    while( SpacePressed() || EscapePressed() ) ; /* wait for key release */
-    
-}; // void Credits_Menu(void)
 
 /* ----------------------------------------------------------------------
  * This function provides the contribution screen.  It is a submenu of
