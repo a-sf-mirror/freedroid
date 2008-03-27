@@ -910,7 +910,6 @@ CheckBlastCollisions (int num)
 	// Now most likely, he then will also say so :)
 	if ( !CurBlast->MessageWasDone )
 	{
-	    AddInfluBurntText();
 	    CurBlast->MessageWasDone=TRUE;
 	}
     }

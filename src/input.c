@@ -691,8 +691,8 @@ ReactToSpecialKeys(void)
     if ( F11Pressed() ) 
     {		
         #ifndef __WIN32__
-	SDL_WM_ToggleFullScreen ( Screen );
-	GameConfig . fullscreen_on = ! GameConfig . fullscreen_on;
+//	SDL_WM_ToggleFullScreen ( Screen );
+//	GameConfig . fullscreen_on = ! GameConfig . fullscreen_on;
 	#endif
     }
     

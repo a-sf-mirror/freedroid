@@ -582,38 +582,34 @@ but the SDL MIXER was unable to LOAD it.",
 			fprintf( stderr, "\n\nSoundSampleFileName: '%s'" , SoundSampleFileName );
                        ErrorMessage ( __FUNCTION__ , "\
 There seems to be a sound file missing.",
-									   NO_NEED_TO_INFORM, GameConfig.terminate_on_missing_speech_sample );
+									   NO_NEED_TO_INFORM, FALSE );
 			}
-
-		if ( !GameConfig.terminate_on_missing_speech_sample )
+		    //--------------------
+		    // Maybe this sound sample was intended to be hooking the CPU and the
+		    // program flow, so that nothing happens until the sample has been
+		    // played fully.  In this case we must introduce a waiting time even
+		    // if no sound sample is played.  A default of 7 seconds seems to
+		    // be appropriate.  On pressing the left button or space or escape
+		    // the waiting time will be cancelled anyway.
+		    //
+		    if ( With_Waiting )
 			{
-			//--------------------
-			// Maybe this sound sample was intended to be hooking the CPU and the
-			// program flow, so that nothing happens until the sample has been
-			// played fully.  In this case we must introduce a waiting time even
-			// if no sound sample is played.  A default of 7 seconds seems to
-			// be appropriate.  On pressing the left button or space or escape
-			// the waiting time will be cancelled anyway.
-			//
-			if ( With_Waiting )
-				{
-				simulated_playback_starting_time = SDL_GetTicks() ;
+			simulated_playback_starting_time = SDL_GetTicks() ;
 
-				while ( ( SDL_GetTicks() - simulated_playback_starting_time < 7 * 1000 ) &&
-						!EscapePressed() && !SpacePressed() && !MouseLeftPressed() )
-					SDL_Delay(10);
+			while ( ( SDL_GetTicks() - simulated_playback_starting_time < 7 * 1000 ) &&
+				!EscapePressed() && !SpacePressed() && !MouseLeftPressed() )
+			    SDL_Delay(10);
 
-				while ( EscapePressed() || SpacePressed() || MouseLeftPressed() )
-					SDL_Delay(10);
-				}
-
-			//--------------------
-			// Now we must return, since we do not want to 'free' the sound sample, that
-			// hasn't been loaded successfully and produce a segfault, do we?
-			//
-			return ;
-
+			while ( EscapePressed() || SpacePressed() || MouseLeftPressed() )
+			    SDL_Delay(10);
 			}
+
+		    //--------------------
+		    // Now we must return, since we do not want to 'free' the sound sample, that
+		    // hasn't been loaded successfully and produce a segfault, do we?
+		    //
+		    return ;
+
 		} // if ( !Loaded_WAV...
 	else
 		{

@@ -88,10 +88,7 @@ typedef struct configuration_for_freedroid_s
 {
     float WantedTextVisibleTime;
     int Draw_Framerate;
-    int Draw_Energy;
     int Draw_Position;
-    int Influencer_Refresh_Text;
-    int Influencer_Blast_Text;
     int Enemy_Hit_Text;
     int Enemy_Bump_Text;
     int Enemy_Aim_Text;
@@ -117,8 +114,6 @@ typedef struct configuration_for_freedroid_s
     int Automap_Visible;
     int spell_level_visible;
 
-    int terminate_on_missing_speech_sample;
-    int show_subtitles_in_dialogs;
     char freedroid_version_string[500];
     int skip_light_radius;
     int skill_explanation_screen_visible;

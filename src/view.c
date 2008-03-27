@@ -258,15 +258,6 @@ ShowCombatScreenTexts ( int mask )
 	
     }
     
-    if ( GameConfig.Draw_Energy )
-    {
-	PrintStringFont( Screen , FPS_Display_BFont , User_Rect.x , 1 + 1 * FontHeight( FPS_Display_BFont ), 
-			 _("Energy: %d "), (int) (Me.energy) );
-	// PrintStringFont( Screen , FPS_Display_BFont , User_Rect.x+User_Rect.w/2 , 
-	// User_Rect.y+User_Rect.h - 2 * FontHeight( FPS_Display_BFont ), 
-	// "Resistance: %f " , (Me.Current_Victim_Resistance_Factor) );
-    }
-    
     if ( GameConfig.Draw_Position || ( mask & ONLY_SHOW_MAP_AND_TEXT ) )
     {
 	PrintStringFont( Screen , FPS_Display_BFont , User_Rect.x , 

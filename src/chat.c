@@ -319,8 +319,6 @@ display_current_chat_protocol ( int background_picture_code , enemy* ChatDroid ,
     
 #define AVERAGE_LINES_IN_PROTOCOL_WINDOW (UNIVERSAL_COORD_H(9))
 
-    if ( ! GameConfig . show_subtitles_in_dialogs ) return;
-    
     SetCurrentFont( FPS_Display_BFont );
     
     Subtitle_Window . x = CHAT_SUBDIALOG_WINDOW_X; 

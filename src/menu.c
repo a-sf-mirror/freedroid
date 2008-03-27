@@ -1359,7 +1359,7 @@ Startup_handle (int n)
 static void
 Startup_fill (char *MenuTexts[10])
 {
-    MenuTexts[0]= SINGLE_PLAYER_STRING ;
+    MenuTexts[0]=_("Play");
     MenuTexts[1]=_("Level Editor");
     MenuTexts[2]=_("Options");
     MenuTexts[3]=_("Credits");
@@ -1380,7 +1380,6 @@ Options_handle (int n)
 	    DROID_TALK_OPTIONS,
 	    ON_SCREEN_DISPLAYS,
 	    PERFORMANCE_TWEAKS_OPTIONS,
-	    SAVE_OPTIONS, 
 	    LEAVE_OPTIONS_MENU 
 	};
     switch (n) 
@@ -1400,8 +1399,6 @@ Options_handle (int n)
 	    return MENU_OSD;
     case PERFORMANCE_TWEAKS_OPTIONS:
 	    return MENU_PERFORMANCE;
-    case SAVE_OPTIONS:
-/*	    return MENU_SAVE;*/
     case LEAVE_OPTIONS_MENU:
 	    return EXIT_MENU;
     default: 
@@ -1419,9 +1416,8 @@ Options_fill (char *MenuTexts [10])
 	MenuTexts[3]=_("Droid Talk");
 	MenuTexts[4]=_("On-Screen Displays");
 	MenuTexts[5]=_("Performance Tweaks");
-	MenuTexts[6]=_("Save Options");
-	MenuTexts[7]=_("Back");
-	MenuTexts[8]="";
+	MenuTexts[6]=_("Back");
+	MenuTexts[7]="";
 }
 
 static int
@@ -1658,8 +1654,6 @@ Sound_handle (int n)
 	{ 
 	    SET_BG_MUSIC_VOLUME=1, 
 	    SET_SOUND_FX_VOLUME, 
-	    SET_TERMINATE_ON_MISSING_FLAG,
-	    SET_SHOW_SUBTITLE_FLAG,
 	    LEAVE_OPTIONS_MENU 
 	};    
     switch (n) 
@@ -1700,16 +1694,6 @@ Sound_handle (int n)
 	}
 	break;
 
-    case SET_TERMINATE_ON_MISSING_FLAG:
-	while (EnterPressed() || SpacePressed() );
-	GameConfig.terminate_on_missing_speech_sample = !GameConfig.terminate_on_missing_speech_sample;
-	break;
-	
-    case SET_SHOW_SUBTITLE_FLAG:
-	while (EnterPressed() || SpacePressed() );
-	GameConfig.show_subtitles_in_dialogs = !GameConfig.show_subtitles_in_dialogs;
-	break;
-	
     case LEAVE_OPTIONS_MENU:
 	while (EnterPressed() || SpacePressed() );
 	return EXIT_MENU;
@@ -1726,12 +1710,8 @@ Sound_fill (char *MenuTexts[10])
 {
 	sprintf ( MenuTexts[0] , _("Background Music Volume: %1.2f") , GameConfig.Current_BG_Music_Volume );
 	sprintf ( MenuTexts[1] , _("Sound Effects Volume: %1.2f"), GameConfig.Current_Sound_FX_Volume );
-	sprintf( MenuTexts[2] , _("Terminate On Missing Sample: %s"), 
-		 GameConfig.terminate_on_missing_speech_sample ? _("YES") : _("NO") );
-	sprintf( MenuTexts[3] , _("Show Subtitles in Dialogs: %s"), 
-		 GameConfig.show_subtitles_in_dialogs ? _("YES") : _("NO") );
-	MenuTexts [ 4 ] = _("Back");
-	MenuTexts [ 5 ] = "";
+	MenuTexts [ 2 ] = _("Back");
+	MenuTexts [ 3 ] = "";
 }
 
 
@@ -1860,7 +1840,6 @@ OSD_handle (int n)
     { 
       SHOW_POSITION=1, 
       SHOW_FRAMERATE, 
-      SHOW_TUX_ENERGY,
       SHOW_ENEMY_ENERGY_BARS,
       PARALLEL_BIG_SCREEN_MESSAGES_AT_MOST_POSITION,
       BIG_SCREEN_MESSAGES_DURATION_POSITION,
@@ -1869,7 +1848,7 @@ OSD_handle (int n)
 
   int *shows[4] = {
 	  &GameConfig.Draw_Position, &GameConfig.Draw_Framerate,
-	  &GameConfig.Draw_Energy, &GameConfig.enemy_energy_bars_visible
+	  &GameConfig.enemy_energy_bars_visible
   };
 
   if (n < PARALLEL_BIG_SCREEN_MESSAGES_AT_MOST_POSITION) {
@@ -1929,16 +1908,12 @@ OSD_fill (char *MenuTexts[10])
 {
       sprintf( MenuTexts[0] , _("Show Position: %s"), GameConfig.Draw_Position ? _("ON") : _("OFF") );
       sprintf( MenuTexts[1] , _("Show Framerate: %s"), GameConfig.Draw_Framerate? _("ON") : _("OFF") );
-      sprintf( MenuTexts[2] , _("Show Tux Energy: %s"), GameConfig.Draw_Energy? _("ON") : _("OFF") );
-      sprintf( MenuTexts[3] , _("Show Enemy Energy Bars: %s"), GameConfig.enemy_energy_bars_visible? _("ON") : _("OFF") );
-      sprintf( MenuTexts[4] , _("Screen Messages at most: %d"), GameConfig.number_of_big_screen_messages );
-      sprintf( MenuTexts[5] , _("Screen Message time: %3.1f"), GameConfig.delay_for_big_screen_messages );
-      strcpy (MenuTexts[7], _("Back"));
-      MenuTexts[8][0]='\0';
+      sprintf( MenuTexts[2] , _("Show Enemy Energy Bars: %s"), GameConfig.enemy_energy_bars_visible? _("ON") : _("OFF") );
+      sprintf( MenuTexts[3] , _("Screen Messages at most: %d"), GameConfig.number_of_big_screen_messages );
+      sprintf( MenuTexts[4] , _("Screen Message time: %3.1f"), GameConfig.delay_for_big_screen_messages );
+      strcpy (MenuTexts[5], _("Back"));
+      MenuTexts[6][0]='\0';
 
-
-      MenuTexts[6]=_("Back");
-      MenuTexts[7]="";		  
 }
 
 static int
@@ -1946,9 +1921,7 @@ Droid_handle (int n)
 {
   enum
     { 
-      INFLU_REFRESH_TEXT=1,
-      INFLU_BLAST_TEXT,
-      ENEMY_HIT_TEXT,
+      ENEMY_HIT_TEXT=1,
       ENEMY_BUMP_TEXT,
       ENEMY_AIM_TEXT,
       ALL_TEXTS,
@@ -1956,7 +1929,6 @@ Droid_handle (int n)
       LEAVE_DROID_TALK_OPTIONS_MENU 
     };
   int *ptrs [] = {
-      &GameConfig.Influencer_Refresh_Text,&GameConfig.Influencer_Blast_Text,
       &GameConfig.Enemy_Hit_Text, &GameConfig.Enemy_Bump_Text,
       &GameConfig.Enemy_Aim_Text, &GameConfig.All_Texts_Switch,
       &GameConfig.talk_to_bots_after_takeover
@@ -1975,15 +1947,13 @@ Droid_handle (int n)
 static void
 Droid_fill (char *MenuTexts[10])
 {
-      sprintf( MenuTexts[0] , _("Influencer Refresh Texts: %s") , GameConfig.Influencer_Refresh_Text ? _("ON") : _("OFF") );
-      sprintf( MenuTexts[1] , _("Influencer Blast Texts: %s"), GameConfig.Influencer_Blast_Text ? _("ON") : _("OFF") );
-      sprintf( MenuTexts[2] , _("Enemy Hit Texts: %s"), GameConfig.Enemy_Hit_Text ? _("ON") : _("OFF") );
-      sprintf( MenuTexts[3] , _("Enemy Bumped Texts: %s"), GameConfig.Enemy_Bump_Text ? _("ON") : _("OFF") );
-      sprintf( MenuTexts[4] , _("Enemy Aim Texts: %s"), GameConfig.Enemy_Aim_Text ? _("ON") : _("OFF") );
-      sprintf( MenuTexts[5] , _("All in-game Speech: %s"), GameConfig.All_Texts_Switch ? _("ON") : _("OFF") );
-      sprintf( MenuTexts[6], _("Reprogram bots after takeover: %s"), GameConfig.talk_to_bots_after_takeover ? _("ON") : _("OFF"));
-      MenuTexts[7] = _("Back");
-      MenuTexts[8] = "";
+      sprintf( MenuTexts[0] , _("Enemy Hit Texts: %s"), GameConfig.Enemy_Hit_Text ? _("ON") : _("OFF") );
+      sprintf( MenuTexts[1] , _("Enemy Bumped Texts: %s"), GameConfig.Enemy_Bump_Text ? _("ON") : _("OFF") );
+      sprintf( MenuTexts[2] , _("Enemy Aim Texts: %s"), GameConfig.Enemy_Aim_Text ? _("ON") : _("OFF") );
+      sprintf( MenuTexts[3] , _("All in-game Speech: %s"), GameConfig.All_Texts_Switch ? _("ON") : _("OFF") );
+      sprintf( MenuTexts[4], _("Reprogram bots after takeover: %s"), GameConfig.talk_to_bots_after_takeover ? _("ON") : _("OFF"));
+      MenuTexts[5] = _("Back");
+      MenuTexts[6] = "";
 }
 
     

@@ -260,49 +260,6 @@ AddStandingAndAimingText ( enemy * ThisRobot )
     
 }; // void AddStandingAndAimingText( int Enum )
 
-/* ----------------------------------------------------------------------
- * This function assigns a text comment to say for the influ right after
- * it has ran into an explosion.  This can be turned off via a switch in GameConfig.
- * ---------------------------------------------------------------------- */
-void
-AddInfluBurntText( void )
-{
-    int FinalTextNr;
-    
-    if ( !GameConfig.Influencer_Blast_Text ) return;
-    
-    Me.TextVisibleTime=0;
-    
-    FinalTextNr=MyRandom ( 6 );
-    switch ( FinalTextNr )
-    {
-	case 0:
-	    Me.TextToBeDisplayed=_("Aaarrgh, aah, that burnt me!");
-	    break;
-	case 1:
-	    Me.TextToBeDisplayed=_("Hell, that blast was hot!");
-	    break;
-	case 2:
-	    Me.TextToBeDisplayed=_("Ghaart, I hate to stain my chassis like that.");
-	    break;
-	case 3:
-	    Me.TextToBeDisplayed=_("Oh no!  I think I've burnt a cable!");
-	    break;
-	case 4:
-	    Me.TextToBeDisplayed=_("Oh no, my poor transfer connectors smolder!");
-	    break;
-	case 5:
-	    Me.TextToBeDisplayed=_("I hope that didn't melt any circuits!");
-	    break;
-	case 6:
-	    Me.TextToBeDisplayed=_("So that gives some more black scars on me ol' dented chassis!");
-	    break;
-	default:
-	    printf("\nError in AddInfluBurntText! That shouldn't be happening.");
-	    Terminate(ERR);
-	    break;
-    }
-}; // void AddInfluBurntText( void )
 
 /* ----------------------------------------------------------------------
  * This function sets the text cursor used in DisplayText.

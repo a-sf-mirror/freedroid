@@ -2112,14 +2112,9 @@ ResetGameConfigToDefaultValues ( void )
     GameConfig . Enemy_Hit_Text=FALSE;
     GameConfig . Enemy_Bump_Text=TRUE;
     GameConfig . Enemy_Aim_Text=TRUE;
-    GameConfig . Influencer_Refresh_Text=FALSE;
-    GameConfig . Influencer_Blast_Text=TRUE;
     GameConfig . Draw_Framerate=TRUE;
-    GameConfig . Draw_Energy=FALSE;
     GameConfig . Draw_Position=FALSE;
     GameConfig . All_Texts_Switch = FALSE;
-    GameConfig . terminate_on_missing_speech_sample = FALSE ;
-    GameConfig . show_subtitles_in_dialogs = TRUE ;
     GameConfig . enemy_energy_bars_visible = TRUE ;
     GameConfig . hog_CPU = TRUE ;
     GameConfig . highlighting_mode_full = TRUE ;
