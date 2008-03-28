@@ -305,14 +305,14 @@ ClearEnemys ( void )
     enemy * erot, *nerot;
     list_for_each_entry_safe(erot, nerot, &alive_bots_head, global_list)
 	{
-	free ( erot );
 	list_del( &erot->global_list );
+	free ( erot );
 	}
 
     list_for_each_entry_safe(erot, nerot, &dead_bots_head, global_list)
 	{
-	free ( erot );
 	list_del( &erot->global_list );
+	free ( erot );
 	}
 
 }; // void ClearEnemys ( void ) 
