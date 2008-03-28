@@ -575,7 +575,8 @@ CheckIfMissionIsComplete (void)
 	//
 	if ( Me . AllMissions [ mis_num ].KillOne != (-1) )
 	{
-	    BROWSE_ALIVE_BOT_LIST(erot,nerot)
+	    enemy *erot, *nerot;
+list_for_each_entry_safe(erot, nerot, &alive_bots_head, global_list)
 	    {
 		if ( ( erot->marker == Me . AllMissions [ mis_num ] . KillOne ) )
 		{
@@ -613,7 +614,8 @@ CheckIfMissionIsComplete (void)
 	//
 	if ( Me.AllMissions[ mis_num ]. must_clear_first_level != (-1) )
 	{
-	    BROWSE_ALIVE_BOT_LIST(erot,nerot)
+	    enemy *erot, *nerot;
+list_for_each_entry_safe(erot, nerot, &alive_bots_head, global_list)
 	    {
 	    	if ( ( ! erot->is_friendly ) && 
 		     ( erot->pos . z == Me.AllMissions[ mis_num ].must_clear_first_level ) ) 
@@ -629,7 +631,8 @@ CheckIfMissionIsComplete (void)
 	//
 	if ( Me.AllMissions[ mis_num ]. must_clear_second_level != (-1) )
 	{
-	    BROWSE_ALIVE_BOT_LIST(erot,nerot)
+	    enemy *erot, *nerot;
+list_for_each_entry_safe(erot, nerot, &alive_bots_head, global_list)
 	    {
 		if ( ( ! erot->is_friendly ) && 
 		     ( erot->pos . z == Me.AllMissions[ mis_num ].must_clear_second_level ) ) 

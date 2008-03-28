@@ -1033,8 +1033,8 @@ Cheatmenu (void)
 		l = 0;  // l is counter for lines of display of enemy output
 		for ( i = ((skip_dead == 1)? 1 : 0); i < ((skip_dead == 2) ? 1 : 2) ; i ++ )
 		    {
-		    enemy * erot = (i) ? alive_bots_head : dead_bots_head;
-		    for ( ; erot; erot = GETNEXT(erot) )
+		    enemy * erot;
+		    list_for_each_entry(erot, (i) ? &alive_bots_head : &dead_bots_head, global_list)
 			{
 			if ( erot->pos . z == CurLevel -> levelnum ) 
 			    {
@@ -1111,7 +1111,8 @@ Cheatmenu (void)
 		
 	    case 'd': // destroy all robots on this level, very useful
 		    {
-		    BROWSE_ALIVE_BOT_LIST(erot,nerot)
+		    enemy * erot, *nerot;
+		    list_for_each_entry_safe(erot, nerot, &alive_bots_head, global_list)
 			{
 			if ( erot->pos.z == CurLevel->levelnum)
 			    hit_enemy(erot, erot->energy + 1, 0, -1);

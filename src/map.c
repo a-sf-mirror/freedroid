@@ -121,17 +121,18 @@ respawn_level ( int level_num )
     //--------------------
     // Now we can start to fill the enemies on this level with new life...
     //
-    BROWSE_DEAD_BOT_LIST(aerot, next)
+    enemy *aerot, *next, *erot, *nerot;
+    list_for_each_entry_safe(aerot, next, &dead_bots_head, global_list)
 	{
 	if ( aerot -> pos  . z != level_num )
 	    continue;
 	if ( Druidmap[ aerot->type ] . is_human )
 	    continue;
 
-	move_enemy(&alive_bots_head, aerot, &dead_bots_head);
+	list_move(&(aerot->global_list), &alive_bots_head);
 	}
-    
-    BROWSE_ALIVE_BOT_LIST(erot,nerot)
+   
+    list_for_each_entry_safe(erot, nerot, &alive_bots_head, global_list) 
 	{
 	if ( erot -> pos  . z != level_num )
 	    continue;
@@ -2634,12 +2635,13 @@ CountNumberOfDroidsOnShip ( void )
 {
     Number_Of_Droids_On_Ship=0;
 
-    BROWSE_ALIVE_BOT_LIST(erot,nerot)
+    enemy * erot;
+    list_for_each_entry(erot,  &alive_bots_head, global_list)
 	{
 	Number_Of_Droids_On_Ship++;
 	}
 
-    BROWSE_DEAD_BOT_LIST(aerot, anerot)
+    list_for_each_entry(erot, &dead_bots_head, global_list)
 	{
 	Number_Of_Droids_On_Ship++;
 	}
@@ -2884,7 +2886,9 @@ the item specification section.",
 	  newen . stick_to_waypoint_system_by_default = FALSE ;
 
       newen . has_been_taken_over = FALSE;
-      alive_bots_head = add_enemy_head(alive_bots_head, &newen); 
+      enemy * ne = (enemy *)malloc(sizeof(enemy));
+      memcpy(ne, &newen, sizeof(enemy));
+      list_add(&(ne->global_list), &alive_bots_head);
       last_bot_number ++; 
     } // while Special force droid found...
 
@@ -3025,7 +3029,9 @@ game data file with all droid type specifications.",
                 default: strcpy ( newen . short_description_text , _("No Description For This One") );
 		};
 
-	alive_bots_head = add_enemy_head(alive_bots_head, &newen);	
+	enemy * ne = (enemy *)malloc(sizeof(enemy));
+	memcpy(ne, &newen, sizeof(enemy));
+	list_add(&(ne->global_list), &alive_bots_head);
 	last_bot_number ++;
     }  // while (enemy-limit of this level not reached) 
     
@@ -3176,7 +3182,8 @@ Error:  Doors pointing not to door obstacles found.",
 	  //
 	  some_bot_was_close_to_this_door = FALSE ;
 
-	  BROWSE_ALIVE_BOT_LIST(erot,nerot)
+	  enemy *erot, *nerot;
+list_for_each_entry_safe(erot, nerot, &alive_bots_head, global_list)
 	    {
 	      //--------------------
 	      // ignore druids that are dead or on other levels 

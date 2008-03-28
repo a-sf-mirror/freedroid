@@ -287,7 +287,8 @@ WARNING!  End of light sources array reached!",
 	}
     }
    
-    BROWSE_ALIVE_BOT_LIST(erot,nerot) 
+    enemy *erot, *nerot;
+list_for_each_entry_safe(erot, nerot, &alive_bots_head, global_list) 
     {
 	if ( Me . pos . z != erot->pos . z ) 
 	    continue;

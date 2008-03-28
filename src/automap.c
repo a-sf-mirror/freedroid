@@ -26,7 +26,6 @@
  * This file contains everything that has got to do with the automap.
  * ---------------------------------------------------------------------- */
 
-#define _automap_c
 
 #include "system.h"
 
@@ -288,7 +287,8 @@ show_automap_data_sdl ( void )
 	}
     }
 
-  BROWSE_ALIVE_BOT_LIST(erot, nerot)
+  enemy *erot, *nerot;
+list_for_each_entry_safe(erot, nerot, &alive_bots_head, global_list)
       {
       if ( erot->type == (-1) || (erot->pos . z != automap_level -> levelnum ))
 	  continue;
@@ -417,7 +417,6 @@ full_update_of_automap_texture ( void )
  * because it has still all the info from another level.  But after that
  * the map is fresh.  Still there should be some info, since the Tux has
  * been here before.  So we restore the info, using the data from the
- * classical SDL automap concerning which squares have been seen before.
  * ---------------------------------------------------------------------- */
 void
 insert_old_map_info_into_texture ( void )
@@ -606,4 +605,3 @@ show_automap_data_ogl ( float scale_factor )
 
 }; // void show_automap_data_ogl ( void )
 
-#undef _automap_c

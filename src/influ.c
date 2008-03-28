@@ -2392,7 +2392,8 @@ check_tux_enemy_collision (void)
     float ydist;
     float max_step_size;
    
-    BROWSE_ALIVE_BOT_LIST(erot, nerot) 
+    enemy *erot, *nerot;
+list_for_each_entry_safe(erot, nerot, &alive_bots_head, global_list) 
     {
 	
 	//--------------------
@@ -2479,7 +2480,8 @@ GetLivingDroidBelowMouseCursor ( )
 						       (float) input_axis.y , FALSE ) ;
     
 
-    BROWSE_ALIVE_BOT_LIST(this_bot, nerot)
+    enemy *this_bot;
+    list_for_each_entry(this_bot, &alive_bots_head, global_list)
     {
 	if ( this_bot -> pos . z != Me . pos . z )
 	    continue;
@@ -2960,7 +2962,8 @@ PerformTuxAttackRaw ( int use_mouse_cursor_for_targeting )
 		return;
 		}
 	
-	BROWSE_ALIVE_BOT_LIST(erot,nerot)
+	enemy *erot, *nerot;
+list_for_each_entry_safe(erot, nerot, &alive_bots_head, global_list)
 	{
 	    if (( erot-> pos . z != Me . pos . z ) ||
 	    		( fabsf ( erot-> pos . x - Weapon_Target_Vector.x ) > 0.5 ) ||

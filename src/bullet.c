@@ -396,7 +396,8 @@ MoveActiveSpells (void)
 	    //--------------------
 	    // Here we also do the spell damage application here
 	    //
-	    BROWSE_ALIVE_BOT_LIST(erot, nerot)
+	    enemy *erot, *nerot;
+list_for_each_entry_safe(erot, nerot, &alive_bots_head, global_list)
 		{
 		if ( erot->pos . z != Me . pos . z )
 		    continue;
@@ -545,7 +546,8 @@ handle_flash_effects ( bullet* CurBullet )
     if ( CurBullet->time_in_frames != 1 ) return; // we only do the damage once and thats at frame nr. 1 of the flash
     
 
-    BROWSE_ALIVE_BOT_LIST(erot,nerot)
+    enemy *erot, *nerot;
+list_for_each_entry_safe(erot, nerot, &alive_bots_head, global_list)
 	{
 	if ( erot->pos . z != CurBullet -> pos . z ) continue ;
 	if ( erot->type == (-1) ) continue ;
@@ -699,7 +701,8 @@ check_bullet_enemy_collisions ( bullet* CurBullet , int num )
     //--------------------
     // Check for collision with enemys
     //
-    BROWSE_ALIVE_BOT_LIST(ThisRobot, nerot)
+    enemy *ThisRobot, *nerot;
+list_for_each_entry_safe(ThisRobot, nerot, &alive_bots_head, global_list)
     {
 	if ( ThisRobot -> pos . z != level)
 	    continue;
@@ -882,7 +885,8 @@ CheckBlastCollisions (int num)
     // Now we check for enemys, that might have stepped into this
     // one blasts area of effect...
     //
-    BROWSE_ALIVE_BOT_LIST(erot, nerot) 
+    enemy *erot, *nerot;
+list_for_each_entry_safe(erot, nerot, &alive_bots_head, global_list) 
 	{
 	if (erot->pos.z != level)
 	    continue;

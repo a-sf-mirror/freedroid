@@ -359,6 +359,8 @@ EXTERN void save_bigscrmsg_t(const char *, bigscrmsg_t *);
 EXTERN void read_bigscrmsg_t(const char *, const char *, bigscrmsg_t *);
 EXTERN void save_sdl_rect(const char *, SDL_Rect *);
 EXTERN int read_sdl_rect(const char *, const char *, SDL_Rect *);
+#define save_list_head_t(X,Y) 
+#define read_list_head_t(X,Y,Z)
 
 // mission.c 
 #undef EXTERN
@@ -792,11 +794,6 @@ EXTERN void AnimateEnemys ( void ) ;
 EXTERN void hit_enemy ( enemy * target, float hit, char givexp, int killertype);
 EXTERN enemy * enemy_resolve_address ( short int enemy_number, enemy ** enemy_addr );
 EXTERN void enemy_set_reference ( short int * enemy_number, enemy ** enemy_addr, enemy * addr);
-#define BROWSE_ALIVE_BOT_LIST(X,Y) enemy * X = alive_bots_head; enemy * Y = X ? GETNEXT(X) : NULL; \
-					       for ( ; X ; X = Y, Y = X ? GETNEXT(X) : NULL )
-#define BROWSE_DEAD_BOT_LIST(X,Y) enemy * X = dead_bots_head; enemy * Y = X ? GETNEXT(X) : NULL; \
-					      for ( ; X ; X = Y, Y = X ? GETNEXT(X) : NULL )
-
 
 // ship.c 
 #undef EXTERN
@@ -948,12 +945,15 @@ EXTERN void PutPixel (SDL_Surface * surface, int x, int y, Uint32 pixel);
 #else
 #define EXTERN extern
 #endif
-EXTERN enemy * add_enemy_head(enemy * head, enemy * toadd);
-EXTERN enemy * del_enemy(enemy * head, enemy * todelete);
-EXTERN int free_enemy_list(enemy * head);
-EXTERN int move_enemy(enemy **, enemy *, enemy **);
-#define GETNEXT(X) ((X)->NEXT)
-#define GETPREV(X) ((X)->PREV)
+EXTERN void list_add(list_head_t *new, list_head_t * head);
+EXTERN void list_add_tail(list_head_t *new, list_head_t * head);
+EXTERN void list_del(list_head_t *entry);
+EXTERN void list_del_init(list_head_t *entry);
+EXTERN void list_move(list_head_t *list, list_head_t *head);
+EXTERN void list_move_tail(list_head_t *list, list_head_t *head);
+EXTERN int list_empty(const list_head_t *head);
+EXTERN void list_splice(list_head_t *list, list_head_t *head);
+EXTERN void list_splice_init(list_head_t *list, list_head_t *head);
 
 //--------------------
 // Leave this final endif in here!  It's the wrapper of the whole

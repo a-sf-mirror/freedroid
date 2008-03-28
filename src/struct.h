@@ -40,6 +40,15 @@ typedef struct tColorRGBA {
 typedef struct tColorY {
     Uint8 y;
 } tColorY;
+
+/**
+ * Simple doubly linked list implementation.
+ */
+typedef struct list_head {
+	struct list_head *next;
+	struct list_head *prev;
+} list_head_t;
+
 /* ----------------------------------------------------------------------
  * Here comes the struct for an iso image.  It also contains some 
  * placeholder for a possible 'zoomed-out' version of the iso image and
@@ -579,8 +588,7 @@ typedef struct enemy_s
     char bot_stuck_in_wall_at_previous_check;
     float time_since_previous_stuck_in_wall_check;
 
-    struct enemy_s * NEXT;
-    struct enemy_s * PREV;
+    list_head_t global_list;
 }
 enemy, *Enemy;
 

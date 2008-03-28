@@ -215,7 +215,8 @@ void
 update_timeouts_for_bots_on_level ( int level_num , float latest_frame_time ) 
 {
 
-    BROWSE_ALIVE_BOT_LIST(this_bot,nerot)
+    enemy *this_bot, *nerot;
+list_for_each_entry_safe(this_bot, nerot, &alive_bots_head, global_list)
     {
 	if ( this_bot -> pos . z != level_num )
 	    continue;

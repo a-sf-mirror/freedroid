@@ -296,8 +296,8 @@ or file permissions of ~/.freedroid_rpg are somehow not right.",
     int a = 0;
     for ( i = 0; i < 2; i++ )
 	{
-	enemy * erot = i ? dead_bots_head : alive_bots_head;
-	for ( ; erot; erot = GETNEXT(erot) )
+	enemy * erot;
+        list_for_each_entry(erot, i ? &dead_bots_head : &alive_bots_head, global_list)
 	    {
 	    char str[20];
 	    sprintf(str, "%s enemy %d", i ? "dead" : "alive", a);
@@ -414,29 +414,35 @@ LoadGame( void )
     /* read enemies */
     ClearEnemys();
 
-    enemy newen;
+    enemy * newen;
     int done;
     int a = 0;
     for ( i = 0 ; i < 2; i ++ )
 	{
-	enemy ** ce = i ? &dead_bots_head : &alive_bots_head;
 	char * cpos = LoadGameData;
 	done = 0;
 	while ( ! done ) 
 	    {
-	    memset(&newen, 0, sizeof(enemy));
+	    newen = (enemy *)calloc(1, sizeof(enemy)); 
 	    char str[25];
 	    sprintf(str, "%s enemy %d", i ? "dead" : "alive", a);
 	    cpos = strstr(cpos, str);
 	    if ( ! cpos )
 		{
 		done = 1;
+		free(newen);
 		break;
 		}
 	    cpos -= 5;
-	    if ( read_enemy(cpos, str, &newen ) )
+	    if ( read_enemy(cpos, str, newen ) )
+		{
 		done = 1;
-	    else *ce = add_enemy_head(*ce, &newen);
+		free(newen);
+		}
+	    else 
+		{
+		list_add(&(newen->global_list), i ? &dead_bots_head : &alive_bots_head);
+		}
 	    a++;
 	    }
 	}
@@ -464,12 +470,11 @@ LoadGame( void )
     Me . TextToBeDisplayed = "";
     for ( i = 0; i < 2; i ++)
 	{
-	enemy * erot = i ? alive_bots_head : dead_bots_head;
-	while ( erot )
+	enemy * erot, *n;
+	list_for_each_entry_safe(erot, n, i ? &alive_bots_head : &dead_bots_head, global_list)
 	    {
 	    erot->TextToBeDisplayed = "" ;
 	    erot->TextVisibleTime = 0;
-	    erot = GETNEXT(erot);
 	    }
 	}
 

@@ -29,6 +29,7 @@
 #define _global_h
 
 #include "BFont.h"
+#include "lists.h"
 
 #undef EXTERN
 #ifdef _main_c
@@ -95,8 +96,8 @@ EXTERN int GameOver;
 EXTERN int AlertLevel;
 EXTERN int RespectVisibilityOnMap;
 
-EXTERN enemy * alive_bots_head;
-EXTERN enemy * dead_bots_head;
+extern list_head_t alive_bots_head;
+extern list_head_t dead_bots_head;
 
 EXTERN spell_active AllActiveSpells[ MAX_ACTIVE_SPELLS ];
 EXTERN event_trigger AllEventTriggers[ MAX_EVENT_TRIGGERS ];

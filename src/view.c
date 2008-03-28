@@ -291,7 +291,8 @@ ShowCombatScreenTexts ( int mask )
 	{
 	    remaining_bots = 0 ;
 	    
-	    BROWSE_ALIVE_BOT_LIST(erot, nerot)
+	    enemy *erot, *nerot;
+list_for_each_entry_safe(erot, nerot, &alive_bots_head, global_list)
 	    {
 		if ( ( erot->pos . z == Me . pos . z ) &&
 		     ( ! erot->is_friendly ) )
@@ -1084,8 +1085,7 @@ insert_enemies_into_blitting_list ( void )
 
     for ( i = 0; i < 2; i ++)
 	{
-	ThisRobot = (i) ? dead_bots_head : alive_bots_head;
-	for ( ; ThisRobot; ThisRobot = GETNEXT(ThisRobot))
+	list_for_each_entry(ThisRobot, (i) ? &dead_bots_head : &alive_bots_head, global_list)
 	    {
 	    if ( ! level_is_partly_visible ( ThisRobot -> pos . z ) ) 
 		continue;

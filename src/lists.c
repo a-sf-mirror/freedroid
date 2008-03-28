@@ -1,99 +1,170 @@
-/*
- * Quick'n'dirty linked list code based on macros
- * Copyright (c) 2008 Arthur Huillet
+/**
+ * 
+ * Linux kernel linked lists,
+ * modified for userspace by
+ * - kazutomo@mcs.anl.gov
+ *
+ * This is obviously GPL licensed.
  */
 
 #include "struct.h"
 #define _LISTS_C
 
 #include "proto.h"
+#include "lists.h"
 
-#define define_add_obj_to_list_head(TYPE) \
-TYPE * add_##TYPE##_head(TYPE * head, TYPE * toadd)\
-{ \
-    TYPE * newobj = malloc(sizeof(TYPE));\
-    memcpy(newobj, toadd, sizeof(TYPE));\
-    newobj->NEXT = head;\
-    newobj->PREV = NULL;\
-    if(head)\
-            head->PREV = newobj;\
-    return newobj;\
-    }
+/*
+ * Insert a new entry between two known consecutive entries.
+ *
+ * This is only for internal list manipulation where we know
+ * the prev/next entries already!
+ */
+static inline void __list_add(struct list_head *new,
+			      struct list_head *prev,
+			      struct list_head *next)
+{
+	next->prev = new;
+	new->next = next;
+	new->prev = prev;
+	prev->next = new;
+}
 
-#define define_rem_obj_from_list(TYPE) \
-TYPE * del_##TYPE(TYPE * head, TYPE * todelete)\
-{\
-    if(todelete == head)\
-	{ /*if the object is the first of the list*/\
-	head = GETNEXT(todelete);\
-	if(head)\
-	    head->PREV = NULL;\
-	free(todelete);\
-	return head;\
-	}\
-    else if(!GETNEXT(todelete))\
-	{ /*if the object is the last of the list*/\
-	if(GETPREV(todelete))\
-	    GETPREV(todelete)->NEXT = NULL;\
-	free(todelete);\
-	return head;\
-	}\
-    if(todelete != head && GETNEXT(todelete))\
-	{ \
-	(GETPREV(todelete))->NEXT = GETNEXT(todelete);\
-	(GETNEXT(todelete))->PREV = GETPREV(todelete);\
-	free(todelete);\
-	return head;\
-	}\
-    return NULL;\
-    }
+/**
+ * list_add - add a new entry
+ * @new: new entry to be added
+ * @head: list head to add it after
+ *
+ * Insert a new entry after the specified head.
+ * This is good for implementing stacks.
+ */
+void list_add(struct list_head *new, struct list_head *head)
+{
+	__list_add(new, head, head->next);
+}
 
-#define free_obj_list1(TYPE)  \
-    TYPE * objrot = head;\
-    TYPE * nextptr;\
-    while(objrot)\
-        {\
-        nextptr = GETNEXT(objrot);
-
-#define free_obj_list2(TYPE) \
-	free(objrot);\
-        objrot = nextptr;\
-    }\
-    return 0;
-
-#define define_move_obj(TYPE)\
-    int move_##TYPE(TYPE ** newhead, TYPE * src, TYPE ** srchead)\
-{\
-    if ( src == *srchead )\
-	{ /*we're moving the head of the source list*/\
-	(*srchead) = src->NEXT;\
-	}\
-\
-    if ( * newhead )\
-	(*newhead)->PREV = src;\
-\
-    if ( src->PREV )\
-	src->PREV->NEXT = src->NEXT;\
-\
-    if ( src->NEXT )\
-	src->NEXT->PREV = src->PREV;\
-\
-    src->PREV = NULL;\
-    src->NEXT = (*newhead);\
-    (*newhead) = src;\
-\
-    return 0;\
+/**
+ * list_add_tail - add a new entry
+ * @new: new entry to be added
+ * @head: list head to add it before
+ *
+ * Insert a new entry before the specified head.
+ * This is useful for implementing queues.
+ */
+void list_add_tail(struct list_head *new, struct list_head *head)
+{
+	__list_add(new, head->prev, head);
 }
 
 
-define_add_obj_to_list_head(enemy)
-define_rem_obj_from_list(enemy)
-define_move_obj(enemy)
-
-int free_enemy_list(enemy * head)
+/*
+ * Delete a list entry by making the prev/next entries
+ * point to each other.
+ *
+ * This is only for internal list manipulation where we know
+ * the prev/next entries already!
+ */
+static inline void __list_del(struct list_head * prev, struct list_head * next)
 {
-    free_obj_list1(enemy);
-    free_obj_list2(enemy);
+	next->prev = prev;
+	prev->next = next;
+}
+
+/**
+ * list_del - deletes entry from list.
+ * @entry: the element to delete from the list.
+ * Note: list_empty on entry does not return true after this, the entry is
+ * in an undefined state.
+ */
+void list_del(struct list_head *entry)
+{
+	__list_del(entry->prev, entry->next);
+	entry->next = LIST_POISON1;
+	entry->prev = LIST_POISON2;
+}
+
+
+
+/**
+ * list_del_init - deletes entry from list and reinitialize it.
+ * @entry: the element to delete from the list.
+ */
+void list_del_init(struct list_head *entry)
+{
+	__list_del(entry->prev, entry->next);
+	INIT_LIST_HEAD(entry);
+}
+
+/**
+ * list_move - delete from one list and add as another's head
+ * @list: the entry to move
+ * @head: the head that will precede our entry
+ */
+void list_move(struct list_head *list, struct list_head *head)
+{
+        __list_del(list->prev, list->next);
+        list_add(list, head);
+}
+
+/**
+ * list_move_tail - delete from one list and add as another's tail
+ * @list: the entry to move
+ * @head: the head that will follow our entry
+ */
+void list_move_tail(struct list_head *list,
+				  struct list_head *head)
+{
+        __list_del(list->prev, list->next);
+        list_add_tail(list, head);
+}
+
+/**
+ * list_empty - tests whether a list is empty
+ * @head: the list to test.
+ */
+int list_empty(const struct list_head *head)
+{
+	return head->next == head;
+}
+
+static inline void __list_splice(struct list_head *list,
+				 struct list_head *head)
+{
+	struct list_head *first = list->next;
+	struct list_head *last = list->prev;
+	struct list_head *at = head->next;
+
+	first->prev = head;
+	head->next = first;
+
+	last->next = at;
+	at->prev = last;
+}
+
+/**
+ * list_splice - join two lists
+ * @list: the new list to add.
+ * @head: the place to add it in the first list.
+ */
+void list_splice(struct list_head *list, struct list_head *head)
+{
+	if (!list_empty(list))
+		__list_splice(list, head);
+}
+
+/**
+ * list_splice_init - join two lists and reinitialise the emptied list.
+ * @list: the new list to add.
+ * @head: the place to add it in the first list.
+ *
+ * The list at @list is reinitialised
+ */
+void list_splice_init(struct list_head *list,
+				    struct list_head *head)
+{
+	if (!list_empty(list)) {
+		__list_splice(list, head);
+		INIT_LIST_HEAD(list);
+	}
 }
 
 #undef _LISTS_C
