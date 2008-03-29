@@ -3384,7 +3384,6 @@ blit_tux ( int x , int y )
 	// of other players that are not on this level.
 	//
 	if ( Me . status == INFOUT ) return;
-	if ( Me . pos . z != Me . pos . z ) return;
 	
 	UpperLeftBlitCorner.x = UserCenter_x - 32 ;
 	UpperLeftBlitCorner.y = UserCenter_y - 32 ;
