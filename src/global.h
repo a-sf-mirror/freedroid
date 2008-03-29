@@ -98,6 +98,7 @@ EXTERN int RespectVisibilityOnMap;
 
 extern list_head_t alive_bots_head;
 extern list_head_t dead_bots_head;
+extern list_head_t level_bots_head;
 
 EXTERN spell_active AllActiveSpells[ MAX_ACTIVE_SPELLS ];
 EXTERN event_trigger AllEventTriggers[ MAX_EVENT_TRIGGERS ];
@@ -106,7 +107,6 @@ EXTERN char ServerName[ 10000 ];
 
 EXTERN ship curShip;		/* the current ship-data */
 
-EXTERN list_head_t * CurLevelBots; /* the bots on current level accessible in geographically separated lists (one per square) */
 
 EXTERN bullet AllBullets[MAXBULLETS + 10];
 EXTERN blast AllBlasts[MAXBLASTS + 10];

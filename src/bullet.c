@@ -396,12 +396,9 @@ MoveActiveSpells (void)
 	    //--------------------
 	    // Here we also do the spell damage application here
 	    //
-	    enemy *erot, *nerot;
-list_for_each_entry_safe(erot, nerot, &alive_bots_head, global_list)
+	    enemy *erot;
+	    BROWSE_LEVEL_BOTS(erot)
 		{
-		if ( erot->pos . z != Me . pos . z )
-		    continue;
-		
 		DistanceFromCenter = sqrt ( ( AllActiveSpells [ i ] . spell_center . x - erot->pos . x ) *
 			( AllActiveSpells [ i ] . spell_center . x - erot->pos . x ) +
 			( AllActiveSpells [ i ] . spell_center . y - erot->pos . y ) *
@@ -547,7 +544,7 @@ handle_flash_effects ( bullet* CurBullet )
     
 
     enemy *erot, *nerot;
-list_for_each_entry_safe(erot, nerot, &alive_bots_head, global_list)
+    BROWSE_ALIVE_BOTS_SAFE(erot, nerot)
 	{
 	if ( erot->pos . z != CurBullet -> pos . z ) continue ;
 	if ( erot->type == (-1) ) continue ;
@@ -702,7 +699,7 @@ check_bullet_enemy_collisions ( bullet* CurBullet , int num )
     // Check for collision with enemys
     //
     enemy *ThisRobot, *nerot;
-list_for_each_entry_safe(ThisRobot, nerot, &alive_bots_head, global_list)
+    BROWSE_ALIVE_BOTS_SAFE(ThisRobot, nerot)
     {
 	if ( ThisRobot -> pos . z != level)
 	    continue;
@@ -885,7 +882,7 @@ CheckBlastCollisions (int num)
     // one blasts area of effect...
     //
     enemy *erot, *nerot;
-list_for_each_entry_safe(erot, nerot, &alive_bots_head, global_list) 
+BROWSE_ALIVE_BOTS_SAFE(erot, nerot) 
 	{
 	if (erot->pos.z != level)
 	    continue;

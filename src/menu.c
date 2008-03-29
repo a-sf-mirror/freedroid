@@ -1112,7 +1112,7 @@ Cheatmenu (void)
 	    case 'd': // destroy all robots on this level, very useful
 		    {
 		    enemy * erot, *nerot;
-		    list_for_each_entry_safe(erot, nerot, &alive_bots_head, global_list)
+		    BROWSE_ALIVE_BOTS_SAFE(erot, nerot)
 			{
 			if ( erot->pos.z == Me . pos . z )
 			    hit_enemy(erot, erot->energy + 1, 0, -1);

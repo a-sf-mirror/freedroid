@@ -287,8 +287,8 @@ show_automap_data_sdl ( void )
 	}
     }
 
-  enemy *erot, *nerot;
-list_for_each_entry_safe(erot, nerot, &alive_bots_head, global_list)
+  enemy *erot;
+  BROWSE_ALIVE_BOTS(erot)
       {
       if ( erot->type == (-1) || (erot->pos . z != automap_level -> levelnum ))
 	  continue;

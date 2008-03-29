@@ -796,6 +796,12 @@ EXTERN void hit_enemy ( enemy * target, float hit, char givexp, int killertype);
 EXTERN enemy * enemy_resolve_address ( short int enemy_number, enemy ** enemy_addr );
 EXTERN void enemy_set_reference ( short int * enemy_number, enemy ** enemy_addr, enemy * addr);
 
+#define BROWSE_ALIVE_BOTS_SAFE(X,Y) list_for_each_entry_safe(X, Y, &alive_bots_head, global_list)
+#define BROWSE_ALIVE_BOTS(X) list_for_each_entry(X, &alive_bots_head, global_list)
+#define BROWSE_DEAD_BOTS_SAFE(X,Y) list_for_each_entry_safe(X, Y, &dead_bots_head, global_list)
+#define BROWSE_DEAD_BOTS(X) list_for_each_entry(X, &dead_bots_head, global_list)
+#define BROWSE_LEVEL_BOTS(T) list_for_each_entry(T, &level_bots_head, level_list)
+
 // ship.c 
 #undef EXTERN
 #ifdef _ship_c

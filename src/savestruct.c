@@ -57,6 +57,7 @@ save_char("stick_to_waypoint_system_by_default", &(target->stick_to_waypoint_sys
 save_char("bot_stuck_in_wall_at_previous_check", &(target->bot_stuck_in_wall_at_previous_check));
 save_float("time_since_previous_stuck_in_wall_check", &(target->time_since_previous_stuck_in_wall_check));
 save_list_head_t("global_list", &(target->global_list));
+save_list_head_t("level_list", &(target->level_list));
 fprintf(SaveGameFile, "</%s>\n", tag);
 return 0;
 }
@@ -123,6 +124,7 @@ read_char(pos, "stick_to_waypoint_system_by_default",  &(target->stick_to_waypoi
 read_char(pos, "bot_stuck_in_wall_at_previous_check",  &(target->bot_stuck_in_wall_at_previous_check));
 read_float(pos, "time_since_previous_stuck_in_wall_check",  &(target->time_since_previous_stuck_in_wall_check));
 read_list_head_t(pos, "global_list",  &(target->global_list));
+read_list_head_t(pos, "level_list",  &(target->level_list));
 *epos = '>'; 
 return 0;
 }

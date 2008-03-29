@@ -1250,7 +1250,7 @@ void
 Teleport ( int LNum , float X , float Y , int with_sound_and_fading )
 {
     int array_num = 0;
-    int i;
+    int i,j;
     char game_message_text [ 500 ] ;
 
     //--------------------
@@ -1277,6 +1277,7 @@ Teleport ( int LNum , float X , float Y , int with_sound_and_fading )
         //--------------------
         // If the level we're coming out from is the one where the homespot is, the teleport anchor has to be removed,
         // because it means that the player decided not to teleport back to the previous location
+	/* wait man, that huge crap cannot stay here
 	location HomeSpot;
 	ResolveMapLabelOnShip ( "TeleportHomeTarget" , &(HomeSpot) );
         if ( Me . pos . z == HomeSpot . level)
@@ -1284,12 +1285,32 @@ Teleport ( int LNum , float X , float Y , int with_sound_and_fading )
 	        Me . teleport_anchor.x = 0;
                 Me . teleport_anchor.y = 0;
 		}
-
+		*/
 
 	Me . pos . x = X;
 	Me . pos . y = Y;
 	Me . pos . z = LNum; 
 	
+	/* Now we will destroy the level_bots_head list*/
+	list_head_t *p, *q;
+	list_for_each_safe(p, q, &level_bots_head)
+	    {
+	    list_del(p);
+	    }
+	  
+	INIT_LIST_HEAD(&level_bots_head);
+
+	enemy * erot;
+	BROWSE_ALIVE_BOTS(erot)
+	    {
+	    if ( erot->pos.z != Me.pos.z ) continue;
+	    else 
+		{
+		list_add(&erot->level_list, &level_bots_head);
+		}
+	    }
+	
+
 	silently_unhold_all_items ();
 	move_all_items_to_level ( Me . pos . z );
 	silently_unhold_all_items ();

@@ -122,7 +122,7 @@ respawn_level ( int level_num )
     // Now we can start to fill the enemies on this level with new life...
     //
     enemy *aerot, *next, *erot, *nerot;
-    list_for_each_entry_safe(aerot, next, &dead_bots_head, global_list)
+    BROWSE_DEAD_BOTS_SAFE(aerot, next)
 	{
 	if ( aerot -> pos  . z != level_num )
 	    continue;
@@ -132,7 +132,7 @@ respawn_level ( int level_num )
 	list_move(&(aerot->global_list), &alive_bots_head);
 	}
    
-    list_for_each_entry_safe(erot, nerot, &alive_bots_head, global_list) 
+    BROWSE_ALIVE_BOTS_SAFE(erot, nerot) 
 	{
 	if ( erot -> pos  . z != level_num )
 	    continue;
@@ -2636,12 +2636,12 @@ CountNumberOfDroidsOnShip ( void )
     Number_Of_Droids_On_Ship=0;
 
     enemy * erot;
-    list_for_each_entry(erot,  &alive_bots_head, global_list)
+    BROWSE_ALIVE_BOTS(erot)
 	{
 	Number_Of_Droids_On_Ship++;
 	}
 
-    list_for_each_entry(erot, &dead_bots_head, global_list)
+    BROWSE_DEAD_BOTS(erot)
 	{
 	Number_Of_Droids_On_Ship++;
 	}
@@ -3183,7 +3183,7 @@ Error:  Doors pointing not to door obstacles found.",
 	  some_bot_was_close_to_this_door = FALSE ;
 
 	  enemy *erot, *nerot;
-list_for_each_entry_safe(erot, nerot, &alive_bots_head, global_list)
+BROWSE_ALIVE_BOTS_SAFE(erot, nerot)
 	    {
 	      //--------------------
 	      // ignore druids that are dead or on other levels 

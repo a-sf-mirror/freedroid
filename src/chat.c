@@ -443,8 +443,8 @@ ExecuteChatExtra ( char* ExtraCommandString , Enemy ChatDroid )
 	}
     else if ( ! strcmp ( ExtraCommandString , "EverybodyBecomesHostile" ) )
 	{
-	enemy *erot, *nerot;
-list_for_each_entry_safe(erot, nerot, &alive_bots_head, global_list)	
+	enemy *erot;
+BROWSE_ALIVE_BOTS(erot)	
 	    {
 	    erot -> is_friendly = FALSE ;
 	    erot->combat_state = MAKE_ATTACK_RUN ;

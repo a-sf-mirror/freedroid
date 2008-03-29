@@ -588,7 +588,8 @@ typedef struct enemy_s
     char bot_stuck_in_wall_at_previous_check;
     float time_since_previous_stuck_in_wall_check;
 
-    list_head_t global_list;
+    list_head_t global_list; // entry of this bot in the global bot lists (alive or dead)
+    list_head_t level_list; // entry of this bot in the level bot list (alive only)
 }
 enemy, *Enemy;
 

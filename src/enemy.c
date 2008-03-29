@@ -56,6 +56,7 @@ void RawStartEnemysShot( enemy*, float, float);
 
 LIST_HEAD(alive_bots_head);
 LIST_HEAD(dead_bots_head);
+LIST_HEAD(level_bots_head);
 
 
 /* ----------------------------------------------------------------------
@@ -233,8 +234,8 @@ PermanentHealRobots (void)
   if ( time_since_last_heal < HEAL_INTERVAL ) return;
   time_since_last_heal = 0 ;
 
-  enemy *erot, *nerot;
-list_for_each_entry_safe(erot, nerot, &alive_bots_head, global_list)
+  enemy *erot;
+BROWSE_ALIVE_BOTS(erot)
       {
       if ( erot->energy < Druidmap [ erot->type ] . maxenergy )
 	  erot->energy += floor(Druidmap[erot->type ] . lose_health * HEAL_INTERVAL) ;
@@ -303,13 +304,13 @@ void
 ClearEnemys ( void )
 {
     enemy * erot, *nerot;
-    list_for_each_entry_safe(erot, nerot, &alive_bots_head, global_list)
+    BROWSE_ALIVE_BOTS_SAFE(erot, nerot)
 	{
 	list_del( &erot->global_list );
 	free ( erot );
 	}
 
-    list_for_each_entry_safe(erot, nerot, &dead_bots_head, global_list)
+    BROWSE_DEAD_BOTS_SAFE(erot,nerot)
 	{
 	list_del( &erot->global_list );
 	free ( erot );
@@ -335,8 +336,8 @@ ShuffleEnemys ( int LevelNum )
     wp_num = ShuffleLevel->num_waypoints;;
     nth_enemy = 0;
 
-    enemy *erot, *nerot;
-list_for_each_entry_safe(erot, nerot, &alive_bots_head, global_list)
+    enemy *erot;
+    BROWSE_ALIVE_BOTS(erot)
 	{
 	if ( erot->pos . z != LevelNum )
 	    continue;		// dont handle dead enemys or on other level 
@@ -472,10 +473,10 @@ CheckIfWayIsFreeOfDroidsWithTuxchecking ( float x1 , float y1 , float x2 , float
     
     for ( i = 0 ; i < Steps + 1 ; i++ )
     {
-    	enemy *this_enemy, *nerot;
-list_for_each_entry_safe(this_enemy, nerot, &alive_bots_head, global_list)
+    	enemy *this_enemy;
+	BROWSE_LEVEL_BOTS(this_enemy)
 	{
-	    if (( this_enemy -> pos.z != OurLevel ) || ( this_enemy -> pure_wait > 0 ) || ( this_enemy == ExceptedRobot ))
+	    if (( this_enemy -> pure_wait > 0 ) || ( this_enemy == ExceptedRobot ))
 		continue;
 	    
 	    // so it seems that we need to test this one!!
@@ -564,7 +565,7 @@ CheckIfWayIsFreeOfDroidsWithoutTuxchecking ( float x1 , float y1 , float x2 , fl
 
 
     enemy *this_enemy, *nerot;
-    list_for_each_entry_safe(this_enemy, nerot, &alive_bots_head, global_list) 
+    BROWSE_ALIVE_BOTS_SAFE(this_enemy, nerot) 
 	{
 	if (( this_enemy -> pos.z != OurLevel ) ||( this_enemy -> pure_wait > 0 ) || ( this_enemy == ExceptedRobot ))
 	    {
@@ -1265,7 +1266,8 @@ static int kill_enemy(enemy * target, char givexp, int killertype)
 		enemy_spray_blood ( target ) ;
     }
 
-    list_move(&(target->global_list), &dead_bots_head);
+    list_move(&(target->global_list), &dead_bots_head); // bot is dead? move it to dead list
+    list_del(&(target->level_list)); // bot is dead? remove it from level list
 
     return 0;
 }; // void InitiateDeathOfEnemy ( Enemy ThisRobot )
@@ -2057,14 +2059,14 @@ MoveEnemys ( void )
     // Now the pure movement stuff..
     //
     enemy *ThisRobot, *nerot;
-list_for_each_entry_safe(ThisRobot, nerot, &alive_bots_head, global_list)
-    {
+    BROWSE_ALIVE_BOTS_SAFE(ThisRobot, nerot)
+	{
 	//--------------------
 	// Now check if the robot is still alive if the robot just got killed, 
 	// initiate the explosion and all that...
 	//
 	if ( ThisRobot->energy <= 0 )
-	{
+	    {
 	    ErrorMessage(__FUNCTION__, "Bot at %p should be dead already! Why is it in the alive list?", PLEASE_INFORM, IS_FATAL);
 	    continue;
 	}
@@ -2365,7 +2367,7 @@ ClosestOtherEnemyDroid ( Enemy ThisRobot )
   float FoundDistance;
  
   enemy *erot, *nerot;
-  list_for_each_entry_safe(erot, nerot, &alive_bots_head, global_list)
+  BROWSE_ALIVE_BOTS_SAFE(erot, nerot)
     {
       if ( ThisRobot -> pos . z != erot->pos . z )
 	  {
@@ -2406,7 +2408,7 @@ EnemyOfTuxCloseToThisRobot ( Enemy ThisRobot , moderately_finepoint* vect_to_tar
   float IgnoreRange = Druidmap [ ThisRobot -> type ] . minimal_range_hostile_bots_are_ignored;
 
   enemy *erot, *nerot;
-list_for_each_entry_safe(erot, nerot, &alive_bots_head, global_list)
+BROWSE_ALIVE_BOTS_SAFE(erot, nerot)
     {
       if ( erot->is_friendly )
       	  continue;
@@ -2450,12 +2452,10 @@ update_vector_to_shot_target_for_friend ( enemy* ThisRobot , moderately_finepoin
     vect_to_target -> x = -1000;
     vect_to_target -> y = -1000;
     
-    enemy *erot, *nerot;
-list_for_each_entry_safe(erot, nerot, &alive_bots_head, global_list)
+    enemy *erot;
+    BROWSE_LEVEL_BOTS(erot)
     {
 	if ( erot->is_friendly )
-	    continue;
-	if ( erot->pos.z != ThisRobot->pos.z )
 	    continue;
 	
 	if ( sqrt ( ( ThisRobot -> pos . x - erot->pos . x ) *
@@ -2514,8 +2514,8 @@ update_vector_to_shot_target_for_enemy ( enemy* this_robot , moderately_finepoin
     // should attack this one instead, since it's much closer anyway.
     // Let's see...
     //
-    enemy *erot, *nerot;
-    list_for_each_entry_safe(erot, nerot, &alive_bots_head, global_list)
+    enemy *erot;
+    BROWSE_LEVEL_BOTS(erot)
     {
 	if ( erot->pos . z != our_level ) 
 	    continue;
@@ -2909,7 +2909,7 @@ SetRestOfGroupToState ( Enemy ThisRobot , short NewState )
   if ( ( MarkerCode == 0 ) || ( MarkerCode == 101 ) )return ;
 
   enemy *erot, *nerot;
-list_for_each_entry_safe(erot, nerot, &alive_bots_head, global_list)
+  BROWSE_ALIVE_BOTS(erot)
       {
       if ( erot-> marker == MarkerCode )
 	  erot->combat_state = NewState ;
@@ -2931,7 +2931,7 @@ robot_group_turn_hostile ( enemy * ThisRobot )
     if (MarkerCode == 9999) SwitchBackgroundMusicTo(BIGFIGHT_BACKGROUND_MUSIC_SOUND);
 
     enemy *erot, *nerot;
-list_for_each_entry_safe(erot, nerot, &alive_bots_head, global_list)
+BROWSE_ALIVE_BOTS_SAFE(erot, nerot)
 	{
 	if ( erot->marker == MarkerCode && erot->has_been_taken_over == FALSE)
 	    erot->is_friendly = FALSE ;
@@ -3059,7 +3059,7 @@ CheckEnemyEnemyCollision ( enemy * OurBot )
     // there is perhaps a collision with them...
     
     enemy *erot, *nerot;
-list_for_each_entry_safe(erot, nerot, &alive_bots_head, global_list)
+BROWSE_ALIVE_BOTS_SAFE(erot, nerot)
     {
 	if ( erot -> pos . z != OurBot -> pos . z )
 	    continue;

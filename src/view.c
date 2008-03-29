@@ -292,7 +292,7 @@ ShowCombatScreenTexts ( int mask )
 	    remaining_bots = 0 ;
 	    
 	    enemy *erot, *nerot;
-list_for_each_entry_safe(erot, nerot, &alive_bots_head, global_list)
+BROWSE_ALIVE_BOTS_SAFE(erot, nerot)
 	    {
 		if ( ( erot->pos . z == Me . pos . z ) &&
 		     ( ! erot->is_friendly ) )
@@ -1995,6 +1995,25 @@ AssembleCombatPicture ( int mask )
     glEnd();    
     glEnable(GL_TEXTURE_2D);
 #endif
+
+#if 0
+    int x,y;
+    enemy * erot;
+    glDisable(GL_TEXTURE_2D);
+    glBegin(GL_POINTS);
+    for ( x = Me.pos.x - 1; x < Me.pos.x + 1; x++)
+	for ( y = Me.pos.y -1; y < Me.pos.y +1; y++)
+	    BROWSE_TILE_BOTS(erot, x, y)
+		{
+		printf("B at %f %f\n", erot->pos.x, erot->pos.y);
+		int a,b;
+		translate_map_point_to_screen_pixel(erot->pos.x, erot->pos.y, &a, &b, 1.0);
+		glColor3f(1.0, 1.0, 1.0);
+		glVertex2i(a,b);
+		}
+    glEnd();
+    glEnable(GL_TEXTURE_2D);
+#endif	
 
     //--------------------
     // At this point we are done with the drawing procedure
