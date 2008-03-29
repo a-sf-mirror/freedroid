@@ -65,207 +65,204 @@ extern SDL_Surface *zoomSurface(SDL_Surface * src, double zoomx, double zoomy, i
 
 
 mouse_press_button AllMousePressButtons[ MAX_MOUSE_PRESS_BUTTONS ] =
-  {
-    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { 239 , 480-47 ,  46 ,  14 } , TRUE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { 334 , 480-47 ,  46 ,  14 } , TRUE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { 283 , 480-47 ,  46 ,  14 } , TRUE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { 378 , 480-47 ,  46 ,  14 } , TRUE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/cha_button_red.png"               , { 334 , 480-47 ,  46 ,  14 } , TRUE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/log_button_yellow.png"            , { 239 , 480-47 ,  46 ,  14 } , TRUE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/cha_button_yellow.png"            , { 334 , 480-47 ,  46 ,  14 } , TRUE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/inv_button_yellow.png"            , { 283 , 480-47 ,  46 ,  14 } , TRUE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/ski_button_yellow.png"            , { 378 , 480-47 ,  46 ,  14 } , TRUE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/UPButton.png"                     , { 600 ,  94 ,  40 ,  40 } , TRUE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/DOWNButton.png"                   , { 600 , 316 ,  40 ,  40 } , TRUE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/LEFTButton.png"                   , { 300 ,   5 , 100 ,  50 } , TRUE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/RIGHTButton.png"                  , { 450 ,   5 , 100 ,  50 } , TRUE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/MapExitButton.png"                , {  50 ,   5 , 100 ,  50 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/MapUnlockDoorButton_gray.png"     , { 200 ,   5 , 100 ,  50 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/MapUnlockDoorButton_yellow.png"   , { 200 ,   5 , 100 ,  50 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/MapUnlockDoorButton_red.png"      , { 200 ,   5 , 100 ,  50 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/MapGunOnOffButton_gray.png"       , { 350 ,   5 , 100 ,  50 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/MapGunOnOffButton_yellow.png"     , { 350 ,   5 , 100 ,  50 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/MapGunOnOffButton_red.png"        , { 350 ,   5 , 100 ,  50 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/MapSecurityButtonMiddle.png"      , {  40 , 425 , 120 ,  50 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/MapSecurityButtonLeft.png"        , {   5 , 425 ,  30 ,  50 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/MapSecurityButtonRight.png"       , { 170 , 425 ,  30 ,  50 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/MapPasswordButtonMiddle.png"      , { 310 , 425 , 120 ,  50 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/MapSecurityButtonLeft.png"        , { 280 , 425 ,  30 ,  50 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/MapSecurityButtonRight.png"       , { 440 , 425 ,  30 ,  50 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/MapRequestEnergyRation_green.png" , { 200 ,  60 , 100 ,  50 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/MapRequestEnergyRation_red.png"   , { 200 ,  60 , 100 ,  50 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/MapReadEmail_green.png"           , { 350 ,  60 , 100 ,  50 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/MapReadEmail_red.png"             , { 350 ,  60 , 100 ,  50 } , FALSE , FALSE } ,
+{
+    /*LOG_SCREEN_TOGGLE_BUTTON*/    	{ UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { 239 , 480-47 ,  46 ,  14 } , TRUE , FALSE } ,
+    /*CHA_SCREEN_TOGGLE_BUTTON*/    	{ UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { 334 , 480-47 ,  46 ,  14 } , TRUE , FALSE } ,
+    /*INV_SCREEN_TOGGLE_BUTTON*/    	{ UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { 283 , 480-47 ,  46 ,  14 } , TRUE , FALSE } ,
+    /*SKI_SCREEN_TOGGLE_BUTTON*/    	{ UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { 378 , 480-47 ,  46 ,  14 } , TRUE , FALSE } ,
+    /*CHA_SCREEN_TOGGLE_BUTTON_RED*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/cha_button_red.png"               , { 334 , 480-47 ,  46 ,  14 } , TRUE , FALSE } ,
+    /*LOG_SCREEN_TOGGLE_BUTTON_YELLOW*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/log_button_yellow.png"            , { 239 , 480-47 ,  46 ,  14 } , TRUE , FALSE } ,
+    /*CHA_SCREEN_TOGGLE_BUTTON_YELLOW*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/cha_button_yellow.png"            , { 334 , 480-47 ,  46 ,  14 } , TRUE , FALSE } ,
+    /*INV_SCREEN_TOGGLE_BUTTON_YELLOW*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/inv_button_yellow.png"            , { 283 , 480-47 ,  46 ,  14 } , TRUE , FALSE } ,
+    /*SKI_SCREEN_TOGGLE_BUTTON_YELLOW*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/ski_button_yellow.png"            , { 378 , 480-47 ,  46 ,  14 } , TRUE , FALSE } ,
+    /*UP_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/UPButton.png"                     , { 600 ,  94 ,  40 ,  40 } , TRUE , FALSE } ,
+    /*DOWN_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/DOWNButton.png"                   , { 600 , 316 ,  40 ,  40 } , TRUE , FALSE } ,
+    /*LEFT_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LEFTButton.png"                   , { 300 ,   5 , 100 ,  50 } , TRUE , FALSE } ,
+    /*RIGHT_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/RIGHTButton.png"                  , { 450 ,   5 , 100 ,  50 } , TRUE , FALSE } ,
+    /*MAP_EXIT_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/MapExitButton.png"                , {  50 ,   5 , 100 ,  50 } , FALSE , FALSE } ,
+    /*MAP_UNLOCK_BUTTON_GREEN*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/MapUnlockDoorButton_gray.png"     , { 200 ,   5 , 100 ,  50 } , FALSE , FALSE } ,
+    /*MAP_UNLOCK_BUTTON_YELLOW*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/MapUnlockDoorButton_yellow.png"   , { 200 ,   5 , 100 ,  50 } , FALSE , FALSE } ,
+    /*MAP_UNLOCK_BUTTON_RED*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/MapUnlockDoorButton_red.png"      , { 200 ,   5 , 100 ,  50 } , FALSE , FALSE } ,
+    /*MAP_GUNOFF_BUTTON_GREEN*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/MapGunOnOffButton_gray.png"       , { 350 ,   5 , 100 ,  50 } , FALSE , FALSE } ,
+    /*MAP_GUNOFF_BUTTON_YELLOW*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/MapGunOnOffButton_yellow.png"     , { 350 ,   5 , 100 ,  50 } , FALSE , FALSE } ,
+    /*MAP_GUNOFF_BUTTON_RED*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/MapGunOnOffButton_red.png"        , { 350 ,   5 , 100 ,  50 } , FALSE , FALSE } ,
+    /*MAP_SECURITYMIDDLE_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/MapSecurityButtonMiddle.png"      , {  40 , 425 , 120 ,  50 } , FALSE , FALSE } ,
+    /*MAP_SECURITYLEFT_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/MapSecurityButtonLeft.png"        , {   5 , 425 ,  30 ,  50 } , FALSE , FALSE } ,
+    /*MAP_SECURITYRIGHT_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/MapSecurityButtonRight.png"       , { 170 , 425 ,  30 ,  50 } , FALSE , FALSE } ,
+    /*MAP_PASSWORDMIDDLE_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/MapPasswordButtonMiddle.png"      , { 310 , 425 , 120 ,  50 } , FALSE , FALSE } ,
+    /*MAP_PASSWORDLEFT_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/MapSecurityButtonLeft.png"        , { 280 , 425 ,  30 ,  50 } , FALSE , FALSE } ,
+    /*MAP_PASSWORDRIGHT_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/MapSecurityButtonRight.png"       , { 440 , 425 ,  30 ,  50 } , FALSE , FALSE } ,
+    /*MAP_REQUEST_ENERGY_RATION_GREEN_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/MapRequestEnergyRation_green.png" , { 200 ,  60 , 100 ,  50 } , FALSE , FALSE } ,
+    /*MAP_REQUEST_ENERGY_RATION_RED_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/MapRequestEnergyRation_red.png"   , { 200 ,  60 , 100 ,  50 } , FALSE , FALSE } ,
+    /*MAP_READ_EMAIL_GREEN_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/MapReadEmail_green.png"           , { 350 ,  60 , 100 ,  50 } , FALSE , FALSE } ,
+    /*MAP_READ_EMAIL_RED_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/MapReadEmail_red.png"             , { 350 ,  60 , 100 ,  50 } , FALSE , FALSE } ,
 
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/MapGunTypeButton1_red.png"        , { 570 ,  64 ,  64 ,  64 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/MapGunTypeButton2_red.png"        , { 570 , 128 ,  64 ,  64 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/MapGunTypeButton3_red.png"        , { 570 , 192 ,  64 ,  64 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/MapGunTypeButton4_red.png"        , { 570 , 256 ,  64 ,  64 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/MapGunOnButton_gray.png"          , { 500 ,   5 , 100 ,  50 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/MapGunOnButton_yellow.png"        , { 500 ,   5 , 100 ,  50 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/MapGunOnButton_red.png"           , { 500 ,   5 , 100 ,  50 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/MapGunTypeButton1_yellow.png"     , { 570 ,  64 ,  64 ,  64 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/MapGunTypeButton2_yellow.png"     , { 570 , 128 ,  64 ,  64 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/MapGunTypeButton3_yellow.png"     , { 570 , 192 ,  64 ,  64 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/MapGunTypeButton4_yellow.png"     , { 570 , 256 ,  64 ,  64 } , FALSE , FALSE } ,
-
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/ConsoleIdentifyButton_green.png"  , {  50 ,  60 , 100 ,  50 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/ConsoleIdentifyButton_red.png"    , {  50 ,  60 , 100 ,  50 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/ConsoleIdentifyButton_yellow.png" , {  50 ,  60 , 100 ,  50 } , FALSE , FALSE } ,
-
-    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { 280 ,  44 ,  37 ,  37 } , TRUE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { 536 ,  44 ,  37 ,  37 } , TRUE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { 201 , 340 ,  47 ,  47 } , TRUE , FALSE } ,
-
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/LeftShopButton.png"               , {  22 , 447 ,  26 ,  26 } , TRUE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/RightShopButton.png"              , { 576 , 447 ,  26 ,  26 } , TRUE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/LeftShopButton.png"               , {   5 ,  16 ,  26 ,  26 } , TRUE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/RightShopButton.png"              , { 580 ,  13 ,  26 ,  26 } , TRUE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorObjectSelectorLeft.png", {  3 ,  25 ,  15 ,  60 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorObjectSelectorRight.png", { 620 ,  26 ,  15 ,  60 } , FALSE , FALSE } ,
-
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/number_selector_ok_button.png"    , { 308 , 288 ,  48 ,  48 } , TRUE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { 148 , 244 ,  35 ,  35 } , TRUE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { 404 , 244 ,  35 ,  35 } , TRUE , FALSE } ,
-
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/buy_button.png"                   , { 199 ,  98 ,  47 ,  47 } , TRUE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/sell_button.png"                  , { 199 , 153 ,  47 ,  47 } , TRUE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/get_button.png"                   , { 193 ,  93 ,  60 ,  60 } , TRUE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/put_button.png"                   , { 192 , 147 ,  60 ,  60 } , TRUE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/repair_button.png"                , { 199 , 225 ,  47 ,  47 } , TRUE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/identify_button.png"              , { 199 , 275 ,  47 ,  47 } , TRUE , FALSE } ,
-
-    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { 0 + 17 , 424 , 33 , 33 } , FALSE , FALSE } ,
-
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/GoLevelNorthButton.png"           , { -50-6 , -50-8 , 25 ,  25 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/GoLevelSouthButton.png"           , { -50-6 , -4-25 , 25 ,  25 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/GoLevelEastButton.png"            , { -25-4 , -43 , 25 , 25 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/GoLevelWestButton.png"            , { -75-8 , -43 ,  0 , 0 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/ExportThisLevelButton.png"        , { -60 , 90 , 0,  0 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorSaveShipButton.png"    , { -90 , 90 , 0 ,  0 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorToggleWaypointButton.png" , { 00 , 150 , 0 ,  0 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorToggleConnectionBlueButton.png" , { 00 , 180 , 0 ,  0 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorToggleConnectionRedButton.png" , { 00 , 180 , 0 ,  0 } , FALSE , FALSE } ,
-
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorDeleteObstacleButton.png" , { 00 , 240 , 0 ,  0 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorNextObstacleButton.png" , { 00 , 270 , 0 ,  0 } , FALSE , FALSE } ,
-
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorBeautifyGrassButton.png" , { 00 , 90 , 0 ,  0 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorZoomInButton.png"      , { 30 , 90 , 0 ,  0 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorZoomOutButton.png"     , { 30 , 90 , 0 ,  0 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorRecursiveFillButton.png" , { 60 , 90 , 0 ,  0 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorNewObstacleLabelButton.png" , { 90 , 90 , 0 ,  0 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorNewObstacleDescriptionButton.png" , { 150 , 90 , 0 ,  0 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorNewMapLabelButton.png" , { 120 , 90 , 0 ,  0 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorNewItemButton.png"     , { 180 , 90 , 0 ,  0 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorESCButton.png"         , { 430 , 90 , 0 ,  0 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorResizeLevelButton.png" , { 460 , 90 , 0 ,  0 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorKeymapButton.png"      , { -120 , 90 , 0 ,  0 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorQuitButton.png"        , { -30 , 90 , 0 ,  0 } , FALSE , FALSE } ,
-
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorUndergroundLightButton.png"    , { -30 , 150 , 30 ,  30 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorUndergroundLightOffButton.png" , { -30 , 150 , 30 ,  30 } , FALSE , FALSE } ,
+    /*MAP_GUN_TYPE_1_BUTTON_RED*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/MapGunTypeButton1_red.png"        , { 570 ,  64 ,  64 ,  64 } , FALSE , FALSE } ,
+    /*MAP_GUN_TYPE_2_BUTTON_RED*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/MapGunTypeButton2_red.png"        , { 570 , 128 ,  64 ,  64 } , FALSE , FALSE } ,
+    /*MAP_GUN_TYPE_3_BUTTON_RED*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/MapGunTypeButton3_red.png"        , { 570 , 192 ,  64 ,  64 } , FALSE , FALSE } ,
+    /*MAP_GUN_TYPE_4_BUTTON_RED*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/MapGunTypeButton4_red.png"        , { 570 , 256 ,  64 ,  64 } , FALSE , FALSE } ,
+    /*MAP_GUNON_BUTTON_GREEN*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/MapGunOnButton_gray.png"          , { 500 ,   5 , 100 ,  50 } , FALSE , FALSE } ,
+    /*MAP_GUNON_BUTTON_YELLOW*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/MapGunOnButton_yellow.png"        , { 500 ,   5 , 100 ,  50 } , FALSE , FALSE } ,
+    /*MAP_GUNON_BUTTON_RED*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/MapGunOnButton_red.png"           , { 500 ,   5 , 100 ,  50 } , FALSE , FALSE } ,
+    /*MAP_GUN_TYPE_1_BUTTON_YELLOW*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/MapGunTypeButton1_yellow.png"     , { 570 ,  64 ,  64 ,  64 } , FALSE , FALSE } ,
+    /*MAP_GUN_TYPE_2_BUTTON_YELLOW*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/MapGunTypeButton2_yellow.png"     , { 570 , 128 ,  64 ,  64 } , FALSE , FALSE } ,
+    /*MAP_GUN_TYPE_3_BUTTON_YELLOW*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/MapGunTypeButton3_yellow.png"     , { 570 , 192 ,  64 ,  64 } , FALSE , FALSE } ,
+    /*MAP_GUN_TYPE_4_BUTTON_YELLOW*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/MapGunTypeButton4_yellow.png"     , { 570 , 256 ,  64 ,  64 } , FALSE , FALSE } ,
 
 
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorToggleTuxButton.png"        , { 210 , 90 , 0 ,  0 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorToggleTuxButtonOff.png"        , { 210 , 90 , 0 ,  0 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorToggleEnemiesButton.png"    , { 240 , 90 , 0 ,  0 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorToggleEnemiesButtonOff.png"    , { 240 , 90 , 0 ,  0 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorToggleObstaclesButton.png"  , { 270 , 90 , 0 ,  0 } , FALSE , FALSE } , 
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorToggleObstaclesButtonOff.png"  , { 270 , 90 , 0 ,  0 } , FALSE , FALSE } , 
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorToggleTooltipsButton.png"  , { 300 , 90 , 0 ,  0 } , FALSE , FALSE } , 
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorToggleTooltipsButtonOff.png"  , { 300 , 90 , 0 ,  0 } , FALSE , FALSE } , 
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorToggleCollisionRectsButton.png"  , { 330 , 90 , 0 ,  0 } , FALSE , FALSE } , 
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorToggleCollisionRectsButtonOff.png"  , { 330 , 90 , 0 ,  0 } , FALSE , FALSE } , 
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorToggleGridButton.png"  , { 360 , 90 , 0 ,  0 } , FALSE , FALSE } , 
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorToggleGridButtonFull.png"  , { 360 , 90 , 0 ,  0 } , FALSE , FALSE } , 
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorToggleGridButtonOff.png"  , { 360 , 90 , 0 ,  0 } , FALSE , FALSE } , 
+    /*CONSOLE_IDENTIFY_BUTTON_GREEN*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/ConsoleIdentifyButton_green.png"  , {  50 ,  60 , 100 ,  50 } , FALSE , FALSE } ,
+    /*CONSOLE_IDENTIFY_BUTTON_RED*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/ConsoleIdentifyButton_red.png"    , {  50 ,  60 , 100 ,  50 } , FALSE , FALSE } ,
+    /*CONSOLE_IDENTIFY_BUTTON_YELLOW*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/ConsoleIdentifyButton_yellow.png" , {  50 ,  60 , 100 ,  50 } , FALSE , FALSE } ,
 
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorNextItemGroup.png"     , { 55 + 64 * 8 , 32+5*66 , 0 ,  0 } , TRUE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorPrevItemGroup.png"     , { 55          , 32+5*66 , 0 ,  0 } , TRUE , FALSE } ,
+    /*ITEM_BROWSER_LEFT_BUTTON*/    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { 280 ,  44 ,  37 ,  37 } , TRUE , FALSE } ,
+    /*ITEM_BROWSER_RIGHT_BUTTON*/    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { 536 ,  44 ,  37 ,  37 } , TRUE , FALSE } ,
+    /*ITEM_BROWSER_EXIT_BUTTON*/    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { 201 , 340 ,  47 ,  47 } , TRUE , FALSE } ,
 
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorNextItemGroup.png"     , { 55 + 400    , 32+5*66 , 0 ,  0 } , TRUE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorPrevItemGroup.png"     , { 55 + 150    , 32+5*66 , 0 ,  0 } , TRUE , FALSE } ,
+    /*LEFT_SHOP_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LeftShopButton.png"               , {  22 , 447 ,  26 ,  26 } , TRUE , FALSE } ,
+    /*RIGHT_SHOP_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/RightShopButton.png"              , { 576 , 447 ,  26 ,  26 } , TRUE , FALSE } ,
+    /*LEFT_TUX_SHOP_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LeftShopButton.png"               , {   5 ,  16 ,  26 ,  26 } , TRUE , FALSE } ,
+    /*RIGHT_TUX_SHOP_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/RightShopButton.png"              , { 580 ,  13 ,  26 ,  26 } , TRUE , FALSE } ,
+    /*LEFT_LEVEL_EDITOR_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorObjectSelectorLeft.png", {  3 ,  25 ,  15 ,  60 } , FALSE , FALSE } ,
+    /*RIGHT_LEVEL_EDITOR_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorObjectSelectorRight.png", { 620 ,  26 ,  15 ,  60 } , FALSE , FALSE } ,
 
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorNextItemGroup.png"     , { 55 + 400    , 72+5*66 , 0 ,  0 } , TRUE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorPrevItemGroup.png"     , { 55 + 150    , 72+5*66 , 0 ,  0 } , TRUE , FALSE } ,
 
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorCancelItemDrop.png"    , { 55 + 80     , 32+5*66 , 0 ,  0 } , TRUE , FALSE } ,
+    /*NUMBER_SELECTOR_OK_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/number_selector_ok_button.png"    , { 308 , 288 ,  48 ,  48 } , TRUE , FALSE } ,
+    /*NUMBER_SELECTOR_LEFT_BUTTON*/    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { 148 , 244 ,  35 ,  35 } , TRUE , FALSE } ,
+    /*NUMBER_SELECTOR_RIGHT_BUTTON*/    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { 404 , 244 ,  35 ,  35 } , TRUE , FALSE } ,
 
-    { UNLOADED_ISO_IMAGE , "backgrounds/SaveGameBanner.png"                 , { 0 , 0 , 200 , 50 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "backgrounds/LoadGameBanner.png"                 , { 0 , 0 , 200 , 50 } , FALSE , FALSE } ,
+    /*BUY_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/buy_button.png"                   , { 199 ,  98 ,  47 ,  47 } , TRUE , FALSE } ,
+    /*SELL_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/sell_button.png"                  , { 199 , 153 ,  47 ,  47 } , TRUE , FALSE } ,
+    /*TAKE_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/get_button.png"                   , { 193 ,  93 ,  60 ,  60 } , TRUE , FALSE } ,
+    /*PUT_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/put_button.png"                   , { 192 , 147 ,  60 ,  60 } , TRUE , FALSE } ,
+    /*REPAIR_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/repair_button.png"                , { 199 , 225 ,  47 ,  47 } , TRUE , FALSE } ,
+    /*IDENTIFY_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/identify_button.png"              , { 199 , 275 ,  47 ,  47 } , TRUE , FALSE } ,
 
-    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { WEAPON_RECT_X , WEAPON_RECT_Y , WEAPON_RECT_WIDTH , WEAPON_RECT_HEIGHT } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { DRIVE_RECT_X  , DRIVE_RECT_Y  , DRIVE_RECT_WIDTH  , DRIVE_RECT_HEIGHT } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { SHIELD_RECT_X  , SHIELD_RECT_Y  , SHIELD_RECT_WIDTH , SHIELD_RECT_HEIGHT } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { HELMET_RECT_X , HELMET_RECT_Y , HELMET_RECT_WIDTH , HELMET_RECT_HEIGHT } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { ARMOUR_RECT_X  , ARMOUR_RECT_Y  , ARMOUR_RECT_WIDTH , ARMOUR_RECT_HEIGHT } , FALSE , FALSE } ,
+    /*OPEN_CLOSE_SKILL_EXPLANATION_BUTTON*/    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { 0 + 17 , 424 , 33 , 33 } , FALSE , FALSE } ,
 
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/ScrollDialogMenuUp.png"           , { 235 , (480-20-130-20-2) , 160 ,  20 } , TRUE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/ScrollDialogMenuDown.png"         , { 235 , (480-22) , 160 ,  20 } , TRUE , FALSE } ,
+    /*GO_LEVEL_NORTH_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/GoLevelNorthButton.png"           , { -50-6 , -50-8 , 25 ,  25 } , FALSE , FALSE } ,
+    /*GO_LEVEL_SOUTH_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/GoLevelSouthButton.png"           , { -50-6 , -4-25 , 25 ,  25 } , FALSE , FALSE } ,
+    /*GO_LEVEL_EAST_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/GoLevelEastButton.png"            , { -25-4 , -43 , 25 , 25 } , FALSE , FALSE } ,
+    /*GO_LEVEL_WEST_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/GoLevelWestButton.png"            , { -75-8 , -43 ,  0 , 0 } , FALSE , FALSE } ,
+    /*EXPORT_THIS_LEVEL_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/ExportThisLevelButton.png"        , { -60 , 90 , 0,  0 } , FALSE , FALSE } ,
+    /*LEVEL_EDITOR_SAVE_SHIP_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorSaveShipButton.png"    , { -90 , 90 , 0 ,  0 } , FALSE , FALSE } ,
+    /*LEVEL_EDITOR_TOGGLE_WAYPOINT_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorToggleWaypointButton.png" , { 00 , 150 , 0 ,  0 } , FALSE , FALSE } ,
+    /*LEVEL_EDITOR_TOGGLE_CONNECTION_BLUE_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorToggleConnectionBlueButton.png" , { 00 , 180 , 0 ,  0 } , FALSE , FALSE } ,
+    /*LEVEL_EDITOR_TOGGLE_CONNECTION_RED_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorToggleConnectionRedButton.png" , { 00 , 180 , 0 ,  0 } , FALSE , FALSE } ,
 
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/AttributePlusButton.png"                   , { 0 + STR_X + 45 , STR_Y - 5 , 38 , 22 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/AttributePlusButton.png"                   , { 0 + STR_X + 45 , MAG_Y - 5 , 38 , 22 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/AttributePlusButton.png"                   , { 0 + STR_X + 45 , DEX_Y - 5 , 38 , 22 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/AttributePlusButton.png"                   , { 0 + STR_X + 45 , VIT_Y - 5 , 38 , 22 } , FALSE , FALSE } ,
+    /*LEVEL_EDITOR_DELETE_OBSTACLE_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorDeleteObstacleButton.png" , { 00 , 240 , 0 ,  0 } , FALSE , FALSE } ,
+    /*LEVEL_EDITOR_NEXT_OBSTACLE_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorNextObstacleButton.png" , { 00 , 270 , 0 ,  0 } , FALSE , FALSE } ,
+
+    /*LEVEL_EDITOR_BEAUTIFY_GRASS_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorBeautifyGrassButton.png" , { 00 , 90 , 0 ,  0 } , FALSE , FALSE } ,
+    /*LEVEL_EDITOR_ZOOM_IN_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorZoomInButton.png"      , { 30 , 90 , 0 ,  0 } , FALSE , FALSE } ,
+    /*LEVEL_EDITOR_ZOOM_OUT_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorZoomOutButton.png"     , { 30 , 90 , 0 ,  0 } , FALSE , FALSE } ,
+    /*LEVEL_EDITOR_RECURSIVE_FILL_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorRecursiveFillButton.png" , { 60 , 90 , 0 ,  0 } , FALSE , FALSE } ,
+    /*LEVEL_EDITOR_NEW_OBSTACLE_LABEL_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorNewObstacleLabelButton.png" , { 90 , 90 , 0 ,  0 } , FALSE , FALSE } ,
+    /*LEVEL_EDITOR_NEW_OBSTACLE_DESCRIPTION_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorNewObstacleDescriptionButton.png" , { 150 , 90 , 0 ,  0 } , FALSE , FALSE } ,
+    /*LEVEL_EDITOR_NEW_MAP_LABEL_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorNewMapLabelButton.png" , { 120 , 90 , 0 ,  0 } , FALSE , FALSE } ,
+    /*LEVEL_EDITOR_NEW_ITEM_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorNewItemButton.png"     , { 180 , 90 , 0 ,  0 } , FALSE , FALSE } ,
+    /*LEVEL_EDITOR_ESC_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorESCButton.png"         , { 430 , 90 , 0 ,  0 } , FALSE , FALSE } ,
+    /*LEVEL_EDITOR_LEVEL_RESIZE_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorResizeLevelButton.png" , { 460 , 90 , 0 ,  0 } , FALSE , FALSE } ,
+    /*LEVEL_EDITOR_KEYMAP_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorKeymapButton.png"      , { -120 , 90 , 0 ,  0 } , FALSE , FALSE } ,
+    /*LEVEL_EDITOR_QUIT_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorQuitButton.png"        , { -30 , 90 , 0 ,  0 } , FALSE , FALSE } ,
+
+
+    /*LEVEL_EDITOR_UNDERGROUND_LIGHT_ON_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorUndergroundLightButton.png"    , { -30 , 150 , 30 ,  30 } , FALSE , FALSE } ,
+    /*LEVEL_EDITOR_UNDERGROUND_LIGHT_OFF_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorUndergroundLightOffButton.png" , { -30 , 150 , 30 ,  30 } , FALSE , FALSE } ,
+
+
+    /*LEVEL_EDITOR_TOGGLE_TUX_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorToggleTuxButton.png"        , { 210 , 90 , 0 ,  0 } , FALSE , FALSE } ,
+    /*LEVEL_EDITOR_TOGGLE_TUX_BUTTON_OFF*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorToggleTuxButtonOff.png"        , { 210 , 90 , 0 ,  0 } , FALSE , FALSE } ,
+    /*LEVEL_EDITOR_TOGGLE_ENEMIES_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorToggleEnemiesButton.png"    , { 240 , 90 , 0 ,  0 } , FALSE , FALSE } ,
+    /*LEVEL_EDITOR_TOGGLE_ENEMIES_BUTTON_OFF*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorToggleEnemiesButtonOff.png"    , { 240 , 90 , 0 ,  0 } , FALSE , FALSE } ,
+    /*LEVEL_EDITOR_TOGGLE_OBSTACLES_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorToggleObstaclesButton.png"  , { 270 , 90 , 0 ,  0 } , FALSE , FALSE } , 
+    /*LEVEL_EDITOR_TOGGLE_OBSTACLES_BUTTON_OFF*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorToggleObstaclesButtonOff.png"  , { 270 , 90 , 0 ,  0 } , FALSE , FALSE } , 
+    /*LEVEL_EDITOR_TOGGLE_TOOLTIPS_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorToggleTooltipsButton.png"  , { 300 , 90 , 0 ,  0 } , FALSE , FALSE } , 
+    /*LEVEL_EDITOR_TOGGLE_TOOLTIPS_BUTTON_OFF*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorToggleTooltipsButtonOff.png"  , { 300 , 90 , 0 ,  0 } , FALSE , FALSE } , 
+    /*LEVEL_EDITOR_TOGGLE_COLLISION_RECTS_BUTTON */    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorToggleCollisionRectsButton.png"  , { 330 , 90 , 0 ,  0 } , FALSE , FALSE } , 
+    /*LEVEL_EDITOR_TOGGLE_COLLISION_RECTS_BUTTON_OFF*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorToggleCollisionRectsButtonOff.png"  , { 330 , 90 , 0 ,  0 } , FALSE , FALSE } , 
+    /*LEVEL_EDITOR_TOGGLE_GRID_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorToggleGridButton.png"  , { 360 , 90 , 0 ,  0 } , FALSE , FALSE } , 
+    /*LEVEL_EDITOR_TOGGLE_GRID_BUTTON_FULL*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorToggleGridButtonFull.png"  , { 360 , 90 , 0 ,  0 } , FALSE , FALSE } , 
+    /*LEVEL_EDITOR_TOGGLE_GRID_BUTTON_OFF*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorToggleGridButtonOff.png"  , { 360 , 90 , 0 ,  0 } , FALSE , FALSE } , 
+
+    /*LEVEL_EDITOR_NEXT_ITEM_GROUP_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorNextItemGroup.png"     , { 55 + 64 * 8 , 32+5*66 , 0 ,  0 } , TRUE , FALSE } ,
+    /*LEVEL_EDITOR_PREV_ITEM_GROUP_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorPrevItemGroup.png"     , { 55          , 32+5*66 , 0 ,  0 } , TRUE , FALSE } ,
+    /*LEVEL_EDITOR_NEXT_PREFIX_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorNextItemGroup.png"     , { 55 + 400    , 32+5*66 , 0 ,  0 } , TRUE , FALSE } ,
+    /*LEVEL_EDITOR_PREV_PREFIX_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorPrevItemGroup.png"     , { 55 + 150    , 32+5*66 , 0 ,  0 } , TRUE , FALSE } ,
+    /*LEVEL_EDITOR_NEXT_SUFFIX_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorNextItemGroup.png"     , { 55 + 400    , 72+5*66 , 0 ,  0 } , TRUE , FALSE } ,
+    /*LEVEL_EDITOR_PREV_SUFFIX_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorPrevItemGroup.png"     , { 55 + 150    , 72+5*66 , 0 ,  0 } , TRUE , FALSE } ,
+
+    /*LEVEL_EDITOR_CANCEL_ITEM_DROP_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorCancelItemDrop.png"    , { 55 + 80     , 32+5*66 , 0 ,  0 } , TRUE , FALSE } ,
+
+    /*SAVE_GAME_BANNER*/    { UNLOADED_ISO_IMAGE , "backgrounds/SaveGameBanner.png"                 , { 0 , 0 , 200 , 50 } , FALSE , FALSE } ,
+    /*LOAD_GAME_BANNER*/    { UNLOADED_ISO_IMAGE , "backgrounds/LoadGameBanner.png"                 , { 0 , 0 , 200 , 50 } , FALSE , FALSE } ,
+
+    /*WEAPON_RECT_BUTTON*/    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { WEAPON_RECT_X , WEAPON_RECT_Y , WEAPON_RECT_WIDTH , WEAPON_RECT_HEIGHT } , FALSE , FALSE } ,
+    /*DRIVE_RECT_BUTTON*/    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { DRIVE_RECT_X  , DRIVE_RECT_Y  , DRIVE_RECT_WIDTH  , DRIVE_RECT_HEIGHT } , FALSE , FALSE } ,
+    /*SHIELD_RECT_BUTTON*/    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { SHIELD_RECT_X  , SHIELD_RECT_Y  , SHIELD_RECT_WIDTH , SHIELD_RECT_HEIGHT } , FALSE , FALSE } ,
+    /*HELMET_RECT_BUTTON*/    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { HELMET_RECT_X , HELMET_RECT_Y , HELMET_RECT_WIDTH , HELMET_RECT_HEIGHT } , FALSE , FALSE } ,
+    /*ARMOUR_RECT_BUTTON*/    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { ARMOUR_RECT_X  , ARMOUR_RECT_Y  , ARMOUR_RECT_WIDTH , ARMOUR_RECT_HEIGHT } , FALSE , FALSE } ,
+
+    /*SCROLL_DIALOG_MENU_UP_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/ScrollDialogMenuUp.png"           , { 235 , (480-20-130-20-2) , 160 ,  20 } , TRUE , FALSE } ,
+    /*SCROLL_DIALOG_MENU_DOWN_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/ScrollDialogMenuDown.png"         , { 235 , (480-22) , 160 ,  20 } , TRUE , FALSE } ,
+
+    /*MORE_STR_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/AttributePlusButton.png"                   , { 0 + STR_X + 45 , STR_Y - 5 , 38 , 22 } , FALSE , FALSE } ,
+    /*MORE_MAG_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/AttributePlusButton.png"                   , { 0 + STR_X + 45 , MAG_Y - 5 , 38 , 22 } , FALSE , FALSE } ,
+    /*MORE_DEX_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/AttributePlusButton.png"                   , { 0 + STR_X + 45 , DEX_Y - 5 , 38 , 22 } , FALSE , FALSE } ,
+    /*MORE_VIT_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/AttributePlusButton.png"                   , { 0 + STR_X + 45 , VIT_Y - 5 , 38 , 22 } , FALSE , FALSE } ,
 
     //--------------------
     // These two buttons are for the scrolling text during the
     // title display, the credits menu and the level editor 
     // keyboard explanation...
     //
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/arrow_up_for_scroll_text.png"     , {  - 65 , 10 , 73 , 98 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/arrow_down_for_scroll_text.png"   , {  - 65 , -10-98 , 73 , 98 } , FALSE , FALSE } ,
+    /*SCROLL_TEXT_UP_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/arrow_up_for_scroll_text.png"     , {  - 65 , 10 , 73 , 98 } , FALSE , FALSE } ,
+    /*SCROLL_TEXT_DOWN_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/arrow_down_for_scroll_text.png"   , {  - 65 , -10-98 , 73 , 98 } , FALSE , FALSE } ,
 
-    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { 607 , 99 , 26 , 26 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { 607 , 347 , 26 , 26 } , FALSE , FALSE } ,
+    /*DESCRIPTION_WINDOW_UP_BUTTON */    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { 607 , 99 , 26 , 26 } , FALSE , FALSE } ,
+    /*DESCRIPTION_WINDOW_DOWN_BUTTON */    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { 607 , 347 , 26 , 26 } , FALSE , FALSE } ,
 
-    //--------------------
-    // Druidshow exit button...
-    //
-    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { 202 , 311 , 47 , 47 } , TRUE , FALSE } ,
+    /*DRUID_SHOW_EXIT_BUTTON */    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { 202 , 311 , 47 , 47 } , TRUE , FALSE } ,
 
     //--------------------
     // These are the scrollbuttons for the chat protocal inside the
     // chat window, like when talking to a character/bot.
     //
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/ScrollDialogMenuUp.png"           , { 342 , 3   , 160 ,  20 } , TRUE , TRUE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/ScrollDialogMenuDown.png"         , { 342 , 272 , 160 ,  20 } , TRUE , TRUE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/ScrollDialogMenuOff.png"          , { 342 , 3   , 160 ,  20 } , TRUE , TRUE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/ScrollDialogMenuOff.png"          , { 342 , 272 , 160 ,  20 } , TRUE , TRUE } ,
+    /*CHAT_PROTOCOL_SCROLL_UP_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/ScrollDialogMenuUp.png"           , { 342 , 3   , 160 ,  20 } , TRUE , TRUE } ,
+    /*CHAT_PROTOCOL_SCROLL_DOWN_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/ScrollDialogMenuDown.png"         , { 342 , 272 , 160 ,  20 } , TRUE , TRUE } ,
+    /*CHAT_PROTOCOL_SCROLL_OFF_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/ScrollDialogMenuOff.png"          , { 342 , 3   , 160 ,  20 } , TRUE , TRUE } ,
+    /*CHAT_PROTOCOL_SCROLL_OFF2_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/ScrollDialogMenuOff.png"          , { 342 , 272 , 160 ,  20 } , TRUE , TRUE } ,
 
     //--------------------
     // These 8 buttons are for the level editor and will not need
     // any scaling...
     //
-    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { 0   , 0 , 78 ,  14 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { 80  , 0 , 78 ,  14 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { 160 , 0 , 78 ,  14 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { 240 , 0 , 78 ,  14 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { 320 , 0 , 78 ,  14 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { 400 , 0 , 78 ,  14 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { 480 , 0 , 78 ,  14 } , FALSE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { 560 , 0 , 78 ,  14 } , FALSE , FALSE } ,
+    /*LEVEL_EDITOR_FLOOR_TAB*/    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { 0   , 0 , 78 ,  14 } , FALSE , FALSE } ,
+    /*LEVEL_EDITOR_WALLS_TAB*/    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { 80  , 0 , 78 ,  14 } , FALSE , FALSE } ,
+    /*LEVEL_EDITOR_MACHINERY_TAB*/    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { 160 , 0 , 78 ,  14 } , FALSE , FALSE } ,
+    /*LEVEL_EDITOR_FURNITURE_TAB*/    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { 240 , 0 , 78 ,  14 } , FALSE , FALSE } ,
+    /*LEVEL_EDITOR_CONTAINERS_TAB*/    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { 320 , 0 , 78 ,  14 } , FALSE , FALSE } ,
+    /*LEVEL_EDITOR_PLANTS_TAB*/    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { 400 , 0 , 78 ,  14 } , FALSE , FALSE } ,
+    /*LEVEL_EDITOR_ALL_TAB*/    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { 480 , 0 , 78 ,  14 } , FALSE , FALSE } ,
+    /*LEVEL_EDITOR_QUICK_TAB*/    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { 560 , 0 , 78 ,  14 } , FALSE , FALSE } ,
 
+    /*QUEST_BROWSER_EXIT_BUTTON*/    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { 486 , 324  , 73 ,  73 } , TRUE , FALSE } ,
+    /*QUEST_BROWSER_OPEN_QUESTS_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/quest_browser_open_quests.png"    , { 473 , 97  , 153 ,  38 } , TRUE , FALSE } ,
+    /*QUEST_BROWSER_OPEN_QUESTS_OFF_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/quest_browser_open_quests_off.png" , { 473 , 97  , 153 ,  38 } , TRUE , FALSE } ,
+    /*QUEST_BROWSER_DONE_QUESTS_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/quest_browser_done_quests.png"    , { 478 , 149 , 153 ,  38 } , TRUE , FALSE } ,
+    /*QUEST_BROWSER_DONE_QUESTS_OFF_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/quest_browser_done_quests_off.png" , { 478 , 149 , 153 ,  38 } , TRUE , FALSE } ,
+    /*QUEST_BROWSER_NOTES_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/quest_browser_notes.png"          , { 478 , 203 , 153 ,  38 } , TRUE , FALSE } ,
+    /*QUEST_BROWSER_NOTES_OFF_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/quest_browser_notes_off.png"      , { 478 , 203 , 153 ,  38 } , TRUE , FALSE } ,
+    /*QUEST_BROWSER_SCROLL_UP_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/ScrollDialogMenuUp.png"           , { 181 , 12   , 160 ,  20 } , TRUE , TRUE } ,
+    /*QUEST_BROWSER_SCROLL_DOWN_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/ScrollDialogMenuDown.png"         , { 181 , 452 , 160 ,  20 } , TRUE , TRUE } ,
+    /*QUEST_BROWSER_ITEM_SHORT_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/quest_browser_item_short.png"     , { 108 , 86  , 26  ,  26 } , FALSE , TRUE } ,
+    /*QUEST_BROWSER_ITEM_LONG_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/quest_browser_item_long.png"      , { 108 , 86  , 26  ,  26 } , FALSE , TRUE } ,
 
-    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { 486 , 324  , 73 ,  73 } , TRUE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/quest_browser_open_quests.png"    , { 473 , 97  , 153 ,  38 } , TRUE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/quest_browser_open_quests_off.png" , { 473 , 97  , 153 ,  38 } , TRUE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/quest_browser_done_quests.png"    , { 478 , 149 , 153 ,  38 } , TRUE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/quest_browser_done_quests_off.png" , { 478 , 149 , 153 ,  38 } , TRUE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/quest_browser_notes.png"          , { 478 , 203 , 153 ,  38 } , TRUE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/quest_browser_notes_off.png"      , { 478 , 203 , 153 ,  38 } , TRUE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/ScrollDialogMenuUp.png"           , { 181 , 12   , 160 ,  20 } , TRUE , TRUE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/ScrollDialogMenuDown.png"         , { 181 , 452 , 160 ,  20 } , TRUE , TRUE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/quest_browser_item_short.png"     , { 108 , 86  , 26  ,  26 } , FALSE , TRUE } ,
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/quest_browser_item_long.png"      , { 108 , 86  , 26  ,  26 } , FALSE , TRUE } ,
-
-    { UNLOADED_ISO_IMAGE , "mouse_buttons/takeover_help_button.png"         , { 78 , 23 , 153 ,  38 } , FALSE , FALSE } ,
+    /*TAKEOVER_HELP_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/takeover_help_button.png"         , { 78 , 23 , 153 ,  38 } , FALSE , FALSE } ,
 
     // ------------------
     // This button is for changing the current weapon mode/reloading
-    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"			    , { CURRENT_WEAPON_RECT_X, 400, CURRENT_WEAPON_RECT_W, CURRENT_WEAPON_RECT_H } , TRUE , FALSE } ,
-    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"			    , { CURRENT_SKILL_RECT_X, 400, CURRENT_SKILL_RECT_W, CURRENT_SKILL_RECT_H } , TRUE , FALSE } ,
+    /*WEAPON_MODE_BUTTON*/    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"			    , { CURRENT_WEAPON_RECT_X, 400, CURRENT_WEAPON_RECT_W, CURRENT_WEAPON_RECT_H } , TRUE , FALSE } ,
+    /*SKI_ICON_BUTTON*/    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"			    , { CURRENT_SKILL_RECT_X, 400, CURRENT_SKILL_RECT_W, CURRENT_SKILL_RECT_H } , TRUE , FALSE } ,
 
   }; // mouse_press_button AllMousePressButtons[ MAX_MOUSE_PRESS_BUTTONS ] 
 
@@ -1249,7 +1246,7 @@ void
 Teleport ( int LNum , float X , float Y , int with_sound_and_fading )
 {
     int array_num = 0;
-    int i,j;
+    int i;
     char game_message_text [ 500 ] ;
 
     //--------------------
