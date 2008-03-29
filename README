@@ -1,1 +1,87 @@
-Outdated file. Please help us here.
+Game url:     http://freedroid.sourceforge.net
+Project url:  http://sourceforge.net/projects/freedroid/
+
+    FreedroidRPG: readme
+   ----------------------
+
+0. INDEX:
+=========
+   0. INDEX
+   ---------------
+   1. Introduction
+   2. Install
+   3. Basic controls
+   4. Level editor
+   5. Contact us
+   6. Licence
+
+1. Introduction:
+================
+ This game tells the story of a world destroyed by a conflict between the bots and their human
+ masters. Play as Tux in a quest to save the world from the murderous rebel bots who know no
+ mercy. You get to choose which path you wish to follow, and freedom of choice is everywhere 
+ in the game.
+
+ FreeDroidRPG features a complete real time combat system with melee and ranged weapons, fairly
+ similar to the proprietary game Diablo. There also is an innovative system of magic, with 
+ features such as forced casting and over 20 spells. You can use over 50 different kinds of 
+ items and fight countless enemies on your way to your destiny. We have an advanced dialogue 
+ system, which aims at being at least on par with Fallout's. The dialogues in the game represent 
+ a large part of the gameplay. Finally, if guns are too inaccurate and blades too messy, you can 
+ always take over your enemies and have them fight on your side.
+
+2. Install:
+================
+ Please refer to the INSTALL file located in the same folder as this file.
+
+3. Controls:
+=============
+ Movement:
+
+ The game is controlled using the mouse:  Left click onto the locations you want to move to.  Hold 
+ the button down to keep moving in that direction.  Holding down CTRL key will make you run.
+
+ Attacking:
+
+ Left clicking an enemy will cause Tux to come close to the bot and to start attacking it with the 
+ current weapon. If the current weapon is a gun then Tux will stand still and shoot the bot.
+ 
+ Special functions:
+
+ Use the right click to activate special powers, spells and skills.  Use the mouse wheel or cursor keys 
+ to switch to 'examine' and 'loot' special functions.
+
+ Other Keys:
+
+ I          ... Open/Close inventory panel
+ C          ... Open/Close character panel
+ S          ... Open/Close skills panel
+ Space      ... Close all open panels
+ R          ... Reload your weapon
+ 0-9        ... Quick-Use items from the quick-inventory
+ F1-F9      ... Quick-Switch to skill/ability/spell 1 through 9
+ T          ... Enable/Disable transparent walls when Tux approaches
+ Z          ... Enable/Disable labels with the name of items on the ground
+ U          ... Enable/Disable run mode
+ Tab        ... Enable/Disable automap display
+ A          ... Hold down to attack and not move
+ Left Shift ... Hold down to show labels with the name of items on the ground
+ Left Ctrl  ... Hold down to toggle run mode
+ P          ... Paus/Unpaus the game
+ Q          ... Open/Close quest status log
+ Escape     ... Show the main menu
+ F12        ... Take a screenshot
+
+4. Level editor:
+================
+ There is a level editor integrated into the game. It can be accessed from the main menu.
+
+5. Contact:
+===========
+ Mailing list: freedroid-discussion@lists.sourceforge.net
+ Irc channel:  #freedroid on irc.freenode.net
+
+6. Licence:
+===========
+ Please refer to the FILES file located in the same folder as this file.
+
