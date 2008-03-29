@@ -104,8 +104,9 @@ EXTERN event_trigger AllEventTriggers[ MAX_EVENT_TRIGGERS ];
 EXTERN triggered_action AllTriggeredActions[ MAX_TRIGGERED_ACTIONS_IN_GAME ];
 EXTERN char ServerName[ 10000 ];
 
-EXTERN Level CurLevel;		/* the current level data */
 EXTERN ship curShip;		/* the current ship-data */
+
+EXTERN list_head_t * CurLevelBots; /* the bots on current level accessible in geographically separated lists (one per square) */
 
 EXTERN bullet AllBullets[MAXBULLETS + 10];
 EXTERN blast AllBlasts[MAXBLASTS + 10];

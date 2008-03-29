@@ -151,7 +151,6 @@ better than nothing.  Thanks anyway for your interest in FreedroidRPG.\n\
 	GameOver = FALSE;
 	while ( (!GameOver && !QuitProgram))
 	{
-	    CurLevel = curShip.AllLevels [ Me . pos . z ];
 	    
 	    StartTakingTimeForFPSCalculation(); 
 	    

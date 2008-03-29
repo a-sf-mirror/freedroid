@@ -173,7 +173,7 @@ ResolveMapLabelOnLevel ( char* MapLabel , location* PositionPointer , int LevelN
 {
     Level ResolveLevel = curShip . AllLevels [ LevelNum ] ;
     int i;
-    
+   
     for ( i = 0 ; i < MAX_MAP_LABELS_PER_LEVEL ; i ++ )
     {
 	if ( ResolveLevel->labels [ i ] . pos . x == (-1) ) continue;
@@ -229,7 +229,7 @@ Resolving a certain map label failed on the complete ship!\n\
 This is a severe error in the game data of Freedroid.",
 			       PLEASE_INFORM, IS_FATAL );
     
-}; // void ResolveMapLabelOnShip ( char* MapLabel , grob_point* PositionPointer , int LevelNum )
+};
 
 /* ----------------------------------------------------------------------
  * Next we extract the level interface data from the human-readable data 

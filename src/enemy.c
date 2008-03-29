@@ -332,7 +332,6 @@ ShuffleEnemys ( int LevelNum )
     int BestWaypoint;
     Level ShuffleLevel = curShip.AllLevels[ LevelNum ];
     
-    // get the number of waypoints on CurLevel
     wp_num = ShuffleLevel->num_waypoints;;
     nth_enemy = 0;
 

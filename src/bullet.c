@@ -853,7 +853,6 @@ CheckBlastCollisions (int num)
 {
     int i;
     Blast CurBlast = &(AllBlasts[num]);
-    // int level = CurLevel->levelnum;
     int level = CurBlast->pos.z;
     static const float Blast_Radius = 0.3;
     //--------------------

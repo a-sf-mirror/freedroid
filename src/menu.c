@@ -997,7 +997,7 @@ Cheatmenu (void)
     {
 	ClearGraphMem ();
 	printf_SDL (Screen, x0, y0, "Current position: Level=%d, X=%d, Y=%d\n",
-		    CurLevel->levelnum, (int)Me.pos.x, (int)Me.pos.y);
+		    Me . pos . z, (int)Me.pos.x, (int)Me.pos.y);
 	printf_SDL (Screen, -1, -1, " l. robot list of current level\n");
 	printf_SDL (Screen, -1, -1, " L. alive robot list of current level\n");
 	printf_SDL (Screen, -1, -1, " k. dead robot list of current level\n");
@@ -1036,7 +1036,7 @@ Cheatmenu (void)
 		    enemy * erot;
 		    list_for_each_entry(erot, (i) ? &alive_bots_head : &dead_bots_head, global_list)
 			{
-			if ( erot->pos . z == CurLevel -> levelnum ) 
+			if ( erot->pos . z == Me . pos . z ) 
 			    {
 
 			    if (l && !(l%((GameConfig.screen_height == 768) ? 25 : 16))) 
@@ -1114,7 +1114,7 @@ Cheatmenu (void)
 		    enemy * erot, *nerot;
 		    list_for_each_entry_safe(erot, nerot, &alive_bots_head, global_list)
 			{
-			if ( erot->pos.z == CurLevel->levelnum)
+			if ( erot->pos.z == Me . pos . z )
 			    hit_enemy(erot, erot->energy + 1, 0, -1);
 			}
 
@@ -1149,7 +1149,7 @@ Cheatmenu (void)
 		break;
 		
 	    case 'w':  /* print waypoint info of current level */
-		WpList = CurLevel->AllWaypoints;
+		WpList = CURLEVEL->AllWaypoints;
 		for (i=0; i<MAXWAYPOINTS && WpList[i].x; i++)
 		{
 		    if (i && !(i%20))
@@ -1333,7 +1333,6 @@ Startup_handle (int n)
 	find_file ( "Asteroid.maps" , MAP_DIR, fp, 0);
 	LoadShip ( fp ) ;
 	PrepareStartOfNewCharacter ( ) ;
-	CurLevel = curShip.AllLevels [ Me . pos . z ];
 	LevelEditor () ;
 	return EXIT_MENU;
 	break;  

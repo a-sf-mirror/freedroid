@@ -663,7 +663,7 @@ list_for_each_entry_safe(erot, nerot, &alive_bots_head, global_list)
 	//
 	if ( Me.AllMissions[ mis_num ].MustReachLevel != (-1) )
 	{
-	    if ( CurLevel->levelnum != Me.AllMissions[ mis_num ].MustReachLevel ) 
+	    if ( Me . pos . z != Me.AllMissions[ mis_num ].MustReachLevel ) 
 	    {
 		DebugPrintf ( MIS_COMPLETE_DEBUG , "\nLevel number does not match...");
 		continue;

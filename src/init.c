@@ -2371,8 +2371,6 @@ I will not be able to load or save games or configurations\n\
     MinMessageTime = 55;
     MaxMessageTime = 850;
     
-    CurLevel = NULL; // please leave this here BEFORE InitPictures
-  
     InitPictures ( ) ;
  
     ShowStartupPercentage ( 100 ) ; 

@@ -380,7 +380,7 @@ Takeover ( enemy * target )
 
     ClearGraphMem();
 
-    SwitchBackgroundMusicTo ( CurLevel -> Background_Song_Name );
+    SwitchBackgroundMusicTo ( CURLEVEL -> Background_Song_Name );
     
     if ( LeaderColor == YourColor )
 	return TRUE;

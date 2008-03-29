@@ -731,6 +731,7 @@ EXTERN int GetNumberOfTextLinesNeeded ( char* GivenText, SDL_Rect GivenRectangle
 #else
 #define EXTERN extern
 #endif
+#define CURLEVEL (curShip . AllLevels [ Me . pos . z ])
 EXTERN void print_trace ( int signum );
 EXTERN void implant_backtrace_into_signal_handlers ( void ) ;
 EXTERN void adapt_button_positions_to_screen_resolution( void );

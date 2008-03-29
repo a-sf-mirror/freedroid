@@ -832,7 +832,7 @@ MakeHeldFloorItemOutOf( item* SourceItem )
     
     for ( i = 0 ; i < MAX_ITEMS_PER_LEVEL ; i ++ )
     {
-	if ( CurLevel->ItemList [ i ] . type == ( -1 ) ) break;
+	if ( CURLEVEL->ItemList [ i ] . type == ( -1 ) ) break;
     }
     if ( i >= MAX_ITEMS_PER_LEVEL )
     {
@@ -844,13 +844,13 @@ MakeHeldFloorItemOutOf( item* SourceItem )
     // --------------------
     // Now we enter the item into the item list of this level
     //
-    CopyItem( SourceItem , &(CurLevel->ItemList[ i ]) , FALSE );
+    CopyItem( SourceItem , &(CURLEVEL->ItemList[ i ]) , FALSE );
     
-    CurLevel->ItemList[ i ].pos.x = Me.pos.x;
-    CurLevel->ItemList[ i ].pos.y = Me.pos.y;
-    CurLevel->ItemList[ i ].currently_held_in_hand = TRUE;
+    CURLEVEL->ItemList[ i ].pos.x = Me.pos.x;
+    CURLEVEL->ItemList[ i ].pos.y = Me.pos.y;
+    CURLEVEL->ItemList[ i ].currently_held_in_hand = TRUE;
     
-    Item_Held_In_Hand = CurLevel -> ItemList [ i ] . type ;
+    Item_Held_In_Hand = CURLEVEL -> ItemList [ i ] . type ;
     
     DeleteItem ( SourceItem ) ;
 }; // void MakeHeldFloorItemOutOf( item* SourceItem )
@@ -890,17 +890,6 @@ GetHeldItemPointer( void )
 {
     int InvIndex;
     int i;
-    
-    //--------------------
-    // We must not access the levels item array, if the level was not yet
-    // initialized!!! Or a SEGFAULT will occur!!!  Therefore we check for
-    // ininitialized level first.!
-    //
-    if ( CurLevel == NULL ) 
-    {
-	DebugPrintf ( 0 , "\nERROR IN GetHeldItemPointer : CurLevel not yet initialized... " ) ;
-	return ( NULL );
-    }
     
     InvIndex = GetHeldItemInventoryIndex(  );
     
@@ -944,9 +933,9 @@ GetHeldItemPointer( void )
 	//
 	for ( i = 0 ; i < MAX_ITEMS_PER_LEVEL ; i++ )
 	{
-	    if ( CurLevel->ItemList[ i ].type == (-1) ) continue;
-	    if ( ! CurLevel->ItemList[ i ].currently_held_in_hand ) continue;
-	    return ( & (CurLevel->ItemList[ i ] ) );
+	    if ( CURLEVEL->ItemList[ i ].type == (-1) ) continue;
+	    if ( ! CURLEVEL->ItemList[ i ].currently_held_in_hand ) continue;
+	    return ( & (CURLEVEL->ItemList[ i ] ) );
 	}
 	
 	// DebugPrintf( 2 , "\nitem* GetHeldItemPointer( void ) : NO ITEM AT ALL SEEMS TO HAVE BEEN HELD IN HAND!!");

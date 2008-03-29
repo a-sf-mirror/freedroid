@@ -390,7 +390,7 @@ check_for_cheat_keys( void )
 	{
 	    for ( j = Me . pos . x - 5 ; j < Me . pos . x + 5 ; j ++ )
 	    {
-		DebugPrintf( 0 , "%d " , CurLevel -> map [ i ] [ j ] . floor_value );
+		DebugPrintf( 0 , "%d " , CURLEVEL -> map [ i ] [ j ] . floor_value );
 	    }
 	    DebugPrintf( 0 , "\n" );
 	}

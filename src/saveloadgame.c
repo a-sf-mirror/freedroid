@@ -496,8 +496,6 @@ LoadGame( void )
 	while ( ! MouseLeftPressed() ) SDL_Delay(1);
     }
     
-    CurLevel = curShip.AllLevels[ Me . pos . z ];
-    
     //--------------------
     // To prevent cheating, we remove all active spells, that might still be there
     // from other games just played before.

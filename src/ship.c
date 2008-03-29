@@ -44,14 +44,6 @@
 #include "proto.h"
 #include "SDL_rotozoom.h"
 
-enum 
-  {
-    NO_FUNCTION,
-    UNLOCK_FUNCTION,
-    GUNON_FUNCTION,
-    GUNOFF_FUNCTION
-  };
-
 int NoKeyPressed (void);
 int GreatItemShow ( int NumberOfItems , item* ShowPointerList[ MAX_ITEMS_IN_INVENTORY ] );
 

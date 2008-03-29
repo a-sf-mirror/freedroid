@@ -1249,9 +1249,7 @@ move_all_items_to_level ( int target_level )
 void
 Teleport ( int LNum , float X , float Y , int with_sound_and_fading )
 {
-    int curLevel = LNum;
     int array_num = 0;
-    Level tmp;
     int i;
     char game_message_text [ 500 ] ;
 
@@ -1267,7 +1265,7 @@ Teleport ( int LNum , float X , float Y , int with_sound_and_fading )
 	fade_out_using_gamma_ramp ();
     }
     
-    if ( curLevel != Me . pos . z )
+    if ( LNum != Me . pos . z )
     {	
 	//--------------------
 	// In case a real level change has happend,
@@ -1288,27 +1286,9 @@ Teleport ( int LNum , float X , float Y , int with_sound_and_fading )
 		}
 
 
-	//--------------------
-	// I think this is for the unlikely case of misordered levels in 
-	// the ship file used for this game?!
-	//
-	while ((tmp = curShip.AllLevels[array_num]) != NULL)
-	{
-	    if (tmp->levelnum == curLevel)
-		break;
-	    else
-		array_num++;
-	}
-	
-	//--------------------
-	// We set a new CurLevel.  This is old and depreciated code,
-	// that should sooner or later be completely deactivated.
-	//
-	CurLevel = curShip . AllLevels [ array_num ] ;
-	
 	Me . pos . x = X;
 	Me . pos . y = Y;
-	Me . pos . z = array_num; 
+	Me . pos . z = LNum; 
 	
 	silently_unhold_all_items ();
 	move_all_items_to_level ( Me . pos . z );
@@ -1342,36 +1322,9 @@ This indicates an error in the map system of Freedroid.",
 	}
 	for (i = 0; i < MAXBULLETS; i++)
 	{
-	    //--------------------
-	    // Don't ever delete bullets any other way!!! SEGFAULTS might result!!!
-	    // in this case, we need no bullet-explosions
-	    //
 	    DeleteBullet ( i , FALSE ); 
 	}
 	
-	//--------------------
-	// Since we've moved to a new level, we might also say so, a message like
-	// "Entering ThisAndThat..." should appear in bold font on the screen.
-	// although only if a level name is set
-	//
-	// This will be disabled now, as the current level name is written down in
-	// the top screen text line anyway, so no need for annoying messages in 
-	// the middle of the screen here.
-	//
-	/*
-	if ( strcmp ( curShip . AllLevels [ Me . pos . z ] -> Levelname, "" ) ) 
-	{
-	    strcpy ( entering_message , "Entering " );
-	    strcat ( entering_message , curShip . AllLevels [ Me . pos . z ] -> Levelname );
-	    SetNewBigScreenMessage ( entering_message );
-	}
-	*/
-
-	//--------------------
-	// After the level has been changed, the automap texture needs to be cleared.
-	// However, if the Tux has been to (parts of this) level before, we should also
-	// restore the parts of the automap, that are already known to the Tux.
-	//
 	clear_automap_texture_completely (  );
 	insert_old_map_info_into_texture (  );
 	
@@ -1406,10 +1359,10 @@ This indicates an error in the map system of Freedroid.",
     // Perhaps the player is visiting this level for the first time.  Then, the
     // tux should make it's initial statement about the location, if there is one.
     //
-    if ( ! Me . HaveBeenToLevel [ CurLevel->levelnum ] )
+    if ( ! Me . HaveBeenToLevel [ Me . pos . z ] )
     {
-	PlayLevelCommentSound ( CurLevel->levelnum );
-	Me . HaveBeenToLevel [ CurLevel->levelnum ] = TRUE;
+	PlayLevelCommentSound ( Me . pos . z );
+	Me . HaveBeenToLevel [ Me . pos . z ] = TRUE;
 	// if ( array_num != 0 ) ShuffleEnemys ( array_num );
 	// if ( ( LNum != 0 ) && ( Shuffling ) ) ShuffleEnemys ( array_num );
 	// ShuffleEnemys ( array_num );
@@ -1421,7 +1374,7 @@ This indicates an error in the map system of Freedroid.",
     //
     // if ( Shuffling ) ShuffleEnemys ( array_num );
     
-    SwitchBackgroundMusicTo( CurLevel->Background_Song_Name );
+    SwitchBackgroundMusicTo( CURLEVEL->Background_Song_Name );
     
     //--------------------
     // Since we've mightily changed position now, we should clear the
@@ -1982,7 +1935,7 @@ CheckForTriggeredEventsAndStatements ( )
 	     ( map_y == StatementLevel -> StatementList [ i ] . y ) )
 	{
 	    Me . TextVisibleTime = 0 ;
-	    Me . TextToBeDisplayed = CurLevel -> StatementList [ i ] . Statement_Text ;
+	    Me . TextToBeDisplayed = CURLEVEL -> StatementList [ i ] . Statement_Text ;
 	}
     }
     
