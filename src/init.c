@@ -1975,9 +1975,7 @@ PrepareStartOfNewCharacter ( void )
     
     // ResolveMapLabelOnShip ( "TuxStartGameSquare" , &StartPosition );
     ResolveMapLabelOnShip ( "NewTuxStartGameSquare" , &StartPosition );
-    Me . pos . x = StartPosition . x ;
-    Me . pos . y = StartPosition . y ;
-    Me . pos . z = StartPosition . level ;
+    Teleport( StartPosition . level, StartPosition . x, StartPosition . y, FALSE);
     
     Me . teleport_anchor . x = 0 ; //no anchor at the beginning
     Me . teleport_anchor . y = 0 ;
