@@ -236,7 +236,7 @@ mouse_press_button AllMousePressButtons[ MAX_MOUSE_PRESS_BUTTONS ] =
 // not to mess too much around with the stack while trying to read
 // out the stack...
 //
-#define MAX_CALLS_IN_BACKTRACE 2000
+#define MAX_CALLS_IN_BACKTRACE 200
     void *backtrace_array [ MAX_CALLS_IN_BACKTRACE ];
     size_t backtrace_size;
     char **backtrace_strings;
