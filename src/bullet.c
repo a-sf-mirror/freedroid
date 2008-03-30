@@ -882,11 +882,8 @@ CheckBlastCollisions (int num)
     // one blasts area of effect...
     //
     enemy *erot, *nerot;
-BROWSE_ALIVE_BOTS_SAFE(erot, nerot) 
+    BROWSE_LEVEL_BOTS_SAFE(erot, nerot, level) 
 	{
-	if (erot->pos.z != level)
-	    continue;
-
 	if ( ( fabsf (erot->pos.x - CurBlast->pos.x ) < Blast_Radius ) &&
 		( fabsf (erot->pos.y - CurBlast->pos.y ) < Blast_Radius ) )
 	    {
