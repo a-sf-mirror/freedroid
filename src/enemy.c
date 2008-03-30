@@ -274,7 +274,6 @@ InitEnemy ( enemy * our_bot )
     our_bot -> persuing_given_course = FALSE;
     our_bot -> ammo_left = 0;
 
-    our_bot -> phase = 0;
     our_bot -> animation_type = WALK_ANIMATION ;
     our_bot -> animation_phase = 0.0 ;
 
@@ -303,6 +302,11 @@ void
 ClearEnemys ( void )
 {
     enemy * erot, *nerot;
+    BROWSE_LEVEL_BOTS_SAFE(erot,nerot) 
+	{
+	list_del( &erot->level_list );
+	}
+    
     BROWSE_ALIVE_BOTS_SAFE(erot, nerot)
 	{
 	list_del( &erot->global_list );
@@ -603,17 +607,6 @@ move_enemy_to_spot ( Enemy ThisRobot , finepoint next_target_spot )
     int old_map_level;
 
     //--------------------
-    // If the robot has the 'completely fixed' property, then
-    // we don't move anywhere
-    //
-    if ( ThisRobot -> CompletelyFixed )
-    {
-	ThisRobot -> speed . x = 0;	
-	ThisRobot -> speed . y = 0;
-	return;
-    }
-
-    //--------------------
     // According to properties of the robot like being frozen or not,
     // we define the maximum speed of this machine for later use...
     // A frozen robot is slow while a paralyzed robot can do absolutely nothing.
@@ -634,27 +627,11 @@ move_enemy_to_spot ( Enemy ThisRobot , finepoint next_target_spot )
     {
 	ThisRobot -> animation_type = WALK_ANIMATION ;
 	ThisRobot -> animation_phase = 0.0 ;
-
-	if ( ( ThisRobot -> animation_type == DEATH_ANIMATION ) )
-	{
-	    DebugPrintf ( -4 , "\n%s(): WARNING: animation phase reset for INFOUT bot... " , __FUNCTION__ );
-	}
     }
     
-    //--------------------
-    // Now that we have found out where to go, we can start to determine the remaining 
-    // way until the target point is reached.
-    //
     remaining_way . x = next_target_spot . x - ThisRobot -> pos . x ;
     remaining_way . y = next_target_spot . y - ThisRobot -> pos . y ;
     
-    if ( ( ThisRobot -> pos . z != Me . pos . z ) &&
-	 ( ThisRobot -> combat_state == MAKE_ATTACK_RUN ) )
-    {
-	 DebugPrintf ( -4 , "\n%s(): moving enemy on remote level... " , __FUNCTION__ );
-    }
-
-
     //--------------------
     // As long a the distance from the current position of the enemy
     // to its next wp is large, movement is rather simple:
@@ -700,10 +677,9 @@ move_enemy_to_spot ( Enemy ThisRobot , finepoint next_target_spot )
     {
 	ThisRobot -> PrivatePathway [ 0 ] . x = ThisRobot -> pos . x ;
 	ThisRobot -> PrivatePathway [ 0 ] . y = ThisRobot -> pos . y ;
-	DebugPrintf ( 1 , "\n%s(): tuncated current waypoinless target because of level jump..." , 
-		      __FUNCTION__ );
+	DebugPrintf ( -1 , "\n%s(): tuncated current waypoinless target because of level jump... bot at %f %f lv %d" , 
+		      __FUNCTION__, ThisRobot->pos.x, ThisRobot->pos.y, ThisRobot->pos.z );
     }
-
     
 }; // void move_enemy_to_spot ( Enemy ThisRobot , finepoint next_target_spot )
 
@@ -714,15 +690,8 @@ move_enemy_to_spot ( Enemy ThisRobot , finepoint next_target_spot )
 void 
 MoveThisRobotThowardsHisCurrentTarget ( enemy * ThisRobot )
 {
-    Waypoint WpList;		// Pointer to waypoint-list 
     finepoint nextwp_pos;
-    int HistoryIndex;
     Level WaypointLevel = curShip . AllLevels [ ThisRobot-> pos . z ];
-    
-    // DebugPrintf( 2 , "\n%s(): real function call confirmed. " , __FUNCTION__ );
-    
-    // We do some definitions to save us some more typing later...
-    WpList = WaypointLevel -> AllWaypoints;
     
     //--------------------
     // A frozen robot is slow while a paralyzed robot can do absolutely nothing.
@@ -732,10 +701,6 @@ MoveThisRobotThowardsHisCurrentTarget ( enemy * ThisRobot )
     if ( ThisRobot -> pure_wait > 0 ) return;
     if ( ThisRobot -> animation_type == ATTACK_ANIMATION ) return;
 
-    //--------------------
-    // We determine our movement target, either the preset course or the 
-    // current classical waypoint that has been set.
-    //
     if ( ThisRobot -> persuing_given_course )
     {
 	nextwp_pos . x = ThisRobot -> PrivatePathway [ 0 ] . x ;
@@ -743,8 +708,8 @@ MoveThisRobotThowardsHisCurrentTarget ( enemy * ThisRobot )
     }
     else
     {
-	nextwp_pos . x = WpList [ ThisRobot -> nextwaypoint ] . x + 0.5 ;
-	nextwp_pos . y = WpList [ ThisRobot -> nextwaypoint ] . y + 0.5 ;
+	nextwp_pos . x = WaypointLevel -> AllWaypoints [ ThisRobot -> nextwaypoint ] . x + 0.5 ;
+	nextwp_pos . y = WaypointLevel -> AllWaypoints [ ThisRobot -> nextwaypoint ] . y + 0.5 ;
     }
     
     move_enemy_to_spot ( ThisRobot , nextwp_pos );
@@ -1370,47 +1335,48 @@ MoveThisEnemy( enemy * ThisRobot )
  * More for debugging purposes, we print out the current state of the
  * robot as his in-game text.
  * ---------------------------------------------------------------------- */
-void
+    void
 enemy_say_current_state_on_screen ( enemy* ThisRobot )
 {
     switch ( ThisRobot -> combat_state )
-    {
+	{                  
 	case MOVE_ALONG_RANDOM_WAYPOINTS:
-	    ThisRobot->TextToBeDisplayed = "state:  Wandering along waypoints." ;
-	    break;
+	    ThisRobot->TextToBeDisplayed = _("state:  Wandering along waypoints.") ;
+	    break;     
 	case TURN_THOWARDS_NEXT_WAYPOINT:
-	    ThisRobot->TextToBeDisplayed = "state:  Turn towards next WP." ;
-	    break;
+	    ThisRobot->TextToBeDisplayed = _("state:  Turn towards next WP.") ;
+	    break;     
 	case RUSH_TUX_ON_SIGHT_AND_OPEN_TALK:
-	    ThisRobot->TextToBeDisplayed = "state:  Rush Tux on Sight and open Talk." ;
-	    break;
+	    ThisRobot->TextToBeDisplayed = _("state:  Rush Tux and open talk.") ;
+	    break;     
 	case STOP_AND_EYE_TUX:
-	    ThisRobot->TextToBeDisplayed = "state:  Stop and Eye Tux." ;
-	    break;
+	    ThisRobot->TextToBeDisplayed = _("state:  Stop and eye Tux.") ;
+	    break;     
 	case MAKE_ATTACK_RUN:
-	    ThisRobot->TextToBeDisplayed = "state:  Make Attack Run." ;
-	    break;
+	    ThisRobot->TextToBeDisplayed = _("state:  Attack.") ;
+	    break;     
 	case FIGHT_ON_TUX_SIDE:
-	    ThisRobot->TextToBeDisplayed = "state:  Fight On Tux Side." ;
-	    break;
+	    ThisRobot->TextToBeDisplayed = _("state:  Fight on Tux side.") ;
+	    break;     
 	case RETURNING_HOME:
-	    ThisRobot->TextToBeDisplayed = "state:  Returning home." ;
+	    ThisRobot->TextToBeDisplayed = _("state:  Returning home.") ;
 	    break;
 	case WAIT_AND_TURN_AROUND_AIMLESSLY:
-	    ThisRobot->TextToBeDisplayed = "state:  Waiting, Turning aimlessly..." ;
+	    ThisRobot->TextToBeDisplayed = _("state:  Waiting, Turning aimlessly...") ;
 	    break;
 	case WAYPOINTLESS_WANDERING:
-	    ThisRobot->TextToBeDisplayed = "state:  Waypointless wandering." ;
+	    ThisRobot->TextToBeDisplayed = _("state:  Waypointless wandering.") ;
 	    break;
 	case TURN_THOWARDS_WAYPOINTLESS_SPOT:
-	    ThisRobot->TextToBeDisplayed = "state:  Waypointless turning." ;
+	    ThisRobot->TextToBeDisplayed = _("state:  Waypointless turning.") ;
 	    break;
 	default:
-	    ThisRobot->TextToBeDisplayed = "state:  UNHANDLED!!" ;
+	    ThisRobot->TextToBeDisplayed = _("state:  UNHANDLED!!") ;
 	    break;
-    }      
+	}      
     ThisRobot->TextVisibleTime = 0 ; 
 }; // void enemy_say_current_state_on_screen ( enemy* ThisRobot )
+
 
 /* ----------------------------------------------------------------------
  * Some robots (currently) tend to get stuck in walls.  This is an 
@@ -2008,10 +1974,8 @@ void
 MoveEnemys ( void )
 {
     //--------------------
-    // We heal the robots again as time passes.  This function has been checked and
-    // optimized for speed already....
-    //
-    PermanentHealRobots ();  // enemy robots heal as time passes...
+    // We heal the robots as time passes.
+    PermanentHealRobots ();
     
     AnimateEnemys ();
 
@@ -2867,7 +2831,7 @@ SetRestOfGroupToState ( Enemy ThisRobot , short NewState )
 
   if ( ( MarkerCode == 0 ) || ( MarkerCode == 101 ) )return ;
 
-  enemy *erot, *nerot;
+  enemy *erot;
   BROWSE_ALIVE_BOTS(erot)
       {
       if ( erot-> marker == MarkerCode )
@@ -3201,24 +3165,6 @@ AnimateEnemys (void)
 			    That means:  Something is going *terribly* wrong!" ,
 			    PLEASE_INFORM, IS_FATAL );
 		    break;
-		}
-
-
-	    /*if ( our_enemy -> energy <= 0 ) 
-		{
-		DebugPrintf( -1 , "\n%s(): WARNING: Enemy with negative energy encountered.  Phase correction forced..." , __FUNCTION__ );
-		our_enemy -> phase = 0 ;
-		}
-	    else*/ if ( our_enemy -> energy > 0 )
-		{
-		our_enemy -> phase +=
-		    ( our_enemy -> energy / Druidmap [ our_enemy -> type ] . maxenergy ) *
-		    Frame_Time () * DROID_PHASES * 2.5;
-		}
-
-	    if ( our_enemy -> phase >= DROID_PHASES)
-		{
-		our_enemy -> phase = 0;
 		}
 
 	    }
