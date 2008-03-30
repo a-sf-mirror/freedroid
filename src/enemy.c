@@ -1536,21 +1536,21 @@ ProcessAttackStateMachine ( enemy * ThisRobot )
     moderately_finepoint vect_to_target;
     float dist2;
     
-    // ignore paralyzed robots as well...
-    if ( ThisRobot -> paralysation_duration_left != 0 ) return;
-    // ignore robots, that don't have any weapon
-    if ( Druidmap [ ThisRobot -> type ] . weapon_item . type == ( -1 ) ) return;
+    // Robots that are paralyzed are completely stuck and do not 
+    // see their state machine running
+    if ( ThisRobot -> paralysation_duration_left != 0 ) 
+	return;
     
     //--------------------
-    // More for debugging purposes, we print out the current state of the
-    // robot as his in-game text.
-    //
+    // For debugging purposes we display the current state of the robot
+    // in game
     enemy_say_current_state_on_screen ( ThisRobot );
 
     //--------------------
-    // for debugging purposes, we check whether the current robot is maybe
+    // we check whether the current robot is 
     // stuck inside a wall or something...
     //
+    // This should go away. ASAP.
     enemy_handle_stuck_in_walls ( ThisRobot );
 
     //--------------------
@@ -1568,7 +1568,7 @@ ProcessAttackStateMachine ( enemy * ThisRobot )
     occasionally_update_vector_and_shot_target ( ThisRobot , & vect_to_target ) ;
     
     //--------------------
-    // A bot to far from its starting area must break of and return home
+    // A bot too far from its starting area must break off and return home
     //
     if ( ThisRobot -> max_distance_to_home != 0
 	 && sqrt(powf(curShip.AllLevels[ThisRobot->pos.z]->AllWaypoints[ThisRobot->homewaypoint].x + 0.5 - ThisRobot->pos.x, 2) +
@@ -1981,7 +1981,7 @@ MoveEnemys ( void )
     // Now the per-enemy stuff
     //
     enemy *ThisRobot, *nerot;
-    int i;
+    int i; // i = 0 mean dead bots, 1 means alive
     for ( i = 0; i < 2; i ++ )
 	list_for_each_entry_safe(ThisRobot, nerot, i? &alive_bots_head : &dead_bots_head, global_list)
 	    {
@@ -2463,18 +2463,6 @@ update_vector_to_shot_target_for_enemy ( enemy* this_robot , moderately_finepoin
 void
 occasionally_update_vector_and_shot_target ( enemy* ThisRobot , moderately_finepoint* vect_to_target ) 
 {
-    /* 
-       static int first_call = FALSE ;
-       static int last_time_bots_updated_target;
-       
-       if ( first_call )
-       {
-       last_time_bots_updated_target = SDL_GetTicks() - 10000 ;
-       }
-       if ( SDL_GetTicks() - last_time_bots_updated_target < 500 ) return;
-       last_
-    */
-    
     if ( ThisRobot->is_friendly == TRUE )
     {
 	update_vector_to_shot_target_for_friend ( ThisRobot , vect_to_target ) ;
@@ -2838,14 +2826,15 @@ robot_group_turn_hostile ( enemy * ThisRobot )
     int MarkerCode;
 
     MarkerCode = ThisRobot -> marker ;
-    if (MarkerCode == 9999) SwitchBackgroundMusicTo(BIGFIGHT_BACKGROUND_MUSIC_SOUND);
+    if (MarkerCode == 9999) /* ugly hack */
+	SwitchBackgroundMusicTo(BIGFIGHT_BACKGROUND_MUSIC_SOUND);
 
-    enemy *erot, *nerot;
-BROWSE_ALIVE_BOTS_SAFE(erot, nerot)
+    enemy *erot;
+    BROWSE_ALIVE_BOTS(erot)
 	{
 	if ( erot->marker == MarkerCode && erot->has_been_taken_over == FALSE)
 	    erot->is_friendly = FALSE ;
-	if ( MarkerCode == 9999 ) 
+	if ( MarkerCode == 9999 )  /* ugly hack */
 	    erot->combat_state = MAKE_ATTACK_RUN ;
 	}
 }; // void robot_group_turn_hostile ( int enemy_num )
