@@ -1286,7 +1286,8 @@ DoChatFromChatRosterData( int ChatPartnerCode , Enemy ChatDroid , int clear_prot
     SDL_Rect Chat_Window;
     int MenuSelection = (-1) ;
     char* DialogMenuTexts[ MAX_ANSWERS_PER_PERSON ];
-    
+    char enemy_started_the_talk =  (ChatDroid -> combat_state == RUSH_TUX_ON_SIGHT_AND_OPEN_TALK );
+
     //--------------------
     // We always should clear the chat protocol.  Only for SUBDIALOGS it is
     // suitable not to clear the chat protocol.
@@ -1338,12 +1339,10 @@ DoChatFromChatRosterData( int ChatPartnerCode , Enemy ChatDroid , int clear_prot
 	// we won't do the first selection, but instead immediately call the very first
 	// dialog option and then continue with normal dialog.
 	//
-	if ( ChatDroid -> combat_state == RUSH_TUX_ON_SIGHT_AND_OPEN_TALK )
+	if ( enemy_started_the_talk )
 	{
 	    MenuSelection = 0 ;
-	    ChatDroid -> combat_state = TURN_THOWARDS_NEXT_WAYPOINT ;
-	    ChatDroid -> persuing_given_course = FALSE ;
-	    ChatDroid -> has_greeted_influencer = TRUE ;
+	    enemy_started_the_talk = 0;
 	}
 	else
 	{
