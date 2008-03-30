@@ -795,13 +795,14 @@ EXTERN void animate_enemy ( enemy * our_bot ) ;
 EXTERN void hit_enemy ( enemy * target, float hit, char givexp, int killertype);
 EXTERN enemy * enemy_resolve_address ( short int enemy_number, enemy ** enemy_addr );
 EXTERN void enemy_set_reference ( short int * enemy_number, enemy ** enemy_addr, enemy * addr);
+EXTERN void enemy_generate_level_lists ();
 
 #define BROWSE_ALIVE_BOTS_SAFE(X,Y) list_for_each_entry_safe(X, Y, &alive_bots_head, global_list)
 #define BROWSE_ALIVE_BOTS(X) list_for_each_entry(X, &alive_bots_head, global_list)
 #define BROWSE_DEAD_BOTS_SAFE(X,Y) list_for_each_entry_safe(X, Y, &dead_bots_head, global_list)
 #define BROWSE_DEAD_BOTS(X) list_for_each_entry(X, &dead_bots_head, global_list)
-#define BROWSE_LEVEL_BOTS_SAFE(X,Y) list_for_each_entry_safe(X,Y, &level_bots_head, level_list)
-#define BROWSE_LEVEL_BOTS(T) list_for_each_entry(T, &level_bots_head, level_list)
+#define BROWSE_LEVEL_BOTS_SAFE(X,Y,L) list_for_each_entry_safe(X,Y, &level_bots_head[(L)], level_list)
+#define BROWSE_LEVEL_BOTS(T,L) list_for_each_entry(T, &level_bots_head[(L)], level_list)
 
 
 // ship.c 

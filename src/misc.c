@@ -1251,26 +1251,6 @@ Teleport ( int LNum , float X , float Y , int with_sound_and_fading )
 	Me . pos . y = Y;
 	Me . pos . z = LNum; 
 	
-	/* Now we will destroy the level_bots_head list*/
-	list_head_t *p, *q;
-	list_for_each_safe(p, q, &level_bots_head)
-	    {
-	    list_del(p);
-	    }
-	  
-	INIT_LIST_HEAD(&level_bots_head);
-
-	enemy * erot;
-	BROWSE_ALIVE_BOTS(erot)
-	    {
-	    if ( erot->pos.z != Me.pos.z ) continue;
-	    else 
-		{
-		list_add(&erot->level_list, &level_bots_head);
-		}
-	    }
-	
-
 	silently_unhold_all_items ();
 	move_all_items_to_level ( Me . pos . z );
 	silently_unhold_all_items ();

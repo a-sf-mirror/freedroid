@@ -81,6 +81,12 @@ clear_out_arrays_for_fresh_game ( void )
 {
     int i;
 
+    if ( level_bots_head[0].next == NULL ) 
+	{ /* This means the level lists heads have not been initialized */
+	for ( i = 0; i < MAX_LEVELS; i++)
+	    INIT_LIST_HEAD(&level_bots_head[i]);
+	}
+
     level_editor_marked_obstacle = NULL ;
     for ( i = 0 ; i < MAXBULLETS ; i++ )
     {
@@ -2193,7 +2199,7 @@ InitFreedroid ( int argc, char ** argv )
     // do so.  Therefore we check for 'cvs' in the current version
     // string and enable/disable the exceptions accordingly...
     //
-    if ( strstr ( VERSION , "cvs" ) != NULL )
+    if ( strstr ( VERSION , "svn" ) != NULL )
     {
 	DebugPrintf ( -4 , "\nThis seems to be a cvs version, so we'll exit on floating point exceptions." );
 	// feenableexcept ( FE_ALL_EXCEPT );
@@ -2238,10 +2244,10 @@ InitFreedroid ( int argc, char ** argv )
 #include <locale.h>
     //--------------------
     // Portable localization
-	setlocale(LC_COLLATE, "C");
-	setlocale(LC_MONETARY, "C");
-	setlocale(LC_NUMERIC, "C");
-	setlocale(LC_TIME, "C");
+    setlocale(LC_COLLATE, "C");
+    setlocale(LC_MONETARY, "C");
+    setlocale(LC_NUMERIC, "C");
+    setlocale(LC_TIME, "C");
 #endif
 
     //--------------------

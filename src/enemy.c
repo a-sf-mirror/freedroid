@@ -56,7 +56,7 @@ void RawStartEnemysShot( enemy*, float, float);
 
 LIST_HEAD(alive_bots_head);
 LIST_HEAD(dead_bots_head);
-LIST_HEAD(level_bots_head);
+list_head_t level_bots_head[MAX_LEVELS]; //THIS IS NOT STATICALLY PROPERLY INITIALIZED, done in init functions
 
 
 /* ----------------------------------------------------------------------
@@ -302,20 +302,18 @@ void
 ClearEnemys ( void )
 {
     enemy * erot, *nerot;
-    BROWSE_LEVEL_BOTS_SAFE(erot,nerot) 
-	{
-	list_del( &erot->level_list );
-	}
     
     BROWSE_ALIVE_BOTS_SAFE(erot, nerot)
 	{
 	list_del( &erot->global_list );
+	list_del( &erot->level_list );
 	free ( erot );
 	}
 
     BROWSE_DEAD_BOTS_SAFE(erot,nerot)
 	{
 	list_del( &erot->global_list );
+	list_del( &erot->level_list );
 	free ( erot );
 	}
 
@@ -477,7 +475,7 @@ CheckIfWayIsFreeOfDroidsWithTuxchecking ( float x1 , float y1 , float x2 , float
     for ( i = 0 ; i < Steps + 1 ; i++ )
     {
     	enemy *this_enemy;
-	BROWSE_LEVEL_BOTS(this_enemy)
+	BROWSE_LEVEL_BOTS(this_enemy, OurLevel)
 	{
 	    if (( this_enemy -> pure_wait > 0 ) || ( this_enemy == ExceptedRobot ))
 		continue;
@@ -2363,7 +2361,7 @@ update_vector_to_shot_target_for_friend ( enemy* ThisRobot , moderately_finepoin
     vect_to_target -> y = -1000;
     
     enemy *erot;
-    BROWSE_LEVEL_BOTS(erot)
+    BROWSE_LEVEL_BOTS(erot, ThisRobot->pos.z)
     {
 	if ( erot->is_friendly )
 	    continue;
@@ -2425,11 +2423,8 @@ update_vector_to_shot_target_for_enemy ( enemy* this_robot , moderately_finepoin
     // Let's see...
     //
     enemy *erot;
-    BROWSE_LEVEL_BOTS(erot)
+    BROWSE_LEVEL_BOTS(erot, our_level)
     {
-	if ( erot->pos . z != our_level ) 
-	    continue;
-
 	if ( ! erot->is_friendly )
 	    continue;
 	
@@ -3184,5 +3179,23 @@ void enemy_set_reference(short int * enemy_number, enemy ** enemy_addr, enemy * 
 	*enemy_addr = addr;
 	*enemy_number = addr->id;
 	}
+}
+
+
+/***************************************
+ * Generate per level alive enemy lists
+ *
+ * This function assumes level_bots_head lists
+ * have been properly initialized and emptied.
+ ***************************************/
+void enemy_generate_level_lists()
+{
+enemy * erot;
+
+BROWSE_ALIVE_BOTS(erot)
+    {
+    list_add(&erot->level_list, &level_bots_head[erot->pos.z]);
+    } 
+
 }
 #undef _enemy_c

@@ -507,7 +507,8 @@ LoadGame( void )
     // of droids used in this ship.  Otherwise we might ignore some robots.
     //
     CountNumberOfDroidsOnShip (  ) ;
-    
+    enemy_generate_level_lists();
+
     SwitchBackgroundMusicTo( curShip.AllLevels[ Me.pos.z ]->Background_Song_Name );
     
     free ( LoadGameData );

@@ -129,7 +129,13 @@ respawn_level ( int level_num )
 	if ( Druidmap[ aerot->type ] . is_human )
 	    continue;
 
+	/* Move the bot to the alive list */
 	list_move(&(aerot->global_list), &alive_bots_head);
+
+	/* Remove it from the level list it is in... */
+	list_del(&(aerot->level_list));
+	/* ... and reinsert it into the current level list "just to be sure" */
+	list_add(&(aerot->level_list), &level_bots_head[level_num]);
 	}
    
     BROWSE_ALIVE_BOTS_SAFE(erot, nerot) 
@@ -158,7 +164,7 @@ respawn_level ( int level_num )
 	}
 	
         }
-    
+
 }; // void respawn_level ( int level_num )
 
 /* ----------------------------------------------------------------------
@@ -2675,19 +2681,6 @@ GetCrew (char *filename)
 #define DROIDS_LEVEL_DESCRIPTION_START_STRING "** Beginning of new Level **"
 #define DROIDS_LEVEL_DESCRIPTION_END_STRING "** End of this levels droid data **"
 
-    //--------------------
-    // There can be two cases:  Either the droids records must be read and initialized
-    // from scratch or they need not be modified in any way
-    //
-    // Which is the case?  ---  This can be controlled from the mission file by 
-    // specifying either 
-    
-    if ( strcmp ( filename , "none" ) == 0 ) 
-    {
-	DebugPrintf( 0 , "\nint GetCrew( char* filename ): none received as parameter --> not reseting crew file." );
-	return (OK);
-    }
-    
     ClearEnemys ();
     
     //--------------------
@@ -2728,6 +2721,8 @@ GetCrew (char *filename)
     //
     CountNumberOfDroidsOnShip ();
     ReviveAllDroidsOnShip ();
+
+    enemy_generate_level_lists();
     
     free ( MainDroidsFilePointer ) ;
     return ( OK );

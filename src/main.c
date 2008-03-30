@@ -80,24 +80,24 @@ int
 main (int argc, char * argv[])
 {
 #if ENABLE_NLS
-	DIR *tmp_dir;
-	setlocale(LC_MESSAGES, "");
-	setlocale(LC_CTYPE, "");
-	tmp_dir = opendir("../po");
-	if(tmp_dir != NULL) 
+    DIR *tmp_dir;
+    setlocale(LC_MESSAGES, "");
+    setlocale(LC_CTYPE, "");
+    tmp_dir = opendir("../po");
+    if(tmp_dir != NULL) 
 	{
-		bindtextdomain("freedroidrpg", "../po");
-		bindtextdomain("freedroidrpg_data", "../po");
-		bindtextdomain("freedroidrpg_dialogs", "../po");
-		closedir(tmp_dir);
+	bindtextdomain("freedroidrpg", "../po");
+	bindtextdomain("freedroidrpg_data", "../po");
+	bindtextdomain("freedroidrpg_dialogs", "../po");
+	closedir(tmp_dir);
 	}
-	else 
-		{
-		bindtextdomain("freedroidrpg", LOCALE_DIR);
-		bindtextdomain("freedroidrpg_data", LOCALE_DIR);
-		bindtextdomain("freedroidrpg_dialogs", LOCALE_DIR);
-		}
-	textdomain("freedroidrpg");
+    else 
+	{
+	bindtextdomain("freedroidrpg", LOCALE_DIR);
+	bindtextdomain("freedroidrpg_data", LOCALE_DIR);
+	bindtextdomain("freedroidrpg_dialogs", LOCALE_DIR);
+	}
+    textdomain("freedroidrpg");
 #endif
 
     //--------------------

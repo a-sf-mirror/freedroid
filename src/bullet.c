@@ -397,7 +397,7 @@ MoveActiveSpells (void)
 	    // Here we also do the spell damage application here
 	    //
 	    enemy *erot;
-	    BROWSE_LEVEL_BOTS(erot)
+	    BROWSE_LEVEL_BOTS(erot, Me.pos.z)
 		{
 		DistanceFromCenter = sqrt ( ( AllActiveSpells [ i ] . spell_center . x - erot->pos . x ) *
 			( AllActiveSpells [ i ] . spell_center . x - erot->pos . x ) +
