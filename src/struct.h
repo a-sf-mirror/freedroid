@@ -556,7 +556,6 @@ typedef struct enemy_s
     
     char CompletelyFixed;          // set this flat to make the robot entirely immobile
     char follow_tux;               // does this robot try to follow tux via it's random movements? /*XXX*/
-    char FollowingInflusTail;      // does this robot follow influs tail? (trott behind him? )
     char SpecialForce;             // This flag will exclude the droid from initial shuffling of droids
     short on_death_drop_item_code;  // drop a pre-determined item when dying?
     

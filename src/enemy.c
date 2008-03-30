@@ -272,7 +272,6 @@ InitEnemy ( enemy * our_bot )
     our_bot -> TextVisibleTime = 0;
     our_bot -> TextToBeDisplayed = "";
     our_bot -> persuing_given_course = FALSE;
-    our_bot -> FollowingInflusTail = FALSE;
     our_bot -> ammo_left = 0;
 
     our_bot -> phase = 0;
@@ -594,10 +593,10 @@ CheckIfWayIsFreeOfDroidsWithoutTuxchecking ( float x1 , float y1 , float x2 , fl
 /* ----------------------------------------------------------------------
  * Once the next waypoint or the next private pathway point has been 
  * selected, this generic low_level movement function can be called to
- * approach either the waypoint or seletect private pathway point.
+ * actually move the robot towards this spot.
  * ---------------------------------------------------------------------- */
-void
-RawEnemyApproachPosition ( Enemy ThisRobot , finepoint next_target_spot )
+static void
+move_enemy_to_spot ( Enemy ThisRobot , finepoint next_target_spot )
 {
     finepoint remaining_way;
     float maxspeed;
@@ -652,9 +651,7 @@ RawEnemyApproachPosition ( Enemy ThisRobot , finepoint next_target_spot )
     if ( ( ThisRobot -> pos . z != Me . pos . z ) &&
 	 ( ThisRobot -> combat_state == MAKE_ATTACK_RUN ) )
     {
-	// DebugPrintf ( -4 , "\n%s(): moving enemy on remote level... " , __FUNCTION__ );
-	// DebugPrintf ( -4 , "\n%s(): remaining_way: x=%f, y=%f." , __FUNCTION__ ,
-	// remaining_way . x , remaining_way . y );
+	 DebugPrintf ( -4 , "\n%s(): moving enemy on remote level... " , __FUNCTION__ );
     }
 
 
@@ -707,15 +704,8 @@ RawEnemyApproachPosition ( Enemy ThisRobot , finepoint next_target_spot )
 		      __FUNCTION__ );
     }
 
-    //--------------------
-    // Since this robot is moving, we set the animation type to 
-    // walking...
-    //
-    // ThisRobot -> animation_type = WALK_ANIMATION ; 
-    // if ( ThisRobot -> animation_phase == 0 )
-    // ThisRobot -> animation_phase = 0.1 ;
     
-}; // void RawEnemyApproachPosition ( Enemy ThisRobot , finepoint next_target_spot )
+}; // void move_enemy_to_spot ( Enemy ThisRobot , finepoint next_target_spot )
 
 /* ----------------------------------------------------------------------
  * This function moves one robot thowards his next waypoint.  If already
@@ -757,37 +747,7 @@ MoveThisRobotThowardsHisCurrentTarget ( enemy * ThisRobot )
 	nextwp_pos . y = WpList [ ThisRobot -> nextwaypoint ] . y + 0.5 ;
     }
     
-    //--------------------
-    // Maybe this robot is following behind influ.  Then of course we need to set
-    // even different special target positions...
-    //
-    if ( ThisRobot -> FollowingInflusTail == TRUE )
-    {
-	if ( ( fabsf( ThisRobot->pos.x - Me.pos.x ) > 1 ) || 
-	     ( fabsf( ThisRobot->pos.y - Me.pos.y ) > 1 ) )
-	{
-	    
-	    HistoryIndex = ThisRobot->StayHowManyFramesBehind;
-	    
-	    nextwp_pos.y = GetInfluPositionHistoryY( HistoryIndex );
-	    nextwp_pos.x = GetInfluPositionHistoryX( HistoryIndex );
-	    // jump to the next level, if the influencer did
-	    // that might cause some inconsistencies, but who cares right now?
-	    if ( ThisRobot->pos.z != GetInfluPositionHistoryZ( HistoryIndex ) )
-	    {
-		ThisRobot->pos.x = GetInfluPositionHistoryX( HistoryIndex );
-		ThisRobot->pos.y = GetInfluPositionHistoryY( HistoryIndex );
-		ThisRobot->pos.z = GetInfluPositionHistoryZ( HistoryIndex );
-	    }
-	}
-	else
-	{
-	    nextwp_pos.y = ThisRobot->pos.y;
-	    nextwp_pos.x = ThisRobot->pos.x;
-	}
-    }
-    
-    RawEnemyApproachPosition ( ThisRobot , nextwp_pos );
+    move_enemy_to_spot ( ThisRobot , nextwp_pos );
 
 }; // void MoveThisRobotThowardsHisCurrentTarget ( int EnemyNum )
 
@@ -2076,8 +2036,7 @@ MoveEnemys ( void )
 	// that are following Tux' trail
 	// 
 	// if ( ( ! IsActiveLevel ( ThisRobot->pos.z ) )  && 
-	if ( ( ! level_is_partly_visible ( ThisRobot -> pos . z ) )  && 
-	     ( ! ThisRobot -> FollowingInflusTail ) ) 
+	if ( ( ! level_is_partly_visible ( ThisRobot -> pos . z ) ) ) 
 	    continue;
 	
 	//--------------------
