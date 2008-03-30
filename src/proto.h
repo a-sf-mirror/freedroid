@@ -791,7 +791,7 @@ EXTERN int CheckIfWayIsFreeOfDroidsWithoutTuxchecking ( float x1 , float y1 , fl
 EXTERN void start_gethit_animation_if_applicable ( enemy* ThisRobot ) ;
 EXTERN int find_free_bullet_index ( void ) ;
 EXTERN int IsActiveLevel ( int levelnum ) ;
-EXTERN void AnimateEnemys ( void ) ;
+EXTERN void animate_enemy ( enemy * our_bot ) ;
 EXTERN void hit_enemy ( enemy * target, float hit, char givexp, int killertype);
 EXTERN enemy * enemy_resolve_address ( short int enemy_number, enemy ** enemy_addr );
 EXTERN void enemy_set_reference ( short int * enemy_number, enemy ** enemy_addr, enemy * addr);

@@ -1970,66 +1970,53 @@ ProcessAttackStateMachine ( enemy * ThisRobot )
  * and it also initiates the robots fireing behaviour via 
  * ProcessAttackStateMachine (i) all individually.
  * ---------------------------------------------------------------------- */
-void
+    void
 MoveEnemys ( void )
 {
     //--------------------
     // We heal the robots as time passes.
     PermanentHealRobots ();
-    
-    AnimateEnemys ();
 
     //--------------------
-    // Now the pure movement stuff..
+    // Now the per-enemy stuff
     //
     enemy *ThisRobot, *nerot;
-    BROWSE_ALIVE_BOTS_SAFE(ThisRobot, nerot)
-	{
-	//--------------------
-	// Now check if the robot is still alive if the robot just got killed, 
-	// initiate the explosion and all that...
-	//
-	if ( ThisRobot->energy <= 0 )
+    int i;
+    for ( i = 0; i < 2; i ++ )
+	list_for_each_entry_safe(ThisRobot, nerot, i? &alive_bots_head : &dead_bots_head, global_list)
 	    {
-	    ErrorMessage(__FUNCTION__, "Bot at %p should be dead already! Why is it in the alive list?", PLEASE_INFORM, IS_FATAL);
-	    continue;
-	}
-	
-	//--------------------
-	// Ignore robots on other levels, except perhaps those, 
-	// that are following Tux' trail
-	// 
-	// if ( ( ! IsActiveLevel ( ThisRobot->pos.z ) )  && 
-	if ( ( ! level_is_partly_visible ( ThisRobot -> pos . z ) ) ) 
-	    continue;
-	
-	//--------------------
-	// Ignore robots, that are in the middle of their attack movement,
-	// because during attack motion, the feet of the animation are
-	// usually not moving, therefore it sometimes looks very bad when
-	// bot position is changing during attach cycle.  That's for better
-	// looks only.
-	//
-	// if ( ThisRobot -> animation_phase > 0 ) continue ;
-	if ( ThisRobot -> animation_type == ATTACK_ANIMATION )
-	    continue ;
-	
-	//--------------------
-	// We set the speed to zero for a start.  Later it can be
-	// set to something else...
-	//
-	ThisRobot -> speed . x = 0 ;
-	ThisRobot -> speed . y = 0 ;
-	
-	//--------------------
-	// Now we do the movement, either to the next waypoint OR if one
-	// is set, we persue the given course, which allows complete control
-	// of the bot moves (via the state machine for example)...
-	//
-	ProcessAttackStateMachine ( ThisRobot );
-	
-    }
-    
+
+	    //--------------------
+	    // Ignore robots on other levels, except those 
+	    // on levels that can be "seen"
+	    // 
+	    if ( ( ! level_is_partly_visible ( ThisRobot -> pos . z ) ) ) 
+		continue;
+
+	    animate_enemy(ThisRobot);
+
+	    /* If we are processing dead bots, simply do animation stuff.
+	     * The rest is for alive bots only. */
+	    if ( i == 0 ) 
+		continue;
+
+	    //--------------------
+	    // Ignore robots, that are in the middle of their attack movement,
+	    // because during attack motion, the feet of the animation are
+	    // usually not moving, therefore it sometimes looks very bad when
+	    // bot position is changing during attach cycle.  That's for better
+	    // looks only.
+	    //
+	    // Remainder: animation is done somehere else.
+	    if ( ThisRobot -> animation_type == ATTACK_ANIMATION )
+		continue ;
+
+	    //--------------------
+	    // Run a new cycle of the bot's state machine
+	    ProcessAttackStateMachine ( ThisRobot );
+
+	    }
+
 }; // MoveEnemys( void ) 
 
 /* ----------------------------------------------------------------------
@@ -3069,106 +3056,92 @@ start_gethit_animation_if_applicable ( enemy* ThisRobot )
 }; // void start_gethit_animation_if_applicable ( enemy* ThisRobot ) 
 
 /* ----------------------------------------------------------------------
- * This function does the rotation of the enemys according to their 
- * current energy level.
+ * This function increases the phase counters for animation of a bot.
  * ---------------------------------------------------------------------- */
 void
-AnimateEnemys (void)
+animate_enemy (enemy * our_enemy)
 {
-    enemy *our_enemy;;
-    int i = 0;
-    for ( ; i < 2; i ++ )
-	list_for_each_entry(our_enemy, i ? &dead_bots_head : &alive_bots_head, global_list)
-	    {
 
-	    if ( our_enemy -> type == -1 ) 
-		continue;
+    switch ( our_enemy -> animation_type )
+	{
+	case WALK_ANIMATION:
+	    our_enemy -> animation_phase += 
+		Frame_Time() * droid_walk_animation_speed_factor [ our_enemy -> type ] ;
 
-	    if ( ! level_is_partly_visible ( our_enemy -> pos . z ) )
-		continue;
-
-	    switch ( our_enemy -> animation_type )
+	    //--------------------
+	    // While we're in the walk animation cycle, we have the walk animation
+	    // images cycle.
+	    //
+	    if ( our_enemy -> animation_phase >= last_walk_animation_image [ our_enemy -> type ] )
 		{
-		case WALK_ANIMATION:
-		    our_enemy -> animation_phase += 
-			Frame_Time() * droid_walk_animation_speed_factor [ our_enemy -> type ] ;
-
-		    //--------------------
-		    // While we're in the walk animation cycle, we have the walk animation
-		    // images cycle.
-		    //
-		    if ( our_enemy -> animation_phase >= last_walk_animation_image [ our_enemy -> type ] )
-			{
-			our_enemy -> animation_phase = 0 ;
-			our_enemy -> animation_type = WALK_ANIMATION;
-			}
-		    //--------------------
-		    // But as soon as the walk stops and the 'bot' is standing still, we switch
-		    // to the standing cycle...
-		    //
-		    if ( ( fabsf ( our_enemy -> speed . x ) < 0.1 ) && ( fabsf ( our_enemy -> speed . y ) < 0.1 ) )
-			{
-			our_enemy -> animation_type = STAND_ANIMATION ;
-			our_enemy -> animation_phase = first_stand_animation_image [ our_enemy -> type ] - 1 ;
-			// DebugPrintf ( -1000 , "\nSwitching to 'stand' now..." );
-			}
-
-		    break;
-		case ATTACK_ANIMATION:
-		    our_enemy -> animation_phase += 
-			Frame_Time() * droid_attack_animation_speed_factor [ our_enemy -> type ] ;
-
-		    if ( our_enemy -> animation_phase >= last_attack_animation_image [ our_enemy -> type ] )
-			{
-			our_enemy -> animation_phase = 0 ;
-			our_enemy -> animation_type = WALK_ANIMATION;
-			}
-
-		    break;
-		case GETHIT_ANIMATION:
-		    our_enemy -> animation_phase += 
-			Frame_Time() * droid_gethit_animation_speed_factor [ our_enemy -> type ] ;
-
-		    if ( our_enemy -> animation_phase >= last_gethit_animation_image [ our_enemy -> type ] )
-			{
-			our_enemy -> animation_phase = 0 ;
-			our_enemy -> animation_type = WALK_ANIMATION;
-			}
-
-		    break;
-		case DEATH_ANIMATION:
-		    our_enemy -> animation_phase += 
-			Frame_Time() * droid_death_animation_speed_factor [ our_enemy -> type ] ;
-
-		    if ( our_enemy -> animation_phase >= last_death_animation_image [ our_enemy -> type ] - 1 )
-			{
-			our_enemy -> animation_phase = last_death_animation_image [ our_enemy -> type ] - 1 ;
-			our_enemy -> animation_type = DEATH_ANIMATION ;
-			}
-		    break;
-		case STAND_ANIMATION:
-		    our_enemy -> animation_phase += 
-			Frame_Time() * droid_stand_animation_speed_factor [ our_enemy -> type ] ;
-
-		    if ( our_enemy -> animation_phase >= last_stand_animation_image [ our_enemy -> type ] - 1 )
-			{
-			our_enemy -> animation_phase = first_stand_animation_image [ our_enemy -> type ] - 1 ;
-			our_enemy -> animation_type = STAND_ANIMATION;
-			}
-
-		    break;
-
-		default:
-		    fprintf ( stderr , "\nThe animation type found is: %d.", our_enemy -> animation_type );
-		    ErrorMessage ( __FUNCTION__  , "\
-			    There was an animation type encountered that isn't defined in FreedroidRPG.\n\
-			    That means:  Something is going *terribly* wrong!" ,
-			    PLEASE_INFORM, IS_FATAL );
-		    break;
+		our_enemy -> animation_phase = 0 ;
+		our_enemy -> animation_type = WALK_ANIMATION;
+		}
+	    //--------------------
+	    // But as soon as the walk stops and the 'bot' is standing still, we switch
+	    // to the standing cycle...
+	    //
+	    if ( ( fabsf ( our_enemy -> speed . x ) < 0.1 ) && ( fabsf ( our_enemy -> speed . y ) < 0.1 ) )
+		{
+		our_enemy -> animation_type = STAND_ANIMATION ;
+		our_enemy -> animation_phase = first_stand_animation_image [ our_enemy -> type ] - 1 ;
 		}
 
-	    }
-}; // void AnimateEnemys ( void )
+	    break;
+	case ATTACK_ANIMATION:
+	    our_enemy -> animation_phase += 
+		Frame_Time() * droid_attack_animation_speed_factor [ our_enemy -> type ] ;
+
+	    if ( our_enemy -> animation_phase >= last_attack_animation_image [ our_enemy -> type ] )
+		{
+		our_enemy -> animation_phase = 0 ;
+		our_enemy -> animation_type = WALK_ANIMATION;
+		}
+
+	    break;
+	case GETHIT_ANIMATION:
+	    our_enemy -> animation_phase += 
+		Frame_Time() * droid_gethit_animation_speed_factor [ our_enemy -> type ] ;
+
+	    if ( our_enemy -> animation_phase >= last_gethit_animation_image [ our_enemy -> type ] )
+		{
+		our_enemy -> animation_phase = 0 ;
+		our_enemy -> animation_type = WALK_ANIMATION;
+		}
+
+	    break;
+	case DEATH_ANIMATION:
+	    our_enemy -> animation_phase += 
+		Frame_Time() * droid_death_animation_speed_factor [ our_enemy -> type ] ;
+
+	    if ( our_enemy -> animation_phase >= last_death_animation_image [ our_enemy -> type ] - 1 )
+		{
+		our_enemy -> animation_phase = last_death_animation_image [ our_enemy -> type ] - 1 ;
+		our_enemy -> animation_type = DEATH_ANIMATION ;
+		}
+	    break;
+	case STAND_ANIMATION:
+	    our_enemy -> animation_phase += 
+		Frame_Time() * droid_stand_animation_speed_factor [ our_enemy -> type ] ;
+
+	    if ( our_enemy -> animation_phase >= last_stand_animation_image [ our_enemy -> type ] - 1 )
+		{
+		our_enemy -> animation_phase = first_stand_animation_image [ our_enemy -> type ] - 1 ;
+		our_enemy -> animation_type = STAND_ANIMATION;
+		}
+
+	    break;
+
+	default:
+	    fprintf ( stderr , "\nThe animation type found is: %d.", our_enemy -> animation_type );
+	    ErrorMessage ( __FUNCTION__  , "\
+		    There was an animation type encountered that isn't defined in FreedroidRPG.\n\
+		    That means:  Something is going *terribly* wrong!" ,
+		    PLEASE_INFORM, IS_FATAL );
+	    break;
+	}
+
+}; // void animate_enemy ( enemy *)
 
 
 /******************************************************
