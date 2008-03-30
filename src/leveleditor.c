@@ -5069,41 +5069,48 @@ level_editor_handle_mouse_wheel ( void )
 void
 level_editor_blit_mouse_buttons ( Level EditLevel )
 {
+    int a = MouseLeftPressed();
+
+#define A(val) do { if ( !a || ! MouseCursorIsOnButton(val, GetMousePos_x() , GetMousePos_y() ) ) \
+    		 ShowGenericButtonFromList ( val );\
+    		else ShowGenericButtonFromList ( val + 1);\
+		} while(0)
+
     if ( EditLevel -> jump_target_north >= 0 )
-	ShowGenericButtonFromList ( GO_LEVEL_NORTH_BUTTON );
+	A ( GO_LEVEL_NORTH_BUTTON );
     if ( EditLevel -> jump_target_south >= 0 )
-	ShowGenericButtonFromList ( GO_LEVEL_SOUTH_BUTTON );
+	A ( GO_LEVEL_SOUTH_BUTTON );
     if ( EditLevel -> jump_target_east >= 0 )
-	ShowGenericButtonFromList ( GO_LEVEL_EAST_BUTTON );
+	A ( GO_LEVEL_EAST_BUTTON );
     if ( EditLevel -> jump_target_west >= 0 )
-	ShowGenericButtonFromList ( GO_LEVEL_WEST_BUTTON );
-    ShowGenericButtonFromList ( EXPORT_THIS_LEVEL_BUTTON );
+	A ( GO_LEVEL_WEST_BUTTON );
+    A ( EXPORT_THIS_LEVEL_BUTTON );
     
-    ShowGenericButtonFromList ( LEVEL_EDITOR_SAVE_SHIP_BUTTON );
+    A ( LEVEL_EDITOR_SAVE_SHIP_BUTTON );
     
     if ( GameConfig . zoom_is_on )
-	ShowGenericButtonFromList ( LEVEL_EDITOR_ZOOM_IN_BUTTON );
+	A ( LEVEL_EDITOR_ZOOM_IN_BUTTON );
     else
-	ShowGenericButtonFromList ( LEVEL_EDITOR_ZOOM_OUT_BUTTON );
-    ShowGenericButtonFromList ( LEVEL_EDITOR_TOGGLE_WAYPOINT_BUTTON );
+	A ( LEVEL_EDITOR_ZOOM_OUT_BUTTON );
+    A ( LEVEL_EDITOR_TOGGLE_WAYPOINT_BUTTON );
     if ( OriginWaypoint == (-1) )
-	ShowGenericButtonFromList ( LEVEL_EDITOR_TOGGLE_CONNECTION_BLUE_BUTTON );
+	A ( LEVEL_EDITOR_TOGGLE_CONNECTION_BLUE_BUTTON );
     else
-	ShowGenericButtonFromList ( LEVEL_EDITOR_TOGGLE_CONNECTION_RED_BUTTON );
-    ShowGenericButtonFromList ( LEVEL_EDITOR_BEAUTIFY_GRASS_BUTTON );
+	A ( LEVEL_EDITOR_TOGGLE_CONNECTION_RED_BUTTON );
+    A ( LEVEL_EDITOR_BEAUTIFY_GRASS_BUTTON );
 
-    ShowGenericButtonFromList ( LEVEL_EDITOR_DELETE_OBSTACLE_BUTTON );
-    ShowGenericButtonFromList ( LEVEL_EDITOR_NEXT_OBSTACLE_BUTTON );
+    A ( LEVEL_EDITOR_DELETE_OBSTACLE_BUTTON );
+    A ( LEVEL_EDITOR_NEXT_OBSTACLE_BUTTON );
 
-    ShowGenericButtonFromList ( LEVEL_EDITOR_RECURSIVE_FILL_BUTTON );
-    ShowGenericButtonFromList ( LEVEL_EDITOR_NEW_OBSTACLE_LABEL_BUTTON );
-    ShowGenericButtonFromList ( LEVEL_EDITOR_NEW_OBSTACLE_DESCRIPTION_BUTTON );
-    ShowGenericButtonFromList ( LEVEL_EDITOR_NEW_MAP_LABEL_BUTTON );
-    ShowGenericButtonFromList ( LEVEL_EDITOR_NEW_ITEM_BUTTON );
-    ShowGenericButtonFromList ( LEVEL_EDITOR_ESC_BUTTON );
-    ShowGenericButtonFromList ( LEVEL_EDITOR_LEVEL_RESIZE_BUTTON );
-    ShowGenericButtonFromList ( LEVEL_EDITOR_KEYMAP_BUTTON );
-    ShowGenericButtonFromList ( LEVEL_EDITOR_QUIT_BUTTON );
+    A ( LEVEL_EDITOR_RECURSIVE_FILL_BUTTON );
+    A ( LEVEL_EDITOR_NEW_OBSTACLE_LABEL_BUTTON );
+    A ( LEVEL_EDITOR_NEW_OBSTACLE_DESCRIPTION_BUTTON );
+    A ( LEVEL_EDITOR_NEW_MAP_LABEL_BUTTON );
+    A ( LEVEL_EDITOR_NEW_ITEM_BUTTON );
+    A ( LEVEL_EDITOR_ESC_BUTTON );
+    A ( LEVEL_EDITOR_LEVEL_RESIZE_BUTTON );
+    A ( LEVEL_EDITOR_KEYMAP_BUTTON );
+    A ( LEVEL_EDITOR_QUIT_BUTTON );
     
     if ( EditLevel -> use_underground_lighting )
 	ShowGenericButtonFromList ( LEVEL_EDITOR_UNDERGROUND_LIGHT_ON_BUTTON );
@@ -5111,45 +5118,46 @@ level_editor_blit_mouse_buttons ( Level EditLevel )
 	ShowGenericButtonFromList ( LEVEL_EDITOR_UNDERGROUND_LIGHT_OFF_BUTTON );
 
     if ( GameConfig . omit_tux_in_level_editor ) 
-	ShowGenericButtonFromList ( LEVEL_EDITOR_TOGGLE_TUX_BUTTON_OFF );
+	A ( LEVEL_EDITOR_TOGGLE_TUX_BUTTON_OFF );
     else
-	ShowGenericButtonFromList ( LEVEL_EDITOR_TOGGLE_TUX_BUTTON );
+	A ( LEVEL_EDITOR_TOGGLE_TUX_BUTTON );
     
     if ( GameConfig . omit_enemies_in_level_editor ) 
-	ShowGenericButtonFromList ( LEVEL_EDITOR_TOGGLE_ENEMIES_BUTTON_OFF );
+	A ( LEVEL_EDITOR_TOGGLE_ENEMIES_BUTTON_OFF );
     else 
-	ShowGenericButtonFromList ( LEVEL_EDITOR_TOGGLE_ENEMIES_BUTTON );
+	A ( LEVEL_EDITOR_TOGGLE_ENEMIES_BUTTON );
     
     if ( GameConfig . omit_obstacles_in_level_editor ) 
-	ShowGenericButtonFromList ( LEVEL_EDITOR_TOGGLE_OBSTACLES_BUTTON_OFF );
+	A ( LEVEL_EDITOR_TOGGLE_OBSTACLES_BUTTON_OFF );
     else
-	ShowGenericButtonFromList ( LEVEL_EDITOR_TOGGLE_OBSTACLES_BUTTON );
+	A ( LEVEL_EDITOR_TOGGLE_OBSTACLES_BUTTON );
     
     if ( GameConfig . show_tooltips ) 
     {
-	ShowGenericButtonFromList ( LEVEL_EDITOR_TOGGLE_TOOLTIPS_BUTTON );
+	A ( LEVEL_EDITOR_TOGGLE_TOOLTIPS_BUTTON );
 	show_level_editor_tooltips (  );
     }
     else
-	ShowGenericButtonFromList ( LEVEL_EDITOR_TOGGLE_TOOLTIPS_BUTTON_OFF );
+	A ( LEVEL_EDITOR_TOGGLE_TOOLTIPS_BUTTON_OFF );
 
     if ( draw_collision_rectangles ) 
-	ShowGenericButtonFromList ( LEVEL_EDITOR_TOGGLE_COLLISION_RECTS_BUTTON );
+	A ( LEVEL_EDITOR_TOGGLE_COLLISION_RECTS_BUTTON );
     else
-	ShowGenericButtonFromList ( LEVEL_EDITOR_TOGGLE_COLLISION_RECTS_BUTTON_OFF );
+	A ( LEVEL_EDITOR_TOGGLE_COLLISION_RECTS_BUTTON_OFF );
 
     switch(draw_grid){
         case 1:
-        ShowGenericButtonFromList( LEVEL_EDITOR_TOGGLE_GRID_BUTTON );
+        A( LEVEL_EDITOR_TOGGLE_GRID_BUTTON );
           break;
         case 2:
-          ShowGenericButtonFromList( LEVEL_EDITOR_TOGGLE_GRID_BUTTON_FULL );
+          A( LEVEL_EDITOR_TOGGLE_GRID_BUTTON_FULL );
           break;
         case 0:
-        ShowGenericButtonFromList( LEVEL_EDITOR_TOGGLE_GRID_BUTTON_OFF );
+        A( LEVEL_EDITOR_TOGGLE_GRID_BUTTON_OFF );
           break;
     }
 
+#undef A
 }; // void level_editor_blit_mouse_buttons ( Level EditLevel )
 
 /* ----------------------------------------------------------------------
