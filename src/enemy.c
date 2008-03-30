@@ -1965,12 +1965,12 @@ ProcessAttackStateMachine ( enemy * ThisRobot )
     RawStartEnemysShot( ThisRobot , vect_to_target.x , vect_to_target.y );
   
 }; // void ProcessAttackStateMachine
+
 /* ----------------------------------------------------------------------
- * This function moves all enemys individually, using MoveThisEnemy(i)
- * and it also initiates the robots fireing behaviour via 
- * ProcessAttackStateMachine (i) all individually.
+ * This function handles all the logic tied to enemies : animation, movement
+ * and attack behavior.
  * ---------------------------------------------------------------------- */
-    void
+void
 MoveEnemys ( void )
 {
     //--------------------
