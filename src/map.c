@@ -138,7 +138,6 @@ respawn_level ( int level_num )
 	    continue;
 		
 	erot->energy = Druidmap [ erot->type ] . maxenergy ;
-	erot-> phase = 0 ;
 	erot->animation_phase = 0 ;
 	erot->animation_type = WALK_ANIMATION ; 
         if( erot->has_been_taken_over == TRUE)

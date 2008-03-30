@@ -534,7 +534,6 @@ typedef struct enemy_s
     finepoint speed;		// current speed  
     float energy;		// current energy of this droid
     
-    float phase;	                // current phase of rotation of this droid
     float animation_phase;        // the current animation frame for this enemy (starting at 0 of course...)
     short animation_type;           // walk-animation, attack-animation, gethit animation, death animation
     
