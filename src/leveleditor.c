@@ -1376,7 +1376,10 @@ ItemDropFromLevelEditor( void )
 	ShowGenericButtonFromList ( LEVEL_EDITOR_NEXT_SUFFIX_BUTTON );
 	ShowGenericButtonFromList ( LEVEL_EDITOR_PREV_SUFFIX_BUTTON );
 	ShowGenericButtonFromList ( LEVEL_EDITOR_CANCEL_ITEM_DROP_BUTTON );
-	
+
+	if ( MouseCursorIsOnButton ( LEVEL_EDITOR_CANCEL_ITEM_DROP_BUTTON ,
+                                             GetMousePos_x()  , GetMousePos_y()  ) )	    
+	    PutStringFont ( Screen , FPS_Display_BFont , 20 , 440 * GameConfig . screen_height / 480 , _("Cancel item drop")) ;
 	if ( level_editor_item_drop_index ( row_len , line_len ) != (-1) )
 	{
 	    previous_mouse_position_index = level_editor_item_drop_index ( row_len , line_len ) + 
@@ -1411,17 +1414,6 @@ ItemDropFromLevelEditor( void )
 	}
 	
 	our_SDL_flip_wrapper( Screen );
-	
-/*	while ( ( ! SpacePressed() ) && ( level_editor_item_drop_index ( row_len , line_len ) + 
-					  item_group * line_len * row_len == previous_mouse_position_index ) )
-	{
-	    SDL_Delay ( 1 );
-	    if ( EscapePressed() )
-	    {
-		while ( EscapePressed() );
-		return ;
-	    }
-	}*/
 	
 	if ( EscapePressed() )
 	{ //Pressing escape cancels the dropping
