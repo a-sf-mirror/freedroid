@@ -45,7 +45,6 @@
 
 
 void enemy_handle_trivial_state_switches ( enemy* );
-void occasionally_update_vector_and_shot_target ( enemy* , moderately_finepoint* );
 void check_if_switching_to_stopandeyetuxmode_makes_sense ( enemy* );
 int TurnABitThowardsPosition ( Enemy, float, float, float);
 int EnemyOfTuxCloseToThisRobot ( Enemy, moderately_finepoint* );
@@ -235,7 +234,7 @@ PermanentHealRobots (void)
   time_since_last_heal = 0 ;
 
   enemy *erot;
-BROWSE_ALIVE_BOTS(erot)
+  BROWSE_ALIVE_BOTS(erot)
       {
       if ( erot->energy < Druidmap [ erot->type ] . maxenergy )
 	  erot->energy += floor(Druidmap[erot->type ] . lose_health * HEAL_INTERVAL) ;
@@ -430,7 +429,7 @@ ShuffleEnemys ( int LevelNum )
  *
  * ---------------------------------------------------------------------- */
 int 
-CheckIfWayIsFreeOfDroidsWithTuxchecking ( float x1 , float y1 , float x2 , float y2 , int OurLevel , 
+CheckIfWayIsFreeOfDroids (char test_tux, float x1 , float y1 , float x2 , float y2 , int OurLevel , 
 					  Enemy ExceptedRobot ) 
 {
     float LargerDistance;
@@ -492,7 +491,7 @@ CheckIfWayIsFreeOfDroidsWithTuxchecking ( float x1 , float y1 , float x2 , float
 	//--------------------
 	// Now we check for collisions with the Tux himself
 	//
-	if ( ( fabsf ( Me . pos.x - CheckPosition.x ) < 2 * Druid_Radius_X ) &&
+	if ( test_tux && ( fabsf ( Me . pos.x - CheckPosition.x ) < 2 * Druid_Radius_X ) &&
 	     ( fabsf ( Me . pos.y - CheckPosition.y ) < 2 * Druid_Radius_Y ) ) 
 	{
 	    // DebugPrintf( 2 , "\nCheckIfWayIsFreeOfDroids (...) : Connection analysis revealed : TRAFFIC-BLOCKED-INFLUENCER !");
@@ -505,92 +504,7 @@ CheckIfWayIsFreeOfDroidsWithTuxchecking ( float x1 , float y1 , float x2 , float
     
     return TRUE;
 
-}; // CheckIfWayIsFreeOfDroids ( float x1 , float y1 , float x2 , float y2 , int OurLevel , int ExceptedDroid )
-
-
-/* ----------------------------------------------------------------------
- * This function checks if the connection between two points is free of
- * droids.  
- *
- * MAP TILES ARE NOT TAKEN INTO CONSIDERATION, ONLY DROIDS!!!
- *
- * ---------------------------------------------------------------------- */
-int 
-CheckIfWayIsFreeOfDroidsWithoutTuxchecking ( float x1 , float y1 , float x2 , float y2 , int OurLevel , 
-					     Enemy ExceptedRobot ) 
-{
-    float LargerDistance;
-    int Steps;
-    int i;
-    moderately_finepoint step;
-    moderately_finepoint CheckPosition;
-    static int first_call = TRUE ;
-    static float steps_per_square;
-
-    const float Druid_Radius_X=0.25;    
-    const float Druid_Radius_Y=0.25;    
-    //--------------------
-    // Upon the very first function call, we calibrate the density of steps, so that 
-    // we cannot miss out a droid by stepping right over it.
-    //
-    if ( first_call )
-    {
-	first_call = FALSE ;
-	steps_per_square = 1 / ( 2.0 * sqrt(2.0) * Druid_Radius_X );
-	DebugPrintf ( 1 , "\n%s(): number of steps per square: %f." , __FUNCTION__ , steps_per_square );
-    }
-    
-    // DebugPrintf( 2, "\nint CheckIfWayIsFreeOfDroids (...) : Checking from %d-%d to %d-%d.", (int) x1, (int) y1 , (int) x2, (int) y2 );
-    // fflush(stdout);
-    
-    if ( fabsf ( x1 - x2 ) > fabsf ( y1 - y2 ) ) LargerDistance = fabsf ( x1 - x2 );
-    else LargerDistance = fabsf ( y1 - y2 );
-    
-    Steps = LargerDistance * steps_per_square + 1 ;   // We check four times on each map tile...
-    // if ( Steps == 0 ) return TRUE;
-    
-    // We determine the step size when walking from (x1,y1) to (x2,y2) in Steps number of steps
-    step.x = ( x2 - x1 ) / ((float)Steps) ;
-    step.y = ( y2 - y1 ) / ((float)Steps) ;
-    
-    // DebugPrintf( 2 , "\nint CheckIfWayIsFreeOfDroids (...) :  step.x=%f step.y=%f." , step.x , step.y );
-    
-    // We start from position (x1, y1)
-    CheckPosition . x = x1;
-    CheckPosition . y = y1;
-    
-    for ( i = 0 ; i < Steps + 1 ; i++ )
-    {
-	// for ( j = 0 ; j < MAX_ENEMYS_ON_SHIP ; j ++ )
-	// for ( j = 0 ; j < Number_Of_Droids_On_Ship ; j ++ )
-
-
-    enemy *this_enemy, *nerot;
-    BROWSE_ALIVE_BOTS_SAFE(this_enemy, nerot) 
-	{
-	if (( this_enemy -> pos.z != OurLevel ) ||( this_enemy -> pure_wait > 0 ) || ( this_enemy == ExceptedRobot ))
-	    {
-	    continue;
-	    }
-
-	// so it seems that we need to test this one!!
-	if ( ( fabsf ( this_enemy -> pos . x - CheckPosition . x ) < 2.0 * Druid_Radius_X ) &&
-		( fabsf ( this_enemy -> pos . y - CheckPosition . y ) < 2.0 * Druid_Radius_Y ) )
-	    {
-	    // DebugPrintf( 2, "\nCheckIfWayIsFreeOfDroids (...) : Connection analysis revealed : TRAFFIC-BLOCKED !");
-	    return FALSE;
-	    }
-
-	}	    
-
-	CheckPosition . x += step . x;
-	CheckPosition . y += step . y;
-    }
-    
-    return TRUE;
-
-}; // CheckIfWayIsFreeOfDroidsWithoutTuxchecking ( float x1 , float y1 , float x2 , float y2 , int OurLevel , ExceptedDroid )
-
+}; // CheckIfWayIsFreeOfDroids ( char test_tux, float x1 , float y1 , float x2 , float y2 , int OurLevel , int ExceptedDroid )
 
 /* ----------------------------------------------------------------------
  * Once the next waypoint or the next private pathway point has been 
@@ -784,7 +698,7 @@ Since it was NOT a waypoint-based bot, this is NOT a fatal message in this case.
     //
     for ( i = 0; i < num_conn ; i++ )
     {
-	FreeWays [ i ] = CheckIfWayIsFreeOfDroidsWithTuxchecking ( 
+	FreeWays [ i ] = CheckIfWayIsFreeOfDroids ( TRUE, 
 	    WpList [ ThisRobot -> lastwaypoint ] . x + 0.5 , 
 	    WpList [ ThisRobot -> lastwaypoint ] . y + 0.5 , 
 	    WpList [ WpList [ ThisRobot -> lastwaypoint ] . connections [ i ] ] . x + 0.5 , 
@@ -889,84 +803,46 @@ select_new_waypointless_random_walk_target ( enemy* ThisRobot )
     
     //--------------------
     // At first we see if this bot is trying to keep up with the Tux
-    // 
+    //
+
     if ( ThisRobot -> follow_tux )
-    {
-	target_candidate . x = ThisRobot -> pos . x ;
-	target_candidate . y = ThisRobot -> pos . y ;
-
-	if ( fabsf ( ThisRobot -> virt_pos . x - Me . pos . x ) > 0.5 )
 	{
-	    if ( ThisRobot -> virt_pos . x > Me . pos . x )
-	    {
-		target_candidate . x -= 0.3 ;
-	    }		
-	    else
-	    {
-		target_candidate . x += 0.3 ;
-	    }
-	}
+	moderately_finepoint vect;
+	vect . x = ThisRobot -> virt_pos . x - Me . pos . x;
+	vect . y = ThisRobot -> virt_pos . y - Me . pos . y;
 
-	if ( fabsf ( ThisRobot -> virt_pos . y - Me . pos . y ) > 0.5 )
-	{
-	    if ( ThisRobot -> virt_pos . y > Me . pos . y )
-	    {
-		target_candidate . y -= 0.3 ;
-	    }		
-	    else
-	    {
-		target_candidate . y += 0.3 ;
-	    }
+	target_candidate . x = Me . pos . x;
+	target_candidate . y = Me . pos . y;
 	}
-
-	if ( droid_can_walk_this_line ( ThisRobot -> pos . z , ThisRobot -> pos . x , ThisRobot -> pos . y , 
-					target_candidate . x , target_candidate . y ) )
-	{
-	    ThisRobot -> persuing_given_course = TRUE ;
-	    ThisRobot -> PrivatePathway [ 0 ] . x = target_candidate . x ;
-	    ThisRobot -> PrivatePathway [ 0 ] . y = target_candidate . y ;
-	    // DebugPrintf( -4 , "\nselect_new_waypointless_random_walk_target: PrivatePathway has been updated." );
-	    // DebugPrintf( -4 , "\nit is now: %f/%f." , ThisRobot -> PrivatePathway [ 0 ] . x , ThisRobot -> PrivatePathway [ 0 ] . y );
-	    success = TRUE ;
-	    // break;
-	}
-    }
     else
-    {
-	for ( i = 0 ; i < MAX_RANDOM_WALK_ATTEMPTS_BEFORE_GIVING_UP ; i ++ )
 	{
+	for ( i = 0 ; i < MAX_RANDOM_WALK_ATTEMPTS_BEFORE_GIVING_UP ; i ++ )
+	    {
 	    //--------------------
 	    // We select a possible new walktarget for this bot, not too
 	    // far away from the current position...
 	    //
 	    target_candidate . x = ThisRobot -> pos . x + ( MyRandom ( 600 ) - 300 ) / 100 ; 
 	    target_candidate . y = ThisRobot -> pos . y + ( MyRandom ( 600 ) - 300 ) / 100 ; 
-	    
-	    if ( droid_can_walk_this_line ( ThisRobot -> pos . z , ThisRobot -> pos . x , ThisRobot -> pos . y , 
-					    target_candidate . x , target_candidate . y ) )
-	    {
-		ThisRobot -> persuing_given_course = TRUE ;
-		ThisRobot -> PrivatePathway [ 0 ] . x = target_candidate . x ;
-		ThisRobot -> PrivatePathway [ 0 ] . y = target_candidate . y ;
-		// DebugPrintf( -4 , "\nselect_new_waypointless_random_walk_target: PrivatePathway has been updated." );
-		// DebugPrintf( -4 , "\nit is now: %f/%f." , ThisRobot -> PrivatePathway [ 0 ] . x , ThisRobot -> PrivatePathway [ 0 ] . y );
-		success = TRUE ;
-		break;
+
 	    }
 	}
-    }
+
+    if ( droid_can_walk_this_line ( ThisRobot -> pos . z , ThisRobot -> pos . x , ThisRobot -> pos . y , 
+		target_candidate . x , target_candidate . y ) )
+	{
+	ThisRobot -> persuing_given_course = TRUE ;
+	ThisRobot -> PrivatePathway [ 0 ] . x = target_candidate . x ;
+	ThisRobot -> PrivatePathway [ 0 ] . y = target_candidate . y ;
+	success = TRUE ;
+	}
 
     if ( ! success )
-    {
+	{
 	DebugPrintf ( 2 , "\n%s():  bad luck with random walk point this time..." , __FUNCTION__ );
 	ThisRobot -> pure_wait = 1.6 ;
-	
-    }
-    else
-    {
-	// DebugPrintf ( -4 , "\n%s():  A new waypoint has been set." , __FUNCTION__ );
-    }
-    
+
+	}
 }; // void select_new_waypointless_random_walk_target ( enemy* ThisRobot )
 
 /* ----------------------------------------------------------------------
@@ -1524,9 +1400,119 @@ DistanceToTux ( Enemy ThisRobot )
 }; // float DistanceToTux ( Enemy ThisRobot )
 
 /* ----------------------------------------------------------------------
- * This function sometimes fires a bullet from enemy number enemynum 
- * directly into the direction of the influencer, but of course only if 
- * the odds are good i.e. requirements are met.
+ *
+ *
+ * ---------------------------------------------------------------------- */
+void
+update_vector_to_shot_target_for_friend ( enemy* ThisRobot , moderately_finepoint* vect_to_target )
+{
+    float IgnoreRange = Druidmap [ ThisRobot -> type ] . minimal_range_hostile_bots_are_ignored;
+    int found_some_target = FALSE;
+
+    //--------------------
+    // We set some default values, in case there isn't anything attackable
+    // found below...
+    //
+    vect_to_target -> x = -1000;
+    vect_to_target -> y = -1000;
+    
+    enemy *erot;
+    BROWSE_LEVEL_BOTS(erot, ThisRobot->pos.z)
+    {
+	if ( erot->is_friendly )
+	    continue;
+	
+	if ( sqrt ( ( ThisRobot -> pos . x - erot->pos . x ) *
+		    ( ThisRobot -> pos . x - erot->pos . x ) +
+		    ( ThisRobot -> pos . y - erot->pos . y ) *
+		    ( ThisRobot -> pos . y - erot->pos . y ) ) > IgnoreRange ) 
+	    continue;
+
+	// At this point we have found our target
+	vect_to_target -> x = erot->pos . x - ThisRobot -> pos . x ;
+	vect_to_target -> y = erot->pos . y - ThisRobot -> pos . y ;
+	DebugPrintf( 0 , "\nPOSSIBLE TARGET FOR FRIENDLY DROID FOUND!!!\n");
+	DebugPrintf( 0 , "\nIt is a good target for: %s.\n", ThisRobot -> dialog_section_name );
+	found_some_target = TRUE ;
+	break;
+    }
+    
+    if ( found_some_target ) 
+    {
+	ThisRobot -> attack_target_type = ATTACK_TARGET_IS_ENEMY ;
+	enemy_set_reference(&ThisRobot -> bot_target_n, &ThisRobot->bot_target_addr, erot);
+    }
+    else 
+	ThisRobot -> attack_target_type = ATTACK_TARGET_IS_NOTHING ;
+    
+}; // void update_vector_to_shot_target_for_friend ( ThisRobot , moderately_finepoint* vect_to_target )
+
+/* ----------------------------------------------------------------------
+ *
+ *
+ * ---------------------------------------------------------------------- */
+void
+update_vector_to_shot_target_for_enemy ( enemy* this_robot , moderately_finepoint* vect_to_target )
+{
+    int our_level = this_robot -> pos . z ;
+    float best_dist, our_dist;
+    float xdist, ydist;
+    
+    //--------------------
+    // By default, we set the target of this bot to the Tux himself
+    // i.e. the closest (visible?) player.
+    //
+    vect_to_target -> x = Me . pos . x - this_robot -> virt_pos . x ;
+    vect_to_target -> y = Me . pos . y - this_robot -> virt_pos . y ;
+    this_robot -> attack_target_type = ATTACK_TARGET_IS_PLAYER ;
+    
+    //--------------------
+    // This function is time-critical, so we work with squares in the
+    // following and avoid computation of roots entirely
+    //
+    best_dist = vect_len ( *vect_to_target );
+    best_dist = best_dist * best_dist ;
+    
+    //--------------------
+    // But maybe there is a friend of the Tux also close.  Then maybe we
+    // should attack this one instead, since it's much closer anyway.
+    // Let's see...
+    //
+    enemy *erot;
+    BROWSE_LEVEL_BOTS(erot, our_level)
+    {
+	if ( ! erot->is_friendly )
+	    continue;
+	
+	xdist = this_robot -> pos . x - erot->pos . x ;
+	ydist = this_robot -> pos . y - erot->pos . y ;
+
+	our_dist = xdist * xdist + ydist * ydist ;
+	
+	if ( our_dist > 25.0 )
+	    continue;
+	
+	if ( our_dist < best_dist )
+	{
+	    // DebugPrintf ( -4 , "\nThis hostile robot just switched to attacking a friendly droid." );
+	    best_dist = our_dist ;
+	    
+	    vect_to_target -> x = erot->pos . x - this_robot -> pos . x ;
+	    vect_to_target -> y = erot->pos . y - this_robot -> pos . y ;
+	    this_robot -> attack_target_type = ATTACK_TARGET_IS_ENEMY ;
+	    enemy_set_reference(&this_robot->bot_target_n, &this_robot->bot_target_addr, erot);
+	}
+
+    }
+    
+}; // int update_vector_to_shot_target_for_enemy ( ThisRobot , moderately_finepoint* vect_to_target )
+
+
+/* ----------------------------------------------------------------------
+ * 
+ * This function runs the finite state automaton that powers the bots.
+ * It handles attack and movement behaviors.
+ *
  * ---------------------------------------------------------------------- */
 void
 ProcessAttackStateMachine ( enemy * ThisRobot )
@@ -1563,7 +1549,14 @@ ProcessAttackStateMachine ( enemy * ThisRobot )
     // determine the distance vector to the target of this shot.  The target
     // depends of course on wheter it's a friendly device or a hostile device.
     //
-    occasionally_update_vector_and_shot_target ( ThisRobot , & vect_to_target ) ;
+    if ( ThisRobot->is_friendly == TRUE )
+	{
+	update_vector_to_shot_target_for_friend ( ThisRobot , &vect_to_target ) ;
+	}
+    else
+	{
+	update_vector_to_shot_target_for_enemy ( ThisRobot , &vect_to_target ) ;
+	}
     
     //--------------------
     // A bot too far from its starting area must break off and return home
@@ -1918,8 +1911,6 @@ ProcessAttackStateMachine ( enemy * ThisRobot )
 	return;
     }
     
-    if ( Me . status == INFOUT ) return;
-   
    /*XXX what about friendly bots near the bot?*/ 
     if ( ! IsVisible ( & ThisRobot -> virt_pos ) && 
 	 ( ThisRobot -> is_friendly == FALSE ) ) 
@@ -2344,132 +2335,6 @@ BROWSE_ALIVE_BOTS_SAFE(erot, nerot)
 }; // int EnemyOfTuxCloseToThisRobot ( Enemy ThisRobot )
 
 /* ----------------------------------------------------------------------
- *
- *
- * ---------------------------------------------------------------------- */
-void
-update_vector_to_shot_target_for_friend ( enemy* ThisRobot , moderately_finepoint* vect_to_target )
-{
-    float IgnoreRange = Druidmap [ ThisRobot -> type ] . minimal_range_hostile_bots_are_ignored;
-    int found_some_target = FALSE;
-
-    //--------------------
-    // We set some default values, in case there isn't anything attackable
-    // found below...
-    //
-    vect_to_target -> x = -1000;
-    vect_to_target -> y = -1000;
-    
-    enemy *erot;
-    BROWSE_LEVEL_BOTS(erot, ThisRobot->pos.z)
-    {
-	if ( erot->is_friendly )
-	    continue;
-	
-	if ( sqrt ( ( ThisRobot -> pos . x - erot->pos . x ) *
-		    ( ThisRobot -> pos . x - erot->pos . x ) +
-		    ( ThisRobot -> pos . y - erot->pos . y ) *
-		    ( ThisRobot -> pos . y - erot->pos . y ) ) > IgnoreRange ) 
-	    continue;
-
-	// At this point we have found our target
-	vect_to_target -> x = erot->pos . x - ThisRobot -> pos . x ;
-	vect_to_target -> y = erot->pos . y - ThisRobot -> pos . y ;
-	DebugPrintf( 0 , "\nPOSSIBLE TARGET FOR FRIENDLY DROID FOUND!!!\n");
-	DebugPrintf( 0 , "\nIt is a good target for: %s.\n", ThisRobot -> dialog_section_name );
-	found_some_target = TRUE ;
-	break;
-    }
-    
-    if ( found_some_target ) 
-    {
-	ThisRobot -> attack_target_type = ATTACK_TARGET_IS_ENEMY ;
-	enemy_set_reference(&ThisRobot -> bot_target_n, &ThisRobot->bot_target_addr, erot);
-    }
-    else 
-	ThisRobot -> attack_target_type = ATTACK_TARGET_IS_NOTHING ;
-    
-}; // void update_vector_to_shot_target_for_friend ( ThisRobot , moderately_finepoint* vect_to_target )
-
-/* ----------------------------------------------------------------------
- *
- *
- * ---------------------------------------------------------------------- */
-void
-update_vector_to_shot_target_for_enemy ( enemy* this_robot , moderately_finepoint* vect_to_target )
-{
-    int our_level = this_robot -> pos . z ;
-    float best_dist, our_dist;
-    float xdist, ydist;
-    
-    //--------------------
-    // By default, we set the target of this bot to the Tux himself
-    // i.e. the closest (visible?) player.
-    //
-    vect_to_target -> x = Me . pos . x - this_robot -> virt_pos . x ;
-    vect_to_target -> y = Me . pos . y - this_robot -> virt_pos . y ;
-    this_robot -> attack_target_type = ATTACK_TARGET_IS_PLAYER ;
-    
-    //--------------------
-    // This function is time-critical, so we work with squares in the
-    // following and avoid computation of roots entirely
-    //
-    best_dist = vect_len ( *vect_to_target );
-    best_dist = best_dist * best_dist ;
-    
-    //--------------------
-    // But maybe there is a friend of the Tux also close.  Then maybe we
-    // should attack this one instead, since it's much closer anyway.
-    // Let's see...
-    //
-    enemy *erot;
-    BROWSE_LEVEL_BOTS(erot, our_level)
-    {
-	if ( ! erot->is_friendly )
-	    continue;
-	
-	xdist = this_robot -> pos . x - erot->pos . x ;
-	ydist = this_robot -> pos . y - erot->pos . y ;
-
-	our_dist = xdist * xdist + ydist * ydist ;
-	
-	if ( our_dist > 25.0 )
-	    continue;
-	
-	if ( our_dist < best_dist )
-	{
-	    // DebugPrintf ( -4 , "\nThis hostile robot just switched to attacking a friendly droid." );
-	    best_dist = our_dist ;
-	    
-	    vect_to_target -> x = erot->pos . x - this_robot -> pos . x ;
-	    vect_to_target -> y = erot->pos . y - this_robot -> pos . y ;
-	    this_robot -> attack_target_type = ATTACK_TARGET_IS_ENEMY ;
-	    enemy_set_reference(&this_robot->bot_target_n, &this_robot->bot_target_addr, erot);
-	}
-
-    }
-    
-}; // int update_vector_to_shot_target_for_enemy ( ThisRobot , moderately_finepoint* vect_to_target )
-
-/* ----------------------------------------------------------------------
- *
- *
- * ---------------------------------------------------------------------- */
-void
-occasionally_update_vector_and_shot_target ( enemy* ThisRobot , moderately_finepoint* vect_to_target ) 
-{
-    if ( ThisRobot->is_friendly == TRUE )
-    {
-	update_vector_to_shot_target_for_friend ( ThisRobot , vect_to_target ) ;
-    }
-    else
-    {
-	update_vector_to_shot_target_for_enemy ( ThisRobot , vect_to_target ) ;
-    }
-
-}; // void give_occasionally_updated_vector_to_shot_target ( ThisRobot , & vect_to_target ) 
-
-/* ----------------------------------------------------------------------
  * In some of the movement functions for enemy droids, we consider making
  * a step and move a bit into one direction or the other.  But not all
  * moves are really allowed and feasible.  Therefore we need a function
@@ -2487,7 +2352,7 @@ ConsideredMoveIsFeasible ( Enemy ThisRobot , moderately_finepoint StepVector )
     if ( ( IsPassable ( ThisRobot -> pos.x + StepVector.x , 
 			ThisRobot -> pos.y + StepVector.y ,
 			ThisRobot -> pos.z ) ) && 
-	 ( CheckIfWayIsFreeOfDroidsWithTuxchecking ( ThisRobot->pos.x , ThisRobot->pos.y , 
+	 ( CheckIfWayIsFreeOfDroids ( TRUE, ThisRobot->pos.x , ThisRobot->pos.y , 
 						     ThisRobot->pos.x + StepVector . x , 
 						     ThisRobot->pos.y + StepVector . y ,
 						     ThisRobot->pos.z , ThisRobot ) ) )

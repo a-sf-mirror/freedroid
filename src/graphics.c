@@ -306,9 +306,6 @@ Error loading flag image.",
 	case GLOBAL_INGAME_MODE_UNLOCK:
 	    cursor_index = 7 ;
 	    break;
-	case GLOBAL_INGAME_MODE_TALK:
-	    cursor_index = 8 ;
-	    break;
 	/*case GLOBAL_INGAME_MODE_FIRST_AID:
 	    cursor_index = 9 ;
 	    break;*/

@@ -1491,7 +1491,7 @@ streamline_tux_intermediate_course ( )
 					Me . next_intermediate_point [ scan_index ] . x ,
 					Me . next_intermediate_point [ scan_index ] . y ) )
 	    {
-	      if ( CheckIfWayIsFreeOfDroidsWithoutTuxchecking ( Me . next_intermediate_point [ start_index ] . x ,
+	      if ( CheckIfWayIsFreeOfDroids ( FALSE,	Me . next_intermediate_point [ start_index ] . x ,
 								Me . next_intermediate_point [ start_index ] . y ,
 								Me . next_intermediate_point [ scan_index ] . x ,
 								Me . next_intermediate_point [ scan_index ] . y , 
@@ -1546,7 +1546,7 @@ streamline_tux_intermediate_course ( )
 				  Me . next_intermediate_point [ 1 ] . y ) ) &&
        ( Me . next_intermediate_point [ 1 ] . x != (-1) ) )
     {
-      if ( CheckIfWayIsFreeOfDroidsWithoutTuxchecking ( Me . pos . x ,
+      if ( CheckIfWayIsFreeOfDroids ( FALSE, Me . pos . x ,
 							Me . pos . y ,
 							Me . next_intermediate_point [ 1 ] . x ,
 							Me . next_intermediate_point [ 1 ] . y , 
@@ -1600,7 +1600,7 @@ recursive_find_walkable_point ( float x1 , float y1 , float x2 , float y2 , int 
     // walkable target for the Tux.
     //
     if ( ( tux_can_walk_this_line ( x1, y1 , x2 , y2 ) ) &&
-	 ( CheckIfWayIsFreeOfDroidsWithoutTuxchecking ( x1 , y1 , x2 , y2 , Me . pos . z , (enemy*) NULL ) ) ) 
+	 ( CheckIfWayIsFreeOfDroids ( FALSE, x1 , y1 , x2 , y2 , Me . pos . z , (enemy*) NULL ) ) ) 
     {
 	//--------------------
 	// If the current position is still directly reachable for the Tux, we set it
@@ -1710,7 +1710,7 @@ recursive_find_walkable_point ( float x1 , float y1 , float x2 , float y2 , int 
 					x1 + ordered_moves [ i ] . x , 
 					y1 + ordered_moves [ i ] . y ) ) )
 	{
-	    if ( ( CheckIfWayIsFreeOfDroidsWithoutTuxchecking ( x1 , y1 , 
+	    if ( ( CheckIfWayIsFreeOfDroids ( FALSE, x1 , y1 , 
 								x1 + ordered_moves [ i ] . x , 
 								y1 + ordered_moves [ i ] . y , 
 								Me . pos . z , (enemy*) NULL ) ) )
@@ -3663,81 +3663,6 @@ handle_player_repair_command ( )
 }; // void handle_player_repair_command ( ) 
 
 /* ----------------------------------------------------------------------
- * When the player has actiavted global mode talk/hack and clicked the
- * left button, an talk/hack command must be executed.  This function
- * should deal with the effects of one such talk/hack click by the player.
- * ---------------------------------------------------------------------- */
-void
-handle_player_talk_command ( ) 
-{
-    int obstacle_index ;
-    obstacle* our_obstacle;
-    char game_message_text[ 2000 ] ;
-    enemy* this_enemy;
-
-    //--------------------
-    // Maybe there is a robot/character below the current mouse cursor.
-    // In this case we try to talk to that bot/character.
-    //
-    this_enemy = GetLivingDroidBelowMouseCursor ( ) ;
-    if ( this_enemy != NULL )
-    {
-	//--------------------
-	// Is it a hostile bot?  Then the bot will not let you do
-	// the first aid thing!  After all, he got no reason to trust
-	// you, right?
-	//
-	if ( ! this_enemy -> is_friendly )
-	{
-	    if ( ! ( Druidmap [ this_enemy -> type ] . is_human ) )
-	    {
-		sprintf ( game_message_text , _("You try to hack %s."), Druidmap [ this_enemy -> type ] . druidname );
-		append_new_game_message ( game_message_text );
-		Takeover ( this_enemy );
-	    }
-	    else
-	    {
-		//--------------------
-		// Maybe some message, that the angry human will not
-		// listen to you or something, including disabling global
-		// talk mode (to avoid message repetition)?
-		//
-		// ...
-		//
-	    }
-	    return;
-	}
-
-	sprintf ( game_message_text , _("You chat with %s."), Druidmap [ this_enemy -> type ] . druidname );
-	append_new_game_message ( game_message_text );
-	ChatWithFriendlyDroid ( this_enemy ) ;
-	return;
-
-    }
-
-    //--------------------
-    // Now if there wasn't any enemy below the mouse cursor (and only then)
-    // we look for an obstacle to apply our first-aid skill to.  Most likely
-    // this will not do anything, but for completeness we handle the case.
-    //
-    obstacle_index = GetObstacleBelowMouseCursor ( ) ;
-    if ( obstacle_index == (-1) )
-    {
-	ErrorMessage ( __FUNCTION__  , 
-				   "Talk command received, but there isn't any person or obstacle under the current mouse cursor.  Has it maybe moved away?  I'll simply ignore this request." ,
-				   NO_NEED_TO_INFORM, IS_WARNING_ONLY );
-	return;
-    }
-    our_obstacle = & ( curShip . AllLevels [ Me . pos . z ] -> obstacle_list [ obstacle_index ] ) ;
-
-    DebugPrintf ( -4 , "\n%s(): applying talk skill to obstacle of type : %d. " , __FUNCTION__ , our_obstacle -> type );
-    
-    sprintf ( game_message_text , _("Talking to an obstacle of type %d.  Ok.  You've told it everything.  Maybe it just needs more time to digest the news."), our_obstacle -> type );
-    append_new_game_message ( game_message_text );
-
-}; // void handle_player_talk_command ( ) 
-
-/* ----------------------------------------------------------------------
  * When the player has actiavted global attack mode and clicked the
  * left button, the attack command must be executed.  This function
  * should deal with the effects of one such attack click by the player.
@@ -3867,20 +3792,6 @@ AnalyzePlayersMouseClick ( )
 	    // if ( ButtonPressWasNotMeantAsFire( ) ) return;
 	    DebugPrintf ( -4 , "\n%s(): received unlock command." , __FUNCTION__ );
 	    handle_player_unlock_command ( 0 ) ;
-	    global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL ;
-	    
-	    //--------------------
-	    // To stop any movement, we wait for the release of the 
-	    // mouse button.
-	    //
-	    while ( SpacePressed() || MouseLeftPressed() || MouseRightPressed());
-	    Activate_Conservative_Frame_Computation();
-
-	    break;
-	case GLOBAL_INGAME_MODE_TALK:
-	    // if ( ButtonPressWasNotMeantAsFire( ) ) return;
-	    DebugPrintf ( -4 , "\n%s(): received talk command." , __FUNCTION__ );
-	    handle_player_talk_command ( 0 ) ;
 	    global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL ;
 	    
 	    //--------------------
