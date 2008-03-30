@@ -1557,7 +1557,10 @@ ProcessAttackStateMachine ( enemy * ThisRobot )
 	{
 	update_vector_to_shot_target_for_enemy ( ThisRobot , &vect_to_target ) ;
 	}
-    
+ 
+    ThisRobot->speed.x=0;
+    ThisRobot->speed.y=0;
+
     //--------------------
     // A bot too far from its starting area must break off and return home
     //
@@ -2913,10 +2916,11 @@ animate_enemy (enemy * our_enemy)
 
     switch ( our_enemy -> animation_type )
 	{
+
 	case WALK_ANIMATION:
 	    our_enemy -> animation_phase += 
 		Frame_Time() * droid_walk_animation_speed_factor [ our_enemy -> type ] ;
-
+	
 	    //--------------------
 	    // While we're in the walk animation cycle, we have the walk animation
 	    // images cycle.
