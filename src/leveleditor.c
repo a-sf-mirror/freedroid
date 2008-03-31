@@ -6107,7 +6107,7 @@ LevelEditor(void)
 	    
 	    if ( XPressed () )
 	    {
-		action_remove_obstacle ( EditLevel , level_editor_marked_obstacle );
+		action_remove_obstacle_user ( EditLevel , level_editor_marked_obstacle );
 		level_editor_marked_obstacle = NULL ;
 		while ( XPressed() );
 	    }
