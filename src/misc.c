@@ -194,6 +194,11 @@ mouse_press_button AllMousePressButtons[ MAX_MOUSE_PRESS_BUTTONS ] =
     /*LEVEL_EDITOR_PREV_SUFFIX_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorPrevItemGroup.png"     , { 55 + 150    , 72+5*66 , 0 ,  0 } , TRUE , FALSE } ,
 
     /*LEVEL_EDITOR_CANCEL_ITEM_DROP_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorCancelItemDrop.png"    , { 55 + 80     , 32+5*66 , 0 ,  0 } , TRUE , FALSE } ,
+    /*LEVEL_EDITOR_UNDO_BUTTON*/ { UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorUndoButton.png", { 490, 90, 0,0}, FALSE, FALSE },
+    /*LEVEL_EDITOR_UNDO_BUTTON_PUSHED*/ { UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorUndoButtonPushed.png", { 490, 90, 0,0}, FALSE, FALSE },
+
+    /*LEVEL_EDITOR_REDO_BUTTON*/ { UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorRedoButton.png", { 520, 90, 0,0}, FALSE, FALSE },
+    /*LEVEL_EDITOR_REDO_BUTTON_PUSHED*/ { UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorRedoButtonPushed.png", { 520, 90, 0,0}, FALSE, FALSE },
 
     /*SAVE_GAME_BANNER*/    { UNLOADED_ISO_IMAGE , "backgrounds/SaveGameBanner.png"                 , { 0 , 0 , 200 , 50 } , FALSE , FALSE } ,
     /*LOAD_GAME_BANNER*/    { UNLOADED_ISO_IMAGE , "backgrounds/LoadGameBanner.png"                 , { 0 , 0 , 200 , 50 } , FALSE , FALSE } ,

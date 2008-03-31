@@ -528,7 +528,6 @@ enum
     BACK_TO_LE_MAIN_MENU
   };
 
-
 enum ActionType
     {
 	ACT_CREATE_OBSTACLE,
@@ -5098,6 +5097,18 @@ show_level_editor_tooltips ( void )
 	if ( time_spent_on_some_button > TICKS_UNTIL_TOOLTIP )
 	    show_button_tooltip ( _("Use this button to toggle between obstacles displayed in level editor or obstacles hidden in level editor." ));
     }
+    else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_UNDO_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) ||
+	      MouseCursorIsOnButton ( LEVEL_EDITOR_UNDO_BUTTON_PUSHED , GetMousePos_x()  , GetMousePos_y()  ) )
+    {
+	if ( time_spent_on_some_button > TICKS_UNTIL_TOOLTIP && to_undo.next != &to_undo)
+	    show_button_tooltip ( _("Use this button to undo your last actions." ));
+    }
+    else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_REDO_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) ||
+	      MouseCursorIsOnButton ( LEVEL_EDITOR_REDO_BUTTON_PUSHED , GetMousePos_x()  , GetMousePos_y()  ) )
+    {
+	if ( time_spent_on_some_button > TICKS_UNTIL_TOOLTIP && to_redo.next != &to_redo)
+	    show_button_tooltip ( _("Use this button to redo an action." ));
+    }
     else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_TOGGLE_TUX_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) ||
 	      MouseCursorIsOnButton ( LEVEL_EDITOR_TOGGLE_TUX_BUTTON_OFF , GetMousePos_x()  , GetMousePos_y()  ) )
     {
@@ -5146,109 +5157,6 @@ marked_obstacle_is_glued_to_here ( Level EditLevel , float x , float y )
     
 }; // int marked_obstacle_is_glued_to_here ( Me . pos . x , Me . pos . y )
 
-/* ----------------------------------------------------------------------
- * This function should assign a new name to a given obstacle on a given
- * level.  New indices must be found and the user must be queried for his
- * input about the desired new obstacle name.
- * ---------------------------------------------------------------------- */
-void
-give_new_name_to_obstacle ( Level EditLevel , obstacle* our_obstacle , char* predefined_name )
-{
-    int i;
-    int free_index=(-1);
-    int check_double;
-    
-    //--------------------
-    // If the obstacle already has a name, we can use that index for the 
-    // new name now.
-    //
-    if ( our_obstacle -> name_index >= 0 )
-	free_index = our_obstacle -> name_index ;
-    else
-    {
-	//--------------------
-	// Else we must find a free index in the list of obstacle names for this level
-	//
-	for ( i = 0 ; i < MAX_OBSTACLE_NAMES_PER_LEVEL ; i ++ )
-	{
-	    if ( EditLevel -> obstacle_name_list [ i ] == NULL )
-	    {
-		free_index = i ;
-		break;
-	    }
-	}
-	if ( free_index < 0 ) return;
-    }
-    
-    //--------------------
-    // Maybe we must query the user for the desired new name.
-    // On the other hand, it might be that a name has been
-    // supplied as an argument.  That depends on whether the
-    // argument string is NULL or not.
-    //
-    if ( EditLevel -> obstacle_name_list [ free_index ] == NULL )
-	EditLevel -> obstacle_name_list [ free_index ] = "" ;
-    if ( predefined_name == NULL )
-    {
-	EditLevel -> obstacle_name_list [ free_index ] = 
-	    GetEditableStringInPopupWindow ( 1000 , "\nPlease enter name for this obstacle: \n\n" ,
-					     EditLevel -> obstacle_name_list [ free_index ] );
-    }
-    else
-    {
-	EditLevel -> obstacle_name_list [ free_index ] = MyMalloc ( 5000 );
-	strncpy ( EditLevel -> obstacle_name_list [ free_index ] , predefined_name , 4900 ) ;
-    }
-    
-    //--------------------
-    // We must select the right index as the name of this obstacle.
-    //
-    our_obstacle -> name_index = free_index ;
-    
-    //--------------------
-    // But if the given name was empty, then we remove everything again
-    // and RETURN
-    //
-    if ( strlen ( EditLevel -> obstacle_name_list [ free_index ] ) == 0 )
-    {
-	EditLevel -> obstacle_name_list [ free_index ] = NULL ;
-	our_obstacle -> name_index = (-1);
-	return;
-    }
-    
-    //--------------------
-    // But even if we fill in something new, we should first
-    // check against double entries of the same label.  Let's
-    // do it...
-    //
-    for ( check_double = 0 ; check_double < MAX_OBSTACLE_NAMES_PER_LEVEL ; check_double++ )
-    {
-	//--------------------
-	// We must not use null pointers for string comparison...
-	//
-	if ( EditLevel -> obstacle_name_list [ check_double ] == NULL ) continue ;
-	
-	//--------------------
-	// We must not overwrite ourself with us in foolish ways :)
-	//
-	if ( check_double == free_index ) continue ;
-	
-	//--------------------
-	// But in case of real double-entries, we'll handle them right.
-	//
-	if ( ! strcmp ( EditLevel -> obstacle_name_list [ free_index ] , 
-			EditLevel -> obstacle_name_list [ check_double ] ) )
-	{
-	    ErrorMessage ( __FUNCTION__  , "\
-The label just entered did already exist on this map!  Deleting old entry in favour of the new one!",
-				       NO_NEED_TO_INFORM , IS_WARNING_ONLY );
-	    EditLevel -> obstacle_name_list [ free_index ] = NULL ;
-	    our_obstacle -> name_index = check_double ;
-	    break;
-	}
-    }
-    
-}; // void give_new_name_to_obstacle ( EditLevel , level_editor_marked_obstacle )
 
 /* ----------------------------------------------------------------------
  * This function should assign a new individual obstacle description to a 
@@ -5394,6 +5302,16 @@ level_editor_handle_left_mouse_button ( int proceed_now )
 	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_UNDERGROUND_LIGHT_ON_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
 	{
 	    EditLevel -> use_underground_lighting = ! EditLevel -> use_underground_lighting ;
+	    while ( MouseLeftPressed() );
+	}
+	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_UNDO_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
+	{
+	    action_undo ( EditLevel );
+	    while ( MouseLeftPressed() );
+	}
+	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_REDO_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
+	{
+	    action_redo ( EditLevel );
 	    while ( MouseLeftPressed() );
 	}
 	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_SAVE_SHIP_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
@@ -5698,6 +5616,13 @@ level_editor_blit_mouse_buttons ( Level EditLevel )
     A ( LEVEL_EDITOR_KEYMAP_BUTTON );
     A ( LEVEL_EDITOR_QUIT_BUTTON );
     
+    if (to_undo.next != &to_undo) {
+	A ( LEVEL_EDITOR_UNDO_BUTTON);
+    }
+
+    if (to_redo.next != &to_redo) {
+	A ( LEVEL_EDITOR_REDO_BUTTON);
+    }
     if ( EditLevel -> use_underground_lighting )
 	ShowGenericButtonFromList ( LEVEL_EDITOR_UNDERGROUND_LIGHT_ON_BUTTON );
     else
