@@ -88,7 +88,7 @@ remove_blood_obstacles_for_respawning ( int level_num )
         case ISO_OIL_STAINS_6:
         case ISO_OIL_STAINS_7:
         case ISO_OIL_STAINS_8:
-		delete_obstacle ( curShip . AllLevels [ level_num ] , 
+		action_remove_obstacle ( curShip . AllLevels [ level_num ] , 
 				  & ( curShip . AllLevels [ level_num ] -> obstacle_list [ i ] ) ) ;
 		//--------------------
 		// Now the obstacles have shifted a bit to close the gap from the
@@ -1026,7 +1026,7 @@ smash_obstacles_only_on_tile ( float x , float y , int map_x , int map_y )
 	//
 	if ( obstacle_map [ target_obstacle -> type ] . result_type_after_smashing_once == (-1) )
 	{
-	    delete_obstacle ( BoxLevel , target_obstacle );
+	    action_remove_obstacle ( BoxLevel , target_obstacle );
 	}
 	else
 	{

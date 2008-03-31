@@ -43,16 +43,14 @@ void LevelEditor(void);
 void cycle_marked_obstacle( Level EditLevel );
 void CreateNewMapLevel( void );
 void SetLevelInterfaces ( void );
-void delete_obstacle ( level* EditLevel , obstacle* our_obstacle );
 void duplicate_all_obstacles_in_area ( Level source_level ,
 				       float source_start_x , float source_start_y , 
 				       float source_area_width , float source_area_height ,
 				       Level target_level ,
 				       float target_start_x , float target_start_y );
-obstacle* add_obstacle ( Level EditLevel , float x , float y , int new_obstacle_type );
 void give_new_description_to_obstacle ( Level EditLevel , obstacle* our_obstacle , char* predefined_description );
 
-waypoint *SrcWp;
+
 int OriginWaypoint = (-1);
 
 char VanishingMessage[10000]="";
@@ -530,6 +528,694 @@ enum
     BACK_TO_LE_MAIN_MENU
   };
 
+
+enum ActionType
+    {
+	ACT_CREATE_OBSTACLE,
+	ACT_REMOVE_OBSTACLE,
+	ACT_WAYPOINT_TOGGLE,
+	ACT_WAYPOINT_TOGGLE_CONNECT,
+	ACT_TILE_FLOOR_SET,
+	ACT_MULTIPLE_FLOOR_SETS,
+	ACT_SET_OBSTACLE_LABEL,
+	ACT_SET_MAP_LABEL
+    };
+
+typedef struct {
+    struct list_head node;
+    enum ActionType type;
+
+    union {
+	struct {
+	    double x, y;
+	    int new_obstacle_type;
+	}create_obstacle;
+
+	obstacle *delete_obstacle;
+
+	struct {
+	    int x, y;
+	    int spawn_toggle;
+	}waypoint_toggle; /* ToogleWaypoint */
+
+	struct {
+	    int x, y;
+	    int type;
+	}change_floor; /* 5663 */
+
+	int number_fill_set; /* RecFill */
+	
+	struct {
+	    obstacle *obstacle;
+	    char *new_name;
+	}change_obstacle_name; /* give_new_name_to_obstacle */
+
+	struct {
+	    int id;
+	    char *new_name;
+	}change_label_name; /* EditMapLabelData */
+
+    }d;
+}action;
+LIST_HEAD (to_undo);
+LIST_HEAD (to_redo);
+int push_mode = 0; /* 0 -> push only in to_undo
+		      -1 -> pop in to_redo and push in to_undo
+		      1 -> pop in to_undo and push in to_redo */
+obstacle *
+action_create_obstacle (Level EditLevel, double x, double y, int new_obstacle_type);
+obstacle *
+action_create_obstacle_user (Level EditLevel, double x, double y, int new_obstacle_type);
+void action_remove_obstacle ( Level EditLevel, obstacle *our_obstacle);
+void action_remove_obstacle_user ( Level EditLevel, obstacle *our_obstacle);
+void action_toggle_waypoint ( Level EditLevel , int BlockX , int BlockY , int toggle_random_spawn );
+int action_toggle_waypoint_connection ( Level EditLevel, int id_origin, int id_target);
+void action_toggle_waypoint_connection_user ( Level EditLevel , int BlockX , int BlockY );
+void action_set_floor ( Level EditLevel, int x, int y, int type);
+void action_fill_user_recursive ( Level EditLevel, int x, int y, int type, int *changed);
+void action_fill_user ( Level EditLevel, int BlockX, int BlockY, int SpecialMapValue);
+void action_change_obstacle_label ( Level EditLevel, obstacle *obstacle, char *name);
+void action_change_obstacle_label_user ( Level EditLevel, obstacle *our_obstacle, char *predefined_name);
+void action_change_map_label ( Level EditLevel, int i, char *name );
+void action_change_map_label_user ( Level EditLevel );
+
+void
+action_freestack ( void )
+{
+    struct list_head *pos, *n;
+    list_for_each_safe (pos, n, &to_undo) {
+	action *a = (action *)pos;
+	if (a->type == ACT_SET_OBSTACLE_LABEL)
+	    free ( a->d.change_obstacle_name.new_name );
+
+	else if (a->type == ACT_SET_MAP_LABEL)
+	    free ( a->d.change_label_name.new_name );
+
+	free ( a );
+    }
+
+    INIT_LIST_HEAD (&to_undo);
+
+    list_for_each_safe (pos, n, &to_redo) {
+	action *a = (action *)pos;
+	if (a->type == ACT_SET_OBSTACLE_LABEL)
+	    free ( a->d.change_obstacle_name.new_name );
+
+	else if (a->type == ACT_SET_MAP_LABEL)
+	    free ( a->d.change_label_name.new_name );
+	free ( a );
+    }
+
+    INIT_LIST_HEAD (&to_redo);
+}
+
+void
+action_do ( Level level, action *a )
+{
+    switch (a->type) {
+    case ACT_CREATE_OBSTACLE:
+	action_create_obstacle_user ( level, a->d.create_obstacle.x, 
+				 a->d.create_obstacle.y, a->d.create_obstacle.new_obstacle_type );
+	break;
+    case ACT_REMOVE_OBSTACLE:
+	action_remove_obstacle_user ( level, a->d.delete_obstacle);
+	break;
+    case ACT_WAYPOINT_TOGGLE:
+	action_toggle_waypoint ( level, a->d.waypoint_toggle.x, a->d.waypoint_toggle.y,
+				 a->d.waypoint_toggle.spawn_toggle );
+	break;
+    case ACT_WAYPOINT_TOGGLE_CONNECT:
+	action_toggle_waypoint_connection ( level, a->d.waypoint_toggle.x, a->d.waypoint_toggle.y);
+	break;
+    case ACT_TILE_FLOOR_SET:
+	action_set_floor ( level, a->d.change_floor.x, a->d.change_floor.y, a->d.change_floor.type);
+	break; 
+    case ACT_MULTIPLE_FLOOR_SETS:
+	break;
+    case ACT_SET_OBSTACLE_LABEL:
+	action_change_obstacle_label (level, a->d.change_obstacle_name.obstacle, 
+				      a->d.change_obstacle_name.new_name);
+	break;
+    case ACT_SET_MAP_LABEL:
+	action_change_map_label (level, a->d.change_label_name.id, a->d.change_label_name.new_name);
+	break;
+
+    }
+}
+
+void 
+action_undo ( Level level ) 
+{
+    if (to_undo.next != &to_undo) {
+	action *a = (action *)to_undo.next;
+	push_mode = 1;
+	if (a->type == ACT_MULTIPLE_FLOOR_SETS) {
+	    int i;
+	    list_del (to_undo.next);
+	    for (i = 0; i < a->d.number_fill_set; i++) {
+		action_undo (level);
+	    }
+	    list_add (&a->node, to_redo.next);
+	} else {
+	    action_do (level, a);
+	}
+	push_mode = 0;
+    }
+}
+
+void 
+action_redo ( Level level ) 
+{
+     if (to_redo.next != &to_redo) {
+	action *a = (action *)to_redo.next;
+	push_mode = -1;
+	if (a->type == ACT_MULTIPLE_FLOOR_SETS) {
+	    int i;
+	    list_del (to_redo.next);
+	    for (i = 0; i < a->d.number_fill_set; i++) {
+		action_redo (level);
+	    }
+	    list_add (&a->node, to_undo.next);
+	} else {
+	    action_do (level, a);
+	}
+	push_mode = 0;
+    }
+}
+    
+	
+void
+action_push (int type, ...)
+{
+    va_list val;
+    va_start (val, type);
+    action *act = malloc (sizeof *act);
+    act -> type = type;
+    switch (type) {
+    case ACT_CREATE_OBSTACLE:
+	act -> d . create_obstacle . x = va_arg (val, double);
+	act -> d . create_obstacle . y = va_arg (val, double);
+	act -> d . create_obstacle . new_obstacle_type = va_arg (val, int);
+	break;
+    case ACT_REMOVE_OBSTACLE:
+	act -> d . delete_obstacle = va_arg (val, obstacle *);
+	break;
+    case ACT_WAYPOINT_TOGGLE:
+    case ACT_WAYPOINT_TOGGLE_CONNECT:
+	act -> d . waypoint_toggle . x = va_arg (val, int);
+	act -> d . waypoint_toggle . y = va_arg (val, int);
+	act -> d . waypoint_toggle . spawn_toggle = va_arg (val, int);
+	break;
+    case ACT_TILE_FLOOR_SET:
+	act -> d . change_floor . x = va_arg (val, int);
+	act -> d . change_floor . y = va_arg (val, int);
+	act -> d . change_floor . type = va_arg (val, int);
+	break;
+    case ACT_MULTIPLE_FLOOR_SETS:
+	act -> d . number_fill_set = va_arg (val, int);
+	break;
+    case ACT_SET_OBSTACLE_LABEL:
+	act -> d . change_obstacle_name . obstacle = va_arg (val, obstacle *);
+	act -> d . change_obstacle_name . new_name = va_arg (val, char *);
+	break;
+    case ACT_SET_MAP_LABEL:
+	act -> d . change_label_name . id = va_arg (val, int);
+	act -> d . change_label_name . new_name = va_arg (val, char *);
+	break;
+    }
+    if (push_mode == -1) {
+	list_del (to_redo.next);
+    }
+    if (push_mode != 1) {
+	list_add (&act->node, &to_undo);
+    }
+    if (push_mode == 1) {
+	list_del (to_undo.next);
+	list_add (&act->node, &to_redo);
+    }
+}
+	
+obstacle *
+action_create_obstacle (Level EditLevel, double x, double y, int new_obstacle_type)
+{
+    int i;
+
+    for ( i = 0 ; i < MAX_OBSTACLES_ON_MAP ; i ++ )
+    {
+	if ( EditLevel -> obstacle_list [ i ] . type == (-1) )
+	{
+	    EditLevel -> obstacle_list [ i ] . type = new_obstacle_type ;
+	    EditLevel -> obstacle_list [ i ] . pos . x = x ;
+	    EditLevel -> obstacle_list [ i ] . pos . y = y ;
+	    glue_obstacles_to_floor_tiles_for_level ( EditLevel -> levelnum );
+	    DebugPrintf ( 0 , "\nNew obstacle has been added!!!" );
+	    fflush(stdout);
+	    return ( & ( EditLevel -> obstacle_list [ i ] ) ) ;
+	}
+    }
+    
+    ErrorMessage ( __FUNCTION__  , "\
+Ran out of obstacle positions in target level!",
+			       PLEASE_INFORM , IS_FATAL );
+    return ( NULL );
+}
+
+obstacle *
+action_create_obstacle_user (Level EditLevel, double x, double y, int new_obstacle)
+{
+    obstacle *o = action_create_obstacle  (EditLevel, x, y, new_obstacle);
+    if (o) {
+	action_push (ACT_REMOVE_OBSTACLE, o);
+    }
+    return o;
+}
+void
+action_remove_obstacle_user (Level EditLevel, obstacle *our_obstacle)
+{
+    action_push (ACT_CREATE_OBSTACLE, our_obstacle -> pos . x,
+		 our_obstacle -> pos . y, 
+		 our_obstacle -> type);
+    action_remove_obstacle (EditLevel, our_obstacle);
+}
+void
+action_remove_obstacle ( Level EditLevel, obstacle *our_obstacle)
+{
+    int i;
+    int obstacle_index = (-1) ;
+    
+    //--------------------
+    // The likely case that no obstacle was currently marked.
+    //
+    if ( our_obstacle == NULL ) return;
+    
+    //--------------------
+    // We need to find out the index of the obstacle in question,
+    // so that we can find out and eliminate any glue for this 
+    // obstacle.
+    //
+    for ( i = 0 ; i < MAX_OBSTACLES_ON_MAP ; i ++ )
+    {
+	if ( our_obstacle == & ( EditLevel -> obstacle_list [ i ] ) )
+	{
+	    obstacle_index = i ;
+	    break;
+	}
+    }
+    
+    //--------------------
+    // Maybe there is a severe bug somewhere in FreedroidRPG.  We catch
+    // this case as well...
+    //
+    if ( obstacle_index == (-1) )
+    {
+	ErrorMessage ( __FUNCTION__  , "\
+Unable to find the obstacle in question within the obstacle list!",
+				   PLEASE_INFORM , IS_FATAL );
+    }
+    
+    //--------------------
+    // And of course we must not forget to delete the obstalce itself
+    // as well, not only the glue...
+    //
+    our_obstacle -> type = ( -1 ) ;
+    
+    //--------------------
+    // Maybe filling out the gap isn't so desireable after all.  Might that cause
+    // problems with keeping track of the indices when obstacles are named?  Should
+    // we do away with this?  But then we also need to go over -1 entries in the
+    // loops coursing throught he whole list in other places...  So it will stay for
+    // now I guess...
+    //
+    memmove ( & ( EditLevel -> obstacle_list [ obstacle_index ] ) , 
+	      & ( EditLevel -> obstacle_list [ obstacle_index + 1 ] ) ,
+	      ( MAX_OBSTACLES_ON_MAP - obstacle_index - 2 ) * sizeof ( obstacle ) );
+    
+    //--------------------
+    // Now doing that must have shifted the glue!  That is a problem.  We need to
+    // reglue everything to the map...
+    //
+    glue_obstacles_to_floor_tiles_for_level ( EditLevel -> levelnum );
+    
+    //--------------------
+    // Now that we have disturbed the order of the obstacles on this level, we need
+    // to re-assemble the lists of pointers to obstacles, like the door list, the
+    // teleporter list and the refreshes list.
+    //
+    GetAllAnimatedMapTiles( EditLevel );
+}
+
+
+void 
+action_toggle_waypoint ( Level EditLevel , int BlockX , int BlockY , int toggle_random_spawn )
+{
+    int i;
+    // find out if there is a waypoint on the current square
+    for ( i = 0 ; i < EditLevel->num_waypoints ; i++ )
+    {
+	if ( ( EditLevel->AllWaypoints[i].x == BlockX ) &&
+	     ( EditLevel->AllWaypoints[i].y == BlockY ) ) break;
+    }
+    
+    //--------------------
+    // If its waypoint already, this waypoint must either be deleted
+    // or the random spawn bit reset...
+    //
+    if ( i < EditLevel -> num_waypoints )
+    {
+	if ( toggle_random_spawn )
+	{
+	    if ( EditLevel -> AllWaypoints [ i ] . suppress_random_spawn )
+		EditLevel -> AllWaypoints [ i ] . suppress_random_spawn = 0 ;
+	    else
+		EditLevel -> AllWaypoints [ i ] . suppress_random_spawn = 1 ;
+	}
+	else
+	    DeleteWaypoint ( EditLevel , i );
+    }
+    else // if its not a waypoint already, it must be made into one
+    {
+	if ( ! toggle_random_spawn )
+	    CreateWaypoint ( EditLevel , BlockX , BlockY );
+    }
+    action_push (ACT_WAYPOINT_TOGGLE, BlockX, BlockY, toggle_random_spawn);
+}
+
+
+int 
+action_toggle_waypoint_connection ( Level EditLevel, int id_origin, int id_target)
+{
+    int i = 0;
+    waypoint *SrcWp = &(EditLevel->AllWaypoints[id_origin]);
+    for (i = 0; i < SrcWp -> num_connections; i++) {
+	// Already a waypoint, remove it
+	if (SrcWp -> connections [ i ] == id_target) {
+	    memmove (SrcWp->connections + i, SrcWp->connections + i + 1,
+		     (SrcWp->num_connections - (i + 1)) * sizeof (SrcWp->connections[0]));
+	    SrcWp -> num_connections -- ;
+	    return -1;
+	}
+    }
+    SrcWp -> connections [ SrcWp -> num_connections ] = id_target;
+    SrcWp -> num_connections ++;
+    SrcWp = NULL;
+    action_push (ACT_WAYPOINT_TOGGLE_CONNECT, id_origin, id_target, -1);
+    return 1;
+}
+void
+action_toggle_waypoint_connection_user ( Level EditLevel , int BlockX , int BlockY )
+{
+    int i;
+ 
+    // Determine which waypoint is currently targeted
+    for (i=0 ; i < EditLevel->num_waypoints ; i++)
+    {
+	if ( ( EditLevel->AllWaypoints[i].x == BlockX ) &&
+	     ( EditLevel->AllWaypoints[i].y == BlockY ) ) break;
+    }
+    
+    if ( i == EditLevel->num_waypoints )
+    {
+	sprintf( VanishingMessage , "Sorry, don't know which waypoint you mean." );
+	VanishingMessageDisplayTime = 0;
+    }
+    else
+    {
+	sprintf( VanishingMessage , "You specified waypoint nr. %d." , i );
+	VanishingMessageDisplayTime = 0;
+	if ( OriginWaypoint== (-1) )
+	{
+	    OriginWaypoint = i;
+	    if (EditLevel->AllWaypoints[OriginWaypoint].num_connections < MAX_WP_CONNECTIONS)
+	    {
+		strcat ( VanishingMessage , "\nIt has been marked as the origin of the next connection." );
+		DebugPrintf (1, "\nWaypoint nr. %d. selected as origin\n", i);
+	    }
+	    else
+	    {
+		strcat ( VanishingMessage , "\nSORRY. NO MORE CONNECTIONS AVAILABLE FROM THERE." );
+		strcat ( VanishingMessage, 
+			 va("\nSorry, maximal number of waypoint-connections (%d) reached!\n", MAX_WP_CONNECTIONS));
+		DebugPrintf (0, "Operation not possible\n");
+		OriginWaypoint = (-1);
+	    }
+	}
+	else
+	{
+	    if ( OriginWaypoint == i )
+	    {
+		strcat ( VanishingMessage , "\n\nOrigin==Target --> Connection Operation cancelled.");
+		OriginWaypoint = (-1);
+	    }
+	    else
+	    {
+		sprintf( VanishingMessage , "\n\nOrigin: %d Target: %d. Operation makes sense.", OriginWaypoint , i );
+		if (action_toggle_waypoint_connection ( EditLevel, OriginWaypoint, i ) < 0) {
+		    strcat ( VanishingMessage , "\nOperation done, connection removed." );
+		} else {
+		    strcat ( VanishingMessage , "\nOperation done, connection added." );
+		}
+		OriginWaypoint = (-1);
+	    }
+	}
+    }
+    
+    return;
+    
+}
+
+
+void
+action_set_floor (Level EditLevel, int x, int y, int type)
+{
+    int old = EditLevel -> map [ y ] [ x ] . floor_value;
+    EditLevel -> map [ y ] [ x ] . floor_value = type;
+    action_push (ACT_TILE_FLOOR_SET, x, y, old);
+}
+
+void
+action_fill_user_recursive ( Level EditLevel, int x, int y, int type, int *changed)
+{
+    int source_type = EditLevel->map [ y ] [ x ] . floor_value;
+    /* security */
+    if ( ( y < 0 ) || ( y < 0 ) || ( x >= EditLevel->xlen ) || ( y >= EditLevel->ylen ) )
+	return;
+#define at(x,y) (EditLevel -> map [ y ] [ x ] . floor_value)    
+    if ( at (x , y) == type )
+	return;
+    action_set_floor ( EditLevel, x, y, type);
+    (*changed) ++;
+    if ( x > 0 && at (x-1, y) == source_type)
+	action_fill_user_recursive (EditLevel, x-1, y, type, changed);
+    if ( x < EditLevel->xlen-1 && at (x+1, y) == source_type)
+	action_fill_user_recursive (EditLevel, x+1, y, type, changed);
+    if ( y > 0 && at (x, y-1) == source_type)
+	action_fill_user_recursive (EditLevel, x, y-1, type, changed);
+    if ( y < EditLevel->ylen-1 && at (x-1, y+1) == source_type)
+	action_fill_user_recursive (EditLevel, x, y+1, type, changed);
+}
+void
+action_fill_user ( Level EditLevel, int BlockX, int BlockY, int SpecialMapValue)
+{
+    int number_changed = 0;
+    action_fill_user_recursive ( EditLevel, BlockX, BlockY, SpecialMapValue, &number_changed);
+    action_push ( ACT_MULTIPLE_FLOOR_SETS, number_changed);
+}
+
+void
+action_change_obstacle_label ( Level EditLevel, obstacle *obstacle, char *name)
+{
+    int index = -1;
+    char *old_name;
+    if (obstacle -> name_index >= 0) {
+	index = obstacle -> name_index;
+    } else {
+	int i;
+	for ( i = 0 ; i < MAX_OBSTACLE_NAMES_PER_LEVEL ; i ++ )
+	{
+	    if ( EditLevel -> obstacle_name_list [ i ] == NULL )
+	    {
+		index = i ;
+		break;
+	    }
+	}
+	if ( index < 0 ) return;	
+    }
+    old_name = EditLevel -> obstacle_name_list [ index ];
+    if (!name || strlen (name) == 0) {
+	obstacle -> name_index = -1;
+	EditLevel -> obstacle_name_list [ index ] = NULL;
+    } else {
+	EditLevel -> obstacle_name_list [ index ] = name;
+    }
+    action_push (ACT_SET_OBSTACLE_LABEL, obstacle, old_name);
+    obstacle -> name_index = index ;
+}
+    
+void
+action_change_obstacle_label_user ( Level EditLevel, obstacle *our_obstacle, char *predefined_name)
+{
+    int i;
+    int free_index=(-1);
+    int check_double;
+    char *name;
+    //--------------------
+    // If the obstacle already has a name, we can use that index for the 
+    // new name now.
+    //
+    if ( our_obstacle -> name_index >= 0 )
+	free_index = our_obstacle -> name_index ;
+    else
+    {
+	//--------------------
+	// Else we must find a free index in the list of obstacle names for this level
+	//
+	for ( i = 0 ; i < MAX_OBSTACLE_NAMES_PER_LEVEL ; i ++ )
+	{
+	    if ( EditLevel -> obstacle_name_list [ i ] == NULL )
+	    {
+		free_index = i ;
+		break;
+	    }
+	}
+	if ( free_index < 0 ) return;
+    }
+    
+    //--------------------
+    // Maybe we must query the user for the desired new name.
+    // On the other hand, it might be that a name has been
+    // supplied as an argument.  That depends on whether the
+    // argument string is NULL or not.
+    //
+    if ( EditLevel -> obstacle_name_list [ free_index ] == NULL )
+	EditLevel -> obstacle_name_list [ free_index ] = "" ;
+    if ( predefined_name == NULL )
+    {
+	name = 
+	    GetEditableStringInPopupWindow ( 1000 , "\nPlease enter name for this obstacle: \n\n" ,
+					     EditLevel -> obstacle_name_list [ free_index ] );
+    }
+    else
+    {
+	name = EditLevel -> obstacle_name_list [ free_index ];
+    }
+    action_change_obstacle_label ( EditLevel, our_obstacle, name );
+    
+    //--------------------
+    // But even if we fill in something new, we should first
+    // check against double entries of the same label.  Let's
+    // do it...
+    //
+    for ( check_double = 0 ; check_double < MAX_OBSTACLE_NAMES_PER_LEVEL ; check_double++ )
+    {
+	//--------------------
+	// We must not use null pointers for string comparison...
+	//
+	if ( EditLevel -> obstacle_name_list [ check_double ] == NULL ) continue ;
+	
+	//--------------------
+	// We must not overwrite ourself with us in foolish ways :)
+	//
+	if ( check_double == free_index ) continue ;
+	
+	//--------------------
+	// But in case of real double-entries, we'll handle them right.
+	//
+	if ( ! strcmp ( EditLevel -> obstacle_name_list [ free_index ] , 
+			EditLevel -> obstacle_name_list [ check_double ] ) )
+	{
+	    ErrorMessage ( __FUNCTION__  , "\
+The label just entered did already exist on this map!  Deleting old entry in favour of the new one!",
+				       NO_NEED_TO_INFORM , IS_WARNING_ONLY );
+	    EditLevel -> obstacle_name_list [ free_index ] = NULL ;
+	    our_obstacle -> name_index = check_double ;
+	    break;
+	}
+    }
+}   
+
+void
+action_change_map_label ( Level EditLevel, int i, char *name)
+{
+    if (EditLevel -> labels [ i ] . pos . x != -1 ) {
+	int check_double;
+	if (name) {
+	    for ( check_double = 0 ; check_double < MAX_MAP_LABELS_PER_LEVEL ; check_double++ )
+		{
+		    if ( ! strcmp ( name , EditLevel -> labels [ check_double ] . label_name ) )
+			{
+			    ErrorMessage ( __FUNCTION__  , "\
+The label just entered did already exist on this map!  Deleting old entry in favour of the new one!",
+					   PLEASE_INFORM , IS_WARNING_ONLY );
+			    i = check_double ;
+			    break;
+			}
+		}
+	}
+	action_push (ACT_SET_MAP_LABEL, i, EditLevel -> labels [ i ] . label_name);
+    } else {
+	action_push (ACT_SET_MAP_LABEL, i, NULL);
+    }	     
+    if (name && strlen (name)) {
+	EditLevel -> labels [ i ] . label_name = name;
+	EditLevel -> labels [ i ] . pos . x = rintf( Me.pos.x - 0.5 );
+	EditLevel -> labels [ i ] . pos . y = rintf( Me.pos.y - 0.5 );
+    } else {
+	EditLevel -> labels [ i ] . label_name = "NoLabelHere" ;
+	EditLevel -> labels [ i ] . pos . x = (-1) ;
+	EditLevel -> labels [ i ] . pos . y = (-1) ;
+    }
+}
+void
+action_change_map_label_user (Level EditLevel)
+{
+    char* NewCommentOnThisSquare;
+    int i;
+    
+    while (PPressed());
+    SetCurrentFont( FPS_Display_BFont );
+    
+    //--------------------
+    // Now we see if a map label entry is existing already for this spot
+    //
+    for ( i = 0 ; i < MAX_MAP_LABELS_PER_LEVEL ; i ++ )
+    {
+	if ( ( fabsf ( EditLevel -> labels [ i ] . pos . x + 0.5 - Me.pos.x ) < 0.5 ) &&
+	     ( fabsf ( EditLevel -> labels [ i ] . pos . y + 0.5 - Me.pos.y ) < 0.5 ) ) 
+	{
+	    break;
+	}
+    }
+    if ( i >= MAX_MAP_LABELS_PER_LEVEL ) 
+    {
+	NewCommentOnThisSquare = 
+	    GetEditableStringInPopupWindow ( 1000 , "\nNo existing map label entry for this position found...\n Please enter new label for this map position: \n\n" ,
+					     "" );
+	
+	i=0;
+	for ( i = 0 ; i < MAX_MAP_LABELS_PER_LEVEL ; i ++ )
+	{
+	    if ( EditLevel -> labels [ i ] . pos . x == (-1) )
+		break;
+	}
+	if ( i >= MAX_MAP_LABELS_PER_LEVEL )
+	{
+	    DisplayText ( "\nNo more free map label entry found... using first on instead ...\n" , -1 , -1 , &User_Rect , 1.0 );
+	    i = 0;
+	}
+	else
+	{
+	    DisplayText ( "\nUsing new map label list entry...\n" , -1 , -1 , &User_Rect , 1.0 );
+	}
+	// Terminate( ERR );
+    }
+    else
+    {
+	NewCommentOnThisSquare = 
+	    GetEditableStringInPopupWindow ( 1000 , "\nOverwriting existing map label list entry...\n Please enter new label for this map position: \n\n" ,
+					     EditLevel -> labels [ i ] . label_name );
+    }
+    action_change_map_label ( EditLevel, i, NewCommentOnThisSquare);
+}
 /* ----------------------------------------------------------------------
  * Is this tile a 'full' grass tile, i.e. a grass tile with ABSOLUTELY
  * NO SAND on it?
@@ -1090,7 +1776,7 @@ move_obstacles_east_of ( float from_where , float by_what , Level edit_level )
       if ( ( edit_level -> obstacle_list [ i ] . pos . x >= from_where ) &&
 	   ( edit_level -> obstacle_list [ i ] . pos . x <= from_where - by_what ) )
 	{
-	  delete_obstacle ( edit_level , & ( edit_level -> obstacle_list [ i ] ) ) ;
+	  action_remove_obstacle ( edit_level , & ( edit_level -> obstacle_list [ i ] ) ) ;
 	  i -- ; 
 	  DebugPrintf ( 0 , "\nRemoved another obstacle in resizing operation." );
 	  continue;
@@ -1191,7 +1877,7 @@ move_obstacles_and_items_south_of ( float from_where , float by_what , Level edi
       if ( ( edit_level -> obstacle_list [ i ] . pos . y >= from_where ) &&
 	   ( edit_level -> obstacle_list [ i ] . pos . y <= from_where - by_what ) )
 	{
-	  delete_obstacle ( edit_level , & ( edit_level -> obstacle_list [ i ] ) ) ;
+	  action_remove_obstacle ( edit_level , & ( edit_level -> obstacle_list [ i ] ) ) ;
 	  i -- ;
 	  DebugPrintf ( 0 , "\nRemoved another obstacle in resizing operation." );
 	  continue;
@@ -2859,7 +3545,7 @@ delete_all_obstacles_in_area ( Level TargetLevel , float start_x , float start_y
 	if ( TargetLevel -> obstacle_list [ i ] . pos . y < start_y ) continue;
 	if ( TargetLevel -> obstacle_list [ i ] . pos . x > start_x + area_width ) continue;
 	if ( TargetLevel -> obstacle_list [ i ] . pos . y > start_y + area_height ) continue;
-	delete_obstacle ( TargetLevel , & ( TargetLevel -> obstacle_list [ i ] ) );
+	action_remove_obstacle ( TargetLevel , & ( TargetLevel -> obstacle_list [ i ] ) );
 	i--; // this is so that this obstacle will be processed AGAIN, since deleting might
 	// have moved a different obstacle to this list position.
     }
@@ -2943,7 +3629,7 @@ duplicate_all_obstacles_in_area ( Level source_level ,
 	if ( source_level -> obstacle_list [ i ] . pos . y > source_start_y + source_area_height ) continue;
 	
 	new_obstacle = 
-	    add_obstacle ( target_level , 
+	    action_create_obstacle ( target_level , 
 			   target_start_x  + source_level -> obstacle_list [ i ] . pos . x - source_start_x ,
 			   target_start_y  + source_level -> obstacle_list [ i ] . pos . y - source_start_y ,
 			   source_level -> obstacle_list [ i ] . type );
@@ -2955,7 +3641,7 @@ duplicate_all_obstacles_in_area ( Level source_level ,
 	//
 	if ( source_level -> obstacle_list [ i ] . name_index != (-1) )
 	{
-	    give_new_name_to_obstacle ( 
+	    action_change_obstacle_label_user ( 
 		target_level , new_obstacle , 
 		source_level -> obstacle_name_list [ source_level -> obstacle_list [ i ] . name_index ] );
 	    DebugPrintf ( 1 , "\nNOTE: void duplicate_all_obstacles_in_area(...):  obstacle name was exported:  %s." ,
@@ -2976,7 +3662,7 @@ duplicate_all_obstacles_in_area ( Level source_level ,
 			  source_level -> obstacle_description_list [ source_level -> obstacle_list [ i ] . description_index ] );
 	}
 	
-	//delete_obstacle ( source_level , & ( source_level -> obstacle_list [ i ] ) );
+	//action_remove_obstacle ( source_level , & ( source_level -> obstacle_list [ i ] ) );
 	// i--; // this is so that this obstacle will be processed AGAIN, since deleting might
 	// // have moved a different obstacle to this list position.
     }
@@ -3662,6 +4348,8 @@ Unable to load the level editor waypoint dot cursor.",
     
     steps = dist * 4;  // let's say 4 dots per square to mark the line, ok?
     
+    if (!steps) // Oh, noh, the points are at the same place
+	return ;
     for ( i = 0 ; i < steps+1 ; i ++ )
     {
         float x,y;
@@ -4031,7 +4719,7 @@ ToggleWaypoint ( Level EditLevel , int BlockX , int BlockY , int toggle_random_s
  *
  *
  * ---------------------------------------------------------------------- */
-void
+/*void
 ToggleWaypointConnection ( Level EditLevel , int BlockX , int BlockY )
 {
     int i;
@@ -4093,7 +4781,7 @@ ToggleWaypointConnection ( Level EditLevel , int BlockX , int BlockY )
     
     return;
     
-}; // void ToggleWaypointConnection
+    };*/ // void ToggleWaypointConnection
 
 /* ----------------------------------------------------------------------
  * With the 'M' key, you can edit the map labels.
@@ -4439,108 +5127,6 @@ show_level_editor_tooltips ( void )
  *
  *
  * ---------------------------------------------------------------------- */
-obstacle*
-add_obstacle ( Level EditLevel , float x , float y , int new_obstacle_type )
-{
-    int i;
-
-    for ( i = 0 ; i < MAX_OBSTACLES_ON_MAP ; i ++ )
-    {
-	if ( EditLevel -> obstacle_list [ i ] . type == (-1) )
-	{
-	    EditLevel -> obstacle_list [ i ] . type = new_obstacle_type ;
-	    EditLevel -> obstacle_list [ i ] . pos . x = x ;
-	    EditLevel -> obstacle_list [ i ] . pos . y = y ;
-	    glue_obstacles_to_floor_tiles_for_level ( EditLevel -> levelnum );
-	    DebugPrintf ( 0 , "\nNew obstacle has been added!!!" );
-	    fflush(stdout);
-	    return ( & ( EditLevel -> obstacle_list [ i ] ) ) ;
-	}
-    }
-    
-    ErrorMessage ( __FUNCTION__  , "\
-Ran out of obstacle positions in target level!",
-			       PLEASE_INFORM , IS_FATAL );
-    return ( NULL );
-
-}; // void add_obstacle ( Level EditLevel , float x , float y , int Highlight )
-
-/* ----------------------------------------------------------------------
- *
- *
- * ---------------------------------------------------------------------- */
-void
-delete_obstacle ( level* EditLevel , obstacle* our_obstacle )
-{
-    int i;
-    int obstacle_index = (-1) ;
-    
-    //--------------------
-    // The likely case that no obstacle was currently marked.
-    //
-    if ( our_obstacle == NULL ) return;
-    
-    //--------------------
-    // We need to find out the index of the obstacle in question,
-    // so that we can find out and eliminate any glue for this 
-    // obstacle.
-    //
-    for ( i = 0 ; i < MAX_OBSTACLES_ON_MAP ; i ++ )
-    {
-	if ( our_obstacle == & ( EditLevel -> obstacle_list [ i ] ) )
-	{
-	    obstacle_index = i ;
-	    break;
-	}
-    }
-    
-    //--------------------
-    // Maybe there is a severe bug somewhere in FreedroidRPG.  We catch
-    // this case as well...
-    //
-    if ( obstacle_index == (-1) )
-    {
-	ErrorMessage ( __FUNCTION__  , "\
-Unable to find the obstacle in question within the obstacle list!",
-				   PLEASE_INFORM , IS_FATAL );
-    }
-    
-    //--------------------
-    // And of course we must not forget to delete the obstalce itself
-    // as well, not only the glue...
-    //
-    our_obstacle -> type = ( -1 ) ;
-    
-    //--------------------
-    // Maybe filling out the gap isn't so desireable after all.  Might that cause
-    // problems with keeping track of the indices when obstacles are named?  Should
-    // we do away with this?  But then we also need to go over -1 entries in the
-    // loops coursing throught he whole list in other places...  So it will stay for
-    // now I guess...
-    //
-    memmove ( & ( EditLevel -> obstacle_list [ obstacle_index ] ) , 
-	      & ( EditLevel -> obstacle_list [ obstacle_index + 1 ] ) ,
-	      ( MAX_OBSTACLES_ON_MAP - obstacle_index - 2 ) * sizeof ( obstacle ) );
-    
-    //--------------------
-    // Now doing that must have shifted the glue!  That is a problem.  We need to
-    // reglue everything to the map...
-    //
-    glue_obstacles_to_floor_tiles_for_level ( EditLevel -> levelnum );
-    
-    //--------------------
-    // Now that we have disturbed the order of the obstacles on this level, we need
-    // to re-assemble the lists of pointers to obstacles, like the door list, the
-    // teleporter list and the refreshes list.
-    //
-    GetAllAnimatedMapTiles( EditLevel );
-    
-}; // void delete_obstacle ( obstacle* our_obstacle )
-
-/* ----------------------------------------------------------------------
- *
- *
- * ---------------------------------------------------------------------- */
 int
 marked_obstacle_is_glued_to_here ( Level EditLevel , float x , float y )
 {
@@ -4835,12 +5421,12 @@ level_editor_handle_left_mouse_button ( int proceed_now )
 	}
 	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_TOGGLE_WAYPOINT_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
 	{
-	    ToggleWaypoint ( EditLevel , BlockX, BlockY , FALSE );
+	    action_toggle_waypoint ( EditLevel , BlockX, BlockY , FALSE );
 	    while ( MouseLeftPressed() || SpacePressed() );
 	}
 	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_TOGGLE_CONNECTION_BLUE_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
 	{
-	    ToggleWaypointConnection ( EditLevel, BlockX, BlockY );
+	    action_toggle_waypoint_connection_user ( EditLevel, BlockX, BlockY );
 	    while ( MouseLeftPressed() );
 	}
 	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_BEAUTIFY_GRASS_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
@@ -4851,7 +5437,7 @@ level_editor_handle_left_mouse_button ( int proceed_now )
 	{
 	    if ( level_editor_marked_obstacle != NULL )
 	    {
-		delete_obstacle ( EditLevel , level_editor_marked_obstacle );
+		action_remove_obstacle_user ( EditLevel , level_editor_marked_obstacle );
 		level_editor_marked_obstacle = NULL ;
 		while ( SpacePressed() || MouseLeftPressed() ) SDL_Delay(1); 
 	    }
@@ -4862,13 +5448,13 @@ level_editor_handle_left_mouse_button ( int proceed_now )
 	}
 	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_RECURSIVE_FILL_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
 	{
-	    RecFillMap ( EditLevel , BlockY , BlockX , Highlight );
+	    action_fill_user ( EditLevel , BlockX , BlockY , Highlight );
 	}
 	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_NEW_OBSTACLE_LABEL_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
 	{
 	    if ( level_editor_marked_obstacle != NULL )
 	    {
-		give_new_name_to_obstacle ( EditLevel , level_editor_marked_obstacle , NULL );
+		action_change_obstacle_label_user ( EditLevel , level_editor_marked_obstacle , NULL );
 		while ( SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
 	    }
 	}
@@ -4882,7 +5468,7 @@ level_editor_handle_left_mouse_button ( int proceed_now )
 	}
 	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_NEW_MAP_LABEL_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
 	{
-	    EditMapLabelData ( EditLevel );
+	    action_change_map_label_user ( EditLevel );
 	}
 	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_NEW_ITEM_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
 	{
@@ -5389,6 +5975,14 @@ LevelEditor(void)
 	    // say to a given location, i.e. the location the map editor cursor
 	    // currently is on.
 	    //
+	    if ( UPressed () ) {
+		action_undo ( EditLevel );
+		while ( UPressed ( ) );
+	    }
+	    if ( RPressed () ) {
+		action_redo ( EditLevel );
+		while ( RPressed ( ) );
+	    }
 	    if ( SPressed () )
 	    {
 		while (SPressed());
@@ -5418,7 +6012,7 @@ LevelEditor(void)
 	    // With the 'L' key, you can edit the current map label.
 	    // The label will be assumed to be directly under the cursor.
 	    //
-	    if ( LPressed () ) EditMapLabelData ( EditLevel );
+	    if ( LPressed () ) action_change_map_label_user (EditLevel);
 	    
 	    //--------------------
 	    // The 'M' key will activate mouse-move-mode to allow for convenient
@@ -5513,7 +6107,7 @@ LevelEditor(void)
 	    
 	    if ( XPressed () )
 	    {
-		delete_obstacle ( EditLevel , level_editor_marked_obstacle );
+		action_remove_obstacle ( EditLevel , level_editor_marked_obstacle );
 		level_editor_marked_obstacle = NULL ;
 		while ( XPressed() );
 	    }
@@ -5525,7 +6119,7 @@ LevelEditor(void)
 	    {
 		if ( level_editor_marked_obstacle != NULL )
 		{
-		    give_new_name_to_obstacle ( EditLevel , level_editor_marked_obstacle , NULL );
+		    action_change_obstacle_label ( EditLevel , level_editor_marked_obstacle , NULL );
 		    while ( HPressed() );
 		}
 	    }
@@ -5543,7 +6137,7 @@ LevelEditor(void)
 	    //
 	    if ( WPressed( ) )
 	    {
-		ToggleWaypoint ( EditLevel , BlockX, BlockY , FALSE );
+		action_toggle_waypoint ( EditLevel , BlockX, BlockY , FALSE );
 		while ( WPressed() );
 	    }
 	    
@@ -5553,7 +6147,7 @@ LevelEditor(void)
 	    //
 	    if ( RPressed( ) )
 	    {
-		ToggleWaypoint ( EditLevel , BlockX, BlockY , TRUE );
+		action_toggle_waypoint ( EditLevel , BlockX, BlockY , TRUE );
 		while ( RPressed() );
 	    }
 	    
@@ -5565,7 +6159,7 @@ LevelEditor(void)
 	    //
 	    if (CPressed())
 	    {
-		ToggleWaypointConnection ( EditLevel, BlockX, BlockY );
+		action_toggle_waypoint_connection_user ( EditLevel, BlockX, BlockY );
 		while (CPressed());
 		fflush(stdout);
 	    }
@@ -5616,10 +6210,10 @@ LevelEditor(void)
 		{
 		    
 		    if ( GameConfig . level_editor_edit_mode == LEVEL_EDITOR_SELECTION_FLOOR )
-			EditLevel -> map [ (int)TargetSquare . y ] [ (int)TargetSquare . x ] . floor_value = Highlight ;
+			action_set_floor (EditLevel, TargetSquare . x, TargetSquare . y, Highlight );
 		    else 
 		    {
-			add_obstacle ( EditLevel , TargetSquare . x , TargetSquare . y , wall_indices [ GameConfig . level_editor_edit_mode ] [ Highlight ] );
+			action_create_obstacle_user ( EditLevel , TargetSquare . x , TargetSquare . y , wall_indices [ GameConfig . level_editor_edit_mode ] [ Highlight ] );
 		    }
 		}
 	    }
@@ -5660,6 +6254,7 @@ LevelEditor(void)
     level_editor_marked_obstacle = NULL ; 
     
     Activate_Conservative_Frame_Computation();
+    action_freestack ( ) ;
 
 }; // void LevelEditor ( void )
 

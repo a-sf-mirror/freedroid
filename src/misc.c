@@ -1842,7 +1842,7 @@ ExecuteEvent ( int EventNumber )
 	if ( AllTriggeredActions [ EventNumber ] . modify_obstacle_to_type )
 		our_obstacle -> type = AllTriggeredActions [ EventNumber ] . modify_obstacle_to_type ;
 	else {
-		delete_obstacle (  curShip . AllLevels [ obstacle_level_num ], our_obstacle);
+		action_remove_obstacle (  curShip . AllLevels [ obstacle_level_num ], our_obstacle);
 	     }
 
 	//--------------------
