@@ -585,7 +585,6 @@ obstacle *
 action_create_obstacle (Level EditLevel, double x, double y, int new_obstacle_type);
 obstacle *
 action_create_obstacle_user (Level EditLevel, double x, double y, int new_obstacle_type);
-void action_remove_obstacle ( Level EditLevel, obstacle *our_obstacle);
 void action_remove_obstacle_user ( Level EditLevel, obstacle *our_obstacle);
 void action_toggle_waypoint ( Level EditLevel , int BlockX , int BlockY , int toggle_random_spawn );
 int action_toggle_waypoint_connection ( Level EditLevel, int id_origin, int id_target);
@@ -6004,7 +6003,7 @@ LevelEditor(void)
 	    {
 		GameConfig . Automap_Visible = ! GameConfig . Automap_Visible ;
 		full_update_of_automap_texture ( );
-		while ( TabPressed() );
+		while ( TabPressed() ) SDL_Delay(1);
 	    }
 	    
 	    //--------------------
@@ -6015,7 +6014,7 @@ LevelEditor(void)
 		GameConfig . level_editor_edit_mode ++ ;
 		if ( GameConfig . level_editor_edit_mode >= NUMBER_OF_LEVEL_EDITOR_GROUPS )
 		    GameConfig . level_editor_edit_mode = LEVEL_EDITOR_SELECTION_FLOOR ;
-		while ( FPressed ( ) );
+		while ( FPressed ( ) ) SDL_Delay(1);
 		Highlight = 0 ;
 		FirstBlock = 0 ;
 	    }
@@ -6027,14 +6026,14 @@ LevelEditor(void)
 	    if ( OPressed () ) 
 	    {
 		GameConfig . zoom_is_on = !GameConfig . zoom_is_on ;
-		while ( OPressed() );
+		while ( OPressed() ) SDL_Delay(1);
 	    }
 	    
-	    if ( XPressed () )
+	    if ( level_editor_marked_obstacle && XPressed () )
 	    {
 		action_remove_obstacle_user ( EditLevel , level_editor_marked_obstacle );
 		level_editor_marked_obstacle = NULL ;
-		while ( XPressed() );
+		while ( XPressed() ) SDL_Delay(1);
 	    }
 	    
 	    //--------------------
@@ -6045,14 +6044,14 @@ LevelEditor(void)
 		if ( level_editor_marked_obstacle != NULL )
 		{
 		    action_change_obstacle_label ( EditLevel , level_editor_marked_obstacle , NULL );
-		    while ( HPressed() );
+		    while ( HPressed() ) SDL_Delay(1);
 		}
 	    }
 	    
 	    if ( NPressed() )
 	    {
 		cycle_marked_obstacle( EditLevel );		
-		while ( NPressed() );
+		while ( NPressed() ) SDL_Delay(1);
 	    }
 	    
 	    //--------------------
@@ -6063,7 +6062,7 @@ LevelEditor(void)
 	    if ( WPressed( ) )
 	    {
 		action_toggle_waypoint ( EditLevel , BlockX, BlockY , FALSE );
-		while ( WPressed() );
+		while ( WPressed() ) SDL_Delay(1);
 	    }
 	    
 	    //--------------------
@@ -6073,7 +6072,7 @@ LevelEditor(void)
 	    if ( RPressed( ) )
 	    {
 		action_toggle_waypoint ( EditLevel , BlockX, BlockY , TRUE );
-		while ( RPressed() );
+		while ( RPressed() ) SDL_Delay(1);
 	    }
 	    
 	    //--------------------
@@ -6085,7 +6084,7 @@ LevelEditor(void)
 	    if (CPressed())
 	    {
 		action_toggle_waypoint_connection_user ( EditLevel, BlockX, BlockY );
-		while (CPressed());
+		while (CPressed()) SDL_Delay(1);
 		fflush(stdout);
 	    }
 	    
@@ -6165,7 +6164,7 @@ LevelEditor(void)
 	    RightMousePressedPreviousFrame = MouseRightPressed() ;
 	    
 	}
-	while( EscapePressed() );
+	while( EscapePressed() ) SDL_Delay(1);
 	
 	//--------------------
 	// After Level editing is done and escape has been pressed, 
