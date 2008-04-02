@@ -65,8 +65,7 @@ Common factor for all droids energyloss values: 0.05
 Common factor for all droids acceleration values: 3.0
 Common factor for all droids experience_reward values: 0.8
 Common factor for all droids recovery time after hit: 1.0
-Common factor for all droids range of vision: 1.4
-Co**mmon factor for all droids range of vision: 0.2
+Common factor for all droids range of vision: 3
 
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
@@ -817,7 +816,7 @@ Rate of healing: 15.1
 Physical (base) damage an attack of this droid will do: 10.0
 Experience_Reward gained for destroying one of this type: 200
 Range of vision of this droid=2
-Time spent eyeing Tux=3
+Time spent eyeing Tux=2
 Minimal distance hostile bots are tolerated=6
 Drive of this droid : 2
 Brain of this droid : 2
@@ -850,7 +849,7 @@ Rate of healing: 15.1
 Physical (base) damage an attack of this droid will do: 10.0
 Experience_Reward gained for destroying one of this type: 200
 Range of vision of this droid=2
-Time spent eyeing Tux=3
+Time spent eyeing Tux=0.5
 Minimal distance hostile bots are tolerated=6
 Drive of this droid : 2
 Brain of this droid : 2
@@ -883,7 +882,7 @@ Rate of healing: 15.1
 Physical (base) damage an attack of this droid will do: 10.0
 Experience_Reward gained for destroying one of this type: 200
 Range of vision of this droid=2
-Time spent eyeing Tux=3
+Time spent eyeing Tux=2
 Minimal distance hostile bots are tolerated=6
 Drive of this droid : 2
 Brain of this droid : 2
@@ -949,7 +948,7 @@ Rate of healing: 15.1
 Physical (base) damage an attack of this droid will do: 10.0
 Experience_Reward gained for destroying one of this type: 200
 Range of vision of this droid=2
-Time spent eyeing Tux=3
+Time spent eyeing Tux=2
 Minimal distance hostile bots are tolerated=6
 Drive of this droid : 2
 Brain of this droid : 2
@@ -982,7 +981,7 @@ Rate of healing: 15.1
 Physical (base) damage an attack of this droid will do: 10.0
 Experience_Reward gained for destroying one of this type: 200
 Range of vision of this droid=2
-Time spent eyeing Tux=3
+Time spent eyeing Tux=0.5
 Minimal distance hostile bots are tolerated=6
 Drive of this droid : 2
 Brain of this droid : 2
@@ -1015,7 +1014,7 @@ Rate of healing: 15.1
 Physical (base) damage an attack of this droid will do: 10.0
 Experience_Reward gained for destroying one of this type: 200
 Range of vision of this droid=2
-Time spent eyeing Tux=3
+Time spent eyeing Tux=2
 Minimal distance hostile bots are tolerated=6
 Drive of this droid : 2
 Brain of this droid : 2
@@ -1049,7 +1048,7 @@ Rate of healing: 15.1
 Physical (base) damage an attack of this droid will do: 10.0
 Experience_Reward gained for destroying one of this type: 200
 Range of vision of this droid=2
-Time spent eyeing Tux=3
+Time spent eyeing Tux=1.5
 Minimal distance hostile bots are tolerated=6
 Drive of this droid : 2
 Brain of this droid : 2
@@ -1115,7 +1114,7 @@ Rate of healing: 15.1
 Physical (base) damage an attack of this droid will do: 10.0
 Experience_Reward gained for destroying one of this type: 200
 Range of vision of this droid=2
-Time spent eyeing Tux=3
+Time spent eyeing Tux=1
 Minimal distance hostile bots are tolerated=6
 Drive of this droid : 2
 Brain of this droid : 2
