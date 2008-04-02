@@ -531,7 +531,7 @@ DropItemAt( int ItemType , int level_num , float x , float y , int prefix , int 
     //--------------------
     // Some check against illegal item types
     //
-    if ( ( ItemType <= 0 ) || ( ItemType >= Number_Of_Item_Types ) )
+    if ( ( ItemType < 0 ) || ( ItemType >= Number_Of_Item_Types ) )
     {
 	DebugPrintf ( -1000 , "\n\nItemType received: %d." , ItemType );
 	ErrorMessage ( __FUNCTION__  , "\
