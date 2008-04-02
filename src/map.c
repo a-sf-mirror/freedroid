@@ -126,15 +126,14 @@ respawn_level ( int level_num )
 	{
 	if ( aerot -> pos  . z != level_num )
 	    continue;
+
 	if ( Druidmap[ aerot->type ] . is_human )
 	    continue;
 
 	/* Move the bot to the alive list */
 	list_move(&(aerot->global_list), &alive_bots_head);
 
-	/* Remove it from the level list it is in... */
-	list_del(&(aerot->level_list));
-	/* ... and reinsert it into the current level list "just to be sure" */
+	/* reinsert it into the current level list */
 	list_add(&(aerot->level_list), &level_bots_head[level_num]);
 	}
    
