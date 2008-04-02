@@ -2980,7 +2980,7 @@ BROWSE_ALIVE_BOTS_SAFE(erot, nerot)
 		continue;
 	    
 	    int damage = Me . base_damage + MyRandom ( Me . damage_modifier );
-	    hit_enemy ( erot, damage, 1 /*givexp*/, -1);
+	    hit_enemy ( erot, damage, 1 /*givexp*/, -1, 1);
 	    
 	    melee_weapon_hit_something = TRUE;
 	    

@@ -213,7 +213,9 @@ DoSkill(int skill_index, int SpellCost)
 		    goto done_handling_instant_hits;
 
 		if ( calculate_program_hit_damage ( skill_index ) )
-		    hit_enemy(droid_below_mouse_cursor, calculate_program_hit_damage ( skill_index ), 1, 0);
+		    hit_enemy(droid_below_mouse_cursor, calculate_program_hit_damage ( skill_index ), 1, -1, 1);
+		if ( ! strcmp ( SpellSkillMap [ skill_index ] . effect, "paralyze" ) )
+		    droid_below_mouse_cursor -> paralysation_duration_left += 10;
 	        Me . temperature += SpellCost;
 		break;
 	

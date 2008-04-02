@@ -425,7 +425,7 @@ MoveActiveSpells (void)
 		    if ( AllActiveSpells [ i ] . active_directions [ direction_index ] )
 			{
 			/* we hit the enemy. the owner is set to NULL because for now we assume it can only be the player.*/
-			hit_enemy(erot, AllActiveSpells [ i ] . damage * Frame_Time(), AllActiveSpells [ i ] . mine ? 1 : 0 /*givexp*/,  AllActiveSpells [ i ] . mine ? 0 : -1); 
+			hit_enemy(erot, AllActiveSpells [ i ] . damage * Frame_Time(), AllActiveSpells [ i ] . mine ? 1 : 0 /*givexp*/,  -1, AllActiveSpells [ i ] . mine ? 1 : 0); 
 			
 			erot->poison_duration_left += AllActiveSpells [ i ] . poison_duration;
 			erot->poison_damage_per_sec = AllActiveSpells [ i ] . damage;
@@ -552,7 +552,7 @@ handle_flash_effects ( bullet* CurBullet )
 	if ( IsVisible ( & erot->pos) &&
 		( ! Druidmap [ erot->type ] . flashimmune ) ) 
 	    {
-	    hit_enemy ( erot, CurBullet->damage, CurBullet->mine ? 1 : 0 /*givexp*/, CurBullet->owner );
+	    hit_enemy ( erot, CurBullet->damage, CurBullet->mine ? 1 : 0 /*givexp*/, CurBullet->owner, CurBullet->mine );
 	    }
 
 	}
@@ -709,7 +709,7 @@ check_bullet_enemy_collisions ( bullet* CurBullet , int num )
 	
 	if ( (xdist * xdist + ydist * ydist) < DRUIDHITDIST2 )
 	    {
-		    hit_enemy(ThisRobot, CurBullet->damage, (CurBullet->mine ? 1 : 0) /*givexp*/, CurBullet->owner);
+		    hit_enemy(ThisRobot, CurBullet->damage, (CurBullet->mine ? 1 : 0) /*givexp*/, CurBullet->owner, (CurBullet->mine ? 1 : 0));
 
 		    ThisRobot -> frozen += CurBullet -> freezing_level;
 
@@ -888,7 +888,7 @@ CheckBlastCollisions (int num)
 		( fabsf (erot->pos.y - CurBlast->pos.y ) < Blast_Radius ) )
 	    {
 	    /* we have no support for blast ownership yet, so we give no XP *and* don't know who killed the guy */
-	    hit_enemy(erot, CurBlast -> damage_per_second * Frame_Time (), 0, -1);
+	    hit_enemy(erot, CurBlast -> damage_per_second * Frame_Time (), 0, -1, 0);
 	    }
 
 	}

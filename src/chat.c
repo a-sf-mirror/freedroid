@@ -432,22 +432,21 @@ ExecuteChatExtra ( char* ExtraCommandString , Enemy ChatDroid )
     if ( ! strcmp ( ExtraCommandString , "BreakOffAndBecomeHostile" ) )
 	{
 	ChatDroid -> is_friendly = FALSE ;
-	ChatDroid -> combat_state = MAKE_ATTACK_RUN ;
+	ChatDroid -> combat_state = ATTACK ;
 	return 1;
 	}
     else if ( ! strcmp ( ExtraCommandString , "DropDead" ) )
 	{
-	hit_enemy(ChatDroid, ChatDroid->energy + 1, 0, -1);
+	hit_enemy(ChatDroid, ChatDroid->energy + 1, 0, -1, 0);
 	ChatDroid -> energy = 0;
 	return (1);
 	}
     else if ( ! strcmp ( ExtraCommandString , "EverybodyBecomesHostile" ) )
 	{
 	enemy *erot;
-BROWSE_ALIVE_BOTS(erot)	
+	BROWSE_ALIVE_BOTS(erot)	
 	    {
 	    erot -> is_friendly = FALSE ;
-	    erot->combat_state = MAKE_ATTACK_RUN ;
 	    }
 	SwitchBackgroundMusicTo(BIGFIGHT_BACKGROUND_MUSIC_SOUND);
 	}

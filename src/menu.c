@@ -1115,7 +1115,7 @@ Cheatmenu (void)
 		    BROWSE_ALIVE_BOTS_SAFE(erot, nerot)
 			{
 			if ( erot->pos.z == Me . pos . z )
-			    hit_enemy(erot, erot->energy + 1, 0, -1);
+			    hit_enemy(erot, erot->energy + 1, 0, -1, 0);
 			}
 
 		    printf_SDL (Screen, -1, -1, "All robots on this deck killed!\n");

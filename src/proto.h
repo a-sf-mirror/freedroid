@@ -541,6 +541,8 @@ EXTERN void show_button_tooltip ( char* tooltip_text );
 EXTERN void delete_obstacle ( level* EditLevel , obstacle* our_obstacle );
 EXTERN void ExportLevelInterface ( int level_num ) ;
 EXTERN void give_new_name_to_obstacle ( Level EditLevel , obstacle* our_obstacle , char* predefined_name );
+EXTERN void action_remove_obstacle ( Level EditLevel, obstacle *our_obstacle);
+
 
 // skills.c
 #undef EXTERN
@@ -791,7 +793,7 @@ EXTERN void start_gethit_animation_if_applicable ( enemy* ThisRobot ) ;
 EXTERN int find_free_bullet_index ( void ) ;
 EXTERN int IsActiveLevel ( int levelnum ) ;
 EXTERN void animate_enemy ( enemy * our_bot ) ;
-EXTERN void hit_enemy ( enemy * target, float hit, char givexp, int killertype);
+EXTERN void hit_enemy ( enemy * target, float hit, char givexp, short int killertype, char mine);
 EXTERN enemy * enemy_resolve_address ( short int enemy_number, enemy ** enemy_addr );
 EXTERN void enemy_set_reference ( short int * enemy_number, enemy ** enemy_addr, enemy * addr);
 EXTERN void enemy_generate_level_lists ();

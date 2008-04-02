@@ -538,22 +538,22 @@ typedef struct enemy_s
     short animation_type;           // walk-animation, attack-animation, gethit animation, death animation
     
     short nextwaypoint;		// the next waypoint target
-    short lastwaypoint;		// the waypoint from whence this robot just came
+    short lastwaypoint;		// the waypoint from whence this robot just came from
     short homewaypoint;		// the waypoint this robot started at
     short max_distance_to_home;	// how far this robot will go before returning to it's home waypoint
     
-    int combat_state;             // MOVE_ALONG_RANDOM_WAYPOINTS, BACK_OFF_AFTER_GETTING_HIT, MAKE_ATTACK_RUN, SEEK_BETTER_POSITION...
-    float state_timeout;          // when will this state automatically time out...
+    int combat_state;             // current state of the bot
+    float state_timeout;          // time spent in this state (used by "timeout" states such as STOP_AND_EYE_TUX only)
     
     float frozen;                 // is this droid currently frozen and for how long will it stay this way?
     float poison_duration_left;   // is this droid currently poisoned and for how long will it stay this way?
     float poison_damage_per_sec;  // is this droid currently poisoned and how much poison is at work?
     float paralysation_duration_left;  // is this droid currently paralyzed and for how long will it stay this way?
     float pure_wait;		// time till the droid will start to move again
-    float firewait;		// time this robot still takes until it's gun/weapon will be fully reloaded
+    float firewait;		// time this robot still takes until its weapon will be fully reloaded
     short ammo_left; 		  // ammunition left in the charger
     
-    char CompletelyFixed;          // set this flat to make the robot entirely immobile
+    char CompletelyFixed;          // set this flag to make the robot entirely immobile
     char follow_tux;               // does this robot try to follow tux via it's random movements? /*XXX*/
     char SpecialForce;             // This flag will exclude the droid from initial shuffling of droids
     short on_death_drop_item_code;  // drop a pre-determined item when dying?
@@ -569,7 +569,6 @@ typedef struct enemy_s
     char dialog_section_name[ MAX_LENGTH_FOR_DIALOG_SECTION_NAME ]; // This should indicate one of the many sections of the Freedroid.dialogues file
     char short_description_text[ MAX_LENGTH_OF_SHORT_DESCRIPTION_STRING ]; // This should indicate one of the many sections of the Freedroid.dialogues file
     char will_rush_tux;            // will this robot approach the Tux on sight and open communication?
-    char persuing_given_course;    // is this robot persuing a given course via PersueGivenCourse( EnemyNum )?
     short StayHowManyFramesBehind;  // how many frames shall this droid trott behind the influ when follwing his tail? /*XXX*/
     char has_greeted_influencer;   // has this robot issued his first-time-see-the-Tux message?
     float previous_angle;         // which angle has this robot been facing the frame before?
