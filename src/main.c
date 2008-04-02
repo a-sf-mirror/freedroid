@@ -69,6 +69,8 @@ DoAllMovementAndAnimations ( void )
     MoveActiveSpells (); // move moving spells currently active...
     
     MoveBullets ();
+
+    DoMeleeDamage();
   
 }; // void DoAllMovementAndAnimations ( void )
 

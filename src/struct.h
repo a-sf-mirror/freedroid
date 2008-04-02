@@ -489,8 +489,6 @@ typedef struct druidspec_s
     float maxspeed;
     float accel;
     
-    float physical_damage;        // the amount of physical (base) damage an attack of this bot will do
-    
     char flashimmune;		// is the droid immune to FLASH-bullets 
     short experience_reward;			// experience_reward for the elimination of one droid of this type 
     unsigned char brain;
@@ -779,6 +777,18 @@ typedef struct bullet_s
     float                      paralysation_duration;
 }
 bullet, *Bullet;
+
+typedef struct melee_shot_s  // this is a melee shot
+{
+    char attack_target_type; //type of attack
+    char mine; //is it mine?
+    short int bot_target_n; //which enemy has been targeted 
+    enemy * bot_target_addr; // which enemy has been targeted, address
+    short int to_hit; //chance to hit, percent
+    short int damage; 
+    short int owner;
+    char level;
+} melee_shot; 
 
 typedef struct blastspec_s
 {

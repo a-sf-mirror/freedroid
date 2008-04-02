@@ -14,6 +14,8 @@ int save_item(char *, item *);
  int read_item(char *, char *, item *);
 int save_finepoint(char *, finepoint *);
  int read_finepoint(char *, char *, finepoint *);
+int save_melee_shot(char *, melee_shot *);
+ int read_melee_shot(char *, char *, melee_shot *);
 int save_configuration_for_freedroid(char *, configuration_for_freedroid *);
  int read_configuration_for_freedroid(char *, char *, configuration_for_freedroid *);
 int save_gps(char *, gps *);

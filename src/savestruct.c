@@ -636,6 +636,43 @@ read_double(pos, "y",  &(target->y));
 return 0;
 }
 
+int save_melee_shot(char * tag, melee_shot * target)
+{
+fprintf(SaveGameFile, "<%s>\n",tag);
+save_char("attack_target_type", &(target->attack_target_type));
+save_char("mine", &(target->mine));
+save_int16_t("bot_target_n", &(target->bot_target_n));
+save_int16_t("to_hit", &(target->to_hit));
+save_int16_t("damage", &(target->damage));
+save_int16_t("owner", &(target->owner));
+save_char("level", &(target->level));
+fprintf(SaveGameFile, "</%s>\n", tag);
+return 0;
+}
+
+int read_melee_shot(char* buffer, char * tag, melee_shot * target)
+{
+
+		char search[strlen(tag) + 5];
+		sprintf(search, "<%s>", tag);
+	        char * pos = strstr(buffer, search);
+		if ( ! pos ) return 1;
+		pos += 1 + strlen(tag);
+		sprintf(search, "</%s>", tag);
+		char * epos = strstr(buffer, search);
+		if ( ! epos ) return 2;
+		*epos = 0;
+		read_char(pos, "attack_target_type",  &(target->attack_target_type));
+read_char(pos, "mine",  &(target->mine));
+read_int16_t(pos, "bot_target_n",  &(target->bot_target_n));
+read_int16_t(pos, "to_hit",  &(target->to_hit));
+read_int16_t(pos, "damage",  &(target->damage));
+read_int16_t(pos, "owner",  &(target->owner));
+read_char(pos, "level",  &(target->level));
+*epos = '>'; 
+return 0;
+}
+
 int save_configuration_for_freedroid(char * tag, configuration_for_freedroid * target)
 {
 fprintf(SaveGameFile, "<%s>\n",tag);

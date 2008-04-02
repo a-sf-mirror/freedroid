@@ -84,6 +84,91 @@ move_this_bullet_and_check_its_collisions ( int num )
 }; // void move_this_bullet_and_check_its_collisions ( CurBullet )
 
 /* ----------------------------------------------------------------------
+ * Whenever a new bullet is generated, we need to find a free index in 
+ * the array of bullets.  This function automates the process and 
+ * also is secure against too many bullets in the game (with a rather
+ * ungraceful exit, but that event shouldn't ever occur in a normal game.
+ * ---------------------------------------------------------------------- */
+int
+find_free_melee_shot_index ( void )
+{
+    int j;
+
+    for ( j = 0 ; j < MAX_MELEE_SHOTS ; j ++ )
+    {
+	if ( AllMeleeShots [ j ] . attack_target_type == ATTACK_TARGET_IS_NOTHING )
+	{
+	    return ( j ) ;
+	    break;
+	}
+    }
+    
+    ErrorMessage ( __FUNCTION__  , "\
+I seem to have run out of free melee shot entries." ,
+			       PLEASE_INFORM, IS_WARNING_ONLY );
+    
+    return ( 0 );
+    
+}; // void find_free_bullet_entry_pointer ( void )
+
+
+static void delete_melee_shot(melee_shot * t)
+{
+    memset(t, 0, sizeof(melee_shot));
+    t->attack_target_type = ATTACK_TARGET_IS_NOTHING;
+}
+
+/* ------------------------------------------------------------------
+ * This function applies melee damage of all attacks that have taken
+ * place in the previous cycle
+ * ----------------------------------------------------------------- */
+void DoMeleeDamage (void)
+{
+    int i;
+    melee_shot * CurMelS;
+
+    for ( CurMelS = AllMeleeShots, i = 0; i < MAX_MELEE_SHOTS; CurMelS++, i++)
+	{
+	if ( CurMelS -> attack_target_type == ATTACK_TARGET_IS_NOTHING )
+	    continue;
+
+	if ( CurMelS -> attack_target_type == ATTACK_TARGET_IS_ENEMY )
+	    { /* hit enemy*/
+	    enemy * tg = enemy_resolve_address(CurMelS -> bot_target_n, &CurMelS->bot_target_addr);
+	    if ( ! tg )
+		{
+		ErrorMessage(__FUNCTION__, "Melee shot was set to ATTACK_TARGET_IS_ENEMY but had no targetted enemy. Deleting.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
+		delete_melee_shot(CurMelS);
+		continue;
+		}
+	    else {
+		fprintf(stderr, "Hitting %#x\n", tg);
+	    }	
+
+	    if ( ((float) Druidmap [ tg -> type ] . monster_level * (float)MyRandom ( 100 ) < CurMelS->to_hit ))
+		{
+		hit_enemy(tg, CurMelS->damage, CurMelS->mine ? 1 : 0, CurMelS->owner, CurMelS->mine ? 1 : 0);
+		}
+	    }
+	else if ( CurMelS -> attack_target_type == ATTACK_TARGET_IS_PLAYER )
+	    { /* hit player */
+	    if ( MyRandom ( 100 ) <= Me . lv_1_bot_will_hit_percentage * CurMelS->level)
+		{
+		Me . energy -= CurMelS -> damage;
+		if ( MyRandom ( 100 ) <= 20 ) tux_scream_sound ( );
+		}
+	    }
+	delete_melee_shot(CurMelS);
+	}
+}
+
+
+
+
+	
+
+	
+/* ----------------------------------------------------------------------
  * This function moves all the bullets according to their speeds and the
  * current frame rate of course.
  * ---------------------------------------------------------------------- */
@@ -473,37 +558,35 @@ clear_active_spells ( void )
 }; // void clear_active_spells ( void )
 
 /* ----------------------------------------------------------------------
- * When an enemy is his, this causes some blood to be sprayed on the floor.
- * The blood is just an obstacle (several types of blood exist) with 
- * preput flag set, so that the Tux and everyone can really step *on* the
- * blood.
- *
- * Blood will always be sprayed, but there is a toggle available for making
- * the blood visible/invisible for more a children-friendly version of the
- * game.
- *
- * This function does the blood spraying (adding of these obstacles).
+ * Whenever a new bullet is generated, we need to find a free index in 
+ * the array of bullets.  This function automates the process and 
+ * also is secure against too many bullets in the game (with a rather
+ * ungraceful exit, but that event shouldn't ever occur in a normal game.
  * ---------------------------------------------------------------------- */
-void
-enemy_spray_blood ( Enemy CurEnemy ) 
+int
+find_free_bullet_index ( void )
 {
-  moderately_finepoint target_pos = { 1.0 , 0 } ;
+    int j;
 
-  DebugPrintf ( 1 , "\nBlood has been sprayed...%d", CurEnemy -> type );
-
-  RotateVectorByAngle ( & target_pos , MyRandom ( 360 ) );
-
-  target_pos . x += CurEnemy -> virt_pos . x ;
-  target_pos . y += CurEnemy -> virt_pos . y ;
-
-  
-  if ( Druidmap [ CurEnemy -> type ] . is_human )
-	  create_new_obstacle_on_level ( curShip . AllLevels [ CurEnemy -> pos . z ] , ISO_BLOOD_1 + MyRandom ( 7 ) , target_pos . x , target_pos . y );
-  else  
-	  create_new_obstacle_on_level ( curShip . AllLevels [ CurEnemy -> pos . z ] , ISO_OIL_STAINS_1 + MyRandom ( 7 ) , target_pos . x , target_pos . y );
-
-  
-}; // void enemy_spray_blood ( Enemy CurEnemy ) 
+    for ( j = 0 ; j < MAXBULLETS ; j ++ )
+    {
+	if ( AllBullets [ j ] . type == INFOUT )
+	{
+	    return ( j ) ;
+	    break;
+	}
+    }
+    
+    //--------------------
+    // If this point is ever reached, there's a severe bug in here...
+    //
+    ErrorMessage ( __FUNCTION__  , "\
+I seem to have run out of free bullet entries.  This can't normally happen.  --> some bug in here, oh no..." ,
+			       PLEASE_INFORM, IS_FATAL );
+    
+    return ( -1 ) ; // can't happen.  just to make compilers happy (no warnings)
+    
+}; // void find_free_bullet_entry_pointer ( void )
 
 /* ----------------------------------------------------------------------
  * Bullet collision checks and effect handling for 'flash' bullets is 
@@ -544,9 +627,8 @@ handle_flash_effects ( bullet* CurBullet )
     
 
     enemy *erot, *nerot;
-    BROWSE_ALIVE_BOTS_SAFE(erot, nerot)
+    BROWSE_LEVEL_BOTS_SAFE(erot, nerot, CurBullet->pos.z)
 	{
-	if ( erot->pos . z != CurBullet -> pos . z ) continue ;
 	if ( erot->type == (-1) ) continue ;
 
 	if ( IsVisible ( & erot->pos) &&

@@ -109,6 +109,7 @@ EXTERN ship curShip;		/* the current ship-data */
 
 
 EXTERN bullet AllBullets[MAXBULLETS + 10];
+EXTERN melee_shot AllMeleeShots[MAX_MELEE_SHOTS];
 EXTERN blast AllBlasts[MAXBLASTS + 10];
 EXTERN int KeyCode;
 

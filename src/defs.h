@@ -669,6 +669,7 @@ enum
 
 #define ALLBLASTTYPES		3	/* number of different exposions */
 
+#define MAX_MELEE_SHOTS		100
 #define MAXBULLETS		100	/* maximum possible Bullets in the air */
 #define MAXBLASTS		100	/* max. possible Blasts visible */
 #define AGGRESSIONMAX  		100

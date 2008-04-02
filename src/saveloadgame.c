@@ -313,6 +313,15 @@ or file permissions of ~/.freedroid_rpg are somehow not right.",
 	sprintf(str, "blt%d", i);
 	save_bullet(str, &AllBullets[i]);
 	}
+
+    /* Save melee shots */
+    for ( i = 0; i < MAX_MELEE_SHOTS; i ++)
+	{
+	char str[20];
+	sprintf(str, "ml%d", i);
+	save_melee_shot(str, &AllMeleeShots[i]);
+	}
+	   
     
     fprintf ( SaveGameFile, "End of freedroidRPG savefile\n");
     fclose( SaveGameFile );
