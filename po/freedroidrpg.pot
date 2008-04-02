@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: freedroid-discussion@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-04-02 09:12+0200\n"
+"POT-Creation-Date: 2008-04-02 21:32+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -820,12 +820,12 @@ msgstr ""
 msgid "This obstacle seems solid."
 msgstr ""
 
-#: ../src/bullet.c:566
+#: ../src/bullet.c:648
 #, c-format
 msgid "Disruptor blast has hit you for %d damage."
 msgstr ""
 
-#: ../src/bullet.c:619
+#: ../src/bullet.c:701
 msgid "That one went into the armour."
 msgstr ""
 
@@ -849,77 +849,81 @@ msgstr ""
 msgid "What will you say?"
 msgstr ""
 
-#: ../src/enemy.c:949
+#: ../src/enemy.c:983
 #, c-format
 msgid "Your friend %s was killed by %s."
 msgstr ""
 
-#: ../src/enemy.c:951
+#: ../src/enemy.c:985
 #, c-format
 msgid "You killed %s."
 msgstr ""
 
-#: ../src/enemy.c:953
+#: ../src/enemy.c:987
 #, c-format
 msgid "%s is dead."
 msgstr ""
 
-#: ../src/enemy.c:958
+#: ../src/enemy.c:992
 #, c-format
 msgid "For defeating %s, you receive %d experience."
 msgstr ""
 
-#: ../src/enemy.c:961
+#: ../src/enemy.c:995
 #, c-format
 msgid "%s was killed by %s."
 msgstr ""
 
-#: ../src/enemy.c:962
+#: ../src/enemy.c:996
 #, c-format
 msgid "%s died."
 msgstr ""
 
-#: ../src/enemy.c:1128
+#: ../src/enemy.c:1165
 msgid "state:  Wandering along waypoints."
 msgstr ""
 
-#: ../src/enemy.c:1131
+#: ../src/enemy.c:1168
 msgid "state: Select next WP."
 msgstr ""
 
-#: ../src/enemy.c:1134
+#: ../src/enemy.c:1171
 msgid "state:  Turn towards next WP."
 msgstr ""
 
-#: ../src/enemy.c:1137
+#: ../src/enemy.c:1174
 msgid "state:  Rush Tux and open talk."
 msgstr ""
 
-#: ../src/enemy.c:1140
-msgid "state:  Stop and eye Tux."
+#: ../src/enemy.c:1177
+msgid "state:  Stop and eye target."
 msgstr ""
 
-#: ../src/enemy.c:1143
+#: ../src/enemy.c:1180
 msgid "state:  Attack."
 msgstr ""
 
-#: ../src/enemy.c:1146
-msgid "state:  Fight on Tux side."
-msgstr ""
-
-#: ../src/enemy.c:1149
+#: ../src/enemy.c:1183
 msgid "state:  Returning home."
 msgstr ""
 
-#: ../src/enemy.c:1152
+#: ../src/enemy.c:1186
 msgid "state:  Waypointless wandering."
 msgstr ""
 
-#: ../src/enemy.c:1155
+#: ../src/enemy.c:1189
 msgid "state:  Waypointless turning."
 msgstr ""
 
-#: ../src/enemy.c:1158
+#: ../src/enemy.c:1192
+msgid "state:  Paralyzed."
+msgstr ""
+
+#: ../src/enemy.c:1195
+msgid "state: Follow Tux."
+msgstr ""
+
+#: ../src/enemy.c:1198
 msgid "state:  UNHANDLED!!"
 msgstr ""
 
@@ -1315,41 +1319,41 @@ msgstr ""
 msgid "Looting failed:  unable to reach loot target."
 msgstr ""
 
-#: ../src/influ.c:3104
+#: ../src/influ.c:3102
 msgid "No more ammunition !"
 msgstr ""
 
-#: ../src/influ.c:3553
+#: ../src/influ.c:3551
 #, c-format
 msgid "This is a %s. %s"
 msgstr ""
 
-#: ../src/influ.c:3578 ../src/influ.c:3585
+#: ../src/influ.c:3576 ../src/influ.c:3583
 #, c-format
 msgid "Examining %s.  %s"
 msgstr ""
 
-#: ../src/influ.c:3600
+#: ../src/influ.c:3598
 #, c-format
 msgid "You see the floor.  It should be perfectly safe to walk on it."
 msgstr ""
 
-#: ../src/influ.c:3631
+#: ../src/influ.c:3629
 #, c-format
 msgid "Unlocking obstacle of type %d."
 msgstr ""
 
-#: ../src/influ.c:3660
+#: ../src/influ.c:3658
 #, c-format
 msgid "Repairing obstacle of type %d."
 msgstr ""
 
-#: ../src/influ.c:3689
+#: ../src/influ.c:3687
 #, c-format
 msgid "Attacking obstacle of type %d."
 msgstr ""
 
-#: ../src/influ.c:3718
+#: ../src/influ.c:3716
 #, c-format
 msgid "Picking pockets of obstacle of type %d."
 msgstr ""
@@ -1520,33 +1524,33 @@ msgstr ""
 msgid "The armor hides his body."
 msgstr ""
 
-#: ../src/init.c:1972
+#: ../src/init.c:1963
 msgid "Huh? What?  Where am I?"
 msgstr ""
 
-#: ../src/init.c:2034
+#: ../src/init.c:2025
 msgid ""
 "Linux Kernel booted.  001 transfer-tech modules loaded.  System up and "
 "running."
 msgstr ""
 
-#: ../src/init.c:2087
+#: ../src/init.c:2078
 msgid "Updating Tux images"
 msgstr ""
 
-#: ../src/init.c:2088
+#: ../src/init.c:2079
 msgid "(this may take a little while...)"
 msgstr ""
 
-#: ../src/init.c:2091
+#: ../src/init.c:2082
 msgid "Starting new game."
 msgstr ""
 
-#: ../src/init.c:2408
+#: ../src/init.c:2399
 msgid "Game over.\n"
 msgstr ""
 
-#: ../src/init.c:2502
+#: ../src/init.c:2493
 msgid "Game won.\n"
 msgstr ""
 
@@ -1630,43 +1634,43 @@ msgstr ""
 msgid "I can't carry any more."
 msgstr ""
 
-#: ../src/leveleditor.c:2066
+#: ../src/leveleditor.c:2186
 msgid "Cancel item drop"
 msgstr ""
 
-#: ../src/leveleditor.c:2360
+#: ../src/leveleditor.c:2486
 msgid "FLOOR"
 msgstr ""
 
-#: ../src/leveleditor.c:2361
+#: ../src/leveleditor.c:2487
 msgid "WALLS"
 msgstr ""
 
-#: ../src/leveleditor.c:2362
+#: ../src/leveleditor.c:2488
 msgid "MACHINERY"
 msgstr ""
 
-#: ../src/leveleditor.c:2363
+#: ../src/leveleditor.c:2489
 msgid "FURNITURE"
 msgstr ""
 
-#: ../src/leveleditor.c:2364
+#: ../src/leveleditor.c:2490
 msgid "CONTAINERS"
 msgstr ""
 
-#: ../src/leveleditor.c:2365
+#: ../src/leveleditor.c:2491
 msgid "NATURE"
 msgstr ""
 
-#: ../src/leveleditor.c:2366
+#: ../src/leveleditor.c:2492
 msgid "ALL"
 msgstr ""
 
-#: ../src/leveleditor.c:2367
+#: ../src/leveleditor.c:2493
 msgid "QUICK"
 msgstr ""
 
-#: ../src/leveleditor.c:4236
+#: ../src/leveleditor.c:4365
 #, c-format
 msgid ""
 "\n"
@@ -1674,31 +1678,31 @@ msgid ""
 " label_name=\"%s\"."
 msgstr ""
 
-#: ../src/leveleditor.c:4980
+#: ../src/leveleditor.c:4854
 msgid ""
 "Use this button to move one level north, i.e. to the level that is glued to "
 "the northern side of this level."
 msgstr ""
 
-#: ../src/leveleditor.c:4985
+#: ../src/leveleditor.c:4859
 msgid ""
 "Use this button to move one level south, i.e. to the level that is glued to "
 "the southern side of this level."
 msgstr ""
 
-#: ../src/leveleditor.c:4990
+#: ../src/leveleditor.c:4864
 msgid ""
 "Use this button to move one level east, i.e. to the level that is glued to "
 "the eastern side of this level."
 msgstr ""
 
-#: ../src/leveleditor.c:4995
+#: ../src/leveleditor.c:4869
 msgid ""
 "Use this button to move one level west, i.e. to the level that is glued to "
 "the western side of this level."
 msgstr ""
 
-#: ../src/leveleditor.c:5000
+#: ../src/leveleditor.c:4874
 msgid ""
 "In FreedroidRPG maps can be glued together to form one big map.  But that "
 "requires that the maps are identical where they overlap.  This button will "
@@ -1706,13 +1710,13 @@ msgid ""
 "that the maps are in sync again."
 msgstr ""
 
-#: ../src/leveleditor.c:5005
+#: ../src/leveleditor.c:4879
 msgid ""
 "This button will save your current ship over the file '../map/Asteroid.maps' "
 "from your current working directory."
 msgstr ""
 
-#: ../src/leveleditor.c:5010
+#: ../src/leveleditor.c:4884
 msgid ""
 "\n"
 "Use this button to toggle waypoints on the current cursor location.  "
@@ -1721,7 +1725,7 @@ msgid ""
 "You can also use the W key for this."
 msgstr ""
 
-#: ../src/leveleditor.c:5017
+#: ../src/leveleditor.c:4891
 msgid ""
 "\n"
 "Use this button to start a connection between waypoints, so that droids can "
@@ -1730,7 +1734,7 @@ msgid ""
 "You can also use the C key for this."
 msgstr ""
 
-#: ../src/leveleditor.c:5019
+#: ../src/leveleditor.c:4893
 msgid ""
 "\n"
 "You have currently a connection attempt going on already.  Go to the desired "
@@ -1739,7 +1743,7 @@ msgid ""
 "You can also use the C key for this."
 msgstr ""
 
-#: ../src/leveleditor.c:5025
+#: ../src/leveleditor.c:4899
 msgid ""
 "\n"
 "Use this button to delete the currently marked obstacle.\n"
@@ -1747,15 +1751,15 @@ msgid ""
 "You can also use the X key for this."
 msgstr ""
 
-#: ../src/leveleditor.c:5030
+#: ../src/leveleditor.c:4904
 msgid ""
 "\n"
-"Use this button to cycle the currently marked obstacle.\n"
+"Use this button to cycle the currently marked obstacle on this tile.\n"
 "\n"
 "You can also use the N key for this."
 msgstr ""
 
-#: ../src/leveleditor.c:5035
+#: ../src/leveleditor.c:4909
 msgid ""
 "\n"
 "Use this button to 'beautify' rough edges of the grass-sand tiles on this "
@@ -1765,7 +1769,7 @@ msgid ""
 "You can also use Ctrl-B for this."
 msgstr ""
 
-#: ../src/leveleditor.c:5040
+#: ../src/leveleditor.c:4914
 msgid ""
 "\n"
 "Use this button to zoom INTO or OUT of the level.\n"
@@ -1773,59 +1777,59 @@ msgid ""
 "You can also use the hotkey 'O' for this."
 msgstr ""
 
-#: ../src/leveleditor.c:5045
+#: ../src/leveleditor.c:4919
 msgid ""
 "Use this button to fill a certain area of the map with the currently "
 "selected map tile.  Filling will proceed from the cursor in all direction "
 "until a change of map tile is encountered."
 msgstr ""
 
-#: ../src/leveleditor.c:5050
+#: ../src/leveleditor.c:4924
 msgid ""
 "Use this button to attach a label to the currently marked obstacle.  These "
 "obstacle labels can be used to define obstacles to be modified by events.\n"
 " Note that you can also use the hotkey 'h' for this."
 msgstr ""
 
-#: ../src/leveleditor.c:5055
+#: ../src/leveleditor.c:4929
 msgid ""
 "Use this button to attach a new map label to the current cursor position.  "
 "These map labels can be used to define starting points for bots and "
 "characters or also to define locations for events and triggers."
 msgstr ""
 
-#: ../src/leveleditor.c:5060
+#: ../src/leveleditor.c:4934
 msgid ""
 "Use this button to drop a new item to the floor.  You can also use the "
 "hotkey 'G' for this."
 msgstr ""
 
-#: ../src/leveleditor.c:5065
+#: ../src/leveleditor.c:4939
 msgid ""
 "Use this button to enter the main menu of the level editor.\n"
 " Note, that you can also use the Escape key to enter the level editor main "
 "menu."
 msgstr ""
 
-#: ../src/leveleditor.c:5070
+#: ../src/leveleditor.c:4944
 msgid ""
 "Use this button to enter the level resize menu.  Levels can be resized in "
 "various ways so as not to destroy your current map too much and so as to "
 "insert the new space where you would best like it to be."
 msgstr ""
 
-#: ../src/leveleditor.c:5075
+#: ../src/leveleditor.c:4949
 msgid "Use this button to enter the level editor keymap display."
 msgstr ""
 
-#: ../src/leveleditor.c:5080
+#: ../src/leveleditor.c:4954
 msgid ""
 "Use this button to quit the level editor and back to continue the normal "
 "game in normal mode.  Useful for e.g. putting objects into boxes.  You can "
 "always re-enter the level editor."
 msgstr ""
 
-#: ../src/leveleditor.c:5085
+#: ../src/leveleditor.c:4959
 msgid ""
 "Use this button to toggle underground lighting, i.e. shadows coming from the "
 "light that the tux emanates.  \n"
@@ -1833,117 +1837,117 @@ msgid ""
 "There isn't any key to toggle this on the keyboard."
 msgstr ""
 
-#: ../src/leveleditor.c:5091
+#: ../src/leveleditor.c:4965
 msgid ""
 "Use this button to toggle between enemies displayed in level editor or "
 "enemies hidden in level editor."
 msgstr ""
 
-#: ../src/leveleditor.c:5097
+#: ../src/leveleditor.c:4971
 msgid ""
 "Use this button to toggle between obstacles displayed in level editor or "
 "obstacles hidden in level editor."
 msgstr ""
 
-#: ../src/leveleditor.c:5103
+#: ../src/leveleditor.c:4977
 msgid "Use this button to undo your last actions."
 msgstr ""
 
-#: ../src/leveleditor.c:5109
+#: ../src/leveleditor.c:4983
 msgid "Use this button to redo an action."
 msgstr ""
 
-#: ../src/leveleditor.c:5115
+#: ../src/leveleditor.c:4989
 msgid ""
 "Use this button to toggle between Tux displayed in level editor or Tux "
 "hidden in level editor."
 msgstr ""
 
-#: ../src/leveleditor.c:5121
+#: ../src/leveleditor.c:4995
 msgid "Use this button to toggle these annoying help windows on and off."
 msgstr ""
 
-#: ../src/leveleditor.c:5127
+#: ../src/leveleditor.c:5001
 msgid "Use this button to toggle the visible collision rectangles on and off."
 msgstr ""
 
-#: ../src/leveleditor.c:5863
+#: ../src/leveleditor.c:5737
 #, c-format
 msgid " Source waypoint selected : NONE"
 msgstr ""
 
-#: ../src/leveleditor.c:5867
+#: ../src/leveleditor.c:5741
 #, c-format
 msgid " Source waypoint selected : X=%d Y=%d. "
 msgstr ""
 
-#: ../src/main.c:390
+#: ../src/main.c:391
 msgid "Overheating!"
 msgstr ""
 
-#: ../src/main.c:407
+#: ../src/main.c:408
 msgid "Weapon reloaded"
 msgstr ""
 
-#: ../src/map.c:3001
+#: ../src/map.c:3000
 msgid "Acolyte"
 msgstr ""
 
-#: ../src/map.c:3002
+#: ../src/map.c:3001
 msgid "Templar"
 msgstr ""
 
-#: ../src/map.c:3003
+#: ../src/map.c:3002
 msgid "Banshee"
 msgstr ""
 
-#: ../src/map.c:3004
+#: ../src/map.c:3003
 msgid "Chicago"
 msgstr ""
 
-#: ../src/map.c:3005
+#: ../src/map.c:3004
 msgid "Sawmill"
 msgstr ""
 
-#: ../src/map.c:3006
+#: ../src/map.c:3005
 msgid "Nemesis"
 msgstr ""
 
-#: ../src/map.c:3007
+#: ../src/map.c:3006
 msgid "Sparkie"
 msgstr ""
 
-#: ../src/map.c:3008 ../src/map.c:3013 ../src/map.c:3014 ../src/map.c:3015
-#: ../src/map.c:3017 ../src/map.c:3019 ../src/map.c:3020 ../src/map.c:3021
-#: ../src/map.c:3022
+#: ../src/map.c:3007 ../src/map.c:3012 ../src/map.c:3013 ../src/map.c:3014
+#: ../src/map.c:3016 ../src/map.c:3018 ../src/map.c:3019 ../src/map.c:3020
+#: ../src/map.c:3021
 msgid "NaN"
 msgstr ""
 
-#: ../src/map.c:3009
+#: ../src/map.c:3008
 msgid "Coward"
 msgstr ""
 
-#: ../src/map.c:3010
+#: ../src/map.c:3009
 msgid "Spinster"
 msgstr ""
 
-#: ../src/map.c:3011
+#: ../src/map.c:3010
 msgid "Ghoul"
 msgstr ""
 
-#: ../src/map.c:3012
+#: ../src/map.c:3011
 msgid "Apollo"
 msgstr ""
 
-#: ../src/map.c:3016
+#: ../src/map.c:3015
 msgid "If"
 msgstr ""
 
-#: ../src/map.c:3018
+#: ../src/map.c:3017
 msgid "Soviet"
 msgstr ""
 
-#: ../src/map.c:3023
+#: ../src/map.c:3022
 msgid "No Description For This One"
 msgstr ""
 
@@ -2403,25 +2407,25 @@ msgstr ""
 msgid "No notes yet."
 msgstr ""
 
-#: ../src/saveloadgame.c:326
+#: ../src/saveloadgame.c:335
 msgid "Game saved."
 msgstr ""
 
-#: ../src/saveloadgame.c:397
+#: ../src/saveloadgame.c:406
 msgid "Failed to load old game."
 msgstr ""
 
-#: ../src/saveloadgame.c:494
+#: ../src/saveloadgame.c:503
 msgid ""
 "Version or structsize mismatch! The savegame is not from the same version of "
 "freedroidRPG... possible breakage.\n"
 msgstr ""
 
-#: ../src/saveloadgame.c:531
+#: ../src/saveloadgame.c:540
 msgid "Updating Tux images (this may take a little while...)"
 msgstr ""
 
-#: ../src/saveloadgame.c:543
+#: ../src/saveloadgame.c:552
 msgid "Game loaded."
 msgstr ""
 
@@ -2663,12 +2667,12 @@ msgstr ""
 msgid " YOU DONT HAVE ANYTHING THAT WOULD NEED REPAIR "
 msgstr ""
 
-#: ../src/skills.c:718
+#: ../src/skills.c:720
 #, c-format
 msgid "Program revision: %d "
 msgstr ""
 
-#: ../src/skills.c:721
+#: ../src/skills.c:723
 #, c-format
 msgid "Heat produced: %d "
 msgstr ""
