@@ -67,6 +67,15 @@ int BlockY ;
 Level EditLevel;
 int main_menu_requested;
 
+struct quickbar_entry {
+    struct list_head node;
+    int id;
+    int obstacle_type;
+    int used;
+};
+
+LIST_HEAD (quickbar_entries);
+
 int wall_indices [ NUMBER_OF_LEVEL_EDITOR_GROUPS ] [ NUMBER_OF_OBSTACLE_TYPES ] = 
 {
     //--------------------
@@ -586,6 +595,7 @@ action_create_obstacle (Level EditLevel, double x, double y, int new_obstacle_ty
 obstacle *
 action_create_obstacle_user (Level EditLevel, double x, double y, int new_obstacle_type);
 void action_remove_obstacle_user ( Level EditLevel, obstacle *our_obstacle);
+void action_remove_obstacle ( Level EditLevel, obstacle *our_obstacle);
 void action_toggle_waypoint ( Level EditLevel , int BlockX , int BlockY , int toggle_random_spawn );
 int action_toggle_waypoint_connection ( Level EditLevel, int id_origin, int id_target);
 void action_toggle_waypoint_connection_user ( Level EditLevel , int BlockX , int BlockY );
@@ -765,6 +775,7 @@ action_create_obstacle (Level EditLevel, double x, double y, int new_obstacle_ty
 	    EditLevel -> obstacle_list [ i ] . type = new_obstacle_type ;
 	    EditLevel -> obstacle_list [ i ] . pos . x = x ;
 	    EditLevel -> obstacle_list [ i ] . pos . y = y ;
+	    EditLevel -> obstacle_list [ i] . name_index = (-1) ;
 	    glue_obstacles_to_floor_tiles_for_level ( EditLevel -> levelnum );
 	    DebugPrintf ( 0 , "\nNew obstacle has been added!!!" );
 	    fflush(stdout);
@@ -1214,6 +1225,102 @@ action_change_map_label_user (Level EditLevel)
     }
     action_change_map_label ( EditLevel, i, NewCommentOnThisSquare);
 }
+
+/* ------------------
+ * Quickbar functions
+ * ------------------
+ */
+struct quickbar_entry *
+quickbar_getentry ( int id )
+{
+    int i = 0;
+    struct list_head *node;
+    list_for_each (node, &quickbar_entries) {
+	if (id == i) {
+	    struct quickbar_entry *entry = list_entry (node, struct quickbar_entry, node);
+	    return entry;
+	}
+	i ++;
+    }
+    return NULL;
+}
+
+iso_image *
+quickbar_getimage ( int id ) 
+{
+    struct quickbar_entry *entry = quickbar_getentry ( id );
+    if (!entry) 
+	return NULL;
+    if (entry->obstacle_type != -1)
+	return &obstacle_map [wall_indices [ entry -> obstacle_type ] [ entry->id ] ] . image;
+    return &floor_iso_images  [ entry->id ];
+}
+
+void
+quickbar_additem (struct quickbar_entry *entry)
+{
+    struct quickbar_entry *tmp1, *tmp2;
+    struct list_head *node;
+    if (quickbar_entries.next == &quickbar_entries) {
+	list_add (&entry->node, &quickbar_entries);
+    } else {
+	list_for_each (node, &quickbar_entries) {
+	    tmp1 = list_entry (node, struct quickbar_entry, node);
+	    tmp2 = list_entry (node->next, struct quickbar_entry, node);
+	    if (&tmp2->node != &quickbar_entries) {
+		if (tmp1->used <= entry->used && entry->used <= tmp2->used) {
+		    list_add (&entry->node, &tmp1->node);
+		    break;
+		}
+	    } else {
+		list_add (&entry->node, node);
+		break;
+	    }
+	}
+    }
+    int i = 0;
+    list_for_each (node, &quickbar_entries) i++;
+    number_of_walls [ LEVEL_EDITOR_SELECTION_QUICK ] = i;
+}
+void
+quickbar_click ( Level level, int id, int x, int y ) 
+{
+    struct quickbar_entry *entry = quickbar_getentry ( id );
+    if ( entry ) {
+	if (entry->obstacle_type != -1) {
+	    action_create_obstacle_user (level, x, y, wall_indices [ entry -> obstacle_type ] [ entry -> id ]);
+	} else {
+	    action_set_floor (level, x, y, entry->id);
+	}
+	entry->used ++;
+	list_del (&entry->node);
+	quickbar_additem (entry);
+    }
+}    
+void
+quickbar_use (int obstacle, int id)
+{
+    struct list_head *node;
+    struct quickbar_entry *entry = NULL;;
+    list_for_each (node, &quickbar_entries) {
+	entry = list_entry (node, struct quickbar_entry, node);
+	if (entry->id == id && entry->obstacle_type == obstacle)  {
+	    break;
+	}
+    }
+    if (entry && node != &quickbar_entries) {
+	entry->used ++;
+	list_del (&entry->node);
+	quickbar_additem (entry);
+    } else {
+	entry = MyMalloc (sizeof *entry);
+	entry->obstacle_type = obstacle;
+	entry->id = id;
+	entry->used = 1;
+	quickbar_additem (entry);
+    }
+}
+
 /* ----------------------------------------------------------------------
  * Is this tile a 'full' grass tile, i.e. a grass tile with ABSOLUTELY
  * NO SAND on it?
@@ -1668,7 +1775,7 @@ create_new_obstacle_on_level ( Level EditLevel , int our_obstacle_type , float p
 {
     int i;
     int free_index = ( -1 ) ;
-    
+    struct quickbar_entry *entry;
     //--------------------
     // The special 'obstacle_type' (-1) can be given, which means that this
     // function will have to find out the proper type all by itself...
@@ -1679,6 +1786,14 @@ create_new_obstacle_on_level ( Level EditLevel , int our_obstacle_type , float p
 	{
 	    case LEVEL_EDITOR_SELECTION_FLOOR :
 		break;
+	    case LEVEL_EDITOR_SELECTION_QUICK:
+		entry = quickbar_getentry ( Highlight );
+		if (!entry || entry->obstacle_type < 0)
+		    return ;
+		quickbar_use (entry->obstacle_type, entry->id);
+		our_obstacle_type = wall_indices [ entry->obstacle_type ] [ entry-> id ];
+		
+		break;
 	    case LEVEL_EDITOR_SELECTION_WALLS :
 	    case LEVEL_EDITOR_SELECTION_MACHINERY:
 	    case LEVEL_EDITOR_SELECTION_FURNITURE:
@@ -1686,6 +1801,7 @@ create_new_obstacle_on_level ( Level EditLevel , int our_obstacle_type , float p
 	    case LEVEL_EDITOR_SELECTION_PLANTS:
 	    case LEVEL_EDITOR_SELECTION_ALL:
 		our_obstacle_type = wall_indices [ GameConfig . level_editor_edit_mode ] [ Highlight ] ;
+		quickbar_use ( GameConfig . level_editor_edit_mode , Highlight );
 		break;
 	    default:
 		ErrorMessage ( __FUNCTION__  , "\
@@ -1694,7 +1810,7 @@ Illegal level editor mode encountered!" ,
 		break;
 	}	  
     }
-
+    
   //--------------------
   // First we find a free obstacle index to insert our new obstacle
   //
@@ -1730,6 +1846,10 @@ Ran out of obstacles!   Too bad!  Raise max obstacles constant!" ,
 
 }; // void create_new_obstacle_on_level ( Level EditLevel , int our_obstacle_type , float pos_x , float pos_y )
 
+
+
+
+	
 /* ----------------------------------------------------------------------
  * When new lines are inserted into the map, the map labels south of this
  * line must move too with the rest of the map.  This function sees to it.
@@ -2258,6 +2378,8 @@ update_number_of_walls ( void )
 		    else
 			wall_indices [ group_index ] [ inside_index ] = (-1);
 		    break;
+		case LEVEL_EDITOR_SELECTION_QUICK:
+		    break;
 		default:
 		    ErrorMessage ( __FUNCTION__  , "\
 Unhandled level editor edit mode received.",
@@ -2317,6 +2439,10 @@ HandleBannerMouseClick( void )
     {
 	GameConfig . level_editor_edit_mode = LEVEL_EDITOR_SELECTION_FLOOR + 6;
     }
+    else if( MouseCursorIsOnButton(  LEVEL_EDITOR_QUICK_TAB, GetMousePos_x()  , GetMousePos_y()  ))
+    {
+	GameConfig . level_editor_edit_mode = LEVEL_EDITOR_SELECTION_FLOOR + 7;
+    }
     else
     {
 	// could be a click on a block
@@ -2333,11 +2459,11 @@ HandleBannerMouseClick( void )
     }
     
     // check limits
-    if ( FirstBlock < 0 )
-	FirstBlock = 0;
-    
     if ( FirstBlock + 9 >= number_of_walls [ GameConfig . level_editor_edit_mode ] )
 	FirstBlock = number_of_walls [ GameConfig . level_editor_edit_mode ] - 9 ;
+    
+    if ( FirstBlock < 0 )
+	FirstBlock = 0;
     
     //--------------------
     // Now some extra security against selecting indices that would point to
@@ -2423,7 +2549,6 @@ ShowLevelEditorTopMenu( int Highlight )
 
     build_level_editor_banner(GameConfig.level_editor_edit_mode);
 
-
     //--------------------
     // Time to fill something into the top selection banner, so that the
     // user can really has something to select from there.  But this must be
@@ -2458,12 +2583,16 @@ ShowLevelEditorTopMenu( int Highlight )
 	    case LEVEL_EDITOR_SELECTION_ALL:
                 img = &(obstacle_map [wall_indices [ GameConfig . level_editor_edit_mode ] [ selected_index ] ] . image);
                 break;
+	    case LEVEL_EDITOR_SELECTION_QUICK:
+		img = quickbar_getimage ( selected_index );
+		break;
 	    default:
 		ErrorMessage ( __FUNCTION__  , 
 					   "Unhandled level editor edit mode received.",
 					   PLEASE_INFORM , IS_FATAL );
 		break;
         }
+	if (!img) break; 
 	// We find the proper zoom_factor, so that the obstacle/tile in question will
 		// fit into one tile in the level editor top status selection row.
 		//
@@ -4671,261 +4800,6 @@ HandleLevelEditorCursorKeys ( void )
     }
 }; // void HandleLevelEditorCursorKeys ( void )
 
-/* ----------------------------------------------------------------------
- *
- *
- * ---------------------------------------------------------------------- */
-void
-ToggleWaypoint ( Level EditLevel , int BlockX , int BlockY , int toggle_random_spawn )
-{
-    int i;
-    
-    // find out if there is a waypoint on the current square
-    for ( i = 0 ; i < EditLevel->num_waypoints ; i++ )
-    {
-	if ( ( EditLevel->AllWaypoints[i].x == BlockX ) &&
-	     ( EditLevel->AllWaypoints[i].y == BlockY ) ) break;
-    }
-    
-    //--------------------
-    // If its waypoint already, this waypoint must either be deleted
-    // or the random spawn bit reset...
-    //
-    if ( i < EditLevel -> num_waypoints )
-    {
-	if ( toggle_random_spawn )
-	{
-	    if ( EditLevel -> AllWaypoints [ i ] . suppress_random_spawn )
-		EditLevel -> AllWaypoints [ i ] . suppress_random_spawn = 0 ;
-	    else
-		EditLevel -> AllWaypoints [ i ] . suppress_random_spawn = 1 ;
-	}
-	else
-	    DeleteWaypoint ( EditLevel , i );
-    }
-    else // if its not a waypoint already, it must be made into one
-    {
-	if ( ! toggle_random_spawn )
-	    CreateWaypoint ( EditLevel , BlockX , BlockY );
-    }
-    
-    DebugPrintf ( 1 , "\n\n  i is now: %d ", i );
-    
-}; // void ToggleWaypoint ( Level EditLevel , int BlockX , int BlockY )
-
-/* ----------------------------------------------------------------------
- *
- *
- * ---------------------------------------------------------------------- */
-/*void
-ToggleWaypointConnection ( Level EditLevel , int BlockX , int BlockY )
-{
-    int i;
- 
-    // Determine which waypoint is currently targeted
-    for (i=0 ; i < EditLevel->num_waypoints ; i++)
-    {
-	if ( ( EditLevel->AllWaypoints[i].x == BlockX ) &&
-	     ( EditLevel->AllWaypoints[i].y == BlockY ) ) break;
-    }
-    
-    if ( i == EditLevel->num_waypoints )
-    {
-	sprintf( VanishingMessage , "Sorry, don't know which waypoint you mean." );
-	VanishingMessageDisplayTime = 0;
-    }
-    else
-    {
-	sprintf( VanishingMessage , "You specified waypoint nr. %d." , i );
-	VanishingMessageDisplayTime = 0;
-	if ( OriginWaypoint== (-1) )
-	{
-	    OriginWaypoint = i;
-	    SrcWp = &(EditLevel->AllWaypoints[i]);
-	    if (SrcWp->num_connections < MAX_WP_CONNECTIONS)
-	    {
-		strcat ( VanishingMessage , "\nIt has been marked as the origin of the next connection." );
-		DebugPrintf (1, "\nWaypoint nr. %d. selected as origin\n", i);
-	    }
-	    else
-	    {
-		strcat ( VanishingMessage , "\nSORRY. NO MORE CONNECTIONS AVAILABLE FROM THERE." );
-		strcat ( VanishingMessage, 
-			 va("\nSorry, maximal number of waypoint-connections (%d) reached!\n", MAX_WP_CONNECTIONS));
-		DebugPrintf (0, "Operation not possible\n");
-		OriginWaypoint = (-1);
-		SrcWp = NULL;
-	    }
-	}
-	else
-	{
-	    if ( OriginWaypoint == i )
-	    {
-		strcat ( VanishingMessage , "\n\nOrigin==Target --> Connection Operation cancelled.");
-		OriginWaypoint = (-1);
-		SrcWp = NULL;
-	    }
-	    else
-	    {
-		sprintf( VanishingMessage , "\n\nOrigin: %d Target: %d. Operation makes sense.", OriginWaypoint , i );
-		SrcWp->connections[SrcWp->num_connections] = i;
-		SrcWp->num_connections ++;
-		strcat ( VanishingMessage , "\nOPERATION DONE!! CONNECTION SHOULD BE THERE." );
-		OriginWaypoint = (-1);
-		SrcWp = NULL;
-	    }
-	}
-    }
-    
-    return;
-    
-    };*/ // void ToggleWaypointConnection
-
-/* ----------------------------------------------------------------------
- * With the 'M' key, you can edit the map labels.
- * The label will be assumed to be directly under the map cursor.
- * ---------------------------------------------------------------------- */
-void 
-EditMapLabelData ( Level EditLevel )
-{
-    char* NewCommentOnThisSquare;
-    int i;
-    int check_double;
-    
-    while (PPressed());
-    SetCurrentFont( FPS_Display_BFont );
-    
-    //--------------------
-    // Now we see if a map label entry is existing already for this spot
-    //
-    for ( i = 0 ; i < MAX_MAP_LABELS_PER_LEVEL ; i ++ )
-    {
-	if ( ( fabsf ( EditLevel -> labels [ i ] . pos . x + 0.5 - Me.pos.x ) < 0.5 ) &&
-	     ( fabsf ( EditLevel -> labels [ i ] . pos . y + 0.5 - Me.pos.y ) < 0.5 ) ) 
-	{
-	    break;
-	}
-    }
-    if ( i >= MAX_MAP_LABELS_PER_LEVEL ) 
-    {
-	NewCommentOnThisSquare = 
-	    GetEditableStringInPopupWindow ( 1000 , "\nNo existing map label entry for this position found...\n Please enter new label for this map position: \n\n" ,
-					     "" );
-	
-	i=0;
-	for ( i = 0 ; i < MAX_MAP_LABELS_PER_LEVEL ; i ++ )
-	{
-	    if ( EditLevel -> labels [ i ] . pos . x == (-1) )
-		break;
-	}
-	if ( i >= MAX_MAP_LABELS_PER_LEVEL )
-	{
-	    DisplayText ( "\nNo more free map label entry found... using first on instead ...\n" , -1 , -1 , &User_Rect , 1.0 );
-	    i = 0;
-	}
-	else
-	{
-	    DisplayText ( "\nUsing new map label list entry...\n" , -1 , -1 , &User_Rect , 1.0 );
-	}
-	// Terminate( ERR );
-    }
-    else
-    {
-	NewCommentOnThisSquare = 
-	    GetEditableStringInPopupWindow ( 1000 , "\nOverwriting existing map label list entry...\n Please enter new label for this map position: \n\n" ,
-					     EditLevel -> labels [ i ] . label_name );
-    }
-    
-    //--------------------
-    // At this point, we've got our new index for a good map label list
-    // position we can use.  But we'll only fill in something if the string
-    // given wasn't empty.  Otherwise, the old label is to be deleted.
-    // 
-    if ( strlen ( NewCommentOnThisSquare ) )
-    {
-	//--------------------
-	// But even if we fill in something new, we should first
-	// check against double entries of the same label.  Let's
-	// do it...
-	//
-	for ( check_double = 0 ; check_double < MAX_MAP_LABELS_PER_LEVEL ; check_double++ )
-	{
-	    if ( ! strcmp ( NewCommentOnThisSquare , EditLevel -> labels [ check_double ] . label_name ) )
-	    {
-		ErrorMessage ( __FUNCTION__  , "\
-The label just entered did already exist on this map!  Deleting old entry in favour of the new one!",
-					   PLEASE_INFORM , IS_WARNING_ONLY );
-		i = check_double ;
-		break;
-	    }
-	}
-	
-	//--------------------
-	// Now we can really add the label on the right position.
-	//
-	EditLevel -> labels [ i ] . label_name = NewCommentOnThisSquare;
-	EditLevel -> labels [ i ] . pos . x = rintf( Me.pos.x - 0.5 );
-	EditLevel -> labels [ i ] . pos . y = rintf( Me.pos.y - 0.5 );
-    }
-    else
-    {
-	EditLevel -> labels [ i ] . label_name = "NoLabelHere" ;
-	EditLevel -> labels [ i ] . pos . x = (-1) ;
-	EditLevel -> labels [ i ] . pos . y = (-1) ;
-    }
-    
-    our_SDL_flip_wrapper ( Screen );
-    
-}; // void EditMapLabelData ( EditLevel )
-
-/* ----------------------------------------------------------------------
- *
- *
- * ---------------------------------------------------------------------- */
-void
-RecFillMap ( Level EditLevel , int BlockY , int BlockX , int SpecialMapValue )
-{
-    int SourceAreaTileType = EditLevel->map[BlockY][BlockX] . floor_value ;
-    
-    //--------------------
-    // First some security against writing out of bounds...
-    //
-    if ( ( BlockX < 0 ) || ( BlockY < 0 ) || ( BlockX >= EditLevel->xlen ) || ( BlockY >= EditLevel->ylen ) )
-	return;
-    
-    //--------------------
-    // Now some security against filling what doesn't need to be
-    // filled any more.
-    //
-    if ( EditLevel -> map [ BlockY ] [ BlockX ] . floor_value == SpecialMapValue )
-	return;
-    
-    //--------------------
-    // Now we can actually safely start the real recusive filling...
-    //
-    EditLevel -> map [ BlockY ] [ BlockX ] . floor_value = SpecialMapValue ;
-    
-    if ( BlockX > 0 )
-    {
-	if ( EditLevel->map[BlockY][BlockX-1]  . floor_value == SourceAreaTileType )
-	    RecFillMap ( EditLevel , BlockY , BlockX -1 , SpecialMapValue );
-    }
-    if ( BlockX < EditLevel->xlen -1 )
-    {
-	if ( EditLevel->map[BlockY][BlockX+1]  . floor_value == SourceAreaTileType )
-	    RecFillMap ( EditLevel , BlockY , BlockX +1 , SpecialMapValue );
-    }
-    if ( BlockY > 0 )
-    {
-	if ( EditLevel->map[BlockY-1][BlockX]  . floor_value == SourceAreaTileType )
-	    RecFillMap ( EditLevel , BlockY-1 , BlockX , SpecialMapValue );
-    }
-    if ( BlockY < EditLevel->ylen -1 )
-    {
-	if ( EditLevel->map[BlockY+1][BlockX]  . floor_value == SourceAreaTileType )
-	    RecFillMap ( EditLevel , BlockY+1 , BlockX , SpecialMapValue );
-    }
-}; // void RecFillMap ( Level EditLevel , int BlockY , int BlockX , int SpecialMapValue )
 
 /* ----------------------------------------------------------------------
  * When the mouse has rested idle on some mouse button in the level 
@@ -6133,10 +6007,18 @@ LevelEditor(void)
 		     ( (int)TargetSquare . y <= EditLevel->ylen-1 ) )
 		{
 		    
-		    if ( GameConfig . level_editor_edit_mode == LEVEL_EDITOR_SELECTION_FLOOR )
+		    if ( GameConfig . level_editor_edit_mode == LEVEL_EDITOR_SELECTION_FLOOR ) 
+		    {
+			quickbar_use (-1, Highlight);
 			action_set_floor (EditLevel, TargetSquare . x, TargetSquare . y, Highlight );
+		    } 
+		    else if ( GameConfig . level_editor_edit_mode == LEVEL_EDITOR_SELECTION_QUICK ) 
+		    {
+			quickbar_click ( EditLevel , Highlight , TargetSquare . x , TargetSquare . y ); 
+		    }
 		    else 
 		    {
+			quickbar_use ( GameConfig . level_editor_edit_mode, Highlight );
 			action_create_obstacle_user ( EditLevel , TargetSquare . x , TargetSquare . y , wall_indices [ GameConfig . level_editor_edit_mode ] [ Highlight ] );
 		    }
 		}
