@@ -2988,8 +2988,6 @@ BROWSE_ALIVE_BOTS_SAFE(erot, nerot)
 	    //
 	    if ( Druidmap[ erot->type ].greeting_sound_type != (-1) && ! erot->paralysation_duration_left )
 	    {
-		DebugPrintf ( 1 , "\n%s(): playing enter_attack_run sound for tux attack victing of type %d." ,
-			      __FUNCTION__ , erot->type );
 		play_enter_attack_run_state_sound ( Druidmap[ erot->type ].greeting_sound_type );
 	    }
 	    

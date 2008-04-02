@@ -302,15 +302,15 @@ ClearEnemys ( void )
     
     BROWSE_ALIVE_BOTS_SAFE(erot, nerot)
 	{
-	list_del( &erot->global_list );
-	list_del( &erot->level_list );
+	list_del_init( &erot->global_list );
+	list_del_init( &erot->level_list );
 	free ( erot );
 	}
 
     BROWSE_DEAD_BOTS_SAFE(erot,nerot)
 	{
-	list_del( &erot->global_list );
-	list_del( &erot->level_list );
+	list_del_init( &erot->global_list );
+	list_del_init( &erot->level_list );
 	free ( erot );
 	}
 
@@ -992,7 +992,7 @@ static int kill_enemy(enemy * target, char givexp, int killertype)
     }
 
     list_move(&(target->global_list), &dead_bots_head); // bot is dead? move it to dead list
-    list_del(&(target->level_list)); // bot is dead? remove it from level list
+    list_del_init(&(target->level_list)); // bot is dead? remove it from level list
 
     return 0;
 }; // void InitiateDeathOfEnemy ( Enemy ThisRobot )
@@ -1112,7 +1112,10 @@ static gps * enemy_get_target_position ( enemy *ThisRobot )
 	return & Me . pos;
     else if ( ThisRobot -> attack_target_type == ATTACK_TARGET_IS_ENEMY )
 	return & enemy_resolve_address(ThisRobot->bot_target_n, &ThisRobot->bot_target_addr) -> pos;
-    else return NULL;
+    else 
+	{ /* No (more) target */
+	return NULL;
+	}
 }
 
 /* ----------------------------------------------------------------------
@@ -1136,14 +1139,11 @@ enemy_say_current_state_on_screen ( enemy* ThisRobot )
 	case RUSH_TUX_ON_SIGHT_AND_OPEN_TALK:
 	    ThisRobot->TextToBeDisplayed = _("state:  Rush Tux and open talk.") ;
 	    break;     
-	case STOP_AND_EYE_TUX:
-	    ThisRobot->TextToBeDisplayed = _("state:  Stop and eye Tux.") ;
+	case STOP_AND_EYE_TARGET:
+	    ThisRobot->TextToBeDisplayed = _("state:  Stop and eye target.") ;
 	    break;     
 	case ATTACK:
 	    ThisRobot->TextToBeDisplayed = _("state:  Attack.") ;
-	    break;     
-	case FIGHT_ON_TUX_SIDE:
-	    ThisRobot->TextToBeDisplayed = _("state:  Fight on Tux side.") ;
 	    break;     
 	case RETURNING_HOME:
 	    ThisRobot->TextToBeDisplayed = _("state:  Returning home.") ;
@@ -1153,6 +1153,9 @@ enemy_say_current_state_on_screen ( enemy* ThisRobot )
 	    break;
 	case TURN_TOWARDS_WAYPOINTLESS_SPOT:
 	    ThisRobot->TextToBeDisplayed = _("state:  Waypointless turning.") ;
+	    break;
+	case PARALYZED:
+	    ThisRobot->TextToBeDisplayed = _("state:  Paralyzed.") ;
 	    break;
 	default:
 	    ThisRobot->TextToBeDisplayed = _("state:  UNHANDLED!!") ;
@@ -1311,14 +1314,16 @@ DistanceToTux ( Enemy ThisRobot )
 }; // float DistanceToTux ( Enemy ThisRobot )
 
 /* ----------------------------------------------------------------------
- *
+ * This function selects a target for a friendly bot. Its simply takes
+ * the first enemy bot in view range. This could be improved at a later point.
  *
  * ---------------------------------------------------------------------- */
 void
 update_vector_to_shot_target_for_friend ( enemy* ThisRobot , moderately_finepoint* vect_to_target )
 {
-    float IgnoreRange = Druidmap [ ThisRobot -> type ] . minimal_range_hostile_bots_are_ignored;
+    float IgnoreRange = Druidmap [ ThisRobot -> type ] . range_of_vision;
     int found_some_target = FALSE;
+
 
     //--------------------
     // We set some default values, in case there isn't anything attackable
@@ -1326,7 +1331,8 @@ update_vector_to_shot_target_for_friend ( enemy* ThisRobot , moderately_finepoin
     //
     vect_to_target -> x = -1000;
     vect_to_target -> y = -1000;
-    
+
+        
     enemy *erot;
     BROWSE_LEVEL_BOTS(erot, ThisRobot->pos.z)
     {
@@ -1353,13 +1359,20 @@ update_vector_to_shot_target_for_friend ( enemy* ThisRobot , moderately_finepoin
 	ThisRobot -> attack_target_type = ATTACK_TARGET_IS_ENEMY ;
 	enemy_set_reference(&ThisRobot -> bot_target_n, &ThisRobot->bot_target_addr, erot);
     }
-    else 
+    else	
 	ThisRobot -> attack_target_type = ATTACK_TARGET_IS_NOTHING ;
     
 }; // void update_vector_to_shot_target_for_friend ( ThisRobot , moderately_finepoint* vect_to_target )
 
 /* ----------------------------------------------------------------------
- *  This function selects an attack target for an hostile bot. 
+ * This function selects an attack target for an hostile bot.
+ * Selected target is the previous target if it is still valid (see paragraph bleow),
+ * or the closest bot.
+ *
+ * For gameplay value purposes, it also performs a little hack : the target of 
+ * the previous frame can be selected even if it is "slightly" out of view (2 times the range)
+ * range, it order to simulate "pursuit". Sorry for the mess but there is no other
+ * proper place for that.
  *
  * ---------------------------------------------------------------------- */
 void
@@ -1368,6 +1381,23 @@ update_vector_to_shot_target_for_enemy ( enemy* this_robot , moderately_finepoin
     int our_level = this_robot -> pos . z ;
     float best_dist, our_dist;
     float xdist, ydist;
+
+    gps old_target_pos;
+    gps * a = enemy_get_target_position(this_robot);
+    if ( !a ) old_target_pos.x = -1000;
+    else 
+	{
+	old_target_pos . x = a->x;
+	old_target_pos . y = a->y;
+	}
+
+    if ( old_target_pos.x != -1000 && (old_target_pos.x * old_target_pos.x + old_target_pos.y * old_target_pos.y) < 2 *  Druidmap[this_robot->type].range_of_vision )
+	{
+	vect_to_target -> x = old_target_pos.x - this_robot->pos.x;
+	vect_to_target -> y = old_target_pos.y - this_robot->pos.y;
+	//attack_target_type is left unmodified
+	return;
+	}
     
     //--------------------
     // By default, we set the target of this bot to the Tux himself
@@ -1415,6 +1445,12 @@ update_vector_to_shot_target_for_enemy ( enemy* this_robot , moderately_finepoin
 
     }
     
+    if ( sqrt(vect_to_target -> x * vect_to_target->x + vect_to_target -> y * vect_to_target->y ) > Druidmap[this_robot->type].range_of_vision )
+	{
+	vect_to_target->x = -1000;
+	vect_to_target->y = -1000;
+	this_robot -> attack_target_type = ATTACK_TARGET_IS_NOTHING;
+	}
 }; // int update_vector_to_shot_target_for_enemy ( ThisRobot , moderately_finepoint* vect_to_target )
 
 
@@ -1465,7 +1501,7 @@ static void state_machine_inconditional_updates ( enemy * ThisRobot, moderately_
  * the external situation and not on the current state of the bot. 
  * The purpose is to reduce code duplication in the "big switch" that follows.
  * ---------------------------------------------------------------------- */
-static void state_machine_situational_transitions ( enemy * ThisRobot )
+static void state_machine_situational_transitions ( enemy * ThisRobot, const moderately_finepoint * vect_to_target )
 {
     /* The various situations are listed in increasing priority order (ie. they may override each other, so the least priority comes first. */
     /* In an ideal world, this would not exist and be done for each state. But we're in reality and have to limit code duplication. */
@@ -1485,45 +1521,54 @@ static void state_machine_situational_transitions ( enemy * ThisRobot )
 	ThisRobot->combat_state = RETURNING_HOME;
 	}
 
+    /* Paralyze if appropriate */
+    if ( ThisRobot -> paralysation_duration_left > 0 )
+	{
+	ThisRobot -> combat_state = PARALYZED;
+	}
+
     /* Now we will handle changes, which take place for many - but not exactly all - states */
     /* Those are all related to attack behavior */
 
     switch ( ThisRobot -> combat_state )
 	{ /* Get out for all states we don't want to handle attack for */
-	case STOP_AND_EYE_TUX:
+	case STOP_AND_EYE_TARGET:
 	case ATTACK:
 	case PARALYZED:
-	case FIGHT_ON_TUX_SIDE:
 	case RETURNING_HOME:
 	case SELECT_NEW_WAYPOINT:
 	case RUSH_TUX_ON_SIGHT_AND_OPEN_TALK:
 	    return;
 	}
 
-    /* Switch to stop_and_eye_tux if appropriate - it's the prelude to enemy-on-tux attacks*/
-    if ( droid_can_walk_this_line ( Me . pos . z , Me . pos . x , Me . pos . y , ThisRobot -> pos . x , ThisRobot -> pos . y ) && ( DistanceToTux ( ThisRobot ) < Druidmap [ ThisRobot->type ] . range_of_vision ) && !ThisRobot->is_friendly)
+    /* Switch to stop_and_eye_target if appropriate - it's the prelude to any-on-any attacks */
+    if ( vect_to_target -> x != - 1000 && droid_can_walk_this_line ( ThisRobot->pos.z , ThisRobot->pos.x + vect_to_target->x , ThisRobot->pos.y + vect_to_target->y, ThisRobot -> pos . x , ThisRobot -> pos . y ))
 	{
-	if ( ! ThisRobot -> is_friendly ) 
-	    ThisRobot -> combat_state = STOP_AND_EYE_TUX;
+	    ThisRobot -> combat_state = STOP_AND_EYE_TARGET;
 	}
-
-    /* enemy-on-friendly attacks TODO*/
-    /* friendly-on-enemy attacks TODO*/
 
 }
 
 /* ----------------------------------------------------------
  * "stop and eye tux" state handling 
  * ---------------------------------------------------------- */
-static void state_machine_stop_and_eye_tux ( enemy * ThisRobot, moderately_finepoint * new_move_target )
+static void state_machine_stop_and_eye_target ( enemy * ThisRobot, moderately_finepoint * new_move_target )
 {
     gps * tpos = enemy_get_target_position( ThisRobot );
-
-    /* Don't move, and eye Tux */
+    
+    /* Don't move */
     new_move_target -> x = ThisRobot -> pos . x;
     new_move_target -> y = ThisRobot -> pos . y;
 
-    /* Make sure we're looking at him */
+    /* If no more target */ 
+    if ( ! tpos ) 
+	{
+	ThisRobot -> state_timeout = 0;
+	ThisRobot -> combat_state = SELECT_NEW_WAYPOINT;
+	return;
+	}
+
+    /* Make sure we're looking at the target */
     TurnABitTowardsPosition ( ThisRobot , tpos -> x , tpos -> y , 120 );
 
     /* Do greet sound if not already done */
@@ -1548,26 +1593,17 @@ static void state_machine_stop_and_eye_tux ( enemy * ThisRobot, moderately_finep
     if ( ThisRobot -> state_timeout > Druidmap [ ThisRobot -> type ] . time_spent_eyeing_tux ) 
 	{
 	ThisRobot -> state_timeout = 0;
-
-	if ( ThisRobot -> is_friendly || ( DistanceToTux ( ThisRobot ) > Druidmap [ ThisRobot->type ] . range_of_vision ) )
+	if ( !ThisRobot -> attack_run_only_when_direct_line || ( ThisRobot -> attack_run_only_when_direct_line && DirectLineWalkable( ThisRobot -> pos . x , ThisRobot -> pos . y , tpos -> x , tpos -> y , ThisRobot -> pos . z )))
 	    {
-	    // Tux went away, we switch back to normal operation
-	    ThisRobot -> combat_state = SELECT_NEW_WAYPOINT ;
+	    SetRestOfGroupToState ( ThisRobot , ATTACK );
+	    ThisRobot -> combat_state = ATTACK ;
 	    }
-	else
-	    { //Tux is still here
-	    if ( !ThisRobot -> attack_run_only_when_direct_line || ( ThisRobot -> attack_run_only_when_direct_line && DirectLineWalkable( ThisRobot -> pos . x , ThisRobot -> pos . y , tpos -> x , tpos -> y , ThisRobot -> pos . z )))
-		{
-		SetRestOfGroupToState ( ThisRobot , ATTACK );
-		ThisRobot -> combat_state = ATTACK ;
-		}
 
-	    if ( Druidmap [ ThisRobot -> type ] . greeting_sound_type != (-1))
-		{
-		play_enter_attack_run_state_sound ( Druidmap[ ThisRobot->type ].greeting_sound_type );
-		}
-
+	if ( Druidmap [ ThisRobot -> type ] . greeting_sound_type != (-1))
+	    {
+	    play_enter_attack_run_state_sound ( Druidmap[ ThisRobot->type ].greeting_sound_type );
 	    }
+
 	}
 }
 
@@ -1577,18 +1613,19 @@ static void state_machine_stop_and_eye_tux ( enemy * ThisRobot, moderately_finep
 static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_move_target)
 {
     gps * tpos = enemy_get_target_position(ThisRobot);
-    float dist2 = (ThisRobot -> pos . x - tpos -> x) * (ThisRobot -> pos . x - tpos -> x) + (ThisRobot -> pos . y - tpos -> y) * (ThisRobot -> pos . y - tpos -> y);
 
-    if ( ! droid_can_walk_this_line ( ThisRobot->pos. z , ThisRobot -> pos . x , ThisRobot -> pos . y , tpos-> x , tpos->y ) ||
-         dist2 > 4*Druidmap [ ThisRobot->type ] . range_of_vision * Druidmap [ ThisRobot->type ] . range_of_vision ) 
+    if ( !tpos || ! droid_can_walk_this_line ( ThisRobot->pos. z , ThisRobot -> pos . x , ThisRobot -> pos . y , tpos-> x , tpos->y ) ) 
 	{
 	//--------------------
 	// If a bot is attacking, but has lost eye contact with the target, it should return to waypointless
 	// wandering or waypoint based movement.
 	ThisRobot -> combat_state = SELECT_NEW_WAYPOINT;
 	/*XXX not here set_new_waypointless_walk_target ( ThisRobot );*/
+	return;
 	}	    
     
+    float dist2 = (ThisRobot -> pos . x - tpos -> x) * (ThisRobot -> pos . x - tpos -> x) + (ThisRobot -> pos . y - tpos -> y) * (ThisRobot -> pos . y - tpos -> y);
+
     //--------------------
     // We will often have to move towards our target.
     //
@@ -1629,6 +1666,12 @@ static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_m
 
 static void state_machine_paralyzed(enemy * ThisRobot, moderately_finepoint * new_move_target)
 {
+    /* Move target - none */
+    new_move_target -> x = ThisRobot -> pos . x ;
+    new_move_target -> y = ThisRobot -> pos . y ;
+
+    if ( ThisRobot -> paralysation_duration_left <= 0 )
+	ThisRobot -> combat_state = SELECT_NEW_WAYPOINT;
 }
 
 
@@ -1731,10 +1774,6 @@ static void state_machine_turn_towards_waypointless_spot(enemy * ThisRobot, mode
 {
 }
 
-static void state_machine_fight_on_tux_side(enemy * ThisRobot, moderately_finepoint * new_move_target)
-{
-}
-
 /* ----------------------------------------------------------------------
  * 
  * This function runs the finite state automaton that powers the bots.
@@ -1775,7 +1814,7 @@ update_enemy ( enemy * ThisRobot )
     state_machine_inconditional_updates(ThisRobot, &vect_to_target); 
     
     /* Situational state changes */
-    state_machine_situational_transitions(ThisRobot);
+    state_machine_situational_transitions(ThisRobot, &vect_to_target);
 
     moderately_finepoint new_move_target = { ThisRobot->PrivatePathway[0].x, ThisRobot->PrivatePathway[0].y };
 
@@ -1784,8 +1823,8 @@ update_enemy ( enemy * ThisRobot )
      */
     switch ( ThisRobot -> combat_state )
 	{
-	case STOP_AND_EYE_TUX:
-	    state_machine_stop_and_eye_tux ( ThisRobot, &new_move_target); 
+	case STOP_AND_EYE_TARGET:
+	    state_machine_stop_and_eye_target ( ThisRobot, &new_move_target); 
 	    break;
 
 	case ATTACK:
@@ -1794,10 +1833,6 @@ update_enemy ( enemy * ThisRobot )
 
 	case PARALYZED:
 	    state_machine_paralyzed ( ThisRobot, &new_move_target);
-	    break;
-
-	case FIGHT_ON_TUX_SIDE:
-	    state_machine_fight_on_tux_side ( ThisRobot, &new_move_target);
 	    break;
 
 	case RETURNING_HOME:
@@ -1904,32 +1939,6 @@ update_enemy ( enemy * ThisRobot )
 	}
 	return;
 	
-    }
-    else if ( ThisRobot -> combat_state == ATTACK )
-	{
-
-	}
-    else if ( ThisRobot -> combat_state == FIGHT_ON_TUX_SIDE )
-    {
-	MoveThisEnemy ( ThisRobot ); // this will now be done in the attack state machine...
-	
-	if ( ! EnemyOfTuxCloseToThisRobot ( ThisRobot , & vect_to_target ) ) 
-	{
-	    //--------------------
-	    // Once all the enemies of the Tux have been defeated, the
-	    // bot can switch back to 'normal' state.  But that means
-	    // different things for different bots...
-	    //
-	    if ( ThisRobot -> stick_to_waypoint_system_by_default )
-	    {
-		ThisRobot -> combat_state = TURN_TOWARDS_NEXT_WAYPOINT ;
-	    }
-	    else
-	    {
-		ThisRobot -> combat_state = WAYPOINTLESS_WANDERING ;
-	    }
-	    return;
-	}
     }
     else
     {
@@ -2289,7 +2298,7 @@ ClosestOtherEnemyDroid ( Enemy ThisRobot )
 int
 EnemyOfTuxCloseToThisRobot ( Enemy ThisRobot , moderately_finepoint* vect_to_target )
 {
-  float IgnoreRange = Druidmap [ ThisRobot -> type ] . minimal_range_hostile_bots_are_ignored;
+  float IgnoreRange = Druidmap [ ThisRobot -> type ] . range_of_vision;
 
   enemy *erot;
 
@@ -2360,7 +2369,6 @@ MoveInCloserForOrAwayFromMeleeCombat ( Enemy ThisRobot , int DirectionSign, mode
     moderately_finepoint RotatedStepVector;
     float StepVectorLen;
     int i ;
-    enemy * e = NULL;
 
 #define ANGLES_TO_TRY 7
     float RotationAngleTryList[ ANGLES_TO_TRY ] = { 0 , 30 , 360-30 , 60, 360-60, 90, 360-90 };

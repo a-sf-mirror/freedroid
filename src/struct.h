@@ -500,7 +500,6 @@ typedef struct druidspec_s
     
     float range_of_vision;
     float time_spent_eyeing_tux;
-    float minimal_range_hostile_bots_are_ignored;
     
     short int monster_level;
     short int forced_magic_items;
@@ -543,7 +542,7 @@ typedef struct enemy_s
     short max_distance_to_home;	// how far this robot will go before returning to it's home waypoint
     
     int combat_state;             // current state of the bot
-    float state_timeout;          // time spent in this state (used by "timeout" states such as STOP_AND_EYE_TUX only)
+    float state_timeout;          // time spent in this state (used by "timeout" states such as STOP_AND_EYE_TARGET only)
     
     float frozen;                 // is this droid currently frozen and for how long will it stay this way?
     float poison_duration_left;   // is this droid currently poisoned and for how long will it stay this way?

@@ -894,10 +894,9 @@ enum _level_editor_edit_modes
 enum _enemy_combat_state_machine_states
 {
     MOVE_ALONG_RANDOM_WAYPOINTS, 
-    STOP_AND_EYE_TUX,
+    STOP_AND_EYE_TARGET,
     ATTACK, 
     PARALYZED,
-    FIGHT_ON_TUX_SIDE ,
     RETURNING_HOME,
     SELECT_NEW_WAYPOINT,
     TURN_TOWARDS_NEXT_WAYPOINT,
