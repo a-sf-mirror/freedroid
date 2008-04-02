@@ -87,7 +87,6 @@ Physical (base) damage an attack of this droid will do: 3.0
 Experience_Reward gained for destroying one of this type: 40
 Range of vision of this droid=6
 Time spent eyeing Tux=1.0
-Minimal distance hostile bots are tolerated=6
 Drive of this droid : 1
 Brain of this droid : 0
 Sensor 2 of this droid : 2
@@ -121,7 +120,6 @@ Physical (base) damage an attack of this droid will do: 0.0
 Experience_Reward gained for destroying one of this type: 50
 Range of vision of this droid=3.25
 Time spent eyeing Tux=1.0
-Minimal distance hostile bots are tolerated=6
 Drive of this droid : 2
 Brain of this droid : 0
 Sensor 2 of this droid : 0
@@ -155,7 +153,6 @@ Physical (base) damage an attack of this droid will do: 4.0
 Experience_Reward gained for destroying one of this type: 70
 Range of vision of this droid=3.5
 Time spent eyeing Tux=1.0
-Minimal distance hostile bots are tolerated=6
 Drive of this droid : 2
 Sensor 2 of this droid : 0
 Armament of this droid : 0
@@ -188,7 +185,6 @@ Physical (base) damage an attack of this droid will do: 7.0
 Experience_Reward gained for destroying one of this type: 90
 Range of vision of this droid=3.75
 Time spent eyeing Tux=1.0
-Minimal distance hostile bots are tolerated=6
 Drive of this droid : 3
 Sensor 2 of this droid : 0
 Armament of this droid : 0
@@ -221,7 +217,6 @@ Physical (base) damage an attack of this droid will do: 9.0
 Experience_Reward gained for destroying one of this type: 250
 Range of vision of this droid=10.0
 Time spent eyeing Tux=1.0
-Minimal distance hostile bots are tolerated=6
 Drive of this droid : 1
 Sensor 2 of this droid : 0
 Armament of this droid : 0
@@ -252,7 +247,6 @@ Physical (base) damage an attack of this droid will do: 4.5
 Experience_Reward gained for destroying one of this type: 200
 Range of vision of this droid=4.25
 Time spent eyeing Tux=0.25
-Minimal distance hostile bots are tolerated=6
 Drive of this droid : 2
 Brain of this droid : 0
 Sensor 2 of this droid : 0
@@ -284,7 +278,6 @@ Physical (base) damage an attack of this droid will do: 7.0
 Experience_Reward gained for destroying one of this type: 250
 Range of vision of this droid=4.5
 Time spent eyeing Tux=2.75
-Minimal distance hostile bots are tolerated=6
 Drive of this droid : 4
 Brain of this droid : 0
 Sensor 2 of this droid : 0
@@ -317,7 +310,6 @@ Is this droid immune to disruptor blasts? 1
 Experience_Reward gained for destroying one of this type: 300
 Range of vision of this droid=4.75
 Time spent eyeing Tux=2.0
-Minimal distance hostile bots are tolerated=6
 Drive of this droid : 1
 Sensor 2 of this droid : 0
 Armament of this droid : 0
@@ -348,7 +340,6 @@ Physical (base) damage an attack of this droid will do: 16.0
 Experience_Reward gained for destroying one of this type: 400
 Range of vision of this droid=5.0
 Time spent eyeing Tux=1.0
-Minimal distance hostile bots are tolerated=6
 Drive of this droid : 2
 Sensor 2 of this droid : 2
 Armament of this droid : 1
@@ -379,7 +370,6 @@ Physical (base) damage an attack of this droid will do: 18.0
 Experience_Reward gained for destroying one of this type: 600
 Range of vision of this droid=5.25
 Time spent eyeing Tux=1.75
-Minimal distance hostile bots are tolerated=6
 Drive of this droid : 2
 Sensor 2 of this droid : 0
 Armament of this droid : 0
@@ -410,7 +400,6 @@ Physical (base) damage an attack of this droid will do: 5.0
 Experience_Reward gained for destroying one of this type: 600
 Range of vision of this droid=5.5
 Time spent eyeing Tux=1.0
-Minimal distance hostile bots are tolerated=6
 Drive of this droid : 5
 Sensor 2 of this droid : 0
 Armament of this droid : 0
@@ -441,7 +430,6 @@ Physical (base) damage an attack of this droid will do: 14.0
 Experience_Reward gained for destroying one of this type: 320
 Range of vision of this droid=5.75
 Time spent eyeing Tux=1.5
-Minimal distance hostile bots are tolerated=6
 Drive of this droid : 5
 Sensor 2 of this droid : 0
 Armament of this droid : 0
@@ -472,7 +460,6 @@ Physical (base) damage an attack of this droid will do: 24.0
 Experience_Reward gained for destroying one of this type: 400
 Range of vision of this droid=6.0
 Time spent eyeing Tux=1.5
-Minimal distance hostile bots are tolerated=6
 Drive of this droid : 5
 Sensor 2 of this droid : 0
 Armament of this droid : 0
@@ -503,7 +490,6 @@ Physical (base) damage an attack of this droid will do: 26.0
 Experience_Reward gained for destroying one of this type: 460
 Range of vision of this droid=6.25
 Time spent eyeing Tux=1.25
-Minimal distance hostile bots are tolerated=6
 Drive of this droid : 4
 Sensor 2 of this droid : 3
 Armament of this droid : 2
@@ -534,7 +520,6 @@ Physical (base) damage an attack of this droid will do: 28.0
 Experience_Reward gained for destroying one of this type: 500
 Range of vision of this droid=6.5
 Time spent eyeing Tux=1.25
-Minimal distance hostile bots are tolerated=6
 Drive of this droid : 2
 Sensor 2 of this droid : 2
 Armament of this droid : 1
@@ -565,7 +550,6 @@ Physical (base) damage an attack of this droid will do: 30.0
 Experience_Reward gained for destroying one of this type: 600
 Range of vision of this droid=6.75
 Time spent eyeing Tux=1.0
-Minimal distance hostile bots are tolerated=6
 Drive of this droid : 1
 Sensor 2 of this droid : 3
 Armament of this droid : 1
@@ -597,7 +581,6 @@ Is this droid immune to disruptor blasts? 1
 Experience_Reward gained for destroying one of this type: 650
 Range of vision of this droid=7.0
 Time spent eyeing Tux=1.0
-Minimal distance hostile bots are tolerated=6
 Drive of this droid : 5
 Sensor 1 of this droid : 4
 Armament of this droid : 3
@@ -629,7 +612,6 @@ Is this droid immune to disruptor blasts? 1
 Experience_Reward gained for destroying one of this type: 700
 Range of vision of this droid=7.25
 Time spent eyeing Tux=0.75
-Minimal distance hostile bots are tolerated=6
 Drive of this droid : 5
 Armament of this droid : 3
 Drive item=9
@@ -659,7 +641,6 @@ Physical (base) damage an attack of this droid will do: 36.0
 Experience_Reward gained for destroying one of this type: 800
 Range of vision of this droid=7.5
 Time spent eyeing Tux=0.75
-Minimal distance hostile bots are tolerated=6
 Drive of this droid : 5
 Sensor 2 of this droid : 0
 Armament of this droid : 1
@@ -691,7 +672,6 @@ Is this droid immune to disruptor blasts? 1
 Experience_Reward gained for destroying one of this type: 1000
 Range of vision of this droid=7.75
 Time spent eyeing Tux=0.5
-Minimal distance hostile bots are tolerated=6
 Drive of this droid : 2
 Sensor 3 of this droid : 2
 Armament of this droid : 1
@@ -722,7 +702,6 @@ Physical (base) damage an attack of this droid will do: 40.0
 Experience_Reward gained for destroying one of this type: 1200
 Range of vision of this droid=8.0
 Time spent eyeing Tux=0.5
-Minimal distance hostile bots are tolerated=6
 Drive of this droid : 2
 Armament of this droid : 1
 Drive item=5
@@ -753,7 +732,6 @@ Experience_Reward gained for destroying one of this type: 1500
 Force how many additional magic items to be dropped=1
 Range of vision of this droid=8.25
 Time spent eyeing Tux=0.25
-Minimal distance hostile bots are tolerated=6
 Drive of this droid : 4
 Armament of this droid : 4
 Drive item=7
@@ -784,7 +762,6 @@ Is this droid immune to disruptor blasts? 1
 Experience_Reward gained for destroying one of this type: 2000
 Range of vision of this droid=8.5
 Time spent eyeing Tux=0.25
-Minimal distance hostile bots are tolerated=6
 Drive of this droid : 2
 Brain of this droid : 2
 Sensor 1 of this droid : 2
@@ -817,7 +794,6 @@ Physical (base) damage an attack of this droid will do: 10.0
 Experience_Reward gained for destroying one of this type: 200
 Range of vision of this droid=2
 Time spent eyeing Tux=2
-Minimal distance hostile bots are tolerated=6
 Drive of this droid : 2
 Brain of this droid : 2
 Sensor 1 of this droid : 2
@@ -850,7 +826,6 @@ Physical (base) damage an attack of this droid will do: 10.0
 Experience_Reward gained for destroying one of this type: 200
 Range of vision of this droid=2
 Time spent eyeing Tux=0.5
-Minimal distance hostile bots are tolerated=6
 Drive of this droid : 2
 Brain of this droid : 2
 Sensor 1 of this droid : 2
@@ -883,7 +858,6 @@ Physical (base) damage an attack of this droid will do: 10.0
 Experience_Reward gained for destroying one of this type: 200
 Range of vision of this droid=2
 Time spent eyeing Tux=2
-Minimal distance hostile bots are tolerated=6
 Drive of this droid : 2
 Brain of this droid : 2
 Sensor 1 of this droid : 2
@@ -916,7 +890,6 @@ Physical (base) damage an attack of this droid will do: 10.0
 Experience_Reward gained for destroying one of this type: 200
 Range of vision of this droid=2
 Time spent eyeing Tux=3
-Minimal distance hostile bots are tolerated=6
 Drive of this droid : 2
 Brain of this droid : 2
 Sensor 1 of this droid : 2
@@ -949,7 +922,6 @@ Physical (base) damage an attack of this droid will do: 10.0
 Experience_Reward gained for destroying one of this type: 200
 Range of vision of this droid=2
 Time spent eyeing Tux=2
-Minimal distance hostile bots are tolerated=6
 Drive of this droid : 2
 Brain of this droid : 2
 Sensor 1 of this droid : 2
@@ -982,7 +954,6 @@ Physical (base) damage an attack of this droid will do: 10.0
 Experience_Reward gained for destroying one of this type: 200
 Range of vision of this droid=2
 Time spent eyeing Tux=0.5
-Minimal distance hostile bots are tolerated=6
 Drive of this droid : 2
 Brain of this droid : 2
 Sensor 1 of this droid : 2
@@ -1015,7 +986,6 @@ Physical (base) damage an attack of this droid will do: 10.0
 Experience_Reward gained for destroying one of this type: 200
 Range of vision of this droid=2
 Time spent eyeing Tux=2
-Minimal distance hostile bots are tolerated=6
 Drive of this droid : 2
 Brain of this droid : 2
 Sensor 1 of this droid : 2
@@ -1049,7 +1019,6 @@ Physical (base) damage an attack of this droid will do: 10.0
 Experience_Reward gained for destroying one of this type: 200
 Range of vision of this droid=2
 Time spent eyeing Tux=1.5
-Minimal distance hostile bots are tolerated=6
 Drive of this droid : 2
 Brain of this droid : 2
 Sensor 1 of this droid : 2
@@ -1082,7 +1051,6 @@ Physical (base) damage an attack of this droid will do: 10.0
 Experience_Reward gained for destroying one of this type: 200
 Range of vision of this droid=2
 Time spent eyeing Tux=3
-Minimal distance hostile bots are tolerated=6
 Drive of this droid : 2
 Brain of this droid : 2
 Sensor 1 of this droid : 2
@@ -1115,7 +1083,6 @@ Physical (base) damage an attack of this droid will do: 10.0
 Experience_Reward gained for destroying one of this type: 200
 Range of vision of this droid=2
 Time spent eyeing Tux=1
-Minimal distance hostile bots are tolerated=6
 Drive of this droid : 2
 Brain of this droid : 2
 Sensor 1 of this droid : 2
