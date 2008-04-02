@@ -888,7 +888,8 @@ enum _level_editor_edit_modes
     LEVEL_EDITOR_SELECTION_CONTAINERS = 4,
     LEVEL_EDITOR_SELECTION_PLANTS = 5,
     LEVEL_EDITOR_SELECTION_ALL = 6,
-    NUMBER_OF_LEVEL_EDITOR_GROUPS = 7
+    LEVEL_EDITOR_SELECTION_QUICK = 7, 
+    NUMBER_OF_LEVEL_EDITOR_GROUPS = 8
 };
 
 enum _enemy_combat_state_machine_states
