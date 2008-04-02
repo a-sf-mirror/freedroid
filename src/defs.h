@@ -897,6 +897,7 @@ enum _enemy_combat_state_machine_states
     STOP_AND_EYE_TARGET,
     ATTACK, 
     PARALYZED,
+    FOLLOW_TUX,
     RETURNING_HOME,
     SELECT_NEW_WAYPOINT,
     TURN_TOWARDS_NEXT_WAYPOINT,
