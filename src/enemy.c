@@ -48,7 +48,7 @@ void check_if_switching_to_stopandeyetuxmode_makes_sense ( enemy* );
 static int TurnABitTowardsPosition ( Enemy, float, float, float);
 int EnemyOfTuxCloseToThisRobot ( Enemy, moderately_finepoint* );
 static void MoveInCloserForOrAwayFromMeleeCombat ( Enemy, int, moderately_finepoint *);
-void RawStartEnemysShot( enemy*, float, float);
+static void RawStartEnemysShot( enemy*, float, float);
 
 
 
@@ -922,6 +922,40 @@ in Freedroid RPG.\n",
 
 }; // int MakeSureEnemyIsInsideThisLevel ( int Enum )
 
+/* ----------------------------------------------------------------------
+ * When an enemy is his, this causes some blood to be sprayed on the floor.
+ * The blood is just an obstacle (several types of blood exist) with 
+ * preput flag set, so that the Tux and everyone can really step *on* the
+ * blood.
+ *
+ * Blood will always be sprayed, but there is a toggle available for making
+ * the blood visible/invisible for more a children-friendly version of the
+ * game.
+ *
+ * This function does the blood spraying (adding of these obstacles).
+ * ---------------------------------------------------------------------- */
+static void
+enemy_spray_blood ( enemy *CurEnemy ) 
+{
+  moderately_finepoint target_pos = { 1.0 , 0 } ;
+
+  DebugPrintf ( 1 , "\nBlood has been sprayed...%d", CurEnemy -> type );
+
+  RotateVectorByAngle ( & target_pos , MyRandom ( 360 ) );
+
+  target_pos . x += CurEnemy -> virt_pos . x ;
+  target_pos . y += CurEnemy -> virt_pos . y ;
+
+  
+  if ( Druidmap [ CurEnemy -> type ] . is_human )
+	  create_new_obstacle_on_level ( curShip . AllLevels [ CurEnemy -> pos . z ] , ISO_BLOOD_1 + MyRandom ( 7 ) , target_pos . x , target_pos . y );
+  else  
+	  create_new_obstacle_on_level ( curShip . AllLevels [ CurEnemy -> pos . z ] , ISO_OIL_STAINS_1 + MyRandom ( 7 ) , target_pos . x , target_pos . y );
+
+  
+}; // void enemy_spray_blood ( Enemy CurEnemy ) 
+
+
 
 
 /* ----------------------------------------------------------------------
@@ -995,7 +1029,7 @@ static int kill_enemy(enemy * target, char givexp, int killertype)
     list_del_init(&(target->level_list)); // bot is dead? remove it from level list
 
     return 0;
-}; // void InitiateDeathOfEnemy ( Enemy ThisRobot )
+};
 
 
 /*
@@ -1156,6 +1190,9 @@ enemy_say_current_state_on_screen ( enemy* ThisRobot )
 	    break;
 	case PARALYZED:
 	    ThisRobot->TextToBeDisplayed = _("state:  Paralyzed.") ;
+	    break;
+	case FOLLOW_TUX:
+	    ThisRobot->TextToBeDisplayed = _("state: Follow Tux.") ;
 	    break;
 	default:
 	    ThisRobot->TextToBeDisplayed = _("state:  UNHANDLED!!") ;
@@ -1540,6 +1577,13 @@ static void state_machine_situational_transitions ( enemy * ThisRobot, const mod
 	case RUSH_TUX_ON_SIGHT_AND_OPEN_TALK:
 	    return;
 	}
+    
+    /* Follow Tux if appropriate */
+    if ( ThisRobot -> follow_tux )
+	{
+	ThisRobot -> combat_state = FOLLOW_TUX;
+	}
+
 
     /* Switch to stop_and_eye_target if appropriate - it's the prelude to any-on-any attacks */
     if ( vect_to_target -> x != - 1000 && droid_can_walk_this_line ( ThisRobot->pos.z , ThisRobot->pos.x + vect_to_target->x , ThisRobot->pos.y + vect_to_target->y, ThisRobot -> pos . x , ThisRobot -> pos . y ))
@@ -1638,8 +1682,9 @@ static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_m
         /* Depending on the weapon of the bot, we will go *to* melee combat or try and avoid it */
 	ThisRobot -> last_combat_step = 0 ; 
 
-    if ( ItemMap [ Druidmap [ ThisRobot -> type ] . weapon_item . type ] . item_weapon_is_melee && dist2 > 2.25 )
+    if ( ItemMap [ Druidmap [ ThisRobot -> type ] . weapon_item . type ] . item_weapon_is_melee )
 	{
+	if ( dist2 > 2.25 )
 	    MoveInCloserForOrAwayFromMeleeCombat ( ThisRobot , (+1), new_move_target );
 	}
 	else if ( dist2 < 1.5 )
@@ -1766,6 +1811,14 @@ static void state_machine_rush_tux_on_side_and_open_talk(enemy * ThisRobot, mode
 
 }
 
+static void state_machine_follow_tux(enemy * ThisRobot, moderately_finepoint * new_move_target)
+{
+    /* Move target */
+    new_move_target -> x = Me . pos . x + (ThisRobot->pos.x - Me.pos.x)/fabsf(ThisRobot->pos.x - Me.pos.x);
+    new_move_target -> y = Me . pos . y + (ThisRobot->pos.y - Me.pos.y)/fabsf(ThisRobot->pos.y - Me.pos.y);
+
+}
+
 static void state_machine_waypointless_wandering(enemy * ThisRobot, moderately_finepoint * new_move_target)
 {
 }
@@ -1833,6 +1886,10 @@ update_enemy ( enemy * ThisRobot )
 
 	case PARALYZED:
 	    state_machine_paralyzed ( ThisRobot, &new_move_target);
+	    break;
+
+	case FOLLOW_TUX:
+	    state_machine_follow_tux ( ThisRobot, &new_move_target );
 	    break;
 
 	case RETURNING_HOME:
@@ -1955,6 +2012,9 @@ update_enemy ( enemy * ThisRobot )
 /* ----------------------------------------------------------------------
  * This function handles all the logic tied to enemies : animation, movement
  * and attack behavior.
+ *
+ * Note that no enemy must be killed by the logic function. It's a technical limitation
+ * and a requirement in freedroidRPG.
  * ---------------------------------------------------------------------- */
 void
 MoveEnemys ( void )
@@ -1994,8 +2054,8 @@ MoveEnemys ( void )
 	    // looks only.
 	    //
 	    // Remainder: animation is done somehere else.
-	    if ( ThisRobot -> animation_type == ATTACK_ANIMATION )
-		continue ;
+	    /*if ( ThisRobot -> animation_type == ATTACK_ANIMATION )
+		continue ;*/
 
 	    //--------------------
 	    // Run a new cycle of the bot's state machine
@@ -2041,42 +2101,11 @@ set_bullet_speed_to_target_direction ( bullet* NewBullet , float bullet_speed , 
 }; // void set_bullet_speed_to_target_direction ( bullet* NewBullet , float bullet_speed , float xdist , float ydist )
 
 /* ----------------------------------------------------------------------
- * Whenever a new bullet is generated, we need to find a free index in 
- * the array of bullets.  This function automates the process and 
- * also is secure against too many bullets in the game (with a rather
- * ungraceful exit, but that event shouldn't ever occur in a normal game.
- * ---------------------------------------------------------------------- */
-int
-find_free_bullet_index ( void )
-{
-    int j;
-
-    for ( j = 0 ; j < MAXBULLETS ; j ++ )
-    {
-	if ( AllBullets [ j ] . type == INFOUT )
-	{
-	    return ( j ) ;
-	    break;
-	}
-    }
-    
-    //--------------------
-    // If this point is ever reached, there's a severe bug in here...
-    //
-    ErrorMessage ( __FUNCTION__  , "\
-I seem to have run out of free bullet entries.  This can't normally happen.  --> some bug in here, oh no..." ,
-			       PLEASE_INFORM, IS_FATAL );
-    
-    return ( -1 ) ; // can't happen.  just to make compilers happy (no warnings)
-    
-}; // void find_free_bullet_entry_pointer ( void )
-
-/* ----------------------------------------------------------------------
  * This function is low-level:  It simply sets off a shot from enemy
  * through the pointer ThisRobot at the target VECTOR xdist ydist, which
  * is a DISTANCE VECTOR, NOT ABSOLUTE COORDINATES OF THE TARGET!!!
  * ---------------------------------------------------------------------- */
-void 
+static void 
 RawStartEnemysShot( enemy* ThisRobot , float xdist , float ydist )
 {
     int guntype = ItemMap[ Druidmap[ThisRobot->type].weapon_item.type ].item_gun_bullet_image_type;
@@ -2093,7 +2122,7 @@ RawStartEnemysShot( enemy* ThisRobot , float xdist , float ydist )
 	    ( ThisRobot -> animation_type != STAND_ANIMATION ) ) return ;
 
     /* First of all, check what kind of weapon the bot has : ranged or melee */
-    if ( ItemMap[ Druidmap[ ThisRobot->type ].weapon_item.type ].item_weapon_is_melee == 0 )
+    if ( ! ItemMap[ Druidmap[ ThisRobot->type ].weapon_item.type ].item_weapon_is_melee )
 	{ /* ranged */	
 	//--------------------
 	// find a bullet entry, that isn't currently used... 
@@ -2161,63 +2190,26 @@ RawStartEnemysShot( enemy* ThisRobot , float xdist , float ydist )
 	}
     else  /* melee weapon */
 	{
+        int shot_index = find_free_melee_shot_index ();
+	melee_shot *NewShot = & ( AllMeleeShots [ shot_index ] );
 
-	if ( ThisRobot -> is_friendly || ( (!(ThisRobot->is_friendly)) && (ThisRobot -> attack_target_type == ATTACK_TARGET_IS_ENEMY) ))
+	NewShot -> attack_target_type = ThisRobot -> attack_target_type;
+	NewShot -> mine = 0; /* shot comes from a bot not tux */
+	
+	if ( ThisRobot -> attack_target_type == ATTACK_TARGET_IS_ENEMY) 
 	    {
-	    /*XXX*/
-	    enemy * target_robot = enemy_resolve_address(ThisRobot->bot_target_n, &ThisRobot->bot_target_addr);
-	    if (!(( target_robot -> pos . z != ThisRobot -> pos . z ) ||
-			( fabsf ( target_robot -> pos . x - ThisRobot -> pos . x ) > 2.5 ) ||
-			( fabsf ( target_robot -> pos . y - ThisRobot -> pos . y ) > 2.5 ) ||
-			( target_robot == ThisRobot )))
-		if ( ((float) Druidmap [ target_robot -> type ] . monster_level * (float)MyRandom ( 100 ) / (float)Druidmap [ ThisRobot -> type ] . monster_level) < 60 )
-		    {
-		    hit_enemy(target_robot, Druidmap [ ThisRobot -> type ] . physical_damage, 0, ThisRobot->type, 0);
-		    }
-
+	    NewShot -> bot_target_n = ThisRobot->bot_target_n;
+	    NewShot -> bot_target_addr = ThisRobot->bot_target_addr;
 	    }
 	else
 	    { /* enemy bot attacking tux*/
-	    //--------------------
-	    // For now, we just damage the Tux according to this enemys 'damage' value.  We
-	    // don't fuss around whether the Tux is close at all or not.  
-	    // In later releases, a more complex ruleset,
-	    // taking into account position, maybe even bocks with the shield, should
-	    // be implemented here.
-	    //
-	    if ( MyRandom ( 100 ) / Druidmap [ ThisRobot -> type ] . monster_level <= Me . lv_1_bot_will_hit_percentage )
-		{
-		//--------------------
-		// If the bot hit, we reduce the energy of the Tux and maybe there
-		// should also be some kind of scream of the Tux?
-		//
-		Me . energy -= Druidmap [ ThisRobot -> type ] . physical_damage ;
-		DebugPrintf ( 1 , "\n%s(): Tux took damage from melee: %f." , __FUNCTION__ , 
-			Druidmap [ ThisRobot -> type ] . physical_damage );
-		if ( MyRandom ( 100 ) <= 20 ) tux_scream_sound ( );
-		}
-	    else
-		{
-		//--------------------
-		// If the bot missed, the armor took the shot. Damage it.
-		//
-		Me . TextToBeDisplayed = "Armor, thanks." ;
-		DamageAllEquipment ( ) ;
-
-		}
+	    enemy_set_reference(& NewShot -> bot_target_n, &NewShot -> bot_target_addr, NULL);
 	    }
 
-	//--------------------
-	// While we don't have sound samples for individual attack motions,
-	// we'll use the death sound sample here too, even if noone is dying.
-	// So far, that seems to work well, but it would be good, if sooner or
-	// later bots could have separate attack and death sound samples, maybe
-	// in some later release...
-	//
-	/* You've got to be kidding ...
-	   DebugPrintf ( 1 , "\n%s(): playing enemy death sound for raw enemy attack for droid of type %d." , __FUNCTION__ , ThisRobot -> type ) ;
-	   play_death_sound_for_bot ( ThisRobot );
-	   */
+	NewShot->to_hit = 60 * Druidmap [ ThisRobot->type] .monster_level;
+	NewShot->damage = ItemMap[ Druidmap[ ThisRobot->type ].weapon_item.type ].base_item_gun_damage + MyRandom( ItemMap[ Druidmap[ ThisRobot->type ].weapon_item.type ].item_gun_damage_modifier);
+	NewShot->owner = ThisRobot->type;
+	NewShot->level = Druidmap [ ThisRobot-> type ] . monster_level;
 	}
 
 
@@ -2718,7 +2710,6 @@ start_gethit_animation_if_applicable ( enemy* ThisRobot )
 void
 animate_enemy (enemy * our_enemy)
 {
-
     switch ( our_enemy -> animation_type )
 	{
 

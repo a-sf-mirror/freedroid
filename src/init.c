@@ -798,7 +798,6 @@ Get_Robot_Data ( void* DataPointer )
 #define MAXENERGY_BEGIN_STRING "Maximum energy of this droid: "
 #define MAXMANA_BEGIN_STRING "Maximum mana of this droid: "
 #define LOSEHEALTH_BEGIN_STRING "Rate of healing: "
-#define BASE_PHYSICAL_DAMAGE_BEGIN_STRING "Physical (base) damage an attack of this droid will do: "
 #define FLASHIMMUNE_BEGIN_STRING "Is this droid immune to disruptor blasts? "
 #define EXPERIENCE_REWARD_BEGIN_STRING "Experience_Reward gained for destroying one of this type: "
 #define DRIVE_BEGIN_STRING "Drive of this droid : "
@@ -925,10 +924,6 @@ Get_Robot_Data ( void* DataPointer )
       // Now we read in the lose_health rate.
       ReadValueFromString( RobotPointer , LOSEHEALTH_BEGIN_STRING , "%f" , 
 			   &Druidmap[RobotIndex].lose_health , EndOfDataPointer );
-
-      // Now we read in the aggression rate of this droid.
-      ReadValueFromString( RobotPointer , BASE_PHYSICAL_DAMAGE_BEGIN_STRING , "%f" , 
-			   & Druidmap [ RobotIndex ] . physical_damage , EndOfDataPointer );
 
       // Now we read in range of vision of this droid
       ReadValueFromString( RobotPointer , "Range of vision of this droid=" , "%f" , 

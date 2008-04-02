@@ -141,9 +141,6 @@ void DoMeleeDamage (void)
 		delete_melee_shot(CurMelS);
 		continue;
 		}
-	    else {
-		fprintf(stderr, "Hitting %#x\n", tg);
-	    }	
 
 	    if ( ((float) Druidmap [ tg -> type ] . monster_level * (float)MyRandom ( 100 ) < CurMelS->to_hit ))
 		{

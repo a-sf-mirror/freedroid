@@ -128,6 +128,7 @@ EXTERN void adapt_position_for_jump_thresholds ( gps* old_position, gps* new_pos
 EXTERN void RotateVectorByAngle ( moderately_finepoint* vector , float rot_angle );
 EXTERN void AnalyzePlayersMouseClick ( void ) ;
 EXTERN void MoveBullets (void);
+EXTERN void DoMeleeDamage(void);
 EXTERN void DeleteBullet (int num , int StartBlast );
 EXTERN void StartBlast ( float x , float y , int level , int type, int dmg );
 EXTERN void animate_blasts (void);
@@ -137,7 +138,8 @@ EXTERN void DeleteSpell (int num);
 EXTERN void clear_active_spells ( void );
 EXTERN void CheckBulletCollisions (int num);
 EXTERN void CheckBlastCollisions (int num);
-EXTERN void enemy_spray_blood ( Enemy CurEnemy ) ;
+EXTERN int find_free_bullet_index ( void ) ;
+EXTERN int find_free_melee_shot_index ( void ) ;
 
 // view.c 
 #undef EXTERN
@@ -790,7 +792,6 @@ EXTERN void InitEnemy (enemy *);
 EXTERN int DirectLineWalkable( float x1 , float y1 , float x2 , float y2 , int z );
 EXTERN int CheckIfWayIsFreeOfDroids (char test_tux, float x1 , float y1 , float x2 , float y2 , int OurLevel , Enemy ExceptedRobot ) ;
 EXTERN void start_gethit_animation_if_applicable ( enemy* ThisRobot ) ;
-EXTERN int find_free_bullet_index ( void ) ;
 EXTERN int IsActiveLevel ( int levelnum ) ;
 EXTERN void animate_enemy ( enemy * our_bot ) ;
 EXTERN void hit_enemy ( enemy * target, float hit, char givexp, short int killertype, char mine);
