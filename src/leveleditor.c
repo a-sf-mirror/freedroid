@@ -5027,7 +5027,7 @@ show_level_editor_tooltips ( void )
     else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_NEXT_OBSTACLE_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
     {
 	if ( time_spent_on_some_button > TICKS_UNTIL_TOOLTIP )
-	    show_button_tooltip ( _("\nUse this button to cycle the currently marked obstacle.\n\nYou can also use the N key for this." ));
+	    show_button_tooltip ( _("\nUse this button to cycle the currently marked obstacle on this tile.\n\nYou can also use the N key for this." ));
     }
     else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_BEAUTIFY_GRASS_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
     {
