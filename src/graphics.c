@@ -1214,7 +1214,6 @@ TakeScreenshot( void )
 {
   static int Number_Of_Screenshot=0;
   char *Screenshoot_Filename;
-  SDL_Surface* FullView;
 
   Screenshoot_Filename=malloc(100);
   DebugPrintf (1, "\n\nScreenshoot function called.\n\n");
@@ -1224,6 +1223,7 @@ TakeScreenshot( void )
   if ( use_open_gl )
     {
 #ifdef HAVE_LIBGL
+      SDL_Surface* FullView;
       //--------------------
       // We need to make a copy in processor memory.
       GLvoid * imgdata = malloc ( ( GameConfig . screen_width + 2 ) * ( GameConfig . screen_height + 2 ) * 4 );

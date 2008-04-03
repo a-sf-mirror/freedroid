@@ -377,13 +377,13 @@ void
 skew_and_blit_line (float x1, float y1, float x2, float y2, Uint32 color)
 {
 if ( ! use_open_gl ) return;
+#ifdef HAVE_LIBGL
   int r, c;
   float rr, gg, bb, zoom_factor;
   zoom_factor = (GameConfig.zoom_is_on ? ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT : 1.0);
   rr = ((color & 0xff0000) >> 16) / 255.0;
   gg = ((color & 0xff00) >> 8) / 255.0;
   bb = (color & 0xff) / 255.0;
-#ifdef HAVE_LIBGL
   glLineWidth (1);
   glColor3f (rr, gg, bb);
 
@@ -3552,10 +3552,6 @@ PutEnemyEnergyBar ( enemy * e , SDL_Rect TargetRectangle )
     static Uint32 full_color_friend ;
     static Uint32 energy_empty_color ;
    
-    int x, y , w ,h;
-    myColor c1 = {0,0,0,255} ;
-    myColor c2 = {0,0,0,255} ;
-
     #define ENEMY_ENERGY_BAR_OFFSET_X 0
     #define ENEMY_ENERGY_BAR_OFFSET_Y (-20)
     #define ENEMY_ENERGY_BAR_LENGTH 65
@@ -3582,6 +3578,9 @@ PutEnemyEnergyBar ( enemy * e , SDL_Rect TargetRectangle )
     if ( use_open_gl ) {
 	
 #ifdef HAVE_LIBGL
+        int x, y, w ,h;
+        myColor c1 = {0,0,0,255} ;
+        myColor c2 = {0,0,0,255} ;
 	float PercentageDone = 0;
 	int barnum = 0;
 	for ( ; Percentage > 0; Percentage -= PercentageDone, barnum ++)

@@ -565,9 +565,10 @@ do_make_texture_out_of_surface ( iso_image* our_image, int txw, int txh, void * 
 void
 make_texture_out_of_surface ( iso_image* our_image ) 
 {
-    SDL_Surface* right_sized_image ;
-    
+
 #ifdef HAVE_LIBGL
+
+    SDL_Surface* right_sized_image ;
 
     //--------------------
     // This fills up the image with transparent material, so that 

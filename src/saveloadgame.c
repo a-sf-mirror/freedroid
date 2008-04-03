@@ -185,7 +185,6 @@ SaveThumbnailOfGame ( void )
 {
     char filename[1000];
     SDL_Surface* NewThumbnail = NULL;
-    SDL_Surface* FullView;
     
     if ( ! our_config_dir )
 	return;
@@ -200,6 +199,7 @@ SaveThumbnailOfGame ( void )
     if ( use_open_gl )
     {
 #ifdef HAVE_LIBGL
+        SDL_Surface* FullView;
 	//--------------------
 	// We need to make a copy in processor memory. 
         GLvoid * imgdata = malloc ( ( GameConfig . screen_width + 2 ) * ( GameConfig . screen_height + 2 ) * 4 );
