@@ -112,7 +112,7 @@ I seem to have run out of free melee shot entries." ,
 }; // void find_free_bullet_entry_pointer ( void )
 
 
-static void delete_melee_shot(melee_shot * t)
+void delete_melee_shot(melee_shot * t)
 {
     memset(t, 0, sizeof(melee_shot));
     t->attack_target_type = ATTACK_TARGET_IS_NOTHING;
