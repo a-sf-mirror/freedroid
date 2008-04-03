@@ -1280,7 +1280,8 @@ Teleport ( int LNum , float X , float Y , int with_sound_and_fading )
         //--------------------
         // If the level we're coming out from is the one where the homespot is, the teleport anchor has to be removed,
         // because it means that the player decided not to teleport back to the previous location
-	/* wait man, that huge crap cannot stay here
+	// It is a ugly hack but it works :)
+	
 	location HomeSpot;
 	ResolveMapLabelOnShip ( "TeleportHomeTarget" , &(HomeSpot) );
         if ( Me . pos . z == HomeSpot . level)
@@ -1288,7 +1289,7 @@ Teleport ( int LNum , float X , float Y , int with_sound_and_fading )
 	        Me . teleport_anchor.x = 0;
                 Me . teleport_anchor.y = 0;
 		}
-		*/
+	
 
 	Me . pos . x = X;
 	Me . pos . y = Y;
@@ -1350,10 +1351,12 @@ This indicates an error in the map system of Freedroid.",
     // together) we can still restore the move target in that (the calling!)
     // function.
     //
-    Me . mouse_move_target . x = ( -1 ) ;
-    Me . mouse_move_target . y = ( -1 ) ;
-    Me . mouse_move_target . z = ( -1 ) ;
+    Me . mouse_move_target . x = Me . pos . x ;
+    Me . mouse_move_target . y = Me . pos . y ;
+    Me . mouse_move_target . z = Me . pos . z ;
     
+    set_up_intermediate_course_for_tux();
+
     if ( with_sound_and_fading ) 
     {
 	teleport_arrival_sound ();
