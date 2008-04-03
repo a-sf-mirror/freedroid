@@ -187,7 +187,7 @@ MoveBullets (void)
       if ( CurBullet -> time_to_hide_still > 0 )
 	continue;
       
-      if ( ! level_is_partly_visible ( CurBullet -> pos . z ) )
+      if ( ! level_is_visible ( CurBullet -> pos . z ) )
 	{
 	// if the bullet is on an inactive level, silently kill it
 	DeleteBullet ( i, FALSE );

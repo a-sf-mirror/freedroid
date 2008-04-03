@@ -340,7 +340,7 @@ UpdateCountersForThisFrame ( )
     //
     for ( level_num = 0 ; level_num < MAX_LEVELS ; level_num ++ )
 	{
-	if ( level_is_partly_visible ( level_num ) )
+	if ( level_is_visible ( level_num ) )
 	    update_timeouts_for_bots_on_level ( level_num , latest_frame_time ) ;
 	}
 

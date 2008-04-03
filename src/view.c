@@ -957,19 +957,41 @@ insert_one_blast_into_blitting_list ( int blast_num )
  * levels glued to this one.
  * ---------------------------------------------------------------------- */
 int
-level_is_partly_visible ( int level_num )
+level_is_visible ( int level_num )
 {
     int current_tux_level = Me . pos . z ;
 
-    if ( level_num == current_tux_level ) return ( TRUE );
-    if ( level_num == curShip . AllLevels [ current_tux_level ] -> jump_target_north ) return ( TRUE );
-    if ( level_num == curShip . AllLevels [ current_tux_level ] -> jump_target_south ) return ( TRUE );
-    if ( level_num == curShip . AllLevels [ current_tux_level ] -> jump_target_east ) return ( TRUE );
-    if ( level_num == curShip . AllLevels [ current_tux_level ] -> jump_target_west ) return ( TRUE );
+    if ( level_num == current_tux_level ) 
+	return ( TRUE );
+
+    if ( level_num == curShip . AllLevels [ current_tux_level ] -> jump_target_north &&
+	    2 * (Me . pos . y  - FLOOR_TILES_VISIBLE_AROUND_TUX) < curShip . AllLevels [ current_tux_level ] -> jump_threshold_north)
+	{
+	return ( TRUE );
+	}
+
+    if ( level_num == curShip . AllLevels [ current_tux_level ] -> jump_target_south &&
+	    Me . pos . y + FLOOR_TILES_VISIBLE_AROUND_TUX > curShip . AllLevels [ current_tux_level ] -> ylen - curShip . AllLevels [ current_tux_level ] -> jump_threshold_south * 0.5) 
+	{
+	return ( TRUE );
+	}
+
+    if ( level_num == curShip . AllLevels [ current_tux_level ] -> jump_target_east &&
+	    Me . pos . x + FLOOR_TILES_VISIBLE_AROUND_TUX > curShip . AllLevels [ current_tux_level ] -> xlen - curShip . AllLevels [ current_tux_level ] -> jump_threshold_east * 0.5) 
+	{
+	return ( TRUE );
+	}
+
+    if ( level_num == curShip . AllLevels [ current_tux_level ] -> jump_target_west &&
+	    2 * (Me . pos . x  - FLOOR_TILES_VISIBLE_AROUND_TUX) < curShip . AllLevels [ current_tux_level ] -> jump_threshold_west)
+
+	{
+	return ( TRUE );
+	}
 
     return ( FALSE );
 
-}; // int level_is_partly_visible ( int level_num )
+}; // int level_is_visible ( int level_num )
 
 /* ----------------------------------------------------------------------
  * The Tux can change onto other levels via jump thresholds.  This was an
@@ -1087,7 +1109,7 @@ insert_enemies_into_blitting_list ( void )
 	{
 	list_for_each_entry(ThisRobot, (i) ? &dead_bots_head : &alive_bots_head, global_list)
 	    {
-	    if ( ! level_is_partly_visible ( ThisRobot -> pos . z ) ) 
+	    if ( ! level_is_visible ( ThisRobot -> pos . z ) ) 
 		continue;
 
 	    //--------------------
@@ -1995,25 +2017,6 @@ AssembleCombatPicture ( int mask )
     glEnd();    
     glEnable(GL_TEXTURE_2D);
 #endif
-
-#if 0
-    int x,y;
-    enemy * erot;
-    glDisable(GL_TEXTURE_2D);
-    glBegin(GL_POINTS);
-    for ( x = Me.pos.x - 1; x < Me.pos.x + 1; x++)
-	for ( y = Me.pos.y -1; y < Me.pos.y +1; y++)
-	    BROWSE_TILE_BOTS(erot, x, y)
-		{
-		printf("B at %f %f\n", erot->pos.x, erot->pos.y);
-		int a,b;
-		translate_map_point_to_screen_pixel(erot->pos.x, erot->pos.y, &a, &b, 1.0);
-		glColor3f(1.0, 1.0, 1.0);
-		glVertex2i(a,b);
-		}
-    glEnd();
-    glEnable(GL_TEXTURE_2D);
-#endif	
 
     //--------------------
     // At this point we are done with the drawing procedure
@@ -3979,6 +3982,29 @@ There was a droid type on this level, that does not really exist.",
     }
     
     PutIndividuallyShapedDroidBody ( e , TargetRectangle , mask , highlight );
+
+#if 0
+    /* This code displays the pathway of the bots as well as their next waypoint */
+    glDisable(GL_TEXTURE_2D);
+    glLineWidth(2.0);
+    int a, b;
+    glBegin(GL_LINE_STRIP);
+    glColor3f(0.0,1.0,1.0);
+    translate_map_point_to_screen_pixel ( e->pos.x, e->pos.y, &a, &b, 1.0 );
+    glVertex2i(a, b);
+    translate_map_point_to_screen_pixel (curShip . AllLevels [ e-> pos . z ] -> AllWaypoints [ e ->nextwaypoint ] . x + 0.5 , 
+	    curShip . AllLevels [ e-> pos . z ] -> AllWaypoints [ e ->nextwaypoint ] . y + 0.5, &a, &b, 1.0);
+    glVertex2i(a,b);
+    glEnd();
+    glBegin(GL_LINE_STRIP);
+    translate_map_point_to_screen_pixel ( e->pos.x, e->pos.y, &a, &b, 1.0 );
+    glColor3f(0.0, 0.0, 1.0);
+    glVertex2i(a, b);
+    translate_map_point_to_screen_pixel ( e->PrivatePathway[0].x, e->PrivatePathway[0].y, &a, &b, 1.0 );
+    glVertex2i(a, b);
+    glEnd();
+    glEnable(GL_TEXTURE_2D);
+#endif
     
     //--------------------
     // Only if this robot is not dead, we consider printing the comments

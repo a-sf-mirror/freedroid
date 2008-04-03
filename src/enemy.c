@@ -1940,7 +1940,7 @@ MoveEnemys ( void )
 	    // Ignore robots on other levels, except those 
 	    // on levels that can be "seen"
 	    // 
-	    if ( ( ! level_is_partly_visible ( ThisRobot -> pos . z ) ) ) 
+	    if ( ( ! level_is_visible ( ThisRobot -> pos . z ) ) ) 
 		continue;
 
 	    animate_enemy(ThisRobot);
