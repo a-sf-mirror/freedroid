@@ -310,7 +310,6 @@ ClearEnemys ( void )
     BROWSE_DEAD_BOTS_SAFE(erot,nerot)
 	{
 	list_del_init( &erot->global_list );
-	list_del_init( &erot->level_list );
 	free ( erot );
 	}
 
@@ -582,8 +581,6 @@ move_enemy_to_spot ( Enemy ThisRobot , finepoint next_target_spot )
     {
 	ThisRobot -> PrivatePathway [ 0 ] . x = ThisRobot -> pos . x ;
 	ThisRobot -> PrivatePathway [ 0 ] . y = ThisRobot -> pos . y ;
-	DebugPrintf ( -1 , "\n%s(): tuncated current waypoinless target because of level jump... bot at %f %f lv %d" , 
-		      __FUNCTION__, ThisRobot->pos.x, ThisRobot->pos.y, ThisRobot->pos.z );
     }
     
 }; // void move_enemy_to_spot ( Enemy ThisRobot , finepoint next_target_spot )
@@ -598,12 +595,6 @@ MoveThisRobotThowardsHisCurrentTarget ( enemy * ThisRobot )
     finepoint nextwp_pos;
     Level WaypointLevel = curShip . AllLevels [ ThisRobot-> pos . z ];
 
-    //--------------------
-    // A frozen robot is slow while a paralyzed robot can do absolutely nothing.
-    // A waiting robot shouldn't be moved either...
-    //
-    if ( ThisRobot -> paralysation_duration_left != 0 ) return;
-    if ( ThisRobot -> pure_wait > 0 ) return;
     if ( ThisRobot -> animation_type == ATTACK_ANIMATION ) return;
 
     nextwp_pos . x = ThisRobot -> PrivatePathway [ 0 ] . x ;
@@ -1493,9 +1484,6 @@ static void state_machine_inconditional_updates ( enemy * ThisRobot, moderately_
 {
     // Robots that are paralyzed are completely stuck and do not 
     // see their state machine running
-    /* XXX paralyzation MUST BE A STATE BY ITSELF
-    if ( ThisRobot -> paralysation_duration_left != 0 ) 
-	return;*/
     
     //--------------------
     // For debugging purposes we display the current state of the robot
@@ -1537,8 +1525,9 @@ static void state_machine_situational_transitions ( enemy * ThisRobot, const mod
     /* The various situations are listed in increasing priority order (ie. they may override each other, so the least priority comes first. */
     /* In an ideal world, this would not exist and be done for each state. But we're in reality and have to limit code duplication. */
 
-    /* Rush Tux when he's close */     
-    if ( ThisRobot -> will_rush_tux  &&  ( powf ( Me . pos . x - ThisRobot -> pos . x , 2 ) + powf ( Me . pos . x - ThisRobot -> pos . x , 2 ) ) < 16 )
+    /* Rush Tux when he's close */    
+    update_virtual_position(&ThisRobot->virt_pos, &ThisRobot->pos, Me . pos . z); 
+    if ( ThisRobot -> will_rush_tux && ThisRobot->virt_pos . z != -1 &&  ( powf ( Me . pos . x - ThisRobot -> virt_pos . x , 2 ) + powf ( Me . pos . y - ThisRobot -> virt_pos . y , 2 ) ) < 16 )
 	{
 	ThisRobot -> combat_state = RUSH_TUX_AND_OPEN_TALK ;
 	}
@@ -1613,7 +1602,10 @@ static void state_machine_stop_and_eye_target ( enemy * ThisRobot, moderately_fi
 	return;
 	}
 
+    update_virtual_position(&ThisRobot->virt_pos, &ThisRobot->pos, tpos->z);
+
     /* Make sure we're looking at the target */
+    /*XXX won't work if tpos and ThisRobot are not on the same level*/
     TurnABitTowardsPosition ( ThisRobot , tpos -> x , tpos -> y , 120 );
 
     /* Do greet sound if not already done */
@@ -1658,18 +1650,26 @@ static void state_machine_stop_and_eye_target ( enemy * ThisRobot, moderately_fi
 static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_move_target)
 {
     gps * tpos = enemy_get_target_position(ThisRobot);
-
-    if ( !tpos || ! droid_can_walk_this_line ( ThisRobot->pos. z , ThisRobot -> pos . x , ThisRobot -> pos . y , tpos-> x , tpos->y ) ) 
+    
+    if ( !tpos )
 	{
 	//--------------------
 	// If a bot is attacking, but has lost eye contact with the target, it should return to waypointless
 	// wandering or waypoint based movement.
 	ThisRobot -> combat_state = SELECT_NEW_WAYPOINT;
-	/*XXX not here set_new_waypointless_walk_target ( ThisRobot );*/
 	return;
 	}	    
-    
-    float dist2 = (ThisRobot -> pos . x - tpos -> x) * (ThisRobot -> pos . x - tpos -> x) + (ThisRobot -> pos . y - tpos -> y) * (ThisRobot -> pos . y - tpos -> y);
+
+    /* In case the target is on another level, evaluate the virtual position */
+    update_virtual_position( &ThisRobot->virt_pos, &ThisRobot->pos, tpos -> z );
+
+    if ( ThisRobot->virt_pos . z  == -1 && ! droid_can_walk_this_line ( tpos -> z , ThisRobot -> virt_pos . x , ThisRobot -> virt_pos . y , tpos-> x , tpos->y ) ) 
+	{ // target not reachable ?
+	ThisRobot -> combat_state = SELECT_NEW_WAYPOINT;
+	return;
+	}
+
+    float dist2 = (ThisRobot -> virt_pos . x - tpos -> x) * (ThisRobot -> virt_pos . x - tpos -> x) + (ThisRobot -> virt_pos . y - tpos -> y) * (ThisRobot -> virt_pos . y - tpos -> y);
 
     //--------------------
     // We will often have to move towards our target.
@@ -1705,7 +1705,7 @@ static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_m
     
     if ( ThisRobot->firewait ) return;
     
-    RawStartEnemysShot( ThisRobot , tpos->x - ThisRobot->pos.x, tpos->y - ThisRobot->pos.y);
+    RawStartEnemysShot( ThisRobot , tpos->x - ThisRobot->virt_pos.x, tpos->y - ThisRobot->virt_pos.y);
 
 }
 
@@ -1793,8 +1793,16 @@ static void state_machine_move_along_random_waypoints(enemy * ThisRobot, moderat
 static void state_machine_rush_tux_and_open_talk(enemy * ThisRobot, moderately_finepoint * new_move_target)
 {
     /* Move target */
-    new_move_target -> x = Me . pos . x;
-    new_move_target -> y = Me . pos . y;
+    if ( ThisRobot -> pos . z == Me . pos . z)
+	{
+	new_move_target -> x = Me . pos . x;
+	new_move_target -> y = Me . pos . y;
+	}
+    else 
+	{
+	new_move_target -> x = ThisRobot -> pos . x;
+	new_move_target -> y = ThisRobot -> pos . y;
+	}
 
     /* Action */
     if ( sqrt ( ( ThisRobot -> virt_pos . x - Me . pos . x ) * ( ThisRobot -> virt_pos . x - Me . pos . x ) +
@@ -1810,8 +1818,26 @@ static void state_machine_rush_tux_and_open_talk(enemy * ThisRobot, moderately_f
 static void state_machine_follow_tux(enemy * ThisRobot, moderately_finepoint * new_move_target)
 {
     /* Move target */
-    new_move_target -> x = Me . pos . x + (ThisRobot->pos.x - Me.pos.x)/fabsf(ThisRobot->pos.x - Me.pos.x);
-    new_move_target -> y = Me . pos . y + (ThisRobot->pos.y - Me.pos.y)/fabsf(ThisRobot->pos.y - Me.pos.y);
+    if ( GetInfluPositionHistoryZ(100) == ThisRobot -> pos . z )
+	{
+	new_move_target -> x = GetInfluPositionHistoryX(100);
+	new_move_target -> y = GetInfluPositionHistoryY(100);
+	}
+    else
+	{
+	update_virtual_position(&ThisRobot->virt_pos, &ThisRobot->pos, Me . pos . z);
+	if ( ThisRobot -> virt_pos . z != -1 )
+	    {
+	    new_move_target -> x = ThisRobot -> pos . x + Me . pos . x - ThisRobot -> virt_pos . x;
+	    new_move_target -> y = ThisRobot -> pos . y + Me . pos . y - ThisRobot -> virt_pos . y;
+	    }
+	else 
+	    {
+	    ThisRobot->combat_state = COMPLETELY_FIXED;
+	    new_move_target -> x = ThisRobot->pos.x;
+	    new_move_target -> y = ThisRobot->pos.y;
+	    }
+	}
 
 }
 
