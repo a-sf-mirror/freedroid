@@ -42,12 +42,6 @@
 #define BEST_CHAT_DISTANCE (BEST_MELEE_DISTANCE+0.2)
 #define DISTANCE_TOLERANCE (0.00002)
 
-#define FORCE_FIRE_DISTANCE (1.5)
-#define ATTACK_BOXES_DISTANCE (2.0)
-
-#define BOUNCE_LOSE_ENERGY 3	/* amount of lose-energy at enemy-collisions */
-#define BOUNCE_LOSE_FACT 1
-
 #define MAXIMAL_STEP_SIZE ( 7.0/20.0 )
 
 #define DEBUG_TUX_PATHFINDING 1  // debug level for tux pathfinding...
@@ -61,7 +55,6 @@ void check_for_barrels_to_smash ( int index_of_barrel_below_mouse_cursor ) ;
 
 char recursion_grid[ MAX_MAP_LINES ][ MAX_MAP_LINES ] ;
 moderately_finepoint last_sight_contact;
-int next_index_to_set_up = 30000 ;
 int bad_luck_in_4_directions_counter = 0;
 int no_left_button_press_in_previous_analyze_mouse_click = FALSE ;
 
@@ -111,12 +104,6 @@ limit_tux_speed_to_a_maximum ( )
 void
 tux_friction_with_air ( )
 {
-    //--------------------
-    // Maybe the Tux is justified on his way.  Then we don't apply
-    // any friction, since there is intended movement.
-    //
-    // if ( Me . mouse_move_target . x == (-1) ) 
-    //
     if ( Me . next_intermediate_point [ 0 ] . x != (-1) ) 
 	return;
     
@@ -148,10 +135,8 @@ find_free_floor_items_index ( int levelnum )
     // we don't overwrite the same position again and again.  A bit of 
     // randomisation should do the trick...
     //
-    // ErrorMessage ( __FUNCTION__  , "FreedroidRPG failed to find a free items index for an item it wanted to put on the floor.\nThis case means that there are too many items on the floor of this level for the current game engine.\nA constant needs to be raised or the engine improved.", PLEASE_INFORM, IS_FATAL );
-    //
     i = MyRandom ( MAX_ITEMS_PER_LEVEL - 2 );
-    DebugPrintf ( 1 , "\n%s():  NOTE:  lots of items on the floor of this level.  Overwriting position %d." ,
+    DebugPrintf ( -1 , "\n%s():  NOTE:  lots of items on the floor of this level.  Overwriting position %d." ,
 		  __FUNCTION__ , i ) ;
 
     return ( i ) ;
@@ -973,10 +958,6 @@ CheckForTuxOutOfMap ( )
 
   //--------------------
   // Now perhaps the influencer is out of bounds, i.e. outside of the map.
-  // This would cause a segfault immediately afterwards, when checking
-  // for the current map tile to be conveyor or not.  Therefore we add some
-  // extra security against segfaults and increased diagnosis functionality
-  // here.
   //
   if ( ( (int) rintf( Me . pos.y ) >= MoveLevel->ylen ) ||
        ( (int) rintf( Me . pos.x ) >= MoveLevel->xlen ) ||
@@ -1007,7 +988,6 @@ UpdateMouseMoveTargetAccordingToEnemy ( )
     float RemainingWayLength;
  
     enemy * t = enemy_resolve_address(Me . current_enemy_target_n, & Me.current_enemy_target_addr);
-
 
     if (! t)
        return;
@@ -1191,29 +1171,20 @@ MoveTuxAccordingToHisSpeed ( )
   // And on machines with FPS << 20, it will certainly alter the game behaviour, so people
   // should really start using a pentium or better machine.
   //
-  // NOTE:  PLEASE LEAVE THE .0 in the code or gcc will round it down to 0 like an integer.
-  //
   planned_step_x = Me . speed . x * Frame_Time ();
   planned_step_y = Me . speed . y * Frame_Time ();
 
-  // DebugPrintf ( -1000 , "\nPlanned step: x=%f y=%f." ,  planned_step_x , planned_step_y );
 
   //--------------------
   // Maybe the Tux is just executing a weapon strike.  In this case, there should
   // be no movement at all, so in this case we'll just not go anywhere...
   //
-/*  if ( Me . weapon_swing_time > 0 )
+/*XXX  if ( Me . weapon_swing_time > 0 )
     {
       planned_step_x = 0 ;
       planned_step_y = 0 ;
     }*/
 
-  //--------------------
-  // Now we can make the actual move, AND WE DO SO REGARDLESS
-  // OF ANY BLOCKING BY OBSTACLES, SINCE THE POSSIBILITY OF GOING
-  // THROUGH WALLS HAS BEEN RULES INFOUT BY THE PATHFINDING FUNCTION
-  // ANYWAY.
-  //
   Me . pos . x += planned_step_x;
   Me . pos . y += planned_step_y;
 
@@ -1276,30 +1247,6 @@ MoveTuxAccordingToHisSpeed ( )
 }; // void MoveTuxAccordingToHisSpeed ( )
 
 /* ----------------------------------------------------------------------
- *
- *
- * ---------------------------------------------------------------------- */
-void
-update_intermediate_tux_waypoints ( )
-{
-    if ( tux_can_walk_this_line ( Me . pos . x , Me . pos . y , 
-				  Me . mouse_move_target . x , Me . mouse_move_target . y ) )
-    {
-	Me . next_intermediate_point [ 0 ] . x =
-	    Me . mouse_move_target . x ;
-	Me . next_intermediate_point [ 0 ] . y =
-	    Me . mouse_move_target . y ;
-	
-	DebugPrintf ( DEBUG_TUX_PATHFINDING , "\nThis point can be reached directly, so no need to set up waypoints..." );
-    }
-    else
-    {
-	// find_new_intermediate_point ( );
-    }
-
-}; // void update_intermediate_tux_waypoints ( )
-
-/* ----------------------------------------------------------------------
  * This function contains the final dumb movement code, that, without
  * any checks and any refinement, just moves the tux thowards the given
  * target position.
@@ -1320,12 +1267,6 @@ move_tux_thowards_raw_position ( float x , float y )
     // We do not move any players, who's statuses are 'OUT'.
     //
     if ( Me . status == INFOUT ) return ( FALSE ) ;
-    
-    //--------------------
-    // Now for a change, we try to implement some movement code,
-    // that doesn't rely on any acceleration any more, but just
-    // gives full speed immediately
-    //
     
     RemainingWay . x = - Me . pos . x + x ;
     RemainingWay . y = - Me . pos . y + y ;
@@ -1451,7 +1392,7 @@ streamline_tux_intermediate_course ( )
   int last_index = -10;
   int scan_index;
   int cut_away;
-
+  
   DebugPrintf ( DEBUG_TUX_PATHFINDING , "\nOPTIMISATION --> streamline_tux_intermediate_course: starting..." );
 
   //--------------------
@@ -1507,7 +1448,6 @@ streamline_tux_intermediate_course ( )
       // point.  Then we must contine right after this point.
       //
       if ( last_index == (-1) ) continue;
-      // if ( last_index == start_index + 1 ) continue; // nothing to cut away...
       
       //--------------------
       // Now we know how much to cut away.  So we'll do it.
@@ -1575,7 +1515,7 @@ streamline_tux_intermediate_course ( )
  *
  * ---------------------------------------------------------------------- */
 int
-recursive_find_walkable_point ( float x1 , float y1 , float x2 , float y2 , int recursion_depth ) 
+recursive_find_walkable_point ( float x1 , float y1 , float x2 , float y2 , int recursion_depth, int * next_index_to_set_up ) 
 {
     moderately_finepoint ordered_moves[4];
     int i;
@@ -1611,7 +1551,7 @@ recursive_find_walkable_point ( float x1 , float y1 , float x2 , float y2 , int 
 	Me . next_intermediate_point [ 0 ] . y = y2 ;
 	Me . next_intermediate_point [ 1 ] . x = x1 ;
 	Me . next_intermediate_point [ 1 ] . y = y1 ;
-	next_index_to_set_up = 2 ;
+	*next_index_to_set_up = 2 ;
 	return ( TRUE ) ;
     }
     
@@ -1721,7 +1661,7 @@ recursive_find_walkable_point ( float x1 , float y1 , float x2 , float y2 , int 
 		
 		if ( recursive_find_walkable_point ( rintf ( x1 + ordered_moves [ i ] . x + 0.5 ) - 0.5 , 
 						     rintf ( y1 + ordered_moves [ i ] . y + 0.5 ) - 0.5 , 
-						     x2 , y2 , recursion_depth + 1 ) )
+						     x2 , y2 , recursion_depth + 1, next_index_to_set_up ) )
 		{
 		    
 		    //--------------------
@@ -1729,13 +1669,13 @@ recursive_find_walkable_point ( float x1 , float y1 , float x2 , float y2 , int 
 		    // waypoint.
 		    // Otherwise we set THE NEXT WAYPOINT.
 		    //
-		    Me . next_intermediate_point [ next_index_to_set_up ] . x = x1 + ordered_moves [ i ] . x ;
-		    Me . next_intermediate_point [ next_index_to_set_up ] . y = y1 + ordered_moves [ i ] . y ;
+		    Me . next_intermediate_point [ *next_index_to_set_up ] . x = x1 + ordered_moves [ i ] . x ;
+		    Me . next_intermediate_point [ *next_index_to_set_up ] . y = y1 + ordered_moves [ i ] . y ;
 		    
 		    DebugPrintf ( DEBUG_TUX_PATHFINDING , "\nAdded another Tux waypoint entry..." );
-		    next_index_to_set_up++;
+		    (*next_index_to_set_up)++;
 		    
-		    if ( next_index_to_set_up >= MAX_INTERMEDIATE_WAYPOINTS_FOR_TUX )
+		    if ( (*next_index_to_set_up) >= MAX_INTERMEDIATE_WAYPOINTS_FOR_TUX )
 		    {
 			DebugPrintf ( DEBUG_TUX_PATHFINDING , "\nERROR!  Ran out of tux waypoints even with solutionfound!" );
 			clear_out_intermediate_points ( ) ;
@@ -1864,9 +1804,9 @@ set_up_intermediate_course_for_tux ( )
     
     clear_out_intermediate_points ( );
     
-    next_index_to_set_up = 0 ;
+    int next_index_to_set_up = 0 ;
     
-    recursive_find_walkable_point ( Me . pos . x , Me . pos . y , Me . mouse_move_target . x , Me . mouse_move_target . y , 0 ) ;
+    recursive_find_walkable_point ( Me . pos . x , Me . pos . y , Me . mouse_move_target . x , Me . mouse_move_target . y , 0, &next_index_to_set_up ) ;
     
     //--------------------
     // We delete the current position from the courseway, cause this position
@@ -2075,13 +2015,8 @@ move_tux_thowards_intermediate_point ( )
     //
     if ( move_tux_thowards_raw_position ( Me . next_intermediate_point [ 0 ] . x , 
 					  Me . next_intermediate_point [ 0 ] . y ) )
-    {
-	
-	if ( Me . next_intermediate_point [ 0 ] . x == (-1) )
-	{
-	    // find_new_intermediate_point ( );
-	}
-	else // if ( Me . next_intermediate_point [ 1 ] . x != (-1) )
+    {	
+	if ( Me . next_intermediate_point [ 1 ] . x != (-1) )
 	{
 	    DebugPrintf ( DEBUG_TUX_PATHFINDING , "\nMOVING ON TO NEXT INTERMEDIATE WAYPOINT! " );
 	    for ( i = 1 ; i < MAX_INTERMEDIATE_WAYPOINTS_FOR_TUX ; i ++ )
