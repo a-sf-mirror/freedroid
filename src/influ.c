@@ -2122,6 +2122,8 @@ move_tux ( )
 	Me . Position_History_Ring_Buffer [ Me . current_zero_ring_index ] . y = Me .pos.y;
 	Me . Position_History_Ring_Buffer [ Me . current_zero_ring_index ] . z = MoveLevel->levelnum ;
 	}
+    
+    if  ( Me . paralyze_duration ) return;  //If tux is paralyzed, we do nothing more
 
     //--------------------
     // As a preparation for the later operations, we see if there is
@@ -2137,9 +2139,6 @@ move_tux ( )
     // makes sense or not.
     // 
     adapt_global_mode_for_player ( );
-
-
-    if  ( Me . paralyze_duration ) return;  //If tux is paralyzed, we do nothing more
     
     //--------------------
     // But in case of some mouse move target present, we proceed to move
