@@ -1333,6 +1333,7 @@ Startup_handle (int n)
 	find_file ( "Asteroid.maps" , MAP_DIR, fp, 0);
 	LoadShip ( fp ) ;
 	PrepareStartOfNewCharacter ( ) ;
+	skip_initial_menus = 0;
 	LevelEditor () ;
 	return EXIT_MENU;
 	break;  
