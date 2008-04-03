@@ -906,7 +906,6 @@ enum _enemy_combat_state_machine_states
     TURN_TOWARDS_NEXT_WAYPOINT,
     RUSH_TUX_AND_OPEN_TALK,
     WAYPOINTLESS_WANDERING,
-    TURN_TOWARDS_WAYPOINTLESS_SPOT, 
 };
 enum _enemy_combat_target_codes
 {

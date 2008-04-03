@@ -413,6 +413,32 @@ ShuffleEnemys ( int LevelNum )
 
 }; // void ShuffleEnemys ( void ) 
 
+static void 
+enemy_get_current_walk_target ( enemy *ThisRobot, moderately_finepoint * a )
+{
+a -> x = ThisRobot -> PrivatePathway [ 0 ] . x;
+a -> y = ThisRobot -> PrivatePathway [ 0 ] . y;
+}
+
+/* ----------------------------------------------------------------------
+ * This function moves one robot in an advanced way, that hasn't been
+ * present within the classical paradroid game.
+ * ---------------------------------------------------------------------- */
+static float 
+remaining_distance_to_current_walk_target ( Enemy ThisRobot )
+{
+    moderately_finepoint remaining_way;
+
+    enemy_get_current_walk_target(ThisRobot, &remaining_way);
+
+    remaining_way.x -= ThisRobot -> pos . x ;
+    remaining_way.y -= ThisRobot -> pos . y ;
+
+    return ( sqrt ( remaining_way.x * remaining_way.x + remaining_way.y * remaining_way.y ) ) ;
+
+}; // float remaining_distance_to_current_walk_target ( Enemy ThisRobot )
+
+
 /* ----------------------------------------------------------------------
  * This function checks if the connection between two points is free of
  * droids.  
@@ -504,9 +530,9 @@ CheckIfWayIsFreeOfDroids (char test_tux, float x1 , float y1 , float x2 , float 
  * actually move the robot towards this spot.
  * ---------------------------------------------------------------------- */
 static void
-move_enemy_to_spot ( Enemy ThisRobot , finepoint next_target_spot )
+move_enemy_to_spot ( Enemy ThisRobot , moderately_finepoint next_target_spot )
 {
-    finepoint remaining_way;
+    moderately_finepoint remaining_way;
     float maxspeed;
     int old_map_level;
 
@@ -578,9 +604,14 @@ move_enemy_to_spot ( Enemy ThisRobot , finepoint next_target_spot )
     old_map_level = ThisRobot -> pos . z ;
     adapt_position_for_jump_thresholds ( & ( ThisRobot -> pos ) , & ( ThisRobot -> pos ) );
     if ( ThisRobot -> pos . z != old_map_level )
-    {
+    { /* if the bot has changed level */
+  
+        /* Prevent it from moving this frame */
 	ThisRobot -> PrivatePathway [ 0 ] . x = ThisRobot -> pos . x ;
 	ThisRobot -> PrivatePathway [ 0 ] . y = ThisRobot -> pos . y ;
+
+	/* Move it to the appropriate level list */
+	list_move(&level_bots_head [ ThisRobot->pos.z ], &ThisRobot->level_list);
     }
     
 }; // void move_enemy_to_spot ( Enemy ThisRobot , finepoint next_target_spot )
@@ -592,13 +623,12 @@ move_enemy_to_spot ( Enemy ThisRobot , finepoint next_target_spot )
 void 
 MoveThisRobotThowardsHisCurrentTarget ( enemy * ThisRobot )
 {
-    finepoint nextwp_pos;
+    moderately_finepoint nextwp_pos;
     Level WaypointLevel = curShip . AllLevels [ ThisRobot-> pos . z ];
 
     if ( ThisRobot -> animation_type == ATTACK_ANIMATION ) return;
 
-    nextwp_pos . x = ThisRobot -> PrivatePathway [ 0 ] . x ;
-    nextwp_pos . y = ThisRobot -> PrivatePathway [ 0 ] . y ;
+    enemy_get_current_walk_target(ThisRobot, &nextwp_pos);
 
     move_enemy_to_spot ( ThisRobot , nextwp_pos );
 
@@ -606,8 +636,10 @@ MoveThisRobotThowardsHisCurrentTarget ( enemy * ThisRobot )
 
 /* ----------------------------------------------------------------------
  * This function sets a new random waypoint to a bot.
+ *
+ * Returns 0 if everything was OK, 1 if couldn't set a new waypoint.
  * ---------------------------------------------------------------------- */
-void
+static int
 SetNewRandomWaypoint ( Enemy ThisRobot )
 {
     int i;
@@ -641,20 +673,7 @@ SetNewRandomWaypoint ( Enemy ThisRobot )
     {
 	fprintf ( stderr , "\nThe offending waypoint nr. is: %d at %d, %d.", nextwp, WpList [ nextwp ] . x, WpList [ nextwp ] . y );
 	fprintf ( stderr , "\nThe map level in question got nr.: %d.", ThisRobot -> pos . z );
-	if ( ThisRobot -> stick_to_waypoint_system_by_default )
-	{
-	    ErrorMessage ( __FUNCTION__  , "\
-There was a droid on a waypoint, that apparently has no connections to other waypoints...\n\
-Since it was a waypoint-based bot, this is a fatal message in this case.",
-				       NO_NEED_TO_INFORM, IS_FATAL );
-	}
-	else
-	{
-	    ErrorMessage ( __FUNCTION__  , "\
-There was a droid on a waypoint, that apparently has no connections to other waypoints...\n\
-Since it was NOT a waypoint-based bot, this is NOT a fatal message in this case.",
-				       NO_NEED_TO_INFORM, IS_WARNING_ONLY );
-	}
+	return 1;
     }
     
     //--------------------
@@ -663,12 +682,12 @@ Since it was NOT a waypoint-based bot, this is NOT a fatal message in this case.
     //
     for ( i = 0; i < num_conn ; i++ )
     {
-	FreeWays [ i ] = 1; /*CheckIfWayIsFreeOfDroids ( TRUE, 
+	FreeWays [ i ] = CheckIfWayIsFreeOfDroids ( TRUE, 
 	    WpList [ ThisRobot -> lastwaypoint ] . x + 0.5 , 
 	    WpList [ ThisRobot -> lastwaypoint ] . y + 0.5 , 
 	    WpList [ WpList [ ThisRobot -> lastwaypoint ] . connections [ i ] ] . x + 0.5 , 
 	    WpList [ WpList [ ThisRobot -> lastwaypoint ] . connections [ i ] ] . y + 0.5 , 
-	    ThisRobot->pos.z , ThisRobot );*/
+	    ThisRobot->pos.z , ThisRobot );
     }
     
     //--------------------
@@ -686,7 +705,7 @@ Since it was NOT a waypoint-based bot, this is NOT a fatal message in this case.
 	/*if ( ( ThisRobot -> combat_state == MOVE_ALONG_RANDOM_WAYPOINTS ) ||
 	     ( ThisRobot -> combat_state == TURN_TOWARDS_NEXT_WAYPOINT ) )
 	    ThisRobot -> combat_state = WAIT_AND_TURN_AROUND_AIMLESSLY ;*/
-	return;
+	return 1;
     }
     
     //--------------------
@@ -698,12 +717,12 @@ Since it was NOT a waypoint-based bot, this is NOT a fatal message in this case.
     SolutionFound = FALSE;
     while ( !SolutionFound )
     {
-	TestConnection = MyRandom ( WpList [ nextwp ] . num_connections - 1 );
+	TestConnection = MyRandom ( num_conn - 1 );
 	
-	if ( WpList[nextwp].connections[ TestConnection ] == (-1) ) continue;
+	if ( this_wp->connections[ TestConnection ] == (-1) ) continue;
 	if ( !FreeWays[TestConnection] ) continue;
 	
-	trywp = WpList[nextwp].connections[ TestConnection ];
+	trywp = this_wp->connections[ TestConnection ];
 	SolutionFound = TRUE;
     }
     
@@ -711,6 +730,8 @@ Since it was NOT a waypoint-based bot, this is NOT a fatal message in this case.
     ThisRobot->nextwaypoint = trywp;
     
     DebugPrintf ( 2 , "\n%s():  A new waypoint has been set." , __FUNCTION__ );
+
+    return 0;
   
 }; // void SetNewRandomWaypoint ( Enemy ThisRobot )
 
@@ -743,27 +764,15 @@ set_new_waypointless_walk_target ( enemy* ThisRobot, moderately_finepoint * mt)
 
 #define MAX_RANDOM_WALK_ATTEMPTS_BEFORE_GIVING_UP 4
 
-    if ( ThisRobot -> follow_tux )
+    for ( i = 0 ; i < MAX_RANDOM_WALK_ATTEMPTS_BEFORE_GIVING_UP ; i ++ )
 	{
-	moderately_finepoint vect;
-	vect . x = ThisRobot -> virt_pos . x - Me . pos . x;
-	vect . y = ThisRobot -> virt_pos . y - Me . pos . y;
+	//--------------------
+	// We select a possible new walktarget for this bot, not too
+	// far away from the current position...
+	//
+	target_candidate . x = ThisRobot -> pos . x + ( MyRandom ( 600 ) - 300 ) / 100 ; 
+	target_candidate . y = ThisRobot -> pos . y + ( MyRandom ( 600 ) - 300 ) / 100 ; 
 
-	target_candidate . x = Me . pos . x;
-	target_candidate . y = Me . pos . y;
-	}
-    else
-	{
-	for ( i = 0 ; i < MAX_RANDOM_WALK_ATTEMPTS_BEFORE_GIVING_UP ; i ++ )
-	    {
-	    //--------------------
-	    // We select a possible new walktarget for this bot, not too
-	    // far away from the current position...
-	    //
-	    target_candidate . x = ThisRobot -> pos . x + ( MyRandom ( 600 ) - 300 ) / 100 ; 
-	    target_candidate . y = ThisRobot -> pos . y + ( MyRandom ( 600 ) - 300 ) / 100 ; 
-
-	    }
 	}
 
     if ( droid_can_walk_this_line ( ThisRobot -> pos . z , ThisRobot -> pos . x , ThisRobot -> pos . y , 
@@ -776,30 +785,10 @@ set_new_waypointless_walk_target ( enemy* ThisRobot, moderately_finepoint * mt)
 
     if ( ! success )
 	{
-	DebugPrintf ( -2 , "\n%s():  bad luck with random walk point this time..." , __FUNCTION__ );
 	ThisRobot -> pure_wait = 1.6 ;
 	}
 }; // void set_new_waypointless_walk_target ( enemy* ThisRobot )
 
-/* ----------------------------------------------------------------------
- * This function moves one robot in an advanced way, that hasn't been
- * present within the classical paradroid game.
- * ---------------------------------------------------------------------- */
-float 
-remaining_distance_to_current_walk_target ( Enemy ThisRobot )
-{
-    Waypoint WpList;
-    int nextwp;
-    finepoint nextwp_pos;
-    Level WaypointLevel = curShip.AllLevels[ ThisRobot -> pos.z ];
-    finepoint remaining_way;
-
-    remaining_way.x = ThisRobot -> PrivatePathway [ 0 ] . x - ThisRobot -> pos . x ;
-    remaining_way.y = ThisRobot -> PrivatePathway [ 0 ] . y - ThisRobot -> pos . y ;
-
-  return ( sqrt ( remaining_way.x * remaining_way.x + remaining_way.y * remaining_way.y ) ) ;
-
-}; // float remaining_distance_to_current_walk_target ( Enemy ThisRobot )
 
 /* ----------------------------------------------------------------------
  * This function tells if a given level is active in the sence that there
@@ -1166,9 +1155,6 @@ enemy_say_current_state_on_screen ( enemy* ThisRobot )
 	    break;
 	case WAYPOINTLESS_WANDERING:
 	    ThisRobot->TextToBeDisplayed = _("state:  Waypointless wandering.") ;
-	    break;
-	case TURN_TOWARDS_WAYPOINTLESS_SPOT:
-	    ThisRobot->TextToBeDisplayed = _("state:  Waypointless turning.") ;
 	    break;
 	case PARALYZED:
 	    ThisRobot->TextToBeDisplayed = _("state:  Paralyzed.") ;
@@ -1742,12 +1728,17 @@ static void state_machine_returning_home(enemy * ThisRobot, moderately_finepoint
 
 static void state_machine_select_new_waypoint(enemy * ThisRobot, moderately_finepoint * new_move_target)
 {
-    /* Bot must select a new waypoint randomly, and turn towards it. No move this step.*/
-    SetNewRandomWaypoint( ThisRobot );
-
     /* Move target - none */
     new_move_target -> x = ThisRobot -> pos . x ;
     new_move_target -> y = ThisRobot -> pos . y ;
+    
+    /* Bot must select a new waypoint randomly, and turn towards it. No move this step.*/
+    if ( SetNewRandomWaypoint( ThisRobot ) )
+	{ /* couldn't find a waypoint ? go waypointless */
+	fprintf(stderr, "Bot %#x at %f %f %d could not find a waypoint, going waypointless\n", ThisRobot, ThisRobot->pos.x, ThisRobot->pos.y, ThisRobot->pos.z);
+	ThisRobot->combat_state = WAYPOINTLESS_WANDERING;
+	}
+
 
     ThisRobot->combat_state = TURN_TOWARDS_NEXT_WAYPOINT;
 }
@@ -1850,10 +1841,12 @@ static void state_machine_completely_fixed ( enemy * ThisRobot, moderately_finep
 
 static void state_machine_waypointless_wandering(enemy * ThisRobot, moderately_finepoint * new_move_target)
 {
-}
-
-static void state_machine_turn_towards_waypointless_spot(enemy * ThisRobot, moderately_finepoint * new_move_target)
-{
+    if ( remaining_distance_to_current_walk_target ( ThisRobot ) < 0.1 ) 
+	{
+	set_new_waypointless_walk_target ( ThisRobot, new_move_target );
+	TurnABitTowardsPosition ( ThisRobot, new_move_target -> x, new_move_target -> y, 90);
+	ThisRobot -> combat_state = WAYPOINTLESS_WANDERING ;
+	}
 }
 
 /* ----------------------------------------------------------------------
@@ -1898,7 +1891,8 @@ update_enemy ( enemy * ThisRobot )
     /* Situational state changes */
     state_machine_situational_transitions(ThisRobot, &vect_to_target);
 
-    moderately_finepoint new_move_target = { ThisRobot->PrivatePathway[0].x, ThisRobot->PrivatePathway[0].y };
+    moderately_finepoint new_move_target;
+    enemy_get_current_walk_target(ThisRobot, &new_move_target);
 
     /* Handle per-state switches and actions.
      * Each state much set move_target and combat_state.
@@ -1950,9 +1944,6 @@ update_enemy ( enemy * ThisRobot )
 	    state_machine_waypointless_wandering ( ThisRobot, &new_move_target );
 	    break;
 
-	case TURN_TOWARDS_WAYPOINTLESS_SPOT:
-	    state_machine_turn_towards_waypointless_spot ( ThisRobot, &new_move_target );
-	    break;
 	}
 
     /* Pathfind current target */
@@ -1966,80 +1957,6 @@ update_enemy ( enemy * ThisRobot )
 	
     if ( ThisRobot -> PrivatePathway[0] . x != ThisRobot->pos.x || ThisRobot -> PrivatePathway[0] . y != ThisRobot->pos.y )
 	MoveThisEnemy(ThisRobot);
-    /* CLEAN UP LIMIT --- anything below this is adults only :) */
-#if 0 
-    else if ( ThisRobot -> combat_state == WAYPOINTLESS_WANDERING )
-    {
-	MoveThisRobotThowardsHisCurrentTarget( ThisRobot );
-	if ( remaining_distance_to_current_walk_target ( ThisRobot ) < 0.1 ) 
-	{
-	    set_new_waypointless_walk_target ( ThisRobot );
-	    ThisRobot -> combat_state = TURN_TOWARDS_WAYPOINTLESS_SPOT ;
-	    return;
-	}
-	
-	
-	//--------------------
-	// In case that the enemy droid isn't even aware of Tux and
-	// does not even see Tux now, there's nothing more to do here...
-	// Not even the combat state will change.
-	//
-	if ( DistanceToTux( ThisRobot ) > Druidmap [ ThisRobot -> type ] . range_of_vision ) return;
-	
-	//--------------------
-	// But if the Tux is now within range of vision, then it will be
-	// 'greeted' and also the state will finally move to something more
-	// interesting...
-	//
-	if ( ThisRobot -> has_greeted_influencer == FALSE )
-	{
-	    ThisRobot->has_greeted_influencer = TRUE;
-	    if ( Druidmap[ ThisRobot->type ].greeting_sound_type != (-1) )
-	    {
-		DebugPrintf ( 1 , "\n%s(): Playing greeting sound for bot of type %d." , 
-			      __FUNCTION__ , ThisRobot -> type );
-		PlayGreetingSound( Druidmap[ ThisRobot->type ].greeting_sound_type );
-	    }
-	}
-	
-	check_if_switching_to_stopandeyetuxmode_makes_sense ( ThisRobot );
-
-	return; 
-    }
-    else if ( ThisRobot -> combat_state == TURN_TOWARDS_WAYPOINTLESS_SPOT )
-    {
-	//--------------------
-	// We allow arbitrary turning speed in this case... so we disable
-	// the turning control in display function...
-	//
-	ThisRobot -> last_phase_change = 100 ; 
-	if ( 
-	    TurnABitTowardsPosition ( ThisRobot , 
-				       ThisRobot -> PrivatePathway [ 0 ] . x ,
-				       ThisRobot -> PrivatePathway [ 0 ] . y ,
-				       90 )
-	    )
-	{
-	    //--------------------
-	    // Maybe there should be some more waiting here, so that the bots and
-	    // characters don't appear so very busy and moving so abruptly, but that
-	    // may follow later...
-	    //
-	    ThisRobot -> combat_state = WAYPOINTLESS_WANDERING ;
-	}
-	return;
-	
-    }
-    else
-    {
-	DebugPrintf ( -1000 , "\nWARNING:  Unidentified combat_state encountered: code=%hd!" , ThisRobot -> combat_state );
-	MoveThisEnemy ( ThisRobot ); // this will now be done in the attack state machine...
-	return;
-    }
-	
-    MoveThisEnemy ( ThisRobot ); // this will now be done in the attack state machine...
-    
-#endif
 }; // void update_enemy()
 
 /* ----------------------------------------------------------------------
