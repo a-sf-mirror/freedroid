@@ -2963,10 +2963,9 @@ PerformTuxAttackRaw ( int use_mouse_cursor_for_targeting )
 		}
 	
 	enemy *erot, *nerot;
-BROWSE_ALIVE_BOTS_SAFE(erot, nerot)
+BROWSE_LEVEL_BOTS_SAFE(erot, nerot, Me.pos.z)
 	{
-	    if (( erot-> pos . z != Me . pos . z ) ||
-	    		( fabsf ( erot-> pos . x - Weapon_Target_Vector.x ) > 0.5 ) ||
+	    if (( fabsf ( erot-> pos . x - Weapon_Target_Vector.x ) > 0.5 ) ||
 	    		( fabsf ( erot->pos . y - Weapon_Target_Vector.y ) > 0.5 ))
 		continue;
 
@@ -2997,8 +2996,6 @@ BROWSE_ALIVE_BOTS_SAFE(erot, nerot)
 	    
 	    erot->firewait += 
 		1 * ItemMap [ Druidmap [ erot->type ] . weapon_item.type ] . item_gun_recharging_time ;
-	    
-	    DebugPrintf( PERFORM_TUX_ATTACK_RAW_DEBUG , "\n===> Fire Bullet hit something.... melee ... " ) ;
 	}
 	
 	//--------------------
