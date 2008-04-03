@@ -1111,15 +1111,6 @@ DetermineAngleOfFacing ( enemy * e )
 void 
 MoveThisEnemy( enemy * ThisRobot )
 {
-    //--------------------
-    // At first, we check for a lot of cases in which we do not
-    // need to move anything for this reason or for that
-    //
-    
-    //--------------------
-    // ignore all enemys with CompletelyFixed flag set...
-    //
-    if ( ThisRobot -> CompletelyFixed ) return;
     
     //--------------------
     // robots that still have to wait also do not need to
@@ -1170,7 +1161,7 @@ enemy_say_current_state_on_screen ( enemy* ThisRobot )
 	case TURN_TOWARDS_NEXT_WAYPOINT:
 	    ThisRobot->TextToBeDisplayed = _("state:  Turn towards next WP.") ;
 	    break;     
-	case RUSH_TUX_ON_SIGHT_AND_OPEN_TALK:
+	case RUSH_TUX_AND_OPEN_TALK:
 	    ThisRobot->TextToBeDisplayed = _("state:  Rush Tux and open talk.") ;
 	    break;     
 	case STOP_AND_EYE_TARGET:
@@ -1190,6 +1181,9 @@ enemy_say_current_state_on_screen ( enemy* ThisRobot )
 	    break;
 	case PARALYZED:
 	    ThisRobot->TextToBeDisplayed = _("state:  Paralyzed.") ;
+	    break;
+	case COMPLETELY_FIXED:
+	    ThisRobot->TextToBeDisplayed = _("state: Completely fixed.");
 	    break;
 	case FOLLOW_TUX:
 	    ThisRobot->TextToBeDisplayed = _("state: Follow Tux.") ;
@@ -1546,7 +1540,7 @@ static void state_machine_situational_transitions ( enemy * ThisRobot, const mod
     /* Rush Tux when he's close */     
     if ( ThisRobot -> will_rush_tux  &&  ( powf ( Me . pos . x - ThisRobot -> pos . x , 2 ) + powf ( Me . pos . x - ThisRobot -> pos . x , 2 ) ) < 16 )
 	{
-	ThisRobot -> combat_state = RUSH_TUX_ON_SIGHT_AND_OPEN_TALK ;
+	ThisRobot -> combat_state = RUSH_TUX_AND_OPEN_TALK ;
 	}
 
     /* Return home if we're too far away */
@@ -1564,6 +1558,7 @@ static void state_machine_situational_transitions ( enemy * ThisRobot, const mod
 	ThisRobot -> combat_state = PARALYZED;
 	}
 
+
     /* Now we will handle changes, which take place for many - but not exactly all - states */
     /* Those are all related to attack behavior */
 
@@ -1574,8 +1569,14 @@ static void state_machine_situational_transitions ( enemy * ThisRobot, const mod
 	case PARALYZED:
 	case RETURNING_HOME:
 	case SELECT_NEW_WAYPOINT:
-	case RUSH_TUX_ON_SIGHT_AND_OPEN_TALK:
+	case RUSH_TUX_AND_OPEN_TALK:
 	    return;
+	}
+    
+    /* Fix completely if appropriate */
+    if ( ThisRobot -> CompletelyFixed )
+	{
+	ThisRobot -> combat_state = COMPLETELY_FIXED;
 	}
     
     /* Follow Tux if appropriate */
@@ -1789,7 +1790,7 @@ static void state_machine_move_along_random_waypoints(enemy * ThisRobot, moderat
     ThisRobot -> combat_state = MOVE_ALONG_RANDOM_WAYPOINTS;
 }
 
-static void state_machine_rush_tux_on_side_and_open_talk(enemy * ThisRobot, moderately_finepoint * new_move_target)
+static void state_machine_rush_tux_and_open_talk(enemy * ThisRobot, moderately_finepoint * new_move_target)
 {
     /* Move target */
     new_move_target -> x = Me . pos . x;
@@ -1804,11 +1805,6 @@ static void state_machine_rush_tux_on_side_and_open_talk(enemy * ThisRobot, mode
 	ThisRobot -> combat_state = SELECT_NEW_WAYPOINT ;
 	return; 
 	}
-
-    /* Transition */
-    // we have transited out of this state above if applicable, here we simply loop
-    ThisRobot -> combat_state = RUSH_TUX_ON_SIGHT_AND_OPEN_TALK;
-
 }
 
 static void state_machine_follow_tux(enemy * ThisRobot, moderately_finepoint * new_move_target)
@@ -1817,6 +1813,13 @@ static void state_machine_follow_tux(enemy * ThisRobot, moderately_finepoint * n
     new_move_target -> x = Me . pos . x + (ThisRobot->pos.x - Me.pos.x)/fabsf(ThisRobot->pos.x - Me.pos.x);
     new_move_target -> y = Me . pos . y + (ThisRobot->pos.y - Me.pos.y)/fabsf(ThisRobot->pos.y - Me.pos.y);
 
+}
+
+static void state_machine_completely_fixed ( enemy * ThisRobot, moderately_finepoint * new_move_target )
+{
+    /* Move target */
+    new_move_target -> x = ThisRobot-> pos . x;
+    new_move_target -> y = ThisRobot-> pos . y;
 }
 
 static void state_machine_waypointless_wandering(enemy * ThisRobot, moderately_finepoint * new_move_target)
@@ -1887,6 +1890,10 @@ update_enemy ( enemy * ThisRobot )
 	case PARALYZED:
 	    state_machine_paralyzed ( ThisRobot, &new_move_target);
 	    break;
+	
+	case COMPLETELY_FIXED:
+	    state_machine_completely_fixed ( ThisRobot, &new_move_target);
+	    break;
 
 	case FOLLOW_TUX:
 	    state_machine_follow_tux ( ThisRobot, &new_move_target );
@@ -1909,8 +1916,8 @@ update_enemy ( enemy * ThisRobot )
 	    break;
 
 
-	case RUSH_TUX_ON_SIGHT_AND_OPEN_TALK:
-	    state_machine_rush_tux_on_side_and_open_talk ( ThisRobot, &new_move_target );
+	case RUSH_TUX_AND_OPEN_TALK:
+	    state_machine_rush_tux_and_open_talk ( ThisRobot, &new_move_target );
 	    break;
 
 	case WAYPOINTLESS_WANDERING:

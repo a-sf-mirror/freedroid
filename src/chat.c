@@ -1285,7 +1285,7 @@ DoChatFromChatRosterData( int ChatPartnerCode , Enemy ChatDroid , int clear_prot
     SDL_Rect Chat_Window;
     int MenuSelection = (-1) ;
     char* DialogMenuTexts[ MAX_ANSWERS_PER_PERSON ];
-    char enemy_started_the_talk =  (ChatDroid -> combat_state == RUSH_TUX_ON_SIGHT_AND_OPEN_TALK );
+    char enemy_started_the_talk =  (ChatDroid -> combat_state == RUSH_TUX_AND_OPEN_TALK );
 
     //--------------------
     // We always should clear the chat protocol.  Only for SUBDIALOGS it is
