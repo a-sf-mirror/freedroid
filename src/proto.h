@@ -241,7 +241,6 @@ EXTERN void LoadAndPrepareRedEnemyRotationModelNr ( int RotationModel );
 EXTERN void LoadAndPrepareGreenEnemyRotationModelNr ( int RotationModel );
 EXTERN void LoadAndPrepareBlueEnemyRotationModelNr ( int RotationModel );
 EXTERN void Load_Enemy_Surfaces (void);
-EXTERN void InitTuxWorkingCopy( void );
 EXTERN void Load_Tux_Surfaces( void );
 EXTERN void LoadOneMapInsertSurfaceIfNotYetLoaded ( int i );
 EXTERN void Load_Bullet_Surfaces (void);
