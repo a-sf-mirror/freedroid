@@ -2677,8 +2677,6 @@ GetCrew (char *filename)
 #define DROIDS_LEVEL_DESCRIPTION_START_STRING "** Beginning of new Level **"
 #define DROIDS_LEVEL_DESCRIPTION_END_STRING "** End of this levels droid data **"
 
-    ClearEnemys ();
-    
     //--------------------
     //Now its time to start decoding the droids file.
     //For that, we must get it into memory first.
@@ -2719,7 +2717,7 @@ GetCrew (char *filename)
     ReviveAllDroidsOnShip ();
 
     enemy_generate_level_lists();
-    
+  
     free ( MainDroidsFilePointer ) ;
     return ( OK );
 
@@ -2865,10 +2863,11 @@ the item specification section.",
       newen. SpecialForce = 1;
       newen.id = last_bot_number;
       newen . has_been_taken_over = FALSE;
-      enemy * ne = (enemy *)malloc(sizeof(enemy));
+      enemy * ne = (enemy *)calloc(1,sizeof(enemy));
       memcpy(ne, &newen, sizeof(enemy));
       list_add(&(ne->global_list), &alive_bots_head);
       last_bot_number ++; 
+
     } // while Special force droid found...
 
   CountNumberOfDroidsOnShip (  );
@@ -3004,7 +3003,7 @@ game data file with all droid type specifications.",
                 default: strcpy ( newen . short_description_text , _("No Description For This One") );
 		};
 
-	enemy * ne = (enemy *)malloc(sizeof(enemy));
+	enemy * ne = (enemy *)calloc(1,sizeof(enemy));
 	memcpy(ne, &newen, sizeof(enemy));
 	list_add(&(ne->global_list), &alive_bots_head);
 	last_bot_number ++;

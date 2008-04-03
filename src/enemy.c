@@ -300,19 +300,26 @@ ClearEnemys ( void )
 {
     enemy * erot, *nerot;
     
+    int i;
+    for ( i =0 ;  i < MAX_LEVELS; i++)
+	{
+	INIT_LIST_HEAD(&level_bots_head[i]);
+	}
+
     BROWSE_ALIVE_BOTS_SAFE(erot, nerot)
 	{
-	list_del_init( &erot->global_list );
-	list_del_init( &erot->level_list );
+	list_del( &erot->global_list );
 	free ( erot );
 	}
 
     BROWSE_DEAD_BOTS_SAFE(erot,nerot)
 	{
-	list_del_init( &erot->global_list );
+	list_del( &erot->global_list );
 	free ( erot );
 	}
 
+    INIT_LIST_HEAD(&alive_bots_head);
+    INIT_LIST_HEAD(&dead_bots_head);
 }; // void ClearEnemys ( void ) 
 
 
@@ -346,6 +353,7 @@ ShuffleEnemys ( int LevelNum )
 	// it simply there.  For simplicity we use sum norm as distance.
 	//
 	TeleportToClosestWaypoint(erot);
+	
 	erot->combat_state = SELECT_NEW_WAYPOINT;
 	erot->homewaypoint = erot->lastwaypoint;
 	if ( erot->SpecialForce )
@@ -964,7 +972,7 @@ static int kill_enemy(enemy * target, char givexp, int killertype)
     }
 
     list_move(&(target->global_list), &dead_bots_head); // bot is dead? move it to dead list
-    list_del_init(&(target->level_list)); // bot is dead? remove it from level list
+    list_del(&(target->level_list)); // bot is dead? remove it from level list
 
     return 0;
 };
@@ -2740,7 +2748,7 @@ enemy * erot;
 BROWSE_ALIVE_BOTS(erot)
     {
     list_add(&erot->level_list, &level_bots_head[erot->pos.z]);
-    } 
+    }
 
 }
 #undef _enemy_c

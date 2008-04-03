@@ -81,13 +81,11 @@ clear_out_arrays_for_fresh_game ( void )
 {
     int i;
 
-    if ( level_bots_head[0].next == NULL ) 
-	{ /* This means the level lists heads have not been initialized */
-	for ( i = 0; i < MAX_LEVELS; i++)
-	    INIT_LIST_HEAD(&level_bots_head[i]);
-	}
-
     level_editor_marked_obstacle = NULL ;
+
+    for ( i = 0; i < MAX_MELEE_SHOTS; i ++)
+	delete_melee_shot(&AllMeleeShots[i]);
+
     for ( i = 0 ; i < MAXBULLETS ; i++ )
     {
 	DeleteBullet ( i , FALSE );
@@ -100,6 +98,7 @@ clear_out_arrays_for_fresh_game ( void )
     {
 	DeleteSpell ( i );
     }
+    
     ClearEnemys ( ) ;
     clear_active_spells ( ) ;
     ClearAutomapData( );
@@ -1916,10 +1915,6 @@ PrepareStartOfNewCharacter ( void )
     int MissionTargetIndex = 0;
     location StartPosition;
     
-    //--------------------
-    // At first we do the things that must be done for all
-    // missions, regardless of mission file given
-    //
     Activate_Conservative_Frame_Computation();
     ThisMessageTime = 0;
     LevelDoorsNotMovedTime = 0.0;
@@ -1962,15 +1957,10 @@ PrepareStartOfNewCharacter ( void )
     //
     Me . TextToBeDisplayed = _("Huh? What?  Where am I?");
     Me . TextVisibleTime = 0;
+
     
-    //--------------------
-    // initialize enemys according to crew file */
-    // WARNING!! THIS REQUIRES THE freedroid.ruleset FILE TO BE READ ALREADY, BECAUSE
-    // ROBOT SPECIFICATIONS ARE ALREADY REQUIRED HERE!!!!!
-    //
     GetCrew ( "ReturnOfTux.droids" ) ;
     
-    // ResolveMapLabelOnShip ( "TuxStartGameSquare" , &StartPosition );
     ResolveMapLabelOnShip ( "NewTuxStartGameSquare" , &StartPosition );
     Teleport( StartPosition . level, StartPosition . x, StartPosition . y, FALSE);
     
@@ -2022,7 +2012,7 @@ PrepareStartOfNewCharacter ( void )
     Me . TextVisibleTime = 0;
     Me . readied_skill = 0;
     Me . walk_cycle_phase = 0 ;
-    Me . TextToBeDisplayed = _("Linux Kernel booted.  001 transfer-tech modules loaded.  System up and running.");
+    Me . TextToBeDisplayed = _("");
     
     //--------------------
     // None of the inventory slots like currently equipped weapons
@@ -2080,6 +2070,7 @@ PrepareStartOfNewCharacter ( void )
     our_SDL_flip_wrapper ( Screen );
     
     append_new_game_message ( _("Starting new game.") );
+
 }; // void PrepareStartOfNewCharacter ( char* MissionName )
 
 /* ----------------------------------------------------------------------
