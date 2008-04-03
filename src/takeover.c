@@ -324,17 +324,10 @@ Takeover ( enemy * target )
 
 	    target->energy =  Druidmap [ target->type ] . maxenergy ; 
 
-	    //--------------------
-	    // After takeover, the enemy suddenly becomes friendly and will also have
-	    // a much nicer default 'combat state'...  the enemy can still start to
-	    // fight from that nicer state, maybe on the Tux side, this time :)
-	    //
 	    target->is_friendly = TRUE ;
 	    target->has_been_taken_over = TRUE ; 
-	    if ( target-> stick_to_waypoint_system_by_default )
-		target->combat_state = MOVE_ALONG_RANDOM_WAYPOINTS ;
-	    else
-		target->combat_state = WAYPOINTLESS_WANDERING ;
+		
+	    target->combat_state = WAYPOINTLESS_WANDERING ;
 
 	    //--------------------
 	    // When the bot is taken over, it should not turn hostile when

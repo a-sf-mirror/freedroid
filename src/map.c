@@ -153,10 +153,7 @@ respawn_level ( int level_num )
 
 	if ( ! erot->is_friendly )
 	{
-	    if ( erot->stick_to_waypoint_system_by_default )
-		erot->combat_state = MOVE_ALONG_RANDOM_WAYPOINTS ;
-	    else
-		erot-> combat_state = WAYPOINTLESS_WANDERING ;
+   	    erot->combat_state = SELECT_NEW_WAYPOINT ;
 
 	    erot->has_greeted_influencer = FALSE ;
 	    erot->state_timeout = 0 ;
@@ -2867,17 +2864,6 @@ the item specification section.",
       newen.pos.z = OurLevelNumber;
       newen. SpecialForce = 1;
       newen.id = last_bot_number;
-      //--------------------
-      // By default, friendly bots will stick to the waypoint system while
-      // hostile bots will not.  Well, this is for now.  We might find something
-      // more intelligent later, like e.g. selecting the property from the
-      // ReturnOfTux.droids file.
-      //
-      if ( newen. is_friendly ) 
-	  newen . stick_to_waypoint_system_by_default = TRUE ;
-      else
-	  newen . stick_to_waypoint_system_by_default = FALSE ;
-
       newen . has_been_taken_over = FALSE;
       enemy * ne = (enemy *)malloc(sizeof(enemy));
       memcpy(ne, &newen, sizeof(enemy));
@@ -2988,10 +2974,6 @@ game data file with all droid type specifications.",
 	newen . on_death_drop_item_code = (-1) ;
 	newen . ammo_left = ItemMap [ Druidmap [ newen . type ] . weapon_item . type ] . item_gun_ammo_clip_size ;
 	newen . id = last_bot_number + 1;
-	if ( newen . is_friendly ) 
-	    newen . stick_to_waypoint_system_by_default = TRUE ;
-	else
-	    newen . stick_to_waypoint_system_by_default = FALSE ;
 	
 	strcpy ( newen . dialog_section_name , "StandardBotAfterTakeover" );
 	
