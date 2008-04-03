@@ -663,9 +663,6 @@ apply_bullet_damage_to_player ( int damage, int owner )
     
     UpdateAllCharacterStats( );
     
-    //real_damage -= real_damage * (1 - (float)(Me . AC * 0.0025));
-    //if ( real_damage < 1.0 ) real_damage = 1.0 ;
-    
     //--------------------
     // NEW RULE:  Even when the bullet hits, there's still a chance that
     // the armour will compensate the shot
@@ -688,22 +685,7 @@ apply_bullet_damage_to_player ( int damage, int owner )
 	Me . TextToBeDisplayed = "Ouch!" ;
 	Me . energy -= real_damage ;	// loose some energy
 	DebugPrintf ( 1 , "\n%s(): Tux took damage from bullet: %f." , __FUNCTION__ , real_damage );
-	//--------------------
-	// A hit of what form so ever should make the Tux stop
-	// dead in his tracks.
-	//
-	// Me . speed . x = 0;
-	// Me . speed . y = 0; 
 	
-	//--------------------
-	// As the new rule, the influencer after getting hit, must completely
-	// start anew to recover his weapon from the previous shot
-	//
-        /*if ( Me . busy_type == NONE || Me . busy_type == WEAPON_FIREWAIT)
-		Me . busy_time = ItemMap[ Me . weapon_item . type ] . item_gun_recharging_time;
-	 Me . got_hit_time = 0;*/
-	
-	// GotHitSound ();
 	tux_scream_sound ( );
     }
 }; // void apply_bullet_damage_to_player ( int damage ) 
@@ -733,16 +715,16 @@ check_bullet_player_collisions ( bullet* CurBullet , int num )
       // Now we see if the distance to the bullet is as low as hitting
       // distance or not.
       //
+      
       xdist = Me . pos . x - CurBullet -> pos . x ;
       ydist = Me . pos . y - CurBullet -> pos . y ;
-      if ((xdist * xdist + ydist * ydist) < DRUIDHITDIST2)
-	{
-		    
-		    apply_bullet_damage_to_player ( CurBullet-> damage, CurBullet->owner ) ;
-		    
-		    DeleteBullet ( num , TRUE ) ; // we want a bullet-explosion
-		    return;  // This bullet was deleted and does not need to be processed any further...
-	}
+      if ((xdist * xdist + ydist * ydist) < DRUIDHITDIST2 )
+	  {
+
+	  apply_bullet_damage_to_player ( CurBullet-> damage, CurBullet->owner ) ; 
+	  DeleteBullet ( num , TRUE ) ; // we want a bullet-explosion
+	  return;  // This bullet was deleted and does not need to be processed any further...
+	  }
 }; // check_bullet_player_collisions ( CurBullet , num )
 
 /* ----------------------------------------------------------------------
@@ -767,8 +749,8 @@ check_bullet_enemy_collisions ( bullet* CurBullet , int num )
 	
 	xdist = CurBullet->pos.x - ThisRobot -> pos . x;
 	ydist = CurBullet->pos.y - ThisRobot -> pos . y;
-	
-	if ( (xdist * xdist + ydist * ydist) < DRUIDHITDIST2 )
+
+	if ( (xdist * xdist + ydist * ydist) < DRUIDHITDIST2 && ((float) Druidmap [ ThisRobot->type ] . monster_level * (float) MyRandom(100) < CurBullet->to_hit ))
 	    {
 		    hit_enemy(ThisRobot, CurBullet->damage, (CurBullet->mine ? 1 : 0) /*givexp*/, CurBullet->owner, (CurBullet->mine ? 1 : 0));
 
