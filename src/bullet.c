@@ -160,11 +160,6 @@ void DoMeleeDamage (void)
 }
 
 
-
-
-	
-
-	
 /* ----------------------------------------------------------------------
  * This function moves all the bullets according to their speeds and the
  * current frame rate of course.
@@ -188,20 +183,15 @@ MoveBullets (void)
       //
       if ( CurBullet -> type == INFOUT )
 	continue;
+      
       if ( CurBullet -> time_to_hide_still > 0 )
 	continue;
-      if ( ! IsActiveLevel ( CurBullet -> pos . z ) )
+      
+      if ( ! level_is_partly_visible ( CurBullet -> pos . z ) )
 	{
-	  if ( Me . energy > 0 )
-	    {
-	      ErrorMessage ( __FUNCTION__  , "\
-Non-OUT bullet found 'stale' outside the active levels.\n\
-This is quite normal, if the Tux has just died and the 'present'\n\
-level is therefore not 'active' any more, but in this case it happend\n\
-while the Tux still had some energy in him.  Very suspicios!!",
-					 NO_NEED_TO_INFORM, IS_WARNING_ONLY );
-	      continue;
-	    }
+	// if the bullet is on an inactive level, silently kill it
+	DeleteBullet ( i, FALSE );
+	continue;
 	}
 
       move_this_bullet_and_check_its_collisions ( i );
@@ -244,18 +234,10 @@ while the Tux still had some energy in him.  Very suspicios!!",
       if ( ( map_x < 0 ) || ( map_x >= BulletLevel->xlen ) ||
 	   ( map_y < 0 ) || ( map_y >= BulletLevel->ylen ) )
 	{
-	  ErrorMessage ( __FUNCTION__  , "\
-A BULLET WAS FOUND TO EXIST OUTSIDE THE BOUNDS OF THE MAP.\n\
-This is an idication for an error of some form, but might also be due\n\
-to short occasions of very low frame rates sometimes or it might be due\n\
-to a shot right through a gate between two levels.\n\
-However:  This problem is not severe, so this is a warning message only.",
-				     NO_NEED_TO_INFORM, IS_WARNING_ONLY );
 	  DebugPrintf ( -1000 , "\nBullet ouside of map: pos.x=%f, pos.y=%f, pos.z=%d, type=%d." ,
 			CurBullet -> pos . x , CurBullet -> pos . y , CurBullet -> pos . z , CurBullet -> type );
 	  DeleteBullet ( i , FALSE );
 	  return;
-	  Terminate(ERR);
 	}
       
     }				/* for */
