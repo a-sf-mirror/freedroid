@@ -2325,17 +2325,11 @@ check_tux_enemy_collision (void)
 {
     float xdist;
     float ydist;
-    float max_step_size;
    
     enemy *erot, *nerot;
-BROWSE_ALIVE_BOTS_SAFE(erot, nerot) 
+    BROWSE_LEVEL_BOTS_SAFE(erot, nerot, Me . pos .z) 
     {
 	
-	//--------------------
-	// ignore enemy that are not on this level or dead 
-	//
-	if ( erot->pos.z != Me . pos . z )
-	    continue;
 	if ( erot->type == ( -1 ) )
 	    continue;
 	
@@ -2344,9 +2338,9 @@ BROWSE_ALIVE_BOTS_SAFE(erot, nerot)
 	// is still one whole square distance or even more...
 	//
 	xdist = Me . pos . x - erot-> pos . x;
-	ydist = Me . pos . y - erot-> pos . y;
 	if (abs (xdist) > 1)
 	    continue;
+	ydist = Me . pos . y - erot-> pos . y;
 	if (abs (ydist) > 1)
 	    continue;
 	
@@ -2355,33 +2349,17 @@ BROWSE_ALIVE_BOTS_SAFE(erot, nerot)
 	// to calculate the exact distance and to see if the exact distance
 	// indicates a collision or not, in which case we can again back out
 	//
-	// dist2 = sqrt( (xdist * xdist) + (ydist * ydist) );
-	// if ( dist2 > 2 * Druid_Radius_X )
-	// continue;
 	//
 	if ( ( fabsf( xdist ) >= 2.0*0.25 ) ||
 	     ( fabsf( ydist ) >= 2.0*0.25 ) ) 
 	    continue;
 	
-	// move the influencer a little bit out of the enemy AND the enemy a little bit out of the influ
-	max_step_size = ((Frame_Time()) < ( MAXIMAL_STEP_SIZE ) ? (Frame_Time()) : ( MAXIMAL_STEP_SIZE )) ; 
-	
-	erot->pos.x -= copysignf( 0.6 * Frame_Time() , Me.pos.x - erot->pos.x ) ;
-	erot->pos.y -= copysignf( 0.6 * Frame_Time() , Me.pos.y - erot->pos.y ) ;
-	
-	
-	
-	DebugPrintf ( 1 , "\n%s(): Collision of enemy with Tux detected.  Fixing..." , __FUNCTION__ );
+	erot->pure_wait = WAIT_COLLISION;
 
-	//--------------------
-	// shortly stop this enemy, then send him back to previous waypoint
-	//
-	if ( ! erot->pure_wait )
-	{
-	    erot->pure_wait = WAIT_COLLISION;
-	    EnemyInfluCollisionText ( erot );
-	    
-	}
+        short int swap = erot->nextwaypoint;
+	erot->nextwaypoint = erot->lastwaypoint;
+	erot->lastwaypoint = swap;
+	
     }			
 
 }; // void check_tux_enemy_collision( void )

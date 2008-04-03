@@ -624,7 +624,6 @@ void
 MoveThisRobotThowardsHisCurrentTarget ( enemy * ThisRobot )
 {
     moderately_finepoint nextwp_pos;
-    Level WaypointLevel = curShip . AllLevels [ ThisRobot-> pos . z ];
 
     if ( ThisRobot -> animation_type == ATTACK_ANIMATION ) return;
 
@@ -642,14 +641,12 @@ MoveThisRobotThowardsHisCurrentTarget ( enemy * ThisRobot )
 static int
 SetNewRandomWaypoint ( Enemy ThisRobot )
 {
-    int i;
     Waypoint WpList;	
     int nextwp;
     finepoint nextwp_pos;
     waypoint *this_wp;
     int num_conn;
     int trywp = 0 ;
-    int FreeWays[ MAX_WP_CONNECTIONS ];
     int SolutionFound;
     int TestConnection;
     Level WaypointLevel = curShip.AllLevels[ ThisRobot -> pos.z ];
@@ -676,42 +673,6 @@ SetNewRandomWaypoint ( Enemy ThisRobot )
 	return 1;
     }
     
-    //--------------------
-    // At this point, we should check, if there is another waypoint 
-    // and also if the way there is free of other droids
-    //
-    for ( i = 0; i < num_conn ; i++ )
-    {
-	FreeWays [ i ] = CheckIfWayIsFreeOfDroids ( TRUE, 
-	    WpList [ ThisRobot -> lastwaypoint ] . x + 0.5 , 
-	    WpList [ ThisRobot -> lastwaypoint ] . y + 0.5 , 
-	    WpList [ WpList [ ThisRobot -> lastwaypoint ] . connections [ i ] ] . x + 0.5 , 
-	    WpList [ WpList [ ThisRobot -> lastwaypoint ] . connections [ i ] ] . y + 0.5 , 
-	    ThisRobot->pos.z , ThisRobot );
-    }
-    
-    //--------------------
-    // Now see whether any way point at all is free in that sense
-    // otherwise we set this robot to waiting and return;
-    //
-    for ( i = 0 ; i < num_conn ; i++ )
-    {
-	if ( FreeWays[i] ) break;
-    }
-    if ( i == num_conn )
-    {
-	DebugPrintf( -2 , "\n%s(): Sorry, there seems no free way out.  I'll wait then... , num_conn was : %d ." , __FUNCTION__ , num_conn );
-	ThisRobot->pure_wait = 1.5 ; // this makes this droid 'passable' for other droids for now...
-	/*if ( ( ThisRobot -> combat_state == MOVE_ALONG_RANDOM_WAYPOINTS ) ||
-	     ( ThisRobot -> combat_state == TURN_TOWARDS_NEXT_WAYPOINT ) )
-	    ThisRobot -> combat_state = WAIT_AND_TURN_AROUND_AIMLESSLY ;*/
-	return 1;
-    }
-    
-    //--------------------
-    // Now that we know, there is some way out of this, we can test around
-    // and around randomly until we finally find some solution.
-    //
     // ThisRobot->nextwaypoint = WpList [ nextwp ] . connections [ i ] ;
     // 
     SolutionFound = FALSE;
@@ -720,7 +681,6 @@ SetNewRandomWaypoint ( Enemy ThisRobot )
 	TestConnection = MyRandom ( num_conn - 1 );
 	
 	if ( this_wp->connections[ TestConnection ] == (-1) ) continue;
-	if ( !FreeWays[TestConnection] ) continue;
 	
 	trywp = this_wp->connections[ TestConnection ];
 	SolutionFound = TRUE;
@@ -729,8 +689,6 @@ SetNewRandomWaypoint ( Enemy ThisRobot )
     // set new waypoint...
     ThisRobot->nextwaypoint = trywp;
     
-    DebugPrintf ( 2 , "\n%s():  A new waypoint has been set." , __FUNCTION__ );
-
     return 0;
   
 }; // void SetNewRandomWaypoint ( Enemy ThisRobot )
@@ -1735,7 +1693,7 @@ static void state_machine_select_new_waypoint(enemy * ThisRobot, moderately_fine
     /* Bot must select a new waypoint randomly, and turn towards it. No move this step.*/
     if ( SetNewRandomWaypoint( ThisRobot ) )
 	{ /* couldn't find a waypoint ? go waypointless */
-	fprintf(stderr, "Bot %#x at %f %f %d could not find a waypoint, going waypointless\n", ThisRobot, ThisRobot->pos.x, ThisRobot->pos.y, ThisRobot->pos.z);
+	fprintf(stderr, "Bot %#x at %f %f %d could not find a waypoint, going waypointless\n", (unsigned int)ThisRobot, ThisRobot->pos.x, ThisRobot->pos.y, ThisRobot->pos.z);
 	ThisRobot->combat_state = WAYPOINTLESS_WANDERING;
 	}
 
@@ -1948,12 +1906,8 @@ update_enemy ( enemy * ThisRobot )
 
     /* Pathfind current target */
     /* XXX non implemented */
-    if ( new_move_target . x != ThisRobot -> PrivatePathway[0] . x && new_move_target . y != ThisRobot -> PrivatePathway[0] . y )
-	{
-	ThisRobot -> PrivatePathway[0] . x = new_move_target . x;
-	ThisRobot -> PrivatePathway[0] . y = new_move_target . y;
-	}
-
+    ThisRobot -> PrivatePathway[0] . x = new_move_target . x;
+    ThisRobot -> PrivatePathway[0] . y = new_move_target . y;
 	
     if ( ThisRobot -> PrivatePathway[0] . x != ThisRobot->pos.x || ThisRobot -> PrivatePathway[0] . y != ThisRobot->pos.y )
 	MoveThisEnemy(ThisRobot);
@@ -2563,10 +2517,11 @@ CheckEnemyEnemyCollision ( enemy * OurBot )
     int swap;
     float xdist, ydist;
     float dist2;
-    float speed_x, speed_y;
-    
     check_x = OurBot -> pos . x ;
     check_y = OurBot -> pos . y ;
+
+    if ( OurBot -> pure_wait ) 
+	return FALSE;
     
     //--------------------
     // Now we check through all the other enemys on this level if 
@@ -2578,7 +2533,7 @@ CheckEnemyEnemyCollision ( enemy * OurBot )
     {
 	if (erot == OurBot)
 	    continue;
-	
+
 	// get distance between enemy i and enemynum 
 	xdist = check_x - erot->pos.x;
 	ydist = check_y - erot->pos.y;
@@ -2588,41 +2543,16 @@ CheckEnemyEnemyCollision ( enemy * OurBot )
 	// Is there a Collision?
 	if ( dist2 <= 2*DRUIDRADIUSXY )
 	{
-	    // am I waiting already?  If so, keep waiting... 
-	    if ( OurBot->pure_wait)
-	    {
-		// keep waiting
-		OurBot->pure_wait = WAIT_COLLISION;
+	    if ( erot -> pure_wait ) 
 		continue;
-	    }
-	    
+
 	    // otherwise: stop this one enemy and go back youself
-	    
 	    erot->pure_wait = WAIT_COLLISION;
 	    
 	    swap = OurBot->nextwaypoint;
 	    OurBot->nextwaypoint = OurBot->lastwaypoint;
 	    OurBot->lastwaypoint = swap;
 	    
-	    /*
-	    if ( erot -> combat_state == MOVE_ALONG_RANDOM_WAYPOINTS )
-		erot -> combat_state = SELECT_NEW_WAYPOINT;
-	    
-	    // push the stopped colleague a little bit backwards...
-	    if (xdist)
-		erot->pos.x -= xdist / fabsf (xdist) * Frame_Time();
-	    if (ydist)
-		erot->pos.y -= ydist / fabsf (ydist) * Frame_Time();
-	    
-	    // Move a little bit out of the colleague yourself...
-	    speed_x = OurBot->speed.x;
-	    speed_y = OurBot->speed.y;
-	    
-	    if (speed_x) OurBot->pos.x -= Frame_Time() * COL_SPEED * (speed_x) / fabsf (speed_x);
-	    if (speed_y) OurBot->pos.y -= Frame_Time() * COL_SPEED * (speed_y) / fabsf (speed_y);
-	    */
-	    //DebugPrintf ( -1 , "\n%s(): enemy-enemy collision detected.  moving things..." , __FUNCTION__ );
-
 	    return TRUE;
 	} // if collision distance reached
 
