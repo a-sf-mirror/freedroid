@@ -619,7 +619,7 @@ move_enemy_to_spot ( Enemy ThisRobot , moderately_finepoint next_target_spot )
 	ThisRobot -> PrivatePathway [ 0 ] . y = ThisRobot -> pos . y ;
 
 	/* Move it to the appropriate level list */
-	list_move(&level_bots_head [ ThisRobot->pos.z ], &ThisRobot->level_list);
+	list_move(&ThisRobot->level_list, &(level_bots_head [ ThisRobot->pos.z ]));
     }
     
 }; // void move_enemy_to_spot ( Enemy ThisRobot , finepoint next_target_spot )
