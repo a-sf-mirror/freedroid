@@ -1640,7 +1640,7 @@ static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_m
 	if ( dist2 > 2.25 )
 	    MoveInCloserForOrAwayFromMeleeCombat ( ThisRobot , (+1), new_move_target );
 	}
-	else if ( dist2 < 1.5 )
+	else if ( dist2 < 3 )
 	{
 	    MoveInCloserForOrAwayFromMeleeCombat ( ThisRobot , (-1), new_move_target );
 	} 
@@ -2277,15 +2277,6 @@ MoveInCloserForOrAwayFromMeleeCombat ( Enemy ThisRobot , int DirectionSign, mode
 #define ANGLES_TO_TRY 7
     float RotationAngleTryList[ ANGLES_TO_TRY ] = { 0 , 30 , 360-30 , 60, 360-60, 90, 360-90 };
     
-    //--------------------
-    // When the robot is just getting hit, then there shouldn't be much
-    // of a running motion, especially during the corresponding animaiton
-    // phase...
-    //
-    /* XXX HITSTUN shall be a separate state, similar to paralyzed 
-    if ( ThisRobot -> animation_type == GETHIT_ANIMATION ) 
-	return;*/
- 
     DirectionSign = (DirectionSign < 0 ? (-3) : DirectionSign);   
 
     VictimPosition . x = enemy_get_target_position(ThisRobot) -> x;
@@ -2339,52 +2330,6 @@ MoveInCloserForOrAwayFromMeleeCombat ( Enemy ThisRobot , int DirectionSign, mode
 	    break;
 	}
     }
-#if 0  
-    /*XXX not the right place for that*/
-    if ( i >= ANGLES_TO_TRY ) 
-    {
-	//--------------------
-	// Well, who is the closest (other) robot?
-	//
-	e = ClosestOtherEnemyDroid ( ThisRobot );
-	
-	StepVector . x = ThisRobot -> pos . x - e-> pos . x ;
-	StepVector . y = ThisRobot -> pos . y - e-> pos . y ;
-	StepVectorLen = sqrt ( ( StepVector . x ) * ( StepVector . x ) + ( StepVector . y ) * ( StepVector . y ) );
-	
-	//--------------------
-	// If can happen, that two droids are EXACTLY on top of each other.  This
-	// is possible by starting teleportation of a special force right on top
-	// of a random bot for example.  But we should not cause a FLOATING POINT
-	// EXCEPTION here!  AND we should also do a sensible handling...
-	//
-	if ( StepVectorLen )
-	{
-	    StepVector . x /= ( DirectionSign * 2 * StepVectorLen ) ;
-	    StepVector . y /= ( DirectionSign * 2 * StepVectorLen ) ;
-	}
-	else
-	{
-	    StepVector . x = (float) MyRandom ( 100 ) / 200.0 ;
-	    StepVector . y = (float) MyRandom ( 100 ) / 200.0 ;
-	}
-	
-	//--------------------
-	// Here, when eventually moving out of a colliding colleague,
-	// we must not check for feasibility but only for wall collisions,
-	// cause otherwise the move out of the colleague will never
-	// be allowed.
-	//
-	if ( IsPassable ( ThisRobot -> pos.x + StepVector.x , 
-			  ThisRobot -> pos.y + StepVector.y ,
-			  ThisRobot -> pos.z ) )
-	{
-	    ThisRobot -> PrivatePathway [ 0 ] . x = ThisRobot -> pos.x + StepVector.x;
-	    ThisRobot -> PrivatePathway [ 0 ] . y = ThisRobot -> pos.y + StepVector.y;
-	}
-	
-    }
-#endif
 }; // void MoveInCloserForOrAwayFromMeleeCombat ( Enemy ThisRobot , int enemynum )
 
 /* ----------------------------------------------------------------------
