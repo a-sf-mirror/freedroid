@@ -41,7 +41,6 @@ save_char("attack_run_only_when_direct_line", &(target->attack_run_only_when_dir
 save_string("dialog_section_name", &(target->dialog_section_name));
 save_string("short_description_text", &(target->short_description_text));
 save_char("will_rush_tux", &(target->will_rush_tux));
-save_int16_t("StayHowManyFramesBehind", &(target->StayHowManyFramesBehind));
 save_char("has_greeted_influencer", &(target->has_greeted_influencer));
 save_float("previous_angle", &(target->previous_angle));
 save_float("current_angle", &(target->current_angle));
@@ -104,7 +103,6 @@ read_char(pos, "attack_run_only_when_direct_line",  &(target->attack_run_only_wh
 read_string(pos, "dialog_section_name", (char*) &(target->dialog_section_name));
 read_string(pos, "short_description_text", (char*) &(target->short_description_text));
 read_char(pos, "will_rush_tux",  &(target->will_rush_tux));
-read_int16_t(pos, "StayHowManyFramesBehind",  &(target->StayHowManyFramesBehind));
 read_char(pos, "has_greeted_influencer",  &(target->has_greeted_influencer));
 read_float(pos, "previous_angle",  &(target->previous_angle));
 read_float(pos, "current_angle",  &(target->current_angle));

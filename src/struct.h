@@ -551,11 +551,11 @@ typedef struct enemy_s
     short ammo_left; 		  // ammunition left in the charger
     
     char CompletelyFixed;          // set this flag to make the robot entirely immobile
-    char follow_tux;               // does this robot try to follow tux via it's random movements? /*XXX*/
+    char follow_tux;               // does this robot try to follow tux via it's random movements?
     char SpecialForce;             // This flag will exclude the droid from initial shuffling of droids
     short on_death_drop_item_code;  // drop a pre-determined item when dying?
     
-    int marker;                   // This provides a marker for special mission targets /*XXX*/
+    int marker;                   // This provides a marker for special mission targets
     
     char is_friendly;              // is this a friendly droid or is it a MS controlled one?
     char has_been_taken_over;      // has the Tux made this a friendly bot via takeover subgame?
@@ -566,7 +566,6 @@ typedef struct enemy_s
     char dialog_section_name[ MAX_LENGTH_FOR_DIALOG_SECTION_NAME ]; // This should indicate one of the many sections of the Freedroid.dialogues file
     char short_description_text[ MAX_LENGTH_OF_SHORT_DESCRIPTION_STRING ]; // This should indicate one of the many sections of the Freedroid.dialogues file
     char will_rush_tux;            // will this robot approach the Tux on sight and open communication?
-    short StayHowManyFramesBehind;  // how many frames shall this droid trott behind the influ when follwing his tail? /*XXX*/
     char has_greeted_influencer;   // has this robot issued his first-time-see-the-Tux message?
     float previous_angle;         // which angle has this robot been facing the frame before?
     float current_angle;          // which angle will the robot be facing now?
