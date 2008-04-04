@@ -989,18 +989,14 @@ UpdateMouseMoveTargetAccordingToEnemy ( )
  
     enemy * t = enemy_resolve_address(Me . current_enemy_target_n, & Me.current_enemy_target_addr);
 
-    if (! t)
-       return;
+    if (! t || ( t -> energy <= 0 )) //No enemy or dead enemy
+	{
+	enemy_set_reference( & Me.current_enemy_target_n, & Me . current_enemy_target_addr, NULL);
+	return;
+	}	
 
-    if ( ( t -> energy <= 0 ) ||
-	 ( t -> pos . z != 
-	   Me . pos . z ) )
-	    {
-   	        enemy_set_reference( & Me.current_enemy_target_n, & Me . current_enemy_target_addr, NULL);
-		DebugPrintf ( 1 , "\n%s(): enemy mouse move target disabled because of OUT/out_of_level." , __FUNCTION__ );
-		return;
-	    }
 
+    update_virtual_position(&t->virt_pos, &t->pos, Me.pos.z);
 
     //--------------------
     // If we have a ranged weapon in hand, there is no need to approach the
@@ -1008,31 +1004,22 @@ UpdateMouseMoveTargetAccordingToEnemy ( )
     //
     if ( Me . weapon_item . type != (-1) )
     {
-	if ( ItemMap [ Me . weapon_item . type ] . item_weapon_is_melee == 0 )
-	{
+	if ( ! ItemMap [ Me . weapon_item . type ] . item_weapon_is_melee )
+	{ //ranged weapon
 	    if ( ! t -> is_friendly )
 		tux_wants_to_attack_now ( FALSE ) ;
+	    return;
 	}
     }
 
-    //--------------------
     // Now if there is a mouse move target, we are not going to move towards the enemy
-    //
-    //
-
     if ( Me . mouse_move_target . x != (-1) ) 
 	{
 	return;
 	}
 
-    if ( Me . weapon_item . type != (-1) )
-	if ( ItemMap [ Me . weapon_item . type ] . item_weapon_is_melee == 0)  
-	{
-	return;
-	}
-
-    RemainingWay . x = Me . pos . x - t -> pos . x ;
-    RemainingWay . y = Me . pos . y - t -> pos . y ;
+    RemainingWay . x = Me . pos . x - t -> virt_pos . x ;
+    RemainingWay . y = Me . pos . y - t -> virt_pos . y ;
     
     RemainingWayLength = sqrtf ( ( RemainingWay . x ) * ( RemainingWay . x ) +
 				 ( RemainingWay . y ) * ( RemainingWay . y ) ) ;
@@ -1047,7 +1034,7 @@ UpdateMouseMoveTargetAccordingToEnemy ( )
     
     Me . mouse_move_target . x = Me . pos . x - RemainingWay . x ;
     Me . mouse_move_target . y = Me . pos . y - RemainingWay . y ;
-    Me . mouse_move_target . z = t -> pos . z;
+    Me . mouse_move_target . z = Me . pos . z;
     
     //--------------------
     // Now that the mouse move target has implicitly affected the recursive
@@ -2015,19 +2002,16 @@ move_tux_thowards_intermediate_point ( )
     //
     if ( move_tux_thowards_raw_position ( Me . next_intermediate_point [ 0 ] . x , 
 					  Me . next_intermediate_point [ 0 ] . y ) )
-    {	
-	if ( Me . next_intermediate_point [ 1 ] . x != (-1) )
-	{
-	    DebugPrintf ( DEBUG_TUX_PATHFINDING , "\nMOVING ON TO NEXT INTERMEDIATE WAYPOINT! " );
-	    for ( i = 1 ; i < MAX_INTERMEDIATE_WAYPOINTS_FOR_TUX ; i ++ )
+	{	
+	DebugPrintf ( DEBUG_TUX_PATHFINDING , "\nMOVING ON TO NEXT INTERMEDIATE WAYPOINT! " );
+	for ( i = 1 ; i < MAX_INTERMEDIATE_WAYPOINTS_FOR_TUX ; i ++ )
 	    {
-		Me . next_intermediate_point [ i-1 ] . x = 
-		    Me . next_intermediate_point [ i ] . x ;
-		Me . next_intermediate_point [ i-1 ] . y = 
-		    Me . next_intermediate_point [ i ] . y ;
+	    Me . next_intermediate_point [ i-1 ] . x = 
+		Me . next_intermediate_point [ i ] . x ;
+	    Me . next_intermediate_point [ i-1 ] . y = 
+		Me . next_intermediate_point [ i ] . y ;
 	    }
 	}
-    }
     
 }; // void move_tux_thowards_intermediate_point ( )
 
