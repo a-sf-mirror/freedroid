@@ -1428,7 +1428,6 @@ blit_nonpreput_objects_according_to_blitting_list ( int mask )
 		    // A droid can either be rendered in normal mode or in highlighted
 		    // mode, depending in whether the mouse cursor is right over it or not.
 		    //
-		    /* XXX */
 		    if ( blitting_list [ i ] . element_pointer == enemy_under_cursor )
 			PutEnemy ( (enemy *)blitting_list [ i ] . element_pointer , -1 , -1 , mask , TRUE ); 
 		    else
@@ -2085,13 +2084,14 @@ PutMouseMoveCursor ( void )
     if ( t != NULL ) 
     {
 	// translate_map_point_to_screen_pixel ( float x_map_pos , float y_map_pos , int give_x )
+	update_virtual_position(&t->virt_pos, &t->pos, Me . pos . z);
 	
 	TargetRectangle . x = 
-	    translate_map_point_to_screen_pixel_x ( t->pos . x , 
-						    t->pos . y );
+	    translate_map_point_to_screen_pixel_x ( t->virt_pos . x , 
+						    t->virt_pos . y );
 	TargetRectangle . y = 
-	    translate_map_point_to_screen_pixel_y ( t->pos . x , 
-						    t->pos . y );
+	    translate_map_point_to_screen_pixel_y ( t->virt_pos . x , 
+						    t->virt_pos . y );
 	if ( use_open_gl )
 	{
 	    TargetRectangle . x -= MouseCursorImageList [ 1 ] . original_image_width / 2 ;
@@ -2109,20 +2109,6 @@ PutMouseMoveCursor ( void )
     }
     
 }; // void PutMouseMoveCursor ( void )
-
-/* ----------------------------------------------------------------------
- *
- *
- * ---------------------------------------------------------------------- */
-/*
-void 
-free_single_tux_image ( tux_part_group , our_phase , rotation_index )
-{
-    // if ( loaded_tux_images [ tux_part_group ] [ our_phase ] [ rotation_index ] . surface != NULL )
-    SDL_FreeSurface ( loaded_tux_images [ tux_part_group ] [ our_phase ] [ rotation_index ] . surface ) ;
-    loaded_tux_images [ tux_part_group ] [ our_phase ] [ rotation_index ] . surface = NULL ;
-}; // free_single_tux_image ( tux_part_group , our_phase , rotation_index )
-*/
 
 /* ----------------------------------------------------------------------
  *
