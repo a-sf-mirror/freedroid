@@ -2287,48 +2287,45 @@ HandleInventoryScreen ( void )
 	    // if the item in question can be reached directly and isn't blocked by
 	    // some walls or something...
 	    //
-	    if ( DirectLineWalkable ( PlayerLevel -> ItemList [ index_of_item_under_mouse_cursor ] . pos . x , PlayerLevel -> ItemList [ index_of_item_under_mouse_cursor ] . pos . y , 
-			Me . pos . x , Me . pos . y , 
+	    if ( ( fabsf( MapPositionOfMouse . x - Me . pos . x ) < ITEM_TAKE_DIST ) &&
+		    ( fabsf( MapPositionOfMouse . y - Me . pos . y ) < ITEM_TAKE_DIST ) &&
+		    DirectLineWalkable ( PlayerLevel -> ItemList [ index_of_item_under_mouse_cursor ] . pos . x , PlayerLevel -> ItemList [ index_of_item_under_mouse_cursor ] . pos . y ,
+			Me . pos . x , Me . pos . y ,
 			Me . pos . z ) )
 		{
-		if ( ( fabsf( MapPositionOfMouse . x - Me . pos . x ) < ITEM_TAKE_DIST ) &&
-			( fabsf( MapPositionOfMouse . y - Me . pos . y ) < ITEM_TAKE_DIST ) )
+		if ( GameConfig.Inventory_Visible == FALSE || MatchItemWithName(PlayerLevel -> ItemList [ index_of_item_under_mouse_cursor ] . type, "Cyberbucks") )
 		    {
-		    if ( GameConfig.Inventory_Visible == FALSE || MatchItemWithName(PlayerLevel -> ItemList [ index_of_item_under_mouse_cursor ] . type, "Cyberbucks") )
-			{
-			AddFloorItemDirectlyToInventory( & ( PlayerLevel -> ItemList [ index_of_item_under_mouse_cursor ] ) );
-			return;
-			}
-		    else
-			{
-			Item_Held_In_Hand = PlayerLevel -> ItemList [ index_of_item_under_mouse_cursor ] . type ;
-			PlayerLevel -> ItemList [ index_of_item_under_mouse_cursor ] . currently_held_in_hand = TRUE;
-			goto NoMoreGrabbing;
-			}
+		    AddFloorItemDirectlyToInventory( & ( PlayerLevel -> ItemList [ index_of_item_under_mouse_cursor ] ) );
+		    return;
 		    }
 		else
 		    {
-			//--------------------
-			// We set course to the item in question, directly to it's location,
-			// not somewhere remote, just for simplicity (for now)...
-			//
-			Me . mouse_move_target . x = 
-			    PlayerLevel -> ItemList [ index_of_item_under_mouse_cursor ] . pos . x ;
-			Me . mouse_move_target . y = 
-			    PlayerLevel -> ItemList [ index_of_item_under_mouse_cursor ] . pos . y ;
-			Me . mouse_move_target . z = 
-			    Me . pos . z ;
-			set_up_intermediate_course_for_tux ( ) ;
-
-			//--------------------
-			// We set up the combo_action, so that the barrel can be smashed later...
-			//
-			enemy_set_reference(&Me . current_enemy_target_n, &Me . current_enemy_target_addr, NULL);
-			Me . mouse_move_target_combo_action_type = COMBO_ACTION_PICK_UP_ITEM ;
-			Me . mouse_move_target_combo_action_parameter = index_of_item_under_mouse_cursor ;
-
-			goto NoMoreGrabbing;
+		    Item_Held_In_Hand = PlayerLevel -> ItemList [ index_of_item_under_mouse_cursor ] . type ;
+		    PlayerLevel -> ItemList [ index_of_item_under_mouse_cursor ] . currently_held_in_hand = TRUE;
+		    goto NoMoreGrabbing;
 		    }
+		}
+	    else
+		{
+		//--------------------
+		// We set course to the item in question, directly to it's location,
+		// not somewhere remote, just for simplicity (for now)...
+		//
+		Me . mouse_move_target . x = 
+		    PlayerLevel -> ItemList [ index_of_item_under_mouse_cursor ] . pos . x ;
+		Me . mouse_move_target . y = 
+		    PlayerLevel -> ItemList [ index_of_item_under_mouse_cursor ] . pos . y ;
+		Me . mouse_move_target . z = 
+		    Me . pos . z ;
+
+		//--------------------
+		// We set up the combo_action, so that the barrel can be smashed later...
+		//
+		enemy_set_reference(&Me . current_enemy_target_n, &Me . current_enemy_target_addr, NULL);
+		Me . mouse_move_target_combo_action_type = COMBO_ACTION_PICK_UP_ITEM ;
+		Me . mouse_move_target_combo_action_parameter = index_of_item_under_mouse_cursor ;
+
+		goto NoMoreGrabbing;
 		}
 	    }
 	}

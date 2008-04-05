@@ -1355,8 +1355,6 @@ This indicates an error in the map system of Freedroid.",
     Me . mouse_move_target . y = Me . pos . y ;
     Me . mouse_move_target . z = Me . pos . z ;
     
-    set_up_intermediate_course_for_tux();
-
     if ( with_sound_and_fading ) 
     {
 	teleport_arrival_sound ();

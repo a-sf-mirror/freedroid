@@ -48,7 +48,7 @@
 
 void limit_tux_speed_to_a_maximum ( );
 int autorun_activated = 0;
-int set_up_intermediate_course_for_tux ( );
+int set_up_intermediate_course_for_tux ( moderately_finepoint * move_target );
 void clear_out_intermediate_points ( );
 void check_for_chests_to_open ( int chest_index ) ;
 void check_for_barrels_to_smash ( int index_of_barrel_below_mouse_cursor ) ;
@@ -646,9 +646,7 @@ correct_tux_position_according_to_jump_thresholds ( )
 	    Me . mouse_move_target . y += curShip . AllLevels [ Me . pos . z ] -> ylen ;
 	    
 	    DebugPrintf (  LEVEL_JUMP_DEBUG , "\nJUMP TO THE NORTH:  target translated:  y=%f!" , Me . mouse_move_target . y );
-	    if ( IsPassable ( Me . mouse_move_target . x , Me . mouse_move_target . y , Me . mouse_move_target . z ) )
-		set_up_intermediate_course_for_tux ( );
-	    else
+	    if ( !IsPassable ( Me . mouse_move_target . x , Me . mouse_move_target . y , Me . mouse_move_target . z ) )
 	    {
 		Me . mouse_move_target . x = ( -1 ) ;
 		Me . mouse_move_target . y = ( -1 ) ;
@@ -712,9 +710,7 @@ correct_tux_position_according_to_jump_thresholds ( )
 	    Me . mouse_move_target . y += 0 ;
 	    
 	    DebugPrintf ( LEVEL_JUMP_DEBUG , "\nJUMP TO THE SOUTH:  target translated to y=%f!" ,  Me . mouse_move_target . y );
-	    if ( IsPassable ( Me . mouse_move_target . x , Me . mouse_move_target . y , Me . mouse_move_target . z ) )
-		set_up_intermediate_course_for_tux ( );
-	    else
+	    if ( ! IsPassable ( Me . mouse_move_target . x , Me . mouse_move_target . y , Me . mouse_move_target . z ) )
 	    {
 		Me . mouse_move_target . x = ( -1 ) ;
 		Me . mouse_move_target . y = ( -1 ) ;
@@ -777,9 +773,7 @@ correct_tux_position_according_to_jump_thresholds ( )
 	    Me . mouse_move_target . x += 0 ;
 	    
 	    DebugPrintf ( LEVEL_JUMP_DEBUG , "\nJUMP TO THE EAST:  target translated to x=%f!" ,  Me . mouse_move_target . x );
-	    if ( IsPassable ( Me . mouse_move_target . x , Me . mouse_move_target . y , Me . mouse_move_target . z ) )
-		set_up_intermediate_course_for_tux ( );
-	    else
+	    if ( ! IsPassable ( Me . mouse_move_target . x , Me . mouse_move_target . y , Me . mouse_move_target . z ) )
 	    {
 		Me . mouse_move_target . x = ( -1 ) ;
 		Me . mouse_move_target . y = ( -1 ) ;
@@ -836,9 +830,7 @@ correct_tux_position_according_to_jump_thresholds ( )
 	    Me . mouse_move_target . x += curShip . AllLevels [ Me . pos . z ] -> xlen ;
 	    
 	    DebugPrintf (  LEVEL_JUMP_DEBUG , "\nJUMP TO THE NORTH:  target translated:  x=%f!" , Me . mouse_move_target . x );
-	    if ( IsPassable ( Me . mouse_move_target . x , Me . mouse_move_target . y , Me . mouse_move_target . z ) )
-		set_up_intermediate_course_for_tux ( );
-	    else
+	    if ( ! IsPassable ( Me . mouse_move_target . x , Me . mouse_move_target . y , Me . mouse_move_target . z ) )
 	    {
 		Me . mouse_move_target . x = ( -1 ) ;
 		Me . mouse_move_target . y = ( -1 ) ;
@@ -982,16 +974,26 @@ a bug in the currently used map system of Freedroid RPG.",
  * target of the influencer must adapt, which is done in this function.
  * ---------------------------------------------------------------------- */
 void
-UpdateMouseMoveTargetAccordingToEnemy ( )
+tux_get_move_target_and_attack ( moderately_finepoint * movetgt )
 {
     moderately_finepoint RemainingWay;
     float RemainingWayLength;
+    
+    // if there is a mouse move target, we are not going to move towards the enemy
+    if ( Me . mouse_move_target . x != (-1) ) 
+	{
+	movetgt->x = Me . mouse_move_target . x;
+	movetgt->y = Me . mouse_move_target . y;
+	return;
+	}
  
     enemy * t = enemy_resolve_address(Me . current_enemy_target_n, & Me.current_enemy_target_addr);
 
-    if (! t || ( t -> energy <= 0 )) //No enemy or dead enemy
+    if (! t || ( t -> energy <= 0 )) //No enemy or dead enemy, remove enemy
 	{
 	enemy_set_reference( & Me.current_enemy_target_n, & Me . current_enemy_target_addr, NULL);
+	movetgt->x = -1;
+	movetgt->y = -1;
 	return;
 	}	
 
@@ -1008,15 +1010,12 @@ UpdateMouseMoveTargetAccordingToEnemy ( )
 	{ //ranged weapon
 	    if ( ! t -> is_friendly )
 		tux_wants_to_attack_now ( FALSE ) ;
+	    movetgt->x = -1;
+	    movetgt->y = -1;
 	    return;
 	}
     }
 
-    // Now if there is a mouse move target, we are not going to move towards the enemy
-    if ( Me . mouse_move_target . x != (-1) ) 
-	{
-	return;
-	}
 
     RemainingWay . x = Me . pos . x - t -> virt_pos . x ;
     RemainingWay . y = Me . pos . y - t -> virt_pos . y ;
@@ -1032,24 +1031,15 @@ UpdateMouseMoveTargetAccordingToEnemy ( )
 		( RemainingWayLength - ( BEST_MELEE_DISTANCE - 0.1 ) ) ;
 	}
     
-    Me . mouse_move_target . x = Me . pos . x - RemainingWay . x ;
-    Me . mouse_move_target . y = Me . pos . y - RemainingWay . y ;
-    Me . mouse_move_target . z = Me . pos . z;
-    
-    //--------------------
-    // Now that the mouse move target has implicitly affected the recursive
-    // waypoint stuff, we might need to establish a new waypoint route, so we
-    // do this here as well...
-    //
-    // (redundancy will be caught inside that function anyway...)
-    //
-    set_up_intermediate_course_for_tux ( ) ;
-    Me . mouse_move_target . x = -1;
     if ( ( RemainingWayLength <= BEST_MELEE_DISTANCE * sqrt(2) + 0.01 ) && ( ! t->is_friendly ) )
     {
 	tux_wants_to_attack_now ( FALSE ) ;
     } 
-    // DebugPrintf ( 0 , "\nRemaining way: %f %f." , RemainingWay . x , RemainingWay . y );
+    
+    movetgt -> x = Me . pos . x - RemainingWay . x ;
+    movetgt -> y = Me . pos . y - RemainingWay . y ;
+    return;
+    
     
 }; // void UpdateMouseMoveTargetAccoringToEnemy ( )
 
@@ -1718,7 +1708,7 @@ clear_out_intermediate_points ( )
  * move target.
  * ---------------------------------------------------------------------- */
 int
-set_up_intermediate_course_for_tux ( )
+set_up_intermediate_course_for_tux ( moderately_finepoint * move_target )
 {
     int i;
     moderately_finepoint tmp;
@@ -1735,8 +1725,8 @@ set_up_intermediate_course_for_tux ( )
     // For optimisation purposes, we'll not do anything unless a new target
     // has been given.
     //
-    if ( ( fabsf ( Me . mouse_move_target . x - last_given_course_target . x ) < 0.3 ) &&
-	 ( fabsf ( Me . mouse_move_target . y - last_given_course_target . y ) < 0.3 ) )
+    if ( ( fabsf ( move_target -> x - last_given_course_target . x ) < 0.3 ) &&
+	 ( fabsf ( move_target -> y - last_given_course_target . y ) < 0.3 ) )
     {
 	DebugPrintf ( DEBUG_TUX_PATHFINDING , "\nSKIPPING RECURSION BECAUSE OF REDUNDANCY!" );
 	return ( FALSE ) ;
@@ -1746,9 +1736,9 @@ set_up_intermediate_course_for_tux ( )
     // If the target position cannot be reached at all, because of being inside an obstacle
     // for example, then we know what to do:  Set up one waypoint to the target and that's it.
     //
-    if ( ! IsPassable ( Me . mouse_move_target . x ,
-			Me . mouse_move_target . y ,
-			Me . mouse_move_target . z ) )
+    if ( ! IsPassable ( move_target -> x ,
+			move_target -> y ,
+			Me . pos . z ) )
     {
 	DebugPrintf ( DEBUG_TUX_PATHFINDING , "\nSKIPPING RECURSION BECAUSE OF UNREACHABLENESS!" );
 	return ( FALSE ) ;
@@ -1770,8 +1760,8 @@ set_up_intermediate_course_for_tux ( )
     // By default, we clear out any combo action for the target position.
     // The calling function must set the combo action it has in mind.
     //
-    Me . mouse_move_target_combo_action_type = NO_COMBO_ACTION_SET ;
-    Me . mouse_move_target_combo_action_parameter = -1 ;
+    /* XXX not any longerMe . mouse_move_target_combo_action_type = NO_COMBO_ACTION_SET ;
+    Me . mouse_move_target_combo_action_parameter = -1 ;*/
     
     //--------------------
     // We give out a well visible debug message, so that the heavy process
@@ -1793,7 +1783,7 @@ set_up_intermediate_course_for_tux ( )
     
     int next_index_to_set_up = 0 ;
     
-    recursive_find_walkable_point ( Me . pos . x , Me . pos . y , Me . mouse_move_target . x , Me . mouse_move_target . y , 0, &next_index_to_set_up ) ;
+    recursive_find_walkable_point ( Me . pos . x , Me . pos . y , move_target -> x , move_target -> y , 0, &next_index_to_set_up ) ;
     
     //--------------------
     // We delete the current position from the courseway, cause this position
@@ -1877,8 +1867,8 @@ set_up_intermediate_course_for_tux ( )
     // we'll be able to identify redundant orders later, which is IMPORTANT
     // for performance!
     //
-    last_given_course_target . x = Me . mouse_move_target . x ;
-    last_given_course_target . y = Me . mouse_move_target . y ;
+    last_given_course_target . x = move_target -> x ;
+    last_given_course_target . y = move_target -> y ;
     
     //--------------------
     // We give the number of 4-way-unresolved situations here.
@@ -1900,8 +1890,6 @@ move_tux_thowards_intermediate_point ( )
 {
     int i;
     Level PlayerLevel;
-    int obstacle_index;
-    obstacle* our_obstacle;
 
     PlayerLevel = curShip . AllLevels [ Me . pos. z ] ;
     
@@ -1929,43 +1917,6 @@ move_tux_thowards_intermediate_point ( )
 	{
 	    case NO_COMBO_ACTION_SET:
 		break;
-	    case COMBO_ACTION_LOOT_OBSTACLE:
-		//--------------------
-		// We've arrived.  Let's make sure the obstacle pointed to in the
-		// parameter makes sense, then we can loot the obstacle.
-		//
-		obstacle_index = Me . mouse_move_target_combo_action_parameter ;
-		if ( ( obstacle_index <= (-1) ) || ( obstacle_index >= MAX_OBSTACLES_ON_MAP ) )
-		{
-		    fprintf ( stderr , "\nobstacle_index: %d." , obstacle_index );
-		    ErrorMessage ( __FUNCTION__  , "\
- Received obstacle index, that doesn't correspond to obstacle." ,
-					       PLEASE_INFORM, IS_FATAL );
-		}
-		our_obstacle = & ( PlayerLevel -> obstacle_list [ obstacle_index ] ) ;
-
-		//--------------------
-		// Now if the obstacle in question is still too far away or
-		// if it's blocked by a wall, we'll simply skip the operation
-		// and also say so.
-		//
-		if ( ( fabsf ( Me . pos . x - our_obstacle -> pos . x ) >= 1.0 ) ||
-		     ( fabsf ( Me . pos . y - our_obstacle -> pos . y ) >= 1.0 ) )
-		{
-		    append_new_game_message ( _("Looting failed:  unable to reach loot target."));
-		}
-		else
-		{
-		    EnterChest ( our_obstacle -> pos );
-		    while ( MouseLeftPressed() || MouseRightPressed() );
-		}
-		//--------------------
-		// In any case, when having reached the end of the way with such
-		// a combo target, the action is finished for now, so we can unset
-		// it right here.
-		//
-		Me . mouse_move_target_combo_action_type = NO_COMBO_ACTION_SET ;
-		break;
 	    case COMBO_ACTION_OPEN_CHEST:
 		check_for_chests_to_open ( Me . mouse_move_target_combo_action_parameter ) ;
 		break;
@@ -1973,7 +1924,7 @@ move_tux_thowards_intermediate_point ( )
 		check_for_barrels_to_smash ( Me . mouse_move_target_combo_action_parameter ) ;
 		break;
 	    case COMBO_ACTION_PICK_UP_ITEM:
-		DebugPrintf ( 1 , "\n%s():  Now we've reached a case of pickup combo action." , __FUNCTION__ );
+		DebugPrintf ( -1 , "\n%s():  Now we've reached a case of pickup combo action." , __FUNCTION__ );
 		//--------------------
 		// We check if the item is still there (cause it could have
 		// been picked up in the meantime or maybe another player
@@ -1981,11 +1932,11 @@ move_tux_thowards_intermediate_point ( )
 		//
 		if ( PlayerLevel -> ItemList [ Me . mouse_move_target_combo_action_parameter ] . type != (-1) )
 		{
-		    DebugPrintf ( 1 , "\n%s(): Item for combo seems to be still there." , __FUNCTION__ );
+		    DebugPrintf ( -1 , "\n%s(): Item for combo seems to be still there." , __FUNCTION__ );
 		    silently_unhold_all_items( );
 		    AddFloorItemDirectlyToInventory ( & PlayerLevel -> ItemList [ Me . mouse_move_target_combo_action_parameter ] );
 		}
-		DebugPrintf ( 1 , "\n%s(): Combo action now unset." , __FUNCTION__ );
+		DebugPrintf ( -1 , "\n%s(): Combo action now unset." , __FUNCTION__ );
 		Me . mouse_move_target_combo_action_type = NO_COMBO_ACTION_SET ;
 		break;
 	    default:
@@ -2114,9 +2065,16 @@ move_tux ( )
     // a living droid set as a target, and if yes, we correct the move
     // target to something suiting that new droids position.
     //
-    UpdateMouseMoveTargetAccordingToEnemy ( );
+    //
+    //
+    moderately_finepoint move_target;
 
-    //--------------------
+    tux_get_move_target_and_attack(&move_target);
+    
+    if ( move_target . x != -1 )
+	set_up_intermediate_course_for_tux ( &move_target ) ;
+
+
     // Perhaps the player has turned the mouse wheel.  In that case we might
     // need to change the current global mode, depending on whether a change
     // of global mode (with the current obstacles under the mouse cursor)
@@ -2136,6 +2094,7 @@ move_tux ( )
     //
     HandleCurrentlyActivatedSkill( );
     
+   
     // --------------------
     // Maybe we need to fire a bullet or set a new mouse move target
     // for the new move-to location
@@ -3149,7 +3108,6 @@ check_for_chests_to_open ( int chest_index )
 		    Me . mouse_move_target . y = our_level -> obstacle_list [ chest_index ] . pos . y ;
 		    Me . mouse_move_target . z = Me . pos . z ;
 		    Me . mouse_move_target . x += 0.8 ;
-		    set_up_intermediate_course_for_tux ( ) ;
 		   
 		    enemy_set_reference(&Me . current_enemy_target_n, &Me . current_enemy_target_addr, NULL);
 		    Me . mouse_move_target_combo_action_type = COMBO_ACTION_OPEN_CHEST ;
@@ -3162,7 +3120,6 @@ check_for_chests_to_open ( int chest_index )
 		    Me . mouse_move_target . y = our_level -> obstacle_list [ chest_index ] . pos . y ;
 		    Me . mouse_move_target . z = Me . pos . z ;
 		    Me . mouse_move_target . y += 0.8 ;
-		    set_up_intermediate_course_for_tux ( ) ;
 		    
 		    enemy_set_reference(&Me . current_enemy_target_n, &Me . current_enemy_target_addr, NULL);
 		    Me . mouse_move_target_combo_action_type = COMBO_ACTION_OPEN_CHEST ;
@@ -3250,7 +3207,6 @@ check_for_barrels_to_smash ( int barrel_index )
 			our_level -> obstacle_list [ barrel_index ] . pos . y + 
 			step_vector . y ;
 		    Me . mouse_move_target . z = Me . pos . z ;
-		    set_up_intermediate_course_for_tux ( ) ;
 		    
 		    //--------------------
 		    // We set up the combo_action, so that the barrel can be smashed later...
@@ -3338,7 +3294,6 @@ check_for_droids_to_attack_or_talk_with ( )
 	    enemy_set_reference(&Me . current_enemy_target_n, &Me . current_enemy_target_addr, NULL);
 	    }
 
-	set_up_intermediate_course_for_tux ( ) ;
 	
 	return; 
     }

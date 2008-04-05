@@ -115,7 +115,7 @@ EXTERN float translate_pixel_to_zoomed_map_location ( float axis_x , float axis_
 EXTERN void blit_zoomed_iso_image_to_map_position ( iso_image* our_iso_image , float pos_x , float pos_y );
 EXTERN int tux_can_walk_this_line ( float x1, float y1 , float x2 , float y2 );
 EXTERN void clear_out_intermediate_points ( void );
-EXTERN int set_up_intermediate_course_for_tux ( void );
+EXTERN int set_up_intermediate_course_for_tux ( moderately_finepoint * move_target );
 EXTERN void adapt_position_for_jump_thresholds ( gps* old_position, gps* new_position );
 
 // bullet.c 
@@ -140,6 +140,7 @@ EXTERN void CheckBulletCollisions (int num);
 EXTERN void CheckBlastCollisions (int num);
 EXTERN int find_free_bullet_index ( void ) ;
 EXTERN int find_free_melee_shot_index ( void ) ;
+EXTERN void delete_melee_shot ( melee_shot * );
 
 // view.c 
 #undef EXTERN
@@ -904,7 +905,6 @@ EXTERN int TryToIntegrateItemIntoInventory ( item* BuyItem , int AmountToBuyAtMo
 EXTERN int AssemblePointerListForChestShow ( item** ItemPointerListPointer , moderately_finepoint chest_pos );
 EXTERN int AssemblePointerListForItemShow ( item** ItemPointerListPointer , int IncludeWornItems );
 EXTERN void InitTradeWithCharacter( int CharacterCode ) ;
-EXTERN void EnterChest ( moderately_finepoint pos );
 
 // takeover.c 
 #undef EXTERN
