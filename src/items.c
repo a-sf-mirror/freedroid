@@ -36,8 +36,6 @@
 #include "global.h"
 #include "proto.h"
 
-#define ITEM_TAKE_DIST (1.2)
-
 enum
 {
     WEAPON_SLOT = 0 ,
@@ -2295,7 +2293,7 @@ HandleInventoryScreen ( void )
 		{
 		if ( GameConfig.Inventory_Visible == FALSE || MatchItemWithName(PlayerLevel -> ItemList [ index_of_item_under_mouse_cursor ] . type, "Cyberbucks") )
 		    {
-		    AddFloorItemDirectlyToInventory( & ( PlayerLevel -> ItemList [ index_of_item_under_mouse_cursor ] ) );
+		    /* Handled in check_for_items_to_pickup() */
 		    return;
 		    }
 		else
@@ -2307,25 +2305,8 @@ HandleInventoryScreen ( void )
 		}
 	    else
 		{
-		//--------------------
-		// We set course to the item in question, directly to it's location,
-		// not somewhere remote, just for simplicity (for now)...
-		//
-		Me . mouse_move_target . x = 
-		    PlayerLevel -> ItemList [ index_of_item_under_mouse_cursor ] . pos . x ;
-		Me . mouse_move_target . y = 
-		    PlayerLevel -> ItemList [ index_of_item_under_mouse_cursor ] . pos . y ;
-		Me . mouse_move_target . z = 
-		    Me . pos . z ;
-
-		//--------------------
-		// We set up the combo_action, so that the barrel can be smashed later...
-		//
-		enemy_set_reference(&Me . current_enemy_target_n, &Me . current_enemy_target_addr, NULL);
-		Me . mouse_move_target_combo_action_type = COMBO_ACTION_PICK_UP_ITEM ;
-		Me . mouse_move_target_combo_action_parameter = index_of_item_under_mouse_cursor ;
-
-		goto NoMoreGrabbing;
+		/* Handled in check_for_items_to_pickup() */
+		;
 		}
 	    }
 	}

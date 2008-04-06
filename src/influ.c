@@ -48,10 +48,9 @@
 
 void limit_tux_speed_to_a_maximum ( );
 int autorun_activated = 0;
-int set_up_intermediate_course_for_tux ( moderately_finepoint * move_target );
-void clear_out_intermediate_points ( );
 void check_for_chests_to_open ( int chest_index ) ;
 void check_for_barrels_to_smash ( int index_of_barrel_below_mouse_cursor ) ;
+void check_for_items_to_pickup ( int );
 
 char recursion_grid[ MAX_MAP_LINES ][ MAX_MAP_LINES ] ;
 moderately_finepoint last_sight_contact;
@@ -1655,7 +1654,7 @@ recursive_find_walkable_point ( float x1 , float y1 , float x2 , float y2 , int 
 		    if ( (*next_index_to_set_up) >= MAX_INTERMEDIATE_WAYPOINTS_FOR_TUX )
 		    {
 			DebugPrintf ( DEBUG_TUX_PATHFINDING , "\nERROR!  Ran out of tux waypoints even with solutionfound!" );
-			clear_out_intermediate_points ( ) ;
+			clear_out_intermediate_points ( &Me.pos, Me.next_intermediate_point, MAX_INTERMEDIATE_WAYPOINTS_FOR_TUX ) ;
 			return ( FALSE );
 		    }
 		    
@@ -1682,7 +1681,7 @@ recursive_find_walkable_point ( float x1 , float y1 , float x2 , float y2 , int 
  *
  * ---------------------------------------------------------------------- */
 void
-clear_out_intermediate_points ( )
+clear_out_intermediate_points ( gps * curpos, moderately_finepoint *intermediate_points, int size )
 {
     int i;
     
@@ -1690,13 +1689,13 @@ clear_out_intermediate_points ( )
     // We clear out the waypoint list for the Tux and initialize the 
     // very first entry.
     //
-    for ( i = 0 ; i < MAX_INTERMEDIATE_WAYPOINTS_FOR_TUX ; i ++ )
+    for ( i = 0 ; i < size ; i ++ )
     {
-	Me . next_intermediate_point [ i ] . x = (-1) ;
-	Me . next_intermediate_point [ i ] . y = (-1) ;
+	intermediate_points [ i ] . x = (-1) ;
+	intermediate_points [ i ] . y = (-1) ;
     }
-    Me . next_intermediate_point [ 0 ] . x = Me . pos . x ;
-    Me . next_intermediate_point [ 0 ] . y = Me . pos . y ;
+    intermediate_points [ 0 ] . x = curpos -> x ;
+    intermediate_points [ 0 ] . y = curpos -> y ;
     
 }; // void clear_out_intermediate_points ( )
 
@@ -1708,11 +1707,10 @@ clear_out_intermediate_points ( )
  * move target.
  * ---------------------------------------------------------------------- */
 int
-set_up_intermediate_course_for_tux ( moderately_finepoint * move_target )
+set_up_intermediate_course_for_tux ( gps * curpos, moderately_finepoint * move_target )
 {
     int i;
     moderately_finepoint tmp;
-    static moderately_finepoint last_given_course_target = { -2 , -2 };
     
     //--------------------
     // For the protocol, we want to know how many cases of the cursion
@@ -1722,23 +1720,12 @@ set_up_intermediate_course_for_tux ( moderately_finepoint * move_target )
     bad_luck_in_4_directions_counter = 0;
     
     //--------------------
-    // For optimisation purposes, we'll not do anything unless a new target
-    // has been given.
-    //
-    if ( ( fabsf ( move_target -> x - last_given_course_target . x ) < 0.3 ) &&
-	 ( fabsf ( move_target -> y - last_given_course_target . y ) < 0.3 ) )
-    {
-	DebugPrintf ( DEBUG_TUX_PATHFINDING , "\nSKIPPING RECURSION BECAUSE OF REDUNDANCY!" );
-	return ( FALSE ) ;
-    }
-    
-    //--------------------
     // If the target position cannot be reached at all, because of being inside an obstacle
     // for example, then we know what to do:  Set up one waypoint to the target and that's it.
     //
     if ( ! IsPassable ( move_target -> x ,
 			move_target -> y ,
-			Me . pos . z ) )
+			curpos -> z) )
     {
 	DebugPrintf ( DEBUG_TUX_PATHFINDING , "\nSKIPPING RECURSION BECAUSE OF UNREACHABLENESS!" );
 	return ( FALSE ) ;
@@ -1748,20 +1735,13 @@ set_up_intermediate_course_for_tux ( moderately_finepoint * move_target )
     // If the target position cannot be reached at all, because of being inside an obstacle
     // for example, then we know what to do:  Set up one waypoint to the target and that's it.
     //
-    if ( ! IsPassable ( Me . pos . x ,
-			Me . pos . y ,
-			Me . pos . z ) )
+    if ( ! IsPassable ( curpos -> x ,
+			curpos -> y ,
+			curpos -> z ) )
     {
 	DebugPrintf ( 0 , "\nSkipping recursion because of passability reasons from current position..." );
 	return ( FALSE ) ;
     }
-    
-    //--------------------
-    // By default, we clear out any combo action for the target position.
-    // The calling function must set the combo action it has in mind.
-    //
-    /* XXX not any longerMe . mouse_move_target_combo_action_type = NO_COMBO_ACTION_SET ;
-    Me . mouse_move_target_combo_action_parameter = -1 ;*/
     
     //--------------------
     // We give out a well visible debug message, so that the heavy process
@@ -1779,11 +1759,11 @@ set_up_intermediate_course_for_tux ( moderately_finepoint * move_target )
     //
     memset ( & ( recursion_grid [ 0 ] ) , TILE_IS_UNPROCESSED , sizeof ( char ) * MAX_MAP_LINES * MAX_MAP_LINES );
     
-    clear_out_intermediate_points ( );
+    clear_out_intermediate_points ( curpos, Me.next_intermediate_point, MAX_INTERMEDIATE_WAYPOINTS_FOR_TUX );
     
     int next_index_to_set_up = 0 ;
     
-    recursive_find_walkable_point ( Me . pos . x , Me . pos . y , move_target -> x , move_target -> y , 0, &next_index_to_set_up ) ;
+    recursive_find_walkable_point ( curpos -> x, curpos -> y , move_target -> x , move_target -> y , 0, &next_index_to_set_up ) ;
     
     //--------------------
     // We delete the current position from the courseway, cause this position
@@ -1863,14 +1843,6 @@ set_up_intermediate_course_for_tux ( moderately_finepoint * move_target )
     
     
     //--------------------
-    // Finally, we set the reminder what the last given target was, so that
-    // we'll be able to identify redundant orders later, which is IMPORTANT
-    // for performance!
-    //
-    last_given_course_target . x = move_target -> x ;
-    last_given_course_target . y = move_target -> y ;
-    
-    //--------------------
     // We give the number of 4-way-unresolved situations here.
     //
     DebugPrintf ( DEBUG_TUX_PATHFINDING , 
@@ -1924,19 +1896,11 @@ move_tux_thowards_intermediate_point ( )
 		check_for_barrels_to_smash ( Me . mouse_move_target_combo_action_parameter ) ;
 		break;
 	    case COMBO_ACTION_PICK_UP_ITEM:
-		DebugPrintf ( -1 , "\n%s():  Now we've reached a case of pickup combo action." , __FUNCTION__ );
-		//--------------------
-		// We check if the item is still there (cause it could have
-		// been picked up in the meantime or maybe another player
-		// could have picked it up).
-		//
 		if ( PlayerLevel -> ItemList [ Me . mouse_move_target_combo_action_parameter ] . type != (-1) )
 		{
-		    DebugPrintf ( -1 , "\n%s(): Item for combo seems to be still there." , __FUNCTION__ );
 		    silently_unhold_all_items( );
 		    AddFloorItemDirectlyToInventory ( & PlayerLevel -> ItemList [ Me . mouse_move_target_combo_action_parameter ] );
 		}
-		DebugPrintf ( -1 , "\n%s(): Combo action now unset." , __FUNCTION__ );
 		Me . mouse_move_target_combo_action_type = NO_COMBO_ACTION_SET ;
 		break;
 	    default:
@@ -2039,6 +2003,7 @@ void
 move_tux ( )
 {
     Level MoveLevel = curShip.AllLevels[ Me . pos . z ] ;
+    static moderately_finepoint last_given_course_target = { -2 , -2 };
 
     // check, if the influencer is still ok
     CheckIfCharacterIsStillOk ( ) ;
@@ -2067,12 +2032,26 @@ move_tux ( )
     //
     //
     //
+
     moderately_finepoint move_target;
+
 
     tux_get_move_target_and_attack(&move_target);
     
     if ( move_target . x != -1 )
-	set_up_intermediate_course_for_tux ( &move_target ) ;
+	{
+	//--------------------
+	// For optimisation purposes, we'll not do anything unless a new target
+	// has been given.
+	//
+	if (!( ( fabsf ( move_target . x - last_given_course_target . x ) < 0.3 ) &&
+		( fabsf ( move_target . y - last_given_course_target . y ) < 0.3 ) ))
+	    {
+	    set_up_intermediate_course_for_tux ( &Me.pos, &move_target ) ;
+	    last_given_course_target . x = move_target . x ;
+	    last_given_course_target . y = move_target . y ;
+	    }
+	}
 
 
     // Perhaps the player has turned the mouse wheel.  In that case we might
@@ -3137,6 +3116,50 @@ check_for_chests_to_open ( int chest_index )
     
 }; // void check_for_chests_to_open ( ) 
 
+void check_for_items_to_pickup ( int index_of_item_under_mouse_cursor )
+{
+        Level our_level = curShip . AllLevels [ Me . pos . z ] ;
+
+    if ( index_of_item_under_mouse_cursor != (-1) )
+	{ 
+	//--------------------
+	// We only take the item directly into out 'hand' i.e. the mouse cursor,
+	// if the item in question can be reached directly and isn't blocked by
+	// some walls or something...
+	//
+	if (( calc_euklid_distance( Me . pos . x, Me . pos . y, our_level -> ItemList [ index_of_item_under_mouse_cursor ] . pos .x, our_level -> ItemList [ index_of_item_under_mouse_cursor ] . pos . y ) < ITEM_TAKE_DIST ) && 
+		DirectLineWalkable ( our_level -> ItemList [ index_of_item_under_mouse_cursor ] . pos . x , our_level -> ItemList [ index_of_item_under_mouse_cursor ] . pos . y , Me . pos . x , Me . pos . y , Me . pos . z ) )
+	    {
+	    if ( GameConfig.Inventory_Visible == FALSE || MatchItemWithName(our_level -> ItemList [ index_of_item_under_mouse_cursor ] . type, "Cyberbucks") )
+		{
+		AddFloorItemDirectlyToInventory( & ( our_level -> ItemList [ index_of_item_under_mouse_cursor ] ) );
+		return;
+		}
+	    else
+		{
+		/* Handled in HandleInventoryScreen(). Dirty and I don't plan on changing that right now.
+		 * A.H., 2008-04-06 */
+		;
+		}
+	    }
+	else
+	    {
+	    Me . mouse_move_target . x = 
+		our_level -> ItemList [ index_of_item_under_mouse_cursor ] . pos . x ;
+	    Me . mouse_move_target . y = 
+		our_level -> ItemList [ index_of_item_under_mouse_cursor ] . pos . y ;
+	    Me . mouse_move_target . z = 
+		Me . pos . z ;
+
+	    //--------------------
+	    // We set up the combo_action, so that the barrel can be smashed later...
+	    //
+	    enemy_set_reference(&Me . current_enemy_target_n, &Me . current_enemy_target_addr, NULL);
+	    Me . mouse_move_target_combo_action_type = COMBO_ACTION_PICK_UP_ITEM ;
+	    Me . mouse_move_target_combo_action_parameter = index_of_item_under_mouse_cursor ;
+	    }
+	}
+}
 /* ----------------------------------------------------------------------
  * When the player has left-clicked into the game area (i.e. the isometric
  * display of the game world), we need to check if maybe the click was
@@ -3289,6 +3312,7 @@ check_for_droids_to_attack_or_talk_with ( )
 	Me . mouse_move_target . y = 
 	    translate_pixel_to_map_location ( input_axis.x , input_axis.y , FALSE ) ;
 	Me . mouse_move_target . z = Me . pos . z ;
+	//Me . mouse_move_target_combo_action_type = NO_COMBO_ACTION_SET;
 	if ( ! ShiftPressed() )
 	    {
 	    enemy_set_reference(&Me . current_enemy_target_n, &Me . current_enemy_target_addr, NULL);
@@ -3579,6 +3603,7 @@ void
 AnalyzePlayersMouseClick ( )
 {
     DebugPrintf ( 2 , "\n===> void AnalyzePlayersMouseClick(): real function call confirmed. " ) ;
+    int tmp;
 
     switch ( global_ingame_mode )
     {
@@ -3609,16 +3634,29 @@ AnalyzePlayersMouseClick ( )
 	    break;
 	case GLOBAL_INGAME_MODE_NORMAL:
 	    if ( ButtonPressWasNotMeantAsFire( ) ) return;
-	    check_for_chests_to_open ( closed_chest_below_mouse_cursor ( ) ) ;
-	    check_for_barrels_to_smash ( smashable_barrel_below_mouse_cursor ( ) ) ;
+	    Me . mouse_move_target_combo_action_type = NO_COMBO_ACTION_SET;
+	    tmp = closed_chest_below_mouse_cursor ( );
+	    if ( (tmp = closed_chest_below_mouse_cursor ( )) != -1 )
+		{
+	    	check_for_chests_to_open ( tmp ) ;
+		break;
+		}
+	    if (( tmp = smashable_barrel_below_mouse_cursor ( ) ) != -1 )
+		{
+		check_for_barrels_to_smash ( tmp );
+		break;
+		}
+	    if (( tmp = get_floor_item_index_under_mouse_cursor () ) != -1 )
+		{
+		check_for_items_to_pickup ( tmp );
+		break;
+		}
 	    check_for_droids_to_attack_or_talk_with ( ) ;
 	    break;
 	case GLOBAL_INGAME_MODE_EXAMINE:
 	    handle_player_examine_command ( ) ;
 	    
 	    break;
-
-        case GLOBAL_INGAME_MODE_LOOT: break;
 
 	case GLOBAL_INGAME_MODE_REPAIR:
 	    // if ( ButtonPressWasNotMeantAsFire( ) ) return;

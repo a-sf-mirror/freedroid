@@ -114,8 +114,8 @@ EXTERN void skew_and_blit_rect( float x1, float y1, float x2, float y2, Uint32 c
 EXTERN float translate_pixel_to_zoomed_map_location ( float axis_x , float axis_y , int give_x );
 EXTERN void blit_zoomed_iso_image_to_map_position ( iso_image* our_iso_image , float pos_x , float pos_y );
 EXTERN int tux_can_walk_this_line ( float x1, float y1 , float x2 , float y2 );
-EXTERN void clear_out_intermediate_points ( void );
-EXTERN int set_up_intermediate_course_for_tux ( moderately_finepoint * move_target );
+EXTERN void clear_out_intermediate_points ( gps *, moderately_finepoint *, int);
+EXTERN int set_up_intermediate_course_for_tux ( gps * curpos, moderately_finepoint * move_target );
 EXTERN void adapt_position_for_jump_thresholds ( gps* old_position, gps* new_position );
 
 // bullet.c 

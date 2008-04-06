@@ -1992,7 +1992,7 @@ PrepareStartOfNewCharacter ( void )
     
     InitInfluencerChatFlags( );
     
-    clear_out_intermediate_points ( ) ;
+    clear_out_intermediate_points ( &Me . pos, Me . next_intermediate_point, MAX_INTERMEDIATE_WAYPOINTS_FOR_TUX ) ;
     
     for ( j = 0 ; j < MAX_COOKIES ; j ++ )
     {
