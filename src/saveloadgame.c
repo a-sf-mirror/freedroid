@@ -90,7 +90,6 @@ LoadAndShowThumbnail ( char* CoreFilename )
     TargetRectangle.x = 10 ;
     TargetRectangle.y = GameConfig . screen_height - tmp ->h - 10 ;
     
-    //if ( use_open_gl ) swap_red_and_blue_for_open_gl ( NewThumbnail );  
     our_SDL_blit_surface_wrapper ( tmp , NULL , Screen , &TargetRectangle );
     
     SDL_FreeSurface( tmp );
@@ -216,23 +215,17 @@ SaveThumbnailOfGame ( void )
 	// Now we need to make a real SDL surface from the raw image data we
 	// have just extracted.
 	//
-	FullView = SDL_CreateRGBSurfaceFrom( imgdata , GameConfig . screen_width , GameConfig . screen_height, 24, 3 * GameConfig . screen_width, 0x0FF0000, 0x0FF00, 0x0FF , 0 );
+	FullView = SDL_CreateRGBSurfaceFrom( imgdata , GameConfig . screen_width , GameConfig . screen_height, 24, 3 * GameConfig . screen_width, bmask, gmask, rmask, 0 );
 	
 	NewThumbnail = zoomSurface( FullView , 0.32 * 640.0f / GameConfig . screen_width , 0.32 * 640.0f / GameConfig . screen_width , 0 );
 	
-	free ( imgdata ) ;
 	if ( NewThumbnail == NULL ) 
 		return;		
 
-	//--------------------
-	// Of course, since we used OpenGL for generating the raw image data, the data is
-	// upside down again.  Now that won't be much of a problem, since we've already
-	// dealt with is several times, using the following flipping code.
-	//
 	flip_image_vertically ( NewThumbnail );
-	swap_red_and_blue_for_open_gl ( NewThumbnail );
 	
 	SDL_FreeSurface ( FullView ) ;
+	free ( imgdata ) ;
 #endif
     }
     else

@@ -273,7 +273,6 @@ EXTERN SDL_Surface* CreateAlphaCombinedSurface ( SDL_Surface* FirstSurface , SDL
 EXTERN SDL_Surface* CreateColorFilteredSurface ( SDL_Surface* FirstSurface , int FilterType );
 EXTERN void fade_out_using_gamma_ramp ( void );
 EXTERN void fade_in_using_gamma_ramp ( void );
-EXTERN void TakeScreenshot( void );
 EXTERN void DisplayImage(char *file_name);
 EXTERN void MakeGridOnScreen( SDL_Rect* Grid_Rectangle );
 EXTERN void SetCombatScaleTo(float);
@@ -288,7 +287,6 @@ EXTERN void HighlightRectangle ( SDL_Surface* Surface , SDL_Rect Area );
 EXTERN void ShadowingRectangle ( SDL_Surface* Surface , SDL_Rect Area );
 EXTERN int do_graphical_number_selection_in_range ( int lower_range , int upper_range, int default_value );
 EXTERN Uint8 GetAlphaComponent ( SDL_Surface* surface , int x , int y );
-EXTERN void swap_red_and_blue_for_open_gl ( SDL_Surface* FullView );
 EXTERN void clear_automap_texture_completely ( void ) ;
 
 // saveloadgame.c 

@@ -864,83 +864,19 @@ chat interface of Freedroid.  But:  Loading this file has ALSO failed.",
     Large_Droid = zoomSurface( Small_Droid , (float) Droid_Image_Window . w / (float) Small_Droid -> w , 
 			       (float) Droid_Image_Window . w / (float) Small_Droid -> w , 0 );
     
-    chat_portrait_of_droid [ model_number ] . surface = Large_Droid ;
-    
-    if ( use_open_gl )
-	swap_red_and_blue_for_open_gl ( chat_portrait_of_droid [ model_number ] . surface );
-    
     SDL_FreeSurface( Small_Droid );
     
+    if ( use_open_gl )
+	{
+	chat_portrait_of_droid [ model_number ] . surface = SDL_CreateRGBSurface(0, Large_Droid -> w, Large_Droid -> h, 32, rmask, gmask, bmask, amask);
+	SDL_SetAlpha(Large_Droid, 0, SDL_ALPHA_OPAQUE);
+	our_SDL_blit_surface_wrapper ( Large_Droid, NULL, chat_portrait_of_droid [ model_number ] . surface, NULL );
+	SDL_FreeSurface ( Large_Droid );
+	}
+    else chat_portrait_of_droid [ model_number ] . surface = Large_Droid;
+    
+    
 }; // void make_sure_chat_portraits_loaded_for_this_droid ( Enemy this_droid )
-
-/* ----------------------------------------------------------------------
- *
- *
- * ---------------------------------------------------------------------- */
-void
-make_sure_all_chat_portraits_are_loaded ( void )
-{
-    SDL_Surface* Small_Droid;
-    SDL_Surface* Large_Droid;
-    char fpath[2048];
-    char fname[500];
-    int i;
-    static int first_call = TRUE ;
-    
-    //--------------------
-    // We make sure we only load the portrait files once and not
-    // every time...
-    //
-    if ( ! first_call ) return ;
-    first_call = FALSE ;
-    
-    //--------------------
-    // All of the portrait files will now be loaded one after the
-    // other...
-    //
-    for ( i = 0 ; i < ENEMY_ROTATION_MODELS_AVAILABLE ; i ++ )
-    {
-	//--------------------
-	// At first we try to load the image, that is named after this
-	// chat section.  If that succeeds, perfect.  If not, we'll revert
-	// to a default image.
-	//
-	strcpy( fname, "droids/" );
-	strcat( fname, PrefixToFilename [ i ] ) ;
-	strcat( fname , "/portrait.png" );
-	find_file (fname, GRAPHICS_DIR, fpath, 0);
-	DebugPrintf ( -1000, "\nFilename used for portrait: %s." , fpath );
-	
-	Small_Droid = our_IMG_load_wrapper (fpath) ;
-	if ( Small_Droid == NULL )
-	{
-	    strcpy( fname, "droids/" );
-	    strcat( fname, "DefaultPortrait.png" );
-	    find_file (fname, GRAPHICS_DIR, fpath, 0);
-	    Small_Droid = our_IMG_load_wrapper (fpath) ;
-	}
-	if ( Small_Droid == NULL )
-	{
-	    fprintf( stderr, "\n\nfpath: %s \n" , fpath );
-	    ErrorMessage ( __FUNCTION__  , "\
-It wanted to load a small portrait file in order to display it in the \n\
-chat interface of Freedroid.  But:  Loading this file has ALSO failed.",
-				       PLEASE_INFORM, IS_FATAL );
-	}
-	// Large_Droid = zoomSurface( Small_Droid , 1.8 , 1.8 , 0 );
-	
-	Large_Droid = zoomSurface( Small_Droid , (float)Droid_Image_Window.w / (float)Small_Droid->w , (float)Droid_Image_Window.w / (float)Small_Droid->w , 0 );
-	
-	chat_portrait_of_droid [ i ] . surface = Large_Droid ;
-	
-	if ( use_open_gl )
-	    swap_red_and_blue_for_open_gl ( chat_portrait_of_droid [ i ] . surface );
-	
-	SDL_FreeSurface( Small_Droid );
-	
-    }
-
-}; // void make_sure_all_chat_portraits_are_loaded ( void )
 
 /* ----------------------------------------------------------------------
  * This function prepares the chat background window and displays the

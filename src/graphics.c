@@ -41,7 +41,6 @@
 #include "map.h"
 #include "SDL_rotozoom.h"
 
-void swap_red_and_blue_for_open_gl ( SDL_Surface* FullView );
 static const SDL_VideoInfo * vid_info; 
 /* XPM */
 static const char *crosshair_mouse_cursor[] = {
@@ -1196,75 +1195,6 @@ CreateAlphaCombinedSurface ( SDL_Surface* FirstSurface , SDL_Surface* SecondSurf
 
 }; // SDL_Surface* CreateAlphaCombinedSurface ( SDL_Surface* FirstBlit , SDL_Surface* SecondBlit )
 
-/* -----------------------------------------------------------------
- * This function saves a screenshot to disk.
- * The screenshots are names "Screenshot_XX.bmp" where XX is a
- * running number.  
- *
- * NOTE:  This function does NOT check for existing screenshots,
- *        but will silently overwrite them.  No problem in most
- *        cases I think.
- *
- * ----------------------------------------------------------------- */
-void
-TakeScreenshot( void )
-{
-  static int Number_Of_Screenshot=0;
-  char *Screenshoot_Filename;
-
-  Screenshoot_Filename=malloc(100);
-  DebugPrintf (1, "\n\nScreenshoot function called.\n\n");
-  sprintf( Screenshoot_Filename , "Screenshot_%02d.bmp", Number_Of_Screenshot );
-  DebugPrintf(1, "\n\nScreenshoot function: The Filename is: %s.\n\n" , Screenshoot_Filename );
-
-  if ( use_open_gl )
-    {
-#ifdef HAVE_LIBGL
-      SDL_Surface* FullView;
-      //--------------------
-      // We need to make a copy in processor memory.
-      GLvoid * imgdata = malloc ( ( GameConfig . screen_width + 2 ) * ( GameConfig . screen_height + 2 ) * 4 );
-      glReadPixels( 0 , 1, GameConfig . screen_width , GameConfig . screen_height-1 , GL_RGB, GL_UNSIGNED_BYTE, imgdata );
-
-      //--------------------
-      // Now we need to make a real SDL surface from the raw image data we
-      // have just extracted.
-      //
-      FullView = SDL_CreateRGBSurfaceFrom( imgdata , GameConfig . screen_width , GameConfig . screen_height, 24, 3 * GameConfig . screen_width, 0x0FF0000, 0x0FF00, 0x0FF , 0 );
-      free ( imgdata );
-      flip_image_vertically ( FullView );
-      
-      swap_red_and_blue_for_open_gl ( FullView );
-
-      SDL_SaveBMP( FullView , Screenshoot_Filename );
-
-      SDL_FreeSurface ( FullView ) ;
-#endif
-    }
-  else
-    {
-      SDL_SaveBMP( Screen , Screenshoot_Filename );
-    }
-
-  Number_Of_Screenshot++;
-  free(Screenshoot_Filename);
-
-  //--------------------
-  // Now that a screenshot has been taken, we might as well start
-  // the sound of a camera taking a picture... :)
-  //
-  PlayOnceNeededSoundSample( "effects/CameraTakesPicture.ogg" , FALSE , TRUE ) ;
-
-  //--------------------
-  // Taking the screenshot, converting is and saving it, maybe also
-  // flipping it around, all these things cost time, so in order not
-  // to make to much of a jump after a screenshot has been made and
-  // saved, we use the conservative frame time computation for this
-  // next frame now.
-  //
-  Activate_Conservative_Frame_Computation();
-
-}; // void TakeScreenshot(void)
 
 /* ----------------------------------------------------------------------
  * This function draws a "grid" on the screen, that means every
@@ -2079,35 +2009,5 @@ HighlightRectangle ( SDL_Surface* Surface , SDL_Rect Area )
 
 }; // void HighlightRectangle
 
-/* ----------------------------------------------------------------------
- * OpenGL has a habit of using different order for RGB, namely BGR.  To
- * fix this when saving something e.g. as bmp, we need to reverse the 
- * order of red, green and blue again, which we do here.
- * ---------------------------------------------------------------------- */
-void
-swap_red_and_blue_for_open_gl ( SDL_Surface* FullView )
-{
-    int x , y ;
-    Uint32 pixel;
-    
-    // DebugPrintf ( -1000 , "\nSurface bpp: %d." , FullView -> format -> BytesPerPixel  );
-    
-    SDL_LockSurface ( FullView );
-    for ( x = 0 ; x < FullView -> w ; x ++ )
-    {
-	for ( y = 0 ; y < FullView -> h ; y ++ )
-	{
-	    // pixel = FdGetPixel ( FullView , x , y ) ;
-	    pixel = SDL_MapRGBA ( FullView -> format , 
-				  GetBlueComponent ( FullView, x , y ) , 
-				  GetGreenComponent ( FullView, x , y ) , 
-				  GetRedComponent ( FullView, x , y ) ,
-				  GetAlphaComponent ( FullView , x , y ) );
-	    PutPixel ( FullView , x , y , pixel);
-	}
-    }
-    SDL_UnlockSurface ( FullView );
-    
-}; // void swap_red_and_blue_for_open_gl ( SDL_Surface* FullView )
 
 #undef _graphics_c
