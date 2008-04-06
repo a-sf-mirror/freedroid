@@ -386,8 +386,8 @@ trying to make the ultra-fine item rotation series.  Strange.",
 	    }
 	    
 	    SDL_SetAlpha( Whole_Image , 0 , SDL_ALPHA_OPAQUE );
-	    ItemRotationSurfaces[i] = our_SDL_display_format_wrapperAlpha( Whole_Image ); // now we have an alpha-surf of right size
-	    SDL_SetColorKey( ItemRotationSurfaces[i] , 0 , 0 ); // this should clear any color key in the dest surface
+	    ItemRotationSurfaces[i] = SDL_CreateRGBSurface ( 0, Whole_Image -> w, Whole_Image -> h, 32, rmask, gmask, bmask, amask);
+	    SDL_BlitSurface ( Whole_Image, NULL, ItemRotationSurfaces[i], NULL );
 	    SDL_FreeSurface( Whole_Image );
 	    
 	    // We must remember, that his is already loaded of course
