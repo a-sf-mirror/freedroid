@@ -485,16 +485,26 @@ pad_image_for_texture ( SDL_Surface* our_surface )
     int x = 1 ;
     int y = 1 ;
     SDL_Surface* padded_surf;
-    SDL_Surface* tmp_surf;
     SDL_Rect dest;
+
+#if SDL_BYTEORDER == SDL_LIL_ENDIAN
+    int rmask = 0x00FF0000;
+    int gmask = 0x0000FF00;
+    int bmask = 0x000000FF;
+    int amask = 0xFF000000;
+#else
+    int rmask = 0x0000FF00;
+    int gmask = 0x00FF0000;
+    int bmask = 0xFF000000;
+    int amask = 0x000000FF;
+#endif
+
     
     while ( x < our_surface -> w ) x <<= 1;
     while ( y < our_surface -> h ) y <<= 1;
 
-    padded_surf = SDL_CreateRGBSurface( 0 , x , y , 32, 0x0FF000000 , 0x000FF0000  , 0x00000FF00 , 0x000FF );
-    tmp_surf = SDL_DisplayFormatAlpha ( padded_surf ) ;
-    SDL_FreeSurface ( padded_surf );
-    
+    padded_surf = SDL_CreateRGBSurface( 0 , x , y , 32, rmask, gmask, bmask, amask);
+
     SDL_SetAlpha( our_surface , 0 , 0 );
     SDL_SetColorKey( our_surface , 0 , 0x0FF );
     dest . x = 0;
@@ -502,9 +512,9 @@ pad_image_for_texture ( SDL_Surface* our_surface )
     dest . w = our_surface -> w ;
     dest . h = our_surface -> h ;
                    
-    our_SDL_blit_surface_wrapper ( our_surface, NULL , tmp_surf , & dest );
+    our_SDL_blit_surface_wrapper ( our_surface, NULL , padded_surf , & dest );
     
-    return ( tmp_surf );
+    return ( padded_surf );
 
 }; // SDL_Surface* pad_image_for_texture ( SDL_Surface* our_surface ) 
 

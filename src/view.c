@@ -2524,6 +2524,18 @@ char fpath[2048];
     unsigned char *ptr, *dest;
     int tmplen;
 
+#if SDL_BYTEORDER == SDL_LIL_ENDIAN
+    int rmask = 0x00FF0000;
+    int gmask = 0x0000FF00;
+    int bmask = 0x000000FF;
+    int amask = 0xFF000000;
+#else
+    int rmask = 0x0000FF00;
+    int gmask = 0x00FF0000;
+    int bmask = 0xFF000000;
+    int amask = 0x000000FF;
+#endif
+
     Sint16 img_xlen;
     Sint16 img_ylen;
     Sint16 img_x_offs;
@@ -2665,7 +2677,7 @@ The number of images found in the image collection is bigger than currently allo
 
 	    enemy_iso_images [ enemy_model_nr ] [ rotation_index ] [ enemy_phase ] . surface = 
 	      SDL_CreateRGBSurface ( SDL_SWSURFACE , img_xlen , img_ylen, 32, 
-				     0x00ff0000, 0x0000ff00, 0x000000ff, 0xff000000 ) ;
+				     rmask, gmask, bmask, amask ) ;
 
 	    dest = enemy_iso_images[enemy_model_nr ] [ rotation_index ] [ enemy_phase ] . surface -> pixels;
 	    tmplen = 4 * img_xlen * img_ylen;
