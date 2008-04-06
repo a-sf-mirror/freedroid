@@ -1933,7 +1933,7 @@ InitVideo (void)
     {
 	SDL_WM_SetCaption ( window_title_string , "" );
 	find_file (ICON_FILE , GRAPHICS_DIR , fpath, 0 );
-	SDL_WM_SetIcon( our_IMG_load_wrapper ( fpath ) , NULL );
+	SDL_WM_SetIcon( IMG_Load ( fpath ) , NULL );
     }
     
     InitOurBFonts ( );
