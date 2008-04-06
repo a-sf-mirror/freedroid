@@ -1701,7 +1701,6 @@ static void state_machine_select_new_waypoint(enemy * ThisRobot, moderately_fine
     /* Bot must select a new waypoint randomly, and turn towards it. No move this step.*/
     if ( SetNewRandomWaypoint( ThisRobot ) )
 	{ /* couldn't find a waypoint ? go waypointless */
-	fprintf(stderr, "Bot %#x at %f %f %d could not find a waypoint, going waypointless\n", (unsigned int)ThisRobot, ThisRobot->pos.x, ThisRobot->pos.y, ThisRobot->pos.z);
 	ThisRobot->combat_state = WAYPOINTLESS_WANDERING;
 	}
 
