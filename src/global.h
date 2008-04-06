@@ -195,6 +195,10 @@ EXTERN GLuint *automap_texture;  // this is to store an open_gl texture...
 EXTERN GLuint *light_radius_stretch_texture;  // this is to store an open_gl texture...
 EXTERN SDL_Surface* light_radius_stretch_surface ;
 #endif
+EXTERN int amask;
+EXTERN int gmask;
+EXTERN int bmask;
+EXTERN int rmask;
 
 #undef EXTERN
 #ifdef _sound_c

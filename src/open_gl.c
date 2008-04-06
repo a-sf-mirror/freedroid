@@ -487,18 +487,6 @@ pad_image_for_texture ( SDL_Surface* our_surface )
     SDL_Surface* padded_surf;
     SDL_Rect dest;
 
-#if SDL_BYTEORDER == SDL_LIL_ENDIAN
-    int rmask = 0x00FF0000;
-    int gmask = 0x0000FF00;
-    int bmask = 0x000000FF;
-    int amask = 0xFF000000;
-#else
-    int rmask = 0x0000FF00;
-    int gmask = 0x00FF0000;
-    int bmask = 0xFF000000;
-    int amask = 0x000000FF;
-#endif
-
     
     while ( x < our_surface -> w ) x <<= 1;
     while ( y < our_surface -> h ) y <<= 1;
@@ -1080,7 +1068,6 @@ set_up_stretched_texture_for_light_radius ( void )
 #ifdef HAVE_LIBGL
 
     static int texture_is_set_up_already = FALSE ;
-    Uint32 rmask, gmask, bmask, amask ;
 
     //--------------------
     // In the non-open-gl case, this function shouldn't be called ever....
@@ -1092,18 +1079,6 @@ set_up_stretched_texture_for_light_radius ( void )
     //
     if ( texture_is_set_up_already ) return ;
     texture_is_set_up_already = TRUE ;
-
-#if SDL_BYTEORDER == SDL_BIG_ENDIAN
-    rmask = 0xff000000;
-    gmask = 0x00ff0000;
-    bmask = 0x0000ff00;
-    amask = 0x000000ff;
-#else
-    rmask = 0x000000ff;
-    gmask = 0x0000ff00;
-    bmask = 0x00ff0000;
-    amask = 0xff000000;
-#endif
 
     //--------------------
     // We create an SDL surface, so that we can make the texture for the

@@ -77,16 +77,23 @@ LoadAndShowThumbnail ( char* CoreFilename )
     
     sprintf( filename , "%s/%s%s", our_config_dir , CoreFilename , SAVE_GAME_THUMBNAIL_EXT );
     
+    /* Load the image */
     NewThumbnail = our_IMG_load_wrapper ( filename );
-    if ( NewThumbnail == NULL ) return;
+    if ( NewThumbnail == NULL ) 
+	return;
+
+    /* Create a surface to hold the - correctly formatted - image */
+    SDL_Surface * tmp = SDL_CreateRGBSurface( 0, NewThumbnail -> w, NewThumbnail->h, 32, rmask, gmask, bmask, amask);
+    our_SDL_blit_surface_wrapper(NewThumbnail, NULL, tmp, NULL);
+    SDL_FreeSurface(NewThumbnail);
     
     TargetRectangle.x = 10 ;
-    TargetRectangle.y = GameConfig . screen_height - NewThumbnail ->h - 10 ;
+    TargetRectangle.y = GameConfig . screen_height - tmp ->h - 10 ;
     
-    if ( use_open_gl ) swap_red_and_blue_for_open_gl ( NewThumbnail );  
-    our_SDL_blit_surface_wrapper ( NewThumbnail , NULL , Screen , &TargetRectangle );
+    //if ( use_open_gl ) swap_red_and_blue_for_open_gl ( NewThumbnail );  
+    our_SDL_blit_surface_wrapper ( tmp , NULL , Screen , &TargetRectangle );
     
-    SDL_FreeSurface( NewThumbnail );
+    SDL_FreeSurface( tmp );
 
 }; // void LoadAndShowThumbnail ( char* CoreFilename )
 
