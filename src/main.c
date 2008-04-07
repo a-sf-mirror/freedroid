@@ -83,8 +83,8 @@ main (int argc, char * argv[])
 {
 #if ENABLE_NLS
     DIR *tmp_dir;
-    setlocale(LC_MESSAGES, "");
-    setlocale(LC_CTYPE, "");
+    setlocale(LC_MESSAGES, "C");
+    setlocale(LC_CTYPE, "C");
     tmp_dir = opendir("../po");
     if(tmp_dir != NULL) 
 	{
