@@ -1896,12 +1896,7 @@ move_tux_thowards_intermediate_point ( )
 		check_for_barrels_to_smash ( Me . mouse_move_target_combo_action_parameter ) ;
 		break;
 	    case COMBO_ACTION_PICK_UP_ITEM:
-		if ( PlayerLevel -> ItemList [ Me . mouse_move_target_combo_action_parameter ] . type != (-1) )
-		{
-		    silently_unhold_all_items( );
-		    AddFloorItemDirectlyToInventory ( & PlayerLevel -> ItemList [ Me . mouse_move_target_combo_action_parameter ] );
-		}
-		Me . mouse_move_target_combo_action_type = NO_COMBO_ACTION_SET ;
+		check_for_items_to_pickup ( Me . mouse_move_target_combo_action_parameter ); 
 		break;
 	    default:
 		ErrorMessage ( __FUNCTION__  , 
@@ -1909,6 +1904,8 @@ move_tux_thowards_intermediate_point ( )
 					   PLEASE_INFORM, IS_FATAL );
 		break;
 	}
+
+	Me . mouse_move_target_combo_action_type = NO_COMBO_ACTION_SET;
 	return;
     }
     
