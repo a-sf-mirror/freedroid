@@ -3,14 +3,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: freedroidrpg_data\n"
 "Report-Msgid-Bugs-To: CHANGE THIS TOO\n"
-"POT-Creation-Date: 2008-03-27 18:09+0000\n"
-"PO-Revision-Date: 2008-03-27 16:12+0000\n"
+"POT-Creation-Date: 2008-04-02 19:32+0000\n"
+"PO-Revision-Date: 2008-04-05 10:52+0000\n"
 "Last-Translator: elijahbal <Unknown>\n"
 "Language-Team: <en@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-15\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-03-27 20:32+0000\n"
+"X-Launchpad-Export-Date: 2008-04-07 10:20+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../map/freedroid.program_archetypes:4
@@ -479,8 +479,8 @@ msgid ""
 "single hit"
 msgstr ""
 "Ces munitions sont lentes et encombrantes, mais un paquet est assez "
-"puissant. L'utilisation fréquente est susceptible de permettre d'atteindre "
-"plus de droïdes en un coup."
+"puissant. Elles permettent souvent d'abattre les faibles droïde du premier "
+"coup."
 
 #: ../map/freedroid.item_archetypes:428
 msgid "Dagger"
@@ -509,7 +509,7 @@ msgid ""
 "far enough away to jab at a single enemy without giving him much chance to "
 "hit back. Neither damage nor durability is very much to write home about."
 msgstr ""
-"La meilleure chose à noter à propos d'un épieu en bois est qu'il vous permet "
+"La seule chose à dire à propos de l'épieu en bois, c'est qu'il vous permet "
 "de rester assez loin pour frapper un ennemi seul, sans qu'il ait une chance "
 "de riposter. Les dommages infligés et la durée de vie sont insuffisant pour "
 "en parler."
@@ -574,7 +574,7 @@ msgid ""
 msgstr ""
 "Ça peut ne pas être très efficace, mais si vous parvenez à donner un bon "
 "coup, l'énergie cinétique peut être suffisante pour endommager les circuits "
-"internes s'il y avait une brêche préalable sur l'extérieure."
+"internes s'il y avait une brêche préalable dans la coque du droïde."
 
 #: ../map/freedroid.item_archetypes:662
 msgid "Tree branch"
@@ -671,8 +671,8 @@ msgid ""
 "Very slow and only for the strongest, but only the thougher droids can "
 "survive more then 1-2 direct hits."
 msgstr ""
-"C'est très lent, et seulement utilisable par les plus fort, mais peut de "
-"droïdes survivent à plus de 1 ou deux coups directs."
+"C'est très lent, et nécessite beaucoup de force, mais peu de droïdes "
+"survivent à plus de un ou deux coups directs de cette arme."
 
 #: ../map/freedroid.item_archetypes:934
 msgid "Lightsaber"
@@ -683,6 +683,9 @@ msgid ""
 "In the hands of a true master, this excellent technological craftsmanship is "
 "as deadly as it is beautiful. It requires laser crystals to work properly."
 msgstr ""
+"Entre les mains d'un vrai maître, cette excellent produit de la technologie "
+"humain est aussi mortel que beau. Il nécessite un cristal laser pour "
+"fonctionner correctement."
 
 #: ../map/freedroid.item_archetypes:972
 msgid "Laserstaff"
@@ -846,8 +849,8 @@ msgstr ""
 "C'est assez puissant pour stopper un camion, littéralement. Ce serait "
 "vraiment improbable qu'un droïde de combat survive à plus de deux coups "
 "directs de ce fusil. Ce ne sera pas un problème non plus si le droïde "
-"concerné se cache derrière un mur, la balle le cassera directement et "
-"transformera aussitôt le robot en éclats de métal fondu."
+"concerné se cache derrière un mur, la balle passera au travers et "
+"transformera le robot en éclats de métal fondu."
 
 #: ../map/freedroid.item_archetypes:1633
 msgid "Laser Weapon Ammunition"
@@ -920,8 +923,8 @@ msgstr ""
 "sans que le fusil ne surchauffe, combinée avec une conception prévue pour un "
 "usage militaire fait de cette arme le choix de prédilection pour la plupart "
 "des soldats. Elle est sans recul, avec un tir rapide, une grande bandoulière "
-"et de la puissance en font l'arme idéale pour nettoyer les infestations de "
-"grands droïdes."
+"et de la puissance, ce qui en fait l'arme idéale pour se débarrasser des "
+"grandes invasions de droïdes en quelques minutes."
 
 #: ../map/freedroid.item_archetypes:1793
 msgid "Plasma Weapon Ammunition"
@@ -1000,10 +1003,13 @@ msgid "The Super Exterminator!!!"
 msgstr "Le Super Exterminateur !!!"
 
 #: ../map/freedroid.item_archetypes:1983
+#, fuzzy
 msgid ""
 "This bad boy has been known to blow away enemies with a single blast. A "
 "dangerous weapon that you don't want to be on the receiving end of."
 msgstr ""
+"Ce 'mauvais garçon' s'est fait connaître en abattant des ennemis en un seul "
+"coup. Une arme dangereuse dont vous ne désirez éviter d'être la cible."
 
 #: ../map/freedroid.item_archetypes:2013
 msgid "VMX Gas Grenade"
@@ -1027,16 +1033,23 @@ msgid ""
 "Tesla in the early 20th century. The magnetic pulse that it generates can "
 "destroy most electronic devices in just one blast."
 msgstr ""
+"Cette sphère contient quelques étranges caractéristiques de la technologie "
+"inventée par Nikola Tesla au début du 20ème siècle. L'impulsion magnétique "
+"qu'elle génère peut détruire la plupart des appareils électroniques en une "
+"seule fois."
 
 #: ../map/freedroid.item_archetypes:2047
 msgid "Plasma Grenade"
 msgstr "Grenade à plasma"
 
 #: ../map/freedroid.item_archetypes:2061
+#, fuzzy
 msgid ""
 "Said to the downscaled version of the original Pandora's Sphere, this device "
 "extinguishes life with superheated plasma."
 msgstr ""
+"Version miniature de la sphère de Pandore , cet appareil élimine la vie avec "
+"un plasma ultra-chaud."
 
 #: ../map/freedroid.item_archetypes:2073
 msgid "NPC Hand to hand weapon"
@@ -1045,7 +1058,7 @@ msgstr "Arme corps à corps PNJ"
 #: ../map/freedroid.item_archetypes:2086
 #: ../map/freedroid.item_archetypes:2706
 msgid "Bot use only"
-msgstr ""
+msgstr "Usage robotique seulement."
 
 #: ../map/freedroid.item_archetypes:2108
 msgid "Droid weaponry - 123"
@@ -1056,10 +1069,12 @@ msgid ""
 "A nice handy weapon, a good swing every now and then will prove useful in "
 "critical hits."
 msgstr ""
+"Un fusil sympa et maniable, un bon swing vous sera utile et permettra de "
+"mettre des coups critiques."
 
 #: ../map/freedroid.item_archetypes:2141
 msgid "Droid weaponry - 139 : Trash compactor plasma overload"
-msgstr ""
+msgstr "Armement droïde - 139 : Compresseur d'ordures au plasma surchargé"
 
 #: ../map/freedroid.item_archetypes:2152
 msgid "For bot use only."
@@ -1067,7 +1082,7 @@ msgstr "Utilisable par les robots uniquement."
 
 #: ../map/freedroid.item_archetypes:2174
 msgid "Droid weaponry - 247"
-msgstr ""
+msgstr "Armement droïde - 247"
 
 #: ../map/freedroid.item_archetypes:2187
 #: ../map/freedroid.item_archetypes:2255
@@ -1082,10 +1097,14 @@ msgid ""
 "A true to technology modern sword. Can cut through the most impossible "
 "objects like a knife through butter."
 msgstr ""
+"Une application de la technologie moderne à l'épée. Cela peut couper "
+"n'importe les objets les plus durs comme un couteau le ferait avec une motte "
+"de beurre."
 
 #: ../map/freedroid.item_archetypes:2209
+#, fuzzy
 msgid "Droid weaponry - 249 (Laser pulse welder)"
-msgstr ""
+msgstr "Armement droïde - 249 (Soudeur laser à impulsion)"
 
 #: ../map/freedroid.item_archetypes:2220
 msgid "For bot use only"
@@ -1263,6 +1282,8 @@ msgid ""
 "Top of the line head gear, manages to protect against a myriad of close "
 "range and long range attacks."
 msgstr ""
+"Le haut de gamme, vous protégera contre une myriade d'attaques à courte et "
+"longue portée."
 
 #: ../map/freedroid.item_archetypes:2905
 msgid "Pot-Helm"
@@ -1271,16 +1292,20 @@ msgstr ""
 #: ../map/freedroid.item_archetypes:2919
 msgid "It might look a bit silly, but it will save your life many times"
 msgstr ""
+"Ça peut sembler un peu stupide, mais ça vous sauvera la vie plusieurs fois."
 
 #: ../map/freedroid.item_archetypes:2923
 msgid "Iron Hat"
-msgstr ""
+msgstr "Chapeau de fer"
 
 #: ../map/freedroid.item_archetypes:2937
 msgid ""
 "Now this is head protection. Feel safe with sturdy iron protecting your "
 "head. Not as comfortable as other hats"
 msgstr ""
+"À présent ceci est une protection pour la tête. Sentez vous en sécurité avec "
+"un solide acier protégeant votre tête. Ce n'est pas aussi confortable que "
+"d'autres chapeaux."
 
 #: ../map/freedroid.item_archetypes:2941
 msgid "Dixon's helmet"
@@ -1303,6 +1328,13 @@ msgid ""
 "getting hit, and how long it will remain operational and other cool stuff "
 "like that."
 msgstr ""
+"Ce bouclier est fait de plusieurs objets hétéroclites, tous trouvés aux "
+"alentours. Il possède des tubes, des boulons et des morceaux de métaux, tous "
+"forgés ensemble pour fournir un minimum de protection face aux attaques "
+"ennemies. Il est très sommaire et un peu disgracieux et dissymétrique, mais "
+"quelques capteurs et voyants lui ont été ajoutés pour renseigner son "
+"utilisateur si l'objet reçoit un coup, et combien de temps il restera "
+"opérationnel, et d'autres choses intéressantes comme ça."
 
 #: ../map/freedroid.item_archetypes:2983
 msgid "Small Shield"
@@ -1313,14 +1345,16 @@ msgid ""
 "A small, lightweight and pretty straightforward shield. Provides decent "
 "protection."
 msgstr ""
+"Un bouclier petit, léger, et robuste. Il fournit une protection décente."
 
 #: ../map/freedroid.item_archetypes:3001
 msgid "Standard Shield"
 msgstr "Bouclier"
 
 #: ../map/freedroid.item_archetypes:3017
+#, fuzzy
 msgid "Better than a buckler, and a lot more effective."
-msgstr ""
+msgstr "Mieux qu'un bouclier, et beaucoup plus efficace."
 
 #: ../map/freedroid.item_archetypes:3021
 msgid "Medium Shield"
@@ -1331,6 +1365,7 @@ msgid ""
 "A medium sized, lightweight and pretty straightforward shield. Provides "
 "decent protection."
 msgstr ""
+"Un bouclier petit, léger, et robuste. Il fournit une protection décente."
 
 #: ../map/freedroid.item_archetypes:3039
 msgid "Large Shield"
@@ -1338,7 +1373,7 @@ msgstr "Grand bouclier"
 
 #: ../map/freedroid.item_archetypes:3055
 msgid "A powerful shield."
-msgstr ""
+msgstr "Un bouclier puissant."
 
 #: ../map/freedroid.item_archetypes:3065
 msgid "Shoes"
@@ -1349,6 +1384,8 @@ msgid ""
 "These simple boots are designed for comfort of the wearer more than to give "
 "actual protection."
 msgstr ""
+"Ces bottes simples sont conçues pour le confort de celui qui les porte plus "
+"que pour le protéger."
 
 #: ../map/freedroid.item_archetypes:3083
 msgid "Light Boots"
@@ -1359,6 +1396,9 @@ msgid ""
 "These boots are a bit lighter than the normal version, giving of course "
 "worse protection but certainly extra comfort for the wearer."
 msgstr ""
+"Ces bottes sont un peu plus légères que la version normale, ne dégradant pas "
+"la protection originale, mais augmentant certainement le confort pour celui "
+"qui les porte."
 
 #: ../map/freedroid.item_archetypes:3101
 msgid "Boots"
@@ -1369,18 +1409,26 @@ msgid ""
 "These boots are similar to the simple shoes, but the material they are made "
 "of is hardened for extra protection."
 msgstr ""
+"Ces bottes sont similaires à de simples chaussures, mais le matériel dont "
+"elles sont faites est renforcé pour une meilleure protection."
 
 #: ../map/freedroid.item_archetypes:3119
 msgid "Reinforced Boots"
 msgstr "Bottes de protection"
 
 #: ../map/freedroid.item_archetypes:3133
+#, fuzzy
 msgid ""
 "These boots were originally normal boots, but have been fitted with some "
 "extra reinforcements to give better protection to the wearer.  Of course "
 "this makes them a bit less elegant and also less comfy to wear, but the "
 "extra protection might be worth it, at not the full price of hiking boots."
 msgstr ""
+"Ces bottes étaient à l'origine de simples bottes, mais ont été améliorées "
+"par quelques ajouts et renforcement pour donner une meilleure protection à "
+"celui qui les porte. Naturellement cela les rend un peu moins élégantes et "
+"moins confortables à porter, mais la protection supplémentaire apportée "
+"n'est pas mauvaise."
 
 #: ../map/freedroid.item_archetypes:3137
 msgid "Hiking Boots"
@@ -1392,14 +1440,18 @@ msgid ""
 "comfort for the wearer with a good protection from collisions with blunt "
 "objects like stones, which of course also makes for a higher price."
 msgstr ""
+"Ces chaussures de marche sont un produit très sophistiqué, combinant un "
+"confort optimal pour celui qui les porte, ainsi qu'une bonne protection avec "
+"les objets contondants comme les pierres, ce qui leur attribue naturellement "
+"un prix élevé."
 
 #: ../map/freedroid.item_archetypes:3164
 msgid "Source Book of Emergency shutdown"
-msgstr ""
+msgstr "Livre des Sources de l'arrêt d'urgence"
 
 #: ../map/freedroid.item_archetypes:3174
 msgid "Everyone needs to blow some steam every now and then."
-msgstr ""
+msgstr "Tout le monde a besoin de relâcher la pression de temps en temps."
 
 #: ../map/freedroid.item_archetypes:3180
 msgid "Source Book of Check system integrity"
@@ -1408,6 +1460,8 @@ msgstr "Code source de vérification du système"
 #: ../map/freedroid.item_archetypes:3190
 msgid "An incredible healing spell, probably only one you will ever need."
 msgstr ""
+"Un incroyable sort de guérison, probablement le seul dont vous aurez jamais "
+"besoin."
 
 #: ../map/freedroid.item_archetypes:3196
 msgid "Source Book of Analyze item"
@@ -1415,36 +1469,41 @@ msgstr "Code source d'analyse d'objet"
 
 #: ../map/freedroid.item_archetypes:3206
 msgid "A book explaining the basics of item analysis."
-msgstr ""
+msgstr "Un livre décrivant les bases de l'identification d'objet."
 
 #: ../map/freedroid.item_archetypes:3212
 msgid "Source Book of Sanctuary"
 msgstr "Code source de sanctuaire"
 
 #: ../map/freedroid.item_archetypes:3222
+#, fuzzy
 msgid ""
 "The art of rapidly moving away from danger is very useful. Even when used in "
 "reverse it has its uses."
-msgstr ""
+msgstr "L'art de fuir rapidement face au danger est très utile."
 
 #: ../map/freedroid.item_archetypes:3228
 msgid "Source Book of Malformed packet"
 msgstr "Code source de paquet malformé"
 
 #: ../map/freedroid.item_archetypes:3238
+#, fuzzy
 msgid ""
 "When computers are presented with the unexpected they can damage themselves."
-msgstr ""
+msgstr "Présenté de l'inattendu aux ordinateurs peut les endommager."
 
 #: ../map/freedroid.item_archetypes:3244
 msgid "Source Book of Calculate Pi"
 msgstr "Code source de calcul de PI"
 
 #: ../map/freedroid.item_archetypes:3254
+#, fuzzy
 msgid ""
 "It is not a big problem to make a badly designed system to go hunting for "
 "the impossible, causing a performance impact."
 msgstr ""
+"Il n'est pas difficile de faire un système mal conçu avec le but de faire "
+"quelque chose d'impossible en terme de capacité de calcul."
 
 #: ../map/freedroid.item_archetypes:3260
 msgid "Source Book of Blue Screen"
@@ -1452,13 +1511,16 @@ msgstr "Code source d'écran bleu"
 
 #: ../map/freedroid.item_archetypes:3270
 #: ../map/freedroid.item_archetypes:3286
+#, fuzzy
 msgid ""
 "With a little touch a war machine comes crashing down to a halt. For a while."
 msgstr ""
+"Une machine de guerre peut crasher jusqu'à l'arrêt avec une simple "
+"pichenette."
 
 #: ../map/freedroid.item_archetypes:3276
 msgid "Source Book of Broadcast Blue Screen"
-msgstr ""
+msgstr "Code source du gros écran bleu."
 
 #: ../map/freedroid.item_archetypes:3292
 msgid "Source Book of Virus"
@@ -1469,47 +1531,60 @@ msgid ""
 "This is not just a firmware upgrade, my dear bot. You are about to find out "
 "what exactly I want to give you."
 msgstr ""
+"Ce n 'est pas une simple mise à jour de firmware, mon cher robot. Tu es en "
+"train de comprendre ce que je veux te donner."
 
 #: ../map/freedroid.item_archetypes:3308
 msgid "Source Book of Broadcast virus"
-msgstr ""
+msgstr "Livre de référence des virus puissants"
 
 #: ../map/freedroid.item_archetypes:3318
 msgid ""
 "The network is wide and dangerous. Many traps await for the weak and "
 "unprepared."
 msgstr ""
+"Le réseau est large est dangereux. Il s'y trouve beaucoup de pièges pour les "
+"faibles et ceux qui ne sont pas préparés."
 
 #: ../map/freedroid.item_archetypes:3324
 msgid "Source Book of Dispel smoke"
-msgstr ""
+msgstr "Code source de la dissipation de fumée"
 
 #: ../map/freedroid.item_archetypes:3334
+#, fuzzy
 msgid ""
 "By heating up the chips with a malformed program you can cause them to "
 "release the magic smoke which keeps the bot running."
 msgstr ""
+"En surchauffant la puce avec un mauvais programme, vous pouvez provoquer "
+"l'émission d'une fumée magique qui gardera le robot en marche."
 
 #: ../map/freedroid.item_archetypes:3340
 msgid "Source Book of Killer poke"
-msgstr ""
+msgstr "Code source du coup fatal."
 
 #: ../map/freedroid.item_archetypes:3350
 msgid ""
 "Messing around with the bot's memory can cause it to damage itself, but the "
 "damage is greatly variable."
 msgstr ""
+"Bidouiller la mémoire d'un robot peut lui causer des dommages, mais "
+"l'importance du dysfonctionnement sera très variable."
 
 #: ../map/freedroid.item_archetypes:3356
 msgid "Source Book of Nethack"
 msgstr "Code source de Nethack"
 
 #: ../map/freedroid.item_archetypes:3366
+#, fuzzy
 msgid ""
 "The open source game called Nethack is one of the world's greatest wasters "
 "of time. Machines don't care about it, but humans can get sucked in quite "
 "deeply."
 msgstr ""
+"Le jeu open-source appelé Nethack est un des plus grands gaspilleurs de "
+"temps du monde. Les machines ne font pas attention à lui, mais les humain "
+"peuvent se faire entuber vraiment profond."
 
 #: ../map/freedroid.item_archetypes:3372
 msgid "Source Book of Plasma discharge"
@@ -1520,17 +1595,25 @@ msgid ""
 "The overload setting exists for emergencies. The plasma does not "
 "discriminate between bots and humans. Everything is equal to it."
 msgstr ""
+"La configuration de la surcharge existe pour les cas d'urgence. Le plasma ne "
+"fait pas de différence entre les robots et les humains. Ils sont tous égaux "
+"devant lui."
 
 #: ../map/freedroid.item_archetypes:3388
+#, fuzzy
 msgid "Source Book of Ricer CFLAGS"
-msgstr ""
+msgstr "Code source des super CFLAGS"
 
 #: ../map/freedroid.item_archetypes:3398
+#, fuzzy
 msgid ""
 "Optimization is the root of all evil. You can gain some temporary "
 "improvements to your system, but in the end you are only likely to cause "
 "permanent damage."
 msgstr ""
+"L'optimisation est la racine du mal. Tu peux avoir quelques améliorations "
+"dans ton système pendant un temps, mais à la fin, il est plus probable que "
+"cela cause des dommages permanents."
 
 #: ../map/freedroid.item_archetypes:3404
 msgid "Source Book of Invisibility"
@@ -1538,7 +1621,7 @@ msgstr "Code source d'invisibilité"
 
 #: ../map/freedroid.item_archetypes:3414
 msgid "I am not the Linarian you are looking for."
-msgstr ""
+msgstr "Je ne suis pas le Linarien que vous cherchez."
 
 #: ../map/freedroid.item_archetypes:3420
 msgid "Source Book of Reverse-engineer"
@@ -1549,6 +1632,8 @@ msgid ""
 "There is some dark magic in the art of turning bots inside-out to learn all "
 "their secrets."
 msgstr ""
+"Il y a quelque magie noire dans la façon d'ouvrir et d'examiner l'intérieur "
+"des robots pour apprendre leurs secrets."
 
 #: ../map/freedroid.item_archetypes:3436
 msgid "Source Book of Light"
@@ -1556,17 +1641,19 @@ msgstr "Code source d'éclairage"
 
 #: ../map/freedroid.item_archetypes:3446
 msgid "Let there be light..."
-msgstr ""
+msgstr "Que la lumière soit."
 
 #: ../map/freedroid.item_archetypes:3452
 msgid "Source Book of Satellite image"
-msgstr ""
+msgstr "Code source de l'imagerie satellite."
 
 #: ../map/freedroid.item_archetypes:3462
 msgid ""
 "Getting a map of an area is pretty easy when you can look at everything from "
 "above."
 msgstr ""
+"Avoir une carte d'une région est plutôt évident lorsque vous pouvez tout "
+"voir depuis le ciel."
 
 #: ../map/freedroid.item_archetypes:3480
 msgid "Diet supplement"
@@ -1589,6 +1676,9 @@ msgid ""
 "Truly wonderful things can be extracted from molds. This can cure lethal "
 "food poisoning. Wish you had that in your last Nethack game, eh?"
 msgstr ""
+"Nous pouvons extraire des choses vraiment merveilleurs des moisissures. "
+"Elles peuvent guérir de l'absorption d'une nourriture empoisonnée létale. "
+"Vous aimeriez bien avoir ça dans votre dernier jeu Nethack, pas vrai ?"
 
 #: ../map/freedroid.item_archetypes:3512
 msgid "Doc-in-a-can"
@@ -1694,15 +1784,15 @@ msgstr ""
 
 #: ../map/freedroid.item_archetypes:3640
 msgid "Cyberbucks"
-msgstr ""
+msgstr "Cyber-monnaie"
 
 #: ../map/freedroid.item_archetypes:3653
 msgid "Anti-grav Pod for Droids"
-msgstr ""
+msgstr "Pied anti-gravité pour les droïdes."
 
 #: ../map/freedroid.item_archetypes:3663
 msgid "The bots use this to hover around."
-msgstr ""
+msgstr "Les robots l'utilisent pour survoler les environs."
 
 #: ../map/freedroid.item_archetypes:3667
 msgid "Dixon's Toolbox"
@@ -1714,6 +1804,9 @@ msgid ""
 "few dents on the outside give prof of frequent use. 'C. Dixon' is carved "
 "into the outside with fine print."
 msgstr ""
+"C'est une boîte à outil pour les services de téléportation. Elle est "
+"complète et rangée, malgré quelques accrocs sur l'extérieur dues à un usage "
+"très fréquent. 'C. Dixon' est gravé à l'extérieur avec une fine écriture."
 
 #: ../map/freedroid.item_archetypes:3680
 msgid "Plasma Transistor"
@@ -1724,7 +1817,7 @@ msgstr "Transistor à plasma"
 #: ../map/freedroid.item_archetypes:3728
 #: ../map/freedroid.item_archetypes:3741
 msgid "This is an standard part within many robots types."
-msgstr ""
+msgstr "C'est une pièce standard pour un grand nombre de modèles de robots."
 
 #: ../map/freedroid.item_archetypes:3693
 msgid "Superconducting Relay Unit"
@@ -1736,7 +1829,7 @@ msgstr "Convertisseur antimatière-matière"
 
 #: ../map/freedroid.item_archetypes:3715
 msgid "This is an standard part within many robot types."
-msgstr ""
+msgstr "C'est une pièce standard pour un grand nombre de modèles de robots."
 
 #: ../map/freedroid.item_archetypes:3719
 msgid "Entropy Inverter"
@@ -1752,17 +1845,19 @@ msgstr "Lampe de bureau"
 
 #: ../map/freedroid.item_archetypes:3754
 msgid "What would modern science be without this important item?"
-msgstr ""
+msgstr "Que serait la science moderne sans ce merveilleux outil ?"
 
 #: ../map/freedroid.item_archetypes:3758
 msgid "Common Monkey Wrench"
-msgstr ""
+msgstr "Clé à molette classique"
 
 #: ../map/freedroid.item_archetypes:3767
 msgid ""
 "Even the most primitive civilisations cannot survive for long without a "
 "large supply of those."
 msgstr ""
+"Même les civilisations les plus primitives ne survivraient pas longtemps "
+"sans une grande quantité de ces choses."
 
 #: ../map/freedroid.item_archetypes:3771
 msgid "Red Dilitium Crystal"
@@ -1776,10 +1871,15 @@ msgid ""
 "has allowed to build devices that consume a lot of energy but do not need to "
 "be connected to a power line."
 msgstr ""
+"Ces cristaux de dilithium sont utilisés comme source d'énergie dans beaucoup "
+"d'appareils électriques ou utilisés dans la production de chaleur. L'énergie "
+"fournie vient la régularité de l'ordonnancement des molécules. Ce principe "
+"permet de construire des appareils qui consomment beaucoup d'énergie, sans "
+"les relier à une ligne électrique."
 
 #: ../map/freedroid.item_archetypes:3784
 msgid "Map Maker"
-msgstr ""
+msgstr "Fabriquant de carte"
 
 #: ../map/freedroid.item_archetypes:3795
 msgid ""
@@ -1790,6 +1890,12 @@ msgid ""
 "the user. Still, the collected map data will be split up by the device into "
 "several sectors for convenient viewing."
 msgstr ""
+"Ce petit appareil collecte les données automatiquement à propos de la région "
+"dans un rayon de 7 fois 7 mètres et dessine une petit plan des environs "
+"immédiats. Parce que l'affichage est très réduit, il a besoin d'être tenu "
+"proche de l'½il et l'image sera alors projetée directement dans la rétine de "
+"l'utilisateur. De plus, les données cartographiques collectées seront "
+"divisées par l'appareil en petits secteurs pour une visualisation facile."
 
 #: ../map/freedroid.item_archetypes:3799
 msgid "Strength Pill"
@@ -1802,6 +1908,11 @@ msgid ""
 "for details on intended effects, possible interactions and side effects of "
 "this drug."
 msgstr ""
+"Ces pilules augement la force d'une personne de façon permanente. Ils "
+"fonctionnent à des nano-technologies.Consultez un physicien, la notice ou un "
+"expert en pharmacie pour avoir le détail des effets attendus, des "
+"interactions possibles avec d'autres médicaments et des effets secondaires "
+"de cette drogue."
 
 #: ../map/freedroid.item_archetypes:3813
 msgid "Dexterity Pill"
@@ -1814,28 +1925,42 @@ msgid ""
 "for details on intended effects, possible interactions and side effects of "
 "this drug."
 msgstr ""
+"Ces pilules augmentent de façon permanente la dextérité d'une personne. Leur "
+"fonctionnement est basé sur la nano-technologie. Consultez un physicien, la "
+"notice ou un expert en pharmacie pour avoir plus de détails sur les effets "
+"souhaités, les interactions possibles avec d'autres médicaments et les "
+"effets secondaires de cette drogue."
 
 #: ../map/freedroid.item_archetypes:3827
 msgid "Code Pill"
 msgstr "Gélule de code"
 
 #: ../map/freedroid.item_archetypes:3837
+#, fuzzy
 msgid ""
 "Dude! This fab food will totally bump up your code skills, man! A real "
 "blast. Scarf those down to see the code."
 msgstr ""
+"Mec ! Cette nourriture exceptionnelle va faire exploser tes compétences en "
+"programmation, gars ! Un vrai coup de pouce."
 
 #: ../map/freedroid.item_archetypes:3841
 msgid "Brain Enlargement Pills Antidote"
-msgstr ""
+msgstr "Antidote des pilules d'augmentation du volume cérébral"
 
 #: ../map/freedroid.item_archetypes:3850
+#, fuzzy
 msgid ""
 "These pills can reverse the harmful effects of the 'brain enlargement pills' "
 "that are publicly sold via the internet. The planet-wide guild of medics has "
 "recommended not to respond to these ads at all, while attempts to entirely "
 "ban the distribution of those pills were never completely successful."
 msgstr ""
+"Ces pilules peuvent contrecarrer les effets toxiques des 'pilules "
+"d'augmentation du volume cérébral' qui sont en vente libre sur internet. "
+"L'organisation pharmaceutique mondial a recommandé de ne pas réagir à ces "
+"publicités, tant que ces pilules n'ont pas été entièrement supprimées de la "
+"distribution."
 
 #: ../map/freedroid.item_archetypes:3854
 msgid "Fork"
@@ -1844,6 +1969,7 @@ msgstr "Fourchette"
 #: ../map/freedroid.item_archetypes:3863
 #: ../map/freedroid.item_archetypes:3876
 #: ../map/freedroid.item_archetypes:3889
+#, fuzzy
 msgid ""
 "This item is part of the 'Self Cleaning Kitchen' (SCK) project from before "
 "the Great Assault.  All of the items in the SCK project have an inner "
@@ -1851,6 +1977,11 @@ msgid ""
 "time.  It comes with it's own power supply and has a supposed duration of "
 "200 years."
 msgstr ""
+"Cet objet est une partie du projet 'Cuisine Auto-Nettoyante' (CAN) qui "
+"existait avant le Grand Assaut. Tous les objets du projet CAN ont un "
+"mécanisme interne qui nettoie les objets automatiquement lorsqu'ils sont à "
+"l'abandon pendant un certain temps. C'est fourni avec une alimentation "
+"interne dont la durée de fonctionnement est de 200 ans."
 
 #: ../map/freedroid.item_archetypes:3867
 msgid "Plate"
@@ -1869,6 +2000,8 @@ msgid ""
 "Point and click. Point and know anything. Point, and I will show you the "
 "correct path. Point, and I will be there. Point, and I will protect you."
 msgstr ""
+"Pointe et clique. Pointe et apprend tout. Pointe, et je te montrerai le bon "
+"chemin. Pointe, et je serai là. Pointe, et je te protégerai."
 
 #: ../map/freedroid.item_archetypes:3907
 msgid "Teleporter homing beacon"
@@ -1884,12 +2017,21 @@ msgid ""
 "end up with parts of their body missing or attached in the wrong place.  "
 "Note:  Multiple of these may be grouped together in the inventory."
 msgstr ""
+"Cet appareil envoie un signal à un téléporteur proche pour demander un "
+"transport , et vous aide en verrouillant et en augmentant le signal pour "
+"signaler que la requête de téléportation a été réussie. La batterie incluse "
+"est suffisante pour une seule utilisation, après quoi l'appareil devient "
+"inutile. En tous cas, la plupart des gens n'essaient pas de l'utiliser deux "
+"fois, et ceux qui le font finissent avec des morceaux de leur corps manquant "
+"ou fixés au mauvais endroit. Remarque : Vous pouvez grouper ces objets dans "
+"l'inventaire."
 
 #: ../map/freedroid.item_archetypes:3923
 msgid "Kevin's Data Cube"
 msgstr "Cube holographique de Kévin"
 
 #: ../map/freedroid.item_archetypes:3932
+#, fuzzy
 msgid ""
 "This data cube contains confidential government data on the installations "
 "around the colony. Kevin hopes that when the data is evaluated properly a "
@@ -1898,85 +2040,116 @@ msgid ""
 "computers. The Red Guard base is said to store a suitable infrastructure for "
 "this purpose."
 msgstr ""
+"Ce cube de données contient des informations confidentielles du gouvernement "
+"à propos des installations autour de la colonie. Kevin espère que nous "
+"pourrons trouver une solution à la crise actuelle si nous parvenons à "
+"évaluer les données correctement. Comme toujours, la quantité de données est "
+"tellement important qu'elle ne peut être évaluée correctement que par un "
+"grand cluster d'ordinateurs. Il paraît que la base de la Garde Rouge "
+"contient un infrastructure convenable pour cela."
 
 #: ../map/freedroid.item_archetypes:3936
 msgid "Pandora's Cube"
 msgstr "Boîte de Pandore"
 
 #: ../map/freedroid.item_archetypes:3947
+#, fuzzy
 msgid ""
 "This is heavy. Cannot the end of the world come in a smaller package? It "
 "would be a great time for Duncan to explain a few things..."
 msgstr ""
+"C'est rudement lourd. La fin du monde ne peut pas être fournie dans un "
+"paquet plus petit ? Il serait grand temps d'expliquer certaines choses à "
+"Duncan..."
 
-#: ../map/freedroid.droid_archetypes:109
+#: ../map/freedroid.droid_archetypes:106
 msgid ""
 "simple rubbish diposal robot. Common device in most space craft to maintain "
 "a clean ship."
 msgstr "Un simple robot nettoyeur."
 
-#: ../map/freedroid.droid_archetypes:143
+#: ../map/freedroid.droid_archetypes:138
 msgid ""
 "created by Dr. Masternak to clean up large heaps of rubbish. Its large scoop "
 "is used to collect rubbish. It is then crushed internally."
 msgstr ""
+"Créé par le Docteur Masternak pour éliminer de grandes quantités d'ordures. "
+"Sa large écope est utilisée pour collecter les ordures. Elles sont "
+"compressées à l'intérieur."
 
-#: ../map/freedroid.droid_archetypes:176
+#: ../map/freedroid.droid_archetypes:169
 msgid ""
 "light duty servant robot. One of the first to use the anti-grav system."
 msgstr ""
+"Un robot serviteur. Un des premiers à utiliser le système anti-gravité."
 
-#: ../map/freedroid.droid_archetypes:209
+#: ../map/freedroid.droid_archetypes:200
 msgid "cheaper version of the anti-grav servant robot."
-msgstr ""
+msgstr "La version la moins chère du robot serviteur anti-grav."
 
-#: ../map/freedroid.droid_archetypes:240
+#: ../map/freedroid.droid_archetypes:229
 msgid "Run away! This bot will kill you!"
 msgstr "Fuyez ! Ce bot va vous tuer !"
 
-#: ../map/freedroid.droid_archetypes:272
+#: ../map/freedroid.droid_archetypes:259
 msgid ""
 "common device for moving small packages. Clamp is mounted on the lower body."
 msgstr ""
+"Appareil standard pour le transport de petits paquets. La fixation se trouve "
+"sur le bas du corps."
 
-#: ../map/freedroid.droid_archetypes:304
+#: ../map/freedroid.droid_archetypes:289
+#, fuzzy
 msgid ""
 "early type messenger robot. Large wheels impede motion on small craft."
 msgstr ""
+"Un des premiers robots de type messager. Il a des larges roues qui l'empêche "
+"d'être trop secoué."
 
-#: ../map/freedroid.droid_archetypes:336
+#: ../map/freedroid.droid_archetypes:319
+#, fuzzy
 msgid "slow maintenance robot. Confined to drive maintenance during flight."
 msgstr ""
+"Robot lent de maintenance. Il est exclusivement destiné à la maintenance "
+"pendant le vol."
 
-#: ../map/freedroid.droid_archetypes:367
+#: ../map/freedroid.droid_archetypes:348
 msgid ""
 "ship maintenance robot. Fitted with multiple arms to carry out repairs to "
 "the ship efficiently. All craft built after the Jupiter-incident are "
 "supplied with a team of these."
 msgstr ""
+"Robot de maintenace du vaisseau. Il possède de nombreuses armes pour veiller "
+"efficacement sur les réparation du vaisseau. Toutes les carlingues "
+"construites après l'incident-Jupiter sont fournies avec une équipe de tels "
+"robots."
 
-#: ../map/freedroid.droid_archetypes:398
+#: ../map/freedroid.droid_archetypes:377
 msgid "slave maintenance droid. Standard version will carry its own toolbox."
 msgstr ""
+"Esclave de maintenance de droïde. La version standard fera attention à sa "
+"boîte à outil."
 
-#: ../map/freedroid.droid_archetypes:429
+#: ../map/freedroid.droid_archetypes:406
 msgid ""
 "early crew droid. Able to carry out simple flight checks only. No longer "
 "supplied."
 msgstr ""
+"Un des premiers équipages robot. Il est seulement capable de faire les "
+"vérifications de base. Son autonomie est réduite."
 
-#: ../map/freedroid.droid_archetypes:460
+#: ../map/freedroid.droid_archetypes:435
 msgid "standard crew droid. Supplied with the ship."
 msgstr "Droide standard d'équipage. Fourni avec le vaisseau."
 
-#: ../map/freedroid.droid_archetypes:491
+#: ../map/freedroid.droid_archetypes:464
 msgid ""
 "a highly sophisticated device. Able to control the Robo-Freighter on its own."
 msgstr ""
 "Un périphérique hautement sophistiqué. Capable de contrôler seul le Robo-"
 "Freighter."
 
-#: ../map/freedroid.droid_archetypes:522
+#: ../map/freedroid.droid_archetypes:493
 msgid ""
 "low security sentinel droid. Used to protect areas of the ship from "
 "intruders. A slow but sure device."
@@ -1984,7 +2157,7 @@ msgstr ""
 "Droïde sentinelle de basse sécurité. Utilisé pour protégé des parties du "
 "vaisseau des intrus. Lent, mais sûr."
 
-#: ../map/freedroid.droid_archetypes:553
+#: ../map/freedroid.droid_archetypes:522
 msgid ""
 "sophisticated sentinel droid. Only 2000 built by the Nicholson Company. "
 "these are now very rare."
@@ -1992,97 +2165,122 @@ msgstr ""
 "Droïde sentinelle sophistiqué. Seulement 2000 exemples ont été construits "
 "par la Nicholson Company. Ils sont maintenant très rares."
 
-#: ../map/freedroid.droid_archetypes:584
+#: ../map/freedroid.droid_archetypes:551
+#, fuzzy
 msgid ""
 "low sentinel droid. Lasers are built into the turret. These are mounted on a "
 "small tank body. May be fitted with an auto-cannon on-the Gillen version."
 msgstr ""
+"Sentinelle robot de bas niveau. Des lasers sont intégrés à la tourelle. Ils "
+"sont montés avec un corps qui est un petit char. Ils peut être assemblé avec "
+"un canon automatique sur la version Gillen."
 
-#: ../map/freedroid.droid_archetypes:616
+#: ../map/freedroid.droid_archetypes:581
 msgid ""
 "heavy duty battle droid. Disruptor is built into the head. One of the first "
 "in service with the Military."
 msgstr ""
+"Puissant droïde de combat. Un disrupteur est intégré dans sa tête. Un des "
+"premiers en service pour l'armée."
 
-#: ../map/freedroid.droid_archetypes:647
+#: ../map/freedroid.droid_archetypes:610
 msgid "this version is the one mainly used by the Military."
 msgstr "Cette version est celle principalement utilisée par les militaires."
 
-#: ../map/freedroid.droid_archetypes:678
+#: ../map/freedroid.droid_archetypes:639
 msgid ""
 "very heavy duty battle droid. Only a few have so far entered service. These "
 "are the most powerful battle units ever built."
 msgstr ""
+"Très puissant droïde de combat. Seuls quelques un ont été mis en service. Ce "
+"sont les unités combattantes les plus puissantes jamais construites."
 
-#: ../map/freedroid.droid_archetypes:710
+#: ../map/freedroid.droid_archetypes:669
 msgid ""
 "a very reliable anti-grav unit is fitted into this droid. It will patrol the "
 "ship and eliminate intruders as soon as detected by powerful sensors."
 msgstr ""
+"Une unité d'antigravité très fiable est intégrée dans ce droïde. Il "
+"patrouillera le vaisseau et éliminera les intrus aussitôt qu'ils seront "
+"décelés par de puissants capteurs."
 
-#: ../map/freedroid.droid_archetypes:740
+#: ../map/freedroid.droid_archetypes:697
 msgid ""
 "early type anti-grav security droid. Fitted with an over-driven anti-grav "
 "unit. This droid is very fast but is not reliable."
 msgstr ""
+"Le premier modèle de droïde anti-gravité. Unités anti-gravité et "
+"accélérateur intégrés. Ce droïde est très rapide, mais pas très fiable."
 
-#: ../map/freedroid.droid_archetypes:771
+#: ../map/freedroid.droid_archetypes:726
 msgid ""
 "this droid was designed from archive data. For some unknown reason it "
 "instils great fear in Human adversaries."
 msgstr ""
+"Ce droïde a été conçu pour l'archivage de données. Pour quelque raison "
+"inconnue, il distille une grande peur à ses adversaires humains."
 
-#: ../map/freedroid.droid_archetypes:805
+#: ../map/freedroid.droid_archetypes:758
 msgid ""
 "experimental command cyborg. Fitted with a new type of brain. Mounted on a "
 "security droid anti-grav unit for convenience. warning: the influence device "
 "may not control a primode brain for long."
 msgstr ""
+"Cyborg de commande expérimental. Il est assemblé avec un nouveau type de "
+"cerveau. Monté sur une unité droïde de sécurité anti-grav pour des raisons "
+"pratiques. attention : Les appareils influencé ne peut pas contrôler une "
+"cerveau de ce type pendant longtemps."
 
-#: ../map/freedroid.droid_archetypes:838
-#: ../map/freedroid.droid_archetypes:1070
+#: ../map/freedroid.droid_archetypes:789
+#: ../map/freedroid.droid_archetypes:1007
 msgid ""
 "This is a typical professor/sage character of some older age.  They are not "
 "armed as powerfully as e.g. the red guards."
 msgstr ""
+"C'est un personnage de type professeur/vieux sage d'un âge respectable. Ils "
+"ne sont pas armés aussi puissamment que les gardes rouges, par exemple."
 
-#: ../map/freedroid.droid_archetypes:871
+#: ../map/freedroid.droid_archetypes:820
 msgid ""
 "This is a typical red (male) guard/fighter character.  They are equipped "
 "with powerful PowerExterminators."
 msgstr ""
+"C'est un personnage de type garde rouge/combattant (mâle). Ils sont équipés "
+"avec de puissants PowerExterminateurs."
 
-#: ../map/freedroid.droid_archetypes:904
+#: ../map/freedroid.droid_archetypes:851
 msgid "This is the hot_mama shopkeeper character model."
-msgstr ""
+msgstr "C'est le modèle de personnage hot_mama qui est tenancier de magasin."
 
-#: ../map/freedroid.droid_archetypes:937
+#: ../map/freedroid.droid_archetypes:882
 msgid ""
 "This is the female scientist character model.  They are not armed as "
 "powerfully as e.g. the red guards."
 msgstr ""
+"C'est le modèle de personnage \"scientifique femelle\". Elles ne sont pas "
+"aussi bien armé que les gardes rouges."
 
-#: ../map/freedroid.droid_archetypes:970
+#: ../map/freedroid.droid_archetypes:913
 msgid ""
 "This is the brown worker model.  They are not armed as powerfully as e.g. "
 "the red guards."
 msgstr ""
+"C'est le modèle travailleur 'brun'. Ils ne sont pas armés aussi puissamment "
+"que les gardes rouges."
 
-#: ../map/freedroid.droid_archetypes:1003
-msgid ""
-"This is the blue guard model used e.g. for Darwin and fiend outside of town. "
-" They are not armed as powerfully as e.g. the red guards."
+#: ../map/freedroid.droid_archetypes:944
+msgid "This is a useless comment. Thanks for your attention."
 msgstr ""
 
-#: ../map/freedroid.droid_archetypes:1036
+#: ../map/freedroid.droid_archetypes:975
 msgid "This is the cook."
 msgstr "C'est le cuisinier."
 
-#: ../map/freedroid.droid_archetypes:1103
+#: ../map/freedroid.droid_archetypes:1038
 msgid "This is a typical sex bomb.  This one is even armed."
 msgstr "Une bombe sexuelle typique. Elle est même armée."
 
-#: ../map/freedroid.droid_archetypes:1136
+#: ../map/freedroid.droid_archetypes:1069
 msgid "This is the bartender."
 msgstr "C'est le patron."
 
@@ -2132,18 +2330,26 @@ msgid ""
 "The bots in the tunnels might be sentient. I cannot wait to extinguish an "
 "emerging life form. This will be fun."
 msgstr ""
+"Les robots dans les tunnels ne devraient pas être conscients. Je ne peux pas "
+"attendre pour les décimer qu'une forme de vie émerge. Ça sera plus drôle de "
+"le faire maintenant."
 
 #: ../map/QuestList_archetypes:78
 msgid ""
 "I refused to get the toolkit from the bots in the tunnels because I think "
 "they might be sentient. Life is precious and should be preserved."
 msgstr ""
+"J''ai refusé de prendre la boîte à outil aux robots dans les tunnels parce "
+"que je pense qu'ils sont peut être conscients. La vie est précieuse et "
+"devrait être préservée."
 
 #: ../map/QuestList_archetypes:79
 msgid ""
 "The tunnels bots seem to be working together with Dixon in keeping the city "
 "working. All is well that ends well."
 msgstr ""
+"Les tunnels des robots semblent fonctionner ensemble avec Dixon dans la "
+"préservation du fonctionnement de la cité. Tout est bien qui finit bien."
 
 #: ../map/QuestList_archetypes:80
 msgid ""
@@ -2152,6 +2358,12 @@ msgid ""
 "crush their circuits. Dixon seemed not too happy about this solution, but I "
 "don't care. It was fun killing the bots. Nothing else matters."
 msgstr ""
+"FInalement, je suis fatigué, couvert de bleus et d'huile... Mais je me suis "
+"définitivement assuré que les robots ne survivront pas. J'ai adoré ces "
+"sensations géniales en déchirant leurs corps de métal et en écrasant leurs "
+"circuits. Dixion n'a pas semblé très heureux à propos de cette solution, "
+"mais je m'en fiche. C'était une partie de plaisir que de tuer les robots. Je "
+"n'aime que ça en fait."
 
 #: ../map/QuestList_archetypes:81
 msgid ""
@@ -2203,16 +2415,21 @@ msgstr ""
 "rations de l'armée est chassé de la ville."
 
 #: ../map/QuestList_archetypes:127
+#, fuzzy
 msgid ""
 "Fighting in the arena is not something I would usually do, but I feel like "
 "doing it for a change. Why not?"
 msgstr ""
+"Se battre dans l'arène n'est pas quelque chose que je devrai faire souvent, "
+"mais j'aimerai faire ce changement. Pourquoi pas ?"
 
 #: ../map/QuestList_archetypes:128
 msgid ""
 "Now that was easy. Yawn. I nearly fell asleep. No problem at all, the bots "
 "are dead."
 msgstr ""
+"En fait, c'était facile. Whoaah. Je tombe de sommeil. Ce n'est pas un "
+"problème, maintenant tous les robots sont morts."
 
 #: ../map/QuestList_archetypes:149
 msgid ""
@@ -2221,10 +2438,15 @@ msgid ""
 "come on her black wings and claim my soul. You know, now that I think about "
 "it... Maybe I should stay out of there?"
 msgstr ""
+"J'ai dit au maître de l'arène de me laisser entrer dans son arène. Il a été "
+"d'accord. Maintenant, tout ce qui reste à faire est d'entrer dans le "
+"téléporteur et d'attendre que la mort elle-même vienne me réclamer mon âme, "
+"portée par ses ailes noires. Tu sais, maintenant que j'y pense... Peut être "
+"que je devrai rester en dehors de tout ça."
 
 #: ../map/QuestList_archetypes:150
 msgid "I survived the master arena. A miracle. Whew."
-msgstr ""
+msgstr "J'ai survécu au maître de l'arène. C'est un miracle. Whou."
 
 #: ../map/QuestList_archetypes:170
 msgid ""
