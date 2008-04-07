@@ -2012,7 +2012,7 @@ PrepareStartOfNewCharacter ( void )
     Me . TextVisibleTime = 0;
     Me . readied_skill = 0;
     Me . walk_cycle_phase = 0 ;
-    Me . TextToBeDisplayed = _("");
+    Me . TextToBeDisplayed = "";
     
     //--------------------
     // None of the inventory slots like currently equipped weapons
