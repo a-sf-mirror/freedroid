@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+#: ../src/init.c:2015
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: freedroid-discussion@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-04-02 21:32+0200\n"
+"POT-Creation-Date: 2008-04-07 07:45+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -820,12 +821,12 @@ msgstr ""
 msgid "This obstacle seems solid."
 msgstr ""
 
-#: ../src/bullet.c:648
+#: ../src/bullet.c:627
 #, c-format
 msgid "Disruptor blast has hit you for %d damage."
 msgstr ""
 
-#: ../src/bullet.c:701
+#: ../src/bullet.c:677
 msgid "That one went into the armour."
 msgstr ""
 
@@ -845,85 +846,85 @@ msgstr ""
 msgid "1 Item received!"
 msgstr ""
 
-#: ../src/chat.c:1348
+#: ../src/chat.c:1284
 msgid "What will you say?"
 msgstr ""
 
-#: ../src/enemy.c:983
+#: ../src/enemy.c:929
 #, c-format
 msgid "Your friend %s was killed by %s."
 msgstr ""
 
-#: ../src/enemy.c:985
+#: ../src/enemy.c:931
 #, c-format
 msgid "You killed %s."
 msgstr ""
 
-#: ../src/enemy.c:987
+#: ../src/enemy.c:933
 #, c-format
 msgid "%s is dead."
 msgstr ""
 
-#: ../src/enemy.c:992
+#: ../src/enemy.c:938
 #, c-format
 msgid "For defeating %s, you receive %d experience."
 msgstr ""
 
-#: ../src/enemy.c:995
+#: ../src/enemy.c:941
 #, c-format
 msgid "%s was killed by %s."
 msgstr ""
 
-#: ../src/enemy.c:996
+#: ../src/enemy.c:942
 #, c-format
 msgid "%s died."
 msgstr ""
 
-#: ../src/enemy.c:1165
+#: ../src/enemy.c:1102
 msgid "state:  Wandering along waypoints."
 msgstr ""
 
-#: ../src/enemy.c:1168
+#: ../src/enemy.c:1105
 msgid "state: Select next WP."
 msgstr ""
 
-#: ../src/enemy.c:1171
+#: ../src/enemy.c:1108
 msgid "state:  Turn towards next WP."
 msgstr ""
 
-#: ../src/enemy.c:1174
+#: ../src/enemy.c:1111
 msgid "state:  Rush Tux and open talk."
 msgstr ""
 
-#: ../src/enemy.c:1177
+#: ../src/enemy.c:1114
 msgid "state:  Stop and eye target."
 msgstr ""
 
-#: ../src/enemy.c:1180
+#: ../src/enemy.c:1117
 msgid "state:  Attack."
 msgstr ""
 
-#: ../src/enemy.c:1183
+#: ../src/enemy.c:1120
 msgid "state:  Returning home."
 msgstr ""
 
-#: ../src/enemy.c:1186
+#: ../src/enemy.c:1123
 msgid "state:  Waypointless wandering."
 msgstr ""
 
-#: ../src/enemy.c:1189
-msgid "state:  Waypointless turning."
-msgstr ""
-
-#: ../src/enemy.c:1192
+#: ../src/enemy.c:1126
 msgid "state:  Paralyzed."
 msgstr ""
 
-#: ../src/enemy.c:1195
+#: ../src/enemy.c:1129
+msgid "state: Completely fixed."
+msgstr ""
+
+#: ../src/enemy.c:1132
 msgid "state: Follow Tux."
 msgstr ""
 
-#: ../src/enemy.c:1198
+#: ../src/enemy.c:1135
 msgid "state:  UNHANDLED!!"
 msgstr ""
 
@@ -1311,63 +1312,59 @@ msgstr ""
 msgid "%s (%03.1f:%03.1f:%d) day %d %02d:%02d "
 msgstr ""
 
-#: ../src/influ.c:494
+#: ../src/influ.c:478
 msgid "Clip empty, reloading..."
 msgstr ""
 
-#: ../src/influ.c:2028
-msgid "Looting failed:  unable to reach loot target."
-msgstr ""
-
-#: ../src/influ.c:3102
+#: ../src/influ.c:2930
 msgid "No more ammunition !"
 msgstr ""
 
-#: ../src/influ.c:3551
+#: ../src/influ.c:3420
 #, c-format
 msgid "This is a %s. %s"
 msgstr ""
 
-#: ../src/influ.c:3576 ../src/influ.c:3583
+#: ../src/influ.c:3445 ../src/influ.c:3452
 #, c-format
 msgid "Examining %s.  %s"
 msgstr ""
 
-#: ../src/influ.c:3598
+#: ../src/influ.c:3467
 #, c-format
 msgid "You see the floor.  It should be perfectly safe to walk on it."
 msgstr ""
 
-#: ../src/influ.c:3629
+#: ../src/influ.c:3498
 #, c-format
 msgid "Unlocking obstacle of type %d."
 msgstr ""
 
-#: ../src/influ.c:3658
+#: ../src/influ.c:3527
 #, c-format
 msgid "Repairing obstacle of type %d."
 msgstr ""
 
-#: ../src/influ.c:3687
+#: ../src/influ.c:3556
 #, c-format
 msgid "Attacking obstacle of type %d."
 msgstr ""
 
-#: ../src/influ.c:3716
+#: ../src/influ.c:3585
 #, c-format
 msgid "Picking pockets of obstacle of type %d."
 msgstr ""
 
-#: ../src/init.c:129
+#: ../src/init.c:128
 msgid ""
 "My name is Bug. Software Bug. Please report me to the developers. Thank you."
 msgstr ""
 
-#: ../src/init.c:132
+#: ../src/init.c:131
 msgid "Hmm... This must be the token town sage."
 msgstr ""
 
-#: ../src/init.c:134
+#: ../src/init.c:133
 msgid ""
 "You see a legend. Sorenson Clark. One of the best human programmers that "
 "have ever lived. Just like Paganini she is said to have sold her soul to the "
@@ -1375,74 +1372,74 @@ msgid ""
 "there is no denying that."
 msgstr ""
 
-#: ../src/init.c:136
+#: ../src/init.c:135
 msgid ""
 "He is either a college student, a drug addict or a hacker. I bet he did not "
 "have a warm meal for days, he looks totally malnourished. His body keeps "
 "twitching. Must be the caffeine. I hope."
 msgstr ""
 
-#: ../src/init.c:138
+#: ../src/init.c:137
 msgid "Don't do steroids or you will be just like him."
 msgstr ""
 
-#: ../src/init.c:140
+#: ../src/init.c:139
 msgid ""
 "There are at least 614 reasons to stay away from the 614 bot battle "
 "platform. There are also 614 reasons why a 614 bot battle platform can be "
 "your best friend during combat..."
 msgstr ""
 
-#: ../src/init.c:142
+#: ../src/init.c:141
 msgid ""
 "Francis is not looking so good today. His tattered coat is not looking that "
 "much better either. The war is taking its toll on them both."
 msgstr ""
 
-#: ../src/init.c:144
+#: ../src/init.c:143
 msgid ""
 "What a strange person. He does not seem to really fit into this reality. "
 "There is something very eerie about him. And frightening."
 msgstr ""
 
-#: ../src/init.c:146
+#: ../src/init.c:145
 msgid ""
 "This person looks totally defeated. Tattered clothes surround his skeletal "
 "form. If there was a fifth raider of the apocalypse, it would be him and his "
 "name would be Hard Work."
 msgstr ""
 
-#: ../src/init.c:148
+#: ../src/init.c:147
 msgid ""
 "It seems that even during the end of the world the species known as "
 "'Salesman' is able to survive. Just his presence makes you want to kill all "
 "humans."
 msgstr ""
 
-#: ../src/init.c:150
+#: ../src/init.c:149
 msgid "He looks unexplicably happy."
 msgstr ""
 
-#: ../src/init.c:152
+#: ../src/init.c:151
 msgid ""
 "In some places of the world there exists a very interesting saying. 'Tough "
 "as nails.' However, in every place where the Stone trader family stays for a "
 "while, a new saying emerges. 'Tough as the Stones.'"
 msgstr ""
 
-#: ../src/init.c:154
+#: ../src/init.c:153
 msgid ""
 "It is very obvious that this is not a normal Red Guard. Most of them do not "
 "have oil stains on their armor and smell of alcohol."
 msgstr ""
 
-#: ../src/init.c:156
+#: ../src/init.c:155
 msgid ""
 "It looks like a 614. It moves like a 614. It even kills like a 614. Must be "
 "a 614 then."
 msgstr ""
 
-#: ../src/init.c:158
+#: ../src/init.c:157
 msgid ""
 "He must be the resident scientist. The only thing keeping his body alive is "
 "the massive coffee overdose that he takes early in the morning every day. "
@@ -1451,106 +1448,100 @@ msgid ""
 "is unharmed."
 msgstr ""
 
-#: ../src/init.c:160
+#: ../src/init.c:159
 msgid ""
 "Something about him makes you think of angels. Except angels are usually "
 "sane, do not have an urge to kill everything around them and are much better "
 "at singing religious songs."
 msgstr ""
 
-#: ../src/init.c:162
+#: ../src/init.c:161
 msgid ""
 "As you look at him, you cannot really belive he is there. If you turn your "
 "back on him he will vanish like a ghost into thin air and you will never see "
 "him again."
 msgstr ""
 
-#: ../src/init.c:164
+#: ../src/init.c:163
 msgid ""
 "His IQ is sometimes as high as a dog's. Only sometimes though. He smells "
 "like a dog too."
 msgstr ""
 
-#: ../src/init.c:166
+#: ../src/init.c:165
 msgid ""
 "He seems to be the chief of the gate guards. Hard to say anything more, the "
 "armor hides his body."
 msgstr ""
 
-#: ../src/init.c:168
+#: ../src/init.c:167
 msgid "Just an another Red Guard. The armor hides his body."
 msgstr ""
 
-#: ../src/init.c:170
+#: ../src/init.c:169
 msgid ""
 "Some people say that every doctor is addicted to drugs. You estimate that "
 "right now this one is high on at least four different narcotics. Doc Moore "
 "seems very happy indeed..."
 msgstr ""
 
-#: ../src/init.c:172
+#: ../src/init.c:171
 msgid ""
 "Yet another Red Guard. You cannot say anything more, the armor hides his "
 "body."
 msgstr ""
 
-#: ../src/init.c:174
+#: ../src/init.c:173
 msgid ""
 "He looks taller than most of the Red Guards, but you cannot really say "
 "anything more about him, the armor hides his body."
 msgstr ""
 
-#: ../src/init.c:176
+#: ../src/init.c:175
 msgid ""
 "And now you know who is to be blamed for the truly awful food in here. You "
 "are in a killing mood. Oh yeah. The cook must die. The cook must die. Ha. "
 "Ha. Ha."
 msgstr ""
 
-#: ../src/init.c:178
+#: ../src/init.c:177
 msgid ""
 "This is a major bug. Please report this incident to the developers. Thank "
 "you."
 msgstr ""
 
-#: ../src/init.c:180
+#: ../src/init.c:179
 msgid ""
 "Blood. Stone. Cog. The Blood has made the Cog from the Stone. Now the Cog is "
 "making more Stone from the Blood. I wonder what is the next step of the "
 "cycle..."
 msgstr ""
 
-#: ../src/init.c:182 ../src/init.c:184 ../src/init.c:186 ../src/init.c:188
+#: ../src/init.c:181 ../src/init.c:183 ../src/init.c:185 ../src/init.c:187
 msgid "The armor hides his body."
 msgstr ""
 
-#: ../src/init.c:1963
+#: ../src/init.c:1958
 msgid "Huh? What?  Where am I?"
 msgstr ""
 
-#: ../src/init.c:2025
-msgid ""
-"Linux Kernel booted.  001 transfer-tech modules loaded.  System up and "
-"running."
-msgstr ""
-
-#: ../src/init.c:2078
+#: ../src/init.c:2068
 msgid "Updating Tux images"
 msgstr ""
 
-#: ../src/init.c:2079
+#: ../src/init.c:2069
 msgid "(this may take a little while...)"
 msgstr ""
 
-#: ../src/init.c:2082
+#: ../src/init.c:2072
 msgid "Starting new game."
 msgstr ""
 
-#: ../src/init.c:2399
+#: ../src/init.c:2390
 msgid "Game over.\n"
 msgstr ""
 
-#: ../src/init.c:2493
+#: ../src/init.c:2484
 msgid "Game won.\n"
 msgstr ""
 
@@ -1566,71 +1557,71 @@ msgstr ""
 msgid "Sorry, you don't have automap yet:  map maker item not present."
 msgstr ""
 
-#: ../src/items.c:1176
+#: ../src/items.c:1174
 msgid "I can't use this item here."
 msgstr ""
 
-#: ../src/items.c:1189
+#: ../src/items.c:1187
 #, c-format
 msgid "How do you expect to do two things at a time? You are "
 msgstr ""
 
-#: ../src/items.c:1193
+#: ../src/items.c:1191
 msgid "drinking a potion!"
 msgstr ""
 
-#: ../src/items.c:1196
+#: ../src/items.c:1194
 msgid "waiting for you weapon to fire again!"
 msgstr ""
 
-#: ../src/items.c:1199
+#: ../src/items.c:1197
 msgid "reloading your weapon!"
 msgstr ""
 
-#: ../src/items.c:1202
+#: ../src/items.c:1200
 msgid "throwing a grenade!"
 msgstr ""
 
-#: ../src/items.c:1205
+#: ../src/items.c:1203
 msgid "running a program!"
 msgstr ""
 
-#: ../src/items.c:1208
+#: ../src/items.c:1206
 msgid "doing something so weird the game does not understand what it is"
 msgstr ""
 
-#: ../src/items.c:2162 ../src/items.c:2197 ../src/items.c:2199
+#: ../src/items.c:2160 ../src/items.c:2195 ../src/items.c:2197
 msgid "Identified air."
 msgstr ""
 
-#: ../src/items.c:2218
+#: ../src/items.c:2216
 #, c-format
 msgid "You already know all there is to know about the %s."
 msgstr ""
 
-#: ../src/items.c:2224
+#: ../src/items.c:2222
 #, c-format
 msgid "Identified %s"
 msgstr ""
 
-#: ../src/items.c:2474
+#: ../src/items.c:2452
 msgid "Two-handed weapon requirements not met: shield bonus doesn't count."
 msgstr ""
 
-#: ../src/items.c:2493
+#: ../src/items.c:2471
 msgid "You cannot fight with this!"
 msgstr ""
 
-#: ../src/items.c:2536
+#: ../src/items.c:2514
 msgid "Shield requirements not met: two-handed weapon bonus doesn't count."
 msgstr ""
 
-#: ../src/items.c:2657
+#: ../src/items.c:2635
 #, c-format
 msgid "Item taken: %s."
 msgstr ""
 
-#: ../src/items.c:2709 ../src/items.c:2883
+#: ../src/items.c:2687 ../src/items.c:2861
 msgid "I can't carry any more."
 msgstr ""
 
@@ -1889,65 +1880,65 @@ msgstr ""
 msgid "Weapon reloaded"
 msgstr ""
 
-#: ../src/map.c:3000
+#: ../src/map.c:2981
 msgid "Acolyte"
 msgstr ""
 
-#: ../src/map.c:3001
+#: ../src/map.c:2982
 msgid "Templar"
 msgstr ""
 
-#: ../src/map.c:3002
+#: ../src/map.c:2983
 msgid "Banshee"
 msgstr ""
 
-#: ../src/map.c:3003
+#: ../src/map.c:2984
 msgid "Chicago"
 msgstr ""
 
-#: ../src/map.c:3004
+#: ../src/map.c:2985
 msgid "Sawmill"
 msgstr ""
 
-#: ../src/map.c:3005
+#: ../src/map.c:2986
 msgid "Nemesis"
 msgstr ""
 
-#: ../src/map.c:3006
+#: ../src/map.c:2987
 msgid "Sparkie"
 msgstr ""
 
-#: ../src/map.c:3007 ../src/map.c:3012 ../src/map.c:3013 ../src/map.c:3014
-#: ../src/map.c:3016 ../src/map.c:3018 ../src/map.c:3019 ../src/map.c:3020
-#: ../src/map.c:3021
+#: ../src/map.c:2988 ../src/map.c:2993 ../src/map.c:2994 ../src/map.c:2995
+#: ../src/map.c:2997 ../src/map.c:2999 ../src/map.c:3000 ../src/map.c:3001
+#: ../src/map.c:3002
 msgid "NaN"
 msgstr ""
 
-#: ../src/map.c:3008
+#: ../src/map.c:2989
 msgid "Coward"
 msgstr ""
 
-#: ../src/map.c:3009
+#: ../src/map.c:2990
 msgid "Spinster"
 msgstr ""
 
-#: ../src/map.c:3010
+#: ../src/map.c:2991
 msgid "Ghoul"
 msgstr ""
 
-#: ../src/map.c:3011
+#: ../src/map.c:2992
 msgid "Apollo"
 msgstr ""
 
-#: ../src/map.c:3015
+#: ../src/map.c:2996
 msgid "If"
 msgstr ""
 
-#: ../src/map.c:3017
+#: ../src/map.c:2998
 msgid "Soviet"
 msgstr ""
 
-#: ../src/map.c:3022
+#: ../src/map.c:3003
 msgid "No Description For This One"
 msgstr ""
 
@@ -1977,81 +1968,81 @@ msgstr ""
 msgid "OpenGL output active: "
 msgstr ""
 
-#: ../src/menu.c:1360
+#: ../src/menu.c:1361
 msgid "Play"
 msgstr ""
 
-#: ../src/menu.c:1361 ../src/menu.c:1471
+#: ../src/menu.c:1362 ../src/menu.c:1472
 msgid "Level Editor"
 msgstr ""
 
-#: ../src/menu.c:1362 ../src/menu.c:1470
+#: ../src/menu.c:1363 ../src/menu.c:1471
 msgid "Options"
 msgstr ""
 
-#: ../src/menu.c:1363
+#: ../src/menu.c:1364
 msgid "Credits"
 msgstr ""
 
-#: ../src/menu.c:1364
+#: ../src/menu.c:1365
 msgid "Contribute"
 msgstr ""
 
-#: ../src/menu.c:1365
+#: ../src/menu.c:1366
 msgid "Exit FreedroidRPG"
 msgstr ""
 
-#: ../src/menu.c:1411
+#: ../src/menu.c:1412
 msgid "Graphics Options"
 msgstr ""
 
-#: ../src/menu.c:1412
+#: ../src/menu.c:1413
 msgid "Sound Options"
 msgstr ""
 
-#: ../src/menu.c:1413
+#: ../src/menu.c:1414
 msgid "Language"
 msgstr ""
 
-#: ../src/menu.c:1414
+#: ../src/menu.c:1415
 msgid "Droid Talk"
 msgstr ""
 
-#: ../src/menu.c:1415
+#: ../src/menu.c:1416
 msgid "On-Screen Displays"
 msgstr ""
 
-#: ../src/menu.c:1416
+#: ../src/menu.c:1417
 msgid "Performance Tweaks"
 msgstr ""
 
-#: ../src/menu.c:1417 ../src/menu.c:1530 ../src/menu.c:1643 ../src/menu.c:1711
-#: ../src/menu.c:1797 ../src/menu.c:1912 ../src/menu.c:1953 ../src/menu.c:2227
-#: ../src/menu.c:2339 ../src/menu.c:2418
+#: ../src/menu.c:1418 ../src/menu.c:1531 ../src/menu.c:1644 ../src/menu.c:1712
+#: ../src/menu.c:1798 ../src/menu.c:1913 ../src/menu.c:1954 ../src/menu.c:2228
+#: ../src/menu.c:2340 ../src/menu.c:2419
 msgid "Back"
 msgstr ""
 
-#: ../src/menu.c:1468
+#: ../src/menu.c:1469
 msgid "Save Game"
 msgstr ""
 
-#: ../src/menu.c:1469
+#: ../src/menu.c:1470
 msgid "Resume Game"
 msgstr ""
 
-#: ../src/menu.c:1472
+#: ../src/menu.c:1473
 msgid "Load Game"
 msgstr ""
 
-#: ../src/menu.c:1473
+#: ../src/menu.c:1474
 msgid "New Game"
 msgstr ""
 
-#: ../src/menu.c:1474
+#: ../src/menu.c:1475
 msgid "Quit"
 msgstr ""
 
-#: ../src/menu.c:1574
+#: ../src/menu.c:1575
 msgid ""
 "\n"
 "Unfortunately, fullscreen cannot be\n"
@@ -2066,7 +2057,7 @@ msgid ""
 "   Thank you.\n"
 msgstr ""
 
-#: ../src/menu.c:1583
+#: ../src/menu.c:1584
 msgid ""
 "\n"
 "You are using SDL instead of OpenGL\n"
@@ -2082,155 +2073,155 @@ msgid ""
 "\t\t\t\t\t\tThank you.\n"
 msgstr ""
 
-#: ../src/menu.c:1636
+#: ../src/menu.c:1637
 #, c-format
 msgid "Gamma Correction: %1.2f"
 msgstr ""
 
-#: ../src/menu.c:1637
+#: ../src/menu.c:1638
 #, c-format
 msgid "Fullscreen Mode: %s"
 msgstr ""
 
-#: ../src/menu.c:1638
+#: ../src/menu.c:1639
 #, c-format
 msgid "Change Screen Resolution"
 msgstr ""
 
-#: ../src/menu.c:1639
+#: ../src/menu.c:1640
 #, c-format
 msgid "Show Blood: %s"
 msgstr ""
 
-#: ../src/menu.c:1640 ../src/menu.c:1787 ../src/menu.c:1789 ../src/menu.c:1790
-#: ../src/menu.c:1792 ../src/menu.c:1794 ../src/menu.c:1796
+#: ../src/menu.c:1641 ../src/menu.c:1788 ../src/menu.c:1790 ../src/menu.c:1791
+#: ../src/menu.c:1793 ../src/menu.c:1795 ../src/menu.c:1797
 msgid "YES"
 msgstr ""
 
-#: ../src/menu.c:1640 ../src/menu.c:1787 ../src/menu.c:1789 ../src/menu.c:1790
-#: ../src/menu.c:1792 ../src/menu.c:1794 ../src/menu.c:1796
+#: ../src/menu.c:1641 ../src/menu.c:1788 ../src/menu.c:1790 ../src/menu.c:1791
+#: ../src/menu.c:1793 ../src/menu.c:1795 ../src/menu.c:1797
 msgid "NO"
 msgstr ""
 
-#: ../src/menu.c:1641
+#: ../src/menu.c:1642
 #, c-format
 msgid "Automap Scale: %2.1f"
 msgstr ""
 
-#: ../src/menu.c:1709
+#: ../src/menu.c:1710
 #, c-format
 msgid "Background Music Volume: %1.2f"
 msgstr ""
 
-#: ../src/menu.c:1710
+#: ../src/menu.c:1711
 #, c-format
 msgid "Sound Effects Volume: %1.2f"
 msgstr ""
 
-#: ../src/menu.c:1786
+#: ../src/menu.c:1787
 #, c-format
 msgid "Hog CPU for max. performance: %s"
 msgstr ""
 
-#: ../src/menu.c:1788
+#: ../src/menu.c:1789
 #, c-format
 msgid "Highlighting mode: %s"
 msgstr ""
 
-#: ../src/menu.c:1788
+#: ../src/menu.c:1789
 msgid "FULL"
 msgstr ""
 
-#: ../src/menu.c:1788
-msgid "REDUCED"
-msgstr ""
-
 #: ../src/menu.c:1789
-#, c-format
-msgid "Show quick inventory: %s"
+msgid "REDUCED"
 msgstr ""
 
 #: ../src/menu.c:1790
 #, c-format
-msgid "Skip light radius: %s"
+msgid "Show quick inventory: %s"
 msgstr ""
 
 #: ../src/menu.c:1791
 #, c-format
+msgid "Skip light radius: %s"
+msgstr ""
+
+#: ../src/menu.c:1792
+#, c-format
 msgid "Skip shadow blitting: %s"
 msgstr ""
 
-#: ../src/menu.c:1793
+#: ../src/menu.c:1794
 #, c-format
 msgid "Skip fadings: %s"
 msgstr ""
 
-#: ../src/menu.c:1795
+#: ../src/menu.c:1796
 #, c-format
 msgid "Use SDL automap: %s"
 msgstr ""
 
-#: ../src/menu.c:1907
+#: ../src/menu.c:1908
 #, c-format
 msgid "Show Position: %s"
 msgstr ""
 
-#: ../src/menu.c:1907 ../src/menu.c:1908 ../src/menu.c:1909 ../src/menu.c:1948
-#: ../src/menu.c:1949 ../src/menu.c:1950 ../src/menu.c:1951 ../src/menu.c:1952
+#: ../src/menu.c:1908 ../src/menu.c:1909 ../src/menu.c:1910 ../src/menu.c:1949
+#: ../src/menu.c:1950 ../src/menu.c:1951 ../src/menu.c:1952 ../src/menu.c:1953
 msgid "ON"
 msgstr ""
 
-#: ../src/menu.c:1907 ../src/menu.c:1908 ../src/menu.c:1909 ../src/menu.c:1948
-#: ../src/menu.c:1949 ../src/menu.c:1950 ../src/menu.c:1951 ../src/menu.c:1952
+#: ../src/menu.c:1908 ../src/menu.c:1909 ../src/menu.c:1910 ../src/menu.c:1949
+#: ../src/menu.c:1950 ../src/menu.c:1951 ../src/menu.c:1952 ../src/menu.c:1953
 msgid "OFF"
-msgstr ""
-
-#: ../src/menu.c:1908
-#, c-format
-msgid "Show Framerate: %s"
 msgstr ""
 
 #: ../src/menu.c:1909
 #, c-format
-msgid "Show Enemy Energy Bars: %s"
+msgid "Show Framerate: %s"
 msgstr ""
 
 #: ../src/menu.c:1910
 #, c-format
-msgid "Screen Messages at most: %d"
+msgid "Show Enemy Energy Bars: %s"
 msgstr ""
 
 #: ../src/menu.c:1911
 #, c-format
-msgid "Screen Message time: %3.1f"
+msgid "Screen Messages at most: %d"
 msgstr ""
 
-#: ../src/menu.c:1948
+#: ../src/menu.c:1912
 #, c-format
-msgid "Enemy Hit Texts: %s"
+msgid "Screen Message time: %3.1f"
 msgstr ""
 
 #: ../src/menu.c:1949
 #, c-format
-msgid "Enemy Bumped Texts: %s"
+msgid "Enemy Hit Texts: %s"
 msgstr ""
 
 #: ../src/menu.c:1950
 #, c-format
-msgid "Enemy Aim Texts: %s"
+msgid "Enemy Bumped Texts: %s"
 msgstr ""
 
 #: ../src/menu.c:1951
 #, c-format
-msgid "All in-game Speech: %s"
+msgid "Enemy Aim Texts: %s"
 msgstr ""
 
 #: ../src/menu.c:1952
 #, c-format
+msgid "All in-game Speech: %s"
+msgstr ""
+
+#: ../src/menu.c:1953
+#, c-format
 msgid "Reprogram bots after takeover: %s"
 msgstr ""
 
-#: ../src/menu.c:1970
+#: ../src/menu.c:1971
 msgid ""
 "\n"
 " Please enter name of server to connect to:\n"
@@ -2238,7 +2229,7 @@ msgid ""
 " > "
 msgstr ""
 
-#: ../src/menu.c:1997
+#: ../src/menu.c:1998
 msgid ""
 "\n"
 "     Please enter a name\n"
@@ -2248,68 +2239,68 @@ msgid ""
 "     > "
 msgstr ""
 
-#: ../src/menu.c:2251 ../src/menu.c:2357 ../src/menu.c:2372
+#: ../src/menu.c:2252 ../src/menu.c:2358 ../src/menu.c:2373
 msgid "BACK"
 msgstr ""
 
-#: ../src/menu.c:2255
+#: ../src/menu.c:2256
 msgid ""
 "\n"
 "\n"
 "No saved games found!!  Loading Cancelled. "
 msgstr ""
 
-#: ../src/menu.c:2356
+#: ../src/menu.c:2357
 msgid "Sure!"
 msgstr ""
 
-#: ../src/menu.c:2359
+#: ../src/menu.c:2360
 #, c-format
 msgid "Really delete hero '%s'?"
 msgstr ""
 
-#: ../src/menu.c:2376
+#: ../src/menu.c:2377
 msgid ""
 "\n"
 "\n"
 "No saved games found!!  Deletion Cancelled. "
 msgstr ""
 
-#: ../src/menu.c:2415
+#: ../src/menu.c:2416
 msgid "New Hero"
 msgstr ""
 
-#: ../src/menu.c:2416
+#: ../src/menu.c:2417
 msgid "Load existing Hero"
 msgstr ""
 
-#: ../src/menu.c:2417
+#: ../src/menu.c:2418
 msgid "Delete existing Hero"
 msgstr ""
 
-#: ../src/menu.c:2580
+#: ../src/menu.c:2581
 msgid ""
 "This is the record of all missions you have been assigned:\n"
 "\n"
 msgstr ""
 
-#: ../src/menu.c:2595
+#: ../src/menu.c:2596
 msgid "SOLVED: "
 msgstr ""
 
-#: ../src/menu.c:2599
+#: ../src/menu.c:2600
 msgid "FAILED: "
 msgstr ""
 
-#: ../src/menu.c:2603
+#: ../src/menu.c:2604
 msgid "ASSIGNED: "
 msgstr ""
 
-#: ../src/menu.c:2607
+#: ../src/menu.c:2608
 msgid "UNASSIGNED: "
 msgstr ""
 
-#: ../src/menu.c:2615
+#: ../src/menu.c:2616
 msgid ""
 "\n"
 "\n"
@@ -2328,7 +2319,7 @@ msgstr ""
 msgid "Game resumed."
 msgstr ""
 
-#: ../src/misc.c:1392
+#: ../src/misc.c:1393
 #, c-format
 msgid "Arrived at %s."
 msgstr ""
@@ -2667,12 +2658,12 @@ msgstr ""
 msgid " YOU DONT HAVE ANYTHING THAT WOULD NEED REPAIR "
 msgstr ""
 
-#: ../src/skills.c:720
+#: ../src/skills.c:723
 #, c-format
 msgid "Program revision: %d "
 msgstr ""
 
-#: ../src/skills.c:723
+#: ../src/skills.c:726
 #, c-format
 msgid "Heat produced: %d "
 msgstr ""
@@ -2682,38 +2673,38 @@ msgstr ""
 msgid "For taking control of your enemy, you receive %d experience."
 msgstr ""
 
-#: ../src/takeover.c:352
+#: ../src/takeover.c:345
 msgid "You cheat"
 msgstr ""
 
-#: ../src/takeover.c:354
+#: ../src/takeover.c:347
 msgid "Complete"
 msgstr ""
 
-#: ../src/takeover.c:364
+#: ../src/takeover.c:357
 msgid "Rejected"
 msgstr ""
 
-#: ../src/takeover.c:372
+#: ../src/takeover.c:365
 msgid "Deadlock"
 msgstr ""
 
-#: ../src/takeover.c:435
+#: ../src/takeover.c:428
 #, c-format
 msgid "Color-%d"
 msgstr ""
 
-#: ../src/takeover.c:472
+#: ../src/takeover.c:465
 #, c-format
 msgid "Subliminal"
 msgstr ""
 
-#: ../src/takeover.c:509
+#: ../src/takeover.c:502
 #, c-format
 msgid "Finish-%d"
 msgstr ""
 
-#: ../src/takeover.c:1751
+#: ../src/takeover.c:1744
 #, c-format
 msgid "Score"
 msgstr ""
@@ -2802,22 +2793,22 @@ msgstr ""
 msgid "wicked sick"
 msgstr ""
 
-#: ../src/view.c:257
+#: ../src/view.c:269
 #, c-format
 msgid "FPS: %d"
 msgstr ""
 
-#: ../src/view.c:265
+#: ../src/view.c:277
 #, c-format
 msgid "GPS: X=%3.1f Y=%3.1f Lev=%d"
 msgstr ""
 
-#: ../src/view.c:286
+#: ../src/view.c:298
 #, c-format
 msgid "Time to hold out still: %2d:%2d "
 msgstr ""
 
-#: ../src/view.c:304
+#: ../src/view.c:316
 #, c-format
 msgid "Bots remaining on level: %d"
 msgstr ""
