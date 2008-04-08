@@ -115,7 +115,7 @@ EXTERN float translate_pixel_to_zoomed_map_location ( float axis_x , float axis_
 EXTERN void blit_zoomed_iso_image_to_map_position ( iso_image* our_iso_image , float pos_x , float pos_y );
 EXTERN int tux_can_walk_this_line ( float x1, float y1 , float x2 , float y2 );
 EXTERN void clear_out_intermediate_points ( gps *, moderately_finepoint *, int);
-EXTERN int set_up_intermediate_course_for_tux ( gps * curpos, moderately_finepoint * move_target );
+EXTERN int set_up_intermediate_course_between_positions ( gps * curpos, moderately_finepoint * move_target, moderately_finepoint * waypoints, int maxwp );
 EXTERN void adapt_position_for_jump_thresholds ( gps* old_position, gps* new_position );
 
 // bullet.c 
@@ -795,6 +795,7 @@ EXTERN void hit_enemy ( enemy * target, float hit, char givexp, short int killer
 EXTERN enemy * enemy_resolve_address ( short int enemy_number, enemy ** enemy_addr );
 EXTERN void enemy_set_reference ( short int * enemy_number, enemy ** enemy_addr, enemy * addr);
 EXTERN void enemy_generate_level_lists ();
+EXTERN int droid_can_walk_this_line ( int level_num , float x1, float y1 , float x2 , float y2 );
 
 #define BROWSE_ALIVE_BOTS_SAFE(X,Y) list_for_each_entry_safe(X, Y, &alive_bots_head, global_list)
 #define BROWSE_ALIVE_BOTS(X) list_for_each_entry(X, &alive_bots_head, global_list)
