@@ -1884,7 +1884,6 @@ move_tux_thowards_intermediate_point ( )
 	// chest or pick up some item.
 	//
 	// DebugPrintf ( 2 , "\nAm I now at the last intermediate point???" );
-	
 	switch ( Me . mouse_move_target_combo_action_type )
 	{
 	    case NO_COMBO_ACTION_SET:
@@ -3309,7 +3308,6 @@ check_for_droids_to_attack_or_talk_with ( )
 	Me . mouse_move_target . y = 
 	    translate_pixel_to_map_location ( input_axis.x , input_axis.y , FALSE ) ;
 	Me . mouse_move_target . z = Me . pos . z ;
-	//Me . mouse_move_target_combo_action_type = NO_COMBO_ACTION_SET;
 	if ( ! ShiftPressed() )
 	    {
 	    enemy_set_reference(&Me . current_enemy_target_n, &Me . current_enemy_target_addr, NULL);
@@ -3631,22 +3629,25 @@ AnalyzePlayersMouseClick ( )
 	    break;
 	case GLOBAL_INGAME_MODE_NORMAL:
 	    if ( ButtonPressWasNotMeantAsFire( ) ) return;
-	    Me . mouse_move_target_combo_action_type = NO_COMBO_ACTION_SET;
 	    tmp = closed_chest_below_mouse_cursor ( );
-	    if ( (tmp = closed_chest_below_mouse_cursor ( )) != -1 )
+	    if ( no_left_button_press_in_previous_analyze_mouse_click )
 		{
-	    	check_for_chests_to_open ( tmp ) ;
-		break;
-		}
-	    if (( tmp = smashable_barrel_below_mouse_cursor ( ) ) != -1 )
-		{
-		check_for_barrels_to_smash ( tmp );
-		break;
-		}
-	    if (( tmp = get_floor_item_index_under_mouse_cursor () ) != -1 )
-		{
-		check_for_items_to_pickup ( tmp );
-		break;
+		Me . mouse_move_target_combo_action_type = NO_COMBO_ACTION_SET;
+		if ( (tmp = closed_chest_below_mouse_cursor ( )) != -1 )
+		    {
+		    check_for_chests_to_open ( tmp ) ;
+		    break;
+		    }
+		if (( tmp = smashable_barrel_below_mouse_cursor ( ) ) != -1 )
+		    {
+		    check_for_barrels_to_smash ( tmp );
+		    break;
+		    }
+		if (( tmp = get_floor_item_index_under_mouse_cursor () ) != -1 )
+		    {
+		    check_for_items_to_pickup ( tmp );
+		    break;
+		    }
 		}
 	    check_for_droids_to_attack_or_talk_with ( ) ;
 	    break;
