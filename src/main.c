@@ -217,11 +217,8 @@ update_timeouts_for_bots_on_level ( int level_num , float latest_frame_time )
 {
 
     enemy *this_bot, *nerot;
-    BROWSE_ALIVE_BOTS_SAFE(this_bot, nerot)
+    BROWSE_LEVEL_BOTS_SAFE(this_bot, nerot, level_num)
 	{
-	if ( this_bot -> pos . z != level_num )
-	    continue;
-
 	if ( this_bot -> pure_wait > 0 ) 
 	{
 	    this_bot -> pure_wait -= latest_frame_time ;

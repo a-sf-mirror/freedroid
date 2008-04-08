@@ -287,12 +287,9 @@ WARNING!  End of light sources array reached!",
 	}
     }
    
-    enemy *erot, *nerot;
-BROWSE_ALIVE_BOTS_SAFE(erot, nerot) 
+    enemy *erot;
+    BROWSE_LEVEL_BOTS(erot, Me.pos.z) 
     {
-	if ( Me . pos . z != erot->pos . z ) 
-	    continue;
-
 	if ( fabsf ( Me . pos . x - erot->pos . x ) >= 12 ) 
 	    continue;
 
