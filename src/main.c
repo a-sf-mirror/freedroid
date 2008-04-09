@@ -125,7 +125,6 @@ better than nothing.  Thanks anyway for your interest in FreedroidRPG.\n\
     
     GameOver = FALSE;
     QuitProgram = FALSE;
-    xray_vision_for_tux = FALSE ;
     draw_collision_rectangles = FALSE ;
     draw_grid = TRUE ;
 

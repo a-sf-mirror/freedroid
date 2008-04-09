@@ -1309,18 +1309,6 @@ move_tux_thowards_raw_position ( float x , float y )
     Me . speed . y = planned_step . y ;
     
     //--------------------
-    // If speed is so high, that we might step over the target,
-    // we reduce the speed.
-    //
-    if ( ( Frame_Time() > 0.001 ) && ( length > 0.05 ) )
-    {
-	if ( fabsf ( planned_step . x * Frame_Time() ) >= fabsf ( RemainingWay .x  ) )
-	    Me . speed . x = RemainingWay . x / Frame_Time() ;
-	if ( fabsf ( planned_step . y * Frame_Time() ) >= fabsf ( RemainingWay .y  ) )
-	    Me . speed . y = RemainingWay . y / Frame_Time() ;
-    }
-    
-    //--------------------
     // In case we have reached our target, we can remove this mouse_move_target again,
     // but also if we have been thrown onto a different level, we cancel our current
     // mouse move target...
@@ -1635,9 +1623,10 @@ recursive_find_walkable_point ( enemy * droid, int levelnum, float x1 , float y1
 		    
 		    if ( (*next_index_to_set_up) >= maxwp )
 		    {
-			DebugPrintf ( DEBUG_TUX_PATHFINDING , "\nERROR!  Ran out of waypoints even with solutionfound!" );
-			clear_out_intermediate_points ( &Me.pos, Me.next_intermediate_point, MAX_INTERMEDIATE_WAYPOINTS_FOR_TUX ) ;
-			return ( FALSE );
+			DebugPrintf ( DEBUG_TUX_PATHFINDING , "\nERROR!  Ran out of waypoints even with solutionfound!, level %d pos %f %f to %f %f\n", levelnum, x1, y1, x2, y2 );
+			gps a = { x1, y1, 0 };
+			clear_out_intermediate_points ( &a, waypoints, maxwp) ;
+			(*next_index_to_set_up) = 0;
 		    }
 		    
 		    return ( TRUE ) ;
@@ -1709,22 +1698,10 @@ set_up_intermediate_course_between_positions ( enemy * droid, gps * curpos, mode
 			move_target -> y ,
 			curpos -> z) )
     {
-	DebugPrintf ( DEBUG_TUX_PATHFINDING , "\nSKIPPING RECURSION BECAUSE OF UNREACHABLENESS!" );
+	DebugPrintf ( DEBUG_TUX_PATHFINDING , "\nSKIPPING RECURSION BECAUSE OF UNREACHABLENESS! Target is %f %f %d, bot %#x\n", move_target->x, move_target->y, curpos->z, droid );
 	return ( FALSE ) ;
     }
-    
-    //--------------------
-    // If the target position cannot be reached at all, because of being inside an obstacle
-    // for example, then we know what to do:  Set up one waypoint to the target and that's it.
-    //
-    if ( ! IsPassable ( curpos -> x ,
-			curpos -> y ,
-			curpos -> z ) )
-    {
-	DebugPrintf ( 0 , "\nSkipping recursion because of passability reasons from current position..." );
-	return ( FALSE ) ;
-    }
-    
+  
     //--------------------
     // We give out a well visible debug message, so that the heavy process
     // can easily be seen as redundant if that's really the case.

@@ -47,7 +47,7 @@
 void check_if_switching_to_stopandeyetuxmode_makes_sense ( enemy* );
 static int TurnABitTowardsPosition ( Enemy, float, float, float);
 int EnemyOfTuxCloseToThisRobot ( Enemy, moderately_finepoint* );
-static void MoveInCloserForOrAwayFromMeleeCombat ( Enemy, int, moderately_finepoint *);
+static void MoveAwayFromMeleeCombat ( Enemy, moderately_finepoint *);
 static void RawStartEnemysShot( enemy*, float, float);
 
 
@@ -281,10 +281,10 @@ InitEnemy ( enemy * our_bot )
     our_bot -> has_greeted_influencer = FALSE ;   // has this robot issued his first-time-see-the-Tux message?
     our_bot -> will_rush_tux = FALSE ;
     our_bot -> last_combat_step = 100 ;       // when did this robot last make a step to move in closer or farther away from Tux in combat?
-    for ( j = 0 ; j < 2 ; j++ )
+    for ( j = 0 ; j < 5 ; j++ )
 	{
-	our_bot -> PrivatePathway [ j ] . x = 0 ;
-	our_bot -> PrivatePathway [ j ] . y = 0 ;
+	our_bot -> PrivatePathway [ j ] . x = -1 ;
+	our_bot -> PrivatePathway [ j ] . y = -1 ;
 	}
 
     our_bot -> time_since_previous_stuck_in_wall_check = ( (float) MyRandom ( 1000 ) ) / 1000.1 ;
@@ -381,8 +381,8 @@ ShuffleEnemys ( int LevelNum )
 	    erot->nextwaypoint = BestWaypoint;
 	    erot->lastwaypoint = BestWaypoint;
 
-	    erot->pos.x = ShuffleLevel->AllWaypoints[ BestWaypoint ].x;
-	    erot->pos.y = ShuffleLevel->AllWaypoints[ BestWaypoint ].y;
+	    erot->pos.x = ShuffleLevel->AllWaypoints[ BestWaypoint ].x + 0.5;
+	    erot->pos.y = ShuffleLevel->AllWaypoints[ BestWaypoint ].y + 0.5;
 
 	    continue;
 	    }
@@ -412,8 +412,8 @@ ShuffleEnemys ( int LevelNum )
 	    Terminate (ERR);
 	    }
 
-	erot->pos.x = ShuffleLevel->AllWaypoints[wp].x;
-	erot->pos.y = ShuffleLevel->AllWaypoints[wp].y;
+	erot->pos.x = ShuffleLevel->AllWaypoints[wp].x + 0.5;
+	erot->pos.y = ShuffleLevel->AllWaypoints[wp].y + 0.5;
 
 	erot->lastwaypoint = wp;
 	erot->nextwaypoint = wp;
@@ -424,8 +424,24 @@ ShuffleEnemys ( int LevelNum )
 static void 
 enemy_get_current_walk_target ( enemy *ThisRobot, moderately_finepoint * a )
 {
-a -> x = ThisRobot -> PrivatePathway [ 0 ] . x;
-a -> y = ThisRobot -> PrivatePathway [ 0 ] . y;
+int i = 0;
+while ( ThisRobot->PrivatePathway [ i ] . x != (-1) )
+    {
+    if ( i == 5 )
+	break;
+    i++;
+    }
+
+if ( ! i ) i = 1;
+
+a -> x = ThisRobot -> PrivatePathway [ i - 1 ] . x;
+a -> y = ThisRobot -> PrivatePathway [ i - 1 ] . y;
+
+if ( a -> x == - 1)
+    {
+    a -> x = ThisRobot->pos.x;
+    a -> y = ThisRobot->pos.y;
+    }
 }
 
 /* ----------------------------------------------------------------------
@@ -569,38 +585,26 @@ move_enemy_to_spot ( Enemy ThisRobot , moderately_finepoint next_target_spot )
     
     remaining_way . x = next_target_spot . x - ThisRobot -> pos . x ;
     remaining_way . y = next_target_spot . y - ThisRobot -> pos . y ;
-    
-    //--------------------
-    // As long a the distance from the current position of the enemy
-    // to its next wp is large, movement is rather simple:
-    //
-    if ( fabsf ( remaining_way . x ) > Frame_Time() * maxspeed )
-    {
-	ThisRobot -> speed . x =
-	    ( remaining_way . x / fabsf ( remaining_way . x ) ) * maxspeed;
-	ThisRobot -> pos . x += ThisRobot -> speed . x * Frame_Time ();
-    } 	 
-    else
-    {
-	// --------------------
-	// Once this enemy is close to his final destination waypoint, we have
-	// to do some fine tuning, and then of course set the next waypoint.
-	ThisRobot -> pos . x = next_target_spot . x;
+
+    float length = vect_len(remaining_way);
+    if ( length < 0.05 )
+	{
 	ThisRobot -> speed . x = 0;
-    }
-    
-    if ( fabsf ( remaining_way . y )  > Frame_Time() * maxspeed )
-    {
-	ThisRobot -> speed . y =
-	    ( remaining_way . y / fabsf ( remaining_way . y ) ) * maxspeed;
-	ThisRobot -> pos . y += ThisRobot -> speed . y * Frame_Time ();
-    }
-    else
-    {
-	ThisRobot -> pos . y = next_target_spot . y ;
+	ThisRobot -> pos . x = next_target_spot . x;
 	ThisRobot -> speed . y = 0;
-    }
-    
+	ThisRobot -> pos . y = next_target_spot . y;
+	}
+    else
+	{
+	if ( ( Frame_Time() > 0.001 ) )
+	    {
+	    ThisRobot -> speed . x = maxspeed * remaining_way . x / length;
+	    ThisRobot -> speed . y = maxspeed * remaining_way . y / length;
+	    ThisRobot -> pos . x += ThisRobot -> speed . x * Frame_Time ();
+	    ThisRobot -> pos . y += ThisRobot -> speed . y * Frame_Time ();
+	    }
+	}
+
     //--------------------
     // Now the bot is moving, so maybe it's moving over a jump threshold?
     // In any case, it might be best to check...
@@ -615,8 +619,7 @@ move_enemy_to_spot ( Enemy ThisRobot , moderately_finepoint next_target_spot )
     { /* if the bot has changed level */
   
         /* Prevent it from moving this frame */
-	ThisRobot -> PrivatePathway [ 0 ] . x = ThisRobot -> pos . x ;
-	ThisRobot -> PrivatePathway [ 0 ] . y = ThisRobot -> pos . y ;
+        clear_out_intermediate_points ( &ThisRobot->pos, &ThisRobot->PrivatePathway[0], 5);
 
 	/* Move it to the appropriate level list */
 	list_move(&ThisRobot->level_list, &(level_bots_head [ ThisRobot->pos.z ]));
@@ -631,13 +634,29 @@ move_enemy_to_spot ( Enemy ThisRobot , moderately_finepoint next_target_spot )
 void 
 MoveThisRobotThowardsHisCurrentTarget ( enemy * ThisRobot )
 {
-    moderately_finepoint nextwp_pos;
-
     if ( ThisRobot -> animation_type == ATTACK_ANIMATION ) return;
 
-    enemy_get_current_walk_target(ThisRobot, &nextwp_pos);
+    move_enemy_to_spot ( ThisRobot , ThisRobot->PrivatePathway[0] );
 
-    move_enemy_to_spot ( ThisRobot , nextwp_pos );
+    if ((fabsf( ThisRobot -> pos .x - ThisRobot->PrivatePathway[0] . x ) < 0.05)
+	&& fabsf( ThisRobot->pos.y - ThisRobot->PrivatePathway[0] . y ) < 0.05)
+	{ /* Have we reached our target ?*/
+	int i;
+	for ( i = 1; i < 5; i ++ )
+	    {
+	    ThisRobot->PrivatePathway[i - 1].x = ThisRobot->PrivatePathway[i] . x;
+	    ThisRobot->PrivatePathway[i - 1].y = ThisRobot->PrivatePathway[i] . y;
+	    }
+	ThisRobot -> PrivatePathway [ 4 ] . x = -1;
+	ThisRobot -> PrivatePathway [ 4 ] . y = -1;
+	}
+
+    if ( ThisRobot->PrivatePathway[0] . x == -1 )
+	{
+	ThisRobot->PrivatePathway[0] . x = ThisRobot->pos.x;
+	ThisRobot->PrivatePathway[0] . y = ThisRobot->pos.y;
+	}
+
 
 }; // void MoveThisRobotThowardsHisCurrentTarget ( int EnemyNum )
 
@@ -672,8 +691,6 @@ SetNewRandomWaypoint ( Enemy ThisRobot )
     this_wp = &WpList[nextwp];
     num_conn = this_wp->num_connections;
     
-    // Of course, only if such connections exist at all, we do the
-    // following change of target waypoint procedure
     if (  num_conn == 0 ) // no connections found!
     {
 	fprintf ( stderr , "\nThe offending waypoint nr. is: %d at %d, %d.", nextwp, WpList [ nextwp ] . x, WpList [ nextwp ] . y );
@@ -681,8 +698,6 @@ SetNewRandomWaypoint ( Enemy ThisRobot )
 	return 1;
     }
     
-    // ThisRobot->nextwaypoint = WpList [ nextwp ] . connections [ i ] ;
-    // 
     SolutionFound = FALSE;
     while ( !SolutionFound )
     {
@@ -694,7 +709,6 @@ SetNewRandomWaypoint ( Enemy ThisRobot )
 	SolutionFound = TRUE;
     }
     
-    // set new waypoint...
     ThisRobot->nextwaypoint = trywp;
     
     return 0;
@@ -1631,20 +1645,28 @@ static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_m
     // movement thing every frame, but rather only sometimes
     //
     if ( ThisRobot -> last_combat_step > 0.20 )
-    {
-        /* Depending on the weapon of the bot, we will go *to* melee combat or try and avoid it */
+	{
+	/* Depending on the weapon of the bot, we will go *to* melee combat or try and avoid it */
 	ThisRobot -> last_combat_step = 0 ; 
 
-    if ( ItemMap [ Druidmap [ ThisRobot -> type ] . weapon_item . type ] . item_weapon_is_melee )
-	{
-	if ( dist2 > 2.25 )
-	    MoveInCloserForOrAwayFromMeleeCombat ( ThisRobot , (+1), new_move_target );
+	if ( ItemMap [ Druidmap [ ThisRobot -> type ] . weapon_item . type ] . item_weapon_is_melee && dist2 > 2.25 )
+	    { /* Melee weapon and too for to strike ? get closer */
+	    new_move_target -> x = enemy_get_target_position(ThisRobot) -> x;
+	    new_move_target -> y = enemy_get_target_position(ThisRobot) -> y;
+	    }
+	else 
+	    {
+	    if ( dist2 < 7 )
+		{ /* Ranged weapon and too close to be safe ? get away */
+		MoveAwayFromMeleeCombat ( ThisRobot , new_move_target );
+		} 	
+	    if ( ! DirectLineWalkable ( ThisRobot->virt_pos.x, ThisRobot->virt_pos.y, tpos->x, tpos->y, tpos->z))
+		{
+		new_move_target -> x = enemy_get_target_position(ThisRobot) -> x;
+		new_move_target -> y = enemy_get_target_position(ThisRobot) -> y;
+		}
+	    }
 	}
-	else if ( dist2 < 3 )
-	{
-	    MoveInCloserForOrAwayFromMeleeCombat ( ThisRobot , (-1), new_move_target );
-	} 
-    }
     else
 	ThisRobot -> last_combat_step += Frame_Time ();
     
@@ -1678,8 +1700,8 @@ static void state_machine_returning_home(enemy * ThisRobot, moderately_finepoint
     /* Bot too far away from home must go back to home waypoint */
 
     /* Move target */
-    new_move_target -> x =  curShip.AllLevels[ThisRobot->pos.z]->AllWaypoints[ThisRobot->homewaypoint].x;
-    new_move_target -> y =  curShip.AllLevels[ThisRobot->pos.z]->AllWaypoints[ThisRobot->homewaypoint].y;
+    new_move_target -> x =  curShip.AllLevels[ThisRobot->pos.z]->AllWaypoints[ThisRobot->homewaypoint].x + 0.5;
+    new_move_target -> y =  curShip.AllLevels[ThisRobot->pos.z]->AllWaypoints[ThisRobot->homewaypoint].y + 0.5;
 
     /* Action */
     if ( remaining_distance_to_current_walk_target ( ThisRobot ) < ThisRobot->max_distance_to_home / 2.0 ) 
@@ -1713,6 +1735,8 @@ static void state_machine_turn_towards_next_waypoint(enemy * ThisRobot, moderate
 {
     /* Action */
     /* XXX */
+    new_move_target -> x = ThisRobot -> pos . x;
+    new_move_target -> y = ThisRobot -> pos . y;
     ThisRobot -> last_phase_change = 100 ; 
 
     if ( 
@@ -1774,10 +1798,10 @@ static void state_machine_rush_tux_and_open_talk(enemy * ThisRobot, moderately_f
 static void state_machine_follow_tux(enemy * ThisRobot, moderately_finepoint * new_move_target)
 {
     /* Move target */
-    if ( GetInfluPositionHistoryZ(100) == ThisRobot -> pos . z )
+    if ( GetInfluPositionHistoryZ(50) == ThisRobot -> pos . z )
 	{
-	new_move_target -> x = GetInfluPositionHistoryX(100);
-	new_move_target -> y = GetInfluPositionHistoryY(100);
+	new_move_target -> x = GetInfluPositionHistoryX(50);
+	new_move_target -> y = GetInfluPositionHistoryY(50);
 	}
     else
 	{
@@ -1911,10 +1935,43 @@ update_enemy ( enemy * ThisRobot )
 
 	}
 
+    if ( fabsf(new_move_target . x) < 0.001  || fabsf(new_move_target .x + 1 < 0.001 ))
+	{
+	enemy_say_current_state_on_screen(ThisRobot);
+	printf("caca1 %#x %f, state %s\n", ThisRobot, new_move_target.x, ThisRobot->TextToBeDisplayed);
+	}
+
     /* Pathfind current target */
-    /* XXX non implemented */
-    ThisRobot -> PrivatePathway[0] . x = new_move_target . x;
-    ThisRobot -> PrivatePathway[0] . y = new_move_target . y;
+    /* I am sorry this is a bit dirty, but I've got time and efficiency constraints. If you're not happy please send a patch. No complaints will 
+     * be accepted.*/
+    moderately_finepoint wps[30];
+    moderately_finepoint old_move_target;
+    enemy_get_current_walk_target(ThisRobot, &old_move_target);
+
+    if (((new_move_target . x != old_move_target . x) || (new_move_target .y != old_move_target . y)))
+	{ /* If the current move target differs from the old one */
+	  /* This implies we do not re-pathfinding every frame, which means we may bump into colleagues. 
+	   * This is handled in MoveThisEnemy()*/
+	    if ( (( new_move_target . x != ThisRobot -> pos . x ) || ( new_move_target . y != ThisRobot -> pos . y )) &&
+		    set_up_intermediate_course_between_positions ( ThisRobot, &ThisRobot->pos, &new_move_target, &wps[0], 30) )
+		{
+		memcpy ( &ThisRobot->PrivatePathway[0], &wps[0], 5 * sizeof(moderately_finepoint));
+		}
+	    else
+		{
+		ThisRobot->PrivatePathway[0].x = ThisRobot->pos.x;
+		ThisRobot->PrivatePathway[0].y = ThisRobot->pos.y;
+		ThisRobot->PrivatePathway[1].x = -1;//new_move_target.x;
+		ThisRobot->PrivatePathway[1].y = -1;//new_move_target.y;
+		}
+
+	}
+    
+    if ( ThisRobot->PrivatePathway[0].x == -1)
+	{
+	ThisRobot -> PrivatePathway[0] . x = ThisRobot->pos.x;
+	ThisRobot -> PrivatePathway[0] . y = ThisRobot->pos.y;
+	}
 	
     if ( ThisRobot -> PrivatePathway[0] . x != ThisRobot->pos.x || ThisRobot -> PrivatePathway[0] . y != ThisRobot->pos.y )
 	MoveThisEnemy(ThisRobot);
@@ -2264,7 +2321,7 @@ ConsideredMoveIsFeasible ( Enemy ThisRobot , moderately_finepoint StepVector )
  *
  * ---------------------------------------------------------------------- */
 static void
-MoveInCloserForOrAwayFromMeleeCombat ( Enemy ThisRobot , int DirectionSign, moderately_finepoint * set_move_tgt )
+MoveAwayFromMeleeCombat ( Enemy ThisRobot , moderately_finepoint * set_move_tgt )
 {
     finepoint VictimPosition = { 0.0, 0.0};
     finepoint CurrentPosition = { 0.0, 0.0};
@@ -2276,8 +2333,6 @@ MoveInCloserForOrAwayFromMeleeCombat ( Enemy ThisRobot , int DirectionSign, mode
 #define ANGLES_TO_TRY 7
     float RotationAngleTryList[ ANGLES_TO_TRY ] = { 0 , 30 , 360-30 , 60, 360-60, 90, 360-90 };
     
-    DirectionSign = (DirectionSign < 0 ? (-3) : DirectionSign);   
-
     VictimPosition . x = enemy_get_target_position(ThisRobot) -> x;
     VictimPosition . y = enemy_get_target_position(ThisRobot) -> y;
     
@@ -2309,8 +2364,8 @@ MoveInCloserForOrAwayFromMeleeCombat ( Enemy ThisRobot , int DirectionSign, mode
      
     StepVectorLen = sqrt ( ( StepVector . x ) * ( StepVector . x ) + ( StepVector . y ) * ( StepVector . y ) );
 
-    StepVector . x /= ( DirectionSign * StepVectorLen ) ;
-    StepVector . y /= ( DirectionSign * StepVectorLen ) ;
+    StepVector . x /= ( -1 * StepVectorLen ) ;
+    StepVector . y /= ( -1 * StepVectorLen ) ;
 
     for ( i = 0 ; i < ANGLES_TO_TRY ; i ++ )
     {
@@ -2479,14 +2534,12 @@ CheckEnemyEnemyCollision ( enemy * OurBot )
     // Now we check through all the other enemys on this level if 
     // there is perhaps a collision with them...
 
-    /*XXX put back on !*/    
     enemy *erot;
     BROWSE_LEVEL_BOTS(erot, OurBot->pos.z)
     {
 	if (erot == OurBot)
 	    continue;
 
-	// get distance between enemy i and enemynum 
 	xdist = check_x - erot->pos.x;
 	ydist = check_y - erot->pos.y;
 	
@@ -2497,6 +2550,8 @@ CheckEnemyEnemyCollision ( enemy * OurBot )
 	{
 	    if ( erot -> pure_wait ) 
 		continue;
+
+	    printf("Collision between bots %#x and %#x at %f %f/%f %f on level %d. Should not happen any longer...\n", erot, OurBot, erot->pos.x, erot->pos.y, OurBot->pos.x, OurBot->pos.y, erot->pos.z);
 
 	    // otherwise: stop this one enemy and go back youself
 	    erot->pure_wait = WAIT_COLLISION;

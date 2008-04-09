@@ -2093,8 +2093,6 @@ ResetGameConfigToDefaultValues ( void )
     GameConfig . Current_Sound_FX_Volume=0.5;
     GameConfig . current_gamma_correction = 1.00 ;
     GameConfig . WantedTextVisibleTime = 3;
-    GameConfig . Draw_Framerate=FALSE;
-    GameConfig . All_Texts_Switch=TRUE;
     GameConfig . Enemy_Hit_Text=FALSE;
     GameConfig . Enemy_Bump_Text=TRUE;
     GameConfig . Enemy_Aim_Text=TRUE;
@@ -2102,7 +2100,7 @@ ResetGameConfigToDefaultValues ( void )
     GameConfig . Draw_Position=FALSE;
     GameConfig . All_Texts_Switch = FALSE;
     GameConfig . enemy_energy_bars_visible = TRUE ;
-    GameConfig . hog_CPU = TRUE ;
+    GameConfig . hog_CPU = FALSE ;
     GameConfig . highlighting_mode_full = TRUE ;
     GameConfig . skip_light_radius = FALSE ; 
     GameConfig . omit_tux_in_level_editor = TRUE ;
@@ -2111,7 +2109,6 @@ ResetGameConfigToDefaultValues ( void )
     GameConfig . zoom_is_on = FALSE ;
     GameConfig . show_blood = TRUE ;
     GameConfig . show_tooltips = TRUE;
-    GameConfig . tux_image_update_policy = TUX_IMAGE_UPDATE_EVERYTHING_AT_ONCE ;
     GameConfig . number_of_big_screen_messages = 4 ;
     GameConfig . delay_for_big_screen_messages = 6.5 ;
     GameConfig . enable_cheatkeys = FALSE ;
@@ -2119,6 +2116,7 @@ ResetGameConfigToDefaultValues ( void )
     GameConfig . automap_manual_shift_y = 0 ;
     GameConfig . automap_display_scale = 2.0 ;
     GameConfig . skip_shadow_blitting = FALSE ;
+    GameConfig . xray_vision_for_tux = FALSE;
  
     #if ENABLE_NLS
     char *lang = setlocale(LC_MESSAGES, NULL);

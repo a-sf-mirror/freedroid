@@ -137,7 +137,6 @@ typedef struct configuration_for_freedroid_s
     int show_quick_inventory;
     int show_blood; // this can be used to make the game more friendly for children...
     int show_tooltips;
-    int tux_image_update_policy ;
     int number_of_big_screen_messages ;
     float delay_for_big_screen_messages ;
     int enable_cheatkeys;
@@ -156,6 +155,7 @@ typedef struct configuration_for_freedroid_s
     int fullscreen_on;
     int talk_to_bots_after_takeover;
     int force_sdl_automap;
+    int xray_vision_for_tux;
 }
 configuration_for_freedroid , *Configuration_for_freedroid;
 
@@ -575,7 +575,7 @@ typedef struct enemy_s
     
     float TextVisibleTime;
     char* TextToBeDisplayed;
-    moderately_finepoint PrivatePathway[ 2 ];
+    moderately_finepoint PrivatePathway[ 5 ];
 
     char bot_stuck_in_wall_at_previous_check;
     float time_since_previous_stuck_in_wall_check;

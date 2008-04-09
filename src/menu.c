@@ -1010,7 +1010,7 @@ Cheatmenu (void)
 		    GameConfig . enable_cheatkeys ? "ON\n" : "OFF\n");
 	printf_SDL (Screen, -1, -1, " w. Print current waypoints\n");
 	printf_SDL (Screen, -1, -1, " f. xray_vision_for_tux: %s",
-		    xray_vision_for_tux ? "ON\n" : "OFF\n");
+		    GameConfig . xray_vision_for_tux ? "ON\n" : "OFF\n");
 	printf_SDL (Screen, -1, -1, " q. RESUME game\n");
 
 	//--------------------
@@ -1021,7 +1021,7 @@ Cheatmenu (void)
 	switch ( getchar_raw ( ) )
 	{
 	    case 'f':
-		xray_vision_for_tux = !xray_vision_for_tux;
+		GameConfig . xray_vision_for_tux = ! GameConfig . xray_vision_for_tux;
 		break;
 
 	    case 'k':
