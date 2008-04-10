@@ -101,7 +101,7 @@ int wall_indices [ NUMBER_OF_LEVEL_EDITOR_GROUPS ] [ NUMBER_OF_OBSTACLE_TYPES ] 
     ISO_GREY_WALL_CORNER_1 ,
     ISO_GREY_WALL_CORNER_2 ,
     ISO_GREY_WALL_CORNER_3 ,
-    ISO_GREY_WALL_CORNER_3 ,
+    ISO_GREY_WALL_CORNER_4 ,
 	ISO_ROOM_WALL_V_RED ,
 	ISO_ROOM_WALL_H_RED ,
 	ISO_RED_WALL_WINDOW_1,
@@ -1259,21 +1259,22 @@ quickbar_getimage ( int id )
 void
 quickbar_additem (struct quickbar_entry *entry)
 {
+    /* XXX this is a mess */
     struct quickbar_entry *tmp1, *tmp2;
     struct list_head *node;
     if (quickbar_entries.next == &quickbar_entries) {
-	list_add (&entry->node, &quickbar_entries);
+	list_add_tail (&entry->node, &quickbar_entries);
     } else {
 	list_for_each (node, &quickbar_entries) {
 	    tmp1 = list_entry (node, struct quickbar_entry, node);
 	    tmp2 = list_entry (node->next, struct quickbar_entry, node);
 	    if (&tmp2->node != &quickbar_entries) {
 		if (tmp1->used <= entry->used && entry->used <= tmp2->used) {
-		    list_add (&entry->node, &tmp1->node);
+		    list_add_tail (&entry->node, &tmp1->node);
 		    break;
 		}
 	    } else {
-		list_add (&entry->node, node);
+		list_add_tail (&entry->node, node);
 		break;
 	    }
 	}
@@ -4706,65 +4707,45 @@ ShowMapLabels( int mask )
 void
 HandleMapTileEditingKeys ( Level EditLevel , int BlockX , int BlockY )
 {
-    if ( THit() ) 
-    {
-	GameConfig . level_editor_edit_mode = LEVEL_EDITOR_SELECTION_MACHINERY ;
-	FirstBlock = Highlight = ISO_TELEPORTER_1 ;
-    }
+    if ( GameConfig . level_editor_edit_mode == LEVEL_EDITOR_SELECTION_FLOOR )
+	return;
+
     if ( KP1Hit() ) 
     {
-	create_new_obstacle_on_level ( EditLevel , -1 , ((int)Me.pos.x) , ((int)Me.pos.y) + 1.0 );
+	action_create_obstacle_user ( EditLevel, ((int)Me.pos.x) , ((int)Me.pos.y) + 1.0, wall_indices [ GameConfig . level_editor_edit_mode ] [ Highlight ] );
     }
     if (KP2Hit()) 
     {
-	create_new_obstacle_on_level ( EditLevel , -1 , ((int)Me.pos.x) + 0.5 , ((int)Me.pos.y) + 1.0 );
+    	action_create_obstacle_user ( EditLevel,  ((int)Me.pos.x)+ 0.5 , ((int)Me.pos.y) + 1.0,  wall_indices [ GameConfig . level_editor_edit_mode ] [ Highlight ]);
     }
     if (KP3Hit()) 
     {
-	create_new_obstacle_on_level ( EditLevel , -1 , ((int)Me.pos.x) + 1.0 , ((int)Me.pos.y) + 1.0 );
+    	action_create_obstacle_user ( EditLevel,  ((int)Me.pos.x)+1.0 , ((int)Me.pos.y)+1.0,  wall_indices [ GameConfig . level_editor_edit_mode ] [ Highlight ]);
     }
     if (KP4Hit()) 
     {
-	create_new_obstacle_on_level ( EditLevel , -1 , ((int)Me.pos.x) , ((int)Me.pos.y) + 0.5 );
+    	action_create_obstacle_user ( EditLevel,  ((int)Me.pos.x), ((int)Me.pos.y) + 0.5,  wall_indices [ GameConfig . level_editor_edit_mode ] [ Highlight ]);
     }
     if (KP5Hit()) 
     {
-	create_new_obstacle_on_level ( EditLevel , -1 , ((int)Me.pos.x) + 0.5 , ((int)Me.pos.y) + 0.5 );
+    	action_create_obstacle_user ( EditLevel,  ((int)Me.pos.x) + 0.5 , ((int)Me.pos.y)+0.5,  wall_indices [ GameConfig . level_editor_edit_mode ] [ Highlight ]);
     }
     if (KP6Hit()) 
     {
-	create_new_obstacle_on_level ( EditLevel , -1 , ((int)Me.pos.x) + 1.0 , ((int)Me.pos.y) + 0.5 );
+    	action_create_obstacle_user ( EditLevel,  ((int)Me.pos.x)+ 1.0 , ((int)Me.pos.y) + 0.5,  wall_indices [ GameConfig . level_editor_edit_mode ] [ Highlight ]);
     }
     if (KP7Hit()) 
     {
-	create_new_obstacle_on_level ( EditLevel , -1 , ((int)Me.pos.x) , ((int)Me.pos.y) );
+    	action_create_obstacle_user ( EditLevel,  ((int)Me.pos.x), ((int)Me.pos.y),  wall_indices [ GameConfig . level_editor_edit_mode ] [ Highlight ]);
     }
     if ( KP8Hit() ) 
     {
-	create_new_obstacle_on_level ( EditLevel , -1 , ((int)Me.pos.x) + 0.5 , ((int)Me.pos.y) );
+    	action_create_obstacle_user ( EditLevel,  ((int)Me.pos.x)+ 0.5 , ((int)Me.pos.y),  wall_indices [ GameConfig . level_editor_edit_mode ] [ Highlight ]);
     }
     if (KP9Hit()) 
     {
-	create_new_obstacle_on_level ( EditLevel , -1 , ((int)Me.pos.x) + 1.0 , ((int)Me.pos.y) );
+    	action_create_obstacle_user ( EditLevel,  ((int)Me.pos.x) + 1.0 , ((int)Me.pos.y),  wall_indices [ GameConfig . level_editor_edit_mode ] [ Highlight ]);
     }
-    if (DHit())
-    {
-	if ( !CtrlWasPressed())
-	{
-	    if (ShiftWasPressed())
-		create_new_obstacle_on_level ( EditLevel , ISO_V_DOOR_000_OPEN , ((int)Me.pos.x) , ((int)Me.pos.y) + 0.5 );
-	    else 	    
-		create_new_obstacle_on_level ( EditLevel , ISO_H_DOOR_000_OPEN , ((int)Me.pos.x) + 0.5 , ((int)Me.pos.y) );
-	}
-	else
-	{
-	    if (ShiftWasPressed())
-		create_new_obstacle_on_level ( EditLevel , ISO_V_DOOR_LOCKED , ((int)Me.pos.x) , ((int)Me.pos.y) + 0.5 );
-	    else 
-		create_new_obstacle_on_level ( EditLevel , ISO_H_DOOR_LOCKED , ((int)Me.pos.x) + 0.5 , ((int)Me.pos.y) );
-	}
-    }
-    
 }; // void HandleMapTileEditingKeys ( Level EditLevel , int BlockX , int BlockY )
 
 /* ----------------------------------------------------------------------
@@ -5358,6 +5339,124 @@ level_editor_handle_left_mouse_button ( int proceed_now )
 
 }; // void level_editor_handle_left_mouse_button ( void )
 
+/*----------------------------------------------------------------------
+ * This function handles the line mode
+ * --------------------------------------------------------------------- */
+void handle_line_mode(line_element *wall_line, moderately_finepoint TargetSquare, int *direction) { 
+    line_element *wall;
+    int actual_direction;
+    float distance;
+    moderately_finepoint pos_last;
+    moderately_finepoint offset;
+    int direction_is_possible;
+
+    wall = list_entry((*wall_line).list.prev, line_element, list);
+    pos_last = wall->position;
+    distance = calc_euklid_distance(TargetSquare.x, TargetSquare.y, pos_last.x, pos_last.y);
+
+    // Let's calculate the difference of position since last time
+    offset.x = pos_last.x - TargetSquare.x;
+    offset.y = pos_last.y - TargetSquare.y;
+
+    // Then we want to find out in which direction the mouse has moved
+    // since the last time, and compute the distance relatively to the axis
+    if (fabsf(offset.y) > fabsf(offset.x)) {
+	    if (offset.y > 0) {
+		    actual_direction = NORTH;
+	    } else {
+		    actual_direction = SOUTH;
+	    }
+	    distance = fabsf(TargetSquare.y - pos_last.y);
+    } else {
+	    if (offset.x > 0) {
+		    actual_direction = WEST;
+	    } else {
+		    actual_direction = EAST;
+	    }
+	    distance = fabsf(TargetSquare.x - pos_last.x);
+    }
+
+    // Are we going in a direction possible with that wall?
+    switch (wall_orientation(wall_indices [ GameConfig . level_editor_edit_mode ] [ Highlight ])) {
+	    case HORIZONTAL:
+		    direction_is_possible = (actual_direction == WEST) || (actual_direction == EAST);
+		    break;
+	    case VERTICAL:
+		    direction_is_possible = (actual_direction == NORTH) || (actual_direction == SOUTH);
+		    break;
+	    default:
+		    // We don't want weird lines
+		    direction_is_possible = FALSE;
+    }
+
+    // If the mouse is far away enoug
+    if ((distance > 1) && (direction_is_possible) &&
+	((*direction == actual_direction) || (*direction == UNDEFINED))) {
+	    wall = malloc(sizeof(line_element));
+
+	    // Then we calculate the position of the next wall
+	    wall->position = pos_last;
+	    switch(actual_direction) {
+		    case NORTH:
+			    wall->position.y--;
+			    break;
+		    case SOUTH:
+			    wall->position.y++;
+			    break;
+		    case EAST:
+			    wall->position.x++;
+			    break;
+		    case WEST:
+			    wall->position.x--;
+			    break;
+		    default:
+			    break;
+	    }
+	    // And add the wall, to the linked list and to the map
+	    list_add_tail(&(wall->list), &(wall_line->list));
+	    wall->address = action_create_obstacle_user ( EditLevel , wall->position.x , wall->position.y , wall_indices [ GameConfig . level_editor_edit_mode ] [ Highlight ] );
+
+	    // If the direction is unknown (ie. we only have one wall), 
+	    // let's define it
+	    if (*direction == UNDEFINED) {
+		    *direction = actual_direction;
+	    }
+    }
+    if ((*direction == (- actual_direction)) && (!list_empty(&(wall_line->list)))) {
+	    // Looks like the user wants to go back, so let's remove the line wall
+	    wall = list_entry(wall_line->list.prev, line_element, list);
+	    action_remove_obstacle_user(EditLevel, wall->address);
+	    list_del(wall_line->list.prev);
+	    free(wall);
+	    if(list_empty(&(wall_line->list))) {
+		    *direction = UNDEFINED;
+	    }
+    }
+}; // void handle_line_mode(line_element *wall_line, moderately_finepoint TargetSquare, int *direction)
+
+void end_line_mode(line_element *wall_line, int place_line)
+{
+    line_element *tmp;
+    int list_length = 1; // 
+
+    // Remove the linked list
+    while(!(list_empty(&(wall_line->list)))) {
+	tmp = list_entry(wall_line->list.prev, line_element, list);
+	free(tmp);
+	if(place_line == FALSE)
+	    action_remove_obstacle(EditLevel, wall_line->address);
+	list_del(wall_line->list.prev);
+	list_length++;
+    }
+    if(place_line == FALSE)
+	action_remove_obstacle(EditLevel, wall_line->address);
+
+    list_del(&(wall_line->list));
+
+    if (place_line == TRUE)
+	    action_push(ACT_MULTIPLE_FLOOR_SETS, list_length);
+
+}; // void end_line_mode(line_element *wall_line, int place_line)
 
 /* ----------------------------------------------------------------------
  * This function automatically scrolls the leveleditor window when the
@@ -5604,6 +5703,9 @@ LevelEditor(void)
     int LeftMousePressedPreviousFrame = FALSE;
     int RightMousePressedPreviousFrame = FALSE;
     moderately_finepoint TargetSquare;
+    line_element wall_line;
+    int line_mode = FALSE;
+    int direction;
 
     BlockX = rintf( Me . pos . x + 0.5 );
     BlockY = rintf( Me . pos . y + 0.5 );
@@ -5987,6 +6089,10 @@ LevelEditor(void)
 								     (float) GetMousePos_y()  - ( GameConfig . screen_height / 2 ), FALSE );
 	    }
 
+	    if(line_mode) {
+		handle_line_mode(&wall_line, TargetSquare, &direction);
+	    }
+
 	    level_editor_handle_mouse_wheel();
 
 	    level_editor_auto_scroll();
@@ -6006,24 +6112,48 @@ LevelEditor(void)
 		     ( (int)TargetSquare . y >= 0 ) &&
 		     ( (int)TargetSquare . y <= EditLevel->ylen-1 ) )
 		{
-		    
-		    if ( GameConfig . level_editor_edit_mode == LEVEL_EDITOR_SELECTION_FLOOR ) 
+		    if (GameConfig . level_editor_edit_mode == LEVEL_EDITOR_SELECTION_FLOOR)
 		    {
 			quickbar_use (-1, Highlight);
 			action_set_floor (EditLevel, TargetSquare . x, TargetSquare . y, Highlight );
-		    } 
+		    }
 		    else if ( GameConfig . level_editor_edit_mode == LEVEL_EDITOR_SELECTION_QUICK ) 
 		    {
 			quickbar_click ( EditLevel , Highlight , TargetSquare . x , TargetSquare . y ); 
 		    }
-		    else 
+		    else if ((GameConfig . level_editor_edit_mode == LEVEL_EDITOR_SELECTION_WALLS) &&
+			    (wall_orientation(wall_indices[GameConfig.level_editor_edit_mode][Highlight]) != UNDEFINED))
 		    {
+			if (!line_mode)
+			{
+			    // Initialize a line
+			    INIT_LIST_HEAD(&wall_line.list);
+			    line_mode = TRUE;
+			    direction = UNDEFINED;
+			    //if (fabsf(TargetSquare.x - (int)TargetSquare.x) < 0.25)
+				wall_line.position.x = (int)TargetSquare.x;
+			    /*else
+				wall_line.position.x = (int)TargetSquare.x + 0.5;*/
+			    //if (fabsf(TargetSquare.y - (int)TargetSquare.y) < 0.25)
+				wall_line.position.y = (int)TargetSquare.y;
+			    /*else
+				wall_line.position.y = (int)TargetSquare.y + 0.5;*/
+			    wall_line.address = action_create_obstacle_user ( EditLevel , wall_line.position.x , wall_line.position.y , wall_indices [ GameConfig . level_editor_edit_mode ] [ Highlight ] );
+			    quickbar_use ( GameConfig . level_editor_edit_mode, Highlight );
+			} else {
+			    // Return to normal mode
+			    line_mode = FALSE;
+			    line_mode = UNDEFINED;
+			    // End line mode and place the walls
+			    end_line_mode(&wall_line, TRUE);
+			}
+		    } else {
 			quickbar_use ( GameConfig . level_editor_edit_mode, Highlight );
 			action_create_obstacle_user ( EditLevel , TargetSquare . x , TargetSquare . y , wall_indices [ GameConfig . level_editor_edit_mode ] [ Highlight ] );
 		    }
 		}
 	    }
-	    
+		    
 	    if ( QPressed ( ) &&  CtrlWasPressed() )
 	    {
 		Terminate(0);
@@ -6036,6 +6166,13 @@ LevelEditor(void)
 		    level_editor_mouse_move_mode = FALSE ;
 		    while ( EscapePressed() ) ;
 		}
+		else if ( line_mode) {
+		    // Return to normal mode
+		    line_mode = FALSE;
+		    line_mode = UNDEFINED;
+		    // End line mode and *do not* place the walls
+		    end_line_mode(&wall_line, FALSE);
+		} 
 		else
 		{
 		    main_menu_requested = TRUE ;

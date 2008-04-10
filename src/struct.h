@@ -950,5 +950,11 @@ typedef struct supported_languages_s
     char * font_class; 
 } supported_languages_t;
 
+typedef struct line_element {
+	moderately_finepoint position;
+	obstacle* address;
+
+	list_head_t list;
+} line_element, *Line_element;
 
 #endif

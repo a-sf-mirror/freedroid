@@ -47,6 +47,89 @@ char *PrefixToFilename[ ENEMY_ROTATION_MODELS_AVAILABLE ];
 int ModelMultiplier[ ENEMY_ROTATION_MODELS_AVAILABLE ];
 
 /* ----------------------------------------------------------------------
+ * Says if an object is an horizontal wall, a vertical one, or something
+ * else
+ * ---------------------------------------------------------------------- */
+int wall_orientation(int wall)
+{
+	switch(wall) {
+		case ISO_V_WALL:
+		case ISO_V_WALL_WITH_DOT:
+		case ISO_GREY_WALL_END_W:
+		case ISO_GREY_WALL_END_E:
+		case ISO_GLASS_WALL_1:
+		case ISO_CYAN_WALL_WINDOW_1:
+		case ISO_RED_WALL_WINDOW_1:
+		case ISO_FLOWER_WALL_WINDOW_1:
+		case ISO_FUNKY_WALL_WINDOW_1:
+		case ISO_V_DOOR_LOCKED:
+		case ISO_CAVE_WALL_V:
+		case ISO_V_WOOD_FENCE:
+		case ISO_V_DENSE_FENCE:
+		case ISO_V_MESH_FENCE:
+		case ISO_V_WIRE_FENCE:
+		case ISO_THICK_WALL_V:
+		case ISO_BRICK_WALL_H:
+		case ISO_BRICK_WALL_CABLES_V:
+		case ISO_BRICK_WALL_CRACKED_1:
+		case ISO_BRICK_WALL_RUBBLE_1:
+		case ISO_ROOM_WALL_V_RED:
+		case ISO_ROOM_WALL_V_GREEN:
+		case ISO_LIGHT_GREEN_WALL_1:
+		case ISO_FUNKY_WALL_1:
+		case ISO_FUNKY_WALL_3:
+		case ISO_V_CURTAIN:
+		case ISO_RED_FENCE_V:
+		case ISO_OUTER_WALL_E1:
+		case ISO_OUTER_WALL_E2:
+		case ISO_OUTER_WALL_E3:
+		case ISO_OUTER_WALL_W1:
+		case ISO_OUTER_WALL_W2:
+		case ISO_OUTER_WALL_W3:
+			return VERTICAL;
+			break;
+		case ISO_H_WALL:
+		case ISO_H_WALL_WITH_DOT:
+		case ISO_GREY_WALL_END_N:
+		case ISO_GREY_WALL_END_S:
+		case ISO_GLASS_WALL_2:
+		case ISO_CYAN_WALL_WINDOW_2:
+		case ISO_RED_WALL_WINDOW_2:
+		case ISO_FLOWER_WALL_WINDOW_2:
+		case ISO_FUNKY_WALL_WINDOW_2:
+		case ISO_H_DOOR_LOCKED:
+		case ISO_CAVE_WALL_H:
+		case ISO_H_WOOD_FENCE:
+		case ISO_H_DENSE_FENCE:
+		case ISO_H_MESH_FENCE:
+		case ISO_H_WIRE_FENCE:
+		case ISO_THICK_WALL_H:
+		case ISO_BRICK_WALL_V:
+		case ISO_BRICK_WALL_CABLES_H:
+		case ISO_BRICK_WALL_CRACKED_2:
+		case ISO_BRICK_WALL_RUBBLE_2:
+		case ISO_ROOM_WALL_H_RED:
+		case ISO_ROOM_WALL_H_GREEN:
+		case ISO_LIGHT_GREEN_WALL_2:
+		case ISO_FUNKY_WALL_2:
+		case ISO_FUNKY_WALL_4:
+		case ISO_H_CURTAIN:
+		case ISO_RED_FENCE_H:
+		case ISO_OUTER_WALL_N1:
+		case ISO_OUTER_WALL_N2:
+		case ISO_OUTER_WALL_N3:
+		case ISO_OUTER_WALL_S1:
+		case ISO_OUTER_WALL_S2:
+		case ISO_OUTER_WALL_S3:
+
+			return HORIZONTAL;
+			break;
+		default:
+			return NO_ORIENTATION;
+	}
+}; // int wall_orientation(int wall)
+
+/* ----------------------------------------------------------------------
  *
  *
  * ---------------------------------------------------------------------- */

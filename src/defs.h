@@ -887,6 +887,26 @@ enum _level_editor_edit_modes
     NUMBER_OF_LEVEL_EDITOR_GROUPS = 8
 };
 
+// Possible orientations for a wall
+enum _wall_orientation
+{
+    NO_ORIENTATION = 0,
+    VERTICAL = 1,
+    HORIZONTAL = 2
+};
+
+// possible directions for a line of walls
+// We use 1 et -1, because north is the opposite of south.
+enum _level_editor_directions
+{
+    UNDEFINED = 0,
+    NORTH = 1,
+    EAST = 2,
+    SOUTH = -1,
+    WEST = -2
+};
+
+
 enum _enemy_combat_state_machine_states
 {
     MOVE_ALONG_RANDOM_WAYPOINTS, 

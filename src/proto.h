@@ -74,6 +74,7 @@ EXTERN void Get_Item_Data ( char* DataPointer );
 #else
 #define EXTERN extern
 #endif
+EXTERN float calc_euklid_distance ( float pos1_x , float pos1_y , float pos2_x , float pos2_y ); 
 EXTERN float vect_len ( moderately_finepoint our_vector );
 EXTERN enemy * GetLivingDroidBelowMouseCursor ( void );
 EXTERN int GetObstacleBelowMouseCursor ( void );
@@ -228,6 +229,7 @@ EXTERN void draw_gl_bg_textured_quad_at_screen_position ( iso_image * our_floor_
 #else
 #define EXTERN extern
 #endif
+EXTERN int wall_orientation(int wall);
 EXTERN void try_to_load_ingame_item_surface ( int item_type );
 EXTERN void iso_load_bullet_surfaces ( void );
 EXTERN void get_iso_image_from_file_and_path ( char* fpath , iso_image* our_iso_image , int use_offset_file ) ;
