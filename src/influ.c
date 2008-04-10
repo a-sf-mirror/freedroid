@@ -1731,11 +1731,7 @@ set_up_intermediate_course_between_positions ( enemy * droid, gps * curpos, mode
     int next_index_to_set_up = 0 ;
     
     if (  ! recursive_find_walkable_point ( droid, curpos->z,  curpos -> x, curpos -> y , move_target -> x , move_target -> y , 0, waypoints, &next_index_to_set_up, maxwp ) )
-	{ /* If we could NOT find our way */
-	waypoints [ 0 ] . x = curpos -> x;
-	waypoints [ 0 ] . y = curpos -> y;
-	waypoints [ 1 ] . x = -1;
-	waypoints [ 1 ] . y = -1;
+	{ 
 	return FALSE;
 	}
     

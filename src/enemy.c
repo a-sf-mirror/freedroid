@@ -1099,9 +1099,15 @@ MoveThisEnemy( enemy * ThisRobot )
     //
     if ( ThisRobot -> pure_wait > 0 ) return;
     
-    //CheckEnemyEnemyCollision ( ThisRobot );
-    
+    moderately_finepoint oldpos = { ThisRobot -> pos . x, ThisRobot -> pos . y };
+
     MoveThisRobotThowardsHisCurrentTarget( ThisRobot );
+    
+    if ( CheckEnemyEnemyCollision ( ThisRobot ) )
+	{
+	ThisRobot -> pos . x = oldpos .x ;
+	ThisRobot -> pos . y = oldpos . y;
+	}
 
 }; 
 
@@ -1435,7 +1441,6 @@ static void state_machine_inconditional_updates ( enemy * ThisRobot, moderately_
     // stuck inside a wall or something...
     //
     enemy_handle_stuck_in_walls ( ThisRobot );
-		
 
     //--------------------
     // determine the distance vector to the target of this shot.  The target
@@ -1737,6 +1742,13 @@ static void state_machine_move_along_random_waypoints(enemy * ThisRobot, moderat
     new_move_target -> x = curShip . AllLevels [ ThisRobot-> pos . z ] -> AllWaypoints [ ThisRobot -> nextwaypoint ] . x + 0.5;
     new_move_target -> y = curShip . AllLevels [ ThisRobot-> pos . z ] -> AllWaypoints [ ThisRobot -> nextwaypoint ] . y + 0.5;
 
+    moderately_finepoint a;
+    enemy_get_current_walk_target(ThisRobot, &a);
+    if ( a . x == ThisRobot -> pos . x && a . y == ThisRobot -> pos . y && curShip . AllLevels [ ThisRobot-> pos . z ] -> AllWaypoints [ ThisRobot -> nextwaypoint ] . x + 0.5 != ThisRobot -> pos .x && curShip . AllLevels [ ThisRobot-> pos . z ] -> AllWaypoints [ ThisRobot -> nextwaypoint ] . y + 0.5 != ThisRobot -> pos . y )
+	{
+	printf("groscaca pour %#x at %f %f\n", ThisRobot, ThisRobot->pos.x, ThisRobot->pos.y);
+	}
+    
     /* Action */
     if ( remaining_distance_to_current_walk_target ( ThisRobot ) < 0.1 )
 	{
@@ -1946,15 +1958,10 @@ update_enemy ( enemy * ThisRobot )
 		}
 
 	}
-/*    else
-	{ // If our move target has not changed, re-pathfind our first waypoint
-	set_up_intermediate_course_between_positions ( ThisRobot, &ThisRobot->pos, &ThisRobot->PrivatePathway[0], &wps[0], 30);
-	ThisRobot->PrivatePathway[0] . x = wps[0].x;
-    	ThisRobot->PrivatePathway[0] . y = wps[0].y;
-	}*/
     
     if ( ThisRobot->PrivatePathway[0].x == -1)
 	{
+	/* This happens at the very beginning of the game. If it happens afterwards this is a ugly bug. */
 	ThisRobot -> PrivatePathway[0] . x = ThisRobot->pos.x;
 	ThisRobot -> PrivatePathway[0] . y = ThisRobot->pos.y;
 	}
@@ -1998,17 +2005,6 @@ MoveEnemys ( void )
 	     * The rest is for alive bots only. */
 	    if ( i == 0 ) 
 		continue;
-
-	    //--------------------
-	    // Ignore robots, that are in the middle of their attack movement,
-	    // because during attack motion, the feet of the animation are
-	    // usually not moving, therefore it sometimes looks very bad when
-	    // bot position is changing during attach cycle.  That's for better
-	    // looks only.
-	    //
-	    // Remainder: animation is done somehere else.
-	    /*if ( ThisRobot -> animation_type == ATTACK_ANIMATION )
-		continue ;*/
 
 	    //--------------------
 	    // Run a new cycle of the bot's state machine
