@@ -549,6 +549,32 @@ CheckIfWayIsFreeOfDroids (char test_tux, float x1 , float y1 , float x2 , float 
 }; // CheckIfWayIsFreeOfDroids ( char test_tux, float x1 , float y1 , float x2 , float y2 , int OurLevel , int ExceptedDroid )
 
 /* ----------------------------------------------------------------------
+ *
+ *
+ * ---------------------------------------------------------------------- */
+static void
+DetermineAngleOfFacing ( enemy * e )
+{
+  //--------------------
+  // The phase now depends upon the direction this robot
+  // is heading.
+  //
+  // We calsulate the angle of the vector, but only if the robot has at least
+  // some minimal speed.  If not, simply the previous angle will be used again.
+  //
+  if ( ( fabsf ( e->speed.y ) > 0.03 ) || ( fabsf ( e->speed.x ) > 0.03 ) )
+    {
+      e->current_angle = 180 - ( atan2 ( e->speed.y,  e->speed.x) * 180 / M_PI + 90 );
+      e->previous_angle = e->current_angle ;
+    }
+  else
+    {
+      e->current_angle = e->previous_angle ;
+    }
+}; // void DetermineAngleOfFacing ( int EnemyNum )
+
+
+/* ----------------------------------------------------------------------
  * Once the next waypoint or the next private pathway point has been 
  * selected, this generic low_level movement function can be called to
  * actually move the robot towards this spot.
@@ -624,6 +650,8 @@ move_enemy_to_spot ( Enemy ThisRobot , moderately_finepoint next_target_spot )
 	/* Move it to the appropriate level list */
 	list_move(&ThisRobot->level_list, &(level_bots_head [ ThisRobot->pos.z ]));
     }
+
+    DetermineAngleOfFacing ( ThisRobot );
     
 }; // void move_enemy_to_spot ( Enemy ThisRobot , finepoint next_target_spot )
 
@@ -635,6 +663,23 @@ void
 MoveThisRobotThowardsHisCurrentTarget ( enemy * ThisRobot )
 {
     if ( ThisRobot -> animation_type == ATTACK_ANIMATION ) return;
+
+    if (( ThisRobot -> PrivatePathway [ 0 ] . x == ThisRobot -> pos . x ) &&
+	    ( ThisRobot -> PrivatePathway [ 0 ] . y == ThisRobot -> pos . y ))
+	{
+	if ( ThisRobot -> PrivatePathway [ 1 ] . x != -1 )
+	    {
+	    int i;        
+	    for ( i = 1; i < 5; i ++ )
+		{         
+		ThisRobot->PrivatePathway[i - 1].x = ThisRobot->PrivatePathway[i] . x;
+		ThisRobot->PrivatePathway[i - 1].y = ThisRobot->PrivatePathway[i] . y;
+		}
+	    ThisRobot -> PrivatePathway [ 4 ] . x = -1;
+	    ThisRobot -> PrivatePathway [ 4 ] . y = -1;
+	    }
+	return;
+	}
 
     move_enemy_to_spot ( ThisRobot , ThisRobot->PrivatePathway[0] );
 
@@ -1040,30 +1085,6 @@ hit_enemy ( enemy * target, float hit, char givexp, short int killertype, char m
 	}
 }
 
-/* ----------------------------------------------------------------------
- *
- *
- * ---------------------------------------------------------------------- */
-void
-DetermineAngleOfFacing ( enemy * e )
-{
-  //--------------------
-  // The phase now depends upon the direction this robot
-  // is heading.
-  //
-  // We calsulate the angle of the vector, but only if the robot has at least
-  // some minimal speed.  If not, simply the previous angle will be used again.
-  //
-  if ( ( fabsf ( e->speed.y ) > 0.03 ) || ( fabsf ( e->speed.x ) > 0.03 ) )
-    {
-      e->current_angle = 180 - ( atan2 ( e->speed.y,  e->speed.x) * 180 / M_PI + 90 );
-      e->previous_angle = e->current_angle ;
-    }
-  else
-    {
-      e->current_angle = e->previous_angle ;
-    }
-}; // void DetermineAngleOfFacing ( int EnemyNum )
 
 /* ----------------------------------------------------------------------
  * This function moves a single enemy.  It is used by MoveEnemys().
@@ -1078,11 +1099,9 @@ MoveThisEnemy( enemy * ThisRobot )
     //
     if ( ThisRobot -> pure_wait > 0 ) return;
     
-    CheckEnemyEnemyCollision ( ThisRobot );
+    //CheckEnemyEnemyCollision ( ThisRobot );
     
     MoveThisRobotThowardsHisCurrentTarget( ThisRobot );
-
-    DetermineAngleOfFacing ( ThisRobot );
 
 }; 
 
@@ -1150,6 +1169,10 @@ enemy_say_current_state_on_screen ( enemy* ThisRobot )
 	    break;
 	}      
     ThisRobot->TextVisibleTime = 0 ; 
+
+    if ( ThisRobot->pure_wait > 0 )
+	ThisRobot->TextToBeDisplayed = "purewait";
+
 }; // void enemy_say_current_state_on_screen ( enemy* ThisRobot )
 
 
@@ -1170,8 +1193,6 @@ enemy_say_current_state_on_screen ( enemy* ThisRobot )
 void
 enemy_handle_stuck_in_walls ( enemy* ThisRobot )
 {
-return;
-#if 0
     //--------------------
     // Maybe the time for the next check for this bot has not yet come.
     // in that case we can return right away.
@@ -1187,45 +1208,6 @@ return;
     //
     if ( !IsPassable ( ThisRobot -> pos . x , ThisRobot -> pos . y , ThisRobot -> pos.z ) )
     {
-	// so the bot is currently inside of some wall.  hmmm.  best thing to do might
-	// be to see if this has been going on for some time.  In that case we would really
-	// have to do something about the problem.
-	//
-	if ( ThisRobot -> bot_stuck_in_wall_at_previous_check )
-	{
-	    // --------------------
-	    // Maybe the robot in question was even sticking to the current 
-	    // waypoint system!  That might indicate, that the waypoint system
-	    // has pathes, that run too close to some walls or bigger obstacles
-	    // This should be fixed inside the map, because upon switching to
-	    // wapointless mode, the bot might suddenly be unable to move at all
-	    // and stuck in the wall at the same time.
-	    //
-	    switch ( ThisRobot -> combat_state )
-	    {
-		case MOVE_ALONG_RANDOM_WAYPOINTS:
-		case TURN_TOWARDS_NEXT_WAYPOINT:
-		    DebugPrintf ( -2 , "\n\nFound robot, that seems really stuck on position: %f/%f/%d." ,
-				  ThisRobot -> pos . x , ThisRobot -> pos . y , ThisRobot -> pos.z );
-		    DebugPrintf ( -2 , "\nMore details on this robot:  Type=%d. has_greeted_influencer=%d." ,
-				  ThisRobot -> type , ThisRobot -> has_greeted_influencer );
-		    enemy_say_current_state_on_screen ( ThisRobot ); // safety:  init the TextToBeDisplayed 
-		    DebugPrintf ( -2 , "\nnextwaypoint=%d. lastwaypoint=%d. combat_%s." ,
-				  ThisRobot -> nextwaypoint , ThisRobot -> lastwaypoint , 
-				  ThisRobot -> TextToBeDisplayed );
-		    ErrorMessage ( __FUNCTION__  , "\
-There was a bot, that was found to be inside a wall. This may be a bug in waypoint placement\n\
-Type=%d. pos =  %f/%f/%d\n\
-has_greeted_influencer=%d  combat_%s. \n\
-nextwaypoint=%d. lastwaypoint=%d\n" ,
-					       NO_NEED_TO_INFORM, IS_WARNING_ONLY, ThisRobot -> type,  ThisRobot -> pos . x , ThisRobot -> pos . y , ThisRobot -> pos.z, ThisRobot -> has_greeted_influencer, ThisRobot -> TextToBeDisplayed, ThisRobot -> nextwaypoint, ThisRobot -> lastwaypoint );
-		    ThisRobot -> bot_stuck_in_wall_at_previous_check = TRUE ; 
-		    return;
-		    break;
-		default: 
-		    break;
-	    }
-
 	    //--------------------
 	    // So at this point we know, that we have a bot that is stuck right now,
 	    // has been stuck one second ago and also is not moving along wapoints, which
@@ -1251,15 +1233,8 @@ nextwaypoint=%d. lastwaypoint=%d\n" ,
 	    DebugPrintf ( -2 , "\nnextwaypoint=%d. lastwaypoint=%d. combat_%s." ,
 			  ThisRobot -> nextwaypoint , ThisRobot -> lastwaypoint , 
 			  ThisRobot -> TextToBeDisplayed );
-	    ErrorMessage ( __FUNCTION__  , "\
-There was a bot MOVING ON ITS OWN, that was found to be repeatedly inside a wall.\n\
-WARNING!  EMERGENCY FALLBACK ENABLED --> Teleporting back to closest waypoint." ,
-				       NO_NEED_TO_INFORM, IS_WARNING_ONLY );
 	    ThisRobot -> bot_stuck_in_wall_at_previous_check = TRUE ; 
-	    TeleportToClosestWaypoint ( ThisRobot );
-	    set_new_waypointless_walk_target ( ThisRobot );
 	    return;
-	}
 	ThisRobot -> bot_stuck_in_wall_at_previous_check = TRUE ; 
     }
     else
@@ -1267,7 +1242,6 @@ WARNING!  EMERGENCY FALLBACK ENABLED --> Teleporting back to closest waypoint." 
 	// this bot isn't currently stuck.  what more could anybody want?
 	ThisRobot -> bot_stuck_in_wall_at_previous_check = FALSE ;
     }
-#endif 
 }; // enemy_handle_stuck_in_walls ( enemy* ThisRobot )
 
 /* ----------------------------------------------------------------------
@@ -1460,8 +1434,8 @@ static void state_machine_inconditional_updates ( enemy * ThisRobot, moderately_
     // we check whether the current robot is 
     // stuck inside a wall or something...
     //
-    // This should go away. ASAP.
     enemy_handle_stuck_in_walls ( ThisRobot );
+		
 
     //--------------------
     // determine the distance vector to the target of this shot.  The target
@@ -1649,10 +1623,13 @@ static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_m
 	/* Depending on the weapon of the bot, we will go *to* melee combat or try and avoid it */
 	ThisRobot -> last_combat_step = 0 ; 
 
-	if ( ItemMap [ Druidmap [ ThisRobot -> type ] . weapon_item . type ] . item_weapon_is_melee && dist2 > 2.25 )
-	    { /* Melee weapon and too for to strike ? get closer */
-	    new_move_target -> x = enemy_get_target_position(ThisRobot) -> x;
-	    new_move_target -> y = enemy_get_target_position(ThisRobot) -> y;
+	if ( ItemMap [ Druidmap [ ThisRobot -> type ] . weapon_item . type ] . item_weapon_is_melee )
+	    {
+	    if ( dist2 > 2.25 )
+		{ /* Melee weapon and too far to strike ? get closer */
+		new_move_target -> x = enemy_get_target_position(ThisRobot) -> x;
+		new_move_target -> y = enemy_get_target_position(ThisRobot) -> y;
+		}
 	    }
 	else 
 	    {
@@ -1938,6 +1915,16 @@ update_enemy ( enemy * ThisRobot )
     /* Pathfind current target */
     /* I am sorry this is a bit dirty, but I've got time and efficiency constraints. If you're not happy please send a patch. No complaints will 
      * be accepted.*/
+
+    /* The basic design is the following :
+     * we get the current moving target of the bot (ie. old)
+     * we compare the new and current moving target
+     *    if they differ : we have to set up a new route (pathfind the route)
+     *    if they do not : we still have to pathfind the route towards the first waypoint in case a bot got in the way
+     *
+     * special cases: if first waypoint is current position, we do nothing
+     *                if first waypoint is -1 -1 we have a bug and do nothing (hack around)
+     */
     moderately_finepoint wps[30];
     moderately_finepoint old_move_target;
     enemy_get_current_walk_target(ThisRobot, &old_move_target);
@@ -1946,14 +1933,12 @@ update_enemy ( enemy * ThisRobot )
 	{ /* If the current move target differs from the old one */
 	  /* This implies we do not re-pathfinding every frame, which means we may bump into colleagues. 
 	   * This is handled in MoveThisEnemy()*/
-	    if ( (( new_move_target . x != ThisRobot -> pos . x ) || ( new_move_target . y != ThisRobot -> pos . y )) &&
-		    set_up_intermediate_course_between_positions ( ThisRobot, &ThisRobot->pos, &new_move_target, &wps[0], 30) )
+	    if ( set_up_intermediate_course_between_positions ( ThisRobot, &ThisRobot->pos, &new_move_target, &wps[0], 30) )
 		{
 		memcpy ( &ThisRobot->PrivatePathway[0], &wps[0], 5 * sizeof(moderately_finepoint));
 		}
 	    else
 		{
-		CheckEnemyEnemyCollision(ThisRobot);
 		ThisRobot->PrivatePathway[0].x = ThisRobot->pos.x;
 		ThisRobot->PrivatePathway[0].y = ThisRobot->pos.y;
 		ThisRobot->PrivatePathway[1].x = new_move_target.x;
@@ -1961,15 +1946,20 @@ update_enemy ( enemy * ThisRobot )
 		}
 
 	}
+/*    else
+	{ // If our move target has not changed, re-pathfind our first waypoint
+	set_up_intermediate_course_between_positions ( ThisRobot, &ThisRobot->pos, &ThisRobot->PrivatePathway[0], &wps[0], 30);
+	ThisRobot->PrivatePathway[0] . x = wps[0].x;
+    	ThisRobot->PrivatePathway[0] . y = wps[0].y;
+	}*/
     
     if ( ThisRobot->PrivatePathway[0].x == -1)
 	{
 	ThisRobot -> PrivatePathway[0] . x = ThisRobot->pos.x;
 	ThisRobot -> PrivatePathway[0] . y = ThisRobot->pos.y;
 	}
-	
-    if ( ThisRobot -> PrivatePathway[0] . x != ThisRobot->pos.x || ThisRobot -> PrivatePathway[0] . y != ThisRobot->pos.y )
-	MoveThisEnemy(ThisRobot);
+
+    MoveThisEnemy(ThisRobot);
 }; // void update_enemy()
 
 /* ----------------------------------------------------------------------
