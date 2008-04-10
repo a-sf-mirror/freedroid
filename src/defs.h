@@ -657,7 +657,7 @@ enum
 #define WAIT_AFTER_KILLED	3.0  // time to wait and still display pictures after the destruction of 
                                      // the players droid.  This is now measured in seconds and can be a float
 #define WAIT_AFTER_GAME_WON	5.0  // how long to show tux after the game is won
-#define WAIT_COLLISION		0.5 // after a little collision with Tux or another enemy, hold position for a while
+#define WAIT_COLLISION		1 // after a little collision with Tux or another enemy, hold position for a while
                                     // this variable describes the amount of time in SECONDS 
 #define FLASH_DURATION_IN_SECONDS 0.1
 
