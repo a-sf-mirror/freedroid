@@ -704,7 +704,9 @@ There was an obstacle type given, that exceeds the number of\n\
 	{
 	    draw_gl_textured_quad_at_map_position ( &obstacle_map [ our_obstacle -> type ] . image ,
 							  our_obstacle -> pos . x , our_obstacle -> pos . y , 
-							  1.0 , 1.0, 1.0 , 0.25, FALSE, ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT );
+							  ( SDL_GetTicks() % 3) / 2.0, ( ( SDL_GetTicks() + 1 ) % 3) / 2.0, 
+							  ( ( SDL_GetTicks() + 2 ) % 3) / 2.0 , 0.25, FALSE, ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT );
+
 	}
 	else
 	{
@@ -3982,7 +3984,7 @@ There was a droid type on this level, that does not really exist.",
     
     PutIndividuallyShapedDroidBody ( e , TargetRectangle , mask , highlight );
 
-#if 0 
+#if 0
     /* This code displays the pathway of the bots as well as their next waypoint */
     glDisable(GL_TEXTURE_2D);
     glLineWidth(2.0);
