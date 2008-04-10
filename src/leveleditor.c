@@ -6076,6 +6076,7 @@ LevelEditor(void)
 	    // to prevent segfault due to writing outside the level, but that's easily
 	    // accomplished.
 	    //
+
 	    if ( MouseRightPressed() && !RightMousePressedPreviousFrame )
 	    {
 		if ( ( (int)TargetSquare . x >= 0 ) &&
@@ -6105,13 +6106,7 @@ LevelEditor(void)
 			    wall_line.position.y = (int)TargetSquare.y + ((wall_orientation(wall_indices [ GameConfig . level_editor_edit_mode ] [ Highlight ]) == HORIZONTAL) ? 0 : 0.5);
 			    wall_line.address = action_create_obstacle_user ( EditLevel , wall_line.position.x , wall_line.position.y , wall_indices [ GameConfig . level_editor_edit_mode ] [ Highlight ] );
 			    quickbar_use ( GameConfig . level_editor_edit_mode, Highlight );
-			} else {
-			    // Return to normal mode
-			    line_mode = FALSE;
-			    line_mode = UNDEFINED;
-			    // End line mode and place the walls
-			    end_line_mode(&wall_line, TRUE);
-			}
+			} 
 		    } else {
 			quickbar_use ( GameConfig . level_editor_edit_mode, Highlight );
 			/* Completely disallow unaligned placement of walls, with tile granularity, using right click */
@@ -6128,6 +6123,14 @@ LevelEditor(void)
 		    }
 		}
 	    }
+	    
+	    if ( ! MouseRightPressed() && RightMousePressedPreviousFrame && line_mode )
+		{ /* Mouse right released ? terminate line of wall */
+		line_mode = FALSE;
+		line_mode = UNDEFINED;
+		// End line mode and place the walls
+		end_line_mode(&wall_line, TRUE);
+		}
 		    
 	    if ( QPressed ( ) &&  CtrlWasPressed() )
 	    {
