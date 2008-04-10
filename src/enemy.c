@@ -1935,12 +1935,6 @@ update_enemy ( enemy * ThisRobot )
 
 	}
 
-    if ( fabsf(new_move_target . x) < 0.001  || fabsf(new_move_target .x + 1 < 0.001 ))
-	{
-	enemy_say_current_state_on_screen(ThisRobot);
-	printf("caca1 %#x %f, state %s\n", ThisRobot, new_move_target.x, ThisRobot->TextToBeDisplayed);
-	}
-
     /* Pathfind current target */
     /* I am sorry this is a bit dirty, but I've got time and efficiency constraints. If you're not happy please send a patch. No complaints will 
      * be accepted.*/
@@ -1959,10 +1953,11 @@ update_enemy ( enemy * ThisRobot )
 		}
 	    else
 		{
+		CheckEnemyEnemyCollision(ThisRobot);
 		ThisRobot->PrivatePathway[0].x = ThisRobot->pos.x;
 		ThisRobot->PrivatePathway[0].y = ThisRobot->pos.y;
-		ThisRobot->PrivatePathway[1].x = -1;//new_move_target.x;
-		ThisRobot->PrivatePathway[1].y = -1;//new_move_target.y;
+		ThisRobot->PrivatePathway[1].x = new_move_target.x;
+		ThisRobot->PrivatePathway[1].y = new_move_target.y;
 		}
 
 	}
@@ -2551,7 +2546,7 @@ CheckEnemyEnemyCollision ( enemy * OurBot )
 	    if ( erot -> pure_wait ) 
 		continue;
 
-	    printf("Collision between bots %#x and %#x at %f %f/%f %f on level %d. Should not happen any longer...\n", erot, OurBot, erot->pos.x, erot->pos.y, OurBot->pos.x, OurBot->pos.y, erot->pos.z);
+	    //printf("Collision between bots %#x and %#x at %f %f/%f %f on level %d. Should not happen any longer...\n", erot, OurBot, erot->pos.x, erot->pos.y, OurBot->pos.x, OurBot->pos.y, erot->pos.z);
 
 	    // otherwise: stop this one enemy and go back youself
 	    erot->pure_wait = WAIT_COLLISION;
