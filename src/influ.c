@@ -1689,7 +1689,15 @@ set_up_intermediate_course_between_positions ( enemy * droid, gps * curpos, mode
     // here and give out the result later after the recursion.
     //
     bad_luck_in_4_directions_counter = 0;
-    
+   
+    if ( move_target -> x == curpos -> x  && move_target->y == curpos -> y )
+	{
+	waypoints [ 0 ] . x = curpos -> x;
+	waypoints [ 0 ] . y = curpos -> y;
+	waypoints [ 1 ] . x = -1;
+	waypoints [ 1 ] . y = -1;
+	}
+
     //--------------------
     // If the target position cannot be reached at all, because of being inside an obstacle
     // for example, then we know what to do:  Set up one waypoint to the target and that's it.
@@ -1722,7 +1730,14 @@ set_up_intermediate_course_between_positions ( enemy * droid, gps * curpos, mode
     
     int next_index_to_set_up = 0 ;
     
-    recursive_find_walkable_point ( droid, curpos->z,  curpos -> x, curpos -> y , move_target -> x , move_target -> y , 0, waypoints, &next_index_to_set_up, maxwp ) ;
+    if (  ! recursive_find_walkable_point ( droid, curpos->z,  curpos -> x, curpos -> y , move_target -> x , move_target -> y , 0, waypoints, &next_index_to_set_up, maxwp ) )
+	{ /* If we could NOT find our way */
+	waypoints [ 0 ] . x = curpos -> x;
+	waypoints [ 0 ] . y = curpos -> y;
+	waypoints [ 1 ] . x = -1;
+	waypoints [ 1 ] . y = -1;
+	return FALSE;
+	}
     
     //--------------------
     // We delete the current position from the courseway, cause this position
@@ -2206,7 +2221,7 @@ check_tux_enemy_collision (void)
     BROWSE_LEVEL_BOTS_SAFE(erot, nerot, Me . pos .z) 
     {
 	
-	if ( erot->type == ( -1 ) )
+	if ( erot->type == ( -1 ) || erot->pure_wait )
 	    continue;
 	
 	//--------------------
