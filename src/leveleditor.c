@@ -1262,9 +1262,9 @@ quickbar_additem (struct quickbar_entry *entry)
     /* XXX this is a mess */
     struct quickbar_entry *tmp1, *tmp2;
     struct list_head *node;
-    if (quickbar_entries.next == &quickbar_entries) {
+   /* if (quickbar_entries.next == &quickbar_entries) {*/
 	list_add_tail (&entry->node, &quickbar_entries);
-    } else {
+/*    } else {
 	list_for_each (node, &quickbar_entries) {
 	    tmp1 = list_entry (node, struct quickbar_entry, node);
 	    tmp2 = list_entry (node->next, struct quickbar_entry, node);
@@ -1278,7 +1278,7 @@ quickbar_additem (struct quickbar_entry *entry)
 		break;
 	    }
 	}
-    }
+    }*/
     int i = 0;
     list_for_each (node, &quickbar_entries) i++;
     number_of_walls [ LEVEL_EDITOR_SELECTION_QUICK ] = i;
@@ -1294,8 +1294,6 @@ quickbar_click ( Level level, int id, int x, int y )
 	    action_set_floor (level, x, y, entry->id);
 	}
 	entry->used ++;
-	list_del (&entry->node);
-	quickbar_additem (entry);
     }
 }    
 void
@@ -1311,8 +1309,8 @@ quickbar_use (int obstacle, int id)
     }
     if (entry && node != &quickbar_entries) {
 	entry->used ++;
-	list_del (&entry->node);
-	quickbar_additem (entry);
+	/*list_del (&entry->node);
+	quickbar_additem (entry);*/
     } else {
 	entry = MyMalloc (sizeof *entry);
 	entry->obstacle_type = obstacle;
@@ -1776,41 +1774,14 @@ create_new_obstacle_on_level ( Level EditLevel , int our_obstacle_type , float p
 {
     int i;
     int free_index = ( -1 ) ;
-    struct quickbar_entry *entry;
     //--------------------
     // The special 'obstacle_type' (-1) can be given, which means that this
     // function will have to find out the proper type all by itself...
     //
     if ( our_obstacle_type == (-1) )
-    {
-	switch ( GameConfig . level_editor_edit_mode )
 	{
-	    case LEVEL_EDITOR_SELECTION_FLOOR :
-		break;
-	    case LEVEL_EDITOR_SELECTION_QUICK:
-		entry = quickbar_getentry ( Highlight );
-		if (!entry || entry->obstacle_type < 0)
-		    return ;
-		quickbar_use (entry->obstacle_type, entry->id);
-		our_obstacle_type = wall_indices [ entry->obstacle_type ] [ entry-> id ];
-		
-		break;
-	    case LEVEL_EDITOR_SELECTION_WALLS :
-	    case LEVEL_EDITOR_SELECTION_MACHINERY:
-	    case LEVEL_EDITOR_SELECTION_FURNITURE:
-	    case LEVEL_EDITOR_SELECTION_CONTAINERS:
-	    case LEVEL_EDITOR_SELECTION_PLANTS:
-	    case LEVEL_EDITOR_SELECTION_ALL:
-		our_obstacle_type = wall_indices [ GameConfig . level_editor_edit_mode ] [ Highlight ] ;
-		quickbar_use ( GameConfig . level_editor_edit_mode , Highlight );
-		break;
-	    default:
-		ErrorMessage ( __FUNCTION__  , "\
-Illegal level editor mode encountered!" , 
-					   PLEASE_INFORM , IS_FATAL );
-		break;
-	}	  
-    }
+	ErrorMessage ( __FUNCTION__, "Attempted to create an obstacle of type -1. This is not supported any longer, obstacle type has to be specified explicitely both for create_new_obstacle_on_level and action_create_obstacle*.", PLEASE_INFORM, IS_FATAL);
+	}
     
   //--------------------
   // First we find a free obstacle index to insert our new obstacle
@@ -6130,14 +6101,8 @@ LevelEditor(void)
 			    INIT_LIST_HEAD(&wall_line.list);
 			    line_mode = TRUE;
 			    direction = UNDEFINED;
-			    //if (fabsf(TargetSquare.x - (int)TargetSquare.x) < 0.25)
-				wall_line.position.x = (int)TargetSquare.x;
-			    /*else
-				wall_line.position.x = (int)TargetSquare.x + 0.5;*/
-			    //if (fabsf(TargetSquare.y - (int)TargetSquare.y) < 0.25)
-				wall_line.position.y = (int)TargetSquare.y;
-			    /*else
-				wall_line.position.y = (int)TargetSquare.y + 0.5;*/
+			    wall_line.position.x = (int)TargetSquare.x + ((wall_orientation(wall_indices [ GameConfig . level_editor_edit_mode ] [ Highlight ]) == HORIZONTAL) ? 0.5 : 0);
+			    wall_line.position.y = (int)TargetSquare.y + ((wall_orientation(wall_indices [ GameConfig . level_editor_edit_mode ] [ Highlight ]) == HORIZONTAL) ? 0 : 0.5);
 			    wall_line.address = action_create_obstacle_user ( EditLevel , wall_line.position.x , wall_line.position.y , wall_indices [ GameConfig . level_editor_edit_mode ] [ Highlight ] );
 			    quickbar_use ( GameConfig . level_editor_edit_mode, Highlight );
 			} else {
@@ -6149,7 +6114,17 @@ LevelEditor(void)
 			}
 		    } else {
 			quickbar_use ( GameConfig . level_editor_edit_mode, Highlight );
-			action_create_obstacle_user ( EditLevel , TargetSquare . x , TargetSquare . y , wall_indices [ GameConfig . level_editor_edit_mode ] [ Highlight ] );
+			/* Completely disallow unaligned placement of walls, with tile granularity, using right click */
+			moderately_finepoint pos;
+			pos . x = TargetSquare . x;
+			pos . y = TargetSquare . y;
+			if (GameConfig . level_editor_edit_mode == LEVEL_EDITOR_SELECTION_WALLS)
+			    {
+			    pos . x = (int)pos.x;
+			    pos . y = (int)pos.y;
+			    }
+
+			action_create_obstacle_user ( EditLevel , pos . x , pos . y , wall_indices [ GameConfig . level_editor_edit_mode ] [ Highlight ] );
 		    }
 		}
 	    }
