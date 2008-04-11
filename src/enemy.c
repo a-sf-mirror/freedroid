@@ -1744,10 +1744,6 @@ static void state_machine_move_along_random_waypoints(enemy * ThisRobot, moderat
 
     moderately_finepoint a;
     enemy_get_current_walk_target(ThisRobot, &a);
-    if ( a . x == ThisRobot -> pos . x && a . y == ThisRobot -> pos . y && curShip . AllLevels [ ThisRobot-> pos . z ] -> AllWaypoints [ ThisRobot -> nextwaypoint ] . x + 0.5 != ThisRobot -> pos .x && curShip . AllLevels [ ThisRobot-> pos . z ] -> AllWaypoints [ ThisRobot -> nextwaypoint ] . y + 0.5 != ThisRobot -> pos . y )
-	{
-	printf("groscaca pour %#x at %f %f\n", ThisRobot, ThisRobot->pos.x, ThisRobot->pos.y);
-	}
     
     /* Action */
     if ( remaining_distance_to_current_walk_target ( ThisRobot ) < 0.1 )
