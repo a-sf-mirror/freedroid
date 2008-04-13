@@ -4803,154 +4803,167 @@ show_level_editor_tooltips ( void )
     if ( MouseCursorIsOnButton ( GO_LEVEL_NORTH_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
     {
 	if ( time_spent_on_some_button > TICKS_UNTIL_TOOLTIP )
-	    show_button_tooltip ( _("Use this button to move one level north, i.e. to the level that is glued to the northern side of this level." ));
+	    show_button_tooltip ( _("Go level north\n\nUse this button to move one level north, i.e. to the level that is glued to the northern side of this level." ));
     }
     else if ( MouseCursorIsOnButton ( GO_LEVEL_SOUTH_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
     {
 	if ( time_spent_on_some_button > TICKS_UNTIL_TOOLTIP )
-	    show_button_tooltip ( _("Use this button to move one level south, i.e. to the level that is glued to the southern side of this level." ));
+	    show_button_tooltip ( _("Go level south\n\nUse this button to move one level south, i.e. to the level that is glued to the southern side of this level." ));
     }
     else if ( MouseCursorIsOnButton ( GO_LEVEL_EAST_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
     {
 	if ( time_spent_on_some_button > TICKS_UNTIL_TOOLTIP )
-	    show_button_tooltip ( _("Use this button to move one level east, i.e. to the level that is glued to the eastern side of this level." ));
+	    show_button_tooltip ( _("Go level east\n\nUse this button to move one level east, i.e. to the level that is glued to the eastern side of this level." ));
     }
     else if ( MouseCursorIsOnButton ( GO_LEVEL_WEST_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
     {
 	if ( time_spent_on_some_button > TICKS_UNTIL_TOOLTIP )
-	    show_button_tooltip ( _("Use this button to move one level west, i.e. to the level that is glued to the western side of this level." ));
+	    show_button_tooltip ( _("Go level west\n\nUse this button to move one level west, i.e. to the level that is glued to the western side of this level." ));
     }
     else if ( MouseCursorIsOnButton ( EXPORT_THIS_LEVEL_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
     {
 	if ( time_spent_on_some_button > TICKS_UNTIL_TOOLTIP )
-	    show_button_tooltip ( _("In FreedroidRPG maps can be glued together to form one big map.  But that requires that the maps are identical where they overlap.  This button will copy the borders of this level to the borders of the neighbouring levels, so that the maps are in sync again." ));
+	    show_button_tooltip ( _("Export this level\n\nIn FreedroidRPG maps can be glued together to form one big map.  But that requires that the maps are identical where they overlap.  This button will copy the borders of this level to the borders of the neighbouring levels, so that the maps are in sync again." ));
     }
     else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_SAVE_SHIP_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
     {
 	if ( time_spent_on_some_button > TICKS_UNTIL_TOOLTIP )
-	    show_button_tooltip ( _("This button will save your current ship over the file '../map/Asteroid.maps' from your current working directory." ));
+	    show_button_tooltip ( _("Save Map\n\nThis button will save your current map over the file '../map/Asteroid.maps' from your current working directory." ));
     }    
     else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_TOGGLE_WAYPOINT_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
     {
 	if ( time_spent_on_some_button > TICKS_UNTIL_TOOLTIP )
-	    show_button_tooltip ( _("\nUse this button to toggle waypoints on the current cursor location.  Waypoints are marked with a white (or multicolored) 4-direction arrow.\n\nYou can also use the W key for this." ));
+	    show_button_tooltip ( _("Toggle waypoints\n\nUse this button to toggle waypoints on the current cursor location.  Waypoints are marked with a white (or multicolored) 4-direction arrow.\n\nYou can also use the W key for this." ));
     }
     else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_TOGGLE_CONNECTION_BLUE_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
     {
 	if ( time_spent_on_some_button > TICKS_UNTIL_TOOLTIP )
 	{
 	    if ( OriginWaypoint == (-1) )
-		show_button_tooltip ( _("\nUse this button to start a connection between waypoints, so that droids can move along this connection.\n\nYou can also use the C key for this." ));
+		show_button_tooltip ( _("Make waypoint connection\n\nUse this button to start a connection between waypoints, so that droids can move along this connection.\n\nYou can also use the C key for this." ));
 	    else
-		show_button_tooltip ( _("\nYou have currently a connection attempt going on already.  Go to the desired destination waypoint and hit this button again to establish the connection.\n\nYou can also use the C key for this." ));
+		show_button_tooltip ( _("Complete waypoint connection\n\nYou have currently a connection attempt going on already.  Go to the desired destination waypoint and hit this button again to establish the connection.\n\nYou can also use the C key for this." ));
 	}
     }
     else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_DELETE_OBSTACLE_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
     {
 	if ( time_spent_on_some_button > TICKS_UNTIL_TOOLTIP )
-	    show_button_tooltip ( _("\nUse this button to delete the currently marked obstacle.\n\nYou can also use the X key for this." ));
+	    show_button_tooltip ( _("Delete selected obstacle\n\nUse this button to delete the currently marked obstacle.\n\nYou can also use the X key for this." ));
     }
     else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_NEXT_OBSTACLE_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
     {
 	if ( time_spent_on_some_button > TICKS_UNTIL_TOOLTIP )
-	    show_button_tooltip ( _("\nUse this button to cycle the currently marked obstacle on this tile.\n\nYou can also use the N key for this." ));
+	    show_button_tooltip ( _("Next obstacle on currently selected tile\n\nUse this button to cycle the currently marked obstacle on this tile.\n\nYou can also use the N key for this." ));
     }
     else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_BEAUTIFY_GRASS_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
     {
 	if ( time_spent_on_some_button > TICKS_UNTIL_TOOLTIP )
-	    show_button_tooltip ( _("\nUse this button to 'beautify' rough edges of the grass-sand tiles on this entire level automatically.  The function will attempt to create 'round' borders and corners.\n\nYou can also use Ctrl-B for this." ));
+	    show_button_tooltip ( _("Beautify grass button\n\nUse this button to 'beautify' rough edges of the grass-sand tiles on this entire level automatically.  The function will attempt to create 'round' borders and corners.\n\nYou can also use Ctrl-B for this." ));
     }
-    else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_ZOOM_OUT_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
+    else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_ZOOM_OUT_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) ||
+              MouseCursorIsOnButton ( LEVEL_EDITOR_ZOOM_IN_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
     {
 	if ( time_spent_on_some_button > TICKS_UNTIL_TOOLTIP )
-	    show_button_tooltip ( _("\nUse this button to zoom INTO or OUT of the level.\n\nYou can also use the hotkey 'O' for this." ));
+	    show_button_tooltip ( _("Zoom in/out\n\nUse this button to zoom INTO or OUT of the level.\n\nYou can also use the hotkey 'O' for this." ));
     }
     else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_RECURSIVE_FILL_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
     {
 	if ( time_spent_on_some_button > TICKS_UNTIL_TOOLTIP )
-	    show_button_tooltip ( _("Use this button to fill a certain area of the map with the currently selected map tile.  Filling will proceed from the cursor in all direction until a change of map tile is encountered." ));
+	    show_button_tooltip ( _("Fill\n\nUse this button to fill a concurrent area of the map with the currently selected map tile.  Filling will proceed from the cursor in all directions until a change of map tile is encountered." ));
     }
     else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_NEW_OBSTACLE_LABEL_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
     {
 	if ( time_spent_on_some_button > TICKS_UNTIL_TOOLTIP )
-	    show_button_tooltip ( _("Use this button to attach a label to the currently marked obstacle.  These obstacle labels can be used to define obstacles to be modified by events.\n Note that you can also use the hotkey 'h' for this." ));
+	    show_button_tooltip ( _("New obstacle label\n\nUse this button to attach a label to the currently marked obstacle.  These obstacle labels can be used to define obstacles to be modified by events.\n Note that you can also use the hotkey 'h' for this." ));
+    }
+    else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_NEW_OBSTACLE_DESCRIPTION_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
+    {
+    if ( time_spent_on_some_button > TICKS_UNTIL_TOOLTIP )
+	    show_button_tooltip ( _("New obstacle description\n\nedits the description seen when the item is selected" ));
     }
     else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_NEW_MAP_LABEL_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
     {
 	if ( time_spent_on_some_button > TICKS_UNTIL_TOOLTIP )
-	    show_button_tooltip ( _("Use this button to attach a new map label to the current cursor position.  These map labels can be used to define starting points for bots and characters or also to define locations for events and triggers." ));
+	    show_button_tooltip ( _("New map label\n\nUse this button to attach a new map label to the current cursor position.  These map labels can be used to define starting points for bots and characters or also to define locations for events and triggers." ));
     }
     else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_NEW_ITEM_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
     {
 	if ( time_spent_on_some_button > TICKS_UNTIL_TOOLTIP )
-	    show_button_tooltip ( _("Use this button to drop a new item to the floor.  You can also use the hotkey 'G' for this." ));
+	    show_button_tooltip ( _("Add item\n\nUse this button to drop a new item to the floor.  You can also use the hotkey 'G' for this." ));
     }
     else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_ESC_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
     {
 	if ( time_spent_on_some_button > TICKS_UNTIL_TOOLTIP )
-	    show_button_tooltip ( _("Use this button to enter the main menu of the level editor.\n Note, that you can also use the Escape key to enter the level editor main menu." ));
+	    show_button_tooltip ( _("Menu\n\nUse this button to enter the main menu of the level editor.\n Note, that you can also use the Escape key to enter the level editor main menu." ));
     }
     else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_LEVEL_RESIZE_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
     {
 	if ( time_spent_on_some_button > TICKS_UNTIL_TOOLTIP )
-	    show_button_tooltip ( _("Use this button to enter the level resize menu.  Levels can be resized in various ways so as not to destroy your current map too much and so as to insert the new space where you would best like it to be." ));
+	    show_button_tooltip ( _("Level resize\n\nUse this button to enter the level resize menu.  Levels can be resized in various ways so as not to destroy your current map too much and so as to insert the new space where you would best like it to be." ));
     }
     else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_KEYMAP_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
     {
 	if ( time_spent_on_some_button > TICKS_UNTIL_TOOLTIP )
-	    show_button_tooltip ( _("Use this button to enter the level editor keymap display." ));
+	    show_button_tooltip ( _("Level editor guide\n\nUse this button to enter the level editor keymap display." ));
     }
     else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_QUIT_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
     {
 	if ( time_spent_on_some_button > TICKS_UNTIL_TOOLTIP )
-	    show_button_tooltip ( _("Use this button to quit the level editor and back to continue the normal game in normal mode.  Useful for e.g. putting objects into boxes.  You can always re-enter the level editor." ));
+	    show_button_tooltip ( _("Back to game\n\nQuits the level editor and takes you into a FredroidRPG game." ));
     }
     else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_UNDERGROUND_LIGHT_ON_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
     {
 	if ( time_spent_on_some_button > TICKS_UNTIL_TOOLTIP )
-	    show_button_tooltip ( _("Use this button to toggle underground lighting, i.e. shadows coming from the light that the tux emanates.  \n\nThere isn't any key to toggle this on the keyboard." ));
+	    show_button_tooltip ( _("Underground lighting\n\nUse this button to toggle underground lighting, i.e. shadows coming from the light that the tux emanates.\n\nThere isn't any key to toggle this on the keyboard." ));
     }
     else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_TOGGLE_ENEMIES_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) ||
 	      MouseCursorIsOnButton ( LEVEL_EDITOR_TOGGLE_ENEMIES_BUTTON_OFF , GetMousePos_x()  , GetMousePos_y()  ) )
     {
 	if ( time_spent_on_some_button > TICKS_UNTIL_TOOLTIP )
-	    show_button_tooltip ( _("Use this button to toggle between enemies displayed in level editor or enemies hidden in level editor." ));
+	    show_button_tooltip ( _("Toggle display enemies\n\nUse this button to toggle between enemies displayed in level editor or enemies hidden in level editor." ));
     }
     else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_TOGGLE_OBSTACLES_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) ||
 	      MouseCursorIsOnButton ( LEVEL_EDITOR_TOGGLE_OBSTACLES_BUTTON_OFF , GetMousePos_x()  , GetMousePos_y()  ) )
     {
 	if ( time_spent_on_some_button > TICKS_UNTIL_TOOLTIP )
-	    show_button_tooltip ( _("Use this button to toggle between obstacles displayed in level editor or obstacles hidden in level editor." ));
+	    show_button_tooltip ( _("Toggle display obstacles\n\nUse this button to toggle between obstacles displayed in level editor or obstacles hidden in level editor." ));
     }
     else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_UNDO_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) ||
 	      MouseCursorIsOnButton ( LEVEL_EDITOR_UNDO_BUTTON_PUSHED , GetMousePos_x()  , GetMousePos_y()  ) )
     {
 	if ( time_spent_on_some_button > TICKS_UNTIL_TOOLTIP && to_undo.next != &to_undo)
-	    show_button_tooltip ( _("Use this button to undo your last actions." ));
+	    show_button_tooltip ( _("Undo\n\nUse this button to undo your last actions." ));
     }
     else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_REDO_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) ||
 	      MouseCursorIsOnButton ( LEVEL_EDITOR_REDO_BUTTON_PUSHED , GetMousePos_x()  , GetMousePos_y()  ) )
     {
 	if ( time_spent_on_some_button > TICKS_UNTIL_TOOLTIP && to_redo.next != &to_redo)
-	    show_button_tooltip ( _("Use this button to redo an action." ));
+	    show_button_tooltip ( _("Redo\n\nUse this button to redo an action." ));
     }
     else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_TOGGLE_TUX_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) ||
 	      MouseCursorIsOnButton ( LEVEL_EDITOR_TOGGLE_TUX_BUTTON_OFF , GetMousePos_x()  , GetMousePos_y()  ) )
     {
 	if ( time_spent_on_some_button > TICKS_UNTIL_TOOLTIP )
-	    show_button_tooltip ( _("Use this button to toggle between Tux displayed in level editor or Tux hidden in level editor." ));
+	    show_button_tooltip ( _("Toggle display Tux\n\nUse this button to toggle between Tux displayed in level editor or Tux hidden in level editor." ));
     }
     else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_TOGGLE_TOOLTIPS_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) ||
 	      MouseCursorIsOnButton ( LEVEL_EDITOR_TOGGLE_TOOLTIPS_BUTTON_OFF , GetMousePos_x()  , GetMousePos_y()  ) )
     {
 	if ( time_spent_on_some_button > TICKS_UNTIL_TOOLTIP )
-	    show_button_tooltip ( _("Use this button to toggle these annoying help windows on and off." ));
+	    show_button_tooltip ( _("Toggle display tooltips\n\nUse this button to toggle these annoying help windows on and off." ));
     }
     else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_TOGGLE_COLLISION_RECTS_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) ||
 	      MouseCursorIsOnButton ( LEVEL_EDITOR_TOGGLE_COLLISION_RECTS_BUTTON_OFF , GetMousePos_x()  , GetMousePos_y()  ) )
     {
 	if ( time_spent_on_some_button > TICKS_UNTIL_TOOLTIP )
-	    show_button_tooltip ( _("Use this button to toggle the visible collision rectangles on and off." ));
+	    show_button_tooltip ( _("Toggle display colision rectangles\n\nUse this button to toggle the visible collision rectangles on and off." ));
+    }   
+    else if ( MouseCursorIsOnButton (  LEVEL_EDITOR_TOGGLE_GRID_BUTTON , GetMousePos_x()  , GetMousePos_y())    ||
+            MouseCursorIsOnButton (  LEVEL_EDITOR_TOGGLE_GRID_BUTTON_FULL , GetMousePos_x()  , GetMousePos_y()) ||
+            MouseCursorIsOnButton (  LEVEL_EDITOR_TOGGLE_GRID_BUTTON_OFF , GetMousePos_x()  , GetMousePos_y())  )
+    {
+        if ( time_spent_on_some_button > TICKS_UNTIL_TOOLTIP )
+            show_button_tooltip ( _("Change grid mode ( placement / full / off )" ));
     }
     else
     {
