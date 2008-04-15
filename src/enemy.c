@@ -1670,8 +1670,8 @@ static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_m
 	    {
 	    if ( dist2 > 2.25 )
 		{ /* Melee weapon and too far to strike ? get closer */
-		new_move_target -> x = enemy_get_target_position(ThisRobot) -> x;
-		new_move_target -> y = enemy_get_target_position(ThisRobot) -> y;
+		new_move_target -> x = tpos -> x;
+		new_move_target -> y = tpos -> y;
 
 		}
 	    }
@@ -1683,8 +1683,8 @@ static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_m
 		} 	
 	    if ( ! DirectLineWalkable ( ThisRobot->virt_pos.x, ThisRobot->virt_pos.y, tpos->x, tpos->y, tpos->z))
 		{
-		new_move_target -> x = enemy_get_target_position(ThisRobot) -> x;
-		new_move_target -> y = enemy_get_target_position(ThisRobot) -> y;
+		new_move_target -> x = tpos -> x;
+		new_move_target -> y = tpos -> y;
 		}
 	    }
 	}
@@ -1692,9 +1692,12 @@ static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_m
 	ThisRobot -> last_combat_step += Frame_Time ();
    
     // shorten the move vector a bit
-    float sz = sqrtf((new_move_target->x - ThisRobot->pos.x)*(new_move_target->x - ThisRobot->pos.x)+ (new_move_target->y - ThisRobot->pos.y)* (new_move_target->y - ThisRobot->pos.y));
-    new_move_target -> x = ThisRobot->pos.x + (new_move_target->x - ThisRobot->pos.x) * (sz - sqrt(2.25))/ sz;
-    new_move_target -> y = ThisRobot->pos.y + (new_move_target->y - ThisRobot->pos.y) * (sz - sqrt(2.25))/ sz;
+    float dist = sqrtf(dist2);
+    if ( dist2 > 2.25 ) 
+	{
+	new_move_target -> x = ThisRobot->pos.x + (new_move_target->x - ThisRobot->pos.x) * (dist - sqrt(2.25))/ dist;
+	new_move_target -> y = ThisRobot->pos.y + (new_move_target->y - ThisRobot->pos.y) * (dist - sqrt(2.25))/ dist;
+	}
 
     //--------------------
     // Melee weapons have a certain limited range.  If such a weapon is used,
