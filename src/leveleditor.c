@@ -1271,7 +1271,7 @@ void
 quickbar_additem (struct quickbar_entry *entry)
 {
     /* XXX this is a mess */
-    struct quickbar_entry *tmp1, *tmp2;
+    //struct quickbar_entry *tmp1, *tmp2;
     struct list_head *node;
    /* if (quickbar_entries.next == &quickbar_entries) {*/
 	list_add_tail (&entry->node, &quickbar_entries);
