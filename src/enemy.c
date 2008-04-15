@@ -1666,13 +1666,13 @@ static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_m
 	/* Depending on the weapon of the bot, we will go *to* melee combat or try and avoid it */
 	ThisRobot -> last_combat_step = 0 ; 
 
+	char move_to_target = 0;
+
 	if ( ItemMap [ Druidmap [ ThisRobot -> type ] . weapon_item . type ] . item_weapon_is_melee )
 	    {
 	    if ( dist2 > 2.25 )
 		{ /* Melee weapon and too far to strike ? get closer */
-		new_move_target -> x = tpos -> x;
-		new_move_target -> y = tpos -> y;
-
+		move_to_target = 1;
 		}
 	    }
 	else 
@@ -1683,21 +1683,20 @@ static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_m
 		} 	
 	    if ( ! DirectLineWalkable ( ThisRobot->virt_pos.x, ThisRobot->virt_pos.y, tpos->x, tpos->y, tpos->z))
 		{
-		new_move_target -> x = tpos -> x;
-		new_move_target -> y = tpos -> y;
+		move_to_target = 1;
 		}
 	    }
+	// shorten the move vector a bit
+	if ( move_to_target && dist2 > 1.5) 
+	    {
+	    new_move_target -> x = ThisRobot->pos.x + (tpos->x - ThisRobot->pos.x) * (1.0 - ((1.0)/ sqrt(dist2)));
+	    new_move_target -> y = ThisRobot->pos.y + (tpos->y - ThisRobot->pos.y) * (1.0 - ((1.0)/ sqrt(dist2)));
+	    }
+
 	}
     else
 	ThisRobot -> last_combat_step += Frame_Time ();
    
-    // shorten the move vector a bit
-    float dist = sqrtf(dist2);
-    if ( dist2 > 2.25 ) 
-	{
-	new_move_target -> x = ThisRobot->pos.x + (new_move_target->x - ThisRobot->pos.x) * (dist - sqrt(2.25))/ dist;
-	new_move_target -> y = ThisRobot->pos.y + (new_move_target->y - ThisRobot->pos.y) * (dist - sqrt(2.25))/ dist;
-	}
 
     //--------------------
     // Melee weapons have a certain limited range.  If such a weapon is used,
