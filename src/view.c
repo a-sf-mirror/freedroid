@@ -3986,29 +3986,32 @@ There was a droid type on this level, that does not really exist.",
 
 #if 0
     /* This code displays the pathway of the bots as well as their next waypoint */
-    glDisable(GL_TEXTURE_2D);
-    glLineWidth(2.0);
-    int a, b;
-    glBegin(GL_LINE_STRIP);
-    glColor3f(0.0,1.0,1.0);
-    translate_map_point_to_screen_pixel ( e->pos.x, e->pos.y, &a, &b, 1.0 );
-    glVertex2i(a, b);
-    translate_map_point_to_screen_pixel (curShip . AllLevels [ e-> pos . z ] -> AllWaypoints [ e ->nextwaypoint ] . x + 0.5 , 
-	    curShip . AllLevels [ e-> pos . z ] -> AllWaypoints [ e ->nextwaypoint ] . y + 0.5, &a, &b, 1.0);
-    glVertex2i(a,b);
-    glEnd();
-    int aue = 0;
-    glBegin(GL_LINE_STRIP);
-    translate_map_point_to_screen_pixel ( e->pos.x, e->pos.y, &a, &b, 1.0 );
-    glColor3f(0.0, 0.0, 1.0);
-    glVertex2i(a, b);
-    for ( ; aue < 5 && e->PrivatePathway[aue].x != -1; aue ++)
+    if ( e->energy > 0 )
 	{
-	translate_map_point_to_screen_pixel ( e->PrivatePathway[aue].x, e->PrivatePathway[aue].y, &a, &b, 1.0 );
+	glDisable(GL_TEXTURE_2D);
+	glLineWidth(2.0);
+	int a, b;
+	glBegin(GL_LINE_STRIP);
+	glColor3f(0.0,1.0,1.0);
+	translate_map_point_to_screen_pixel ( e->pos.x, e->pos.y, &a, &b, 1.0 );
 	glVertex2i(a, b);
+	translate_map_point_to_screen_pixel (curShip . AllLevels [ e-> pos . z ] -> AllWaypoints [ e ->nextwaypoint ] . x + 0.5 , 
+		curShip . AllLevels [ e-> pos . z ] -> AllWaypoints [ e ->nextwaypoint ] . y + 0.5, &a, &b, 1.0);
+	glVertex2i(a,b);
+	glEnd();
+	int aue = 0;
+	glBegin(GL_LINE_STRIP);
+	translate_map_point_to_screen_pixel ( e->pos.x, e->pos.y, &a, &b, 1.0 );
+	glColor3f(0.0, 0.0, 1.0);
+	glVertex2i(a, b);
+	for ( ; aue < 5 && e->PrivatePathway[aue].x != -1; aue ++)
+	    {
+	    translate_map_point_to_screen_pixel ( e->PrivatePathway[aue].x, e->PrivatePathway[aue].y, &a, &b, 1.0 );
+	    glVertex2i(a, b);
+	    }
+	glEnd();
+	glEnable(GL_TEXTURE_2D);
 	}
-    glEnd();
-    glEnable(GL_TEXTURE_2D);
 #endif
     
     //--------------------
