@@ -92,8 +92,8 @@ class Grid(object):
             return (x, y)      
 
 def main(argv):
-    if len(argv) < 4:
-        print "USAGE: %s <files-pattern> <output-file> <coords-file>" % argv[0]
+    if len(argv) < 3:
+        print "USAGE: %s <files-pattern> <coords-file>" % argv[0]
         return 1
     
     files = glob(argv[1])
@@ -113,19 +113,14 @@ def main(argv):
         raw_input()
 
     print
-    print "Generating the atlas..."
-    gi = Image.new("RGBA", (g.w, g.h))
-    for f,i,p in pos:
-        gi.paste(i, p)
-    print "Saving the atlas..."
-    gi.save(argv[2])
     print "Generation completed ! Now, generating the coords file."
-    fp = open(argv[3], 'w')
+    fp = open(argv[2], 'w')
     for f,i,p in pos:
         fp2 = open(f.split('.')[0] + '.offset')
         ox,oy = [int(l.split('=')[1].strip()) for l in fp2
                  if l.startswith('Offset')]
-        fp.write("%s %d %d %d %d %d %d\n" % (f, p[0], p[1], p[0] + i.size[0], p[1] + i.size[1], ox, oy))
+        fp.write("%s %d %d %d %d %d %d\n" % (f, p[0], p[1], i.size[0],
+            i.size[1], ox, oy))
     print "File generated ! Exiting..."
 
     return 0
