@@ -1107,39 +1107,50 @@ action_change_obstacle_label_user ( Level EditLevel, obstacle *our_obstacle, cha
     {
 	name = EditLevel -> obstacle_name_list [ free_index ];
     }
-    action_change_obstacle_label ( EditLevel, our_obstacle, name );
-    
-    //--------------------
-    // But even if we fill in something new, we should first
-    // check against double entries of the same label.  Let's
-    // do it...
-    //
-    for ( check_double = 0 ; check_double < MAX_OBSTACLE_NAMES_PER_LEVEL ; check_double++ )
-    {
-	//--------------------
-	// We must not use null pointers for string comparison...
-	//
-	if ( EditLevel -> obstacle_name_list [ check_double ] == NULL ) continue ;
+
+    // if name is a valid label, otherwise delete me
+    if(strlen(name) != 0)
+    {// valid label
+        action_change_obstacle_label ( EditLevel, our_obstacle, name );
+            //--------------------
+            // But even if we fill in something new, we should first
+            // check against double entries of the same label.  Let's
+            // do it...
+            //
+            for ( check_double = 0 ; check_double < MAX_OBSTACLE_NAMES_PER_LEVEL ; check_double++ )
+            {
+	            //--------------------
+	            // We must not use null pointers for string comparison...
+	            //
+	            if ( EditLevel -> obstacle_name_list [ check_double ] == NULL ) continue ;
 	
-	//--------------------
-	// We must not overwrite ourself with us in foolish ways :)
-	//
-	if ( check_double == free_index ) continue ;
+	            //--------------------
+	            // We must not overwrite ourself with us in foolish ways :)
+	            //
+	            if ( check_double == free_index ) continue ;
 	
-	//--------------------
-	// But in case of real double-entries, we'll handle them right.
-	//
-	if ( ! strcmp ( EditLevel -> obstacle_name_list [ free_index ] , 
-			EditLevel -> obstacle_name_list [ check_double ] ) )
-	{
-	    ErrorMessage ( __FUNCTION__  , "\
+	            //--------------------
+	            // But in case of real double-entries, we'll handle them right.
+	            //
+	            if ( ! strcmp ( EditLevel -> obstacle_name_list [ free_index ] , 
+			            EditLevel -> obstacle_name_list [ check_double ] ) )
+	            {
+	                ErrorMessage ( __FUNCTION__  , "\
 The label just entered did already exist on this map!  Deleting old entry in favour of the new one!",
-				       NO_NEED_TO_INFORM , IS_WARNING_ONLY );
-	    EditLevel -> obstacle_name_list [ free_index ] = NULL ;
-	    our_obstacle -> name_index = check_double ;
-	    break;
-	}
+				                   NO_NEED_TO_INFORM , IS_WARNING_ONLY );
+	                EditLevel -> obstacle_name_list [ free_index ] = NULL ;
+	                our_obstacle -> name_index = check_double ;
+	                break;
+	            }
+	        }
     }
+    else
+    {// not a label, throw away
+       EditLevel -> obstacle_name_list [ free_index ] = NULL;
+       our_obstacle -> name_index = -1;
+    }
+
+
 }   
 
 void
@@ -2725,7 +2736,7 @@ InsertColumnEasternInterface( Level EditLevel )
   if ( EditLevel -> jump_threshold_east <= 0 ) return;
 
   //--------------------
-  // We use available methods to add a column, even if in the wrong
+  // We use availabel methods to add a column, even if in the wrong
   // place for now.
   //
   InsertColumnVeryEast ( EditLevel );
@@ -5070,9 +5081,9 @@ Please enter new description text for this obstacle: \n\n" ,
     //
     if ( strlen ( EditLevel -> obstacle_description_list [ free_index ] ) == 0 )
     {
+    	free (EditLevel -> obstacle_description_list [ free_index ]);
 	EditLevel -> obstacle_description_list [ free_index ] = NULL ;
 	our_obstacle -> description_index = (-1);
-	return;
     }
     
 }; // void give_new_description_to_obstacle ( EditLevel , level_editor_marked_obstacle )
