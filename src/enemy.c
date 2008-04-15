@@ -713,12 +713,14 @@ MoveThisRobotThowardsHisCurrentTarget ( enemy * ThisRobot )
 static int
 SetNewRandomWaypoint ( Enemy ThisRobot )
 {
+    int i;
     Waypoint WpList;	
     int nextwp;
     finepoint nextwp_pos;
     waypoint *this_wp;
     int num_conn;
     int trywp = 0 ;
+    int FreeWays[ MAX_WP_CONNECTIONS ];
     int SolutionFound;
     int TestConnection;
     Level WaypointLevel = curShip.AllLevels[ ThisRobot -> pos.z ];
@@ -743,22 +745,58 @@ SetNewRandomWaypoint ( Enemy ThisRobot )
 	return 1;
     }
     
+    //--------------------
+    // At this point, we should check, if there is another waypoint 
+    // and also if the way there is free of other droids
+    //
+    for ( i = 0; i < num_conn ; i++ )
+    {
+	FreeWays [ i ] = CheckIfWayIsFreeOfDroids ( TRUE, 
+	    WpList [ ThisRobot -> lastwaypoint ] . x + 0.5 , 
+	    WpList [ ThisRobot -> lastwaypoint ] . y + 0.5 , 
+	    WpList [ WpList [ ThisRobot -> lastwaypoint ] . connections [ i ] ] . x + 0.5 , 
+	    WpList [ WpList [ ThisRobot -> lastwaypoint ] . connections [ i ] ] . y + 0.5 , 
+	    ThisRobot->pos.z , ThisRobot );
+    }
+    
+    //--------------------
+    // Now see whether any way point at all is free in that sense
+    // otherwise we set this robot to waiting and return;
+    //
+    for ( i = 0 ; i < num_conn ; i++ )
+    {
+	if ( FreeWays[i] ) break;
+    }
+    if ( i == num_conn )
+    {
+	DebugPrintf( 2 , "\n%s(): Sorry, there seems no free way out.  I'll wait then... , num_conn was : %d ." , __FUNCTION__ , num_conn );
+	ThisRobot->pure_wait = 1.5 ; 
+	return 1;
+    }
+    
+    //--------------------
+    // Now that we know, there is some way out of this, we can test around
+    // and around randomly until we finally find some solution.
+    //
+    // ThisRobot->nextwaypoint = WpList [ nextwp ] . connections [ i ] ;
+    // 
     SolutionFound = FALSE;
     while ( !SolutionFound )
     {
-	TestConnection = MyRandom ( num_conn - 1 );
+	TestConnection = MyRandom ( WpList [ nextwp ] . num_connections - 1 );
 	
-	if ( this_wp->connections[ TestConnection ] == (-1) ) continue;
+	if ( WpList[nextwp].connections[ TestConnection ] == (-1) ) continue;
+	if ( !FreeWays[TestConnection] ) continue;
 	
-	trywp = this_wp->connections[ TestConnection ];
+	trywp = WpList[nextwp].connections[ TestConnection ];
 	SolutionFound = TRUE;
     }
     
+    // set new waypoint...
     ThisRobot->nextwaypoint = trywp;
-    
-    return 0;
-  
-}; // void SetNewRandomWaypoint ( Enemy ThisRobot )
+
+    return 0;    
+};
 
 /* ----------------------------------------------------------------------
  * This function is supposed to find out if a given line on an 
@@ -1608,7 +1646,7 @@ static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_m
     /* In case the target is on another level, evaluate the virtual position */
     update_virtual_position( &ThisRobot->virt_pos, &ThisRobot->pos, tpos -> z );
 
-    if ( ThisRobot->virt_pos . z  == -1 && ! droid_can_walk_this_line ( tpos -> z , ThisRobot -> virt_pos . x , ThisRobot -> virt_pos . y , tpos-> x , tpos->y ) ) 
+    if ( ThisRobot->virt_pos . z  == -1 ) //|| ! droid_can_walk_this_line ( tpos -> z , ThisRobot -> virt_pos . x , ThisRobot -> virt_pos . y , tpos-> x , tpos->y ) ) 
 	{ // target not reachable ?
 	ThisRobot -> combat_state = SELECT_NEW_WAYPOINT;
 	return;
@@ -1634,6 +1672,7 @@ static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_m
 		{ /* Melee weapon and too far to strike ? get closer */
 		new_move_target -> x = enemy_get_target_position(ThisRobot) -> x;
 		new_move_target -> y = enemy_get_target_position(ThisRobot) -> y;
+
 		}
 	    }
 	else 
@@ -1651,7 +1690,12 @@ static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_m
 	}
     else
 	ThisRobot -> last_combat_step += Frame_Time ();
-    
+   
+    // shorten the move vector a bit
+    float sz = sqrtf((new_move_target->x - ThisRobot->pos.x)*(new_move_target->x - ThisRobot->pos.x)+ (new_move_target->y - ThisRobot->pos.y)* (new_move_target->y - ThisRobot->pos.y));
+    new_move_target -> x = ThisRobot->pos.x + (new_move_target->x - ThisRobot->pos.x) * (sz - sqrt(2.25))/ sz;
+    new_move_target -> y = ThisRobot->pos.y + (new_move_target->y - ThisRobot->pos.y) * (sz - sqrt(2.25))/ sz;
+
     //--------------------
     // Melee weapons have a certain limited range.  If such a weapon is used,
     // don't fire if the influencer is several squares away!
@@ -1704,10 +1748,9 @@ static void state_machine_select_new_waypoint(enemy * ThisRobot, moderately_fine
     
     /* Bot must select a new waypoint randomly, and turn towards it. No move this step.*/
     if ( SetNewRandomWaypoint( ThisRobot ) )
-	{ /* couldn't find a waypoint ? go waypointless */
+	{ /* couldn't find a waypoint ? go waypointless  */
 	ThisRobot->combat_state = WAYPOINTLESS_WANDERING;
 	}
-
 
     ThisRobot->combat_state = TURN_TOWARDS_NEXT_WAYPOINT;
 }
@@ -1742,11 +1785,8 @@ static void state_machine_move_along_random_waypoints(enemy * ThisRobot, moderat
     new_move_target -> x = curShip . AllLevels [ ThisRobot-> pos . z ] -> AllWaypoints [ ThisRobot -> nextwaypoint ] . x + 0.5;
     new_move_target -> y = curShip . AllLevels [ ThisRobot-> pos . z ] -> AllWaypoints [ ThisRobot -> nextwaypoint ] . y + 0.5;
 
-    moderately_finepoint a;
-    enemy_get_current_walk_target(ThisRobot, &a);
-    
     /* Action */
-    if ( remaining_distance_to_current_walk_target ( ThisRobot ) < 0.1 )
+    if ((new_move_target -> x - ThisRobot->pos.x) * (new_move_target -> x - ThisRobot->pos.x) + (new_move_target -> y - ThisRobot -> pos.y ) * (new_move_target -> y - ThisRobot->pos.y) < 0.3 )
 	{
 	ThisRobot -> combat_state = SELECT_NEW_WAYPOINT ;
 	return;
@@ -1928,9 +1968,9 @@ update_enemy ( enemy * ThisRobot )
      * we get the current moving target of the bot (ie. old)
      * we compare the new and current moving target
      *    if they differ : we have to set up a new route (pathfind the route)
-     *    if they do not : we still have to pathfind the route towards the first waypoint in case a bot got in the way
+     *    if they do not : we move towards our first waypoint
      *
-     * special cases: if first waypoint is current position, we do nothing
+     * special case: 
      *                if first waypoint is -1 -1 we have a bug and do nothing (hack around)
      */
     moderately_finepoint wps[30];
@@ -1949,8 +1989,10 @@ update_enemy ( enemy * ThisRobot )
 		{
 		ThisRobot->PrivatePathway[0].x = ThisRobot->pos.x;
 		ThisRobot->PrivatePathway[0].y = ThisRobot->pos.y;
-		ThisRobot->PrivatePathway[1].x = new_move_target.x;
-		ThisRobot->PrivatePathway[1].y = new_move_target.y;
+		ThisRobot->PrivatePathway[1].x = -1;
+		ThisRobot->PrivatePathway[1].y = -1;
+		if ( ThisRobot->pure_wait < 1 )
+		    ThisRobot->pure_wait = 1;
 		}
 
 	}
