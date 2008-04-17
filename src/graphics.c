@@ -1380,7 +1380,7 @@ InitPictures (void)
     
     ShowStartupPercentage ( 22 ) ; 
     
-    load_all_isometric_floor_tiles (  );
+    load_floor_tiles (  );
     
     ShowStartupPercentage ( 25 ) ; 
     

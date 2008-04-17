@@ -216,6 +216,7 @@ EXTERN int safely_initialize_our_default_open_gl_parameters ( void ) ;
 EXTERN void draw_gl_textured_quad_at_map_position ( iso_image * our_floor_iso_image , float our_col , float our_line , float r , float g , float b , int highlight_texture, int blend, float zoom_factor ) ;
 EXTERN void draw_gl_textured_quad_at_screen_position ( iso_image * our_floor_iso_image , int x , int y ) ;
 EXTERN void draw_gl_scaled_textured_quad_at_screen_position ( iso_image * our_floor_iso_image , int x , int y , float scale_factor ) ;
+EXTERN void draw_gl_scaled_quad_from_atlas_at_screen_position ( iso_image *, gl_atlas_member *, int x , int y , float scale ) ;
 EXTERN void blit_semitransparent_open_gl_texture_to_screen_position ( iso_image * our_floor_iso_image , int x , int y , float scale_factor ) ;
 EXTERN void blit_special_background ( int background_code );
 EXTERN void flush_background_image_cache ( void );
@@ -248,7 +249,7 @@ EXTERN void Load_Tux_Surfaces( void );
 EXTERN void LoadOneMapInsertSurfaceIfNotYetLoaded ( int i );
 EXTERN void Load_Bullet_Surfaces (void);
 EXTERN void Load_Blast_Surfaces (void);
-EXTERN void load_all_isometric_floor_tiles ( void );
+EXTERN void load_floor_tiles ( void );
 EXTERN void load_all_obstacles ( void );
 EXTERN void blit_iso_image_to_map_position ( iso_image * our_iso_image , float pos_x , float pos_y );
 EXTERN void blit_iso_image_to_map_position_in_buffer ( SDL_Surface *current_buffer , 

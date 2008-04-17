@@ -893,6 +893,27 @@ draw_gl_scaled_textured_quad_at_screen_position ( iso_image * our_floor_iso_imag
     
 };
 
+void
+draw_gl_scaled_quad_from_atlas_at_screen_position ( iso_image * ourimg, gl_atlas_member * ouratl, int x, int y, float scale )
+{
+#ifdef HAVE_LIBGL
+glBindTexture(GL_TEXTURE_2D, ouratl->tex);
+glEnable(GL_ALPHA_TEST); 
+glBegin(GL_QUADS);
+glTexCoord2f( ouratl->x1, ouratl->y2);
+glVertex2i( x, y );
+glTexCoord2f( ouratl->x1, ouratl->y1 );
+glVertex2i( x, y + ourimg->original_image_height * scale);
+glTexCoord2f( ouratl->x2, ouratl->y1 );
+glVertex2i( x + ourimg->original_image_width * scale, y + ourimg->original_image_height * scale);
+glTexCoord2f(  ouratl->x2, ouratl->y2 );
+glVertex2i( x  + ourimg->original_image_width * scale, y);
+glEnd();
+glDisable(GL_ALPHA_TEST);
+#endif
+}
+
+
 /* ----------------------------------------------------------------------
  * This function blits some texture to the screen, but instead of using
  * the usual 1:1 ratio, this function will instead stretch the texture

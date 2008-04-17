@@ -943,10 +943,10 @@ NO_NEED_TO_INFORM, IS_WARNING_ONLY, offset_file_name );
   offset_data = ReadAndMallocAndTerminateFile( offset_file_name , END_OF_OFFSET_FILE_STRING ) ;
 
   ReadValueFromString( offset_data ,  OFFSET_FILE_OFFSETX_STRING , "%hd" , 
-		       & ( our_iso_image -> offset_x ) , offset_data + 1000 );
+		       & ( our_iso_image -> offset_x ) , offset_data + strlen(offset_data) );
 
   ReadValueFromString( offset_data ,  OFFSET_FILE_OFFSETY_STRING , "%hd" , 
-		       & ( our_iso_image -> offset_y ) , offset_data + 1000 );
+		       & ( our_iso_image -> offset_y ) , offset_data + strlen(offset_data) );
   free ( offset_data );
 
 }; // void get_offset_for_iso_image_from_file_and_path ( fpath , our_iso_image )
@@ -4131,49 +4131,111 @@ void load_all_obstacles ( void ) {
 }; // void load_all_obstacles ( void )
 
 /* ----------------------------------------------------------------------
- * This function loads the graphics for one floor tile type (given as a
- * parameter) into memory and also makes textures and the like in case
- * of OpenGL as selected graphics output method.
- * ---------------------------------------------------------------------- */
-void
-load_one_isometric_floor_tile ( int tile_type ) 
-{
-    char fpath[2048];
-    char ConstructedFileName[2000];
-    
-    //--------------------
-    // At first we construct the file name of the single tile file we are about to load...
-    //
-    strcpy ( ConstructedFileName , "floor_tiles/" );
-    strcat ( ConstructedFileName , floor_tile_filenames [ tile_type ] );
-    find_file ( ConstructedFileName , GRAPHICS_DIR , fpath, 0);
-    
-    if ( use_open_gl )
-    {
-	get_iso_image_from_file_and_path ( fpath , & ( floor_iso_images [ tile_type ] ) , TRUE ) ;
-	
-	make_texture_out_of_surface ( & ( floor_iso_images [ tile_type ] ) ) ;
-    }
-    else
-    {
-	get_iso_image_with_colorkey_from_file_and_path ( fpath , & ( floor_iso_images [ tile_type ] ) ) ;
-    }
-    
-}; // void load_one_isometric_floor_tile ( int tile_type ) 
-
-/* ----------------------------------------------------------------------
- *
+ * This function loads isometric floor tiles, and in OpenGL mode, generates
+ * a texture atlas.
  *
  * ---------------------------------------------------------------------- */
 void
-load_all_isometric_floor_tiles ( void )
+load_floor_tiles ( void )
 {
   int i;
+  char fpath[2048];
+
+  char * atlasdat = NULL;
+  char * pos = NULL;
+  char * epos;
+  char * field;
+  int atlas_w, atlas_h;
+
+  iso_image * atlas = MyMalloc(sizeof(iso_image));
+  SDL_Rect dest_rect;
+
+  if ( use_open_gl ) 
+      {
+      find_file ( "floor_tiles/atlas.txt", GRAPHICS_DIR, fpath, 0);
+      atlasdat = ReadAndMallocAndTerminateFile(fpath, NULL);
+      if ( memcmp(atlasdat, "size ", 5 ) )
+	  ErrorMessage(__FUNCTION__, "Atlas file floor_tiles/atlas.txt did not seem to start with the size of the atlas. Corrupted?\n", PLEASE_INFORM, IS_FATAL);
+
+      /* read atlas width and height, and place 'pos' on the first file line */
+      pos = atlasdat +  5;
+      epos = pos;
+      while ( *epos != ' ') epos++;
+      *epos = 0;
+      atlas_w = atoi(pos);
+      *epos = ' ';
+      epos++;
+      pos = epos;
+      while ( *epos != '\n') epos++;
+      *epos = 0;
+      atlas_h = atoi(pos);
+      *epos = '\n';
+      pos = epos + 1;
+
+      atlas->surface = SDL_CreateRGBSurface( SDL_SWSURFACE , atlas_w, atlas_h, 32, rmask, gmask, bmask, amask);
+      SDL_SetAlpha(atlas->surface, 0, SDL_ALPHA_OPAQUE);
+      }
 
   for ( i = 0 ; i < ALL_ISOMETRIC_FLOOR_TILES ; i ++ )
     {
-      load_one_isometric_floor_tile ( i ) ;
+    char ConstructedFileName[2000];
+
+    strcpy ( ConstructedFileName , "floor_tiles/" );
+    strcat ( ConstructedFileName , floor_tile_filenames [ i ] );
+    find_file ( ConstructedFileName , GRAPHICS_DIR , fpath, 0);
+
+    if ( use_open_gl )
+	{
+	get_iso_image_from_file_and_path ( fpath , & ( floor_iso_images [ i ] ) , TRUE ) ;
+
+	field = strstr(pos, floor_tile_filenames [ i ]);
+	if ( ! field ) 
+	    ErrorMessage(__FUNCTION__, "Atlas file for floor tiles does not contain file %s which is needed.\n", PLEASE_INFORM, IS_FATAL, floor_tile_filenames [ i ]);
+
+	while ( *field != ' ' ) field ++;
+	field ++;
+	epos = field;
+	while ( *epos != ' ' ) epos ++;
+	*epos = 0;
+	dest_rect.x = atoi(field);
+	*epos = ' ';
+	field = epos + 1;
+	epos ++;
+	while ( *epos != '\n' ) epos ++;
+	*epos = 0;
+	dest_rect.y = atoi(field);
+	*epos = '\n';
+        	
+	dest_rect.w = floor_iso_images [ i ] . original_image_width;
+	dest_rect.h = floor_iso_images [ i ] . original_image_height;
+
+	//printf("blitting image %d (%s) at %d %d, size %d %d\n", i, floor_tile_filenames [ i ], dest_rect.x, dest_rect.y, dest_rect.w, dest_rect.h);
+	SDL_SetAlpha(floor_iso_images [ i ] .surface, 0, SDL_ALPHA_OPAQUE);
+
+	SDL_BlitSurface ( floor_iso_images [ i ] .surface, NULL, atlas->surface, &dest_rect);
+
+	floor_atlas [ i ] . x1 = (float)dest_rect.x / (float)atlas_w;
+	floor_atlas [ i ] . y1 = (float)dest_rect.y / (float)atlas_h;
+	floor_atlas [ i ] . x2 = floor_atlas [ i ] . x1 + (float)floor_iso_images[i].original_image_width / (float)atlas_w;
+	floor_atlas [ i ] . y2 = floor_atlas [ i ] . y1 + (float)floor_iso_images[i].original_image_height / (float)atlas_h;
+
+	SDL_FreeSurface( floor_iso_images [ i ].surface );
+	}
+    else
+	{
+	get_iso_image_with_colorkey_from_file_and_path ( fpath , & ( floor_iso_images [ i ] ) ) ;
+	}
     }
-}; // void load_all_isometric_floor_tiles ( void )
+
+  if ( use_open_gl )
+      {
+      free(atlasdat);
+      make_texture_out_of_prepadded_image(atlas);
+      for ( i = 0; i < ALL_ISOMETRIC_FLOOR_TILES; i ++)
+	  floor_atlas [ i ] . tex = *atlas->texture;
+      free ( atlas );
+      }
+
+}; // void load_floor_tiles ( void )
 
 #undef _blocks_c
