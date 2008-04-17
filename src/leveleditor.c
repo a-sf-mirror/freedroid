@@ -3364,11 +3364,9 @@ DoLevelEditorMainMenu ( Level EditLevel )
 		if ( curShip . num_levels < MAX_LEVELS )
 		{
 		    CreateNewMapLevel ( ) ;
-		    CenteredPutString ( Screen ,  12*FontHeight( FPS_Display_BFont ), "New level has been added!");
-		    our_SDL_flip_wrapper( Screen );
-		    while ( ! SpacePressed ( ) && ! EnterPressed ( ) && ! MouseLeftPressed());
-		    while ( EnterPressed ( ) || SpacePressed ( ) || MouseLeftPressed()) ;
-		    SetTextCursor( 15 , 440 );
+		    Me . pos . z = curShip.num_levels - 1;
+		    Me . pos . x = 3;
+		    Me . pos . y = 3;
 		}
 		proceed_now=!proceed_now;
 		break;
