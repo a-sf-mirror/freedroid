@@ -115,12 +115,9 @@ def main(argv):
     print
     print "Generation completed ! Now, generating the coords file."
     fp = open(argv[2], 'w')
+    fp.write("size %d %d\n" % (g.w, g.h))
     for f,i,p in pos:
-        fp2 = open(f.split('.')[0] + '.offset')
-        ox,oy = [int(l.split('=')[1].strip()) for l in fp2
-                 if l.startswith('Offset')]
-        fp.write("%s %d %d %d %d %d %d\n" % (f, p[0], p[1], i.size[0],
-            i.size[1], ox, oy))
+        fp.write("%s %d %d\n" % (f, p[0], p[1]))
     print "File generated ! Exiting..."
 
     return 0
