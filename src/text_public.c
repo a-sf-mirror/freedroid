@@ -312,7 +312,7 @@ This indicates a serious bug in this installation of Freedroid.",
 	DebugPrintf ( 1 , "\nchar* ReadAndMallocAndTerminateFile ( char* filename ) : Opening file succeeded...");
     }
     
-    MemoryAmount = FS_filelength( DataFile )  + 64*2 + 10000;
+    MemoryAmount = FS_filelength( DataFile )  + 100;
     Data = (char *) MyMalloc ( MemoryAmount );
     
     fread ( Data, MemoryAmount, 1, DataFile);
@@ -320,42 +320,44 @@ This indicates a serious bug in this installation of Freedroid.",
     DebugPrintf ( 1 , "\n%s(): Reading file succeeded..." , __FUNCTION__ );
 
     if ( fclose ( DataFile ) == EOF)
-    {
+	{
 	fprintf( stderr, "\n\nfilename: '%s'\n" , filename );
 	ErrorMessage ( __FUNCTION__  , "\
-Freedroid was unable to close a given text file, that should be there and\n\
-should be accessible.\n\
-This indicates a strange bug in this installation of Freedroid, that is\n\
-very likely a problem with the file/directory permissions of the files\n\
-belonging to Freedroid.",
-				   PLEASE_INFORM, IS_FATAL );
-    }
+		Freedroid was unable to close a given text file, that should be there and\n\
+		should be accessible.\n\
+		This indicates a strange bug in this installation of Freedroid, that is\n\
+		very likely a problem with the file/directory permissions of the files\n\
+		belonging to Freedroid.",
+		PLEASE_INFORM, IS_FATAL );
+	}
     else
-    {
+	{
 	DebugPrintf( 1 , "\n%s(): file closed successfully...\n" , __FUNCTION__ );
-    }
-    
+	}
+
     // NOTE: Since we do not assume to always have pure text files here, we switched to
     // MyMemmem, so that we can handle 0 entries in the middle of the file content as well
-    //
-    if ( ( ReadPointer = MyMemmem ( Data, (size_t) MemoryAmount , (char*)File_End_String , (size_t)strlen( File_End_String ))) == NULL)
-    {
-	fprintf( stderr, "\n\nfilename: '%s'\n" , filename );
-	fprintf( stderr, "File_End_String: '%s'\n" , File_End_String );
+    if ( File_End_String )
+	{
+	if ( ( ReadPointer = MyMemmem ( Data, (size_t) MemoryAmount , (char*)File_End_String , (size_t)strlen( File_End_String ))) == NULL)
+	    {
+	    fprintf( stderr, "\n\nfilename: '%s'\n" , filename );
+	    fprintf( stderr, "File_End_String: '%s'\n" , File_End_String );
 
-	ErrorMessage ( __FUNCTION__  , "\
-Freedroid was unable to find the string, that should indicate the end of\n\
-the given text file within this file.\n\
-This indicates a corrupt or outdated data or saved game file.", PLEASE_INFORM, IS_FATAL );
-    }
-  else
-    {
-      // ReadPointer+=strlen( File_End_String ) + 1; // no need to destroy the end pointer :-)
-      ReadPointer[0]=0; // we want to handle the file like a string, even if it is not zero
-                       // terminated by nature.  We just have to add the zero termination.
-    }
+	    ErrorMessage ( __FUNCTION__  , "\
+		    Freedroid was unable to find the string, that should indicate the end of\n\
+		    the given text file within this file.\n\
+		    This indicates a corrupt or outdated data or saved game file.", PLEASE_INFORM, IS_FATAL );
+	    }
+	else
+	    {
+	    ReadPointer[0]=0;
+	    }
+	}
+    else
+	Data [ MemoryAmount - 100 ] = 0;
 
-  // DebugPrintf( 1 , "\nchar* ReadAndMallocAndTerminateFile ( char* filename ) : The content of the read file: \n%s" , Data );
+
 
   return ( Data );
 }; // char* ReadAndMallocAndTerminateFile( char* filename) 
