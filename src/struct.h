@@ -82,6 +82,22 @@ typedef struct iso_image_s
 iso_image, *Iso_image;
 #define UNLOADED_ISO_IMAGE { NULL , 0 , 0 , NULL , 0 , 0 , 0 }
 
+/* ----------------------------------------------------------------------
+ * This structure defines a texture atlas member
+ * ---------------------------------------------------------------------- */
+typedef struct gl_atlas_member_s
+{
+#ifdef HAVE_LIBGL
+    GLuint tex;
+#else
+    unsigned int tex;
+#endif
+    float x1;
+    float x2;
+    float y1;
+    float y2;
+} gl_atlas_member;
+
 
 typedef struct mouse_press_button_s
 {
