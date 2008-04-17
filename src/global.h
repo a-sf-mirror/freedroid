@@ -260,6 +260,9 @@ EXTERN int droid_death_animation_speed_factor [ ENEMY_ROTATION_MODELS_AVAILABLE 
 EXTERN int droid_stand_animation_speed_factor [ ENEMY_ROTATION_MODELS_AVAILABLE ];
 
 EXTERN iso_image floor_iso_images [ ALL_ISOMETRIC_FLOOR_TILES ] ;   
+#ifdef HAVE_LIBGL
+EXTERN gl_atlas_member floor_atlas[ ALL_ISOMETRIC_FLOOR_TILES ];
+#endif
 
 EXTERN float iso_floor_tile_width;
 EXTERN float iso_floor_tile_height;
