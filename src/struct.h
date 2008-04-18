@@ -973,4 +973,12 @@ typedef struct line_element {
 	list_head_t list;
 } line_element, *Line_element;
 
+typedef struct whole_line {
+	int activated;
+	int direction;
+	int editor_mode;
+	int id;
+	line_element elements;
+} whole_line, *Whole_line;
+
 #endif
