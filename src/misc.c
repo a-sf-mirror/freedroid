@@ -926,7 +926,7 @@ ComputeFPSForThisFrame(void)
   if ( !tenframedelay ) FPSover10 = 1000 * 10 / 0.5 ;
   else FPSover10 = 1000 * 10 / (float) tenframedelay;
 
-  if ( !tenframedelay ) FPSover100 = 1000 * 100 / 0.5 ;
+  if ( !hundredframedelay ) FPSover100 = 1000 * 100 / 0.5 ;
   FPSover100 = 1000 * 100 / (float) onehundredframedelay;
   
 #else
