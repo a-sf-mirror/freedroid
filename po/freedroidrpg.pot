@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: freedroid-discussion@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-04-20 10:32+0200\n"
+"POT-Creation-Date: 2008-04-20 15:18+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -820,12 +820,12 @@ msgstr ""
 msgid "This obstacle seems solid."
 msgstr ""
 
-#: ../src/bullet.c:627
+#: ../src/bullet.c:634
 #, c-format
 msgid "Disruptor blast has hit you for %d damage."
 msgstr ""
 
-#: ../src/bullet.c:677
+#: ../src/bullet.c:684
 msgid "That one went into the armour."
 msgstr ""
 
@@ -1315,41 +1315,41 @@ msgstr ""
 msgid "Clip empty, reloading..."
 msgstr ""
 
-#: ../src/influ.c:2899
+#: ../src/influ.c:2910
 msgid "No more ammunition !"
 msgstr ""
 
-#: ../src/influ.c:3388
+#: ../src/influ.c:3399
 #, c-format
 msgid "This is a %s. %s"
 msgstr ""
 
-#: ../src/influ.c:3413 ../src/influ.c:3420
+#: ../src/influ.c:3424 ../src/influ.c:3431
 #, c-format
 msgid "Examining %s.  %s"
 msgstr ""
 
-#: ../src/influ.c:3435
+#: ../src/influ.c:3446
 #, c-format
 msgid "You see the floor.  It should be perfectly safe to walk on it."
 msgstr ""
 
-#: ../src/influ.c:3466
+#: ../src/influ.c:3477
 #, c-format
 msgid "Unlocking obstacle of type %d."
 msgstr ""
 
-#: ../src/influ.c:3495
+#: ../src/influ.c:3506
 #, c-format
 msgid "Repairing obstacle of type %d."
 msgstr ""
 
-#: ../src/influ.c:3524
+#: ../src/influ.c:3535
 #, c-format
 msgid "Attacking obstacle of type %d."
 msgstr ""
 
-#: ../src/influ.c:3553
+#: ../src/influ.c:3564
 #, c-format
 msgid "Picking pockets of obstacle of type %d."
 msgstr ""
