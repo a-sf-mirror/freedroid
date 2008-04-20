@@ -142,6 +142,13 @@ void DoMeleeDamage (void)
 		continue;
 		}
 
+	    if ( tg -> energy <= 0 )
+		{
+		// our enemy is already dead ! 
+		delete_melee_shot(CurMelS);
+		continue;
+		}
+
 	    if ( ((float) Druidmap [ tg -> type ] . monster_level * (float)MyRandom ( 100 ) < CurMelS->to_hit ))
 		{
 		hit_enemy(tg, CurMelS->damage, CurMelS->mine ? 1 : 0, CurMelS->owner, CurMelS->mine ? 1 : 0);
