@@ -1308,6 +1308,20 @@ move_tux_thowards_raw_position ( float x , float y )
     Me . speed . x = planned_step . x ;
     Me . speed . y = planned_step . y ;
     
+    // --------------------
+    // If speed is so high, that we might step over the target,
+    // we reduce the speed.
+    //
+    if ( ( Frame_Time() > 0.001 ) && ( length > 0.05 ) )
+	{
+	if ( fabsf ( planned_step . x * Frame_Time() ) >= fabsf ( RemainingWay .x  ) )
+	    Me . speed . x = RemainingWay . x / Frame_Time() ;
+	if ( fabsf ( planned_step . y * Frame_Time() ) >= fabsf ( RemainingWay .y  ) )
+	    Me . speed . y = RemainingWay . y / Frame_Time() ;
+	}
+    
+    
+  
     //--------------------
     // In case we have reached our target, we can remove this mouse_move_target again,
     // but also if we have been thrown onto a different level, we cancel our current
