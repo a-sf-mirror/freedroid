@@ -626,6 +626,10 @@ move_enemy_to_spot ( Enemy ThisRobot , moderately_finepoint next_target_spot )
 	    {
 	    ThisRobot -> speed . x = maxspeed * remaining_way . x / length;
 	    ThisRobot -> speed . y = maxspeed * remaining_way . y / length;
+	    if ( fabsf( ThisRobot -> speed . x * Frame_Time() ) >= fabsf ( remaining_way . x) )
+		ThisRobot -> speed . x = remaining_way . x / Frame_Time();
+	    if ( fabsf( ThisRobot -> speed . y * Frame_Time()) >= fabsf ( remaining_way .y ) )
+		ThisRobot->speed.y = remaining_way . y / Frame_Time();
 	    ThisRobot -> pos . x += ThisRobot -> speed . x * Frame_Time ();
 	    ThisRobot -> pos . y += ThisRobot -> speed . y * Frame_Time ();
 	    }
