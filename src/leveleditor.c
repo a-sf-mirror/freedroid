@@ -5366,8 +5366,8 @@ void start_line_mode(whole_line *walls, moderately_finepoint TargetSquare,
 	walls->editor_mode = GameConfig . level_editor_edit_mode;
 	walls->id = Highlight;
     }
-    walls->elements.position.x = (int)TargetSquare.x + ((wall_orientation(wall_indices [ GameConfig . level_editor_edit_mode ] [ Highlight ]) == HORIZONTAL) ? 0.5 : 0);
-    walls->elements.position.y = (int)TargetSquare.y + ((wall_orientation(wall_indices [ GameConfig . level_editor_edit_mode ] [ Highlight ]) == HORIZONTAL) ? 0 : 0.5);
+    walls->elements.position.x = (int)TargetSquare.x + ((wall_orientation(wall_indices [ walls->editor_mode ] [ walls->id ]) == HORIZONTAL) ? 0.5 : 0);
+    walls->elements.position.y = (int)TargetSquare.y + ((wall_orientation(wall_indices [ walls->editor_mode ] [ walls->id ]) == HORIZONTAL) ? 0 : 0.5);
     walls->elements.address = action_create_obstacle_user ( EditLevel , 
 	    walls->elements.position.x , walls->elements.position.y , 
 	    wall_indices [ walls->editor_mode ] [ walls->id ] );
