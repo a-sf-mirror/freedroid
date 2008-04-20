@@ -710,14 +710,17 @@ quickbar_getentry ( int id )
 }
 
 iso_image *
-quickbar_getimage ( int id ) 
+quickbar_getimage ( int selected_index , int *placing_floor ) 
 {
-    struct quickbar_entry *entry = quickbar_getentry ( id );
+    struct quickbar_entry *entry = quickbar_getentry ( selected_index );
     if (!entry) 
 	return NULL;
-    if (entry->obstacle_type != -1)
+    if (entry->obstacle_type == LEVEL_EDITOR_SELECTION_FLOOR) {
+	*placing_floor = TRUE;
+	return &floor_iso_images  [ entry->id ];
+    } else {
 	return &obstacle_map [wall_indices [ entry -> obstacle_type ] [ entry->id ] ] . image;
-    return &floor_iso_images  [ entry->id ];
+    }
 }
 
 void
@@ -1991,6 +1994,7 @@ ShowLevelEditorTopMenu( int Highlight )
     int i;
     SDL_Rect TargetRectangle;
     int selected_index = FirstBlock;
+    int placing_floor;
     SDL_Surface *tmp = NULL;
     float zoom_factor;
 
@@ -2016,11 +2020,12 @@ ShowLevelEditorTopMenu( int Highlight )
         iso_image * img=NULL;
         int y_off;
         y_off=TargetRectangle.y;
-
+	placing_floor = FALSE;
 	switch ( GameConfig . level_editor_edit_mode )
 	{
 	    case LEVEL_EDITOR_SELECTION_FLOOR:
                 img = & (floor_iso_images [ selected_index ]);
+		placing_floor = TRUE;
 		break;
 	    case LEVEL_EDITOR_SELECTION_WALLS:
 	    case LEVEL_EDITOR_SELECTION_MACHINERY:
@@ -2031,7 +2036,8 @@ ShowLevelEditorTopMenu( int Highlight )
                 img = &(obstacle_map [wall_indices [ GameConfig . level_editor_edit_mode ] [ selected_index ] ] . image);
                 break;
 	    case LEVEL_EDITOR_SELECTION_QUICK:
-		img = quickbar_getimage ( selected_index );
+		img = quickbar_getimage ( selected_index, &placing_floor );
+		if (i == 0)
 		break;
 	    default:
 		ErrorMessage ( __FUNCTION__  , 
@@ -2056,17 +2062,17 @@ ShowLevelEditorTopMenu( int Highlight )
 		( (float)INITIAL_BLOCK_HEIGHT / (float)img -> surface->h ) );
 		}
 
-        if( GameConfig . level_editor_edit_mode == LEVEL_EDITOR_SELECTION_FLOOR)
+        if( placing_floor )
                 y_off = TargetRectangle . y + 0.75 * TargetRectangle.h - 
                            zoom_factor * (float)(img -> original_image_height);
 
 		if ( use_open_gl )
 		{
-		if ( GameConfig . level_editor_edit_mode != LEVEL_EDITOR_SELECTION_FLOOR )
+		if ( placing_floor )
+		    draw_gl_scaled_quad_from_atlas_at_screen_position ( img, &floor_atlas [ selected_index ], TargetRectangle.x, y_off, zoom_factor);
+		else
 		    draw_gl_scaled_textured_quad_at_screen_position ( img , TargetRectangle . x , 
 			    y_off, zoom_factor) ;
-		else
-		    draw_gl_scaled_quad_from_atlas_at_screen_position ( img, &floor_atlas [ selected_index ], TargetRectangle.x, y_off, zoom_factor);
 		//additionally in the ALL tab, display object number
 		if ( GameConfig . level_editor_edit_mode == LEVEL_EDITOR_SELECTION_ALL)
 			{
