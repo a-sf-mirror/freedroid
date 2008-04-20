@@ -966,19 +966,4 @@ typedef struct supported_languages_s
     char * font_class; 
 } supported_languages_t;
 
-typedef struct line_element {
-	moderately_finepoint position;
-	obstacle* address;
-
-	list_head_t list;
-} line_element, *Line_element;
-
-typedef struct whole_line {
-	int activated;
-	int direction;
-	int editor_mode;
-	int id;
-	line_element elements;
-} whole_line, *Whole_line;
-
 #endif
