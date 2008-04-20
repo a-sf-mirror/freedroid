@@ -729,7 +729,7 @@ quickbar_additem (struct quickbar_entry *entry)
     /* XXX this is a mess */
     //struct quickbar_entry *tmp1, *tmp2;
     struct list_head *node;
-   /* if (quickbar_entries.next == &quickbar_entries) {*/
+   /* if (list_empty(&quickbar_entries) { */
 	list_add_tail (&entry->node, &quickbar_entries);
 /*    } else {
 	list_for_each (node, &quickbar_entries) {
@@ -2024,7 +2024,7 @@ ShowLevelEditorTopMenu( int Highlight )
 	switch ( GameConfig . level_editor_edit_mode )
 	{
 	    case LEVEL_EDITOR_SELECTION_FLOOR:
-                img = & (floor_iso_images [ selected_index ]);
+		img = & (floor_iso_images [ selected_index ]);
 		placing_floor = TRUE;
 		break;
 	    case LEVEL_EDITOR_SELECTION_WALLS:
@@ -2037,7 +2037,6 @@ ShowLevelEditorTopMenu( int Highlight )
                 break;
 	    case LEVEL_EDITOR_SELECTION_QUICK:
 		img = quickbar_getimage ( selected_index, &placing_floor );
-		if (i == 0)
 		break;
 	    default:
 		ErrorMessage ( __FUNCTION__  , 
