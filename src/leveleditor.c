@@ -676,7 +676,7 @@ action_do ( Level level, action *a )
 void 
 action_undo ( Level level ) 
 {
-    if (to_undo.next != &to_undo) {
+    if (!list_empty(&to_undo)) {
 	action *a = (action *)to_undo.next;
 	push_mode = 1;
 	if (a->type == ACT_MULTIPLE_FLOOR_SETS) {
@@ -685,7 +685,7 @@ action_undo ( Level level )
 	    for (i = 0; i < a->d.number_fill_set; i++) {
 		action_undo (level);
 	    }
-	    list_add (&a->node, to_redo.next);
+	    list_add (&a->node, &to_redo);
 	} else {
 	    action_do (level, a);
 	}
@@ -696,7 +696,7 @@ action_undo ( Level level )
 void 
 action_redo ( Level level ) 
 {
-     if (to_redo.next != &to_redo) {
+     if (!list_empty(&to_redo)) {
 	action *a = (action *)to_redo.next;
 	push_mode = -1;
 	if (a->type == ACT_MULTIPLE_FLOOR_SETS) {
@@ -5922,11 +5922,7 @@ LevelEditor(void)
 	    //
 	    HandleLevelEditorCursorKeys();
 	    
-	    //--------------------
-	    // With the 'S' key, you can attach a statement for the influencer to 
-	    // say to a given location, i.e. the location the map editor cursor
-	    // currently is on.
-	    //
+	    /* Undo / Redo */
 	    if ( UPressed () ) {
 		action_undo ( EditLevel );
 		while ( UPressed ( ) );
@@ -5935,6 +5931,11 @@ LevelEditor(void)
 		action_redo ( EditLevel );
 		while ( RPressed ( ) );
 	    }
+	    //--------------------
+	    // With the 'S' key, you can attach a statement for the influencer to 
+	    // say to a given location, i.e. the location the map editor cursor
+	    // currently is on.
+	    //
 	    if ( SPressed () )
 	    {
 		while (SPressed());
