@@ -3445,7 +3445,7 @@ position_collides_with_this_obstacle ( float x , float y , obstacle* our_obstacl
  * This function is called 100k times per frame in a labyrinth. Speak of tight loops.
  *
  * ---------------------------------------------------------------------- */
-int 
+inline int 
 position_collides_with_obstacles_on_square ( float x, float y , int x_tile , int y_tile , Level PassLevel )
 {
   int glue_index;
