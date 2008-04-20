@@ -158,7 +158,7 @@ action_redo ( Level level )
 	    for (i = 0; i < a->d.number_fill_set; i++) {
 		action_redo (level);
 	    }
-	    list_add (&a->node, to_undo.next);
+	    list_add (&a->node, &to_undo);
 	} else {
 	    action_do (level, a);
 	}
