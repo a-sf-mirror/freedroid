@@ -723,33 +723,67 @@ quickbar_getimage ( int selected_index , int *placing_floor )
     }
 }
 
+/* Inserts an item in a sorted list */
 void
 quickbar_additem (struct quickbar_entry *entry)
 {
-    /* XXX this is a mess */
-    //struct quickbar_entry *tmp1, *tmp2;
+    struct quickbar_entry *tmp1, *tmp2;
+    struct quickbar_entry *smallest, *biggest;
     struct list_head *node;
-   /* if (list_empty(&quickbar_entries) { */
-	list_add_tail (&entry->node, &quickbar_entries);
-/*    } else {
+    /* The smallest element (if the list is non-empty) is the last element */
+    smallest = list_entry(quickbar_entries.prev, struct quickbar_entry, node);
+    /* Biggest one */ 
+    biggest = list_entry(quickbar_entries.next, struct quickbar_entry, node);
+
+    /* If the list is empty or if the entry we want to insert is smaller than 
+     * the smallest element, just insert the entry */
+    if ((list_empty(&quickbar_entries)) ||
+	    (entry->used < smallest->used)) {
+	list_add_tail(&entry->node, &quickbar_entries);
+    /* If it's bigger than the biggest one, let it be the first */
+    } else if (entry->used > biggest->used) {
+	list_add(&entry->node, &quickbar_entries);
+    } else {
+	/* We know the element is between two entries, so let's find the place */
 	list_for_each (node, &quickbar_entries) {
 	    tmp1 = list_entry (node, struct quickbar_entry, node);
 	    tmp2 = list_entry (node->next, struct quickbar_entry, node);
-	    if (&tmp2->node != &quickbar_entries) {
-		if (tmp1->used <= entry->used && entry->used <= tmp2->used) {
-		    list_add_tail (&entry->node, &tmp1->node);
-		    break;
-		}
-	    } else {
-		list_add_tail (&entry->node, node);
+	    if (tmp1->used >= entry->used && entry->used >= tmp2->used) {
+		list_add (&entry->node, &tmp1->node);
 		break;
 	    }
 	}
-    }*/
+    }
+
     int i = 0;
     list_for_each (node, &quickbar_entries) i++;
     number_of_walls [ LEVEL_EDITOR_SELECTION_QUICK ] = i;
 }
+
+void
+quickbar_use (int obstacle, int id)
+{
+    struct list_head *node;
+    struct quickbar_entry *entry = NULL;;
+    list_for_each (node, &quickbar_entries) {
+	entry = list_entry (node, struct quickbar_entry, node);
+	if (entry->id == id && entry->obstacle_type == obstacle)  {
+	    break;
+	}
+    }
+    if (entry && node != &quickbar_entries) {
+	entry->used ++;
+	list_del (&entry->node);
+	quickbar_additem (entry);
+    } else {
+	entry = MyMalloc (sizeof *entry);
+	entry->obstacle_type = obstacle;
+	entry->id = id;
+	entry->used = 1;
+	quickbar_additem (entry);
+    }
+}
+
 void
 quickbar_click ( Level level, int id, moderately_finepoint TargetSquare, whole_line *walls)
 {
@@ -774,29 +808,6 @@ quickbar_click ( Level level, int id, moderately_finepoint TargetSquare, whole_l
 	entry->used ++;
     }
 }    
-void
-quickbar_use (int obstacle, int id)
-{
-    struct list_head *node;
-    struct quickbar_entry *entry = NULL;;
-    list_for_each (node, &quickbar_entries) {
-	entry = list_entry (node, struct quickbar_entry, node);
-	if (entry->id == id && entry->obstacle_type == obstacle)  {
-	    break;
-	}
-    }
-    if (entry && node != &quickbar_entries) {
-	entry->used ++;
-	/*list_del (&entry->node);
-	quickbar_additem (entry);*/
-    } else {
-	entry = MyMalloc (sizeof *entry);
-	entry->obstacle_type = obstacle;
-	entry->id = id;
-	entry->used = 1;
-	quickbar_additem (entry);
-    }
-}
 
 /* ----------------------------------------------------------------------
  * Is this tile a 'full' grass tile, i.e. a grass tile with ABSOLUTELY
