@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: freedroid-discussion@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-04-20 15:18+0200\n"
+"POT-Creation-Date: 2008-04-20 16:29+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -849,81 +849,81 @@ msgstr ""
 msgid "What will you say?"
 msgstr ""
 
-#: ../src/enemy.c:1026
+#: ../src/enemy.c:1030
 #, c-format
 msgid "Your friend %s was killed by %s."
 msgstr ""
 
-#: ../src/enemy.c:1028
+#: ../src/enemy.c:1032
 #, c-format
 msgid "You killed %s."
 msgstr ""
 
-#: ../src/enemy.c:1030
+#: ../src/enemy.c:1034
 #, c-format
 msgid "%s is dead."
 msgstr ""
 
-#: ../src/enemy.c:1035
+#: ../src/enemy.c:1039
 #, c-format
 msgid "For defeating %s, you receive %d experience."
 msgstr ""
 
-#: ../src/enemy.c:1038
+#: ../src/enemy.c:1042
 #, c-format
 msgid "%s was killed by %s."
 msgstr ""
 
-#: ../src/enemy.c:1039
+#: ../src/enemy.c:1043
 #, c-format
 msgid "%s died."
 msgstr ""
 
-#: ../src/enemy.c:1179
+#: ../src/enemy.c:1183
 msgid "state:  Wandering along waypoints."
 msgstr ""
 
-#: ../src/enemy.c:1182
+#: ../src/enemy.c:1186
 msgid "state: Select next WP."
 msgstr ""
 
-#: ../src/enemy.c:1185
+#: ../src/enemy.c:1189
 msgid "state:  Turn towards next WP."
 msgstr ""
 
-#: ../src/enemy.c:1188
+#: ../src/enemy.c:1192
 msgid "state:  Rush Tux and open talk."
 msgstr ""
 
-#: ../src/enemy.c:1191
+#: ../src/enemy.c:1195
 msgid "state:  Stop and eye target."
 msgstr ""
 
-#: ../src/enemy.c:1194
+#: ../src/enemy.c:1198
 msgid "state:  Attack."
 msgstr ""
 
-#: ../src/enemy.c:1197
+#: ../src/enemy.c:1201
 msgid "state:  Returning home."
 msgstr ""
 
-#: ../src/enemy.c:1200
+#: ../src/enemy.c:1204
 msgid "state:  Waypointless wandering."
 msgstr ""
 
-#: ../src/enemy.c:1203
+#: ../src/enemy.c:1207
 msgid "state:  Paralyzed."
 msgstr ""
 
-#: ../src/enemy.c:1206
+#: ../src/enemy.c:1210
 msgid "state: Completely fixed."
 msgstr ""
 
-#: ../src/enemy.c:1209
+#: ../src/enemy.c:1213
 msgid "state: Follow Tux."
 msgstr ""
 
-#: ../src/enemy.c:1212
+#: ../src/enemy.c:1216
 msgid "state:  UNHANDLED!!"
 msgstr ""
 
@@ -1624,43 +1624,43 @@ msgstr ""
 msgid "I can't carry any more."
 msgstr ""
 
-#: ../src/leveleditor.c:2182
+#: ../src/leveleditor.c:1633
 msgid "Cancel item drop"
 msgstr ""
 
-#: ../src/leveleditor.c:2482
+#: ../src/leveleditor.c:1933
 msgid "FLOOR"
 msgstr ""
 
-#: ../src/leveleditor.c:2483
+#: ../src/leveleditor.c:1934
 msgid "WALLS"
 msgstr ""
 
-#: ../src/leveleditor.c:2484
+#: ../src/leveleditor.c:1935
 msgid "MACHINERY"
 msgstr ""
 
-#: ../src/leveleditor.c:2485
+#: ../src/leveleditor.c:1936
 msgid "FURNITURE"
 msgstr ""
 
-#: ../src/leveleditor.c:2486
+#: ../src/leveleditor.c:1937
 msgid "CONTAINERS"
 msgstr ""
 
-#: ../src/leveleditor.c:2487
+#: ../src/leveleditor.c:1938
 msgid "NATURE"
 msgstr ""
 
-#: ../src/leveleditor.c:2488
+#: ../src/leveleditor.c:1939
 msgid "ALL"
 msgstr ""
 
-#: ../src/leveleditor.c:2489
+#: ../src/leveleditor.c:1940
 msgid "QUICK"
 msgstr ""
 
-#: ../src/leveleditor.c:4362
+#: ../src/leveleditor.c:3813
 #, c-format
 msgid ""
 "\n"
@@ -1668,7 +1668,7 @@ msgid ""
 " label_name=\"%s\"."
 msgstr ""
 
-#: ../src/leveleditor.c:4831
+#: ../src/leveleditor.c:4282
 msgid ""
 "Go level north\n"
 "\n"
@@ -1676,7 +1676,7 @@ msgid ""
 "the northern side of this level."
 msgstr ""
 
-#: ../src/leveleditor.c:4836
+#: ../src/leveleditor.c:4287
 msgid ""
 "Go level south\n"
 "\n"
@@ -1684,7 +1684,7 @@ msgid ""
 "the southern side of this level."
 msgstr ""
 
-#: ../src/leveleditor.c:4841
+#: ../src/leveleditor.c:4292
 msgid ""
 "Go level east\n"
 "\n"
@@ -1692,7 +1692,7 @@ msgid ""
 "the eastern side of this level."
 msgstr ""
 
-#: ../src/leveleditor.c:4846
+#: ../src/leveleditor.c:4297
 msgid ""
 "Go level west\n"
 "\n"
@@ -1700,7 +1700,7 @@ msgid ""
 "the western side of this level."
 msgstr ""
 
-#: ../src/leveleditor.c:4851
+#: ../src/leveleditor.c:4302
 msgid ""
 "Export this level\n"
 "\n"
@@ -1710,7 +1710,7 @@ msgid ""
 "that the maps are in sync again."
 msgstr ""
 
-#: ../src/leveleditor.c:4856
+#: ../src/leveleditor.c:4307
 msgid ""
 "Save Map\n"
 "\n"
@@ -1718,7 +1718,7 @@ msgid ""
 "from your current working directory."
 msgstr ""
 
-#: ../src/leveleditor.c:4861
+#: ../src/leveleditor.c:4312
 msgid ""
 "Toggle waypoints\n"
 "\n"
@@ -1728,7 +1728,7 @@ msgid ""
 "You can also use the W key for this."
 msgstr ""
 
-#: ../src/leveleditor.c:4868
+#: ../src/leveleditor.c:4319
 msgid ""
 "Make waypoint connection\n"
 "\n"
@@ -1738,7 +1738,7 @@ msgid ""
 "You can also use the C key for this."
 msgstr ""
 
-#: ../src/leveleditor.c:4870
+#: ../src/leveleditor.c:4321
 msgid ""
 "Complete waypoint connection\n"
 "\n"
@@ -1748,7 +1748,7 @@ msgid ""
 "You can also use the C key for this."
 msgstr ""
 
-#: ../src/leveleditor.c:4876
+#: ../src/leveleditor.c:4327
 msgid ""
 "Delete selected obstacle\n"
 "\n"
@@ -1757,7 +1757,7 @@ msgid ""
 "You can also use the X key for this."
 msgstr ""
 
-#: ../src/leveleditor.c:4881
+#: ../src/leveleditor.c:4332
 msgid ""
 "Next obstacle on currently selected tile\n"
 "\n"
@@ -1766,7 +1766,7 @@ msgid ""
 "You can also use the N key for this."
 msgstr ""
 
-#: ../src/leveleditor.c:4886
+#: ../src/leveleditor.c:4337
 msgid ""
 "Beautify grass button\n"
 "\n"
@@ -1777,7 +1777,7 @@ msgid ""
 "You can also use Ctrl-B for this."
 msgstr ""
 
-#: ../src/leveleditor.c:4892
+#: ../src/leveleditor.c:4343
 msgid ""
 "Zoom in/out\n"
 "\n"
@@ -1786,7 +1786,7 @@ msgid ""
 "You can also use the hotkey 'O' for this."
 msgstr ""
 
-#: ../src/leveleditor.c:4897
+#: ../src/leveleditor.c:4348
 msgid ""
 "Fill\n"
 "\n"
@@ -1795,7 +1795,7 @@ msgid ""
 "until a change of map tile is encountered."
 msgstr ""
 
-#: ../src/leveleditor.c:4902
+#: ../src/leveleditor.c:4353
 msgid ""
 "New obstacle label\n"
 "\n"
@@ -1804,14 +1804,14 @@ msgid ""
 " Note that you can also use the hotkey 'h' for this."
 msgstr ""
 
-#: ../src/leveleditor.c:4907
+#: ../src/leveleditor.c:4358
 msgid ""
 "New obstacle description\n"
 "\n"
 "edits the description seen when the item is selected"
 msgstr ""
 
-#: ../src/leveleditor.c:4912
+#: ../src/leveleditor.c:4363
 msgid ""
 "New map label\n"
 "\n"
@@ -1820,7 +1820,7 @@ msgid ""
 "characters or also to define locations for events and triggers."
 msgstr ""
 
-#: ../src/leveleditor.c:4917
+#: ../src/leveleditor.c:4368
 msgid ""
 "Add item\n"
 "\n"
@@ -1828,7 +1828,7 @@ msgid ""
 "hotkey 'G' for this."
 msgstr ""
 
-#: ../src/leveleditor.c:4922
+#: ../src/leveleditor.c:4373
 msgid ""
 "Menu\n"
 "\n"
@@ -1837,7 +1837,7 @@ msgid ""
 "menu."
 msgstr ""
 
-#: ../src/leveleditor.c:4927
+#: ../src/leveleditor.c:4378
 msgid ""
 "Level resize\n"
 "\n"
@@ -1846,21 +1846,21 @@ msgid ""
 "insert the new space where you would best like it to be."
 msgstr ""
 
-#: ../src/leveleditor.c:4932
+#: ../src/leveleditor.c:4383
 msgid ""
 "Level editor guide\n"
 "\n"
 "Use this button to enter the level editor keymap display."
 msgstr ""
 
-#: ../src/leveleditor.c:4937
+#: ../src/leveleditor.c:4388
 msgid ""
 "Back to game\n"
 "\n"
 "Quits the level editor and takes you into a FredroidRPG game."
 msgstr ""
 
-#: ../src/leveleditor.c:4942
+#: ../src/leveleditor.c:4393
 msgid ""
 "Underground lighting\n"
 "\n"
@@ -1870,7 +1870,7 @@ msgid ""
 "There isn't any key to toggle this on the keyboard."
 msgstr ""
 
-#: ../src/leveleditor.c:4948
+#: ../src/leveleditor.c:4399
 msgid ""
 "Toggle display enemies\n"
 "\n"
@@ -1878,7 +1878,7 @@ msgid ""
 "enemies hidden in level editor."
 msgstr ""
 
-#: ../src/leveleditor.c:4954
+#: ../src/leveleditor.c:4405
 msgid ""
 "Toggle display obstacles\n"
 "\n"
@@ -1886,21 +1886,21 @@ msgid ""
 "obstacles hidden in level editor."
 msgstr ""
 
-#: ../src/leveleditor.c:4960
+#: ../src/leveleditor.c:4411
 msgid ""
 "Undo\n"
 "\n"
 "Use this button to undo your last actions."
 msgstr ""
 
-#: ../src/leveleditor.c:4966
+#: ../src/leveleditor.c:4417
 msgid ""
 "Redo\n"
 "\n"
 "Use this button to redo an action."
 msgstr ""
 
-#: ../src/leveleditor.c:4972
+#: ../src/leveleditor.c:4423
 msgid ""
 "Toggle display Tux\n"
 "\n"
@@ -1908,30 +1908,30 @@ msgid ""
 "hidden in level editor."
 msgstr ""
 
-#: ../src/leveleditor.c:4978
+#: ../src/leveleditor.c:4429
 msgid ""
 "Toggle display tooltips\n"
 "\n"
 "Use this button to toggle these annoying help windows on and off."
 msgstr ""
 
-#: ../src/leveleditor.c:4984
+#: ../src/leveleditor.c:4435
 msgid ""
 "Toggle display colision rectangles\n"
 "\n"
 "Use this button to toggle the visible collision rectangles on and off."
 msgstr ""
 
-#: ../src/leveleditor.c:4991
+#: ../src/leveleditor.c:4442
 msgid "Change grid mode ( placement / full / off )"
 msgstr ""
 
-#: ../src/leveleditor.c:5891
+#: ../src/leveleditor.c:5342
 #, c-format
 msgid " Source waypoint selected : NONE"
 msgstr ""
 
-#: ../src/leveleditor.c:5895
+#: ../src/leveleditor.c:5346
 #, c-format
 msgid " Source waypoint selected : X=%d Y=%d. "
 msgstr ""
