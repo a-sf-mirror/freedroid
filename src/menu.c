@@ -1391,7 +1391,16 @@ Options_handle (int n)
     case SOUND_OPTIONS:
 	    return MENU_SOUND;
     case LANGUAGE_OPTIONS:
+#if ENABLE_NLS
 	    return MENU_LANGUAGE;
+#else
+	    GiveMouseAlertWindow ( _("\nThe game has NOT been\n"
+			"compiled with gettext support\n"
+			"therefore translations are NOT\n"
+			"available.\n"
+			"Thanks\n"));
+#endif
+	    break;
     case DROID_TALK_OPTIONS:
 	    return MENU_DROID;
     case ON_SCREEN_DISPLAYS:
