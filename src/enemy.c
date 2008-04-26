@@ -474,76 +474,52 @@ int
 CheckIfWayIsFreeOfDroids (char test_tux, float x1 , float y1 , float x2 , float y2 , int OurLevel , 
 					  Enemy ExceptedRobot ) 
 {
-    float LargerDistance;
-    int Steps;
-    int i;
-    moderately_finepoint step;
-    moderately_finepoint CheckPosition;
-    static int first_call = TRUE ;
-    static float steps_per_square;
+    const float Druid_Radius = 0.5;
 
-    const float Druid_Radius_X = 0.25;
-    const float Druid_Radius_Y = 0.25;
-    //--------------------
-    // Upon the very first function call, we calibrate the density of steps, so that 
-    // we cannot miss out a droid by stepping right over it.
-    //
-    if ( first_call )
-    {
-	first_call = FALSE ;
-	steps_per_square = 1 / ( 2.0 * sqrt(2.0) * Druid_Radius_X );
-    }
+   
+    /* Normalize X_0, X_1 */
+    float tmplen = sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2));
+    if ( fabsf(tmplen) < 0.01 )
+	tmplen = 0.01;
+
+    x2 = x1 + (x2 - x1) / tmplen;
+    y2 = y1 + (y2 - y1) / tmplen;
     
-    // DebugPrintf( 2, "\nint CheckIfWayIsFreeOfDroids (...) : Checking from %d-%d to %d-%d.", (int) x1, (int) y1 , (int) x2, (int) y2 );
-    // fflush(stdout);
-    
-    if ( fabsf ( x1 - x2 ) > fabsf ( y1 - y2 ) ) LargerDistance = fabsf ( x1 - x2 );
-    else LargerDistance = fabsf ( y1 - y2 );
-    
-    Steps = LargerDistance * steps_per_square + 1 ;   // We check four times on each map tile...
-    // if ( Steps == 0 ) return TRUE;
-    
-    // We determine the step size when walking from (x1,y1) to (x2,y2) in Steps number of steps
-    step.x = ( x2 - x1 ) / ((float)Steps) ;
-    step.y = ( y2 - y1 ) / ((float)Steps) ;
-    
-    // DebugPrintf( 2 , "\nint CheckIfWayIsFreeOfDroids (...) :  step.x=%f step.y=%f." , step.x , step.y );
-    
-    // We start from position (x1, y1)
-    CheckPosition . x = x1;
-    CheckPosition . y = y1;
-    
-    for ( i = 0 ; i < Steps + 1 ; i++ )
-    {
-    	enemy *this_enemy;
-	BROWSE_LEVEL_BOTS(this_enemy, OurLevel)
+     
+    enemy * this_enemy;
+    BROWSE_LEVEL_BOTS(this_enemy, OurLevel)
 	{
-	    if (( this_enemy -> pure_wait > 0 ) || ( this_enemy == ExceptedRobot ))
-		continue;
-	    
-	    // so it seems that we need to test this one!!
-	    if ( ( fabsf ( this_enemy -> pos . x - CheckPosition . x ) < 2.0 * Druid_Radius_X ) &&
-		 ( fabsf ( this_enemy -> pos . y - CheckPosition . y ) < 2.0 * Druid_Radius_Y ) ) 
+	if (( this_enemy -> pure_wait > 0 )  || (this_enemy == ExceptedRobot ) )
+	    continue;
+
+	/* Distance formula taken at http://www.softsurfer.com/Archive/algorithm_0102/Eqn_dcross2.gif */
+	/* the distance basically is the cross product of the normalized (X_0, X_1) vector with (X_0, X) */
+	if (fabsf(( ( y1 - y2 ) * this_enemy->pos.x + ( x2 - x1 ) * this_enemy->pos.y + (x1 * y2 - x2 * y1 ) ) ) 
+		< Druid_Radius)
 	    {
-		// DebugPrintf( 2, "\nCheckIfWayIsFreeOfDroids (...) : Connection analysis revealed : TRAFFIC-BLOCKED !");
+	    /* Distance to the line is ok, now check for segment with dotproduct */
+	    float dotprod = (x2 - x1) * (this_enemy->pos.x - x1) + (y2 - y1) * (this_enemy->pos.y - y1);
+	    if ( dotprod > 0 && dotprod < 1 )
 		return FALSE;
+	    else 
+		{
+		/* We are not quite done yet ! */
+		if ( dotprod < 0 )
+		    {
+		    if ((fabsf( this_enemy->pos.x - x1 ) < Druid_Radius ) &&
+			(fabsf( this_enemy->pos.y - y1 ) < Druid_Radius ))
+			return FALSE;
+		    }
+		else //dotprod >1
+		    {
+		    if ((fabsf( this_enemy->pos.x - x2 ) < Druid_Radius ) &&
+			(fabsf( this_enemy->pos.y - y2 ) < Druid_Radius ))
+			return FALSE;
+		    }
+		}
 	    }
 	}
-	
-	//--------------------
-	// Now we check for collisions with the Tux himself
-	//
-	if ( test_tux && ( fabsf ( Me . pos.x - CheckPosition.x ) < 2 * Druid_Radius_X ) &&
-	     ( fabsf ( Me . pos.y - CheckPosition.y ) < 2 * Druid_Radius_Y ) ) 
-	{
-	    // DebugPrintf( 2 , "\nCheckIfWayIsFreeOfDroids (...) : Connection analysis revealed : TRAFFIC-BLOCKED-INFLUENCER !");
-	    return FALSE;
-	}
-	
-	CheckPosition . x += step . x;
-	CheckPosition . y += step . y;
-    }
-    
+
     return TRUE;
 
 }; // CheckIfWayIsFreeOfDroids ( char test_tux, float x1 , float y1 , float x2 , float y2 , int OurLevel , int ExceptedDroid )
