@@ -43,7 +43,7 @@
  *
  *
  * ---------------------------------------------------------------------- */
-void
+static void
 move_this_bullet_and_check_its_collisions ( int num )
 {
   Bullet CurBullet = & ( AllBullets [ num ] ) ; 
@@ -183,8 +183,9 @@ MoveBullets (void)
   //--------------------
   // We move all the bullets
   //
-  for ( CurBullet = AllBullets, i = 0; i < MAXBULLETS; CurBullet++, i++)
+  for ( i = 0; i < MAXBULLETS; i++)
     {
+      CurBullet = &AllBullets[i];
       //--------------------
       // We need not move any bullets, that are INFOUT already...
       //
@@ -745,6 +746,8 @@ check_bullet_enemy_collisions ( bullet* CurBullet , int num )
     int level = CurBullet -> pos.z ;
     static int FBTZaehler = 0;
     
+    if ( CurBullet -> type == INFOUT ) 
+	fprintf(stderr, "Caca\n");
     //--------------------
     // Check for collision with enemys
     //
@@ -876,8 +879,14 @@ CheckBulletCollisions (int num)
 	    // and some for collisions with blast
 	    //
 	    check_bullet_background_collisions ( CurBullet , num );
+	    if ( CurBullet->type == INFOUT )
+		return;
 	    check_bullet_player_collisions ( CurBullet , num );
+	    if  ( CurBullet->type == INFOUT )
+		return;
 	    check_bullet_enemy_collisions ( CurBullet , num );
+	    if ( CurBullet->type == INFOUT )
+		return;
 	    check_bullet_bullet_collisions ( CurBullet , num );
 	    
 	    break;
