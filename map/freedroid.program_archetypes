@@ -43,8 +43,8 @@ Picture="Shutdown.png"
 Form="self"
 Effect="paralyze"
 Base damage=0
-Paralyze duration=15
-Paralyze duration per level=-1
+Effect duration=15
+Effect duration per level=-1
 Cost=-100
 Cost per level=-10
 Present at startup=1
@@ -61,8 +61,6 @@ Effect="none"
 Form="self"
 Base damage=-30
 Damage per level=-3
-Paralyze duration=3
-Paralyze duration per level=-0.3
 Cost=40
 Cost per level=0
 
@@ -117,15 +115,13 @@ It is not a big problem to make a badly designed system to go hunting for the im
 Picture="Calculate_PI.png"
 Form="immediate"
 Effect="slowdown"
-#12 is blue bullet
-Artwork internal code=12
 Affect bots=1
 Affect humans=0
 Base damage=0
 Mod damage=0
 Damage per level=0
-Slowdown duration=10
-Slowdown duration per level=2
+Effect duration=10
+Effect duration per level=2
 Cost=10
 Cost per level=2
 
@@ -137,13 +133,12 @@ Heat: 25  -1/rev
 With a little touch a war machine comes crashing down to a halt. For a while."
 Picture="BlueScreen.png"
 Form="immediate"
-Artwork internal code=12
 Affect bots=1
 Affect humans=0
 Base damage=0
 Effect="paralyze"
-Paralyze duration=5
-Paralyze duration per level=2
+Effect duration=5
+Effect duration per level=2
 Cost=25
 Cost per level=-1
 
@@ -155,31 +150,27 @@ Heat: 45  -3/rev
 With a little touch a war machine comes crashing down to a halt. For a while. The radio network is a wonderful invention for the people who like to blow up a lot of stuff at once."
 Picture="Poke.png"
 Effect="paralyze"
-Form="bullet"
+Form="radial"
 Artwork internal code=12
 Affect bots=1
 Affect humans=0
 Base damage=0
-Paralyze duration=6
-Paralyze duration per level=2
+Effect duration=6
+Effect duration per level=2
 Cost=45
 Cost per level=-3
 
 ** Start of new program specification subsection **
 Program name=_"Virus"
 Program description=_"Target: Target
-Poison: 2x15s  +1s/rev
 Slowdown: 15s  +1s/rev
 Heat: 50
 This is not just a firmware upgrade, my dear bot. You are about to find out what exactly I want to give you."
 Picture="Virus.png"
 Form="immediate"
 Effect="slowdown"
-Poison_damage/s=2
-Poison_duration=15
-Poison_duration per level=1
-Slowdown duration=15
-Slowdown duration per level=1
+Effect duration=15
+Effect duration per level=1
 Base damage=0
 Affect bots=1
 Affect humans=0
@@ -189,18 +180,14 @@ Artwork internal code=13
 ** Start of new program specification subsection **
 Program name=_"Broadcast virus"
 Program description=_"Program description=_"Target: Radial wave
-Poison: 2x10s  +1s/rev
 Slowdown: 10s  +1s/rev
 Heat: 90
 The network is wide and dangerous. Many traps await for the weak and unprepared."
 Picture="BroadcastVirus.png"
 Form="radial"
 Effect="slowdown"
-Poison_damage/s=2
-Poison_duration=10
-Poison_duration per level=1
-Slowdown duration=10
-Slowdown duration per level=1
+Effect duration=10
+Effect duration per level=1
 Base damage=0
 Affect bots=1
 Affect humans=0
@@ -287,8 +274,8 @@ Artwork internal code=5
 Affect bots=0
 Affect humans=1
 Base damage=0
-Paralyze duration=15
-Paralyze duration per level=5
+Effect duration=15
+Effect duration per level=5
 Cost=50
 Cost per level=-5
 
@@ -316,7 +303,10 @@ Program description=_"I am not the Linarian you are looking for."
 Picture="Invisibility.png"
 Form="self"
 Effect="invisibility"
+Effect duration=3
+Effect duration per level=3
 Cost=30
+Cost per level=5
 
 ** Start of new program specification subsection **
 Program name=_"Light"
