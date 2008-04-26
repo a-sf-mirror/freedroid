@@ -752,6 +752,7 @@ typedef struct tux_s
 
     float slowdown_duration;
     float paralyze_duration;
+    float invisible_duration;
 }
 tux_t, *Tux_t;
 

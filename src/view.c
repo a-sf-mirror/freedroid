@@ -2890,6 +2890,7 @@ Empty part string received!",
 	    {
 	    #ifdef HAVE_LIBGL
 	    float r=1.0, g=1.0, b=1.0;
+	    int blend = FALSE;
 
 	    if ( Me . paralyze_duration ) 
 		{
@@ -2908,10 +2909,13 @@ Empty part string received!",
 		g = b = ((SDL_GetTicks() >> 5) & 31) * 0.03;
 		}
 
+	    if ( Me . invisible_duration )
+		blend = TRANSPARENCY_CUROBJECT;
+
             if ( x == (-1) )
     		{
 	        draw_gl_textured_quad_at_map_position ( &loaded_tux_images [ tux_part_group ] [ our_phase ] [ rotation_index ] , 
-					     Me . pos . x , Me . pos . y, r, g, b, FALSE, FALSE, 1.0 );
+					     Me . pos . x , Me . pos . y, r, g, b, FALSE, blend, 1.0 );
         	}
 	     else
 	        {

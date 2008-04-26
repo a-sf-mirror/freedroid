@@ -1413,9 +1413,19 @@ update_vector_to_shot_target_for_enemy ( enemy* this_robot , moderately_finepoin
     // By default, we set the target of this bot to the Tux himself
     // i.e. the closest (visible?) player.
     //
-    vect_to_target -> x = Me . pos . x - this_robot -> virt_pos . x ;
-    vect_to_target -> y = Me . pos . y - this_robot -> virt_pos . y ;
-    this_robot -> attack_target_type = ATTACK_TARGET_IS_PLAYER ;
+    if ( Me . invisible_duration <= 0 )
+	{
+	vect_to_target -> x = Me . pos . x - this_robot -> virt_pos . x ;
+	vect_to_target -> y = Me . pos . y - this_robot -> virt_pos . y ;
+	this_robot -> attack_target_type = ATTACK_TARGET_IS_PLAYER ;
+	}
+    else 
+	{
+	vect_to_target->x = -1000;
+	vect_to_target->y = -1000;
+	this_robot -> attack_target_type = ATTACK_TARGET_IS_NOTHING;
+	}
+
     
     //--------------------
     // This function is time-critical, so we work with squares in the

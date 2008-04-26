@@ -806,7 +806,7 @@ draw_gl_textured_quad_at_map_position ( iso_image * our_floor_iso_image ,
     int x, y;
     glEnable(GL_ALPHA_TEST);
 
-    if ( ( blend == TRANSPARENCY_FOR_WALLS ) && GameConfig . transparency ) 
+    if ( (( blend == TRANSPARENCY_FOR_WALLS ) && GameConfig . transparency) || blend == TRANSPARENCY_CUROBJECT ) 
     {
 	glEnable ( GL_BLEND ) ;
 	a = 0.50;
@@ -815,6 +815,7 @@ draw_gl_textured_quad_at_map_position ( iso_image * our_floor_iso_image ,
     {
 	glEnable ( GL_BLEND ) ;
     }
+    
 
   
     translate_map_point_to_screen_pixel ( our_col , our_line , &x, &y, zoom_factor ); 

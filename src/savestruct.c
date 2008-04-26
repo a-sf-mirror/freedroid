@@ -404,6 +404,7 @@ save_bigscrmsg_t("BigScreenMessage", &(target->BigScreenMessage));
 save_float_array("BigScreenMessageDuration", (target->BigScreenMessageDuration),  MAX_BIG_SCREEN_MESSAGES );
 save_float("slowdown_duration", &(target->slowdown_duration));
 save_float("paralyze_duration", &(target->paralyze_duration));
+save_float("invisible_duration", &(target->invisible_duration));
 fprintf(SaveGameFile, "</%s>\n", tag);
 return 0;
 }
@@ -518,6 +519,7 @@ read_bigscrmsg_t(pos, "BigScreenMessage",  &(target->BigScreenMessage));
 read_float_array(pos, "BigScreenMessageDuration",  (target->BigScreenMessageDuration),  MAX_BIG_SCREEN_MESSAGES );
 read_float(pos, "slowdown_duration",  &(target->slowdown_duration));
 read_float(pos, "paralyze_duration",  &(target->paralyze_duration));
+read_float(pos, "invisible_duration",  &(target->invisible_duration));
 *epos = '>'; 
 return 0;
 }

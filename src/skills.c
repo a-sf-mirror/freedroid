@@ -227,6 +227,7 @@ DoSkill(int skill_index, int SpellCost)
                 Me . temperature += SpellCost;
 		Me . slowdown_duration += strcmp( SpellSkillMap [ skill_index ] . effect, "slowdown" ) ? 0 : 10;
                 Me . paralyze_duration += strcmp ( SpellSkillMap [ skill_index ] . effect, "paralyze" ) ? 0 : 15;
+		Me . invisible_duration += strcmp ( SpellSkillMap [ skill_index ] . effect, "invisibility" ) ? 0 : 3;
 		break;
 
 	case PROGRAM_FORM_BULLET:
