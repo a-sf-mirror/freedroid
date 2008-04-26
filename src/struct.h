@@ -198,8 +198,8 @@ finepoint, *Finepoint;
 
 typedef struct gps_s
 {
-    double x;
-    double y;
+    float x;
+    float y;
     int z;
 } gps, *GPS;
 
