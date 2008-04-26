@@ -1694,19 +1694,15 @@ set_up_intermediate_course_between_positions ( enemy * droid, gps * curpos, mode
     int i;
     moderately_finepoint tmp;
     
-    //--------------------
-    // For the protocol, we want to know how many cases of the cursion
-    // ending unresolved have occured.  Therefore we initialize a counter
-    // here and give out the result later after the recursion.
-    //
     bad_luck_in_4_directions_counter = 0;
    
-    if ( move_target -> x == curpos -> x  && move_target->y == curpos -> y )
+    if ( fabsf(move_target -> x - curpos -> x) < 0.01  && fabsf(move_target->y - curpos -> y) < 0.01 )
 	{
 	waypoints [ 0 ] . x = curpos -> x;
 	waypoints [ 0 ] . y = curpos -> y;
 	waypoints [ 1 ] . x = -1;
 	waypoints [ 1 ] . y = -1;
+	return TRUE;
 	}
 
     //--------------------
