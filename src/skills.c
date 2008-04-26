@@ -86,7 +86,7 @@ ImproveSkill( int * skill )
 /* ------------------
  * This function calculates the heat cost of running a given program (source or blob), based on current program level and casting ability
  * -----------------*/
-int calculate_program_heat_cost ( int program_id )
+static int calculate_program_heat_cost ( int program_id )
 {
 //                                               0.9^0, 0.9^1, 0.9^2 ... ...0.9^9
     float cost_ratio [ NUMBER_OF_SKILL_LEVELS ] = { 1.0, 0.9, 0.81, 0.73, 0.66, 0.59, 0.53, 0.48, 0.43, 0.39 };
@@ -96,9 +96,18 @@ int calculate_program_heat_cost ( int program_id )
 /* ------------------
  * This function calculates the damage dealt by a hit of a given program
  * -----------------*/
-int calculate_program_hit_damage ( int program_id )
+static int calculate_program_hit_damage ( int program_id )
 {
     return ( SpellSkillMap[ program_id ] . damage_base  + SpellSkillMap[ program_id ] . damage_per_level * ( Me . SkillLevel [ program_id ] - 1 ) + MyRandom(SpellSkillMap[ program_id ] . damage_mod));
+}
+
+/* ------------------
+ * This function calculates the duration of the special effect of a
+ * given program
+ * ------------------*/
+static float calculate_program_effect_duration ( int program_id )
+{
+    return ( SpellSkillMap[ program_id ] . effect_duration  + SpellSkillMap[ program_id ] . effect_duration_per_level * ( Me . SkillLevel [ program_id ] - 1 ));
 }
 
 /* ------------------
@@ -197,6 +206,9 @@ DoSkill(int skill_index, int SpellCost)
 {
     enemy * droid_below_mouse_cursor = NULL;
 
+    float hitdmg = calculate_program_hit_damage ( skill_index );
+    float effdur = calculate_program_effect_duration ( skill_index );
+
     /*we handle the form of the program now*/
     switch ( SpellSkillMap [ skill_index ] . form ) 
 	{
@@ -215,19 +227,29 @@ DoSkill(int skill_index, int SpellCost)
 					    Me . pos . z))
 		    goto done_handling_instant_hits;
 
-		if ( calculate_program_hit_damage ( skill_index ) )
-		    hit_enemy(droid_below_mouse_cursor, calculate_program_hit_damage ( skill_index ), 1, -1, 1);
+		if ( hitdmg > 0 )
+		    hit_enemy(droid_below_mouse_cursor, hitdmg, 1, -1, 1);
+		
 		if ( ! strcmp ( SpellSkillMap [ skill_index ] . effect, "paralyze" ) )
-		    droid_below_mouse_cursor -> paralysation_duration_left += 10;
+		    droid_below_mouse_cursor -> paralysation_duration_left += effdur;
+		if ( ! strcmp ( SpellSkillMap [ skill_index ] . effect, "slowdown" ) )
+		    droid_below_mouse_cursor -> frozen += effdur;
+		if ( ! strcmp ( SpellSkillMap [ skill_index ] . effect, "poison" )  )
+		    {
+		    droid_below_mouse_cursor -> poison_duration_left += effdur;
+		    droid_below_mouse_cursor -> poison_damage_per_sec += hitdmg;
+		    }
+
+
 	        Me . temperature += SpellCost;
 		break;
 	
 	case PROGRAM_FORM_SELF:
-		Me . energy -= calculate_program_hit_damage ( skill_index ) ;
+		Me . energy -= hitdmg;
                 Me . temperature += SpellCost;
-		Me . slowdown_duration += strcmp( SpellSkillMap [ skill_index ] . effect, "slowdown" ) ? 0 : 10;
-                Me . paralyze_duration += strcmp ( SpellSkillMap [ skill_index ] . effect, "paralyze" ) ? 0 : 15;
-		Me . invisible_duration += strcmp ( SpellSkillMap [ skill_index ] . effect, "invisibility" ) ? 0 : 3;
+		Me . slowdown_duration += strcmp( SpellSkillMap [ skill_index ] . effect, "slowdown" ) ? 0 : effdur;
+                Me . paralyze_duration += strcmp ( SpellSkillMap [ skill_index ] . effect, "paralyze" ) ? 0 : effdur;
+		Me . invisible_duration += strcmp ( SpellSkillMap [ skill_index ] . effect, "invisibility" ) ? 0 : effdur;
 		break;
 
 	case PROGRAM_FORM_BULLET:
@@ -244,11 +266,11 @@ DoSkill(int skill_index, int SpellCost)
 		else
 			FillInDefaultBulletStruct( &bul_parms, MAGENTA_BULLET, GetItemIndexByName("Laser pistol"));
 	
-		bul_parms.freezing_level = strcmp( SpellSkillMap [ skill_index ] . effect, "slowdown" ) ? 0 : 10;
-		bul_parms.poison_duration = strcmp ( SpellSkillMap [ skill_index ] . effect, "poison" ) ? 0 : 10;
-		bul_parms.poison_damage_per_sec = strcmp ( SpellSkillMap [ skill_index ] . effect, "poison" ) ? 0 : 1;
-		bul_parms.paralysation_duration = strcmp ( SpellSkillMap [ skill_index ] . effect, "paralyze" ) ? 0 : 10;
-		bul_parms.damage = calculate_program_hit_damage ( skill_index ) ;
+		bul_parms.freezing_level = strcmp( SpellSkillMap [ skill_index ] . effect, "slowdown" ) ? 0 : effdur;
+		bul_parms.poison_duration = strcmp ( SpellSkillMap [ skill_index ] . effect, "poison" ) ? 0 : effdur;
+		bul_parms.poison_damage_per_sec = strcmp ( SpellSkillMap [ skill_index ] . effect, "poison" ) ? 0 : hitdmg;
+		bul_parms.paralysation_duration = strcmp ( SpellSkillMap [ skill_index ] . effect, "paralyze" ) ? 0 : effdur;
+		bul_parms.damage = hitdmg;
 		bul_parms.to_hit = SpellHitPercentageTable [ Me . spellcasting_skill ];
 
 		FireTuxRangedWeaponRaw ( GetItemIndexByName("Laser pistol") , -1 , &bul_parms, target_location); 
@@ -277,11 +299,11 @@ DoSkill(int skill_index, int SpellCost)
   	            AllActiveSpells [ i ] . active_directions [ j ] = TRUE ;
                     }
 		
-		AllActiveSpells [ i ] . freeze_duration = strcmp( SpellSkillMap [ skill_index ] . effect, "slowdown" ) ? 0 : 10;
-		AllActiveSpells [ i ] .poison_duration = strcmp ( SpellSkillMap [ skill_index ] . effect, "poison" ) ? 0 : 10;
-		AllActiveSpells [ i ] .poison_dmg = strcmp ( SpellSkillMap [ skill_index ] . effect, "poison" ) ? 0 : 1;
-		AllActiveSpells [ i ] .paralyze_duration = strcmp ( SpellSkillMap [ skill_index ] . effect, "paralyze" ) ? 0 : 10;
-		AllActiveSpells [ i ] .damage = calculate_program_hit_damage ( skill_index ) ;
+		AllActiveSpells [ i ] . freeze_duration = strcmp( SpellSkillMap [ skill_index ] . effect, "slowdown" ) ? 0 : effdur;
+		AllActiveSpells [ i ] .poison_duration = strcmp ( SpellSkillMap [ skill_index ] . effect, "poison" ) ? 0 : effdur;
+		AllActiveSpells [ i ] .poison_dmg = strcmp ( SpellSkillMap [ skill_index ] . effect, "poison" ) ? 0 : hitdmg;
+		AllActiveSpells [ i ] .paralyze_duration = strcmp ( SpellSkillMap [ skill_index ] . effect, "paralyze" ) ? 0 : effdur ;
+		AllActiveSpells [ i ] .damage = hitdmg ;
 
 		return 1;
 

@@ -562,8 +562,6 @@ EXTERN void HandleCurrentlyActivatedSkill( void );
 EXTERN int DoSkill( int skill_index, int SpellCost);
 EXTERN void activate_nth_aquired_skill ( int skill_num );
 EXTERN void ImproveSkill(int *skill);
-EXTERN int calculate_program_heat_cost(int program_id);
-EXTERN int calculate_program_hit_damage(int program_id);
 EXTERN int get_program_index_with_name(const char *);
 // input.c 
 #undef EXTERN

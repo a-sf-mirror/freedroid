@@ -853,6 +853,8 @@ typedef struct spell_skill_spec_s
     char hurt_humans;
     char* description;
     char* effect;
+    float effect_duration;
+    float effect_duration_per_level;
     char form;
     char present_at_startup;
     char graphics_code;

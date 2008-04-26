@@ -697,62 +697,68 @@ There are more skills defined, than the maximum number specified in the code!",
     spell_skill_spec * ProgramToFill = SpellSkillMap;
 
     while ( (ProgramPointer = strstr ( ProgramPointer, whattogrep )) != NULL)
-            {
-            ProgramPointer ++;
-            char * EndOfThisProgram = strstr ( ProgramPointer, whattogrep );
+	{
+	ProgramPointer ++;
+	char * EndOfThisProgram = strstr ( ProgramPointer, whattogrep );
 
-	    if ( EndOfThisProgram ) EndOfThisProgram [ 0 ] = 0;
+	if ( EndOfThisProgram ) EndOfThisProgram [ 0 ] = 0;
 
-	    ProgramToFill -> name = ReadAndMallocStringFromData ( ProgramPointer , "Program name=_\"" , "\"" ) ;
-	    ProgramToFill -> description = ReadAndMallocStringFromData ( ProgramPointer , "Program description=_\"" , "\"" ) ;
-	    ProgramToFill -> icon_name = ReadAndMallocStringFromData ( ProgramPointer , "Picture=\"" , "\"" ) ;
+	ProgramToFill -> name = ReadAndMallocStringFromData ( ProgramPointer , "Program name=_\"" , "\"" ) ;
+	ProgramToFill -> description = ReadAndMallocStringFromData ( ProgramPointer , "Program description=_\"" , "\"" ) ;
+	ProgramToFill -> icon_name = ReadAndMallocStringFromData ( ProgramPointer , "Picture=\"" , "\"" ) ;
 
-	    ProgramToFill -> icon_surface . surface = NULL;
-	    ProgramToFill -> icon_surface . zoomed_out_surface = NULL;
-	    ProgramToFill -> icon_surface . texture_has_been_created = 0;
-	    ProgramToFill -> icon_surface . texture_width = 0;
+	ProgramToFill -> icon_surface . surface = NULL;
+	ProgramToFill -> icon_surface . zoomed_out_surface = NULL;
+	ProgramToFill -> icon_surface . texture_has_been_created = 0;
+	ProgramToFill -> icon_surface . texture_width = 0;
 
-	    ProgramToFill -> effect = ReadAndMallocStringFromData ( ProgramPointer , "Effect=\"" , "\"" ) ;
-	    
-	    char * pform = ReadAndMallocStringFromData ( ProgramPointer , "Form=\"" , "\"" ) ;
-	    if ( !strcmp(pform, "immediate") ) 
-		ProgramToFill ->  form = PROGRAM_FORM_IMMEDIATE;
-	    if ( !strcmp(pform, "bullet") ) 
-		ProgramToFill ->  form = PROGRAM_FORM_BULLET;
-	    if ( !strcmp(pform, "radial") ) 
-		ProgramToFill ->  form = PROGRAM_FORM_RADIAL;
-	    if ( !strcmp(pform, "self") ) 
-		ProgramToFill ->  form = PROGRAM_FORM_SELF;
+	ProgramToFill -> effect = ReadAndMallocStringFromData ( ProgramPointer , "Effect=\"" , "\"" ) ;
 
-	    free ( pform );
+	char * pform = ReadAndMallocStringFromData ( ProgramPointer , "Form=\"" , "\"" ) ;
+	if ( !strcmp(pform, "immediate") ) 
+	    ProgramToFill ->  form = PROGRAM_FORM_IMMEDIATE;
+	if ( !strcmp(pform, "bullet") ) 
+	    ProgramToFill ->  form = PROGRAM_FORM_BULLET;
+	if ( !strcmp(pform, "radial") ) 
+	    ProgramToFill ->  form = PROGRAM_FORM_RADIAL;
+	if ( !strcmp(pform, "self") ) 
+	    ProgramToFill ->  form = PROGRAM_FORM_SELF;
 
-            ReadValueFromStringWithDefault( ProgramPointer , "Base damage=" , "%hd" , "0",
-                             & ProgramToFill -> damage_base  , EndOfProgramData );
-            ReadValueFromStringWithDefault( ProgramPointer , "Mod damage=" , "%hd" , "0",
-                             & ProgramToFill -> damage_mod  , EndOfProgramData );
-            ReadValueFromStringWithDefault( ProgramPointer , "Damage per level=" , "%hd" , "0",
-                             & ProgramToFill -> damage_per_level  , EndOfProgramData );
+	free ( pform );
 
-            ReadValueFromStringWithDefault( ProgramPointer , "Affect bots=" , "%hhd" , "1",
-                             & ProgramToFill -> hurt_bots  , EndOfProgramData );
-            ReadValueFromStringWithDefault( ProgramPointer , "Affect humans=" , "%hhd" , "1",
-                             & ProgramToFill -> hurt_humans  , EndOfProgramData );
+	ReadValueFromStringWithDefault( ProgramPointer , "Base damage=" , "%hd" , "0",
+		& ProgramToFill -> damage_base  , EndOfProgramData );
+	ReadValueFromStringWithDefault( ProgramPointer , "Mod damage=" , "%hd" , "0",
+		& ProgramToFill -> damage_mod  , EndOfProgramData );
+	ReadValueFromStringWithDefault( ProgramPointer , "Damage per level=" , "%hd" , "0",
+		& ProgramToFill -> damage_per_level  , EndOfProgramData );
+
+	ReadValueFromStringWithDefault( ProgramPointer , "Affect bots=" , "%hhd" , "1",
+		& ProgramToFill -> hurt_bots  , EndOfProgramData );
+	ReadValueFromStringWithDefault( ProgramPointer , "Affect humans=" , "%hhd" , "1",
+		& ProgramToFill -> hurt_humans  , EndOfProgramData );
 
 
-            ReadValueFromStringWithDefault( ProgramPointer , "Cost=" , "%hd" , "0",
-                             & ProgramToFill -> heat_cost  , EndOfProgramData );
-            ReadValueFromStringWithDefault( ProgramPointer , "Cost per level=" , "%hd" , "0",
-                             & ProgramToFill -> heat_cost_per_level  , EndOfProgramData );
-            ReadValueFromStringWithDefault( ProgramPointer , "Present at startup=" , "%hhd" , "0",
-                             & ProgramToFill -> present_at_startup  , EndOfProgramData );
-            ReadValueFromStringWithDefault( ProgramPointer , "Artwork internal code=" , "%hhd" , "-1",
-                             & ProgramToFill -> graphics_code  , EndOfProgramData );
-            //ReadValueFromStringWithDefault( ProgramPointer , "Bonus to tohit modifier=" , "%d" , "0",
-	    
-                             
-            ProgramToFill ++;
-            if ( EndOfThisProgram ) EndOfThisProgram [ 0 ] = '*'; // We put back the star at its place 
-            }
+	ReadValueFromStringWithDefault( ProgramPointer , "Cost=" , "%hd" , "0",
+		& ProgramToFill -> heat_cost  , EndOfProgramData );
+	ReadValueFromStringWithDefault( ProgramPointer , "Cost per level=" , "%hd" , "0",
+		& ProgramToFill -> heat_cost_per_level  , EndOfProgramData );
+	ReadValueFromStringWithDefault( ProgramPointer , "Present at startup=" , "%hhd" , "0",
+		& ProgramToFill -> present_at_startup  , EndOfProgramData );
+	ReadValueFromStringWithDefault( ProgramPointer , "Artwork internal code=" , "%hhd" , "-1",
+		& ProgramToFill -> graphics_code  , EndOfProgramData );
+	ReadValueFromStringWithDefault( ProgramPointer, "Effect duration=", "%f", "0",
+		& ProgramToFill -> effect_duration, EndOfProgramData );
+	ReadValueFromStringWithDefault( ProgramPointer, "Effect duration per level=", "%f", "0",
+		& ProgramToFill -> effect_duration_per_level, EndOfProgramData );
+
+
+	//ReadValueFromStringWithDefault( ProgramPointer , "Bonus to tohit modifier=" , "%d" , "0",
+
+
+	ProgramToFill ++;
+	if ( EndOfThisProgram ) EndOfThisProgram [ 0 ] = '*'; // We put back the star at its place 
+	}
                              
 return 0;
 }
