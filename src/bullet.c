@@ -749,11 +749,8 @@ check_bullet_enemy_collisions ( bullet* CurBullet , int num )
     // Check for collision with enemys
     //
     enemy *ThisRobot, *nerot;
-    BROWSE_ALIVE_BOTS_SAFE(ThisRobot, nerot)
+    BROWSE_LEVEL_BOTS_SAFE(ThisRobot, nerot, level)
     {
-	if ( ThisRobot -> pos . z != level)
-	    continue;
-	
 	xdist = CurBullet->pos.x - ThisRobot -> pos . x;
 	ydist = CurBullet->pos.y - ThisRobot -> pos . y;
 
