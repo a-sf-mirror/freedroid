@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: freedroid-discussion@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-04-20 16:29+0200\n"
+"POT-Creation-Date: 2008-04-26 09:09+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1624,43 +1624,43 @@ msgstr ""
 msgid "I can't carry any more."
 msgstr ""
 
-#: ../src/leveleditor.c:1633
+#: ../src/leveleditor.c:1647
 msgid "Cancel item drop"
 msgstr ""
 
-#: ../src/leveleditor.c:1933
+#: ../src/leveleditor.c:1947
 msgid "FLOOR"
 msgstr ""
 
-#: ../src/leveleditor.c:1934
+#: ../src/leveleditor.c:1948
 msgid "WALLS"
 msgstr ""
 
-#: ../src/leveleditor.c:1935
+#: ../src/leveleditor.c:1949
 msgid "MACHINERY"
 msgstr ""
 
-#: ../src/leveleditor.c:1936
+#: ../src/leveleditor.c:1950
 msgid "FURNITURE"
 msgstr ""
 
-#: ../src/leveleditor.c:1937
+#: ../src/leveleditor.c:1951
 msgid "CONTAINERS"
 msgstr ""
 
-#: ../src/leveleditor.c:1938
+#: ../src/leveleditor.c:1952
 msgid "NATURE"
 msgstr ""
 
-#: ../src/leveleditor.c:1939
+#: ../src/leveleditor.c:1953
 msgid "ALL"
 msgstr ""
 
-#: ../src/leveleditor.c:1940
+#: ../src/leveleditor.c:1954
 msgid "QUICK"
 msgstr ""
 
-#: ../src/leveleditor.c:3813
+#: ../src/leveleditor.c:3829
 #, c-format
 msgid ""
 "\n"
@@ -1668,7 +1668,7 @@ msgid ""
 " label_name=\"%s\"."
 msgstr ""
 
-#: ../src/leveleditor.c:4282
+#: ../src/leveleditor.c:4298
 msgid ""
 "Go level north\n"
 "\n"
@@ -1676,7 +1676,7 @@ msgid ""
 "the northern side of this level."
 msgstr ""
 
-#: ../src/leveleditor.c:4287
+#: ../src/leveleditor.c:4303
 msgid ""
 "Go level south\n"
 "\n"
@@ -1684,7 +1684,7 @@ msgid ""
 "the southern side of this level."
 msgstr ""
 
-#: ../src/leveleditor.c:4292
+#: ../src/leveleditor.c:4308
 msgid ""
 "Go level east\n"
 "\n"
@@ -1692,7 +1692,7 @@ msgid ""
 "the eastern side of this level."
 msgstr ""
 
-#: ../src/leveleditor.c:4297
+#: ../src/leveleditor.c:4313
 msgid ""
 "Go level west\n"
 "\n"
@@ -1700,7 +1700,7 @@ msgid ""
 "the western side of this level."
 msgstr ""
 
-#: ../src/leveleditor.c:4302
+#: ../src/leveleditor.c:4318
 msgid ""
 "Export this level\n"
 "\n"
@@ -1710,7 +1710,7 @@ msgid ""
 "that the maps are in sync again."
 msgstr ""
 
-#: ../src/leveleditor.c:4307
+#: ../src/leveleditor.c:4323
 msgid ""
 "Save Map\n"
 "\n"
@@ -1718,7 +1718,7 @@ msgid ""
 "from your current working directory."
 msgstr ""
 
-#: ../src/leveleditor.c:4312
+#: ../src/leveleditor.c:4328
 msgid ""
 "Toggle waypoints\n"
 "\n"
@@ -1728,7 +1728,7 @@ msgid ""
 "You can also use the W key for this."
 msgstr ""
 
-#: ../src/leveleditor.c:4319
+#: ../src/leveleditor.c:4335
 msgid ""
 "Make waypoint connection\n"
 "\n"
@@ -1738,7 +1738,7 @@ msgid ""
 "You can also use the C key for this."
 msgstr ""
 
-#: ../src/leveleditor.c:4321
+#: ../src/leveleditor.c:4337
 msgid ""
 "Complete waypoint connection\n"
 "\n"
@@ -1748,7 +1748,7 @@ msgid ""
 "You can also use the C key for this."
 msgstr ""
 
-#: ../src/leveleditor.c:4327
+#: ../src/leveleditor.c:4343
 msgid ""
 "Delete selected obstacle\n"
 "\n"
@@ -1757,7 +1757,7 @@ msgid ""
 "You can also use the X key for this."
 msgstr ""
 
-#: ../src/leveleditor.c:4332
+#: ../src/leveleditor.c:4348
 msgid ""
 "Next obstacle on currently selected tile\n"
 "\n"
@@ -1766,7 +1766,7 @@ msgid ""
 "You can also use the N key for this."
 msgstr ""
 
-#: ../src/leveleditor.c:4337
+#: ../src/leveleditor.c:4353
 msgid ""
 "Beautify grass button\n"
 "\n"
@@ -1777,7 +1777,7 @@ msgid ""
 "You can also use Ctrl-B for this."
 msgstr ""
 
-#: ../src/leveleditor.c:4343
+#: ../src/leveleditor.c:4359
 msgid ""
 "Zoom in/out\n"
 "\n"
@@ -1786,7 +1786,7 @@ msgid ""
 "You can also use the hotkey 'O' for this."
 msgstr ""
 
-#: ../src/leveleditor.c:4348
+#: ../src/leveleditor.c:4364
 msgid ""
 "Fill\n"
 "\n"
@@ -1795,7 +1795,7 @@ msgid ""
 "until a change of map tile is encountered."
 msgstr ""
 
-#: ../src/leveleditor.c:4353
+#: ../src/leveleditor.c:4369
 msgid ""
 "New obstacle label\n"
 "\n"
@@ -1804,14 +1804,14 @@ msgid ""
 " Note that you can also use the hotkey 'h' for this."
 msgstr ""
 
-#: ../src/leveleditor.c:4358
+#: ../src/leveleditor.c:4374
 msgid ""
 "New obstacle description\n"
 "\n"
 "edits the description seen when the item is selected"
 msgstr ""
 
-#: ../src/leveleditor.c:4363
+#: ../src/leveleditor.c:4379
 msgid ""
 "New map label\n"
 "\n"
@@ -1820,7 +1820,7 @@ msgid ""
 "characters or also to define locations for events and triggers."
 msgstr ""
 
-#: ../src/leveleditor.c:4368
+#: ../src/leveleditor.c:4384
 msgid ""
 "Add item\n"
 "\n"
@@ -1828,7 +1828,7 @@ msgid ""
 "hotkey 'G' for this."
 msgstr ""
 
-#: ../src/leveleditor.c:4373
+#: ../src/leveleditor.c:4389
 msgid ""
 "Menu\n"
 "\n"
@@ -1837,7 +1837,7 @@ msgid ""
 "menu."
 msgstr ""
 
-#: ../src/leveleditor.c:4378
+#: ../src/leveleditor.c:4394
 msgid ""
 "Level resize\n"
 "\n"
@@ -1846,21 +1846,21 @@ msgid ""
 "insert the new space where you would best like it to be."
 msgstr ""
 
-#: ../src/leveleditor.c:4383
+#: ../src/leveleditor.c:4399
 msgid ""
 "Level editor guide\n"
 "\n"
 "Use this button to enter the level editor keymap display."
 msgstr ""
 
-#: ../src/leveleditor.c:4388
+#: ../src/leveleditor.c:4404
 msgid ""
 "Back to game\n"
 "\n"
 "Quits the level editor and takes you into a FredroidRPG game."
 msgstr ""
 
-#: ../src/leveleditor.c:4393
+#: ../src/leveleditor.c:4409
 msgid ""
 "Underground lighting\n"
 "\n"
@@ -1870,7 +1870,7 @@ msgid ""
 "There isn't any key to toggle this on the keyboard."
 msgstr ""
 
-#: ../src/leveleditor.c:4399
+#: ../src/leveleditor.c:4415
 msgid ""
 "Toggle display enemies\n"
 "\n"
@@ -1878,7 +1878,7 @@ msgid ""
 "enemies hidden in level editor."
 msgstr ""
 
-#: ../src/leveleditor.c:4405
+#: ../src/leveleditor.c:4421
 msgid ""
 "Toggle display obstacles\n"
 "\n"
@@ -1886,21 +1886,21 @@ msgid ""
 "obstacles hidden in level editor."
 msgstr ""
 
-#: ../src/leveleditor.c:4411
+#: ../src/leveleditor.c:4427
 msgid ""
 "Undo\n"
 "\n"
 "Use this button to undo your last actions."
 msgstr ""
 
-#: ../src/leveleditor.c:4417
+#: ../src/leveleditor.c:4433
 msgid ""
 "Redo\n"
 "\n"
 "Use this button to redo an action."
 msgstr ""
 
-#: ../src/leveleditor.c:4423
+#: ../src/leveleditor.c:4439
 msgid ""
 "Toggle display Tux\n"
 "\n"
@@ -1908,30 +1908,30 @@ msgid ""
 "hidden in level editor."
 msgstr ""
 
-#: ../src/leveleditor.c:4429
+#: ../src/leveleditor.c:4445
 msgid ""
 "Toggle display tooltips\n"
 "\n"
 "Use this button to toggle these annoying help windows on and off."
 msgstr ""
 
-#: ../src/leveleditor.c:4435
+#: ../src/leveleditor.c:4451
 msgid ""
 "Toggle display colision rectangles\n"
 "\n"
 "Use this button to toggle the visible collision rectangles on and off."
 msgstr ""
 
-#: ../src/leveleditor.c:4442
+#: ../src/leveleditor.c:4458
 msgid "Change grid mode ( placement / full / off )"
 msgstr ""
 
-#: ../src/leveleditor.c:5342
+#: ../src/leveleditor.c:5358
 #, c-format
 msgid " Source waypoint selected : NONE"
 msgstr ""
 
-#: ../src/leveleditor.c:5346
+#: ../src/leveleditor.c:5362
 #, c-format
 msgid " Source waypoint selected : X=%d Y=%d. "
 msgstr ""
@@ -2036,11 +2036,11 @@ msgstr ""
 msgid "Play"
 msgstr ""
 
-#: ../src/menu.c:1362 ../src/menu.c:1472
+#: ../src/menu.c:1362 ../src/menu.c:1481
 msgid "Level Editor"
 msgstr ""
 
-#: ../src/menu.c:1363 ../src/menu.c:1471
+#: ../src/menu.c:1363 ../src/menu.c:1480
 msgid "Options"
 msgstr ""
 
@@ -2056,57 +2056,67 @@ msgstr ""
 msgid "Exit FreedroidRPG"
 msgstr ""
 
-#: ../src/menu.c:1412
+#: ../src/menu.c:1397
+msgid ""
+"\n"
+"The game has NOT been\n"
+"compiled with gettext support\n"
+"therefore translations are NOT\n"
+"available.\n"
+"Thanks\n"
+msgstr ""
+
+#: ../src/menu.c:1421
 msgid "Graphics Options"
 msgstr ""
 
-#: ../src/menu.c:1413
+#: ../src/menu.c:1422
 msgid "Sound Options"
 msgstr ""
 
-#: ../src/menu.c:1414
+#: ../src/menu.c:1423
 msgid "Language"
 msgstr ""
 
-#: ../src/menu.c:1415
+#: ../src/menu.c:1424
 msgid "Droid Talk"
 msgstr ""
 
-#: ../src/menu.c:1416
+#: ../src/menu.c:1425
 msgid "On-Screen Displays"
 msgstr ""
 
-#: ../src/menu.c:1417
+#: ../src/menu.c:1426
 msgid "Performance Tweaks"
 msgstr ""
 
-#: ../src/menu.c:1418 ../src/menu.c:1531 ../src/menu.c:1644 ../src/menu.c:1712
-#: ../src/menu.c:1798 ../src/menu.c:1913 ../src/menu.c:1954 ../src/menu.c:2228
-#: ../src/menu.c:2340 ../src/menu.c:2419
+#: ../src/menu.c:1427 ../src/menu.c:1540 ../src/menu.c:1653 ../src/menu.c:1721
+#: ../src/menu.c:1807 ../src/menu.c:1922 ../src/menu.c:1963 ../src/menu.c:2237
+#: ../src/menu.c:2349 ../src/menu.c:2428
 msgid "Back"
 msgstr ""
 
-#: ../src/menu.c:1469
+#: ../src/menu.c:1478
 msgid "Save Game"
 msgstr ""
 
-#: ../src/menu.c:1470
+#: ../src/menu.c:1479
 msgid "Resume Game"
 msgstr ""
 
-#: ../src/menu.c:1473
+#: ../src/menu.c:1482
 msgid "Load Game"
 msgstr ""
 
-#: ../src/menu.c:1474
+#: ../src/menu.c:1483
 msgid "New Game"
 msgstr ""
 
-#: ../src/menu.c:1475
+#: ../src/menu.c:1484
 msgid "Quit"
 msgstr ""
 
-#: ../src/menu.c:1575
+#: ../src/menu.c:1584
 msgid ""
 "\n"
 "Unfortunately, fullscreen cannot be\n"
@@ -2121,7 +2131,7 @@ msgid ""
 "   Thank you.\n"
 msgstr ""
 
-#: ../src/menu.c:1584
+#: ../src/menu.c:1593
 msgid ""
 "\n"
 "You are using SDL instead of OpenGL\n"
@@ -2137,155 +2147,155 @@ msgid ""
 "\t\t\t\t\t\tThank you.\n"
 msgstr ""
 
-#: ../src/menu.c:1637
+#: ../src/menu.c:1646
 #, c-format
 msgid "Gamma Correction: %1.2f"
 msgstr ""
 
-#: ../src/menu.c:1638
+#: ../src/menu.c:1647
 #, c-format
 msgid "Fullscreen Mode: %s"
 msgstr ""
 
-#: ../src/menu.c:1639
+#: ../src/menu.c:1648
 #, c-format
 msgid "Change Screen Resolution"
 msgstr ""
 
-#: ../src/menu.c:1640
+#: ../src/menu.c:1649
 #, c-format
 msgid "Show Blood: %s"
 msgstr ""
 
-#: ../src/menu.c:1641 ../src/menu.c:1788 ../src/menu.c:1790 ../src/menu.c:1791
-#: ../src/menu.c:1793 ../src/menu.c:1795 ../src/menu.c:1797
+#: ../src/menu.c:1650 ../src/menu.c:1797 ../src/menu.c:1799 ../src/menu.c:1800
+#: ../src/menu.c:1802 ../src/menu.c:1804 ../src/menu.c:1806
 msgid "YES"
 msgstr ""
 
-#: ../src/menu.c:1641 ../src/menu.c:1788 ../src/menu.c:1790 ../src/menu.c:1791
-#: ../src/menu.c:1793 ../src/menu.c:1795 ../src/menu.c:1797
+#: ../src/menu.c:1650 ../src/menu.c:1797 ../src/menu.c:1799 ../src/menu.c:1800
+#: ../src/menu.c:1802 ../src/menu.c:1804 ../src/menu.c:1806
 msgid "NO"
 msgstr ""
 
-#: ../src/menu.c:1642
+#: ../src/menu.c:1651
 #, c-format
 msgid "Automap Scale: %2.1f"
 msgstr ""
 
-#: ../src/menu.c:1710
+#: ../src/menu.c:1719
 #, c-format
 msgid "Background Music Volume: %1.2f"
 msgstr ""
 
-#: ../src/menu.c:1711
+#: ../src/menu.c:1720
 #, c-format
 msgid "Sound Effects Volume: %1.2f"
 msgstr ""
 
-#: ../src/menu.c:1787
+#: ../src/menu.c:1796
 #, c-format
 msgid "Hog CPU for max. performance: %s"
 msgstr ""
 
-#: ../src/menu.c:1789
+#: ../src/menu.c:1798
 #, c-format
 msgid "Highlighting mode: %s"
 msgstr ""
 
-#: ../src/menu.c:1789
+#: ../src/menu.c:1798
 msgid "FULL"
 msgstr ""
 
-#: ../src/menu.c:1789
+#: ../src/menu.c:1798
 msgid "REDUCED"
 msgstr ""
 
-#: ../src/menu.c:1790
+#: ../src/menu.c:1799
 #, c-format
 msgid "Show quick inventory: %s"
 msgstr ""
 
-#: ../src/menu.c:1791
+#: ../src/menu.c:1800
 #, c-format
 msgid "Skip light radius: %s"
 msgstr ""
 
-#: ../src/menu.c:1792
+#: ../src/menu.c:1801
 #, c-format
 msgid "Skip shadow blitting: %s"
 msgstr ""
 
-#: ../src/menu.c:1794
+#: ../src/menu.c:1803
 #, c-format
 msgid "Skip fadings: %s"
 msgstr ""
 
-#: ../src/menu.c:1796
+#: ../src/menu.c:1805
 #, c-format
 msgid "Use SDL automap: %s"
 msgstr ""
 
-#: ../src/menu.c:1908
+#: ../src/menu.c:1917
 #, c-format
 msgid "Show Position: %s"
 msgstr ""
 
-#: ../src/menu.c:1908 ../src/menu.c:1909 ../src/menu.c:1910 ../src/menu.c:1949
-#: ../src/menu.c:1950 ../src/menu.c:1951 ../src/menu.c:1952 ../src/menu.c:1953
+#: ../src/menu.c:1917 ../src/menu.c:1918 ../src/menu.c:1919 ../src/menu.c:1958
+#: ../src/menu.c:1959 ../src/menu.c:1960 ../src/menu.c:1961 ../src/menu.c:1962
 msgid "ON"
 msgstr ""
 
-#: ../src/menu.c:1908 ../src/menu.c:1909 ../src/menu.c:1910 ../src/menu.c:1949
-#: ../src/menu.c:1950 ../src/menu.c:1951 ../src/menu.c:1952 ../src/menu.c:1953
+#: ../src/menu.c:1917 ../src/menu.c:1918 ../src/menu.c:1919 ../src/menu.c:1958
+#: ../src/menu.c:1959 ../src/menu.c:1960 ../src/menu.c:1961 ../src/menu.c:1962
 msgid "OFF"
 msgstr ""
 
-#: ../src/menu.c:1909
+#: ../src/menu.c:1918
 #, c-format
 msgid "Show Framerate: %s"
 msgstr ""
 
-#: ../src/menu.c:1910
+#: ../src/menu.c:1919
 #, c-format
 msgid "Show Enemy Energy Bars: %s"
 msgstr ""
 
-#: ../src/menu.c:1911
+#: ../src/menu.c:1920
 #, c-format
 msgid "Screen Messages at most: %d"
 msgstr ""
 
-#: ../src/menu.c:1912
+#: ../src/menu.c:1921
 #, c-format
 msgid "Screen Message time: %3.1f"
 msgstr ""
 
-#: ../src/menu.c:1949
+#: ../src/menu.c:1958
 #, c-format
 msgid "Enemy Hit Texts: %s"
 msgstr ""
 
-#: ../src/menu.c:1950
+#: ../src/menu.c:1959
 #, c-format
 msgid "Enemy Bumped Texts: %s"
 msgstr ""
 
-#: ../src/menu.c:1951
+#: ../src/menu.c:1960
 #, c-format
 msgid "Enemy Aim Texts: %s"
 msgstr ""
 
-#: ../src/menu.c:1952
+#: ../src/menu.c:1961
 #, c-format
 msgid "All in-game Speech: %s"
 msgstr ""
 
-#: ../src/menu.c:1953
+#: ../src/menu.c:1962
 #, c-format
 msgid "Reprogram bots after takeover: %s"
 msgstr ""
 
-#: ../src/menu.c:1971
+#: ../src/menu.c:1980
 msgid ""
 "\n"
 " Please enter name of server to connect to:\n"
@@ -2293,7 +2303,7 @@ msgid ""
 " > "
 msgstr ""
 
-#: ../src/menu.c:1998
+#: ../src/menu.c:2007
 msgid ""
 "\n"
 "     Please enter a name\n"
@@ -2303,68 +2313,68 @@ msgid ""
 "     > "
 msgstr ""
 
-#: ../src/menu.c:2252 ../src/menu.c:2358 ../src/menu.c:2373
+#: ../src/menu.c:2261 ../src/menu.c:2367 ../src/menu.c:2382
 msgid "BACK"
 msgstr ""
 
-#: ../src/menu.c:2256
+#: ../src/menu.c:2265
 msgid ""
 "\n"
 "\n"
 "No saved games found!!  Loading Cancelled. "
 msgstr ""
 
-#: ../src/menu.c:2357
+#: ../src/menu.c:2366
 msgid "Sure!"
 msgstr ""
 
-#: ../src/menu.c:2360
+#: ../src/menu.c:2369
 #, c-format
 msgid "Really delete hero '%s'?"
 msgstr ""
 
-#: ../src/menu.c:2377
+#: ../src/menu.c:2386
 msgid ""
 "\n"
 "\n"
 "No saved games found!!  Deletion Cancelled. "
 msgstr ""
 
-#: ../src/menu.c:2416
+#: ../src/menu.c:2425
 msgid "New Hero"
 msgstr ""
 
-#: ../src/menu.c:2417
+#: ../src/menu.c:2426
 msgid "Load existing Hero"
 msgstr ""
 
-#: ../src/menu.c:2418
+#: ../src/menu.c:2427
 msgid "Delete existing Hero"
 msgstr ""
 
-#: ../src/menu.c:2581
+#: ../src/menu.c:2590
 msgid ""
 "This is the record of all missions you have been assigned:\n"
 "\n"
 msgstr ""
 
-#: ../src/menu.c:2596
+#: ../src/menu.c:2605
 msgid "SOLVED: "
 msgstr ""
 
-#: ../src/menu.c:2600
+#: ../src/menu.c:2609
 msgid "FAILED: "
 msgstr ""
 
-#: ../src/menu.c:2604
+#: ../src/menu.c:2613
 msgid "ASSIGNED: "
 msgstr ""
 
-#: ../src/menu.c:2608
+#: ../src/menu.c:2617
 msgid "UNASSIGNED: "
 msgstr ""
 
-#: ../src/menu.c:2616
+#: ../src/menu.c:2625
 msgid ""
 "\n"
 "\n"
@@ -2722,12 +2732,12 @@ msgstr ""
 msgid " YOU DONT HAVE ANYTHING THAT WOULD NEED REPAIR "
 msgstr ""
 
-#: ../src/skills.c:723
+#: ../src/skills.c:724
 #, c-format
 msgid "Program revision: %d "
 msgstr ""
 
-#: ../src/skills.c:726
+#: ../src/skills.c:727
 #, c-format
 msgid "Heat produced: %d "
 msgstr ""

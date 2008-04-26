@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CHANGE THIS\n"
 "Report-Msgid-Bugs-To: CHANGE THIS TOO\n"
-"POT-Creation-Date: 2008-04-02 19:32+0000\n"
-"PO-Revision-Date: 2008-04-02 19:32+0000\n"
+"POT-Creation-Date: 2008-04-26 07:09+0000\n"
+"PO-Revision-Date: 2008-04-26 07:09+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -264,74 +264,78 @@ msgid "Ravenous "
 msgstr ""
 
 #: ../map/freedroid.prefix_archetypes:851
+msgid "OMGWTF "
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:878
 msgid " of good design"
 msgstr ""
 
-#: ../map/freedroid.prefix_archetypes:874
+#: ../map/freedroid.prefix_archetypes:901
 msgid " (C)MegaSys"
 msgstr ""
 
-#: ../map/freedroid.prefix_archetypes:898
+#: ../map/freedroid.prefix_archetypes:925
 msgid " with no suffix"
 msgstr ""
 
-#: ../map/freedroid.prefix_archetypes:921
+#: ../map/freedroid.prefix_archetypes:948
 msgid " with sharp edges"
 msgstr ""
 
-#: ../map/freedroid.prefix_archetypes:946
+#: ../map/freedroid.prefix_archetypes:973
 msgid " covered in blood"
 msgstr ""
 
-#: ../map/freedroid.prefix_archetypes:969
+#: ../map/freedroid.prefix_archetypes:996
 msgid " covered in oil"
 msgstr ""
 
-#: ../map/freedroid.prefix_archetypes:992
+#: ../map/freedroid.prefix_archetypes:1019
 msgid ", 'the Murderer'"
 msgstr ""
 
-#: ../map/freedroid.prefix_archetypes:1015
+#: ../map/freedroid.prefix_archetypes:1042
 msgid ", 'the Healer'"
 msgstr ""
 
-#: ../map/freedroid.prefix_archetypes:1038
+#: ../map/freedroid.prefix_archetypes:1065
 msgid ", 'the Rabbit'"
 msgstr ""
 
-#: ../map/freedroid.prefix_archetypes:1061
+#: ../map/freedroid.prefix_archetypes:1088
 msgid ", 'the Seeker'"
 msgstr ""
 
-#: ../map/freedroid.prefix_archetypes:1084
+#: ../map/freedroid.prefix_archetypes:1111
 msgid ", 'the World'"
 msgstr ""
 
-#: ../map/freedroid.prefix_archetypes:1107
+#: ../map/freedroid.prefix_archetypes:1134
 msgid " from hell"
 msgstr ""
 
-#: ../map/freedroid.prefix_archetypes:1130
+#: ../map/freedroid.prefix_archetypes:1157
 msgid " with strange runes"
 msgstr ""
 
-#: ../map/freedroid.prefix_archetypes:1153
+#: ../map/freedroid.prefix_archetypes:1180
 msgid " with a curse"
 msgstr ""
 
-#: ../map/freedroid.prefix_archetypes:1176
+#: ../map/freedroid.prefix_archetypes:1203
 msgid "Cool "
 msgstr ""
 
-#: ../map/freedroid.prefix_archetypes:1199
+#: ../map/freedroid.prefix_archetypes:1226
 msgid "Frozen "
 msgstr ""
 
-#: ../map/freedroid.prefix_archetypes:1222
+#: ../map/freedroid.prefix_archetypes:1249
 msgid " of ice"
 msgstr ""
 
-#: ../map/freedroid.prefix_archetypes:1245
+#: ../map/freedroid.prefix_archetypes:1272
 msgid " of chills"
 msgstr ""
 
