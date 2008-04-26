@@ -36,8 +36,7 @@
 #include "proto.h"
 
 /* Distances for hitting a druid */
-#define MORE		(4/64.0)
-#define DRUIDHITDIST2		(0.3+MORE)*(0.25+MORE)
+#define DRUIDHITDIST2		(0.0625)
 
 /* ----------------------------------------------------------------------
  *
