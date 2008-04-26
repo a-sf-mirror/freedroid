@@ -805,8 +805,8 @@ return 0;
 int save_gps(char * tag, gps * target)
 {
 fprintf(SaveGameFile, "<%s>\n",tag);
-save_double("x", &(target->x));
-save_double("y", &(target->y));
+save_float("x", &(target->x));
+save_float("y", &(target->y));
 save_int32_t("z", &(target->z));
 fprintf(SaveGameFile, "</%s>\n", tag);
 return 0;
@@ -824,8 +824,8 @@ int read_gps(char* buffer, char * tag, gps * target)
 		char * epos = strstr(buffer, search);
 		if ( ! epos ) return 2;
 		*epos = 0;
-		read_double(pos, "x",  &(target->x));
-read_double(pos, "y",  &(target->y));
+		read_float(pos, "x",  &(target->x));
+read_float(pos, "y",  &(target->y));
 read_int32_t(pos, "z",  &(target->z));
 *epos = '>'; 
 return 0;
