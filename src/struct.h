@@ -790,6 +790,8 @@ typedef struct bullet_s
     float                      poison_duration;     
     float                      poison_damage_per_sec;
     float                      paralysation_duration;
+
+    char is_friendly; //ugly hack, great idea - if the bot has the same value, the bullet just goes through
 }
 bullet, *Bullet;
 

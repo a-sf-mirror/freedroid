@@ -3304,6 +3304,8 @@ WorkLevelGuns ( )
       CurBullet->reflect_other_bullets   = ItemMap[ weapon_item_type ].item_gun_bullet_reflect_other_bullets;
       CurBullet->pass_through_explosions = ItemMap[ weapon_item_type ].item_gun_bullet_pass_through_explosions;
       CurBullet->pass_through_hit_bodies = ItemMap[ weapon_item_type ].item_gun_bullet_pass_through_hit_bodies;
+
+      CurBullet->is_friendly = 0;
       
       //--------------------
       // Depending on whether this is a real bullet (-1 given as parameter)

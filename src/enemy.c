@@ -1708,19 +1708,8 @@ static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_m
     
     if ( ThisRobot->firewait ) return;
 
-    //--------------------
-    // Now if the bot has a ranged weapon, check if there is any friend of the bot on the line of his shot
-    if ( ! ( ItemMap [ Druidmap [ ThisRobot -> type ] . weapon_item . type ] . item_weapon_is_melee ) &&
-	 ! CheckIfWayIsFreeOfDroids ( ThisRobot->is_friendly ? TRUE : FALSE, ThisRobot->virt_pos.x, ThisRobot->virt_pos.y, tpos->x, tpos->y, ThisRobot->pos.z, ThisRobot, ThisRobot->is_friendly ? CHECK_WAY_FRIENDLY : CHECK_WAY_HOSTILE ) )
-	{
-	// We must not shoot to avoid friendly fire !
-	new_move_target -> x = tpos -> x;
-	new_move_target -> y = tpos -> y;
-	ThisRobot->pure_wait = 1.0;
-	return;
-	}
+    /* Great suggestion of Sarayan : we do not care about friendly fire, and make bullets go through people of the same side. */
 
-    
     RawStartEnemysShot( ThisRobot , tpos->x - ThisRobot->virt_pos.x, tpos->y - ThisRobot->virt_pos.y);
 
 }
@@ -2190,6 +2179,7 @@ RawStartEnemysShot( enemy* ThisRobot , float xdist , float ydist )
 	    ItemMap[ Druidmap[ ThisRobot->type].weapon_item.type ].item_gun_bullet_reflect_other_bullets;
 	NewBullet->pass_through_hit_bodies = 
 	    ItemMap[ Druidmap[ ThisRobot->type].weapon_item.type ].item_gun_bullet_pass_through_hit_bodies;
+	NewBullet->is_friendly = ThisRobot->is_friendly;
 	}
     else  /* melee weapon */
 	{

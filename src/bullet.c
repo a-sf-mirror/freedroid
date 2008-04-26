@@ -756,7 +756,8 @@ check_bullet_enemy_collisions ( bullet* CurBullet , int num )
 	xdist = CurBullet->pos.x - ThisRobot -> pos . x;
 	ydist = CurBullet->pos.y - ThisRobot -> pos . y;
 
-	if ( (xdist * xdist + ydist * ydist) < DRUIDHITDIST2 && ((float) Druidmap [ ThisRobot->type ] . monster_level * (float) MyRandom(100) < CurBullet->to_hit ))
+	if ( (xdist * xdist + ydist * ydist) < DRUIDHITDIST2 && ((float) Druidmap [ ThisRobot->type ] . monster_level * (float) MyRandom(100) < CurBullet->to_hit )
+		&& ThisRobot->is_friendly != CurBullet->is_friendly)
 	    {
 		    hit_enemy(ThisRobot, CurBullet->damage, (CurBullet->mine ? 1 : 0) /*givexp*/, CurBullet->owner, (CurBullet->mine ? 1 : 0));
 
