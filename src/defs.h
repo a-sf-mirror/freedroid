@@ -1569,4 +1569,10 @@ enum
 };
 
 #define ITEM_TAKE_DIST (1.2)
+
+enum {
+    CHECK_WAY_ALL_DROIDS=0, /* These values are used for CheckIfWayIsFreeOfDroids. */
+    CHECK_WAY_FRIENDLY=1,
+    CHECK_WAY_HOSTILE=2
+};
 #endif

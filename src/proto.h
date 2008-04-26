@@ -789,7 +789,7 @@ EXTERN void MoveEnemys (void);
 EXTERN void ClearEnemys (void);
 EXTERN void InitEnemy (enemy *);
 EXTERN int DirectLineWalkable( float x1 , float y1 , float x2 , float y2 , int z );
-EXTERN int CheckIfWayIsFreeOfDroids (char test_tux, float x1 , float y1 , float x2 , float y2 , int OurLevel , Enemy ExceptedRobot ) ;
+EXTERN int CheckIfWayIsFreeOfDroids (char test_tux, float x1 , float y1 , float x2 , float y2 , int OurLevel , enemy * ExceptedRobot, char friendly_check ) ;
 EXTERN void start_gethit_animation_if_applicable ( enemy* ThisRobot ) ;
 EXTERN void animate_enemy ( enemy * our_bot ) ;
 EXTERN void hit_enemy ( enemy * target, float hit, char givexp, short int killertype, char mine);

@@ -467,12 +467,15 @@ remaining_distance_to_current_walk_target ( Enemy ThisRobot )
  * This function checks if the connection between two points is free of
  * droids.  
  *
- * MAP TILES ARE NOT TAKEN INTO CONSIDERATION, ONLY DROIDS!!!
+ * friendly_check can take three values : check all droids, only friendly droids
+ * (with respect to tux), or only enemy droids
+ *
+ * OBSTACLES ARE NOT TAKEN INTO CONSIDERATION, ONLY DROIDS!!!
  *
  * ---------------------------------------------------------------------- */
 int 
 CheckIfWayIsFreeOfDroids (char test_tux, float x1 , float y1 , float x2 , float y2 , int OurLevel , 
-					  Enemy ExceptedRobot ) 
+					  Enemy ExceptedRobot, char friendly_check ) 
 {
     const float Druid_Radius = 0.5;
 
@@ -491,6 +494,14 @@ CheckIfWayIsFreeOfDroids (char test_tux, float x1 , float y1 , float x2 , float 
 	{
 	if (( this_enemy -> pure_wait > 0 )  || (this_enemy == ExceptedRobot ) )
 	    continue;
+
+	if ( friendly_check != CHECK_WAY_ALL_DROIDS )
+	    { /* Do we have to perform a friendly-check ? */
+	    if ( friendly_check == CHECK_WAY_FRIENDLY && ! this_enemy->is_friendly )
+		continue;
+	    else if ( this_enemy->is_friendly )
+		continue;
+	    }
 
 	/* Distance formula taken at http://www.softsurfer.com/Archive/algorithm_0102/Eqn_dcross2.gif */
 	/* the distance basically is the cross product of the normalized (X_0, X_1) vector with (X_0, X) */
@@ -736,7 +747,7 @@ SetNewRandomWaypoint ( Enemy ThisRobot )
 	    WpList [ ThisRobot -> lastwaypoint ] . y + 0.5 , 
 	    WpList [ WpList [ ThisRobot -> lastwaypoint ] . connections [ i ] ] . x + 0.5 , 
 	    WpList [ WpList [ ThisRobot -> lastwaypoint ] . connections [ i ] ] . y + 0.5 , 
-	    ThisRobot->pos.z , ThisRobot );
+	    ThisRobot->pos.z , ThisRobot, CHECK_WAY_ALL_DROIDS );
     }
     
     //--------------------
@@ -1696,6 +1707,19 @@ static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_m
 	 ( dist2 > 2.25 ) ) return;
     
     if ( ThisRobot->firewait ) return;
+
+    //--------------------
+    // Now if the bot has a ranged weapon, check if there is any friend of the bot on the line of his shot
+    if ( ! ( ItemMap [ Druidmap [ ThisRobot -> type ] . weapon_item . type ] . item_weapon_is_melee ) &&
+	 ! CheckIfWayIsFreeOfDroids ( ThisRobot->is_friendly ? TRUE : FALSE, ThisRobot->virt_pos.x, ThisRobot->virt_pos.y, tpos->x, tpos->y, ThisRobot->pos.z, ThisRobot, ThisRobot->is_friendly ? CHECK_WAY_FRIENDLY : CHECK_WAY_HOSTILE ) )
+	{
+	// We must not shoot to avoid friendly fire !
+	new_move_target -> x = tpos -> x;
+	new_move_target -> y = tpos -> y;
+	ThisRobot->pure_wait = 1.0;
+	return;
+	}
+
     
     RawStartEnemysShot( ThisRobot , tpos->x - ThisRobot->virt_pos.x, tpos->y - ThisRobot->virt_pos.y);
 
@@ -2319,7 +2343,7 @@ ConsideredMoveIsFeasible ( Enemy ThisRobot , moderately_finepoint StepVector )
 	 ( CheckIfWayIsFreeOfDroids ( TRUE, ThisRobot->pos.x , ThisRobot->pos.y , 
 						     ThisRobot->pos.x + StepVector . x , 
 						     ThisRobot->pos.y + StepVector . y ,
-						     ThisRobot->pos.z , ThisRobot ) ) )
+						     ThisRobot->pos.z , ThisRobot, CHECK_WAY_ALL_DROIDS ) ) )
     {
 	return TRUE;
     }
