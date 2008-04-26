@@ -459,7 +459,7 @@ action_fill_user_recursive ( Level EditLevel, int x, int y, int type, int *chang
 {
     int source_type = EditLevel->map [ y ] [ x ] . floor_value;
     /* security */
-    if ( ( y < 0 ) || ( y < 0 ) || ( x >= EditLevel->xlen ) || ( y >= EditLevel->ylen ) )
+    if ( ( x < 0 ) || ( y < 0 ) || ( x >= EditLevel->xlen ) || ( y >= EditLevel->ylen ) )
 	return;
 #define at(x,y) (EditLevel -> map [ y ] [ x ] . floor_value)    
     if ( at (x , y) == type )
