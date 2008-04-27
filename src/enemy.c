@@ -1819,6 +1819,14 @@ static void state_machine_rush_tux_and_open_talk(enemy * ThisRobot, moderately_f
 
 static void state_machine_follow_tux(enemy * ThisRobot, moderately_finepoint * new_move_target)
 {
+    if ( ! ThisRobot->follow_tux )
+	{
+	ThisRobot->combat_state = WAYPOINTLESS_WANDERING;
+	new_move_target -> x = ThisRobot->pos.x;
+	new_move_target -> y = ThisRobot->pos.y;
+	return;
+	}
+
     /* Move target */
     if ( GetInfluPositionHistoryZ(50) == ThisRobot -> pos . z )
 	{
@@ -1835,12 +1843,11 @@ static void state_machine_follow_tux(enemy * ThisRobot, moderately_finepoint * n
 	    }
 	else 
 	    {
-	    ThisRobot->combat_state = COMPLETELY_FIXED;
+	    ThisRobot->combat_state = WAYPOINTLESS_WANDERING;
 	    new_move_target -> x = ThisRobot->pos.x;
 	    new_move_target -> y = ThisRobot->pos.y;
 	    }
 	}
-
 }
 
 static void state_machine_completely_fixed ( enemy * ThisRobot, moderately_finepoint * new_move_target )
@@ -1848,6 +1855,9 @@ static void state_machine_completely_fixed ( enemy * ThisRobot, moderately_finep
     /* Move target */
     new_move_target -> x = ThisRobot-> pos . x;
     new_move_target -> y = ThisRobot-> pos . y;
+
+    if ( ! ThisRobot->CompletelyFixed ) 
+	ThisRobot->combat_state = WAYPOINTLESS_WANDERING;
 }
 
 static void state_machine_waypointless_wandering(enemy * ThisRobot, moderately_finepoint * new_move_target)

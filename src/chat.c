@@ -453,10 +453,7 @@ ExecuteChatExtra ( char* ExtraCommandString , Enemy ChatDroid )
     else if ( ! strcmp ( ExtraCommandString , "SetCompletelyFixedProperty" ) )
 	{
 	ChatDroid -> CompletelyFixed = TRUE ;
-	}
-    else if ( ! strcmp ( ExtraCommandString , "UnsetCompletelyFixedProperty" ) )
-	{
-	ChatDroid -> CompletelyFixed = FALSE ;
+	ChatDroid -> follow_tux = FALSE;
 	}
     else if ( ! strcmp ( ExtraCommandString , "SetFollowTuxProperty" ) )
 	{
