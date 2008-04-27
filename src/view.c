@@ -490,12 +490,6 @@ blit_obstacle_collision_rectangle ( obstacle* our_obstacle )
     if ( obstacle_map [ our_obstacle -> type ] . block_area_type == COLLISION_TYPE_NONE )
 	return;
 
-/*    if ( obstacle_map [ our_obstacle -> type ] . block_area_type == COLLISION_TYPE_DOOR )
-	{
-        skew_and_blit_rect(x + obstacle_map [ our_obstacle->type ] . block_area_parm_1,y+ obstacle_map [ our_obstacle->type ] . block_area_parm_2,x+obstacle_map [ our_obstacle->type ] . block_area_parm_1 + 0.3,y+ obstacle_map [ our_obstacle->type ] . block_area_parm_2 + 0.3, 0x00FEEAA);
-	return;
-	}*/
-
     
     //--------------------
     // Now we draw the collision rectangle.  We use the same parameters
