@@ -475,7 +475,7 @@ remaining_distance_to_current_walk_target ( Enemy ThisRobot )
  * ---------------------------------------------------------------------- */
 int 
 CheckIfWayIsFreeOfDroids (char test_tux, float x1 , float y1 , float x2 , float y2 , int OurLevel , 
-					  Enemy ExceptedRobot, char friendly_check ) 
+					  Enemy ExceptedRobot ) 
 {
     const float Druid_Radius = 0.5;
 
@@ -494,14 +494,6 @@ CheckIfWayIsFreeOfDroids (char test_tux, float x1 , float y1 , float x2 , float 
 	{
 	if (( this_enemy -> pure_wait > 0 )  || (this_enemy == ExceptedRobot ) )
 	    continue;
-
-	if ( friendly_check != CHECK_WAY_ALL_DROIDS )
-	    { /* Do we have to perform a friendly-check ? */
-	    if ( friendly_check == CHECK_WAY_FRIENDLY && ! this_enemy->is_friendly )
-		continue;
-	    else if ( this_enemy->is_friendly )
-		continue;
-	    }
 
 	/* Distance formula taken at http://www.softsurfer.com/Archive/algorithm_0102/Eqn_dcross2.gif */
 	/* the distance basically is the cross product of the normalized (X_0, X_1) vector with (X_0, X) */
@@ -747,7 +739,7 @@ SetNewRandomWaypoint ( Enemy ThisRobot )
 	    WpList [ ThisRobot -> lastwaypoint ] . y + 0.5 , 
 	    WpList [ WpList [ ThisRobot -> lastwaypoint ] . connections [ i ] ] . x + 0.5 , 
 	    WpList [ WpList [ ThisRobot -> lastwaypoint ] . connections [ i ] ] . y + 0.5 , 
-	    ThisRobot->pos.z , ThisRobot, CHECK_WAY_ALL_DROIDS );
+	    ThisRobot->pos.z , ThisRobot );
     }
     
     //--------------------
@@ -2333,7 +2325,7 @@ ConsideredMoveIsFeasible ( Enemy ThisRobot , moderately_finepoint StepVector )
 	 ( CheckIfWayIsFreeOfDroids ( TRUE, ThisRobot->pos.x , ThisRobot->pos.y , 
 						     ThisRobot->pos.x + StepVector . x , 
 						     ThisRobot->pos.y + StepVector . y ,
-						     ThisRobot->pos.z , ThisRobot, CHECK_WAY_ALL_DROIDS ) ) )
+						     ThisRobot->pos.z , ThisRobot ) ) )
     {
 	return TRUE;
     }

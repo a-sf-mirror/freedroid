@@ -1396,7 +1396,7 @@ streamline_intermediate_course ( enemy * droid, gps * curpos, moderately_finepoi
 								waypoints [ start_index ] . y ,
 								waypoints [ scan_index ] . x ,
 								waypoints[ scan_index ] . y , 
-								curpos->z , droid, CHECK_WAY_ALL_DROIDS) )
+								curpos->z , droid ) )
 		{
 		  last_index = scan_index ;
 		}
@@ -1450,7 +1450,7 @@ streamline_intermediate_course ( enemy * droid, gps * curpos, moderately_finepoi
 							curpos-> y ,
 						        waypoints [ 1 ] . x ,
 							waypoints [ 1 ] . y , 
-							curpos->z , droid, CHECK_WAY_ALL_DROIDS) )
+							curpos->z , droid ) )
 	{
 	  DebugPrintf ( DEBUG_TUX_PATHFINDING , "\nVERY FIRST INTERMEDIATE POINT CUT MANUALLY!!!!" );
 	  for ( cut_away = 1 ; cut_away < maxwp ; cut_away ++ )
@@ -1500,7 +1500,7 @@ recursive_find_walkable_point ( enemy * droid, int levelnum, float x1 , float y1
     // walkable target for the Tux.
     //
     if ( ( droid_can_walk_this_line ( levelnum, x1, y1 , x2 , y2 ) ) &&
-	    ( CheckIfWayIsFreeOfDroids ( FALSE, x1 , y1 , x2 , y2 , levelnum, droid, CHECK_WAY_ALL_DROIDS ) ) ) 
+	    ( CheckIfWayIsFreeOfDroids ( FALSE, x1 , y1 , x2 , y2 , levelnum, droid ) ) ) 
 	{
 	// if the target position is directly reachable
 	// then we are done !
@@ -1611,7 +1611,7 @@ recursive_find_walkable_point ( enemy * droid, int levelnum, float x1 , float y1
 	    if ( ( CheckIfWayIsFreeOfDroids ( FALSE, x1 , y1 , 
 								x1 + ordered_moves [ i ] . x , 
 								y1 + ordered_moves [ i ] . y , 
-								levelnum , droid, CHECK_WAY_ALL_DROIDS ) ) )
+								levelnum , droid ) ) )
 	    {
 		
 		last_sight_contact . x = x1 ;
