@@ -1832,6 +1832,13 @@ static void state_machine_follow_tux(enemy * ThisRobot, moderately_finepoint * n
 	{
 	new_move_target -> x = GetInfluPositionHistoryX(50);
 	new_move_target -> y = GetInfluPositionHistoryY(50);
+	
+	moderately_finepoint ab = { ThisRobot -> pos . x - new_move_target -> x, ThisRobot -> pos . y - new_move_target -> y};
+	if ( fabsf(ab . x) < 1 && fabsf(ab . y) < 1 )
+	    {
+	    new_move_target -> x = ThisRobot->pos.x;
+	    new_move_target -> y = ThisRobot->pos.y;
+	    }
 	}
     else
 	{
