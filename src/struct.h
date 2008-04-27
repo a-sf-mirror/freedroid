@@ -319,11 +319,10 @@ typedef struct obstacle_spec_s
     float right_border ;
     
     char block_area_type;
-    char block_vision_too;
-    char is_smashable;
-    char drop_random_treasure;
     int result_type_after_smashing_once;
     
+    unsigned int flags;
+
     //--------------------
     // Some obstacles will emitt light.  Specify light strength here.
     // A value of 0 light will be sufficient in most cases...
@@ -334,7 +333,6 @@ typedef struct obstacle_spec_s
     // This is a special property for obstacles, that can be 
     // stepped on, like a rug or floor plate, for proper visibility...
     //
-    char needs_pre_put; 
     char* filename;
     char* obstacle_short_name;
     char* obstacle_long_description;

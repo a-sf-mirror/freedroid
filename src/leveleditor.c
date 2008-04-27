@@ -454,25 +454,78 @@ action_set_floor (Level EditLevel, int x, int y, int type)
     action_push (ACT_TILE_FLOOR_SET, x, y, old);
 }
 
+void ot(int o) {
+	switch (o) {
+		case LEVEL_EDITOR_SELECTION_FLOOR:
+			printf("So this is a LEVEL_EDITOR_SELECTION_FLOOR \n");
+			break;
+		case LEVEL_EDITOR_SELECTION_WALLS:
+			printf("So this is a  EVEL_EDITOR_SELECTION_WALLS \n");
+			break;
+		case LEVEL_EDITOR_SELECTION_MACHINERY:
+			printf("So this is a MACHINERY\n");
+			break;
+		case LEVEL_EDITOR_SELECTION_FURNITURE:
+			printf("So this is a FURNITURE\n");
+			break;
+		case LEVEL_EDITOR_SELECTION_CONTAINERS:
+			printf("So this is a CONTAINER\n");
+			break;
+		case LEVEL_EDITOR_SELECTION_PLANTS:
+			printf("So this is a PLANT\n");
+			break;
+		case LEVEL_EDITOR_SELECTION_ALL:
+			printf("So this is ALL \n");
+			break;
+		case LEVEL_EDITOR_SELECTION_QUICK:
+			printf("So this is a  QUICK\n");
+			break;
+		default:
+			printf("WTF ?\n");
+	}
+}
+
+int tile_is_free ( Level EditLevel, int y_old, int x_old, int y_new, int x_new) {
+	int i;
+	float x, y;
+	int wall_id = -1;
+	int obstacle_id;
+	for ( i = 0; i < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE; ++i) {
+		obstacle_id = EditLevel -> map [ y_new ] [ x_new ] . obstacles_glued_to_here [ i ] ;
+		if (obstacle_id != -1 && 
+				(EditLevel -> obstacle_list [ obstacle_id ] . type >= ISO_V_WALL ||
+				 EditLevel -> obstacle_list [ obstacle_id ] . type <= ISO_OUTER_WALL_E3) ) {
+			wall_id = obstacle_id;
+			y = EditLevel -> obstacle_list [ obstacle_id ] . pos . y;
+			x = EditLevel -> obstacle_list [ obstacle_id ] . pos . x;
+			printf("Hey, this %d %f %d %f is a wall !\n", y_new, y, x_new, x);
+			break;
+		}
+	}
+	return TRUE;
+}
+
+
 void
 action_fill_user_recursive ( Level EditLevel, int x, int y, int type, int *changed)
 {
     int source_type = EditLevel->map [ y ] [ x ] . floor_value;
     /* security */
-    if ( ( x < 0 ) || ( y < 0 ) || ( x >= EditLevel->xlen ) || ( y >= EditLevel->ylen ) )
+    if ( ( x < 0 ) || ( y < 0 ) || ( x >= EditLevel->xlen ) || ( y >= EditLevel->ylen ) ) 
 	return;
+
 #define at(x,y) (EditLevel -> map [ y ] [ x ] . floor_value)    
     if ( at (x , y) == type )
 	return;
     action_set_floor ( EditLevel, x, y, type);
     (*changed) ++;
-    if ( x > 0 && at (x-1, y) == source_type)
+    if ( x > 0 && at (x-1, y) == source_type && tile_is_free(EditLevel, y, x, y, x-1) )
 	action_fill_user_recursive (EditLevel, x-1, y, type, changed);
-    if ( x < EditLevel->xlen-1 && at (x+1, y) == source_type)
+    if ( x < EditLevel->xlen-1 && at (x+1, y) == source_type && tile_is_free(EditLevel, y, x, y, x+1) )
 	action_fill_user_recursive (EditLevel, x+1, y, type, changed);
-    if ( y > 0 && at (x, y-1) == source_type)
+    if ( y > 0 && at (x, y-1) == source_type && tile_is_free(EditLevel, y, x, y-1, x) )
 	action_fill_user_recursive (EditLevel, x, y-1, type, changed);
-    if ( y < EditLevel->ylen-1 && at (x-1, y+1) == source_type)
+    if ( y < EditLevel->ylen-1 && at (x-1, y+1) == source_type && tile_is_free(EditLevel, y+1, x, y, x) )
 	action_fill_user_recursive (EditLevel, x, y+1, type, changed);
 }
 void
@@ -4833,8 +4886,8 @@ void start_line_mode(whole_line *walls, moderately_finepoint TargetSquare,
 	walls->editor_mode = GameConfig . level_editor_edit_mode;
 	walls->id = Highlight;
     }
-    walls->elements.position.x = (int)TargetSquare.x + ((wall_orientation(wall_indices [ walls->editor_mode ] [ walls->id ]) == HORIZONTAL) ? 0.5 : 0);
-    walls->elements.position.y = (int)TargetSquare.y + ((wall_orientation(wall_indices [ walls->editor_mode ] [ walls->id ]) == HORIZONTAL) ? 0 : 0.5);
+    walls->elements.position.x = (int)TargetSquare.x + ((obstacle_map [ wall_indices [ walls->editor_mode ] [ walls->id ] ] . flags & IS_HORIZONTAL) ? 0.5 : 0);
+    walls->elements.position.y = (int)TargetSquare.y + ((obstacle_map [ wall_indices [ walls->editor_mode ] [ walls->id ] ] . flags & IS_HORIZONTAL) ? 0 : 0.5);
     walls->elements.address = action_create_obstacle_user ( EditLevel , 
 	    walls->elements.position.x , walls->elements.position.y , 
 	    wall_indices [ walls->editor_mode ] [ walls->id ] );
@@ -4890,15 +4943,11 @@ void handle_line_mode(whole_line *walls, moderately_finepoint TargetSquare)
 	}
 
 	// Are we going in a direction possible with that wall?
-	switch (wall_orientation(wall_indices [ walls->editor_mode ] [ walls->id ])) {
-	    case HORIZONTAL:
-		direction_is_possible = (actual_direction == WEST) || (actual_direction == EAST);
-		break;
-	    case VERTICAL:
+	if ( obstacle_map [ wall_indices [ walls->editor_mode ] [ walls->id ] ] . flags & IS_HORIZONTAL ) {
+		direction_is_possible =  (actual_direction == WEST) || (actual_direction == EAST);
+	} else if ( obstacle_map [ wall_indices [ walls->editor_mode ] [ walls->id ] ] . flags & IS_VERTICAL ) {
 		direction_is_possible = (actual_direction == NORTH) || (actual_direction == SOUTH);
-		break;
-	    default:
-		// We don't want weird lines
+	} else {
 		direction_is_possible = FALSE;
 	}
 
@@ -5642,9 +5691,12 @@ LevelEditor(void)
 		    {
 			quickbar_click ( EditLevel , Highlight , TargetSquare, walls); 
 		    }
-		    /* If the tile can be part of a line */
+		    /* If the obstacle can be part of a line */
 		    else if ( ( GameConfig . level_editor_edit_mode == LEVEL_EDITOR_SELECTION_WALLS) &&
-			      (wall_orientation(wall_indices[GameConfig.level_editor_edit_mode][Highlight]) != UNDEFINED) )
+				    /* obstacle has a direction */
+				    ( (obstacle_map [ wall_indices [ GameConfig . level_editor_edit_mode ] [ Highlight ] ] . flags & IS_VERTICAL) ||
+				      (obstacle_map [ wall_indices [ GameConfig . level_editor_edit_mode ] [ Highlight ] ] . flags & IS_HORIZONTAL) ) ) 
+
 		    {
 			/* Let's start the line (FALSE because the function will
 			 * find the tile by itself) */

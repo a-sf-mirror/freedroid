@@ -970,7 +970,7 @@ smash_obstacles_only_on_tile ( float x , float y , int map_x , int map_y )
 	target_obstacle = & ( BoxLevel -> obstacle_list [ BoxLevel -> map [ map_y ] [ map_x ] . 
 							  obstacles_glued_to_here [ i ] ] );
 	
-	if ( ! obstacle_map [ target_obstacle -> type ] . is_smashable ) continue;
+	if ( ! obstacle_map [ target_obstacle -> type ] . flags & IS_SMASHABLE ) continue;
 	
 	//--------------------
 	// Now we check if the item really was close enough to the strike target.
@@ -1000,7 +1000,7 @@ smash_obstacles_only_on_tile ( float x , float y , int map_x , int map_y )
 	// Before we destroy the obstacle (and lose the obstacle type) we see if we
 	// should maybe drop some item.
 	//
-	if ( obstacle_map [ target_obstacle -> type ] . drop_random_treasure )
+	if ( obstacle_map [ target_obstacle -> type ] . flags & DROPS_RANDOM_TREASURE )
 	    DropRandomItem( Me . pos . z , target_obstacle -> pos . x , target_obstacle -> pos . y , 1 , FALSE );
 	
 	//--------------------
@@ -3416,7 +3416,7 @@ position_collides_with_this_obstacle ( float x , float y , obstacle* our_obstacl
     if ( obstacle_map [ obs_type ] . block_area_type == COLLISION_TYPE_NONE )
 	return ( FALSE );
     
-    if ( ( ! obstacle_map [ obs_type ] . block_vision_too ) && ( global_check_for_light_only_collisions_flag ) )
+    if ( ( ! obstacle_map [ obs_type ] . flags & BLOCKS_VISION_TOO ) && ( global_check_for_light_only_collisions_flag ) )
 	return ( FALSE );
     
     /*

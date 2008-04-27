@@ -211,6 +211,26 @@ enum _game_config_screen_visible_parameters
 enum
 { ONLY_SHOW_MAP = 1 , DO_SCREEN_UPDATE = 2 , ONLY_SHOW_MAP_AND_TEXT = 4 , SHOW_GRID = 8 , SHOW_TUX_AND_ENEMIES = 16 , SHOW_TEXT = 32 , SHOW_ITEMS = 64 , OMIT_OBSTACLES = 128 , OMIT_TUX = 256 , OMIT_ENEMIES = 512 , SHOW_OBSTACLE_NAMES = 1024 , ZOOM_OUT = 2048 , OMIT_BLASTS = 4096 , USE_OWN_MOUSE_CURSOR = 8192 , SKIP_LIGHT_RADIUS = (2*8192) };
 
+// Flags for obstacles
+enum 
+{
+	/* Obstacle groups */
+	IS_WALL = 1,
+
+	/* Walls */
+	IS_HORIZONTAL = 2,
+	IS_VERTICAL = 4,
+
+	/* Obstacle specs */
+	BLOCKS_VISION_TOO = 8,
+	IS_SMASHABLE = 16,
+	DROPS_RANDOM_TREASURE = 32,
+	NEEDS_PRE_PUT = 64
+};
+
+
+
+
 //--------------------
 // This controls the zoom factor for the automap.  Since this uses
 // a different update policy than the level editor, even strong zoom
@@ -885,14 +905,6 @@ enum _level_editor_edit_modes
     LEVEL_EDITOR_SELECTION_ALL = 6,
     LEVEL_EDITOR_SELECTION_QUICK = 7, 
     NUMBER_OF_LEVEL_EDITOR_GROUPS = 8
-};
-
-// Possible orientations for a wall
-enum _wall_orientation
-{
-    NO_ORIENTATION = 0,
-    VERTICAL = 1,
-    HORIZONTAL = 2
 };
 
 // possible directions for a line of walls
