@@ -1260,8 +1260,13 @@ PutPixel_open_gl ( int x, int y, Uint32 pixel)
 {
 
 #ifdef HAVE_LIBGL
-    glRasterPos2i( x , y ) ;
-    glDrawPixels( 1 , 1, GL_RGB , GL_UNSIGNED_BYTE , & pixel );
+    /* Uglier and slower than glDrawPixels, but it works :) */
+    glDisable(GL_TEXTURE_2D);
+    glBegin(GL_POINTS);
+    glColor3ub(((pixel >> 16) & 0xff), (pixel >> 8) & 0xff, (pixel) & 0xff);
+    glVertex2i(x, y);
+    glEnd();
+    glEnable(GL_TEXTURE_2D); 
 #endif
     
 }; // void PutPixel_open_gl ( x , y , pixel ) ;
