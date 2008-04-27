@@ -381,8 +381,6 @@ isometric_show_floor_around_tux_without_doublebuffering (int mask)
 #ifdef HAVE_LIBGL
       glBindTexture( GL_TEXTURE_2D, floor_atlas[0].tex );
       glEnable(GL_ALPHA_TEST);
-      glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE );
-      glColor4f( 1.0 , 1.0 , 1.0, 1.0 );
       glBegin(GL_QUADS);
 
       for (line = LineStart; line < LineEnd; line++)
@@ -418,7 +416,6 @@ isometric_show_floor_around_tux_without_doublebuffering (int mask)
 	  }
 
       glEnd( );
-      glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE );
       glDisable(GL_ALPHA_TEST);
 #endif
       } 
