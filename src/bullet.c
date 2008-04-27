@@ -717,6 +717,8 @@ check_bullet_player_collisions ( bullet* CurBullet , int num )
       // check for that case as well....
       //
       if ( CurBullet -> mine ) return;
+
+      if ( CurBullet -> is_friendly ) return;
       
       //--------------------
       // Now we see if the distance to the bullet is as low as hitting
