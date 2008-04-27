@@ -39,6 +39,8 @@
 int AUTOMAP_TEXTURE_WIDTH=2048;
 int AUTOMAP_TEXTURE_HEIGHT=1024;
 
+#define AUTOMAP_SQUARE_SIZE 3
+#define AUTOMAP_COLOR 0x0FFFF
 
 /* ----------------------------------------------------------------------
  * This function clears out the Automap data.
@@ -195,6 +197,19 @@ clear_automap_texture_completely ( void )
 
 }; // void clear_automap_texture_completely ( void )
 
+static inline void PutPixel_automap_wrapper(SDL_Surface * abc, int x, int y, Uint32 pixel)
+{
+if ( ! use_open_gl )
+    PutPixel ( abc, x, y, pixel);
+#ifdef HAVE_LIBGL
+else
+    {
+    glColor3ub(((pixel >> 16) & 0xff), (pixel >> 8) & 0xff, (pixel) & 0xff);
+    glVertex2i(x, y);
+    }
+#endif
+}
+
 /* ----------------------------------------------------------------------
  *
  * This function should display the automap data, that was collected so
@@ -209,11 +224,8 @@ void
 show_automap_data_sdl ( void )
 {
   int x , y ;
-#define AUTOMAP_SQUARE_SIZE 3
-#define AUTOMAP_COLOR 0x0FFFF
   int TuxColor = SDL_MapRGB( Screen->format, 0 , 0 , 255 ); 
   int FriendColor = SDL_MapRGB( Screen->format, 0 , 255 , 0 ); 
-  //int BoogyColor = SDL_MapRGB( Screen->format, 255 , 0 , 0 ); 
   Level automap_level = curShip . AllLevels [ Me . pos . z ] ;
   int level = Me . pos . z ;
 
@@ -228,69 +240,64 @@ show_automap_data_sdl ( void )
   //
   if ( ! Me . map_maker_is_present ) return;
 
+#ifdef HAVE_LIBGL
+  if ( use_open_gl )
+      {
+      glDisable (GL_TEXTURE_2D);
+      glBegin ( GL_POINTS );
+      }
+#endif
+
   //--------------------
   // At first, we only blit the known data about the pure wall-type
   // obstacles on this level.
-  //
-  // Currently we handle this via putpixel, but later there should be some
-  // small images instead of the pixels and some larger surface made out of
-  // the smaller pixels..., and then there should be OpenGL-textures to 
-  // show the larger surface, updated again and again.  Well, this will
-  // have to wait for the 0.9.10 release to be implemented.
-  //
   for ( y = 0 ; y < automap_level->ylen ; y ++ )
     {
       for ( x = 0 ; x < automap_level->xlen ; x ++ )
 	{
 	  if ( Me . Automap [ level ] [ y ] [ x ] & RIGHT_WALL_BIT )
 	    {
-	      PutPixel ( Screen , 
+	      PutPixel_automap_wrapper ( Screen , 
 			 2+AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * ( automap_level -> ylen - y ) , 
 			 0+AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * y , AUTOMAP_COLOR );
-	      PutPixel ( Screen , 
+	      PutPixel_automap_wrapper ( Screen , 
 			 2+AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * ( automap_level -> ylen - y ) , 
 			 1+AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * y , AUTOMAP_COLOR );
-	      PutPixel ( Screen , 
+	      PutPixel_automap_wrapper ( Screen , 
 			 2+AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * ( automap_level -> ylen - y ) , 
 			 1+AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * y , AUTOMAP_COLOR );
-	      // putpixel ( Screen , 3*x+2 , 3*y+0 , AUTOMAP_COLOR );
-	      // putpixel ( Screen , 3*x+2 , 3*y+1 , AUTOMAP_COLOR );
-	      // putpixel ( Screen , 3*x+2 , 3*y+2 , AUTOMAP_COLOR );
 	    }
 	  if ( Me . Automap [ level ] [ y ] [ x ] & LEFT_WALL_BIT )
 	    {
-	      PutPixel ( Screen , 
+	      PutPixel_automap_wrapper ( Screen , 
 			 0+AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * ( automap_level -> ylen - y ) , 
 			 0+AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * y , AUTOMAP_COLOR );
-	      PutPixel ( Screen , 
+	      PutPixel_automap_wrapper ( Screen , 
 			 0+AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * ( automap_level -> ylen - y ) , 
 			 1+AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * y , AUTOMAP_COLOR );
-	      PutPixel ( Screen , 
+	      PutPixel_automap_wrapper ( Screen , 
 			 0+AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * ( automap_level -> ylen - y ) , 
 			 1+AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * y , AUTOMAP_COLOR );
-	      // putpixel ( Screen , 3*x , 3*y+0 , AUTOMAP_COLOR );
-	      // putpixel ( Screen , 3*x , 3*y+1 , AUTOMAP_COLOR );
-	      // putpixel ( Screen , 3*x , 3*y+2 , AUTOMAP_COLOR );
 	    }
 	  if ( Me . Automap [ level ] [ y ] [ x ] & UP_WALL_BIT )
 	    {
-	      PutPixel ( Screen , 3*x+0 , 3*y , AUTOMAP_COLOR );
-	      PutPixel ( Screen , 3*x+1 , 3*y , AUTOMAP_COLOR );
-	      PutPixel ( Screen , 3*x+2 , 3*y , AUTOMAP_COLOR );
+	      PutPixel_automap_wrapper ( Screen , 3*x+0 , 3*y , AUTOMAP_COLOR );
+	      PutPixel_automap_wrapper ( Screen , 3*x+1 , 3*y , AUTOMAP_COLOR );
+	      PutPixel_automap_wrapper ( Screen , 3*x+2 , 3*y , AUTOMAP_COLOR );
 	    }
 	  if ( Me . Automap [ level ] [ y ] [ x ] & DOWN_WALL_BIT )
 	    {
-	      PutPixel ( Screen , 3*x+0 , 3*y+2 , AUTOMAP_COLOR );
-	      PutPixel ( Screen , 3*x+1 , 3*y+2 , AUTOMAP_COLOR );
-	      PutPixel ( Screen , 3*x+2 , 3*y+2 , AUTOMAP_COLOR );
+	      PutPixel_automap_wrapper ( Screen , 3*x+0 , 3*y+2 , AUTOMAP_COLOR );
+	      PutPixel_automap_wrapper ( Screen , 3*x+1 , 3*y+2 , AUTOMAP_COLOR );
+	      PutPixel_automap_wrapper ( Screen , 3*x+2 , 3*y+2 , AUTOMAP_COLOR );
 	    }
 	}
     }
 
   enemy *erot;
-  BROWSE_ALIVE_BOTS(erot)
+  BROWSE_LEVEL_BOTS(erot, automap_level->levelnum)
       {
-      if ( erot->type == (-1) || (erot->pos . z != automap_level -> levelnum ))
+      if ( erot->type == (-1))
 	  continue;
 
       for ( x = 0 ; x < AUTOMAP_SQUARE_SIZE ; x ++ )
@@ -299,27 +306,29 @@ show_automap_data_sdl ( void )
 	      {   
 	      if ( erot->is_friendly )
 		  {
-		  PutPixel ( Screen , AUTOMAP_SQUARE_SIZE * erot->pos.x + AUTOMAP_SQUARE_SIZE * ( automap_level -> ylen - erot->pos.y ) + x ,
+		  PutPixel_automap_wrapper ( Screen , AUTOMAP_SQUARE_SIZE * erot->pos.x + AUTOMAP_SQUARE_SIZE * ( automap_level -> ylen - erot->pos.y ) + x ,
 			  AUTOMAP_SQUARE_SIZE * erot->pos.x + AUTOMAP_SQUARE_SIZE * erot->pos.y + y , FriendColor );
 		  }
 	      }
 	  }
       }
 
-  //--------------------
-  // Now that the automap is drawn so far, we add a blue dot for the
-  // tux himself and also for colleagues, that are on this level and alive.
-  //
   for ( x = 0 ; x < AUTOMAP_SQUARE_SIZE ; x ++ )
     {
       for ( y = 0 ; y < AUTOMAP_SQUARE_SIZE ; y ++ )
 	{
-	  PutPixel ( Screen , AUTOMAP_SQUARE_SIZE * Me . pos . x + AUTOMAP_SQUARE_SIZE * ( automap_level -> ylen - Me . pos . y ) + x , 
+	  PutPixel_automap_wrapper ( Screen , AUTOMAP_SQUARE_SIZE * Me . pos . x + AUTOMAP_SQUARE_SIZE * ( automap_level -> ylen - Me . pos . y ) + x , 
 		     AUTOMAP_SQUARE_SIZE * Me . pos . x + AUTOMAP_SQUARE_SIZE * Me . pos . y + y , TuxColor );
-	  if (Me . status != INFOUT)
-	      PutPixel ( Screen , AUTOMAP_SQUARE_SIZE * Me . pos . x + x , AUTOMAP_SQUARE_SIZE * Me . pos . y + y , FriendColor );
 	}
     }
+
+#ifdef HAVE_LIBGL
+  if ( use_open_gl )
+      {
+      glEnd();
+      glEnable (GL_TEXTURE_2D);
+      }
+#endif
 
 }; // void show_automap_data_sdl ( void )
 
@@ -388,8 +397,6 @@ void
 full_update_of_automap_texture ( void )
 {
     int x , y ;
-#define AUTOMAP_SQUARE_SIZE 3
-#define AUTOMAP_COLOR 0x0FFFF
     Level automap_level = curShip . AllLevels [ Me . pos . z ] ;
 
     //--------------------
@@ -422,8 +429,6 @@ void
 insert_old_map_info_into_texture ( void )
 {
     int x , y ;
-#define AUTOMAP_SQUARE_SIZE 3
-#define AUTOMAP_COLOR 0x0FFFF
     Level automap_level = curShip . AllLevels [ Me . pos . z ] ;
 
     //---------------------
@@ -464,8 +469,6 @@ void
 local_update_of_automap_texture ( void )
 {
     int x , y , start_x , start_y , end_x , end_y ;
-#define AUTOMAP_SQUARE_SIZE 3
-#define AUTOMAP_COLOR 0x0FFFF
     Level automap_level = curShip . AllLevels [ Me . pos . z ] ;
     static float automap_update_counter = 0 ;
 
