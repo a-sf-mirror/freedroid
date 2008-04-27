@@ -734,7 +734,7 @@ typedef struct tux_s
     chatflags_t Chat_Flags[ MAX_ANSWERS_PER_PERSON ];
     cookielist_t cookie_list[ MAX_COOKIE_LENGTH ] ;
     int is_town_guard_member;
-    char chat_character_initialized [ MAX_PERSONS ]; 
+    unsigned char chat_character_initialized [ MAX_PERSONS ]; 
     
     //--------------------
     // THE FOLLOWING ARE INFORMATION, THAT ARE HUGE AND THAT ALSO DO NOT NEED

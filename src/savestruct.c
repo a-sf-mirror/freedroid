@@ -395,7 +395,7 @@ save_float_array("time_since_last_visit_or_respawn", (target->time_since_last_vi
 save_chatflags_t_array("Chat_Flags", (target->Chat_Flags),  MAX_ANSWERS_PER_PERSON );
 save_cookielist_t_array("cookie_list", (target->cookie_list),  MAX_COOKIE_LENGTH );
 save_int32_t("is_town_guard_member", &(target->is_town_guard_member));
-save_string("chat_character_initialized", &(target->chat_character_initialized));
+save_uchar_array("chat_character_initialized", (target->chat_character_initialized),  MAX_PERSONS );
 save_moderately_finepoint_array("next_intermediate_point", (target->next_intermediate_point),  MAX_INTERMEDIATE_WAYPOINTS_FOR_TUX );
 save_uint16_t_array("KillRecord", (target->KillRecord),  200 );
 save_automap_data_t_array("Automap", (target->Automap), 100);
@@ -510,7 +510,7 @@ read_float_array(pos, "time_since_last_visit_or_respawn",  (target->time_since_l
 read_chatflags_t_array(pos, "Chat_Flags",  (target->Chat_Flags),  MAX_ANSWERS_PER_PERSON );
 read_cookielist_t_array(pos, "cookie_list",  (target->cookie_list),  MAX_COOKIE_LENGTH );
 read_int32_t(pos, "is_town_guard_member",  &(target->is_town_guard_member));
-read_string(pos, "chat_character_initialized", (char*) &(target->chat_character_initialized));
+read_uchar_array(pos, "chat_character_initialized",  (target->chat_character_initialized),  MAX_PERSONS );
 read_moderately_finepoint_array(pos, "next_intermediate_point",  (target->next_intermediate_point),  MAX_INTERMEDIATE_WAYPOINTS_FOR_TUX );
 read_uint16_t_array(pos, "KillRecord",  (target->KillRecord),  200 );
 read_automap_data_t_array(pos, "Automap",  (target->Automap), 100);
