@@ -1730,7 +1730,6 @@ Performance_handle (int n)
 	{ 
 	    SET_HOG_CPU_FLAG = 1,
 	    SET_HIGHLIGHTING_MODE,
-	    SHOW_QUICK_INVENTORY_MODE,
 	    SKIP_LIGHT_RADIUS_MODE,
 	    SKIP_SHADOWS,
 	    SKIP_FADINGS,
@@ -1750,11 +1749,6 @@ Performance_handle (int n)
     case SET_HIGHLIGHTING_MODE:
 	while (EnterPressed() || SpacePressed() || MouseLeftPressed());
 	GameConfig . highlighting_mode_full = ! GameConfig . highlighting_mode_full ;
-	break;
-	
-    case SHOW_QUICK_INVENTORY_MODE:
-	while (EnterPressed() || SpacePressed() || MouseLeftPressed());
-	GameConfig . show_quick_inventory = ! GameConfig . show_quick_inventory ;
 	break;
 	
     case SKIP_LIGHT_RADIUS_MODE:
@@ -1796,16 +1790,15 @@ Performance_fill (char *MenuTexts[])
 	sprintf ( MenuTexts[0] , _("Hog CPU for max. performance: %s"), 
 		  GameConfig.hog_CPU ? _("YES") : _("NO") );
 	sprintf ( MenuTexts[1] , _("Highlighting mode: %s"), GameConfig.highlighting_mode_full ? _("FULL") : _("REDUCED") );
-	sprintf ( MenuTexts[2] , _("Show quick inventory: %s"), GameConfig . show_quick_inventory ? _("YES") : _("NO") );
-	sprintf ( MenuTexts[3] , _("Skip light radius: %s"), GameConfig . skip_light_radius ? _("YES") : _("NO") );
-	sprintf ( MenuTexts[4] , _("Skip shadow blitting: %s"), 
+	sprintf ( MenuTexts[2] , _("Skip light radius: %s"), GameConfig . skip_light_radius ? _("YES") : _("NO") );
+	sprintf ( MenuTexts[3] , _("Skip shadow blitting: %s"), 
 		  GameConfig . skip_shadow_blitting ? _("YES") : _("NO") );
-	sprintf( MenuTexts[5] , _("Skip fadings: %s"), 
+	sprintf( MenuTexts[4] , _("Skip fadings: %s"), 
 		 GameConfig . do_fadings ? _("NO") : _("YES") );
-	sprintf( MenuTexts[6] , _("Use SDL automap: %s"),
+	sprintf( MenuTexts[5] , _("Use SDL automap: %s"),
 		GameConfig . force_sdl_automap ? _("YES") : _("NO"));
-	MenuTexts[7]=_("Back");
-	MenuTexts[8]="";
+	MenuTexts[6]=_("Back");
+	MenuTexts[7]="";
 }
 
 static int

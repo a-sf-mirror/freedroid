@@ -708,7 +708,6 @@ save_int32_t("omit_obstacles_in_level_editor", &(target->omit_obstacles_in_level
 save_int32_t("omit_enemies_in_level_editor", &(target->omit_enemies_in_level_editor));
 save_int32_t("level_editor_edit_mode", &(target->level_editor_edit_mode));
 save_int32_t("zoom_is_on", &(target->zoom_is_on));
-save_int32_t("show_quick_inventory", &(target->show_quick_inventory));
 save_int32_t("show_blood", &(target->show_blood));
 save_int32_t("show_tooltips", &(target->show_tooltips));
 save_int32_t("number_of_big_screen_messages", &(target->number_of_big_screen_messages));
@@ -778,7 +777,6 @@ read_int32_t(pos, "omit_obstacles_in_level_editor",  &(target->omit_obstacles_in
 read_int32_t(pos, "omit_enemies_in_level_editor",  &(target->omit_enemies_in_level_editor));
 read_int32_t(pos, "level_editor_edit_mode",  &(target->level_editor_edit_mode));
 read_int32_t(pos, "zoom_is_on",  &(target->zoom_is_on));
-read_int32_t(pos, "show_quick_inventory",  &(target->show_quick_inventory));
 read_int32_t(pos, "show_blood",  &(target->show_blood));
 read_int32_t(pos, "show_tooltips",  &(target->show_tooltips));
 read_int32_t(pos, "number_of_big_screen_messages",  &(target->number_of_big_screen_messages));
