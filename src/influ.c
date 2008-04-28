@@ -24,10 +24,10 @@
  *
  */
 
-/* ----------------------------------------------------------------------
+/**
  * This file contains all features, movement, fireing, collision and 
  * extras of the influencer.
- * ---------------------------------------------------------------------- */
+ */
 
 #define _influ_c
 
@@ -60,30 +60,30 @@ int no_left_button_press_in_previous_analyze_mouse_click = FALSE ;
 #define TILE_IS_UNPROCESSED 3
 #define TILE_IS_PROCESSED 4
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 float
 calc_euklid_distance ( float pos1_x , float pos1_y , float pos2_x , float pos2_y ) 
 {
   return sqrt ( (pos1_x-pos2_x)*(pos1_x-pos2_x) + (pos1_y-pos2_y)*(pos1_y-pos2_y) ) ;
 };
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 float
 vect_len ( moderately_finepoint our_vector )
 {
   return ( sqrt ( powf ( our_vector . x , 2 ) + powf ( our_vector . y , 2 ) ) ) ;
 }; // float vect_len ( moderately_finepoint our_vector )
 
-/* ----------------------------------------------------------------------
+/**
  * This function adapts the influencers current speed to the maximal speed
  * possible for the influencer (determined by the currely used drive type).
- * ---------------------------------------------------------------------- */
+ */
 void
 limit_tux_speed_to_a_maximum ( )
 {
@@ -96,10 +96,10 @@ limit_tux_speed_to_a_maximum ( )
     }
 }; // void limit_tux_speed_to_a_maximum ( ) 
 
-/* ----------------------------------------------------------------------
+/**
  * This function reduces the influencers speed as long as no direction 
  * key of any form is pressed and also no mouse move target is set.
- * ---------------------------------------------------------------------- */
+ */
 void
 tux_friction_with_air ( )
 {
@@ -111,10 +111,10 @@ tux_friction_with_air ( )
     
 }; // tux_friction_with_air ( )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 int
 find_free_floor_items_index ( int levelnum ) 
 {
@@ -142,10 +142,10 @@ find_free_floor_items_index ( int levelnum )
     
 }; // int find_free_floor_items_index ( int levelnum ) 
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 throw_out_all_chest_content ( int obst_index )
 {
@@ -222,7 +222,7 @@ throw_out_all_chest_content ( int obst_index )
 
 }; // void throw_out_all_chest_content ( int obst_index )
 
-/* ----------------------------------------------------------------------
+/**
  * This is a useful utilitiy subfunction for the checks whether the 
  * mouse cursor is on an enemy, a closed chest or a barrel.
  * The function detects, if the current mouse cursor is over the graphics
@@ -231,7 +231,7 @@ throw_out_all_chest_content ( int obst_index )
  *
  * TRUE or FALSE is returned, depending on whether the cursor IS or 
  * IS NOT on that particular iso_image, if positioned on that given spot.
- * ---------------------------------------------------------------------- */
+ */
 int
 mouse_cursor_is_on_that_iso_image ( float pos_x , float pos_y , iso_image* our_iso_image )
 {
@@ -257,7 +257,7 @@ mouse_cursor_is_on_that_iso_image ( float pos_x , float pos_y , iso_image* our_i
     return ( FALSE );
 };
 
-/* ----------------------------------------------------------------------
+/**
  * This is a useful utilitiy subfunction for the checks whether the 
  * mouse cursor is on an enemy, a closed chest or a barrel.
  * The function detects, if the current mouse cursor is over the graphics
@@ -265,7 +265,7 @@ mouse_cursor_is_on_that_iso_image ( float pos_x , float pos_y , iso_image* our_i
  *
  * TRUE or FALSE is returned, depending on whether the cursor IS or 
  * IS NOT on that particular iso_image, if positioned on that obstacle.
- * ---------------------------------------------------------------------- */
+ */
 int
 mouse_cursor_is_on_that_obstacle ( int obst_index ) 
 {
@@ -280,7 +280,7 @@ mouse_cursor_is_on_that_obstacle ( int obst_index )
     return ( FALSE );
 }; // int mouse_cursor_is_on_that_obstacle ( int obst_index ) 
 
-/* ----------------------------------------------------------------------
+/**
  * This function checks if there is a closed chest beneath the current 
  * mouse cursor.  
  * It takes into account the actual size of the barrel/crate
@@ -290,7 +290,7 @@ mouse_cursor_is_on_that_obstacle ( int obst_index )
  * If there is a closed chest below the mouse cursor, the function will
  * return the obstacle index of the chest in question.  Else -1 will be
  * returned.
- * ---------------------------------------------------------------------- */
+ */
 int
 closed_chest_below_mouse_cursor ( ) 
 {
@@ -358,7 +358,7 @@ closed_chest_below_mouse_cursor ( )
 
 }; // int closed_chest_below_mouse_cursor ( )
 
-/* ----------------------------------------------------------------------
+/**
  * This function checks if there is a barrel beneath the current mouse
  * cursor.  It takes into account the actual size of the barrel/crate
  * graphics and not only the geographic position of the mouse cursor on
@@ -367,7 +367,7 @@ closed_chest_below_mouse_cursor ( )
  * If there is a barrel below the mouse cursor, the function will
  * return the obstacle index of the chest in question.  Else -1 will be
  * returned.
- * ---------------------------------------------------------------------- */
+ */
 int
 smashable_barrel_below_mouse_cursor ( )
 {
@@ -438,11 +438,11 @@ smashable_barrel_below_mouse_cursor ( )
 
 }; // int smashable_barrel_below_mouse_cursor ( ) 
 
-/* ----------------------------------------------------------------------
+/**
  * When the player has requested an attack motion, we start the 
  * corresponding code, that should try to attack, if that's currently
  * possible.
- * ---------------------------------------------------------------------- */
+ */
 void
 tux_wants_to_attack_now ( int use_mouse_cursor_for_targeting ) 
 {
@@ -487,10 +487,10 @@ tux_wants_to_attack_now ( int use_mouse_cursor_for_targeting )
 
 }; // void tux_wants_to_attack_now ( ) 
 
-/* ----------------------------------------------------------------------
+/**
  * 
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 adapt_position_for_jump_thresholds ( gps* old_position, gps* new_position )
 {
@@ -580,13 +580,13 @@ adapt_position_for_jump_thresholds ( gps* old_position, gps* new_position )
 
 }; // void adapt_position_for_jump_thresholds ( gps* old_position, gps* new_position )
 
-/* ----------------------------------------------------------------------
+/**
  * The Tux might be close to the borders of a level, so close in fact, 
  * that he has crossed the internal threshold area.  In that case, we 
  * must move the Tux silently to the corresponding other level to the
  * corresponding position inside the threshold area there.  This is what
  * this function is for.
- * ---------------------------------------------------------------------- */
+ */
 void
 correct_tux_position_according_to_jump_thresholds ( )
 {
@@ -846,13 +846,13 @@ correct_tux_position_according_to_jump_thresholds ( )
 
 }; // void CheckForJumpThresholds ( )
 
-/* ----------------------------------------------------------------------
+/**
  * This function initializes the influencers position history, which is
  * a ring buffer and is needed for throwing the influencer back (only one
  * or two positions would be needed for that) and for influencers followers
  * to be able to track the influencers path (10000 or so positions are used
  * for that, and that's why it is a ring buffer).
- * ---------------------------------------------------------------------- */
+ */
 void 
 InitInfluPositionHistory( )
 {
@@ -912,10 +912,10 @@ GetInfluPositionHistoryZ( int HowLongPast )
   return Me.Position_History_Ring_Buffer[ RingPosition ].z;
 }
 
-/* ----------------------------------------------------------------------
+/**
  * This function should check if the Tux is still ok, i.e. if he is still
  * alive or if the death sequence should be initiated.
- * ---------------------------------------------------------------------- */
+ */
 void 
 CheckIfCharacterIsStillOk ( ) 
 {
@@ -939,9 +939,9 @@ CheckIfCharacterIsStillOk ( )
 	    
 }; // void CheckIfCharacterIsStillOk ( )
 
-/* ----------------------------------------------------------------------
+/**
  * Even the Tux must not leave the map!  A sanity check is done here...
- * ---------------------------------------------------------------------- */
+ */
 void
 CheckForTuxOutOfMap ( )
 {
@@ -967,11 +967,11 @@ a bug in the currently used map system of Freedroid RPG.",
     }
 }; // void CheckForTuxOutOfMap ( )
 
-/* ----------------------------------------------------------------------
+/**
  * If an enemy was specified as the mouse move target, this enemy will
  * maybe move here and there.  But this means that also the mouse move
  * target of the influencer must adapt, which is done in this function.
- * ---------------------------------------------------------------------- */
+ */
 void
 tux_get_move_target_and_attack ( moderately_finepoint * movetgt )
 {
@@ -1042,10 +1042,10 @@ tux_get_move_target_and_attack ( moderately_finepoint * movetgt )
     
 }; // void UpdateMouseMoveTargetAccoringToEnemy ( )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 move_tux_out_of_obstacle ( obstacle* ThisObstacle )
 {
@@ -1087,10 +1087,10 @@ move_tux_out_of_obstacle ( obstacle* ThisObstacle )
 
 }; // void move_tux_out_of_obstacle ( obstacle* ThisObstacle )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 move_tux_out_of_obstacles_on_square ( int x , int y )
 {
@@ -1118,11 +1118,11 @@ move_tux_out_of_obstacles_on_square ( int x , int y )
   
 }; // void move_tux_out_of_obstacles_on_square ( int x , int y )
 
-/* ----------------------------------------------------------------------
+/**
  * Self-explanatory.
  * This function also takes into account any conveyor belts the Tux might
  * be standing on.
- * ---------------------------------------------------------------------- */
+ */
 void
 MoveTuxAccordingToHisSpeed ( )
 {
@@ -1222,7 +1222,7 @@ MoveTuxAccordingToHisSpeed ( )
 
 }; // void MoveTuxAccordingToHisSpeed ( )
 
-/* ----------------------------------------------------------------------
+/**
  * This function contains the final dumb movement code, that, without
  * any checks and any refinement, just moves the tux thowards the given
  * target position.
@@ -1230,7 +1230,7 @@ MoveTuxAccordingToHisSpeed ( )
  * The return value indicates, if the target has been sufficiently 
  * approximated (TRUE) already or not (FALSE) .
  *
- * ---------------------------------------------------------------------- */
+ */
 int
 move_tux_thowards_raw_position ( float x , float y )
 {
@@ -1335,7 +1335,7 @@ move_tux_thowards_raw_position ( float x , float y )
     
 }; // int move_tux_thowards_raw_position ( float x , float y )
 
-/* ----------------------------------------------------------------------
+/**
  * After a course for the Tux has been set up, the Tux can start to 
  * proceed thowards his target.  However, the unmodified recursive course
  * is often a bit awakward and goes back and forth a lot.
@@ -1344,7 +1344,7 @@ move_tux_thowards_raw_position ( float x , float y )
  * course first, once and for all, before the tux is finally set in
  * motion.
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 streamline_intermediate_course ( enemy * droid, gps * curpos, moderately_finepoint * waypoints, int maxwp )
 {
@@ -1470,10 +1470,10 @@ streamline_intermediate_course ( enemy * droid, gps * curpos, moderately_finepoi
 
 }; // void streamline_tux_intermediate_course ( )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 int
 recursive_find_walkable_point ( enemy * droid, int levelnum, float x1 , float y1 , float x2 , float y2 , int recursion_depth, moderately_finepoint * waypoints, int * next_index_to_set_up, int maxwp ) 
 {
@@ -1658,10 +1658,10 @@ recursive_find_walkable_point ( enemy * droid, int levelnum, float x1 , float y1
 
 }; // int recursive_find_walkable_point ( float x1 , float y1 , float x2 , float y2 ) 
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 clear_out_intermediate_points ( gps * curpos, moderately_finepoint *intermediate_points, int size )
 {
@@ -1681,13 +1681,13 @@ clear_out_intermediate_points ( gps * curpos, moderately_finepoint *intermediate
     
 }; // void clear_out_intermediate_points ( )
 
-/* ----------------------------------------------------------------------
+/**
  * In case that the Tux cannot walk the direct line from his current 
  * position to the mouse move target, we must set up an alternative target
  * that should sooner or later lead to a news position that is finally
  * so good that the Tux has better chances of walking to the final mouse
  * move target.
- * ---------------------------------------------------------------------- */
+ */
 int
 set_up_intermediate_course_between_positions ( enemy * droid, gps * curpos, moderately_finepoint * move_target, moderately_finepoint * waypoints, int maxwp )
 {
@@ -1830,10 +1830,10 @@ set_up_intermediate_course_between_positions ( enemy * droid, gps * curpos, mode
 
 }; // void set_up_intermediate_course_for_tux ( )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 move_tux_thowards_intermediate_point ( )
 {
@@ -1903,7 +1903,7 @@ move_tux_thowards_intermediate_point ( )
     
 }; // void move_tux_thowards_intermediate_point ( )
 
-/* ---------------------------------------------------------------------- 
+/** 
  * When the player has rolled the mouse wheel up or down, we change the
  * global mode of the game, i.e. switch to examine mode or loot mode or
  * the like.  The rolling of game mode can also be controlled with cursor
@@ -1913,7 +1913,7 @@ move_tux_thowards_intermediate_point ( )
  * in here.  Some global modes are currently not reachable via mouse
  * wheel action, simply because there implementation is far from finished
  * and we can't do everything at once and maybe not within one release.
- * ---------------------------------------------------------------------- */
+ */
 void
 adapt_global_mode_for_player ( )
 {
@@ -1967,11 +1967,11 @@ adapt_global_mode_for_player ( )
 
 }; // void adapt_global_mode_for_player ( )
 
-/* ----------------------------------------------------------------------
+/**
  * This function moves the influencer, adjusts his speed according to
  * keys pressed and also adjusts his status and current "phase" of his 
  * rotation.
- * ---------------------------------------------------------------------- */
+ */
 void
 move_tux ( )
 {
@@ -2084,12 +2084,12 @@ move_tux ( )
     animate_tux ( ) ;	// move the "phase" of influencers rotation
 }; // void move_tux( );
 
-/* ----------------------------------------------------------------------
+/**
  * This function does the 'rotation' of the influencer, according to the
  * current energy level of the influencer.  If his energy is low, the
  * rotation will also go slow, if his energy is high, rotation will go
  * fast. 
- * ---------------------------------------------------------------------- */
+ */
 void
 animate_tux ( )
 {
@@ -2169,11 +2169,11 @@ animate_tux ( )
 
 }; // void animate_tux ( void )
 
-/* ----------------------------------------------------------------------
+/**
  * This function creates several exprosions around the location where the
  * influencer is (was) positioned.  It is used after the influencers 
  * death to make his death more spectacular.
- * ---------------------------------------------------------------------- */
+ */
 void
 start_tux_death_explosions (void)
 {
@@ -2210,10 +2210,10 @@ start_tux_death_explosions (void)
 
 }; // void start_tux_death_explosions ( void )
 
-/* ----------------------------------------------------------------------
+/**
  * This function checks if the influencer is currently colliding with an
  * enemys and throws him back in that case.
- * ---------------------------------------------------------------------- */
+ */
 void
 check_tux_enemy_collision (void)
 {
@@ -2258,7 +2258,7 @@ check_tux_enemy_collision (void)
 
 }; // void check_tux_enemy_collision( void )
 
-/* ----------------------------------------------------------------------
+/**
  * This function checks if there is some living droid below the current
  * mouse cursor and returns the index number of this droid in the array.
  * 
@@ -2270,7 +2270,7 @@ check_tux_enemy_collision (void)
  * some correction has to be done to fix this.  We can't use the map position
  * of the mouse any more... except maybe to exclude some bots from the start.
  *
- * ---------------------------------------------------------------------- */
+ */
 enemy * 
 GetLivingDroidBelowMouseCursor ( )
 {
@@ -2323,7 +2323,7 @@ GetLivingDroidBelowMouseCursor ( )
 }; // int GetLivingDroidBelowMouseCursor ( )
 
 
-/* ----------------------------------------------------------------------
+/**
  * This function checks if there is some living droid below the current
  * mouse cursor and returns the index number of this droid in the array.
  * 
@@ -2335,7 +2335,7 @@ GetLivingDroidBelowMouseCursor ( )
  * some correction has to be done to fix this.  We can't use the map position
  * of the mouse any more... except maybe to exclude some bots from the start.
  *
- * ---------------------------------------------------------------------- */
+ */
 int 
 GetObstacleBelowMouseCursor ( )
 {
@@ -2428,11 +2428,11 @@ void FillInDefaultBulletStruct ( bullet * CurBullet, int bullet_image_type, shor
     CurBullet->paralysation_duration = 0;
 }
 
-/* ----------------------------------------------------------------------
+/**
  * This function fires a bullet from the influencer in some direction, 
  * no matter whether this is 'allowed' or not, not questioning anything
  * and SILENTLY TRUSTING THAT THIS TUX HAS A RANGED WEAPON EQUIPPED.
- * ---------------------------------------------------------------------- */
+ */
 void
 FireTuxRangedWeaponRaw ( short int weapon_item_type , int bullet_image_type, bullet * bullet_parameters , moderately_finepoint target_location ) 
 {
@@ -2549,11 +2549,11 @@ FireTuxRangedWeaponRaw ( short int weapon_item_type , int bullet_image_type, bul
     
 }; // void FireTuxRangedWeaponRaw ( ) 
 
-/* ----------------------------------------------------------------------
+/**
  * In some cases, the mouse button will be pressed, but still some signs
  * might tell us, that this mouse button press was not intended as a move
  * or fire command to the Tux.  This function checks for these cases.
- * ---------------------------------------------------------------------- */
+ */
 int 
 ButtonPressWasNotMeantAsFire( )
 {
@@ -2600,12 +2600,12 @@ ButtonPressWasNotMeantAsFire( )
 
 }; // void ButtonPressWasNotMeantAsFire ( )
 
-/* ----------------------------------------------------------------------
+/**
  * At some point in the analysis of the users mouse click, we'll be 
  * certain, that a fireing/weapon swing was meant with the click.  Once
  * this is knows, this function can be called to do the mechanics of the
  * weapon use.
- * ---------------------------------------------------------------------- */
+ */
 void
 PerformTuxAttackRaw ( int use_mouse_cursor_for_targeting ) 
 {
@@ -2851,11 +2851,11 @@ BROWSE_LEVEL_BOTS_SAFE(erot, nerot, Me.pos.z)
 
 
 
-/* ----------------------------------------------------------------------
+/**
  * Reload the ammo clip
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 
 void TuxReloadWeapon()
 {
@@ -2919,10 +2919,10 @@ void TuxReloadWeapon()
 }
 
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 inline float
 translate_pixel_to_map_location ( float axis_x , float axis_y , int give_x ) 
 {
@@ -2949,10 +2949,10 @@ translate_pixel_to_map_location ( float axis_x , float axis_y , int give_x )
 	      
 }; // int translate_pixel_to_map_location ( int axis_x , int axis_y , int give_x ) 
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 float
 translate_pixel_to_zoomed_map_location ( float axis_x , float axis_y , int give_x ) 
 {
@@ -2969,10 +2969,10 @@ translate_pixel_to_zoomed_map_location ( float axis_x , float axis_y , int give_
 	      
 }; // int translate_pixel_to_zoomed_map_location ( int axis_x , int axis_y , int give_x ) 
 
-/* ----------------------------------------------------------------------
+/**
  *
  * 
- * ---------------------------------------------------------------------- */
+ */
 
 int
 translate_map_point_to_screen_pixel_deviation_tracking ( float x_map_pos , float y_map_pos , int give_x )
@@ -2988,10 +2988,10 @@ translate_map_point_to_screen_pixel_deviation_tracking ( float x_map_pos , float
 }; // int translate_map_point_to_screen_pixel_deviation_tracking ( float x_map_pos , float y_map_pos , int give_x )
 
 
-/* ----------------------------------------------------------------------
+/**
  *
  * 
- * ---------------------------------------------------------------------- */
+ */
 void
 translate_map_point_to_screen_pixel_func( float x_map_pos , float y_map_pos , int* x_res, int* y_res, float zoom_factor)
 {
@@ -3019,7 +3019,7 @@ translate_map_point_to_screen_pixel_func( float x_map_pos , float y_map_pos , in
 #undef factY
 }
 
-/* ----------------------------------------------------------------------
+/**
  * When the player has left-clicked into the game area (i.e. the isometric
  * display of the game world), we need to check if maybe the click was
  * targeted on a chest, that can be opened.
@@ -3027,7 +3027,7 @@ translate_map_point_to_screen_pixel_func( float x_map_pos , float y_map_pos , in
  * This function checks if that really was the case, taking into account 
  * not only the floor position of the mouse cursor (which would lead to 
  * rather unintuitive clicking areas) but rather the full chest graphics.
- * ---------------------------------------------------------------------- */
+ */
 void
 check_for_chests_to_open ( int chest_index ) 
 {
@@ -3154,7 +3154,7 @@ void check_for_items_to_pickup ( int index_of_item_under_mouse_cursor )
 	    }
 	}
 }
-/* ----------------------------------------------------------------------
+/**
  * When the player has left-clicked into the game area (i.e. the isometric
  * display of the game world), we need to check if maybe the click was
  * targeted on a barrel or crate that can be smashed.
@@ -3163,7 +3163,7 @@ void check_for_items_to_pickup ( int index_of_item_under_mouse_cursor )
  * function checks if that is really so, taking into account not only the
  * floor position of the mouse cursor (which would lead to rather 
  * unintuitive clicking areas) but rather the full chest graphics.
- * ---------------------------------------------------------------------- */
+ */
 void
 check_for_barrels_to_smash ( int barrel_index ) 
 {
@@ -3288,13 +3288,13 @@ check_for_barrels_to_smash ( int barrel_index )
     }
 }; // void check_for_barrels_to_smash ( int barrel_index ) 
 
-/* ----------------------------------------------------------------------
+/**
  * When the player has left-clicked into the game area (i.e. the isometric
  * display of the game world), we need to check if maybe the click was
  * targeted on a droid.  
  * In case that was so, we need to start a dialog or maybe launch an 
  * attack movement.
- * ---------------------------------------------------------------------- */
+ */
 void
 check_for_droids_to_attack_or_talk_with ( ) 
 {
@@ -3374,11 +3374,11 @@ check_for_droids_to_attack_or_talk_with ( )
     }
 }; // void check_for_droids_to_attack ( ) 
 
-/* ----------------------------------------------------------------------
+/**
  * When the player has actiavted global examine aid and clicked the
  * left button, the examine command must be executed.  This function
  * should deal with the effects of one such examine click by the player.
- * ---------------------------------------------------------------------- */
+ */
 void
 handle_player_examine_command ( void ) 
 {
@@ -3466,12 +3466,12 @@ handle_player_examine_command ( void )
 }; // void handle_player_examine_command ( ) 
 
 
-/* ----------------------------------------------------------------------
+/**
  * When the player has actiavted global mode unlock and clicked the
  * left button, the unlock command must be executed.  This function
  * should deal with the effects of one such unlock click by the player.
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 handle_player_unlock_command ( ) 
 {
@@ -3496,11 +3496,11 @@ handle_player_unlock_command ( )
 
 }; // void handle_player_unlock_command ( ) 
 
-/* ----------------------------------------------------------------------
+/**
  * When the player has actiavted global mode repair and clicked the
  * left button, the repair command must be executed.  This function
  * should deal with the effects of one such repair click by the player.
- * ---------------------------------------------------------------------- */
+ */
 void
 handle_player_repair_command ( ) 
 {
@@ -3525,11 +3525,11 @@ handle_player_repair_command ( )
 
 }; // void handle_player_repair_command ( ) 
 
-/* ----------------------------------------------------------------------
+/**
  * When the player has actiavted global attack mode and clicked the
  * left button, the attack command must be executed.  This function
  * should deal with the effects of one such attack click by the player.
- * ---------------------------------------------------------------------- */
+ */
 void
 handle_player_attack_command ( ) 
 {
@@ -3554,11 +3554,11 @@ handle_player_attack_command ( )
 
 }; // void handle_player_attack_command ( ) 
 
-/* ----------------------------------------------------------------------
+/**
  * When the player has actiavted global pickpocket aid and clicked the
  * left button, the pickpocket command must be executed.  This function
  * should deal with the effects of one such pickpocket click by the player.
- * ---------------------------------------------------------------------- */
+ */
 void
 handle_player_pickpocket_command ( ) 
 {
@@ -3583,7 +3583,7 @@ handle_player_pickpocket_command ( )
 
 }; // void handle_player_pickpocket_command ( ) 
 
-/* ----------------------------------------------------------------------
+/**
  * If the user clicked his mouse, this might have several reasons.  It 
  * might happen to open some windows, pick up some stuff, smash a box,
  * move somewhere or fire a shot or make a weapon swing.
@@ -3591,7 +3591,7 @@ handle_player_pickpocket_command ( )
  * Therefore it is not so easy to decide what to do upon a users mouse
  * click and so this function analyzes the situation and decides what to
  * do.
- * ---------------------------------------------------------------------- */
+ */
 void
 AnalyzePlayersMouseClick ( )
 {

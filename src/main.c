@@ -23,9 +23,9 @@
  *  MA  02111-1307  USA
  *
  */
-/* ----------------------------------------------------------------------
+/**
  * Desc: the main program
- * ---------------------------------------------------------------------- */
+ */
 
 #define _main_c
 
@@ -49,10 +49,10 @@ float LastRefreshSound = 2;
 
 void UpdateCountersForThisFrame () ;
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 DoAllMovementAndAnimations ( void )
 {
@@ -194,7 +194,7 @@ better than nothing.  Thanks anyway for your interest in FreedroidRPG.\n\
     return (0);
 }; // int main ( void )
 
-/* ----------------------------------------------------------------------
+/**
  * Some bots might be frozen and some might be poisoned, some might still 
  * have a 'firewait' or a normal wait or a paralysation.  Other bots have
  * a text, that is being displayed and that will timeout at some point.
@@ -210,7 +210,7 @@ better than nothing.  Thanks anyway for your interest in FreedroidRPG.\n\
  *
  *        Maybe later it will finally be implemented this way...
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 update_timeouts_for_bots_on_level ( int level_num , float latest_frame_time ) 
 {

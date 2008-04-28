@@ -23,9 +23,9 @@
  *
  */
 
-/* ----------------------------------------------------------------------
+/**
  * This file contains all functions for the heart of the level editor.
- * ---------------------------------------------------------------------- */
+ */
 
 #define _leveleditor_c
 
@@ -862,10 +862,10 @@ quickbar_click ( Level level, int id, moderately_finepoint TargetSquare, whole_l
     }
 }    
 
-/* ----------------------------------------------------------------------
+/**
  * Is this tile a 'full' grass tile, i.e. a grass tile with ABSOLUTELY
  * NO SAND on it?
- * ---------------------------------------------------------------------- */
+ */
 int
 is_full_grass_tile ( map_tile* this_tile )
 {
@@ -886,10 +886,10 @@ is_full_grass_tile ( map_tile* this_tile )
 
 }; // int is_full_grass_tile ( map_tile* this_tile )
 
-/* ----------------------------------------------------------------------
+/**
  * Is this tile 'some' grass tile, i.e. a grass tile with JUST ANY BIT
  * OF GRASS ON IT?
- * ---------------------------------------------------------------------- */
+ */
 int
 is_some_grass_tile ( map_tile* this_tile )
 {
@@ -915,10 +915,10 @@ is_some_grass_tile ( map_tile* this_tile )
 
 }; // int is_full_grass_tile ( map_tile* this_tile )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 fix_corners_in_this_grass_tile ( level* EditLevel , int x , int y ) 
 {
@@ -983,10 +983,10 @@ fix_corners_in_this_grass_tile ( level* EditLevel , int x , int y )
     
 }; // void fix_corners_in_this_grass_tile ( EditLevel , x , y ) 
 
-/* ----------------------------------------------------------------------
+/**
  * Now we fix those grass tiles, that have only very little contact to
  * pure sand tiles, i.e. only 1/8 of the area is grass.
- * ---------------------------------------------------------------------- */
+ */
 void
 fix_anticorners_in_this_grass_tile ( level* EditLevel , int x , int y ) 
 {
@@ -1056,10 +1056,10 @@ fix_anticorners_in_this_grass_tile ( level* EditLevel , int x , int y )
     
 }; // void fix_anticorners_in_this_grass_tile ( EditLevel , x , y ) 
 
-/* ----------------------------------------------------------------------
+/**
  * Now we fix those grass tiles, that have only very little contact to
  * pure sand tiles, i.e. only 1/8 of the area is grass.
- * ---------------------------------------------------------------------- */
+ */
 void
 fix_halfpieces_in_this_grass_tile ( level* EditLevel , int x , int y ) 
 {
@@ -1128,10 +1128,10 @@ fix_halfpieces_in_this_grass_tile ( level* EditLevel , int x , int y )
     
 }; // void fix_halfpieces_in_this_grass_tile ( EditLevel , x , y ) 
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 fix_isolated_grass_tile ( level* EditLevel , int x , int y  )
 {
@@ -1165,12 +1165,12 @@ fix_isolated_grass_tile ( level* EditLevel , int x , int y  )
 
 }; // void fix_isolated_grass_tile ( EditLevel , x , y ) 
 
-/* ----------------------------------------------------------------------
+/**
  * When planting grass tiles, taking care of the smooth borders for these
  * grass tiles can be a tedious job.  A short function might help to 
  * beautify the grass.  If focuses on replacing 'full' grass tiles with 
  * proper full and part-full grass tiles.
- * ---------------------------------------------------------------------- */
+ */
 void
 beautify_grass_tiles_on_level ( level* EditLevel )
 {
@@ -1281,10 +1281,10 @@ beautify_grass_tiles_on_level ( level* EditLevel )
 
 }; // void beautify_grass_tiles_on_level ( void )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 close_all_chests_on_level ( int l_num ) 
 {
@@ -1307,10 +1307,10 @@ close_all_chests_on_level ( int l_num )
 
 }; // void close_all_chests_on_level ( int l_num ) 
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 create_new_obstacle_on_level ( Level EditLevel , int our_obstacle_type , float pos_x , float pos_y )
 {
@@ -1364,10 +1364,10 @@ Ran out of obstacles!   Too bad!  Raise max obstacles constant!" ,
 
 
 	
-/* ----------------------------------------------------------------------
+/**
  * When new lines are inserted into the map, the map labels south of this
  * line must move too with the rest of the map.  This function sees to it.
- * ---------------------------------------------------------------------- */
+ */
 void
 MoveMapLabelsSouthOf ( int FromWhere , int ByWhat , Level EditLevel )
 {
@@ -1383,10 +1383,10 @@ MoveMapLabelsSouthOf ( int FromWhere , int ByWhat , Level EditLevel )
   
 }; // void MoveMapLabelsSouthOf ( int FromWhere , int ByWhat , Level EditLevel)
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 move_obstacles_east_of ( float from_where , float by_what , Level edit_level )
 {
@@ -1484,10 +1484,10 @@ move_obstacles_east_of ( float from_where , float by_what , Level edit_level )
   
 }; // void move_obstacles_and_items_east_of ( float from_where , float by_what , Level edit_level )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 move_obstacles_and_items_south_of ( float from_where , float by_what , Level edit_level )
 {
@@ -1586,10 +1586,10 @@ move_obstacles_and_items_south_of ( float from_where , float by_what , Level edi
   
 }; // void move_obstacles_south_of ( float from_where , float by_what , Level edit_level )
 
-/* ----------------------------------------------------------------------
+/**
  * When new lines are inserted into the map, the map labels east of this
  * line must move too with the rest of the map.  This function sees to it.
- * ---------------------------------------------------------------------- */
+ */
 void
 MoveMapLabelsEastOf ( int FromWhere , int ByWhat , Level EditLevel )
 {
@@ -1605,10 +1605,10 @@ MoveMapLabelsEastOf ( int FromWhere , int ByWhat , Level EditLevel )
   
 }; // void MoveMapLabelsEastOf ( int FromWhere , int ByWhat , Level EditLevel)
 
-/* ----------------------------------------------------------------------
+/**
  * When new lines are inserted into the map, the waypoints south of this
  * line must move too with the rest of the map.  This function sees to it.
- * ---------------------------------------------------------------------- */
+ */
 void
 MoveWaypointsSouthOf ( int FromWhere , int ByWhat , Level EditLevel )
 {
@@ -1624,11 +1624,11 @@ MoveWaypointsSouthOf ( int FromWhere , int ByWhat , Level EditLevel )
   
 }; // void MoveWaypointsSouthOf ( int FromWhere , int ByWhat , Level EditLevel)
 
-/* ----------------------------------------------------------------------
+/**
  * This function should associate the current mouse position with an
  * index in the level editor item drop screen.
  * (-1) is returned when cursor is not on any item in the item drop grid.
- * ---------------------------------------------------------------------- */
+ */
 int
 level_editor_item_drop_index ( int row_len , int line_len )
 {
@@ -1647,11 +1647,11 @@ level_editor_item_drop_index ( int row_len , int line_len )
     
 }; // int level_editor_item_drop_index ( void )
 
-/* ----------------------------------------------------------------------
+/**
  * This function drops an item onto the floor.  It works with a selection
  * of item images and clicking with the mouse on an item image or on one
  * of the buttons presented to the person editing the level.
- * ---------------------------------------------------------------------- */
+ */
 void
 ItemDropFromLevelEditor( void )
 {
@@ -1821,10 +1821,10 @@ ItemDropFromLevelEditor( void )
     
 }; // void ItemDropFromLevelEditor( void )
 
-/* ----------------------------------------------------------------------
+/**
  * This function shall determine, whether a given left mouse click was in 
  * given rect or not.
- * ---------------------------------------------------------------------- */
+ */
 int
 ClickWasInRect ( SDL_Rect TargetRect )
 {
@@ -1836,20 +1836,20 @@ ClickWasInRect ( SDL_Rect TargetRect )
     return ( TRUE );
 }; // int ClickWasInRect ( SDL_Rect TargetRect )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 int 
 ClickWasInEditorBannerRect( void )
 {
     return ( ClickWasInRect ( EditorBannerRect ) );
 }; // int ClickWasInEditorBannerRect( void )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 update_number_of_walls ( void )
 {
@@ -1905,10 +1905,10 @@ Unhandled level editor edit mode received.",
     
 }; // void update_number_of_walls ( void )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 HandleBannerMouseClick( void )
 {
@@ -1989,11 +1989,11 @@ HandleBannerMouseClick( void )
     
 }; // void HandleBannerMouseClick( void )
 
-/* ----------------------------------------------------------------------
+/**
  * On the very top of the screen during level editor work, there is a 
  * scrollbar with the various tiles that may be placed on the floor of the
  * map.  This scrollbar is drawn here.
- * ---------------------------------------------------------------------- */
+ */
 
 void build_level_editor_banner(unsigned int selected_tab){
     char *tab_text[9]={
@@ -2177,10 +2177,10 @@ ShowLevelEditorTopMenu( int Highlight )
     
 }; // void ShowLevelEditorTopMenu( void )
 
-/* ----------------------------------------------------------------------
+/**
  * When new lines are inserted into the map, the waypoints east of this
  * line must move too with the rest of the map.  This function sees to it.
- * ---------------------------------------------------------------------- */
+ */
 void
 MoveWaypointsEastOf ( int FromWhere , int ByWhat , Level EditLevel )
 {
@@ -2196,9 +2196,9 @@ MoveWaypointsEastOf ( int FromWhere , int ByWhat , Level EditLevel )
   
 }; // void MoveWaypointsEastOf ( int FromWhere , int ByWhat , Level EditLevel)
 
-/* ----------------------------------------------------------------------
+/**
  * Self-explanatory.
- * ---------------------------------------------------------------------- */
+ */
 void
 InsertLineVerySouth ( Level EditLevel )
 {
@@ -2235,9 +2235,9 @@ InsertLineVerySouth ( Level EditLevel )
 
 }; // void InsertLineVerySouth ( Level EditLevel )
 
-/* ----------------------------------------------------------------------
+/**
  * Self-explanatory.
- * ---------------------------------------------------------------------- */
+ */
 void
 InsertColumnVeryEast ( Level EditLevel )
 {
@@ -2257,9 +2257,9 @@ InsertColumnVeryEast ( Level EditLevel )
 
 }; // void InsertColumnVeryEast ( Level EditLevel )
       
-/* ----------------------------------------------------------------------
+/**
  * Self-explanatory.
- * ---------------------------------------------------------------------- */
+ */
 void
 InsertColumnEasternInterface( Level EditLevel )
 {
@@ -2299,9 +2299,9 @@ InsertColumnEasternInterface( Level EditLevel )
 
 }; // void InsertColumnEasternInterface( EditLevel );
 
-/* ----------------------------------------------------------------------
+/**
  * Self-explanatory.
- * ---------------------------------------------------------------------- */
+ */
 void
 RemoveColumnEasternInterface( Level EditLevel )
 {
@@ -2346,9 +2346,9 @@ RemoveColumnEasternInterface( Level EditLevel )
 
 }; // void RemoveColumnEasternInterface( Level EditLevel );
 
-/* ----------------------------------------------------------------------
+/**
  * Self-explanatory.
- * ---------------------------------------------------------------------- */
+ */
 void
 InsertColumnWesternInterface( Level EditLevel )
 {
@@ -2372,9 +2372,9 @@ InsertColumnWesternInterface( Level EditLevel )
 
 }; // void InsertColumnWesternInterface( Level EditLevel )
 
-/* ----------------------------------------------------------------------
+/**
  * Self-explanatory.
- * ---------------------------------------------------------------------- */
+ */
 void
 RemoveColumnWesternInterface( Level EditLevel )
 {
@@ -2398,9 +2398,9 @@ RemoveColumnWesternInterface( Level EditLevel )
 
 }; // void RemoveColumnWesternInterface( Level EditLevel )
 
-/* ----------------------------------------------------------------------
+/**
  * Self-Explanatory.
- * ---------------------------------------------------------------------- */
+ */
 void
 InsertColumnVeryWest ( Level EditLevel )
 {
@@ -2418,9 +2418,9 @@ InsertColumnVeryWest ( Level EditLevel )
 
 }; // void InsertColumnVeryWest ( EditLevel )
 
-/* ----------------------------------------------------------------------
+/**
  * Self-Explanatory.
- * ---------------------------------------------------------------------- */
+ */
 void
 RemoveColumnVeryWest ( Level EditLevel )
 {
@@ -2438,9 +2438,9 @@ RemoveColumnVeryWest ( Level EditLevel )
 
 }; // void RemoveColumnVeryEast ( Level EditLevel )
 
-/* ----------------------------------------------------------------------
+/**
  * Self-Explanatory.
- * ---------------------------------------------------------------------- */
+ */
 void
 InsertLineSouthernInterface ( Level EditLevel )
 {
@@ -2480,9 +2480,9 @@ InsertLineSouthernInterface ( Level EditLevel )
 
 }; // void InsertLineSouthernInterface ( EditLevel )
 
-/* ----------------------------------------------------------------------
+/**
  * Self-Explanatory.
- * ---------------------------------------------------------------------- */
+ */
 void
 RemoveLineSouthernInterface ( Level EditLevel )
 {
@@ -2521,9 +2521,9 @@ RemoveLineSouthernInterface ( Level EditLevel )
 
 }; // void RemoveLineSouthernInterface ( EditLevel )
 
-/* ----------------------------------------------------------------------
+/**
  * Self-Explanatory.
- * ---------------------------------------------------------------------- */
+ */
 void
 InsertLineNorthernInterface ( Level EditLevel )
 {
@@ -2546,9 +2546,9 @@ InsertLineNorthernInterface ( Level EditLevel )
 
 }; // void InsertLineNorthernInterface ( EditLevel )
 
-/* ----------------------------------------------------------------------
+/**
  * Self-Explanatory.
- * ---------------------------------------------------------------------- */
+ */
 void
 RemoveLineNorthernInterface ( Level EditLevel )
 {
@@ -2571,9 +2571,9 @@ RemoveLineNorthernInterface ( Level EditLevel )
 
 }; // void RemoveLineNorthernInterface ( Level EditLevel )
 
-/* ----------------------------------------------------------------------
+/**
  * Self-Explanatory.
- * ---------------------------------------------------------------------- */
+ */
 void
 InsertLineVeryNorth ( Level EditLevel )
 {
@@ -2591,9 +2591,9 @@ InsertLineVeryNorth ( Level EditLevel )
 
 }; // void InsertLineVeryNorth ( EditLevel )
 
-/* ----------------------------------------------------------------------
+/**
  * Self-Explanatory.
- * ---------------------------------------------------------------------- */
+ */
 void
 RemoveLineVeryNorth ( Level EditLevel )
 {
@@ -2611,11 +2611,11 @@ RemoveLineVeryNorth ( Level EditLevel )
 
 }; // void RemoveLineVeryNorth ( Level EditLevel )
 
-/* ----------------------------------------------------------------------
+/**
  * This a a menu interface to allow to edit the level dimensions in a
  * convenient way, i.e. so that little stupid copying work or things like
  * that have to be done and more time can be spent creating game material.
- * ---------------------------------------------------------------------- */
+ */
 void
 EditLevelDimensions ( void )
 {
@@ -2779,10 +2779,10 @@ EditLevelDimensions ( void )
     
 }; // void EditLevelDimensions ( void )
   
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 int
 DoLevelEditorMainMenu ( Level EditLevel )
 {
@@ -2989,20 +2989,20 @@ DoLevelEditorMainMenu ( Level EditLevel )
     return ( Done );
 }; // void DoLevelEditorMainMenu ( Level EditLevel );
 
-/* ----------------------------------------------------------------------
+/**
  * There is a 'help' screen for the level editor too.  This help screen
  * is presented as a scrolling text, giving a short introduction and also
  * explaining the keymap to the level editor.  The info for this scrolling
  * text is all in a title file in the maps dir, much like the initial
  * scrolling text at any new game startup.
- * ---------------------------------------------------------------------- */
+ */
 void 
 ShowLevelEditorKeymap ( void )
 {
     PlayATitleFile ( "level_editor_help.title" );
 }; // void ShowLevelEditorKeymap ( void )
 
-/* ----------------------------------------------------------------------
+/**
  * The levels in Freedroid may be connected into one big map by simply
  * 'gluing' then together, i.e. we define some interface areas to the
  * sides of a map and when the Tux passes these areas, he'll be silently
@@ -3016,7 +3016,7 @@ ShowLevelEditorKeymap ( void )
  * Instead, a report on inconsistencies will be created and the person
  * editing the map can then resolve the inconsistencies manually in one
  * fashion or the other.
- * ---------------------------------------------------------------------- */
+ */
 void
 ReportInconsistenciesForLevel ( int LevelNum )
 {
@@ -3172,11 +3172,11 @@ ReportInconsistenciesForLevel ( int LevelNum )
     
 }; // void ReportInconsistenciesForLevel ( int LevelNum )
 
-/* ----------------------------------------------------------------------
+/**
  * If we want to synchronize two levels, we need to remove the old obstacles
  * before we can add new ones.  Else the place might get too crowded with
  * obstacles. :)
- * ---------------------------------------------------------------------- */
+ */
 void
 delete_all_obstacles_in_area ( Level TargetLevel , float start_x , float start_y , float area_width , float area_height )
 {
@@ -3195,7 +3195,7 @@ delete_all_obstacles_in_area ( Level TargetLevel , float start_x , float start_y
     }
 }; // void delete_all_obstacles_in_area ( curShip . AllLevels [ TargetLevel ] , 0 , TargetLevel->ylen-AreaHeight , AreaWidth , AreaHeight )
 
-/* ----------------------------------------------------------------------
+/**
  * After exporting a level, there might be some old corpses of 
  * descriptions that were deleted when the target level was partly cleared
  * out and overwritten with the new obstacles that brought their own new
@@ -3203,7 +3203,7 @@ delete_all_obstacles_in_area ( Level TargetLevel , float start_x , float start_y
  *
  * In this function, we try to clean out those old corpses to avoid 
  * cluttering in the map file.
- * ---------------------------------------------------------------------- */
+ */
 void
 eliminate_dead_obstacle_descriptions ( Level target_level )
 {
@@ -3249,11 +3249,11 @@ eliminate_dead_obstacle_descriptions ( Level target_level )
 	
 }; // void eliminate_dead_obstacle_descriptions ( Level target_level )
 
-/* ----------------------------------------------------------------------
+/**
  * This function should allow for conveninet duplication of obstacles from
  * one map to the other.  It assumes, that the target area has been cleaned
  * out of obstacles already.
- * ---------------------------------------------------------------------- */
+ */
 void
 duplicate_all_obstacles_in_area ( Level source_level ,
 				  float source_start_x , float source_start_y , 
@@ -3315,10 +3315,10 @@ duplicate_all_obstacles_in_area ( Level source_level ,
     
 }; // void duplicate_all_obstacles_in_area ( ... )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */      
+ */      
 void 
 floor_copy ( map_tile* target_pointer , map_tile* source_pointer , int amount )
 {
@@ -3332,13 +3332,13 @@ floor_copy ( map_tile* target_pointer , map_tile* source_pointer , int amount )
     }
 }; // void floor_copy ( map_tile* target_pointer , map_tile* source_pointer , int amount )
 
-/* ----------------------------------------------------------------------
+/**
  * When we connect two maps smoothly together, we want an area in both
  * maps, that is really synchronized with the other level we connect to.
  * But this isn't a task that should be done manually.  We rather make
  * a function, that does this synchronisation work, overwriting the 
  * higher level number with the data from the lower level number.
- * ---------------------------------------------------------------------- */
+ */
 void
 ExportLevelInterface ( int LevelNum )
 {
@@ -3516,10 +3516,10 @@ ExportLevelInterface ( int LevelNum )
     
 }; // void SynchronizeLevelInterfaces ( void )
       
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 SetLevelInterfaces ( void )
 {
@@ -3705,11 +3705,11 @@ SetLevelInterfaces ( void )
     
 }; // void SetLevelInterfaces ( void )
 
-/* ----------------------------------------------------------------------
+/**
  * This function should create a completely new level into the existing
  * ship structure that we already have.  The new level will be rather
  * small and simple.
- * ---------------------------------------------------------------------- */
+ */
 void
 CreateNewMapLevel( void )
 {
@@ -3861,9 +3861,9 @@ CreateNewMapLevel( void )
     
 }; // void CreateNewMapLevel( void )
 
-/* ----------------------------------------------------------------------
+/**
  * Now we print out the map label information about this map location.
- * ---------------------------------------------------------------------- */
+ */
 void
 PrintMapLabelInformationOfThisSquare ( Level EditLevel )
 {
@@ -3887,12 +3887,12 @@ PrintMapLabelInformationOfThisSquare ( Level EditLevel )
     
 }; // void PrintMapLabelInformationOfThisSquare ( Level EditLevel )
 
-/* ----------------------------------------------------------------------
+/**
  * This function is used by the Level Editor integrated into 
  * freedroid.  It highlights the map position that is currently 
  * edited or would be edited, if the user pressed something.  I.e. 
  * it provides a "cursor" for the Level Editor.
- * ---------------------------------------------------------------------- */
+ */
 void 
 Highlight_Current_Block (int mask)
 {
@@ -3946,11 +3946,11 @@ Unable to load the level editor floor cursor.", PLEASE_INFORM, IS_FATAL);
 
 } // void Highlight_Current_Block(void)
 
-/* ----------------------------------------------------------------------
+/**
  * This function is used to draw a line between given map tiles.  It is
  * mainly used for the map editor to highlight connections and the 
  * current map tile target.
- * ---------------------------------------------------------------------- */
+ */
 void 
 draw_connection_between_tiles ( float x1 , float y1 , float x2 , float y2 , int mask )
 {
@@ -4019,10 +4019,10 @@ Unable to load the level editor waypoint dot cursor.",
     
 }; // void draw_connection_between_tiles ( .... )
 
-/* ----------------------------------------------------------------------
+/**
  * This function is used by the Level Editor integrated into 
  * freedroid.  It marks all waypoints with a cross.
- * ---------------------------------------------------------------------- */
+ */
 void 
 ShowWaypoints( int PrintConnectionList , int mask )
 {
@@ -4158,10 +4158,10 @@ Unable to load the level editor waypoint cursor.",
 
 }; // void ShowWaypoints( int PrintConnectionList );
 
-/* ----------------------------------------------------------------------
+/**
  * This function is used by the Level Editor integrated into 
  * freedroid.  It marks all places that have a label attached to them.
- * ---------------------------------------------------------------------- */
+ */
 void 
 ShowMapLabels( int mask )
 {
@@ -4216,10 +4216,10 @@ ShowMapLabels( int mask )
     
 }; // void ShowMapLabels( void );
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 HandleMapTileEditingKeys ( Level EditLevel , int BlockX , int BlockY )
 {
@@ -4264,10 +4264,10 @@ HandleMapTileEditingKeys ( Level EditLevel , int BlockX , int BlockY )
     }
 }; // void HandleMapTileEditingKeys ( Level EditLevel , int BlockX , int BlockY )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void 
 HandleLevelEditorCursorKeys ( void )
 {
@@ -4348,13 +4348,13 @@ HandleLevelEditorCursorKeys ( void )
 }; // void HandleLevelEditorCursorKeys ( void )
 
 
-/* ----------------------------------------------------------------------
+/**
  * When the mouse has rested idle on some mouse button in the level 
  * editor (and also tooltips are enabled) then some small window (a 
  * tooltip) will appear and describe the purpose of the button under the
  * mouse cursor.  Bringing up this tooltip window is the purpose of this
  * function.
- * ---------------------------------------------------------------------- */
+ */
 void
 show_button_tooltip ( char* tooltip_text )
 {
@@ -4379,10 +4379,10 @@ show_button_tooltip ( char* tooltip_text )
     
 }; // void show_button_tooltip ( char* tooltip_text )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 show_level_editor_tooltips ( void )
 {
@@ -4567,10 +4567,10 @@ show_level_editor_tooltips ( void )
     
 }; // void show_level_editor_tooltips ( void )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 int
 marked_obstacle_is_glued_to_here ( Level EditLevel , float x , float y )
 {
@@ -4591,14 +4591,14 @@ marked_obstacle_is_glued_to_here ( Level EditLevel , float x , float y )
 }; // int marked_obstacle_is_glued_to_here ( Me . pos . x , Me . pos . y )
 
 
-/* ----------------------------------------------------------------------
+/**
  * This function should assign a new individual obstacle description to a 
  * single instance of a given obstacle type on a given level.  
  *
  * New indices must be found and the user must be queried for his input 
  * about the desired description text for the obstacle.
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 give_new_description_to_obstacle ( Level EditLevel , obstacle* our_obstacle , char* predefined_description )
 {
@@ -4673,11 +4673,11 @@ Please enter new description text for this obstacle: \n\n" ,
 }; // void give_new_description_to_obstacle ( EditLevel , level_editor_marked_obstacle )
 
 
-/* ----------------------------------------------------------------------
+/**
  * In an effort to reduce the massive size of the level editor main
  * function, we take the left mouse button handling out into a separate
  * function now.
- * ---------------------------------------------------------------------- */
+ */
 int
 level_editor_handle_left_mouse_button ( int proceed_now )
 {
@@ -5077,10 +5077,10 @@ void end_line_mode(whole_line *walls, int place_line)
 
 }; // void end_line_mode(line_element *wall_line, int place_line)
 
-/* ----------------------------------------------------------------------
+/**
  * This function automatically scrolls the leveleditor window when the
  * mouse reaches an edge 
- * ---------------------------------------------------------------------- */
+ */
 void level_editor_auto_scroll()
 {
 float chx = 0, chy = 0; /*Value of the change to player position*/
@@ -5121,11 +5121,11 @@ if ( Me . pos . y >= curShip.AllLevels[Me.pos.z]->ylen-1 )
 if ( Me . pos . y <= 0 ) Me . pos . y = 0;
 }	
 
-/* ----------------------------------------------------------------------
+/**
  * In an effort to reduce the massive size of the level editor main
  * function, we take the mouse wheel handling out into a separate
  * function now.
- * ---------------------------------------------------------------------- */
+ */
 void
 level_editor_handle_mouse_wheel ( void )
 {
@@ -5156,11 +5156,11 @@ level_editor_handle_mouse_wheel ( void )
     } 
 }; // void level_editor_handle_mouse_wheel ( void )
     
-/* ----------------------------------------------------------------------
+/**
  * In an effort to reduce the massive size of the level editor main
  * function, we take the mouse button blitting out into a separate
  * function now.
- * ---------------------------------------------------------------------- */
+ */
 void
 level_editor_blit_mouse_buttons ( Level EditLevel )
 {
@@ -5262,10 +5262,10 @@ level_editor_blit_mouse_buttons ( Level EditLevel )
 #undef A
 }; // void level_editor_blit_mouse_buttons ( Level EditLevel )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 cycle_marked_obstacle( Level EditLevel )
 {
@@ -5304,13 +5304,13 @@ cycle_marked_obstacle( Level EditLevel )
 
 }; // void cycle_marked_obstacle( Level EditLevel )
 
-/* ----------------------------------------------------------------------
+/**
  * This function provides the Level Editor integrated into 
  * freedroid.  Actually this function is a submenu of the big
  * Escape Menu.  In here you can edit the level and, upon pressing
  * escape, you can enter a new submenu where you can save the level,
  * change level name and quit from level editing.
- * ---------------------------------------------------------------------- */
+ */
 void 
 LevelEditor(void)
 {

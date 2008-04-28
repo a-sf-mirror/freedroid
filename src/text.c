@@ -24,12 +24,12 @@
  *
  */
 
-/* ----------------------------------------------------------------------
+/**
  * This file contains all functions dealing with texts on the screen,
  * that have to be blitted somehow, using bitmaps or OpenGL texturers,
  * but at least strongly rely on graphics concepts, not pure internal
  * text-processing.
- * ---------------------------------------------------------------------- */
+ */
 
 #define _text_c
 
@@ -56,10 +56,10 @@ int StoreCursorY;
 unsigned int StoreTextBG;
 unsigned int StoreTextFG;
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 show_backgrounded_label_at_pixel_position ( char* LabelText , int pos_x , int pos_y )
 {
@@ -76,10 +76,10 @@ show_backgrounded_label_at_pixel_position ( char* LabelText , int pos_x , int po
     
 }; // void show_backgrounded_label_at_pixel_position ( char* LabelText , float fill_status , int pos_x , int pos_y )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 show_backgrounded_label_at_map_position ( char* LabelText , float fill_status , float pos_x , float pos_y , int zoom_is_on )
 {
@@ -91,10 +91,10 @@ show_backgrounded_label_at_map_position ( char* LabelText , float fill_status , 
     
 }; // void show_backgrounded_label_at_map_position ( char* LabelText , float fill_status , float pos_x , float pos_y )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 show_backgrounded_text_rectangle ( char* text , int x , int y , int w , int h )
 {
@@ -118,11 +118,11 @@ show_backgrounded_text_rectangle ( char* text , int x , int y , int w , int h )
     
 }; // void show_backgrounded_text_rectangle ( char* text , int x , int y , int w , int h )
 
-/* ----------------------------------------------------------------------
+/**
  * In some cases it will be nescessary to inform the user of something in
  * a big important style.  Then a popup window is suitable, with a mouse
  * button to confirm and make it go away again.
- * ---------------------------------------------------------------------- */
+ */
 void
 GiveMouseAlertWindow( char* WindowText )
 {
@@ -141,9 +141,9 @@ GiveMouseAlertWindow( char* WindowText )
     
 }; // void GiveMouseAlertWindow( char* WindowText )
 
-/* ----------------------------------------------------------------------
+/**
  * 
- * ---------------------------------------------------------------------- */
+ */
 void 
 CutDownStringToMaximalSize ( char* StringToCut , int LengthInPixels )
 {
@@ -175,10 +175,10 @@ CutDownStringToMaximalSize ( char* StringToCut , int LengthInPixels )
     
 }; // void CutDownStringToMaximalSize ( char* StringToCut , int LengthInPixels )
 
-/* ----------------------------------------------------------------------
+/**
  * This function assigns a text comment to say for an enemy right after
  * is has been hit.  This can be turned off via a switch in GameConfig.
- * ---------------------------------------------------------------------- */
+ */
 void 
 EnemyHitByBulletText( enemy * ThisRobot )
 {
@@ -208,10 +208,10 @@ EnemyHitByBulletText( enemy * ThisRobot )
 	ThisRobot->TextToBeDisplayed=_("Aargh, I got hit.  Ugh, I got a bad feeling...");
 }; // void EnemyHitByBullet( int Enum );
 
-/* ----------------------------------------------------------------------
+/**
  * This function assigns a text comment to say for an enemy right after
  * it has bumped into the player.  This can be turned off via a switch in GameConfig.
- * ---------------------------------------------------------------------- */
+ */
 void 
 EnemyInfluCollisionText ( enemy * ThisRobot)
 {
@@ -238,10 +238,10 @@ EnemyInfluCollisionText ( enemy * ThisRobot)
     
 }; // void EnemyInfluCollisionText ( int Enum )
 
-/* ----------------------------------------------------------------------
+/**
  * This function assigns a text comment to say for an enemy while it is
  * standing and aiming for player.  This can be turned off via a switch in GameConfig.
- * ---------------------------------------------------------------------- */
+ */
 void 
 AddStandingAndAimingText ( enemy * ThisRobot )
 {
@@ -261,9 +261,9 @@ AddStandingAndAimingText ( enemy * ThisRobot )
 }; // void AddStandingAndAimingText( int Enum )
 
 
-/* ----------------------------------------------------------------------
+/**
  * This function sets the text cursor used in DisplayText.
- * ---------------------------------------------------------------------- */
+ */
 void
 SetTextCursor ( int x , int y )
 {
@@ -482,12 +482,12 @@ DisplayTextWithScrolling ( char *Text , int startx , int starty , const SDL_Rect
     
 };  // DisplayTextWithScrolling (char *Text, int startx, int starty, const SDL_Rect *clip , SDL_Surface* Background )
 
-/* ----------------------------------------------------------------------
+/**
  * This function sets a new text, that will be displayed in huge font 
  * directly over the combat window for a fixed duration of time, where
  * only the time in midst of combat and with no other windows opened
  * is counted.
- * ---------------------------------------------------------------------- */
+ */
 void
 SetNewBigScreenMessage( char* ScreenMessageText )
 {
@@ -514,10 +514,10 @@ SetNewBigScreenMessage( char* ScreenMessageText )
 
 }; // void SetNewBigScreenMessage( char* ScreenMessageText )
 
-/* ----------------------------------------------------------------------
+/**
  * This function displays the currently defined Bigscreenmessage on the
  * screen.  It will be called by AssembleCombatWindow.
- * ---------------------------------------------------------------------- */
+ */
 void
 DisplayBigScreenMessage( void )
 {
@@ -687,7 +687,7 @@ DisplayChar (unsigned char c)
 
 }; // void DisplayChar(...)
 
-/* ----------------------------------------------------------------------
+/**
  * This function checks if the next word still fits in this line
  * of text and initiates a carriage return/line feed if not.
  * Very handy and convenient, for that means it is no longer nescessary
@@ -697,7 +697,7 @@ DisplayChar (unsigned char c)
  *     (formerly known as "TextBorder")
  *
  * ah: added return value : 1 if carriage return was done, FALSE otherwise
- * ---------------------------------------------------------------------- */
+ */
 int
 ImprovedCheckLineBreak (char* Resttext, const SDL_Rect *clip, float text_stretch )
 {

@@ -24,9 +24,9 @@
  *
  */
 
-/* ----------------------------------------------------------------------
+/**
  * This file contains all menu functions and their subfunctions
- * ---------------------------------------------------------------------- */
+ */
 
 #define _menu_c
 
@@ -60,10 +60,10 @@ extern int load_game_command_came_from_inside_running_game;
 #define MENU_SELECTION_DEBUG 1
 
 
-/* ----------------------------------------------------------------------
+/**
  * This function tells over which menu item the mouse cursor would be,
  * if there were infinitely many menu items.
- * ---------------------------------------------------------------------- */
+ */
 int
 MouseCursorIsOverMenuItem( int first_menu_item_pos_y , int h )
 {
@@ -85,10 +85,10 @@ MouseCursorIsOverMenuItem( int first_menu_item_pos_y , int h )
     
 }; // void MouseCursorIsOverMenuItem( first_menu_item_pos_y )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 print_menu_text ( char* InitialText , char* MenuTexts[] , int first_menu_item_pos_y , int background_code , void* MenuFont ) 
 {
@@ -136,7 +136,7 @@ print_menu_text ( char* InitialText , char* MenuTexts[] , int first_menu_item_po
     
 }; // void print_menu_text ( ... )
 
-/* ----------------------------------------------------------------------
+/**
  * This function performs a menu for the player to select from, using the
  * keyboard only, currently, sorry.
  *
@@ -144,7 +144,7 @@ print_menu_text ( char* InitialText , char* MenuTexts[] , int first_menu_item_po
  * LAST OF WHICH IS AN EMPTY STRING TO DENOTE THE END OF THE ARRAY!  If 
  * this is not respected, segfault errors are likely.
  * 
- * ---------------------------------------------------------------------- */
+ */
 int
 DoMenuSelection( char* InitialText , char **MenuTexts, int FirstItem , int background_code , void* MenuFont )
 {
@@ -343,10 +343,10 @@ DoMenuSelection( char* InitialText , char **MenuTexts, int FirstItem , int backg
     return ( -1 );
 }; // int DoMenuSelection( ... )
 
-/* ----------------------------------------------------------------------
+/**
  * This function performs a menu for the player to select from, using the
  * keyboard or mouse wheel.
- * ---------------------------------------------------------------------- */
+ */
 int
 ChatDoMenuSelectionFlagged( char* InitialText , char* MenuTexts[ MAX_ANSWERS_PER_PERSON] , 
 			    unsigned char Chat_Flags[ MAX_ANSWERS_PER_PERSON ] , int FirstItem , 
@@ -415,12 +415,12 @@ ChatDoMenuSelectionFlagged( char* InitialText , char* MenuTexts[ MAX_ANSWERS_PER
   return ( MenuSelection );
 }; // int ChatDoMenuSelectionFlagged( char* InitialText , char* MenuTexts[ MAX_ANSWERS_PER_PERSON] , ... 
 
-/* ----------------------------------------------------------------------
+/**
  * Without destroying or changing anything, this function should determine
  * how many lines of text it takes to write a string with the current 
  * font into the given rectangle, provided one would start at the left
  * side as one usually does...
- * ---------------------------------------------------------------------- */
+ */
 int
 GetNumberOfTextLinesNeeded ( char* GivenText, SDL_Rect GivenRectangle , float text_stretch )
 {
@@ -475,7 +475,7 @@ Warning.  Received empty or nearly empty string!",
     
 }; // int GetNumberOfTextLinesNeeded ( MenuTexts [ i ] , Choice_Window )
 
-/* ----------------------------------------------------------------------
+/**
  *
  * This function performs a menu for the player to select from, using the
  * keyboard or mouse wheel.
@@ -485,7 +485,7 @@ Warning.  Received empty or nearly empty string!",
  * down possible, when there are more menu options than fit onto one
  * dialog options secection window for the player to click from.
  *
- * ---------------------------------------------------------------------- */
+ */
 int
 ChatDoMenuSelection( char* MenuTexts[ MAX_ANSWERS_PER_PERSON ] , 
 		     int FirstItem , void* MenuFont , enemy* ChatDroid )
@@ -925,13 +925,13 @@ ChatDoMenuSelection( char* MenuTexts[ MAX_ANSWERS_PER_PERSON ] ,
     
 }; // int ChatDoMenuSelection( char* InitialText , char* MenuTexts[] , asdfasd .... )
 
-/* ----------------------------------------------------------------------
+/**
  * This function prepares the screen for the big Escape menu and 
  * its submenus.  This means usual content of the screen, i.e. the 
  * combat screen and top status bar, is "faded out", the rest of 
  * the screen is cleared.  This function resolves some redundance 
  * that occured since there are so many submenus needing this.
- * ---------------------------------------------------------------------- */
+ */
 void 
 InitiateMenu( int background_code )
 {
@@ -960,11 +960,11 @@ InitiateMenu( int background_code )
 // extern int CurrentlyCPressed; 	/* the key that brought as in here */
 				/* we need to make sure it is set as released */
 				/* before we leave ...*/
-/* ----------------------------------------------------------------------
+/**
  * This function provides a convenient cheat menu, so that any 
  * tester does not have to play all through the game again and again
  * to see if a bug in a certain position has been removed or not.
- * ---------------------------------------------------------------------- */
+ */
 void
 Cheatmenu (void)
 {
@@ -1961,9 +1961,9 @@ Droid_fill (char *MenuTexts[10])
 #define FIRST_MIS_SELECT_ITEM_POS_X (0.0)
 #define FIRST_MIS_SELECT_ITEM_POS_Y (BANNER_HEIGHT + FontHeight(Menu_BFont))
 
-/* ----------------------------------------------------------------------
+/**
  * This reads in the new name for the character...
- * ---------------------------------------------------------------------- */
+ */
 void
 Get_Server_Name ( void )
 {
@@ -1987,9 +1987,9 @@ Get_Server_Name ( void )
 
 }; // void Get_Server_Name ( void )
 
-/* ----------------------------------------------------------------------
+/**
  * This reads in the new name for the character...
- * ---------------------------------------------------------------------- */
+ */
 void
 Get_New_Character_Name ( void )
 {
@@ -2041,10 +2041,10 @@ Get_New_Character_Name ( void )
     
 }; // void Get_New_Character_Name ( void )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 clear_player_inventory_and_stats ( void )
 {
@@ -2098,9 +2098,9 @@ clear_player_inventory_and_stats ( void )
 
 }; // void clear_player_inventory_and_stats ( void )
 
-/* ----------------------------------------------------------------------
+/**
  * This function prepares a new hero for adventure...
- * ---------------------------------------------------------------------- */
+ */
 int
 PrepareNewHero (void)
 {
@@ -2129,7 +2129,7 @@ PrepareNewHero (void)
     
 }; // int PrepareNewHero (void)
 
-/* ----------------------------------------------------------------------
+/**
  * The GNU C Library is SOOOO COOOL!!! It contains functions for directory
  * manipulations that are SOOOO powerful, it's really awesome.  One of
  * these very powerful functions can be used to filter directory entries,
@@ -2137,7 +2137,7 @@ PrepareNewHero (void)
  * convenient.  So as a parameter to this powerful function (scandir), you
  * have to specify a sorting function of a certain kind.  And this is just
  * the sorting function that seems appropriate for our little program.
- * ---------------------------------------------------------------------- */
+ */
 int
 filename_filter_func ( const struct dirent *unused )
 {
@@ -2155,11 +2155,11 @@ filename_filter_func ( const struct dirent *unused )
     
 }; // static int filename_filter_func (const struct dirent *unused)
 
-/* ----------------------------------------------------------------------
+/**
  * This is the function available from the freedroid startup menu, that
  * should display the available characters in the users home directory
  * and eventually let the player select one of his old characters there.
- * ---------------------------------------------------------------------- */
+ */
 int 
 Load_Existing_Hero_Menu ( void )
 {
@@ -2269,11 +2269,11 @@ I need to know that for saving. Abort.\n");
 }; // int Load_Existing_Hero_Menu ( void )
 
 
-/* ----------------------------------------------------------------------
+/**
  * This is the function available from the freedroid startup menu, that
  * should display the available characters in the users home directory
  * and eventually let the player select one of his old characters there.
- * ---------------------------------------------------------------------- */
+ */
 int 
 Delete_Existing_Hero_Menu ( void )
 {
@@ -2390,7 +2390,7 @@ I need to know that for saving. Abort.\n");
 }; // int Delete_Existing_Hero_Menu ( void )
 
 
-/* ----------------------------------------------------------------------
+/**
  * This function provides the single player menu.  It offers to start a
  * new hero, to load an old one and to go back.
  *
@@ -2399,7 +2399,7 @@ I need to know that for saving. Abort.\n");
  * has been set up properly) or not, cause no player is specified yet and
  * nothing is known.
  *
- * ---------------------------------------------------------------------- */
+ */
 int
 Single_Player_Menu (void)
 {
@@ -2549,10 +2549,10 @@ Show_Mission_Details ( int MissionNumber )
 
 }; // void Show_Mission_Details (void)
 
-/* ----------------------------------------------------------------------
+/**
  * This function provides an overview over the missions currently
  * assigned to the player
- * ---------------------------------------------------------------------- */
+ */
 void
 Show_Mission_Log_Menu (void)
 {

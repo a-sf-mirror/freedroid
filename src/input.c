@@ -23,9 +23,9 @@
  *  MA  02111-1307  USA
  *
  */
-/* ----------------------------------------------------------------------
+/**
  * This file contains (all) functions for keyboard and joystick handling
- * ---------------------------------------------------------------------- */
+ */
 
 #define _input_c
 
@@ -85,11 +85,11 @@ free(key_pressed_last_frame);
 free(key_pressed_this_frame);
 }
 
-/* ----------------------------------------------------------------------
+/**
  * This function returns the current mouse position in x direction.
  * Depending on the current shape of the mouse cursor, the real 'pointer'
  * position of the mouse cursor is returned.
- * ---------------------------------------------------------------------- */
+ */
 int 
 GetMousePos_x(void)
 {
@@ -107,9 +107,9 @@ GetMousePos_y(void)
 	return( CurrentMouseAbsPos . y + 0 );
 }; // int GetMousePos_y(void)
 
-/* ----------------------------------------------------------------------
+/**
  * This should initialize the joystick, if such a device is present.
- * ---------------------------------------------------------------------- */
+ */
 void 
 Init_Joy ( void )
 {
@@ -142,9 +142,9 @@ Init_Joy ( void )
     
 }; // void Init_Joy ( void )
 
-/* ----------------------------------------------------------------------
+/**
  * Here we insert some cheat codes for assigning and completing missions.
- * ---------------------------------------------------------------------- */
+ */
 void
 mission_status_cheat_handling ( )
 {
@@ -269,11 +269,11 @@ mission_status_cheat_handling ( )
 
 }; // void mission_status_cheat_handling ( )
 
-/* ----------------------------------------------------------------------
+/**
  * If the cheat keys are enabled (a config option in the cheat menu), 
  * then we have to check if some are pressed and properly respond to
  * that.  This is what this function is supposed to do.
- * ---------------------------------------------------------------------- */
+ */
 void
 check_for_cheat_keys( void )
 {
@@ -399,11 +399,11 @@ check_for_cheat_keys( void )
 }; // void check_for_cheat_keys( void )
  
 
-/* ----------------------------------------------------------------------
+/**
  * This function takes care of any keypresses to toggle the visibility
  * of the automap.  By default, the tab key will be used to toggle the
  * automap on/off.
- * ---------------------------------------------------------------------- */
+ */
 void
 automap_keyboard_handling ( void )
 {
@@ -463,10 +463,10 @@ automap_keyboard_handling ( void )
 
 }; // void automap_toggle_on_off ( void )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 handle_quick_appy_inventory_keys( void )
 {
@@ -520,12 +520,12 @@ handle_quick_appy_inventory_keys( void )
     
 }; // void handle_quick_appy_inventory_keys( void )
 
-/* ----------------------------------------------------------------------
+/**
  * This function should toggle the visibility of the inventory/character
  * and skill screen.  Of course, when one of them is turned on, the other
  * ones should be turned off again.  At least that was a popular request
  * from various sources in the past, so we heed it now.
- * ---------------------------------------------------------------------- */
+ */
 void
 toggle_game_config_screen_visibility ( int screen_visible )
 {
@@ -558,11 +558,11 @@ unhandled skill screen code received.  something is going VERY wrong!",
 
 }; // void toggle_game_config_screen_visibility ( int screen_visible )
 
-/* ----------------------------------------------------------------------
+/**
  * The I S and C keys can be used to open/close the inventory, skills and
  * the character screens.  This function takes care of any keyboard 
  * toggling the user might want to do.
- * ---------------------------------------------------------------------- */
+ */
 void
 handle_cha_ski_inv_screen_on_off_keys ( void )
 {
@@ -638,10 +638,10 @@ handle_cha_ski_inv_screen_on_off_keys ( void )
     
 }; // void handle_cha_ski_inv_screen_on_off_keys ( void )
 
-/* ----------------------------------------------------------------------
+/**
  * This function does the reactions to keypresses of the player other
  * than pressing cursor keys.
- * ---------------------------------------------------------------------- */
+ */
 void 
 ReactToSpecialKeys(void)
 {

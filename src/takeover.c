@@ -23,10 +23,10 @@
  *  MA  02111-1307  USA
  *
  */
-/* ----------------------------------------------------------------------
+/**
  * This file does everything that has to do with the takeover game from
  * the original paradroid game.
- * ---------------------------------------------------------------------- */
+ */
 
 #define _takeover_c
 
@@ -383,10 +383,10 @@ Takeover ( enemy * target )
 }; // int Takeover( int enemynum ) 
 
 
-/* ----------------------------------------------------------------------
+/**
  * This function does the countdown where you still can changes your
  * color.
- * ---------------------------------------------------------------------- */
+ */
 void
 ChooseColor (void)
 {
@@ -790,7 +790,7 @@ AdvancedEnemyTakeoverMovements (void)
   return;
 }; // AdvancedEnemyTakeoverMovements 
 
-/* ----------------------------------------------------------------------
+/**
  * This function reads in the takeover game elements for later blitting. 
  * It frees previous SDL-surfaces if they were allocated.  T
  * This allows to use this fct also for theme-switching.
@@ -1561,11 +1561,11 @@ ProcessPlayground (void)
   return;
 };  // void ProcessPlayground ( void )
 
-/* ---------------------------------------------------------------------- 
+/** 
  * This function sets the correct values for the status column in the
  * middle of the takeover game field.
  * Binking leds are realized here as well.
- * ---------------------------------------------------------------------- */
+ */
 void
 ProcessDisplayColumn (void)
 {
@@ -1652,10 +1652,10 @@ ProcessDisplayColumn (void)
   return;
 }; // void ProcessDisplayColumn 
 
-/* ---------------------------------------------------------------------- 
+/** 
  * This function does the countdown of the capsules and kills them if 
  * they are too old.
- * ---------------------------------------------------------------------- */
+ */
 void
 ProcessCapsules (void)
 {
@@ -1679,10 +1679,10 @@ ProcessCapsules (void)
 
 }; // void ProcessCapsules ( void )
 
-/* ----------------------------------------------------------------------
+/**
  * This function tells, wether a Column-connection is active or not.
  * It returns TRUE or FALSE accordinly.
- * ---------------------------------------------------------------------- */
+ */
 int
 IsActive (int color, int row)
 {
@@ -1719,10 +1719,10 @@ AnimateCurrents (void)
   return;
 }; // void AnimateCurrents (void)
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 to_show_banner (const char* left, const char* right)
 {

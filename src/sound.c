@@ -25,9 +25,9 @@
  *
  */
 
-/* ----------------------------------------------------------------------
+/**
  * This file contains sound related functions
- * ---------------------------------------------------------------------- */
+ */
 
 #ifndef _sound_c
 #define _sound_c
@@ -250,10 +250,10 @@ void channelDone( int channel )
 
 
 
-/* ----------------------------------------------------------------------
+/**
  * This function will be invoked by the callback of the SDL mixer when
  * the fading out effect with the background music is completed.
- * ---------------------------------------------------------------------- */
+ */
 void OldMusicHasFinishedFadingOut ( void )
 	{
 
@@ -270,7 +270,7 @@ void OldMusicHasFinishedFadingOut ( void )
 
 
 /** ============================================ MUSIC ============================================ */
-/* ----------------------------------------------------------------------
+/**
  * This function is intended to provide a convenient way of switching
  * between different backround sounds in freedroid.
  * If no background sound was yet running, the function should start playing
@@ -278,7 +278,7 @@ void OldMusicHasFinishedFadingOut ( void )
  * If some background sound was already playing, the function should shut down
  * the old background music and start playing the new one.
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 LoadAndFadeInBackgroundMusic ( void )
 	{
@@ -859,7 +859,7 @@ play_sample_using_WAV_cache_v( char* SoundSampleFileName , int With_Waiting , in
 ; // void play_sample_using_WAV_cache(...)
 
 
-/* ----------------------------------------------------------------------
+/**
  * When the sound sample volume is changed via the in-game controls, we 
  * need to re-sample everything, which is done only upon loading of the
  * sound samples.  Instead of RE-MIXING SOUND SAMPLES AGAIN AND AGAIN to
@@ -867,7 +867,7 @@ play_sample_using_WAV_cache_v( char* SoundSampleFileName , int With_Waiting , in
  * out the current wav file cache, so that when needed again, the sound
  * files will be loaded again and then automatically re-sampled to proper
  * volume from the play/load function itself.  Perfect solution.
- * ---------------------------------------------------------------------- */
+ */
 void
 remove_all_samples_from_WAV_cache( void )
 	{

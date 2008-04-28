@@ -24,12 +24,12 @@
  *
  */
 
-/* ----------------------------------------------------------------------
+/**
  * This file contains (all?) map-related functions, which also includes 
  * loading of decks and whole ships, starting the lifts and consoles if 
  * close to the paradroid, refreshes as well as determining the map brick 
  * that contains specified coordinates are done in this file.
- * ---------------------------------------------------------------------- */
+ */
 
 #define _map_c
 
@@ -46,12 +46,12 @@ void TranslateToHumanReadable ( Uint16* HumanReadable , map_tile* MapInfo, int L
 void GetThisLevelsDroids( char* SectionPointer );
 Level DecodeLoadedLeveldata ( char *data );
 
-/* ----------------------------------------------------------------------
+/**
  * If the blood doesn't vanish, then there will be more and more blood,
  * especially after the bots on the level have respawned a few times.
  * Therefore we need this function, which will remove all traces of blood
  * from a given level.
- * ---------------------------------------------------------------------- */
+ */
 void
 remove_blood_obstacles_for_respawning ( int level_num )
 {
@@ -104,11 +104,11 @@ remove_blood_obstacles_for_respawning ( int level_num )
     
 }; // void remove_blood_obstacles_for_respawning ( int level_num )
 
-/* ----------------------------------------------------------------------
+/**
  * This function will make all blood obstacles vanish and all dead bots
  * (and characters) come back to life and resume their previous operation
  * from before thier death.
- * ---------------------------------------------------------------------- */
+ */
 void
 respawn_level ( int level_num )
 {
@@ -163,12 +163,12 @@ respawn_level ( int level_num )
 
 }; // void respawn_level ( int level_num )
 
-/* ----------------------------------------------------------------------
+/**
  * Now that we plan not to use hard-coded and explicitly human written 
  * coordinates any more, we need to use some labels instead.  But there
  * should be a function to conveniently resolve a given label within a
  * given map.  That's what this function is supposed to do.
- * ---------------------------------------------------------------------- */
+ */
 void
 ResolveMapLabelOnLevel ( char* MapLabel , location* PositionPointer , int LevelNum )
 {
@@ -197,10 +197,10 @@ ResolveMapLabelOnLevel ( char* MapLabel , location* PositionPointer , int LevelN
 		  MapLabel , LevelNum );
 }; // void ResolveMapLabel ( char* MapLabel , grob_point* PositionPointer )
 
-/* ----------------------------------------------------------------------
+/**
  * This is the ultimate function to resolve a given label within a
  * given SHIP.
- * ---------------------------------------------------------------------- */
+ */
 void
 ResolveMapLabelOnShip ( char* MapLabel , location* PositionPointer )
 {
@@ -232,11 +232,11 @@ This is a severe error in the game data of Freedroid.",
     
 };
 
-/* ----------------------------------------------------------------------
+/**
  * Next we extract the level interface data from the human-readable data 
  * into the level struct, but WITHOUT destroying or damaging the 
  * human-readable data in the process!
- * ---------------------------------------------------------------------- */
+ */
 void 
 DecodeInterfaceDataForThisLevel ( Level loadlevel , char* DataPointer )
 {
@@ -289,11 +289,11 @@ DecodeInterfaceDataForThisLevel ( Level loadlevel , char* DataPointer )
     
 }; // void DecodeInterfaceDataForThisLevel ( Level loadlevel , char* data )
 
-/* ----------------------------------------------------------------------
+/**
  * Next we extract the level parameters from the human-readable data into
  * the level struct, but WITHOUT destroying or damaging the human-readable
  * data in the process!
- * ---------------------------------------------------------------------- */
+ */
 void 
 DecodeDimensionsOfThisLevel ( Level loadlevel , char* DataPointer )
 {
@@ -373,10 +373,10 @@ Sorry, but unless this constant is raised, Freedroid will refuse to load this ma
 
 }; // void DecodeDimensionsOfThisLevel ( Level loadlevel , char* DataPointer );
 
-/* ----------------------------------------------------------------------
+/**
  * Next we extract the statments of the influencer on this level WITHOUT 
  * destroying or damaging the data in the process!
- * ---------------------------------------------------------------------- */
+ */
 void 
 DecodeStatementsOfThisLevel ( Level loadlevel , char* DataPointer )
 {
@@ -426,11 +426,11 @@ DecodeStatementsOfThisLevel ( Level loadlevel , char* DataPointer )
     
 }; // void DecodeStatementsOfThisLevel ( Level loadlevel , char* DataPointer );
 
-/* ----------------------------------------------------------------------
+/**
  * Next we extract the human readable obstacle data into the level struct
  * WITHOUT destroying or damaging the human-readable data in the process!
  * This is an improved parser that is not quite readable but very performant.
- * ---------------------------------------------------------------------- */
+ */
 void
 decode_obstacles_of_this_level ( Level loadlevel , char* DataPointer )
 {
@@ -513,10 +513,10 @@ decode_obstacles_of_this_level ( Level loadlevel , char* DataPointer )
     
 }; // void decode_obstacles_of_this_level ( loadlevel , DataPointer )
 
-/* ----------------------------------------------------------------------
+/**
  * Next we extract the map labels of this level WITHOUT destroying
  * or damaging the data in the process!
- * ---------------------------------------------------------------------- */
+ */
 void 
 DecodeMapLabelsOfThisLevel ( Level loadlevel , char* DataPointer )
 {
@@ -581,7 +581,7 @@ DecodeMapLabelsOfThisLevel ( Level loadlevel , char* DataPointer )
     
 }; // void DecodeMapLabelsOfThisLevel ( Level loadlevel , char* DataPointer );
 
-/* ----------------------------------------------------------------------
+/**
  * Every map level in a FreedroidRPG 'ship' can have up to 
  * MAX_OBSTACLE_NAMES_PER_LEVEL obstacles, that have a label attached to
  * them.  Such obstacle labels are very useful when modifying obstacles
@@ -589,7 +589,7 @@ DecodeMapLabelsOfThisLevel ( Level loadlevel , char* DataPointer )
  * in a small subsection of the whole level data.  This function decodes
  * this small subsection and loads all the obstacle data into the ship
  * struct.
- * ---------------------------------------------------------------------- */
+ */
 void
 decode_obstacle_names_of_this_level ( Level loadlevel , char* DataPointer )
 {
@@ -649,7 +649,7 @@ decode_obstacle_names_of_this_level ( Level loadlevel , char* DataPointer )
     
 }; // void decode_obstacle_names_of_this_level ( loadlevel , DataPointer )
 
-/* ----------------------------------------------------------------------
+/**
  * Every map level in a FreedroidRPG 'ship' can have up to 
  * MAX_OBSTACLE_DESCRIPTIONS_PER_LEVEL obstacles, that have a label 
  * attached to them.  
@@ -659,7 +659,7 @@ decode_obstacle_names_of_this_level ( Level loadlevel , char* DataPointer )
  * The obstacle labels are stored in a small subsection of the whole 
  * level data.  This function decodes this small subsection and loads all 
  * the obstacle data into the ship struct.
- * ---------------------------------------------------------------------- */
+ */
 void
 decode_obstacle_descriptions_of_this_level ( Level loadlevel , char* DataPointer )
 {
@@ -718,10 +718,10 @@ decode_obstacle_descriptions_of_this_level ( Level loadlevel , char* DataPointer
     
 }; // void decode_obstacle_descriptions_of_this_level ( loadlevel , DataPointer )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 glue_obstacles_to_floor_tiles_for_level ( int level_num )
 {
@@ -814,10 +814,10 @@ glue_obstacles_to_floor_tiles_for_level ( int level_num )
     
 }; // glue_obstacles_to_floor_tiles_for_level ( int level_num )
 
-/* ----------------------------------------------------------------------
+/**
  * This function collects the automap data and stores it in the Me data
  * structure.
- * ---------------------------------------------------------------------- */
+ */
 void
 CollectAutomapData ( void )
 {
@@ -933,13 +933,13 @@ CollectAutomapData ( void )
     
 }; // void CollectAutomapData ( void )
 
-/* ----------------------------------------------------------------------
+/**
  * The smash_obstacle function uses this function as a subfunction to 
  * check for exploding obstacles glued to one specific map square.  Of
  * course also the player number (or -1 in case of no check/bullet hit)
  * must be supplied so as to be able to suppress hits through walls or
  * the like.
- * ---------------------------------------------------------------------- */
+ */
 int
 smash_obstacles_only_on_tile ( float x , float y , int map_x , int map_y )
 {
@@ -1042,13 +1042,13 @@ smash_obstacles_only_on_tile ( float x , float y , int map_x , int map_y )
 
 }; // int smash_obstacles_only_on_tile ( float x , float y , int map_x , int map_y )
 
-/* ----------------------------------------------------------------------
+/**
  * When a destructable type of obstacle gets hit, e.g. by a blast 
  * exploding on the tile or a melee hit on the same floor tile, then some
  * of the obstacles (like barrel or crates) might explode, sometimes
  * leaving some treasure behind.
  *
- * ---------------------------------------------------------------------- */
+ */
 int 
 smash_obstacle ( float x , float y )
 {
@@ -1072,10 +1072,10 @@ smash_obstacle ( float x , float y )
 
 }; // int smash_obstacle ( float x , float y );
 
-/* ----------------------------------------------------------------------
+/**
  * This function returns the map brick code of the tile that occupies the
  * given position.
- * ---------------------------------------------------------------------- */
+ */
 Uint16
 GetMapBrick ( Level deck , float x , float y )
 {
@@ -1124,10 +1124,10 @@ map tiles.",
     
 }; // int GetMapBrick( ... ) 
 
-/* ----------------------------------------------------------------------
+/**
  * This function moves all the refresh fields to their next phase (if
  * it's time already).
- * ---------------------------------------------------------------------- */
+ */
 void
 AnimateRefresh ( void )
 {
@@ -1169,10 +1169,10 @@ Error:  A refresh index pointing not to a refresh obstacles found.",
     
 }; // void AnimateRefresh ( void )
 
-/* ----------------------------------------------------------------------
+/**
  * This function moves all the teleporter fields to their next phase (if
  * it's time already).
- * ---------------------------------------------------------------------- */
+ */
 void
 AnimateTeleports ( void )
 {
@@ -1214,10 +1214,10 @@ Error:  A teleporter index pointing not to a teleporter obstacle found.",
     
 }; // void AnimateTeleports ( void )
 
-/* ----------------------------------------------------------------------
+/**
  * This function loads the data for a whole ship
  * Possible return values are : OK and ERR
- * ---------------------------------------------------------------------- */
+ */
 int
 LoadShip (char *filename)
 {
@@ -1314,14 +1314,14 @@ LoadShip (char *filename)
     
 }; // int LoadShip ( ... ) 
 
-/* ----------------------------------------------------------------------
+/**
  * This function is intended to eliminate leading -1 entries before
  * real entries in the waypoint connection structure.
  *
  * Such leading -1 entries might cause problems later, because some
  * Enemy-Movement routines expect that the "real" entries are the
  * first entries in the connection list.
- * ---------------------------------------------------------------------- */
+ */
 void CheckWaypointIntegrity(Level Lev)
 {
     int i, j , k , l ;
@@ -1372,10 +1372,10 @@ void CheckWaypointIntegrity(Level Lev)
     
 }; // void CheckWaypointIntegrity(Level Lev)
 
-/* ----------------------------------------------------------------------
+/**
  * This should write the obstacle information in human-readable form into
  * a buffer.
- * ---------------------------------------------------------------------- */
+ */
 void
 encode_obstacles_of_this_level ( char* LevelMem , Level Lev )
 {
@@ -1401,10 +1401,10 @@ encode_obstacles_of_this_level ( char* LevelMem , Level Lev )
     
 }; // void encode_obstacles_of_this_level ( LevelMem , Lev )
 
-/* ----------------------------------------------------------------------
+/**
  * This function adds the statement data of this level to the chunk of 
  * data that will be written out to a file later.
- * ---------------------------------------------------------------------- */
+ */
 void
 EncodeMapLabelsOfThisLevel ( char* LevelMem , Level Lev )
 {
@@ -1428,7 +1428,7 @@ EncodeMapLabelsOfThisLevel ( char* LevelMem , Level Lev )
     
 }; // void EncodeMapLabelsOfThisLevel ( char* LevelMem , Level Lev )
 
-/* ----------------------------------------------------------------------
+/**
  * Every map level in a FreedroidRPG 'ship' can have up to 
  * MAX_OBSTACLE_NAMES_PER_LEVEL obstacles, that have a label attached to
  * them.  Such obstacle labels are very useful when modifying obstacles
@@ -1436,7 +1436,7 @@ EncodeMapLabelsOfThisLevel ( char* LevelMem , Level Lev )
  * in a small subsection of the whole level data.  This function encodes
  * this small subsection and puts all the obstacle data into a human
  * readable text string for saving with the map file.
- * ---------------------------------------------------------------------- */
+ */
 void
 encode_obstacle_names_of_this_level ( char* LevelMem , Level Lev )
 {
@@ -1458,7 +1458,7 @@ encode_obstacle_names_of_this_level ( char* LevelMem , Level Lev )
     
 }; // void encode_obstacle_names_of_this_level ( char* LevelMem , Level Lev )
 
-/* ----------------------------------------------------------------------
+/**
  * Every map level in a FreedroidRPG 'ship' can have up to 
  * MAX_OBSTACLE_DESCRIPTIONS_PER_LEVEL obstacles, that have a label 
  * attached to them.  
@@ -1475,7 +1475,7 @@ encode_obstacle_names_of_this_level ( char* LevelMem , Level Lev )
  * puts all the obstacle data into a human readable text string for 
  * saving with the map file.
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 encode_obstacle_descriptions_of_this_level ( char* LevelMem , Level Lev )
 {
@@ -1496,10 +1496,10 @@ encode_obstacle_descriptions_of_this_level ( char* LevelMem , Level Lev )
     
 }; // void encode_obstacle_descriptions_of_this_level ( char* LevelMem , Level Lev )
 
-/* ----------------------------------------------------------------------
+/**
  * This function adds the statement data of this level to the chunk of 
  * data that will be written out to a file later.
- * ---------------------------------------------------------------------- */
+ */
 void
 EncodeStatementsOfThisLevel ( char* LevelMem , Level Lev )
 {
@@ -1521,10 +1521,10 @@ EncodeStatementsOfThisLevel ( char* LevelMem , Level Lev )
     
 }; // void EncodeStatementsOfThisLevel ( char* LevelMem , Level Lev )
 
-/* ----------------------------------------------------------------------
+/**
  *
  * 
- * ---------------------------------------------------------------------- */
+ */
 void
 WriteOutOneItem ( char* LevelMem , Item ItemToWriteOut ) 
 {
@@ -1684,9 +1684,9 @@ WriteOutOneItem ( char* LevelMem , Item ItemToWriteOut )
   
 }; // void WriteOutOneItem ( LevelMem , ItemToWriteOut ) 
 
-/* ----------------------------------------------------------------------
+/**
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 EncodeItemSectionOfThisLevel ( char* LevelMem , Level Lev ) 
 {
@@ -1718,9 +1718,9 @@ EncodeItemSectionOfThisLevel ( char* LevelMem , Level Lev )
 }; // void EncodeItemSectionOfThisLevel ( LevelMem , Lev ) 
 
 		
-/* ----------------------------------------------------------------------
+/**
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 EncodeChestItemSectionOfThisLevel ( char* LevelMem , Level Lev ) 
 {
@@ -1752,9 +1752,9 @@ EncodeChestItemSectionOfThisLevel ( char* LevelMem , Level Lev )
 }; // void EncodeChestItemSectionOfThisLevel ( LevelMem , Lev ) 
 
 		
-/* ----------------------------------------------------------------------
+/**
  * This function generates savable text out of the current lavel data
- * ---------------------------------------------------------------------- */
+ */
 char *
 EncodeLevelForSaving(Level Lev)
 {
@@ -1921,11 +1921,11 @@ use underground lighting: %d\n",
 }; // char *EncodeLevelForSaving ( Level Lev )
 
 
-/* ----------------------------------------------------------------------
+/**
  * This function should save a whole ship to disk to the given filename.
  * It is not only used by the level editor, but also by the function that
  * saves whole games.
- * ---------------------------------------------------------------------- */
+ */
 int 
 SaveShip(const char *filename)
 {
@@ -2039,10 +2039,10 @@ SaveShip(const char *filename)
     
 }; // int SaveShip ( char* filename )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 ReadInOneItem ( char* ItemPointer , char* ItemsSectionEnd , Item TargetItem )
 {
@@ -2220,7 +2220,7 @@ DecodeChestItemSectionOfThisLevel ( Level loadlevel , char* data )
 }; // void DecodeChestItemSectionOfThisLevel ( Level loadlevel , char* data )
 
 
-/* ----------------------------------------------------------------------
+/**
  * This function is for LOADING map data!
  * This function extracts the data from *data and writes them 
  * into a Level-struct:
@@ -2232,7 +2232,7 @@ DecodeChestItemSectionOfThisLevel ( Level loadlevel , char* data )
  * Doors and Waypoints Arrays are initialized too
  *
  * @Ret:  Level or NULL
- * ---------------------------------------------------------------------- */
+ */
 Level
 DecodeLoadedLeveldata ( char *data )
 {
@@ -2422,7 +2422,7 @@ DecodeLoadedLeveldata ( char *data )
     
 }; // Level DecodeLoadedLeveldata (char *data)
 
-/* ----------------------------------------------------------------------
+/**
  * Some structures within Freedroid rpg maps are animated in the sense
  * that the map tiles used on the secected square rotates through a number
  * of different map tile types.
@@ -2435,7 +2435,7 @@ DecodeLoadedLeveldata ( char *data )
  * map tiles.  
  * Not this function is here to assemble such a list of animated map
  * tiles for one particular map level.
- * ---------------------------------------------------------------------- */
+ */
 void
 GetAllAnimatedMapTiles ( Level Lev )
 {
@@ -2606,10 +2606,10 @@ of autoguns currently allowed in a Freedroid map.",
 
 }; // void GetAllAnimatedMapTiles ( Level Lev )
 
-/* ----------------------------------------------------------------------
+/**
  * This function translates map data into human readable map code, that
  * can later be written to the map file on disk.
- * ---------------------------------------------------------------------- */
+ */
 void
 TranslateToHumanReadable ( Uint16* HumanReadable , map_tile* MapInfo, int LineLength )
 {
@@ -2627,10 +2627,10 @@ TranslateToHumanReadable ( Uint16* HumanReadable , map_tile* MapInfo, int LineLe
 
 }; // void TranslateToHumanReadable( ... )
 
-/* ----------------------------------------------------------------------
+/**
  * This function is used to calculate the number of the droids on the 
  * ship, which is a global variable.
- * ---------------------------------------------------------------------- */
+ */
 void
 CountNumberOfDroidsOnShip ( void )
 {
@@ -2723,10 +2723,10 @@ GetCrew (char *filename)
 
 }; // int GetCrew ( ... ) 
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 GetThisLevelsSpecialForces ( char* SearchPointer , int OurLevelNumber , char* EndOfThisLevelData )
 {
@@ -2874,12 +2874,12 @@ the item specification section.",
 
 }; // void GetThisLevelsSpecialForces ( char* SearchPointer )
 
-/* ----------------------------------------------------------------------
+/**
  * This function receives a pointer to the already read in crew section
  * in a already read in droids file and decodes all the contents of that
  * droid section to fill the AllEnemys array with droid types accoriding
  * to the specifications made in the file.
- * ---------------------------------------------------------------------- */
+ */
 void
 GetThisLevelsDroids( char* SectionPointer )
 {
@@ -3015,7 +3015,7 @@ game data file with all droid type specifications.",
     
 }; // void GetThisLevelsDroids( char* SectionPointer )
 
-/* ---------------------------------------------------------------------- 
+/** 
  * This funtion moves the level doors in the sense that they are opened
  * or closed depending on whether there is a robot close to the door or
  * not.  Initially this function did not take into account the framerate
@@ -3023,7 +3023,7 @@ game data file with all droid type specifications.",
  * DOES THE ANIMATION TOO QUICKLY.  So, the most reasonable way out seems
  * to be to operate this function only from time to time, e.g. after a
  * specified delay has passed.
- * ---------------------------------------------------------------------- */
+ */
 void
 MoveLevelDoors ( )
 {
@@ -3217,10 +3217,10 @@ BROWSE_ALIVE_BOTS_SAFE(erot, nerot)
 }; // void MoveLevelDoors ( void )
 
 
-/* ----------------------------------------------------------------------
+/**
  * This function does all the firing for the autocannons installed in
  * the map of this level.
- * ---------------------------------------------------------------------- */
+ */
 void
 WorkLevelGuns ( )
 {
@@ -3381,10 +3381,10 @@ is not really an autogun.  Instead it's something else.",
 
 }; // void WorkLevelGuns ( void )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 int
 position_collides_with_this_obstacle ( float x , float y , obstacle* our_obstacle )
 {
@@ -3443,10 +3443,10 @@ position_collides_with_this_obstacle ( float x , float y , obstacle* our_obstacl
 
 }; // int position_collides_with_this_obstacle ( float x , float y , obstacle* our_obstacle )
 
-/* ----------------------------------------------------------------------
+/**
  * This function is called 100k times per frame in a labyrinth. Speak of tight loops.
  *
- * ---------------------------------------------------------------------- */
+ */
 inline int 
 position_collides_with_obstacles_on_square ( float x, float y , int x_tile , int y_tile , Level PassLevel )
 {
@@ -3470,9 +3470,9 @@ position_collides_with_obstacles_on_square ( float x, float y , int x_tile , int
   
 }; // int position_collides_with_obstacles_on_square ( int x , int y )
 
-/* ---------------------------------------------------------------------- 
+/** 
  * This function checks if a given location lies within a wall or not.
- * ---------------------------------------------------------------------- */
+ */
 int
 IsPassable ( float x , float y , int z )
 {
@@ -3572,13 +3572,13 @@ IsPassable ( float x , float y , int z )
     
 }; // int IsPassable ( ... )
 
-/* ----------------------------------------------------------------------
+/**
  * This function determines wether a given object on x/y is visible to
  * the 001 or not (due to some walls or something in between
  * 
  * Return values are TRUE or FALSE accodinly
  *
- * ---------------------------------------------------------------------- */
+ */
 int
 IsVisible ( GPS objpos )
 {
@@ -3605,9 +3605,9 @@ IsVisible ( GPS objpos )
 
 }; // int IsVisible( Point objpos )
 
-/* ----------------------------------------------------------------------
+/**
  * This function moves all periodically changing map tiles...
- * ---------------------------------------------------------------------- */
+ */
 void
 AnimateCyclingMapTiles (void)
 {

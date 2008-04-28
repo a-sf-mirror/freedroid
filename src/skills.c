@@ -22,11 +22,11 @@
  *
  */
 
-/* ----------------------------------------------------------------------
+/**
  * This file contains all the functions managing the character skills,
  * which means all the special functions and also the spells of the
  * players character.
- * ---------------------------------------------------------------------- */
+ */
 
 #define _skills_c
 
@@ -71,10 +71,10 @@
 
 int Override_Power_Limit=0;
 
-/* ----------------------------------------------------------------------
+/**
  * This function improves a generic skill (hack melee ranged magic) by one
  * 
- * ---------------------------------------------------------------------- */
+ */
 void
 ImproveSkill( int * skill )
 {
@@ -131,9 +131,9 @@ FreedroidRPG could not find the program name above in the program spec array!",
      return -1;
 }
 
-/* ----------------------------------------------------------------------
+/**
  * This function creates a teleporter portal to the home location.
- * ---------------------------------------------------------------------- */
+ */
 void
 TeleportHome ( void )
 {
@@ -159,10 +159,10 @@ location HomeSpot;
 
 }; // void TeleportHome ( void )
 
-/* ----------------------------------------------------------------------
+/**
  * This function handles the skills the player might have acitivated
  * or deactivated or whatever.
- * ---------------------------------------------------------------------- */
+ */
 void
 HandleCurrentlyActivatedSkill()
 {
@@ -421,10 +421,10 @@ return 1;
 }; // void HandleCurrentlyActivatedSkill( void )
 
 
-/* ----------------------------------------------------------------------
+/**
  * This function checks if a given screen position lies within the 
  * one of the skill icons and returns the number of that skill icon.
- * ---------------------------------------------------------------------- */
+ */
 int
 CursorIsOnWhichSkillButton( int x , int y )
 {
@@ -462,11 +462,11 @@ CursorIsOnWhichSkillButton( int x , int y )
 }; // int CursorIsOnWhichSkillButton( int x , int y )
 
 
-/* ----------------------------------------------------------------------
+/**
  * This function checks if a given screen position lies within 
  * one of the spell level buttons and returns the number of that 
  * spell level button.
- * ---------------------------------------------------------------------- */
+ */
 int
 CursorIsOnWhichSpellPageButton( int x , int y )
 {
@@ -495,10 +495,10 @@ CursorIsOnWhichSpellPageButton( int x , int y )
     return ( -1 );
 }; // int CursorIsOnWhichSpellLevelButton( int x , int y )
 
-/* ---------------------------------------------------------------------- 
+/** 
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 ShowSkillsExplanationScreen( void )
 {
@@ -540,7 +540,7 @@ ShowSkillsExplanationScreen( void )
 
 }; // void ShowSkillsExplanationScreen( void )
 
-/* ---------------------------------------------------------------------- 
+/** 
  * We will draw only those skills to the skills inventory, that are
  * already present in the Tux.  That way the game remains open for new
  * skills to the player and he doesn't now in advance which skills there
@@ -551,7 +551,7 @@ ShowSkillsExplanationScreen( void )
  * The first few entries will be filled with internal skill index numbers
  * for reference.
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 establish_skill_subset_map ( int *SkillSubsetMap )
 {
@@ -571,10 +571,10 @@ establish_skill_subset_map ( int *SkillSubsetMap )
     }
 }; // void establish_skill_subset_map ( int *SkillSubsetMap );
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 activate_nth_aquired_skill ( int skill_num )
 {
@@ -606,12 +606,12 @@ activate_nth_aquired_skill ( int skill_num )
   
 }; // void activate_nth_skill ( int skill_num )
 
-/* ----------------------------------------------------------------------
+/**
  * This function displays the SKILLS SCREEN.  This is NOT the same as the
  * CHARACTER SCREEN.  In the skills screen you can see what skills/spells
  * you currenlty have availabe and you can select a new readied skill by
  * clicking on it with the mouse.
- * ---------------------------------------------------------------------- */
+ */
 void 
 ShowSkillsScreen ( void )
 {

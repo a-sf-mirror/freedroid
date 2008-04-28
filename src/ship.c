@@ -24,9 +24,9 @@
  *
  */
 
-/* ----------------------------------------------------------------------
+/**
  * This file contains all the console and lift functions (mostly)
- * ---------------------------------------------------------------------- */
+ */
 
 /*
  * This file has been checked for remains of german in the documentation.
@@ -49,10 +49,10 @@ int GreatItemShow ( int NumberOfItems , item* ShowPointerList[ MAX_ITEMS_IN_INVE
 
 void ShowDroidPicture (int PosX, int PosY, int Number );
 
-/* ----------------------------------------------------------------------
+/**
  * This function does the item show when the user has selected item
  * show from the console menu.
- * ---------------------------------------------------------------------- */
+ */
 int
 GreatItemShow ( int NumberOfItems , item* ShowPointerList[ MAX_ITEMS_IN_INVENTORY ] )
 {
@@ -247,9 +247,9 @@ Entry : %d\n"), Druidmap[droidtype].druidname, droidtype + 1);
     
 }; // void ShowDroidInfo ( ... )
 
-/* ----------------------------------------------------------------------
+/**
  * This function displays an item picture. 
- * ---------------------------------------------------------------------- */
+ */
 void
 ShowItemPicture (int PosX, int PosY, int Number )
 {
@@ -412,9 +412,9 @@ trying to make the ultra-fine item rotation series.  Strange.",
 }; // void ShowItemPicture ( ... )
 
 
-/* ----------------------------------------------------------------------
+/**
  * This function displays an item picture. 
- * ---------------------------------------------------------------------- */
+ */
 void
 ShowDroidPicture (int PosX, int PosY, int Number )
 {
@@ -503,10 +503,10 @@ This error indicates some installation problem with freedroid.",
     
 }; // void ShowDroidPicture ( ... )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 write_full_item_name_into_string ( item* ShowItem , char* full_item_name ) 
 {

@@ -22,10 +22,10 @@
  *
  */
 
-/* ----------------------------------------------------------------------
+/**
  * This file contains all the functions managing the character attributes
  * and the character stats.
- * ---------------------------------------------------------------------- */
+ */
 
 #define _character_c
 
@@ -72,10 +72,10 @@
 #define HACKING_SKILL_X MELEE_SKILL_X
 #define HACKING_SKILL_Y 301
 
-/* ----------------------------------------------------------------------
+/**
  * This function displays all the buttons that open up the character
  * screen and the invenotry screen
- * ---------------------------------------------------------------------- */
+ */
 void
 DisplayButtons( void )
 {
@@ -146,10 +146,10 @@ DisplayButtons( void )
 }; // void DisplayButtons( void )
 
 
-/* ----------------------------------------------------------------------
+/**
  * This function adds any bonuses that might be on the influencers things
  * concerning ONLY PRIMARY STATS, NOT SECONDARY STATS!
- * ---------------------------------------------------------------------- */
+ */
 void
 AddInfluencerItemAttributeBonus( item* BonusItem )
 {
@@ -172,10 +172,10 @@ AddInfluencerItemAttributeBonus( item* BonusItem )
 
 }; // void AddInfluencerItemAttributeBonus( item* BonusItem )
 
-/* ----------------------------------------------------------------------
+/**
  * This function adds any bonuses that might be on the influencers things
  * concerning ONLY SECONDARY STATS, NOT PRIMARY STATS!
- * ---------------------------------------------------------------------- */
+ */
 void
 AddInfluencerItemSecondaryBonus( item* BonusItem )
 {
@@ -224,10 +224,10 @@ AddInfluencerItemSecondaryBonus( item* BonusItem )
 
 }; // void AddInfluencerItemSecondaryBonus( item* BonusItem )
 
-/* ----------------------------------------------------------------------
+/**
  * Maybe the influencer has reached a new experience level?
  * Let's check this...
- * ---------------------------------------------------------------------- */
+ */
 void
 check_for_new_experience_level_reached ()
 {
@@ -283,10 +283,10 @@ check_for_new_experience_level_reached ()
     }
 }; // void check_for_new_experience_level_reached ( )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 update_all_primary_stats ()
 {
@@ -353,12 +353,12 @@ update_all_primary_stats ()
 
 }; // void update_all_primary_stats ( )
 
-/* ----------------------------------------------------------------------
+/**
  * This function computes secondary stats (i.e. chances for success or
  * getting hit and the like) using ONLY THE PRIMARY STATS.  Bonuses from
  * current 'magic' modifiers from equipped items will be applied somewhere
  * else.
- * ---------------------------------------------------------------------- */
+ */
 void
 update_secondary_stats_from_primary_stats ()
 {
@@ -397,12 +397,12 @@ update_secondary_stats_from_primary_stats ()
     Me . cooling_rate = 1.0;
 }; // void update_secondary_stats_from_primary_stats ( )
 
-/* ----------------------------------------------------------------------
+/**
  * Now we compute the possible damage the player character can do.
  * The damage value of course depends on the weapon type that the
  * character is using.  And depending on the weapon type (melee or
  * ranged weapon) some additional attributes will also play a role.
- * ---------------------------------------------------------------------- */
+ */
 void
 update_damage_tux_can_do ()
 {
@@ -470,10 +470,10 @@ update_damage_tux_can_do ()
     }
 }; // void update_damage_tux_can_do ( )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 update_tux_armour_class ()
 {
@@ -508,10 +508,10 @@ update_tux_armour_class ()
 }; // void update_tux_armour_class ( )
 
 
-/* ----------------------------------------------------------------------
+/**
  * This function should re-compute all character stats according to the
  * currently equipped items and currenly distributed stats points.
- * ---------------------------------------------------------------------- */
+ */
 void 
 UpdateAllCharacterStats ()
 {
@@ -585,10 +585,10 @@ UpdateAllCharacterStats ()
 
 }; // void UpdateAllCharacterStats ( void )
 
-/* ----------------------------------------------------------------------
+/**
  * Now we print out the current skill levels in hacking skill, 
  * spellcasting, melee combat, ranged weapon combat and repairing things
- * ---------------------------------------------------------------------- */
+ */
 void
 show_character_screen_skills ( )
 {
@@ -661,9 +661,9 @@ Error: hacking skill seems out of bounds.",
     */
 }; // void show_character_screen_skills ( )
 
-/* ----------------------------------------------------------------------
+/**
  * This function displays the character screen.
- * ---------------------------------------------------------------------- */
+ */
 void 
 ShowCharacterScreen ( )
 {
@@ -776,9 +776,9 @@ ShowCharacterScreen ( )
     }
 }; //ShowCharacterScreen ( ) 
 
-/* ----------------------------------------------------------------------
+/**
  * This function handles input for the character screen.
- * ---------------------------------------------------------------------- */
+ */
 void
 HandleCharacterScreen ( void )
 {

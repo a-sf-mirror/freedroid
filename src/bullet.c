@@ -22,9 +22,9 @@
  *  MA  02111-1307  USA
  */
 
-/* ----------------------------------------------------------------------
+/**
  * Desc: all Bullet AND Blast - related functions.
- * ---------------------------------------------------------------------- */
+ */
 
 #define _bullet_c
 
@@ -38,10 +38,10 @@
 /* Distances for hitting a druid */
 #define DRUIDHITDIST2		(0.0625)
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 static void
 move_this_bullet_and_check_its_collisions ( int num )
 {
@@ -82,12 +82,12 @@ move_this_bullet_and_check_its_collisions ( int num )
 
 }; // void move_this_bullet_and_check_its_collisions ( CurBullet )
 
-/* ----------------------------------------------------------------------
+/**
  * Whenever a new bullet is generated, we need to find a free index in 
  * the array of bullets.  This function automates the process and 
  * also is secure against too many bullets in the game (with a rather
  * ungraceful exit, but that event shouldn't ever occur in a normal game.
- * ---------------------------------------------------------------------- */
+ */
 int
 find_free_melee_shot_index ( void )
 {
@@ -166,10 +166,10 @@ void DoMeleeDamage (void)
 }
 
 
-/* ----------------------------------------------------------------------
+/**
  * This function moves all the bullets according to their speeds and the
  * current frame rate of course.
- * ---------------------------------------------------------------------- */
+ */
 void
 MoveBullets (void)
 {
@@ -250,11 +250,11 @@ MoveBullets (void)
     }				/* for */
 }; // void MoveBullets(void)
 
-/* ----------------------------------------------------------------------
+/**
  * This function eliminates the bullet with the given number.  As an 
  * additional parameter you can specify if there should be a blast 
  * generated at the location where the bullet died (=TRUE) or not (=FALSE).
- * ---------------------------------------------------------------------- */
+ */
 void 
 DeleteBullet ( int Bulletnumber , int ShallWeStartABlast )
 {
@@ -283,7 +283,7 @@ DeleteBullet ( int Bulletnumber , int ShallWeStartABlast )
 
 }; // void DeleteBullet( int Bulletnumber , int StartBlast )
 
-/* ----------------------------------------------------------------------
+/**
  * This function starts a blast (i.e. an explosion) at the given location
  * in the usual map coordinates of course.  The type of blast must also
  * be specified, where possible values are defined in defs.h as follows:
@@ -292,7 +292,7 @@ DeleteBullet ( int Bulletnumber , int ShallWeStartABlast )
  * DRUIDBLAST,       (explosion of a dying droid)
  * OWNBLAST          (not implemented)
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 StartBlast ( float x, float y, int level , int type, int dmg)
 {
@@ -340,10 +340,10 @@ StartBlast ( float x, float y, int level , int type, int dmg)
     
 }; // void StartBlast( ... )
 
-/* ----------------------------------------------------------------------
+/**
  * This function advances the different phases of an explosion according
  * to the current lifetime of each explosion (=blast).
- * ---------------------------------------------------------------------- */
+ */
 void
 animate_blasts (void)
 {
@@ -405,9 +405,9 @@ However, it should NOT cause any serious trouble for Freedroid.",
       }				/* if */
 }; // void animate_blasts( ... )
 
-/* ----------------------------------------------------------------------
+/**
  * This function deletes a single blast entry from the list of all blasts
- * ---------------------------------------------------------------------- */
+ */
 void
 DeleteBlast (int BlastNum)
 {
@@ -415,9 +415,9 @@ DeleteBlast (int BlastNum)
   AllBlasts[ BlastNum ].type = INFOUT;
 }; // void DeleteBlast( int BlastNum )
 
-/* ----------------------------------------------------------------------
+/**
  * This function advances the currently active spells.
- * ---------------------------------------------------------------------- */
+ */
 void
 MoveActiveSpells (void)
 {
@@ -517,9 +517,9 @@ MoveActiveSpells (void)
     
 }; // void MoveActiveSpells( ... )
 
-/* ----------------------------------------------------------------------
+/**
  * This function deletes a single blast entry from the list of all blasts
- * ---------------------------------------------------------------------- */
+ */
 void
 DeleteSpell (int SpellNum)
 {
@@ -527,10 +527,10 @@ DeleteSpell (int SpellNum)
   AllActiveSpells [ SpellNum ] . spell_age = 0 ;
 }; // void DeleteSpell( int SpellNum )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 clear_active_spells ( void )
 {
@@ -543,12 +543,12 @@ clear_active_spells ( void )
 
 }; // void clear_active_spells ( void )
 
-/* ----------------------------------------------------------------------
+/**
  * Whenever a new bullet is generated, we need to find a free index in 
  * the array of bullets.  This function automates the process and 
  * also is secure against too many bullets in the game (with a rather
  * ungraceful exit, but that event shouldn't ever occur in a normal game.
- * ---------------------------------------------------------------------- */
+ */
 int
 find_free_bullet_index ( void )
 {
@@ -574,11 +574,11 @@ I seem to have run out of free bullet entries.  This can't normally happen.  -->
     
 }; // void find_free_bullet_entry_pointer ( void )
 
-/* ----------------------------------------------------------------------
+/**
  * Bullet collision checks and effect handling for 'flash' bullets is 
  * done here...  Classic bullet collision and effect handling is done
  * somewhere else...
- * ---------------------------------------------------------------------- */
+ */
 void
 handle_flash_effects ( bullet* CurBullet )
 {
@@ -637,10 +637,10 @@ handle_flash_effects ( bullet* CurBullet )
     
 }; // handle_flash_effects ( bullet* CurBullet )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */  
+ */  
 void
 check_bullet_background_collisions ( bullet* CurBullet , int num )
 {
@@ -659,10 +659,10 @@ check_bullet_background_collisions ( bullet* CurBullet , int num )
     }
 }; // void check_bullet_background_collisions ( CurBullet , num )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 apply_bullet_damage_to_player ( int damage, int owner ) 
 {
@@ -697,10 +697,10 @@ apply_bullet_damage_to_player ( int damage, int owner )
     }
 }; // void apply_bullet_damage_to_player ( int damage ) 
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 check_bullet_player_collisions ( bullet* CurBullet , int num )
 {
@@ -736,10 +736,10 @@ check_bullet_player_collisions ( bullet* CurBullet , int num )
 	  }
 }; // check_bullet_player_collisions ( CurBullet , num )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 check_bullet_enemy_collisions ( bullet* CurBullet , int num )
 {
@@ -788,10 +788,10 @@ check_bullet_enemy_collisions ( bullet* CurBullet , int num )
     } 
 }; // void check_bullet_enemy_collisions ( CurBullet , num )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 check_bullet_bullet_collisions ( bullet* CurBullet , int num )
 {
@@ -846,11 +846,11 @@ check_bullet_bullet_collisions ( bullet* CurBullet , int num )
     }
 }; // void check_bullet_bullet_collisions ( CurBullet , num )
 
-/* ----------------------------------------------------------------------
+/**
  * This function checks if there are some collisions of the one bullet
  * with number num with anything else in the game, like blasts, walls,
  * droids, the tux and other bullets.
- * ---------------------------------------------------------------------- */
+ */
 void
 CheckBulletCollisions (int num)
 {
@@ -895,14 +895,14 @@ CheckBulletCollisions (int num)
     } // switch ( Bullet-Type )
 }; // CheckBulletCollisions( ... )
 
-/* ----------------------------------------------------------------------
+/**
  * This function checks for collisions of blasts with bullets and druids
  * and delivers damage to the hit objects according to how long they have
  * been in the blast.
  * 
  * Maybe even some text like 'Ouch, this was hot' might be generated.
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 CheckBlastCollisions (int num)
 {

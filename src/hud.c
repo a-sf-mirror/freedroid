@@ -23,10 +23,10 @@
  *  MA  02111-1307  USA
  *
  */
-/* ----------------------------------------------------------------------
+/**
  * This file contains all functions to update and draw the top status 
  * displays with status etc...
- * ---------------------------------------------------------------------- */
+ */
 
 #define _hud_c
 
@@ -60,13 +60,13 @@
 int best_banner_pos_x, best_banner_pos_y;
 char* game_message_protocol = NULL ;
 
-/* ----------------------------------------------------------------------
+/**
  * The hud contains several status graphs.  These graphs appear as 
  * vertical columns, that are more or less filled, like liquid in a tube.
  * Since these appear multiple times, it appears sensible to make a 
  * function to draw such bars in a convenient way, which is what this
  * function is supposed to do.
- * ---------------------------------------------------------------------- */
+ */
 void
 blit_vertical_status_bar ( float max_value , float current_value , Uint32 filled_color_code ,
 			   Uint32 empty_color_code , int x , int y , int w , int h , int scale_to_screen_resolution )
@@ -137,10 +137,10 @@ blit_vertical_status_bar ( float max_value , float current_value , Uint32 filled
 
 }; // void blit_vertical_status_bar ( ... )
 
-/* ----------------------------------------------------------------------
+/**
  * This function writes the description of an item into the item description
  * string.
- * ---------------------------------------------------------------------- */
+ */
 void 
 GiveItemDescription ( char* ItemDescText , item* CurItem , int ForShop )
 {
@@ -577,10 +577,10 @@ exist really (i.e. has a type = (-1) ).",
     }
 }; // void GiveItemDescription ( char* ItemDescText , item* CurItem , int ForShop )
 
-/* ----------------------------------------------------------------------
+/**
  * This function writes the description of a droid into the description
  * string.
- * ---------------------------------------------------------------------- */
+ */
 void 
 create_and_blit_droid_description ( enemy * cur_enemy )
 {
@@ -657,11 +657,11 @@ create_and_blit_droid_description ( enemy * cur_enemy )
 }; // void GiveDroidDescription ( char* ItemDescText , item* CurItem )
 
 
-/* ----------------------------------------------------------------------
+/**
  * This function displays the icon of the current readied skill 
  * The dimensions and location of the picture are
  * specified in defs.h
- * ---------------------------------------------------------------------- */
+ */
 void 
 ShowCurrentSkill( void )
 {
@@ -689,12 +689,12 @@ ShowCurrentSkill( void )
 
 }; // void ShowCurrentSkill ( void )
 
-/* ----------------------------------------------------------------------
+/**
  * This function displays the icon of the current readied weapon, 
  * and the state of the charger
  * The dimensions and location of the picture are
  * specified in defs.h
- * ---------------------------------------------------------------------- */
+ */
 void 
 ShowCurrentWeapon( void )
 {
@@ -725,11 +725,11 @@ ShowCurrentWeapon( void )
 
 }; // void ShowCurrentWeapon ( void )
 
-/* ----------------------------------------------------------------------
+/**
  * The experience needed for the next level and the experience achieved
  * already to gain the next level can be seen from an experience countdown
  * bar on (top of the) screen.  We draw it here.
- * ---------------------------------------------------------------------- */
+ */
 void
 blit_experience_countdown_bars ( void )
 {
@@ -778,10 +778,10 @@ to blit the 'experience countdown' bar.  Graphics will be suppressed for now..."
 
 }; // void blit_experience_countdown_bars ( void )
 
-/* ----------------------------------------------------------------------
+/**
  * The tux has a limited running ability.
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 blit_running_power_bars ( void )
 {
@@ -850,13 +850,13 @@ blit_running_power_bars ( void )
 
 }; // void blit_running_power_bars ( void )
 
-/* ----------------------------------------------------------------------
+/**
  * Basically there are currently two methods of displaying the current
  * energy and mana of the Tux.  One method is to use the energy-o-meter,
  * an analog energy/mana display.  
  * The other method is to use classic energy bars.  This function is here
  * to provide the energy bars if desired.
- * ---------------------------------------------------------------------- */
+ */
 void
 blit_energy_and_mana_bars ( void )
 {
@@ -944,11 +944,11 @@ vert grimpe, bleu baisse, rouge grimpe, vert baisse*/
     
 }; // void blit_energy_and_mana_bars ( void )
 
-/* ----------------------------------------------------------------------
+/**
  * This function displays the status bars for mana and energy in some 
  * corner of the screen.  The dimensions and location of the bar are
  * specified in items.h
- * ---------------------------------------------------------------------- */
+ */
 void 
 ShowCurrentHealthAndForceLevel( void )
 {
@@ -963,10 +963,10 @@ ShowCurrentHealthAndForceLevel( void )
 
 }; // void ShowCurrentHealthAndForceLevel( void )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 int
 teleporter_square_below_mouse_cursor ( char* ItemDescText )
 {
@@ -1014,11 +1014,11 @@ teleporter_square_below_mouse_cursor ( char* ItemDescText )
     return ( FALSE );
 }; // void teleporter_square_below_mouse_cursor ( char* ItemDescText )
 
-/* ----------------------------------------------------------------------
+/**
  * This function sets up the text, that is to appear in a bigger text
  * rectangle, possibly next to the mouse cursor, e.g. when the mouse is
  * hovering over an item or barrel or crate or teleporter.
- * ---------------------------------------------------------------------- */
+ */
 void
 prepare_text_window_content ( char* ItemDescText ) 
 {
@@ -1295,12 +1295,12 @@ A barrel was detected, but the barrel type was not valid.",
     
 }; // void prepare_text_window_content ( ItemDescText ) 
 
-/* ----------------------------------------------------------------------
+/**
  * At various points in the game, especially when the mouse in over an
  * interesting object inside the game, a popup window will appear, e.g.
  * to describe the object in question.
  * This function is responsible for bringing up these text windows.
- * ---------------------------------------------------------------------- */
+ */
 void
 ShowCurrentTextWindow ( void )
 {
@@ -1411,40 +1411,40 @@ ShowCurrentTextWindow ( void )
 
 }; // void ShowCurrentTextWindow ( void )
 
-/* ---------------------------------------------------------------------- 
+/** 
  * This function derives the 'minutes' component of the time already 
  * elapsed in this game.
- * ---------------------------------------------------------------------- */
+ */
 int
 get_minutes_of_game_duration ( float current_game_date )
 {
     return ( ((int)( 10 * Me . current_game_date / ( 60 ))) % 60 ) ;
 }; // void get_minutes_of_game_duration ( float current_game_date )
 
-/* ---------------------------------------------------------------------- 
+/** 
  * This function derives the 'hours' component of the time already 
  * elapsed in this game.
- * ---------------------------------------------------------------------- */
+ */
 int
 get_hours_of_game_duration ( float current_game_date )
 {
     return ( ((int)( 10 * Me . current_game_date / ( 60 * 60 ))) % 60 ) ;
 }; // void get_hours_of_game_duration ( float current_game_date )
 
-/* ---------------------------------------------------------------------- 
+/** 
  * This function derives the 'days' component of the time already 
  * elapsed in this game.
- * ---------------------------------------------------------------------- */
+ */
 int
 get_days_of_game_duration ( float current_game_date )
 {
     return ( ((int)( 10 * Me . current_game_date / ( 60 * 60 * 24 ))) );
 }; // void get_days_of_game_duration ( float current_game_date )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 append_new_game_message ( char* game_message_text )
 {
@@ -1461,9 +1461,9 @@ append_new_game_message ( char* game_message_text )
 
 }; // void append_new_game_message ( char* game_message_text )
 
-/* ----------------------------------------------------------------------
+/**
  * We display a window with the current text messages.
- * ---------------------------------------------------------------------- */
+ */
 void
 display_current_game_message_window ( void )
 {
@@ -1531,10 +1531,10 @@ display_current_game_message_window ( void )
     
 }; // void display_current_game_message_window ( int background_picture_code , int with_update )
 
-/* ----------------------------------------------------------------------
+/**
  * This function updates the various displays that are usually blitted
  * right into the combat window, like energy and status meter and that...
- * ---------------------------------------------------------------------- */
+ */
 void
 DisplayBanner ( void )
 {

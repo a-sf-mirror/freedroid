@@ -22,10 +22,10 @@
  *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
  *  MA  02111-1307  USA
  */
-/* ----------------------------------------------------------------------
+/**
  * This file contains graphics primitives, such as initialisation of SDL
  * and video modes and fonts.
- * ---------------------------------------------------------------------- */
+ */
 /*
  * This file has been checked for remains of german comments in the code
  * I you still find some, please just kill it mercilessly.
@@ -130,12 +130,12 @@ static const char *arrow_mouse_cursor[] = {
   "0,0"
 };
 
-/* ----------------------------------------------------------------------
+/**
  * This function was taken directly from the example in the SDL docu.
  * Even there they say they have stolen if from the mailing list.
  * Anyway it should create a new mouse cursor from an XPM.
  * The XPM is defined above and not read in from disk or something.
- * ---------------------------------------------------------------------- */
+ */
 static SDL_Cursor *
 init_system_cursor(const char *image[])
 {
@@ -171,12 +171,12 @@ init_system_cursor(const char *image[])
     return SDL_CreateCursor( data , mask , 32 , 32 , hot_x , hot_y );
 }; // static SDL_Cursor *init_system_cursor(const char *image[])
 
-/* ----------------------------------------------------------------------
+/**
  * The shape of the mouse cursor might be changed in the course of the
  * game.  Sometimes a crosshair might be good.  Sometimes it's rather an
  * arrow, that is suitable for the mouse cursor shape.  This function
  * should change the mouse cursor shape accordingly...
- * ---------------------------------------------------------------------- */
+ */
 void
 set_mouse_cursor_to_shape ( int given_shape ) 
 {
@@ -202,11 +202,11 @@ ERROR: Unhandled mouse cursor shape type received.",
     }
 }; // void set_mouse_cursor_to_shape ( int given_shape ) 
 
-/* ----------------------------------------------------------------------
+/**
  * Because we're using our own mouse cursor, it might be important to
  * make sure, that the system mouse cursor is hidden, so it will not show
  * and we can draw our own mouse cursor image right at that place safely.
- * ---------------------------------------------------------------------- */
+ */
 void
 make_sure_system_mouse_cursor_is_turned_off ( void )
 {
@@ -219,11 +219,11 @@ make_sure_system_mouse_cursor_is_turned_off ( void )
 
 }; // void make_sure_system_mouse_cursor_is_turned_off ( void )
 
-/* ----------------------------------------------------------------------
+/**
  * Because we're using our own mouse cursor, it might be important to
  * make sure, that the system mouse cursor is hidden, so it will not show
  * and we can draw our own mouse cursor image right at that place safely.
- * ---------------------------------------------------------------------- */
+ */
 void
 make_sure_system_mouse_cursor_is_turned_on ( void )
 {
@@ -236,11 +236,11 @@ make_sure_system_mouse_cursor_is_turned_on ( void )
 
 }; // void make_sure_system_mouse_cursor_is_turned_off ( void )
 
-/* ----------------------------------------------------------------------
+/**
  * When the system mouse cursor is now shown, we need to blit our own 
  * mouse cursor instead.  That is good, because that we we can even use
  * many colors and maybe also some small animation in a controlled way.
- * ---------------------------------------------------------------------- */
+ */
 void
 blit_our_own_mouse_cursor ( void )
 {
@@ -336,11 +336,11 @@ Error loading flag image.",
 
 }; // void blit_our_own_mouse_cursor ( void )
 
-/* ----------------------------------------------------------------------
+/**
  * When the system mouse cursor is now shown, we need to blit our own 
  * mouse cursor instead.  That is good, because that we we can even use
  * many colors and maybe also some small animation in a controlled way.
- * ---------------------------------------------------------------------- */
+ */
 void
 blit_mouse_cursor_corona ( void )
 {
@@ -428,7 +428,7 @@ Error loading flag image.",
 
 }; // void blit_mouse_cursor_corona ( void )
 
-/* ----------------------------------------------------------------------
+/**
  * Occasionally it might come in handly to have the whole image fading
  * out when something time-consuming is happening, which is not displayed.
  * This function is intended to provide a mechanism for this using the
@@ -436,7 +436,7 @@ Error loading flag image.",
  * that NOT ALL HARDWARE SUPPORTS THIS.  But if it isn't supported, we
  * should still be safe and it should just mean that nothing will happen
  * in here except for some (unexplained) delay.
- * ---------------------------------------------------------------------- */
+ */
 void
 fade_out_using_gamma_ramp ( void )
 {
@@ -468,7 +468,7 @@ fade_out_using_gamma_ramp ( void )
     #endif 
 }; // void fade_out_using_gamma_ramp ( void )
 
-/* ----------------------------------------------------------------------
+/**
  * Occasionally it might come in handly to have the whole image fading
  * out when something time-consuming is happening, which is not displayed.
  * This function is intended to provide a mechanism for this using the
@@ -476,7 +476,7 @@ fade_out_using_gamma_ramp ( void )
  * that NOT ALL HARDWARE SUPPORTS THIS.  But if it isn't supported, we
  * should still be safe and it should just mean that nothing will happen
  * in here except for some (unexplained) delay.
- * ---------------------------------------------------------------------- */
+ */
 void
 fade_in_using_gamma_ramp ( void )
 {
@@ -512,14 +512,14 @@ Activate_Conservative_Frame_Computation( );
 
 }; // void fade_in_using_gamma_ramp ( void )
 
-/* ----------------------------------------------------------------------
+/**
  * There is need to do some padding, cause OpenGL textures need to have
  * a format: width and length both each a power of two.  Therefore some
  * extra alpha to the sides must be inserted.  This is what this function
  * is supposed to do:  manually adding hte proper amount of padding to
  * the surface, so that the dimensions will reach the next biggest power
  * of two in both directions, width and length.
- * ---------------------------------------------------------------------- */
+ */
 SDL_Surface*
 rip_rectangle_from_alpha_image ( SDL_Surface* our_surface , SDL_Rect our_rect ) 
 {
@@ -553,7 +553,7 @@ rip_rectangle_from_alpha_image ( SDL_Surface* our_surface , SDL_Rect our_rect )
 
 }; // SDL_Surface* rip_rectangle_from_alpha_image ( SDL_Surface* our_surface , SDL_Rect our_rect ) 
 
-/* ----------------------------------------------------------------------
+/**
  * In the shop interface, when an item was selected that could be grouped
  * together in inventory, we showed three mouse buttons to either buy 1,
  * buy 10 or buy 100 or the similar thing for selling items.
@@ -563,7 +563,7 @@ rip_rectangle_from_alpha_image ( SDL_Surface* our_surface , SDL_Rect our_rect )
  * This function is intended to handle this number selection process.
  * It will accept the range allowed and do the complete selection process
  * with the user until he presses 'OK' on the scale screen.
- * ---------------------------------------------------------------------- */
+ */
 int
 do_graphical_number_selection_in_range ( int lower_range , int upper_range, int default_value )
 {
@@ -714,10 +714,10 @@ ERROR LOADING SELECTION KNOB IMAGE FILE!",
     
 }; // int do_graphical_number_selection_in_range ( int lower_range , int upper_range )
 
-/* ----------------------------------------------------------------------
+/**
  * This function gives the green component of a pixel, using a value of
  * 255 for the most green pixel and 0 for the least green pixel.
- * ---------------------------------------------------------------------- */
+ */
 static Uint8
 GetGreenComponent ( SDL_Surface* surface , int x , int y )
 {
@@ -755,10 +755,10 @@ GetGreenComponent ( SDL_Surface* surface , int x , int y )
 
 }; // int GetGreenComponent ( SDL_Surface* SourceSurface , int x , int y )
 
-/* ----------------------------------------------------------------------
+/**
  * This function gives the red component of a pixel, using a value of
  * 255 for the most red pixel and 0 for the least red pixel.
- * ---------------------------------------------------------------------- */
+ */
 static Uint8
 GetRedComponent ( SDL_Surface* surface , int x , int y )
 {
@@ -794,10 +794,10 @@ GetRedComponent ( SDL_Surface* surface , int x , int y )
 
 }; // int GetRedComponent ( SDL_Surface* SourceSurface , int x , int y )
 
-/* ----------------------------------------------------------------------
+/**
  * This function gives the blue component of a pixel, using a value of
  * 255 for the most blue pixel and 0 for the least blue pixel.
- * ---------------------------------------------------------------------- */
+ */
 static Uint8
 GetBlueComponent ( SDL_Surface* surface , int x , int y )
 {
@@ -833,10 +833,10 @@ GetBlueComponent ( SDL_Surface* surface , int x , int y )
 
 }; // int GetBlueComponent ( SDL_Surface* SourceSurface , int x , int y )
 
-/* ----------------------------------------------------------------------
+/**
  * This function gives the alpha component of a pixel, using a value of
  * 255 for the most opaque pixel and 0 for the least opaque pixel.
- * ---------------------------------------------------------------------- */
+ */
 Uint8
 GetAlphaComponent ( SDL_Surface* surface , int x , int y )
 {
@@ -871,11 +871,11 @@ GetAlphaComponent ( SDL_Surface* surface , int x , int y )
 
 }; // Uint8 GetAlphaComponent ( SDL_Surface* SourceSurface , int x , int y )
 
-/* ----------------------------------------------------------------------
+/**
  * This function can be used to create a new surface that has a certain
  * color filter applied to it.  The default so far will be that the blue
  * color filter will be applied.
- * ---------------------------------------------------------------------- */
+ */
 SDL_Surface* 
 CreateColorFilteredSurface ( SDL_Surface* FirstSurface , int FilterType )
 {
@@ -947,7 +947,7 @@ CreateColorFilteredSurface ( SDL_Surface* FirstSurface , int FilterType )
 
 }; // SDL_Surface* CreateBlueColorFilteredSurface ( SDL_Surface* FirstSurface )
 
-/* ----------------------------------------------------------------------
+/**
  * If you have two SDL surfaces with alpha channel (i.e. each pixel has
  * it's own alpha value) and you blit one surface over some background
  * and then the other surface over that, the result is the same, as if
@@ -957,7 +957,7 @@ CreateColorFilteredSurface ( SDL_Surface* FirstSurface , int FilterType )
  * This function will be very useful for pre-assembling the tux with all
  * it's equippment out of alpha channeled surfaces only.
  *
- * ---------------------------------------------------------------------- */
+ */
 SDL_Surface* 
 CreateAlphaCombinedSurface ( SDL_Surface* FirstSurface , SDL_Surface* SecondSurface )
 {
@@ -1196,12 +1196,12 @@ CreateAlphaCombinedSurface ( SDL_Surface* FirstSurface , SDL_Surface* SecondSurf
 }; // SDL_Surface* CreateAlphaCombinedSurface ( SDL_Surface* FirstBlit , SDL_Surface* SecondBlit )
 
 
-/* ----------------------------------------------------------------------
+/**
  * This function draws a "grid" on the screen, that means every
  * "second" pixel is blacked out, thereby generation a fading 
  * effect.  This function was created to fade the background of the 
  * Escape menu and its submenus.
- * ---------------------------------------------------------------------- */
+ */
 void 
 MakeGridOnScreen( SDL_Rect* GridRectangle )
 {
@@ -1286,13 +1286,13 @@ MakeGridOnScreen( SDL_Rect* GridRectangle )
 
 }; // void MakeGridOnSchreen( SDL_Rect* GridRectangle )
 
-/* ----------------------------------------------------------------------
+/**
  * This function load an image and displays it directly to the Screen
  * but without updating it.
  * This might be very handy, especially in the Title() function to 
  * display the title image and perhaps also for displaying the ship
  * and that.
- * ---------------------------------------------------------------------- */
+ */
 void 
 DisplayImage( char *datafile )
 {
@@ -1311,10 +1311,10 @@ DisplayImage( char *datafile )
 
 }; // void DisplayImage( char *datafile )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 static void
 get_standard_iso_floor_tile_size ( void )
 {
@@ -1421,10 +1421,10 @@ InitPictures (void)
   
 };  // void InitPictures ( void )
 
-/* ----------------------------------------------------------------------
+/**
  * This function should load all the fonts we'll be using via the SDL
  * BFont library in Freedroid.
- * ---------------------------------------------------------------------- */
+ */
 void
 InitOurBFonts ( void )
 {
@@ -1535,11 +1535,11 @@ InitTimer (void)
 
 }; // void InitTimer (void)
 
-/* ----------------------------------------------------------------------
+/**
  * This function checks if the availability of OpenGL libraries (at compile
  * time) and request of OpenGL graphics output are compatible with each
  * other...  If not, we just disable OpenGL output method...
- * ---------------------------------------------------------------------- */
+ */
 static void
 check_open_gl_libraries_present ( void )
 {
@@ -1578,13 +1578,13 @@ check_open_gl_libraries_present ( void )
     }
 }; // void check_open_gl_libraries_present ( void )
 
-/* ----------------------------------------------------------------------
+/**
  * This function should display the driver info obtained from the OpenGL
  * libraries.  This should be in a function of it's own (like now) to 
  * make sure that the OpenGL error checks in the video mode set functions
  * and that seem to be occuring so frequently are not coming from this 
  * chunk of code.
- * ---------------------------------------------------------------------- */
+ */
 static void
 show_open_gl_driver_info ( void )
 {
@@ -1606,11 +1606,11 @@ show_open_gl_driver_info ( void )
 #endif
 }; // void safely_show_open_gl_driver_info ( void )
 
-/* ----------------------------------------------------------------------
+/**
  * This function sets the OpenGL double buffering attribute.  We do this
  * in a separate function, so that eventual errors (and bug reports) from
  * the OpenGL error checking can be attributed to a source more easily.
- * ---------------------------------------------------------------------- */
+ */
 static void
 set_double_buffering_attribute ( void )
 {
@@ -1635,14 +1635,14 @@ Unable to set SDL_GL_DOUBLEBUFFER attribute!",
     
 }; // void safely_set_double_buffering_attribute ( void )
 
-/* ----------------------------------------------------------------------
+/**
  * This function is supposed to set the video mode in the case that 
  * OpenGL is used for graphics output.  The function is highly split up
  * into subfunctions now, so that the OpenGL error checking will be more
  * precise.  Typically it's in here that most problems occur when there
  * is a peculiar OpenGL driver used, mostly under the Windows operating
  * system.
- * ---------------------------------------------------------------------- */
+ */
 static void
 set_video_mode_for_open_gl ( void )
 {
@@ -1884,11 +1884,11 @@ InitVideo (void)
     
 }; // void InitVideo () 
 
-/* ----------------------------------------------------------------------
+/**
  * This function fills all the screen or the freedroid window with a 
  * black color.  The name of the function originates from earlier, when
  * we still wrote directly to the vga memory using memset under ms-dos.
- * ---------------------------------------------------------------------- */
+ */
 void
 ClearGraphMem ( void )
 {
@@ -1898,10 +1898,10 @@ ClearGraphMem ( void )
   our_SDL_fill_rect_wrapper( Screen , NULL , 0 );
 }; // void ClearGraphMem( void )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 SDL_HighlightRectangle ( SDL_Surface* Surface , SDL_Rect Area )
 {
@@ -1967,10 +1967,10 @@ SDL_HighlightRectangle ( SDL_Surface* Surface , SDL_Rect Area )
 }; // void Old_SDL_HighlightRectangle ( SDL_Surface* Surface , SDL_Rect Area )
 
 
-/* ----------------------------------------------------------------------
+/**
  * This function draws a transparent white rectangle over a specified
  * area on the screen.
- * ---------------------------------------------------------------------- */
+ */
 
 void
 ShadowingRectangle ( SDL_Surface* Surface , SDL_Rect Area )
@@ -1989,10 +1989,10 @@ ShadowingRectangle ( SDL_Surface* Surface , SDL_Rect Area )
 
 
 
-/* ----------------------------------------------------------------------
+/**
  * This function draws a transparent white rectangle over a specified
  * area on the screen.
- * ---------------------------------------------------------------------- */
+ */
 
 void
 HighlightRectangle ( SDL_Surface* Surface , SDL_Rect Area )

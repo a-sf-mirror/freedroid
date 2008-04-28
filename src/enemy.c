@@ -23,12 +23,12 @@
  *
  */
 
-/* ----------------------------------------------------------------------
+/**
  * This file contains all enemy realted functions.  This includes their 
  * whole behaviour, healing, initialization, shuffling them around after 
  * evevator-transitions, deleting them, collisions of enemys among 
  * themselves, their fireing, animation and such.
- * ---------------------------------------------------------------------- */
+ */
 
 #define _enemy_c
 
@@ -57,12 +57,12 @@ LIST_HEAD(dead_bots_head);
 list_head_t level_bots_head[MAX_LEVELS]; //THIS IS NOT STATICALLY PROPERLY INITIALIZED, done in init functions
 
 
-/* ----------------------------------------------------------------------
+/**
  * In the very beginning of each game, it is not enough to just place the
  * bots onto the right locations.  They must also be integrated into the
  * waypoint system, i.e. current waypoint and next waypoint initialized.
  * This is what this function is supposed to do.
- * ---------------------------------------------------------------------- */
+ */
 void
 TeleportToClosestWaypoint ( Enemy ThisRobot )
 {
@@ -103,12 +103,12 @@ TeleportToClosestWaypoint ( Enemy ThisRobot )
 		  BestWaypoint, ThisRobot -> pos . x , ThisRobot -> pos . y , ThisRobot -> pos . z );
 }; // void TeleportToClosestWaypoint ( Enemy ThisRobot )
 
-/* ----------------------------------------------------------------------
+/**
  * This function tests, if a Robot can go a direct straigt line from
  * x1 y1 to x2 y2 without hitting a wall or another obstacle.
  * 
  * The return value is TRUE or FALSE accoringly.
- * ----------------------------------------------------------------------*/
+ ***/
 int 
 DirectLineWalkable( float x1 , float y1 , float x2 , float y2 , int z )
 {
@@ -214,10 +214,10 @@ DirectLineWalkable( float x1 , float y1 , float x2 , float y2 , int z )
 
 }; // int DirectLineWalkable( float x1 , float y1 , float x2 , float y2 )
 
-/* ----------------------------------------------------------------------
+/**
  * Enemys recover with time, just so.  This is done in this function, and
  * it is of course independent of the current framerate.
- * ---------------------------------------------------------------------- */
+ */
 void
 PermanentHealRobots (void)
 {
@@ -444,10 +444,10 @@ if ( a -> x == - 1)
     }
 }
 
-/* ----------------------------------------------------------------------
+/**
  * This function moves one robot in an advanced way, that hasn't been
  * present within the classical paradroid game.
- * ---------------------------------------------------------------------- */
+ */
 static float 
 remaining_distance_to_current_walk_target ( Enemy ThisRobot )
 {
@@ -463,7 +463,7 @@ remaining_distance_to_current_walk_target ( Enemy ThisRobot )
 }; // float remaining_distance_to_current_walk_target ( Enemy ThisRobot )
 
 
-/* ----------------------------------------------------------------------
+/**
  * This function checks if the connection between two points is free of
  * droids.  
  *
@@ -472,7 +472,7 @@ remaining_distance_to_current_walk_target ( Enemy ThisRobot )
  *
  * OBSTACLES ARE NOT TAKEN INTO CONSIDERATION, ONLY DROIDS!!!
  *
- * ---------------------------------------------------------------------- */
+ */
 int 
 CheckIfWayIsFreeOfDroids (char test_tux, float x1 , float y1 , float x2 , float y2 , int OurLevel , 
 					  Enemy ExceptedRobot ) 
@@ -527,10 +527,10 @@ CheckIfWayIsFreeOfDroids (char test_tux, float x1 , float y1 , float x2 , float 
 
 }; // CheckIfWayIsFreeOfDroids ( char test_tux, float x1 , float y1 , float x2 , float y2 , int OurLevel , int ExceptedDroid )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 static void
 DetermineAngleOfFacing ( enemy * e )
 {
@@ -553,11 +553,11 @@ DetermineAngleOfFacing ( enemy * e )
 }; // void DetermineAngleOfFacing ( int EnemyNum )
 
 
-/* ----------------------------------------------------------------------
+/**
  * Once the next waypoint or the next private pathway point has been 
  * selected, this generic low_level movement function can be called to
  * actually move the robot towards this spot.
- * ---------------------------------------------------------------------- */
+ */
 static void
 move_enemy_to_spot ( Enemy ThisRobot , moderately_finepoint next_target_spot )
 {
@@ -638,10 +638,10 @@ move_enemy_to_spot ( Enemy ThisRobot , moderately_finepoint next_target_spot )
     
 }; // void move_enemy_to_spot ( Enemy ThisRobot , finepoint next_target_spot )
 
-/* ----------------------------------------------------------------------
+/**
  * This function moves one robot thowards his next waypoint.  If already
  * there, the function does nothing more.
- * ---------------------------------------------------------------------- */
+ */
 void 
 MoveThisRobotThowardsHisCurrentTarget ( enemy * ThisRobot )
 {
@@ -688,11 +688,11 @@ MoveThisRobotThowardsHisCurrentTarget ( enemy * ThisRobot )
 
 }; // void MoveThisRobotThowardsHisCurrentTarget ( int EnemyNum )
 
-/* ----------------------------------------------------------------------
+/**
  * This function sets a new random waypoint to a bot.
  *
  * Returns 0 if everything was OK, 1 if couldn't set a new waypoint.
- * ---------------------------------------------------------------------- */
+ */
 static int
 SetNewRandomWaypoint ( Enemy ThisRobot )
 {
@@ -781,10 +781,10 @@ SetNewRandomWaypoint ( Enemy ThisRobot )
     return 0;    
 };
 
-/* ----------------------------------------------------------------------
+/**
  * This function is supposed to find out if a given line on an 
  * arbitrarily chosen map can be walked by a bot or not.
- * ---------------------------------------------------------------------- */
+ */
 int
 droid_can_walk_this_line ( int level_num , float x1, float y1 , float x2 , float y2 )
 {
@@ -796,11 +796,11 @@ droid_can_walk_this_line ( int level_num , float x1, float y1 , float x2 , float
     global_ignore_doors_for_collisions_flag = FALSE ;
 }; // int droid_can_walk_this_line ( int level_num , float x1, float y1 , float x2 , float y2 )
 
-/* ----------------------------------------------------------------------
+/**
  * If the droid in question is currently not following the waypoint system
  * but rather moving around on it's own and without any real destination,
  * this function sets up randomly chosen targets for the droid.
- * ---------------------------------------------------------------------- */
+ */
 static void 
 set_new_waypointless_walk_target ( enemy* ThisRobot, moderately_finepoint * mt)
 {
@@ -836,24 +836,24 @@ set_new_waypointless_walk_target ( enemy* ThisRobot, moderately_finepoint * mt)
 }; // void set_new_waypointless_walk_target ( enemy* ThisRobot )
 
 
-/* ----------------------------------------------------------------------
+/**
  * This function tells if a given level is active in the sence that there
  * is one ore more player character on the level, so that need exists to
  * move all the enemies on this level etc.
- * ---------------------------------------------------------------------- */
+ */
 int 
 IsActiveLevel ( int levelnum ) 
 {
     return (Me . status != INFOUT && Me . pos . z == levelnum );
 }; // int IsActiveLevel ( int levelnum ) 
 
-/* ----------------------------------------------------------------------
+/**
  * When a (hostile) robot is defeated and explodes, it will drop some 
  * treasure, i.e. stuff it had or parts that it consisted of or similar
  * things.  Maybe there will even be some extra magical treasures if the
  * robot in question was a 'boss monster'.  This function does the 
  * treasure dropping.
- * ---------------------------------------------------------------------- */
+ */
 void
 DropEnemyTreasure ( Enemy ThisRobot )
 {
@@ -918,10 +918,10 @@ Item to be dropped (forced for this bot) is of illegal type!" ,
 
 }; // void DropEnemyTreasure ( Enemy ThisRobot )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 int
 MakeSureEnemyIsInsideHisLevel ( Enemy ThisRobot )
 {
@@ -948,7 +948,7 @@ in Freedroid RPG.\n",
 
 }; // int MakeSureEnemyIsInsideThisLevel ( int Enum )
 
-/* ----------------------------------------------------------------------
+/**
  * When an enemy is his, this causes some blood to be sprayed on the floor.
  * The blood is just an obstacle (several types of blood exist) with 
  * preput flag set, so that the Tux and everyone can really step *on* the
@@ -959,7 +959,7 @@ in Freedroid RPG.\n",
  * game.
  *
  * This function does the blood spraying (adding of these obstacles).
- * ---------------------------------------------------------------------- */
+ */
 static void
 enemy_spray_blood ( enemy *CurEnemy ) 
 {
@@ -984,13 +984,13 @@ enemy_spray_blood ( enemy *CurEnemy )
 
 
 
-/* ----------------------------------------------------------------------
+/**
  * When a robot has reached energy <= 1, then this robot will explode and
  * die, lose some treasure and add up to the kill record of the Tux.  All
  * the things that should happen when energy is that low are handled here
  * while the check for low energy is done outside of this function namely
  * somewhere in the movement processing for this enemy.
- * ---------------------------------------------------------------------- */
+ */
 static int kill_enemy(enemy * target, char givexp, int killertype)
 {
     char game_message_text [ 300 ] ;
@@ -1107,9 +1107,9 @@ hit_enemy ( enemy * target, float hit, char givexp, short int killertype, char m
 }
 
 
-/* ----------------------------------------------------------------------
+/**
  * This function moves a single enemy.  It is used by MoveEnemys().
- * ---------------------------------------------------------------------- */
+ */
 void 
 MoveThisEnemy( enemy * ThisRobot )
 {
@@ -1133,10 +1133,10 @@ MoveThisEnemy( enemy * ThisRobot )
 }; 
 
 
-/* ----------------------------------------------------------------------
+/**
  * This function returns a gps (position) for a robot's current target, 
  * or NULL if such target doesn't exist
- * ---------------------------------------------------------------------- */
+ */
 static gps * enemy_get_target_position ( enemy *ThisRobot )
 {
     if ( ( ThisRobot -> attack_target_type == ATTACK_TARGET_IS_PLAYER ) )
@@ -1149,10 +1149,10 @@ static gps * enemy_get_target_position ( enemy *ThisRobot )
 	}
 }
 
-/* ----------------------------------------------------------------------
+/**
  * More for debugging purposes, we print out the current state of the
  * robot as his in-game text.
- * ---------------------------------------------------------------------- */
+ */
     void
 enemy_say_current_state_on_screen ( enemy* ThisRobot )
 {
@@ -1203,7 +1203,7 @@ enemy_say_current_state_on_screen ( enemy* ThisRobot )
 }; // void enemy_say_current_state_on_screen ( enemy* ThisRobot )
 
 
-/* ----------------------------------------------------------------------
+/**
  * Some robots (currently) tend to get stuck in walls.  This is an 
  * annoying bug case we have not yet been able to eliminate completely.
  * To provide some safety against this case, some extra fallback handling
@@ -1216,7 +1216,7 @@ enemy_say_current_state_on_screen ( enemy* ThisRobot )
  * or so.  In order to better distribute the checks (and not cause fps
  * glitches by doing them all at once) we use individual timers for this
  * test.
- * ---------------------------------------------------------------------- */
+ */
 void
 enemy_handle_stuck_in_walls ( enemy* ThisRobot )
 {
@@ -1271,13 +1271,13 @@ enemy_handle_stuck_in_walls ( enemy* ThisRobot )
     }
 }; // enemy_handle_stuck_in_walls ( enemy* ThisRobot )
 
-/* ----------------------------------------------------------------------
+/**
  * This function computes the distance a certain robot has with respect
  * to Tux, i.e. player 0 in the game.  If the Tux and the bot in question
  * are on the same level, then everything is pretty simple.  However, if
  * the enemy is on another level that is connected to this level via an
  * interface area, then of course we need to take more care.
- * ---------------------------------------------------------------------- */
+ */
 float
 DistanceToTux ( Enemy ThisRobot )
 {
@@ -1302,11 +1302,11 @@ DistanceToTux ( Enemy ThisRobot )
 	
 }; // float DistanceToTux ( Enemy ThisRobot )
 
-/* ----------------------------------------------------------------------
+/**
  * This function selects a target for a friendly bot. Its simply takes
  * the first enemy bot in view range. This could be improved at a later point.
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 update_vector_to_shot_target_for_friend ( enemy* ThisRobot , moderately_finepoint* vect_to_target )
 {
@@ -1353,7 +1353,7 @@ update_vector_to_shot_target_for_friend ( enemy* ThisRobot , moderately_finepoin
     
 }; // void update_vector_to_shot_target_for_friend ( ThisRobot , moderately_finepoint* vect_to_target )
 
-/* ----------------------------------------------------------------------
+/**
  * This function selects an attack target for an hostile bot.
  * Selected target is the previous target if it is still valid (see paragraph bleow),
  * or the closest bot.
@@ -1363,7 +1363,7 @@ update_vector_to_shot_target_for_friend ( enemy* ThisRobot , moderately_finepoin
  * range, it order to simulate "pursuit". Sorry for the mess but there is no other
  * proper place for that.
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 update_vector_to_shot_target_for_enemy ( enemy* this_robot , moderately_finepoint* vect_to_target )
 {
@@ -1453,10 +1453,10 @@ update_vector_to_shot_target_for_enemy ( enemy* this_robot , moderately_finepoin
 }; // int update_vector_to_shot_target_for_enemy ( ThisRobot , moderately_finepoint* vect_to_target )
 
 
-/* ----------------------------------------------------------------------
+/**
  * This function handles the inconditional updates done to the bots by
  * the automaton powering them. See update_enemy().
- * ---------------------------------------------------------------------- */
+ */
 static void state_machine_inconditional_updates ( enemy * ThisRobot, moderately_finepoint * vect_to_target)
 {
     // Robots that are paralyzed are completely stuck and do not 
@@ -1491,11 +1491,11 @@ static void state_machine_inconditional_updates ( enemy * ThisRobot, moderately_
 
 }
 
-/* ----------------------------------------------------------------------
+/**
  * This function handles state transitions based solely (or almost) on 
  * the external situation and not on the current state of the bot. 
  * The purpose is to reduce code duplication in the "big switch" that follows.
- * ---------------------------------------------------------------------- */
+ */
 static void state_machine_situational_transitions ( enemy * ThisRobot, const moderately_finepoint * vect_to_target )
 {
     /* The various situations are listed in increasing priority order (ie. they may override each other, so the least priority comes first. */
@@ -1877,12 +1877,12 @@ static void state_machine_waypointless_wandering(enemy * ThisRobot, moderately_f
 	}
 }
 
-/* ----------------------------------------------------------------------
+/**
  * 
  * This function runs the finite state automaton that powers the bots.
  * It handles attack and movement behaviors.
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 update_enemy ( enemy * ThisRobot )
 {
@@ -2021,13 +2021,13 @@ update_enemy ( enemy * ThisRobot )
     MoveThisEnemy(ThisRobot);
 }; // void update_enemy()
 
-/* ----------------------------------------------------------------------
+/**
  * This function handles all the logic tied to enemies : animation, movement
  * and attack behavior.
  *
  * Note that no enemy must be killed by the logic function. It's a technical limitation
  * and a requirement in freedroidRPG.
- * ---------------------------------------------------------------------- */
+ */
 void
 MoveEnemys ( void )
 {
@@ -2066,11 +2066,11 @@ MoveEnemys ( void )
 
 }; // MoveEnemys( void ) 
 
-/* ----------------------------------------------------------------------
+/**
  * When an enemy is firing a shot, the newly created bullet must be 
  * assigned a speed, that would lead the bullet thowards the intended
  * target, which is done here.
- * ---------------------------------------------------------------------- */
+ */
 void
 set_bullet_speed_to_target_direction ( bullet* NewBullet , float bullet_speed , float xdist , float ydist )
 {
@@ -2101,11 +2101,11 @@ set_bullet_speed_to_target_direction ( bullet* NewBullet , float bullet_speed , 
     }
 }; // void set_bullet_speed_to_target_direction ( bullet* NewBullet , float bullet_speed , float xdist , float ydist )
 
-/* ----------------------------------------------------------------------
+/**
  * This function is low-level:  It simply sets off a shot from enemy
  * through the pointer ThisRobot at the target VECTOR xdist ydist, which
  * is a DISTANCE VECTOR, NOT ABSOLUTE COORDINATES OF THE TARGET!!!
- * ---------------------------------------------------------------------- */
+ */
 static void 
 RawStartEnemysShot( enemy* ThisRobot , float xdist , float ydist )
 {
@@ -2242,10 +2242,10 @@ RawStartEnemysShot( enemy* ThisRobot , float xdist , float ydist )
     Fire_Bullet_Sound(guntype);
 }; // void RawStartEnemysShot( enemy* ThisRobot , float xdist , float ydist )
 
-/* ----------------------------------------------------------------------
+/**
  * This function should determine the closest visible player to this 
  * enemy droid.
- * ---------------------------------------------------------------------- */
+ */
 enemy *
 ClosestOtherEnemyDroid ( Enemy ThisRobot ) 
 {
@@ -2286,9 +2286,9 @@ ClosestOtherEnemyDroid ( Enemy ThisRobot )
 };
 
 
-/* ----------------------------------------------------------------------
+/**
  *
- * ---------------------------------------------------------------------- */
+ */
 int
 EnemyOfTuxCloseToThisRobot ( Enemy ThisRobot , moderately_finepoint* vect_to_target )
 {
@@ -2321,14 +2321,14 @@ EnemyOfTuxCloseToThisRobot ( Enemy ThisRobot , moderately_finepoint* vect_to_tar
 
 }; // int EnemyOfTuxCloseToThisRobot ( Enemy ThisRobot )
 
-/* ----------------------------------------------------------------------
+/**
  * In some of the movement functions for enemy droids, we consider making
  * a step and move a bit into one direction or the other.  But not all
  * moves are really allowed and feasible.  Therefore we need a function
  * to check if a certain step makes sense or not, which is exactly what
  * this function is supposed to do.
  *
- * ---------------------------------------------------------------------- */
+ */
 int
 ConsideredMoveIsFeasible ( Enemy ThisRobot , moderately_finepoint StepVector )
 {
@@ -2351,9 +2351,9 @@ ConsideredMoveIsFeasible ( Enemy ThisRobot , moderately_finepoint StepVector )
 
 }; // int ConsideredMoveIsFeasible ( Enemy ThisRobot , finepoint StepVector )
 
-/* ----------------------------------------------------------------------
+/**
  *
- * ---------------------------------------------------------------------- */
+ */
 static void
 MoveAwayFromMeleeCombat ( Enemy ThisRobot , moderately_finepoint * set_move_tgt )
 {
@@ -2420,14 +2420,14 @@ MoveAwayFromMeleeCombat ( Enemy ThisRobot , moderately_finepoint * set_move_tgt 
     }
 }; // void MoveInCloserForOrAwayFromMeleeCombat ( Enemy ThisRobot , int enemynum )
 
-/* ----------------------------------------------------------------------
+/**
  * At some points it may be nescessary, that an enemy turns around to
  * face the Tux.  This function does that, but only so much as can be
  * done in the current frame, i.e. NON-BLOCKING operation.
  *
  * The return value indicates, if the turning has already reached it's
  * target by now or not.
- * ---------------------------------------------------------------------- */
+ */
 static int
 TurnABitTowardsPosition ( Enemy ThisRobot , float x , float y , float TurnSpeed )
 {
@@ -2502,10 +2502,10 @@ TurnABitTowardsPosition ( Enemy ThisRobot , float x , float y , float TurnSpeed 
 
 }; // int TurnABitThowardsTux ( Enemy ThisRobot , float TurnSpeed )
 
-/* ----------------------------------------------------------------------
+/**
  * Enemies act as groups.  If one is hit, all will attack and the like.
  * This transmission of information is handled here.
- * ---------------------------------------------------------------------- */
+ */
 void 
 SetRestOfGroupToState ( Enemy ThisRobot , short NewState )
 {
@@ -2524,11 +2524,11 @@ SetRestOfGroupToState ( Enemy ThisRobot , short NewState )
 
 }; // void SetRestOfGroupToState ( Enemy ThisRobot , int NewState )
 
-/* ----------------------------------------------------------------------
+/**
  * Enemies act as groups.  If one is hit, all will attack and the like.
  * Similarly, if you attack one peaceful guard, all other guards will be
  * pissed as well...
- * ---------------------------------------------------------------------- */
+ */
 void 
 robot_group_turn_hostile ( enemy * ThisRobot )
 {
@@ -2547,10 +2547,10 @@ robot_group_turn_hostile ( enemy * ThisRobot )
 }; // void robot_group_turn_hostile ( int enemy_num )
 
 
-/* ----------------------------------------------------------------------
+/**
  * This function checks for enemy collsions and returns TRUE if enemy 
  * with number enemynum collided with another enemy from the list.
- * ---------------------------------------------------------------------- */
+ */
 int
 CheckEnemyEnemyCollision ( enemy * OurBot )
 {
@@ -2602,10 +2602,10 @@ CheckEnemyEnemyCollision ( enemy * OurBot )
     return FALSE;
 }; // int CheckEnemyEnemyCollision
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 start_gethit_animation_if_applicable ( enemy* ThisRobot ) 
 {
@@ -2625,9 +2625,9 @@ start_gethit_animation_if_applicable ( enemy* ThisRobot )
 
 }; // void start_gethit_animation_if_applicable ( enemy* ThisRobot ) 
 
-/* ----------------------------------------------------------------------
+/**
  * This function increases the phase counters for animation of a bot.
- * ---------------------------------------------------------------------- */
+ */
 void
 animate_enemy (enemy * our_enemy)
 {

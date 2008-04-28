@@ -24,11 +24,11 @@
  *
  */
 
-/* ----------------------------------------------------------------------
+/**
  * This file contains all the functions managing the lighting inside
  * the freedroidRPG game window, i.e. the 'light radius' of the Tux and
  * of other light emanating objects.
- * ---------------------------------------------------------------------- */
+ */
 
 #define _light_c
 
@@ -87,12 +87,12 @@ IsLightPassable ( float x , float y , int z, finepoint step )
     }
     return ( TRUE ) ;
 }
-/* ----------------------------------------------------------------------
+/**
  * This function tests, if a Robot can go a direct straigt line from
  * x1 y1 to x2 y2 without hitting a wall or another obstacle.
  * 
  * The return value is TRUE or FALSE accoringly.
- * ----------------------------------------------------------------------*/
+ ***/
 int 
 DirectLineLightable( float x1 , float y1 , float x2 , float y2 , int z )
 {
@@ -158,12 +158,12 @@ DirectLineLightable( float x1 , float y1 , float x2 , float y2 , int z )
 }; // int DirectLineWalkable( float x1 , float y1 , float x2 , float y2 )
 
 
-/* ----------------------------------------------------------------------
+/**
  * There might be some obstacles that emit some light.  Yet, we can't
  * go through all the obstacle list of a level every frame at sufficiently
  * low cost.  Therefore we create a reduced list of light emitters for
  * usage in the light computation code.
- * ---------------------------------------------------------------------- */
+ */
 void 
 update_light_list ( )
 {
@@ -319,10 +319,10 @@ WARNING!  End of light sources array reached!",
     
 }; // void update_light_list ( )
 
-/* ----------------------------------------------------------------------
+/**
  * This function is used to find the light intensity at any given point
  * on the map.
- * ---------------------------------------------------------------------- */
+ */
 int 
 calculate_light_strength ( moderately_finepoint target_pos )
 {
@@ -402,7 +402,7 @@ calculate_light_strength ( moderately_finepoint target_pos )
     
 }; // int calculate_light_strength ( moderately_finepoint target_pos )
 
-/* ----------------------------------------------------------------------
+/**
  * When the light radius (i.e. the shadow values for the floor) has been
  * set up, the shadows usually are very 'hard' in the sense that extreme
  * darkness can be right next to very bright light.  This does not look
@@ -415,7 +415,7 @@ calculate_light_strength ( moderately_finepoint target_pos )
  * lower values will give very smooth and flourescent shadows propagating
  * even a bit under walls (which doesn't look too good).  4 seems like
  * a reasonable setting.
- * ---------------------------------------------------------------------- */
+ */
 void
 soften_light_distribution ( void )
 {
@@ -453,10 +453,10 @@ soften_light_distribution ( void )
     }
 }; // void soften_light_distribution ( void )
 
-/* ----------------------------------------------------------------------
+/**
  * This function is used to find the light intensity at any given point
  * on the map.
- * ---------------------------------------------------------------------- */
+ */
 void 
 set_up_light_strength_buffer ( void )
 {
@@ -487,10 +487,10 @@ set_up_light_strength_buffer ( void )
 
 }; // void set_up_light_strength_buffer ( void )
 
-/* ----------------------------------------------------------------------
+/**
  * This function is used to find the light intensity at any given point
  * on the map.
- * ---------------------------------------------------------------------- */
+ */
 int 
 get_light_strength ( moderately_finepoint target_pos )
 {
@@ -531,11 +531,11 @@ get_light_strength ( moderately_finepoint target_pos )
     
 }; // int get_light_strength ( moderately_finepoint target_pos )
 
-/* ----------------------------------------------------------------------
+/**
  * This function should blit the shadows on the floor, that are used to
  * generate the impression of a 'light radius' around the players 
  * character.
- * ---------------------------------------------------------------------- */
+ */
 void
 blit_classic_SDL_light_radius( void )
 {
@@ -617,7 +617,7 @@ char fpath[2048];
     }
 }; // void blit_classic_SDL_light_radius( void )
 
-/* ----------------------------------------------------------------------
+/**
  * FreedroidRPG does some light/shadow computations and then draws some
  * shadows/light on the floor.  There is a certain amount of light around
  * the Tux.  This light is called the 'light radius'.  
@@ -627,7 +627,7 @@ char fpath[2048];
  * this is something completely different from the prerendered shadows
  * that are to be blitted for obstacles, when they are exposed to 
  * daylight.
- * ---------------------------------------------------------------------- */
+ */
 void
 blit_light_radius ( void )
 {

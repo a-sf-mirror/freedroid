@@ -22,9 +22,9 @@
  *
  */
 
-/* ----------------------------------------------------------------------
+/**
  * All functions that have to do with loading and saving of games.
- * ---------------------------------------------------------------------- */
+ */
 
 
 #define _saveloadgame_c
@@ -96,10 +96,10 @@ LoadAndShowThumbnail ( char* CoreFilename )
 
 }; // void LoadAndShowThumbnail ( char* CoreFilename )
 
-/* ----------------------------------------------------------------------
+/**
  * 
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 LoadAndShowStats ( char* CoreFilename )
 {
@@ -182,10 +182,10 @@ or file permissions of ~/.freedroid_rpg are somehow not right.",
     
 }; // void LoadAndShowStats ( char* filename );
 
-/* ----------------------------------------------------------------------
+/**
  * This function stores a thumbnail of the currently running game, so that
  * these thumbnails can be browsed when choosing which game to load.
- * ---------------------------------------------------------------------- */
+ */
 void
 SaveThumbnailOfGame ( void )
 {
@@ -239,9 +239,9 @@ SaveThumbnailOfGame ( void )
     
 }; // void SaveThumbnailOfGame ( void )
 
-/* ----------------------------------------------------------------------
+/**
  * This function saves the current game of Freedroid to a file.
- * ---------------------------------------------------------------------- */
+ */
 
 int SaveGame( void )
 {
@@ -340,9 +340,9 @@ or file permissions of ~/.freedroid_rpg are somehow not right.",
 }; // int SaveGame( void )
 
 
-/* ----------------------------------------------------------------------
+/**
  * This function loads an old saved game of Freedroid from a file.
- * ---------------------------------------------------------------------- */
+ */
 int 
 DeleteGame( void )
 {
@@ -373,9 +373,9 @@ DeleteGame( void )
 
 }; // int DeleteGame( void )
 
-/* ----------------------------------------------------------------------
+/**
  * This function loads an old saved game of Freedroid from a file.
- * ---------------------------------------------------------------------- */
+ */
 int 
 LoadGame( void )
 {

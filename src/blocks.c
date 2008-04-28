@@ -24,14 +24,14 @@
  *
  */
 
-/* ----------------------------------------------------------------------
+/**
  * This file contains block operating functions, that is when you want to
  * put something on the visible screen, DO NOT DO IT YOURSELF!  Use one of 
  * the functions in here.  These functions already take into acount the 
  * position of the player character so you do not have to worry about 
  * where to put anything, and only have to supply map coordinates.  
  * Very handy.
- * ---------------------------------------------------------------------- */
+ */
 
 #define _blocks_c
 
@@ -46,10 +46,10 @@
 char *PrefixToFilename[ ENEMY_ROTATION_MODELS_AVAILABLE ];
 int ModelMultiplier[ ENEMY_ROTATION_MODELS_AVAILABLE ];
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 make_sure_zoomed_surface_is_there ( iso_image* our_iso_image )
 {
@@ -60,12 +60,12 @@ make_sure_zoomed_surface_is_there ( iso_image* our_iso_image )
     }
 }; // void make_sure_zoomed_surface_is_there ( iso_image* our_iso_image )
 
-/* ----------------------------------------------------------------------
+/**
  * The automap (in OpenGL mode) uses some smaller version of the graphics
  * used to assemble the in-game obstacle images.  These smaller versions 
  * of the graphics have to be generated.  We do that on the fly at 
  * runtime once and for all obstacles at the first game startup.
- * ---------------------------------------------------------------------- */
+ */
 void
 make_sure_automap_surface_is_there ( obstacle_spec* our_obstacle_spec )
 {
@@ -80,10 +80,10 @@ Creation of automap surface failed",
     }
 }; // void make_sure_automap_surface_is_there ( iso_image* our_iso_image )
 
-/* ----------------------------------------------------------------------
+/**
  * This function loads the Blast image and decodes it into the multiple
  * small Blast surfaces.
- * ---------------------------------------------------------------------- */
+ */
 void 
 Load_Blast_Surfaces( void )
 {
@@ -126,10 +126,10 @@ Blastmap[2].total_animation_time = 1.0;
 
 }; // void Load_Blast_Surfaces( void )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 load_item_surfaces_for_item_type ( int item_type )
 {
@@ -234,10 +234,10 @@ if( ! ItemMap [ item_type ] . inv_image . inv_size . y )
 
 }; // void load_item_surfaces_for_item_type ( int item_type )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 try_to_load_ingame_item_surface ( int item_type )
 {
@@ -331,10 +331,10 @@ item surface will be used as a substitute for now.",
 
 }; // void try_to_load_ingame_item_surface ( int item_number )
 
-/* ----------------------------------------------------------------------
+/**
  * This function loads the items image and decodes it into the multiple
  * small item surfaces.
- * ---------------------------------------------------------------------- */
+ */
 void 
 Load_Mouse_Move_Cursor_Surfaces( void )
 {
@@ -355,10 +355,10 @@ Load_Mouse_Move_Cursor_Surfaces( void )
 
 }; // void Load_Mouse_Move_Cursor_Surfaces( void )
 
-/* ----------------------------------------------------------------------
+/**
  * This function loads the image containing the different buttons for the
  * different skills in the skill book of the Tux.
- * ---------------------------------------------------------------------- */
+ */
 void 
 Load_Skill_Level_Button_Surfaces( void )
 {
@@ -414,10 +414,10 @@ Load_Skill_Level_Button_Surfaces( void )
 
 }; // void Load_Skill_Level_Button_Surfaces( void )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 iso_load_bullet_surfaces ( void )
 {
@@ -478,10 +478,10 @@ iso_load_bullet_surfaces ( void )
 
 }; // void iso_load_bullet_surfaces ( void )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 LoadOneSkillSurfaceIfNotYetLoaded ( int SkillSpellNr )
 {
@@ -525,10 +525,10 @@ This error indicates some installation problem with freedroid.",
   
 }; // void LoadOneSkillSurfaceIfNotYetLoaded ( int SkillSpellNr )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 blit_iso_image_to_map_position ( iso_image * our_iso_image , float pos_x , float pos_y )
 {
@@ -543,10 +543,10 @@ blit_iso_image_to_map_position ( iso_image * our_iso_image , float pos_x , float
 
 }; // void blit_iso_image_to_map_position ( iso_image * our_iso_image , float pos_x , float pos_y )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 blit_outline_of_iso_image_to_map_position ( iso_image * our_iso_image , float pos_x , float pos_y )
 {
@@ -722,10 +722,10 @@ blit_outline_of_iso_image_to_map_position ( iso_image * our_iso_image , float po
     }
 }; // void blit_outline_of_iso_image_to_map_position ( iso_image our_iso_image , float pos_x , float pos_y )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 blit_iso_image_to_screen_position ( iso_image * our_iso_image , float pos_x , float pos_y )
 {
@@ -740,10 +740,10 @@ blit_iso_image_to_screen_position ( iso_image * our_iso_image , float pos_x , fl
 
 }; // void blit_iso_image_to_screen_position ( iso_image * our_iso_image , float pos_x , float pos_y )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 blit_zoomed_iso_image_to_map_position ( iso_image* our_iso_image , float pos_x , float pos_y )
 {
@@ -769,10 +769,10 @@ blit_zoomed_iso_image_to_map_position ( iso_image* our_iso_image , float pos_x ,
 
 }; // void blit_zoomed_iso_image_to_map_position ( iso_image our_iso_image , float pos_x , float pos_y )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 blit_iso_image_to_map_position_in_buffer ( SDL_Surface *current_buffer , 
 					   iso_image * our_iso_image , float pos_x , float pos_y )
@@ -788,10 +788,10 @@ blit_iso_image_to_map_position_in_buffer ( SDL_Surface *current_buffer ,
 
 }; // void blit_iso_image_to_map_position_in_buffer ( ... )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 int
 iso_image_positioned_inside_copy_rectangle ( iso_image * our_iso_image , float pos_x , float pos_y , 
 					     float shift_pixels_x , float shift_pixels_y )
@@ -813,10 +813,10 @@ iso_image_positioned_inside_copy_rectangle ( iso_image * our_iso_image , float p
   return ( FALSE );
 };
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 get_offset_for_iso_image_from_file_and_path ( char* fpath , iso_image* our_iso_image )
 {
@@ -868,7 +868,7 @@ NO_NEED_TO_INFORM, IS_WARNING_ONLY, offset_file_name );
 
 }; // void get_offset_for_iso_image_from_file_and_path ( fpath , our_iso_image )
 
-/* ----------------------------------------------------------------------
+/**
  * The concept of an iso image involves an SDL_Surface or an OpenGL
  * texture and also suitable offset values, such that the image can be
  * correctly placed in an isometric image.
@@ -877,7 +877,7 @@ NO_NEED_TO_INFORM, IS_WARNING_ONLY, offset_file_name );
  * OpenGL texture can be made later) AND also to load the corresponding
  * offset file for the image (or supply substitute values) such that the
  * offset values are suitably initialized.
- * ---------------------------------------------------------------------- */
+ */
 void
 get_iso_image_from_file_and_path ( char* fpath , iso_image* our_iso_image , int use_offset_file ) 
 {
@@ -936,10 +936,10 @@ get_iso_image_from_file_and_path ( char* fpath , iso_image* our_iso_image , int 
 
 }; // void get_iso_image_from_file_and_path ( char* fpath , iso_image* our_iso_image ) 
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 get_iso_image_with_colorkey_from_file_and_path ( char* fpath , iso_image* our_iso_image ) 
 {
@@ -1007,10 +1007,10 @@ This error indicates some installation problem with freedroid.",
 
 }; // void get_iso_image_from_file_and_path ( char* fpath , iso_image* our_iso_image ) 
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void 
 LoadAndPrepareEnemyRotationModelNr ( int ModelNr )
 {
@@ -1059,10 +1059,10 @@ Freedroid received a rotation model number that does not exist: %d\n",
     
 }; // void LoadAndPrepareEnemyRotationModelNr ( int j )
 
-/* ----------------------------------------------------------------------
+/**
  * If needed, we will assemble differently colored versions of the enemy
  * rotation models...
- * ---------------------------------------------------------------------- */
+ */
 void 
 LoadAndPrepareGreenEnemyRotationModelNr ( int ModelNr )
 {
@@ -1118,10 +1118,10 @@ LoadAndPrepareGreenEnemyRotationModelNr ( int ModelNr )
     }
 }; // void LoadAndPrepareGreenEnemyRotationModelNr ( int ModelNr )
   
-/* ----------------------------------------------------------------------
+/**
  * If needed, we will assemble differently colored versions of the enemy
  * rotation models...
- * ---------------------------------------------------------------------- */
+ */
 void 
 LoadAndPrepareBlueEnemyRotationModelNr ( int ModelNr )
 {
@@ -1170,10 +1170,10 @@ LoadAndPrepareBlueEnemyRotationModelNr ( int ModelNr )
     }
 }; // void LoadAndPrepareBlueEnemyRotationModelNr ( int ModelNr )
   
-/* ----------------------------------------------------------------------
+/**
  * If needed, we will assemble differently colored versions of the enemy
  * rotation models...
- * ---------------------------------------------------------------------- */
+ */
 void 
 LoadAndPrepareRedEnemyRotationModelNr ( int ModelNr )
 {
@@ -1222,10 +1222,10 @@ LoadAndPrepareRedEnemyRotationModelNr ( int ModelNr )
     }
 }; // void LoadAndPrepareRedEnemyRotationModelNr ( int ModelNr )
   
-/* ----------------------------------------------------------------------
+/**
  * This function creates all the surfaces, that are nescessary to blit the
  * 'head' and 'shoes' of an enemy.  The numbers are not dealt with here.
- * ---------------------------------------------------------------------- */
+ */
 void 
 Load_Enemy_Surfaces( void )
 {
@@ -1559,10 +1559,10 @@ This should be investigated as soon as possible.",
     }
 }; // void LoadEnemySurfaces( void )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 init_obstacle_data( void )
 {
@@ -4036,7 +4036,7 @@ init_obstacle_data( void )
   obstacle_map [ ISO_THICK_WALL_CORNER_SW ] . upper_border  = obstacle_map[ ISO_THICK_WALL_V ] .upper_border ; 
 }; // void init_obstacle_data( void )
 
-/* ---------------------------------------------------------------------- 
+/** 
  * This function should initialize all obstacle types that are known in
  * FreedroidRPG, such as walls and doors and pillars and teleporters and
  * the like...
@@ -4044,7 +4044,7 @@ init_obstacle_data( void )
  * for now it will not load 'offset' files, but rather just use hard-coded
  * info...
  *
- * ---------------------------------------------------------------------- */ 
+ */ 
 void load_all_obstacles ( void ) {
     int i;
     char fpath[2048];
@@ -4111,11 +4111,11 @@ void load_all_obstacles ( void ) {
 
 }; // void load_all_obstacles ( void )
 
-/* ----------------------------------------------------------------------
+/**
  * This function loads isometric floor tiles, and in OpenGL mode, generates
  * a texture atlas.
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 load_floor_tiles ( void )
 {

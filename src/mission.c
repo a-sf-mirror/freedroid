@@ -24,14 +24,14 @@
  *
  */
 
-/* ----------------------------------------------------------------------
+/**
  * This file contains all the functions managing the things one gets to see.
  * That includes assembling of enemys, assembling the currently
  * relevant porting of the map (the bricks I mean), drawing all visible
  * elements like bullets, blasts, enemys or influencer in a nonvisible
  * place in memory at first, and finally drawing them to the visible
  * screen for the user.
- * ---------------------------------------------------------------------- */
+ */
 
 #define _mission_c
 
@@ -59,10 +59,10 @@ int current_quest_browser_mode = QUEST_BROWSER_SHOW_OPEN_MISSIONS ;
 
 int quest_browser_mission_lines_needed [ MAX_MISSIONS_IN_GAME ] ;
 
-/* ----------------------------------------------------------------------
+/**
  * This function is responsible for making a new quest diary entry 
  * visible inside the quest browser.
- * ---------------------------------------------------------------------- */
+ */
 void
 quest_browser_enable_new_diary_entry ( int mis_num , int mis_diary_entry_num )
 {
@@ -86,11 +86,11 @@ There was an illegal mission diary entry number received.",
     
 }; // void quest_browser_enable_new_diary_entry ( int mis_num , int mis_diary_entry_num )
 
-/* ----------------------------------------------------------------------
+/**
  * This function should display the currently assigned/unassigned mission
  * and all that directly over the combat screen without interrupting the
  * game in any other way.
- * ---------------------------------------------------------------------- */
+ */
 void 
 classic_show_mission_list ( void )
 {
@@ -145,12 +145,12 @@ classic_show_mission_list ( void )
     }
 }; // void classic_show_mission_list ( void )
 
-/* ----------------------------------------------------------------------
+/**
  * If there is some mission selected inside the quest browser, then we
  * should also display all info on the current status and history of that
  * particular mission, which is exactly what this function is responsible
  * for.
- * ---------------------------------------------------------------------- */
+ */
 void
 quest_browser_show_mission_info ( int mis_num )
 {
@@ -196,12 +196,12 @@ There was an illegal mission number received.",
 
 }; // void quest_browser_show_mission_info ( int mis_num )
 
-/* ----------------------------------------------------------------------
+/**
  * If there is some mission selected inside the quest browser, then we
  * should also display all info on the current status and history of that
  * particular mission, which is exactly what this function is responsible
  * for.
- * ---------------------------------------------------------------------- */
+ */
 void
 quest_browser_append_mission_info ( int mis_num , int full_description )
 {
@@ -257,10 +257,10 @@ There was an illegal mission number received.",
 }; // void quest_browser_append_mission_info ( int mis_num )
 
 extern int MyCursorY;
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 quest_browser_display_mission_list ( int list_type )
 {
@@ -414,9 +414,9 @@ Illegal quest browser status encountered.",
 
 }; // void quest_browser_display_mission_list ( void )
 
-/* ----------------------------------------------------------------------
+/**
  * This function manages the quest browser.
- * ---------------------------------------------------------------------- */
+ */
 void
 quest_browser_interface ( void )
 {
@@ -738,11 +738,11 @@ BROWSE_ALIVE_BOTS_SAFE(erot, nerot)
     
 }; // void CheckIfMissionIsComplete
 
-/* ----------------------------------------------------------------------
+/**
  * This function assigns a new mission to the influencer, which means 
  * that the status of the mission in the mission array is changed and
  * perhaps the mission log activated.
- * ---------------------------------------------------------------------- */
+ */
 void 
 AssignMission( int MissNum )
 {
@@ -780,11 +780,11 @@ There was a mission number received that is outside the range of allowed values.
 
 }; // void AssignMission( int MissNum );
 
-/* ----------------------------------------------------------------------
+/**
  * At the start of every new game, the mission info (i.e. which missions
  * are already assigned, completed, failed, available and such) should
  * be reset to default state, so that no zombie mission entries can appear. 
- * ---------------------------------------------------------------------- */
+ */
 void
 clear_tux_mission_info ( )
 {
@@ -812,10 +812,10 @@ clear_tux_mission_info ( )
 
 }; // void clear_tux_mission_info ( )
 
-/* ----------------------------------------------------------------------
+/**
  * This function reads the mission specifications from the mission file
  * which is assumed to be loaded into memory already.
- * ---------------------------------------------------------------------- */
+ */
 void 
 GetQuestList ( char* QuestListFilename )
 {

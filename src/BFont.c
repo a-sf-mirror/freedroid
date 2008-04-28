@@ -18,10 +18,10 @@
 /* Current font */
 BFont_Info *CurrentFont;
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 InitFont (BFont_Info * Font)
 {
@@ -106,9 +106,9 @@ if ( use_open_gl )
   SDL_SetAlpha( Font -> Surface , SDL_SRCALPHA , SDL_ALPHA_OPAQUE );
 }; // void InitFont (BFont_Info * Font)
 
-/* ----------------------------------------------------------------------
+/**
  * Load the font and stores it in the BFont_Info structure 
- * ---------------------------------------------------------------------- */
+ */
 BFont_Info *
 LoadFont (const char *filename)
 {
@@ -161,10 +161,10 @@ LoadFont (const char *filename)
   return Font;
 }
 
-/* ---------------------------------------------------------------------- 
+/** 
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 FreeFont (BFont_Info * Font)
 {
@@ -172,10 +172,10 @@ FreeFont (BFont_Info * Font)
   free (Font);
 }; // void FreeFont (BFont_Info * Font)
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 BFont_Info *
 SetFontColor (BFont_Info * Font, Uint8 r, Uint8 g, Uint8 b)
 {
@@ -253,9 +253,9 @@ SetFontColor (BFont_Info * Font, Uint8 r, Uint8 g, Uint8 b)
   return newfont;
 }; // BFont_Info* SetFontColor (BFont_Info * Font, Uint8 r, Uint8 g, Uint8 b)
 
-/* ----------------------------------------------------------------------
+/**
  * Set the current font 
- * ---------------------------------------------------------------------- */
+ */
 void
 SetCurrentFont (BFont_Info * Font)
 {
@@ -271,28 +271,28 @@ SetCurrentFont (BFont_Info * Font)
   CurrentFont = Font;
 }; // void SetCurrentFont (BFont_Info * Font)
 
-/* ----------------------------------------------------------------------
+/**
  * Returns the pointer to the current font strucure in use 
- * ---------------------------------------------------------------------- */
+ */
 BFont_Info *
 GetCurrentFont (void)
 {
   return CurrentFont;
 }; // BFont_Info * GetCurrentFont (void)
 
-/* ----------------------------------------------------------------------
+/**
  * Return the font height 
- * ---------------------------------------------------------------------- */
+ */
 int
 FontHeight (BFont_Info * Font)
 {
   return (Font->h);
 }; // int FontHeight (BFont_Info * Font)
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 SetFontHeight (BFont_Info * Font, int height)
 {
@@ -308,18 +308,18 @@ CharWidth (BFont_Info * Font, unsigned char c)
   return Font->Chars[c].w;
 }
 
-/* ----------------------------------------------------------------------
+/**
  * Puts a single char on the surface 
- * ---------------------------------------------------------------------- */
+ */
 int
 PutChar (SDL_Surface * Surface, int x, int y, unsigned char c)
 {
   return PutCharFont (Surface, CurrentFont, x, y, c);
 }; // int PutChar (SDL_Surface * Surface, int x, int y, int c)
 
-/* ----------------------------------------------------------------------
+/**
  * Puts a single char on the surface with the specified font 
- * ---------------------------------------------------------------------- */
+ */
 int
 PutCharFont (SDL_Surface * Surface, BFont_Info * Font, int x, int y, unsigned char c)
 {
@@ -416,20 +416,20 @@ PutCharFont (SDL_Surface * Surface, BFont_Info * Font, int x, int y, unsigned ch
 
 }; // int PutCharFont (SDL_Surface * Surface, BFont_Info * Font, int x, int y, int c)
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 PutString (SDL_Surface * Surface, int x, int y, char *text)
 {
   PutStringFont (Surface, CurrentFont, x, y, text);
 }; // void PutString (SDL_Surface * Surface, int x, int y, char *text)
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 PutStringFont (SDL_Surface * Surface, BFont_Info * Font, int x, int y, char *text)
 {
@@ -464,20 +464,20 @@ PutStringFont (SDL_Surface * Surface, BFont_Info * Font, int x, int y, char *tex
     }
 }; // void PutStringFont (SDL_Surface * Surface, BFont_Info * Font, int x, int y, char *text)
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 int
 TextWidth (char *text)
 {
   return ( TextWidthFont (CurrentFont, text) ) ;
 }; // int TextWidth (char *text)
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 int
 TextWidthFont (BFont_Info * Font, char *text)
 {
@@ -929,10 +929,10 @@ PutPixel (SDL_Surface * surface, int x, int y, Uint32 pixel)
 
 }; // void PutPixel ( ... )
 
-/* ----------------------------------------------------------------------
+/**
  * NOTE:  I THINK THE SURFACE MUST BE LOCKED FOR THIS!
  *
- * ---------------------------------------------------------------------- */
+ */
 inline Uint32
 FdGetPixel32 (SDL_Surface * Surface, Sint32 X, Sint32 Y)
 {

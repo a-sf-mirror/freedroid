@@ -23,9 +23,9 @@
  *
  */
 
-/* ----------------------------------------------------------------------
+/**
  * This file contains all menu functions and their subfunctions
- * ---------------------------------------------------------------------- */
+ */
 
 #define _shop_c
 
@@ -50,11 +50,11 @@ shop_decision, *Shop_decision;
 SDL_Rect ShopItemRowRect;
 SDL_Rect TuxItemRowRect;
 
-/* ----------------------------------------------------------------------
+/**
  * This function tries to buy the item given as parameter.  Currently
  * is just drops the item to the floor under the influencer and will
  * reduce influencers money.
- * ---------------------------------------------------------------------- */
+ */
 int 
 TryToPutItem( item* SellItem , int AmountToSellAtMost , moderately_finepoint pos )
 {
@@ -162,7 +162,7 @@ write some suitable code here...",
 
 }; // void TryToPutItem( ... )
 
-/* ----------------------------------------------------------------------
+/**
  * This function prepares a new set of items, that will be displayed for
  * the Tux to buy.
  *
@@ -173,7 +173,7 @@ write some suitable code here...",
  * some pointer to different directions, recurrent calls of this function
  * should not cause any damage, as long as there is only ONE player in 
  * the game.
- * ---------------------------------------------------------------------- */
+ */
 void
 AssembleItemListForTradeCharacter ( item* ListToBeFilled , int ShopCharacterCode )
 {
@@ -298,13 +298,13 @@ AssembleItemListForTradeCharacter ( item* ListToBeFilled , int ShopCharacterCode
     
 }; // void AssembleItemListForTradeCharacter ( .. )
 
-/* ----------------------------------------------------------------------
+/**
  * At some points in the game, like when at the shop interface or at the
  * items browser at the console, we wish to show a list of the items 
  * currently in inventory.  This function assembles this list.  It lets
  * the caller decide on whether to include worn items in the list or not
  * and it will return the number of items finally filled into that list.
- * ---------------------------------------------------------------------- */
+ */
 int
 AssemblePointerListForItemShow ( item** ItemPointerListPointer , int IncludeWornItems )
 {
@@ -380,13 +380,13 @@ AssemblePointerListForItemShow ( item** ItemPointerListPointer , int IncludeWorn
   
 }; // void AssemblePointerListForItemShow ( .. )
   
-/* ----------------------------------------------------------------------
+/**
  * Before we enter the chest put/take interface menu, we must assemble
  * the list of pointers to the items currently in this chest.  An item
  * is in the chest at x/y if it's in the chest-item-list of the current
  * players level and if it's coordinates are those of the current players
  * chest.
- * ---------------------------------------------------------------------- */
+ */
 int
 AssemblePointerListForChestShow ( item** ItemPointerListPointer , moderately_finepoint chest_pos )
 {
@@ -429,11 +429,11 @@ AssemblePointerListForChestShow ( item** ItemPointerListPointer , moderately_fin
     
 }; // void AssemblePointerListForChestShow ( .. )
   
-/* ----------------------------------------------------------------------
+/**
  * Maybe the user has clicked right onto the item overview row.  Then of
  * course we must find out and return the index of the item clicked on.
  * If no item was clicked on, then a -1 will be returned as index.
- * ---------------------------------------------------------------------- */
+ */
 int
 ClickWasOntoItemRowPosition ( int x , int y , int TuxItemRow )
 {
@@ -467,14 +467,14 @@ ClickWasOntoItemRowPosition ( int x , int y , int TuxItemRow )
     }
 }; // int ClickWasOntoItemRowPosition ( int x , int y , int TuxItemRow )
 
-/* ----------------------------------------------------------------------
+/**
  * The item row in the shop interface (or whereever we're going to use it)
  * should display not only the rotating item display but also a row or a
  * column of the current equipment, so that some better overview is given
  * as well and the item can be better associated with it's in-game inventory
  * representation.  This function displays one such representation with 
  * the correct size to fit perfectly into the overview item row.
- * ---------------------------------------------------------------------- */
+ */
 void
 ShowRescaledItem ( int position , int TuxItemRow , item* ShowItem )
 {
@@ -546,10 +546,10 @@ Error loading flag image.",
 	}
 }; // void ShowRescaledItem ( int position , item* ShowItem )
 
-/* ----------------------------------------------------------------------
+/**
  * This function does the item show when the user has selected item
  * show from the console menu.
- * ---------------------------------------------------------------------- */
+ */
 int
 GreatShopInterface ( int NumberOfItems , item* ShowPointerList[ MAX_ITEMS_IN_INVENTORY ] , 
 		     int NumberOfItemsInTuxRow , item* TuxItemsList[ MAX_ITEMS_IN_INVENTORY] , 
@@ -949,10 +949,10 @@ GreatShopInterface ( int NumberOfItems , item* ShowPointerList[ MAX_ITEMS_IN_INV
 }; // int GreatShopInterface ( int NumberOfItems , item* ShowPointerList[ MAX_ITEMS_IN_INVENTORY ] )
 
 
-/* ----------------------------------------------------------------------
+/**
  * This function tells us which item in the menu has been clicked upon.
  * It does not check for lower than 4 items in the menu available.
- * ---------------------------------------------------------------------- */
+ */
 int
 ClickedMenuItemPosition( void )
 {
@@ -995,7 +995,7 @@ The MENU CODE was unable to properly resolve a mouse button press.",
 
 }; // int ClickedMenuItemPosition( void )
 
-/* ----------------------------------------------------------------------
+/**
  * There are numerous functions in shops where you have to select one out
  * of many pieces of equipment.  Therefore a function is provided, that 
  * should be able to perform this selection process with the user and also
@@ -1005,7 +1005,7 @@ The MENU CODE was unable to properly resolve a mouse button press.",
  * for using this function either for buy, sell, repair or identification
  * purposes.
  *
- * ---------------------------------------------------------------------- */
+ */
 #define PRICING_FOR_BUY 1
 #define PRICING_FOR_SELL 2
 #define PRICING_FOR_IDENTIFY 3
@@ -1240,9 +1240,9 @@ DoEquippmentListSelection( char* Startstring , item* Item_Pointer_List[ MAX_ITEM
     
 }; // int DoEquippmentListSelection( char* Startstring , item* Item_Pointer_List[ MAX_ITEMS_IN_INVENTORY ] )
 
-/* ----------------------------------------------------------------------
+/**
  * This function repairs the item given as parameter.
- * ---------------------------------------------------------------------- */
+ */
 void 
 TryToRepairItem( item* RepairItem )
 {
@@ -1267,9 +1267,9 @@ TryToRepairItem( item* RepairItem )
     PlayOnceNeededSoundSample ( "effects/Shop_ItemRepairedSound_0.ogg" , FALSE , FALSE );
 }; // void TryToRepairItem( item* RepairItem )
 
-/* ----------------------------------------------------------------------
+/**
  * This function tries to identify the item given as parameter.  
- * ---------------------------------------------------------------------- */
+ */
 void 
 TryToIdentifyItem( item* IdentifyItem )
 {
@@ -1298,9 +1298,9 @@ TryToIdentifyItem( item* IdentifyItem )
     return;
 }; // void TryToIdentifyItem( item* IdentifyItem )
 
-/* ----------------------------------------------------------------------
+/**
  * This function tries to sell the item given as parameter.
- * ---------------------------------------------------------------------- */
+ */
 void 
 TryToSellItem( item* SellItem , int WithBacktalk , int AmountToSellAtMost )
 {
@@ -1393,7 +1393,7 @@ please inform the developers...",
     }
 }; // void TryToSellItem( item* SellItem )
 
-/* ----------------------------------------------------------------------
+/**
  * This function tries to put an item into the inventory, either by adding
  * this items multiplicity to the multiplicity of an already present item
  * of the very same type or by allocating a new inventory item for this
@@ -1402,7 +1402,7 @@ please inform the developers...",
  * In the case that both methods couldn't succeed, a FALSE value is 
  * returned to let the caller know, that this procedure has failed.
  * Otherwise TRUE will indicate that everything is ok and went well.
- * ---------------------------------------------------------------------- */
+ */
 int
 TryToIntegrateItemIntoInventory ( item* BuyItem , int AmountToBuyAtMost )
 {
@@ -1484,11 +1484,11 @@ TryToIntegrateItemIntoInventory ( item* BuyItem , int AmountToBuyAtMost )
     
 }; // void TryToIntegrateItemIntoInventory ( item* BuyItem , int AmountToBuyAtMost )
 
-/* ----------------------------------------------------------------------
+/**
  * This function tries to buy the item given as parameter.  Currently
  * is just drops the item to the floor under the influencer and will
  * reduce influencers money.
- * ---------------------------------------------------------------------- */
+ */
 void 
 TryToTakeItem( item* BuyItem , int AmountToBuyAtMost )
 {
@@ -1519,11 +1519,11 @@ TryToTakeItem( item* BuyItem , int AmountToBuyAtMost )
     }
 }; // void TryToTakeItem( item* BuyItem , int AmountToBuyAtMost )
 
-/* ----------------------------------------------------------------------
+/**
  * This function tries to buy the item given as parameter.  Currently
  * is just drops the item to the floor under the influencer and will
  * reduce influencers money.
- * ---------------------------------------------------------------------- */
+ */
 void 
 TryToBuyItem( item* BuyItem , int WithBacktalk , int AmountToBuyAtMost )
 {
@@ -1591,13 +1591,13 @@ TryToBuyItem( item* BuyItem , int WithBacktalk , int AmountToBuyAtMost )
     
 }; // void TryToBuyItem( item* BuyItem )
 
-/* ----------------------------------------------------------------------
+/**
  * This is some preparation for the shop interface.  We assemble some
  * pointer list with the stuff Tux has to sell and the stuff the shop
  * has to offer.
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 InitTradeWithCharacter( int CharacterCode )
 {
@@ -1702,13 +1702,13 @@ InitTradeWithCharacter( int CharacterCode )
     
 }; // void InitTradeWithCharacter( void )
 
-/* ----------------------------------------------------------------------
+/**
  * This is the menu, where you can select items for repair.
  *
  * NOTE:  THIS CODE IS CURRENTLY NOT IN USE, BECAUSE WE HAVE A GENERAL
  *        SHOP INTERFACE SIMILAR TO THE CHEST INTERFACE FOR THIS PURPOSE.
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 Repair_Items( void )
 {

@@ -56,14 +56,14 @@ Play_Spell_DetectItems_Sound ()
 
 
 
-/* ----------------------------------------------------------------------
+/**
  * This function plays a voice sample, stating that not enough power
  * (strength) is available to use a certain item.
  * The sample must of course only be played, if it hasn't been played just
  * milliseconds before, so a check is made to see that the file is played
  * with at least a certain interval in between to the last occasion of the
  * file being played.
- * ---------------------------------------------------------------------- */
+ */
 void
 No_Ammo_Sound (void)
 {
@@ -79,14 +79,14 @@ No_Ammo_Sound (void)
 }//void No_Ammo_Sound ( void )
 
 
-/* ----------------------------------------------------------------------
+/**
  * This function plays a voice sample, stating that not enough power
  * (strength) is available to use a certain item.
  * The sample must of course only be played, if it hasn't been played just
  * milliseconds before, so a check is made to see that the file is played
  * with at least a certain interval in between to the last occasion of the
  * file being played.
- * ---------------------------------------------------------------------- */
+ */
 void
 Not_Enough_Power_Sound (void)
 {
@@ -104,14 +104,14 @@ Not_Enough_Power_Sound (void)
 
 
 
-/* ----------------------------------------------------------------------
+/**
  * This function plays a voice sample, stating that not enough power
  * distribution (dexterity) is available to use a certain item.
  * The sample must of course only be played, if it hasn't been played just
  * milliseconds before, so a check is made to see that the file is played
  * with at least a certain interval in between to the last occasion of the
  * file being played.
- * ---------------------------------------------------------------------- */
+ */
 void
 Not_Enough_Dist_Sound (void)
 {
@@ -129,14 +129,14 @@ Not_Enough_Dist_Sound (void)
 
 
 
-/* ----------------------------------------------------------------------
+/**
  * This function plays a voice sample, stating that not enough magical
  * energy (force) is available to cast a certain spell.
  * The sample must of course only be played, if it hasn't been played just
  * milliseconds before, so a check is made to see that the file is played
  * with at least a certain interval in between to the last occasion of the
  * file being played.
- * ---------------------------------------------------------------------- */
+ */
 void
 Not_Enough_Mana_Sound (void)
 {
@@ -153,14 +153,14 @@ Not_Enough_Mana_Sound (void)
 
 }
 
-/* ----------------------------------------------------------------------
+/**
  * Whenever the Tux meets someone in the game for the very first time, 
  * this enemy or friend will issue the first-time greeting.
  * Depending on whether that is typically a hostile unit or not, we play
  * the corresponding sound from preloaded memory or, if there is no combat
  * to expect, by loading it freshly from disk and then forgeting about it
  * again.
- * ---------------------------------------------------------------------- */
+ */
 void
 PlayGreetingSound (int SoundCode)
 {
@@ -234,11 +234,11 @@ PlayGreetingSound (int SoundCode)
 }
 
 
-/* ----------------------------------------------------------------------
+/**
  * Whenever a bot dies, that should create a dying sound.  But so far,
  * this will be done only for fully animated bots, since the other bots
  * just explode and that has a sound of it's own.
- * ---------------------------------------------------------------------- */
+ */
 void
 play_death_sound_for_bot (enemy * ThisRobot)
 {
@@ -262,11 +262,11 @@ play_death_sound_for_bot (enemy * ThisRobot)
 
 }
 
-/* ----------------------------------------------------------------------
+/**
  * Whenever a bot dies, that should create a dying sound.  But so far,
  * this will be done only for fully animated bots, since the other bots
  * just explode and that has a sound of it's own.
- * ---------------------------------------------------------------------- */
+ */
 void
 play_attack_animation_sound_for_bot (enemy * ThisRobot)
 {
@@ -290,10 +290,10 @@ play_attack_animation_sound_for_bot (enemy * ThisRobot)
 }
 
 
-/* ----------------------------------------------------------------------
+/**
  * Whenever a bot starts to attack the Tux, he'll issue the attack cry.
  * This is done here, and no respect to loading time issues for now...
- * ---------------------------------------------------------------------- */
+ */
 void
 play_enter_attack_run_state_sound (int SoundCode)
 {
@@ -358,10 +358,10 @@ play_enter_attack_run_state_sound (int SoundCode)
     }
 }
 
-/* ----------------------------------------------------------------------
+/**
  * Whenever an item is placed or taken, we'll issue a sound attached to
  * that item. 
- * ---------------------------------------------------------------------- */
+ */
 void
 play_item_sound (int item_type)
 {
@@ -386,12 +386,12 @@ play_item_sound (int item_type)
 
 }
 
-/* ----------------------------------------------------------------------
+/**
  * This function generates a voice output stating that the influencer 
  * can't carry any more right now.  Also this function will see to it,
  * that the sentence is not repeated until 4 seconds after the previous
  * cant-carry-sentence have passed.
- * ---------------------------------------------------------------------- */
+ */
 void
 CantCarrySound (void)
 {
@@ -420,9 +420,9 @@ CantCarrySound (void)
     }
 }
 
-/* ----------------------------------------------------------------------
+/**
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 TransferSound (void)
 {
@@ -431,9 +431,9 @@ TransferSound (void)
 
 ;				// void TransferSound (void)
 
-/* ----------------------------------------------------------------------
+/**
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 Mission_Status_Change_Sound (void)
 {
@@ -441,9 +441,9 @@ Mission_Status_Change_Sound (void)
 }
 
 
-/* ----------------------------------------------------------------------
+/**
  * When the Tux uses the 'teleport home' spell, this sound will be played.
- * ---------------------------------------------------------------------- */
+ */
 void
 teleport_arrival_sound (void)
 {
@@ -451,20 +451,20 @@ teleport_arrival_sound (void)
   play_sample_using_WAV_cache ("effects/new_teleporter_sound.ogg", FALSE, FALSE);
 }
 
-/* ----------------------------------------------------------------------
+/**
  * When the Tux casts a healing spell, this sound will be played.
- * ---------------------------------------------------------------------- */
+ */
 void
 healing_spell_sound (void)
 {
   play_sample_using_WAV_cache ("effects/new_healing_sound.ogg", FALSE, FALSE);
 }
 
-/* ----------------------------------------------------------------------
+/**
  * Some items, that can be applied inside the running game, like e.g. 
  * spellbooks, do have a certain character stat requirement.  If that stat
  * requirement isn't met, a sound will be played, which uses this function.
- * ---------------------------------------------------------------------- */
+ */
 void
 application_requirements_not_met_sound (void)
 {
@@ -481,12 +481,12 @@ GotHitSound (void)
 
 
 
-/* ----------------------------------------------------------------------
+/**
  * Whenever the Tux gets hit, we *might* play a sound sample for the hit,
  * depending on random results.  Since we don't want to hear the same 
  * sound sample all the time, there is a selection of possible files 
  * one of which will be selected at random.
- * ---------------------------------------------------------------------- */
+ */
 void
 tux_scream_sound (void)
 {
@@ -516,10 +516,10 @@ tux_scream_sound (void)
 }
 
 
-/* ----------------------------------------------------------------------
+/**
  * We add a matching group of sounds here for the menu movements.  It's
  * a 'ping-ping' sound, well, not super, but where do we get a better one?
- * ---------------------------------------------------------------------- */
+ */
 void
 MenuItemSelectedSound (void)
 {
@@ -540,10 +540,10 @@ MoveMenuPositionSound (void)
 
 
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 ThouArtDefeatedSound (void)
 {
@@ -553,12 +553,12 @@ ThouArtDefeatedSound (void)
 }
 
 
-/* ----------------------------------------------------------------------
+/**
  * When the Tux makes a weapon swing, this will either cause a swinging
  * sound and then a 'hit' sound or it will just be a swinging sound.  The
  * following functions do this, also creating some variation in the choice
  * of sample used.
- * ---------------------------------------------------------------------- */
+ */
 void
 play_melee_weapon_hit_something_sound (void)
 {
@@ -604,12 +604,12 @@ play_melee_weapon_missed_sound (void)
 }
 
 
-/* ----------------------------------------------------------------------
+/**
  * This function should generate the sound that belongs to a certain
  * (ranged) weapon.  This does not include the Tux swinging/swinging_and_hit
  * sounds, when Tux is using melee weapons, but it does include ranged
  * weapons and the non-animated bot weapons too.
- * ---------------------------------------------------------------------- */
+ */
 void
 Fire_Bullet_Sound (int BulletType)
 {
@@ -662,11 +662,11 @@ Fire_Bullet_Sound (int BulletType)
 }
 
 
-/* ----------------------------------------------------------------------
+/**
  * For the takeover game, there are 4 main sounds.  We handle them from
  * the cache, even if that might also be possible as 'once_needed' type
  * sound samples...
- * ---------------------------------------------------------------------- */
+ */
 void
 Takeover_Set_Capsule_Sound (void)
 {
@@ -693,9 +693,9 @@ Takeover_Game_Lost_Sound (void)
 
 
 
-/* ----------------------------------------------------------------------
+/**
  * 
- * ---------------------------------------------------------------------- */
+ */
 void
 BounceSound (void)
 {
@@ -703,28 +703,28 @@ BounceSound (void)
 }
 
 
-/* ----------------------------------------------------------------------
+/**
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 DruidBlastSound (void)
 {
   play_sample_using_WAV_cache ("effects/Blast_Sound_0.ogg", FALSE, FALSE);
 }
 
-/* ----------------------------------------------------------------------
+/**
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 ExterminatorBlastSound (void)
 {
   play_sample_using_WAV_cache ("effects/Blast_Sound_0.ogg", FALSE, FALSE);
 }
 
-/* ----------------------------------------------------------------------
+/**
  * 
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 PlayLevelCommentSound (int levelnum)
 {
@@ -742,10 +742,10 @@ PlayLevelCommentSound (int levelnum)
 }
 
 
-/* ----------------------------------------------------------------------
+/**
  * Whenever an enemy is hit by the tux with a melee weapon, then the
  * following sound is played...
- * ---------------------------------------------------------------------- */
+ */
 void
 PlayEnemyGotHitSound (int enemytype)
 {
@@ -764,10 +764,10 @@ PlayEnemyGotHitSound (int enemytype)
 }
 
 
-/* ----------------------------------------------------------------------
+/**
  * This function plays a sound of a bullet being reflected. It is only
  * used, when a bullets is compensated by the tux armour.
- * ---------------------------------------------------------------------- */
+ */
 void
 BulletReflectedSound (void)
 {
@@ -775,7 +775,7 @@ BulletReflectedSound (void)
 }
 
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */

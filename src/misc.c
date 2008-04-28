@@ -23,9 +23,9 @@
  *  MA  02111-1307  USA
  *
  */
-/* ----------------------------------------------------------------------
+/**
  * This file contains miscellaeous helpful functions for Freedroid.
- * ---------------------------------------------------------------------- */
+ */
 /*
  * This file has been checked for remains of german comments in the code
  * I you still find some, please just kill it mercilessly.
@@ -289,9 +289,9 @@ mouse_press_button AllMousePressButtons[ MAX_MOUSE_PRESS_BUTTONS ] =
 struct sigaction new_action, old_action;
 #endif
 
-/* ---------------------------------------------------------------------- 
+/** 
  * Obtain a backtrace and print it to stdout.
- * ---------------------------------------------------------------------- */
+ */
 void
 print_trace ( int signum )
 {
@@ -353,7 +353,7 @@ print_trace ( int signum )
 }; // void print_trace ( int sig_num )
 
 
-/* ---------------------------------------------------------------------- 
+/** 
  * In this function, we move the normal SIGSEGV handler (and other signal
  * handlers to our own handler stuff, which will print out a backtrace
  * of the preceeding function calls, so that we get some suitable debug
@@ -366,7 +366,7 @@ print_trace ( int signum )
  * For more documentation, see the GLIBC manual, Section 24.3.4 on signal
  * handling.
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 implant_backtrace_into_signal_handlers ( void )
 {
@@ -418,13 +418,13 @@ Now catching SIGSEGV: " );
 
 }; // void implant_backtrace_into_signal_handlers ( void )
 
-/* ----------------------------------------------------------------------
+/**
  * If we want the screen resolution to be a runtime option and not a 
  * compile time option any more, we must not use it as a constant.  That
  * means we must adapt the button positions to the current screeen 
  * resolution at runtime to, so we do it in this function, which will be
  * involed at program startup.
- * ---------------------------------------------------------------------- */
+ */
 void
 adapt_button_positions_to_screen_resolution( void )
 {
@@ -483,10 +483,10 @@ adapt_button_positions_to_screen_resolution( void )
 
 }; // void adapt_button_positions_to_screen_resolution( void )
 
-/* ----------------------------------------------------------------------
+/**
  * This function checks if a given screen position lies within the 
  * inventory screen toggle button or not.
- * ---------------------------------------------------------------------- */
+ */
 int
 MouseCursorIsInRect ( SDL_Rect* our_rect , int x , int y )
 {
@@ -507,10 +507,10 @@ MouseCursorIsInRect ( SDL_Rect* our_rect , int x , int y )
     
 }; // int MouseCursorIsInRect( SDL_rect* our_rect , int x , int y )
 
-/* ----------------------------------------------------------------------
+/**
  * This function checks if a given screen position lies within the 
  * inventory screen toggle button or not.
- * ---------------------------------------------------------------------- */
+ */
 int
 MouseCursorIsOnButton( int ButtonIndex , int x , int y )
 {
@@ -550,10 +550,10 @@ button index given exceeds the number of buttons defined in freedroid.",
 
 }; // int MouseCursorIsOnButton( int ButtonIndex , int x , int y )
 
-/* ----------------------------------------------------------------------
+/**
  * This function blits a button to the screen.  The button must have been
  * defined prior to this in the above button list.
- * ---------------------------------------------------------------------- */
+ */
 void 
 UpdateScreenOverButtonFromList ( int ButtonIndex )
 { 
@@ -565,10 +565,10 @@ UpdateScreenOverButtonFromList ( int ButtonIndex )
 		   );
 }; // void UpdateScreenOverButtonFromList ( int ButtonIndex )
 
-/* ----------------------------------------------------------------------
+/**
  * This function blits a button to the screen.  The button must have been
  * defined prior to this in the above button list.
- * ---------------------------------------------------------------------- */
+ */
 void 
 ShowGenericButtonFromList ( int ButtonIndex )
 { 
@@ -779,13 +779,13 @@ find_file (const char *fname, const char *subdir, char * File_Path, int silent)
 }; // char * find_file ( ... )
 
 
-/* ----------------------------------------------------------------------
+/**
  * This function realises the Pause-Mode: the game process is halted,
  * while the graphics and animations are not.  This mode 
  * can further be toggled from PAUSE to CHEESE, which is
  * a feature from the original program that should probably
  * allow for better screenshots.
- * ---------------------------------------------------------------------- */
+ */
 void
 Pause ( void )
 {
@@ -837,7 +837,7 @@ Pause ( void )
 
 }; // void Pause ( void ) 
 
-/* ----------------------------------------------------------------------
+/**
  * This function starts the time-taking process.  Later the results
  * of this function will be used to calculate the current framerate
  * 
@@ -845,7 +845,7 @@ Pause ( void )
  * ticks.  This seems LESS ACCURATE.  The other one uses the
  * standard ansi c gettimeofday functions and are MORE ACCURATE
  * but less convenient to use.
- * ---------------------------------------------------------------------- */
+ */
 void 
 StartTakingTimeForFPSCalculation(void)
 {
@@ -881,7 +881,7 @@ StartTakingTimeForFPSCalculation(void)
   
 }; // void StartTakingTimeForFPSCalculation(void)
 
-/* ----------------------------------------------------------------------
+/**
  * This function computes the framerate that has been experienced
  * in this frame.  It will be used to correctly calibrate all 
  * movements of game objects.
@@ -893,7 +893,7 @@ StartTakingTimeForFPSCalculation(void)
  *        ticks.  This seems LESS ACCURATE.  The other one uses the
  *        standard ansi c gettimeofday functions and are MORE ACCURATE
  *        but less convenient to use.
- * ---------------------------------------------------------------------- */
+ */
 void 
 ComputeFPSForThisFrame(void)
 {
@@ -974,7 +974,7 @@ ComputeFPSForThisFrame(void)
 
 }; // void ComputeFPSForThisFrame(void)
 
-/* ----------------------------------------------------------------------
+/**
  *
  * This function is the key to independence of the framerate for various game elements.
  * It returns the average time needed to draw one frame.
@@ -993,7 +993,7 @@ ComputeFPSForThisFrame(void)
  * This counter is most conveniently set via the function Activate_Conservative_Frame_Computation,
  * which can be conveniently called from eveywhere.
  *
- * ---------------------------------------------------------------------- */
+ */
 float
 Frame_Time (void)
 {
@@ -1017,7 +1017,7 @@ Get_Average_FPS ( void )
   return ( (int) ( 1.0 / Overall_Average ) );
 }; // int Get_Average_FPS( void )
 
-/* ----------------------------------------------------------------------
+/**
  * 
  * With framerate computation, there is a problem when some interuption occurs, like e.g.
  * the options menu is called or the debug menu is called or the console or the elevator
@@ -1031,7 +1031,7 @@ Get_Average_FPS ( void )
  * This counter is most conveniently set via the function Activate_Conservative_Frame_Computation,
  * which can be conveniently called from eveywhere.
  *
- * ---------------------------------------------------------------------- */
+ */
 void 
 Activate_Conservative_Frame_Computation(void)
 {
@@ -1043,10 +1043,10 @@ Activate_Conservative_Frame_Computation(void)
 
 }; // void Activate_Conservative_Frame_Computation(void)
 
-/* ----------------------------------------------------------------------
+/**
  * This function is used to generate an integer in range of all
  * numbers from 0 to UpperBound.
- * ---------------------------------------------------------------------- */
+ */
 int
 MyRandom (int UpperBound)
 {
@@ -1073,10 +1073,10 @@ MyRandom (int UpperBound)
 }; // int MyRandom ( int UpperBound ) 
 
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 move_all_items_in_area ( Level source_level ,
 			 float source_start_x , float source_start_y , 
@@ -1121,7 +1121,7 @@ move_all_items_in_area ( Level source_level ,
 
 }; // void move_all_items_in_area ( ... )
 
-/* ----------------------------------------------------------------------
+/**
  * It might be the case that some items come to lie on the floor inside
  * the interface area of two levels.  That might cause strange problems
  * when trying to get close in order to pick up the items.  In face we've
@@ -1130,7 +1130,7 @@ move_all_items_in_area ( Level source_level ,
  * interface areas will be moved to the level where the Tux is.  This is
  * not compatible with multi-player game.  But multiplayer game is so far
  * away that we need not worry about this possibility right now...
- * ---------------------------------------------------------------------- */
+ */
 void
 move_all_items_to_level ( int target_level )
 {
@@ -1245,10 +1245,10 @@ move_all_items_to_level ( int target_level )
 
 }; // void move_all_items_to_level ( int levelnum )
 
-/* ----------------------------------------------------------------------
+/**
  * This function teleports the influencer to a new position on the
  * ship.  THIS CAN BE A POSITION ON A DIFFERENT LEVEL.
- * ---------------------------------------------------------------------- */
+ */
 void
 Teleport ( int LNum , float X , float Y , int with_sound_and_fading )
 {
@@ -1400,11 +1400,11 @@ This indicates an error in the map system of Freedroid.",
 
 }; // void Teleport( ... ) 
 
-/* ----------------------------------------------------------------------
+/**
  * I'd like to use the function strnlen in LoadSettings, but this would
  * be a gnu extension. so I have to write this function myselt in order
  * to keep the code completely portable.
- * ---------------------------------------------------------------------- */
+ */
 int
 mystrnlen ( char* MyString , int MyMaxlen )
 {
@@ -1608,10 +1608,10 @@ SaveGameConfig (void)
 }; // int SaveGameConfig ( void )
 
 
-/* ----------------------------------------------------------------------
+/**
  * This function is used for terminating freedroid.  It will close
  * the SDL submodules and exit.
- * ---------------------------------------------------------------------- */
+ */
 void
 Terminate (int ExitCode)
 {
@@ -1660,14 +1660,14 @@ Terminate (int ExitCode)
     return;
 }; // void Terminate ( int ExitCode )
 
-/* ----------------------------------------------------------------------
+/**
  * Since numbers are not so very telling and can easily get confusing
  * we do not use numbers to reference the action from a trigger but 
  * rather we use labels already in the mission file.  However internally
  * the game needs numbers as a pointer or index in a list and therefore
  * this functions was added to go from a label to the corresponding 
  * number entry.
- * ---------------------------------------------------------------------- */
+ */
 int
 GiveNumberToThisActionLabel ( char* ActionLabel )
 {
@@ -1699,19 +1699,19 @@ be identified as valid reference to an existing action.",
   return ( i );
 }; // int GiveNumberToThisActionLabel ( char* ActionLabel )
 
-/* ----------------------------------------------------------------------
+/**
  * This function executes an action with a label.
- * ---------------------------------------------------------------------- */
+ */
 void 
 ExecuteActionWithLabel ( char* ActionLabel )
 {
     ExecuteEvent( GiveNumberToThisActionLabel ( ActionLabel ) );
 }; // void ExecuteActionWithLabel ( char* ActionLabel )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 obstacle* 
 give_pointer_to_obstacle_with_label ( char* obstacle_label ) 
 {
@@ -1765,10 +1765,10 @@ The obstacle label given was NOT found in any levels obstacle label list." ,
 
 }; // obstacle* give_pointer_to_obstacle_with_label ( char* obstacle_label ) 
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 int
 give_level_of_obstacle_with_label ( char* obstacle_label ) 
 {
@@ -1821,9 +1821,9 @@ The obstacle label given was NOT found in any levels obstacle label list." ,
 
 }; // int give_level_of_obstacle_with_label ( char* obstacle_label ) 
 
-/* ----------------------------------------------------------------------
+/**
  * 
- * ---------------------------------------------------------------------- */
+ */
 void 
 ExecuteEvent ( int EventNumber )
 {
@@ -1911,7 +1911,7 @@ ExecuteEvent ( int EventNumber )
 	}
 }; // void ExecuteEvent ( int EventNumber )
 
-/* ----------------------------------------------------------------------
+/**
  *
  * This function checks for triggered events & statements.  Those events are
  * usually entered via the mission file and read into the apropriate
@@ -1922,7 +1922,7 @@ ExecuteEvent ( int EventNumber )
  * In addition, statements are started, if the influencer is at the 
  * right location for them.
  *
- * ---------------------------------------------------------------------- */
+ */
 void 
 CheckForTriggeredEventsAndStatements ( )
 {

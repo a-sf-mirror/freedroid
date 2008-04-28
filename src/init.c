@@ -24,9 +24,9 @@
  *
  */
 
-/* ----------------------------------------------------------------------
+/**
  * (Not all of the) Initialisation routines for FreeDroid.
- * ---------------------------------------------------------------------- */
+ */
 
 #define _init_c
 
@@ -49,7 +49,7 @@ void Init_Game_Data(void);
 void Get_Bullet_Data ( char* DataPointer );
 
 
-/* ----------------------------------------------------------------------
+/**
  * The following function is NOT 'standard' C but rather a GNU extention
  * to the C standards.  We *DON'T* want to use such things, but in this
  * case it helps debugging purposes of floating point operations just so
@@ -62,7 +62,7 @@ void Get_Bullet_Data ( char* DataPointer );
  * debugging.  Proper documentation can be found in the GNU C Library,
  * section about 'Arithmethic', subsection on floating point control
  * functions.
- * ---------------------------------------------------------------------- */
+ */
 #if ! defined __gnu_linux__
 /* turn off these functions where they are not present */
 #define feenableexcept(X) {}
@@ -72,10 +72,10 @@ extern int feenableexcept (int excepts);
 extern int fedisableexcept (int TheExceptionFlags );
 #endif
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 static void
 clear_out_arrays_for_fresh_game ( void )
 {
@@ -108,7 +108,7 @@ clear_out_arrays_for_fresh_game ( void )
 
 }; // void clear_out_arrays_for_fresh_game ( void )
 
-/* ---------------------------------------------------------------------- 
+/** 
  * Each character inside the game can have a (lengthly) description of
  * his appearance and the like.  This is somewhat different from the mere
  * description of the character model, since a character model may be 
@@ -117,7 +117,7 @@ clear_out_arrays_for_fresh_game ( void )
  * cause those are more unique.  At startup, for every dialog section
  * we set up a character description.  Initializing those needs to be
  * done only once.  We do it here.
- * ---------------------------------------------------------------------- */
+ */
 static void
 init_character_descriptions ( void )
 {
@@ -188,10 +188,10 @@ init_character_descriptions ( void )
 
 }; // void init_character_descriptions ( void )
 
-/* ---------------------------------------------------------------------- 
+/** 
  * This function displays a startup status bar that shows a certain
  * percentage of loading done.
- * ---------------------------------------------------------------------- */
+ */
 void 
 ShowStartupPercentage ( int Percentage )
 {
@@ -258,14 +258,14 @@ This means a severe bug...",
     
 }; // void ShowStartupPercentage ( int Percentage )
 
-/* ----------------------------------------------------------------------
+/**
  * This function can be used to play a generic title file, containing 
  * 
  *  1. a background picture name
  *  2. a background music to play
  *  3. some text to display in a scrolling fashion
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 PlayATitleFile ( char* Filename )
 {
@@ -400,9 +400,9 @@ Get_Bullet_Data ( char* DataPointer )
     DebugPrintf (1, "\nEnd of Get_Bullet_Data ( char* DataPointer ) reached.");
 } // void Get_Bullet_Data ( char* DataPointer );
 
-/* ----------------------------------------------------------------------
+/**
  * Delete all events and event triggers
- * ---------------------------------------------------------------------- */
+ */
 static void
 clear_out_all_events_and_actions( void )
 {
@@ -461,10 +461,10 @@ clear_out_all_events_and_actions( void )
 #define MODIFY_OBSTACLE_WITH_LABEL_STRING "modify_obstacle_with_label=\""
 #define MODIFY_OBSTACLE_TO_TYPE_STRING "modify_obstacle_to_type="
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 static void
 decode_all_event_actions ( char* EventSectionPointer )
 {
@@ -567,10 +567,10 @@ decode_all_event_actions ( char* EventSectionPointer )
 
 }; // void decode_all_event_actions ( char* EventSectionPointer )
 
-/* ---------------------------------------------------------------------- 
+/** 
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 static void
 decode_all_event_triggers ( char* EventSectionPointer )
 {
@@ -625,10 +625,10 @@ decode_all_event_triggers ( char* EventSectionPointer )
 
 }; // void decode_all_event_triggers ( char* EventSectionPointer )
 
-/* ----------------------------------------------------------------------
+/**
  * This function reads in the game events, i.e. the locations and conditions
  * under which some actions are triggered.
- * ---------------------------------------------------------------------- */
+ */
 void 
 GetEventsAndEventTriggers ( const char* EventsAndEventTriggersFilename )
 {
@@ -664,10 +664,10 @@ char fpath[2048];
 }; // void Get_Game_Events ( char* EventSectionPointer );
 
 
-/* ----------------------------------------------------------------------
+/**
  * This function reads the descriptions of the different programs
  * (source and blobs) that are used for magic
- * ---------------------------------------------------------------------- */
+ */
 static int Get_Programs_Data ( char * DataPointer )
 {
     char *ProgramPointer;
@@ -763,10 +763,10 @@ There are more skills defined, than the maximum number specified in the code!",
 return 0;
 }
 
-/* ----------------------------------------------------------------------
+/**
  * This function loads all the constant concerning robot archetypes
  * from a section in memory to the actual archetype structures.
- * ---------------------------------------------------------------------- */
+ */
 static void
 Get_Robot_Data ( void* DataPointer )
 {
@@ -1516,10 +1516,10 @@ answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.",
     
 }; // void Get_Item_Data ( char* DataPointer );
 
-/* ----------------------------------------------------------------------
+/**
  * This function loads all the constant variables of the game from
  * a data file, using mainly subroutines which do the main work.
- * ---------------------------------------------------------------------- */
+ */
 void
 Init_Game_Data ()
 {
@@ -1811,9 +1811,9 @@ output.",
 }; // ParseCommandLine (int argc, char *const argv[])
 
 
-/* ----------------------------------------------------------------------
+/**
  * Now we initialize the skills of the new hero...
- * ---------------------------------------------------------------------- */
+ */
 void
 InitInfluencerStartupSkills( void )
 {
@@ -1837,11 +1837,11 @@ InitInfluencerStartupSkills( void )
 
 }; // void InitInfluencerStartupSkills( )
 
-/* ----------------------------------------------------------------------
+/**
  * Now we disable all chat flags (i.e. the Tux hasn't spoken to
  * that person at all) for all the non-player-characters in the game,
  * except for the 0-chat alternative, which is always set to open.  WHY???????
- * ---------------------------------------------------------------------- */
+ */
 void
 InitInfluencerChatFlags( void )
 {
@@ -1858,11 +1858,11 @@ InitInfluencerChatFlags( void )
 
 }; // void InitInfluencerChatFlags( )
 
-/* ----------------------------------------------------------------------
+/**
  * When a completely fresh and new game is started, some more or less
  * harmless status variables need to be initialized.  This is what is
  * done in here.
- * ---------------------------------------------------------------------- */
+ */
 void
 InitHarmlessTuxStatusVariables( )
 {
@@ -2079,13 +2079,13 @@ PrepareStartOfNewCharacter ( void )
 
 }; // void PrepareStartOfNewCharacter ( char* MissionName )
 
-/* ----------------------------------------------------------------------
+/**
  * This function sets the GameConfig back to the default values, NOT THE
  * VALUES STORED IN THE USERS CONFIG FILE.  This function is useful if 
  * no config file if found or if the config file turns out to originate
  * from a different version of freedroid, which could be dangerous as
  * well.
- * ---------------------------------------------------------------------- */
+ */
 void 
 ResetGameConfigToDefaultValues ( void )
 {
@@ -2376,14 +2376,14 @@ I will not be able to load or save games or configurations\n\
     
 }; // void InitFreedroid ( void ) 
 
-/* ----------------------------------------------------------------------
+/**
  * This function displayes the last seconds of the game when the influencer
  * has actually been killed.  It generates some explosions and waits for
  * some seconds, where the user can reload his latest game, or after that
  * returns to finally quit the inner game loop and the program will 
  * (outside this function) ask for a completely new game or loading a different
  * saved game or quit as in the very beginning of the game.
- * ---------------------------------------------------------------------- */
+ */
 void
 ThouArtDefeated (void)
 {
@@ -2470,14 +2470,14 @@ ThouArtDefeated (void)
 
 }; // void ThouArtDefeated(void)
 
-/* ----------------------------------------------------------------------
+/**
  * This function displayes the last seconds of the game when the influencer
  * has actually been killed.  It generates some explosions and waits for
  * some seconds, where the user can reload his latest game, or after that
  * returns to finally quit the inner game loop and the program will 
  * (outside this function) ask for a completely new game or loading a different
  * saved game or quit as in the very beginning of the game.
- * ---------------------------------------------------------------------- */
+ */
 void
 ThouHastWon (void)
 {

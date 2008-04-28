@@ -22,9 +22,9 @@
  *  MA  02111-1307  USA
  */
 
-/* ----------------------------------------------------------------------
+/**
  * This file contains everything that has got to do with the automap.
- * ---------------------------------------------------------------------- */
+ */
 
 
 #include "system.h"
@@ -42,9 +42,9 @@ int AUTOMAP_TEXTURE_HEIGHT=1024;
 #define AUTOMAP_SQUARE_SIZE 3
 #define AUTOMAP_COLOR 0x0FFFF
 
-/* ----------------------------------------------------------------------
+/**
  * This function clears out the Automap data.
- * ---------------------------------------------------------------------- */
+ */
 void 
 ClearAutomapData( void )
 {
@@ -52,14 +52,14 @@ ClearAutomapData( void )
     
 }; // void ClearAutomapData ( void )
 
-/* ----------------------------------------------------------------------
+/**
  *
  * When OpenGL is used for graphics output, we use one single texture for 
  * the automap.  This texture will be updated and modified again and
  * again.  But this function just makes sure, that the texture has been
  * created at all, and it also checks against double-creation and such...
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 set_up_texture_for_automap ( void )
 {
@@ -145,14 +145,14 @@ set_up_texture_for_automap ( void )
 
 }; // void set_up_texture_for_automap ( void )
 
-/* ----------------------------------------------------------------------
+/**
  *
  * When OpenGL is used for graphics output, we use one single texture for 
  * the automap.  This texture will be updated and modified again and
  * again.  But this function just makes sure, that the texture has been
  * created at all, and it also checks against double-creation and such...
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 clear_automap_texture_completely ( void )
 {
@@ -210,7 +210,7 @@ else
 #endif
 }
 
-/* ----------------------------------------------------------------------
+/**
  *
  * This function should display the automap data, that was collected so
  * far, by the tux.
@@ -219,7 +219,7 @@ else
  * This is the method of choice when using SDL for graphics output.
  * For the OpenGL case, there is a completely different function...
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 show_automap_data_sdl ( void )
 {
@@ -332,10 +332,10 @@ show_automap_data_sdl ( void )
 
 }; // void show_automap_data_sdl ( void )
 
-/* ----------------------------------------------------------------------
+/**
  * This function updated the automap texture, such that all info from the
  * current square is on the automap.
- * ---------------------------------------------------------------------- */
+ */
 void
 automap_update_texture_for_square ( int x , int y ) 
 {
@@ -389,10 +389,10 @@ automap_update_texture_for_square ( int x , int y )
 
 }; // void automap_update_texture_for_square ( int x , int y ) 
 
-/* ----------------------------------------------------------------------
+/**
  * This function does the effect of a 'magic mapping scroll' in Nethack,
  * i.e. all the map becomes visible on the automap.
- * ---------------------------------------------------------------------- */
+ */
 void
 full_update_of_automap_texture ( void )
 {
@@ -419,12 +419,12 @@ full_update_of_automap_texture ( void )
     
 }; // void full_update_of_automap_texture ( void )
 
-/* ----------------------------------------------------------------------
+/**
  * When an old level is re-visited, the automap texture must be cleared
  * because it has still all the info from another level.  But after that
  * the map is fresh.  Still there should be some info, since the Tux has
  * been here before.  So we restore the info, using the data from the
- * ---------------------------------------------------------------------- */
+ */
 void
 insert_old_map_info_into_texture ( void )
 {
@@ -461,10 +461,10 @@ insert_old_map_info_into_texture ( void )
 
 }; // void insert_old_map_info_into_texture ( void )
 
-/* ----------------------------------------------------------------------
+/**
  * This function does the effect of a 'magic mapping scroll' in Nethack,
  * i.e. all the map becomes visible on the automap.
- * ---------------------------------------------------------------------- */
+ */
 void
 local_update_of_automap_texture ( void )
 {
@@ -508,7 +508,7 @@ local_update_of_automap_texture ( void )
 }; // void local_update_of_automap_texture ( void )
 
 
-/* ----------------------------------------------------------------------
+/**
  *
  * This function should display the automap data, that was collected so
  * far, by the tux.
@@ -517,7 +517,7 @@ local_update_of_automap_texture ( void )
  * This is the method of choice when using SDL for graphics output.
  * For the OpenGL case, there is a completely different function...
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 show_automap_data_ogl ( float scale_factor )
 {

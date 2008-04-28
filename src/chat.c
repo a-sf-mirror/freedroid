@@ -24,11 +24,11 @@
  *
  */
 
-/* ----------------------------------------------------------------------
+/**
  * This file contains all functions dealing with the dialog interface,
  * including blitting the chat protocol to the screen and drawing the
  * right portrait images to the screen.
- * ---------------------------------------------------------------------- */
+ */
 
 #define _chat_c
 
@@ -51,10 +51,10 @@ char* chat_protocol = NULL ;
 
 void DoChatFromChatRosterData(int ChatPartnerCode , Enemy ChatDroid , int ClearProtocol );
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 push_or_pop_chat_roster ( int push_or_pop )
 {
@@ -84,11 +84,11 @@ There was an unrecognized parameter handled to this function." ,
 }; // push_or_pop_chat_roster ( int push_or_pop )
 
 
-/* ----------------------------------------------------------------------
+/**
  * This function finds the index of the array where the chat flags for
  * this person are stored.  It does this by exploiting on the (unique?)
  * dialog section to use entry of each (friendly) droid.
- * ---------------------------------------------------------------------- */
+ */
 int
 ResolveDialogSectionToChatFlagsIndex ( char* SectionName )
 {
@@ -145,12 +145,12 @@ corresponding chat flags array index." ,
 }; // int ResolveDialogSectionToChatFlagsIndex ( Enemy ChatDroid )
 
 
-/* ----------------------------------------------------------------------
+/**
  * This function plants a cookie, i.e. sets a new text string with the
  * purpose of serving as a flag.  These flags can be set/unset from the dialog
  * file and used from within there and they get stored and loaded with
  * every gave via the tux_t structure.
- * ---------------------------------------------------------------------- */
+ */
 void
 PlantCookie ( char* CookieString )
 {
@@ -236,12 +236,12 @@ This should not be possible without a severe bug in FreedroidRPG.",
 }; // void PlantCookie ( char* CookieString )
 
 
-/* ----------------------------------------------------------------------
+/**
  * This function deletes planted cookie, i.e. delete a text string with the
  * purpose of serving as a flag.  These flags can be set/unset from the dialog
  * file and used from within there and they get stored and loaded with
  * every gave via the tux_t structure.
- * ---------------------------------------------------------------------- */
+ */
 void
 DeleteCookie ( char* CookieString)
 {
@@ -282,11 +282,11 @@ DeleteCookie ( char* CookieString)
 }; // void DeleteCookie ( char* CookieString )
 
 
-/* ----------------------------------------------------------------------
+/**
  * This function restores all chat-with-friendly-droid variables to their
  * initial values.  This means, that NOT ALL FLAGS CAN BE SET HERE!!  Some
  * of them must remain at their current values!!! TAKE CARE!!
- * ---------------------------------------------------------------------- */
+ */
 void
 RestoreChatVariableToInitialValue( )
 {
@@ -304,12 +304,12 @@ RestoreChatVariableToInitialValue( )
     
 }; // void RestoreChatVariableToInitialValue( )
 
-/* ----------------------------------------------------------------------
+/**
  * During the Chat with a friendly droid or human, there is a window with
  * the full text transcript of the conversation so far.  This function is
  * here to display said text window and it's content, scrolled to the
  * position desired by the player himself.
- * ---------------------------------------------------------------------- */
+ */
 void
 display_current_chat_protocol ( int background_picture_code , enemy* ChatDroid , int with_update )
 {
@@ -385,11 +385,11 @@ display_current_chat_protocol ( int background_picture_code , enemy* ChatDroid ,
     
 }; // void display_current_chat_protocol ( int background_picture_code , int with_update )
 
-/* ----------------------------------------------------------------------
+/**
  * This function should first display a subtitle and then also a sound
  * sample.  It is not very sophisticated or complicated, but nevertheless
  * important, because this combination does indeed occur so often.
- * ---------------------------------------------------------------------- */
+ */
 void
 GiveSubtitleNSample( char* SubtitleText , char* SampleFilename , enemy* ChatDroid , int with_update )
 {
@@ -408,7 +408,7 @@ GiveSubtitleNSample( char* SubtitleText , char* SampleFilename , enemy* ChatDroi
     }
 }; // void GiveSubtitleNSample( char* SubtitleText , char* SampleFilename )
 
-/* ----------------------------------------------------------------------
+/**
  * Chat options may contain some extra commands, that specify things that
  * the engine is supposed to do, like open a shop interface, drop some
  * extra item to the inventory, remove an item from inventory, assign a
@@ -417,7 +417,7 @@ GiveSubtitleNSample( char* SubtitleText , char* SampleFilename , enemy* ChatDroi
  * This function is supposed to decode such extra commands and then to
  * execute the desired effect as well.
  *
- * ---------------------------------------------------------------------- */
+ */
 int
 ExecuteChatExtra ( char* ExtraCommandString , Enemy ChatDroid )
 {
@@ -790,10 +790,10 @@ ExecuteChatExtra ( char* ExtraCommandString , Enemy ChatDroid )
     return ( 0 );
 }; // int ExecuteChatExtra ( char* ExtraCommandString )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 make_sure_chat_portraits_loaded_for_this_droid ( Enemy this_droid )
 {
@@ -875,10 +875,10 @@ chat interface of Freedroid.  But:  Loading this file has ALSO failed.",
     
 }; // void make_sure_chat_portraits_loaded_for_this_droid ( Enemy this_droid )
 
-/* ----------------------------------------------------------------------
+/**
  * This function prepares the chat background window and displays the
  * image of the dialog partner and also sets the right font.
- * ---------------------------------------------------------------------- */
+ */
 void
 PrepareMultipleChoiceDialog ( Enemy ChatDroid , int with_flip )
 {
@@ -909,13 +909,13 @@ PrepareMultipleChoiceDialog ( Enemy ChatDroid , int with_flip )
         
 }; // void PrepareMultipleChoiceDialog ( int Enum )
 
-/* ----------------------------------------------------------------------
+/**
  * It is possible to specify a conditional goto command from the chat
  * information file 'Freedroid.dialogues'.  But in order to execute this
  * conditional jump, we need to know whether a statment given as pure text
  * string is true or not.  This function is intended to find out whether
  * it is true or not.
- * ---------------------------------------------------------------------- */
+ */
 int
 TextConditionIsTrue ( char* ConditionString )
 {
@@ -1081,10 +1081,10 @@ Freedroid was unable to determine the type of said condition.",
     return ( TRUE );
 }; // int TextConditionIsTrue ( char* ConditionString )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 int
 ProcessThisChatOption ( int MenuSelection , int ChatPartnerCode , Enemy ChatDroid )
 {
@@ -1205,12 +1205,12 @@ return (enddialog);
 }; // int ProcessThisChatOption ( int MenuSelection , int ChatPartnerCode , Enemy ChatDroid )
 
 
-/* ----------------------------------------------------------------------
+/**
  * This is the most important subfunction of the whole chat with friendly
  * droids and characters.  After the pure chat data has been loaded from
  * disk, this function is invoked to handle the actual chat interaction
  * and the dialog flow.
- * ---------------------------------------------------------------------- */
+ */
 void
 DoChatFromChatRosterData( int ChatPartnerCode , Enemy ChatDroid , int clear_protocol )
 {
@@ -1301,7 +1301,7 @@ DoChatFromChatRosterData( int ChatPartnerCode , Enemy ChatDroid , int clear_prot
     
 }; // void DoChatFromChatRosterData( ... )
 
-/* ----------------------------------------------------------------------
+/**
  * When the Tux (or rather the player :) ) clicks on a friendly droid,
  * a chat menu will be invoked to do the communication with that friendly
  * character.  However, before the chat menu even starts up, there is a
@@ -1310,7 +1310,7 @@ DoChatFromChatRosterData( int ChatPartnerCode , Enemy ChatDroid , int clear_prot
  * so the scene looks a bit more personal and realistic.  This function
  * handles that time interval and the two characters turning to each
  * other.
- * ---------------------------------------------------------------------- */
+ */
 void
 DialogPartnersTurnToEachOther ( Enemy ChatDroid )
 {
@@ -1456,12 +1456,12 @@ DialogPartnersTurnToEachOther ( Enemy ChatDroid )
     
 }; // void DialogPartnersTurnToEachOther ( Enemy ChatDroid )
 
-/* ----------------------------------------------------------------------
+/**
  * This is more or less the 'main' function of the chat with friendly 
  * droids and characters.  It is invoked directly from the user interface
  * function as soon as the player requests communication or there is a
  * friendly bot who rushes Tux and opens talk.
- * ---------------------------------------------------------------------- */
+ */
 void 
 ChatWithFriendlyDroid( Enemy ChatDroid )
 {

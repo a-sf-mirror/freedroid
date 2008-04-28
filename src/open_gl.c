@@ -23,9 +23,9 @@
  *
  */
 
-/* ----------------------------------------------------------------------
+/**
  * This file contains function relevant for OpenGL based graphics output.
- * ---------------------------------------------------------------------- */
+ */
 
 #define _open_gl_c
 
@@ -43,11 +43,11 @@
 #define COS_28 0.88294759
 #define SIN_28 0.46947156
 
-/* ----------------------------------------------------------------------
+/**
  * This is a wrapper for the SDL_Flip function, that will use either the
  * OpenGL buffer-swapping or the classic SDL flipper, depending on the
  * current output method, like OpenGL or not.
- * ---------------------------------------------------------------------- */
+ */
 int 
 our_SDL_flip_wrapper ( SDL_Surface *screen )
 {
@@ -59,10 +59,10 @@ our_SDL_flip_wrapper ( SDL_Surface *screen )
     return ( 0 );
 }; // int our_SDL_flip_wrapper ( SDL_Surface *screen )
 
-/* ----------------------------------------------------------------------
+/**
  * Here comes our SDL wrapper, that will either do a normal SDL blit or,
  * if OpenGL is present and enabled, use OpenGL to draw the scene.
- * ---------------------------------------------------------------------- */
+ */
 int
 our_SDL_blit_surface_wrapper(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_Rect *dstrect)
 {
@@ -167,10 +167,10 @@ our_SDL_blit_surface_wrapper(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *d
     
 }; // void our_SDL_blit_surface_wrapper(image, NULL, Screen, NULL)
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void 
 our_SDL_update_rect_wrapper ( SDL_Surface *screen, Sint32 x, Sint32 y, Sint32 w, Sint32 h ) 
 {
@@ -184,7 +184,7 @@ our_SDL_update_rect_wrapper ( SDL_Surface *screen, Sint32 x, Sint32 y, Sint32 w,
     }
 }; // void our_SDL_update_rect_wrapper ( SDL_Surface *screen, Sint32 x, Sint32 y, Sint32 w, Sint32 h ) 
 
-/* ----------------------------------------------------------------------
+/**
  * This function will draw a rectangle to the screen.  It will use either
  * OpenGL or SDL for graphics output, depending on output method currently
  * set for the game.
@@ -192,7 +192,7 @@ our_SDL_update_rect_wrapper ( SDL_Surface *screen, Sint32 x, Sint32 y, Sint32 w,
  * Note:  Rectangles in this sense have to be parallel to the screen
  *        coordinates.  Other rectangles can be drawn with the function
  *        blit_quad below (which only works with OpenGL output method).
- * ---------------------------------------------------------------------- */
+ */
 int 
 our_SDL_fill_rect_wrapper (SDL_Surface *dst, SDL_Rect *dstrect, Uint32 color)
 {
@@ -241,11 +241,11 @@ our_SDL_fill_rect_wrapper (SDL_Surface *dst, SDL_Rect *dstrect, Uint32 color)
 
 
 
-/* ----------------------------------------------------------------------
+/**
  * This function will draw quads, that are not nescessarily parallel to 
  * the screen coordinates to the screen.  It will currently only do 
  * something in OpenGL output method.
- * ---------------------------------------------------------------------- */
+ */
 int 
 blit_quad ( int x1 , int y1 , int x2, int y2, int x3, int y3, int x4 , int y4 , Uint32 color )
 {
@@ -277,9 +277,9 @@ blit_quad ( int x1 , int y1 , int x2, int y2, int x3, int y3, int x4 , int y4 , 
 }; // int blit_quad ( int x1 , int y1 , int x2, int y2, int x3, int y3, int x4 , int y4 , Uint32 color )
 
 
-/* ----------------------------------------------------------------------
+/**
  * Simon N.:  ISO functions.  these draw quads in the 3D planes
- * ---------------------------------------------------------------------- */
+ */
 void 
 drawISOXYQuad ( int x , int y , int z , int w , int h ) 
 {
@@ -314,7 +314,7 @@ drawISOYZQuad(int x, int y, int z, int h, int d)
 }
 
 
-/* ----------------------------------------------------------------------
+/**
  * Simon N.: Draws an isometric energy bar.
  * dir : X_DIR | Y_DIR | Z_DIR
  * x,y,z : the position of the lower left hand corner
@@ -323,7 +323,7 @@ drawISOYZQuad(int x, int y, int z, int h, int d)
  * fill : the percentage the energy bar is filled
  * c1 : the fill color
  * c1 : the background color
- * ---------------------------------------------------------------------- */
+ */
 void 
 drawIsoEnergyBar(int dir, int x, int y, int z, int h, int d, int length, float fill, myColor *c1, myColor *c2  ) {
 #ifdef HAVE_LIBGL
@@ -411,7 +411,7 @@ our_SDL_display_format_wrapperAlpha ( SDL_Surface *surface )
     return ( NULL );
 }; // SDL_Surface* our_SDL_display_format_wrapperAlpha ( SDL_Surface *surface )
 
-/* ----------------------------------------------------------------------
+/**
  * This function flips a given SDL_Surface.
  * 
  * This is particularly nescessary, since OpenGL has a different native
@@ -419,7 +419,7 @@ our_SDL_display_format_wrapperAlpha ( SDL_Surface *surface )
  * around if one doesn't counter this effect with OpenGL by flipping the
  * images just once more in the same fashion.  That is what this function
  * does.
- * ---------------------------------------------------------------------- */
+ */
 void
 flip_image_vertically ( SDL_Surface* tmp1 ) 
 {
@@ -446,10 +446,10 @@ SDL_UnlockSurface(tmp1);
 
 }; // void flip_image_vertically ( SDL_Surface* tmp1 ) 
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 SDL_Surface* 
 our_IMG_load_wrapper( const char *file )
 {
@@ -471,14 +471,14 @@ our_IMG_load_wrapper( const char *file )
     }
 }; // SDL_Surface* our_IMG_load_wrapper( const char *file )
 
-/* ----------------------------------------------------------------------
+/**
  * There is need to do some padding, cause OpenGL textures need to have
  * a format: width and length both each a power of two.  Therefore some
  * extra alpha to the sides must be inserted.  This is what this function
  * is supposed to do:  manually adding hte proper amount of padding to
  * the surface, so that the dimensions will reach the next biggest power
  * of two in both directions, width and length.
- * ---------------------------------------------------------------------- */
+ */
 SDL_Surface*
 pad_image_for_texture ( SDL_Surface* our_surface ) 
 {
@@ -506,13 +506,13 @@ pad_image_for_texture ( SDL_Surface* our_surface )
 
 }; // SDL_Surface* pad_image_for_texture ( SDL_Surface* our_surface ) 
 
-/* ----------------------------------------------------------------------
+/**
  * If OpenGL is in use, we need to make textured quads out of our normal
  * SDL surfaces.
  * 
  * make_texture_out_of_surface and make_texture_out_of_prepadded_image are
  * the entry points for this function.
- * ---------------------------------------------------------------------- */
+ */
 static void
 do_make_texture_out_of_surface ( iso_image* our_image, int txw, int txh, void * data) 
 {
@@ -610,11 +610,11 @@ void make_texture_out_of_prepadded_image ( iso_image * our_image )
 }; // void make_texture_out_of_prepadded_image (...)
 
 
-/* ----------------------------------------------------------------------
+/**
  * This function checks the error status of the OpenGL driver.  An error
  * will produce at least a warning message, maybe even program termination
  * if the errors are really severe.
- * ---------------------------------------------------------------------- */
+ */
 void
 open_gl_check_error_status ( const char* name_of_calling_function  )
 {
@@ -667,9 +667,9 @@ open_gl_check_error_status ( const char* name_of_calling_function  )
 #endif
 }; // void open_gl_check_error_status ( char* name_of_calling_function  )
 
-/* ----------------------------------------------------------------------
+/**
  * Clear the screen, plain and simple, but only in OpenGL mode.
- * ---------------------------------------------------------------------- */
+ */
 void 
 clear_screen( void ) {
 #ifdef HAVE_LIBGL
@@ -692,12 +692,12 @@ clear_screen( void ) {
 
 }; // void clear_screen ( void )
 
-/* ----------------------------------------------------------------------
+/**
  * This function does the first part of the OpenGL parameter 
  * initialisation.  We've made this chunk of code into a separate function
  * such that the frequent issues with OpenGL drivers can be attributed to
  * a particular spot in the code more easily.
- * ---------------------------------------------------------------------- */
+ */
 void
 safely_set_open_gl_viewport_and_matrix_mode ( void )
 {
@@ -716,12 +716,12 @@ safely_set_open_gl_viewport_and_matrix_mode ( void )
 
 }; // void safely_set_open_gl_viewport_and_matrix_mode ( void )
 
-/* ----------------------------------------------------------------------
+/**
  * This function does the second part of the OpenGL parameter 
  * initialisation.  We've made this chunk of code into a separate function
  * such that the frequent issues with OpenGL drivers can be attributed to
  * a particular spot in the code more easily.
- * ---------------------------------------------------------------------- */
+ */
 void
 safely_set_some_open_gl_flags_and_shade_model ( void )
 {
@@ -745,9 +745,9 @@ safely_set_some_open_gl_flags_and_shade_model ( void )
 
 }; // void safely_set_some_open_gl_flags_and_shade_model ( void )
 
-/* ----------------------------------------------------------------------
+/**
  * Initialize the OpenGL interface.
- * ---------------------------------------------------------------------- */
+ */
 int
 safely_initialize_our_default_open_gl_parameters ( void )
 {
@@ -871,10 +871,10 @@ draw_gl_textured_quad_at_screen_position ( iso_image * our_floor_iso_image , int
 #endif
 }
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 draw_gl_scaled_textured_quad_at_screen_position ( iso_image * our_floor_iso_image , int x , int y , float scale_factor ) 
 {
@@ -915,12 +915,12 @@ glDisable(GL_ALPHA_TEST);
 }
 
 
-/* ----------------------------------------------------------------------
+/**
  * This function blits some texture to the screen, but instead of using
  * the usual 1:1 ratio, this function will instead stretch the texture
  * received such that the ratio corrsponds to the current (possibly wider)
  * screen dimension.
- * ---------------------------------------------------------------------- */
+ */
 void
 draw_gl_bg_textured_quad_at_screen_position ( iso_image * our_floor_iso_image , int x , int y ) 
 {
@@ -952,10 +952,10 @@ draw_gl_bg_textured_quad_at_screen_position ( iso_image * our_floor_iso_image , 
 
 }
 
-/* ----------------------------------------------------------------------
+/**
  *  draws a textured quad at the given screen position, after 
  * setting blend mode to additive
- * ---------------------------------------------------------------------- */
+ */
 void
 blit_semitransparent_open_gl_texture_to_screen_position ( iso_image * our_floor_iso_image , int x , int y , float scale_factor ) 
 {
@@ -970,10 +970,10 @@ blit_semitransparent_open_gl_texture_to_screen_position ( iso_image * our_floor_
 
 }; // void blit_semitransparent_open_gl_texture_to_screen_position ( ... )
 
-/* ----------------------------------------------------------------------
+/**
  * This function restores the menu background, that must have been stored
  * before using the function of similar name.
- * ---------------------------------------------------------------------- */
+ */
 void
 RestoreMenuBackground ( int backup_slot )
 {
@@ -1006,11 +1006,11 @@ RestoreMenuBackground ( int backup_slot )
     }
 }; // void RestoreMenuBackground ( void )
 
-/* ----------------------------------------------------------------------
+/**
  * This function stores the current background as the background for a
  * menu, so that it can be refreshed much faster than by reassembling it
  * every frame.
- * ---------------------------------------------------------------------- */
+ */
 void
 StoreMenuBackground ( int backup_slot )
 {
@@ -1078,12 +1078,12 @@ StoreMenuBackground ( int backup_slot )
     
 }; // void StoreMenuBackground ( int backup_slot )
 
-/* ----------------------------------------------------------------------
+/**
  * Following a suggestion from Simon, we're now implementing one single
  * small texture (to be modified with pixel operations every frame) that
  * can be stretched out over the whole screen via OpenGL.
  * This function is here to set up the texture in the first place.
- * ---------------------------------------------------------------------- */
+ */
 void
 set_up_stretched_texture_for_light_radius ( void )
 {
@@ -1144,10 +1144,10 @@ set_up_stretched_texture_for_light_radius ( void )
 
 }; // void set_up_stretched_texture_for_light_radius ( void )
 
-/* ----------------------------------------------------------------------
+/**
  * This function updated the automap texture, such that all info from the
  * current square is on the automap.
- * ---------------------------------------------------------------------- */
+ */
 void
 light_radius_update_stretched_texture ( void ) 
 {
@@ -1202,12 +1202,12 @@ light_radius_update_stretched_texture ( void )
 
 }; // void light_radius_update_stretched_texture ( void ) 
 
-/* ----------------------------------------------------------------------
+/**
  * Following a suggestion from Simon, we're now implementing one single
  * small texture (to be modified with pixel operations every frame) that
  * can be stretched out over the whole screen via OpenGL.
  * This function is here to set up the texture in the first place.
- * ---------------------------------------------------------------------- */
+ */
 void
 blit_open_gl_stretched_texture_light_radius ( void )
 {
@@ -1250,11 +1250,11 @@ blit_open_gl_stretched_texture_light_radius ( void )
 
 }; // void blit_open_gl_stretched_texture_light_radius ( void )
 
-/* ----------------------------------------------------------------------
+/**
  * This function should help to do 'putpixel' even with OpenGL graphics
  * output method.  However, using that is depreciated if it can be helped
  * somehow.
- * ---------------------------------------------------------------------- */
+ */
 void
 PutPixel_open_gl ( int x, int y, Uint32 pixel)
 {
@@ -1272,12 +1272,12 @@ PutPixel_open_gl ( int x, int y, Uint32 pixel)
 }; // void PutPixel_open_gl ( x , y , pixel ) ;
 
 
-/* ----------------------------------------------------------------------
+/**
  * On various occasions, like inside the shop interface or in the level
  * editor tile selection bar, it's nescessary to mark an item as currently
  * selected.  We do this by drawing a part-transparent white rectangle 
  * right over it.  This function can be used to draw that rectangle.
- * ---------------------------------------------------------------------- */
+ */
 void
 GL_HighlightRectangle ( SDL_Surface* Surface , SDL_Rect * dstrect , unsigned char r , unsigned char g , unsigned char b , unsigned char alpha )
 {
@@ -1343,11 +1343,11 @@ GL_HighlightRectangle ( SDL_Surface* Surface , SDL_Rect * dstrect , unsigned cha
 static iso_image our_backgrounds [ ALL_KNOWN_BACKGROUNDS ] ;
 static int background_has_been_loaded [ ALL_KNOWN_BACKGROUNDS ] ;
 
-/* ----------------------------------------------------------------------
+/**
  * For blitting backgrounds and static images in various positions of the
  * game, we got this function, that handles them, taking especal care to
  * use open-gl textures for faster blitting in OpenGL settings.
- * ---------------------------------------------------------------------- */
+ */
 void 
 blit_special_background ( int background_code )
 {
@@ -1561,12 +1561,12 @@ char fpath[2048];
   
 }; // void blit_special_background ( int background_code )
 
-/* ----------------------------------------------------------------------
+/**
  * Sometimes it might be convenient for development purposes, that the
  * backgrounds can be exchanged on disk and the game need not be restarted
  * to try out these new backgrounds.  So we introduce some 'cache flushing'
  * function here...
- * ---------------------------------------------------------------------- */
+ */
 void
 flush_background_image_cache ( void )
 {

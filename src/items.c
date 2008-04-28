@@ -23,9 +23,9 @@
  *
  */
 
-/* ----------------------------------------------------------------------
+/**
  * This file contains all the functions managing the items in the game.
- * ---------------------------------------------------------------------- */
+ */
 
 #define _items_c
 
@@ -46,11 +46,11 @@ enum
     FIRST_INV_SLOT 
 };
 
-/* ----------------------------------------------------------------------
+/**
  * When the player closes the inventory screen, items currently held in 
  * hand should not be held in hand any more.  This is what this function
  * should do:  It should make all items unheld by the player.
- * ---------------------------------------------------------------------- */
+ */
 void
 silently_unhold_all_items ( void )
 {
@@ -81,7 +81,7 @@ silently_unhold_all_items ( void )
 
 }; // void silently_unhold_all_items ( void )
 
-/* ----------------------------------------------------------------------
+/**
  * For communication with the server, we can not use pointers to items.
  * That's a pity, cause it would be most convenient.  Instead we must 
  * think of something new and devise some unique item position codes.
@@ -96,7 +96,7 @@ silently_unhold_all_items ( void )
  * 4-5+MAX_ITEMS_IN_INVENTORY: inventory of player
  * ?? perhaps afterwards: items on the floor of the current level?  maybe not.
  *
- * ---------------------------------------------------------------------- */
+ */
 int
 GetPositionCode ( Item ItemPointer ) 
 {
@@ -153,11 +153,11 @@ GetPositionCode ( Item ItemPointer )
 
 }; // int GetPositionCode ( Item ItemPointer ) 
 
-/* ----------------------------------------------------------------------
+/**
  * This function does the home made item repair, i.e. the item repair via
  * the repair skill in contrast to the item repair via the shop, which of
  * course works much better.
- * ---------------------------------------------------------------------- */
+ */
 void
 HomeMadeItemRepair ( Item RepairItem ) 
 {
@@ -178,11 +178,11 @@ HomeMadeItemRepair ( Item RepairItem )
     }
 }; // void HomeMadeItemRepair ( Item RepairItem ) 
 
-/* ----------------------------------------------------------------------
+/**
  * Same as GetPositionCode makes a position code out of a pointer, we now
  * want to it the other way around and find a pointer to a given position
  * code and player number.
- * ---------------------------------------------------------------------- */
+ */
 Item
 FindPointerToPositionCode ( int SlotCode )
 {
@@ -236,13 +236,13 @@ FindPointerToPositionCode ( int SlotCode )
     
 }; // Item FindPointerToPositionCode ( PositionCode )
 
-/* ----------------------------------------------------------------------
+/**
  * This function calculates the price of a given item, taking into account
  * (*) the items base list price 
  * (*) the items given prefix modifier
  * (*) the items given suffix modifier
  * (*) AND THE CURRENT DURATION of the item in relation to its max duration.
- * ---------------------------------------------------------------------- */
+ */
 long
 calculate_item_buy_price ( item* BuyItem )
 {
@@ -281,13 +281,13 @@ calculate_item_buy_price ( item* BuyItem )
     
 }; // long calculate_item_buy_price ( item* BuyItem )
 
-/* ----------------------------------------------------------------------
+/**
  * This function calculates the price of a given item, taking into account
  * (*) the items base list price 
  * (*) the items given prefix modifier
  * (*) the items given suffix modifier
  * (*) AND THE CURRENT DURATION of the item in relation to its max duration.
- * ---------------------------------------------------------------------- */
+ */
 long
 calculate_item_sell_price ( item* BuyItem )
 {
@@ -333,13 +333,13 @@ calculate_item_sell_price ( item* BuyItem )
     
 }; // long calculate_item_sell_price ( item* BuyItem )
 
-/* ----------------------------------------------------------------------
+/**
  * This function calculates the price of a given item, taking into account
  * (*) the items base list price 
  * (*) the items given prefix modifier
  * (*) the items given suffix modifier
  * (*) AND THE CURRENT DURATION of the item in relation to its max duration.
- * ---------------------------------------------------------------------- */
+ */
 long
 calculate_item_repair_price ( item* repair_item )
 {
@@ -383,10 +383,10 @@ calculate_item_repair_price ( item* repair_item )
 }; // long calculate_item_repair_price ( item* repair_item )
 
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 FillInItemProperties( item* ThisItem , int FullDuration, int multiplicity )
 {
@@ -515,10 +515,10 @@ FillInItemProperties( item* ThisItem , int FullDuration, int multiplicity )
     
 }; // void FillInItemProperties( item* ThisItem , int FullDuration )
 
-/* ----------------------------------------------------------------------
+/**
  * This function drops an item at a given place, assigning it the given
  * suffix and prefix code.
- * ---------------------------------------------------------------------- */
+ */
 void
 DropItemAt( int ItemType , int level_num , float x , float y , int prefix , int suffix , int multiplicity )
 {
@@ -607,10 +607,10 @@ Couldn't find another array entry to drop another item.",
     
 }; // void DropItemAt( int ItemType , int x , int y , int prefix , int suffix )
 
-/* ----------------------------------------------------------------------
+/**
  * This function checks whether a given item can be equipped.
  *
- * ---------------------------------------------------------------------- */
+ */
 int
 item_type_cannot_be_equipped ( int drop_item_type )
 {
@@ -624,12 +624,12 @@ item_type_cannot_be_equipped ( int drop_item_type )
     return ( TRUE ) ;
 }; // int item_type_cannot_be_equipped ( int drop_item_type )
 
-/* ----------------------------------------------------------------------
+/**
  * When a random item is being dropped, there is a chance of it being
  * magical.  In that case, there might be a modifying suffix attached to 
  * the item.  This function is supposed to find a suitable suffix for
  * the item in question.
- * ----------------------------------------------------------------------- */
+ **- */
 int 
 find_suitable_bonus_for_item ( int drop_item_type , int TreasureChestRange, item_bonus * btype )
 {
@@ -706,14 +706,14 @@ int get_random_item_type ( int class )
     return i;
 }
 
-/* ----------------------------------------------------------------------
+/**
  * This function drops a random item to the floor of the current level
  * at position ( x , y ).
  *
  * The strategy in droping the item is that one can easily set up and
  * modify the tabe of items to be dropped.
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 DropRandomItem( int level_num , float x , float y , int class,  int ForceMagical )
 {
@@ -764,10 +764,10 @@ DropRandomItem( int level_num , float x , float y , int class,  int ForceMagical
     
 }; 
 
-/* ----------------------------------------------------------------------
+/**
  * When the influencer gets hit, all of his equipment suffers some damage.
  * This is exactly what this function does:  apply the damage.
- * ---------------------------------------------------------------------- */
+ */
 void 
 DamageItem( item* CurItem )
 {
@@ -797,10 +797,10 @@ DamageItem( item* CurItem )
     
 }; // void DamageItem( item* CurItem )
 
-/* ----------------------------------------------------------------------
+/**
  * When the influencer gets hit, all of his equipment suffers some damage.
  * This is exactly what this function does:  apply the damage.
- * ---------------------------------------------------------------------- */
+ */
 void 
 DamageAllEquipment( )
 {
@@ -813,7 +813,7 @@ DamageAllEquipment( )
 
 }; // void DamageAllEquipment( void )
 
-/* ----------------------------------------------------------------------
+/**
  * This function is used when an equipment EXCHANGE is performed, i.e.
  * one weapon equiped is replaced by a new item using the mouse.  This 
  * leads to an exchange in the items.  Yet, if the new item came from 
@@ -822,7 +822,7 @@ DamageAllEquipment( )
  * problem, the old item from the slot can just be made into an item on
  * the floor, but not visible yet of course, cause it still gets the 
  * held in hand attribute.
- * ---------------------------------------------------------------------- */
+ */
 void
 MakeHeldFloorItemOutOf( item* SourceItem )
 {
@@ -853,11 +853,11 @@ MakeHeldFloorItemOutOf( item* SourceItem )
     DeleteItem ( SourceItem ) ;
 }; // void MakeHeldFloorItemOutOf( item* SourceItem )
 
-/* ----------------------------------------------------------------------
+/**
  * This function looks through the inventory list and returns the index
  * of the first inventory item that is marked as 'held in hand'.
  * If no such item is found, an index of (-1) is returned.
- * ---------------------------------------------------------------------- */
+ */
 int
 GetHeldItemInventoryIndex( void )
 {
@@ -878,11 +878,11 @@ GetHeldItemInventoryIndex( void )
     return ( -1 );
 }; // int GetHeldItemInventoryIndex( void )
 
-/* ----------------------------------------------------------------------
+/**
  * This function generates a pointer to the (hopefully one and only) item
  * that is currently marked as held in hand.  If no such item can be 
  * found, the returned pointer will be NULL.
- * ---------------------------------------------------------------------- */
+ */
 item* 
 GetHeldItemPointer( void )
 {
@@ -942,9 +942,9 @@ GetHeldItemPointer( void )
     
 }; // item* GetHeldItemPointer( void )
 
-/* ----------------------------------------------------------------------
+/**
  * This function DELETES an item from the source location.
- * ---------------------------------------------------------------------- */
+ */
 void
 DeleteItem ( item* Item )
 {
@@ -954,11 +954,11 @@ DeleteItem ( item* Item )
     
 }; // void DeleteItem( item* Item )
 
-/* ----------------------------------------------------------------------
+/**
  * This function COPIES an item from the source location to the destination
  * location.  The source location is then marked as unused inventory 
  * entry.
- * ---------------------------------------------------------------------- */
+ */
 void
 CopyItem( item* SourceItem , item* DestItem , int MakeSound )
 {
@@ -973,11 +973,11 @@ CopyItem( item* SourceItem , item* DestItem , int MakeSound )
 
 }; // void MoveItem( item* SourceItem , item* DestItem )
 
-/* ----------------------------------------------------------------------
+/**
  * This function COPIES an item from the source location to the destination
  * location.  The source location is then marked as unused inventory 
  * entry.
- * ---------------------------------------------------------------------- */
+ */
 void
 CopyItemWithoutHeldProperty ( item* SourceItem , item* DestItem , int MakeSound ) 
 {
@@ -988,11 +988,11 @@ CopyItemWithoutHeldProperty ( item* SourceItem , item* DestItem , int MakeSound 
     
 }; // void CopyItemWithoutHeldProperty ( item* SourceItem , item* DestItem , int MakeSound ) 
 
-/* ----------------------------------------------------------------------
+/**
  * This function MOVES an item from the source location to the destination
  * location.  The source location is then marked as unused inventory 
  * entry.
- * ---------------------------------------------------------------------- */
+ */
 void
 MoveItem( item* SourceItem , item* DestItem )
 {
@@ -1003,10 +1003,10 @@ MoveItem( item* SourceItem , item* DestItem )
     
 }; // void MoveItem( item* SourceItem , item* DestItem )
 
-/* ----------------------------------------------------------------------
+/**
  * This function applies a given item (to the influencer) and maybe 
  * eliminates the item after that, if it's an item that gets used up.
- * ---------------------------------------------------------------------- */
+ */
 void
 Quick_ApplyItem( int ItemKey )
 {
@@ -1026,14 +1026,14 @@ Quick_ApplyItem( int ItemKey )
 
 }; // void Quick_ApplyItem( item* CurItem )
 
-/* ----------------------------------------------------------------------
+/**
  * There are many spellbooks.  These are handled inside the code via 
  * their item_type, an integer.  Now these spellbooks affect skills.  The
  * skills are handled internally via their index in the skill list.  So
  * at some points, it's convenient to look up the skill associated with
  * the spellbook.  So we do this once and have it available all the time
  * in a convenient and easy to maintain fashion.
- * ---------------------------------------------------------------------- */
+ */
 int
 associate_skill_with_item ( int item_type )
 {
@@ -1056,10 +1056,10 @@ associate_skill_with_item ( int item_type )
 
 }; // int associate_skill_with_item ( int item_type )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 int
 required_magic_stat_for_next_level_and_item ( int item_type )
 {
@@ -1103,11 +1103,11 @@ TODO I removed this, need to put this back in*/
     
 }; // int required_magic_stat_for_next_level_and_item ( int item_type )
 
-/* ----------------------------------------------------------------------
+/**
  * Some items, that can be applied directly (like spellbooks) do have a
  * certain stat requirement.  This function checks, if the corresponding
  * requirements are met or not.
- * ---------------------------------------------------------------------- */
+ */
 int
 requirements_for_item_application_met ( item* CurItem ) 
 {
@@ -1121,7 +1121,7 @@ requirements_for_item_application_met ( item* CurItem )
 
 }; // int requirements_for_item_application_met ( item* CurItem ) 
 
-/* ----------------------------------------------------------------------
+/**
  * This function checks whether a given item has the name specified. This is
  * used to match an item which its type in a flexible way (match by name instead
  * of matching by index value)
@@ -1141,7 +1141,7 @@ int GetItemIndexByName ( const char * name )
     return -1;
 }
 
-/* ----------------------------------------------------------------------
+/**
  * This function checks whether a given item has the name specified. This is
  * used to match an item which its type in a flexible way (match by name instead
  * of matching by index value)
@@ -1155,10 +1155,10 @@ int MatchItemWithName ( int type, const char * name )
     else return 0;
 }
 
-/* ----------------------------------------------------------------------
+/**
  * This function applies a given item (to the influencer) and maybe 
  * eliminates the item after that, if it's an item that gets used up.
- * ---------------------------------------------------------------------- */
+ */
 void
 ApplyItem( item* CurItem )
 {
@@ -1348,10 +1348,10 @@ ApplyItem( item* CurItem )
     while ( MouseRightPressed() ) SDL_Delay(1);    
 }; // void ApplyItem( int ItemNum )
 
-/* ----------------------------------------------------------------------
+/**
  * This function checks if a given coordinate within the influencers
  * inventory grid can be considered as free or as occupied by some item.
- * ---------------------------------------------------------------------- */
+ */
 int
 Inv_Pos_Is_Free( int x , int y )
 {
@@ -1380,14 +1380,14 @@ Inv_Pos_Is_Free( int x , int y )
 
 }; // int Inv_Pos_Is_Free( Inv_Loc.x , Inv_Loc.y )
 
-/* ----------------------------------------------------------------------
+/**
  * This function returns the index in the invenotry list of the object
  * at the inventory position x y.  If no object is found to occupy that
  * square, an index of (-1) is returned.
  * 
  * NOTE: The mentioned coordinates refer to the squares of the inventory grid!!
  *
- * ---------------------------------------------------------------------- */
+ */
 int 
 GetInventoryItemAt ( int x , int y )
 {
@@ -1415,7 +1415,7 @@ GetInventoryItemAt ( int x , int y )
 
 }; // int GetInventoryItemAt ( int x , int y )
 
-/* ----------------------------------------------------------------------
+/**
  *
  * Often, especially in dialogs and in order to determine if some answer
  * should be allowed for the Tux or not, it is important to know if the
@@ -1425,7 +1425,7 @@ GetInventoryItemAt ( int x , int y )
  * This function is now intended to count the number of items of a given
  * type in the inventory of the Me.
  *
- * ---------------------------------------------------------------------- */
+ */
 int
 CountItemtypeInInventory( int Itemtype )
 {
@@ -1440,10 +1440,10 @@ CountItemtypeInInventory( int Itemtype )
 
 }; // int CountItemtypeInInventory( int Itemtype )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 int
 FindFirstInventoryIndexWithItemType ( int Itemtype )
 {
@@ -1467,12 +1467,12 @@ did not contain this item type at all!  This indicates a severe bug in Freedroid
     
 }; // int FindFirstInventoryIndexWithItemType ( ItemPointer->type , PLAYER_NR_0 )
 
-/* ----------------------------------------------------------------------
+/**
  * At some point the Tux will hand over all his items of a given type
  * to a dialog partner.  This function is intended to do exactly this:
  * To remove all items of a given type from the inventory of a given 
  * player.
- * ---------------------------------------------------------------------- */
+ */
 void
 DeleteInventoryItemsOfType( int Itemtype , int amount )
 {
@@ -1489,10 +1489,10 @@ DeleteInventoryItemsOfType( int Itemtype , int amount )
     }
 }; // void DeleteInventoryItemsOfType( int Itemtype )
 
-/* ----------------------------------------------------------------------
+/**
  * This deletes ONE item of the given type, like one bullet that has 
  * just been expended.
- * ---------------------------------------------------------------------- */
+ */
 void
 DeleteOneInventoryItemsOfType( int Itemtype )
 {
@@ -1520,10 +1520,10 @@ Tux invenrtory.  Something must have gone awry...",
     
 }; // void DeleteOneInventoryItemsOfType( int Itemtype  )
 
-/* ----------------------------------------------------------------------
+/**
  * This function checks if a given screen position lies within the user
  * i.e. combat rectangle or not.
- * ---------------------------------------------------------------------- */
+ */
 int 
 MouseCursorIsInUserRect( int x , int y )
 {
@@ -1542,10 +1542,10 @@ MouseCursorIsInUserRect( int x , int y )
 return TRUE;
 }; // int MouseCursorIsInUserRect( int x , int y )
 
-/* ----------------------------------------------------------------------
+/**
  * This function checks if a given screen position lies within the inventory
  * rectangle or not.
- * ---------------------------------------------------------------------- */
+ */
 int 
 MouseCursorIsInInvRect( int x , int y )
 {
@@ -1557,10 +1557,10 @@ MouseCursorIsInInvRect( int x , int y )
     return ( TRUE );
 }; // int MouseCursorIsInInvRect( int x , int y )
 
-/* ----------------------------------------------------------------------
+/**
  * This function checks if a given screen position lies within the character
  * rectangle or not.
- * ---------------------------------------------------------------------- */
+ */
 int 
 MouseCursorIsInChaRect( int x , int y )
 {
@@ -1572,10 +1572,10 @@ MouseCursorIsInChaRect( int x , int y )
     return ( TRUE );
 }; // int MouseCursorIsInChaRect( int x , int y )
 
-/* ----------------------------------------------------------------------
+/**
  * This function checks if a given screen position lies within the skill
  * rectangle or not.
- * ---------------------------------------------------------------------- */
+ */
 int 
 MouseCursorIsInSkiRect( int x , int y )
 {
@@ -1588,10 +1588,10 @@ MouseCursorIsInSkiRect( int x , int y )
 }; // int MouseCursorIsInSkiRect( int x , int y )
 
 
-/* ----------------------------------------------------------------------
+/**
  * This function checks if a given screen position lies within the grid
  * where the inventory of the player is usually located or not.
- * ---------------------------------------------------------------------- */
+ */
 int 
 MouseCursorIsInInventoryGrid( int x , int y )
 {
@@ -1607,32 +1607,32 @@ MouseCursorIsInInventoryGrid( int x , int y )
     return( FALSE );
 }; // int MouseCursorIsInInventoryGrid( int x , int y )
 
-/* ----------------------------------------------------------------------
+/**
  * This function gives the x coordinate of the inventory square that 
  * corresponds to the mouse cursor location given to the function.
- * ---------------------------------------------------------------------- */
+ */
 int
 GetInventorySquare_x( int x )
 {
     return ( ( x - INVENTORY_RECT_X ) / INV_SUBSQUARE_WIDTH );
 }; // int GetInventorySquare_x( x )
 
-/* ----------------------------------------------------------------------
+/**
  * This function gives the y coordinate of the inventory square that 
  * corresponds to the mouse cursor location given to the function.
- * ---------------------------------------------------------------------- */
+ */
 int
 GetInventorySquare_y( int y )
 {
     return ( ( y - (User_Rect.y + INVENTORY_RECT_Y ) ) / INV_SUBSQUARE_HEIGHT );
 }; // int GetInventorySquare_y( y )
 
-/* ----------------------------------------------------------------------
+/**
  * This function gives the item type of the currently held item.  
  *
  * THIS IS NOT NOT NOT THE PICTURE NUMBER, BUT THE ITEM TYPE!!!!
  *
- * ---------------------------------------------------------------------- */
+ */
 int
 GetHeldItemCode ( void )
 {
@@ -1657,11 +1657,11 @@ GetHeldItemCode ( void )
     
 }; // int GetHeldItemCode ( void )
 
-/* ----------------------------------------------------------------------
+/**
  * This function checks if a given item type could be dropped into the 
  * inventory grid at location x y.  Only the space is taken into account
  * and if other items block the way or not.
- * ---------------------------------------------------------------------- */
+ */
 int 
 ItemCanBeDroppedInInv ( int ItemType , int InvPos_x , int InvPos_y )
 {
@@ -1692,14 +1692,14 @@ ItemCanBeDroppedInInv ( int ItemType , int InvPos_x , int InvPos_y )
     
 }; // int ItemCanBeDroppedInInv ( int ItemType , int InvPos_x , int InvPos_y )
 
-/* ---------------------------------------------------------------------- 
+/** 
  * This function should drop a given item to the floor. 
  *
  * Of couse this function should also initiate a signal to the server,
  * telling the server, that the item drop has occured and that the 
  * server should perform it too.
  *
- * ---------------------------------------------------------------------- */
+ */
 void 
 DropItemToTheFloor ( Item DropItemPointer , float x , float y , int levelnum )
 {
@@ -1729,14 +1729,14 @@ DropItemToTheFloor ( Item DropItemPointer , float x , float y , int levelnum )
     DeleteItem ( DropItemPointer ) ;
 }; // void DropItemToTheFloor ( void )
 
-/* ---------------------------------------------------------------------- 
+/** 
  * This function should drop a held item to the floor. 
  *
  * Of couse this function should also initiate a signal to the server,
  * telling the server, that the item drop has occured and that the 
  * server should perform it too.
  *
- * ---------------------------------------------------------------------- */
+ */
 int
 DropHeldItemToTheFloor ( void )
 {
@@ -1770,10 +1770,10 @@ DropHeldItemToTheFloor ( void )
     
 }; // void DropHeldItemToTheFloor ( void )
 
-/* ----------------------------------------------------------------------
+/**
  * This function checks if the usage requirements for a given item are
  * met by the influencer or not.
- * ---------------------------------------------------------------------- */
+ */
 int 
 ItemUsageRequirementsMet( item* UseItem , int MakeSound )
 {
@@ -1798,11 +1798,11 @@ ItemUsageRequirementsMet( item* UseItem , int MakeSound )
     return ( TRUE );
 }; // int ItemUsageRequirementsMet( item* UseItem )
 
-/* ----------------------------------------------------------------------
+/**
  * This function checks, if the influencer mets the requirements of the
  * item currently held in hand by the player/influencer.  Which item this
  * is will be found out by the function.
- * ---------------------------------------------------------------------- */
+ */
 int 
 HeldItemUsageRequirementsMet( void )
 {
@@ -1821,11 +1821,11 @@ HeldItemUsageRequirementsMet( void )
     return ( ItemUsageRequirementsMet ( DropItemPointer , TRUE ) );
 }; // int HeldItemUsageRequirementsMet( void )
 
-/* ----------------------------------------------------------------------
+/**
  * This function installs an item into a slot.  The given parameter is 
  * only the slot where this item should be installed.  The source item
  * will be found out from inside this function.  Very convenient.
- * ---------------------------------------------------------------------- */
+ */
 void
 DropHeldItemToSlot ( item* SlotItem )
 {
@@ -1867,13 +1867,13 @@ DropHeldItemToSlot ( item* SlotItem )
 	DeleteItem( DropItemPointer );
 }; // void DropHeldItemToSlot ( item* SlotItem )
 
-/* ----------------------------------------------------------------------
+/**
  * This function looks for a free inventory index.  Since there are more
  * inventory indices than squares in the inventory grid, the function 
  * should always be able to find a free inventory index.  If not, this is
  * considered a severe program error, which will cause immediate 
  * termination of FreeDroid.
- * ---------------------------------------------------------------------- */
+ */
 int 
 GetFreeInventoryIndex( void )
 {
@@ -1903,12 +1903,12 @@ severe bugs in the inventory system.",
     return ( -1 ) ; // just to make compilers happy.
 }; // int GetFreeInventoryIndex( void )
 
-/* ----------------------------------------------------------------------
+/**
  * If an item is held and then clicked again in the inventory field, this
  * item should be dropped into the inventory field, provided there is room
  * enough in it at that location.  If that is the case, then the item is
  * dropped onto this inventory location, else nothing is done.
- * ---------------------------------------------------------------------- */
+ */
 void 
 DropHeldItemToInventory( void )
 {
@@ -2038,10 +2038,10 @@ DropHeldItemToInventory( void )
     
 }; // void DropHeldItemToInventory( void )
 
-/* ----------------------------------------------------------------------
+/**
  * This function shows the quick inventory items on the right side of
  * the screen.
- * ---------------------------------------------------------------------- */
+ */
 void
 ShowQuickInventory ( void )
 {
@@ -2078,10 +2078,10 @@ ShowQuickInventory ( void )
     }
 }; // void ShowQuickInventory ( void )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 int
 get_floor_item_index_under_mouse_cursor ( )
 {
@@ -2137,13 +2137,13 @@ get_floor_item_index_under_mouse_cursor ( )
     
 }; // int get_floor_item_index_under_mouse_cursor ( )
 
-/* ----------------------------------------------------------------------
+/**
  * When the player has given an identification command, i.e. triggered
  * the mouse button when in identification mode, we see if maybe the
  * mouse cursor has pointed to an item, that can be identified.  In that
  * case, we'll try to identify it, otherwise we'll simply cancel the
  * whole identification operation.
- * ---------------------------------------------------------------------- */
+ */
 void
 handle_player_identification_command( )
 {
@@ -2621,10 +2621,10 @@ HandleInventoryScreen ( void )
 }; // void HandleInventoryScreen ( void );
 
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 raw_move_picked_up_item_to_entry ( item* ItemPointer , item* TargetPointer , point Inv_Loc )
 {
@@ -2649,9 +2649,9 @@ raw_move_picked_up_item_to_entry ( item* ItemPointer , item* TargetPointer , poi
     DeleteItem( ItemPointer );
 }; // void move_picked_up_item_to_entry ( ItemPointer , TargetPointer )
 
-/* ----------------------------------------------------------------------
+/**
  *
- * ---------------------------------------------------------------------- */
+ */
 int
 place_item_on_this_position_if_you_can ( item* ItemPointer , point Inv_Loc , int InvPos )
 {
@@ -2695,14 +2695,14 @@ place_item_on_this_position_if_you_can ( item* ItemPointer , point Inv_Loc , int
     return ( TRUE );
 }; // int place_item_on_this_position_if_you_can ( ... )
 
-/* ----------------------------------------------------------------------
+/**
  * This function deals with the case, that WHILE THERE IS NO INVENTORY
  * SCREEN OPEN, the Tux still clicks some items on the floor to pick them
  * up.  So no big visible operation is required, but instead the items
  * picked up should be either auto-equipped, if possible, or they should
  * be put into the inventory items pool OR IN CASE THERE IS NO ROOM ANY
  * MORE the function should also say that and not do much else...
- * ---------------------------------------------------------------------- */
+ */
 int 
 AddFloorItemDirectlyToInventory( item* ItemPointer )
 {
@@ -2880,10 +2880,10 @@ int item_is_currently_equipped( item* Item )
 return 0;
 }
 
-/* ----------------------------------------------------------------------
+/**
  * This function reads the descriptions of the different item prefixes
  * and suffixes that are used for magical items.
- * ---------------------------------------------------------------------- */
+ */
 int Get_Prefixes_Data ( char * DataPointer )
 {
     char *PrefixPointer;

@@ -23,10 +23,10 @@
  *
  */
 
-/* ----------------------------------------------------------------------
+/**
  * This file contains some text code, that is also needed in the 
  * dialog editor.
- * ---------------------------------------------------------------------- */
+ */
 
 #define _text_public_c
 
@@ -45,11 +45,11 @@ extern int Number_Of_Item_Types;
 extern int debug_level ;
 extern dialogue_option ChatRoster[MAX_DIALOGUE_OPTIONS_IN_ROSTER];
 
-/* ---------------------------------------------------------------------- 
+/** 
  * This function works a malloc, except that it also checks for
  * success and terminates in case of "out of memory", so we dont
  * need to do this always in the code.
- * ---------------------------------------------------------------------- */
+ */
 void *
 MyMalloc ( long Mamount )
 {
@@ -71,11 +71,11 @@ MyMalloc ( long Mamount )
 
 }; // void* MyMalloc ( long Mamount )
 
-/* ----------------------------------------------------------------------
+/**
  * This function is used for debugging purposes.  It writes the
  * given string on the screen, or simply does
  * nothing according to currently set debug level.
- * ---------------------------------------------------------------------- */
+ */
 void
 DebugPrintf ( int db_level, const char *fmt, ...)
 {
@@ -90,10 +90,10 @@ DebugPrintf ( int db_level, const char *fmt, ...)
     va_end (args);
 }; // void DebugPrintf ( int db_level, char *fmt, ...)
 
-/* ----------------------------------------------------------------------
+/**
  * This function should help to simplify and standardize the many error
  * messages possible in Freedroid RPG.
- * ---------------------------------------------------------------------- */
+ */
 void
 ErrorMessage ( const char* FunctionName , const char* fmt, int InformDevelopers , int IsFatal, ... )
 {
@@ -145,7 +145,7 @@ not resolve.  Sorry if that interrupts a major game of yours...\nBacktrace:\n" )
 }; // void ErrorMessage ( ... )
 
 
-/* ----------------------------------------------------------------------
+/**
  * This function does something similar to memmem.  Indeed, it would be
  * best perhaps if it did exactly the same as memmem, but since we do not
  * use gnu extensions for compatibility reasons, we go this way.
@@ -156,7 +156,7 @@ not resolve.  Sorry if that interrupts a major game of yours...\nBacktrace:\n" )
  *
  * Haystack can of course have ANY form!!!
  *
- * ---------------------------------------------------------------------- */
+ */
 void *
 MyMemmem ( char *haystack, size_t haystacklen, char *needle, size_t needlelen)
 {
@@ -198,12 +198,12 @@ MyMemmem ( char *haystack, size_t haystacklen, char *needle, size_t needlelen)
 }; // void *MyMemmem ( ... );
 
 
-/* ----------------------------------------------------------------------
+/**
  * This function looks for a string begin indicator and takes the string
  * from after there up to a sting end indicator and mallocs memory for
  * it, copys it there and returns it.
  * The original source string specified should in no way be modified.
- * ---------------------------------------------------------------------- */
+ */
 char*
 ReadAndMallocStringFromData ( char* SearchString , const char* StartIndicationString , const char* EndIndicationString ) 
 {
@@ -256,10 +256,10 @@ This indicates some corruption in the data file in question.",
   return ( ReturnString );
 }; // char* ReadAndMallocStringFromData ( ... )
 
-/* ----------------------------------------------------------------------
+/**
  * This function counts the number of occurences of a string in a given
  * other string.
- * ---------------------------------------------------------------------- */
+ */
 int
 CountStringOccurences ( char* SearchString , const char* TargetString ) 
 {
@@ -276,12 +276,12 @@ CountStringOccurences ( char* SearchString , const char* TargetString )
   return ( Counter );
 }; // CountStringOccurences ( char* SearchString , char* TargetString ) 
 
-/* ----------------------------------------------------------------------
+/**
  * This function read in a file with the specified name, allocated 
  * memory for it of course, looks for the file end string and then
  * terminates the whole read in file with a 0 character, so that it
  * can easily be treated like a common string.
- * ---------------------------------------------------------------------- */
+ */
 char* 
 ReadAndMallocAndTerminateFile( char* filename , const char* File_End_String ) 
 {
@@ -362,14 +362,14 @@ This indicates a serious bug in this installation of Freedroid.",
   return ( Data );
 }; // char* ReadAndMallocAndTerminateFile( char* filename) 
 
-/* ----------------------------------------------------------------------
+/**
  * This function tries to locate a string in some given data string.
  * The data string is assumed to be null terminated.  Otherwise SEGFAULTS
  * might happen.
  * 
  * The return value is a pointer to the first instance where the substring
  * we are searching is found in the main text.
- * ---------------------------------------------------------------------- */
+ */
 char* 
 LocateStringInData ( char* SearchBeginPointer, const char* SearchTextPointer )
 {
@@ -388,10 +388,10 @@ This indicates a corrupted or seriously outdated game data or saved game file.",
 
 }; // char* LocateStringInData ( ... )
 
-/* ----------------------------------------------------------------------
+/**
  * This function should analyze a given passage of text, locate an 
  * indicator for a value, and read in the value.
- * ---------------------------------------------------------------------- */
+ */
 void
 ReadValueFromStringWithDefault( char* SearchBeginPointer , const char* ValuePreceedText , const char* FormatString , const char * DefaultValueString, void* TargetValue , char* EndOfSearchSectionPointer )
 {
@@ -427,10 +427,10 @@ This indicates a corrupted or seriously outdated game data or saved game file.",
 
 }; // void ReadValueFromString( ... )
 
-/* ----------------------------------------------------------------------
+/**
  * This function should analyze a given passage of text, locate an 
  * indicator for a value, and read in the value.
- * ---------------------------------------------------------------------- */
+ */
 void
 ReadValueFromString( char* SearchBeginPointer , const char* ValuePreceedText , const char* FormatString , void* TargetValue , char* EndOfSearchSectionPointer )
 {
@@ -464,12 +464,12 @@ This indicates a corrupted or seriously outdated game data or saved game file.",
 
 }; // void ReadValueFromString( ... )
 
-/* ----------------------------------------------------------------------
+/**
  * This function does the rotation of a given vector by a given angle.
  * The vector is a vector.
  * The angle given is in DEGREE MEASURE, i.e. 0-360 or so, maybe more or
  * less than that, but you get what I mean...
- * ---------------------------------------------------------------------- */
+ */
 void
 RotateVectorByAngle ( moderately_finepoint* vector , float rot_angle )
 {
@@ -486,9 +486,9 @@ RotateVectorByAngle ( moderately_finepoint* vector , float rot_angle )
 
 }; // void RotateVectorByAngle ( ... )
 
-/* ----------------------------------------------------------------------
+/**
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 delete_one_dialog_option ( int i , int FirstInitialisation )
 {
@@ -567,10 +567,10 @@ delete_one_dialog_option ( int i , int FirstInitialisation )
     }
 }; // void delete_one_dialog_option ( int i , int FirstInitialisation )
 
-/* ----------------------------------------------------------------------
+/**
  * This function should init the chat roster with empty values and thereby
  * clean out the remnants of the previous chat dialogue.
- * ---------------------------------------------------------------------- */
+ */
 void
 InitChatRosterForNewDialogue( void )
 {
@@ -590,11 +590,11 @@ InitChatRosterForNewDialogue( void )
 
 }; // void InitChatRosterForNewDialogue( void )
 
-/* ----------------------------------------------------------------------
+/**
  * This function should load new chat dialogue information from the 
  * chat info file into the chat roster.
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 LoadChatRosterWithChatSequence ( char* FullPathAndFullFilename )
 {
@@ -975,7 +975,7 @@ FS_filelength (FILE *f)
  * uncompressed data. Sets 'size' to the size of said uncompressed data
  * or does nothing is 'size' == NULL.
  * This function closes DataFile.
- * ----------------------------------------------------------------------*/
+ ***/
 void inflate_stream(FILE * DataFile, unsigned char ** DataBuffer, int * size)
 {
     int filelen = FS_filelength (DataFile);

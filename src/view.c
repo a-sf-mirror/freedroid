@@ -24,14 +24,14 @@
  *
  */
 
-/* ----------------------------------------------------------------------
+/**
  * This file contains all the functions managing the things one gets to see.
  * That includes assembling of enemys, assembling the currently
  * relevant porting of the map (the bricks I mean), drawing all visible
  * elements like bullets, blasts, enemys or influencer in a nonvisible
  * place in memory at first, and finally drawing them to the visible
  * screen for the user.
- * ---------------------------------------------------------------------- */
+ */
 
 #define _view_c
 
@@ -123,11 +123,11 @@ enum
 };
 
 
-/* ----------------------------------------------------------------------
+/**
  * This function displays an item at the current mouse cursor position.
  * The typical crosshair cursor is assumed.  The item is centered around
  * this crosshair cursor, depending on item size.
- * ---------------------------------------------------------------------- */
+ */
 void
 DisplayItemImageAtMouseCursor( int ItemImageCode )
 {
@@ -156,10 +156,10 @@ DisplayItemImageAtMouseCursor( int ItemImageCode )
 
 }; // void DisplayItemImageAtMouseCursor( int ItemImageCode )
 
-/* ----------------------------------------------------------------------
+/**
  * This function displays (several) blinking warning signs as soon as item
  * durations reach critical (<5) duration level.
- * ---------------------------------------------------------------------- */
+ */
 void
 ShowOneItemAlarm( item* AlarmItem , int Position )
 {
@@ -198,10 +198,10 @@ ShowOneItemAlarm( item* AlarmItem , int Position )
     }
 }; // void ShowOneItemAlarm( item* AlarmItem )
 
-/* ----------------------------------------------------------------------
+/**
  * This function displays (several) blinking warning signs as soon as item
  * durations reach critical (<5) duration level.
- * ---------------------------------------------------------------------- */
+ */
 void
 ShowItemAlarm( void )
 {
@@ -214,9 +214,9 @@ ShowItemAlarm( void )
     
 }; // void ShowItemAlarm( void )
 
-/* ----------------------------------------------------------------------
+/**
  * Now it's time to blit all the spell effects.
- * ---------------------------------------------------------------------- */
+ */
 void
 PutMiscellaneousSpellEffects ( void )
 {
@@ -236,11 +236,11 @@ PutMiscellaneousSpellEffects ( void )
     
 }; // void PutMiscellaneousSpellEffects ( void )
 
-/* ----------------------------------------------------------------------
+/**
  * The combat window can contain also some written text, displaying things
  * like the current energy level, current position and that.  This function
  * puts exactly those texts in fine print onto the Screen.
- * ---------------------------------------------------------------------- */
+ */
 void
 ShowCombatScreenTexts ( int mask )
 {
@@ -343,11 +343,11 @@ get_floor_boundaries(int mask, int* LineStart, int* LineEnd, int* ColStart, int*
 	*ColEnd = translate_pixel_to_map_location(UserCenter_x + iso_floor_tile_width - 1, UserCenter_y + iso_floor_tile_height - 1, TRUE) ;
     }
 }
-/* ----------------------------------------------------------------------
+/**
  * This function should assemble the pure floor tiles that will be visible
  * around the Tux or in the console map view.  Big map inserts and all that
  * will be handled later...
- * ---------------------------------------------------------------------- */
+ */
 void
 isometric_show_floor_around_tux_without_doublebuffering (int mask)
 {
@@ -450,11 +450,11 @@ if ( ! use_open_gl ) return;
 
 #endif
 }
-/* ----------------------------------------------------------------------
+/**
  * More for debugging purposes than for real gameplay, we add some 
  * function to illustrate the collision rectangle of a certain obstacle
  * on the floor via a bright ugly distorted rectangular shape.
- * ---------------------------------------------------------------------- */
+ */
 void 
 skew_and_blit_rect( float x1, float y1, float x2, float y2, Uint32 color)
 {
@@ -507,10 +507,10 @@ blit_obstacle_collision_rectangle ( obstacle* our_obstacle )
 //    blit_quad ( x1, y1, x2, y2, x3, y3, x4, y4, 0x00FEEAA ); 
 }; // void blit_obstacle_collision_rectangle ( obstacle* our_obstacle )
 
-/* ----------------------------------------------------------------------
+/**
  * This function should blit an obstacle, that is given via it's address
  * in the parameter
- * ---------------------------------------------------------------------- */
+ */
 void
 blit_one_obstacle ( obstacle* our_obstacle )
 {
@@ -635,10 +635,10 @@ There was an obstacle type given, that exceeds the number of\n\
 
 }; // blit_one_obstacle ( obstacle* our_obstacle )
 
-/* ----------------------------------------------------------------------
+/**
  * This function should blit an obstacle, that is given via it's address
  * in the parameter
- * ---------------------------------------------------------------------- */
+ */
 void
 blit_one_obstacle_highlighted ( obstacle* our_obstacle )
 {
@@ -677,10 +677,10 @@ There was an obstacle type given, that exceeds the number of\n\
     
 }; // blit_one_obstacle_highlighted ( obstacle* our_obstacle )
 
-/* ----------------------------------------------------------------------
+/**
  * This function should blit an obstacle, that is given via it's address
  * in the parameter
- * ---------------------------------------------------------------------- */
+ */
 void
 blit_one_obstacle_zoomed ( obstacle* our_obstacle )
 {
@@ -752,10 +752,10 @@ There was an obstacle type given, that exceeds the number of\n\
     }
 }; // blit_one_obstacle_zoomed ( obstacle* our_obstacle )
 
-/* ----------------------------------------------------------------------
+/**
  * In order for the obstacles to be blitted, they must first be inserted
  * into the correctly ordered list of objects to be blitted this frame.
- * ---------------------------------------------------------------------- */
+ */
 void
 insert_obstacles_into_blitting_list ( int mask )
 {
@@ -827,11 +827,11 @@ The blitting list size was exceeded!",
     
 }; // void insert_obstacles_into_blitting_list ( void )
 
-/* ----------------------------------------------------------------------
+/**
  * Several different things must be inserted into the blitting list.
  * Therefore this function is an abstraction, that will insert a generic
  * object into the blitting list.
- * ---------------------------------------------------------------------- */
+ */
 void
 insert_new_element_into_blitting_list ( float new_element_norm , 
 					int new_element_type , 
@@ -898,10 +898,10 @@ The blitting list size was exceeded!",
     }
 }; // void insert_new_element_into_blitting_list ( ... )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 insert_tux_into_blitting_list ( void )
 {
@@ -911,10 +911,10 @@ insert_tux_into_blitting_list ( void )
     
 }; // void insert_tux_into_blitting_list ( void )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 insert_one_enemy_into_blitting_list ( enemy * erot )
 {
@@ -926,10 +926,10 @@ insert_one_enemy_into_blitting_list ( enemy * erot )
     
 }; // void insert_one_enemy_into_blitting_list ( int enemy_num )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 insert_one_thrown_item_into_blitting_list ( int item_num )
 {
@@ -945,10 +945,10 @@ insert_one_thrown_item_into_blitting_list ( int item_num )
     
 }; // void insert_one_item_into_blitting_list ( int enemy_num )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 insert_one_bullet_into_blitting_list ( int bullet_num )
 {
@@ -959,10 +959,10 @@ insert_one_bullet_into_blitting_list ( int bullet_num )
     
 }; // void insert_one_bullet_into_blitting_list ( int enemy_num )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 insert_one_blast_into_blitting_list ( int blast_num )
 {
@@ -973,10 +973,10 @@ insert_one_blast_into_blitting_list ( int blast_num )
     
 }; // void insert_one_blast_into_blitting_list ( int enemy_num )
 
-/* ----------------------------------------------------------------------
+/**
  * We need to display bots that are on the current level or on one of the
  * levels glued to this one.
- * ---------------------------------------------------------------------- */
+ */
 int
 level_is_visible ( int level_num )
 {
@@ -1014,7 +1014,7 @@ level_is_visible ( int level_num )
 
 }; // int level_is_visible ( int level_num )
 
-/* ----------------------------------------------------------------------
+/**
  * The Tux can change onto other levels via jump thresholds.  This was an
  * important step for gluing together several maps into one big map.
  *
@@ -1034,7 +1034,7 @@ level_is_visible ( int level_num )
  * the 'gps' notion, such that later it might also be used in conjunction
  * with items or other stuff...
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 update_virtual_position ( gps* target_pos , gps* source_pos , int level_num )
 {
@@ -1108,10 +1108,10 @@ update_virtual_position ( gps* target_pos , gps* source_pos , int level_num )
     
 }; // void update_virtual_position ( gps* target_pos , gps* source_pos , int level_num )
 
-/* ----------------------------------------------------------------------
+/**
  * The blitting list must contain the enemies too.  This function is 
  * responsible for inserting the enemies at the right positions.
- * ---------------------------------------------------------------------- */
+ */
 void
 insert_enemies_into_blitting_list ( void )
 {
@@ -1153,10 +1153,10 @@ insert_enemies_into_blitting_list ( void )
 
 }; // void insert_enemies_into_blitting_list ( void )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 insert_bullets_into_blitting_list ( void )
 {
@@ -1170,10 +1170,10 @@ insert_bullets_into_blitting_list ( void )
       
 }; // void insert_bullets_into_blitting_list ( void )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 insert_blasts_into_blitting_list ( void )
 {
@@ -1187,10 +1187,10 @@ insert_blasts_into_blitting_list ( void )
     
 }; // void insert_enemies_into_blitting_list ( void )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 insert_thrown_items_into_blitting_list ( void )
 {
@@ -1207,13 +1207,13 @@ insert_thrown_items_into_blitting_list ( void )
     
 }; // void insert_enemies_into_blitting_list ( void )
 
-/* ----------------------------------------------------------------------
+/**
  * In isometric viewpoint setting, we need to respect visibility when
  * considering the order of things to blit.  Therefore we will first set
  * up a list of the things to be blitted for this frame.  Then we can
  * later use this list to fill in objects into the picture, automatically
  * having the right order.
- * ---------------------------------------------------------------------- */
+ */
 void
 set_up_ordered_blitting_list ( int mask )
 {
@@ -1242,10 +1242,10 @@ set_up_ordered_blitting_list ( int mask )
 
 }; // void set_up_ordered_blitting_list ( void )
 
-/* ----------------------------------------------------------------------
+/**
  * Now that the blitting list has finally been assembled, we can start to
  * blit all the objects according to the blitting list set up.
- * ---------------------------------------------------------------------- */
+ */
 void
 blit_preput_objects_according_to_blitting_list ( int mask )
 {
@@ -1359,10 +1359,10 @@ blit_preput_objects_according_to_blitting_list ( int mask )
     
 }; // void blit_preput_objects_according_to_blitting_list ( ... )
 
-/* ----------------------------------------------------------------------
+/**
  * Now that the blitting list has finally been assembled, we can start to
  * blit all the objects according to the blitting list set up.
- * ---------------------------------------------------------------------- */
+ */
 void
 blit_nonpreput_objects_according_to_blitting_list ( int mask )
 {
@@ -1481,10 +1481,10 @@ The blitting list contained an illegal blitting object type.",
     
 }; // void blit_nonpreput_objects_according_to_blitting_list ( ... )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void 
 show_obstacle_labels ( int mask )
 {
@@ -1544,7 +1544,7 @@ WARNING!  Null string for description found.  Deleting description index in ques
     
 }; // void show_obstacle_labels ( int mask )
 
-/* ----------------------------------------------------------------------
+/**
  * Each item is lying on the floor.  But that means some of the items,
  * especially the smaller but not nescessary less valuable items will not
  * be easy to make out under all the bushed, trees, rubble and stuff.
@@ -1555,7 +1555,7 @@ WARNING!  Null string for description found.  Deleting description index in ques
  * This function blits all the item names to the screen on the exact
  * positions that have been computed before (hopefully!) in other 
  * functions like update_item_text_slot_positions ( ... ) or so.
- * ---------------------------------------------------------------------- */
+ */
 void
 blit_all_item_slots ( void )
 {
@@ -1609,10 +1609,10 @@ blit_all_item_slots ( void )
     
 }; // void blit_all_item_slots ( void )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 int
 item_slot_position_blocked ( item* given_item , int last_slot_to_check )
 {
@@ -1672,7 +1672,7 @@ item_slot_position_blocked ( item* given_item , int last_slot_to_check )
     return ( FALSE );
 }; // void item_slot_position_blocked ( int x , int y , int last_slot_to_check )
 
-/* ----------------------------------------------------------------------
+/**
  * Each item is lying on the floor.  But that means some of the items,
  * especially the smaller but not nescessary less valuable items will not
  * be easy to make out under all the bushed, trees, rubble and stuff.
@@ -1682,7 +1682,7 @@ item_slot_position_blocked ( item* given_item , int last_slot_to_check )
  *
  * This function computes the best rectangles and positions for such 
  * item names to flash up.
- * ---------------------------------------------------------------------- */
+ */
 void
 update_item_text_slot_positions ( void )
 {
@@ -2131,10 +2131,10 @@ PutMouseMoveCursor ( void )
     
 }; // void PutMouseMoveCursor ( void )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 free_one_loaded_tux_image_series ( int tux_part_group )
 {
@@ -2175,10 +2175,10 @@ free_one_loaded_tux_image_series ( int tux_part_group )
 
 }; // void free_one_loaded_tux_image_series ( int tux_part_group )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 clear_all_loaded_tux_images ( int with_free )
 {
@@ -2213,10 +2213,10 @@ clear_all_loaded_tux_images ( int with_free )
 
 }; // void clear_all_loaded_tux_images ( int force_free )
 
-/* ----------------------------------------------------------------------
+/**
  * Now we determine the phase to use.  This is not all the same phase any 
  * more for all tux parts now that we've introduced a walk cycle.
- * ---------------------------------------------------------------------- */
+ */
 int
 get_current_phase ( int tux_part_group , int motion_class ) 
 {
@@ -2244,10 +2244,10 @@ get_current_phase ( int tux_part_group , int motion_class )
 
 }; // int get_current_phase ( int tux_part_group ) 
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 int
 get_motion_class ( ) 
 {
@@ -2279,10 +2279,10 @@ get_motion_class ( )
     
 }; // int get_motion_class ( ) 
 
-/* ----------------------------------------------------------------------
+/**
  * We open a tux image archive file corresponding to the currently needed
  * tux image series.
- * ---------------------------------------------------------------------- */
+ */
 FILE*
 open_tux_image_archive_file ( int tux_part_group , int motion_class , char* part_string )
 {
@@ -2319,7 +2319,7 @@ This indicates a serious bug in this installation of Freedroid.",
 
 }; // FILE* open_tux_image_archive_file ( int tux_part_group , int motion_class , char* part_string )
 
-/* ----------------------------------------------------------------------
+/**
  * While earlier we used lots and lots of isolated .png and .offset files
  * to store the information about the Tux, we've now moved over to using
  * a single archive file that holds all the image and all the offset 
@@ -2328,7 +2328,7 @@ This indicates a serious bug in this installation of Freedroid.",
  * such an archive file.  It's typically called once or twice whenever 
  * either a fresh game is started/loaded or when the Tux is changing
  * equipment.
- * ---------------------------------------------------------------------- */
+ */
 void
 grab_tux_images_from_archive ( int tux_part_group , int motion_class , char* part_string )
 {
@@ -2522,7 +2522,7 @@ Surface to be loaded didn't have empty (NULL) pointer in the first place.",
 
 }; // void grab_tux_images_from_archive ( ... )
 
-/* ----------------------------------------------------------------------
+/**
  * While earlier we used lots and lots of isolated .png and .offset files
  * to store the information about an emey, we've now moved over to using
  * a single archive file that holds all the image and all the offset 
@@ -2530,7 +2530,7 @@ Surface to be loaded didn't have empty (NULL) pointer in the first place.",
  * *much* faster than it was before.  This file grabs one enemy from
  * such an archive file.  It's typically called once whenever the enemy
  * type is first encountered in one run of the engine.
- * ---------------------------------------------------------------------- */
+ */
 void
 grab_enemy_images_from_archive ( int enemy_model_nr )
 {
@@ -2766,11 +2766,11 @@ to draw attention to the possible problem...",
 
 }; // void grab_enemy_images_from_archive ( ... )
 
-/* ----------------------------------------------------------------------
+/**
  * When the Tux changes equipment and ONE NEW PART IS EQUIPPED, then
  * ALL THE IMAGES FOR THAT PART IN ALL DIRECTIONS AND ALL PHASES must
  * get loaded and that's what is done here...
- * ---------------------------------------------------------------------- */
+ */
 void
 make_sure_whole_part_group_is_ready ( int tux_part_group , int motion_class , char* part_string )
 {
@@ -2897,7 +2897,7 @@ Empty part string received!",
     
 }; // void iso_put_tux_part ( char* part_string , int x , int y )
 
-/* ----------------------------------------------------------------------
+/**
  * This function will put the Tux torso, i.e. it will put some torso with
  * the currently equipped armour on it.  Of course we can't have a unique
  * ingame representation of the Tux torso for every type of armour inside
@@ -2907,7 +2907,7 @@ Empty part string received!",
  * easily tell them apart in inventory, but it will be more or less ok to
  * use the very same ingame representation, because they are rather 
  * similar after all.
- * ---------------------------------------------------------------------- */
+ */
 void
 iso_put_tux_torso ( int x , int y , int rotation_index )
 {
@@ -2941,10 +2941,10 @@ iso_put_tux_torso ( int x , int y , int rotation_index )
     
 }; // void iso_put_tux_torso ( int x , int y , int rotation_index )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 iso_put_tux_shieldarm ( int x , int y , int rotation_index )
 {
@@ -3019,10 +3019,10 @@ iso_put_tux_shieldarm ( int x , int y , int rotation_index )
 
 }; // void iso_put_tux_shieldarm ( int x , int y , int rotation_index )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 iso_put_tux_head ( int x , int y , int rotation_index )
 {
@@ -3033,10 +3033,10 @@ iso_put_tux_head ( int x , int y , int rotation_index )
     
 }; // void iso_put_tux_head ( int x , int y , int rotation_index )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 iso_put_tux_feet ( int x , int y , int rotation_index )
 {
@@ -3047,10 +3047,10 @@ iso_put_tux_feet ( int x , int y , int rotation_index )
     
 }; // void iso_put_tux_feet ( int x , int y , int rotation_index )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 iso_put_tux_weapon ( int x , int y , int rotation_index )
 {
@@ -3071,13 +3071,13 @@ iso_put_tux_weapon ( int x , int y , int rotation_index )
     
 }; // void iso_put_tux_weapon ( int x , int y , int rotation_index )
 
-/* ----------------------------------------------------------------------
+/**
  * This function is intended to bring the Tux parts to the screen 
  * directly, respecting the correct order of blitting for all the parts
  * of the Tux in the sword motion.  Of course, the blitting order stongly
  * depends on the direction the Tux is facing.  Therefore a lot of cases
  * have to be separated.
- * ---------------------------------------------------------------------- */
+ */
 void
 iso_put_all_tux_parts_for_sword_motion ( int x , int y , int rotation_index )
 {
@@ -3149,13 +3149,13 @@ Suspicious rotation index encountered!",
     
 }; // void iso_put_all_tux_parts_for_sword_motion ( int x , int y , int rotation_index )
 
-/* ----------------------------------------------------------------------
+/**
  * This function is intended to bring the Tux parts to the screen 
  * directly, respecting the correct order of blitting for all the parts
  * of the Tux in the gun motion.  Of course, the blitting order stongly
  * depends on the direction the Tux is facing.  Therefore a lot of cases
  * have to be separated.
- * ---------------------------------------------------------------------- */
+ */
 void
 iso_put_all_tux_parts_for_gun_motion ( int x , int y , int rotation_index )
 {
@@ -3486,12 +3486,12 @@ blit_tux ( int x , int y )
 
 }; // void blit_tux( int x , int y )
 
-/* ----------------------------------------------------------------------
+/**
  * If the corresponding configuration flag is enabled, enemies might 'say'
  * some text comment on the screen, like 'ouch' or 'i'll getch' or 
  * something else more sensible.  This function is here to blit these
  * comments, that must have been set before, to the screen.
- * ---------------------------------------------------------------------- */
+ */
 void
 PrintCommentOfThisEnemy ( enemy * e )
 {
@@ -3524,11 +3524,11 @@ PrintCommentOfThisEnemy ( enemy * e )
     
 }; // void PrintCommentOfThisEnemy ( int Enum, int x, int y )
 
-/* ----------------------------------------------------------------------
+/**
  * Not every enemy has to be blitted onto the combat screen every time.
  * This function is here to find out whether this enemy has to be blitted
  * or whether we can skip it.
- * ---------------------------------------------------------------------- */
+ */
 int
 ThisEnemyNeedsToBeBlitted ( enemy * e , int x , int y )
 {
@@ -3554,10 +3554,10 @@ ThisEnemyNeedsToBeBlitted ( enemy * e , int x , int y )
     
 }; // int ThisEnemyNeedsToBeBlitted ( int Enum , int x , int y )
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 void
 PutEnemyEnergyBar ( enemy * e , SDL_Rect TargetRectangle )
 {
@@ -3653,10 +3653,10 @@ PutEnemyEnergyBar ( enemy * e , SDL_Rect TargetRectangle )
     
 }; // void PutEnemyEnergyBar ( Enum , TargetRectangle )
 
-/* ----------------------------------------------------------------------
+/**
  * The direction this robot should be facing right now is determined and
  * properly set in this function.
- * ---------------------------------------------------------------------- */
+ */
 int
 set_rotation_index_for_this_robot ( enemy* ThisRobot ) 
 {
@@ -3714,10 +3714,10 @@ set_rotation_index_for_this_robot ( enemy* ThisRobot )
   
 }; // int set_rotation_index_for_this_robot ( enemy* ThisRobot ) 
 
-/* ----------------------------------------------------------------------
+/**
  *
  *
- * ---------------------------------------------------------------------- */
+ */
 int
 set_rotation_model_for_this_robot ( enemy* ThisRobot ) 
 {
@@ -3737,13 +3737,13 @@ There was a rotation model type given, that exceeds the number of rotation model
     
 }; // int set_rotation_model_for_this_robot ( enemy* ThisRobot ) 
 
-/* ----------------------------------------------------------------------
+/**
  * This function is here to blit the 'body' of a droid to the screen, 
  * but the 'body' in the new and more modern sense with the 3d models
  * in various rotated forms as they are provided by Bastian.
  * This shape now depends upon the behaviour of the droid, which makes
  * everthing a little bit more complicated.
- * ---------------------------------------------------------------------- */
+ */
 void
 PutIndividuallyShapedDroidBody ( enemy * ThisRobot , SDL_Rect TargetRectangle , int mask , int highlight )
 {
@@ -3941,11 +3941,11 @@ PutIndividuallyShapedDroidBody ( enemy * ThisRobot , SDL_Rect TargetRectangle , 
     
 }; // void PutIndividuallyShapedDroidBody ( int Enum , SDL_Rect TargetRectangle );
 
-/* ----------------------------------------------------------------------
+/**
  * This function draws an enemy into the combat window.
  * The only parameter given is the number of the enemy within the
  * AllEnemys array. Everything else is computed in here.
- * ---------------------------------------------------------------------- */
+ */
 void
 PutEnemy ( enemy * e , int x , int y , int mask , int highlight )
 {
@@ -4027,11 +4027,11 @@ There was a droid type on this level, that does not really exist.",
     
 }; // void PutEnemy(int Enum , int x , int y) 
 
-/* ----------------------------------------------------------------------
+/**
  * This function draws a Bullet into the combat window.  The only 
  * parameter given is the number of the bullet in the AllBullets 
  * array. Everything else is computed in here.
- * ---------------------------------------------------------------------- */
+ */
 void
 PutBullet ( int bullet_index , int mask )
 {
@@ -4093,11 +4093,11 @@ There was a bullet to be blitted of a type that does not really exist.",
     
 }; // void PutBullet (int Bulletnumber )
 
-/* ----------------------------------------------------------------------
+/**
  * This function draws an item into the combat window.
  * The only given parameter is the number of the item within
  * the AllItems array.
- * ---------------------------------------------------------------------- */
+ */
 void
 PutItem( int ItemNumber , int mask , int put_thrown_items_flag , int highlight_item )
 {
@@ -4331,11 +4331,11 @@ function used for this did not succeed.",
     
 }; // void PutRadialBlueSparks( float PosX, float PosY , float Radius )
 
-/* ----------------------------------------------------------------------
+/**
  * This function draws an item into the combat window.
  * The only given parameter is the number of the item within
  * the AllItems array.
- * ---------------------------------------------------------------------- */
+ */
 void
 PutRadialBlueSparksBestQuality( float PosX, float PosY , float Radius )
 {
@@ -4408,11 +4408,11 @@ function used for this did not succeed.",
     
 }; // void PutRadialBlueSparksBestQuality( float PosX, float PosY , float Radius )
 
-/* ----------------------------------------------------------------------
+/**
  * This function draws a blast into the combat window.
  * The only given parameter is the number of the blast within
  * the AllBlasts array.
- * ---------------------------------------------------------------------- */
+ */
 void
 PutBlast (int Blast_number)
 {
@@ -4443,10 +4443,10 @@ exist at all.",
     
 };  // void PutBlast(int Blast_number)
 
-/* ----------------------------------------------------------------------
+/**
  * This function fills the combat window with one single color, given as
  * the only parameter to the function.
- * ---------------------------------------------------------------------- */
+ */
 void
 FdFlashWindow (SDL_Color Flashcolor)
 {
@@ -4471,13 +4471,13 @@ FdFillRect (SDL_Rect rect, SDL_Color color)
     
 }; // void FillRect (SDL_Rect rect, SDL_Color color)
 
-/* ----------------------------------------------------------------------
+/**
  * When the inventory screen is visible, we do not only show the items
  * present in inventory, but we also show the inventory squares, that each
  * item in the item pool takes away for storage.  This function blits a
  * part-transparent colored shadow under the item, such that the inventory
  * dimensions become apparent to the player immediately.
- * ---------------------------------------------------------------------- */
+ */
 void
 draw_inventory_occupied_rectangle ( SDL_Rect TargetRect , int bgcolor )
 {
@@ -4572,11 +4572,11 @@ The grey transparent plate for the inventory could not be loaded.  This is a fat
     
 }; // void draw_inventory_occupied_rectangle ( SDL_Rect TargetRect )
 
-/* ----------------------------------------------------------------------
+/**
  * This function displays the inventory screen and also fills in all the
  * items the influencer is carrying in his inventory and also all the 
  * items the influencer is fitted with.
- * ---------------------------------------------------------------------- */
+ */
 void
 ShowInventoryScreen( void )
 {
