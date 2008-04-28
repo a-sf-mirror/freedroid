@@ -52,6 +52,15 @@ typedef struct whole_line {
     line_element elements;
 } whole_line, *Whole_line;
 
+typedef struct whole_rectangle {
+    int activated;
+    point start;
+    int len_x, len_y;
+    int step_x, step_y;
+    int tile_used;
+} whole_rectangle;
+
+
 enum
   {
     JUMP_THRESHOLD_NORTH = 1,
@@ -151,9 +160,12 @@ void duplicate_all_obstacles_in_area ( Level source_level ,
 void give_new_description_to_obstacle ( Level EditLevel , obstacle* our_obstacle , char* predefined_description );
 
 /* Line mode */
-void handle_line_mode(whole_line *walls, moderately_finepoint TargetSquare);
 void start_line_mode(whole_line *walls, moderately_finepoint TargetSquare,
 		int already_defined);
+
+/* Rectangle mode */
+void start_rectangle_mode(whole_rectangle *rectangle,
+	moderately_finepoint TargetSquare, int already_defined);
 
 
 /* Undoable actions*/

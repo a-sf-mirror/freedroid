@@ -838,20 +838,21 @@ quickbar_use (int obstacle, int id)
 }
 
 void
-quickbar_click ( Level level, int id, moderately_finepoint TargetSquare, whole_line *walls)
+quickbar_click ( Level level, int id, moderately_finepoint TargetSquare, 
+	whole_line *walls, whole_rectangle *rectangle)
 {
     struct quickbar_entry *entry = quickbar_getentry ( id );
     if ( entry ) {
 	switch ( entry->obstacle_type )
 	{
 	    case LEVEL_EDITOR_SELECTION_FLOOR:
-		action_set_floor (level, TargetSquare.x, TargetSquare.y, entry->id);
+		rectangle->tile_used = entry->id;
+		start_rectangle_mode(rectangle, TargetSquare, TRUE);
 		break;
 	    case LEVEL_EDITOR_SELECTION_WALLS:
 		walls->editor_mode = entry->obstacle_type;
 		walls->id = entry->id;
 		start_line_mode(walls, TargetSquare, TRUE);
-		handle_line_mode(walls, TargetSquare);
 		break;
 	    default:
 	    action_create_obstacle_user (level, 
@@ -4919,9 +4920,9 @@ level_editor_handle_left_mouse_button ( int proceed_now )
 }; // void level_editor_handle_left_mouse_button ( void )
 
 
-/*---------------------------------------------------------------------
+/**
  * Begins a new line of walls
- * -------------------------------------------------------------------- */
+ */
 void start_line_mode(whole_line *walls, moderately_finepoint TargetSquare, 
 	int already_defined)
 {
@@ -4943,9 +4944,9 @@ void start_line_mode(whole_line *walls, moderately_finepoint TargetSquare,
 	    wall_indices [ walls->editor_mode ] [ walls->id ] );
 }
 
-/*----------------------------------------------------------------------
+/**
  * This function handles the line mode; adds a wall, or starts line mode
- * --------------------------------------------------------------------- */
+ **/
 void handle_line_mode(whole_line *walls, moderately_finepoint TargetSquare)
 { 
     if(! walls->activated) {
@@ -4993,11 +4994,16 @@ void handle_line_mode(whole_line *walls, moderately_finepoint TargetSquare)
 	}
 
 	// Are we going in a direction possible with that wall?
-	if ( obstacle_map [ wall_indices [ walls->editor_mode ] [ walls->id ] ] . flags & IS_HORIZONTAL ) {
+	if ( obstacle_map [ wall_indices [ walls->editor_mode ] [ walls->id ] ] . flags & IS_HORIZONTAL )
+	{
 		direction_is_possible =  (actual_direction == WEST) || (actual_direction == EAST);
-	} else if ( obstacle_map [ wall_indices [ walls->editor_mode ] [ walls->id ] ] . flags & IS_VERTICAL ) {
+	} 
+	else if ( obstacle_map [ wall_indices [ walls->editor_mode ] [ walls->id ] ] . flags & IS_VERTICAL ) 
+	{
 		direction_is_possible = (actual_direction == NORTH) || (actual_direction == SOUTH);
-	} else {
+	}
+	else 
+	{
 		direction_is_possible = FALSE;
 	}
 
@@ -5012,16 +5018,16 @@ void handle_line_mode(whole_line *walls, moderately_finepoint TargetSquare)
 	    wall->position = pos_last;
 	    switch(actual_direction) {
 		case NORTH:
-		    wall->position.y--;
+		    wall->position.y --;
 		    break;
 		case SOUTH:
-		    wall->position.y++;
+		    wall->position.y ++; 
 		    break;
 		case EAST:
-		    wall->position.x++;
+		    wall->position.x ++;
 		    break;
 		case WEST:
-		    wall->position.x--;
+		    wall->position.x --;
 		    break;
 		default:
 		    break;
@@ -5057,6 +5063,8 @@ void end_line_mode(whole_line *walls, int place_line)
     line_element *tmp;
     int list_length = 1;  
 
+    walls->activated = FALSE;
+
     // Remove the linked list
     while(!(list_empty(&(walls->elements.list))))
     {
@@ -5076,6 +5084,69 @@ void end_line_mode(whole_line *walls, int place_line)
 	action_push(ACT_MULTIPLE_FLOOR_SETS, list_length);
 
 }; // void end_line_mode(line_element *wall_line, int place_line)
+
+void start_rectangle_mode (whole_rectangle *rectangle, moderately_finepoint TargetSquare,
+	int already_defined)
+{
+    /* Start actual mode */
+    rectangle->activated = TRUE;
+
+    /* Starting values */
+    rectangle->start.x = (int)TargetSquare.x;
+    rectangle->start.y = (int)TargetSquare.y;
+    rectangle->len_x = 0;
+    rectangle->len_y = 0;
+
+    /* The tile we'll use */
+    if (! already_defined)
+	rectangle->tile_used = Highlight;
+    /* The handle function will start by undo; so it will undo this 
+     * dummy action when called the first time*/
+    action_push ( ACT_MULTIPLE_FLOOR_SETS, 0);
+} // void start_rectangle_mode (whole_rectangle *rectangle,
+  // moderately_finepoint TargetSquare, int already_defined)
+
+void handle_rectangle_mode (whole_rectangle *rectangle, moderately_finepoint TargetSquare)
+{
+    int i, j;
+    int changed_tiles = 0;
+    /* If there is something to change */
+    if (calc_euklid_distance(TargetSquare.x, TargetSquare.y,
+		rectangle->start.x + rectangle->len_x,
+		rectangle->start.y + rectangle->len_y) > 0.5)
+    {
+	/* Redefine the rectangle dimensions */
+	rectangle->len_x = (int)TargetSquare.x - rectangle->start.x; 
+	rectangle->step_x = (rectangle->len_x > 0 ? 1 : -1);
+	rectangle->len_y = (int)TargetSquare.y - rectangle->start.y;
+	rectangle->step_y = (rectangle->len_y > 0 ? 1 : -1);
+
+	/* Undo previous rectangle */
+	action_undo ( EditLevel );
+
+	/* Then redo a correct one */
+	for (i = rectangle->start.x;
+		i != rectangle->start.x + rectangle->len_x + rectangle->step_x;
+		i += rectangle->step_x)
+	{
+	    for (j = rectangle->start.y;
+		    j != rectangle->start.y + rectangle->len_y + rectangle->step_y;
+		    j += rectangle->step_y)
+	    {
+		action_set_floor ( EditLevel, i, j, rectangle->tile_used );
+		changed_tiles++;
+	    }
+	}
+	action_push ( ACT_MULTIPLE_FLOOR_SETS, changed_tiles);
+    }
+} // void handle_rectangle_mode (whole_rectangle *rectangle, moderately_finepoint TargetSquare)
+
+void end_rectangle_mode(whole_rectangle *rectangle, int place_rectangle)
+{
+    rectangle->activated = FALSE;
+    if ( ! place_rectangle )
+	action_undo ( EditLevel );
+}
 
 /**
  * This function automatically scrolls the leveleditor window when the
@@ -5324,6 +5395,8 @@ LevelEditor(void)
     moderately_finepoint TargetSquare;
     whole_line *walls = MyMalloc(sizeof(whole_line));
     walls->activated = FALSE;
+    whole_rectangle *rectangle = MyMalloc(sizeof(whole_rectangle));
+    rectangle->activated = FALSE;
 
     BlockX = rintf( Me . pos . x + 0.5 );
     BlockY = rintf( Me . pos . y + 0.5 );
@@ -5708,9 +5781,11 @@ LevelEditor(void)
 								     (float) GetMousePos_y()  - ( GameConfig . screen_height / 2 ), FALSE );
 	    }
 
-	    if(walls->activated) 
+	    if (walls->activated) 
 		handle_line_mode(walls, TargetSquare);
 	    
+	    if (rectangle->activated)
+		handle_rectangle_mode(rectangle, TargetSquare);
 
 	    level_editor_handle_mouse_wheel();
 
@@ -5734,12 +5809,12 @@ LevelEditor(void)
 		{
 		    if ( GameConfig . level_editor_edit_mode == LEVEL_EDITOR_SELECTION_FLOOR )
 		    {
-			action_set_floor (EditLevel, TargetSquare . x, TargetSquare . y, Highlight );
-			quickbar_use ( GameConfig . level_editor_edit_mode, Highlight );
+			start_rectangle_mode( rectangle , TargetSquare , FALSE );
+			quickbar_use( GameConfig . level_editor_edit_mode , Highlight );
 		    }
 		    else if ( GameConfig . level_editor_edit_mode == LEVEL_EDITOR_SELECTION_QUICK)
 		    {
-			quickbar_click ( EditLevel , Highlight , TargetSquare, walls); 
+			quickbar_click ( EditLevel , Highlight , TargetSquare, walls, rectangle); 
 		    }
 		    /* If the obstacle can be part of a line */
 		    else if ( ( GameConfig . level_editor_edit_mode == LEVEL_EDITOR_SELECTION_WALLS) &&
@@ -5770,11 +5845,18 @@ LevelEditor(void)
 		}
 	    }
 	    
-	    if ( ! MouseRightPressed() && RightMousePressedPreviousFrame && walls->activated )
-	    { /* Mouse right released ? terminate line of wall */
-		walls->activated = FALSE;
-		// End line mode and place the walls
-		end_line_mode(walls, TRUE);
+	    if ( ! MouseRightPressed() && RightMousePressedPreviousFrame )
+	    {
+		if ( walls->activated )
+		{
+		    /* Mouse right released ? terminate line of wall */
+		    // End line mode and place the walls
+		    end_line_mode(walls, TRUE);
+		}
+		else if ( rectangle->activated )
+		{
+		    end_rectangle_mode(rectangle, TRUE);
+		}
 	    }
 		    
 	    if ( QPressed ( ) &&  CtrlWasPressed() )
@@ -5791,12 +5873,16 @@ LevelEditor(void)
 		}
 		else if ( walls->activated)
 		{
-		    // Return to normal mode
-		    walls->activated = FALSE;
 		    // End line mode and *do not* place the walls
 		    end_line_mode(walls, FALSE);
 		    while ( EscapePressed() ) SDL_Delay(1);
 		} 
+		else if ( rectangle->activated )
+		{
+		    // Return to normal mode and *do not* place the walls
+		    end_rectangle_mode(rectangle, FALSE);
+		    while ( EscapePressed() ) SDL_Delay(1);
+		}
 		else
 		{
 		    main_menu_requested = TRUE ;
