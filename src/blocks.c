@@ -1683,7 +1683,7 @@ init_obstacle_data( void )
     obstacle_map [ ISO_FLOWER_WALL_WINDOW_2 ] . flags &= ~BLOCKS_VISION_TOO ;
     obstacle_map [ ISO_FLOWER_WALL_WINDOW_2 ] . filename = "iso_walls_0027.png" ;
     obstacle_map [ ISO_FLOWER_WALL_WINDOW_2 ] . transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS ;
-    obstacle_map [ ISO_FLOWER_WALL_WINDOW_2 ] . flags |= IS_VERTICAL ; 
+    obstacle_map [ ISO_FLOWER_WALL_WINDOW_2 ] . flags |= IS_HORIZONTAL ; 
     
     obstacle_map [ ISO_FUNKY_WALL_WINDOW_1 ] . block_area_parm_1 = standard_wall_thickness ;
     obstacle_map [ ISO_FUNKY_WALL_WINDOW_1 ] . block_area_parm_2 = 1.2 ;
