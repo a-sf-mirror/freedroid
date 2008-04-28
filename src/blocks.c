@@ -3017,12 +3017,14 @@ init_obstacle_data( void )
   obstacle_map [ ISO_BRICK_WALL_EH ] . block_area_parm_2 = 1.2 ;
   obstacle_map [ ISO_BRICK_WALL_EH ] . filename = "iso_brick_wall_0016.png" ;
   obstacle_map [ ISO_BRICK_WALL_EH ] . flags &= ~IS_SMASHABLE ;
+  obstacle_map [ ISO_BRICK_WALL_EH ] . flags |= IS_HORIZONTAL ;
   obstacle_map [ ISO_BRICK_WALL_EH ] . result_type_after_smashing_once = ISO_BRICK_WALL_CRACKED_1 ;
   obstacle_map [ ISO_BRICK_WALL_EV ] . block_area_type = COLLISION_TYPE_RECTANGLE ;
   obstacle_map [ ISO_BRICK_WALL_EV ] . block_area_parm_1 = 1.2 ;
   obstacle_map [ ISO_BRICK_WALL_EV ] . block_area_parm_2 = 1.2 ;
   obstacle_map [ ISO_BRICK_WALL_EV ] . filename = "iso_brick_wall_0017.png" ;
   obstacle_map [ ISO_BRICK_WALL_EV ] . flags &= ~IS_SMASHABLE ;
+  obstacle_map [ ISO_BRICK_WALL_EV ] . flags |= IS_VERTICAL ;
   obstacle_map [ ISO_BRICK_WALL_EV ] . result_type_after_smashing_once = ISO_BRICK_WALL_CRACKED_2 ;
 
   
