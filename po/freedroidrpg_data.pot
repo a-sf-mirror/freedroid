@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CHANGE THIS\n"
 "Report-Msgid-Bugs-To: CHANGE THIS TOO\n"
-"POT-Creation-Date: 2008-04-26 07:09+0000\n"
-"PO-Revision-Date: 2008-04-26 07:09+0000\n"
+"POT-Creation-Date: 2008-04-27 09:20+0000\n"
+"PO-Revision-Date: 2008-04-27 09:20+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -30,115 +30,114 @@ msgstr ""
 msgid "Check system integrity"
 msgstr ""
 
-#: ../map/freedroid.program_archetypes:70
+#: ../map/freedroid.program_archetypes:68
 msgid "Sanctuary"
 msgstr ""
 
-#: ../map/freedroid.program_archetypes:82
+#: ../map/freedroid.program_archetypes:80
 msgid "Analyze item"
 msgstr ""
 
-#: ../map/freedroid.program_archetypes:94
+#: ../map/freedroid.program_archetypes:92
 msgid "Malformed packet"
 msgstr ""
 
-#: ../map/freedroid.program_archetypes:112
+#: ../map/freedroid.program_archetypes:110
 msgid "Calculate Pi"
 msgstr ""
 
-#: ../map/freedroid.program_archetypes:133
+#: ../map/freedroid.program_archetypes:129
 msgid "Blue Screen"
 msgstr ""
 
-#: ../map/freedroid.program_archetypes:151
+#: ../map/freedroid.program_archetypes:146
 msgid "Broadcast Blue Screen"
 msgstr ""
 
-#: ../map/freedroid.program_archetypes:169
+#: ../map/freedroid.program_archetypes:164
 msgid "Virus"
 msgstr ""
 
-#: ../map/freedroid.program_archetypes:190
+#: ../map/freedroid.program_archetypes:181
 msgid "Broadcast virus"
 msgstr ""
 
-#: ../map/freedroid.program_archetypes:191
+#: ../map/freedroid.program_archetypes:182
 msgid "Program description=_"
 msgstr ""
 
-#: ../map/freedroid.program_archetypes:211
+#: ../map/freedroid.program_archetypes:198
 msgid "Dispel smoke"
 msgstr ""
 
-#: ../map/freedroid.program_archetypes:227
+#: ../map/freedroid.program_archetypes:214
 msgid "Killer poke"
 msgstr ""
 
-#: ../map/freedroid.program_archetypes:246
+#: ../map/freedroid.program_archetypes:233
 msgid "Reverse-engineer"
 msgstr ""
 
-#: ../map/freedroid.program_archetypes:258
+#: ../map/freedroid.program_archetypes:245
 msgid "Plasma discharge"
 msgstr ""
 
-#: ../map/freedroid.program_archetypes:278
+#: ../map/freedroid.program_archetypes:265
 msgid "Nethack"
 msgstr ""
 
-#: ../map/freedroid.program_archetypes:296
+#: ../map/freedroid.program_archetypes:283
 msgid "Extract bot parts"
 msgstr ""
 
-#: ../map/freedroid.program_archetypes:305
+#: ../map/freedroid.program_archetypes:292
 msgid "Ricer CFLAGS"
 msgstr ""
 
-#: ../map/freedroid.program_archetypes:314
+#: ../map/freedroid.program_archetypes:301
 msgid "Invisibility"
 msgstr ""
 
-#: ../map/freedroid.program_archetypes:315
-msgid ""
-"This does nothing in this version of freedroidRPG. I am not the Linarian you a"
-"re looking for."
+#: ../map/freedroid.program_archetypes:302
+#: ../map/freedroid.item_archetypes:3414
+msgid "I am not the Linarian you are looking for."
 msgstr ""
 
-#: ../map/freedroid.program_archetypes:322
+#: ../map/freedroid.program_archetypes:312
 msgid "Light"
 msgstr ""
 
-#: ../map/freedroid.program_archetypes:323
+#: ../map/freedroid.program_archetypes:313
 msgid "This does nothing in this version of freedroidRPG. Let there be light..."
 msgstr ""
 
-#: ../map/freedroid.program_archetypes:332
+#: ../map/freedroid.program_archetypes:322
 msgid "Satellite image"
 msgstr ""
 
-#: ../map/freedroid.program_archetypes:333
+#: ../map/freedroid.program_archetypes:323
 msgid ""
 "This does nothing in this version of freedroidRPG. Getting a map of an area is"
 " pretty easy when you can look at everything from above."
 msgstr ""
 
-#: ../map/freedroid.program_archetypes:341
+#: ../map/freedroid.program_archetypes:331
 msgid "Plasma grenade"
 msgstr ""
 
+#: ../map/freedroid.program_archetypes:332
 #: ../map/freedroid.program_archetypes:342
 #: ../map/freedroid.program_archetypes:352
-#: ../map/freedroid.program_archetypes:362
 msgid ""
 "This is a bug, report this to the developers, unless you cheated, in which cas"
 "e you deserve to see this stupid description."
 msgstr ""
 
-#: ../map/freedroid.program_archetypes:351
+#: ../map/freedroid.program_archetypes:341
 msgid "Gas grenade"
 msgstr ""
 
-#: ../map/freedroid.program_archetypes:361
+#: ../map/freedroid.program_archetypes:351
 msgid "EMP grenade"
 msgstr ""
 
@@ -1344,10 +1343,6 @@ msgstr ""
 
 #: ../map/freedroid.item_archetypes:3404
 msgid "Source Book of Invisibility"
-msgstr ""
-
-#: ../map/freedroid.item_archetypes:3414
-msgid "I am not the Linarian you are looking for."
 msgstr ""
 
 #: ../map/freedroid.item_archetypes:3420
