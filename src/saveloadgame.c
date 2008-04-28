@@ -877,26 +877,23 @@ while ( pos < epos )
 *epos = savechar;
 }
 
-void save_bigscrmsg_t(const char *tag, bigscrmsg_t * data)
+void save_bigscrmsg_t_array(const char *tag, bigscrmsg_t * data, int sz)
 {
-/* bigscrmsg_t is an array (size MAX_BIG_SCREEN_MESSAGES) of strings */
-/* those messages are of very little interest which is why we will not save them.*/
-#if 0
-fprintf(SaveGameFile, "<bigscreenmessages m=%d>\n", MAX_BIG_SCREEN_MESSAGES);
+fprintf(SaveGameFile, "<bigscreenmessages m=%d>\n", sz);
 int i = 0;
-while ( (*data)[i] != NULL && strlen ( (* data) [ i ] ) )
+for ( ; i < sz ; i ++)
     {
-    fprintf(SaveGameFile, "%s", (*data) [ i ] );
+    if ( data[i] == NULL ) 
+	break;
+    fprintf(SaveGameFile, "%s\n", (data) [ i ] );
     }
 
 fprintf(SaveGameFile, "</bigscreenmessages>\n");
-#endif
 }
 
-void read_bigscrmsg_t(const char * buffer, const char * tag, bigscrmsg_t * data)
+void read_bigscrmsg_t_array(const char * buffer, const char * tag, bigscrmsg_t * data, int sz)
 {
-/* This function isn't even finished */
-#if 0
+int i = 0;
 char * pos = strstr(buffer, "<bigscreenmessages m=");
 if ( ! pos ) ErrorMessage ( __FUNCTION__, "Unable to find big screen messages.\n", PLEASE_INFORM, IS_FATAL);
 char * epos = strstr(pos, "</bigscreenmessages>\n");
@@ -919,7 +916,25 @@ if ( mc != MAX_BIG_SCREEN_MESSAGES )
 
 while ( *pos != '\n' ) pos ++;
 pos++;
-#endif
+
+while ( pos < epos && i < sz )
+    { //beginning of a line
+    erunp = pos;
+    while ( *erunp != '\n' ) erunp ++;
+    *erunp = '\0';
+    char value[erunp-pos+1];
+    strcpy(value, pos);
+    if ( data[i] )
+	{
+	free(data[i]);
+	}
+    data[i] = MyMalloc(erunp-pos+1);
+    strcpy(data[i], value);
+    *erunp = '\n';
+    pos = erunp+1;
+    i++;
+    }
+*epos = savechar;
 }
 
 void save_automap_data(const char * tag, automap_data_t * automapdata, int size)
