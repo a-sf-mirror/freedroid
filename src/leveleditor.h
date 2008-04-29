@@ -146,7 +146,12 @@ enum
       NORMAL = 0, /* push only in to_undo */
       UNDO = 1 /* pop in to_undo and push in to_redo  */
   };
-	
+
+typedef struct dragged_content {
+    int activated;
+    obstacle *selected_obstacle;
+} dragged_content;
+
 void ShowWaypoints( int PrintConnectionList , int maks );
 void LevelEditor(void);
 void cycle_marked_obstacle( Level EditLevel );
