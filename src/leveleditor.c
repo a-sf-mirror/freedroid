@@ -4224,44 +4224,83 @@ ShowMapLabels( int mask )
 void
 HandleMapTileEditingKeys ( Level EditLevel , int BlockX , int BlockY )
 {
+    struct quickbar_entry *entry = NULL;
+    int obstacle_type, id;
+    int placement_is_possible = TRUE;
+    int obstacle_created = FALSE;
+
     if ( GameConfig . level_editor_edit_mode == LEVEL_EDITOR_SELECTION_FLOOR )
 	return;
 
-    if ( KP1Hit() ) 
+    /* Try to get a quickbar entry */
+    if ( GameConfig . level_editor_edit_mode == LEVEL_EDITOR_SELECTION_QUICK )
     {
-	action_create_obstacle_user ( EditLevel, ((int)Me.pos.x) , ((int)Me.pos.y) + 1.0, wall_indices [ GameConfig . level_editor_edit_mode ] [ Highlight ] );
+	entry = quickbar_getentry ( Highlight );
+	if (entry)
+	{
+	    obstacle_type = entry -> obstacle_type;
+	    id = entry -> id;
+	}
+	else
+	{
+	    placement_is_possible = FALSE;
+	}
     }
-    if (KP2Hit()) 
+    else
     {
-    	action_create_obstacle_user ( EditLevel,  ((int)Me.pos.x)+ 0.5 , ((int)Me.pos.y) + 1.0,  wall_indices [ GameConfig . level_editor_edit_mode ] [ Highlight ]);
+	obstacle_type = GameConfig . level_editor_edit_mode;
+	id = Highlight;
     }
-    if (KP3Hit()) 
+
+    if ( placement_is_possible )
     {
-    	action_create_obstacle_user ( EditLevel,  ((int)Me.pos.x)+1.0 , ((int)Me.pos.y)+1.0,  wall_indices [ GameConfig . level_editor_edit_mode ] [ Highlight ]);
-    }
-    if (KP4Hit()) 
-    {
-    	action_create_obstacle_user ( EditLevel,  ((int)Me.pos.x), ((int)Me.pos.y) + 0.5,  wall_indices [ GameConfig . level_editor_edit_mode ] [ Highlight ]);
-    }
-    if (KP5Hit()) 
-    {
-    	action_create_obstacle_user ( EditLevel,  ((int)Me.pos.x) + 0.5 , ((int)Me.pos.y)+0.5,  wall_indices [ GameConfig . level_editor_edit_mode ] [ Highlight ]);
-    }
-    if (KP6Hit()) 
-    {
-    	action_create_obstacle_user ( EditLevel,  ((int)Me.pos.x)+ 1.0 , ((int)Me.pos.y) + 0.5,  wall_indices [ GameConfig . level_editor_edit_mode ] [ Highlight ]);
-    }
-    if (KP7Hit()) 
-    {
-    	action_create_obstacle_user ( EditLevel,  ((int)Me.pos.x), ((int)Me.pos.y),  wall_indices [ GameConfig . level_editor_edit_mode ] [ Highlight ]);
-    }
-    if ( KP8Hit() ) 
-    {
-    	action_create_obstacle_user ( EditLevel,  ((int)Me.pos.x)+ 0.5 , ((int)Me.pos.y),  wall_indices [ GameConfig . level_editor_edit_mode ] [ Highlight ]);
-    }
-    if (KP9Hit()) 
-    {
-    	action_create_obstacle_user ( EditLevel,  ((int)Me.pos.x) + 1.0 , ((int)Me.pos.y),  wall_indices [ GameConfig . level_editor_edit_mode ] [ Highlight ]);
+	if ( KP1Hit() ) 
+	{
+	    action_create_obstacle_user ( EditLevel, ((int)Me.pos.x) , ((int)Me.pos.y) + 1.0, wall_indices [ obstacle_type ] [ id ] );
+	    obstacle_created = TRUE;
+	}
+	if (KP2Hit()) 
+	{
+	    action_create_obstacle_user ( EditLevel,  ((int)Me.pos.x)+ 0.5 , ((int)Me.pos.y) + 1.0,  wall_indices [ obstacle_type ] [ id ]);
+	    obstacle_created = TRUE;
+	}
+	if (KP3Hit()) 
+	{
+	    action_create_obstacle_user ( EditLevel,  ((int)Me.pos.x)+1.0 , ((int)Me.pos.y)+1.0,  wall_indices [ obstacle_type ] [ id ]);
+	    obstacle_created = TRUE;
+	}
+	if (KP4Hit()) 
+	{
+	    action_create_obstacle_user ( EditLevel,  ((int)Me.pos.x), ((int)Me.pos.y) + 0.5,  wall_indices [ obstacle_type ] [ id ]);
+	    obstacle_created = TRUE;
+	}
+	if (KP5Hit()) 
+	{
+	    action_create_obstacle_user ( EditLevel,  ((int)Me.pos.x) + 0.5 , ((int)Me.pos.y)+0.5,  wall_indices [ obstacle_type ] [ id ]);
+	    obstacle_created = TRUE;
+	}
+	if (KP6Hit()) 
+	{
+	    action_create_obstacle_user ( EditLevel,  ((int)Me.pos.x)+ 1.0 , ((int)Me.pos.y) + 0.5,  wall_indices [ obstacle_type ] [ id ]);
+	    obstacle_created = TRUE;
+	}
+	if (KP7Hit()) 
+	{
+	    action_create_obstacle_user ( EditLevel,  ((int)Me.pos.x), ((int)Me.pos.y),  wall_indices [ obstacle_type ] [ id ]);
+	    obstacle_created = TRUE;
+	}
+	if ( KP8Hit() ) 
+	{
+	    action_create_obstacle_user ( EditLevel,  ((int)Me.pos.x)+ 0.5 , ((int)Me.pos.y),  wall_indices [ obstacle_type ] [ id ]);
+	    obstacle_created = TRUE;
+	}
+	if (KP9Hit()) 
+	{
+	    action_create_obstacle_user ( EditLevel,  ((int)Me.pos.x) + 1.0 , ((int)Me.pos.y),  wall_indices [ obstacle_type ] [ id ]);
+	    obstacle_created = TRUE;
+	}
+	if ( GameConfig . level_editor_edit_mode != LEVEL_EDITOR_SELECTION_QUICK && obstacle_created )
+	    quickbar_use ( obstacle_type, id );
     }
 }; // void HandleMapTileEditingKeys ( Level EditLevel , int BlockX , int BlockY )
 
