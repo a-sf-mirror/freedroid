@@ -330,14 +330,17 @@ ClearEnemys ( void )
 void
 ShuffleEnemys ( int LevelNum )
 {
-    int i, j;
+    int j;
     int nth_enemy;
     int wp_num;
     int wp = 0;
     int BestWaypoint;
     Level ShuffleLevel = curShip.AllLevels[ LevelNum ];
     
-    wp_num = ShuffleLevel->num_waypoints;;
+    wp_num = ShuffleLevel->num_waypoints;
+    char wp_used[wp_num]; //is this waypoint used?
+    memset(wp_used, 0, wp_num);
+
     nth_enemy = 0;
 
     enemy *erot;
@@ -383,34 +386,30 @@ ShuffleEnemys ( int LevelNum )
 
 	    erot->pos.x = ShuffleLevel->AllWaypoints[ BestWaypoint ].x + 0.5;
 	    erot->pos.y = ShuffleLevel->AllWaypoints[ BestWaypoint ].y + 0.5;
+	    if ( wp_used [ BestWaypoint ] == 1 )
+		ErrorMessage ( __FUNCTION__, "Waypoint %d at %d %d  on level %d is used for a special force but open to random placement of bots. This should be fixed.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY, BestWaypoint, ShuffleLevel->AllWaypoints[ BestWaypoint ].x, ShuffleLevel->AllWaypoints[ BestWaypoint ].y, LevelNum);
 
+	    wp_used [ BestWaypoint ] = 1;
 	    continue;
 	    }
 
-	nth_enemy++ ;
-	if ( nth_enemy < wp_num )
+	int testwp = MyRandom ( wp_num );
+	if ( wp_used [ testwp ] && ! ShuffleLevel -> AllWaypoints [ nth_enemy ] . suppress_random_spawn) //test a random waypoint
 	    {
-	    //--------------------
-	    // If we can use this waypoint for random spawning
-	    // then we use it
-	    // "this waypoint" actually is the bot number in this level. 
-	    //
-	    if ( ! ShuffleLevel -> AllWaypoints [ nth_enemy ] . suppress_random_spawn )
+	    testwp = 0; 
+	    while ( testwp < wp_num ) //if used, pick the first unused one
 		{
-		wp = nth_enemy;
+		if ( ! wp_used [ testwp ] )
+		    break;
+		testwp++;
 		}
-	    else
-		{
-		i -- ;
-		continue ;
-		}
+	    if ( testwp == wp_num )
+		ErrorMessage(__FUNCTION__, "There was no free waypoint found on level %d to place another random bot.\n", PLEASE_INFORM, IS_FATAL, LevelNum);
 	    }
-	else
-	    {
-	    DebugPrintf (0, "\nNumber of waypoints found: %d." , wp_num );
-	    DebugPrintf (0, "\nLess waypoints than enemys on level %d? !", ShuffleLevel->levelnum );
-	    Terminate (ERR);
-	    }
+
+	wp = testwp;
+	wp_used [ testwp ] = 1;
+
 
 	erot->pos.x = ShuffleLevel->AllWaypoints[wp].x + 0.5;
 	erot->pos.y = ShuffleLevel->AllWaypoints[wp].y + 0.5;
@@ -723,6 +722,7 @@ SetNewRandomWaypoint ( Enemy ThisRobot )
     
     if (  num_conn == 0 ) // no connections found!
     {
+        fprintf ( stderr, "\nFound a waypoint without connection\n");
 	fprintf ( stderr , "\nThe offending waypoint nr. is: %d at %d, %d.", nextwp, WpList [ nextwp ] . x, WpList [ nextwp ] . y );
 	fprintf ( stderr , "\nThe map level in question got nr.: %d.", ThisRobot -> pos . z );
 	return 1;
