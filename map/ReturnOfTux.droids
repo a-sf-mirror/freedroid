@@ -266,7 +266,7 @@ SForce: T=883 Fixed=0 Marker=9999 Friendly=0 StartUpAtLabel="MERStartGameSquare"
 Level=8
 Maximum number of Random Droids=4
 Minimum number of Random Droids=4
-Allowed Type of Random Droid for this level: 821
+Allowed Type of Random Droid for this level: 123
 
 SForce: T=PRO Fixed=0 Marker=9999 Friendly=1 StartUpAtLabel="FrancisStartGameSquare" RushTux="yes" DialogSectionToUse="Francis" ShortLabel="Francis" attack_run_only_when_direct_line="no"
 SForce: T=GUB Fixed=0 Marker=5 Friendly=1 StartUpAtLabel="DarwinStartGameSquare" RushTux="no" DialogSectionToUse="Darwin" ShortLabel="Engel -- Hunter" attack_run_only_when_direct_line="no"
