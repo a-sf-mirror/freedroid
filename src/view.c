@@ -1320,7 +1320,7 @@ blit_preput_objects_according_to_blitting_list ( int mask )
 	    // If the obstacle isn't otherwise a preput obstacle, we're done here and can 
 	    // move on to the next list element
 	    //
-	    if ( ! obstacle_map [ ( (obstacle*)  blitting_list [ i ] . element_pointer ) -> type ] . flags & NEEDS_PRE_PUT ) continue ;
+	    if ( ! ( obstacle_map [ ( (obstacle*)  blitting_list [ i ] . element_pointer ) -> type ] . flags & NEEDS_PRE_PUT ) ) continue ;
 	    
 	    //--------------------
 	    // So now we know that we must blit this one obstacle...
