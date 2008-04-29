@@ -5397,6 +5397,8 @@ LevelEditor(void)
     walls->activated = FALSE;
     whole_rectangle *rectangle = MyMalloc(sizeof(whole_rectangle));
     rectangle->activated = FALSE;
+    dragged_content* selection = MyMalloc(sizeof(dragged_content));
+    selection->activated = FALSE;
 
     BlockX = rintf( Me . pos . x + 0.5 );
     BlockY = rintf( Me . pos . y + 0.5 );
@@ -5606,41 +5608,6 @@ LevelEditor(void)
 	    //
 	    if ( LPressed () ) action_change_map_label_user (EditLevel);
 	    
-	    //--------------------
-	    // The 'M' key will activate mouse-move-mode to allow for convenient
-	    // mouse-based re-placement of the currently marked obstacle, OR,
-	    // if the mouse-move-mode was already activated, it will drop the
-	    // marked obstacle to it's new place.
-	    //
-	    if ( MPressed () ) 
-	    {
-		if ( ! level_editor_mouse_move_mode )
-		{
-		    if ( level_editor_marked_obstacle != NULL ) 
-			level_editor_mouse_move_mode = TRUE ;
-		}
-		else
-		{
-		    if ( level_editor_marked_obstacle != NULL ) 
-		    {
-			level_editor_marked_obstacle -> pos . x = 
-			    translate_pixel_to_map_location ( (float) input_axis.x , 
-							      (float) input_axis.y , TRUE ) ;
-			level_editor_marked_obstacle -> pos . y = 
-			    translate_pixel_to_map_location ( (float) input_axis.x , 
-							      (float) input_axis.y , FALSE ) ;
-			glue_obstacles_to_floor_tiles_for_level ( EditLevel -> levelnum );
-			level_editor_marked_obstacle = NULL ;
-		    }
-		    level_editor_mouse_move_mode = FALSE ;
-		}
-		while ( MPressed() );
-	    }
-	    else
-	    {
-		if ( level_editor_mouse_move_mode && ( level_editor_marked_obstacle == NULL ) )
-		    level_editor_mouse_move_mode = FALSE ;
-	    }
 	    
 	    //--------------------
 	    // From the level editor, it should also be possible to drop new goods
@@ -5783,6 +5750,33 @@ LevelEditor(void)
 								     (float) GetMousePos_y()  - ( GameConfig . screen_height / 2 ), FALSE );
 	    }
 
+	    //--------------------
+	    // The 'M' key will activate drag&drop mode to allow for convenient
+	    // obstacle moving.
+	    // 
+	    if ( MPressed () && 
+		    MouseLeftPressed() && !LeftMousePressedPreviousFrame && 
+		    level_editor_marked_obstacle != NULL )
+	    {
+		    selection->activated = TRUE ;
+		    selection->selected_obstacle = level_editor_marked_obstacle;
+	    }
+
+	    if ( (selection->activated) &&
+		    selection->selected_obstacle->pos.x != TargetSquare.x &&
+		    selection->selected_obstacle->pos.y != TargetSquare.y )
+	    {
+		selection->selected_obstacle -> pos . x = TargetSquare.x;
+		selection->selected_obstacle -> pos . y =TargetSquare.y;
+		glue_obstacles_to_floor_tiles_for_level ( EditLevel -> levelnum );
+	    }
+	
+	    if ( selection->activated && !MouseLeftPressed() && LeftMousePressedPreviousFrame) 
+	    {
+		selection->activated = FALSE;
+	    }
+
+
 	    if (walls->activated) 
 		handle_line_mode(walls, TargetSquare);
 	    
@@ -5911,6 +5905,7 @@ LevelEditor(void)
     
     free(walls);
     free(rectangle);
+    free(selection);
     RespectVisibilityOnMap = TRUE ;
     level_editor_marked_obstacle = NULL ; 
     
