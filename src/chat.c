@@ -631,6 +631,8 @@ ExecuteChatExtra ( char* ExtraCommandString , Enemy ChatDroid )
 	char finaldir[50];
 	sprintf(finaldir, "%s", DIALOG_DIR);
 	find_file (tmp_filename , finaldir, fpath, 0);
+	
+	LoadChatRosterWithChatSequence ( fpath );
 
 	int i, j;
 	for (i = 0; i < MAX_ANSWERS_PER_PERSON; i ++)
@@ -660,7 +662,6 @@ ExecuteChatExtra ( char* ExtraCommandString , Enemy ChatDroid )
 	    }
 
 
-	LoadChatRosterWithChatSequence ( fpath );
 	DoChatFromChatRosterData( PERSON_SUBDIALOG_DUMMY , ChatDroid , FALSE );
 
 	push_or_pop_chat_roster ( POP_ROSTER );
