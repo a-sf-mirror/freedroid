@@ -4918,38 +4918,6 @@ level_editor_handle_left_mouse_button ( int proceed_now )
 	    Me . mouse_move_target . z = Me . pos . z ;
 	    enemy_set_reference(&Me . current_enemy_target_n, &Me . current_enemy_target_addr, NULL);
 	}
-	else
-	{
-	    //--------------------
-	    // Maybe a left mouse click has in the map area.  Then it might be best to interpret this
-	    // simply as bigger move command, which might indeed be much handier than 
-	    // using only keyboard cursor keys to move around on the map.
-	    //
-	    if ( GameConfig . zoom_is_on )
-		Me . pos . x = 
-		    translate_pixel_to_zoomed_map_location ( (float) GetMousePos_x()  - ( GameConfig . screen_width / 2 ) , 
-							     (float) GetMousePos_y()  - ( GameConfig . screen_height / 2 ), TRUE ); 
-	    else
-		Me . pos . x = 
-		    translate_pixel_to_map_location ( (float) GetMousePos_x()  - ( GameConfig . screen_width / 2 ) , 
-						      (float) GetMousePos_y()  - ( GameConfig . screen_height / 2 ), TRUE ); 
-	    
-	    if ( Me . pos . x >= curShip.AllLevels[Me.pos.z]->xlen-1 )
-		Me . pos . x = curShip.AllLevels[Me.pos.z]->xlen-1 ;
-	    if ( Me . pos . x <= 0 ) Me . pos . x = 0;
-	    
-	    if ( GameConfig . zoom_is_on )
-		Me . pos . y = 
-		    translate_pixel_to_zoomed_map_location ( (float) GetMousePos_x()  - ( GameConfig . screen_width / 2 ), 
-							     (float) GetMousePos_y()  - ( GameConfig . screen_height / 2 ), FALSE );
-	    else
-		Me . pos . y = 
-		    translate_pixel_to_map_location ( (float) GetMousePos_x()  - ( GameConfig . screen_width / 2 ), 
-						      (float) GetMousePos_y()  - ( GameConfig . screen_height / 2 ), FALSE );
-	    if ( Me . pos . y >= curShip.AllLevels[Me.pos.z]->ylen-1 )
-		Me . pos . y = curShip.AllLevels[Me.pos.z]->ylen-1 ;
-	    if ( Me . pos . y <= 0 ) Me . pos . y = 0;
-	}
     }
 
     LeftMousePressedPreviousFrame = MouseLeftPressed(); 
@@ -5839,7 +5807,7 @@ LevelEditor(void)
 	    // accomplished.
 	    //
 
-	    if ( MouseRightPressed() && !RightMousePressedPreviousFrame )
+	    if ( MouseLeftPressed() && !LeftMousePressedPreviousFrame )
 	    {
 		if ( ( (int)TargetSquare . x >= 0 ) &&
 		     ( (int)TargetSquare . x <= EditLevel->xlen-1 ) &&
@@ -5884,7 +5852,7 @@ LevelEditor(void)
 		}
 	    }
 	    
-	    if ( ! MouseRightPressed() && RightMousePressedPreviousFrame )
+	    if ( ! MouseLeftPressed() && LeftMousePressedPreviousFrame )
 	    {
 		if ( walls->activated )
 		{
@@ -5897,6 +5865,40 @@ LevelEditor(void)
 		    end_rectangle_mode(rectangle, TRUE);
 		}
 	    }
+
+	    //--------------------
+	    // Maybe a left mouse click has in the map area.  Then it might be best to interpret this
+	    // simply as bigger move command, which might indeed be much handier than 
+	    // using only keyboard cursor keys to move around on the map.
+	    //
+	    if ( MouseRightPressed() && !RightMousePressedPreviousFrame )
+	    {
+		    if ( GameConfig . zoom_is_on )
+			    Me . pos . x = 
+				    translate_pixel_to_zoomed_map_location ( (float) GetMousePos_x()  - ( GameConfig . screen_width / 2 ) , 
+						    (float) GetMousePos_y()  - ( GameConfig . screen_height / 2 ), TRUE ); 
+		    else
+			    Me . pos . x = 
+				    translate_pixel_to_map_location ( (float) GetMousePos_x()  - ( GameConfig . screen_width / 2 ) , 
+						    (float) GetMousePos_y()  - ( GameConfig . screen_height / 2 ), TRUE ); 
+
+		    if ( Me . pos . x >= curShip.AllLevels[Me.pos.z]->xlen-1 )
+			    Me . pos . x = curShip.AllLevels[Me.pos.z]->xlen-1 ;
+		    if ( Me . pos . x <= 0 ) Me . pos . x = 0;
+
+		    if ( GameConfig . zoom_is_on )
+			    Me . pos . y = 
+				    translate_pixel_to_zoomed_map_location ( (float) GetMousePos_x()  - ( GameConfig . screen_width / 2 ), 
+						    (float) GetMousePos_y()  - ( GameConfig . screen_height / 2 ), FALSE );
+		    else
+			    Me . pos . y = 
+				    translate_pixel_to_map_location ( (float) GetMousePos_x()  - ( GameConfig . screen_width / 2 ), 
+						    (float) GetMousePos_y()  - ( GameConfig . screen_height / 2 ), FALSE );
+		    if ( Me . pos . y >= curShip.AllLevels[Me.pos.z]->ylen-1 )
+			    Me . pos . y = curShip.AllLevels[Me.pos.z]->ylen-1 ;
+		    if ( Me . pos . y <= 0 ) Me . pos . y = 0;
+	    }
+
 		    
 	    if ( QPressed ( ) &&  CtrlWasPressed() )
 	    {
