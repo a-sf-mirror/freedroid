@@ -44,7 +44,6 @@
 #include "proto.h"
 #include "SDL_rotozoom.h"
 
-int NoKeyPressed (void);
 int GreatItemShow ( int NumberOfItems , item* ShowPointerList[ MAX_ITEMS_IN_INVENTORY ] );
 
 void ShowDroidPicture (int PosX, int PosY, int Number );
