@@ -5397,6 +5397,8 @@ LevelEditor(void)
     walls->activated = FALSE;
     whole_rectangle *rectangle = MyMalloc(sizeof(whole_rectangle));
     rectangle->activated = FALSE;
+    dragged_content selection = MyMalloc(sizeof(dragged_content));
+    selection->activated = FALSE;
 
     BlockX = rintf( Me . pos . x + 0.5 );
     BlockY = rintf( Me . pos . y + 0.5 );
@@ -5612,26 +5614,24 @@ LevelEditor(void)
 	    // if the mouse-move-mode was already activated, it will drop the
 	    // marked obstacle to it's new place.
 	    //
-	    if ( MPressed () ) 
+	    if ( MPressed () && MouseLeftPressed() && !LeftMousePressedPreviousFrame) 
 	    {
-		if ( ! level_editor_mouse_move_mode )
-		{
-		    if ( level_editor_marked_obstacle != NULL ) 
-			level_editor_mouse_move_mode = TRUE ;
+		if ( level_editor_marked_obstacle != NULL ) {
+		    selection->activated = TRUE ;
+		    selection->obstacle = level_editor_marked_obstacle;
 		}
-		else
+		if ( (selection->activated) &&
+			(calc_euklid_distance(selection->obstacle->pos.x,selection->obstacle->pos.y,
+					      input_axis.x, input_axis.y) > 0.5) )
 		{
-		    if ( level_editor_marked_obstacle != NULL ) 
-		    {
-			level_editor_marked_obstacle -> pos . x = 
-			    translate_pixel_to_map_location ( (float) input_axis.x , 
-							      (float) input_axis.y , TRUE ) ;
-			level_editor_marked_obstacle -> pos . y = 
-			    translate_pixel_to_map_location ( (float) input_axis.x , 
-							      (float) input_axis.y , FALSE ) ;
-			glue_obstacles_to_floor_tiles_for_level ( EditLevel -> levelnum );
-			level_editor_marked_obstacle = NULL ;
-		    }
+		    selection->obstacle -> pos . x = 
+			translate_pixel_to_map_location ( (float) input_axis.x , 
+				(float) input_axis.y , TRUE ) ;
+		    selection->obstacle -> pos . y = 
+			translate_pixel_to_map_location ( (float) input_axis.x , 
+				(float) input_axis.y , FALSE ) ;
+		    glue_obstacles_to_floor_tiles_for_level ( EditLevel -> levelnum );
+		}
 		    level_editor_mouse_move_mode = FALSE ;
 		}
 		while ( MPressed() );
@@ -5639,7 +5639,11 @@ LevelEditor(void)
 	    else
 	    {
 		if ( level_editor_mouse_move_mode && ( level_editor_marked_obstacle == NULL ) )
+		{
 		    level_editor_mouse_move_mode = FALSE ;
+		    free(dragged_content);
+		}
+
 	    }
 	    
 	    //--------------------
@@ -5784,9 +5788,11 @@ LevelEditor(void)
 	    if (walls->activated) 
 		handle_line_mode(walls, TargetSquare);
 	    
-	    if (rectangle->activated)
-		handle_rectangle_mode(rectangle, TargetSquare);
-
+	    if (rectangle->activated && 
+	         ( (int)TargetSquare . x >= 0 ) &&
+		     ( (int)TargetSquare . x <= EditLevel->xlen-1 ) &&
+		     ( (int)TargetSquare . y >= 0 ) &&
+		     ( (int)TargetSquare . y <= EditLevel->ylen-1 ) )
 	    level_editor_handle_mouse_wheel();
 
 	    level_editor_auto_scroll();
