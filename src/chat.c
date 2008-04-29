@@ -1524,7 +1524,7 @@ ChatWithFriendlyDroid( Enemy ChatDroid )
         int i, j;
 	for (i = 0; i < MAX_ANSWERS_PER_PERSON; i ++)
 		{
-		if ( ChatRoster [ i ] . position_x != -1 ) Me . Chat_Flags [ ChatFlagsIndex ] [ i ] = 1;
+		Me . Chat_Flags [ ChatFlagsIndex ] [ i ] =  (ChatRoster [ i ] . position_x != -1);
 		}
 
 	for (i = 0; i < MAX_ANSWERS_PER_PERSON; i ++)
