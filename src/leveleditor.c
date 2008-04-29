@@ -5784,7 +5784,11 @@ LevelEditor(void)
 	    if (walls->activated) 
 		handle_line_mode(walls, TargetSquare);
 	    
-	    if (rectangle->activated)
+	    if (rectangle->activated && 
+	         ( (int)TargetSquare . x >= 0 ) &&
+		     ( (int)TargetSquare . x <= EditLevel->xlen-1 ) &&
+		     ( (int)TargetSquare . y >= 0 ) &&
+		     ( (int)TargetSquare . y <= EditLevel->ylen-1 ) )
 		handle_rectangle_mode(rectangle, TargetSquare);
 
 	    level_editor_handle_mouse_wheel();
