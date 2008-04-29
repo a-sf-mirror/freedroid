@@ -331,7 +331,6 @@ void
 ShuffleEnemys ( int LevelNum )
 {
     int j;
-    int nth_enemy;
     int wp_num;
     int wp = 0;
     int BestWaypoint;
@@ -340,8 +339,6 @@ ShuffleEnemys ( int LevelNum )
     wp_num = ShuffleLevel->num_waypoints;
     char wp_used[wp_num]; //is this waypoint used?
     memset(wp_used, 0, wp_num);
-
-    nth_enemy = 0;
 
     enemy *erot;
     BROWSE_LEVEL_BOTS(erot, LevelNum)
@@ -394,12 +391,12 @@ ShuffleEnemys ( int LevelNum )
 	    }
 
 	int testwp = MyRandom ( wp_num );
-	if ( wp_used [ testwp ] && ! ShuffleLevel -> AllWaypoints [ nth_enemy ] . suppress_random_spawn) //test a random waypoint
+	if ( wp_used [ testwp ] || ShuffleLevel -> AllWaypoints [ testwp ] . suppress_random_spawn) //test a random waypoint
 	    {
 	    testwp = 0; 
 	    while ( testwp < wp_num ) //if used, pick the first unused one
 		{
-		if ( ! wp_used [ testwp ] )
+		if ( ! wp_used [ testwp ] && ! ShuffleLevel -> AllWaypoints [ testwp ] . suppress_random_spawn )
 		    break;
 		testwp++;
 		}
