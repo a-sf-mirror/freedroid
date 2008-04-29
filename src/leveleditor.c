@@ -5729,7 +5729,14 @@ LevelEditor(void)
 	    //
 	    if ( WPressed( ) )
 	    {
+	    if ( ! ShiftPressed() )
+		{
 		action_toggle_waypoint ( EditLevel , BlockX, BlockY , FALSE );
+		}
+	    else
+		{
+		action_toggle_waypoint ( EditLevel , BlockX, BlockY , TRUE );
+		}
 		while ( WPressed() ) SDL_Delay(1);
 	    }
 	    
@@ -5737,11 +5744,6 @@ LevelEditor(void)
 	    // If the person using the level editor pressed r, the waypoint on 
 	    // the current square is toggled concerning random spawning of bots.
 	    //
-	    if ( RPressed( ) )
-	    {
-		action_toggle_waypoint ( EditLevel , BlockX, BlockY , TRUE );
-		while ( RPressed() ) SDL_Delay(1);
-	    }
 	    
 	    //--------------------
 	    // If the person using the level editor presses C that indicated he/she wants
