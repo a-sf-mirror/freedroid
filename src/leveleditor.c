@@ -5904,6 +5904,7 @@ LevelEditor(void)
     } // while (!level_editor_done)
     
     free(walls);
+    free(rectangle);
     RespectVisibilityOnMap = TRUE ;
     level_editor_marked_obstacle = NULL ; 
     
