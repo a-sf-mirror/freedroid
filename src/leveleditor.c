@@ -5100,9 +5100,9 @@ void start_rectangle_mode (whole_rectangle *rectangle, moderately_finepoint Targ
     /* The tile we'll use */
     if (! already_defined)
 	rectangle->tile_used = Highlight;
-    /* The handle function will start by undo; so it will undo this 
-     * dummy action when called the first time*/
-    action_push ( ACT_MULTIPLE_FLOOR_SETS, 0);
+    /* Place the first tile */
+    action_set_floor ( EditLevel, rectangle->start.x, rectangle->start.y, rectangle->tile_used );
+    action_push ( ACT_MULTIPLE_FLOOR_SETS, 1);
 } // void start_rectangle_mode (whole_rectangle *rectangle,
   // moderately_finepoint TargetSquare, int already_defined)
 
