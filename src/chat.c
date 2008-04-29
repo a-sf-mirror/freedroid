@@ -635,7 +635,7 @@ ExecuteChatExtra ( char* ExtraCommandString , Enemy ChatDroid )
 	int i, j;
 	for (i = 0; i < MAX_ANSWERS_PER_PERSON; i ++)
 	    {
-	    if ( ChatRoster [ i ] . position_x != -1 ) Me . Chat_Flags [ PERSON_SUBDIALOG_DUMMY	] [ i ] = 1;
+	    Me . Chat_Flags [ PERSON_SUBDIALOG_DUMMY    ] [ i ] = (ChatRoster [ i ] . position_x != -1);
 	    }
 
 	for (i = 0; i < MAX_ANSWERS_PER_PERSON; i ++)
