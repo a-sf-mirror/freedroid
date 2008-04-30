@@ -270,7 +270,7 @@ AssembleItemListForTradeCharacter ( item* ListToBeFilled , int ShopCharacterCode
 //	ListPointer->type = GetItemIndexByName("Source Book of Reverse-engineer"); ListPointer++;
 	ListPointer->type = GetItemIndexByName("Source Book of Plasma discharge"); ListPointer++;
 	ListPointer->type = GetItemIndexByName("Source Book of Nethack"); ListPointer++;
-//	ListPointer->type = GetItemIndexByName("Source Book of Invisibility"); ListPointer++;
+	ListPointer->type = GetItemIndexByName("Source Book of Invisibility"); ListPointer++;
 //	ListPointer->type = GetItemIndexByName("Source Book of Ricer CFLAGS"); ListPointer++;
 //	ListPointer->type = GetItemIndexByName("Source Book of Light"); ListPointer++;
 //	ListPointer->type = GetItemIndexByName("Source Book of Satellite image"); ListPointer++;
