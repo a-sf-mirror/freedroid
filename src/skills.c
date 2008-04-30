@@ -110,6 +110,15 @@ static float calculate_program_effect_duration ( int program_id )
     return ( SpellSkillMap[ program_id ] . effect_duration  + SpellSkillMap[ program_id ] . effect_duration_per_level * ( Me . SkillLevel [ program_id ] - 1 ));
 }
 
+/**
+ * This function calculates the busy time (recovery time) for tux after running a program
+ */
+static float calculate_program_busy_time ( )
+{
+    float busy_time [ NUMBER_OF_SKILL_LEVELS ] = { 1.0, 0.9, 0.81, 0.73, 0.66, 0.59, 0.53, 0.48, 0.43, 0.39 };
+    return busy_time[ Me . spellcasting_skill ];
+}
+
 /* ------------------
  * This function looks for a given program name in the program spec array
  * -------------------*/
@@ -166,7 +175,7 @@ location HomeSpot;
 void
 HandleCurrentlyActivatedSkill()
 {
-    if ( ! MouseRightClicked() ) 
+    if ( ! MouseRightClicked() || Me . busy_time > 0 ) 
 	return;
     
     int Grabbed_InvPos = GetInventoryItemAt ( GetInventorySquare_x ( GetMousePos_x() ) , GetInventorySquare_y ( GetMousePos_y() ) );
@@ -197,6 +206,9 @@ HandleCurrentlyActivatedSkill()
 	}
 
     DoSkill(Me . readied_skill, SpellCost);
+
+    Me . busy_time = calculate_program_busy_time();
+    Me . busy_type = RUNNING_PROGRAM;
 
 return;    
 }; // void HandleCurrentlyActivatedSkill( void )
