@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: freedroid-discussion@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-04-28 21:53+0200\n"
+"POT-Creation-Date: 2008-04-30 17:34+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -845,85 +845,85 @@ msgstr ""
 msgid "1 Item received!"
 msgstr ""
 
-#: ../src/chat.c:1281
+#: ../src/chat.c:1282
 msgid "What will you say?"
 msgstr ""
 
-#: ../src/enemy.c:1009
+#: ../src/enemy.c:1010
 #, c-format
 msgid "Your friend %s was killed by %s."
 msgstr ""
 
-#: ../src/enemy.c:1011
+#: ../src/enemy.c:1012
 #, c-format
 msgid "You killed %s."
 msgstr ""
 
-#: ../src/enemy.c:1013
+#: ../src/enemy.c:1014
 #, c-format
 msgid "%s is dead."
 msgstr ""
 
-#: ../src/enemy.c:1018
+#: ../src/enemy.c:1019
 #, c-format
 msgid "For defeating %s, you receive %d experience."
 msgstr ""
 
-#: ../src/enemy.c:1021
+#: ../src/enemy.c:1022
 #, c-format
 msgid "%s was killed by %s."
 msgstr ""
 
-#: ../src/enemy.c:1022
+#: ../src/enemy.c:1023
 #, c-format
 msgid "%s died."
 msgstr ""
 
-#: ../src/enemy.c:1162
+#: ../src/enemy.c:1163
 msgid "state:  Wandering along waypoints."
 msgstr ""
 
-#: ../src/enemy.c:1165
+#: ../src/enemy.c:1166
 msgid "state: Select next WP."
 msgstr ""
 
-#: ../src/enemy.c:1168
+#: ../src/enemy.c:1169
 msgid "state:  Turn towards next WP."
 msgstr ""
 
-#: ../src/enemy.c:1171
+#: ../src/enemy.c:1172
 msgid "state:  Rush Tux and open talk."
 msgstr ""
 
-#: ../src/enemy.c:1174
+#: ../src/enemy.c:1175
 msgid "state:  Stop and eye target."
 msgstr ""
 
-#: ../src/enemy.c:1177
+#: ../src/enemy.c:1178
 msgid "state:  Attack."
 msgstr ""
 
-#: ../src/enemy.c:1180
+#: ../src/enemy.c:1181
 msgid "state:  Returning home."
 msgstr ""
 
-#: ../src/enemy.c:1183
+#: ../src/enemy.c:1184
 msgid "state:  Waypointless wandering."
 msgstr ""
 
-#: ../src/enemy.c:1186
+#: ../src/enemy.c:1187
 msgid "state:  Paralyzed."
 msgstr ""
 
-#: ../src/enemy.c:1189
+#: ../src/enemy.c:1190
 msgid "state: Completely fixed."
 msgstr ""
 
-#: ../src/enemy.c:1192
+#: ../src/enemy.c:1193
 msgid "state: Follow Tux."
 msgstr ""
 
-#: ../src/enemy.c:1195
+#: ../src/enemy.c:1196
 msgid "state:  UNHANDLED!!"
 msgstr ""
 
@@ -1319,37 +1319,37 @@ msgstr ""
 msgid "No more ammunition !"
 msgstr ""
 
-#: ../src/influ.c:3416
+#: ../src/influ.c:3438
 #, c-format
 msgid "This is a %s. %s"
 msgstr ""
 
-#: ../src/influ.c:3441 ../src/influ.c:3448
+#: ../src/influ.c:3463 ../src/influ.c:3470
 #, c-format
 msgid "Examining %s.  %s"
 msgstr ""
 
-#: ../src/influ.c:3463
+#: ../src/influ.c:3485
 #, c-format
 msgid "You see the floor.  It should be perfectly safe to walk on it."
 msgstr ""
 
-#: ../src/influ.c:3494
+#: ../src/influ.c:3516
 #, c-format
 msgid "Unlocking obstacle of type %d."
 msgstr ""
 
-#: ../src/influ.c:3523
+#: ../src/influ.c:3545
 #, c-format
 msgid "Repairing obstacle of type %d."
 msgstr ""
 
-#: ../src/influ.c:3552
+#: ../src/influ.c:3574
 #, c-format
 msgid "Attacking obstacle of type %d."
 msgstr ""
 
-#: ../src/influ.c:3581
+#: ../src/influ.c:3603
 #, c-format
 msgid "Picking pockets of obstacle of type %d."
 msgstr ""
@@ -1520,27 +1520,27 @@ msgstr ""
 msgid "The armor hides his body."
 msgstr ""
 
-#: ../src/init.c:1964
+#: ../src/init.c:1973
 msgid "Huh? What?  Where am I?"
 msgstr ""
 
-#: ../src/init.c:2074
+#: ../src/init.c:2083
 msgid "Updating Tux images"
 msgstr ""
 
-#: ../src/init.c:2075
+#: ../src/init.c:2084
 msgid "(this may take a little while...)"
 msgstr ""
 
-#: ../src/init.c:2078
+#: ../src/init.c:2087
 msgid "Starting new game."
 msgstr ""
 
-#: ../src/init.c:2395
+#: ../src/init.c:2404
 msgid "Game over.\n"
 msgstr ""
 
-#: ../src/init.c:2489
+#: ../src/init.c:2498
 msgid "Game won.\n"
 msgstr ""
 
@@ -1624,43 +1624,43 @@ msgstr ""
 msgid "I can't carry any more."
 msgstr ""
 
-#: ../src/leveleditor.c:1700
+#: ../src/leveleditor.c:1704
 msgid "Cancel item drop"
 msgstr ""
 
-#: ../src/leveleditor.c:2000
+#: ../src/leveleditor.c:2004
 msgid "FLOOR"
 msgstr ""
 
-#: ../src/leveleditor.c:2001
+#: ../src/leveleditor.c:2005
 msgid "WALLS"
 msgstr ""
 
-#: ../src/leveleditor.c:2002
+#: ../src/leveleditor.c:2006
 msgid "MACHINERY"
 msgstr ""
 
-#: ../src/leveleditor.c:2003
+#: ../src/leveleditor.c:2007
 msgid "FURNITURE"
 msgstr ""
 
-#: ../src/leveleditor.c:2004
+#: ../src/leveleditor.c:2008
 msgid "CONTAINERS"
 msgstr ""
 
-#: ../src/leveleditor.c:2005
+#: ../src/leveleditor.c:2009
 msgid "NATURE"
 msgstr ""
 
-#: ../src/leveleditor.c:2006
+#: ../src/leveleditor.c:2010
 msgid "ALL"
 msgstr ""
 
-#: ../src/leveleditor.c:2007
+#: ../src/leveleditor.c:2011
 msgid "QUICK"
 msgstr ""
 
-#: ../src/leveleditor.c:3882
+#: ../src/leveleditor.c:3886
 #, c-format
 msgid ""
 "\n"
@@ -1668,7 +1668,7 @@ msgid ""
 " label_name=\"%s\"."
 msgstr ""
 
-#: ../src/leveleditor.c:4401
+#: ../src/leveleditor.c:4471
 msgid ""
 "Go level north\n"
 "\n"
@@ -1676,7 +1676,7 @@ msgid ""
 "the northern side of this level."
 msgstr ""
 
-#: ../src/leveleditor.c:4406
+#: ../src/leveleditor.c:4476
 msgid ""
 "Go level south\n"
 "\n"
@@ -1684,7 +1684,7 @@ msgid ""
 "the southern side of this level."
 msgstr ""
 
-#: ../src/leveleditor.c:4411
+#: ../src/leveleditor.c:4481
 msgid ""
 "Go level east\n"
 "\n"
@@ -1692,7 +1692,7 @@ msgid ""
 "the eastern side of this level."
 msgstr ""
 
-#: ../src/leveleditor.c:4416
+#: ../src/leveleditor.c:4486
 msgid ""
 "Go level west\n"
 "\n"
@@ -1700,7 +1700,7 @@ msgid ""
 "the western side of this level."
 msgstr ""
 
-#: ../src/leveleditor.c:4421
+#: ../src/leveleditor.c:4491
 msgid ""
 "Export this level\n"
 "\n"
@@ -1710,7 +1710,7 @@ msgid ""
 "that the maps are in sync again."
 msgstr ""
 
-#: ../src/leveleditor.c:4426
+#: ../src/leveleditor.c:4496
 msgid ""
 "Save Map\n"
 "\n"
@@ -1718,7 +1718,7 @@ msgid ""
 "from your current working directory."
 msgstr ""
 
-#: ../src/leveleditor.c:4431
+#: ../src/leveleditor.c:4501
 msgid ""
 "Toggle waypoints\n"
 "\n"
@@ -1728,7 +1728,7 @@ msgid ""
 "You can also use the W key for this."
 msgstr ""
 
-#: ../src/leveleditor.c:4438
+#: ../src/leveleditor.c:4508
 msgid ""
 "Make waypoint connection\n"
 "\n"
@@ -1738,7 +1738,7 @@ msgid ""
 "You can also use the C key for this."
 msgstr ""
 
-#: ../src/leveleditor.c:4440
+#: ../src/leveleditor.c:4510
 msgid ""
 "Complete waypoint connection\n"
 "\n"
@@ -1748,7 +1748,7 @@ msgid ""
 "You can also use the C key for this."
 msgstr ""
 
-#: ../src/leveleditor.c:4446
+#: ../src/leveleditor.c:4516
 msgid ""
 "Delete selected obstacle\n"
 "\n"
@@ -1757,7 +1757,7 @@ msgid ""
 "You can also use the X key for this."
 msgstr ""
 
-#: ../src/leveleditor.c:4451
+#: ../src/leveleditor.c:4521
 msgid ""
 "Next obstacle on currently selected tile\n"
 "\n"
@@ -1766,7 +1766,7 @@ msgid ""
 "You can also use the N key for this."
 msgstr ""
 
-#: ../src/leveleditor.c:4456
+#: ../src/leveleditor.c:4526
 msgid ""
 "Beautify grass button\n"
 "\n"
@@ -1777,7 +1777,7 @@ msgid ""
 "You can also use Ctrl-B for this."
 msgstr ""
 
-#: ../src/leveleditor.c:4462
+#: ../src/leveleditor.c:4532
 msgid ""
 "Zoom in/out\n"
 "\n"
@@ -1786,7 +1786,7 @@ msgid ""
 "You can also use the hotkey 'O' for this."
 msgstr ""
 
-#: ../src/leveleditor.c:4467
+#: ../src/leveleditor.c:4537
 msgid ""
 "Fill\n"
 "\n"
@@ -1795,7 +1795,7 @@ msgid ""
 "until a change of map tile is encountered."
 msgstr ""
 
-#: ../src/leveleditor.c:4472
+#: ../src/leveleditor.c:4542
 msgid ""
 "New obstacle label\n"
 "\n"
@@ -1804,14 +1804,14 @@ msgid ""
 " Note that you can also use the hotkey 'h' for this."
 msgstr ""
 
-#: ../src/leveleditor.c:4477
+#: ../src/leveleditor.c:4547
 msgid ""
 "New obstacle description\n"
 "\n"
 "edits the description seen when the item is selected"
 msgstr ""
 
-#: ../src/leveleditor.c:4482
+#: ../src/leveleditor.c:4552
 msgid ""
 "New map label\n"
 "\n"
@@ -1820,7 +1820,7 @@ msgid ""
 "characters or also to define locations for events and triggers."
 msgstr ""
 
-#: ../src/leveleditor.c:4487
+#: ../src/leveleditor.c:4557
 msgid ""
 "Add item\n"
 "\n"
@@ -1828,7 +1828,7 @@ msgid ""
 "hotkey 'G' for this."
 msgstr ""
 
-#: ../src/leveleditor.c:4492
+#: ../src/leveleditor.c:4562
 msgid ""
 "Menu\n"
 "\n"
@@ -1837,7 +1837,7 @@ msgid ""
 "menu."
 msgstr ""
 
-#: ../src/leveleditor.c:4497
+#: ../src/leveleditor.c:4567
 msgid ""
 "Level resize\n"
 "\n"
@@ -1846,21 +1846,21 @@ msgid ""
 "insert the new space where you would best like it to be."
 msgstr ""
 
-#: ../src/leveleditor.c:4502
+#: ../src/leveleditor.c:4572
 msgid ""
 "Level editor guide\n"
 "\n"
 "Use this button to enter the level editor keymap display."
 msgstr ""
 
-#: ../src/leveleditor.c:4507
+#: ../src/leveleditor.c:4577
 msgid ""
 "Back to game\n"
 "\n"
 "Quits the level editor and takes you into a FredroidRPG game."
 msgstr ""
 
-#: ../src/leveleditor.c:4512
+#: ../src/leveleditor.c:4582
 msgid ""
 "Underground lighting\n"
 "\n"
@@ -1870,7 +1870,7 @@ msgid ""
 "There isn't any key to toggle this on the keyboard."
 msgstr ""
 
-#: ../src/leveleditor.c:4518
+#: ../src/leveleditor.c:4588
 msgid ""
 "Toggle display enemies\n"
 "\n"
@@ -1878,7 +1878,7 @@ msgid ""
 "enemies hidden in level editor."
 msgstr ""
 
-#: ../src/leveleditor.c:4524
+#: ../src/leveleditor.c:4594
 msgid ""
 "Toggle display obstacles\n"
 "\n"
@@ -1886,21 +1886,21 @@ msgid ""
 "obstacles hidden in level editor."
 msgstr ""
 
-#: ../src/leveleditor.c:4530
+#: ../src/leveleditor.c:4600
 msgid ""
 "Undo\n"
 "\n"
 "Use this button to undo your last actions."
 msgstr ""
 
-#: ../src/leveleditor.c:4536
+#: ../src/leveleditor.c:4606
 msgid ""
 "Redo\n"
 "\n"
 "Use this button to redo an action."
 msgstr ""
 
-#: ../src/leveleditor.c:4542
+#: ../src/leveleditor.c:4612
 msgid ""
 "Toggle display Tux\n"
 "\n"
@@ -1908,30 +1908,30 @@ msgid ""
 "hidden in level editor."
 msgstr ""
 
-#: ../src/leveleditor.c:4548
+#: ../src/leveleditor.c:4618
 msgid ""
 "Toggle display tooltips\n"
 "\n"
 "Use this button to toggle these annoying help windows on and off."
 msgstr ""
 
-#: ../src/leveleditor.c:4554
+#: ../src/leveleditor.c:4624
 msgid ""
 "Toggle display colision rectangles\n"
 "\n"
 "Use this button to toggle the visible collision rectangles on and off."
 msgstr ""
 
-#: ../src/leveleditor.c:4561
+#: ../src/leveleditor.c:4631
 msgid "Change grid mode ( placement / full / off )"
 msgstr ""
 
-#: ../src/leveleditor.c:5457
+#: ../src/leveleditor.c:5575
 #, c-format
 msgid " Source waypoint selected : NONE"
 msgstr ""
 
-#: ../src/leveleditor.c:5461
+#: ../src/leveleditor.c:5579
 #, c-format
 msgid " Source waypoint selected : X=%d Y=%d. "
 msgstr ""
@@ -2489,199 +2489,199 @@ msgstr ""
 msgid "Game loaded."
 msgstr ""
 
-#: ../src/ship.c:67 ../src/shop.c:1250 ../src/shop.c:1277 ../src/shop.c:1314
+#: ../src/ship.c:66 ../src/shop.c:1250 ../src/shop.c:1277 ../src/shop.c:1314
 #: ../src/shop.c:1538 ../src/shop.c:1727
 msgid "Yes"
 msgstr ""
 
-#: ../src/ship.c:68 ../src/shop.c:1251 ../src/shop.c:1278 ../src/shop.c:1315
+#: ../src/ship.c:67 ../src/shop.c:1251 ../src/shop.c:1278 ../src/shop.c:1315
 #: ../src/shop.c:1539 ../src/shop.c:1728
 msgid "No"
 msgstr ""
 
-#: ../src/ship.c:83 ../src/shop.c:1186 ../src/shop.c:1258 ../src/shop.c:1285
+#: ../src/ship.c:82 ../src/shop.c:1186 ../src/shop.c:1258 ../src/shop.c:1285
 #: ../src/shop.c:1478 ../src/shop.c:1564 ../src/shop.c:1793
 msgid " BACK "
 msgstr ""
 
-#: ../src/ship.c:85
+#: ../src/ship.c:84
 msgid " YOU DONT HAVE ANYTHING IN INVENTORY, THAT COULD BE VIEWED. "
 msgstr ""
 
-#: ../src/ship.c:223
+#: ../src/ship.c:222
 #, c-format
 msgid ""
 "Unit type %s\n"
 "Entry : %d\n"
 msgstr ""
 
-#: ../src/ship.c:230
+#: ../src/ship.c:229
 msgid "none"
 msgstr ""
 
-#: ../src/ship.c:232
+#: ../src/ship.c:231
 #, c-format
 msgid ""
 "\n"
 "Armamant : %s\n"
 msgstr ""
 
-#: ../src/ship.c:236
+#: ../src/ship.c:235
 #, c-format
 msgid ""
 "\n"
 "Notes: %s\n"
 msgstr ""
 
-#: ../src/ship.c:549
+#: ../src/ship.c:548
 msgid " (Unidentified)"
 msgstr ""
 
-#: ../src/ship.c:593
+#: ../src/ship.c:592
 msgid "Weapon"
 msgstr ""
 
-#: ../src/ship.c:595
+#: ../src/ship.c:594
 msgid "Drive"
 msgstr ""
 
-#: ../src/ship.c:597
+#: ../src/ship.c:596
 msgid "Armor"
 msgstr ""
 
-#: ../src/ship.c:599
+#: ../src/ship.c:598
 msgid "Shield"
 msgstr ""
 
-#: ../src/ship.c:601
+#: ../src/ship.c:600
 msgid "Helm"
 msgstr ""
 
-#: ../src/ship.c:602
+#: ../src/ship.c:601
 msgid "Miscellaneous"
 msgstr ""
 
-#: ../src/ship.c:605
+#: ../src/ship.c:604
 #, c-format
 msgid ""
 "Item: %s \n"
 "Class: %s\n"
 msgstr ""
 
-#: ../src/ship.c:619
+#: ../src/ship.c:618
 msgid "Specials:"
 msgstr ""
 
-#: ../src/ship.c:631
+#: ../src/ship.c:630
 msgid "Multiplicity: "
 msgstr ""
 
-#: ../src/ship.c:638
+#: ../src/ship.c:637
 msgid "Duration: "
 msgstr ""
 
-#: ../src/ship.c:644
+#: ../src/ship.c:643
 #, c-format
 msgid "Indestructible\n"
 msgstr ""
 
-#: ../src/ship.c:649
+#: ../src/ship.c:648
 msgid "Attributes required: "
 msgstr ""
 
-#: ../src/ship.c:655
+#: ../src/ship.c:654
 msgid "NONE\n"
 msgstr ""
 
-#: ../src/ship.c:661
+#: ../src/ship.c:660
 #, c-format
 msgid "Str: %d "
 msgstr ""
 
-#: ../src/ship.c:666
+#: ../src/ship.c:665
 #, c-format
 msgid "Dex: %d "
 msgstr ""
 
-#: ../src/ship.c:671
+#: ../src/ship.c:670
 #, c-format
 msgid "Mag: %d "
 msgstr ""
 
-#: ../src/ship.c:709
+#: ../src/ship.c:708
 #, c-format
 msgid "Base list price: %ld\n"
 msgstr ""
 
-#: ../src/ship.c:712
+#: ../src/ship.c:711
 #, c-format
 msgid "Sell value: %ld\n"
 msgstr ""
 
-#: ../src/ship.c:720
+#: ../src/ship.c:719
 #, c-format
 msgid "Repair cost: %ld\n"
 msgstr ""
 
-#: ../src/ship.c:725
+#: ../src/ship.c:724
 #, c-format
 msgid "Unsellable\n"
 msgstr ""
 
-#: ../src/ship.c:734
+#: ../src/ship.c:733
 #, c-format
 msgid "Damage: %d - %d\n"
 msgstr ""
 
-#: ../src/ship.c:743
+#: ../src/ship.c:742
 #, c-format
 msgid "Recharge time: %3.2f\n"
 msgstr ""
 
-#: ../src/ship.c:750
+#: ../src/ship.c:749
 #, c-format
 msgid "Time to reload ammo clip: %3.2f\n"
 msgstr ""
 
-#: ../src/ship.c:757
+#: ../src/ship.c:756
 #, c-format
 msgid "Defense bonus: %d\n"
 msgstr ""
 
-#: ../src/ship.c:761
+#: ../src/ship.c:760
 #, c-format
 msgid "Notes: %s"
 msgstr ""
 
-#: ../src/ship.c:768
+#: ../src/ship.c:767
 msgid " This weapon requires standard plasma ammunition."
 msgstr ""
 
-#: ../src/ship.c:771
+#: ../src/ship.c:770
 msgid " This weapon requires standard laser crystal ammunition."
 msgstr ""
 
-#: ../src/ship.c:774
+#: ../src/ship.c:773
 msgid " This weapon requires standard exterminator ammunition spheres."
 msgstr ""
 
-#: ../src/ship.c:777
+#: ../src/ship.c:776
 msgid " This weapon requires .22 Long Rifle rounds."
 msgstr ""
 
-#: ../src/ship.c:780
+#: ../src/ship.c:779
 msgid " This weapon requires Shotgun shells."
 msgstr ""
 
-#: ../src/ship.c:783
+#: ../src/ship.c:782
 msgid " This weapon requires 9x19mm rounds."
 msgstr ""
 
-#: ../src/ship.c:786
+#: ../src/ship.c:785
 msgid " This weapon requires 7.62x39mm rounds."
 msgstr ""
 
-#: ../src/ship.c:789
+#: ../src/ship.c:788
 msgid " This weapon requires .50 (12.7x99mm) Browning Machine Gun rounds."
 msgstr ""
 

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CHANGE THIS\n"
 "Report-Msgid-Bugs-To: CHANGE THIS TOO\n"
-"POT-Creation-Date: 2008-03-30 17:34+0000\n"
-"PO-Revision-Date: 2008-03-30 17:34+0000\n"
+"POT-Creation-Date: 2008-04-30 15:34+0000\n"
+"PO-Revision-Date: 2008-04-30 15:34+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -395,7 +395,6 @@ msgstr ""
 #: ../dialogs/Bruce.dialog:218
 #: ../dialogs/Bruce.dialog:229
 #: ../dialogs/Butch.dialog:353
-#: ../dialogs/subdlg_Spencer_eval.dialog:256
 #: ../dialogs/StandardMSFacilityGateGuard.dialog:86
 msgid " I'll be going then."
 msgstr ""
@@ -964,6 +963,7 @@ msgstr ""
 #: ../dialogs/KevinGuard.dialog:241
 #: ../dialogs/KevinGuard.dialog:289
 #: ../dialogs/subdlg_kevin_reward1.dialog:33
+#: ../dialogs/subdlg_Stone.dialog:33
 #: ../dialogs/SACD.dialog:124
 #: ../dialogs/SACD.dialog:133
 #: ../dialogs/subdlg_Kevin.dialog:33
@@ -975,11 +975,9 @@ msgstr ""
 #: ../dialogs/Pendragon.dialog:67
 #: ../dialogs/subdlg_Benjamin.dialog:33
 #: ../dialogs/subdlg_Benjamin.dialog:51
-#: ../dialogs/subdlg_Benjamin.dialog:63
-#: ../dialogs/subdlg_Benjamin.dialog:73
-#: ../dialogs/subdlg_Benjamin.dialog:83
-#: ../dialogs/subdlg_Benjamin.dialog:92
-#: ../dialogs/subdlg_Stone.dialog:33
+#: ../dialogs/subdlg_Benjamin.dialog:61
+#: ../dialogs/subdlg_Benjamin.dialog:71
+#: ../dialogs/subdlg_Benjamin.dialog:80
 #: ../dialogs/RMS.dialog:60
 #: ../dialogs/RMS.dialog:95
 #: ../dialogs/subdlg_Butch.dialog:33
@@ -1665,7 +1663,6 @@ msgstr ""
 
 #: ../dialogs/Michelangelo.dialog:419
 #: ../dialogs/Spencer.dialog:511
-#: ../dialogs/subdlg_Spencer_eval.dialog:259
 #: ../dialogs/DocMoore.dialog:324
 #: ../dialogs/Duncan.dialog:321
 msgid "See you later."
@@ -2420,7 +2417,6 @@ msgid " Have I done enough quests to become a member now?"
 msgstr ""
 
 #: ../dialogs/Spencer.dialog:190
-#: ../dialogs/subdlg_Spencer_eval.dialog:50
 msgid "DIXON SUCCESSFUL."
 msgstr ""
 
@@ -2431,7 +2427,6 @@ msgid ""
 msgstr ""
 
 #: ../dialogs/Spencer.dialog:201
-#: ../dialogs/subdlg_Spencer_eval.dialog:63
 msgid "DIXON NOT DONE YET"
 msgstr ""
 
@@ -2442,7 +2437,6 @@ msgid ""
 msgstr ""
 
 #: ../dialogs/Spencer.dialog:212
-#: ../dialogs/subdlg_Spencer_eval.dialog:74
 msgid "MICHELANGELO DONE."
 msgstr ""
 
@@ -2453,7 +2447,6 @@ msgid ""
 msgstr ""
 
 #: ../dialogs/Spencer.dialog:223
-#: ../dialogs/subdlg_Spencer_eval.dialog:87
 msgid "MICHELANGELO NOT DONE"
 msgstr ""
 
@@ -2464,17 +2457,14 @@ msgid ""
 msgstr ""
 
 #: ../dialogs/Spencer.dialog:234
-#: ../dialogs/subdlg_Spencer_eval.dialog:102
 msgid "IS MICHELANGELO DONE?"
 msgstr ""
 
 #: ../dialogs/Spencer.dialog:243
-#: ../dialogs/subdlg_Spencer_eval.dialog:111
 msgid "IS TUX AN ARENA MASTER"
 msgstr ""
 
 #: ../dialogs/Spencer.dialog:252
-#: ../dialogs/subdlg_Spencer_eval.dialog:120
 msgid "TUX IS AN ARENA MASTER"
 msgstr ""
 
@@ -2483,7 +2473,6 @@ msgid "From Butch I hear you've become a novice arena master. Congratulations."
 msgstr ""
 
 #: ../dialogs/Spencer.dialog:263
-#: ../dialogs/subdlg_Spencer_eval.dialog:131
 msgid "TUX IS NOT AN ARENA MASTER"
 msgstr ""
 
@@ -2494,12 +2483,10 @@ msgid ""
 msgstr ""
 
 #: ../dialogs/Spencer.dialog:274
-#: ../dialogs/subdlg_Spencer_eval.dialog:142
 msgid "IS BENDER SICK?"
 msgstr ""
 
 #: ../dialogs/Spencer.dialog:283
-#: ../dialogs/subdlg_Spencer_eval.dialog:151
 msgid "BENDER DONE"
 msgstr ""
 
@@ -2511,7 +2498,6 @@ msgid ""
 msgstr ""
 
 #: ../dialogs/Spencer.dialog:294
-#: ../dialogs/subdlg_Spencer_eval.dialog:162
 msgid "BENDER STILL SICK"
 msgstr ""
 
@@ -2520,12 +2506,10 @@ msgid "As far as I know, Bender is still very sick."
 msgstr ""
 
 #: ../dialogs/Spencer.dialog:305
-#: ../dialogs/subdlg_Spencer_eval.dialog:179
 msgid "WAREHOUSE MISSION DONE?"
 msgstr ""
 
 #: ../dialogs/Spencer.dialog:314
-#: ../dialogs/subdlg_Spencer_eval.dialog:188
 msgid "WAREHOUSE DONE"
 msgstr ""
 
@@ -2536,7 +2520,6 @@ msgid ""
 msgstr ""
 
 #: ../dialogs/Spencer.dialog:325
-#: ../dialogs/subdlg_Spencer_eval.dialog:216
 msgid "THERE ARE ENOUGH POINTS TO JOIN RG"
 msgstr ""
 
@@ -2568,12 +2551,10 @@ msgid "I hope you will prove yourself a worthy member of the Red Guard."
 msgstr ""
 
 #: ../dialogs/Spencer.dialog:355
-#: ../dialogs/subdlg_Spencer_eval.dialog:225
 msgid "SOME POINTS? ANYTHING?"
 msgstr ""
 
 #: ../dialogs/Spencer.dialog:364
-#: ../dialogs/subdlg_Spencer_eval.dialog:234
 msgid "NEARLY THERE"
 msgstr ""
 
@@ -2584,7 +2565,6 @@ msgid ""
 msgstr ""
 
 #: ../dialogs/Spencer.dialog:374
-#: ../dialogs/subdlg_Spencer_eval.dialog:246
 msgid "TUX SUCKS"
 msgstr ""
 
@@ -3980,122 +3960,64 @@ msgstr ""
 msgid "Please come back later, Linarian. We must talk again."
 msgstr ""
 
-#: ../dialogs/subdlg_Spencer_eval.dialog:33
-msgid "THIS SHOULD NEVER BE VISIBLE"
+#: ../dialogs/subdlg_Stone.dialog:36
+msgid "You are Tux, aren't you..."
 msgstr ""
 
-#: ../dialogs/subdlg_Spencer_eval.dialog:41
-msgid " HERE IS THE START"
+#: ../dialogs/subdlg_Stone.dialog:38
+msgid "The hero..."
 msgstr ""
 
-#: ../dialogs/subdlg_Spencer_eval.dialog:53
+#: ../dialogs/subdlg_Stone.dialog:49
+msgid " Yes, its me."
+msgstr ""
+
+#: ../dialogs/subdlg_Stone.dialog:52
 msgid ""
-"The techinical division reported that you helped them out with their problem, "
-"although they were quite vague about it."
+"I thought so. My grandfather used to tell me stories about you. He said you wo"
+"uld come here in a time of despair."
 msgstr ""
 
-#: ../dialogs/subdlg_Spencer_eval.dialog:55
-msgid "Good job."
+#: ../dialogs/subdlg_Stone.dialog:54
+msgid "And here you are."
 msgstr ""
 
-#: ../dialogs/subdlg_Spencer_eval.dialog:66
+#: ../dialogs/subdlg_Stone.dialog:56
+msgid "I hope your arrival changes the tide of this war..."
+msgstr ""
+
+#: ../dialogs/subdlg_Stone.dialog:58
 msgid ""
-"Dixon, the leader of the technical division, mentioned to me a few days ago th"
-"at they have a shortage of people."
+"Tux, if you ever find out who started the Great Assault... GIVE THEM A KICK IN"
+" THE ASS, FROM LILY STONE!!!"
 msgstr ""
 
-#: ../dialogs/subdlg_Spencer_eval.dialog:77
-msgid ""
-"The food quality has improved since you have gotten the cook's macrowave oven "
-"going."
+#: ../dialogs/subdlg_Stone.dialog:68
+msgid " It's not important who am I."
 msgstr ""
 
-#: ../dialogs/subdlg_Spencer_eval.dialog:79
-msgid ""
-"Before you did that 12 people have killed themselves because of bad food quali"
-"ty, but better late than never."
+#: ../dialogs/subdlg_Stone.dialog:71
+msgid "If you want to remain a stranger, I will respect your wishes."
 msgstr ""
 
-#: ../dialogs/subdlg_Spencer_eval.dialog:90
-msgid "Our situation is worsened by the poor quality of food available."
+#: ../dialogs/subdlg_Stone.dialog:73
+msgid "So be it."
 msgstr ""
 
-#: ../dialogs/subdlg_Spencer_eval.dialog:92
-msgid ""
-"We even had a few instances of canibalism, but after I shot some of them the o"
-"rder was restored."
+#: ../dialogs/subdlg_Stone.dialog:83
+msgid " Ha ha ha, You fell for it! You get nothing from me! Hahahahah!"
 msgstr ""
 
-#: ../dialogs/subdlg_Spencer_eval.dialog:94
-msgid "Please talk to our cook and try to fix the situation."
+#: ../dialogs/subdlg_Stone.dialog:86
+msgid "You... monster..."
 msgstr ""
 
-#: ../dialogs/subdlg_Spencer_eval.dialog:123
-msgid "Congratulations on your victory in the arena."
+#: ../dialogs/subdlg_Stone.dialog:88
+msgid "No one makes fun of Lily Stone's family store!"
 msgstr ""
 
-#: ../dialogs/subdlg_Spencer_eval.dialog:134
-msgid ""
-"We have an arena here. If you survive a fight there, I will know you are skill"
-"ed enough to survive real combat."
-msgstr ""
-
-#: ../dialogs/subdlg_Spencer_eval.dialog:154
-msgid "Bender is fine now. Thank you."
-msgstr ""
-
-#: ../dialogs/subdlg_Spencer_eval.dialog:165
-msgid ""
-"One of the Red Guards, Bender, is dying. He took some poison, thinking it woul"
-"d help him."
-msgstr ""
-
-#: ../dialogs/subdlg_Spencer_eval.dialog:167
-msgid "Our doctor refuses to aid him in any way."
-msgstr ""
-
-#: ../dialogs/subdlg_Spencer_eval.dialog:169
-msgid "I cannot execute him, because he is the only doctor we have in town."
-msgstr ""
-
-#: ../dialogs/subdlg_Spencer_eval.dialog:171
-msgid "Oh, and please be careful, Bender is rather easy to anger."
-msgstr ""
-
-#: ../dialogs/subdlg_Spencer_eval.dialog:191
-msgid "We have moved 17 tons of supplies from the warehouse to the town."
-msgstr ""
-
-#: ../dialogs/subdlg_Spencer_eval.dialog:193
-msgid "This means we can resist the bots for a month more. Quite a lot of time."
-msgstr ""
-
-#: ../dialogs/subdlg_Spencer_eval.dialog:195
-msgid "I will never forget you that."
-msgstr ""
-
-#: ../dialogs/subdlg_Spencer_eval.dialog:203
-msgid "JOINING HERE"
-msgstr ""
-
-#: ../dialogs/subdlg_Spencer_eval.dialog:206
-msgid "Congratulations, you have convinced me you would be a good Red Guard."
-msgstr ""
-
-#: ../dialogs/subdlg_Spencer_eval.dialog:208
-msgid "Welcome on board."
-msgstr ""
-
-#: ../dialogs/subdlg_Spencer_eval.dialog:237
-msgid "Not bad, not bad at all. I am nearly convinced you would be a good member."
-msgstr ""
-
-#: ../dialogs/subdlg_Spencer_eval.dialog:239
-msgid "Do a couple more tasks, and I will give you a membership."
-msgstr ""
-
-#: ../dialogs/subdlg_Spencer_eval.dialog:249
-msgid "You still need to do a lot of work to earn your membership. Good luck."
+#: ../dialogs/subdlg_Stone.dialog:90
+msgid "Say your prayers, you oversized duck!!!"
 msgstr ""
 
 #: ../dialogs/subdlg_Duncan.dialog:43
@@ -5752,52 +5674,48 @@ msgid " Improve ranged weapon skill (cost 5 training points, 100 cash) "
 msgstr ""
 
 #: ../dialogs/subdlg_Benjamin.dialog:54
-msgid "Done. Small improvements of dexterity are not so hard to achieve after all."
-msgstr ""
-
-#: ../dialogs/subdlg_Benjamin.dialog:66
 msgid "You don't have enough experience. Come here after you see some more action."
 msgstr ""
 
-#: ../dialogs/subdlg_Benjamin.dialog:76
+#: ../dialogs/subdlg_Benjamin.dialog:64
 msgid ""
 "You don't have enough money! I cannot afford to just give away training for fr"
 "ee."
 msgstr ""
 
-#: ../dialogs/subdlg_Benjamin.dialog:95
+#: ../dialogs/subdlg_Benjamin.dialog:83
 msgid ""
 "Now the most important thing is that you turn off the auto-aim on your weapon,"
 " like this."
 msgstr ""
 
-#: ../dialogs/subdlg_Benjamin.dialog:97
+#: ../dialogs/subdlg_Benjamin.dialog:85
 msgid ""
 "Otherwise your weapon might 'help' you and shoot somewhere you didn't intend t"
 "o fire."
 msgstr ""
 
-#: ../dialogs/subdlg_Benjamin.dialog:99
+#: ../dialogs/subdlg_Benjamin.dialog:87
 msgid "Next important thing is to remember how to properly fire a shot."
 msgstr ""
 
-#: ../dialogs/subdlg_Benjamin.dialog:101
+#: ../dialogs/subdlg_Benjamin.dialog:89
 msgid "Watch your target closely.  Pretend you're moving with it. Aim for the head."
 msgstr ""
 
-#: ../dialogs/subdlg_Benjamin.dialog:103
+#: ../dialogs/subdlg_Benjamin.dialog:91
 msgid "When you feel completely in sync with your target, then you pull the trigger."
 msgstr ""
 
-#: ../dialogs/subdlg_Benjamin.dialog:105
+#: ../dialogs/subdlg_Benjamin.dialog:93
 msgid "Good. You are learning fast. Try it a few more times."
 msgstr ""
 
-#: ../dialogs/subdlg_Benjamin.dialog:107
+#: ../dialogs/subdlg_Benjamin.dialog:95
 msgid "Good. I think that it is enough for today."
 msgstr ""
 
-#: ../dialogs/subdlg_Benjamin.dialog:117
+#: ../dialogs/subdlg_Benjamin.dialog:105
 #: ../dialogs/subdlg_Butch.dialog:183
 msgid " BACK"
 msgstr ""
@@ -6003,66 +5921,6 @@ msgstr ""
 
 #: ../dialogs/subdlg_Darwin.dialog:278
 msgid " Maybe another time."
-msgstr ""
-
-#: ../dialogs/subdlg_Stone.dialog:36
-msgid "You are Tux, aren't you..."
-msgstr ""
-
-#: ../dialogs/subdlg_Stone.dialog:38
-msgid "The hero..."
-msgstr ""
-
-#: ../dialogs/subdlg_Stone.dialog:49
-msgid " Yes, its me."
-msgstr ""
-
-#: ../dialogs/subdlg_Stone.dialog:52
-msgid ""
-"I thought so. My grandfather used to tell me stories about you. He said you wo"
-"uld come here in a time of despair."
-msgstr ""
-
-#: ../dialogs/subdlg_Stone.dialog:54
-msgid "And here you are."
-msgstr ""
-
-#: ../dialogs/subdlg_Stone.dialog:56
-msgid "I hope your arrival changes the tide of this war..."
-msgstr ""
-
-#: ../dialogs/subdlg_Stone.dialog:58
-msgid ""
-"Tux, if you ever find out who started the Great Assault... GIVE THEM A KICK IN"
-" THE ASS, FROM LILY STONE!!!"
-msgstr ""
-
-#: ../dialogs/subdlg_Stone.dialog:68
-msgid " It's not important who am I."
-msgstr ""
-
-#: ../dialogs/subdlg_Stone.dialog:71
-msgid "If you want to remain a stranger, I will respect your wishes."
-msgstr ""
-
-#: ../dialogs/subdlg_Stone.dialog:73
-msgid "So be it."
-msgstr ""
-
-#: ../dialogs/subdlg_Stone.dialog:83
-msgid " Ha ha ha, You fell for it! You get nothing from me! Hahahahah!"
-msgstr ""
-
-#: ../dialogs/subdlg_Stone.dialog:86
-msgid "You... monster..."
-msgstr ""
-
-#: ../dialogs/subdlg_Stone.dialog:88
-msgid "No one makes fun of Lily Stone's family store!"
-msgstr ""
-
-#: ../dialogs/subdlg_Stone.dialog:90
-msgid "Say your prayers, you oversized duck!!!"
 msgstr ""
 
 #: ../dialogs/subdlg_Duncan_quest.dialog:36
