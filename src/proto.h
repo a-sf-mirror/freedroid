@@ -348,8 +348,8 @@ EXTERN void read_cookielist_t_array(const char *, const char *, cookielist_t *, 
 #define save_automap_data_t_array save_automap_data
 EXTERN void save_automap_data(const char*, automap_data_t *, int);
 EXTERN void read_automap_data_t_array(char *, char *, automap_data_t *, int);
-EXTERN void save_bigscrmsg_t(const char *, bigscrmsg_t *);
-EXTERN void read_bigscrmsg_t(const char *, const char *, bigscrmsg_t *);
+EXTERN void save_bigscrmsg_t_array(const char *, bigscrmsg_t *, int);
+EXTERN void read_bigscrmsg_t_array(const char *, const char *, bigscrmsg_t *, int);
 EXTERN void save_sdl_rect(const char *, SDL_Rect *);
 EXTERN int read_sdl_rect(const char *, const char *, SDL_Rect *);
 #define save_list_head_t(X,Y) 
