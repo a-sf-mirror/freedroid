@@ -113,7 +113,7 @@ Slowdown: 4s +2s/rev
 Heat: 10 +2/rev
 It is not a big problem to make a badly designed system to go hunting for the impossible, causing a performance impact."
 Picture="Calculate_PI.png"
-Form="immediate"
+Form="bullet"
 Effect="slowdown"
 Affect bots=1
 Affect humans=0
