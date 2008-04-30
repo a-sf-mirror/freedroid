@@ -454,37 +454,6 @@ action_set_floor (Level EditLevel, int x, int y, int type)
     action_push (ACT_TILE_FLOOR_SET, x, y, old);
 }
 
-void ot(int o) {
-	switch (o) {
-		case LEVEL_EDITOR_SELECTION_FLOOR:
-			printf("So this is a LEVEL_EDITOR_SELECTION_FLOOR \n");
-			break;
-		case LEVEL_EDITOR_SELECTION_WALLS:
-			printf("So this is a  EVEL_EDITOR_SELECTION_WALLS \n");
-			break;
-		case LEVEL_EDITOR_SELECTION_MACHINERY:
-			printf("So this is a MACHINERY\n");
-			break;
-		case LEVEL_EDITOR_SELECTION_FURNITURE:
-			printf("So this is a FURNITURE\n");
-			break;
-		case LEVEL_EDITOR_SELECTION_CONTAINERS:
-			printf("So this is a CONTAINER\n");
-			break;
-		case LEVEL_EDITOR_SELECTION_PLANTS:
-			printf("So this is a PLANT\n");
-			break;
-		case LEVEL_EDITOR_SELECTION_ALL:
-			printf("So this is ALL \n");
-			break;
-		case LEVEL_EDITOR_SELECTION_QUICK:
-			printf("So this is a  QUICK\n");
-			break;
-		default:
-			printf("WTF ?\n");
-	}
-}
-
 int tile_is_free ( Level EditLevel, int y_old, int x_old, int y_new, int x_new) {
 	int i;
 	float x, y;
@@ -4371,6 +4340,8 @@ HandleLevelEditorCursorKeys ( void )
 	else
 	    {
 #if 0
+	    if ( ! MPressed() )
+		return;
 	    //Uncomment to be able to fine-move the currently marked obstacle.
 	    if ( LeftPressed() )
 		{
