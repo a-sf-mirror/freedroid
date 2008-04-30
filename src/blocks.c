@@ -2748,11 +2748,15 @@ init_obstacle_data( void )
   obstacle_map [ ISO_GREY_WALL_END_W ] . block_area_parm_2 = 1.1 ;
   obstacle_map [ ISO_GREY_WALL_END_W ] . filename = "iso_walls_0005.png" ;
   obstacle_map [ ISO_GREY_WALL_END_W ] . flags |= IS_VERTICAL ; 
+  obstacle_map [ ISO_GREY_WALL_END_W ] . transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
+
   obstacle_map [ ISO_GREY_WALL_END_N ] . block_area_type = COLLISION_TYPE_RECTANGLE ;
   obstacle_map [ ISO_GREY_WALL_END_N ] . block_area_parm_1 = 1.1 ;
   obstacle_map [ ISO_GREY_WALL_END_N ] . block_area_parm_2 = 1.0 ;
   obstacle_map [ ISO_GREY_WALL_END_N ] . flags |= IS_HORIZONTAL ;
   obstacle_map [ ISO_GREY_WALL_END_N ] . filename = "iso_walls_0006.png" ;
+  obstacle_map [ ISO_GREY_WALL_END_N ] . transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
+
   /*description for all ISO_GREY_WALL_END_*/
   obstacle_map [ ISO_GREY_WALL_END_N ] . obstacle_short_name = _("Grey wall");
   obstacle_map [ ISO_GREY_WALL_END_W ] . obstacle_short_name = _("Grey wall");
