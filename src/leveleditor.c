@@ -877,6 +877,9 @@ is_full_grass_tile ( map_tile* this_tile )
 	case ISO_FLOOR_SAND_WITH_GRASS_2:
 	case ISO_FLOOR_SAND_WITH_GRASS_3:
 	case ISO_FLOOR_SAND_WITH_GRASS_4:
+	case ISO_FLOOR_SAND_WITH_GRASS_25:
+	case ISO_FLOOR_SAND_WITH_GRASS_26:
+	case ISO_FLOOR_SAND_WITH_GRASS_27:
 	    return ( TRUE );
 	    break;
 
@@ -5408,6 +5411,10 @@ LevelEditor(void)
     selection->activated = FALSE;
     point last_right_click;
     moderately_finepoint difference;
+
+    // This is only here to shutup a warning
+    last_right_click.x = 0;
+    last_right_click.y = 0;
 
     BlockX = rintf( Me . pos . x + 0.5 );
     BlockY = rintf( Me . pos . y + 0.5 );
