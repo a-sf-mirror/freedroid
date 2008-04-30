@@ -239,14 +239,24 @@ ShowStartupPercentage ( int Percentage )
 	    PrintString ( Screen , ( 290 ) * GameConfig . screen_width / 640 + 11 , 
 			  ( 205 ) * GameConfig . screen_height / 480 + 10 , "%d%%", Percentage ) ;
 	    break;
+	case 1440:
+	    PrintString ( Screen , ( 290 ) * GameConfig . screen_width / 640 + 11 , 
+			  ( 205 ) * GameConfig . screen_height / 480 + 10 , "%d%%", Percentage ) ;
+	    break;
+	case 1680:
+	    PrintString ( Screen , ( 290 ) * GameConfig . screen_width / 640 + 11 , 
+			  ( 205 ) * GameConfig . screen_height / 480 + 10 , "%d%%", Percentage ) ;
+	    break;
 	default:
 	    ErrorMessage ( __FUNCTION__  , "\
 The resolution found is none of\n\
      0 = 640 x 480 (default with SDL)\n\
      1 = 800 x 600 (default with OpenGL)\n\
      2 = 1024 x 748 \n\
-     3 = 720 x 480 (NTSC) \n\
-     4 = 720 x 576 (PAL) \n\
+     3 = 1280 x 1024 \n\
+     4 = 1280 x 800 \n\
+     5 = 1440 x 900 \n\
+     6 = 1680 x 1050 \n\
 This means a severe bug...",
 						       PLEASE_INFORM , IS_FATAL );
 	    break;
@@ -1729,22 +1739,18 @@ ParseCommandLine (int argc, char *const argv[])
                             GameConfig . screen_height = 800 ;
                             DebugPrintf ( 1 , "\n%s(): Command line argument -r 4 recognized." , __FUNCTION__ );
                             break;
-#if 0			
-			case 5: 
+			case 5:
                             command_line_override_for_screen_resolution = TRUE ;
-                            GameConfig . screen_width = 1280 ;
-                            GameConfig . screen_height = 800 ;
+                            GameConfig . screen_width = 1440 ;
+                            GameConfig . screen_height =900 ;
                             DebugPrintf ( 1 , "\n%s(): Command line argument -r 5 recognized." , __FUNCTION__ );
                             break;
-			case 6: 
+			case 6:
                             command_line_override_for_screen_resolution = TRUE ;
-                            GameConfig . screen_width = 1280 ;
-                            GameConfig . screen_height =1024 ;
+                            GameConfig . screen_width = 1680 ;
+                            GameConfig . screen_height =1050 ;
                             DebugPrintf ( 1 , "\n%s(): Command line argument -r 6 recognized." , __FUNCTION__ );
                             break;
-#endif
-
-
 			default:
 			    fprintf( stderr, "\nresolution code received: %d" , resolution_code );
 			    ErrorMessage ( __FUNCTION__  , "\
@@ -1754,6 +1760,9 @@ These codes correspond to the following resolutions available:\n\
      1 = 800 x 600 (default with OpenGL)\n\
      2 = 1024 x 748 \n\
      3 = 1280 x 1024 \n\
+     4 = Unsupported! (1280 x 800) \n\
+     5 = Unsupported! (1440 x 900) \n\
+     6 = Unsupported! (1680 x 1050) \n\
 Anything else will not be accepted right now, but you can send in\n\
 your suggestion to the FreedroidRPG dev team to enable new resolutions.",
 						       NO_NEED_TO_INFORM , IS_FATAL );
