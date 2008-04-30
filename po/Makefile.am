@@ -120,13 +120,13 @@ all-local-yes: freedroidrpg.pot freedroidrpg_data.pot freedroidrpg_dialogs.pot $
 install-data-local: install-data-local-@USE_NLS@
 install-data-local-no: all-local
 install-data-local-yes: all-local
-	for file in $(MOFILES_SRC) $(MOFILES_DAT); do \
+	for file in $(MOFILES_SRC) $(MOFILES_DAT) $(MOFILES_DIA); do \
 		$(INSTALL_DATA) -D $$file $(LOCALEDIR)/$$file; \
 	done;
 
 uninstall-local: uninstall-local-@USE_NLS@
 uninstall-local-no:
 uninstall-local-yes:
-	for file in $(MOFILES_SRC) $(MOFILES_DAT); do \
+	for file in $(MOFILES_SRC) $(MOFILES_DAT) $(MOFILES_DIA); do \
 		rm -f $(LOCALEDIR)/$$file; \
 	done;
