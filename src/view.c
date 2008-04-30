@@ -78,8 +78,6 @@ iso_image loaded_tux_images [ ALL_PART_GROUPS ] [ TUX_TOTAL_PHASES ] [ MAX_TUX_D
 char* motion_class_string [ ALL_TUX_MOTION_CLASSES ] = { "sword_motion" , "gun_motion" } ;
 int previously_used_motion_class = -4 ; // something we'll never really use...
 
-extern int level_editor_mouse_move_mode;
-
 void FdFlashWindow (SDL_Color Flashcolor);
 void RecFlashFill (int LX, int LY, int Color, unsigned char *Parameter_Screen,
 		   int SBreite);
@@ -546,25 +544,8 @@ There was an obstacle type given, that exceeds the number of\n\
     //
     if ( our_obstacle == level_editor_marked_obstacle )
     {
-	//--------------------
-	// Maybe the obstacle in question is also subject to the mouse_move_mode
-	// of the level editor.  In this case we blit the obstacle on the current
-	// mouse cursor location instead.
-	//
-	if ( level_editor_mouse_move_mode )
-	{
-	    obs_onscreen_position . x = 
-		translate_pixel_to_map_location ( (float) input_axis.x , 
-						  (float) input_axis.y , TRUE ) ;
-	    obs_onscreen_position . y = 
-		translate_pixel_to_map_location ( (float) input_axis.x , 
-						  (float) input_axis.y , FALSE ) ;
-	}
-	else
-	{
-	    obs_onscreen_position . x = our_obstacle -> pos . x ;
-	    obs_onscreen_position . y = our_obstacle -> pos . y ;
-	}
+	obs_onscreen_position . x = our_obstacle -> pos . x ;
+	obs_onscreen_position . y = our_obstacle -> pos . y ;
 
 	if ( use_open_gl )
 	{

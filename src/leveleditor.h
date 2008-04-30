@@ -44,23 +44,6 @@ typedef struct line_element {
     list_head_t list;
 } line_element, *Line_element;
 
-typedef struct whole_line {
-    int activated;
-    int direction;
-    int editor_mode;
-    int id;
-    line_element elements;
-} whole_line, *Whole_line;
-
-typedef struct whole_rectangle {
-    int activated;
-    point start;
-    int len_x, len_y;
-    int step_x, step_y;
-    int tile_used;
-} whole_rectangle;
-
-
 enum
   {
     JUMP_THRESHOLD_NORTH = 1,
@@ -147,15 +130,42 @@ enum
       UNDO = 1 /* pop in to_undo and push in to_redo  */
   };
 
-typedef struct dragged_content {
-    int activated;
-    obstacle *selected_obstacle;
-} dragged_content;
+enum
+  {
+      NORMAL_MODE,
+      DRAG_DROP_MODE,
+      LINE_MODE,
+      RECTANGLE_MODE,
+      CLICK_DRAG_MODE,
+  };
 
-typedef struct click_and_drag_s {
-	point last_right_click;
-	moderately_finepoint corresponding_position;
-} click_and_drag;
+
+typedef struct leveleditor_state_s {
+    /* Current postion */
+    moderately_finepoint TargetSquare;
+
+    int mode;
+
+    /* drag&drop */
+    obstacle *d_selected_obstacle;
+
+    /* Line mode */
+    int l_direction;
+    int l_selected_mode;
+    int l_id;
+    line_element l_elements;
+
+    /* Rectangle mode */
+    point r_start;
+    int r_len_x, r_len_y;
+    int r_step_x, r_step_y;
+    int r_tile_used;
+
+    /* click&drag */
+    point c_last_right_click;
+    moderately_finepoint c_corresponding_position;
+} leveleditor_state;
+
 
 void ShowWaypoints( int PrintConnectionList , int maks );
 void LevelEditor(void);
@@ -170,12 +180,10 @@ void duplicate_all_obstacles_in_area ( Level source_level ,
 void give_new_description_to_obstacle ( Level EditLevel , obstacle* our_obstacle , char* predefined_description );
 
 /* Line mode */
-void start_line_mode(whole_line *walls, moderately_finepoint TargetSquare,
-		int already_defined);
+void start_line_mode(leveleditor_state *cur_state, int already_defined);
 
 /* Rectangle mode */
-void start_rectangle_mode(whole_rectangle *rectangle,
-	moderately_finepoint TargetSquare, int already_defined);
+void start_rectangle_mode(leveleditor_state *cur_state , int already_defined);
 
 
 /* Undoable actions*/
