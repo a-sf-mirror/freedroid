@@ -5406,6 +5406,8 @@ LevelEditor(void)
     rectangle->activated = FALSE;
     dragged_content* selection = MyMalloc(sizeof(dragged_content));
     selection->activated = FALSE;
+    point last_right_click;
+    moderately_finepoint difference;
 
     BlockX = rintf( Me . pos . x + 0.5 );
     BlockY = rintf( Me . pos . y + 0.5 );
@@ -5871,32 +5873,33 @@ LevelEditor(void)
 	    // simply as bigger move command, which might indeed be much handier than 
 	    // using only keyboard cursor keys to move around on the map.
 	    //
-	    if ( MouseRightPressed() && !RightMousePressedPreviousFrame )
+	    if ( MouseRightPressed() )
 	    {
-		    if ( GameConfig . zoom_is_on )
-			    Me . pos . x = 
-				    translate_pixel_to_zoomed_map_location ( (float) GetMousePos_x()  - ( GameConfig . screen_width / 2 ) , 
-						    (float) GetMousePos_y()  - ( GameConfig . screen_height / 2 ), TRUE ); 
-		    else
-			    Me . pos . x = 
-				    translate_pixel_to_map_location ( (float) GetMousePos_x()  - ( GameConfig . screen_width / 2 ) , 
-						    (float) GetMousePos_y()  - ( GameConfig . screen_height / 2 ), TRUE ); 
 
-		    if ( Me . pos . x >= curShip.AllLevels[Me.pos.z]->xlen-1 )
+		    if ( !RightMousePressedPreviousFrame )
+		    {
+			    /* "Enters" scroll mode */
+			    last_right_click . x = GetMousePos_x();
+			    last_right_click . y = GetMousePos_y();
+		    }
+		    else
+		    {
+			    /* Calculate the new position */
+			    difference . x = (float)( GetMousePos_x() - last_right_click . x ) / 300;
+			    difference . y = (float)( GetMousePos_y() - last_right_click . y ) / 300;
+			    Me . pos . x += difference . x ;
+			    Me . pos . y += difference . y ;
+		    }
+
+		    /* Security */
+		    if ( Me . pos . x > curShip.AllLevels[Me.pos.z]->xlen )
 			    Me . pos . x = curShip.AllLevels[Me.pos.z]->xlen-1 ;
-		    if ( Me . pos . x <= 0 ) Me . pos . x = 0;
-
-		    if ( GameConfig . zoom_is_on )
-			    Me . pos . y = 
-				    translate_pixel_to_zoomed_map_location ( (float) GetMousePos_x()  - ( GameConfig . screen_width / 2 ), 
-						    (float) GetMousePos_y()  - ( GameConfig . screen_height / 2 ), FALSE );
-		    else
-			    Me . pos . y = 
-				    translate_pixel_to_map_location ( (float) GetMousePos_x()  - ( GameConfig . screen_width / 2 ), 
-						    (float) GetMousePos_y()  - ( GameConfig . screen_height / 2 ), FALSE );
-		    if ( Me . pos . y >= curShip.AllLevels[Me.pos.z]->ylen-1 )
+		    if ( Me . pos . x < 0 )
+			    Me . pos . x = 0;
+		    if ( Me . pos . y > curShip.AllLevels[Me.pos.z]->ylen )
 			    Me . pos . y = curShip.AllLevels[Me.pos.z]->ylen-1 ;
-		    if ( Me . pos . y <= 0 ) Me . pos . y = 0;
+		    if ( Me . pos . y < 0 )
+			    Me . pos . y = 0;
 	    }
 
 		    
