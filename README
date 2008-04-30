@@ -10,10 +10,11 @@ Project url:  http://sourceforge.net/projects/freedroid/
    ---------------
    1. Introduction
    2. Install
-   3. Basic controls
-   4. Level editor
-   5. Contact us
-   6. Licence
+   3. Known Issues
+   4. Basic controls
+   5. Level editor
+   6. Contact us
+   7. Licence
 
 1. Introduction:
 ================
@@ -34,7 +35,27 @@ Project url:  http://sourceforge.net/projects/freedroid/
 ================
  Please refer to the INSTALL file located in the same folder as this file.
 
-3. Controls:
+3. Known Issues:
+================
+ * In Ubuntu, changing language will not work since Ubuntu by default does not ship with standard ISO
+   locales, only UFT-8 versions. You will have to manually correct this to get it working.
+   Procedure
+        1) In commandline write 
+                sudo nano /var/lib/locales/supported.d/local
+        2) Add the locales you are interested in, 1 entry on each line, eg
+                de_DE ISO-8859-1
+                fr_FR ISO-8859-1
+                sv_SE ISO-8859-1
+        3) Run
+                sudo dpkg-reconfigure locales
+        4) You Should now be able to chose the corresponding languages in the in game menu.
+
+ * There are a few hidden resolutions that might be useful for widescreen LCDs in fullscreen mode. 
+   They are badly tested and thus generally considered to be buggy or at least unsupported. Thus they
+   can only be accessed from the commandline. 
+   Start with "freedroid -r 99" to get a list of the current available options.
+
+4. Controls:
 =============
  Movement:
 
@@ -72,16 +93,16 @@ Project url:  http://sourceforge.net/projects/freedroid/
  Escape     ... Show the main menu
  F12        ... Take a screenshot
 
-4. Level editor:
+5. Level editor:
 ================
  There is a level editor integrated into the game. It can be accessed from the main menu.
 
-5. Contact:
+6. Contact:
 ===========
  Mailing list: freedroid-discussion@lists.sourceforge.net
  Irc channel:  #freedroid on irc.freenode.net
 
-6. Licence:
+7. Licence:
 ===========
  The game itself is licensed under GPL. Some other tools use a more permissive license, 
  please refer to the FILES file located in the same folder as this file.
