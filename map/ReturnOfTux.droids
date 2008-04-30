@@ -179,7 +179,7 @@ Allowed Type of Random Droid for this level: 123
 Allowed Type of Random Droid for this level: 247
 Allowed Type of Random Droid for this level: 249
 
-SForce: T=883 Fixed=0 Marker=101 Friendly=0 StartUpAtLabel="StoneStartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Dark Apprentice of MegaSys" attack_run_only_when_direct_line="no"
+SForce: T=883 Fixed=0 Marker=101 Friendly=0 StartUpAtLabel="Lv2DalekStartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Dark Apprentice of MegaSys" attack_run_only_when_direct_line="no"
 
 ** End of this levels droid data **
 
@@ -264,8 +264,8 @@ SForce: T=883 Fixed=0 Marker=9999 Friendly=0 StartUpAtLabel="MERStartGameSquare"
 
 ** Beginning of new Level **
 Level=8
-Maximum number of Random Droids=4
-Minimum number of Random Droids=4
+Maximum number of Random Droids=50
+Minimum number of Random Droids=30
 Allowed Type of Random Droid for this level: 123
 
 SForce: T=PRO Fixed=0 Marker=9999 Friendly=1 StartUpAtLabel="FrancisStartGameSquare" RushTux="yes" DialogSectionToUse="Francis" ShortLabel="Francis" attack_run_only_when_direct_line="no"
@@ -274,58 +274,11 @@ SForce: T=GUB Fixed=0 Marker=5 Friendly=1 StartUpAtLabel="MelfisStartGameSquare"
 
 SForce: T=302 Fixed=0 Marker=44 Friendly=0 StartUpAtLabel="The302InFrontOfTheTempleStart" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Nemesis" attack_run_only_when_direct_line="no"
 
-SForce: T=123 Fixed=0 Marker=101 Friendly=0 StartUpAtLabel="InTempleBot1StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Acolyte" attack_run_only_when_direct_line="no"
-
-SForce: T=123 Fixed=0 Marker=6 Friendly=0 StartUpAtLabel="TempleWayLayBot1StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Acolyte" attack_run_only_when_direct_line="no"
-SForce: T=123 Fixed=0 Marker=6 Friendly=0 StartUpAtLabel="TempleWayLayBot2StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Acolyte" attack_run_only_when_direct_line="no"
-
-SForce: T=123 Fixed=0 Marker=40 Friendly=0 StartUpAtLabel="Lev8Start123Nr5" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Acolyte" attack_run_only_when_direct_line="no"
-SForce: T=123 Fixed=0 Marker=40 Friendly=0 StartUpAtLabel="Lev8Start123Nr6" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Acolyte" attack_run_only_when_direct_line="no"
-
-SForce: T=123 Fixed=0 Marker=41 Friendly=0 StartUpAtLabel="Lev8Start123Nr7" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Acolyte" attack_run_only_when_direct_line="no"
-SForce: T=123 Fixed=0 Marker=41 Friendly=0 StartUpAtLabel="Lev8Start123Nr8" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Acolyte" attack_run_only_when_direct_line="no"
-
-SForce: T=123 Fixed=0 Marker=42 Friendly=0 StartUpAtLabel="Lev8Start123Nr9" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Acolyte" attack_run_only_when_direct_line="no"
-SForce: T=123 Fixed=0 Marker=42 Friendly=0 StartUpAtLabel="Lev8Start123Nr10" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Acolyte" attack_run_only_when_direct_line="no"
-
-SForce: T=123 Fixed=0 Marker=43 Friendly=0 StartUpAtLabel="Lev8Start123Nr11" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Acolyte" attack_run_only_when_direct_line="no"
-SForce: T=123 Fixed=0 Marker=43 Friendly=0 StartUpAtLabel="Lev8Start123Nr12" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Acolyte" attack_run_only_when_direct_line="no"
-
-SForce: T=123 Fixed=0 Marker=46 Friendly=0 StartUpAtLabel="Lev8Start123Nr13" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Acolyte" attack_run_only_when_direct_line="no"
-SForce: T=123 Fixed=0 Marker=46 Friendly=0 StartUpAtLabel="Lev8Start123Nr14" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Acolyte" attack_run_only_when_direct_line="no"
-
-SForce: T=123 Fixed=0 Marker=45 Friendly=0 StartUpAtLabel="Lev8Start123Nr15" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Acolyte" attack_run_only_when_direct_line="no"
-SForce: T=123 Fixed=0 Marker=45 Friendly=0 StartUpAtLabel="Lev8Start123Nr16" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Acolyte" attack_run_only_when_direct_line="no"
-
-SForce: T=123 Fixed=0 Marker=47 Friendly=0 StartUpAtLabel="Lev8Start123Nr17" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Acolyte" attack_run_only_when_direct_line="no"
-SForce: T=123 Fixed=0 Marker=47 Friendly=0 StartUpAtLabel="Lev8Start123Nr18" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Acolyte" attack_run_only_when_direct_line="no"
-
-SForce: T=123 Fixed=0 Marker=49 Friendly=0 StartUpAtLabel="Lev8Start123Nr19" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Acolyte" attack_run_only_when_direct_line="no"
-SForce: T=123 Fixed=0 Marker=49 Friendly=0 StartUpAtLabel="Lev8Start123Nr20" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Acolyte" attack_run_only_when_direct_line="no"
-
 SForce: T=139 Fixed=0 Marker=48 Friendly=0 StartUpAtLabel="Lev8Start139Nr1" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Templar" attack_run_only_when_direct_line="no"
 SForce: T=139 Fixed=0 Marker=48 Friendly=0 StartUpAtLabel="Lev8Start139Nr2" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Templar" attack_run_only_when_direct_line="no"
 
 SForce: T=139 Fixed=0 Marker=50 Friendly=0 StartUpAtLabel="Lev8Start139Nr3" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Templar" attack_run_only_when_direct_line="no"
 SForce: T=139 Fixed=0 Marker=50 Friendly=0 StartUpAtLabel="Lev8Start139Nr4" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Templar" attack_run_only_when_direct_line="no"
-
-SForce: T=123 Fixed=0 Marker=52 Friendly=0 StartUpAtLabel="Lev8Start123Nr21" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Acolyte" attack_run_only_when_direct_line="no"
-SForce: T=123 Fixed=0 Marker=52 Friendly=0 StartUpAtLabel="Lev8Start123Nr22" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Acolyte" attack_run_only_when_direct_line="no"
-
-SForce: T=123 Fixed=0 Marker=53 Friendly=0 StartUpAtLabel="Lev8Start123Nr23" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Acolyte" attack_run_only_when_direct_line="no"
-SForce: T=123 Fixed=0 Marker=53 Friendly=0 StartUpAtLabel="Lev8Start123Nr24" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Acolyte" attack_run_only_when_direct_line="no"
-
-SForce: T=123 Fixed=0 Marker=54 Friendly=0 StartUpAtLabel="Lev8Start123Nr25" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Acolyte" attack_run_only_when_direct_line="no"
-SForce: T=123 Fixed=0 Marker=54 Friendly=0 StartUpAtLabel="Lev8Start123Nr26" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Acolyte" attack_run_only_when_direct_line="no"
-
-SForce: T=123 Fixed=0 Marker=55 Friendly=0 StartUpAtLabel="Lev8Start123Nr27" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Acolyte" attack_run_only_when_direct_line="no"
-SForce: T=123 Fixed=0 Marker=55 Friendly=0 StartUpAtLabel="Lev8Start123Nr28" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Acolyte" attack_run_only_when_direct_line="no"
-
-SForce: T=123 Fixed=0 Marker=56 Friendly=0 StartUpAtLabel="Lev8Start123Nr29" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Acolyte" attack_run_only_when_direct_line="no"
-SForce: T=123 Fixed=0 Marker=56 Friendly=0 StartUpAtLabel="Lev8Start123Nr30" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Acolyte" attack_run_only_when_direct_line="no"
-
-SForce: T=123 Fixed=0 Marker=57 Friendly=0 StartUpAtLabel="Lev8Start123Nr31" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Acolyte" attack_run_only_when_direct_line="no"
-SForce: T=123 Fixed=0 Marker=57 Friendly=0 StartUpAtLabel="Lev8Start123Nr32" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Acolyte" attack_run_only_when_direct_line="no"
 
 ** End of this levels droid data **
 
@@ -637,7 +590,7 @@ SForce: T=WOR Fixed=1 Marker=9999 Friendly=1 StartUpAtLabel="Koan" RushTux="no" 
 
 ** Beginning of new Level **
 Level=35
-Maximum number of Random Droids=0
+Maximum number of Random Droids=10
 Minimum number of Random Droids=0
 Allowed Type of Random Droid for this level: 476
 
@@ -675,17 +628,11 @@ SForce: T=302 Fixed=0 Marker=44 Friendly=0 StartUpAtLabel="SecretAreaCollectorPa
 
 SForce: T=883 Fixed=0 Marker=44 Friendly=0 StartUpAtLabel="SecretAreaCollectorEmmiters" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="SADD" attack_run_only_when_direct_line="no"
 
-SForce: T=629 Fixed=0 Marker=44 Friendly=0 StartUpAtLabel="SecretAreaCollectorEmmiters" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Guard" attack_run_only_when_direct_line="no"
-
 SForce: T=139 Fixed=0 Marker=44 Friendly=0 StartUpAtLabel="SecretAreaCollectorEnterance" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Ashman" attack_run_only_when_direct_line="no"
 
 SForce: T=249 Fixed=0 Marker=44 Friendly=0 StartUpAtLabel="SecretAreaCollectorPassage" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Guard" attack_run_only_when_direct_line="no"
 
-SForce: T=302 Fixed=0 Marker=44 Friendly=0 StartUpAtLabel="SecretAreaCollectorComputers" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Nemesis" attack_run_only_when_direct_line="no"
-
 SForce: T=883 Fixed=0 Marker=44 Friendly=0 StartUpAtLabel="SecretAreaCollectorComputers" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="SADD" attack_run_only_when_direct_line="no"
-
-SForce: T=476 Fixed=0 Marker=44 Friendly=0 StartUpAtLabel="SecretAreaCollectorComputers" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Operator" attack_run_only_when_direct_line="no"
 
 SForce: T=629 Fixed=0 Marker=44 Friendly=0 StartUpAtLabel="SecretAreaHall" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Guard" attack_run_only_when_direct_line="no"
 
