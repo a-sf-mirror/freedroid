@@ -393,15 +393,19 @@ ShuffleEnemys ( int LevelNum )
 	int testwp = MyRandom ( wp_num );
 	if ( wp_used [ testwp ] || ShuffleLevel -> AllWaypoints [ testwp ] . suppress_random_spawn) //test a random waypoint
 	    {
-	    testwp = 0; 
-	    while ( testwp < wp_num ) //if used, pick the first unused one
-		{
-		if ( ! wp_used [ testwp ] && ! ShuffleLevel -> AllWaypoints [ testwp ] . suppress_random_spawn )
+	    int found = 0;
+	    int a;
+	    for ( a = testwp + 1 ; a != testwp; a = (a >= wp_num) ? 0 : a + 1)
+		{ /* Test waypoints starting from the current one to the last, and back from zero */
+		if ( ! wp_used [ a ] && ! ShuffleLevel -> AllWaypoints [ a ] . suppress_random_spawn )
+		    {
+		    found = 1;
+		    testwp = a;
 		    break;
-		testwp++;
+		    }
 		}
-	    if ( testwp == wp_num )
-		ErrorMessage(__FUNCTION__, "There was no free waypoint found on level %d to place another random bot.\n", PLEASE_INFORM, IS_FATAL, LevelNum);
+	    if ( ! found )
+		ErrorMessage(__FUNCTION__, "There was no free waypoint found on level %d to place another random bot.\n", PLEASE_INFORM, IS_WARNING_ONLY, LevelNum);
 	    }
 
 	wp = testwp;
