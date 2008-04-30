@@ -36,7 +36,7 @@ PositionX=385  PositionY=202
 ChangeOption=99 ChangeToValue=1
 ChangeOption=0 ChangeToValue=0
 ChangeOption=5 ChangeToValue=1
-AlwaysExecuteThisOptionPriorToDialogStart="no"
+AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
@@ -44,18 +44,6 @@ New Option Nr=5  OptionText=_" Improve ranged weapon skill (cost 5 training poin
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=477  PositionY=203  
 OnCondition="GoldIsLessThan:100" JumpToOption=10 ElseGoto=11
-AlwaysExecuteThisOptionPriorToDialogStart="no"
-
-----------------------------------------------------------------------
-
-New Option Nr=7  OptionText=_"THIS WILL NOT EVER BE VISIBLE"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-PositionX=636  PositionY=469  
-Subtitle=_"Done. Small improvements of dexterity are not so hard to achieve after all."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-ChangeOption=7 ChangeToValue=0
-DoSomethingExtra="SubtractPointsToDistribute:1"
-DoSomethingExtra="AddBaseDexterity:1"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------

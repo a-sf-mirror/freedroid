@@ -43,7 +43,7 @@ ChangeOption=1 ChangeToValue=1
 ChangeOption=99 ChangeToValue=1
 ChangeOption=6 ChangeToValue=1
 ChangeOption=11 ChangeToValue=1
-AlwaysExecuteThisOptionPriorToDialogStart="no"
+AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
