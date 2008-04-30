@@ -102,7 +102,7 @@ EXTERN void start_tux_death_explosions (void);
 EXTERN void translate_map_point_to_screen_pixel_func( float x_map_pos, float y_map_pos, int * x_res, int * y_res, float zoom_factor);
 EXTERN inline float translate_pixel_to_map_location ( float axis_x , float axis_y , int give_x ) ;
 EXTERN void skew_and_blit_rect( float x1, float y1, float x2, float y2, Uint32 color);
-EXTERN float translate_pixel_to_zoomed_map_location ( float axis_x , float axis_y , int give_x );
+EXTERN moderately_finepoint translate_point_to_map_location ( float axis_x , float axis_y , int zoom_is_on );
 EXTERN void blit_zoomed_iso_image_to_map_position ( iso_image* our_iso_image , float pos_x , float pos_y );
 EXTERN int tux_can_walk_this_line ( float x1, float y1 , float x2 , float y2 );
 EXTERN void clear_out_intermediate_points ( gps *, moderately_finepoint *, int);

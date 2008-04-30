@@ -5409,12 +5409,12 @@ LevelEditor(void)
     rectangle->activated = FALSE;
     dragged_content* selection = MyMalloc(sizeof(dragged_content));
     selection->activated = FALSE;
-    point last_right_click;
-    moderately_finepoint difference;
+    // Contains information about the current mouse movement
+    click_and_drag clicks;
 
     // This is only here to shutup a warning
-    last_right_click.x = 0;
-    last_right_click.y = 0;
+    clicks.last_right_click.x = 0;
+    clicks.last_right_click.y = 0;
 
     BlockX = rintf( Me . pos . x + 0.5 );
     BlockY = rintf( Me . pos . y + 0.5 );
@@ -5751,20 +5751,9 @@ LevelEditor(void)
 	    // First we find out which map square the player MIGHT wish us to operate on
 	    // via a POTENTIAL mouse click
 	    //
-	    if ( GameConfig . zoom_is_on )
-	    {
-		TargetSquare . x = translate_pixel_to_zoomed_map_location ( (float) GetMousePos_x()  - ( GameConfig . screen_width / 2 ) , 
-									    (float) GetMousePos_y()  - ( GameConfig . screen_height / 2 ), TRUE );
-		TargetSquare . y = translate_pixel_to_zoomed_map_location ( (float) GetMousePos_x()  - ( GameConfig . screen_width / 2 ), 
-									    (float) GetMousePos_y()  - ( GameConfig . screen_height / 2 ), FALSE );
-	    }
-	    else
-	    {
-		TargetSquare . x = translate_pixel_to_map_location ( (float) GetMousePos_x()  - ( GameConfig . screen_width / 2 ) , 
-								     (float) GetMousePos_y()  - ( GameConfig . screen_height / 2 ), TRUE );
-		TargetSquare . y = translate_pixel_to_map_location ( (float) GetMousePos_x()  - ( GameConfig . screen_width / 2 ), 
-								     (float) GetMousePos_y()  - ( GameConfig . screen_height / 2 ), FALSE );
-	    }
+	    TargetSquare = translate_point_to_map_location ((float) GetMousePos_x()  - ( GameConfig . screen_width / 2 ) , 
+		                                            (float) GetMousePos_y()  - ( GameConfig . screen_height / 2 ) ,
+							    GameConfig . zoom_is_on );
 
 	    //--------------------
 	    // The 'M' key will activate drag&drop mode to allow for convenient
@@ -5883,38 +5872,42 @@ LevelEditor(void)
 	    if ( MouseRightPressed() )
 	    {
 
-		    if ( !RightMousePressedPreviousFrame )
-		    {
-			    /* "Enters" scroll mode */
-			    last_right_click . x = GetMousePos_x();
-			    last_right_click . y = GetMousePos_y();
-		    }
-		    else
-		    {
-			    /* Calculate the new position */
-			    difference . x = (float)( GetMousePos_x() - last_right_click . x ) / 300;
-			    difference . y = (float)( GetMousePos_y() - last_right_click . y ) / 300;
-			    Me . pos . x += difference . x ;
-			    Me . pos . y += difference . y ;
-		    }
+		if ( !RightMousePressedPreviousFrame )
+		{
+		    /* "Enters" scroll mode */
+		    clicks . last_right_click . x = GetMousePos_x();
+		    clicks . last_right_click . y = GetMousePos_y();
+		}
+		else
+		{
+		    clicks . corresponding_position = translate_point_to_map_location (
+			    clicks . last_right_click . x  - ( GameConfig . screen_width / 2 ) , 
+			    clicks . last_right_click . y  - ( GameConfig . screen_height / 2 ) ,
+			    GameConfig . zoom_is_on );
 
-		    /* Security */
-		    if ( Me . pos . x > curShip.AllLevels[Me.pos.z]->xlen )
-			    Me . pos . x = curShip.AllLevels[Me.pos.z]->xlen-1 ;
-		    if ( Me . pos . x < 0 )
-			    Me . pos . x = 0;
-		    if ( Me . pos . y > curShip.AllLevels[Me.pos.z]->ylen )
-			    Me . pos . y = curShip.AllLevels[Me.pos.z]->ylen-1 ;
-		    if ( Me . pos . y < 0 )
-			    Me . pos . y = 0;
+		    /* Calculate the new position */
+		    Me . pos . x += (TargetSquare . x - clicks . corresponding_position . x) / 30 ;
+		    Me . pos . y += (TargetSquare . y - clicks . corresponding_position . y) / 30 ;
+
+		}
+
+		/* Security */
+		if ( Me . pos . x > curShip.AllLevels[Me.pos.z]->xlen )
+		    Me . pos . x = curShip.AllLevels[Me.pos.z]->xlen-1 ;
+		if ( Me . pos . x < 0 )
+		    Me . pos . x = 0;
+		if ( Me . pos . y > curShip.AllLevels[Me.pos.z]->ylen )
+		    Me . pos . y = curShip.AllLevels[Me.pos.z]->ylen-1 ;
+		if ( Me . pos . y < 0 )
+		    Me . pos . y = 0;
 	    }
 
-		    
+
 	    if ( QPressed ( ) &&  CtrlWasPressed() )
 	    {
 		Terminate(0);
 	    }
-	    
+
 	    if ( EscapePressed() )
 	    {
 		if ( level_editor_mouse_move_mode )

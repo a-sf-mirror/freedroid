@@ -2971,6 +2971,28 @@ translate_pixel_to_zoomed_map_location ( float axis_x , float axis_y , int give_
 
 /**
  *
+ *
+ */
+moderately_finepoint
+translate_point_to_map_location ( float axis_x, float axis_y, int zoom_is_on )
+{
+    moderately_finepoint position;
+    if ( zoom_is_on )
+    {
+	position . x  = translate_pixel_to_zoomed_map_location ( axis_x, axis_y, TRUE );
+	position . y  = translate_pixel_to_zoomed_map_location ( axis_x, axis_y, FALSE );
+    }
+    else
+    {
+	position . x  = translate_pixel_to_map_location ( axis_x, axis_y, TRUE );
+	position . y  = translate_pixel_to_map_location ( axis_x, axis_y, FALSE );
+    }
+    return position;
+}
+
+
+/**
+ *
  * 
  */
 

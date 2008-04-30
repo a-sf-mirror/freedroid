@@ -152,6 +152,11 @@ typedef struct dragged_content {
     obstacle *selected_obstacle;
 } dragged_content;
 
+typedef struct click_and_drag_s {
+	point last_right_click;
+	moderately_finepoint corresponding_position;
+} click_and_drag;
+
 void ShowWaypoints( int PrintConnectionList , int maks );
 void LevelEditor(void);
 void cycle_marked_obstacle( Level EditLevel );
