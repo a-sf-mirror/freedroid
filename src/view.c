@@ -2859,24 +2859,26 @@ Empty part string received!",
 	    int blend = FALSE;
 
 	    if ( Me . paralyze_duration ) 
-		{
+		{ /* Paralyzed ? tux turns red */
 		g = 0.2;
 		b = 0.2;
 		}
 
 	    else if ( Me . slowdown_duration ) 
-		{
+		{ /* Slowed down ? tux turns blue */
 		r = 0.2;
 		g = 0.2;
 		}
 
 	    else if ( Me . energy < Me . maxenergy * 0.25 )
-		{
+		{ /* Low energy ? blink red */
 		g = b = ((SDL_GetTicks() >> 5) & 31) * 0.03;
 		}
 
 	    if ( Me . invisible_duration )
+		{ /* Invisible? Become transparent */
 		blend = TRANSPARENCY_CUROBJECT;
+		}
 
             if ( x == (-1) )
     		{
