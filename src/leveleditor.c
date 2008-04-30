@@ -4311,83 +4311,110 @@ HandleMapTileEditingKeys ( Level EditLevel , int BlockX , int BlockY )
  *
  *
  */
-void 
+    void 
 HandleLevelEditorCursorKeys ( void )
 {
     Level EditLevel;
-    
+
     EditLevel = curShip.AllLevels [ Me . pos . z ] ;
-   
-    if ( ! CtrlPressed() )
-	{	
-    if (LeftPressed()) 
-    {
-	if ( rintf(Me.pos.x) > 0 ) Me.pos.x-=1;
-	while (LeftPressed());
-    }
-    if (RightPressed()) 
-    {
-	if ( rintf(Me.pos.x) < EditLevel->xlen-1 ) Me.pos.x+=1;
-	while (RightPressed());
-    }
-    if (UpPressed()) 
-    {
-	if ( rintf(Me.pos.y) > 0 ) Me.pos.y-=1;
-	while (UpPressed());
-    }
-    if (DownPressed()) 
-    {
-	if ( rintf(Me.pos.y) < EditLevel->ylen-1 ) Me.pos.y+=1;
-	while (DownPressed());
-    }
-	}
-    else if (level_editor_marked_obstacle)
+
+    if (level_editor_marked_obstacle)
 	{
-	/*
-	 * Uncomment to be able to change the borders of the currently marked obstacle 
-	if ( LeftPressed() )
+	if ( CtrlPressed() )
 	    {
-	    obstacle_map[level_editor_marked_obstacle->type] . left_border -= 0.05;
-	    obstacle_map[level_editor_marked_obstacle->type] . right_border -= 0.05;
+#if 0
+	    //Uncomment to be able to change the borders of the currently marked obstacle 
+	    if ( LeftPressed() )
+		{
+		obstacle_map[level_editor_marked_obstacle->type] . left_border -= 0.05;
+		obstacle_map[level_editor_marked_obstacle->type] . right_border -= 0.05;
+		}
+	    if ( RightPressed() )
+		{
+		obstacle_map[level_editor_marked_obstacle->type] . left_border += 0.05;
+		obstacle_map[level_editor_marked_obstacle->type] . right_border += 0.05;
+		}
+	    if ( DownPressed() )
+		{
+		obstacle_map[level_editor_marked_obstacle->type] . upper_border += 0.05;
+		obstacle_map[level_editor_marked_obstacle->type] . lower_border += 0.05;
+		}
+	    if ( UpPressed() )
+		{
+		obstacle_map[level_editor_marked_obstacle->type] . upper_border -= 0.05;
+		obstacle_map[level_editor_marked_obstacle->type] . lower_border -= 0.05;
+		}
+#endif
+
+#if 0
+	    //Uncomment to be able to change the offset of the currently marked obstacle 
+
+	    if ( LeftPressed() )
+		{
+		obstacle_map[level_editor_marked_obstacle->type] . image . offset_x -= 1;
+		}
+	    if ( RightPressed() )
+		{
+		obstacle_map[level_editor_marked_obstacle->type] . image . offset_x += 1;
+		}
+	    if ( DownPressed() )
+		{
+		obstacle_map[level_editor_marked_obstacle->type] . image . offset_y -= 1;
+		}
+	    if ( UpPressed() )
+		{
+		obstacle_map[level_editor_marked_obstacle->type] . image . offset_y += 1;
+		}
+	    printf("Offset x %hd y %hd\n", obstacle_map[level_editor_marked_obstacle->type] . image . offset_x, obstacle_map[level_editor_marked_obstacle->type] . image . offset_y);
+#endif
 	    }
-	if ( RightPressed() )
+	else
 	    {
-	    obstacle_map[level_editor_marked_obstacle->type] . left_border += 0.05;
-	    obstacle_map[level_editor_marked_obstacle->type] . right_border += 0.05;
+#if 0
+	    //Uncomment to be able to fine-move the currently marked obstacle.
+	    if ( LeftPressed() )
+		{
+		level_editor_marked_obstacle-> pos. x -= 0.005;
+		}
+	    if ( RightPressed() )
+		{
+		level_editor_marked_obstacle-> pos .x  += 0.005;
+		}
+	    if ( DownPressed() )
+		{
+		level_editor_marked_obstacle-> pos . y += 0.005;
+		}
+	    if ( UpPressed() )
+		{
+		level_editor_marked_obstacle-> pos . y -= 0.005;
+		}
+#endif
 	    }
-	if ( DownPressed() )
-	    {
-	    obstacle_map[level_editor_marked_obstacle->type] . upper_border += 0.05;
-	    obstacle_map[level_editor_marked_obstacle->type] . lower_border += 0.05;
-	    }
-	if ( UpPressed() )
-	    {
-	    obstacle_map[level_editor_marked_obstacle->type] . upper_border -= 0.05;
-	    obstacle_map[level_editor_marked_obstacle->type] . lower_border -= 0.05;
-	    }*/
-	/*
-	 * Uncomment to be able to change the offset of the currently marked obstacle 
-	 
-	if ( LeftPressed() )
-	    {
-	    obstacle_map[level_editor_marked_obstacle->type] . image . offset_x -= 1;
-	    }
-	if ( RightPressed() )
-	    {
-	    obstacle_map[level_editor_marked_obstacle->type] . image . offset_x += 1;
-	    }
-	if ( DownPressed() )
-	    {
-	    obstacle_map[level_editor_marked_obstacle->type] . image . offset_y -= 1;
-	    }
-	if ( UpPressed() )
-	    {
-	    obstacle_map[level_editor_marked_obstacle->type] . image . offset_y += 1;
-	    }
-	printf("Offset x %hd y %hd\n", obstacle_map[level_editor_marked_obstacle->type] . image . offset_x, obstacle_map[level_editor_marked_obstacle->type] . image . offset_y);
-	*/
 	}
 
+    else {
+
+	if (LeftPressed()) 
+	    {
+	    if ( rintf(Me.pos.x) > 0 ) Me.pos.x-=1;
+	    while (LeftPressed());
+	    }
+	if (RightPressed()) 
+	    {
+	    if ( rintf(Me.pos.x) < EditLevel->xlen-1 ) Me.pos.x+=1;
+	    while (RightPressed());
+	    }
+	if (UpPressed()) 
+	    {
+	    if ( rintf(Me.pos.y) > 0 ) Me.pos.y-=1;
+	    while (UpPressed());
+	    }
+	if (DownPressed()) 
+	    {
+	    if ( rintf(Me.pos.y) < EditLevel->ylen-1 ) Me.pos.y+=1;
+	    while (DownPressed());
+	    }
+    }
 }; // void HandleLevelEditorCursorKeys ( void )
 
 
