@@ -34,7 +34,7 @@ New Option Nr=0  OptionText=_"THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=58  PositionY=427  
 ChangeOption=0 ChangeToValue=0
-AlwaysExecuteThisOptionPriorToDialogStart="no"
+AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
