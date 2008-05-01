@@ -7,8 +7,8 @@ endif
 bin_PROGRAMS = freedroidRPG
 
 freedroidRPG_SOURCES = menu.c shop.c items.c character.c skills.c saveloadgame.c \
-	leveleditor.c leveleditor.h blocks.c graphics.c map.c init.c ship.c \
-	takeover.c bullet.c influ.c misc.c text.c text_public.c sound.c \
+	leveleditor.c leveleditor.h blocks.c graphics.c map.c colldet.c init.c \
+	ship.c takeover.c bullet.c influ.c misc.c text.c text_public.c sound.c \
 	enemy.c input.c main.c hud.c view.c automap.c BFont.c \
 	defs.h map.h vars.h takeover.h global.h \
 	proto.h struct.h system.h BFont.h \

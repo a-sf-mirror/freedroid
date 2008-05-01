@@ -3829,42 +3829,4 @@ translate_map_point_to_screen_pixel_func( float x_map_pos , float y_map_pos , in
 #undef factY
 }
 
-/** 
- * Compute the distance between a segment and a point.
- *
- * @param x1 segment x1
- * @param y1 segment y1
- * @param x2 segment x2
- * @param y2 segment y2
- * @param px point x
- * @param py point y
- *
- * @return distance
- */
-float calc_distance_seg_point ( float x1, float y1, float x2, float y2, float px, float py )
-{
-
-    /* Distance formula taken at http://www.softsurfer.com/Archive/algorithm_0102/Eqn_dcross2.gif */
-    /* the distance basically is the cross product of the normalized (X_0, X_1) vector with (X_0, X) */
-    float distline = fabsf(( ( y1 - y2 ) * px + ( x2 - x1 ) * py + (x1 * y2 - x2 * y1 ) ));
-
-    /* Now check for segment with dotproduct */
-    float dotprod = (x2 - x1) * (px - x1) + (y2 - y1) * (py - y1);
-    if ( dotprod > 0 && dotprod < 1 )
-	return distline;
-    else 
-	{
-	/* We are not quite done yet ! */
-	if ( dotprod < 0 )
-	    {
-	    return sqrt(( px - x1 ) * ( px - x1 ) + ( py - y1 ) * ( py - y1 ));
-	    }
-	else //dotprod >1
-	    {
-	    return sqrt(( px - x2 ) * ( px - x2 ) + ( py - y2 ) * ( py - y2 ));
-	    }
-	}
-}
-
-
 #undef _map_c

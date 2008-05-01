@@ -405,6 +405,16 @@ EXTERN void CreateWaypoint (level *Lev, int x, int y);
 EXTERN void translate_map_point_to_screen_pixel_func( float x_map_pos, float y_map_pos, int * x_res, int * y_res, float zoom_factor);
 EXTERN inline float translate_pixel_to_map_location ( float axis_x , float axis_y , int give_x ) ;
 
+//colldet.c
+#undef EXTERN
+#ifdef _map_c
+#define EXTERN
+#else
+#define EXTERN extern
+#endif
+EXTERN int DirectLineWalkable( float x1 , float y1 , float x2 , float y2 , int z );
+EXTERN int CheckIfWayIsFreeOfDroids (char test_tux, float x1 , float y1 , float x2 , float y2 , int OurLevel , enemy * ExceptedRobot ) ;
+
 // sound.c  OR nosound.c 
 #undef EXTERN
 #ifdef _sound_c
@@ -778,8 +788,6 @@ EXTERN int CheckEnemyEnemyCollision (enemy *);
 EXTERN void MoveEnemys (void);
 EXTERN void ClearEnemys (void);
 EXTERN void InitEnemy (enemy *);
-EXTERN int DirectLineWalkable( float x1 , float y1 , float x2 , float y2 , int z );
-EXTERN int CheckIfWayIsFreeOfDroids (char test_tux, float x1 , float y1 , float x2 , float y2 , int OurLevel , enemy * ExceptedRobot ) ;
 EXTERN void start_gethit_animation_if_applicable ( enemy* ThisRobot ) ;
 EXTERN void animate_enemy ( enemy * our_bot ) ;
 EXTERN void hit_enemy ( enemy * target, float hit, char givexp, short int killertype, char mine);

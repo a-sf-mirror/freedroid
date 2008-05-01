@@ -47,6 +47,7 @@ SRCFILES = ../src/BFont.c \
 		../src/leveleditor.c \
 		../src/light.c \
 		../src/main.c \
+		../src/colldet.c \
 		../src/map.c \
 		../src/map.h \
 		../src/menu.c \
