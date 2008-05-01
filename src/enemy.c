@@ -1513,8 +1513,8 @@ static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_m
 	// shorten the move vector a bit
 	if ( move_to_target && dist2 > 1.5) 
 	    {
-	    new_move_target -> x = ThisRobot->pos.x + (tpos->x - ThisRobot->pos.x) * (1.0 - ((1.0)/ sqrt(dist2)));
-	    new_move_target -> y = ThisRobot->pos.y + (tpos->y - ThisRobot->pos.y) * (1.0 - ((1.0)/ sqrt(dist2)));
+	    new_move_target -> x = ThisRobot->pos.x + (tpos->x - ThisRobot->virt_pos.x) * (1.0 - ((1.0)/ sqrt(dist2)));
+	    new_move_target -> y = ThisRobot->pos.y + (tpos->y - ThisRobot->virt_pos.y) * (1.0 - ((1.0)/ sqrt(dist2)));
 	    }
 
 	}
@@ -2128,13 +2128,13 @@ ClosestOtherEnemyDroid ( Enemy ThisRobot )
 int
 ConsideredMoveIsFeasible ( Enemy ThisRobot , moderately_finepoint StepVector )
 {
-    if ( ( IsPassable ( ThisRobot -> pos.x + StepVector.x , 
+    if ( ( DirectLineWalkable ( ThisRobot -> pos.x, ThisRobot -> pos.y, ThisRobot -> pos.x + StepVector.x , 
 			ThisRobot -> pos.y + StepVector.y ,
 			ThisRobot -> pos.z ) ) && 
 	 ( CheckIfWayIsFreeOfDroids ( TRUE, ThisRobot->pos.x , ThisRobot->pos.y , 
 						     ThisRobot->pos.x + StepVector . x , 
 						     ThisRobot->pos.y + StepVector . y ,
-						     ThisRobot->pos.z , ThisRobot ) ) )
+						     ThisRobot->pos.z , ThisRobot ) )  )
     {
 	return TRUE;
     }
@@ -2178,13 +2178,13 @@ MoveAwayFromMeleeCombat ( Enemy ThisRobot , moderately_finepoint * set_move_tgt 
     {
 	if ( MyRandom(1) == 1 )
 	{
-	    StepVector . x = 3.0 ;
-	    StepVector . y = 3.0 ;
+	    StepVector . x = 1.0 ;
+	    StepVector . y = 1.0 ;
 	}
 	else
 	{
-	    StepVector . x = -3.0 ;
-	    StepVector . y = -3.0 ;
+	    StepVector . x = -1.0 ;
+	    StepVector . y = -1.0 ;
 	}
     }
      
