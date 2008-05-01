@@ -476,7 +476,7 @@ MoveActiveSpells (void)
 			( AllActiveSpells [ i ] . spell_center . y - erot->pos . y ) );
 
 
-		if ( fabsf ( DistanceFromCenter - AllActiveSpells [ i ] . spell_radius ) < 0.4 )
+		if ( fabsf ( DistanceFromCenter - AllActiveSpells [ i ] . spell_radius ) < 0.2 )
 		    {
 
 		    //--------------------
@@ -498,10 +498,15 @@ MoveActiveSpells (void)
 			/* we hit the enemy. the owner is set to NULL because for now we assume it can only be the player.*/
 			hit_enemy(erot, AllActiveSpells [ i ] . damage * Frame_Time(), AllActiveSpells [ i ] . mine ? 1 : 0 /*givexp*/,  -1, AllActiveSpells [ i ] . mine ? 1 : 0); 
 			
-			erot->poison_duration_left += AllActiveSpells [ i ] . poison_duration;
+			if ( erot->poison_duration_left < AllActiveSpells [ i ] . poison_duration )
+			    erot->poison_duration_left = AllActiveSpells [ i ] . poison_duration;
 			erot->poison_damage_per_sec = AllActiveSpells [ i ] . damage;
-			erot->frozen += AllActiveSpells [ i ] . freeze_duration;
-			erot->paralysation_duration_left += AllActiveSpells [ i ] . paralyze_duration;
+
+			if ( erot->frozen < AllActiveSpells [ i ] . freeze_duration )
+			    erot->frozen = AllActiveSpells [ i ] . freeze_duration;
+
+			if ( erot->paralysation_duration_left < AllActiveSpells [ i ] . paralyze_duration )
+			    erot->paralysation_duration_left = AllActiveSpells [ i ] . paralyze_duration;
 
 			}
 		    }
