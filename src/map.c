@@ -3719,5 +3719,152 @@ CreateWaypoint (level *Lev, int x, int y)
 
 } // CreateWaypoint()
 
+/**
+ *
+ *
+ */
+inline float
+translate_pixel_to_map_location ( float axis_x , float axis_y , int give_x ) 
+{
+
+  //--------------------
+  // NOTE:  This function does not expect absolute screen coordinates but rather coordinates relative
+  // to the center of the screen.
+  //
+  // That's also why it's 'axis' rather than 'pos' or 'point'.
+  //
+  // That is because mouse clicks can best be analyzed this way.
+  //
+
+  if ( give_x )
+    {
+      return ( Me . pos . x + ( axis_x / ( (float) iso_floor_tile_width ) ) + 
+	       ( axis_y / ( (float) iso_floor_tile_height) ) ) ;
+    }
+  else
+    {
+      return ( Me . pos . y - ( axis_x / ( (float) iso_floor_tile_width ) ) + 
+	       ( axis_y / ( (float) iso_floor_tile_height) ) ) ;
+    }
+	      
+}; // int translate_pixel_to_map_location ( int axis_x , int axis_y , int give_x ) 
+
+/**
+ *
+ *
+ */
+float
+translate_pixel_to_zoomed_map_location ( float axis_x , float axis_y , int give_x ) 
+{
+  if ( give_x )
+    {
+      return ( Me . pos . x + ( LEVEL_EDITOR_ZOOM_OUT_FACT * axis_x / ((float)iso_floor_tile_width) ) + ( LEVEL_EDITOR_ZOOM_OUT_FACT * axis_y / ((float)iso_floor_tile_height) ) ) ;
+      // return ( ( axis_x / ISO_WIDTH ) + ( axis_y / ISO_HEIGHT ) ) ;
+    }
+  else
+    {
+      return ( Me . pos . y - ( LEVEL_EDITOR_ZOOM_OUT_FACT * axis_x / ((float)iso_floor_tile_width) ) + ( LEVEL_EDITOR_ZOOM_OUT_FACT * axis_y / ((float)iso_floor_tile_height) ) ) ;
+      // return ( - ( axis_x / ISO_WIDTH ) + ( axis_y / ISO_HEIGHT ) ) ;
+    }
+	      
+}; // int translate_pixel_to_zoomed_map_location ( int axis_x , int axis_y , int give_x ) 
+
+
+/**
+ *
+ *
+ */
+moderately_finepoint
+translate_point_to_map_location ( float axis_x, float axis_y, int zoom_is_on )
+{
+    moderately_finepoint position;
+    if ( zoom_is_on )
+    {
+	position . x  = translate_pixel_to_zoomed_map_location ( axis_x, axis_y, TRUE );
+	position . y  = translate_pixel_to_zoomed_map_location ( axis_x, axis_y, FALSE );
+    }
+    else
+    {
+	position . x  = translate_pixel_to_map_location ( axis_x, axis_y, TRUE );
+	position . y  = translate_pixel_to_map_location ( axis_x, axis_y, FALSE );
+    }
+    return position;
+}
+
+
+/**
+ * This function translates a given map point to screen coordinates.
+ *
+ * @param x_map_pos X position on map
+ * @param y_map_pos Y position on map
+ * @param x_res	pointer to the int that will hold the x position on screen
+ * @param y_res pointer to the y position on screen
+ * @param zoom_factor zoom factor in use
+ * 
+ */
+void
+translate_map_point_to_screen_pixel_func( float x_map_pos , float y_map_pos , int* x_res, int* y_res, float zoom_factor)
+{
+#define R ceilf
+#define factX iso_floor_tile_width*0.5*zoom_factor
+#define factY iso_floor_tile_height*0.5*zoom_factor
+    if(x_res!=NULL)
+	{
+	//obstacles oscillent *x_res = UserCenter_x + R( (x_map_pos - Me.pos.x) * factX) + R((Me . pos . y - y_map_pos) * factX);
+	//murs tilent pas -- en fait si
+	*x_res = UserCenter_x + R( x_map_pos * factX) - R(y_map_pos * factX) + R(Me.pos.y * factX) - R(factX * Me.pos.x);
+	//murs tilent pas ET tux oscille *x_res = UserCenter_x + R( x_map_pos * factX) - R(y_map_pos * factX) + R((Me.pos.y - Me.pos.x) * factX);
+	//original "devtrack" - murs tilent pas *x_res = ( UserCenter_x + R ( ( x_map_pos - y_map_pos )  * factX  ) + R ( ( Me . pos . y - Me . pos . x ) * factX ) );
+
+	}
+    if(y_res!=NULL)
+	{
+	//*y_res = UserCenter_y + R( (x_map_pos - Me.pos.x)* factY ) + R((y_map_pos - Me . pos . y)* factY);
+	*y_res = UserCenter_y + R( x_map_pos * factY ) + R(y_map_pos * factY) - R(Me.pos.x * factY) - R(factY * Me.pos.y);
+	//*y_res = UserCenter_y + R( x_map_pos * factY ) + R(y_map_pos * factY) - R((Me.pos.x + Me.pos.y) * factY);
+	//*y_res=( UserCenter_y + R ( ( x_map_pos + y_map_pos )  * factY ) - R( (  Me . pos . x + Me . pos . y ) * factY ));
+	}
+#undef R
+#undef factX
+#undef factY
+}
+
+/** 
+ * Compute the distance between a segment and a point.
+ *
+ * @param x1 segment x1
+ * @param y1 segment y1
+ * @param x2 segment x2
+ * @param y2 segment y2
+ * @param px point x
+ * @param py point y
+ *
+ * @return distance
+ */
+float calc_distance_seg_point ( float x1, float y1, float x2, float y2, float px, float py )
+{
+
+    /* Distance formula taken at http://www.softsurfer.com/Archive/algorithm_0102/Eqn_dcross2.gif */
+    /* the distance basically is the cross product of the normalized (X_0, X_1) vector with (X_0, X) */
+    float distline = fabsf(( ( y1 - y2 ) * px + ( x2 - x1 ) * py + (x1 * y2 - x2 * y1 ) ));
+
+    /* Now check for segment with dotproduct */
+    float dotprod = (x2 - x1) * (px - x1) + (y2 - y1) * (py - y1);
+    if ( dotprod > 0 && dotprod < 1 )
+	return distline;
+    else 
+	{
+	/* We are not quite done yet ! */
+	if ( dotprod < 0 )
+	    {
+	    return sqrt(( px - x1 ) * ( px - x1 ) + ( py - y1 ) * ( py - y1 ));
+	    }
+	else //dotprod >1
+	    {
+	    return sqrt(( px - x2 ) * ( px - x2 ) + ( py - y2 ) * ( py - y2 ));
+	    }
+	}
+}
+
 
 #undef _map_c
