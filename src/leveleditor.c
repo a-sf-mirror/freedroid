@@ -4334,33 +4334,29 @@ HandleLevelEditorCursorKeys ( leveleditor_state *cur_state )
 	    printf("Offset x %hd y %hd\n", obstacle_map[level_editor_marked_obstacle->type] . image . offset_x, obstacle_map[level_editor_marked_obstacle->type] . image . offset_y);
 #endif
 	}
-	else
+	else if ( MPressed() )
 	{
-		if ( MPressed() && cur_state -> mode == NORMAL_MODE )
-		{
-			if ( LeftPressed() )
-			{
-				level_editor_marked_obstacle-> pos. x -= 0.005;
-			}
-			if ( RightPressed() )
-			{
-				level_editor_marked_obstacle-> pos .x  += 0.005;
-			}
-			if ( DownPressed() )
-			{
-				level_editor_marked_obstacle-> pos . y += 0.005;
-			}
-			if ( UpPressed() )
-			{
-				level_editor_marked_obstacle-> pos . y -= 0.005;
-			}
-		}
+	    if ( LeftPressed() )
+	    {
+		level_editor_marked_obstacle-> pos. x -= 0.005;
+	    }
+	    if ( RightPressed() )
+	    {
+		level_editor_marked_obstacle-> pos .x  += 0.005;
+	    }
+	    if ( DownPressed() )
+	    {
+		level_editor_marked_obstacle-> pos . y += 0.005;
+	    }
+	    if ( UpPressed() )
+	    {
+		level_editor_marked_obstacle-> pos . y -= 0.005;
+	    }
 	}
     }
-    else
+
+    if ( cur_state -> mode == NORMAL_MODE  && ! MPressed() )
     {
-
-
 	if (LeftPressed()) 
 	{
 	    if ( rintf(Me.pos.x) > 0 ) Me.pos.x-=1;
