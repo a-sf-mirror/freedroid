@@ -466,7 +466,6 @@ int tile_is_free ( Level EditLevel, int y_old, int x_old, int y_new, int x_new) 
 			wall_id = obstacle_id;
 			y = EditLevel -> obstacle_list [ obstacle_id ] . pos . y;
 			x = EditLevel -> obstacle_list [ obstacle_id ] . pos . x;
-			printf("Hey, this %d %f %d %f is a wall !\n", y_new, y, x_new, x);
 			break;
 		}
 	}
@@ -4964,7 +4963,6 @@ level_editor_handle_left_mouse_button ( int proceed_now, leveleditor_state *cur_
     
     if ( MouseLeftPressed() && !LeftMousePressedPreviousFrame && cur_state->mode == NORMAL_MODE )
     {
-    printf("Normal mode and click o-O\n");
 	if ( ClickWasInEditorBannerRect() )
 	    HandleBannerMouseClick();
 	else if ( MouseCursorIsOnButton ( GO_LEVEL_NORTH_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
