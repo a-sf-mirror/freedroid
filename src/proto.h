@@ -404,7 +404,6 @@ EXTERN void CreateWaypoint (level *Lev, int x, int y);
 #define translate_map_point_to_screen_pixel_y(X,Y)  ( UserCenter_y + rintf(( (X) + (Y) - Me . pos . x - Me . pos . y ) * (iso_floor_tile_height_over_two))) 
 EXTERN void translate_map_point_to_screen_pixel_func( float x_map_pos, float y_map_pos, int * x_res, int * y_res, float zoom_factor);
 EXTERN inline float translate_pixel_to_map_location ( float axis_x , float axis_y , int give_x ) ;
-EXTERN inline float calc_distance_seg_point ( float, float, float, float, float, float );
 
 // sound.c  OR nosound.c 
 #undef EXTERN
