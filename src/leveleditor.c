@@ -4279,16 +4279,16 @@ HandleMapTileEditingKeys ( Level EditLevel , int BlockX , int BlockY )
  *
  */
     void 
-HandleLevelEditorCursorKeys ( void )
+HandleLevelEditorCursorKeys ( leveleditor_state *cur_state )
 {
     Level EditLevel;
 
     EditLevel = curShip.AllLevels [ Me . pos . z ] ;
 
     if (level_editor_marked_obstacle)
-	{
+    {
 	if ( CtrlPressed() )
-	    {
+	{
 #if 0
 	    //Uncomment to be able to change the borders of the currently marked obstacle 
 	    if ( LeftPressed() )
@@ -4334,55 +4334,54 @@ HandleLevelEditorCursorKeys ( void )
 		}
 	    printf("Offset x %hd y %hd\n", obstacle_map[level_editor_marked_obstacle->type] . image . offset_x, obstacle_map[level_editor_marked_obstacle->type] . image . offset_y);
 #endif
-	    }
-	else
-	    {
-#if 0
-	    if ( ! MPressed() )
-		return;
-	    //Uncomment to be able to fine-move the currently marked obstacle.
-	    if ( LeftPressed() )
-		{
-		level_editor_marked_obstacle-> pos. x -= 0.005;
-		}
-	    if ( RightPressed() )
-		{
-		level_editor_marked_obstacle-> pos .x  += 0.005;
-		}
-	    if ( DownPressed() )
-		{
-		level_editor_marked_obstacle-> pos . y += 0.005;
-		}
-	    if ( UpPressed() )
-		{
-		level_editor_marked_obstacle-> pos . y -= 0.005;
-		}
-#endif
-	    }
 	}
+	else
+	{
+		if ( MPressed() && cur_state -> mode == NORMAL_MODE )
+		{
+			if ( LeftPressed() )
+			{
+				level_editor_marked_obstacle-> pos. x -= 0.005;
+			}
+			if ( RightPressed() )
+			{
+				level_editor_marked_obstacle-> pos .x  += 0.005;
+			}
+			if ( DownPressed() )
+			{
+				level_editor_marked_obstacle-> pos . y += 0.005;
+			}
+			if ( UpPressed() )
+			{
+				level_editor_marked_obstacle-> pos . y -= 0.005;
+			}
+		}
+	}
+    }
+    else
+    {
 
-    else {
 
 	if (LeftPressed()) 
-	    {
+	{
 	    if ( rintf(Me.pos.x) > 0 ) Me.pos.x-=1;
 	    while (LeftPressed());
-	    }
+	}
 	if (RightPressed()) 
-	    {
+	{
 	    if ( rintf(Me.pos.x) < EditLevel->xlen-1 ) Me.pos.x+=1;
 	    while (RightPressed());
-	    }
+	}
 	if (UpPressed()) 
-	    {
+	{
 	    if ( rintf(Me.pos.y) > 0 ) Me.pos.y-=1;
 	    while (UpPressed());
-	    }
+	}
 	if (DownPressed()) 
-	    {
+	{
 	    if ( rintf(Me.pos.y) < EditLevel->ylen-1 ) Me.pos.y+=1;
 	    while (DownPressed());
-	    }
+	}
     }
 }; // void HandleLevelEditorCursorKeys ( void )
 
@@ -4963,8 +4962,9 @@ level_editor_handle_left_mouse_button ( int proceed_now, leveleditor_state *cur_
     int new_x, new_y;
     moderately_finepoint pos;
     
-    if ( MouseLeftPressed() && !LeftMousePressedPreviousFrame )
+    if ( MouseLeftPressed() && !LeftMousePressedPreviousFrame && cur_state->mode == NORMAL_MODE )
     {
+    printf("Normal mode and click o-O\n");
 	if ( ClickWasInEditorBannerRect() )
 	    HandleBannerMouseClick();
 	else if ( MouseCursorIsOnButton ( GO_LEVEL_NORTH_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
@@ -5573,7 +5573,8 @@ LevelEditor(void)
 		// if ( ( fabsf ( level_editor_marked_obstacle -> pos . x - Me . pos . x ) >= 0.98 ) ||
 		// ( fabsf ( level_editor_marked_obstacle -> pos . y - Me . pos . y ) >= 0.98 ) )
 		//level_editor_marked_obstacle = NULL ;
-		if ( ! marked_obstacle_is_glued_to_here ( EditLevel , Me . pos . x , Me . pos . y ) )
+		if ( ! marked_obstacle_is_glued_to_here ( EditLevel , Me . pos . x , Me . pos . y ) &&
+				cur_state -> mode != DRAG_DROP_MODE)
 		    level_editor_marked_obstacle = NULL ;
 	    }
 	    else
@@ -5639,7 +5640,7 @@ LevelEditor(void)
 	    // If the user of the Level editor pressed some cursor keys, move the
 	    // highlited filed (that is Me.pos) accordingly. This is done here:
 	    //
-	    HandleLevelEditorCursorKeys();
+	    HandleLevelEditorCursorKeys( cur_state );
 	    
 	    /* Undo / Redo */
 	    if ( UPressed () ) {
@@ -5851,8 +5852,10 @@ LevelEditor(void)
 			cur_state->d_selected_obstacle -> pos . y = cur_state->TargetSquare.y;
 			glue_obstacles_to_floor_tiles_for_level ( EditLevel -> levelnum );
 		    }
-		    if ( !MouseLeftPressed() && LeftMousePressedPreviousFrame ) 
+		    if ( ! MPressed () ) 
+		    {
 			cur_state->mode = NORMAL_MODE;
+		    }
 		    break;
 	    }
 
