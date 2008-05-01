@@ -46,7 +46,6 @@
 
 void check_if_switching_to_stopandeyetuxmode_makes_sense ( enemy* );
 static int TurnABitTowardsPosition ( Enemy, float, float, float);
-int EnemyOfTuxCloseToThisRobot ( Enemy, moderately_finepoint* );
 static void MoveAwayFromMeleeCombat ( Enemy, moderately_finepoint *);
 static void RawStartEnemysShot( enemy*, float, float);
 
@@ -161,7 +160,6 @@ DirectLineWalkable( float x1 , float y1 , float x2 , float y2 , int z )
 		      __FUNCTION__ , key_obstacle_type );
 	
     }
-  
 
     //--------------------
     // First we determine the amount of steps we need to take
@@ -390,7 +388,7 @@ ShuffleEnemys ( int LevelNum )
 	    continue;
 	    }
 
-	int testwp = MyRandom ( wp_num );
+	int testwp = MyRandom ( wp_num - 1);
 	if ( wp_used [ testwp ] || ShuffleLevel -> AllWaypoints [ testwp ] . suppress_random_spawn) //test a random waypoint
 	    {
 	    int found = 0;
@@ -404,6 +402,7 @@ ShuffleEnemys ( int LevelNum )
 		    break;
 		    }
 		}
+
 	    if ( ! found )
 		ErrorMessage(__FUNCTION__, "There was no free waypoint found on level %d to place another random bot.\n", PLEASE_INFORM, IS_WARNING_ONLY, LevelNum);
 	    }
@@ -666,8 +665,8 @@ MoveThisRobotThowardsHisCurrentTarget ( enemy * ThisRobot )
 
     move_enemy_to_spot ( ThisRobot , ThisRobot->PrivatePathway[0] );
 
-    if ((fabsf( ThisRobot -> pos .x - ThisRobot->PrivatePathway[0] . x ) < 0.05)
-	&& fabsf( ThisRobot->pos.y - ThisRobot->PrivatePathway[0] . y ) < 0.05)
+    if ((fabsf( ThisRobot -> pos .x - ThisRobot->PrivatePathway[0] . x ) < 0.005)
+	&& fabsf( ThisRobot->pos.y - ThisRobot->PrivatePathway[0] . y ) < 0.005)
 	{ /* Have we reached our target ?*/
 	int i;
 	for ( i = 1; i < 5; i ++ )
@@ -723,7 +722,7 @@ SetNewRandomWaypoint ( Enemy ThisRobot )
     
     if (  num_conn == 0 ) // no connections found!
     {
-        fprintf ( stderr, "\nFound a waypoint without connection\n");
+        fprintf ( stderr , "\nFound a waypoint without connection\n");
 	fprintf ( stderr , "\nThe offending waypoint nr. is: %d at %d, %d.", nextwp, WpList [ nextwp ] . x, WpList [ nextwp ] . y );
 	fprintf ( stderr , "\nThe map level in question got nr.: %d.", ThisRobot -> pos . z );
 	return 1;
@@ -1323,31 +1322,35 @@ update_vector_to_shot_target_for_friend ( enemy* ThisRobot , moderately_finepoin
     vect_to_target -> y = -1000;
 
         
+    enemy * tgt = NULL;
     enemy *erot;
     BROWSE_LEVEL_BOTS(erot, ThisRobot->pos.z)
     {
 	if ( erot->is_friendly )
 	    continue;
-	
-	if ( sqrt ( ( ThisRobot -> pos . x - erot->pos . x ) *
-		    ( ThisRobot -> pos . x - erot->pos . x ) +
-		    ( ThisRobot -> pos . y - erot->pos . y ) *
-		    ( ThisRobot -> pos . y - erot->pos . y ) ) > IgnoreRange ) 
+
+	float dist =  sqrt ( ( ThisRobot -> pos . x - erot->pos . x ) *
+		( ThisRobot -> pos . x - erot->pos . x ) +
+		( ThisRobot -> pos . y - erot->pos . y ) *
+		( ThisRobot -> pos . y - erot->pos . y ) );
+
+	if ( dist > IgnoreRange ) 
 	    continue;
 
 	// At this point we have found our target
 	vect_to_target -> x = erot->pos . x - ThisRobot -> pos . x ;
 	vect_to_target -> y = erot->pos . y - ThisRobot -> pos . y ;
-	DebugPrintf( 0 , "\nPOSSIBLE TARGET FOR FRIENDLY DROID FOUND!!!\n");
-	DebugPrintf( 0 , "\nIt is a good target for: %s.\n", ThisRobot -> dialog_section_name );
 	found_some_target = TRUE ;
-	break;
+	tgt = erot;
+
+	//Set it and update ignore range
+	IgnoreRange = dist;
     }
     
     if ( found_some_target ) 
     {
 	ThisRobot -> attack_target_type = ATTACK_TARGET_IS_ENEMY ;
-	enemy_set_reference(&ThisRobot -> bot_target_n, &ThisRobot->bot_target_addr, erot);
+	enemy_set_reference(&ThisRobot -> bot_target_n, &ThisRobot->bot_target_addr, tgt);
     }
     else	
 	ThisRobot -> attack_target_type = ATTACK_TARGET_IS_NOTHING ;
@@ -1988,15 +1991,15 @@ update_enemy ( enemy * ThisRobot )
      * special case: 
      *                if first waypoint is -1 -1 we have a bug and do nothing (hack around)
      */
-    moderately_finepoint wps[30];
+    moderately_finepoint wps[40];
     moderately_finepoint old_move_target;
     enemy_get_current_walk_target(ThisRobot, &old_move_target);
 
     if (((new_move_target . x != old_move_target . x) || (new_move_target .y != old_move_target . y)))
 	{ /* If the current move target differs from the old one */
-	  /* This implies we do not re-pathfinding every frame, which means we may bump into colleagues. 
+	  /* This implies we do not re-pathfind every frame, which means we may bump into colleagues. 
 	   * This is handled in MoveThisEnemy()*/
-	    if ( set_up_intermediate_course_between_positions ( ThisRobot, &ThisRobot->pos, &new_move_target, &wps[0], 30) )
+	    if ( set_up_intermediate_course_between_positions ( ThisRobot, &ThisRobot->pos, &new_move_target, &wps[0], 40) )
 		{
 		memcpy ( &ThisRobot->PrivatePathway[0], &wps[0], 5 * sizeof(moderately_finepoint));
 		}
@@ -2288,41 +2291,6 @@ ClosestOtherEnemyDroid ( Enemy ThisRobot )
 
 
 /**
- *
- */
-int
-EnemyOfTuxCloseToThisRobot ( Enemy ThisRobot , moderately_finepoint* vect_to_target )
-{
-  float IgnoreRange = Druidmap [ ThisRobot -> type ] . range_of_vision;
-
-  enemy *erot;
-
-  BROWSE_LEVEL_BOTS(erot, ThisRobot->pos.z)
-    {
-      if ( erot->is_friendly )
-      	  continue;
-      if ( DirectLineWalkable ( ThisRobot -> pos . x , ThisRobot -> pos . y , 
-				erot->pos . x , erot->pos . y , 
-				ThisRobot -> pos . z ) != TRUE )
-	  continue;
-      if ( sqrt ( ( ThisRobot -> pos . x - erot->pos . x ) *
-		  ( ThisRobot -> pos . x - erot->pos . x ) +
-		  ( ThisRobot -> pos . y - erot->pos . y ) *
-		  ( ThisRobot -> pos . y - erot->pos . y ) ) > IgnoreRange )
-	  continue;
-
-      // At this point we have found our target
-      vect_to_target -> x = erot->pos . x - ThisRobot -> pos . x ;
-      vect_to_target -> y = erot->pos . y - ThisRobot -> pos . y ;
-      DebugPrintf( 0 , "\nPOSSIBLE TARGET FOR FRIENDLY DROID FOUND!!!\n");
-      DebugPrintf( 0 , "\nIt is: %s.\n", ThisRobot -> dialog_section_name );
-      return ( TRUE );
-    }
-  return ( FALSE );
-
-}; // int EnemyOfTuxCloseToThisRobot ( Enemy ThisRobot )
-
-/**
  * In some of the movement functions for enemy droids, we consider making
  * a step and move a bit into one direction or the other.  But not all
  * moves are really allowed and feasible.  Therefore we need a function
@@ -2333,10 +2301,6 @@ EnemyOfTuxCloseToThisRobot ( Enemy ThisRobot , moderately_finepoint* vect_to_tar
 int
 ConsideredMoveIsFeasible ( Enemy ThisRobot , moderately_finepoint StepVector )
 {
-    float vec_len;
-    
-    vec_len = vect_len ( StepVector );
-
     if ( ( IsPassable ( ThisRobot -> pos.x + StepVector.x , 
 			ThisRobot -> pos.y + StepVector.y ,
 			ThisRobot -> pos.z ) ) && 
@@ -2586,9 +2550,6 @@ CheckEnemyEnemyCollision ( enemy * OurBot )
 	    if ( erot -> pure_wait ) 
 		continue;
 
-	    //printf("Collision between bots %#x and %#x at %f %f/%f %f on level %d. Should not happen any longer...\n", erot, OurBot, erot->pos.x, erot->pos.y, OurBot->pos.x, OurBot->pos.y, erot->pos.z);
-
-	    // otherwise: stop this one enemy and go back youself
 	    erot->pure_wait = WAIT_COLLISION;
 	    
 	    swap = OurBot->nextwaypoint;
