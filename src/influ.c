@@ -42,8 +42,6 @@
 #define BEST_CHAT_DISTANCE (BEST_MELEE_DISTANCE+0.2)
 #define DISTANCE_TOLERANCE (0.00002)
 
-#define MAXIMAL_STEP_SIZE ( 7.0/20.0 )
-
 #define DEBUG_TUX_PATHFINDING 1  // debug level for tux pathfinding...
 
 void limit_tux_speed_to_a_maximum ( );
@@ -1138,11 +1136,6 @@ MoveTuxAccordingToHisSpeed ( )
   // and even out of the ship.  This has *never* occured on my fast machine.  Therefore
   // I assume that the problem is related to sometimes very low framerates on these machines.
   // So, we do a sanity check not to make steps too big.
-  //
-  // So what do we do?  We allow a maximum step of exactly that, what the 302 (with a speed
-  // of 7) could get when the framerate is as low as 20 FPS.  This should be sufficient to
-  // prevent the influencer from *ever* leaving the ship.  I hope this really does work.
-  // The definition of that speed is made in MAXIMAL_STEP_SIZE at the top of this file.
   //
   // And on machines with FPS << 20, it will certainly alter the game behaviour, so people
   // should really start using a pentium or better machine.
@@ -2969,6 +2962,7 @@ translate_pixel_to_zoomed_map_location ( float axis_x , float axis_y , int give_
 	      
 }; // int translate_pixel_to_zoomed_map_location ( int axis_x , int axis_y , int give_x ) 
 
+
 /**
  *
  *
@@ -2992,26 +2986,13 @@ translate_point_to_map_location ( float axis_x, float axis_y, int zoom_is_on )
 
 
 /**
+ * This function translates a given map point to screen coordinates.
  *
- * 
- */
-
-int
-translate_map_point_to_screen_pixel_deviation_tracking ( float x_map_pos , float y_map_pos , int give_x )
-{
-    if ( give_x )
-    {
-    return ( UserCenter_x + rintf ( ( x_map_pos - y_map_pos )  * iso_floor_tile_width / 2  ) + rintf ( ( Me . pos . y - Me . pos . x ) * iso_floor_tile_width / 2 ) );
-    }
-  else
-    {
-    return ( UserCenter_y + rintf ( ( x_map_pos + y_map_pos )  * iso_floor_tile_height / 2 ) - rintf( (  Me . pos . x + Me . pos . y ) * iso_floor_tile_height / 2 ));
-    }
-}; // int translate_map_point_to_screen_pixel_deviation_tracking ( float x_map_pos , float y_map_pos , int give_x )
-
-
-/**
- *
+ * @param x_map_pos X position on map
+ * @param y_map_pos Y position on map
+ * @param x_res	pointer to the int that will hold the x position on screen
+ * @param y_res pointer to the y position on screen
+ * @param zoom_factor zoom factor in use
  * 
  */
 void
