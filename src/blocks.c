@@ -2744,7 +2744,7 @@ init_obstacle_data( void )
     obstacle_map [ i ] . transparent = TRANSPARENCY_FOR_WALLS ;
   }
   obstacle_map [ ISO_GREY_WALL_END_W ] . block_area_type = COLLISION_TYPE_RECTANGLE ;
-  obstacle_map [ ISO_GREY_WALL_END_W ] . block_area_parm_1 = 1.0 ;
+  obstacle_map [ ISO_GREY_WALL_END_W ] . block_area_parm_1 = standard_wall_thickness;
   obstacle_map [ ISO_GREY_WALL_END_W ] . block_area_parm_2 = 1.1 ;
   obstacle_map [ ISO_GREY_WALL_END_W ] . filename = "iso_walls_0005.png" ;
   obstacle_map [ ISO_GREY_WALL_END_W ] . flags |= IS_VERTICAL ; 
@@ -2752,7 +2752,7 @@ init_obstacle_data( void )
 
   obstacle_map [ ISO_GREY_WALL_END_N ] . block_area_type = COLLISION_TYPE_RECTANGLE ;
   obstacle_map [ ISO_GREY_WALL_END_N ] . block_area_parm_1 = 1.1 ;
-  obstacle_map [ ISO_GREY_WALL_END_N ] . block_area_parm_2 = 1.0 ;
+  obstacle_map [ ISO_GREY_WALL_END_N ] . block_area_parm_2 = standard_wall_thickness ;
   obstacle_map [ ISO_GREY_WALL_END_N ] . flags |= IS_HORIZONTAL ;
   obstacle_map [ ISO_GREY_WALL_END_N ] . filename = "iso_walls_0006.png" ;
   obstacle_map [ ISO_GREY_WALL_END_N ] . transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
@@ -2768,13 +2768,13 @@ init_obstacle_data( void )
   obstacle_map [ ISO_GREY_WALL_END_S ] . obstacle_long_description = _("This is grey and seems quite hard to destroy. People usually call it a wall. You have no chance to go through : there must be another path.");
   /**************************************/
   obstacle_map [ ISO_GREY_WALL_END_E ] . block_area_type = COLLISION_TYPE_RECTANGLE ;
-  obstacle_map [ ISO_GREY_WALL_END_E ] . block_area_parm_1 = 1.0 ;
+  obstacle_map [ ISO_GREY_WALL_END_E ] . block_area_parm_1 = 0.6 ;
   obstacle_map [ ISO_GREY_WALL_END_E ] . block_area_parm_2 = 1.1 ;
   obstacle_map [ ISO_GREY_WALL_END_E ] . filename = "iso_walls_0007.png" ;
   obstacle_map [ ISO_GREY_WALL_END_E ] . flags |= IS_VERTICAL ; 
   obstacle_map [ ISO_GREY_WALL_END_S ] . block_area_type = COLLISION_TYPE_RECTANGLE ;
   obstacle_map [ ISO_GREY_WALL_END_S ] . block_area_parm_1 = 1.1 ;
-  obstacle_map [ ISO_GREY_WALL_END_S ] . block_area_parm_2 = 1.0 ;
+  obstacle_map [ ISO_GREY_WALL_END_S ] . block_area_parm_2 = 0.6 ;
   obstacle_map [ ISO_GREY_WALL_END_S ] . flags |= IS_HORIZONTAL ;
   obstacle_map [ ISO_GREY_WALL_END_S ] . filename = "iso_walls_0008.png" ;
 
