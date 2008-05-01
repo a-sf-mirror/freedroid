@@ -283,7 +283,8 @@ ShuffleEnemys ( int LevelNum )
 	    {
 	    int found = 0;
 	    int a;
-	    for ( a = testwp + 1 ; a != testwp; a = (a >= wp_num - 1) ? 0 : a + 1)
+	   
+	    for ( a = (testwp == wp_num - 1 ) ? 0 : testwp + 1 ; a != testwp; a = (a >= wp_num - 1) ? 0 : a + 1)
 		{ /* Test waypoints starting from the current one to the last, and back from zero */
 		if ( ! wp_used [ a ] && ! ShuffleLevel -> AllWaypoints [ a ] . suppress_random_spawn )
 		    {
@@ -299,7 +300,6 @@ ShuffleEnemys ( int LevelNum )
 
 	wp = testwp;
 	wp_used [ testwp ] = 1;
-
 
 	erot->pos.x = ShuffleLevel->AllWaypoints[wp].x + 0.5;
 	erot->pos.y = ShuffleLevel->AllWaypoints[wp].y + 0.5;
