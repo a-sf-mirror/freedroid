@@ -1,10 +1,14 @@
 *** Start of program data section: ***
 
+#Artwork internal code
+#Radial wave 0-2; 0=blue/white/black-sparks, 1=green/poison, 2=fire
+#Bullet 0-30?
+
 ** Start of new program specification subsection **
 Program name=_"Hacking"  
 Program description=_"Type: Target
-Takeover: Caps 3  +1/rev
-Heat: 20  +10/rev
+Takeover: 2 Pods  +1/rev
+Heat: 10  +10/rev
 Tux is gifted with the ability to hack any machine in no time.  To make use of this ability, select this skill. When a machine is close enough and this skill is activated by holding down the right mouse button, the takeover process will be initiated."
 Picture="TakeoverTalkSkill.png"
 Form="immediate"
@@ -36,15 +40,15 @@ Present at startup=1
 ** Start of new program specification subsection **
 Program name=_"Emergency shutdown"
 Program description=_"Target: Self
-Effect: Temperature -100 -10/rev
+Effect: Temperature -90 -10/rev
 Paralyze: 15s  -1/rev
 Everyone needs to turn off and cool down a bit now and then. Just be careful so you are not still offline when enemy bots close in..."
 Picture="Shutdown.png"
 Form="self"
 Effect="paralyze"
-Base damage=0
-Effect duration=15
+Effect duration=14
 Effect duration per level=-1
+Base damage=0
 Cost=-100
 Cost per level=-10
 Present at startup=1
@@ -52,23 +56,25 @@ Present at startup=1
 ** Start of new program specification subsection **
 Program name=_"Check system integrity"
 Program description=_"Type: Self
-Heal: 30  +3/rev
-Paralyze: 3s  -0.3/rev
-Heat: 40
+Heal: 30
+Paralyze: 5s  -0.5/rev
+Heat: 30
 While repairing damage you must remember that patience is a virtue."
 Picture="FirstAidSpell.png"
-Effect="none"
 Form="self"
+Effect="paralyze"
+Effect duration=4.5
+Effect duration per level=-0.5
 Base damage=-30
-Damage per level=-3
-Cost=40
+Damage per level=0
+Cost=30
 Cost per level=0
 
 ** Start of new program specification subsection **
 Program name=_"Sanctuary"
 Program description=_"Type: Self
 Effect: Teleport to town or back 
-Heat: 50  -5/rev
+Heat: 55  -5/rev
 The art of rapidly moving away from danger is very useful. Even when used in reverse it has it's uses."
 Picture="TeleportHomeSpell.png"
 Form="self"
@@ -80,7 +86,7 @@ Cost per level=-5
 Program name=_"Analyze item"
 Program description=_"Type: Inventory
 Effect: Identify
-Heat: 100  -10/rev
+Heat: 110  -10/rev
 There are very few items which have labels on them. Unless you happen to have an item labeled 'USE ME', you better make sure what it is before using it..."
 Picture="IdentifySkill.png"
 Effect="identify"
@@ -90,30 +96,29 @@ Cost per level=-10
 
 ** Start of new program specification subsection **
 Program name=_"Malformed packet"
-Program description=_"Type: Projectile
-Damage: 3  +2/rev
-Heat: 2  +1/rev
+Program description=_"Type: Target
+Damage: 0-2  +2/rev
+Heat: 3  +2/rev
 When computers are presented with the unexpected they can damage themselves."
 Picture="BadPacket.png"
 Effect="none"
-Form="bullet"
+Form="immediate"
 Affect bots=1
 Affect humans=0
-#14 is white bullet
-Artwork internal code=14
-Base damage=3
+Base damage=2
+Mod damage=2
 Damage per level=2
-Cost=2
-Cost per level=1
+Cost=5
+Cost per level=2
 
 ** Start of new program specification subsection **
 Program name=_"Calculate Pi"  
 Program description=_"Type: Target
 Slowdown: 4s +2s/rev
-Heat: 10 +2/rev
+Heat: 8 +2/rev
 It is not a big problem to make a badly designed system to go hunting for the impossible, causing a performance impact."
 Picture="Calculate_PI.png"
-Form="bullet"
+Form="immediate"
 Effect="slowdown"
 Affect bots=1
 Affect humans=0
@@ -128,8 +133,8 @@ Cost per level=2
 ** Start of new program specification subsection **
 Program name=_"Blue Screen"
 Program description=_"Type: Target
-Paralyze: Bot 5s  +2/rev
-Heat: 25  -1/rev
+Paralyze: Bot 4s  +1/rev
+Heat: 40
 With a little touch a war machine comes crashing down to a halt. For a while."
 Picture="BlueScreen.png"
 Form="immediate"
@@ -138,67 +143,72 @@ Affect humans=0
 Base damage=0
 Effect="paralyze"
 Effect duration=5
-Effect duration per level=2
-Cost=25
-Cost per level=-1
+Effect duration per level=1
+Cost=40
+Cost per level=0
 
 ** Start of new program specification subsection **
 Program name=_"Broadcast Blue Screen"
 Program description=_"Type: Radial wave
-Paralyze: Bot 6s  +2/rev
-Heat: 45  -3/rev
+Paralyze: Bot 2s  +1/rev
+Heat: 100
 With a little touch a war machine comes crashing down to a halt. For a while. The radio network is a wonderful invention for the people who like to blow up a lot of stuff at once."
 Picture="Poke.png"
 Effect="paralyze"
 Form="radial"
-Artwork internal code=12
+Artwork internal code=0
 Affect bots=1
 Affect humans=0
 Base damage=0
-Effect duration=6
-Effect duration per level=2
-Cost=45
-Cost per level=-3
+Effect duration=3
+Effect duration per level=1
+Cost=100
+Cost per level=0
 
 ** Start of new program specification subsection **
 Program name=_"Virus"
 Program description=_"Target: Target
-Slowdown: 15s  +1s/rev
-Heat: 50
+Damage: 8  +2/rev
+Slowdown: 9s  +1s/rev
+Heat: 45  +5/rev
 This is not just a firmware upgrade, my dear bot. You are about to find out what exactly I want to give you."
 Picture="Virus.png"
 Form="immediate"
 Effect="slowdown"
-Effect duration=15
+Effect duration=10
 Effect duration per level=1
-Base damage=0
+Base damage=10
+Damage per level=2
 Affect bots=1
 Affect humans=0
 Cost=50
-Artwork internal code=13
+Cost per level=5
 
 ** Start of new program specification subsection **
 Program name=_"Broadcast virus"
-Program description=_"Program description=_"Target: Radial wave
-Slowdown: 10s  +1s/rev
-Heat: 90
+Program description=_"Target: Radial wave
+Damage: 8  +2/rev
+Slowdown: 9s  +1s/rev
+Heat: 90 +10/rev
 The network is wide and dangerous. Many traps await for the weak and unprepared."
 Picture="BroadcastVirus.png"
 Form="radial"
 Effect="slowdown"
 Effect duration=10
 Effect duration per level=1
-Base damage=0
+Base damage=10
+Damage per level=2
 Affect bots=1
 Affect humans=0
-Cost=90
+Cost=100
+Cost per level=10
 Artwork internal code=1
 
 ** Start of new program specification subsection **
 Program name=_"Dispel smoke"
 Program description=_"Type: Target
-Damage: 40  +5/rev
-Heat: 80  +5/rev
+Damage: 35  +5/rev
+Heat: 75  +5/rev
 By heating up the chips with a malformed program you can cause them to release the magic smoke which keeps the bot running. "
 Picture="DispellSmoke.png"
 Form="immediate"
@@ -213,18 +223,17 @@ Cost per level=5
 ** Start of new program specification subsection **
 Program name=_"Killer poke"
 Program description=_"Type: Target
-Damage: 80-160  +20/rev
-Heat: 160  +15/rev
+Damage: 60-140  +20/rev
+Heat: 145  +15/rev
 Messing around with the bot's memory can cause it to damage itself, but the damage is greatly variable."
 Picture="DetectItemsSpell.png"
 Form="immediate"
 Effect="none"
-Artwork internal code=4
 Affect bots=1
 Affect humans=0
 Base damage=80
 Mod damage=80
-Damage per level=10
+Damage per level=20
 Cost=160
 Cost per level=15
 
