@@ -459,7 +459,7 @@ exist really (i.e. has a type = (-1) ).",
 		if ( CurItem->bonus_to_cooling_rate > 0 )
 			sprintf( linebuf , _("%0.1f cooling per second") , CurItem->bonus_to_cooling_rate );
 		else if ( CurItem->bonus_to_cooling_rate < 0 )
-			sprintf( linebuf , _("%0.1f heating per second") , CurItem->bonus_to_cooling_rate );
+			sprintf( linebuf , _("%0.1f heating per second") , - CurItem->bonus_to_cooling_rate );
 		strcat( ItemDescText , linebuf );
 	    }
 	    
