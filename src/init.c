@@ -216,51 +216,9 @@ ShowStartupPercentage ( int Percentage )
     our_SDL_fill_rect_wrapper ( Screen , & Bar_Rect , 0 ) ;
     
     SDL_SetClipRect( Screen , NULL );
-    
-    switch ( GameConfig . screen_width )
-    {
-	case 640:
-	    PrintString ( Screen , ( 290 ) * GameConfig . screen_width / 640 , 
-			  ( 205 ) * GameConfig . screen_height / 480 , "%d%%", Percentage ) ;
-	    break;
-	case 720: 
-	    PrintString ( Screen , ( 290 ) * GameConfig . screen_width / 640 + 3, 
-			  ( 205 ) * GameConfig . screen_height / 480 + 2, "%d%%", Percentage ) ;
-	    break;
-	case 800:
-	    PrintString ( Screen , ( 290 ) * GameConfig . screen_width / 640 + 5 , 
-			  ( 205 ) * GameConfig . screen_height / 480 + 4 , "%d%%", Percentage ) ;
-	    break;
-	case 1024:
-	    PrintString ( Screen , ( 290 ) * GameConfig . screen_width / 640 + 8 , 
-			  ( 205 ) * GameConfig . screen_height / 480 + 7 , "%d%%", Percentage ) ;
-	    break;
-	case 1280:
-	    PrintString ( Screen , ( 290 ) * GameConfig . screen_width / 640 + 11 , 
-			  ( 205 ) * GameConfig . screen_height / 480 + 10 , "%d%%", Percentage ) ;
-	    break;
-	case 1440:
-	    PrintString ( Screen , ( 290 ) * GameConfig . screen_width / 640 + 11 , 
-			  ( 205 ) * GameConfig . screen_height / 480 + 10 , "%d%%", Percentage ) ;
-	    break;
-	case 1680:
-	    PrintString ( Screen , ( 290 ) * GameConfig . screen_width / 640 + 11 , 
-			  ( 205 ) * GameConfig . screen_height / 480 + 10 , "%d%%", Percentage ) ;
-	    break;
-	default:
-	    ErrorMessage ( __FUNCTION__  , "\
-The resolution found is none of\n\
-     0 = 640 x 480 (default with SDL)\n\
-     1 = 800 x 600 (default with OpenGL)\n\
-     2 = 1024 x 748 \n\
-     3 = 1280 x 1024 \n\
-     4 = 1280 x 800 \n\
-     5 = 1440 x 900 \n\
-     6 = 1680 x 1050 \n\
-This means a severe bug...",
-						       PLEASE_INFORM , IS_FATAL );
-	    break;
-    }
+
+    PrintString ( Screen , 300 * GameConfig . screen_width / 640 - 9, 
+		  213 * GameConfig . screen_height / 480 - 7, "%d%%", Percentage ) ;
 
     our_SDL_update_rect_wrapper ( Screen , 200 , 200 , 200 , 30  ) ;
     
