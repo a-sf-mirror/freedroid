@@ -500,12 +500,11 @@ SetNewBigScreenMessage( char* ScreenMessageText )
 	Me . BigScreenMessage [ i ] = NULL;
 	}
 
-    i = 0;
-    while ( i < MAX_BIG_SCREEN_MESSAGES - 1)
+    while ( i > 0 )
 	{
-	Me . BigScreenMessage [ i + 1 ] = Me . BigScreenMessage [ i ];
-	Me . BigScreenMessageDuration [ i + 1 ] = Me . BigScreenMessageDuration [ i ];
-	i ++;
+	Me . BigScreenMessage [ i ] = Me . BigScreenMessage [ i - 1 ];
+	Me . BigScreenMessageDuration [ i ] = Me . BigScreenMessageDuration [ i - 1];
+	i --;
 	} 
 
     Me . BigScreenMessage [ 0 ] = MyMalloc(strlen(ScreenMessageText) + 1);
