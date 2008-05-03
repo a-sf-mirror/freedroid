@@ -612,15 +612,20 @@ SetNewRandomWaypoint ( Enemy ThisRobot )
  * This function is supposed to find out if a given line on an 
  * arbitrarily chosen map can be walked by a bot or not.
  */
-int
+    int
 droid_can_walk_this_line ( int level_num , float x1, float y1 , float x2 , float y2 )
 {
     global_ignore_doors_for_collisions_flag = TRUE ;
     if ( DirectLineWalkable ( x1 , y1 , x2 , y2 , level_num ) )
+	{
+	global_ignore_doors_for_collisions_flag = FALSE ;
 	return ( TRUE );
+	}
     else
+	{
+	global_ignore_doors_for_collisions_flag = FALSE ;
 	return ( FALSE ); 
-    global_ignore_doors_for_collisions_flag = FALSE ;
+	}
 }; // int droid_can_walk_this_line ( int level_num , float x1, float y1 , float x2 , float y2 )
 
 /**
