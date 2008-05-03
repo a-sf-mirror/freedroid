@@ -626,7 +626,6 @@ ExecuteChatExtra ( char* ExtraCommandString , Enemy ChatDroid )
 	//--------------------
 	// We have to load the subdialog specified...
 	//
-	// InitChatRosterForNewDialogue(  );
 	strcat ( tmp_filename , ".dialog" );
 	char finaldir[50];
 	sprintf(finaldir, "%s", DIALOG_DIR);
@@ -1243,7 +1242,6 @@ DoChatFromChatRosterData( int ChatPartnerCode , Enemy ChatDroid , int clear_prot
     //
     for ( i = 0 ; i < MAX_ANSWERS_PER_PERSON ; i ++ )
     {
-    	DialogMenuTexts[i] = "";
 	if ( strlen ( ChatRoster [ i ] . option_text ) )
 	{
 	    DialogMenuTexts [ i ] = L_(ChatRoster [ i ] . option_text) ;
@@ -1264,7 +1262,7 @@ DoChatFromChatRosterData( int ChatPartnerCode , Enemy ChatDroid , int clear_prot
 		return;
 	}
     }
-    
+   
     while (1)
     {
 	//--------------------
@@ -1496,7 +1494,7 @@ ChatWithFriendlyDroid( Enemy ChatDroid )
     // that are there without any prerequisite and that can be played
     // through again and again without any modification.
     //
-    RestoreChatVariableToInitialValue( 0 ); 
+    RestoreChatVariableToInitialValue( ); 
     
     while ( MouseLeftPressed ( ) || MouseRightPressed() );
     
@@ -1507,12 +1505,6 @@ ChatWithFriendlyDroid( Enemy ChatDroid )
     
     ChatFlagsIndex = ResolveDialogSectionToChatFlagsIndex ( ChatDroid -> dialog_section_name ) ;
     
-    //--------------------
-    // Now that the 'LoadChatRosterWithChatSequence' function will also be
-    // used from within the dialog editor, but with explicit path and file
-    // name there, we can not assemble the file name inside of the function
-    // but must do it here instead...
-    //
     strcpy ( tmp_filename , ChatDroid -> dialog_section_name );
     strcat ( tmp_filename , ".dialog" );
     char finaldir[50];
