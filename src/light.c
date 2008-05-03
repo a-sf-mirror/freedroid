@@ -217,9 +217,9 @@ update_light_list ( )
 	//--------------------
 	// We add some light strength according to the phase of the blast
 	//
-	light_source_strengthes [ next_light_emitter_index ] = 20 - AllBlasts [ blast ] . phase / 2 ;
+	light_source_strengthes [ next_light_emitter_index ] = 10 - AllBlasts [ blast ] . phase / 2 ;
 	if ( light_source_strengthes [ next_light_emitter_index ] < 0 )
-	    light_source_strengthes [ next_light_emitter_index ] = 1 ;
+	    continue;
 	next_light_emitter_index ++ ;
 	
 	//--------------------
