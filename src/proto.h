@@ -396,7 +396,6 @@ EXTERN int IsPassable ( float x , float y , int z ) ;
 EXTERN int DruidPassable ( float x , float y , int z );
 EXTERN int IsVisible ( GPS objpos ) ;
 EXTERN int TranslateMap (Level Lev);
-EXTERN void PurifyWaypointList (level* Lev);
 EXTERN void DeleteWaypoint (level *Lev, int num);
 EXTERN void CreateWaypoint (level *Lev, int x, int y);
 #define translate_map_point_to_screen_pixel translate_map_point_to_screen_pixel_func

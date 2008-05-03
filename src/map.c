@@ -2413,10 +2413,6 @@ DecodeLoadedLeveldata ( char *data )
 	
     } // for i < MAXWAYPOINTS
     
-    //not quite finished yet: the old waypoint treatment has probably lead to 
-    // "holes" (0/0) in the waypoint-list, and we had to keep all of the in
-    // but now let's get rid of them!
-    PurifyWaypointList (loadlevel);
     free ( this_line ); 
     return (loadlevel);
     
@@ -3156,15 +3152,9 @@ Error:  Doors pointing not to door obstacles found.",
 	  //
 	  some_bot_was_close_to_this_door = FALSE ;
 
-	  enemy *erot, *nerot;
-BROWSE_ALIVE_BOTS_SAFE(erot, nerot)
+	  enemy *erot;
+	  BROWSE_LEVEL_BOTS(erot, DoorLevel->levelnum)
 	    {
-	      //--------------------
-	      // ignore druids that are dead or on other levels 
-	      //
-	      if ( ( erot->pos.z  != DoorLevel->levelnum ) )
-		  continue;
-
 	      //--------------------
 	      // We will only consider droids, that are at least within a range of
 	      // say 2 squares in each direction.  Anything beyond that distance
@@ -3588,8 +3578,8 @@ IsVisible ( GPS objpos )
   // that are too far away to ever be visible and thereby save some checks of
   // longer lines on the map, that wouldn't be nescessary or helpful anyway.
   //
-  if ( ( fabsf ( Me . pos . x - objpos -> x ) > 9.5 ) ||
-       ( fabsf ( Me . pos . y - objpos -> y ) > 9.5 ) )
+  if ( ( fabsf ( Me . pos . x - objpos -> x ) > FLOOR_TILES_VISIBLE_AROUND_TUX ) ||
+       ( fabsf ( Me . pos . y - objpos -> y ) > FLOOR_TILES_VISIBLE_AROUND_TUX ) )
     return ( FALSE );
 
   //--------------------
@@ -3616,31 +3606,6 @@ AnimateCyclingMapTiles (void)
   AnimateTeleports();
 }; // void AnimateCyclingMapTiles (void)
 
-
-/*----------------------------------------------------------------------
- * get rid of all "holes" (0/0) in waypoint-list, which are due to
- * old waypoint-handling
- *----------------------------------------------------------------------*/
-void
-PurifyWaypointList (level* Lev)
-{
-  int i;
-  waypoint *WpList, *ThisWp;
-
-  WpList = Lev->AllWaypoints;
-  for (i=0; i < Lev->num_waypoints; i++)
-    {
-      ThisWp = &WpList[i];
-      if (ThisWp->x == 0 && ThisWp->y == 0)
-	{
-	  DeleteWaypoint (Lev, i);
-	  i--; // this one was deleted, so dont' step on
-	}
-    }
-
-  return;
-
-} // PurifyWaypointList()
 
 /*----------------------------------------------------------------------
  * delete given waypoint num (and all its connections) on level Lev
