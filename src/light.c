@@ -48,116 +48,6 @@ moderately_finepoint light_sources [ MAX_NUMBER_OF_LIGHT_SOURCES ] ;
 int light_source_strengthes [ MAX_NUMBER_OF_LIGHT_SOURCES ] ;
 int light_strength_buffer [ 64 ] [ 48 ] ;
 
-int
-IsLightPassable ( float x , float y , int z, finepoint step )
-{
-    Level PassLevel = curShip . AllLevels [ z ] ;
-    int x_tile_start, y_tile_start;
-    int x_tile_end, y_tile_end;
-    int x_tile, y_tile;
-    
-    //--------------------
-    // We take a look whether the position given in the parameter is 
-    // blocked by an obstacle ON ANY SQUARE WITHIN A 3x3 TILE RECTANGLE.
-    //
-    if(step.x > 0 && step.y > 0)
-	{
-        x_tile_start = rintf ( x )  -1       ; y_tile_start = rintf ( y ) - 1;
-        x_tile_end   = x_tile_start + 2       ; y_tile_end   = y_tile_start + 2 ;
-	}
-    else
-	{
-	x_tile_start = rintf ( x ) -1         ; y_tile_start = rintf ( y ) -1 ;
-	x_tile_end   = x_tile_start + 2       ; y_tile_end   = y_tile_start + 2 ;
-	}
-    if ( x_tile_start < 0 ) x_tile_start = 0 ; 
-    if ( y_tile_start < 0 ) y_tile_start = 0 ; 
-    if ( x_tile_end >= PassLevel -> xlen ) x_tile_end = PassLevel->xlen -1 ;
-    if ( y_tile_end >= PassLevel -> ylen ) y_tile_end = PassLevel->ylen -1 ; 
-    
-    for ( x_tile = x_tile_start ; x_tile < x_tile_end ; x_tile ++ )
-    {
-	
-	// DebugPrintf ( 0 , " %d " , x_tile );
-	for ( y_tile = y_tile_start ; y_tile < y_tile_end ; y_tile ++ )
-	{
-	    if ( position_collides_with_obstacles_on_square ( x , y , x_tile , y_tile , PassLevel ) ) 
-		return ( FALSE );
-	}
-    }
-    return ( TRUE ) ;
-}
-/**
- * This function tests, if a Robot can go a direct straigt line from
- * x1 y1 to x2 y2 without hitting a wall or another obstacle.
- * 
- * The return value is TRUE or FALSE accoringly.
- ***/
-int 
-DirectLineLightable( float x1 , float y1 , float x2 , float y2 , int z )
-{
-    float LargerDistance;
-    int Steps;
-    int i;
-    finepoint step;
-    finepoint CheckPosition;
-
-    //--------------------
-    // First we determine the amount of steps we need to take
-    // such that we can't oversee any walls or something.
-    //
-    if ( fabsf(x1-x2) > fabsf (y1-y2) ) LargerDistance = fabsf(x1-x2);
-    else LargerDistance=fabsf(y1-y2);
-    
-    //--------------------
-    // The larger distance must be used to compute the steps nescessary
-    // for good passability check. i.e. passability check such that no
-    // movement completely through an obstacle will be possible.
-    //
-    // The number of steps must of course be multiplied with the minimum
-    // number of steps for one floor tile, which has been calibrated
-    // (hopefully sensibly) above.
-    //
-    Steps = LargerDistance * 3 ; 
-    if ( Steps <= 1 ) Steps = 2 ; // return TRUE;
-    
-    //--------------------
-    // We determine the step size when walking from (x1,y1) to (x2,y2) in Steps number of steps
-    //
-    step.x = (x2 - x1) / ( float ) Steps;
-    step.y = (y2 - y1) / ( float ) Steps;
-    
-    // DebugPrintf( 2 , "\n%s():  step.x=%f step.y=%f." , __FUNCTION__ , step.x , step.y );
-    
-    //--------------------
-    // We start from position (x1, y1)
-    //
-    CheckPosition . x = x1;
-    CheckPosition . y = y1;
-    
-    for ( i = 0 ; i < Steps + 1 ; i++ )
-    {
-    
-    //--------------------
-    // We take a look whether the position given in the parameter is 
-    // blocked by an obstacle ON ANY SQUARE WITHIN A 3x3 TILE RECTANGLE.
-    //
-    if(!IsLightPassable(CheckPosition.x, CheckPosition.y, z, step))
-	return FALSE;
-  	
-    CheckPosition.x += step.x;
-    CheckPosition.y += step.y;
-    
-
-	}
-
-    DebugPrintf( 1 , "\n%s(): Connection analysis revealed : FREE!" , __FUNCTION__ );
-
-    return TRUE;
-
-}; // int DirectLineWalkable( float x1 , float y1 , float x2 , float y2 )
-
-
 /**
  * There might be some obstacles that emit some light.  Yet, we can't
  * go through all the obstacle list of a level every frame at sufficiently
@@ -323,7 +213,7 @@ WARNING!  End of light sources array reached!",
  * This function is used to find the light intensity at any given point
  * on the map.
  */
-int 
+static int 
 calculate_light_strength ( moderately_finepoint target_pos )
 {
     int final_darkness = NUMBER_OF_SHADOW_IMAGES;
@@ -385,7 +275,7 @@ calculate_light_strength ( moderately_finepoint target_pos )
 	    {
 		if ( curShip . AllLevels [ Me . pos . z ] -> use_underground_lighting )
 		{
-		    if ( ! DirectLineLightable( light_sources [ i ] . x , light_sources [ i ] . y , 
+		    if ( ! DirectLineWalkable( light_sources [ i ] . x , light_sources [ i ] . y , 
 					       target_pos . x , target_pos . y , 
 					       Me . pos . z ) )
 			continue;
@@ -416,7 +306,7 @@ calculate_light_strength ( moderately_finepoint target_pos )
  * even a bit under walls (which doesn't look too good).  4 seems like
  * a reasonable setting.
  */
-void
+static void
 soften_light_distribution ( void )
 {
     int x , y ;
