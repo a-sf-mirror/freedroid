@@ -222,7 +222,9 @@ int DirectLineWalkable ( float x1, float y1, float x2, float y2, int z)
 			continue;
 		    }
 
-		//--------------------
+		if ( ( ! ( obstacle_map [ our_obs->type ] . flags & BLOCKS_VISION_TOO) ) && ( global_check_for_light_only_collisions_flag ) )
+		    continue;
+
 		// If the obstacle doesn't even have a collision rectangle, then
 		// of course it's easy, cause then there can't be any collsision
 		//
