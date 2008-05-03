@@ -598,10 +598,10 @@ typedef struct enemy_s
 }
 enemy, *Enemy;
 
-typedef char automap_data_t[MAX_LEVELS][100];
+typedef char automap_data_t[100][100];
 typedef char * bigscrmsg_t;
-typedef unsigned char chatflags_t[MAX_PERSONS];
-typedef char cookielist_t[MAX_COOKIES];
+typedef unsigned char chatflags_t[MAX_ANSWERS_PER_PERSON];
+typedef char cookielist_t[MAX_COOKIE_LENGTH];
 
 typedef struct tux_s
 {
@@ -728,8 +728,8 @@ typedef struct tux_s
     // set by the dialogs for coordination among each other, and also status
     // of the Tux like town guard member or not and the like...
     //
-    chatflags_t Chat_Flags[ MAX_ANSWERS_PER_PERSON ];
-    cookielist_t cookie_list[ MAX_COOKIE_LENGTH ] ;
+    chatflags_t Chat_Flags[ MAX_PERSONS ];
+    cookielist_t cookie_list[ MAX_COOKIES ] ;
     int is_town_guard_member;
     unsigned char chat_character_initialized [ MAX_PERSONS ]; 
     
@@ -739,7 +739,7 @@ typedef struct tux_s
     //
     moderately_finepoint next_intermediate_point [ MAX_INTERMEDIATE_WAYPOINTS_FOR_TUX ] ;  // waypoints for the tux, when target not directly reachable
     unsigned short int	KillRecord[ 200 ];      // how many ( of the first 1000 monster types) have been killed yet?
-    automap_data_t Automap[100];
+    automap_data_t Automap[MAX_LEVELS];
     int current_zero_ring_index;
     gps Position_History_Ring_Buffer[ MAX_INFLU_POSITION_HISTORY ];
     
