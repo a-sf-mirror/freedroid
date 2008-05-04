@@ -181,11 +181,6 @@ enum _game_config_screen_visible_parameters
     GAME_CONFIG_SCREEN_VISIBLE_SKILL_EXPLANATION = 8004 ,
 };
 
-//--------------------
-// This is old and should go out, but that must be done from at home, 
-// cause here I can't check if the code is still running without it
-//
-#define FILENAME_LEN	5000
 
 #define END_OF_OFFSET_FILE_STRING "** End of iso_image offset file **"
 #define START_OF_OFFSET_FILE_STRING "** Start of iso_image offset file **"
