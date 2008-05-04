@@ -51,6 +51,7 @@ Form="immediate"
 Effect="takeover"
 Cost=20
 Cost per level=10
+Affect humans=0
 Present at startup=1
 
 ** Start of new program specification subsection **
