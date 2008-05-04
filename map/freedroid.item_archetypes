@@ -1109,6 +1109,7 @@ Pump action      - lvl 5 - 2H - Dam: 2-14 - Recharge: 0.6 - Reload: 4.0 - Clip: 
 
 .50 BMG Ammo     - lvl 7 - Speed: 30  no stack, pass through                                              - 200
 Heavysniperrifle - lvl 8 - 2H - Dam:40-240- Recharge: 1.2 - Reload: 4.0 - Clip: 10 - Size 2x6 - Dur 10-20 - 2000
+//Browning MG      - lvl 9 - 2H - Dam:40-120- Recharge: 0.2 - Reload: 3.0 - Clip: 100- Size 3x6 - Dur 10-20 - 4000
 
 *** Energy ***
 Laser Ammo       - lvl 4 - Speed: 45                                                                      - 2 
@@ -3289,6 +3290,22 @@ inventory_size_y=2
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
+Item name=_"Source Book of Invisibility"
+Item min class for drop=4
+Item max class for drop=9
+Item can be applied in combat="yes"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="spellbook"
+Items of this type collect together in inventory="no"
+File or directory name for inventory image="spellbook/inv_image_green.png"
+Item uses drop sound with filename="drop_book_sound.ogg"
+Base list price=600
+Item description text=_"I am not the Linarian you are looking for."
+inventory_size_x=2
+inventory_size_y=2
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
 Item name=_"Source Book of Virus"
 Item min class for drop=4
 Item max class for drop=9
@@ -3396,22 +3413,6 @@ File or directory name for inventory image="spellbook/inv_image.png"
 Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=600
 Item description text=_"Optimization is the root of all evil. You can gain some temporary improvements to your system, but in the end you are only likely to cause permanent damage."
-inventory_size_x=2
-inventory_size_y=2
-** End of new item specification subsection **
-
-** Start of new item specification subsection **
-Item name=_"Source Book of Invisibility"
-Item min class for drop=8888
-Item max class for drop=9999
-Item can be applied in combat="yes"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="spellbook"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="spellbook/inv_image.png"
-Item uses drop sound with filename="drop_book_sound.ogg"
-Base list price=225
-Item description text=_"I am not the Linarian you are looking for."
 inventory_size_x=2
 inventory_size_y=2
 ** End of new item specification subsection **
