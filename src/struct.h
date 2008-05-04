@@ -789,6 +789,7 @@ typedef struct bullet_s
     float                      paralysation_duration;
 
     char is_friendly; //ugly hack, great idea - if the bot has the same value, the bullet just goes through
+    char hit_type; //hit bots, humans, both?
 }
 bullet, *Bullet;
 
@@ -835,6 +836,7 @@ typedef struct spell_active_s
     float spell_age;
     char active_directions [ RADIAL_SPELL_DIRECTIONS ] ;
     int mine;
+    char hit_type;
 }
 spell_active, *Spell_Active;
 

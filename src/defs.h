@@ -891,6 +891,14 @@ enum _busytype
     THROWING_GRENADE,
     RUNNING_PROGRAM,
 };
+
+enum _attackhit
+{
+    ATTACK_HIT_BOTS=1,
+    ATTACK_HIT_HUMANS=2,
+    ATTACK_HIT_ALL=3,
+};
+
 //--------------------
 // The possible edito modes for the level editor
 //
