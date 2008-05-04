@@ -5,16 +5,19 @@
 #Bullet 0-30?
 
 ** Start of new program specification subsection **
-Program name=_"Hacking"  
-Program description=_"Type: Target
-Takeover: 2 Pods  +1/rev
-Heat: 10  +10/rev
-Tux is gifted with the ability to hack any machine in no time.  To make use of this ability, select this skill. When a machine is close enough and this skill is activated by holding down the right mouse button, the takeover process will be initiated."
-Picture="TakeoverTalkSkill.png"
-Form="immediate"
-Effect="takeover"
-Cost=20
-Cost per level=10
+Program name=_"Emergency shutdown"
+Program description=_"Target: Self
+Effect: Temperature -90 -10/rev
+Paralyze: 15s  -1/rev
+Everyone needs to turn off and cool down a bit now and then. Just be careful so you are not still offline when enemy bots close in..."
+Picture="Shutdown.png"
+Form="self"
+Effect="paralyze"
+Effect duration=14
+Effect duration per level=-1
+Base damage=0
+Cost=-100
+Cost per level=-10
 Present at startup=1
 
 ** Start of new program specification subsection **
@@ -38,19 +41,16 @@ Cost=0
 Present at startup=1
 
 ** Start of new program specification subsection **
-Program name=_"Emergency shutdown"
-Program description=_"Target: Self
-Effect: Temperature -90 -10/rev
-Paralyze: 15s  -1/rev
-Everyone needs to turn off and cool down a bit now and then. Just be careful so you are not still offline when enemy bots close in..."
-Picture="Shutdown.png"
-Form="self"
-Effect="paralyze"
-Effect duration=14
-Effect duration per level=-1
-Base damage=0
-Cost=-100
-Cost per level=-10
+Program name=_"Hacking"  
+Program description=_"Type: Target
+Takeover: 2 Pods  +1/rev
+Heat: 10  +10/rev
+Tux is gifted with the ability to hack any machine in no time.  To make use of this ability, select this skill. When a machine is close enough and this skill is activated by holding down the right mouse button, the takeover process will be initiated."
+Picture="TakeoverTalkSkill.png"
+Form="immediate"
+Effect="takeover"
+Cost=20
+Cost per level=10
 Present at startup=1
 
 ** Start of new program specification subsection **
@@ -86,13 +86,13 @@ Cost per level=-5
 Program name=_"Analyze item"
 Program description=_"Type: Inventory
 Effect: Identify
-Heat: 110  -10/rev
+Heat: 135  -15/rev
 There are very few items which have labels on them. Unless you happen to have an item labeled 'USE ME', you better make sure what it is before using it..."
 Picture="IdentifySkill.png"
 Effect="identify"
 Form="self"
-Cost=100
-Cost per level=-10
+Cost=120
+Cost per level=-15
 
 ** Start of new program specification subsection **
 Program name=_"Malformed packet"
@@ -164,6 +164,20 @@ Effect duration=3
 Effect duration per level=1
 Cost=100
 Cost per level=0
+
+** Start of new program specification subsection **
+Program name=_"Invisibility"
+Program description=_"Target: Self
+Duration: 2s +1/rev
+Heat: 20 +10/rev
+I am not the Linarian you are looking for."
+Picture="Invisibility.png"
+Form="self"
+Effect="invisibility"
+Effect duration=3
+Effect duration per level=1
+Cost=30
+Cost per level=10
 
 ** Start of new program specification subsection **
 Program name=_"Virus"
@@ -305,17 +319,6 @@ Picture="cflag.png"
 Form="self"
 Effect="burnup"
 Cost=0
-
-** Start of new program specification subsection **
-Program name=_"Invisibility"
-Program description=_"I am not the Linarian you are looking for."
-Picture="Invisibility.png"
-Form="self"
-Effect="invisibility"
-Effect duration=3
-Effect duration per level=3
-Cost=30
-Cost per level=5
 
 ** Start of new program specification subsection **
 Program name=_"Light"

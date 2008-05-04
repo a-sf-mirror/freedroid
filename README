@@ -38,7 +38,7 @@ Project url:  http://sourceforge.net/projects/freedroid/
 3. Known Issues:
 ================
  * In Ubuntu, changing language will not work since Ubuntu by default does not ship with standard ISO
-   locales, only UFT-8 versions. You will have to manually correct this to get it working.
+   locales, only UTF-8 versions. You will have to manually correct this to get it working.
    Procedure
         1) In commandline write 
                 sudo nano /var/lib/locales/supported.d/local
@@ -54,6 +54,9 @@ Project url:  http://sourceforge.net/projects/freedroid/
    They are badly tested and thus generally considered to be buggy or at least unsupported. Thus they
    can only be accessed from the commandline. 
    Start with "freedroid -r 99" to get a list of the current available options.
+
+ * On roughly 1000 or more vertical resolution dialogs sometimes switch back and forth between
+   black and world background.
 
 4. Controls:
 =============
