@@ -94,16 +94,12 @@ main (int argc, char * argv[])
 	closedir(tmp_dir);
 	}
 #ifdef __WIN32__
-    else /* win32 special: allow running the game from the root of the tree */
+    else if( (tmp_dir = opendir("po") ) != NULL )/* win32 special: allow running the game from the root of the tree */
 	{
-	tmp_dir = opendir("po");
-	if ( tmp_dir != NULL )
-	    {
-	    bindtextdomain("freedroidrpg", "po");
-	    bindtextdomain("freedroidrpg_data", "po");
-	    bindtextdomain("freedroidrpg_dialogs", "po");
-	    closedir(tmp_dir);
-	    }
+	bindtextdomain("freedroidrpg", "po");
+	bindtextdomain("freedroidrpg_data", "po");
+	bindtextdomain("freedroidrpg_dialogs", "po");
+	closedir(tmp_dir);
 	}
 #endif
     else 
