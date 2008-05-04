@@ -103,7 +103,7 @@ GreatItemShow ( int NumberOfItems , item* ShowPointerList[ MAX_ITEMS_IN_INVENTOR
 	// PutPasswordButtonsAndPassword ( PasswordIndex );
 	// PutSecurityButtonsAndClearance ( ClearanceIndex );
 	blit_our_own_mouse_cursor ( );
-	our_SDL_flip_wrapper( Screen );
+	our_SDL_flip_wrapper();
 	
 	ItemType = ShowPointerList [ ItemIndex ] -> type ;
 	

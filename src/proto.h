@@ -178,7 +178,7 @@ enum {
 		Y_DIR
 };
 
-EXTERN int our_SDL_flip_wrapper ( SDL_Surface *screen ) ;
+EXTERN int our_SDL_flip_wrapper ( ) ;
 EXTERN int our_SDL_blit_surface_wrapper(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_Rect *dstrect);
 EXTERN void our_SDL_update_rect_wrapper ( SDL_Surface *screen, Sint32 x, Sint32 y, Sint32 w, Sint32 h ) ;
 EXTERN int our_SDL_fill_rect_wrapper (SDL_Surface *dst, SDL_Rect *dstrect, Uint32 color);

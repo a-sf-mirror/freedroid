@@ -203,7 +203,7 @@ Takeover ( enemy * target )
 	ShowDroidInfo ( target->type, Displacement , TRUE );
 	ShowGenericButtonFromList ( TAKEOVER_HELP_BUTTON ) ;
 	blit_our_own_mouse_cursor ( );
-	our_SDL_flip_wrapper ( Screen );
+	our_SDL_flip_wrapper();
 	
 	if ( MouseCursorIsOnButton( UP_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) && MouseLeftPressed() && !WasPressed )
 	{
@@ -261,7 +261,7 @@ Takeover ( enemy * target )
 	EvaluatePlayground ();
 	
 	ShowPlayground ();
-	our_SDL_flip_wrapper (Screen);
+	our_SDL_flip_wrapper();
 	
 	ChooseColor ();
 
@@ -367,7 +367,7 @@ Takeover ( enemy * target )
 
 	ShowPlayground ();
 	to_show_banner (message, NULL);
-	our_SDL_flip_wrapper (Screen);
+	our_SDL_flip_wrapper();
 	
     }	// while !FinishTakeover 
 
@@ -429,7 +429,7 @@ ChooseColor (void)
 	
 	ShowPlayground ();
 	to_show_banner (count_text, NULL);
-	our_SDL_flip_wrapper (Screen);
+	our_SDL_flip_wrapper();
 	
 	if (countdown == 0)
 	  ColorChosen = TRUE;
@@ -584,7 +584,7 @@ PlayGame (void)
 
       ShowPlayground ();
       to_show_banner (count_text, NULL);
-      our_SDL_flip_wrapper (Screen);
+      our_SDL_flip_wrapper();
     }	/* while !FinishTakeover */
 
   /* Final contdown */
@@ -604,7 +604,7 @@ PlayGame (void)
       ProcessPlayground ();	/* this has to be done several times to be sure */
       ProcessDisplayColumn ();
       ShowPlayground ();
-      our_SDL_flip_wrapper (Screen);
+      our_SDL_flip_wrapper();
     }	/* while (countdown) */
 
     return;

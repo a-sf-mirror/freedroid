@@ -905,7 +905,7 @@ PrepareMultipleChoiceDialog ( Enemy ChatDroid , int with_flip )
 				   Screen , &Droid_Image_Window );
     
     if ( with_flip ) 
-	our_SDL_flip_wrapper( Screen );
+	our_SDL_flip_wrapper( );
         
 }; // void PrepareMultipleChoiceDialog ( int Enum )
 
@@ -1351,7 +1351,7 @@ DialogPartnersTurnToEachOther ( Enemy ChatDroid )
 	
 	AssembleCombatPicture ( SHOW_ITEMS | USE_OWN_MOUSE_CURSOR ); 
 	
-	our_SDL_flip_wrapper ( Screen );
+	our_SDL_flip_wrapper();
 	
 	if ( ( SDL_GetTicks() - TurningStartTime ) >= 1000.0 * WaitBeforeTurningTime )
 	    TurningDone = TRUE;
@@ -1414,7 +1414,7 @@ DialogPartnersTurnToEachOther ( Enemy ChatDroid )
 	StartTakingTimeForFPSCalculation();       
 	
 	AssembleCombatPicture ( SHOW_ITEMS | USE_OWN_MOUSE_CURSOR ); 
-	our_SDL_flip_wrapper ( Screen );
+	our_SDL_flip_wrapper();
 	
 	OldAngle = ChatDroid -> current_angle;
 	
@@ -1445,7 +1445,7 @@ DialogPartnersTurnToEachOther ( Enemy ChatDroid )
 	StartTakingTimeForFPSCalculation();       
 	
 	AssembleCombatPicture ( SHOW_ITEMS | USE_OWN_MOUSE_CURSOR ); 
-	our_SDL_flip_wrapper ( Screen );
+	our_SDL_flip_wrapper();
 	
 	if ( ( SDL_GetTicks() - TurningStartTime ) >= 1000.0 * WaitAfterTurningTime )
 	    TurningDone = TRUE;

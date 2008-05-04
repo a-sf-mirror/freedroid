@@ -272,7 +272,7 @@ DoMenuSelection( char* InitialText , char **MenuTexts, int FirstItem , int backg
 	//--------------------
 	// Image should be ready now, so we can show it...
 	//
-	our_SDL_flip_wrapper( Screen );
+	our_SDL_flip_wrapper();
 	
 	//--------------------
 	// Now it's time to handle the possible keyboard and mouse 
@@ -662,7 +662,7 @@ ChatDoMenuSelection( char* MenuTexts[ MAX_ANSWERS_PER_PERSON ] ,
 	  //--------------------
 	  // Now everything should become visible!
 	  //
-	  our_SDL_flip_wrapper( Screen );
+	  our_SDL_flip_wrapper();
 	  
       //--------------------
       // In order to reduce processor load during chat menus and also in order to
@@ -781,7 +781,7 @@ ChatDoMenuSelection( char* MenuTexts[ MAX_ANSWERS_PER_PERSON ] ,
 	  while ( EscapePressed() );
 	  
 	  RestoreMenuBackground ( 0 );
-	  our_SDL_flip_wrapper( Screen );
+	  our_SDL_flip_wrapper();
 	  return ( -1 );
       }
       if ( EnterPressed() || SpacePressed() || RightPressed() || LeftPressed() ) 
@@ -799,7 +799,7 @@ ChatDoMenuSelection( char* MenuTexts[ MAX_ANSWERS_PER_PERSON ] ,
 	  while ( EnterPressed() || SpacePressed() ); // || RightPressed() || LeftPressed() );
 	  // MenuItemSelectedSound();
 	  RestoreMenuBackground ( 0 );
-	  our_SDL_flip_wrapper( Screen );
+	  our_SDL_flip_wrapper();
 	  return ( menu_position_to_remember );
       }
       
@@ -851,7 +851,7 @@ ChatDoMenuSelection( char* MenuTexts[ MAX_ANSWERS_PER_PERSON ] ,
 	      if ( ( MenuLineOfMouseCursor >= 1 ) && ( MenuLineOfMouseCursor <= MaxLinesInMenuRectangle ) )
 	      {
 		  RestoreMenuBackground ( 0 );
-		  our_SDL_flip_wrapper( Screen );
+		  our_SDL_flip_wrapper();
 		  return ( menu_position_to_remember );
 	      }
 	  }
@@ -920,7 +920,7 @@ ChatDoMenuSelection( char* MenuTexts[ MAX_ANSWERS_PER_PERSON ] ,
       
     }
     RestoreMenuBackground ( 0 );
-    our_SDL_flip_wrapper( Screen );
+    our_SDL_flip_wrapper();
     return ( -1 );
     
 }; // int ChatDoMenuSelection( char* InitialText , char* MenuTexts[] , asdfasd .... )
@@ -1016,7 +1016,7 @@ Cheatmenu (void)
 	//--------------------
 	// Now we show it...
 	//
-	our_SDL_flip_wrapper ( Screen );
+	our_SDL_flip_wrapper();
 
 	switch ( getchar_raw ( ) )
 	{
@@ -1042,7 +1042,7 @@ Cheatmenu (void)
 			    if (l && !(l%((GameConfig.screen_height == 768) ? 25 : 16))) 
 				{
 				printf_SDL (Screen, -1, -1, " --- MORE --- \n");
-				our_SDL_flip_wrapper ( Screen );
+				our_SDL_flip_wrapper();
 				if( getchar_raw () == 'q')
 				    break;
 				}
@@ -1104,7 +1104,7 @@ Cheatmenu (void)
 		printf_SDL (Screen, 15, -1," --- END --- \n");
 		CountNumberOfDroidsOnShip ( );
 		printf_SDL (Screen, 15, -1," BTW:  Number_Of_Droids_On_Ship: %d \n" , Number_Of_Droids_On_Ship );
-		our_SDL_flip_wrapper ( Screen );
+		our_SDL_flip_wrapper();
 		while ( ( !SpacePressed()) && (!EscapePressed()) && (!MouseLeftPressed()) );
 		while ( SpacePressed() || EscapePressed() || MouseLeftPressed());
 		break;
@@ -1119,7 +1119,7 @@ Cheatmenu (void)
 			}
 
 		    printf_SDL (Screen, -1, -1, "All robots on this deck killed!\n");
-		    our_SDL_flip_wrapper ( Screen );
+		    our_SDL_flip_wrapper();
 		    getchar_raw ();
 		    }
 		break;
@@ -1184,7 +1184,7 @@ Cheatmenu (void)
     } /* while (!can_continue) */
     
     ClearGraphMem ();
-    our_SDL_flip_wrapper (Screen);
+    our_SDL_flip_wrapper();
     
     keyboard_update (); /* treat all pending keyboard events */
     /* 
@@ -2263,7 +2263,7 @@ I need to know that for saving. Abort.\n");
 	return ( FALSE );
     }
     
-    our_SDL_flip_wrapper( Screen );
+    our_SDL_flip_wrapper();
 
     return ( OK );
 }; // int Load_Existing_Hero_Menu ( void )
@@ -2384,7 +2384,7 @@ I need to know that for saving. Abort.\n");
 	return ( FALSE );
     }
     
-    our_SDL_flip_wrapper( Screen );
+    our_SDL_flip_wrapper();
     
     return ( OK );
 }; // int Delete_Existing_Hero_Menu ( void )
@@ -2535,7 +2535,7 @@ Show_Mission_Details ( int MissionNumber )
 	if ( Me.AllMissions[ MissionNumber ].MustBeOne != (-1) ) printf_SDL( Screen , -1 , -1 , "YES" );
 	else printf_SDL( Screen , -1 , -1 , "NO\n" );
 	
-	our_SDL_flip_wrapper( Screen );
+	our_SDL_flip_wrapper();
 	
 	while ( (!EscapePressed()) && (!EnterPressed()) && (!SpacePressed()) );
 	// Wait until the user does SOMETHING
@@ -2642,7 +2642,7 @@ Show_Mission_Log_Menu (void)
 	  while ( EnterPressed() || SpacePressed() );
 	}
 
-      our_SDL_flip_wrapper( Screen );
+      our_SDL_flip_wrapper();
 
       if ( EscapePressed() || EnterPressed() || SpacePressed() )
 	{

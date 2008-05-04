@@ -475,7 +475,7 @@ quest_browser_interface ( void )
 	    quest_browser_show_mission_info ( currently_selected_mission );
 
 	blit_our_own_mouse_cursor();
-	our_SDL_flip_wrapper ( Screen );
+	our_SDL_flip_wrapper();
 	    
 	if ( QPressed() )
 	{

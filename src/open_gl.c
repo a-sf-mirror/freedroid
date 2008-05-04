@@ -49,12 +49,12 @@
  * current output method, like OpenGL or not.
  */
 int 
-our_SDL_flip_wrapper ( SDL_Surface *screen )
+our_SDL_flip_wrapper ( )
 {
     if ( use_open_gl )
 	SDL_GL_SwapBuffers( ); 
     else
-	return ( SDL_Flip ( screen ) ) ;
+	return ( SDL_Flip ( Screen ) ) ;
     
     return ( 0 );
 }; // int our_SDL_flip_wrapper ( SDL_Surface *screen )
@@ -1030,6 +1030,8 @@ StoreMenuBackground ( int backup_slot )
 	is that it's awfully slow, and subsequent RestoreMenuBackground will be slow as well. Here, we hope the
 	graphics card has enough RAM, and just create a big texture to store the image.
 	*/
+
+        our_SDL_flip_wrapper();
 
 	if ( StoredMenuBackgroundTex [ backup_slot ] == 0 )
 		{ 

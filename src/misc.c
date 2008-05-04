@@ -805,7 +805,7 @@ Pause ( void )
 	DisplayBanner ( );
 	AssembleCombatPicture ( USE_OWN_MOUSE_CURSOR );
 	CenteredPutStringFont ( Screen , Menu_BFont , 200 , _("GAME PAUSED") );
-	our_SDL_flip_wrapper ( Screen );
+	our_SDL_flip_wrapper();
 	
 	if ( CPressed ( ) )
 	{
@@ -1393,7 +1393,7 @@ This indicates an error in the map system of Freedroid.",
 	sprintf ( game_message_text , _("Arrived at %s.") , curShip . AllLevels [ Me . pos . z ] -> Levelname );
 	append_new_game_message ( game_message_text );
 	AssembleCombatPicture ( SHOW_ITEMS | USE_OWN_MOUSE_CURSOR ); 
-	//our_SDL_flip_wrapper ( Screen );
+	//our_SDL_flip_wrapper();
 	StoreMenuBackground(0);
 	fade_in_using_gamma_ramp ();
     }

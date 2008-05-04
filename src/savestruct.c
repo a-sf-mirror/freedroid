@@ -145,6 +145,7 @@ save_float("poison_duration", &(target->poison_duration));
 save_float("poison_damage_per_sec", &(target->poison_damage_per_sec));
 save_float("paralysation_duration", &(target->paralysation_duration));
 save_char("is_friendly", &(target->is_friendly));
+save_char("hit_type", &(target->hit_type));
 fprintf(SaveGameFile, "</%s>\n", tag);
 return 0;
 }
@@ -184,6 +185,7 @@ read_float(pos, "poison_duration",  &(target->poison_duration));
 read_float(pos, "poison_damage_per_sec",  &(target->poison_damage_per_sec));
 read_float(pos, "paralysation_duration",  &(target->paralysation_duration));
 read_char(pos, "is_friendly",  &(target->is_friendly));
+read_char(pos, "hit_type",  &(target->hit_type));
 *epos = '>'; 
 return 0;
 }

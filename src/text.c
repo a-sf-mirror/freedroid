@@ -134,7 +134,7 @@ GiveMouseAlertWindow( char* WindowText )
 				       ( 480 - 340 ) / 2 , 
 				       440 , 340 );
 
-    our_SDL_flip_wrapper ( Screen );
+    our_SDL_flip_wrapper();
     
     while ( !EnterPressed()  && !SpacePressed() && !MouseLeftPressed() ) ;
     while (  EnterPressed()  ||  SpacePressed() || MouseLeftPressed()) ;
@@ -372,7 +372,7 @@ ScrollText (char *Text, int startx, int starty, int background_code )
 	ShowGenericButtonFromList ( SCROLL_TEXT_UP_BUTTON );
 	ShowGenericButtonFromList ( SCROLL_TEXT_DOWN_BUTTON );
 	blit_our_own_mouse_cursor();
-	our_SDL_flip_wrapper (Screen);
+	our_SDL_flip_wrapper();
 	
 	//--------------------
 	// impose some limit on the amount to scroll away downwards
@@ -456,12 +456,12 @@ DisplayTextWithScrolling ( char *Text , int startx , int starty , const SDL_Rect
 	if ( ( clip->h + clip->y - MyCursorY ) <= 1 * FontHeight ( GetCurrentFont() ) * TEXT_STRETCH )
 	{
 	    DisplayText( "--- more --- more --- \n" , MyCursorX , MyCursorY , clip , 1.0 );
-	    our_SDL_flip_wrapper( Screen );
+	    our_SDL_flip_wrapper();
 	    while ( !SpacePressed() );
 	    while (  SpacePressed() );
 	    our_SDL_blit_surface_wrapper( Background , NULL , Screen , NULL );
 	    MyCursorY = clip->y;
-	    our_SDL_flip_wrapper( Screen );
+	    our_SDL_flip_wrapper();
 	};
 	
 	if ( clip )
@@ -809,7 +809,7 @@ GetString ( int MaxLen, int echo , int background_code , const char* text_for_ov
 	
 	PutString ( Screen, x0, y0, input);
 	// PutString ( Screen, -1 , -1 , input);
-	our_SDL_flip_wrapper (Screen);
+	our_SDL_flip_wrapper();
 	
 	key = getchar_raw ();  
 	
@@ -827,7 +827,7 @@ GetString ( int MaxLen, int echo , int background_code , const char* text_for_ov
 		x0 = MyCursorX;
 		y0 = MyCursorY;
 		PutString ( Screen, x0, y0, input);
-		our_SDL_flip_wrapper (Screen);
+		our_SDL_flip_wrapper();
 	    }
 #endif
 	    input[curpos] = 0;
@@ -957,7 +957,7 @@ GetEditableStringInPopupWindow ( int MaxLen , char* PopupWindowTitle , char* Def
 	CursorRect . w = 8 ;
 	HighlightRectangle ( Screen , CursorRect );
 	
-	our_SDL_flip_wrapper (Screen);
+	our_SDL_flip_wrapper();
 	
 	key = getchar_raw ();  
 	

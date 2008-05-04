@@ -1701,7 +1701,7 @@ ItemDropFromLevelEditor( void )
 			    "NO SUFFIX" ) ;
 	}
 	
-	our_SDL_flip_wrapper( Screen );
+	our_SDL_flip_wrapper();
 	
 	if ( EscapePressed() )
 	{ //Pressing escape cancels the dropping
@@ -2830,7 +2830,7 @@ DoLevelEditorMainMenu ( Level EditLevel )
 		find_file("Asteroid.maps", MAP_DIR, fp, 0);
 		SaveShip(fp);
 		CenteredPutString ( Screen ,  11*FontHeight(Menu_BFont),    "Your ship was saved...");
-		our_SDL_flip_wrapper ( Screen );
+		our_SDL_flip_wrapper();
 		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
 		// proceed_now=!proceed_now;
 		break;
@@ -3138,7 +3138,7 @@ ReportInconsistenciesForLevel ( int LevelNum )
     DisplayText ( "\n\n--- End of List --- Press Space to return to menu ---\n" ,
 		  -1 , -1 , &ReportRect , 1.0 );
     
-    our_SDL_flip_wrapper ( Screen );
+    our_SDL_flip_wrapper();
     
 }; // void ReportInconsistenciesForLevel ( int LevelNum )
 
@@ -5028,7 +5028,7 @@ level_editor_handle_left_mouse_button ( int proceed_now, leveleditor_state *cur_
 	    SaveShip(fp);
 	    
 	    // CenteredPutString ( Screen ,  11*FontHeight(Menu_BFont),    "Your ship was saved...");
-	    // our_SDL_flip_wrapper ( Screen );
+	    // our_SDL_flip_wrapper();
 	    
 	    GiveMouseAlertWindow ( "\nM E S S A G E\n\nYour ship was saved to file 'Asteroids.map' in the map directory.\n\nIf you have set up something cool and you wish to contribute it to FreedroidRPG, please contact the FreedroidRPG dev team." ) ;
 	    
@@ -5628,7 +5628,7 @@ LevelEditor(void)
 	    //--------------------
 	    // Now that everything is blitted and printed, we may update the screen again...
 	    //
-	    our_SDL_flip_wrapper( Screen );
+	    our_SDL_flip_wrapper();
 	    
 	    //--------------------
 	    // If the user of the Level editor pressed some cursor keys, move the
@@ -5665,7 +5665,7 @@ LevelEditor(void)
 		{
 		    DisplayText ( "\nNo more free comment position.  Using first. " , -1 , -1 , &User_Rect , 1.0 );
 		    i=0;
-		    our_SDL_flip_wrapper ( Screen );
+		    our_SDL_flip_wrapper();
 		    getchar_raw();
 		    // Terminate( ERR );
 		}

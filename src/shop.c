@@ -719,7 +719,7 @@ GreatShopInterface ( int NumberOfItems , item* ShowPointerList[ MAX_ITEMS_IN_INV
 			370 * GameConfig . screen_height / 480 , GoldString );
 	
 	blit_our_own_mouse_cursor ( );
-	our_SDL_flip_wrapper( Screen );
+	our_SDL_flip_wrapper();
 	
 	if ( SpacePressed() || EscapePressed() || MouseLeftPressed() )
 	{
@@ -1193,7 +1193,7 @@ DoEquippmentListSelection( char* Startstring , item* Item_Pointer_List[ MAX_ITEM
 	//--------------------
 	//
 	//
-	our_SDL_flip_wrapper ( Screen );
+	our_SDL_flip_wrapper();
 	
 	//--------------------
 	// Maybe the cursor key up or cursor key down was pressed.  Then of

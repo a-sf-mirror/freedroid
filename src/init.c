@@ -295,7 +295,7 @@ char fpath[2048];
     }
     
     ClearGraphMem ();
-    our_SDL_flip_wrapper( Screen );
+    our_SDL_flip_wrapper();
    free ( TitleFilePointer ) ;
   
 }; // void PlayATitleFile ( char* Filename )
@@ -2040,7 +2040,7 @@ PrepareStartOfNewCharacter ( void )
     //
     PutStringFont ( Screen , Menu_BFont , ( GameConfig . screen_width / 2 ) - 180 , ( GameConfig . screen_height / 2 ) - 70 , _("Updating Tux images") );
     PutStringFont ( Screen , Menu_BFont , ( GameConfig . screen_width / 2 ) - 250 , ( GameConfig . screen_height / 2 ) - 30 , _("(this may take a little while...)") );
-    our_SDL_flip_wrapper ( Screen );
+    our_SDL_flip_wrapper();
     
     append_new_game_message ( _("Starting new game.") );
 

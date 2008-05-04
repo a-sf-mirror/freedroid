@@ -627,7 +627,7 @@ ERROR LOADING SELECTION KNOB IMAGE FILE!",
 	sprintf ( number_text , "%d" , knob_offset_x * ( upper_range - lower_range + 1) / ( knob_end_x - knob_start_x ) )  ;
 	PutStringFont( Screen , FPS_Display_BFont , UNIVERSAL_COORD_W(320) , UNIVERSAL_COORD_H(190) , number_text );
 	blit_our_own_mouse_cursor ( );
-	our_SDL_flip_wrapper ( Screen );
+	our_SDL_flip_wrapper();
 	
 	if ( MouseLeftClicked() )
 	{
@@ -1759,9 +1759,9 @@ SDL reported, that the video mode mentioned above is not supported\nBreaking off
     // for now...
     //
     our_SDL_fill_rect_wrapper ( Screen , NULL , 0 );
-    our_SDL_flip_wrapper ( Screen ) ;
+    our_SDL_flip_wrapper() ;
     our_SDL_fill_rect_wrapper ( Screen , NULL , 0 );
-    our_SDL_flip_wrapper ( Screen ) ;
+    our_SDL_flip_wrapper() ;
     
 #endif // HAVE_LIBGL
 
@@ -1869,7 +1869,7 @@ InitVideo (void)
     InitOurBFonts ( );
     
     blit_special_background ( FREEDROID_LOADING_PICTURE_CODE );
-    our_SDL_flip_wrapper ( Screen ) ;
+    our_SDL_flip_wrapper() ;
     
     ShowStartupPercentage ( 1 ) ; 
     

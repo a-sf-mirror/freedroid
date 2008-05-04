@@ -501,7 +501,7 @@ LoadGame( void )
     if ( strcmp ( Me . freedroid_version_string , version_check_string ) != 0 )
     {
 	show_button_tooltip ( _("Version or structsize mismatch! The savegame is not from the same version of freedroidRPG... possible breakage.\n") );
-	our_SDL_flip_wrapper( Screen );
+	our_SDL_flip_wrapper();
 	while ( ! MouseLeftPressed() ) SDL_Delay(1);
     }
     
@@ -538,7 +538,7 @@ LoadGame( void )
     // panic and push the reset button :)
     //
     PutStringFont ( Screen , FPS_Display_BFont , 75 , 150 , _("Updating Tux images (this may take a little while...)") );
-    our_SDL_flip_wrapper ( Screen );
+    our_SDL_flip_wrapper();
     
     //--------------------
     // Now that the whole character information (and that included the automap

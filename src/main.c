@@ -179,7 +179,7 @@ better than nothing.  Thanks anyway for your interest in FreedroidRPG.\n\
 	    DoAllMovementAndAnimations();
 	    
 	    AssembleCombatPicture ( SHOW_ITEMS | USE_OWN_MOUSE_CURSOR ); 
-	    our_SDL_flip_wrapper ( Screen );
+	    our_SDL_flip_wrapper();
 	    
 	    move_tux ( );	
 	
