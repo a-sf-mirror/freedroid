@@ -467,8 +467,8 @@ MoveActiveSpells (void)
 	    //--------------------
 	    // Here we also do the spell damage application here
 	    //
-	    enemy *erot;
-	    BROWSE_LEVEL_BOTS(erot, Me.pos.z)
+	    enemy *erot, *nerot;
+	    BROWSE_LEVEL_BOTS_SAFE(erot, nerot, Me.pos.z)
 		{
 		DistanceFromCenter = sqrt ( ( AllActiveSpells [ i ] . spell_center . x - erot->pos . x ) *
 			( AllActiveSpells [ i ] . spell_center . x - erot->pos . x ) +
@@ -478,6 +478,10 @@ MoveActiveSpells (void)
 
 		if ( fabsf ( DistanceFromCenter - AllActiveSpells [ i ] . spell_radius ) < 0.2 )
 		    {
+	    
+		    if (( AllActiveSpells [ i ] . hit_type == ATTACK_HIT_BOTS && Druidmap[erot->type].is_human ) ||
+			    ( AllActiveSpells [ i ] . hit_type == ATTACK_HIT_HUMANS && !Druidmap[erot->type].is_human))
+			continue;
 
 		    //--------------------
 		    // Let's see if that enemy has a direction, that is still
@@ -759,38 +763,42 @@ check_bullet_enemy_collisions ( bullet* CurBullet , int num )
     //
     enemy *ThisRobot, *nerot;
     BROWSE_LEVEL_BOTS_SAFE(ThisRobot, nerot, level)
-    {
+	{
 	xdist = CurBullet->pos.x - ThisRobot -> pos . x;
 	ydist = CurBullet->pos.y - ThisRobot -> pos . y;
 
 	if ( (xdist * xdist + ydist * ydist) < DRUIDHITDIST2 && ((float) Druidmap [ ThisRobot->type ] . monster_level * (float) MyRandom(100) < CurBullet->to_hit )
 		&& ThisRobot->is_friendly != CurBullet->is_friendly)
 	    {
-		    hit_enemy(ThisRobot, CurBullet->damage, (CurBullet->mine ? 1 : 0) /*givexp*/, CurBullet->owner, (CurBullet->mine ? 1 : 0));
+	    if (( CurBullet->hit_type == ATTACK_HIT_BOTS && Druidmap[ThisRobot->type].is_human ) ||
+		    ( CurBullet->hit_type == ATTACK_HIT_HUMANS && !Druidmap[ThisRobot->type].is_human))
+		continue;
 
-		    ThisRobot -> frozen += CurBullet -> freezing_level;
+	    hit_enemy(ThisRobot, CurBullet->damage, (CurBullet->mine ? 1 : 0) /*givexp*/, CurBullet->owner, (CurBullet->mine ? 1 : 0));
 
-		    ThisRobot -> poison_duration_left += CurBullet->poison_duration;
-		    ThisRobot -> poison_damage_per_sec += CurBullet->poison_damage_per_sec;
+	    ThisRobot -> frozen += CurBullet -> freezing_level;
 
-		    ThisRobot -> paralysation_duration_left += CurBullet->paralysation_duration;
+	    ThisRobot -> poison_duration_left += CurBullet->poison_duration;
+	    ThisRobot -> poison_damage_per_sec += CurBullet->poison_damage_per_sec;
 
-		    //--------------------
-		    // If the blade can pass through dead and not dead bodies, it will so
-		    // so and create a small explosion passing by.  But if it can't, it should
-		    // be completely deleted of course, with the same small explosion as well
-		    //
-		    if ( CurBullet -> pass_through_hit_bodies )
-			StartBlast ( CurBullet -> pos.x , CurBullet -> pos.y , CurBullet -> pos.z , BULLETBLAST, 0 );
-		    else DeleteBullet( num , TRUE ); // we want a bullet-explosion
+	    ThisRobot -> paralysation_duration_left += CurBullet->paralysation_duration;
 
-		    if (!CurBullet->mine)
-			{
-			FBTZaehler++;
-			}
-		    return;
-	} // if distance low enough to possibly be at hit
-    } 
+	    //--------------------
+	    // If the blade can pass through dead and not dead bodies, it will so
+	    // so and create a small explosion passing by.  But if it can't, it should
+	    // be completely deleted of course, with the same small explosion as well
+	    //
+	    if ( CurBullet -> pass_through_hit_bodies )
+		StartBlast ( CurBullet -> pos.x , CurBullet -> pos.y , CurBullet -> pos.z , BULLETBLAST, 0 );
+	    else DeleteBullet( num , TRUE ); // we want a bullet-explosion
+
+	    if (!CurBullet->mine)
+		{
+		FBTZaehler++;
+		}
+	    return;
+	    } // if distance low enough to possibly be at hit
+	} 
 }; // void check_bullet_enemy_collisions ( CurBullet , num )
 
 /**

@@ -239,6 +239,10 @@ DoSkill(int skill_index, int SpellCost)
 					    Me . pos . z))
 		    goto done_handling_instant_hits;
 
+		if (( Druidmap [ droid_below_mouse_cursor->type ] . is_human && ! SpellSkillMap [ skill_index ]  . hurt_humans )
+		   || ( ! Druidmap [ droid_below_mouse_cursor->type ] . is_human && ! SpellSkillMap [ skill_index ]  . hurt_bots ))
+		    return 1;
+
 		if ( hitdmg > 0 )
 		    hit_enemy(droid_below_mouse_cursor, hitdmg, 1, -1, 1);
 		
@@ -284,6 +288,12 @@ DoSkill(int skill_index, int SpellCost)
 		bul_parms.paralysation_duration = strcmp ( SpellSkillMap [ skill_index ] . effect, "paralyze" ) ? 0 : effdur;
 		bul_parms.damage = hitdmg;
 		bul_parms.to_hit = SpellHitPercentageTable [ Me . spellcasting_skill ];
+		if (SpellSkillMap [ skill_index ]  . hurt_humans &&  SpellSkillMap [ skill_index ]  . hurt_bots)
+			bul_parms.hit_type = ATTACK_HIT_ALL;
+		else if (SpellSkillMap [ skill_index ]  . hurt_humans )
+		    	bul_parms.hit_type = ATTACK_HIT_HUMANS;
+		else bul_parms.hit_type = ATTACK_HIT_BOTS;
+
 
 		FireTuxRangedWeaponRaw ( GetItemIndexByName("Laser pistol") , -1 , &bul_parms, target_location); 
 		
@@ -305,6 +315,11 @@ DoSkill(int skill_index, int SpellCost)
 	        AllActiveSpells [ i ] . spell_radius = 0.3 ;
 	        AllActiveSpells [ i ] . spell_age = 0 ;
 	        AllActiveSpells [ i ] . mine = 1;
+		if (SpellSkillMap [ skill_index ]  . hurt_humans &&  SpellSkillMap [ skill_index ]  . hurt_bots)
+		    AllActiveSpells [ i ].hit_type = ATTACK_HIT_ALL;
+		else if (SpellSkillMap [ skill_index ]  . hurt_humans )
+		    AllActiveSpells [ i ].hit_type = ATTACK_HIT_HUMANS;
+		else AllActiveSpells [ i ].hit_type = ATTACK_HIT_BOTS;
  
 	        for ( j = 0 ; j < RADIAL_SPELL_DIRECTIONS ; j ++ )
 	            { 
@@ -346,7 +361,7 @@ DoSkill(int skill_index, int SpellCost)
 		goto out;
 
 
-	if ( ! droid_below_mouse_cursor-> is_friendly && ! ( Druidmap [ droid_below_mouse_cursor->type ] . is_human ))
+	if ( ! droid_below_mouse_cursor-> is_friendly ) 
 	    {
 	    //--------------------
 	    // Only droids can be hacked.  Humans can't be 
