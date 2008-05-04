@@ -1031,7 +1031,7 @@ StoreMenuBackground ( int backup_slot )
 	graphics card has enough RAM, and just create a big texture to store the image.
 	*/
 
-        our_SDL_flip_wrapper();
+        glFlush();
 
 	if ( StoredMenuBackgroundTex [ backup_slot ] == 0 )
 		{ 
