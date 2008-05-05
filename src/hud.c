@@ -184,7 +184,7 @@ exist really (i.e. has a type = (-1) ).",
     // --------------------
     // If it's a weapon, then we give out the damage value of that weapon as well
     //
-    if ( CurItem->damage )
+    if ( ItemMap [ CurItem->type ] . item_can_be_installed_in_weapon_slot )
     {
 	if ( ! ForShop ) 
 	    sprintf( linebuf , _("Damage: %d to %d \n"), CurItem->damage , CurItem->damage_modifier + CurItem->damage );
