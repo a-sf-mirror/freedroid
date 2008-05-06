@@ -775,15 +775,10 @@ DamageItem( item* CurItem )
     //--------------------
     // If the item mentioned as parameter exists and if it is of 
     // a destructable sort, then we apply the usual damage to it
-    // (which is currently a bit high)
-    //
     if ( ( CurItem->type != (-1) ) &&
 	 ( CurItem->max_duration != (-1) ) )
     {
-//	if ( ! CurItem->damage ) 
-	    CurItem->current_duration -= rintf(0.01 * MyRandom( 65 )) ;
-//	else
-//	    CurItem->current_duration -= rintf(0.01 * MyRandom( 100 )) ;
+	    CurItem->current_duration -= (MyRandom( 100 ) < 20) ? 1 : 0 ;
 	
 	//--------------------
 	// If the item has gone over it's threshhold of duration, it finally
@@ -802,10 +797,9 @@ DamageItem( item* CurItem )
  * This is exactly what this function does:  apply the damage.
  */
 void 
-DamageAllEquipment( )
+DamageProtectiveEquipment( )
 {
 
-    DamageItem ( & ( Me . weapon_item  ) );
     DamageItem ( & ( Me . armour_item  ) );
     DamageItem ( & ( Me . shield_item  ) );
     DamageItem ( & ( Me . drive_item   ) );
