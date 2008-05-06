@@ -102,6 +102,20 @@ static int calculate_program_hit_damage ( int program_id )
 }
 
 /* ------------------
+ * This function calculates the lowest damage a program can deal
+ *-----------------*/
+static int calculate_program_hit_damage_low ( int program_id )
+{
+    return ( SpellSkillMap[ program_id ] . damage_base  + SpellSkillMap[ program_id ] . damage_per_level * ( Me . SkillLevel [ program_id ] - 1 ));
+
+}
+
+static int calculate_program_hit_damage_high ( int program_id )
+{
+    return ( SpellSkillMap[ program_id ] . damage_base  + SpellSkillMap[ program_id ] . damage_per_level * ( Me . SkillLevel [ program_id ] - 1 ) + SpellSkillMap[ program_id ] . damage_mod);
+}
+
+/* ------------------
  * This function calculates the duration of the special effect of a
  * given program
  * ------------------*/
@@ -759,24 +773,90 @@ ShowSkillsScreen ( void )
 	// First we write the name of the skill to the screen
 	//
     //SetCurrentFont ( Menu_BFont );
-    SetCurrentFont ( FPS_Display_BFont );
+	SetCurrentFont ( FPS_Display_BFont );
     
 	DisplayText( D_(SpellSkillMap [ SkillOfThisSlot ] . name) , 
 		     16 + 64 + 16 + SkillScreenRect.x , 
-		     FIRST_SKILLRECT_Y + i * (64 + INTER_SKILLRECT_DIST) + SkillScreenRect.y , 
+		     FIRST_SKILLRECT_Y - 6 + i * (64 + INTER_SKILLRECT_DIST) + SkillScreenRect.y , 
 		     &SkillScreenRect , TEXT_STRETCH );
-      
-    SetCurrentFont ( Message_BFont );
-	//--------------------
-	// Now we write the competence of the players character in that skill to the screen
-	//
+
+	SetCurrentFont ( Message_BFont );
+	int tmp, tmp2;
+	int nextypos = FIRST_SKILLRECT_Y - 8 + i * ( 64 + INTER_SKILLRECT_DIST ) + SkillScreenRect.y + 2 * FontHeight( GetCurrentFont() );
+	
+	// Program revision
 	sprintf( CharText , _("Program revision: %d "), Me.SkillLevel[ SkillOfThisSlot ] );
 	DisplayText( CharText , 16 + 64 + 16 + SkillScreenRect.x , 
-		     FIRST_SKILLRECT_Y + i * ( 64 + INTER_SKILLRECT_DIST ) + SkillScreenRect.y + 2 * FontHeight( GetCurrentFont() ) , &SkillScreenRect , TEXT_STRETCH );
-	sprintf( CharText , _("Heat produced: %d "),   calculate_program_heat_cost ( SkillOfThisSlot )  );
-	DisplayText( CharText , 16 + 64 + 16 + SkillScreenRect.x , 
-		     FIRST_SKILLRECT_Y + i * (64 + INTER_SKILLRECT_DIST) + SkillScreenRect.y + 3 * FontHeight( GetCurrentFont() ) , &SkillScreenRect , TEXT_STRETCH );
-	
+		nextypos , &SkillScreenRect , TEXT_STRETCH );
+	nextypos += FontHeight( GetCurrentFont() );
+
+
+	// Heat cost/cooling
+	tmp = calculate_program_heat_cost ( SkillOfThisSlot );
+	if ( tmp != 0 )
+	    {
+	    if ( tmp > 0 )
+		sprintf( CharText , _("Heat produced: %d "),   tmp );
+	    else 
+		sprintf( CharText , _("Cooling: %d "),   -tmp );
+	    DisplayText( CharText , 16 + 64 + 16 + SkillScreenRect.x, nextypos, &SkillScreenRect , TEXT_STRETCH );
+	    nextypos += FontHeight( GetCurrentFont() );
+	    }
+
+	// Damage/healing
+	tmp = calculate_program_hit_damage_low( SkillOfThisSlot );
+	tmp2 = calculate_program_hit_damage_high ( SkillOfThisSlot );
+	if ( tmp != 0 )
+	    {
+	    if ( tmp > 0 )
+		sprintf( CharText , _("Damage: %d-%d "),   tmp, tmp2 );
+	    else if ( tmp < 0 )
+		sprintf ( CharText, _("Healing: %d-%d "), -tmp, -tmp2);
+
+	    DisplayText( CharText , 16 + 64 + 16 + SkillScreenRect.x , nextypos , &SkillScreenRect , TEXT_STRETCH );
+	    nextypos += FontHeight( GetCurrentFont() );
+	    }
+
+	// Special effect and duration
+	if ( strcmp ( SpellSkillMap [ SkillOfThisSlot ] . effect, "none" ) )
+	    { 
+	    if ( ! strcmp ( SpellSkillMap [ SkillOfThisSlot ] . effect, "paralyze" ) )
+	       sprintf(CharText, _("Paralyze"));
+	    else if ( !strcmp ( SpellSkillMap [ SkillOfThisSlot ] . effect, "slowdown" ))  
+		    sprintf ( CharText, _("Slow down"));
+	    else if ( !strcmp ( SpellSkillMap [ SkillOfThisSlot ] . effect, "invisibility" ))
+		sprintf ( CharText, _("Invisible"));
+	    else if ( !strcmp ( SpellSkillMap [ SkillOfThisSlot ] . effect, "poison" ))
+		sprintf ( CharText, _("Poison"));
+	    else if ( !strcmp ( SpellSkillMap [ SkillOfThisSlot ] . effect, "takeover" ))
+		sprintf ( CharText, _("Takeover"));
+	    else if ( !strcmp ( SpellSkillMap [ SkillOfThisSlot ] . effect, "teleport_home" ))
+		sprintf ( CharText, _("Escape"));
+	    else if ( !strcmp ( SpellSkillMap [ SkillOfThisSlot ] . effect, "identify" ))
+		sprintf ( CharText, " ");
+	    else if ( !strcmp ( SpellSkillMap [ SkillOfThisSlot ] . effect, "weapon" ))
+		sprintf ( CharText, " ");
+	    else if ( !strcmp ( SpellSkillMap [ SkillOfThisSlot ] . effect, "repair" ))
+		sprintf ( CharText, " ");
+	    else if ( !strcmp ( SpellSkillMap [ SkillOfThisSlot ] . effect, "satellite" ))
+		sprintf ( CharText, " ");
+	    else if ( !strcmp ( SpellSkillMap [ SkillOfThisSlot ] . effect, "light" ))
+		sprintf ( CharText, " ");
+	    else if ( !strcmp ( SpellSkillMap [ SkillOfThisSlot ] . effect, "burnup" ))
+		sprintf ( CharText, " ");
+
+
+
+	    
+
+	    float tmp = calculate_program_effect_duration(SkillOfThisSlot);
+	    if ( tmp > 0 )
+ 	     sprintf(CharText + strlen(CharText), _(" for %.1f seconds"), tmp );
+	   
+	    DisplayText( CharText , 16 + 64 + 16 + SkillScreenRect.x , nextypos , &SkillScreenRect , TEXT_STRETCH );
+	    nextypos += FontHeight( GetCurrentFont() );
+	    }
+
     }
 
     //--------------------
