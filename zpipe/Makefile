@@ -1,2 +1,2 @@
 zpipe: zpipe.c
-	gcc $(CFLAGS) -o zpipe -lz
+	gcc $(CFLAGS) zpipe.c -o zpipe -lz
