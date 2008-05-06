@@ -691,7 +691,7 @@ apply_bullet_damage_to_player ( int damage, int owner )
     {
 	Me . TextVisibleTime = 0 ;
 	Me . TextToBeDisplayed = _("That one went into the armour.");
-	DamageAllEquipment ( ) ;
+	DamageProtectiveEquipment ( ) ;
 	BulletReflectedSound ( ) ;
     }
     else

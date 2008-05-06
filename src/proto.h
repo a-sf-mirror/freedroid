@@ -487,7 +487,7 @@ EXTERN long calculate_item_buy_price ( item* BuyItem );
 EXTERN long calculate_item_repair_price ( item* repair_item );
 EXTERN long calculate_item_sell_price ( item* BuyItem );
 EXTERN void FillInItemProperties( item* ThisItem , int FullDuration , int multiplicity);
-EXTERN void DamageAllEquipment( void ) ;
+EXTERN void DamageProtectiveEquipment( void ) ;
 EXTERN void DropItemAt( int ItemType , int level_num , float x , float y , int prefix , int suffix , int multiplicity );
 EXTERN void Quick_ApplyItem( int ItemKey );
 EXTERN int MatchItemWithName ( int type, const char * name );

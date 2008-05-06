@@ -481,6 +481,14 @@ tux_wants_to_attack_now ( int use_mouse_cursor_for_targeting )
 	}
     }
     
+    //--------------------
+    // The weapon was used and therefore looses some of it's durability
+    //
+    //
+    //5% chance to damage the weapon with 20% chance: 1% chance of damaging the weapon
+    if ( MyRandom(100) < 5 )
+	DamageItem ( & ( Me . weapon_item  ) );
+    
     PerformTuxAttackRaw ( use_mouse_cursor_for_targeting ) ;      
 
 }; // void tux_wants_to_attack_now ( ) 
@@ -2624,10 +2632,6 @@ PerformTuxAttackRaw ( int use_mouse_cursor_for_targeting )
     //
     DebugPrintf ( PERFORM_TUX_ATTACK_RAW_DEBUG , "\nWeapon_item: %d guntype: %d . " ,  Me . weapon_item . type , guntype );
 
-    //--------------------
-    // The weapon was used and therefore looses some of it's durability
-    //
-//    DamageItem ( & ( Me . weapon_item  ) );
     
     //--------------------
     // We always start the weapon application cycle, i.e. change of Tux
