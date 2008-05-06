@@ -202,6 +202,6 @@ AM_CONDITIONAL(WIN32, test x$win32 = xtrue)
 
 AM_CONDITIONAL(NONLINUX, test x$macosx = xtrue -o x$win32 = xtrue)
 
-AC_CONFIG_FILES([Makefile src/Makefile croppy/Makefile win32/Makefile po/Makefile])
+AC_CONFIG_FILES([Makefile src/Makefile gluem/Makefile croppy/Makefile win32/Makefile po/Makefile])
 
 AC_OUTPUT
