@@ -980,7 +980,8 @@ void inflate_stream(FILE * DataFile, unsigned char ** DataBuffer, int * size)
 {
     int filelen = FS_filelength (DataFile);
     unsigned char * src = MyMalloc (filelen+1);
-    unsigned char * temp_dbuffer = malloc(30 * 1048576); //allocate 30MB max
+    int cursz = 1048576; //start with 1MB
+    unsigned char * temp_dbuffer = malloc(cursz);
     fread(src, filelen, 1, DataFile);
     fclose( DataFile );
 
@@ -995,7 +996,7 @@ void inflate_stream(FILE * DataFile, unsigned char ** DataBuffer, int * size)
     strm.opaque = Z_NULL;
     strm.avail_in = filelen;
     strm.next_in = src;
-    strm.avail_out = 30 * 1048576;
+    strm.avail_out = cursz;
     strm.next_out = (Bytef*) temp_dbuffer;
 
     ret = inflateInit(&strm);
@@ -1008,20 +1009,30 @@ void inflate_stream(FILE * DataFile, unsigned char ** DataBuffer, int * size)
 
 	}
 
-    ret = inflate(&strm, Z_FINISH);
-    switch (ret) {
-	case Z_NEED_DICT:
-	    ret = Z_DATA_ERROR;     /* and fall through */
-	case Z_DATA_ERROR:
-	case Z_MEM_ERROR:
-	    (void)inflateEnd(&strm);
+    do {
+	if ( ! strm.avail_out )
+	    { //out of memory? increase
+	    temp_dbuffer = realloc(temp_dbuffer, cursz + 1048576); //increase size by 1MB
+	    strm.next_out = temp_dbuffer + cursz;
+	    cursz += 1048576;
+	    strm.avail_out += 1048576;
+	    }
+	ret = inflate(&strm, Z_NO_FLUSH);
+	switch (ret) {
+	    case Z_OK:
+		break;
+	    case Z_NEED_DICT:
+	    case Z_DATA_ERROR:
+	    case Z_MEM_ERROR:
+		(void)inflateEnd(&strm);
 
-	    ErrorMessage ( __FUNCTION__  , "\
-		    zlib was unable to decompress a stream\n\
-		    This indicates a serious bug in this installation of Freedroid.",
-		    PLEASE_INFORM, IS_FATAL );
+		ErrorMessage ( __FUNCTION__  , "\
+			zlib was unable to decompress a stream\n\
+			This indicates a serious bug in this installation of Freedroid.",
+			PLEASE_INFORM, IS_FATAL );
 
-    }
+	}
+    } while  ( ret != Z_STREAM_END );
 
     (*DataBuffer) = (unsigned char *)malloc(strm.total_out + 1);
     memcpy(*DataBuffer, temp_dbuffer, strm.total_out);
