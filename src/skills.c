@@ -496,9 +496,6 @@ CursorIsOnWhichSkillButton( int x , int y )
     if ( y < SkillScreenRect.y + 16 + 4 * 64 + 4 * 16 ) return ( -1 );
     if ( y < SkillScreenRect.y + 16 + 5 * 64 + 4 * 16 ) return (  4 );
     
-     if ( y < SkillScreenRect.y + 16 + 5 * 64 + 5 * 16 ) return ( -1 );
-     if ( y < SkillScreenRect.y + 16 + 6 * 64 + 5 * 16 ) return (  5 );
-    
     return ( -1 );
 }; // int CursorIsOnWhichSkillButton( int x , int y )
 
