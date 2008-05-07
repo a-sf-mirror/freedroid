@@ -311,6 +311,15 @@ calculate_item_sell_price ( item* BuyItem )
     // When selling an item, you don't get the full value of the item, but
     // instead, only half of the original list price, cause it's a used good.
     //
+
+// Temporary disabling lowering value for damaged item to test if its a needed/wanted feature.
+// Also to evaluate if the repair skill is ever used for items you use, or just for items you sell.
+// Compensation to sell price
+#define SELL_PRICE_FACTOR (0.25)
+    PrefixMultiplier *= SELL_PRICE_FACTOR ;
+
+    /*
+
 #define SELL_PRICE_FACTOR (0.5)
     PrefixMultiplier *= SELL_PRICE_FACTOR ;
     
@@ -323,7 +332,7 @@ calculate_item_sell_price ( item* BuyItem )
     {
 	return ( Multiplicity * ItemMap [ BuyItem->type ] . base_list_price * SuffixMultiplier * PrefixMultiplier *
 		 ( BuyItem -> current_duration ) / (ItemMap [ BuyItem->type ] . base_item_duration + ItemMap[BuyItem->type] . item_duration_modifier) ); 
-    }
+    }*/
     else
     {
 	return ( Multiplicity * ItemMap [ BuyItem->type ] . base_list_price * SuffixMultiplier * PrefixMultiplier );
