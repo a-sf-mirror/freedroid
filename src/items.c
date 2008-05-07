@@ -315,12 +315,8 @@ calculate_item_sell_price ( item* BuyItem )
 // Temporary disabling lowering value for damaged item to test if its a needed/wanted feature.
 // Also to evaluate if the repair skill is ever used for items you use, or just for items you sell.
 // Compensation to sell price
-#define SELL_PRICE_FACTOR (0.25)
-    PrefixMultiplier *= SELL_PRICE_FACTOR ;
-
-    /*
-
-#define SELL_PRICE_FACTOR (0.5)
+#define SELL_PRICE_FACTOR (0.3)
+//#define SELL_PRICE_FACTOR (0.5)
     PrefixMultiplier *= SELL_PRICE_FACTOR ;
     
     
@@ -328,11 +324,11 @@ calculate_item_sell_price ( item* BuyItem )
     // If the item is destructible, we take the current duration into
     // account, and reduce the item value accordingly...
     //
-    if ( BuyItem->max_duration != (-1 ) )
+    if ( 0 && BuyItem->max_duration != (-1 ) )
     {
 	return ( Multiplicity * ItemMap [ BuyItem->type ] . base_list_price * SuffixMultiplier * PrefixMultiplier *
 		 ( BuyItem -> current_duration ) / (ItemMap [ BuyItem->type ] . base_item_duration + ItemMap[BuyItem->type] . item_duration_modifier) ); 
-    }*/
+    }
     else
     {
 	return ( Multiplicity * ItemMap [ BuyItem->type ] . base_list_price * SuffixMultiplier * PrefixMultiplier );
