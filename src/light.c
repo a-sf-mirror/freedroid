@@ -362,8 +362,8 @@ set_up_light_strength_buffer ( void )
     {
 	for ( y = 0 ; y < 48 ; y ++  )
 	{
-	    screen_x = ( x - 32 ) * xrat;
-	    screen_y = ( y - 24 ) * yrat;
+	    screen_x = x * xrat - UserCenter_x;
+	    screen_y = y * yrat - UserCenter_y;
 
 	    target_pos . x = translate_pixel_to_map_location ( screen_x , screen_y , TRUE ) ;
 	    target_pos . y = translate_pixel_to_map_location ( screen_x , screen_y , FALSE ) ;
@@ -379,15 +379,11 @@ set_up_light_strength_buffer ( void )
 
 /**
  * This function is used to find the light intensity at any given point
- * on the map.
+ * on the screen.
  */
 int 
-get_light_strength ( moderately_finepoint target_pos )
+get_light_strength_screen ( int x, int y )
 {
-    int x , y ;
-
-    x = translate_map_point_to_screen_pixel_x ( target_pos . x ,  target_pos . y );
-    y = translate_map_point_to_screen_pixel_y ( target_pos . x ,  target_pos . y );
 
     x = ( x * 64 ) / GameConfig . screen_width ;
     y = ( y * 48 ) / GameConfig . screen_height ;
@@ -419,7 +415,23 @@ get_light_strength ( moderately_finepoint target_pos )
 
     return ( light_strength_buffer [ x ] [ y ] );
     
-}; // int get_light_strength ( moderately_finepoint target_pos )
+}; // int get_light_screen_strength ( moderately_finepoint target_pos )
+
+
+/**
+ * This function is used to find the light intensity at any given point
+ * on the map.
+ */
+int 
+get_light_strength ( moderately_finepoint target_pos )
+{
+   int x , y ;
+
+   x = translate_map_point_to_screen_pixel_x ( target_pos . x ,  target_pos . y );
+   y = translate_map_point_to_screen_pixel_y ( target_pos . x ,  target_pos . y );
+
+   return get_light_strength_screen ( x, y );
+}
 
 /**
  * This function should blit the shadows on the floor, that are used to
@@ -435,13 +447,11 @@ char fpath[2048];
     char constructed_file_name[2000];
     int our_height, our_width, our_max_height, our_max_width;
     int light_strength;
-    moderately_finepoint target_pos;
     static int pos_x_grid [ (int)(MAX_FLOOR_TILES_VISIBLE_AROUND_TUX * ( 1.0 / LIGHT_RADIUS_CHUNK_SIZE ) * 2) ] [ (int)(MAX_FLOOR_TILES_VISIBLE_AROUND_TUX * ( 1.0 / LIGHT_RADIUS_CHUNK_SIZE ) * 2 ) ] ;
     static int pos_y_grid [ (int)(MAX_FLOOR_TILES_VISIBLE_AROUND_TUX * ( 1.0 / LIGHT_RADIUS_CHUNK_SIZE ) * 2) ] [ (int)(MAX_FLOOR_TILES_VISIBLE_AROUND_TUX * ( 1.0 / LIGHT_RADIUS_CHUNK_SIZE ) * 2 ) ] ;
     static SDL_Rect target_rectangle;
     int chunk_size_x;
     int chunk_size_y;
-    int window_offset_x;
     SDL_Surface* tmp;
     
     //--------------------
@@ -481,9 +491,7 @@ char fpath[2048];
     //
     our_max_width = FLOOR_TILES_VISIBLE_AROUND_TUX * ( 1.0 / LIGHT_RADIUS_CHUNK_SIZE ) * 2 ;
     our_max_height = our_max_width;
-    
-    window_offset_x = - ( GameConfig . screen_width / 2 ) + UserCenter_x ;
-    
+
     for ( our_height = 0 ; our_height < our_max_height ; our_height ++ )
     {
 	for ( our_width = 0 ; our_width < our_max_width ; our_width ++ )
@@ -491,17 +499,13 @@ char fpath[2048];
 	    if ( our_width % LIGHT_RADIUS_CRUDENESS_FACTOR ) continue;
 	    if ( our_height % LIGHT_RADIUS_CRUDENESS_FACTOR ) continue;
 	    
-	    target_pos . x = Me . pos . x - ( FLOOR_TILES_VISIBLE_AROUND_TUX ) + our_width * LIGHT_RADIUS_CHUNK_SIZE ;
-	    target_pos . y = Me . pos . y - ( FLOOR_TILES_VISIBLE_AROUND_TUX ) + our_height * LIGHT_RADIUS_CHUNK_SIZE;
-	    light_strength = get_light_strength ( target_pos ) ;
+	    target_rectangle . x = pos_x_grid [ our_width ] [ our_height ] ;
+	    target_rectangle . y = pos_y_grid [ our_width ] [ our_height ] ;
+	    light_strength = get_light_strength_screen ( target_rectangle . x, target_rectangle . y ) ;
 	    
 	    if ( light_strength >= NUMBER_OF_SHADOW_IMAGES ) light_strength = NUMBER_OF_SHADOW_IMAGES -1 ;
 	    if ( light_strength <= 0 ) continue ;
-	    
-	    // blit_iso_image_to_map_position ( light_radius_chunk [ light_strength ] , target_pos . x , target_pos . y );
-	    target_rectangle . x = pos_x_grid [ our_width ] [ our_height ] + window_offset_x ;
-	    target_rectangle . y = pos_y_grid [ our_width ] [ our_height ] ;
-	    
+
 	    our_SDL_blit_surface_wrapper( light_radius_chunk [ light_strength ] . surface , NULL , Screen, &target_rectangle );
 	}
     }

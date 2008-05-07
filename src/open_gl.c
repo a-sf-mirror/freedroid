@@ -1159,7 +1159,6 @@ light_radius_update_stretched_texture ( void )
     int blue = 0 ;
     int green = 0 ;
     int alpha = 0 ;
-    moderately_finepoint target_pos ;
     int light_strength ;
     int lr_square_width = GameConfig . screen_width / 64;
     int lr_square_height = GameConfig . screen_height / 48;
@@ -1171,12 +1170,7 @@ light_radius_update_stretched_texture ( void )
     {
 	for ( y = 0 ; y < 48 ; y ++ )
 	{
-	    target_pos . x = translate_pixel_to_map_location ( ( 1 + x ) * lr_square_width - UserCenter_x - User_Rect.x / 2 - (User_Rect . x + User_Rect.w - GameConfig . screen_width) / 2,
-							       ( 0 + y ) * lr_square_height - UserCenter_y, TRUE );
-	    target_pos . y = translate_pixel_to_map_location ( ( 1 + x ) * lr_square_width - UserCenter_x - User_Rect . x / 2 - (User_Rect . x + User_Rect.w - GameConfig . screen_width) / 2,
-							       ( 0 + y ) * lr_square_height - UserCenter_y, FALSE );
-
-	    light_strength = get_light_strength ( target_pos );
+	    light_strength = get_light_strength_screen ( x * lr_square_width, y * lr_square_height );
 	    
 	    if ( light_strength >= NUMBER_OF_SHADOW_IMAGES ) light_strength = NUMBER_OF_SHADOW_IMAGES -1 ;
 	    if ( light_strength <= 0 ) light_strength = 0 ;
@@ -1355,7 +1349,7 @@ blit_special_background ( int background_code )
 {
     SDL_Surface* tmp_surf_1;
     SDL_Rect src_rect;
-char fpath[2048];
+    char fpath[2048];
 
     if ( background_code >= ALL_KNOWN_BACKGROUNDS ) 
 	{
@@ -1401,6 +1395,8 @@ char fpath[2048];
 	    GAME_MESSAGE_WINDOW_BACKGROUND_IMAGE_FILE, // 31
 	    HUD_BACKGROUND_IMAGE_FILE, // 32
 	};
+
+    static int scaling_done [ ALL_KNOWN_BACKGROUNDS ];
 
     SDL_Rect our_background_rects [ ALL_KNOWN_BACKGROUNDS ] = 
 	{ 
@@ -1491,7 +1487,7 @@ char fpath[2048];
 	    // For the dialog, we need not only the dialog background, but also some smaller
 	    // parts of the background image, so we can re-do the background part that is in
 	    // the dialog partners chat output window.  We don't make a separate image on disk
-	    // but rather extract the info inside the code.  That makes for easier adaption
+	    // but rather extract the info inside the code.  That makes for easier adaptation
 	    // of the window dimensions from inside the code...
 	    //
 	    if ( background_code == CHAT_DIALOG_BACKGROUND_EXCERPT_CODE )
@@ -1546,15 +1542,22 @@ char fpath[2048];
     }
     else
     {
-	if ( need_scaling [ background_code ] &&  our_background_rects [ background_code ] . w == 0 && our_backgrounds[background_code] . original_image_width == 1024) //we are using one of the new fullscreen backgrounds
+	if ( need_scaling [ background_code ] && ! scaling_done [ background_code ] )
         	{
-		SDL_Surface * tmp_surf2 = zoomSurface ( our_backgrounds [ background_code ] . surface , 0.625, 0.625 , FALSE );
-		our_background_rects [ background_code ] . w = 640;
-		our_background_rects [ background_code ] . h = 480;
+		scaling_done [ background_code ] = 1;
+	        double rx, ry;
+		if ( our_backgrounds[background_code] . original_image_width == 1024) {
+		    rx = Screen -> w / 1024.0;
+		    ry = Screen -> h / 768.0;
+		} else {
+		    rx = Screen -> w / 640.0;
+		    ry = Screen -> h / 480.0;
+		}
+		SDL_Surface * tmp_surf2 = zoomSurface ( our_backgrounds [ background_code ] . surface , rx, ry, TRUE);
 		SDL_FreeSurface ( our_backgrounds [ background_code ] . surface );
 		our_backgrounds [ background_code ] . surface = tmp_surf2;
-		our_backgrounds[background_code] . original_image_width = 640;
-		our_backgrounds[background_code] . original_image_height = 480;
+		our_backgrounds [ background_code ] . original_image_width  = tmp_surf2 -> w;
+		our_backgrounds [ background_code ] . original_image_height = tmp_surf2 -> h;
 		}
 	SDL_SetClipRect( Screen, NULL );
 	our_SDL_blit_surface_wrapper ( our_backgrounds [ background_code] . surface , NULL , Screen , &( our_background_rects [ background_code ] ) );

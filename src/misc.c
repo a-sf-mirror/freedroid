@@ -1501,25 +1501,6 @@ settings file will be generated.",
 	GameConfig . screen_height = original_height_of_screen ;
     }
 
-    //--------------------
-    // If the user is using SDL for the graphics output, then no other
-    // screen resolutions than 640x480 will be available.
-    //
-    if ( ( ! use_open_gl ) && ( GameConfig . screen_width != 640 ) )
-    {
-	GameConfig . screen_width = 640; 
-	GameConfig . screen_height = 480 ;
-	GameConfig . next_time_width_of_screen = 640; 
-	GameConfig . next_time_height_of_screen = 480 ;
-	ErrorMessage ( __FUNCTION__  , "\
-You are using SDL instead of OpenGL for graphics output.  For this\n\
-output method, no other screen resolutions than 640x480 is available.\n\
-Therefore your setting will be overridden and 640x480 will be used.\n\
-If you want different resolutions, please use OpenGL for graphics\n\
-output.",
-				   NO_NEED_TO_INFORM , IS_WARNING_ONLY );
-    }
-
 #if ENABLE_NLS
     setlocale(LC_MESSAGES, "C");
     setlocale(LC_CTYPE, "C");

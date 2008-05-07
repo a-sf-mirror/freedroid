@@ -354,7 +354,7 @@ isometric_show_floor_around_tux_without_doublebuffering (int mask)
     
   get_floor_boundaries (mask, &LineStart, &LineEnd, &ColStart, &ColEnd);
 
-  SDL_SetClipRect (Screen, &User_Rect);
+  //  SDL_SetClipRect (Screen, &User_Rect);
   
   if ( ! use_open_gl )
       { /* SDL rendering path */
@@ -1904,7 +1904,7 @@ AssembleCombatPicture ( int mask )
 	// in case we only draw the map, we are done here.  But
 	// of course we must check if we should update the screen too.
 	if ( mask & DO_SCREEN_UPDATE ) 
-	    our_SDL_update_rect_wrapper( Screen , User_Rect.x , User_Rect.y , User_Rect.w , User_Rect.h );
+	    our_SDL_update_rect_wrapper( Screen , 0 , 0 , Screen -> w , Screen -> h );
 	
 	//--------------------
 	// Within all of this display code, we only check for LIGHT as far
@@ -2020,12 +2020,10 @@ AssembleCombatPicture ( int mask )
     //--------------------
     // At this point we are done with the drawing procedure
     // and all that remains to be done is updating the screen.
-    // Depending on where we did our modifications, we update
-    // an according portion of the screen.
     //
     if ( mask & DO_SCREEN_UPDATE )
     {
-	our_SDL_update_rect_wrapper( Screen , User_Rect.x , User_Rect.y , User_Rect.w , User_Rect.h );
+	our_SDL_update_rect_wrapper( Screen , 0 , 0 , Screen -> w , Screen -> h );
     }
 
     //--------------------

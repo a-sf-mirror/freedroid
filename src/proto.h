@@ -160,6 +160,7 @@ EXTERN int level_is_visible ( int level_num );
 #else
 #define EXTERN extern
 #endif
+EXTERN int get_light_strength_screen ( int x, int y );
 EXTERN int get_light_strength ( moderately_finepoint target_pos );
 EXTERN void update_light_list ( void );
 EXTERN void blit_light_radius ( void );

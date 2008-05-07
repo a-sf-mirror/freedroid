@@ -1588,24 +1588,7 @@ There are good Linux distributions out there,\n please check them out.\n\nOr you
 		
     case CHANGE_SCREEN_RESOLUTION:
 	while ( EnterPressed() || SpacePressed() );
-	if ( ! use_open_gl )
-	{
-	    GiveMouseAlertWindow ( _("\n\
-You are using SDL instead of OpenGL\n	\
-for graphics ouput right now.\n		\
-\n					\
-FreedroidRPG only supports 640x480\n	\
-in SDL mode.\n				\
-\n						\
-You might want to restart the game using\n	\
-OpenGL instead.\n				\
-\n						\
-\n						\
-Thank you.\n"));
-	}
-	else
-	    return MENU_RESOLUTION;
-	break;
+	return MENU_RESOLUTION;
 	
     case SET_SHOW_BLOOD_FLAG:
 	while (EnterPressed() || SpacePressed() );
