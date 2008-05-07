@@ -876,6 +876,7 @@ ShowSkillsScreen ( void )
 	 MouseLeftClicked() )
     {
 	toggle_game_config_screen_visibility(GAME_CONFIG_SCREEN_VISIBLE_SKILL_EXPLANATION);
+	while ( MouseLeftPressed () ) SDL_Delay(1);
     }
     
     //--------------------
