@@ -238,27 +238,6 @@ EnemyInfluCollisionText ( enemy * ThisRobot)
     
 }; // void EnemyInfluCollisionText ( int Enum )
 
-/**
- * This function assigns a text comment to say for an enemy while it is
- * standing and aiming for player.  This can be turned off via a switch in GameConfig.
- */
-void 
-AddStandingAndAimingText ( enemy * ThisRobot )
-{
-    if ( !GameConfig.Enemy_Aim_Text ) return;
-    
-    ThisRobot->TextVisibleTime=0;
-    
-    if ( ( fabsf ( Me . speed . x ) < 1 ) && ( fabsf ( Me . speed . y ) < 1 ) )
-    {
-	ThisRobot->TextToBeDisplayed=_("Yeah, stay like that, haha.");
-    }
-    else
-    {
-	ThisRobot->TextToBeDisplayed=_("Stand still while I aim at you.");
-    }
-    
-}; // void AddStandingAndAimingText( int Enum )
 
 
 /**

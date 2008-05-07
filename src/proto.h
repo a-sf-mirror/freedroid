@@ -840,7 +840,6 @@ EXTERN char* GetChatWindowInput( SDL_Surface* Background , SDL_Rect* Chat_Window
 EXTERN void ChatWithFriendlyDroid( Enemy ChatDroid );
 EXTERN void EnemyHitByBulletText( enemy * );
 EXTERN void EnemyInfluCollisionText ( enemy * );
-EXTERN void AddStandingAndAimingText ( enemy * );
 
 EXTERN void SetTextCursor (int x, int y);
 EXTERN void SetLineLength (int);
