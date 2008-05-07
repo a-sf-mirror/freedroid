@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CHANGE THIS\n"
 "Report-Msgid-Bugs-To: CHANGE THIS TOO\n"
-"POT-Creation-Date: 2008-05-06 14:18+0000\n"
-"PO-Revision-Date: 2008-05-06 14:18+0000\n"
+"POT-Creation-Date: 2008-05-07 12:41+0000\n"
+"PO-Revision-Date: 2008-05-07 12:41+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -1686,6 +1686,7 @@ msgid ""
 msgstr ""
 
 #: ../map/freedroid.droid_archetypes:106
+#: ../map/freedroid.droid_archetypes:1101
 msgid ""
 "simple rubbish diposal robot. Common device in most space craft to maintain a "
 "clean ship."
