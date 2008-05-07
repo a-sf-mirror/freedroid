@@ -1514,27 +1514,13 @@ Tux invenrtory.  Something must have gone awry...",
     
 }; // void DeleteOneInventoryItemsOfType( int Itemtype  )
 
-/**
- * This function checks if a given screen position lies within the user
- * i.e. combat rectangle or not.
- */
-int 
-MouseCursorIsInUserRect( int x , int y )
+int MouseCursorIsInSkiERect ( int x, int y )
 {
-    if ( y < User_Rect.y ) return ( FALSE );
-    if ( y > User_Rect.y + User_Rect.h ) return ( FALSE );
+if ( x > 320 || x < 0 ) return FALSE;
+if ( y > 480 || y < 0 ) return FALSE;
 
-    if ((! GameConfig.Inventory_Visible)  && (! GameConfig.CharacterScreen_Visible) && (! GameConfig.SkillScreen_Visible) )
-    	{
-	if ( x > User_Rect.x + User_Rect.w ) return ( FALSE );
-	if ( x < User_Rect.x ) return ( FALSE );
-	return ( TRUE );
-	}
-    if ( ( GameConfig.Inventory_Visible && MouseCursorIsInInvRect(x, y) ) || ( GameConfig.CharacterScreen_Visible && MouseCursorIsInChaRect(x, y) ) ||
-	 ( GameConfig.SkillScreen_Visible && MouseCursorIsInSkiRect(x, y) ) || ( GameConfig.skill_explanation_screen_visible && MouseCursorIsInInvRect(x,y)) )
-	return FALSE;
 return TRUE;
-}; // int MouseCursorIsInUserRect( int x , int y )
+}
 
 /**
  * This function checks if a given screen position lies within the inventory
@@ -1600,6 +1586,29 @@ MouseCursorIsInInventoryGrid( int x , int y )
     }
     return( FALSE );
 }; // int MouseCursorIsInInventoryGrid( int x , int y )
+
+/**
+ * This function checks if a given screen position lies within the user
+ * i.e. combat rectangle or not.
+ */
+int 
+MouseCursorIsInUserRect( int x , int y )
+{
+    if ( y < User_Rect.y ) return ( FALSE );
+    if ( y > User_Rect.y + User_Rect.h ) return ( FALSE );
+
+    if ((! GameConfig.Inventory_Visible)  && (! GameConfig.CharacterScreen_Visible) && (! GameConfig.SkillScreen_Visible) )
+    	{
+	if ( x > User_Rect.x + User_Rect.w ) return ( FALSE );
+	if ( x < User_Rect.x ) return ( FALSE );
+	return ( TRUE );
+	}
+    if ( ( GameConfig.Inventory_Visible && MouseCursorIsInInvRect(x, y) ) || ( GameConfig.CharacterScreen_Visible && MouseCursorIsInChaRect(x, y) ) ||
+	 ( GameConfig.SkillScreen_Visible && MouseCursorIsInSkiRect(x, y) ) || ( GameConfig.skill_explanation_screen_visible && MouseCursorIsInSkiERect(x,y)) )
+	return FALSE;
+return TRUE;
+}; // int MouseCursorIsInUserRect( int x , int y )
+
 
 /**
  * This function gives the x coordinate of the inventory square that 

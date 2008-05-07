@@ -1955,30 +1955,28 @@ AssembleCombatPicture ( int mask )
     }
 
     if ( GameConfig.Inventory_Visible || GameConfig . skill_explanation_screen_visible) 
-    {
+	{
 	User_Rect.x = 320;
-	if ( GameConfig . CharacterScreen_Visible || GameConfig . SkillScreen_Visible )
-		User_Rect.w = GameConfig . screen_width - 640;
-	else	User_Rect.w = GameConfig . screen_width - 320;
-    }
-    else if ( GameConfig . CharacterScreen_Visible || GameConfig . SkillScreen_Visible ) 
-    {
-	User_Rect.x = 0;
-	User_Rect.w = GameConfig . screen_width - 320; 
-    }
+	}
+    else User_Rect.x = 0;
+
+
+    if ( GameConfig . CharacterScreen_Visible || GameConfig . SkillScreen_Visible ) 
+	{
+	User_Rect.w = GameConfig . screen_width - 320 -  User_Rect.x; 
+	}
     else
-    {
-	User_Rect.x = 0;
-	User_Rect.w = GameConfig . screen_width;
-    }
+	{
+	User_Rect.w = GameConfig . screen_width - User_Rect.x;
+	}
 
     if ( mask & USE_OWN_MOUSE_CURSOR )
-    {
+	{
 	blit_our_own_mouse_cursor ();
 	blit_mouse_cursor_corona ();
-    }
+	}
 
-   
+
 #if 0  
     /* This code displays the player tracks with red dots. */
     glDisable(GL_TEXTURE_2D);
