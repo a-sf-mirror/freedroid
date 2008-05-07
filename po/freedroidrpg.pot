@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: freedroid-discussion@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-05-06 16:18+0200\n"
+"POT-Creation-Date: 2008-05-07 10:24+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1589,38 +1589,38 @@ msgstr ""
 msgid "doing something so weird the game does not understand what it is"
 msgstr ""
 
-#: ../src/items.c:2154 ../src/items.c:2189 ../src/items.c:2191
+#: ../src/items.c:2163 ../src/items.c:2198 ../src/items.c:2200
 msgid "Identified air."
 msgstr ""
 
-#: ../src/items.c:2210
+#: ../src/items.c:2219
 #, c-format
 msgid "You already know all there is to know about the %s."
 msgstr ""
 
-#: ../src/items.c:2216
+#: ../src/items.c:2225
 #, c-format
 msgid "Identified %s"
 msgstr ""
 
-#: ../src/items.c:2446
+#: ../src/items.c:2455
 msgid "Two-handed weapon requirements not met: shield bonus doesn't count."
 msgstr ""
 
-#: ../src/items.c:2465
+#: ../src/items.c:2474
 msgid "You cannot fight with this!"
 msgstr ""
 
-#: ../src/items.c:2508
+#: ../src/items.c:2517
 msgid "Shield requirements not met: two-handed weapon bonus doesn't count."
 msgstr ""
 
-#: ../src/items.c:2629
+#: ../src/items.c:2638
 #, c-format
 msgid "Item taken: %s."
 msgstr ""
 
-#: ../src/items.c:2681 ../src/items.c:2855
+#: ../src/items.c:2690 ../src/items.c:2864
 msgid "I can't carry any more."
 msgstr ""
 
@@ -2727,62 +2727,62 @@ msgstr ""
 msgid " YOU DONT HAVE ANYTHING THAT WOULD NEED REPAIR "
 msgstr ""
 
-#: ../src/skills.c:788
+#: ../src/skills.c:785
 #, c-format
 msgid "Program revision: %d "
 msgstr ""
 
-#: ../src/skills.c:799
+#: ../src/skills.c:796
 #, c-format
 msgid "Heat produced: %d "
 msgstr ""
 
-#: ../src/skills.c:801
+#: ../src/skills.c:798
 #, c-format
 msgid "Cooling: %d "
 msgstr ""
 
-#: ../src/skills.c:812
+#: ../src/skills.c:809
 #, c-format
 msgid "Damage: %d-%d "
 msgstr ""
 
-#: ../src/skills.c:814
+#: ../src/skills.c:811
 #, c-format
 msgid "Healing: %d-%d "
 msgstr ""
 
-#: ../src/skills.c:824
+#: ../src/skills.c:821
 #, c-format
 msgid "Paralyze"
 msgstr ""
 
-#: ../src/skills.c:826
+#: ../src/skills.c:823
 #, c-format
 msgid "Slow down"
 msgstr ""
 
-#: ../src/skills.c:828
+#: ../src/skills.c:825
 #, c-format
 msgid "Invisible"
 msgstr ""
 
-#: ../src/skills.c:830
+#: ../src/skills.c:827
 #, c-format
 msgid "Poison"
 msgstr ""
 
-#: ../src/skills.c:832
+#: ../src/skills.c:829
 #, c-format
 msgid "Takeover"
 msgstr ""
 
-#: ../src/skills.c:834
+#: ../src/skills.c:831
 #, c-format
 msgid "Escape"
 msgstr ""
 
-#: ../src/skills.c:854
+#: ../src/skills.c:851
 #, c-format
 msgid " for %.1f seconds"
 msgstr ""
