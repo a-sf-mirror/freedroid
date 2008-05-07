@@ -3895,8 +3895,8 @@ init_obstacle_data( void )
   obstacle_map[ ISO_COUNTER_CORNER_SHARP_4 ] . obstacle_long_description = _("A counter.") ;
 
   
-  obstacle_map[ ISO_BAR_TABLE ] . block_area_parm_1 = 1.1;
-  obstacle_map[ ISO_BAR_TABLE ] . block_area_parm_2 = 1.3;
+  obstacle_map[ ISO_BAR_TABLE ] . block_area_parm_1 = 0.8;
+  obstacle_map[ ISO_BAR_TABLE ] . block_area_parm_2 = 0.8;
   obstacle_map[ ISO_BAR_TABLE ] . filename = "iso_tables_0005.png";
   obstacle_map[ ISO_BAR_TABLE ] . flags &= ~BLOCKS_VISION_TOO ;
   obstacle_map[ ISO_BAR_TABLE ] . obstacle_short_name = _("Bar table");
