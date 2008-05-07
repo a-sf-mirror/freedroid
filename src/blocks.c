@@ -1545,6 +1545,16 @@ Load_Enemy_Surfaces( void )
     droid_stand_animation_speed_factor [ i ] = 6 ;
     ModelMultiplier  [ i ] = 1 ;i++;
 
+    PrefixToFilename [ i ] = "harvester" ; // 33
+    droid_walk_animation_speed_factor [ i ] = 8 ;
+    droid_attack_animation_speed_factor [ i ] = 10 ;
+    droid_gethit_animation_speed_factor [ i ] = 10 ;
+    droid_death_animation_speed_factor [ i ] = 5 ;
+    droid_stand_animation_speed_factor [ i ] = 6 ;
+    ModelMultiplier  [ i ] = 1 ;i++;
+
+
+
     //--------------------
     // Finally we do some test to make sure we don't write
     // over the bounds of our array or so
