@@ -322,7 +322,7 @@ calculate_item_sell_price ( item* BuyItem )
     if ( BuyItem->max_duration != (-1 ) )
     {
 	return ( Multiplicity * ItemMap [ BuyItem->type ] . base_list_price * SuffixMultiplier * PrefixMultiplier *
-		 ( BuyItem -> current_duration ) / BuyItem -> max_duration ); 
+		 ( BuyItem -> current_duration ) / (ItemMap [ BuyItem->type ] . base_item_duration + ItemMap[BuyItem->type] . item_duration_modifier) ); 
     }
     else
     {
