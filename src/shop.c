@@ -199,14 +199,15 @@ AssembleItemListForTradeCharacter ( item* ListToBeFilled , int ShopCharacterCode
     ListPointer = ListToBeFilled;
     if ( ShopCharacterCode == PERSON_STONE )
 	{
-	ListPointer->type = GetItemIndexByName("Dagger"); ListPointer++;
-	ListPointer->type = GetItemIndexByName("Short sword"); ListPointer++;
+	ListPointer->type = GetItemIndexByName("Big kitchen knife"); ListPointer++;
 	ListPointer->type = GetItemIndexByName("Meat cleaver"); ListPointer++;
-	ListPointer->type = GetItemIndexByName("Crowbar"); ListPointer++;
 	ListPointer->type = GetItemIndexByName("Iron pipe"); ListPointer++;
+	ListPointer->type = GetItemIndexByName("Big wrench"); ListPointer++;
+	ListPointer->type = GetItemIndexByName("Crowbar"); ListPointer++;
 	ListPointer->type = GetItemIndexByName("Cap"); ListPointer++;
 	ListPointer->type = GetItemIndexByName("Buckler"); ListPointer++;
 	ListPointer->type = GetItemIndexByName("Simple Jacket"); ListPointer++;
+	ListPointer->type = GetItemIndexByName("Shoes"); ListPointer++;
 	ListPointer->type = GetItemIndexByName(".22 LR Ammunition"); ListPointer++;
 	ListPointer->type = GetItemIndexByName("Shotgun shells"); ListPointer++;
 	}

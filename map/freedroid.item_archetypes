@@ -66,42 +66,90 @@ Item description text=_"Dummy item. If you see this, report a bug."
 /****** Hand to hand ********************************************************************************
 
 *** Cutting ***
-Short sword    - lvl 0 - str 0 dex 0 - 1H - Dam: 1-2 - Recharge: 0.4 - Inv size 1x3 - Dur  7-9  - 30
-Long sword     - lvl 1 - str10 dex20 - 1H - Dam: 2-4 - Recharge: 0.55- Inv size 1x4 - Dur  8-12 - 60
-Great sword    - lvl 3 - str25 dex20 - 2H - Dam: 7-14- Recharge: 0.8 - Inv size 2x5 - Dur 10-15 -300
-Chainsaw       - lvl 4 - str20 dex20 - 2H - Dam: 2-3 - Recharge: 0.15- Inv size 2x4 - Dur  5-6  -500
+Big kitchen knife    - lvl 0 - str 0 dex 0 - 1H - Dam: 0-2 - Recharge: 0.5 - Inv size 1x2 - Dur  6-8  - 30
+Antique sword        - lvl 2 - str 0 dex20 - 1H - Dam: 2-4 - Recharge: 0.55- Inv size 1x4 - Dur  8-12 -100
+Chainsaw             - lvl 4 - str15 dex20 - 2H - Dam: 2-3 - Recharge: 0.15- Inv size 2x4 - Dur  5-6  -500
 
 *** Cleaving ***
-Meat cleaver   - lvl 0 - str 0 dex 0 - 1H - Dam: 1-3 - Recharge: 0.6 - Inv size 2x2 - Dur 10-15 - 30
-Small Axe      - lvl 1 - str12 dex15 - 1H - Dam: 1-5 - Recharge: 0.6 - Inv size 2x2 - Dur 10-15 - 40 
-Axe            - lvl 2 - str20 dex15 - 1H - Dam: 3-7 - Recharge: 0.8 - Inv size 2x3 - Dur 12-17 - 80
-Large Axe      - lvl 3 - str30 dex20 - 2H - Dam:10-20- Recharge: 1.2 - Inv size 2x4 - Dur 14-19 -120
+Meat cleaver         - lvl 0 - str 0 dex 0 - 1H - Dam: 1-3 - Recharge: 0.6 - Inv size 2x2 - Dur 10-15 - 50
+Small Axe            - lvl 2 - str14 dex15 - 1H - Dam: 2-6 - Recharge: 0.7 - Inv size 2x3 - Dur 12-17 - 80 
+Large Axe            - lvl 3 - str25 dex18 - 2H - Dam:10-20- Recharge: 1.2 - Inv size 2x4 - Dur 14-19 -120
 
 *** Piercing ***
-Dagger         - lvl 0 - str 0 dex 0 - 1H - Dam: 0-2 - Recharge: 0.4 - Inv size 1x2 - Dur  6-10 - 25  
-Wooden spear   - lvl 1 - str 0 dex22 - 1H - Dam: 0-2 - Recharge: 0.3 - Inv size 1x5 - Dur  3-7  - 15
-Metal spear    - lvl 3 - str24 dex27 - 1H - Dam: 2-5 - Recharge: 0.4 - Inv size 1x5 - Dur 15-20 - 80
+Hunting knife        - lvl 1 - str 0 dex 0 - 1H - Dam: 0-2 - Recharge: 0.4 - Inv size 1x2 - Dur  5-7  - 40
+Metal spear          - lvl 3 - str20 dex26 - 1H - Dam: 2-5 - Recharge: 0.4 - Inv size 1x6 - Dur 15-20 - 80
 
 *** Impact ***
-Crowbar        - lvl 0 - str 0 dex 0 - 1H - Dam: 1-3 - Recharge: 0.6 - Inv size 1x3 - Dur 15-20 - 80
-Iron pipe      - lvl 0 - str18 dex 0 - 1H - Dam: 1-4 - Recharge: 0.6 - Inv size 1x3 - Dur 12-17 - 20
-Golf club      - lvl 1 - str 0 dex23 - 1H - Dam: 1-5 - Recharge: 0.6 - Inv size 1x4 - Dur  6-10 -100 
-//Monkey wrench
-Tree branch    - lvl 1 - str 0 dex 0 - 1H - Dam: 0-3 - Recharge: 0.7 - Inv size 2x3 - Dur  5-10 -  5
-Table leg      - lvl 1 - str 0 dex 0 - 1H - Dam: 1-2 - Recharge: 0.5 - Inv size 1x4 - Dur  5-10 - 10
-Baseball bat   - lvl 1 - str15 dex20 - 2H - Dam: 4-10- Recharge: 0.7 - Inv size 2x4 - Dur  5-10 - 25
-Iron bar       - lvl 2 - str25 dex15 - 2H - Dam: 6-12- Recharge: 1.0 - Inv size 1x5 - Dur 20-25 - 70
-Mace           - lvl 3 - str25 dex15 - 1H - Dam: 3-8 - Recharge: 0.8 - Inv size 1x3 - Dur 20-25 -150
-Flail          - lvl 4 - str22 dex27 - 1H - Dam: 2-12- Recharge: 0.8 - Inv size 2x3 - Dur 15-20 -150
-Sledgehammer   - lvl 4 - str35 dex20 - 2H - Dam:20-30- Recharge: 1.5 - Inv size 2x5 - Dur 30-35 -200
+Iron pipe            - lvl 0 - str 0 dex 0 - 1H - Dam: 1-3 - Recharge: 0.6 - Inv size 1x3 - Dur 12-17 - 30
+Big wrench           - lvl 0 - str 0 dex 0 - 1H - Dam: 1-4 - Recharge: 0.75- Inv size 1x3 - Dur 15-20 - 60
+Crowbar              - lvl 0 - str15 dex 0 - 1H - Dam: 1-4 - Recharge: 0.6 - Inv size 1x3 - Dur 20-30 - 60
+Hammer               - lvl 1 - str 0 dex 0 - 1H - Dam: 1-2 - Recharge: 0.5 - Inv size 1x3 - Dur 17-22 - 40
+Table leg            - lvl 1 - str 0 dex 0 - 1H - Dam: 1-2 - Recharge: 0.5 - Inv size 1x4 - Dur  5-10 - 10
+Mace                 - lvl 3 - str25 dex15 - 1H - Dam: 3-8 - Recharge: 0.8 - Inv size 1x3 - Dur 20-25 -180
+Baseball bat         - lvl 1 - str12 dex15 - 2H - Dam: 4-10- Recharge: 0.7 - Inv size 2x4 - Dur  5-10 - 30
+Iron bar             - lvl 2 - str20 dex15 - 2H - Dam: 6-12- Recharge: 1.0 - Inv size 1x6 - Dur 20-25 - 70
+Sledgehammer         - lvl 4 - str25 dex20 - 2H - Dam:20-30- Recharge: 1.5 - Inv size 2x5 - Dur 30-35 -150
 
 *** Energy ***
-Lightsaber     - lvl 7 - str 0 dex40 - 2H - Dam: 30-40 - Recharge: 0.5 - Inv size 1x2 - Dur 100 -1500
-Laserstaff     - lvl 8 - str 0 dex50 - 2H - Dam: 40-60 - Recharge: 0.4 - Inv size 1x3 - Dur 100 -2000
+Lightsaber           - lvl 7 - str 0 dex30 - 2H - Dam: 30-40 - Recharge: 0.5 - Inv size 1x2 - Dur 100 -1500
+Laserstaff           - lvl 8 - str 0 dex40 - 2H - Dam: 40-60 - Recharge: 0.4 - Inv size 1x3 - Dur 100 -2000
 
 *** Special ***
 Nobody's edge
 Laser scalpel
+
+//Not implemented suggestions to add more variaty
+//Sharpened screwdriver- lvl 1 - str 0 dex 0 - 1H - Dam: 0-2 - Recharge: 0.5 - Inv size 1x2 - Dur  6-8  - 20  
+//Folding stiletto     - lvl 1 - str 0 dex 0 - 1H - Dam: 0-2 - Recharge: 0.4 - Inv size 1x2 - Dur  4-5  - 20
+//Golf club            - lvl 1 - str 0 dex23 - 1H - Dam: 1-5 - Recharge: 0.6 - Inv size 1x4 - Dur  6-10 -100 
+//Tree branch          - lvl 1 - str 0 dex 0 - 1H - Dam: 0-3 - Recharge: 0.7 - Inv size 2x3 - Dur  5-10 -  5
+//Enegry whip
+
+******* Ranged ******************************************************************************************
+
+Ranged weaps durability balancing not done! Need code change (weapons wear down during use, not when char hit)
+Conventional main disadvantage - Expensive ammo!!
+
+*** Conventional ***
+.22 LR Ammo      - lvl 3 - Speed: 30                                                                      -  4
+.22 LR Automatic - lvl 3 - 1H - Dam: 0-2  - Recharge: 0.4 - Reload: 3.0 - Clip: 11 - Size 1x2 - Dur 10-20 - 150
+.22 LR Rifle     - lvl 4 - 2H - Dam: 1-4  - Recharge: 0.6 - Reload:10.0 - Clip: 11 - Size 1x5 - Dur 10-20 - 250
+
+Shotgun Ammo     - lvl 4 - Speed: 30                                                                      - 12
+Saw off          - lvl 4 - 1H - Dam: 2-10 - Recharge: 0.4 - Reload: 5.0 - Clip:  2 - Size 2x2 - Dur 10-20 - 200
+2 barrel         - lvl 4 - 2H - Dam: 2-18 - Recharge: 0.4 - Reload: 5.0 - Clip:  2 - Size 2x4 - Dur 10-20 - 250
+Pump action      - lvl 5 - 2H - Dam: 2-14 - Recharge: 0.6 - Reload: 4.0 - Clip:  8 - Size 2x4 - Dur 10-20 - 300
+
+9x19mm Ammo      - lvl 5 - Speed: 30                                                                      - 18 
+9mm Automatic    - lvl 5 - 1H - Dam: 4-10 - Recharge: 0.5 - Reload: 3.0 - Clip: 19 - Size 1x2 - Dur 10-20 - 400
+9mm SMG          - lvl 6 - 2H - Dam: 3-8  - Recharge: 0.2 - Reload: 3.0 - Clip: 30 - Size 2x3 - Dur 10-20 - 950
+
+7.62x39mm Ammo   - lvl 6 - Speed: 30                                                                      - 24 
+7.62mm Rifle     - lvl 6 - 2H - Dam:10-16 - Recharge: 0.8 - Reload: 5.0 - Clip:  5 - Size 1x6 - Dur 10-20 - 800
+7.62mm AK-47     - lvl 7 - 2H - Dam: 6-12 - Recharge: 0.2 - Reload: 3.0 - Clip: 30 - Size 2x5 - Dur 10-20 - 1400
+//5.56x45mm Ammo - Skipped due to too many & more common ammotypes already
+
+.50 BMG Ammo     - lvl 7 - Speed: 30  no stack, pass through                                              - 200
+Heavysniperrifle - lvl 8 - 2H - Dam:40-240- Recharge: 1.2 - Reload: 4.0 - Clip: 10 - Size 2x6 - Dur 10-20 - 2000
+//Browning MG      - lvl 9 - 2H - Dam:40-120- Recharge: 0.2 - Reload: 3.0 - Clip: 100- Size 3x6 - Dur 10-20 - 4000
+
+*** Energy ***
+Laser Ammo       - lvl 4 - Speed: 45                                                                      - 2 
+Laser Pistol     - lvl 6 - 1H - Dam: 4-10 - Recharge: 0.4 - Reload: 3.0 - Clip: 12 - Size 1x2 - Dur 10-20 - 500
+Laser Rifle      - lvl 7 - 2H - Dam: 8-16 - Recharge: 0.6 - Reload: 4.0 - Clip: 24 - Size 1x4 - Dur 10-20 - 1000
+Small Pulslaser  - lvl 7 - 2H - Dam: 3-8  - Recharge: 0.15- Reload: 3.0 - Clip: 60 - Size 2x3 - Dur 10-20 - 1000
+Puls Laser       - lvl 8 - 2H - Dam: 6-14 - Recharge: 0.15- Reload: 4.0 - Clip: 60 - Size 2x4 - Dur 10-20 - 2000
+
+Plasma Ammo      - lvl 4 - Speed: 15                                                                      - 4 
+Plasma Pistol    - lvl 6 - 1H - Dam:12-18 - Recharge: 0.75- Reload: 3.0 - Clip:  6 - Size 1x2 - Dur 10-20 - 750
+Plasma Gun       - lvl 7 - 2H - Dam:24-30 - Recharge: 1.0 - Reload: 3.0 - Clip:  8 - Size 2x3 - Dur 10-20 - 1200
+Plasma Cannon    - lvl 8 - 2H - Dam:50-80 - Recharge: 1.5 - Reload: 4.0 - Clip:  8 - Size 2x5 - Dur 10-20 - 1800
+
+*** Caseless & Magnetic etc ***  Implement more later?
+Exterminator Ammo- lvl 6 - Speed: 30                                                                      - 5 
+Exterminator     - lvl 8 - 2H - Dam: 8-48  -Recharge: 0.5 - Reload: 5.0 - Clip:  2 - Size ?   - Dur 10-20 - 1000
+Super Ext        - lvl 9 - 2H - Dam:90-140 -Recharge: 0.5 - Reload: 5.0 - Clip:  2 - Size ?   - Dur 10-20 - 3000
+
 ******************************************************************************************************/
 
 
@@ -111,7 +159,7 @@ Laser scalpel
 // *** Cutting ***
 
 ** Start of new item specification subsection **
-Item name=_"Short sword"
+Item name=_"Big kitchen knife"
 Item min class for drop=0
 Item max class for drop=4
 Item can be applied in combat="no"
@@ -120,16 +168,16 @@ Item uses rotation series with prefix="laser_sword_red"
 Items of this type collect together in inventory="no"
 Strength minimum required to wear/wield this item=0
 Dexterity minimum required to wear/wield this item=0
-Base item duration=7
+Base item duration=6
 plus duration modifier=2
 File or directory name for inventory image="laser_sword_red/inv_image.png"
 inventory_size_x=1
-inventory_size_y=3
+inventory_size_y=2
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=30
 Item description text=_"Light and maneuverable in combat, but unfortunately not very effective in cutting through steel as well as quickly reaching the point of breaking if you try. Though for sure better than hitting at metal with your bare fists."
 ----- the following part is only relevant for weapons -----
-Item as gun: recharging time=0.400000
+Item as gun: recharging time=0.500000
 Item as gun: reloading time=1.000000
 Item as gun: speed of bullets=0.100000
 Item as gun: is melee weapon=1
@@ -148,15 +196,15 @@ Item as gun: weapon requires both hands="no"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
-** Start of new item specification subsection **
-Item name=_"Long sword"
-Item min class for drop=1
+** S*tart of new item specification subsection **
+Item name=_"Antique sword"
+Item min class for drop=2
 Item max class for drop=5
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="laser_sword_red"
 Items of this type collect together in inventory="no"
-Strength minimum required to wear/wield this item=10
+Strength minimum required to wear/wield this item=0
 Dexterity minimum required to wear/wield this item=20
 Base item duration=8
 plus duration modifier=4
@@ -164,7 +212,7 @@ File or directory name for inventory image="laser_sword_red/inv_image.png"
 inventory_size_x=1
 inventory_size_y=4
 Item uses drop sound with filename="drop_sword_sound.ogg"
-Base list price=60
+Base list price=100
 Item description text=_"Long reach while remaining maneuverable enough in combat to find the weak spots in droid armour are the advantages that partially makes up for the inability of a cutting blade to incur lots of damage on a heavily protected target. Repeatedly striking at metal quickly damages the blade though."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.550000
@@ -186,7 +234,7 @@ Item as gun: weapon requires both hands="no"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
-** Start of new item specification subsection **
+** S*tart of new item specification subsection **
 Item name=_"Great sword"
 Item min class for drop=3
 Item max class for drop=7
@@ -203,7 +251,7 @@ inventory_size_x=2
 inventory_size_y=5
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=300
-Item description text=_"The size and kinetic force achievable with this 2 handed sword is enough to cleave straight through the armour of a low level droid. The strain on the sword from high impact hits into metal will however require frequent maintenance to not have it break in half exactly when it's most needed."
+Item description text=_"The size and kinetic force achievable with this 2 handed sword is enough to cleave straight through the armour of a low level droid. The strain on the sword from high impact hits into metall will however require frequent maintenance to not have it break in half exactly when it's most needed."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.800000
 Item as gun: reloading time=0.000000
@@ -284,8 +332,8 @@ File or directory name for inventory image="meat_cleaver/inv_image.png"
 inventory_size_x=2
 inventory_size_y=2
 Item uses drop sound with filename="drop_sword_sound.ogg"
-Base list price=30
-Item description text=_"Designed to chop through meat and bones, it's not as fragile as swords when used against metal enemies. Though it is a bit more slow and clumsy to use then the grace full swords."
+Base list price=50
+Item description text=_"Designed to chop through meat and bones, it's not as fragile as cutting blades when used against metal enemies. Though it is a bit more slow and clumsy to use then more grace full weapons."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.600000
 Item as gun: reloading time=0.000000
@@ -308,51 +356,13 @@ Item as gun: weapon requires both hands="no"
 
 ** Start of new item specification subsection **
 Item name=_"Small axe"
-Item min class for drop=1
-Item max class for drop=4
-Item can be applied in combat="no"
-Item can be installed in slot with name="weapon"
-Item uses rotation series with prefix="laser_sword_red"
-Items of this type collect together in inventory="no"
-Strength minimum required to wear/wield this item=12
-Dexterity minimum required to wear/wield this item=15
-Base item duration=10
-plus duration modifier=5
-File or directory name for inventory image="laser_sword_red/inv_image.png"
-inventory_size_x=2
-inventory_size_y=2
-Item uses drop sound with filename="drop_sword_sound.ogg"
-Base list price=40
-Item description text=_"While this axe was made for splitting wood, with some luck it can damage vital parts of a droid as well."
------ the following part is only relevant for weapons -----
-Item as gun: recharging time=0.600000
-Item as gun: reloading time=0.000000
-Item as gun: speed of bullets=0.100000
-Item as gun: is melee weapon=1
-Item as gun: damage of bullets=1
-Item as gun: modifier for damage of bullets=4
-Item as gun: bullet_image_type=8
-Item as gun: bullet_lifetime=0.200000
-Item as gun: modifier for starting angle=-60.000000
-Item as gun: ignore collisions with wall="yes"
-Item as gun: reflect other bullets="yes"
-Item as gun: pass through explosions="yes"
-Item as gun: pass through hit bodies="yes"
-Item as gun: required ammunition type="none"
-Item as gun: ammo clip size=0
-Item as gun: weapon requires both hands="no"
------ end of part only relevant for weapons -----
-** End of new item specification subsection **
-
-** Start of new item specification subsection **
-Item name=_"Axe"
 Item min class for drop=2
-Item max class for drop=6
+Item max class for drop=5
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="laser_sword_red"
 Items of this type collect together in inventory="no"
-Strength minimum required to wear/wield this item=20
+Strength minimum required to wear/wield this item=14
 Dexterity minimum required to wear/wield this item=15
 Base item duration=12
 plus duration modifier=5
@@ -361,13 +371,13 @@ inventory_size_x=2
 inventory_size_y=3
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=80
-Item description text=_"Big enough to fell a small tree, it's also capable of leaving big dents in a droid."
+Item description text=_"While this axe was made for splitting wood, with some luck it can damage vital parts of a droid as well."
 ----- the following part is only relevant for weapons -----
-Item as gun: recharging time=0.800000
+Item as gun: recharging time=0.600000
 Item as gun: reloading time=0.000000
 Item as gun: speed of bullets=0.100000
 Item as gun: is melee weapon=1
-Item as gun: damage of bullets=3
+Item as gun: damage of bullets=2
 Item as gun: modifier for damage of bullets=4
 Item as gun: bullet_image_type=8
 Item as gun: bullet_lifetime=0.200000
@@ -385,13 +395,13 @@ Item as gun: weapon requires both hands="no"
 ** Start of new item specification subsection **
 Item name=_"Large Axe"
 Item min class for drop=3
-Item max class for drop=8
+Item max class for drop=7
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="laser_sword_red"
 Items of this type collect together in inventory="no"
-Strength minimum required to wear/wield this item=30
-Dexterity minimum required to wear/wield this item=20
+Strength minimum required to wear/wield this item=25
+Dexterity minimum required to wear/wield this item=18
 Base item duration=14
 plus duration modifier=5
 File or directory name for inventory image="laser_sword_red/inv_image.png"
@@ -399,7 +409,7 @@ inventory_size_x=2
 inventory_size_y=4
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=120
-Item description text=_"While this weapon is somewhat slow and cumbersome to use, it does pack a pretty good punch, many times capable of taking out lesser droids in 1 single hit"
+Item description text=_"While this weapon is somewhat slow and cumbersome to use, it is as good at leaving big dents in droids as it is at felling trees. A good hit is often capable of taking out lesser droids in 1 single hit"
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=1.200000
 Item as gun: reloading time=0.000000
@@ -427,63 +437,25 @@ Item as gun: weapon requires both hands="yes"
 // *** Piercing *** 
 
 ** Start of new item specification subsection **
-Item name=_"Dagger"
-Item min class for drop=0
-Item max class for drop=3
+Item name=_"Hunting knife"
+Item min class for drop=1
+Item max class for drop=4
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="laser_dagger"
 Items of this type collect together in inventory="no"
 Strength minimum required to wear/wield this item=0
 Dexterity minimum required to wear/wield this item=0
-Base item duration=6
-plus duration modifier=4
+Base item duration=5
+plus duration modifier=2
 File or directory name for inventory image="laser_dagger/inv_image.png"
 inventory_size_x=1
 inventory_size_y=2
 Item uses drop sound with filename="drop_sword_sound.ogg"
-Base list price=25
-Item description text=_"A short stabbing weapon like a dagger doesn't have much effect on the metal body of a droid, but with luck you might damage some wires or hoses in less protected areas so it's still better then trying to take on the machines with bare hands."
+Base list price=40
+Item description text=_"A short stabbing dagger weapon doesn't have much effect on the metal body of a droid, but with luck you might damage some wires or hoses in less protected areas so it's still better then trying to take on the machines with bare hands."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.400000
-Item as gun: reloading time=0.000000
-Item as gun: speed of bullets=0.100000
-Item as gun: is melee weapon=1
-Item as gun: damage of bullets=0
-Item as gun: modifier for damage of bullets=2
-Item as gun: bullet_image_type=8
-Item as gun: bullet_lifetime=0.200000
-Item as gun: modifier for starting angle=-60.000000
-Item as gun: ignore collisions with wall="yes"
-Item as gun: reflect other bullets="yes"
-Item as gun: pass through explosions="yes"
-Item as gun: pass through hit bodies="yes"
-Item as gun: required ammunition type="none"
-Item as gun: ammo clip size=0
-Item as gun: weapon requires both hands="no"
------ end of part only relevant for weapons -----
-** End of new item specification subsection **
-
-** Start of new item specification subsection **
-Item name=_"Wooden spear"
-Item min class for drop=1
-Item max class for drop=4
-Item can be applied in combat="no"
-Item can be installed in slot with name="weapon"
-Item uses rotation series with prefix="laser_sword_red"
-Items of this type collect together in inventory="no"
-Strength minimum required to wear/wield this item=0
-Dexterity minimum required to wear/wield this item=22
-Base item duration=3
-plus duration modifier=4
-File or directory name for inventory image="laser_sword_red/inv_image.png"
-inventory_size_x=1
-inventory_size_y=5
-Item uses drop sound with filename="drop_sword_sound.ogg"
-Base list price=15
-Item description text=_"The best to be said about a wooden spear is that it will allow you to stand far enough away to jab at a single enemy without giving him much chance to hit back. Neither damage nor durability is very much to write home about."
------ the following part is only relevant for weapons -----
-Item as gun: recharging time=0.300000
 Item as gun: reloading time=0.000000
 Item as gun: speed of bullets=0.100000
 Item as gun: is melee weapon=1
@@ -510,23 +482,23 @@ Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="laser_sword_red"
 Items of this type collect together in inventory="no"
-Strength minimum required to wear/wield this item=24
-Dexterity minimum required to wear/wield this item=27
+Strength minimum required to wear/wield this item=20
+Dexterity minimum required to wear/wield this item=26
 Base item duration=15
 plus duration modifier=5
 File or directory name for inventory image="laser_sword_red/inv_image.png"
 inventory_size_x=1
-inventory_size_y=5
+inventory_size_y=6
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=80
-Item description text=_"A spear forged from metal considerably improves from the wooden spears damage and durability, but the increased weight does make it somewhat slower and more cumbersome to use. It's still a fast weapon though compared to most other."
+Item description text=_"A spear forged from metal considerably improves from a wooden spears damage and durability, but the increased weight does make it somewhat slower and more cumbersome to use. It's still a fast weapon though compared to most other."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.400000
 Item as gun: reloading time=0.000000
 Item as gun: speed of bullets=0.100000
 Item as gun: is melee weapon=1
-Item as gun: damage of bullets=1
-Item as gun: modifier for damage of bullets=1
+Item as gun: damage of bullets=2
+Item as gun: modifier for damage of bullets=3
 Item as gun: bullet_image_type=8
 Item as gun: bullet_lifetime=0.200000
 Item as gun: modifier for starting angle=-60.000000
@@ -547,7 +519,7 @@ Item as gun: weapon requires both hands="no"
 // *** Impact ***
 
 ** Start of new item specification subsection **
-Item name=_"Crowbar"
+Item name=_"Iron pipe"
 Item min class for drop=0
 Item max class for drop=3
 Item can be applied in combat="no"
@@ -556,16 +528,16 @@ Item uses rotation series with prefix="laser_sword_yellow"
 Items of this type collect together in inventory="no"
 Strength minimum required to wear/wield this item=0
 Dexterity minimum required to wear/wield this item=0
-Base item duration=15
+Base item duration=12
 plus duration modifier=5
 File or directory name for inventory image="laser_sword_yellow/inv_image.png"
 inventory_size_x=1
 inventory_size_y=3
 Item uses drop sound with filename="drop_sword_sound.ogg"
-Base list price=80
-Item description text=_"Something originally intended for breaking up doors or pulling out nails can also be used to break open droid skulls or give enough leverage to pull off their extremities."
+Base list price=30
+Item description text=_"A medium sized water pipe from iron can turn into an effective weapon even vs a metal opponent. While not likely to penetrate the armour of a bot, the impact force alone can still damage and shake loose circuit boards and weldings beneath the protective metal layer."
 ----- the following part is only relevant for weapons -----
-Item as gun: recharging time=0.600000
+Item as gun: recharging time=0.0000
 Item as gun: reloading time=0.000000
 Item as gun: speed of bullets=0.100000
 Item as gun: is melee weapon=1
@@ -585,23 +557,62 @@ Item as gun: weapon requires both hands="no"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name=_"Iron pipe"
+Item name=_"Big wrench"
+Item min class for drop=0
+Item max class for drop=3
+Item can be applied in combat="no"
+Item can be installed in slot with name="weapon"
+Item uses rotation series with prefix="monkey_wrench"
+Items of this type collect together in inventory="no"
+Strength minimum required to wear/wield this item=0
+Dexterity minimum required to wear/wield this item=0
+Base item duration=15
+plus duration modifier=5
+File or directory name for inventory image="monkey_wrench/inv_image.png"
+inventory_size_x=1
+inventory_size_y=3
+Item uses drop sound with filename="drop_sword_sound.ogg"
+Base list price=60
+Item description text=_"A big heavy wrench can be surprizingly efficient in turning a bot into second hand parts, in a hands on brutal way if needed."
+----- the following part is only relevant for weapons -----
+Item as gun: recharging time=0.750000
+Item as gun: reloading time=0.000000
+Item as gun: speed of bullets=0.100000
+Item as gun: is melee weapon=1
+Item as gun: damage of bullets=1
+Item as gun: modifier for damage of bullets=3
+Item as gun: bullet_image_type=8
+Item as gun: bullet_lifetime=0.200000
+Item as gun: modifier for starting angle=-60.000000
+Item as gun: ignore collisions with wall="yes"
+Item as gun: reflect other bullets="yes"
+Item as gun: pass through explosions="yes"
+Item as gun: pass through hit bodies="yes"
+Item as gun: required ammunition type="none"
+Item as gun: ammo clip size=0
+Item as gun: weapon requires both hands="no"
+----- end of part only relevant for weapons -----
+** End of new item specification subsection **
+
+
+** Start of new item specification subsection **
+Item name=_"Crowbar"
 Item min class for drop=0
 Item max class for drop=3
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="laser_sword_yellow"
 Items of this type collect together in inventory="no"
-Strength minimum required to wear/wield this item=18
+Strength minimum required to wear/wield this item=15
 Dexterity minimum required to wear/wield this item=0
-Base item duration=12
-plus duration modifier=5
+Base item duration=20
+plus duration modifier=10
 File or directory name for inventory image="laser_sword_yellow/inv_image.png"
 inventory_size_x=1
 inventory_size_y=3
 Item uses drop sound with filename="drop_sword_sound.ogg"
-Base list price=20
-Item description text=_"A medium sized water pipe from iron can turn into an effective weapon even vs a metal opponent. While not likely to penetrate the armour of a bot, the impact force alone can still damage and shake loose circuit boards and weldings beneath the protective metal layer."
+Base list price=60
+Item description text=_"Something originally intended for breaking up doors or pulling out nails can also be used to break open droid skulls or give enough leverage to pull off their extremities."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.600000
 Item as gun: reloading time=0.000000
@@ -622,7 +633,7 @@ Item as gun: weapon requires both hands="no"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
-** Start of new item specification subsection **
+** S*tart of new item specification subsection **
 Item name=_"Golf club"
 Item min class for drop=1
 Item max class for drop=4
@@ -660,7 +671,7 @@ Item as gun: weapon requires both hands="no"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
-** Start of new item specification subsection **
+** S*tart of new item specification subsection **
 Item name=_"Tree branch"
 Item min class for drop=1
 Item max class for drop=3
@@ -685,6 +696,44 @@ Item as gun: speed of bullets=0.100000
 Item as gun: is melee weapon=1
 Item as gun: damage of bullets=0
 Item as gun: modifier for damage of bullets=3
+Item as gun: bullet_image_type=8
+Item as gun: bullet_lifetime=0.200000
+Item as gun: modifier for starting angle=-60.000000
+Item as gun: ignore collisions with wall="yes"
+Item as gun: reflect other bullets="yes"
+Item as gun: pass through explosions="yes"
+Item as gun: pass through hit bodies="yes"
+Item as gun: required ammunition type="none"
+Item as gun: ammo clip size=0
+Item as gun: weapon requires both hands="no"
+----- end of part only relevant for weapons -----
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
+Item name=_"Hammer"
+Item min class for drop=1
+Item max class for drop=3
+Item can be applied in combat="no"
+Item can be installed in slot with name="weapon"
+Item uses rotation series with prefix="laser_sword_yellow"
+Items of this type collect together in inventory="no"
+Strength minimum required to wear/wield this item=0
+Dexterity minimum required to wear/wield this item=0
+Base item duration=17
+plus duration modifier=5
+File or directory name for inventory image="laser_sword_yellow/inv_image.png"
+inventory_size_x=1
+inventory_size_y=3
+Item uses drop sound with filename="drop_sword_sound.ogg"
+Base list price=40
+Item description text=_"In desperate situations even a normal house tool can turn into makeshift weapons."
+----- the following part is only relevant for weapons -----
+Item as gun: recharging time=0.500000
+Item as gun: reloading time=0.000000
+Item as gun: speed of bullets=0.100000
+Item as gun: is melee weapon=1
+Item as gun: damage of bullets=1
+Item as gun: modifier for damage of bullets=1
 Item as gun: bullet_image_type=8
 Item as gun: bullet_lifetime=0.200000
 Item as gun: modifier for starting angle=-60.000000
@@ -737,6 +786,44 @@ Item as gun: weapon requires both hands="no"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
+Item name=_"Mace"
+Item min class for drop=3
+Item max class for drop=7
+Item can be applied in combat="no"
+Item can be installed in slot with name="weapon"
+Item uses rotation series with prefix="mace"
+Items of this type collect together in inventory="no"
+Strength minimum required to wear/wield this item=25
+Dexterity minimum required to wear/wield this item=15
+Base item duration=20
+plus duration modifier=5
+File or directory name for inventory image="mace/inv_image.png"
+inventory_size_x=1
+inventory_size_y=3
+Item uses drop sound with filename="drop_sword_sound.ogg"
+Base list price=180
+Item description text=_"The mace proved already on the medieval battlefield that it was good at crushing even heavily armoured skulls. Unfortunately for the droids this old knowledge still holds true."
+----- the following part is only relevant for weapons -----
+Item as gun: recharging time=0.800000
+Item as gun: reloading time=0.000000
+Item as gun: speed of bullets=0.100000
+Item as gun: is melee weapon=1
+Item as gun: damage of bullets=3
+Item as gun: modifier for damage of bullets=5
+Item as gun: bullet_image_type=8
+Item as gun: bullet_lifetime=0.200000
+Item as gun: modifier for starting angle=-60.000000
+Item as gun: ignore collisions with wall="yes"
+Item as gun: reflect other bullets="yes"
+Item as gun: pass through explosions="yes"
+Item as gun: pass through hit bodies="yes"
+Item as gun: required ammunition type="none"
+Item as gun: ammo clip size=0
+Item as gun: weapon requires both hands="no"
+----- end of part only relevant for weapons -----
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
 Item name=_"Baseball bat"
 Item min class for drop=1
 Item max class for drop=5
@@ -744,16 +831,16 @@ Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="club"
 Items of this type collect together in inventory="no"
-Strength minimum required to wear/wield this item=15
-Dexterity minimum required to wear/wield this item=20
+Strength minimum required to wear/wield this item=12
+Dexterity minimum required to wear/wield this item=15
 Base item duration=5
 plus duration modifier=5
 File or directory name for inventory image="club/inv_image.png"
 inventory_size_x=2
 inventory_size_y=4
 Item uses drop sound with filename="drop_sword_sound.ogg"
-Base list price=25
-Item description text=_"With 1-2 good two handed swings a former droids head might fly far enough for you to score a home run. Just make sure to bring a backup weapon because wooden bats have a predilection for easily splitting in two after too many hard hits."
+Base list price=30
+Item description text=_"With 1-2 good two handed swings a former droids head might fly far enough for you to score a home run. Just make sure to bring a backup weapon because wooden bats have a predilection for splitting into two after too many hard hits."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.700000
 Item as gun: reloading time=0.000000
@@ -782,16 +869,16 @@ Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="laser_sword_yellow"
 Items of this type collect together in inventory="no"
-Strength minimum required to wear/wield this item=25
+Strength minimum required to wear/wield this item=20
 Dexterity minimum required to wear/wield this item=15
 Base item duration=20
 plus duration modifier=5
 File or directory name for inventory image="laser_sword_yellow/inv_image.png"
 inventory_size_x=1
-inventory_size_y=5
+inventory_size_y=6
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=70
-Item description text=_"A bit slow and cumbersome to use and prohibiting the security of a shield to cover behind, this weapon isn't always a good option. But if you do hit you are sure to do more damage then just a scratch."
+Item description text=_"A bit slow and cumbersome to use and prohibiting the security of a shield to cower behind, this weapon isn't always a good option. But if you do hit you are sure to do more damage then just a scratch."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=1.000000
 Item as gun: reloading time=0.000000
@@ -813,98 +900,22 @@ Item as gun: weapon requires both hands="yes"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name=_"Mace"
-Item min class for drop=3
-Item max class for drop=7
-Item can be applied in combat="no"
-Item can be installed in slot with name="weapon"
-Item uses rotation series with prefix="mace"
-Items of this type collect together in inventory="no"
-Strength minimum required to wear/wield this item=25
-Dexterity minimum required to wear/wield this item=15
-Base item duration=20
-plus duration modifier=5
-File or directory name for inventory image="mace/inv_image.png"
-inventory_size_x=1
-inventory_size_y=3
-Item uses drop sound with filename="drop_sword_sound.ogg"
-Base list price=150
-Item description text=_"The mace proved already on the medieval battlefield that it was good at crushing even heavily armoured skulls. Unfortunately for the droids this old knowledge still holds true."
------ the following part is only relevant for weapons -----
-Item as gun: recharging time=0.800000
-Item as gun: reloading time=0.000000
-Item as gun: speed of bullets=0.100000
-Item as gun: is melee weapon=1
-Item as gun: damage of bullets=3
-Item as gun: modifier for damage of bullets=5
-Item as gun: bullet_image_type=8
-Item as gun: bullet_lifetime=0.200000
-Item as gun: modifier for starting angle=-60.000000
-Item as gun: ignore collisions with wall="yes"
-Item as gun: reflect other bullets="yes"
-Item as gun: pass through explosions="yes"
-Item as gun: pass through hit bodies="yes"
-Item as gun: required ammunition type="none"
-Item as gun: ammo clip size=0
-Item as gun: weapon requires both hands="no"
------ end of part only relevant for weapons -----
-** End of new item specification subsection **
-
-** Start of new item specification subsection **
-Item name=_"Flail"
-Item min class for drop=4
-Item max class for drop=7
-Item can be applied in combat="no"
-Item can be installed in slot with name="weapon"
-Item uses rotation series with prefix="laser_sword_yellow"
-Items of this type collect together in inventory="no"
-Strength minimum required to wear/wield this item=22
-Dexterity minimum required to wear/wield this item=27
-Base item duration=15
-plus duration modifier=5
-File or directory name for inventory image="laser_sword_yellow/inv_image.png"
-inventory_size_y=3
-inventory_size_x=2
-Item uses drop sound with filename="drop_sword_sound.ogg"
-Base list price=150
-Item description text=_"1-3 spiked heavy metal balls connected to a rod via chains might require skill to control, but once you do it sure is effective vs man and machine alike..."
------ the following part is only relevant for weapons -----
-Item as gun: recharging time=0.800000
-Item as gun: reloading time=0.000000
-Item as gun: speed of bullets=0.100000
-Item as gun: is melee weapon=1
-Item as gun: damage of bullets=2
-Item as gun: modifier for damage of bullets=10
-Item as gun: bullet_image_type=8
-Item as gun: bullet_lifetime=0.200000
-Item as gun: modifier for starting angle=-60.000000
-Item as gun: ignore collisions with wall="yes"
-Item as gun: reflect other bullets="yes"
-Item as gun: pass through explosions="yes"
-Item as gun: pass through hit bodies="yes"
-Item as gun: required ammunition type="none"
-Item as gun: ammo clip size=0
-Item as gun: weapon requires both hands="no"
------ end of part only relevant for weapons -----
-** End of new item specification subsection **
-
-** Start of new item specification subsection **
 Item name=_"Sledgehammer"
 Item min class for drop=4
-Item max class for drop=8
+Item max class for drop=7
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="laser_sword_yellow"
 Items of this type collect together in inventory="no"
-Strength minimum required to wear/wield this item=35
+Strength minimum required to wear/wield this item=25
 Dexterity minimum required to wear/wield this item=20
 Base item duration=30
-plus duration modifier=35
+plus duration modifier=5
 File or directory name for inventory image="laser_sword_yellow/inv_image.png"
 inventory_size_x=2
 inventory_size_y=5
 Item uses drop sound with filename="drop_sword_sound.ogg"
-Base list price=200
+Base list price=150
 Item description text=_"Very slow and only for the strongest, but only the thougher droids can survive more then 1-2 direct hits."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=1.500000
@@ -941,7 +952,7 @@ Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="laser_sword_green"
 Items of this type collect together in inventory="no"
 Strength minimum required to wear/wield this item=0
-Dexterity minimum required to wear/wield this item=40
+Dexterity minimum required to wear/wield this item=30
 Base item duration=100
 plus duration modifier=0
 File or directory name for inventory image="laser_sword_green/inv_image.png"
@@ -965,7 +976,7 @@ Item as gun: reflect other bullets="yes"
 Item as gun: pass through explosions="yes"
 Item as gun: pass through hit bodies="yes"
 Item as gun: required ammunition type="laser_ammunition"
-Item as gun: ammo clip size=14
+Item as gun: ammo clip size=20
 Item as gun: weapon requires both hands="yes"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
@@ -979,16 +990,15 @@ Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="laser_staff"
 Items of this type collect together in inventory="no"
 Strength minimum required to wear/wield this item=0
-Dexterity minimum required to wear/wield this item=50
+Dexterity minimum required to wear/wield this item=40
 Base item duration=100
 plus duration modifier=0
 File or directory name for inventory image="laser_staff/inv_image.png"
-
 inventory_size_y=3
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=2000
 Item description text=_"A close combat master with this weapon in his hands is a pure whirling dervish of death. It requires laser crystals to work properly."
------ the following part is only relevant for weapons -----It requires laser crystals to work properly.
+----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.400000
 Item as gun: reloading time=0.000000
 Item as gun: speed of bullets=0.100000
@@ -1003,7 +1013,7 @@ Item as gun: reflect other bullets="yes"
 Item as gun: pass through explosions="yes"
 Item as gun: pass through hit bodies="yes"
 Item as gun: required ammunition type="laser_ammunition"
-Item as gun: ammo clip size=14
+Item as gun: ammo clip size=20
 Item as gun: weapon requires both hands="yes"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
@@ -1089,52 +1099,6 @@ Item as gun: weapon requires both hands="no"
 
 
 /****** Ranged **************************************************************************************
-
-Ranged weaps durability balancing not done! Need code change (weapons wear down during use, not when char hit)
-Conventional main disadvantage - Expensive ammo!!
-
-*** Conventional ***
-.22 LR Ammo      - lvl 3 - Speed: 30                                                                      -  4
-.22 LR Automatic - lvl 3 - 1H - Dam: 0-2  - Recharge: 0.4 - Reload: 3.0 - Clip: 11 - Size 1x2 - Dur 10-20 - 150
-.22 LR Rifle     - lvl 4 - 2H - Dam: 1-4  - Recharge: 0.6 - Reload:10.0 - Clip: 11 - Size 1x5 - Dur 10-20 - 250
-
-Shotgun Ammo     - lvl 4 - Speed: 30                                                                      - 12
-Saw off          - lvl 4 - 1H - Dam: 2-10 - Recharge: 0.4 - Reload: 5.0 - Clip:  2 - Size 2x2 - Dur 10-20 - 200
-2 barrel         - lvl 4 - 2H - Dam: 2-18 - Recharge: 0.4 - Reload: 5.0 - Clip:  2 - Size 2x4 - Dur 10-20 - 250
-Pump action      - lvl 5 - 2H - Dam: 2-14 - Recharge: 0.6 - Reload: 4.0 - Clip:  8 - Size 2x4 - Dur 10-20 - 300
-
-9x19mm Ammo      - lvl 5 - Speed: 30                                                                      - 18 
-9mm Automatic    - lvl 5 - 1H - Dam: 4-10 - Recharge: 0.5 - Reload: 3.0 - Clip: 19 - Size 1x2 - Dur 10-20 - 400
-9mm SMG          - lvl 6 - 2H - Dam: 3-8  - Recharge: 0.2 - Reload: 3.0 - Clip: 30 - Size 2x3 - Dur 10-20 - 950
-
-7.62x39mm Ammo   - lvl 6 - Speed: 30                                                                      - 24 
-7.62mm Rifle     - lvl 6 - 2H - Dam:10-16 - Recharge: 0.8 - Reload: 5.0 - Clip:  5 - Size 1x6 - Dur 10-20 - 800
-7.62mm AK-47     - lvl 7 - 2H - Dam: 6-12 - Recharge: 0.2 - Reload: 3.0 - Clip: 30 - Size 2x5 - Dur 10-20 - 1400
-
-//5.56x45mm Ammo - Skipped due to too many & more common ammotypes already
-
-.50 BMG Ammo     - lvl 7 - Speed: 30  no stack, pass through                                              - 200
-Heavysniperrifle - lvl 8 - 2H - Dam:40-240- Recharge: 1.2 - Reload: 4.0 - Clip: 10 - Size 2x6 - Dur 10-20 - 2000
-//Browning MG      - lvl 9 - 2H - Dam:40-120- Recharge: 0.2 - Reload: 3.0 - Clip: 100- Size 3x6 - Dur 10-20 - 4000
-
-*** Energy ***
-Laser Ammo       - lvl 4 - Speed: 45                                                                      - 2 
-Laser Pistol     - lvl 6 - 1H - Dam: 4-10 - Recharge: 0.4 - Reload: 3.0 - Clip: 12 - Size 1x2 - Dur 10-20 - 500
-Laser Rifle      - lvl 7 - 2H - Dam: 8-16 - Recharge: 0.6 - Reload: 4.0 - Clip: 24 - Size 1x4 - Dur 10-20 - 1000
-Small Pulslaser  - lvl 7 - 2H - Dam: 3-8  - Recharge: 0.15- Reload: 3.0 - Clip: 60 - Size 2x3 - Dur 10-20 - 1000
-Puls Laser       - lvl 8 - 2H - Dam: 6-14 - Recharge: 0.15- Reload: 4.0 - Clip: 60 - Size 2x4 - Dur 10-20 - 2000
-
-Plasma Ammo      - lvl 4 - Speed: 15                                                                      - 4 
-Plasma Pistol    - lvl 6 - 1H - Dam:12-18 - Recharge: 0.75- Reload: 3.0 - Clip:  6 - Size 1x2 - Dur 10-20 - 750
-Plasma Gun       - lvl 7 - 2H - Dam:24-30 - Recharge: 1.0 - Reload: 3.0 - Clip:  8 - Size 2x3 - Dur 10-20 - 1200
-Plasma Cannon    - lvl 8 - 2H - Dam:50-80 - Recharge: 1.5 - Reload: 4.0 - Clip:  8 - Size 2x5 - Dur 10-20 - 1800
-
-*** Caseless & Magnetic etc ***  Implement more later?
-Exterminator Ammo- lvl 6 - Speed: 30                                                                      - 5 
-Exterminator     - lvl 8 - 2H - Dam: 8-48  -Recharge: 0.5 - Reload: 5.0 - Clip:  2 - Size ?   - Dur 10-20 - 1000
-Super Ext        - lvl 9 - 2H - Dam:90-140 -Recharge: 0.5 - Reload: 5.0 - Clip:  2 - Size ?   - Dur 10-20 - 3000
-
-
 ******************************************************************************************************/
 
 
