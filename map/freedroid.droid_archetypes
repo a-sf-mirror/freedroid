@@ -1072,34 +1072,30 @@ Notes concerning this droid=_"This is the bartender."
 Droidname: HAR
 Droid uses portrait rotation series with prefix="harvester"
 Maximum speed of this droid: 2.1
-Class of this droid: 1
-Drops item class=1
+Class of this droid: 2
+Drops item class=2
 Maximum acceleration of this droid: 1.1
-Maximum energy of this droid: 10.1
-Maximum mana of this droid: 10.1
+Maximum energy of this droid: 300.1
+Maximum mana of this droid: 30.1
 Rate of healing: 2.1
-Experience_Reward gained for destroying one of this type: 40
-Range of vision of this droid=6
+Experience_Reward gained for destroying one of this type: 250
+Range of vision of this droid=10.0
 Time spent eyeing Tux=1.0
 Drive of this droid : 1
-Brain of this droid : 0
-Sensor 2 of this droid : 2
+Sensor 2 of this droid : 0
 Armament of this droid : 0
-Drive item=1
-Weapon item="Droid weaponry - 123"
-Number of Plasma Transistors=2
-Number of Superconductors=3
-Greeting Sound number=0
-Got Hit Sound number=0
+Drive item=10
+Weapon item="Droid weaponry - 296"
+Greeting Sound number=11
+Got Hit Sound number=-1
 Death sound file name="none"
 Attack animation sound file name="none"
-Chance of this robot scoring a hit=60
+Chance of this robot scoring a hit=50
 Chance modifier, that this robot gets hit=30
-Time to recover after getting hit=0.30
+Time to recover after getting hit=0.03
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 33
-Notes concerning this droid=_"simple rubbish diposal robot. Common device in most space craft to maintain a clean ship." 
-
+Notes concerning this droid=_"Run away! This bot will kill you!" 
 
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
