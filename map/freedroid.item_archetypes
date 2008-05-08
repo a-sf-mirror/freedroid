@@ -65,38 +65,33 @@ Item description text=_"Dummy item. If you see this, report a bug."
 
 /****** Hand to hand ********************************************************************************
 
-*** Cutting ***
-Big kitchen knife    - lvl 0 - str 0 dex 0 - 1H - Dam: 0-2 - Recharge: 0.5 - Inv size 1x2 - Dur  6-8  - 30
-Antique sword        - lvl 2 - str 0 dex20 - 1H - Dam: 2-4 - Recharge: 0.55- Inv size 1x4 - Dur  8-12 -100
-Chainsaw             - lvl 4 - str15 dex20 - 2H - Dam: 2-3 - Recharge: 0.15- Inv size 2x4 - Dur  5-6  -500
-
-*** Cleaving ***
-Meat cleaver         - lvl 0 - str 0 dex 0 - 1H - Dam: 1-3 - Recharge: 0.6 - Inv size 2x2 - Dur 10-15 - 50
-Small Axe            - lvl 2 - str14 dex15 - 1H - Dam: 2-6 - Recharge: 0.7 - Inv size 2x3 - Dur 12-17 - 80 
-Large Axe            - lvl 3 - str25 dex18 - 2H - Dam:10-20- Recharge: 1.2 - Inv size 2x4 - Dur 14-19 -120
-
-*** Piercing ***
-Hunting knife        - lvl 1 - str 0 dex 0 - 1H - Dam: 0-2 - Recharge: 0.4 - Inv size 1x2 - Dur  5-7  - 40
-Metal spear          - lvl 3 - str20 dex26 - 1H - Dam: 2-5 - Recharge: 0.4 - Inv size 1x6 - Dur 15-20 - 80
-
-*** Impact ***
-Iron pipe            - lvl 0 - str 0 dex 0 - 1H - Dam: 1-3 - Recharge: 0.6 - Inv size 1x3 - Dur 12-17 - 30
-Big wrench           - lvl 0 - str 0 dex 0 - 1H - Dam: 1-4 - Recharge: 0.75- Inv size 1x3 - Dur 15-20 - 60
-Crowbar              - lvl 0 - str15 dex 0 - 1H - Dam: 1-4 - Recharge: 0.6 - Inv size 1x3 - Dur 20-30 - 60
-Hammer               - lvl 1 - str 0 dex 0 - 1H - Dam: 1-2 - Recharge: 0.5 - Inv size 1x3 - Dur 17-22 - 40
-Table leg            - lvl 1 - str 0 dex 0 - 1H - Dam: 1-2 - Recharge: 0.5 - Inv size 1x4 - Dur  5-10 - 10
-Mace                 - lvl 3 - str25 dex15 - 1H - Dam: 3-8 - Recharge: 0.8 - Inv size 1x3 - Dur 20-25 -180
-Baseball bat         - lvl 1 - str12 dex15 - 2H - Dam: 4-10- Recharge: 0.7 - Inv size 2x4 - Dur  5-10 - 30
-Iron bar             - lvl 2 - str20 dex15 - 2H - Dam: 6-12- Recharge: 1.0 - Inv size 1x6 - Dur 20-25 - 70
-Sledgehammer         - lvl 4 - str25 dex20 - 2H - Dam:20-30- Recharge: 1.5 - Inv size 2x5 - Dur 30-35 -150
-
-*** Energy ***
-Lightsaber           - lvl 7 - str 0 dex30 - 2H - Dam: 30-40 - Recharge: 0.5 - Inv size 1x2 - Dur 100 -1500
-Laserstaff           - lvl 8 - str 0 dex40 - 2H - Dam: 40-60 - Recharge: 0.4 - Inv size 1x3 - Dur 100 -2000
-
-*** Special ***
-Nobody's edge
-Laser scalpel
+-> * Cutting *
+* Big kitchen knife    - 1H - Size 1x2 - lvl 0 - str 0 dex 0 - Dam: 0-2  - Recharge: 0.5  - Dur  6-8  -  30
+* Antique sword        - 1H - Size 1x4 - lvl 2 - str 0 dex20 - Dam: 2-4  - Recharge: 0.55 - Dur  8-12 - 100
+* Chainsaw             - 2H - Size 2x4 - lvl 4 - str15 dex20 - Dam: 2-3  - Recharge: 0.15 - Dur  5-6  - 500
+-> * Cleaving *
+* Meat cleaver         - 1H - Size 2x2 - lvl 0 - str 0 dex 0 - Dam: 1-3  - Recharge: 0.6  - Dur 10-15 -  50
+* Small Axe            - 1H - Size 2x3 - lvl 2 - str14 dex15 - Dam: 2-6  - Recharge: 0.7  - Dur 12-17 -  80 
+* Large Axe            - 2H - Size 2x4 - lvl 3 - str25 dex18 - Dam:10-20 - Recharge: 1.2  - Dur 14-19 - 120
+-> * Piercing *
+* Hunting knife        - 1H - Size 1x2 - lvl 1 - str 0 dex 0 - Dam: 0-2  - Recharge: 0.4  - Dur  5-7  -  40
+* Metal spear          - 1H - Size 1x6 - lvl 3 - str20 dex26 - Dam: 2-5  - Recharge: 0.4  - Dur 15-20 -  80
+-> * Impact *
+* Iron pipe            - 1H - Size 1x3 - lvl 0 - str 0 dex 0 - Dam: 1-3  - Recharge: 0.6  - Dur 12-17 -  30
+* Big wrench           - 1H - Size 1x3 - lvl 0 - str 0 dex 0 - Dam: 1-4  - Recharge: 0.75 - Dur 15-20 -  60
+* Crowbar              - 1H - Size 1x3 - lvl 0 - str15 dex 0 - Dam: 1-4  - Recharge: 0.6  - Dur 20-30 -  60
+* Hammer               - 1H - Size 1x3 - lvl 1 - str 0 dex 0 - Dam: 1-2  - Recharge: 0.5  - Dur 17-22 -  40
+* Table leg            - 1H - Size 1x4 - lvl 1 - str 0 dex 0 - Dam: 1-2  - Recharge: 0.5  - Dur  5-10 -  10
+* Mace                 - 1H - Size 1x3 - lvl 3 - str25 dex15 - Dam: 3-8  - Recharge: 0.8  - Dur 20-25 - 180
+* Baseball bat         - 2H - Size 2x4 - lvl 1 - str12 dex15 - Dam: 4-10 - Recharge: 0.7  - Dur  5-10 -  30
+* Iron bar             - 2H - Size 1x6 - lvl 2 - str20 dex15 - Dam: 6-12 - Recharge: 1.0  - Dur 20-25 -  70
+* Sledgehammer         - 2H - Size 2x5 - lvl 4 - str25 dex20 - Dam:20-30 - Recharge: 1.5  - Dur 30-35 - 150
+-> * Energy *
+* Lightsaber           - 2H - Size 1x2 - lvl 7 - str 0 dex30 - Dam:30-40 - Recharge: 0.5  - Dur 100   -1500
+* Laserstaff           - 2H - Size 1x3 - lvl 8 - str 0 dex40 - Dam:40-60 - Recharge: 0.4  - Dur 100   -2000
+-> * Special *
+* Nobody's edge
+* Laser scalpel
 
 //Not implemented suggestions to add more variaty
 //Sharpened screwdriver- lvl 1 - str 0 dex 0 - 1H - Dam: 0-2 - Recharge: 0.5 - Inv size 1x2 - Dur  6-8  - 20  
@@ -110,45 +105,38 @@ Laser scalpel
 Ranged weaps durability balancing not done! Need code change (weapons wear down during use, not when char hit)
 Conventional main disadvantage - Expensive ammo!!
 
-*** Conventional ***
-.22 LR Ammo      - lvl 3 - Speed: 30                                                                      -  4
-.22 LR Automatic - lvl 3 - 1H - Dam: 0-2  - Recharge: 0.4 - Reload: 3.0 - Clip: 11 - Size 1x2 - Dur 10-20 - 150
-.22 LR Rifle     - lvl 4 - 2H - Dam: 1-4  - Recharge: 0.6 - Reload:10.0 - Clip: 11 - Size 1x5 - Dur 10-20 - 250
-
-Shotgun Ammo     - lvl 4 - Speed: 30                                                                      - 12
-Saw off          - lvl 4 - 1H - Dam: 2-10 - Recharge: 0.4 - Reload: 5.0 - Clip:  2 - Size 2x2 - Dur 10-20 - 200
-2 barrel         - lvl 4 - 2H - Dam: 2-18 - Recharge: 0.4 - Reload: 5.0 - Clip:  2 - Size 2x4 - Dur 10-20 - 250
-Pump action      - lvl 5 - 2H - Dam: 2-14 - Recharge: 0.6 - Reload: 4.0 - Clip:  8 - Size 2x4 - Dur 10-20 - 300
-
-9x19mm Ammo      - lvl 5 - Speed: 30                                                                      - 18 
-9mm Automatic    - lvl 5 - 1H - Dam: 4-10 - Recharge: 0.5 - Reload: 3.0 - Clip: 19 - Size 1x2 - Dur 10-20 - 400
-9mm SMG          - lvl 6 - 2H - Dam: 3-8  - Recharge: 0.2 - Reload: 3.0 - Clip: 30 - Size 2x3 - Dur 10-20 - 950
-
-7.62x39mm Ammo   - lvl 6 - Speed: 30                                                                      - 24 
-7.62mm Rifle     - lvl 6 - 2H - Dam:10-16 - Recharge: 0.8 - Reload: 5.0 - Clip:  5 - Size 1x6 - Dur 10-20 - 800
-7.62mm AK-47     - lvl 7 - 2H - Dam: 6-12 - Recharge: 0.2 - Reload: 3.0 - Clip: 30 - Size 2x5 - Dur 10-20 - 1400
+-> * Conventional *
+* .22 LR Ammo      - lvl 3 - Speed: 30                                                                      -  4
+* .22 LR Automatic - lvl 3 - 1H - Dam: 0-2  - Recharge: 0.4 - Reload: 3.0 - Clip: 11 - Size 1x2 - Dur 10-20 - 150
+* .22 LR Rifle     - lvl 4 - 2H - Dam: 1-4  - Recharge: 0.6 - Reload:10.0 - Clip: 11 - Size 1x5 - Dur 10-20 - 250
+* Shotgun Ammo      - lvl 4 - Speed: 30                                                                      - 12
+* Sawn off shotgun     - lvl 4 - 1H - Dam: 2-10 - Recharge: 0.4 - Reload: 5.0 - Clip:  2 - Size 2x2 - Dur 10-20 - 200
+* 2 barrel shotgun     - lvl 4 - 2H - Dam: 2-18 - Recharge: 0.4 - Reload: 5.0 - Clip:  2 - Size 2x4 - Dur 10-20 - 250
+* Pump action shotgun  - lvl 5 - 2H - Dam: 2-14 - Recharge: 0.6 - Reload: 4.0 - Clip:  8 - Size 2x4 - Dur 10-20 - 300
+* 9x19mm Ammo      - lvl 5 - Speed: 30                                                                      - 18 
+* 9mm Automatic    - lvl 5 - 1H - Dam: 4-10 - Recharge: 0.5 - Reload: 3.0 - Clip: 19 - Size 1x2 - Dur 10-20 - 400
+* 9mm SMG          - lvl 6 - 2H - Dam: 3-8  - Recharge: 0.2 - Reload: 3.0 - Clip: 30 - Size 2x3 - Dur 10-20 - 950
+* 7.62x39mm Ammo   - lvl 6 - Speed: 30                                                                      - 24 
+* 7.62mm Rifle     - lvl 6 - 2H - Dam:10-16 - Recharge: 0.8 - Reload: 5.0 - Clip:  5 - Size 1x6 - Dur 10-20 - 800
+* 7.62mm AK-47     - lvl 7 - 2H - Dam: 6-12 - Recharge: 0.2 - Reload: 3.0 - Clip: 30 - Size 2x5 - Dur 10-20 - 1400
 //5.56x45mm Ammo - Skipped due to too many & more common ammotypes already
-
-.50 BMG Ammo     - lvl 7 - Speed: 30  no stack, pass through                                              - 200
-Heavysniperrifle - lvl 8 - 2H - Dam:40-240- Recharge: 1.2 - Reload: 4.0 - Clip: 10 - Size 2x6 - Dur 10-20 - 2000
+* .50 BMG Ammo     - lvl 7 - Speed: 30  no stack, pass through                                              - 200
+* Heavysniperrifle - lvl 8 - 2H - Dam:40-240- Recharge: 1.2 - Reload: 4.0 - Clip: 10 - Size 2x6 - Dur 10-20 - 2000
 //Browning MG      - lvl 9 - 2H - Dam:40-120- Recharge: 0.2 - Reload: 3.0 - Clip: 100- Size 3x6 - Dur 10-20 - 4000
-
-*** Energy ***
-Laser Ammo       - lvl 4 - Speed: 45                                                                      - 2 
-Laser Pistol     - lvl 6 - 1H - Dam: 4-10 - Recharge: 0.4 - Reload: 3.0 - Clip: 12 - Size 1x2 - Dur 10-20 - 500
-Laser Rifle      - lvl 7 - 2H - Dam: 8-16 - Recharge: 0.6 - Reload: 4.0 - Clip: 24 - Size 1x4 - Dur 10-20 - 1000
-Small Pulslaser  - lvl 7 - 2H - Dam: 3-8  - Recharge: 0.15- Reload: 3.0 - Clip: 60 - Size 2x3 - Dur 10-20 - 1000
-Puls Laser       - lvl 8 - 2H - Dam: 6-14 - Recharge: 0.15- Reload: 4.0 - Clip: 60 - Size 2x4 - Dur 10-20 - 2000
-
-Plasma Ammo      - lvl 4 - Speed: 15                                                                      - 4 
-Plasma Pistol    - lvl 6 - 1H - Dam:12-18 - Recharge: 0.75- Reload: 3.0 - Clip:  6 - Size 1x2 - Dur 10-20 - 750
-Plasma Gun       - lvl 7 - 2H - Dam:24-30 - Recharge: 1.0 - Reload: 3.0 - Clip:  8 - Size 2x3 - Dur 10-20 - 1200
-Plasma Cannon    - lvl 8 - 2H - Dam:50-80 - Recharge: 1.5 - Reload: 4.0 - Clip:  8 - Size 2x5 - Dur 10-20 - 1800
-
-*** Caseless & Magnetic etc ***  Implement more later?
-Exterminator Ammo- lvl 6 - Speed: 30                                                                      - 5 
-Exterminator     - lvl 8 - 2H - Dam: 8-48  -Recharge: 0.5 - Reload: 5.0 - Clip:  2 - Size ?   - Dur 10-20 - 1000
-Super Ext        - lvl 9 - 2H - Dam:90-140 -Recharge: 0.5 - Reload: 5.0 - Clip:  2 - Size ?   - Dur 10-20 - 3000
+-> * Energy *
+* Laser Ammo       - lvl 4 - Speed: 45                                                                      - 2 
+* Laser Pistol     - lvl 6 - 1H - Dam: 4-10 - Recharge: 0.4 - Reload: 3.0 - Clip: 12 - Size 1x2 - Dur 10-20 - 500
+* Laser Rifle      - lvl 7 - 2H - Dam: 8-16 - Recharge: 0.6 - Reload: 4.0 - Clip: 24 - Size 1x4 - Dur 10-20 - 1000
+* Small Pulslaser  - lvl 7 - 2H - Dam: 3-8  - Recharge: 0.15- Reload: 3.0 - Clip: 60 - Size 2x3 - Dur 10-20 - 1000
+* Puls Laser       - lvl 8 - 2H - Dam: 6-14 - Recharge: 0.15- Reload: 4.0 - Clip: 60 - Size 2x4 - Dur 10-20 - 2000
+* Plasma Ammo      - lvl 4 - Speed: 15                                                                      - 4 
+* Plasma Pistol    - lvl 6 - 1H - Dam:12-18 - Recharge: 0.75- Reload: 3.0 - Clip:  6 - Size 1x2 - Dur 10-20 - 750
+* Plasma Gun       - lvl 7 - 2H - Dam:24-30 - Recharge: 1.0 - Reload: 3.0 - Clip:  8 - Size 2x3 - Dur 10-20 - 1200
+* Plasma Cannon    - lvl 8 - 2H - Dam:50-80 - Recharge: 1.5 - Reload: 4.0 - Clip:  8 - Size 2x5 - Dur 10-20 - 1800
+-> * Caseless & Magnetic etc *  Implement more later?
+* Exterminator Ammo- lvl 6 - Speed: 30                                                                      - 5 
+* Exterminator     - lvl 8 - 2H - Dam: 8-48  -Recharge: 0.5 - Reload: 5.0 - Clip:  2 - Size ?   - Dur 10-20 - 1000
+* Super Ext        - lvl 9 - 2H - Dam:90-140 -Recharge: 0.5 - Reload: 5.0 - Clip:  2 - Size ?   - Dur 10-20 - 3000
 
 ******************************************************************************************************/
 
@@ -3694,7 +3682,7 @@ Item uses rotation series with prefix="plasma_transistor"
 Items of this type collect together in inventory="yes"
 File or directory name for inventory image="plasma_transistor/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
-Base list price=100
+Base list price=50
 Item description text=_"This is an standard part within many robots types."
 ** End of new item specification subsection **
 
@@ -3707,7 +3695,7 @@ Item uses rotation series with prefix="superconducting_relay_unit"
 Items of this type collect together in inventory="yes"
 File or directory name for inventory image="superconducting_relay_unit/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
-Base list price=100
+Base list price=40
 Item description text=_"This is an standard part within many robots types."
 ** End of new item specification subsection **
 
@@ -3720,7 +3708,7 @@ Item uses rotation series with prefix="antimatter_matter_converter"
 Items of this type collect together in inventory="yes"
 File or directory name for inventory image="antimatter_matter_converter/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
-Base list price=100
+Base list price=30
 Item description text=_"This is an standard part within many robot types."
 ** End of new item specification subsection **
 
@@ -3733,7 +3721,7 @@ Item uses rotation series with prefix="entropy_inverter"
 Items of this type collect together in inventory="yes"
 File or directory name for inventory image="entropy_inverter/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
-Base list price=100
+Base list price=20
 Item description text=_"This is an standard part within many robots types."
 ** End of new item specification subsection **
 
@@ -3746,7 +3734,7 @@ Item uses rotation series with prefix="tachyon_converter"
 Items of this type collect together in inventory="yes"
 File or directory name for inventory image="tachyon_converter/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
-Base list price=100
+Base list price=10
 Item description text=_"This is an standard part within many robots types."
 ** End of new item specification subsection **
 
