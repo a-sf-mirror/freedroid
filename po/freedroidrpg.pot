@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: freedroid-discussion@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-05-07 14:41+0200\n"
+"POT-Creation-Date: 2008-05-08 08:06+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1520,27 +1520,27 @@ msgstr ""
 msgid "The armor hides his body."
 msgstr ""
 
-#: ../src/init.c:1931
+#: ../src/init.c:1912
 msgid "Huh? What?  Where am I?"
 msgstr ""
 
-#: ../src/init.c:2041
+#: ../src/init.c:2022
 msgid "Updating Tux images"
 msgstr ""
 
-#: ../src/init.c:2042
+#: ../src/init.c:2023
 msgid "(this may take a little while...)"
 msgstr ""
 
-#: ../src/init.c:2045
+#: ../src/init.c:2026
 msgid "Starting new game."
 msgstr ""
 
-#: ../src/init.c:2362
+#: ../src/init.c:2343
 msgid "Game over.\n"
 msgstr ""
 
-#: ../src/init.c:2456
+#: ../src/init.c:2437
 msgid "Game won.\n"
 msgstr ""
 
@@ -1556,71 +1556,71 @@ msgstr ""
 msgid "Sorry, you don't have automap yet:  map maker item not present."
 msgstr ""
 
-#: ../src/items.c:1168
+#: ../src/items.c:1173
 msgid "I can't use this item here."
 msgstr ""
 
-#: ../src/items.c:1181
+#: ../src/items.c:1186
 #, c-format
 msgid "How do you expect to do two things at a time? You are "
 msgstr ""
 
-#: ../src/items.c:1185
+#: ../src/items.c:1190
 msgid "drinking a potion!"
 msgstr ""
 
-#: ../src/items.c:1188
+#: ../src/items.c:1193
 msgid "waiting for you weapon to fire again!"
 msgstr ""
 
-#: ../src/items.c:1191
+#: ../src/items.c:1196
 msgid "reloading your weapon!"
 msgstr ""
 
-#: ../src/items.c:1194
+#: ../src/items.c:1199
 msgid "throwing a grenade!"
 msgstr ""
 
-#: ../src/items.c:1197
+#: ../src/items.c:1202
 msgid "running a program!"
 msgstr ""
 
-#: ../src/items.c:1200
+#: ../src/items.c:1205
 msgid "doing something so weird the game does not understand what it is"
 msgstr ""
 
-#: ../src/items.c:2163 ../src/items.c:2198 ../src/items.c:2200
+#: ../src/items.c:2168 ../src/items.c:2203 ../src/items.c:2205
 msgid "Identified air."
 msgstr ""
 
-#: ../src/items.c:2219
+#: ../src/items.c:2224
 #, c-format
 msgid "You already know all there is to know about the %s."
 msgstr ""
 
-#: ../src/items.c:2225
+#: ../src/items.c:2230
 #, c-format
 msgid "Identified %s"
 msgstr ""
 
-#: ../src/items.c:2455
+#: ../src/items.c:2460
 msgid "Two-handed weapon requirements not met: shield bonus doesn't count."
 msgstr ""
 
-#: ../src/items.c:2474
+#: ../src/items.c:2479
 msgid "You cannot fight with this!"
 msgstr ""
 
-#: ../src/items.c:2517
+#: ../src/items.c:2522
 msgid "Shield requirements not met: two-handed weapon bonus doesn't count."
 msgstr ""
 
-#: ../src/items.c:2638
+#: ../src/items.c:2643
 #, c-format
 msgid "Item taken: %s."
 msgstr ""
 
-#: ../src/items.c:2690 ../src/items.c:2864
+#: ../src/items.c:2695 ../src/items.c:2869
 msgid "I can't carry any more."
 msgstr ""
 
@@ -2090,9 +2090,9 @@ msgstr ""
 msgid "Performance Tweaks"
 msgstr ""
 
-#: ../src/menu.c:1427 ../src/menu.c:1540 ../src/menu.c:1653 ../src/menu.c:1721
-#: ../src/menu.c:1800 ../src/menu.c:1915 ../src/menu.c:1956 ../src/menu.c:2230
-#: ../src/menu.c:2342 ../src/menu.c:2421
+#: ../src/menu.c:1427 ../src/menu.c:1540 ../src/menu.c:1636 ../src/menu.c:1704
+#: ../src/menu.c:1783 ../src/menu.c:1898 ../src/menu.c:1939 ../src/menu.c:2213
+#: ../src/menu.c:2325 ../src/menu.c:2404
 msgid "Back"
 msgstr ""
 
@@ -2131,166 +2131,150 @@ msgid ""
 "   Thank you.\n"
 msgstr ""
 
-#: ../src/menu.c:1593
-msgid ""
-"\n"
-"You are using SDL instead of OpenGL\n"
-"\tfor graphics ouput right now.\n"
-"\t\t\n"
-"\t\t\t\t\tFreedroidRPG only supports 640x480\n"
-"\tin SDL mode.\n"
-"\t\t\t\t\n"
-"\t\t\t\t\t\tYou might want to restart the game using\n"
-"\tOpenGL instead.\n"
-"\t\t\t\t\n"
-"\t\t\t\t\t\t\n"
-"\t\t\t\t\t\tThank you.\n"
-msgstr ""
-
-#: ../src/menu.c:1646
+#: ../src/menu.c:1629
 #, c-format
 msgid "Gamma Correction: %1.2f"
 msgstr ""
 
-#: ../src/menu.c:1647
+#: ../src/menu.c:1630
 #, c-format
 msgid "Fullscreen Mode: %s"
 msgstr ""
 
-#: ../src/menu.c:1648
+#: ../src/menu.c:1631
 #, c-format
 msgid "Change Screen Resolution"
 msgstr ""
 
-#: ../src/menu.c:1649
+#: ../src/menu.c:1632
 #, c-format
 msgid "Show Blood: %s"
 msgstr ""
 
-#: ../src/menu.c:1650 ../src/menu.c:1791 ../src/menu.c:1793 ../src/menu.c:1795
-#: ../src/menu.c:1797 ../src/menu.c:1799
+#: ../src/menu.c:1633 ../src/menu.c:1774 ../src/menu.c:1776 ../src/menu.c:1778
+#: ../src/menu.c:1780 ../src/menu.c:1782
 msgid "YES"
 msgstr ""
 
-#: ../src/menu.c:1650 ../src/menu.c:1791 ../src/menu.c:1793 ../src/menu.c:1795
-#: ../src/menu.c:1797 ../src/menu.c:1799
+#: ../src/menu.c:1633 ../src/menu.c:1774 ../src/menu.c:1776 ../src/menu.c:1778
+#: ../src/menu.c:1780 ../src/menu.c:1782
 msgid "NO"
 msgstr ""
 
-#: ../src/menu.c:1651
+#: ../src/menu.c:1634
 #, c-format
 msgid "Automap Scale: %2.1f"
 msgstr ""
 
-#: ../src/menu.c:1719
+#: ../src/menu.c:1702
 #, c-format
 msgid "Background Music Volume: %1.2f"
 msgstr ""
 
-#: ../src/menu.c:1720
+#: ../src/menu.c:1703
 #, c-format
 msgid "Sound Effects Volume: %1.2f"
 msgstr ""
 
-#: ../src/menu.c:1790
+#: ../src/menu.c:1773
 #, c-format
 msgid "Hog CPU for max. performance: %s"
 msgstr ""
 
-#: ../src/menu.c:1792
+#: ../src/menu.c:1775
 #, c-format
 msgid "Highlighting mode: %s"
 msgstr ""
 
-#: ../src/menu.c:1792
+#: ../src/menu.c:1775
 msgid "FULL"
 msgstr ""
 
-#: ../src/menu.c:1792
+#: ../src/menu.c:1775
 msgid "REDUCED"
 msgstr ""
 
-#: ../src/menu.c:1793
+#: ../src/menu.c:1776
 #, c-format
 msgid "Skip light radius: %s"
 msgstr ""
 
-#: ../src/menu.c:1794
+#: ../src/menu.c:1777
 #, c-format
 msgid "Skip shadow blitting: %s"
 msgstr ""
 
-#: ../src/menu.c:1796
+#: ../src/menu.c:1779
 #, c-format
 msgid "Skip fadings: %s"
 msgstr ""
 
-#: ../src/menu.c:1798
+#: ../src/menu.c:1781
 #, c-format
 msgid "Use SDL automap: %s"
 msgstr ""
 
-#: ../src/menu.c:1910
+#: ../src/menu.c:1893
 #, c-format
 msgid "Show Position: %s"
 msgstr ""
 
-#: ../src/menu.c:1910 ../src/menu.c:1911 ../src/menu.c:1912 ../src/menu.c:1951
-#: ../src/menu.c:1952 ../src/menu.c:1953 ../src/menu.c:1954 ../src/menu.c:1955
+#: ../src/menu.c:1893 ../src/menu.c:1894 ../src/menu.c:1895 ../src/menu.c:1934
+#: ../src/menu.c:1935 ../src/menu.c:1936 ../src/menu.c:1937 ../src/menu.c:1938
 msgid "ON"
 msgstr ""
 
-#: ../src/menu.c:1910 ../src/menu.c:1911 ../src/menu.c:1912 ../src/menu.c:1951
-#: ../src/menu.c:1952 ../src/menu.c:1953 ../src/menu.c:1954 ../src/menu.c:1955
+#: ../src/menu.c:1893 ../src/menu.c:1894 ../src/menu.c:1895 ../src/menu.c:1934
+#: ../src/menu.c:1935 ../src/menu.c:1936 ../src/menu.c:1937 ../src/menu.c:1938
 msgid "OFF"
 msgstr ""
 
-#: ../src/menu.c:1911
+#: ../src/menu.c:1894
 #, c-format
 msgid "Show Framerate: %s"
 msgstr ""
 
-#: ../src/menu.c:1912
+#: ../src/menu.c:1895
 #, c-format
 msgid "Show Enemy Energy Bars: %s"
 msgstr ""
 
-#: ../src/menu.c:1913
+#: ../src/menu.c:1896
 #, c-format
 msgid "Screen Messages at most: %d"
 msgstr ""
 
-#: ../src/menu.c:1914
+#: ../src/menu.c:1897
 #, c-format
 msgid "Screen Message time: %3.1f"
 msgstr ""
 
-#: ../src/menu.c:1951
+#: ../src/menu.c:1934
 #, c-format
 msgid "Enemy Hit Texts: %s"
 msgstr ""
 
-#: ../src/menu.c:1952
+#: ../src/menu.c:1935
 #, c-format
 msgid "Enemy Bumped Texts: %s"
 msgstr ""
 
-#: ../src/menu.c:1953
+#: ../src/menu.c:1936
 #, c-format
 msgid "Enemy Aim Texts: %s"
 msgstr ""
 
-#: ../src/menu.c:1954
+#: ../src/menu.c:1937
 #, c-format
 msgid "All in-game Speech: %s"
 msgstr ""
 
-#: ../src/menu.c:1955
+#: ../src/menu.c:1938
 #, c-format
 msgid "Reprogram bots after takeover: %s"
 msgstr ""
 
-#: ../src/menu.c:1973
+#: ../src/menu.c:1956
 msgid ""
 "\n"
 " Please enter name of server to connect to:\n"
@@ -2298,7 +2282,7 @@ msgid ""
 " > "
 msgstr ""
 
-#: ../src/menu.c:2000
+#: ../src/menu.c:1983
 msgid ""
 "\n"
 "     Please enter a name\n"
@@ -2308,68 +2292,68 @@ msgid ""
 "     > "
 msgstr ""
 
-#: ../src/menu.c:2254 ../src/menu.c:2360 ../src/menu.c:2375
+#: ../src/menu.c:2237 ../src/menu.c:2343 ../src/menu.c:2358
 msgid "BACK"
 msgstr ""
 
-#: ../src/menu.c:2258
+#: ../src/menu.c:2241
 msgid ""
 "\n"
 "\n"
 "No saved games found!!  Loading Cancelled. "
 msgstr ""
 
-#: ../src/menu.c:2359
+#: ../src/menu.c:2342
 msgid "Sure!"
 msgstr ""
 
-#: ../src/menu.c:2362
+#: ../src/menu.c:2345
 #, c-format
 msgid "Really delete hero '%s'?"
 msgstr ""
 
-#: ../src/menu.c:2379
+#: ../src/menu.c:2362
 msgid ""
 "\n"
 "\n"
 "No saved games found!!  Deletion Cancelled. "
 msgstr ""
 
-#: ../src/menu.c:2418
+#: ../src/menu.c:2401
 msgid "New Hero"
 msgstr ""
 
-#: ../src/menu.c:2419
+#: ../src/menu.c:2402
 msgid "Load existing Hero"
 msgstr ""
 
-#: ../src/menu.c:2420
+#: ../src/menu.c:2403
 msgid "Delete existing Hero"
 msgstr ""
 
-#: ../src/menu.c:2583
+#: ../src/menu.c:2566
 msgid ""
 "This is the record of all missions you have been assigned:\n"
 "\n"
 msgstr ""
 
-#: ../src/menu.c:2598
+#: ../src/menu.c:2581
 msgid "SOLVED: "
 msgstr ""
 
-#: ../src/menu.c:2602
+#: ../src/menu.c:2585
 msgid "FAILED: "
 msgstr ""
 
-#: ../src/menu.c:2606
+#: ../src/menu.c:2589
 msgid "ASSIGNED: "
 msgstr ""
 
-#: ../src/menu.c:2610
+#: ../src/menu.c:2593
 msgid "UNASSIGNED: "
 msgstr ""
 
-#: ../src/menu.c:2618
+#: ../src/menu.c:2601
 msgid ""
 "\n"
 "\n"
@@ -2489,18 +2473,18 @@ msgstr ""
 msgid "Game loaded."
 msgstr ""
 
-#: ../src/ship.c:66 ../src/shop.c:1006 ../src/shop.c:1033 ../src/shop.c:1070
-#: ../src/shop.c:1294 ../src/shop.c:1483
+#: ../src/ship.c:66 ../src/shop.c:1007 ../src/shop.c:1034 ../src/shop.c:1071
+#: ../src/shop.c:1295 ../src/shop.c:1484
 msgid "Yes"
 msgstr ""
 
-#: ../src/ship.c:67 ../src/shop.c:1007 ../src/shop.c:1034 ../src/shop.c:1071
-#: ../src/shop.c:1295 ../src/shop.c:1484
+#: ../src/ship.c:67 ../src/shop.c:1008 ../src/shop.c:1035 ../src/shop.c:1072
+#: ../src/shop.c:1296 ../src/shop.c:1485
 msgid "No"
 msgstr ""
 
-#: ../src/ship.c:82 ../src/shop.c:1014 ../src/shop.c:1041 ../src/shop.c:1234
-#: ../src/shop.c:1320 ../src/shop.c:1549
+#: ../src/ship.c:82 ../src/shop.c:1015 ../src/shop.c:1042 ../src/shop.c:1235
+#: ../src/shop.c:1321 ../src/shop.c:1550
 msgid " BACK "
 msgstr ""
 
@@ -2685,45 +2669,45 @@ msgstr ""
 msgid " This weapon requires .50 (12.7x99mm) Browning Machine Gun rounds."
 msgstr ""
 
-#: ../src/shop.c:1017
+#: ../src/shop.c:1018
 msgid ""
 "\n"
 "\n"
 "You can't afford to have this item repaired! "
 msgstr ""
 
-#: ../src/shop.c:1044
+#: ../src/shop.c:1045
 msgid "You can't afford to have this item identified! "
 msgstr ""
 
-#: ../src/shop.c:1113
+#: ../src/shop.c:1114
 msgid ""
 "\n"
 "\n"
 "    Are you sure you wish to sell this/(some of these) item(s)?"
 msgstr ""
 
-#: ../src/shop.c:1237
+#: ../src/shop.c:1238
 msgid ""
 "\n"
 "\n"
 "   No room for this item in inventory!"
 msgstr ""
 
-#: ../src/shop.c:1261
+#: ../src/shop.c:1262
 msgid ""
 "\n"
 "Tried to take 0 items of a kind from chest or cointainer... doing nothing... "
 msgstr ""
 
-#: ../src/shop.c:1323
+#: ../src/shop.c:1324
 msgid ""
 "\n"
 "\n"
 "    You can't afford to purchase this item!"
 msgstr ""
 
-#: ../src/shop.c:1551
+#: ../src/shop.c:1552
 msgid " YOU DONT HAVE ANYTHING THAT WOULD NEED REPAIR "
 msgstr ""
 
