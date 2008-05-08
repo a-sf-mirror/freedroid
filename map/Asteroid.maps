@@ -2364,14 +2364,14 @@ x=73 y=23 name="OracleStart"
 x=71 y=42 name="BenjaminCitadelStartGameSquare"
 /plabelinfolvl
 pobstaclelabelinfolvl
-obstacle_label.index=0 obstacle_label_name="NoviceArenaAccessDoor"
-obstacle_label.index=1 obstacle_label_name="MasterArenaAccessDoor"
-obstacle_label.index=2 obstacle_label_name="NorthernMaintainanceDoor"
+obstacle_label.index=0 obstacle_label_name="NoviceArenaAccessDoor" states="closed:27 opened:11"
+obstacle_label.index=1 obstacle_label_name="MasterArenaAccessDoor" states="closed:27 opened:11"
+obstacle_label.index=2 obstacle_label_name="NorthernMaintainanceDoor" states="closed:26 opened:6"
 obstacle_label.index=3 obstacle_label_name="SouthGateOfTown1"
-obstacle_label.index=4 obstacle_label_name="EastGateOfTown"
-obstacle_label.index=5 obstacle_label_name="OldTownGuardHouseEntrance"
+obstacle_label.index=4 obstacle_label_name="EastGateOfTown" states="closed:191 opened:181"
+obstacle_label.index=5 obstacle_label_name="OldTownGuardHouseEntrance" states="closed:26 opened:6"
 obstacle_label.index=6 obstacle_label_name="SouthGateOfTown2"
-obstacle_label.index=7 obstacle_label_name="DesertGate"
+obstacle_label.index=7 obstacle_label_name="DesertGate" states="closed:191 opened:181"
 /pobstaclelabelinfolvl
 pobsdescinfolvl
 obstacle_description.index=1 obstacle_description_text="The sign reads; Restricted Area.  Guard Members only.  Trespassers will be executed."
@@ -8823,7 +8823,7 @@ x=69 y=12 name="TeleportIntoTheWarehouse"
 x=68 y=12 name="ArrivePointBackFromWarehouse"
 /plabelinfolvl
 pobstaclelabelinfolvl
-obstacle_label.index=0 obstacle_label_name="AccessDoorToWarehouse"
+obstacle_label.index=0 obstacle_label_name="AccessDoorToWarehouse" states="closed:26 opened:6"
 /pobstaclelabelinfolvl
 pobsdescinfolvl
 obstacle_description.index=0 obstacle_description_text="These monitors show scanning results for all visitors wanting to enter the town.  You're lucky;  You're not being considered a terrorist.  For now."
@@ -15645,7 +15645,7 @@ x=20 y=59 name="DisruptorShieldBaseAccess"
 x=21 y=59 name="DisruptorShieldBaseReturn"
 /plabelinfolvl
 pobstaclelabelinfolvl
-obstacle_label.index=0 obstacle_label_name="DisruptorShieldBaseGate"
+obstacle_label.index=0 obstacle_label_name="DisruptorShieldBaseGate" states="closed:191 opened:181"
 /pobstaclelabelinfolvl
 pobsdescinfolvl
 /pobsdescinfolvl
@@ -16547,7 +16547,7 @@ x=66 y=51 name="JasmineStartGameSquare"
 /plabelinfolvl
 pobstaclelabelinfolvl
 obstacle_label.index=0 obstacle_label_name="HackingDoor1"
-obstacle_label.index=1 obstacle_label_name="KevinsDoor"
+obstacle_label.index=1 obstacle_label_name="KevinsDoor" states="closed:27 opened:11"
 obstacle_label.index=2 obstacle_label_name="HackingDoor3"
 /pobstaclelabelinfolvl
 pobsdescinfolvl
@@ -28737,12 +28737,12 @@ obstacle_label.index=10 obstacle_label_name="BreakingGlassWallOnTrap02"
 obstacle_label.index=11 obstacle_label_name="BreakingGlassWallOnTrap03"
 obstacle_label.index=12 obstacle_label_name="BreakingGlassWallOnTrap04"
 obstacle_label.index=13 obstacle_label_name="BreakingGlassSecretDoorWH01"
-obstacle_label.index=14 obstacle_label_name="CollapsingBrickWallMSOLobby01"
+obstacle_label.index=14 obstacle_label_name="CollapsingBrickWallMSOLobby01" states="default:236 triggered:237"
 obstacle_label.index=15 obstacle_label_name="EFenceSwitchable01a"
 obstacle_label.index=16 obstacle_label_name="EFenceSwitchable01b"
 obstacle_label.index=17 obstacle_label_name="MSOExitDoor"
-obstacle_label.index=18 obstacle_label_name="IntruderLaserTrapMSO01"
-obstacle_label.index=19 obstacle_label_name="IntruderLaserTrapMSO02"
+obstacle_label.index=18 obstacle_label_name="IntruderLaserTrapMSO01" states="default:326"
+obstacle_label.index=19 obstacle_label_name="IntruderLaserTrapMSO02" states="default:32 triggered:324"
 obstacle_label.index=20 obstacle_label_name="MSOMillerEntrance01"
 obstacle_label.index=21 obstacle_label_name="MSOHQDoor01"
 obstacle_label.index=22 obstacle_label_name="MSOHQDoor02"
@@ -29186,7 +29186,7 @@ x=16 y=33 name="wallEvent1Trigger"
 x=14 y=33 name="SupriseBotStart"
 /plabelinfolvl
 pobstaclelabelinfolvl
-obstacle_label.index=0 obstacle_label_name="wall1"
+obstacle_label.index=0 obstacle_label_name="all1" states="default:235 triggered:237"
 /pobstaclelabelinfolvl
 pobsdescinfolvl
 /pobsdescinfolvl
@@ -33280,32 +33280,32 @@ x=24 y=42 name="SecretAreaArrival"
 /plabelinfolvl
 pobstaclelabelinfolvl
 obstacle_label.index=0 obstacle_label_name="SADDGun"
-obstacle_label.index=1 obstacle_label_name="SADDGun1"
-obstacle_label.index=2 obstacle_label_name="SADDGun2"
-obstacle_label.index=3 obstacle_label_name="BreakableWall1"
-obstacle_label.index=4 obstacle_label_name="BreakableWall2"
-obstacle_label.index=5 obstacle_label_name="SADDDepotDoor"
-obstacle_label.index=6 obstacle_label_name="SADDBioDoor"
-obstacle_label.index=7 obstacle_label_name="BreakableWall3"
+obstacle_label.index=1 obstacle_label_name="SADDGun1" states="disabled:324 enabled:32"
+obstacle_label.index=2 obstacle_label_name="SADDGun2" states="disabled:324 enabled:32"
+obstacle_label.index=3 obstacle_label_name="BreakableWall1" states="normal:322 broken:237"
+obstacle_label.index=4 obstacle_label_name="BreakableWall2" states="normal:322 broken:237"
+obstacle_label.index=5 obstacle_label_name="SADDDepotDoor" states="closed:27 opened:11"
+obstacle_label.index=6 obstacle_label_name="SADDBioDoor" states="closed:27 opened:11"
+obstacle_label.index=7 obstacle_label_name="BreakableWall3" states="breakable:236"
 /pobstaclelabelinfolvl
 pobsdescinfolvl
 obstacle_description.index=0 obstacle_description_text="Intruders will be SHOT"
-obstacle_description.index=1 obstacle_description_text="Intruders will be SHOT, Survivals will be SHOT again."
+obstacle_description.index=1 obstacle_description_text="Intruders will be SHOT, Survivors will be SHOT again."
 obstacle_description.index=2 obstacle_description_text="Do not enter, SECRET AREA"
-obstacle_description.index=3 obstacle_description_text="Only magichans can go through walls"
-obstacle_description.index=4 obstacle_description_text="Maghicans can walt through walls. Can you"
+obstacle_description.index=3 obstacle_description_text="Only magicians can go through walls"
+obstacle_description.index=4 obstacle_description_text="Mahicians can walk through walls. Can you?"
 obstacle_description.index=5 obstacle_description_text="GhermoGate"
 obstacle_description.index=6 obstacle_description_text="Hermetic door"
-obstacle_description.index=7 obstacle_description_text="Hermetic doot"
+obstacle_description.index=7 obstacle_description_text="Hermetic door"
 obstacle_description.index=8 obstacle_description_text="Hermetic door"
 obstacle_description.index=9 obstacle_description_text="Hermetic door"
 obstacle_description.index=10 obstacle_description_text="Hermetic door"
-obstacle_description.index=11 obstacle_description_text="Door status;blocked"
-obstacle_description.index=12 obstacle_description_text="Hermetic doors closed. Main power supply down, using backend power supply"
+obstacle_description.index=11 obstacle_description_text="Door status: blocked"
+obstacle_description.index=12 obstacle_description_text="Hermetic doors closed. Main power supply down, using backup power supply"
 obstacle_description.index=13 obstacle_description_text="Food supplies status - critical. Ammunition supplies status - good"
 obstacle_description.index=14 obstacle_description_text="Hermetic door"
 obstacle_description.index=15 obstacle_description_text="Hermetic door"
-obstacle_description.index=16 obstacle_description_text="Hermetic doot"
+obstacle_description.index=16 obstacle_description_text="Hermetic door"
 obstacle_description.index=17 obstacle_description_text="Laboratory door"
 obstacle_description.index=18 obstacle_description_text="Control center door"
 obstacle_description.index=19 obstacle_description_text="Control center door"

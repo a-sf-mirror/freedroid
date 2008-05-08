@@ -118,6 +118,7 @@ enum
 
 #define MAX_OBSTACLES_ON_MAP 3000
 #define MAX_OBSTACLE_NAMES_PER_LEVEL 100
+#define MAX_OBSTACLE_STATES_PER_LEVEL 300
 #define MAX_OBSTACLE_DESCRIPTIONS_PER_LEVEL 100
 
 #define FLOOR_TILES_VISIBLE_AROUND_TUX ((GameConfig . screen_width >= 1024 ? 12 : GameConfig . screen_width >= 800 ? 9 : 7))

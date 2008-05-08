@@ -255,7 +255,7 @@ typedef struct triggered_action_s
     
     // Maybe the triggered action will change some obstacle on some level...
     char* modify_obstacle_with_label;
-    int modify_obstacle_to_type;
+    char* modify_obstacle_to_type;
 
     char * modify_event_trigger_with_action_label;
     int modify_event_trigger_value;
@@ -902,6 +902,11 @@ typedef struct level_s
     map_statement StatementList [ MAX_STATEMENTS_PER_LEVEL ];
     char *obstacle_name_list [ MAX_OBSTACLE_NAMES_PER_LEVEL ];
     char *obstacle_description_list [ MAX_OBSTACLE_DESCRIPTIONS_PER_LEVEL ];
+    int obstacle_statelist_base [ MAX_OBSTACLE_NAMES_PER_LEVEL ];
+    int obstacle_statelist_count [ MAX_OBSTACLE_NAMES_PER_LEVEL ];
+    char *obstacle_states_names [ MAX_OBSTACLE_STATES_PER_LEVEL ];
+    int obstacle_states_values [ MAX_OBSTACLE_STATES_PER_LEVEL ];
+
     map_tile *map [ MAX_MAP_LINES ];	// this is a vector of pointers
     short jump_threshold_north;
     short jump_threshold_south;

@@ -399,7 +399,7 @@ clear_out_all_events_and_actions( void )
 	AllTriggeredActions[i].also_execute_action_label="";
 	
 	AllTriggeredActions[i].modify_obstacle_with_label="";
-	AllTriggeredActions[i].modify_obstacle_to_type=-1;
+	AllTriggeredActions[i].modify_obstacle_to_type=0;
 	AllTriggeredActions[i].modify_event_trigger_with_action_label="";
 	AllTriggeredActions[i].modify_event_trigger_value=-1;
 	
@@ -427,7 +427,7 @@ clear_out_all_events_and_actions( void )
 #define EVENT_TRIGGER_ENABLED_STRING "Enable this trigger by default="
 
 #define MODIFY_OBSTACLE_WITH_LABEL_STRING "modify_obstacle_with_label=\""
-#define MODIFY_OBSTACLE_TO_TYPE_STRING "modify_obstacle_to_type="
+#define MODIFY_OBSTACLE_TO_TYPE_STRING "modify_obstacle_to_type=\""
 
 /**
  *
@@ -474,9 +474,9 @@ decode_all_event_actions ( char* EventSectionPointer )
 	    // But if such an obstacle label has been given, we also need to decode the new type that
 	    // this obstacle should be made into.  So we do it here:
 	    //
-	    ReadValueFromString( EventPointer , MODIFY_OBSTACLE_TO_TYPE_STRING , "%d" , 
-		    & ( AllTriggeredActions[ EventActionNumber ] . modify_obstacle_to_type ) , EndOfEvent );
-	    DebugPrintf ( 1 , "\nObstacle will be modified to type: %d." , AllTriggeredActions[ EventActionNumber ] . modify_obstacle_to_type );
+	    AllTriggeredActions[ EventActionNumber ] . modify_obstacle_to_type =
+		ReadAndMallocStringFromData ( EventPointer , MODIFY_OBSTACLE_TO_TYPE_STRING , "\"" ) ;
+	    DebugPrintf ( 1 , "\nObstacle will be modified to state: %s." , AllTriggeredActions[ EventActionNumber ] . modify_obstacle_to_type );
 	    }
 
 	//--------------------

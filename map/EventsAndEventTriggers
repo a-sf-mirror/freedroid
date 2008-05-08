@@ -297,77 +297,77 @@ Action="teleport_from_secret_area_collectors_2"
 * New event action *
 Name="unlock_kevins_door"
 modify_obstacle_with_label="KevinsDoor"
-modify_obstacle_to_type=11
+modify_obstacle_to_type="opened"
 * End of action *
 
 -- Open citadel (unsure)
 * New event action *
 Name="unlock_guardhouse_door"
 modify_obstacle_with_label="OldTownGuardHouseEntrance"
-modify_obstacle_to_type=6
+modify_obstacle_to_type="opened"
 * End of action *
 
 -- Open access to warehouse
 * New event action *
 Name="open_warehouse_access_door"
 modify_obstacle_with_label="AccessDoorToWarehouse"
-modify_obstacle_to_type=6
+modify_obstacle_to_type="opened"
 * End of action *
 
 -- Open exit of novice arena
 * New event action *
 Name="open_novice_arena_exit_door"
 modify_obstacle_with_label="NoviceArenaExitDoor"
-modify_obstacle_to_type=11
+modify_obstacle_to_type="opened"
 * End of action *
 
 -- Open exit of master arena
 * New event action *
 Name="open_master_arena_exit_door"
 modify_obstacle_with_label="MasterArenaExitDoor"
-modify_obstacle_to_type=11
+modify_obstacle_to_type="opened"
 * End of action *
 
 -- Open maintenance tunnels
 * New event action *
 Name="unlock_northern_maintainance_door"
 modify_obstacle_with_label="NorthernMaintainanceDoor"
-modify_obstacle_to_type=6
+modify_obstacle_to_type="opened"
 * End of action *
 
 -- Open east gate of town (crystal field)
 * New event action *
 Name="unlock_east_gate_of_town"
 modify_obstacle_with_label="EastGateOfTown"
-modify_obstacle_to_type=181
+modify_obstacle_to_type="opened"
 * End of action *
 
 -- Open access to disruptor base
 * New event action *
 Name="unlock_disruptor_base_gate"
 modify_obstacle_with_label="DisruptorShieldBaseGate"
-modify_obstacle_to_type=181
+modify_obstacle_to_type="opened"
 * End of action *
 
 -- Open access to desert
 * New event action *
 Name="unlock_desert"
 modify_obstacle_with_label="DesertGate"
-modify_obstacle_to_type=181
+modify_obstacle_to_type="opened"
 * End of action *
 
 -- Open novice arena
 * New event action *
 Name="unlock_novice_arena_access_door"
 modify_obstacle_with_label="NoviceArenaAccessDoor"
-modify_obstacle_to_type=11
+modify_obstacle_to_type="opened"
 * End of action *
 
 -- Open master arena
 * New event action *
 Name="unlock_master_arena_access_door"
 modify_obstacle_with_label="MasterArenaAccessDoor"
-modify_obstacle_to_type=11
+modify_obstacle_to_type="opened"
 * End of action *
 
 
@@ -375,55 +375,55 @@ modify_obstacle_to_type=11
 * New event action *
 Name="disable_sadd_gun1"
 modify_obstacle_with_label="SADDGun1"
-modify_obstacle_to_type=324
+modify_obstacle_to_type="disabled"
 * End of action *
 
 * New event action *
 Name="disable_sadd_gun2"
 modify_obstacle_with_label="SADDGun2"
-modify_obstacle_to_type=324
+modify_obstacle_to_type="disabled"
 * End of action *
 
 * New event action *
 Name="enable_sadd_gun1"
 modify_obstacle_with_label="SADDGun1"
-modify_obstacle_to_type=32
+modify_obstacle_to_type="enabled"
 * End of action *
 
 * New event action *
 Name="enable_sadd_gun2"
 modify_obstacle_with_label="SADDGun2"
-modify_obstacle_to_type=32
+modify_obstacle_to_type="enabled"
 * End of action *
 
 * New event action *
 Name="breake_wall_near_sadd_1"
 modify_obstacle_with_label="BreakableWall1"
-modify_obstacle_to_type=237
+modify_obstacle_to_type="broken"
 * End of action *
 
 * New event action *
 Name="breake_wall_near_sadd_2"
 modify_obstacle_with_label="BreakableWall2"
-modify_obstacle_to_type=237
+modify_obstacle_to_type="broken"
 * End of action *
 
 * New event action *
 Name="unlock_sadd_depot_door"
 modify_obstacle_with_label="SADDDepotDoor"
-modify_obstacle_to_type=11
+modify_obstacle_to_type="opened"
 * End of action *
 
 * New event action *
 Name="unlock_sadd_bio_door"
 modify_obstacle_with_label="SADDBioDoor"
-modify_obstacle_to_type=11
+modify_obstacle_to_type="opened"
 * End of action *
 
 * New event action *
 Name="make_wall_near_sadd_breakable"
 modify_obstacle_with_label="BreakableWall3"
-modify_obstacle_to_type=236
+modify_obstacle_to_type="breakable"
 * End of action *
 
 * New event action *
@@ -459,7 +459,7 @@ Delete the event trigger after it has been triggered=1
 * New event action *
 Name="wall1Action"
 modify_obstacle_with_label="wall1"
-modify_obstacle_to_type=237
+modify_obstacle_to_type="triggered"
 * End of action *
 
 * New event trigger *
@@ -471,7 +471,7 @@ Delete the event trigger after it has been triggered=1
 * New event action *
 Name="CollapsingBrickWallMSOLobbyTriggered"
 modify_obstacle_with_label="CollapsingBrickWallMSOLobby01"
-modify_obstacle_to_type=237
+modify_obstacle_to_type="triggered"
 * End of action *
 
 * New event trigger *
@@ -501,14 +501,14 @@ Delete the event trigger after it has been triggered=1
 * New event action *
 Name="IntruderDetectorsMSOLobby"
 modify_obstacle_with_label="IntruderLaserTrapMSO02"
-modify_obstacle_to_type=324
+modify_obstacle_to_type="triggered"
 Also execute action with label="IntruderDetectorsMSOLobby2"
 * End of action *
 
 * New event action *
 Name="IntruderDetectorsMSOLobby2"
 modify_obstacle_with_label="IntruderLaserTrapMSO01"
-modify_obstacle_to_type=326
+modify_obstacle_to_type="defaults"
 * End of action *
 
 

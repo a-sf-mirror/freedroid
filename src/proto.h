@@ -745,6 +745,7 @@ EXTERN int MouseCursorIsInRect ( SDL_Rect* our_rect , int x , int y );
 EXTERN int MouseCursorIsOnButton( int ButtonIndex , int x , int y );
 EXTERN void *MyMemmem ( char *haystack, size_t haystacklen, char *needle, size_t needlelen);
 EXTERN char* ReadAndMallocStringFromData ( char* SearchString , const char* StartIndicationString , const char* EndIndicationString );
+EXTERN char* ReadAndMallocStringFromDataOptional ( char* SearchString , const char* StartIndicationString , const char* EndIndicationString, char Terminator );
 EXTERN int CountStringOccurences ( char* SearchString , const char* TargetString ) ;
 EXTERN void ReadValueFromStringWithDefault( char* SearchBeginPointer , const char* ValuePreceedText , const char* FormatString , const char * DefaultValueString, void* TargetValue , char* EndOfSearchSectionPointer );
 EXTERN void ReadValueFromString( char* SearchBeginPointer , const char* ValuePreceedText , const char* FormatString , void* TargetValue , char* EndOfSearchSectionPointer );

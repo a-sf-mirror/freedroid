@@ -1826,9 +1826,17 @@ ExecuteEvent ( int EventNumber )
 	our_obstacle = give_pointer_to_obstacle_with_label ( AllTriggeredActions [ EventNumber ] . modify_obstacle_with_label ) ;
 	obstacle_level_num = give_level_of_obstacle_with_label ( AllTriggeredActions [ EventNumber ] . modify_obstacle_with_label ) ;
 	obstacle_level = curShip . AllLevels [ obstacle_level_num ] ;
-	if ( AllTriggeredActions [ EventNumber ] . modify_obstacle_to_type )
-		our_obstacle -> type = AllTriggeredActions [ EventNumber ] . modify_obstacle_to_type ;
-	else {
+	if ( AllTriggeredActions [ EventNumber ] . modify_obstacle_to_type ) {
+	    int j;
+	    int base  = obstacle_level -> obstacle_statelist_base  [ our_obstacle -> name_index ] ;
+	    int count = obstacle_level -> obstacle_statelist_count [ our_obstacle -> name_index ] ;
+	    for (j=0; j<count; j++)
+		if ( !strcmp ( obstacle_level->obstacle_states_names [ j+base ],
+			       AllTriggeredActions [ EventNumber ] . modify_obstacle_to_type) ) {
+		    our_obstacle -> type = obstacle_level->obstacle_states_values [ j+base ];
+		    break;
+		}
+	} else {
 		action_remove_obstacle (  curShip . AllLevels [ obstacle_level_num ], our_obstacle);
 	     }
 

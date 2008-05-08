@@ -599,7 +599,7 @@ decode_obstacle_names_of_this_level ( Level loadlevel , char* DataPointer )
     char* obstacle_nameSectionBegin;
     char* obstacle_nameSectionEnd;
     int NumberOfobstacle_namesInThisLevel;
-    int target_index;
+    int target_index, state_index;
 
     //--------------------
     // At first we set all the obstacle name pointers to NULL in order to
@@ -608,6 +608,14 @@ decode_obstacle_names_of_this_level ( Level loadlevel , char* DataPointer )
     for ( i = 0 ; i < MAX_OBSTACLE_NAMES_PER_LEVEL ; i ++ )
     {
 	loadlevel -> obstacle_name_list [ i ] = NULL ;
+	loadlevel -> obstacle_statelist_base [ i ] = -1 ;
+	loadlevel -> obstacle_statelist_count [ i ] = 0 ;
+    }
+
+    for ( i = 0 ; i < MAX_OBSTACLE_STATES_PER_LEVEL ; i ++ )
+    {
+	loadlevel -> obstacle_states_names [ i ] = NULL ;
+	loadlevel -> obstacle_states_values [ i ] = -1 ;
     }
     
     //--------------------
@@ -628,17 +636,44 @@ decode_obstacle_names_of_this_level ( Level loadlevel , char* DataPointer )
     // Now we decode all the map label information
     //
     obstacle_namePointer=obstacle_nameSectionBegin;
+    state_index = 0;
     for ( i = 0 ; i < NumberOfobstacle_namesInThisLevel ; i ++ )
     {
+	char *states;
 	obstacle_namePointer = strstr ( obstacle_namePointer + 1 , INDEX_OF_OBSTACLE_NAME );
 	ReadValueFromString( obstacle_namePointer , INDEX_OF_OBSTACLE_NAME , "%d" , 
 			     &(target_index) , obstacle_nameSectionEnd );
 	
 	loadlevel -> obstacle_name_list [ target_index ] = 
 	    ReadAndMallocStringFromData ( obstacle_namePointer , OBSTACLE_LABEL_ANNOUNCE_STRING , "\"" ) ;
+
+	states = ReadAndMallocStringFromDataOptional ( obstacle_namePointer , OBSTACLE_LABEL_STATES_STRING , "\"", '\n' );
 	
 	DebugPrintf( 1 , "\nobstacle_name_index=%d obstacle_label_name=\"%s\"" , target_index ,
 		     loadlevel -> obstacle_name_list [ target_index ] );
+	if(states) {
+	    char *p = states;
+	    while(*p) {
+		char *sname = p;
+		while(*p && *p != ':')
+		    p++;
+		if(!*p)
+		    break;
+		*p++ = 0;
+		char *value = p;
+		while(*p && *p != ' ')
+		    p++;
+		if(*p)
+		    *p++ = 0;
+		if(loadlevel -> obstacle_statelist_base [ target_index ] == -1)
+		    loadlevel -> obstacle_statelist_base [ target_index ] = state_index;
+		loadlevel -> obstacle_statelist_count [ target_index ] ++;
+		loadlevel -> obstacle_states_names [ state_index ] = strdup (sname);
+		loadlevel -> obstacle_states_values [ state_index ] = strtol (value, 0, 10);
+		state_index ++;
+	    }
+	    free (states);
+	}
     }
     
     //--------------------
@@ -1449,8 +1484,22 @@ encode_obstacle_names_of_this_level ( char* LevelMem , Level Lev )
     for ( i = 0 ; i < MAX_OBSTACLE_NAMES_PER_LEVEL ; i ++ )
     {
 	if ( Lev -> obstacle_name_list [ i ] == NULL ) continue;
-	sprintf( LevelMem, "%s%d %s%s\"\n", INDEX_OF_OBSTACLE_NAME, i, OBSTACLE_LABEL_ANNOUNCE_STRING,  Lev -> obstacle_name_list [ i ]);
-        LevelMem += strlen(LevelMem);
+	LevelMem += sprintf( LevelMem, "%s%d %s%s\"", INDEX_OF_OBSTACLE_NAME, i, OBSTACLE_LABEL_ANNOUNCE_STRING,  Lev -> obstacle_name_list [ i ]);
+	if ( Lev -> obstacle_statelist_count [ i ] ) {
+	    int base  = Lev -> obstacle_statelist_base  [ i ];
+	    int count = Lev -> obstacle_statelist_count [ i ];
+	    int j;
+	    LevelMem += sprintf( LevelMem, " %s", OBSTACLE_LABEL_STATES_STRING);
+	    for ( j = 0; j < count; j++ ) {
+		if (j)
+		    *LevelMem++ = ' ';
+		LevelMem += sprintf( LevelMem, "%s:%d",
+				     Lev -> obstacle_states_names  [ base+j ],
+				     Lev -> obstacle_states_values [ base+j ]);
+	    }
+	    *LevelMem++ = '"';
+	}
+	*LevelMem++ = '\n';	
     }
     
     strcat ( LevelMem , OBSTACLE_LABEL_END_STRING );

@@ -200,34 +200,36 @@ MyMemmem ( char *haystack, size_t haystacklen, char *needle, size_t needlelen)
 
 /**
  * This function looks for a string begin indicator and takes the string
- * from after there up to a sting end indicator and mallocs memory for
- * it, copys it there and returns it.
+ * from after there up to a string end indicator and mallocs memory for
+ * it, copies it there and returns it.
  * The original source string specified should in no way be modified.
+ * Returns 0 if the prefix string is not present
+ * Optionally, a char can be given as "end of record".  Usually '\n'.
+ * Set to 0 when not used.
  */
 char*
-ReadAndMallocStringFromData ( char* SearchString , const char* StartIndicationString , const char* EndIndicationString ) 
+ReadAndMallocStringFromDataOptional ( char* SearchString , const char* StartIndicationString , const char* EndIndicationString, char Terminator ) 
 {
   char* SearchPointer;
   char* EndOfStringPointer;
   char* ReturnString = "" ;
+  char* Limit;
   int StringLength;
 
-  if ( (SearchPointer = strstr ( SearchString , StartIndicationString )) == NULL )
-    {
-      fprintf( stderr, "\n\nStartIndicationString: '%s'\n" , StartIndicationString );
-      ErrorMessage ( __FUNCTION__  , "\
-The string that is supposed to prefix an entry in a text data file\n\
-of Freedroid was not found within this text data file.\n\
-This indicates some corruption in the data file in question.",
-				 PLEASE_INFORM, IS_FATAL );
-    }
+  for ( Limit=SearchString; *Limit && *Limit != Terminator; Limit++);
+
+  SearchPointer = strstr ( SearchString , StartIndicationString );
+
+  if ( (!SearchPointer) || (SearchPointer >= Limit) )
+    return 0;
   else
     {
       // Now we move to the beginning
       SearchPointer += strlen ( StartIndicationString );
 
       // Now we move to the end with the end pointer
-      if ( (EndOfStringPointer = strstr( SearchPointer , EndIndicationString ) ) == NULL )
+      EndOfStringPointer = strstr( SearchPointer , EndIndicationString );
+      if ( (!EndOfStringPointer) || (EndOfStringPointer >= Limit) )
 	{
 	  fprintf( stderr, "\n\nEndIndicationString: '%s'\n" , EndIndicationString );
 	  ErrorMessage ( __FUNCTION__  , "\
@@ -254,6 +256,29 @@ This indicates some corruption in the data file in question.",
       DebugPrintf( 2 , "\nchar* ReadAndMalocStringFromData (...): Successfully identified string : %s." , ReturnString );
     }
   return ( ReturnString );
+}; // char* ReadAndMallocStringFromDataOptional ( ... )
+
+/**
+ * This function looks for a string begin indicator and takes the string
+ * from after there up to a string end indicator and mallocs memory for
+ * it, copies it there and returns it.
+ * The original source string specified should in no way be modified.
+ * The lack of searched string is fatal.
+ */
+char*
+ReadAndMallocStringFromData ( char* SearchString , const char* StartIndicationString , const char* EndIndicationString ) 
+{
+  char *result = ReadAndMallocStringFromDataOptional ( SearchString, StartIndicationString, EndIndicationString, 0 );
+  if ( !result )
+    {
+      fprintf( stderr, "\n\nStartIndicationString: '%s'\n" , StartIndicationString );
+      ErrorMessage ( __FUNCTION__  , "\
+The string that is supposed to prefix an entry in a text data file\n\
+of Freedroid was not found within this text data file.\n\
+This indicates some corruption in the data file in question.",
+				 PLEASE_INFORM, IS_FATAL );
+    }
+  return result ;
 }; // char* ReadAndMallocStringFromData ( ... )
 
 /**

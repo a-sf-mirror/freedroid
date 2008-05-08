@@ -97,6 +97,7 @@
 #define OBSTACLE_LABEL_BEGIN_STRING "pobstaclelabelinfolvl"
 #define OBSTACLE_LABEL_END_STRING "/pobstaclelabelinfolvl"
 #define OBSTACLE_LABEL_ANNOUNCE_STRING "obstacle_label_name=\""
+#define OBSTACLE_LABEL_STATES_STRING "states=\""
 #define INDEX_OF_OBSTACLE_NAME "obstacle_label.index="
 
 #define OBSTACLE_DESCRIPTION_BEGIN_STRING "pobsdescinfolvl"
