@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: freedroid-discussion@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-05-08 08:06+0200\n"
+"POT-Creation-Date: 2008-05-08 17:57+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1944,65 +1944,65 @@ msgstr ""
 msgid "Weapon reloaded"
 msgstr ""
 
-#: ../src/map.c:2977
+#: ../src/map.c:3026
 msgid "Acolyte"
 msgstr ""
 
-#: ../src/map.c:2978
+#: ../src/map.c:3027
 msgid "Templar"
 msgstr ""
 
-#: ../src/map.c:2979
+#: ../src/map.c:3028
 msgid "Banshee"
 msgstr ""
 
-#: ../src/map.c:2980
+#: ../src/map.c:3029
 msgid "Chicago"
 msgstr ""
 
-#: ../src/map.c:2981
+#: ../src/map.c:3030
 msgid "Sawmill"
 msgstr ""
 
-#: ../src/map.c:2982
+#: ../src/map.c:3031
 msgid "Nemesis"
 msgstr ""
 
-#: ../src/map.c:2983
+#: ../src/map.c:3032
 msgid "Sparkie"
 msgstr ""
 
-#: ../src/map.c:2984 ../src/map.c:2989 ../src/map.c:2990 ../src/map.c:2991
-#: ../src/map.c:2993 ../src/map.c:2995 ../src/map.c:2996 ../src/map.c:2997
-#: ../src/map.c:2998
+#: ../src/map.c:3033 ../src/map.c:3038 ../src/map.c:3039 ../src/map.c:3040
+#: ../src/map.c:3042 ../src/map.c:3044 ../src/map.c:3045 ../src/map.c:3046
+#: ../src/map.c:3047
 msgid "NaN"
 msgstr ""
 
-#: ../src/map.c:2985
+#: ../src/map.c:3034
 msgid "Coward"
 msgstr ""
 
-#: ../src/map.c:2986
+#: ../src/map.c:3035
 msgid "Spinster"
 msgstr ""
 
-#: ../src/map.c:2987
+#: ../src/map.c:3036
 msgid "Ghoul"
 msgstr ""
 
-#: ../src/map.c:2988
+#: ../src/map.c:3037
 msgid "Apollo"
 msgstr ""
 
-#: ../src/map.c:2992
+#: ../src/map.c:3041
 msgid "If"
 msgstr ""
 
-#: ../src/map.c:2994
+#: ../src/map.c:3043
 msgid "Soviet"
 msgstr ""
 
-#: ../src/map.c:2999
+#: ../src/map.c:3048
 msgid "No Description For This One"
 msgstr ""
 
