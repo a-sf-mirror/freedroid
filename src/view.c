@@ -3804,59 +3804,51 @@ PutIndividuallyShapedDroidBody ( enemy * ThisRobot , SDL_Rect TargetRectangle , 
     // taking into account map coordinates and all that stuff...
     //
     else
-    {
+	{
 	if ( use_open_gl )
 	    {
+	    float r = 1.0, g = 1.0, b = 1.0;
 
 	    if ( ThisRobot -> paralysation_duration_left != 0 ) 
-	        {
-		draw_gl_textured_quad_at_map_position ( &enemy_iso_images[ RotationModel ] [ RotationIndex ] [ (int) ThisRobot -> animation_phase ] , 
-							       ThisRobot -> virt_pos . x , ThisRobot -> virt_pos . y , 1.0 , 0.2 , 0.2 , highlight, FALSE, zf ) ;
+		{
+		g = 0.2;
+		b = 0.2;
 		}
 	    else if ( ThisRobot -> poison_duration_left != 0 ) 
 		{
-		draw_gl_textured_quad_at_map_position ( &enemy_iso_images[ RotationModel ] [ RotationIndex ] [ (int) ThisRobot -> animation_phase ] , 
-							       ThisRobot -> virt_pos . x , ThisRobot -> virt_pos . y , 0.2 , 1.0 , 0.2 , highlight, FALSE, zf ) ;
+		r = 0.2;
+		b = 0.2;
 		}
 	    else if ( ThisRobot -> frozen != 0 ) 
-	        {
-		draw_gl_textured_quad_at_map_position ( &enemy_iso_images[ RotationModel ] [ RotationIndex ] [ (int) ThisRobot -> animation_phase ] , 
-							       ThisRobot -> virt_pos . x , ThisRobot -> virt_pos . y , 0.2 , 0.2 , 1.0 , highlight , FALSE, zf) ;
-	        }
-	    else
-	        {
-		//--------------------
-		// If we're using OpenGL, we can as well apply the darkness to the droids
-		// we're about to blit...
-		//
-		bot_pos . x = ThisRobot -> virt_pos . x ;
-		bot_pos . y = ThisRobot -> virt_pos . y ;
-	
-		darkness = 1.5 - 2.0 * ( ( (float) get_light_strength ( bot_pos ) ) / ( (float) NUMBER_OF_SHADOW_IMAGES ) ) ;
-		if ( darkness > 1 ) darkness = 1.0 ;
-		if ( darkness < 0 ) darkness = 0 ;
-		draw_gl_textured_quad_at_map_position ( 
+		{
+		r = 0.2;
+		g = 0.2;
+		}
+	    bot_pos . x = ThisRobot -> virt_pos . x ;
+	    bot_pos . y = ThisRobot -> virt_pos . y ;
+
+	    darkness = 1.5 - 2.0 * ( ( (float) get_light_strength ( bot_pos ) ) / ( (float) NUMBER_OF_SHADOW_IMAGES ) ) ;
+	    if ( darkness > 1 ) darkness = 1.0 ;
+	    if ( darkness < 0 ) darkness = 0 ;
+	    draw_gl_textured_quad_at_map_position ( 
 		    &enemy_iso_images [ RotationModel ] [ RotationIndex ] [ (int) ThisRobot -> animation_phase ] , 
 		    bot_pos.x , bot_pos.y , 
-		    darkness , darkness , darkness , highlight , FALSE, zf) ;
-		}
-
+		    darkness * r, darkness * g, darkness * b, highlight , FALSE, zf) ;
 	    }
- 
 	else 
- 	    { /*Using SDL*/
- 	    if ( mask & ZOOM_OUT )
+	    { /*Using SDL*/
+	    if ( mask & ZOOM_OUT )
 		{
 		//--------------------
 		// When no OpenGL is used, we need to proceed with SDL for
 		// blitting the small enemies...
 		//
 		blit_zoomed_iso_image_to_map_position ( & ( enemy_iso_images[ RotationModel ] [ RotationIndex ] [ 0 ] ) , 
-							ThisRobot -> virt_pos . x , ThisRobot -> virt_pos . y );
+			ThisRobot -> virt_pos . x , ThisRobot -> virt_pos . y );
 		}
 	    else
 		{
-		    
+
 		//--------------------
 		// First we catch the case of a dead bot (no color filteres SDL surfaces
 		// availabe for that case).  In the other cases, we use the prepared color-
@@ -3865,58 +3857,58 @@ PutIndividuallyShapedDroidBody ( enemy * ThisRobot , SDL_Rect TargetRectangle , 
 		if ( ThisRobot -> energy <= 0 )
 		    {
 		    blit_iso_image_to_map_position ( &enemy_iso_images [ RotationModel ] [ RotationIndex ] [ (int) ThisRobot -> animation_phase ] , ThisRobot 
-			-> virt_pos . x , ThisRobot -> virt_pos . y );
+			    -> virt_pos . x , ThisRobot -> virt_pos . y );
 		    }
 		else if ( ThisRobot -> paralysation_duration_left != 0 ) 
 		    {
 		    LoadAndPrepareRedEnemyRotationModelNr ( RotationModel );
 		    blit_iso_image_to_map_position ( &RedEnemyRotationSurfacePointer [ RotationModel ] [ RotationIndex ] [ 0 ] , 
-							 ThisRobot -> virt_pos . x , ThisRobot -> virt_pos . y );
+			    ThisRobot -> virt_pos . x , ThisRobot -> virt_pos . y );
 		    }
 		else if ( ThisRobot -> poison_duration_left != 0 ) 
 		    {
 		    LoadAndPrepareGreenEnemyRotationModelNr ( RotationModel );
 		    blit_iso_image_to_map_position ( &GreenEnemyRotationSurfacePointer [ RotationModel ] [ RotationIndex ] [ 0 ] , 
-							 ThisRobot -> virt_pos . x , ThisRobot -> virt_pos . y );
+			    ThisRobot -> virt_pos . x , ThisRobot -> virt_pos . y );
 		    }
 		else if ( ThisRobot -> frozen != 0 ) 
 		    {
 		    LoadAndPrepareBlueEnemyRotationModelNr ( RotationModel );
-	    	    blit_iso_image_to_map_position ( &BlueEnemyRotationSurfacePointer [ RotationModel ] [ RotationIndex ] [ 0 ] , 
-							 ThisRobot -> virt_pos . x , ThisRobot -> virt_pos . y );
+		    blit_iso_image_to_map_position ( &BlueEnemyRotationSurfacePointer [ RotationModel ] [ RotationIndex ] [ 0 ] , 
+			    ThisRobot -> virt_pos . x , ThisRobot -> virt_pos . y );
 		    }
 		else
 		    {
 		    blit_iso_image_to_map_position ( &enemy_iso_images [ RotationModel ] [ RotationIndex ] [ (int) ThisRobot -> animation_phase ] , ThisRobot -> virt_pos . x , ThisRobot -> virt_pos . y );
 		    if ( highlight )
-		        blit_outline_of_iso_image_to_map_position ( &enemy_iso_images [ RotationModel ] [ RotationIndex ] [ (int) ThisRobot -> animation_phase ] , ThisRobot -> virt_pos . x , ThisRobot -> virt_pos . y );
+			blit_outline_of_iso_image_to_map_position ( &enemy_iso_images [ RotationModel ] [ RotationIndex ] [ (int) ThisRobot -> animation_phase ] , ThisRobot -> virt_pos . x , ThisRobot -> virt_pos . y );
 		    }
-		    
+
 		}
 
 	    }
 
-        translate_map_point_to_screen_pixel ( ThisRobot -> virt_pos.x , ThisRobot -> virt_pos.y, &(TargetRectangle.x), &(TargetRectangle.y), zf ) ;
-	  
+	translate_map_point_to_screen_pixel ( ThisRobot -> virt_pos.x , ThisRobot -> virt_pos.y, &(TargetRectangle.x), &(TargetRectangle.y), zf ) ;
+
 	if ( use_open_gl )
-	{
+	    {
 	    TargetRectangle.x -= ( enemy_iso_images[ RotationModel ] [ RotationIndex ] [ 0 ] . original_image_width * zf) / 2 ;
 	    TargetRectangle.y -= ( enemy_iso_images[ RotationModel ] [ RotationIndex ] [ 0 ] . original_image_height * zf) / 1 ;
 	    TargetRectangle.w = enemy_iso_images[ RotationModel ] [ RotationIndex ] [ 0 ] . original_image_width * zf;
 	    TargetRectangle.h = enemy_iso_images[ RotationModel ] [ RotationIndex ] [ 0 ] . original_image_height * zf;
-	}
+	    }
 	else
-	{
+	    {
 	    TargetRectangle.x -= ( enemy_iso_images[ RotationModel ] [ RotationIndex ] [ 0 ] . surface -> w ) / 2 ;
 	    TargetRectangle.y -= ( enemy_iso_images[ RotationModel ] [ RotationIndex ] [ 0 ] . surface -> h ) / 1 ;
 	    TargetRectangle.w = enemy_iso_images[ RotationModel ] [ RotationIndex ] [ 0 ] . surface -> w;
 	    TargetRectangle.h = enemy_iso_images[ RotationModel ] [ RotationIndex ] [ 0 ] . surface -> h;
-	}
-	
+	    }
+
 	if ( GameConfig . enemy_energy_bars_visible )
 	    PutEnemyEnergyBar ( ThisRobot , TargetRectangle );
-	return;
-    }
+	    return;
+	    }
     
 }; // void PutIndividuallyShapedDroidBody ( int Enum , SDL_Rect TargetRectangle );
 
