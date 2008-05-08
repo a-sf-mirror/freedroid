@@ -7,8 +7,6 @@
 ** Start of new program specification subsection **
 Program name=_"Emergency shutdown"
 Program description=_"Target: Self
-Effect: Temperature -90 -10/rev
-Paralyze: 15s  -1/rev
 Everyone needs to turn off and cool down a bit now and then. Just be careful so you are not still offline when enemy bots close in..."
 Picture="Shutdown.png"
 Form="self"
@@ -43,8 +41,6 @@ Present at startup=1
 ** Start of new program specification subsection **
 Program name=_"Hacking"  
 Program description=_"Type: Target
-Takeover: 2 Pods  +1/rev
-Heat: 10  +10/rev
 Tux is gifted with the ability to hack any machine in no time.  To make use of this ability, select this skill. When a machine is close enough and this skill is activated by holding down the right mouse button, the takeover process will be initiated."
 Picture="TakeoverTalkSkill.png"
 Form="immediate"
@@ -57,9 +53,6 @@ Present at startup=1
 ** Start of new program specification subsection **
 Program name=_"Check system integrity"
 Program description=_"Type: Self
-Heal: 30
-Paralyze: 5s  -0.5/rev
-Heat: 30
 While repairing damage you must remember that patience is a virtue."
 Picture="FirstAidSpell.png"
 Form="self"
@@ -75,19 +68,17 @@ Cost per level=0
 Program name=_"Sanctuary"
 Program description=_"Type: Self
 Effect: Teleport to town or back 
-Heat: 55  -5/rev
 The art of rapidly moving away from danger is very useful. Even when used in reverse it has it's uses."
 Picture="TeleportHomeSpell.png"
 Form="self"
 Effect="teleport_home"
-Cost=50
-Cost per level=-5
+Cost=100
+Cost per level=-10
 
 ** Start of new program specification subsection **
 Program name=_"Analyze item"
 Program description=_"Type: Inventory
 Effect: Identify
-Heat: 135  -15/rev
 There are very few items which have labels on them. Unless you happen to have an item labeled 'USE ME', you better make sure what it is before using it..."
 Picture="IdentifySkill.png"
 Effect="identify"
@@ -96,17 +87,27 @@ Cost=120
 Cost per level=-15
 
 ** Start of new program specification subsection **
+Program name=_"Invisibility"
+Program description=_"Target: Self
+I am not the Linarian you are looking for."
+Picture="Invisibility.png"
+Form="self"
+Effect="invisibility"
+Effect duration=3
+Effect duration per level=1
+Cost=30
+Cost per level=5
+
+** Start of new program specification subsection **
 Program name=_"Malformed packet"
 Program description=_"Type: Target
-Damage: 0-2  +2/rev
-Heat: 3  +2/rev
 When computers are presented with the unexpected they can damage themselves."
 Picture="BadPacket.png"
 Effect="none"
 Form="immediate"
 Affect bots=1
 Affect humans=0
-Base damage=2
+Base damage=0
 Mod damage=2
 Damage per level=2
 Cost=5
@@ -115,8 +116,6 @@ Cost per level=2
 ** Start of new program specification subsection **
 Program name=_"Calculate Pi"  
 Program description=_"Type: Target
-Slowdown: 4s +2s/rev
-Heat: 8 +2/rev
 It is not a big problem to make a badly designed system to go hunting for the impossible, causing a performance impact."
 Picture="Calculate_PI.png"
 Form="immediate"
@@ -134,8 +133,6 @@ Cost per level=2
 ** Start of new program specification subsection **
 Program name=_"Blue Screen"
 Program description=_"Type: Target
-Paralyze: Bot 4s  +1/rev
-Heat: 40
 With a little touch a war machine comes crashing down to a halt. For a while."
 Picture="BlueScreen.png"
 Form="immediate"
@@ -151,8 +148,6 @@ Cost per level=0
 ** Start of new program specification subsection **
 Program name=_"Broadcast Blue Screen"
 Program description=_"Type: Radial wave
-Paralyze: Bot 2s  +1/rev
-Heat: 100
 With a little touch a war machine comes crashing down to a halt. For a while. The radio network is a wonderful invention for the people who like to blow up a lot of stuff at once."
 Picture="Poke.png"
 Effect="paralyze"
@@ -165,20 +160,6 @@ Effect duration=3
 Effect duration per level=1
 Cost=100
 Cost per level=0
-
-** Start of new program specification subsection **
-Program name=_"Invisibility"
-Program description=_"Target: Self
-Duration: 2s +1/rev
-Heat: 20 +10/rev
-I am not the Linarian you are looking for."
-Picture="Invisibility.png"
-Form="self"
-Effect="invisibility"
-Effect duration=3
-Effect duration per level=1
-Cost=30
-Cost per level=10
 
 ** Start of new program specification subsection **
 Program name=_"Virus"
@@ -202,9 +183,6 @@ Cost per level=5
 ** Start of new program specification subsection **
 Program name=_"Broadcast virus"
 Program description=_"Target: Radial wave
-Damage: 8  +2/rev
-Slowdown: 9s  +1s/rev
-Heat: 90 +10/rev
 The network is wide and dangerous. Many traps await for the weak and unprepared."
 Picture="BroadcastVirus.png"
 Form="radial"
@@ -222,8 +200,6 @@ Artwork internal code=1
 ** Start of new program specification subsection **
 Program name=_"Dispel smoke"
 Program description=_"Type: Target
-Damage: 35  +5/rev
-Heat: 75  +5/rev
 By heating up the chips with a malformed program you can cause them to release the magic smoke which keeps the bot running. "
 Picture="DispellSmoke.png"
 Form="immediate"
@@ -238,9 +214,7 @@ Cost per level=5
 ** Start of new program specification subsection **
 Program name=_"Killer poke"
 Program description=_"Type: Target
-Damage: 60-140  +20/rev
-Heat: 145  +15/rev
-Messing around with the bot's memory can cause it to damage itself, but the damage is greatly variable."
+Messing around with the bot's memory can cause it to severly damage itself, but the damage is greatly variable."
 Picture="DetectItemsSpell.png"
 Form="immediate"
 Effect="none"
@@ -252,25 +226,9 @@ Damage per level=20
 Cost=160
 Cost per level=15
 
-## Make target item of no higher lvl then skill into another same type (book, grenade, ammo, ranged conv weap, ranged energy weap) item of same or lower level.
-** Start of new program specification subsection **
-Program name=_"Reverse-engineer"
-Program description=_"Target: Inventory
-Heat:100
-There is some dark magic in the art of turning devices inside-out, picking them appart to learn all their secrets and putting them back again."
-Picture="ReverseEngineer.png"
-Form="self"
-Effect="none"
-E**ffect="transform"
-Base damage=0
-Cost=100
-
 ** Start of new program specification subsection **
 Program name=_"Plasma discharge"
 Program description=_"Type: Radial wave
-Damage: 150  +15/rev
-Damage self: 50  +5/rev
-Heat: 100  +10/rev
 The overload setting exists for emergencies. The plasma does not discriminate between bots and humans. Everything is equal to it, even Tux."
 Picture="RadialPlasmaWaveSpell.png"
 Form="radial"
@@ -288,8 +246,6 @@ Cost per level=10
 ** Start of new program specification subsection **
 Program name=_"Nethack"
 Program description=_"Type: Projectile
-Paralyze: Human 15s  +5s/rev
-Heat: 50  -5/rev
 The open source game called Nethack is one of the world's greatest wasters of time. Machines don't care about it, but humans can get sucked in quite deeply."
 Picture="Nethack.png"
 Form="bullet"
@@ -311,6 +267,19 @@ Picture="ExtractBotParts.png"
 Form="self"
 Effect="none"
 Cost=0
+
+## Make target item of no higher lvl then skill into another same type (book, grenade, ammo, ranged conv weap, ranged energy weap) item of same or lower level.
+** Start of new program specification subsection **
+Program name=_"Reverse-engineer"
+Program description=_"Target: Inventory
+Heat:100
+There is some dark magic in the art of turning devices inside-out, picking them appart to learn all their secrets and putting them back again."
+Picture="ReverseEngineer.png"
+Form="self"
+Effect="none"
+E**ffect="transform"
+Base damage=0
+Cost=100
 
 ** Start of new program specification subsection **
 Program name=_"Ricer CFLAGS"
