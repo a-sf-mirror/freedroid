@@ -253,7 +253,7 @@ Takeover ( enemy * target )
 	OpponentType = target->type;
 	cDroid = target;
 	// NumCapsules[YOU] = 3 + ClassOfDruid (Me.type);
-	NumCapsules[YOU] = 3 + Me . hacking_skill ;
+	NumCapsules[YOU] = 2 + Me . base_skill_level [ get_program_index_with_name("Hacking") ];
 	NumCapsules[ENEMY] = 2 + Druidmap [ OpponentType ] . class ;
 	
 	InventPlayground ();

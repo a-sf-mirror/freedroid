@@ -367,11 +367,6 @@ check_for_cheat_keys( void )
 	    if ( Me . spellcasting_skill < 8 ) Me . spellcasting_skill ++ ;
 	}
     }
-    if ( KP6Pressed() )
-    {
-	while ( KP6Pressed() );
-	if ( Me . hacking_skill < 8 ) Me . hacking_skill ++ ;
-    }
     
     //--------------------
     // Here we insert some cheat codes for assigning and completing missions

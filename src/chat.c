@@ -489,11 +489,6 @@ ExecuteChatExtra ( char* ExtraCommandString , Enemy ChatDroid )
 	ImproveSkill(&Me . spellcasting_skill); 
 	SetNewBigScreenMessage( "Programming ability improved!" );
 	}
-    else if ( ! strcmp ( ExtraCommandString , "IncreaseHackingSkill" ) )
-	{
-	ImproveSkill(&Me . hacking_skill); 
-	SetNewBigScreenMessage( "Hacking ability improved!" );
-	}
     else if ( CountStringOccurences ( ExtraCommandString , "IncreaseProgramVersionName:" ) )
 	{
 	DebugPrintf( CHAT_DEBUG_LEVEL , "\nExtra invoked increasing program version. --> have to decode... " );

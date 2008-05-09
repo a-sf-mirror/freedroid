@@ -62,7 +62,7 @@ ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=1 ChangeToValue=0
 ChangeOption=2 ChangeToValue=0
 ChangeOption=3 ChangeToValue=0
-DoSomethingExtra="IncreaseHackingSkill"
+DoSomethingExtra="IncreaseProgramVersionName:Hacking"
 DoSomethingExtra="PlantCookie:kevin_reward1_given:"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 

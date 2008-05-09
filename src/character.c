@@ -638,27 +638,6 @@ Error: Programming_Skill skill seems out of bounds.",
     DisplayText( _(AllSkillTexts [ Me . spellcasting_skill ]), 
 		 SPELLCASTING_SKILL_X + CharacterRect.x , SPELLCASTING_SKILL_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
 
-    //--------------------
-    // We add some security against skill values out of allowed
-    // bounds.
-    //
-    if ( ( Me . hacking_skill < 0 ) ||
-	 ( Me . hacking_skill >= NUMBER_OF_SKILL_LEVELS ) )
-    {
-	fprintf ( stderr , "\nhacking_skill: %d." , Me . hacking_skill );
-	ErrorMessage ( __FUNCTION__ , "\
-Error: hacking skill seems out of bounds.",
-				   PLEASE_INFORM, IS_FATAL );
-    }
-    DisplayText( _(AllSkillTexts [ Me . hacking_skill ]), 
-		 HACKING_SKILL_X + CharacterRect.x , HACKING_SKILL_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
-
-    /*
-      if ( Me . repair_skill ) 
-      DisplayText( "Yes" , CharacterRect.x + 80 , CharacterRect.y + 444 , &CharacterRect );
-      else
-      DisplayText( "No" , CharacterRect.x + 80 , CharacterRect.y + 444 , &CharacterRect );
-    */
 }; // void show_character_screen_skills ( )
 
 /**

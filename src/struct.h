@@ -702,7 +702,6 @@ typedef struct tux_s
     int melee_weapon_skill;
     int ranged_weapon_skill;
     int spellcasting_skill;
-    int hacking_skill;
 
     //--------------------
     // The inventory slots.  Some items are residing in general inventory,

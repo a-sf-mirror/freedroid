@@ -385,7 +385,6 @@ save_int32_t_array("base_skill_level", (target->base_skill_level), MAX_NUMBER_OF
 save_int32_t("melee_weapon_skill", &(target->melee_weapon_skill));
 save_int32_t("ranged_weapon_skill", &(target->ranged_weapon_skill));
 save_int32_t("spellcasting_skill", &(target->spellcasting_skill));
-save_int32_t("hacking_skill", &(target->hacking_skill));
 save_item_array("Inventory", (target->Inventory),  MAX_ITEMS_IN_INVENTORY );
 save_item("weapon_item", &(target->weapon_item));
 save_item("drive_item", &(target->drive_item));
@@ -500,7 +499,6 @@ read_int32_t_array(pos, "base_skill_level",  (target->base_skill_level), MAX_NUM
 read_int32_t(pos, "melee_weapon_skill",  &(target->melee_weapon_skill));
 read_int32_t(pos, "ranged_weapon_skill",  &(target->ranged_weapon_skill));
 read_int32_t(pos, "spellcasting_skill",  &(target->spellcasting_skill));
-read_int32_t(pos, "hacking_skill",  &(target->hacking_skill));
 read_item_array(pos, "Inventory",  (target->Inventory),  MAX_ITEMS_IN_INVENTORY );
 read_item(pos, "weapon_item",  &(target->weapon_item));
 read_item(pos, "drive_item",  &(target->drive_item));

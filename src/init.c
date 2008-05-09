@@ -1779,7 +1779,6 @@ InitInfluencerStartupSkills( void )
     Me . melee_weapon_skill = 0 ;
     Me . ranged_weapon_skill = 0 ;
     Me . spellcasting_skill = 0 ;
-    Me . hacking_skill = 0 ;
 
     Me . running_power_bonus = 0 ;
 
