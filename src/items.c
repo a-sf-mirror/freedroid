@@ -1296,7 +1296,7 @@ ApplyItem( item* CurItem )
 	Me . busy_time = 1;
 	Me . busy_type = THROWING_GRENADE;
     }
-    else if ( MatchItemWithName ( CurItem->type, "Plasma Grenade" ) )
+    else if ( MatchItemWithName ( CurItem->type, "Plasma Shockwave Emitter" ) )
     {
 	DoSkill(get_program_index_with_name("Plasma grenade"), 0);
 	Me . busy_time = 1;

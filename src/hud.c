@@ -368,7 +368,7 @@ exist really (i.e. has a type = (-1) ).",
 	    sprintf( linebuf , _("Gas attack\n") );
 	    strcat( ItemDescText , linebuf );
 	    }
-	else if ( MatchItemWithName ( CurItem->type, "Plasma Grenade" ) )
+	else if ( MatchItemWithName ( CurItem->type, "Plasma Shockwave Emitter" ) )
 	    {
 	    sprintf( linebuf , _("Huge explosion\n") );
 	    strcat( ItemDescText , linebuf );

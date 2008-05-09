@@ -239,7 +239,7 @@ AssembleItemListForTradeCharacter ( item* ListToBeFilled , int ShopCharacterCode
 	{
 	ListPointer->type = GetItemIndexByName("VMX Gas Grenade"); ListPointer++;
 	ListPointer->type = GetItemIndexByName("EMP Shockwave Generator"); ListPointer++;
-	ListPointer->type = GetItemIndexByName("Plasma Grenade"); ListPointer++;
+	ListPointer->type = GetItemIndexByName("Plasma Shockwave Emitter"); ListPointer++;
 	}
     else if ( ShopCharacterCode == PERSON_EWALD )
 	{
@@ -248,7 +248,6 @@ AssembleItemListForTradeCharacter ( item* ListToBeFilled , int ShopCharacterCode
 	ListPointer->type = GetItemIndexByName("Liquid nitrogen"); ListPointer++;
 	ListPointer->type = GetItemIndexByName("Barf's Energy Drink"); ListPointer++;
 	ListPointer->type = GetItemIndexByName("Running Power Capsule"); ListPointer++;
-
 	ListPointer->type = GetItemIndexByName("Fork"); ListPointer++;
 	ListPointer->type = GetItemIndexByName("Plate"); ListPointer++;
 	ListPointer->type = GetItemIndexByName("Mug"); ListPointer++;
