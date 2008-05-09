@@ -357,7 +357,7 @@ exist really (i.e. has a type = (-1) ).",
 	    sprintf( linebuf , _("Permanently acquire/enhance this program\n") );
 	    strcat( ItemDescText , linebuf );
 	    }
-	else if ( MatchItemWithName ( CurItem->type, "EMP Shock Grenade" ) )
+	else if ( MatchItemWithName ( CurItem->type, "EMP Shockwave Generator" ) )
 	    {
 	    sprintf( linebuf , _("Electromagnetic pulse\n") );
 	    strcat( ItemDescText , linebuf );
