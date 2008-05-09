@@ -5751,7 +5751,7 @@ LevelEditor(void)
 	    {
 		if ( level_editor_marked_obstacle != NULL )
 		{
-		    action_change_obstacle_label ( EditLevel , level_editor_marked_obstacle , NULL );
+		    action_change_obstacle_label_user ( EditLevel , level_editor_marked_obstacle , NULL );
 		    while ( HPressed() ) SDL_Delay(1);
 		}
 	    }
