@@ -5,6 +5,18 @@
 #Bullet 0-30?
 
 ** Start of new program specification subsection **
+Program name=_"Hacking"  
+Program description=_"Type: Target
+Tux is gifted with the ability to hack any machine in no time.  To make use of this ability, select this skill. When a machine is close enough and this skill is activated by holding down the right mouse button, the takeover process will be initiated."
+Picture="TakeoverTalkSkill.png"
+Form="immediate"
+Effect="takeover"
+Cost=20
+Cost per level=10
+Affect humans=0
+Present at startup=1
+
+** Start of new program specification subsection **
 Program name=_"Emergency shutdown"
 Program description=_"Target: Self
 Everyone needs to turn off and cool down a bit now and then. Just be careful so you are not still offline when enemy bots close in..."
@@ -38,17 +50,6 @@ Effect="weapon"
 Cost=0
 Present at startup=1
 
-** Start of new program specification subsection **
-Program name=_"Hacking"  
-Program description=_"Type: Target
-Tux is gifted with the ability to hack any machine in no time.  To make use of this ability, select this skill. When a machine is close enough and this skill is activated by holding down the right mouse button, the takeover process will be initiated."
-Picture="TakeoverTalkSkill.png"
-Form="immediate"
-Effect="takeover"
-Cost=20
-Cost per level=10
-Affect humans=0
-Present at startup=1
 
 ** Start of new program specification subsection **
 Program name=_"Check system integrity"
