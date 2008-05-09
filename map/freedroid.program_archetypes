@@ -17,20 +17,6 @@ Affect humans=0
 Present at startup=1
 
 ** Start of new program specification subsection **
-Program name=_"Emergency shutdown"
-Program description=_"Target: Self
-Everyone needs to turn off and cool down a bit now and then. Just be careful so you are not still offline when enemy bots close in..."
-Picture="Shutdown.png"
-Form="self"
-Effect="paralyze"
-Effect duration=14
-Effect duration per level=-1
-Base damage=0
-Cost=-100
-Cost per level=-10
-Present at startup=1
-
-** Start of new program specification subsection **
 Program name=_"Repair equipment"  
 Program description=_"Type: Target
 This skill allows to repair an item from the inventory. To use this skill, select it, then open the inventory screen and then right click the mouse on the item you wish to repair. While repair doesn't 'cost' anything, the item will still lose some of its maximum duration in the process, but the current duration will be restored to this new maximum value."
@@ -50,6 +36,19 @@ Effect="weapon"
 Cost=0
 Present at startup=1
 
+** Start of new program specification subsection **
+Program name=_"Emergency shutdown"
+Program description=_"Target: Self
+Everyone needs to turn off and cool down a bit now and then. Just be careful so you are not still offline when enemy bots close in..."
+Picture="Shutdown.png"
+Form="self"
+Effect="paralyze"
+Effect duration=14
+Effect duration per level=-1
+Base damage=0
+Cost=-100
+Cost per level=-10
+Present at startup=1
 
 ** Start of new program specification subsection **
 Program name=_"Check system integrity"
@@ -165,9 +164,6 @@ Cost per level=0
 ** Start of new program specification subsection **
 Program name=_"Virus"
 Program description=_"Target: Target
-Damage: 8  +2/rev
-Slowdown: 9s  +1s/rev
-Heat: 45  +5/rev
 This is not just a firmware upgrade, my dear bot. You are about to find out what exactly I want to give you."
 Picture="Virus.png"
 Form="immediate"
