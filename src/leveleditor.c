@@ -1652,7 +1652,7 @@ ItemDropFromLevelEditor( void )
 	    for ( i = 0 ; i < line_len ; i ++ ) 
 	    {
 		temp_item . type = i + j * line_len + item_group * line_len * row_len ;
-		if ( temp_item.type >= Number_Of_Item_Types )  temp_item.type = 1 ;
+		if ( temp_item.type >= Number_Of_Item_Types )  continue; //temp_item.type = 1 ;
 		ShowRescaledItem ( i , 32 + (64*GameConfig.screen_height/480+2) * j, & ( temp_item ) );
 	    }
 	}
@@ -1676,7 +1676,7 @@ ItemDropFromLevelEditor( void )
 	    {
 		previous_mouse_position_index = Number_Of_Item_Types - 1 ;
 	    }
-	    PutStringFont ( Screen , FPS_Display_BFont , 20 , 440 * GameConfig . screen_height / 480 , D_(ItemMap [ previous_mouse_position_index ] . item_name )) ;
+	    else PutStringFont ( Screen , FPS_Display_BFont , 20 , 440 * GameConfig . screen_height / 480 , D_(ItemMap [ previous_mouse_position_index ] . item_name )) ;
 	}
 
 	if ( previous_prefix_selected != (-1) )
@@ -1716,6 +1716,7 @@ ItemDropFromLevelEditor( void )
 		     GetMousePos_x()  , 
 		     GetMousePos_y()  ) )
 	    {
+	    if ( (item_group + 1 ) * line_len * row_len < Number_Of_Item_Types )
 		item_group ++ ;
 	    }
 	    else if ( MouseCursorIsOnButton ( 
@@ -1766,9 +1767,10 @@ ItemDropFromLevelEditor( void )
 	    }
 	    else if ( level_editor_item_drop_index ( row_len , line_len ) != (-1) )
 	    {
-		SelectionDone = TRUE ;
 		NewItemCode = level_editor_item_drop_index ( row_len , line_len ) + item_group * line_len * row_len ;
 		if ( NewItemCode < 0 ) NewItemCode = 0 ; // just if the mouse has moved away in that little time...
+		if ( NewItemCode < Number_Of_Item_Types )
+			SelectionDone = TRUE ;
 	    }
 	}
     }
