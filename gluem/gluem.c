@@ -46,12 +46,14 @@ FILE *output_file;
 
 char usage_string[] =
   "Usage: gluem    [-v|--version] \n\
+                   [-h|--help]\n\
                    [-i|--input_file] \n\
-                   [-n|--nographicsoutput] (default!)\n\
-                   [-g|--graphicsoutput] \n\
-                   [-d|--debug=LEVEL]\n\
-                   [-x|--offset_x=OFFSET_X]\n\
-                   [-y|--offset_y=OFFSET_Y]\n\
+                   [-p|--max_object_phases]\n\
+                   [-d|--all_object_directions] \n\
+                   [-t|--tux_16_direction_numbering]\n\
+                   [-u|--unrecommended_direction_numbering]\n\
+                   [-o|--open_gl_sized_images]\n\
+		   [-n|--no_open_gl_sized_images]\n\
 \n\
 EXAMPLE:  gluem -i my_test_file.png\n\
 \n\
@@ -107,18 +109,6 @@ PutPixel (SDL_Surface * surface, int x, int y, Uint32 pixel)
 {
   int bpp = surface->format->BytesPerPixel;
   Uint8 *p;
-
-/*
-  if ( use_open_gl )
-    {
-      if ( surface == Screen ) 
-	{
-	  PutPixel_open_gl ( x , y , pixel ) ;
-	  return;
-	}
-    }
-
-*/
 
   //--------------------
   // Here I add a security query against segfaults due to writing
