@@ -379,7 +379,6 @@ EXTERN int position_collides_with_obstacles_on_square ( float x, float y , int x
 EXTERN void glue_obstacles_to_floor_tiles_for_level ( int level_num );
 EXTERN void ResolveMapLabelOnShip ( char* MapLabel , location* PositionPointer );
 EXTERN void CollectAutomapData ( void ) ;
-EXTERN void SmashBox ( float x , float y );
 EXTERN int smash_obstacle ( float x , float y );
 EXTERN void AnimateTeleports (void);
 EXTERN Uint16 GetMapBrick (Level deck, float x, float y);
@@ -393,10 +392,7 @@ EXTERN int GetCrew (char *shipname);
 EXTERN void AnimateCyclingMapTiles (void);
 EXTERN void MoveLevelDoors ( void ) ;
 EXTERN void WorkLevelGuns ( void ) ;
-EXTERN int IsPassable ( float x , float y , int z ) ;
-EXTERN int DruidPassable ( float x , float y , int z );
 EXTERN int IsVisible ( GPS objpos ) ;
-EXTERN int TranslateMap (Level Lev);
 EXTERN void DeleteWaypoint (level *Lev, int num);
 EXTERN void CreateWaypoint (level *Lev, int x, int y);
 #define translate_map_point_to_screen_pixel translate_map_point_to_screen_pixel_func
@@ -414,6 +410,8 @@ EXTERN inline float translate_pixel_to_map_location ( float axis_x , float axis_
 #endif
 EXTERN int DirectLineWalkable( float x1 , float y1 , float x2 , float y2 , int z );
 EXTERN int CheckIfWayIsFreeOfDroids (char test_tux, float x1 , float y1 , float x2 , float y2 , int OurLevel , enemy * ExceptedRobot ) ;
+EXTERN int IsPassable ( float x , float y , int z ) ;
+EXTERN int IsPassableForDroid ( float x , float y , int z ) ;
 
 // sound.c  OR nosound.c 
 #undef EXTERN

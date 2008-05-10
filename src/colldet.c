@@ -52,14 +52,15 @@ static inline float Q_rsqrt( float number )
   return a.y;
 }
 
-static inline void normalize_vect( float x1, float y1, float * x2, float *y2 )
+static inline int normalize_vect( float x1, float y1, float * x2, float *y2 )
 {
     /* Normalize X_0, X_1 */ 
     float tmplen2 = (x1-*x2)*(x1-*x2)+(y1-*y2)*(y1-*y2); 
-    if ( fabsf(tmplen2) < 0.001 ) 
-	tmplen2 = 0.001; 
+    if ( fabsf(tmplen2) < 0.0001 ) 
+	return 1; //could not normalize
     *x2 = x1 + (*x2 - x1) * Q_rsqrt(tmplen2); 
     *y2 = y1 + (*y2 - y1) * Q_rsqrt(tmplen2);
+    return 0;
 }
 
 /** 
@@ -169,15 +170,24 @@ if (is_in == 2)
 return out;
 }
 
+int IsPassable ( float x, float y, int z )
+{
+    return DirectLineWalkable (x, y, x, y, z);
+}
 
+int IsPassableForDroid ( float x, float y, int z )
+{
+    global_ignore_doors_for_collisions_flag = TRUE;
+    int a = DirectLineWalkable (x, y, x, y, z);
+    global_ignore_doors_for_collisions_flag = FALSE;
+    return a;
+}
 
+/** This function checks if the line can be walked along directly against obstacles.
+ * It also handles the case of point tests (x1 == x2 && y1 == y2) properly.
+ */
 int DirectLineWalkable ( float x1, float y1, float x2, float y2, int z)
 {
-    if ( x2 == -1 )
-	{
-	return FALSE;
-	}
-
     //Browse all obstacles around the rectangle
     int x_tile_start, y_tile_start;
     int x_tile_end, y_tile_end;
@@ -193,6 +203,9 @@ int DirectLineWalkable ( float x1, float y1, float x2, float y2, int z)
     if ( y_tile_start < 0 ) y_tile_start = 0 ;
     if ( x_tile_end >= PassLevel -> xlen ) x_tile_end = PassLevel->xlen -1 ;
     if ( y_tile_end >= PassLevel -> ylen ) y_tile_end = PassLevel->ylen -1 ;
+    
+    float x2n = x2, y2n = y2;
+    char ispoint = normalize_vect(x1,y1, &x2n, &y2n); //normalize vect will tell us if we are working on a line or a point
     
     for ( x_tile = x_tile_start; x_tile <= x_tile_end; x_tile ++ )
 	{
@@ -233,10 +246,10 @@ int DirectLineWalkable ( float x1, float y1, float x2, float y2, int z)
 
 		//So we have our obstacle 
 		//Check the radial distance between the center of the obstacle and the line
-		float x2n = x2, y2n = y2;
-		normalize_vect(x1,y1, &x2n, &y2n);
-		float distance_to_center = calc_distance_seg_point_normalized(x1, y1, x2, y2, x2n, y2n, our_obs->pos.x, our_obs->pos.y);
-
+		float distance_to_center;
+		if( ! ispoint )
+		    distance_to_center = calc_distance_seg_point_normalized(x1, y1, x2, y2, x2n, y2n, our_obs->pos.x, our_obs->pos.y);
+		else distance_to_center = sqrt((our_obs->pos.x - x1)*(our_obs->pos.x - x1)+(our_obs->pos.y - y1)*(our_obs->pos.y - y1));
 
 		float diaglength = sqrt((obstacle_map [ our_obs->type ] . upper_border * obstacle_map [ our_obs->type ] . upper_border) + (obstacle_map [ our_obs->type ] . left_border * obstacle_map [ our_obs->type ] . left_border));
 		
@@ -249,11 +262,14 @@ int DirectLineWalkable ( float x1, float y1, float x2, float y2, int z)
 		char p1flags = get_point_flag( rect1.x, rect1.y, rect2.x, rect2.y, x1, y1);
 		char p2flags = get_point_flag( rect1.x, rect1.y, rect2.x, rect2.y, x2, y2);
 
-		if ( p1flags & p2flags ) // both points on the same side? don't test
+		if ( !ispoint && (p1flags & p2flags) ) // if we're testing a line: both points on the same side? don't test
 		    continue;
 
 		if (( p1flags & RECT_IN ) || (p2flags & RECT_IN)) //we're in? collision without a doubt
 		    return FALSE;
+
+		if ( ispoint ) //don't test "line crosses an edge ?" for points obviously 
+		    continue;
 
 		// now determine the edges we have to test
 		char to_test = 0;
