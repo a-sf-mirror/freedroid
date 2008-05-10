@@ -362,7 +362,7 @@ display_current_chat_protocol ( int background_picture_code , enemy* ChatDroid ,
     // Now we need to clear this window, cause there might still be some
     // garbage from the previous subtitle in there...
     //
-    PrepareMultipleChoiceDialog ( ChatDroid , FALSE );
+    PrepareMultipleChoiceDialog ( ChatDroid , FALSE);
     
     //--------------------
     // Now we can display the text and update the screen...
@@ -381,7 +381,9 @@ display_current_chat_protocol ( int background_picture_code , enemy* ChatDroid ,
 	ShowGenericButtonFromList ( CHAT_PROTOCOL_SCROLL_OFF2_BUTTON );
     else
 	ShowGenericButtonFromList ( CHAT_PROTOCOL_SCROLL_DOWN_BUTTON );
-    if ( with_update ) our_SDL_update_rect_wrapper ( Screen , Subtitle_Window.x , Subtitle_Window.y , Subtitle_Window.w , Subtitle_Window.h );
+
+    if ( with_update ) 
+	our_SDL_flip_wrapper();
     
 }; // void display_current_chat_protocol ( int background_picture_code , int with_update )
 
@@ -1228,7 +1230,7 @@ DoChatFromChatRosterData( int ChatPartnerCode , Enemy ChatDroid , int clear_prot
 	SetCurrentFont ( FPS_Display_BFont );
     }
     
-    display_current_chat_protocol ( CHAT_DIALOG_BACKGROUND_PICTURE_CODE , ChatDroid , FALSE );
+    display_current_chat_protocol ( CHAT_DIALOG_BACKGROUND_PICTURE_CODE , ChatDroid , TRUE );
     
     Chat_Window . x = 242 ; Chat_Window . y = 100 ; Chat_Window . w = 380; Chat_Window . h = 314 ;
     
