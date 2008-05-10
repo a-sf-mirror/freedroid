@@ -977,17 +977,7 @@ enum
   {
     DO_NOTHING = -1 , 
     BUY_1_ITEM = 1 , 
-    BUY_10_ITEMS = 2 , 
-    BUY_100_ITEMS = 3 , 
     SELL_1_ITEM = 4 , 
-    SELL_10_ITEMS = 5 , 
-    SELL_100_ITEMS = 6 , 
-    PUT_1_ITEM = 6 , 
-    PUT_10_ITEMS = 7 , 
-    PUT_100_ITEMS = 8 , 
-    TAKE_1_ITEM = 9 , 
-    TAKE_10_ITEMS = 10 , 
-    TAKE_100_ITEMS = 11 ,
     REPAIR_ITEM = 12 , 
     IDENTIFY_ITEM = 13 
   };
