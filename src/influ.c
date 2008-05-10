@@ -1440,7 +1440,10 @@ streamline_intermediate_course ( enemy * droid, gps * curpos, moderately_finepoi
   //
   // Therefore we do some extra optimisation check here for this special case...
   //
-  
+ 
+  if ( waypoints [ 1 ] . x == -1 )
+      return; 
+
   if ( ( droid_can_walk_this_line ( curpos->z, curpos-> x ,
 				  curpos-> y ,
 				  waypoints [ 1 ] . x ,
@@ -1697,24 +1700,24 @@ set_up_intermediate_course_between_positions ( enemy * droid, gps * curpos, mode
     
     bad_luck_in_4_directions_counter = 0;
    
-    if ( fabsf(move_target -> x - curpos -> x) < 0.01  && fabsf(move_target->y - curpos -> y) < 0.01 )
+    /*if ( fabsf(move_target -> x - curpos -> x) < 0.001  && fabsf(move_target->y - curpos -> y) < 0.001 )
 	{
 	waypoints [ 0 ] . x = curpos -> x;
 	waypoints [ 0 ] . y = curpos -> y;
 	waypoints [ 1 ] . x = -1;
 	waypoints [ 1 ] . y = -1;
 	return TRUE;
-	}
+	}*/
 
     //--------------------
     // If the target position cannot be reached at all, because of being inside an obstacle
     // for example, then we know what to do:  Set up one waypoint to the target and that's it.
     //
-    if ( ! IsPassable ( move_target -> x ,
+    if ( ! IsPassableForDroid ( move_target -> x ,
 			move_target -> y ,
 			curpos -> z) )
     {
-	DebugPrintf ( DEBUG_TUX_PATHFINDING , "\nSKIPPING RECURSION BECAUSE OF UNREACHABLENESS! Target is %f %f %d, bot %#x\n", move_target->x, move_target->y, curpos->z, droid );
+	//DebugPrintf ( -1 , "\nSKIPPING RECURSION BECAUSE OF UNREACHABLENESS! %d: %f/%f ->  %f/%f %d, bot %#x\n", curpos->z,curpos->x, curpos->y, move_target->x, move_target->y, curpos->z, droid );
 	return ( FALSE ) ;
     }
   
@@ -3107,9 +3110,8 @@ check_for_barrels_to_smash ( int barrel_index )
 	    
 	    for ( i = 0 ; i < 8 ; i ++ )
 	    {
-		if ( IsPassable ( our_level -> obstacle_list [ barrel_index ] . pos . x + step_vector . x ,
-				  our_level -> obstacle_list [ barrel_index ] . pos . y + step_vector . y ,
-				  Me . pos . z ) )
+		if ( droid_can_walk_this_line( Me.pos.z, Me.pos.x, Me.pos.y,our_level -> obstacle_list [ barrel_index ] . pos . x + step_vector . x ,
+				  our_level -> obstacle_list [ barrel_index ] . pos . y + step_vector . y) )
 		{
 		    //--------------------
 		    // The obstacle plus the step vector give us the position to move the
