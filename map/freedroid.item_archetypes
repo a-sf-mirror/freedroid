@@ -525,7 +525,7 @@ Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=30
 Item description text=_"A medium sized water pipe from iron can turn into an effective weapon even vs a metal opponent. While not likely to penetrate the armour of a bot, the impact force alone can still damage and shake loose circuit boards and weldings beneath the protective metal layer."
 ----- the following part is only relevant for weapons -----
-Item as gun: recharging time=0.0000
+Item as gun: recharging time=0.750000
 Item as gun: reloading time=0.000000
 Item as gun: speed of bullets=0.100000
 Item as gun: is melee weapon=1
