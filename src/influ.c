@@ -441,7 +441,7 @@ smashable_barrel_below_mouse_cursor ( )
  * corresponding code, that should try to attack, if that's currently
  * possible.
  */
-void
+    void
 tux_wants_to_attack_now ( int use_mouse_cursor_for_targeting ) 
 {
 
@@ -450,46 +450,54 @@ tux_wants_to_attack_now ( int use_mouse_cursor_for_targeting )
     // phase is completed.  In that case, we don't attack.
     //
     if ( Me . busy_time > 0 ) 
-    {
+	{
 	return; 
-    }
-    
+	}
+
     //--------------------
     // If the Tux has a weapon and this weapon requires some ammunition, then
     // we have to check for enough ammunition first...
     //
     if ( Me . weapon_item . type >= 0 )
-    {
-	if ( ItemMap [ Me . weapon_item . type ] . item_gun_use_ammunition )
 	{
-	    if ( Me . weapon_item . ammo_clip > 0 )
+	if ( ItemMap [ Me . weapon_item . type ] . item_gun_use_ammunition )
 	    {
-	      Me . weapon_item . ammo_clip--;
-            }
-	    else 
-	    {
-	      No_Ammo_Sound( );
+	    if ( Me . weapon_item . ammo_clip <= 0 )
+		{
+		No_Ammo_Sound( );
 
-            //--------------------
-            // So no ammunition... We should say so and reload...
-            //
-	      append_new_game_message(_("Clip empty, reloading..."));
-	      TuxReloadWeapon();
-              return ;
+		//--------------------
+		// So no ammunition... We should say so and reload...
+		//
+		append_new_game_message(_("Clip empty, reloading..."));
+		TuxReloadWeapon();
+		return ;
 
-            }
+		}
+	    }
 	}
-    }
-    
-    //--------------------
+
+
+    if ( PerformTuxAttackRaw ( use_mouse_cursor_for_targeting ) )
+	{ // If attack has failed
+	return;
+	}
+
     // The weapon was used and therefore looses some of it's durability
-    //
-    //
     //5% chance to damage the weapon with 20% chance: 1% chance of damaging the weapon
     if ( MyRandom(100) < 5 )
 	DamageItem ( & ( Me . weapon_item  ) );
-    
-    PerformTuxAttackRaw ( use_mouse_cursor_for_targeting ) ;      
+
+    //Weapon uses ammo? remove one bullet !
+    if ( Me . weapon_item . type >= 0 )
+	{
+	if ( ItemMap [ Me . weapon_item . type ] . item_gun_use_ammunition )
+	    {
+	    Me.weapon_item.ammo_clip --;
+	    }
+	}
+
+
 
 }; // void tux_wants_to_attack_now ( ) 
 
@@ -2610,7 +2618,7 @@ ButtonPressWasNotMeantAsFire( )
  * this is knows, this function can be called to do the mechanics of the
  * weapon use.
  */
-void
+int
 PerformTuxAttackRaw ( int use_mouse_cursor_for_targeting ) 
 {
     int guntype;
@@ -2768,8 +2776,7 @@ PerformTuxAttackRaw ( int use_mouse_cursor_for_targeting )
 		{
 		/* The target cannot be reached - cancel the attack NOW*/
 		Me . weapon_swing_time = -1;
-		//fprintf(stderr, "No reach\n");
-		return;
+		return 1;
 		}
 	
 	enemy *erot, *nerot;
@@ -2804,6 +2811,7 @@ BROWSE_LEVEL_BOTS_SAFE(erot, nerot, Me.pos.z)
 	    // War tux freezes enemys with the appropriate plugin...
 	    erot->frozen += Me . freezing_melee_targets ; 
 	    
+	   /*XXX balancing issue*/ 
 	    erot->firewait += 
 		1 * ItemMap [ Druidmap [ erot->type ] . weapon_item.type ] . item_gun_recharging_time ;
 	}
@@ -2838,7 +2846,7 @@ BROWSE_LEVEL_BOTS_SAFE(erot, nerot, Me.pos.z)
 	if ( melee_weapon_hit_something ) play_melee_weapon_hit_something_sound();
 	else play_melee_weapon_missed_sound();
 	
-	return;
+	return 0;
     }
 
     //--------------------
@@ -2847,6 +2855,7 @@ BROWSE_LEVEL_BOTS_SAFE(erot, nerot, Me.pos.z)
     else Fire_Bullet_Sound ( LASER_SWORD_1 );
     
     FireTuxRangedWeaponRaw ( Me . weapon_item . type , guntype, NULL , target_location ) ;
+    return 0;
 }; // void PerformTuxAttackRaw ( ) ;
 
 

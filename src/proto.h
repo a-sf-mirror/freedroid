@@ -82,7 +82,7 @@ EXTERN int find_free_floor_items_index ( int levelnum ) ;
 EXTERN int closed_chest_below_mouse_cursor ( void ) ;
 EXTERN int smashable_barrel_below_mouse_cursor ( void ) ;
 EXTERN void tux_wants_to_attack_now ( int use_mouse_cursor_for_targeting ) ;
-EXTERN void PerformTuxAttackRaw ( int use_mouse_cursor_for_targeting ) ;
+EXTERN int PerformTuxAttackRaw ( int use_mouse_cursor_for_targeting ) ;
 EXTERN void TuxReloadWeapon ( void ) ;
 EXTERN void correct_tux_position_according_to_jump_thresholds ( void );
 EXTERN int isignf (float);
