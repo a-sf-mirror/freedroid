@@ -1077,16 +1077,17 @@ enemy_handle_stuck_in_walls ( enemy* ThisRobot )
 	    //	    
 	    DebugPrintf ( -2 , "\n\nFound robot that seems really stuck on position: %f/%f/%d." ,
 			  ThisRobot -> pos . x , ThisRobot -> pos . y , ThisRobot -> pos.z );
-	    DebugPrintf ( -2 , "\nMore details on this robot:  Type=%d. has_greeted_influencer=%d." ,
-			  ThisRobot -> type , ThisRobot -> has_greeted_influencer );
+	    DebugPrintf ( -2 , "\nMore details on this robot:  Type=%d." ,
+			  ThisRobot -> type );
 	    DebugPrintf ( -2 , "\nPrivate Pathway[0]: %f/%f." , 
 			  ThisRobot -> PrivatePathway [ 0 ] . x ,
 			  ThisRobot -> PrivatePathway [ 0 ] . y );
 	    DebugPrintf ( -2 , "\nPrivate Pathway[1]: %f/%f." , 
 			  ThisRobot -> PrivatePathway [ 1 ] . x ,
 			  ThisRobot -> PrivatePathway [ 1 ] . y );
-	    DebugPrintf ( -2 , "\nnextwaypoint: %d." , 
-			  ThisRobot -> nextwaypoint );
+	    DebugPrintf ( -2 , "\nnextwaypoint: %d at %f/%f" , 
+			  ThisRobot -> nextwaypoint, curShip.AllLevels[ThisRobot->pos.z] -> AllWaypoints [ ThisRobot->nextwaypoint ] . x + 0.5,
+		   curShip.AllLevels[ThisRobot->pos.z] -> AllWaypoints [ ThisRobot->nextwaypoint ] . y + 0.5 );
 
 	    enemy_say_current_state_on_screen ( ThisRobot ); // safety:  init the TextToBeDisplayed 
 	    DebugPrintf ( -2 , "\nnextwaypoint=%d. lastwaypoint=%d. combat_%s." ,
