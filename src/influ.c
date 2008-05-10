@@ -1177,7 +1177,7 @@ MoveTuxAccordingToHisSpeed ( )
       //--------------------
       // So there is no speed, so we check for passability...
       //
-      if ( ! IsPassable ( Me . pos . x , Me . pos . y , Me . pos . z ) )
+      if ( ! IsPassableForDroid ( Me . pos . x , Me . pos . y , Me . pos . z ) )
 	{
 	  //--------------------
 	  // Now it's time to launch the stuck-fallback handling...
