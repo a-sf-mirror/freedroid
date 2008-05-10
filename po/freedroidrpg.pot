@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: freedroid-discussion@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-05-08 17:57+0200\n"
+"POT-Creation-Date: 2008-05-10 08:03+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -837,15 +837,15 @@ msgstr ""
 msgid "Level Gained!"
 msgstr ""
 
-#: ../src/chat.c:594
+#: ../src/chat.c:589
 msgid "1 Item received (on floor)"
 msgstr ""
 
-#: ../src/chat.c:598
+#: ../src/chat.c:593
 msgid "1 Item received!"
 msgstr ""
 
-#: ../src/chat.c:1280
+#: ../src/chat.c:1275
 msgid "What will you say?"
 msgstr ""
 
@@ -1520,39 +1520,39 @@ msgstr ""
 msgid "The armor hides his body."
 msgstr ""
 
-#: ../src/init.c:1912
+#: ../src/init.c:1911
 msgid "Huh? What?  Where am I?"
 msgstr ""
 
-#: ../src/init.c:2022
+#: ../src/init.c:2021
 msgid "Updating Tux images"
 msgstr ""
 
-#: ../src/init.c:2023
+#: ../src/init.c:2022
 msgid "(this may take a little while...)"
 msgstr ""
 
-#: ../src/init.c:2026
+#: ../src/init.c:2025
 msgid "Starting new game."
 msgstr ""
 
-#: ../src/init.c:2343
+#: ../src/init.c:2342
 msgid "Game over.\n"
 msgstr ""
 
-#: ../src/init.c:2437
+#: ../src/init.c:2436
 msgid "Game won.\n"
 msgstr ""
 
-#: ../src/input.c:423
+#: ../src/input.c:418
 msgid "Automap ON."
 msgstr ""
 
-#: ../src/input.c:425
+#: ../src/input.c:420
 msgid "Automap OFF."
 msgstr ""
 
-#: ../src/input.c:429
+#: ../src/input.c:424
 msgid "Sorry, you don't have automap yet:  map maker item not present."
 msgstr ""
 
@@ -1628,39 +1628,39 @@ msgstr ""
 msgid "Cancel item drop"
 msgstr ""
 
-#: ../src/leveleditor.c:1970
+#: ../src/leveleditor.c:1972
 msgid "FLOOR"
 msgstr ""
 
-#: ../src/leveleditor.c:1971
+#: ../src/leveleditor.c:1973
 msgid "WALLS"
 msgstr ""
 
-#: ../src/leveleditor.c:1972
+#: ../src/leveleditor.c:1974
 msgid "MACHINERY"
 msgstr ""
 
-#: ../src/leveleditor.c:1973
+#: ../src/leveleditor.c:1975
 msgid "FURNITURE"
 msgstr ""
 
-#: ../src/leveleditor.c:1974
+#: ../src/leveleditor.c:1976
 msgid "CONTAINERS"
 msgstr ""
 
-#: ../src/leveleditor.c:1975
+#: ../src/leveleditor.c:1977
 msgid "NATURE"
 msgstr ""
 
-#: ../src/leveleditor.c:1976
+#: ../src/leveleditor.c:1978
 msgid "ALL"
 msgstr ""
 
-#: ../src/leveleditor.c:1977
+#: ../src/leveleditor.c:1979
 msgid "QUICK"
 msgstr ""
 
-#: ../src/leveleditor.c:3852
+#: ../src/leveleditor.c:3854
 #, c-format
 msgid ""
 "\n"
@@ -1668,7 +1668,7 @@ msgid ""
 " label_name=\"%s\"."
 msgstr ""
 
-#: ../src/leveleditor.c:4434
+#: ../src/leveleditor.c:4436
 msgid ""
 "Go level north\n"
 "\n"
@@ -1676,7 +1676,7 @@ msgid ""
 "the northern side of this level."
 msgstr ""
 
-#: ../src/leveleditor.c:4439
+#: ../src/leveleditor.c:4441
 msgid ""
 "Go level south\n"
 "\n"
@@ -1684,7 +1684,7 @@ msgid ""
 "the southern side of this level."
 msgstr ""
 
-#: ../src/leveleditor.c:4444
+#: ../src/leveleditor.c:4446
 msgid ""
 "Go level east\n"
 "\n"
@@ -1692,7 +1692,7 @@ msgid ""
 "the eastern side of this level."
 msgstr ""
 
-#: ../src/leveleditor.c:4449
+#: ../src/leveleditor.c:4451
 msgid ""
 "Go level west\n"
 "\n"
@@ -1700,7 +1700,7 @@ msgid ""
 "the western side of this level."
 msgstr ""
 
-#: ../src/leveleditor.c:4454
+#: ../src/leveleditor.c:4456
 msgid ""
 "Export this level\n"
 "\n"
@@ -1710,7 +1710,7 @@ msgid ""
 "that the maps are in sync again."
 msgstr ""
 
-#: ../src/leveleditor.c:4459
+#: ../src/leveleditor.c:4461
 msgid ""
 "Save Map\n"
 "\n"
@@ -1718,7 +1718,7 @@ msgid ""
 "from your current working directory."
 msgstr ""
 
-#: ../src/leveleditor.c:4464
+#: ../src/leveleditor.c:4466
 msgid ""
 "Toggle waypoints\n"
 "\n"
@@ -1728,7 +1728,7 @@ msgid ""
 "You can also use the W key for this."
 msgstr ""
 
-#: ../src/leveleditor.c:4471
+#: ../src/leveleditor.c:4473
 msgid ""
 "Make waypoint connection\n"
 "\n"
@@ -1738,7 +1738,7 @@ msgid ""
 "You can also use the C key for this."
 msgstr ""
 
-#: ../src/leveleditor.c:4473
+#: ../src/leveleditor.c:4475
 msgid ""
 "Complete waypoint connection\n"
 "\n"
@@ -1748,7 +1748,7 @@ msgid ""
 "You can also use the C key for this."
 msgstr ""
 
-#: ../src/leveleditor.c:4479
+#: ../src/leveleditor.c:4481
 msgid ""
 "Delete selected obstacle\n"
 "\n"
@@ -1757,7 +1757,7 @@ msgid ""
 "You can also use the X key for this."
 msgstr ""
 
-#: ../src/leveleditor.c:4484
+#: ../src/leveleditor.c:4486
 msgid ""
 "Next obstacle on currently selected tile\n"
 "\n"
@@ -1766,7 +1766,7 @@ msgid ""
 "You can also use the N key for this."
 msgstr ""
 
-#: ../src/leveleditor.c:4489
+#: ../src/leveleditor.c:4491
 msgid ""
 "Beautify grass button\n"
 "\n"
@@ -1777,7 +1777,7 @@ msgid ""
 "You can also use Ctrl-B for this."
 msgstr ""
 
-#: ../src/leveleditor.c:4495
+#: ../src/leveleditor.c:4497
 msgid ""
 "Zoom in/out\n"
 "\n"
@@ -1786,7 +1786,7 @@ msgid ""
 "You can also use the hotkey 'O' for this."
 msgstr ""
 
-#: ../src/leveleditor.c:4500
+#: ../src/leveleditor.c:4502
 msgid ""
 "Fill\n"
 "\n"
@@ -1795,7 +1795,7 @@ msgid ""
 "until a change of map tile is encountered."
 msgstr ""
 
-#: ../src/leveleditor.c:4505
+#: ../src/leveleditor.c:4507
 msgid ""
 "New obstacle label\n"
 "\n"
@@ -1804,14 +1804,14 @@ msgid ""
 " Note that you can also use the hotkey 'h' for this."
 msgstr ""
 
-#: ../src/leveleditor.c:4510
+#: ../src/leveleditor.c:4512
 msgid ""
 "New obstacle description\n"
 "\n"
 "edits the description seen when the item is selected"
 msgstr ""
 
-#: ../src/leveleditor.c:4515
+#: ../src/leveleditor.c:4517
 msgid ""
 "New map label\n"
 "\n"
@@ -1820,7 +1820,7 @@ msgid ""
 "characters or also to define locations for events and triggers."
 msgstr ""
 
-#: ../src/leveleditor.c:4520
+#: ../src/leveleditor.c:4522
 msgid ""
 "Add item\n"
 "\n"
@@ -1828,7 +1828,7 @@ msgid ""
 "hotkey 'G' for this."
 msgstr ""
 
-#: ../src/leveleditor.c:4525
+#: ../src/leveleditor.c:4527
 msgid ""
 "Menu\n"
 "\n"
@@ -1837,7 +1837,7 @@ msgid ""
 "menu."
 msgstr ""
 
-#: ../src/leveleditor.c:4530
+#: ../src/leveleditor.c:4532
 msgid ""
 "Level resize\n"
 "\n"
@@ -1846,21 +1846,21 @@ msgid ""
 "insert the new space where you would best like it to be."
 msgstr ""
 
-#: ../src/leveleditor.c:4535
+#: ../src/leveleditor.c:4537
 msgid ""
 "Level editor guide\n"
 "\n"
 "Use this button to enter the level editor keymap display."
 msgstr ""
 
-#: ../src/leveleditor.c:4540
+#: ../src/leveleditor.c:4542
 msgid ""
 "Back to game\n"
 "\n"
 "Quits the level editor and takes you into a FredroidRPG game."
 msgstr ""
 
-#: ../src/leveleditor.c:4545
+#: ../src/leveleditor.c:4547
 msgid ""
 "Underground lighting\n"
 "\n"
@@ -1870,7 +1870,7 @@ msgid ""
 "There isn't any key to toggle this on the keyboard."
 msgstr ""
 
-#: ../src/leveleditor.c:4551
+#: ../src/leveleditor.c:4553
 msgid ""
 "Toggle display enemies\n"
 "\n"
@@ -1878,7 +1878,7 @@ msgid ""
 "enemies hidden in level editor."
 msgstr ""
 
-#: ../src/leveleditor.c:4557
+#: ../src/leveleditor.c:4559
 msgid ""
 "Toggle display obstacles\n"
 "\n"
@@ -1886,21 +1886,21 @@ msgid ""
 "obstacles hidden in level editor."
 msgstr ""
 
-#: ../src/leveleditor.c:4563
+#: ../src/leveleditor.c:4565
 msgid ""
 "Undo\n"
 "\n"
 "Use this button to undo your last actions."
 msgstr ""
 
-#: ../src/leveleditor.c:4569
+#: ../src/leveleditor.c:4571
 msgid ""
 "Redo\n"
 "\n"
 "Use this button to redo an action."
 msgstr ""
 
-#: ../src/leveleditor.c:4575
+#: ../src/leveleditor.c:4577
 msgid ""
 "Toggle display Tux\n"
 "\n"
@@ -1908,30 +1908,30 @@ msgid ""
 "hidden in level editor."
 msgstr ""
 
-#: ../src/leveleditor.c:4581
+#: ../src/leveleditor.c:4583
 msgid ""
 "Toggle display tooltips\n"
 "\n"
 "Use this button to toggle these annoying help windows on and off."
 msgstr ""
 
-#: ../src/leveleditor.c:4587
+#: ../src/leveleditor.c:4589
 msgid ""
 "Toggle display colision rectangles\n"
 "\n"
 "Use this button to toggle the visible collision rectangles on and off."
 msgstr ""
 
-#: ../src/leveleditor.c:4594
+#: ../src/leveleditor.c:4596
 msgid "Change grid mode ( placement / full / off )"
 msgstr ""
 
-#: ../src/leveleditor.c:5605
+#: ../src/leveleditor.c:5607
 #, c-format
 msgid " Source waypoint selected : NONE"
 msgstr ""
 
-#: ../src/leveleditor.c:5609
+#: ../src/leveleditor.c:5611
 #, c-format
 msgid " Source waypoint selected : X=%d Y=%d. "
 msgstr ""
@@ -2473,18 +2473,18 @@ msgstr ""
 msgid "Game loaded."
 msgstr ""
 
-#: ../src/ship.c:66 ../src/shop.c:1007 ../src/shop.c:1034 ../src/shop.c:1071
-#: ../src/shop.c:1295 ../src/shop.c:1484
+#: ../src/ship.c:66 ../src/shop.c:1005 ../src/shop.c:1032 ../src/shop.c:1069
+#: ../src/shop.c:1293 ../src/shop.c:1482
 msgid "Yes"
 msgstr ""
 
-#: ../src/ship.c:67 ../src/shop.c:1008 ../src/shop.c:1035 ../src/shop.c:1072
-#: ../src/shop.c:1296 ../src/shop.c:1485
+#: ../src/ship.c:67 ../src/shop.c:1006 ../src/shop.c:1033 ../src/shop.c:1070
+#: ../src/shop.c:1294 ../src/shop.c:1483
 msgid "No"
 msgstr ""
 
-#: ../src/ship.c:82 ../src/shop.c:1015 ../src/shop.c:1042 ../src/shop.c:1235
-#: ../src/shop.c:1321 ../src/shop.c:1550
+#: ../src/ship.c:82 ../src/shop.c:1013 ../src/shop.c:1040 ../src/shop.c:1233
+#: ../src/shop.c:1319 ../src/shop.c:1548
 msgid " BACK "
 msgstr ""
 
@@ -2669,45 +2669,45 @@ msgstr ""
 msgid " This weapon requires .50 (12.7x99mm) Browning Machine Gun rounds."
 msgstr ""
 
-#: ../src/shop.c:1018
+#: ../src/shop.c:1016
 msgid ""
 "\n"
 "\n"
 "You can't afford to have this item repaired! "
 msgstr ""
 
-#: ../src/shop.c:1045
+#: ../src/shop.c:1043
 msgid "You can't afford to have this item identified! "
 msgstr ""
 
-#: ../src/shop.c:1114
+#: ../src/shop.c:1112
 msgid ""
 "\n"
 "\n"
 "    Are you sure you wish to sell this/(some of these) item(s)?"
 msgstr ""
 
-#: ../src/shop.c:1238
+#: ../src/shop.c:1236
 msgid ""
 "\n"
 "\n"
 "   No room for this item in inventory!"
 msgstr ""
 
-#: ../src/shop.c:1262
+#: ../src/shop.c:1260
 msgid ""
 "\n"
 "Tried to take 0 items of a kind from chest or cointainer... doing nothing... "
 msgstr ""
 
-#: ../src/shop.c:1324
+#: ../src/shop.c:1322
 msgid ""
 "\n"
 "\n"
 "    You can't afford to purchase this item!"
 msgstr ""
 
-#: ../src/shop.c:1552
+#: ../src/shop.c:1550
 msgid " YOU DONT HAVE ANYTHING THAT WOULD NEED REPAIR "
 msgstr ""
 
