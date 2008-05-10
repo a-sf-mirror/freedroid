@@ -418,7 +418,7 @@ move_enemy_to_spot ( Enemy ThisRobot , moderately_finepoint next_target_spot )
     remaining_way . y = next_target_spot . y - ThisRobot -> pos . y ;
 
     float length = vect_len(remaining_way);
-    if ( length < 0.05 )
+    if ( length < 0.02 )
 	{
 	ThisRobot -> speed . x = 0;
 	ThisRobot -> pos . x = next_target_spot . x;
@@ -492,8 +492,8 @@ MoveThisRobotThowardsHisCurrentTarget ( enemy * ThisRobot )
 
     move_enemy_to_spot ( ThisRobot , ThisRobot->PrivatePathway[0] );
 
-    if ((fabsf( ThisRobot -> pos .x - ThisRobot->PrivatePathway[0] . x ) < 0.005)
-	&& fabsf( ThisRobot->pos.y - ThisRobot->PrivatePathway[0] . y ) < 0.005)
+    if ((fabsf( ThisRobot -> pos .x - ThisRobot->PrivatePathway[0] . x ) < 0.001)
+	&& fabsf( ThisRobot->pos.y - ThisRobot->PrivatePathway[0] . y ) < 0.001)
 	{ /* Have we reached our target ?*/
 	int i;
 	for ( i = 1; i < 5; i ++ )
@@ -580,7 +580,7 @@ SetNewRandomWaypoint ( Enemy ThisRobot )
     if ( i == num_conn )
     {
 	DebugPrintf( 2 , "\n%s(): Sorry, there seems no free way out.  I'll wait then... , num_conn was : %d ." , __FUNCTION__ , num_conn );
-	ThisRobot->pure_wait = 1.5 ; 
+	ThisRobot->pure_wait = 0.5 ; 
 	return 1;
     }
     
@@ -663,7 +663,7 @@ set_new_waypointless_walk_target ( enemy* ThisRobot, moderately_finepoint * mt)
 
     if ( ! success )
 	{
-	ThisRobot -> pure_wait = 1.6 ;
+	ThisRobot -> pure_wait = 1;
 	}
 }; // void set_new_waypointless_walk_target ( enemy* ThisRobot )
 
@@ -945,7 +945,6 @@ hit_enemy ( enemy * target, float hit, char givexp, short int killertype, char m
 void 
 MoveThisEnemy( enemy * ThisRobot )
 {
-    
     //--------------------
     // robots that still have to wait also do not need to
     // be processed for movement
@@ -958,10 +957,9 @@ MoveThisEnemy( enemy * ThisRobot )
     
     if ( CheckEnemyEnemyCollision ( ThisRobot ) )
 	{
-	ThisRobot -> pos . x = oldpos .x ;
+	ThisRobot -> pos . x = oldpos . x ;
 	ThisRobot -> pos . y = oldpos . y;
 	}
-
 }; 
 
 
@@ -1065,7 +1063,7 @@ enemy_handle_stuck_in_walls ( enemy* ThisRobot )
     // First we take a look if this bot is currently stuck in a
     // wall somewhere.
     //
-    if ( !IsPassable ( ThisRobot -> pos . x , ThisRobot -> pos . y , ThisRobot -> pos.z ) )
+    if ( !IsPassableForDroid ( ThisRobot -> pos . x , ThisRobot -> pos . y , ThisRobot -> pos.z ) )
     {
 	    //--------------------
 	    // So at this point we know, that we have a bot that is stuck right now,
@@ -1832,8 +1830,8 @@ update_enemy ( enemy * ThisRobot )
 	{ /* If the current move target differs from the old one */
 	  /* This implies we do not re-pathfind every frame, which means we may bump into colleagues. 
 	   * This is handled in MoveThisEnemy()*/
-	    if ( set_up_intermediate_course_between_positions ( ThisRobot, &ThisRobot->pos, &new_move_target, &wps[0], 40) )
-		{
+	    if ( set_up_intermediate_course_between_positions ( ThisRobot, &ThisRobot->pos, &new_move_target, &wps[0], 40) && wps[5].x == -1)
+		{ /* If position was passable *and* streamline course uses max 4 waypoints */
 		memcpy ( &ThisRobot->PrivatePathway[0], &wps[0], 5 * sizeof(moderately_finepoint));
 		}
 	    else
