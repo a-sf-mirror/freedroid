@@ -1229,7 +1229,7 @@ ch pellet is only as effective as a small caliber handgun, and offers very poor 
 can make dents or disable bots by destroing their sensors
 */
 
-** Start of new item specification subsection **
+** Sta**rt of new item specification subsection **
 Item name=_"2 Barrel sawn off shotgun"
 Item min class for drop=4
 Item max class for drop=6
@@ -1265,7 +1265,7 @@ Item as gun: required ammunition type="Sshell"
 Item as gun: ammo clip size=2
 Item as gun: weapon requires both hands="no"
 ----- end of part only relevant for weapons -----
-** End of new item specification subsection **
+** E**nd of new item specification subsection **
 
 ** Start of new item specification subsection **
 Item name=_"2 Barrel shotgun"
@@ -1311,13 +1311,13 @@ Item min class for drop=5
 Item max class for drop=7
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
-Item uses rotation series with prefix="plasma_double"
+Item uses rotation series with prefix="shotgun"
 Items of this type collect together in inventory="no"
 Strength minimum required to wear/wield this item=0
 Dexterity minimum required to wear/wield this item=0
 Base item duration=10
 plus duration modifier=10
-File or directory name for inventory image="inventory_image_14.png"
+File or directory name for inventory image="shotgun/inv_image.png"
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=300
 inventory_size_x=2
