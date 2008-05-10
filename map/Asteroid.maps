@@ -25470,7 +25470,7 @@ x=18 y=10 name="NoviceArenaBot3StartGameSquare"
 x=10 y=2 name="NoviceArenaBot4StartGameSquare"
 /plabelinfolvl
 pobstaclelabelinfolvl
-obstacle_label.index=0 obstacle_label_name="NoviceArenaExitDoor"
+obstacle_label.index=0 obstacle_label_name="NoviceArenaExitDoor" states="closed:27 opened:11"
 /pobstaclelabelinfolvl
 pobsdescinfolvl
 /pobsdescinfolvl
@@ -25725,7 +25725,7 @@ x=18 y=10 name="MasterArenaBot3StartGameSquare"
 x=10 y=2 name="MasterArenaBot4StartGameSquare"
 /plabelinfolvl
 pobstaclelabelinfolvl
-obstacle_label.index=0 obstacle_label_name="MasterArenaExitDoor"
+obstacle_label.index=0 obstacle_label_name="MasterArenaExitDoor" states="closed:27 opened:11"
 /pobstaclelabelinfolvl
 pobsdescinfolvl
 /pobsdescinfolvl
