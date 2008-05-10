@@ -253,7 +253,7 @@ int DirectLineWalkable ( float x1, float y1, float x2, float y2, int z)
 
 		float diaglength = sqrt((obstacle_map [ our_obs->type ] . upper_border * obstacle_map [ our_obs->type ] . upper_border) + (obstacle_map [ our_obs->type ] . left_border * obstacle_map [ our_obs->type ] . left_border));
 		
-		if ( diaglength < distance_to_center ) //radial distance
+		if ( diaglength < distance_to_center - 0.1) //radial distance
 		    continue;
 
 		//Check the flags of both points against the rectangle of the object
