@@ -241,7 +241,7 @@ MoveBullets (void)
       if ( ( map_x < 0 ) || ( map_x >= BulletLevel->xlen ) ||
 	   ( map_y < 0 ) || ( map_y >= BulletLevel->ylen ) )
 	{
-	  DebugPrintf ( -1000 , "\nBullet ouside of map: pos.x=%f, pos.y=%f, pos.z=%d, type=%d." ,
+	  DebugPrintf ( -1000 , "\nBullet outside of map: pos.x=%f, pos.y=%f, pos.z=%d, type=%d." ,
 			CurBullet -> pos . x , CurBullet -> pos . y , CurBullet -> pos . z , CurBullet -> type );
 	  DeleteBullet ( i , FALSE );
 	  return;
