@@ -745,7 +745,7 @@ DropRandomItem( int level_num , float x , float y , int class,  int ForceMagical
     //
     if ( ( DropDecision > 100 - GOLD_DROP_PERCENTAGE ) )
     {
-	DropItemAt( GetItemIndexByName("Cyberbucks") , level_num , x , y , -1 , -1 , 20 * class + MyRandom( 20 ) + 1);
+	DropItemAt( GetItemIndexByName("Cyberbucks") , level_num , x , y , -1 , -1 , 10 * class + MyRandom( 10 ) + 1);
     }
   
     if ( ( DropDecision < ITEM_DROP_PERCENTAGE ) )
