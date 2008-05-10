@@ -1056,30 +1056,30 @@ TryToIdentifyItem( item* IdentifyItem )
 /**
  * This function tries to sell the item given as parameter.
  */
-void 
-TryToSellItem( item* SellItem , int WithBacktalk , int AmountToSellAtMost )
+    void 
+TryToSellItem( item* SellItem , int AmountToSellAtMost )
 {
     int MenuPosition;
     char linebuf[1000];
-    
+
 #define ANSWER_YES 1
 #define ANSWER_NO 2
-    
+
     char* MenuTexts[ 10 ];
     MenuTexts[0]=_("Yes");
     MenuTexts[1]=_("No");
     MenuTexts[2]="";
-    
+
     //--------------------
     // We catch the case, that not even one item was selected
     // for buying in the number selector...
     //
     if ( AmountToSellAtMost <= 0 ) 
-    {
+	{
 	DebugPrintf ( 0 , "\nTried to sell 0 items of a kind... doing nothing... " );
 	return;
-    }
-    
+	}
+
     //--------------------
     // First some error-checking against illegal values.  This should not normally
     // occur, but some items on the map are from very old times and therefore the
@@ -1087,65 +1087,34 @@ TryToSellItem( item* SellItem , int WithBacktalk , int AmountToSellAtMost )
     // items, so some extra care will be taken here...
     //
     if ( SellItem -> multiplicity < 1 )
-    {
+	{
 	ErrorMessage ( __FUNCTION__  , "\
-An item sold seemed to have multiplicity < 1.  This might be due to some\n\
-fatal errors in the engine OR it might be due to some items droped on the\n\
-maps somewhere long ago still had multiplicity=0 setting, which should not\n\
-normally occur with 'freshly' generated items.  Well, that's some dust from\n\
-the past, but now it should be fixed and not occur in future releases (0.9.10\n\
-or later) of the game.  If you encounter this message after release 0.9.10,\n\
-please inform the developers...",
-				   PLEASE_INFORM, IS_WARNING_ONLY );
-    }
-    
+		An item sold seemed to have multiplicity < 1.  This might be due to some\n\
+		fatal errors in the engine OR it might be due to some items droped on the\n\
+		maps somewhere long ago still had multiplicity=0 setting, which should not\n\
+		normally occur with 'freshly' generated items.  Well, that's some dust from\n\
+		the past, but now it should be fixed and not occur in future releases (0.9.10\n\
+		    or later) of the game.  If you encounter this message after release 0.9.10,\n\
+		please inform the developers...",
+		PLEASE_INFORM, IS_WARNING_ONLY );
+	}
+
     if ( AmountToSellAtMost > SellItem -> multiplicity )
 	AmountToSellAtMost = SellItem -> multiplicity ;
-    
+
     while ( SpacePressed() || EnterPressed() );
-    
-    if ( WithBacktalk )
-    {
-	while ( 1 )
-	{
-	    GiveItemDescription( linebuf , SellItem , TRUE );
-	    strcat ( linebuf , _("\n\n    Are you sure you wish to sell this/(some of these) item(s)?") );
-	    MenuPosition = DoMenuSelection( linebuf , MenuTexts , 1 , -1 , NULL );
-	    switch (MenuPosition) 
-	    {
-		case (-1):
-		    return;
-		    break;
-		case ANSWER_YES:
-		    while (EnterPressed() || SpacePressed() );
-		    
-		    Me . Gold += calculate_item_sell_price ( SellItem );
-		    DeleteItem( SellItem );
-		    PlayOnceNeededSoundSample ( "effects/Shop_ItemSoldSound_0.ogg" , FALSE , TRUE );
-		    
-		    return;
-		    break;
-		case ANSWER_NO:
-		    while (EnterPressed() || SpacePressed() );
-		    return;
-		    break;
-	    }
-	}
-    }
-    else
-    {
-	//--------------------
-	// Ok.  Here we silently sell the item.
-	//
-	Me . Gold += calculate_item_sell_price ( SellItem ) * 
-	    ( (float) AmountToSellAtMost ) / ( (float) SellItem -> multiplicity ) ;
-	if ( AmountToSellAtMost < SellItem -> multiplicity )
-	    SellItem -> multiplicity -= AmountToSellAtMost;
-	else 
-	    DeleteItem( SellItem );
-	
-	PlayOnceNeededSoundSample ( "effects/Shop_ItemSoldSound_0.ogg" , FALSE , TRUE );
-    }
+
+    //--------------------
+    // Ok.  Here we silently sell the item.
+    //
+    Me . Gold += calculate_item_sell_price ( SellItem ) * 
+	( (float) AmountToSellAtMost ) / ( (float) SellItem -> multiplicity ) ;
+    if ( AmountToSellAtMost < SellItem -> multiplicity )
+	SellItem -> multiplicity -= AmountToSellAtMost;
+    else 
+	DeleteItem( SellItem );
+
+    PlayOnceNeededSoundSample ( "effects/Shop_ItemSoldSound_0.ogg" , FALSE , TRUE );
 }; // void TryToSellItem( item* SellItem )
 
 /**
@@ -1401,20 +1370,8 @@ InitTradeWithCharacter( int CharacterCode )
 	    case BUY_1_ITEM:
 		TryToBuyItem( BuyPointerList[ ShopOrder . item_selected ] , TRUE , ShopOrder . number_selected ) ;
 		break;
-	    case BUY_10_ITEMS:
-		TryToBuyItem( BuyPointerList[ ShopOrder . item_selected ] , FALSE , 10 ) ;
-		break;
-	    case BUY_100_ITEMS:
-		TryToBuyItem( BuyPointerList[ ShopOrder . item_selected ] , FALSE , 100 ) ;
-		break;
 	    case SELL_1_ITEM:
-		TryToSellItem( TuxItemsList[ ShopOrder . item_selected ] , FALSE , ShopOrder . number_selected ) ;
-		break;
-	    case SELL_10_ITEMS:
-		TryToSellItem( TuxItemsList[ ShopOrder . item_selected ] , FALSE , 10 ) ;
-		break;
-	    case SELL_100_ITEMS:
-		TryToSellItem( TuxItemsList[ ShopOrder . item_selected ] , FALSE , 100 ) ;
+		TryToSellItem( TuxItemsList[ ShopOrder . item_selected ] , ShopOrder . number_selected ) ;
 		break;
 	    case REPAIR_ITEM:
 		TryToRepairItem( TuxItemsList[ ShopOrder . item_selected ] );
