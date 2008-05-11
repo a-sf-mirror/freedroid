@@ -500,6 +500,9 @@ RotateVectorByAngle ( moderately_finepoint* vector , float rot_angle )
 {
     moderately_finepoint new_vect;
     float rad_angle;
+
+    if ( rot_angle == 0 )
+	return;
     
     rad_angle = rot_angle * ( M_PI / 180.0 ) ; 
     
