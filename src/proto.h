@@ -412,6 +412,7 @@ EXTERN int DirectLineWalkable( float x1 , float y1 , float x2 , float y2 , int z
 EXTERN int CheckIfWayIsFreeOfDroids (char test_tux, float x1 , float y1 , float x2 , float y2 , int OurLevel , enemy * ExceptedRobot ) ;
 EXTERN int IsPassable ( float x , float y , int z ) ;
 EXTERN int IsPassableForDroid ( float x , float y , int z ) ;
+EXTERN int normalize_vect ( float, float, float *, float *);
 
 // sound.c  OR nosound.c 
 #undef EXTERN

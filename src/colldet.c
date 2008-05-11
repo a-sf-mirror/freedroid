@@ -52,11 +52,14 @@ static inline float Q_rsqrt( float number )
   return a.y;
 }
 
-static inline int normalize_vect( float x1, float y1, float * x2, float *y2 )
+inline int normalize_vect( float x1, float y1, float * x2, float *y2 )
 {
     /* Normalize X_0, X_1 */ 
-    float tmplen2 = (x1-*x2)*(x1-*x2)+(y1-*y2)*(y1-*y2); 
-    if ( fabsf(tmplen2) < 0.0001 ) 
+    float tmplen2 = (x1-*x2)*(x1-*x2)+(y1-*y2)*(y1-*y2);
+    if ( tmplen2 == 1 )
+       return 0;
+
+    if ( fabsf(tmplen2) < 0.00005 ) 
 	return 1; //could not normalize
     *x2 = x1 + (*x2 - x1) * Q_rsqrt(tmplen2); 
     *y2 = y1 + (*y2 - y1) * Q_rsqrt(tmplen2);
