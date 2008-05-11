@@ -124,7 +124,7 @@ OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=200  PositionY=200  
 Subtitle=_"Great. Be careful down there. Just try to get the toolkit and get out of there as soon as possible."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle=_"I will give you two grenades. If you get in trouble just activate one. It should give you some breathing room."
+Subtitle=_"I will give you two small devices charged with plasma. If you get in trouble just activate one and it will send a shockwave of plasma around you damaging anything in it's way. It should give you some breathing room."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"The entrance to the tunnels is a bit to the north. Once you exit this building, go in the direction of the town gate. Turn to your right at the first opportunity."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
@@ -136,7 +136,7 @@ ChangeOption=21 ChangeToValue=0
 ChangeOption=31 ChangeToValue=1
 ChangeOption=26 ChangeToValue=0
 DoSomethingExtra="ExecuteActionWithLabel:unlock_northern_maintainance_door"
-DoSomethingExtra="GiveItem:Plasma Grenade:2"
+DoSomethingExtra="GiveItem:Plasma Shockwave Emitter:2"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
