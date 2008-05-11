@@ -234,10 +234,7 @@ check_for_new_experience_level_reached ()
     int BaseExpRequired = 500;
 
     if ( Me . exp_level >= 24 )
-	{
-	SetNewBigScreenMessage(_("Max level reached!"));
 	return;
-	}
 
     Me . ExpRequired = 
 	BaseExpRequired * ( exp ( ( Me . exp_level - 1 ) * log ( 2 ) ) ) ;
@@ -259,6 +256,13 @@ check_for_new_experience_level_reached ()
     {
 	Me . exp_level ++ ;
 	Me . points_to_distribute += 5;
+    
+	if ( Me . exp_level >= 24 )
+	    {
+	    SetNewBigScreenMessage(_("Max level reached!"));
+	    return;
+	    }
+
 
 	//--------------------
 	// Like in the Gothic 1 game, maximum life force will now automatically
