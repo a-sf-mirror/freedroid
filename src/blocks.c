@@ -4053,6 +4053,11 @@ init_obstacle_data( void )
 
   obstacle_map [ ISO_THICK_WALL_CORNER_SW ] . right_border  = obstacle_map[ ISO_THICK_WALL_H ] .right_border ; 
   obstacle_map [ ISO_THICK_WALL_CORNER_SW ] . upper_border  = obstacle_map[ ISO_THICK_WALL_V ] .upper_border ; 
+
+  for ( i = 0; i < NUMBER_OF_OBSTACLE_TYPES; i ++ )
+      { //compute the diagonal length for colldet
+      obstacle_map [ i ] . diaglength = sqrt((obstacle_map [ i ] . upper_border * obstacle_map [ i ] . upper_border) + (obstacle_map [ i ] . left_border * obstacle_map [ i ] . left_border));
+      }
 }; // void init_obstacle_data( void )
 
 /** 

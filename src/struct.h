@@ -317,6 +317,8 @@ typedef struct obstacle_spec_s
     float lower_border ;
     float left_border ;
     float right_border ;
+
+    float diaglength;
     
     char block_area_type;
     int result_type_after_smashing_once;
