@@ -254,9 +254,7 @@ int DirectLineWalkable ( float x1, float y1, float x2, float y2, int z)
 		    distance_to_center = calc_distance_seg_point_normalized(x1, y1, x2, y2, x2n, y2n, our_obs->pos.x, our_obs->pos.y);
 		else distance_to_center = sqrt((our_obs->pos.x - x1)*(our_obs->pos.x - x1)+(our_obs->pos.y - y1)*(our_obs->pos.y - y1));
 
-		float diaglength = sqrt((obstacle_map [ our_obs->type ] . upper_border * obstacle_map [ our_obs->type ] . upper_border) + (obstacle_map [ our_obs->type ] . left_border * obstacle_map [ our_obs->type ] . left_border));
-		
-		if ( diaglength < distance_to_center - 0.1) //radial distance
+		if ( obstacle_map [ our_obs->type ] . diaglength < distance_to_center - 0.1) //radial distance
 		    continue;
 
 		//Check the flags of both points against the rectangle of the object
