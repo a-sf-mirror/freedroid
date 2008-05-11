@@ -1608,13 +1608,13 @@ init_obstacle_data( void )
     // Now we define all exceptions from the default values
     //
     obstacle_map [ ISO_V_WALL ] . block_area_parm_1 = standard_wall_thickness ;
-    obstacle_map [ ISO_V_WALL ] . block_area_parm_2 = 1.2 ;
+    obstacle_map [ ISO_V_WALL ] . block_area_parm_2 = 1.5 ;
     obstacle_map [ ISO_V_WALL ] . filename = "iso_walls_0001.png" ;
     obstacle_map [ ISO_V_WALL ] . transparent = TRANSPARENCY_FOR_WALLS ;
     obstacle_map [ ISO_V_WALL ] . obstacle_short_name = _("Wall");
     obstacle_map [ ISO_V_WALL ] . obstacle_long_description = _("Hey ! This looks like...a WALL !");
     obstacle_map [ ISO_V_WALL ] . flags |= IS_VERTICAL ; 
-    obstacle_map [ ISO_H_WALL ] . block_area_parm_1 = 1.2 ;
+    obstacle_map [ ISO_H_WALL ] . block_area_parm_1 = 1.5 ;
     obstacle_map [ ISO_H_WALL ] . block_area_parm_2 = standard_wall_thickness ;
     obstacle_map [ ISO_H_WALL ] . filename = "iso_walls_0002.png" ;
     obstacle_map [ ISO_H_WALL ] . transparent = TRANSPARENCY_FOR_WALLS;
@@ -1819,23 +1819,23 @@ init_obstacle_data( void )
   //--------------------
   // These files originate from iso_machinery.blend
   //
-  obstacle_map [ ISO_TV_PILLAR_W ] . block_area_parm_1 = 0.9 ;
-  obstacle_map [ ISO_TV_PILLAR_W ] . block_area_parm_2 = 0.9 ;
+  obstacle_map [ ISO_TV_PILLAR_W ] . block_area_parm_1 = 1.0 ;
+  obstacle_map [ ISO_TV_PILLAR_W ] . block_area_parm_2 = 1.0 ;
   obstacle_map [ ISO_TV_PILLAR_W ] . filename = "iso_machinery_0001.png" ;
   obstacle_map [ ISO_TV_PILLAR_W ] . obstacle_short_name = _("Supercluster terminal");
   obstacle_map [ ISO_TV_PILLAR_W ] . obstacle_long_description = _("This is a small part of a gigantic computer cluster, maybe many square miles large...");
-  obstacle_map [ ISO_TV_PILLAR_N ] . block_area_parm_1 = 0.9 ;
-  obstacle_map [ ISO_TV_PILLAR_N ] . block_area_parm_2 = 0.9 ;
+  obstacle_map [ ISO_TV_PILLAR_N ] . block_area_parm_1 = 1.0 ;
+  obstacle_map [ ISO_TV_PILLAR_N ] . block_area_parm_2 = 1.0 ;
   obstacle_map [ ISO_TV_PILLAR_N ] . filename = "iso_machinery_0002.png" ;
   obstacle_map [ ISO_TV_PILLAR_N ] . obstacle_short_name = _("Supercluster terminal");
   obstacle_map [ ISO_TV_PILLAR_N ] . obstacle_long_description = _("This is a small part of a gigantic computer cluster, maybe many square miles large...");
-  obstacle_map [ ISO_TV_PILLAR_E ] . block_area_parm_1 = 0.9 ;
-  obstacle_map [ ISO_TV_PILLAR_E ] . block_area_parm_2 = 0.9 ;
+  obstacle_map [ ISO_TV_PILLAR_E ] . block_area_parm_1 = 1.0 ;
+  obstacle_map [ ISO_TV_PILLAR_E ] . block_area_parm_2 = 1.0 ;
   obstacle_map [ ISO_TV_PILLAR_E ] . filename = "iso_machinery_0003.png" ;
   obstacle_map [ ISO_TV_PILLAR_E ] . obstacle_short_name = _("Supercluster terminal");
   obstacle_map [ ISO_TV_PILLAR_E ] . obstacle_long_description = _("This is a small part of a gigantic computer cluster, maybe many square miles large...");
-  obstacle_map [ ISO_TV_PILLAR_S ] . block_area_parm_1 = 0.9 ;
-  obstacle_map [ ISO_TV_PILLAR_S ] . block_area_parm_2 = 0.9 ;
+  obstacle_map [ ISO_TV_PILLAR_S ] . block_area_parm_1 = 1.0 ;
+  obstacle_map [ ISO_TV_PILLAR_S ] . block_area_parm_2 = 1.0 ;
   obstacle_map [ ISO_TV_PILLAR_S ] . filename = "iso_machinery_0004.png" ;
   obstacle_map [ ISO_TV_PILLAR_S ] . obstacle_short_name = _("Supercluster terminal");
   obstacle_map [ ISO_TV_PILLAR_S ] . obstacle_long_description = _("This is a small part of a gigantic computer cluster, maybe many square miles large...");
