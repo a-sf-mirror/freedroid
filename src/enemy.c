@@ -1491,7 +1491,7 @@ static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_m
     //
     if ( ThisRobot -> last_combat_step > 0.20 )
 	{
-	/* Depending on the weapon of the bot, we will go *to* melee combat or try and avoid it */
+	// Depending on the weapon of the bot, we will go to melee combat or try and avoid it
 	ThisRobot -> last_combat_step = 0 ; 
 
 	char move_to_target = 0;
@@ -1499,26 +1499,56 @@ static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_m
 	if ( ItemMap [ Druidmap [ ThisRobot -> type ] . weapon_item . type ] . item_weapon_is_melee )
 	    {
 	    if ( dist2 > 2.25 )
-		{ /* Melee weapon and too far to strike ? get closer */
+		{ // Melee weapon and too far to strike ? get closer 
 		move_to_target = 1;
 		}
 	    }
 	else 
 	    {
 	    if ( dist2 < 7 )
-		{ /* Ranged weapon and too close to be safe ? get away */
+		{ // Ranged weapon and too close to be safe ? get away
 		MoveAwayFromMeleeCombat ( ThisRobot , new_move_target );
 		} 	
 	    if ( ! DirectLineWalkable ( ThisRobot->virt_pos.x, ThisRobot->virt_pos.y, tpos->x, tpos->y, tpos->z))
-		{
+		{ // Ranged weapon and no direct line? get closer
 		move_to_target = 1;
 		}
 	    }
-	// shorten the move vector a bit
-	if ( move_to_target && dist2 > 1.5) 
-	    {
-	    new_move_target -> x = ThisRobot->pos.x + (tpos->x - ThisRobot->virt_pos.x) * (1.0 - ((1.0)/ sqrt(dist2)));
-	    new_move_target -> y = ThisRobot->pos.y + (tpos->y - ThisRobot->virt_pos.y) * (1.0 - ((1.0)/ sqrt(dist2)));
+
+	if ( move_to_target && dist2 > 2) 
+	    {  // Here we know we will move to the target but do not know exactly where
+	       // When Tux is the target, setting its position directly will work, but 
+	       // if the target is another bot, then pathfinding will consider it non passable.
+	       
+	       // So the approach is to consider the target -> our bot vector, normalize it, see if the end is 
+	       // passable (in terms of droids only for now, not obstacles), and if not try the rotations.
+	       //
+	       // Bots will tend to oscillate a little bit but my tests seem to show it as mostly OK.
+	 
+	       gps tmp;
+   	       update_virtual_position ( &tmp, tpos, ThisRobot->pos.z); //get target position in terms of current position
+	       moderately_finepoint test_t = { ThisRobot->pos.x , ThisRobot->pos.y }; // target -> bot vector
+	       normalize_vect ( tmp.x, tmp.y, &(test_t.x), &(test_t.y) );
+	       test_t.x -= tmp.x;
+	       test_t.y -= tmp.y; //test_t holds the coordinates of normalized target -> bot vector
+
+	       float angles_to_try[8] = { 0, 45, -45, 90, -90, 135, -135, 180 };
+	       int a;
+	       for ( a = 0; a < 8; a ++ )
+		   {
+		   RotateVectorByAngle ( &test_t, angles_to_try[a] );
+		   if ( CheckIfWayIsFreeOfDroids(FALSE, tmp.x, tmp.y, tmp.x + test_t.x, tmp.y + test_t.y, ThisRobot->pos.z, ThisRobot) )
+		       break;
+		   }
+
+	        if ( a == 8 )
+		    { //no passability ? we rush into the target anyway
+		    new_move_target -> x = tmp.x;
+		    new_move_target -> y = tmp.y;
+		    }
+
+		new_move_target -> x = tmp.x + test_t.x;
+		new_move_target -> y = tmp.y + test_t.y;
 	    }
 
 	}
@@ -1534,6 +1564,8 @@ static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_m
 	 ( dist2 > 2.25 ) ) return;
     
     if ( ThisRobot->firewait ) return;
+
+    if ( move_to_target ) return; 
 
     /* Great suggestion of Sarayan : we do not care about friendly fire, and make bullets go through people of the same side. */
 
