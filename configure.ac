@@ -191,7 +191,7 @@ AC_TYPE_SIZE_T
 AC_HEADER_TIME
 
 # Checks for library functions.
-AC_CHECK_FUNCS([alarm getcwd gettimeofday memset sqrt strstr strtok alphasort scandir])
+AC_CHECK_FUNCS([alarm getcwd gettimeofday memset sqrt strstr strtok alphasort scandir lrintf])
 
 if test x$want_backtrace = xyes; then
    AC_CHECK_FUNCS([backtrace])

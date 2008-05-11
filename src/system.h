@@ -111,6 +111,10 @@
 #include "SDL_opengl.h"
 #endif /* HAVE_LIBGL */
 
+#ifndef HAVE_LRINTF
+#define lrintf(X) ((int)(X))
+#endif
+
 #include "lang.h"
 
 #endif /* double-inclusion protection */
