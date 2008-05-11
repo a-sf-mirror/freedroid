@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: freedroid-discussion@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-05-10 08:03+0200\n"
+"POT-Creation-Date: 2008-05-11 13:45+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -829,23 +829,23 @@ msgstr ""
 msgid "That one went into the armour."
 msgstr ""
 
-#: ../src/character.c:238
+#: ../src/character.c:262
 msgid "Max level reached!"
 msgstr ""
 
-#: ../src/character.c:281
+#: ../src/character.c:285
 msgid "Level Gained!"
 msgstr ""
 
-#: ../src/chat.c:589
+#: ../src/chat.c:591
 msgid "1 Item received (on floor)"
 msgstr ""
 
-#: ../src/chat.c:593
+#: ../src/chat.c:595
 msgid "1 Item received!"
 msgstr ""
 
-#: ../src/chat.c:1275
+#: ../src/chat.c:1277
 msgid "What will you say?"
 msgstr ""
 
@@ -879,51 +879,51 @@ msgstr ""
 msgid "%s died."
 msgstr ""
 
-#: ../src/enemy.c:994
+#: ../src/enemy.c:992
 msgid "state:  Wandering along waypoints."
 msgstr ""
 
-#: ../src/enemy.c:997
+#: ../src/enemy.c:995
 msgid "state: Select next WP."
 msgstr ""
 
-#: ../src/enemy.c:1000
+#: ../src/enemy.c:998
 msgid "state:  Turn towards next WP."
 msgstr ""
 
-#: ../src/enemy.c:1003
+#: ../src/enemy.c:1001
 msgid "state:  Rush Tux and open talk."
 msgstr ""
 
-#: ../src/enemy.c:1006
+#: ../src/enemy.c:1004
 msgid "state:  Stop and eye target."
 msgstr ""
 
-#: ../src/enemy.c:1009
+#: ../src/enemy.c:1007
 msgid "state:  Attack."
 msgstr ""
 
-#: ../src/enemy.c:1012
+#: ../src/enemy.c:1010
 msgid "state:  Returning home."
 msgstr ""
 
-#: ../src/enemy.c:1015
+#: ../src/enemy.c:1013
 msgid "state:  Waypointless wandering."
 msgstr ""
 
-#: ../src/enemy.c:1018
+#: ../src/enemy.c:1016
 msgid "state:  Paralyzed."
 msgstr ""
 
-#: ../src/enemy.c:1021
+#: ../src/enemy.c:1019
 msgid "state: Completely fixed."
 msgstr ""
 
-#: ../src/enemy.c:1024
+#: ../src/enemy.c:1022
 msgid "state: Follow Tux."
 msgstr ""
 
-#: ../src/enemy.c:1027
+#: ../src/enemy.c:1025
 msgid "state:  UNHANDLED!!"
 msgstr ""
 
@@ -1311,45 +1311,45 @@ msgstr ""
 msgid "%s (%03.1f:%03.1f:%d) day %d %02d:%02d "
 msgstr ""
 
-#: ../src/influ.c:476
+#: ../src/influ.c:472
 msgid "Clip empty, reloading..."
 msgstr ""
 
-#: ../src/influ.c:2906
+#: ../src/influ.c:2918
 msgid "No more ammunition !"
 msgstr ""
 
-#: ../src/influ.c:3314
+#: ../src/influ.c:3325
 #, c-format
 msgid "This is a %s. %s"
 msgstr ""
 
-#: ../src/influ.c:3339 ../src/influ.c:3346
+#: ../src/influ.c:3350 ../src/influ.c:3357
 #, c-format
 msgid "Examining %s.  %s"
 msgstr ""
 
-#: ../src/influ.c:3361
+#: ../src/influ.c:3372
 #, c-format
 msgid "You see the floor.  It should be perfectly safe to walk on it."
 msgstr ""
 
-#: ../src/influ.c:3392
+#: ../src/influ.c:3403
 #, c-format
 msgid "Unlocking obstacle of type %d."
 msgstr ""
 
-#: ../src/influ.c:3421
+#: ../src/influ.c:3432
 #, c-format
 msgid "Repairing obstacle of type %d."
 msgstr ""
 
-#: ../src/influ.c:3450
+#: ../src/influ.c:3461
 #, c-format
 msgid "Attacking obstacle of type %d."
 msgstr ""
 
-#: ../src/influ.c:3479
+#: ../src/influ.c:3490
 #, c-format
 msgid "Picking pockets of obstacle of type %d."
 msgstr ""
@@ -1556,71 +1556,71 @@ msgstr ""
 msgid "Sorry, you don't have automap yet:  map maker item not present."
 msgstr ""
 
-#: ../src/items.c:1173
+#: ../src/items.c:1146
 msgid "I can't use this item here."
 msgstr ""
 
-#: ../src/items.c:1186
+#: ../src/items.c:1159
 #, c-format
 msgid "How do you expect to do two things at a time? You are "
 msgstr ""
 
-#: ../src/items.c:1190
+#: ../src/items.c:1163
 msgid "drinking a potion!"
 msgstr ""
 
-#: ../src/items.c:1193
+#: ../src/items.c:1166
 msgid "waiting for you weapon to fire again!"
 msgstr ""
 
-#: ../src/items.c:1196
+#: ../src/items.c:1169
 msgid "reloading your weapon!"
 msgstr ""
 
-#: ../src/items.c:1199
+#: ../src/items.c:1172
 msgid "throwing a grenade!"
 msgstr ""
 
-#: ../src/items.c:1202
+#: ../src/items.c:1175
 msgid "running a program!"
 msgstr ""
 
-#: ../src/items.c:1205
+#: ../src/items.c:1178
 msgid "doing something so weird the game does not understand what it is"
 msgstr ""
 
-#: ../src/items.c:2168 ../src/items.c:2203 ../src/items.c:2205
+#: ../src/items.c:2141 ../src/items.c:2176 ../src/items.c:2178
 msgid "Identified air."
 msgstr ""
 
-#: ../src/items.c:2224
+#: ../src/items.c:2197
 #, c-format
 msgid "You already know all there is to know about the %s."
 msgstr ""
 
-#: ../src/items.c:2230
+#: ../src/items.c:2203
 #, c-format
 msgid "Identified %s"
 msgstr ""
 
-#: ../src/items.c:2460
+#: ../src/items.c:2433
 msgid "Two-handed weapon requirements not met: shield bonus doesn't count."
 msgstr ""
 
-#: ../src/items.c:2479
+#: ../src/items.c:2452
 msgid "You cannot fight with this!"
 msgstr ""
 
-#: ../src/items.c:2522
+#: ../src/items.c:2495
 msgid "Shield requirements not met: two-handed weapon bonus doesn't count."
 msgstr ""
 
-#: ../src/items.c:2643
+#: ../src/items.c:2616
 #, c-format
 msgid "Item taken: %s."
 msgstr ""
 
-#: ../src/items.c:2695 ../src/items.c:2869
+#: ../src/items.c:2668 ../src/items.c:2842
 msgid "I can't carry any more."
 msgstr ""
 
@@ -2474,17 +2474,17 @@ msgid "Game loaded."
 msgstr ""
 
 #: ../src/ship.c:66 ../src/shop.c:1005 ../src/shop.c:1032 ../src/shop.c:1069
-#: ../src/shop.c:1293 ../src/shop.c:1482
+#: ../src/shop.c:1262 ../src/shop.c:1439
 msgid "Yes"
 msgstr ""
 
 #: ../src/ship.c:67 ../src/shop.c:1006 ../src/shop.c:1033 ../src/shop.c:1070
-#: ../src/shop.c:1294 ../src/shop.c:1483
+#: ../src/shop.c:1263 ../src/shop.c:1440
 msgid "No"
 msgstr ""
 
-#: ../src/ship.c:82 ../src/shop.c:1013 ../src/shop.c:1040 ../src/shop.c:1233
-#: ../src/shop.c:1319 ../src/shop.c:1548
+#: ../src/ship.c:82 ../src/shop.c:1013 ../src/shop.c:1040 ../src/shop.c:1202
+#: ../src/shop.c:1288 ../src/shop.c:1505
 msgid " BACK "
 msgstr ""
 
@@ -2680,34 +2680,27 @@ msgstr ""
 msgid "You can't afford to have this item identified! "
 msgstr ""
 
-#: ../src/shop.c:1112
-msgid ""
-"\n"
-"\n"
-"    Are you sure you wish to sell this/(some of these) item(s)?"
-msgstr ""
-
-#: ../src/shop.c:1236
+#: ../src/shop.c:1205
 msgid ""
 "\n"
 "\n"
 "   No room for this item in inventory!"
 msgstr ""
 
-#: ../src/shop.c:1260
+#: ../src/shop.c:1229
 msgid ""
 "\n"
 "Tried to take 0 items of a kind from chest or cointainer... doing nothing... "
 msgstr ""
 
-#: ../src/shop.c:1322
+#: ../src/shop.c:1291
 msgid ""
 "\n"
 "\n"
 "    You can't afford to purchase this item!"
 msgstr ""
 
-#: ../src/shop.c:1550
+#: ../src/shop.c:1507
 msgid " YOU DONT HAVE ANYTHING THAT WOULD NEED REPAIR "
 msgstr ""
 
