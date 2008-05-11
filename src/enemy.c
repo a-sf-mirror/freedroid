@@ -1565,8 +1565,6 @@ static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_m
     
     if ( ThisRobot->firewait ) return;
 
-    if ( move_to_target ) return; 
-
     /* Great suggestion of Sarayan : we do not care about friendly fire, and make bullets go through people of the same side. */
 
     RawStartEnemysShot( ThisRobot , tpos->x - ThisRobot->virt_pos.x, tpos->y - ThisRobot->virt_pos.y);
