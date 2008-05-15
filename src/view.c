@@ -44,9 +44,6 @@
 #include "proto.h"
 #include "SDL_rotozoom.h"
 
-#define PUT_ONLY_THROWN_ITEMS 3
-#define PUT_NO_THROWN_ITEMS 4
-
 #include <zlib.h>
 
 #if SDL_BYTEORDER == SDL_LIL_ENDIAN

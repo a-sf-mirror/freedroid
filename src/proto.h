@@ -139,6 +139,15 @@ EXTERN void update_virtual_position ( gps* target_pos , gps* source_pos , int le
 EXTERN void FdFillRect (SDL_Rect rect, SDL_Color color);
 EXTERN void ShowPosition (void);
 EXTERN void DisplayItemImageAtMouseCursor( int ItemImageCode );
+EXTERN void ShowCombatScreenTexts ( int mask );
+EXTERN void isometric_show_floor_around_tux_without_doublebuffering (int mask);
+EXTERN void set_up_ordered_blitting_list ( int mask );
+EXTERN void blit_preput_objects_according_to_blitting_list ( int mask );
+EXTERN void blit_nonpreput_objects_according_to_blitting_list ( int mask );
+EXTERN void show_obstacle_labels ( int mask );
+EXTERN void draw_grid_on_the_floor (int mask);
+EXTERN void update_item_text_slot_positions ( void );
+EXTERN void blit_all_item_slots ( void );
 EXTERN void AssembleCombatPicture (int );
 EXTERN void blit_tux ( int x , int y );
 EXTERN void PutBullet ( int Bullet_number , int mask );

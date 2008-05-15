@@ -826,6 +826,11 @@ enum
 #define HELMET_RECT_X 25
 #define HELMET_RECT_Y 22
 
+// Flags for thrown items. see PutItem function in view.c
+#define PUT_ONLY_THROWN_ITEMS 3
+#define PUT_NO_THROWN_ITEMS 4
+
+
 //--------------------
 // bullet types
 //
