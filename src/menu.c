@@ -1948,32 +1948,6 @@ Droid_fill (char *MenuTexts[10])
  * This reads in the new name for the character...
  */
 void
-Get_Server_Name ( void )
-{
-  char* Temp;
-  InitiateMenu(  NE_TITLE_PIC_BACKGROUND_CODE );
-
-  Temp = GetString( 140 , FALSE  , NE_TITLE_PIC_BACKGROUND_CODE , _("\n\
- Please enter name of server to connect to:\n\
- You can give an empty string for the local host.\n\
- > "));
-  
-  if ( Temp == NULL )
-    {
-      strcpy ( ServerName , "NoSeverNameGiven" );
-    }
-  else
-    {
-      strcpy ( ServerName , Temp );
-      free( Temp );
-    }
-
-}; // void Get_Server_Name ( void )
-
-/**
- * This reads in the new name for the character...
- */
-void
 Get_New_Character_Name ( void )
 {
     char* Temp;

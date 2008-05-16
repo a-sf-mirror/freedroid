@@ -739,30 +739,6 @@ ReactToSpecialKeys(void)
     
     automap_keyboard_handling ( );
 
-    //--------------------
-    // We assign the G key to send greetings either to the server
-    // or from the server to all players.
-    //
-    if ( GPressed () )
-    {
-	/*
-	  Me.TextToBeDisplayed="Hello!  Greetings to the Server.";
-	  Me.TextVisibleTime=0;
-	  
-	  if ( ! ServerMode )
-	  {
-	  sprintf ( MessageBuffer , "\nThis is a message from Me '%s'. " , Me.character_name );
-	  // Send1024MessageToServer ( MessageBuffer );
-	  SendTextMessageToServer ( MessageBuffer );
-	  }
-	  else
-	  {
-	  ServerSendMessageToAllClients ( "\nThis is a message from the server to all clients. " );
-	  }
-	*/
-    }
-    
-
     if ( GameConfig . enable_cheatkeys ) check_for_cheat_keys();
 
     //--------------------
