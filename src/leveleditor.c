@@ -5451,60 +5451,7 @@ cycle_marked_obstacle( Level EditLevel )
 }; // void cycle_marked_obstacle( Level EditLevel )
 
 
-void AssembleLevelEditorPicture ( leveleditor_state *cur_level )
-{
 
-    int mask =  ONLY_SHOW_MAP_AND_TEXT | SHOW_GRID | SHOW_ITEMS | GameConfig.omit_tux_in_level_editor * OMIT_TUX | GameConfig.omit_obstacles_in_level_editor * OMIT_OBSTACLES | GameConfig.omit_enemies_in_level_editor * OMIT_ENEMIES | SHOW_OBSTACLE_NAMES | ZOOM_OUT * GameConfig . zoom_is_on | OMIT_BLASTS ;
-    int i;
-    int item_under_cursor = get_floor_item_index_under_mouse_cursor ( );
-
-    clear_screen() ;
-    
-    make_sure_system_mouse_cursor_is_turned_on();
-
-    update_light_list ( );
-
-    global_check_for_light_only_collisions_flag = TRUE ;
-
-    isometric_show_floor_around_tux_without_doublebuffering ( mask );
-
-    draw_grid_on_the_floor( mask );
-    
-    set_up_ordered_blitting_list ( mask );
-    
-    blit_preput_objects_according_to_blitting_list ( mask );
-    
-    PutMouseMoveCursor ( );
-    
-    for ( i = 0 ; i < MAX_ITEMS_PER_LEVEL ; i ++ )
-    {
-	if ( i == item_under_cursor )
-	    PutItem ( i , mask , PUT_NO_THROWN_ITEMS , TRUE ); 
-	else
-	    PutItem ( i , mask , PUT_NO_THROWN_ITEMS , FALSE ); 
-	}
-
-    blit_nonpreput_objects_according_to_blitting_list ( mask );
-
-    if ( ! GameConfig . skip_light_radius ) 
-	blit_light_radius();
-
-    show_obstacle_labels ( mask );
-
-
-    ShowCombatScreenTexts ( mask );
-
-    if ( ShiftPressed() || always_show_items_text )
-    {
-	    update_item_text_slot_positions ( );
-	    blit_all_item_slots ( );
-    }
- 
-    User_Rect.x = 0;
-    User_Rect.w = GameConfig . screen_width - User_Rect.x;
-
-    global_check_for_light_only_collisions_flag = TRUE ;
-}
 
 /**
  * This function provides the Level Editor integrated into 
@@ -5646,7 +5593,7 @@ LevelEditor(void)
 	    VanishingMessageDisplayTime += ( SDL_GetTicks ( ) - OldTicks ) / 1000.0 ;
 	    OldTicks = SDL_GetTicks ( ) ;
 	    
-	    AssembleLevelEditorPicture ( cur_state );
+	    AssembleCombatPicture ( ONLY_SHOW_MAP_AND_TEXT | SHOW_GRID | SHOW_ITEMS | GameConfig.omit_tux_in_level_editor * OMIT_TUX | GameConfig.omit_obstacles_in_level_editor * OMIT_OBSTACLES | GameConfig.omit_enemies_in_level_editor * OMIT_ENEMIES | SHOW_OBSTACLE_NAMES | ZOOM_OUT * GameConfig . zoom_is_on | OMIT_BLASTS );
 	    
 	    Highlight_Current_Block(ZOOM_OUT * GameConfig . zoom_is_on );
 	    
