@@ -4209,7 +4209,7 @@ end_of_level
 Levelnumber: 3
 xlen of this level: 38
 ylen of this level: 22
-light radius bonus of this level: 5
+light radius bonus of this level: 7
 minimal light on this level: -30
 infinite_running_on_this_level: 0
 jump threshold north: -1
@@ -4279,8 +4279,6 @@ t2 x36.50 y1.00 l-1 d-1
 t2 x37.50 y1.00 l-1 d-1 
 t1 x5.00 y1.50 l-1 d-1 
 t2 x4.50 y2.00 l-1 d-1 
-t15 x8.00 y1.50 l-1 d-1 
-t11 x10.00 y1.50 l-1 d-1 
 t1 x13.00 y1.50 l-1 d-1 
 t2 x13.50 y2.00 l-1 d-1 
 t1 x18.00 y1.50 l-1 d-1 
@@ -4297,7 +4295,6 @@ t49 x35.50 y1.50 l-1 d-1
 t1 x38.00 y1.50 l-1 d-1 
 t1 x4.00 y2.50 l-1 d-1 
 t2 x3.50 y3.00 l-1 d-1 
-t1 x8.00 y2.50 l-1 d-1 
 t1 x10.00 y2.50 l-1 d-1 
 t1 x14.00 y2.50 l-1 d-1 
 t2 x14.50 y3.00 l-1 d-1 
@@ -4314,7 +4311,6 @@ t1 x38.00 y2.50 l-1 d-1
 t1 x3.00 y3.50 l-1 d-1 
 t2 x2.50 y4.00 l-1 d-1 
 t44 x6.75 y3.50 l-1 d-1 
-t1 x8.00 y3.50 l-1 d-1 
 t11 x10.00 y3.50 l-1 d-1 
 t44 x14.75 y3.50 l-1 d-1 
 t1 x16.00 y3.50 l-1 d-1 
@@ -4327,7 +4323,6 @@ t1 x2.00 y4.50 l-1 d-1
 t2 x1.50 y5.00 l-1 d-1 
 t43 x5.50 y4.75 l-1 d-1 
 t54 x6.50 y4.50 l-1 d-1 
-t1 x8.00 y4.50 l-1 d-1 
 t1 x10.00 y4.50 l-1 d-1 
 t1 x16.00 y4.50 l-1 d-1 
 t2 x15.50 y5.00 l-1 d-1 
@@ -4340,7 +4335,6 @@ t1 x38.00 y4.50 l-1 d-1
 t1 x1.00 y5.50 l-1 d-1 
 t2 x5.50 y6.00 l-1 d-1 
 t2 x6.50 y6.00 l-1 d-1 
-t1 x8.00 y5.50 l-1 d-1 
 t2 x7.50 y6.00 l-1 d-1 
 t1 x10.00 y5.50 l-1 d-1 
 t2 x10.50 y6.00 l-1 d-1 
@@ -4368,7 +4362,6 @@ t1 x30.00 y5.50 l-1 d-1
 t2 x29.50 y6.00 l-1 d-1 
 t1 x38.00 y5.50 l-1 d-1 
 t1 x1.00 y6.50 l-1 d-1 
-t15 x5.00 y6.50 l-1 d-1 
 t15 x22.00 y6.50 l-1 d-1 
 t48 x28.50 y6.50 l-1 d-1 
 t1 x30.00 y6.50 l-1 d-1 
@@ -4385,7 +4378,6 @@ t2 x11.50 y8.00 l-1 d-1
 t2 x12.50 y8.00 l-1 d-1 
 t2 x13.50 y8.00 l-1 d-1 
 t2 x14.50 y8.00 l-1 d-1 
-t49 x15.50 y7.50 l-1 d-1 
 t2 x17.50 y8.00 l-1 d-1 
 t2 x18.50 y8.00 l-1 d-1 
 t2 x19.50 y8.00 l-1 d-1 
@@ -4410,9 +4402,7 @@ t1 x17.00 y8.50 l-1 d-1
 t2 x16.50 y9.00 l-1 d-1 
 t48 x19.50 y8.50 l-1 d-1 
 t11 x22.00 y8.50 l-1 d-1 
-t49 x28.50 y8.50 l-1 d-1 
 t1 x30.00 y8.50 l-1 d-1 
-t49 x31.50 y8.50 l-1 d-1 
 t44 x36.75 y8.50 l-1 d-1 
 t1 x38.00 y8.50 l-1 d-1 
 t1 x2.00 y9.50 l-1 d-1 
@@ -4421,7 +4411,6 @@ t22 x4.50 y9.50 l-1 d-1
 t22 x6.50 y9.50 l-1 d-1 
 t1 x8.00 y9.50 l-1 d-1 
 t1 x10.00 y9.50 l-1 d-1 
-t48 x12.50 y9.50 l-1 d-1 
 t1 x14.00 y9.50 l-1 d-1 
 t49 x19.50 y9.50 l-1 d-1 
 t1 x22.00 y9.50 l-1 d-1 
@@ -4494,10 +4483,7 @@ t1 x22.00 y13.50 l-1 d-1
 t49 x22.50 y13.50 l-1 d-1 
 t49 x24.50 y13.50 l-1 d-1 
 t49 x25.50 y13.50 l-1 d-1 
-t49 x27.50 y13.50 l-1 d-1 
-t48 x28.50 y13.50 l-1 d-1 
 t1 x30.00 y13.50 l-1 d-1 
-t49 x31.50 y13.50 l-1 d-1 
 t49 x35.50 y13.50 l-1 d-1 
 t49 x36.50 y13.50 l-1 d-1 
 t1 x38.00 y13.50 l-1 d-1 
@@ -4513,11 +4499,6 @@ t2 x22.50 y15.00 l-1 d-1
 t2 x23.50 y15.00 l-1 d-1 
 t2 x24.50 y15.00 l-1 d-1 
 t2 x25.50 y15.00 l-1 d-1 
-t2 x26.50 y15.00 l-1 d-1 
-t2 x27.50 y15.00 l-1 d-1 
-t2 x28.50 y15.00 l-1 d-1 
-t1 x30.00 y14.50 l-1 d-1 
-t2 x29.50 y15.00 l-1 d-1 
 t48 x31.50 y14.50 l-1 d-1 
 t48 x35.50 y14.50 l-1 d-1 
 t47 x36.50 y14.50 l-1 d-1 
@@ -4555,7 +4536,6 @@ t2 x18.50 y19.00 l-1 d-1
 t2 x19.50 y19.00 l-1 d-1 
 t2 x20.50 y19.00 l-1 d-1 
 t2 x21.50 y19.00 l-1 d-1 
-t49 x34.50 y18.50 l-1 d-1 
 t50 x35.50 y18.50 l-1 d-1 
 t49 x36.50 y18.50 l-1 d-1 
 t1 x38.00 y18.50 l-1 d-1 
@@ -4568,8 +4548,6 @@ t1 x22.00 y19.50 l-1 d-1
 t50 x22.50 y19.50 l-1 d-1 
 t50 x23.50 y19.50 l-1 d-1 
 t50 x24.50 y19.50 l-1 d-1 
-t49 x34.50 y19.50 l-1 d-1 
-t49 x35.50 y19.50 l-1 d-1 
 t49 x36.50 y19.50 l-1 d-1 
 t1 x38.00 y19.50 l-1 d-1 
 t1 x10.00 y20.50 l-1 d-1 
@@ -4634,15 +4612,31 @@ t2 x13.50 y21.00 l-1 d-1
 t2 x14.50 y21.00 l-1 d-1 
 t2 x15.50 y21.00 l-1 d-1 
 t2 x16.50 y21.00 l-1 d-1 
-t272 x33.50 y13.50 l-1 d-1 
-t150 x11.50 y3.50 l-1 d-1 
 t11 x22.00 y7.50 l-1 d-1 
+t1 x27.00 y14.50 l-1 d-1 
+t2 x26.50 y15.00 l-1 d-1 
+t2 x27.50 y14.00 l-1 d-1 
+t2 x28.50 y14.00 l-1 d-1 
+t2 x29.50 y14.00 l-1 d-1 
+t49 x30.50 y14.50 l-1 d-1 
+t272 x27.50 y14.50 l-1 d-1 
+t49 x32.00 y8.50 l-1 d-1 
+t50 x25.50 y16.50 l-1 d-1 
+t50 x26.50 y16.50 l-1 d-1 
+t49 x30.50 y15.50 l-1 d-1 
+t1 x10.00 y1.50 l-1 d-1 
+t2 x8.50 y6.00 l-1 d-1 
+t2 x9.50 y6.00 l-1 d-1 
+t1 x5.00 y6.50 l-1 d-1 
+t149 x11.50 y1.50 l-1 d-1 
+t49 x35.50 y20.00 l-1 d-1 
+t49 x34.50 y20.00 l-1 d-1 
 /obsdata
 plabelinfolvl
-x=33 y=13 name="TeleportBackToSecondCombatLevel"
-x=33 y=12 name="ArriveAtKevinsUndergroundStation"
-x=11 y=3 name="TeleportToKevinsEnergyStation"
-x=10 y=3 name="ReturnToKevinUndergroundStation"
+x=27 y=14 name="TeleportBackToSecondCombatLevel"
+x=28 y=14 name="ArriveAtKevinsUndergroundStation"
+x=11 y=1 name="TeleportToKevinsEnergyStation"
+x=11 y=2 name="ReturnToKevinUndergroundStation"
 /plabelinfolvl
 pobstaclelabelinfolvl
 /pobstaclelabelinfolvl
@@ -4659,12 +4653,12 @@ pchestinfolvl
 wp
 Nr.=  0 x=   4 y=   3 rnd=0	 c:   19  18   5
 Nr.=  1 x=   8 y=   1 rnd=0	 c:   18   2
-Nr.=  2 x=   8 y=   3 rnd=0	 c:    1   3   7
+Nr.=  2 x=   8 y=   3 rnd=0	 c:    1   3  18
 Nr.=  3 x=  13 y=   3 rnd=0	 c:    2
 Nr.=  4 x=  19 y=   3 rnd=0	 c:    8  22  20
-Nr.=  5 x=   1 y=   6 rnd=0	 c:    0   6  17
-Nr.=  6 x=   5 y=   6 rnd=0	 c:    7   5  11
-Nr.=  7 x=   8 y=   6 rnd=0	 c:    2   6  14   8
+Nr.=  5 x=   1 y=   6 rnd=0	 c:    0  17
+Nr.=  6 x=   5 y=   6 rnd=0	 c:    7  11
+Nr.=  7 x=   8 y=   6 rnd=0	 c:    6  14   8
 Nr.=  8 x=  19 y=   6 rnd=0	 c:    4   9   7
 Nr.=  9 x=  26 y=   6 rnd=0	 c:    8  10  21
 Nr.= 10 x=  27 y=   7 rnd=0	 c:    9  23  21
@@ -4675,7 +4669,7 @@ Nr.= 14 x=   8 y=  10 rnd=0	 c:    7  15  36
 Nr.= 15 x=  17 y=  10 rnd=0	 c:   14  25  36
 Nr.= 16 x=   6 y=   9 rnd=0	 c:   11
 Nr.= 17 x=   4 y=   9 rnd=0	 c:   11   5
-Nr.= 18 x=   6 y=   1 rnd=0	 c:    1   0  19
+Nr.= 18 x=   6 y=   1 rnd=0	 c:    1   0  19   2
 Nr.= 19 x=   5 y=   3 rnd=0	 c:    0  18
 Nr.= 20 x=  22 y=   3 rnd=0	 c:    4  27  28
 Nr.= 21 x=  26 y=   8 rnd=0	 c:   10  24   9
@@ -4683,41 +4677,43 @@ Nr.= 22 x=  17 y=   3 rnd=0	 c:    4
 Nr.= 23 x=  35 y=   7 rnd=0	 c:   10  26  31  27  30  32
 Nr.= 24 x=  20 y=   8 rnd=0	 c:   25  21
 Nr.= 25 x=  20 y=  10 rnd=0	 c:   15  24  35
-Nr.= 26 x=  30 y=   7 rnd=0	 c:   23  10  27  31
+Nr.= 26 x=  30 y=   7 rnd=0	 c:   23  10  27  31  61
 Nr.= 27 x=  30 y=   3 rnd=0	 c:   26  20  28  30  23
 Nr.= 28 x=  28 y=   3 rnd=0	 c:   27  20  29
 Nr.= 29 x=  28 y=   1 rnd=0	 c:   28  30
 Nr.= 30 x=  30 y=   1 rnd=0	 c:   27  29  23
-Nr.= 31 x=  30 y=  10 rnd=0	 c:   26  23  32  34
-Nr.= 32 x=  30 y=  12 rnd=0	 c:   31  23  33  38
+Nr.= 31 x=  30 y=  10 rnd=0	 c:   26  23  32  34  61
+Nr.= 32 x=  30 y=  12 rnd=0	 c:   31  23  33  61
 Nr.= 33 x=  28 y=  12 rnd=0	 c:   32  34
 Nr.= 34 x=  28 y=  10 rnd=0	 c:   31  33  35
 Nr.= 35 x=  22 y=  10 rnd=0	 c:   25  34
 Nr.= 36 x=  11 y=  10 rnd=0	 c:   14  15  37
 Nr.= 37 x=  11 y=   9 rnd=0	 c:   36
-Nr.= 38 x=  30 y=  17 rnd=0	 c:   32  39  59
-Nr.= 39 x=  33 y=  17 rnd=0	 c:   38
+Nr.= 38 x=  30 y=  17 rnd=1	 c:   39  59  62
+Nr.= 39 x=  33 y=  17 rnd=1	 c:   38  62  61
 Nr.= 40 x=  12 y=  13 rnd=0	 c:   43  41
 Nr.= 41 x=  13 y=  14 rnd=0	 c:   52  40  42
 Nr.= 42 x=  14 y=  15 rnd=0	 c:   41  60
 Nr.= 43 x=  11 y=  14 rnd=0	 c:   44  53  40  52
 Nr.= 44 x=  10 y=  15 rnd=0	 c:   49  43
 Nr.= 45 x=  14 y=  18 rnd=0	 c:   54  46  60
-Nr.= 46 x=  13 y=  19 rnd=0	 c:   45  51
+Nr.= 46 x=  13 y=  19 rnd=1	 c:   45  51
 Nr.= 47 x=  11 y=  19 rnd=0	 c:   51  48
 Nr.= 48 x=  10 y=  18 rnd=0	 c:   47  50
 Nr.= 49 x=  11 y=  16 rnd=0	 c:   50  44
 Nr.= 50 x=  11 y=  17 rnd=0	 c:   48  49  60
-Nr.= 51 x=  12 y=  19 rnd=0	 c:   46  47
-Nr.= 52 x=  12 y=  14 rnd=0	 c:   43  41
+Nr.= 51 x=  12 y=  19 rnd=1	 c:   46  47
+Nr.= 52 x=  12 y=  14 rnd=1	 c:   43  41
 Nr.= 53 x=  10 y=  13 rnd=0	 c:   43
 Nr.= 54 x=  15 y=  17 rnd=0	 c:   55  45  60
 Nr.= 55 x=  22 y=  17 rnd=0	 c:   57  56  54  58
 Nr.= 56 x=  23 y=  16 rnd=0	 c:   58  55  57
-Nr.= 57 x=  23 y=  18 rnd=0	 c:   58  55  56
+Nr.= 57 x=  23 y=  18 rnd=1	 c:   58  55  56
 Nr.= 58 x=  24 y=  17 rnd=0	 c:   59  57  56  55
-Nr.= 59 x=  27 y=  17 rnd=0	 c:   38  58
-Nr.= 60 x=  14 y=  17 rnd=0	 c:   42  45  50  54
+Nr.= 59 x=  27 y=  17 rnd=1	 c:   38  58
+Nr.= 60 x=  14 y=  17 rnd=1	 c:   42  45  50  54
+Nr.= 61 x=  32 y=  12 rnd=0	 c:   62  32  31  23  26
+Nr.= 62 x=  32 y=  15 rnd=0	 c:   38  39  61
 end_of_level
 ----------------------------------------------------------------------
 Levelnumber: 4
