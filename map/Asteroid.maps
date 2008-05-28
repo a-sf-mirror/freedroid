@@ -13936,7 +13936,6 @@ t1 x1.00 y7.50 l-1 d-1
 t45 x2.50 y7.25 l-1 d-1 
 t1 x5.00 y7.50 l-1 d-1 
 t1 x7.00 y7.50 l-1 d-1 
-t1 x8.00 y7.50 l-1 d-1 
 t2 x7.50 y8.00 l-1 d-1 
 t1 x12.00 y7.50 l-1 d-1 
 t1 x17.00 y7.50 l-1 d-1 
@@ -13949,7 +13948,6 @@ t1 x43.00 y7.50 l-1 d-1
 t1 x48.00 y7.50 l-1 d-1 
 t1 x1.00 y8.50 l-1 d-1 
 t1 x5.00 y8.50 l-1 d-1 
-t16 x9.31 y8.29 l-1 d-1 
 t1 x12.00 y8.50 l-1 d-1 
 t46 x12.25 y8.50 l-1 d-1 
 t1 x17.00 y8.50 l-1 d-1 
@@ -14311,12 +14309,13 @@ t3 x29.00 y12.50 l-1 d-1
 t3 x19.00 y12.50 l-1 d-1 
 t279 x19.50 y13.50 l-1 d-1 
 t280 x26.50 y7.50 l-1 d-1 
+t272 x7.52 y7.41 l-1 d-1 
 /obsdata
 plabelinfolvl
-x=9 y=8 name="ScientistQuartersEscapePoint"
-x=8 y=8 name="ScientistQuartersArrivalPoint"
 x=37 y=12 name="DisruptorLevelVAccess"
 x=37 y=13 name="DisruptorLevelVReturnPoint"
+x=7 y=7 name="ScientistQuartersEscapePoint"
+x=8 y=7 name="ScientistQuartersArrivalPoint"
 /plabelinfolvl
 pobstaclelabelinfolvl
 /pobstaclelabelinfolvl
