@@ -3438,26 +3438,26 @@ init_obstacle_data( void )
   obstacle_map [ ISO_OUTER_WALL_W3 ] . obstacle_short_name = _("Strong wall") ;
   obstacle_map [ ISO_OUTER_WALL_W3 ] . obstacle_long_description = _("This great wall can withstand a swarm of rogue bots madly attacking it for weeks*! It can belong to you for only 299.99C$ + tax, per section. *( Your duration may vary. This wall comes with ABSOLUTELY NO WARRANTY! ) ") ;
   obstacle_map [ ISO_OUTER_WALL_CORNER_1 ] . block_area_type = COLLISION_TYPE_RECTANGLE ;
-  obstacle_map [ ISO_OUTER_WALL_CORNER_1 ] . block_area_parm_1 = 1.2 ;
-  obstacle_map [ ISO_OUTER_WALL_CORNER_1 ] . block_area_parm_2 = 1.2 ;
+  obstacle_map [ ISO_OUTER_WALL_CORNER_1 ] . block_area_parm_1 = 1.1 ;
+  obstacle_map [ ISO_OUTER_WALL_CORNER_1 ] . block_area_parm_2 = 1.1 ;
   obstacle_map [ ISO_OUTER_WALL_CORNER_1 ] . filename = "iso_outer_walls_0013.png" ;
   obstacle_map [ ISO_OUTER_WALL_CORNER_1 ] . obstacle_short_name = _("Strong wall") ;
   obstacle_map [ ISO_OUTER_WALL_CORNER_1 ] . obstacle_long_description = _("This great wall can withstand a swarm of rogue bots madly attacking it for weeks*! It can belong to you for only 299.99C$ + tax, per section. *( Your duration may vary. This wall comes with ABSOLUTELY NO WARRANTY! ) ") ;
   obstacle_map [ ISO_OUTER_WALL_CORNER_2 ] . block_area_type = COLLISION_TYPE_RECTANGLE ;
-  obstacle_map [ ISO_OUTER_WALL_CORNER_2 ] . block_area_parm_1 = 1.2 ;
-  obstacle_map [ ISO_OUTER_WALL_CORNER_2 ] . block_area_parm_2 = 1.2 ;
+  obstacle_map [ ISO_OUTER_WALL_CORNER_2 ] . block_area_parm_1 = 1.1 ;
+  obstacle_map [ ISO_OUTER_WALL_CORNER_2 ] . block_area_parm_2 = 1.1 ;
   obstacle_map [ ISO_OUTER_WALL_CORNER_2 ] . filename = "iso_outer_walls_0014.png" ;
   obstacle_map [ ISO_OUTER_WALL_CORNER_2 ] . obstacle_short_name = _("Strong wall") ;
   obstacle_map [ ISO_OUTER_WALL_CORNER_2 ] . obstacle_long_description = _("This great wall can withstand a swarm of rogue bots madly attacking it for weeks*! It can belong to you for only 299.99C$ + tax, per section. *( Your duration may vary. This wall comes with ABSOLUTELY NO WARRANTY! ) ") ;
   obstacle_map [ ISO_OUTER_WALL_CORNER_3 ] . block_area_type = COLLISION_TYPE_RECTANGLE ;
-  obstacle_map [ ISO_OUTER_WALL_CORNER_3 ] . block_area_parm_1 = 1.2 ;
-  obstacle_map [ ISO_OUTER_WALL_CORNER_3 ] . block_area_parm_2 = 1.2 ;
+  obstacle_map [ ISO_OUTER_WALL_CORNER_3 ] . block_area_parm_1 = 1.1 ;
+  obstacle_map [ ISO_OUTER_WALL_CORNER_3 ] . block_area_parm_2 = 1.1 ;
   obstacle_map [ ISO_OUTER_WALL_CORNER_3 ] . filename = "iso_outer_walls_0015.png" ;
   obstacle_map [ ISO_OUTER_WALL_CORNER_3 ] . obstacle_short_name = _("Strong wall") ;
   obstacle_map [ ISO_OUTER_WALL_CORNER_3 ] . obstacle_long_description = _("This great wall can withstand a swarm of rogue bots madly attacking it for weeks*! It can belong to you for only 299.99C$ + tax, per section. *( Your duration may vary. This wall comes with ABSOLUTELY NO WARRANTY! ) ") ;
   obstacle_map [ ISO_OUTER_WALL_CORNER_4 ] . block_area_type = COLLISION_TYPE_RECTANGLE ;
-  obstacle_map [ ISO_OUTER_WALL_CORNER_4 ] . block_area_parm_1 = 1.2 ;
-  obstacle_map [ ISO_OUTER_WALL_CORNER_4 ] . block_area_parm_2 = 1.2 ;
+  obstacle_map [ ISO_OUTER_WALL_CORNER_4 ] . block_area_parm_1 = 1.1 ;
+  obstacle_map [ ISO_OUTER_WALL_CORNER_4 ] . block_area_parm_2 = 1.1 ;
   obstacle_map [ ISO_OUTER_WALL_CORNER_4 ] . filename = "iso_outer_walls_0016.png" ;
   obstacle_map [ ISO_OUTER_WALL_CORNER_4 ] . obstacle_short_name = _("Strong wall") ;
   obstacle_map [ ISO_OUTER_WALL_CORNER_4 ] . obstacle_long_description = _("This great wall can withstand a swarm of rogue bots madly attacking it for weeks*! It can belong to you for only 299.99C$ + tax, per section. *( Your duration may vary. This wall comes with ABSOLUTELY NO WARRANTY! ) ") ;
@@ -3488,8 +3488,8 @@ init_obstacle_data( void )
   obstacle_map [ ISO_OUTER_WALL_SMALL_CORNER_4 ] . obstacle_long_description = _("This great wall can withstand a swarm of rogue bots madly attacking it for weeks*! It can belong to you for only 299.99C$ + tax, per section. *( Your duration may vary. This wall comes with ABSOLUTELY NO WARRANTY! ) ") ;
 
 
-  obstacle_map [ ISO_OUTER_DOOR_V_00 ] . block_area_parm_1 = standard_wall_thickness ;
-  obstacle_map [ ISO_OUTER_DOOR_V_00 ] . block_area_parm_2 = 2.2 ;
+  obstacle_map [ ISO_OUTER_DOOR_V_00 ] . block_area_parm_1 = 1.2 ;
+  obstacle_map [ ISO_OUTER_DOOR_V_00 ] . block_area_parm_2 = 3.2 ;
   obstacle_map [ ISO_OUTER_DOOR_V_00 ] . flags &= ~BLOCKS_VISION_TOO ;
   obstacle_map [ ISO_OUTER_DOOR_V_00 ] . filename = "iso_doors_0018.png" ;
   obstacle_map [ ISO_OUTER_DOOR_V_00 ] . transparent = TRANSPARENCY_FOR_WALLS ;
@@ -3513,8 +3513,8 @@ init_obstacle_data( void )
   obstacle_map [ ISO_OUTER_DOOR_V_100 ] . obstacle_short_name = _("Gate") ;
   obstacle_map [ ISO_OUTER_DOOR_V_100 ] . obstacle_long_description = _("This gate is little more than just a big door. A very big door.") ;
 
-  obstacle_map [ ISO_OUTER_DOOR_H_00 ] . block_area_parm_1 = 2.2 ;
-  obstacle_map [ ISO_OUTER_DOOR_H_00 ] . block_area_parm_2 = standard_wall_thickness ;
+  obstacle_map [ ISO_OUTER_DOOR_H_00 ] . block_area_parm_1 = 3.2 ;
+  obstacle_map [ ISO_OUTER_DOOR_H_00 ] . block_area_parm_2 = 1.2 ;
   obstacle_map [ ISO_OUTER_DOOR_H_00 ] . flags &= ~BLOCKS_VISION_TOO ;
   obstacle_map [ ISO_OUTER_DOOR_H_00 ] . filename = "iso_doors_0013.png" ;
   obstacle_map [ ISO_OUTER_DOOR_H_00 ] . transparent = TRANSPARENCY_FOR_WALLS ;
@@ -3538,15 +3538,15 @@ init_obstacle_data( void )
   obstacle_map [ ISO_OUTER_DOOR_H_100 ] . obstacle_short_name = _("Gate") ;
   obstacle_map [ ISO_OUTER_DOOR_H_100 ] . obstacle_long_description = _("This gate is little more than just a big door. A very big door.") ;
 
-  obstacle_map [ ISO_OUTER_DOOR_V_LOCKED ] . block_area_parm_1 = standard_wall_thickness ;
-  obstacle_map [ ISO_OUTER_DOOR_V_LOCKED ] . block_area_parm_2 = 2.2 ;
+  obstacle_map [ ISO_OUTER_DOOR_V_LOCKED ] . block_area_parm_1 = 1.2 ;
+  obstacle_map [ ISO_OUTER_DOOR_V_LOCKED ] . block_area_parm_2 = 3.2 ;
   obstacle_map [ ISO_OUTER_DOOR_V_LOCKED ] . filename = "iso_doors_0024.png" ;
   obstacle_map [ ISO_OUTER_DOOR_V_LOCKED ] . flags &= ~BLOCKS_VISION_TOO ;
   obstacle_map [ ISO_OUTER_DOOR_V_LOCKED ] . obstacle_short_name = _("Gate") ;
   obstacle_map [ ISO_OUTER_DOOR_V_LOCKED ] . obstacle_long_description = _("It is locked in order to keep something out. Or maybe to keep something in?") ;
   obstacle_map [ ISO_OUTER_DOOR_H_LOCKED ] . filename = "iso_doors_0023.png" ;
-  obstacle_map [ ISO_OUTER_DOOR_H_LOCKED ] . block_area_parm_1 = 2.2 ;
-  obstacle_map [ ISO_OUTER_DOOR_H_LOCKED ] . block_area_parm_2 = standard_wall_thickness ;
+  obstacle_map [ ISO_OUTER_DOOR_H_LOCKED ] . block_area_parm_1 = 3.2 ;
+  obstacle_map [ ISO_OUTER_DOOR_H_LOCKED ] . block_area_parm_2 = 1.2 ;
   obstacle_map [ ISO_OUTER_DOOR_H_LOCKED ] . flags &= ~BLOCKS_VISION_TOO ;
   obstacle_map [ ISO_OUTER_DOOR_H_LOCKED ] . obstacle_short_name = _("Gate") ;
   obstacle_map [ ISO_OUTER_DOOR_H_LOCKED ] . obstacle_long_description = _("It is locked in order to keep something out. Or maybe to keep something in?") ;
