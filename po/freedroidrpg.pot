@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: freedroid-discussion@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-05-28 18:52+0200\n"
+"POT-Creation-Date: 2008-05-30 19:30+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1926,12 +1926,12 @@ msgstr ""
 msgid "Change grid mode ( placement / full / off )"
 msgstr ""
 
-#: ../src/leveleditor.c:5607
+#: ../src/leveleditor.c:5610
 #, c-format
 msgid " Source waypoint selected : NONE"
 msgstr ""
 
-#: ../src/leveleditor.c:5611
+#: ../src/leveleditor.c:5614
 #, c-format
 msgid " Source waypoint selected : X=%d Y=%d. "
 msgstr ""
@@ -2091,8 +2091,8 @@ msgid "Performance Tweaks"
 msgstr ""
 
 #: ../src/menu.c:1427 ../src/menu.c:1540 ../src/menu.c:1636 ../src/menu.c:1704
-#: ../src/menu.c:1783 ../src/menu.c:1898 ../src/menu.c:1939 ../src/menu.c:2213
-#: ../src/menu.c:2325 ../src/menu.c:2404
+#: ../src/menu.c:1783 ../src/menu.c:1898 ../src/menu.c:1939 ../src/menu.c:2187
+#: ../src/menu.c:2299 ../src/menu.c:2378
 msgid "Back"
 msgstr ""
 
@@ -2274,15 +2274,7 @@ msgstr ""
 msgid "Reprogram bots after takeover: %s"
 msgstr ""
 
-#: ../src/menu.c:1956
-msgid ""
-"\n"
-" Please enter name of server to connect to:\n"
-" You can give an empty string for the local host.\n"
-" > "
-msgstr ""
-
-#: ../src/menu.c:1983
+#: ../src/menu.c:1957
 msgid ""
 "\n"
 "     Please enter a name\n"
@@ -2292,68 +2284,68 @@ msgid ""
 "     > "
 msgstr ""
 
-#: ../src/menu.c:2237 ../src/menu.c:2343 ../src/menu.c:2358
+#: ../src/menu.c:2211 ../src/menu.c:2317 ../src/menu.c:2332
 msgid "BACK"
 msgstr ""
 
-#: ../src/menu.c:2241
+#: ../src/menu.c:2215
 msgid ""
 "\n"
 "\n"
 "No saved games found!!  Loading Cancelled. "
 msgstr ""
 
-#: ../src/menu.c:2342
+#: ../src/menu.c:2316
 msgid "Sure!"
 msgstr ""
 
-#: ../src/menu.c:2345
+#: ../src/menu.c:2319
 #, c-format
 msgid "Really delete hero '%s'?"
 msgstr ""
 
-#: ../src/menu.c:2362
+#: ../src/menu.c:2336
 msgid ""
 "\n"
 "\n"
 "No saved games found!!  Deletion Cancelled. "
 msgstr ""
 
-#: ../src/menu.c:2401
+#: ../src/menu.c:2375
 msgid "New Hero"
 msgstr ""
 
-#: ../src/menu.c:2402
+#: ../src/menu.c:2376
 msgid "Load existing Hero"
 msgstr ""
 
-#: ../src/menu.c:2403
+#: ../src/menu.c:2377
 msgid "Delete existing Hero"
 msgstr ""
 
-#: ../src/menu.c:2566
+#: ../src/menu.c:2540
 msgid ""
 "This is the record of all missions you have been assigned:\n"
 "\n"
 msgstr ""
 
-#: ../src/menu.c:2581
+#: ../src/menu.c:2555
 msgid "SOLVED: "
 msgstr ""
 
-#: ../src/menu.c:2585
+#: ../src/menu.c:2559
 msgid "FAILED: "
 msgstr ""
 
-#: ../src/menu.c:2589
+#: ../src/menu.c:2563
 msgid "ASSIGNED: "
 msgstr ""
 
-#: ../src/menu.c:2593
+#: ../src/menu.c:2567
 msgid "UNASSIGNED: "
 msgstr ""
 
-#: ../src/menu.c:2601
+#: ../src/menu.c:2575
 msgid ""
 "\n"
 "\n"
@@ -2881,22 +2873,22 @@ msgstr ""
 msgid "wicked sick"
 msgstr ""
 
-#: ../src/view.c:267
+#: ../src/view.c:264
 #, c-format
 msgid "FPS: %d"
 msgstr ""
 
-#: ../src/view.c:275
+#: ../src/view.c:272
 #, c-format
 msgid "GPS: X=%3.1f Y=%3.1f Lev=%d"
 msgstr ""
 
-#: ../src/view.c:296
+#: ../src/view.c:293
 #, c-format
 msgid "Time to hold out still: %2d:%2d "
 msgstr ""
 
-#: ../src/view.c:314
+#: ../src/view.c:311
 #, c-format
 msgid "Bots remaining on level: %d"
 msgstr ""
