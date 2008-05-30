@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CHANGE THIS\n"
 "Report-Msgid-Bugs-To: CHANGE THIS TOO\n"
-"POT-Creation-Date: 2008-05-10 06:03+0000\n"
-"PO-Revision-Date: 2008-05-10 06:03+0000\n"
+"POT-Creation-Date: 2008-05-12 08:38+0000\n"
+"PO-Revision-Date: 2008-05-12 08:38+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -4977,8 +4977,9 @@ msgstr ""
 
 #: ../dialogs/Dixon.dialog:127
 msgid ""
-"I will give you two grenades. If you get in trouble just activate one. It shou"
-"ld give you some breathing room."
+"I will give you two small devices charged with plasma. If you get in trouble j"
+"ust activate one and it will send a shockwave of plasma around you damaging an"
+"ything in it's way. It should give you some breathing room."
 msgstr ""
 
 #: ../dialogs/Dixon.dialog:129
