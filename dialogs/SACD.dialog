@@ -33,7 +33,7 @@ Beginning of new chat dialog for character="XXXXX"
 New Option Nr=0  OptionText=_" Login : admin  Password : *******"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=71  PositionY=177  
-Subtitle=_"Last login from dev/ttyS0 on Sun, 23 mar 2057. admin@sadefence: ~ #"
+Subtitle=_"Last login from /dev/ttyS0 on Sun, 23 mar 2057. admin@sadefence: ~ #"
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=0 ChangeToValue=0
 ChangeOption=1 ChangeToValue=1
@@ -49,7 +49,7 @@ OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=155  PositionY=186
 Subtitle=_"Disabling guns..."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle=_"Connecting to perepherial controller..."
+Subtitle=_"Connecting to peripheral controller..."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Guns disabled."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
@@ -67,7 +67,7 @@ OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=155  PositionY=186
 Subtitle=_"Enabling guns..."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle=_"Connecting to perepherial controller..."
+Subtitle=_"Connecting to peripheral controller..."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Guns enabled."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
@@ -85,7 +85,7 @@ OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=155  PositionY=186
 Subtitle=_"Opening doors..."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle=_"Connecting to perepherial controller..."
+Subtitle=_"Connecting to peripheral controller..."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Please enter unlock security password:"
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
@@ -111,7 +111,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=5  OptionText=_" ctrl+c"
+New Option Nr=5  OptionText=_" CTRL+C"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=155  PositionY=186
 Subtitle=_"An error occured while opening doors."
