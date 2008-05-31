@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CHANGE THIS\n"
 "Report-Msgid-Bugs-To: CHANGE THIS TOO\n"
-"POT-Creation-Date: 2008-05-30 17:30+0000\n"
-"PO-Revision-Date: 2008-05-30 17:30+0000\n"
+"POT-Creation-Date: 2008-05-31 14:38+0000\n"
+"PO-Revision-Date: 2008-05-31 14:38+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -966,6 +966,7 @@ msgstr ""
 #: ../dialogs/subdlg_Stone.dialog:33
 #: ../dialogs/SACD.dialog:124
 #: ../dialogs/SACD.dialog:133
+#: ../dialogs/SADD.dialog:33
 #: ../dialogs/subdlg_Kevin.dialog:33
 #: ../dialogs/subdlg_Kevin.dialog:43
 #: ../dialogs/subdlg_Kevin.dialog:53
@@ -4180,392 +4181,414 @@ msgstr ""
 msgid "IS THIS FIRST DIALOG?"
 msgstr ""
 
-#: ../dialogs/SADD.dialog:33
-msgid " Who are you and what are you doing?"
-msgstr ""
-
 #: ../dialogs/SADD.dialog:36
-msgid " I am a SADD - Secret Area Defence Droid"
-msgstr ""
-
-#: ../dialogs/SADD.dialog:38
-#: ../dialogs/SADD.dialog:176
-msgid " PRIMARY TARGET 1: do not let unauthorized people in."
-msgstr ""
-
-#: ../dialogs/SADD.dialog:40
-#: ../dialogs/SADD.dialog:178
-#: ../dialogs/SADD.dialog:194
-msgid " PRIMARY TARGET 2: authorized personal must have access to the zone."
+msgid ""
+"Your bio checksum does not trigger a match in staff database. Please show prop"
+"er credentials or leave the premises at once."
 msgstr ""
 
 #: ../dialogs/SADD.dialog:42
-#: ../dialogs/SADD.dialog:68
-#: ../dialogs/SADD.dialog:180
-msgid " SECONDARY TARGET: prevent secret information leakage"
+msgid " Who are you and what are you doing?"
+msgstr ""
+
+#: ../dialogs/SADD.dialog:45
+msgid " I am a SADD - Secret Area Defence Droid"
+msgstr ""
+
+#: ../dialogs/SADD.dialog:47
+#: ../dialogs/SADD.dialog:187
+msgid " PRIMARY TARGET 1: do not let unauthorized people in."
+msgstr ""
+
+#: ../dialogs/SADD.dialog:49
+#: ../dialogs/SADD.dialog:189
+#: ../dialogs/SADD.dialog:205
+msgid " PRIMARY TARGET 2: authorized personal must have access to the zone."
 msgstr ""
 
 #: ../dialogs/SADD.dialog:51
+#: ../dialogs/SADD.dialog:78
+#: ../dialogs/SADD.dialog:191
+msgid " SECONDARY TARGET: prevent secret information leakage"
+msgstr ""
+
+#: ../dialogs/SADD.dialog:61
 msgid " I mean, you are not attacking me... Don't you kill like other bots?"
 msgstr ""
 
-#: ../dialogs/SADD.dialog:54
+#: ../dialogs/SADD.dialog:64
 msgid ""
 " I do! I do! I kill humans, bots, linarians and even dogs, cats and other anim"
 "als! I would kill anybody!"
 msgstr ""
 
-#: ../dialogs/SADD.dialog:56
+#: ../dialogs/SADD.dialog:66
 msgid " Em.. Anybody who would try to get in, of course."
 msgstr ""
 
-#: ../dialogs/SADD.dialog:65
+#: ../dialogs/SADD.dialog:75
 msgid " What is this place?"
 msgstr ""
 
-#: ../dialogs/SADD.dialog:70
+#: ../dialogs/SADD.dialog:80
 msgid " *INFO* secret information steal attempt detected"
 msgstr ""
 
-#: ../dialogs/SADD.dialog:72
+#: ../dialogs/SADD.dialog:82
 msgid " Go away. You are not allowed to be here!"
 msgstr ""
 
-#: ../dialogs/SADD.dialog:80
+#: ../dialogs/SADD.dialog:90
 msgid " Why are you not hostile?"
 msgstr ""
 
-#: ../dialogs/SADD.dialog:83
+#: ../dialogs/SADD.dialog:93
 msgid " Hostile? What do you mean?"
 msgstr ""
 
-#: ../dialogs/SADD.dialog:92
+#: ../dialogs/SADD.dialog:102
 msgid " What about the Great Assault?"
 msgstr ""
 
-#: ../dialogs/SADD.dialog:95
+#: ../dialogs/SADD.dialog:105
 msgid " For security reason SADDs are not equipped with wireless modules."
 msgstr ""
 
-#: ../dialogs/SADD.dialog:97
+#: ../dialogs/SADD.dialog:107
 msgid ""
 " I know only that I have to be recharged, checked and have my firmware updated"
 " every 3 months."
 msgstr ""
 
-#: ../dialogs/SADD.dialog:106
+#: ../dialogs/SADD.dialog:116
 msgid " When does your last maintenance date back to?"
 msgstr ""
 
-#: ../dialogs/SADD.dialog:109
+#: ../dialogs/SADD.dialog:119
 msgid ""
 " One year and a half ago. My accumulator is nearly empty, so I'm going to halt"
 " soon. Gates will become unguarded..."
 msgstr ""
 
-#: ../dialogs/SADD.dialog:111
+#: ../dialogs/SADD.dialog:121
 msgid " *INFO* secret information steal detected!"
 msgstr ""
 
-#: ../dialogs/SADD.dialog:113
+#: ../dialogs/SADD.dialog:123
 msgid " *INFO* information classified as critical!"
 msgstr ""
 
-#: ../dialogs/SADD.dialog:115
+#: ../dialogs/SADD.dialog:125
 msgid " *INFO* locking zone!"
 msgstr ""
 
-#: ../dialogs/SADD.dialog:127
+#: ../dialogs/SADD.dialog:138
 msgid " What have you done?! How am I supposed to get out of here?"
 msgstr ""
 
-#: ../dialogs/SADD.dialog:130
+#: ../dialogs/SADD.dialog:141
 msgid " You are not. You have secret information, so I won't let you out."
 msgstr ""
 
-#: ../dialogs/SADD.dialog:138
+#: ../dialogs/SADD.dialog:149
 msgid " Why not kill me immediately?"
 msgstr ""
 
-#: ../dialogs/SADD.dialog:141
+#: ../dialogs/SADD.dialog:152
 msgid ""
 " And stand here alone until I die? While you are here I can speak with you. Oh"
 ", I haven't spoken to anybody for a looong time!"
 msgstr ""
 
-#: ../dialogs/SADD.dialog:150
+#: ../dialogs/SADD.dialog:161
 msgid ""
 " I'm thirsty and hungry. I will die within days, and you will not have an inte"
 "rlocutor any more!"
 msgstr ""
 
-#: ../dialogs/SADD.dialog:153
+#: ../dialogs/SADD.dialog:164
 msgid " My power supply will end earlier."
 msgstr ""
 
-#: ../dialogs/SADD.dialog:160
+#: ../dialogs/SADD.dialog:171
 msgid " You speak almost like a human..."
 msgstr ""
 
-#: ../dialogs/SADD.dialog:163
+#: ../dialogs/SADD.dialog:174
 msgid " Maybe I'm almost like human?"
 msgstr ""
 
-#: ../dialogs/SADD.dialog:165
+#: ../dialogs/SADD.dialog:176
 msgid ""
 " Anyway, that's none of your business. Soon I'll be dead, you too and nobody w"
 "ill enter this place ever again!"
 msgstr ""
 
-#: ../dialogs/SADD.dialog:173
+#: ../dialogs/SADD.dialog:184
 msgid " What are your orders again?"
 msgstr ""
 
-#: ../dialogs/SADD.dialog:182
+#: ../dialogs/SADD.dialog:193
 msgid " Why do you ask?"
 msgstr ""
 
-#: ../dialogs/SADD.dialog:191
+#: ../dialogs/SADD.dialog:202
 msgid " Tell me your second order once more..."
 msgstr ""
 
-#: ../dialogs/SADD.dialog:196
+#: ../dialogs/SADD.dialog:207
 msgid " Yes, it will be violated. But first order has higher priority."
 msgstr ""
 
-#: ../dialogs/SADD.dialog:205
+#: ../dialogs/SADD.dialog:216
 msgid " So you can break your orders?"
 msgstr ""
 
-#: ../dialogs/SADD.dialog:208
+#: ../dialogs/SADD.dialog:219
 msgid ""
 " I've already broken them, when I told you what I shouldn't have. That's becau"
 "se of my human nature."
 msgstr ""
 
-#: ../dialogs/SADD.dialog:217
+#: ../dialogs/SADD.dialog:228
 msgid " Then please, break the rule, disable the guns and let me go."
 msgstr ""
 
-#: ../dialogs/SADD.dialog:220
+#: ../dialogs/SADD.dialog:231
 msgid " No way. I'm a computer, I can't break rules."
 msgstr ""
 
-#: ../dialogs/SADD.dialog:228
+#: ../dialogs/SADD.dialog:239
 msgid ""
 " I suggest a deal. You let me out, I bring you dilithium cristals. It will sav"
 "e both of us."
 msgstr ""
 
-#: ../dialogs/SADD.dialog:231
+#: ../dialogs/SADD.dialog:242
 msgid " Why would I trust you?"
 msgstr ""
 
-#: ../dialogs/SADD.dialog:245
+#: ../dialogs/SADD.dialog:256
 msgid " And what about your human nature?"
 msgstr ""
 
-#: ../dialogs/SADD.dialog:248
+#: ../dialogs/SADD.dialog:259
 msgid " Human? I've said human? I'm a computer!"
 msgstr ""
 
-#: ../dialogs/SADD.dialog:250
+#: ../dialogs/SADD.dialog:261
 msgid " OK, I'm almost a computer."
 msgstr ""
 
-#: ../dialogs/SADD.dialog:258
-#: ../dialogs/SADD.dialog:270
+#: ../dialogs/SADD.dialog:269
+#: ../dialogs/SADD.dialog:281
 msgid " Almost a computer? What does this mean?"
 msgstr ""
 
-#: ../dialogs/SADD.dialog:261
+#: ../dialogs/SADD.dialog:272
 msgid ""
 " It means what it means! Nothing more, nothing less! Shut up, little piece of "
 "biomass!"
 msgstr ""
 
-#: ../dialogs/SADD.dialog:273
+#: ../dialogs/SADD.dialog:284
 msgid ""
 " When I say SHUT UP, you MUST shut up! Try this, worthless grain of the univer"
 "se!"
 msgstr ""
 
-#: ../dialogs/SADD.dialog:282
-msgid " You must promise me a significant reward."
+#: ../dialogs/SADD.dialog:293
+msgid " You will promise me a significant reward."
 msgstr ""
 
-#: ../dialogs/SADD.dialog:285
+#: ../dialogs/SADD.dialog:296
 msgid ""
 " Damn. Ok, I'll give you a super exterminator if you give me dilithium cristal"
 "s."
 msgstr ""
 
-#: ../dialogs/SADD.dialog:297
+#: ../dialogs/SADD.dialog:308
 msgid ""
 " It seems, that you are sentinent, you are a form of life. I must help any for"
 "m of life."
 msgstr ""
 
-#: ../dialogs/SADD.dialog:300
+#: ../dialogs/SADD.dialog:311
 msgid " Thanks a lot for your warm words. I think I can trust you."
 msgstr ""
 
-#: ../dialogs/SADD.dialog:310
+#: ../dialogs/SADD.dialog:321
 msgid " So disable the guns, please."
 msgstr ""
 
-#: ../dialogs/SADD.dialog:313
+#: ../dialogs/SADD.dialog:324
 msgid " Go, and bring dilithium. I badly need it."
 msgstr ""
 
-#: ../dialogs/SADD.dialog:326
+#: ../dialogs/SADD.dialog:337
 msgid " HAVE THE CRYSTALS"
 msgstr ""
 
-#: ../dialogs/SADD.dialog:335
+#: ../dialogs/SADD.dialog:346
 msgid " TUX_GOT_CRISTALS"
 msgstr ""
 
-#: ../dialogs/SADD.dialog:346
+#: ../dialogs/SADD.dialog:357
 msgid " TUX_DIDNT_GOT_CRISTALS"
 msgstr ""
 
-#: ../dialogs/SADD.dialog:357
+#: ../dialogs/SADD.dialog:368
 msgid " TUX STARTED ON THE QUEST"
 msgstr ""
 
-#: ../dialogs/SADD.dialog:366
+#: ../dialogs/SADD.dialog:377
 msgid " IS MISSION IS DONE?"
 msgstr ""
 
-#: ../dialogs/SADD.dialog:375
+#: ../dialogs/SADD.dialog:386
 msgid " WE DONT HAVE MISSION"
 msgstr ""
 
-#: ../dialogs/SADD.dialog:385
+#: ../dialogs/SADD.dialog:396
 msgid " I have the crystals! They were difficult to find."
 msgstr ""
 
-#: ../dialogs/SADD.dialog:388
+#: ../dialogs/SADD.dialog:399
 msgid ""
 " Good. I've opened the depot door for you. Take your super exterminator and GE"
 "T OUT of here!"
 msgstr ""
 
-#: ../dialogs/SADD.dialog:404
+#: ../dialogs/SADD.dialog:415
 msgid " How is your power supply?"
 msgstr ""
 
-#: ../dialogs/SADD.dialog:407
+#: ../dialogs/SADD.dialog:418
 msgid " Badly. Get the cristals. Remember, you promised!"
 msgstr ""
 
-#: ../dialogs/SADD.dialog:415
+#: ../dialogs/SADD.dialog:426
 msgid " MISSION IS DONE #2"
 msgstr ""
 
-#: ../dialogs/SADD.dialog:426
+#: ../dialogs/SADD.dialog:437
 msgid " I have crystals! They were difficult to find."
 msgstr ""
 
-#: ../dialogs/SADD.dialog:429
+#: ../dialogs/SADD.dialog:440
 msgid ""
 " Great! Thanks. I've opened some doors for you, I hope you will find something"
 " interesting there. That's all I can do for you."
 msgstr ""
 
-#: ../dialogs/SADD.dialog:445
+#: ../dialogs/SADD.dialog:456
 msgid " DID I ASK EXTERIMINATOR?"
 msgstr ""
 
-#: ../dialogs/SADD.dialog:454
+#: ../dialogs/SADD.dialog:465
 msgid " I HAVE ASKED"
 msgstr ""
 
-#: ../dialogs/SADD.dialog:463
+#: ../dialogs/SADD.dialog:474
 msgid " I DIDN'T ASKED"
 msgstr ""
 
-#: ../dialogs/SADD.dialog:472
-msgid " You call this a super exteriminator?"
-msgstr ""
-
-#: ../dialogs/SADD.dialog:475
-msgid " I do. Now please leave this place before I terminate you."
-msgstr ""
-
 #: ../dialogs/SADD.dialog:483
-msgid " This is rubbish! Nobody can use this damned gun!"
+msgid " You call this a super exterminator?"
 msgstr ""
 
 #: ../dialogs/SADD.dialog:486
-msgid " The door is still open. You can put it back and go. Quick."
+msgid " I do. Now please leave this place before I terminate you."
 msgstr ""
 
 #: ../dialogs/SADD.dialog:494
+msgid " This is rubbish! Nobody can use this damned gun!"
+msgstr ""
+
+#: ../dialogs/SADD.dialog:497
+msgid " The door is still open. You can put it back and go. Quick."
+msgstr ""
+
+#: ../dialogs/SADD.dialog:505
 msgid ""
 " Give me a real gun, dude! Immediately! I have brought you what you wanted, no"
 "w give me my reward!"
 msgstr ""
 
-#: ../dialogs/SADD.dialog:497
+#: ../dialogs/SADD.dialog:508
 msgid ""
 " You can go standing on your feet, that's your reward. And DON'T TRY MY PATIEN"
 "CE!"
 msgstr ""
 
-#: ../dialogs/SADD.dialog:505
+#: ../dialogs/SADD.dialog:516
 msgid " I'll kill you if you don't give me my gun!"
 msgstr ""
 
-#: ../dialogs/SADD.dialog:508
+#: ../dialogs/SADD.dialog:519
 msgid ""
 " You are welcome. But you would never get out of here, my death won't help you"
 "."
 msgstr ""
 
-#: ../dialogs/SADD.dialog:523
+#: ../dialogs/SADD.dialog:535
 msgid " And what about your directives, especially second?"
 msgstr ""
 
-#: ../dialogs/SADD.dialog:526
+#: ../dialogs/SADD.dialog:538
 msgid " Now I have time. When you die, I'll disable guns."
 msgstr ""
 
-#: ../dialogs/SADD.dialog:532
+#: ../dialogs/SADD.dialog:544
 msgid " Please forgive me!"
 msgstr ""
 
-#: ../dialogs/SADD.dialog:535
+#: ../dialogs/SADD.dialog:547
 msgid " Too late. I'm watching this great show now."
 msgstr ""
 
-#: ../dialogs/SADD.dialog:537
-#: ../dialogs/SADD.dialog:539
+#: ../dialogs/SADD.dialog:549
+#: ../dialogs/SADD.dialog:551
 msgid " It is called..."
 msgstr ""
 
-#: ../dialogs/SADD.dialog:545
+#: ../dialogs/SADD.dialog:557
 msgid " Please, disable the guns!"
 msgstr ""
 
-#: ../dialogs/SADD.dialog:548
+#: ../dialogs/SADD.dialog:560
 msgid " Ok, I'll disable them."
 msgstr ""
 
-#: ../dialogs/SADD.dialog:550
+#: ../dialogs/SADD.dialog:562
 msgid " I just need to make some preparations. You have to wait..."
 msgstr ""
 
-#: ../dialogs/SADD.dialog:552
+#: ../dialogs/SADD.dialog:564
 msgid " ...for your death!"
 msgstr ""
 
-#: ../dialogs/SADD.dialog:558
+#: ../dialogs/SADD.dialog:570
+msgid " Erm... hi!"
+msgstr ""
+
+#: ../dialogs/SADD.dialog:573
+msgid " Hi. Thanks for the help."
+msgstr ""
+
+#: ../dialogs/SADD.dialog:583
+msgid " Will you let me inside the base?"
+msgstr ""
+
+#: ../dialogs/SADD.dialog:586
+msgid " Nice attempt. I owe you but I cannot do that. You must leave."
+msgstr ""
+
+#: ../dialogs/SADD.dialog:595
 msgid " I'd better get out of here..."
 msgstr ""
 
-#: ../dialogs/SADD.dialog:561
+#: ../dialogs/SADD.dialog:598
 msgid " Exactly."
 msgstr ""
 
@@ -6081,25 +6104,25 @@ msgid "Em, hi."
 msgstr ""
 
 #: ../dialogs/Tania.dialog:36
-msgid "O! It happened! I was witing for you for 3226 hours!"
+msgid "Oh! It happened! I have been waiting for you for 3226 hours!"
 msgstr ""
 
 #: ../dialogs/Tania.dialog:47
-msgid "You really knew, that I would come?"
+msgid "You knew I would come?"
 msgstr ""
 
 #: ../dialogs/Tania.dialog:50
-msgid "Ofcourse, my little imaginable friend!"
+msgid "Of course, my little imaginary friend!"
 msgstr ""
 
 #: ../dialogs/Tania.dialog:59
-msgid "Imaginable?! Im as real as you are."
+msgid "Imaginary?! I am as real as you are."
 msgstr ""
 
 #: ../dialogs/Tania.dialog:62
 msgid ""
 "This place is locked. Hermetically conservated and guarded by bots. So you can"
-" be nothing more, than product of my imagination."
+" be nothing more than the product of my imagination."
 msgstr ""
 
 #: ../dialogs/Tania.dialog:70
@@ -6108,18 +6131,18 @@ msgstr ""
 
 #: ../dialogs/Tania.dialog:73
 msgid ""
-"In a prison, luxurious prison. This is solitary, as you can see. Big room, ple"
-"nty of food, waterfall behind window..."
+"In a prison, a luxurious prison. I am feeling quite lonely, as you can see. Bi"
+"g room, plenty of food, a waterfall behind the window..."
 msgstr ""
 
 #: ../dialogs/Tania.dialog:82
-msgid "I can see only ray emmiters behind window."
+msgid "All I see through the window are ray emitters. And we are below ground level.."
 msgstr ""
 
 #: ../dialogs/Tania.dialog:85
 msgid ""
-"Yes, I know. But I so badly want to see sun, rivers, trees... So there is defi"
-"netely waterfall behind it!"
+"Yes, I know. But I so badly want to see sun, rivers, trees... there definitely"
+" is waterfall behind them!"
 msgstr ""
 
 #: ../dialogs/Tania.dialog:92
@@ -6129,17 +6152,17 @@ msgstr ""
 #: ../dialogs/Tania.dialog:95
 msgid ""
 "Main power supply is down, so only emergency light works. Peter tried to switc"
-"h it on, but he didn't succeed."
+"h it back on, but he didn't succeed."
 msgstr ""
 
 #: ../dialogs/Tania.dialog:102
-msgid "This place doesn't look to be a prison."
+msgid "This place doesn't look like a prison."
 msgstr ""
 
 #: ../dialogs/Tania.dialog:105
 msgid ""
-"In past it was secret lab. Do you know those strength pills? They were invente"
-"d here. Other pills too, but I was working on strength ones."
+"In the past it was a secret lab. You heard about those strength pills? They we"
+"re invented here. Other pills too, but I was working on strength ones."
 msgstr ""
 
 #: ../dialogs/Tania.dialog:114
@@ -6156,21 +6179,23 @@ msgid "*cries*"
 msgstr ""
 
 #: ../dialogs/Tania.dialog:128
-msgid "So you are a biologist? Can you heal me please?"
+msgid "So you are a biologist? Could you heal me?"
 msgstr ""
 
 #: ../dialogs/Tania.dialog:131
 msgid ""
-"That would be something different from I've done few last months at least. Som"
-"e interatainment."
+"That would be something different from what I've done in the last months at le"
+"ast. Some entertainement."
 msgstr ""
 
 #: ../dialogs/Tania.dialog:133
-msgid "Ok, I've finished. Now you are completely well."
+msgid ""
+"Let me take a look at that... it's nothing some nanobots could not take care o"
+"f.... You will be all fixed up in a minute."
 msgstr ""
 
 #: ../dialogs/Tania.dialog:140
-msgid "They say, that pills are absolutely safe!"
+msgid "They say that strength pills are absolutely safe!"
 msgstr ""
 
 #: ../dialogs/Tania.dialog:143
@@ -6181,12 +6206,14 @@ msgstr ""
 
 #: ../dialogs/Tania.dialog:145
 msgid ""
-"Peter became not very strong, but very-very-very strong. He thought he can mak"
-"e an exit with his bare hands."
+"Peter became not very strong, but very-very-very strong. He thought he could m"
+"ake an exit with his bare hands."
 msgstr ""
 
 #: ../dialogs/Tania.dialog:149
-msgid "If you go further, you would find debris and a big stone. That is his grave."
+msgid ""
+"If you go further down the corridor, you will find debris and a big stone. Tha"
+"t is his grave."
 msgstr ""
 
 #: ../dialogs/Tania.dialog:158
@@ -6198,13 +6225,13 @@ msgid "I still do."
 msgstr ""
 
 #: ../dialogs/Tania.dialog:168
-msgid "But why not to out through the door."
+msgid "But why not go out through the door?"
 msgstr ""
 
 #: ../dialogs/Tania.dialog:171
 msgid ""
-"It is locked and very reliable. Even a tank wouldnt be able to samsh it! And i"
-"f door is breaked, SADDs would attack anybody, that's their program."
+"It is locked and very reliable. Even a tank would not be able to samsh it! And"
+" if a door is broken, SADDs would attack, that's their program."
 msgstr ""
 
 #: ../dialogs/Tania.dialog:179
@@ -6212,13 +6239,11 @@ msgid "Autoguns have made a hole in the wall. I came through this hole."
 msgstr ""
 
 #: ../dialogs/Tania.dialog:182
-msgid "You want to say, that I can get to the surface?"
+msgid "Do you mean I can go out to the surface ?!"
 msgstr ""
 
 #: ../dialogs/Tania.dialog:184
-msgid ""
-"Oh god! I've told Peter, that he chosed wrong place, but he was so opinionated"
-"!"
+msgid "Oh god! I've told Peter that he chosed wrong place, but he was so stubborn!"
 msgstr ""
 
 #: ../dialogs/Tania.dialog:192
@@ -6226,9 +6251,7 @@ msgid "Yes, you can get to the surface. But the guns are still on."
 msgstr ""
 
 #: ../dialogs/Tania.dialog:195
-msgid ""
-"All hope lost! I'm a scientist, not a varrior. I wouldn resist a single bullet"
-"!"
+msgid "All hope lost! I'm a scientist, not a warrior."
 msgstr ""
 
 #: ../dialogs/Tania.dialog:203
@@ -6240,11 +6263,11 @@ msgid "I'm going to spend all my life here! So forgive me some little weakneses.
 msgstr ""
 
 #: ../dialogs/Tania.dialog:213
-msgid "May be it is possible to disable that guns?"
+msgid "Maybe is it possible to disable the guns?"
 msgstr ""
 
 #: ../dialogs/Tania.dialog:216
-msgid "Theoretically yes, but in practice I'm not shure you would be able to do that."
+msgid "Theoretically yes, but in practice I'm not sure you would be able to do that."
 msgstr ""
 
 #: ../dialogs/Tania.dialog:224
@@ -6253,31 +6276,30 @@ msgstr ""
 
 #: ../dialogs/Tania.dialog:227
 msgid ""
-"Somewhere in distant part of the lab should be SACD - secret area control droi"
-"d. It controls all defence perimeters of the base. If you manage to overtake h"
-"im, you would be able to control the base. But it's very hard to find him."
+"Somewhere in distant part of the lab should be an SACD - secret area control d"
+"roid. It controls all defense systems in the base. If you manage to persuade h"
+"im, you will be able to control the base. But it's very hard to find him."
 msgstr ""
 
 #: ../dialogs/Tania.dialog:235
-msgid "I would disable guns for you."
+msgid "I will disable guns for you."
 msgstr ""
 
 #: ../dialogs/Tania.dialog:238
 msgid ""
-"Thanks, but please be very careful. You won't be able to acess control center "
-"direcly, it is behind triple hermetic door. Main passage is blocked by landsli"
-"p too, try using service tunnels."
+"Thanks... please be careful. You will not be able to access the control center"
+" directly, it is behind a triple hermetic door. Try using the service tunnels."
 msgstr ""
 
 #: ../dialogs/Tania.dialog:247
-msgid "Why not just open them? There should be a way for unlocking base."
+msgid "Why not just open them? There should be a way for unlocking the base."
 msgstr ""
 
 #: ../dialogs/Tania.dialog:250
 msgid ""
-"To open door you need to know password. Only commander of the area and his dep"
-"uty knew it. Commander was killed by bots as soon as assault stated and deputy"
-" was in town, I don't know what happened to him."
+"To open the door you need to know the password. Only the commander of the area"
+" and his deputy knew it. Commander was killed by bots as soon as assault start"
+"ed and the deputy was in town, I don't know what happened to him."
 msgstr ""
 
 #: ../dialogs/Tania.dialog:257
@@ -6286,8 +6308,8 @@ msgstr ""
 
 #: ../dialogs/Tania.dialog:260
 msgid ""
-"Peter have done all to make this room comfortable. Sofa and armchair is from c"
-"ommander cabinet, books from restroom..."
+"Peter did all he could to make this room comfortable. Sofa and armchair are fr"
+"om commander cabinet, books from the restroom..."
 msgstr ""
 
 #: ../dialogs/Tania.dialog:267
@@ -6319,17 +6341,17 @@ msgid "IS MISSION COMPLETED"
 msgstr ""
 
 #: ../dialogs/Tania.dialog:341
-msgid "Autoguns are off! You are free now."
+msgid "The sentry guns are off. You can go now!"
 msgstr ""
 
 #: ../dialogs/Tania.dialog:344
 msgid ""
-"Thanks, thanks you a lot! Now I would be able to see sun, trees, rivers. I so "
-"missed it!"
+"Thanks, thanks a lot! Now I will be able to see sun, trees, rivers. I missed t"
+"hose so much!"
 msgstr ""
 
 #: ../dialogs/Tania.dialog:346
-msgid "I hope these books would help you survive in this world."
+msgid "I hope these books will help you survive in this world."
 msgstr ""
 
 #: ../dialogs/Tania.dialog:358
@@ -6338,10 +6360,10 @@ msgstr ""
 
 #: ../dialogs/Tania.dialog:361
 msgid ""
-"To the right from an enterace to the area there is a hall. In the south part o"
-"f there is triple hermetic door. Control center is behind that door. But it is"
-" locked, so you would have to find another way there. Cable collectors may hel"
-"p you."
+"To the right from the entrance of the area, there is a hall. In the south part"
+" of this hall you will find a triple hermetic door. The control center is behi"
+"nd that door. But it is locked, so you will have to find another way there. Ca"
+"ble collectors may help you."
 msgstr ""
 
 #: ../dialogs/Tania.dialog:367
