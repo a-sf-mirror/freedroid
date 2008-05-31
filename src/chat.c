@@ -434,7 +434,6 @@ ExecuteChatExtra ( char* ExtraCommandString , Enemy ChatDroid )
     if ( ! strcmp ( ExtraCommandString , "BreakOffAndBecomeHostile" ) )
 	{
 	ChatDroid -> is_friendly = FALSE ;
-	ChatDroid -> combat_state = ATTACK ;
 	return 1;
 	}
     else if ( ! strcmp ( ExtraCommandString , "DropDead" ) )
@@ -1215,7 +1214,7 @@ DoChatFromChatRosterData( int ChatPartnerCode , Enemy ChatDroid , int clear_prot
     SDL_Rect Chat_Window;
     int MenuSelection = (-1) ;
     char* DialogMenuTexts[ MAX_ANSWERS_PER_PERSON ];
-    char enemy_started_the_talk =  (ChatDroid -> combat_state == RUSH_TUX_AND_OPEN_TALK );
+    char enemy_started_the_talk =  (ChatDroid -> will_rush_tux );
 
     //--------------------
     // We always should clear the chat protocol.  Only for SUBDIALOGS it is
