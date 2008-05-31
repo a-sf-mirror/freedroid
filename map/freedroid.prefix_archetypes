@@ -439,11 +439,7 @@ Level=3
 ** End of new prefix specification subsection **
 
 ** Start of new prefix specification subsection **
-<<<<<<< .mine
-Prefix name=_"Razor "
-=======
 Prefix name="Razor sharp "
->>>>>>> .r184
 Bonus to dexterity=0
 Bonus to dexterity modifier=0
 Bonus to vitality=0
