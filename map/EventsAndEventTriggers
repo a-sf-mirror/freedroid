@@ -269,7 +269,27 @@ Name="teleport_to_disruptor_shield_control"
 Teleport to="ArriveAtDisruptorShieldControl"
 * End of action *
 
+-- Teleport from desert to secret research center
+* New event trigger *
+Trigger at label="EnterSecretResearchCenter"
+Action="teleport_to_secret_research_center"
+* End of trigger *
 
+* New event action *
+Name="teleport_to_secret_research_center"
+Teleport to="SecretResearchCenterArrival"
+* End of action *
+
+-- Teleport back from secret research center to desert
+* New event trigger *
+Trigger at label="ExitFromSecretResearchCenter"
+Action="teleport_back_from_secret_research_center"
+* End of trigger *
+
+* New event action *
+Name="teleport_back_from_secret_research_center"
+Teleport to="BackFromSecretResearchCenter"
+* End of action *
 
 -- Unplugged/unused/etc. triggers (SecretArea*)
 * New event trigger *
