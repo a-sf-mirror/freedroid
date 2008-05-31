@@ -597,7 +597,7 @@ Allowed Type of Random Droid for this level: 476
 //--------------------
 // This is SADD - secret area defence droid
 //
-SForce: T=883 Fixed=0 Marker=9997 Friendly=1 StartUpAtLabel="SADDStartGameSquare" RushTux="no" DialogSectionToUse="SADD" ShortLabel="SADD - Secret Area Defence Droid" attack_run_only_when_direct_line="no"
+SForce: T=883 Fixed=0 Marker=9997 Friendly=1 StartUpAtLabel="SADDStartGameSquare" RushTux="yes" DialogSectionToUse="SADD" ShortLabel="SADD - Secret Area Defence Droid" attack_run_only_when_direct_line="no"
 
 //--------------------
 // This is Tania. She is scientist and she is locked inside the base.
