@@ -1578,6 +1578,7 @@ init_obstacle_data( void )
 {
     int i;
     float standard_wall_thickness = 0.6 ;
+    float standard_wall_width = 1.5 ;
     iso_image empty_iso_image = UNLOADED_ISO_IMAGE ;
     
     //--------------------
@@ -1608,13 +1609,13 @@ init_obstacle_data( void )
     // Now we define all exceptions from the default values
     //
     obstacle_map [ ISO_V_WALL ] . block_area_parm_1 = standard_wall_thickness ;
-    obstacle_map [ ISO_V_WALL ] . block_area_parm_2 = 1.5 ;
+    obstacle_map [ ISO_V_WALL ] . block_area_parm_2 = standard_wall_width ;
     obstacle_map [ ISO_V_WALL ] . filename = "iso_walls_0001.png" ;
     obstacle_map [ ISO_V_WALL ] . transparent = TRANSPARENCY_FOR_WALLS ;
     obstacle_map [ ISO_V_WALL ] . obstacle_short_name = _("Wall");
     obstacle_map [ ISO_V_WALL ] . obstacle_long_description = _("Hey ! This looks like...a WALL !");
     obstacle_map [ ISO_V_WALL ] . flags |= IS_VERTICAL ; 
-    obstacle_map [ ISO_H_WALL ] . block_area_parm_1 = 1.5 ;
+    obstacle_map [ ISO_H_WALL ] . block_area_parm_1 = standard_wall_width ;
     obstacle_map [ ISO_H_WALL ] . block_area_parm_2 = standard_wall_thickness ;
     obstacle_map [ ISO_H_WALL ] . filename = "iso_walls_0002.png" ;
     obstacle_map [ ISO_H_WALL ] . transparent = TRANSPARENCY_FOR_WALLS;
@@ -1623,13 +1624,13 @@ init_obstacle_data( void )
     obstacle_map [ ISO_H_WALL ] . flags |= IS_HORIZONTAL ; 
         
     obstacle_map [ ISO_V_WALL_WITH_DOT ] . block_area_parm_1 = standard_wall_thickness ;
-    obstacle_map [ ISO_V_WALL_WITH_DOT ] . block_area_parm_2 = 1.2 ;
+    obstacle_map [ ISO_V_WALL_WITH_DOT ] . block_area_parm_2 = standard_wall_width ;
     obstacle_map [ ISO_V_WALL_WITH_DOT ] . filename = "iso_walls_0003.png"; 
     obstacle_map [ ISO_V_WALL_WITH_DOT ] . transparent = TRANSPARENCY_FOR_WALLS ;
     obstacle_map [ ISO_V_WALL_WITH_DOT ] . obstacle_short_name = _("Wall");
     obstacle_map [ ISO_V_WALL_WITH_DOT ] . flags |= IS_VERTICAL ; 
     obstacle_map [ ISO_V_WALL_WITH_DOT ] . obstacle_long_description = _("Maybe you could use a door to go out. This wall seems pretty solid.");
-    obstacle_map [ ISO_H_WALL_WITH_DOT ] . block_area_parm_1 = 1.2 ;
+    obstacle_map [ ISO_H_WALL_WITH_DOT ] . block_area_parm_1 = standard_wall_width ;
     obstacle_map [ ISO_H_WALL_WITH_DOT ] . block_area_parm_2 = standard_wall_thickness ;
     obstacle_map [ ISO_H_WALL_WITH_DOT ] . filename = "iso_walls_0004.png" ;
     obstacle_map [ ISO_H_WALL_WITH_DOT ] . transparent = TRANSPARENCY_FOR_WALLS ;
@@ -1638,7 +1639,7 @@ init_obstacle_data( void )
     obstacle_map [ ISO_H_WALL_WITH_DOT ] . flags |= IS_HORIZONTAL ; 
         
     obstacle_map [ ISO_GLASS_WALL_1 ] . block_area_parm_1 = standard_wall_thickness ;
-    obstacle_map [ ISO_GLASS_WALL_1 ] . block_area_parm_2 = 1.2 ;
+    obstacle_map [ ISO_GLASS_WALL_1 ] . block_area_parm_2 = standard_wall_width ;
     obstacle_map [ ISO_GLASS_WALL_1 ] . flags &= ~BLOCKS_VISION_TOO ;
     obstacle_map [ ISO_GLASS_WALL_1 ] . filename = "iso_walls_0020.png" ;
     obstacle_map [ ISO_GLASS_WALL_1 ] . transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS ;
@@ -1646,7 +1647,7 @@ init_obstacle_data( void )
     obstacle_map [ ISO_GLASS_WALL_1 ] . obstacle_long_description = _("A wall made out of glass. It lets the light go through.");
     obstacle_map [ ISO_GLASS_WALL_1 ] . flags |= IS_VERTICAL ; 
     
-    obstacle_map [ ISO_GLASS_WALL_2 ] . block_area_parm_1 = 1.2 ;
+    obstacle_map [ ISO_GLASS_WALL_2 ] . block_area_parm_1 = standard_wall_width ;
     obstacle_map [ ISO_GLASS_WALL_2 ] . block_area_parm_2 = standard_wall_thickness ;
     obstacle_map [ ISO_GLASS_WALL_2 ] . flags &= ~BLOCKS_VISION_TOO ;
     obstacle_map [ ISO_GLASS_WALL_2 ] . filename = "iso_walls_0021.png" ;
@@ -1656,12 +1657,12 @@ init_obstacle_data( void )
     obstacle_map [ ISO_GLASS_WALL_2 ] . flags |= IS_HORIZONTAL ; 
   
     obstacle_map [ ISO_CYAN_WALL_WINDOW_1 ] . block_area_parm_1 = standard_wall_thickness ;
-    obstacle_map [ ISO_CYAN_WALL_WINDOW_1 ] . block_area_parm_2 = 1.2 ;
+    obstacle_map [ ISO_CYAN_WALL_WINDOW_1 ] . block_area_parm_2 = standard_wall_width ;
     obstacle_map [ ISO_CYAN_WALL_WINDOW_1 ] . flags &= ~BLOCKS_VISION_TOO ;
     obstacle_map [ ISO_CYAN_WALL_WINDOW_1 ] . filename = "iso_walls_0022.png" ;
     obstacle_map [ ISO_CYAN_WALL_WINDOW_1 ] . transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS ;
     obstacle_map [ ISO_CYAN_WALL_WINDOW_1 ] . flags |= IS_VERTICAL ; 
-    obstacle_map [ ISO_CYAN_WALL_WINDOW_2 ] . block_area_parm_1 = 1.2 ;
+    obstacle_map [ ISO_CYAN_WALL_WINDOW_2 ] . block_area_parm_1 = standard_wall_width ;
     obstacle_map [ ISO_CYAN_WALL_WINDOW_2 ] . block_area_parm_2 = standard_wall_thickness ;
     obstacle_map [ ISO_CYAN_WALL_WINDOW_2 ] . flags &= ~BLOCKS_VISION_TOO ;
     obstacle_map [ ISO_CYAN_WALL_WINDOW_2 ] . filename = "iso_walls_0023.png" ;
@@ -1669,12 +1670,12 @@ init_obstacle_data( void )
     obstacle_map [ ISO_CYAN_WALL_WINDOW_2 ] . flags |= IS_HORIZONTAL ; 
     
     obstacle_map [ ISO_RED_WALL_WINDOW_1 ] . block_area_parm_1 = standard_wall_thickness ;
-    obstacle_map [ ISO_RED_WALL_WINDOW_1 ] . block_area_parm_2 = 1.2 ;
+    obstacle_map [ ISO_RED_WALL_WINDOW_1 ] . block_area_parm_2 = standard_wall_width ;
     obstacle_map [ ISO_RED_WALL_WINDOW_1 ] . flags &= ~BLOCKS_VISION_TOO ;
     obstacle_map [ ISO_RED_WALL_WINDOW_1 ] . filename = "iso_walls_0024.png" ;
     obstacle_map [ ISO_RED_WALL_WINDOW_1 ] . transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS ;
     obstacle_map [ ISO_RED_WALL_WINDOW_1 ] . flags |= IS_VERTICAL ; 
-    obstacle_map [ ISO_RED_WALL_WINDOW_2 ] . block_area_parm_1 = 1.2 ;
+    obstacle_map [ ISO_RED_WALL_WINDOW_2 ] . block_area_parm_1 = standard_wall_width ;
     obstacle_map [ ISO_RED_WALL_WINDOW_2 ] . block_area_parm_2 = standard_wall_thickness ;
     obstacle_map [ ISO_RED_WALL_WINDOW_2 ] . flags &= ~BLOCKS_VISION_TOO ;
     obstacle_map [ ISO_RED_WALL_WINDOW_2 ] . filename = "iso_walls_0025.png" ;
@@ -1683,12 +1684,12 @@ init_obstacle_data( void )
  
     
     obstacle_map [ ISO_FLOWER_WALL_WINDOW_1 ] . block_area_parm_1 = standard_wall_thickness ;
-    obstacle_map [ ISO_FLOWER_WALL_WINDOW_1 ] . block_area_parm_2 = 1.2 ;
+    obstacle_map [ ISO_FLOWER_WALL_WINDOW_1 ] . block_area_parm_2 = standard_wall_width ;
     obstacle_map [ ISO_FLOWER_WALL_WINDOW_1 ] . flags &= ~BLOCKS_VISION_TOO ;
     obstacle_map [ ISO_FLOWER_WALL_WINDOW_1 ] . filename = "iso_walls_0026.png" ;
     obstacle_map [ ISO_FLOWER_WALL_WINDOW_1 ] . transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS ;
     obstacle_map [ ISO_FLOWER_WALL_WINDOW_1 ] . flags |= IS_VERTICAL ; 
-    obstacle_map [ ISO_FLOWER_WALL_WINDOW_2 ] . block_area_parm_1 = 1.2 ;
+    obstacle_map [ ISO_FLOWER_WALL_WINDOW_2 ] . block_area_parm_1 = standard_wall_width ;
     obstacle_map [ ISO_FLOWER_WALL_WINDOW_2 ] . block_area_parm_2 = standard_wall_thickness ;
     obstacle_map [ ISO_FLOWER_WALL_WINDOW_2 ] . flags &= ~BLOCKS_VISION_TOO ;
     obstacle_map [ ISO_FLOWER_WALL_WINDOW_2 ] . filename = "iso_walls_0027.png" ;
@@ -1696,12 +1697,12 @@ init_obstacle_data( void )
     obstacle_map [ ISO_FLOWER_WALL_WINDOW_2 ] . flags |= IS_HORIZONTAL ; 
     
     obstacle_map [ ISO_FUNKY_WALL_WINDOW_1 ] . block_area_parm_1 = standard_wall_thickness ;
-    obstacle_map [ ISO_FUNKY_WALL_WINDOW_1 ] . block_area_parm_2 = 1.2 ;
+    obstacle_map [ ISO_FUNKY_WALL_WINDOW_1 ] . block_area_parm_2 = standard_wall_width ;
     obstacle_map [ ISO_FUNKY_WALL_WINDOW_1 ] . flags &= ~BLOCKS_VISION_TOO ;
     obstacle_map [ ISO_FUNKY_WALL_WINDOW_1 ] . filename = "iso_walls_0028.png" ;
     obstacle_map [ ISO_FUNKY_WALL_WINDOW_1 ] . transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS ;
     obstacle_map [ ISO_FUNKY_WALL_WINDOW_1 ] . flags |= IS_VERTICAL ; 
-    obstacle_map [ ISO_FUNKY_WALL_WINDOW_2 ] . block_area_parm_1 = 1.2 ;
+    obstacle_map [ ISO_FUNKY_WALL_WINDOW_2 ] . block_area_parm_1 = standard_wall_width ;
     obstacle_map [ ISO_FUNKY_WALL_WINDOW_2 ] . block_area_parm_2 = standard_wall_thickness ;
     obstacle_map [ ISO_FUNKY_WALL_WINDOW_2 ] . flags &= ~BLOCKS_VISION_TOO ;
     obstacle_map [ ISO_FUNKY_WALL_WINDOW_2 ] . filename = "iso_walls_0029.png" ;
@@ -1728,7 +1729,7 @@ init_obstacle_data( void )
     
     
     obstacle_map [ ISO_V_DOOR_000_OPEN ] . block_area_parm_1 = standard_wall_thickness ;
-    obstacle_map [ ISO_V_DOOR_000_OPEN ] . block_area_parm_2 = 1.2 ;
+    obstacle_map [ ISO_V_DOOR_000_OPEN ] . block_area_parm_2 = standard_wall_width ;
     obstacle_map [ ISO_V_DOOR_000_OPEN ] . flags &= ~BLOCKS_VISION_TOO ;
     obstacle_map [ ISO_V_DOOR_000_OPEN ] . filename = "iso_doors_0006.png" ;
     obstacle_map [ ISO_V_DOOR_000_OPEN ] . transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS ;
@@ -1768,14 +1769,14 @@ init_obstacle_data( void )
     obstacle_map [ ISO_H_DOOR_100_OPEN ] . obstacle_long_description =     obstacle_map [ ISO_V_DOOR_000_OPEN ] . obstacle_long_description;
     
     obstacle_map [ ISO_V_DOOR_LOCKED ] . block_area_parm_1 = standard_wall_thickness ;
-    obstacle_map [ ISO_V_DOOR_LOCKED ] . block_area_parm_2 = 1.2 ;
+    obstacle_map [ ISO_V_DOOR_LOCKED ] . block_area_parm_2 = standard_wall_width ;
     obstacle_map [ ISO_V_DOOR_LOCKED ] . filename = "iso_doors_0012.png" ;
     obstacle_map [ ISO_V_DOOR_LOCKED ] . flags &= ~BLOCKS_VISION_TOO ;
     obstacle_map [ ISO_V_DOOR_LOCKED ] . transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS ;
     obstacle_map [ ISO_V_DOOR_LOCKED ] . flags |= IS_VERTICAL ; 
     
     obstacle_map [ ISO_H_DOOR_LOCKED ] . filename = "iso_doors_0011.png" ;
-    obstacle_map [ ISO_H_DOOR_LOCKED ] . block_area_parm_1 = 1.2 ;
+    obstacle_map [ ISO_H_DOOR_LOCKED ] . block_area_parm_1 = standard_wall_width ;
     obstacle_map [ ISO_H_DOOR_LOCKED ] . block_area_parm_2 = standard_wall_thickness ;
     obstacle_map [ ISO_H_DOOR_LOCKED ] . flags &= ~BLOCKS_VISION_TOO ;
     obstacle_map [ ISO_H_DOOR_LOCKED ] . transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS ;
@@ -2758,13 +2759,13 @@ init_obstacle_data( void )
   }
   obstacle_map [ ISO_GREY_WALL_END_W ] . block_area_type = COLLISION_TYPE_RECTANGLE ;
   obstacle_map [ ISO_GREY_WALL_END_W ] . block_area_parm_1 = standard_wall_thickness;
-  obstacle_map [ ISO_GREY_WALL_END_W ] . block_area_parm_2 = 1.1 ;
+  obstacle_map [ ISO_GREY_WALL_END_W ] . block_area_parm_2 = standard_wall_width ;
   obstacle_map [ ISO_GREY_WALL_END_W ] . filename = "iso_walls_0005.png" ;
   obstacle_map [ ISO_GREY_WALL_END_W ] . flags |= IS_VERTICAL ; 
   obstacle_map [ ISO_GREY_WALL_END_W ] . transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
 
   obstacle_map [ ISO_GREY_WALL_END_N ] . block_area_type = COLLISION_TYPE_RECTANGLE ;
-  obstacle_map [ ISO_GREY_WALL_END_N ] . block_area_parm_1 = 1.1 ;
+  obstacle_map [ ISO_GREY_WALL_END_N ] . block_area_parm_1 = standard_wall_width ;
   obstacle_map [ ISO_GREY_WALL_END_N ] . block_area_parm_2 = standard_wall_thickness ;
   obstacle_map [ ISO_GREY_WALL_END_N ] . flags |= IS_HORIZONTAL ;
   obstacle_map [ ISO_GREY_WALL_END_N ] . filename = "iso_walls_0006.png" ;
@@ -2781,13 +2782,13 @@ init_obstacle_data( void )
   obstacle_map [ ISO_GREY_WALL_END_S ] . obstacle_long_description = _("This is grey and seems quite hard to destroy. People usually call it a wall. You have no chance to go through : there must be another path.");
   /**************************************/
   obstacle_map [ ISO_GREY_WALL_END_E ] . block_area_type = COLLISION_TYPE_RECTANGLE ;
-  obstacle_map [ ISO_GREY_WALL_END_E ] . block_area_parm_1 = 0.6 ;
-  obstacle_map [ ISO_GREY_WALL_END_E ] . block_area_parm_2 = 1.1 ;
+  obstacle_map [ ISO_GREY_WALL_END_E ] . block_area_parm_1 = standard_wall_thickness ;
+  obstacle_map [ ISO_GREY_WALL_END_E ] . block_area_parm_2 = standard_wall_width ;
   obstacle_map [ ISO_GREY_WALL_END_E ] . filename = "iso_walls_0007.png" ;
   obstacle_map [ ISO_GREY_WALL_END_E ] . flags |= IS_VERTICAL ; 
   obstacle_map [ ISO_GREY_WALL_END_S ] . block_area_type = COLLISION_TYPE_RECTANGLE ;
-  obstacle_map [ ISO_GREY_WALL_END_S ] . block_area_parm_1 = 1.1 ;
-  obstacle_map [ ISO_GREY_WALL_END_S ] . block_area_parm_2 = 0.6 ;
+  obstacle_map [ ISO_GREY_WALL_END_S ] . block_area_parm_1 = standard_wall_width ;
+  obstacle_map [ ISO_GREY_WALL_END_S ] . block_area_parm_2 = standard_wall_thickness ;
   obstacle_map [ ISO_GREY_WALL_END_S ] . flags |= IS_HORIZONTAL ;
   obstacle_map [ ISO_GREY_WALL_END_S ] . filename = "iso_walls_0008.png" ;
 
@@ -2818,48 +2819,48 @@ init_obstacle_data( void )
 
 
   obstacle_map [ ISO_LIGHT_GREEN_WALL_1 ] . block_area_type = COLLISION_TYPE_RECTANGLE ;
-  obstacle_map [ ISO_LIGHT_GREEN_WALL_1 ] . block_area_parm_1 = 1.0 ;
-  obstacle_map [ ISO_LIGHT_GREEN_WALL_1 ] . block_area_parm_2 = 1.1 ;
+  obstacle_map [ ISO_LIGHT_GREEN_WALL_1 ] . block_area_parm_1 = standard_wall_thickness ;
+  obstacle_map [ ISO_LIGHT_GREEN_WALL_1 ] . block_area_parm_2 = standard_wall_width ;
   obstacle_map [ ISO_LIGHT_GREEN_WALL_1 ] . filename = "iso_walls_0010.png"; 
   obstacle_map [ ISO_LIGHT_GREEN_WALL_1 ] . obstacle_short_name = _("Green wall") ;
   obstacle_map [ ISO_LIGHT_GREEN_WALL_1 ] . obstacle_long_description = _("This wall is covered by an asparagus-green wallpaper.");
   obstacle_map [ ISO_LIGHT_GREEN_WALL_1 ] . flags |= IS_VERTICAL ; 
 
   obstacle_map [ ISO_LIGHT_GREEN_WALL_2 ] . block_area_type = COLLISION_TYPE_RECTANGLE ;
-  obstacle_map [ ISO_LIGHT_GREEN_WALL_2 ] . block_area_parm_1 = 1.0 ;
-  obstacle_map [ ISO_LIGHT_GREEN_WALL_2 ] . block_area_parm_2 = 1.2 ;
+  obstacle_map [ ISO_LIGHT_GREEN_WALL_2 ] . block_area_parm_1 = standard_wall_width ;
+  obstacle_map [ ISO_LIGHT_GREEN_WALL_2 ] . block_area_parm_2 = standard_wall_thickness ;
   obstacle_map [ ISO_LIGHT_GREEN_WALL_2 ] . filename = "iso_walls_0011.png" ;
   obstacle_map [ ISO_LIGHT_GREEN_WALL_2 ] . obstacle_short_name = _("Green wall") ;
   obstacle_map [ ISO_LIGHT_GREEN_WALL_2 ] . obstacle_long_description = _("This wall is covered by an asparagus-green wallpaper.");
   obstacle_map [ ISO_LIGHT_GREEN_WALL_2 ] . flags |= IS_HORIZONTAL ; 
 
   obstacle_map [ ISO_FUNKY_WALL_1 ] . block_area_type = COLLISION_TYPE_RECTANGLE ;
-  obstacle_map [ ISO_FUNKY_WALL_1 ] . block_area_parm_1 = 1.0 ;
-  obstacle_map [ ISO_FUNKY_WALL_1 ] . block_area_parm_2 = 1.2 ;
+  obstacle_map [ ISO_FUNKY_WALL_1 ] . block_area_parm_1 = standard_wall_thickness ;
+  obstacle_map [ ISO_FUNKY_WALL_1 ] . block_area_parm_2 = standard_wall_width ;
   obstacle_map [ ISO_FUNKY_WALL_1 ] . filename = "iso_walls_0012.png" ;
   obstacle_map [ ISO_FUNKY_WALL_1 ] . obstacle_short_name = _("Groovy wall") ;
   obstacle_map [ ISO_FUNKY_WALL_1 ] . obstacle_long_description = _("Man, dig that groovy wallpaper. It's a real blast!");
   obstacle_map [ ISO_FUNKY_WALL_1 ] . flags |= IS_VERTICAL ; 
 
   obstacle_map [ ISO_FUNKY_WALL_2 ] . block_area_type = COLLISION_TYPE_RECTANGLE ;
-  obstacle_map [ ISO_FUNKY_WALL_2 ] . block_area_parm_1 = 1.0 ;
-  obstacle_map [ ISO_FUNKY_WALL_2 ] . block_area_parm_2 = 1.2 ;
+  obstacle_map [ ISO_FUNKY_WALL_2 ] . block_area_parm_1 = standard_wall_width ;
+  obstacle_map [ ISO_FUNKY_WALL_2 ] . block_area_parm_2 = standard_wall_thickness ;
   obstacle_map [ ISO_FUNKY_WALL_2 ] . filename = "iso_walls_0013.png" ;
   obstacle_map [ ISO_FUNKY_WALL_2 ] . obstacle_short_name = _("Groovy wall") ;
   obstacle_map [ ISO_FUNKY_WALL_2 ] . obstacle_long_description = _("Man, dig that groovy wallpaper. It's a real blast!");
   obstacle_map [ ISO_FUNKY_WALL_2 ] . flags |= IS_HORIZONTAL ; 
 
   obstacle_map [ ISO_FUNKY_WALL_3 ] . block_area_type = COLLISION_TYPE_RECTANGLE ;
-  obstacle_map [ ISO_FUNKY_WALL_3 ] . block_area_parm_1 = 1.0 ;
-  obstacle_map [ ISO_FUNKY_WALL_3 ] . block_area_parm_2 = 1.2 ;
+  obstacle_map [ ISO_FUNKY_WALL_3 ] . block_area_parm_1 = standard_wall_thickness ;
+  obstacle_map [ ISO_FUNKY_WALL_3 ] . block_area_parm_2 = standard_wall_width ;
   obstacle_map [ ISO_FUNKY_WALL_3 ] . filename = "iso_walls_0014.png" ;
   obstacle_map [ ISO_FUNKY_WALL_3 ] . obstacle_short_name = _("Groovy wall") ;
   obstacle_map [ ISO_FUNKY_WALL_3 ] . obstacle_long_description = _("Man, dig that groovy wallpaper. It's a real blast!");
   obstacle_map [ ISO_FUNKY_WALL_3 ] . flags |= IS_VERTICAL ; 
 
   obstacle_map [ ISO_FUNKY_WALL_4 ] . block_area_type = COLLISION_TYPE_RECTANGLE ;
-  obstacle_map [ ISO_FUNKY_WALL_4 ] . block_area_parm_1 = 1.0 ;
-  obstacle_map [ ISO_FUNKY_WALL_4 ] . block_area_parm_2 = 1.2 ;
+  obstacle_map [ ISO_FUNKY_WALL_4 ] . block_area_parm_1 = standard_wall_width ;
+  obstacle_map [ ISO_FUNKY_WALL_4 ] . block_area_parm_2 = standard_wall_thickness ;
   obstacle_map [ ISO_FUNKY_WALL_4 ] . filename = "iso_walls_0015.png" ;
   obstacle_map [ ISO_FUNKY_WALL_4 ] . obstacle_short_name = _("Groovy wall") ;
   obstacle_map [ ISO_FUNKY_WALL_4 ] . obstacle_long_description = _("Man, dig that groovy wallpaper. It's a real blast!");
@@ -3275,18 +3276,18 @@ init_obstacle_data( void )
   }
 
   obstacle_map [ ISO_ROOM_WALL_V_RED ]  . block_area_parm_1 = standard_wall_thickness ;
-  obstacle_map [ ISO_ROOM_WALL_V_RED ]  . block_area_parm_2 = 1.2 ;
+  obstacle_map [ ISO_ROOM_WALL_V_RED ]  . block_area_parm_2 = standard_wall_width ;
   obstacle_map [ ISO_ROOM_WALL_V_RED ]  . filename = "iso_walls_0016.png" ;
   obstacle_map [ ISO_ROOM_WALL_V_RED ] . flags |= IS_VERTICAL ; 
-  obstacle_map [ ISO_ROOM_WALL_H_RED ]  . block_area_parm_1 = 1.2 ;
+  obstacle_map [ ISO_ROOM_WALL_H_RED ]  . block_area_parm_1 = standard_wall_width ;
   obstacle_map [ ISO_ROOM_WALL_H_RED ]  . block_area_parm_2 = standard_wall_thickness ;
   obstacle_map [ ISO_ROOM_WALL_H_RED ]  . filename = "iso_walls_0017.png" ;
   obstacle_map [ ISO_ROOM_WALL_H_RED ] . flags |= IS_HORIZONTAL ; 
   obstacle_map [ ISO_ROOM_WALL_V_GREEN ] . block_area_parm_1 = standard_wall_thickness ;
-  obstacle_map [ ISO_ROOM_WALL_V_GREEN ] . block_area_parm_2 = 1.2 ;
+  obstacle_map [ ISO_ROOM_WALL_V_GREEN ] . block_area_parm_2 = standard_wall_width ;
   obstacle_map [ ISO_ROOM_WALL_V_GREEN ] . filename = "iso_walls_0018.png" ;
   obstacle_map [ ISO_ROOM_WALL_V_GREEN ] . flags |= IS_VERTICAL ; 
-  obstacle_map [ ISO_ROOM_WALL_H_GREEN ] . block_area_parm_1 = 1.2 ;
+  obstacle_map [ ISO_ROOM_WALL_H_GREEN ] . block_area_parm_1 = standard_wall_width ;
   obstacle_map [ ISO_ROOM_WALL_H_GREEN ] . block_area_parm_2 = standard_wall_thickness ;
   obstacle_map [ ISO_ROOM_WALL_H_GREEN ] . filename = "iso_walls_0019.png" ;
   obstacle_map [ ISO_ROOM_WALL_H_GREEN ] . flags |= IS_HORIZONTAL ; 
@@ -3943,21 +3944,23 @@ init_obstacle_data( void )
   obstacle_map [ ISO_RESTAURANT_DESK_1 ] . block_area_type = COLLISION_TYPE_RECTANGLE ;
   obstacle_map [ ISO_RESTAURANT_DESK_1 ] . block_area_parm_1 = 1.5 ;
   obstacle_map [ ISO_RESTAURANT_DESK_1 ] . block_area_parm_2 = 5 ;
+  obstacle_map [ ISO_RESTAURANT_DESK_1 ] . flags &= ~BLOCKS_VISION_TOO ;
   obstacle_map [ ISO_RESTAURANT_DESK_1 ] . filename = "iso_restaurant_desk_0001.png" ;
   
   obstacle_map [ ISO_RESTAURANT_DESK_2 ] . block_area_type = COLLISION_TYPE_RECTANGLE ;
   obstacle_map [ ISO_RESTAURANT_DESK_2 ] . block_area_parm_1 = 5 ;
   obstacle_map [ ISO_RESTAURANT_DESK_2 ] . block_area_parm_2 = 1.5 ;
+  obstacle_map [ ISO_RESTAURANT_DESK_2 ] . flags &= ~BLOCKS_VISION_TOO ;
   obstacle_map [ ISO_RESTAURANT_DESK_2 ] . filename = "iso_restaurant_desk_0002.png" ;
 
   obstacle_map [ ISO_RESTAURANT_BIGSHELF_1 ] . block_area_type = COLLISION_TYPE_RECTANGLE ;
-  obstacle_map [ ISO_RESTAURANT_BIGSHELF_1 ] . block_area_parm_1 = 1.7 ;
+  obstacle_map [ ISO_RESTAURANT_BIGSHELF_1 ] . block_area_parm_1 = 0.65 ;
   obstacle_map [ ISO_RESTAURANT_BIGSHELF_1 ] . block_area_parm_2 = 5.5 ;
   obstacle_map [ ISO_RESTAURANT_BIGSHELF_1 ] . filename = "iso_restaurant_desk_0003.png" ;
   
   obstacle_map [ ISO_RESTAURANT_BIGSHELF_2 ] . block_area_type = COLLISION_TYPE_RECTANGLE ;
   obstacle_map [ ISO_RESTAURANT_BIGSHELF_2 ] . block_area_parm_1 = 5.5 ;
-  obstacle_map [ ISO_RESTAURANT_BIGSHELF_2 ] . block_area_parm_2 = 1.7 ;
+  obstacle_map [ ISO_RESTAURANT_BIGSHELF_2 ] . block_area_parm_2 = 0.65 ;
   obstacle_map [ ISO_RESTAURANT_BIGSHELF_2 ] . filename = "iso_restaurant_desk_0004.png" ;
 
   // crystals
