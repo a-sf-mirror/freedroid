@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: freedroidrpg_dialogs\n"
 "Report-Msgid-Bugs-To: CHANGE THIS TOO\n"
 "POT-Creation-Date: 2008-02-02 21:30+0000\n"
-"PO-Revision-Date: 2008-05-30 18:52+0200\n"
+"PO-Revision-Date: 2008-05-31 11:22+0200\n"
 "Last-Translator: \n"
 "Language-Team:  <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -6714,9 +6714,7 @@ msgstr "Bienvenue ici ! On m'appelle MER. Mes dialogues ne sont pas encore écrit
 
 #: ../dialogs/subdlg_Benjamin.dialog:43
 msgid " Improve ranged weapon skill (cost 5 training points, 100 cash) "
-msgstr ""
-" Augmente tes compétences dans le maniement des armes (coûte 5 points "
-"d'entraînement, 100 billets) "
+msgstr " S'entraîner au maniement des armes (coûte 5 points d'entraînement, 100 triangles) "
 
 #: ../dialogs/subdlg_Benjamin.dialog:54
 msgid "Done. Small improvements of dexterity are not so hard to achieve after all."
@@ -6725,7 +6723,7 @@ msgstr "Fait. Améliorer un peu sa dextérité n'est pas si difficile après tout."
 #: ../dialogs/subdlg_Benjamin.dialog:66
 msgid "You don't have enough experience. Come here after you see some more action."
 msgstr ""
-"Tu n'as pas assez d'expérience. Reviens ici après que tu aies vu un peu plus "
+"Tu n'as pas assez d'expérience. Reviens ici quand tu auras vu un peu plus "
 "de combats."
 
 #: ../dialogs/subdlg_Benjamin.dialog:76
@@ -6741,7 +6739,7 @@ msgid ""
 "Now the most important thing is that you turn off the auto-aim on your "
 "weapon, like this."
 msgstr ""
-"Maintenant la chose la plus importante est de désactiver la visée "
+"La chose la plus importante est de désactiver la visée "
 "automatique de ton arme, comme ceci."
 
 #: ../dialogs/subdlg_Benjamin.dialog:97
@@ -6755,18 +6753,18 @@ msgstr ""
 #: ../dialogs/subdlg_Benjamin.dialog:99
 msgid "Next important thing is to remember how to properly fire a shot."
 msgstr ""
-"La prochaine chose importante suivante est de se souvenir comment ajuster "
+"L'autre élément important est de se souvenir comment ajuster "
 "proprement ton tir."
 
 #: ../dialogs/subdlg_Benjamin.dialog:101
 msgid "Watch your target closely.  Pretend you're moving with it. Aim for the head."
 msgstr ""
-"Ne fixe que ta cible. Imagine que tu bouges avec elle. Ce doit être le but "
+"Ne lâche pas ta cible des yeux. Imagine que tu bouges avec elle. Ce doit être le but "
 "pour ton cerveau."
 
 #: ../dialogs/subdlg_Benjamin.dialog:103
 msgid "When you feel completely in sync with your target, then you pull the trigger."
-msgstr "Lorsque tu sens faire corps avec ta cible, alors enclenche le viseur."
+msgstr "Lorsque tu sens faire corps avec ta cible, alors tu peux presser la détente."
 
 #: ../dialogs/subdlg_Benjamin.dialog:105
 msgid "Good. You are learning fast. Try it a few more times."
@@ -6799,7 +6797,7 @@ msgid ""
 "ability points)"
 msgstr ""
 " Je suis prêt. S'il te plaît, montre moi comment extraire des pièces de "
-"robot. (coûte 50 de cash, donne 1 point de capacité)"
+"robot. (coûte 50 de cash et 1 point d'entraînement)"
 
 #: ../dialogs/subdlg_Darwin.dialog:72
 msgid "TEACHING THE FIRST TIME"
@@ -6811,9 +6809,7 @@ msgstr "TEACHING MORE"
 
 #: ../dialogs/subdlg_Darwin.dialog:92
 msgid " Sure. Teach me all that you know. (cost 50 cash, 1 ability points)"
-msgstr ""
-" Certainement. Apprends moi tout ce que tu sais. (coûte 50 de cash, donne 1 "
-"point de capacité)"
+msgstr " Certainement. Apprends moi tout ce que tu sais. (coûte 50 de cash et un point d'entraînement)"
 
 #: ../dialogs/subdlg_Darwin.dialog:102
 msgid "KNOW LESSON TWO"
@@ -6833,7 +6829,7 @@ msgstr "FIRST LESSON"
 
 #: ../dialogs/subdlg_Darwin.dialog:132
 msgid "Let us start with entropy inverters. This is quite simple."
-msgstr "Laisse nous commencer avec l'inverseur d'entropie. C'est vraiment simple."
+msgstr "Commençons par les inverseurs d'entropie. C'est très simple."
 
 #: ../dialogs/subdlg_Darwin.dialog:134
 msgid "Just take a hammer and hit the bot sehr hard on the head."
@@ -6853,7 +6849,7 @@ msgstr "SECOND LESSON"
 
 #: ../dialogs/subdlg_Darwin.dialog:150
 msgid "How about... Plasma transistors? Trivial."
-msgstr "Comment ça... Des transistors plasma ? Trivial."
+msgstr "Voyons... Des transistors plasma ? Trivial."
 
 #: ../dialogs/subdlg_Darwin.dialog:152
 msgid "Remove the bot's engine and look around somewhere close to the battery."
@@ -6885,8 +6881,7 @@ msgid ""
 "like. Usually there are plenty of sehr gut parts there."
 msgstr ""
 "Cherche dans le système électrique. Les bobines d'induction, les "
-"condensateurs et tout ça. Habituellement il y a beaucoup de sehr gut pièce "
-"ici."
+"condensateurs et tout ça. Habituellement il y a beaucoup de pièces sehr gut à cet endroit."
 
 #: ../dialogs/subdlg_Darwin.dialog:174
 msgid "Wear rubber gloves. Just in case, you know."
@@ -6931,7 +6926,7 @@ msgstr "FINAL LESSON"
 
 #: ../dialogs/subdlg_Darwin.dialog:210
 msgid "I will teach you about tachyon converters."
-msgstr "Je t'enseignerai à propos des convertisseurs à tachyon."
+msgstr "Je vais te parler des convertisseurs de tachyons."
 
 #: ../dialogs/subdlg_Darwin.dialog:212
 msgid ""
@@ -6963,7 +6958,7 @@ msgid ""
 "digging through the circuits to find one."
 msgstr ""
 "Ils peuvent se situer à peu près n'importe où, donc il faut passer du temps "
-"à chercher parmis les circuits pour en trouver."
+"à chercher parmi les circuits pour en trouver."
 
 #: ../dialogs/subdlg_Darwin.dialog:229
 msgid "NO MORE LESSONS"
@@ -6990,7 +6985,7 @@ msgstr "Hmmm..."
 
 #: ../dialogs/subdlg_Darwin.dialog:253
 msgid "Kein geld, Keine hilfe."
-msgstr "Pas d'argent, pas d'aide"
+msgstr "Kein Geld, keine Hilfe."
 
 #: ../dialogs/subdlg_Darwin.dialog:255
 msgid "Come back with some money."
@@ -7002,13 +6997,11 @@ msgstr "NO FREE POINTS"
 
 #: ../dialogs/subdlg_Darwin.dialog:268
 msgid "You look green. Toughen up. Get some experience, kill some bots."
-msgstr ""
-"Tu parais être débutant. Endurcis toi. Acquiers de l'expérience, tu quelques "
-"robots."
+msgstr "T'as l'air d'un bleu. Endurcis toi. Vas tuer quelques robots."
 
 #: ../dialogs/subdlg_Darwin.dialog:270
 msgid "Then we can talk."
-msgstr "Alors nous pouvons parler."
+msgstr "Là on pourra parler."
 
 #: ../dialogs/subdlg_Darwin.dialog:278
 msgid " Maybe another time."
@@ -7031,7 +7024,7 @@ msgid ""
 "I thought so. My grandfather used to tell me stories about you. He said you "
 "would come here in a time of despair."
 msgstr ""
-"Je croyais aussi. Mon grand-père me racontait souvent des histoires à ton "
+"C'est ce qu'il me semblait. Mon grand-père me racontait souvent des histoires à ton "
 "sujet. Il disait que tu arriverais en une époque de désespoir."
 
 #: ../dialogs/subdlg_Stone.dialog:54
@@ -7064,7 +7057,7 @@ msgstr "Alors c'est ça."
 
 #: ../dialogs/subdlg_Stone.dialog:83
 msgid " Ha ha ha, You fell for it! You get nothing from me! Hahahahah!"
-msgstr " Ha ha ha, tu y crois ! Tu n'auras rien de moi ! Hahahahah !"
+msgstr " Ha ha ha, j't'ai bien eue ! Tu n'auras rien de moi ! Hahahahah !"
 
 #: ../dialogs/subdlg_Stone.dialog:86
 msgid "You... monster..."
@@ -7072,15 +7065,15 @@ msgstr "Tu es... un monstre..."
 
 #: ../dialogs/subdlg_Stone.dialog:88
 msgid "No one makes fun of Lily Stone's family store!"
-msgstr "Personne ne se moque du magasin de la famille Lily Stone !"
+msgstr "Personne ne se moque du magasin de la famille Stone !"
 
 #: ../dialogs/subdlg_Stone.dialog:90
 msgid "Say your prayers, you oversized duck!!!"
-msgstr "Dis tes prières, canard grotesque !!!"
+msgstr "Dis tes prières, espèce de canard obèse !!!"
 
 #: ../dialogs/subdlg_Duncan_quest.dialog:36
 msgid "So... Any news on the Koan matter?"
-msgstr "Alors... Des nouvelles de l'affaire de Koan ?"
+msgstr "Alors... Des nouvelles de l'affaire Koan ?"
 
 #: ../dialogs/subdlg_Duncan_quest.dialog:54
 msgid "KOAN WAS SPARED"
