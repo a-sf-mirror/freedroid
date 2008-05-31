@@ -30,7 +30,16 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-New Option Nr=0  OptionText=_" Who are you and what are you doing?"
+New Option Nr=0 OptionText=_"THIS WILL NOT EVER BE VISIBLE"
+OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+PositionX=1 PositionY=2
+Subtitle=_"Your bio checksum does not trigger a match in staff database. Please show proper credentials or leave the premises at once."
+ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
+ChangeOption=0 ChangeToValue=0
+AlwaysExecuteThisOptionPriorToDialogStart="no"
+
+----------------------------------------------------------
+New Option Nr=1  OptionText=_" Who are you and what are you doing?"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=512  PositionY=290  
 Subtitle=_" I am a SADD - Secret Area Defence Droid"
@@ -42,9 +51,10 @@ ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" SECONDARY TARGET: prevent secret information leakage"
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
+ChangeOption=1 ChangeToValue=0
+ChangeOption=3 ChangeToValue=0
 ChangeOption=4 ChangeToValue=1
-ChangeOption=0 ChangeToValue=1
-
+ChangeOption=5 ChangeToValue=1
 ----------------------------------------------------------------------
 
 
@@ -120,6 +130,7 @@ DoSomethingExtra="ExecuteActionWithLabel:enable_sadd_gun2"
 ChangeOption=7 ChangeToValue=0
 ChangeOption=4 ChangeToValue=0
 ChangeOption=8 ChangeToValue=1
+ChangeOption=99 ChangeToValue=0
 DoSomethingExtra="EndDialog"
 
 ----------------------------------------------------------------------
@@ -279,7 +290,7 @@ DoSomethingExtra="BreakOffAndBecomeHostile"
 
 ----------------------------------------------------------------------
 
-New Option Nr=21  OptionText=_" You must promise me a significant reward."
+New Option Nr=21  OptionText=_" You will promise me a significant reward."
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=512  PositionY=290  
 Subtitle=_" Damn. Ok, I'll give you a super exterminator if you give me dilithium cristals."
@@ -429,7 +440,7 @@ PositionX=1215  PositionY=195
 Subtitle=_" Great! Thanks. I've opened some doors for you, I hope you will find something interesting there. That's all I can do for you."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=33 ChangeToValue=0
-ChangeOption=37 ChangeToValue=1
+ChangeOption=97 ChangeToValue=1
 DoSomethingExtra="MarkMissionComplete:9"
 DoSomethingExtra="DeleteItem:Red Dilitium Crystal"
 DoSomethingExtra="AddBigScreenMessageBUT_WITH_TERMINATION_CHARACTER_PLEASE:Restored SADD's power supply:"
@@ -446,7 +457,7 @@ New Option Nr=34  OptionText=_" DID I ASK EXTERIMINATOR?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=1174  PositionY=91
 ChangeOption=34 ChangeToValue=0
-OnCondition="CookieIsPlanted:SADD_exteriminator:" JumpToOption=35 ElseGoto=36
+OnCondition="CookieIsPlanted:SADD_exterminator:" JumpToOption=35 ElseGoto=36
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -469,7 +480,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=37  OptionText=_" You call this a super exteriminator?"
+New Option Nr=37  OptionText=_" You call this a super exterminator?"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=512  PositionY=290  
 Subtitle=_" I do. Now please leave this place before I terminate you."
@@ -511,6 +522,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ChangeOption=40 ChangeToValue=0
 ChangeOption=41 ChangeToValue=1
 ChangeOption=42 ChangeToValue=1
+ChangeOption=43 ChangeToValue=1
 DoSomethingExtra="ExecuteActionWithLabel:enable_sadd_gun1"
 DoSomethingExtra="ExecuteActionWithLabel:enable_sadd_gun2"
 DoSomethingExtra="ExecuteActionWithLabel:breake_wall_near_sadd_2"
@@ -551,6 +563,31 @@ Subtitle=_" I just need to make some preparations. You have to wait..."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" ...for your death!"
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
+AlwaysExecuteThisOptionPriorToDialogStart="no"
+
+----------------------------------------------------------------------
+
+New Option Nr=97  OptionText=_" Erm... hi!"
+OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
+PositionX=512  PositionY=290  
+Subtitle=_" Hi. Thanks for the help."
+ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
+ChangeOption=98 ChangeToValue=1
+ChangeOption=97 ChangeToValue=0
+DoSomethingExtra="EndDialog"
+AlwaysExecuteThisOptionPriorToDialogStart="no"
+LinkedTo:98
+
+----------------------------------------------------------------------
+
+New Option Nr=98  OptionText=_" Will you let me inside the base?"
+OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
+PositionX=512  PositionY=290  
+Subtitle=_" Nice attempt. I owe you but I cannot do that. You must leave."
+ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
+ChangeOption=98 ChangeToValue=0
+ChangeOption=99 ChangeToValue=1
+DoSomethingExtra="EndDialog"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
