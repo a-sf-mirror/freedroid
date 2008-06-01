@@ -1,13 +1,34 @@
--*- mode: text -*-
-
 FreedroidRPG Installation 
 =========================
 
-To build FreedroidRPG from source you must have CMake 2.4.7 or later installed.
+To build FreedroidRPG from source on a Unix-like system, you have two possibilities: the standard GNU autotools way, or you
+can, at your convenience, use CMake.
+
+Building with autotools
+=========================
+
+1) If you are running a SVN version of the game, you will need to generate the configure script
+by running autogen.sh.
+
+2) Run the configure script, you can check the options it accepts with --help.
+
+3) Type "make". This will build the game.
+
+4) Installation : "make install" will install the game. The binary name is freedroidRPG.
+
+4b) Working from the source tree (if you want to svn update regularly) : do not issue 
+the "make install" command, instead, simply go to the src/ subdirectory, and run
+./freedroidRPG.
+
+
+Building with CMake
+=========================
+
+You need CMake 2.4.7 or later.
 You can check this by running `cmake --version`.
 
-For the purpose of this guide I'm going to use ${SOURCE_DIRECTORY} to refer to
-the directory with the game sources and ${BUILD_DIRECTORY} to refer to the
+For the purpose of this guide, ${SOURCE_DIRECTORY} refers to
+the directory with the game sources and ${BUILD_DIRECTORY} refers to the
 directory where the binaries are being created.
 
 1) Create a out-of-source build directory
@@ -20,7 +41,7 @@ directory where the binaries are being created.
 
 3) Create the makefiles
    Run `cmake ${SOURCE_DIRECTORY}`
-   If CMake complains off missing libraries, use your package manager to
+   If CMake complains about missing libraries, use your package manager to
    install them and repeat this step.
    Optionally you can instead disable the feature in question by passing one
    or more of the following arguments to cmake:
@@ -43,24 +64,15 @@ directory where the binaries are being created.
    "CMAKE_INSTALL_PREFIX" build option above.
 
 
-Create a FreedroidRPG source releases
-=====================================
-
-1) Modify CMakeLists.txt with the correct version information
-2) Follow step 1 through 3 in the installation instructions.
-3) Run `make package_source`
-
-
-Create a FreedroidRPG binary releases
-=====================================
-
-1) Modify CMakeLists.txt with the correct version information
-2) Follow step 1 through 5 in the installation instructions.
-3) Run `make package`
-
-
 Building on Windows
 ===================
+
+Building FreedroidRPG on Windows can be a painful process. We can provide a binary
+at your request.
+
+Building FreedroidRPG for Windows is probably easier to do with a cross compiler, 
+but CMake is supposed to work under Windows natively. Nobobdy ever tested the CMake way 
+that is being described below, so feel free to test it and report back to us.
 
 To build FreedroidRPG on Windows you need to install MSYS, MinGW and CMake.
 
@@ -114,9 +126,26 @@ When all these prerequisites is installed, you open a MSYS terminal and follow t
 build instructions above, with the addition that you must add the argument
 "-G 'MSYS Makefiles'" to the cmake call in step 3.
 
+Cross compile for Windows with autotools
+========================================
 
-Cross compile for Windows
-=========================
+Provided you have a cross compiler installed and set up (see
+below for more details), use the following configure line:
+
+$ ./configure  --prefix=/path/to/the/cross/compiler --host=i686-pc-mingw32 --without-x --enable-nls LIBS="-lintl"
+
+One critical point is to make sure you have all required libraries installed. 
+You will need to have libogg and libvorbis for sound and music, and will need libintl and its dependencies
+to provide translation support.
+
+The binary we ship supports all those features and is built with autotools.
+In special cases we may agree to sending you the complete cross-compiler archive so you can build win32 binaries
+easily.
+
+Cross compile for Windows with CMake
+====================================
+
+This method is untested. Do not hesitate to report back.
 
 To cross compile for Windows you must have CMake 2.6 installed.
 You also need mingw32. On gentoo you install it by running
@@ -188,6 +217,7 @@ directory, and ${WIN32_BUILD_DIRECTORY} refers to the windows build directory.
 
 ==============================================================
 If you have problems with the compilation/installation, please
-send an email to freedroid-discussion@lists.sourceforge.net
+contact us : #freedroid on irc.freenode.net (we don't bite!),
+or send a mail to freedroid-discussion@lists.sourceforge.net.
 ==============================================================
  
