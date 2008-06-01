@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CHANGE THIS\n"
 "Report-Msgid-Bugs-To: CHANGE THIS TOO\n"
-"POT-Creation-Date: 2008-05-31 14:38+0000\n"
-"PO-Revision-Date: 2008-05-31 14:38+0000\n"
+"POT-Creation-Date: 2008-06-01 17:31+0000\n"
+"PO-Revision-Date: 2008-06-01 17:31+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -4531,64 +4531,64 @@ msgid ""
 "."
 msgstr ""
 
-#: ../dialogs/SADD.dialog:535
+#: ../dialogs/SADD.dialog:534
 msgid " And what about your directives, especially second?"
 msgstr ""
 
-#: ../dialogs/SADD.dialog:538
+#: ../dialogs/SADD.dialog:537
 msgid " Now I have time. When you die, I'll disable guns."
 msgstr ""
 
-#: ../dialogs/SADD.dialog:544
+#: ../dialogs/SADD.dialog:543
 msgid " Please forgive me!"
 msgstr ""
 
-#: ../dialogs/SADD.dialog:547
+#: ../dialogs/SADD.dialog:546
 msgid " Too late. I'm watching this great show now."
 msgstr ""
 
-#: ../dialogs/SADD.dialog:549
-#: ../dialogs/SADD.dialog:551
+#: ../dialogs/SADD.dialog:548
+#: ../dialogs/SADD.dialog:550
 msgid " It is called..."
 msgstr ""
 
-#: ../dialogs/SADD.dialog:557
+#: ../dialogs/SADD.dialog:556
 msgid " Please, disable the guns!"
 msgstr ""
 
-#: ../dialogs/SADD.dialog:560
+#: ../dialogs/SADD.dialog:559
 msgid " Ok, I'll disable them."
 msgstr ""
 
-#: ../dialogs/SADD.dialog:562
+#: ../dialogs/SADD.dialog:561
 msgid " I just need to make some preparations. You have to wait..."
 msgstr ""
 
-#: ../dialogs/SADD.dialog:564
+#: ../dialogs/SADD.dialog:563
 msgid " ...for your death!"
 msgstr ""
 
-#: ../dialogs/SADD.dialog:570
+#: ../dialogs/SADD.dialog:569
 msgid " Erm... hi!"
 msgstr ""
 
-#: ../dialogs/SADD.dialog:573
+#: ../dialogs/SADD.dialog:572
 msgid " Hi. Thanks for the help."
 msgstr ""
 
-#: ../dialogs/SADD.dialog:583
+#: ../dialogs/SADD.dialog:582
 msgid " Will you let me inside the base?"
 msgstr ""
 
-#: ../dialogs/SADD.dialog:586
+#: ../dialogs/SADD.dialog:585
 msgid " Nice attempt. I owe you but I cannot do that. You must leave."
 msgstr ""
 
-#: ../dialogs/SADD.dialog:595
+#: ../dialogs/SADD.dialog:594
 msgid " I'd better get out of here..."
 msgstr ""
 
-#: ../dialogs/SADD.dialog:598
+#: ../dialogs/SADD.dialog:597
 msgid " Exactly."
 msgstr ""
 
