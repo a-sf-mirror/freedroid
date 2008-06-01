@@ -43,6 +43,8 @@
 #define COS_28 0.88294759
 #define SIN_28 0.46947156
 
+int gl_max_texture_size;
+
 /**
  * This is a wrapper for the SDL_Flip function, that will use either the
  * OpenGL buffer-swapping or the classic SDL flipper, depending on the
@@ -762,6 +764,8 @@ safely_initialize_our_default_open_gl_parameters ( void )
     glGenTextures( MAX_AMOUNT_OF_TEXTURES_WE_WILL_USE , & ( all_freedroid_textures [ 0 ] ) );  
     
     next_texture_index_to_use = 0 ;
+
+    glGetIntegerv(GL_MAX_TEXTURE_SIZE, &gl_max_texture_size);
     
     open_gl_check_error_status ( __FUNCTION__ );
     
