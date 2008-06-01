@@ -343,77 +343,108 @@ get_floor_boundaries(int mask, int* LineStart, int* LineEnd, int* ColStart, int*
  * around the Tux or in the console map view.  Big map inserts and all that
  * will be handled later...
  */
-void
+    void
 isometric_show_floor_around_tux_without_doublebuffering (int mask)
 {
-  int LineStart, LineEnd, ColStart, ColEnd, line, col, MapBrick;
-  Level DisplayLevel = curShip.AllLevels[Me.pos.z];
-    
-  get_floor_boundaries (mask, &LineStart, &LineEnd, &ColStart, &ColEnd);
+    int LineStart, LineEnd, ColStart, ColEnd, line, col, MapBrick;
+    static int use_atlas = -1;
 
-  //  SDL_SetClipRect (Screen, &User_Rect);
-  
-  if ( ! use_open_gl )
-      { /* SDL rendering path */
-      for (line = LineStart; line < LineEnd; line++)
-	  {
-	  for (col = ColStart; col < ColEnd; col++)
-	      {
-	      MapBrick = GetMapBrick (DisplayLevel, col, line);
-	      
-	      if (mask & ZOOM_OUT)
-		  blit_zoomed_iso_image_to_map_position ( &(floor_iso_images[MapBrick % ALL_ISOMETRIC_FLOOR_TILES]),
-			  ((float) col) + 0.5, ((float) line) + 0.5);
-	      else
-		  blit_iso_image_to_map_position ( &(floor_iso_images[MapBrick % ALL_ISOMETRIC_FLOOR_TILES]),
-			  ((float) col) + 0.5, ((float) line) + 0.5 ) ;
-	      }
-	  }
-      return;
-      }
-  else
-      {
+    Level DisplayLevel = curShip.AllLevels[Me.pos.z];
+
+    get_floor_boundaries (mask, &LineStart, &LineEnd, &ColStart, &ColEnd);
+
+    //  SDL_SetClipRect (Screen, &User_Rect);
+
+    if ( ! use_open_gl )
+	{ /* SDL rendering path */
+	for (line = LineStart; line < LineEnd; line++)
+	    {
+	    for (col = ColStart; col < ColEnd; col++)
+		{
+		MapBrick = GetMapBrick (DisplayLevel, col, line);
+
+		if (mask & ZOOM_OUT)
+		    blit_zoomed_iso_image_to_map_position ( &(floor_iso_images[MapBrick % ALL_ISOMETRIC_FLOOR_TILES]),
+			    ((float) col) + 0.5, ((float) line) + 0.5);
+		else
+		    blit_iso_image_to_map_position ( &(floor_iso_images[MapBrick % ALL_ISOMETRIC_FLOOR_TILES]),
+			    ((float) col) + 0.5, ((float) line) + 0.5 ) ;
+		}
+	    }
+	return;
+	}
+    else
+	{
+	if ( use_atlas == - 1 )
+	    { //determine if we are using a texture atlas for the ground
+	    if ( floor_iso_images[0].texture == floor_iso_images[5].texture )
+		use_atlas = 1;
+	    else use_atlas = 0;
+	    }
+
+	if ( use_atlas )
+	    {
+
 #ifdef HAVE_LIBGL
-      glBindTexture( GL_TEXTURE_2D, floor_atlas[0].tex );
-      glEnable(GL_ALPHA_TEST);
-      glBegin(GL_QUADS);
+	    glBindTexture( GL_TEXTURE_2D, floor_iso_images[0].texture );
+	    glEnable(GL_ALPHA_TEST);
+	    glBegin(GL_QUADS);
 
-      for (line = LineStart; line < LineEnd; line++)
-	  {
-	  for (col = ColStart; col < ColEnd; col++)
-	      {
-	      MapBrick = GetMapBrick (DisplayLevel, col, line);
-	      
-	      iso_image * ourimg = &(floor_iso_images[MapBrick % ALL_ISOMETRIC_FLOOR_TILES]);
-	      gl_atlas_member * ouratl = &(floor_atlas[MapBrick % ALL_ISOMETRIC_FLOOR_TILES]);
+	    for (line = LineStart; line < LineEnd; line++)
+		{
+		for (col = ColStart; col < ColEnd; col++)
+		    {
+		    MapBrick = GetMapBrick (DisplayLevel, col, line);
 
-	      if ( MapBrick == ISO_COMPLETELY_DARK )
-		  continue;
+		    iso_image * ourimg = &(floor_iso_images[MapBrick % ALL_ISOMETRIC_FLOOR_TILES]);
 
-	      int x, y;
-	      float zf =  ((mask & ZOOM_OUT) ?  ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT : 1.0);
+		    if ( MapBrick == ISO_COMPLETELY_DARK )
+			continue;
 
-	      translate_map_point_to_screen_pixel ( ((float) col) + 0.5 , ((float) line) + 0.5 , &x, &y, zf); 
-	      x +=  ourimg->offset_x * zf; 
-	      y +=  ourimg->offset_y * zf; 
+		    int x, y;
+		    float zf =  ((mask & ZOOM_OUT) ?  ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT : 1.0);
+
+		    translate_map_point_to_screen_pixel ( ((float) col) + 0.5 , ((float) line) + 0.5 , &x, &y, zf); 
+		    x +=  ourimg->offset_x * zf; 
+		    y +=  ourimg->offset_y * zf; 
 
 
-	      glTexCoord2f( ouratl->x1, ouratl->y2);
-	      glVertex2i( x, y );
-	      glTexCoord2f( ouratl->x1, ouratl->y1 );
-	      glVertex2i( x, y + ourimg->original_image_height * zf);
-	      glTexCoord2f( ouratl->x2, ouratl->y1 );
-	      glVertex2i( x + ourimg->original_image_width * zf, y + ourimg->original_image_height * zf );
-	      glTexCoord2f(  ouratl->x2, ouratl->y2 );
-	      glVertex2i( x  + ourimg->original_image_width * zf, y);
+		    glTexCoord2f( ourimg->tx0, ourimg->ty1);
+		    glVertex2i( x, y );
+		    glTexCoord2f( ourimg->tx0, ourimg->ty0 );
+		    glVertex2i( x, y + ourimg->original_image_height * zf);
+		    glTexCoord2f( ourimg->tx1, ourimg->ty0 );
+		    glVertex2i( x + ourimg->original_image_width * zf, y + ourimg->original_image_height * zf );
+		    glTexCoord2f(  ourimg->tx1, ourimg->ty1 );
+		    glVertex2i( x  + ourimg->original_image_width * zf, y);
 
-	      }
-	  }
+		    }
+		}
 
-      glEnd( );
-      glDisable(GL_ALPHA_TEST);
+	    glEnd( );
+	    glDisable(GL_ALPHA_TEST);
 #endif
-      } 
+	    } //use_atlas
+	else
+	    {
+	    for (line = LineStart; line < LineEnd; line++)
+		{
+		for (col = ColStart; col < ColEnd; col++)
+		    {
+		    MapBrick = GetMapBrick (DisplayLevel, col, line);
+
+		    if ( MapBrick == ISO_COMPLETELY_DARK )
+			continue;
+
+		    draw_gl_textured_quad_at_map_position ( &floor_iso_images[MapBrick % ALL_ISOMETRIC_FLOOR_TILES], 	 
+			    ((float) col) + 0.5, ((float) line) + 0.5, 1.0, 1.0, 1.0, FALSE, FALSE, 	 
+			    (mask & ZOOM_OUT) ?  ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT : 1.0);
+
+		    }
+		}
+
+	    }
+	} 
 
 
 }; // void isometric_show_floor_around_tux_without_doublebuffering ( int mask )

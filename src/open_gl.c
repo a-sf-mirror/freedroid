@@ -523,13 +523,12 @@ do_make_texture_out_of_surface ( iso_image* our_image, int txw, int txh, void * 
 
     glPixelStorei ( GL_UNPACK_ALIGNMENT , 1 );
     
-    if ( our_image -> texture ) 
-	if ( * our_image-> texture )
-		{
-		goto reuse_tex;
-		}
+    if ( our_image-> texture )
+	{
+	goto reuse_tex;
+	}
 
-    our_image -> texture = & ( all_freedroid_textures [ next_texture_index_to_use ] ) ;
+    our_image -> texture = all_freedroid_textures [ next_texture_index_to_use ] ;
     our_image -> texture_has_been_created = TRUE ;
     next_texture_index_to_use ++ ;
     if ( next_texture_index_to_use >= MAX_AMOUNT_OF_TEXTURES_WE_WILL_USE )
@@ -544,9 +543,9 @@ do_make_texture_out_of_surface ( iso_image* our_image, int txw, int txh, void * 
     }
     
     reuse_tex:
-    DebugPrintf ( 1 , "Using texture %d\n", *our_image->texture);
+    DebugPrintf ( 1 , "Using texture %d\n", our_image->texture);
    
-    glBindTexture( GL_TEXTURE_2D, * ( our_image -> texture ) );
+    glBindTexture( GL_TEXTURE_2D, ( our_image -> texture ) );
     
     // We tend to scale those textures a lot, so we use linear filtering otherwise
     // the result is not so good.
@@ -555,6 +554,11 @@ do_make_texture_out_of_surface ( iso_image* our_image, int txw, int txh, void * 
     
     // Generate The Texture 
     glTexImage2D( GL_TEXTURE_2D, 0, 4, txw ,  txh , 0, GL_BGRA,  GL_UNSIGNED_BYTE, data);
+    
+    our_image -> tx0 = 0;
+    our_image -> ty0 = 1.0 - (float)our_image -> original_image_height / (float)our_image->texture_height;
+    our_image -> tx1 = (float)our_image -> original_image_width / (float)our_image->texture_width;
+    our_image -> ty1 = 1.0 ;
 
     open_gl_check_error_status ( __FUNCTION__ ); 
 
@@ -580,6 +584,7 @@ make_texture_out_of_surface ( iso_image* our_image )
     our_image -> texture_height = right_sized_image -> h ;
     our_image -> original_image_width = our_image -> surface -> w ;
     our_image -> original_image_height = our_image -> surface -> h ;
+
     
     //--------------------
     // Having prepared the raw image it's now time to create the real
@@ -606,7 +611,6 @@ make_texture_out_of_surface ( iso_image* our_image )
 
 void make_texture_out_of_prepadded_image ( iso_image * our_image )
 {
-//the image is prepadded we have nothing to do    
     do_make_texture_out_of_surface ( our_image, our_image->surface->w, our_image->surface->h, our_image->surface->pixels);
     
 }; // void make_texture_out_of_prepadded_image (...)
@@ -780,17 +784,17 @@ safely_initialize_our_default_open_gl_parameters ( void )
 
 #ifdef HAVE_LIBGL
 static inline void 
-draw_gl_textured_quad_helper ( int x0, int y0, int x1, int y1 ) 
+draw_gl_textured_quad_helper ( int x0, int y0, int x1, int y1, float tx0, float ty0, float tx1, float ty1 ) 
 {
   
     glBegin(GL_QUADS);
-    glTexCoord2i( 0.0f, 1.0 ); 
+    glTexCoord2f( tx0, ty1 ); 
     glVertex2i( x0, y0 );
-    glTexCoord2i( 0.0f, 0.0 ); 
+    glTexCoord2f( tx0, ty0 ); 
     glVertex2i( x0, y1 );
-    glTexCoord2i( 1.0f, 0.0 ); 
+    glTexCoord2f( tx1, ty0 ); 
     glVertex2i( x1, y1 );
-    glTexCoord2f( 1.0f, 1.0 ); 
+    glTexCoord2f( tx1, ty1 ); 
     glVertex2i( x1, y0 );
     glEnd( );
 
@@ -799,7 +803,7 @@ draw_gl_textured_quad_helper ( int x0, int y0, int x1, int y1 )
 
 
 void
-draw_gl_textured_quad_at_map_position ( iso_image * our_floor_iso_image , 
+draw_gl_textured_quad_at_map_position ( iso_image * our_iso_image , 
 				       float our_col , float our_line , 
 				       float r, float g , float b , 
 				       int highlight_texture, int blend, float zoom_factor ) 
@@ -811,42 +815,42 @@ draw_gl_textured_quad_at_map_position ( iso_image * our_floor_iso_image ,
     glEnable(GL_ALPHA_TEST);
 
     if ( (( blend == TRANSPARENCY_FOR_WALLS ) && GameConfig . transparency) || blend == TRANSPARENCY_CUROBJECT ) 
-    {
+	{
 	glEnable ( GL_BLEND ) ;
 	a = 0.50;
-    }
+	}
     else if ( blend == TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS ) 
-    {
+	{
 	glEnable ( GL_BLEND ) ;
-    }
-    
+	}
 
-  
+
+
     translate_map_point_to_screen_pixel ( our_col , our_line , &x, &y, zoom_factor ); 
-    x +=  our_floor_iso_image -> offset_x * zoom_factor ; 
-    y +=  our_floor_iso_image -> offset_y * zoom_factor ; 
-    
+    x +=  our_iso_image -> offset_x * zoom_factor ; 
+    y +=  our_iso_image -> offset_y * zoom_factor ;
+
     glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE );
     glColor4f( r , g , b, a );
 
-    glBindTexture( GL_TEXTURE_2D, * ( our_floor_iso_image -> texture ) );
-    
-    draw_gl_textured_quad_helper ( x, y, x + our_floor_iso_image -> texture_width * zoom_factor,
-				y + our_floor_iso_image -> texture_height * zoom_factor) ;
+    glBindTexture( GL_TEXTURE_2D, ( our_iso_image -> texture ) );
+
+    draw_gl_textured_quad_helper ( x, y, x + our_iso_image -> original_image_width * zoom_factor,
+	    y + our_iso_image -> original_image_height * zoom_factor, our_iso_image->tx0, our_iso_image->ty0, our_iso_image->tx1, our_iso_image->ty1) ;
 
     if ( highlight_texture )
-    {
+	{
 	glEnable( GL_BLEND );
 	glBlendFunc( GL_ONE , GL_ONE );
 
 	//--------------------
 	// Now we draw our quad AGAIN!
 	//
-    	draw_gl_textured_quad_helper ( x, y, x + our_floor_iso_image -> texture_width * zoom_factor,
-				y + our_floor_iso_image -> texture_height * zoom_factor) ;
+	draw_gl_textured_quad_helper ( x, y, x + our_iso_image -> original_image_width * zoom_factor,
+		y + our_iso_image -> original_image_height * zoom_factor, our_iso_image->tx0, our_iso_image->ty0, our_iso_image->tx1, our_iso_image->ty1) ;
 	glBlendFunc( GL_SRC_ALPHA , GL_ONE_MINUS_SRC_ALPHA );
 
-    }
+	}
 
     glDisable( GL_BLEND );
     glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE );
@@ -860,17 +864,17 @@ draw_gl_textured_quad_at_map_position ( iso_image * our_floor_iso_image ,
 /* ------------------------------------------------------------
  * Draw an open gl textured quad at the given screen position
  * */
-void
-draw_gl_textured_quad_at_screen_position ( iso_image * our_floor_iso_image , int x , int y ) 
+    void
+draw_gl_textured_quad_at_screen_position ( iso_image * our_iso_image , int x , int y ) 
 {
 #ifdef HAVE_LIBGL
 
-	glEnable ( GL_BLEND );
+    glEnable ( GL_BLEND );
 
-	glBindTexture( GL_TEXTURE_2D, *our_floor_iso_image -> texture);
-        draw_gl_textured_quad_helper ( x, y, x + our_floor_iso_image -> texture_width, 
-			y + our_floor_iso_image -> texture_height);
-	glDisable ( GL_BLEND );
+    glBindTexture( GL_TEXTURE_2D, our_iso_image -> texture);
+    draw_gl_textured_quad_helper ( x, y, x + our_iso_image -> original_image_width, 
+	    y + our_iso_image -> original_image_height, our_iso_image->tx0, our_iso_image->ty0, our_iso_image->tx1, our_iso_image->ty1);
+    glDisable ( GL_BLEND );
 
 #endif
 }
@@ -880,43 +884,23 @@ draw_gl_textured_quad_at_screen_position ( iso_image * our_floor_iso_image , int
  *
  */
 void
-draw_gl_scaled_textured_quad_at_screen_position ( iso_image * our_floor_iso_image , int x , int y , float scale_factor ) 
+draw_gl_scaled_textured_quad_at_screen_position ( iso_image * our_iso_image , int x , int y , float scale_factor ) 
 {
 
 #ifdef HAVE_LIBGL
     
     glEnable ( GL_BLEND );
 
-    glBindTexture( GL_TEXTURE_2D, * ( our_floor_iso_image -> texture ) );
+    glBindTexture( GL_TEXTURE_2D, (our_iso_image -> texture ) );
 
-    draw_gl_textured_quad_helper(x, y, x + our_floor_iso_image -> texture_width * scale_factor,
-			y + our_floor_iso_image -> texture_height * scale_factor);
+    draw_gl_textured_quad_helper(x, y, x + our_iso_image -> original_image_width * scale_factor,
+			y + our_iso_image -> original_image_height * scale_factor, our_iso_image->tx0, our_iso_image->ty0, our_iso_image->tx1, our_iso_image->ty1);
 
     glDisable ( GL_BLEND );
     
 #endif
     
 };
-
-void
-draw_gl_scaled_quad_from_atlas_at_screen_position ( iso_image * ourimg, gl_atlas_member * ouratl, int x, int y, float scale )
-{
-#ifdef HAVE_LIBGL
-glBindTexture(GL_TEXTURE_2D, ouratl->tex);
-glEnable(GL_ALPHA_TEST); 
-glBegin(GL_QUADS);
-glTexCoord2f( ouratl->x1, ouratl->y2);
-glVertex2i( x, y );
-glTexCoord2f( ouratl->x1, ouratl->y1 );
-glVertex2i( x, y + ourimg->original_image_height * scale);
-glTexCoord2f( ouratl->x2, ouratl->y1 );
-glVertex2i( x + ourimg->original_image_width * scale, y + ourimg->original_image_height * scale);
-glTexCoord2f(  ouratl->x2, ouratl->y2 );
-glVertex2i( x  + ourimg->original_image_width * scale, y);
-glEnd();
-glDisable(GL_ALPHA_TEST);
-#endif
-}
 
 
 /**
@@ -935,21 +919,20 @@ draw_gl_bg_textured_quad_at_screen_position ( iso_image * our_floor_iso_image , 
 
     glEnable ( GL_BLEND );
 
-    if ( our_floor_iso_image -> texture_height == 1024 ) //then the image is 1024x768
+    if ( our_floor_iso_image -> original_image_width == 1024 ) //then the image is 1024x768
 	{ /*dirty hack for better scaling*/
-        image_end_x = x + our_floor_iso_image -> texture_width * GameConfig . screen_width / 1024 ;
-        image_end_y = y + our_floor_iso_image -> texture_height * GameConfig . screen_height / 768 ;
+        image_end_x = x + our_floor_iso_image -> original_image_width * GameConfig . screen_width / 1024 ;
+        image_end_y = y + our_floor_iso_image -> original_image_height * GameConfig . screen_height / 768 ;
 	}
     else
 	{
-        image_end_x = x + our_floor_iso_image -> texture_width * GameConfig . screen_width / 640 ;
-        image_end_y = y + our_floor_iso_image -> texture_height * GameConfig . screen_height / 480 ;
+        image_end_x = x + our_floor_iso_image -> original_image_width * GameConfig . screen_width / 640 ;
+        image_end_y = y + our_floor_iso_image -> original_image_height * GameConfig . screen_height / 480 ;
 	}
 
-    glBindTexture(GL_TEXTURE_2D, *(our_floor_iso_image -> texture));
-    draw_gl_textured_quad_helper ( x, y, image_end_x, 
-			image_end_y);
-
+    glBindTexture(GL_TEXTURE_2D, (our_floor_iso_image -> texture));
+    draw_gl_textured_quad_helper ( x, y, image_end_x, image_end_y, our_floor_iso_image->tx0, our_floor_iso_image->ty0, our_floor_iso_image->tx1, our_floor_iso_image->ty1);
+    
     glDisable ( GL_BLEND );
 
 #endif
@@ -987,14 +970,14 @@ RestoreMenuBackground ( int backup_slot )
     int h = (GameConfig . screen_height > 1024 ) ? 2048 : 1024;
     int w = (GameConfig . screen_width > 1024 ) ? 2048 : 1024;
     
-    glBindTexture( GL_TEXTURE_2D, * ( StoredMenuBackgroundTex [ backup_slot ] ) );
+    glBindTexture( GL_TEXTURE_2D, ( StoredMenuBackgroundTex [ backup_slot ] ) );
 
     glBegin(GL_QUADS);
-    glTexCoord2i( 0.0f, 1.0f );
+    glTexCoord2f( 0.0f, 1.0f );
     glVertex2i( 0 , 0 );
-    glTexCoord2i( 0.0f, 0.0 );
+    glTexCoord2f( 0.0f, 0.0 );
     glVertex2i( 0 , h );
-    glTexCoord2i( 1.0f, 0.0 );
+    glTexCoord2f( 1.0f, 0.0 );
     glVertex2i( w , h );
     glTexCoord2f( 1.0f, 1.0 );
     glVertex2i( w , 0 );
@@ -1039,7 +1022,7 @@ StoreMenuBackground ( int backup_slot )
 
 	if ( StoredMenuBackgroundTex [ backup_slot ] == 0 )
 		{ 
-		StoredMenuBackgroundTex [ backup_slot ] = &all_freedroid_textures [ next_texture_index_to_use ] ;
+		StoredMenuBackgroundTex [ backup_slot ] = all_freedroid_textures [ next_texture_index_to_use ] ;
 	        next_texture_index_to_use ++ ;
 		if ( next_texture_index_to_use >= MAX_AMOUNT_OF_TEXTURES_WE_WILL_USE )
 		    {
@@ -1050,7 +1033,7 @@ StoreMenuBackground ( int backup_slot )
 		}
 
 	glEnable(GL_TEXTURE_2D);
-	glBindTexture( GL_TEXTURE_2D, *StoredMenuBackgroundTex [ backup_slot ]);
+	glBindTexture( GL_TEXTURE_2D, StoredMenuBackgroundTex [ backup_slot ]);
         glTexParameteri( GL_TEXTURE_2D , GL_TEXTURE_MAG_FILTER , GL_NEAREST );
         glTexParameteri( GL_TEXTURE_2D , GL_TEXTURE_MIN_FILTER , GL_NEAREST );
 
@@ -1120,7 +1103,7 @@ set_up_stretched_texture_for_light_radius ( void )
     //
     glPixelStorei( GL_UNPACK_ALIGNMENT , 1 );
 
-    light_radius_stretch_texture = & ( all_freedroid_textures [ next_texture_index_to_use ] ) ;
+    light_radius_stretch_texture = all_freedroid_textures [ next_texture_index_to_use ] ;
     next_texture_index_to_use ++ ;
 
     if ( next_texture_index_to_use >= MAX_AMOUNT_OF_TEXTURES_WE_WILL_USE )
@@ -1134,7 +1117,7 @@ set_up_stretched_texture_for_light_radius ( void )
 	DebugPrintf ( 0 , "\nTexture positions remaining: %d." , MAX_AMOUNT_OF_TEXTURES_WE_WILL_USE - next_texture_index_to_use );
     }
     
-    glBindTexture( GL_TEXTURE_2D, * ( light_radius_stretch_texture ) );
+    glBindTexture( GL_TEXTURE_2D, ( light_radius_stretch_texture ) );
   
     glTexParameteri( GL_TEXTURE_2D , GL_TEXTURE_MAG_FILTER , GL_LINEAR );
     glTexParameteri( GL_TEXTURE_2D , GL_TEXTURE_MIN_FILTER , GL_LINEAR );
@@ -1187,7 +1170,7 @@ light_radius_update_stretched_texture ( void )
 	}
     }
 
-    glBindTexture ( GL_TEXTURE_2D , *light_radius_stretch_texture );
+    glBindTexture ( GL_TEXTURE_2D , light_radius_stretch_texture );
     glTexSubImage2D ( GL_TEXTURE_2D , 0 , 
 		      0  , 0 ,
 		      64 ,
@@ -1236,6 +1219,11 @@ blit_open_gl_stretched_texture_light_radius ( void )
     local_iso_image . texture_has_been_created = TRUE ;
     local_iso_image . offset_x = 0 ;    
     local_iso_image . offset_y = 0 ;
+    local_iso_image . tx0 = 0.0;
+    local_iso_image . ty0 = 0.0;
+    local_iso_image . tx1 = 1.0;
+    local_iso_image . ty1 = 1.0;
+
 
     glEnable ( GL_BLEND ) ;
 

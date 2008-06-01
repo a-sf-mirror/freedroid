@@ -371,7 +371,7 @@ PutCharFont (SDL_Surface * Surface, BFont_Info * Font, int x, int y, unsigned ch
 		  #ifdef HAVE_LIBGL
 		  glNewList(Font->list_base + c, GL_COMPILE);
 
-		  glBindTexture(GL_TEXTURE_2D, *(Font->char_iso_image[c] . texture));
+		  glBindTexture(GL_TEXTURE_2D, (Font->char_iso_image[c] . texture));
 	          glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE );
         	  glEnable ( GL_BLEND );
  

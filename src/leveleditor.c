@@ -2104,8 +2104,6 @@ ShowLevelEditorTopMenu( int Highlight )
 		if ( use_open_gl )
 		{
 		if ( placing_floor )
-		    draw_gl_scaled_quad_from_atlas_at_screen_position ( img, &floor_atlas [ selected_index ], TargetRectangle.x, y_off, zoom_factor);
-		else
 		    draw_gl_scaled_textured_quad_at_screen_position ( img , TargetRectangle . x , 
 			    y_off, zoom_factor) ;
 		//additionally in the ALL tab, display object number

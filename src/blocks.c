@@ -4138,6 +4138,7 @@ void load_all_obstacles ( void ) {
 
 }; // void load_all_obstacles ( void )
 
+
 /**
  * This function loads isometric floor tiles, and in OpenGL mode, generates
  * a texture atlas.
@@ -4149,41 +4150,16 @@ load_floor_tiles ( void )
   int i;
   char fpath[2048];
 
-  char * atlasdat = NULL;
-  char * pos = NULL;
-  char * epos;
-  char * field;
-  int atlas_w, atlas_h;
+  // Try to load the atlas
+  if ( use_open_gl )
+      if ( ! load_texture_atlas ("floor_tiles/atlas.txt", "floor_tiles/", floor_tile_filenames, floor_iso_images, ALL_ISOMETRIC_FLOOR_TILES) )
+	  {
+	  return;
+	  }
 
-  iso_image * atlas = MyMalloc(sizeof(iso_image));
-  SDL_Rect dest_rect;
 
-  if ( use_open_gl ) 
-      {
-      find_file ( "floor_tiles/atlas.txt", GRAPHICS_DIR, fpath, 0);
-      atlasdat = ReadAndMallocAndTerminateFile(fpath, NULL);
-      if ( memcmp(atlasdat, "size ", 5 ) )
-	  ErrorMessage(__FUNCTION__, "Atlas file floor_tiles/atlas.txt did not seem to start with the size of the atlas. Corrupted?\n", PLEASE_INFORM, IS_FATAL);
 
-      /* read atlas width and height, and place 'pos' on the first file line */
-      pos = atlasdat +  5;
-      epos = pos;
-      while ( *epos != ' ') epos++;
-      *epos = 0;
-      atlas_w = atoi(pos);
-      *epos = ' ';
-      epos++;
-      pos = epos;
-      while ( *epos != '\n') epos++;
-      *epos = 0;
-      atlas_h = atoi(pos);
-      *epos = '\n';
-      pos = epos + 1;
-
-      atlas->surface = SDL_CreateRGBSurface( SDL_SWSURFACE , atlas_w, atlas_h, 32, rmask, gmask, bmask, amask);
-      SDL_SetAlpha(atlas->surface, 0, SDL_ALPHA_OPAQUE);
-      }
-
+  // No atlas possible
   for ( i = 0 ; i < ALL_ISOMETRIC_FLOOR_TILES ; i ++ )
     {
     char ConstructedFileName[2000];
@@ -4195,39 +4171,7 @@ load_floor_tiles ( void )
     if ( use_open_gl )
 	{
 	get_iso_image_from_file_and_path ( fpath , & ( floor_iso_images [ i ] ) , TRUE ) ;
-
-	field = strstr(pos, floor_tile_filenames [ i ]);
-	if ( ! field ) 
-	    ErrorMessage(__FUNCTION__, "Atlas file for floor tiles does not contain file %s which is needed.\n", PLEASE_INFORM, IS_FATAL, floor_tile_filenames [ i ]);
-
-	while ( *field != ' ' ) field ++;
-	field ++;
-	epos = field;
-	while ( *epos != ' ' ) epos ++;
-	*epos = 0;
-	dest_rect.x = atoi(field);
-	*epos = ' ';
-	field = epos + 1;
-	epos ++;
-	while ( *epos != '\n' ) epos ++;
-	*epos = 0;
-	dest_rect.y = atoi(field);
-	*epos = '\n';
-        	
-	dest_rect.w = floor_iso_images [ i ] . original_image_width;
-	dest_rect.h = floor_iso_images [ i ] . original_image_height;
-
-	//printf("blitting image %d (%s) at %d %d, size %d %d\n", i, floor_tile_filenames [ i ], dest_rect.x, dest_rect.y, dest_rect.w, dest_rect.h);
-	SDL_SetAlpha(floor_iso_images [ i ] .surface, 0, SDL_ALPHA_OPAQUE);
-
-	SDL_BlitSurface ( floor_iso_images [ i ] .surface, NULL, atlas->surface, &dest_rect);
-
-	floor_atlas [ i ] . x1 = (float)dest_rect.x / (float)atlas_w;
-	floor_atlas [ i ] . y1 = (float)dest_rect.y / (float)atlas_h;
-	floor_atlas [ i ] . x2 = floor_atlas [ i ] . x1 + (float)floor_iso_images[i].original_image_width / (float)atlas_w;
-	floor_atlas [ i ] . y2 = floor_atlas [ i ] . y1 + (float)floor_iso_images[i].original_image_height / (float)atlas_h;
-
-	SDL_FreeSurface( floor_iso_images [ i ].surface );
+	make_texture_out_of_surface ( & ( floor_iso_images [ i ] ) ) ;
 	}
     else
 	{
@@ -4235,14 +4179,6 @@ load_floor_tiles ( void )
 	}
     }
 
-  if ( use_open_gl )
-      {
-      free(atlasdat);
-      make_texture_out_of_prepadded_image(atlas);
-      for ( i = 0; i < ALL_ISOMETRIC_FLOOR_TILES; i ++)
-	  floor_atlas [ i ] . tex = *atlas->texture;
-      free ( atlas );
-      }
 
 }; // void load_floor_tiles ( void )
 

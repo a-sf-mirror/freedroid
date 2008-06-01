@@ -190,8 +190,8 @@ EXTERN iso_image light_radius_chunk[ NUMBER_OF_SHADOW_IMAGES ];
 EXTERN SDL_Rect InventoryRect;
 EXTERN SDL_Rect CharacterRect;
 #ifdef HAVE_LIBGL
-EXTERN GLuint *automap_texture;  // this is to store an open_gl texture...
-EXTERN GLuint *light_radius_stretch_texture;  // this is to store an open_gl texture...
+EXTERN GLuint automap_texture;  // this is to store an open_gl texture...
+EXTERN GLuint light_radius_stretch_texture;  // this is to store an open_gl texture...
 EXTERN SDL_Surface* light_radius_stretch_surface ;
 #endif
 EXTERN int amask;
@@ -223,7 +223,7 @@ EXTERN int Number_Of_Bullet_Types;
 EXTERN SDL_Surface *Screen;   
 EXTERN SDL_Surface* StoredMenuBackground [ 2 ] ;
 #ifdef HAVE_LIBGL
-EXTERN GLuint * StoredMenuBackgroundTex [ 2 ] ;
+EXTERN GLuint StoredMenuBackgroundTex [ 2 ] ;
 #endif
 EXTERN int current_mouse_cursor_shape;
 
@@ -260,9 +260,6 @@ EXTERN int droid_death_animation_speed_factor [ ENEMY_ROTATION_MODELS_AVAILABLE 
 EXTERN int droid_stand_animation_speed_factor [ ENEMY_ROTATION_MODELS_AVAILABLE ];
 
 EXTERN iso_image floor_iso_images [ ALL_ISOMETRIC_FLOOR_TILES ] ;   
-#ifdef HAVE_LIBGL
-EXTERN gl_atlas_member floor_atlas[ ALL_ISOMETRIC_FLOOR_TILES ];
-#endif
 
 EXTERN float iso_floor_tile_width;
 EXTERN float iso_floor_tile_height;

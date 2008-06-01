@@ -105,7 +105,7 @@ set_up_texture_for_automap ( void )
     //
     glPixelStorei( GL_UNPACK_ALIGNMENT,1 );
 
-    automap_texture = & ( all_freedroid_textures [ next_texture_index_to_use ] ) ;
+    automap_texture = all_freedroid_textures [ next_texture_index_to_use ] ;
     next_texture_index_to_use ++ ;
 
     if ( next_texture_index_to_use >= MAX_AMOUNT_OF_TEXTURES_WE_WILL_USE )
@@ -122,7 +122,7 @@ set_up_texture_for_automap ( void )
     //--------------------
     // Typical Texture Generation Using Data From The Bitmap 
     //
-    glBindTexture( GL_TEXTURE_2D, * ( automap_texture ) );
+    glBindTexture( GL_TEXTURE_2D, ( automap_texture ) );
   
     //--------------------
     // Setting texture parameters like in NeHe tutorial...
@@ -179,7 +179,7 @@ clear_automap_texture_completely ( void )
 
     DebugPrintf ( 1 , "\n%s(): starting to clear automap." , __FUNCTION__ );
 
-    glBindTexture ( GL_TEXTURE_2D , *automap_texture );
+    glBindTexture ( GL_TEXTURE_2D , automap_texture );
     glTexSubImage2D ( GL_TEXTURE_2D , 0 , 
 		      0 , 
 		      0 , 
@@ -371,7 +371,7 @@ automap_update_texture_for_square ( int x , int y )
 	    // 0 , obstacle_map [ our_obstacle -> type ] . automap_version -> w *
 	    // obstacle_map [ our_obstacle -> type ] . automap_version -> h );
 	    // 
-	    glBindTexture ( GL_TEXTURE_2D , *automap_texture );
+	    glBindTexture ( GL_TEXTURE_2D , automap_texture );
 	    glTexSubImage2D ( GL_TEXTURE_2D , 0 , 
 			      ( AUTOMAP_TEXTURE_WIDTH / 2 ) + ( our_obstacle -> pos . x - our_obstacle -> pos . y ) * ( iso_floor_tile_width / ( 2.0 * AUTOMAP_ZOOM_OUT_FACT ) ) ,
 			      AUTOMAP_TEXTURE_HEIGHT - ( 50 + ( our_obstacle -> pos . x + our_obstacle -> pos.  y ) * ( iso_floor_tile_height / ( 2.0 * AUTOMAP_ZOOM_OUT_FACT ) ) ) ,
