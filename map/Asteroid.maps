@@ -33704,7 +33704,6 @@ obstacle_label.index=3 obstacle_label_name="BreakableWall1" states="normal:322 b
 obstacle_label.index=4 obstacle_label_name="BreakableWall2" states="normal:322 broken:237"
 obstacle_label.index=5 obstacle_label_name="SADDDepotDoor" states="closed:27 opened:11"
 obstacle_label.index=6 obstacle_label_name="SADDBioDoor" states="closed:27 opened:11"
-obstacle_label.index=7 obstacle_label_name="BreakableWall3" states="breakable:236"
 /pobstaclelabelinfolvl
 pobsdescinfolvl
 obstacle_description.index=0 obstacle_description_text="Intruders will be SHOT"

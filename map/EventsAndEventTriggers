@@ -441,12 +441,6 @@ modify_obstacle_to_type="opened"
 * End of action *
 
 * New event action *
-Name="make_wall_near_sadd_breakable"
-modify_obstacle_with_label="BreakableWall3"
-modify_obstacle_to_type="breakable"
-* End of action *
-
-* New event action *
 Name="teleport_to_secret_area_collectors_1"
 Teleport to="SecretAreaCollectorsEnterance1"
 * End of action *

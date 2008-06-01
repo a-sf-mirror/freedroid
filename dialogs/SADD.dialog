@@ -526,7 +526,6 @@ ChangeOption=43 ChangeToValue=1
 DoSomethingExtra="ExecuteActionWithLabel:enable_sadd_gun1"
 DoSomethingExtra="ExecuteActionWithLabel:enable_sadd_gun2"
 DoSomethingExtra="ExecuteActionWithLabel:breake_wall_near_sadd_2"
-DoSomethingExtra="ExecuteActionWithLabel:make_wall_near_sadd_breakable"
 DoSomethingExtra="OpenQuestDiaryEntry:M9E4:"
 DoSomethingExtra="EndDialog"
 
