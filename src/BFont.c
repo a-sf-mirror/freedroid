@@ -25,84 +25,79 @@ static BFont_Info *CurrentFont;
 static void
 InitFont (BFont_Info * Font)
 {
-  unsigned int x = 0, i = 0;
-  Uint32 sentry;
-  SDL_Surface* tmp_char1;
+    unsigned int x = 0, i = 0;
+    Uint32 sentry;
+    SDL_Surface* tmp_char1;
 
-  Font->h = Font->Surface->h;
+    Font->h = Font->Surface->h;
 
-  i = '!';
-  sentry = SDL_MapRGB(Font->Surface->format, 255, 0, 255); 
+    i = '!';
+    sentry = SDL_MapRGB(Font->Surface->format, 255, 0, 255); 
 
-  if (Font->Surface == NULL)
-    {
-      fprintf (stderr, "BFont: The font has not been loaded!\n");
-      exit (1);
-    }
-  if (SDL_MUSTLOCK (Font->Surface))
-    SDL_LockSurface (Font->Surface);
-  x = 0;
-  while (x < (Font->Surface->w - 1) && i < MAX_CHARS_IN_FONT)
-    {
-      if (FdGetPixel (Font->Surface, x, 0) != sentry)
+    if (Font->Surface == NULL)
 	{
-	  Font->Chars[i].x = x;
-	  Font->Chars[i].y = 1;
-	  Font->Chars[i].h = Font->Surface->h;
-          while( x < (Font->Surface->w)){
-               if(FdGetPixel (Font->Surface, x, 0) == sentry)
-                   break;
-               x++;
-          }
-	  Font->Chars[i].w = (x - Font->Chars[i].x);
-
-	  //--------------------
-	  // Now we make a copy for later reference when we do OpenGL based
-	  // output of this character.
-	  //
-	  Font->number_of_chars = i + 1;
-	  tmp_char1 = SDL_CreateRGBSurface( 0 , CharWidth ( Font , i ) , FontHeight (Font) -1 , 32, 
-					    //0xFF000000 , 0x00FF0000  , 0x0000FF00 , 0x000000FF );
-					    0x000000FF , 0x0000FF00  , 0x00FF0000 , 0xFF000000 );
-
-	  SDL_SetAlpha( Font->Surface , 0 , 255 );
-	  SDL_SetColorKey( Font->Surface , 0 , 0 );
-	  Font -> char_iso_image [ i ] . surface = SDL_DisplayFormatAlpha ( tmp_char1 ) ;
-	  Font -> char_iso_image [ i ] . texture_has_been_created = FALSE ;
-	  our_SDL_blit_surface_wrapper ( Font->Surface, & ( Font -> Chars [ i ] ) , 
-					 Font -> char_iso_image [ i ] . surface , NULL );
-	  SDL_SetAlpha( Font -> char_iso_image [ i ] . surface , SDL_SRCALPHA , SDL_ALPHA_OPAQUE );
-	  SDL_SetColorKey ( Font -> char_iso_image [ i ] . surface , 0 , 0 );
-
-	  flip_image_vertically ( Font -> char_iso_image [ i ] . surface ) ;
-	  
-	  SDL_FreeSurface ( tmp_char1 );
-	  //--------------------
-	  // Now we can go on to the next char
-	  //
-	  i++;
-	}
-      else
-	{
-	  x++;
+	fprintf (stderr, "BFont: The font has not been loaded!\n");
+	exit (1);
 	}
 
-    }
-  Font->Chars[' '].x = 0;
-  Font->Chars[' '].y = 0;
-  Font->Chars[' '].h = Font->Surface->h;
-  Font->Chars[' '].w = Font->Chars['!'].w;
-  Font->number_of_chars = i;
+    if (SDL_MUSTLOCK (Font->Surface))
+	SDL_LockSurface (Font->Surface);
+
+    x = 0;
+    while (x < (Font->Surface->w - 1) && i < MAX_CHARS_IN_FONT)
+	{	
+	if (FdGetPixel (Font->Surface, x, 0) != sentry)
+	    {
+	    Font->Chars[i].x = x;
+	    Font->Chars[i].y = 1;
+	    Font->Chars[i].h = Font->Surface->h;
+	    while( x < (Font->Surface->w))
+		{
+		if(FdGetPixel (Font->Surface, x, 0) == sentry)
+		    break;
+		x++;
+	        }
+	    Font->Chars[i].w = (x - Font->Chars[i].x);
+
+	    Font->number_of_chars = i + 1;
+
+	    tmp_char1 = SDL_CreateRGBSurface( 0 , CharWidth ( Font , i ) , FontHeight (Font) -1 , 32, rmask, gmask, bmask, amask );
+	    Font -> char_iso_image [ i ] . surface = SDL_DisplayFormatAlpha ( tmp_char1 ) ;
+	    Font -> char_iso_image [ i ] . texture_has_been_created = FALSE ;
+
+	    our_SDL_blit_surface_wrapper ( Font->Surface, & ( Font -> Chars [ i ] ) , Font -> char_iso_image [ i ] . surface , NULL );
+	    SDL_SetAlpha( Font -> char_iso_image [ i ] . surface , SDL_SRCALPHA , SDL_ALPHA_OPAQUE );
+	    SDL_SetColorKey ( Font -> char_iso_image [ i ] . surface , 0 , 0 );
+
+	    flip_image_vertically ( Font -> char_iso_image [ i ] . surface ) ;
+
+	    SDL_FreeSurface ( tmp_char1 );
+	    //--------------------
+	    // Now we can go on to the next char
+	    //
+	    i++;
+	    }
+	else
+	    {
+	    x++;
+	    }
+
+	}
+    Font->Chars[' '].x = 0;
+    Font->Chars[' '].y = 0;
+    Font->Chars[' '].h = Font->Surface->h;
+    Font->Chars[' '].w = Font->Chars['!'].w;
+    Font->number_of_chars = i;
 
 #ifdef HAVE_LIBGL
-if ( use_open_gl ) 
-  Font->list_base = glGenLists(i);
+    if ( use_open_gl )
+	Font->list_base = glGenLists(i);
 #endif
-  if (SDL_MUSTLOCK (Font->Surface))
-    SDL_UnlockSurface (Font->Surface);
+    if (SDL_MUSTLOCK (Font->Surface))
+	SDL_UnlockSurface (Font->Surface);
 
-  SDL_SetColorKey ( Font->Surface, 0 , 0 );
-  SDL_SetAlpha( Font -> Surface , SDL_SRCALPHA , SDL_ALPHA_OPAQUE );
+    SDL_SetColorKey ( Font->Surface, 0 , 0 );
+    SDL_SetAlpha( Font -> Surface , SDL_SRCALPHA , SDL_ALPHA_OPAQUE );
 }; // void InitFont (BFont_Info * Font)
 
 /**
@@ -120,15 +115,6 @@ LoadFont (const char *filename)
       Font = (BFont_Info *) MyMalloc (sizeof (BFont_Info));
       if (Font != NULL)
 	{
-	  //--------------------
-	  // Here we cannot use our image loading wrapper, cause that one
-	  // would also flip the image horizontally, which would destroy the
-	  // top character info!
-	  // 
-	  // Too bad!
-	  //
-	  // tmp = (SDL_Surface *) our_IMG_load_wrapper (filename);
-	  //
 	  tmp = (SDL_Surface *) IMG_Load (filename);
 
 	  if (tmp != NULL)
@@ -142,6 +128,9 @@ LoadFont (const char *filename)
 		  Font->Chars[x].h = 0;
 		  Font->Chars[x].w = 0;
 		}
+	      SDL_SetAlpha( Font->Surface , 0 , 255 );
+	      SDL_SetColorKey( Font->Surface , 0 , 0 );
+
 	      /* Init the font */
 	      InitFont (Font);
 	      /* Set the font as the current font */
