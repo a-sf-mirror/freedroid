@@ -22,7 +22,7 @@ static BFont_Info *CurrentFont;
  *
  *
  */
-void
+static void
 InitFont (BFont_Info * Font)
 {
   unsigned int x = 0, i = 0;
