@@ -1059,16 +1059,8 @@ TryToIdentifyItem( item* IdentifyItem )
     void 
 TryToSellItem( item* SellItem , int AmountToSellAtMost )
 {
-    int MenuPosition;
-    char linebuf[1000];
-
 #define ANSWER_YES 1
 #define ANSWER_NO 2
-
-    char* MenuTexts[ 10 ];
-    MenuTexts[0]=_("Yes");
-    MenuTexts[1]=_("No");
-    MenuTexts[2]="";
 
     //--------------------
     // We catch the case, that not even one item was selected
