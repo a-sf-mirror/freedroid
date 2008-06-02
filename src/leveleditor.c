@@ -2082,54 +2082,53 @@ ShowLevelEditorTopMenu( int Highlight )
         }
 	if (!img) break; 
 	// We find the proper zoom_factor, so that the obstacle/tile in question will
-		// fit into one tile in the level editor top status selection row.
-		//
-		if ( use_open_gl )
-		{
-		    zoom_factor = min ( 
-		( (float)INITIAL_BLOCK_WIDTH / (float)img -> original_image_width ) ,
-		( (float)INITIAL_BLOCK_HEIGHT / (float)img -> original_image_height ) );
-		}
-		else
-		{
-		    zoom_factor = min ( 
-		( (float)INITIAL_BLOCK_WIDTH / (float)img -> surface->w ) ,
-		( (float)INITIAL_BLOCK_HEIGHT / (float)img -> surface->h ) );
-		}
+	// fit into one tile in the level editor top status selection row.
+	//
+	if ( use_open_gl )
+	    {
+	    zoom_factor = min ( 
+		    ( (float)INITIAL_BLOCK_WIDTH / (float)img -> original_image_width ) ,
+		    ( (float)INITIAL_BLOCK_HEIGHT / (float)img -> original_image_height ) );
+	    }
+	else
+	    {
+	    zoom_factor = min ( 
+		    ( (float)INITIAL_BLOCK_WIDTH / (float)img -> surface->w ) ,
+		    ( (float)INITIAL_BLOCK_HEIGHT / (float)img -> surface->h ) );
+	    }
 
-        if( placing_floor )
-                y_off = TargetRectangle . y + 0.75 * TargetRectangle.h - 
-                           zoom_factor * (float)(img -> original_image_height);
+	if( placing_floor )
+	    y_off = TargetRectangle . y + 0.75 * TargetRectangle.h - 
+		zoom_factor * (float)(img -> original_image_height);
 
-		if ( use_open_gl )
+	if ( use_open_gl )
+	    {
+	    draw_gl_scaled_textured_quad_at_screen_position ( img , TargetRectangle . x , 
+		    y_off, zoom_factor) ;
+	    //additionally in the ALL tab, display object number
+	    if ( GameConfig . level_editor_edit_mode == LEVEL_EDITOR_SELECTION_ALL)
 		{
-		if ( placing_floor )
-		    draw_gl_scaled_textured_quad_at_screen_position ( img , TargetRectangle . x , 
-			    y_off, zoom_factor) ;
-		//additionally in the ALL tab, display object number
-		if ( GameConfig . level_editor_edit_mode == LEVEL_EDITOR_SELECTION_ALL)
-			{
-			char obsnum[5];
-			BFont_Info * PreviousFont = GetCurrentFont ();
-		        SetCurrentFont (Message_BFont);
-			sprintf(obsnum, "%d", wall_indices [ GameConfig . level_editor_edit_mode ] [ selected_index ] );
-			DisplayText(obsnum, TargetRectangle . x, y_off, NULL, 1);
-			SetCurrentFont (PreviousFont);
-			}
+		char obsnum[5];
+		BFont_Info * PreviousFont = GetCurrentFont ();
+		SetCurrentFont (Message_BFont);
+		sprintf(obsnum, "%d", wall_indices [ GameConfig . level_editor_edit_mode ] [ selected_index ] );
+		DisplayText(obsnum, TargetRectangle . x, y_off, NULL, 1);
+		SetCurrentFont (PreviousFont);
 		}
-		else
-		{
-		    //--------------------
+	    }
+	else
+	    {
+	    //--------------------
 	    // We create a scaled version of the obstacle/floorpiece in question
-		    //
+	    //
 	    tmp = zoomSurface ( img -> surface , zoom_factor, zoom_factor, FALSE );
-		    
-		    //--------------------
-		    // Now we can show and free the scaled verion of the floor tile again.
-		    //
-		    our_SDL_blit_surface_wrapper( tmp , NULL , Screen, &TargetRectangle);
-		    SDL_FreeSurface ( tmp );
-		}
+
+	    //--------------------
+	    // Now we can show and free the scaled verion of the floor tile again.
+	    //
+	    our_SDL_blit_surface_wrapper( tmp , NULL , Screen, &TargetRectangle);
+	    SDL_FreeSurface ( tmp );
+	    }
 
 	//--------------------
 	// Maybe we've just displayed the obstacle/floorpiece that is currently
