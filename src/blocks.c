@@ -792,31 +792,6 @@ blit_iso_image_to_map_position_in_buffer ( SDL_Surface *current_buffer ,
  *
  *
  */
-int
-iso_image_positioned_inside_copy_rectangle ( iso_image * our_iso_image , float pos_x , float pos_y , 
-					     float shift_pixels_x , float shift_pixels_y )
-{
-  SDL_Rect target_rectangle;
-
-  target_rectangle . x = 
-    translate_map_point_to_screen_pixel_x ( pos_x , pos_y ) + 
-    our_iso_image -> offset_x ;
-  target_rectangle . y = 
-    translate_map_point_to_screen_pixel_y ( pos_x , pos_y ) +
-    our_iso_image -> offset_y ;
-
-  if ( ( target_rectangle . x > shift_pixels_x ) && ( target_rectangle . y > shift_pixels_y ) &&
-       ( target_rectangle . x + our_iso_image -> surface -> w < GameConfig . screen_width - shift_pixels_x ) &&
-       ( target_rectangle . y + our_iso_image -> surface -> h < GameConfig . screen_height - shift_pixels_y ) )
-    return ( TRUE );
-
-  return ( FALSE );
-};
-
-/**
- *
- *
- */
 void
 get_offset_for_iso_image_from_file_and_path ( char* fpath , iso_image* our_iso_image )
 {
