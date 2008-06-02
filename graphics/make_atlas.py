@@ -107,7 +107,8 @@ def main(argv):
             t = time.time()
             pos.append((files[e], i, g.place(*i.size)))
             print "Placed, size of the grid is now %dx%d" % (g.w, g.h)
-            print "Time needed: %f s" % (time.time() - t)
+            #print "Time needed: %f s" % (time.time() - t)
+	    print "Done: %d/%d (%f%%)" % (e+1, len(files), 100*float(e+1)/len(files))
     except KeyboardInterrupt:
         print "Interrupted, press enter to continue or C-C to exit"
         raw_input()
