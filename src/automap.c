@@ -255,41 +255,37 @@ show_automap_data_sdl ( void )
     {
       for ( x = 0 ; x < automap_level->xlen ; x ++ )
 	{
-	  if ( Me . Automap [ level ] [ y ] [ x ] & RIGHT_WALL_BIT )
+	  if ( Me . Automap [ level ] [ y ] [ x ] & (RIGHT_WALL_BIT | LEFT_WALL_BIT) )
 	    {
+/*	      PutPixel_automap_wrapper ( Screen , 
+			 1+AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * ( automap_level -> ylen - y ) , 
+			 2+AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * y , AUTOMAP_COLOR );*/
 	      PutPixel_automap_wrapper ( Screen , 
-			 2+AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * ( automap_level -> ylen - y ) , 
-			 0+AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * y , AUTOMAP_COLOR );
-	      PutPixel_automap_wrapper ( Screen , 
-			 2+AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * ( automap_level -> ylen - y ) , 
+			 1+AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * ( automap_level -> ylen - y ) , 
 			 1+AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * y , AUTOMAP_COLOR );
 	      PutPixel_automap_wrapper ( Screen , 
 			 2+AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * ( automap_level -> ylen - y ) , 
-			 1+AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * y , AUTOMAP_COLOR );
+			 2+AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * y , AUTOMAP_COLOR );
+/*	      PutPixel_automap_wrapper ( Screen , 
+			 2+AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * ( automap_level -> ylen - y ) , 
+			 1+AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * y , AUTOMAP_COLOR );*/
 	    }
-	  if ( Me . Automap [ level ] [ y ] [ x ] & LEFT_WALL_BIT )
+
+	  if ( Me . Automap [ level ] [ y ] [ x ] & (UP_WALL_BIT | DOWN_WALL_BIT) )
 	    {
+/*	      PutPixel_automap_wrapper ( Screen , 
+			 2+AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * ( automap_level -> ylen - y ) , 
+			 2+AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * y , AUTOMAP_COLOR );*/
 	      PutPixel_automap_wrapper ( Screen , 
-			 0+AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * ( automap_level -> ylen - y ) , 
-			 0+AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * y , AUTOMAP_COLOR );
+			 1+AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * ( automap_level -> ylen - y ) , 
+			 2+AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * y , AUTOMAP_COLOR );
 	      PutPixel_automap_wrapper ( Screen , 
-			 0+AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * ( automap_level -> ylen - y ) , 
+			 2+AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * ( automap_level -> ylen - y ) , 
 			 1+AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * y , AUTOMAP_COLOR );
-	      PutPixel_automap_wrapper ( Screen , 
-			 0+AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * ( automap_level -> ylen - y ) , 
-			 1+AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * y , AUTOMAP_COLOR );
-	    }
-	  if ( Me . Automap [ level ] [ y ] [ x ] & UP_WALL_BIT )
-	    {
-	      PutPixel_automap_wrapper ( Screen , 3*x+0 , 3*y , AUTOMAP_COLOR );
-	      PutPixel_automap_wrapper ( Screen , 3*x+1 , 3*y , AUTOMAP_COLOR );
-	      PutPixel_automap_wrapper ( Screen , 3*x+2 , 3*y , AUTOMAP_COLOR );
-	    }
-	  if ( Me . Automap [ level ] [ y ] [ x ] & DOWN_WALL_BIT )
-	    {
-	      PutPixel_automap_wrapper ( Screen , 3*x+0 , 3*y+2 , AUTOMAP_COLOR );
-	      PutPixel_automap_wrapper ( Screen , 3*x+1 , 3*y+2 , AUTOMAP_COLOR );
-	      PutPixel_automap_wrapper ( Screen , 3*x+2 , 3*y+2 , AUTOMAP_COLOR );
+/*	      PutPixel_automap_wrapper ( Screen , 
+			 1+AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * ( automap_level -> ylen - y ) , 
+			 1+AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * y , AUTOMAP_COLOR );*/
+
 	    }
 	}
     }

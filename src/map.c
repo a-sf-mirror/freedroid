@@ -890,10 +890,10 @@ CollectAutomapData ( void )
     //
     // when maximal automap was generated.  Now we only add to the automap what really is on screen...
     //
-    start_x = Me . pos . x - 7 ; 
-    end_x = Me . pos . x + 7 ; 
-    start_y = Me . pos . y - 7 ; 
-    end_y = Me . pos . y + 7 ; 
+    start_x = Me . pos . x - 9 ; 
+    end_x = Me . pos . x + 9 ; 
+    start_y = Me . pos . y - 9 ; 
+    end_y = Me . pos . y + 9 ; 
     
     if ( start_x < 0 ) start_x = 0 ; 
     if ( end_x >= automap_level->xlen ) end_x = automap_level->xlen-1 ;
@@ -904,67 +904,53 @@ CollectAutomapData ( void )
     // Now we do the actual checking for visible wall components.
     //
     for ( y = start_y ; y < end_y ; y ++ )
-    {
-	for ( x = start_x ; x < end_x ; x ++ )
 	{
-	    
+	for ( x = start_x ; x < end_x ; x ++ )
+	    { 
+	    if ( Me . Automap [ level ] [ y ] [ x ] & SQUARE_SEEN_AT_ALL_BIT )
+		continue;
+
 	    for ( i = 0 ; i < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE ; i ++ )
-	    {
-		if ( automap_level -> map [ y ] [ x ] . obstacles_glued_to_here [ i ] == (-1) ) continue;
-		
-		our_obstacle = & ( automap_level -> obstacle_list [ automap_level -> map [ y ] [ x ] . obstacles_glued_to_here [ i ] ] ) ;
-		if ( obstacle_map [ our_obstacle -> type ] . block_area_type == COLLISION_TYPE_RECTANGLE )
 		{
-		    Me . Automap [ level ] [ y ] [ x ] = Me . Automap [ level ] [ y ] [ x ] | RIGHT_WALL_BIT ;
-		    Me . Automap [ level ] [ y ] [ x ] = Me . Automap [ level ] [ y ] [ x ] | LEFT_WALL_BIT ;
+		if ( automap_level -> map [ y ] [ x ] . obstacles_glued_to_here [ i ] == (-1) ) continue;
+		our_obstacle = & ( automap_level -> obstacle_list [ automap_level -> map [ y ] [ x ] . obstacles_glued_to_here [ i ] ] ) ;
+		
+		if ( ( our_obstacle->type >= ISO_H_DOOR_000_OPEN ) && ( our_obstacle->type <= ISO_V_DOOR_100_OPEN ) )
+		    continue;
+		if ( ( our_obstacle->type >= ISO_OUTER_DOOR_V_00 ) && ( our_obstacle->type <= ISO_OUTER_DOOR_H_100 ) )
+		    continue;
+
+		    //printf("pos %f %f - border %f %f to %f %f\n", our_obstacle->pos.x, our_obstacle->pos.y, our_obstacle->pos.x + obstacle_map [ our_obstacle -> type ] . upper_border, our_obstacle->pos.y + obstacle_map [ our_obstacle -> type ] . left_border, our_obstacle->pos.x + obstacle_map [ our_obstacle -> type ] . lower_border, our_obstacle->pos.y + obstacle_map [ our_obstacle -> type ] . right_border);
+
+		int a, b;
+		for ( a = rintf(our_obstacle->pos.x + obstacle_map [ our_obstacle -> type ] . upper_border); (a) < (our_obstacle->pos.x + obstacle_map [ our_obstacle -> type ] . lower_border); a++ )
+		    {
+		    for ( b = rintf(our_obstacle->pos.y + obstacle_map [ our_obstacle -> type ] . left_border); (b) < ((our_obstacle->pos.y + obstacle_map [ our_obstacle -> type ] . right_border )); b++ ) 
+			{
+			if ( obstacle_map [ our_obstacle -> type ] . block_area_type == COLLISION_TYPE_RECTANGLE )
+			    {
+			    if ( obstacle_map [ our_obstacle->type ] . block_area_parm_1 > 0.80 )
+				{
+				if ( Me . pos . x < our_obstacle -> pos . x )
+				    Me . Automap [ level ] [ b ] [ a ] |= LEFT_WALL_BIT ;
+				else 
+				    Me . Automap [ level ] [ b ] [ a ] |= RIGHT_WALL_BIT ;
+				}
+			    if ( obstacle_map [ our_obstacle->type ] . block_area_parm_2 > 0.80 )
+				{
+				if ( Me . pos . y < our_obstacle -> pos . y )
+				    Me . Automap [ level ] [ b ] [ a ] |= UP_WALL_BIT ;
+				else 
+				    Me . Automap [ level ] [ b ] [ a ] |= DOWN_WALL_BIT ;
+				}
+			    }
+			}
+		    }
 		}
-	    }
 
 	    Me . Automap [ level ] [ y ] [ x ] = Me . Automap [ level ] [ y ] [ x ] | SQUARE_SEEN_AT_ALL_BIT ;
-
-	    /*
-	      if ( IsWallBlock( automap_level->map[y][x]  . floor_value ) ) 
-	      {
-	      //--------------------
-	      // First we check, if there are some right sides of walls visible
-	      //
-	      ObjPos.x = x + 0.75;
-	      ObjPos.y = y + 0;
-	      if ( IsVisible ( &ObjPos , 0 ) ) 
-	      {
-		  Me . Automap[level][y][x] = Me . Automap[level][y][x] | RIGHT_WALL_BIT ;
-		  }
-		  //--------------------
-		  // Now we check, if there are some left sides of walls visible
-		  //
-		  ObjPos.x = x - 0.75;
-		  ObjPos.y = y + 0;
-		  if ( IsVisible ( &ObjPos , 0 ) )
-		  {
-		  Me . Automap[level][y][x] = Me . Automap[level][y][x] | LEFT_WALL_BIT ;
-		  }
-		  //--------------------
-		  // Now we check, if there are some southern sides of walls visible
-		  //
-		  ObjPos.x = x + 0;
-		  ObjPos.y = y + 0.75;
-		  if ( IsVisible ( &ObjPos , 0 ) ) 
-		  {
-		  Me . Automap[level][y][x] = Me . Automap[level][y][x] | DOWN_WALL_BIT ;
-		  }
-		  //--------------------
-		  // Now we check, if there are some northern sides of walls visible
-		  //
-		  ObjPos.x = x + 0.0 ;
-		  ObjPos.y = y - 0.75 ;
-		  if ( IsVisible ( &ObjPos , 0 ) ) 
-		  {
-		  Me . Automap[level][y][x] = Me . Automap[level][y][x] | UP_WALL_BIT ;
-		  }
-		  }
-	    */
+	    }
 	}
-    }
     
 }; // void CollectAutomapData ( void )
 
