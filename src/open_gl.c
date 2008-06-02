@@ -91,11 +91,11 @@ our_SDL_blit_surface_wrapper(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *d
 	    // fflush ( stdout );
 	    
 	    if ( dstrect == NULL )
-		glRasterPos2f( 1 , GameConfig . screen_height - 1 );
+		glRasterPos2i( 0 , GameConfig . screen_height - 1 );
 	    else
 	    {
 		if ( dstrect -> x == 0 )
-		    target_x = 1 ;
+		    target_x = 0 ;
 		else
 		    target_x = dstrect -> x ;
 		
