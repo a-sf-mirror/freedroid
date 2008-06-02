@@ -41,14 +41,8 @@ void SetCurrentFont (BFont_Info * Font);
 /* Returns the font height */
 int FontHeight (BFont_Info * Font);
 
-/* Change the font height */
-void SetFontHeight (BFont_Info * Font, int height);
-
 /* Returns the character width of the specified font */
 int CharWidth (BFont_Info * Font, unsigned char c);
-
-/* Write a single character on the "Surface" with the current font */
-int PutChar (SDL_Surface * Surface, int x, int y, unsigned char c);
 
 /* Write a single character on the "Surface" with the specified font */
 int PutCharFont (SDL_Surface * Surface, BFont_Info * Font, int x, int y, unsigned char c);
@@ -116,6 +110,3 @@ void LeftPrintStringFont (SDL_Surface * Surface, BFont_Info * Font, int y,
 void JustifiedPrintString (SDL_Surface * Surface, int y, const char *fmt, ...);
 void JustifiedPrintStringFont (SDL_Surface * Surface, BFont_Info * Font,
 			       int y, const char *fmt, ...);
-
-/* Returns a new font colored with the color (r,g,b) */
-BFont_Info *SetFontColor (BFont_Info * Font, Uint8 r, Uint8 g, Uint8 b);

@@ -1,12 +1,12 @@
 /***********************************************************/
 /*                                                         */
 /*   BFONT.c v. 1.0.3 - Billi Font Library by Diego Billi  */
+/*   Heavily modified for FreedroidRPG needs over years    */
 /*                                                         */
 /***********************************************************/
 
 #define _bfont_c
 
-// #include "BFont.h"
 #include "system.h"
 #include "defs.h"
 #include "struct.h"
@@ -16,7 +16,7 @@
 
 
 /* Current font */
-BFont_Info *CurrentFont;
+static BFont_Info *CurrentFont;
 
 /**
  *
@@ -32,7 +32,6 @@ InitFont (BFont_Info * Font)
   Font->h = Font->Surface->h;
 
   i = '!';
-  // sentry = FdGetPixel ( Font -> Surface, 0, 0);
   sentry = SDL_MapRGB(Font->Surface->format, 255, 0, 255); 
 
   if (Font->Surface == NULL)
@@ -173,101 +172,11 @@ FreeFont (BFont_Info * Font)
 }; // void FreeFont (BFont_Info * Font)
 
 /**
- *
- *
- */
-BFont_Info *
-SetFontColor (BFont_Info * Font, Uint8 r, Uint8 g, Uint8 b)
-{
-  int x, y;
-
-  BFont_Info *newfont;
-  SDL_Surface *surface = NULL;
-
-  Uint32 pixel;
-  Uint8 old_r, old_g, old_b;
-  Uint8 new_r, new_g, new_b;
-  Uint32 color_key;
-
-  newfont = (BFont_Info *) malloc (sizeof (BFont_Info));
-  if (newfont != NULL)
-    {
-
-      newfont->h = Font->h;
-
-      for (x = 0; x < 256; x++)
-	{
-	  newfont->Chars[x].x = Font->Chars[x].x;
-	  newfont->Chars[x].y = Font->Chars[x].y;
-	  newfont->Chars[x].h = Font->Chars[x].h;
-	  newfont->Chars[x].w = Font->Chars[x].w;
-	}
-
-      surface =
-	SDL_ConvertSurface (Font->Surface, Font->Surface->format,
-			    Font->Surface->flags);
-      if (surface != NULL)
-	{
-
-	  if (SDL_MUSTLOCK (surface))
-	    SDL_LockSurface (surface);
-	  if (SDL_MUSTLOCK (Font->Surface))
-	    SDL_LockSurface (Font->Surface);
-
-	  color_key = FdGetPixel (surface, 0, surface->h - 1);
-
-	  //	  printf ("looking...\n");
-	  for (x = 0; x < Font->Surface->w; x++)
-	    {
-	      for (y = 0; y < Font->Surface->h; y++)
-		{
-		  old_r = old_g = old_b = 0;
-		  pixel = FdGetPixel (Font->Surface, x, y);
-
-		  if (pixel != color_key)
-		    {
-		      SDL_GetRGB (pixel, surface->format, &old_r, &old_g,
-				  &old_b);
-
-		      new_r = (Uint8) ((old_r * r) / 255);
-		      new_g = (Uint8) ((old_g * g) / 255);
-		      new_b = (Uint8) ((old_b * b) / 255);
-
-		      pixel =
-			SDL_MapRGB (surface->format, new_r, new_g, new_b);
-		      PutPixel (surface, x, y, pixel);
-		    }
-		}
-	    }
-	  //	  printf ("unlooking...\n");
-	  if (SDL_MUSTLOCK (surface))
-	    SDL_UnlockSurface (surface);
-	  if (SDL_MUSTLOCK (Font->Surface))
-	    SDL_UnlockSurface (Font->Surface);
-
-	  SDL_SetColorKey (surface, SDL_SRCCOLORKEY, color_key);
-	}
-
-      newfont->Surface = surface;
-    }
-  return newfont;
-}; // BFont_Info* SetFontColor (BFont_Info * Font, Uint8 r, Uint8 g, Uint8 b)
-
-/**
  * Set the current font 
  */
 void
 SetCurrentFont (BFont_Info * Font)
 {
-  if ( Font == NULL )
-    {
-      //--------------------
-      // If we've received a NULL pointer for the font to be set, we make
-      // a big noise!!!
-      //
-      DebugPrintf ( -1000 , "\nNull pointer received in SetCurrentFont!  -->  delibarately causing SEGFAULT...\n\n" );
-      raise ( SIGSEGV );
-    }
   CurrentFont = Font;
 }; // void SetCurrentFont (BFont_Info * Font)
 
@@ -289,15 +198,6 @@ FontHeight (BFont_Info * Font)
   return (Font->h);
 }; // int FontHeight (BFont_Info * Font)
 
-/**
- *
- *
- */
-void
-SetFontHeight (BFont_Info * Font, int height)
-{
-  Font->h = height;
-}; // void SetFontHeight (BFont_Info * Font, int height)
 
 /* Return the width of the "c" character */
 int
@@ -307,15 +207,6 @@ CharWidth (BFont_Info * Font, unsigned char c)
   if ( c < ' ' || c > Font->number_of_chars-1 ) c = '.';
   return Font->Chars[c].w;
 }
-
-/**
- * Puts a single char on the surface 
- */
-int
-PutChar (SDL_Surface * Surface, int x, int y, unsigned char c)
-{
-  return PutCharFont (Surface, CurrentFont, x, y, c);
-}; // int PutChar (SDL_Surface * Surface, int x, int y, int c)
 
 /**
  * Puts a single char on the surface with the specified font 
@@ -333,11 +224,6 @@ PutCharFont (SDL_Surface * Surface, BFont_Info * Font, int x, int y, unsigned ch
   if ( c<' ' || c>Font->number_of_chars-1 ) c = '.';
   if ( ( c != ' ' ) && ( c != '\n' ) )
     {
-      //--------------------
-      // In case of open gl output, we use our prepared small surfaces, since blitting
-      // only a part of the source image isn't effectively implemented in our SDL-OpenGL-wrapper
-      // function.
-      //
       if ( use_open_gl )
 	{
 	//--------------------
@@ -358,53 +244,53 @@ PutCharFont (SDL_Surface * Surface, BFont_Info * Font, int x, int y, unsigned ch
         glEnable(GL_CLIP_PLANE1);
 	#endif
 	if ( ( dest . x < clipping_rect . x + clipping_rect . w ) &&
-              ( dest . x >= clipping_rect . x ) )
-	      {
-	      if ( ! Font -> char_iso_image [ c ] . texture_has_been_created )
+		( dest . x >= clipping_rect . x ) )
+	    {
+	    if ( ! Font -> char_iso_image [ c ] . texture_has_been_created )
 		{
-		  if ( Font -> char_iso_image [ c ] . surface == NULL )
+		// If the character is not ready to be printed on screen
+		if ( Font -> char_iso_image [ c ] . surface == NULL )
 		    {
-		      ErrorMessage ( __FUNCTION__  , "Surface for character %d was NULL pointer!",
-						 PLEASE_INFORM, IS_FATAL, c );
+		    ErrorMessage ( __FUNCTION__  , "Surface for character %d was NULL pointer!",
+			    PLEASE_INFORM, IS_FATAL, c );
 		    }
-		  make_texture_out_of_surface ( & ( Font -> char_iso_image [ c ] ) ) ;
-		  #ifdef HAVE_LIBGL
-		  glNewList(Font->list_base + c, GL_COMPILE);
+		make_texture_out_of_surface ( & ( Font -> char_iso_image [ c ] ) ) ;
+#ifdef HAVE_LIBGL
+		glNewList(Font->list_base + c, GL_COMPILE);
 
-		  glBindTexture(GL_TEXTURE_2D, (Font->char_iso_image[c] . texture));
-	          glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE );
-        	  glEnable ( GL_BLEND );
- 
-		  glBegin(GL_QUADS);
+		glBindTexture(GL_TEXTURE_2D, (Font->char_iso_image[c] . texture));
+		glTexEnvi ( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE );
+		glEnable ( GL_BLEND );
 
-		  glTexCoord2f( 0, 1.0 );
-		  glVertex2i( 0 , 0 );
-		  glTexCoord2f( 0.0, 0 );
-		  glVertex2i( 0 , Font->char_iso_image[c] . texture_height );
-		  glTexCoord2f( 1.0, 0 );
-		  glVertex2i( Font->char_iso_image[c] . texture_width , Font->char_iso_image[c] . texture_height );
-		  glTexCoord2f( 1.0, 1 );
-		  glVertex2i(  Font->char_iso_image[c] . texture_width , 0 );
-		
-		  glEnd( );
-		  glEndList();
-        	  glDisable ( GL_BLEND );
+		glBegin(GL_QUADS);
 
-		  #endif
+		glTexCoord2f( 0.0, 1.0 );
+		glVertex2i( 0 , 0 );
+		glTexCoord2f( 0.0, 0.0 );
+		glVertex2i( 0 , Font->char_iso_image[c] . texture_height );
+		glTexCoord2f( 1.0, 0.0);
+		glVertex2i( Font->char_iso_image[c] . texture_width , Font->char_iso_image[c] . texture_height );
+		glTexCoord2f( 1.0, 1.0 );
+		glVertex2i(  Font->char_iso_image[c] . texture_width , 0 );
+
+		glEnd( );
+		glEndList();
+		glDisable ( GL_BLEND );
+
+#endif
 		}
-	      
-	      //draw_gl_textured_quad_at_screen_position ( & (Font -> char_iso_image [ c ]) , dest . x , dest . y , TRUE ) ;
-	      #ifdef HAVE_LIBGL
-	      glPushMatrix();
-	      glMatrixMode(GL_MODELVIEW);
-	      glTranslated(dest.x, dest.y, 0);
-	      glCallList(Font->list_base + c );
-	      glPopMatrix();
-              glDisable(GL_CLIP_PLANE0);
-	      glDisable(GL_CLIP_PLANE1);
-	      #endif
 
-              }
+#ifdef HAVE_LIBGL
+	    glPushMatrix();
+	    glMatrixMode(GL_MODELVIEW);
+	    glTranslated(dest.x, dest.y, 0);
+	    glCallList(Font->list_base + c );
+	    glPopMatrix();
+	    glDisable(GL_CLIP_PLANE0);
+	    glDisable(GL_CLIP_PLANE1);
+#endif
+
+	    }
 	}
       else
 	{

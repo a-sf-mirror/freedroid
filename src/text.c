@@ -41,8 +41,6 @@
 #include "global.h"
 #include "SDL_rotozoom.h"
 
-int DisplayTextWithScrolling (char *Text, int startx, int starty, const SDL_Rect *clip , SDL_Surface* ScrollBackground , float text_stretch );
-
 int CharsPerLine;		// line length in chars:  obsolete
 
 // curent text insertion position
@@ -370,97 +368,6 @@ ScrollText (char *Text, int startx, int starty, int background_code )
     
 }; // int ScrollText ( ... )
 
-/*-----------------------------------------------------------------
- * This function is much like DisplayText, but with the main difference,
- * that in case of the whole clipping window filled, the function will
- * display a ---more--- line, wait for a key and then scroll the text
- * further up.
- *
- * @Desc: prints *Text beginning at positions startx/starty, 
- * 
- *	and respecting the text-borders set by clip_rect
- *      -> this includes clipping but also automatic line-breaks
- *      when end-of-line is reached
- * 
- *      if clip_rect==NULL, no clipping is performed
- *      
- *      NOTE: the previous clip-rectange is restored before
- *            the function returns!
- *
- *      NOTE2: this function _does not_ update the screen
- *
- * @Ret: TRUE if some characters where written inside the clip rectangle
- *       FALSE if not (used by ScrollText to know if Text has been scrolled
- *             out of clip-rect completely)
- *-----------------------------------------------------------------*/
-int
-DisplayTextWithScrolling ( char *Text , int startx , int starty , const SDL_Rect *clip , SDL_Surface* Background , float text_stretch )
-{
-    char *tmp;	// mobile pointer to the current position as the text is drawn
-    // SDL_Rect Temp_Clipping_Rect; // adding this to prevent segfault in case of NULL as parameter
-    
-    SDL_Rect store_clip;
-    
-    if ( startx != -1 ) MyCursorX = startx;		
-    if ( starty != -1 ) MyCursorY = starty;
-    
-    SDL_GetClipRect (Screen, &store_clip);  // store previous clip-rect 
-    if (clip)
-	SDL_SetClipRect (Screen, clip);
-    else
-    {
-	clip = & User_Rect;
-    }
-    
-    
-    tmp = Text;			// running text-pointer 
-    
-    while ( *tmp && (MyCursorY < clip->y + clip->h) )
-    {
-	if ( *tmp == '\n' )
-	{
-	    MyCursorX = clip->x;
-	    MyCursorY += FontHeight ( GetCurrentFont() ) * TEXT_STRETCH;
-	}
-	else
-	    DisplayChar (*tmp);
-	tmp++;
-	
-	//--------------------
-	// Here we plant in the question for ---more--- and a key to be pressed,
-	// before we clean the screen and restart displaying text from the top
-	// of the given Clipping rectangle
-	//
-	// if ( ( clip->h + clip->y - MyCursorY ) <= 2 * FontHeight ( GetCurrentFont() ) * TEXT_STRETCH )
-	if ( ( clip->h + clip->y - MyCursorY ) <= 1 * FontHeight ( GetCurrentFont() ) * TEXT_STRETCH )
-	{
-	    DisplayText( "--- more --- more --- \n" , MyCursorX , MyCursorY , clip , 1.0 );
-	    our_SDL_flip_wrapper();
-	    while ( !SpacePressed() );
-	    while (  SpacePressed() );
-	    our_SDL_blit_surface_wrapper( Background , NULL , Screen , NULL );
-	    MyCursorY = clip->y;
-	    our_SDL_flip_wrapper();
-	};
-	
-	if ( clip )
-	    ImprovedCheckLineBreak ( tmp , clip , text_stretch );   // dont write over right border 
-	
-    } 
-    
-    SDL_SetClipRect (Screen, &store_clip); // restore previous clip-rect 
-    
-    //--------------------
-    // ScrollText() wants to know if we still wrote something inside the
-    // clip-rectangle, of if the Text has been scrolled out
-    // 
-    if ( clip && ((MyCursorY < clip->y) || (starty > clip->y + clip->h) ))
-	return FALSE;  // no text was written inside clip 
-    else
-	return TRUE; 
-    
-};  // DisplayTextWithScrolling (char *Text, int startx, int starty, const SDL_Rect *clip , SDL_Surface* Background )
-
 /**
  * This function sets a new text, that will be displayed in huge font 
  * directly over the combat window for a fixed duration of time, where
@@ -653,14 +560,8 @@ DisplayChar (unsigned char c)
 	c = '.';
     }
     if ( ! display_char_disabled ) 
-	PutChar ( Screen, MyCursorX, MyCursorY, c );
+	PutCharFont ( Screen, GetCurrentFont(), MyCursorX, MyCursorY, c );
 
-
-    // DebugPrintf( 0 , "%c" , c );
-
-    // After the char has been displayed, we must move the cursor to its
-    // new position.  That depends of course on the char displayed.
-    //
     MyCursorX += CharWidth ( GetCurrentFont() , c) +kerning;
 
 }; // void DisplayChar(...)
