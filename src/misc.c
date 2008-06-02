@@ -1330,9 +1330,6 @@ This indicates an error in the map system of Freedroid.",
 	    DeleteBullet ( i , FALSE ); 
 	}
 	
-	clear_automap_texture_completely (  );
-	insert_old_map_info_into_texture (  );
-	
     }
     else
     {

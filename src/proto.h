@@ -42,11 +42,7 @@
 #else
 #define EXTERN extern
 #endif
-EXTERN void set_up_texture_for_automap ( void );
-EXTERN void show_automap_data_ogl ( float scale_factor );
 EXTERN void show_automap_data_sdl ( void );
-EXTERN void insert_old_map_info_into_texture ( void );
-EXTERN void full_update_of_automap_texture ( void );
 
 // init.c
 #undef EXTERN
@@ -282,7 +278,6 @@ EXTERN void HighlightRectangle ( SDL_Surface* Surface , SDL_Rect Area );
 EXTERN void ShadowingRectangle ( SDL_Surface* Surface , SDL_Rect Area );
 EXTERN int do_graphical_number_selection_in_range ( int lower_range , int upper_range, int default_value );
 EXTERN Uint8 GetAlphaComponent ( SDL_Surface* surface , int x , int y );
-EXTERN void clear_automap_texture_completely ( void ) ;
 
 // saveloadgame.c 
 #undef EXTERN

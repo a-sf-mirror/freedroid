@@ -1716,7 +1716,6 @@ Performance_handle (int n)
 	    SKIP_LIGHT_RADIUS_MODE,
 	    SKIP_SHADOWS,
 	    SKIP_FADINGS,
-	    USE_SDL_AUTOMAP,
 	    LEAVE_PERFORMANCE_TWEAKS_MENU 
 	};
     switch (n)
@@ -1749,11 +1748,6 @@ Performance_handle (int n)
 	GameConfig . do_fadings = ! GameConfig . do_fadings ;
 	break;
 	
-    case USE_SDL_AUTOMAP:
-	while (EnterPressed() || SpacePressed() || MouseLeftPressed() );
-	GameConfig . force_sdl_automap = ! GameConfig . force_sdl_automap ;
-	break;
-	
     case LEAVE_PERFORMANCE_TWEAKS_MENU:
 	while (EnterPressed() || SpacePressed()|| MouseLeftPressed() );
 	return EXIT_MENU;
@@ -1778,10 +1772,8 @@ Performance_fill (char *MenuTexts[])
 		  GameConfig . skip_shadow_blitting ? _("YES") : _("NO") );
 	sprintf( MenuTexts[4] , _("Skip fadings: %s"), 
 		 GameConfig . do_fadings ? _("NO") : _("YES") );
-	sprintf( MenuTexts[5] , _("Use SDL automap: %s"),
-		GameConfig . force_sdl_automap ? _("YES") : _("NO"));
-	MenuTexts[6]=_("Back");
-	MenuTexts[7]="";
+	MenuTexts[5]=_("Back");
+	MenuTexts[6]="";
 }
 
 static int

@@ -540,13 +540,6 @@ LoadGame( void )
     PutStringFont ( Screen , FPS_Display_BFont , 75 , 150 , _("Updating Tux images (this may take a little while...)") );
     our_SDL_flip_wrapper();
     
-    //--------------------
-    // Now that the whole character information (and that included the automap
-    // information) has been restored, we can use the old automap data to rebuild
-    // the automap texture in the open_gl case...
-    //
-    insert_old_map_info_into_texture (  );
-
     load_game_command_came_from_inside_running_game = TRUE ;
 
     append_new_game_message ( _("Game loaded.") );

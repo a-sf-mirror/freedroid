@@ -2070,7 +2070,6 @@ ResetGameConfigToDefaultValues ( void )
     GameConfig . automap_display_scale = 2.0 ;
     GameConfig . skip_shadow_blitting = FALSE ;
     GameConfig . xray_vision_for_tux = FALSE;
-    GameConfig . force_sdl_automap = TRUE; //use the SDL automap even in OpenGL mode by default
  
     #if ENABLE_NLS
     char *lang = setlocale(LC_MESSAGES, NULL);
@@ -2406,13 +2405,6 @@ ThouArtDefeated (void)
 	
     }
     
-    //--------------------
-    // The automap doesn't need to be shown any more and also when
-    // the next game starts up (on the same level as right now) there
-    // should not be any automap info remaining...
-    //
-    clear_automap_texture_completely (  ) ;
-
     DebugPrintf ( 2 , "\n%s():  Usual end of function reached." , __FUNCTION__ );
 
 }; // void ThouArtDefeated(void)
@@ -2467,13 +2459,6 @@ ThouHastWon (void)
     PlayATitleFile ( "EndOfGame.title" );
 
     PlayATitleFile("Credits.title");
-
-    //--------------------
-    // The automap doesn't need to be shown any more and also when
-    // the next game starts up (on the same level as right now) there
-    // should not be any automap info remaining...
-    //
-    clear_automap_texture_completely (  ) ;
 
     DebugPrintf ( 2 , "\n%s():  Usual end of function reached." , __FUNCTION__ );
 

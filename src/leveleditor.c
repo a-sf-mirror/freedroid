@@ -5704,15 +5704,9 @@ LevelEditor(void)
 		while ( BPressed() ) SDL_Delay ( 1 ) ;
 	    }
 	    
-	    //--------------------
-	    // The tab key should toggle the automap.  Inside the level editor,
-	    // if would also be good, if the automap could immediately reveal
-	    // all the info on the current map.
-	    //
 	    if ( TabPressed () )
 	    {
 		GameConfig . Automap_Visible = ! GameConfig . Automap_Visible ;
-		full_update_of_automap_texture ( );
 		while ( TabPressed() ) SDL_Delay(1);
 	    }
 	    

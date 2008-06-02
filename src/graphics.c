@@ -1873,9 +1873,6 @@ InitVideo (void)
     
     ShowStartupPercentage ( 1 ) ; 
     
-    if ( use_open_gl )
-	set_up_texture_for_automap ( );
-    
     SDL_SetGamma( 1 , 1 , 1 );
     GameConfig.current_gamma_correction=1;
     
