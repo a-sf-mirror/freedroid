@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: freedroidrpg_dialogs\n"
 "Report-Msgid-Bugs-To: CHANGE THIS TOO\n"
 "POT-Creation-Date: 2008-06-01 17:31+0000\n"
-"PO-Revision-Date: 2008-06-03 11:31+0100\n"
+"PO-Revision-Date: 2008-06-03 11:50+0100\n"
 "Last-Translator: David Kremer <david.kremer.dk@gmail.com>\n"
 "Language-Team:  <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -87,9 +87,8 @@ msgid "Well, for novice members there are simple laser and plasma pistols. They 
 msgstr "Pour les nouveaux membres, il y a des lasers de base et des pistolets à plasma. Ils ont leur lot de problèmes, mais fonctionnent neuf fois sur dix."
 
 #: ../dialogs/Benjamin.dialog:120
-#, fuzzy
 msgid "For bigger bots we have bigger guns. The exterminator is the best weapon that we have. We hand them out only in case of an emergency or to highly experienced people."
-msgstr "Pour les plus grands robots, nous utilisons les plus gros calibres. L'exterminateur est la meilleure arme que nous ayons. Nous le sortons seulement dans les cas d'urgence, ou pour le montrer aux gens."
+msgstr "Pour les plus grands robots, nous utilisons les plus gros calibres. L'exterminateur est la meilleure arme que nous ayons. Il est utilisé seulement dans les cas d'urgence, ou par les personnes très expérimentées. "
 
 #: ../dialogs/Benjamin.dialog:130
 msgid " Plasma sounds deadly."
@@ -115,7 +114,7 @@ msgstr "La plupart des nouvelles recrues détestent ce fusil car il est dur à uti
 
 #: ../dialogs/Benjamin.dialog:141
 msgid "If you are going to use plasma weapons you need to remember one thing: Don't let the weapon get damaged. "
-msgstr "Si vous envisagez d'utiliser des armes à plasma,  ne laissez le fusil s'abîmer. "
+msgstr "Si vous envisagez d'utiliser des armes à plasma,  souvenez vous de ne pas laisser le fusil s'abîmer. "
 
 #: ../dialogs/Benjamin.dialog:143
 msgid "Even though our armor is designed to resist high temperatures, once the plasma containment module goes, you will die, along with anything within ten meters of you."
@@ -1178,7 +1177,7 @@ msgstr "Hier, une patrouille de garde a trouvé quelques petits morceaux de lui e
 
 #: ../dialogs/Michelangelo.dialog:124
 msgid "The bots made a bloody mess out of him."
-msgstr "Les robots l'ont vraiment mis dans un sale état."
+msgstr "Les robots l'ont vraiment écharpé."
 
 #: ../dialogs/Michelangelo.dialog:131
 msgid " I can get you some dilithium."
