@@ -95,6 +95,7 @@ show_automap_data_sdl ( void )
   //
   if ( ! Me . map_maker_is_present ) return;
 
+
 #ifdef HAVE_LIBGL
   if ( use_open_gl )
       {
@@ -103,6 +104,22 @@ show_automap_data_sdl ( void )
       }
 #endif
 
+
+  /*
+  // Draw floor (experimental)
+  for ( y = 0 ; y < automap_level->ylen ; y ++ )
+      {
+      for ( x = 0 ; x < automap_level->xlen ; x ++ )
+	  {
+	  int MapBrick = GetMapBrick (automap_level, x, y);
+	  //floor_iso_images[MapBrick % ALL_ISOMETRIC_FLOOR_TILES]
+	  //
+	  PutPixel_automap_wrapper ( Screen , 1+AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * ( automap_level -> ylen - y ) , 
+		  1+AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * y , MyRandom(1<<24));
+
+	  }
+      }*/
+  
   //--------------------
   // At first, we only blit the known data about the pure wall-type
   // obstacles on this level.
@@ -128,11 +145,11 @@ show_automap_data_sdl ( void )
 	      PutPixel_automap_wrapper ( Screen , 
 			 2+AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * ( automap_level -> ylen - y ) , 
 			 1+AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * y , AUTOMAP_COLOR );
-
 	    }
 	}
     }
 
+  // Display enemies
   enemy *erot;
   BROWSE_LEVEL_BOTS(erot, automap_level->levelnum)
       {
@@ -152,6 +169,7 @@ show_automap_data_sdl ( void )
 	  }
       }
 
+  // Display tux
   for ( x = 0 ; x < AUTOMAP_SQUARE_SIZE ; x ++ )
     {
       for ( y = 0 ; y < AUTOMAP_SQUARE_SIZE ; y ++ )
@@ -160,6 +178,7 @@ show_automap_data_sdl ( void )
 		     AUTOMAP_SQUARE_SIZE * Me . pos . x + AUTOMAP_SQUARE_SIZE * Me . pos . y + y , TuxColor );
 	}
     }
+
 
 #ifdef HAVE_LIBGL
   if ( use_open_gl )
