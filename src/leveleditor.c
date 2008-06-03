@@ -1887,15 +1887,15 @@ HandleBannerMouseClick( void )
     SDL_Rect TargetRect;
     int i;
     
-    if ( MouseCursorIsOnButton ( LEFT_LEVEL_EDITOR_BUTTON , GetMousePos_x()  , GetMousePos_y()  ))
+    if ( MouseCursorIsOnButton ( LEFT_LEVEL_EDITOR_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
     {
 	FirstBlock-= 8;
-	DebugPrintf ( 1 , "\nBlocks should be scrolling now, if appropriate..." );
+	while ( PageUpPressed() ) SDL_Delay(1);	
     }
-    else if ( MouseCursorIsOnButton ( RIGHT_LEVEL_EDITOR_BUTTON , GetMousePos_x()  , GetMousePos_y()  ))
+    else if ( MouseCursorIsOnButton ( RIGHT_LEVEL_EDITOR_BUTTON , GetMousePos_x()  , GetMousePos_y()))
     {
 	FirstBlock+=8 ;
-	DebugPrintf ( 1 , "\nBlocks should be scrolling now, if appropriate..." );
+	while ( PageDownPressed() ) SDL_Delay(1);
     }
     else if( MouseCursorIsOnButton(  LEVEL_EDITOR_FLOOR_TAB, GetMousePos_x()  , GetMousePos_y()  ))
     {
@@ -5269,24 +5269,34 @@ if ( Me . pos . y <= 0 ) Me . pos . y = 0;
  * function, we take the mouse wheel handling out into a separate
  * function now.
  */
-    void
+void
 level_editor_handle_mouse_wheel ( void )
 {
-    if ( MouseWheelDownPressed() || PageDownPressed() )
-	{
+    if ( MouseWheelDownPressed() )
+    {
 	if ( Highlight < number_of_walls [ GameConfig . level_editor_edit_mode ] -1 )
 	    Highlight++;
-	}
-    else if ( (MouseWheelUpPressed() || PageUpPressed()) && Highlight != 0)
+	
+	// check if we have to scroll the list
+	if( Highlight < FirstBlock )
+	    // block is to the left
+	    FirstBlock = Highlight ;
+	else if (Highlight > FirstBlock +8)
+	    // block is to the right
+	    FirstBlock = Highlight - 8;
+    } 
+    if ( MouseWheelUpPressed() && Highlight != 0)
+    {
 	Highlight--;
-
-    // check if we have to scroll the list
-    if( Highlight < FirstBlock )
-	// block is to the left
-	FirstBlock = Highlight ;
-    else if (Highlight > FirstBlock +8)
-	// block is to the right
-	FirstBlock = Highlight - 8;
+	
+	// check if we have to scroll the list
+	if(Highlight < FirstBlock )
+	    // block is to the left
+	    FirstBlock = Highlight ;
+	else if (Highlight > FirstBlock +8)
+	    // block is to the right
+	    FirstBlock = Highlight - 8;
+    } 
 }; // void level_editor_handle_mouse_wheel ( void )
     
 /**
