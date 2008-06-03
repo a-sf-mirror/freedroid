@@ -1033,6 +1033,8 @@ int RightPressed () { keyboard_update(); return ((key_pressed_real_frame[SDLK_RI
 int LeftWasPressed () { keyboard_update(); return ((key_pressed_last_frame[SDLK_LEFT]));}
 int RightWasPressed () { keyboard_update(); return ((key_pressed_last_frame[SDLK_RIGHT]));}
 
+int PageUpPressed () { keyboard_update(); return ((key_pressed_real_frame[SDLK_PAGEUP]));}
+int PageDownPressed () { keyboard_update(); return ((key_pressed_real_frame[SDLK_PAGEDOWN]));}
 int UpPressed () { keyboard_update(); return ((key_pressed_real_frame[SDLK_UP]));}
 int DownPressed () { keyboard_update(); return ((key_pressed_real_frame[SDLK_DOWN]));}
 int SpacePressed () { keyboard_update(); return ((key_pressed_real_frame[SDLK_SPACE]));}

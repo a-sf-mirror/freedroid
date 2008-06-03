@@ -603,6 +603,8 @@ EXTERN int LeftPressed (void) ;
 EXTERN int RightPressed (void) ;
 EXTERN int LeftWasPressed (void) ;
 EXTERN int RightWasPressed (void) ;
+EXTERN int PageUpPressed (void) ;
+EXTERN int PageDownPressed (void) ;
 EXTERN int UpPressed (void) ;
 EXTERN int DownPressed (void) ;
 EXTERN int SpacePressed (void) ;

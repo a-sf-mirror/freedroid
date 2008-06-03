@@ -5269,34 +5269,24 @@ if ( Me . pos . y <= 0 ) Me . pos . y = 0;
  * function, we take the mouse wheel handling out into a separate
  * function now.
  */
-void
+    void
 level_editor_handle_mouse_wheel ( void )
 {
-    if ( MouseWheelDownPressed() )
-    {
+    if ( MouseWheelDownPressed() || PageDownPressed() )
+	{
 	if ( Highlight < number_of_walls [ GameConfig . level_editor_edit_mode ] -1 )
 	    Highlight++;
-	
-	// check if we have to scroll the list
-	if( Highlight < FirstBlock )
-	    // block is to the left
-	    FirstBlock = Highlight ;
-	else if (Highlight > FirstBlock +8)
-	    // block is to the right
-	    FirstBlock = Highlight - 8;
-    } 
-    if ( MouseWheelUpPressed() && Highlight != 0)
-    {
+	}
+    else if ( (MouseWheelUpPressed() || PageUpPressed()) && Highlight != 0)
 	Highlight--;
-	
-	// check if we have to scroll the list
-	if(Highlight < FirstBlock )
-	    // block is to the left
-	    FirstBlock = Highlight ;
-	else if (Highlight > FirstBlock +8)
-	    // block is to the right
-	    FirstBlock = Highlight - 8;
-    } 
+
+    // check if we have to scroll the list
+    if( Highlight < FirstBlock )
+	// block is to the left
+	FirstBlock = Highlight ;
+    else if (Highlight > FirstBlock +8)
+	// block is to the right
+	FirstBlock = Highlight - 8;
 }; // void level_editor_handle_mouse_wheel ( void )
     
 /**
