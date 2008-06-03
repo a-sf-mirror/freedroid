@@ -933,6 +933,14 @@ GetInfluPositionHistoryZ( int HowLongPast )
 void 
 CheckIfCharacterIsStillOk ( ) 
 {
+    if ( Me . AllMissions [ 8 ] . MissionIsComplete )
+	{
+	ThouHastWon ();
+	}
+    
+    if ( Me . god_mode )
+	Me . energy = Me . maxenergy;
+
     //------------------------------
     // Now we check if the main character is really still ok.
     //
@@ -946,10 +954,6 @@ CheckIfCharacterIsStillOk ( )
 	return;
     }
 
-    if ( Me . AllMissions [ 8 ] . MissionIsComplete )
-	{
-	ThouHastWon ();
-	}
 	    
 }; // void CheckIfCharacterIsStillOk ( )
 

@@ -998,6 +998,10 @@ Cheatmenu (void)
 	ClearGraphMem ();
 	printf_SDL (Screen, x0, y0, "Current position: Level=%d, X=%d, Y=%d\n",
 		    Me . pos . z, (int)Me.pos.x, (int)Me.pos.y);
+	printf_SDL (Screen, -1, -1, " f. xray_vision_for_tux: %s",
+		    GameConfig . xray_vision_for_tux ? "ON\n" : "OFF\n");
+	printf_SDL (Screen, -1, -1, " g. god mode: %s\n", Me . god_mode? "ON" : "OFF");
+	printf_SDL (Screen, -1, -1, " i. Make tux invisible\n");
 	printf_SDL (Screen, -1, -1, " l. robot list of current level\n");
 	printf_SDL (Screen, -1, -1, " L. alive robot list of current level\n");
 	printf_SDL (Screen, -1, -1, " k. dead robot list of current level\n");
@@ -1009,8 +1013,6 @@ Cheatmenu (void)
 	printf_SDL (Screen, -1, -1, " x. Cheatkeys : %s",
 		    GameConfig . enable_cheatkeys ? "ON\n" : "OFF\n");
 	printf_SDL (Screen, -1, -1, " w. Print current waypoints\n");
-	printf_SDL (Screen, -1, -1, " f. xray_vision_for_tux: %s",
-		    GameConfig . xray_vision_for_tux ? "ON\n" : "OFF\n");
 	printf_SDL (Screen, -1, -1, " q. RESUME game\n");
 
 	//--------------------
@@ -1022,6 +1024,14 @@ Cheatmenu (void)
 	{
 	    case 'f':
 		GameConfig . xray_vision_for_tux = ! GameConfig . xray_vision_for_tux;
+		break;
+	    
+	    case 'g':
+		Me . god_mode = ! Me . god_mode;
+		break;
+
+	    case 'i':
+		Me . invisible_duration += 50000;
 		break;
 
 	    case 'k':

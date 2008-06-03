@@ -609,6 +609,7 @@ typedef struct tux_s
     gps mouse_move_target;          // where the tux is going automatically by virtue of mouse move
 
     short int current_enemy_target_n; //which enemy has been targeted 
+    char god_mode;
     enemy * current_enemy_target_addr; // which enemy has been targeted, address
     
     int mouse_move_target_combo_action_type; // what extra action has to be done upon arrival?

@@ -1961,6 +1961,10 @@ PrepareStartOfNewCharacter ( void )
     Me . running_power = Me . max_running_power ;
     Me . busy_time = 0 ;
     Me . busy_type = NONE ;
+
+    Me . god_mode = 0;
+    Me . paralyze_duration = 0;
+    Me . invisible_duration = 0;
     
     Me . TextVisibleTime = 0;
     Me . readied_skill = 0;
