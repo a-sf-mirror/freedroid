@@ -84,6 +84,9 @@ SForce: T=FSC Fixed=0 Marker=9998 Friendly=1 StartUpAtLabel="SorensonStartGameSq
 SForce: T=614 Fixed=0 Marker=9999 Friendly=1 StartUpAtLabel="614StartGameSquare1" RushTux="no" DialogSectionToUse="614" ShortLabel="614 -- Town Guard Bot" attack_run_only_when_direct_line="no"
 SForce: T=614 Fixed=0 Marker=9999 Friendly=1 StartUpAtLabel="614StartGameSquare2" RushTux="no" DialogSectionToUse="614" ShortLabel="614 -- Town Guard Bot" attack_run_only_when_direct_line="no"
 SForce: T=614 Fixed=0 Marker=9999 Friendly=1 StartUpAtLabel="614StartGameSquare3" RushTux="no" DialogSectionToUse="614" ShortLabel="614 -- Town Guard Bot" attack_run_only_when_direct_line="no"
+SForce: T=614 Fixed=0 Marker=9999 Friendly=1 StartUpAtLabel="614StartGameSquare4" RushTux="no" DialogSectionToUse="614" ShortLabel="614 -- Town Guard Bot" attack_run_only_when_direct_line="no"
+SForce: T=614 Fixed=0 Marker=9999 Friendly=1 StartUpAtLabel="614StartGameSquare5" RushTux="no" DialogSectionToUse="614" ShortLabel="614 -- Town Guard Bot" attack_run_only_when_direct_line="no"
+SForce: T=614 Fixed=0 Marker=9999 Friendly=1 StartUpAtLabel="614StartGameSquare6" RushTux="no" DialogSectionToUse="614" ShortLabel="614 -- Town Guard Bot" attack_run_only_when_direct_line="no"
 
 //--------------------
 // This is Richard 'RMS', who lost most of his code
