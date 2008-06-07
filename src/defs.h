@@ -720,7 +720,7 @@ enum
 #define MAX_TRIGGERED_ACTIONS_IN_GAME   500   // how many triggerable actions to allow at most
 
 #define MAXWAYPOINTS 		200
-#define MAX_DOORS_ON_LEVEL 	120
+#define MAX_DOORS_ON_LEVEL 	150
 #define MAX_AUTOGUNS_ON_LEVEL 	60
 #define MAX_REFRESHES_ON_LEVEL	39
 #define MAX_TELEPORTERS_ON_LEVEL 20
