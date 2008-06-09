@@ -2574,12 +2574,14 @@ init_obstacle_data( void )
   obstacle_map [ ISO_TREE_4 ] . block_area_parm_1 = 1.2 ;
   obstacle_map [ ISO_TREE_4 ] . block_area_parm_2 = 1.2 ;
   obstacle_map [ ISO_TREE_4 ] . filename = "iso_tree_0000.png" ;
+  obstacle_map [ ISO_TREE_4 ] . flags &= ~BLOCKS_VISION_TOO ;
   obstacle_map [ ISO_TREE_4 ] . obstacle_short_name = _("Tree");
   obstacle_map [ ISO_TREE_4 ] . obstacle_long_description = _("This tree does not look too healthy.");
   obstacle_map [ ISO_TREE_5 ] . block_area_type = COLLISION_TYPE_RECTANGLE ;
   obstacle_map [ ISO_TREE_5 ] . block_area_parm_1 = 1.2 ;
   obstacle_map [ ISO_TREE_5 ] . block_area_parm_2 = 1.2 ;
   obstacle_map [ ISO_TREE_5 ] . filename = "iso_tree_0001.png" ;
+  obstacle_map [ ISO_TREE_5 ] . flags &= ~BLOCKS_VISION_TOO ;
   obstacle_map [ ISO_TREE_5 ] . obstacle_short_name = _("Tree");
   obstacle_map [ ISO_TREE_5 ] . obstacle_long_description = _("For some strange reason this tree has blue leaves.");
 
