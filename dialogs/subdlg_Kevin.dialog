@@ -79,7 +79,7 @@ ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Now I see your hacking skill has already improved a lot."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=5 ChangeToValue=0
-DoSomethingExtra="IncreaseProgramVersionWithName:Hacking"
+DoSomethingExtra="IncreaseProgramVersionName:Hacking"
 DoSomethingExtra="SubtractPointsToDistribute:5"
 DoSomethingExtra="SubtractGold:300"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
