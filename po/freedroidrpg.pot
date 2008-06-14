@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: freedroid-discussion@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-06-03 08:33+0200\n"
+"POT-Creation-Date: 2008-06-14 10:16+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1311,45 +1311,45 @@ msgstr ""
 msgid "%s (%03.1f:%03.1f:%d) day %d %02d:%02d "
 msgstr ""
 
-#: ../src/influ.c:472
+#: ../src/influ.c:471
 msgid "Clip empty, reloading..."
 msgstr ""
 
-#: ../src/influ.c:2918
+#: ../src/influ.c:2943
 msgid "No more ammunition !"
 msgstr ""
 
-#: ../src/influ.c:3325
+#: ../src/influ.c:3350
 #, c-format
 msgid "This is a %s. %s"
 msgstr ""
 
-#: ../src/influ.c:3350 ../src/influ.c:3357
+#: ../src/influ.c:3375 ../src/influ.c:3382
 #, c-format
 msgid "Examining %s.  %s"
 msgstr ""
 
-#: ../src/influ.c:3372
+#: ../src/influ.c:3397
 #, c-format
 msgid "You see the floor.  It should be perfectly safe to walk on it."
 msgstr ""
 
-#: ../src/influ.c:3403
+#: ../src/influ.c:3428
 #, c-format
 msgid "Unlocking obstacle of type %d."
 msgstr ""
 
-#: ../src/influ.c:3432
+#: ../src/influ.c:3457
 #, c-format
 msgid "Repairing obstacle of type %d."
 msgstr ""
 
-#: ../src/influ.c:3461
+#: ../src/influ.c:3486
 #, c-format
 msgid "Attacking obstacle of type %d."
 msgstr ""
 
-#: ../src/influ.c:3490
+#: ../src/influ.c:3515
 #, c-format
 msgid "Picking pockets of obstacle of type %d."
 msgstr ""
@@ -1524,23 +1524,23 @@ msgstr ""
 msgid "Huh? What?  Where am I?"
 msgstr ""
 
-#: ../src/init.c:2021
+#: ../src/init.c:2025
 msgid "Updating Tux images"
 msgstr ""
 
-#: ../src/init.c:2022
+#: ../src/init.c:2026
 msgid "(this may take a little while...)"
 msgstr ""
 
-#: ../src/init.c:2025
+#: ../src/init.c:2029
 msgid "Starting new game."
 msgstr ""
 
-#: ../src/init.c:2341
+#: ../src/init.c:2345
 msgid "Game over.\n"
 msgstr ""
 
-#: ../src/init.c:2428
+#: ../src/init.c:2432
 msgid "Game won.\n"
 msgstr ""
 
@@ -2032,31 +2032,31 @@ msgstr ""
 msgid "OpenGL output active: "
 msgstr ""
 
-#: ../src/menu.c:1361
+#: ../src/menu.c:1371
 msgid "Play"
 msgstr ""
 
-#: ../src/menu.c:1362 ../src/menu.c:1481
+#: ../src/menu.c:1372 ../src/menu.c:1491
 msgid "Level Editor"
 msgstr ""
 
-#: ../src/menu.c:1363 ../src/menu.c:1480
+#: ../src/menu.c:1373 ../src/menu.c:1490
 msgid "Options"
 msgstr ""
 
-#: ../src/menu.c:1364
+#: ../src/menu.c:1374
 msgid "Credits"
 msgstr ""
 
-#: ../src/menu.c:1365
+#: ../src/menu.c:1375
 msgid "Contribute"
 msgstr ""
 
-#: ../src/menu.c:1366
+#: ../src/menu.c:1376
 msgid "Exit FreedroidRPG"
 msgstr ""
 
-#: ../src/menu.c:1397
+#: ../src/menu.c:1407
 msgid ""
 "\n"
 "The game has NOT been\n"
@@ -2066,57 +2066,57 @@ msgid ""
 "Thanks\n"
 msgstr ""
 
-#: ../src/menu.c:1421
+#: ../src/menu.c:1431
 msgid "Graphics Options"
 msgstr ""
 
-#: ../src/menu.c:1422
+#: ../src/menu.c:1432
 msgid "Sound Options"
 msgstr ""
 
-#: ../src/menu.c:1423
+#: ../src/menu.c:1433
 msgid "Language"
 msgstr ""
 
-#: ../src/menu.c:1424
+#: ../src/menu.c:1434
 msgid "Droid Talk"
 msgstr ""
 
-#: ../src/menu.c:1425
+#: ../src/menu.c:1435
 msgid "On-Screen Displays"
 msgstr ""
 
-#: ../src/menu.c:1426
+#: ../src/menu.c:1436
 msgid "Performance Tweaks"
 msgstr ""
 
-#: ../src/menu.c:1427 ../src/menu.c:1540 ../src/menu.c:1636 ../src/menu.c:1704
-#: ../src/menu.c:1775 ../src/menu.c:1890 ../src/menu.c:1931 ../src/menu.c:2179
-#: ../src/menu.c:2291 ../src/menu.c:2370
+#: ../src/menu.c:1437 ../src/menu.c:1550 ../src/menu.c:1646 ../src/menu.c:1714
+#: ../src/menu.c:1785 ../src/menu.c:1900 ../src/menu.c:1941 ../src/menu.c:2189
+#: ../src/menu.c:2301 ../src/menu.c:2380
 msgid "Back"
 msgstr ""
 
-#: ../src/menu.c:1478
+#: ../src/menu.c:1488
 msgid "Save Game"
 msgstr ""
 
-#: ../src/menu.c:1479
+#: ../src/menu.c:1489
 msgid "Resume Game"
 msgstr ""
 
-#: ../src/menu.c:1482
+#: ../src/menu.c:1492
 msgid "Load Game"
 msgstr ""
 
-#: ../src/menu.c:1483
+#: ../src/menu.c:1493
 msgid "New Game"
 msgstr ""
 
-#: ../src/menu.c:1484
+#: ../src/menu.c:1494
 msgid "Quit"
 msgstr ""
 
-#: ../src/menu.c:1584
+#: ../src/menu.c:1594
 msgid ""
 "\n"
 "Unfortunately, fullscreen cannot be\n"
@@ -2131,145 +2131,145 @@ msgid ""
 "   Thank you.\n"
 msgstr ""
 
-#: ../src/menu.c:1629
+#: ../src/menu.c:1639
 #, c-format
 msgid "Gamma Correction: %1.2f"
 msgstr ""
 
-#: ../src/menu.c:1630
+#: ../src/menu.c:1640
 #, c-format
 msgid "Fullscreen Mode: %s"
 msgstr ""
 
-#: ../src/menu.c:1631
+#: ../src/menu.c:1641
 #, c-format
 msgid "Change Screen Resolution"
 msgstr ""
 
-#: ../src/menu.c:1632
+#: ../src/menu.c:1642
 #, c-format
 msgid "Show Blood: %s"
 msgstr ""
 
-#: ../src/menu.c:1633 ../src/menu.c:1768 ../src/menu.c:1770 ../src/menu.c:1772
-#: ../src/menu.c:1774
+#: ../src/menu.c:1643 ../src/menu.c:1778 ../src/menu.c:1780 ../src/menu.c:1782
+#: ../src/menu.c:1784
 msgid "YES"
 msgstr ""
 
-#: ../src/menu.c:1633 ../src/menu.c:1768 ../src/menu.c:1770 ../src/menu.c:1772
-#: ../src/menu.c:1774
+#: ../src/menu.c:1643 ../src/menu.c:1778 ../src/menu.c:1780 ../src/menu.c:1782
+#: ../src/menu.c:1784
 msgid "NO"
 msgstr ""
 
-#: ../src/menu.c:1634
+#: ../src/menu.c:1644
 #, c-format
 msgid "Automap Scale: %2.1f"
 msgstr ""
 
-#: ../src/menu.c:1702
+#: ../src/menu.c:1712
 #, c-format
 msgid "Background Music Volume: %1.2f"
 msgstr ""
 
-#: ../src/menu.c:1703
+#: ../src/menu.c:1713
 #, c-format
 msgid "Sound Effects Volume: %1.2f"
 msgstr ""
 
-#: ../src/menu.c:1767
+#: ../src/menu.c:1777
 #, c-format
 msgid "Hog CPU for max. performance: %s"
 msgstr ""
 
-#: ../src/menu.c:1769
+#: ../src/menu.c:1779
 #, c-format
 msgid "Highlighting mode: %s"
 msgstr ""
 
-#: ../src/menu.c:1769
+#: ../src/menu.c:1779
 msgid "FULL"
 msgstr ""
 
-#: ../src/menu.c:1769
+#: ../src/menu.c:1779
 msgid "REDUCED"
 msgstr ""
 
-#: ../src/menu.c:1770
+#: ../src/menu.c:1780
 #, c-format
 msgid "Skip light radius: %s"
 msgstr ""
 
-#: ../src/menu.c:1771
+#: ../src/menu.c:1781
 #, c-format
 msgid "Skip shadow blitting: %s"
 msgstr ""
 
-#: ../src/menu.c:1773
+#: ../src/menu.c:1783
 #, c-format
 msgid "Skip fadings: %s"
 msgstr ""
 
-#: ../src/menu.c:1885
+#: ../src/menu.c:1895
 #, c-format
 msgid "Show Position: %s"
 msgstr ""
 
-#: ../src/menu.c:1885 ../src/menu.c:1886 ../src/menu.c:1887 ../src/menu.c:1926
-#: ../src/menu.c:1927 ../src/menu.c:1928 ../src/menu.c:1929 ../src/menu.c:1930
+#: ../src/menu.c:1895 ../src/menu.c:1896 ../src/menu.c:1897 ../src/menu.c:1936
+#: ../src/menu.c:1937 ../src/menu.c:1938 ../src/menu.c:1939 ../src/menu.c:1940
 msgid "ON"
 msgstr ""
 
-#: ../src/menu.c:1885 ../src/menu.c:1886 ../src/menu.c:1887 ../src/menu.c:1926
-#: ../src/menu.c:1927 ../src/menu.c:1928 ../src/menu.c:1929 ../src/menu.c:1930
+#: ../src/menu.c:1895 ../src/menu.c:1896 ../src/menu.c:1897 ../src/menu.c:1936
+#: ../src/menu.c:1937 ../src/menu.c:1938 ../src/menu.c:1939 ../src/menu.c:1940
 msgid "OFF"
 msgstr ""
 
-#: ../src/menu.c:1886
+#: ../src/menu.c:1896
 #, c-format
 msgid "Show Framerate: %s"
 msgstr ""
 
-#: ../src/menu.c:1887
+#: ../src/menu.c:1897
 #, c-format
 msgid "Show Enemy Energy Bars: %s"
 msgstr ""
 
-#: ../src/menu.c:1888
+#: ../src/menu.c:1898
 #, c-format
 msgid "Screen Messages at most: %d"
 msgstr ""
 
-#: ../src/menu.c:1889
+#: ../src/menu.c:1899
 #, c-format
 msgid "Screen Message time: %3.1f"
 msgstr ""
 
-#: ../src/menu.c:1926
+#: ../src/menu.c:1936
 #, c-format
 msgid "Enemy Hit Texts: %s"
 msgstr ""
 
-#: ../src/menu.c:1927
+#: ../src/menu.c:1937
 #, c-format
 msgid "Enemy Bumped Texts: %s"
 msgstr ""
 
-#: ../src/menu.c:1928
+#: ../src/menu.c:1938
 #, c-format
 msgid "Enemy Aim Texts: %s"
 msgstr ""
 
-#: ../src/menu.c:1929
+#: ../src/menu.c:1939
 #, c-format
 msgid "All in-game Speech: %s"
 msgstr ""
 
-#: ../src/menu.c:1930
+#: ../src/menu.c:1940
 #, c-format
 msgid "Reprogram bots after takeover: %s"
 msgstr ""
 
-#: ../src/menu.c:1949
+#: ../src/menu.c:1959
 msgid ""
 "\n"
 "     Please enter a name\n"
@@ -2279,68 +2279,68 @@ msgid ""
 "     > "
 msgstr ""
 
-#: ../src/menu.c:2203 ../src/menu.c:2309 ../src/menu.c:2324
+#: ../src/menu.c:2213 ../src/menu.c:2319 ../src/menu.c:2334
 msgid "BACK"
 msgstr ""
 
-#: ../src/menu.c:2207
+#: ../src/menu.c:2217
 msgid ""
 "\n"
 "\n"
 "No saved games found!!  Loading Cancelled. "
 msgstr ""
 
-#: ../src/menu.c:2308
+#: ../src/menu.c:2318
 msgid "Sure!"
 msgstr ""
 
-#: ../src/menu.c:2311
+#: ../src/menu.c:2321
 #, c-format
 msgid "Really delete hero '%s'?"
 msgstr ""
 
-#: ../src/menu.c:2328
+#: ../src/menu.c:2338
 msgid ""
 "\n"
 "\n"
 "No saved games found!!  Deletion Cancelled. "
 msgstr ""
 
-#: ../src/menu.c:2367
+#: ../src/menu.c:2377
 msgid "New Hero"
 msgstr ""
 
-#: ../src/menu.c:2368
+#: ../src/menu.c:2378
 msgid "Load existing Hero"
 msgstr ""
 
-#: ../src/menu.c:2369
+#: ../src/menu.c:2379
 msgid "Delete existing Hero"
 msgstr ""
 
-#: ../src/menu.c:2532
+#: ../src/menu.c:2542
 msgid ""
 "This is the record of all missions you have been assigned:\n"
 "\n"
 msgstr ""
 
-#: ../src/menu.c:2547
+#: ../src/menu.c:2557
 msgid "SOLVED: "
 msgstr ""
 
-#: ../src/menu.c:2551
+#: ../src/menu.c:2561
 msgid "FAILED: "
 msgstr ""
 
-#: ../src/menu.c:2555
+#: ../src/menu.c:2565
 msgid "ASSIGNED: "
 msgstr ""
 
-#: ../src/menu.c:2559
+#: ../src/menu.c:2569
 msgid "UNASSIGNED: "
 msgstr ""
 
-#: ../src/menu.c:2567
+#: ../src/menu.c:2577
 msgid ""
 "\n"
 "\n"
