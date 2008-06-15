@@ -3497,8 +3497,8 @@ x=33 y=64 name="MasterArenaTeleporter"
 x=33 y=63 name="MasterArenaTeleporterReturn"
 /plabelinfolvl
 pobstaclelabelinfolvl
-obstacle_label.index=0 obstacle_label_name="NoviceArenaAccessDoor" states="closed:192 opened:182"
-obstacle_label.index=1 obstacle_label_name="MasterArenaAccessDoor" states="closed:192 opened:182"
+obstacle_label.index=0 obstacle_label_name="NoviceArenaAccessDoor" states="closed:192 opened:186"
+obstacle_label.index=1 obstacle_label_name="MasterArenaAccessDoor" states="closed:192 opened:186"
 obstacle_label.index=2 obstacle_label_name="NorthernMaintainanceDoor" states="closed:191 opened:181"
 obstacle_label.index=3 obstacle_label_name="SouthGateOfTown1"
 obstacle_label.index=5 obstacle_label_name="OldTownGuardHouseEntrance" states="closed:191 opened:181"
