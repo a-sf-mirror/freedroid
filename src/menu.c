@@ -1792,7 +1792,7 @@ Language_handle (int n)
     int nb_languages = 0;
     while ( supported_languages[nb_languages].code != NULL )
 	nb_languages ++;
-    if ( n < nb_languages && n > 0) {
+    if ( n <= nb_languages && n > 0) {
 	GameConfig . language = n - 1;
 #if ENABLE_NLS
 	setlocale(LC_MESSAGES, supported_languages[n - 1] . code);
