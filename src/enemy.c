@@ -919,7 +919,7 @@ hit_enemy ( enemy * target, float hit, char givexp, short int killertype, char m
     if ( target->is_friendly && givexp )
 	givexp = 0; // force NO XP for killing a friendly bot
 
-    if ( MyRandom(15) == 1 )
+    if ( hit > 5 && MyRandom(15) == 1 )
 	    enemy_spray_blood ( target ) ;
     
     if(target -> firewait < Druidmap [ target -> type ] . recover_time_after_getting_hit && MyRandom(100) <= 40)
