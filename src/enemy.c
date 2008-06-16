@@ -797,8 +797,6 @@ enemy_spray_blood ( enemy *CurEnemy )
 {
   moderately_finepoint target_pos = { 1.0 , 0 } ;
 
-  DebugPrintf ( 1 , "\nBlood has been sprayed...%d", CurEnemy -> type );
-
   RotateVectorByAngle ( & target_pos , MyRandom ( 360 ) );
 
   target_pos . x += CurEnemy -> virt_pos . x ;
@@ -921,7 +919,8 @@ hit_enemy ( enemy * target, float hit, char givexp, short int killertype, char m
     if ( target->is_friendly && givexp )
 	givexp = 0; // force NO XP for killing a friendly bot
 
-    enemy_spray_blood ( target ) ;
+    if ( MyRandom(15) == 1 )
+	    enemy_spray_blood ( target ) ;
     
     if(target -> firewait < Druidmap [ target -> type ] . recover_time_after_getting_hit && MyRandom(100) <= 40)
 	target -> firewait = Druidmap [ target -> type ] . recover_time_after_getting_hit ;
