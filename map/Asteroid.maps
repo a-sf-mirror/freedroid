@@ -10386,7 +10386,7 @@ x=74 y=7 name="Lev8Start139Nr2"
 x=63 y=11 name="Lev8Start139Nr3"
 x=65 y=9 name="Lev8Start139Nr4"
 x=79 y=26 name="TeleportIntoTheWarehouse"
-x=78 y=26 name="ArrivePointBackFromWarehouse"
+x=80 y=27 name="ArrivePointBackFromWarehouse"
 /plabelinfolvl
 pobstaclelabelinfolvl
 obstacle_label.index=0 obstacle_label_name="AccessDoorToWarehouse" states="closed:26 opened:6"
@@ -13442,7 +13442,6 @@ t152 x4.28 y3.65 l-1 d-1
 t152 x3.25 y2.64 l-1 d-1 
 t321 x8.00 y6.50 l-1 d-1 
 t321 x8.00 y6.50 l-1 d-1 
-t173 x16.00 y6.50 l-1 d-1 
 t5 x9.70 y5.46 l-1 d-1 
 t173 x5.50 y0.50 l-1 d-1 
 t173 x5.50 y1.50 l-1 d-1 
