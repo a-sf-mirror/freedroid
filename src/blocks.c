@@ -1621,7 +1621,9 @@ init_obstacle_data( void )
     obstacle_map [ ISO_GLASS_WALL_1 ] . obstacle_short_name = _("Glass wall");
     obstacle_map [ ISO_GLASS_WALL_1 ] . obstacle_long_description = _("A wall made out of glass. It lets the light go through.");
     obstacle_map [ ISO_GLASS_WALL_1 ] . flags |= IS_VERTICAL ; 
-    
+    obstacle_map [ ISO_GLASS_WALL_1 ] . flags |= IS_SMASHABLE ;
+    obstacle_map [ ISO_GLASS_WALL_1 ] . result_type_after_smashing_once = ISO_BROKEN_GLASS_WALL_1 ;
+
     obstacle_map [ ISO_GLASS_WALL_2 ] . block_area_parm_1 = standard_wall_width ;
     obstacle_map [ ISO_GLASS_WALL_2 ] . block_area_parm_2 = standard_wall_thickness ;
     obstacle_map [ ISO_GLASS_WALL_2 ] . flags &= ~BLOCKS_VISION_TOO ;
@@ -1630,7 +1632,17 @@ init_obstacle_data( void )
     obstacle_map [ ISO_GLASS_WALL_2 ] . obstacle_short_name = _("Glass wall");
     obstacle_map [ ISO_GLASS_WALL_2 ] . obstacle_long_description = _("A wall made out of glass. It lets the light go through."); 
     obstacle_map [ ISO_GLASS_WALL_2 ] . flags |= IS_HORIZONTAL ; 
-  
+
+    obstacle_map [ ISO_BROKEN_GLASS_WALL_1 ] . block_area_type = COLLISION_TYPE_NONE  ;
+    obstacle_map [ ISO_BROKEN_GLASS_WALL_1 ] . block_area_parm_1 = standard_wall_thickness ;
+    obstacle_map [ ISO_BROKEN_GLASS_WALL_1 ] . block_area_parm_2 = standard_wall_width ;
+    obstacle_map [ ISO_BROKEN_GLASS_WALL_1 ] . flags &= ~BLOCKS_VISION_TOO ;
+    obstacle_map [ ISO_BROKEN_GLASS_WALL_1 ] . filename = "iso_walls_0030.png" ;
+    obstacle_map [ ISO_BROKEN_GLASS_WALL_1 ] . transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS ;
+    obstacle_map [ ISO_BROKEN_GLASS_WALL_1 ] . obstacle_short_name = _("Broken glass wall");
+    obstacle_map [ ISO_BROKEN_GLASS_WALL_1 ] . obstacle_long_description = _("You can getthrough holes, but beware sharp edges.");
+    obstacle_map [ ISO_BROKEN_GLASS_WALL_1 ] . flags |= IS_VERTICAL ; 
+
     obstacle_map [ ISO_CYAN_WALL_WINDOW_1 ] . block_area_parm_1 = standard_wall_thickness ;
     obstacle_map [ ISO_CYAN_WALL_WINDOW_1 ] . block_area_parm_2 = standard_wall_width ;
     obstacle_map [ ISO_CYAN_WALL_WINDOW_1 ] . flags &= ~BLOCKS_VISION_TOO ;
