@@ -477,18 +477,6 @@ modify_obstacle_to_type="triggered"
 * End of action *
 
 * New event trigger *
-Trigger at label="CollapsingBrickWallMSOLobbyTrigger"
-Action="CollapsingBrickWallMSOLobbyTriggered"
-Delete the event trigger after it has been triggered=1
-* End of trigger *
-
-* New event action *
-Name="CollapsingBrickWallMSOLobbyTriggered"
-modify_obstacle_with_label="CollapsingBrickWallMSOLobby01"
-modify_obstacle_to_type="triggered"
-* End of action *
-
-* New event trigger *
 Trigger at label="MSOLobbyDeactivateSecurity"
 Action="DeactivateIntruderDetectorsMSOLobby"
 Delete the event trigger after it has been triggered=1
@@ -671,6 +659,37 @@ Also execute action with label="MSOMillerEntranceUnlock3"
 * New event action *
 Name="MSOMillerEntranceUnlock3"
 modify_obstacle_with_label="MSOMillerEntrance03"
+modify_obstacle_to_type="opened"
+* End of action *
+
+* New event trigger *
+Trigger at label="MSOHQUnlocker"
+Action="MSOHQUnlock"
+Delete the event trigger after it has been triggered=1
+* End of trigger *
+
+* New event action *
+Name="MSOHQUnlock"
+modify_obstacle_with_label="MSOHQDoor01"
+modify_obstacle_to_type="opened"
+Also execute action with label="MSOHQUnlock2"
+* End of action *
+
+* New event action *
+Name="MSOHQUnlock2"
+modify_obstacle_with_label="MSOHQDoor02"
+modify_obstacle_to_type="opened"
+* End of action *
+
+* New event trigger *
+Trigger at label="MSOHQExitSwitch"
+Action="MSOUnlockExitDoor"
+Delete the event trigger after it has been triggered=1
+* End of trigger *
+
+* New event action *
+Name="MSOUnlockExitDoor"
+modify_obstacle_with_label="MSOExitDoor00"
 modify_obstacle_to_type="opened"
 * End of action *
 

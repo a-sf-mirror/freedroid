@@ -546,9 +546,13 @@ SForce: T=711 Fixed=0 Marker=4 Friendly=0 StartUpAtLabel="NoviceArenaBot4StartGa
 
 ** Beginning of new Level **
 Level=31
-Maximum number of Random Droids=0
-Minimum number of Random Droids=0
-Allowed Type of Random Droid for this level: 751
+Maximum number of Random Droids=60
+Minimum number of Random Droids=70
+Allowed Type of Random Droid for this level: 302
+Allowed Type of Random Droid for this level: 249
+Allowed Type of Random Droid for this level: 629
+Allowed Type of Random Droid for this level: 329
+Allowed Type of Random Droid for this level: 139
 
 //--------------------
 // This is SMSDD - MagaSys defence droid
@@ -614,7 +618,10 @@ SForce: T=WOR Fixed=1 Marker=9999 Friendly=1 StartUpAtLabel="Koan" RushTux="no" 
 Level=35
 Maximum number of Random Droids=10
 Minimum number of Random Droids=0
-Allowed Type of Random Droid for this level: 476
+Allowed Type of Random Droid for this level: 302
+Allowed Type of Random Droid for this level: 883
+Allowed Type of Random Droid for this level: 249
+Allowed Type of Random Droid for this level: 629
 
 //--------------------
 // This is SADD - secret area defence droid
