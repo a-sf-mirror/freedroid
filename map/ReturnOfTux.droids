@@ -549,6 +549,25 @@ Level=31
 Maximum number of Random Droids=0
 Minimum number of Random Droids=0
 Allowed Type of Random Droid for this level: 751
+
+//--------------------
+// This is SMSDD - MagaSys defence droid
+//
+SForce: T=883 Fixed=0 Marker=44 Friendly=0 StartUpAtLabel="MSDDStartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="MSDD - MegaSys Defence Droid" attack_run_only_when_direct_line="no"
+
+//--------------------
+// This are droids, performing programm testing in testing area
+//
+SForce: T=420 Fixed=0 Marker=9993 Friendly=1 StartUpAtLabel="MSOTestDroid0StartGameSquare" RushTux="no" DialogSectionToUse="TestDroid" ShortLabel="TD" attack_run_only_when_direct_line="no"
+
+SForce: T=420 Fixed=0 Marker=9993 Friendly=1 StartUpAtLabel="MSOTestDroid1StartGameSquare" RushTux="no" DialogSectionToUse="TestDroid" ShortLabel="TD" attack_run_only_when_direct_line="no"
+
+SForce: T=420 Fixed=0 Marker=9993 Friendly=1 StartUpAtLabel="MSOTestDroid2StartGameSquare" RushTux="no" DialogSectionToUse="TestDroid" ShortLabel="TD" attack_run_only_when_direct_line="no"
+
+SForce: T=420 Fixed=0 Marker=9993 Friendly=1 StartUpAtLabel="MSOTestDroid3StartGameSquare" RushTux="no" DialogSectionToUse="TestDroid" ShortLabel="TD" attack_run_only_when_direct_line="no"
+
+SForce: T=420 Fixed=0 Marker=9993 Friendly=1 StartUpAtLabel="MSOTestDroid4StartGameSquare" RushTux="no" DialogSectionToUse="TestDroid" ShortLabel="TD" attack_run_only_when_direct_line="no"
+
 ** End of this levels droid data **
 
 ----------------------------------------------------------------------

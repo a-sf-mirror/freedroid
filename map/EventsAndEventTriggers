@@ -522,9 +522,157 @@ Also execute action with label="IntruderDetectorsMSOLobby2"
 * New event action *
 Name="IntruderDetectorsMSOLobby2"
 modify_obstacle_with_label="IntruderLaserTrapMSO01"
-modify_obstacle_to_type="defaults"
+modify_obstacle_to_type="triggered"
 * End of action *
 
+* New event trigger *
+Trigger at label="SwitchOffLaserTrapMSOLobby"
+Action="DisableIntruderDetectorsMSOLobby"
+Delete the event trigger after it has been triggered=1
+* End of trigger *
+
+* New event action *
+Name="DisableIntruderDetectorsMSOLobby"
+modify_obstacle_with_label="IntruderLaserTrapMSO02"
+modify_obstacle_to_type="default"
+Also execute action with label="DisableIntruderDetectorsMSOLobby2"
+* End of action *
+
+* New event action *
+Name="DisableIntruderDetectorsMSOLobby2"
+modify_obstacle_with_label="IntruderLaserTrapMSO01"
+modify_obstacle_to_type="default"
+* End of action *
+
+* New event trigger *
+Trigger at label="MSOPointOfNoReturn"
+Action="MSOPointOfNoReturnTrg"
+Delete the event trigger after it has been triggered=1
+* End of trigger *
+
+* New event action *
+Name="MSOPointOfNoReturnTrg"
+modify_obstacle_with_label="MSONoReturnDoor"
+modify_obstacle_to_type="closed"
+* End of action *
+
+* New event trigger *
+Trigger at label="BreakingGlassWallTrapTrigger"
+Action="BreakingGlassWallTrap"
+Delete the event trigger after it has been triggered=1
+* End of trigger *
+
+* New event action *
+Name="BreakingGlassWallTrap"
+modify_obstacle_with_label="GlassWallLaserTrap01"
+modify_obstacle_to_type="triggered"
+Also execute action with label="BreakingGlassWallTrap2"
+* End of action *
+
+* New event action *
+Name="BreakingGlassWallTrap2"
+modify_obstacle_with_label="GlassWallLaserTrap02"
+modify_obstacle_to_type="triggered"
+Also execute action with label="BreakingGlassWallTrap3"
+* End of action *
+
+* New event action *
+Name="BreakingGlassWallTrap3"
+modify_obstacle_with_label="GlassWallLaserTrap03"
+modify_obstacle_to_type="triggered"
+Also execute action with label="BreakingGlassWallTrap4"
+* End of action *
+
+* New event action *
+Name="BreakingGlassWallTrap4"
+modify_obstacle_with_label="GlassWallLaserTrap04"
+modify_obstacle_to_type="triggered"
+Also execute action with label="BreakingGlassWallTrap5"
+* End of action *
+
+* New event action *
+Name="BreakingGlassWallTrap5"
+modify_obstacle_with_label="GlassWallLaserTrap05"
+modify_obstacle_to_type="triggered"
+* End of action *
+
+* New event trigger *
+Trigger at label="SwitchOffGlassWallLaserTrap"
+Action="DisableBreakingGlassWallTrap"
+Delete the event trigger after it has been triggered=1
+* End of trigger *
+
+* New event action *
+Name="DisableBreakingGlassWallTrap"
+modify_obstacle_with_label="GlassWallLaserTrap01"
+modify_obstacle_to_type="default"
+Also execute action with label="DisableBreakingGlassWallTrap2"
+* End of action *
+
+* New event action *
+Name="DisableBreakingGlassWallTrap2"
+modify_obstacle_with_label="GlassWallLaserTrap02"
+modify_obstacle_to_type="default"
+Also execute action with label="DisableBreakingGlassWallTrap3"
+* End of action *
+
+* New event action *
+Name="DisableBreakingGlassWallTrap3"
+modify_obstacle_with_label="GlassWallLaserTrap03"
+modify_obstacle_to_type="default"
+Also execute action with label="DisableBreakingGlassWallTrap4"
+* End of action *
+
+* New event action *
+Name="DisableBreakingGlassWallTrap4"
+modify_obstacle_with_label="GlassWallLaserTrap04"
+modify_obstacle_to_type="default"
+Also execute action with label="DisableBreakingGlassWallTrap5"
+* End of action *
+
+* New event action *
+Name="DisableBreakingGlassWallTrap5"
+modify_obstacle_with_label="GlassWallLaserTrap05"
+modify_obstacle_to_type="default"
+* End of action *
+
+* New event trigger *
+Trigger at label="MSOMillerEntranceUnlockCounter"
+Action="MSOMillerEntranceUnlockCounter"
+Delete the event trigger after it has been triggered=1
+* End of trigger *
+
+* New event action *
+Name="MSOMillerEntranceUnlockCounter"
+modify_obstacle_with_label="MSOMillerEntranceCounterDoor"
+modify_obstacle_to_type="opened"
+* End of action *
+
+* New event trigger *
+Trigger at label="MSOMillerEntranceUnlocker"
+Action="MSOMillerEntranceUnlock"
+Delete the event trigger after it has been triggered=1
+* End of trigger *
+
+* New event action *
+Name="MSOMillerEntranceUnlock"
+modify_obstacle_with_label="MSOMillerEntrance01"
+modify_obstacle_to_type="opened"
+Also execute action with label="MSOMillerEntranceUnlock2"
+* End of action *
+
+* New event action *
+Name="MSOMillerEntranceUnlock2"
+modify_obstacle_with_label="MSOMillerEntrance02"
+modify_obstacle_to_type="opened"
+Also execute action with label="MSOMillerEntranceUnlock3"
+* End of action *
+
+* New event action *
+Name="MSOMillerEntranceUnlock3"
+modify_obstacle_with_label="MSOMillerEntrance03"
+modify_obstacle_to_type="opened"
+* End of action *
 
 ** End of Mission Event Section **
 
