@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CHANGE THIS\n"
 "Report-Msgid-Bugs-To: CHANGE THIS TOO\n"
-"POT-Creation-Date: 2008-06-14 08:16+0000\n"
-"PO-Revision-Date: 2008-06-14 08:16+0000\n"
+"POT-Creation-Date: 2008-06-23 14:19+0000\n"
+"PO-Revision-Date: 2008-06-23 14:19+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -1765,6 +1765,7 @@ msgstr ""
 
 #: ../dialogs/StandardBotAfterTakeover.dialog:191
 #: ../dialogs/SACD.dialog:170
+#: ../dialogs/TestDroid.dialog:41
 msgid " logout"
 msgstr ""
 
@@ -8209,5 +8210,11 @@ msgstr ""
 
 #: ../dialogs/Melfis.dialog:86
 msgid " I need to go now."
+msgstr ""
+
+#: ../dialogs/TestDroid.dialog:33
+msgid ""
+"This is MegaSys test bot, running very basic version of their OS. I can do not"
+"hing with this bot, because it doesn't know ho to do anything."
 msgstr ""
 
