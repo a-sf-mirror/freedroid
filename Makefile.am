@@ -19,7 +19,7 @@ freedroid_data = map graphics sound dialogs
 EXTRA_DIST = m4 $(man_MANS) $(freedroid_data)
 
 dist-hook:
-	find $(distdir) -name CVS                 | xargs rm -rf
+	find $(distdir) -name ".svn"                 | xargs rm -rf
 	find $(distdir) -name "*.blend"           | xargs rm -f
 	find $(distdir) -name "*~"                | xargs rm -f
 	find $(distdir) -name ".#*"               | xargs rm -f
