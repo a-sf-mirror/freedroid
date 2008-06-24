@@ -14,7 +14,7 @@ freedroidRPG_SOURCES = menu.c shop.c items.c character.c skills.c saveloadgame.c
 	proto.h struct.h system.h BFont.h \
 	SDL_rotozoom.c SDL_rotozoom.h open_gl.c open_gl_atlas.c mission.c chat.c light.c \
 	getopt.c getopt1.c getopt.h scandir.c scandir.h sound.h sound_effects.c \
-	lang.h lists.c gen_savestruct.py savestruct.c savestruct.h
+	lang.h lists.c lists.h gen_savestruct.py savestruct.c savestruct.h
 
 savestruct.c savestruct.h: struct.h
 	python gen_savestruct.py struct.h savestruct
