@@ -2074,20 +2074,27 @@ init_obstacle_data( void )
   obstacle_map [ ISO_CONSOLE_W ] . obstacle_long_description = _("This is a Terminus 2 terminal. Made by Parafunken.");
 
   obstacle_map [ ISO_BARREL_1 ] . flags |= DROPS_RANDOM_TREASURE ;
+  obstacle_map [ ISO_BARREL_1 ] . block_area_parm_1 = 0.7 ;
+  obstacle_map [ ISO_BARREL_1 ] . block_area_parm_2 = 0.7 ;
   obstacle_map [ ISO_BARREL_1 ] . flags |= IS_SMASHABLE ;
   obstacle_map [ ISO_BARREL_1 ] . obstacle_short_name = _("Barrel");
   obstacle_map [ ISO_BARREL_1 ] . obstacle_long_description = _("A painted barrel, protected from rust.");
   obstacle_map [ ISO_BARREL_2 ] . flags |= DROPS_RANDOM_TREASURE ;
+  obstacle_map [ ISO_BARREL_2 ] . block_area_parm_1 = 0.7 ;
+  obstacle_map [ ISO_BARREL_2 ] . block_area_parm_2 = 0.7 ;
   obstacle_map [ ISO_BARREL_2 ] . flags |= IS_SMASHABLE ;
   obstacle_map [ ISO_BARREL_2 ] . obstacle_short_name = _("Barrel");
   obstacle_map [ ISO_BARREL_2 ] . obstacle_long_description = _("A rusty barrel.");
-
   //wood crates
   obstacle_map [ ISO_BARREL_3 ] . flags |= DROPS_RANDOM_TREASURE ;
+  obstacle_map [ ISO_BARREL_3 ] . block_area_parm_1 = 0.80 ;
+  obstacle_map [ ISO_BARREL_3 ] . block_area_parm_2 = 0.95 ;
   obstacle_map [ ISO_BARREL_3 ] . flags |= IS_SMASHABLE ;
   obstacle_map [ ISO_BARREL_3 ] . obstacle_short_name = _("Wooden crate");
-  obstacle_map [ ISO_BARREL_3 ] . obstacle_long_description = _("This is a wooden crate that could contain interesting things. Or not.");
+  obstacle_map [ ISO_BARREL_3 ] . obstacle_long_description = _("This is a big wooden crate that could contain interesting things. Or not.");
   obstacle_map [ ISO_BARREL_4 ] . flags |= DROPS_RANDOM_TREASURE ;
+  obstacle_map [ ISO_BARREL_4 ] . block_area_parm_1 = 0.8 ;
+  obstacle_map [ ISO_BARREL_4 ] . block_area_parm_2 = 0.75 ;
   obstacle_map [ ISO_BARREL_4 ] . flags |= IS_SMASHABLE ;
   obstacle_map [ ISO_BARREL_4 ] . obstacle_short_name = _("Wooden crate");
   obstacle_map [ ISO_BARREL_4 ] . obstacle_long_description = _("This is a wooden crate that could contain interesting things. Or not.");
