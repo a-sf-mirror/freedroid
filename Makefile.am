@@ -5,12 +5,12 @@
 ACLOCAL_AMFLAGS = -I m4
 
 if NONLINUX
-extradirs = archetypeeditor
+extradirs = 
 else
-extradirs = archetypeeditor win32 croppy 
+extradirs = win32 croppy 
 endif 
 
-SUBDIRS = src po gluem $(extradirs)
+SUBDIRS = src po gluem archetypeeditor $(extradirs)
 
 man_MANS = freedroidRPG.6
 
