@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: freedroidrpg_dialogs\n"
 "Report-Msgid-Bugs-To: CHANGE THIS TOO\n"
 "POT-Creation-Date: 2008-06-14 08:16+0000\n"
-"PO-Revision-Date: 2008-06-18 23:06+0100\n"
+"PO-Revision-Date: 2008-06-25 01:46+0100\n"
 "Last-Translator: David Kremer <david.kremer.dk@gmail.com>\n"
 "Language-Team:  <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -374,7 +374,7 @@ msgstr "THIS WILL NEVER BE VISIBLE"
 
 #: ../dialogs/Francis.dialog:36
 msgid "Oh, thank heavens! You are still alive. Maybe not all hope is lost."
-msgstr "Vous êtes encore en vie. Grâce à Dieux. Il reste encore de l'espoir."
+msgstr "Vous êtes encore en vie. Grâce à Dieu. Il reste encore de l'espoir."
 
 #: ../dialogs/Francis.dialog:47
 msgid " Who am I?"
@@ -555,7 +555,7 @@ msgstr "Désolé, mes compétences en sciences astronomiques ont atteint leurs limi
 
 #: ../dialogs/Francis.dialog:197
 msgid " I feel terrible... Was I asleep? I remember nightmares. A meteor shower striking a planet full of life and killing everything on it..."
-msgstr " Je me sens mal... Étais-je endormi ? Je me rappelle des cauchemars. Un astéroïde fonçant sur une planète et détruisant toute vie..."
+msgstr " Je me sens mal... Étais-je endormi ? Je me souviens de cauchemars. Un astéroïde qui fonçait sur une planète et en éliminait toute forme de vie..."
 
 #: ../dialogs/Francis.dialog:200
 msgid "This is normal. You were in stasis sleep for over 70 years. Stasis is not too kind on the mind. Your strange dreams will keep recurring for several years."
@@ -1033,15 +1033,15 @@ msgstr "Oh, génial. Encore un autre loufoque."
 
 #: ../dialogs/OldTownGateGuardLeader.dialog:52
 msgid "About a week ago I let in a stranger who also said he was just taking a look around. I never saw him again."
-msgstr "Il y a environ une semaine j'ai laissé un étranger qui a également dit qu'il était seulement en train de jeter un oeil. Je ne l'ai jamais revu."
+msgstr "Il y a environ une semaine, j'ai laissé entrer un étranger qui disait aussi qu'il était seulement en train de jeter un oeil. Je ne l'ai jamais revu."
 
 #: ../dialogs/OldTownGateGuardLeader.dialog:54
 msgid "On that day all our computers went insane, 20 bags of food rations vanished from our storage and one of our bots was stolen."
-msgstr "À partir de ce jour, tous nos ordinateurs sont tombés malade, 20 sacs de rations se sont évanouis de notre stock et un de nos robots a été piraté."
+msgstr "Le même jour, tous nos ordinateurs sont devenus fous, 20 sacs de rations ont disparu de notre stock et un de nos robots a été piraté."
 
 #: ../dialogs/OldTownGateGuardLeader.dialog:56
 msgid "I think that damn freak lives somewhere to the east. I would love to get my hands on him and beat the life out of him. Slowly."
-msgstr "Je pense que ce damné marginal vit quelque part dans l'est. J'aimerai l'avoir entre les mains et le tabasser à mort. Lentement."
+msgstr "Je pense que ce damné marginal vit quelque part dans l'est. J'aimerai l'avoir entre les mains pour le tabasser à mort. Lentement."
 
 #: ../dialogs/OldTownGateGuardLeader.dialog:58
 msgid "Linarian, I will let you in. Do something stupid, and you aren't coming out. Got it? Good."
@@ -1665,7 +1665,7 @@ msgstr "Cet endroit sera toujours là pour toi."
 
 #: ../dialogs/Stone.dialog:36
 msgid "Welcome to this camp! I'm Ms. Stone. I run this shop."
-msgstr "Bienvenue dans ce camp ! Je suis Mlle Stone. Je suis la gérante de ce commerce."
+msgstr "Bienvenue dans ce camp ! Je suis Mlle Stone, la gérante de ce commerce."
 
 #: ../dialogs/Stone.dialog:46
 msgid " I would like to trade with you."
@@ -2066,7 +2066,7 @@ msgstr " Peut être puis-je t'aider d'une quelconque façon ?"
 
 #: ../dialogs/Spencer.dialog:95
 msgid "That would be most kind of you, but I doubt that you will be able to clear out the warehouse for us."
-msgstr "Cela serait fort sympathique de ta part, mais je ne pense pas que tu es en mesure de nettoyer le hangar de tous ces robots seul."
+msgstr "Cela serait fort sympathique de ta part, mais je ne pense pas que tu es actuellement en mesure de nettoyer le hangar de tous ces robots, à toi tout seul."
 
 #: ../dialogs/Spencer.dialog:97
 msgid "But since you are said to be powerful and a former hero, I'll once more put trust into a stranger."
@@ -2798,7 +2798,7 @@ msgstr " Pourquoi est-ce que le portail est fermé la plupart du temps ?"
 
 #: ../dialogs/Tybalt.dialog:48
 msgid "It's locked so no one can sneak inside while I'm not looking. That's why."
-msgstr "C'est fermé, ainsi personne ne peut fouiner à l'intérieur tant que je surveille."
+msgstr "C'est fermé, comme ça personne ne vient fouiner à l'intérieur si je tourne la tête ailleurs."
 
 #: ../dialogs/Tybalt.dialog:55
 msgid " I want to get into the guardhouse."
@@ -2818,11 +2818,11 @@ msgstr "YOU SHALL NOT PASS"
 
 #: ../dialogs/Tybalt.dialog:79
 msgid "Sorry pal, but I don't think so. Only authorized personnel are permitted and that means members of the Red Guard."
-msgstr "Désolé, pal, mais je ne pense pas. Seuls les personnels autorisés y ont accès, et ça signifie uniquement les membres de la Garde Rouge."
+msgstr "Désolé, mon pote, mais ça m'étonnerait. Seuls les personnes autorisées y ont accès, ce qui signifie uniquement les membres de la Garde Rouge."
 
 #: ../dialogs/Tybalt.dialog:81
 msgid "Talk to Spencer if you have any issues inside. I cannot let you pass."
-msgstr "Va voir Spencer à Spencer si tu as à faire à l'intérieur. Je ne peux pas te laisser passer."
+msgstr "Demande à Spencer si tu as quelque chose à faire à l'intérieur. Moi, je ne peux pas te laisser entrer."
 
 #: ../dialogs/Tybalt.dialog:89
 msgid " I have a lot of money for you."
@@ -2830,7 +2830,7 @@ msgstr " J'ai beaucoup d'argent pour toi."
 
 #: ../dialogs/Tybalt.dialog:92
 msgid "Fascinating. Hundred."
-msgstr "Fascinant. Cent."
+msgstr "C'est tentant. Il me faudra 100 cyberdollars."
 
 #: ../dialogs/Tybalt.dialog:100
 msgid "BRIBERY IS OCCURING"
@@ -4416,15 +4416,15 @@ msgstr "Bien que je sois à peu prés certain de pouvoir réparer tout ce que vous 
 
 #: ../dialogs/Dixon.dialog:67
 msgid "Our security wall is full of holes, and they need to be plugged up."
-msgstr "Notre enceinte de sécurité est pleine de trous, et ils ont besoin d'être colmatés."
+msgstr "Notre enceinte de sécurité est pleine de trous qui ont besoin d'être colmatés."
 
 #: ../dialogs/Dixon.dialog:69
 msgid "We need to perform statistical analysis of the energy distribution in our power supply system, there is a leak somewhere and we are losing a lot of megawatts."
-msgstr "Nous avons besoin d'analyser de manière statistique la distribution d'énergie dans notre réseau de distribution, il y a une baisse de régime quelque part et nous avons perdus beaucoup de mégawatts."
+msgstr "Il nous faut une analyse à grande échelle de la distribution d'énergie dans notre réseau, il y a une baisse de régime quelque part et beaucoup de mégawatts sont perdus."
 
 #: ../dialogs/Dixon.dialog:71
 msgid "Our defensive bots are falling into disrepair and many are in desperate need of a lot of maintenance."
-msgstr "Nos robots défensifs tombent du fait de leurs défaillances, et beaucoup ont désespérément besoin d'entretien."
+msgstr "Nos robots de défense tombent en panne à cause du manque d'entretien, qui est un besoin crucial."
 
 #: ../dialogs/Dixon.dialog:73
 msgid "The technical division is very understaffed right now. On average one person has to do the jobs of three people."
@@ -4444,7 +4444,7 @@ msgstr "Ah... Oui. Moi aussi je pensais que je n'en avais pas besoin."
 
 #: ../dialogs/Dixon.dialog:88
 msgid "One day the military division asked us to leave the town and fix a big hole in the defensive wall caused by a strange explosion."
-msgstr "Un jour la division militaire nous a demandé de sortir de la ville et de réparer une grosse brèche dans la muraille défensive causée par une explosion étrange."
+msgstr "Un jour, la division militaire nous a demandé de sortir de la ville, pour réparer une grosse brèche dans la muraille défensive, causée par une explosion d'origine inconnue."
 
 #: ../dialogs/Dixon.dialog:90
 msgid "All was well until the bots launched a massive attack. They hit us with lasers, plasma mortars, radiation cannons and lots of other weapons."
@@ -4460,7 +4460,7 @@ msgstr "La main n'a pas beaucoup souffert, mais c'était une autre histoire pour 
 
 #: ../dialogs/Dixon.dialog:96
 msgid "Now, while you cannot see it underneath the armor, my right leg runs NetBSD."
-msgstr "u ne peux pas le voir sous mon armure, mais à présent ma jambe droite tourne sous NetBSD."
+msgstr "Tu ne peux pas le voir sous mon armure, mais ma jambe droite tourne à présent sous NetBSD."
 
 #: ../dialogs/Dixon.dialog:98
 msgid "Now I never leave home without my protective suit. Mostly for protection, but also for aesthetic reasons. I am sure you understand."
@@ -4528,7 +4528,7 @@ msgstr "Et que penses-tu de la construction ? Des appareils mécaniques ? De la r
 
 #: ../dialogs/Dixon.dialog:168
 msgid " Well... I can build an igloo and make pykrete out of snow... And... Umm..."
-msgstr " Eh bien... Je peux construire un igloo et faire des pykrete en dehors de la neige... Et... Hum..."
+msgstr " Eh bien... Je peux construire un igloo, glisser sur la glace pour faire des pirouettes... Et... Hum..."
 
 #: ../dialogs/Dixon.dialog:171
 msgid "Well, I appreciate your enthusiasm, and at the same time I am afraid that waiting half a year for snowfall does not sound so appealing to me right now."
@@ -4589,7 +4589,7 @@ msgstr " Qu'est-ce qui s'est passé lorsque les robots ont pris tes outils ?"
 
 #: ../dialogs/Dixon.dialog:216
 msgid "Long story. Just before the Great Assault I was installing some cables in the failover power supply system."
-msgstr "C'est une longue histoire. Juste avant le Grand Assaut, j'installais quelques câbles dans le système d'alimentation en énergie de secours."
+msgstr "C'est une longue histoire. Quelques instants avant le Grand Assaut, j'étais en train d'installer quelques câbles dans le réseau d'alimentation auxiliaire."
 
 #: ../dialogs/Dixon.dialog:218
 msgid "I was approached by a bot. It grabbed me and said 'Dixon, do not be afraid of me.'"
@@ -5420,7 +5420,7 @@ msgstr "Je suis en service de garde pour le moment."
 
 #: ../dialogs/StandardOldTownGateGuard.dialog:57
 msgid "There have been no attacks for a while now. It is too quiet, I think something big is about to happen."
-msgstr "Il n'y a pas eu d'attaque récemment. C'est trop tranquille, je pense que quelque chose d'important se prépare."
+msgstr "Il n'y a pas eu d'attaque récemment. C'est trop tranquille, je pense que quelque chose se prépare."
 
 #: ../dialogs/StandardOldTownGateGuard.dialog:64
 msgid " I'll be going, then."
