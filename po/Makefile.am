@@ -81,7 +81,7 @@ MSGID_BUGS_ADDRESS = freedroid-discussion@lists.sourceforge.net
 
 LOCALEDIR=$(pkgdatadir)/locale
 
-EXTRA_DIST = freedroidrpg.pot freedroidrpg_data.pot freedroidrpg_dialogs.pot $(POFILES_SRC) $(POFILES_DAT) $(POFILES_DIA)
+EXTRA_DIST = freedroidrpg.pot freedroidrpg_data.pot freedroidrpg_dialogs.pot $(POFILES_SRC) $(POFILES_DAT) $(POFILES_DIA) CMakeLists.txt
 
 MSGMERGE_OPTIONS = --quiet --update
 XGETTEXT_OPTIONS = --keyword=_ --keyword=N_ --force-po

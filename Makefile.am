@@ -5,9 +5,9 @@
 ACLOCAL_AMFLAGS = -I m4
 
 if NONLINUX
-extradirs = 
+extradirs = archetypeeditor
 else
-extradirs = win32 croppy 
+extradirs = archetypeeditor win32 croppy 
 endif 
 
 SUBDIRS = src po gluem $(extradirs)
@@ -16,7 +16,7 @@ man_MANS = freedroidRPG.6
 
 freedroid_data = map graphics sound dialogs
 
-EXTRA_DIST = m4 $(man_MANS) $(freedroid_data)
+EXTRA_DIST = m4 $(man_MANS) $(freedroid_data) CMakeLists.txt
 
 dist-hook:
 	find $(distdir) -name ".svn"                 | xargs rm -rf
