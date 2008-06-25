@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: freedroidrpg_dialogs\n"
 "Report-Msgid-Bugs-To: CHANGE THIS TOO\n"
 "POT-Creation-Date: 2008-06-14 08:16+0000\n"
-"PO-Revision-Date: 2008-06-25 01:46+0100\n"
+"PO-Revision-Date: 2008-06-25 18:08+0100\n"
 "Last-Translator: David Kremer <david.kremer.dk@gmail.com>\n"
 "Language-Team:  <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -382,7 +382,7 @@ msgstr " Qui suis-je ?"
 
 #: ../dialogs/Francis.dialog:50
 msgid "Oh dear. This is not good. Not good."
-msgstr "Oh seigneur. Ce n'est pas bien. Pas bien du tout."
+msgstr "Oh seigneur. Ce n'est pas bon. Pas bon."
 
 #: ../dialogs/Francis.dialog:52
 msgid "*sigh* Long stasis sleep can cause neurological damage and impact the memory. Looks like that is what happened here."
@@ -2790,7 +2790,7 @@ msgstr "AU REVOIR."
 
 #: ../dialogs/Tybalt.dialog:36
 msgid "Hello. I'm Tybalt. I'm guarding the guardhouse gate. Only authorized personnel are permitted."
-msgstr "Salut. Je suis Tybalt. Je garde le portail de la maison. Seul le personnel autorisé y a accès."
+msgstr "Bonjour. Je suis Tybalt. Je garde le portail de la maison. Seul les personnes autorisées peuvent entrer."
 
 #: ../dialogs/Tybalt.dialog:45
 msgid " Why is the guardhouse locked most of the time?"
@@ -2798,7 +2798,7 @@ msgstr " Pourquoi est-ce que le portail est fermé la plupart du temps ?"
 
 #: ../dialogs/Tybalt.dialog:48
 msgid "It's locked so no one can sneak inside while I'm not looking. That's why."
-msgstr "C'est fermé, comme ça personne ne vient fouiner à l'intérieur si je tourne la tête ailleurs."
+msgstr "C'est fermé pour que personne ne vienne fouiner à l'intérieur si je tourne la tête."
 
 #: ../dialogs/Tybalt.dialog:55
 msgid " I want to get into the guardhouse."
@@ -2818,7 +2818,7 @@ msgstr "YOU SHALL NOT PASS"
 
 #: ../dialogs/Tybalt.dialog:79
 msgid "Sorry pal, but I don't think so. Only authorized personnel are permitted and that means members of the Red Guard."
-msgstr "Désolé, mon pote, mais ça m'étonnerait. Seuls les personnes autorisées y ont accès, ce qui signifie uniquement les membres de la Garde Rouge."
+msgstr "Désolé, mon pote, mais ça m'étonnerait. Seul les personnes autorisées y ont accès, ce qui signifie uniquement les membres de la Garde Rouge."
 
 #: ../dialogs/Tybalt.dialog:81
 msgid "Talk to Spencer if you have any issues inside. I cannot let you pass."
@@ -2846,11 +2846,11 @@ msgstr "DAMN, I AM POOR"
 
 #: ../dialogs/Tybalt.dialog:127
 msgid " Erm... I don't have that much."
-msgstr " Euh... Je n'ai pas grand chose."
+msgstr " Euh... Je n'ai pas assez d'argent."
 
 #: ../dialogs/Tybalt.dialog:130
 msgid "Well, I cannot open the door then."
-msgstr "J'ai bien l'impression que cette porte va rester fermer."
+msgstr "J'ai bien l'impression que cette porte va rester fermée."
 
 #: ../dialogs/Tybalt.dialog:137
 msgid " Here you go."
@@ -6534,27 +6534,27 @@ msgstr " Salut... Euh... Qui es-tu ?"
 
 #: ../dialogs/Duncan.dialog:36
 msgid "Duncan McNamara, The Red Guard's resident bomb maker, at your service."
-msgstr "Duncan McNamara, le fabriquant de bombes attitré de la garde rouge, à ton service."
+msgstr "Je suis Duncan McNamara, le fabriquant de bombes officiel de la garde rouge. À ton service."
 
 #: ../dialogs/Duncan.dialog:45
 msgid " I would like to buy a bomb."
-msgstr " J'aimerai acheter une bombe."
+msgstr " Je voudrai acheter des explosifs."
 
 #: ../dialogs/Duncan.dialog:48
 msgid "Yes. I am sure we can arrange something. Take a look."
-msgstr "Oui. Je pense que nous pouvons arranger quelque chose. Voyons un peu."
+msgstr "Mmmh. Je pense que ça doit être possible. Jette un coup d'oeil."
 
 #: ../dialogs/Duncan.dialog:58
 msgid " I see only grenades. Do you have something bigger?"
-msgstr " Je vois seulement des grenades. Tu n'as pas quelque chose de plus gros ?"
+msgstr "Il y a juste des grenades. Tu n'as rien de plus puissant ?"
 
 #: ../dialogs/Duncan.dialog:61
 msgid "My deepest apologies, I do not."
-msgstr "Mes plus plates excuses, mais je ne peux pas."
+msgstr "Mes plus plates excuses, non."
 
 #: ../dialogs/Duncan.dialog:63
 msgid "The Red Guard prohibits the sales of extremely destructive munitions."
-msgstr "La Garde Rouge interdit formellement la vente de munitions lourdes à grand pouvoir destructeur."
+msgstr "La vente de munitions lourdes est interdite pas la Garde Rouge."
 
 #: ../dialogs/Duncan.dialog:65
 msgid "It is not yet the time for the fall of their rule, so I remain loyal."
