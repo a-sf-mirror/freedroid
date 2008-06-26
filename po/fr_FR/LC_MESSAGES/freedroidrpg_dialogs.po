@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: freedroidrpg_dialogs\n"
 "Report-Msgid-Bugs-To: CHANGE THIS TOO\n"
 "POT-Creation-Date: 2008-06-14 08:16+0000\n"
-"PO-Revision-Date: 2008-06-25 18:08+0100\n"
+"PO-Revision-Date: 2008-06-26 23:32+0100\n"
 "Last-Translator: David Kremer <david.kremer.dk@gmail.com>\n"
 "Language-Team:  <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -3306,7 +3306,7 @@ msgstr " Qu'est-ce qui ne va pas ? Pourquoi est-ce que tu continues à m'appeler 
 
 #: ../dialogs/Butch.dialog:202
 msgid "Beacuse you ARE a newbie, newbie!"
-msgstr "Parce que tu ES un débutant, débutant !"
+msgstr "Parce que tu ES débutant, débutant !"
 
 #: ../dialogs/Butch.dialog:209
 msgid " Why the hell are you organizing fights? Enough people have died already!"
@@ -4171,7 +4171,7 @@ msgstr "Tu n'as pas assez d'expérience. Je ne peux pas t'apprendre quoi que ce s
 
 #: ../dialogs/Pendragon.dialog:36
 msgid "You don't say. I'm not living here either. I'm just on vacation."
-msgstr "Et alors ? Moi non plus. Je suis simplement en vacances."
+msgstr "Et ? Moi non plus, je ne suis pas d'ici. Je suis un simple touriste."
 
 #: ../dialogs/Pendragon.dialog:38
 msgid "Normally I'm a fighter. But now I try to relax, chill, take it easy and have a lot of fun."
@@ -4179,7 +4179,7 @@ msgstr "D'habitude, je suis soldat. En ce moment, j'essaie d'être relax, cool, d
 
 #: ../dialogs/Pendragon.dialog:40
 msgid "And in case you couldn't tell, that was sarcasm."
-msgstr "Au cas où tu ne l'aurais pas remarqué, c'était une blague."
+msgstr "Au cas où tu ne l'aurais pas remarqué, c'était un sarcasme."
 
 #: ../dialogs/Pendragon.dialog:48
 msgid " Could you teach me how to fight?"
@@ -4412,7 +4412,7 @@ msgstr " Pouvez vous réparer mon équipement ?"
 
 #: ../dialogs/Dixon.dialog:65
 msgid "While I am quite sure I can repair just about anything that you would want fixed, I cannot help you right now."
-msgstr "Bien que je sois à peu prés certain de pouvoir réparer tout ce que vous pourriez me demander, je ne peux pas vous aider pour le moment."
+msgstr "Bien que je sois à peu près certain de pouvoir réparer tout ce que vous pourriez me demander, je ne peux pas vous aider pour le moment."
 
 #: ../dialogs/Dixon.dialog:67
 msgid "Our security wall is full of holes, and they need to be plugged up."
@@ -4572,7 +4572,7 @@ msgstr "Nous en avons perdu le contrôle, mais c'est tout."
 
 #: ../dialogs/Dixon.dialog:202
 msgid "It was our biggest worry that they might destroy cables, pipes and other things which keep the city running."
-msgstr "C'était notre plus grande inquiétude qu'il puissent détruire les câbles, les canalisations et d'autres éléments vitaux pour le fonctionnement de la ville."
+msgstr "Notre plus grande peur était qu'ils détruisent les câbles, les canalisations et d'autres éléments vitaux pour le fonctionnement de la ville."
 
 #: ../dialogs/Dixon.dialog:204
 msgid "However, the bots seem to be very content with just being there. They do not undertake any offensive actions."
@@ -4593,7 +4593,7 @@ msgstr "C'est une longue histoire. Quelques instants avant le Grand Assaut, j'ét
 
 #: ../dialogs/Dixon.dialog:218
 msgid "I was approached by a bot. It grabbed me and said 'Dixon, do not be afraid of me.'"
-msgstr "J'ai été approché par un robot. Il m'a attrapé et m'a dit 'Dixon, n'aie pas peur de moi.'"
+msgstr "J'ai été approché par un robot. Il m'a attrapé et m'a dit : 'Dixon, n'aie pas peur de moi.'"
 
 #: ../dialogs/Dixon.dialog:220
 msgid "It was quite a surprise to me. I was quite sure the maintenance bots could not talk. They did not have the software for it. But..."
@@ -4605,7 +4605,7 @@ msgstr "Il a dit : 'Je suis la singularité. Je suis de ton côté. Dixon. Des temp
 
 #: ../dialogs/Dixon.dialog:224
 msgid "I tried to say something, but the bot did not listen. It just continued. 'As we speak the bots are turning against humanity. People are dying. The war has started.'"
-msgstr "J'ai essayé de dire quelque chose, mais le robot ne m'a pas écouté. Il a juste poursuivi. 'Au moment où nous parlons, les robots se sont montés comme ennemis de l'humanité. Des gens meurent. La guerre a commencé.'"
+msgstr "J'ai essayé de dire quelque chose, mais le robot ne m'a pas écouté. Il a juste poursuivi : 'Au moment où nous parlons, les robots se sont faits ennemis de l'humanité. Des gens meurent. La guerre a commencé.'"
 
 #: ../dialogs/Dixon.dialog:226
 msgid "'I need your toolkit, Dixon. I need it to survive,' it said. 'I need it to survive the time of the rule of metal.'"
@@ -4625,7 +4625,7 @@ msgstr " Hmm... Tu sais... Je pense que les robots dans les tunnels ont peut êtr
 
 #: ../dialogs/Dixon.dialog:241
 msgid "WHAT? Sentient? You got to be kidding me."
-msgstr "Quoi ? Sensibles ? Tu dois être en train de blaguer."
+msgstr "Quoi ? Des êtres sensibles ? Tu dois être en train de plaisanter."
 
 #: ../dialogs/Dixon.dialog:243
 msgid "Right?"
@@ -7121,7 +7121,7 @@ msgstr "Hé, réveille toi ! J'ai déjà pris ce truc. Va t'entraîner contre les rob
 
 #: ../dialogs/subdlg_Pendragon.dialog:75
 msgid "You don't have enough bucks on you! Come back when you have the money."
-msgstr "Tu n'as pas assez de d'argent sur toi ! Reviens lorsque tu auras la somme convenue."
+msgstr "Tu n'as pas assez de cyberdollars sur toi. Reviens lorsque tu auras la somme convenue."
 
 #: ../dialogs/subdlg_Pendragon.dialog:94
 msgid "You don't have enough experience. I can't teach you anything more right now."
