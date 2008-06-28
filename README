@@ -1,5 +1,6 @@
 Game url:     http://freedroid.sourceforge.net
 Project url:  http://sourceforge.net/projects/freedroid/
+Irc channel:  irc://irc.freenode.net/freedroid
 
     FreedroidRPG: readme
    ----------------------
@@ -10,11 +11,15 @@ Project url:  http://sourceforge.net/projects/freedroid/
    ---------------
    1. Introduction
    2. Install
-   3. Known Issues
-   4. Basic controls
-   5. Level editor
-   6. Contact us
-   7. Licence
+   3. Screen resolution:
+   4. Known Issues
+      - General
+      - Windows
+      - Ubuntu
+   5. Basic controls
+   6. Level editor
+   7. Contact us
+   8. Licence
 
 1. Introduction:
 ================
@@ -31,34 +36,74 @@ Project url:  http://sourceforge.net/projects/freedroid/
  a large part of the gameplay. Finally, if guns are too inaccurate and blades too messy, you can 
  always take over your enemies and have them fight on your side.
 
+
 2. Install:
 ================
  Please refer to the INSTALL file located in the same folder as this file.
 
-3. Known Issues:
+
+3. Screen resolution:
+=====================
+ There are a few hidden high resolution settings only accessible from commandline. They are badly tested 
+ and thus generally considered to be buggy and are unsupported. They however still be quite useful for many,
+ especially for widescreen LCDs in fullscreen mode. 
+
+ At this writing the following resolutions are implemented
+
+     These codes correspond to the following resolutions available:
+     0 = 640 x 480 (default with SDL)
+     1 = 800 x 600 (default with OpenGL)
+     2 = 1024 x 748 
+     3 = 1280 x 1024 
+     4 = Unsupported! (1280 x 800) 
+     5 = Unsupported! (1440 x 900) 
+     6 = Unsupported! (1680 x 1050) 
+ 
+ Start with eg the commandline "freedroid -r 4" to choose a specific resolution.
+ To get a current up to date list of available resolutions use "freedroid -r 99"
+
+ Some know issues for these unsupported resolutions:
+ - Portrait image in dialoges overflows it's borders.
+ - Off center lighting radious.
+ - Text scrolling when talking to NPCs might be incorrect at times.
+ - Map edges might be visable when moving from one level to the next.
+ - On roughly 1000 or more vertical resolution and FULL SCREEN, dialogs sometimes switch back and forth between
+   full world and black background.
+
+
+4. Known Issues:
 ================
- * In Ubuntu, changing language will not work since Ubuntu by default does not ship with standard ISO
-   locales, only UTF-8 versions. You will have to manually correct this to get it working.
-   Procedure
+- General
+  * Path tracing in the game is partially buggy. Sometimes NPCs, bots or even Tux eg can walk from A to B but
+  not from B to A. This eg causes the town Doctor to "get stuck" in the toilet (though possibly he just had
+  something bad for dinner). We are working on solving this and several related issues, but it has proven to be
+  quite difficult.
+  * Most melee and ranged weapons only have placeholder laserswords/rifles for their Tux holding and attack 
+  animations. If you are skilled with 3D modelling, please help us out to fix this.
+
+- Windows 
+  * Using the tool IZarc to unpack the downloaded zip breaks the game. IZarc apparently can not handle filenames
+  without ".fileextention" at the end. Please use other options, eg 7zip, winzip, winrar etc, to correctly unpack
+  the game.
+
+
+- Ubuntu
+  * Changing language in game will not work by default since Ubuntu does not ship with standard ISO locales, 
+  only UTF-8 versions. You will have to manually correct this to get it working.
+  Procedure
         1) In commandline write 
                 sudo nano /var/lib/locales/supported.d/local
         2) Add the locales you are interested in, 1 entry on each line, eg
-                de_DE ISO-8859-1
-                fr_FR ISO-8859-1
-                sv_SE ISO-8859-1
+                de_DE ISO-8859-15
+                fr_FR ISO-8859-15
+                sv_SE ISO-8859-15
+                ru_RU cp1251
         3) Run
                 sudo dpkg-reconfigure locales
         4) You Should now be able to chose the corresponding languages in the in game menu.
 
- * There are a few hidden resolutions that might be useful for widescreen LCDs in fullscreen mode. 
-   They are badly tested and thus generally considered to be buggy or at least unsupported. Thus they
-   can only be accessed from the commandline. 
-   Start with "freedroid -r 99" to get a list of the current available options.
 
- * On roughly 1000 or more vertical resolution dialogs sometimes switch back and forth between
-   black and world background.
-
-4. Controls:
+5. Controls:
 =============
  Movement:
 
@@ -96,16 +141,19 @@ Project url:  http://sourceforge.net/projects/freedroid/
  Escape     ... Show the main menu
  F12        ... Take a screenshot
 
-5. Level editor:
+
+6. Level editor:
 ================
  There is a level editor integrated into the game. It can be accessed from the main menu.
 
-6. Contact:
+
+7. Contact:
 ===========
  Mailing list: freedroid-discussion@lists.sourceforge.net
  Irc channel:  #freedroid on irc.freenode.net
 
-7. Licence:
+
+8. Licence:
 ===========
  The game itself is licensed under GPL. Some other tools use a more permissive license, 
  please refer to the FILES file located in the same folder as this file.
