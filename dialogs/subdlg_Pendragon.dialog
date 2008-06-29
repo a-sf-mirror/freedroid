@@ -35,16 +35,32 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=81  PositionY=310  
 ChangeOption=0 ChangeToValue=0
 ChangeOption=9 ChangeToValue=1
-ChangeOption=2 ChangeToValue=1
+ChangeOption=1 ChangeToValue=1
 ChangeOption=99 ChangeToValue=1
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-New Option Nr=2  OptionText=_" Teach me the basic stuff. (cost 100 cash, 5 ability points)"
+New Option Nr=1  OptionText=_" Teach me the basic stuff."
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=183  PositionY=304  
+ChangeOption=1 ChangeToValue=0
+Subtitle=_"Are you sure?"
+ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
+Subtitle=_"I only accept students that already have some experience in fighting bots."
+ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
+ChangeOption=1 ChangeToValue=0
+ChangeOption=9 ChangeToValue=0
+ChangeOption=2 ChangeToValue=1
+ChangeOption=99 ChangeToValue=1
+AlwaysExecuteThisOptionPriorToDialogStart="no"
+----------------------------------------------------------------------
+
+New Option Nr=2  OptionText=_" Yes (cost 100 cash, 5 ability points)"
+OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
+PositionX=283  PositionY=368  
 ChangeOption=2 ChangeToValue=0
+ChangeOption=99 ChangeToValue=1
 OnCondition="MeleeSkillLesserThan:1" JumpToOption=3 ElseGoto=4
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
