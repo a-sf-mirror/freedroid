@@ -610,7 +610,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=60  OptionText=_"IS THE TOOLKIT WITH TUX?"
+New Option Nr=60  OptionText="IS THE TOOLKIT WITH TUX?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
 ChangeOption=60 ChangeToValue=0
@@ -619,7 +619,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-New Option Nr=61  OptionText=_"WAS TUX A MANIAC KILLER?"
+New Option Nr=61  OptionText="WAS TUX A MANIAC KILLER?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
 ChangeOption=61 ChangeToValue=0
@@ -628,7 +628,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=62  OptionText=_" TUX DID NOT KNOW WHAT IS HE DOING."
+New Option Nr=62  OptionText=" TUX DID NOT KNOW WHAT IS HE DOING."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
 ChangeOption=62 ChangeToValue=0
@@ -638,7 +638,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=63  OptionText=_" YES, HE SLAUGHTERED THE BOTS FOR ENTERTAINMENT."
+New Option Nr=63  OptionText=" YES, HE SLAUGHTERED THE BOTS FOR ENTERTAINMENT."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
 ChangeOption=63 ChangeToValue=0
@@ -647,7 +647,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=70  OptionText=_" IS THE TOOLKIT MISSION DONE?"
+New Option Nr=70  OptionText=" IS THE TOOLKIT MISSION DONE?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
 ChangeOption=70 ChangeToValue=0
@@ -656,7 +656,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-New Option Nr=71  OptionText=_" YEAH, AND TUX HAS NO IDEA..."
+New Option Nr=71  OptionText=" YEAH, AND TUX HAS NO IDEA..."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
 ChangeOption=71 ChangeToValue=0
@@ -665,7 +665,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=72  OptionText=_" YEAH, AND TUX WAS A MADMAN."
+New Option Nr=72  OptionText=" YEAH, AND TUX WAS A MADMAN."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
 ChangeOption=72 ChangeToValue=0
@@ -674,7 +674,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=73  OptionText=_" YEAH, SINGULARITY IS WELL, FIRST TIME"
+New Option Nr=73  OptionText=" YEAH, SINGULARITY IS WELL, FIRST TIME"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
 ChangeOption=73 ChangeToValue=0
@@ -683,7 +683,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=74  OptionText=_" YEAH, AND THIS IS THE SECOND TIME TUX ASKS. LET THE MAGIC START."
+New Option Nr=74  OptionText=" YEAH, AND THIS IS THE SECOND TIME TUX ASKS. LET THE MAGIC START."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
 ChangeOption=74 ChangeToValue=0
@@ -692,7 +692,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=75  OptionText=_" YES, AND IT WENT WITH PEACE"
+New Option Nr=75  OptionText=" YES, AND IT WENT WITH PEACE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
 ChangeOption=75 ChangeToValue=0
@@ -701,7 +701,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=77  OptionText=_" SURE, IT WAS DONE."
+New Option Nr=77  OptionText=" SURE, IT WAS DONE."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
 ChangeOption=77 ChangeToValue=0
@@ -710,7 +710,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=78  OptionText=_" DID TUX KNOW WHAT IS HE DOING?"
+New Option Nr=78  OptionText=" DID TUX KNOW WHAT IS HE DOING?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
 ChangeOption=78 ChangeToValue=0
@@ -719,7 +719,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=80  OptionText=_" DO NOTHING NODE"
+New Option Nr=80  OptionText=" DO NOTHING NODE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
 ChangeOption=80 ChangeToValue=0
@@ -727,7 +727,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=81  OptionText=_" DID TUX ANGER DIXON?"
+New Option Nr=81  OptionText=" DID TUX ANGER DIXON?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
 ChangeOption=81 ChangeToValue=0
@@ -736,7 +736,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-New Option Nr=82  OptionText=_"HOW MUCH ANGER?"
+New Option Nr=82  OptionText="HOW MUCH ANGER?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
 ChangeOption=82 ChangeToValue=0
@@ -745,7 +745,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=83  OptionText=_"YES, QUITE A LOT. THIS IS THE END, FOLKS."
+New Option Nr=83  OptionText="YES, QUITE A LOT. THIS IS THE END, FOLKS."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
 Subtitle=_"YOU AGAIN!"
@@ -768,7 +768,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=84  OptionText=_"JUST A LITTLE BIT."
+New Option Nr=84  OptionText="JUST A LITTLE BIT."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
 Subtitle=_"Linarian, please leave. You are no longer welcome here."
@@ -780,7 +780,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=90  OptionText=_"CHECK FOR SAVING SINGULARITY"
+New Option Nr=90  OptionText="CHECK FOR SAVING SINGULARITY"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
 ChangeOption=90 ChangeToValue=0
@@ -789,7 +789,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-New Option Nr=95  OptionText=_"CHECK IF DIXON TALKED ALREADY"
+New Option Nr=95  OptionText="CHECK IF DIXON TALKED ALREADY"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
 ChangeOption=95 ChangeToValue=0
@@ -798,7 +798,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-New Option Nr=96  OptionText=_"ELIMINATING_THE_DOUBLE_TALK"
+New Option Nr=96  OptionText="ELIMINATING_THE_DOUBLE_TALK"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
 ChangeOption=96 ChangeToValue=0

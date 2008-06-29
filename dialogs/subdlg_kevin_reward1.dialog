@@ -30,7 +30,7 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-New Option Nr=0  OptionText=_"THIS WILL NOT EVER BE VISIBLE"
+New Option Nr=0  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=83  PositionY=249  
 ChangeOption=0 ChangeToValue=0
@@ -95,7 +95,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=99  OptionText=_" [BACK]"
+New Option Nr=99  OptionText=" [BACK]"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=83  PositionY=405  
 ChangeOption=99 ChangeToValue=1

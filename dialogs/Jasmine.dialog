@@ -181,7 +181,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=90  OptionText=_"JASMINE_FIRST_CHECK"
+New Option Nr=90  OptionText="JASMINE_FIRST_CHECK"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
 ChangeOption=90 ChangeToValue=0
@@ -190,7 +190,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-New Option Nr=91  OptionText=_"JASMINE_CHECK_TWO"
+New Option Nr=91  OptionText="JASMINE_CHECK_TWO"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
 ChangeOption=91 ChangeToValue=0
@@ -199,7 +199,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=97  OptionText=_"TWO_COUNTERS"
+New Option Nr=97  OptionText="TWO_COUNTERS"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
 ChangeOption=97 ChangeToValue=0
@@ -208,7 +208,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=98  OptionText=_"ONE COUNTER"
+New Option Nr=98  OptionText="ONE COUNTER"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
 ChangeOption=98 ChangeToValue=0
@@ -217,7 +217,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=99  OptionText=_"NO COUNTERS YET."
+New Option Nr=99  OptionText="NO COUNTERS YET."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
 ChangeOption=99 ChangeToValue=0

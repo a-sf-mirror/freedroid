@@ -62,7 +62,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=3  OptionText=_"THE GATE OPENS"
+New Option Nr=3  OptionText="THE GATE OPENS"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=224  PositionY=154  
 Subtitle=_"Of course. Guard members are always authorized to enter the guardhouse. The gate is open. Enjoy your stay."
@@ -73,7 +73,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=4  OptionText=_"YOU SHALL NOT PASS"
+New Option Nr=4  OptionText="YOU SHALL NOT PASS"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=299  PositionY=165  
 Subtitle=_"Sorry pal, but I don't think so. Only authorized personnel are permitted and that means members of the Red Guard."
@@ -86,7 +86,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=50  OptionText=_" I have a lot of money for you."
+New Option Nr=50  OptionText=" I have a lot of money for you."
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=200  PositionY=200  
 Subtitle=_"Fascinating. Hundred."
@@ -97,7 +97,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=51  OptionText=_"BRIBERY IS OCCURING"
+New Option Nr=51  OptionText="BRIBERY IS OCCURING"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
 ChangeOption=51 ChangeToValue=0
@@ -106,7 +106,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=52  OptionText=_"GOT ENOUGH MONEY!"
+New Option Nr=52  OptionText="GOT ENOUGH MONEY!"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
 ChangeOption=52 ChangeToValue=0
@@ -115,7 +115,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=53  OptionText=_"DAMN, I AM POOR"
+New Option Nr=53  OptionText="DAMN, I AM POOR"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
 ChangeOption=53 ChangeToValue=0
@@ -191,7 +191,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=60  OptionText=_"BRIBED BEFORE?"
+New Option Nr=60  OptionText="BRIBED BEFORE?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
 ChangeOption=60 ChangeToValue=0
@@ -200,7 +200,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=61  OptionText=_"YEAH, ONCE BEFORE. NOT GONNA DO THAT AGAIN."
+New Option Nr=61  OptionText="YEAH, ONCE BEFORE. NOT GONNA DO THAT AGAIN."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
 ChangeOption=61 ChangeToValue=0
@@ -208,7 +208,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=62  OptionText=_"NO, NEVER BEFORE."
+New Option Nr=62  OptionText="NO, NEVER BEFORE."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
 ChangeOption=62 ChangeToValue=0

@@ -30,7 +30,7 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-New Option Nr=0 OptionText=_"THIS WILL NOT EVER BE VISIBLE"
+New Option Nr=0 OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=1 PositionY=2
 Subtitle=_"Your bio checksum does not trigger a match in staff database. Please show proper credentials or leave the premises at once."
@@ -334,7 +334,7 @@ DoSomethingExtra="EndDialog"
 
 ----------------------------------------------------------------------
 
-New Option Nr=24  OptionText=_" HAVE THE CRYSTALS"
+New Option Nr=24  OptionText=" HAVE THE CRYSTALS"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=1216  PositionY=125  
 ChangeOption=24 ChangeToValue=0
@@ -343,7 +343,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-New Option Nr=25  OptionText=_" TUX_GOT_CRISTALS"
+New Option Nr=25  OptionText=" TUX_GOT_CRISTALS"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=1215  PositionY=195  
 ChangeOption=25 ChangeToValue=0
@@ -354,7 +354,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=26  OptionText=_" TUX_DIDNT_GOT_CRISTALS"
+New Option Nr=26  OptionText=" TUX_DIDNT_GOT_CRISTALS"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=1215  PositionY=195  
 ChangeOption=26 ChangeToValue=0
@@ -365,7 +365,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=27  OptionText=_" TUX STARTED ON THE QUEST"
+New Option Nr=27  OptionText=" TUX STARTED ON THE QUEST"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=1062  PositionY=58  
 ChangeOption=27 ChangeToValue=0
@@ -374,7 +374,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-New Option Nr=28  OptionText=_" IS MISSION IS DONE?"
+New Option Nr=28  OptionText=" IS MISSION IS DONE?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=1129  PositionY=123  
 ChangeOption=28 ChangeToValue=0
@@ -383,7 +383,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=29  OptionText=_" WE DONT HAVE MISSION"
+New Option Nr=29  OptionText=" WE DONT HAVE MISSION"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=1062  PositionY=122  
 ChangeOption=29 ChangeToValue=0
@@ -423,7 +423,7 @@ DoSomethingExtra="EndDialog"
 
 ----------------------------------------------------------------------
 
-New Option Nr=32  OptionText=_" MISSION IS DONE #2"
+New Option Nr=32  OptionText=" MISSION IS DONE #2"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=1174  PositionY=91  
 ChangeOption=32 ChangeToValue=0
@@ -453,7 +453,7 @@ DoSomethingExtra="EndDialog"
 
 ----------------------------------------------------------------------
 
-New Option Nr=34  OptionText=_" DID I ASK EXTERIMINATOR?"
+New Option Nr=34  OptionText=" DID I ASK EXTERIMINATOR?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=1174  PositionY=91
 ChangeOption=34 ChangeToValue=0
@@ -462,7 +462,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=35  OptionText=_" I HAVE ASKED"
+New Option Nr=35  OptionText=" I HAVE ASKED"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=1215  PositionY=195  
 ChangeOption=35 ChangeToValue=0
@@ -471,7 +471,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=36  OptionText=_" I DIDN'T ASKED"
+New Option Nr=36  OptionText=" I DIDN'T ASK"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=1215  PositionY=195  
 ChangeOption=36 ChangeToValue=0

@@ -54,7 +54,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=2  OptionText=_"THIS WILL NOT EVER BE VISIBLE"
+New Option Nr=2  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
 Subtitle=_"NO! NO! Er... I mean, not right now. I am busy. Come again later."
@@ -64,7 +64,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=3  OptionText=_"THIS WILL NOT EVER BE VISIBLE"
+New Option Nr=3  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
 Subtitle=_"Sure. I can help you."

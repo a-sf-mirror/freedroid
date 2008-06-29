@@ -83,7 +83,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=4  OptionText=_"THIS WILL NEVER BE VISIBLE"
+New Option Nr=4  OptionText="THIS WILL NEVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=365  PositionY=94  
 Subtitle=_"Oh no, not another one. These pills are almost pure biological waste."
@@ -105,7 +105,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=5  OptionText=_"THIS WILL NEVER BE VISIBLE"
+New Option Nr=5  OptionText="THIS WILL NEVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=365  PositionY=192  
 Subtitle=_"Sorry, but I already gave you some medical help."
@@ -121,7 +121,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=6  OptionText=_"ON MISSION 0 WAS ASSIGNED..."
+New Option Nr=6  OptionText="ON MISSION 0 WAS ASSIGNED..."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=49  PositionY=71  
 OnCondition="MissionAssigned:0" JumpToOption=8 ElseGoto=7
@@ -130,7 +130,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-New Option Nr=7  OptionText=_"DO NOTHING"
+New Option Nr=7  OptionText="DO NOTHING"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=139  PositionY=35  
 ChangeOption=7 ChangeToValue=0
@@ -138,7 +138,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=8  OptionText=_"THIS WILL NOT EVER BE VISIBLE"
+New Option Nr=8  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=134  PositionY=110  
 ChangeOption=3 ChangeToValue=1
@@ -148,7 +148,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=9  OptionText=_"THIS SHOULD ENABLE..."
+New Option Nr=9  OptionText="THIS SHOULD ENABLE..."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=214  PositionY=137  
 ChangeOption=2 ChangeToValue=1

@@ -30,7 +30,7 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-New Option Nr=0  OptionText=_"THIS WILL NOT EVER BE VISIBLE"
+New Option Nr=0  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=58  PositionY=427  
 ChangeOption=0 ChangeToValue=0
@@ -238,7 +238,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=16  OptionText=_"THIS WILL NOT EVER BE VISIBLE"
+New Option Nr=16  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=59  PositionY=361  
 ChangeOption=16 ChangeToValue=0
@@ -286,7 +286,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=20  OptionText=_"THIS WILL NOT EVER BE VISIBLE"
+New Option Nr=20  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=164  PositionY=383  
 Subtitle=_"INTRUDER, LOWER YOUR WEAPONS AND IDENTIFY YOURSELF OR FACE IMMEDIATE TERMINATION."

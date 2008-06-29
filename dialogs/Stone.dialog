@@ -102,7 +102,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=5  OptionText=_"THIS WILL NOT EVER BE VISIBLE"
+New Option Nr=5  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=358  PositionY=238  
 ChangeOption=5 ChangeToValue=0
@@ -111,7 +111,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=6  OptionText=_"THIS WILL NOT EVER BE VISIBLE"
+New Option Nr=6  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=450  PositionY=238  
 ChangeOption=6 ChangeToValue=0
@@ -121,7 +121,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=7  OptionText=_"THIS WILL NOT EVER BE VISIBLE"
+New Option Nr=7  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=450  PositionY=149  
 ChangeOption=7 ChangeToValue=0
@@ -207,7 +207,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=14  OptionText=_"THIS WILL NOT EVER BE VISIBLE"
+New Option Nr=14  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=1024  PositionY=422  
 ChangeOption=14 ChangeToValue=0
@@ -241,7 +241,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=17  OptionText=_"THIS WILL NOT EVER BE VISIBLE"
+New Option Nr=17  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=1097  PositionY=422  
 ChangeOption=17 ChangeToValue=0
@@ -249,7 +249,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=18  OptionText=_"THIS WILL NOT EVER BE VISIBLE"
+New Option Nr=18  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=1021  PositionY=364  
 ChangeOption=18 ChangeToValue=0
@@ -258,7 +258,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=19  OptionText=_"THIS WILL NOT EVER BE VISIBLE"
+New Option Nr=19  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=1022  PositionY=305  
 ChangeOption=19 ChangeToValue=0
@@ -267,7 +267,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=20  OptionText=_"THIS WILL NOT EVER BE VISIBLE"
+New Option Nr=20  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=1091  PositionY=364  
 ChangeOption=20 ChangeToValue=0
@@ -275,7 +275,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=21  OptionText=_"THIS WILL NOT EVER BE VISIBLE"
+New Option Nr=21  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=1087  PositionY=305  
 ChangeOption=21 ChangeToValue=0
@@ -283,7 +283,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=22  OptionText=_"THIS WILL NOT EVER BE VISIBLE"
+New Option Nr=22  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=1023  PositionY=244  
 ChangeOption=22 ChangeToValue=0
@@ -318,7 +318,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=99  OptionText=_" See you later."
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=447  PositionY=63  
-Subtitle=_"NO_SUBTITLE_AND_NO_WAITING_EITHER"
+Subtitle="NO_SUBTITLE_AND_NO_WAITING_EITHER"
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=99 ChangeToValue=1
 DoSomethingExtra="EndDialog"

@@ -57,7 +57,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=5  OptionText=_"THIS WILL NOT EVER BE VISIBLE"
+New Option Nr=5  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=109  PositionY=116  
 ChangeOption=5 ChangeToValue=0
@@ -84,7 +84,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=7  OptionText=_"DO NOTHING HERE..."
+New Option Nr=7  OptionText="DO NOTHING HERE..."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=206  PositionY=62  
 ChangeOption=7 ChangeToValue=0
@@ -92,7 +92,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=8  OptionText=_"THIS WILL NOT EVER BE VISIBLE"
+New Option Nr=8  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=202  PositionY=146  
 ChangeOption=8 ChangeToValue=0
