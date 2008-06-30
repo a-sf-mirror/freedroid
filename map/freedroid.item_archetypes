@@ -108,6 +108,7 @@ Conventional main disadvantage - Expensive ammo!!
 -> * Conventional *
 * .22 LR Ammo          - lvl 3 - Speed: 30                                                                      -  4
 * .22 LR Automatic     - 1H - Size 1x2 - lvl 3 - Dam: 0-2 - Recharge: 0.4 - Reload: 3.0 - Clip: 11 - Dur 10-20 - 150
+* .22 LR Automatic     - 1H - Size 1x2 - lvl 3 - Dam: 0-2 - Recharge: 0.4 - Reload: 3.0 - Clip: 11 - Dur 10-20 - 150
 * .22 LR Rifle         - 2H - Size 1x5 - lvl 4 - Dam: 1-4 - Recharge: 0.6 - Reload:10.0 - Clip: 11 - Dur 10-20 - 250
 * Shotgun Ammo         - lvl 4 - Speed: 30                                                                      - 12
 * Sawn off shotgun     - 1H - Size 2x2 - lvl 4 - Dam: 2-10 - Recharge: 0.2 - Reload: 3.0 - Clip:  2 - Dur 10-20 - 200
@@ -135,8 +136,8 @@ Conventional main disadvantage - Expensive ammo!!
 * Plasma Cannon        - 2H - Size 2x5 - lvl 8 - Dam:50-80 - Recharge: 1.5 - Reload: 4.0 - Clip:  8 - Dur 10-20 - 1800
 -> * Caseless & Magnetic etc *  Implement more later?
 * Exterminator Ammo    - lvl 6 - Speed: 30                                                                      - 5 
-* Exterminator         - 2H - Size ??? - lvl 8 - Dam: 8-48  -Recharge: 0.5 - Reload: 5.0 - Clip:  2 - Dur 10-20 - 1000
-* Super Ext            - 2H - Size ??? - lvl 9 - Dam:90-140 -Recharge: 0.5 - Reload: 5.0 - Clip:  2 - Dur 10-20 - 3000
+* Exterminator         - 2H - Size 2x2 - lvl 8 - Dam: 8-48  -Recharge: 0.5 - Reload: 5.0 - Clip:  2 - Dur 10-20 - 1000
+* Super Ext            - 2H - Size 2x3 - lvl 9 - Dam:90-140 -Recharge: 0.5 - Reload: 5.0 - Clip:  2 - Dur 10-20 - 3000
 
 ******************************************************************************************************/
 
@@ -1909,9 +1910,9 @@ Item number dropped min=5
 Item number dropped max=10
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
-Item uses rotation series with prefix="ammo_exterminator_sphere"
+Item uses rotation series with prefix="weapons/ammo_exterminator_sphere"
 Items of this type collect together in inventory="yes"
-File or directory name for inventory image="ammo_exterminator_sphere/inv_image.png"
+File or directory name for inventory image="weapons/ammo_exterminator_sphere/inv_image.png"
 inventory_size_x=1
 inventory_size_y=1
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
@@ -1925,15 +1926,17 @@ Item min class for drop=8
 Item max class for drop=9
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
-Item uses rotation series with prefix="exterminator_simple"
+Item uses rotation series with prefix="weapons/exterminator_simple"
 Items of this type collect together in inventory="no"
 Strength minimum required to wear/wield this item=0
 Dexterity minimum required to wear/wield this item=0
 Base item duration=10
 plus duration modifier=10
-File or directory name for inventory image="exterminator_simple/inv_image.png"
+File or directory name for inventory image="weapons/exterminator_simple/inv_image.png"
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=1000
+inventory_size_x=2
+inventory_size_y=2
 Item description text=_"While this weapon is capable of firing really powerful shots, beware of the exceptionally long reloading times. (Don't get swarmed by enemies with this weapon unless you have powerful armor!)"
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.5000000
@@ -1961,15 +1964,17 @@ Item min class for drop=9
 Item max class for drop=9
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
-Item uses rotation series with prefix="exterminator_simple"
+Item uses rotation series with prefix="weapons/exterminator_simple"
 Items of this type collect together in inventory="no"
 Strength minimum required to wear/wield this item=0
 Dexterity minimum required to wear/wield this item=0
 Base item duration=10
 plus duration modifier=10
-File or directory name for inventory image="exterminator_simple/inv_image.png"
+File or directory name for inventory image="weapons/exterminator_simple/inv_image2.png"
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=3000
+inventory_size_x=2
+inventory_size_y=3
 Item description text=_"This bad boy has been known to blow away enemies with a single blast. A dangerous weapon that you don't want to be on the receiving end of."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.500000
