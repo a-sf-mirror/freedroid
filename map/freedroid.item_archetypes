@@ -110,8 +110,8 @@ Conventional main disadvantage - Expensive ammo!!
 * .22 LR Automatic     - 1H - Size 1x2 - lvl 3 - Dam: 0-2 - Recharge: 0.4 - Reload: 3.0 - Clip: 11 - Dur 10-20 - 150
 * .22 LR Rifle         - 2H - Size 1x5 - lvl 4 - Dam: 1-4 - Recharge: 0.6 - Reload:10.0 - Clip: 11 - Dur 10-20 - 250
 * Shotgun Ammo         - lvl 4 - Speed: 30                                                                      - 12
-* Sawn off shotgun     - 1H - Size 2x2 - lvl 4 - Dam: 2-10 - Recharge: 0.4 - Reload: 5.0 - Clip:  2 - Dur 10-20 - 200
-* 2 barrel shotgun     - 2H - Size 2x4 - lvl 4 - Dam: 2-18 - Recharge: 0.4 - Reload: 5.0 - Clip:  2 - Dur 10-20 - 250
+* Sawn off shotgun     - 1H - Size 2x2 - lvl 4 - Dam: 2-10 - Recharge: 0.2 - Reload: 3.0 - Clip:  2 - Dur 10-20 - 200
+* 2 barrel shotgun     - 2H - Size 2x4 - lvl 4 - Dam: 2-18 - Recharge: 0.2 - Reload: 4.0 - Clip:  2 - Dur 10-20 - 250
 * Pump action shotgun  - 2H - Size 2x4 - lvl 5 - Dam: 2-14 - Recharge: 0.6 - Reload: 4.0 - Clip:  8 - Dur 10-20 - 300
 * 9x19mm Ammo          - lvl 5 - Speed: 30                                                                      - 18 
 * 9mm Automatic        - 1H - Size 1x2 - lvl 5 - Dam: 4-10 - Recharge: 0.5 - Reload: 3.0 - Clip: 19 - Dur 10-20 - 400
@@ -512,13 +512,13 @@ Item min class for drop=0
 Item max class for drop=3
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
-Item uses rotation series with prefix="iron_pipe"
+Item uses rotation series with prefix="weapons/iron_pipe"
 Items of this type collect together in inventory="no"
 Strength minimum required to wear/wield this item=0
 Dexterity minimum required to wear/wield this item=0
 Base item duration=12
 plus duration modifier=5
-File or directory name for inventory image="iron_pipe/inv_image.png"
+File or directory name for inventory image="weapons/iron_pipe/inv_image.png"
 inventory_size_x=1
 inventory_size_y=3
 Item uses drop sound with filename="drop_sword_sound.ogg"
@@ -1216,40 +1216,31 @@ Item description text=_"While solid slugs or possibly 8-10 Gauge would be the mo
 ** End of new item specification subsection **
 
 /*
-Image inspiration
-Saw off shotgun 2 barrel (4) 0.3 10 2
-http://en.wikipedia.org/wiki/Sawed-off_shotgun
-
-2 barrel Shotgun (4) 0.3 15 2
-
-pump action Shutgun (5) 0.9 5 8
-http://en.wikipedia.org/wiki/Riot_shotgun
-
 ch pellet is only as effective as a small caliber handgun, and offers very poor penetration against an armored target, the multiple projectiles increases the likelihood of one or more peripheral wounds.
 can make dents or disable bots by destroing their sensors
 */
 
-** Sta**rt of new item specification subsection **
+** Start of new item specification subsection **
 Item name=_"2 Barrel sawn off shotgun"
 Item min class for drop=4
 Item max class for drop=6
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
-Item uses rotation series with prefix="plasma_double"
+Item uses rotation series with prefix="weapons/shotgun"
 Items of this type collect together in inventory="no"
 Strength minimum required to wear/wield this item=0
 Dexterity minimum required to wear/wield this item=0
 Base item duration=10
 plus duration modifier=10
-File or directory name for inventory image="inventory_image_14.png"
+File or directory name for inventory image="weapons/shotgun/inv_image2.png"
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=200
 inventory_size_x=2
 inventory_size_y=2
 Item description text=_""
 ----- the following part is only relevant for weapons -----
-Item as gun: recharging time=0.400000
-Item as gun: reloading time=5.000000
+Item as gun: recharging time=0.200000
+Item as gun: reloading time=3.000000
 Item as gun: speed of bullets=30.000000
 Item as gun: is melee weapon=0
 Item as gun: damage of bullets=2
@@ -1258,14 +1249,14 @@ Item as gun: bullet_image_type=5
 Item as gun: bullet_lifetime=-1.000000
 Item as gun: modifier for starting angle=0.000000
 Item as gun: ignore collisions with wall="no"
-Item as gun: reflect other bullets="yes"
+Item as gun: reflect other bullets="no"
 Item as gun: pass through explosions="no"
 Item as gun: pass through hit bodies="no"
 Item as gun: required ammunition type="Sshell"
 Item as gun: ammo clip size=2
 Item as gun: weapon requires both hands="no"
 ----- end of part only relevant for weapons -----
-** E**nd of new item specification subsection **
+** End of new item specification subsection **
 
 ** Start of new item specification subsection **
 Item name=_"2 Barrel shotgun"
@@ -1273,21 +1264,21 @@ Item min class for drop=4
 Item max class for drop=6
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
-Item uses rotation series with prefix="plasma_double"
+Item uses rotation series with prefix="weapons/shotgun"
 Items of this type collect together in inventory="no"
 Strength minimum required to wear/wield this item=0
 Dexterity minimum required to wear/wield this item=0
 Base item duration=10
 plus duration modifier=10
-File or directory name for inventory image="inventory_image_14.png"
+File or directory name for inventory image="weapons/shotgun/inv_image.png"
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=250
 inventory_size_x=2
 inventory_size_y=4
 Item description text=_""
 ----- the following part is only relevant for weapons -----
-Item as gun: recharging time=0.400000
-Item as gun: reloading time=5.000000
+Item as gun: recharging time=0.200000
+Item as gun: reloading time=4.000000
 Item as gun: speed of bullets=30.000000
 Item as gun: is melee weapon=0
 Item as gun: damage of bullets=2
@@ -1311,13 +1302,13 @@ Item min class for drop=5
 Item max class for drop=7
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
-Item uses rotation series with prefix="shotgun"
+Item uses rotation series with prefix="weapons/shotgun"
 Items of this type collect together in inventory="no"
 Strength minimum required to wear/wield this item=0
 Dexterity minimum required to wear/wield this item=0
 Base item duration=10
 plus duration modifier=10
-File or directory name for inventory image="shotgun/inv_image.png"
+File or directory name for inventory image="weapons/shotgun/inv_image3.png"
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=300
 inventory_size_x=2
