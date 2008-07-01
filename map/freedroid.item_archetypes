@@ -1326,7 +1326,7 @@ Item as gun: weapon requires both hands="yes"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
-** Start of new item specification subsection **
+*disabled-v0.11* Start of new item specification subsection **
 Item name=_"9x19mm Ammunition"
 Item min class for drop=5
 Item max class for drop=8
@@ -1352,7 +1352,7 @@ http://soldf.com/pistol88.html
 http://en.wikipedia.org/wiki/Heckler_%26_Koch_MP5
 */
 
-** Start of new item specification subsection **
+*disabled-v0.11* Start of new item specification subsection **
 Item name=_"9mm Automatic"
 Item min class for drop=5
 Item max class for drop=7
@@ -1390,7 +1390,7 @@ Item as gun: weapon requires both hands="no"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
-** Start of new item specification subsection **
+*disabled-v0.11* Start of new item specification subsection **
 Item name=_"9mm Sub Machine Gun"
 Item min class for drop=6
 Item max class for drop=8
@@ -1428,7 +1428,7 @@ Item as gun: weapon requires both hands="yes"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
-** Start of new item specification subsection **
+*disabled-v0.11* Start of new item specification subsection **
 Item name=_"7.62x39mm Ammunition"
 Item min class for drop=6
 Item max class for drop=9
@@ -1454,7 +1454,7 @@ AK47 Assault rifle (7.62) - (7) 0.25 5 30
 http://en.wikipedia.org/wiki/AK-47
 */
 
-** Start of new item specification subsection **
+*disabled-v0.11* Start of new item specification subsection **
 Item name=_"7.62mm Hunting rifle"
 Item min class for drop=6
 Item max class for drop=8
@@ -1492,7 +1492,7 @@ Item as gun: weapon requires both hands="yes"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
-** Start of new item specification subsection **
+*disabled-v0.11* Start of new item specification subsection **
 Item name=_"7.62mm AK-47"
 Item min class for drop=7
 Item max class for drop=9
@@ -1530,7 +1530,7 @@ Item as gun: weapon requires both hands="yes"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
-** Start of new item specification subsection **
+*disabled-v0.11* Start of new item specification subsection **
 Item name=_".50 BMG (12.7x99mm) Ammunition"
 Item min class for drop=7
 Item max class for drop=9
@@ -1555,7 +1555,7 @@ Barrett M82 LR sniper rifle (.50) (8) - 10
 http://en.wikipedia.org/wiki/M82_Barrett_rifle
 */
 
-** Start of new item specification subsection **
+*disabled-v0.11* Start of new item specification subsection **
 Item name=_"Barrett M82 Sniper Rifle"
 Item min class for drop=8
 Item max class for drop=9
