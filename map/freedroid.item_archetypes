@@ -67,27 +67,27 @@ Item description text=_"Dummy item. If you see this, report a bug."
 
 -> * Cutting *
  Big kitchen knife    - 1H - Size 1x2 - lvl 0 - str 0 dex 0 - Dam: 0-2  - Recharge: 0.5  - Dur  6-8  -  30
-* Antique sword        - 1H - Size 1x4 - lvl 2 - str 0 dex20 - Dam: 2-4  - Recharge: 0.55 - Dur  8-12 - 100
-* Chainsaw             - 2H - Size 2x4 - lvl 4 - str15 dex20 - Dam: 2-3  - Recharge: 0.15 - Dur  5-6  - 500
+*Antique sword        - 1H - Size 1x4 - lvl 2 - str 0 dex20 - Dam: 2-4  - Recharge: 0.55 - Dur  8-12 - 100
+*Chainsaw             - 2H - Size 2x4 - lvl 4 - str15 dex20 - Dam: 2-3  - Recharge: 0.15 - Dur  5-6  - 500
 -> * Cleaving *
  Meat cleaver         - 1H - Size 2x2 - lvl 0 - str 0 dex 0 - Dam: 1-3  - Recharge: 0.6  - Dur 10-15 -  50
- Axe Small            - 1H - Size 2x3 - lvl 2 - str14 dex15 - Dam: 2-6  - Recharge: 0.7  - Dur 12-17 -  80 
- Axe Large            - 2H - Size 2x5 - lvl 3 - str25 dex18 - Dam:10-20 - Recharge: 1.2  - Dur 14-19 - 120
+ Axe small            - 1H - Size 2x3 - lvl 2 - str14 dex15 - Dam: 2-6  - Recharge: 0.7  - Dur 12-17 -  80 
+ Axe large            - 2H - Size 2x5 - lvl 3 - str25 dex18 - Dam:10-20 - Recharge: 1.2  - Dur 14-19 - 120
 -> * Piercing *
  Hunting knife        - 1H - Size 1x2 - lvl 1 - str 0 dex 0 - Dam: 0-2  - Recharge: 0.4  - Dur  5-7  -  40
-* Metal spear          - 1H - Size 1x6 - lvl 3 - str20 dex26 - Dam: 2-5  - Recharge: 0.4  - Dur 15-20 -  80
+*Metal spear          - 1H - Size 1x6 - lvl 3 - str20 dex26 - Dam: 2-5  - Recharge: 0.4  - Dur 15-20 -  80
 -> * Impact *
  Iron pipe            - 1H - Size 1x3 - lvl 0 - str 0 dex 0 - Dam: 1-3  - Recharge: 0.6  - Dur 12-17 -  30
  Big wrench           - 1H - Size 1x3 - lvl 0 - str 0 dex 0 - Dam: 1-4  - Recharge: 0.75 - Dur 15-20 -  60
  Crowbar              - 1H - Size 1x3 - lvl 0 - str15 dex 0 - Dam: 1-4  - Recharge: 0.6  - Dur 20-30 -  60
- Power Hammer         - 1H - Size 2x3 - lvl 1 - str 0 dex 0 - Dam: 1-2  - Recharge: 0.2  - Dur  5-10 - 250
+ Power hammer         - 1H - Size 2x3 - lvl 2 - str 0 dex 0 - Dam: 2-3  - Recharge: 0.25 - Dur 15-25 - 250 (laser ammo - reload 2 - clip 99)
  Mace                 - 1H - Size 1x3 - lvl 3 - str25 dex15 - Dam: 3-8  - Recharge: 0.8  - Dur 20-25 - 180
  Baseball bat         - 2H - Size 2x4 - lvl 1 - str12 dex15 - Dam: 4-10 - Recharge: 0.7  - Dur  5-10 -  30
  Iron bar             - 2H - Size 1x6 - lvl 2 - str20 dex15 - Dam: 6-12 - Recharge: 1.0  - Dur 20-25 -  70
-* Sledgehammer         - 2H - Size 2x5 - lvl 4 - str25 dex20 - Dam:20-30 - Recharge: 1.5  - Dur 30-35 - 150
+*Sledgehammer         - 2H - Size 2x5 - lvl 4 - str25 dex20 - Dam:20-30 - Recharge: 1.5  - Dur 30-35 - 150
 -> * Energy *
-* Lightsaber           - 2H - Size 1x2 - lvl 7 - str 0 dex30 - Dam:30-40 - Recharge: 0.5  - Dur 100   -1500
-* Laserstaff           - 2H - Size 1x3 - lvl 8 - str 0 dex40 - Dam:40-60 - Recharge: 0.4  - Dur 100   -2000
+ Lightsaber           - 2H - Size 1x2 - lvl 7 - str 0 dex30 - Dam:30-40 - Recharge: 0.5  - Dur 100   -1500 (laser ammo - reload 2 - clip 20)
+ Laserstaff           - 2H - Size 1x3 - lvl 8 - str 0 dex40 - Dam:40-60 - Recharge: 0.4  - Dur 100   -2000 (laser ammo - reload 2 - clip 20)
 -> * Special *
 * Nobody's edge
 * Laser scalpel
@@ -190,13 +190,13 @@ Item min class for drop=2
 Item max class for drop=5
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
-Item uses rotation series with prefix="laser_sword_red"
+Item uses rotation series with prefix="laser_sword_yellow"
 Items of this type collect together in inventory="no"
 Strength minimum required to wear/wield this item=0
 Dexterity minimum required to wear/wield this item=20
 Base item duration=8
 plus duration modifier=4
-File or directory name for inventory image="laser_sword_red/inv_image.png"
+File or directory name for inventory image="laser_sword_yellow/inv_image.png"
 inventory_size_x=1
 inventory_size_y=4
 Item uses drop sound with filename="drop_sword_sound.ogg"
@@ -228,13 +228,13 @@ Item min class for drop=3
 Item max class for drop=7
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
-Item uses rotation series with prefix="laser_sword_red"
+Item uses rotation series with prefix="laser_sword_yellow"
 Items of this type collect together in inventory="no"
 Strength minimum required to wear/wield this item=25
 Dexterity minimum required to wear/wield this item=20
 Base item duration=10
 plus duration modifier=5
-File or directory name for inventory image="laser_sword_red/inv_image.png"
+File or directory name for inventory image="laser_sword_yellow/inv_image.png"
 inventory_size_x=2
 inventory_size_y=5
 Item uses drop sound with filename="drop_sword_sound.ogg"
@@ -266,13 +266,13 @@ Item min class for drop=4
 Item max class for drop=9
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
-Item uses rotation series with prefix="laser_sword_red"
+Item uses rotation series with prefix="laser_sword_yellow"
 Items of this type collect together in inventory="no"
 Strength minimum required to wear/wield this item=20
 Dexterity minimum required to wear/wield this item=20
 Base item duration=5
 plus duration modifier=1
-File or directory name for inventory image="laser_sword_red/inv_image.png"
+File or directory name for inventory image="laser_sword_yellow/inv_image.png"
 inventory_size_x=2
 inventory_size_y=4
 Item uses drop sound with filename="drop_sword_sound.ogg"
@@ -343,7 +343,7 @@ Item as gun: weapon requires both hands="no"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name=_"Small axe"
+Item name=_"Small Axe"
 Item min class for drop=2
 Item max class for drop=5
 Item can be applied in combat="no"
@@ -468,13 +468,13 @@ Item min class for drop=3
 Item max class for drop=6
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
-Item uses rotation series with prefix="laser_sword_red"
+Item uses rotation series with prefix="laser_sword_yellow"
 Items of this type collect together in inventory="no"
 Strength minimum required to wear/wield this item=20
 Dexterity minimum required to wear/wield this item=26
 Base item duration=15
 plus duration modifier=5
-File or directory name for inventory image="laser_sword_red/inv_image.png"
+File or directory name for inventory image="laser_sword_yellow/inv_image.png"
 inventory_size_x=1
 inventory_size_y=6
 Item uses drop sound with filename="drop_sword_sound.ogg"
@@ -698,26 +698,26 @@ Item as gun: weapon requires both hands="no"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name=_"Power Hammer"
-Item min class for drop=1
-Item max class for drop=3
+Item name=_"Power hammer"
+Item min class for drop=2
+Item max class for drop=4
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
-Item uses rotation series with prefix="weapons/hammer"
+Item uses rotation series with prefix="weapons/power_hammer"
 Items of this type collect together in inventory="no"
 Strength minimum required to wear/wield this item=0
 Dexterity minimum required to wear/wield this item=0
-Base item duration=5
-plus duration modifier=5
-File or directory name for inventory image="weapons/hammer/inv_image.png"
+Base item duration=15
+plus duration modifier=10
+File or directory name for inventory image="weapons/power_hammer/inv_image.png"
 inventory_size_x=2
 inventory_size_y=3
 Item uses drop sound with filename="drop_sword_sound.ogg"
-Base list price=40
-Item description text=_"The POWER NAIL DRIVER 3000 will, according to the advertisement, \"build the house for you\". While it's unclear how many nails your igloo will actually need, it sure can be handy none the less for bashing bot skulls. At least as long as the battery lasts anyway."
+Base list price=250
+Item description text=_"The POWER NAIL DRIVER 3000 will, according to the advertisement, 'build your house for you'. While it's unclear how many nails your igloo will actually need, it sure can be handy none the less for bashing bot skulls. At least as long as the battery lasts anyway."
 ----- the following part is only relevant for weapons -----
-Item as gun: recharging time=0.500000
-Item as gun: reloading time=0.000000
+Item as gun: recharging time=0.250000
+Item as gun: reloading time=2.000000
 Item as gun: speed of bullets=0.100000
 Item as gun: is melee weapon=1
 Item as gun: damage of bullets=1
@@ -729,8 +729,8 @@ Item as gun: ignore collisions with wall="yes"
 Item as gun: reflect other bullets="yes"
 Item as gun: pass through explosions="yes"
 Item as gun: pass through hit bodies="yes"
-Item as gun: required ammunition type="none"
-Item as gun: ammo clip size=0
+Item as gun: required ammunition type="laser_ammunition"
+Item as gun: ammo clip size=99
 Item as gun: weapon requires both hands="no"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
@@ -932,18 +932,18 @@ Item as gun: weapon requires both hands="yes"
 // *** Energy ***
 
 ** Start of new item specification subsection **
-Item name=_"Lightsaber"
+Item name=_"Light saber"
 Item min class for drop=7
 Item max class for drop=9
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
-Item uses rotation series with prefix="laser_sword_green"
+Item uses rotation series with prefix="weapons/light_saber"
 Items of this type collect together in inventory="no"
 Strength minimum required to wear/wield this item=0
 Dexterity minimum required to wear/wield this item=30
 Base item duration=100
 plus duration modifier=0
-File or directory name for inventory image="laser_sword_green/inv_image.png"
+File or directory name for inventory image="weapons/light_saber/inv_image.png"
 inventory_size_x=1
 inventory_size_y=2
 Item uses drop sound with filename="drop_sword_sound.ogg"
@@ -951,7 +951,7 @@ Base list price=1500
 Item description text=_"In the hands of a true master, this excellent technological craftsmanship is as deadly as it is beautiful. It requires laser crystals to work properly."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.500000
-Item as gun: reloading time=1.000000
+Item as gun: reloading time=2.000000
 Item as gun: speed of bullets=0.100000
 Item as gun: is melee weapon=1
 Item as gun: damage of bullets=30
@@ -970,25 +970,25 @@ Item as gun: weapon requires both hands="yes"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name=_"Laserstaff"
+Item name=_"Laser staff"
 Item min class for drop=8
 Item max class for drop=9
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
-Item uses rotation series with prefix="laser_staff"
+Item uses rotation series with prefix="weapons/laser_staff"
 Items of this type collect together in inventory="no"
 Strength minimum required to wear/wield this item=0
 Dexterity minimum required to wear/wield this item=40
 Base item duration=100
 plus duration modifier=0
-File or directory name for inventory image="laser_staff/inv_image.png"
+File or directory name for inventory image="weapons/laser_staff/inv_image.png"
 inventory_size_y=3
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=2000
 Item description text=_"A close combat master with this weapon in his hands is a pure whirling dervish of death. It requires laser crystals to work properly."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.400000
-Item as gun: reloading time=0.000000
+Item as gun: reloading time=2.000000
 Item as gun: speed of bullets=0.100000
 Item as gun: is melee weapon=1
 Item as gun: damage of bullets=40
@@ -1594,19 +1594,19 @@ Item as gun: weapon requires both hands="yes"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name=_"Laser Weapon Ammunition"
+Item name=_"Laser power pack"
 Item min class for drop=4
 Item max class for drop=9
 Item number dropped min=10
 Item number dropped max=20
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
-Item uses rotation series with prefix="ammo_laser_crystal"
+Item uses rotation series with prefix="weapons/laser_power_pack"
 Items of this type collect together in inventory="yes"
-File or directory name for inventory image="ammo_laser_crystal/inv_image.png"
+File or directory name for inventory image="weapons/laser_power_pack/inv_image.png"
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=2
-Item description text=_"Energy crystal load for laser rifles. Each round fired consumes a load within the crystal."
+Item description text=_"Energy crystal load for laser weapons and other powertools. Each round fired consumes a load within the crystal."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
@@ -1738,7 +1738,7 @@ plus duration modifier=10
 File or directory name for inventory image="inventory_image_14.png"
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=2000
-Item description text=_"The pulse laser technology, allowing for many repeated short burts without the weapon overheating, combined with a design for military purpuse makes this weapon the perfered choise for most soldiers. It's recoil free, quick firing, large mag & killing power makes it the ideal weapon for cleansing out big droid infestations in mere minutes."
+Item description text=_"The pulse laser technology, allowing for many repeated short burts without the weapon overheating, combined with a design for military purpuse makes this weapon the perfered choise for most soldiers. It's recoil free, quick firing, large mag & awesome killing power makes it the ideal weapon for cleansing out big droid infestations in mere minutes."
 inventory_size_x=2
 inventory_size_y=4
 ----- the following part is only relevant for weapons -----
@@ -1762,21 +1762,21 @@ Item as gun: weapon requires both hands="yes"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name=_"Plasma Weapon Ammunition"
+Item name=_"Plasma energy container"
 Item min class for drop=4
 Item max class for drop=9
 Item number dropped min=10
 Item number dropped max=20
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
-Item uses rotation series with prefix="ammo_plasma_bullet"
+Item uses rotation series with prefix="weapons/plasma_energy_container"
 Items of this type collect together in inventory="yes"
-File or directory name for inventory image="ammo_plasma_bullet/inv_image.png"
+File or directory name for inventory image="weapons/plasma_energy_container/inv_image.png"
 inventory_size_x=2
 inventory_size_y=2
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=4
-Item description text=_"Plasma crystal load. This is the most common way of loading a plasma weapon."
+Item description text=_"A container filled with all materia and energy required to make plasma weapons work in one handy and relatively safe package. This is the most common way of loading a plasma weapon."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
@@ -2057,11 +2057,11 @@ Item name=_"NPC Hand to hand weapon"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
-Item uses rotation series with prefix="laser_sword_red"
+Item uses rotation series with prefix="laser_sword_yellow"
 Items of this type collect together in inventory="no"
 Base item duration=35
 plus duration modifier=10
-File or directory name for inventory image="laser_sword_red/inv_image.png"
+File or directory name for inventory image="laser_sword_yellow/inv_image.png"
 inventory_size_x=2
 inventory_size_y=2
 Item uses drop sound with filename="drop_sword_sound.ogg"
