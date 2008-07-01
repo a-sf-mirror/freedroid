@@ -110,10 +110,10 @@ Conventional main disadvantage - Expensive ammo!!
 * .22 LR Automatic     - 1H - Size 1x2 - lvl 3 - Dam: 0-2 - Recharge: 0.4 - Reload: 3.0 - Clip: 11 - Dur 10-20 - 150
 * .22 LR Automatic     - 1H - Size 1x2 - lvl 3 - Dam: 0-2 - Recharge: 0.4 - Reload: 3.0 - Clip: 11 - Dur 10-20 - 150
 * .22 LR Rifle         - 2H - Size 1x5 - lvl 4 - Dam: 1-4 - Recharge: 0.6 - Reload:10.0 - Clip: 11 - Dur 10-20 - 250
-* Shotgun Ammo         - lvl 4 - Speed: 30                                                                      - 12
-* Sawn off shotgun     - 1H - Size 2x2 - lvl 4 - Dam: 2-10 - Recharge: 0.2 - Reload: 3.0 - Clip:  2 - Dur 10-20 - 200
-* 2 barrel shotgun     - 2H - Size 2x4 - lvl 4 - Dam: 2-18 - Recharge: 0.2 - Reload: 4.0 - Clip:  2 - Dur 10-20 - 250
-* Pump action shotgun  - 2H - Size 2x4 - lvl 5 - Dam: 2-14 - Recharge: 0.6 - Reload: 4.0 - Clip:  8 - Dur 10-20 - 300
+ Shotgun Ammo         - lvl 4 - Speed: 30 - stack 12                                                           - 12
+ Sawn off shotgun     - 1H - Size 2x2 - lvl 4 - Dam: 2-10 - Recharge: 0.2 - Reload: 3.0 - Clip:  2 - Dur 10-20 - 200
+ 2 barrel shotgun     - 2H - Size 2x4 - lvl 4 - Dam: 2-18 - Recharge: 0.2 - Reload: 4.0 - Clip:  2 - Dur 10-20 - 250
+ Pump action shotgun  - 2H - Size 2x4 - lvl 5 - Dam: 2-14 - Recharge: 0.6 - Reload: 4.0 - Clip:  8 - Dur 10-20 - 300
 * 9x19mm Ammo          - lvl 5 - Speed: 30                                                                      - 18 
 * 9mm Automatic        - 1H - Size 1x2 - lvl 5 - Dam: 4-10 - Recharge: 0.5 - Reload: 3.0 - Clip: 19 - Dur 10-20 - 400
 * 9mm SMG              - 2H - Size 2x3 - lvl 6 - Dam: 3-8  - Recharge: 0.2 - Reload: 3.0 - Clip: 30 - Dur 10-20 - 950
@@ -3745,19 +3745,6 @@ File or directory name for inventory image="desk_lamp/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=32
 Item description text=_"What would modern science be without this important item?"
-** End of new item specification subsection **
-
-** Start of new item specification subsection **
-Item name=_"Common Monkey Wrench"
-Item min class for drop=-1
-Item can be applied in combat="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="monkey_wrench"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="monkey_wrench/inv_image.png"
-Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
-Base list price=32
-Item description text=_"Even the most primitive civilisations cannot survive for long without a large supply of those."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
