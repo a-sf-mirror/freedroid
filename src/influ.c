@@ -2884,10 +2884,10 @@ void TuxReloadWeapon()
 	    return; //no reloading occurs
 	    break;
 	case 1: //laser
-	    munition_type = GetItemIndexByName("Laser Weapon Ammunition");
+	    munition_type = GetItemIndexByName("Laser power pack");
 	    break;
 	case 2: //plasma
-	    munition_type = GetItemIndexByName("Plasma Weapon Ammunition");
+	    munition_type = GetItemIndexByName("Plasma energy container");
 	    break;
 	case 3: //exterminator
 	    munition_type = GetItemIndexByName("2 mm Exterminator Ammunition");
