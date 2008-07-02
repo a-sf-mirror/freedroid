@@ -96,6 +96,7 @@ main (int argc, char * argv[])
 #ifdef __WIN32__
     else if( (tmp_dir = opendir("po") ) != NULL )/* win32 special: allow running the game from the root of the tree */
 	{
+	printf("WIN32: binding gettext stuff to ./po\n");
 	bindtextdomain("freedroidrpg", "po");
 	bindtextdomain("freedroidrpg_data", "po");
 	bindtextdomain("freedroidrpg_dialogs", "po");
