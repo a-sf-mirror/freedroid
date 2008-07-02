@@ -4641,8 +4641,8 @@ give_new_description_to_obstacle ( Level EditLevel , obstacle* our_obstacle , ch
     // If the obstacle already has a name, we can use that index for the 
     // new name now.
     //
-    if ( our_obstacle -> name_index >= 0 )
-	free_index = our_obstacle -> name_index ;
+    if ( our_obstacle -> description_index >= 0 )
+	free_index = our_obstacle -> description_index ;
     else
     {
 	//--------------------
