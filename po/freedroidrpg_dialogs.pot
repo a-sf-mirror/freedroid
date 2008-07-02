@@ -2,13 +2,25 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CHANGE THIS\n"
 "Report-Msgid-Bugs-To: CHANGE THIS TOO\n"
-"POT-Creation-Date: 2008-06-23 14:19+0000\n"
-"PO-Revision-Date: 2008-06-23 14:19+0000\n"
+"POT-Creation-Date: 2008-07-01 19:46+0000\n"
+"PO-Revision-Date: 2008-07-01 19:46+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-15\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: ../dialogs/TestDroid.dialog:33
+msgid ""
+"This is MegaSys test bot, running very basic version of their OS. I can do not"
+"hing with this bot, because it doesn't know how to do anything."
+msgstr ""
+
+#: ../dialogs/TestDroid.dialog:41
+#: ../dialogs/StandardBotAfterTakeover.dialog:191
+#: ../dialogs/SACD.dialog:170
+msgid " logout"
+msgstr ""
 
 #: ../dialogs/Benjamin.dialog:33
 #: ../dialogs/DocMoore.dialog:33
@@ -401,15 +413,6 @@ msgstr ""
 
 #: ../dialogs/Darwin.dialog:217
 msgid "Goodbye and viel gluck."
-msgstr ""
-
-#: ../dialogs/Francis.dialog:33
-#: ../dialogs/OldTownGateGuardLeader.dialog:33
-#: ../dialogs/Ernie.dialog:33
-#: ../dialogs/MSFacilityGateGuardLeader.dialog:33
-#: ../dialogs/DocMoore.dialog:86
-#: ../dialogs/DocMoore.dialog:108
-msgid "THIS WILL NEVER BE VISIBLE"
 msgstr ""
 
 #: ../dialogs/Francis.dialog:36
@@ -926,84 +929,6 @@ msgstr ""
 
 #: ../dialogs/Jasmine.dialog:174
 msgid "Core dumped. System halted."
-msgstr ""
-
-#: ../dialogs/Jasmine.dialog:184
-msgid "JASMINE_FIRST_CHECK"
-msgstr ""
-
-#: ../dialogs/Jasmine.dialog:193
-msgid "JASMINE_CHECK_TWO"
-msgstr ""
-
-#: ../dialogs/Jasmine.dialog:202
-msgid "TWO_COUNTERS"
-msgstr ""
-
-#: ../dialogs/Jasmine.dialog:211
-msgid "ONE COUNTER"
-msgstr ""
-
-#: ../dialogs/Jasmine.dialog:220
-msgid "NO COUNTERS YET."
-msgstr ""
-
-#: ../dialogs/subdlg_Benjamin_bribe.dialog:33
-#: ../dialogs/Stone.dialog:105
-#: ../dialogs/Stone.dialog:114
-#: ../dialogs/Stone.dialog:124
-#: ../dialogs/Stone.dialog:210
-#: ../dialogs/Stone.dialog:244
-#: ../dialogs/Stone.dialog:252
-#: ../dialogs/Stone.dialog:261
-#: ../dialogs/Stone.dialog:270
-#: ../dialogs/Stone.dialog:278
-#: ../dialogs/Stone.dialog:286
-#: ../dialogs/KevinGuard.dialog:33
-#: ../dialogs/KevinGuard.dialog:241
-#: ../dialogs/KevinGuard.dialog:289
-#: ../dialogs/subdlg_kevin_reward1.dialog:33
-#: ../dialogs/subdlg_Stone.dialog:33
-#: ../dialogs/SACD.dialog:124
-#: ../dialogs/SACD.dialog:133
-#: ../dialogs/SADD.dialog:33
-#: ../dialogs/subdlg_Kevin.dialog:33
-#: ../dialogs/subdlg_Kevin.dialog:43
-#: ../dialogs/subdlg_Kevin.dialog:53
-#: ../dialogs/subdlg_Kevin.dialog:72
-#: ../dialogs/subdlg_Kevin.dialog:89
-#: ../dialogs/Pendragon.dialog:57
-#: ../dialogs/Pendragon.dialog:67
-#: ../dialogs/subdlg_Benjamin.dialog:33
-#: ../dialogs/subdlg_Benjamin.dialog:51
-#: ../dialogs/subdlg_Benjamin.dialog:61
-#: ../dialogs/subdlg_Benjamin.dialog:71
-#: ../dialogs/subdlg_Benjamin.dialog:80
-#: ../dialogs/RMS.dialog:60
-#: ../dialogs/RMS.dialog:95
-#: ../dialogs/subdlg_Butch.dialog:33
-#: ../dialogs/DocMoore.dialog:141
-#: ../dialogs/Kevin.dialog:48
-#: ../dialogs/Kevin.dialog:57
-#: ../dialogs/Kevin.dialog:80
-#: ../dialogs/Kevin.dialog:93
-#: ../dialogs/Kevin.dialog:145
-#: ../dialogs/Kevin.dialog:154
-#: ../dialogs/Kevin.dialog:174
-#: ../dialogs/Kevin.dialog:182
-#: ../dialogs/Kevin.dialog:192
-#: ../dialogs/Kevin.dialog:203
-#: ../dialogs/Kevin.dialog:220
-#: ../dialogs/Kevin.dialog:250
-#: ../dialogs/Kevin.dialog:271
-#: ../dialogs/subdlg_Pendragon.dialog:33
-#: ../dialogs/subdlg_Pendragon.dialog:53
-#: ../dialogs/subdlg_Pendragon.dialog:62
-#: ../dialogs/subdlg_Pendragon.dialog:72
-#: ../dialogs/subdlg_Pendragon.dialog:82
-#: ../dialogs/subdlg_Pendragon.dialog:91
-#: ../dialogs/subdlg_Pendragon.dialog:103
-msgid "THIS WILL NOT EVER BE VISIBLE"
 msgstr ""
 
 #: ../dialogs/subdlg_Benjamin_bribe.dialog:36
@@ -1524,10 +1449,6 @@ msgid ""
 "e them away to the hungry people."
 msgstr ""
 
-#: ../dialogs/Michelangelo.dialog:266
-msgid "HAVE THE CRYSTALS"
-msgstr ""
-
 #: ../dialogs/Michelangelo.dialog:275
 msgid " What was I supposed to do again?"
 msgstr ""
@@ -1542,33 +1463,6 @@ msgstr ""
 msgid ""
 "Of course our heinous food might do us in far before that. I swear I saw that "
 "stuff glow it the dark and try to sneak away from my plate a few times."
-msgstr ""
-
-#: ../dialogs/Michelangelo.dialog:287
-msgid "TUX GIVES THE CRYSTALS"
-msgstr ""
-
-#: ../dialogs/Michelangelo.dialog:297
-msgid "TUX DOES NOT HAVE THE CRYSTALS"
-msgstr ""
-
-#: ../dialogs/Michelangelo.dialog:306
-msgid "MISSION IS DONE"
-msgstr ""
-
-#: ../dialogs/Michelangelo.dialog:315
-msgid "YEAH, MISSION IS DONE."
-msgstr ""
-
-#: ../dialogs/Michelangelo.dialog:326
-#: ../dialogs/Koan.dialog:60
-#: ../dialogs/subdlg_Duncan_quest.dialog:46
-#: ../dialogs/Kevin.dialog:358
-msgid "DO NOTHING NODE"
-msgstr ""
-
-#: ../dialogs/Michelangelo.dialog:334
-msgid "TUX STARTED ON THE QUEST"
 msgstr ""
 
 #: ../dialogs/Michelangelo.dialog:343
@@ -1587,10 +1481,6 @@ msgstr ""
 
 #: ../dialogs/Michelangelo.dialog:350
 msgid "Good luck. Try not to get yourself killed."
-msgstr ""
-
-#: ../dialogs/Michelangelo.dialog:359
-msgid "MISSION IS DONE #2"
 msgstr ""
 
 #: ../dialogs/Michelangelo.dialog:368
@@ -1723,60 +1613,8 @@ msgstr ""
 msgid "WArn|n*! SsTeM=#faiPure%^#n 3 S 1()$++"
 msgstr ""
 
-#: ../dialogs/StandardBotAfterTakeover.dialog:106
-msgid "DID TUX ANGER DIXON?"
-msgstr ""
-
-#: ../dialogs/StandardBotAfterTakeover.dialog:115
-msgid "YES, DIXON IS ANGRY."
-msgstr ""
-
-#: ../dialogs/StandardBotAfterTakeover.dialog:124
-msgid "DID TUX HURT BRUCE?"
-msgstr ""
-
-#: ../dialogs/StandardBotAfterTakeover.dialog:133
-msgid "YES, BRUCE IS HURT"
-msgstr ""
-
-#: ../dialogs/StandardBotAfterTakeover.dialog:142
-msgid "IS TUX ON THE FINAL MISSION?"
-msgstr ""
-
-#: ../dialogs/StandardBotAfterTakeover.dialog:151
-msgid "YES, THIS IS THE FINAL MISSION."
-msgstr ""
-
-#: ../dialogs/StandardBotAfterTakeover.dialog:160
-msgid "IS THIS THE FIRST TIME TUX GETS THE EDGE?"
-msgstr ""
-
-#: ../dialogs/StandardBotAfterTakeover.dialog:169
-msgid "EVERYTHING IS READY."
-msgstr ""
-
 #: ../dialogs/StandardBotAfterTakeover.dialog:172
 msgid "()%#@(% THE BLADE IS YOURS. )##%*&%*!"
-msgstr ""
-
-#: ../dialogs/StandardBotAfterTakeover.dialog:182
-msgid "NO."
-msgstr ""
-
-#: ../dialogs/StandardBotAfterTakeover.dialog:191
-#: ../dialogs/SACD.dialog:170
-#: ../dialogs/TestDroid.dialog:41
-msgid " logout"
-msgstr ""
-
-#: ../dialogs/Koan.dialog:33
-msgid "KILLING DOUBLE TALK"
-msgstr ""
-
-#: ../dialogs/Koan.dialog:42
-#: ../dialogs/subdlg_Duncan.dialog:33
-#: ../dialogs/subdlg_Duncan_quest.dialog:33
-msgid "HERE WE GO"
 msgstr ""
 
 #: ../dialogs/Koan.dialog:45
@@ -2085,10 +1923,6 @@ msgstr ""
 msgid "Wait a second... I think I recognize you..."
 msgstr ""
 
-#: ../dialogs/Stone.dialog:321
-msgid "NO_SUBTITLE_AND_NO_WAITING_EITHER"
-msgstr ""
-
 #: ../dialogs/Ewald.dialog:33
 msgid " Hi. You look really happy."
 msgstr ""
@@ -2301,10 +2135,6 @@ msgstr ""
 msgid "For 15 million bucks, no less, hehe."
 msgstr ""
 
-#: ../dialogs/Spencer.dialog:77
-msgid "ASSIGN WAREHOUSE MISSION"
-msgstr ""
-
 #: ../dialogs/Spencer.dialog:80
 msgid ""
 "These are bad times. The interplanetary travel is made impossible by bot ships"
@@ -2355,18 +2185,6 @@ msgstr ""
 msgid "I wish you the best of luck."
 msgstr ""
 
-#: ../dialogs/Spencer.dialog:122
-msgid "CHECK_WAREHOUSE_SUCCESS"
-msgstr ""
-
-#: ../dialogs/Spencer.dialog:131
-msgid "MISSION_IS_DONE"
-msgstr ""
-
-#: ../dialogs/Spencer.dialog:140
-msgid "MISSION_IS_NOT_DONE"
-msgstr ""
-
 #: ../dialogs/Spencer.dialog:143
 msgid ""
 "Not too good. Without the supplies from the warehouse we are doomed. So my pro"
@@ -2379,10 +2197,6 @@ msgid ""
 " all."
 msgstr ""
 
-#: ../dialogs/Spencer.dialog:152
-msgid "DONT_GIVE_REWARD"
-msgstr ""
-
 #: ../dialogs/Spencer.dialog:155
 msgid ""
 "Thanks to you, we've been able to transport all the goods we need right now. Y"
@@ -2391,10 +2205,6 @@ msgstr ""
 
 #: ../dialogs/Spencer.dialog:157
 msgid "Rest assured that we will never forget your brave activity for our community."
-msgstr ""
-
-#: ../dialogs/Spencer.dialog:164
-msgid "GIVE_REWARD"
 msgstr ""
 
 #: ../dialogs/Spencer.dialog:167
@@ -2418,18 +2228,10 @@ msgstr ""
 msgid " Have I done enough quests to become a member now?"
 msgstr ""
 
-#: ../dialogs/Spencer.dialog:190
-msgid "DIXON SUCCESSFUL."
-msgstr ""
-
 #: ../dialogs/Spencer.dialog:193
 msgid ""
 "Dixon told me about the matter with his toolkit. He seemed pretty impressed by"
 " you."
-msgstr ""
-
-#: ../dialogs/Spencer.dialog:201
-msgid "DIXON NOT DONE YET"
 msgstr ""
 
 #: ../dialogs/Spencer.dialog:204
@@ -2438,18 +2240,10 @@ msgid ""
 "nt to talk to him."
 msgstr ""
 
-#: ../dialogs/Spencer.dialog:212
-msgid "MICHELANGELO DONE."
-msgstr ""
-
 #: ../dialogs/Spencer.dialog:215
 msgid ""
 "When I was eating, Michelangelo told me about his renewed oven energy supply. "
 "He seemed very pleased, and so was I."
-msgstr ""
-
-#: ../dialogs/Spencer.dialog:223
-msgid "MICHELANGELO NOT DONE"
 msgstr ""
 
 #: ../dialogs/Spencer.dialog:226
@@ -2458,38 +2252,14 @@ msgid ""
 "mewhere to the south."
 msgstr ""
 
-#: ../dialogs/Spencer.dialog:234
-msgid "IS MICHELANGELO DONE?"
-msgstr ""
-
-#: ../dialogs/Spencer.dialog:243
-msgid "IS TUX AN ARENA MASTER"
-msgstr ""
-
-#: ../dialogs/Spencer.dialog:252
-msgid "TUX IS AN ARENA MASTER"
-msgstr ""
-
 #: ../dialogs/Spencer.dialog:255
 msgid "From Butch I hear you've become a novice arena master. Congratulations."
-msgstr ""
-
-#: ../dialogs/Spencer.dialog:263
-msgid "TUX IS NOT AN ARENA MASTER"
 msgstr ""
 
 #: ../dialogs/Spencer.dialog:266
 msgid ""
 "You might want to score some arena victories. That could also help your reputa"
 "tion a lot."
-msgstr ""
-
-#: ../dialogs/Spencer.dialog:274
-msgid "IS BENDER SICK?"
-msgstr ""
-
-#: ../dialogs/Spencer.dialog:283
-msgid "BENDER DONE"
 msgstr ""
 
 #: ../dialogs/Spencer.dialog:286
@@ -2499,34 +2269,14 @@ msgid ""
 "an't be too picky."
 msgstr ""
 
-#: ../dialogs/Spencer.dialog:294
-msgid "BENDER STILL SICK"
-msgstr ""
-
 #: ../dialogs/Spencer.dialog:297
 msgid "As far as I know, Bender is still very sick."
-msgstr ""
-
-#: ../dialogs/Spencer.dialog:305
-msgid "WAREHOUSE MISSION DONE?"
-msgstr ""
-
-#: ../dialogs/Spencer.dialog:314
-msgid "WAREHOUSE DONE"
 msgstr ""
 
 #: ../dialogs/Spencer.dialog:317
 msgid ""
 "But most importantly, I was very impressed with you when you cleared out the w"
 "arehouse. That was a huge deed I will never forget."
-msgstr ""
-
-#: ../dialogs/Spencer.dialog:325
-msgid "THERE ARE ENOUGH POINTS TO JOIN RG"
-msgstr ""
-
-#: ../dialogs/Spencer.dialog:334
-msgid "JOINING TOWN GUARD"
 msgstr ""
 
 #: ../dialogs/Spencer.dialog:337
@@ -2552,22 +2302,10 @@ msgstr ""
 msgid "I hope you will prove yourself a worthy member of the Red Guard."
 msgstr ""
 
-#: ../dialogs/Spencer.dialog:355
-msgid "SOME POINTS? ANYTHING?"
-msgstr ""
-
-#: ../dialogs/Spencer.dialog:364
-msgid "NEARLY THERE"
-msgstr ""
-
 #: ../dialogs/Spencer.dialog:367
 msgid ""
 "All in all, not quite so bad. But you still need to do the one thing or the ot"
 "her. Then we can talk about it."
-msgstr ""
-
-#: ../dialogs/Spencer.dialog:374
-msgid "TUX SUCKS"
 msgstr ""
 
 #: ../dialogs/Spencer.dialog:377
@@ -2576,18 +2314,10 @@ msgid ""
 "hings to do for you."
 msgstr ""
 
-#: ../dialogs/Spencer.dialog:384
-msgid "STUPID OPTION. IT MUST DIE."
-msgstr ""
-
 #: ../dialogs/Spencer.dialog:387
 msgid ""
 "But you are a member of the Town Guard already! Don't be pulling my leg! Guard"
 "s must stick together."
-msgstr ""
-
-#: ../dialogs/Spencer.dialog:395
-msgid "NOT JOINED YET."
 msgstr ""
 
 #: ../dialogs/Spencer.dialog:398
@@ -2600,23 +2330,6 @@ msgstr ""
 msgid ""
 "Once you're a known character around here, we might let you join the ranks of "
 "the Guard."
-msgstr ""
-
-#: ../dialogs/Spencer.dialog:409
-msgid "GOT THE DATA CUBE?"
-msgstr ""
-
-#: ../dialogs/Spencer.dialog:418
-msgid "GOT IT!"
-msgstr ""
-
-#: ../dialogs/Spencer.dialog:427
-#: ../dialogs/Butch.dialog:289
-#: ../dialogs/Butch.dialog:317
-#: ../dialogs/SACD.dialog:142
-#: ../dialogs/SACD.dialog:159
-#: ../dialogs/DocMoore.dialog:133
-msgid "DO NOTHING"
 msgstr ""
 
 #: ../dialogs/Spencer.dialog:435
@@ -2711,10 +2424,6 @@ msgstr ""
 msgid ""
 "Also there is no need to hurry with this. After all, the installation is not r"
 "unning away, so best take a slow approach."
-msgstr ""
-
-#: ../dialogs/Spencer.dialog:499
-msgid "STARTED THE CUBE MISSION?"
 msgstr ""
 
 #: ../dialogs/Bender.dialog:33
@@ -2931,34 +2640,6 @@ msgid ""
 "he city guard! You're a good guy, man!"
 msgstr ""
 
-#: ../dialogs/Bender.dialog:241
-msgid "DID TUX GET THE MISSION TO SAVE BENDER?"
-msgstr ""
-
-#: ../dialogs/Bender.dialog:250
-msgid "DID HE FINISH IT?"
-msgstr ""
-
-#: ../dialogs/Bender.dialog:259
-msgid "THE GREAT UNKNOWN NODE"
-msgstr ""
-
-#: ../dialogs/Bender.dialog:267
-msgid "BENDER IS SAVED"
-msgstr ""
-
-#: ../dialogs/Bender.dialog:276
-msgid "DOES TUX HAVE THE CURE?"
-msgstr ""
-
-#: ../dialogs/Bender.dialog:292
-msgid "THERE IS NO CURE TO GIVE"
-msgstr ""
-
-#: ../dialogs/Bender.dialog:302
-msgid "YEAH, WE HAVE THE CURE"
-msgstr ""
-
 #: ../dialogs/Bender.dialog:316
 msgid " Yeah, it was a totally idiotic idea to take those pills."
 msgstr ""
@@ -3164,18 +2845,10 @@ msgstr ""
 msgid " I want to get into the guardhouse."
 msgstr ""
 
-#: ../dialogs/Tybalt.dialog:65
-msgid "THE GATE OPENS"
-msgstr ""
-
 #: ../dialogs/Tybalt.dialog:68
 msgid ""
 "Of course. Guard members are always authorized to enter the guardhouse. The ga"
 "te is open. Enjoy your stay."
-msgstr ""
-
-#: ../dialogs/Tybalt.dialog:76
-msgid "YOU SHALL NOT PASS"
 msgstr ""
 
 #: ../dialogs/Tybalt.dialog:79
@@ -3188,24 +2861,8 @@ msgstr ""
 msgid "Talk to Spencer if you have any issues inside. I cannot let you pass."
 msgstr ""
 
-#: ../dialogs/Tybalt.dialog:89
-msgid " I have a lot of money for you."
-msgstr ""
-
 #: ../dialogs/Tybalt.dialog:92
 msgid "Fascinating. Hundred."
-msgstr ""
-
-#: ../dialogs/Tybalt.dialog:100
-msgid "BRIBERY IS OCCURING"
-msgstr ""
-
-#: ../dialogs/Tybalt.dialog:109
-msgid "GOT ENOUGH MONEY!"
-msgstr ""
-
-#: ../dialogs/Tybalt.dialog:118
-msgid "DAMN, I AM POOR"
 msgstr ""
 
 #: ../dialogs/Tybalt.dialog:127
@@ -3254,18 +2911,6 @@ msgstr ""
 
 #: ../dialogs/Tybalt.dialog:187
 msgid "What money?"
-msgstr ""
-
-#: ../dialogs/Tybalt.dialog:194
-msgid "BRIBED BEFORE?"
-msgstr ""
-
-#: ../dialogs/Tybalt.dialog:203
-msgid "YEAH, ONCE BEFORE. NOT GONNA DO THAT AGAIN."
-msgstr ""
-
-#: ../dialogs/Tybalt.dialog:211
-msgid "NO, NEVER BEFORE."
 msgstr ""
 
 #: ../dialogs/Tybalt.dialog:223
@@ -3450,18 +3095,6 @@ msgstr ""
 msgid "Yes. And now I would like to go to sleep. Good night Linarian."
 msgstr ""
 
-#: ../dialogs/Bruce.dialog:191
-msgid " DID TUX HARM BRUCE?"
-msgstr ""
-
-#: ../dialogs/Bruce.dialog:200
-msgid " YES."
-msgstr ""
-
-#: ../dialogs/Bruce.dialog:209
-msgid " NO."
-msgstr ""
-
 #: ../dialogs/Bruce.dialog:221
 #: ../dialogs/Dixon.dialog:295
 msgid ". . ."
@@ -3531,11 +3164,6 @@ msgstr ""
 
 #: ../dialogs/subdlg_kevin_reward1.dialog:87
 msgid "Eh... Here, take these 500 bucks. That should be enough."
-msgstr ""
-
-#: ../dialogs/subdlg_kevin_reward1.dialog:98
-#: ../dialogs/subdlg_Kevin.dialog:99
-msgid " [BACK]"
 msgstr ""
 
 #: ../dialogs/Ernie.dialog:36
@@ -3774,30 +3402,6 @@ msgstr ""
 msgid "Great. Get in the door, newbie."
 msgstr ""
 
-#: ../dialogs/Butch.dialog:280
-msgid "CHECK FOR FIRST ARENA VICTORY"
-msgstr ""
-
-#: ../dialogs/Butch.dialog:297
-msgid "ENABLING TEXT AFTER THE FIRST ARENA VICTORY"
-msgstr ""
-
-#: ../dialogs/Butch.dialog:308
-msgid "CHECK FOR SECOND ARENA VICTORY"
-msgstr ""
-
-#: ../dialogs/Butch.dialog:325
-msgid "ENABLING TEXT AFTER THE SECOND ARENA VICTORY"
-msgstr ""
-
-#: ../dialogs/Butch.dialog:335
-msgid "DID WE ENABLE SET 1 BEFORE?"
-msgstr ""
-
-#: ../dialogs/Butch.dialog:344
-msgid "DID WE ENABLE SET 2 BEFORE?"
-msgstr ""
-
 #: ../dialogs/Butch.dialog:356
 msgid "Sure."
 msgstr ""
@@ -3962,66 +3566,6 @@ msgstr ""
 msgid "Please come back later, Linarian. We must talk again."
 msgstr ""
 
-#: ../dialogs/subdlg_Stone.dialog:36
-msgid "You are Tux, aren't you..."
-msgstr ""
-
-#: ../dialogs/subdlg_Stone.dialog:38
-msgid "The hero..."
-msgstr ""
-
-#: ../dialogs/subdlg_Stone.dialog:49
-msgid " Yes, its me."
-msgstr ""
-
-#: ../dialogs/subdlg_Stone.dialog:52
-msgid ""
-"I thought so. My grandfather used to tell me stories about you. He said you wo"
-"uld come here in a time of despair."
-msgstr ""
-
-#: ../dialogs/subdlg_Stone.dialog:54
-msgid "And here you are."
-msgstr ""
-
-#: ../dialogs/subdlg_Stone.dialog:56
-msgid "I hope your arrival changes the tide of this war..."
-msgstr ""
-
-#: ../dialogs/subdlg_Stone.dialog:58
-msgid ""
-"Tux, if you ever find out who started the Great Assault... GIVE THEM A KICK IN"
-" THE ASS, FROM LILY STONE!!!"
-msgstr ""
-
-#: ../dialogs/subdlg_Stone.dialog:68
-msgid " It's not important who am I."
-msgstr ""
-
-#: ../dialogs/subdlg_Stone.dialog:71
-msgid "If you want to remain a stranger, I will respect your wishes."
-msgstr ""
-
-#: ../dialogs/subdlg_Stone.dialog:73
-msgid "So be it."
-msgstr ""
-
-#: ../dialogs/subdlg_Stone.dialog:83
-msgid " Ha ha ha, You fell for it! You get nothing from me! Hahahahah!"
-msgstr ""
-
-#: ../dialogs/subdlg_Stone.dialog:86
-msgid "You... monster..."
-msgstr ""
-
-#: ../dialogs/subdlg_Stone.dialog:88
-msgid "No one makes fun of Lily Stone's family store!"
-msgstr ""
-
-#: ../dialogs/subdlg_Stone.dialog:90
-msgid "Say your prayers, you oversized duck!!!"
-msgstr ""
-
 #: ../dialogs/subdlg_Duncan.dialog:43
 msgid " Tell me more."
 msgstr ""
@@ -4176,10 +3720,6 @@ msgstr ""
 
 #: ../dialogs/SACD.dialog:117
 msgid "An error occured while opening doors."
-msgstr ""
-
-#: ../dialogs/SACD.dialog:150
-msgid "IS THIS FIRST DIALOG?"
 msgstr ""
 
 #: ../dialogs/SADD.dialog:36
@@ -4426,30 +3966,6 @@ msgstr ""
 msgid " Go, and bring dilithium. I badly need it."
 msgstr ""
 
-#: ../dialogs/SADD.dialog:337
-msgid " HAVE THE CRYSTALS"
-msgstr ""
-
-#: ../dialogs/SADD.dialog:346
-msgid " TUX_GOT_CRISTALS"
-msgstr ""
-
-#: ../dialogs/SADD.dialog:357
-msgid " TUX_DIDNT_GOT_CRISTALS"
-msgstr ""
-
-#: ../dialogs/SADD.dialog:368
-msgid " TUX STARTED ON THE QUEST"
-msgstr ""
-
-#: ../dialogs/SADD.dialog:377
-msgid " IS MISSION IS DONE?"
-msgstr ""
-
-#: ../dialogs/SADD.dialog:386
-msgid " WE DONT HAVE MISSION"
-msgstr ""
-
 #: ../dialogs/SADD.dialog:396
 msgid " I have the crystals! They were difficult to find."
 msgstr ""
@@ -4468,10 +3984,6 @@ msgstr ""
 msgid " Badly. Get the cristals. Remember, you promised!"
 msgstr ""
 
-#: ../dialogs/SADD.dialog:426
-msgid " MISSION IS DONE #2"
-msgstr ""
-
 #: ../dialogs/SADD.dialog:437
 msgid " I have crystals! They were difficult to find."
 msgstr ""
@@ -4480,18 +3992,6 @@ msgstr ""
 msgid ""
 " Great! Thanks. I've opened some doors for you, I hope you will find something"
 " interesting there. That's all I can do for you."
-msgstr ""
-
-#: ../dialogs/SADD.dialog:456
-msgid " DID I ASK EXTERIMINATOR?"
-msgstr ""
-
-#: ../dialogs/SADD.dialog:465
-msgid " I HAVE ASKED"
-msgstr ""
-
-#: ../dialogs/SADD.dialog:474
-msgid " I DIDN'T ASKED"
 msgstr ""
 
 #: ../dialogs/SADD.dialog:483
@@ -4791,20 +4291,8 @@ msgstr ""
 msgid "I am friendly because I like you."
 msgstr ""
 
-#: ../dialogs/Skippy.dialog:162
-msgid "CHECK FOR SKIPPY ANGER"
-msgstr ""
-
-#: ../dialogs/Skippy.dialog:171
-msgid "YEAH, HE IS ANGRY."
-msgstr ""
-
 #: ../dialogs/Skippy.dialog:174
 msgid "What? You again? I don't want you here, get out."
-msgstr ""
-
-#: ../dialogs/Skippy.dialog:187
-msgid "NO, HE IS NOT ANGRY"
 msgstr ""
 
 #: ../dialogs/Skippy.dialog:198
@@ -4849,11 +4337,6 @@ msgstr ""
 msgid ""
 "Oh, there's always something to do. Don't worry. I'm pretty occupied keeping t"
 "he place in order."
-msgstr ""
-
-#: ../dialogs/Lukas.dialog:70
-#: ../dialogs/MER.dialog:43
-msgid " END "
 msgstr ""
 
 #: ../dialogs/Dixon.dialog:36
@@ -5573,70 +5056,6 @@ msgstr ""
 msgid "Just go and see for yourself. Otherwise you will not believe me."
 msgstr ""
 
-#: ../dialogs/Dixon.dialog:613
-msgid "IS THE TOOLKIT WITH TUX?"
-msgstr ""
-
-#: ../dialogs/Dixon.dialog:622
-msgid "WAS TUX A MANIAC KILLER?"
-msgstr ""
-
-#: ../dialogs/Dixon.dialog:631
-msgid " TUX DID NOT KNOW WHAT IS HE DOING."
-msgstr ""
-
-#: ../dialogs/Dixon.dialog:641
-msgid " YES, HE SLAUGHTERED THE BOTS FOR ENTERTAINMENT."
-msgstr ""
-
-#: ../dialogs/Dixon.dialog:650
-msgid " IS THE TOOLKIT MISSION DONE?"
-msgstr ""
-
-#: ../dialogs/Dixon.dialog:659
-msgid " YEAH, AND TUX HAS NO IDEA..."
-msgstr ""
-
-#: ../dialogs/Dixon.dialog:668
-msgid " YEAH, AND TUX WAS A MADMAN."
-msgstr ""
-
-#: ../dialogs/Dixon.dialog:677
-msgid " YEAH, SINGULARITY IS WELL, FIRST TIME"
-msgstr ""
-
-#: ../dialogs/Dixon.dialog:686
-msgid " YEAH, AND THIS IS THE SECOND TIME TUX ASKS. LET THE MAGIC START."
-msgstr ""
-
-#: ../dialogs/Dixon.dialog:695
-msgid " YES, AND IT WENT WITH PEACE"
-msgstr ""
-
-#: ../dialogs/Dixon.dialog:704
-msgid " SURE, IT WAS DONE."
-msgstr ""
-
-#: ../dialogs/Dixon.dialog:713
-msgid " DID TUX KNOW WHAT IS HE DOING?"
-msgstr ""
-
-#: ../dialogs/Dixon.dialog:722
-msgid " DO NOTHING NODE"
-msgstr ""
-
-#: ../dialogs/Dixon.dialog:730
-msgid " DID TUX ANGER DIXON?"
-msgstr ""
-
-#: ../dialogs/Dixon.dialog:739
-msgid "HOW MUCH ANGER?"
-msgstr ""
-
-#: ../dialogs/Dixon.dialog:748
-msgid "YES, QUITE A LOT. THIS IS THE END, FOLKS."
-msgstr ""
-
 #: ../dialogs/Dixon.dialog:751
 msgid "YOU AGAIN!"
 msgstr ""
@@ -5665,28 +5084,12 @@ msgstr ""
 msgid "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA!"
 msgstr ""
 
-#: ../dialogs/Dixon.dialog:771
-msgid "JUST A LITTLE BIT."
-msgstr ""
-
 #: ../dialogs/Dixon.dialog:774
 msgid "Linarian, please leave. You are no longer welcome here."
 msgstr ""
 
 #: ../dialogs/Dixon.dialog:776
 msgid "You have done me wrong and I have no desire to talk to you."
-msgstr ""
-
-#: ../dialogs/Dixon.dialog:783
-msgid "CHECK FOR SAVING SINGULARITY"
-msgstr ""
-
-#: ../dialogs/Dixon.dialog:792
-msgid "CHECK IF DIXON TALKED ALREADY"
-msgstr ""
-
-#: ../dialogs/Dixon.dialog:801
-msgid "ELIMINATING_THE_DOUBLE_TALK"
 msgstr ""
 
 #: ../dialogs/Dixon.dialog:810
@@ -5747,55 +5150,14 @@ msgstr ""
 msgid "Good. I think that it is enough for today."
 msgstr ""
 
-#: ../dialogs/subdlg_Benjamin.dialog:105
-#: ../dialogs/subdlg_Butch.dialog:183
-msgid " BACK"
-msgstr ""
-
-#: ../dialogs/subdlg_Darwin.dialog:33
-msgid "STARTING NODE"
-msgstr ""
-
-#: ../dialogs/subdlg_Darwin.dialog:43
-msgid "GOT EXPERIENCE POINTS?"
-msgstr ""
-
-#: ../dialogs/subdlg_Darwin.dialog:52
-msgid "ALREADY TAUGHT?"
-msgstr ""
-
 #: ../dialogs/subdlg_Darwin.dialog:61
 msgid ""
 " I'm ready. Please show me how to extract bot parts. (cost 50 cash, 1 ability "
-"points)"
-msgstr ""
-
-#: ../dialogs/subdlg_Darwin.dialog:72
-msgid "TEACHING THE FIRST TIME"
-msgstr ""
-
-#: ../dialogs/subdlg_Darwin.dialog:82
-msgid "TEACHING MORE"
+"point)"
 msgstr ""
 
 #: ../dialogs/subdlg_Darwin.dialog:92
-msgid " Sure. Teach me all that you know. (cost 50 cash, 1 ability points)"
-msgstr ""
-
-#: ../dialogs/subdlg_Darwin.dialog:102
-msgid "KNOW LESSON TWO"
-msgstr ""
-
-#: ../dialogs/subdlg_Darwin.dialog:111
-msgid "KNOW LESSON THREE"
-msgstr ""
-
-#: ../dialogs/subdlg_Darwin.dialog:120
-msgid "KNOW LESSON FOUR"
-msgstr ""
-
-#: ../dialogs/subdlg_Darwin.dialog:129
-msgid "FIRST LESSON"
+msgid " Sure. Teach me all that you know. (cost 50 cash, 1 ability point)"
 msgstr ""
 
 #: ../dialogs/subdlg_Darwin.dialog:132
@@ -5812,10 +5174,6 @@ msgid ""
 "circles around a cube. That is what you are looking for."
 msgstr ""
 
-#: ../dialogs/subdlg_Darwin.dialog:147
-msgid "SECOND LESSON"
-msgstr ""
-
 #: ../dialogs/subdlg_Darwin.dialog:150
 msgid "How about... Plasma transistors? Trivial."
 msgstr ""
@@ -5826,10 +5184,6 @@ msgstr ""
 
 #: ../dialogs/subdlg_Darwin.dialog:154
 msgid "Plasma transistors are shaped like the letter Y. Just rip them out, it's safe."
-msgstr ""
-
-#: ../dialogs/subdlg_Darwin.dialog:165
-msgid "THIRD LESSON"
 msgstr ""
 
 #: ../dialogs/subdlg_Darwin.dialog:168
@@ -5848,10 +5202,6 @@ msgstr ""
 
 #: ../dialogs/subdlg_Darwin.dialog:174
 msgid "Wear rubber gloves. Just in case, you know."
-msgstr ""
-
-#: ../dialogs/subdlg_Darwin.dialog:185
-msgid "FOURTH LESSON"
 msgstr ""
 
 #: ../dialogs/subdlg_Darwin.dialog:188
@@ -5876,10 +5226,6 @@ msgstr ""
 msgid ""
 "If you do not do that, you will only succeed in converting yourself to anti-ma"
 "tter. And as you know, there is no coming back from there."
-msgstr ""
-
-#: ../dialogs/subdlg_Darwin.dialog:207
-msgid "FINAL LESSON"
 msgstr ""
 
 #: ../dialogs/subdlg_Darwin.dialog:210
@@ -5910,20 +5256,8 @@ msgid ""
 "ing through the circuits to find one."
 msgstr ""
 
-#: ../dialogs/subdlg_Darwin.dialog:229
-msgid "NO MORE LESSONS"
-msgstr ""
-
 #: ../dialogs/subdlg_Darwin.dialog:232
 msgid "Nein, I told you everything I know about that. No use asking me twice, ja?"
-msgstr ""
-
-#: ../dialogs/subdlg_Darwin.dialog:240
-msgid "CHECK IF MONEY ENOUGH"
-msgstr ""
-
-#: ../dialogs/subdlg_Darwin.dialog:248
-msgid "TUX IS TOO POOR TO TRAIN"
 msgstr ""
 
 #: ../dialogs/subdlg_Darwin.dialog:251
@@ -5939,10 +5273,6 @@ msgstr ""
 msgid "Come back with some money."
 msgstr ""
 
-#: ../dialogs/subdlg_Darwin.dialog:263
-msgid "NO FREE POINTS"
-msgstr ""
-
 #: ../dialogs/subdlg_Darwin.dialog:268
 msgid "You look green. Toughen up. Get some experience, kill some bots."
 msgstr ""
@@ -5955,20 +5285,68 @@ msgstr ""
 msgid " Maybe another time."
 msgstr ""
 
+#: ../dialogs/subdlg_Stone.dialog:36
+msgid "You are Tux, aren't you..."
+msgstr ""
+
+#: ../dialogs/subdlg_Stone.dialog:38
+msgid "The hero..."
+msgstr ""
+
+#: ../dialogs/subdlg_Stone.dialog:49
+msgid " Yes, its me."
+msgstr ""
+
+#: ../dialogs/subdlg_Stone.dialog:52
+msgid ""
+"I thought so. My grandfather used to tell me stories about you. He said you wo"
+"uld come here in a time of despair."
+msgstr ""
+
+#: ../dialogs/subdlg_Stone.dialog:54
+msgid "And here you are."
+msgstr ""
+
+#: ../dialogs/subdlg_Stone.dialog:56
+msgid "I hope your arrival changes the tide of this war..."
+msgstr ""
+
+#: ../dialogs/subdlg_Stone.dialog:58
+msgid ""
+"Tux, if you ever find out who started the Great Assault... GIVE THEM A KICK IN"
+" THE ASS, FROM LILY STONE!!!"
+msgstr ""
+
+#: ../dialogs/subdlg_Stone.dialog:68
+msgid " It's not important who am I."
+msgstr ""
+
+#: ../dialogs/subdlg_Stone.dialog:71
+msgid "If you want to remain a stranger, I will respect your wishes."
+msgstr ""
+
+#: ../dialogs/subdlg_Stone.dialog:73
+msgid "So be it."
+msgstr ""
+
+#: ../dialogs/subdlg_Stone.dialog:83
+msgid " Ha ha ha, You fell for it! You get nothing from me! Hahahahah!"
+msgstr ""
+
+#: ../dialogs/subdlg_Stone.dialog:86
+msgid "You... monster..."
+msgstr ""
+
+#: ../dialogs/subdlg_Stone.dialog:88
+msgid "No one makes fun of Lily Stone's family store!"
+msgstr ""
+
+#: ../dialogs/subdlg_Stone.dialog:90
+msgid "Say your prayers, you oversized duck!!!"
+msgstr ""
+
 #: ../dialogs/subdlg_Duncan_quest.dialog:36
 msgid "So... Any news on the Koan matter?"
-msgstr ""
-
-#: ../dialogs/subdlg_Duncan_quest.dialog:54
-msgid "KOAN WAS SPARED"
-msgstr ""
-
-#: ../dialogs/subdlg_Duncan_quest.dialog:63
-msgid "GOT THE CUBE?"
-msgstr ""
-
-#: ../dialogs/subdlg_Duncan_quest.dialog:72
-msgid "YEAH. WE HAVE THE CUBE."
 msgstr ""
 
 #: ../dialogs/subdlg_Duncan_quest.dialog:82
@@ -6313,34 +5691,6 @@ msgid ""
 "om commander cabinet, books from the restroom..."
 msgstr ""
 
-#: ../dialogs/Tania.dialog:267
-msgid "HAD TUX DISABLED GUNS"
-msgstr ""
-
-#: ../dialogs/Tania.dialog:276
-msgid "IS MISSION ASSIGNED"
-msgstr ""
-
-#: ../dialogs/Tania.dialog:285
-msgid "ALL DONE"
-msgstr ""
-
-#: ../dialogs/Tania.dialog:297
-msgid "GUNS STILL ARE ON"
-msgstr ""
-
-#: ../dialogs/Tania.dialog:309
-msgid "WE DON'T HAVE MISSION"
-msgstr ""
-
-#: ../dialogs/Tania.dialog:320
-msgid "MISSION IS COMPLETED"
-msgstr ""
-
-#: ../dialogs/Tania.dialog:332
-msgid "IS MISSION COMPLETED"
-msgstr ""
-
 #: ../dialogs/Tania.dialog:341
 msgid "The sentry guns are off. You can go now!"
 msgstr ""
@@ -6381,88 +5731,6 @@ msgstr ""
 
 #: ../dialogs/Tania.dialog:380
 msgid "That's ok. But please, please, come back. I'm so lonely."
-msgstr ""
-
-#: ../dialogs/RMS.dialog:36
-msgid "Welcome, welcome! I'm Richard. I'm the computer guy around here."
-msgstr ""
-
-#: ../dialogs/RMS.dialog:38
-msgid ""
-"I mostly work with this huge computer cluster here, although I also program th"
-"e 614 bots in my spare time."
-msgstr ""
-
-#: ../dialogs/RMS.dialog:46
-msgid " A computer cluster? What's that?"
-msgstr ""
-
-#: ../dialogs/RMS.dialog:49
-msgid ""
-"A cluster is a group of computers, connected in a way that helps them collabor"
-"ate in solving problems."
-msgstr ""
-
-#: ../dialogs/RMS.dialog:51
-msgid "As they say, 'two heads are better than one'. And we have a lot of heads here."
-msgstr ""
-
-#: ../dialogs/RMS.dialog:53
-msgid "This is why I call this cluster 'Hydra'. A lot of heads indeed."
-msgstr ""
-
-#: ../dialogs/RMS.dialog:69
-msgid ""
-" I have a data cube with some information. Can you tell me something more abou"
-"t it?"
-msgstr ""
-
-#: ../dialogs/RMS.dialog:72
-msgid ""
-"Interesting. Let me see this thing. Hmm... Yes, there is quite a lot of stuff "
-"in there. Maybe we could use Hydra to evaluate the data."
-msgstr ""
-
-#: ../dialogs/RMS.dialog:74
-msgid ""
-"Hey, what do we have here? The data is already prepared for processing by a cl"
-"uster just like ours. Wow! That's excellent!"
-msgstr ""
-
-#: ../dialogs/RMS.dialog:76
-msgid ""
-"I'll feed it into Hydra right away. Expect the results in a short while. Hydra"
-" has never let me down so far."
-msgstr ""
-
-#: ../dialogs/RMS.dialog:87
-msgid "DO NOTHING HERE..."
-msgstr ""
-
-#: ../dialogs/RMS.dialog:104
-msgid " Hey, did you get something out of that data cube?"
-msgstr ""
-
-#: ../dialogs/RMS.dialog:107
-msgid ""
-"Of course! I told you, Hydra has never failed me! I designed it myself, and I "
-"know computers very well. I never make mistakes."
-msgstr ""
-
-#: ../dialogs/RMS.dialog:109
-msgid ""
-"Seems like the bots can be disabled by enabling some disruptor field or someth"
-"ing like that."
-msgstr ""
-
-#: ../dialogs/RMS.dialog:111
-msgid ""
-"I was busy servicing one of Hydra's nodes, but I sent the full report to Spenc"
-"er. He will tell you more."
-msgstr ""
-
-#: ../dialogs/RMS.dialog:121
-msgid "Take care, Linarian."
 msgstr ""
 
 #: ../dialogs/Chandra.dialog:36
@@ -6765,6 +6033,84 @@ msgstr ""
 msgid "Feel free to come here any time you want."
 msgstr ""
 
+#: ../dialogs/RMS.dialog:36
+msgid "Welcome, welcome! I'm Richard. I'm the computer guy around here."
+msgstr ""
+
+#: ../dialogs/RMS.dialog:38
+msgid ""
+"I mostly work with this huge computer cluster here, although I also program th"
+"e 614 bots in my spare time."
+msgstr ""
+
+#: ../dialogs/RMS.dialog:46
+msgid " A computer cluster? What's that?"
+msgstr ""
+
+#: ../dialogs/RMS.dialog:49
+msgid ""
+"A cluster is a group of computers, connected in a way that helps them collabor"
+"ate in solving problems."
+msgstr ""
+
+#: ../dialogs/RMS.dialog:51
+msgid "As they say, 'two heads are better than one'. And we have a lot of heads here."
+msgstr ""
+
+#: ../dialogs/RMS.dialog:53
+msgid "This is why I call this cluster 'Hydra'. A lot of heads indeed."
+msgstr ""
+
+#: ../dialogs/RMS.dialog:69
+msgid ""
+" I have a data cube with some information. Can you tell me something more abou"
+"t it?"
+msgstr ""
+
+#: ../dialogs/RMS.dialog:72
+msgid ""
+"Interesting. Let me see this thing. Hmm... Yes, there is quite a lot of stuff "
+"in there. Maybe we could use Hydra to evaluate the data."
+msgstr ""
+
+#: ../dialogs/RMS.dialog:74
+msgid ""
+"Hey, what do we have here? The data is already prepared for processing by a cl"
+"uster just like ours. Wow! That's excellent!"
+msgstr ""
+
+#: ../dialogs/RMS.dialog:76
+msgid ""
+"I'll feed it into Hydra right away. Expect the results in a short while. Hydra"
+" has never let me down so far."
+msgstr ""
+
+#: ../dialogs/RMS.dialog:104
+msgid " Hey, did you get something out of that data cube?"
+msgstr ""
+
+#: ../dialogs/RMS.dialog:107
+msgid ""
+"Of course! I told you, Hydra has never failed me! I designed it myself, and I "
+"know computers very well. I never make mistakes."
+msgstr ""
+
+#: ../dialogs/RMS.dialog:109
+msgid ""
+"Seems like the bots can be disabled by enabling some disruptor field or someth"
+"ing like that."
+msgstr ""
+
+#: ../dialogs/RMS.dialog:111
+msgid ""
+"I was busy servicing one of Hydra's nodes, but I sent the full report to Spenc"
+"er. He will tell you more."
+msgstr ""
+
+#: ../dialogs/RMS.dialog:121
+msgid "Take care, Linarian."
+msgstr ""
+
 #: ../dialogs/MSFacilityGateGuardLeader.dialog:36
 msgid "Hey, Linarian! What do you want here?"
 msgstr ""
@@ -6809,14 +6155,6 @@ msgstr ""
 msgid "Go away!"
 msgstr ""
 
-#: ../dialogs/MSFacilityGateGuardLeader.dialog:97
-msgid "TEST FOR MANY TALKS"
-msgstr ""
-
-#: ../dialogs/MSFacilityGateGuardLeader.dialog:106
-msgid "NOTHING IS SAID HERE."
-msgstr ""
-
 #: ../dialogs/MSFacilityGateGuardLeader.dialog:109
 msgid "GET OUT OF HERE YOU IDIOT!"
 msgstr ""
@@ -6833,22 +6171,10 @@ msgstr ""
 msgid " Give me the novice arena."
 msgstr ""
 
-#: ../dialogs/subdlg_Butch.dialog:53
-msgid "NOVICE_ARENA_ALREADY_ASSIGNED"
-msgstr ""
-
-#: ../dialogs/subdlg_Butch.dialog:62
-msgid "GO_THERE_AND_DO_IT"
-msgstr ""
-
 #: ../dialogs/subdlg_Butch.dialog:65
 msgid ""
 "I've already opened the door for you. All you need to do is walk in there and "
 "crush all four bots."
-msgstr ""
-
-#: ../dialogs/subdlg_Butch.dialog:72
-msgid "ASSIGN NOVICE ARENA"
 msgstr ""
 
 #: ../dialogs/subdlg_Butch.dialog:75
@@ -6857,10 +6183,6 @@ msgstr ""
 
 #: ../dialogs/subdlg_Butch.dialog:77
 msgid "Take the accessway. I've unlocked the door. Good luck."
-msgstr ""
-
-#: ../dialogs/subdlg_Butch.dialog:86
-msgid "ASSIGN MASTER ARENA"
 msgstr ""
 
 #: ../dialogs/subdlg_Butch.dialog:89
@@ -6881,10 +6203,6 @@ msgid ""
 "ill it fast enough. Good luck!"
 msgstr ""
 
-#: ../dialogs/subdlg_Butch.dialog:102
-msgid "ITS_ALL_DONE"
-msgstr ""
-
 #: ../dialogs/subdlg_Butch.dialog:105
 msgid ""
 "You've already completed the novice arena. But since you really want to have a"
@@ -6899,14 +6217,6 @@ msgstr ""
 
 #: ../dialogs/subdlg_Butch.dialog:115
 msgid " Give me the master arena."
-msgstr ""
-
-#: ../dialogs/subdlg_Butch.dialog:124
-msgid "NOVICE_IS_DONE"
-msgstr ""
-
-#: ../dialogs/subdlg_Butch.dialog:133
-msgid "NOVICE_NOT_YET_DONE"
 msgstr ""
 
 #: ../dialogs/subdlg_Butch.dialog:136
@@ -6927,10 +6237,6 @@ msgid ""
 "e master field."
 msgstr ""
 
-#: ../dialogs/subdlg_Butch.dialog:147
-msgid "MASTER ALREADY ASSIGNED"
-msgstr ""
-
 #: ../dialogs/subdlg_Butch.dialog:150
 msgid ""
 "But I've already opened the door. What are you waiting for? All you need to do"
@@ -6949,10 +6255,6 @@ msgid ""
 "he 711 disruptor flash will kill you in 2 seconds."
 msgstr ""
 
-#: ../dialogs/subdlg_Butch.dialog:161
-msgid "MASTER IS DONE"
-msgstr ""
-
 #: ../dialogs/subdlg_Butch.dialog:164
 msgid ""
 "But you've already completed the master arena. Ok, but I can have the bots res"
@@ -6963,10 +6265,6 @@ msgstr ""
 msgid ""
 "But certainly you've earned yourself a reputation as arena master around here "
 "now and we respect that."
-msgstr ""
-
-#: ../dialogs/subdlg_Butch.dialog:174
-msgid "MASTER MIGHT BE FOR YOU"
 msgstr ""
 
 #: ../dialogs/subdlg_Sorenson.dialog:33
@@ -7220,14 +6518,6 @@ msgstr ""
 msgid "As far as I am concerned, in this town everyone gets everything equally."
 msgstr ""
 
-#: ../dialogs/DocMoore.dialog:124
-msgid "ON MISSION 0 WAS ASSIGNED..."
-msgstr ""
-
-#: ../dialogs/DocMoore.dialog:151
-msgid "THIS SHOULD ENABLE..."
-msgstr ""
-
 #: ../dialogs/DocMoore.dialog:160
 #: ../dialogs/DocMoore.dialog:195
 msgid " Can you fix me up?"
@@ -7460,14 +6750,6 @@ msgstr ""
 msgid "Now I make more to smash the destroyers."
 msgstr ""
 
-#: ../dialogs/Duncan.dialog:143
-msgid "KOAN QUEST"
-msgstr ""
-
-#: ../dialogs/Duncan.dialog:152
-msgid "STARTING KOAN QUEST"
-msgstr ""
-
 #: ../dialogs/Duncan.dialog:155
 msgid "Ah. Welcome again Linarian."
 msgstr ""
@@ -7478,30 +6760,6 @@ msgstr ""
 
 #: ../dialogs/Duncan.dialog:159
 msgid "I know someone who needs to be taught a lesson."
-msgstr ""
-
-#: ../dialogs/Duncan.dialog:170
-msgid "VOID"
-msgstr ""
-
-#: ../dialogs/Duncan.dialog:178
-msgid "TEST FOR BOX OR SAVING KOAN"
-msgstr ""
-
-#: ../dialogs/Duncan.dialog:187
-msgid "MURDERING DONE OR SAVED HIM"
-msgstr ""
-
-#: ../dialogs/Duncan.dialog:196
-msgid "IS KOAN SAVED?"
-msgstr ""
-
-#: ../dialogs/Duncan.dialog:205
-msgid "WAS THE QUEST DONE BEFORE"
-msgstr ""
-
-#: ../dialogs/Duncan.dialog:214
-msgid "PREVENTING DOUBLE TALK"
 msgstr ""
 
 #: ../dialogs/Duncan.dialog:223
@@ -7719,10 +6977,10 @@ msgstr ""
 msgid " Resuming guard program."
 msgstr ""
 
-#: ../dialogs/Template.dialog:33
-#: ../dialogs/Template.dialog:36
-#: ../dialogs/Template.dialog:43
-#: ../dialogs/Template.dialog:46
+#: ../dialogs/Template.dialog:35
+#: ../dialogs/Template.dialog:38
+#: ../dialogs/Template.dialog:45
+#: ../dialogs/Template.dialog:48
 msgid "<?>"
 msgstr ""
 
@@ -7970,27 +7228,11 @@ msgid " I thought you would be more worried about her death."
 msgstr ""
 
 #: ../dialogs/Kevin.dialog:313
-msgid "Why? I have backups from the last Friday. No reason to worry at all."
+msgid "Why? I have backups from last Friday. No reason to worry at all."
 msgstr ""
 
 #: ../dialogs/Kevin.dialog:315
 msgid "It will be a while till I get her together again, but she will be fine."
-msgstr ""
-
-#: ../dialogs/Kevin.dialog:322
-msgid "JASMINE SIGSEGV"
-msgstr ""
-
-#: ../dialogs/Kevin.dialog:331
-msgid "JASMINE_BLEW_UP"
-msgstr ""
-
-#: ../dialogs/Kevin.dialog:341
-msgid "NOT TALKED ABOUT JASMINE"
-msgstr ""
-
-#: ../dialogs/Kevin.dialog:349
-msgid "YES, TALKED BEFORE"
 msgstr ""
 
 #: ../dialogs/Kevin.dialog:366
@@ -8009,157 +7251,169 @@ msgstr ""
 msgid " Teach me the basic stuff."
 msgstr ""
 
-#: ../dialogs/subdlg_Pendragon.dialog:65
+#: ../dialogs/subdlg_Pendragon.dialog:48
+msgid "Are you sure?"
+msgstr ""
+
+#: ../dialogs/subdlg_Pendragon.dialog:50
+msgid "I only accept students that already have some experience in fighting bots."
+msgstr ""
+
+#: ../dialogs/subdlg_Pendragon.dialog:59
+msgid " Yes (cost 100 cash, 5 ability points)"
+msgstr ""
+
+#: ../dialogs/subdlg_Pendragon.dialog:81
 msgid ""
 "Hey, wake up! I taught you that stuff already. Go practice on the bots, if you"
 " really want more training."
 msgstr ""
 
-#: ../dialogs/subdlg_Pendragon.dialog:75
+#: ../dialogs/subdlg_Pendragon.dialog:91
 msgid "You don't have enough bucks on you! Come back when you have the money."
 msgstr ""
 
-#: ../dialogs/subdlg_Pendragon.dialog:94
+#: ../dialogs/subdlg_Pendragon.dialog:110
 msgid "You don't have enough experience. I can't teach you anything more right now."
 msgstr ""
 
-#: ../dialogs/subdlg_Pendragon.dialog:96
+#: ../dialogs/subdlg_Pendragon.dialog:112
 msgid "First collect more experience. Then we can go on."
 msgstr ""
 
-#: ../dialogs/subdlg_Pendragon.dialog:106
+#: ../dialogs/subdlg_Pendragon.dialog:122
 msgid "Let us begin then."
 msgstr ""
 
-#: ../dialogs/subdlg_Pendragon.dialog:108
+#: ../dialogs/subdlg_Pendragon.dialog:124
 msgid "Come closer..."
 msgstr ""
 
-#: ../dialogs/subdlg_Pendragon.dialog:110
+#: ../dialogs/subdlg_Pendragon.dialog:126
 msgid "HA!"
 msgstr ""
 
-#: ../dialogs/subdlg_Pendragon.dialog:121
+#: ../dialogs/subdlg_Pendragon.dialog:137
 msgid " Teach me how to smash concrete blocks with my bare hands."
 msgstr ""
 
-#: ../dialogs/subdlg_Pendragon.dialog:124
+#: ../dialogs/subdlg_Pendragon.dialog:140
 msgid "Oh, Linarian, you amuse me so."
 msgstr ""
 
-#: ../dialogs/subdlg_Pendragon.dialog:126
+#: ../dialogs/subdlg_Pendragon.dialog:142
 msgid "You are quite an ambitious fellow."
 msgstr ""
 
-#: ../dialogs/subdlg_Pendragon.dialog:128
+#: ../dialogs/subdlg_Pendragon.dialog:144
 msgid ""
 "First learn the basics. Spend a year working on that, and then I'll be able to"
 " teach you some advanced tricks."
 msgstr ""
 
-#: ../dialogs/subdlg_Pendragon.dialog:136
+#: ../dialogs/subdlg_Pendragon.dialog:152
 msgid " Teach me Ninjitsu."
 msgstr ""
 
-#: ../dialogs/subdlg_Pendragon.dialog:139
+#: ../dialogs/subdlg_Pendragon.dialog:155
 msgid "Go away."
 msgstr ""
 
-#: ../dialogs/subdlg_Pendragon.dialog:147
+#: ../dialogs/subdlg_Pendragon.dialog:163
 msgid ""
 " I want to know the Crazy Double-Fang Wolf-Sunlight I-Like-Tea Death Touch of "
 "Major Destruction Flesh-Bursting Attack!"
 msgstr ""
 
-#: ../dialogs/subdlg_Pendragon.dialog:150
+#: ../dialogs/subdlg_Pendragon.dialog:166
 msgid "Wow."
 msgstr ""
 
-#: ../dialogs/subdlg_Pendragon.dialog:152
+#: ../dialogs/subdlg_Pendragon.dialog:168
 msgid "You have a very rich imagination. There is no such thing. Get a life."
 msgstr ""
 
-#: ../dialogs/subdlg_Pendragon.dialog:160
+#: ../dialogs/subdlg_Pendragon.dialog:176
 msgid " I want to know the forbidden skill of furuike ya kawazu tobikomu mizu no oto."
 msgstr ""
 
-#: ../dialogs/subdlg_Pendragon.dialog:163
+#: ../dialogs/subdlg_Pendragon.dialog:179
 msgid "This is starting to make me angry. Shut up and go away."
 msgstr ""
 
-#: ../dialogs/subdlg_Pendragon.dialog:171
+#: ../dialogs/subdlg_Pendragon.dialog:187
 msgid " Teach me how to flip out and kill people!"
 msgstr ""
 
-#: ../dialogs/subdlg_Pendragon.dialog:174
+#: ../dialogs/subdlg_Pendragon.dialog:190
 msgid "*sigh*"
 msgstr ""
 
-#: ../dialogs/subdlg_Pendragon.dialog:176
+#: ../dialogs/subdlg_Pendragon.dialog:192
 msgid "Very well. Observe very carefully."
 msgstr ""
 
-#: ../dialogs/subdlg_Pendragon.dialog:178
+#: ../dialogs/subdlg_Pendragon.dialog:194
 msgid "You will see this only once, so make sure to pay attention."
 msgstr ""
 
-#: ../dialogs/subdlg_Pendragon.dialog:180
+#: ../dialogs/subdlg_Pendragon.dialog:196
 msgid "DIEEEE!"
 msgstr ""
 
-#: ../dialogs/subdlg_Pendragon.dialog:188
+#: ../dialogs/subdlg_Pendragon.dialog:204
 msgid " Ouch! What the hell are you doing?"
 msgstr ""
 
-#: ../dialogs/subdlg_Pendragon.dialog:191
+#: ../dialogs/subdlg_Pendragon.dialog:207
 msgid "Lesson number one. Never trust the opponent."
 msgstr ""
 
-#: ../dialogs/subdlg_Pendragon.dialog:199
+#: ../dialogs/subdlg_Pendragon.dialog:215
 msgid " Just let me get up an -- ouch! Stop it."
 msgstr ""
 
-#: ../dialogs/subdlg_Pendragon.dialog:202
+#: ../dialogs/subdlg_Pendragon.dialog:218
 msgid "Lesson number two. The bots have no mercy."
 msgstr ""
 
-#: ../dialogs/subdlg_Pendragon.dialog:204
+#: ../dialogs/subdlg_Pendragon.dialog:220
 msgid "They won't let you get up if you fall down. They will kill you."
 msgstr ""
 
-#: ../dialogs/subdlg_Pendragon.dialog:206
+#: ../dialogs/subdlg_Pendragon.dialog:222
 msgid "Now, lesson number -- ugh! That hurt!"
 msgstr ""
 
-#: ../dialogs/subdlg_Pendragon.dialog:214
+#: ../dialogs/subdlg_Pendragon.dialog:230
 msgid " Lesson number three. Never underestimate the enemy."
 msgstr ""
 
-#: ../dialogs/subdlg_Pendragon.dialog:217
+#: ../dialogs/subdlg_Pendragon.dialog:233
 msgid "Ugh. Yes. You are correct."
 msgstr ""
 
-#: ../dialogs/subdlg_Pendragon.dialog:219
+#: ../dialogs/subdlg_Pendragon.dialog:235
 msgid "I need to... Lie down for a while... My head hurts..."
 msgstr ""
 
-#: ../dialogs/subdlg_Pendragon.dialog:221
+#: ../dialogs/subdlg_Pendragon.dialog:237
 msgid "Lesson number four. Never hit your sparring partner with full force."
 msgstr ""
 
-#: ../dialogs/subdlg_Pendragon.dialog:223
+#: ../dialogs/subdlg_Pendragon.dialog:239
 msgid "I think you broke my ribs..."
 msgstr ""
 
-#: ../dialogs/subdlg_Pendragon.dialog:225
+#: ../dialogs/subdlg_Pendragon.dialog:241
 msgid "This is enough training for today."
 msgstr ""
 
-#: ../dialogs/subdlg_Pendragon.dialog:234
+#: ../dialogs/subdlg_Pendragon.dialog:250
 msgid " Enough for now."
 msgstr ""
 
-#: ../dialogs/subdlg_Pendragon.dialog:237
+#: ../dialogs/subdlg_Pendragon.dialog:253
 msgid "Fine."
 msgstr ""
 
@@ -8210,11 +7464,5 @@ msgstr ""
 
 #: ../dialogs/Melfis.dialog:86
 msgid " I need to go now."
-msgstr ""
-
-#: ../dialogs/TestDroid.dialog:33
-msgid ""
-"This is MegaSys test bot, running very basic version of their OS. I can do not"
-"hing with this bot, because it doesn't know ho to do anything."
 msgstr ""
 
