@@ -223,7 +223,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=16  OptionText="MICHELANGELO NOT DONE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=627  PositionY=454  
-Subtitle=_"I think you should visit the camp's cook sometime. He's always around here, somewhere to the south."
+Subtitle=_"I think you should visit the camp's cook sometime. He's usually in the restaurant kitchen."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=16 ChangeToValue=0
 LinkedTo:18

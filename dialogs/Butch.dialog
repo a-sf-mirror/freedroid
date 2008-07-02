@@ -110,7 +110,9 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=6  OptionText=_" Yeah. I want to fight."
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=200  PositionY=200  
-Subtitle=_"Good. Get into the door with the portal."
+Subtitle=_"Good. I opened up the south arena gate for you so just climb down the ladder."
+ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
+Subtitle=_"But remember, the door out won't be opened until you killed all the bots."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=6 ChangeToValue=0
 ChangeOption=12 ChangeToValue=0
