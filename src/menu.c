@@ -1587,12 +1587,11 @@ Graphics_handle (int n)
 	
     case SET_FULLSCREEN_FLAG:
 	while ( EnterPressed( ) || SpacePressed( ) );
+	GameConfig . fullscreen_on = ! GameConfig . fullscreen_on;
 #ifndef __WIN32__
 	SDL_WM_ToggleFullScreen ( Screen );
-	GameConfig . fullscreen_on = ! GameConfig . fullscreen_on;
 #else
-	GiveMouseAlertWindow(_("\nUnfortunately, fullscreen cannot be\ntoggled at runtime under Windows.\nWe apologise for this.\n\n\
-There are good Linux distributions out there,\n please check them out.\n\nOr you can launch the game with the -w option.\n\n   Thank you.\n"));
+	GiveMouseAlertWindow(_("\nThis option will be taken into account after you restart the game.\n\n   Thank you.\n"));
 #endif
 		break;
 		
