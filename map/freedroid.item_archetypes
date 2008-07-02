@@ -3664,6 +3664,19 @@ Item description text=_"This is a teleporter service toolbox. It's complete and 
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
+Item name=_"Entropy Inverter"
+Item min class for drop=-1
+Item can be applied in combat="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="entropy_inverter"
+Items of this type collect together in inventory="yes"
+File or directory name for inventory image="entropy_inverter/inv_image.png"
+Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
+Base list price=50
+Item description text=_"This is an standard part within many robots types."
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
 Item name=_"Plasma Transistor"
 Item min class for drop=-1
 Item can be applied in combat="no"
@@ -3672,7 +3685,7 @@ Item uses rotation series with prefix="plasma_transistor"
 Items of this type collect together in inventory="yes"
 File or directory name for inventory image="plasma_transistor/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
-Base list price=50
+Base list price=40
 Item description text=_"This is an standard part within many robots types."
 ** End of new item specification subsection **
 
@@ -3685,7 +3698,7 @@ Item uses rotation series with prefix="superconducting_relay_unit"
 Items of this type collect together in inventory="yes"
 File or directory name for inventory image="superconducting_relay_unit/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
-Base list price=40
+Base list price=30
 Item description text=_"This is an standard part within many robots types."
 ** End of new item specification subsection **
 
@@ -3698,21 +3711,8 @@ Item uses rotation series with prefix="antimatter_matter_converter"
 Items of this type collect together in inventory="yes"
 File or directory name for inventory image="antimatter_matter_converter/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
-Base list price=30
-Item description text=_"This is an standard part within many robot types."
-** End of new item specification subsection **
-
-** Start of new item specification subsection **
-Item name=_"Entropy Inverter"
-Item min class for drop=-1
-Item can be applied in combat="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="entropy_inverter"
-Items of this type collect together in inventory="yes"
-File or directory name for inventory image="entropy_inverter/inv_image.png"
-Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=20
-Item description text=_"This is an standard part within many robots types."
+Item description text=_"This is an standard part within many robot types."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
