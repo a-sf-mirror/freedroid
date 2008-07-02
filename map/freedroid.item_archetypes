@@ -121,18 +121,18 @@ Conventional main disadvantage - Expensive ammo!!
 * 7.62mm AK-47         - 2H - Size 2x5 - lvl 7 - Dam: 6-12 - Recharge: 0.2 - Reload: 3.0 - Clip: 30 - Dur 10-20 - 1400
 //5.56x45mm Ammo - Skipped due to too many & more common ammotypes already
 * .50 BMG Ammo         - lvl 7 - Speed: 30  no stack, pass through                                              - 200
-* Heavysniperrifle     - 2H - Size 2x6 - lvl 8 - Dam:40-240- Recharge: 1.2 - Reload: 4.0 - Clip: 10 - Dur 10-20 - 2000
-//Browning MG          - 2H - Size 3x6 - lvl 9 - Dam:40-120- Recharge: 0.2 - Reload: 3.0 - Clip: 100- Dur 10-20 - 4000
+* Heavysniperrifle     - 2H - Size 2x6 - lvl 8 - Dam:40-240- Recharge: 1.2 - Reload: 4.0 - Clip: 10 - Dur 10-20 - 2000 (str 24)
+//Browning MG          - 2H - Size 3x6 - lvl 9 - Dam:40-120- Recharge: 0.2 - Reload: 3.0 - Clip: 100- Dur 10-20 - 4000 (str 30)
 -> * Energy *
  Laser Ammo                  Size 1x1 - lvl 4 - Speed: 45 - stack 20                                           - 2 
  Laser Pistol         - 1H - Size 1x2 - lvl 6 - Dam: 4-10 - Recharge: 0.4 - Reload: 3.0 - Clip: 20 - Dur 10-20 - 500
  Laser Rifle          - 2H - Size 1x4 - lvl 7 - Dam: 8-16 - Recharge: 0.6 - Reload: 4.0 - Clip: 20 - Dur 10-20 - 1000
- Laser pulse gun      - 2H - Size 3x3 - lvl 7 - Dam: 4-8  - Recharge: 0.15- Reload: 4.0 - Clip: 60 - Dur 10-20 - 1000
- Laser pulse rifle    - 2H - Size 4x4 - lvl 8 - Dam: 6-14 - Recharge: 0.15- Reload: 4.0 - Clip: 80 - Dur 10-20 - 2000
+ Laser Pulse Rifle    - 2H - Size 3x3 - lvl 7 - Dam: 4-8  - Recharge: 0.15- Reload: 4.0 - Clip: 60 - Dur 10-20 - 1000 (str 21)
+ Laser Pulse Cannon   - 2H - Size 4x4 - lvl 8 - Dam: 6-14 - Recharge: 0.15- Reload: 4.0 - Clip: 80 - Dur 10-20 - 2000 (str 28)
  Plasma Ammo                 Size 1x1 - lvl 4 - Speed: 15 - stack 6                                            - 4 
- Plasma pistol        - 1H - Size 2x2 - lvl 6 - Dam:12-18 - Recharge: 0.75- Reload: 3.0 - Clip:  6 - Dur 10-20 - 750
- Plasma gun           - 2H - Size 2x3 - lvl 7 - Dam:24-30 - Recharge: 1.0 - Reload: 5.0 - Clip: 12 - Dur 10-20 - 1200
- Plasma cannon        - 2H - Size 3x4 - lvl 8 - Dam:50-80 - Recharge: 1.5 - Reload: 7.0 - Clip: 18 - Dur 10-20 - 1800
+ Plasma Pistol        - 1H - Size 2x2 - lvl 6 - Dam:12-18 - Recharge: 0.75- Reload: 3.0 - Clip:  6 - Dur 10-20 - 750
+ Plasma Gun           - 2H - Size 2x3 - lvl 7 - Dam:24-30 - Recharge: 1.0 - Reload: 5.0 - Clip: 12 - Dur 10-20 - 1200
+ Plasma Cannon        - 2H - Size 3x4 - lvl 8 - Dam:50-80 - Recharge: 1.5 - Reload: 7.0 - Clip: 18 - Dur 10-20 - 1800 (str 24)
 -> * Caseless & Magnetic etc *  Implement more later?
  Exterminator Ammo    - lvl 6 - Speed: 30                                                                      - 5 
  Exterminator         - 2H - Size 2x2 - lvl 8 - Dam: 8-48  -Recharge: 0.5 - Reload: 5.0 - Clip:  2 - Dur 10-20 - 1000
@@ -714,7 +714,7 @@ inventory_size_x=2
 inventory_size_y=3
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=250
-Item description text=_"The POWER NAIL DRIVER 3000 will, according to the advertisement, 'build your house for you'. While it's unclear how many nails your igloo will actually need, it sure can be handy none the less for bashing bot skulls. At least as long as the battery lasts anyway."
+Item description text=_"The POWER NAIL DRIVER 3000 will, according to the advertisement, 'builds your house for you'. While it's unclear how many nails your igloo will actually need, it sure can be handy none the less for bashing bot skulls. At least as long as the battery lasts anyway."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.250000
 Item as gun: reloading time=2.000000
@@ -1213,7 +1213,7 @@ can make dents or disable bots by destroing their sensors
 */
 
 ** Start of new item specification subsection **
-Item name=_"2 Barrel sawn off shotgun"
+Item name=_"Two Barrel sawn off shotgun"
 Item min class for drop=4
 Item max class for drop=6
 Item can be applied in combat="no"
@@ -1251,7 +1251,7 @@ Item as gun: weapon requires both hands="no"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name=_"2 Barrel shotgun"
+Item name=_"Two Barrel shotgun"
 Item min class for drop=4
 Item max class for drop=6
 Item can be applied in combat="no"
@@ -1563,7 +1563,7 @@ Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="weapons/laser_pulse_rifle"
 Items of this type collect together in inventory="no"
-Strength minimum required to wear/wield this item=0
+Strength minimum required to wear/wield this item=24
 Dexterity minimum required to wear/wield this item=0
 Base item duration=10
 plus duration modifier=10
@@ -1689,14 +1689,14 @@ Item as gun: weapon requires both hands="yes"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name=_"Laser Pulse Gun"
+Item name=_"Laser Pulse Rifle"
 Item min class for drop=7
 Item max class for drop=9
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="weapons/laser_pulse_rifle"
 Items of this type collect together in inventory="no"
-Strength minimum required to wear/wield this item=0
+Strength minimum required to wear/wield this item=21
 Dexterity minimum required to wear/wield this item=0
 Base item duration=10
 plus duration modifier=10
@@ -1727,14 +1727,14 @@ Item as gun: weapon requires both hands="yes"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name=_"Laser Pulse Rifle"
+Item name=_"Laser Pulse Cannon"
 Item min class for drop=8
 Item max class for drop=9
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="weapons/laser_pulse_rifle"
 Items of this type collect together in inventory="no"
-Strength minimum required to wear/wield this item=0
+Strength minimum required to wear/wield this item=28
 Dexterity minimum required to wear/wield this item=0
 Base item duration=10
 plus duration modifier=10
@@ -1867,7 +1867,7 @@ Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="weapons/plasma_cannon"
 Items of this type collect together in inventory="no"
-Strength minimum required to wear/wield this item=0
+Strength minimum required to wear/wield this item=24
 Dexterity minimum required to wear/wield this item=0
 Base item duration=10
 plus duration modifier=10

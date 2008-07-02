@@ -55,11 +55,16 @@ Subtitle=_"And here you are."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"I hope your arrival changes the tide of this war..."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
+Subtitle=_"I have something here for you. I managed to hide this Shotgun from the red guard."
+ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
+Subtitle=_"It used to belong to my grandfather, so it's very dear to me, but I'm sure he would have like you to have it on your journey to save us all."
+ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Tux, if you ever find out who started the Great Assault... GIVE THEM A KICK IN THE ASS, FROM LILY STONE!!!"
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=1 ChangeToValue=0
 ChangeOption=2 ChangeToValue=0
 ChangeOption=3 ChangeToValue=0
+DoSomethingExtra="GiveItem:Two Barrel shotgun"
 DoSomethingExtra="EndDialog"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
