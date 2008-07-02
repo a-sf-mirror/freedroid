@@ -83,7 +83,7 @@ action_freestack ( void )
 	if (a->type == ACT_SET_OBSTACLE_LABEL)
 	    free ( a->d.change_obstacle_name.new_name );
 
-	else if (a->type == ACT_SET_MAP_LABEL)
+	else if (a->type == ACT_SET_MAP_LABEL && a->d.change_label_name.new_name != NULL)
 	    free ( a->d.change_label_name.new_name );
 	free ( a );
     }
@@ -507,7 +507,7 @@ void
 action_change_obstacle_label ( Level EditLevel, obstacle *obstacle, char *name)
 {
     int index = -1;
-    char *old_name;
+    char *old_name = NULL;
     if (obstacle -> name_index >= 0) {
 	index = obstacle -> name_index;
     } else {
@@ -528,9 +528,9 @@ action_change_obstacle_label ( Level EditLevel, obstacle *obstacle, char *name)
 	EditLevel -> obstacle_name_list [ index ] = NULL;
     } else {
 	EditLevel -> obstacle_name_list [ index ] = name;
+	obstacle -> name_index = index ;
     }
     action_push (ACT_SET_OBSTACLE_LABEL, obstacle, old_name);
-    obstacle -> name_index = index ;
 }
     
 void
@@ -581,9 +581,8 @@ action_change_obstacle_label_user ( Level EditLevel, obstacle *our_obstacle, cha
 	name = EditLevel -> obstacle_name_list [ free_index ];
     }
 
-    // if name is a valid label, otherwise delete me
-    if(strlen(name) != 0)
-    {// valid label
+    if(name && strlen(name) != 0)
+    {
         action_change_obstacle_label ( EditLevel, our_obstacle, name );
             //--------------------
             // But even if we fill in something new, we should first
@@ -618,7 +617,7 @@ The label just entered did already exist on this map!  Deleting old entry in fav
 	        }
     }
     else
-    {// not a label, throw away
+    {
        EditLevel -> obstacle_name_list [ free_index ] = NULL;
        our_obstacle -> name_index = -1;
     }
