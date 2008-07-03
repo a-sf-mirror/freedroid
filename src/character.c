@@ -53,22 +53,26 @@
 
 #define GOLD_Y 133
 
-#define DAMAGE_X 255
-#define DAMAGE_Y 193
-
-#define TOHIT_X 255
-#define TOHIT_Y 167
-
-#define AC_X 255
-#define AC_Y 138
-
-
-#define MELEE_SKILL_X 237
+#define MELEE_SKILL_X 205
 #define MELEE_SKILL_Y 230
 #define RANGED_SKILL_X MELEE_SKILL_X
-#define RANGED_SKILL_Y 270
+#define RANGED_SKILL_Y 268
 #define SPELLCASTING_SKILL_X MELEE_SKILL_X
-#define SPELLCASTING_SKILL_Y 310
+#define SPELLCASTING_SKILL_Y 306
+
+#define HEALTH_STAT_X 125
+#define HEALTH_STAT_Y 289
+#define TEMP_STAT_X HEALTH_STAT_X
+#define TEMP_STAT_Y 308
+#define STAMINA_STAT_X HEALTH_STAT_X
+#define STAMINA_STAT_Y 327
+
+#define AC_X 255
+#define AC_Y 140
+#define TOHIT_X AC_X
+#define TOHIT_Y 165
+#define DAMAGE_X AC_X
+#define DAMAGE_Y 190
 
 /**
  * This function displays all the buttons that open up the character
@@ -607,9 +611,9 @@ show_character_screen_skills ( )
 Error: melee weapon skill seems out of bounds.",
 				   PLEASE_INFORM, IS_FATAL );
     }
-    DisplayText( _("Melee"), MELEE_SKILL_X - 35 + CharacterRect.x , MELEE_SKILL_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
+    DisplayText( _("[ Melee ]"), MELEE_SKILL_X - 8 + CharacterRect.x , MELEE_SKILL_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
     DisplayText( _(AllSkillTexts [ Me . melee_weapon_skill ]), 
-		 MELEE_SKILL_X + CharacterRect.x , MELEE_SKILL_Y + 12 +  CharacterRect.y , &CharacterRect , TEXT_STRETCH );
+		 MELEE_SKILL_X + CharacterRect.x , MELEE_SKILL_Y + 17 +  CharacterRect.y , &CharacterRect , TEXT_STRETCH );
 
     //--------------------
     // We add some security against skill values out of allowed
@@ -623,9 +627,9 @@ Error: melee weapon skill seems out of bounds.",
 Error: ranged weapon skill seems out of bounds.",
 				   PLEASE_INFORM, IS_FATAL );
     }
-    DisplayText( _("Ranged"), MELEE_SKILL_X - 35 + CharacterRect.x , RANGED_SKILL_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
+    DisplayText( _("[ Ranged ]"), MELEE_SKILL_X - 8 + CharacterRect.x , RANGED_SKILL_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
     DisplayText( _(AllSkillTexts [ Me . ranged_weapon_skill ]), 
-		 RANGED_SKILL_X + CharacterRect.x , RANGED_SKILL_Y + 12 + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
+		 RANGED_SKILL_X + CharacterRect.x , RANGED_SKILL_Y + 17 + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
 
     //--------------------
     // We add some security against skill values out of allowed
@@ -639,9 +643,9 @@ Error: ranged weapon skill seems out of bounds.",
 Error: Programming_Skill skill seems out of bounds.",
 				   PLEASE_INFORM, IS_FATAL );
     }
-    DisplayText( _("Prog"), MELEE_SKILL_X - 35 + CharacterRect.x , SPELLCASTING_SKILL_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
+    DisplayText( _("[ Programming ]"), MELEE_SKILL_X - 8 + CharacterRect.x , SPELLCASTING_SKILL_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
     DisplayText( _(AllSkillTexts [ Me . spellcasting_skill ]), 
-		 SPELLCASTING_SKILL_X + CharacterRect.x , SPELLCASTING_SKILL_Y + 12 + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
+		 SPELLCASTING_SKILL_X + CharacterRect.x , SPELLCASTING_SKILL_Y + 17 + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
 
 }; // void show_character_screen_skills ( )
 
@@ -731,22 +735,22 @@ ShowCharacterScreen ( )
    
     SDL_Rect tmprect = CharacterRect;
     tmprect . x += 30; 
-    DisplayText( _("Training\npoints"), 30 + CharacterRect.x , POINTS_Y - 8 + CharacterRect.y , &tmprect , TEXT_STRETCH );
+    DisplayText( _("Training points"), 30 + CharacterRect.x , POINTS_Y + CharacterRect.y , &tmprect , TEXT_STRETCH );
     sprintf( CharText , "%d", Me.points_to_distribute );
-    DisplayText( CharText , STR_X + CharacterRect.x , POINTS_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
+    DisplayText( CharText , 150 + CharacterRect.x , POINTS_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
    
-    DisplayText( _("Health"), 30 + CharacterRect.x , 289 + CharacterRect.y , &tmprect , TEXT_STRETCH );
+    DisplayText( _("Health"), 30 + CharacterRect.x , HEALTH_STAT_Y + CharacterRect.y , &tmprect , TEXT_STRETCH );
     sprintf( CharText , "%d/%d", (int) Me.energy, (int) Me.maxenergy );
-    DisplayText( CharText , 115 + CharacterRect.x , 289 + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
+    DisplayText( CharText , HEALTH_STAT_X + CharacterRect.x , HEALTH_STAT_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
     
-    DisplayText( _("Temperature"), 30 + CharacterRect.x , 308 + CharacterRect.y , &tmprect , TEXT_STRETCH );
+    DisplayText( _("Temperature"), 30 + CharacterRect.x , TEMP_STAT_Y + CharacterRect.y , &tmprect , TEXT_STRETCH );
     sprintf( CharText , "%d/%d", (int) Me . temperature, (int) Me.max_temperature );
-    DisplayText( CharText , 115 + CharacterRect.x , 308+ CharacterRect.y , &CharacterRect , TEXT_STRETCH );
+    DisplayText( CharText , TEMP_STAT_X + CharacterRect.x , TEMP_STAT_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
     
-    DisplayText( _("Stamina"), 30 + CharacterRect.x , 327 + CharacterRect.y , &tmprect , TEXT_STRETCH );
+    DisplayText( _("Stamina"), 30 + CharacterRect.x , STAMINA_STAT_Y + CharacterRect.y , &tmprect , TEXT_STRETCH );
     sprintf( CharText , "%d/%d", (int) Me . running_power, (int) Me . max_running_power );
-    DisplayText( CharText , 115 + CharacterRect.x , 327 + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
-   
+    DisplayText( CharText , STAMINA_STAT_X + CharacterRect.x , STAMINA_STAT_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
+
     DisplayText( _("Armor"), AC_X - 55 + CharacterRect.x, AC_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH ); 
     sprintf( CharText , "%d", (int) Me.AC );
     DisplayText( CharText , AC_X + CharacterRect.x , AC_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
