@@ -11946,7 +11946,7 @@ jump target west: 19
 use underground lighting: 0
 Name of this level=Desert of Red Tears
 Infcmt="This is a level, like many other levels.
-BgSong=TheBeginning.ogg
+BgSong=Suspicion.ogg
 beginning_of_map
   4   4   4   4   4   4   4   4   4   4   4   4   4  28  27   4   4   4   4   4   4   4   4   4  28   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4  58  52   3  54  71  55  55  55  55  55  55  55  55  55  55 
   4   4   4   4   4   4   4   4   4   4   4   4   4   4  29   4   4   4   4   4   4   4   4   4   4   4   4   4  28  27   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4  28   4  58  52   3  54  68  53  53  53  53  53  53  53  53  53  53 
