@@ -702,20 +702,20 @@ DropEnemyTreasure ( Enemy ThisRobot )
 	    DropItemAt( GetItemIndexByName("Tachyon Condensator"), ThisRobot -> pos . z , 
 			ThisRobot->virt_pos.x , ThisRobot->virt_pos.y , -1 , -1 , 1 );
 	case 4:
-	if ( Druidmap [ ThisRobot->type ] . amount_of_entropy_inverters && ( ! MyRandom ( 10 ) == 1 )  )
-	    DropItemAt( GetItemIndexByName("Entropy Inverter") , ThisRobot -> pos . z , 
-			ThisRobot->virt_pos.x , ThisRobot->virt_pos.y , -1 , -1 , 1 );
-	case 3:
 	if ( Druidmap [ ThisRobot->type ] . amount_of_antimatter_converters && ( ! MyRandom ( 10 ) == 1 )  )
 	    DropItemAt( GetItemIndexByName("Antimatter-Matter Converter") , ThisRobot -> pos . z , 
 			ThisRobot->virt_pos.x , ThisRobot->virt_pos.y , -1 , -1 , 1 );
-	case 2:
+	case 3:
 	if ( Druidmap [ ThisRobot->type ] . amount_of_superconductors && ( ! MyRandom ( 10 ) == 1 )  )
 	    DropItemAt( GetItemIndexByName("Superconducting Relay Unit") , ThisRobot -> pos . z , 
 			ThisRobot->virt_pos.x , ThisRobot->virt_pos.y , -1 , -1 , 1 );
-	case 1:    
+	case 2:
 	if ( Druidmap [ ThisRobot->type ] . amount_of_plasma_transistors && ( MyRandom ( 10 ) == 1 ) )
 	    DropItemAt( GetItemIndexByName("Plasma Transistor") , ThisRobot -> pos . z , 
+			ThisRobot->virt_pos.x , ThisRobot->virt_pos.y , -1 , -1 , 1 );
+	case 1:    
+	if ( Druidmap [ ThisRobot->type ] . amount_of_entropy_inverters && ( ! MyRandom ( 10 ) == 1 )  )
+	    DropItemAt( GetItemIndexByName("Entropy Inverter") , ThisRobot -> pos . z , 
 			ThisRobot->virt_pos.x , ThisRobot->virt_pos.y , -1 , -1 , 1 );
 	case 0: break;
 	}
@@ -988,40 +988,40 @@ enemy_say_current_state_on_screen ( enemy* ThisRobot )
     switch ( ThisRobot -> combat_state )
 	{                  
 	case MOVE_ALONG_RANDOM_WAYPOINTS:
-	    ThisRobot->TextToBeDisplayed = _("state:  Wandering along waypoints.") ;
+	    ThisRobot->TextToBeDisplayed = ("state:  Wandering along waypoints.") ;
 	    break;     
 	case SELECT_NEW_WAYPOINT:
-	    ThisRobot->TextToBeDisplayed = _("state: Select next WP.");
+	    ThisRobot->TextToBeDisplayed = ("state: Select next WP.");
 	    break;
 	case TURN_TOWARDS_NEXT_WAYPOINT:
-	    ThisRobot->TextToBeDisplayed = _("state:  Turn towards next WP.") ;
+	    ThisRobot->TextToBeDisplayed = ("state:  Turn towards next WP.") ;
 	    break;     
 	case RUSH_TUX_AND_OPEN_TALK:
-	    ThisRobot->TextToBeDisplayed = _("state:  Rush Tux and open talk.") ;
+	    ThisRobot->TextToBeDisplayed = ("state:  Rush Tux and open talk.") ;
 	    break;     
 	case STOP_AND_EYE_TARGET:
-	    ThisRobot->TextToBeDisplayed = _("state:  Stop and eye target.") ;
+	    ThisRobot->TextToBeDisplayed = ("state:  Stop and eye target.") ;
 	    break;     
 	case ATTACK:
-	    ThisRobot->TextToBeDisplayed = _("state:  Attack.") ;
+	    ThisRobot->TextToBeDisplayed = ("state:  Attack.") ;
 	    break;     
 	case RETURNING_HOME:
-	    ThisRobot->TextToBeDisplayed = _("state:  Returning home.") ;
+	    ThisRobot->TextToBeDisplayed = ("state:  Returning home.") ;
 	    break;
 	case WAYPOINTLESS_WANDERING:
-	    ThisRobot->TextToBeDisplayed = _("state:  Waypointless wandering.") ;
+	    ThisRobot->TextToBeDisplayed = ("state:  Waypointless wandering.") ;
 	    break;
 	case PARALYZED:
-	    ThisRobot->TextToBeDisplayed = _("state:  Paralyzed.") ;
+	    ThisRobot->TextToBeDisplayed = ("state:  Paralyzed.") ;
 	    break;
 	case COMPLETELY_FIXED:
-	    ThisRobot->TextToBeDisplayed = _("state: Completely fixed.");
+	    ThisRobot->TextToBeDisplayed = ("state: Completely fixed.");
 	    break;
 	case FOLLOW_TUX:
-	    ThisRobot->TextToBeDisplayed = _("state: Follow Tux.") ;
+	    ThisRobot->TextToBeDisplayed = ("state: Follow Tux.") ;
 	    break;
 	default:
-	    ThisRobot->TextToBeDisplayed = _("state:  UNHANDLED!!") ;
+	    ThisRobot->TextToBeDisplayed = ("state:  UNHANDLED!!") ;
 	    break;
 	}      
     ThisRobot->TextVisibleTime = 0 ; 
