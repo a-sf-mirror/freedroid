@@ -611,7 +611,7 @@ show_character_screen_skills ( )
 Error: melee weapon skill seems out of bounds.",
 				   PLEASE_INFORM, IS_FATAL );
     }
-    DisplayText( _("[ Melee ]"), MELEE_SKILL_X - 8 + CharacterRect.x , MELEE_SKILL_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
+    DisplayText( _("Melee"), MELEE_SKILL_X - 8 + CharacterRect.x , MELEE_SKILL_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
     DisplayText( _(AllSkillTexts [ Me . melee_weapon_skill ]), 
 		 MELEE_SKILL_X + CharacterRect.x , MELEE_SKILL_Y + 17 +  CharacterRect.y , &CharacterRect , TEXT_STRETCH );
 
@@ -627,7 +627,7 @@ Error: melee weapon skill seems out of bounds.",
 Error: ranged weapon skill seems out of bounds.",
 				   PLEASE_INFORM, IS_FATAL );
     }
-    DisplayText( _("[ Ranged ]"), MELEE_SKILL_X - 8 + CharacterRect.x , RANGED_SKILL_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
+    DisplayText( _("Ranged"), MELEE_SKILL_X - 8 + CharacterRect.x , RANGED_SKILL_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
     DisplayText( _(AllSkillTexts [ Me . ranged_weapon_skill ]), 
 		 RANGED_SKILL_X + CharacterRect.x , RANGED_SKILL_Y + 17 + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
 
@@ -643,7 +643,7 @@ Error: ranged weapon skill seems out of bounds.",
 Error: Programming_Skill skill seems out of bounds.",
 				   PLEASE_INFORM, IS_FATAL );
     }
-    DisplayText( _("[ Programming ]"), MELEE_SKILL_X - 8 + CharacterRect.x , SPELLCASTING_SKILL_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
+    DisplayText( _("Programming"), MELEE_SKILL_X - 8 + CharacterRect.x , SPELLCASTING_SKILL_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
     DisplayText( _(AllSkillTexts [ Me . spellcasting_skill ]), 
 		 SPELLCASTING_SKILL_X + CharacterRect.x , SPELLCASTING_SKILL_Y + 17 + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
 
