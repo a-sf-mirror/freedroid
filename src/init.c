@@ -938,24 +938,16 @@ Get_Robot_Data ( void* DataPointer )
       Druidmap[RobotIndex].weapon_item.type = GetItemIndexByName ( tmp_item_name );
       free ( tmp_item_name );
 
-      // Now we read in the number of plasma transistors
-      ReadValueFromStringWithDefault( RobotPointer , "Number of Plasma Transistors=" , "%hhd" , "0",
-			   &Druidmap[RobotIndex].amount_of_plasma_transistors , EndOfDataPointer );
-
-      // Now we read in the number of plasma transistors
-      ReadValueFromStringWithDefault( RobotPointer , "Number of Superconductors=" , "%hhd" , "0", 
-			   &Druidmap[RobotIndex].amount_of_superconductors , EndOfDataPointer );
-
-      // Now we read in the number of plasma transistors
-      ReadValueFromStringWithDefault( RobotPointer , "Number of Antimatter-Matter Converters=" , "%hhd" , "0", 
-			   &Druidmap[RobotIndex].amount_of_antimatter_converters , EndOfDataPointer );
-
-      // Now we read in the number of plasma transistors
-      ReadValueFromStringWithDefault( RobotPointer , "Number of Entropy Inverters=" , "%hhd" , "0", 
+      // Now we read in the % chance for droid to drop botpart
+      ReadValueFromStringWithDefault( RobotPointer , "Percent to drop Entropy Inverter=" , "%hd" , "0", 
 			   &Druidmap[RobotIndex].amount_of_entropy_inverters , EndOfDataPointer );
-
-      // Now we read in the number of plasma transistors
-      ReadValueFromStringWithDefault( RobotPointer , "Number of Tach. Condensators=" , "%hhd" , "0",
+      ReadValueFromStringWithDefault( RobotPointer , "Percent to drop Plasma Transistor=" , "%hd" , "0",
+			   &Druidmap[RobotIndex].amount_of_plasma_transistors , EndOfDataPointer );
+      ReadValueFromStringWithDefault( RobotPointer , "Percent to drop Superconducting Relay Unit=" , "%hd" , "0", 
+			   &Druidmap[RobotIndex].amount_of_superconductors , EndOfDataPointer );
+      ReadValueFromStringWithDefault( RobotPointer , "Percent to drop Antimatter-Matter Converter=" , "%hd" , "0", 
+			   &Druidmap[RobotIndex].amount_of_antimatter_converters , EndOfDataPointer );
+      ReadValueFromStringWithDefault( RobotPointer , "Percent to drop Tachyon Condensator=" , "%hd" , "0",
 			   &Druidmap[RobotIndex].amount_of_tachyon_condensators , EndOfDataPointer );
 
       // Now we read in the greeting sound type of this droid type

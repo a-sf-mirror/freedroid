@@ -2045,7 +2045,7 @@ inventory_size_x=1
 inventory_size_y=1
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=250
-Item description text=_"Said to the downscaled version of the original Pandora's Sphere, this device extinguishes life with superheated plasma."
+Item description text=_"Said to be the downscaled version of the original Pandora's Sphere, this device extinguishes life with superheated plasma."
 ** End of new item specification subsection **
 
 
