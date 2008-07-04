@@ -484,9 +484,8 @@ tux_wants_to_attack_now ( int use_mouse_cursor_for_targeting )
 	}
 
     // The weapon was used and therefore looses some of it's durability
-    //5% chance to damage the weapon with 20% chance: 1% chance of damaging the weapon
-    if ( MyRandom(100) < 5 )
-	DamageItem ( & ( Me . weapon_item  ) );
+    if ( Me . weapon_item . type >= 0 )
+	DamageWeapon ( & ( Me . weapon_item  ) );
 
     //Weapon uses ammo? remove one bullet !
     if ( Me . weapon_item . type >= 0 )

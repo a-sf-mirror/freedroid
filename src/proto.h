@@ -482,6 +482,7 @@ EXTERN int CountItemtypeInInventory( int Itemtype );
 EXTERN void DeleteInventoryItemsOfType( int Itemtype , int amount );
 EXTERN void DeleteOneInventoryItemsOfType( int Itemtype );
 EXTERN void DamageItem( item* CurItem );
+EXTERN void DamageWeapon( item* CurItem );
 EXTERN int GetFreeInventoryIndex( void );
 EXTERN int ItemCanBeDroppedInInv ( int ItemType , int InvPos_x , int InvPos_y );
 EXTERN long calculate_item_buy_price ( item* BuyItem );

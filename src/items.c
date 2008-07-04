@@ -756,7 +756,7 @@ DamageItem( item* CurItem )
     if ( ( CurItem->type != (-1) ) &&
 	 ( CurItem->max_duration != (-1) ) )
     {
-	    CurItem->current_duration -= (MyRandom( 100 ) < 20) ? 1 : 0 ;
+	    CurItem->current_duration -= (MyRandom( 100 ) < ARMOUR_DURABILITYLOSS_PERCENTAGE_WHEN_HIT ) ? 1 : 0 ;
 	
 	//--------------------
 	// If the item has gone over it's threshhold of duration, it finally
@@ -769,6 +769,25 @@ DamageItem( item* CurItem )
     }
     
 }; // void DamageItem( item* CurItem )
+
+/* Now we do the same for a weapon that has been fired */
+void 
+DamageWeapon( item* CurItem )
+{
+
+    if ( ( CurItem->type != (-1) ) &&
+	 ( CurItem->max_duration != (-1) ) )
+    {
+	    CurItem->current_duration -= (MyRandom( 100 ) < WEAPON_DURABILITYLOSS_PERCENTAGE_WHEN_USED ) ? 1 : 0 ;
+
+	if ( rintf( CurItem->current_duration ) <= 0 )
+	{
+	    DeleteItem( CurItem );
+	}
+    }
+    
+}; // void DamageWeapon( item* CurItem )
+
 
 /**
  * When the influencer gets hit, all of his equipment suffers some damage.
