@@ -249,9 +249,11 @@ typedef struct triggered_action_s
     // Maybe the triggered event teleports the influencer somewhere
     point TeleportTarget;
     int TeleportTargetLevel;
-    
+
+    // Maybe the triggered event shows some text on screen
+    char * show_big_screen_message;
+
     char * also_execute_action_label; //execute another action (linked action)
-    
 }
 triggered_action , *Triggered_action;
 

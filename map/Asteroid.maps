@@ -25159,20 +25159,6 @@ t49 x17.50 y24.50 l-1 d-1
 t48 x32.50 y25.50 l-1 d-1 
 /obsdata
 plabelinfolvl
-x=44 y=61 name="516CaveTroll1StartGameSquare"
-x=47 y=61 name="516CaveTroll2StartGameSquare"
-x=49 y=64 name="516CaveTroll3StartGameSquare"
-x=52 y=63 name="516CaveTroll4StartGameSquare"
-x=45 y=59 name="516CaveTroll5StartGameSquare"
-x=38 y=56 name="516CaveTroll6StartGameSquare"
-x=32 y=55 name="516CaveTroll8StartGameSquare"
-x=35 y=56 name="516CaveTroll7StartGameSquare"
-x=39 y=74 name="516CaveTroll9StartGameSquare"
-x=38 y=81 name="516CaveTroll10StartGameSquare"
-x=43 y=81 name="516CaveTroll11StartGameSquare"
-x=44 y=76 name="516CaveTroll12StartGameSquare"
-x=25 y=80 name="516CaveTroll13StartGameSquare"
-x=23 y=82 name="516CaveTroll14StartGameSquare"
 x=29 y=18 name="MSCDStartGameSquare"
 /plabelinfolvl
 pobstaclelabelinfolvl
@@ -25194,61 +25180,33 @@ piteminfolvl
 pchestinfolvl
 /pchestinfolvl
 wp
-Nr.=  0 x=  38 y=  56 rnd=0	 c:    1  21
-Nr.=  1 x=  35 y=  56 rnd=0	 c:    9   2   0
-Nr.=  2 x=  34 y=  58 rnd=0	 c:    1  22  21
-Nr.=  3 x=  45 y=  59 rnd=0	 c:    4   5  24
-Nr.=  4 x=  44 y=  61 rnd=0	 c:    3   5  23
-Nr.=  5 x=  47 y=  61 rnd=0	 c:    4   6   6   3   7  25  24
-Nr.=  6 x=  49 y=  61 rnd=0	 c:    5   8   7
-Nr.=  7 x=  49 y=  64 rnd=0	 c:    8   6   5
-Nr.=  8 x=  52 y=  63 rnd=0	 c:    7  26  27
-Nr.=  9 x=  32 y=  55 rnd=0	 c:    1  22
-Nr.= 10 x=  39 y=  74 rnd=0	 c:   17  11
-Nr.= 11 x=  37 y=  77 rnd=0	 c:   10  12
-Nr.= 12 x=  38 y=  81 rnd=0	 c:   11  13
-Nr.= 13 x=  41 y=  82 rnd=0	 c:   12  14
-Nr.= 14 x=  43 y=  81 rnd=0	 c:   13  15
-Nr.= 15 x=  45 y=  79 rnd=0	 c:   14  16
-Nr.= 16 x=  44 y=  76 rnd=0	 c:   17  15
-Nr.= 17 x=  42 y=  75 rnd=0	 c:   16  10
-Nr.= 18 x=  23 y=  79 rnd=0	 c:   20  19
-Nr.= 19 x=  25 y=  80 rnd=0	 c:   20  18
-Nr.= 20 x=  23 y=  82 rnd=0	 c:   18  19
-Nr.= 21 x=  38 y=  59 rnd=0	 c:    2   0
-Nr.= 22 x=  30 y=  57 rnd=0	 c:    9   2
-Nr.= 23 x=  43 y=  63 rnd=0	 c:    4  25
-Nr.= 24 x=  47 y=  59 rnd=0	 c:    3   5
-Nr.= 25 x=  46 y=  63 rnd=0	 c:   23   5
-Nr.= 26 x=  58 y=  63 rnd=0	 c:    8  27
-Nr.= 27 x=  55 y=  66 rnd=0	 c:    8  26
-Nr.= 28 x=  11 y=  13 rnd=0	 c:   29
-Nr.= 29 x=  11 y=  14 rnd=0	 c:   30
-Nr.= 30 x=  18 y=  14 rnd=0	 c:   31
-Nr.= 31 x=  18 y=  13 rnd=0	 c:   28
-Nr.= 32 x=  29 y=  18 rnd=0	 c:   33  37  34
-Nr.= 33 x=  29 y=  21 rnd=0	 c:   37  32  35  36
-Nr.= 34 x=  31 y=  18 rnd=0	 c:   32
-Nr.= 35 x=  33 y=  21 rnd=0	 c:   33  36  37
-Nr.= 36 x=  33 y=  20 rnd=0	 c:   37  35  33
-Nr.= 37 x=  30 y=  20 rnd=0	 c:   32  33  36  35
-Nr.= 38 x=  12 y=  25 rnd=0	 c:   39  40
-Nr.= 39 x=  12 y=  28 rnd=0	 c:   40  38
-Nr.= 40 x=  16 y=  28 rnd=0	 c:   41  39  50  38
-Nr.= 41 x=  19 y=  29 rnd=0	 c:   42  40  50
-Nr.= 42 x=  19 y=  23 rnd=0	 c:   43  41  50
-Nr.= 43 x=  23 y=  23 rnd=0	 c:   47  44  42
-Nr.= 44 x=  25 y=  23 rnd=0	 c:   48  43
-Nr.= 45 x=  25 y=  29 rnd=0	 c:   49  46  48
-Nr.= 46 x=  23 y=  29 rnd=0	 c:   45  47
-Nr.= 47 x=  23 y=  26 rnd=0	 c:   46  48  43
-Nr.= 48 x=  25 y=  26 rnd=0	 c:   45  47  44
-Nr.= 49 x=  30 y=  30 rnd=0	 c:   45  52
-Nr.= 50 x=  18 y=  26 rnd=0	 c:   42  41  40
-Nr.= 51 x=  29 y=  24 rnd=0	 c:   54  52
-Nr.= 52 x=  30 y=  26 rnd=0	 c:   51  53  49
-Nr.= 53 x=  34 y=  26 rnd=0	 c:   54  52
-Nr.= 54 x=  33 y=  24 rnd=0	 c:   53  51
+Nr.=  0 x=  11 y=  13 rnd=0	 c:    1
+Nr.=  1 x=  11 y=  14 rnd=0	 c:    2
+Nr.=  2 x=  18 y=  14 rnd=0	 c:    3
+Nr.=  3 x=  18 y=  13 rnd=0	 c:    0
+Nr.=  4 x=  29 y=  18 rnd=1	 c:    5   9   6
+Nr.=  5 x=  29 y=  21 rnd=1	 c:    9   4   7   8
+Nr.=  6 x=  31 y=  18 rnd=1	 c:    4
+Nr.=  7 x=  33 y=  21 rnd=1	 c:    5   8   9
+Nr.=  8 x=  33 y=  20 rnd=1	 c:    9   7   5
+Nr.=  9 x=  30 y=  20 rnd=1	 c:    4   5   8   7
+Nr.= 10 x=  12 y=  25 rnd=0	 c:   11  12
+Nr.= 11 x=  12 y=  28 rnd=0	 c:   12  10
+Nr.= 12 x=  16 y=  28 rnd=0	 c:   13  11  22  10
+Nr.= 13 x=  19 y=  29 rnd=0	 c:   14  12  22
+Nr.= 14 x=  19 y=  23 rnd=0	 c:   15  13  22
+Nr.= 15 x=  23 y=  23 rnd=0	 c:   19  16  14
+Nr.= 16 x=  25 y=  23 rnd=0	 c:   20  15
+Nr.= 17 x=  25 y=  29 rnd=0	 c:   21  18  20
+Nr.= 18 x=  23 y=  29 rnd=0	 c:   17  19
+Nr.= 19 x=  23 y=  26 rnd=0	 c:   18  20  15
+Nr.= 20 x=  25 y=  26 rnd=0	 c:   17  19  16
+Nr.= 21 x=  30 y=  30 rnd=0	 c:   17  24
+Nr.= 22 x=  18 y=  26 rnd=0	 c:   14  13  12
+Nr.= 23 x=  29 y=  24 rnd=0	 c:   26  24
+Nr.= 24 x=  30 y=  26 rnd=0	 c:   23  25  21
+Nr.= 25 x=  34 y=  26 rnd=0	 c:   26  24
+Nr.= 26 x=  33 y=  24 rnd=0	 c:   25  23
 end_of_level
 ----------------------------------------------------------------------
 Levelnumber: 25
@@ -31405,8 +31363,8 @@ t202 x15.50 y78.00 l-1 d-1
 t270 x15.50 y79.50 l-1 d-1 
 t270 x16.50 y79.50 l-1 d-1 
 t270 x17.50 y79.50 l-1 d-1 
-t326 x76.50 y78.40 l-1 d-1 
-t26 x10.50 y78.00 l-1 d-1 
+t326 x76.50 y78.40 l18 d-1 
+t26 x10.50 y78.00 l23 d-1 
 t322 x17.00 y85.00 l-1 d-1 
 t37 x89.50 y77.50 l-1 d-1 
 t37 x89.50 y78.50 l-1 d-1 
@@ -31448,7 +31406,7 @@ t24 x81.81 y82.80 l-1 d-1
 t42 x81.89 y79.65 l-1 d-1 
 t309 x77.15 y79.42 l-1 d-1 
 t309 x80.88 y79.39 l-1 d-1 
-t324 x81.50 y78.40 l-1 d-1 
+t324 x81.50 y78.40 l19 d-1 
 t6 x13.50 y89.00 l-1 d-1 
 t6 x14.50 y89.00 l-1 d-1 
 t6 x15.50 y89.00 l-1 d-1 

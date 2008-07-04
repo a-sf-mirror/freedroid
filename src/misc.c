@@ -1864,7 +1864,13 @@ ExecuteEvent ( int EventNumber )
 		   AllTriggeredActions[ EventNumber ].TeleportTarget.y + 0.5 ,
 		   TRUE );
     }
-    
+   
+    // Does the action show text on user screen?
+    if ( strlen ( AllTriggeredActions [ EventNumber ] . show_big_screen_message ) > 0 ){
+        SetNewBigScreenMessage ( AllTriggeredActions [ EventNumber ] . show_big_screen_message );
+	append_new_game_message ( AllTriggeredActions [ EventNumber ] . show_big_screen_message );
+    }
+
     // Does the defined action change another action trigger?
     if ( strlen ( AllTriggeredActions[ EventNumber ] . modify_event_trigger_with_action_label ) > 0 )
 	{

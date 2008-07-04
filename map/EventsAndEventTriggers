@@ -541,6 +541,7 @@ Delete the event trigger after it has been triggered=1
 * New event action *
 Name="MSOPointOfNoReturnTrg"
 modify_obstacle_with_label="MSONoReturnDoor"
+show_big_screen_message=_"Save the world or die! Do not look back!"
 modify_obstacle_to_type="closed"
 * End of action *
 
@@ -634,6 +635,7 @@ Delete the event trigger after it has been triggered=1
 Name="MSOMillerEntranceUnlockCounter"
 modify_obstacle_with_label="MSOMillerEntranceCounterDoor"
 modify_obstacle_to_type="opened"
+show_big_screen_message=_"Control room door opened!"
 * End of action *
 
 * New event trigger *
@@ -646,6 +648,7 @@ Delete the event trigger after it has been triggered=1
 Name="MSOMillerEntranceUnlock"
 modify_obstacle_with_label="MSOMillerEntrance01"
 modify_obstacle_to_type="opened"
+show_big_screen_message=_"Miller enterance unlocked!"
 Also execute action with label="MSOMillerEntranceUnlock2"
 * End of action *
 
@@ -672,6 +675,7 @@ Delete the event trigger after it has been triggered=1
 Name="MSOHQUnlock"
 modify_obstacle_with_label="MSOHQDoor01"
 modify_obstacle_to_type="opened"
+show_big_screen_message=_"Head quaters doors unlocked!"
 Also execute action with label="MSOHQUnlock2"
 * End of action *
 
@@ -691,6 +695,7 @@ Delete the event trigger after it has been triggered=1
 Name="MSOUnlockExitDoor"
 modify_obstacle_with_label="MSOExitDoor00"
 modify_obstacle_to_type="opened"
+show_big_screen_message=_"Exit door unlocked!"
 * End of action *
 
 ** End of Mission Event Section **

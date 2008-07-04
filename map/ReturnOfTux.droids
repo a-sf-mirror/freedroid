@@ -486,9 +486,16 @@ Allowed Type of Random Droid for this level: 751
 
 ** Beginning of new Level **
 Level=24
-Maximum number of Random Droids=0
-Minimum number of Random Droids=0
+Maximum number of Random Droids=10
+Minimum number of Random Droids=7
 Allowed Type of Random Droid for this level: 751
+Allowed Type of Random Droid for this level: 629
+Allowed Type of Random Droid for this level: 883
+
+//--------------------
+// This is SMSCD - MagaSys control droid
+//
+SForce: T=598 Fixed=0 Marker=44 Friendly=0 StartUpAtLabel="MSCDStartGameSquare" RushTux="no" DialogSectionToUse="MSCD" ShortLabel="MSCD - MegaSys Control Droid" attack_run_only_when_direct_line="no"
 
 ** End of this levels droid data **
 

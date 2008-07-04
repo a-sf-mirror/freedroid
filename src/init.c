@@ -402,7 +402,7 @@ clear_out_all_events_and_actions( void )
 	AllTriggeredActions[i].modify_obstacle_to_type=0;
 	AllTriggeredActions[i].modify_event_trigger_with_action_label="";
 	AllTriggeredActions[i].modify_event_trigger_value=-1;
-	
+	AllTriggeredActions[i].show_big_screen_message="";
     }
 }; // void clear_out_all_events_and_actions( void )
 
@@ -429,6 +429,8 @@ clear_out_all_events_and_actions( void )
 #define MODIFY_OBSTACLE_WITH_LABEL_STRING "modify_obstacle_with_label=\""
 #define MODIFY_OBSTACLE_TO_TYPE_STRING "modify_obstacle_to_type=\""
 
+#define SHOW_BIG_SCREEN_MESSAGE_STRING "show_big_screen_message=\""
+
 /**
  *
  *
@@ -440,6 +442,7 @@ decode_all_event_actions ( char* EventSectionPointer )
     char *EndOfEvent;
     int EventActionNumber;
     char* TempMapLabelName;
+    char* TempText;
     location TempLocation;
 
     EventPointer=EventSectionPointer;
@@ -477,6 +480,18 @@ decode_all_event_actions ( char* EventSectionPointer )
 	    AllTriggeredActions[ EventActionNumber ] . modify_obstacle_to_type =
 		ReadAndMallocStringFromData ( EventPointer , MODIFY_OBSTACLE_TO_TYPE_STRING , "\"" ) ;
 	    DebugPrintf ( 1 , "\nObstacle will be modified to state: %s." , AllTriggeredActions[ EventActionNumber ] . modify_obstacle_to_type );
+	    }
+
+	//--------------------
+	// Now we see if maybe there was a text given, that should be shown to user.
+	//
+	if ( CountStringOccurences ( EventPointer , SHOW_BIG_SCREEN_MESSAGE_STRING ) )
+	    {
+	    DebugPrintf ( 1 , "\nTEXT MESSAGE FOUND IN THIS EVENT ACTION!" );
+	    TempText = 
+		ReadAndMallocStringFromData ( EventPointer , SHOW_BIG_SCREEN_MESSAGE_STRING , "\"" ) ;
+	    AllTriggeredActions [ EventActionNumber ] . show_big_screen_message = TempText ;
+	    DebugPrintf ( 1 , "\nThe message reads: %s." , AllTriggeredActions [ EventActionNumber ] . show_big_screen_message );
 	    }
 
 	//--------------------

@@ -427,6 +427,7 @@ enum _non_player_characters
     PERSON_LINA,
     PERSON_SERGE,
     PERSON_TEST_DROID,
+    PERSON_MSCD,
     LAST_PERSON
   };
 #define MAX_PERSONS             (LAST_PERSON)
