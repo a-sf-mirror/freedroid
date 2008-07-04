@@ -1552,7 +1552,7 @@ void
 init_obstacle_data( void )
 {
     int i;
-    float standard_wall_thickness = 0.5 ;
+    float standard_wall_thickness = 0.6 ;
     float standard_wall_width = 1.3 ;
     iso_image empty_iso_image = UNLOADED_ISO_IMAGE ;
     
@@ -1640,7 +1640,7 @@ init_obstacle_data( void )
     obstacle_map [ ISO_BROKEN_GLASS_WALL_1 ] . filename = "iso_walls_0030.png" ;
     obstacle_map [ ISO_BROKEN_GLASS_WALL_1 ] . transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS ;
     obstacle_map [ ISO_BROKEN_GLASS_WALL_1 ] . obstacle_short_name = _("Broken glass wall");
-    obstacle_map [ ISO_BROKEN_GLASS_WALL_1 ] . obstacle_long_description = _("You can getthrough holes, but beware sharp edges.");
+    obstacle_map [ ISO_BROKEN_GLASS_WALL_1 ] . obstacle_long_description = _("You can get through holes, but beware of sharp edges.");
     obstacle_map [ ISO_BROKEN_GLASS_WALL_1 ] . flags |= IS_VERTICAL ; 
 
     obstacle_map [ ISO_CYAN_WALL_WINDOW_1 ] . block_area_parm_1 = standard_wall_thickness ;
