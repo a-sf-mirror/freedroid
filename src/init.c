@@ -954,15 +954,15 @@ Get_Robot_Data ( void* DataPointer )
       free ( tmp_item_name );
 
       // Now we read in the % chance for droid to drop botpart
-      ReadValueFromStringWithDefault( RobotPointer , "Percent to drop Entropy Inverter=" , "%hd" , "0", 
+      ReadValueFromStringWithDefault( RobotPointer , "Percent to drop Entropy Inverter=" , "%hhd" , "0", 
 			   &Druidmap[RobotIndex].amount_of_entropy_inverters , EndOfDataPointer );
-      ReadValueFromStringWithDefault( RobotPointer , "Percent to drop Plasma Transistor=" , "%hd" , "0",
+      ReadValueFromStringWithDefault( RobotPointer , "Percent to drop Plasma Transistor=" , "%hhd" , "0",
 			   &Druidmap[RobotIndex].amount_of_plasma_transistors , EndOfDataPointer );
-      ReadValueFromStringWithDefault( RobotPointer , "Percent to drop Superconducting Relay Unit=" , "%hd" , "0", 
+      ReadValueFromStringWithDefault( RobotPointer , "Percent to drop Superconducting Relay Unit=" , "%hhd" , "0", 
 			   &Druidmap[RobotIndex].amount_of_superconductors , EndOfDataPointer );
-      ReadValueFromStringWithDefault( RobotPointer , "Percent to drop Antimatter-Matter Converter=" , "%hd" , "0", 
+      ReadValueFromStringWithDefault( RobotPointer , "Percent to drop Antimatter-Matter Converter=" , "%hhd" , "0", 
 			   &Druidmap[RobotIndex].amount_of_antimatter_converters , EndOfDataPointer );
-      ReadValueFromStringWithDefault( RobotPointer , "Percent to drop Tachyon Condensator=" , "%hd" , "0",
+      ReadValueFromStringWithDefault( RobotPointer , "Percent to drop Tachyon Condensator=" , "%hhd" , "0",
 			   &Druidmap[RobotIndex].amount_of_tachyon_condensators , EndOfDataPointer );
 
       // Now we read in the greeting sound type of this droid type
