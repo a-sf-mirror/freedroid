@@ -45,8 +45,8 @@ FreedroidRPG package and version number: freedroidrpg 0.10.4cvs.
 Received an item type that was outside of range of the allowed item types.
 */
 
-** Start of new item specification subsection **
-Item name=_"Spawning item index 0 in editor or drop ingame causes CTD! Dont click this!"
+** St**art of new item specification subsection **
+Item name=_"Spawning item index 0 in editor or drop ingame causes CTD! Dont click this!  OK this seemes fixed now."
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
@@ -66,28 +66,28 @@ Item description text=_"Dummy item. If you see this, report a bug."
 /****** Hand to hand ********************************************************************************
 
 -> * Cutting *
- Big kitchen knife    - 1H - Size 1x2 - lvl 0 - str 0 dex 0 - Dam: 0-2  - Recharge: 0.5  - Dur  6-8  -  30
-*Antique sword        - 1H - Size 1x4 - lvl 2 - str 0 dex20 - Dam: 2-4  - Recharge: 0.55 - Dur  8-12 - 100
-*Chainsaw             - 2H - Size 2x4 - lvl 4 - str15 dex20 - Dam: 2-3  - Recharge: 0.15 - Dur  5-6  - 500
+ Big kitchen knife    - 1H - Size 1x2 - lvl 0 - str 0 dex 0 - Dam: 0-2  - Recharge: 0.5  - Dur 10-15 -  30
+*Antique sword        - 1H - Size 1x4 - lvl 2 - str 0 dex20 - Dam: 2-4  - Recharge: 0.55 - Dur 20-30 - 100
+*Chainsaw             - 2H - Size 2x4 - lvl 4 - str15 dex20 - Dam: 2-3  - Recharge: 0.15 - Dur  6-8  - 500
 -> * Cleaving *
- Meat cleaver         - 1H - Size 2x2 - lvl 0 - str 0 dex 0 - Dam: 1-3  - Recharge: 0.6  - Dur 10-15 -  50
- Axe small            - 1H - Size 2x3 - lvl 2 - str14 dex15 - Dam: 2-6  - Recharge: 0.7  - Dur 12-17 -  80 
- Axe large            - 2H - Size 2x5 - lvl 3 - str25 dex18 - Dam:10-20 - Recharge: 1.2  - Dur 14-19 - 120
+ Meat cleaver         - 1H - Size 2x2 - lvl 0 - str 0 dex 0 - Dam: 1-3  - Recharge: 0.6  - Dur 30-40 -  50
+ Axe small            - 1H - Size 2x3 - lvl 2 - str14 dex15 - Dam: 2-6  - Recharge: 0.7  - Dur 40-60 -  80 
+ Axe large            - 2H - Size 2x5 - lvl 3 - str25 dex18 - Dam:10-20 - Recharge: 1.2  - Dur 40-60 - 120
 -> * Piercing *
- Hunting knife        - 1H - Size 1x2 - lvl 1 - str 0 dex 0 - Dam: 0-2  - Recharge: 0.4  - Dur  5-7  -  40
-*Metal spear          - 1H - Size 1x6 - lvl 3 - str20 dex26 - Dam: 2-5  - Recharge: 0.4  - Dur 15-20 -  80
+ Hunting knife        - 1H - Size 1x2 - lvl 1 - str 0 dex 0 - Dam: 0-2  - Recharge: 0.4  - Dur  6-10 -  40
+*Metal spear          - 1H - Size 1x6 - lvl 3 - str20 dex26 - Dam: 2-5  - Recharge: 0.4  - Dur 30-40 -  80
 -> * Impact *
- Iron pipe            - 1H - Size 1x3 - lvl 0 - str 0 dex 0 - Dam: 1-3  - Recharge: 0.6  - Dur 12-17 -  30
- Big wrench           - 1H - Size 1x3 - lvl 0 - str 0 dex 0 - Dam: 1-4  - Recharge: 0.75 - Dur 15-20 -  60
- Crowbar              - 1H - Size 1x3 - lvl 0 - str15 dex 0 - Dam: 1-4  - Recharge: 0.6  - Dur 20-30 -  60
- Power hammer         - 1H - Size 2x3 - lvl 2 - str 0 dex 0 - Dam: 2-3  - Recharge: 0.25 - Dur 15-25 - 250 (laser ammo - reload 2 - clip 60)
- Mace                 - 1H - Size 1x3 - lvl 3 - str25 dex15 - Dam: 3-8  - Recharge: 0.8  - Dur 20-25 - 180
- Baseball bat         - 2H - Size 2x4 - lvl 1 - str12 dex15 - Dam: 4-10 - Recharge: 0.7  - Dur  5-10 -  30
- Iron bar             - 2H - Size 1x6 - lvl 2 - str20 dex15 - Dam: 6-12 - Recharge: 1.0  - Dur 20-25 -  70
-*Sledgehammer         - 2H - Size 2x5 - lvl 4 - str25 dex20 - Dam:20-30 - Recharge: 1.5  - Dur 30-35 - 150
+ Iron pipe            - 1H - Size 1x3 - lvl 0 - str 0 dex 0 - Dam: 1-3  - Recharge: 0.6  - Dur 35-55 -  30
+ Big wrench           - 1H - Size 1x3 - lvl 0 - str 0 dex 0 - Dam: 1-4  - Recharge: 0.75 - Dur 30-50 -  60
+ Crowbar              - 1H - Size 1x3 - lvl 0 - str15 dex 0 - Dam: 1-4  - Recharge: 0.6  - Dur 45-65 -  60
+ Power hammer         - 1H - Size 2x3 - lvl 2 - str 0 dex 0 - Dam: 2-3  - Recharge: 0.25 - Dur 30-40 - 250 (laser ammo - reload 2 - clip 60)
+ Mace                 - 1H - Size 1x3 - lvl 3 - str25 dex15 - Dam: 3-8  - Recharge: 0.8  - Dur 50-70 - 180
+ Baseball bat         - 2H - Size 2x4 - lvl 1 - str12 dex15 - Dam: 4-10 - Recharge: 0.7  - Dur 10-15 -  30
+ Iron bar             - 2H - Size 1x6 - lvl 2 - str20 dex15 - Dam: 6-12 - Recharge: 1.0  - Dur 60-75 -  70
+*Sledgehammer         - 2H - Size 2x5 - lvl 4 - str25 dex20 - Dam:20-30 - Recharge: 1.5  - Dur 40-60 - 150
 -> * Energy *
- Lightsaber           - 2H - Size 1x2 - lvl 7 - str 0 dex30 - Dam:30-40 - Recharge: 0.5  - Dur 100   -1500 (laser ammo - reload 2 - clip 20)
- Laserstaff           - 2H - Size 1x3 - lvl 8 - str 0 dex40 - Dam:40-60 - Recharge: 0.4  - Dur 100   -2000 (laser ammo - reload 2 - clip 20)
+ Lightsaber           - 2H - Size 1x2 - lvl 7 - str 0 dex30 - Dam:30-40 - Recharge: 0.5  - Dur 1000  -1500 (laser ammo - reload 2 - clip 20)
+ Laserstaff           - 2H - Size 1x3 - lvl 8 - str 0 dex40 - Dam:40-60 - Recharge: 0.4  - Dur 1000  -2000 (laser ammo - reload 2 - clip 20)
 -> * Special *
 * Nobody's edge
 * Laser scalpel

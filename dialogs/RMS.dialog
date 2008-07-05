@@ -106,7 +106,7 @@ OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=396  PositionY=153  
 Subtitle=_"Of course! I told you, Hydra has never failed me! I designed it myself, and I know computers very well. I never make mistakes."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle=_"Seems like the bots can be disabled by enabling some disruptor field or something like that."
+Subtitle=_"Seems like the disruptor shield which prevents all our attacks on Hell Fortress can be controlled from somewhere outside or something like that."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"I was busy servicing one of Hydra's nodes, but I sent the full report to Spencer. He will tell you more."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"

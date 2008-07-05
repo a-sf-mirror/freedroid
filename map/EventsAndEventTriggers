@@ -698,6 +698,12 @@ modify_obstacle_to_type="opened"
 show_big_screen_message=_"Exit door unlocked!"
 * End of action *
 
+* New event action *
+Name="unlock_ms_area_door"
+modify_obstacle_with_label="MSAreaDoor"
+modify_obstacle_to_type="opened"
+* End of action *
+
 ** End of Mission Event Section **
 
 *** End of Mission File ***

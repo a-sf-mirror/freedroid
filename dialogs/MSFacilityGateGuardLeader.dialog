@@ -36,12 +36,13 @@ PositionX=64  PositionY=196
 Subtitle=_"Hey, Linarian! What do you want here?"
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=0 ChangeToValue=0
+ChangeOption=5 ChangeToValue=0
 ChangeOption=1 ChangeToValue=1
-ChangeOption=2 ChangeToValue=1
 ChangeOption=3 ChangeToValue=1
 ChangeOption=99 ChangeToValue=0
 DoSomethingExtra="PlantCookie:MS_guard_talked"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
+OnCondition="CookieIsPlanted:Disruptor_shield_disabled:" JumpToOption=6 ElseGoto=7
 
 ----------------------------------------------------------------------
 
@@ -69,6 +70,12 @@ Subtitle=_"Are you totally out of your mind?"
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"There are trillions of millions of quintillions of bots in there!"
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
+Subtitle=_"Beside that on the other side of the door is disruptor shield, which we can't control."
+ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
+Subtitle=_"* Throws a stone through the door"
+ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
+Subtitle=_"* Stone disappears leaving a small cloud of dust"
+ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Find a different gate to go through."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=1 ChangeToValue=0
@@ -88,6 +95,7 @@ Subtitle=_"Go away!"
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=1 ChangeToValue=0
 ChangeOption=2 ChangeToValue=0
+ChangeOption=8 ChangeToValue=0
 ChangeOption=3 ChangeToValue=0
 LinkedTo:99
 AlwaysExecuteThisOptionPriorToDialogStart="no"
@@ -98,7 +106,7 @@ New Option Nr=4  OptionText="TEST FOR MANY TALKS"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=170  PositionY=132  
 ChangeOption=4 ChangeToValue=0
-OnCondition="CookieIsPlanted:MS_guard_talked:" JumpToOption=5 ElseGoto=0 
+OnCondition="CookieIsPlanted:MS_guard_talked:" JumpToOption=10 ElseGoto=0 
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
@@ -110,6 +118,77 @@ Subtitle=_"GET OUT OF HERE YOU IDIOT!"
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=5 ChangeToValue=0
 DoSomethingExtra="EndDialog"
+AlwaysExecuteThisOptionPriorToDialogStart="no"
+
+----------------------------------------------------------------------
+
+New Option Nr=6  OptionText=" SHIELD DISABLED"
+OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+PositionX=1215  PositionY=195  
+ChangeOption=2 ChangeToValue=0
+ChangeOption=8 ChangeToValue=1
+AlwaysExecuteThisOptionPriorToDialogStart="no"
+
+----------------------------------------------------------------------
+
+New Option Nr=7  OptionText=" SHIELD NOT DISABLED"
+OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+PositionX=1215  PositionY=195  
+ChangeOption=2 ChangeToValue=1
+ChangeOption=8 ChangeToValue=0
+AlwaysExecuteThisOptionPriorToDialogStart="no"
+
+----------------------------------------------------------------------
+
+New Option Nr=8  OptionText=_"I'd like to go through that gate."
+OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
+PositionX=209  PositionY=293  
+Subtitle=_"Are you totally out of your mind?"
+ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
+Subtitle=_"There are trillions of millions of quintillions of bots in there!"
+ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
+Subtitle=_"Beside that on the other side of the door is disruptor shield, which we can't control."
+ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
+Subtitle=_"* Throws a stone through the door"
+ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
+Subtitle=_"* Stone freely flies thourgh the gate and drops on the ground on the other side"
+ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
+Subtitle=_"SHIT! SHIELD DISABLED! PREPARE FOR BOT ATTACK!"
+ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
+ChangeOption=1 ChangeToValue=0
+ChangeOption=2 ChangeToValue=0
+ChangeOption=3 ChangeToValue=0
+ChangeOption=8 ChangeToValue=0
+LinkedTo:9
+AlwaysExecuteThisOptionPriorToDialogStart="no"
+
+----------------------------------------------------------------------
+
+New Option Nr=9  OptionText=_"Calm down. This is not an attack. I've disabled the shield and I'm going to disable all bots around! Didn't Spencer inform you?"
+OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
+PositionX=170  PositionY=132  
+Subtitle=_"WHAT?! Not an attack?!"
+ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
+Subtitle=_"I hope you are honest. One second..."
+ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
+Subtitle=_"Right, there is a message from Spencer, you can enter Hell Fortress. And let the force be with you!"
+ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
+ChangeOption=1 ChangeToValue=0
+ChangeOption=2 ChangeToValue=0
+ChangeOption=8 ChangeToValue=0
+ChangeOption=3 ChangeToValue=0
+ChangeOption=9 ChangeToValue=0
+AlwaysExecuteThisOptionPriorToDialogStart="no"
+DoSomethingExtra="ExecuteActionWithLabel:unlock_ms_area_door"
+DoSomethingExtra="EndDialog"
+
+----------------------------------------------------------------------
+
+New Option Nr=10  OptionText="TEST FOR DISABLED SHIELD"
+OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+PositionX=170  PositionY=132  
+ChangeOption=4 ChangeToValue=0
+OnCondition="CookieIsPlanted:Disruptor_shield_disabled:" JumpToOption=0 ElseGoto=5
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
