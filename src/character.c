@@ -611,7 +611,9 @@ show_character_screen_skills ( )
 Error: melee weapon skill seems out of bounds.",
 				   PLEASE_INFORM, IS_FATAL );
     }
+    SetCurrentFont ( Message_BFont );
     DisplayText( _("Melee"), MELEE_SKILL_X - 8 + CharacterRect.x , MELEE_SKILL_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
+    SetCurrentFont ( Messagevar_BFont );
     DisplayText( _(AllSkillTexts [ Me . melee_weapon_skill ]), 
 		 MELEE_SKILL_X + CharacterRect.x , MELEE_SKILL_Y + 17 +  CharacterRect.y , &CharacterRect , TEXT_STRETCH );
 
@@ -627,7 +629,9 @@ Error: melee weapon skill seems out of bounds.",
 Error: ranged weapon skill seems out of bounds.",
 				   PLEASE_INFORM, IS_FATAL );
     }
+    SetCurrentFont ( Message_BFont );
     DisplayText( _("Ranged"), MELEE_SKILL_X - 8 + CharacterRect.x , RANGED_SKILL_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
+    SetCurrentFont ( Messagevar_BFont );
     DisplayText( _(AllSkillTexts [ Me . ranged_weapon_skill ]), 
 		 RANGED_SKILL_X + CharacterRect.x , RANGED_SKILL_Y + 17 + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
 
@@ -643,7 +647,9 @@ Error: ranged weapon skill seems out of bounds.",
 Error: Programming_Skill skill seems out of bounds.",
 				   PLEASE_INFORM, IS_FATAL );
     }
+    SetCurrentFont ( Message_BFont );
     DisplayText( _("Programming"), MELEE_SKILL_X - 8 + CharacterRect.x , SPELLCASTING_SKILL_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
+    SetCurrentFont ( Messagevar_BFont );
     DisplayText( _(AllSkillTexts [ Me . spellcasting_skill ]), 
 		 SPELLCASTING_SKILL_X + CharacterRect.x , SPELLCASTING_SKILL_Y + 17 + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
 
@@ -691,43 +697,58 @@ ShowCharacterScreen ( )
  
     SetCurrentFont ( Menu_BFont );
     DisplayText( Me.character_name , 20 + CharacterRect.x , 12 + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
+
     SetCurrentFont ( Message_BFont );
-    
     DisplayText( _("Level"), 30 + CharacterRect.x , 73 + CharacterRect.y , &CharacterRect , TEXT_STRETCH);
+    SetCurrentFont ( Messagevar_BFont );
     sprintf( CharText , "%d", Me.exp_level );
     DisplayText( CharText , 110 + CharacterRect.x , 73 + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
     
+    SetCurrentFont ( Message_BFont );
     DisplayText( _("Experience"), 30 + CharacterRect.x , 89 + CharacterRect.y , &CharacterRect , TEXT_STRETCH);
+    SetCurrentFont ( Messagevar_BFont );
     sprintf( CharText , "%u", Me.Experience ); 
     DisplayText( CharText , 110 + CharacterRect.x ,  89 + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
-    
+
+    SetCurrentFont ( Message_BFont );    
     DisplayText( _("Next level"), 30 + CharacterRect.x , 107 + CharacterRect.y , &CharacterRect , TEXT_STRETCH);
+    SetCurrentFont ( Messagevar_BFont );
     sprintf( CharText , "%u", Me.ExpRequired );
     DisplayText( CharText , 110 + CharacterRect.x ,  107 + CharacterRect.y , &CharacterRect , TEXT_STRETCH ) ;
     
+    SetCurrentFont ( Message_BFont );
     DisplayText( _("Money"), 200 + CharacterRect.x ,  71 + CharacterRect.y , &CharacterRect , TEXT_STRETCH ); 
+    SetCurrentFont ( Messagevar_BFont );
     sprintf( CharText , "%6d", Me.Gold ); 
     DisplayText( CharText , 240 + CharacterRect.x ,  71 + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
     
+    SetCurrentFont ( Message_BFont );
     DisplayText( _("Strength"), 30 + CharacterRect.x , STR_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
+    SetCurrentFont ( Messagevar_BFont );
     sprintf( CharText , "%d", Me.Strength);
     if ( Me.Strength != Me.base_strength ) 
 	sprintf ( CharText + strlen(CharText), " (%+d)", Me.Strength - Me.base_strength); 
     DisplayText( CharText , STR_X + CharacterRect.x , STR_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
-   
+
+    SetCurrentFont ( Message_BFont );   
     DisplayText( _("Dexterity"), 30 + CharacterRect.x , DEX_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
+    SetCurrentFont ( Messagevar_BFont );
     sprintf( CharText , "%d", Me.Dexterity );
     if ( Me.Dexterity != Me.base_dexterity ) 
 	sprintf ( CharText + strlen(CharText), " (%+d)", Me.Dexterity - Me.base_dexterity); 
     DisplayText( CharText , STR_X + CharacterRect.x , DEX_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
-    
+
+    SetCurrentFont ( Message_BFont );    
     DisplayText( _("CPU"), 30 + CharacterRect.x , MAG_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
+    SetCurrentFont ( Messagevar_BFont );
     sprintf( CharText , "%d", Me.Magic );
     if ( Me.Magic != Me.base_magic ) 
 	sprintf ( CharText + strlen(CharText), " (%+d)", Me.Magic - Me.base_magic); 
     DisplayText( CharText , STR_X + CharacterRect.x , MAG_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
     
+    SetCurrentFont ( Message_BFont );
     DisplayText( _("Life"), 30 + CharacterRect.x , VIT_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
+    SetCurrentFont ( Messagevar_BFont );
     sprintf( CharText , "%d", Me.Vitality );
     if ( Me.Vitality != Me.base_vitality ) 
 	sprintf ( CharText + strlen(CharText), " (%+d)", Me.Vitality - Me.base_vitality); 
@@ -735,31 +756,45 @@ ShowCharacterScreen ( )
    
     SDL_Rect tmprect = CharacterRect;
     tmprect . x += 30; 
+    SetCurrentFont ( Message_BFont );
     DisplayText( _("Training points"), 30 + CharacterRect.x , POINTS_Y + CharacterRect.y , &tmprect , TEXT_STRETCH );
+    SetCurrentFont ( Messagevar_BFont );
     sprintf( CharText , "%d", Me.points_to_distribute );
     DisplayText( CharText , 150 + CharacterRect.x , POINTS_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
    
+    SetCurrentFont ( Message_BFont );
     DisplayText( _("Health"), 30 + CharacterRect.x , HEALTH_STAT_Y + CharacterRect.y , &tmprect , TEXT_STRETCH );
+    SetCurrentFont ( Messagevar_BFont );
     sprintf( CharText , "%d/%d", (int) Me.energy, (int) Me.maxenergy );
     DisplayText( CharText , HEALTH_STAT_X + CharacterRect.x , HEALTH_STAT_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
-    
+
+    SetCurrentFont ( Message_BFont );    
     DisplayText( _("Temperature"), 30 + CharacterRect.x , TEMP_STAT_Y + CharacterRect.y , &tmprect , TEXT_STRETCH );
+    SetCurrentFont ( Messagevar_BFont );
     sprintf( CharText , "%d/%d", (int) Me . temperature, (int) Me.max_temperature );
     DisplayText( CharText , TEMP_STAT_X + CharacterRect.x , TEMP_STAT_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
-    
+
+    SetCurrentFont ( Message_BFont );    
     DisplayText( _("Stamina"), 30 + CharacterRect.x , STAMINA_STAT_Y + CharacterRect.y , &tmprect , TEXT_STRETCH );
+    SetCurrentFont ( Messagevar_BFont );
     sprintf( CharText , "%d/%d", (int) Me . running_power, (int) Me . max_running_power );
     DisplayText( CharText , STAMINA_STAT_X + CharacterRect.x , STAMINA_STAT_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
 
+    SetCurrentFont ( Message_BFont );
     DisplayText( _("Armor"), AC_X - 55 + CharacterRect.x, AC_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH ); 
+    SetCurrentFont ( Messagevar_BFont );
     sprintf( CharText , "%d", (int) Me.AC );
     DisplayText( CharText , AC_X + CharacterRect.x , AC_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
 
+    SetCurrentFont ( Message_BFont );
     DisplayText( _("Attack"), AC_X - 55 + CharacterRect.x, TOHIT_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH ); 
+    SetCurrentFont ( Messagevar_BFont );
     sprintf( CharText , "%d%%", (int) Me.to_hit );
     DisplayText( CharText , TOHIT_X + CharacterRect.x , TOHIT_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
 
+    SetCurrentFont ( Message_BFont );
     DisplayText( _("Damage"), AC_X - 55 + CharacterRect.x, DAMAGE_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH ); 
+    SetCurrentFont ( Messagevar_BFont );
     sprintf( CharText , "%d-%d", (int) Me.base_damage , (int) Me.base_damage + (int) Me.damage_modifier );
     DisplayText( CharText , DAMAGE_X + CharacterRect.x , DAMAGE_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
     
