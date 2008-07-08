@@ -791,10 +791,10 @@ enum
 // will ALSO be used to show this weapon, since the shield-hand
 // is also needed to wield such a thing.
 //
+// 31 is the minimum x size to fit items up to 4 inventory squares wide
 #define WEAPON_RECT_WIDTH 67
 #define WEAPON_RECT_HEIGHT 112
-//25
-#define WEAPON_RECT_X 30
+#define WEAPON_RECT_X 31
 #define WEAPON_RECT_Y 117
 
 //--------------------
