@@ -754,8 +754,10 @@ enum
 #define CURRENT_SKILL_RECT_W 64
 #define CURRENT_SKILL_RECT_H 64
 
-#define CURRENT_WEAPON_RECT_X 32
-#define CURRENT_WEAPON_RECT_Y 400
+// 388 is the maximum y size to fit items up to 6 inventory squares high
+// 398 is the maximum y size to fit items up to 5 inventory squares high
+#define CURRENT_WEAPON_RECT_X 35
+#define CURRENT_WEAPON_RECT_Y 398
 #define CURRENT_WEAPON_RECT_W 64
 #define CURRENT_WEAPON_RECT_H 64
 
@@ -791,7 +793,8 @@ enum
 //
 #define WEAPON_RECT_WIDTH 67
 #define WEAPON_RECT_HEIGHT 112
-#define WEAPON_RECT_X 25
+//25
+#define WEAPON_RECT_X 30
 #define WEAPON_RECT_Y 117
 
 //--------------------
