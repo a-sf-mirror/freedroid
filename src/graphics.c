@@ -1432,8 +1432,8 @@ InitOurBFonts ( void )
 
 #define PARA_FONT_FILE 		"font/parafont"
 #define MENU_FONT_FILE 		"font/cpuFont"
-#define MESSAGE_FONT_FILE 	"font/small_blue"
 #define MESSAGEVAR_FONT_FILE 	"font/small_white"
+#define MESSAGESTAT_FONT_FILE 	"font/small_blue"
 #define RED_FONT_FILE 		"font/font05_red"
 #define BLUE_FONT_FILE 		"font/font05_white"
 #define FPS_FONT_FILE 		"font/font05"
@@ -1443,8 +1443,8 @@ char fpath[2048];
     const char* MenuFontFiles[ALL_BFONTS_WE_LOAD] =
 	{
 	    MENU_FONT_FILE,
-	    MESSAGE_FONT_FILE,
 	    MESSAGEVAR_FONT_FILE,
+	    MESSAGESTAT_FONT_FILE,
 	    PARA_FONT_FILE,
 	    FPS_FONT_FILE,
 	    RED_FONT_FILE,
@@ -1453,8 +1453,8 @@ char fpath[2048];
     BFont_Info** MenuFontPointers[ALL_BFONTS_WE_LOAD] =
 	{
 	    &Menu_BFont,
-	    &Message_BFont,
 	    &Messagevar_BFont,
+	    &Messagestat_BFont,
 	    &Para_BFont,
 	    &FPS_Display_BFont,
 	    &Red_BFont,
@@ -1502,8 +1502,8 @@ int i;
 BFont_Info** MenuFontPointers[ALL_BFONTS_WE_LOAD] =
 	{
 	    &Menu_BFont,
-	    &Message_BFont,
 	    &Messagevar_BFont,
+	    &Messagestat_BFont,
 	    &Para_BFont,
 	    &FPS_Display_BFont,
 	    &Red_BFont,

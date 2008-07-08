@@ -1821,7 +1821,7 @@ Unable to load the grid tile.", PLEASE_INFORM, IS_FATAL);
       // display numbers, corresponding to the numpad keys for quick placing 
       BFont_Info *PreviousFont;
       PreviousFont = GetCurrentFont ();
-      SetCurrentFont (Message_BFont);
+      SetCurrentFont ( Messagevar_BFont );
     char *numbers[2][2] = { {"3", "9"}, {"1", "7"} };
     int ii, jj;
       for (ii = 0; ii <= 1; ii++ )

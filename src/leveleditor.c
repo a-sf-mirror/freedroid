@@ -2004,7 +2004,7 @@ void build_level_editor_banner(unsigned int selected_tab){
     // tabset
     BFont_Info * PreviousFont;
     PreviousFont = GetCurrentFont();
-    SetCurrentFont( Message_BFont );
+    SetCurrentFont( Messagevar_BFont );
     unsigned int tab_y=1, tab_width = 80, ii;
     tr . w = 2;
     tr . h = 14;
@@ -2109,7 +2109,7 @@ ShowLevelEditorTopMenu( int Highlight )
 		{
 		char obsnum[5];
 		BFont_Info * PreviousFont = GetCurrentFont ();
-		SetCurrentFont (Message_BFont);
+		SetCurrentFont ( Messagevar_BFont );
 		sprintf(obsnum, "%d", wall_indices [ GameConfig . level_editor_edit_mode ] [ selected_index ] );
 		DisplayText(obsnum, TargetRectangle . x, y_off, NULL, 1);
 		SetCurrentFont (PreviousFont);

@@ -1476,7 +1476,7 @@ display_current_game_message_window ( void )
 
 #define AVERAGE_LINES_IN_MESSAGE_WINDOW 3*GameConfig . screen_height/480
 
-    SetCurrentFont ( Message_BFont );
+    SetCurrentFont ( Messagevar_BFont );
     if ( game_message_protocol == NULL )
     {
 	game_message_protocol = MyMalloc ( 500000 ) ; // enough for any protocol
@@ -1525,7 +1525,7 @@ display_current_game_message_window ( void )
     // Now we can display the text and update the screen...
     //
     SDL_SetClipRect( Screen, NULL );
-    SetCurrentFont ( Message_BFont );
+    SetCurrentFont ( Messagevar_BFont );
     DisplayText ( game_message_protocol , Subtitle_Window.x , Subtitle_Window.y - protocol_offset , &Subtitle_Window , our_stretch_factor );
 
     

@@ -777,7 +777,7 @@ ShowSkillsScreen ( void )
 		     FIRST_SKILLRECT_Y - 6 + i * (64 + INTER_SKILLRECT_DIST) + SkillScreenRect.y , 
 		     &SkillScreenRect , TEXT_STRETCH );
 
-	SetCurrentFont ( Message_BFont );
+	SetCurrentFont ( Messagestat_BFont );
 	int tmp, tmp2;
 	int nextypos = FIRST_SKILLRECT_Y - 8 + i * ( 64 + INTER_SKILLRECT_DIST ) + SkillScreenRect.y + 2 * FontHeight( GetCurrentFont() );
 	

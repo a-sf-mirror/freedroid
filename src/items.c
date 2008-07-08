@@ -2063,7 +2063,7 @@ ShowQuickInventory ( void )
     //
     for ( i = 0 ; i < 10 ; i ++ )
     {
-	PutCharFont ( Screen , Message_BFont , ( 130 + i * 40 - 9 ) * GameConfig.screen_width / 640 , GameConfig.screen_height - 16 , (i < 9 ) ? ('1' + i ) : '0');
+	PutCharFont ( Screen , Messagestat_BFont , ( 130 + i * 40 - 9 ) * GameConfig.screen_width / 640 , GameConfig.screen_height - 16 , (i < 9 ) ? ('1' + i ) : '0');
 	if ( ( ( Index = GetInventoryItemAt ( i , INVENTORY_GRID_HEIGHT -1 ) ) != (-1) ) &&
 	     ( Me.Inventory[ Index ].inventory_position.x == i ) &&
 	     ( Me.Inventory[ Index ].inventory_position.y == INVENTORY_GRID_HEIGHT -1 ) )
