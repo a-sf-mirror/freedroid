@@ -50,8 +50,7 @@ jmp_buf saveload_jmpbuf;
 
 #define WrapErrorMessage(a, b, c, d, ...) do { \
 	ErrorMessage(a,b,c,IS_WARNING_ONLY, ##__VA_ARGS__);\
-	GiveMouseAlertWindow(b);\
-    	GiveMouseAlertWindow(_("Unable to load the savegame.\n"));\
+    	GiveMouseAlertWindow(_("An error occured when trying to load the savegame.\n"));\
     	longjmp(saveload_jmpbuf, 1);\
 } while (0)
 
