@@ -342,9 +342,9 @@ Takeover ( enemy * target )
 	    // very much relevant any more in the freedroidRPG variant....
 	    //
 	    if ( LeaderColor != YourColor )	// only won because of InvincibleMode 
-		message = _("You cheat");
+		message = ("You cheat");
 	    else				// won the proper way 
-		message = _("Complete");
+		message = ("Complete");
 	    
 	    //--------------------
 	    // Ok.  The whole takeover is done now.  We can return...
@@ -354,7 +354,7 @@ Takeover ( enemy * target )
 	else if ( LeaderColor == OpponentColor )
 	{
 	    Takeover_Game_Lost_Sound ();
-	    message = _("Rejected");
+	    message = ("Rejected");
 	    Me . energy *= 0.5 ;
 	    target->energy = Druidmap [ target->type ] . maxenergy ;
 	    FinishTakeover = TRUE;
@@ -362,7 +362,7 @@ Takeover ( enemy * target )
 	else
 	{
 	    Takeover_Game_Deadlock_Sound ();
-	    message = _("Deadlock");
+	    message = ("Deadlock");
 	}			// LeadColor == DRAW	
 
 	ShowPlayground ();
@@ -462,7 +462,7 @@ PlayGame (void)
   int up, down, set; 
   int up_counter, down_counter; 
 
-  sprintf (count_text, _("Subliminal"));   /* Make sure a value gets assigned to count_text */
+  sprintf (count_text, ("Subliminal"));   /* Make sure a value gets assigned to count_text */
   count_tick_len = 100;   /* countdown in 1/10 second steps */
   move_tick_len  = 60;    /* allow motion at this tick-speed in ms */
   

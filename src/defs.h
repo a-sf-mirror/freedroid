@@ -340,7 +340,7 @@ enum
 #define LEFT_INFO_Y	(10*2)
 #define RIGHT_INFO_X	(242*2)
 #define RIGHT_INFO_Y	(8*2)
-#define LEFT_TEXT_LEN 10
+#define LEFT_TEXT_LEN 20
 #define RIGHT_TEXT_LEN 6
 #define TEXT_STRETCH (6.0/5.0)
 
