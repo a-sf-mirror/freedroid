@@ -342,9 +342,9 @@ Takeover ( enemy * target )
 	    // very much relevant any more in the freedroidRPG variant....
 	    //
 	    if ( LeaderColor != YourColor )	// only won because of InvincibleMode 
-		message = ("You cheat");
+		message = _("You cheat");
 	    else				// won the proper way 
-		message = ("Complete");
+		message = _("Complete");
 	    
 	    //--------------------
 	    // Ok.  The whole takeover is done now.  We can return...
@@ -354,7 +354,7 @@ Takeover ( enemy * target )
 	else if ( LeaderColor == OpponentColor )
 	{
 	    Takeover_Game_Lost_Sound ();
-	    message = ("Rejected");
+	    message = _("Rejected");
 	    Me . energy *= 0.5 ;
 	    target->energy = Druidmap [ target->type ] . maxenergy ;
 	    FinishTakeover = TRUE;
@@ -362,7 +362,7 @@ Takeover ( enemy * target )
 	else
 	{
 	    Takeover_Game_Deadlock_Sound ();
-	    message = ("Deadlock");
+	    message = _("Deadlock");
 	}			// LeadColor == DRAW	
 
 	ShowPlayground ();
