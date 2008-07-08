@@ -837,7 +837,7 @@ EXTERN void write_full_item_name_into_string ( item* ShowItem , char* full_item_
 EXTERN void show_backgrounded_label_at_map_position ( char* LabelText , float fill_status , float pos_x , float pos_y , int zoom_is_on );
 EXTERN void show_backgrounded_text_rectangle ( char* text , int x , int y , int w , int h );
 EXTERN char * GetEditableStringInPopupWindow ( int MaxLen , char* PopupWindowTitle , char* DefaultString );
-EXTERN void GiveMouseAlertWindow ( char* WindowText ) ;
+EXTERN void GiveMouseAlertWindow ( const char* WindowText ) ;
 EXTERN void CutDownStringToMaximalSize ( char* StringToCut , int LengthInPixels );
 EXTERN void SetNewBigScreenMessage( char* ScreenMessageText );
 EXTERN void DisplayBigScreenMessage( void );

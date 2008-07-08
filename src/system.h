@@ -96,6 +96,8 @@
 #include <stdarg.h>
 #include <ctype.h>
 
+#include <setjmp.h>
+
 #ifdef HAVE_DIRENT_H
 #include "dirent.h"
 #endif

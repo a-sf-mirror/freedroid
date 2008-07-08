@@ -122,7 +122,7 @@ show_backgrounded_text_rectangle ( char* text , int x , int y , int w , int h )
  * button to confirm and make it go away again.
  */
 void
-GiveMouseAlertWindow( char* WindowText )
+GiveMouseAlertWindow( const char* WindowText )
 {
 
     Activate_Conservative_Frame_Computation();

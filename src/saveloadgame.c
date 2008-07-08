@@ -46,6 +46,16 @@ int load_game_command_came_from_inside_running_game = FALSE ;
 
 FILE *SaveGameFile;  // to this file we will save all the ship data...
 
+jmp_buf saveload_jmpbuf;
+
+#define WrapErrorMessage(a, b, c, d, ...) do { \
+	ErrorMessage(a,b,c,IS_WARNING_ONLY, ##__VA_ARGS__);\
+	GiveMouseAlertWindow(b);\
+    	GiveMouseAlertWindow(_("Unable to load the savegame.\n"));\
+    	longjmp(saveload_jmpbuf, 1);\
+} while (0)
+
+
 void
 ShowSaveLoadGameProgressMeter( int Percentage , int IsSavegame ) 
 {
@@ -380,7 +390,7 @@ int
 LoadGame( void )
 {
     char version_check_string[1000];
-    char *LoadGameData;
+    volatile char *LoadGameData = NULL;
     char filename[1000];
     int i;
     FILE *DataFile;
@@ -410,7 +420,15 @@ LoadGame( void )
     {
 	DebugPrintf ( 1 , "\nThe saved game file (.shp file) seems to be there at least.....");
     }
-    
+   
+    if ( setjmp(saveload_jmpbuf) )
+	{
+	if ( LoadGameData != NULL )
+	    free((char *)LoadGameData);
+	LoadGameData = NULL;
+	return ( ERR ) ;
+	}
+
     LoadShip( filename );
 
     sprintf (filename, "%s/%s%s", our_config_dir, Me.character_name, SAVEDGAME_EXT);
@@ -520,7 +538,7 @@ LoadGame( void )
 
     SwitchBackgroundMusicTo( curShip.AllLevels[ Me.pos.z ]->Background_Song_Name );
     
-    free ( LoadGameData );
+    free ( (char *)LoadGameData );
     
     //--------------------
     // Maybe someone just lost in the game and has then pressed the load
@@ -673,10 +691,10 @@ int i;\
 char search[strlen(tag) + 20];\
 sprintf(search, "<%s array", tag);\
 char * pos = strstr(buffer, search);\
-if ( ! pos ) ErrorMessage ( __FUNCTION__, "Unable to find array %s\n", PLEASE_INFORM, IS_FATAL, tag);\
+if ( ! pos ) WrapErrorMessage ( __FUNCTION__, "Unable to find array %s\n", PLEASE_INFORM, IS_FATAL, tag);\
 sprintf(search, "</%s>", tag);\
 char * epos = strstr(pos, search);\
-if ( ! epos ) ErrorMessage ( __FUNCTION__, "Unable to find array end %s\n", PLEASE_INFORM, IS_FATAL, tag);\
+if ( ! epos ) WrapErrorMessage ( __FUNCTION__, "Unable to find array end %s\n", PLEASE_INFORM, IS_FATAL, tag);\
 epos += strlen(search);\
 char savechar = *(epos + 1);\
 *(epos+1) = '\0';\
@@ -689,7 +707,7 @@ while ( *erunp != '>' ) erunp ++;\
 *erunp = '\0';\
 nb = atoi(runp);\
 *erunp = '>';\
-if ( nb != size )  ErrorMessage ( __FUNCTION__, "Size mismatch for array %s, %d in file, %d in game\n", PLEASE_INFORM, IS_FATAL, tag, nb, size);\
+if ( nb != size )  WrapErrorMessage ( __FUNCTION__, "Size mismatch for array %s, %d in file, %d in game\n", PLEASE_INFORM, IS_FATAL, tag, nb, size);\
 for ( i = 0; i < (nb <= size ? nb : size); i ++)\
 	{\
 	char str[10];\
@@ -759,9 +777,9 @@ fprintf(SaveGameFile, "</ChatFlags>\n");
 void read_chatflags_t_array(const char * buffer, const char * tag, chatflags_t * chatflags, int size)
 {
 char * pos = strstr(buffer, "<ChatFlags mpeople=");
-if ( ! pos ) ErrorMessage ( __FUNCTION__, "Unable to find ChatFlags array\n", PLEASE_INFORM, IS_FATAL);
+if ( ! pos ) WrapErrorMessage ( __FUNCTION__, "Unable to find ChatFlags array\n", PLEASE_INFORM, IS_FATAL);
 char * epos = strstr(pos, "</ChatFlags>\n");
-if ( ! epos ) ErrorMessage ( __FUNCTION__, "Unable to find ChatFlags array end\n", PLEASE_INFORM, IS_FATAL);
+if ( ! epos ) WrapErrorMessage ( __FUNCTION__, "Unable to find ChatFlags array end\n", PLEASE_INFORM, IS_FATAL);
 epos += strlen("</ChatFlags>\n");
 char savechar = *(epos + 1);
 *(epos+1) = '\0';
@@ -784,9 +802,9 @@ ma = atoi(runp);
 *erunp = '>';
 
 if ( mp != MAX_PERSONS )  
-    ErrorMessage ( __FUNCTION__, "MAX_PERSONS mismatch for array ChatFlags, %d in file, %d in game\n", PLEASE_INFORM, IS_FATAL, mp, MAX_PERSONS);
+    WrapErrorMessage ( __FUNCTION__, "MAX_PERSONS mismatch for array ChatFlags, %d in file, %d in game\n", PLEASE_INFORM, IS_FATAL, mp, MAX_PERSONS);
 if ( ma != MAX_ANSWERS_PER_PERSON )
-    ErrorMessage ( __FUNCTION__, "MAX_ANSWERS_PER_PERSON mismatch for array ChatFlags, %d in file, %d in game\n", PLEASE_INFORM, IS_FATAL, ma, MAX_ANSWERS_PER_PERSON);
+    WrapErrorMessage ( __FUNCTION__, "MAX_ANSWERS_PER_PERSON mismatch for array ChatFlags, %d in file, %d in game\n", PLEASE_INFORM, IS_FATAL, ma, MAX_ANSWERS_PER_PERSON);
 
 while ( *runp != '\n' ) runp++;
 runp++;
@@ -830,9 +848,9 @@ fprintf(SaveGameFile, "</cookielist>\n");
 void read_cookielist_t_array(const char * buffer, const char * tag, cookielist_t * cookielist, int size)
 {
 char * pos = strstr(buffer, "<cookielist mc=");
-if ( ! pos ) ErrorMessage ( __FUNCTION__, "Unable to find cookielist.\n", PLEASE_INFORM, IS_FATAL);
+if ( ! pos ) WrapErrorMessage ( __FUNCTION__, "Unable to find cookielist.\n", PLEASE_INFORM, IS_FATAL);
 char * epos = strstr(pos, "</cookielist>\n");
-if ( ! epos ) ErrorMessage ( __FUNCTION__, "Unable to find cookielist end.\n", PLEASE_INFORM, IS_FATAL);
+if ( ! epos ) WrapErrorMessage ( __FUNCTION__, "Unable to find cookielist end.\n", PLEASE_INFORM, IS_FATAL);
 char savechar = *epos;
 *epos = '\0';
 int mc = 0;
@@ -847,7 +865,7 @@ mc = atoi(pos);
 pos = erunp;
 
 if ( mc != MAX_COOKIES )
-    ErrorMessage(__FUNCTION__, "Size mismatch for max number of cookies, file %d vs. game %d.\n", PLEASE_INFORM, IS_FATAL, mc, MAX_COOKIES);
+    WrapErrorMessage(__FUNCTION__, "Size mismatch for max number of cookies, file %d vs. game %d.\n", PLEASE_INFORM, IS_FATAL, mc, MAX_COOKIES);
 
 while ( *pos != '\n' ) pos ++;
 pos++;
@@ -888,9 +906,9 @@ void read_bigscrmsg_t_array(const char * buffer, const char * tag, bigscrmsg_t *
 {
 int i = 0;
 char * pos = strstr(buffer, "<bigscreenmessages m=");
-if ( ! pos ) ErrorMessage ( __FUNCTION__, "Unable to find big screen messages.\n", PLEASE_INFORM, IS_FATAL);
+if ( ! pos ) WrapErrorMessage ( __FUNCTION__, "Unable to find big screen messages.\n", PLEASE_INFORM, IS_FATAL);
 char * epos = strstr(pos, "</bigscreenmessages>\n");
-if ( ! epos ) ErrorMessage ( __FUNCTION__, "Unable to find big screen messages end.\n", PLEASE_INFORM, IS_FATAL);
+if ( ! epos ) WrapErrorMessage ( __FUNCTION__, "Unable to find big screen messages end.\n", PLEASE_INFORM, IS_FATAL);
 char savechar = *epos;
 *epos = '\0';
 int mc = 0;
@@ -905,7 +923,7 @@ mc = atoi(pos);
 pos = erunp;
 
 if ( mc != MAX_BIG_SCREEN_MESSAGES )
-        ErrorMessage(__FUNCTION__, "Size mismatch for max number of big screen messages, file %d vs. game %d.\n", PLEASE_INFORM, IS_FATAL, mc, MAX_BIG_SCREEN_MESSAGES);
+        WrapErrorMessage(__FUNCTION__, "Size mismatch for max number of big screen messages, file %d vs. game %d.\n", PLEASE_INFORM, IS_FATAL, mc, MAX_BIG_SCREEN_MESSAGES);
 
 while ( *pos != '\n' ) pos ++;
 pos++;
@@ -951,9 +969,9 @@ fprintf(SaveGameFile, "</automap>\n");
 void read_automap_data_t_array(char * buffer, char * tag, automap_data_t * automapdata, int size)
 {
     char * pos = strstr(buffer, "<automap nl=");
-    if ( ! pos ) ErrorMessage ( __FUNCTION__, "Unable to find automap data\n", PLEASE_INFORM, IS_FATAL);
+    if ( ! pos ) WrapErrorMessage ( __FUNCTION__, "Unable to find automap data\n", PLEASE_INFORM, IS_FATAL);
     char * epos = strstr(pos, "</automap>\n");
-    if ( ! epos ) ErrorMessage ( __FUNCTION__, "Unable to find automap data end\n", PLEASE_INFORM, IS_FATAL);
+    if ( ! epos ) WrapErrorMessage ( __FUNCTION__, "Unable to find automap data end\n", PLEASE_INFORM, IS_FATAL);
     epos += strlen("</automap>\n");
     char savechar = *(epos + 1);
     *(epos+1) = '\0';
@@ -967,9 +985,9 @@ void read_automap_data_t_array(char * buffer, char * tag, automap_data_t * autom
     sscanf(pos, "<automap nl=%d sx=%d sy=%d>", &nl, &sx, &sy);
   
     if ( nl != MAX_LEVELS )
-	ErrorMessage(__FUNCTION__, "Number of levels mismatch when reading automap data : file %d, game %d\n", PLEASE_INFORM, IS_FATAL, nl, MAX_LEVELS);
+	WrapErrorMessage(__FUNCTION__, "Number of levels mismatch when reading automap data : file %d, game %d\n", PLEASE_INFORM, IS_FATAL, nl, MAX_LEVELS);
     if ( sx != 100 || sy != 100 )
-	ErrorMessage(__FUNCTION__, "Size mismatch when reading automap data.\n", PLEASE_INFORM, IS_FATAL);
+	WrapErrorMessage(__FUNCTION__, "Size mismatch when reading automap data.\n", PLEASE_INFORM, IS_FATAL);
 
     *runp = '\n';
     runp++;
