@@ -184,7 +184,7 @@ int skip_initial_menus = FALSE ;
 supported_languages_t supported_languages []=  {{ .code="C", .name="English", .font_class="" },
 					    	{ .code="fr_FR", .name="French", .font_class="" },
 						{ .code="de_DE", .name="Deutsch", .font_class="" },
-					    	{ .code="sv_SE", .name="Swedish", .font_class="" },
+// disabled-v0.11					    	{ .code="sv_SE", .name="Swedish", .font_class="" },
 					    	{ .code="ru_RU.cp1251", .name="Russian", .font_class=".cp1251" },
 					    	{ NULL, NULL, NULL}, };
 
