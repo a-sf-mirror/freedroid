@@ -647,9 +647,9 @@ ShowItemInfo ( item* ShowItem , int Displacement , char ShowArrows , int backgro
 	{
 	strcat ( InfoText , _("Attributes required: "));
     
-	if ( ( ItemMap [ ShowItem->type ] . item_require_strength == (-1) ) &&
-	 ( ItemMap [ ShowItem->type ] . item_require_dexterity == (-1) ) &&
-	 ( ItemMap [ ShowItem->type ] . item_require_magic == (-1) ) )
+	if ( ( ItemMap [ ShowItem->type ] . item_require_strength <= 0 ) &&
+	 ( ItemMap [ ShowItem->type ] . item_require_dexterity <= 0 ) &&
+	 ( ItemMap [ ShowItem->type ] . item_require_magic <= 0) )
 	    {
 	    strcat ( InfoText , _("NONE\n"));
 	    }
@@ -723,6 +723,12 @@ ShowItemInfo ( item* ShowItem , int Displacement , char ShowArrows , int backgro
 	{
 	sprintf( TextChunk, _("Unsellable\n"));
         strcat ( InfoText , TextChunk );
+	}
+    
+    if ( ( ShowItem->suffix_code != (-1) ) || ( ShowItem->prefix_code != (-1) ) )
+    	{
+        if ( ShowItem->is_identified == FALSE )
+		strcat( InfoText, _("Identification cost: 100\n"));
 	}
   
     //--------------------
