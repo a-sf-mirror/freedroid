@@ -1672,6 +1672,8 @@ ItemCanBeDroppedInInv ( int ItemType , int InvPos_x , int InvPos_y )
     // Perhaps the item reaches even outside the inventory grid.  Then of course
     // it does not fit and we need/should not even test the details...
     //
+    if ( InvPos_x < 0 || InvPos_y < 0 ) 
+	    return FALSE;
     if ( ItemMap [ ItemType ] . inv_image . inv_size . x - 1 + InvPos_x >= 
 	 INVENTORY_GRID_WIDTH  ) return ( FALSE );
     if ( ItemMap [ ItemType ] . inv_image . inv_size . y - 1 + InvPos_y >= 
