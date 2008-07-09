@@ -50,7 +50,7 @@ jmp_buf saveload_jmpbuf;
 
 #define WrapErrorMessage(a, b, c, d, ...) do { \
 	ErrorMessage(a,b,c,IS_WARNING_ONLY, ##__VA_ARGS__);\
-    	GiveMouseAlertWindow(_("An error occured when trying to load the savegame.\n"));\
+    	GiveMouseAlertWindow(_("An error occured when trying to load the savegame.\nA common reason for this is that the game has been updated to a newer version since the save was made, in which case the savegame is very likely not compatible.\nHowever if you see this message and you have not updated the game, make sure to report this to the developers.\nThanks!"));\
     	longjmp(saveload_jmpbuf, 1);\
 } while (0)
 
