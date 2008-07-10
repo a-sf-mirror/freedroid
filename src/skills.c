@@ -782,7 +782,7 @@ ShowSkillsScreen ( void )
 	int nextypos = FIRST_SKILLRECT_Y - 8 + i * ( 64 + INTER_SKILLRECT_DIST ) + SkillScreenRect.y + 2 * FontHeight( GetCurrentFont() );
 	
 	// Program revision
-	sprintf( CharText , _("Program revision: %d "), Me.SkillLevel[ SkillOfThisSlot ] );
+	sprintf( CharText , _("Program revision: %c%d%c "), font_switchto_msgvar[0] ,  Me.SkillLevel[ SkillOfThisSlot ] , font_switchto_msgstat[0] );
 	DisplayText( CharText , 16 + 64 + 16 + SkillScreenRect.x , 
 		nextypos , &SkillScreenRect , TEXT_STRETCH );
 	nextypos += FontHeight( GetCurrentFont() );
@@ -793,9 +793,9 @@ ShowSkillsScreen ( void )
 	if ( tmp != 0 )
 	    {
 	    if ( tmp > 0 )
-		sprintf( CharText , _("Heat produced: %d "),   tmp );
+                sprintf( CharText , _("Heat produced: %c%d%c "),  font_switchto_msgvar[0] , tmp , font_switchto_msgstat[0] );
 	    else 
-		sprintf( CharText , _("Cooling: %d "),   -tmp );
+		sprintf( CharText , _("Cooling: %c%d%c "),  font_switchto_msgvar[0] , -tmp , font_switchto_msgstat[0] );
 	    DisplayText( CharText , 16 + 64 + 16 + SkillScreenRect.x, nextypos, &SkillScreenRect , TEXT_STRETCH );
 	    nextypos += FontHeight( GetCurrentFont() );
 	    }
@@ -806,9 +806,9 @@ ShowSkillsScreen ( void )
 	if ( tmp != 0 )
 	    {
 	    if ( tmp > 0 )
-		sprintf( CharText , _("Damage: %d-%d "),   tmp, tmp2 );
+		sprintf( CharText , _("Damage: %c%d-%d%c "),  font_switchto_msgvar[0] , tmp , tmp2 , font_switchto_msgstat[0] );
 	    else if ( tmp < 0 )
-		sprintf ( CharText, _("Healing: %d-%d "), -tmp, -tmp2);
+		sprintf ( CharText, _("Healing: %c%d-%d%c "),  font_switchto_msgvar[0] , -tmp , -tmp2 , font_switchto_msgstat[0] );
 
 	    DisplayText( CharText , 16 + 64 + 16 + SkillScreenRect.x , nextypos , &SkillScreenRect , TEXT_STRETCH );
 	    nextypos += FontHeight( GetCurrentFont() );
@@ -848,7 +848,7 @@ ShowSkillsScreen ( void )
 
 	    float tmp = calculate_program_effect_duration(SkillOfThisSlot);
 	    if ( tmp > 0 )
- 	     sprintf(CharText + strlen(CharText), _(" for %.1f seconds"), tmp );
+ 	     sprintf(CharText + strlen(CharText), _(" for %c%.1f%c seconds"),  font_switchto_msgvar[0] , tmp , font_switchto_msgstat[0] );
 	   
 	    DisplayText( CharText , 16 + 64 + 16 + SkillScreenRect.x , nextypos , &SkillScreenRect , TEXT_STRETCH );
 	    nextypos += FontHeight( GetCurrentFont() );
