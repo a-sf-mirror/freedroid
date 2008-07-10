@@ -806,9 +806,15 @@ ShowSkillsScreen ( void )
 	if ( tmp != 0 )
 	    {
 	    if ( tmp > 0 )
-		sprintf( CharText , _("Damage: %c%d-%d%c "),  font_switchto_msgvar[0] , tmp , tmp2 , font_switchto_msgstat[0] );
+                if ( tmp == tmp2 )
+        		sprintf( CharText , _("Damage: %c%d%c "),  font_switchto_msgvar[0] , tmp , font_switchto_msgstat[0] );
+                else
+                        sprintf( CharText , _("Damage: %c%d-%d%c "),  font_switchto_msgvar[0] , tmp , tmp2 , font_switchto_msgstat[0] );
 	    else if ( tmp < 0 )
-		sprintf ( CharText, _("Healing: %c%d-%d%c "),  font_switchto_msgvar[0] , -tmp , -tmp2 , font_switchto_msgstat[0] );
+                if ( tmp == tmp2 )
+        		sprintf ( CharText, _("Healing: %c%d%c "),  font_switchto_msgvar[0] , -tmp , font_switchto_msgstat[0] );
+                else
+                        sprintf ( CharText, _("Healing: %c%d-%d%c "),  font_switchto_msgvar[0] , -tmp , -tmp2 , font_switchto_msgstat[0] );
 
 	    DisplayText( CharText , 16 + 64 + 16 + SkillScreenRect.x , nextypos , &SkillScreenRect , TEXT_STRETCH );
 	    nextypos += FontHeight( GetCurrentFont() );
