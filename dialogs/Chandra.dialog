@@ -60,7 +60,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=2  OptionText=_" Where can I get better equipment?"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=109  PositionY=163  
-Subtitle=_"The shop is to the east. Ms. Stone always has a good range of equipment there."
+Subtitle=_"The shop is to the north. Ms. Stone always has a good range of equipment there."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"And the Red Guard always has the biggest guns and the best armor, but they do not sell them to the non-members."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
