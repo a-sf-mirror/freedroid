@@ -60,6 +60,8 @@ EXTERN int ThisMessageTime;
 EXTERN char font_switchto_red [ 2 ] ;
 EXTERN char font_switchto_blue [ 2 ] ;
 EXTERN char font_switchto_neon [ 2 ] ;
+EXTERN char font_switchto_msgstat [ 2 ] ;
+EXTERN char font_switchto_msgvar [ 2 ] ;
 
 EXTERN int SpellHitPercentageTable [  ] ;
 EXTERN float MeleeDamageMultiplierTable [  ] ;

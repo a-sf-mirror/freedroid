@@ -535,19 +535,29 @@ void
 DisplayChar (unsigned char c)
 {
     
-    if ( c == 1 ) 
+    if ( c == font_switchto_red[0] ) 
 	{
 	SetCurrentFont ( Red_BFont );
 	return;
 	}
-    else if ( c == 2 ) 
+    else if ( c == font_switchto_blue[0] ) 
 	{
 	SetCurrentFont ( Blue_BFont );
 	return;
 	}
-    else if ( c == 3 ) 
+    else if ( c == font_switchto_neon[0] ) 
 	{
 	SetCurrentFont ( FPS_Display_BFont );
+	return;
+	}
+    else if ( c == font_switchto_msgstat[0] ) 
+	{
+	SetCurrentFont ( Messagestat_BFont );
+	return;
+	}
+    else if ( c == font_switchto_msgvar[0] ) 
+	{
+	SetCurrentFont ( Messagevar_BFont );
 	return;
 	}
 

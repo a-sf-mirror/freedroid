@@ -122,6 +122,9 @@ char* floor_tile_filenames [ ALL_ISOMETRIC_FLOOR_TILES ] =
 
 tux_t Me ;
 
+// We should not require translations for skillevels that will never be reachable (>6). Should be fixed. 
+// Level 10 doesnt even seem reachable at all, even by cheating. Bug?
+
 char* AllSkillTexts [ NUMBER_OF_SKILL_LEVELS ] =
   {
     N_("novice"),
@@ -157,7 +160,7 @@ float RangedRechargeMultiplierTable [  ] =
   {  1.0, 0.9, 0.81, 0.73, 0.66, 0.59, 0.53, 0.48, 0.43, 0.39 } ;
 
 //--------------------
-// In the game, many spells are still internally similar
+// In the game, a few spells are still internally similar
 // to bullets flying around.  But what hit chance shall this
 // bullet have?  --  That will depend upon the skill level
 // of the caster.  The details will be taken from the following
@@ -178,6 +181,8 @@ blastspec Blastmap[ALLBLASTTYPES];
 char font_switchto_red [ 2 ] = { 1 , 0 };
 char font_switchto_blue [ 2 ] = { 2 , 0 };
 char font_switchto_neon [ 2 ] = { 3 , 0 };
+char font_switchto_msgstat [ 2 ] = { 4 , 0 };
+char font_switchto_msgvar [ 2 ] = { 5 , 0 };
 
 int skip_initial_menus = FALSE ;
 
