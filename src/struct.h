@@ -840,8 +840,8 @@ typedef struct spell_skill_spec_s
     short damage_base;
     short damage_mod;
     short damage_per_level;
-    char hurt_bots;
-    char hurt_humans;
+    short hurt_bots;
+    short hurt_humans;
     char* description;
     char* effect;
     float effect_duration;

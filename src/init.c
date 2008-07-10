@@ -716,9 +716,9 @@ There are more skills defined, than the maximum number specified in the code!",
 	ReadValueFromStringWithDefault( ProgramPointer , "Damage per level=" , "%hd" , "0",
 		& ProgramToFill -> damage_per_level  , EndOfProgramData );
 
-	ReadValueFromStringWithDefault( ProgramPointer , "Affect bots=" , "%hhd" , "1",
+	ReadValueFromStringWithDefault( ProgramPointer , "Affect bots=" , "%hd" , "1",
 		& ProgramToFill -> hurt_bots  , EndOfProgramData );
-	ReadValueFromStringWithDefault( ProgramPointer , "Affect humans=" , "%hhd" , "1",
+	ReadValueFromStringWithDefault( ProgramPointer , "Affect humans=" , "%hd" , "1",
 		& ProgramToFill -> hurt_humans  , EndOfProgramData );
 
 
