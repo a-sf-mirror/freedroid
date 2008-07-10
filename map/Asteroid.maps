@@ -3550,7 +3550,7 @@ x=37 y=21 name="EwaldStartGameSquare"
 x=64 y=19 name="SkippyStartGameSquare"
 x=76 y=82 name="BruceStartGameSquare"
 x=8 y=47 name="DuncanStartGameSquare"
-x=15 y=25 name="DocMooreStartGameSquare"
+x=19 y=30 name="DocMooreStartGameSquare"
 x=25 y=7 name="614StartGameSquare1"
 x=18 y=81 name="614StartGameSquare2"
 x=22 y=81 name="614StartGameSquare3"
@@ -3559,8 +3559,8 @@ x=35 y=69 name="614StartGameSquare5"
 x=51 y=26 name="614StartGameSquare6"
 x=8 y=35 name="PendragonStartGameSquare"
 x=23 y=30 name="BenderStartGameSquare"
-x=26 y=10 name="OldTownNorthGateGuardLeader"
-x=29 y=10 name="OldTownNorthGateGuard1"
+x=29 y=10 name="OldTownNorthGateGuardLeader"
+x=24 y=10 name="OldTownNorthGateGuard1"
 x=22 y=19 name="OldTownNorthGateGuard2"
 x=34 y=50 name="NewSpencer"
 x=26 y=74 name="DixonStartGameSquare"
@@ -3570,17 +3570,17 @@ x=39 y=46 name="LukasStartGameSquare"
 x=54 y=55 name="RichardStartGameSquare"
 x=39 y=62 name="BenjaminCitadelStartGameSquare"
 x=17 y=20 name="TeleportHomeTarget"
-x=18 y=42 name="NorthernMaintainanceTeleporter"
-x=18 y=43 name="NorthernMaintainanceTeleporterReturn"
+x=33 y=64 name="NorthernMaintainanceTeleporter"
+x=33 y=63 name="NorthernMaintainanceTeleporterReturn"
 x=19 y=64 name="NoviceArenaTeleporter"
 x=19 y=63 name="NoviceArenaTeleporterReturn"
-x=33 y=64 name="MasterArenaTeleporter"
-x=33 y=63 name="MasterArenaTeleporterReturn"
+x=18 y=42 name="MasterArenaTeleporter"
+x=18 y=43 name="MasterArenaTeleporterReturn"
 /plabelinfolvl
 pobstaclelabelinfolvl
 obstacle_label.index=0 obstacle_label_name="NoviceArenaAccessDoor" states="closed:192 opened:186"
-obstacle_label.index=1 obstacle_label_name="MasterArenaAccessDoor" states="closed:192 opened:186"
-obstacle_label.index=2 obstacle_label_name="NorthernMaintainanceDoor" states="closed:191 opened:181"
+obstacle_label.index=1 obstacle_label_name="NorthernMaintainanceDoor" states="closed:192 opened:186"
+obstacle_label.index=2 obstacle_label_name="MasterArenaAccessDoor" states="closed:191 opened:181"
 obstacle_label.index=3 obstacle_label_name="SouthGateOfTown1"
 obstacle_label.index=5 obstacle_label_name="OldTownGuardHouseEntrance" states="closed:191 opened:181"
 obstacle_label.index=6 obstacle_label_name="SouthGateOfTown2"
@@ -3601,213 +3601,214 @@ piteminfolvl
 pchestinfolvl
 /pchestinfolvl
 wp
-Nr.=  0 x=  28 y=  19 rnd=0	 c:    1  62
-Nr.=  1 x=  28 y=  21 rnd=0	 c:    0  13
-Nr.=  2 x=  21 y=  81 rnd=1	 c:  138
-Nr.=  3 x=  14 y=  26 rnd=0	 c:   77  78
-Nr.=  4 x=  26 y=  10 rnd=0	 c:    9  51  49  50
-Nr.=  5 x=  29 y=  10 rnd=0	 c:    6   7
-Nr.=  6 x=  29 y=  11 rnd=0	 c:    5   8   7
-Nr.=  7 x=  29 y=   8 rnd=0	 c:    6   5   8
-Nr.=  8 x=  29 y=   9 rnd=0	 c:    6   7
-Nr.=  9 x=  24 y=  10 rnd=0	 c:    4  50  49
-Nr.= 10 x=  26 y=   8 rnd=0	 c:   12  11
-Nr.= 11 x=  24 y=   7 rnd=0	 c:   12  10
-Nr.= 12 x=  28 y=   7 rnd=0	 c:   11  10
-Nr.= 13 x=  27 y=  23 rnd=0	 c:   15   1
-Nr.= 14 x=   9 y=  35 rnd=0	 c:   75  74
-Nr.= 15 x=  25 y=  23 rnd=0	 c:   13  48
-Nr.= 16 x=  34 y=   6 rnd=0	 c:   17
-Nr.= 17 x=  36 y=   6 rnd=0	 c:   16  21  18
-Nr.= 18 x=  39 y=   7 rnd=0	 c:   17  19  21
-Nr.= 19 x=  41 y=   7 rnd=0	 c:   18  20
-Nr.= 20 x=  42 y=  10 rnd=0	 c:   19
-Nr.= 21 x=  36 y=   9 rnd=0	 c:   17  18  22  23
-Nr.= 22 x=  35 y=  10 rnd=0	 c:   21  23
-Nr.= 23 x=  37 y=  11 rnd=0	 c:   22  21
-Nr.= 24 x=  35 y=  21 rnd=0	 c:   25
-Nr.= 25 x=  37 y=  21 rnd=0	 c:   26  24
-Nr.= 26 x=  39 y=  21 rnd=0	 c:   25  36  35
-Nr.= 27 x=  37 y=  17 rnd=0	 c:   30  28  29
-Nr.= 28 x=  39 y=  17 rnd=0	 c:   27  31
-Nr.= 29 x=  39 y=  18 rnd=0	 c:   27  30  31  33
-Nr.= 30 x=  36 y=  18 rnd=0	 c:   27  29
-Nr.= 31 x=  42 y=  18 rnd=0	 c:   29  28  32
-Nr.= 32 x=  45 y=  19 rnd=0	 c:   33  31
-Nr.= 33 x=  40 y=  19 rnd=0	 c:   29  32  34
-Nr.= 34 x=  41 y=  22 rnd=0	 c:   33
-Nr.= 35 x=  41 y=  24 rnd=0	 c:   26  39  36
-Nr.= 36 x=  39 y=  23 rnd=0	 c:   26  37  35
-Nr.= 37 x=  36 y=  25 rnd=0	 c:   38  40  36
-Nr.= 38 x=  38 y=  27 rnd=0	 c:   39  37  40
-Nr.= 39 x=  41 y=  27 rnd=0	 c:   35  38
-Nr.= 40 x=  35 y=  27 rnd=0	 c:   38  37
-Nr.= 41 x=  22 y=  19 rnd=0	 c:   43  47  48  46
-Nr.= 42 x=  24 y=  17 rnd=0	 c:   43  48  62
-Nr.= 43 x=  25 y=  19 rnd=0	 c:   41  42  48
-Nr.= 44 x=  18 y=  19 rnd=0	 c:   46  45
-Nr.= 45 x=  18 y=  20 rnd=0	 c:   44  46
-Nr.= 46 x=  20 y=  19 rnd=0	 c:   41  47  44  45
-Nr.= 47 x=  22 y=  20 rnd=0	 c:   41  46
-Nr.= 48 x=  24 y=  21 rnd=0	 c:   41  43  42  15
-Nr.= 49 x=  22 y=   8 rnd=0	 c:    4   9  50  51
-Nr.= 50 x=  23 y=  11 rnd=0	 c:    9   4  49
-Nr.= 51 x=  27 y=   9 rnd=0	 c:    4
-Nr.= 52 x=   9 y=   9 rnd=0	 c:   93  89  85
-Nr.= 53 x=  54 y=  18 rnd=0	 c:   54  60  55
-Nr.= 54 x=  54 y=  22 rnd=0	 c:   60  53
-Nr.= 55 x=  50 y=  19 rnd=0	 c:   53  56  58
-Nr.= 56 x=  50 y=  14 rnd=0	 c:   55  57  61
-Nr.= 57 x=  45 y=  14 rnd=0	 c:   59  56  61
-Nr.= 58 x=  47 y=  20 rnd=0	 c:   59  55
-Nr.= 59 x=  45 y=  17 rnd=0	 c:   58  57
-Nr.= 60 x=  55 y=  20 rnd=0	 c:   54  53
-Nr.= 61 x=  48 y=  13 rnd=0	 c:   56  57
-Nr.= 62 x=  27 y=  16 rnd=0	 c:    0  42
-Nr.= 63 x=  24 y=  37 rnd=0	 c:   71  66  67  72  65  64
-Nr.= 64 x=  16 y=  37 rnd=0	 c:   63  65
-Nr.= 65 x=  21 y=  38 rnd=0	 c:   63  64
-Nr.= 66 x=  24 y=  39 rnd=0	 c:   63  67
-Nr.= 67 x=  26 y=  37 rnd=0	 c:   69  68  63  66
-Nr.= 68 x=  29 y=  38 rnd=0	 c:   69  67
-Nr.= 69 x=  27 y=  35 rnd=0	 c:   70  67  68
-Nr.= 70 x=  27 y=  30 rnd=0	 c:   73  71  69
-Nr.= 71 x=  24 y=  31 rnd=0	 c:   73  63  72  70
-Nr.= 72 x=  25 y=  33 rnd=0	 c:   73  71  63
-Nr.= 73 x=  24 y=  29 rnd=0	 c:   71  72  70
-Nr.= 74 x=   8 y=  34 rnd=0	 c:   75  76  14
-Nr.= 75 x=   8 y=  35 rnd=0	 c:   76  14  74
-Nr.= 76 x=   6 y=  35 rnd=0	 c:   75  74
-Nr.= 77 x=  12 y=  26 rnd=0	 c:    3  84
-Nr.= 78 x=  17 y=  27 rnd=0	 c:   80   3  79
-Nr.= 79 x=  20 y=  27 rnd=0	 c:   80  78
-Nr.= 80 x=  19 y=  28 rnd=0	 c:   83  79  78
-Nr.= 81 x=  18 y=  30 rnd=0	 c:   82  83
-Nr.= 82 x=  20 y=  31 rnd=0	 c:   81
-Nr.= 83 x=  19 y=  29 rnd=0	 c:   81  82  80
-Nr.= 84 x=  11 y=  23 rnd=0	 c:   77
-Nr.= 85 x=  12 y=  10 rnd=0	 c:   52  86
-Nr.= 86 x=  14 y=  11 rnd=0	 c:   85  88  87
-Nr.= 87 x=  13 y=  13 rnd=0	 c:   86
-Nr.= 88 x=  13 y=  12 rnd=0	 c:   86
-Nr.= 89 x=   7 y=  10 rnd=0	 c:   90  52
-Nr.= 90 x=   7 y=  12 rnd=0	 c:   89  91
-Nr.= 91 x=   9 y=  12 rnd=0	 c:   90
-Nr.= 92 x=   9 y=   6 rnd=0	 c:   93
-Nr.= 93 x=   9 y=   7 rnd=0	 c:   52  92  94
-Nr.= 94 x=  11 y=   7 rnd=0	 c:   95  93
-Nr.= 95 x=  12 y=   6 rnd=0	 c:   94
-Nr.= 96 x=   7 y=  47 rnd=0	 c:   99  98  97
-Nr.= 97 x=   6 y=  46 rnd=0	 c:   96  98
-Nr.= 98 x=   7 y=  45 rnd=0	 c:   96  97
-Nr.= 99 x=   9 y=  47 rnd=0	 c:  101 100  96
-Nr.=100 x=   9 y=  45 rnd=0	 c:  102  99
-Nr.=101 x=  10 y=  48 rnd=0	 c:  102  99
-Nr.=102 x=  13 y=  47 rnd=0	 c:  104 103 101 100
-Nr.=103 x=  13 y=  44 rnd=0	 c:  102
-Nr.=104 x=  13 y=  51 rnd=0	 c:  102
-Nr.=105 x=  24 y=  72 rnd=0	 c:  106 109
-Nr.=106 x=  28 y=  72 rnd=0	 c:  105 109
-Nr.=107 x=  31 y=  78 rnd=0	 c:  108 109
-Nr.=108 x=  28 y=  78 rnd=0	 c:  109 107
-Nr.=109 x=  26 y=  75 rnd=0	 c:  106 108 107 105 110 111 112
-Nr.=110 x=  23 y=  77 rnd=0	 c:  109 112
-Nr.=111 x=  20 y=  77 rnd=0	 c:  109 110
-Nr.=112 x=  17 y=  76 rnd=0	 c:  110 113 109
-Nr.=113 x=  15 y=  72 rnd=0	 c:  112 114
-Nr.=114 x=  19 y=  72 rnd=0	 c:  113
-Nr.=115 x=  33 y=  51 rnd=0	 c:  200 201
-Nr.=116 x=  35 y=  48 rnd=0	 c:  200 204
-Nr.=117 x=  18 y=  54 rnd=0	 c:  118 195 194
-Nr.=118 x=  20 y=  55 rnd=0	 c:  117 195 194
-Nr.=119 x=  39 y=  49 rnd=0	 c:  120 124
-Nr.=120 x=  40 y=  47 rnd=0	 c:  121 119 124
-Nr.=121 x=  39 y=  43 rnd=0	 c:  122 120 124 123
-Nr.=122 x=  35 y=  42 rnd=0	 c:  121
-Nr.=123 x=  38 y=  45 rnd=0	 c:  124 121
-Nr.=124 x=  39 y=  47 rnd=0	 c:  119 120 121 123
-Nr.=125 x=  35 y=  69 rnd=0	 c:  154
-Nr.=126 x=  13 y=  32 rnd=0	 c:  127
-Nr.=127 x=   7 y=  30 rnd=0	 c:  128 158
-Nr.=128 x=   8 y=  15 rnd=0	 c:  129
-Nr.=129 x=  28 y=  16 rnd=0	 c:  150
-Nr.=130 x=  51 y=  13 rnd=0	 c:  133
-Nr.=131 x=  11 y=  75 rnd=0	 c:  132
-Nr.=132 x=  11 y=  69 rnd=0	 c:  151
-Nr.=133 x=  51 y=  26 rnd=0	 c:  141
-Nr.=134 x=  81 y=  36 rnd=0	 c:  135
-Nr.=135 x=  83 y=  36 rnd=0	 c:  134
-Nr.=136 x=  38 y=  53 rnd=0	 c:  137
-Nr.=137 x=  40 y=  53 rnd=0	 c:  136
-Nr.=138 x=  23 y=  81 rnd=1	 c:    2
-Nr.=139 x=  17 y=  81 rnd=1	 c:  140
-Nr.=140 x=  19 y=  81 rnd=1	 c:  139
-Nr.=141 x=  68 y=  25 rnd=0	 c:  142
-Nr.=142 x=  69 y=  14 rnd=0	 c:  143
-Nr.=143 x=  72 y=  14 rnd=0	 c:  144
-Nr.=144 x=  68 y=  15 rnd=0	 c:  145
-Nr.=145 x=  68 y=  37 rnd=0	 c:  146
-Nr.=146 x=  78 y=  37 rnd=0	 c:  147
-Nr.=147 x=  67 y=  38 rnd=0	 c:  149
-Nr.=148 x=  35 y=  76 rnd=0	 c:  125
-Nr.=149 x=  67 y=  76 rnd=0	 c:  148
-Nr.=150 x=  28 y=  13 rnd=0	 c:  130
-Nr.=151 x=  14 y=  67 rnd=0	 c:  126
-Nr.=152 x=   7 y=  76 rnd=0	 c:  131
-Nr.=153 x=   7 y=  68 rnd=0	 c:  152
-Nr.=154 x=  27 y=  68 rnd=0	 c:  155
-Nr.=155 x=  27 y=  71 rnd=0	 c:  156
-Nr.=156 x=  24 y=  71 rnd=0	 c:  157
-Nr.=157 x=  24 y=  68 rnd=0	 c:  153
-Nr.=158 x=   7 y=  19 rnd=0	 c:  159
-Nr.=159 x=   9 y=  19 rnd=0	 c:  160
-Nr.=160 x=   7 y=  18 rnd=0	 c:  128
-Nr.=161 x=  72 y=  82 rnd=0	 c:  162
-Nr.=162 x=  76 y=  82 rnd=0	 c:  165 164 167 161
-Nr.=163 x=  82 y=  83 rnd=0	 c: 
-Nr.=164 x=  83 y=  82 rnd=0	 c:  162
-Nr.=165 x=  77 y=  75 rnd=0	 c:  166 162
-Nr.=166 x=  81 y=  75 rnd=0	 c:  165
-Nr.=167 x=  79 y=  80 rnd=0	 c:  162
-Nr.=168 x=  38 y=  64 rnd=0	 c:  175
-Nr.=169 x=  41 y=  64 rnd=0	 c:  176
-Nr.=170 x=  40 y=  64 rnd=0	 c:  173
-Nr.=171 x=  40 y=  60 rnd=0	 c:  173 175 176 172
-Nr.=172 x=  37 y=  60 rnd=0	 c:  173 175 171 176
-Nr.=173 x=  39 y=  62 rnd=0	 c:  170 176 171 175 172
-Nr.=174 x=  38 y=  66 rnd=0	 c:  175
-Nr.=175 x=  37 y=  62 rnd=0	 c:  171 168 173 172 174
-Nr.=176 x=  41 y=  62 rnd=0	 c:  169 173 171 172
-Nr.=177 x=  48 y=  63 rnd=0	 c:  191
-Nr.=178 x=  54 y=  56 rnd=0	 c:  189 193
-Nr.=179 x=  50 y=  53 rnd=0	 c:  189 190 180
-Nr.=180 x=  46 y=  53 rnd=0	 c:  179 181
-Nr.=181 x=  47 y=  50 rnd=0	 c:  180 182
-Nr.=182 x=  51 y=  50 rnd=0	 c:  181 190
-Nr.=183 x=  51 y=  57 rnd=0	 c:  189 184
-Nr.=184 x=  51 y=  61 rnd=0	 c:  185 183
-Nr.=185 x=  49 y=  60 rnd=0	 c:  191 186 184
-Nr.=186 x=  48 y=  60 rnd=0	 c:  191 185 187
-Nr.=187 x=  46 y=  60 rnd=0	 c:  186 188
-Nr.=188 x=  46 y=  58 rnd=0	 c:  187 189
-Nr.=189 x=  49 y=  56 rnd=0	 c:  188 183 190 179 178 192
-Nr.=190 x=  51 y=  54 rnd=0	 c:  189 192 179 182
-Nr.=191 x=  49 y=  63 rnd=0	 c:  177 185 186
-Nr.=192 x=  49 y=  54 rnd=0	 c:  189 190 179
-Nr.=193 x=  55 y=  52 rnd=0	 c:  178
-Nr.=194 x=  18 y=  56 rnd=0	 c:  117 118 195
-Nr.=195 x=  19 y=  53 rnd=0	 c:  118 117 194
-Nr.=196 x=  64 y=  19 rnd=0	 c:  197 199
-Nr.=197 x=  62 y=  21 rnd=0	 c:  196
-Nr.=198 x=  62 y=  14 rnd=0	 c:  199
-Nr.=199 x=  64 y=  14 rnd=0	 c:  198 196
-Nr.=200 x=  34 y=  50 rnd=0	 c:  115 116 204
-Nr.=201 x=  33 y=  55 rnd=0	 c:  203 115 202
-Nr.=202 x=  25 y=  47 rnd=0	 c:  201 205
-Nr.=203 x=  38 y=  55 rnd=0	 c:  201
-Nr.=204 x=  34 y=  48 rnd=0	 c:  200 116
-Nr.=205 x=  28 y=  57 rnd=0	 c:  201 206
-Nr.=206 x=  33 y=  60 rnd=0	 c:  201
+Nr.=  0 x=  28 y=  19 rnd=0	 c:    1  59
+Nr.=  1 x=  28 y=  21 rnd=0	 c:    0  12
+Nr.=  2 x=  21 y=  81 rnd=1	 c:  134
+Nr.=  3 x=  14 y=  26 rnd=0	 c:   73  74
+Nr.=  4 x=  29 y=  10 rnd=0	 c:    5   6
+Nr.=  5 x=  29 y=  11 rnd=0	 c:    4   7   6 205
+Nr.=  6 x=  29 y=   8 rnd=0	 c:    5   4   7
+Nr.=  7 x=  29 y=   9 rnd=0	 c:    5   6 206
+Nr.=  8 x=  24 y=  10 rnd=0	 c:   48  47 203
+Nr.=  9 x=  26 y=   8 rnd=0	 c:   11  10
+Nr.= 10 x=  24 y=   7 rnd=0	 c:   11   9
+Nr.= 11 x=  28 y=   7 rnd=0	 c:   10   9
+Nr.= 12 x=  27 y=  23 rnd=0	 c:   14   1
+Nr.= 13 x=   9 y=  35 rnd=0	 c:   71  70
+Nr.= 14 x=  25 y=  23 rnd=0	 c:   12  46
+Nr.= 15 x=  34 y=   6 rnd=0	 c:   16
+Nr.= 16 x=  36 y=   6 rnd=0	 c:   15  19  17
+Nr.= 17 x=  39 y=   7 rnd=0	 c:   16  18  19
+Nr.= 18 x=  41 y=   7 rnd=0	 c:   17
+Nr.= 19 x=  36 y=   9 rnd=0	 c:   16  17  20  21
+Nr.= 20 x=  35 y=  10 rnd=0	 c:   19  21
+Nr.= 21 x=  37 y=  11 rnd=0	 c:   20  19
+Nr.= 22 x=  35 y=  21 rnd=0	 c:   23
+Nr.= 23 x=  37 y=  21 rnd=0	 c:   24  22
+Nr.= 24 x=  39 y=  21 rnd=0	 c:   23  34  33
+Nr.= 25 x=  37 y=  17 rnd=0	 c:   28  26  27
+Nr.= 26 x=  39 y=  17 rnd=0	 c:   25  29
+Nr.= 27 x=  39 y=  18 rnd=0	 c:   25  28  29  31
+Nr.= 28 x=  36 y=  18 rnd=0	 c:   25  27
+Nr.= 29 x=  42 y=  18 rnd=0	 c:   27  26  30
+Nr.= 30 x=  45 y=  19 rnd=0	 c:   31  29
+Nr.= 31 x=  40 y=  19 rnd=0	 c:   27  30  32
+Nr.= 32 x=  41 y=  22 rnd=0	 c:   31
+Nr.= 33 x=  41 y=  24 rnd=0	 c:   24  37  34
+Nr.= 34 x=  39 y=  23 rnd=0	 c:   24  35  33
+Nr.= 35 x=  36 y=  25 rnd=0	 c:   36  38  34
+Nr.= 36 x=  38 y=  27 rnd=0	 c:   37  35  38
+Nr.= 37 x=  41 y=  27 rnd=0	 c:   33  36
+Nr.= 38 x=  35 y=  27 rnd=0	 c:   36  35
+Nr.= 39 x=  22 y=  19 rnd=0	 c:   41  45  46  44
+Nr.= 40 x=  24 y=  17 rnd=0	 c:   41  46  59
+Nr.= 41 x=  25 y=  19 rnd=0	 c:   39  40  46
+Nr.= 42 x=  18 y=  19 rnd=0	 c:   44  43
+Nr.= 43 x=  18 y=  20 rnd=0	 c:   42  44
+Nr.= 44 x=  20 y=  19 rnd=0	 c:   39  45  42  43
+Nr.= 45 x=  22 y=  20 rnd=0	 c:   39  44
+Nr.= 46 x=  24 y=  21 rnd=0	 c:   39  41  40  14
+Nr.= 47 x=  22 y=   8 rnd=0	 c:    8  48 203 204
+Nr.= 48 x=  23 y=  11 rnd=0	 c:    8  47
+Nr.= 49 x=   9 y=   9 rnd=0	 c:   89  85  81
+Nr.= 50 x=  54 y=  18 rnd=0	 c:   51  57  52
+Nr.= 51 x=  54 y=  22 rnd=0	 c:   57  50
+Nr.= 52 x=  50 y=  19 rnd=0	 c:   50  53  55
+Nr.= 53 x=  50 y=  14 rnd=0	 c:   52  54  58
+Nr.= 54 x=  45 y=  14 rnd=0	 c:   56  53  58
+Nr.= 55 x=  47 y=  20 rnd=0	 c:   56  52
+Nr.= 56 x=  45 y=  17 rnd=0	 c:   55  54
+Nr.= 57 x=  55 y=  20 rnd=0	 c:   51  50
+Nr.= 58 x=  48 y=  13 rnd=0	 c:   53  54
+Nr.= 59 x=  27 y=  16 rnd=0	 c:    0  40
+Nr.= 60 x=  24 y=  37 rnd=0	 c:   67  62  63  68  61
+Nr.= 61 x=  21 y=  38 rnd=0	 c:   60
+Nr.= 62 x=  24 y=  39 rnd=0	 c:   60  63
+Nr.= 63 x=  26 y=  37 rnd=0	 c:   65  64  60  62
+Nr.= 64 x=  29 y=  38 rnd=0	 c:   65  63
+Nr.= 65 x=  27 y=  35 rnd=0	 c:   66  63  64
+Nr.= 66 x=  27 y=  30 rnd=0	 c:   69  67  65
+Nr.= 67 x=  24 y=  31 rnd=0	 c:   69  60  68  66
+Nr.= 68 x=  25 y=  33 rnd=0	 c:   69  67  60
+Nr.= 69 x=  24 y=  29 rnd=0	 c:   67  68  66
+Nr.= 70 x=   8 y=  34 rnd=0	 c:   71  72  13
+Nr.= 71 x=   8 y=  35 rnd=0	 c:   72  13  70
+Nr.= 72 x=   6 y=  35 rnd=0	 c:   71  70
+Nr.= 73 x=  12 y=  26 rnd=0	 c:    3  80
+Nr.= 74 x=  17 y=  27 rnd=0	 c:   76   3  75
+Nr.= 75 x=  20 y=  27 rnd=0	 c:   76  74
+Nr.= 76 x=  19 y=  28 rnd=0	 c:   79  75  74
+Nr.= 77 x=  18 y=  30 rnd=0	 c:   78  79
+Nr.= 78 x=  20 y=  31 rnd=0	 c:   77
+Nr.= 79 x=  19 y=  29 rnd=0	 c:   77  78  76
+Nr.= 80 x=  11 y=  23 rnd=0	 c:   73
+Nr.= 81 x=  12 y=  10 rnd=0	 c:   49  82
+Nr.= 82 x=  14 y=  11 rnd=0	 c:   81  84  83
+Nr.= 83 x=  13 y=  13 rnd=0	 c:   82
+Nr.= 84 x=  13 y=  12 rnd=0	 c:   82
+Nr.= 85 x=   7 y=  10 rnd=0	 c:   86  49
+Nr.= 86 x=   7 y=  12 rnd=0	 c:   85  87
+Nr.= 87 x=   9 y=  12 rnd=0	 c:   86
+Nr.= 88 x=   9 y=   6 rnd=0	 c:   89
+Nr.= 89 x=   9 y=   7 rnd=0	 c:   49  88  90
+Nr.= 90 x=  11 y=   7 rnd=0	 c:   91  89
+Nr.= 91 x=  12 y=   6 rnd=0	 c:   90
+Nr.= 92 x=   7 y=  47 rnd=0	 c:   95  94  93
+Nr.= 93 x=   6 y=  46 rnd=0	 c:   92  94
+Nr.= 94 x=   7 y=  45 rnd=0	 c:   92  93
+Nr.= 95 x=   9 y=  47 rnd=0	 c:   97  96  92
+Nr.= 96 x=   9 y=  45 rnd=0	 c:   98  95
+Nr.= 97 x=  10 y=  48 rnd=0	 c:   98  95
+Nr.= 98 x=  13 y=  47 rnd=0	 c:  100  99  97  96
+Nr.= 99 x=  13 y=  44 rnd=0	 c:   98
+Nr.=100 x=  13 y=  51 rnd=0	 c:   98
+Nr.=101 x=  24 y=  72 rnd=0	 c:  102 105
+Nr.=102 x=  28 y=  72 rnd=0	 c:  101 105
+Nr.=103 x=  31 y=  78 rnd=0	 c:  104 105
+Nr.=104 x=  28 y=  78 rnd=0	 c:  105 103
+Nr.=105 x=  26 y=  75 rnd=0	 c:  102 104 103 101 106 107 108
+Nr.=106 x=  23 y=  77 rnd=0	 c:  105 108
+Nr.=107 x=  20 y=  77 rnd=0	 c:  105 106
+Nr.=108 x=  17 y=  76 rnd=0	 c:  106 109 105
+Nr.=109 x=  15 y=  72 rnd=0	 c:  108 110
+Nr.=110 x=  19 y=  72 rnd=0	 c:  109
+Nr.=111 x=  33 y=  51 rnd=0	 c:  196 197
+Nr.=112 x=  35 y=  48 rnd=0	 c:  196 200
+Nr.=113 x=  18 y=  54 rnd=0	 c:  114 191 190
+Nr.=114 x=  20 y=  55 rnd=0	 c:  113 191 190
+Nr.=115 x=  39 y=  49 rnd=0	 c:  116 120
+Nr.=116 x=  40 y=  47 rnd=0	 c:  117 115 120
+Nr.=117 x=  39 y=  43 rnd=0	 c:  118 116 120 119
+Nr.=118 x=  35 y=  42 rnd=0	 c:  117
+Nr.=119 x=  38 y=  45 rnd=0	 c:  120 117
+Nr.=120 x=  39 y=  47 rnd=0	 c:  115 116 117 119
+Nr.=121 x=  35 y=  69 rnd=0	 c:  150
+Nr.=122 x=  13 y=  32 rnd=0	 c:  123
+Nr.=123 x=   7 y=  30 rnd=0	 c:  124 154
+Nr.=124 x=   8 y=  15 rnd=0	 c:  125
+Nr.=125 x=  28 y=  16 rnd=0	 c:  146
+Nr.=126 x=  51 y=  13 rnd=0	 c:  129
+Nr.=127 x=  11 y=  75 rnd=0	 c:  128
+Nr.=128 x=  11 y=  69 rnd=0	 c:  147
+Nr.=129 x=  51 y=  26 rnd=0	 c:  137
+Nr.=130 x=  81 y=  36 rnd=0	 c:  131
+Nr.=131 x=  83 y=  36 rnd=0	 c:  130
+Nr.=132 x=  38 y=  53 rnd=0	 c:  133
+Nr.=133 x=  40 y=  53 rnd=0	 c:  132
+Nr.=134 x=  23 y=  81 rnd=1	 c:    2
+Nr.=135 x=  17 y=  81 rnd=1	 c:  136
+Nr.=136 x=  19 y=  81 rnd=1	 c:  135
+Nr.=137 x=  68 y=  25 rnd=0	 c:  138
+Nr.=138 x=  69 y=  14 rnd=0	 c:  139
+Nr.=139 x=  72 y=  14 rnd=0	 c:  140
+Nr.=140 x=  68 y=  15 rnd=0	 c:  141
+Nr.=141 x=  68 y=  37 rnd=0	 c:  142
+Nr.=142 x=  78 y=  37 rnd=0	 c:  143
+Nr.=143 x=  67 y=  38 rnd=0	 c:  145
+Nr.=144 x=  35 y=  76 rnd=0	 c:  121
+Nr.=145 x=  67 y=  76 rnd=0	 c:  144
+Nr.=146 x=  28 y=  13 rnd=0	 c:  126
+Nr.=147 x=  14 y=  67 rnd=0	 c:  122
+Nr.=148 x=   7 y=  76 rnd=0	 c:  127
+Nr.=149 x=   7 y=  68 rnd=0	 c:  148
+Nr.=150 x=  27 y=  68 rnd=0	 c:  151
+Nr.=151 x=  27 y=  71 rnd=0	 c:  152
+Nr.=152 x=  24 y=  71 rnd=0	 c:  153
+Nr.=153 x=  24 y=  68 rnd=0	 c:  149
+Nr.=154 x=   7 y=  19 rnd=0	 c:  155
+Nr.=155 x=   9 y=  19 rnd=0	 c:  156
+Nr.=156 x=   7 y=  18 rnd=0	 c:  124
+Nr.=157 x=  72 y=  82 rnd=0	 c:  158
+Nr.=158 x=  76 y=  82 rnd=0	 c:  161 160 163 157
+Nr.=159 x=  82 y=  83 rnd=0	 c: 
+Nr.=160 x=  83 y=  82 rnd=0	 c:  158
+Nr.=161 x=  77 y=  75 rnd=0	 c:  162 158
+Nr.=162 x=  81 y=  75 rnd=0	 c:  161
+Nr.=163 x=  79 y=  80 rnd=0	 c:  158
+Nr.=164 x=  38 y=  64 rnd=0	 c:  171
+Nr.=165 x=  41 y=  64 rnd=0	 c:  172
+Nr.=166 x=  40 y=  64 rnd=0	 c:  169
+Nr.=167 x=  40 y=  60 rnd=0	 c:  169 171 172 168
+Nr.=168 x=  37 y=  60 rnd=0	 c:  169 171 167 172
+Nr.=169 x=  39 y=  62 rnd=0	 c:  166 172 167 171 168
+Nr.=170 x=  38 y=  66 rnd=0	 c:  171
+Nr.=171 x=  37 y=  62 rnd=0	 c:  167 164 169 168 170
+Nr.=172 x=  41 y=  62 rnd=0	 c:  165 169 167 168
+Nr.=173 x=  48 y=  63 rnd=0	 c:  187
+Nr.=174 x=  54 y=  56 rnd=0	 c:  185 189
+Nr.=175 x=  50 y=  53 rnd=0	 c:  185 186 176
+Nr.=176 x=  46 y=  53 rnd=0	 c:  175 177
+Nr.=177 x=  47 y=  50 rnd=0	 c:  176 178
+Nr.=178 x=  51 y=  50 rnd=0	 c:  177 186
+Nr.=179 x=  51 y=  57 rnd=0	 c:  185 180
+Nr.=180 x=  51 y=  61 rnd=0	 c:  181 179
+Nr.=181 x=  49 y=  60 rnd=0	 c:  187 182 180
+Nr.=182 x=  48 y=  60 rnd=0	 c:  187 181 183
+Nr.=183 x=  46 y=  60 rnd=0	 c:  182 184
+Nr.=184 x=  46 y=  58 rnd=0	 c:  183 185
+Nr.=185 x=  49 y=  56 rnd=0	 c:  184 179 186 175 174 188
+Nr.=186 x=  51 y=  54 rnd=0	 c:  185 188 175 178
+Nr.=187 x=  49 y=  63 rnd=0	 c:  173 181 182
+Nr.=188 x=  49 y=  54 rnd=0	 c:  185 186 175
+Nr.=189 x=  55 y=  52 rnd=0	 c:  174
+Nr.=190 x=  18 y=  56 rnd=0	 c:  113 114 191
+Nr.=191 x=  19 y=  53 rnd=0	 c:  114 113 190
+Nr.=192 x=  64 y=  19 rnd=0	 c:  193 195
+Nr.=193 x=  62 y=  21 rnd=0	 c:  192
+Nr.=194 x=  62 y=  14 rnd=0	 c:  195
+Nr.=195 x=  64 y=  14 rnd=0	 c:  194 192
+Nr.=196 x=  34 y=  50 rnd=0	 c:  111 112 200
+Nr.=197 x=  33 y=  55 rnd=0	 c:  199 111 198 207
+Nr.=198 x=  25 y=  47 rnd=0	 c:  197 201 207
+Nr.=199 x=  38 y=  55 rnd=0	 c:  197
+Nr.=200 x=  34 y=  48 rnd=0	 c:  196 112
+Nr.=201 x=  28 y=  57 rnd=0	 c:  197 202 207
+Nr.=202 x=  33 y=  60 rnd=0	 c:  197
+Nr.=203 x=  24 y=   8 rnd=0	 c:   47   8
+Nr.=204 x=  19 y=   8 rnd=0	 c:   47
+Nr.=205 x=  26 y=  11 rnd=0	 c:    5 206
+Nr.=206 x=  26 y=   9 rnd=0	 c:  205   7
+Nr.=207 x=  28 y=  51 rnd=0	 c:  201 197
 end_of_level
 ----------------------------------------------------------------------
 Levelnumber: 1
