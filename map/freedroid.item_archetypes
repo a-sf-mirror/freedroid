@@ -2075,7 +2075,7 @@ Item as gun: weapon requires both hands="no"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name=_"Droid weaponry - 123"
+Item name=_"Droid weaponry - 123 : Weak robotic arm"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
@@ -2086,7 +2086,7 @@ plus duration modifier=10
 File or directory name for inventory image="inventory_image_25.png"
 Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
 Base list price=120
-Item description text=_"A nice handy weapon, a good swing every now and then will prove useful in critical hits."
+Item description text=_"Droid weaponry"
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.950000
 Item as gun: reloading time=0.000000
@@ -2108,7 +2108,7 @@ Item as gun: weapon requires both hands="yes"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name=_"Droid weaponry - 139 : Trash compactor plasma overload"
+Item name=_"Droid weaponry - 139 : Plasma trash vaporiser"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
@@ -2119,7 +2119,7 @@ plus duration modifier=10
 File or directory name for inventory image="inv_image_4.png"
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=40
-Item description text=_"For bot use only."
+Item description text=_"Droid weaponry"
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.350000
 Item as gun: reloading time=7.000000
@@ -2141,7 +2141,7 @@ Item as gun: weapon requires both hands="yes"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name=_"Droid weaponry - 247"
+Item name=_"Droid weaponry - 247 : Weak robotic arm"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
@@ -2154,7 +2154,7 @@ inventory_size_x=2
 inventory_size_y=2
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=120
-Item description text=_"A true to technology modern sword. Can cut through the most impossible objects like a knife through butter."
+Item description text=_"Droid weaponry"
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.600000
 Item as gun: reloading time=0.000000
@@ -2176,7 +2176,7 @@ Item as gun: weapon requires both hands="yes"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name=_"Droid weaponry - 249 (Laser pulse welder)"
+Item name=_"Droid weaponry - 249 : Pulse Laser welder"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
@@ -2187,7 +2187,7 @@ plus duration modifier=10
 File or directory name for inventory image="inv_image_4.png"
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=100
-Item description text=_"For bot use only"
+Item description text=_"Droid weaponry"
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.150000
 Item as gun: reloading time=5.000000
@@ -2209,7 +2209,7 @@ Item as gun: weapon requires both hands="yes"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name=_"Droid weaponry - 296"
+Item name=_"Droid weaponry - 296 : Plasma beam cutter"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
@@ -2222,7 +2222,7 @@ inventory_size_x=2
 inventory_size_y=2
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=120
-Item description text=_"A true to technology modern sword. Can cut through the most impossible objects like a knife through butter."
+Item description text=_"Droid weaponry"
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.100000
 Item as gun: reloading time=0.000000
@@ -2257,7 +2257,7 @@ inventory_size_x=2
 inventory_size_y=2
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=120
-Item description text=_"A true to technology modern sword. Can cut through the most impossible objects like a knife through butter."
+Item description text=_"Droid weaponry"
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.600000
 Item as gun: reloading time=0.000000
@@ -2292,7 +2292,7 @@ inventory_size_x=2
 inventory_size_y=2
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=120
-Item description text=_"A true to technology modern sword. Can cut through the most impossible objects like a knife through butter."
+Item description text=_"Droid weaponry"
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.600000
 Item as gun: reloading time=0.000000
@@ -2327,7 +2327,7 @@ inventory_size_x=2
 inventory_size_y=2
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=120
-Item description text=_"A true to technology modern sword. Can cut through the most impossible objects like a knife through butter."
+Item description text=_"Droid weaponry"
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.600000
 Item as gun: reloading time=0.000000
@@ -2360,7 +2360,7 @@ plus duration modifier=10
 File or directory name for inventory image="inv_image_4.png"
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=250
-Item description text=_"More of a mediocre addition to the laser family, this is best summed up as a backup weapon."
+Item description text=_"Droid weaponry"
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=1.200000
 Item as gun: reloading time=2.400000
@@ -2395,7 +2395,7 @@ inventory_size_x=2
 inventory_size_y=2
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=120
-Item description text=_"A true to technology modern sword. Can cut through the most impossible objects like a knife through butter."
+Item description text=_"Droid weaponry"
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=6.00000
 Item as gun: reloading time=0.000000
@@ -2430,7 +2430,7 @@ inventory_size_x=2
 inventory_size_y=2
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=120
-Item description text=_"A true to technology modern sword. Can cut through the most impossible objects like a knife through butter."
+Item description text=_"Droid weaponry"
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.600000
 Item as gun: reloading time=0.000000
@@ -2465,7 +2465,7 @@ inventory_size_x=2
 inventory_size_y=2
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=120
-Item description text=_"A true to technology modern sword. Can cut through the most impossible objects like a knife through butter."
+Item description text=_"Droid weaponry"
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.600000
 Item as gun: reloading time=0.000000
@@ -2500,7 +2500,7 @@ inventory_size_x=2
 inventory_size_y=2
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=120
-Item description text=_"A true to technology modern sword. Can cut through the most impossible objects like a knife through butter."
+Item description text=_"Droid weaponry"
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.600000
 Item as gun: reloading time=0.000000
@@ -2568,7 +2568,7 @@ plus duration modifier=10
 File or directory name for inventory image="inv_image_4.png"
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=250
-Item description text=_"If you do not mind waiting for a while in the heat of battle, this weapon is for you."
+Item description text=_"Droid weaponry"
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=1.200000
 Item as gun: reloading time=2.000000
@@ -2605,7 +2605,7 @@ Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=800
 inventory_size_x=2
 inventory_size_y=2
-Item description text=_"Think of a twin laser with twice the power. Now make it shoot half as often. What you have is the 'Advanced' twin laser."
+Item description text=_"Droid weaponry"
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=1.400000
 Item as gun: reloading time=3
@@ -2673,7 +2673,7 @@ plus duration modifier=10
 File or directory name for inventory image="weapons/exterminator_simple/inv_image.png"
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=1001
-Item description text=_"Bot use only"
+Item description text=_"Droid weaponry"
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=1.00000
 Item as gun: reloading time=4.000000
@@ -3655,7 +3655,7 @@ Item uses rotation series with prefix="entropy_inverter"
 Items of this type collect together in inventory="yes"
 File or directory name for inventory image="entropy_inverter/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
-Base list price=50
+Base list price=40
 Item description text=_"This is an standard part within many robot types."
 ** End of new item specification subsection **
 
@@ -3681,7 +3681,7 @@ Item uses rotation series with prefix="superconducting_relay_unit"
 Items of this type collect together in inventory="yes"
 File or directory name for inventory image="superconducting_relay_unit/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
-Base list price=30
+Base list price=50
 Item description text=_"This is an standard part within many robot types."
 ** End of new item specification subsection **
 
@@ -3694,7 +3694,7 @@ Item uses rotation series with prefix="antimatter_matter_converter"
 Items of this type collect together in inventory="yes"
 File or directory name for inventory image="antimatter_matter_converter/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
-Base list price=20
+Base list price=100
 Item description text=_"This is an standard part within many robot types."
 ** End of new item specification subsection **
 
@@ -3707,7 +3707,7 @@ Item uses rotation series with prefix="tachyon_converter"
 Items of this type collect together in inventory="yes"
 File or directory name for inventory image="tachyon_converter/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
-Base list price=10
+Base list price=40
 Item description text=_"This is an standard part within many robot types."
 ** End of new item specification subsection **
 

@@ -91,12 +91,12 @@ Brain of this droid : 0
 Sensor 2 of this droid : 2
 Armament of this droid : 0
 Drive item=1
-Weapon item="Droid weaponry - 123"
-Percent to drop Entropy Inverter=99
-Percent to drop Plasma Transistor=99
-Percent to drop Superconducting Relay Unit=99
-Percent to drop Antimatter-Matter Converter=99
-Percent to drop Tachyon Condensator=99
+Weapon item="Droid weaponry - 123 : Weak robotic arm"
+Percent to drop Entropy Inverter=10
+Percent to drop Plasma Transistor=5
+Percent to drop Superconducting Relay Unit=5
+Percent to drop Antimatter-Matter Converter=2
+Percent to drop Tachyon Condensator=10
 Greeting Sound number=0
 Got Hit Sound number=0
 Death sound file name="death_sound_123.ogg"
@@ -126,12 +126,12 @@ Brain of this droid : 0
 Sensor 2 of this droid : 0
 Armament of this droid : 0
 Drive item=2
-Weapon item="Droid weaponry - 139 : Trash compactor plasma overload"
-Percent to drop Entropy Inverter=99
-Percent to drop Plasma Transistor=99
-Percent to drop Superconducting Relay Unit=99
-Percent to drop Antimatter-Matter Converter=99
-Percent to drop Tachyon Condensator=99
+Weapon item="Droid weaponry - 139 : Plasma trash vaporiser"
+Percent to drop Entropy Inverter=10
+Percent to drop Plasma Transistor=40
+Percent to drop Superconducting Relay Unit=5
+Percent to drop Antimatter-Matter Converter=2
+Percent to drop Tachyon Condensator=10
 Greeting Sound number=1
 Got Hit Sound number=1
 Death sound file name="none"
@@ -160,12 +160,12 @@ Drive of this droid : 2
 Sensor 2 of this droid : 0
 Armament of this droid : 0
 Drive item=5
-Weapon item="Droid weaponry - 247"
-Percent to drop Entropy Inverter=1
-Percent to drop Plasma Transistor=1
-Percent to drop Superconducting Relay Unit=1
-Percent to drop Antimatter-Matter Converter=1
-Percent to drop Tachyon Condensator=1
+Weapon item="Droid weaponry - 247 : Weak robotic arm"
+Percent to drop Entropy Inverter=10
+Percent to drop Plasma Transistor=5
+Percent to drop Superconducting Relay Unit=5
+Percent to drop Antimatter-Matter Converter=2
+Percent to drop Tachyon Condensator=10
 Greeting Sound number=9
 Got Hit Sound number=-1
 Death sound file name="death_sound_247.ogg"
@@ -194,12 +194,12 @@ Drive of this droid : 3
 Sensor 2 of this droid : 0
 Armament of this droid : 0
 Drive item=8
-Weapon item="Droid weaponry - 249 (Laser pulse welder)"
-Percent to drop Entropy Inverter=1
-Percent to drop Plasma Transistor=1
-Percent to drop Superconducting Relay Unit=1
-Percent to drop Antimatter-Matter Converter=1
-Percent to drop Tachyon Condensator=1
+Weapon item="Droid weaponry - 249 : Pulse Laser welder"
+Percent to drop Entropy Inverter=10
+Percent to drop Plasma Transistor=5
+Percent to drop Superconducting Relay Unit=5
+Percent to drop Antimatter-Matter Converter=5
+Percent to drop Tachyon Condensator=10
 Greeting Sound number=10
 Got Hit Sound number=0
 Death sound file name="none"
@@ -228,12 +228,12 @@ Drive of this droid : 1
 Sensor 2 of this droid : 0
 Armament of this droid : 0
 Drive item=10
-Weapon item="Droid weaponry - 296"
-Percent to drop Entropy Inverter=1
-Percent to drop Plasma Transistor=1
-Percent to drop Superconducting Relay Unit=1
-Percent to drop Antimatter-Matter Converter=1
-Percent to drop Tachyon Condensator=1
+Weapon item="Droid weaponry - 296 : Plasma beam cutter"
+Percent to drop Entropy Inverter=10
+Percent to drop Plasma Transistor=60
+Percent to drop Superconducting Relay Unit=5
+Percent to drop Antimatter-Matter Converter=2
+Percent to drop Tachyon Condensator=10
 Greeting Sound number=11
 Got Hit Sound number=-1
 Death sound file name="none"
@@ -264,11 +264,11 @@ Sensor 2 of this droid : 0
 Armament of this droid : 0
 Drive item=11
 Weapon item="Droid weaponry - 302"
-Percent to drop Entropy Inverter=1
-Percent to drop Plasma Transistor=1
-Percent to drop Superconducting Relay Unit=1
-Percent to drop Antimatter-Matter Converter=1
-Percent to drop Tachyon Condensator=1
+Percent to drop Entropy Inverter=10
+Percent to drop Plasma Transistor=5
+Percent to drop Superconducting Relay Unit=5
+Percent to drop Antimatter-Matter Converter=15
+Percent to drop Tachyon Condensator=10
 Greeting Sound number=12
 Got Hit Sound number=-1
 Death sound file name="death_sound_302.ogg"
@@ -299,11 +299,11 @@ Sensor 2 of this droid : 0
 Armament of this droid : 0
 Drive item=7
 Weapon item="Droid weaponry - 329"
-Percent to drop Entropy Inverter=1
-Percent to drop Plasma Transistor=1
-Percent to drop Superconducting Relay Unit=1
-Percent to drop Antimatter-Matter Converter=1
-Percent to drop Tachyon Condensator=1
+Percent to drop Entropy Inverter=10
+Percent to drop Plasma Transistor=5
+Percent to drop Superconducting Relay Unit=5
+Percent to drop Antimatter-Matter Converter=2
+Percent to drop Tachyon Condensator=10
 Greeting Sound number=13
 Got Hit Sound number=-1
 Death sound file name="none"
@@ -334,11 +334,11 @@ Sensor 2 of this droid : 0
 Armament of this droid : 0
 Drive item=10
 Weapon item="Droid weaponry - 420"
-Percent to drop Entropy Inverter=1
-Percent to drop Plasma Transistor=1
-Percent to drop Superconducting Relay Unit=1
-Percent to drop Antimatter-Matter Converter=1
-Percent to drop Tachyon Condensator=1
+Percent to drop Entropy Inverter=10
+Percent to drop Plasma Transistor=5
+Percent to drop Superconducting Relay Unit=5
+Percent to drop Antimatter-Matter Converter=2
+Percent to drop Tachyon Condensator=10
 Greeting Sound number=14
 Got Hit Sound number=-1
 Death sound file name="none"
@@ -368,11 +368,11 @@ Sensor 2 of this droid : 2
 Armament of this droid : 1
 Drive item=5
 Weapon item="Droid weaponry - 476 (Small Single Laser)"
-Percent to drop Entropy Inverter=1
-Percent to drop Plasma Transistor=1
-Percent to drop Superconducting Relay Unit=1
-Percent to drop Antimatter-Matter Converter=1
-Percent to drop Tachyon Condensator=1
+Percent to drop Entropy Inverter=10
+Percent to drop Plasma Transistor=5
+Percent to drop Superconducting Relay Unit=5
+Percent to drop Antimatter-Matter Converter=2
+Percent to drop Tachyon Condensator=10
 Greeting Sound number=15
 Got Hit Sound number=-1
 Death sound file name="none"
@@ -402,11 +402,11 @@ Sensor 2 of this droid : 0
 Armament of this droid : 0
 Drive item=5
 Weapon item="Droid weaponry - 493"
-Percent to drop Entropy Inverter=1
-Percent to drop Plasma Transistor=1
-Percent to drop Superconducting Relay Unit=1
-Percent to drop Antimatter-Matter Converter=1
-Percent to drop Tachyon Condensator=1
+Percent to drop Entropy Inverter=10
+Percent to drop Plasma Transistor=5
+Percent to drop Superconducting Relay Unit=5
+Percent to drop Antimatter-Matter Converter=2
+Percent to drop Tachyon Condensator=10
 Greeting Sound number=16
 Got Hit Sound number=-1
 Death sound file name="none"
@@ -436,11 +436,11 @@ Sensor 2 of this droid : 0
 Armament of this droid : 0
 Drive item=9
 Weapon item="Droid weaponry - 516"
-Percent to drop Entropy Inverter=1
-Percent to drop Plasma Transistor=1
-Percent to drop Superconducting Relay Unit=1
-Percent to drop Antimatter-Matter Converter=1
-Percent to drop Tachyon Condensator=1
+Percent to drop Entropy Inverter=10
+Percent to drop Plasma Transistor=5
+Percent to drop Superconducting Relay Unit=5
+Percent to drop Antimatter-Matter Converter=2
+Percent to drop Tachyon Condensator=10
 Greeting Sound number=17
 Got Hit Sound number=-1
 Death sound file name="none"
@@ -470,11 +470,11 @@ Sensor 2 of this droid : 0
 Armament of this droid : 0
 Drive item=9
 Weapon item="Droid weaponry - 571"
-Percent to drop Entropy Inverter=1
-Percent to drop Plasma Transistor=1
-Percent to drop Superconducting Relay Unit=1
-Percent to drop Antimatter-Matter Converter=1
-Percent to drop Tachyon Condensator=1
+Percent to drop Entropy Inverter=10
+Percent to drop Plasma Transistor=5
+Percent to drop Superconducting Relay Unit=5
+Percent to drop Antimatter-Matter Converter=2
+Percent to drop Tachyon Condensator=10
 Greeting Sound number=18
 Got Hit Sound number=-1
 Death sound file name="none"
@@ -504,11 +504,11 @@ Sensor 2 of this droid : 0
 Armament of this droid : 0
 Drive item=9
 Weapon item="Droid weaponry - 598"
-Percent to drop Entropy Inverter=1
-Percent to drop Plasma Transistor=1
-Percent to drop Superconducting Relay Unit=1
-Percent to drop Antimatter-Matter Converter=1
-Percent to drop Tachyon Condensator=1
+Percent to drop Entropy Inverter=10
+Percent to drop Plasma Transistor=5
+Percent to drop Superconducting Relay Unit=5
+Percent to drop Antimatter-Matter Converter=2
+Percent to drop Tachyon Condensator=10
 Greeting Sound number=-1
 Got Hit Sound number=-1
 Death sound file name="none"
@@ -538,11 +538,11 @@ Sensor 2 of this droid : 3
 Armament of this droid : 2
 Drive item=7
 Weapon item="Droid weaponry - 614,GUA,MUM (Power Exterminator)"
-Percent to drop Entropy Inverter=1
-Percent to drop Plasma Transistor=1
-Percent to drop Superconducting Relay Unit=1
-Percent to drop Antimatter-Matter Converter=1
-Percent to drop Tachyon Condensator=1
+Percent to drop Entropy Inverter=10
+Percent to drop Plasma Transistor=5
+Percent to drop Superconducting Relay Unit=5
+Percent to drop Antimatter-Matter Converter=2
+Percent to drop Tachyon Condensator=10
 Greeting Sound number=5
 Got Hit Sound number=-1
 Death sound file name="none"
@@ -572,11 +572,11 @@ Sensor 2 of this droid : 2
 Armament of this droid : 1
 Drive item=5
 Weapon item="Droid weaponry - 615,751,834 (Advanced Single Laser)"
-Percent to drop Entropy Inverter=1
-Percent to drop Plasma Transistor=1
-Percent to drop Superconducting Relay Unit=1
-Percent to drop Antimatter-Matter Converter=1
-Percent to drop Tachyon Condensator=1
+Percent to drop Entropy Inverter=10
+Percent to drop Plasma Transistor=5
+Percent to drop Superconducting Relay Unit=5
+Percent to drop Antimatter-Matter Converter=2
+Percent to drop Tachyon Condensator=10
 Greeting Sound number=-1
 Got Hit Sound number=-1
 Death sound file name="none"
@@ -606,11 +606,11 @@ Sensor 2 of this droid : 3
 Armament of this droid : 1
 Drive item=10
 Weapon item="Droid weaponry - 629,821,999 (Advanced Twin Laser)"
-Percent to drop Entropy Inverter=1
-Percent to drop Plasma Transistor=1
-Percent to drop Superconducting Relay Unit=1
-Percent to drop Antimatter-Matter Converter=1
-Percent to drop Tachyon Condensator=1
+Percent to drop Entropy Inverter=10
+Percent to drop Plasma Transistor=5
+Percent to drop Superconducting Relay Unit=5
+Percent to drop Antimatter-Matter Converter=2
+Percent to drop Tachyon Condensator=10
 Greeting Sound number=-1
 Got Hit Sound number=-1
 Death sound file name="none"
@@ -641,11 +641,11 @@ Sensor 1 of this droid : 4
 Armament of this droid : 3
 Drive item=9
 Weapon item="Droid weaponry - 711,742 (Disruptor Class Alpha)"
-Percent to drop Entropy Inverter=1
-Percent to drop Plasma Transistor=1
-Percent to drop Superconducting Relay Unit=1
-Percent to drop Antimatter-Matter Converter=1
-Percent to drop Tachyon Condensator=1
+Percent to drop Entropy Inverter=10
+Percent to drop Plasma Transistor=5
+Percent to drop Superconducting Relay Unit=5
+Percent to drop Antimatter-Matter Converter=2
+Percent to drop Tachyon Condensator=10
 Greeting Sound number=-1
 Got Hit Sound number=-1
 Death sound file name="none"
@@ -675,11 +675,11 @@ Drive of this droid : 5
 Armament of this droid : 3
 Drive item=9
 Weapon item="Droid weaponry - 711,742 (Disruptor Class Alpha)"
-Percent to drop Entropy Inverter=1
-Percent to drop Plasma Transistor=1
-Percent to drop Superconducting Relay Unit=1
-Percent to drop Antimatter-Matter Converter=1
-Percent to drop Tachyon Condensator=1
+Percent to drop Entropy Inverter=10
+Percent to drop Plasma Transistor=5
+Percent to drop Superconducting Relay Unit=5
+Percent to drop Antimatter-Matter Converter=2
+Percent to drop Tachyon Condensator=10
 Greeting Sound number=-1
 Got Hit Sound number=-1
 Death sound file name="none"
@@ -709,11 +709,11 @@ Sensor 2 of this droid : 0
 Armament of this droid : 1
 Drive item=9
 Weapon item="Droid weaponry - 615,751,834 (Advanced Single Laser)"
-Percent to drop Entropy Inverter=1
-Percent to drop Plasma Transistor=1
-Percent to drop Superconducting Relay Unit=1
-Percent to drop Antimatter-Matter Converter=1
-Percent to drop Tachyon Condensator=1
+Percent to drop Entropy Inverter=10
+Percent to drop Plasma Transistor=5
+Percent to drop Superconducting Relay Unit=5
+Percent to drop Antimatter-Matter Converter=2
+Percent to drop Tachyon Condensator=10
 Greeting Sound number=-1
 Got Hit Sound number=-1
 Death sound file name="none"
@@ -744,11 +744,11 @@ Sensor 3 of this droid : 2
 Armament of this droid : 1
 Drive item=11
 Weapon item="Droid weaponry - 629,821,999 (Advanced Twin Laser)"
-Percent to drop Entropy Inverter=1
-Percent to drop Plasma Transistor=1
-Percent to drop Superconducting Relay Unit=1
-Percent to drop Antimatter-Matter Converter=1
-Percent to drop Tachyon Condensator=1
+Percent to drop Entropy Inverter=10
+Percent to drop Plasma Transistor=5
+Percent to drop Superconducting Relay Unit=5
+Percent to drop Antimatter-Matter Converter=2
+Percent to drop Tachyon Condensator=10
 Greeting Sound number=-1
 Got Hit Sound number=-1
 Death sound file name="none"
@@ -777,11 +777,11 @@ Drive of this droid : 2
 Armament of this droid : 1
 Drive item=5
 Weapon item="Droid weaponry - 615,751,834 (Advanced Single Laser)"
-Percent to drop Entropy Inverter=1
-Percent to drop Plasma Transistor=1
-Percent to drop Superconducting Relay Unit=1
-Percent to drop Antimatter-Matter Converter=1
-Percent to drop Tachyon Condensator=1
+Percent to drop Entropy Inverter=10
+Percent to drop Plasma Transistor=5
+Percent to drop Superconducting Relay Unit=5
+Percent to drop Antimatter-Matter Converter=2
+Percent to drop Tachyon Condensator=10
 Greeting Sound number=-1
 Got Hit Sound number=-1
 Death sound file name="none"
@@ -811,11 +811,11 @@ Drive of this droid : 4
 Armament of this droid : 4
 Drive item=7
 Weapon item="Droid weaponry - 883 (Bot exterminator)"
-Percent to drop Entropy Inverter=1
-Percent to drop Plasma Transistor=1
-Percent to drop Superconducting Relay Unit=1
-Percent to drop Antimatter-Matter Converter=1
-Percent to drop Tachyon Condensator=1
+Percent to drop Entropy Inverter=10
+Percent to drop Plasma Transistor=5
+Percent to drop Superconducting Relay Unit=5
+Percent to drop Antimatter-Matter Converter=2
+Percent to drop Tachyon Condensator=10
 Greeting Sound number=2
 Got Hit Sound number=-1
 Death sound file name="none"
@@ -848,11 +848,11 @@ Sensor 3 of this droid : 3
 Armament of this droid : 1
 Drive item=11
 Weapon item="Droid weaponry - 629,821,999 (Advanced Twin Laser)"
-Percent to drop Entropy Inverter=1
-Percent to drop Plasma Transistor=1
-Percent to drop Superconducting Relay Unit=1
-Percent to drop Antimatter-Matter Converter=1
-Percent to drop Tachyon Condensator=1
+Percent to drop Entropy Inverter=10
+Percent to drop Plasma Transistor=5
+Percent to drop Superconducting Relay Unit=5
+Percent to drop Antimatter-Matter Converter=2
+Percent to drop Tachyon Condensator=10
 Greeting Sound number=-1
 Got Hit Sound number=-1
 Death sound file name="none"
@@ -1192,7 +1192,7 @@ Drive of this droid : 1
 Sensor 2 of this droid : 0
 Armament of this droid : 0
 Drive item=10
-Weapon item="Droid weaponry - 296"
+Weapon item="Droid weaponry - 296 : Plasma beam cutter"
 Greeting Sound number=11
 Got Hit Sound number=-1
 Death sound file name="none"
