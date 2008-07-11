@@ -2,25 +2,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CHANGE THIS\n"
 "Report-Msgid-Bugs-To: CHANGE THIS TOO\n"
-"POT-Creation-Date: 2008-07-01 19:46+0000\n"
-"PO-Revision-Date: 2008-07-01 19:46+0000\n"
+"POT-Creation-Date: 2008-07-11 12:32+0000\n"
+"PO-Revision-Date: 2008-07-11 12:32+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-15\n"
 "Content-Transfer-Encoding: 8bit\n"
-
-#: ../dialogs/TestDroid.dialog:33
-msgid ""
-"This is MegaSys test bot, running very basic version of their OS. I can do not"
-"hing with this bot, because it doesn't know how to do anything."
-msgstr ""
-
-#: ../dialogs/TestDroid.dialog:41
-#: ../dialogs/StandardBotAfterTakeover.dialog:191
-#: ../dialogs/SACD.dialog:170
-msgid " logout"
-msgstr ""
 
 #: ../dialogs/Benjamin.dialog:33
 #: ../dialogs/DocMoore.dialog:33
@@ -403,10 +391,10 @@ msgstr ""
 #: ../dialogs/Darwin.dialog:214
 #: ../dialogs/OldTownGateGuardLeader.dialog:100
 #: ../dialogs/Michelangelo.dialog:416
-#: ../dialogs/Spencer.dialog:508
+#: ../dialogs/Spencer.dialog:510
 #: ../dialogs/Bruce.dialog:218
 #: ../dialogs/Bruce.dialog:229
-#: ../dialogs/Butch.dialog:353
+#: ../dialogs/Butch.dialog:355
 #: ../dialogs/StandardMSFacilityGateGuard.dialog:86
 msgid " I'll be going then."
 msgstr ""
@@ -891,7 +879,7 @@ msgstr ""
 #: ../dialogs/Skippy.dialog:195
 #: ../dialogs/Skippy.dialog:206
 #: ../dialogs/RMS.dialog:118
-#: ../dialogs/DocMoore.dialog:321
+#: ../dialogs/DocMoore.dialog:320
 #: ../dialogs/Duncan.dialog:280
 #: ../dialogs/Duncan.dialog:318
 #: ../dialogs/614.dialog:98
@@ -1553,8 +1541,8 @@ msgid "They said it was already fed to their reactor as fuel."
 msgstr ""
 
 #: ../dialogs/Michelangelo.dialog:419
-#: ../dialogs/Spencer.dialog:511
-#: ../dialogs/DocMoore.dialog:324
+#: ../dialogs/Spencer.dialog:513
+#: ../dialogs/DocMoore.dialog:323
 #: ../dialogs/Duncan.dialog:321
 msgid "See you later."
 msgstr ""
@@ -1615,6 +1603,13 @@ msgstr ""
 
 #: ../dialogs/StandardBotAfterTakeover.dialog:172
 msgid "()%#@(% THE BLADE IS YOURS. )##%*&%*!"
+msgstr ""
+
+#: ../dialogs/StandardBotAfterTakeover.dialog:191
+#: ../dialogs/SACD.dialog:170
+#: ../dialogs/MER.dialog:147
+#: ../dialogs/TestDroid.dialog:41
+msgid " logout"
 msgstr ""
 
 #: ../dialogs/Koan.dialog:45
@@ -1876,7 +1871,7 @@ msgstr ""
 #: ../dialogs/Stone.dialog:222
 msgid ""
 "I couldn't get myself to look at my finance logs for a while now. I guess abou"
-"t five to six thousand triangles."
+"t three to four thousand triangles."
 msgstr ""
 
 #: ../dialogs/Stone.dialog:231
@@ -1911,7 +1906,7 @@ msgstr ""
 
 #: ../dialogs/Stone.dialog:304
 msgid ""
-"I need 4,743 bucks to get through the month. I accept only that and not a cent"
+"I need 3,147 bucks to get through the month. I accept only that and not a cent"
 " more. Now it's fair. Thank you."
 msgstr ""
 
@@ -2248,8 +2243,8 @@ msgstr ""
 
 #: ../dialogs/Spencer.dialog:226
 msgid ""
-"I think you should visit the camp's cook sometime. He's always around here, so"
-"mewhere to the south."
+"I think you should visit the camp's cook sometime. He's usually in the restaur"
+"ant kitchen."
 msgstr ""
 
 #: ../dialogs/Spencer.dialog:255
@@ -2338,89 +2333,101 @@ msgstr ""
 
 #: ../dialogs/Spencer.dialog:438
 msgid ""
-"Yes, that's right, and in fact it might be crucial. The data on the cube he ob"
-"tained indicates the existence of a secret experimental facility in this regio"
-"n."
+"Yes, that's right, and in fact it might be crucial. As you may have heard, Hel"
+"l Fortress is defended by a disruptor shield. They open it only to let out new"
+" armies of bots."
 msgstr ""
 
 #: ../dialogs/Spencer.dialog:440
 msgid ""
-"Our findings suggest that they were testing some new form of disruptor shield,"
-" but research was finally discontinued, because of the side effects of the shi"
-"eld."
+"The data on the cube he obtained indicates the existence of a secret experimen"
+"tal facility in this region. Our findings suggest that they were testing some "
+"new form of disruptor shield for MS, so the shield can be controlled from that"
+" facility."
 msgstr ""
 
 #: ../dialogs/Spencer.dialog:442
 msgid ""
-"If the information is true, then the shield interfered with the positioning sy"
-"stem of all bots and made them wander off."
+"If the information is true, then you can take over the control droid and perma"
+"nenly enable the shield, locking bots in their kingdom. This would save us fro"
+"m their attacks."
 msgstr ""
 
 #: ../dialogs/Spencer.dialog:444
 msgid ""
-"Now that seems like a gift sent from heavens. We'll need to activate the shiel"
-"d, if that is still possible, and save the colony for good."
+"Beside this, we know, that MS had a firmware update system, which potentially "
+"can be used for disabling all bots. It is very alluring, but to perform this t"
+"rick you need to hack up the control droid, which is in the heart of the HF. T"
+"o enter HF you would have to disable the disruptor shield."
 msgstr ""
 
-#: ../dialogs/Spencer.dialog:452
+#: ../dialogs/Spencer.dialog:446
+msgid ""
+"You have to weight your abilities and estimate your best course of action befo"
+"re making a decision. Anyway, this seems like a gift sent from the heavens. We"
+"'ll either need to activate the shield, if that is still possible, and save th"
+"e colony for good or desactivate it and completely destroy our enemy."
+msgstr ""
+
+#: ../dialogs/Spencer.dialog:454
 msgid " I'd like to participate in this operation."
 msgstr ""
 
-#: ../dialogs/Spencer.dialog:455
+#: ../dialogs/Spencer.dialog:457
 msgid ""
 "That's most kind of you to volunteer. So far, I've sent two scouts into the ar"
 "ea. They have found the facility entrance and unlocked the gate."
 msgstr ""
 
-#: ../dialogs/Spencer.dialog:457
+#: ../dialogs/Spencer.dialog:459
 msgid ""
 "That is a good sign, because it shows that the key combinations from the data "
 "cube were correct."
 msgstr ""
 
-#: ../dialogs/Spencer.dialog:459
+#: ../dialogs/Spencer.dialog:461
 msgid ""
 "However, we lost contact with them shortly after they went inside. They also r"
 "eported heavy bot resistance."
 msgstr ""
 
-#: ../dialogs/Spencer.dialog:461
+#: ../dialogs/Spencer.dialog:463
 msgid ""
 "I'd be glad if you could take a look. But use outmost care. We can't afford to"
 " lose another guard."
 msgstr ""
 
-#: ../dialogs/Spencer.dialog:470
+#: ../dialogs/Spencer.dialog:472
 msgid " OK. I'll be careful. But I'll do it."
 msgstr ""
 
-#: ../dialogs/Spencer.dialog:473
+#: ../dialogs/Spencer.dialog:475
 msgid ""
 "Good. The base entrance is somewhat hidden in the caves to the northwest. Best"
 " use the north gate out of town, then head west."
 msgstr ""
 
-#: ../dialogs/Spencer.dialog:475
+#: ../dialogs/Spencer.dialog:477
 msgid ""
 "I wish you the best of luck for this operation. It might be that our survival "
 "depends on it. Don't wait for assistance."
 msgstr ""
 
-#: ../dialogs/Spencer.dialog:477
+#: ../dialogs/Spencer.dialog:479
 msgid ""
-"Try to activate the disruptor shield if you can. The control unit should be so"
-"mewhere on the lowest level of the installation."
+"Try to get control over the disruptor shield if you can. The control droid sho"
+"uld be somewhere on the lowest level of the installation."
 msgstr ""
 
-#: ../dialogs/Spencer.dialog:487
+#: ../dialogs/Spencer.dialog:489
 msgid " I don't feel like doing it now. I'd rather prepare some more."
 msgstr ""
 
-#: ../dialogs/Spencer.dialog:490
+#: ../dialogs/Spencer.dialog:492
 msgid "Good. You should be well prepared if you intend to go."
 msgstr ""
 
-#: ../dialogs/Spencer.dialog:492
+#: ../dialogs/Spencer.dialog:494
 msgid ""
 "Also there is no need to hurry with this. After all, the installation is not r"
 "unning away, so best take a slow approach."
@@ -3171,7 +3178,7 @@ msgid "Hey you!  Linarian!  What do you want here?"
 msgstr ""
 
 #: ../dialogs/Ernie.dialog:47
-#: ../dialogs/MSFacilityGateGuardLeader.dialog:48
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:49
 msgid "Just taking a look around."
 msgstr ""
 
@@ -3257,152 +3264,156 @@ msgid " Yeah. I want to fight."
 msgstr ""
 
 #: ../dialogs/Butch.dialog:113
-msgid "Good. Get into the door with the portal."
+msgid "Good. I opened up the south arena gate for you so just climb down the ladder."
 msgstr ""
 
-#: ../dialogs/Butch.dialog:125
+#: ../dialogs/Butch.dialog:115
+msgid "But remember, the door out won't be opened until you killed all the bots."
+msgstr ""
+
+#: ../dialogs/Butch.dialog:127
 msgid " The bots are dead."
 msgstr ""
 
-#: ../dialogs/Butch.dialog:128
+#: ../dialogs/Butch.dialog:130
 msgid "Good for you."
 msgstr ""
 
-#: ../dialogs/Butch.dialog:130
+#: ../dialogs/Butch.dialog:132
 msgid "You are a total newbie. But, a good newbie."
 msgstr ""
 
-#: ../dialogs/Butch.dialog:132
+#: ../dialogs/Butch.dialog:134
 msgid "I will say a good word to Spencer about this."
 msgstr ""
 
-#: ../dialogs/Butch.dialog:143
+#: ../dialogs/Butch.dialog:145
 msgid " I thought I am going to fight you, coward."
 msgstr ""
 
-#: ../dialogs/Butch.dialog:146
+#: ../dialogs/Butch.dialog:148
 msgid "I NEVER said that, newbie."
 msgstr ""
 
-#: ../dialogs/Butch.dialog:148
+#: ../dialogs/Butch.dialog:150
 msgid "You wanted a fight, and you got one."
 msgstr ""
 
-#: ../dialogs/Butch.dialog:150
+#: ../dialogs/Butch.dialog:152
 msgid "I offered a fight, and you wanted that."
 msgstr ""
 
-#: ../dialogs/Butch.dialog:152
+#: ../dialogs/Butch.dialog:154
 msgid "There is nothing more to say, newbie."
 msgstr ""
 
-#: ../dialogs/Butch.dialog:162
+#: ../dialogs/Butch.dialog:164
 msgid " I want a bigger challenge."
 msgstr ""
 
-#: ../dialogs/Butch.dialog:165
+#: ../dialogs/Butch.dialog:167
 msgid "Newbie, I have a second arena."
 msgstr ""
 
-#: ../dialogs/Butch.dialog:167
+#: ../dialogs/Butch.dialog:169
 msgid "You will die if you go there."
 msgstr ""
 
-#: ../dialogs/Butch.dialog:169
+#: ../dialogs/Butch.dialog:171
 msgid "I pity you, silly bird. Don't go there."
 msgstr ""
 
-#: ../dialogs/Butch.dialog:171
+#: ../dialogs/Butch.dialog:173
 msgid "But if you really want it, the door is open."
 msgstr ""
 
-#: ../dialogs/Butch.dialog:181
+#: ../dialogs/Butch.dialog:183
 msgid " The master arena is clear."
 msgstr ""
 
-#: ../dialogs/Butch.dialog:184
+#: ../dialogs/Butch.dialog:186
 msgid "What!? Impossible! No one survived the second arena before!"
 msgstr ""
 
-#: ../dialogs/Butch.dialog:186
+#: ../dialogs/Butch.dialog:188
 msgid "One has to be insane to try the second arena."
 msgstr ""
 
-#: ../dialogs/Butch.dialog:188
+#: ../dialogs/Butch.dialog:190
 msgid "You are not a newbie, but you are a TOTAL IDIOT!"
 msgstr ""
 
-#: ../dialogs/Butch.dialog:190
+#: ../dialogs/Butch.dialog:192
 msgid "I pity you, poor fool. You will die young."
 msgstr ""
 
-#: ../dialogs/Butch.dialog:199
+#: ../dialogs/Butch.dialog:201
 msgid " What is wrong with you? Why do you keep calling me a newbie?"
 msgstr ""
 
-#: ../dialogs/Butch.dialog:202
+#: ../dialogs/Butch.dialog:204
 msgid "Beacuse you ARE a newbie, newbie!"
 msgstr ""
 
-#: ../dialogs/Butch.dialog:209
+#: ../dialogs/Butch.dialog:211
 msgid " Why the hell are you organizing fights? Enough people have died already!"
 msgstr ""
 
-#: ../dialogs/Butch.dialog:212
+#: ../dialogs/Butch.dialog:214
 msgid "I have a very good reason not to tell you."
 msgstr ""
 
-#: ../dialogs/Butch.dialog:214
+#: ../dialogs/Butch.dialog:216
 msgid "Not like someone as inexperienced like you could understand it anyway."
 msgstr ""
 
-#: ../dialogs/Butch.dialog:221
+#: ../dialogs/Butch.dialog:223
 msgid " No way! Violence is wrong! Make love not war!"
 msgstr ""
 
-#: ../dialogs/Butch.dialog:224
-#: ../dialogs/Butch.dialog:236
-#: ../dialogs/DocMoore.dialog:273
-#: ../dialogs/DocMoore.dialog:284
+#: ../dialogs/Butch.dialog:226
+#: ../dialogs/Butch.dialog:238
+#: ../dialogs/DocMoore.dialog:272
+#: ../dialogs/DocMoore.dialog:283
 #: ../dialogs/Melfis.dialog:89
 msgid " . . ."
 msgstr ""
 
-#: ../dialogs/Butch.dialog:233
+#: ../dialogs/Butch.dialog:235
 msgid " Roses, not destruction!"
 msgstr ""
 
-#: ../dialogs/Butch.dialog:244
+#: ../dialogs/Butch.dialog:246
 msgid " End the violence! All blood is red!"
 msgstr ""
 
-#: ../dialogs/Butch.dialog:247
+#: ../dialogs/Butch.dialog:249
 msgid "Hey, the bots bleed black. With oil."
 msgstr ""
 
-#: ../dialogs/Butch.dialog:255
+#: ../dialogs/Butch.dialog:257
 msgid " But... But... "
 msgstr ""
 
-#: ../dialogs/Butch.dialog:258
+#: ../dialogs/Butch.dialog:260
 msgid "No 'but' about it, newbie."
 msgstr ""
 
-#: ../dialogs/Butch.dialog:260
+#: ../dialogs/Butch.dialog:262
 msgid "The bots bleed black."
 msgstr ""
 
-#: ../dialogs/Butch.dialog:268
+#: ../dialogs/Butch.dialog:270
 msgid ""
 " You... Have ruined my pacifistic slogan... I am angry... So angry that I want"
 " to smash things!"
 msgstr ""
 
-#: ../dialogs/Butch.dialog:271
+#: ../dialogs/Butch.dialog:273
 msgid "Great. Get in the door, newbie."
 msgstr ""
 
-#: ../dialogs/Butch.dialog:356
+#: ../dialogs/Butch.dialog:358
 msgid "Sure."
 msgstr ""
 
@@ -3566,6 +3577,78 @@ msgstr ""
 msgid "Please come back later, Linarian. We must talk again."
 msgstr ""
 
+#: ../dialogs/subdlg_Stone.dialog:36
+msgid "You are Tux, aren't you..."
+msgstr ""
+
+#: ../dialogs/subdlg_Stone.dialog:38
+msgid "The hero..."
+msgstr ""
+
+#: ../dialogs/subdlg_Stone.dialog:49
+msgid " Yes, its me."
+msgstr ""
+
+#: ../dialogs/subdlg_Stone.dialog:52
+msgid ""
+"I thought so. My grandfather used to tell me stories about you. He said you wo"
+"uld come here in a time of despair."
+msgstr ""
+
+#: ../dialogs/subdlg_Stone.dialog:54
+msgid "And here you are."
+msgstr ""
+
+#: ../dialogs/subdlg_Stone.dialog:56
+msgid "I hope your arrival changes the tide of this war..."
+msgstr ""
+
+#: ../dialogs/subdlg_Stone.dialog:58
+msgid ""
+"I have something here for you. I managed to hide this Shotgun from the red gua"
+"rd."
+msgstr ""
+
+#: ../dialogs/subdlg_Stone.dialog:60
+msgid ""
+"It used to belong to my grandfather, so it's very dear to me, but I'm sure he "
+"would have like you to have it on your journey to save us all."
+msgstr ""
+
+#: ../dialogs/subdlg_Stone.dialog:62
+msgid ""
+"Tux, if you ever find out who started the Great Assault... GIVE THEM A KICK IN"
+" THE ASS, FROM LILY STONE!!!"
+msgstr ""
+
+#: ../dialogs/subdlg_Stone.dialog:73
+msgid " It's not important who am I."
+msgstr ""
+
+#: ../dialogs/subdlg_Stone.dialog:76
+msgid "If you want to remain a stranger, I will respect your wishes."
+msgstr ""
+
+#: ../dialogs/subdlg_Stone.dialog:78
+msgid "So be it."
+msgstr ""
+
+#: ../dialogs/subdlg_Stone.dialog:88
+msgid " Ha ha ha, You fell for it! You get nothing from me! Hahahahah!"
+msgstr ""
+
+#: ../dialogs/subdlg_Stone.dialog:91
+msgid "You... monster..."
+msgstr ""
+
+#: ../dialogs/subdlg_Stone.dialog:93
+msgid "No one makes fun of Lily Stone's family store!"
+msgstr ""
+
+#: ../dialogs/subdlg_Stone.dialog:95
+msgid "Say your prayers, you oversized duck!!!"
+msgstr ""
+
 #: ../dialogs/subdlg_Duncan.dialog:43
 msgid " Tell me more."
 msgstr ""
@@ -3651,6 +3734,7 @@ msgid "That is fine. I will find someone else."
 msgstr ""
 
 #: ../dialogs/SACD.dialog:33
+#: ../dialogs/MER.dialog:33
 msgid " Login : admin  Password : *******"
 msgstr ""
 
@@ -5096,12 +5180,67 @@ msgstr ""
 msgid " I must go now."
 msgstr ""
 
-#: ../dialogs/MER.dialog:33
-msgid " Hi!  I'm new here. "
+#: ../dialogs/MER.dialog:36
+msgid "Last login from /dev/ttyS0 on Sun, 23 mar 2057. admin@shielddefence: ~ #"
 msgstr ""
 
-#: ../dialogs/MER.dialog:36
-msgid "Welcome them!  I'm called MER.  My dialog isn't done though."
+#: ../dialogs/MER.dialog:45
+msgid " passwd"
+msgstr ""
+
+#: ../dialogs/MER.dialog:48
+msgid " Changing password for admin. Enter new password: "
+msgstr ""
+
+#: ../dialogs/MER.dialog:50
+msgid " Enter new password again: "
+msgstr ""
+
+#: ../dialogs/MER.dialog:52
+msgid " Password successfully changed."
+msgstr ""
+
+#: ../dialogs/MER.dialog:90
+#: ../dialogs/MER.dialog:105
+msgid " shieldmgr --enable --everywhere"
+msgstr ""
+
+#: ../dialogs/MER.dialog:93
+#: ../dialogs/MER.dialog:108
+msgid " Enabling disruptor shield... "
+msgstr ""
+
+#: ../dialogs/MER.dialog:95
+#: ../dialogs/MER.dialog:110
+msgid " Shield enabled."
+msgstr ""
+
+#: ../dialogs/MER.dialog:97
+#: ../dialogs/MER.dialog:126
+msgid " WARNING: somebody else is using this computer. "
+msgstr ""
+
+#: ../dialogs/MER.dialog:99
+msgid " Disruptor shield deactivated near main enterance."
+msgstr ""
+
+#: ../dialogs/MER.dialog:119
+#: ../dialogs/MER.dialog:134
+msgid " shieldmgr --disable --everywhere"
+msgstr ""
+
+#: ../dialogs/MER.dialog:122
+#: ../dialogs/MER.dialog:137
+msgid " Disabling disruptor shield... "
+msgstr ""
+
+#: ../dialogs/MER.dialog:124
+#: ../dialogs/MER.dialog:139
+msgid " Shield disabled."
+msgstr ""
+
+#: ../dialogs/MER.dialog:128
+msgid " Disruptor shield is active."
 msgstr ""
 
 #: ../dialogs/subdlg_Benjamin.dialog:43
@@ -5283,66 +5422,6 @@ msgstr ""
 
 #: ../dialogs/subdlg_Darwin.dialog:278
 msgid " Maybe another time."
-msgstr ""
-
-#: ../dialogs/subdlg_Stone.dialog:36
-msgid "You are Tux, aren't you..."
-msgstr ""
-
-#: ../dialogs/subdlg_Stone.dialog:38
-msgid "The hero..."
-msgstr ""
-
-#: ../dialogs/subdlg_Stone.dialog:49
-msgid " Yes, its me."
-msgstr ""
-
-#: ../dialogs/subdlg_Stone.dialog:52
-msgid ""
-"I thought so. My grandfather used to tell me stories about you. He said you wo"
-"uld come here in a time of despair."
-msgstr ""
-
-#: ../dialogs/subdlg_Stone.dialog:54
-msgid "And here you are."
-msgstr ""
-
-#: ../dialogs/subdlg_Stone.dialog:56
-msgid "I hope your arrival changes the tide of this war..."
-msgstr ""
-
-#: ../dialogs/subdlg_Stone.dialog:58
-msgid ""
-"Tux, if you ever find out who started the Great Assault... GIVE THEM A KICK IN"
-" THE ASS, FROM LILY STONE!!!"
-msgstr ""
-
-#: ../dialogs/subdlg_Stone.dialog:68
-msgid " It's not important who am I."
-msgstr ""
-
-#: ../dialogs/subdlg_Stone.dialog:71
-msgid "If you want to remain a stranger, I will respect your wishes."
-msgstr ""
-
-#: ../dialogs/subdlg_Stone.dialog:73
-msgid "So be it."
-msgstr ""
-
-#: ../dialogs/subdlg_Stone.dialog:83
-msgid " Ha ha ha, You fell for it! You get nothing from me! Hahahahah!"
-msgstr ""
-
-#: ../dialogs/subdlg_Stone.dialog:86
-msgid "You... monster..."
-msgstr ""
-
-#: ../dialogs/subdlg_Stone.dialog:88
-msgid "No one makes fun of Lily Stone's family store!"
-msgstr ""
-
-#: ../dialogs/subdlg_Stone.dialog:90
-msgid "Say your prayers, you oversized duck!!!"
 msgstr ""
 
 #: ../dialogs/subdlg_Duncan_quest.dialog:36
@@ -5733,6 +5812,84 @@ msgstr ""
 msgid "That's ok. But please, please, come back. I'm so lonely."
 msgstr ""
 
+#: ../dialogs/RMS.dialog:36
+msgid "Welcome, welcome! I'm Richard. I'm the computer guy around here."
+msgstr ""
+
+#: ../dialogs/RMS.dialog:38
+msgid ""
+"I mostly work with this huge computer cluster here, although I also program th"
+"e 614 bots in my spare time."
+msgstr ""
+
+#: ../dialogs/RMS.dialog:46
+msgid " A computer cluster? What's that?"
+msgstr ""
+
+#: ../dialogs/RMS.dialog:49
+msgid ""
+"A cluster is a group of computers, connected in a way that helps them collabor"
+"ate in solving problems."
+msgstr ""
+
+#: ../dialogs/RMS.dialog:51
+msgid "As they say, 'two heads are better than one'. And we have a lot of heads here."
+msgstr ""
+
+#: ../dialogs/RMS.dialog:53
+msgid "This is why I call this cluster 'Hydra'. A lot of heads indeed."
+msgstr ""
+
+#: ../dialogs/RMS.dialog:69
+msgid ""
+" I have a data cube with some information. Can you tell me something more abou"
+"t it?"
+msgstr ""
+
+#: ../dialogs/RMS.dialog:72
+msgid ""
+"Interesting. Let me see this thing. Hmm... Yes, there is quite a lot of stuff "
+"in there. Maybe we could use Hydra to evaluate the data."
+msgstr ""
+
+#: ../dialogs/RMS.dialog:74
+msgid ""
+"Hey, what do we have here? The data is already prepared for processing by a cl"
+"uster just like ours. Wow! That's excellent!"
+msgstr ""
+
+#: ../dialogs/RMS.dialog:76
+msgid ""
+"I'll feed it into Hydra right away. Expect the results in a short while. Hydra"
+" has never let me down so far."
+msgstr ""
+
+#: ../dialogs/RMS.dialog:104
+msgid " Hey, did you get something out of that data cube?"
+msgstr ""
+
+#: ../dialogs/RMS.dialog:107
+msgid ""
+"Of course! I told you, Hydra has never failed me! I designed it myself, and I "
+"know computers very well. I never make mistakes."
+msgstr ""
+
+#: ../dialogs/RMS.dialog:109
+msgid ""
+"Seems like the disruptor shield which prevents all our attacks on Hell Fortres"
+"s can be controlled from somewhere outside or something like that."
+msgstr ""
+
+#: ../dialogs/RMS.dialog:111
+msgid ""
+"I was busy servicing one of Hydra's nodes, but I sent the full report to Spenc"
+"er. He will tell you more."
+msgstr ""
+
+#: ../dialogs/RMS.dialog:121
+msgid "Take care, Linarian."
+msgstr ""
+
 #: ../dialogs/Chandra.dialog:36
 msgid "Welcome. I am Chandra, the local sage in this old town."
 msgstr ""
@@ -5758,7 +5915,9 @@ msgid " Where can I get better equipment?"
 msgstr ""
 
 #: ../dialogs/Chandra.dialog:63
-msgid "The shop is to the east. Ms. Stone always has a good range of equipment there."
+msgid ""
+"The shop is to the north. Ms. Stone always has a good range of equipment there"
+"."
 msgstr ""
 
 #: ../dialogs/Chandra.dialog:65
@@ -6033,137 +6192,108 @@ msgstr ""
 msgid "Feel free to come here any time you want."
 msgstr ""
 
-#: ../dialogs/RMS.dialog:36
-msgid "Welcome, welcome! I'm Richard. I'm the computer guy around here."
-msgstr ""
-
-#: ../dialogs/RMS.dialog:38
-msgid ""
-"I mostly work with this huge computer cluster here, although I also program th"
-"e 614 bots in my spare time."
-msgstr ""
-
-#: ../dialogs/RMS.dialog:46
-msgid " A computer cluster? What's that?"
-msgstr ""
-
-#: ../dialogs/RMS.dialog:49
-msgid ""
-"A cluster is a group of computers, connected in a way that helps them collabor"
-"ate in solving problems."
-msgstr ""
-
-#: ../dialogs/RMS.dialog:51
-msgid "As they say, 'two heads are better than one'. And we have a lot of heads here."
-msgstr ""
-
-#: ../dialogs/RMS.dialog:53
-msgid "This is why I call this cluster 'Hydra'. A lot of heads indeed."
-msgstr ""
-
-#: ../dialogs/RMS.dialog:69
-msgid ""
-" I have a data cube with some information. Can you tell me something more abou"
-"t it?"
-msgstr ""
-
-#: ../dialogs/RMS.dialog:72
-msgid ""
-"Interesting. Let me see this thing. Hmm... Yes, there is quite a lot of stuff "
-"in there. Maybe we could use Hydra to evaluate the data."
-msgstr ""
-
-#: ../dialogs/RMS.dialog:74
-msgid ""
-"Hey, what do we have here? The data is already prepared for processing by a cl"
-"uster just like ours. Wow! That's excellent!"
-msgstr ""
-
-#: ../dialogs/RMS.dialog:76
-msgid ""
-"I'll feed it into Hydra right away. Expect the results in a short while. Hydra"
-" has never let me down so far."
-msgstr ""
-
-#: ../dialogs/RMS.dialog:104
-msgid " Hey, did you get something out of that data cube?"
-msgstr ""
-
-#: ../dialogs/RMS.dialog:107
-msgid ""
-"Of course! I told you, Hydra has never failed me! I designed it myself, and I "
-"know computers very well. I never make mistakes."
-msgstr ""
-
-#: ../dialogs/RMS.dialog:109
-msgid ""
-"Seems like the bots can be disabled by enabling some disruptor field or someth"
-"ing like that."
-msgstr ""
-
-#: ../dialogs/RMS.dialog:111
-msgid ""
-"I was busy servicing one of Hydra's nodes, but I sent the full report to Spenc"
-"er. He will tell you more."
-msgstr ""
-
-#: ../dialogs/RMS.dialog:121
-msgid "Take care, Linarian."
-msgstr ""
-
 #: ../dialogs/MSFacilityGateGuardLeader.dialog:36
 msgid "Hey, Linarian! What do you want here?"
 msgstr ""
 
-#: ../dialogs/MSFacilityGateGuardLeader.dialog:51
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:52
 msgid "Oh, look. The bird wants to go for a walk."
 msgstr ""
 
-#: ../dialogs/MSFacilityGateGuardLeader.dialog:53
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:54
 msgid "We don't call this place 'hell' for nothing."
 msgstr ""
 
-#: ../dialogs/MSFacilityGateGuardLeader.dialog:55
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:56
 msgid "Get outta here!"
 msgstr ""
 
-#: ../dialogs/MSFacilityGateGuardLeader.dialog:65
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:66
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:143
 msgid "I'd like to go through that gate."
 msgstr ""
 
-#: ../dialogs/MSFacilityGateGuardLeader.dialog:68
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:69
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:146
 msgid "Are you totally out of your mind?"
 msgstr ""
 
-#: ../dialogs/MSFacilityGateGuardLeader.dialog:70
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:71
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:148
 msgid "There are trillions of millions of quintillions of bots in there!"
 msgstr ""
 
-#: ../dialogs/MSFacilityGateGuardLeader.dialog:72
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:73
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:150
+msgid ""
+"Beside that on the other side of the door is disruptor shield, which we can't "
+"control."
+msgstr ""
+
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:75
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:152
+msgid "* Throws a stone through the door"
+msgstr ""
+
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:77
+msgid "* Stone disappears leaving a small cloud of dust"
+msgstr ""
+
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:79
 msgid "Find a different gate to go through."
 msgstr ""
 
-#: ../dialogs/MSFacilityGateGuardLeader.dialog:82
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:89
 msgid "I have some business on the other side!"
 msgstr ""
 
-#: ../dialogs/MSFacilityGateGuardLeader.dialog:85
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:92
 msgid "Are you in a rush to die?"
 msgstr ""
 
-#: ../dialogs/MSFacilityGateGuardLeader.dialog:87
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:94
 msgid "Go away!"
 msgstr ""
 
-#: ../dialogs/MSFacilityGateGuardLeader.dialog:109
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:117
 msgid "GET OUT OF HERE YOU IDIOT!"
 msgstr ""
 
-#: ../dialogs/MSFacilityGateGuardLeader.dialog:117
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:154
+msgid ""
+"* Stone freely flies thourgh the gate and drops on the ground on the other sid"
+"e"
+msgstr ""
+
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:156
+msgid "SHIT! SHIELD DISABLED! PREPARE FOR BOT ATTACK!"
+msgstr ""
+
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:167
+msgid ""
+"Calm down. This is not an attack. I've disabled the shield and I'm going to di"
+"sable all bots around! Didn't Spencer inform you?"
+msgstr ""
+
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:170
+msgid "WHAT?! Not an attack?!"
+msgstr ""
+
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:172
+msgid "I hope you are honest. One second..."
+msgstr ""
+
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:174
+msgid ""
+"Right, there is a message from Spencer, you can enter Hell Fortress. And let t"
+"he force be with you!"
+msgstr ""
+
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:196
 msgid "Relax, I'm leaving."
 msgstr ""
 
-#: ../dialogs/MSFacilityGateGuardLeader.dialog:120
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:199
 msgid "You better be. AND DON'T COME BACK!"
 msgstr ""
 
@@ -6519,124 +6649,124 @@ msgid "As far as I am concerned, in this town everyone gets everything equally."
 msgstr ""
 
 #: ../dialogs/DocMoore.dialog:160
-#: ../dialogs/DocMoore.dialog:195
+#: ../dialogs/DocMoore.dialog:194
 msgid " Can you fix me up?"
 msgstr ""
 
 #: ../dialogs/DocMoore.dialog:163
-#: ../dialogs/DocMoore.dialog:198
+#: ../dialogs/DocMoore.dialog:197
 msgid ""
 "Sure, as the only doctor of this slowly growing community, I'm responsible for"
 " everyone's health."
 msgstr ""
 
 #: ../dialogs/DocMoore.dialog:165
-#: ../dialogs/DocMoore.dialog:200
+#: ../dialogs/DocMoore.dialog:199
 msgid ""
 "However, self-inflicted damage might be exempted from this rule in some cases."
 ".."
 msgstr ""
 
 #: ../dialogs/DocMoore.dialog:167
-#: ../dialogs/DocMoore.dialog:202
+#: ../dialogs/DocMoore.dialog:201
 msgid "There, it's done. You're completely fixed. You can go now."
 msgstr ""
 
-#: ../dialogs/DocMoore.dialog:179
+#: ../dialogs/DocMoore.dialog:178
 msgid " What do you mean, self-inflicted damage?"
 msgstr ""
 
-#: ../dialogs/DocMoore.dialog:182
+#: ../dialogs/DocMoore.dialog:181
 msgid "Now you see that idiotic Bender character on my doorstep?"
 msgstr ""
 
-#: ../dialogs/DocMoore.dialog:184
+#: ../dialogs/DocMoore.dialog:183
 msgid ""
 "He took these stupid brain enlargement pills. So no problem, he came to me to "
 "fix him. But guess what?"
 msgstr ""
 
-#: ../dialogs/DocMoore.dialog:186
+#: ../dialogs/DocMoore.dialog:185
 msgid ""
 "He took them again against my strict advice. Now he thinks he can drain my ant"
 "idote supplies? He's wrong."
 msgstr ""
 
-#: ../dialogs/DocMoore.dialog:188
+#: ../dialogs/DocMoore.dialog:187
 msgid ""
 "He won't get anything from me anymore. It would be unfair to the community to "
 "waste all the supplies on him, and that's my final word on that."
 msgstr ""
 
-#: ../dialogs/DocMoore.dialog:212
+#: ../dialogs/DocMoore.dialog:211
 msgid " Doc... I really want the antidote."
 msgstr ""
 
-#: ../dialogs/DocMoore.dialog:215
+#: ../dialogs/DocMoore.dialog:214
 msgid "No! I am not giving it to you. Forget about it."
 msgstr ""
 
-#: ../dialogs/DocMoore.dialog:224
+#: ../dialogs/DocMoore.dialog:223
 msgid " My patience is running out. Give me the antidote. Now."
 msgstr ""
 
-#: ../dialogs/DocMoore.dialog:227
+#: ../dialogs/DocMoore.dialog:226
 msgid "No! Over my dead body."
 msgstr ""
 
-#: ../dialogs/DocMoore.dialog:235
+#: ../dialogs/DocMoore.dialog:234
 msgid " Your wish is my command."
 msgstr ""
 
-#: ../dialogs/DocMoore.dialog:238
+#: ../dialogs/DocMoore.dialog:237
 msgid "Huh? What?"
 msgstr ""
 
-#: ../dialogs/DocMoore.dialog:246
+#: ../dialogs/DocMoore.dialog:245
 msgid ""
 " Humans... You are so interesting. I always wanted to know how much blood do y"
 "ou exacly have."
 msgstr ""
 
-#: ../dialogs/DocMoore.dialog:249
+#: ../dialogs/DocMoore.dialog:248
 msgid "Don't do this. Don't do this."
 msgstr ""
 
-#: ../dialogs/DocMoore.dialog:257
+#: ../dialogs/DocMoore.dialog:256
 msgid " Prepare Doc. The experiment begins."
 msgstr ""
 
-#: ../dialogs/DocMoore.dialog:260
+#: ../dialogs/DocMoore.dialog:259
 msgid "Don't do this! DON'T DO THIS!"
 msgstr ""
 
-#: ../dialogs/DocMoore.dialog:262
+#: ../dialogs/DocMoore.dialog:261
 msgid "AAAAAAAAAAAA!"
 msgstr ""
 
-#: ../dialogs/DocMoore.dialog:270
+#: ../dialogs/DocMoore.dialog:269
 msgid " Ugh. Human blood is disgusting. At least four liters. I feel sick."
 msgstr ""
 
-#: ../dialogs/DocMoore.dialog:281
+#: ../dialogs/DocMoore.dialog:280
 msgid ""
 " I guess this means I get to inherit all your stuff. I hope you don't mind if "
 "I take everything?"
 msgstr ""
 
-#: ../dialogs/DocMoore.dialog:292
+#: ../dialogs/DocMoore.dialog:291
 msgid " Good. I am very glad not to hear a disapproval."
 msgstr ""
 
-#: ../dialogs/DocMoore.dialog:295
+#: ../dialogs/DocMoore.dialog:294
 msgid " . . . "
 msgstr ""
 
-#: ../dialogs/DocMoore.dialog:308
+#: ../dialogs/DocMoore.dialog:307
 msgid " Forget it. Getting the antidote is not worth the effort."
 msgstr ""
 
-#: ../dialogs/DocMoore.dialog:311
+#: ../dialogs/DocMoore.dialog:310
 msgid "I am not giving it to you, and that won't change."
 msgstr ""
 
@@ -6867,7 +6997,7 @@ msgid "Of course not. Murdering you would be a complete waste of time."
 msgstr ""
 
 #: ../dialogs/StandardMSFacilityGateGuard.dialog:64
-msgid "The bots will take care of that for me."
+msgid "The bots and disruptor shield will take care of that for me."
 msgstr ""
 
 #: ../dialogs/StandardMSFacilityGateGuard.dialog:66
@@ -7464,5 +7594,11 @@ msgstr ""
 
 #: ../dialogs/Melfis.dialog:86
 msgid " I need to go now."
+msgstr ""
+
+#: ../dialogs/TestDroid.dialog:33
+msgid ""
+"This is MegaSys test bot, running very basic version of their OS. I can do not"
+"hing with this bot, because it doesn't know how to do anything."
 msgstr ""
 

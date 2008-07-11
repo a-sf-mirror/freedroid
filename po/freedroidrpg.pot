@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: freedroid-discussion@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-07-10 21:20+0200\n"
+"POT-Creation-Date: 2008-07-11 14:46+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2690,62 +2690,72 @@ msgstr ""
 
 #: ../src/skills.c:785
 #, c-format
-msgid "Program revision: %d "
+msgid "Program revision: %c%d%c "
 msgstr ""
 
 #: ../src/skills.c:796
 #, c-format
-msgid "Heat produced: %d "
+msgid "Heat produced: %c%d%c "
 msgstr ""
 
 #: ../src/skills.c:798
 #, c-format
-msgid "Cooling: %d "
+msgid "Cooling: %c%d%c "
 msgstr ""
 
-#: ../src/skills.c:809
+#: ../src/skills.c:810
 #, c-format
-msgid "Damage: %d-%d "
+msgid "Damage: %c%d%c "
 msgstr ""
 
-#: ../src/skills.c:811
+#: ../src/skills.c:812
 #, c-format
-msgid "Healing: %d-%d "
+msgid "Damage: %c%d-%d%c "
 msgstr ""
 
-#: ../src/skills.c:821
+#: ../src/skills.c:815
 #, c-format
-msgid "Paralyze"
+msgid "Healing: %c%d%c "
 msgstr ""
 
-#: ../src/skills.c:823
+#: ../src/skills.c:817
 #, c-format
-msgid "Slow down"
-msgstr ""
-
-#: ../src/skills.c:825
-#, c-format
-msgid "Invisible"
+msgid "Healing: %c%d-%d%c "
 msgstr ""
 
 #: ../src/skills.c:827
 #, c-format
-msgid "Poison"
+msgid "Paralyze"
 msgstr ""
 
 #: ../src/skills.c:829
 #, c-format
-msgid "Takeover"
+msgid "Slow down"
 msgstr ""
 
 #: ../src/skills.c:831
 #, c-format
+msgid "Invisible"
+msgstr ""
+
+#: ../src/skills.c:833
+#, c-format
+msgid "Poison"
+msgstr ""
+
+#: ../src/skills.c:835
+#, c-format
+msgid "Takeover"
+msgstr ""
+
+#: ../src/skills.c:837
+#, c-format
 msgid "Escape"
 msgstr ""
 
-#: ../src/skills.c:851
+#: ../src/skills.c:857
 #, c-format
-msgid " for %.1f seconds"
+msgid " for %c%.1f%c seconds"
 msgstr ""
 
 #: ../src/takeover.c:305
@@ -2825,43 +2835,43 @@ msgstr ""
 msgid "Hey, I know the big MS boss! You better go."
 msgstr ""
 
-#: ../src/vars.h:127
+#: ../src/vars.h:130
 msgid "novice"
 msgstr ""
 
-#: ../src/vars.h:128
+#: ../src/vars.h:131
 msgid "average"
 msgstr ""
 
-#: ../src/vars.h:129
+#: ../src/vars.h:132
 msgid "experienced"
 msgstr ""
 
-#: ../src/vars.h:130
+#: ../src/vars.h:133
 msgid "skilled"
 msgstr ""
 
-#: ../src/vars.h:131
+#: ../src/vars.h:134
 msgid "adept"
 msgstr ""
 
-#: ../src/vars.h:132
+#: ../src/vars.h:135
 msgid "masterful"
 msgstr ""
 
-#: ../src/vars.h:133
+#: ../src/vars.h:136
 msgid "inhuman"
 msgstr ""
 
-#: ../src/vars.h:134
+#: ../src/vars.h:137
 msgid "god-like"
 msgstr ""
 
-#: ../src/vars.h:135
+#: ../src/vars.h:138
 msgid "super-god-like"
 msgstr ""
 
-#: ../src/vars.h:136
+#: ../src/vars.h:139
 msgid "wicked sick"
 msgstr ""
 
