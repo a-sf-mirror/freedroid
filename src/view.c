@@ -449,8 +449,8 @@ isometric_show_floor_around_tux_without_doublebuffering (int mask)
 
 }; // void isometric_show_floor_around_tux_without_doublebuffering ( int mask )
 
-void
-skew_and_blit_line (float x1, float y1, float x2, float y2, Uint32 color)
+static void
+skew_and_blit_line (float x1, float y1, float x2, float y2, Uint32 color, int glwidth)
 {
 if ( ! use_open_gl ) return;
 #ifdef HAVE_LIBGL
@@ -460,7 +460,7 @@ if ( ! use_open_gl ) return;
   rr = ((color & 0xff0000) >> 16) / 255.0;
   gg = ((color & 0xff00) >> 8) / 255.0;
   bb = (color & 0xff) / 255.0;
-  glLineWidth (1);
+  glLineWidth (glwidth);
   glColor3f (rr, gg, bb);
 
   glDisable (GL_TEXTURE_2D);
@@ -1756,93 +1756,95 @@ update_item_text_slot_positions ( void )
 void
 draw_grid_on_the_floor (int mask)
 {
-  if (!(draw_grid && (mask & SHOW_GRID)))
-    return;
+    if (!(draw_grid && (mask & SHOW_GRID)))
+	return;
 
-  float zoom_factor = (GameConfig.zoom_is_on ? ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT : 1.0);
-  static iso_image grid_tile_SDL = { NULL, 0, 0 } ;
-  int LineStart, LineEnd, ColStart, ColEnd, line, col;
-  float x, y;
+    float zoom_factor = (GameConfig.zoom_is_on ? ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT : 1.0);
+    static iso_image grid_tile_SDL = { NULL, 0, 0 } ;
+    int LineStart, LineEnd, ColStart, ColEnd, line, col;
+    float x, y;
+    Level our_level = curShip . AllLevels [ Me . pos . z ] ;
 
-  get_floor_boundaries (mask, &LineStart, &LineEnd, &ColStart, &ColEnd);
+    get_floor_boundaries (mask, &LineStart, &LineEnd, &ColStart, &ColEnd);
 
-  x = rintf (Me.pos.x + 0.5);
-  y = rintf (Me.pos.y + 0.5);
+    x = rintf (Me.pos.x + 0.5);
+    y = rintf (Me.pos.y + 0.5);
 
-  if (!use_open_gl)
-    {
-    if ( grid_tile_SDL . surface == NULL ) 
-	{ //We must load the SDL grid tile image
-	char fpath[2048];
-	find_file ("grid_tile.png", GRAPHICS_DIR, fpath, 0);
-        get_iso_image_from_file_and_path (fpath, &(grid_tile_SDL), TRUE);
-        if (grid_tile_SDL.surface == NULL)
-        	{
-          ErrorMessage (__FUNCTION__, "\
-Unable to load the grid tile.", PLEASE_INFORM, IS_FATAL);
-        	}
+    if (!use_open_gl)
+	{
+	if ( grid_tile_SDL . surface == NULL ) 
+	    { //We must load the SDL grid tile image
+	    char fpath[2048];
+	    find_file ("grid_tile.png", GRAPHICS_DIR, fpath, 0);
+	    get_iso_image_from_file_and_path (fpath, &(grid_tile_SDL), TRUE);
+	    if (grid_tile_SDL.surface == NULL)
+		{
+		ErrorMessage (__FUNCTION__, "\
+			Unable to load the grid tile.", PLEASE_INFORM, IS_FATAL);
+		}
+	    }
+
+	if (draw_grid >= 2) // large grid
+	    for (line = LineStart; line < LineEnd; line++)
+		for (col = ColStart; col < ColEnd; col++)
+		    if(mask & ZOOM_OUT)
+			{
+			blit_zoomed_iso_image_to_map_position (
+				&(grid_tile_SDL),
+				((float) col) + 0.5, ((float) line) + 0.5);
+			}
+		    else
+			blit_iso_image_to_map_position (&grid_tile_SDL,
+				((float) col) + 0.5,
+				((float) line) + 0.5);
 	}
+    else //use GL
+	{
+	float dd;
 
-    if (draw_grid >= 2) // large grid
-    for (line = LineStart; line < LineEnd; line++)
-        for (col = ColStart; col < ColEnd; col++)
-            if(mask & ZOOM_OUT)
-            {
-                  blit_zoomed_iso_image_to_map_position (
-                    &(grid_tile_SDL),
-                    ((float) col) + 0.5, ((float) line) + 0.5);
-            }
-            else
-                blit_iso_image_to_map_position (&grid_tile_SDL,
-                                            ((float) col) + 0.5,
-                                            ((float) line) + 0.5);
-    }
-  else //use GL
-    {
-      float dd;
+	if (draw_grid >= 2) // large grid
+	    for (dd = -20; dd <= 20; dd ++)
+		{
+		skew_and_blit_line (x - 20, y - dd, x + 20, y - dd, 0x99FFFF, 1); // light cyan
+		skew_and_blit_line (x - dd, y - 20, x - dd, y + 20, 0x99FFFF, 1);
+		}
+	for (dd = 0; dd <= 1; dd += .5 ) // quick-placement grid
+	    {
+	    skew_and_blit_line (x - 1.5, y - dd, x + 0.5, y - dd, 0xFF00FF, 1); // magenta
+	    skew_and_blit_line (x - dd, y - 1.5, x - dd, y + 0.5, 0xFF00FF, 1); // magenta
+	    }
 
-      if (draw_grid >= 2) // large grid
-        for (dd = -20; dd <= 20; dd ++)
-          {
-            skew_and_blit_line (x - 20, y - dd, x + 20, y - dd, 0x99FFFF); // light cyan
-            skew_and_blit_line (x - dd, y - 20, x - dd, y + 20, 0x99FFFF);
-          }
-      for (dd = 0; dd <= 1; dd += .5 ) // quick-placement grid
-        {
-//          skew_and_blit_line (x - 1.5, y - dd - .02, x + 0.5, y - dd - .02,
-//                              0x000000); // black
-          skew_and_blit_line (x - 1.5, y - dd, x + 0.5, y - dd, 0xFF00FF); // magenta
-//          skew_and_blit_line (x - dd - .02, y - 1.5, x - dd - .02, y + 0.5,
-//                              0x000000); // black
-          skew_and_blit_line (x - dd, y - 1.5, x - dd, y + 0.5, 0xFF00FF); // magenta
-        }
-
-    }
-      // display numbers, corresponding to the numpad keys for quick placing 
-      BFont_Info *PreviousFont;
-      PreviousFont = GetCurrentFont ();
-      SetCurrentFont ( Messagevar_BFont );
+	}
+    // display numbers, corresponding to the numpad keys for quick placing 
+    BFont_Info *PreviousFont;
+    PreviousFont = GetCurrentFont ();
+    SetCurrentFont ( Messagevar_BFont );
     char *numbers[2][2] = { {"3", "9"}, {"1", "7"} };
     int ii, jj;
-      for (ii = 0; ii <= 1; ii++ )
-        for (jj = 0; jj <= 1; jj++)
-          {
-            float xx,yy;
-          int r, c;
-          xx = x - ii;
-          yy = y - jj;
-          translate_map_point_to_screen_pixel (xx, yy, &r, &c, zoom_factor);
-            SDL_Rect tr;
-          tr.x = r - 7;
-          tr.y = c - 7;
-            tr.w = 12;
-            tr.h = 14;
+    for (ii = 0; ii <= 1; ii++ )
+	for (jj = 0; jj <= 1; jj++)
+	    {
+	    float xx,yy;
+	    int r, c;
+	    xx = x - ii;
+	    yy = y - jj;
+	    translate_map_point_to_screen_pixel (xx, yy, &r, &c, zoom_factor);
+	    SDL_Rect tr;
+	    tr.x = r - 7;
+	    tr.y = c - 7;
+	    tr.w = 12;
+	    tr.h = 14;
 
-            our_SDL_fill_rect_wrapper (Screen, &tr, 0x000000);
-          DisplayText (numbers[ii][jj], r - 5, c - 5, &tr, TEXT_STRETCH);
-          }
-      SetCurrentFont (PreviousFont);
+	    our_SDL_fill_rect_wrapper (Screen, &tr, 0x000000);
+	    DisplayText (numbers[ii][jj], r - 5, c - 5, &tr, TEXT_STRETCH);
+	    }
+    SetCurrentFont (PreviousFont);
 
+    // now display the level borders
+    skew_and_blit_line ( our_level->jump_threshold_west/2.0, 0, our_level->jump_threshold_west/2.0, our_level->ylen, 0xFF0000, 3);
+    skew_and_blit_line ( our_level->xlen - our_level->jump_threshold_east/2.0, 0, our_level->xlen - our_level->jump_threshold_east/2.0, our_level->ylen, 0xFF0000, 3);
+    skew_and_blit_line ( 0, our_level->jump_threshold_north/2.0, our_level->xlen, our_level->jump_threshold_north/2.0, 0xFF0000, 3);
+    skew_and_blit_line ( 0, our_level->ylen - our_level->jump_threshold_south/2.0, our_level->xlen, our_level->ylen - our_level->jump_threshold_south/2.0, 0xFF0000, 3);
 }
 
 /* -----------------------------------------------------------------
