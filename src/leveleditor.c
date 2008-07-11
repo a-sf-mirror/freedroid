@@ -506,23 +506,34 @@ action_fill_user ( Level EditLevel, int BlockX, int BlockY, int SpecialMapValue)
 void
 action_change_obstacle_label ( Level EditLevel, obstacle *obstacle, char *name)
 {
-    int index = -1;
     int check_double;
     char *old_name = NULL;
-    if (obstacle -> name_index >= 0) {
-	index = obstacle -> name_index;
-    } else {
-	int i;
+    int index = -1;
+    int i;
+
+    //--------------------
+    // If the obstacle already has a name, we can use that index for the 
+    // new name now.
+    //
+    if ( obstacle -> name_index >= 0 )
+	index = obstacle -> name_index ;
+    else
+    {
+	//--------------------
+	// Else we must find a free index in the list of obstacle names for this level
+	//
 	for ( i = 0 ; i < MAX_OBSTACLE_NAMES_PER_LEVEL ; i ++ )
-	    {
+	{
 	    if ( EditLevel -> obstacle_name_list [ i ] == NULL )
-		{
+	    {
 		index = i ;
 		break;
-		}
 	    }
-	if ( index < 0 ) return;	
+	}
+	if ( index < 0 ) return;
     }
+
+    
     old_name = EditLevel -> obstacle_name_list [ index ];
     if (!name || strlen (name) == 0) {
 	obstacle -> name_index = -1;
@@ -533,6 +544,9 @@ action_change_obstacle_label ( Level EditLevel, obstacle *obstacle, char *name)
     }
     action_push (ACT_SET_OBSTACLE_LABEL, obstacle, old_name);
     
+    if ( obstacle->name_index == -1 )
+	    return;
+
     //--------------------
     // But even if we fill in something new, we should first
     // check against double entries of the same label.  Let's
@@ -569,30 +583,8 @@ action_change_obstacle_label ( Level EditLevel, obstacle *obstacle, char *name)
 void
 action_change_obstacle_label_user ( Level EditLevel, obstacle *our_obstacle, char *predefined_name)
 {
-    int i;
-    int free_index=(-1);
+    int cur_idx = our_obstacle->name_index;
     char *name;
-    //--------------------
-    // If the obstacle already has a name, we can use that index for the 
-    // new name now.
-    //
-    if ( our_obstacle -> name_index >= 0 )
-	free_index = our_obstacle -> name_index ;
-    else
-    {
-	//--------------------
-	// Else we must find a free index in the list of obstacle names for this level
-	//
-	for ( i = 0 ; i < MAX_OBSTACLE_NAMES_PER_LEVEL ; i ++ )
-	{
-	    if ( EditLevel -> obstacle_name_list [ i ] == NULL )
-	    {
-		free_index = i ;
-		break;
-	    }
-	}
-	if ( free_index < 0 ) return;
-    }
     
     //--------------------
     // Maybe we must query the user for the desired new name.
@@ -600,30 +592,18 @@ action_change_obstacle_label_user ( Level EditLevel, obstacle *our_obstacle, cha
     // supplied as an argument.  That depends on whether the
     // argument string is NULL or not.
     //
-    if ( EditLevel -> obstacle_name_list [ free_index ] == NULL )
-	EditLevel -> obstacle_name_list [ free_index ] = "" ;
     if ( predefined_name == NULL )
     {
 	name = 
 	    GetEditableStringInPopupWindow ( 1000 , "\nPlease enter name for this obstacle: \n\n" ,
-					     EditLevel -> obstacle_name_list [ free_index ] );
+					     cur_idx != -1 ? EditLevel -> obstacle_name_list [ cur_idx ] : "");
     }
     else
     {
 	name = strdup(predefined_name);
     }
 
-    if(name && strlen(name) != 0)
-    {
-        action_change_obstacle_label ( EditLevel, our_obstacle, name );
-    }
-    else
-    {
-       EditLevel -> obstacle_name_list [ free_index ] = NULL;
-       our_obstacle -> name_index = -1;
-    }
-
-
+    action_change_obstacle_label ( EditLevel, our_obstacle, name);
 }   
 
 void
