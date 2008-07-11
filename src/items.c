@@ -2020,10 +2020,10 @@ get_floor_item_index_under_mouse_cursor ( )
     int i;
     
     //--------------------
-    // In the case that shift was pressed, we don't use the item positions but rather
+    // In the case that X was pressed, we don't use the item positions but rather
     // we use the item slot rectangles from the item texts.
     //
-    if ( ShiftPressed() )
+    if ( XPressed() )
     {
 	for ( i = 0 ; i < MAX_ITEMS_PER_LEVEL ; i++ )
 	{
@@ -2038,7 +2038,7 @@ get_floor_item_index_under_mouse_cursor ( )
 	}
     }
     //--------------------
-    // If no shift was pressed, we only use the floor position the mouse
+    // If no X was pressed, we only use the floor position the mouse
     // has pointed to and see if we can find an item that has geographically
     // that very same (or a similar enough) position.
     //

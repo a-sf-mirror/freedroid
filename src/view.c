@@ -1955,7 +1955,7 @@ AssembleCombatPicture ( int mask )
     
     ShowCombatScreenTexts ( mask );
     
-    if ( ShiftPressed() || always_show_items_text )
+    if ( XPressed() || always_show_items_text )
     {
 	update_item_text_slot_positions ( );
 	blit_all_item_slots ( );
