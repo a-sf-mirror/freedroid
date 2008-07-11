@@ -1,27 +1,18 @@
-Game url:     http://freedroid.sourceforge.net
-Project url:  http://sourceforge.net/projects/freedroid/
-Irc channel:  irc://irc.freenode.net/freedroid
-
-    FreedroidRPG: readme
+    FreedroidRPG: README
    ----------------------
 
-0. INDEX:
+0. INDEX
 =========
-   0. INDEX
-   ---------------
    1. Introduction
    2. Install
-   3. Screen resolution:
+   3. Basic controls
    4. Known Issues
-      - General
-      - Windows
-      - Ubuntu
-   5. Basic controls
+   5. Screen resolution
    6. Level editor
    7. Contact us
    8. Licence
 
-1. Introduction:
+1. Introduction
 ================
  This game tells the story of a world destroyed by a conflict between the bots and their human
  masters. Play as Tux in a quest to save the world from the murderous rebel bots who know no
@@ -37,55 +28,66 @@ Irc channel:  irc://irc.freenode.net/freedroid
  always take over your enemies and have them fight on your side.
 
 
-2. Install:
+2. Install
 ================
  Please refer to the INSTALL file located in the same folder as this file.
 
+3. Controls
+=============
+ Movement
 
-3. Screen resolution:
-=====================
- There are a few hidden high resolution settings only accessible from commandline. They are badly tested 
- and thus generally considered to be buggy and are unsupported. They however still be quite useful for many,
- especially for widescreen LCDs in fullscreen mode. 
+ The game is controlled using the mouse. Left click onto the locations you want to move to.  Hold 
+ the button down to keep moving in that direction.  Holding down CTRL key will make you run.
 
- At this writing the following resolutions are implemented
+ Attack
 
-     These codes correspond to the following resolutions available:
-     0 = 640 x 480 (default with SDL)
-     1 = 800 x 600 (default with OpenGL)
-     2 = 1024 x 748 
-     3 = 1280 x 1024 
-     4 = Unsupported! (1280 x 800) 
-     5 = Unsupported! (1440 x 900) 
-     6 = Unsupported! (1680 x 1050) 
+ Left clicking an enemy will cause Tux to come close to the bot and to start attacking it with the 
+ current weapon. If the current weapon is a gun then Tux will stand still and shoot the bot.
  
- Start with eg the commandline "freedroid -r 4" to choose a specific resolution.
- To get a current up to date list of available resolutions use "freedroid -r 99"
+ Special functions
 
- Some know issues for these unsupported resolutions:
- - Portrait image in dialoges overflows it's borders.
- - Off center lighting radious.
- - Text scrolling when talking to NPCs might be incorrect at times.
- - Map edges might be visable when moving from one level to the next.
- - On roughly 1000 or more vertical resolution and FULL SCREEN, dialogs sometimes switch back and forth between
-   full world and black background.
+ Use the right click to activate the currently selected skill/program. 
 
+ Escape     ... Show main menu
+ P          ... Pause
+
+ I          ... Inventory panel
+ C          ... Character panel
+ S          ... Skills panel
+ Space      ... Close all open panels
+ Q          ... Quest log
+
+ 0-9        ... Use quick-inventory items 0-9
+ F1-F10     ... Quick-select program 1 through 10
+ F11        ... Toggle fullscreen (Linux only)
+ F12        ... Take screenshot
+
+ Hold A     ... Attack while staying at the same position
+ Hold Shift ... Keep current target selected when moving
+ Tab        ... Toggle automap
+
+ R          ... Reload weapon
+ Hold Ctrl  ... Run
+ U          ... Toggle always run
+
+ Hold X     ... Show labels for items on the ground
+ Z          ... Toggle show labels for items on the ground
+ T          ... Toggle walls becoming transparent when Tux approaches
 
 4. Known Issues:
 ================
 - General
-  * Path tracing in the game is partially buggy. Sometimes NPCs, bots or even Tux eg can walk from A to B but
-  not from B to A. This eg causes the town Doctor to "get stuck" in the toilet (though possibly he just had
+  * Pathfinding in the game is partially buggy. Sometimes NPCs, bots or even Tux can walk from A to B but
+  not from B to A. This e.g. causes the town Doctor to "get stuck" in the toilet (though possibly he just had
   something bad for dinner). We are working on solving this and several related issues, but it has proven to be
   quite difficult.
   * Most melee and ranged weapons only have placeholder laserswords/rifles for their Tux holding and attack 
-  animations. If you are skilled with 3D modelling, please help us out to fix this.
+  animations. If you are skilled with 3D modelling, please help us out.
 
 - Windows 
   * Using the tool IZarc to unpack the downloaded zip breaks the game. IZarc apparently can not handle filenames
-  without ".fileextention" at the end. Please use other options, eg 7zip, winzip, winrar etc, to correctly unpack
-  the game.
-
+  without extensions. Please use other options, eg 7zip, winzip, winrar etc, to correctly unpack the game.
+  * The game will use the system language by default, you cannot select another language in-game.
 
 - Ubuntu
   * Changing language in game will not work by default since Ubuntu does not ship with standard ISO locales, 
@@ -100,55 +102,33 @@ Irc channel:  irc://irc.freenode.net/freedroid
                 ru_RU.cp1251 cp1251
         3) Run
                 sudo dpkg-reconfigure locales
-        4) You Should now be able to chose the corresponding languages in the in game menu.
+        4) You should now be able to chose the corresponding languages in the in game menu.
 
+5. Screen resolution
+=====================
+ There are a few hidden high resolution settings only accessible from commandline. They are badly tested 
+ and thus generally considered to be buggy and are unsupported. They however can still be quite useful for many,
+ especially for widescreen LCDs in fullscreen mode. 
 
-5. Controls:
-=============
- Movement:
+ As of this writing the following resolutions codes are implemented:
 
- The game is controlled using the mouse:  Left click onto the locations you want to move to.  Hold 
- the button down to keep moving in that direction.  Holding down CTRL key will make you run.
-
- Attacking:
-
- Left clicking an enemy will cause Tux to come close to the bot and to start attacking it with the 
- current weapon. If the current weapon is a gun then Tux will stand still and shoot the bot.
+     0 = 640 x 480 (default with SDL)
+     1 = 800 x 600 (default with OpenGL)
+     2 = 1024 x 748 
+     3 = 1280 x 1024 
+     4 = Unsupported! (1280 x 800) 
+     5 = Unsupported! (1440 x 900) 
+     6 = Unsupported! (1680 x 1050) 
  
- Special functions:
+ Start with e.g. the commandline "freedroid -r4" to choose a specific resolution.
+ To get an up-to-date list of available resolutions use "freedroid -r99".
 
- Use the right click to activate special powers, spells and skills.  Use the mouse wheel or cursor keys 
- to switch to 'examine' special function.
-
-
- Other Keys:
-
- Escape     ... Show main menu
- P          ... Pause
-
- I          ... Inventory panel
- C          ... Character panel
- S          ... Skills panel
- Space      ... Close all open panels
- Q          ... Quest status log
-
- 0-9        ... Use quick-inventory items 0-9
- F1-F10     ... Quick-select program 1 through 10
- F11        ... Toggle Full screen / Windowed mode
- F12        ... Take screenshot
-
- Hold A     ... Attack while staying in the same position
- Hold Shift ... Keep attacking same target (Tux will also move towards the target if target is out of range)
- Tab        ... Toggle automap
-
- R          ... Reload weapon
- Hold Ctrl  ... Run mode
- U          ... Toggle run mode
-
- Z          ... Toggle show labels for items on the ground
- Hold X     ... Show labels for items on the ground & pick them up by clicking their name label.
- T          ... Toggle walls becoming transparent when Tux approaches
-
+ Some known issues for these unsupported resolutions:
+ - Portrait image in dialogs overflows its borders
+ - Off center light radius
+ - Incorrect text scrolling when talking to NPCs at times
+ - Map edges might be visible when moving from one level to the next.
+ - Dialogs sometimes switch back and forth between full world and black background.
 
 6. Level editor:
 ================
@@ -157,8 +137,11 @@ Irc channel:  irc://irc.freenode.net/freedroid
 
 7. Contact:
 ===========
+ Website:     http://freedroid.sourceforge.net/
+ IRC channel:  #freedroid on irc.freenode.net
  Mailing list: freedroid-discussion@lists.sourceforge.net
- Irc channel:  #freedroid on irc.freenode.net
+ Sourceforge project page:  http://sourceforge.net/projects/freedroid/
+
 
 
 8. Licence:
