@@ -507,19 +507,20 @@ void
 action_change_obstacle_label ( Level EditLevel, obstacle *obstacle, char *name)
 {
     int index = -1;
+    int check_double;
     char *old_name = NULL;
     if (obstacle -> name_index >= 0) {
 	index = obstacle -> name_index;
     } else {
 	int i;
 	for ( i = 0 ; i < MAX_OBSTACLE_NAMES_PER_LEVEL ; i ++ )
-	{
-	    if ( EditLevel -> obstacle_name_list [ i ] == NULL )
 	    {
+	    if ( EditLevel -> obstacle_name_list [ i ] == NULL )
+		{
 		index = i ;
 		break;
+		}
 	    }
-	}
 	if ( index < 0 ) return;	
     }
     old_name = EditLevel -> obstacle_name_list [ index ];
@@ -531,6 +532,38 @@ action_change_obstacle_label ( Level EditLevel, obstacle *obstacle, char *name)
 	obstacle -> name_index = index ;
     }
     action_push (ACT_SET_OBSTACLE_LABEL, obstacle, old_name);
+    
+    //--------------------
+    // But even if we fill in something new, we should first
+    // check against double entries of the same label.  Let's
+    // do it...
+    //
+    for ( check_double = 0 ; check_double < MAX_OBSTACLE_NAMES_PER_LEVEL ; check_double++ )
+	{
+	//--------------------
+	// We must not use null pointers for string comparison...
+	//
+	if ( EditLevel -> obstacle_name_list [ check_double ] == NULL ) continue ;
+
+	//--------------------
+	// We must not overwrite ourself with us in foolish ways :)
+	//
+	if ( check_double == index ) continue ;
+
+	//--------------------
+	// But in case of real double-entries, we'll handle them right.
+	//
+	if ( ! strcmp ( EditLevel -> obstacle_name_list [ index ] , 
+		    EditLevel -> obstacle_name_list [ check_double ] ) )
+	    {
+	    ErrorMessage ( __FUNCTION__  , "\
+		    The label %s did already exist on this map!  Deleting old entry in favour of the new one!",
+		    NO_NEED_TO_INFORM , IS_WARNING_ONLY, EditLevel -> obstacle_name_list [ index ] );
+	    EditLevel -> obstacle_name_list [ index ] = NULL ;
+	    obstacle -> name_index = check_double ;
+	    break;
+	    }
+	}
 }
     
 void
@@ -538,7 +571,6 @@ action_change_obstacle_label_user ( Level EditLevel, obstacle *our_obstacle, cha
 {
     int i;
     int free_index=(-1);
-    int check_double;
     char *name;
     //--------------------
     // If the obstacle already has a name, we can use that index for the 
@@ -584,37 +616,6 @@ action_change_obstacle_label_user ( Level EditLevel, obstacle *our_obstacle, cha
     if(name && strlen(name) != 0)
     {
         action_change_obstacle_label ( EditLevel, our_obstacle, name );
-            //--------------------
-            // But even if we fill in something new, we should first
-            // check against double entries of the same label.  Let's
-            // do it...
-            //
-            for ( check_double = 0 ; check_double < MAX_OBSTACLE_NAMES_PER_LEVEL ; check_double++ )
-            {
-	            //--------------------
-	            // We must not use null pointers for string comparison...
-	            //
-	            if ( EditLevel -> obstacle_name_list [ check_double ] == NULL ) continue ;
-	
-	            //--------------------
-	            // We must not overwrite ourself with us in foolish ways :)
-	            //
-	            if ( check_double == free_index ) continue ;
-	
-	            //--------------------
-	            // But in case of real double-entries, we'll handle them right.
-	            //
-	            if ( ! strcmp ( EditLevel -> obstacle_name_list [ free_index ] , 
-			            EditLevel -> obstacle_name_list [ check_double ] ) )
-	            {
-	                ErrorMessage ( __FUNCTION__  , "\
-The label just entered did already exist on this map!  Deleting old entry in favour of the new one!",
-				                   NO_NEED_TO_INFORM , IS_WARNING_ONLY );
-	                EditLevel -> obstacle_name_list [ free_index ] = NULL ;
-	                our_obstacle -> name_index = check_double ;
-	                break;
-	            }
-	        }
     }
     else
     {
