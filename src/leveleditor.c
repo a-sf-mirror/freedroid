@@ -578,7 +578,7 @@ action_change_obstacle_label_user ( Level EditLevel, obstacle *our_obstacle, cha
     }
     else
     {
-	name = EditLevel -> obstacle_name_list [ free_index ];
+	name = strdup(predefined_name);
     }
 
     if(name && strlen(name) != 0)
