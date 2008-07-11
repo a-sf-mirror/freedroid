@@ -58,19 +58,19 @@ Song name to play in the end title if the mission is completed: TheBeginning.ogg
 
    CONTROLS
 
- Movement:
+ Movement
 
- The game is controlled using the mouse:  Left click onto the locations you want to move to.  Hold the button down to keep moving in that direction.  Holding down CTRL key will make you run.
+ The game is controlled using the mouse. Left click onto the locations you want to move to.  Hold 
+ the button down to keep moving in that direction.  Holding down CTRL key will make you run.
 
- Attacking:
+ Attack
 
- Left clicking an enemy will cause Tux to come close to the bot and to start attacking it with the current weapon. If the current weapon is a gun then Tux will stand still and shoot the bot.
+ Left clicking an enemy will cause Tux to come close to the bot and to start attacking it with the 
+ current weapon. If the current weapon is a gun then Tux will stand still and shoot the bot.
  
- Special functions:
+ Special functions
 
- Use the right click to activate special powers, spells and skills.  Use the mouse wheel or cursor keys to switch to 'examine' and 'loot' special functions.
-
- Other Keys:
+ Use the right click to activate the currently selected skill/program. 
 
  Escape     ... Show main menu
  P          ... Pause
@@ -79,42 +79,31 @@ Song name to play in the end title if the mission is completed: TheBeginning.ogg
  C          ... Character panel
  S          ... Skills panel
  Space      ... Close all open panels
- Q          ... Quest status log
+ Q          ... Quest log
 
  0-9        ... Use quick-inventory items 0-9
  F1-F10     ... Quick-select program 1 through 10
- F11        ... Toggle Full screen / Windowed mode
+ F11        ... Toggle fullscreen (Linux only)
  F12        ... Take screenshot
 
- Hold A     ... Attack while staying in the same position
- Hold Shift ... Keep attacking same target (Tux will also move towards the target if target is out of range)
+ Hold A     ... Attack while staying at the same position
+ Hold Shift ... Keep current target selected when moving
  Tab        ... Toggle automap
 
  R          ... Reload weapon
- Hold Ctrl  ... Run mode
- U          ... Toggle run mode
+ Hold Ctrl  ... Run
+ U          ... Toggle always run
 
+ Hold X     ... Show labels for items on the ground
  Z          ... Toggle show labels for items on the ground
- Hold X     ... Show labels for items on the ground & pick them up by clicking their name label.
  T          ... Toggle walls becoming transparent when Tux approaches
 
- Spells and Skills:
- Takeover/Chat skill:  To chat with a friendly droid, it's enough to click on 
+ Takeover/Chat  
+ To chat with a friendly droid, it's enough to click on 
  it.  To take over a hostile bot, select the takeover/chat skill from 
- the skills screen (level 1), then click the right mouse button to initiate 
+ the skills screen, then click the right mouse button to initiate 
  takeover.
  For the takeover game, you can use the mouse wheel or the cursor keys.
-
- Home teleport spell:  Select the skill and right click somewhere to teleport 
- to the town. If used in town the skill will send you back to where you were
- before you used it the last time.
-
- Healing spell:  Select the healing spell from the skills screen and right 
- click anywhere on the screen.
-
- Attack spells:
- These come in many varieties which are yours to explore. To use them you usually right click on the
- enemy you want to target, but there are exceptions to that rule.
 
 
  If you are stuck and need help, feel free to come to #freedroid on irc.freenode.net and ask for help.
