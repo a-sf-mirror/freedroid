@@ -1187,7 +1187,7 @@ inventory_size_x=2
 inventory_size_y=1
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=12
-Item description text=_"While solid slugs or possibly 8-10 Gauge would be the most effective vs armoursed targets, beggars can't be choosers. One just has to use any type of shell one is lucky enough to stumbles across. And even 20+ Gauge cartridges mostly used for bird hunting can with luck damage a bot."
+Item description text=_"While solid slugs or possibly 8-10 Gauge would be the most effective vs armored targets, beggars can't be choosers. One just has to use any type of shell one is lucky enough to stumbles across. And even 20+ Gauge cartridges mostly used for bird hunting can with luck damage a bot."
 ** End of new item specification subsection **
 
 /*
