@@ -3803,7 +3803,7 @@ Item uses rotation series with prefix="brain_enlargement_antidode"
 Items of this type collect together in inventory="yes"
 File or directory name for inventory image="brain_enlargement_antidode/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
-Base list price=50
+Base list price=0
 Item description text=_"These pills can reverse the harmful effects of the 'brain enlargement pills' that are publicly sold via the internet. The planet-wide guild of medics has recommended not to respond to these ads at all, while attempts to entirely ban the distribution of those pills were never completely successful."
 ** End of new item specification subsection **
 
