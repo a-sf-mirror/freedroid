@@ -3763,7 +3763,7 @@ Items of this type collect together in inventory="yes"
 File or directory name for inventory image="pill_strength/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=250
-Item description text=_"These pills permanently raise strength within a person. They work on a nano-technological basis. Consult you physician, the receipt or pharmacy experts for details on intended effects, possible interactions and side effects of this drug."
+Item description text=_"These pills permanently raise strength within a person. They work on a nano-technological basis. Consult your physician, the receipt or pharmacy experts for details on intended effects, possible interactions and side effects of this drug."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
@@ -3777,7 +3777,7 @@ Items of this type collect together in inventory="yes"
 File or directory name for inventory image="pill_dexterity/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=250
-Item description text=_"These pills permanently raise dexterity within a person. They work on a nano-technological basis. Consult you physician, the receipt or pharmacy experts for details on intended effects, possible interactions and side effects of this drug."
+Item description text=_"These pills permanently raise dexterity within a person. They work on a nano-technological basis. Consult your physician, the receipt or pharmacy experts for details on intended effects, possible interactions and side effects of this drug."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
@@ -3804,7 +3804,7 @@ Items of this type collect together in inventory="yes"
 File or directory name for inventory image="brain_enlargement_antidode/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=0
-Item description text=_"These pills can reverse the harmful effects of the 'brain enlargement pills' that are publicly sold via the internet. The planet-wide guild of medics has recommended not to respond to these ads at all, while attempts to entirely ban the distribution of those pills were never completely successful."
+Item description text=_"These pills can reverse the harmful effects of the 'brain enlargement pills' that are publicly sold via the Internet. The planet-wide guild of medics has recommended not to respond to these ads at all, while attempts to entirely ban the distribution of those pills were never completely successful."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
