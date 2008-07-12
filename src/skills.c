@@ -1,7 +1,7 @@
-/* 
+/*
  *
  *   Copyright (c) 2002, 2003 Johannes Prix
- *   Copyright (c) 2004-2007 Arthur Huillet 
+ *   Copyright (c) 2004-2007 Arthur Huillet
  *
  *  This file is part of Freedroid
  *
@@ -16,8 +16,8 @@
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
- *  along with Freedroid; see the file COPYING. If not, write to the 
- *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
+ *  along with Freedroid; see the file COPYING. If not, write to the
+ *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
  *  MA  02111-1307  USA
  *
  */
@@ -73,12 +73,12 @@ int Override_Power_Limit=0;
 
 /**
  * This function improves a generic skill (hack melee ranged magic) by one
- * 
+ *
  */
 void
 ImproveSkill( int * skill )
 {
-    if ( *skill >= NUMBER_OF_SKILL_LEVELS - 1) return;  
+    if ( *skill >= NUMBER_OF_SKILL_LEVELS - 1) return;
     (*skill)++;
 }; // void ImproveSkill ( int * skill )
 
@@ -139,12 +139,12 @@ static float calculate_program_busy_time ( )
 int get_program_index_with_name ( const char * pname )
 {
     int i = 0;
-    while ( i < number_of_skills ) 
+    while ( i < number_of_skills )
 	{
 	if ( ! strcmp(SpellSkillMap[i] . name, pname ) )
 		return i;
 	i++;
-	}	
+	}
 
 	fprintf(stderr, "%s\n", pname);
 
@@ -189,14 +189,14 @@ location HomeSpot;
 void
 HandleCurrentlyActivatedSkill()
 {
-    if ( ! MouseRightClicked() || Me . busy_time > 0 ) 
+    if ( ! MouseRightClicked() || Me . busy_time > 0 )
 	return;
-    
+
     int Grabbed_InvPos = GetInventoryItemAt ( GetInventorySquare_x ( GetMousePos_x() ) , GetInventorySquare_y ( GetMousePos_y() ) );
     if ( Grabbed_InvPos != -1 )
-	if ( ItemMap [ Me.Inventory[ Grabbed_InvPos ] . type ] . item_can_be_applied_in_combat ) 
+	if ( ItemMap [ Me.Inventory[ Grabbed_InvPos ] . type ] . item_can_be_applied_in_combat )
 	return; //if the cursor is over an item that can be applied, then the player wants to apply it not trigger a spell
-    
+
     if ( Me . SkillLevel [ Me . readied_skill ] <= 0 ) return;
 
     /* We calculate the spellcost and check the power limit override - the temperature is raised further down, when the actual effect
@@ -211,7 +211,7 @@ HandleCurrentlyActivatedSkill()
 	}
     Override_Power_Limit = 0;
 
-    switch ( SpellSkillMap [ Me . readied_skill ] . form ) 
+    switch ( SpellSkillMap [ Me . readied_skill ] . form )
 	{
 	case PROGRAM_FORM_IMMEDIATE:
 	case PROGRAM_FORM_BULLET:
@@ -224,10 +224,10 @@ HandleCurrentlyActivatedSkill()
     Me . busy_time = calculate_program_busy_time();
     Me . busy_type = RUNNING_PROGRAM;
 
-return;    
+return;
 }; // void HandleCurrentlyActivatedSkill( void )
 
-int 
+int
 DoSkill(int skill_index, int SpellCost)
 {
     enemy * droid_below_mouse_cursor = NULL;
@@ -236,11 +236,11 @@ DoSkill(int skill_index, int SpellCost)
     float effdur = calculate_program_effect_duration ( skill_index );
 
     /*we handle the form of the program now*/
-    switch ( SpellSkillMap [ skill_index ] . form ) 
+    switch ( SpellSkillMap [ skill_index ] . form )
 	{
 	case PROGRAM_FORM_IMMEDIATE:
 		droid_below_mouse_cursor = GetLivingDroidBelowMouseCursor ( ) ;
-		if ( droid_below_mouse_cursor == NULL ) 
+		if ( droid_below_mouse_cursor == NULL )
 			goto done_handling_instant_hits;
 		if ( ! DirectLineWalkable ( Me . pos . x ,
 					    Me . pos . y ,
@@ -259,7 +259,7 @@ DoSkill(int skill_index, int SpellCost)
 
 		if ( hitdmg > 0 )
 		    hit_enemy(droid_below_mouse_cursor, hitdmg, 1, -1, 1);
-		
+
 		if ( ! strcmp ( SpellSkillMap [ skill_index ] . effect, "paralyze" ) )
 		    droid_below_mouse_cursor -> paralysation_duration_left += effdur;
 		if ( ! strcmp ( SpellSkillMap [ skill_index ] . effect, "slowdown" ) )
@@ -273,7 +273,7 @@ DoSkill(int skill_index, int SpellCost)
 
 	        Me . temperature += SpellCost;
 		break;
-	
+
 	case PROGRAM_FORM_SELF:
 		Me . energy -= hitdmg;
                 Me . temperature += SpellCost;
@@ -284,18 +284,18 @@ DoSkill(int skill_index, int SpellCost)
 
 	case PROGRAM_FORM_BULLET:
                 Me . temperature += SpellCost;
-	
+
 		moderately_finepoint target_location;
 	        target_location . x = translate_pixel_to_map_location ( input_axis.x , input_axis.y , TRUE ) ;
 		target_location . y = translate_pixel_to_map_location ( input_axis.x , input_axis.y , FALSE ) ;
-		
+
 		bullet bul_parms;
 		/*XXX hardcoded laser pistol type*/
-		if (  SpellSkillMap [ skill_index ] . graphics_code != -1 ) 
+		if (  SpellSkillMap [ skill_index ] . graphics_code != -1 )
 			FillInDefaultBulletStruct( &bul_parms,  SpellSkillMap [ skill_index ] . graphics_code, GetItemIndexByName("Laser pistol") );
 		else
 			FillInDefaultBulletStruct( &bul_parms, MAGENTA_BULLET, GetItemIndexByName("Laser pistol"));
-	
+
 		bul_parms.freezing_level = strcmp( SpellSkillMap [ skill_index ] . effect, "slowdown" ) ? 0 : effdur;
 		bul_parms.poison_duration = strcmp ( SpellSkillMap [ skill_index ] . effect, "poison" ) ? 0 : effdur;
 		bul_parms.poison_damage_per_sec = strcmp ( SpellSkillMap [ skill_index ] . effect, "poison" ) ? 0 : hitdmg;
@@ -309,13 +309,13 @@ DoSkill(int skill_index, int SpellCost)
 		else bul_parms.hit_type = ATTACK_HIT_BOTS;
 
 
-		FireTuxRangedWeaponRaw ( GetItemIndexByName("Laser pistol") , -1 , &bul_parms, target_location); 
-		
+		FireTuxRangedWeaponRaw ( GetItemIndexByName("Laser pistol") , -1 , &bul_parms, target_location);
+
 		return 1; //no extra effects
 
 	case PROGRAM_FORM_RADIAL:
 		Me . temperature += SpellCost;
-		
+
 		int i,j;
 		for ( i = 0 ; i < MAX_ACTIVE_SPELLS ; i ++ )
 	            {
@@ -334,12 +334,12 @@ DoSkill(int skill_index, int SpellCost)
 		else if (SpellSkillMap [ skill_index ]  . hurt_humans )
 		    AllActiveSpells [ i ].hit_type = ATTACK_HIT_HUMANS;
 		else AllActiveSpells [ i ].hit_type = ATTACK_HIT_BOTS;
- 
+
 	        for ( j = 0 ; j < RADIAL_SPELL_DIRECTIONS ; j ++ )
-	            { 
+	            {
   	            AllActiveSpells [ i ] . active_directions [ j ] = TRUE ;
                     }
-		
+
 		AllActiveSpells [ i ] . freeze_duration = strcmp( SpellSkillMap [ skill_index ] . effect, "slowdown" ) ? 0 : effdur;
 		AllActiveSpells [ i ] .poison_duration = strcmp ( SpellSkillMap [ skill_index ] . effect, "poison" ) ? 0 : effdur;
 		AllActiveSpells [ i ] .poison_dmg = strcmp ( SpellSkillMap [ skill_index ] . effect, "poison" ) ? 0 : hitdmg;
@@ -375,10 +375,10 @@ DoSkill(int skill_index, int SpellCost)
 		goto out;
 
 
-	if ( ! droid_below_mouse_cursor-> is_friendly ) 
+	if ( ! droid_below_mouse_cursor-> is_friendly )
 	    {
 	    //--------------------
-	    // Only droids can be hacked.  Humans can't be 
+	    // Only droids can be hacked.  Humans can't be
 	    // hacked.
 	    //
 	    if ( Takeover ( droid_below_mouse_cursor ) )
@@ -388,10 +388,10 @@ DoSkill(int skill_index, int SpellCost)
 		    // Me . temperature -= SpellCost;
                     // go directly to chat to choose droid program
                     if ( GameConfig . talk_to_bots_after_takeover )
-			    ChatWithFriendlyDroid ( droid_below_mouse_cursor ) ;     
+			    ChatWithFriendlyDroid ( droid_below_mouse_cursor ) ;
 		    }
 	    }
-	else 
+	else
 	    {
 	    Me . temperature -= SpellCost; //pretend nothing happened
 	    }
@@ -401,7 +401,7 @@ DoSkill(int skill_index, int SpellCost)
     if ( ! strcmp ( SpellSkillMap [ skill_index ] . effect, "weapon" ) )
    	{
 	if (! MouseCursorIsInUserRect ( GetMousePos_x() , GetMousePos_y() ) ) goto out;
-        if ( MouseCursorIsInUserRect ( GetMousePos_x()  , 
+        if ( MouseCursorIsInUserRect ( GetMousePos_x()  ,
 				      GetMousePos_y()  ) )
 		tux_wants_to_attack_now ( TRUE );
 	goto out;
@@ -409,15 +409,15 @@ DoSkill(int skill_index, int SpellCost)
 
     if ( ! strcmp ( SpellSkillMap [ skill_index ] . effect, "repair" ) )
    	{
-	if ( ! MouseCursorIsInInvRect( GetMousePos_x()  , 
-					 GetMousePos_y()  ) 
+	if ( ! MouseCursorIsInInvRect( GetMousePos_x()  ,
+					 GetMousePos_y()  )
 		     || ( !GameConfig.Inventory_Visible ) )
 		{
 		    //--------------------
 		    // Do nothing here.  The right mouse click while in inventory screen
 		    // will be handled in the inventory screen management function.
 		    //
-		    PlayOnceNeededSoundSample ( "effects/tux_ingame_comments/CantRepairThat.ogg" , 
+		    PlayOnceNeededSoundSample ( "effects/tux_ingame_comments/CantRepairThat.ogg" ,
 						FALSE , FALSE );
 		}
 	goto out;
@@ -458,12 +458,12 @@ DoSkill(int skill_index, int SpellCost)
 
 out:
 
-return 1;    
+return 1;
 }; // void HandleCurrentlyActivatedSkill( void )
 
 
 /**
- * This function checks if a given screen position lies within the 
+ * This function checks if a given screen position lies within the
  * one of the skill icons and returns the number of that skill icon.
  */
 int
@@ -475,7 +475,7 @@ CursorIsOnWhichSkillButton( int x , int y )
     //
     if ( x > SkillScreenRect.x + 16 + 64 ) return ( -1 );
     if ( x < SkillScreenRect.x + 16      ) return ( -1 );
-    
+
     //--------------------
     // Now we can check on which skill rectangle exactly the cursor
     // is hovering, since we know that it is hitting, horizontally
@@ -483,33 +483,33 @@ CursorIsOnWhichSkillButton( int x , int y )
     //
     if ( y < SkillScreenRect.y + 16 + 0 * 64      ) return ( -1 );
     if ( y < SkillScreenRect.y + 16 + 1 * 64      ) return (  0 );
-    
+
     if ( y < SkillScreenRect.y + 16 + 1 * 64 + 16 ) return ( -1 );
     if ( y < SkillScreenRect.y + 16 + 2 * 64 + 16 ) return (  1 );
-    
+
     if ( y < SkillScreenRect.y + 16 + 2 * 64 + 2 * 16 ) return ( -1 );
     if ( y < SkillScreenRect.y + 16 + 3 * 64 + 2 * 16 ) return (  2 );
-    
+
     if ( y < SkillScreenRect.y + 16 + 3 * 64 + 3 * 16 ) return ( -1 );
     if ( y < SkillScreenRect.y + 16 + 4 * 64 + 3 * 16 ) return (  3 );
-    
+
     if ( y < SkillScreenRect.y + 16 + 4 * 64 + 4 * 16 ) return ( -1 );
     if ( y < SkillScreenRect.y + 16 + 5 * 64 + 4 * 16 ) return (  4 );
-    
+
     return ( -1 );
 }; // int CursorIsOnWhichSkillButton( int x , int y )
 
 
 /**
- * This function checks if a given screen position lies within 
- * one of the spell level buttons and returns the number of that 
+ * This function checks if a given screen position lies within
+ * one of the spell level buttons and returns the number of that
  * spell level button.
  */
 int
 CursorIsOnWhichSpellPageButton( int x , int y )
 {
     int i;
-    
+
     //--------------------
     // First we check if the cursor is in at least horizontally
     // and vertically in the line with the spell level buttons.
@@ -518,7 +518,7 @@ CursorIsOnWhichSpellPageButton( int x , int y )
     if ( x < SkillScreenRect.x + SPELL_LEVEL_BUTTONS_X       ) return ( -1 );
     if ( y > SkillScreenRect.y + SPELL_LEVEL_BUTTONS_Y + 16  ) return ( -1 );
     if ( y < SkillScreenRect.y + SPELL_LEVEL_BUTTONS_Y       ) return ( -1 );
-    
+
     //--------------------
     // Now we can check on which skill rectangle exactly the cursor
     // is hovering, since we know that it is hitting, horizontally
@@ -526,14 +526,14 @@ CursorIsOnWhichSpellPageButton( int x , int y )
     //
     for ( i = 0 ; i < NUMBER_OF_SKILL_PAGES ; i ++ )
     {
-	if ( x < SkillScreenRect.x + SPELL_LEVEL_BUTTONS_X + ( i + 1 ) * SPELL_LEVEL_BUTTON_WIDTH ) 
+	if ( x < SkillScreenRect.x + SPELL_LEVEL_BUTTONS_X + ( i + 1 ) * SPELL_LEVEL_BUTTON_WIDTH )
 	    return i;
     }
-    
+
     return ( -1 );
 }; // int CursorIsOnWhichSpellLevelButton( int x , int y )
 
-/** 
+/**
  *
  *
  */
@@ -541,44 +541,44 @@ void
 ShowSkillsExplanationScreen( void )
 {
     SDL_Rect TargetSkillRect;
-    
+
     //--------------------
     // This should draw the background...
     //
     blit_special_background ( SKILL_SCREEN_EXPLANATION_BACKGROUND_CODE ) ;
 
     //--------------------
-    // We will use the FPS display font, cause the small one isn't 
+    // We will use the FPS display font, cause the small one isn't
     // very well readable on the silver background
     //
     SetCurrentFont ( FPS_Display_BFont );
-    
+
     TargetSkillRect.x = 15;
     TargetSkillRect.y = 15;
-    
+
     LoadOneSkillSurfaceIfNotYetLoaded ( Me . readied_skill );
-    
+
     if ( use_open_gl )
     {
-	draw_gl_textured_quad_at_screen_position ( &SpellSkillMap [ Me . readied_skill ] . icon_surface , 
+	draw_gl_textured_quad_at_screen_position ( &SpellSkillMap [ Me . readied_skill ] . icon_surface ,
 						  TargetSkillRect . x , TargetSkillRect . y );
     }
     else
     {
-	our_SDL_blit_surface_wrapper ( SpellSkillMap [ Me . readied_skill ] . icon_surface . surface , 
+	our_SDL_blit_surface_wrapper ( SpellSkillMap [ Me . readied_skill ] . icon_surface . surface ,
 				       NULL , Screen , &TargetSkillRect );
     }
-    
-    
+
+
     TargetSkillRect.w = 320 - 15 - 15;
     TargetSkillRect.h = 480 - 15 ;
-    DisplayText( D_(SpellSkillMap [ Me . readied_skill ] . description) , 16 , 16+64+16, 
+    DisplayText( D_(SpellSkillMap [ Me . readied_skill ] . description) , 16 , 16+64+16,
 		 &TargetSkillRect , TEXT_STRETCH );
 
 
 }; // void ShowSkillsExplanationScreen( void )
 
-/** 
+/**
  * We will draw only those skills to the skills inventory, that are
  * already present in the Tux.  That way the game remains open for new
  * skills to the player and he doesn't now in advance which skills there
@@ -641,7 +641,7 @@ activate_nth_aquired_skill ( int skill_num )
 	    Me . readied_skill = SkillSubsetMap [ i ] ;
 	}
     }
-  
+
 }; // void activate_nth_skill ( int skill_num )
 
 /**
@@ -650,7 +650,7 @@ activate_nth_aquired_skill ( int skill_num )
  * you currenlty have availabe and you can select a new readied skill by
  * clicking on it with the mouse.
  */
-void 
+void
 ShowSkillsScreen ( void )
 {
 #define INTER_SKILLRECT_DIST 17
@@ -664,14 +664,14 @@ ShowSkillsScreen ( void )
     int SkillSubsetMap [ number_of_skills ] ;
     int SkillOfThisSlot;
     point SkillRectLocations [ NUMBER_OF_SKILLS_PER_SKILL_PAGE ] ;
-  
+
     DebugPrintf ( 2 , "\n%s(): Function call confirmed." , __FUNCTION__ );
-    
+
     SkillScreenRect . x = CHARACTERRECT_X;
-    SkillScreenRect . y = 0; 
+    SkillScreenRect . y = 0;
     SkillScreenRect . w = CHARACTERRECT_W;
     SkillScreenRect . h = CHARACTERRECT_H;
-    
+
     for ( i = 0 ; i < NUMBER_OF_SKILLS_PER_SKILL_PAGE ; i ++ )
     {
 	SkillRectLocations [ i ] . x = SkillScreenRect . x + 20 ;
@@ -679,31 +679,31 @@ ShowSkillsScreen ( void )
     }
 
     //--------------------
-    // If the log is not set to visible right now, we do not need to 
+    // If the log is not set to visible right now, we do not need to
     // do anything more, but to restore the usual user rectangle size
     // back to normal and to return...
     //
     if ( GameConfig . SkillScreen_Visible == FALSE ) return;
 
     //--------------------
-    // We will use the FPS display font, cause the small one isn't 
+    // We will use the FPS display font, cause the small one isn't
     // very well readable on the silver background
     //
     SetCurrentFont ( FPS_Display_BFont );
-    
+
     //--------------------
     // Maybe the skill circle images for clicking between different spell circles
     // have not been loaded yet.  Then it is time to do so.  If this was already
     // done before, then the function will know it and don't do anything anyway.
     //
     Load_Skill_Level_Button_Surfaces( );
-    
+
     // --------------------
     // We will need the current mouse position on several spots...
     //
     CurPos.x = GetMousePos_x()  ;
     CurPos.y = GetMousePos_y()  ;
-    
+
     //--------------------
     // We will draw only those skills to the skills inventory, that are
     // already present in the Tux.  That way the game remains open for new
@@ -711,7 +711,7 @@ ShowSkillsScreen ( void )
     // are, which is more interesting than complete control and overview.
     //
     establish_skill_subset_map ( SkillSubsetMap );
-    
+
     //--------------------
     // At this point we know, that the skill screen is desired and must be
     // displayed in-game:
@@ -720,70 +720,70 @@ ShowSkillsScreen ( void )
     // our_SDL_blit_surface_wrapper ( SkillScreenImage , NULL , Screen , &SkillScreenRect );
     //
     blit_special_background ( SKILL_SCREEN_BACKGROUND_CODE );
-    
+
     if ( GameConfig . skill_explanation_screen_visible )
 	ShowSkillsExplanationScreen( );
-    
+
     //--------------------
     // According to the page in the spell book currently opened,
     // we draw a 'button' or activation mark over the appropriate spot
     //
-    SpellLevelRect.x = SkillScreenRect.x + SPELL_LEVEL_BUTTONS_X + 
+    SpellLevelRect.x = SkillScreenRect.x + SPELL_LEVEL_BUTTONS_X +
 	SPELL_LEVEL_BUTTON_WIDTH * GameConfig.spell_level_visible ;
     SpellLevelRect.y = SkillScreenRect.y + SPELL_LEVEL_BUTTONS_Y ;
-    our_SDL_blit_surface_wrapper ( 
-	SpellLevelButtonImageList [ GameConfig.spell_level_visible ] . surface , 
+    our_SDL_blit_surface_wrapper (
+	SpellLevelButtonImageList [ GameConfig.spell_level_visible ] . surface ,
 	NULL , Screen , &SpellLevelRect );
-    
+
     //--------------------
-    // Now we fill in the skills available to this bot.  ( For now, these skills 
+    // Now we fill in the skills available to this bot.  ( For now, these skills
     // are not class-specific, like in diablo or something, but this is our first
     // approach to the topic after all.... :)
     //
     for ( i = 0 ; i < NUMBER_OF_SKILLS_PER_SKILL_PAGE ; i ++ )
     {
 	ButtonRect.x = SkillRectLocations [ i ] . x ;
-	ButtonRect.y = SkillRectLocations [ i ] . y ; 
+	ButtonRect.y = SkillRectLocations [ i ] . y ;
 	ButtonRect.w = 64;
 	ButtonRect.h = 64;
-	
+
 	if (  i + NUMBER_OF_SKILLS_PER_SKILL_PAGE * GameConfig.spell_level_visible >= number_of_skills ) break;
 	SkillOfThisSlot = SkillSubsetMap [ i + NUMBER_OF_SKILLS_PER_SKILL_PAGE * GameConfig.spell_level_visible ] ;
 	if ( SkillOfThisSlot < 0 ) continue;
-	
+
 	LoadOneSkillSurfaceIfNotYetLoaded ( SkillOfThisSlot );
-	
+
 	if ( use_open_gl )
 	{
-	    draw_gl_textured_quad_at_screen_position ( 
-		&SpellSkillMap [ SkillOfThisSlot ] . icon_surface , 
+	    draw_gl_textured_quad_at_screen_position (
+		&SpellSkillMap [ SkillOfThisSlot ] . icon_surface ,
 		ButtonRect . x , ButtonRect . y );
 	}
 	else
 	{
-	    our_SDL_blit_surface_wrapper ( 
-		SpellSkillMap [ SkillOfThisSlot ] . icon_surface . surface , 
+	    our_SDL_blit_surface_wrapper (
+		SpellSkillMap [ SkillOfThisSlot ] . icon_surface . surface ,
 		NULL , Screen , &ButtonRect );
 	}
-	
+
 	//--------------------
 	// First we write the name of the skill to the screen
 	//
     //SetCurrentFont ( Menu_BFont );
 	SetCurrentFont ( FPS_Display_BFont );
-    
-	DisplayText( D_(SpellSkillMap [ SkillOfThisSlot ] . name) , 
-		     16 + 64 + 16 + SkillScreenRect.x , 
-		     FIRST_SKILLRECT_Y - 6 + i * (64 + INTER_SKILLRECT_DIST) + SkillScreenRect.y , 
+
+	DisplayText( D_(SpellSkillMap [ SkillOfThisSlot ] . name) ,
+		     16 + 64 + 16 + SkillScreenRect.x ,
+		     FIRST_SKILLRECT_Y - 6 + i * (64 + INTER_SKILLRECT_DIST) + SkillScreenRect.y ,
 		     &SkillScreenRect , TEXT_STRETCH );
 
 	SetCurrentFont ( Messagestat_BFont );
 	int tmp, tmp2;
 	int nextypos = FIRST_SKILLRECT_Y - 8 + i * ( 64 + INTER_SKILLRECT_DIST ) + SkillScreenRect.y + 2 * FontHeight( GetCurrentFont() );
-	
+
 	// Program revision
 	sprintf( CharText , _("Program revision: %c%d%c "), font_switchto_msgvar[0] ,  Me.SkillLevel[ SkillOfThisSlot ] , font_switchto_msgstat[0] );
-	DisplayText( CharText , 16 + 64 + 16 + SkillScreenRect.x , 
+	DisplayText( CharText , 16 + 64 + 16 + SkillScreenRect.x ,
 		nextypos , &SkillScreenRect , TEXT_STRETCH );
 	nextypos += FontHeight( GetCurrentFont() );
 
@@ -794,7 +794,7 @@ ShowSkillsScreen ( void )
 	    {
 	    if ( tmp > 0 )
                 sprintf( CharText , _("Heat produced: %c%d%c "),  font_switchto_msgvar[0] , tmp , font_switchto_msgstat[0] );
-	    else 
+	    else
 		sprintf( CharText , _("Cooling: %c%d%c "),  font_switchto_msgvar[0] , -tmp , font_switchto_msgstat[0] );
 	    DisplayText( CharText , 16 + 64 + 16 + SkillScreenRect.x, nextypos, &SkillScreenRect , TEXT_STRETCH );
 	    nextypos += FontHeight( GetCurrentFont() );
@@ -803,29 +803,40 @@ ShowSkillsScreen ( void )
 	// Damage/healing
 	tmp = calculate_program_hit_damage_low( SkillOfThisSlot );
 	tmp2 = calculate_program_hit_damage_high ( SkillOfThisSlot );
-	if ( tmp != 0 )
-	    {
-	    if ( tmp > 0 )
-                if ( tmp == tmp2 )
-        		sprintf( CharText , _("Damage: %c%d%c "),  font_switchto_msgvar[0] , tmp , font_switchto_msgstat[0] );
-                else
-                        sprintf( CharText , _("Damage: %c%d-%d%c "),  font_switchto_msgvar[0] , tmp , tmp2 , font_switchto_msgstat[0] );
-	    else if ( tmp < 0 )
-                if ( tmp == tmp2 )
-        		sprintf ( CharText, _("Healing: %c%d%c "),  font_switchto_msgvar[0] , -tmp , font_switchto_msgstat[0] );
-                else
-                        sprintf ( CharText, _("Healing: %c%d-%d%c "),  font_switchto_msgvar[0] , -tmp , -tmp2 , font_switchto_msgstat[0] );
-
-	    DisplayText( CharText , 16 + 64 + 16 + SkillScreenRect.x , nextypos , &SkillScreenRect , TEXT_STRETCH );
-	    nextypos += FontHeight( GetCurrentFont() );
-	    }
+    if (tmp != 0)
+    {
+        if ( tmp > 0 )
+        {
+            if ( tmp == tmp2 )
+            {
+                sprintf( CharText , _("Damage: %c%d%c "), font_switchto_msgvar[0] , tmp , font_switchto_msgstat[0] );
+            }
+            else
+            {
+                sprintf( CharText , _("Damage: %c%d-%d%c "), font_switchto_msgvar[0] , tmp , tmp2 , font_switchto_msgstat[0] );
+            }
+        }
+        else
+        {
+            if ( tmp == tmp2 )
+            {
+                sprintf ( CharText, _("Healing: %c%d%c "),  font_switchto_msgvar[0] , -tmp , font_switchto_msgstat[0] );
+            }
+            else
+            {
+                sprintf ( CharText, _("Healing: %c%d-%d%c "), font_switchto_msgvar[0] , -tmp , -tmp2 , font_switchto_msgstat[0] );
+            }
+        }
+        DisplayText( CharText , 16 + 64 + 16 + SkillScreenRect.x , nextypos , &SkillScreenRect , TEXT_STRETCH );
+        nextypos += FontHeight( GetCurrentFont() );
+    }
 
 	// Special effect and duration
 	if ( strcmp ( SpellSkillMap [ SkillOfThisSlot ] . effect, "none" ) )
-	    { 
+	    {
 	    if ( ! strcmp ( SpellSkillMap [ SkillOfThisSlot ] . effect, "paralyze" ) )
 	       sprintf(CharText, _("Paralyze"));
-	    else if ( !strcmp ( SpellSkillMap [ SkillOfThisSlot ] . effect, "slowdown" ))  
+	    else if ( !strcmp ( SpellSkillMap [ SkillOfThisSlot ] . effect, "slowdown" ))
 		    sprintf ( CharText, _("Slow down"));
 	    else if ( !strcmp ( SpellSkillMap [ SkillOfThisSlot ] . effect, "invisibility" ))
 		sprintf ( CharText, _("Invisible"));
@@ -850,12 +861,12 @@ ShowSkillsScreen ( void )
 
 
 
-	    
+
 
 	    float tmp = calculate_program_effect_duration(SkillOfThisSlot);
 	    if ( tmp > 0 )
  	     sprintf(CharText + strlen(CharText), _(" for %c%.1f%c seconds"),  font_switchto_msgvar[0] , tmp , font_switchto_msgstat[0] );
-	   
+
 	    DisplayText( CharText , 16 + 64 + 16 + SkillScreenRect.x , nextypos , &SkillScreenRect , TEXT_STRETCH );
 	    nextypos += FontHeight( GetCurrentFont() );
 	    }
@@ -872,19 +883,19 @@ ShowSkillsScreen ( void )
     {
 	if ( CursorIsOnWhichSkillButton ( CurPos.x , CurPos.y ) +
                               NUMBER_OF_SKILLS_PER_SKILL_PAGE * GameConfig.spell_level_visible  < number_of_skills )
-		if ( SkillSubsetMap [ CursorIsOnWhichSkillButton ( CurPos.x , CurPos.y ) + 
-			      NUMBER_OF_SKILLS_PER_SKILL_PAGE * GameConfig.spell_level_visible ] >= 0 ) 
-		    Me.readied_skill = SkillSubsetMap [ CursorIsOnWhichSkillButton ( CurPos.x , CurPos.y ) + 
+		if ( SkillSubsetMap [ CursorIsOnWhichSkillButton ( CurPos.x , CurPos.y ) +
+			      NUMBER_OF_SKILLS_PER_SKILL_PAGE * GameConfig.spell_level_visible ] >= 0 )
+		    Me.readied_skill = SkillSubsetMap [ CursorIsOnWhichSkillButton ( CurPos.x , CurPos.y ) +
 						   NUMBER_OF_SKILLS_PER_SKILL_PAGE * GameConfig.spell_level_visible ] ;
     }
-    
+
     if ( MouseCursorIsOnButton ( OPEN_CLOSE_SKILL_EXPLANATION_BUTTON , CurPos.x , CurPos.y ) &&
 	 MouseLeftClicked() )
     {
 	toggle_game_config_screen_visibility(GAME_CONFIG_SCREEN_VISIBLE_SKILL_EXPLANATION);
 	while ( MouseLeftPressed () ) SDL_Delay(1);
     }
-    
+
     //--------------------
     // Now we see if perhaps the player has just clicked on another skill level
     // button.  In this case of course we must set a different skill/spell level
@@ -895,7 +906,7 @@ ShowSkillsScreen ( void )
     {
 	GameConfig.spell_level_visible = CursorIsOnWhichSpellPageButton ( CurPos.x , CurPos.y );
     }
-    
+
     //--------------------
     // We want to know, if the button was pressed the previous frame when we
     // are in the next frame and back in this function.  Therefore we store
