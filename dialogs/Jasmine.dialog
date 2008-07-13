@@ -217,7 +217,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=99  OptionText="NO COUNTERS YET."
+New Option Nr=99  OptionText=_"NO COUNTERS YET."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
 ChangeOption=99 ChangeToValue=0
