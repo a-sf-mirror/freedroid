@@ -32,6 +32,7 @@
 ================
  Please refer to the INSTALL file located in the same folder as this file.
 
+
 3. Controls
 =============
  Movement
@@ -74,23 +75,27 @@
  Z          ... Toggle show labels for items on the ground
  T          ... Toggle walls becoming transparent when Tux approaches
 
+
 4. Known Issues:
 ================
 - General
-  * Pathfinding in the game is partially buggy. Sometimes NPCs, bots or even Tux can walk from A to B but
-  not from B to A. This e.g. causes the town Doctor to "get stuck" in the toilet (though possibly he just had
-  something bad for dinner). We are working on solving this and several related issues, but it has proven to be
-  quite difficult.
+  * Pathfinding/collision detection in the game is partially buggy. Sometimes NPCs, bots or even Tux can walk
+  from A to B but not from B to A. This e.g. causes the town Doctor to "get stuck" in the toilet (though 
+  possibly he just had something bad for dinner). We are working on solving this and several related issues,
+  like Tux ability to sometimes walk through walls, but it has proven to be quite difficult.
   * Most melee and ranged weapons only have placeholder laserswords/rifles for their Tux holding and attack 
   animations. If you are skilled with 3D modelling, please help us out.
+  * Sometimes during talking to NPCs, the black background is replaced by the world map.
 
 - Windows 
   * Using the tool IZarc to unpack the downloaded zip breaks the game. IZarc apparently can not handle filenames
   without extensions. Please use other options, eg 7zip, winzip, winrar etc, to correctly unpack the game.
   * The game will use the system language by default, you cannot select another language in-game.
 
-- Ubuntu
-  * Changing language in game will not work by default since Ubuntu does not ship with standard ISO locales, 
+- Linux
+  * Nvidia GF 8&9 cards: Transparacy in some parts of the game works incorrectly. E.g. instead of making the walls
+  semi transparent when Tux comes close (in "key T" mode), they vanish completely.
+  * Ubuntu: Changing language in game will not work by default since Ubuntu does not ship with standard ISO locales, 
   only UTF-8 versions. You will have to manually correct this to get it working.
   Procedure
         1) In commandline write 
@@ -103,6 +108,7 @@
         3) Run
                 sudo dpkg-reconfigure locales
         4) You should now be able to chose the corresponding languages in the in game menu.
+
 
 5. Screen resolution
 =====================
@@ -130,6 +136,7 @@
  - Map edges might be visible when moving from one level to the next.
  - Dialogs sometimes switch back and forth between full world and black background.
 
+
 6. Level editor:
 ================
  There is a level editor integrated into the game. It can be accessed from the main menu.
@@ -143,9 +150,7 @@
  Sourceforge project page:  http://sourceforge.net/projects/freedroid/
 
 
-
 8. Licence:
 ===========
  The game itself is licensed under GPL. Some other tools use a more permissive license, 
  please refer to the FILES file located in the same folder as this file.
-
