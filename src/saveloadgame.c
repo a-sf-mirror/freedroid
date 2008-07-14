@@ -256,6 +256,10 @@ int SaveGame( void )
 {
     char filename[1000];
     
+    if ( Me . energy <= 0 )
+	GiveMouseAlertWindow(_("You are dead."));
+    return (ERR);
+
     if ( ! our_config_dir )
 	return (OK);
     
