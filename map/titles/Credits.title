@@ -3,43 +3,69 @@ The title song in the sound subdirectory for this mission is : TheBeginning.ogg
 *** START OF PURE SCROLLTEXT DATA ***
 
 
-                                            CREDITS
+                                            FreedroidRPG 0.11
+
+   PROJECT MANAGEMENT:
+
+                                      Arthur Huillet
+
+                                      Stefan Huszics
+
+   PROGRAMMING:
+
+                                      Pierre Bourdon
+
+                                      Simon Castellan
+
+                                      Arthur Huillet
+
+                                      Quentin Pradet
+
+
+   GAME CONTENT:
+                                      Guseynov Alexey
+                                         
+                                      Stefan Huszics
+
+   GRAPHICS:
+
+                                      Bastian Salmela
+
+   MUSIC:
+
+                                      Nick "Nario" Hagman
+
+   MISC:
+                                      Barbatrix - ongoing work on german translation
+                                      
+                                      Fedja Beader - iron pipe graphics
+
+                                      Hike Danakian - cosmetic changes for doxygen
+                                      
+                                      Ian Griffiths - leveleditor interface buttons
+                                      
+                                      David Kremer - ongoing work on french translation
+
+                                      LOTS OF PLAYERS - bug reports and very welcomed feedback
+
+                                            
+                                          
+                                           ALSO, FOR PREVIOUS VERSIONS
 
 
 
    PROGRAMMING:
-                                      Arthur Huillet
-
                                       Johannes Prix
 
                                       Reinhard Prix
 
-
-   ARTWORK:
-
-                                      Bastian Salmela
-
-
-   DIALOGUES AND MINOR TWEAKS:
+   DIALOGUES:
 
                                       Karol Swietlicki
 
 
-   MISC:
-
-                                      Mbrola
-
-                                       text-to-speech system
-
-                                      eSpeak
-
-                                       text-to-speech system
-
-
    MUSIC:
                                       Arvid Picciani
-
-				      Nick "Nario" Hagman
 
                                       "The Beginning"
                                         by 4t thieves
@@ -51,8 +77,11 @@ The title song in the sound subdirectory for this mission is : TheBeginning.ogg
                                         by stud
 
 
+   MISC:
 
-   VARIOUS OLDER CONTRIBUTIONS (PRE-0.9.13 people):
+                                      Mbrola - text-to-speech
+
+                                      eSpeak - text-to-speech
 
                                       Ryan 'simcop2387' Voots
 
@@ -65,6 +94,9 @@ The title song in the sound subdirectory for this mission is : TheBeginning.ogg
                                       The Doctor
 
                                       Simon Newton
+
+				      Clint Herron
+
 *** END OF PURE SCROLLTEXT DATA ***
 
 *** END OF TITLE FILE *** LEAVE THIS TERMINATOR IN HERE ***
