@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: freedroidrpg\n"
 "Report-Msgid-Bugs-To: freedroid-discussion@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-07-10 21:20+0200\n"
-"PO-Revision-Date: 2008-07-08 19:09+0000\n"
-"Last-Translator: elijahbal <Unknown>\n"
+"POT-Creation-Date: 2008-07-11 14:46+0200\n"
+"PO-Revision-Date: 2008-07-11 14:29+0100\n"
+"Last-Translator: David Kremer <david.kremer.dk@gmail.com>\n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-15\n"
@@ -2084,6 +2084,12 @@ msgid ""
 " Note, that you can also use the Escape key to enter the level editor main "
 "menu."
 msgstr ""
+"Menu\n"
+"\n"
+"Utilisez ce bouton pour entrer dans le menu principal de l'éditeur de "
+"niveau.\n"
+"Remarquez que vous pouvez également utiliser la touche Echap pour entrer "
+"dans le menu principal de l'éditeur de niveau."
 
 #: ../src/leveleditor.c:4528
 msgid ""
@@ -2093,6 +2099,12 @@ msgid ""
 "various ways so as not to destroy your current map too much and so as to "
 "insert the new space where you would best like it to be."
 msgstr ""
+"Redimensionnement de niveau\n"
+"\n"
+"Utilisez ce bouton pour entrer dans le menu de redimensionnement de niveau. "
+"Les niveaux peuvent être redimensionnés de différentes manières, pour ne pas "
+"trop endommager votre carte actuelle et insérer des espaces où vous aimeriez "
+"qu'ils soient situés."
 
 #: ../src/leveleditor.c:4533
 msgid ""
@@ -2100,6 +2112,10 @@ msgid ""
 "\n"
 "Use this button to enter the level editor keymap display."
 msgstr ""
+"Guide de l'éditeur de niveau\n"
+"\n"
+"Utilisez ce bouton pour entrer dans l'affichage du clavier de l'éditeur de "
+"niveau."
 
 #: ../src/leveleditor.c:4538
 msgid ""
@@ -2107,6 +2123,9 @@ msgid ""
 "\n"
 "Quits the level editor and takes you into a FredroidRPG game."
 msgstr ""
+"Retour au jeu\n"
+"\n"
+"Quittez l'éditeur de niveau pour jouer à freedroidRPG."
 
 #: ../src/leveleditor.c:4543
 msgid ""
@@ -3014,63 +3033,73 @@ msgid " YOU DONT HAVE ANYTHING THAT WOULD NEED REPAIR "
 msgstr " VOUS N'AVEZ RIEN QUI AIT BESOIN D'ÊTRE RÉPARÉ "
 
 #: ../src/skills.c:785
-#, c-format
-msgid "Program revision: %d "
+#, fuzzy, c-format
+msgid "Program revision: %c%d%c "
 msgstr "Révision du programme : %d "
 
 #: ../src/skills.c:796
-#, c-format
-msgid "Heat produced: %d "
+#, fuzzy, c-format
+msgid "Heat produced: %c%d%c "
 msgstr "Chaleur produite : %d "
 
 #: ../src/skills.c:798
-#, c-format
-msgid "Cooling: %d "
-msgstr ""
-
-#: ../src/skills.c:809
-#, c-format
-msgid "Damage: %d-%d "
-msgstr "Dégâts: %d-%d "
-
-#: ../src/skills.c:811
-#, c-format
-msgid "Healing: %d-%d "
+#, fuzzy, c-format
+msgid "Cooling: %c%d%c "
 msgstr "Guérison: %d-%d "
 
-#: ../src/skills.c:821
+#: ../src/skills.c:810
+#, fuzzy, c-format
+msgid "Damage: %c%d%c "
+msgstr "Dégâts: %d-%d "
+
+#: ../src/skills.c:812
+#, fuzzy, c-format
+msgid "Damage: %c%d-%d%c "
+msgstr "Dégâts: %d-%d "
+
+#: ../src/skills.c:815
+#, fuzzy, c-format
+msgid "Healing: %c%d%c "
+msgstr "Guérison: %d-%d "
+
+#: ../src/skills.c:817
+#, fuzzy, c-format
+msgid "Healing: %c%d-%d%c "
+msgstr "Guérison: %d-%d "
+
+#: ../src/skills.c:827
 #, c-format
 msgid "Paralyze"
 msgstr "Paralyser"
 
-#: ../src/skills.c:823
+#: ../src/skills.c:829
 #, c-format
 msgid "Slow down"
 msgstr "Ralentir"
 
-#: ../src/skills.c:825
+#: ../src/skills.c:831
 #, c-format
 msgid "Invisible"
 msgstr "Invisible"
 
-#: ../src/skills.c:827
+#: ../src/skills.c:833
 #, c-format
 msgid "Poison"
 msgstr "Poison"
 
-#: ../src/skills.c:829
+#: ../src/skills.c:835
 #, c-format
 msgid "Takeover"
 msgstr ""
 
-#: ../src/skills.c:831
+#: ../src/skills.c:837
 #, c-format
 msgid "Escape"
 msgstr ""
 
-#: ../src/skills.c:851
-#, c-format
-msgid " for %.1f seconds"
+#: ../src/skills.c:857
+#, fuzzy, c-format
+msgid " for %c%.1f%c seconds"
 msgstr " pendant %.1f secondes"
 
 #: ../src/takeover.c:305
@@ -3154,43 +3183,43 @@ msgstr "Hé, je suis de MS ! Hors de mon chemin !"
 msgid "Hey, I know the big MS boss! You better go."
 msgstr "Hé, je connais le grand chef de MS ! Tu ferais mieux de partir."
 
-#: ../src/vars.h:127
+#: ../src/vars.h:130
 msgid "novice"
 msgstr "débutant"
 
-#: ../src/vars.h:128
+#: ../src/vars.h:131
 msgid "average"
 msgstr "initié"
 
-#: ../src/vars.h:129
+#: ../src/vars.h:132
 msgid "experienced"
 msgstr "avancé"
 
-#: ../src/vars.h:130
+#: ../src/vars.h:133
 msgid "skilled"
 msgstr "expérimenté"
 
-#: ../src/vars.h:131
+#: ../src/vars.h:134
 msgid "adept"
 msgstr "adepte"
 
-#: ../src/vars.h:132
+#: ../src/vars.h:135
 msgid "masterful"
 msgstr "maître"
 
-#: ../src/vars.h:133
+#: ../src/vars.h:136
 msgid "inhuman"
 msgstr "inhumain"
 
-#: ../src/vars.h:134
+#: ../src/vars.h:137
 msgid "god-like"
 msgstr "divin"
 
-#: ../src/vars.h:135
+#: ../src/vars.h:138
 msgid "super-god-like"
 msgstr "super-divin"
 
-#: ../src/vars.h:136
+#: ../src/vars.h:139
 msgid "wicked sick"
 msgstr "sacrément atteint"
 
