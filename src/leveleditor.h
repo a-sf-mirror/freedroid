@@ -162,6 +162,7 @@ typedef struct leveleditor_state_s {
     int r_tile_used;
 
     /* click&drag */
+    point c_origin;
     point c_last_right_click;
     moderately_finepoint c_corresponding_position;
 } leveleditor_state;

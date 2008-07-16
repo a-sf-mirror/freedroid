@@ -449,6 +449,20 @@ isometric_show_floor_around_tux_without_doublebuffering (int mask)
 
 }; // void isometric_show_floor_around_tux_without_doublebuffering ( int mask )
 
+
+void blit_leveleditor_point ( int x, int y )
+{
+    glDisable ( GL_TEXTURE_2D ) ;
+    glEnable ( GL_POINT_SMOOTH );
+    glPointSize ( 5.0 ) ;
+    glBegin ( GL_POINTS ) ;
+    glColor3f ( 1.0, 0.0, 0.0 ) ;
+    glVertex2i ( x, y );
+    glEnd ( ) ;
+    glEnable ( GL_TEXTURE_2D ) ;
+};
+
+
 static void
 skew_and_blit_line (float x1, float y1, float x2, float y2, Uint32 color, int glwidth)
 {
@@ -4731,6 +4745,8 @@ ShowInventoryScreen( void )
     }
 
 }; // void ShowInventoryScreen( void )
+
+
 
 
 #undef _view_c

@@ -142,6 +142,7 @@ EXTERN void blit_preput_objects_according_to_blitting_list ( int mask );
 EXTERN void blit_nonpreput_objects_according_to_blitting_list ( int mask );
 EXTERN void show_obstacle_labels ( int mask );
 EXTERN void draw_grid_on_the_floor (int mask);
+EXTERN void blit_leveleditor_point ( int x, int y );
 EXTERN void update_item_text_slot_positions ( void );
 EXTERN void blit_all_item_slots ( void );
 EXTERN void AssembleCombatPicture (int );

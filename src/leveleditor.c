@@ -5576,6 +5576,9 @@ LevelEditor(void)
 	    
 	    ShowWaypoints( FALSE , ZOOM_OUT * GameConfig . zoom_is_on );
 	    ShowMapLabels( ZOOM_OUT * GameConfig . zoom_is_on );
+
+	    if ( MouseRightPressed() )
+		    blit_leveleditor_point ( cur_state -> c_origin . x, cur_state -> c_origin . y );
 	    
 	    SetCurrentFont ( FPS_Display_BFont ) ;
 	    
@@ -5847,6 +5850,8 @@ LevelEditor(void)
 		{
 		    cur_state -> c_last_right_click . x = GetMousePos_x();
 		    cur_state -> c_last_right_click . y = GetMousePos_y();
+		    cur_state -> c_origin . x = cur_state -> c_last_right_click . x;
+		    cur_state -> c_origin . y = cur_state -> c_last_right_click . y;
 		}
 		else
 		{
