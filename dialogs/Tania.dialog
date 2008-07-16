@@ -264,7 +264,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=20 OptionText="HAD TUX DISABLED GUNS"
+New Option Nr=20 OptionText=_"HAD TUX DISABLED GUNS"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=358  PositionY=238  
 ChangeOption=6 ChangeToValue=0
@@ -273,7 +273,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=21 OptionText="IS MISSION ASSIGNED"
+New Option Nr=21 OptionText=_"IS MISSION ASSIGNED"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=358  PositionY=238  
 ChangeOption=21 ChangeToValue=0
@@ -282,7 +282,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-New Option Nr=22 OptionText="ALL DONE"
+New Option Nr=22 OptionText=_"ALL DONE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=358  PositionY=238  
 ChangeOption=22 ChangeToValue=0
@@ -294,7 +294,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=23 OptionText="GUNS STILL ARE ON"
+New Option Nr=23 OptionText=_"GUNS STILL ARE ON"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=358  PositionY=238  
 ChangeOption=23 ChangeToValue=0
@@ -306,7 +306,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=24 OptionText="WE DON'T HAVE MISSION"
+New Option Nr=24 OptionText=_"WE DON'T HAVE MISSION"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=358  PositionY=238  
 ChangeOption=24 ChangeToValue=0
@@ -317,7 +317,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=25 OptionText="MISSION IS COMPLETED"
+New Option Nr=25 OptionText=_"MISSION IS COMPLETED"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=358  PositionY=238  
 ChangeOption=25 ChangeToValue=0
@@ -329,7 +329,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=26 OptionText="IS MISSION COMPLETED"
+New Option Nr=26 OptionText=_"IS MISSION COMPLETED"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=358  PositionY=238  
 ChangeOption=26 ChangeToValue=0

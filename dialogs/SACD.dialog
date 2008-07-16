@@ -121,7 +121,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=6 OptionText="THIS WILL NOT EVER BE VISIBLE"
+New Option Nr=6 OptionText=_"THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=358  PositionY=238  
 ChangeOption=6 ChangeToValue=0
@@ -130,7 +130,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-New Option Nr=7 OptionText="THIS WILL NOT EVER BE VISIBLE"
+New Option Nr=7 OptionText=_"THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=358  PositionY=238  
 ChangeOption=7 ChangeToValue=0
@@ -139,7 +139,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=8 OptionText="DO NOTHING"
+New Option Nr=8 OptionText=_"DO NOTHING"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=358  PositionY=238  
 ChangeOption=8 ChangeToValue=0
@@ -147,7 +147,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=9 OptionText="IS THIS FIRST DIALOG?"
+New Option Nr=9 OptionText=_"IS THIS FIRST DIALOG?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=358  PositionY=238  
 ChangeOption=9 ChangeToValue=0
@@ -156,7 +156,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-New Option Nr=10 OptionText="DO NOTHING"
+New Option Nr=10 OptionText=_"DO NOTHING"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=358  PositionY=238  
 ChangeOption=10 ChangeToValue=0

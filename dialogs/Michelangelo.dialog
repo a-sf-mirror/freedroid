@@ -263,7 +263,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=30  OptionText="HAVE THE CRYSTALS"
+New Option Nr=30  OptionText=_"HAVE THE CRYSTALS"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=1216  PositionY=125  
 ChangeOption=30 ChangeToValue=0
@@ -284,7 +284,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=32  OptionText="TUX GIVES THE CRYSTALS"
+New Option Nr=32  OptionText=_"TUX GIVES THE CRYSTALS"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=1215  PositionY=195  
 ChangeOption=32 ChangeToValue=0
@@ -294,7 +294,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=33  OptionText="TUX DOES NOT HAVE THE CRYSTALS"
+New Option Nr=33  OptionText=_"TUX DOES NOT HAVE THE CRYSTALS"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=1216  PositionY=60  
 ChangeOption=33 ChangeToValue=0
@@ -303,7 +303,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=34  OptionText="MISSION IS DONE"
+New Option Nr=34  OptionText=_"MISSION IS DONE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=1061  PositionY=198  
 ChangeOption=34 ChangeToValue=0
@@ -312,7 +312,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-New Option Nr=35  OptionText="YEAH, MISSION IS DONE."
+New Option Nr=35  OptionText=_"YEAH, MISSION IS DONE."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=1129  PositionY=123  
 ChangeOption=35 ChangeToValue=0
@@ -323,7 +323,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=36  OptionText="DO NOTHING NODE"
+New Option Nr=36  OptionText=_"DO NOTHING NODE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=1062  PositionY=122  
 ChangeOption=36 ChangeToValue=0
@@ -331,7 +331,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=37  OptionText="TUX STARTED ON THE QUEST"
+New Option Nr=37  OptionText=_"TUX STARTED ON THE QUEST"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=1062  PositionY=58  
 ChangeOption=37 ChangeToValue=0
@@ -356,7 +356,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=39  OptionText="MISSION IS DONE #2"
+New Option Nr=39  OptionText=_"MISSION IS DONE #2"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=1174  PositionY=91  
 ChangeOption=39 ChangeToValue=0

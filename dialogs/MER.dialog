@@ -61,7 +61,7 @@ DoSomethingExtra="PlantCookie:MER_Password"
 
 ----------------------------------------------------------------------
 
-New Option Nr=3  OptionText=" I HAVE CHANGED"
+New Option Nr=3  OptionText=_" I HAVE CHANGED"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=1215  PositionY=195  
 ChangeOption=3 ChangeToValue=0
@@ -74,7 +74,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=4  OptionText=" I HAVEN'T CHANGED"
+New Option Nr=4  OptionText=_" I HAVEN'T CHANGED"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=1215  PositionY=195  
 ChangeOption=4 ChangeToValue=0

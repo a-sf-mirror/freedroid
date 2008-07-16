@@ -279,7 +279,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=50  OptionText="CHECK FOR FIRST ARENA VICTORY"
+New Option Nr=50  OptionText=_"CHECK FOR FIRST ARENA VICTORY"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
 ChangeOption=50 ChangeToValue=0
@@ -288,7 +288,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-New Option Nr=51  OptionText="DO NOTHING"
+New Option Nr=51  OptionText=_"DO NOTHING"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
 ChangeOption=51 ChangeToValue=0
@@ -296,7 +296,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=52  OptionText="ENABLING TEXT AFTER THE FIRST ARENA VICTORY"
+New Option Nr=52  OptionText=_"ENABLING TEXT AFTER THE FIRST ARENA VICTORY"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
 ChangeOption=52 ChangeToValue=0
@@ -307,7 +307,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=53  OptionText="CHECK FOR SECOND ARENA VICTORY"
+New Option Nr=53  OptionText=_"CHECK FOR SECOND ARENA VICTORY"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
 ChangeOption=53 ChangeToValue=0
@@ -316,7 +316,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-New Option Nr=54  OptionText="DO NOTHING"
+New Option Nr=54  OptionText=_"DO NOTHING"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
 ChangeOption=54 ChangeToValue=0
@@ -324,7 +324,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=55  OptionText="ENABLING TEXT AFTER THE SECOND ARENA VICTORY"
+New Option Nr=55  OptionText=_"ENABLING TEXT AFTER THE SECOND ARENA VICTORY"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
 ChangeOption=55 ChangeToValue=0
@@ -334,7 +334,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=60  OptionText="DID WE ENABLE SET 1 BEFORE?"
+New Option Nr=60  OptionText=_"DID WE ENABLE SET 1 BEFORE?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
 ChangeOption=60 ChangeToValue=0
@@ -343,7 +343,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=61  OptionText="DID WE ENABLE SET 2 BEFORE?"
+New Option Nr=61  OptionText=_"DID WE ENABLE SET 2 BEFORE?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=200  PositionY=200  
 ChangeOption=61 ChangeToValue=0

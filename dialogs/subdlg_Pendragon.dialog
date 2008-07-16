@@ -30,7 +30,7 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-New Option Nr=0  OptionText="THIS WILL NOT EVER BE VISIBLE"
+New Option Nr=0  OptionText=_"THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=81  PositionY=310  
 ChangeOption=0 ChangeToValue=0
@@ -66,7 +66,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=3  OptionText="THIS WILL NOT EVER BE VISIBLE"
+New Option Nr=3  OptionText=_"THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=283  PositionY=368  
 ChangeOption=3 ChangeToValue=0
@@ -75,7 +75,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=4  OptionText="THIS WILL NOT EVER BE VISIBLE"
+New Option Nr=4  OptionText=_"THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=275  PositionY=302  
 Subtitle=_"Hey, wake up! I taught you that stuff already. Go practice on the bots, if you really want more training."
@@ -85,7 +85,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=5  OptionText="THIS WILL NOT EVER BE VISIBLE"
+New Option Nr=5  OptionText=_"THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=369  PositionY=425  
 Subtitle=_"You don't have enough bucks on you! Come back when you have the money."
@@ -95,7 +95,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=6  OptionText="THIS WILL NOT EVER BE VISIBLE"
+New Option Nr=6  OptionText=_"THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=379  PositionY=357  
 ChangeOption=6 ChangeToValue=0
@@ -104,7 +104,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=7  OptionText="THIS WILL NOT EVER BE VISIBLE"
+New Option Nr=7  OptionText=_"THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=484  PositionY=411  
 Subtitle=_"You don't have enough experience. I can't teach you anything more right now."
@@ -116,7 +116,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=8  OptionText="THIS WILL NOT EVER BE VISIBLE"
+New Option Nr=8  OptionText=_"THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=489  PositionY=336  
 Subtitle=_"Let us begin then."
