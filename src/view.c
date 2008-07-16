@@ -452,6 +452,8 @@ isometric_show_floor_around_tux_without_doublebuffering (int mask)
 
 void blit_leveleditor_point ( int x, int y )
 {
+if ( ! use_open_gl ) return;
+#ifdef HAVE_LIBGL
     glDisable ( GL_TEXTURE_2D ) ;
     glEnable ( GL_POINT_SMOOTH );
     glPointSize ( 5.0 ) ;
@@ -460,6 +462,7 @@ void blit_leveleditor_point ( int x, int y )
     glVertex2i ( x, y );
     glEnd ( ) ;
     glEnable ( GL_TEXTURE_2D ) ;
+#endif
 };
 
 
