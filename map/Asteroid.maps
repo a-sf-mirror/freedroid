@@ -7607,17 +7607,12 @@ t2 x26.50 y8.00 l-1 d-1
 t2 x31.50 y8.00 l-1 d-1 
 t2 x32.50 y8.00 l-1 d-1 
 t2 x33.50 y8.00 l-1 d-1 
-t2 x34.50 y8.00 l-1 d-1 
-t2 x35.50 y8.00 l-1 d-1 
 t1 x40.00 y7.50 l-1 d-1 
 t1 x3.00 y8.50 l-1 d-1 
 t1 x7.00 y8.50 l-1 d-1 
 t1 x10.00 y8.50 l-1 d-1 
 t1 x27.00 y8.50 l-1 d-1 
 t1 x31.00 y8.50 l-1 d-1 
-t1 x35.00 y8.50 l-1 d-1 
-t1 x36.00 y8.50 l-1 d-1 
-t2 x35.50 y9.00 l-1 d-1 
 t1 x40.00 y8.50 l-1 d-1 
 t1 x3.00 y9.50 l-1 d-1 
 t2 x3.50 y10.00 l-1 d-1 
@@ -7953,6 +7948,7 @@ t2 x16.50 y29.00 l-1 d-1
 t1 x17.00 y29.50 l-1 d-1 
 t1 x17.00 y30.50 l-1 d-1 
 t1 x17.00 y31.50 l-1 d-1 
+t345 x34.50 y8.50 l-1 d-1 
 /obsdata
 plabelinfolvl
 x=35 y=11 name="ToolkitBossMonsterStartGameSquare"
