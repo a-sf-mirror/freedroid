@@ -315,7 +315,7 @@ SForce: T=GUA Fixed=0 Marker=10 Friendly=1 StartUpAtLabel="MSAreaGuardChiefStart
 Level=10
 Maximum number of Random Droids=40
 Minimum number of Random Droids=40
-Allowed Type of Random Droid for this level: HAR
+Allowed Type of Random Droid for this level: 543
 
 ** End of this levels droid data **
 

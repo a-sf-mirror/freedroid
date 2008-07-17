@@ -3009,28 +3009,29 @@ game data file with all droid type specifications.",
 	
 	switch ( atoi ( Druidmap [ newen . type ] . druidname )) 
 		{
-                case 123: strcpy ( newen . short_description_text , _("Acolyte") ); break;
-                case 139: strcpy ( newen . short_description_text , _("Templar") ); break;
-                case 247: strcpy ( newen . short_description_text , _("Banshee") ); break;
-                case 249: strcpy ( newen . short_description_text , _("Chicago") ); break;
-                case 296: strcpy ( newen . short_description_text , _("Sawmill") ); break;
-                case 302: strcpy ( newen . short_description_text , _("Nemesis") ); break;
-                case 329: strcpy ( newen . short_description_text , _("Sparkie") ); break;
-                case 420: strcpy ( newen . short_description_text , _("NaN") ); break;
-                case 476: strcpy ( newen . short_description_text , _("Coward") ); break;
-                case 493: strcpy ( newen . short_description_text , _("Spinster") ); break;
-                case 516: strcpy ( newen . short_description_text , _("Ghoul") ); break;
-                case 571: strcpy ( newen . short_description_text , _("Apollo") ); break;
-                case 598: strcpy ( newen . short_description_text , _("NaN") ); break;
-                case 615: strcpy ( newen . short_description_text , _("NaN") ); break;
-                case 629: strcpy ( newen . short_description_text , _("NaN") ); break;
-                case 711: strcpy ( newen . short_description_text , _("If") ); break;
-                case 742: strcpy ( newen . short_description_text , _("NaN") ); break;
-                case 751: strcpy ( newen . short_description_text , _("Soviet") ); break;
-                case 821: strcpy ( newen . short_description_text , _("NaN") ); break;
-                case 834: strcpy ( newen . short_description_text , _("NaN") ); break;
-                case 883: strcpy ( newen . short_description_text , _("NaN") ); break;
-                case 999: strcpy ( newen . short_description_text , _("NaN") ); break;
+                case 123: strcpy ( newen . short_description_text , _("123 Acolyte") ); break;
+                case 139: strcpy ( newen . short_description_text , _("139 Templar") ); break;
+                case 247: strcpy ( newen . short_description_text , _("247 Banshee") ); break;
+                case 249: strcpy ( newen . short_description_text , _("249 Chicago") ); break;
+                case 296: strcpy ( newen . short_description_text , _("296 Sawmill") ); break;
+                case 302: strcpy ( newen . short_description_text , _("302 Nemesis") ); break;
+                case 329: strcpy ( newen . short_description_text , _("329 Sparkie") ); break;
+                case 420: strcpy ( newen . short_description_text , _("420 NaN") ); break;
+                case 476: strcpy ( newen . short_description_text , _("476 Coward") ); break;
+                case 493: strcpy ( newen . short_description_text , _("493 Spinster") ); break;
+                case 516: strcpy ( newen . short_description_text , _("516 Ghoul") ); break;
+                case 543: strcpy ( newen . short_description_text , _("543 Forest Harvester") ); break;
+                case 571: strcpy ( newen . short_description_text , _("571 Apollo") ); break;
+                case 598: strcpy ( newen . short_description_text , _("598 NaN") ); break;
+                case 615: strcpy ( newen . short_description_text , _("615 NaN") ); break;
+                case 629: strcpy ( newen . short_description_text , _("629 NaN") ); break;
+                case 711: strcpy ( newen . short_description_text , _("711 If") ); break;
+                case 742: strcpy ( newen . short_description_text , _("742 NaN") ); break;
+                case 751: strcpy ( newen . short_description_text , _("751 Soviet") ); break;
+                case 821: strcpy ( newen . short_description_text , _("821 NaN") ); break;
+                case 834: strcpy ( newen . short_description_text , _("834 NaN") ); break;
+                case 883: strcpy ( newen . short_description_text , _("883 NaN") ); break;
+                case 999: strcpy ( newen . short_description_text , _("999 NaN") ); break;
                 default: strcpy ( newen . short_description_text , _("No Description For This One") );
 		};
 
