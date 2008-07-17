@@ -258,7 +258,7 @@ int SaveGame( void )
     
     if ( Me . energy <= 0 )
     {
-	GiveMouseAlertWindow(_("You are dead."));
+	GiveMouseAlertWindow(_("You are dead. Savegame not modified."));
         return (ERR);
     }
 
