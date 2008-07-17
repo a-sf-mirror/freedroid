@@ -36,6 +36,29 @@ Common factor for all melee weapons damage values: 1.0
 
 
 /*
+First ID blocked from use, makes game crash when spawned or dropped in editor
+ItemType received: 0.
+----------------------------------------------------------------------
+Freedroid has encountered a problem:
+In Function: DropItemAt.
+FreedroidRPG package and version number: freedroidrpg 0.10.4cvs.
+Received an item type that was outside of range of the allowed item types.
+*/
+
+** Start of new item specification subsection **
+Item name=_"Spawning item index 0 in editor or drop ingame causes CTD! Dont click this!  OK this seemes fixed now. However the first item is still VERY buggy ingame (cant be dropped, can't be switched to from inventory etc)"
+Item min class for drop=-1
+Item can be applied in combat="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="NONE_AVAILABLE_YET"
+Items of this type collect together in inventory="no"
+File or directory name for inventory image="inventory_image_7.png"
+Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
+Base list price=0
+Item description text=_"Dummy item. If you see this, report a bug."
+** End of new item specification subsection **
+
+/*
 Max weapon item size 4x5
 Taller doesn't show up in main UI weapon circle
 Wider doesn't show up in left weapon box
