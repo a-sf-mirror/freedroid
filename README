@@ -95,6 +95,8 @@
 - Linux
   * Nvidia GF 8&9 cards: Transparacy in some parts of the game works incorrectly. E.g. instead of making the walls
   semi transparent when Tux comes close (in "key T" mode), they vanish completely.
+  * AMD/ATI R300 graphics cards: Mesa 6.5.2 does not support user clipping planes which breaks the text in 
+  freedroidRPG. Upgrading to Mesa 7 should fix this.
   * Ubuntu: Changing language in game will not work by default since Ubuntu does not ship with standard ISO locales, 
   only UTF-8 versions. You will have to manually correct this to get it working.
   Procedure
