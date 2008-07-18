@@ -1,1 +1,54 @@
-No detailed changelog for this release.
+We are happy to announce FreedroidRPG 0.11 - release candidate 1.
+FreedroidRPG 0.11 represents one year of work on the game, and has
+therefore significantly evolved since 0.10.3.
+The list of changes is huge, and consists of bug fixes, performance improvements,
+interface work notably for the leveleditor, and game content improvements.
+Here are the most important points:
+ 
+Content
+----
+- modified the endgame scenario and started integrating the Hell Fortress, adding 2 more levels
+ 
+- added a secret research center level
+ 
+- changed town to make it more "lifelike" and easier to find yourself around
+ 
+- modified start level to improve richness of content
+ 
+- added and rebalanced weapons. There now are a few melee weapons, projectile pistols and rifles, and futuristic energy weapons.
+ 
+- changed and rebalanced programs, including added a new default skill to help tux from overheating. Makes a "magic user" character a possible and interesting alternative.
+ 
+- new music tracks 
+ 
+ 
+Engine
+----
+ 
+- the savegame system has been rewritten to use plain text instead of binary dumps. This allows compatibility of savegames
+between platforms and makes them hand-editable, and usable for bug reporting.
+ 
+- using a texture atlas for floor tiles in OpenGL mode yields a 20%+ performance improvement
+ 
+- fixed many bugs in robot AI
+ 
+- using a better collision detection algorithm, and pathfind bots waypoint routes, in an attempt to reduce bots getting into walls
+ 
+- full translation support for game data based on gettext
+ 
+ 
+Leveleditor
+----
+ 
+- undo/redo feature
+ 
+- nicer buttons in the interface
+ 
+- changed the mouse interface to match The Sims editor more closely (move with right button pressed, place
+  tile with left click)
+ 
+- ability to place line of walls by dragging the mouse
+ 
+- ability to fill a given rectangle with floor tiles by dragging
+ 
+- "quickbar" for favorite tiles
