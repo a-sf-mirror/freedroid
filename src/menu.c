@@ -59,6 +59,7 @@ extern int load_game_command_came_from_inside_running_game;
 
 #define MENU_SELECTION_DEBUG 1
 
+#define AUTO_SCROLL_RATE (0.02f)
 
 /**
  * This function tells over which menu item the mouse cursor would be,
@@ -156,7 +157,10 @@ DoMenuSelection( char* InitialText , char **MenuTexts, int FirstItem , int backg
     SDL_Rect HighlightRect;
     SDL_Rect BackgroundRect;
     int first_menu_item_pos_y;
-    
+    int* MenuTextWidths;
+    float auto_scroll_start = 0.0f;
+    int auto_scroll_run = TRUE;
+
     //--------------------
     // At first we hide the system mouse cursor, because we want to use
     // our own creation in the menus too...
@@ -184,16 +188,28 @@ DoMenuSelection( char* InitialText , char **MenuTexts, int FirstItem , int backg
     //--------------------
     // First thing we do is find out how may options we have
     // been given for the menu
-    //
-    LongestOption = 0 ;
-    for ( i = 0 ; TRUE ; i ++ )
+    // For each option, we compute and store its pixel-width
+    // Then the longest one is found
+    for ( i = 0 ; TRUE ; ++i )
     {
-    if ( strlen( MenuTexts[ i ] ) == 0 )
-        break ;
-    else if ( TextWidth( MenuTexts[ i ] ) > LongestOption )
-        LongestOption = TextWidth( MenuTexts[ i ] );
+        if ( MenuTexts[ i ][ 0 ] == '\0' ) break;
     }
     NumberOfOptionsGiven = i;
+    MenuTextWidths = (int*)malloc(sizeof(int)*(NumberOfOptionsGiven+1));
+
+    LongestOption = 0 ;
+    for ( i = 0 ; i < NumberOfOptionsGiven ; ++i )
+    {
+        MenuTextWidths[ i ] = TextWidth( MenuTexts[ i ] );
+        if ( MenuTextWidths[ i ] > LongestOption )
+            LongestOption = MenuTextWidths[ i ];
+    }
+    MenuTextWidths[ NumberOfOptionsGiven ] = 0;
+
+    //--------------------
+    // Clamp the longest option to the available width on the screen
+    // (50 pixels around the menu's background, and 1.5 fontheigth around the text)
+    LongestOption = min( GameConfig . screen_width - 100 - 3 * h, LongestOption );
     
     //--------------------
     // In those cases where we don't reset the menu position upon 
@@ -208,8 +224,11 @@ DoMenuSelection( char* InitialText , char **MenuTexts, int FirstItem , int backg
     
     StoreMenuBackground ( 0 );
     
+    BackgroundRect.x = ( GameConfig . screen_width - LongestOption - 3 * h ) / 2;
+    BackgroundRect.y = first_menu_item_pos_y - 50 ;
+    BackgroundRect.w = LongestOption + 3 * h ;
+    BackgroundRect.h = ( h * NumberOfOptionsGiven ) + 100 ;
 
-    
     while ( 1 )
     {
 	keyboard_update();
@@ -225,7 +244,8 @@ DoMenuSelection( char* InitialText , char **MenuTexts, int FirstItem , int backg
 	// But this will only apply for the load_hero and the delete_hero menus...
 	//
 	if ( ( ( ! strcmp ( InitialText , LOAD_EXISTING_HERO_STRING ) ) ||
-	     ( ! strcmp ( InitialText , DELETE_EXISTING_HERO_STRING ) ) ) && MenuPosition < NumberOfOptionsGiven )
+	     ( ! strcmp ( InitialText , DELETE_EXISTING_HERO_STRING ) ) ) && 
+             MenuPosition < NumberOfOptionsGiven )
 	{
 	    //--------------------
 	    // We load the thumbnail, or at least we try to do it...
@@ -234,34 +254,73 @@ DoMenuSelection( char* InitialText , char **MenuTexts, int FirstItem , int backg
 	    LoadAndShowStats ( MenuTexts [ MenuPosition - 1 ] );
 	}
 	
-	//--------------------
-	// Depending on what highlight method has been used, we so some highlighting
-	// of the currently selected menu options location on the screen...
-	//
+        //--------------------
+        // Draw the menu's  background
+        //
+        ShadowingRectangle ( Screen, BackgroundRect );
 
-    BackgroundRect.x = ( GameConfig . screen_width - LongestOption ) / 2 - 50 ;
-    BackgroundRect.y = first_menu_item_pos_y - 50 ;
-    BackgroundRect.w = LongestOption + 100 ;
-    BackgroundRect.h = ( h * NumberOfOptionsGiven ) + 100 ;
-    ShadowingRectangle ( Screen, BackgroundRect );
-
-    HighlightRect.x = ( GameConfig . screen_width - TextWidth ( MenuTexts [ MenuPosition - 1 ] ) ) / 2 - h ;
-	HighlightRect.y = first_menu_item_pos_y + ( MenuPosition - 1 ) * h ;
-	HighlightRect.w = TextWidth ( MenuTexts [ MenuPosition - 1 ] ) + 2 * h ;
-	HighlightRect.h = h;		    
-	HighlightRectangle ( Screen , HighlightRect );
-
-
-    
-    
+        //-------------------
+        // Display each option
+        //
         for ( i = 0 ; TRUE ; i ++ )
-	    {
-		if ( strlen( MenuTexts[ i ] ) == 0 ) break;
-		CutDownStringToMaximalSize ( MenuTexts [ i ] , 550 );
-		CenteredPutString ( Screen ,  first_menu_item_pos_y + i * h , MenuTexts[ i ] );
+        {
+            char* str = NULL;
+            int free_needed = FALSE;
+            int width = 0;
+
+  	    if ( MenuTextWidths[ i ] == 0 ) break;
+
+            //--------------------
+            // Define the actual text to display
+            // If the text is too long, handle autoscroll and clip it
+            if ( MenuTextWidths[ i ] > LongestOption ) 
+            {
+                if ( i == MenuPosition - 1 )
+                {   // selected option -> autoscroll
+                    str = strdup(MenuTexts[i] + (int)auto_scroll_start);
+                } 
+                else 
+                {   // unselected option -> no scroll
+                    str = strdup(MenuTexts[i]); 
+                }
+                free_needed = TRUE;
+	        if ( CutDownStringToMaximalSize ( str , LongestOption ) == FALSE ) {
+                    // if cutting was not needed, we are at the end of the text,
+                    // so stop autoscroll
+                     if ( i == MenuPosition - 1 ) auto_scroll_run = FALSE;
+                }
+                width = LongestOption;
+            } 
+            else 
+            {
+                str = MenuTexts[ i ];
+                width = MenuTextWidths[ i ];
+            }
+
+            //--------------------
+            // Depending on what highlight method has been used, we so some highlighting
+	    // of the currently selected menu options location on the screen...
+	    //
+            if ( i == MenuPosition - 1 ) 
+            {    
+                HighlightRect.x = ( GameConfig . screen_width - width ) / 2 - h ;
+	        HighlightRect.y = first_menu_item_pos_y + ( MenuPosition - 1 ) * h ;
+	        HighlightRect.w = width + 2 * h ;
+	        HighlightRect.h = h;		    
+	        HighlightRectangle ( Screen , HighlightRect );
+
+                if ( auto_scroll_run == TRUE )
+                    auto_scroll_start += AUTO_SCROLL_RATE;
 	    }
+
+            //--------------------
+            // Draw the option's text
+            CenteredPutString ( Screen ,  first_menu_item_pos_y + i * h , str );
+          
+            if ( free_needed == TRUE ) free(str);
+	}
         if ( strlen( InitialText ) > 0 ) 
-		DisplayText ( InitialText , 50 , 50 , NULL , TEXT_STRETCH );
+	    DisplayText ( InitialText , 50 , 50 , NULL , TEXT_STRETCH );
 	
 	//--------------------
 	// Now the mouse cursor must be brought to the screen
@@ -278,10 +337,13 @@ DoMenuSelection( char* InitialText , char **MenuTexts, int FirstItem , int backg
 	// Now it's time to handle the possible keyboard and mouse 
 	// input from the user...
 	//
+        int old_menu_position = MenuPosition;	
+
 	if ( EscapePressed() )
 	{
 	    while ( EscapePressed() );
 	    MenuItemDeselectedSound();
+            free(MenuTextWidths);
 	    return ( -1 );
 	}
 	if ( EnterPressed() || SpacePressed() || RightPressed() || LeftPressed() ) 
@@ -293,6 +355,7 @@ DoMenuSelection( char* InitialText , char **MenuTexts, int FirstItem , int backg
 	    //
 	    while ( EnterPressed() || SpacePressed()); 
 	    MenuItemSelectedSound();
+            free(MenuTextWidths);
 	    return ( MenuPosition );
 	}
 	if ( MouseLeftPressed() )
@@ -306,6 +369,7 @@ DoMenuSelection( char* InitialText , char **MenuTexts, int FirstItem , int backg
 	    if ( MouseCursorIsOverMenuItem( first_menu_item_pos_y , h ) == MenuPosition )
 	    {
 		MenuItemSelectedSound();
+                free(MenuTextWidths);
 		return ( MenuPosition );
 	    }
 	}
@@ -327,11 +391,18 @@ DoMenuSelection( char* InitialText , char **MenuTexts, int FirstItem , int backg
 	    SDL_WarpMouse ( HighlightRect.x , HighlightRect.y );
 	    while (DownPressed());
 	}
-	
+
 	MenuPosition = MouseCursorIsOverMenuItem( first_menu_item_pos_y , h );
 	if ( MenuPosition < 1 ) MenuPosition = 1 ;
 	if ( MenuPosition > NumberOfOptionsGiven ) MenuPosition = NumberOfOptionsGiven ;
-	
+
+        //--------------------
+        // If the selected option has changed, halt eventual current autoscrolling
+	if ( MenuPosition != old_menu_position ) {
+            auto_scroll_run = TRUE;
+            auto_scroll_start = 0.0f;
+        }
+
 	//--------------------
 	// At this the while (1) overloop ends.  But for the menu, we really do not
 	// need to hog the CPU.  Therefore some waiting should be introduced here.

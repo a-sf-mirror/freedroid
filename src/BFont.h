@@ -53,6 +53,12 @@ int TextWidth (char *text);
 /* Returns the width, in pixels, of the text calculated with the specified font*/
 int TextWidthFont (BFont_Info * Font, char *text);
 
+/* Returns the index of the last character than is inside the width limit, with the current font */
+int LimitTextWidth (char *text, int limit);
+
+/* Returns the index of the last character than is inside the width limit */
+int LimitTextWidthFont (BFont_Info * Font, char *text, int limit);
+
 /* Write a string on the "Surface" with the current font */
 void PutString (SDL_Surface * Surface, int x, int y, char *text);
 

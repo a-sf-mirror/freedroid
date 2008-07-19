@@ -839,7 +839,7 @@ EXTERN void show_backgrounded_label_at_map_position ( char* LabelText , float fi
 EXTERN void show_backgrounded_text_rectangle ( char* text , int x , int y , int w , int h );
 EXTERN char * GetEditableStringInPopupWindow ( int MaxLen , char* PopupWindowTitle , char* DefaultString );
 EXTERN void GiveMouseAlertWindow ( const char* WindowText ) ;
-EXTERN void CutDownStringToMaximalSize ( char* StringToCut , int LengthInPixels );
+EXTERN int CutDownStringToMaximalSize ( char* StringToCut , int LengthInPixels );
 EXTERN void SetNewBigScreenMessage( char* ScreenMessageText );
 EXTERN void DisplayBigScreenMessage( void );
 EXTERN char* GetChatWindowInput( SDL_Surface* Background , SDL_Rect* Chat_Window_Pointer );

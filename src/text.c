@@ -142,35 +142,30 @@ GiveMouseAlertWindow( const char* WindowText )
 /**
  * 
  */
-void 
+int 
 CutDownStringToMaximalSize ( char* StringToCut , int LengthInPixels )
 {
     int StringIndex=0;
     int LengthByNow=0;
     int i;
     
-    if ( TextWidth ( StringToCut ) <= LengthInPixels ) return;
-    
-    while ( StringToCut[ StringIndex ] != 0 )
+    if ( TextWidth ( StringToCut ) <= LengthInPixels ) return FALSE;
+
+    StringIndex = LimitTextWidth( StringToCut, LengthInPixels );
+    if ( StringIndex < 1 ) return FALSE;
+ 
+    for ( i = 0 ; i < 3 ; i ++ )
     {
-	LengthByNow += CharWidth ( GetCurrentFont() , StringToCut [ StringIndex ] ) ;
-	if ( LengthByNow >= LengthInPixels )
+	if ( StringToCut [ StringIndex + i ] != 0 )
 	{
-	    for ( i = 0 ; i < 3 ; i ++ )
-	    {
-		if ( StringToCut [ StringIndex + i ] != 0 )
-		{
-		    StringToCut [ StringIndex + i ] = '.';
-		}
-		else
-		    return;
-	    }
-	    StringToCut [ StringIndex + 3 ] = 0 ;
-	    return;
+	    StringToCut [ StringIndex + i ] = '.';
 	}
-	StringIndex ++;
+	else
+	    return TRUE;
     }
-    
+    StringToCut [ StringIndex + 3 ] = 0 ;
+
+    return TRUE; 
 }; // void CutDownStringToMaximalSize ( char* StringToCut , int LengthInPixels )
 
 /**

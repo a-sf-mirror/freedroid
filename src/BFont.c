@@ -384,6 +384,52 @@ TextWidthFont (BFont_Info * Font, char *text)
   return x;
 }; // int TextWidthFont (BFont_Info * Font, char *text)
 
+/**
+ *
+ *
+ */
+int
+LimitTextWidth (char *text, int limit)
+{
+  return ( LimitTextWidthFont (CurrentFont, text, limit) ) ;
+}; // int LimitTextWidth (char *text, int limit)
+
+/**
+ *
+ *
+ */
+int
+LimitTextWidthFont (BFont_Info * Font, char *text, int limit)
+{
+  int i = 0, x = 0;
+  //--------------------
+  // Based on Bastians hack: 
+  // 
+  // 'I added little hack to kern MenuFont..
+  // This basicly just prints them more tight on the screen.
+  // basse, 15.2.03'
+  //
+  // I extend this to give new text width results...
+  //
+  int kerning = 0;
+  if ( Font == Menu_BFont ) kerning = -4;
+  if ( Font==FPS_Display_BFont || Font==Blue_BFont || Font==Red_BFont) kerning = -2;
+
+  while (text[i] != '\0')
+    {
+      switch ( text [ i ] )
+	{
+	case 1: Font = Red_BFont; kerning = -2; break;
+	case 2: Font = Blue_BFont; kerning = -2; break;
+	case 3: Font = FPS_Display_BFont; kerning = -2; break;
+	}
+      x += CharWidth (Font, text[i]) + kerning ;
+      i++;
+      if (x >= limit ) return i;
+    }
+  return -1;
+}; // int LimitTextWidthFont (BFont_Info * Font, char *text, int limit)
+
 /* counts the spaces of the strings */
 int
 count (char *text)
