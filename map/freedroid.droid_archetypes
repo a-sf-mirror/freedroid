@@ -453,35 +453,6 @@ Individual shape of this droid or just -1 for classic ball shaped : 10
 Notes concerning this droid=_"early crew droid. Able to carry out simple flight checks only. No longer supplied." 
 
 ** Start of new Robot: ** 
-Droidname: 543
-Droid uses portrait rotation series with prefix="harvester"
-Maximum speed of this droid: 2.1
-Class of this droid: 5
-Drops item class=5
-Maximum acceleration of this droid: 1.1
-Maximum energy of this droid: 300.1
-Maximum mana of this droid: 30.1
-Rate of healing: 2.1
-Experience_Reward gained for destroying one of this type: 250
-Range of vision of this droid=10.0
-Time spent eyeing Tux=1.0
-Drive of this droid : 1
-Sensor 2 of this droid : 0
-Armament of this droid : 0
-Drive item=10
-Weapon item="Droid weaponry - 543 : Laser beam cutter"
-Greeting Sound number=11
-Got Hit Sound number=-1
-Death sound file name="none"
-Attack animation sound file name="none"
-Chance of this robot scoring a hit=50
-Chance modifier, that this robot gets hit=30
-Time to recover after getting hit=0.03
-Is this 'droid' a human : 0
-Individual shape of this droid or just -1 for classic ball shaped : 33
-Notes concerning this droid=_"Run away! This bot will kill you!" 
-
-** Start of new Robot: ** 
 Droidname: 571
 Droid uses portrait rotation series with prefix="571"
 Maximum speed of this droid: 4.1
@@ -1203,6 +1174,35 @@ Armament of this droid : 1
 Is this 'droid' a human : 1
 Individual shape of this droid or just -1 for classic ball shaped : 32
 Notes concerning this droid=_"This is the bartender."
+
+** Start of new Robot: ** 
+Droidname: 543
+Droid uses portrait rotation series with prefix="harvester"
+Maximum speed of this droid: 2.1
+Class of this droid: 5
+Drops item class=5
+Maximum acceleration of this droid: 1.1
+Maximum energy of this droid: 300.1
+Maximum mana of this droid: 30.1
+Rate of healing: 2.1
+Experience_Reward gained for destroying one of this type: 250
+Range of vision of this droid=10.0
+Time spent eyeing Tux=1.0
+Drive of this droid : 1
+Sensor 2 of this droid : 0
+Armament of this droid : 0
+Drive item=10
+Weapon item="Droid weaponry - 543 : Laser beam cutter"
+Greeting Sound number=11
+Got Hit Sound number=-1
+Death sound file name="none"
+Attack animation sound file name="none"
+Chance of this robot scoring a hit=50
+Chance modifier, that this robot gets hit=30
+Time to recover after getting hit=0.03
+Is this 'droid' a human : 0
+Individual shape of this droid or just -1 for classic ball shaped : 33
+Notes concerning this droid=_"Run away! This bot will kill you!" 
 
 
 ----------------------------------------------------------------------
