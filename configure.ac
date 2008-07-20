@@ -61,6 +61,7 @@ esac
 dnl Commandline options
 
 AC_ARG_ENABLE(opengl,       [  --disable-opengl        Do not build the OpenGL support (not recommended!) [[default=auto]]], want_gl="$enableval", want_gl=yes)
+AC_ARG_ENABLE(vorbis,       [  --disable-vorbis        Do not include support for OGG/Vorbis audio files (no music) [[default=auto]]], want_vorbis="$enableval", want_vorbis=yes)
 AC_ARG_ENABLE(fastmath,     [  --enable-fastmath       Compile with -ffast-math [[default=yes]]], fast_math="$enableval", fast_math=yes)
 AC_ARG_ENABLE(profiling,    [  --enable-profiling      Compile with profiling code [[default=no]]], use_prof="$enableval", use_prof=no)
 AC_ARG_ENABLE(debug,        [  --enable-debug          Compile with debbugging support [[default=no]]], use_debug="$enableval", use_debug=no)
@@ -119,6 +120,7 @@ You need the SDL_mixer library (version >= 1.2.1) if you want sound!
 --> compiling without sound support
 --------------------------------------------------]))
 
+if test x$want_vorbis = xyes; then
 AC_CHECK_LIB([ogg], [oggpack_read],, AC_MSG_WARN([
 --------------------------------------------------
 libogg not found!
@@ -132,6 +134,10 @@ libvorbis not found!
 You need the Vorbis libs installed if you want
 Freedroid to be able to play Ogg files (e.g. the Intro theme)
 --------------------------------------------------]))
+else
+AC_DEFINE(HAVE_LIBOGG,0, [Define to 1 if ogg libs were found])
+AC_DEFINE(HAVE_LIBVORBIS,0, [Define to 1 if Vorbis libs were found])
+fi
 
 if test x$bsd = xtrue; then
 	AC_CHECK_LIB([execinfo], [backtrace],, AC_MSG_WARN([
