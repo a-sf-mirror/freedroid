@@ -1494,7 +1494,7 @@ recursive_find_walkable_point ( enemy * droid, int levelnum, float x1 , float y1
 {
     moderately_finepoint ordered_moves[4];
     int i;
-    
+
 #define MAX_RECUSION_DEPTH 50
     
     //--------------------
@@ -1616,24 +1616,19 @@ recursive_find_walkable_point ( enemy * droid, int levelnum, float x1 , float y1
     
     for ( i = 0 ; i < 4 ; i ++ )
     {
-	if ( ( recursion_grid 
-	       [ (int) ( x1 + ordered_moves [ i ] . x ) ] 
-	       [ (int) ( y1 + ordered_moves [ i ] . y ) ] == TILE_IS_UNPROCESSED ) &&
-	     ( droid_can_walk_this_line ( levelnum, x1, y1 , 
-					x1 + ordered_moves [ i ] . x , 
-					y1 + ordered_moves [ i ] . y ) ) )
+        float centered_x = rintf ( x1 + ordered_moves [ i ] . x + 0.5 ) - 0.5;
+        float centered_y = rintf ( y1 + ordered_moves [ i ] . y + 0.5 ) - 0.5;
+
+	if ( ( recursion_grid [ (int) ( centered_x ) ] [ (int) ( centered_y ) ] == TILE_IS_UNPROCESSED ) &&
+	     ( droid_can_walk_this_line ( levelnum, x1, y1, centered_x, centered_y ) ) )
 	{
-	    if ( ( CheckIfWayIsFreeOfDroids ( FALSE, x1 , y1 , 
-								x1 + ordered_moves [ i ] . x , 
-								y1 + ordered_moves [ i ] . y , 
-								levelnum , droid ) ) )
+	    if ( ( CheckIfWayIsFreeOfDroids ( FALSE, x1, y1, centered_x, centered_y, levelnum , droid ) ) )
 	    {
 		
 		last_sight_contact . x = x1 ;
 		last_sight_contact . y = y1 ;
-		
-		if ( recursive_find_walkable_point ( droid, levelnum, rintf ( x1 + ordered_moves [ i ] . x + 0.5 ) - 0.5 , 
-						     rintf ( y1 + ordered_moves [ i ] . y + 0.5 ) - 0.5 , 
+	
+		if ( recursive_find_walkable_point ( droid, levelnum, centered_x, centered_y, 
 						     x2 , y2 , recursion_depth + 1, waypoints, next_index_to_set_up, maxwp ) )
 		{
 		    
@@ -1642,8 +1637,8 @@ recursive_find_walkable_point ( enemy * droid, int levelnum, float x1 , float y1
 		    // waypoint.
 		    // Otherwise we set THE NEXT WAYPOINT.
 		    //
-		    waypoints [ *next_index_to_set_up ] . x = x1 + ordered_moves [ i ] . x ;
-		    waypoints [ *next_index_to_set_up ] . y = y1 + ordered_moves [ i ] . y ;
+		    waypoints [ *next_index_to_set_up ] . x = centered_x ;
+		    waypoints [ *next_index_to_set_up ] . y = centered_y ;
 		    
 		    (*next_index_to_set_up)++;
 		    
