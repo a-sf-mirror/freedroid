@@ -141,36 +141,30 @@ CheckIfWayIsFreeOfDroids (char test_tux, float x1 , float y1 , float x2 , float 
 }; // CheckIfWayIsFreeOfDroids ( char test_tux, float x1 , float y1 , float x2 , float y2 , int OurLevel , int ExceptedDroid )
 
 enum {
-    RECT_IN = 1,
-    RECT_OUT_LEFT = 2,
-    RECT_OUT_RIGHT = 4,
-    RECT_OUT_UP = 8,
-    RECT_OUT_DOWN = 16,
+	RECT_IN = 0,
+	RECT_OUT_LEFT = 1,
+	RECT_OUT_RIGHT = 2,
+	RECT_OUT_UP = 4,
+	RECT_OUT_DOWN = 8,
 };
 
-static inline char get_point_flag ( float x1, float y1, float x2, float y2, float px, float py )
+static inline char get_point_flag ( float xmin, float ymin, float xmax, float ymax, float px, float py )
 {
-char out = 0;
-char is_in = 0; 
-//check if we are left
-if ( px < x1 && px < x2 )
-    out |= RECT_OUT_LEFT;
-else if ( px > x1 && px > x2 )
-    out |= RECT_OUT_RIGHT;
-else is_in++;
+	char out = RECT_IN;
 
-//check up/down
-if ( py < y1 && py < y2 )
-    out |= RECT_OUT_UP;
-else if ( py > y1 && py > y2 )
-    out |= RECT_OUT_DOWN;
-else is_in++;
+	//check if we are left
+	if ( px < xmin )
+		out |= RECT_OUT_LEFT;
+	else if ( px > xmax )
+		out |= RECT_OUT_RIGHT;
 
-if (is_in == 2)
-    {
-    out |= RECT_IN;
-    } 
-return out;
+	//check up/down
+	if ( py < ymin )
+		out |= RECT_OUT_DOWN;
+	else if ( py > ymax )
+		out |= RECT_OUT_UP;
+
+	return out;
 }
 
 int IsPassable ( float x, float y, int z )
@@ -191,6 +185,7 @@ int IsPassableForDroid ( float x, float y, int z )
  */
 int DirectLineWalkable ( float x1, float y1, float x2, float y2, int z)
 {
+
     //Browse all obstacles around the rectangle
     int x_tile_start, y_tile_start;
     int x_tile_end, y_tile_end;
@@ -206,10 +201,9 @@ int DirectLineWalkable ( float x1, float y1, float x2, float y2, int z)
     if ( y_tile_start < 0 ) y_tile_start = 0 ;
     if ( x_tile_end >= PassLevel -> xlen ) x_tile_end = PassLevel->xlen -1 ;
     if ( y_tile_end >= PassLevel -> ylen ) y_tile_end = PassLevel->ylen -1 ;
-    
-    float x2n = x2, y2n = y2;
-    char ispoint = normalize_vect(x1,y1, &x2n, &y2n); //normalize vect will tell us if we are working on a line or a point
-    
+
+	char ispoint = ( (x1 == x2) && (y1 == y2) );
+
     for ( x_tile = x_tile_start; x_tile <= x_tile_end; x_tile ++ )
 	{
 	for ( y_tile = y_tile_start; y_tile <= y_tile_end; y_tile ++ )
@@ -248,46 +242,44 @@ int DirectLineWalkable ( float x1, float y1, float x2, float y2, int z)
 		    continue;
 
 		//So we have our obstacle 
-		//Check the radial distance between the center of the obstacle and the line
-		float distance_to_center;
-		if( ! ispoint )
-		    distance_to_center = calc_distance_seg_point_normalized(x1, y1, x2, y2, x2n, y2n, our_obs->pos.x, our_obs->pos.y);
-		else distance_to_center = sqrt((our_obs->pos.x - x1)*(our_obs->pos.x - x1)+(our_obs->pos.y - y1)*(our_obs->pos.y - y1));
-
-		if ( obstacle_map [ our_obs->type ] . diaglength < distance_to_center - 0.1) //radial distance
-		    continue;
 
 		//Check the flags of both points against the rectangle of the object
-		moderately_finepoint rect1 = { our_obs -> pos . x + obstacle_map [ our_obs->type ] . upper_border, our_obs -> pos . y + obstacle_map [ our_obs->type ] . left_border };
-		moderately_finepoint rect2 = { our_obs -> pos . x + obstacle_map [ our_obs->type ] . lower_border, our_obs -> pos . y + obstacle_map [ our_obs->type ] . right_border };
-		char p1flags = get_point_flag( rect1.x, rect1.y, rect2.x, rect2.y, x1, y1);
-		char p2flags = get_point_flag( rect1.x, rect1.y, rect2.x, rect2.y, x2, y2);
+		moderately_finepoint rect1 = { our_obs -> pos . x + obstacle_map [ our_obs->type ] . upper_border, 
+		                               our_obs -> pos . y + obstacle_map [ our_obs->type ] . left_border };
+		moderately_finepoint rect2 = { our_obs -> pos . x + obstacle_map [ our_obs->type ] . lower_border, 
+		                               our_obs -> pos . y + obstacle_map [ our_obs->type ] . right_border };
 
-		if ( !ispoint && (p1flags & p2flags) ) // if we're testing a line: both points on the same side? don't test
+		char p1flags = get_point_flag( rect1.x, rect1.y, rect2.x, rect2.y, x1, y1 );
+		char p2flags = get_point_flag( rect1.x, rect1.y, rect2.x, rect2.y, x2, y2 );
+
+		// Handle obvious cases
+		if ( p1flags & p2flags ) // both points on the same side, no collision
 		    continue;
 
-		if (( p1flags & RECT_IN ) || (p2flags & RECT_IN)) //we're in? collision without a doubt
+		if ( (p1flags == RECT_IN) || (p2flags == RECT_IN) ) //we're in? collision without a doubt
 		    return FALSE;
 
-		if ( ispoint ) //don't test "line crosses an edge ?" for points obviously 
+		if ( ispoint ) // degenerated line, and outside the rectangle, no collision
 		    continue;
+		
+		//----------
+		// possible collision, check if the line is crossing the rectangle
+		// by looking if all vertices of the rectangle are in the same half-space
+		//
+		// 1- line equation : a*x + b*y + c = 0
+		float line_a = -(y1 - y2);
+		float line_b = x1 - x2;
+		float line_c = x2*y1 - y2*x1;
 
-		// now determine the edges we have to test
-		char to_test = 0;
-		if (( p1flags & RECT_OUT_UP ) || (p2flags & RECT_OUT_UP))
-		    to_test |= RECT_OUT_UP;
+		// 2- check each vertex, halt as soon as one is on the other halfspace -> collision
+		char first_vertex_sign = ( line_a * rect1.x + line_b * rect1.y + line_c ) > 0 ? 0 : 1;
+		char other_vertex_sign = ( line_a * rect2.x + line_b * rect1.y + line_c ) > 0 ? 0 : 1;
+		if ( first_vertex_sign != other_vertex_sign ) return FALSE;
+		other_vertex_sign = ( line_a * rect2.x + line_b * rect2.y + line_c ) > 0 ? 0 : 1;
+		if ( first_vertex_sign != other_vertex_sign ) return FALSE;
+		other_vertex_sign = ( line_a * rect1.x + line_b * rect2.y + line_c ) > 0 ? 0 : 1;
+		if ( first_vertex_sign != other_vertex_sign ) return FALSE;
 
-		if (( p1flags & RECT_OUT_DOWN ) || (p2flags & RECT_OUT_DOWN))
-		    to_test |= RECT_OUT_DOWN;
-
-		if (( p1flags & RECT_OUT_LEFT ) || (p2flags & RECT_OUT_LEFT))
-		    to_test |= RECT_OUT_LEFT;
-
-		if (( p1flags & RECT_OUT_RIGHT ) || (p2flags & RECT_OUT_RIGHT))
-		    to_test |= RECT_OUT_RIGHT;
-
-		if ( to_test != 0 )
-		    return FALSE;
 		}
 
 	    } //for y_tile
