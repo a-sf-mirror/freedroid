@@ -230,9 +230,9 @@ Mission target is to kill all hostile droids this first level : -1
 Mission target is to also kill all hostile droids on second level : -1
 Mission target is to become type : -1
 Mission target is to overtake a droid with marker : -1
-Mission target is to reach level : -1
-Mission target is to reach X-Pos : -1
-Mission target is to reach Y-Pos : -1
+Mission target is to reach level : 1
+Mission target is to reach X-Pos : 0
+Mission target is to reach Y-Pos : 0
 Mission target is to live for how many seconds : -1
 Mission diary entry=_"Spencer has revealed the information from the data cube evaluation to me.  It seems there is an old military research facility near the colony.  By overtaking the control droid I would be able to control the disruptor shield at the facility. I can either activate it permanently, thereby locking off the Hell Fortress, and the bots its producing, forever from its surrounding. Alternatively I could disable it, and fight my way through the Hell Fortress droids until I reach the main control droid and update it, thereby disabling all bots in the entire area around town in one fell swoop."
 Mission diary entry=_"There, I've founda and entered the base."
