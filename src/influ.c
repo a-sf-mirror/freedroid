@@ -1753,17 +1753,6 @@ set_up_intermediate_course_between_positions ( enemy * droid, gps * curpos, mode
 	}
     
     //--------------------
-    // We delete the current position from the courseway, cause this position
-    // would only lead to jittering in the process of the walk.
-    //
-    next_index_to_set_up -- ;
-    if ( next_index_to_set_up > 0 )
-    {
-	waypoints [ next_index_to_set_up ] . x = (-1) ;
-	waypoints [ next_index_to_set_up ] . y = (-1) ;
-    }
-    
-    //--------------------
     // We print out the final result for debug purposes
     //
     DebugPrintf ( DEBUG_TUX_PATHFINDING , "\nTHE FINAL WAYPOINT HISTORY LOOKS LIKE THIS:" );
