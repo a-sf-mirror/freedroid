@@ -33,7 +33,7 @@ Beginning of new chat dialog for character="XXXXX"
 New Option Nr=0  OptionText=_" Login : admin  Password : *******"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=71  PositionY=177  
-Subtitle=_"Last login from /dev/ttyS0 on Sun, 23 mar 2057. admin@shielddefence: ~ #"
+Subtitle=_"Last login from /dev/ttyS0 on Sun, 23 mar 2057. admin@shielddefense: ~ #"
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=0 ChangeToValue=0
 ChangeOption=7 ChangeToValue=1
