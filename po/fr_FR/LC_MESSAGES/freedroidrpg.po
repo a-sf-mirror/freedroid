@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: freedroidrpg\n"
 "Report-Msgid-Bugs-To: freedroid-discussion@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-07-01 21:46+0200\n"
-"PO-Revision-Date: 2008-07-15 23:06+0000\n"
-"Last-Translator: gholafox <Unknown>\n"
+"POT-Creation-Date: 2008-07-11 14:46+0200\n"
+"PO-Revision-Date: 2008-08-01 10:23+0000\n"
+"Last-Translator: Arthur Huillet <arthur.huillet@free.fr>\n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-15\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-07-16 09:20+0000\n"
+"X-Launchpad-Export-Date: 2008-08-01 10:48+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -44,6 +44,30 @@ msgstr ""
 #, c-format
 #~ msgid "Hostile %s was destroyed by melee attack from friendly %s."
 #~ msgstr "L'ennemi %s a été détruit par l'attaque de mêlée de l'allié %s."
+
+#, c-format
+#~ msgid "%s: option `%s' is ambiguous\n"
+#~ msgstr "%s : l'option `%s' est ambigüe\n"
+
+#, c-format
+#~ msgid "%s: option `--%s' doesn't allow an argument\n"
+#~ msgstr "%s : l'option `--%s' n'accepte pas d'argument\n"
+
+#, c-format
+#~ msgid "%s: option `%c%s' doesn't allow an argument\n"
+#~ msgstr "%s : l'option `%c%s' n'accepte pas d'argument\n"
+
+#, c-format
+#~ msgid "%s: option `%s' requires an argument\n"
+#~ msgstr "%s : l'option `%s' nécessite un argument\n"
+
+#, c-format
+#~ msgid "%s: option `-W %s' is ambiguous\n"
+#~ msgstr "%s : l'option `-W %s' est ambigüe\n"
+
+#, c-format
+#~ msgid "%s: option `-W %s' doesn't allow an argument\n"
+#~ msgstr "%s: l'option `-W %s' n'accepte pas d'argument\n"
 
 #, c-format
 #~ msgid ""
@@ -160,6 +184,31 @@ msgstr ""
 #~ "Le changement de résolution prendra effet automatiquement lorsque vous "
 #~ "redémarrerez FreedroidRPG\n"
 #~ "Merci.\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "Unfortunately, fullscreen cannot be\n"
+#~ "toggled at runtime under Windows.\n"
+#~ "We apologise for this.\n"
+#~ "\n"
+#~ "There are good Linux distributions out there,\n"
+#~ " please check them out.\n"
+#~ "\n"
+#~ "Or you can launch the game with the -w option.\n"
+#~ "\n"
+#~ "   Thank you.\n"
+#~ msgstr ""
+#~ "\n"
+#~ "Malheureusement, le plein écran ne peut être activé/désactivé durant le jeu "
+#~ "sous Windows.\n"
+#~ "Nous vous prions de bien vouloir nous excuser pour ça.\n"
+#~ "\n"
+#~ "Il y a de bonne distributions de Linux, merci \n"
+#~ "de les considérer.\n"
+#~ "\n"
+#~ "Vous pouvez aussi lancer le jeu avec l'option -w.\n"
+#~ "\n"
+#~ "   Merci.\n"
 
 #~ msgid ""
 #~ "\n"
@@ -1090,26 +1139,23 @@ msgstr ""
 #~ msgid "Use SDL automap: %s"
 #~ msgstr "Utiliser la carte auto SDL: %s"
 
+#~ msgid "state:  Attack."
+#~ msgstr "état : Attaque"
+
+#~ msgid "state:  Returning home."
+#~ msgstr "état : Retour à la maison"
+
+#~ msgid "state:  Paralyzed."
+#~ msgstr "état : Paralysé."
+
+#~ msgid "state: Follow Tux."
+#~ msgstr "état : Suit Tux."
+
 #~ msgid "Use this button to undo your last actions."
 #~ msgstr "Utilisez ce bouton pour annuler vos dernières actions."
 
 #~ msgid "Use this button to redo an action."
 #~ msgstr "Utilisez ce bouton pour refaire une action."
-
-#, fuzzy
-#~ msgid "You can get through holes, but beware of sharp edges."
-#~ msgstr ""
-#~ "Vous pouvez passer à travers les trous, mais prenez garde des bords pointus."
-
-#, fuzzy
-#~ msgid "Programming"
-#~ msgstr "recharge"
-
-#, fuzzy
-#~ msgid "Training points"
-#~ msgstr ""
-#~ "Points\n"
-#~ "d'entraînement"
 
 #: ../src/blocks.c:1590 ../src/blocks.c:1597 ../src/blocks.c:1605
 #: ../src/blocks.c:3007 ../src/blocks.c:3010 ../src/blocks.c:3022
@@ -1140,9 +1186,10 @@ msgid "Broken glass wall"
 msgstr "Mur de verre brisé"
 
 #: ../src/blocks.c:1643
-msgid "You can getthrough holes, but beware sharp edges."
+#, fuzzy
+msgid "You can get through holes, but beware of sharp edges."
 msgstr ""
-"Vous pouvez passer à travers les trous, mais prenez garde aux bords acérés"
+"Vous pouvez passer à travers les trous, mais prenez garde des bords pointus."
 
 #: ../src/blocks.c:1700 ../src/blocks.c:1702 ../src/blocks.c:1704
 #: ../src/blocks.c:1706 ../src/blocks.c:1708 ../src/blocks.c:1710
@@ -1337,19 +1384,19 @@ msgstr "Lampe de salle"
 
 #: ../src/blocks.c:2113
 msgid "This is a charming room lamp."
-msgstr "C'est une jolie lampe de salle."
+msgstr "C'est une jolie lampe d'intérieur."
 
 #: ../src/blocks.c:2121
 msgid "This is a wonderful room lamp."
-msgstr "C'est une merveilleuse lampe de salle."
+msgstr "C'est une merveilleuse lampe d'intérieur."
 
 #: ../src/blocks.c:2129
 msgid "This is a great room lamp."
-msgstr "C'est une superbe lampe de salle."
+msgstr "C'est une superbe lampe d'intérieur."
 
 #: ../src/blocks.c:2137
 msgid "This is a perfect room lamp."
-msgstr "C'est une parfaite lampe de salle."
+msgstr "C'est une parfaite lampe d'intérieur."
 
 #: ../src/blocks.c:2152 ../src/blocks.c:2173 ../src/blocks.c:2179
 #: ../src/blocks.c:2199
@@ -1364,7 +1411,7 @@ msgstr "C'est une barrière en bois. Il faut trouver un autre chemin."
 msgid ""
 "This type of a barrier constructed out of wire is called the chain link "
 "fence."
-msgstr "Ce type de barrière fait de fil de fer est appelé grillage."
+msgstr "Ce type de barrière, en fil de fer, est appelé grillage."
 
 #: ../src/blocks.c:2180
 msgid "You can't break it. Find another way."
@@ -1440,7 +1487,7 @@ msgstr "Bureau"
 #: ../src/blocks.c:2396 ../src/blocks.c:2403 ../src/blocks.c:2410
 #: ../src/blocks.c:2417
 msgid "This desk is designed to handle extreme loads of office work."
-msgstr "Ce bureau est conçu pour supporter des charges extrêmes de travail."
+msgstr "Ce bureau est conçu pour supporter des charges de travail extrêmes."
 
 #: ../src/blocks.c:2465 ../src/blocks.c:2472 ../src/blocks.c:2479
 #: ../src/blocks.c:2486
@@ -1995,9 +2042,8 @@ msgstr "Pilier en cristal"
 
 #: ../src/blocks.c:3967 ../src/blocks.c:3974 ../src/blocks.c:3981
 #: ../src/blocks.c:3988 ../src/blocks.c:3995 ../src/blocks.c:4002
-#, fuzzy
 msgid "A pillar made out of crystal."
-msgstr "Un pilier fait de ciment gris."
+msgstr "Un pilier taillé dans du cristal."
 
 #: ../src/blocks.c:4027
 #, c-format
@@ -2018,99 +2064,99 @@ msgstr "Un tir vous a causé %d dommage(s)."
 msgid "That one went into the armour."
 msgstr "Celui-là a été arrêté par l'armure."
 
-#: ../src/character.c:260
+#: ../src/character.c:264
 msgid "Max level reached!"
 msgstr "Niveau maximum atteint !"
 
-#: ../src/character.c:283
+#: ../src/character.c:287
 msgid "Level Gained!"
 msgstr "Niveau obtenu !"
 
-#: ../src/character.c:610
+#: ../src/character.c:615
 msgid "Melee"
 msgstr "Melée"
 
-#: ../src/character.c:626
+#: ../src/character.c:633
 msgid "Ranged"
 msgstr "Portée"
 
-#: ../src/character.c:642
-msgid "Prog"
-msgstr "Prog"
+#: ../src/character.c:651
+#, fuzzy
+msgid "Programming"
+msgstr "recharge"
 
-#: ../src/character.c:692
+#: ../src/character.c:702
 msgid "Level"
 msgstr "Niveau"
 
-#: ../src/character.c:696
+#: ../src/character.c:708
 msgid "Experience"
 msgstr "Expérience"
 
-#: ../src/character.c:700
+#: ../src/character.c:714
 msgid "Next level"
 msgstr "Niveau suivant"
 
-#: ../src/character.c:704
+#: ../src/character.c:720
 msgid "Money"
 msgstr "Argent"
 
-#: ../src/character.c:708
+#: ../src/character.c:726
 msgid "Strength"
 msgstr "Force"
 
-#: ../src/character.c:714
+#: ../src/character.c:734
 msgid "Dexterity"
 msgstr "Dextérité"
 
-#: ../src/character.c:720
+#: ../src/character.c:742
 msgid "CPU"
 msgstr "CPU"
 
-#: ../src/character.c:726
+#: ../src/character.c:750
 msgid "Life"
 msgstr "Vie"
 
-#: ../src/character.c:734
-msgid ""
-"Training\n"
-"points"
+#: ../src/character.c:760
+#, fuzzy
+msgid "Training points"
 msgstr ""
 "Points\n"
 "d'entraînement"
 
-#: ../src/character.c:738
+#: ../src/character.c:766
 msgid "Health"
 msgstr "Santé"
 
-#: ../src/character.c:742
+#: ../src/character.c:772
 msgid "Temperature"
 msgstr "Température"
 
-#: ../src/character.c:746
+#: ../src/character.c:778
 msgid "Stamina"
 msgstr "Endurance"
 
-#: ../src/character.c:750 ../src/ship.c:596
+#: ../src/character.c:784 ../src/ship.c:596
 msgid "Armor"
 msgstr "Armure"
 
-#: ../src/character.c:754
+#: ../src/character.c:790
 msgid "Attack"
 msgstr "Attaque"
 
-#: ../src/character.c:758
+#: ../src/character.c:796
 msgid "Damage"
 msgstr "Dommages"
 
-#: ../src/chat.c:591
+#: ../src/chat.c:592
 msgid "1 Item received (on floor)"
 msgstr "1 objet reçu (sur le sol)"
 
-#: ../src/chat.c:595
+#: ../src/chat.c:596
 msgid "1 Item received!"
 msgstr "1 objet reçu !"
 
-#: ../src/chat.c:1277
+#: ../src/chat.c:1278
 msgid "What will you say?"
 msgstr "Qu'allez-vous dire ?"
 
@@ -2144,109 +2190,6 @@ msgstr "%s a été tué par %s."
 msgid "%s died."
 msgstr "%s est mort."
 
-#: ../src/enemy.c:991
-msgid "state:  Wandering along waypoints."
-msgstr "état : erre le long des balises"
-
-#: ../src/enemy.c:994
-msgid "state: Select next WP."
-msgstr "état :choisi la prochaine balise"
-
-#: ../src/enemy.c:997
-msgid "state:  Turn towards next WP."
-msgstr "état : tourne face à la prochaine balise"
-
-#: ../src/enemy.c:1000
-msgid "state:  Rush Tux and open talk."
-msgstr "état : coure vers Tux et ouvre la discussion"
-
-#: ../src/enemy.c:1003
-msgid "state:  Stop and eye target."
-msgstr "état : arrêté et regarde la cible"
-
-#: ../src/enemy.c:1006
-msgid "state:  Attack."
-msgstr "état : Attaque"
-
-#: ../src/enemy.c:1009
-msgid "state:  Returning home."
-msgstr "état : Retour à la maison"
-
-#: ../src/enemy.c:1012
-msgid "state:  Waypointless wandering."
-msgstr "état : Déplacement hors-balises"
-
-#: ../src/enemy.c:1015
-msgid "state:  Paralyzed."
-msgstr "état : Paralysé."
-
-#: ../src/enemy.c:1018
-msgid "state: Completely fixed."
-msgstr "état : complètement réparé"
-
-#: ../src/enemy.c:1021
-msgid "state: Follow Tux."
-msgstr "état : Suit Tux."
-
-#: ../src/enemy.c:1024
-msgid "state:  UNHANDLED!!"
-msgstr "état : non récupéré"
-
-#: ../src/getopt.c:680
-#, c-format
-msgid "%s: option `%s' is ambiguous\n"
-msgstr "%s : l'option `%s' est ambigüe\n"
-
-#: ../src/getopt.c:705
-#, c-format
-msgid "%s: option `--%s' doesn't allow an argument\n"
-msgstr "%s : l'option `--%s' n'accepte pas d'argument\n"
-
-#: ../src/getopt.c:710
-#, c-format
-msgid "%s: option `%c%s' doesn't allow an argument\n"
-msgstr "%s : l'option `%c%s' n'accepte pas d'argument\n"
-
-#: ../src/getopt.c:728 ../src/getopt.c:901
-#, c-format
-msgid "%s: option `%s' requires an argument\n"
-msgstr "%s : l'option `%s' nécessite un argument\n"
-
-#: ../src/getopt.c:757
-#, c-format
-msgid "%s: unrecognized option `--%s'\n"
-msgstr "%s : l'option `--%s' est inconnue\n"
-
-#: ../src/getopt.c:761
-#, c-format
-msgid "%s: unrecognized option `%c%s'\n"
-msgstr "%s : option `%c%s' inconnue\n"
-
-#: ../src/getopt.c:787
-#, c-format
-msgid "%s: illegal option -- %c\n"
-msgstr "%s : option -- %c interdite\n"
-
-#: ../src/getopt.c:790
-#, c-format
-msgid "%s: invalid option -- %c\n"
-msgstr "%s : option -- %c invalide\n"
-
-#: ../src/getopt.c:820 ../src/getopt.c:950
-#, c-format
-msgid "%s: option requires an argument -- %c\n"
-msgstr "%s : l'option -- %c nécessite un argument\n"
-
-#: ../src/getopt.c:867
-#, c-format
-msgid "%s: option `-W %s' is ambiguous\n"
-msgstr "%s : l'option `-W %s' est ambigüe\n"
-
-#: ../src/getopt.c:885
-#, c-format
-msgid "%s: option `-W %s' doesn't allow an argument\n"
-msgstr "%s: l'option `-W %s' n'accepte pas d'argument\n"
-
 #: ../src/hud.c:190
 #, c-format
 msgid "Damage: %d to %d \n"
@@ -2273,9 +2216,9 @@ msgid "Armour: %d"
 msgstr "Armure : %d"
 
 #: ../src/hud.c:231
-#, fuzzy, c-format
+#, c-format
 msgid " Durability: %d of %d\n"
-msgstr " Durabilité : %d sur %d\n"
+msgstr " Solidité : %d sur %d\n"
 
 #: ../src/hud.c:233
 #, c-format
@@ -2404,9 +2347,9 @@ msgid "Huge explosion\n"
 msgstr "Grosse explosion\n"
 
 #: ../src/hud.c:379
-#, fuzzy, c-format
+#, c-format
 msgid "USE UNDESCRIBED YET (bug)\n"
-msgstr "UTILISATION NON DÉCRITE POUR L'INSTANT\n"
+msgstr "UTILISATION NON DÉCRITE POUR L'INSTANT (bug)\n"
 
 #: ../src/hud.c:383
 #, c-format
@@ -2598,42 +2541,42 @@ msgstr "%s (%03.1f:%03.1f:%d) jour %d %02d:%02d "
 msgid "Clip empty, reloading..."
 msgstr "Chargeur vide, rechargement..."
 
-#: ../src/influ.c:2922
+#: ../src/influ.c:2921
 msgid "No more ammunition !"
 msgstr "Plus de munitions !"
 
-#: ../src/influ.c:3329
+#: ../src/influ.c:3328
 #, c-format
 msgid "This is a %s. %s"
 msgstr "C'est un %s. %s"
 
-#: ../src/influ.c:3354 ../src/influ.c:3361
+#: ../src/influ.c:3353 ../src/influ.c:3360
 #, c-format
 msgid "Examining %s.  %s"
 msgstr "Examine %s.  %s"
 
-#: ../src/influ.c:3376
+#: ../src/influ.c:3375
 #, c-format
 msgid "You see the floor.  It should be perfectly safe to walk on it."
 msgstr ""
 "Vous regardez le sol. Il devrait être parfaitement sécurisé de marché dessus."
 
-#: ../src/influ.c:3407
+#: ../src/influ.c:3406
 #, c-format
 msgid "Unlocking obstacle of type %d."
 msgstr "Débloque un obstacle de type %d."
 
-#: ../src/influ.c:3436
+#: ../src/influ.c:3435
 #, c-format
 msgid "Repairing obstacle of type %d."
 msgstr "Répare un obstacle de type %d."
 
-#: ../src/influ.c:3465
+#: ../src/influ.c:3464
 #, c-format
 msgid "Attacking obstacle of type %d."
 msgstr "Attaque un obstacle de type %d."
 
-#: ../src/influ.c:3494
+#: ../src/influ.c:3493
 #, c-format
 msgid "Picking pockets of obstacle of type %d."
 msgstr "Fouille les poches de l'obstacle de type %d."
@@ -2774,8 +2717,8 @@ msgid ""
 "at singing religious songs."
 msgstr ""
 "Quelque chose le concernant vous fait penser aux anges. Mis à part que les "
-"anges sont généralement sains d'esprit, n'on pas le désir de tuer tout ce "
-"qui les entoure et sont bien meilleurs pour chanter des chants religieux."
+"anges sont généralement sains d'esprit, n'ont pas le désir de tuer tout ce "
+"qui les entoure, et sont bien meilleurs pour chanter des chants religieux."
 
 #: ../src/init.c:161
 msgid ""
@@ -2792,20 +2735,20 @@ msgid ""
 "His IQ is sometimes as high as a dog's. Only sometimes though. He smells "
 "like a dog too."
 msgstr ""
-"Son QI semble aussi élevé que celui d'un chien. Seulement parfois cependant. "
-"Il a aussi l'odeur d'un chien."
+"Son QI semble aussi élevé que celui d'un chien. Mais, parfois seulement. Il "
+"a aussi l'odeur d'un chien."
 
 #: ../src/init.c:165
 msgid ""
 "He seems to be the chief of the gate guards. Hard to say anything more, the "
 "armor hides his body."
 msgstr ""
-"Il semble être le chef des gardes de la porte. Difficile d'en deviner plus, "
+"Il semble être le chef des gardes du portail. Difficile d'en dire plus, "
 "l'armure cache son corps."
 
 #: ../src/init.c:167
 msgid "Just an another Red Guard. The armor hides his body."
-msgstr "Juste un autre garde rouge. Son armure cache son corps."
+msgstr "Juste un autre Garde Rouge. Son armure cache son corps."
 
 #: ../src/init.c:169
 msgid ""
@@ -2813,25 +2756,25 @@ msgid ""
 "right now this one is high on at least four different narcotics. Doc Moore "
 "seems very happy indeed..."
 msgstr ""
-"Certains disent que tous les médecins sont drogués. Celui-ci doit, en ce "
-"moment, être sous l'effet d'au moins quatre narcotiques différents. Docteur "
-"Moore semble très heureux en fait ..."
+"Certains disent que tous les médecins sont accro aux drogues. Celui-ci doit, "
+"en ce moment, être sous l'effet d'au moins quatre narcotiques différents. "
+"Docteur Moore semble très heureux, en effet..."
 
 #: ../src/init.c:171
 msgid ""
 "Yet another Red Guard. You cannot say anything more, the armor hides his "
 "body."
 msgstr ""
-"Encore un autre garde rouge. On ne peut pas en deviner plus, l'armure cache "
-"son corps."
+"Encore un autre Garde Rouge. On ne peut pas en dire plus, l'armure cache son "
+"corps."
 
 #: ../src/init.c:173
 msgid ""
 "He looks taller than most of the Red Guards, but you cannot really say "
 "anything more about him, the armor hides his body."
 msgstr ""
-"Il semble plus grand que la majeure partie des gardes rouges, mais on ne "
-"peut pas en deviner plus, l'armure cache son corps."
+"Il semble plus grand que la majeure partie des Gardes Rouges, mais on ne "
+"peut pas en dire plus, l'armure cache son corps."
 
 #: ../src/init.c:175
 msgid ""
@@ -2839,16 +2782,17 @@ msgid ""
 "are in a killing mood. Oh yeah. The cook must die. The cook must die. Ha. "
 "Ha. Ha."
 msgstr ""
-"Maintenant vous savez qui blamer pour la nourriture exécrable ici. Vous êtes "
+"Maintenant vous savez qui blâmer pour la nourriture exécrable ici. Vous êtes "
 "d'humeur massacrante. Oh oui. Le cuisinier doit mourir. Le cuisinier doit "
-"mourir. Ha Ha Ha."
+"mourir. Ha. Ha. Ha."
 
 #: ../src/init.c:177
 msgid ""
 "This is a major bug. Please report this incident to the developers. Thank "
 "you."
 msgstr ""
-"Ceci est un gros bug poilu. Merci de rapporter ces incident aux développeurs."
+"Ceci est un gros bogue. Rapporter cet incident aux développeurs, s'il vous "
+"plait. Merci."
 
 #: ../src/init.c:179
 msgid ""
@@ -2856,162 +2800,162 @@ msgid ""
 "making more Stone from the Blood. I wonder what is the next step of the "
 "cycle..."
 msgstr ""
-"Sang. Pierre. Dent. Le sang à fait la dent à partir de pierre. Maintenant la "
-"dent fait plus de pierre avec du sang. Je me demande quelle est l'étape "
-"suivante de ce cycle ..."
+"Sang. Pierre. Cran. Le Sang a créé le Cran à partir de la Pierre. "
+"Maintenant, le Cran est en train de faire plus de Pierre à partir du Sang. "
+"Je me demande quelle est la prochaine étape de ce cycle...."
 
 #: ../src/init.c:181 ../src/init.c:183 ../src/init.c:185 ../src/init.c:187
 msgid "The armor hides his body."
 msgstr "L'armure cache son corps."
 
-#: ../src/init.c:1911
+#: ../src/init.c:1918
 msgid "Huh? What?  Where am I?"
 msgstr "Hein ? Quoi ? Où suis-je ?"
 
-#: ../src/init.c:2025
+#: ../src/init.c:2032
 msgid "Updating Tux images"
 msgstr "Mise à jour des images de Tux"
 
-#: ../src/init.c:2026
+#: ../src/init.c:2033
 msgid "(this may take a little while...)"
-msgstr "(veuillez patienter ...)"
+msgstr "(ceci peut prendre un peu de temps...)"
 
-#: ../src/init.c:2029
+#: ../src/init.c:2036
 msgid "Starting new game."
-msgstr "Début d'un nouveau jeu."
+msgstr "Commencer une nouvelle partie."
 
-#: ../src/init.c:2345
+#: ../src/init.c:2352
 msgid "Game over.\n"
 msgstr "Jeu terminé.\n"
 
-#: ../src/init.c:2432
+#: ../src/init.c:2439
 msgid "Game won.\n"
 msgstr "Vous avez gagné.\n"
 
 #: ../src/input.c:418
 msgid "Automap ON."
-msgstr "Automap activée"
+msgstr "Carte automatique activée"
 
 #: ../src/input.c:420
 msgid "Automap OFF."
-msgstr "Automap désactivée"
+msgstr "Carte automatique désactivée"
 
 #: ../src/input.c:424
 msgid "Sorry, you don't have automap yet:  map maker item not present."
 msgstr ""
-"Désolé, vous ne pouvez pas encore utiliser la carte auto : outil de "
+"Désolé, vous ne pouvez pas encore utiliser la carte automatique : outil de "
 "cartographie non présent"
 
-#: ../src/items.c:1146
+#: ../src/items.c:1093
 msgid "I can't use this item here."
 msgstr "Je ne peux pas utiliser cet objet ici."
 
-#: ../src/items.c:1159
+#: ../src/items.c:1106
 #, c-format
 msgid "How do you expect to do two things at a time? You are "
-msgstr "Comment ésperez-vous faire deux choses en même temps ? Vous "
+msgstr "Comment espérez-vous faire deux choses en même temps ? Vous "
 
-#: ../src/items.c:1163
+#: ../src/items.c:1110
 msgid "drinking a potion!"
 msgstr "buvez une potion !"
 
-#: ../src/items.c:1166
+#: ../src/items.c:1113
 msgid "waiting for you weapon to fire again!"
-msgstr "attendez que votre arme tire !"
+msgstr "attendez que votre arme tire encore !"
 
-#: ../src/items.c:1169
+#: ../src/items.c:1116
 msgid "reloading your weapon!"
 msgstr "rechargez votre arme !"
 
-#: ../src/items.c:1172
+#: ../src/items.c:1119
 msgid "throwing a grenade!"
 msgstr "lancez une grenade !"
 
-#: ../src/items.c:1175
+#: ../src/items.c:1122
 msgid "running a program!"
 msgstr "lancez un programme !"
 
-#: ../src/items.c:1178
+#: ../src/items.c:1125
 msgid "doing something so weird the game does not understand what it is"
-msgstr "faites quelque chose de si bizarre que je ne sais pas ce que c'est"
+msgstr ""
+"faites quelque chose de si bizarre que le jeu ne comprend pas ce que c'est"
 
-#: ../src/items.c:2141 ../src/items.c:2176 ../src/items.c:2178
+#: ../src/items.c:2090 ../src/items.c:2125 ../src/items.c:2127
 msgid "Identified air."
-msgstr "L'air a été identifié."
+msgstr "Air identifié."
 
-#: ../src/items.c:2197
+#: ../src/items.c:2146
 #, c-format
 msgid "You already know all there is to know about the %s."
-msgstr "Vous savez déjà tout ce qu'il faut savoir sur le %s"
+msgstr "Vous savez déjà tout ce qu'il faut savoir sur le %s."
 
-#: ../src/items.c:2203
+#: ../src/items.c:2152
 #, c-format
 msgid "Identified %s"
-msgstr "%s identifié"
+msgstr "%s identifié(e)"
 
-#: ../src/items.c:2433
+#: ../src/items.c:2382
 msgid "Two-handed weapon requirements not met: shield bonus doesn't count."
 msgstr ""
-"Pré-requis de l'arme à deux mains non satisfaits : le bonus du bouclier ne "
+"Prérequis de l'arme à deux mains non satisfaits : le bonus du bouclier ne "
 "compte pas."
 
-#: ../src/items.c:2452
+#: ../src/items.c:2401
 msgid "You cannot fight with this!"
 msgstr "Vous ne pouvez pas vous battre avec ça !"
 
-#: ../src/items.c:2495
+#: ../src/items.c:2444
 msgid "Shield requirements not met: two-handed weapon bonus doesn't count."
 msgstr ""
-"Pré-requis pour le bouclier non satisfaits : le bonus de l'arme à deux mains "
+"Prérequis pour le bouclier non satisfaits : le bonus de l'arme à deux mains "
 "ne compte pas."
 
-#: ../src/items.c:2616
+#: ../src/items.c:2565
 #, c-format
 msgid "Item taken: %s."
 msgstr "Objet ramassé : %s."
 
-#: ../src/items.c:2668 ../src/items.c:2842
+#: ../src/items.c:2617 ../src/items.c:2791
 msgid "I can't carry any more."
 msgstr "Je ne peux plus rien porter."
 
-#: ../src/leveleditor.c:1670
+#: ../src/leveleditor.c:1669
 msgid "Cancel item drop"
 msgstr "Annuler le point de chute"
 
-#: ../src/leveleditor.c:1972
-#, fuzzy
+#: ../src/leveleditor.c:1971
 msgid "FLOOR"
 msgstr "SOL"
 
-#: ../src/leveleditor.c:1973
+#: ../src/leveleditor.c:1972
 msgid "WALLS"
 msgstr "MURS"
 
-#: ../src/leveleditor.c:1974
+#: ../src/leveleditor.c:1973
 msgid "MACHINERY"
-msgstr "MACHINES"
+msgstr "MACHINERIE"
+
+#: ../src/leveleditor.c:1974
+msgid "FURNITURE"
+msgstr "MEUBLE"
 
 #: ../src/leveleditor.c:1975
-msgid "FURNITURE"
-msgstr "MEUBLES"
-
-#: ../src/leveleditor.c:1976
 msgid "CONTAINERS"
 msgstr "CONTENEURS"
 
-#: ../src/leveleditor.c:1977
+#: ../src/leveleditor.c:1976
 msgid "NATURE"
 msgstr "NATURE"
 
-#: ../src/leveleditor.c:1978
+#: ../src/leveleditor.c:1977
 msgid "ALL"
-msgstr "TOUT"
+msgstr "TOUT(ES)"
 
-#: ../src/leveleditor.c:1979
+#: ../src/leveleditor.c:1978
 msgid "QUICK"
 msgstr "RAPIDE"
 
-#: ../src/leveleditor.c:3851
+#: ../src/leveleditor.c:3850
 #, c-format
 msgid ""
 "\n"
@@ -3022,7 +2966,7 @@ msgstr ""
 " Nom position carte: \n"
 " label_name=\"%s\""
 
-#: ../src/leveleditor.c:4433
+#: ../src/leveleditor.c:4432
 msgid ""
 "Go level north\n"
 "\n"
@@ -3031,46 +2975,46 @@ msgid ""
 msgstr ""
 "Va au niveau nord\n"
 "\n"
-"Utilise ce bouton pour te déplace d'un niveau au nord, c'est à dire le "
+"Utilisez ce bouton pour vous déplacer d'un niveau au nord, c'est-à-dire le "
 "prochain niveau au nord du niveau actuel."
 
-#: ../src/leveleditor.c:4438
+#: ../src/leveleditor.c:4437
 msgid ""
 "Go level south\n"
 "\n"
 "Use this button to move one level south, i.e. to the level that is glued to "
 "the southern side of this level."
 msgstr ""
-"Va au niveau du sud\n"
+"Va au niveau sud\n"
 "\n"
-"Utilise ce bouton pour te déplacer d'un niveau vers le sud, c'est à dire "
+"Utilisez ce bouton pour vous déplacer d'un niveau vers le sud, c'est-à-dire "
 "vers le prochain niveau au sud de l'actuel."
 
-#: ../src/leveleditor.c:4443
+#: ../src/leveleditor.c:4442
 msgid ""
 "Go level east\n"
 "\n"
 "Use this button to move one level east, i.e. to the level that is glued to "
 "the eastern side of this level."
 msgstr ""
-"Va au niveau du est\n"
+"Va au niveau est\n"
 "\n"
-"Utilise ce bouton pour te déplacer d'un niveau vers l'est, c'est à dire vers "
-"le prochain niveau à l'est de l'actuel."
+"Utilisez ce bouton pour vous déplacer d'un niveau vers l'est, c'est-à-dire "
+"vers le prochain niveau à l'est de l'actuel."
 
-#: ../src/leveleditor.c:4448
+#: ../src/leveleditor.c:4447
 msgid ""
 "Go level west\n"
 "\n"
 "Use this button to move one level west, i.e. to the level that is glued to "
 "the western side of this level."
 msgstr ""
-"Va au niveau à l'ouest\n"
+"Va au niveau ouest\n"
 "\n"
-"Utilise ce bouton pour te déplacer d'un niveau vers l'ouest, c'est à dire "
+"Utilisez ce bouton pour vous déplacer d'un niveau vers l'ouest, c'est-à-dire "
 "vers le prochain niveau à l'ouest de l'actuel."
 
-#: ../src/leveleditor.c:4453
+#: ../src/leveleditor.c:4452
 msgid ""
 "Export this level\n"
 "\n"
@@ -3079,24 +3023,26 @@ msgid ""
 "copy the borders of this level to the borders of the neighbouring levels, so "
 "that the maps are in sync again."
 msgstr ""
-"Exporter ce niveau\\ndans les cartes de FreedroidRPG pour former une seule "
-"grande carte est possible. Mais cela nécessite que les cartes coincident sur "
-"leur contour. Ce bouton va copier les bords de ce niveau vers les bords du "
-"niveau voisin, afin que les cartes coincident toujours."
+"Exporter ce niveau\n"
+"\n"
+"Dans FreedroidRPG, les cartes peuvent être assemblées ensemble pour former "
+"une seule grande carte. Mais cela nécessite que les cartes coïncident sur "
+"leurs contours. Ce bouton va copier les bords de ce niveau vers les bords du "
+"niveau voisin, afin que les cartes coïncident toujours."
 
-#: ../src/leveleditor.c:4458
+#: ../src/leveleditor.c:4457
 msgid ""
 "Save Map\n"
 "\n"
 "This button will save your current map over the file '../map/Asteroid.maps' "
 "from your current working directory."
 msgstr ""
-"Sauvegarde de la carte\n"
+"Sauvegarder la carte\n"
 "\n"
 "Ce bouton sauvegardera votre carte actuelle dans le fichier "
-"'../map/Asteroid.maps' de votre répertoire de travail actuel"
+"'../map/Asteroid.maps' de votre répertoire de travail actuel."
 
-#: ../src/leveleditor.c:4463
+#: ../src/leveleditor.c:4462
 msgid ""
 "Toggle waypoints\n"
 "\n"
@@ -3109,10 +3055,10 @@ msgstr ""
 "\n"
 "Utilisez ce bouton pour placer des points de passage à l'endroit courant du "
 "curseur. Les points de passage sont marqués par une flèche quadri-"
-"directionnelle blanche.\n"
+"directionnelle blanche (ou multicouleurs).\n"
 "Vous pouvez faire la même chose en utilisant la touche W."
 
-#: ../src/leveleditor.c:4470
+#: ../src/leveleditor.c:4469
 msgid ""
 "Make waypoint connection\n"
 "\n"
@@ -3128,7 +3074,7 @@ msgstr ""
 "\n"
 "Vous pouvez aussi utiliser la touche C pour le faire."
 
-#: ../src/leveleditor.c:4472
+#: ../src/leveleditor.c:4471
 msgid ""
 "Complete waypoint connection\n"
 "\n"
@@ -3145,7 +3091,7 @@ msgstr ""
 "\n"
 "Vous pouvez également utiliser la touche C pour cela."
 
-#: ../src/leveleditor.c:4478
+#: ../src/leveleditor.c:4477
 msgid ""
 "Delete selected obstacle\n"
 "\n"
@@ -3153,13 +3099,13 @@ msgid ""
 "\n"
 "You can also use the X key for this."
 msgstr ""
-"Supprime les obstacles sélectionnés\n"
+"Supprime l'obstacle sélectionné\n"
 "\n"
-"Utilisez ce bouton pour supprimer les obstacles sélectionnés.\n"
+"Utilisez ce bouton pour supprimer l'obstacles sélectionné.\n"
 "\n"
 "Vous pouvez aussi utiliser la touche X pour cela."
 
-#: ../src/leveleditor.c:4483
+#: ../src/leveleditor.c:4482
 msgid ""
 "Next obstacle on currently selected tile\n"
 "\n"
@@ -3169,11 +3115,11 @@ msgid ""
 msgstr ""
 "Le prochain obstacle sur la dalle courante\n"
 "\n"
-"Utilisez ce bouton pour entourer l'ostacle sélectionné sur cette dalle.\n"
+"Utilisez ce bouton pour entourer l'obstacle sélectionné sur cette dalle.\n"
 "\n"
 "Vous pouvez aussi utiliser la touche N pour cela."
 
-#: ../src/leveleditor.c:4488
+#: ../src/leveleditor.c:4487
 msgid ""
 "Beautify grass button\n"
 "\n"
@@ -3183,15 +3129,15 @@ msgid ""
 "\n"
 "You can also use Ctrl-B for this."
 msgstr ""
-"Bouton de hautes herbes\n"
+"Enjoliver les hautes herbes\n"
 "\n"
-"Utilisez ce bouton pour faire des hautes herbes par dessus les dalles de "
-"sable du niveau entier. Cette fonction va essayer de créer des bordures et "
-"des coins arrondis.\n"
+"Utilisez ce bouton pour \"enjoliver\" les hautes herbes par-dessus les "
+"dalles de sable du niveau entier. Cette fonction va essayer de créer des "
+"bordures et des coins arrondis.\n"
 "\n"
-"Vous pouvez également utiliser Ctrl-B pour faire cela."
+"Vous pouvez également utiliser Ctrl-B pour cela."
 
-#: ../src/leveleditor.c:4494
+#: ../src/leveleditor.c:4493
 msgid ""
 "Zoom in/out\n"
 "\n"
@@ -3199,14 +3145,13 @@ msgid ""
 "\n"
 "You can also use the hotkey 'O' for this."
 msgstr ""
-"Zoom in/out\n"
+"Zoom avant/arrière\n"
 "\n"
-"Utilisez ce bouton pour faire un zoom grossissant ou à l'extérieur du "
-"niveau.\n"
+"Utilisez ce bouton pour faire un zoom AVANT ou ARRIERE du niveau.\n"
 "\n"
 "Vous pouvez également utiliser la touche 'O' pour cela."
 
-#: ../src/leveleditor.c:4499
+#: ../src/leveleditor.c:4498
 msgid ""
 "Fill\n"
 "\n"
@@ -3217,10 +3162,10 @@ msgstr ""
 "Remplissage\n"
 "\n"
 "Utilisez ce bouton pour remplir une autre aire de la carte avec les dalles "
-"séléctionnées. Le remplissage va démarrer du curseur dans toutes les "
+"sélectionnées. Le remplissage va démarrer du curseur dans toutes les "
 "directions jusqu'à ce qu'un changement de dalles de la carte soit rencontré."
 
-#: ../src/leveleditor.c:4504
+#: ../src/leveleditor.c:4503
 msgid ""
 "New obstacle label\n"
 "\n"
@@ -3228,14 +3173,14 @@ msgid ""
 "obstacle labels can be used to define obstacles to be modified by events.\n"
 " Note that you can also use the hotkey 'h' for this."
 msgstr ""
-"Nouvelle étiquette pour obstacle\n"
+"Nouvelle étiquette d'obstacle\n"
 "\n"
-"Utilise ce bouton pour fixer une étiquette à un obstacle actuellement "
+"Utilisez ce bouton pour fixer une étiquette à un obstacle actuellement "
 "sélectionné. Cette étiquette d'obstacle peut être utilisée pour définir des "
 "obstacles modifiés par des évènements.\n"
 " Remarquez que vous pouvez également utiliser la touche rapide 'h' pour cela."
 
-#: ../src/leveleditor.c:4509
+#: ../src/leveleditor.c:4508
 msgid ""
 "New obstacle description\n"
 "\n"
@@ -3245,7 +3190,7 @@ msgstr ""
 "\n"
 "Utilisez ce bouton pour éditer la description de l'obstacle sélectionné."
 
-#: ../src/leveleditor.c:4514
+#: ../src/leveleditor.c:4513
 msgid ""
 "New map label\n"
 "\n"
@@ -3253,26 +3198,26 @@ msgid ""
 "These map labels can be used to define starting points for bots and "
 "characters or also to define locations for events and triggers."
 msgstr ""
-"Nouvelle étiquette de carte.\n"
+"Nouvelle étiquette de carte\n"
 "\n"
 "Utilisez ce bouton pour fixer une nouvelle étiquette de carte à la position "
 "courante du curseur. Cette étiquette de carte peut être utilisée pour "
 "définir des points de départ pour des robots et des personnages et également "
 "pour définir des endroits pour des évènements et des déclencheurs."
 
-#: ../src/leveleditor.c:4519
+#: ../src/leveleditor.c:4518
 msgid ""
 "Add item\n"
 "\n"
 "Use this button to drop a new item to the floor.  You can also use the "
 "hotkey 'G' for this."
 msgstr ""
-"Ajoute un objet.\n"
+"Ajouter objet\n"
 "\n"
 "Utilisez ce bouton pour poser un nouvel objet sur le sol. Vous pouvez "
 "également utilisez la touche rapide 'G' pour cela."
 
-#: ../src/leveleditor.c:4524
+#: ../src/leveleditor.c:4523
 msgid ""
 "Menu\n"
 "\n"
@@ -3284,10 +3229,10 @@ msgstr ""
 "\n"
 "Utilisez ce bouton pour entrer dans le menu principal de l'éditeur de "
 "niveau.\n"
-"Remarquez que vous pouvez également utiliser la touche Echap pour entrer "
-"dans le menu principal de l'éditeur de niveau."
+" Notez que vous pouvez également utiliser la touche Echap pour entrer dans "
+"le menu principal de l'éditeur de niveau."
 
-#: ../src/leveleditor.c:4529
+#: ../src/leveleditor.c:4528
 msgid ""
 "Level resize\n"
 "\n"
@@ -3295,14 +3240,14 @@ msgid ""
 "various ways so as not to destroy your current map too much and so as to "
 "insert the new space where you would best like it to be."
 msgstr ""
-"Redimensionnement de niveau\n"
+"Redimensionner le niveau\n"
 "\n"
 "Utilisez ce bouton pour entrer dans le menu de redimensionnement de niveau. "
 "Les niveaux peuvent être redimensionnés de différentes manières, pour ne pas "
 "trop endommager votre carte actuelle et insérer des espaces où vous aimeriez "
 "qu'ils soient situés."
 
-#: ../src/leveleditor.c:4534
+#: ../src/leveleditor.c:4533
 msgid ""
 "Level editor guide\n"
 "\n"
@@ -3313,7 +3258,7 @@ msgstr ""
 "Utilisez ce bouton pour entrer dans l'affichage du clavier de l'éditeur de "
 "niveau."
 
-#: ../src/leveleditor.c:4539
+#: ../src/leveleditor.c:4538
 msgid ""
 "Back to game\n"
 "\n"
@@ -3321,9 +3266,9 @@ msgid ""
 msgstr ""
 "Retour au jeu\n"
 "\n"
-"Quittez l'éditeur de niveau pour jouer à freedroidRPG."
+"Quitte l'éditeur de niveau pour jouer à FreedroidRPG."
 
-#: ../src/leveleditor.c:4544
+#: ../src/leveleditor.c:4543
 msgid ""
 "Underground lighting\n"
 "\n"
@@ -3332,24 +3277,37 @@ msgid ""
 "\n"
 "There isn't any key to toggle this on the keyboard."
 msgstr ""
+"Éclairage de sous-sol\n"
+"\n"
+"Utilisez ce bouton pour placer de l'éclairage sous-terrain, par exemple, des "
+"ombres provenant de la lumière que Tux émane.\n"
+"\n"
+"Il n'y a pas de touche clavier rapide pour le placement."
 
-#: ../src/leveleditor.c:4550
+#: ../src/leveleditor.c:4549
 msgid ""
 "Toggle display enemies\n"
 "\n"
 "Use this button to toggle between enemies displayed in level editor or "
 "enemies hidden in level editor."
 msgstr ""
+"Commuter l'affichage des ennemis\n"
+"\n"
+"Utilisez ce bouton commuter l'affichage des ennemis dans l'éditeur de niveau."
 
-#: ../src/leveleditor.c:4556
+#: ../src/leveleditor.c:4555
 msgid ""
 "Toggle display obstacles\n"
 "\n"
 "Use this button to toggle between obstacles displayed in level editor or "
 "obstacles hidden in level editor."
 msgstr ""
+"Commuter l'affichage des obstacles\n"
+"\n"
+"Utilisez ce bouton pour basculer entre afficher les obstacles et cacher les "
+"obstacles dans l'éditeur de niveau."
 
-#: ../src/leveleditor.c:4562
+#: ../src/leveleditor.c:4561
 msgid ""
 "Undo\n"
 "\n"
@@ -3357,9 +3315,9 @@ msgid ""
 msgstr ""
 "Annuler\n"
 "\n"
-"Utiliser ce bouton pour annuler vos dernières actions."
+"Utilisez ce bouton pour annuler vos dernières actions."
 
-#: ../src/leveleditor.c:4568
+#: ../src/leveleditor.c:4567
 msgid ""
 "Redo\n"
 "\n"
@@ -3367,49 +3325,60 @@ msgid ""
 msgstr ""
 "Rétablir\n"
 "\n"
-"Utiliser ce bouton pour rétablir une action."
+"Utilisez ce bouton pour rétablir une action."
 
-#: ../src/leveleditor.c:4574
+#: ../src/leveleditor.c:4573
 msgid ""
 "Toggle display Tux\n"
 "\n"
 "Use this button to toggle between Tux displayed in level editor or Tux "
 "hidden in level editor."
 msgstr ""
+"Commuter l'affichage de Tux\n"
+"\n"
+"Utilisez ce bouton pour basculer entre afficher Tux ou cacher Tux dans "
+"l'éditeur de niveau."
 
-#: ../src/leveleditor.c:4580
+#: ../src/leveleditor.c:4579
 msgid ""
 "Toggle display tooltips\n"
 "\n"
 "Use this button to toggle these annoying help windows on and off."
 msgstr ""
+"Commutation de l'affichage des infobulles\n"
+"\n"
+"Utilisez ce bouton pour commuter l'apparition des infobulles."
 
-#: ../src/leveleditor.c:4586
+#: ../src/leveleditor.c:4585
 msgid ""
 "Toggle display colision rectangles\n"
 "\n"
 "Use this button to toggle the visible collision rectangles on and off."
 msgstr ""
+"Commute  l'affichage des rectangles de collision\n"
+"\n"
+"Utilisez ce bouton pour commuter l'affichage des rectangle frontalier aux "
+"objets."
 
-#: ../src/leveleditor.c:4593
+#: ../src/leveleditor.c:4592
 msgid "Change grid mode ( placement / full / off )"
-msgstr ""
+msgstr "Mode de grille (position/complet/off)"
 
-#: ../src/leveleditor.c:5607
+#: ../src/leveleditor.c:5606
 #, c-format
 msgid " Source waypoint selected : NONE"
 msgstr " Point de passage source : AUCUN"
 
-#: ../src/leveleditor.c:5611
+#: ../src/leveleditor.c:5610
 #, c-format
 msgid " Source waypoint selected : X=%d Y=%d. "
 msgstr " Point de passage source : X=%d Y=%d. "
 
-#: ../src/main.c:396
+#: ../src/main.c:397
 msgid "Overheating!"
 msgstr "Surchauffe !"
 
-#: ../src/main.c:413
+#: ../src/main.c:414
 msgid "Weapon reloaded"
 msgstr "Arme rechargée"
 
@@ -3505,11 +3474,11 @@ msgstr "Sortie OpenGL activée : "
 msgid "Play"
 msgstr "Jouer"
 
-#: ../src/menu.c:1372 ../src/menu.c:1491
+#: ../src/menu.c:1372 ../src/menu.c:1499
 msgid "Level Editor"
 msgstr "Éditeur de niveau"
 
-#: ../src/menu.c:1373 ../src/menu.c:1490
+#: ../src/menu.c:1373 ../src/menu.c:1498
 msgid "Options"
 msgstr "Options"
 
@@ -3525,7 +3494,25 @@ msgstr "Contribuer"
 msgid "Exit FreedroidRPG"
 msgstr "Quitter FreedroidRPG"
 
-#: ../src/menu.c:1407
+#: ../src/menu.c:1408
+#, fuzzy
+msgid ""
+"\n"
+"You cannot change the language\n"
+"under Windows. FreedroidRPG uses\n"
+"your system's language by default for\n"
+"your convenience.\n"
+"\n"
+"    Thank you\n"
+msgstr ""
+"\n"
+"Vous ne pouvez pas changez de langue\n"
+"sous Windows. Pour votre confort, FreedroidRPG\n"
+" utilise par défaut le langage de votre système\n"
+"\n"
+"    Merci\n"
+
+#: ../src/menu.c:1415
 msgid ""
 "\n"
 "The game has NOT been\n"
@@ -3534,222 +3521,215 @@ msgid ""
 "available.\n"
 "Thanks\n"
 msgstr ""
+"\n"
+"Le jeu n'a pas été compilé\n"
+"avec le support de gettext\n"
+", ainsi les traductions ne sont\n"
+"pas disponibles.\n"
+"Merci\n"
 
-#: ../src/menu.c:1431
+#: ../src/menu.c:1439
 msgid "Graphics Options"
 msgstr "Options graphiques"
 
-#: ../src/menu.c:1432
+#: ../src/menu.c:1440
 msgid "Sound Options"
 msgstr "Options sonores"
 
-#: ../src/menu.c:1433
+#: ../src/menu.c:1441
 msgid "Language"
 msgstr "Langue"
 
-#: ../src/menu.c:1434
+#: ../src/menu.c:1442
 msgid "Droid Talk"
 msgstr "Texte complémentaire"
 
-#: ../src/menu.c:1435
+#: ../src/menu.c:1443
 msgid "On-Screen Displays"
 msgstr "Affichage à l'écran"
 
-#: ../src/menu.c:1436
+#: ../src/menu.c:1444
 msgid "Performance Tweaks"
 msgstr "Optimisation des performances"
 
-#: ../src/menu.c:1437 ../src/menu.c:1550 ../src/menu.c:1646 ../src/menu.c:1714
-#: ../src/menu.c:1785 ../src/menu.c:1900 ../src/menu.c:1941 ../src/menu.c:2189
-#: ../src/menu.c:2301 ../src/menu.c:2380
+#: ../src/menu.c:1445 ../src/menu.c:1558 ../src/menu.c:1653 ../src/menu.c:1721
+#: ../src/menu.c:1792 ../src/menu.c:1907 ../src/menu.c:1948 ../src/menu.c:2196
+#: ../src/menu.c:2308 ../src/menu.c:2387
 msgid "Back"
 msgstr "Retour"
 
-#: ../src/menu.c:1488
+#: ../src/menu.c:1496
 msgid "Save Game"
 msgstr "Sauvegarder la partie"
 
-#: ../src/menu.c:1489
+#: ../src/menu.c:1497
 msgid "Resume Game"
 msgstr "Reprendre le jeu"
 
-#: ../src/menu.c:1492
+#: ../src/menu.c:1500
 msgid "Load Game"
 msgstr "Charger une partie"
 
-#: ../src/menu.c:1493
+#: ../src/menu.c:1501
 msgid "New Game"
 msgstr "Nouvelle partie"
 
-#: ../src/menu.c:1494
+#: ../src/menu.c:1502
 msgid "Quit"
 msgstr "Quitter"
 
-#: ../src/menu.c:1594
+#: ../src/menu.c:1602
 msgid ""
 "\n"
-"Unfortunately, fullscreen cannot be\n"
-"toggled at runtime under Windows.\n"
-"We apologise for this.\n"
-"\n"
-"There are good Linux distributions out there,\n"
-" please check them out.\n"
-"\n"
-"Or you can launch the game with the -w option.\n"
+"This option will be taken into account after you restart the game.\n"
 "\n"
 "   Thank you.\n"
 msgstr ""
 "\n"
-"Malheureusement, le plein écran ne peut être activé/désactivé durant le jeu "
-"sous Windows.\n"
-"Nous vous prions de bien vouloir nous excuser pour ça.\n"
+"Vous devez redémarrer le jeu pour que les changements soient pris en "
+"compte.\n"
 "\n"
-"Il y a de bonne distributions de Linux, merci \n"
-"de les considérer.\n"
-"\n"
-"Vous pouvez aussi lancer le jeu avec l'option -w.\n"
-"\n"
-"   Merci.\n"
+"   Merci\n"
 
-#: ../src/menu.c:1639
+#: ../src/menu.c:1646
 #, c-format
 msgid "Gamma Correction: %1.2f"
 msgstr "Correction gamma : %1.2f"
 
-#: ../src/menu.c:1640
+#: ../src/menu.c:1647
 #, c-format
 msgid "Fullscreen Mode: %s"
 msgstr "Mode plein ecran : %s"
 
-#: ../src/menu.c:1641
+#: ../src/menu.c:1648
 #, c-format
 msgid "Change Screen Resolution"
 msgstr "Changer la résolution"
 
-#: ../src/menu.c:1642
+#: ../src/menu.c:1649
 #, c-format
 msgid "Show Blood: %s"
 msgstr "Montrer le sang : %s"
 
-#: ../src/menu.c:1643 ../src/menu.c:1778 ../src/menu.c:1780 ../src/menu.c:1782
-#: ../src/menu.c:1784
+#: ../src/menu.c:1650 ../src/menu.c:1785 ../src/menu.c:1787 ../src/menu.c:1789
+#: ../src/menu.c:1791
 msgid "YES"
 msgstr "OUI"
 
-#: ../src/menu.c:1643 ../src/menu.c:1778 ../src/menu.c:1780 ../src/menu.c:1782
-#: ../src/menu.c:1784
+#: ../src/menu.c:1650 ../src/menu.c:1785 ../src/menu.c:1787 ../src/menu.c:1789
+#: ../src/menu.c:1791
 msgid "NO"
 msgstr "NON"
 
-#: ../src/menu.c:1644
+#: ../src/menu.c:1651
 #, c-format
 msgid "Automap Scale: %2.1f"
 msgstr "Échelle de la carte auto : %2.1f"
 
-#: ../src/menu.c:1712
+#: ../src/menu.c:1719
 #, c-format
 msgid "Background Music Volume: %1.2f"
 msgstr "Volume de la musique de fond : %1.2f"
 
-#: ../src/menu.c:1713
+#: ../src/menu.c:1720
 #, c-format
 msgid "Sound Effects Volume: %1.2f"
 msgstr "Volume des effets sonores : %1.2f"
 
-#: ../src/menu.c:1777
+#: ../src/menu.c:1784
 #, c-format
 msgid "Hog CPU for max. performance: %s"
 msgstr "Monopoliser le CPU : %s"
 
-#: ../src/menu.c:1779
+#: ../src/menu.c:1786
 #, c-format
 msgid "Highlighting mode: %s"
 msgstr "Mode de surlignage : %s"
 
-#: ../src/menu.c:1779
+#: ../src/menu.c:1786
 msgid "FULL"
 msgstr "COMPLET"
 
-#: ../src/menu.c:1779
+#: ../src/menu.c:1786
 msgid "REDUCED"
 msgstr "RÉDUIT"
 
-#: ../src/menu.c:1780
+#: ../src/menu.c:1787
 #, c-format
 msgid "Skip light radius: %s"
 msgstr "Désactiver le halo lumineux : %s"
 
-#: ../src/menu.c:1781
+#: ../src/menu.c:1788
 #, c-format
 msgid "Skip shadow blitting: %s"
 msgstr "Désactiver les ombrages : %s"
 
-#: ../src/menu.c:1783
+#: ../src/menu.c:1790
 #, c-format
 msgid "Skip fadings: %s"
 msgstr "Désactiver les fondus : %s"
 
-#: ../src/menu.c:1895
+#: ../src/menu.c:1902
 #, c-format
 msgid "Show Position: %s"
 msgstr "Afficher la position : %s"
 
-#: ../src/menu.c:1895 ../src/menu.c:1896 ../src/menu.c:1897 ../src/menu.c:1936
-#: ../src/menu.c:1937 ../src/menu.c:1938 ../src/menu.c:1939 ../src/menu.c:1940
+#: ../src/menu.c:1902 ../src/menu.c:1903 ../src/menu.c:1904 ../src/menu.c:1943
+#: ../src/menu.c:1944 ../src/menu.c:1945 ../src/menu.c:1946 ../src/menu.c:1947
 msgid "ON"
 msgstr "ON"
 
-#: ../src/menu.c:1895 ../src/menu.c:1896 ../src/menu.c:1897 ../src/menu.c:1936
-#: ../src/menu.c:1937 ../src/menu.c:1938 ../src/menu.c:1939 ../src/menu.c:1940
+#: ../src/menu.c:1902 ../src/menu.c:1903 ../src/menu.c:1904 ../src/menu.c:1943
+#: ../src/menu.c:1944 ../src/menu.c:1945 ../src/menu.c:1946 ../src/menu.c:1947
 msgid "OFF"
 msgstr "OFF"
 
-#: ../src/menu.c:1896
+#: ../src/menu.c:1903
 #, c-format
 msgid "Show Framerate: %s"
 msgstr "Afficher les FPS : %s"
 
-#: ../src/menu.c:1897
+#: ../src/menu.c:1904
 #, c-format
 msgid "Show Enemy Energy Bars: %s"
 msgstr "Montrer l'energie des ennemis : %s"
 
-#: ../src/menu.c:1898
+#: ../src/menu.c:1905
 #, c-format
 msgid "Screen Messages at most: %d"
 msgstr "Maximum de messages affichés : %d"
 
-#: ../src/menu.c:1899
+#: ../src/menu.c:1906
 #, c-format
 msgid "Screen Message time: %3.1f"
 msgstr "Temps d'affichage d'un message : %3.1f"
 
-#: ../src/menu.c:1936
+#: ../src/menu.c:1943
 #, c-format
 msgid "Enemy Hit Texts: %s"
 msgstr "Montrer lorsque l'ennemi tire : %s"
 
-#: ../src/menu.c:1937
+#: ../src/menu.c:1944
 #, c-format
 msgid "Enemy Bumped Texts: %s"
 msgstr "Montre les collisions : %s"
 
-#: ../src/menu.c:1938
+#: ../src/menu.c:1945
 #, c-format
 msgid "Enemy Aim Texts: %s"
 msgstr "Montrer lorsque l'ennemi vise : %s"
 
-#: ../src/menu.c:1939
+#: ../src/menu.c:1946
 #, c-format
 msgid "All in-game Speech: %s"
 msgstr "Messages supplémentaires (debug) : %s"
 
-#: ../src/menu.c:1940
+#: ../src/menu.c:1947
 #, c-format
 msgid "Reprogram bots after takeover: %s"
 msgstr "Reprogrammer les robots après les avoir piratés: %s"
 
-#: ../src/menu.c:1959
+#: ../src/menu.c:1966
 msgid ""
 "\n"
 "     Please enter a name\n"
@@ -3765,11 +3745,11 @@ msgstr ""
 "\n"
 "     > "
 
-#: ../src/menu.c:2213 ../src/menu.c:2319 ../src/menu.c:2334
+#: ../src/menu.c:2220 ../src/menu.c:2326 ../src/menu.c:2341
 msgid "BACK"
 msgstr "RETOUR"
 
-#: ../src/menu.c:2217
+#: ../src/menu.c:2224
 msgid ""
 "\n"
 "\n"
@@ -3779,16 +3759,16 @@ msgstr ""
 "\n"
 "Aucune sauvegarde trouvée !! Chargement annulé. "
 
-#: ../src/menu.c:2318
+#: ../src/menu.c:2325
 msgid "Sure!"
 msgstr "D'accord !"
 
-#: ../src/menu.c:2321
+#: ../src/menu.c:2328
 #, c-format
 msgid "Really delete hero '%s'?"
 msgstr "Confirmez vous la suppression du héros '%s' ?"
 
-#: ../src/menu.c:2338
+#: ../src/menu.c:2345
 msgid ""
 "\n"
 "\n"
@@ -3798,19 +3778,19 @@ msgstr ""
 "\n"
 "Pas de sauvegarde trouvée !! Suppression annulée. "
 
-#: ../src/menu.c:2377
+#: ../src/menu.c:2384
 msgid "New Hero"
 msgstr "Nouveau héros"
 
-#: ../src/menu.c:2378
+#: ../src/menu.c:2385
 msgid "Load existing Hero"
 msgstr "Charger un héros existant"
 
-#: ../src/menu.c:2379
+#: ../src/menu.c:2386
 msgid "Delete existing Hero"
 msgstr "Supprimer un héros existant"
 
-#: ../src/menu.c:2542
+#: ../src/menu.c:2549
 msgid ""
 "This is the record of all missions you have been assigned:\n"
 "\n"
@@ -3818,23 +3798,23 @@ msgstr ""
 "Voici la liste de toutes les missions qui vous ont été assignées :\n"
 "\n"
 
-#: ../src/menu.c:2557
+#: ../src/menu.c:2564
 msgid "SOLVED: "
 msgstr "RÉSOLUES : "
 
-#: ../src/menu.c:2561
+#: ../src/menu.c:2568
 msgid "FAILED: "
 msgstr "ÉCHOUÉES : "
 
-#: ../src/menu.c:2565
+#: ../src/menu.c:2572
 msgid "ASSIGNED: "
 msgstr "ASSIGNÉES : "
 
-#: ../src/menu.c:2569
+#: ../src/menu.c:2576
 msgid "UNASSIGNED: "
 msgstr "NON ASSIGNÉES : "
 
-#: ../src/menu.c:2577
+#: ../src/menu.c:2584
 msgid ""
 "\n"
 "\n"
@@ -3949,15 +3929,32 @@ msgstr "Aucune quête terminée pour l'instant."
 msgid "No notes yet."
 msgstr "Aucune note pour l'instant."
 
-#: ../src/saveloadgame.c:335
+#: ../src/saveloadgame.c:53
+msgid ""
+"An error occured when trying to load the savegame.\n"
+"A common reason for this is that the game has been updated to a newer "
+"version since the save was made, in which case the savegame is very likely "
+"not compatible.\n"
+"However if you see this message and you have not updated the game, make sure "
+"to report this to the developers.\n"
+"Thanks!"
+msgstr ""
+"Une erreur est survenue pendant le chargement du jeu.\n"
+"Cela peut être dû au fait que le jeu à été  mis à jour depuis que la "
+"sauvegarde a été effectuée, auquel cas la sauvegarde est incompatible.\n"
+"Cependant si vous voyez ce message et n'avez pas mis à jour le jeu, faites-"
+"le savoir aux développeurs.\n"
+"Merci!"
+
+#: ../src/saveloadgame.c:344
 msgid "Game saved."
 msgstr "Jeu sauvegardé."
 
-#: ../src/saveloadgame.c:406
+#: ../src/saveloadgame.c:415
 msgid "Failed to load old game."
 msgstr "Échec du chargement de l'ancienne partie."
 
-#: ../src/saveloadgame.c:503
+#: ../src/saveloadgame.c:520
 msgid ""
 "Version or structsize mismatch! The savegame is not from the same version of "
 "freedroidRPG... possible breakage.\n"
@@ -3965,11 +3962,11 @@ msgstr ""
 "Version ou taille de structure non compatible ! Cette sauvegarde ne provient "
 "pas de la même version de freedroidRPG... crash possible.\n"
 
-#: ../src/saveloadgame.c:540
+#: ../src/saveloadgame.c:557
 msgid "Updating Tux images (this may take a little while...)"
 msgstr "Mise à jour des images de Tux (veuillez patienter ...)"
 
-#: ../src/saveloadgame.c:545
+#: ../src/saveloadgame.c:562
 msgid "Game loaded."
 msgstr "Jeu chargé."
 
@@ -3998,6 +3995,8 @@ msgid ""
 "Unit type %s\n"
 "Entry : %d\n"
 msgstr ""
+"Type d'unité %s\n"
+"Entrée: %d\n"
 
 #: ../src/ship.c:229
 msgid "none"
@@ -4009,6 +4008,8 @@ msgid ""
 "\n"
 "Armamant : %s\n"
 msgstr ""
+"\n"
+"Armement : %s\n"
 
 #: ../src/ship.c:235
 #, c-format
@@ -4112,67 +4113,68 @@ msgstr "Coût de réparation : %ld\n"
 msgid "Unsellable\n"
 msgstr "Invendable\n"
 
-#: ../src/ship.c:733
+#: ../src/ship.c:731
+msgid "Identification cost: 100\n"
+msgstr "Coût d'identification: 100\n"
+
+#: ../src/ship.c:739
 #, c-format
 msgid "Damage: %d - %d\n"
 msgstr "Dommages : %d - %d\n"
 
-#: ../src/ship.c:742
+#: ../src/ship.c:748
 #, c-format
 msgid "Recharge time: %3.2f\n"
 msgstr "Temps de rechargement : %3.2f\n"
 
-#: ../src/ship.c:749
+#: ../src/ship.c:755
 #, c-format
 msgid "Time to reload ammo clip: %3.2f\n"
 msgstr "Temps de changement de chargeur : %3.2f\n"
 
-#: ../src/ship.c:756
+#: ../src/ship.c:762
 #, c-format
 msgid "Defense bonus: %d\n"
 msgstr "Bonus de défense : %d\n"
 
-#: ../src/ship.c:760
+#: ../src/ship.c:766
 #, c-format
 msgid "Notes: %s"
 msgstr "Notes : %s"
 
-#: ../src/ship.c:767
+#: ../src/ship.c:773
 msgid " This weapon requires standard plasma ammunition."
 msgstr " Cette arme nécessite des munitions de plasma standards."
 
-#: ../src/ship.c:770
+#: ../src/ship.c:776
 msgid " This weapon requires standard laser crystal ammunition."
 msgstr " Cette arme nécessite des munitions de laser standards."
 
-#: ../src/ship.c:773
+#: ../src/ship.c:779
 msgid " This weapon requires standard exterminator ammunition spheres."
 msgstr " Cette arme nécessite des munition d'exterminator standards."
 
-#: ../src/ship.c:776
-#, fuzzy
-msgid " This weapon requires .22 Long Rifle rounds."
-msgstr " Cette arme nécessite des munitions de plasma standards."
-
-#: ../src/ship.c:779
-#, fuzzy
-msgid " This weapon requires Shotgun shells."
-msgstr " Cette arme nécessite des munitions de plasma standards."
-
 #: ../src/ship.c:782
-#, fuzzy
-msgid " This weapon requires 9x19mm rounds."
-msgstr " Cette arme nécessite des munitions de plasma standards."
+msgid " This weapon requires .22 Long Rifle rounds."
+msgstr " Cette arme nécessite des munitions de calibre .22 Long Rifle"
 
 #: ../src/ship.c:785
-#, fuzzy
-msgid " This weapon requires 7.62x39mm rounds."
-msgstr " Cette arme nécessite des munitions de plasma standards."
+msgid " This weapon requires Shotgun shells."
+msgstr " Cette arme nécessite de la grenaille pour fusil à pompe."
 
 #: ../src/ship.c:788
-#, fuzzy
+msgid " This weapon requires 9x19mm rounds."
+msgstr " Cette arme nécessite des munitions de calibre 9x19mm."
+
+#: ../src/ship.c:791
+msgid " This weapon requires 7.62x39mm rounds."
+msgstr " Cette arme nécessite des munitions de calibre 7.62x39mm."
+
+#: ../src/ship.c:794
 msgid " This weapon requires .50 (12.7x99mm) Browning Machine Gun rounds."
-msgstr " Cette arme nécessite des munitions de plasma standards."
+msgstr ""
+" Cette arme nécessite des munitions de de calibre .50 (12.7x99mm) pour "
+"Mitraillette Browning"
 
 #: ../src/shop.c:1015
 msgid ""
@@ -4221,63 +4223,73 @@ msgid " YOU DONT HAVE ANYTHING THAT WOULD NEED REPAIR "
 msgstr " VOUS N'AVEZ RIEN QUI AIT BESOIN D'ÊTRE RÉPARÉ "
 
 #: ../src/skills.c:785
-#, c-format
-msgid "Program revision: %d "
+#, fuzzy, c-format
+msgid "Program revision: %c%d%c "
 msgstr "Révision du programme : %d "
 
 #: ../src/skills.c:796
-#, c-format
-msgid "Heat produced: %d "
+#, fuzzy, c-format
+msgid "Heat produced: %c%d%c "
 msgstr "Chaleur produite : %d "
 
 #: ../src/skills.c:798
-#, c-format
-msgid "Cooling: %d "
-msgstr ""
-
-#: ../src/skills.c:809
-#, c-format
-msgid "Damage: %d-%d "
-msgstr "Dégâts: %d-%d "
-
-#: ../src/skills.c:811
-#, c-format
-msgid "Healing: %d-%d "
+#, fuzzy, c-format
+msgid "Cooling: %c%d%c "
 msgstr "Guérison: %d-%d "
 
-#: ../src/skills.c:821
+#: ../src/skills.c:810
+#, fuzzy, c-format
+msgid "Damage: %c%d%c "
+msgstr "Dégâts: %d-%d "
+
+#: ../src/skills.c:812
+#, fuzzy, c-format
+msgid "Damage: %c%d-%d%c "
+msgstr "Dégâts: %d-%d "
+
+#: ../src/skills.c:815
+#, fuzzy, c-format
+msgid "Healing: %c%d%c "
+msgstr "Guérison: %d-%d "
+
+#: ../src/skills.c:817
+#, fuzzy, c-format
+msgid "Healing: %c%d-%d%c "
+msgstr "Guérison: %d-%d "
+
+#: ../src/skills.c:827
 #, c-format
 msgid "Paralyze"
 msgstr "Paralyser"
 
-#: ../src/skills.c:823
+#: ../src/skills.c:829
 #, c-format
 msgid "Slow down"
 msgstr "Ralentir"
 
-#: ../src/skills.c:825
+#: ../src/skills.c:831
 #, c-format
 msgid "Invisible"
 msgstr "Invisible"
 
-#: ../src/skills.c:827
+#: ../src/skills.c:833
 #, c-format
 msgid "Poison"
 msgstr "Poison"
 
-#: ../src/skills.c:829
+#: ../src/skills.c:835
 #, c-format
 msgid "Takeover"
-msgstr ""
+msgstr "Piratage"
 
-#: ../src/skills.c:831
+#: ../src/skills.c:837
 #, c-format
 msgid "Escape"
-msgstr ""
+msgstr "Échappement"
 
-#: ../src/skills.c:851
-#, c-format
-msgid " for %.1f seconds"
+#: ../src/skills.c:857
+#, fuzzy, c-format
+msgid " for %c%.1f%c seconds"
 msgstr " pendant %.1f secondes"
 
 #: ../src/takeover.c:305
@@ -4361,43 +4373,43 @@ msgstr "Hé, je suis de MS ! Hors de mon chemin !"
 msgid "Hey, I know the big MS boss! You better go."
 msgstr "Hé, je connais le grand chef de MS ! Tu ferais mieux de partir."
 
-#: ../src/vars.h:127
+#: ../src/vars.h:130
 msgid "novice"
 msgstr "débutant"
 
-#: ../src/vars.h:128
+#: ../src/vars.h:131
 msgid "average"
 msgstr "initié"
 
-#: ../src/vars.h:129
+#: ../src/vars.h:132
 msgid "experienced"
 msgstr "avancé"
 
-#: ../src/vars.h:130
+#: ../src/vars.h:133
 msgid "skilled"
 msgstr "expérimenté"
 
-#: ../src/vars.h:131
+#: ../src/vars.h:134
 msgid "adept"
 msgstr "adepte"
 
-#: ../src/vars.h:132
+#: ../src/vars.h:135
 msgid "masterful"
 msgstr "maître"
 
-#: ../src/vars.h:133
+#: ../src/vars.h:136
 msgid "inhuman"
 msgstr "inhumain"
 
-#: ../src/vars.h:134
+#: ../src/vars.h:137
 msgid "god-like"
 msgstr "divin"
 
-#: ../src/vars.h:135
+#: ../src/vars.h:138
 msgid "super-god-like"
 msgstr "super-divin"
 
-#: ../src/vars.h:136
+#: ../src/vars.h:139
 msgid "wicked sick"
 msgstr "sacrément atteint"
 
