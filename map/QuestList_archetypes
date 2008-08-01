@@ -236,8 +236,8 @@ Mission target is to reach Y-Pos : 0
 Mission target is to live for how many seconds : -1
 Mission diary entry=_"Spencer has revealed the information from the data cube evaluation to me.  It seems there is an old military research facility near the colony.  By overtaking the control droid I would be able to control the disruptor shield at the facility. I can either activate it permanently, thereby locking off the Hell Fortress, and the bots its producing, forever from its surrounding. Alternatively I could disable it, and fight my way through the Hell Fortress droids until I reach the main control droid and update it, thereby disabling all bots in the entire area around town in one fell swoop."
 Mission diary entry=_"There, I've founda and entered the base."
-Mission diary entry=_"I've overtook the control droid and activated the disruptor shield. Now the town is safe."
-Mission diary entry=_"I've overtook the control droid and disabled the disruptor shield. Now I should go to Hell Fortress and hack MS firmware update system."
+Mission diary entry=_"I've taken over the control droid and activated the disruptor shield. Now the town is safe."
+Mission diary entry=_"I've taken over the control droid and disabled the disruptor shield. Now I should go to Hell Fortress and hack MS firmware update system."
 Mission diary entry=_"Finally I've managed to propogate my firmware update. Now all hostile bots are nothing more than pieces of rusty metall."
 ** End of this mission target subsection **
 
