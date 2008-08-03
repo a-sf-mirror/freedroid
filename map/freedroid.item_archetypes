@@ -172,7 +172,7 @@ Base list price=30
 Item description text=_"Light and maneuverable in combat, but unfortunately not very effective in cutting through steel as well as quickly reaching the point of breaking if you try. Though for sure better than hitting at metal with your bare fists."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.500000
-Item as gun: reloading time=1.000000
+Item as gun: reloading time=0.000000
 Item as gun: speed of bullets=0.100000
 Item as gun: is melee weapon=1
 Item as gun: damage of bullets=1
