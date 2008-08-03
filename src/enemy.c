@@ -1031,6 +1031,151 @@ enemy_say_current_state_on_screen ( enemy* ThisRobot )
 
 }; // void enemy_say_current_state_on_screen ( enemy* ThisRobot )
 
+/**
+ * Small structure used to sort a list of directions
+ * (Used during bot escape)
+ */
+struct dist_elt {
+	float value;
+	unsigned char direction;
+};
+
+/**
+ * Comparison function of two dist_elt.
+ * (Used by qsort during bot escape)
+ */
+int
+cmp_dist_elt( const void* elt1, const void* elt2 )
+{
+	return ( ((struct dist_elt*)elt1)->value - ((struct dist_elt*)elt1)->value );
+}
+/**
+ * Move a robot outside of a collision rectangle.
+ * (Used during bot escape)
+ * We have no idea of where the bot came from and where it was going to
+ * when it gets stuck.
+ * Thus, we assume that the bot is actually quite near a free position.
+ * We will then test each rectangle's edges, starting from the closest one.
+ */
+void
+move_enemy_out_of_obstacle( enemy* ThisRobot, obstacle* ThisObstacle )
+{
+	enum { RIGHT, DOWN, LEFT, TOP };
+	unsigned int i;
+	moderately_finepoint new_pos = { 0.5, 0.5 };
+
+	//--------------------
+	// Construct a sorted list of distance between bot position and the rectangle's edges
+	//
+	moderately_finepoint rect1 = { ThisObstacle -> pos . x + obstacle_map [ ThisObstacle->type ] . upper_border,
+	                               ThisObstacle -> pos . y + obstacle_map [ ThisObstacle->type ] . left_border };
+	moderately_finepoint rect2 = { ThisObstacle -> pos . x + obstacle_map [ ThisObstacle->type ] . lower_border,
+	                               ThisObstacle -> pos . y + obstacle_map [ ThisObstacle->type ] . right_border };
+
+	struct dist_elt dist_arr[] = { { rect2.x - ThisRobot->pos.x, RIGHT },
+	                               { ThisRobot->pos.x - rect1.x, LEFT  },
+	                               { rect2.y - ThisRobot->pos.y, TOP   },
+	                               { ThisRobot->pos.y - rect1.y, DOWN  }
+	};
+
+	qsort(dist_arr, 4, sizeof(struct dist_elt), cmp_dist_elt);
+
+	//--------------------
+	// Check each direction of the sorted list
+	//
+	for ( i=0; i<5; ++i )
+	{
+		switch (dist_arr[i].direction)
+		{
+		case(RIGHT):
+		{
+			new_pos.x = rect2.x + 0.01; // small increment to really be outside the rectangle
+			new_pos.y = ThisRobot->pos.y;
+			break;
+		}
+		case (DOWN):
+		{
+			new_pos.x = ThisRobot->pos.x;
+			new_pos.y = rect1.y - 0.01;
+			break;
+		}
+		case (LEFT):
+		{
+			new_pos.x = rect1.x - 0.01;
+			new_pos.y = ThisRobot->pos.y;
+			break;
+		}
+		case (TOP):
+		{
+			new_pos.x = ThisRobot->pos.x;
+			new_pos.y = rect2.y + 0.01;
+			break;
+		}
+		}
+		if ( IsPassableForDroid(new_pos.x, new_pos.y, ThisRobot->pos.z) )
+		{ // got a free position -> move the bot and returns
+			ThisRobot->pos.x = new_pos.x;
+			ThisRobot->pos.y = new_pos.y;
+			return;
+		}
+	}
+
+	// No free position was found outside the obstacle ???
+	// It should not happens, but since we want the bot to escape in any situation, just have a last fallback
+	//
+	ThisRobot->pos.x = curShip.AllLevels[ThisRobot->pos.z]->AllWaypoints[ThisRobot->nextwaypoint].x;
+	ThisRobot->pos.y = curShip.AllLevels[ThisRobot->pos.z]->AllWaypoints[ThisRobot->nextwaypoint].y;
+
+}; // void move_enemy_out_of_obstacle( enemy* ThisRobot, obstacle* ThisObstacle )
+
+/**
+ * If a bot is stuck (see enemy_handle_stuck_in_walls()), this function will escape it
+ * by moving the bot outside the obstacle.
+ * This is an adapted copy of the code used to escape the Tux (see MoveTuxAccordingToHisSpeed())
+ */
+void
+escape_enemy( enemy* ThisRobot )
+{
+	int start_x, end_x, start_y, end_y;
+	int x , y , i, obst_index ;
+	Level ThisLevel;
+
+	start_x = (int)(ThisRobot->pos.x) - 2;
+	start_y = (int)(ThisRobot->pos.y) - 2;
+	end_x = start_x + 4;
+	end_y = start_y + 4;
+
+	ThisLevel = curShip.AllLevels[ThisRobot->pos.z] ;
+
+	if ( start_x < 0 ) start_x = 0 ;
+	if ( start_y < 0 ) start_y = 0 ;
+	if ( end_x >= ThisLevel->xlen ) end_x = ThisLevel->xlen - 1 ;
+	if ( end_y >= ThisLevel->ylen ) end_y = ThisLevel->ylen - 1 ;
+
+	//--------------------
+	//
+	for ( x = start_x; x < end_x; ++x )
+	{
+		for ( y = start_y; y < end_y; ++y )
+		{
+			for ( i = 0 ; i < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE ; ++i )
+			{
+				if ( ThisLevel-> map[y][x].obstacles_glued_to_here[i] == (-1) ) break;
+
+				obst_index = ThisLevel->map[y][x].obstacles_glued_to_here[i];
+
+				if ( position_collides_with_this_obstacle( ThisRobot->pos.x, ThisRobot->pos.y,
+						&(ThisLevel->obstacle_list[obst_index]) ) )
+				{
+					// Find a new position for the bot
+					move_enemy_out_of_obstacle( ThisRobot, &(ThisLevel->obstacle_list[obst_index]) );
+					// Ask the bot to start selecting a new path
+					ThisRobot->combat_state = SELECT_NEW_WAYPOINT;
+				}
+			}
+		}
+	}
+} // void escape_enemy( enemy* ThisRobot )
 
 /**
  * Some robots (currently) tend to get stuck in walls.  This is an 
@@ -1090,9 +1235,9 @@ enemy_handle_stuck_in_walls ( enemy* ThisRobot )
 	    DebugPrintf ( -2 , "\nnextwaypoint=%d. lastwaypoint=%d. combat_%s." ,
 			  ThisRobot -> nextwaypoint , ThisRobot -> lastwaypoint , 
 			  ThisRobot -> TextToBeDisplayed );
+	    escape_enemy( ThisRobot );
 	    ThisRobot -> bot_stuck_in_wall_at_previous_check = TRUE ; 
 	    return;
-	ThisRobot -> bot_stuck_in_wall_at_previous_check = TRUE ; 
     }
     else
     {
