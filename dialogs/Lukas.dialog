@@ -42,7 +42,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=1  OptionText=_" Spencer said, you'd give me an armor."
+New Option Nr=1  OptionText=_" Spencer said, you'd be able to provide me with better armor and equipment."
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=263  PositionY=137  
 Subtitle=_"Of course. As a member of our Guard, you're entitled to wear one of our suits of armor. I can adjust it to fit any measurements, even yours."
@@ -67,7 +67,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=99  OptionText=_" END "
+New Option Nr=99  OptionText=_" See you later! "
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=361  PositionY=133  
 ChangeOption=99 ChangeToValue=1
