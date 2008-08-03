@@ -219,7 +219,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 New Option Nr=15  OptionText=_" Maybe there is still hope, Ms. Stone. How much exactly do you need?"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=362  PositionY=410  
-Subtitle=_"I couldn't get myself to look at my finance logs for a while now. I guess about three to four thousand triangles."
+Subtitle=_"I couldn't get myself to look at my finance logs for a while now. I guess about two thousand triangles."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=15 ChangeToValue=0
 DoSomethingExtra="PlantCookie:Helping_Stone:"
@@ -262,7 +262,7 @@ New Option Nr=19  OptionText=_"THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=1022  PositionY=305  
 ChangeOption=19 ChangeToValue=0
-OnCondition="GoldIsLessThan:3200" JumpToOption=21 ElseGoto=22
+OnCondition="GoldIsLessThan:1600" JumpToOption=21 ElseGoto=22
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -301,14 +301,14 @@ Subtitle=_"Thank you! Thank you! Thank you! Savior!"
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"But this isn't fair with you. The Stones are a family of fair merchants and I intend to uphold that tradition."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle=_"I need 3,147 bucks to get through the month. I accept only that and not a cent more. Now it's fair. Thank you."
+Subtitle=_"I need 1,547 bucks to get through the month. I accept only that and not a cent more. Now it's fair. Thank you."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"You've given me a bit of hope.. "
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Wait a second... I think I recognize you..."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=23 ChangeToValue=0
-DoSomethingExtra="SubtractGold:3147"
+DoSomethingExtra="SubtractGold:1547"
 DoSomethingExtra="PlantCookie:Helped_Stone:"
 DoSomethingExtra="ExecuteSubdialog:subdlg_Stone"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
