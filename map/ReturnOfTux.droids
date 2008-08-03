@@ -194,9 +194,9 @@ SForce: T=883 Fixed=0 Marker=101 Friendly=0 StartUpAtLabel="Lv2DalekStartGameSqu
 Level=3
 Maximum number of Random Droids=50
 Minimum number of Random Droids=45
+Allowed Type of Random Droid for this level: 123
 Allowed Type of Random Droid for this level: 249
 Allowed Type of Random Droid for this level: 329
-Allowed Type of Random Droid for this level: 302
 ** End of this levels droid data **
 
 ----------------------------------------------------------------------
