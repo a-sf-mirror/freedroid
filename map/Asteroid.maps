@@ -11538,7 +11538,6 @@ pstmtinfolvl
 /pstmtinfolvl
 
 piteminfolvl
-it: n="Red Dilitium Crystal"  X=39.000000  Y=35.000000  Dmg=0  DmgMod=0  MDur=-1  CDur=1.000000  AClip=0  Multi=1  IsIdent=1 
 it: n="Red Dilitium Crystal"  X=34.000000  Y=43.000000  Dmg=0  DmgMod=0  MDur=-1  CDur=1.000000  AClip=0  Multi=1  IsIdent=1 
 it: n="Red Dilitium Crystal"  X=40.000000  Y=45.000000  Dmg=0  DmgMod=0  MDur=-1  CDur=1.000000  AClip=0  Multi=1  IsIdent=1 
 it: n="Red Dilitium Crystal"  X=39.000000  Y=50.000000  Dmg=0  DmgMod=0  MDur=-1  CDur=1.000000  AClip=0  Multi=1  IsIdent=1 
