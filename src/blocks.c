@@ -1552,8 +1552,9 @@ void
 init_obstacle_data( void )
 {
     int i;
-    float standard_wall_thickness = 0.6 ;
-    float standard_wall_width = 1.4 ;
+    float standard_wall_thickness = 0.4 ;
+    float standard_wall_width = 1.1 ;
+    float standard_door_width = 1.0 ;
     iso_image empty_iso_image = UNLOADED_ISO_IMAGE ;
     
     //--------------------
@@ -1716,19 +1717,27 @@ init_obstacle_data( void )
     
     
     obstacle_map [ ISO_V_DOOR_000_OPEN ] . block_area_parm_1 = standard_wall_thickness ;
-    obstacle_map [ ISO_V_DOOR_000_OPEN ] . block_area_parm_2 = standard_wall_width ;
+    obstacle_map [ ISO_V_DOOR_000_OPEN ] . block_area_parm_2 = standard_door_width ;
     obstacle_map [ ISO_V_DOOR_000_OPEN ] . flags &= ~BLOCKS_VISION_TOO ;
     obstacle_map [ ISO_V_DOOR_000_OPEN ] . filename = "iso_doors_0006.png" ;
     obstacle_map [ ISO_V_DOOR_000_OPEN ] . transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS ;
+    obstacle_map [ ISO_V_DOOR_025_OPEN ] . block_area_parm_1 = standard_wall_thickness ;
+    obstacle_map [ ISO_V_DOOR_025_OPEN ] . block_area_parm_2 = standard_door_width ;
     obstacle_map [ ISO_V_DOOR_025_OPEN ] . flags &= ~IS_SMASHABLE ;
     obstacle_map [ ISO_V_DOOR_025_OPEN ] . filename = "iso_doors_0007.png" ;
     obstacle_map [ ISO_V_DOOR_025_OPEN ] . transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS ;
+    obstacle_map [ ISO_V_DOOR_050_OPEN ] . block_area_parm_1 = standard_wall_thickness ;
+    obstacle_map [ ISO_V_DOOR_050_OPEN ] . block_area_parm_2 = standard_door_width ;
     obstacle_map [ ISO_V_DOOR_050_OPEN ] . flags &= ~IS_SMASHABLE ;
     obstacle_map [ ISO_V_DOOR_050_OPEN ] . filename = "iso_doors_0008.png" ;
     obstacle_map [ ISO_V_DOOR_050_OPEN ] . transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS ;
+    obstacle_map [ ISO_V_DOOR_075_OPEN ] . block_area_parm_1 = standard_wall_thickness ;
+    obstacle_map [ ISO_V_DOOR_075_OPEN ] . block_area_parm_2 = standard_door_width ;
     obstacle_map [ ISO_V_DOOR_075_OPEN ] . flags &= ~IS_SMASHABLE ;
     obstacle_map [ ISO_V_DOOR_075_OPEN ] . filename = "iso_doors_0009.png" ;
     obstacle_map [ ISO_V_DOOR_075_OPEN ] . transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS ;
+    obstacle_map [ ISO_V_DOOR_100_OPEN ] . block_area_parm_1 = standard_wall_thickness ;
+    obstacle_map [ ISO_V_DOOR_100_OPEN ] . block_area_parm_2 = standard_door_width ;
     obstacle_map [ ISO_V_DOOR_100_OPEN ] . flags &= ~IS_SMASHABLE ;
     obstacle_map [ ISO_V_DOOR_100_OPEN ] . filename = "iso_doors_0010.png" ;
     obstacle_map [ ISO_V_DOOR_100_OPEN ] . block_area_type = COLLISION_TYPE_NONE ;
@@ -1772,19 +1781,30 @@ init_obstacle_data( void )
     obstacle_map [ ISO_H_DOOR_LOCKED ] . obstacle_short_name = _("Locked door");
     obstacle_map [ ISO_H_DOOR_LOCKED ] . obstacle_long_description = _("The red color probably indicates that the door is locked.");
     obstacle_map [ ISO_V_DOOR_LOCKED ] . obstacle_short_name = obstacle_map [ ISO_H_DOOR_LOCKED ] . obstacle_short_name;
-	obstacle_map [ ISO_V_DOOR_LOCKED ] . obstacle_long_description = obstacle_map [ ISO_H_DOOR_LOCKED ] . obstacle_long_description ;
+    obstacle_map [ ISO_V_DOOR_LOCKED ] . obstacle_long_description = obstacle_map [ ISO_H_DOOR_LOCKED ] . obstacle_long_description ;
+
+    obstacle_map [ ISO_H_DOOR_000_OPEN ] . block_area_parm_1 = standard_door_width ;
+    obstacle_map [ ISO_H_DOOR_000_OPEN ] . block_area_parm_2 = standard_wall_thickness ;
     obstacle_map [ ISO_H_DOOR_000_OPEN ] . flags &= ~IS_SMASHABLE ;
     obstacle_map [ ISO_H_DOOR_000_OPEN ] . filename = "iso_doors_0001.png" ;
     obstacle_map [ ISO_H_DOOR_000_OPEN ] . transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS ;
+    obstacle_map [ ISO_H_DOOR_025_OPEN ] . block_area_parm_1 = standard_door_width ;
+    obstacle_map [ ISO_H_DOOR_025_OPEN ] . block_area_parm_2 = standard_wall_thickness ;
     obstacle_map [ ISO_H_DOOR_025_OPEN ] . flags &= ~IS_SMASHABLE ;
     obstacle_map [ ISO_H_DOOR_025_OPEN ] . filename = "iso_doors_0002.png" ;
     obstacle_map [ ISO_H_DOOR_025_OPEN ] . transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS ;
+    obstacle_map [ ISO_H_DOOR_050_OPEN ] . block_area_parm_1 = standard_door_width ;
+    obstacle_map [ ISO_H_DOOR_050_OPEN ] . block_area_parm_2 = standard_wall_thickness ;
     obstacle_map [ ISO_H_DOOR_050_OPEN ] . flags &= ~IS_SMASHABLE ;
     obstacle_map [ ISO_H_DOOR_050_OPEN ] . filename = "iso_doors_0003.png" ;
     obstacle_map [ ISO_H_DOOR_050_OPEN ] . transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS ;
+    obstacle_map [ ISO_H_DOOR_075_OPEN ] . block_area_parm_1 = standard_door_width ;
+    obstacle_map [ ISO_H_DOOR_075_OPEN ] . block_area_parm_2 = standard_wall_thickness ;
     obstacle_map [ ISO_H_DOOR_075_OPEN ] . flags &= ~IS_SMASHABLE ;
     obstacle_map [ ISO_H_DOOR_075_OPEN ] . filename = "iso_doors_0004.png" ;
     obstacle_map [ ISO_H_DOOR_075_OPEN ] . transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS ;
+    obstacle_map [ ISO_H_DOOR_100_OPEN ] . block_area_parm_1 = standard_door_width ;
+    obstacle_map [ ISO_H_DOOR_100_OPEN ] . block_area_parm_2 = standard_wall_thickness ;
     obstacle_map [ ISO_H_DOOR_100_OPEN ] . flags &= ~IS_SMASHABLE ;
     obstacle_map [ ISO_H_DOOR_100_OPEN ] . filename = "iso_doors_0005.png" ;
     obstacle_map [ ISO_H_DOOR_100_OPEN ] . block_area_type = COLLISION_TYPE_NONE ;
