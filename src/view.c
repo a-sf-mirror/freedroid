@@ -511,22 +511,6 @@ skew_and_blit_rect( float x1, float y1, float x2, float y2, Uint32 color)
     blit_quad ( r1, c1, r2, c2, r3, c3, r4, c4, color ); 
 }
 
-void skew_and_blit_selection ( point orig, point end )
-{
-    float zoom_factor = (GameConfig.zoom_is_on ? ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT : 1.0);
-    int r1, r2, r3, r4, c1, c2, c3, c4 ;
-	int x1 = orig . x, y1 = orig . y;
-	int x2 = end . x, y2 = end . y;
-    translate_map_point_to_screen_pixel ( x1 , y1 , &r1, &c1, zoom_factor);
-    translate_map_point_to_screen_pixel ( x1 , y2 , &r2, &c2, zoom_factor);
-    translate_map_point_to_screen_pixel ( x2 , y2 , &r3, &c3, zoom_factor);
-    translate_map_point_to_screen_pixel ( x2 , y1 , &r4, &c4, zoom_factor);
-    blit_rect ( r1, c1, r2, c2, r3, c3, r4, c4, 0x23A5BF ); 
-}
-
-
-	
-
 void 
 blit_obstacle_collision_rectangle ( obstacle* our_obstacle )
 {
