@@ -12,12 +12,12 @@
 
 #define LOCALE_DIR FD_DATADIR"/locale/"
 
-#define _(String) gettext(String)
+#define _(String) (String[0]!='\0'?gettext(String):"")
 #define N_(String) String
 
-#define D_(String) dgettext("freedroidrpg_data", String)
+#define D_(String) (String[0]!='\0'?dgettext("freedroidrpg_data", String):"")
 
-#define L_(String) dgettext("freedroidrpg_dialogs", String)
+#define L_(String) (String[0]!='\0'?dgettext("freedroidrpg_dialogs", String):"")
 
 #else
 
