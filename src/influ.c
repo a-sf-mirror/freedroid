@@ -3087,7 +3087,10 @@ check_for_barrels_to_smash ( int barrel_index )
 	    //
 	    // For this purpose, we take a vector and rotate it around the barrel center to
 	    // find the 'best' location to go to for the smashing motion...
-	    //
+
+	    // First, if the barrel is in direct line with Tux, we search a position that the
+	    // Tux can reach.
+
 	    step_vector . x = Me . pos . x - 
 		our_level -> obstacle_list [ barrel_index ] . pos . x ;
 	    step_vector . y = Me . pos . y - 
@@ -3136,11 +3139,70 @@ check_for_barrels_to_smash ( int barrel_index )
 		RotateVectorByAngle ( & ( step_vector ) , 45.0 ) ;
 	    }
 	    
-	    //--------------------
-	    // since we cannot smash immediately, we must return now.  Later, on the 
-	    // second call once we've reached the barrel, this will be different.
-	    //
-	    return;
+		// Second : if the barrel is not in direct line with Tux, we search a position
+		// near the barrel that is free of obstacle. However, it could happen that the
+		// pathfinder will not be able to find a way to go there, but it would be too
+		// costly to launch the pathfinder here. Anyway, if no path exists, Tux will
+		// not start to move, so the player will certainly try to get closer to the
+		// barrel.
+
+		// we will rotate step_vector around the center of the barrel
+		step_vector . x = Me . pos . x - our_level -> obstacle_list [ barrel_index ] . pos . x ;
+		step_vector . y = Me . pos . y - our_level -> obstacle_list [ barrel_index ] . pos . y ;
+		vec_len = vect_len ( step_vector );
+		step_vector . x /= vec_len;
+		step_vector . y /= vec_len;
+
+		// point_near_barrel is a point very near the barrel in the step_vector's direction,
+		// point_away_from_barrel is a point in the same direction but a bit farther
+		moderately_finepoint point_near_barrel, point_away_from_barrel;
+
+		// half-size of the barrel
+		int barrel_type = our_level -> obstacle_list [ barrel_index ] . type;
+		moderately_finepoint half_size = { ( obstacle_map [ barrel_type ] . block_area_parm_1 * sqrt(2) ) / 2.0,
+		                                   ( obstacle_map [ barrel_type ] . block_area_parm_2 * sqrt(2) ) / 2.0
+		                                 };
+
+		for ( i = 0 ; i < 8 ; i ++ )
+		{
+			// (no need to optimize this, the compiler will do its job...)
+			point_near_barrel . x      = our_level -> obstacle_list [ barrel_index ] . pos . x +
+			                               step_vector . x * ( half_size . x + 0.05 );
+			point_near_barrel . y      = our_level -> obstacle_list [ barrel_index ] . pos . y +
+			                               step_vector . y * ( half_size . y + 0.05 );
+			point_away_from_barrel . x = our_level -> obstacle_list [ barrel_index ] . pos . x +
+			                               step_vector . x * ( half_size . x + 0.2  );
+			point_away_from_barrel . y = our_level -> obstacle_list [ barrel_index ] . pos . y +
+			                               step_vector . y * ( half_size . y + 0.2  );
+
+			// check if the line from point_near_barrel to point_away_from_barrel is walkable
+			if ( droid_can_walk_this_line( Me . pos . z,
+			                               point_near_barrel . x, point_near_barrel . y,
+			                               point_away_from_barrel . x, point_away_from_barrel . y ) )
+			{
+				//--------------------
+				// point_to_barrel seems good, move Tux there
+				//
+				Me . mouse_move_target . x = point_near_barrel . x ;
+				Me . mouse_move_target . y = point_near_barrel . y ;
+				Me . mouse_move_target . z = Me . pos . z ;
+
+				//--------------------
+				// We set up the combo_action, so that the barrel can be smashed later, on the
+				// second call (made by move_tux_thowards_intermediate_point)...
+				//
+				enemy_set_reference(&Me . current_enemy_target_n, &Me . current_enemy_target_addr, NULL);
+				Me . mouse_move_target_combo_action_type = COMBO_ACTION_SMASH_BARREL ;
+				Me . mouse_move_target_combo_action_parameter = barrel_index ;
+
+				return;
+			}
+
+			// rotate the step_vector to check an other point
+			RotateVectorByAngle ( & ( step_vector ) , 45.0 ) ;
+		}
+
+		return;
 	}
 	
 	//--------------------
