@@ -1,54 +1,166 @@
-We are happy to announce FreedroidRPG 0.11 - release candidate 1.
-FreedroidRPG 0.11 represents one year of work on the game, and has
-therefore significantly evolved since 0.10.3.
-The list of changes is huge, and consists of bug fixes, performance improvements,
-interface work notably for the leveleditor, and game content improvements.
-Here are the most important points:
- 
-Content
-----
-- modified the endgame scenario and started integrating the Hell Fortress, adding 2 more levels
- 
-- added a secret research center level
- 
-- changed town to make it more "lifelike" and easier to find yourself around
- 
-- modified start level to improve richness of content
- 
-- added and rebalanced weapons. There now are a few melee weapons, projectile pistols and rifles, and futuristic energy weapons.
- 
-- changed and rebalanced programs, including added a new default skill to help tux from overheating. Makes a "magic user" character a possible and interesting alternative.
- 
-- new music tracks 
- 
- 
-Engine
-----
- 
-- the savegame system has been rewritten to use plain text instead of binary dumps. This allows compatibility of savegames
-between platforms and makes them hand-editable, and usable for bug reporting.
- 
-- using a texture atlas for floor tiles in OpenGL mode yields a 20%+ performance improvement
- 
-- fixed many bugs in robot AI
- 
-- using a better collision detection algorithm, and pathfind bots waypoint routes, in an attempt to reduce bots getting into walls
- 
-- full translation support for game data based on gettext
- 
- 
-Leveleditor
-----
- 
-- undo/redo feature
- 
-- nicer buttons in the interface
- 
-- changed the mouse interface to match The Sims editor more closely (move with right button pressed, place
-  tile with left click)
- 
-- ability to place line of walls by dragging the mouse
- 
-- ability to fill a given rectangle with floor tiles by dragging
- 
-- "quickbar" for favorite tiles
+2008-08-06 08:22  ahuillet
+
+	* /Makefile.am: including INSTALL.genetric as well as HELP_WANTED
+	  in tarball now
+
+2008-08-06 08:15  ahuillet
+
+	* /CMakeLists.txt, /configure.ac: this is 0.11svn (in svn)
+
+2008-08-05 20:50  ahuillet
+
+	* /src/influ.c: new barrel smashing code from fluzz - fixes bugs
+	  related to smashing a barrel from a distance
+
+2008-08-05 07:09  ahuillet
+
+	* /src/lang.h: do not call gettext on empty strings
+
+2008-08-04 00:19  stedevil
+
+	* /src/view.c: Reverting some funky stuff in r922 by cygal that
+	  breaks compile
+
+2008-08-04 00:07  stedevil
+
+	* /src/blocks.c: Less blocking overlap on wall and doors, possible
+	  due to flux fixes
+
+2008-08-03 22:57  stedevil
+
+	* /map/ReturnOfTux.droids: lvl 3: Kevs basement, 302s too quick and
+	  deadly to have a bunch swarm you in a confined space early in the
+	  game, changed to 123s
+
+2008-08-03 21:53  cygal
+
+	* /src/view.c: fixed a point size issue that was not reseted
+	  correctly
+
+2008-08-03 20:09  stedevil
+
+	* /dialogs/Stone.dialog: Balancing reward for helping Mrs stone,
+	  amount of money was unreachable until long after better weapons
+	  was available in RG shop. TODO: Make it a real quest?
+
+2008-08-03 19:58  stedevil
+
+	* /dialogs/Lukas.dialog: Fixing Lukas (RG shopkeeper) dialogs a bit
+
+2008-08-03 19:53  stedevil
+
+	* /map/Asteroid.maps: making sure RG shopkeeper is always close
+	  enough to buy things from. lvl 1 Town (some players seem to find
+	  it annoying that he is sometimes out of reach)
+
+2008-08-03 17:03  stedevil
+
+	* /map/Asteroid.maps: replaced unreachable waypoint with
+	  corresponding non broken one on lvl 31 HFE
+
+2008-08-03 16:29  stedevil
+
+	* /map/Asteroid.maps: removed unreachable crystal from lvl 9
+
+2008-08-03 15:54  stedevil
+
+	* /map/freedroid.item_archetypes: removed recharge time value on
+	  kitchen knife (not used but looked weird in the shop)
+
+2008-08-03 14:43  stedevil
+
+	* /map/Asteroid.maps: redesign entrance area for lvl 6 maintainance
+	  tunnels
+
+2008-08-03 10:09  ahuillet
+
+	* /src/enemy.c: bot escape code contributed by fluzz. not widely
+	  tested but this is what RCs are for
+
+2008-08-01 19:07  ahuillet
+
+	* /po/freedroidrpg_data.pot, /po/freedroidrpg_dialogs.pot: upd
+
+2008-08-01 18:46  ahuillet
+
+	* /dialogs/Spencer.dialog, /map/QuestList_archetypes: english stuff
+
+2008-08-01 18:41  ahuillet
+
+	* /dialogs/MER.dialog: typo
+
+2008-08-01 11:23  ahuillet
+
+	* /po/fr_FR/LC_MESSAGES/freedroidrpg.mo,
+	  /po/fr_FR/LC_MESSAGES/freedroidrpg.po,
+	  /po/fr_FR/LC_MESSAGES/freedroidrpg_data.mo,
+	  /po/fr_FR/LC_MESSAGES/freedroidrpg_data.po,
+	  /po/fr_FR/LC_MESSAGES/freedroidrpg_dialogs.mo,
+	  /po/fr_FR/LC_MESSAGES/freedroidrpg_dialogs.po: upd from launchpad
+
+2008-08-01 11:07  ahuillet
+
+	* /po/freedroidrpg.pot: upd
+
+2008-07-31 16:27  ahuillet
+
+	* /src/influ.c: patch by fluzz that prevents bots from getting
+	  stuck into walls. preliminary testing seems to show the problem
+	  went away for real.
+
+2008-07-27 18:02  stedevil
+
+	* /map/Asteroid.maps: fixing up a broken waypoint in warehouse lvl
+	  1
+
+2008-07-26 18:50  stedevil
+
+	* /map/QuestList_archetypes: Fix last mission ending immediately
+
+2008-07-24 11:36  ahuillet
+
+	* /src/colldet.c: fluzz improved collision detection - hopefully no
+	  more false positives. performance impact unknown
+
+2008-07-23 08:52  ahuillet
+
+	* /src/influ.c: fluzz contributed a fix to pathfinding - it now
+	  tries intermediate points on the center of tiles
+
+2008-07-20 10:23  stedevil
+
+	* /configure.ac: Lyriks patch to enable turning ogg+vorbis on/off
+	  at compile time
+
+2008-07-19 22:18  cygal
+
+	* /src/BFont.c, /src/BFont.h, /src/menu.c, /src/proto.h,
+	  /src/text.c: patch from fluzz - adds autoscrolling to menus when
+	  entries are too long.
+
+2008-07-19 20:39  stedevil
+
+	* /HELP_WANTED: Added link to wiki todo in HELP_WANTED
+
+2008-07-19 12:27  stedevil
+
+	* /map/titles/Credits.title: Fixing linebreaks in the scrollby and
+	  KiberGus name
+
+2008-07-19 00:01  stedevil
+
+	* /map/freedroid.droid_archetypes: Apparently droids_arch still
+	  stupidly selects by order not by name, putting harvester back
+	  last in the file
+
+2008-07-18 15:29  stedevil
+
+	* /README: Updated readme with R300 + Mesa 6.5.2 issue
+
+2008-07-18 15:05  stedevil
+
+	* /ChangeLog: Updated changelog
+
+2008-07-18 14:41  stedevil
+
+	* /CMakeLists.txt, /configure.ac: setting version to rc1
