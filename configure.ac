@@ -139,6 +139,11 @@ AC_DEFINE(HAVE_LIBOGG,0, [Define to 1 if ogg libs were found])
 AC_DEFINE(HAVE_LIBVORBIS,0, [Define to 1 if Vorbis libs were found])
 fi
 
+AC_CHECK_LIB([intl], [gettext],, AC_MSG_WARN([
+--------------------------------------------------
+libintl not found!
+--------------------------------------------------]))
+
 if test x$bsd = xtrue; then
 	AC_CHECK_LIB([execinfo], [backtrace],, AC_MSG_WARN([
 --------------------------------------------------
@@ -190,7 +195,7 @@ fi
 
 # Checks for header files.
 AC_CHECK_HEADERS([fcntl.h stdlib.h string.h sys/ioctl.h sys/time.h time.h \
-			  unistd.h dirent.h sys/soundcard.h soundcard.h execinfo.h signal.h locale.h stdint.h ])
+			  unistd.h dirent.h sys/soundcard.h soundcard.h execinfo.h signal.h locale.h stdint.h libintl.h])
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_TYPE_SIZE_T
