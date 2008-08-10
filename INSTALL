@@ -7,18 +7,22 @@ can, at your convenience, use CMake.
 Building with autotools
 =========================
 
-1) If you are running a SVN version of the game, you will need to generate the configure script
-by running autogen.sh.
+1) If you are running an SVN version of the game, you will first need to generate the 
+   configure script by running ./autogen.sh.
 
-2) Run the configure script, you can check the options it accepts with --help.
+2) Run the configure script, ./configure
+   You can check the options it accepts with --help.
+   If you are running MAC OSX you will probably want to use ./configure --with-apple-opengl-framework
 
-3) Type "make". This will build the game.
+3) Type "make" to build the game.
 
-4) Installation : "make install" will install the game. The binary name is freedroidRPG.
+4) Installation
+  a) "make install" will install the game. The binary name is freedroidRPG.
 
-4b) Working from the source tree (if you want to svn update regularly) : do not issue 
-the "make install" command, instead, simply go to the src/ subdirectory, and run
-./freedroidRPG.
+  b) If you are working with the source tree and want to svn update regularly we 
+     recomend the following instead : 
+     Do not issue "make install", instead, simply go to the src/ subdirectory, and run
+     ./freedroidRPG. 
 
 
 Building with CMake
