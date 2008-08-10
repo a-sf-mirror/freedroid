@@ -79,10 +79,9 @@
 4. Known Issues:
 ================
 - General
-  * Pathfinding/collision detection in the game is partially buggy. Sometimes NPCs, bots or even Tux can walk
-  from A to B but not from B to A. This e.g. causes the town Doctor to "get stuck" in the toilet (though 
-  possibly he just had something bad for dinner). We are working on solving this and several related issues,
-  like Tux ability to sometimes walk through walls, but it has proven to be quite difficult.
+  * Pathfinding/collision detection in the game is partially buggy. This can eg make it difficult to attack bots
+    close to walls.
+  * Sometimes items from eg chests can spawn in an unreachable locaion.
   * Most melee and ranged weapons only have placeholder laserswords/rifles for their Tux holding and attack 
   animations. If you are skilled with 3D modelling, please help us out.
   * Sometimes during talking to NPCs, the black background is replaced by the world map.
