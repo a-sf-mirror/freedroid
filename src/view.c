@@ -2715,9 +2715,6 @@ The number of images found in the image collection is bigger than currently allo
 	    tmplen = 4 * img_xlen * img_ylen;
 	    memcpy ( dest, ptr, tmplen );
 	    ptr += tmplen;
-#           if SDL_BYTEORDER == SDL_BIG_ENDIAN
-	    endian_swap ( dest, 4, img_xlen * img_ylen);
-#           endif
 
 
 
