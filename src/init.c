@@ -930,23 +930,23 @@ Get_Robot_Data ( void* DataPointer )
 			   &Druidmap[RobotIndex].experience_reward, EndOfDataPointer );
 
       // Now we read in the monster level = maximum treasure chest to pick from
-      ReadValueFromString( RobotPointer , "Drops item class=" , "%d" , 
+      ReadValueFromString( RobotPointer , "Drops item class=" , "%hd" , 
 			   &Druidmap[RobotIndex].monster_level , EndOfDataPointer );
 
       // Now we read in the number of additional magical items this monster type must drop
-      ReadValueFromStringWithDefault( RobotPointer , "Force how many additional magic items to be dropped=" , "%d" , "0" ,
+      ReadValueFromStringWithDefault( RobotPointer , "Force how many additional magic items to be dropped=" , "%hd" , "0" ,
 			   &Druidmap[RobotIndex].forced_magic_items , EndOfDataPointer );
 
       // Now we read in the brain of this droid of this type
-      ReadValueFromStringWithDefault( RobotPointer , BRAIN_BEGIN_STRING , "%d" , "1",
+      ReadValueFromStringWithDefault( RobotPointer , BRAIN_BEGIN_STRING , "%hhd" , "1",
 			   &Druidmap[RobotIndex].brain, EndOfDataPointer );
 
       // Now we read in the sensor 1, 2 and 3 of this droid type
-      ReadValueFromStringWithDefault( RobotPointer , SENSOR1_BEGIN_STRING , "%d" , "1",
+      ReadValueFromStringWithDefault( RobotPointer , SENSOR1_BEGIN_STRING , "%hhd" , "1",
 			   &Druidmap[RobotIndex].sensor1, EndOfDataPointer );
-      ReadValueFromStringWithDefault( RobotPointer , SENSOR2_BEGIN_STRING , "%d" , "5",
+      ReadValueFromStringWithDefault( RobotPointer , SENSOR2_BEGIN_STRING , "%hhd" , "5",
 			   &Druidmap[RobotIndex].sensor2, EndOfDataPointer );
-      ReadValueFromStringWithDefault( RobotPointer , SENSOR3_BEGIN_STRING , "%d" , "0",
+      ReadValueFromStringWithDefault( RobotPointer , SENSOR3_BEGIN_STRING , "%hhd" , "0",
 			   &Druidmap[RobotIndex].sensor3, EndOfDataPointer );
 
       char * tmp_item_name = ReadAndMallocStringFromData ( RobotPointer , WEAPON_ITEM_BEGIN_STRING , "\"" ) ;
