@@ -139,10 +139,14 @@ AC_DEFINE(HAVE_LIBOGG,0, [Define to 1 if ogg libs were found])
 AC_DEFINE(HAVE_LIBVORBIS,0, [Define to 1 if Vorbis libs were found])
 fi
 
-AC_CHECK_LIB([intl], [gettext],, AC_MSG_WARN([
+if test x$macosx = xtrue; then
+	AC_CHECK_LIB([intl], [gettext],, AC_MSG_WARN([
 --------------------------------------------------
 libintl not found!
+Unable to provide translation support without
+gettext/libintl.
 --------------------------------------------------]))
+fi
 
 if test x$bsd = xtrue; then
 	AC_CHECK_LIB([execinfo], [backtrace],, AC_MSG_WARN([
