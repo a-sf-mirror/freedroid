@@ -1995,7 +1995,12 @@ move_tux ( )
 	Me . Position_History_Ring_Buffer [ Me . current_zero_ring_index ] . z = MoveLevel->levelnum ;
 	}
     
-    if  ( Me . paralyze_duration ) return;  //If tux is paralyzed, we do nothing more
+    if  ( Me . paralyze_duration ) 
+	{
+	Me . speed . x = 0;
+	Me . speed . y = 0;
+        return;  //If tux is paralyzed, we do nothing more
+	}
 
     //--------------------
     // As a preparation for the later operations, we see if there is
