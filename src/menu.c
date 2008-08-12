@@ -1915,7 +1915,7 @@ OSD_handle (int n)
 	  &GameConfig.enemy_energy_bars_visible
   };
 
-  if (n < PARALLEL_BIG_SCREEN_MESSAGES_AT_MOST_POSITION) {
+  if (n >= 1 && n < PARALLEL_BIG_SCREEN_MESSAGES_AT_MOST_POSITION) {
 	  while (EnterPressed () || SpacePressed ());
 	  *shows[n-1] = !*shows[n-1];
   } else {
