@@ -345,11 +345,14 @@ display_current_chat_protocol ( int background_picture_code , enemy* ChatDroid ,
 	chat_protocol_scroll_override_from_user = 0 ;
     }
     else
+    {
+	if ( chat_protocol_scroll_override_from_user >= 3 )
+	    chat_protocol_scroll_override_from_user --;
+
 	protocol_offset = ((int) ( 0.99 + FontHeight ( GetCurrentFont() ) * TEXT_STRETCH ) *
 	     ( lines_needed - AVERAGE_LINES_IN_PROTOCOL_WINDOW + chat_protocol_scroll_override_from_user )) ;
+    }
 
-    //printf("Poffset %d, sco %d, fh %d\n", protocol_offset, chat_protocol_scroll_override_from_user, FontHeight(GetCurrentFont()));
-    
     //--------------------
     // Prevent the player from scrolling 
     // too high (negative protocol offset)
@@ -359,7 +362,7 @@ display_current_chat_protocol ( int background_picture_code , enemy* ChatDroid ,
 	chat_protocol_scroll_override_from_user ++ ;
 	protocol_offset = 0 ;
     }
-   
+    
     //--------------------
     // Now we need to clear this window, cause there might still be some
     // garbage from the previous subtitle in there...
@@ -379,7 +382,7 @@ display_current_chat_protocol ( int background_picture_code , enemy* ChatDroid ,
 	ShowGenericButtonFromList ( CHAT_PROTOCOL_SCROLL_UP_BUTTON );
     else
 	ShowGenericButtonFromList ( CHAT_PROTOCOL_SCROLL_OFF_BUTTON );
-    if ( lines_needed <= AVERAGE_LINES_IN_PROTOCOL_WINDOW ) 
+    if ( lines_needed <= AVERAGE_LINES_IN_PROTOCOL_WINDOW || chat_protocol_scroll_override_from_user >= 2) 
 	ShowGenericButtonFromList ( CHAT_PROTOCOL_SCROLL_OFF2_BUTTON );
     else
 	ShowGenericButtonFromList ( CHAT_PROTOCOL_SCROLL_DOWN_BUTTON );
