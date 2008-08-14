@@ -477,9 +477,9 @@ quest_browser_interface ( void )
 	blit_our_own_mouse_cursor();
 	our_SDL_flip_wrapper();
 	    
-	if ( QPressed() )
+	if ( QPressed()  || EscapePressed() )
 	{
-	    while ( QPressed() ) SDL_Delay(1);
+	    while ( QPressed() || EscapePressed() ) SDL_Delay(1);
 	    back_to_game = TRUE ;
 	}
 
