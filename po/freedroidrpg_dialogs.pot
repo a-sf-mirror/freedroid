@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CHANGE THIS\n"
 "Report-Msgid-Bugs-To: CHANGE THIS TOO\n"
-"POT-Creation-Date: 2008-08-01 19:06+0000\n"
-"PO-Revision-Date: 2008-08-01 19:06+0000\n"
+"POT-Creation-Date: 2008-08-12 19:38+0000\n"
+"PO-Revision-Date: 2008-08-12 19:38+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -516,7 +516,7 @@ msgstr ""
 #: ../dialogs/Stone.dialog:222
 msgid ""
 "I couldn't get myself to look at my finance logs for a while now. I guess abou"
-"t three to four thousand triangles."
+"t two thousand triangles."
 msgstr ""
 
 #: ../dialogs/Stone.dialog:231
@@ -551,7 +551,7 @@ msgstr ""
 
 #: ../dialogs/Stone.dialog:304
 msgid ""
-"I need 3,147 bucks to get through the month. I accept only that and not a cent"
+"I need 1,547 bucks to get through the month. I accept only that and not a cent"
 " more. Now it's fair. Thank you."
 msgstr ""
 
@@ -2799,7 +2799,7 @@ msgid ""
 msgstr ""
 
 #: ../dialogs/Lukas.dialog:45
-msgid " Spencer said, you'd give me an armor."
+msgid " Spencer said, you'd be able to provide me with better armor and equipment."
 msgstr ""
 
 #: ../dialogs/Lukas.dialog:48
@@ -2829,7 +2829,7 @@ msgid ""
 msgstr ""
 
 #: ../dialogs/Lukas.dialog:70
-msgid " END "
+msgid " See you later! "
 msgstr ""
 
 #: ../dialogs/OldTownGateGuardLeader.dialog:36
