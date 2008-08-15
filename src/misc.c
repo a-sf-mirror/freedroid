@@ -225,8 +225,8 @@ mouse_press_button AllMousePressButtons[ MAX_MOUSE_PRESS_BUTTONS ] =
     /*SCROLL_TEXT_UP_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/arrow_up_for_scroll_text.png"     , {  - 65 , 10 , 73 , 98 } , FALSE , FALSE } ,
     /*SCROLL_TEXT_DOWN_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/arrow_down_for_scroll_text.png"   , {  - 65 , -10-98 , 73 , 98 } , FALSE , FALSE } ,
 
-    /*DESCRIPTION_WINDOW_UP_BUTTON */    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { 607 , 99 , 26 , 26 } , FALSE , FALSE } ,
-    /*DESCRIPTION_WINDOW_DOWN_BUTTON */    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { 607 , 347 , 26 , 26 } , FALSE , FALSE } ,
+    /*DESCRIPTION_WINDOW_UP_BUTTON */    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { 607 , 99 , 26 , 26 } , TRUE , FALSE } ,
+    /*DESCRIPTION_WINDOW_DOWN_BUTTON */    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { 607 , 347 , 26 , 26 } , TRUE , FALSE } ,
 
     /*DRUID_SHOW_EXIT_BUTTON */    { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { 202 , 311 , 47 , 47 } , TRUE , FALSE } ,
 
