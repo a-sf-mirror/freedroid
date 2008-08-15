@@ -880,12 +880,12 @@ map_tile, *Map_tile;
 
 typedef struct level_s
 {
-    short levelnum;
-    short xlen;
-    short ylen;
-    char light_radius_bonus;
-    char minimum_light_value;
-    char infinite_running_on_this_level;
+    int levelnum;
+    int xlen;
+    int ylen;
+    int light_radius_bonus;
+    int minimum_light_value;
+    int infinite_running_on_this_level;
     char *Levelname;
     char *Background_Song_Name;
     char *Level_Enter_Comment;
@@ -898,15 +898,15 @@ typedef struct level_s
     int obstacle_states_values [ MAX_OBSTACLE_STATES_PER_LEVEL ];
 
     map_tile *map [ MAX_MAP_LINES ];	// this is a vector of pointers
-    short jump_threshold_north;
-    short jump_threshold_south;
-    short jump_threshold_east;
-    short jump_threshold_west;
-    short jump_target_north;
-    short jump_target_south;
-    short jump_target_east;
-    short jump_target_west;
-    char use_underground_lighting;
+    int jump_threshold_north;
+    int jump_threshold_south;
+    int jump_threshold_east;
+    int jump_threshold_west;
+    int jump_target_north;
+    int jump_target_south;
+    int jump_target_east;
+    int jump_target_west;
+    int use_underground_lighting;
     
     obstacle obstacle_list[ MAX_OBSTACLES_ON_MAP ];
     
