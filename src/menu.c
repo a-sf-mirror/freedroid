@@ -603,7 +603,7 @@ ChatDoMenuSelection( char* MenuTexts[ MAX_ANSWERS_PER_PERSON ] ,
     Choice_Window . x = 35*GameConfig . screen_width/640;
     Choice_Window . y = 335*GameConfig . screen_height/480; 
     Choice_Window . w = ( 640 - 70 ) * GameConfig . screen_width / 640 ; 
-    Choice_Window . h = 140 * GameConfig . screen_height / 480 ;
+    Choice_Window . h = 118 * GameConfig . screen_height / 480 ;
     MaxLinesInMenuRectangle = Choice_Window . h / ( FontHeight ( GetCurrentFont() ) * TEXT_STRETCH ) ;
     DebugPrintf ( 1 , "\nComputed number of lines in choice window at most: %d." , MaxLinesInMenuRectangle );
     
