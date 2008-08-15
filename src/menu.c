@@ -2174,22 +2174,21 @@ PrepareNewHero (void)
  * convenient.  So as a parameter to this powerful function (scandir), you
  * have to specify a sorting function of a certain kind.  And this is just
  * the sorting function that seems appropriate for our little program.
+ *
+ * This function should *ONLY* keep files with the ".savegame" extension.
+ *
  */
 int
 filename_filter_func ( const struct dirent *unused )
 {
-    if ( strstr ( unused->d_name , "savegame" ) != NULL )
-    {
-	return ( 1 ) ;
-    }
-    else
-    {
-	return ( 0 ) ;
-    }
-    
-    // to make compilers happy...
-    return ( 0 );
-    
+	char* pos = strstr ( unused->d_name , ".savegame" );
+	size_t len;
+	
+	if ( pos != NULL ) // ".savegame" found
+		if ( strlen(pos) == 9 ) // since strlen(".savegame") is 9, then
+			return (1);         // unused->d_name *ENDS* with ".savegame"
+
+	return ( 0 );
 }; // static int filename_filter_func (const struct dirent *unused)
 
 /**
