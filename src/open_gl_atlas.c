@@ -120,6 +120,7 @@ static void read_atlas_field ( const char * atlasdat, const char * pathname, sho
 
 int load_texture_atlas ( const char * atlas_name, const char * directory, char *filenames[], iso_image atlasmembers[], int count )
 {
+#ifdef HAVE_LIBGL
     // Initialization : read atlas, check if size is ok
     char * dat = get_texture_atlas ( atlas_name );
     int atlas_w, atlas_h;
@@ -192,6 +193,7 @@ int load_texture_atlas ( const char * atlas_name, const char * directory, char *
     free(dat);
     SDL_FreeSurface ( atlas_surf . surface );
     return 0;
+#endif
 }
 
 #undef _open_gl_atlas_c

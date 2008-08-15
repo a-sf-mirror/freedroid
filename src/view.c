@@ -377,9 +377,13 @@ isometric_show_floor_around_tux_without_doublebuffering (int mask)
 	{
 	if ( use_atlas == - 1 )
 	    { //determine if we are using a texture atlas for the ground
-	    if ( floor_iso_images[0].texture == floor_iso_images[5].texture )
+#ifdef HAVE_LIBGL
+    	    if ( floor_iso_images[0].texture == floor_iso_images[5].texture )
 		use_atlas = 1;
 	    else use_atlas = 0;
+#else
+	    use_atlas = 0;
+#endif
 	    }
 
 	if ( use_atlas )
