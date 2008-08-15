@@ -2061,7 +2061,7 @@ ResetGameConfigToDefaultValues ( void )
     GameConfig . Enemy_Bump_Text=TRUE;
     GameConfig . Enemy_Aim_Text=TRUE;
     GameConfig . Draw_Framerate=TRUE;
-    GameConfig . Draw_Position=FALSE;
+    GameConfig . Draw_Position=TRUE;
     GameConfig . All_Texts_Switch = FALSE;
     GameConfig . enemy_energy_bars_visible = TRUE ;
     GameConfig . hog_CPU = FALSE ;

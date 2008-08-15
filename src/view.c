@@ -265,7 +265,7 @@ ShowCombatScreenTexts ( int mask )
 	
     }
     
-    if ( GameConfig.Draw_Position || ( mask & ONLY_SHOW_MAP_AND_TEXT ) )
+    if ( mask & ONLY_SHOW_MAP_AND_TEXT ) 
     {
 	PrintStringFont( Screen , FPS_Display_BFont , User_Rect.x , 
                          GameConfig.screen_height - 9*FontHeight( FPS_Display_BFont ), 
