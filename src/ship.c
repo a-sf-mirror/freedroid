@@ -562,11 +562,14 @@ write_full_item_name_into_string ( item* ShowItem , char* full_item_name )
 void 
 ShowItemInfo ( item* ShowItem , int Displacement , char ShowArrows , int background_code , int title_text_flag )
 {
-    char InfoText[10000];
+		static item LastItemShown;
+    static char InfoText[10000];
     char TextChunk[2000];
     char* ClassString;
     long int repairPrice = 0;
-    
+		
+		if( ShowItem == NULL) return;
+		
     SDL_SetClipRect ( Screen , NULL );
     
     blit_special_background ( background_code );
@@ -587,7 +590,10 @@ ShowItemInfo ( item* ShowItem , int Displacement , char ShowArrows , int backgro
     
     //--------------------
     // Now we can display the rest of the smaller-font item description.
-    //
+    // If the item has changed, we must first assemble the description
+		//
+		if( memcmp( ShowItem, &LastItemShown, sizeof(item)))
+		{
     if ( ItemMap [ ShowItem->type ] . item_can_be_installed_in_weapon_slot )
 	ClassString = _("Weapon");
     else if ( ItemMap [ ShowItem->type ] . item_can_be_installed_in_drive_slot )
@@ -794,7 +800,13 @@ ShowItemInfo ( item* ShowItem , int Displacement , char ShowArrows , int backgro
             strcat ( InfoText, _(" This weapon requires .50 (12.7x99mm) Browning Machine Gun rounds."));
 	    break;
     }
-    
+		
+		//-----------------------
+		// We cache the item
+		// 
+		memcpy ( &LastItemShown, ShowItem, sizeof( item));
+		}
+		
     // SetCurrentFont( Para_BFont );
     // SetCurrentFont( Menu_BFont );
     SetCurrentFont( FPS_Display_BFont );
