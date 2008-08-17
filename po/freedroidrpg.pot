@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: freedroid-discussion@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-08-14 12:25+0200\n"
+"POT-Creation-Date: 2008-08-17 11:27+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -910,7 +910,7 @@ msgstr ""
 msgid "Stamina"
 msgstr ""
 
-#: ../src/character.c:784 ../src/ship.c:596
+#: ../src/character.c:784 ../src/ship.c:602
 msgid "Armor"
 msgstr ""
 
@@ -1288,9 +1288,14 @@ msgid ""
 "that?  Anyway, it looks good."
 msgstr ""
 
-#: ../src/hud.c:1557
+#: ../src/hud.c:1558
 #, c-format
-msgid "%s (%03.1f:%03.1f:%d) day %d %02d:%02d "
+msgid "%s (%03.1f:%03.1f:%d) Day %d %02d:%02d "
+msgstr ""
+
+#: ../src/hud.c:1567
+#, c-format
+msgid "%s Day %d %02d:%02d "
 msgstr ""
 
 #: ../src/influ.c:472
@@ -2142,8 +2147,8 @@ msgid "Performance Tweaks"
 msgstr ""
 
 #: ../src/menu.c:1516 ../src/menu.c:1629 ../src/menu.c:1724 ../src/menu.c:1792
-#: ../src/menu.c:1863 ../src/menu.c:1978 ../src/menu.c:2019 ../src/menu.c:2267
-#: ../src/menu.c:2379 ../src/menu.c:2458
+#: ../src/menu.c:1863 ../src/menu.c:1978 ../src/menu.c:2019 ../src/menu.c:2266
+#: ../src/menu.c:2378 ../src/menu.c:2457
 msgid "Back"
 msgstr ""
 
@@ -2323,68 +2328,68 @@ msgid ""
 "     > "
 msgstr ""
 
-#: ../src/menu.c:2291 ../src/menu.c:2397 ../src/menu.c:2412
+#: ../src/menu.c:2290 ../src/menu.c:2396 ../src/menu.c:2411
 msgid "BACK"
 msgstr ""
 
-#: ../src/menu.c:2295
+#: ../src/menu.c:2294
 msgid ""
 "\n"
 "\n"
 "No saved games found!!  Loading Cancelled. "
 msgstr ""
 
-#: ../src/menu.c:2396
+#: ../src/menu.c:2395
 msgid "Sure!"
 msgstr ""
 
-#: ../src/menu.c:2399
+#: ../src/menu.c:2398
 #, c-format
 msgid "Really delete hero '%s'?"
 msgstr ""
 
-#: ../src/menu.c:2416
+#: ../src/menu.c:2415
 msgid ""
 "\n"
 "\n"
 "No saved games found!!  Deletion Cancelled. "
 msgstr ""
 
-#: ../src/menu.c:2455
+#: ../src/menu.c:2454
 msgid "New Hero"
 msgstr ""
 
-#: ../src/menu.c:2456
+#: ../src/menu.c:2455
 msgid "Load existing Hero"
 msgstr ""
 
-#: ../src/menu.c:2457
+#: ../src/menu.c:2456
 msgid "Delete existing Hero"
 msgstr ""
 
-#: ../src/menu.c:2620
+#: ../src/menu.c:2619
 msgid ""
 "This is the record of all missions you have been assigned:\n"
 "\n"
 msgstr ""
 
-#: ../src/menu.c:2635
+#: ../src/menu.c:2634
 msgid "SOLVED: "
 msgstr ""
 
-#: ../src/menu.c:2639
+#: ../src/menu.c:2638
 msgid "FAILED: "
 msgstr ""
 
-#: ../src/menu.c:2643
+#: ../src/menu.c:2642
 msgid "ASSIGNED: "
 msgstr ""
 
-#: ../src/menu.c:2647
+#: ../src/menu.c:2646
 msgid "UNASSIGNED: "
 msgstr ""
 
-#: ../src/menu.c:2655
+#: ../src/menu.c:2654
 msgid ""
 "\n"
 "\n"
@@ -2567,151 +2572,151 @@ msgstr ""
 msgid " (Unidentified)"
 msgstr ""
 
-#: ../src/ship.c:592
+#: ../src/ship.c:598
 msgid "Weapon"
 msgstr ""
 
-#: ../src/ship.c:594
+#: ../src/ship.c:600
 msgid "Drive"
 msgstr ""
 
-#: ../src/ship.c:598
+#: ../src/ship.c:604
 msgid "Shield"
 msgstr ""
 
-#: ../src/ship.c:600
+#: ../src/ship.c:606
 msgid "Helm"
 msgstr ""
 
-#: ../src/ship.c:601
+#: ../src/ship.c:607
 msgid "Miscellaneous"
 msgstr ""
 
-#: ../src/ship.c:604
+#: ../src/ship.c:610
 #, c-format
 msgid ""
 "Item: %s \n"
 "Class: %s\n"
 msgstr ""
 
-#: ../src/ship.c:618
+#: ../src/ship.c:624
 msgid "Specials:"
 msgstr ""
 
-#: ../src/ship.c:630
+#: ../src/ship.c:636
 msgid "Multiplicity: "
 msgstr ""
 
-#: ../src/ship.c:637
+#: ../src/ship.c:643
 msgid "Duration: "
 msgstr ""
 
-#: ../src/ship.c:643
+#: ../src/ship.c:649
 #, c-format
 msgid "Indestructible\n"
 msgstr ""
 
-#: ../src/ship.c:648
+#: ../src/ship.c:654
 msgid "Attributes required: "
 msgstr ""
 
-#: ../src/ship.c:654
+#: ../src/ship.c:660
 msgid "NONE\n"
 msgstr ""
 
-#: ../src/ship.c:660
+#: ../src/ship.c:666
 #, c-format
 msgid "Str: %d "
 msgstr ""
 
-#: ../src/ship.c:665
+#: ../src/ship.c:671
 #, c-format
 msgid "Dex: %d "
 msgstr ""
 
-#: ../src/ship.c:670
+#: ../src/ship.c:676
 #, c-format
 msgid "Mag: %d "
 msgstr ""
 
-#: ../src/ship.c:708
+#: ../src/ship.c:714
 #, c-format
 msgid "Base list price: %ld\n"
 msgstr ""
 
-#: ../src/ship.c:711
+#: ../src/ship.c:717
 #, c-format
 msgid "Sell value: %ld\n"
 msgstr ""
 
-#: ../src/ship.c:719
+#: ../src/ship.c:725
 #, c-format
 msgid "Repair cost: %ld\n"
 msgstr ""
 
-#: ../src/ship.c:724
+#: ../src/ship.c:730
 #, c-format
 msgid "Unsellable\n"
 msgstr ""
 
-#: ../src/ship.c:731
+#: ../src/ship.c:737
 msgid "Identification cost: 100\n"
 msgstr ""
 
-#: ../src/ship.c:739
+#: ../src/ship.c:745
 #, c-format
 msgid "Damage: %d - %d\n"
 msgstr ""
 
-#: ../src/ship.c:748
+#: ../src/ship.c:754
 #, c-format
 msgid "Recharge time: %3.2f\n"
 msgstr ""
 
-#: ../src/ship.c:755
+#: ../src/ship.c:761
 #, c-format
 msgid "Time to reload ammo clip: %3.2f\n"
 msgstr ""
 
-#: ../src/ship.c:762
+#: ../src/ship.c:768
 #, c-format
 msgid "Defense bonus: %d\n"
 msgstr ""
 
-#: ../src/ship.c:766
+#: ../src/ship.c:772
 #, c-format
 msgid "Notes: %s"
 msgstr ""
 
-#: ../src/ship.c:773
+#: ../src/ship.c:779
 msgid " This weapon requires standard plasma ammunition."
 msgstr ""
 
-#: ../src/ship.c:776
+#: ../src/ship.c:782
 msgid " This weapon requires standard laser crystal ammunition."
 msgstr ""
 
-#: ../src/ship.c:779
+#: ../src/ship.c:785
 msgid " This weapon requires standard exterminator ammunition spheres."
 msgstr ""
 
-#: ../src/ship.c:782
+#: ../src/ship.c:788
 msgid " This weapon requires .22 Long Rifle rounds."
 msgstr ""
 
-#: ../src/ship.c:785
+#: ../src/ship.c:791
 msgid " This weapon requires Shotgun shells."
 msgstr ""
 
-#: ../src/ship.c:788
+#: ../src/ship.c:794
 msgid " This weapon requires 9x19mm rounds."
 msgstr ""
 
-#: ../src/ship.c:791
+#: ../src/ship.c:797
 msgid " This weapon requires 7.62x39mm rounds."
 msgstr ""
 
-#: ../src/ship.c:794
+#: ../src/ship.c:800
 msgid " This weapon requires .50 (12.7x99mm) Browning Machine Gun rounds."
 msgstr ""
 
