@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: freedroidRPG 0.10.4cvs\n"
 "Report-Msgid-Bugs-To: freedroid-discussion@lists.sourceforge.net\n"
 "POT-Creation-Date: 2008-08-14 12:25+0200\n"
-"PO-Revision-Date: 2008-08-17 23:23+0000\n"
-"Last-Translator: barbatrix <Unknown>\n"
+"PO-Revision-Date: 2008-08-18 10:16+0000\n"
+"Last-Translator: Arthur Huillet <arthur.huillet@free.fr>\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-08-18 07:48+0000\n"
+"X-Launchpad-Export-Date: 2008-08-19 08:08+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -2400,7 +2400,7 @@ msgstr "%d Plus an Stärke"
 #: ../src/hud.c:415
 #, c-format
 msgid "%d to dexterity"
-msgstr "%d Plus an Geschicklichkeit"
+msgstr "%d Plus an Agilität"
 
 #: ../src/hud.c:424
 #, c-format
@@ -2410,7 +2410,7 @@ msgstr "%d Plus an CPU-Leistung"
 #: ../src/hud.c:433
 #, c-format
 msgid "%d to life"
-msgstr "%d Plus an Lebensenergie"
+msgstr "%d Plus an Vitalität"
 
 #: ../src/hud.c:442
 #, c-format
@@ -2418,7 +2418,7 @@ msgid "%d health points"
 msgstr "%d Lebenspunkte"
 
 #: ../src/hud.c:451
-#, fuzzy, c-format
+#, c-format
 msgid "%0.1f health points per second"
 msgstr "%0.1f Lebenspunkte pro Sekunde"
 
@@ -2433,14 +2433,14 @@ msgid "%0.1f heating per second"
 msgstr "%0.1f Erhitzung pro Sekunde"
 
 #: ../src/hud.c:471
-#, c-format
+#, fuzzy, c-format
 msgid "%d Force"
-msgstr "%d Kraft"
+msgstr "%d Force??"
 
 #: ../src/hud.c:480
 #, c-format
 msgid "%d%% to hit"
-msgstr "%d%% Plus an Schlagkraft"
+msgstr "%d%% Plus an Treffergenauigkeit"
 
 #: ../src/hud.c:489
 #, c-format
@@ -2450,7 +2450,7 @@ msgstr "%d Plus zu allen Eigenschaften"
 #: ../src/hud.c:506
 #, c-format
 msgid "%d%% to armour"
-msgstr "%d%% Plus an Rüstung"
+msgstr "%d%% Plus an Panzerung"
 
 #: ../src/hud.c:519
 #, c-format
@@ -2465,7 +2465,7 @@ msgstr "+%d zur Disruptor-Restistenz"
 #: ../src/hud.c:538
 #, c-format
 msgid "+%d to resist fire"
-msgstr "%d Plus an Schuss-Resistenz"
+msgstr "%d Plus an Feuer-Resistenz"
 
 #: ../src/hud.c:547
 #, c-format
@@ -2475,7 +2475,7 @@ msgstr "%d Plus an elektrischer Isolation"
 #: ../src/hud.c:565
 #, c-format
 msgid "%d to light radius"
-msgstr "%d Plus zum Leuchtradius"
+msgstr "%d Plus an Leuchtradius"
 
 #: ../src/hud.c:575
 msgid " UNIDENTIFIED "
@@ -2501,12 +2501,12 @@ msgid "REQUIREMENTS NOT MET"
 msgstr "ANFORDERUNGEN NICHT ERFÜLLT"
 
 #: ../src/hud.c:1150
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Health\n"
 "%s%d/%d"
 msgstr ""
-"Lebensenergie\n"
+"Lebenspunkte\n"
 "%s%d/%d"
 
 #: ../src/hud.c:1160
@@ -2575,7 +2575,7 @@ msgstr "%s (%03.1f:%03.1f:%d) Tag %d %02d:%02d "
 
 #: ../src/influ.c:472
 msgid "Clip empty, reloading..."
-msgstr "Lade neues Magazin..."
+msgstr "Tausche leeres Magazin..."
 
 #: ../src/influ.c:2910
 msgid "No more ammunition !"
@@ -2595,18 +2595,17 @@ msgstr "Untersuche %s.  %s"
 #, c-format
 msgid "You see the floor.  It should be perfectly safe to walk on it."
 msgstr ""
-"Sieht wie der Boden aus.  Es sollte absolut sicher sein, sich auf ihm zu "
-"bewegen."
+"Sieht aus wie der Boden. Sollte absolut sicher sein, sich darauf zu bewegen."
 
 #: ../src/influ.c:3457
 #, c-format
 msgid "Unlocking obstacle of type %d."
-msgstr "Hindernis vom Typ %d entriegelt."
+msgstr "Objekt %d entriegelt."
 
 #: ../src/influ.c:3486
 #, c-format
 msgid "Repairing obstacle of type %d."
-msgstr "Hindernis der Sorte %d repariert."
+msgstr "Gegenstand %d repariert."
 
 #: ../src/influ.c:3515
 #, c-format
@@ -2664,9 +2663,9 @@ msgid ""
 "platform. There are also 614 reasons why a 614 bot battle platform can be "
 "your best friend during combat..."
 msgstr ""
-"Es gibt wenigstens 614 gute Gründe, sich von einem 614er Sicherheitsdroiden "
-"fernzuhalten. Es gibt allerdings auch mindestens 614 Gründe, warum dieser "
-"Bot in Kampfsituationen dein bester Freund sein kann..."
+"Es gibt wenigstens 614 gute Gründe, sich von einem 614er "
+"Sicherheitsandroiden fernzuhalten. Es gibt allerdings auch mindestens 614 "
+"Gründe, warum dieser Bot in Kampfsituationen dein bester Freund sein kann..."
 
 #: ../src/init.c:141
 msgid ""
@@ -2789,8 +2788,7 @@ msgstr ""
 #: ../src/init.c:167
 msgid "Just an another Red Guard. The armor hides his body."
 msgstr ""
-"Ein einfaches Mitglied der Roten Wache, gut geschützt durch eine rote "
-"Panzerung."
+"Ein weiteres Mitglied der Roten Wache, gut geschützt durch eine Rüstung."
 
 #: ../src/init.c:169
 msgid ""
@@ -2808,7 +2806,7 @@ msgid ""
 "Yet another Red Guard. You cannot say anything more, the armor hides his "
 "body."
 msgstr ""
-"Eine weitere 'Rote Wache'. Es gibt wenig mehr dazu zu sagen - die Rüstung "
+"Noch eine 'Rote Wache'. Es gibt wenig mehr darüber zu sagen - die Rüstung "
 "schützt auch vor neugierigen Blicken."
 
 #: ../src/init.c:173
@@ -2850,7 +2848,7 @@ msgstr ""
 
 #: ../src/init.c:181 ../src/init.c:183 ../src/init.c:185 ../src/init.c:187
 msgid "The armor hides his body."
-msgstr "Die Panzerung verdeckt sein Äußeres."
+msgstr "Der Schutzpanzer verdeckt sein Äußeres."
 
 #: ../src/init.c:1918
 msgid "Huh? What?  Where am I?"
@@ -2944,9 +2942,8 @@ msgid "drinking a potion!"
 msgstr "Trank einnehmen!"
 
 #: ../src/items.c:1113
-#, fuzzy
 msgid "waiting for you weapon to fire again!"
-msgstr "Warten auf neues Schuss-Intervall!"
+msgstr "auf das Nachladen der Waffe warten!"
 
 #: ../src/items.c:1116
 msgid "reloading your weapon!"
@@ -2963,7 +2960,7 @@ msgstr "lasse Programm laufen!"
 #: ../src/items.c:1125
 msgid "doing something so weird the game does not understand what it is"
 msgstr ""
-"eine so seltsame Handlung, dass das Spiel es nicht versteht, wird ausgeführt"
+"eine so seltsame Handlung, dass das Spiel es nicht versteht ausführen"
 
 #: ../src/items.c:2090 ../src/items.c:2125 ../src/items.c:2127
 msgid "Identified air."
@@ -3004,7 +3001,7 @@ msgstr "Mehr kann ich nicht tragen."
 
 #: ../src/leveleditor.c:1650
 msgid "Cancel item drop"
-msgstr "Gegenstand weglegen abbrechen."
+msgstr "Gegenstand ablegen abbrechen."
 
 #: ../src/leveleditor.c:1952
 msgid "FLOOR"
@@ -3046,7 +3043,7 @@ msgid ""
 " label_name=\"%s\"."
 msgstr ""
 "\n"
-" Kartenmarkierungs-Information: \n"
+" Kartenmarkierungs-Info:\n"
 "label_name=\"%s\"."
 
 #: ../src/leveleditor.c:4413
@@ -3058,8 +3055,8 @@ msgid ""
 msgstr ""
 "Zu nördlichem Level\n"
 "\n"
-"Benutzen Sie diesen Knopf, um einen Level nach Norden zu springen, d.h., zum "
-"Level, der an der nördlichen Seite des derzeitigen angefügt ist."
+"Springt einen Level nach Norden, d.h., zum Level, der an der nördlichen "
+"Seite des derzeitigen angefügt ist."
 
 #: ../src/leveleditor.c:4418
 msgid ""
@@ -3070,8 +3067,8 @@ msgid ""
 msgstr ""
 "Zu südlichem Level\n"
 "\n"
-"Benutzen Sie diesen Knopf, um einen Level nach Süden zu springen, d.h., zum "
-"Level, der an der südlichen Seite des derzeitigen angefügt ist."
+"Springt einen Level nach Süden, d.h., zum Level, der an der südlichen Seite "
+"des derzeitigen angefügt ist."
 
 #: ../src/leveleditor.c:4423
 msgid ""
@@ -3082,8 +3079,8 @@ msgid ""
 msgstr ""
 "Zu östlichem Level\n"
 "\n"
-"Benutzen Sie diesen Knopf, um einen Level nach Osten zu springen, d.h., zum "
-"Level, der an der östlichen Seite des derzeitigen angefügt ist."
+"Springt einen Level nach Osten, d.h., zum Level, der an der östlichen Seite "
+"des derzeitigen angefügt ist."
 
 #: ../src/leveleditor.c:4428
 msgid ""
@@ -3094,8 +3091,8 @@ msgid ""
 msgstr ""
 "Zu westlichem Level\n"
 "\n"
-"Benutzen Sie diesen Knopf, um einen Level nach Westen zu springen, d.h., zum "
-"Level, der an der westlichen Seite des derzeitigen angefügt ist."
+"Springt einen Level nach Westen, d.h., zum Level, der an der westlichen "
+"Seite des derzeitigen angefügt ist."
 
 #: ../src/leveleditor.c:4433
 msgid ""
@@ -3108,11 +3105,10 @@ msgid ""
 msgstr ""
 "Diesen Level exportieren\n"
 "\n"
-"In FreedroidRPG können Karten zu einer großen Karte zusammengefügt werden.  "
+"In FreedroidRPG können Levels zu einer großen Karte zusammengefügt werden. "
 "Das erfordert allerdings, dass die Karten dort identisch sind, wo sie "
-"aneinandergefügt werden.  Dieser Knopf wird die Grenzen der aktuellen Karte "
-"zu den Grenzen der benachbarten Karten kopieren, damit die Kartenränder "
-"übereinstimmen."
+"aneinandergefügt werden. Dieser Knopf wird die Ränder vom aktuellen Level an "
+"die Grenzen der anliegenden Levels kopieren, damit die Ränder übereinstimmen."
 
 #: ../src/leveleditor.c:4438
 msgid ""
@@ -3123,8 +3119,8 @@ msgid ""
 msgstr ""
 "Karte speichern\n"
 "\n"
-"Dieser Knopf überschreibt die Karten-Datei '../map/Asteroid.maps' im "
-"aktuellen Spieleordner mit der aktuellen (bearbeiteten) Karte."
+"Überschreibt die Karten-Datei '../map/Asteroid.maps' im aktuellen "
+"Spieleordner mit der aktuellen (bearbeiteten) Karte."
 
 #: ../src/leveleditor.c:4443
 msgid ""
@@ -3137,11 +3133,10 @@ msgid ""
 msgstr ""
 "Wegpunkte setzen und löschen\n"
 "\n"
-"Benutzen Sie diesen Knopf, um Wegpunkte an der aktuellen Cursor-Position zu "
-"setzen oder zu löschen. Wegpunkte sind mit einem weißen (oder mehrfarbigen) "
-"Kreuzpfeil gekennzeichnet.\n"
+"Setzt oder löscht Wegpunkte an der aktuellen Cursor-Position. Wegpunkte sind "
+"mit einem weißen (oder mehrfarbigen) Kreuzpfeil gekennzeichnet.\n"
 "\n"
-"Sie können dafür auch die Taste W benutzen."
+"Hotkey - Taste W"
 
 #: ../src/leveleditor.c:4450
 msgid ""
@@ -3154,10 +3149,10 @@ msgid ""
 msgstr ""
 "Wegpunkt-Verbindung erstellen\n"
 "\n"
-"Mit diesem Knopf stellen Sie eine Verbindung zwischen Wegpunkten her, an der "
-"entlang sich die Roboter bewegen können.\n"
+"Stellt eine Verbindung zwischen Wegpunkten her, an der entlang sich die "
+"Roboter bewegen können.\n"
 "\n"
-"Drücken Sie alternativ dazu die Taste C."
+"Hotkey - Taste C"
 
 #: ../src/leveleditor.c:4452
 msgid ""
@@ -3175,7 +3170,7 @@ msgstr ""
 "Wegverbindung, an der entlang sich die Roboter bewegen sollen, "
 "abzuschließen.\n"
 "\n"
-"Drücken Sie alternativ dazu die Taste C."
+"Hotkey - Taste C"
 
 #: ../src/leveleditor.c:4458
 msgid ""
@@ -3187,9 +3182,9 @@ msgid ""
 msgstr ""
 "Markiertes Objekt löschen\n"
 "\n"
-"Mit diesem Knopf können Sie das derzeit markierte Objekt löschen.\n"
+"Löscht das derzeit markierte (farbig flimmernde) Objekt.\n"
 "\n"
-"Das geht auch mit der Taste X."
+"Hotkey - Taste X"
 
 #: ../src/leveleditor.c:4463
 msgid ""
@@ -3199,12 +3194,12 @@ msgid ""
 "\n"
 "You can also use the N key for this."
 msgstr ""
-"Objektmarkierung durchwechseln\n"
+"Objektauswahl wechseln\n"
 "\n"
-"Mit diesem Knopf können Sie die markierbaren Objekte auf der aktuellen "
-"Position des Cursorgitters durchwählen.\n"
+"Wechselt zwichen den markierbaren Objekten auf der aktuellen Position des "
+"Cursorgitters.\n"
 "\n"
-"Das funktioniert auch mit der Taste N."
+"Hotkey - Taste N"
 
 #: ../src/leveleditor.c:4468
 msgid ""
@@ -3218,11 +3213,10 @@ msgid ""
 msgstr ""
 "Gras-Kantenglättung\n"
 "\n"
-"Klicken Sie diesen Knopf, um alle Sand-/Graskanten im derzeitigen Level "
-"automatisch zu glätten. Das Programm versucht dann, 'runde' Verlaufslinien "
-"und Ecken zu erzeugen.\n"
+"Glättet automatisch alle Sand-/Graskanten im derzeitigen Level. Das Programm "
+"versucht, 'runde' Verlaufslinien und Ecken, ohne Brüche, zu erzeugen.\n"
 "\n"
-"Alternativ dazu können Sie auch CTRL-B drücken."
+"Hotkey - Taste CTRL-B"
 
 #: ../src/leveleditor.c:4474
 msgid ""
@@ -3234,10 +3228,9 @@ msgid ""
 msgstr ""
 "Karten-Zoom\n"
 "\n"
-"Mit diesem Knopf können Sie die Level-Ansicht der Karte vergrößern oder "
-"verkleinern.\n"
+"Die Level-Ansicht der Karte wird vergrößert bzw. verkleinert.\n"
 "\n"
-"Drücken Sie alternativ dazu die Taste O."
+"Hotkey - Taste O"
 
 #: ../src/leveleditor.c:4479
 msgid ""
@@ -3249,10 +3242,10 @@ msgid ""
 msgstr ""
 "Bodenkacheln auffüllen\n"
 "\n"
-"Dieser Knopf füllt eine bestimmte Fläche der Karte mit der gerade "
-"ausgewählten Bodenkachel aus. Das Auffüllen wird, ausgehend von der "
-"Cursorposition, in alle Richtungen fortgesetzt, bis eine andersartige "
-"Bodenkachel erreicht ist."
+"Füllt eine bestimmte Fläche der Karte mit der gerade ausgewählten "
+"Bodenkachel aus. Das Auffüllen wird, ausgehend von der Cursorposition, in "
+"alle Richtungen fortgesetzt, bis eine andersartige Bodenkachel erreicht ist. "
+"Dadurch können sich neue, größere Bereiche mit gleichartigen Kacheln bilden."
 
 #: ../src/leveleditor.c:4484
 msgid ""
@@ -3264,11 +3257,11 @@ msgid ""
 msgstr ""
 "Neue Objektmarke setzen\n"
 "\n"
-"Verwenden Sie diesen Knopf, um eine Objektmarke an das momentan markierte "
-"Objekt zu heften. Diese Objektmarken können eingesetzt werden, um durch "
-"definierte Ereignisse manipulierbare Objekte zu erstellen.\n"
+"Heftet eine neue Objektmarke an das momentan markierte Objekt. Objektmarken "
+"können eingesetzt werden, um durch definierte Ereignisse manipulierbare "
+"Objekte zu erstellen (mittels Skript).\n"
 "\n"
-"Denken Sie daran, dass Sie dafür auch die Taste H nehmen können."
+"Hotkey - Taste H."
 
 #: ../src/leveleditor.c:4489
 msgid ""
@@ -3276,7 +3269,7 @@ msgid ""
 "\n"
 "edits the description seen when the item is selected"
 msgstr ""
-"Neue Objekt-Beschreibung\n"
+"Neue Objektbeschreibung setzen\n"
 "\n"
 "Setzt bzw. ändert die angezeigte Beschreibung eines markierten Objektes."
 
@@ -3288,12 +3281,12 @@ msgid ""
 "These map labels can be used to define starting points for bots and "
 "characters or also to define locations for events and triggers."
 msgstr ""
-"Neue Kartenmarkierung\n"
+"Neue Kartenmarkierung setzen\n"
 "\n"
-"Verwenden Sie diesen Knopf dazu, um eine Markierung auf der Karte, an der "
-"momentanen Cursor-Position anzubringen. Diese Kartenmarkierung können "
-"eingesetzt werden, um Startpunkte für Bots und Charaktere zu setzen oder um "
-"Auslösepunkte für definierbare Ereignisse festzulegen."
+"Bringt eine Markierung auf der Levelkarte, an der momentanen Cursor-Position "
+"an. Diese Kartenmarkierungen können eingesetzt werden, um Startpunkte für "
+"Bots und Charaktere zu setzen oder um Auslösepunkte für definierbare "
+"Ereignisse festzulegen."
 
 #: ../src/leveleditor.c:4499
 msgid ""
@@ -3304,10 +3297,9 @@ msgid ""
 msgstr ""
 "Gegenstand einfügen\n"
 "\n"
-"Mit diesem Knopf können Sie einen neuen Gegenstand an der Cursor-Position "
-"ablegen. \n"
+"Ablegen eines neuen Gegenstandes an der Cursor-Position.\n"
 "\n"
-"Oder benutzen Sie dazu die Taste G."
+"Hotkey - Taste G"
 
 #: ../src/leveleditor.c:4504
 msgid ""
@@ -3319,9 +3311,9 @@ msgid ""
 msgstr ""
 "Editormenü\n"
 "\n"
-"Dieser Knopf öffnet das Hauptmenü des Leveleditors.\n"
+"Öffnet das Hauptmenü des Leveleditors.\n"
 "\n"
-"Die Taste ESC hat die selbe Funktion."
+"Hotkey - Taste ESC"
 
 #: ../src/leveleditor.c:4509
 msgid ""
@@ -3333,7 +3325,7 @@ msgid ""
 msgstr ""
 "Levelgröße anpassen\n"
 "\n"
-"Dieser Knopf öffnet das Level-Dimensionierungsmenü.  Spiele-Level können auf "
+"Öffnet das Level-Dimensionierungsmenü. Spiele-Level können auf "
 "unterschiedliche Art in ihrer Größe verändert werden, wodurch eine "
 "übermäßige Beschädigung Ihrer aktuellen Karte vermieden und zusätzlicher "
 "Platz an der gewünschten Stelle eingefügt werden kann."
@@ -3346,7 +3338,7 @@ msgid ""
 msgstr ""
 "Leveleditor-Hilfe\n"
 "\n"
-"Benutzen Sie diesen Knopf, um das Tastenbelegungs-Display zu öffnen."
+"Öffnet das Tastenbelegungs-Display."
 
 #: ../src/leveleditor.c:4519
 msgid ""
@@ -3356,7 +3348,7 @@ msgid ""
 msgstr ""
 "Zurück zum Spiel\n"
 "\n"
-"Verlässt den Leveleditor und kehrt in dem Spiel-Modus zurück."
+"Verlässt den Leveleditor und kehrt in den Spiel-Modus zurück."
 
 #: ../src/leveleditor.c:4524
 msgid ""
@@ -3367,13 +3359,12 @@ msgid ""
 "\n"
 "There isn't any key to toggle this on the keyboard."
 msgstr ""
-"Untergrund-Beleuchtung\n"
+"Untergrund-Ausleuchtung\n"
 "\n"
-"Sie können mit diesem Knopf das Beleuchtungsverhalten im Untergrund ändern, "
-"d.h., die Schatten, die von dem von Tux ausgestrahlten Licht erzeugt werden, "
-"ein- oder ausschalten.\n"
+"Ändert das Ausleuchtungsverhalten im Untergrund, d.h. schaltet die Schatten, "
+"die von dem von Tux ausgestrahlten Licht erzeugt werden, ein- oder aus.\n"
 "\n"
-"Keine Keyboard-Taste verfügbar."
+"Keine Hotkey - Taste verfügbar."
 
 #: ../src/leveleditor.c:4530
 msgid ""
@@ -3384,7 +3375,7 @@ msgid ""
 msgstr ""
 "Gegner-Anzeige\n"
 "\n"
-"Mit diesem Knopf können Sie die Gegner im Level-Editor ein- und ausblenden."
+"Blendet Gegner im Level-Editor ein- oder aus."
 
 #: ../src/leveleditor.c:4536
 msgid ""
@@ -3395,8 +3386,7 @@ msgid ""
 msgstr ""
 "Objekt-Anzeige\n"
 "\n"
-"Mit diesem Knopf können Sie die Hindernisse im Level-Editor ein- und "
-"ausblenden."
+"Blendet die Hindernisse im Level-Editor ein- oder aus."
 
 #: ../src/leveleditor.c:4542
 msgid ""
@@ -3406,7 +3396,7 @@ msgid ""
 msgstr ""
 "Rückgängig\n"
 "\n"
-"Mit diesem Knopf können Sie Ihre letzten Bearbeitungen rückgängig machen."
+"Macht Ihre letzten Bearbeitungsschritte rückgängig."
 
 #: ../src/leveleditor.c:4548
 msgid ""
@@ -3416,8 +3406,7 @@ msgid ""
 msgstr ""
 "Wiederholen\n"
 "\n"
-"Mit diesem Knopf können Sie rückgängig gemachte Bearbeitungen "
-"wiederherstellen."
+"Stellt rückgängig gemachte Bearbeitungsschritte wieder her."
 
 #: ../src/leveleditor.c:4554
 msgid ""
@@ -3428,7 +3417,7 @@ msgid ""
 msgstr ""
 "Tux-Anzeige\n"
 "\n"
-"Mit diesem Knopf können Sie Tux im Level-Editor ein- und ausblenden."
+"Blendet Tux im Level-Editor ein- oder aus."
 
 #: ../src/leveleditor.c:4560
 msgid ""
@@ -3438,7 +3427,8 @@ msgid ""
 msgstr ""
 "Hilfe-Popups-Anzeige\n"
 "\n"
-"Schalten Sie hiermit die nervigen Hilfe-Popups im Level-Editor ein- und aus."
+"Hiermit können Sie die nervigen Hilfe-Popups im Level-Editor ein- und "
+"ausschalten."
 
 #: ../src/leveleditor.c:4566
 msgid ""
@@ -3448,8 +3438,7 @@ msgid ""
 msgstr ""
 "Kollisions-Rechtecks-Anzeige\n"
 "\n"
-"Mit diesem Knopf können Sie die Kollisions-Rechtecke im Level-Editor ein- "
-"und ausblenden."
+"Blendet die Kollisions-Rechtecke im Level-Editor ein- oder aus."
 
 #: ../src/leveleditor.c:4573
 msgid "Change grid mode ( placement / full / off )"
@@ -3575,7 +3564,7 @@ msgstr "Die ersten 10 Buchstaben: "
 
 #: ../src/menu.c:58
 msgid "Select character to delete: "
-msgstr "Charakter zum Löschen auswählen: "
+msgstr "Profil zum Löschen auswählen: "
 
 #: ../src/menu.c:115
 #, c-format
@@ -4015,7 +4004,7 @@ msgid ""
 "Status: "
 msgstr ""
 "\n"
-"Status: "
+"Stand: "
 
 #: ../src/mission.c:175 ../src/mission.c:235
 msgid "COMPLETE"
@@ -4039,7 +4028,7 @@ msgstr ""
 
 #: ../src/mission.c:233
 msgid "Status: "
-msgstr "Status: "
+msgstr "Stand: "
 
 #: ../src/mission.c:396
 msgid "No open quests yet."
@@ -4051,7 +4040,7 @@ msgstr "Noch keine erfüllten Missionen."
 
 #: ../src/mission.c:402
 msgid "No notes yet."
-msgstr "Noch keine Notizen vorhanden."
+msgstr "Bislang keine Notizen vorhanden."
 
 #: ../src/saveloadgame.c:53
 msgid ""
@@ -4065,9 +4054,9 @@ msgid ""
 msgstr ""
 "Ein Fehler ist während des Ladevorgangs für den Spielstand aufgetreten.\n"
 "\n"
-"Eine häufige Fehlerursache dafür ist, dass das Spiel auf eine neuere Version "
-"upgedated wurde, seitdem der Spielstand gespeichert worden ist - wodurch das "
-"gespeicherte Spiel höchstwahrscheinlich inkompatibel ist."
+"Eine häufige Fehlerursache dafür ist ein Spiel-Update auf eine neuere "
+"Version, seit dem Speichern des Spielstandes - wodurch das gespeicherte "
+"Spiel höchstwahrscheinlich inkompatibel ist."
 
 #: ../src/saveloadgame.c:261
 msgid "You are dead. Savegame not modified."
@@ -4200,7 +4189,7 @@ msgstr "Unzerstörbar\n"
 
 #: ../src/ship.c:648
 msgid "Attributes required: "
-msgstr "Eigenschaften erforderlich: "
+msgstr "Erforderliche Eigenschaften: "
 
 #: ../src/ship.c:654
 msgid "NONE\n"
@@ -4214,7 +4203,7 @@ msgstr "Str: %d "
 #: ../src/ship.c:665
 #, c-format
 msgid "Dex: %d "
-msgstr "Ges: %d "
+msgstr "Agi: %d "
 
 #: ../src/ship.c:670
 #, c-format
@@ -4272,7 +4261,7 @@ msgstr "Bemerkungen: %s"
 
 #: ../src/ship.c:773
 msgid " This weapon requires standard plasma ammunition."
-msgstr " Diese Waffe speist sich aus Standard-Plasmagas-Tanks."
+msgstr " Diese Feuerwaffe speist sich aus Standard-Plasmagas-Munition."
 
 #: ../src/ship.c:776
 msgid " This weapon requires standard laser crystal ammunition."
@@ -4286,7 +4275,7 @@ msgstr ""
 
 #: ../src/ship.c:782
 msgid " This weapon requires .22 Long Rifle rounds."
-msgstr " Automatikwaffe für Kaliber .22 Zoll Geschosse."
+msgstr " Automatikwaffe für Kaliber .22 LR Geschosse."
 
 #: ../src/ship.c:785
 msgid " This weapon requires Shotgun shells."
