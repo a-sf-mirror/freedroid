@@ -423,6 +423,7 @@ LoadGame( void )
     }
     else
     {
+	fclose (DataFile);
 	DebugPrintf ( 1 , "\nThe saved game file (.shp file) seems to be there at least.....");
     }
    
