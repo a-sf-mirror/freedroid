@@ -192,8 +192,8 @@ int load_texture_atlas ( const char * atlas_name, const char * directory, char *
     // Free atlas data and the temporary surface
     free(dat);
     SDL_FreeSurface ( atlas_surf . surface );
-    return 0;
 #endif
+    return 0;
 }
 
 #undef _open_gl_atlas_c
