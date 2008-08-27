@@ -1484,10 +1484,10 @@ display_current_game_message_window ( void )
     }
 
     
-    Subtitle_Window . x = ( ( 120 ) * GameConfig . screen_width ) / 640 ;
-    Subtitle_Window . y = ( ( 389 ) * GameConfig . screen_height ) / 480 ;
-    Subtitle_Window . w = ( ( 415 ) * GameConfig . screen_width ) / 640 ;
-    Subtitle_Window . h = ( 44 * GameConfig . screen_height ) / 480 ;
+    Subtitle_Window . x = UNIVERSAL_COORD_W(SUBTITLEW_RECT_X);
+    Subtitle_Window . y = UNIVERSAL_COORD_H(SUBTITLEW_RECT_Y);
+    Subtitle_Window . w = UNIVERSAL_COORD_W(SUBTITLEW_RECT_W);
+    Subtitle_Window . h = UNIVERSAL_COORD_H(SUBTITLEW_RECT_H);
 
     //--------------------
     // First we need to know where to begin with our little display.

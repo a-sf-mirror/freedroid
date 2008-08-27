@@ -97,52 +97,18 @@ DisplayButtons( void )
     if ( MouseCursorIsOnButton( INV_SCREEN_TOGGLE_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
     {
 	ShowGenericButtonFromList ( INV_SCREEN_TOGGLE_BUTTON_YELLOW );
-	if ( MouseLeftClicked())
-	{
-	    toggle_game_config_screen_visibility ( GAME_CONFIG_SCREEN_VISIBLE_INVENTORY );
-	    DebugPrintf ( 2 , "\nClick inside inventory button registered..." );
-	}
     }
     else if ( MouseCursorIsOnButton( CHA_SCREEN_TOGGLE_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
     {
 	ShowGenericButtonFromList ( CHA_SCREEN_TOGGLE_BUTTON_YELLOW );
-	if ( MouseLeftClicked() )
-	{
-	    toggle_game_config_screen_visibility ( GAME_CONFIG_SCREEN_VISIBLE_CHARACTER );
-	    DebugPrintf ( 2 , "\nClick inside character button registered..." );
-	}
     }
     else if ( MouseCursorIsOnButton( SKI_SCREEN_TOGGLE_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
     {
 	ShowGenericButtonFromList ( SKI_SCREEN_TOGGLE_BUTTON_YELLOW );
-	if ( MouseLeftClicked() )
-	{
-	    toggle_game_config_screen_visibility ( GAME_CONFIG_SCREEN_VISIBLE_SKILLS );
-	    DebugPrintf ( 2 , "\nClick inside skills button registered..." );
-	}
     }
     else if ( MouseCursorIsOnButton( LOG_SCREEN_TOGGLE_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
     {
 	ShowGenericButtonFromList ( LOG_SCREEN_TOGGLE_BUTTON_YELLOW );
-	if ( MouseLeftClicked() )
-	{
-	    DebugPrintf ( 2 , "\nClick inside questlog button registered..." );
-	    quest_browser_interface ( );
-	}
-    }
-    else if ( MouseCursorIsOnButton( WEAPON_MODE_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
-    {
-	if ( MouseLeftClicked() )
-	{
-	TuxReloadWeapon ( );
-	}
-    }
-    else if ( MouseCursorIsOnButton( SKI_ICON_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
-    {
-	if ( MouseLeftClicked() )
-	{
-        toggle_game_config_screen_visibility ( GAME_CONFIG_SCREEN_VISIBLE_SKILLS );
-	}
     }
     
 }; // void DisplayButtons( void )

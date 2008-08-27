@@ -741,6 +741,13 @@ enum
 //--------------------
 // And now we put here all the rectangle definitions and that...
 //
+
+// Game message window
+#define SUBTITLEW_RECT_X 120
+#define SUBTITLEW_RECT_Y 389
+#define SUBTITLEW_RECT_W 415
+#define SUBTITLEW_RECT_H 44
+
 // the inventory rect is the rectangle inside the inventory screen,
 // where all the items "in the backpack" including the quick inventory
 // are displayed.  it's relative to the top left corner, as always.

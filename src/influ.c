@@ -2584,25 +2584,80 @@ ButtonPressWasNotMeantAsFire( )
       return ( TRUE );
     }
 
-  //--------------------
-  // Also, if the cursor is right on one of the buttons, that open or close
-  // e.g. the inventory screen or the skills screens or the like, we will also
-  // not interpret this as a common in-game movement or firing command.
-  //
-  if ( MouseLeftPressed() && 
-       ( MouseCursorIsOnButton( INV_SCREEN_TOGGLE_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) ||
-	 MouseCursorIsOnButton( SKI_SCREEN_TOGGLE_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) ||
-	 MouseCursorIsOnButton( CHA_SCREEN_TOGGLE_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) || 
-	 MouseCursorIsOnButton( WEAPON_MODE_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) ||
-	 MouseCursorIsOnButton( SKI_ICON_BUTTON, GetMousePos_x(), GetMousePos_y() )) )
-    {
-      DebugPrintf( 0 , "\n Cursor is on a button, therefore this press will be ignored." );
-      return (TRUE) ;
-    }
-
   return ( FALSE );
 
-}; // void ButtonPressWasNotMeantAsFire ( )
+}; // int ButtonPressWasNotMeantAsFire ( )
+
+/**
+ * When the user clicks on a button in the HUD, launch the related action.
+ * Return TRUE if the mouse is pressed inside the HUD's area.
+ */
+int
+handle_click_in_hud( )
+{
+	if ( !MouseLeftPressed() ) return (FALSE);
+
+	if ( MouseCursorIsOnButton( INV_SCREEN_TOGGLE_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
+	{
+		if ( MouseLeftClicked() )
+		{
+			toggle_game_config_screen_visibility ( GAME_CONFIG_SCREEN_VISIBLE_INVENTORY );
+		}
+		return (TRUE);
+	}
+
+	if ( MouseCursorIsOnButton( CHA_SCREEN_TOGGLE_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
+	{
+		if ( MouseLeftClicked() )
+		{
+			toggle_game_config_screen_visibility ( GAME_CONFIG_SCREEN_VISIBLE_CHARACTER );
+		}
+		return (TRUE);
+	}
+
+	if ( MouseCursorIsOnButton( SKI_SCREEN_TOGGLE_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
+	{
+		if ( MouseLeftClicked() )
+		{
+			toggle_game_config_screen_visibility ( GAME_CONFIG_SCREEN_VISIBLE_SKILLS );
+		}
+		return (TRUE);
+	}
+
+	if ( MouseCursorIsOnButton( LOG_SCREEN_TOGGLE_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
+	{
+		if ( MouseLeftClicked() )
+		{
+			quest_browser_interface ( );
+		}
+		return (TRUE);
+	}
+
+	if ( MouseCursorIsOnButton( WEAPON_MODE_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
+	{
+		if ( MouseLeftClicked() )
+		{
+			TuxReloadWeapon ( );
+		}
+		return (TRUE);
+	}
+
+	if ( MouseCursorIsOnButton( SKI_ICON_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
+	{
+		if ( MouseLeftClicked() )
+		{
+			toggle_game_config_screen_visibility ( GAME_CONFIG_SCREEN_VISIBLE_SKILLS );
+		}
+		return (TRUE);
+	}
+
+	// Finally, protect all the other parts of the hud from user's clicks
+	if ( GetMousePos_y() >= UNIVERSAL_COORD_H(SUBTITLEW_RECT_Y) ) return (TRUE);
+
+	// The mouse is outside the hud.
+	return (FALSE);
+
+} // int handle_click_in_hud
 
 /**
  * At some point in the analysis of the users mouse click, we'll be 
@@ -3590,6 +3645,7 @@ AnalyzePlayersMouseClick ( )
 	    break;
 	case GLOBAL_INGAME_MODE_NORMAL:
 	    if ( ButtonPressWasNotMeantAsFire( ) ) return;
+	    if ( handle_click_in_hud() ) return;
 	    tmp = closed_chest_below_mouse_cursor ( );
 	    if ( no_left_button_press_in_previous_analyze_mouse_click )
 		{
