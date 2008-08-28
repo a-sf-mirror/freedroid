@@ -2182,7 +2182,6 @@ int
 filename_filter_func ( const struct dirent *unused )
 {
 	char* pos = strstr ( unused->d_name , ".savegame" );
-	size_t len;
 	
 	if ( pos != NULL ) // ".savegame" found
 		if ( strlen(pos) == 9 ) // since strlen(".savegame") is 9, then
