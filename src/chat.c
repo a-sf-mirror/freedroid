@@ -101,7 +101,7 @@ ResolveDialogSectionToChatFlagsIndex ( char* SectionName )
     if ( strcmp ( SectionName , "RMS" ) == 0 ) return PERSON_RMS;
     if ( strcmp ( SectionName , "MER" ) == 0 ) return PERSON_MER;
     if ( strcmp ( SectionName , "Francis" ) == 0 ) return PERSON_FRANCIS;
-    if ( strcmp ( SectionName , "Ernie" ) == 0 ) return PERSON_ERNIE;
+    if ( strcmp ( SectionName , "FirmwareUpdateServer" ) == 0 ) return PERSON_FIRMWARE_SERVER;
     if ( strcmp ( SectionName , "Bruce" ) == 0 ) return PERSON_BRUCE;
     if ( strcmp ( SectionName , "Benjamin" ) == 0 ) return PERSON_BENJAMIN;
     if ( strcmp ( SectionName , "Bender" ) == 0 ) return PERSON_BENDER;
@@ -1075,7 +1075,7 @@ TextConditionIsTrue ( char* ConditionString )
     fprintf( stderr, "\n\nConditionString: %s. \n" , ConditionString );
     ErrorMessage ( __FUNCTION__  , "\
 There were was a Condition string (most likely used for an on-goto-command\n\
-in the Freedroid.dialogues file, that contained a seemingly bogus condition.\n\
+in a dialog file, that contained a seemingly bogus condition.\n\
 Freedroid was unable to determine the type of said condition.",
 			       PLEASE_INFORM, IS_FATAL );
     
