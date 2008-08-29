@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: freedroid-discussion@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-08-17 11:34+0200\n"
+"POT-Creation-Date: 2008-08-29 09:55+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -842,83 +842,83 @@ msgstr ""
 msgid "That one went into the armour."
 msgstr ""
 
-#: ../src/character.c:264
+#: ../src/character.c:230
 msgid "Max level reached!"
 msgstr ""
 
-#: ../src/character.c:287
+#: ../src/character.c:253
 msgid "Level Gained!"
 msgstr ""
 
-#: ../src/character.c:615
+#: ../src/character.c:581
 msgid "Melee"
 msgstr ""
 
-#: ../src/character.c:633
+#: ../src/character.c:599
 msgid "Ranged"
 msgstr ""
 
-#: ../src/character.c:651
+#: ../src/character.c:617
 msgid "Programming"
 msgstr ""
 
-#: ../src/character.c:702
+#: ../src/character.c:668
 msgid "Level"
 msgstr ""
 
-#: ../src/character.c:708
+#: ../src/character.c:674
 msgid "Experience"
 msgstr ""
 
-#: ../src/character.c:714
+#: ../src/character.c:680
 msgid "Next level"
 msgstr ""
 
-#: ../src/character.c:720
+#: ../src/character.c:686
 msgid "Money"
 msgstr ""
 
-#: ../src/character.c:726
+#: ../src/character.c:692
 msgid "Strength"
 msgstr ""
 
-#: ../src/character.c:734
+#: ../src/character.c:700
 msgid "Dexterity"
 msgstr ""
 
-#: ../src/character.c:742
+#: ../src/character.c:708
 msgid "CPU"
 msgstr ""
 
-#: ../src/character.c:750
+#: ../src/character.c:716
 msgid "Life"
 msgstr ""
 
-#: ../src/character.c:760
+#: ../src/character.c:726
 msgid "Training points"
 msgstr ""
 
-#: ../src/character.c:766
+#: ../src/character.c:732
 msgid "Health"
 msgstr ""
 
-#: ../src/character.c:772
+#: ../src/character.c:738
 msgid "Temperature"
 msgstr ""
 
-#: ../src/character.c:778
+#: ../src/character.c:744
 msgid "Stamina"
 msgstr ""
 
-#: ../src/character.c:784 ../src/ship.c:602
+#: ../src/character.c:750 ../src/ship.c:602
 msgid "Armor"
 msgstr ""
 
-#: ../src/character.c:790
+#: ../src/character.c:756
 msgid "Attack"
 msgstr ""
 
-#: ../src/character.c:796
+#: ../src/character.c:762
 msgid "Damage"
 msgstr ""
 
@@ -1302,41 +1302,41 @@ msgstr ""
 msgid "Clip empty, reloading..."
 msgstr ""
 
-#: ../src/influ.c:2910
+#: ../src/influ.c:2965
 msgid "No more ammunition !"
 msgstr ""
 
-#: ../src/influ.c:3379
+#: ../src/influ.c:3434
 #, c-format
 msgid "This is a %s. %s"
 msgstr ""
 
-#: ../src/influ.c:3404 ../src/influ.c:3411
+#: ../src/influ.c:3459 ../src/influ.c:3466
 #, c-format
 msgid "Examining %s.  %s"
 msgstr ""
 
-#: ../src/influ.c:3426
+#: ../src/influ.c:3481
 #, c-format
 msgid "You see the floor.  It should be perfectly safe to walk on it."
 msgstr ""
 
-#: ../src/influ.c:3457
+#: ../src/influ.c:3512
 #, c-format
 msgid "Unlocking obstacle of type %d."
 msgstr ""
 
-#: ../src/influ.c:3486
+#: ../src/influ.c:3541
 #, c-format
 msgid "Repairing obstacle of type %d."
 msgstr ""
 
-#: ../src/influ.c:3515
+#: ../src/influ.c:3570
 #, c-format
 msgid "Attacking obstacle of type %d."
 msgstr ""
 
-#: ../src/influ.c:3544
+#: ../src/influ.c:3599
 #, c-format
 msgid "Picking pockets of obstacle of type %d."
 msgstr ""
@@ -1523,7 +1523,7 @@ msgstr ""
 msgid "Starting new game."
 msgstr ""
 
-#: ../src/init.c:2329
+#: ../src/init.c:2322
 msgid ""
 "\n"
 "You are playing in 640x480.\n"
@@ -1536,7 +1536,7 @@ msgid ""
 "Thank you.\n"
 msgstr ""
 
-#: ../src/init.c:2331
+#: ../src/init.c:2324
 msgid ""
 "\n"
 "You are playing a candidate release.\n"
@@ -1547,11 +1547,11 @@ msgid ""
 "Good luck!\n"
 msgstr ""
 
-#: ../src/init.c:2352
+#: ../src/init.c:2345
 msgid "Game over.\n"
 msgstr ""
 
-#: ../src/init.c:2439
+#: ../src/init.c:2432
 msgid "Game won.\n"
 msgstr ""
 
@@ -2101,13 +2101,14 @@ msgstr ""
 msgid "Exit FreedroidRPG"
 msgstr ""
 
-#: ../src/menu.c:1479
+#: ../src/menu.c:1477
 msgid ""
 "\n"
 "You cannot change the language\n"
-"under Windows. FreedroidRPG uses\n"
-"your system's language by default for\n"
-"your convenience.\n"
+"under Windows or Mac OS X.\n"
+"\n"
+"FreedroidRPG uses your system's language\n"
+"by default for your convenience.\n"
 "\n"
 "    Thank you\n"
 msgstr ""
@@ -2147,8 +2148,8 @@ msgid "Performance Tweaks"
 msgstr ""
 
 #: ../src/menu.c:1516 ../src/menu.c:1629 ../src/menu.c:1724 ../src/menu.c:1792
-#: ../src/menu.c:1863 ../src/menu.c:1978 ../src/menu.c:2019 ../src/menu.c:2266
-#: ../src/menu.c:2378 ../src/menu.c:2457
+#: ../src/menu.c:1863 ../src/menu.c:1978 ../src/menu.c:2019 ../src/menu.c:2265
+#: ../src/menu.c:2377 ../src/menu.c:2456
 msgid "Back"
 msgstr ""
 
@@ -2328,68 +2329,68 @@ msgid ""
 "     > "
 msgstr ""
 
-#: ../src/menu.c:2290 ../src/menu.c:2396 ../src/menu.c:2411
+#: ../src/menu.c:2289 ../src/menu.c:2395 ../src/menu.c:2410
 msgid "BACK"
 msgstr ""
 
-#: ../src/menu.c:2294
+#: ../src/menu.c:2293
 msgid ""
 "\n"
 "\n"
 "No saved games found!!  Loading Cancelled. "
 msgstr ""
 
-#: ../src/menu.c:2395
+#: ../src/menu.c:2394
 msgid "Sure!"
 msgstr ""
 
-#: ../src/menu.c:2398
+#: ../src/menu.c:2397
 #, c-format
 msgid "Really delete hero '%s'?"
 msgstr ""
 
-#: ../src/menu.c:2415
+#: ../src/menu.c:2414
 msgid ""
 "\n"
 "\n"
 "No saved games found!!  Deletion Cancelled. "
 msgstr ""
 
-#: ../src/menu.c:2454
+#: ../src/menu.c:2453
 msgid "New Hero"
 msgstr ""
 
-#: ../src/menu.c:2455
+#: ../src/menu.c:2454
 msgid "Load existing Hero"
 msgstr ""
 
-#: ../src/menu.c:2456
+#: ../src/menu.c:2455
 msgid "Delete existing Hero"
 msgstr ""
 
-#: ../src/menu.c:2619
+#: ../src/menu.c:2618
 msgid ""
 "This is the record of all missions you have been assigned:\n"
 "\n"
 msgstr ""
 
-#: ../src/menu.c:2634
+#: ../src/menu.c:2633
 msgid "SOLVED: "
 msgstr ""
 
-#: ../src/menu.c:2638
+#: ../src/menu.c:2637
 msgid "FAILED: "
 msgstr ""
 
-#: ../src/menu.c:2642
+#: ../src/menu.c:2641
 msgid "ASSIGNED: "
 msgstr ""
 
-#: ../src/menu.c:2646
+#: ../src/menu.c:2645
 msgid "UNASSIGNED: "
 msgstr ""
 
-#: ../src/menu.c:2654
+#: ../src/menu.c:2653
 msgid ""
 "\n"
 "\n"
@@ -2510,17 +2511,17 @@ msgstr ""
 msgid "Failed to load old game."
 msgstr ""
 
-#: ../src/saveloadgame.c:526
+#: ../src/saveloadgame.c:527
 msgid ""
 "Version or structsize mismatch! The savegame is not from the same version of "
 "freedroidRPG... possible breakage.\n"
 msgstr ""
 
-#: ../src/saveloadgame.c:563
+#: ../src/saveloadgame.c:564
 msgid "Updating Tux images (this may take a little while...)"
 msgstr ""
 
-#: ../src/saveloadgame.c:568
+#: ../src/saveloadgame.c:569
 msgid "Game loaded."
 msgstr ""
 
@@ -2861,44 +2862,44 @@ msgstr ""
 msgid "Finish-%d"
 msgstr ""
 
-#: ../src/takeover.c:1744
+#: ../src/takeover.c:1747
 #, c-format
 msgid "Score"
 msgstr ""
 
-#: ../src/text.c:185
+#: ../src/text.c:187
 msgid "Unhandled exception fault.  Press ok to reboot."
 msgstr ""
 
-#: ../src/text.c:188
+#: ../src/text.c:190
 msgid "System fault. Please buy a newer version."
 msgstr ""
 
-#: ../src/text.c:191
+#: ../src/text.c:193
 msgid "System error. Might be a virus."
 msgstr ""
 
-#: ../src/text.c:194
+#: ../src/text.c:196
 msgid "System error. Please buy an upgrade from MS."
 msgstr ""
 
-#: ../src/text.c:197
+#: ../src/text.c:199
 msgid "System error. Press any key to reboot."
 msgstr ""
 
-#: ../src/text.c:201
+#: ../src/text.c:203
 msgid "Aargh, I got hit.  Ugh, I got a bad feeling..."
 msgstr ""
 
-#: ../src/text.c:217
+#: ../src/text.c:219
 msgid "Ah, good, that we have an open collision avoiding standard, isn't it."
 msgstr ""
 
-#: ../src/text.c:224
+#: ../src/text.c:226
 msgid "Hey, I'm from MS! Walk outa my way!"
 msgstr ""
 
-#: ../src/text.c:227
+#: ../src/text.c:229
 msgid "Hey, I know the big MS boss! You better go."
 msgstr ""
 
