@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: freedroid-discussion@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-08-29 15:37+0200\n"
+"POT-Creation-Date: 2008-08-29 21:57+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2446,47 +2446,41 @@ msgid ""
 "* Mission assigned: "
 msgstr ""
 
-#: ../src/mission.c:171 ../src/mission.c:222
+#: ../src/mission.c:171
 msgid "Mission: "
 msgstr ""
 
-#: ../src/mission.c:173
-msgid ""
-"\n"
-"Status: "
-msgstr ""
-
-#: ../src/mission.c:175 ../src/mission.c:235
-msgid "COMPLETE"
-msgstr ""
-
-#: ../src/mission.c:177 ../src/mission.c:237
-msgid "FAILED"
-msgstr ""
-
-#: ../src/mission.c:179 ../src/mission.c:239
-msgid "STILL OPEN"
-msgstr ""
-
-#: ../src/mission.c:180 ../src/mission.c:240
-msgid ""
-"\n"
-"Details: "
-msgstr ""
-
-#: ../src/mission.c:233
+#: ../src/mission.c:182
 msgid "Status: "
 msgstr ""
 
-#: ../src/mission.c:396
+#: ../src/mission.c:184
+msgid "COMPLETE"
+msgstr ""
+
+#: ../src/mission.c:186
+msgid "FAILED"
+msgstr ""
+
+#: ../src/mission.c:188
+msgid "STILL OPEN"
+msgstr ""
+
+#: ../src/mission.c:189
+msgid ""
+"\n"
+"Details:\n"
+msgstr ""
+
+#: ../src/mission.c:345
 msgid "No open quests yet."
 msgstr ""
 
-#: ../src/mission.c:399
+#: ../src/mission.c:348
 msgid "No completed quests yet."
 msgstr ""
 
-#: ../src/mission.c:402
+#: ../src/mission.c:351
 msgid "No notes yet."
 msgstr ""
 
