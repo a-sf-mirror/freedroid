@@ -1473,14 +1473,14 @@ Options_handle (int n)
 	    return MENU_SOUND;
     case LANGUAGE_OPTIONS:
 #if ENABLE_NLS
-#ifndef __WIN32__
-	    return MENU_LANGUAGE;
-#else
+#if defined(__WIN32__) || defined(__MACOSX__)
 	    GiveMouseAlertWindow( _("\nYou cannot change the language\n"
-				    "under Windows. FreedroidRPG uses\n"
-				    "your system's language by default for\n"
-				    "your convenience.\n\n"
-				    "    Thank you\n"));
+				    "under Windows or Mac OS X.\n\n"
+				    "FreedroidRPG uses your system's language\n"
+				    "by default for your convenience.\n\n"
+				    "    Thank you\n")); 
+#else						
+		return MENU_LANGUAGE;
 #endif
 #else
 	    GiveMouseAlertWindow ( _("\nThe game has NOT been\n"
