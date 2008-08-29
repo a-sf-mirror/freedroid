@@ -37,7 +37,7 @@
 +++
 +++ note: the number code for this mission (like from inside dialogs and such) is 0
 +++ 
-Mission Name="Bender's problem"
+Mission Name=_"Bender's problem"
 Assign this mission to influencer automatically at start : 0
 Mission target is to fetch item : "Brain Enlargement Pills Antidote"
 Mission target is to kill droids with marker : -1
@@ -61,7 +61,7 @@ Mission diary entry=_"Bender is fine now. He gave me some muscle enlargement pil
 +++
 +++ note: the number code for this mission (like from inside dialogs and such) is 1
 +++ 
-Mission Name="The yellow toolkit"
+Mission Name=_"The yellow toolkit"
 Assign this mission to influencer automatically at start : 0
 Mission target is to fetch item : "Dixon's Toolbox"
 Mission target is to kill droids with marker : -1
@@ -90,7 +90,7 @@ Mission diary entry=_"I sold the toolkit to Dixon for a enormous sum of money. L
 +++
 +++ note: the number code for this mission (like from inside dialogs and such) is 2
 +++ 
-Mission Name="Anything but the army snacks, please!"
+Mission Name=_"Anything but the army snacks, please!"
 Assign this mission to influencer automatically at start : 0
 Mission target is to fetch item : "Red Dilitium Crystal"
 Mission target is to kill droids with marker : -1
@@ -112,7 +112,7 @@ Mission diary entry=_"I gave him enough dilithium to last him a decade. The evil
 +++
 +++ note: the number code for this mission (like from inside dialogs and such) is 3
 +++ 
-Mission Name="Novice Arena"
+Mission Name=_"Novice Arena"
 Assign this mission to influencer automatically at start : 0
 Mission target is to kill droids with marker : 3
 Mission target is to kill all hostile droids this first level : -1
@@ -134,7 +134,7 @@ Mission diary entry=_"Now that was easy. Yawn. I nearly fell asleep. No problem 
 +++
 +++ note: the number code for this mission (like from inside dialogs and such) is 4
 +++ 
-Mission Name="Time to say goodnight"
+Mission Name=_"Time to say goodnight"
 Assign this mission to influencer automatically at start : 0
 Mission target is to kill droids with marker : 4
 Mission target is to kill all hostile droids this first level : -1
@@ -156,7 +156,7 @@ Mission diary entry=_"I survived the master arena. A miracle. Whew."
 +++
 +++ note: the number code for this mission (like from inside dialogs and such) is 5
 +++ 
-Mission Name="Opening a can of bots..."
+Mission Name=_"Opening a can of bots..."
 Assign this mission to influencer automatically at start : 0
 Mission target is to kill droids with marker : -1
 Mission target is to kill all hostile droids this first level : 1
@@ -177,7 +177,7 @@ Mission diary entry=_"Ouch. It wasn't. At least I am alive and the warehouse is 
 +++
 +++ note: the number code for this mission (like from inside dialogs and such) is 6
 +++ 
-Mission Name="And there was light..."
+Mission Name=_"And there was light..."
 Assign this mission to influencer automatically at start : 0
 Mission target is to kill droids with marker : -1
 Mission target is to kill all hostile droids this first level : 18
@@ -200,7 +200,7 @@ Mission diary entry=_"Everything is back to normal for now. Kevin can work in pe
 +++
 +++ note: the number code for this mission (like from inside dialogs and such) is 7
 +++ 
-Mission Name="A kingdom for a cluster!"
+Mission Name=_"A kingdom for a cluster!"
 Assign this mission to influencer automatically at start : 0
 Mission target is to kill droids with marker : -1
 Mission target is to kill all hostile droids this first level : -1
@@ -223,7 +223,7 @@ Mission diary entry=_"Yes, that was simple. I wish everything else went as smoot
 +++
 +++ note: the number code for this mission (like from inside dialogs and such) is 8
 +++ 
-Mission Name="Opening access to MS Office"
+Mission Name=_"Opening access to MS Office"
 Assign this mission to influencer automatically at start : 0
 Mission target is to kill droids with marker : 8
 Mission target is to kill all hostile droids this first level : -1
@@ -247,7 +247,7 @@ Mission diary entry=_"Finally I've managed to propogate my firmware update. Now 
 +++  ENDGAME MISSION - propagate faulty firmware upgrade.
 +++
 +++ This mission can only be finished through a talk with the firmware update server.
-Mission Name="Propagating a faulty firmware"
+Mission Name=_"Propagating a faulty firmware"
 Assign this mission to influencer automatically at start : 0
 Mission target is to kill droids with marker : -1
 Mission target is to kill all hostile droids this first level : 31
@@ -268,7 +268,7 @@ Mission diary entry=_"I've managed to propagate my (slightly modified!) firmware
 +++
 +++ note: the number code for this mission (like from inside dialogs and such) is 9
 +++ 
-Mission Name="SADD's pover supply"
+Mission Name=_"SADD's pover supply"
 Assign this mission to influencer automatically at start : 0
 Mission target is to fetch item : "Red Dilitium Crystal"
 Mission target is to kill droids with marker : -1
@@ -290,7 +290,7 @@ Mission diary entry=_"Done. He looks happy."
 +++
 +++ note: the number code for this mission (like from inside dialogs and such) is 10
 +++ 
-Mission Name="Tanias sanitary"
+Mission Name=_"Tanias sanitary"
 Assign this mission to influencer automatically at start : 0
 Mission target is to kill droids with marker : -1
 Mission target is to kill all hostile droids this first level : -1

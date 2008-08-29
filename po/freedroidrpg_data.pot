@@ -2,13 +2,332 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CHANGE THIS\n"
 "Report-Msgid-Bugs-To: CHANGE THIS TOO\n"
-"POT-Creation-Date: 2008-08-17 09:34+0000\n"
-"PO-Revision-Date: 2008-08-17 09:34+0000\n"
+"POT-Creation-Date: 2008-08-29 19:57+0000\n"
+"PO-Revision-Date: 2008-08-29 19:57+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-15\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: ../map/freedroid.program_archetypes:8
+msgid "Hacking"
+msgstr ""
+
+#: ../map/freedroid.program_archetypes:20
+msgid "Repair equipment"
+msgstr ""
+
+#: ../map/freedroid.program_archetypes:30
+msgid "Use weapon"
+msgstr ""
+
+#: ../map/freedroid.program_archetypes:40
+msgid "Emergency shutdown"
+msgstr ""
+
+#: ../map/freedroid.program_archetypes:54
+msgid "Check system integrity"
+msgstr ""
+
+#: ../map/freedroid.program_archetypes:68
+msgid "Sanctuary"
+msgstr ""
+
+#: ../map/freedroid.program_archetypes:79
+msgid "Analyze item"
+msgstr ""
+
+#: ../map/freedroid.program_archetypes:90
+msgid "Invisibility"
+msgstr ""
+
+#: ../map/freedroid.program_archetypes:102
+msgid "Malformed packet"
+msgstr ""
+
+#: ../map/freedroid.program_archetypes:117
+msgid "Calculate Pi"
+msgstr ""
+
+#: ../map/freedroid.program_archetypes:134
+msgid "Blue Screen"
+msgstr ""
+
+#: ../map/freedroid.program_archetypes:149
+msgid "Broadcast Blue Screen"
+msgstr ""
+
+#: ../map/freedroid.program_archetypes:165
+msgid "Virus"
+msgstr ""
+
+#: ../map/freedroid.program_archetypes:181
+msgid "Broadcast virus"
+msgstr ""
+
+#: ../map/freedroid.program_archetypes:198
+msgid "Dispel smoke"
+msgstr ""
+
+#: ../map/freedroid.program_archetypes:212
+msgid "Killer poke"
+msgstr ""
+
+#: ../map/freedroid.program_archetypes:227
+msgid "Plasma discharge"
+msgstr ""
+
+#: ../map/freedroid.program_archetypes:244
+msgid "Nethack"
+msgstr ""
+
+#: ../map/freedroid.program_archetypes:260
+msgid "Extract bot parts"
+msgstr ""
+
+#: ../map/freedroid.program_archetypes:270
+msgid "Reverse-engineer"
+msgstr ""
+
+#: ../map/freedroid.program_archetypes:282
+msgid "Ricer CFLAGS"
+msgstr ""
+
+#: ../map/freedroid.program_archetypes:291
+msgid "Light"
+msgstr ""
+
+#: ../map/freedroid.program_archetypes:292
+msgid "This does nothing in this version of freedroidRPG. Let there be light..."
+msgstr ""
+
+#: ../map/freedroid.program_archetypes:301
+msgid "Satellite image"
+msgstr ""
+
+#: ../map/freedroid.program_archetypes:302
+msgid ""
+"This does nothing in this version of freedroidRPG. Getting a map of an area is"
+" pretty easy when you can look at everything from above."
+msgstr ""
+
+#: ../map/freedroid.program_archetypes:310
+msgid "Plasma grenade"
+msgstr ""
+
+#: ../map/freedroid.program_archetypes:311
+#: ../map/freedroid.program_archetypes:321
+#: ../map/freedroid.program_archetypes:331
+msgid ""
+"This is a bug, report this to the developers, unless you cheated, in which cas"
+"e you deserve to see this stupid description."
+msgstr ""
+
+#: ../map/freedroid.program_archetypes:320
+msgid "Gas grenade"
+msgstr ""
+
+#: ../map/freedroid.program_archetypes:330
+msgid "EMP grenade"
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:10
+#: ../map/freedroid.prefix_archetypes:37
+msgid "I am a big bad bug in the game. Report me. Please. "
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:64
+msgid "Living "
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:91
+msgid " coated in teflon"
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:118
+msgid " of Almost Zodiac"
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:145
+msgid "Resonant "
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:172
+msgid "Cow "
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:200
+msgid "Bull "
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:227
+msgid "Mouse "
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:254
+msgid "Jackdaw "
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:281
+msgid "Hardcoded "
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:308
+msgid "Melting "
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:335
+msgid "Cursed "
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:362
+msgid "Perfect "
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:388
+msgid "Quartz "
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:415
+msgid "First aid "
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:442
+msgid "Razor sharp "
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:469
+msgid "Light "
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:496
+msgid "Beautiful "
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:523
+msgid "Howling "
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:550
+msgid "Accelerating "
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:577
+msgid "Colorful "
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:604
+msgid "Rainbow "
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:631
+msgid "Suicide "
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:658
+msgid "Broken "
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:685
+msgid "Fluorescent "
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:712
+msgid "Luminescent "
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:739
+msgid "Blazing "
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:766
+msgid "Hungry "
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:793
+msgid "Devouring "
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:820
+msgid "Ravenous "
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:847
+msgid "OMGWTF "
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:874
+msgid " of good design"
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:897
+msgid " (C)MegaSys"
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:921
+msgid " with no suffix"
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:944
+msgid " with sharp edges"
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:969
+msgid " covered in blood"
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:992
+msgid " covered in oil"
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:1015
+msgid ", 'the Murderer'"
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:1038
+msgid ", 'the Healer'"
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:1061
+msgid ", 'the Rabbit'"
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:1084
+msgid ", 'the Seeker'"
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:1107
+msgid ", 'the World'"
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:1130
+msgid " from hell"
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:1153
+msgid " with strange runes"
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:1176
+msgid " with a curse"
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:1199
+msgid "Cool "
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:1222
+msgid "Frozen "
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:1245
+msgid " of ice"
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:1268
+msgid " of chills"
+msgstr ""
 
 #: ../map/freedroid.item_archetypes:49
 msgid ""
@@ -1340,203 +1659,6 @@ msgid ""
 " be a great time for Duncan to explain a few things..."
 msgstr ""
 
-#: ../map/freedroid.prefix_archetypes:10
-#: ../map/freedroid.prefix_archetypes:37
-msgid "I am a big bad bug in the game. Report me. Please. "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:64
-msgid "Living "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:91
-msgid " coated in teflon"
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:118
-msgid " of Almost Zodiac"
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:145
-msgid "Resonant "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:172
-msgid "Cow "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:200
-msgid "Bull "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:227
-msgid "Mouse "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:254
-msgid "Jackdaw "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:281
-msgid "Hardcoded "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:308
-msgid "Melting "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:335
-msgid "Cursed "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:362
-msgid "Perfect "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:388
-msgid "Quartz "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:415
-msgid "First aid "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:442
-msgid "Razor sharp "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:469
-msgid "Light "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:496
-msgid "Beautiful "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:523
-msgid "Howling "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:550
-msgid "Accelerating "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:577
-msgid "Colorful "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:604
-msgid "Rainbow "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:631
-msgid "Suicide "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:658
-msgid "Broken "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:685
-msgid "Fluorescent "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:712
-msgid "Luminescent "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:739
-msgid "Blazing "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:766
-msgid "Hungry "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:793
-msgid "Devouring "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:820
-msgid "Ravenous "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:847
-msgid "OMGWTF "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:874
-msgid " of good design"
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:897
-msgid " (C)MegaSys"
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:921
-msgid " with no suffix"
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:944
-msgid " with sharp edges"
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:969
-msgid " covered in blood"
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:992
-msgid " covered in oil"
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:1015
-msgid ", 'the Murderer'"
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:1038
-msgid ", 'the Healer'"
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:1061
-msgid ", 'the Rabbit'"
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:1084
-msgid ", 'the Seeker'"
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:1107
-msgid ", 'the World'"
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:1130
-msgid " from hell"
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:1153
-msgid " with strange runes"
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:1176
-msgid " with a curse"
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:1199
-msgid "Cool "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:1222
-msgid "Frozen "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:1245
-msgid " of ice"
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:1268
-msgid " of chills"
-msgstr ""
-
 #: ../map/freedroid.droid_archetypes:109
 msgid ""
 "simple rubbish diposal robot. Common device in most space craft to maintain a "
@@ -1703,126 +1825,8 @@ msgstr ""
 msgid "This is the bartender."
 msgstr ""
 
-#: ../map/freedroid.program_archetypes:8
-msgid "Hacking"
-msgstr ""
-
-#: ../map/freedroid.program_archetypes:20
-msgid "Repair equipment"
-msgstr ""
-
-#: ../map/freedroid.program_archetypes:30
-msgid "Use weapon"
-msgstr ""
-
-#: ../map/freedroid.program_archetypes:40
-msgid "Emergency shutdown"
-msgstr ""
-
-#: ../map/freedroid.program_archetypes:54
-msgid "Check system integrity"
-msgstr ""
-
-#: ../map/freedroid.program_archetypes:68
-msgid "Sanctuary"
-msgstr ""
-
-#: ../map/freedroid.program_archetypes:79
-msgid "Analyze item"
-msgstr ""
-
-#: ../map/freedroid.program_archetypes:90
-msgid "Invisibility"
-msgstr ""
-
-#: ../map/freedroid.program_archetypes:102
-msgid "Malformed packet"
-msgstr ""
-
-#: ../map/freedroid.program_archetypes:117
-msgid "Calculate Pi"
-msgstr ""
-
-#: ../map/freedroid.program_archetypes:134
-msgid "Blue Screen"
-msgstr ""
-
-#: ../map/freedroid.program_archetypes:149
-msgid "Broadcast Blue Screen"
-msgstr ""
-
-#: ../map/freedroid.program_archetypes:165
-msgid "Virus"
-msgstr ""
-
-#: ../map/freedroid.program_archetypes:181
-msgid "Broadcast virus"
-msgstr ""
-
-#: ../map/freedroid.program_archetypes:198
-msgid "Dispel smoke"
-msgstr ""
-
-#: ../map/freedroid.program_archetypes:212
-msgid "Killer poke"
-msgstr ""
-
-#: ../map/freedroid.program_archetypes:227
-msgid "Plasma discharge"
-msgstr ""
-
-#: ../map/freedroid.program_archetypes:244
-msgid "Nethack"
-msgstr ""
-
-#: ../map/freedroid.program_archetypes:260
-msgid "Extract bot parts"
-msgstr ""
-
-#: ../map/freedroid.program_archetypes:270
-msgid "Reverse-engineer"
-msgstr ""
-
-#: ../map/freedroid.program_archetypes:282
-msgid "Ricer CFLAGS"
-msgstr ""
-
-#: ../map/freedroid.program_archetypes:291
-msgid "Light"
-msgstr ""
-
-#: ../map/freedroid.program_archetypes:292
-msgid "This does nothing in this version of freedroidRPG. Let there be light..."
-msgstr ""
-
-#: ../map/freedroid.program_archetypes:301
-msgid "Satellite image"
-msgstr ""
-
-#: ../map/freedroid.program_archetypes:302
-msgid ""
-"This does nothing in this version of freedroidRPG. Getting a map of an area is"
-" pretty easy when you can look at everything from above."
-msgstr ""
-
-#: ../map/freedroid.program_archetypes:310
-msgid "Plasma grenade"
-msgstr ""
-
-#: ../map/freedroid.program_archetypes:311
-#: ../map/freedroid.program_archetypes:321
-#: ../map/freedroid.program_archetypes:331
-msgid ""
-"This is a bug, report this to the developers, unless you cheated, in which cas"
-"e you deserve to see this stupid description."
-msgstr ""
-
-#: ../map/freedroid.program_archetypes:320
-msgid "Gas grenade"
-msgstr ""
-
-#: ../map/freedroid.program_archetypes:330
-msgid "EMP grenade"
+#: ../map/QuestList_archetypes:40
+msgid "Bender's problem"
 msgstr ""
 
 #: ../map/QuestList_archetypes:52
@@ -1846,6 +1850,10 @@ msgstr ""
 msgid ""
 "Bender is fine now. He gave me some muscle enlargement pills in return for my "
 "help. Hmm..."
+msgstr ""
+
+#: ../map/QuestList_archetypes:64
+msgid "The yellow toolkit"
 msgstr ""
 
 #: ../map/QuestList_archetypes:76
@@ -1900,6 +1908,10 @@ msgid ""
 "I better stay away from Dixon for now. He seemed very angry at me."
 msgstr ""
 
+#: ../map/QuestList_archetypes:93
+msgid "Anything but the army snacks, please!"
+msgstr ""
+
 #: ../map/QuestList_archetypes:105
 msgid ""
 "I am supposed to get some dilithium crystals for that cook. Without them he ca"
@@ -1914,6 +1926,10 @@ msgid ""
 "rmy snacks is lifted from the city."
 msgstr ""
 
+#: ../map/QuestList_archetypes:115
+msgid "Novice Arena"
+msgstr ""
+
 #: ../map/QuestList_archetypes:127
 msgid ""
 "Fighting in the arena is not something I would usually do, but I feel like doi"
@@ -1924,6 +1940,10 @@ msgstr ""
 msgid ""
 "Now that was easy. Yawn. I nearly fell asleep. No problem at all, the bots are"
 " dead."
+msgstr ""
+
+#: ../map/QuestList_archetypes:137
+msgid "Time to say goodnight"
 msgstr ""
 
 #: ../map/QuestList_archetypes:149
@@ -1938,12 +1958,20 @@ msgstr ""
 msgid "I survived the master arena. A miracle. Whew."
 msgstr ""
 
+#: ../map/QuestList_archetypes:159
+msgid "Opening a can of bots..."
+msgstr ""
+
 #: ../map/QuestList_archetypes:170
 msgid "I am supposed to clean out the first level of some warehouse. Sounds easy."
 msgstr ""
 
 #: ../map/QuestList_archetypes:171
 msgid "Ouch. It wasn't. At least I am alive and the warehouse is clear. Whew."
+msgstr ""
+
+#: ../map/QuestList_archetypes:180
+msgid "And there was light..."
 msgstr ""
 
 #: ../map/QuestList_archetypes:191
@@ -1957,10 +1985,18 @@ msgstr ""
 msgid "Everything is back to normal for now. Kevin can work in peace now."
 msgstr ""
 
+#: ../map/QuestList_archetypes:203
+msgid "A kingdom for a cluster!"
+msgstr ""
+
 #: ../map/QuestList_archetypes:216
 msgid ""
 "Yes, that was simple. I wish everything else went as smoothly as this one did."
 ".."
+msgstr ""
+
+#: ../map/QuestList_archetypes:226
+msgid "Opening access to MS Office"
 msgstr ""
 
 #: ../map/QuestList_archetypes:237
@@ -1976,7 +2012,7 @@ msgid ""
 msgstr ""
 
 #: ../map/QuestList_archetypes:238
-msgid "There, I've founda and entered the base."
+msgid "There, I've found and entered the base."
 msgstr ""
 
 #: ../map/QuestList_archetypes:239
@@ -1993,29 +2029,57 @@ msgstr ""
 
 #: ../map/QuestList_archetypes:241
 msgid ""
+"I've killed the control droid. Now it will not be able to disable the disrupto"
+"r shield to let bots through. The town is safe."
+msgstr ""
+
+#: ../map/QuestList_archetypes:242
+msgid ""
 "Finally I've managed to propogate my firmware update. Now all hostile bots are"
 " nothing more than pieces of rusty metall."
 msgstr ""
 
-#: ../map/QuestList_archetypes:262
-msgid "I am supposed to get some dilithium crystals for that SADD."
+#: ../map/QuestList_archetypes:250
+msgid "Propagating a faulty firmware"
 msgstr ""
 
-#: ../map/QuestList_archetypes:263
-msgid "Done. He looks happy."
+#: ../map/QuestList_archetypes:261
+msgid "This is a placeholder."
+msgstr ""
+
+#: ../map/QuestList_archetypes:262
+msgid ""
+"I've managed to propagate my (slightly modified!) firmware update. Now bots us"
+"ing this update server are nothing more than pieces of rusty metal."
+msgstr ""
+
+#: ../map/QuestList_archetypes:271
+msgid "SADD's pover supply"
 msgstr ""
 
 #: ../map/QuestList_archetypes:283
+msgid "I am supposed to get some dilithium crystals for that SADD."
+msgstr ""
+
+#: ../map/QuestList_archetypes:284
+msgid "Done. He looks happy."
+msgstr ""
+
+#: ../map/QuestList_archetypes:293
+msgid "Tanias sanitary"
+msgstr ""
+
+#: ../map/QuestList_archetypes:304
 msgid ""
 "I have met a girl locked in secret area. If I manage to disable autoguns, she "
 "would be able to go to the surface, look at sun again."
 msgstr ""
 
-#: ../map/QuestList_archetypes:284
+#: ../map/QuestList_archetypes:305
 msgid "I have found that SACD and overtooked him."
 msgstr ""
 
-#: ../map/QuestList_archetypes:285
+#: ../map/QuestList_archetypes:306
 msgid "Tania is free now!"
 msgstr ""
 
