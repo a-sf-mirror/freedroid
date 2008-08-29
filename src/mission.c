@@ -544,8 +544,9 @@ CheckIfMissionIsComplete (void)
     int ActionNum;
     static int CheckMissionGrid; 
     int this_mission_seems_completed = TRUE ;
+   
 #define MIS_COMPLETE_DEBUG 1
-    
+
     //--------------------
     // We do not need to check for mission completed EVERY frame
     // It will be enough to do it now and then..., e.g. every 50th frame
@@ -555,7 +556,6 @@ CheckIfMissionIsComplete (void)
     
     for ( mis_num = 0 ; mis_num < MAX_MISSIONS_IN_GAME ; mis_num ++ )
     {
-	
 	//--------------------
 	// We need not do anything, if the mission has already failed or if
 	// the mission is already completed or if the mission does not exist
@@ -575,12 +575,12 @@ CheckIfMissionIsComplete (void)
 	//
 	if ( Me . AllMissions [ mis_num ].KillOne != (-1) )
 	{
-	    enemy *erot, *nerot;
-BROWSE_ALIVE_BOTS_SAFE(erot, nerot)
+	    enemy *erot;
+	    BROWSE_ALIVE_BOTS(erot)
 	    {
 		if ( ( erot->marker == Me . AllMissions [ mis_num ] . KillOne ) )
 		{
-		    DebugPrintf ( MIS_COMPLETE_DEBUG , "\nOne of the marked droids is still alive...");
+		    DebugPrintf ( MIS_COMPLETE_DEBUG , "\nOne of the marked droids is still alive... (0x%08x at %f:%f on %d)\n", erot, erot->pos.x, erot->pos.y, erot->pos.z);
 		    this_mission_seems_completed = FALSE ;
 		    break;
 		}
@@ -614,11 +614,10 @@ BROWSE_ALIVE_BOTS_SAFE(erot, nerot)
 	//
 	if ( Me.AllMissions[ mis_num ]. must_clear_first_level != (-1) )
 	{
-	    enemy *erot, *nerot;
-BROWSE_ALIVE_BOTS_SAFE(erot, nerot)
+	    enemy *erot;
+	    BROWSE_LEVEL_BOTS(erot, Me.AllMissions[ mis_num ].must_clear_first_level)
 	    {
-	    	if ( ( ! erot->is_friendly ) && 
-		     ( erot->pos . z == Me.AllMissions[ mis_num ].must_clear_first_level ) ) 
+	    	if ( ! erot->is_friendly ) 
 		{
 		    this_mission_seems_completed = FALSE ;
 		    break;
@@ -631,11 +630,10 @@ BROWSE_ALIVE_BOTS_SAFE(erot, nerot)
 	//
 	if ( Me.AllMissions[ mis_num ]. must_clear_second_level != (-1) )
 	{
-	    enemy *erot, *nerot;
-BROWSE_ALIVE_BOTS_SAFE(erot, nerot)
+	    enemy *erot;
+	    BROWSE_LEVEL_BOTS(erot, Me.AllMissions[ mis_num ].must_clear_second_level)
 	    {
-		if ( ( ! erot->is_friendly ) && 
-		     ( erot->pos . z == Me.AllMissions[ mis_num ].must_clear_second_level ) ) 
+		if ( ! erot->is_friendly ) 
 		{
 		    this_mission_seems_completed = FALSE ;
 		    break;
