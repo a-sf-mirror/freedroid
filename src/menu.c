@@ -1715,7 +1715,7 @@ static void
 Graphics_fill (char *MenuTexts[10])
 {
 	sprintf( MenuTexts[0] , _("Gamma Correction: %1.2f"), GameConfig.current_gamma_correction );
-	sprintf( MenuTexts[1] , _("Fullscreen Mode: %s"), GameConfig . fullscreen_on ? "ON" : "OFF");
+	sprintf( MenuTexts[1] , _("Fullscreen Mode: %s"), GameConfig . fullscreen_on ? _("ON") : _("OFF"));
 	sprintf( MenuTexts[2] , _("Change Screen Resolution") );
 	sprintf( MenuTexts[3] , _("Show Blood: %s"), 
 		 GameConfig . show_blood ? _("YES") : _("NO") );

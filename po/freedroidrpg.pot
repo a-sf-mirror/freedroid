@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: freedroid-discussion@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-08-29 09:55+0200\n"
+"POT-Creation-Date: 2008-08-29 15:35+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2191,6 +2191,18 @@ msgstr ""
 msgid "Fullscreen Mode: %s"
 msgstr ""
 
+#: ../src/menu.c:1718 ../src/menu.c:1973 ../src/menu.c:1974 ../src/menu.c:1975
+#: ../src/menu.c:2014 ../src/menu.c:2015 ../src/menu.c:2016 ../src/menu.c:2017
+#: ../src/menu.c:2018
+msgid "ON"
+msgstr ""
+
+#: ../src/menu.c:1718 ../src/menu.c:1973 ../src/menu.c:1974 ../src/menu.c:1975
+#: ../src/menu.c:2014 ../src/menu.c:2015 ../src/menu.c:2016 ../src/menu.c:2017
+#: ../src/menu.c:2018
+msgid "OFF"
+msgstr ""
+
 #: ../src/menu.c:1719
 #, c-format
 msgid "Change Screen Resolution"
@@ -2262,16 +2274,6 @@ msgstr ""
 #: ../src/menu.c:1973
 #, c-format
 msgid "Show Position: %s"
-msgstr ""
-
-#: ../src/menu.c:1973 ../src/menu.c:1974 ../src/menu.c:1975 ../src/menu.c:2014
-#: ../src/menu.c:2015 ../src/menu.c:2016 ../src/menu.c:2017 ../src/menu.c:2018
-msgid "ON"
-msgstr ""
-
-#: ../src/menu.c:1973 ../src/menu.c:1974 ../src/menu.c:1975 ../src/menu.c:2014
-#: ../src/menu.c:2015 ../src/menu.c:2016 ../src/menu.c:2017 ../src/menu.c:2018
-msgid "OFF"
 msgstr ""
 
 #: ../src/menu.c:1974
