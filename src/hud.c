@@ -1418,7 +1418,7 @@ ShowCurrentTextWindow ( void )
 int
 get_minutes_of_game_duration ( float current_game_date )
 {
-    return ( ((int)( 10 * Me . current_game_date / ( 60 ))) % 60 ) ;
+    return ( ((int)( 10 * current_game_date / ( 60 ))) % 60 ) ;
 }; // void get_minutes_of_game_duration ( float current_game_date )
 
 /** 
@@ -1428,7 +1428,7 @@ get_minutes_of_game_duration ( float current_game_date )
 int
 get_hours_of_game_duration ( float current_game_date )
 {
-    return ( ((int)( 10 * Me . current_game_date / ( 60 * 60 ))) % 60 ) ;
+    return ( ((int)( 10 * current_game_date / ( 60 * 60 ))) % 60 ) ;
 }; // void get_hours_of_game_duration ( float current_game_date )
 
 /** 
@@ -1438,7 +1438,7 @@ get_hours_of_game_duration ( float current_game_date )
 int
 get_days_of_game_duration ( float current_game_date )
 {
-    return ( ((int)( 10 * Me . current_game_date / ( 60 * 60 * 24 ))) );
+    return ( ((int)( 10 * current_game_date / ( 60 * 60 * 24 ))) );
 }; // void get_days_of_game_duration ( float current_game_date )
 
 /**
