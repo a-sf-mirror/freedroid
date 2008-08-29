@@ -47,6 +47,8 @@ int CharsPerLine;		// line length in chars:  obsolete
 int MyCursorX;
 int MyCursorY;
 
+int display_char_disabled_local;
+
 // buffer for text environment
 int StoreCursorX;
 int StoreCursorY;
@@ -493,9 +495,10 @@ DisplayText ( const char *Text, int startx, int starty, const SDL_Rect *clip , f
 	    }
 	else 
 	    {
-	    /*if ( MyCursorY <= clip -> y - FontHeight ( GetCurrentFont() ) * text_stretch) 
-		display_char_disabled = TRUE;*/
+	    if ( MyCursorY <= clip -> y - FontHeight ( GetCurrentFont() ) * text_stretch) 
+	        display_char_disabled_local = TRUE;
 	    DisplayChar (*tmp);
+	    display_char_disabled_local = FALSE;
 	    }
 
 
@@ -561,10 +564,10 @@ DisplayChar (unsigned char c)
     if (GetCurrentFont()==FPS_Display_BFont || GetCurrentFont()==Blue_BFont || GetCurrentFont()==Red_BFont) kerning = -2;
 
     if( c < ' ' || c > GetCurrentFont()->number_of_chars-1){
-	printf("l: %u of %u \n",c,GetCurrentFont()->number_of_chars);
+	//printf("l: %u of %u \n",c,GetCurrentFont()->number_of_chars);
 	c = '.';
     }
-    if ( ! display_char_disabled ) 
+    if ( ! display_char_disabled && ! display_char_disabled_local ) 
 	PutCharFont ( Screen, GetCurrentFont(), MyCursorX, MyCursorY, c );
 
     MyCursorX += CharWidth ( GetCurrentFont() , c) +kerning;
