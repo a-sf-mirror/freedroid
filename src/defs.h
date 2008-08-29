@@ -379,10 +379,6 @@ enum _sounds
 // occur periodically.  These constants specify which intervals are to be used
 // for these periodic happenings...
 #define CRY_SOUND_INTERVAL 2
-#define TRANSFER_SOUND_INTERVAL 1.1
-
-// #define MAX_PLAYERS             5
-#define MAX_PLAYERS             1
 
 enum _non_player_characters
   {
@@ -396,7 +392,7 @@ enum _non_player_characters
     PERSON_614,
     PERSON_MER,
     PERSON_FRANCIS,
-    PERSON_ERNIE,
+    PERSON_FIRMWARE_SERVER,
     PERSON_BENJAMIN,
     PERSON_BENDER,
     PERSON_SPENCER,
