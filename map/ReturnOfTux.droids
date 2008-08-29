@@ -257,7 +257,7 @@ Allowed Type of Random Droid for this level: 629
 Allowed Type of Random Droid for this level: 516
 Allowed Type of Random Droid for this level: 249
 
-SForce: T=598 Fixed=0 Marker=9999 Friendly=0 StartUpAtLabel="MERStartGameSquare" RushTux="no" DialogSectionToUse="MER" ShortLabel="DSCD -- Disruptor Shield Control Droid" attack_run_only_when_direct_line="no"
+SForce: T=598 Fixed=0 Marker=8 Friendly=0 StartUpAtLabel="MERStartGameSquare" RushTux="no" DialogSectionToUse="MER" ShortLabel="DSCD -- Disruptor Shield Control Droid" attack_run_only_when_direct_line="no"
 
 ** End of this levels droid data **
 
@@ -555,11 +555,11 @@ SForce: T=711 Fixed=0 Marker=4 Friendly=0 StartUpAtLabel="NoviceArenaBot4StartGa
 Level=31
 Maximum number of Random Droids=60
 Minimum number of Random Droids=70
-Allowed Type of Random Droid for this level: 302
 Allowed Type of Random Droid for this level: 249
+Allowed Type of Random Droid for this level: 302
+Allowed Type of Random Droid for this level: 516
+Allowed Type of Random Droid for this level: 615
 Allowed Type of Random Droid for this level: 629
-Allowed Type of Random Droid for this level: 329
-Allowed Type of Random Droid for this level: 139
 
 //--------------------
 // This is SMSDD - MagaSys defence droid
@@ -579,6 +579,7 @@ SForce: T=420 Fixed=0 Marker=9993 Friendly=1 StartUpAtLabel="MSOTestDroid3StartG
 
 SForce: T=420 Fixed=0 Marker=9993 Friendly=1 StartUpAtLabel="MSOTestDroid4StartGameSquare" RushTux="no" DialogSectionToUse="TestDroid" ShortLabel="TD" attack_run_only_when_direct_line="no"
 
+SForce: T=883 Fixed=0 Marker=9 Friendly=1 StartUpAtLabel="MSOfficeFirmwareUpdateServerStartPosition" RushTux="no" DialogSectionToUse="FirmwareUpdateServer" ShortLabel="Update Server" attack_run_only_when_direct_line="no"
 ** End of this levels droid data **
 
 ----------------------------------------------------------------------

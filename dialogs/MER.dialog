@@ -53,8 +53,6 @@ Subtitle=_" Password successfully changed."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 ChangeOption=1 ChangeToValue=0
-ChangeOption=5 ChangeToValue=0
-ChangeOption=6 ChangeToValue=1
 ChangeOption=7 ChangeToValue=0
 ChangeOption=8 ChangeToValue=1
 DoSomethingExtra="PlantCookie:MER_Password"
@@ -66,8 +64,6 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=1215  PositionY=195  
 ChangeOption=3 ChangeToValue=0
 ChangeOption=1 ChangeToValue=0
-ChangeOption=5 ChangeToValue=0
-ChangeOption=6 ChangeToValue=1
 ChangeOption=7 ChangeToValue=0
 ChangeOption=8 ChangeToValue=1
 AlwaysExecuteThisOptionPriorToDialogStart="no"
@@ -79,44 +75,13 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 PositionX=1215  PositionY=195  
 ChangeOption=4 ChangeToValue=0
 ChangeOption=1 ChangeToValue=1
-ChangeOption=5 ChangeToValue=1
-ChangeOption=6 ChangeToValue=0
 ChangeOption=7 ChangeToValue=1
 ChangeOption=8 ChangeToValue=0
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=5  OptionText=_" shieldmgr --enable --everywhere"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
-PositionX=512  PositionY=290  
-Subtitle=_" Enabling disruptor shield... "
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle=_" Shield enabled."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle=_" WARNING: somebody else is using this computer. "
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle=_" Disruptor shield deactivated near main enterance."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
-
-----------------------------------------------------------------------
-
-New Option Nr=6  OptionText=_" shieldmgr --enable --everywhere"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
-PositionX=512  PositionY=290  
-Subtitle=_" Enabling disruptor shield... "
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle=_" Shield enabled."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
-DoSomethingExtra="MarkMissionComplete:8"
-DoSomethingExtra="OpenQuestDiaryEntry:M8E2:"
-DoSomethingExtra="EndDialog"
-
-----------------------------------------------------------------------
-
-New Option Nr=7  OptionText=_" shieldmgr --disable --everywhere"
+New Option Nr=7  OptionText=_" shieldmgr --disable --force"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=512  PositionY=290  
 Subtitle=_" Disabling disruptor shield... "
@@ -131,7 +96,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=8  OptionText=_" shieldmgr --disable --everywhere"
+New Option Nr=8  OptionText=_" shieldmgr --disable --force"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 PositionX=512  PositionY=290  
 Subtitle=_" Disabling disruptor shield... "
@@ -140,6 +105,7 @@ Subtitle=_" Shield disabled."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 DoSomethingExtra="PlantCookie:Disruptor_shield_disabled"
+DoSomethingExtra="MarkMissionComplete:8"
 DoSomethingExtra="OpenQuestDiaryEntry:M8E3:"
 
 ----------------------------------------------------------------------

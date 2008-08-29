@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: freedroid-discussion@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-08-29 15:35+0200\n"
+"POT-Creation-Date: 2008-08-29 15:37+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1523,7 +1523,7 @@ msgstr ""
 msgid "Starting new game."
 msgstr ""
 
-#: ../src/init.c:2322
+#: ../src/init.c:2329
 msgid ""
 "\n"
 "You are playing in 640x480.\n"
@@ -1536,7 +1536,7 @@ msgid ""
 "Thank you.\n"
 msgstr ""
 
-#: ../src/init.c:2324
+#: ../src/init.c:2331
 msgid ""
 "\n"
 "You are playing a candidate release.\n"
@@ -1547,11 +1547,11 @@ msgid ""
 "Good luck!\n"
 msgstr ""
 
-#: ../src/init.c:2345
+#: ../src/init.c:2352
 msgid "Game over.\n"
 msgstr ""
 
-#: ../src/init.c:2432
+#: ../src/init.c:2439
 msgid "Game won.\n"
 msgstr ""
 

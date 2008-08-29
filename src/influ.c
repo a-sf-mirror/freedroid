@@ -932,7 +932,7 @@ GetInfluPositionHistoryZ( int HowLongPast )
 void 
 CheckIfCharacterIsStillOk ( ) 
 {
-    if ( Me . AllMissions [ 8 ] . MissionIsComplete )
+    if ( Me . AllMissions [ 9 ] . MissionIsComplete )
 	{
 	ThouHastWon ();
 	}
