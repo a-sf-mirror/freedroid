@@ -152,57 +152,6 @@ classic_show_mission_list ( void )
  * for.
  */
 void
-quest_browser_show_mission_info ( int mis_num )
-{
-    char temp_text[10000];
-    int mission_diary_index;
-
-    if ( ( mis_num < 0 ) || ( mis_num >= MAX_MISSIONS_IN_GAME ) )
-    {
-	fprintf ( stderr , "\nmission number received: %d." , mis_num );
-	ErrorMessage ( __FUNCTION__  , "\
-There was an illegal mission number received.",
-				   PLEASE_INFORM, IS_FATAL );
-    }
-
-    SetTextCursor ( mission_description_rect . x , 
-		    mission_description_rect . y );
-
-    DisplayText( _("Mission: ") , -1 , -1 , &mission_description_rect , TEXT_STRETCH );
-    DisplayText( _(Me . AllMissions [ mis_num ] . MissionName) , -1 , -1 , &mission_description_rect , TEXT_STRETCH );
-    DisplayText( _("\nStatus: ") , -1 , -1 , &mission_description_rect , TEXT_STRETCH );
-    if ( Me . AllMissions [ mis_num ] . MissionIsComplete )
-	DisplayText( _("COMPLETE") , -1 , -1 , &mission_description_rect , TEXT_STRETCH );
-    else if ( Me . AllMissions [ mis_num ] . MissionWasFailed )
-	DisplayText( _("FAILED") , -1 , -1 , &mission_description_rect , TEXT_STRETCH );
-    else
-	DisplayText( _("STILL OPEN") , -1 , -1 , &mission_description_rect , TEXT_STRETCH );
-    DisplayText( _("\nDetails: ") , -1 , -1 , &mission_description_rect , TEXT_STRETCH );
-    
-    for ( mission_diary_index = 0 ; mission_diary_index < MAX_MISSION_DESCRIPTION_TEXTS ;
-	  mission_diary_index ++ )
-    {
-	if ( Me . AllMissions [ mis_num ] . mission_description_visible [ mission_diary_index ] )
-	{
-	    sprintf ( temp_text , "[day %d %02d:%02d] " , 
-		      get_days_of_game_duration ( Me . AllMissions [ mis_num ] . mission_description_time [ mission_diary_index ] ) , 
-		      get_hours_of_game_duration ( Me . AllMissions [ mis_num ] . mission_description_time [ mission_diary_index ] ) , 
-		      get_minutes_of_game_duration ( Me . AllMissions [ mis_num ] . mission_description_time [ mission_diary_index ] ) ) ;
-	    DisplayText( temp_text , -1 , -1 , &mission_description_rect , TEXT_STRETCH );	    
-	    DisplayText( D_(mission_diary_texts [ mis_num ] [ mission_diary_index ]), -1 , -1 , &mission_description_rect , TEXT_STRETCH );	    
-	    DisplayText( "\n" , -1 , -1 , &mission_description_rect , TEXT_STRETCH );	    
-	}
-    }
-
-}; // void quest_browser_show_mission_info ( int mis_num )
-
-/**
- * If there is some mission selected inside the quest browser, then we
- * should also display all info on the current status and history of that
- * particular mission, which is exactly what this function is responsible
- * for.
- */
-void
 quest_browser_append_mission_info ( int mis_num , int full_description )
 {
     char temp_text[10000];
@@ -237,7 +186,7 @@ There was an illegal mission number received.",
 	strcat ( complete_mission_display_text , _("FAILED"));
     else
 	strcat ( complete_mission_display_text , _("STILL OPEN"));
-    strcat ( complete_mission_display_text , _("\nDetails: "));
+    strcat ( complete_mission_display_text , _("\nDetails:\n"));
     
     for ( mission_diary_index = 0 ; mission_diary_index < MAX_MISSION_DESCRIPTION_TEXTS ;
 	  mission_diary_index ++ )
@@ -470,9 +419,6 @@ quest_browser_interface ( void )
 	    ShowGenericButtonFromList ( QUEST_BROWSER_NOTES_OFF_BUTTON );
 
 	quest_browser_display_mission_list ( current_quest_browser_mode );
-
-	if ( currently_selected_mission != (-1) )
-	    quest_browser_show_mission_info ( currently_selected_mission );
 
 	blit_our_own_mouse_cursor();
 	our_SDL_flip_wrapper();
@@ -836,7 +782,7 @@ GetQuestList ( char* QuestListFilename )
 #define MISSION_TARGET_SUBSECTION_START_STRING "** Start of this mission target subsection **"
 #define MISSION_TARGET_SUBSECTION_END_STRING "** End of this mission target subsection **"
 
-#define MISSION_TARGET_NAME_INITIALIZER "Mission Name=\""
+#define MISSION_TARGET_NAME_INITIALIZER "Mission Name=_\""
 
 #define MISSION_AUTOMATICALLY_ASSIGN_STRING "Assign this mission to influencer automatically at start : "
 #define MISSION_TARGET_FETCH_ITEM_STRING "Mission target is to fetch item : \""
@@ -852,7 +798,7 @@ GetQuestList ( char* QuestListFilename )
 
 #define MISSION_ASSIGNMENT_TRIGGERED_ACTION_STRING "On mission assignment immediately trigger action Nr. : "
 #define MISSION_COMPLETITION_TRIGGERED_ACTION_STRING "On mission completition immediately trigger action labeled=\""
-#define MISSION_DIARY_ENTRY_STRING "Mission diary entry=\""
+#define MISSION_DIARY_ENTRY_STRING "Mission diary entry=_\""
 
     //--------------------
     // At first we must load the quest list file given...
@@ -998,8 +944,6 @@ GetQuestList ( char* QuestListFilename )
 	for ( diary_entry_nr = 0 ; diary_entry_nr < MAX_MISSION_DESCRIPTION_TEXTS ; diary_entry_nr ++ )
 	{
 	    mission_diary_texts [ MissionTargetIndex ] [ diary_entry_nr ] = "" ;
-	    // Me . AllMissions [ MissionTargetIndex ] . mission_description_visible [ diary_entry_nr ] = FALSE ;
-	    // Me . AllMissions [ MissionTargetIndex ] . mission_description_time [ diary_entry_nr ] = 0 ;
 	}
 	next_diary_entry_pointer = MissionTargetPointer;
 	number_of_diary_entries = 0;
