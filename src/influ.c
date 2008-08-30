@@ -1243,83 +1243,69 @@ MoveTuxAccordingToHisSpeed ( )
  * approximated (TRUE) already or not (FALSE) .
  *
  */
-int
-move_tux_thowards_raw_position ( float x , float y )
+int move_tux_thowards_raw_position ( float x , float y )
 {
-    static int U_was_pressed = 0;
     moderately_finepoint RemainingWay;
     moderately_finepoint planned_step;
     float length;
-    
+
     //--------------------
     // We do not move any players, who's statuses are 'OUT'.
     //
     if ( Me . status == INFOUT ) return ( FALSE ) ;
-    
+
     RemainingWay . x = - Me . pos . x + x ;
     RemainingWay . y = - Me . pos . y + y ;
-    
+
     length = vect_len ( RemainingWay );
-    
+
     //--------------------
     // Maybe the remaining way is VERY!! small!  Then we must not do
     // a division at all.  We also need not do any movement, so the
     // speed can be eliminated and we're done here.
     //
     if ( length < 0.05 )
-    {
+	{
 	Me . speed . x = 0 ;
 	Me . speed . y = 0 ;
 	return ( TRUE ) ;
-    }
-    
+	}
+
     //--------------------
     // Now depending on whether the running key is pressed or not,
     // we have the Tux go on running speed or on walking speed.
     //
-    if ( Me . running_power <= 0 ) 
-    {
+    if ( Me . running_power <= 0 ) {
 	Me . running_must_rest = TRUE ;
-    }
-
-    // Using U key to enable/disable autorun. Always check if stamina is depleted before allowing change.
-    if ( UPressed() && ! U_was_pressed )
-	{
-	U_was_pressed = 1;
-	autorun_activated = ! autorun_activated;
 	}
-			
-   if ( ! UPressed() ) U_was_pressed = 0;
-   else U_was_pressed = 1;
 
-   if (Me . running_must_rest)
+    if (Me . running_must_rest)
 	{
 	autorun_activated = 0;
 	planned_step . x = RemainingWay . x * TUX_WALKING_SPEED / length ;
 	planned_step . y = RemainingWay . y * TUX_WALKING_SPEED / length ;
 	//DebugPrintf( -2, "\n Now walking...");
-   	}
+	}
 
-   if ( (LeftCtrlPressed() || autorun_activated ) && !( LeftCtrlPressed() && autorun_activated ) && ( ! Me . running_must_rest ) )
+    if ( (LeftCtrlPressed() || autorun_activated ) && !( LeftCtrlPressed() && autorun_activated ) && ( ! Me . running_must_rest ) )
 	{ 
 	planned_step . x = RemainingWay . x * TUX_RUNNING_SPEED / length ;
 	planned_step . y = RemainingWay . y * TUX_RUNNING_SPEED / length ;
 	// DebugPrintf ( -2 , "\nNow running..." );
 	}
-	else
+    else
 	{
 	planned_step . x = RemainingWay . x * TUX_WALKING_SPEED / length ;
 	planned_step . y = RemainingWay . y * TUX_WALKING_SPEED / length ;
 	// DebugPrintf ( -2 , "\nNow walking..." );
 	}
-     
-    
+
     //--------------------
     // Now that the speed is set, we can start to make the step
     //
     Me . speed . x = planned_step . x ;
     Me . speed . y = planned_step . y ;
-    
+
     // --------------------
     // If we might step over the target,
     // we reduce the speed.
@@ -1328,23 +1314,22 @@ move_tux_thowards_raw_position ( float x , float y )
 	Me . speed . x = RemainingWay . x / Frame_Time() ;
     if ( fabsf ( planned_step . y * Frame_Time() ) >= fabsf ( RemainingWay .y  ) )
 	Me . speed . y = RemainingWay . y / Frame_Time() ;
-    
-    
-  
+
+
+
     //--------------------
     // In case we have reached our target, we can remove this mouse_move_target again,
     // but also if we have been thrown onto a different level, we cancel our current
     // mouse move target...
     //
     if ( ( ( fabsf ( RemainingWay.y ) <= DISTANCE_TOLERANCE ) && 
-	   ( fabsf ( RemainingWay.x ) <= DISTANCE_TOLERANCE )     ) ||
-	 ( Me . mouse_move_target . z != Me . pos . z ) )
-    {
+		( fabsf ( RemainingWay.x ) <= DISTANCE_TOLERANCE )     ) ||
+	    ( Me . mouse_move_target . z != Me . pos . z ) )
+	{
 	return ( TRUE );
-    }
-    
+	}
+
     return ( FALSE );
-    
 }; // int move_tux_thowards_raw_position ( float x , float y )
 
 /**

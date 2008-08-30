@@ -565,72 +565,92 @@ handle_cha_ski_inv_screen_on_off_keys ( void )
     static int CPressed_LastFrame;
     static int RPressed_LastFrame;
     static int SPressed_LastFrame;
+    static int UPressed_LastFrame;
 
     //--------------------
     // We assign the S key to turning on/off the skill screen
     //
     if ( SPressed() )
-    {
-	if ( !SPressed_LastFrame ) 
 	{
+	if ( !SPressed_LastFrame ) 
+	    {
 	    toggle_game_config_screen_visibility ( GAME_CONFIG_SCREEN_VISIBLE_SKILLS );
-	}
-	
+	    }
+
 	SPressed_LastFrame = TRUE;
-    }
+	}
     else
-    {
+	{
 	SPressed_LastFrame = FALSE;
-    }
-    
+	}
+
     //--------------------
     // We assign the I key to turn on/off the inventory screen.
     //
     if ( IPressed() )
-    {
-	if ( !IPressed_LastFrame ) 
 	{
+	if ( !IPressed_LastFrame ) 
+	    {
 	    toggle_game_config_screen_visibility ( GAME_CONFIG_SCREEN_VISIBLE_INVENTORY );
-	}
+	    }
 	IPressed_LastFrame = TRUE;
-    }
+	}
     else
-    {
+	{
 	IPressed_LastFrame = FALSE;
-    }
-    
+	}
+
     //--------------------
     // We assign the C key to turn on/off the character screen
     //
     if ( CPressed() )
-    {
-	if ( !CPressed_LastFrame ) 
 	{
+	if ( !CPressed_LastFrame ) 
+	    {
 	    toggle_game_config_screen_visibility ( GAME_CONFIG_SCREEN_VISIBLE_CHARACTER );
-	}
+	    }
 	CPressed_LastFrame = TRUE;
-    }
+	}
     else
-    {
+	{
 	CPressed_LastFrame = FALSE;
-    }
+	}
 
     //--------------------
     // We assign the R key to weapon reloading
     //
     if ( RPressed() )
-    {
-	if ( !RPressed_LastFrame ) 
 	{
+	if ( !RPressed_LastFrame ) 
+	    {
 	    TuxReloadWeapon();
-	}
+	    }
 	RPressed_LastFrame = TRUE;
-    }
+	}
     else
-    {
+	{
 	RPressed_LastFrame = FALSE;
-    }
-    
+	}
+
+    //---------------------
+    // U key toggles autorun
+    //
+    if ( UPressed() )
+	{
+	if ( !UPressed_LastFrame )
+	    {
+	    extern int autorun_activated;
+	    autorun_activated = ! autorun_activated;
+	    }
+	UPressed_LastFrame = TRUE;
+	}
+    else 
+	{
+	UPressed_LastFrame = FALSE;
+    	}
+
+
+
 }; // void handle_cha_ski_inv_screen_on_off_keys ( void )
 
 /**
