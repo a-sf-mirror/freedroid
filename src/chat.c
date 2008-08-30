@@ -1010,24 +1010,18 @@ TextConditionIsTrue ( char* ConditionString )
     }
     else if ( CountStringOccurences ( ConditionString , "CookieIsPlanted" ) )
     {
-	DebugPrintf ( -4 , "\nCondition String identified as question for cookie planted." );
+	DebugPrintf ( CHAT_DEBUG_LEVEL , "\nCondition String identified as question for cookie planted." );
 	
 	CookieText = 
 	    ReadAndMallocStringFromData ( ConditionString , "CookieIsPlanted:" , ":" ) ;
-	DebugPrintf ( -4 , "\nCookieText mentioned: '%s'." , CookieText );
+	DebugPrintf ( CHAT_DEBUG_LEVEL , "\nCookieText mentioned: '%s'." , CookieText );
 	
 	for ( i = 0 ; i < MAX_COOKIES ; i ++ )
 	{
-	    DebugPrintf ( 1 , "\nCookie entry to compare to: %s." , Me . cookie_list [ i ] );
+	    DebugPrintf ( CHAT_DEBUG_LEVEL , "\nCookie entry to compare to: %s." , Me . cookie_list [ i ] );
 	    if ( ! strlen ( Me . cookie_list [ i ] ) ) continue;
 	    if ( ! strcmp ( Me . cookie_list [ i ] , CookieText ) ) 
 		return ( TRUE );
-	    //--------------------
-	    // Now some extra safety, cause the ':' termination character might still be on 
-	    // the cookie or on the comparison string
-	    //
-	    if ( strcmp ( Me . cookie_list [ i ] , CookieText ) >= ( ( int ) strlen ( CookieText ) ) ) 
-		return ( TRUE ); 
 	}
 	
 	free ( CookieText );
