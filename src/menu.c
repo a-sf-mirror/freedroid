@@ -54,7 +54,7 @@ extern int load_game_command_came_from_inside_running_game;
 #define REPAIR_PRICE_FACTOR (0.5)
 
 #define SINGLE_PLAYER_STRING "Play"
-#define LOAD_EXISTING_HERO_STRING _("The first 10 characters: ")
+#define LOAD_EXISTING_HERO_STRING _("The first 7 characters: ")
 #define DELETE_EXISTING_HERO_STRING _("Select character to delete: ")
 
 #define MENU_SELECTION_DEBUG 1
@@ -2199,7 +2199,7 @@ int
 Load_Existing_Hero_Menu ( void )
 {
     char Saved_Games_Dir[1000];
-    char* MenuTexts[ MAX_SAVED_CHARACTERS_ON_DISK + 1 ] ;
+    char* MenuTexts[ MAX_SAVED_CHARACTERS_ON_DISK + 2 ] ;
     struct dirent **eps;
     int n;  
     int cnt;
@@ -2271,8 +2271,6 @@ I need to know that for saving. Abort.\n");
 	if ( MenuPosition == cnt + 1 ) return ( FALSE );
 	else
 	{
-	    // LoadShip ( find_file ( "Asteroid.maps" , MAP_DIR, FALSE) ) ;
-	    // PrepareStartOfNewCharacter ( NEW_MISSION );
 	    strcpy ( Me . character_name , MenuTexts [ MenuPosition -1 ] );
 	    if ( LoadGame ( ) == OK )
 	    {
@@ -2313,7 +2311,7 @@ int
 Delete_Existing_Hero_Menu ( void )
 {
     char Saved_Games_Dir[1000];
-    char* MenuTexts[ MAX_SAVED_CHARACTERS_ON_DISK + 1 ] ;
+    char* MenuTexts[ MAX_SAVED_CHARACTERS_ON_DISK + 2 ] ;
     struct dirent **eps;
     int n;  
     int cnt;
@@ -2496,7 +2494,6 @@ Single_Player_Menu (void)
 		else
 		{
 		    can_continue = FALSE;
-		    // return ( FALSE );
 		}
 		break;
 		
@@ -2504,7 +2501,6 @@ Single_Player_Menu (void)
 		while (EnterPressed() || SpacePressed() ) ;
 		Delete_Existing_Hero_Menu ( ) ;
 		can_continue= FALSE ;
-		// return ( FALSE );
 		break;
 		
 	    case (-1):
