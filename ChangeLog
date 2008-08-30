@@ -1,3 +1,297 @@
+2008-08-30 15:59  ahuillet
+
+	* /po/upload_to_launchpad.sh: added script to update files on
+	  launchpad, written by delroth
+
+2008-08-30 14:47  ahuillet
+
+	* /src/system.h: include iconv.h if we have iconv. not sure
+	  configure actually checks for it though.
+
+2008-08-30 14:45  ahuillet
+
+	* /src/struct.h, /src/vars.h: jcoral added an encoding field to the
+	  supported languages array so we can request the encoding from
+	  gettext
+
+2008-08-30 14:40  ahuillet
+
+	* /src/blocks.c: marked a few obstacles as not blocking vision.
+	  patch by jcoral
+
+2008-08-30 14:30  ahuillet
+
+	* /po/freedroidrpg.pot: upd
+
+2008-08-30 14:03  ahuillet
+
+	* /src/chat.c: fixed dixon being angry with no reason/doc refusing
+	  to give antidote for no reason/probably lots of other similar
+	  bugs by removing two stupid lines in the CookieIsPlanted testing
+	  code.
+
+2008-08-30 13:44  ahuillet
+
+	* /src/menu.c: fixed load and delete hero menu options crashing
+	  when you have more than 7 characters and hit escape.
+
+2008-08-30 07:36  ahuillet
+
+	* /src/influ.c, /src/input.c: U key now makes effect even when tux
+	  is not moving. reported by jcoral. autoindented some code in the
+	  process.
+
+2008-08-29 20:02  ahuillet
+
+	* /po/freedroidrpg.pot: upd again -_-
+
+2008-08-29 19:58  ahuillet
+
+	* /src/mission.c: fixed quest browser not displaying mission diary
+	  entries properly/at all
+
+2008-08-29 19:58  ahuillet
+
+	* /po/freedroidrpg.pot: upd
+
+2008-08-29 19:57  ahuillet
+
+	* /map/QuestList_archetypes, /po/freedroidrpg_data.pot: marked
+	  mission names for translation, added them to pot
+
+2008-08-29 19:56  ahuillet
+
+	* /po/freedroidrpg_dialogs.pot: upd dialogs
+
+2008-08-29 19:47  ahuillet
+
+	* /src/hud.c: fixed get_xxx_of_game_duration to take the parameter
+	  into account instead of always returning the current game date.
+
+2008-08-29 18:04  ahuillet
+
+	* /dialogs/MER.dialog, /dialogs/Spencer.dialog, /map/Asteroid.maps,
+	  /map/QuestList_archetypes, /map/ReturnOfTux.droids,
+	  /po/freedroidrpg.pot, /src/influ.c: changed endgame: you now
+	  disable the shield in the base by either killing the control
+	  droid or taking it over and issuing the proper command in the
+	  dialog, then go to the HF entrance where you can find the
+	  (friendly, to avoid killing) firmware update droid, and propagate
+	  a faulty upgrade. dialogs still a bit rough, and mission diary
+	  entry not written yet
+
+2008-08-29 18:01  ahuillet
+
+	* /src/chat.c: leftover from rev.1038: replaced Ernie by
+	  FirmwareUpdateServer
+
+2008-08-29 18:00  ahuillet
+
+	* /src/mission.c: cleaned up CheckIfMissionIsComplete a bit as part
+	  of endgame-rework
+
+2008-08-29 17:59  ahuillet
+
+	* /src/defs.h: removed dead code and replace ERNIE - that does not
+	  exist - by FIRMWARE SERVER - that will exist soon
+
+2008-08-29 13:34  ahuillet
+
+	* /po/de_DE/LC_MESSAGES/freedroidrpg.mo,
+	  /po/fr_FR/LC_MESSAGES/freedroidrpg.mo: upd?
+
+2008-08-29 13:33  ahuillet
+
+	* /po/freedroidrpg.pot, /src/menu.c: marked ON/OFF strings in
+	  fullscreen menu option for translation.
+
+2008-08-29 07:55  ahuillet
+
+	* /po/de_DE/LC_MESSAGES/freedroidrpg.po: upd
+
+2008-08-29 07:54  ahuillet
+
+	* /po/de_DE/LC_MESSAGES/freedroidrpg.mo,
+	  /po/de_DE/LC_MESSAGES/freedroidrpg.po,
+	  /po/fr_FR/LC_MESSAGES/freedroidrpg.po, /po/freedroidrpg.pot:
+	  updated stuff (...)
+
+2008-08-29 07:39  ahuillet
+
+	* /src/menu.c: cannot change language on Mac OS. properly warning
+	  about that now
+
+2008-08-29 06:58  ahuillet
+
+	* /src/text.c: patch by jcoral to prevent displaying of characters
+	  we know are fully offscreen in order to improve performance
+
+2008-08-28 10:35  ahuillet
+
+	* /src/menu.c: removed unused local variable in
+	  filename_filter_func
+
+2008-08-27 19:24  ahuillet
+
+	* /src/open_gl_atlas.c: now actually returning 0 on no-lib-gl
+	  computer in load_texture_atlas(). caught by SixK.
+
+2008-08-27 16:58  ahuillet
+
+	* /src/character.c, /src/defs.h, /src/hud.c, /src/influ.c: patch by
+	  fluzz to handle clicks in hud in a cleaner way. fixes some bugs
+	  but I do not remember which :P
+
+2008-08-26 20:37  ahuillet
+
+	* /src/saveloadgame.c: do not forget to close the savefile when
+	  loading. fixes bugs on some platforms when saving.
+
+2008-08-19 21:22  stedevil
+
+	* /src/takeover.c: jeremybub: some changes to displaying enemy in
+	  takeovergame
+
+2008-08-19 09:27  ahuillet
+
+	* /po/de_DE/LC_MESSAGES/freedroidrpg.po,
+	  /po/de_DE/LC_MESSAGES/freedroidrpg_data.po,
+	  /po/de_DE/LC_MESSAGES/freedroidrpg_dialogs.po,
+	  /po/fr_FR/LC_MESSAGES/freedroidrpg.po,
+	  /po/fr_FR/LC_MESSAGES/freedroidrpg_data.po,
+	  /po/fr_FR/LC_MESSAGES/freedroidrpg_dialogs.po: upd
+
+2008-08-18 07:55  ahuillet
+
+	* /po/de_DE/LC_MESSAGES/freedroidrpg_data.po,
+	  /po/fr_FR/LC_MESSAGES/freedroidrpg_data.po: upd from launchpad
+
+2008-08-18 07:52  ahuillet
+
+	* /po/de_DE/LC_MESSAGES/freedroidrpg.po,
+	  /po/fr_FR/LC_MESSAGES/freedroidrpg.po: upd from launchpad
+
+2008-08-18 07:52  ahuillet
+
+	* /po/de_DE/LC_MESSAGES/freedroidrpg_dialogs.po,
+	  /po/fr_FR/LC_MESSAGES/freedroidrpg_dialogs.po: upd from launchpad
+
+2008-08-17 09:36  ahuillet
+
+	* /po/fr_FR/LC_MESSAGES/freedroidrpg.mo,
+	  /po/fr_FR/LC_MESSAGES/freedroidrpg.po, /po/freedroidrpg.pot,
+	  /po/freedroidrpg_data.pot, /po/freedroidrpg_dialogs.pot: wth is
+	  going on?!
+
+2008-08-17 09:28  ahuillet
+
+	* /po/freedroidrpg.pot: upd
+
+2008-08-16 20:29  ahuillet
+
+	* /CMakeLists.txt: why the hell does that talk about debian
+	  packages? like we care
+
+2008-08-16 17:24  ahuillet
+
+	* /src/ship.c: jcoral cached description of last item in
+	  showiteminfo in order to improve performance
+
+2008-08-15 19:10  ahuillet
+
+	* /src/menu.c: pzavolinsky made sure we do not crash on files that
+	  contain "savegame"
+
+2008-08-15 19:07  ahuillet
+
+	* /src/open_gl_atlas.c, /src/view.c: do not use "texture" field of
+	  iso_image when there is no libgl
+
+2008-08-15 18:57  ahuillet
+
+	* /src/struct.h: moving back to 32bit integers for most level
+	  structure fields as it causes problems on PPC and is less ugly
+	  than using %hhd everywhere
+
+2008-08-15 18:51  ahuillet
+
+	* /src/hud.c, /src/init.c, /src/view.c: jcoral changed format of
+	  GPS info and made the "draw position" menu option actually work.
+	  displaying position by default as we like it in bug reports
+
+2008-08-15 18:44  ahuillet
+
+	* /src/misc.c: fixed up/down buttons in shop interface
+
+2008-08-15 18:42  ahuillet
+
+	* /src/menu.c: fixed dialog options window height so that options
+	  do not leak go out of bounds and appear on the scroll down button
+	  esp. at low res.
+
+2008-08-14 10:26  ahuillet
+
+	* /po/freedroidrpg.pot, /po/freedroidrpg_data.pot,
+	  /po/freedroidrpg_dialogs.pot: upd
+
+2008-08-14 10:26  ahuillet
+
+	* /src/init.c: mark startup alerts (rc and 640x480 messages) for
+	  translation as reported missing by barbatrix
+
+2008-08-14 10:09  ahuillet
+
+	* /src/mission.c: quest browser can now be exited with escape key
+	  as well as Q
+
+2008-08-14 10:04  ahuillet
+
+	* /src/chat.c: limited scrolling down in dialogs to two lines so
+	  text is always visible
+
+2008-08-12 20:02  ahuillet
+
+	* /src/influ.c: do no take stamina down when paralyzed
+
+2008-08-12 19:47  ahuillet
+
+	* /src/menu.c: fix crash when exiting OSD menu with ESC key. report
+	  and patch by anonymous.
+
+2008-08-12 19:43  ahuillet
+
+	* /configure.ac: only check for libintl on macosx where it is
+	  necessary, fixes build on my ubuntu
+
+2008-08-12 19:41  ahuillet
+
+	* /src/init.c: fixed scanf format parameters for a few fields of
+	  bot data structure. patch by anonymous. reportedly fixes things
+	  on PPC
+
+2008-08-11 09:54  ahuillet
+
+	* /src/view.c: do not byteswap enemy archive files on PPC since it
+	  is not needed any longer. what a mess this archive loading is!
+
+2008-08-10 21:45  stedevil
+
+	* /README: Updated known issues
+
+2008-08-10 20:42  stedevil
+
+	* /INSTALL: Updated Building with autotools to look nicer and with
+	  hints for MAC OSX users
+
+2008-08-09 14:46  ahuillet
+
+	* /configure.ac: check for libintl in configure. reportedly fixes
+	  building on mac os.
+
+2008-08-06 08:51  ahuillet
+
+	* /ChangeLog: rc2 changelog
+
 2008-08-06 08:22  ahuillet
 
 	* /Makefile.am: including INSTALL.genetric as well as HELP_WANTED
@@ -164,3 +458,4 @@
 2008-07-18 14:41  stedevil
 
 	* /CMakeLists.txt, /configure.ac: setting version to rc1
+
