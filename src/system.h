@@ -92,6 +92,10 @@
 //#include <locale.h>
 //#endif
 
+#ifdef HAVE_ICONV
+#include <iconv.h>
+#endif
+
 #include <errno.h>
 #include <stdarg.h>
 #include <ctype.h>
