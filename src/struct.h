@@ -962,7 +962,8 @@ typedef struct supported_languages_s
 { 
     char * code; 
     char * name;
-    char * font_class; 
+    char * font_class;
+    char * encoding;
 } supported_languages_t;
 
 #endif
