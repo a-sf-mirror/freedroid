@@ -4,14 +4,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: freedroidrpg_dialogs\n"
 "Report-Msgid-Bugs-To: CHANGE THIS TOO\n"
-"POT-Creation-Date: 2008-05-30 17:30+0000\n"
-"PO-Revision-Date: 2008-06-15 07:17+0000\n"
+"POT-Creation-Date: 2008-08-29 19:57+0000\n"
+"PO-Revision-Date: 2008-09-02 20:12+0000\n"
 "Last-Translator: KiberGus <kibergus@gmail.com>\n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=cp1251\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-06-15 08:40+0000\n"
+"X-Launchpad-Export-Date: 2008-09-02 22:48+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #~ msgid ""
@@ -22,11 +22,309 @@ msgstr ""
 #~ "на четвертой из них, считая от нашей звезды по имени Солнце."
 
 #~ msgid ""
+#~ "I couldn't get myself to look at my finance logs for a while now. I guess "
+#~ "about five to six thousand triangles."
+#~ msgstr ""
+#~ "Сейчас я не могу посмотреть в свои записи, но думаю, что около пяти-шести "
+#~ "тысяч треугольников."
+
+#~ msgid ""
+#~ "I need 4,743 bucks to get through the month. I accept only that and not a "
+#~ "cent more. Now it's fair. Thank you."
+#~ msgstr ""
+#~ "Мне надо 4 743 баксов чтобы дожить до конца месяца. Я приму эту сумму и ни "
+#~ "центом больше. Это будет честно. Спасибо тебе огромное."
+
+#~ msgid ""
+#~ "I think you should visit the camp's cook sometime. He's always around here, "
+#~ "somewhere to the south."
+#~ msgstr ""
+#~ "Я думаю, тебе стоит найти время и побывать у нашего повора. Он всегда где-то "
+#~ "тут шляется, поищи его на юге."
+
+#~ msgid ""
+#~ "Yes, that's right, and in fact it might be crucial. The data on the cube he "
+#~ "obtained indicates the existence of a secret experimental facility in this "
+#~ "region."
+#~ msgstr ""
+#~ "Да, это так, и она может оказаться очень важной. В датакубе содержалась "
+#~ "информация о существовании секретного экспериментального объекта в этом "
+#~ "регионе."
+
+#~ msgid ""
+#~ "Our findings suggest that they were testing some new form of disruptor "
+#~ "shield, but research was finally discontinued, because of the side effects "
+#~ "of the shield."
+#~ msgstr ""
+#~ "Полученные нами данные свидетельствуют о том, что на этом объекте "
+#~ "исследовалась новая форма дезинтеграционного щита, но исследования в конце "
+#~ "концов были прекращены, из-за побочного действия щита."
+
+#~ msgid ""
+#~ "If the information is true, then the shield interfered with the positioning "
+#~ "system of all bots and made them wander off."
+#~ msgstr ""
+#~ "Если данные не врут, то щит наводил помехи в системе навигации ботов и они "
+#~ "разбредались в разные стороны."
+
+#~ msgid ""
+#~ "Now that seems like a gift sent from heavens. We'll need to activate the "
+#~ "shield, if that is still possible, and save the colony for good."
+#~ msgstr ""
+#~ "Это для нас, как манна небесная. Нам нужно включить щит, если это все еще "
+#~ "возможно, и спасти колонию."
+
+#~ msgid ""
+#~ "Try to activate the disruptor shield if you can. The control unit should be "
+#~ "somewhere on the lowest level of the installation."
+#~ msgstr ""
+#~ "Постарайся активировать дезинтеграционный щит. Блок управления должен быть "
+#~ "на саомом нижнем уровне базы."
+
+#~ msgid "Good. Get into the door with the portal."
+#~ msgstr "Хорошо. Заходи в дверь с порталом."
+
+#~ msgid " I DIDN'T ASKED"
+#~ msgstr " I DIDN'T ASKED"
+
+#~ msgid " Spencer said, you'd give me an armor."
+#~ msgstr " Спенсер сказал, что Вы дадите мне броню."
+
+#~ msgid " END "
+#~ msgstr " END "
+
+#~ msgid ""
 #~ "I will give you two grenades. If you get in trouble just activate one. It "
 #~ "should give you some breathing room."
 #~ msgstr ""
 #~ "Я тебе дам пару гранат. Если будет тяжело - жахни одну. Это должно дать тебе "
 #~ "немного жизненного пространства."
+
+#~ msgid " Hi!  I'm new here. "
+#~ msgstr " Привет!  Я здесь новичок "
+
+#~ msgid "Welcome them!  I'm called MER.  My dialog isn't done though."
+#~ msgstr "Приветствую!  Меня зовут MER. Мой диалог ещё не готов."
+
+#~ msgid ""
+#~ " I'm ready. Please show me how to extract bot parts. (cost 50 cash, 1 "
+#~ "ability points)"
+#~ msgstr ""
+#~ " Я готов. Пожалуйста, покажите мне, как разбирать роботов. (стоит 50 баксов "
+#~ "и одно очку умения)"
+
+#~ msgid " Sure. Teach me all that you know. (cost 50 cash, 1 ability points)"
+#~ msgstr ""
+#~ " Конечно. Научите меня всему, что знаете. (стоит 50 баксов и одно очку "
+#~ "умения)"
+
+#~ msgid "O! It happened! I was witing for you for 3226 hours!"
+#~ msgstr "О! Случилось! Я просидела тут 3226 часа!"
+
+#~ msgid "You really knew, that I would come?"
+#~ msgstr "Ты правда знала, что я прийду?"
+
+#~ msgid "Ofcourse, my little imaginable friend!"
+#~ msgstr "Конечно, мой маленький воображаемый дружок!"
+
+#~ msgid "Imaginable?! Im as real as you are."
+#~ msgstr "Воображаемый?!  Я настолько же реальен как и ты."
+
+#~ msgid ""
+#~ "This place is locked. Hermetically conservated and guarded by bots. So you "
+#~ "can be nothing more, than product of my imagination."
+#~ msgstr ""
+#~ "Это помещение закрыто. Герметично законсервированно и охранятеся ботами. Так "
+#~ "что ты не можешь быть ничем, кроме как плодом моего воображения."
+
+#~ msgid ""
+#~ "In a prison, luxurious prison. This is solitary, as you can see. Big room, "
+#~ "plenty of food, waterfall behind window..."
+#~ msgstr ""
+#~ "В тюрьме, комфортабельной тюрьме. Это одиночная камера, как видишь. Большая "
+#~ "комната, полно еды, водопад за окном..."
+
+#~ msgid "I can see only ray emmiters behind window."
+#~ msgstr "Я вижу только излучатели позади окон."
+
+#~ msgid ""
+#~ "Yes, I know. But I so badly want to see sun, rivers, trees... So there is "
+#~ "definetely waterfall behind it!"
+#~ msgstr ""
+#~ "Ну да, я знаю. Но мне так хочется увидеть солнце, реки, деревья... Так что "
+#~ "там именно водопад!"
+
+#~ msgid ""
+#~ "Main power supply is down, so only emergency light works. Peter tried to "
+#~ "switch it on, but he didn't succeed."
+#~ msgstr ""
+#~ "Основной источник питания отключен, так что работает аварийное освещение. "
+#~ "Петр пытался включить основное освещение, но у него не получилось."
+
+#~ msgid "This place doesn't look to be a prison."
+#~ msgstr "Это место что-то не похоже на тюрьму."
+
+#~ msgid ""
+#~ "In past it was secret lab. Do you know those strength pills? They were "
+#~ "invented here. Other pills too, but I was working on strength ones."
+#~ msgstr ""
+#~ "Раньше тут была секретная лаборатория. Ты слышал о таблетках силы? Их "
+#~ "изобрели здесь. Другие тоже, но я работала именно над теми, которые "
+#~ "увеличивают силу."
+
+#~ msgid "So you are a biologist? Can you heal me please?"
+#~ msgstr "Так ты биолог? Ты бы не могла меня полечить?"
+
+#~ msgid ""
+#~ "That would be something different from I've done few last months at least. "
+#~ "Some interatainment."
+#~ msgstr ""
+#~ "Чтож, это внесет некоторое разнообразие в мою привычную жизнь. Своего рода "
+#~ "развлечение."
+
+#~ msgid "Ok, I've finished. Now you are completely well."
+#~ msgstr "Ну вот и все. Теперь ты полностью здоров."
+
+#~ msgid "They say, that pills are absolutely safe!"
+#~ msgstr "А мне говорили, что таблетки абсолютно безвредны!"
+
+#~ msgid ""
+#~ "Peter became not very strong, but very-very-very strong. He thought he can "
+#~ "make an exit with his bare hands."
+#~ msgstr ""
+#~ "Петр стал не просто сильным, а очень-очень-очень сильным. Он думал, что "
+#~ "сможет прокопать выход голыми руками."
+
+#~ msgid ""
+#~ "If you go further, you would find debris and a big stone. That is his grave."
+#~ msgstr ""
+#~ "Если ты пойдешь дальше, то найдешь завал и большой камень. Это его могила."
+
+#~ msgid "But why not to out through the door."
+#~ msgstr "Но почему бы не выйти через дверь?"
+
+#~ msgid ""
+#~ "It is locked and very reliable. Even a tank wouldnt be able to samsh it! And "
+#~ "if door is breaked, SADDs would attack anybody, that's their program."
+#~ msgstr ""
+#~ "Они закрыта и очень прочна. Её даже танк не пробьет! А даже если её сломать, "
+#~ "то ДЗСО начнет убивать всех, он так запрограммирован."
+
+#~ msgid "You want to say, that I can get to the surface?"
+#~ msgstr "Ты хочешь сказать, что я могу выйти на волю?"
+
+#~ msgid ""
+#~ "Oh god! I've told Peter, that he chosed wrong place, but he was so "
+#~ "opinionated!"
+#~ msgstr ""
+#~ "О боже! Я говорила Петру, что он не там копает, но он был таким упертым!"
+
+#~ msgid ""
+#~ "All hope lost! I'm a scientist, not a varrior. I wouldn resist a single "
+#~ "bullet!"
+#~ msgstr "Вс надежды пропали! Я ученый, а не воин. Первой же пулей меня убьёт."
+
+#~ msgid "May be it is possible to disable that guns?"
+#~ msgstr "Может пушки можно отключить?"
+
+#~ msgid ""
+#~ "Theoretically yes, but in practice I'm not shure you would be able to do "
+#~ "that."
+#~ msgstr ""
+#~ "Теоретически - да. Но практически я сильно сомневаюсь, что у тебя это "
+#~ "получится."
+
+#~ msgid ""
+#~ "Somewhere in distant part of the lab should be SACD - secret area control "
+#~ "droid. It controls all defence perimeters of the base. If you manage to "
+#~ "overtake him, you would be able to control the base. But it's very hard to "
+#~ "find him."
+#~ msgstr ""
+#~ "Где-то в глубине лаборатории должен быть ДКСО - дроид контроля секретных "
+#~ "объектов. Он управляет всеми защитными периметрами базы. Если у тебя "
+#~ "получится взломать его, то ты сможешь управлять базой. Но его очень трудно "
+#~ "найти."
+
+#~ msgid "I would disable guns for you."
+#~ msgstr "Для тебя я готов рискнуть и отключить автопушки."
+
+#~ msgid ""
+#~ "Thanks, but please be very careful. You won't be able to acess control "
+#~ "center direcly, it is behind triple hermetic door. Main passage is blocked "
+#~ "by landslip too, try using service tunnels."
+#~ msgstr ""
+#~ "Спасибо, но, пожалуйста, будь очень осторожен. Ты не сможешь добраться до "
+#~ "центра управления напрямую, оно находится за тройной гермодверью. Основной "
+#~ "проход завален, так что попробуй воспользоваться сервисными тонелями."
+
+#~ msgid "Why not just open them? There should be a way for unlocking base."
+#~ msgstr "Почему бы просто не открыть их? Должен же быть способ открыть базу."
+
+#~ msgid ""
+#~ "To open door you need to know password. Only commander of the area and his "
+#~ "deputy knew it. Commander was killed by bots as soon as assault stated and "
+#~ "deputy was in town, I don't know what happened to him."
+#~ msgstr ""
+#~ "Чтобы открыть дверь надо знать пароль. Его знали только командир базы и его "
+#~ "заместитель. Командира убили боты как только началась осада, а заместитель "
+#~ "был в городе. Я не знаю, что с ним сталось."
+
+#~ msgid ""
+#~ "Peter have done all to make this room comfortable. Sofa and armchair is from "
+#~ "commander cabinet, books from restroom..."
+#~ msgstr ""
+#~ "Перт сделал все, чтобы в этой комнате было уютно. Диван и кресло он притащил "
+#~ "из кабинета командира, книги из комнаты отдыха..."
+
+#~ msgid "Autoguns are off! You are free now."
+#~ msgstr "Я выключил автопушки! Теперь ты свободна."
+
+#~ msgid ""
+#~ "Thanks, thanks you a lot! Now I would be able to see sun, trees, rivers. I "
+#~ "so missed it!"
+#~ msgstr ""
+#~ "Спасибо, спасибо тебе большое! Теперь я снова смогу увидеть солнце, деревья, "
+#~ "реки. Я так по ним скучала!"
+
+#~ msgid "I hope these books would help you survive in this world."
+#~ msgstr "Надеюсь эти книги помогут тебе выжить."
+
+#~ msgid ""
+#~ "To the right from an enterace to the area there is a hall. In the south part "
+#~ "of there is triple hermetic door. Control center is behind that door. But it "
+#~ "is locked, so you would have to find another way there. Cable collectors may "
+#~ "help you."
+#~ msgstr ""
+#~ "Справа от входа в лабораторию есть хол. С южной стороны находится тройная "
+#~ "гермодверь. Центр управления как раз за ней. Но дверь закрыта, так что тебе "
+#~ "прийдется искать обходной путь. Попробуй воспользоваться кабельными "
+#~ "коллекторами."
+
+#~ msgid ""
+#~ "Seems like the bots can be disabled by enabling some disruptor field or "
+#~ "something like that."
+#~ msgstr ""
+#~ "Кажется ботов можно отключить включив какой-то дизентеграционный щит или что-"
+#~ "то в этом роде."
+
+#~ msgid ""
+#~ "The shop is to the east. Ms. Stone always has a good range of equipment "
+#~ "there."
+#~ msgstr "Магазин на востоке. Мисс Стоун хороший выбор снаряжения."
+
+#~ msgid "The bots will take care of that for me."
+#~ msgstr "Роботы сделают это и без меня."
+
+#~ msgid "Why? I have backups from the last Friday. No reason to worry at all."
+#~ msgstr ""
+#~ "Почему? У меня есть резервная копия за прошлую пятницу. Так что нет никаких "
+#~ "причин для беспокойства."
+
+#~ msgid " You must promise me a significant reward."
+#~ msgstr " Ты должен пообещать мне хорошую награду."
+
+#~ msgid " You call this a super exteriminator?"
+#~ msgstr " И это ты называешь супер экстерминатором?"
 
 #: ../dialogs/Benjamin.dialog:33
 #: ../dialogs/DocMoore.dialog:33
@@ -475,10 +773,10 @@ msgstr "Nein. Наша проблема. Наша охота."
 #: ../dialogs/Darwin.dialog:214
 #: ../dialogs/OldTownGateGuardLeader.dialog:100
 #: ../dialogs/Michelangelo.dialog:416
-#: ../dialogs/Spencer.dialog:508
+#: ../dialogs/Spencer.dialog:511
 #: ../dialogs/Bruce.dialog:218
 #: ../dialogs/Bruce.dialog:229
-#: ../dialogs/Butch.dialog:353
+#: ../dialogs/Butch.dialog:355
 #: ../dialogs/StandardMSFacilityGateGuard.dialog:86
 msgid " I'll be going then."
 msgstr " Ну, я пойду."
@@ -493,6 +791,7 @@ msgstr "Прощай. Viel gluck."
 #: ../dialogs/MSFacilityGateGuardLeader.dialog:33
 #: ../dialogs/DocMoore.dialog:86
 #: ../dialogs/DocMoore.dialog:108
+#: ../dialogs/FirmwareUpdateServer.dialog:33
 msgid "THIS WILL NEVER BE VISIBLE"
 msgstr "THIS WILL NEVER BE VISIBLE"
 
@@ -1063,7 +1362,7 @@ msgstr "Забудь об этом."
 #: ../dialogs/Skippy.dialog:195
 #: ../dialogs/Skippy.dialog:206
 #: ../dialogs/RMS.dialog:118
-#: ../dialogs/DocMoore.dialog:321
+#: ../dialogs/DocMoore.dialog:320
 #: ../dialogs/Duncan.dialog:280
 #: ../dialogs/Duncan.dialog:318
 #: ../dialogs/614.dialog:98
@@ -1141,6 +1440,7 @@ msgstr "NO COUNTERS YET."
 #: ../dialogs/subdlg_Stone.dialog:33
 #: ../dialogs/SACD.dialog:124
 #: ../dialogs/SACD.dialog:133
+#: ../dialogs/SADD.dialog:33
 #: ../dialogs/subdlg_Kevin.dialog:33
 #: ../dialogs/subdlg_Kevin.dialog:43
 #: ../dialogs/subdlg_Kevin.dialog:53
@@ -1171,12 +1471,12 @@ msgstr "NO COUNTERS YET."
 #: ../dialogs/Kevin.dialog:250
 #: ../dialogs/Kevin.dialog:271
 #: ../dialogs/subdlg_Pendragon.dialog:33
-#: ../dialogs/subdlg_Pendragon.dialog:53
-#: ../dialogs/subdlg_Pendragon.dialog:62
-#: ../dialogs/subdlg_Pendragon.dialog:72
-#: ../dialogs/subdlg_Pendragon.dialog:82
-#: ../dialogs/subdlg_Pendragon.dialog:91
-#: ../dialogs/subdlg_Pendragon.dialog:103
+#: ../dialogs/subdlg_Pendragon.dialog:69
+#: ../dialogs/subdlg_Pendragon.dialog:78
+#: ../dialogs/subdlg_Pendragon.dialog:88
+#: ../dialogs/subdlg_Pendragon.dialog:98
+#: ../dialogs/subdlg_Pendragon.dialog:107
+#: ../dialogs/subdlg_Pendragon.dialog:119
 msgid "THIS WILL NOT EVER BE VISIBLE"
 msgstr "THIS WILL NOT EVER BE VISIBLE"
 
@@ -1535,6 +1835,8 @@ msgid " Cheer up! All will be fine! Happy days are coming! Hurray!"
 msgstr " Веселей! Всё будет хорошо! Грядут счастливые дни! Уррааа!"
 
 #: ../dialogs/Michelangelo.dialog:87
+#: ../dialogs/FirmwareUpdateServer.dialog:68
+#: ../dialogs/FirmwareUpdateServer.dialog:70
 msgid "..."
 msgstr "..."
 
@@ -1969,8 +2271,8 @@ msgstr ""
 "Они сказали, что уже переплавили его в топливо для ядерного реактора."
 
 #: ../dialogs/Michelangelo.dialog:419
-#: ../dialogs/Spencer.dialog:511
-#: ../dialogs/DocMoore.dialog:324
+#: ../dialogs/Spencer.dialog:514
+#: ../dialogs/DocMoore.dialog:323
 #: ../dialogs/Duncan.dialog:321
 msgid "See you later."
 msgstr "Увидимся позже."
@@ -2080,6 +2382,8 @@ msgstr "НЕТ."
 
 #: ../dialogs/StandardBotAfterTakeover.dialog:191
 #: ../dialogs/SACD.dialog:170
+#: ../dialogs/MER.dialog:113
+#: ../dialogs/TestDroid.dialog:41
 msgid " logout"
 msgstr " выйти"
 
@@ -2384,10 +2688,10 @@ msgstr " Но может есть еще надежда. Сколько именно тебе нужно?"
 #: ../dialogs/Stone.dialog:222
 msgid ""
 "I couldn't get myself to look at my finance logs for a while now. I guess "
-"about five to six thousand triangles."
+"about two thousand triangles."
 msgstr ""
-"Сейчас я не могу посмотреть в свои записи, но думаю, что около пяти-шести "
-"тысяч треугольников."
+"Давненько у меня руки не доходили до финансовой отчетности, так что я точно "
+"не знаю, но где-то около двух тысяч баксов."
 
 #: ../dialogs/Stone.dialog:231
 msgid " A pity that nothing can be done about your store."
@@ -2423,11 +2727,11 @@ msgstr ""
 
 #: ../dialogs/Stone.dialog:304
 msgid ""
-"I need 4,743 bucks to get through the month. I accept only that and not a "
+"I need 1,547 bucks to get through the month. I accept only that and not a "
 "cent more. Now it's fair. Thank you."
 msgstr ""
-"Мне надо 4 743 баксов чтобы дожить до конца месяца. Я приму эту сумму и ни "
-"центом больше. Это будет честно. Спасибо тебе огромное."
+"Мне нужно 1 547 треугольника чтобы дожить до конца месяца. Я приму эту сумму "
+"и ни центом больше. Так будет честно. Спасибо."
 
 #: ../dialogs/Stone.dialog:306
 msgid "You've given me a bit of hope.. "
@@ -2858,11 +3162,11 @@ msgstr "MICHELANGELO NOT DONE"
 
 #: ../dialogs/Spencer.dialog:226
 msgid ""
-"I think you should visit the camp's cook sometime. He's always around here, "
-"somewhere to the south."
+"I think you should visit the camp's cook sometime. He's usually in the "
+"restaurant kitchen."
 msgstr ""
-"Я думаю, тебе стоит найти время и побывать у нашего повора. Он всегда где-то "
-"тут шляется, поищи его на юге."
+"Я думаю, что тебе стоит как-нибудь навестить местного повара. Обычно его "
+"можно найти на кухне ресторана."
 
 #: ../dialogs/Spencer.dialog:234
 msgid "IS MICHELANGELO DONE?"
@@ -3040,8 +3344,8 @@ msgid "GOT IT!"
 msgstr "GOT IT!"
 
 #: ../dialogs/Spencer.dialog:427
-#: ../dialogs/Butch.dialog:289
-#: ../dialogs/Butch.dialog:317
+#: ../dialogs/Butch.dialog:291
+#: ../dialogs/Butch.dialog:319
 #: ../dialogs/SACD.dialog:142
 #: ../dialogs/SACD.dialog:159
 #: ../dialogs/DocMoore.dialog:133
@@ -3054,45 +3358,60 @@ msgstr " Я слышал, что Ричард узнал что-то новое о колонии."
 
 #: ../dialogs/Spencer.dialog:438
 msgid ""
-"Yes, that's right, and in fact it might be crucial. The data on the cube he "
-"obtained indicates the existence of a secret experimental facility in this "
-"region."
+"Yes, that's right, and in fact it might be crucial. As you may have heard, "
+"the MS office is defended by a disruptor shield. They open it only to let "
+"out new armies of bots."
 msgstr ""
-"Да, это так, и она может оказаться очень важной. В датакубе содержалась "
-"информация о существовании секретного экспериментального объекта в этом "
-"регионе."
+"Да, верно, и эта информация может оказаться очень важной. Возможно тебе "
+"приходилось слышать, что офис МС защищен дизентегрирующим полем. Они "
+"открывают его только чтобы выпустить очередную армию ботов."
 
 #: ../dialogs/Spencer.dialog:440
 msgid ""
-"Our findings suggest that they were testing some new form of disruptor "
-"shield, but research was finally discontinued, because of the side effects "
-"of the shield."
+"The data on the cube he obtained indicates the existence of a secret "
+"experimental facility in this region. Our findings suggest that they were "
+"testing some new form of disruptor shield for MS, so the shield can be "
+"controlled from that facility."
 msgstr ""
-"Полученные нами данные свидетельствуют о том, что на этом объекте "
-"исследовалась новая форма дезинтеграционного щита, но исследования в конце "
-"концов были прекращены, из-за побочного действия щита."
+"Данные из раздобытого им куба указывают на существование секретной "
+"исследовательской лаборатории где-то неподалеку. Согласно нашим "
+"исследованиям, они работали над новой разновидностью дизентегрирующего поля "
+"для MS, так что этим полем можно управлять оттуда."
 
 #: ../dialogs/Spencer.dialog:442
 msgid ""
-"If the information is true, then the shield interfered with the positioning "
-"system of all bots and made them wander off."
+"If the information is true, then you can take over the control droid and "
+"disable the shield permanently so we can get in."
 msgstr ""
-"Если данные не врут, то щит наводил помехи в системе навигации ботов и они "
-"разбредались в разные стороны."
+"Если все верно, то перехватив управляющего дроида ты сможешь выключить поле "
+"и впустить нас."
 
 #: ../dialogs/Spencer.dialog:444
 msgid ""
-"Now that seems like a gift sent from heavens. We'll need to activate the "
-"shield, if that is still possible, and save the colony for good."
+"We know that MS had a firmware update system, which could be used to "
+"propagate a malicious update to disable all bots. It is very alluring, but "
+"to perform this trick you need to hack up the control droid, which is in the "
+"heart of the HF. To enter HF you would have to disable the disruptor shield."
 msgstr ""
-"Это для нас, как манна небесная. Нам нужно включить щит, если это все еще "
-"возможно, и спасти колонию."
+"Известно, что у МС есть система обновления прошивок, которую можно "
+"использовать для рассылки вредоносной программы, которая выведет из строя "
+"всех ботов. Заманчиво. Но чтобы сыграть в эту игру нужно взломать "
+"управляющего дроида, расположенного в самом центре АК, а чтобы туда попасть "
+"нужно отключить дизентегрирующее поле."
 
-#: ../dialogs/Spencer.dialog:452
+#: ../dialogs/Spencer.dialog:446
+msgid ""
+"This seems like a gift sent from the heavens. Cleaning the Hell Fortress is "
+"not going to be easy, though.."
+msgstr ""
+"Это похоже на манну небесную. Впрочем, очистить Адскую Крепость далеко "
+"непросто..."
+
+#: ../dialogs/Spencer.dialog:454
 msgid " I'd like to participate in this operation."
 msgstr " Ух ты! Я тоже хочу всех спасти."
 
-#: ../dialogs/Spencer.dialog:455
+#: ../dialogs/Spencer.dialog:457
 msgid ""
 "That's most kind of you to volunteer. So far, I've sent two scouts into the "
 "area. They have found the facility entrance and unlocked the gate."
@@ -3100,14 +3419,14 @@ msgstr ""
 "Опять решил выступить добровольцем? Я уже послал двух разведчиков в этот "
 "район. Они нашли вход на объект и открыли ворота."
 
-#: ../dialogs/Spencer.dialog:457
+#: ../dialogs/Spencer.dialog:459
 msgid ""
 "That is a good sign, because it shows that the key combinations from the "
 "data cube were correct."
 msgstr ""
 "Это хороший знак, так как это значит, что ключи в датакубе были верны."
 
-#: ../dialogs/Spencer.dialog:459
+#: ../dialogs/Spencer.dialog:461
 msgid ""
 "However, we lost contact with them shortly after they went inside. They also "
 "reported heavy bot resistance."
@@ -3116,7 +3435,7 @@ msgstr ""
 "внутрь. Кроме того, они сообщили нам о ботах, оказывающих сильное "
 "сопротивление."
 
-#: ../dialogs/Spencer.dialog:461
+#: ../dialogs/Spencer.dialog:463
 msgid ""
 "I'd be glad if you could take a look. But use outmost care. We can't afford "
 "to lose another guard."
@@ -3124,11 +3443,11 @@ msgstr ""
 "Я был бы рад, если бы взглянул. Но быдь предельно внимателен. Мы не можем "
 "позволить себеб потерять еще одного бойца."
 
-#: ../dialogs/Spencer.dialog:470
+#: ../dialogs/Spencer.dialog:472
 msgid " OK. I'll be careful. But I'll do it."
 msgstr " Договорились. Я буду внимателен, но я сделаю это."
 
-#: ../dialogs/Spencer.dialog:473
+#: ../dialogs/Spencer.dialog:475
 msgid ""
 "Good. The base entrance is somewhat hidden in the caves to the northwest. "
 "Best use the north gate out of town, then head west."
@@ -3136,7 +3455,7 @@ msgstr ""
 "Хорошо. Вход на базу спрятан в пещерах на северо-западе. Лучше всего выйти "
 "через северные ворота из города и направиться на запад."
 
-#: ../dialogs/Spencer.dialog:475
+#: ../dialogs/Spencer.dialog:477
 msgid ""
 "I wish you the best of luck for this operation. It might be that our "
 "survival depends on it. Don't wait for assistance."
@@ -3144,30 +3463,32 @@ msgstr ""
 "Я желаю тебе удачи в этом предприятии. Возможно, что наша жизнь зависит от "
 "него. Но подмоги не жди."
 
-#: ../dialogs/Spencer.dialog:477
+#: ../dialogs/Spencer.dialog:479
 msgid ""
-"Try to activate the disruptor shield if you can. The control unit should be "
-"somewhere on the lowest level of the installation."
+"Try to get control over the disruptor shield if you can. The control droid "
+"should be somewhere on the lowest level of the installation. Simply "
+"destroying the droid might suffice in disabling the shield."
 msgstr ""
-"Постарайся активировать дезинтеграционный щит. Блок управления должен быть "
-"на саомом нижнем уровне базы."
+"Постарайся перехватить управление дизентегрирующим полем, если сможешь. "
+"Управляющий дроид должен быть где-то на нижних этажах. Впрочем, уничтожение "
+"дроида также должно привести к отключению поля."
 
-#: ../dialogs/Spencer.dialog:487
+#: ../dialogs/Spencer.dialog:490
 msgid " I don't feel like doing it now. I'd rather prepare some more."
 msgstr ""
 " Чего-то я еще не готов спасать мир. Мне надо сесть, серьезно подумать."
 
-#: ../dialogs/Spencer.dialog:490
+#: ../dialogs/Spencer.dialog:493
 msgid "Good. You should be well prepared if you intend to go."
 msgstr "Хорошо. Ты должен быть полностью готов, когда собирешься идти."
 
-#: ../dialogs/Spencer.dialog:492
+#: ../dialogs/Spencer.dialog:495
 msgid ""
 "Also there is no need to hurry with this. After all, the installation is not "
 "running away, so best take a slow approach."
 msgstr "Торопиться не надо. Не убежит же от тебя база, так что не спеши."
 
-#: ../dialogs/Spencer.dialog:499
+#: ../dialogs/Spencer.dialog:502
 msgid "STARTED THE CUBE MISSION?"
 msgstr "STARTED THE CUBE MISSION?"
 
@@ -4104,7 +4425,7 @@ msgid "Hey you!  Linarian!  What do you want here?"
 msgstr "Эй ты! Линарианец!  Что тебе тут надо?"
 
 #: ../dialogs/Ernie.dialog:47
-#: ../dialogs/MSFacilityGateGuardLeader.dialog:48
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:49
 msgid "Just taking a look around."
 msgstr "Да я просто осматриваюсь."
 
@@ -4193,146 +4514,154 @@ msgid " Yeah. I want to fight."
 msgstr " Угу. Я хочу драться"
 
 #: ../dialogs/Butch.dialog:113
-msgid "Good. Get into the door with the portal."
-msgstr "Хорошо. Заходи в дверь с порталом."
+msgid ""
+"Good. I opened up the south arena gate for you so just climb down the ladder."
+msgstr ""
+"Хорошо. Я открыл южные ворота на арену, тебе осталось только спуститься по "
+"лестнице."
 
-#: ../dialogs/Butch.dialog:125
+#: ../dialogs/Butch.dialog:115
+msgid ""
+"But remember, the door out won't be opened until you killed all the bots."
+msgstr "Но помни, пока ты не перебьёшь всех ботов, дверь останется закрытой."
+
+#: ../dialogs/Butch.dialog:127
 msgid " The bots are dead."
 msgstr " Боты подохли."
 
-#: ../dialogs/Butch.dialog:128
+#: ../dialogs/Butch.dialog:130
 msgid "Good for you."
 msgstr "Неплохо для такого, как ты."
 
-#: ../dialogs/Butch.dialog:130
+#: ../dialogs/Butch.dialog:132
 msgid "You are a total newbie. But, a good newbie."
 msgstr "Ты всё ещё салага. Но перспективный салага."
 
-#: ../dialogs/Butch.dialog:132
+#: ../dialogs/Butch.dialog:134
 msgid "I will say a good word to Spencer about this."
 msgstr "Я замолвлю за тебя словечко перед Спенсером."
 
-#: ../dialogs/Butch.dialog:143
+#: ../dialogs/Butch.dialog:145
 msgid " I thought I am going to fight you, coward."
 msgstr " Я подумал, как бы вздуть тебя, трус."
 
-#: ../dialogs/Butch.dialog:146
+#: ../dialogs/Butch.dialog:148
 msgid "I NEVER said that, newbie."
 msgstr "Этого я не предлагал, салага."
 
-#: ../dialogs/Butch.dialog:148
+#: ../dialogs/Butch.dialog:150
 msgid "You wanted a fight, and you got one."
 msgstr "Ты хотел драку - ты её получил."
 
-#: ../dialogs/Butch.dialog:150
+#: ../dialogs/Butch.dialog:152
 msgid "I offered a fight, and you wanted that."
 msgstr "Я предложил сразиться - и ты получил желаемое."
 
-#: ../dialogs/Butch.dialog:152
+#: ../dialogs/Butch.dialog:154
 msgid "There is nothing more to say, newbie."
 msgstr "О чём ещё тут говорить, салага?"
 
-#: ../dialogs/Butch.dialog:162
+#: ../dialogs/Butch.dialog:164
 msgid " I want a bigger challenge."
 msgstr " Я хочу участвовать в серьёзном состязании."
 
-#: ../dialogs/Butch.dialog:165
+#: ../dialogs/Butch.dialog:167
 msgid "Newbie, I have a second arena."
 msgstr "Салага, у меня есть вторая арена."
 
-#: ../dialogs/Butch.dialog:167
+#: ../dialogs/Butch.dialog:169
 msgid "You will die if you go there."
 msgstr "Ты сдохнешь, если пойдёшь туда."
 
-#: ../dialogs/Butch.dialog:169
+#: ../dialogs/Butch.dialog:171
 msgid "I pity you, silly bird. Don't go there."
 msgstr "Мне тебя будет жаль, глупый птиц. Не ходи туда."
 
-#: ../dialogs/Butch.dialog:171
+#: ../dialogs/Butch.dialog:173
 msgid "But if you really want it, the door is open."
 msgstr "Но если ты действительно этого хочешь - дверь открыта."
 
-#: ../dialogs/Butch.dialog:181
+#: ../dialogs/Butch.dialog:183
 msgid " The master arena is clear."
 msgstr " Я зачистил арену мастеров."
 
-#: ../dialogs/Butch.dialog:184
+#: ../dialogs/Butch.dialog:186
 msgid "What!? Impossible! No one survived the second arena before!"
 msgstr "Что?! Быть того не может! Никто ещё не выживал на второй арене!"
 
-#: ../dialogs/Butch.dialog:186
+#: ../dialogs/Butch.dialog:188
 msgid "One has to be insane to try the second arena."
 msgstr "Только у тебя одного ума хватило испытать себя на второй арене."
 
-#: ../dialogs/Butch.dialog:188
+#: ../dialogs/Butch.dialog:190
 msgid "You are not a newbie, but you are a TOTAL IDIOT!"
 msgstr "Ты не салага, ты АБСОЛЮТНЫЙ ИДИОТ!"
 
-#: ../dialogs/Butch.dialog:190
+#: ../dialogs/Butch.dialog:192
 msgid "I pity you, poor fool. You will die young."
 msgstr "Мне тебя жаль, бедный дурачок. Ты умрёшь молодым."
 
-#: ../dialogs/Butch.dialog:199
+#: ../dialogs/Butch.dialog:201
 msgid " What is wrong with you? Why do you keep calling me a newbie?"
 msgstr " Да что с тобой? Почему ты меня всё ещё зовешь салагой?"
 
-#: ../dialogs/Butch.dialog:202
+#: ../dialogs/Butch.dialog:204
 msgid "Beacuse you ARE a newbie, newbie!"
 msgstr "Потому, что ты и ЕСТЬ салага, салага."
 
-#: ../dialogs/Butch.dialog:209
+#: ../dialogs/Butch.dialog:211
 msgid ""
 " Why the hell are you organizing fights? Enough people have died already!"
 msgstr ""
 " Какого чёрта ты занимаешься организацией боёв? Уже и так погибло достаточно "
 "людей!"
 
-#: ../dialogs/Butch.dialog:212
+#: ../dialogs/Butch.dialog:214
 msgid "I have a very good reason not to tell you."
 msgstr "У меня есть серьёзная причина не говорить тебе об этом."
 
-#: ../dialogs/Butch.dialog:214
+#: ../dialogs/Butch.dialog:216
 msgid ""
 "Not like someone as inexperienced like you could understand it anyway."
 msgstr "В любом случае, таким неопытным как ты этого не понять."
 
-#: ../dialogs/Butch.dialog:221
+#: ../dialogs/Butch.dialog:223
 msgid " No way! Violence is wrong! Make love not war!"
 msgstr " Ну нет! Насилие - не наш метод! Занимайтесь любовью, а не войной!"
 
-#: ../dialogs/Butch.dialog:224
-#: ../dialogs/Butch.dialog:236
-#: ../dialogs/DocMoore.dialog:273
-#: ../dialogs/DocMoore.dialog:284
+#: ../dialogs/Butch.dialog:226
+#: ../dialogs/Butch.dialog:238
+#: ../dialogs/DocMoore.dialog:272
+#: ../dialogs/DocMoore.dialog:283
 #: ../dialogs/Melfis.dialog:89
 msgid " . . ."
 msgstr " . . ."
 
-#: ../dialogs/Butch.dialog:233
+#: ../dialogs/Butch.dialog:235
 msgid " Roses, not destruction!"
 msgstr " Розы, а не уничтожение!"
 
-#: ../dialogs/Butch.dialog:244
+#: ../dialogs/Butch.dialog:246
 msgid " End the violence! All blood is red!"
 msgstr " Покончите с насилием! У всех кровь красная!"
 
-#: ../dialogs/Butch.dialog:247
+#: ../dialogs/Butch.dialog:249
 msgid "Hey, the bots bleed black. With oil."
 msgstr "Эй, а у ботов-то - чёрная. Из машинного масла."
 
-#: ../dialogs/Butch.dialog:255
+#: ../dialogs/Butch.dialog:257
 msgid " But... But... "
 msgstr " Но... Но... "
 
-#: ../dialogs/Butch.dialog:258
+#: ../dialogs/Butch.dialog:260
 msgid "No 'but' about it, newbie."
 msgstr "Никаких"
 
-#: ../dialogs/Butch.dialog:260
+#: ../dialogs/Butch.dialog:262
 msgid "The bots bleed black."
 msgstr "Боты истекают чёрным машинным маслом."
 
-#: ../dialogs/Butch.dialog:268
+#: ../dialogs/Butch.dialog:270
 msgid ""
 " You... Have ruined my pacifistic slogan... I am angry... So angry that I "
 "want to smash things!"
@@ -4340,35 +4669,35 @@ msgstr ""
 " Ты.. втоптал в грязь мой пацифистский девиз... Я зол. Я так зол, что "
 "отпацифиздил бы кого-нибудь!"
 
-#: ../dialogs/Butch.dialog:271
+#: ../dialogs/Butch.dialog:273
 msgid "Great. Get in the door, newbie."
 msgstr "Превосходно. Проходи в дверь, салага."
 
-#: ../dialogs/Butch.dialog:280
+#: ../dialogs/Butch.dialog:282
 msgid "CHECK FOR FIRST ARENA VICTORY"
 msgstr "CHECK FOR FIRST ARENA VICTORY"
 
-#: ../dialogs/Butch.dialog:297
+#: ../dialogs/Butch.dialog:299
 msgid "ENABLING TEXT AFTER THE FIRST ARENA VICTORY"
 msgstr "ENABLING TEXT AFTER THE FIRST ARENA VICTORY"
 
-#: ../dialogs/Butch.dialog:308
+#: ../dialogs/Butch.dialog:310
 msgid "CHECK FOR SECOND ARENA VICTORY"
 msgstr "CHECK FOR SECOND ARENA VICTORY"
 
-#: ../dialogs/Butch.dialog:325
+#: ../dialogs/Butch.dialog:327
 msgid "ENABLING TEXT AFTER THE SECOND ARENA VICTORY"
 msgstr "ENABLING TEXT AFTER THE SECOND ARENA VICTORY"
 
-#: ../dialogs/Butch.dialog:335
+#: ../dialogs/Butch.dialog:337
 msgid "DID WE ENABLE SET 1 BEFORE?"
 msgstr "DID WE ENABLE SET 1 BEFORE?"
 
-#: ../dialogs/Butch.dialog:344
+#: ../dialogs/Butch.dialog:346
 msgid "DID WE ENABLE SET 2 BEFORE?"
 msgstr "DID WE ENABLE SET 2 BEFORE?"
 
-#: ../dialogs/Butch.dialog:356
+#: ../dialogs/Butch.dialog:358
 msgid "Sure."
 msgstr "Конечно."
 
@@ -4572,39 +4901,56 @@ msgstr "Я надеюсь, что твое появление изменит ход войны..."
 
 #: ../dialogs/subdlg_Stone.dialog:58
 msgid ""
+"I have something here for you. I managed to hide this Shotgun from the red "
+"guard."
+msgstr ""
+"У меня кое-что для тебя есть. Мне удалось спрятать от красногвардейцев "
+"дробовик."
+
+#: ../dialogs/subdlg_Stone.dialog:60
+msgid ""
+"It used to belong to my grandfather, so it's very dear to me, but I'm sure "
+"he would have like you to have it on your journey to save us all."
+msgstr ""
+"Оно когда-то принадлежало моему дедушке, так что оно очень дорого мне, но я "
+"уверен, что он бы одобрил то, что теперь я передаю его тебе, чтобы оно "
+"помогло тебе в спасении всех нас."
+
+#: ../dialogs/subdlg_Stone.dialog:62
+msgid ""
 "Tux, if you ever find out who started the Great Assault... GIVE THEM A KICK "
 "IN THE ASS, FROM LILY STONE!!!"
 msgstr ""
 "Тукс, если ты найдешь тех, кто начал Великое Восстание... ДАЙ ИМ ХОРОШЕГО "
 "ПИНКА ПО ЗАД ОТ ЛИЛИ СТОУН!!!"
 
-#: ../dialogs/subdlg_Stone.dialog:68
+#: ../dialogs/subdlg_Stone.dialog:73
 msgid " It's not important who am I."
 msgstr " Не важно, кто я такой."
 
-#: ../dialogs/subdlg_Stone.dialog:71
+#: ../dialogs/subdlg_Stone.dialog:76
 msgid "If you want to remain a stranger, I will respect your wishes."
 msgstr "Раз ты хочешь остаться неизвестным, я уважаю твое желание."
 
-#: ../dialogs/subdlg_Stone.dialog:73
+#: ../dialogs/subdlg_Stone.dialog:78
 msgid "So be it."
 msgstr "Пусть будет так."
 
-#: ../dialogs/subdlg_Stone.dialog:83
+#: ../dialogs/subdlg_Stone.dialog:88
 msgid " Ha ha ha, You fell for it! You get nothing from me! Hahahahah!"
 msgstr ""
 " Ха ха ха, ты попалась на эту удочку! Ты ничего от меня не получишь! "
 "Хахахаха!"
 
-#: ../dialogs/subdlg_Stone.dialog:86
+#: ../dialogs/subdlg_Stone.dialog:91
 msgid "You... monster..."
 msgstr "Ты... монстр..."
 
-#: ../dialogs/subdlg_Stone.dialog:88
+#: ../dialogs/subdlg_Stone.dialog:93
 msgid "No one makes fun of Lily Stone's family store!"
 msgstr "Никто не смеет смеяться над семейным магазином Лили Стоун!"
 
-#: ../dialogs/subdlg_Stone.dialog:90
+#: ../dialogs/subdlg_Stone.dialog:95
 msgid "Say your prayers, you oversized duck!!!"
 msgstr "Молись, ты, утка-переросток!!!"
 
@@ -4696,6 +5042,7 @@ msgid "That is fine. I will find someone else."
 msgstr "Ничего, я найду кого-нибудь еще."
 
 #: ../dialogs/SACD.dialog:33
+#: ../dialogs/MER.dialog:33
 msgid " Login : admin  Password : *******"
 msgstr " Логин : администратор  Пароль : *******"
 
@@ -4775,39 +5122,47 @@ msgstr "При открытии дверей произошла ошибка."
 msgid "IS THIS FIRST DIALOG?"
 msgstr "IS THIS FIRST DIALOG?"
 
-#: ../dialogs/SADD.dialog:33
+#: ../dialogs/SADD.dialog:36
+msgid ""
+"Your bio checksum does not trigger a match in staff database. Please show "
+"proper credentials or leave the premises at once."
+msgstr ""
+"Ваша биологическая проверочная сумма не была найдена в базе сотрудников. "
+"Пожалуйста предъявите пропуск или немедленно покиньте помещение."
+
+#: ../dialogs/SADD.dialog:42
 msgid " Who are you and what are you doing?"
 msgstr " Кто ты и что здесь делаешь?"
 
-#: ../dialogs/SADD.dialog:36
+#: ../dialogs/SADD.dialog:45
 msgid " I am a SADD - Secret Area Defence Droid"
 msgstr " Я - ДЗСО - дроид защиты секретных объектов."
 
-#: ../dialogs/SADD.dialog:38
-#: ../dialogs/SADD.dialog:176
+#: ../dialogs/SADD.dialog:47
+#: ../dialogs/SADD.dialog:187
 msgid " PRIMARY TARGET 1: do not let unauthorized people in."
 msgstr " ПЕРВИЧНАЯ ЦЕЛЬ 1: не позволять посторонним проникать внутрь."
 
-#: ../dialogs/SADD.dialog:40
-#: ../dialogs/SADD.dialog:178
-#: ../dialogs/SADD.dialog:194
+#: ../dialogs/SADD.dialog:49
+#: ../dialogs/SADD.dialog:189
+#: ../dialogs/SADD.dialog:205
 msgid " PRIMARY TARGET 2: authorized personal must have access to the zone."
 msgstr ""
 " ПЕРВИЧНАЯ ЦЕЛЬ 2: сотрудники должны иметь возможность попасть внутрь."
 
-#: ../dialogs/SADD.dialog:42
-#: ../dialogs/SADD.dialog:68
-#: ../dialogs/SADD.dialog:180
+#: ../dialogs/SADD.dialog:51
+#: ../dialogs/SADD.dialog:78
+#: ../dialogs/SADD.dialog:191
 msgid " SECONDARY TARGET: prevent secret information leakage"
 msgstr " ВТОРИЧНАЯ ЦЕЛЬ: пресекать утечку секретной информации."
 
-#: ../dialogs/SADD.dialog:51
+#: ../dialogs/SADD.dialog:61
 msgid " I mean, you are not attacking me... Don't you kill like other bots?"
 msgstr ""
 " Я имею в виду, что ты не атакуешь меня... Разве ты не убиваешь, как другие "
 "боты?"
 
-#: ../dialogs/SADD.dialog:54
+#: ../dialogs/SADD.dialog:64
 msgid ""
 " I do! I do! I kill humans, bots, linarians and even dogs, cats and other "
 "animals! I would kill anybody!"
@@ -4815,42 +5170,42 @@ msgstr ""
 " Никак нет! Убиваю! Я убиваю людей, ботов, линарианцев, а также собак, кошек "
 "и прочую живность! Да кого угодно!"
 
-#: ../dialogs/SADD.dialog:56
+#: ../dialogs/SADD.dialog:66
 msgid " Em.. Anybody who would try to get in, of course."
 msgstr ""
 " Эм... Кого угодно, кто попытается войти внутрь без соответствующего "
 "разрешения."
 
-#: ../dialogs/SADD.dialog:65
+#: ../dialogs/SADD.dialog:75
 msgid " What is this place?"
 msgstr " Что это за место?"
 
-#: ../dialogs/SADD.dialog:70
+#: ../dialogs/SADD.dialog:80
 msgid " *INFO* secret information steal attempt detected"
 msgstr " *СПРАВКА* обнаружена попытка кражи секретной информации"
 
-#: ../dialogs/SADD.dialog:72
+#: ../dialogs/SADD.dialog:82
 msgid " Go away. You are not allowed to be here!"
 msgstr " Проваливай. Тебе нельзя здесь находиться."
 
-#: ../dialogs/SADD.dialog:80
+#: ../dialogs/SADD.dialog:90
 msgid " Why are you not hostile?"
 msgstr " Почему ты не враждебен?"
 
-#: ../dialogs/SADD.dialog:83
+#: ../dialogs/SADD.dialog:93
 msgid " Hostile? What do you mean?"
 msgstr " Враждебен? Что ты имеешь в виду?"
 
-#: ../dialogs/SADD.dialog:92
+#: ../dialogs/SADD.dialog:102
 msgid " What about the Great Assault?"
 msgstr " Ты что-нибудь слышал о Великой Осаде?"
 
-#: ../dialogs/SADD.dialog:95
+#: ../dialogs/SADD.dialog:105
 msgid " For security reason SADDs are not equipped with wireless modules."
 msgstr ""
 " Из соображений безопасности ДЗСО не оснащаются беспроводными модулями."
 
-#: ../dialogs/SADD.dialog:97
+#: ../dialogs/SADD.dialog:107
 msgid ""
 " I know only that I have to be recharged, checked and have my firmware "
 "updated every 3 months."
@@ -4858,11 +5213,11 @@ msgstr ""
 " Я знаю только что меня раз в три месяца надо перезаряжать, проводить "
 "техобслуживание и обновлять прошивку."
 
-#: ../dialogs/SADD.dialog:106
+#: ../dialogs/SADD.dialog:116
 msgid " When does your last maintenance date back to?"
 msgstr " И когда тебя в последний раз обслуживали?"
 
-#: ../dialogs/SADD.dialog:109
+#: ../dialogs/SADD.dialog:119
 msgid ""
 " One year and a half ago. My accumulator is nearly empty, so I'm going to "
 "halt soon. Gates will become unguarded..."
@@ -4870,32 +5225,32 @@ msgstr ""
 " Полтора года назад. Мой аккумулятор уже почти разрядился, так что скоро я "
 "отключусь. Вход останется без охраны."
 
-#: ../dialogs/SADD.dialog:111
+#: ../dialogs/SADD.dialog:121
 msgid " *INFO* secret information steal detected!"
 msgstr " *СПРАВКА* обнаружена кража секретной информации!"
 
-#: ../dialogs/SADD.dialog:113
+#: ../dialogs/SADD.dialog:123
 msgid " *INFO* information classified as critical!"
 msgstr " *СПРАВКА* информация классифицирована как особо секретная!"
 
-#: ../dialogs/SADD.dialog:115
+#: ../dialogs/SADD.dialog:125
 msgid " *INFO* locking zone!"
 msgstr " *СПРАВКА* закрываю зону!"
 
-#: ../dialogs/SADD.dialog:127
+#: ../dialogs/SADD.dialog:138
 msgid " What have you done?! How am I supposed to get out of here?"
 msgstr " Что ты наделал?! И как я теперь отсюда выберусь?"
 
-#: ../dialogs/SADD.dialog:130
+#: ../dialogs/SADD.dialog:141
 msgid " You are not. You have secret information, so I won't let you out."
 msgstr ""
 " Никак. Ты знаешь то, чего тебе знать не следовало, так что я тебя не выпущу."
 
-#: ../dialogs/SADD.dialog:138
+#: ../dialogs/SADD.dialog:149
 msgid " Why not kill me immediately?"
 msgstr " Почему же ты меня сразу не убил?"
 
-#: ../dialogs/SADD.dialog:141
+#: ../dialogs/SADD.dialog:152
 msgid ""
 " And stand here alone until I die? While you are here I can speak with you. "
 "Oh, I haven't spoken to anybody for a looong time!"
@@ -4903,7 +5258,7 @@ msgstr ""
 " И оставаться тут одному пока не помру? Пока тыт здесь, я могу поговорить. "
 "Эх, сколько времени я уже ни с кем не говорил!"
 
-#: ../dialogs/SADD.dialog:150
+#: ../dialogs/SADD.dialog:161
 msgid ""
 " I'm thirsty and hungry. I will die within days, and you will not have an "
 "interlocutor any more!"
@@ -4911,19 +5266,19 @@ msgstr ""
 " Я хочу пить и есть. Через пару дней я умру и у тебя больше не будет "
 "собеседника!"
 
-#: ../dialogs/SADD.dialog:153
+#: ../dialogs/SADD.dialog:164
 msgid " My power supply will end earlier."
 msgstr " Не волнуйся, мой аккумулятор сдохнет раньше."
 
-#: ../dialogs/SADD.dialog:160
+#: ../dialogs/SADD.dialog:171
 msgid " You speak almost like a human..."
 msgstr " Ты говоришь почти как человек..."
 
-#: ../dialogs/SADD.dialog:163
+#: ../dialogs/SADD.dialog:174
 msgid " Maybe I'm almost like human?"
 msgstr " А может я и есть почти человек?"
 
-#: ../dialogs/SADD.dialog:165
+#: ../dialogs/SADD.dialog:176
 msgid ""
 " Anyway, that's none of your business. Soon I'll be dead, you too and nobody "
 "will enter this place ever again!"
@@ -4931,28 +5286,28 @@ msgstr ""
 " В любом случае, это не твое дело. Скоро я помру, впрочем ты тоже. И никто "
 "никогда сюда не войдет!"
 
-#: ../dialogs/SADD.dialog:173
+#: ../dialogs/SADD.dialog:184
 msgid " What are your orders again?"
 msgstr " Повтори-ка свои приказы."
 
-#: ../dialogs/SADD.dialog:182
+#: ../dialogs/SADD.dialog:193
 msgid " Why do you ask?"
 msgstr " Зачем тебе?"
 
-#: ../dialogs/SADD.dialog:191
+#: ../dialogs/SADD.dialog:202
 msgid " Tell me your second order once more..."
 msgstr " Повтори второй приказ..."
 
-#: ../dialogs/SADD.dialog:196
+#: ../dialogs/SADD.dialog:207
 msgid " Yes, it will be violated. But first order has higher priority."
 msgstr ""
 " Да, он будет нарушен. Но первый приказ имеет более высокий приоритет."
 
-#: ../dialogs/SADD.dialog:205
+#: ../dialogs/SADD.dialog:216
 msgid " So you can break your orders?"
 msgstr " Так ты все-таки можешь нарушать приказы?"
 
-#: ../dialogs/SADD.dialog:208
+#: ../dialogs/SADD.dialog:219
 msgid ""
 " I've already broken them, when I told you what I shouldn't have. That's "
 "because of my human nature."
@@ -4960,15 +5315,15 @@ msgstr ""
 " Я уже их нарушил, рассказав тебе то, что не должен был. Это все из-за моей "
 "человеческой стороны."
 
-#: ../dialogs/SADD.dialog:217
+#: ../dialogs/SADD.dialog:228
 msgid " Then please, break the rule, disable the guns and let me go."
 msgstr " Ну так, пожалуйста, нарушь приказ, отключи пушки и выпусти меня."
 
-#: ../dialogs/SADD.dialog:220
+#: ../dialogs/SADD.dialog:231
 msgid " No way. I'm a computer, I can't break rules."
 msgstr " Не пойдет. Я компьютер и действую строго по правилам."
 
-#: ../dialogs/SADD.dialog:228
+#: ../dialogs/SADD.dialog:239
 msgid ""
 " I suggest a deal. You let me out, I bring you dilithium cristals. It will "
 "save both of us."
@@ -4976,28 +5331,28 @@ msgstr ""
 " Я предлагаю сделку. Ты меня выпустишь, а я принесу тебе кристаллы дилития. "
 "Это спасет нас обоих."
 
-#: ../dialogs/SADD.dialog:231
+#: ../dialogs/SADD.dialog:242
 msgid " Why would I trust you?"
 msgstr " А с чего я должен тебе доверять?"
 
-#: ../dialogs/SADD.dialog:245
+#: ../dialogs/SADD.dialog:256
 msgid " And what about your human nature?"
 msgstr " А как же твоя человеческая натура?"
 
-#: ../dialogs/SADD.dialog:248
+#: ../dialogs/SADD.dialog:259
 msgid " Human? I've said human? I'm a computer!"
 msgstr " Человеческая? Я сказал человеческая? Я компьютер!"
 
-#: ../dialogs/SADD.dialog:250
+#: ../dialogs/SADD.dialog:261
 msgid " OK, I'm almost a computer."
 msgstr " Ладно, я почти компьютер."
 
-#: ../dialogs/SADD.dialog:258
-#: ../dialogs/SADD.dialog:270
+#: ../dialogs/SADD.dialog:269
+#: ../dialogs/SADD.dialog:281
 msgid " Almost a computer? What does this mean?"
 msgstr " Почти компьютер? Это как?"
 
-#: ../dialogs/SADD.dialog:261
+#: ../dialogs/SADD.dialog:272
 msgid ""
 " It means what it means! Nothing more, nothing less! Shut up, little piece "
 "of biomass!"
@@ -5005,7 +5360,7 @@ msgstr ""
 " Это значит то, что это значит! Не более и не менее того! Заткнись, кусок "
 "биомассы!"
 
-#: ../dialogs/SADD.dialog:273
+#: ../dialogs/SADD.dialog:284
 msgid ""
 " When I say SHUT UP, you MUST shut up! Try this, worthless grain of the "
 "universe!"
@@ -5013,11 +5368,11 @@ msgstr ""
 " Когда я говорю ЗАТКНИСЬ, ты ДОЛЖЕН заткнуться! Отведай ка этого, никчемное "
 "зернышко во вселенной!"
 
-#: ../dialogs/SADD.dialog:282
-msgid " You must promise me a significant reward."
-msgstr " Ты должен пообещать мне хорошую награду."
+#: ../dialogs/SADD.dialog:293
+msgid " You will promise me a significant reward."
+msgstr " Ты можешь пообещать мне существенную награду."
 
-#: ../dialogs/SADD.dialog:285
+#: ../dialogs/SADD.dialog:296
 msgid ""
 " Damn. Ok, I'll give you a super exterminator if you give me dilithium "
 "cristals."
@@ -5025,7 +5380,7 @@ msgstr ""
 " Черт. Ладно, я дам тебе супер экстерминатор, если ты только принесешь мне "
 "дилитий."
 
-#: ../dialogs/SADD.dialog:297
+#: ../dialogs/SADD.dialog:308
 msgid ""
 " It seems, that you are sentinent, you are a form of life. I must help any "
 "form of life."
@@ -5033,47 +5388,47 @@ msgstr ""
 " Мне показалось, что ты разумен, что ты своего рода форма жизни. А я должен "
 "помогать любым проявлениям жизни."
 
-#: ../dialogs/SADD.dialog:300
+#: ../dialogs/SADD.dialog:311
 msgid " Thanks a lot for your warm words. I think I can trust you."
 msgstr " Спасибо тебе зе тёплые слова. Я думаю, что могу тебе доверять."
 
-#: ../dialogs/SADD.dialog:310
+#: ../dialogs/SADD.dialog:321
 msgid " So disable the guns, please."
 msgstr " Ну так отключи автопушки, пожалуйста."
 
-#: ../dialogs/SADD.dialog:313
+#: ../dialogs/SADD.dialog:324
 msgid " Go, and bring dilithium. I badly need it."
 msgstr " Иди и принеси мне дилитиум. Мне он очень нужен."
 
-#: ../dialogs/SADD.dialog:326
+#: ../dialogs/SADD.dialog:337
 msgid " HAVE THE CRYSTALS"
 msgstr " HAVE THE CRYSTALS"
 
-#: ../dialogs/SADD.dialog:335
+#: ../dialogs/SADD.dialog:346
 msgid " TUX_GOT_CRISTALS"
 msgstr " TUX_GOT_CRISTALS"
 
-#: ../dialogs/SADD.dialog:346
+#: ../dialogs/SADD.dialog:357
 msgid " TUX_DIDNT_GOT_CRISTALS"
 msgstr " TUX_DIDNT_GOT_CRISTALS"
 
-#: ../dialogs/SADD.dialog:357
+#: ../dialogs/SADD.dialog:368
 msgid " TUX STARTED ON THE QUEST"
 msgstr " TUX STARTED ON THE QUEST"
 
-#: ../dialogs/SADD.dialog:366
+#: ../dialogs/SADD.dialog:377
 msgid " IS MISSION IS DONE?"
 msgstr " IS MISSION IS DONE?"
 
-#: ../dialogs/SADD.dialog:375
+#: ../dialogs/SADD.dialog:386
 msgid " WE DONT HAVE MISSION"
 msgstr " WE DONT HAVE MISSION"
 
-#: ../dialogs/SADD.dialog:385
+#: ../dialogs/SADD.dialog:396
 msgid " I have the crystals! They were difficult to find."
 msgstr " Я раздобыл кристаллы! Было не так-то просто их достать."
 
-#: ../dialogs/SADD.dialog:388
+#: ../dialogs/SADD.dialog:399
 msgid ""
 " Good. I've opened the depot door for you. Take your super exterminator and "
 "GET OUT of here!"
@@ -5081,23 +5436,23 @@ msgstr ""
 " Отлично. Я открыл тебе дверь склада. Забирай свой супер экстерминатор и "
 "ПРОВАЛИВАЙ!"
 
-#: ../dialogs/SADD.dialog:404
+#: ../dialogs/SADD.dialog:415
 msgid " How is your power supply?"
 msgstr " Как у тебя с батареей?"
 
-#: ../dialogs/SADD.dialog:407
+#: ../dialogs/SADD.dialog:418
 msgid " Badly. Get the cristals. Remember, you promised!"
 msgstr " Хреново. Раздобудь кристаллы. Помни: ты обещал!"
 
-#: ../dialogs/SADD.dialog:415
+#: ../dialogs/SADD.dialog:426
 msgid " MISSION IS DONE #2"
 msgstr " MISSION IS DONE #2"
 
-#: ../dialogs/SADD.dialog:426
+#: ../dialogs/SADD.dialog:437
 msgid " I have crystals! They were difficult to find."
 msgstr " У меня есть кристаллы! Их было не так-то просто достать."
 
-#: ../dialogs/SADD.dialog:429
+#: ../dialogs/SADD.dialog:440
 msgid ""
 " Great! Thanks. I've opened some doors for you, I hope you will find "
 "something interesting there. That's all I can do for you."
@@ -5105,36 +5460,36 @@ msgstr ""
 " Отлично! Спасибо.  Я открыл тебе дверь, надеюсь ты найдешь там что-нибудь "
 "полезное. Это все, что я могу для тебя сделать."
 
-#: ../dialogs/SADD.dialog:445
+#: ../dialogs/SADD.dialog:456
 msgid " DID I ASK EXTERIMINATOR?"
 msgstr " DID I ASK EXTERIMINATOR?"
 
-#: ../dialogs/SADD.dialog:454
+#: ../dialogs/SADD.dialog:465
 msgid " I HAVE ASKED"
 msgstr " I HAVE ASKED"
 
-#: ../dialogs/SADD.dialog:463
-msgid " I DIDN'T ASKED"
-msgstr " I DIDN'T ASKED"
+#: ../dialogs/SADD.dialog:474
+msgid " I DIDN'T ASK"
+msgstr " Я НЕ СПРАШИВАЛ"
 
-#: ../dialogs/SADD.dialog:472
-msgid " You call this a super exteriminator?"
-msgstr " И это ты называешь супер экстерминатором?"
+#: ../dialogs/SADD.dialog:483
+msgid " You call this a super exterminator?"
+msgstr " И ты называешь это супер эктерминатором?"
 
-#: ../dialogs/SADD.dialog:475
+#: ../dialogs/SADD.dialog:486
 msgid " I do. Now please leave this place before I terminate you."
 msgstr " Да называю. А теперь пожалуйста уходи, пока я тебя не уничтожил."
 
-#: ../dialogs/SADD.dialog:483
+#: ../dialogs/SADD.dialog:494
 msgid " This is rubbish! Nobody can use this damned gun!"
 msgstr " Это мусор! Это чертову пушку просто невозможно использовать!"
 
-#: ../dialogs/SADD.dialog:486
+#: ../dialogs/SADD.dialog:497
 msgid " The door is still open. You can put it back and go. Quick."
 msgstr ""
 " Дверь пока еще открыта. Если хочешь, положи пушку на место и уходи. Быстро."
 
-#: ../dialogs/SADD.dialog:494
+#: ../dialogs/SADD.dialog:505
 msgid ""
 " Give me a real gun, dude! Immediately! I have brought you what you wanted, "
 "now give me my reward!"
@@ -5142,7 +5497,7 @@ msgstr ""
 " Дай мне нормальную пушку, чувак! Немедленно! Я принес тебе то, что ты "
 "хотел, так дай мне причитающуюся мне награду!"
 
-#: ../dialogs/SADD.dialog:497
+#: ../dialogs/SADD.dialog:508
 msgid ""
 " You can go standing on your feet, that's your reward. And DON'T TRY MY "
 "PATIENCE!"
@@ -5150,62 +5505,80 @@ msgstr ""
 " Сколько бы ты не кричал, это и есть твоя награда. И НЕ НАДО ИСПЫТЫВАТЬ МОЕ "
 "ТЕРПЕНИЕ!"
 
-#: ../dialogs/SADD.dialog:505
+#: ../dialogs/SADD.dialog:516
 msgid " I'll kill you if you don't give me my gun!"
 msgstr " Я убью тебя, если не отдашь мне пушку!"
 
-#: ../dialogs/SADD.dialog:508
+#: ../dialogs/SADD.dialog:519
 msgid ""
 " You are welcome. But you would never get out of here, my death won't help "
 "you."
 msgstr ""
 " Попробуй. Но тебе отсюда не выбраться, моя смерть не сильно тебе поможет."
 
-#: ../dialogs/SADD.dialog:523
+#: ../dialogs/SADD.dialog:534
 msgid " And what about your directives, especially second?"
 msgstr " Ну а как же приказы? Особенно второй?"
 
-#: ../dialogs/SADD.dialog:526
+#: ../dialogs/SADD.dialog:537
 msgid " Now I have time. When you die, I'll disable guns."
 msgstr ""
 " Теперь у меня есть время. Я просто подожду, пока ты помрешь, а потом "
 "отклучу пушки."
 
-#: ../dialogs/SADD.dialog:532
+#: ../dialogs/SADD.dialog:543
 msgid " Please forgive me!"
 msgstr " Пожалуйста, прости меня!"
 
-#: ../dialogs/SADD.dialog:535
+#: ../dialogs/SADD.dialog:546
 msgid " Too late. I'm watching this great show now."
 msgstr " Слишком поздно. Я сейчас занят просмотром замечательного спектакля."
 
-#: ../dialogs/SADD.dialog:537
-#: ../dialogs/SADD.dialog:539
+#: ../dialogs/SADD.dialog:548
+#: ../dialogs/SADD.dialog:550
 msgid " It is called..."
 msgstr " Он называется..."
 
-#: ../dialogs/SADD.dialog:545
+#: ../dialogs/SADD.dialog:556
 msgid " Please, disable the guns!"
 msgstr " Пожалуйста, отключи пушки!"
 
-#: ../dialogs/SADD.dialog:548
+#: ../dialogs/SADD.dialog:559
 msgid " Ok, I'll disable them."
 msgstr " Ладно, я отключу их."
 
-#: ../dialogs/SADD.dialog:550
+#: ../dialogs/SADD.dialog:561
 msgid " I just need to make some preparations. You have to wait..."
 msgstr ""
 " Только мне сначала надо немного подготовиться. Тебе прийдется подождать..."
 
-#: ../dialogs/SADD.dialog:552
+#: ../dialogs/SADD.dialog:563
 msgid " ...for your death!"
 msgstr " ...пока ты не умрешь!"
 
-#: ../dialogs/SADD.dialog:558
+#: ../dialogs/SADD.dialog:569
+msgid " Erm... hi!"
+msgstr " Эмм... Привет!"
+
+#: ../dialogs/SADD.dialog:572
+msgid " Hi. Thanks for the help."
+msgstr " Привет. Спасибо тебе за помощь."
+
+#: ../dialogs/SADD.dialog:582
+msgid " Will you let me inside the base?"
+msgstr " Ты меня пустишь на базу?"
+
+#: ../dialogs/SADD.dialog:585
+msgid " Nice attempt. I owe you but I cannot do that. You must leave."
+msgstr ""
+" Неплохая попытка. Я, конечно, многим тебе обязан, но этого я сделать не "
+"могу. Ты должен уйти."
+
+#: ../dialogs/SADD.dialog:594
 msgid " I'd better get out of here..."
 msgstr " Кажется мне не стоит тут находиться."
 
-#: ../dialogs/SADD.dialog:561
+#: ../dialogs/SADD.dialog:597
 msgid " Exactly."
 msgstr " Ты абсолютно прав."
 
@@ -5474,8 +5847,10 @@ msgstr ""
 "Гвардию! Я - Лукас. Я начальник небольшого оружейного склада."
 
 #: ../dialogs/Lukas.dialog:45
-msgid " Spencer said, you'd give me an armor."
-msgstr " Спенсер сказал, что Вы дадите мне броню."
+msgid ""
+" Spencer said, you'd be able to provide me with better armor and equipment."
+msgstr ""
+" Спенсер сказал, что у тебя найдется для меня хорошее оружие и броня."
 
 #: ../dialogs/Lukas.dialog:48
 msgid ""
@@ -5508,9 +5883,8 @@ msgstr ""
 "этом посту."
 
 #: ../dialogs/Lukas.dialog:70
-#: ../dialogs/MER.dialog:43
-msgid " END "
-msgstr " END "
+msgid " See you later! "
+msgstr " Увидимся позже! "
 
 #: ../dialogs/Dixon.dialog:36
 msgid ""
@@ -6524,13 +6898,59 @@ msgstr "ELIMINATING_THE_DOUBLE_TALK"
 msgid " I must go now."
 msgstr " Я должен идти."
 
-#: ../dialogs/MER.dialog:33
-msgid " Hi!  I'm new here. "
-msgstr " Привет!  Я здесь новичок "
-
 #: ../dialogs/MER.dialog:36
-msgid "Welcome them!  I'm called MER.  My dialog isn't done though."
-msgstr "Приветствую!  Меня зовут MER. Мой диалог ещё не готов."
+msgid ""
+"Last login from /dev/ttyS0 on Sun, 23 mar 2057. admin@shielddefense: ~ #"
+msgstr ""
+"Последний вход выполнен с /dev/ttyS0 Вск, 23 мар 2057. admin@shielddefense: "
+"~ #"
+
+#: ../dialogs/MER.dialog:45
+msgid " passwd"
+msgstr " passwd"
+
+#: ../dialogs/MER.dialog:48
+msgid " Changing password for admin. Enter new password: "
+msgstr " Создание пароля для пользователя admin. Введите новый пароль: "
+
+#: ../dialogs/MER.dialog:50
+msgid " Enter new password again: "
+msgstr " Введите новый пароль еще раз: "
+
+#: ../dialogs/MER.dialog:52
+msgid " Password successfully changed."
+msgstr " Пароль успешно изменен."
+
+#: ../dialogs/MER.dialog:62
+msgid " I HAVE CHANGED"
+msgstr " Я ПОМЕНЯЛ"
+
+#: ../dialogs/MER.dialog:73
+msgid " I HAVEN'T CHANGED"
+msgstr " Я НЕ ПОМЕНЯЛ"
+
+#: ../dialogs/MER.dialog:84
+#: ../dialogs/MER.dialog:99
+msgid " shieldmgr --disable --force"
+msgstr " shieldmgr --disable --force"
+
+#: ../dialogs/MER.dialog:87
+#: ../dialogs/MER.dialog:102
+msgid " Disabling disruptor shield... "
+msgstr " Отключаю дезинтегрирующий щит... "
+
+#: ../dialogs/MER.dialog:89
+#: ../dialogs/MER.dialog:104
+msgid " Shield disabled."
+msgstr " Щит отключен."
+
+#: ../dialogs/MER.dialog:91
+msgid " WARNING: somebody else is using this computer. "
+msgstr " ВНИМАНИЕ: Кто-то другой использует этот компьютер. "
+
+#: ../dialogs/MER.dialog:93
+msgid " Disruptor shield is active."
+msgstr " Щит включен."
 
 #: ../dialogs/subdlg_Benjamin.dialog:43
 msgid " Improve ranged weapon skill (cost 5 training points, 100 cash) "
@@ -6612,10 +7032,10 @@ msgstr "ALREADY TAUGHT?"
 #: ../dialogs/subdlg_Darwin.dialog:61
 msgid ""
 " I'm ready. Please show me how to extract bot parts. (cost 50 cash, 1 "
-"ability points)"
+"ability point)"
 msgstr ""
-" Я готов. Пожалуйста, покажите мне, как разбирать роботов. (стоит 50 баксов "
-"и одно очку умения)"
+" Я готов. Пожалуйста покажи мне как извлекать запчасти из ботов. (стоит 50 "
+"баксов и 1 очко опыта)"
 
 #: ../dialogs/subdlg_Darwin.dialog:72
 msgid "TEACHING THE FIRST TIME"
@@ -6626,10 +7046,9 @@ msgid "TEACHING MORE"
 msgstr "TEACHING MORE"
 
 #: ../dialogs/subdlg_Darwin.dialog:92
-msgid " Sure. Teach me all that you know. (cost 50 cash, 1 ability points)"
+msgid " Sure. Teach me all that you know. (cost 50 cash, 1 ability point)"
 msgstr ""
-" Конечно. Научите меня всему, что знаете. (стоит 50 баксов и одно очку "
-"умения)"
+" Конечно. Научи меня всему, что знаешь сам. (стоит 50 баксов и 1 очко опыта)"
 
 #: ../dialogs/subdlg_Darwin.dialog:102
 msgid "KNOW LESSON TWO"
@@ -6999,28 +7418,28 @@ msgid "Em, hi."
 msgstr "Ээ, привет."
 
 #: ../dialogs/Tania.dialog:36
-msgid "O! It happened! I was witing for you for 3226 hours!"
-msgstr "О! Случилось! Я просидела тут 3226 часа!"
+msgid "Oh! It happened! I have been waiting for you for 3226 hours!"
+msgstr "О! Наконец-то! Я ждала тебя 3226 часов?"
 
 #: ../dialogs/Tania.dialog:47
-msgid "You really knew, that I would come?"
-msgstr "Ты правда знала, что я прийду?"
+msgid "You knew I would come?"
+msgstr "Ты знала, что я прийду?"
 
 #: ../dialogs/Tania.dialog:50
-msgid "Ofcourse, my little imaginable friend!"
-msgstr "Конечно, мой маленький воображаемый дружок!"
+msgid "Of course, my little imaginary friend!"
+msgstr "Ну конечно, мой маленький воображаемый друг!"
 
 #: ../dialogs/Tania.dialog:59
-msgid "Imaginable?! Im as real as you are."
-msgstr "Воображаемый?!  Я настолько же реальен как и ты."
+msgid "Imaginary?! I am as real as you are."
+msgstr "Воображаемый?! Да я такой же реальный, как и ты."
 
 #: ../dialogs/Tania.dialog:62
 msgid ""
 "This place is locked. Hermetically conservated and guarded by bots. So you "
-"can be nothing more, than product of my imagination."
+"can be nothing more than the product of my imagination."
 msgstr ""
-"Это помещение закрыто. Герметично законсервированно и охранятеся ботами. Так "
-"что ты не можешь быть ничем, кроме как плодом моего воображения."
+"Это помещение закрыто, герметично законсервированно и охраняется роботами. "
+"Так что ты не можешь быть ничем иным, кроме как продуктом моего воображения."
 
 #: ../dialogs/Tania.dialog:70
 msgid "Where am I?"
@@ -7028,23 +7447,25 @@ msgstr "Где я?"
 
 #: ../dialogs/Tania.dialog:73
 msgid ""
-"In a prison, luxurious prison. This is solitary, as you can see. Big room, "
-"plenty of food, waterfall behind window..."
+"In a prison, a luxurious prison. I am feeling quite lonely, as you can see. "
+"Big room, plenty of food, a waterfall behind the window..."
 msgstr ""
-"В тюрьме, комфортабельной тюрьме. Это одиночная камера, как видишь. Большая "
-"комната, полно еды, водопад за окном..."
+"В тюрьме, в роскошной тюрьме. Мне тут несколько одиноко, как ты наверное "
+"заметил. Большая комната, много еды, водопад за окном..."
 
 #: ../dialogs/Tania.dialog:82
-msgid "I can see only ray emmiters behind window."
-msgstr "Я вижу только излучатели позади окон."
+msgid ""
+"All I see through the window are ray emitters. And we are below ground "
+"level.."
+msgstr "За окном только излучатели, да и вообще, мы находимся под землей..."
 
 #: ../dialogs/Tania.dialog:85
 msgid ""
-"Yes, I know. But I so badly want to see sun, rivers, trees... So there is "
-"definetely waterfall behind it!"
+"Yes, I know. But I so badly want to see sun, rivers, trees... there "
+"definitely is waterfall behind them!"
 msgstr ""
-"Ну да, я знаю. Но мне так хочется увидеть солнце, реки, деревья... Так что "
-"там именно водопад!"
+"Да, я знаю. Но я так хочу снова увидеть солнце, рки, деревья... так что за "
+"окном наверняка водопад!"
 
 #: ../dialogs/Tania.dialog:92
 msgid "It is dark here."
@@ -7053,23 +7474,23 @@ msgstr "Тут довольно темно."
 #: ../dialogs/Tania.dialog:95
 msgid ""
 "Main power supply is down, so only emergency light works. Peter tried to "
-"switch it on, but he didn't succeed."
+"switch it back on, but he didn't succeed."
 msgstr ""
-"Основной источник питания отключен, так что работает аварийное освещение. "
-"Петр пытался включить основное освещение, но у него не получилось."
+"Основной источник питания отключен, так что я живу при аварийном освещении. "
+"Петя пытался включить питание, но у него ничего не получилось."
 
 #: ../dialogs/Tania.dialog:102
-msgid "This place doesn't look to be a prison."
-msgstr "Это место что-то не похоже на тюрьму."
+msgid "This place doesn't look like a prison."
+msgstr "Я бы не сказал, что это место походит на тюрьму."
 
 #: ../dialogs/Tania.dialog:105
 msgid ""
-"In past it was secret lab. Do you know those strength pills? They were "
-"invented here. Other pills too, but I was working on strength ones."
+"In the past it was a secret lab. You heard about those strength pills? They "
+"were invented here. Other pills too, but I was working on strength ones."
 msgstr ""
-"Раньше тут была секретная лаборатория. Ты слышал о таблетках силы? Их "
-"изобрели здесь. Другие тоже, но я работала именно над теми, которые "
-"увеличивают силу."
+"В прошлом здесь была секретная лаборатория. Ты навернео слышал про таблетки "
+"силы? Их изобрели тут. И другие таблетки тоже, но я работала именно над "
+"усиливающими."
 
 #: ../dialogs/Tania.dialog:114
 msgid "Can you give me some pills then?"
@@ -7085,24 +7506,28 @@ msgid "*cries*"
 msgstr "*плачет*"
 
 #: ../dialogs/Tania.dialog:128
-msgid "So you are a biologist? Can you heal me please?"
+msgid "So you are a biologist? Could you heal me?"
 msgstr "Так ты биолог? Ты бы не могла меня полечить?"
 
 #: ../dialogs/Tania.dialog:131
 msgid ""
-"That would be something different from I've done few last months at least. "
-"Some interatainment."
+"That would be something different from what I've done in the last months at "
+"least. Some entertainement."
 msgstr ""
-"Чтож, это внесет некоторое разнообразие в мою привычную жизнь. Своего рода "
-"развлечение."
+"Чтож, по крайней мере это будет что-то новенькое за последние месяцы, своего "
+"рода развлечение."
 
 #: ../dialogs/Tania.dialog:133
-msgid "Ok, I've finished. Now you are completely well."
-msgstr "Ну вот и все. Теперь ты полностью здоров."
+msgid ""
+"Let me take a look at that... it's nothing some nanobots could not take care "
+"of.... You will be all fixed up in a minute."
+msgstr ""
+"Дай-ка посмотреть... ничего такого, с чем бы не справились наноботы... Через "
+"митуту будешь как огурчик."
 
 #: ../dialogs/Tania.dialog:140
-msgid "They say, that pills are absolutely safe!"
-msgstr "А мне говорили, что таблетки абсолютно безвредны!"
+msgid "They say that strength pills are absolutely safe!"
+msgstr "А говорят, что усиливающие таблетки абсолютно безопасны!"
 
 #: ../dialogs/Tania.dialog:143
 msgid ""
@@ -7114,17 +7539,19 @@ msgstr ""
 
 #: ../dialogs/Tania.dialog:145
 msgid ""
-"Peter became not very strong, but very-very-very strong. He thought he can "
+"Peter became not very strong, but very-very-very strong. He thought he could "
 "make an exit with his bare hands."
 msgstr ""
-"Петр стал не просто сильным, а очень-очень-очень сильным. Он думал, что "
+"Петя стал не просто сильным, а очень-очень-очень сильным. Он думал, что "
 "сможет прокопать выход голыми руками."
 
 #: ../dialogs/Tania.dialog:149
 msgid ""
-"If you go further, you would find debris and a big stone. That is his grave."
+"If you go further down the corridor, you will find debris and a big stone. "
+"That is his grave."
 msgstr ""
-"Если ты пойдешь дальше, то найдешь завал и большой камень. Это его могила."
+"Если пойдешь дальше по коридору, то наткнёшься на завал и большой камень "
+"перед ним. Это его могила."
 
 #: ../dialogs/Tania.dialog:158
 msgid "You loved him?"
@@ -7135,31 +7562,31 @@ msgid "I still do."
 msgstr "Я все еще его люблю."
 
 #: ../dialogs/Tania.dialog:168
-msgid "But why not to out through the door."
+msgid "But why not go out through the door?"
 msgstr "Но почему бы не выйти через дверь?"
 
 #: ../dialogs/Tania.dialog:171
 msgid ""
-"It is locked and very reliable. Even a tank wouldnt be able to samsh it! And "
-"if door is breaked, SADDs would attack anybody, that's their program."
+"It is locked and very reliable. Even a tank would not be able to samsh it! "
+"And if a door is broken, SADDs would attack, that's their program."
 msgstr ""
-"Они закрыта и очень прочна. Её даже танк не пробьет! А даже если её сломать, "
-"то ДЗСО начнет убивать всех, он так запрограммирован."
+"Она закрыта и очень надежна. Даже танк не смог бы пробить её! Кроме того, "
+"если сломать дверь, ДЗСО атакует тебя, у него такая программа."
 
 #: ../dialogs/Tania.dialog:179
 msgid "Autoguns have made a hole in the wall. I came through this hole."
 msgstr "Автопушки пробили дырку в стене. Я вошел через неё."
 
 #: ../dialogs/Tania.dialog:182
-msgid "You want to say, that I can get to the surface?"
-msgstr "Ты хочешь сказать, что я могу выйти на волю?"
+msgid "Do you mean I can go out to the surface ?!"
+msgstr "Ты хочешь сказать, что я могу выбраться на поверхность?!"
 
 #: ../dialogs/Tania.dialog:184
 msgid ""
-"Oh god! I've told Peter, that he chosed wrong place, but he was so "
-"opinionated!"
+"Oh god! I've told Peter that he chosed wrong place, but he was so stubborn!"
 msgstr ""
-"О боже! Я говорила Петру, что он не там копает, но он был таким упертым!"
+"Боже! Я же говорила Пете, что он не там копает, но он был настолько в себе "
+"уверен!"
 
 #: ../dialogs/Tania.dialog:192
 msgid "Yes, you can get to the surface. But the guns are still on."
@@ -7167,10 +7594,8 @@ msgstr ""
 "Да, ты можешь выйти на поверхность. Но есть одно но: пушки все еще работают."
 
 #: ../dialogs/Tania.dialog:195
-msgid ""
-"All hope lost! I'm a scientist, not a varrior. I wouldn resist a single "
-"bullet!"
-msgstr "Вс надежды пропали! Я ученый, а не воин. Первой же пулей меня убьёт."
+msgid "All hope lost! I'm a scientist, not a warrior."
+msgstr "Все надежды тщетны! Я ученый, а не воин."
 
 #: ../dialogs/Tania.dialog:203
 msgid "It is strange to see a girl in such a beautiful dress here."
@@ -7183,13 +7608,12 @@ msgstr ""
 "Я останусь здесь до конца веков! Так что прости мне маленькие слабости."
 
 #: ../dialogs/Tania.dialog:213
-msgid "May be it is possible to disable that guns?"
-msgstr "Может пушки можно отключить?"
+msgid "Maybe is it possible to disable the guns?"
+msgstr "Может быть можно как-то отключить пушки?"
 
 #: ../dialogs/Tania.dialog:216
 msgid ""
-"Theoretically yes, but in practice I'm not shure you would be able to do "
-"that."
+"Theoretically yes, but in practice I'm not sure you would be able to do that."
 msgstr ""
 "Теоретически - да. Но практически я сильно сомневаюсь, что у тебя это "
 "получится."
@@ -7200,43 +7624,44 @@ msgstr "Как их отключить?"
 
 #: ../dialogs/Tania.dialog:227
 msgid ""
-"Somewhere in distant part of the lab should be SACD - secret area control "
-"droid. It controls all defence perimeters of the base. If you manage to "
-"overtake him, you would be able to control the base. But it's very hard to "
+"Somewhere in distant part of the lab should be an SACD - secret area control "
+"droid. It controls all defense systems in the base. If you manage to "
+"persuade him, you will be able to control the base. But it's very hard to "
 "find him."
 msgstr ""
-"Где-то в глубине лаборатории должен быть ДКСО - дроид контроля секретных "
-"объектов. Он управляет всеми защитными периметрами базы. Если у тебя "
-"получится взломать его, то ты сможешь управлять базой. Но его очень трудно "
-"найти."
+"Где-то в отделённой части лаборатории должен быть ДКСО - дроид контроля "
+"секретных сооружений. Он управляет обороной базы. Если тебе удастся его "
+"уболтать, то ты сможешь управлять базой. Но его довольно сложно найти."
 
 #: ../dialogs/Tania.dialog:235
-msgid "I would disable guns for you."
-msgstr "Для тебя я готов рискнуть и отключить автопушки."
+msgid "I will disable guns for you."
+msgstr "Для тебя я отключу пушки."
 
 #: ../dialogs/Tania.dialog:238
 msgid ""
-"Thanks, but please be very careful. You won't be able to acess control "
-"center direcly, it is behind triple hermetic door. Main passage is blocked "
-"by landslip too, try using service tunnels."
+"Thanks... please be careful. You will not be able to access the control "
+"center directly, it is behind a triple hermetic door. Try using the service "
+"tunnels."
 msgstr ""
-"Спасибо, но, пожалуйста, будь очень осторожен. Ты не сможешь добраться до "
-"центра управления напрямую, оно находится за тройной гермодверью. Основной "
-"проход завален, так что попробуй воспользоваться сервисными тонелями."
+"Спасибо... пожалуйста, будь осторожен. Пройти в центр управления тебе не "
+"удастся, он за тройными герметичными дверьми. Попробуй воспользоваться "
+"служебными тонелями."
 
 #: ../dialogs/Tania.dialog:247
-msgid "Why not just open them? There should be a way for unlocking base."
-msgstr "Почему бы просто не открыть их? Должен же быть способ открыть базу."
+msgid "Why not just open them? There should be a way for unlocking the base."
+msgstr ""
+"Но почему бы просто не открыть их? Должен же быть какой-то способ "
+"разблокировать базу."
 
 #: ../dialogs/Tania.dialog:250
 msgid ""
-"To open door you need to know password. Only commander of the area and his "
-"deputy knew it. Commander was killed by bots as soon as assault stated and "
-"deputy was in town, I don't know what happened to him."
+"To open the door you need to know the password. Only the commander of the "
+"area and his deputy knew it. Commander was killed by bots as soon as assault "
+"started and the deputy was in town, I don't know what happened to him."
 msgstr ""
-"Чтобы открыть дверь надо знать пароль. Его знали только командир базы и его "
-"заместитель. Командира убили боты как только началась осада, а заместитель "
-"был в городе. Я не знаю, что с ним сталось."
+"Чтобы открыть двери, надо знать пароль. Только начальник базы и его "
+"заместитель знали пароль. Начальника убили боты в самом начале атаки, а его "
+"заместитель был в городе, я не знаю, что с ним случилось."
 
 #: ../dialogs/Tania.dialog:257
 msgid "Carpets, sofa, bookshelfs. Where did you get all this?"
@@ -7244,11 +7669,11 @@ msgstr "Ковры, диван, книжные полки. Откуда все это?"
 
 #: ../dialogs/Tania.dialog:260
 msgid ""
-"Peter have done all to make this room comfortable. Sofa and armchair is from "
-"commander cabinet, books from restroom..."
+"Peter did all he could to make this room comfortable. Sofa and armchair are "
+"from commander cabinet, books from the restroom..."
 msgstr ""
-"Перт сделал все, чтобы в этой комнате было уютно. Диван и кресло он притащил "
-"из кабинета командира, книги из комнаты отдыха..."
+"Петя сделал все, что мог, чтобы сделать эту комнату удобной. Диван и кресла "
+"он притащил из комнатя командира, книги из комнаты отдыха..."
 
 #: ../dialogs/Tania.dialog:267
 msgid "HAD TUX DISABLED GUNS"
@@ -7279,20 +7704,20 @@ msgid "IS MISSION COMPLETED"
 msgstr "IS MISSION COMPLETED"
 
 #: ../dialogs/Tania.dialog:341
-msgid "Autoguns are off! You are free now."
-msgstr "Я выключил автопушки! Теперь ты свободна."
+msgid "The sentry guns are off. You can go now!"
+msgstr "Защитные пушки отключены. Ты можешь идти!"
 
 #: ../dialogs/Tania.dialog:344
 msgid ""
-"Thanks, thanks you a lot! Now I would be able to see sun, trees, rivers. I "
-"so missed it!"
+"Thanks, thanks a lot! Now I will be able to see sun, trees, rivers. I missed "
+"those so much!"
 msgstr ""
-"Спасибо, спасибо тебе большое! Теперь я снова смогу увидеть солнце, деревья, "
+"Спасибо, спасибо огромное! Теперь я смогу наконец увидеть солнце, деревья, "
 "реки. Я так по ним скучала!"
 
 #: ../dialogs/Tania.dialog:346
-msgid "I hope these books would help you survive in this world."
-msgstr "Надеюсь эти книги помогут тебе выжить."
+msgid "I hope these books will help you survive in this world."
+msgstr "Надеюсь эти книги помогут тебе выжить в этом мире."
 
 #: ../dialogs/Tania.dialog:358
 msgid "Where can I find that SACD?"
@@ -7300,15 +7725,14 @@ msgstr "Где мне искать ДКСО?"
 
 #: ../dialogs/Tania.dialog:361
 msgid ""
-"To the right from an enterace to the area there is a hall. In the south part "
-"of there is triple hermetic door. Control center is behind that door. But it "
-"is locked, so you would have to find another way there. Cable collectors may "
-"help you."
+"To the right from the entrance of the area, there is a hall. In the south "
+"part of this hall you will find a triple hermetic door. The control center "
+"is behind that door. But it is locked, so you will have to find another way "
+"there. Cable collectors may help you."
 msgstr ""
-"Справа от входа в лабораторию есть хол. С южной стороны находится тройная "
-"гермодверь. Центр управления как раз за ней. Но дверь закрыта, так что тебе "
-"прийдется искать обходной путь. Попробуй воспользоваться кабельными "
-"коллекторами."
+"Где-то в отделённой части лаборатории должен быть ДКСО - дроид контроля "
+"секретных сооружений. Он управляет обороной базы. Если тебе удастся его "
+"уболтать, то ты сможешь управлять базой. Но его довольно сложно найти."
 
 #: ../dialogs/Tania.dialog:367
 msgid "Are you staying here? I can help you get to the town."
@@ -7412,11 +7836,11 @@ msgstr ""
 
 #: ../dialogs/RMS.dialog:109
 msgid ""
-"Seems like the bots can be disabled by enabling some disruptor field or "
-"something like that."
+"Seems like the disruptor shield which prevents all our attacks on Hell "
+"Fortress can be controlled from somewhere outside or something like that."
 msgstr ""
-"Кажется ботов можно отключить включив какой-то дизентеграционный щит или что-"
-"то в этом роде."
+"Кажется, что дизентегрирующим полем, мещающим нам проводить наступательные "
+"действия против ботов, может быть можно управлять откуда-то снаружи."
 
 #: ../dialogs/RMS.dialog:111
 msgid ""
@@ -7461,9 +7885,11 @@ msgstr " Где я могу раздобыть снаряжение получше?"
 
 #: ../dialogs/Chandra.dialog:63
 msgid ""
-"The shop is to the east. Ms. Stone always has a good range of equipment "
+"The shop is to the north. Ms. Stone always has a good range of equipment "
 "there."
-msgstr "Магазин на востоке. Мисс Стоун хороший выбор снаряжения."
+msgstr ""
+"Магазин расположен в северной стороне города. У мис Стоун всегда богатый "
+"выбор."
 
 #: ../dialogs/Chandra.dialog:65
 msgid ""
@@ -7787,63 +8213,131 @@ msgstr "Заходи в любой момент когда пожелаешь."
 msgid "Hey, Linarian! What do you want here?"
 msgstr "Эй, Линарин! Что ты здесь делаешь?"
 
-#: ../dialogs/MSFacilityGateGuardLeader.dialog:51
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:52
 msgid "Oh, look. The bird wants to go for a walk."
 msgstr "А, смотрите, птица решила прогуляться."
 
-#: ../dialogs/MSFacilityGateGuardLeader.dialog:53
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:54
 msgid "We don't call this place 'hell' for nothing."
 msgstr "Ну мы же не зря называем это место 'адом'."
 
-#: ../dialogs/MSFacilityGateGuardLeader.dialog:55
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:56
 msgid "Get outta here!"
 msgstr "Убирайся отсюда!"
 
-#: ../dialogs/MSFacilityGateGuardLeader.dialog:65
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:66
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:143
 msgid "I'd like to go through that gate."
 msgstr "IЯ бы хотел пройти через ворота."
 
-#: ../dialogs/MSFacilityGateGuardLeader.dialog:68
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:69
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:146
 msgid "Are you totally out of your mind?"
 msgstr "Ты в своем уме или как?"
 
-#: ../dialogs/MSFacilityGateGuardLeader.dialog:70
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:71
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:148
 msgid "There are trillions of millions of quintillions of bots in there!"
 msgstr "Там же триллионы миллионов квинтиллионов ботов!"
 
-#: ../dialogs/MSFacilityGateGuardLeader.dialog:72
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:73
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:150
+msgid ""
+"Beside that on the other side of the door is disruptor shield, which we "
+"can't control."
+msgstr ""
+"Кроме того, по другую сторону находится дезентегрирующий щит, которым мы не "
+"можем управлять."
+
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:75
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:152
+msgid "* Throws a stone through the door"
+msgstr "Кидает камень через дверь"
+
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:77
+msgid "* Stone disappears leaving a small cloud of dust"
+msgstr "Камень исчезает, оставив от себя лишь небольшое облачко пыли."
+
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:79
 msgid "Find a different gate to go through."
 msgstr "Поищи-ка другие ворота, если хочешь пройти."
 
-#: ../dialogs/MSFacilityGateGuardLeader.dialog:82
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:89
 msgid "I have some business on the other side!"
 msgstr "У меня есть дела по ту сторону ворот!"
 
-#: ../dialogs/MSFacilityGateGuardLeader.dialog:85
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:92
 msgid "Are you in a rush to die?"
 msgstr "Ты собрался помереть?"
 
-#: ../dialogs/MSFacilityGateGuardLeader.dialog:87
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:94
 msgid "Go away!"
 msgstr "Уходи!"
 
-#: ../dialogs/MSFacilityGateGuardLeader.dialog:97
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:105
 msgid "TEST FOR MANY TALKS"
 msgstr "TEST FOR MANY TALKS"
 
-#: ../dialogs/MSFacilityGateGuardLeader.dialog:106
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:114
 msgid "NOTHING IS SAID HERE."
 msgstr "NOTHING IS SAID HERE."
 
-#: ../dialogs/MSFacilityGateGuardLeader.dialog:109
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:117
 msgid "GET OUT OF HERE YOU IDIOT!"
 msgstr "УБИРАЙСЯ ОТСЮДА, ИДИОТ!"
 
-#: ../dialogs/MSFacilityGateGuardLeader.dialog:117
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:125
+msgid " SHIELD DISABLED"
+msgstr " ПОЛЕ ВЫКЛЮЧЕНО"
+
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:134
+msgid " SHIELD NOT DISABLED"
+msgstr " ПОЛЕ НЕ ВЫКЛЮЧЕНО"
+
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:154
+msgid ""
+"* Stone freely flies thourgh the gate and drops on the ground on the other "
+"side"
+msgstr ""
+"Камень свободно пролетает через дверь и падает на землю по ту сторону."
+
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:156
+msgid "SHIT! SHIELD DISABLED! PREPARE FOR BOT ATTACK!"
+msgstr "ЧЕРТ! ЩИТ ОТКЛЮЧЕН! ОРУЖИЕ К БОЮ! АТАКА БОТОВ!"
+
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:167
+msgid ""
+"Calm down. This is not an attack. I've disabled the shield and I'm going to "
+"disable all bots around! Didn't Spencer inform you?"
+msgstr ""
+"Успокойся, это не атака. Это я отключил щит и собираюсь отключить всех ботов "
+"в округе! Тебе разве Спенсер ничего не говорил?"
+
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:170
+msgid "WHAT?! Not an attack?!"
+msgstr "ЧТО? Не атака?!"
+
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:172
+msgid "I hope you are honest. One second..."
+msgstr "Надеюсь ты не лжешь. Секундочку."
+
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:174
+msgid ""
+"Right, there is a message from Spencer, you can enter Hell Fortress. And let "
+"the force be with you!"
+msgstr ""
+"Да, Спенсер и правда прислал сообщение, ты можешь пройти в Адскую Крепость. "
+"И да прибудет с тобой сила!"
+
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:187
+msgid "TEST FOR DISABLED SHIELD"
+msgstr "ПРОВЕРКА ВЫКЛЮЧЕНО ЛИ ПОЛЕ"
+
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:196
 msgid "Relax, I'm leaving."
 msgstr "Спокойней, я уже ухожу."
 
-#: ../dialogs/MSFacilityGateGuardLeader.dialog:120
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:199
 msgid "You better be. AND DON'T COME BACK!"
 msgstr "Да уж следовало бы. И НЕ ВОЗВРАЩАЙСЯ!"
 
@@ -8307,12 +8801,12 @@ msgid "THIS SHOULD ENABLE..."
 msgstr "THIS SHOULD ENABLE..."
 
 #: ../dialogs/DocMoore.dialog:160
-#: ../dialogs/DocMoore.dialog:195
+#: ../dialogs/DocMoore.dialog:194
 msgid " Can you fix me up?"
 msgstr " Можешь меня залатать?"
 
 #: ../dialogs/DocMoore.dialog:163
-#: ../dialogs/DocMoore.dialog:198
+#: ../dialogs/DocMoore.dialog:197
 msgid ""
 "Sure, as the only doctor of this slowly growing community, I'm responsible "
 "for everyone's health."
@@ -8321,7 +8815,7 @@ msgstr ""
 "ответе за здоровье каждого."
 
 #: ../dialogs/DocMoore.dialog:165
-#: ../dialogs/DocMoore.dialog:200
+#: ../dialogs/DocMoore.dialog:199
 msgid ""
 "However, self-inflicted damage might be exempted from this rule in some "
 "cases..."
@@ -8330,19 +8824,19 @@ msgstr ""
 "некоторых случаях..."
 
 #: ../dialogs/DocMoore.dialog:167
-#: ../dialogs/DocMoore.dialog:202
+#: ../dialogs/DocMoore.dialog:201
 msgid "There, it's done. You're completely fixed. You can go now."
 msgstr "Вот, всё готово. Ты полностью здоров. Можешь идти."
 
-#: ../dialogs/DocMoore.dialog:179
+#: ../dialogs/DocMoore.dialog:178
 msgid " What do you mean, self-inflicted damage?"
 msgstr " Что это значит - причинение самоущерба?"
 
-#: ../dialogs/DocMoore.dialog:182
+#: ../dialogs/DocMoore.dialog:181
 msgid "Now you see that idiotic Bender character on my doorstep?"
 msgstr "Видишь Бендера, этого дебильного типчика у меня за дверью?"
 
-#: ../dialogs/DocMoore.dialog:184
+#: ../dialogs/DocMoore.dialog:183
 msgid ""
 "He took these stupid brain enlargement pills. So no problem, he came to me "
 "to fix him. But guess what?"
@@ -8350,7 +8844,7 @@ msgstr ""
 "Он принял эти дурацкие мозгоувеличивающие пилюли. Ну, нет проблем: он пришел "
 "ко мне - я его вылечил. Но угадай, что дальше?"
 
-#: ../dialogs/DocMoore.dialog:186
+#: ../dialogs/DocMoore.dialog:185
 msgid ""
 "He took them again against my strict advice. Now he thinks he can drain my "
 "antidote supplies? He's wrong."
@@ -8358,7 +8852,7 @@ msgstr ""
 "Он наглотался их опять, несмотря на мои строгие рекомендации! Теперь он "
 "думает, что может вытянуть все мои запасы противоядия? Он ошибается."
 
-#: ../dialogs/DocMoore.dialog:188
+#: ../dialogs/DocMoore.dialog:187
 msgid ""
 "He won't get anything from me anymore. It would be unfair to the community "
 "to waste all the supplies on him, and that's my final word on that."
@@ -8366,31 +8860,31 @@ msgstr ""
 "Он больше ничего от меня не получит. Было бы нечестно по отношению к "
 "сообществу потратить на него одного все мои средства. Я сказал."
 
-#: ../dialogs/DocMoore.dialog:212
+#: ../dialogs/DocMoore.dialog:211
 msgid " Doc... I really want the antidote."
 msgstr " Док... Мне действительно необходимо противоядие."
 
-#: ../dialogs/DocMoore.dialog:215
+#: ../dialogs/DocMoore.dialog:214
 msgid "No! I am not giving it to you. Forget about it."
 msgstr "Нет! Я тебе его не дам. И думать об этом забудь."
 
-#: ../dialogs/DocMoore.dialog:224
+#: ../dialogs/DocMoore.dialog:223
 msgid " My patience is running out. Give me the antidote. Now."
 msgstr " Моё терпение иссякает. Давай противоядие. Сейчас же."
 
-#: ../dialogs/DocMoore.dialog:227
+#: ../dialogs/DocMoore.dialog:226
 msgid "No! Over my dead body."
 msgstr "Нет! Только через мой труп!"
 
-#: ../dialogs/DocMoore.dialog:235
+#: ../dialogs/DocMoore.dialog:234
 msgid " Your wish is my command."
 msgstr " Твоё желание для меня приказ."
 
-#: ../dialogs/DocMoore.dialog:238
+#: ../dialogs/DocMoore.dialog:237
 msgid "Huh? What?"
 msgstr "А? ЧТО?"
 
-#: ../dialogs/DocMoore.dialog:246
+#: ../dialogs/DocMoore.dialog:245
 msgid ""
 " Humans... You are so interesting. I always wanted to know how much blood do "
 "you exacly have."
@@ -8398,29 +8892,29 @@ msgstr ""
 " Человеки... Вы такие интересные. Я всегда хотел знать, сколько именно в вас "
 "крови."
 
-#: ../dialogs/DocMoore.dialog:249
+#: ../dialogs/DocMoore.dialog:248
 msgid "Don't do this. Don't do this."
 msgstr "Не делай этого. Не делай!"
 
-#: ../dialogs/DocMoore.dialog:257
+#: ../dialogs/DocMoore.dialog:256
 msgid " Prepare Doc. The experiment begins."
 msgstr " Готовься, док. Эксперимент начинается."
 
-#: ../dialogs/DocMoore.dialog:260
+#: ../dialogs/DocMoore.dialog:259
 msgid "Don't do this! DON'T DO THIS!"
 msgstr "Не делай этого! НЕ ДЕЛАЙ ЭТОГО!"
 
-#: ../dialogs/DocMoore.dialog:262
+#: ../dialogs/DocMoore.dialog:261
 msgid "AAAAAAAAAAAA!"
 msgstr "AAAAAAAAAAAA!"
 
-#: ../dialogs/DocMoore.dialog:270
+#: ../dialogs/DocMoore.dialog:269
 msgid " Ugh. Human blood is disgusting. At least four liters. I feel sick."
 msgstr ""
 " Ах, как вкусна человеческая кровь. По меньшей мере её четыре литра. Что-то "
 "меня подташнивает."
 
-#: ../dialogs/DocMoore.dialog:281
+#: ../dialogs/DocMoore.dialog:280
 msgid ""
 " I guess this means I get to inherit all your stuff. I hope you don't mind "
 "if I take everything?"
@@ -8428,19 +8922,19 @@ msgstr ""
 " Я так думаю, мне полагается унаследовать всё это барахло. Ты не против, "
 "если я всё возьму себе?"
 
-#: ../dialogs/DocMoore.dialog:292
+#: ../dialogs/DocMoore.dialog:291
 msgid " Good. I am very glad not to hear a disapproval."
 msgstr " Отлично. Рад, что не слышу возражений."
 
-#: ../dialogs/DocMoore.dialog:295
+#: ../dialogs/DocMoore.dialog:294
 msgid " . . . "
 msgstr " . . . "
 
-#: ../dialogs/DocMoore.dialog:308
+#: ../dialogs/DocMoore.dialog:307
 msgid " Forget it. Getting the antidote is not worth the effort."
 msgstr " Забудь. Это противоядие не стоит усилий."
 
-#: ../dialogs/DocMoore.dialog:311
+#: ../dialogs/DocMoore.dialog:310
 msgid "I am not giving it to you, and that won't change."
 msgstr "Я тебе его и не даю. И так будет и впредь."
 
@@ -8728,8 +9222,8 @@ msgid "Of course not. Murdering you would be a complete waste of time."
 msgstr "Конечно нет. Убийство стало бы пустой тратой времени."
 
 #: ../dialogs/StandardMSFacilityGateGuard.dialog:64
-msgid "The bots will take care of that for me."
-msgstr "Роботы сделают это и без меня."
+msgid "The bots and disruptor shield will take care of that for me."
+msgstr "Боты и дизентегрирующий щит позаботятся об этом за меня."
 
 #: ../dialogs/StandardMSFacilityGateGuard.dialog:66
 msgid "Just remember to give me your valuables before you commit suicide."
@@ -8860,10 +9354,10 @@ msgstr ""
 msgid " Resuming guard program."
 msgstr " Восстановление охранной программы."
 
-#: ../dialogs/Template.dialog:33
-#: ../dialogs/Template.dialog:36
-#: ../dialogs/Template.dialog:43
-#: ../dialogs/Template.dialog:46
+#: ../dialogs/Template.dialog:35
+#: ../dialogs/Template.dialog:38
+#: ../dialogs/Template.dialog:45
+#: ../dialogs/Template.dialog:48
 msgid "<?>"
 msgstr "<?>"
 
@@ -9165,10 +9659,10 @@ msgid " I thought you would be more worried about her death."
 msgstr " Я думал ты отреагируешь на известие о её смерти более бурно."
 
 #: ../dialogs/Kevin.dialog:313
-msgid "Why? I have backups from the last Friday. No reason to worry at all."
+msgid "Why? I have backups from last Friday. No reason to worry at all."
 msgstr ""
-"Почему? У меня есть резервная копия за прошлую пятницу. Так что нет никаких "
-"причин для беспокойства."
+"Ну почему же? У меня есть пятничная резервная копия, так что волноваться "
+"совершенно незачем, это дело житейское."
 
 #: ../dialogs/Kevin.dialog:315
 msgid ""
@@ -9209,7 +9703,22 @@ msgstr "Очень легко закончить свою жизнь в их лапах, очень легко."
 msgid " Teach me the basic stuff."
 msgstr " Научи меня паре простых приемов."
 
-#: ../dialogs/subdlg_Pendragon.dialog:65
+#: ../dialogs/subdlg_Pendragon.dialog:48
+msgid "Are you sure?"
+msgstr "Ты уверен?"
+
+#: ../dialogs/subdlg_Pendragon.dialog:50
+msgid ""
+"I only accept students that already have some experience in fighting bots."
+msgstr ""
+"Я работаю только с учениками, которые уже поднабрали опыта в схватках с "
+"ботами."
+
+#: ../dialogs/subdlg_Pendragon.dialog:59
+msgid " Yes (cost 100 cash, 5 ability points)"
+msgstr " Да (стоит 100 баксов и 5 очков опыта)"
+
+#: ../dialogs/subdlg_Pendragon.dialog:81
 msgid ""
 "Hey, wake up! I taught you that stuff already. Go practice on the bots, if "
 "you really want more training."
@@ -9217,47 +9726,47 @@ msgstr ""
 "Эй, очнись! Я же тебя этому уже учил, иди чтоли с ботами подерись, если ты и "
 "вправду хочешь больше тренироваться."
 
-#: ../dialogs/subdlg_Pendragon.dialog:75
+#: ../dialogs/subdlg_Pendragon.dialog:91
 msgid ""
 "You don't have enough bucks on you! Come back when you have the money."
 msgstr ""
 "Да у тебя же бабла не хватает! Приходи когда раздобудешь нужную сумму."
 
-#: ../dialogs/subdlg_Pendragon.dialog:94
+#: ../dialogs/subdlg_Pendragon.dialog:110
 msgid ""
 "You don't have enough experience. I can't teach you anything more right now."
 msgstr ""
 "Я боюсь, что у тебя маловато опыта. Я не смогу тебя чему-либо научить сейчас."
 
-#: ../dialogs/subdlg_Pendragon.dialog:96
+#: ../dialogs/subdlg_Pendragon.dialog:112
 msgid "First collect more experience. Then we can go on."
 msgstr "Сначала набери больше очков тренировки и тогда мы сможем продолжить."
 
-#: ../dialogs/subdlg_Pendragon.dialog:106
+#: ../dialogs/subdlg_Pendragon.dialog:122
 msgid "Let us begin then."
 msgstr "Ну чтож, давай начнем."
 
-#: ../dialogs/subdlg_Pendragon.dialog:108
+#: ../dialogs/subdlg_Pendragon.dialog:124
 msgid "Come closer..."
 msgstr "Подойди поближе..."
 
-#: ../dialogs/subdlg_Pendragon.dialog:110
+#: ../dialogs/subdlg_Pendragon.dialog:126
 msgid "HA!"
 msgstr "Ха!"
 
-#: ../dialogs/subdlg_Pendragon.dialog:121
+#: ../dialogs/subdlg_Pendragon.dialog:137
 msgid " Teach me how to smash concrete blocks with my bare hands."
 msgstr " Научи меня, как ломать бетонные блоки голыми руками."
 
-#: ../dialogs/subdlg_Pendragon.dialog:124
+#: ../dialogs/subdlg_Pendragon.dialog:140
 msgid "Oh, Linarian, you amuse me so."
 msgstr "Ну, линарин, ты меня насмешил."
 
-#: ../dialogs/subdlg_Pendragon.dialog:126
+#: ../dialogs/subdlg_Pendragon.dialog:142
 msgid "You are quite an ambitious fellow."
 msgstr "Ты довольно амбициозный тип."
 
-#: ../dialogs/subdlg_Pendragon.dialog:128
+#: ../dialogs/subdlg_Pendragon.dialog:144
 msgid ""
 "First learn the basics. Spend a year working on that, and then I'll be able "
 "to teach you some advanced tricks."
@@ -9265,15 +9774,15 @@ msgstr ""
 "Но все-таки сначала изучи базовые приемы, потрать хотя-бы год на оттачивание "
 "техники, и тогда я смогу научить тебя более сложным приемам."
 
-#: ../dialogs/subdlg_Pendragon.dialog:136
+#: ../dialogs/subdlg_Pendragon.dialog:152
 msgid " Teach me Ninjitsu."
 msgstr " Научи меня искусству ниндзя."
 
-#: ../dialogs/subdlg_Pendragon.dialog:139
+#: ../dialogs/subdlg_Pendragon.dialog:155
 msgid "Go away."
 msgstr "Проваливай."
 
-#: ../dialogs/subdlg_Pendragon.dialog:147
+#: ../dialogs/subdlg_Pendragon.dialog:163
 msgid ""
 " I want to know the Crazy Double-Fang Wolf-Sunlight I-Like-Tea Death Touch "
 "of Major Destruction Flesh-Bursting Attack!"
@@ -9282,17 +9791,17 @@ msgstr ""
 "барса, сачок ворса, брикет морса и смертельный поцелуй глобального "
 "уничтожения!"
 
-#: ../dialogs/subdlg_Pendragon.dialog:150
+#: ../dialogs/subdlg_Pendragon.dialog:166
 msgid "Wow."
 msgstr "Ни фига себе."
 
-#: ../dialogs/subdlg_Pendragon.dialog:152
+#: ../dialogs/subdlg_Pendragon.dialog:168
 msgid "You have a very rich imagination. There is no such thing. Get a life."
 msgstr ""
 "Да у тебя потрясающее воображение. Когда спустишься на землю, попроси меня "
 "научить тебя чему-то дельному."
 
-#: ../dialogs/subdlg_Pendragon.dialog:160
+#: ../dialogs/subdlg_Pendragon.dialog:176
 msgid ""
 " I want to know the forbidden skill of furuike ya kawazu tobikomu mizu no "
 "oto."
@@ -9300,85 +9809,85 @@ msgstr ""
 " Мне бы очень хотелось овладеть забытым приемом Фурюки я Кавазу Тобикоми "
 "Мизу но Ото."
 
-#: ../dialogs/subdlg_Pendragon.dialog:163
+#: ../dialogs/subdlg_Pendragon.dialog:179
 msgid "This is starting to make me angry. Shut up and go away."
 msgstr "Не зли меня, приятель. Заткнись и проваливай."
 
-#: ../dialogs/subdlg_Pendragon.dialog:171
+#: ../dialogs/subdlg_Pendragon.dialog:187
 msgid " Teach me how to flip out and kill people!"
 msgstr " А научика меня выводить людей из себя а потом убивать их!"
 
-#: ../dialogs/subdlg_Pendragon.dialog:174
+#: ../dialogs/subdlg_Pendragon.dialog:190
 msgid "*sigh*"
 msgstr "*опа*"
 
-#: ../dialogs/subdlg_Pendragon.dialog:176
+#: ../dialogs/subdlg_Pendragon.dialog:192
 msgid "Very well. Observe very carefully."
 msgstr "Как скажешь. Смотри внимательно."
 
-#: ../dialogs/subdlg_Pendragon.dialog:178
+#: ../dialogs/subdlg_Pendragon.dialog:194
 msgid "You will see this only once, so make sure to pay attention."
 msgstr ""
 "Я не буду повторять, так что постарайся усвоить этот урок с первого раза."
 
-#: ../dialogs/subdlg_Pendragon.dialog:180
+#: ../dialogs/subdlg_Pendragon.dialog:196
 msgid "DIEEEE!"
 msgstr "УМРИИИ!"
 
-#: ../dialogs/subdlg_Pendragon.dialog:188
+#: ../dialogs/subdlg_Pendragon.dialog:204
 msgid " Ouch! What the hell are you doing?"
 msgstr " Ой! Какого черта ты меня ударил?"
 
-#: ../dialogs/subdlg_Pendragon.dialog:191
+#: ../dialogs/subdlg_Pendragon.dialog:207
 msgid "Lesson number one. Never trust the opponent."
 msgstr "Урок первый. Никогда не доверяй опоненту."
 
-#: ../dialogs/subdlg_Pendragon.dialog:199
+#: ../dialogs/subdlg_Pendragon.dialog:215
 msgid " Just let me get up an -- ouch! Stop it."
 msgstr " Вот сейчас поднимусь и -- ой! Прекрати."
 
-#: ../dialogs/subdlg_Pendragon.dialog:202
+#: ../dialogs/subdlg_Pendragon.dialog:218
 msgid "Lesson number two. The bots have no mercy."
 msgstr "Урок второй. Боты безжалостны."
 
-#: ../dialogs/subdlg_Pendragon.dialog:204
+#: ../dialogs/subdlg_Pendragon.dialog:220
 msgid "They won't let you get up if you fall down. They will kill you."
 msgstr "Они не позволят тебе встать, если ты упадешь. Они убьют тебя."
 
-#: ../dialogs/subdlg_Pendragon.dialog:206
+#: ../dialogs/subdlg_Pendragon.dialog:222
 msgid "Now, lesson number -- ugh! That hurt!"
 msgstr "А теперь урок номер -- ой! Больно же!"
 
-#: ../dialogs/subdlg_Pendragon.dialog:214
+#: ../dialogs/subdlg_Pendragon.dialog:230
 msgid " Lesson number three. Never underestimate the enemy."
 msgstr " Урок номер три. Никогда не недооценивай противника."
 
-#: ../dialogs/subdlg_Pendragon.dialog:217
+#: ../dialogs/subdlg_Pendragon.dialog:233
 msgid "Ugh. Yes. You are correct."
 msgstr "Ы. Да. Ты прав."
 
-#: ../dialogs/subdlg_Pendragon.dialog:219
+#: ../dialogs/subdlg_Pendragon.dialog:235
 msgid "I need to... Lie down for a while... My head hurts..."
 msgstr "Мне надо бы... Полежать немножечко... У меня голова что-то болит..."
 
-#: ../dialogs/subdlg_Pendragon.dialog:221
+#: ../dialogs/subdlg_Pendragon.dialog:237
 msgid "Lesson number four. Never hit your sparring partner with full force."
 msgstr ""
 "Урок номер четыре. Никогда не бей своего спарринг-партнера в полную силу."
 
-#: ../dialogs/subdlg_Pendragon.dialog:223
+#: ../dialogs/subdlg_Pendragon.dialog:239
 msgid "I think you broke my ribs..."
 msgstr "Кажется ты сломал мне ребро..."
 
-#: ../dialogs/subdlg_Pendragon.dialog:225
+#: ../dialogs/subdlg_Pendragon.dialog:241
 msgid "This is enough training for today."
 msgstr "Я думаю, что для одной тренировки достаточно."
 
-#: ../dialogs/subdlg_Pendragon.dialog:234
+#: ../dialogs/subdlg_Pendragon.dialog:250
 msgid " Enough for now."
 msgstr " Да, вполне достаточно."
 
-#: ../dialogs/subdlg_Pendragon.dialog:237
+#: ../dialogs/subdlg_Pendragon.dialog:253
 msgid "Fine."
 msgstr "Отлично."
 
@@ -9430,3 +9939,57 @@ msgstr " Хотел бы я знать, о чем ты говоришь."
 #: ../dialogs/Melfis.dialog:86
 msgid " I need to go now."
 msgstr " Мне надо идти."
+
+#: ../dialogs/TestDroid.dialog:33
+msgid ""
+"This is MegaSys test bot, running very basic version of their OS. I can do "
+"nothing with this bot, because it doesn't know how to do anything."
+msgstr ""
+"На этом боте MegaSys отлаживала свои алгоритмы. На нем установлена сильно "
+"урезанная версия ОС, так что  я не могу что-либо с ним сделать, ведь он "
+"ничего не умеет."
+
+#: ../dialogs/FirmwareUpdateServer.dialog:35
+msgid "Welcome to MS firmware upgrade server for region #54658."
+msgstr "Добро пожаловать на  сервер обновления MS региона #54658."
+
+#: ../dialogs/FirmwareUpdateServer.dialog:37
+msgid "Please select action"
+msgstr "Пожалуйста выберите один из пунктов меню"
+
+#: ../dialogs/FirmwareUpdateServer.dialog:49
+#: ../dialogs/FirmwareUpdateServer.dialog:82
+msgid " Get current OS version"
+msgstr " Показать текущую версию прошивки"
+
+#: ../dialogs/FirmwareUpdateServer.dialog:52
+msgid "Currently deployed firmware is v. 5.0.8+worldto-nogpl."
+msgstr "Текущая версия прошивки v. 5.0.8+worldto-nogpl."
+
+#: ../dialogs/FirmwareUpdateServer.dialog:59
+msgid " Propagate firmware update"
+msgstr " Опубликовать обновление"
+
+#: ../dialogs/FirmwareUpdateServer.dialog:62
+msgid "Compressing image...."
+msgstr "Сжимаю образ...."
+
+#: ../dialogs/FirmwareUpdateServer.dialog:64
+msgid "Advertising update to clients..."
+msgstr "Сообщаю об обновлении клиентам..."
+
+#: ../dialogs/FirmwareUpdateServer.dialog:66
+msgid "Waiting for all connections...."
+msgstr "Жду соединений...."
+
+#: ../dialogs/FirmwareUpdateServer.dialog:72
+msgid "Firmware update propagated!"
+msgstr "Прошивка обновлена!"
+
+#: ../dialogs/FirmwareUpdateServer.dialog:85
+msgid "Currently deployed firmware is v. 5.0.8+tuxwashere+gpl"
+msgstr "Текущая версия прошивки v. 5.0.8+здесьбылтукс+gpl"
+
+#: ../dialogs/FirmwareUpdateServer.dialog:95
+msgid " Logout"
+msgstr " Выйти"
