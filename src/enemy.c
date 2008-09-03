@@ -970,8 +970,12 @@ static gps * enemy_get_target_position ( enemy *ThisRobot )
 {
     if ( ( ThisRobot -> attack_target_type == ATTACK_TARGET_IS_PLAYER ) )
 	return & Me . pos;
-    else if ( ThisRobot -> attack_target_type == ATTACK_TARGET_IS_ENEMY )
-	return & enemy_resolve_address(ThisRobot->bot_target_n, &ThisRobot->bot_target_addr) -> pos;
+    else if ( ThisRobot -> attack_target_type == ATTACK_TARGET_IS_ENEMY ) 
+    {
+        enemy* bot_enemy = enemy_resolve_address(ThisRobot->bot_target_n, &ThisRobot->bot_target_addr);
+        if ( !bot_enemy ) return NULL;
+	 else return &bot_enemy->pos;
+    }
     else 
 	{ /* No (more) target */
 	return NULL;
@@ -2709,8 +2713,8 @@ enemy * enemy_resolve_address(short int enemy_number, enemy ** enemy_addr)
 		    return *enemy_addr;
 		    }
 	    }
+	return NULL;
 	}
-
     return *enemy_addr;
 }
 
