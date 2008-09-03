@@ -1629,6 +1629,7 @@ static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_m
 	}
 
     float dist2 = (ThisRobot -> virt_pos . x - tpos -> x) * (ThisRobot -> virt_pos . x - tpos -> x) + (ThisRobot -> virt_pos . y - tpos -> y) * (ThisRobot -> virt_pos . y - tpos -> y);
+    int target_visible = DirectLineWalkable ( ThisRobot->virt_pos.x, ThisRobot->virt_pos.y, tpos->x, tpos->y, tpos->z);
 
     //--------------------
     // We will often have to move towards our target.
@@ -1644,6 +1645,14 @@ static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_m
 
 	char move_to_target = 0;
 
+	//----------
+	// If bot's target is not visible, start moving to reach it
+	if ( !target_visible )
+	{
+		move_to_target = 1;
+	}
+	else
+	{
 	if ( ItemMap [ Druidmap [ ThisRobot -> type ] . weapon_item . type ] . item_weapon_is_melee )
 	    {
 	    if ( dist2 > 2.25 )
@@ -1657,13 +1666,10 @@ static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_m
 		{ // Ranged weapon and too close to be safe ? get away
 		MoveAwayFromMeleeCombat ( ThisRobot , new_move_target );
 		} 	
-	    if ( ! DirectLineWalkable ( ThisRobot->virt_pos.x, ThisRobot->virt_pos.y, tpos->x, tpos->y, tpos->z))
-		{ // Ranged weapon and no direct line? get closer
-		move_to_target = 1;
-		}
 	    }
+	}
 
-	if ( move_to_target && dist2 > 2) 
+	if ( move_to_target ) 
 	    {  // Here we know we will move to the target but do not know exactly where
 	       // When Tux is the target, setting its position directly will work, but 
 	       // if the target is another bot, then pathfinding will consider it non passable.
@@ -1685,7 +1691,9 @@ static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_m
 	       for ( a = 0; a < 8; a ++ )
 		   {
 		   RotateVectorByAngle ( &test_t, angles_to_try[a] );
-		   if ( CheckIfWayIsFreeOfDroids(FALSE, tmp.x, tmp.y, tmp.x + test_t.x, tmp.y + test_t.y, ThisRobot->pos.z, ThisRobot) )
+		   if ( DirectLineWalkable ( tmp.x, tmp.y, tmp.x + test_t.x, tmp.y + test_t.y, ThisRobot->pos.z) &&
+                        CheckIfWayIsFreeOfDroids(FALSE, tmp.x, tmp.y, tmp.x + test_t.x, tmp.y + test_t.y, ThisRobot->pos.z, ThisRobot) 
+                      )
 		       break;
 		   }
 
@@ -1714,8 +1722,8 @@ static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_m
     if ( ThisRobot->firewait ) return;
 
     /* Great suggestion of Sarayan : we do not care about friendly fire, and make bullets go through people of the same side. */
-
-    RawStartEnemysShot( ThisRobot , tpos->x - ThisRobot->virt_pos.x, tpos->y - ThisRobot->virt_pos.y);
+    if ( target_visible )
+        RawStartEnemysShot( ThisRobot , tpos->x - ThisRobot->virt_pos.x, tpos->y - ThisRobot->virt_pos.y);
 
 }
 
@@ -2385,14 +2393,23 @@ MoveAwayFromMeleeCombat ( Enemy ThisRobot , moderately_finepoint * set_move_tgt 
 	// Maybe we've found a solution, then we can take it and quit
 	// trying around...
 	//
-	if ( /*XXX*/ ConsideredMoveIsFeasible ( ThisRobot , RotatedStepVector ) )
+	if ( /*XXX*/ ConsideredMoveIsFeasible ( ThisRobot , RotatedStepVector ) &&
+	             DirectLineWalkable( ThisRobot->virt_pos.x + RotatedStepVector.x, ThisRobot->virt_pos.y + RotatedStepVector.y,
+	                                 VictimPosition.x, VictimPosition.y, ThisRobot->pos.z )
+	   )
 	{
 	    set_move_tgt -> x = ThisRobot -> pos.x + RotatedStepVector . x ;
 	    set_move_tgt -> y = ThisRobot -> pos.y + RotatedStepVector . y ;
 	    break;
 	}
+
+	//--------------------
+	// No solution, don't move
+	set_move_tgt->x = ThisRobot->pos.x;
+	set_move_tgt->y = ThisRobot->pos.y;
+
     }
-}; // void MoveInCloserForOrAwayFromMeleeCombat ( Enemy ThisRobot , int enemynum )
+}; // void MoveAwayFromMeleeCombat( Enemy ThisRobot , moderately_finepoint * set_move_tgt )
 
 /**
  * At some points it may be nescessary, that an enemy turns around to
