@@ -7,7 +7,7 @@ endif
 %.ico : %.png
 	pngtoico $< > $@
 
-EXTRA_DIST = CMakeLists.txt 
+EXTRA_DIST = CMakeLists.txt freedroidRPG.coff freedroidRPG.rc w32icon_64x64.ico
 
 WINDRES = $(target)-windres
 freedroidRPG.coff: freedroidRPG.rc w32icon_64x64.ico
