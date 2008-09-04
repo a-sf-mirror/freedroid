@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CHANGE THIS\n"
 "Report-Msgid-Bugs-To: CHANGE THIS TOO\n"
-"POT-Creation-Date: 2008-08-29 19:57+0000\n"
-"PO-Revision-Date: 2008-08-29 19:57+0000\n"
+"POT-Creation-Date: 2008-09-04 22:16+0000\n"
+"PO-Revision-Date: 2008-09-04 22:16+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -391,7 +391,7 @@ msgstr ""
 #: ../dialogs/Darwin.dialog:214
 #: ../dialogs/OldTownGateGuardLeader.dialog:100
 #: ../dialogs/Michelangelo.dialog:416
-#: ../dialogs/Spencer.dialog:511
+#: ../dialogs/Spencer.dialog:556
 #: ../dialogs/Bruce.dialog:218
 #: ../dialogs/Bruce.dialog:229
 #: ../dialogs/Butch.dialog:355
@@ -1666,7 +1666,7 @@ msgid "They said it was already fed to their reactor as fuel."
 msgstr ""
 
 #: ../dialogs/Michelangelo.dialog:419
-#: ../dialogs/Spencer.dialog:514
+#: ../dialogs/Spencer.dialog:559
 #: ../dialogs/DocMoore.dialog:323
 #: ../dialogs/Duncan.dialog:321
 msgid "See you later."
@@ -1768,7 +1768,7 @@ msgstr ""
 
 #: ../dialogs/StandardBotAfterTakeover.dialog:191
 #: ../dialogs/SACD.dialog:170
-#: ../dialogs/MER.dialog:113
+#: ../dialogs/MER.dialog:112
 #: ../dialogs/TestDroid.dialog:41
 msgid " logout"
 msgstr ""
@@ -2713,22 +2713,72 @@ msgid ""
 "e droid might suffice in disabling the shield."
 msgstr ""
 
-#: ../dialogs/Spencer.dialog:490
+#: ../dialogs/Spencer.dialog:489
 msgid " I don't feel like doing it now. I'd rather prepare some more."
 msgstr ""
 
-#: ../dialogs/Spencer.dialog:493
+#: ../dialogs/Spencer.dialog:492
 msgid "Good. You should be well prepared if you intend to go."
 msgstr ""
 
-#: ../dialogs/Spencer.dialog:495
+#: ../dialogs/Spencer.dialog:494
 msgid ""
 "Also there is no need to hurry with this. After all, the installation is not r"
 "unning away, so best take a slow approach."
 msgstr ""
 
-#: ../dialogs/Spencer.dialog:502
+#: ../dialogs/Spencer.dialog:501
 msgid "STARTED THE CUBE MISSION?"
+msgstr ""
+
+#: ../dialogs/Spencer.dialog:510
+msgid "READY FOR HF?"
+msgstr ""
+
+#: ../dialogs/Spencer.dialog:519
+msgid "ENABLE HF BRIEFING"
+msgstr ""
+
+#: ../dialogs/Spencer.dialog:528
+msgid ""
+" It's done. Your soldiers were killed, but I managed to have a word with the s"
+"hield control droid. The access to the bot factory is now open."
+msgstr ""
+
+#: ../dialogs/Spencer.dialog:531
+msgid ""
+"Good. We cannot help you much in this final mission, but I can tell you what o"
+"ur recon teams gathered behind the factory doors. You will enter a zone that u"
+"sed to be a MS office."
+msgstr ""
+
+#: ../dialogs/Spencer.dialog:533
+msgid ""
+"They carried out some development there, and had part of their patching divisi"
+"on and update management department. The actual factory is located behind the "
+"office. With a bit of luck, you might not need to access it. We know they have"
+" their update server in the office. If you can find it and get it to propagate"
+" a faulty update, this could suffice to stopping bots dead in their tracks."
+msgstr ""
+
+#: ../dialogs/Spencer.dialog:535
+msgid ""
+"Look for the entrance of the office in the crystal fields. I will send a messa"
+"ge to the guards so they let you pass. Then you will be on your own."
+msgstr ""
+
+#: ../dialogs/Spencer.dialog:537
+msgid "Good luck."
+msgstr ""
+
+#: ../dialogs/Spencer.dialog:546
+msgid ""
+" I will need some time to get myself ready before I clean up the Hell Fortress"
+"."
+msgstr ""
+
+#: ../dialogs/Spencer.dialog:549
+msgid "You had better be ready."
 msgstr ""
 
 #: ../dialogs/Bender.dialog:33
@@ -6947,21 +6997,33 @@ msgstr ""
 msgid "I hope you are honest. One second..."
 msgstr ""
 
-#: ../dialogs/MSFacilityGateGuardLeader.dialog:174
-msgid ""
-"Right, there is a message from Spencer, you can enter Hell Fortress. And let t"
-"he force be with you!"
-msgstr ""
-
-#: ../dialogs/MSFacilityGateGuardLeader.dialog:187
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:184
 msgid "TEST FOR DISABLED SHIELD"
 msgstr ""
 
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:193
+msgid "HF MISSION NOT YET ASSIGNED"
+msgstr ""
+
 #: ../dialogs/MSFacilityGateGuardLeader.dialog:196
+msgid "Nothing from Spencer, fat duck. Now leave."
+msgstr ""
+
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:203
+msgid "HF MISSION ASSIGNED"
+msgstr ""
+
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:206
+msgid ""
+"Right, there is a message from Spencer, you can enter Hell Fortress. And may t"
+"he source be with you!"
+msgstr ""
+
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:219
 msgid "Relax, I'm leaving."
 msgstr ""
 
-#: ../dialogs/MSFacilityGateGuardLeader.dialog:199
+#: ../dialogs/MSFacilityGateGuardLeader.dialog:222
 msgid "You better be. AND DON'T COME BACK!"
 msgstr ""
 

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CHANGE THIS\n"
 "Report-Msgid-Bugs-To: CHANGE THIS TOO\n"
-"POT-Creation-Date: 2008-08-29 19:57+0000\n"
-"PO-Revision-Date: 2008-08-29 19:57+0000\n"
+"POT-Creation-Date: 2008-09-04 22:16+0000\n"
+"PO-Revision-Date: 2008-09-04 22:16+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -2044,7 +2044,9 @@ msgid "Propagating a faulty firmware"
 msgstr ""
 
 #: ../map/QuestList_archetypes:261
-msgid "This is a placeholder."
+msgid ""
+"I can enter the fortress and find the upgrade server bot. The fortress gates a"
+"re in crystal fields. Spencer told the guards to open the doors for me."
 msgstr ""
 
 #: ../map/QuestList_archetypes:262
