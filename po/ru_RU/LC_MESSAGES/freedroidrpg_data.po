@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: freedroidRPG 0.10.4cvs\n"
 "Report-Msgid-Bugs-To: CHANGE THIS TOO\n"
-"POT-Creation-Date: 2008-08-29 19:57+0000\n"
+"POT-Creation-Date: 2008-09-04 22:16+0000\n"
 "PO-Revision-Date: 2008-08-24 11:23+0000\n"
 "Last-Translator: KiberGus <kibergus@gmail.com>\n"
 "Language-Team: Russian\n"
@@ -135,8 +135,7 @@ msgstr ""
 msgid "EMP grenade"
 msgstr ""
 
-#: ../map/freedroid.prefix_archetypes:10
-#: ../map/freedroid.prefix_archetypes:37
+#: ../map/freedroid.prefix_archetypes:10 ../map/freedroid.prefix_archetypes:37
 msgid "I am a big bad bug in the game. Report me. Please. "
 msgstr ""
 
@@ -684,14 +683,10 @@ msgstr ""
 msgid "Two Barrel sawn off shotgun"
 msgstr "Двухствольный обрез"
 
-#: ../map/freedroid.item_archetypes:1238
-#: ../map/freedroid.item_archetypes:1276
-#: ../map/freedroid.item_archetypes:1314
-#: ../map/freedroid.item_archetypes:1378
-#: ../map/freedroid.item_archetypes:1416
-#: ../map/freedroid.item_archetypes:1480
-#: ../map/freedroid.item_archetypes:1518
-#: ../map/freedroid.item_archetypes:3677
+#: ../map/freedroid.item_archetypes:1238 ../map/freedroid.item_archetypes:1276
+#: ../map/freedroid.item_archetypes:1314 ../map/freedroid.item_archetypes:1378
+#: ../map/freedroid.item_archetypes:1416 ../map/freedroid.item_archetypes:1480
+#: ../map/freedroid.item_archetypes:1518 ../map/freedroid.item_archetypes:3677
 msgid "This is a placeholder for a description. Feel free to help."
 msgstr ""
 
@@ -707,8 +702,7 @@ msgstr "Помповое ружьё"
 msgid "9x19mm Ammunition"
 msgstr ""
 
-#: ../map/freedroid.item_archetypes:1350
-#: ../map/freedroid.item_archetypes:1452
+#: ../map/freedroid.item_archetypes:1350 ../map/freedroid.item_archetypes:1452
 #: ../map/freedroid.item_archetypes:1556
 msgid ""
 "Plasma crystal load. This is the most common way of loading a plasma weapon."
@@ -922,22 +916,14 @@ msgstr ""
 msgid "Droid weaponry - 123 : Weak robotic arm"
 msgstr ""
 
-#: ../map/freedroid.item_archetypes:2112
-#: ../map/freedroid.item_archetypes:2145
-#: ../map/freedroid.item_archetypes:2180
-#: ../map/freedroid.item_archetypes:2213
-#: ../map/freedroid.item_archetypes:2248
-#: ../map/freedroid.item_archetypes:2283
-#: ../map/freedroid.item_archetypes:2318
-#: ../map/freedroid.item_archetypes:2353
-#: ../map/freedroid.item_archetypes:2386
-#: ../map/freedroid.item_archetypes:2421
-#: ../map/freedroid.item_archetypes:2456
-#: ../map/freedroid.item_archetypes:2491
-#: ../map/freedroid.item_archetypes:2526
-#: ../map/freedroid.item_archetypes:2561
-#: ../map/freedroid.item_archetypes:2629
-#: ../map/freedroid.item_archetypes:2666
+#: ../map/freedroid.item_archetypes:2112 ../map/freedroid.item_archetypes:2145
+#: ../map/freedroid.item_archetypes:2180 ../map/freedroid.item_archetypes:2213
+#: ../map/freedroid.item_archetypes:2248 ../map/freedroid.item_archetypes:2283
+#: ../map/freedroid.item_archetypes:2318 ../map/freedroid.item_archetypes:2353
+#: ../map/freedroid.item_archetypes:2386 ../map/freedroid.item_archetypes:2421
+#: ../map/freedroid.item_archetypes:2456 ../map/freedroid.item_archetypes:2491
+#: ../map/freedroid.item_archetypes:2526 ../map/freedroid.item_archetypes:2561
+#: ../map/freedroid.item_archetypes:2629 ../map/freedroid.item_archetypes:2666
 #: ../map/freedroid.item_archetypes:2734
 msgid "Droid weaponry"
 msgstr ""
@@ -1280,8 +1266,7 @@ msgstr ""
 msgid "Source Book of Blue Screen"
 msgstr ""
 
-#: ../map/freedroid.item_archetypes:3298
-#: ../map/freedroid.item_archetypes:3314
+#: ../map/freedroid.item_archetypes:3298 ../map/freedroid.item_archetypes:3314
 msgid ""
 "With a little touch a war machine comes crashing down to a halt. For a while."
 msgstr ""
@@ -1530,10 +1515,8 @@ msgstr ""
 msgid "Entropy Inverter"
 msgstr ""
 
-#: ../map/freedroid.item_archetypes:3717
-#: ../map/freedroid.item_archetypes:3730
-#: ../map/freedroid.item_archetypes:3743
-#: ../map/freedroid.item_archetypes:3756
+#: ../map/freedroid.item_archetypes:3717 ../map/freedroid.item_archetypes:3730
+#: ../map/freedroid.item_archetypes:3743 ../map/freedroid.item_archetypes:3756
 #: ../map/freedroid.item_archetypes:3769
 msgid "This is an standard part within many robot types."
 msgstr ""
@@ -1639,8 +1622,7 @@ msgstr ""
 msgid "Fork"
 msgstr ""
 
-#: ../map/freedroid.item_archetypes:3878
-#: ../map/freedroid.item_archetypes:3891
+#: ../map/freedroid.item_archetypes:3878 ../map/freedroid.item_archetypes:3891
 #: ../map/freedroid.item_archetypes:3904
 msgid ""
 "This item is part of the 'Self Cleaning Kitchen' (SCK) project from before "
@@ -1720,8 +1702,7 @@ msgid ""
 msgstr ""
 
 #: ../map/freedroid.droid_archetypes:178
-msgid ""
-"light duty servant robot. One of the first to use the anti-grav system."
+msgid "light duty servant robot. One of the first to use the anti-grav system."
 msgstr ""
 
 #: ../map/freedroid.droid_archetypes:212
@@ -1739,8 +1720,7 @@ msgid ""
 msgstr ""
 
 #: ../map/freedroid.droid_archetypes:316
-msgid ""
-"early type messenger robot. Large wheels impede motion on small craft."
+msgid "early type messenger robot. Large wheels impede motion on small craft."
 msgstr ""
 
 #: ../map/freedroid.droid_archetypes:351
@@ -2021,8 +2001,7 @@ msgid ""
 msgstr ""
 
 #: ../map/QuestList_archetypes:171
-msgid ""
-"Ouch. It wasn't. At least I am alive and the warehouse is clear. Whew."
+msgid "Ouch. It wasn't. At least I am alive and the warehouse is clear. Whew."
 msgstr ""
 
 #: ../map/QuestList_archetypes:180
@@ -2099,7 +2078,9 @@ msgid "Propagating a faulty firmware"
 msgstr ""
 
 #: ../map/QuestList_archetypes:261
-msgid "This is a placeholder."
+msgid ""
+"I can enter the fortress and find the upgrade server bot. The fortress gates "
+"are in crystal fields. Spencer told the guards to open the doors for me."
 msgstr ""
 
 #: ../map/QuestList_archetypes:262
