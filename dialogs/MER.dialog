@@ -104,7 +104,6 @@ ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" Shield disabled."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
-DoSomethingExtra="PlantCookie:Disruptor_shield_disabled"
 DoSomethingExtra="MarkMissionComplete:8"
 DoSomethingExtra="OpenQuestDiaryEntry:M8E3:"
 
