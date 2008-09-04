@@ -481,7 +481,6 @@ ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=39 ChangeToValue=0
 ChangeOption=40 ChangeToValue=0
 DoSomethingExtra="AssignMission:8"
-DoSomethingExtra="AssignMission:9"
 DoSomethingExtra="ExecuteActionWithLabel:unlock_disruptor_base_gate"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -505,6 +504,52 @@ PositionX=72  PositionY=579
 ChangeOption=41 ChangeToValue=0
 OnCondition="MissionAssigned:8" JumpToOption=36 ElseGoto=34
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
+
+----------------------------------------------------------------------
+
+New Option Nr=42  OptionText=_"READY FOR HF?"
+OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+PositionX=72  PositionY=579  
+ChangeOption=42 ChangeToValue=0
+OnCondition="MissionComplete:8" JumpToOption=43 ElseGoto=36
+AlwaysExecuteThisOptionPriorToDialogStart="yes"
+
+----------------------------------------------------------------------
+
+New Option Nr=43  OptionText=_"ENABLE HF BRIEFING"
+OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+PositionX=72  PositionY=579  
+ChangeOption=43 ChangeToValue=0
+ChangeOption=44 ChangeToValue=1
+AlwaysExecuteThisOptionPriorToDialogStart="no"
+
+----------------------------------------------------------------------
+
+New Option Nr=44  OptionText=_" It's done. Your soldiers were killed, but I managed to have a word with the shield control droid. The access to the bot factory is now open."
+OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
+PositionX=72  PositionY=579  
+Subtitle=_"Good. We cannot help you much in this final mission, but I can tell you what our recon teams gathered behind the factory doors. You will enter a zone that used to be a MS office."
+ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
+Subtitle=_"They carried out some development there, and had part of their patching division and update management department. The actual factory is located behind the office. With a bit of luck, you might not need to access it. We know they have their update server in the office. If you can find it and get it to propagate a faulty update, this could suffice to stopping bots dead in their tracks."
+ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
+Subtitle=_"Look for the entrance of the office in the crystal fields. I will send a message to the guards so they let you pass. Then you will be on your own."
+ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
+Subtitle=_"Good luck."
+ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
+ChangeOption=44 ChangeToValue=0
+ChangeOption=45 ChangeToValue=1
+DoSomethingExtra="AssignMission:9"
+AlwaysExecuteThisOptionPriorToDialogStart="no"
+
+----------------------------------------------------------------------
+
+New Option Nr=45  OptionText=_" I will need some time to get myself ready before I clean up the Hell Fortress."
+OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
+PositionX=72  PositionY=579  
+Subtitle=_"You had better be ready."
+ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
+ChangeOption=45 ChangeToValue=1
+AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
