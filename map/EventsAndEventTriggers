@@ -476,7 +476,7 @@ modify_obstacle_with_label="wall1"
 modify_obstacle_to_type="triggered"
 * End of action *
 
-* New event trigger *
+* disabled event **
 Trigger at label="MSOLobbyDeactivateSecurity"
 Action="DeactivateIntruderDetectorsMSOLobby"
 Delete the event trigger after it has been triggered=1
@@ -488,13 +488,13 @@ modify_event_trigger_with_action_label="IntruderDetectorsMSOLobby"
 modify_event_trigger_to=0
 * End of action *
 
-* New event trigger *
+* disabled event **
 Trigger at label="IntruderDetectorMSOLobby01"
 Action="IntruderDetectorsMSOLobby"
 Delete the event trigger after it has been triggered=1
 * End of trigger *
 
-* New event trigger *
+* disabled event **
 Trigger at label="IntruderDetectorMSOLobby02"
 Action="IntruderDetectorsMSOLobby"
 Delete the event trigger after it has been triggered=1
@@ -513,7 +513,7 @@ modify_obstacle_with_label="IntruderLaserTrapMSO01"
 modify_obstacle_to_type="triggered"
 * End of action *
 
-* New event trigger *
+* disabled event **
 Trigger at label="SwitchOffLaserTrapMSOLobby"
 Action="DisableIntruderDetectorsMSOLobby"
 Delete the event trigger after it has been triggered=1
@@ -532,7 +532,7 @@ modify_obstacle_with_label="IntruderLaserTrapMSO01"
 modify_obstacle_to_type="default"
 * End of action *
 
-* New event trigger *
+* disabled event **
 Trigger at label="MSOPointOfNoReturn"
 Action="MSOPointOfNoReturnTrg"
 Delete the event trigger after it has been triggered=1
@@ -545,7 +545,7 @@ show_big_screen_message=_"Save the world or die! Do not look back!"
 modify_obstacle_to_type="closed"
 * End of action *
 
-* New event trigger *
+* disabled event **
 Trigger at label="BreakingGlassWallTrapTrigger"
 Action="BreakingGlassWallTrap"
 Delete the event trigger after it has been triggered=1
@@ -585,7 +585,7 @@ modify_obstacle_with_label="GlassWallLaserTrap05"
 modify_obstacle_to_type="triggered"
 * End of action *
 
-* New event trigger *
+* disabled event **
 Trigger at label="SwitchOffGlassWallLaserTrap"
 Action="DisableBreakingGlassWallTrap"
 Delete the event trigger after it has been triggered=1
@@ -625,7 +625,7 @@ modify_obstacle_with_label="GlassWallLaserTrap05"
 modify_obstacle_to_type="default"
 * End of action *
 
-* New event trigger *
+* disabled event **
 Trigger at label="MSOMillerEntranceUnlockCounter"
 Action="MSOMillerEntranceUnlockCounter"
 Delete the event trigger after it has been triggered=1
@@ -638,7 +638,7 @@ modify_obstacle_to_type="opened"
 show_big_screen_message=_"Control room door opened!"
 * End of action *
 
-* New event trigger *
+* disabled event **
 Trigger at label="MSOMillerEntranceUnlocker"
 Action="MSOMillerEntranceUnlock"
 Delete the event trigger after it has been triggered=1
@@ -665,7 +665,7 @@ modify_obstacle_with_label="MSOMillerEntrance03"
 modify_obstacle_to_type="opened"
 * End of action *
 
-* New event trigger *
+* disabled event **
 Trigger at label="MSOHQUnlocker"
 Action="MSOHQUnlock"
 Delete the event trigger after it has been triggered=1
@@ -685,7 +685,7 @@ modify_obstacle_with_label="MSOHQDoor02"
 modify_obstacle_to_type="opened"
 * End of action *
 
-* New event trigger *
+* disabled event **
 Trigger at label="MSOHQExitSwitch"
 Action="MSOUnlockExitDoor"
 Delete the event trigger after it has been triggered=1
