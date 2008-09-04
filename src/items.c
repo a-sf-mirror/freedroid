@@ -532,12 +532,11 @@ item_type_cannot_be_equipped ( int drop_item_type )
 
 /**
  * When a random item is being dropped, there is a chance of it being
- * magical.  In that case, there might be a modifying suffix attached to 
+ * magical.  In that case, there might be a modifying suffix attached to
  * the item.  This function is supposed to find a suitable suffix for
  * the item in question.
  **- */
-int 
-find_suitable_bonus_for_item ( int drop_item_type , int TreasureChestRange, item_bonus * btype )
+int find_suitable_bonus_for_item ( int drop_item_type , int TreasureChestRange, item_bonus * btype )
 {
     //--------------------
     // First we catch the case of non-equipable items being magical.
@@ -546,8 +545,11 @@ find_suitable_bonus_for_item ( int drop_item_type , int TreasureChestRange, item
     if ( item_type_cannot_be_equipped ( drop_item_type ) )
 	return ( -1 );
 
-    if ( btype != SuffixList && btype != PrefixList ) 
+    if ( btype != SuffixList && btype != PrefixList )
 	ErrorMessage( __FUNCTION__, "The bonus list to choose a prefix from is incorrect.\n", PLEASE_INFORM, IS_FATAL);
+
+    if ( TreasureChestRange > 4 ) /* Temporary workaround for our lack of prefixes: there are only 4 classes for now. */
+	    TreasureChestRange = 4;
 
     int bcount = 0;
     int i = 0;
@@ -556,17 +558,16 @@ find_suitable_bonus_for_item ( int drop_item_type , int TreasureChestRange, item
 	{
 	if ( btype[i].level == TreasureChestRange ) bcount ++;
 	i ++;
-	}    
+	}
 
     int pick = MyRandom(bcount);
 
     i = 0;
     while ( btype[i] . bonus_name != NULL )
 	{
-	if ( btype[i].level == TreasureChestRange ) 
+	if ( btype[i].level == TreasureChestRange )
 		{
 		pick--;
-	//	if(!pick) printf("Returning bonus %i\n", i);
 		if(pick <= 0) return i;
 		}
 	i ++;
@@ -574,10 +575,9 @@ find_suitable_bonus_for_item ( int drop_item_type , int TreasureChestRange, item
 	}
 
 
-fprintf(stderr,  "Could not find a bonus for item type %d, treasure chest %d, in bonus list %p starting with bonus name %s\n", drop_item_type, 
-TreasureChestRange, btype, btype[0].bonus_name);
+    ErrorMessage(__FUNCTION__, "Could not find a bonus for item type %d, treasure chest %d, in bonus list %p starting with bonus name %s\n", PLEASE_INFORM, IS_WARNING_ONLY, drop_item_type, TreasureChestRange, btype, btype[0].bonus_name);
 
-return 0; //by default, return bonus number 0
+    return 0; //by default, return bonus number 0
 }; // int find_suitable_bonus_for_item ( int drop_item_type , int TreasureChestRange, item_bonus * btype )
 
 int get_random_item_type ( int class )
