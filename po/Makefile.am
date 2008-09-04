@@ -90,15 +90,15 @@ SUFFIXES = .po .mo
 .po.mo:
 	$(MSGFMT) -o $@ $<
 
-$(POFILES_SRC): 
+$(POFILES_SRC): freedroidrpg.pot 
 	@lang=`echo $@ | sed 's/\.po$$//'`; \
 	test -f $${lang}.po && $(MSGMERGE) $(MSGMERGE_OPTIONS) $${lang}.po freedroidrpg.pot
 
-$(POFILES_DAT): 
+$(POFILES_DAT): freedroidrpg_data.pot
 	@lang=`echo $@ | sed 's/\.po$$//'`; \
 	test -f $${lang}.po && $(MSGMERGE) $(MSGMERGE_OPTIONS) $${lang}.po freedroidrpg_data.pot
 
-$(POFILES_DIA):
+$(POFILES_DIA): freedroidrpg_dialogs.pot
 	@lang=`echo $@ | sed 's/\.po$$//'`; \
 	test -f $${lang}.po && $(MSGMERGE) $(MSGMERGE_OPTIONS) $${lang}.po freedroidrpg_dialogs.pot
 
