@@ -639,6 +639,7 @@ ChatDoMenuSelection( char* MenuTexts[ MAX_ANSWERS_PER_PERSON ] ,
     // it can be accessed with proper speed later...
     //
     SDL_SetClipRect( Screen, NULL );
+    display_current_chat_protocol ( CHAT_DIALOG_BACKGROUND_PICTURE_CODE , ChatDroid , FALSE );
     StoreMenuBackground ( 0 );
     
     //--------------------
