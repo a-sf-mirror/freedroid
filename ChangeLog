@@ -1,4 +1,16 @@
 ------------------------------------------------------------------------
+2008-09-05 11:00  ahuillet  r1076
+
+re-display the current chat protocol before entering the option selection loop. fixes issues on win32, mac OS, and Linux at high resolutions.
+------------------------------------------------------------------------
+2008-09-05 11:00  ahuillet  r1075
+
+redraw background loading picture on all platforms now.
+------------------------------------------------------------------------
+2008-09-05 01:23  ahuillet  r1074
+
+changelog upd
+------------------------------------------------------------------------
 2008-09-05 00:31  ahuillet  r1073
 
 upd to reflect latest changes, for real this time
