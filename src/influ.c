@@ -2804,18 +2804,14 @@ PerformTuxAttackRaw ( int use_mouse_cursor_for_targeting )
 	Weapon_Target_Vector.x += Me . pos . x;
 	Weapon_Target_Vector.y += Me . pos . y;
 	DebugPrintf( PERFORM_TUX_ATTACK_RAW_DEBUG , "\n===> Fire Bullet target: x=%f, y=%f. " , Weapon_Target_Vector.x , Weapon_Target_Vector.y ) ;
-        if ( ! DirectLineWalkable ( Me . pos . x , Me . pos . y , Weapon_Target_Vector.x, Weapon_Target_Vector.y, Me . pos . z))
-		{
-		/* The target cannot be reached - cancel the attack NOW*/
-		Me . weapon_swing_time = -1;
-		return 1;
-		}
 	
 	enemy *erot, *nerot;
 BROWSE_LEVEL_BOTS_SAFE(erot, nerot, Me.pos.z)
 	{
-	    if (( fabsf ( erot-> pos . x - Weapon_Target_Vector.x ) > 0.5 ) ||
-	    		( fabsf ( erot->pos . y - Weapon_Target_Vector.y ) > 0.5 ))
+	    if ( ( fabsf ( erot-> pos . x - Weapon_Target_Vector.x ) > 0.5 ) ||
+	    	 ( fabsf ( erot-> pos . y - Weapon_Target_Vector.y ) > 0.5 ) ||
+	         !DirectLineWalkable(Me.pos.x, Me.pos.y, erot->pos.x, erot->pos.y, Me.pos.z)
+	       )
 		continue;
 
 	    //--------------------
