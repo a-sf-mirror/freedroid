@@ -6,7 +6,7 @@
    1. Introduction
    2. Install
    3. Basic controls
-   4. Known Issues
+   4. Known issues
    5. Screen resolution
    6. Level editor
    7. Contact us
@@ -14,94 +14,96 @@
 
 1. Introduction
 ================
- This game tells the story of a world destroyed by a conflict between the bots and their human
- masters. Play as Tux in a quest to save the world from the murderous rebel bots who know no
+ This game tells the story of a world destroyed by a conflict between the droids and their human
+ masters. Play as Tux in a quest to save the world from the murderous rebel droids who know no
  mercy. You get to choose which path you wish to follow, and freedom of choice is everywhere 
  in the game.
 
  FreeDroidRPG features a complete real time combat system with melee and ranged weapons, fairly
- similar to the proprietary game Diablo. There also is an innovative system of magic, with 
- features such as forced casting and over 20 spells. You can use over 50 different kinds of 
- items and fight countless enemies on your way to your destiny. We have an advanced dialogue 
- system, which aims at being at least on par with Fallout's. The dialogues in the game represent 
- a large part of the gameplay. Finally, if guns are too inaccurate and blades too messy, you can 
- always take over your enemies and have them fight on your side.
+ similar to the proprietary game Diablo. There also is an innovative system of magic, with features such as 
+ forced casting and over 20 spells. You can use over 50 different kinds of items and fight countless 
+ enemies on your way to your destiny. We have an advanced dialogue system, which aims at being at
+ least on par with Fallout's. The dialogues in the game represent a large part of the gameplay. 
+ Finally, if guns are too inaccurate and blades too messy, you can always take over your enemies and
+ have them fight on your side.
 
 
 2. Install
-================
+===========
  Please refer to the INSTALL file located in the same folder as this file.
 
 
 3. Controls
-=============
+============
  Movement
+ 
+  The game is controlled using the mouse. Left click onto the locations you want to move to.  Hold 
+  the button down to keep moving in that direction.  Holding down CTRL key will make you run.
 
- The game is controlled using the mouse. Left click onto the locations you want to move to.  Hold 
- the button down to keep moving in that direction.  Holding down CTRL key will make you run.
 
  Attack
 
- Left clicking an enemy will cause Tux to come close to the bot and to start attacking it with the 
- current weapon. If the current weapon is a gun then Tux will stand still and shoot the bot.
+  Left clicking an enemy will cause Tux to come close to the droid and to start attacking it with the 
+  current weapon. If the current weapon is a gun then Tux will stand still and shoot the droid.
+ 
  
  Special functions
 
- Use the right click to activate the currently selected skill/program. 
+  Use the right click to activate the currently selected skill/program. 
 
- Escape     ... Show main menu
- P          ... Pause
+  Escape     ... Show main menu
+  P          ... Pause
 
- I          ... Inventory panel
- C          ... Character panel
- S          ... Skills panel
- Space      ... Close all open panels
- Q          ... Quest log
+  I          ... Inventory panel
+  C          ... Character panel
+  S          ... Skills panel
+  Space      ... Close all open panels
+  Q          ... Quest log
 
- 0-9        ... Use quick-inventory items 0-9
- F1-F10     ... Quick-select program 1 through 10
- F11        ... Toggle fullscreen (Linux only)
- F12        ... Take screenshot
+  0-9        ... Use quick-inventory items 0-9
+  F1-F10     ... Quick-select program 1 through 10
+  F11        ... Toggle fullscreen (Linux only)
+  F12        ... Take screenshot
 
- Hold A     ... Attack while staying at the same position
- Hold Shift ... Keep current target selected when moving
- Tab        ... Toggle automap
+  Hold a     ... Attack while staying at the same position
+  Hold Shift ... Keep current target selected when moving
+  Tab        ... Toggle automap
 
- R          ... Reload weapon
- Hold Ctrl  ... Run
- U          ... Toggle always run
+  R          ... Reload weapon
+  Hold Ctrl  ... Run
+  U          ... Toggle always run
 
- Hold X     ... Show labels for items on the ground
- Z          ... Toggle show labels for items on the ground
- T          ... Toggle walls becoming transparent when Tux approaches
+  Hold X     ... Show labels for items on the ground
+  Z          ... Toggle show labels for items on the ground
+  T          ... Toggle walls becoming transparent when Tux approaches
 
 
-4. Known Issues:
+4. Known Issues
 ================
 - General
-  * Pathfinding/collision detection in the game is partially buggy. This can eg make it difficult to attack bots
-    close to walls.
-  * Sometimes items from eg chests can spawn in an unreachable locaion.
-  * Most melee and ranged weapons only have placeholder laserswords/rifles for their Tux holding and attack 
-  animations. If you are skilled with 3D modelling, please help us out.
-  * Sometimes during talking to NPCs, the black background is replaced by the world map.
+   * Sometimes items, e.g. chests; can spawn in an unreachable locaion.
+   * Most melee and ranged weapons only have placeholder laserswords/rifles for their Tux holding 
+     and attack animations. If you are skilled with 3D modelling, please help us out.
+   * Sometimes during talking to NPCs, the black background is replaced by the world map.
 
 - Windows 
-  * Using the tool IZarc to unpack the downloaded zip breaks the game. IZarc apparently can not handle filenames
-  without extensions. Please use other options, eg 7zip, winzip, winrar etc, to correctly unpack the game.
-  * The game will use the system language by default, you cannot select another language in-game.
+   * Using the tool IZarc to unpack the downloaded zip breaks the game. IZarc apparently can not 
+     handle filenames without extensions. Please use other options, e.g. 7zip, winzip, winrar etc, to 
+     correctly unpack the game.
+   * The game will use the system language by default, you cannot select another language in-game.
 
 - Linux
-  * Nvidia GF 8&9 cards: Transparacy in some parts of the game works incorrectly. E.g. instead of making the walls
-  semi transparent when Tux comes close (in "key T" mode), they vanish completely.
-  * AMD/ATI R300 graphics cards: Mesa 6.5.2 does not support user clipping planes which breaks the text in 
-  freedroidRPG. Upgrading to Mesa 7 should fix this.
-  * Ubuntu: Changing language in game will not work by default since Ubuntu does not ship with standard ISO locales, 
-  only UTF-8 versions. You will have to manually correct this to get it working.
-  Procedure
+   * Nvidia Geforce 8&9 cards: Transparency in some parts of the game works incorrectly. E.g. instead of 
+     making the walls semi transparent when Tux comes close (in "key T" mode), they vanish completely.
+   * AMD/ATI R300 graphics cards: Mesa 6.5.2 does not support user clipping planes which breaks the 
+     text in freedroidRPG. Upgrading to Mesa 7 should fix this.
+   * Ubuntu: Changing language in game will not work by default since Ubuntu does not ship with standard 
+     ISO locales, only UTF-8 versions. You will have to manually correct this to get it working.
+    
+    Procedure
         1) In commandline write 
                 sudo nano /var/lib/locales/supported.d/local
-        2) Add the locales you are interested in, 1 entry on each line, eg
+        2) Add the locales you are interested in, 1 entry on each line, e.g.
                 de_DE ISO-8859-15
                 fr_FR ISO-8859-15
                 sv_SE ISO-8859-15
@@ -114,8 +116,8 @@
 5. Screen resolution
 =====================
  There are a few hidden high resolution settings only accessible from commandline. They are badly tested 
- and thus generally considered to be buggy and are unsupported. They however can still be quite useful for many,
- especially for widescreen LCDs in fullscreen mode. 
+ and thus generally considered to be buggy and are unsupported. They however can still be quite useful for
+ many, especially for widescreen LCDs in fullscreen mode. 
 
  As of this writing the following resolutions codes are implemented:
 
@@ -131,27 +133,27 @@
  To get an up-to-date list of available resolutions use "freedroid -r99".
 
  Some known issues for these unsupported resolutions:
- - Portrait image in dialogs overflows its borders
- - Off center light radius
- - Incorrect text scrolling when talking to NPCs at times
- - Map edges might be visible when moving from one level to the next.
- - Dialogs sometimes switch back and forth between full world and black background.
+    - Portrait image in dialogs overflows its borders
+    - Off center light radius
+    - Incorrect text scrolling when talking to NPCs at times
+    - Map edges might be visible when moving from one level to the next
+    - Dialogs sometimes switch back and forth between full world and black background
 
 
-6. Level editor:
+6. Level editor
 ================
  There is a level editor integrated into the game. It can be accessed from the main menu.
 
 
-7. Contact:
+7. Contact
 ===========
- Website:     http://freedroid.sourceforge.net/
- IRC channel:  #freedroid on irc.freenode.net
- Mailing list: freedroid-discussion@lists.sourceforge.net
- Sourceforge project page:  http://sourceforge.net/projects/freedroid/
+ Website       ................ http://freedroid.sourceforge.net/
+ IRC channel   ................ #freedroid on irc.freenode.net
+ Mailing list  ................ freedroid-discussion@lists.sourceforge.net
+ Sourceforge project page   ... http://sourceforge.net/projects/freedroid/
 
 
-8. Licence:
+8. Licence
 ===========
  The game itself is licensed under GPL. Some other tools use a more permissive license, 
  please refer to the FILES file located in the same folder as this file.
