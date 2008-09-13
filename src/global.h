@@ -180,6 +180,7 @@ EXTERN int SkipAFewFrames;
 
 EXTERN int global_ignore_doors_for_collisions_flag;
 EXTERN int global_check_for_light_only_collisions_flag;
+EXTERN int global_ignore_ground_level_objects_flag;
 
 EXTERN int global_ingame_mode ;
 

@@ -242,7 +242,7 @@ DoSkill(int skill_index, int SpellCost)
 		droid_below_mouse_cursor = GetLivingDroidBelowMouseCursor ( ) ;
 		if ( droid_below_mouse_cursor == NULL ) 
 			goto done_handling_instant_hits;
-		if ( ! DirectLineWalkable ( Me . pos . x ,
+		if ( ! DirectLineColldet ( Me . pos . x ,
 					    Me . pos . y ,
 					    translate_pixel_to_map_location ( (float) input_axis.x ,
 									      (float) input_axis.y ,
@@ -365,7 +365,7 @@ DoSkill(int skill_index, int SpellCost)
 	if (! MouseCursorIsInUserRect ( GetMousePos_x() , GetMousePos_y() ) ) goto out;
 	droid_below_mouse_cursor = GetLivingDroidBelowMouseCursor ( ) ;
 	if ( droid_below_mouse_cursor == NULL ) goto out;
-	if ( ! DirectLineWalkable ( Me . pos . x,
+	if ( ! DirectLineColldet ( Me . pos . x,
 				    Me . pos . y,
 				    translate_pixel_to_map_location ( (float) input_axis.x ,
 								      (float) input_axis.y , TRUE ),

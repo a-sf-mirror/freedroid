@@ -609,26 +609,6 @@ SetNewRandomWaypoint ( Enemy ThisRobot )
 };
 
 /**
- * This function is supposed to find out if a given line on an 
- * arbitrarily chosen map can be walked by a bot or not.
- */
-    int
-droid_can_walk_this_line ( int level_num , float x1, float y1 , float x2 , float y2 )
-{
-    global_ignore_doors_for_collisions_flag = TRUE ;
-    if ( DirectLineWalkable ( x1 , y1 , x2 , y2 , level_num ) )
-	{
-	global_ignore_doors_for_collisions_flag = FALSE ;
-	return ( TRUE );
-	}
-    else
-	{
-	global_ignore_doors_for_collisions_flag = FALSE ;
-	return ( FALSE ); 
-	}
-}; // int droid_can_walk_this_line ( int level_num , float x1, float y1 , float x2 , float y2 )
-
-/**
  * If the droid in question is currently not following the waypoint system
  * but rather moving around on it's own and without any real destination,
  * this function sets up randomly chosen targets for the droid.
@@ -653,8 +633,9 @@ set_new_waypointless_walk_target ( enemy* ThisRobot, moderately_finepoint * mt)
 
 	}
 
-    if ( droid_can_walk_this_line ( ThisRobot -> pos . z , ThisRobot -> pos . x , ThisRobot -> pos . y , 
-		target_candidate . x , target_candidate . y ) )
+    if ( DirectLineWalkable ( ThisRobot -> pos . x , ThisRobot -> pos . y ,
+		                      target_candidate . x , target_candidate . y,
+		                      ThisRobot -> pos . z ) )
 	{
 	mt -> x = target_candidate . x ;
 	mt -> y = target_candidate . y ;
@@ -1535,7 +1516,7 @@ static void state_machine_situational_transitions ( enemy * ThisRobot, const mod
 
 
     /* Switch to stop_and_eye_target if appropriate - it's the prelude to any-on-any attacks */
-    if ( vect_to_target -> x != - 1000 && droid_can_walk_this_line ( ThisRobot->pos.z , ThisRobot->pos.x + vect_to_target->x , ThisRobot->pos.y + vect_to_target->y, ThisRobot -> pos . x , ThisRobot -> pos . y ))
+    if ( vect_to_target -> x != - 1000 && DirectLineWalkable ( ThisRobot->pos.x + vect_to_target->x , ThisRobot->pos.y + vect_to_target->y, ThisRobot -> pos . x , ThisRobot -> pos . y, ThisRobot->pos.z ))
 	{
 	    ThisRobot -> combat_state = STOP_AND_EYE_TARGET;
 	}
@@ -1589,7 +1570,7 @@ static void state_machine_stop_and_eye_target ( enemy * ThisRobot, moderately_fi
     if ( ThisRobot -> state_timeout > Druidmap [ ThisRobot -> type ] . time_spent_eyeing_tux ) 
 	{
 	ThisRobot -> state_timeout = 0;
-	if ( !ThisRobot -> attack_run_only_when_direct_line || ( ThisRobot -> attack_run_only_when_direct_line && DirectLineWalkable( ThisRobot -> pos . x , ThisRobot -> pos . y , tpos -> x , tpos -> y , ThisRobot -> pos . z )))
+	if ( !ThisRobot -> attack_run_only_when_direct_line || ( ThisRobot -> attack_run_only_when_direct_line && DirectLineColldet( ThisRobot -> pos . x , ThisRobot -> pos . y , tpos -> x , tpos -> y , ThisRobot -> pos . z )))
 	    {
 	    SetRestOfGroupToState ( ThisRobot , ATTACK );
 	    ThisRobot -> combat_state = ATTACK ;
@@ -1622,14 +1603,14 @@ static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_m
     /* In case the target is on another level, evaluate the virtual position */
     update_virtual_position( &ThisRobot->virt_pos, &ThisRobot->pos, tpos -> z );
 
-    if ( ThisRobot->virt_pos . z  == -1 ) //|| ! droid_can_walk_this_line ( tpos -> z , ThisRobot -> virt_pos . x , ThisRobot -> virt_pos . y , tpos-> x , tpos->y ) ) 
+    if ( ThisRobot->virt_pos . z  == -1 )
 	{ // target not reachable ?
 	ThisRobot -> combat_state = SELECT_NEW_WAYPOINT;
 	return;
 	}
 
     float dist2 = (ThisRobot -> virt_pos . x - tpos -> x) * (ThisRobot -> virt_pos . x - tpos -> x) + (ThisRobot -> virt_pos . y - tpos -> y) * (ThisRobot -> virt_pos . y - tpos -> y);
-    int target_visible = DirectLineWalkable ( ThisRobot->virt_pos.x, ThisRobot->virt_pos.y, tpos->x, tpos->y, tpos->z);
+    int target_visible = DirectLineColldet ( ThisRobot->virt_pos.x, ThisRobot->virt_pos.y, tpos->x, tpos->y, tpos->z);
 
     //--------------------
     // We will often have to move towards our target.
@@ -1691,7 +1672,7 @@ static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_m
 	       for ( a = 0; a < 8; a ++ )
 		   {
 		   RotateVectorByAngle ( &test_t, angles_to_try[a] );
-		   if ( DirectLineWalkable ( tmp.x, tmp.y, tmp.x + test_t.x, tmp.y + test_t.y, ThisRobot->pos.z) &&
+		   if ( DirectLineColldet ( tmp.x, tmp.y, tmp.x + test_t.x, tmp.y + test_t.y, ThisRobot->pos.z) &&
                         CheckIfWayIsFreeOfDroids(FALSE, tmp.x, tmp.y, tmp.x + test_t.x, tmp.y + test_t.y, ThisRobot->pos.z, ThisRobot) 
                       )
 		       break;
@@ -2318,7 +2299,7 @@ ClosestOtherEnemyDroid ( Enemy ThisRobot )
 int
 ConsideredMoveIsFeasible ( Enemy ThisRobot , moderately_finepoint StepVector )
 {
-    if ( ( DirectLineWalkable ( ThisRobot -> pos.x, ThisRobot -> pos.y, ThisRobot -> pos.x + StepVector.x , 
+    if ( ( DirectLineColldet ( ThisRobot -> pos.x, ThisRobot -> pos.y, ThisRobot -> pos.x + StepVector.x ,
 			ThisRobot -> pos.y + StepVector.y ,
 			ThisRobot -> pos.z ) ) && 
 	 ( CheckIfWayIsFreeOfDroids ( TRUE, ThisRobot->pos.x , ThisRobot->pos.y , 
@@ -2394,7 +2375,7 @@ MoveAwayFromMeleeCombat ( Enemy ThisRobot , moderately_finepoint * set_move_tgt 
 	// trying around...
 	//
 	if ( /*XXX*/ ConsideredMoveIsFeasible ( ThisRobot , RotatedStepVector ) &&
-	             DirectLineWalkable( ThisRobot->virt_pos.x + RotatedStepVector.x, ThisRobot->virt_pos.y + RotatedStepVector.y,
+	             DirectLineColldet( ThisRobot->virt_pos.x + RotatedStepVector.x, ThisRobot->virt_pos.y + RotatedStepVector.y,
 	                                 VictimPosition.x, VictimPosition.y, ThisRobot->pos.z )
 	   )
 	{

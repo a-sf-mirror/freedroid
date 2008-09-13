@@ -1384,10 +1384,11 @@ streamline_intermediate_course ( enemy * droid, gps * curpos, moderately_finepoi
 	  //--------------------
 	  // Otherwise we check if maybe this is (another) reachable intermediate point (AGAIN?)
 	  //
-	  if ( droid_can_walk_this_line ( curpos->z , waypoints [ start_index ] . x ,
+	  if ( DirectLineWalkable ( waypoints [ start_index ] . x ,
 					waypoints [ start_index ] . y ,
 					waypoints [ scan_index ] . x ,
-					waypoints [ scan_index ] . y ) )
+				        waypoints [ scan_index ] . y,
+				        curpos->z ) )
 	    {
 	      if ( CheckIfWayIsFreeOfDroids ( FALSE, waypoints [ start_index ] . x ,
 								waypoints [ start_index ] . y ,
@@ -1440,10 +1441,9 @@ streamline_intermediate_course ( enemy * droid, gps * curpos, moderately_finepoi
   if ( waypoints [ 1 ] . x == -1 )
       return; 
 
-  if ( ( droid_can_walk_this_line ( curpos->z, curpos-> x ,
-				  curpos-> y ,
-				  waypoints [ 1 ] . x ,
-				  waypoints [ 1 ] . y ) ) &&
+  if ( ( DirectLineWalkable ( curpos-> x, curpos-> y ,
+                              waypoints [ 1 ] . x ,  waypoints [ 1 ] . y,
+                              curpos->z) ) &&
        ( waypoints [ 1 ] . x != (-1) ) )
     {
       if ( CheckIfWayIsFreeOfDroids ( FALSE, curpos->x ,
@@ -1499,7 +1499,7 @@ recursive_find_walkable_point ( enemy * droid, int levelnum, float x1 , float y1
     // go any further, but instead we select the current position as the preliminary
     // walkable target for the Tux.
     //
-    if ( ( droid_can_walk_this_line ( levelnum, x1, y1 , x2 , y2 ) ) &&
+    if ( ( DirectLineWalkable ( x1, y1 , x2 , y2, levelnum ) ) &&
 	    ( CheckIfWayIsFreeOfDroids ( FALSE, x1 , y1 , x2 , y2 , levelnum, droid ) ) ) 
 	{
 	// if the target position is directly reachable
@@ -1605,7 +1605,7 @@ recursive_find_walkable_point ( enemy * droid, int levelnum, float x1 , float y1
         float centered_y = rintf ( y1 + ordered_moves [ i ] . y + 0.5 ) - 0.5;
 
 	if ( ( recursion_grid [ (int) ( centered_x ) ] [ (int) ( centered_y ) ] == TILE_IS_UNPROCESSED ) &&
-	     ( droid_can_walk_this_line ( levelnum, x1, y1, centered_x, centered_y ) ) )
+	     ( DirectLineWalkable ( x1, y1, centered_x, centered_y, levelnum ) ) )
 	{
 	    if ( ( CheckIfWayIsFreeOfDroids ( FALSE, x1, y1, centered_x, centered_y, levelnum , droid ) ) )
 	    {
@@ -2810,7 +2810,7 @@ BROWSE_LEVEL_BOTS_SAFE(erot, nerot, Me.pos.z)
 	{
 	    if ( ( fabsf ( erot-> pos . x - Weapon_Target_Vector.x ) > 0.5 ) ||
 	    	 ( fabsf ( erot-> pos . y - Weapon_Target_Vector.y ) > 0.5 ) ||
-	         !DirectLineWalkable(Me.pos.x, Me.pos.y, erot->pos.x, erot->pos.y, Me.pos.z)
+	         !DirectLineColldet(Me.pos.x, Me.pos.y, erot->pos.x, erot->pos.y, Me.pos.z)
 	       )
 		continue;
 
@@ -3060,7 +3060,7 @@ void check_for_items_to_pickup ( int index_of_item_under_mouse_cursor )
 	// some walls or something...
 	//
 	if (( calc_euklid_distance( Me . pos . x, Me . pos . y, our_level -> ItemList [ index_of_item_under_mouse_cursor ] . pos .x, our_level -> ItemList [ index_of_item_under_mouse_cursor ] . pos . y ) < ITEM_TAKE_DIST ) && 
-		DirectLineWalkable ( our_level -> ItemList [ index_of_item_under_mouse_cursor ] . pos . x , our_level -> ItemList [ index_of_item_under_mouse_cursor ] . pos . y , Me . pos . x , Me . pos . y , Me . pos . z ) )
+		DirectLineColldet ( our_level -> ItemList [ index_of_item_under_mouse_cursor ] . pos . x , our_level -> ItemList [ index_of_item_under_mouse_cursor ] . pos . y , Me . pos . x , Me . pos . y , Me . pos . z ) )
 	    {
 	    if ( GameConfig.Inventory_Visible == FALSE || MatchItemWithName(our_level -> ItemList [ index_of_item_under_mouse_cursor ] . type, "Cyberbucks") )
 		{
@@ -3150,8 +3150,8 @@ check_for_barrels_to_smash ( int barrel_index )
 	    
 	    for ( i = 0 ; i < 8 ; i ++ )
 	    {
-		if ( droid_can_walk_this_line( Me.pos.z, Me.pos.x, Me.pos.y,our_level -> obstacle_list [ barrel_index ] . pos . x + step_vector . x ,
-				  our_level -> obstacle_list [ barrel_index ] . pos . y + step_vector . y) )
+		if ( DirectLineWalkable( Me.pos.x, Me.pos.y,our_level -> obstacle_list [ barrel_index ] . pos . x + step_vector . x ,
+				  our_level -> obstacle_list [ barrel_index ] . pos . y + step_vector . y, Me.pos.z ) )
 		{
 		    //--------------------
 		    // The obstacle plus the step vector give us the position to move the
@@ -3217,9 +3217,9 @@ check_for_barrels_to_smash ( int barrel_index )
 			                               step_vector . y * ( half_size . y + 0.2  );
 
 			// check if the line from point_near_barrel to point_away_from_barrel is walkable
-			if ( droid_can_walk_this_line( Me . pos . z,
-			                               point_near_barrel . x, point_near_barrel . y,
-			                               point_away_from_barrel . x, point_away_from_barrel . y ) )
+			if ( DirectLineWalkable( point_near_barrel . x, point_near_barrel . y,
+			                         point_away_from_barrel . x, point_away_from_barrel . y,
+			                         Me . pos . z) )
 			{
 				//--------------------
 				// point_to_barrel seems good, move Tux there

@@ -97,12 +97,38 @@ static inline float calc_distance_seg_point_normalized ( float x1, float y1, flo
 	    {
 	    return sqrt(( px - x1 ) * ( px - x1 ) + ( py - y1 ) * ( py - y1 ));
 	    }
-	else //dotprod > length²
+	else //dotprod > length^2
 	    {
 	    return sqrt(( px - x2 ) * ( px - x2 ) + ( py - y2 ) * ( py - y2 ));
 	    }
 	}
 }
+
+/**
+ * This function is supposed to find out if a given line on an
+ * arbitrarily chosen map can be walked by a bot or not.
+ */
+int
+DirectLineWalkable ( float x1, float y1 , float x2 , float y2, int z )
+{
+    global_ignore_doors_for_collisions_flag = TRUE ;
+    int rtn = DirectLineColldet ( x1 , y1 , x2 , y2 , z );
+	global_ignore_doors_for_collisions_flag = FALSE ;
+	return ( rtn );
+}; // int DirectLineWalkable ( float x1, float y1 , float x2 , float y2, int z )
+
+/**
+ * This function is supposed to find out if a given line on an
+ * arbitrarily chosen map can be traversed by a flying object.
+ */
+int
+DirectLineFlyable ( float x1, float y1 , float x2 , float y2, int z )
+{
+	global_ignore_ground_level_objects_flag = TRUE ;
+    int rtn = DirectLineColldet ( x1 , y1 , x2 , y2 , z );
+    global_ignore_ground_level_objects_flag = FALSE ;
+	return ( rtn );
+}; // int DirectLineFlyable ( float x1, float y1 , float x2 , float y2, int z )
 
 /**
  * This function checks if the connection between two points is free of
@@ -169,21 +195,29 @@ static inline char get_point_flag ( float xmin, float ymin, float xmax, float ym
 
 int IsPassable ( float x, float y, int z )
 {
-    return DirectLineWalkable (x, y, x, y, z);
+    return DirectLineColldet (x, y, x, y, z);
 }
 
 int IsPassableForDroid ( float x, float y, int z )
 {
     global_ignore_doors_for_collisions_flag = TRUE;
-    int a = DirectLineWalkable (x, y, x, y, z);
+    int a = DirectLineColldet (x, y, x, y, z);
     global_ignore_doors_for_collisions_flag = FALSE;
     return a;
+}
+
+int IsPassableForFlyingObj ( float x , float y , int z )
+{
+	global_ignore_ground_level_objects_flag = TRUE;
+	int a = DirectLineColldet (x, y, x, y, z);
+	global_ignore_ground_level_objects_flag = FALSE;
+	return a;
 }
 
 /** This function checks if the line can be walked along directly against obstacles.
  * It also handles the case of point tests (x1 == x2 && y1 == y2) properly.
  */
-int DirectLineWalkable ( float x1, float y1, float x2, float y2, int z)
+int DirectLineColldet ( float x1, float y1, float x2, float y2, int z)
 {
 
     //Browse all obstacles around the rectangle
@@ -231,6 +265,13 @@ int DirectLineWalkable ( float x1, float y1, float x2, float y2, int z)
 		    if ( ( our_obs->type >= ISO_OUTER_DOOR_V_00 ) && ( our_obs->type <= ISO_OUTER_DOOR_H_100 ) )
 			continue;
 		    }
+
+		//--------------------
+		// Some items (such as bullets) can fly over ground level obstacles (such a water)
+		//
+		if ( global_ignore_ground_level_objects_flag && (obstacle_map[our_obs->type].flags & GROUND_LEVEL) )
+			continue;
+
 
 		if ( ( ! ( obstacle_map [ our_obs->type ] . flags & BLOCKS_VISION_TOO) ) && ( global_check_for_light_only_collisions_flag ) )
 		    continue;

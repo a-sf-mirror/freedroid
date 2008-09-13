@@ -1002,7 +1002,7 @@ smash_obstacles_only_on_tile ( float x , float y , int map_x , int map_y )
 	
 	    stored_target_obstacle_type = target_obstacle -> type ;
 	    target_obstacle -> type = ISO_BLOOD_1 ; // something harmless concerning collisions
-	    if ( ! DirectLineWalkable ( x , y , 
+	    if ( ! DirectLineColldet ( x , y , 
 					Me . pos . x , Me . pos . y , 
 					Me . pos . z ) )
 	    {
@@ -3524,7 +3524,7 @@ IsVisible ( GPS objpos )
   // -10th-frame-only code could be added here later... and in the meantime
   // old values could be used from a stored flag?!
   //
-  return ( DirectLineWalkable( objpos -> x , objpos -> y , 
+  return ( DirectLineColldet( objpos -> x , objpos -> y , 
 			       Me . pos . x , Me . pos . y , 
 			       objpos -> z ) )  ;
 

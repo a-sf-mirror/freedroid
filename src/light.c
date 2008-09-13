@@ -275,7 +275,7 @@ calculate_light_strength ( moderately_finepoint target_pos )
 	    {
 		if ( curShip . AllLevels [ Me . pos . z ] -> use_underground_lighting )
 		{
-		    if ( ! DirectLineWalkable( light_sources [ i ] . x , light_sources [ i ] . y , 
+		    if ( ! DirectLineColldet( light_sources [ i ] . x , light_sources [ i ] . y , 
 					       target_pos . x , target_pos . y , 
 					       Me . pos . z ) )
 			continue;

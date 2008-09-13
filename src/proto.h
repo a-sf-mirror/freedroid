@@ -410,10 +410,13 @@ EXTERN inline float translate_pixel_to_map_location ( float axis_x , float axis_
 #else
 #define EXTERN extern
 #endif
+EXTERN int DirectLineColldet( float x1 , float y1 , float x2 , float y2 , int z );
 EXTERN int DirectLineWalkable( float x1 , float y1 , float x2 , float y2 , int z );
+EXTERN int DirectLineFlyable ( float x1, float y1 , float x2 , float y2, int z );
 EXTERN int CheckIfWayIsFreeOfDroids (char test_tux, float x1 , float y1 , float x2 , float y2 , int OurLevel , enemy * ExceptedRobot ) ;
 EXTERN int IsPassable ( float x , float y , int z ) ;
 EXTERN int IsPassableForDroid ( float x , float y , int z ) ;
+EXTERN int IsPassableForFlyingObj ( float x , float y , int z ) ;
 EXTERN int normalize_vect ( float, float, float *, float *);
 
 // sound.c  OR nosound.c 
@@ -799,7 +802,6 @@ EXTERN void hit_enemy ( enemy * target, float hit, char givexp, short int killer
 EXTERN enemy * enemy_resolve_address ( short int enemy_number, enemy ** enemy_addr );
 EXTERN void enemy_set_reference ( short int * enemy_number, enemy ** enemy_addr, enemy * addr);
 EXTERN void enemy_generate_level_lists ();
-EXTERN int droid_can_walk_this_line ( int level_num , float x1, float y1 , float x2 , float y2 );
 
 #define BROWSE_ALIVE_BOTS_SAFE(X,Y) list_for_each_entry_safe(X, Y, &alive_bots_head, global_list)
 #define BROWSE_ALIVE_BOTS(X) list_for_each_entry(X, &alive_bots_head, global_list)
