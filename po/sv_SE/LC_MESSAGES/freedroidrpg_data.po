@@ -3,120 +3,124 @@ msgstr ""
 "Project-Id-Version: freedroidRPG 0.10.4cvs\n"
 "Report-Msgid-Bugs-To: CHANGE THIS TOO\n"
 "POT-Creation-Date: 2008-09-04 22:16+0000\n"
-"PO-Revision-Date: 2008-02-05 22:14+0100\n"
-"Last-Translator:  <arthur.huillet@free.fr>\n"
+"PO-Revision-Date: 2008-08-29 16:18+0000\n"
+"Last-Translator: Christian Widell <Christian_widell@hotmail.com>\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Launchpad-Export-Date: 2008-09-14 12:32+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
 
 #: ../map/freedroid.program_archetypes:8
 msgid "Hacking"
-msgstr ""
+msgstr "Hacking"
 
 #: ../map/freedroid.program_archetypes:20
 msgid "Repair equipment"
-msgstr ""
+msgstr "Reparera utrustning"
 
 #: ../map/freedroid.program_archetypes:30
 msgid "Use weapon"
-msgstr ""
+msgstr "Använd vapen"
 
 #: ../map/freedroid.program_archetypes:40
 msgid "Emergency shutdown"
-msgstr ""
+msgstr "Nödavstängning"
 
 #: ../map/freedroid.program_archetypes:54
 msgid "Check system integrity"
-msgstr ""
+msgstr "Verifiera systemintegriteten"
 
 #: ../map/freedroid.program_archetypes:68
 msgid "Sanctuary"
-msgstr ""
+msgstr "Fristad"
 
 #: ../map/freedroid.program_archetypes:79
 msgid "Analyze item"
-msgstr ""
+msgstr "Analysera föremål"
 
 #: ../map/freedroid.program_archetypes:90
 msgid "Invisibility"
-msgstr ""
+msgstr "Osynlighet"
 
 #: ../map/freedroid.program_archetypes:102
 msgid "Malformed packet"
-msgstr ""
+msgstr "Felformaterat paket"
 
 #: ../map/freedroid.program_archetypes:117
 msgid "Calculate Pi"
-msgstr ""
+msgstr "Beräkna Pi"
 
 #: ../map/freedroid.program_archetypes:134
 msgid "Blue Screen"
-msgstr ""
+msgstr "Blåskärm"
 
 #: ../map/freedroid.program_archetypes:149
 msgid "Broadcast Blue Screen"
-msgstr ""
+msgstr "Utstråla Blåskärm"
 
 #: ../map/freedroid.program_archetypes:165
 msgid "Virus"
-msgstr ""
+msgstr "Virus"
 
 #: ../map/freedroid.program_archetypes:181
 msgid "Broadcast virus"
-msgstr ""
+msgstr "Utstråla Virus"
 
 #: ../map/freedroid.program_archetypes:198
 msgid "Dispel smoke"
-msgstr ""
+msgstr "Avge rök"
 
 #: ../map/freedroid.program_archetypes:212
 msgid "Killer poke"
-msgstr ""
+msgstr "Skada minneskretsar"
 
 #: ../map/freedroid.program_archetypes:227
 msgid "Plasma discharge"
-msgstr ""
+msgstr "Plasmaurladdning"
 
 #: ../map/freedroid.program_archetypes:244
 msgid "Nethack"
-msgstr ""
+msgstr "Nethack"
 
 #: ../map/freedroid.program_archetypes:260
 msgid "Extract bot parts"
-msgstr ""
+msgstr "Extrahera botdelar"
 
 #: ../map/freedroid.program_archetypes:270
 msgid "Reverse-engineer"
-msgstr ""
+msgstr "Reverse-engineer"
 
 #: ../map/freedroid.program_archetypes:282
 msgid "Ricer CFLAGS"
-msgstr ""
+msgstr "Ostabila kompilerings flaggor"
 
 #: ../map/freedroid.program_archetypes:291
 msgid "Light"
-msgstr ""
+msgstr "Ljus"
 
 #: ../map/freedroid.program_archetypes:292
 msgid ""
 "This does nothing in this version of freedroidRPG. Let there be light..."
 msgstr ""
+"Denna gör ingenting i den här versionen av freedroidRPG. Låt ljuset flöda..."
 
 #: ../map/freedroid.program_archetypes:301
 msgid "Satellite image"
-msgstr ""
+msgstr "Satellitbild"
 
 #: ../map/freedroid.program_archetypes:302
 msgid ""
 "This does nothing in this version of freedroidRPG. Getting a map of an area "
 "is pretty easy when you can look at everything from above."
 msgstr ""
+"Denna gör ingenting i den här versionen av freedroidRPG. Att få tag i en "
+"karta på ett område är rätt så lätt när du kan se på allting ovanifrån."
 
 #: ../map/freedroid.program_archetypes:310
 msgid "Plasma grenade"
-msgstr ""
+msgstr "Plasmagranat"
 
 #: ../map/freedroid.program_archetypes:311
 #: ../map/freedroid.program_archetypes:321
@@ -125,138 +129,142 @@ msgid ""
 "This is a bug, report this to the developers, unless you cheated, in which "
 "case you deserve to see this stupid description."
 msgstr ""
+"Det här är en bugg, rapportera detta till utvecklarna, såvida du inte har "
+"fuskat, i vilket fall du förtjänar att se denna dumma beskrivning."
 
 #: ../map/freedroid.program_archetypes:320
 msgid "Gas grenade"
-msgstr ""
+msgstr "Gasgranat"
 
 #: ../map/freedroid.program_archetypes:330
 msgid "EMP grenade"
-msgstr ""
+msgstr "EMP granat"
 
-#: ../map/freedroid.prefix_archetypes:10 ../map/freedroid.prefix_archetypes:37
+#: ../map/freedroid.prefix_archetypes:10
+#: ../map/freedroid.prefix_archetypes:37
 msgid "I am a big bad bug in the game. Report me. Please. "
 msgstr ""
+"Jag är stor elak bugg i spelet. Rapportera mig till utvecklarna är du snäll. "
 
 #: ../map/freedroid.prefix_archetypes:64
 msgid "Living "
-msgstr ""
+msgstr "Levande "
 
 #: ../map/freedroid.prefix_archetypes:91
 msgid " coated in teflon"
-msgstr ""
+msgstr " täckt av teflon"
 
 #: ../map/freedroid.prefix_archetypes:118
 msgid " of Almost Zodiac"
-msgstr ""
+msgstr " av nästan Zodiak"
 
 #: ../map/freedroid.prefix_archetypes:145
 msgid "Resonant "
-msgstr ""
+msgstr "Resonerande "
 
 #: ../map/freedroid.prefix_archetypes:172
 msgid "Cow "
-msgstr ""
+msgstr "Ko "
 
 #: ../map/freedroid.prefix_archetypes:200
 msgid "Bull "
-msgstr ""
+msgstr "Tjur "
 
 #: ../map/freedroid.prefix_archetypes:227
 msgid "Mouse "
-msgstr ""
+msgstr "Mus "
 
 #: ../map/freedroid.prefix_archetypes:254
 msgid "Jackdaw "
-msgstr ""
+msgstr "Kaja "
 
 #: ../map/freedroid.prefix_archetypes:281
 msgid "Hardcoded "
-msgstr ""
+msgstr "Hårdkodad "
 
 #: ../map/freedroid.prefix_archetypes:308
 msgid "Melting "
-msgstr ""
+msgstr "Smältande "
 
 #: ../map/freedroid.prefix_archetypes:335
 msgid "Cursed "
-msgstr ""
+msgstr "Förbannad "
 
 #: ../map/freedroid.prefix_archetypes:362
 msgid "Perfect "
-msgstr ""
+msgstr "Perfekt "
 
 #: ../map/freedroid.prefix_archetypes:388
 msgid "Quartz "
-msgstr ""
+msgstr "Quartz "
 
 #: ../map/freedroid.prefix_archetypes:415
 msgid "First aid "
-msgstr ""
+msgstr "Första hjälpen "
 
 #: ../map/freedroid.prefix_archetypes:442
 msgid "Razor sharp "
-msgstr ""
+msgstr "Rakbladsvass "
 
 #: ../map/freedroid.prefix_archetypes:469
 msgid "Light "
-msgstr ""
+msgstr "Ljus "
 
 #: ../map/freedroid.prefix_archetypes:496
 msgid "Beautiful "
-msgstr ""
+msgstr "Vacker "
 
 #: ../map/freedroid.prefix_archetypes:523
 msgid "Howling "
-msgstr ""
+msgstr "Ylande "
 
 #: ../map/freedroid.prefix_archetypes:550
 msgid "Accelerating "
-msgstr ""
+msgstr "Accelererande "
 
 #: ../map/freedroid.prefix_archetypes:577
 msgid "Colorful "
-msgstr ""
+msgstr "Färglad "
 
 #: ../map/freedroid.prefix_archetypes:604
 msgid "Rainbow "
-msgstr ""
+msgstr "Regnbåge "
 
 #: ../map/freedroid.prefix_archetypes:631
 msgid "Suicide "
-msgstr ""
+msgstr "Självmord "
 
 #: ../map/freedroid.prefix_archetypes:658
 msgid "Broken "
-msgstr ""
+msgstr "Trasig "
 
 #: ../map/freedroid.prefix_archetypes:685
 msgid "Fluorescent "
-msgstr ""
+msgstr "Fluorescerande "
 
 #: ../map/freedroid.prefix_archetypes:712
 msgid "Luminescent "
-msgstr ""
+msgstr "Luminiscerande "
 
 #: ../map/freedroid.prefix_archetypes:739
 msgid "Blazing "
-msgstr ""
+msgstr "Flammande "
 
 #: ../map/freedroid.prefix_archetypes:766
 msgid "Hungry "
-msgstr ""
+msgstr "Hungrig "
 
 #: ../map/freedroid.prefix_archetypes:793
 msgid "Devouring "
-msgstr ""
+msgstr "Uppslukande "
 
 #: ../map/freedroid.prefix_archetypes:820
 msgid "Ravenous "
-msgstr ""
+msgstr "Glupsk "
 
 #: ../map/freedroid.prefix_archetypes:847
 msgid "OMGWTF "
-msgstr ""
+msgstr "OMGWTF "
 
 #: ../map/freedroid.prefix_archetypes:874
 msgid " of good design"
@@ -264,71 +272,71 @@ msgstr ""
 
 #: ../map/freedroid.prefix_archetypes:897
 msgid " (C)MegaSys"
-msgstr ""
+msgstr " (C)MegaSys"
 
 #: ../map/freedroid.prefix_archetypes:921
 msgid " with no suffix"
-msgstr ""
+msgstr " utan suffix"
 
 #: ../map/freedroid.prefix_archetypes:944
 msgid " with sharp edges"
-msgstr ""
+msgstr " med skarpa kanter"
 
 #: ../map/freedroid.prefix_archetypes:969
 msgid " covered in blood"
-msgstr ""
+msgstr " täckt av blod"
 
 #: ../map/freedroid.prefix_archetypes:992
 msgid " covered in oil"
-msgstr ""
+msgstr " täckt av olja"
 
 #: ../map/freedroid.prefix_archetypes:1015
 msgid ", 'the Murderer'"
-msgstr ""
+msgstr ", 'Mördaren"
 
 #: ../map/freedroid.prefix_archetypes:1038
 msgid ", 'the Healer'"
-msgstr ""
+msgstr ", 'Helaren'"
 
 #: ../map/freedroid.prefix_archetypes:1061
 msgid ", 'the Rabbit'"
-msgstr ""
+msgstr ", 'Kaninen'"
 
 #: ../map/freedroid.prefix_archetypes:1084
 msgid ", 'the Seeker'"
-msgstr ""
+msgstr ", 'Sökaren'"
 
 #: ../map/freedroid.prefix_archetypes:1107
 msgid ", 'the World'"
-msgstr ""
+msgstr ", 'Världen'"
 
 #: ../map/freedroid.prefix_archetypes:1130
 msgid " from hell"
-msgstr ""
+msgstr " från helvetet"
 
 #: ../map/freedroid.prefix_archetypes:1153
 msgid " with strange runes"
-msgstr ""
+msgstr " med konstiga runor"
 
 #: ../map/freedroid.prefix_archetypes:1176
 msgid " with a curse"
-msgstr ""
+msgstr " med en förbannelse"
 
 #: ../map/freedroid.prefix_archetypes:1199
 msgid "Cool "
-msgstr ""
+msgstr "Kall "
 
 #: ../map/freedroid.prefix_archetypes:1222
 msgid "Frozen "
-msgstr ""
+msgstr "Frusen "
 
 #: ../map/freedroid.prefix_archetypes:1245
 msgid " of ice"
-msgstr ""
+msgstr " av is"
 
 #: ../map/freedroid.prefix_archetypes:1268
 msgid " of chills"
-msgstr ""
+msgstr " av kalla kårar"
 
 #: ../map/freedroid.item_archetypes:49
 msgid ""
@@ -339,11 +347,11 @@ msgstr ""
 
 #: ../map/freedroid.item_archetypes:58
 msgid "Dummy item. If you see this, report a bug."
-msgstr ""
+msgstr "Atrapp. Om du ser denna text, rapportera felet."
 
 #: ../map/freedroid.item_archetypes:156
 msgid "Big kitchen knife"
-msgstr ""
+msgstr "Stor kökskniv"
 
 #: ../map/freedroid.item_archetypes:172
 msgid ""
@@ -351,10 +359,13 @@ msgid ""
 "cutting through steel as well as quickly reaching the point of breaking if "
 "you try. Though for sure better than hitting at metal with your bare fists."
 msgstr ""
+"Lätt och smidig i strid, men oturligt nog inte vare sig särskilt effektiv "
+"för att skära genom stål eller speciellt hållbar om du försöker. Dock är den "
+"klart bättre att använda än om du försöker slå på metall med bara händerna."
 
 #: ../map/freedroid.item_archetypes:194
 msgid "Antique sword"
-msgstr ""
+msgstr "Antikt svärd"
 
 #: ../map/freedroid.item_archetypes:210
 msgid ""
@@ -363,10 +374,15 @@ msgid ""
 "inability of a cutting blade to incur lots of damage on a heavily protected "
 "target. Repeatedly striking at metal quickly damages the blade though."
 msgstr ""
+"Lång räckvidd samtidigt som den behåller tillräckligt med manöverabilitet i "
+"strid för att träffa en svag punkt i en droids pansar är fördelarna som "
+"delvis väger upp ett skärande blads oförmåga att allvarligt skada ett "
+"välbepansrat mål. Upprepade försök att slå på metall kommer snabbt att skada "
+"bladet."
 
 #: ../map/freedroid.item_archetypes:232
 msgid "Great sword"
-msgstr ""
+msgstr "Storsvärd"
 
 #: ../map/freedroid.item_archetypes:248
 msgid ""
@@ -375,10 +391,15 @@ msgid ""
 "sword from high impact hits into metall will however require frequent "
 "maintenance to not have it break in half exactly when it's most needed."
 msgstr ""
+"Storleken och den kinetiska kraften som kan åstadkommas med detta stora "
+"svärd är stor nog för att kunna klyva rakt igenom en droid av låg klass. "
+"Påfrestningen på svärdet från hårda slag mot metall kommer dock att kräva "
+"regelbunden reparation för att den inte ska brytas mitt itu just när det "
+"behövs som bäst."
 
 #: ../map/freedroid.item_archetypes:270
 msgid "Chainsaw"
-msgstr ""
+msgstr "Motorsåg"
 
 #: ../map/freedroid.item_archetypes:286
 msgid ""
@@ -388,10 +409,14 @@ msgid ""
 "supply shortages of new chains and other parts makes it expensive to "
 "maintain."
 msgstr ""
+"Ganska effektiv i att separera även en droids lemmar från dess kropp eller "
+"gräva sig in genom sämre bepansrade delar för att åstadkomma massiv skada i "
+"elektroniken. Men kedjan slits ut väldigt snabbt när den används på material "
+"hårdare än trä och brister på reservdelar gör den dyr att reparera."
 
 #: ../map/freedroid.item_archetypes:314
 msgid "Meat cleaver"
-msgstr ""
+msgstr "Köttyxa"
 
 #: ../map/freedroid.item_archetypes:330
 msgid ""
@@ -399,20 +424,25 @@ msgid ""
 "blades when used against metal enemies. Though it is a bit more slow and "
 "clumsy to use then more grace full weapons."
 msgstr ""
+"Designad för att hugga genom kött och ben gör den mindre känslig än ett "
+"skärande blad när den används på metall. Dock är den lite långsammare och "
+"klumpigare att använda än mer graciösa vapen."
 
 #: ../map/freedroid.item_archetypes:352
 msgid "Small Axe"
-msgstr ""
+msgstr "Handyxa"
 
 #: ../map/freedroid.item_archetypes:368
 msgid ""
 "While this axe was made for splitting wood, with some luck it can damage "
 "vital parts of a droid as well."
 msgstr ""
+"Även fast denna yxa från början är gjord för att klyva trä så kan med med "
+"lite tur skada vitala delar i en droid."
 
 #: ../map/freedroid.item_archetypes:390
 msgid "Large Axe"
-msgstr ""
+msgstr "Yxa"
 
 #: ../map/freedroid.item_archetypes:406
 msgid ""
@@ -420,10 +450,13 @@ msgid ""
 "leaving big dents in droids as it is at felling trees. A good hit is often "
 "capable of taking out lesser droids in 1 single hit"
 msgstr ""
+"Fastän detta vapen är lite långsamt och klumpigt att använda, så är den lika "
+"bra på att lämna stora bucklor i droider som den är på att fälla träd. En "
+"bra träff kan mycket väl ta kål på en droid av lägre klass med en enda träff."
 
 #: ../map/freedroid.item_archetypes:434
 msgid "Hunting knife"
-msgstr ""
+msgstr "Jaktkniv"
 
 #: ../map/freedroid.item_archetypes:450
 msgid ""
@@ -432,10 +465,14 @@ msgid ""
 "protected areas so it's still better then trying to take on the machines "
 "with bare hands."
 msgstr ""
+"Ett kort stickande vapen har inte särskilt mycket effekt på en droids "
+"metallkropp, men med lite tur kan du skada några ledningar eller slangar i "
+"mindre skyddade delar, så det är fortfarande bättre än att ta sig an "
+"maskinerna med bara händerna."
 
 #: ../map/freedroid.item_archetypes:472
 msgid "Metal spear"
-msgstr ""
+msgstr "Metallspjut"
 
 #: ../map/freedroid.item_archetypes:488
 msgid ""
@@ -444,10 +481,14 @@ msgid ""
 "more cumbersome to use. It's still a fast weapon though compared to most "
 "other."
 msgstr ""
+"Ett spjut av metall ökar kraftigt både skada och livslängd jämfört med ett "
+"träspjut, men den ökade vikten gör det också något långsammare och mer "
+"mödosamt att använda. Det är dock fortfarande ett snabbt vapen jämfört med "
+"många andra."
 
 #: ../map/freedroid.item_archetypes:516
 msgid "Iron pipe"
-msgstr ""
+msgstr "Järnrör"
 
 #: ../map/freedroid.item_archetypes:532
 msgid ""
@@ -456,20 +497,25 @@ msgid ""
 "impact force alone can still damage and shake loose circuit boards and "
 "weldings beneath the protective metal layer."
 msgstr ""
+"Ett normalstort järnrör kan visa sig vara ett effektivt vapen mot en fiende "
+"av metall. Den lär inte penetrera panasret på den men träffen i sig kan "
+"skada och skaka sönder kretskort och lödningar under det skyddande pansaret."
 
 #: ../map/freedroid.item_archetypes:554
 msgid "Big wrench"
-msgstr ""
+msgstr "Stor skiftnyckel"
 
 #: ../map/freedroid.item_archetypes:570
 msgid ""
 "A big heavy wrench can be surprizingly efficient in turning a bot into "
 "second hand parts, in a hands on brutal way if needed."
 msgstr ""
+"En stor och tung skiftnyckel kan vara förbluffande effektiv i att göra om en "
+"droid till begagnade delar, på ett brutalt sätt om så krävs."
 
 #: ../map/freedroid.item_archetypes:593
 msgid "Crowbar"
-msgstr ""
+msgstr "Kofot"
 
 #: ../map/freedroid.item_archetypes:609
 msgid ""
@@ -477,10 +523,13 @@ msgid ""
 "also be used to break open droid skulls or give enough leverage to pull off "
 "their extremities."
 msgstr ""
+"Något som ursprungligen skapats för att bryta upp dörrar eller dra ut spik "
+"kan också användas för att bryta upp droidskallar eller bända loss deras "
+"extremiteter."
 
 #: ../map/freedroid.item_archetypes:631
 msgid "Golf club"
-msgstr ""
+msgstr "Golfklubba"
 
 #: ../map/freedroid.item_archetypes:647
 msgid ""
@@ -488,20 +537,25 @@ msgid ""
 "kinetic energy might be enough to damage internal electronics even if there "
 "is a small dent on the outside."
 msgstr ""
+"Den kanske inte är så hållbar, men om du lyckas få in en bra träff kan den "
+"kinetiska energin vara tillräcklig för att skada den interna elektroniken "
+"även om det bara blir ett litet märke utanpå."
 
 #: ../map/freedroid.item_archetypes:669
 msgid "Tree branch"
-msgstr ""
+msgstr "Trädgren"
 
 #: ../map/freedroid.item_archetypes:685
 msgid ""
 "A club from a tree branch is certainly not your preferred choice of weapon "
 "to use, but it might be your only..."
 msgstr ""
+"En påk från ett trädgren är nog inte ditt första val av vapen att använda, "
+"men det kan vara ditt enda..."
 
 #: ../map/freedroid.item_archetypes:707
 msgid "Power hammer"
-msgstr ""
+msgstr "Elhammare"
 
 #: ../map/freedroid.item_archetypes:723
 msgid ""
@@ -513,17 +567,18 @@ msgstr ""
 
 #: ../map/freedroid.item_archetypes:745
 msgid "Table leg"
-msgstr ""
+msgstr "Bordsben"
 
 #: ../map/freedroid.item_archetypes:761
 msgid ""
 "In desperate situations even ordinary objects can turn into makeshift "
 "weapons."
 msgstr ""
+"I desperata situationer kan ordinära objekt visa sig vara möjliga vapen."
 
 #: ../map/freedroid.item_archetypes:783
 msgid "Mace"
-msgstr ""
+msgstr "Morgonstjärna"
 
 #: ../map/freedroid.item_archetypes:799
 msgid ""
@@ -531,10 +586,13 @@ msgid ""
 "crushing even heavily armoured skulls. Unfortunately for the droids this old "
 "knowledge still holds true."
 msgstr ""
+"Morgonstjärnan visade sig vara effektiv på att krossa bepansrade skallar "
+"redan på medeltida slagfält. Oturligt nog för droiderna stämmer denna gamla "
+"kunskap fortfarande."
 
 #: ../map/freedroid.item_archetypes:821
 msgid "Baseball bat"
-msgstr ""
+msgstr "Basebollträ"
 
 #: ../map/freedroid.item_archetypes:837
 msgid ""
@@ -543,10 +601,14 @@ msgid ""
 "wooden bats have a predilection for splitting into two after too many hard "
 "hits."
 msgstr ""
+"Med 1-2 fina träffar från ett tvåhandsslag så kan en droids huvud flyga "
+"tillräckligt långt för att du ska hinna med ett frivarv. Försäkra dig bara "
+"om att ta med ett reservvapen då slagträn av trä har en tendens att "
+"splittras i två efter för många hårda träffar."
 
 #: ../map/freedroid.item_archetypes:859
 msgid "Iron bar"
-msgstr ""
+msgstr "Järnspätt"
 
 #: ../map/freedroid.item_archetypes:875
 msgid ""
@@ -554,60 +616,73 @@ msgid ""
 "cower behind, this weapon isn't always a good option. But if you do hit you "
 "are sure to do more damage then just a scratch."
 msgstr ""
+"Lite långsam och ohanterlig att använda och det faktum att den förhindar "
+"användandet av sköldar som man kan gömma sig bakom gör att detta vapen inte "
+"alltid är ett bra val. Men om du träffar kan du vara säker på att du gör mer "
+"än bara lämnar en liten repa."
 
 #: ../map/freedroid.item_archetypes:897
 msgid "Sledgehammer"
-msgstr ""
+msgstr "Slägga"
 
 #: ../map/freedroid.item_archetypes:913
 msgid ""
 "Very slow and only for the strongest, but only the thougher droids can "
 "survive more then 1-2 direct hits."
 msgstr ""
+"Väldigt långsam och enbart för de starkaste, men endast starkare droider kan "
+"överleva mer än 1-2 träffar."
 
 #: ../map/freedroid.item_archetypes:941
 msgid "Light saber"
-msgstr ""
+msgstr "Ljussabel"
 
 #: ../map/freedroid.item_archetypes:957
 msgid ""
 "In the hands of a true master, this excellent technological craftsmanship is "
 "as deadly as it is beautiful. It requires laser crystals to work properly."
 msgstr ""
+"I händerna på en riktig mästare är detta bevis på teknisk fulländning lika "
+"dödlig som vacker. Den kräver energikristaller för att fungera."
 
 #: ../map/freedroid.item_archetypes:979
 msgid "Laser staff"
-msgstr ""
+msgstr "Laserstav"
 
 #: ../map/freedroid.item_archetypes:994
 msgid ""
 "A close combat master with this weapon in his hands is a pure whirling "
 "dervish of death. It requires laser crystals to work properly."
 msgstr ""
+"En närstridsmästare med detta vapen är en riktig arabisk dervisch av "
+"förstörelse. Den kräver energikristaller för att fungera."
 
 #: ../map/freedroid.item_archetypes:1022
 msgid "Nobody's edge"
-msgstr ""
+msgstr "Nobody's edge"
 
 #: ../map/freedroid.item_archetypes:1035
 msgid ""
 "This blade pulses with evil. That power. That energy. Nothing can stop you "
 "now."
 msgstr ""
+"Detta svärd pulserar av ondska. Energin. Styrkan. Ingen kan stoppa dig nu."
 
 #: ../map/freedroid.item_archetypes:1057
 msgid "Laserscalpel"
-msgstr ""
+msgstr "Laserskallpell"
 
 #: ../map/freedroid.item_archetypes:1070
 msgid ""
 "I murdered the only person within a thousand miles who can heal me, and all "
 "I got was this lousy scalpel."
 msgstr ""
+"Jag mördade den enda personen inom tusentals km i radie som kan hela mig, "
+"och allt jag fick var denna jäkla skalpell."
 
 #: ../map/freedroid.item_archetypes:1103
 msgid ".22 LR Ammunition"
-msgstr ""
+msgstr ".22 LR Ammunition"
 
 #: ../map/freedroid.item_archetypes:1118
 msgid ""
@@ -615,10 +690,13 @@ msgid ""
 "mainly because it was cheap and gave little recoil. It's just too weak to "
 "penetrate any real droid armour though."
 msgstr ""
+".22 Long Rifle Ammunition var en mycket vanlig ammunition för sportskytte, "
+"huvudsakligen för att den var billig och gav lite rekyl. Den är för svag för "
+"att på allvar penetrera tyngre droidpansar."
 
 #: ../map/freedroid.item_archetypes:1122
 msgid ".22 Automatic"
-msgstr ""
+msgstr ".22 Automat"
 
 #: ../map/freedroid.item_archetypes:1138
 msgid ""
@@ -627,10 +705,13 @@ msgid ""
 "each bot before a bullet or two manages to find a weak enough spot to take "
 "the bot out."
 msgstr ""
+"Med .22 tums ammunition är det mest ren tur om om du gör någon riktig skada "
+"på en droid med denna pistol. Å den andra sidan, du kommer att få MYCKET "
+"skytteträning innan du träffar en svag punkt på droiden som förstör den."
 
 #: ../map/freedroid.item_archetypes:1160
 msgid ".22 Hunting Rifle"
-msgstr ""
+msgstr ".22 Jaktgevär"
 
 #: ../map/freedroid.item_archetypes:1176
 msgid ""
@@ -639,10 +720,14 @@ msgid ""
 "rats and squirrels. It was also highly effective vs rabbits. Unfortunately "
 "you wont be hunting 'wabbits'..."
 msgstr ""
+"En .22 tums jaktgevär användes mest till sportskytte och för billig träning. "
+"Som ett gevär för jakt är dess huvudsakliga syfte att döda smådjur, såsom "
+"råttor och ekorrar. Den är också mycket effektiv mot kaniner. Oturligtvis "
+"kommer du inte jaga 'kaniner'..."
 
 #: ../map/freedroid.item_archetypes:1198
 msgid "Shotgun shells"
-msgstr ""
+msgstr "Hagelpatroner"
 
 #: ../map/freedroid.item_archetypes:1213
 msgid ""
@@ -654,60 +739,67 @@ msgstr ""
 
 #: ../map/freedroid.item_archetypes:1222
 msgid "Two Barrel sawn off shotgun"
-msgstr ""
+msgstr "Tvåpipigt avsågat hagelgevär"
 
-#: ../map/freedroid.item_archetypes:1238 ../map/freedroid.item_archetypes:1276
-#: ../map/freedroid.item_archetypes:1314 ../map/freedroid.item_archetypes:1378
-#: ../map/freedroid.item_archetypes:1416 ../map/freedroid.item_archetypes:1480
-#: ../map/freedroid.item_archetypes:1518 ../map/freedroid.item_archetypes:3677
+#: ../map/freedroid.item_archetypes:1238
+#: ../map/freedroid.item_archetypes:1276
+#: ../map/freedroid.item_archetypes:1314
+#: ../map/freedroid.item_archetypes:1378
+#: ../map/freedroid.item_archetypes:1416
+#: ../map/freedroid.item_archetypes:1480
+#: ../map/freedroid.item_archetypes:1518
+#: ../map/freedroid.item_archetypes:3677
 msgid "This is a placeholder for a description. Feel free to help."
 msgstr ""
 
 #: ../map/freedroid.item_archetypes:1260
 msgid "Two Barrel shotgun"
-msgstr ""
+msgstr "Tvåpipigt hagelgevär"
 
 #: ../map/freedroid.item_archetypes:1298
 msgid "Pump action shotgun"
-msgstr ""
+msgstr "Pumphagelgevär"
 
 #: ../map/freedroid.item_archetypes:1336
 msgid "9x19mm Ammunition"
-msgstr ""
+msgstr "9x19mm ammunition"
 
-#: ../map/freedroid.item_archetypes:1350 ../map/freedroid.item_archetypes:1452
+#: ../map/freedroid.item_archetypes:1350
+#: ../map/freedroid.item_archetypes:1452
 #: ../map/freedroid.item_archetypes:1556
 msgid ""
 "Plasma crystal load. This is the most common way of loading a plasma weapon."
 msgstr ""
+"Plasma energibehållare. Detta är den vanligaste metoden för att ladda ett "
+"plasmavapen."
 
 #: ../map/freedroid.item_archetypes:1362
 msgid "9mm Automatic"
-msgstr ""
+msgstr "9mm Automat"
 
 #: ../map/freedroid.item_archetypes:1400
 msgid "9mm Sub Machine Gun"
-msgstr ""
+msgstr "9mm K-pist"
 
 #: ../map/freedroid.item_archetypes:1438
 msgid "7.62x39mm Ammunition"
-msgstr ""
+msgstr "7.62x39mm Ammunition"
 
 #: ../map/freedroid.item_archetypes:1464
 msgid "7.62mm Hunting rifle"
-msgstr ""
+msgstr "7.62mm Jaktgevär"
 
 #: ../map/freedroid.item_archetypes:1502
 msgid "7.62mm AK-47"
-msgstr ""
+msgstr "7.62mm AK-47"
 
 #: ../map/freedroid.item_archetypes:1540
 msgid ".50 BMG (12.7x99mm) Ammunition"
-msgstr ""
+msgstr ".50 BMG (12.7x99mm) Ammunition"
 
 #: ../map/freedroid.item_archetypes:1565
 msgid "Barrett M82 Sniper Rifle"
-msgstr ""
+msgstr "Barrett M82 Krypskyttegevär"
 
 #: ../map/freedroid.item_archetypes:1581
 msgid ""
@@ -716,30 +808,39 @@ msgid ""
 "even matter if the pesky droid is covering behind a wall, the bullets will "
 "break right through and make the bot ready for the scrap heap in notime."
 msgstr ""
+"Kraftig nog för att sätta stop på tom en lastbil gör att det inte är "
+"särskilt troligt att även ens en stridsdroid klarar mer än 2 träffar av "
+"detta vapen. Det spelar inte ens någon roll om den irriterande droiden "
+"försöker gömma sig bakom en vägg, skotten går rakt igenom och gör botten "
+"redo för skrothögen på nolltid."
 
 #: ../map/freedroid.item_archetypes:1603
 msgid "Laser power pack"
-msgstr ""
+msgstr "Laser energipaket"
 
 #: ../map/freedroid.item_archetypes:1618
 msgid ""
 "Energy crystal load for laser weapons and other powertools. Each round fired "
 "consumes a load within the crystal."
 msgstr ""
+"Energikristall för laservapen och elverktyg. Varje skott avfyrat drar en "
+"laddningsenhet ur kristallen."
 
 #: ../map/freedroid.item_archetypes:1622
 msgid "Laser pistol"
-msgstr ""
+msgstr "Laserpistol"
 
 #: ../map/freedroid.item_archetypes:1638
 msgid ""
 "A basic laser, but it has good uses in certain situations. No warranty of "
 "any kind though."
 msgstr ""
+"En enkel laser, men den kan vara användbar i vissa situationer. Ingen "
+"garanti av något slag dock."
 
 #: ../map/freedroid.item_archetypes:1660
 msgid "Laser Rifle"
-msgstr ""
+msgstr "Lasergevär"
 
 #: ../map/freedroid.item_archetypes:1676
 msgid ""
@@ -747,10 +848,13 @@ msgid ""
 "Shooting it is too much fun. People often end up with no ammunition in the "
 "middle of a battle."
 msgstr ""
+"Detta gevär är ett high-end laservapen. Det är bara ett problem med det: Att "
+"skjuta med det är för kul. Det brukar leda till att ammunitionen tar slut "
+"mitt i striden."
 
 #: ../map/freedroid.item_archetypes:1698
 msgid "Laser Pulse Rifle"
-msgstr ""
+msgstr "Pulslasergevär"
 
 #: ../map/freedroid.item_archetypes:1712
 msgid ""
@@ -759,10 +863,14 @@ msgid ""
 "each shot is noticably less then from a Laser rifle, but the firing rate "
 "more then makes up for it."
 msgstr ""
+"Pulslaser teknologin tillåter många korta salvor utan att vapnet överhettar, "
+"vilket gör det ganska användbart. Skadan från varje skott är märkbart mindre "
+"än ett från ett Lasergevär, men eldhastigheten överväger den nackdelen mer "
+"råge."
 
 #: ../map/freedroid.item_archetypes:1736
 msgid "Laser Pulse Cannon"
-msgstr ""
+msgstr "Pulslaserkanon"
 
 #: ../map/freedroid.item_archetypes:1750
 msgid ""
@@ -772,10 +880,16 @@ msgid ""
 "firing, large mag & awesome killing power makes it the ideal weapon for "
 "cleansing out big droid infestations in mere minutes."
 msgstr ""
+"Pulslaserteknologin, som tillåter många korta pulsar utan att vapnet "
+"överhettar, kombinerat med en design för militära ändamål gör detta vapen "
+"till förstahandsvalet för de flesta soldater. Dess rekyllösa, snabba "
+"eldgivning tillsammans med ett stort magasin och förbluffande "
+"utslagningsförmåga gör det till det ideala vapnet för att rensa bort stora "
+"droidsamlingar på nolltid"
 
 #: ../map/freedroid.item_archetypes:1774
 msgid "Plasma energy container"
-msgstr ""
+msgstr "Plasma energibehållare"
 
 #: ../map/freedroid.item_archetypes:1789
 msgid ""
@@ -783,28 +897,33 @@ msgid ""
 "weapons work in one handy and relatively safe package. This is the most "
 "common way of loading a plasma weapon."
 msgstr ""
+"En behållare fylld med all materia och energi som behövs för att få ett "
+"plasma vapen att fungera i en smidigt och relativt säker förpacking.Detta är "
+"det vanligaste sättet att ladda plasma vapen."
 
 #: ../map/freedroid.item_archetypes:1793
 msgid "Plasma pistol"
-msgstr ""
+msgstr "Plasmapistol"
 
 #: ../map/freedroid.item_archetypes:1809
 msgid "The basic plasma weapon in a conveniently small package."
-msgstr ""
+msgstr "Grundmodellen av plasmavapen i ett nära till hands litet paket."
 
 #: ../map/freedroid.item_archetypes:1831
 msgid "Plasma gun"
-msgstr ""
+msgstr "Plasmagevär"
 
 #: ../map/freedroid.item_archetypes:1847
 msgid ""
 "A somewhat slow weapon, but once you do hit plenty a bot just melts down on "
 "the spot. A good alternative to a pulse laser for the skilled marksman."
 msgstr ""
+"Ett något långsamt vapen, men när du väl träffar smälter de flesta robotar "
+"på platsen. Ett bra alternativ till pulslasern för en erfaren prickskytt."
 
 #: ../map/freedroid.item_archetypes:1869
 msgid "Plasma cannon"
-msgstr ""
+msgstr "Plasmakanon"
 
 #: ../map/freedroid.item_archetypes:1885
 msgid ""
@@ -813,10 +932,14 @@ msgid ""
 "complementing the soldiers bread&butter pulse lasers, especially when "
 "attacking enemies behind cover."
 msgstr ""
+"Dess långsamma eldhastighet vägs till råge upp av den otroliga eldkraften "
+"hos detta vapen. Dess huvudsakliga användning är i rollen som "
+"understödsvapen för komplement till soldaternas standard lasrar, speciellt "
+"när de anfaller fiender bakom skydd."
 
 #: ../map/freedroid.item_archetypes:1907
 msgid "2 mm Exterminator Ammunition"
-msgstr ""
+msgstr "2 mm Utrotar ammunition"
 
 #: ../map/freedroid.item_archetypes:1921
 msgid ""
@@ -824,10 +947,12 @@ msgid ""
 "due to leaking extermination radiation when carried close to the body for "
 "long time."
 msgstr ""
+"Utrotare kräver denna ammunition. Den kan orsaka hudirritationer på grund av "
+"läckande utrotningsstrålning när den bärs nära kroppen en längre tid."
 
 #: ../map/freedroid.item_archetypes:1925
 msgid "Exterminator"
-msgstr ""
+msgstr "Utrotare"
 
 #: ../map/freedroid.item_archetypes:1941
 msgid ""
@@ -835,30 +960,37 @@ msgid ""
 "exceptionally long reloading times. (Don't get swarmed by enemies with this "
 "weapon unless you have powerful armor!)"
 msgstr ""
+"Medans detta vapen är kapabelt att skjuta riktigt kraftfulla skott, var "
+"uppmärksam på dess exeptionellt långa omladdingstid. (Bli inte överfallen av "
+"många fiender med detta vapen om du inte har ett massivt pansar!)"
 
 #: ../map/freedroid.item_archetypes:1963
 msgid "The Super Exterminator!!!"
-msgstr ""
+msgstr "Super utrotaren!!!"
 
 #: ../map/freedroid.item_archetypes:1979
 msgid ""
 "This bad boy has been known to blow away enemies with a single blast. A "
 "dangerous weapon that you don't want to be on the receiving end of."
 msgstr ""
+"Denna stygga gosse är känd för att spränga bort sina fiender med en "
+"explosion. Ett farligt vapen som du inte vill vara på mottagarsidan av."
 
 #: ../map/freedroid.item_archetypes:2009
 msgid "VMX Gas Grenade"
-msgstr ""
+msgstr "VMX Gasgranat"
 
 #: ../map/freedroid.item_archetypes:2022
 msgid ""
 "The gas does not look terrifying. It even smells somewhat nice. And then you "
 "die. You die a most horrible death, never knowing what killed you."
 msgstr ""
+"Gasen ser inte så hemsk ut. Den luktar till och med inte så dumt. Och sedan "
+"dör du. Du dör en mycket fruktansvärd död, ovetandes om vad som dödat dig."
 
 #: ../map/freedroid.item_archetypes:2026
 msgid "EMP Shockwave Generator"
-msgstr ""
+msgstr "EMP shockvägsgenerator"
 
 #: ../map/freedroid.item_archetypes:2038
 msgid ""
@@ -866,10 +998,13 @@ msgid ""
 "Tesla in the early 20th century. The magnetic pulse that it generates can "
 "destroy most electronic devices in just one blast."
 msgstr ""
+"Denna sfär innehåller några okända bitar av teknologi uppfunna av Nikola "
+"Tesla under tidigt 1900-tal. Den magnetiska pulsen den kan generera kan "
+"förstöra de flesta elektroniska föremål i en enda explosion."
 
 #: ../map/freedroid.item_archetypes:2042
 msgid "Plasma Shockwave Emitter"
-msgstr ""
+msgstr "Plasmashockvågsutstrålare"
 
 #: ../map/freedroid.item_archetypes:2054
 msgid ""
@@ -879,24 +1014,32 @@ msgstr ""
 
 #: ../map/freedroid.item_archetypes:2066
 msgid "NPC Hand to hand weapon"
-msgstr ""
+msgstr "IckeSpelarKaraktärs närstridsvapen"
 
 #: ../map/freedroid.item_archetypes:2079
 msgid "Bot use only"
-msgstr ""
+msgstr "Endast för botar"
 
 #: ../map/freedroid.item_archetypes:2101
 msgid "Droid weaponry - 123 : Weak robotic arm"
 msgstr ""
 
-#: ../map/freedroid.item_archetypes:2112 ../map/freedroid.item_archetypes:2145
-#: ../map/freedroid.item_archetypes:2180 ../map/freedroid.item_archetypes:2213
-#: ../map/freedroid.item_archetypes:2248 ../map/freedroid.item_archetypes:2283
-#: ../map/freedroid.item_archetypes:2318 ../map/freedroid.item_archetypes:2353
-#: ../map/freedroid.item_archetypes:2386 ../map/freedroid.item_archetypes:2421
-#: ../map/freedroid.item_archetypes:2456 ../map/freedroid.item_archetypes:2491
-#: ../map/freedroid.item_archetypes:2526 ../map/freedroid.item_archetypes:2561
-#: ../map/freedroid.item_archetypes:2629 ../map/freedroid.item_archetypes:2666
+#: ../map/freedroid.item_archetypes:2112
+#: ../map/freedroid.item_archetypes:2145
+#: ../map/freedroid.item_archetypes:2180
+#: ../map/freedroid.item_archetypes:2213
+#: ../map/freedroid.item_archetypes:2248
+#: ../map/freedroid.item_archetypes:2283
+#: ../map/freedroid.item_archetypes:2318
+#: ../map/freedroid.item_archetypes:2353
+#: ../map/freedroid.item_archetypes:2386
+#: ../map/freedroid.item_archetypes:2421
+#: ../map/freedroid.item_archetypes:2456
+#: ../map/freedroid.item_archetypes:2491
+#: ../map/freedroid.item_archetypes:2526
+#: ../map/freedroid.item_archetypes:2561
+#: ../map/freedroid.item_archetypes:2629
+#: ../map/freedroid.item_archetypes:2666
 #: ../map/freedroid.item_archetypes:2734
 msgid "Droid weaponry"
 msgstr ""
@@ -919,27 +1062,27 @@ msgstr ""
 
 #: ../map/freedroid.item_archetypes:2270
 msgid "Droid weaponry - 302"
-msgstr ""
+msgstr "Droidbeväpning - 302"
 
 #: ../map/freedroid.item_archetypes:2305
 msgid "Droid weaponry - 329"
-msgstr ""
+msgstr "Droidbeväpning - 329"
 
 #: ../map/freedroid.item_archetypes:2340
 msgid "Droid weaponry - 420"
-msgstr ""
+msgstr "Droidbeväpning - 420"
 
 #: ../map/freedroid.item_archetypes:2375
 msgid "Droid weaponry - 476 (Small Single Laser)"
-msgstr ""
+msgstr "Droidbeväpning - 476"
 
 #: ../map/freedroid.item_archetypes:2408
 msgid "Droid weaponry - 493"
-msgstr ""
+msgstr "Droidbeväpning - 493"
 
 #: ../map/freedroid.item_archetypes:2443
 msgid "Droid weaponry - 516"
-msgstr ""
+msgstr "Droidbeväpning - 516"
 
 #: ../map/freedroid.item_archetypes:2478
 msgid "Droid weaponry - 543 : Laser beam cutter"
@@ -947,139 +1090,151 @@ msgstr ""
 
 #: ../map/freedroid.item_archetypes:2513
 msgid "Droid weaponry - 571"
-msgstr ""
+msgstr "Droidbeväpning - 571"
 
 #: ../map/freedroid.item_archetypes:2548
 msgid "Droid weaponry - 598"
-msgstr ""
+msgstr "Droidbeväpning - 598"
 
 #: ../map/freedroid.item_archetypes:2583
 msgid "Droid weaponry - 614,GUA,MUM (Power Exterminator)"
-msgstr ""
+msgstr "Droidbeväpning - 614,GUA,MUM (Utrotare)"
 
 #: ../map/freedroid.item_archetypes:2596
 msgid "This is one of the most powerful ranged weapons out there."
-msgstr ""
+msgstr "Detta är ett av de kraftigaste distansvapnen som finns att tillgå."
 
 #: ../map/freedroid.item_archetypes:2618
 msgid "Droid weaponry - 615,751,834 (Advanced Single Laser)"
-msgstr ""
+msgstr "Droidbeväpning  - 615,751,834 (Avancerad Ensam Laser)"
 
 #: ../map/freedroid.item_archetypes:2651
 msgid "Droid weaponry - 629,821,999 (Advanced Twin Laser)"
-msgstr ""
+msgstr "Droidbeväpning - 629,821,999 (Avancerad Dubbel Laser)"
 
 #: ../map/freedroid.item_archetypes:2688
 msgid "Droid weaponry - 711,742 (Disruptor Class Alpha)"
-msgstr ""
+msgstr "Droidbeväpning - 711,742 (Energivapen Klass Alfa)"
 
 #: ../map/freedroid.item_archetypes:2699
 msgid ""
 " This weapons name speaks for itself-more of a brute force weapon than most, "
 "it is best used on high defense enemies."
 msgstr ""
+" Detta vapens namn talar för sig själv, mer ett råstyrkevapen än de flesta, "
+"används bäst mot fiender med bra försvar."
 
 #: ../map/freedroid.item_archetypes:2721
 msgid "Droid weaponry - 883 (Bot exterminator)"
-msgstr ""
+msgstr "Droidbeväpning  - 883 (Bot utrotare)"
 
 #: ../map/freedroid.item_archetypes:2772
 msgid "Simple Jacket"
-msgstr ""
+msgstr "Vanlig Jacka"
 
 #: ../map/freedroid.item_archetypes:2788
 msgid "Does a decent job of protection. I guess. Maybe. I'm not sure."
 msgstr ""
+"Den gör ett acceptabelt försök till skydd. Antar jag. Kanske. Jag är inte "
+"säker."
 
 #: ../map/freedroid.item_archetypes:2792
 msgid "Reinforced Jacket"
-msgstr ""
+msgstr "Förstärkt Jacka"
 
 #: ../map/freedroid.item_archetypes:2808
 msgid "One step up from a normal jacket."
-msgstr ""
+msgstr "Ett steg upp från en vanlig jacka"
 
 #: ../map/freedroid.item_archetypes:2812
 msgid "Protective Jacket"
-msgstr ""
+msgstr "Skyddande Jacka"
 
 #: ../map/freedroid.item_archetypes:2828
 msgid "Very strong for its size, does a good job of absorbing basic blows."
-msgstr ""
+msgstr "Väldigt stark för sin storlek, absorberar vanliga slag bra."
 
 #: ../map/freedroid.item_archetypes:2832
 msgid "Red Guard's Light Robe"
-msgstr ""
+msgstr "Röda Gardets lätta skyddsdräkt"
 
 #: ../map/freedroid.item_archetypes:2846
 msgid "Tough as nails and able to withstand most blows."
-msgstr ""
+msgstr "Hård som sten och tålig nog att klara av de flesta slag."
 
 #: ../map/freedroid.item_archetypes:2850
 msgid "Red Guard's Heavy Robe"
-msgstr ""
+msgstr "Röda Gardets tunga skyddsdräkt"
 
 #: ../map/freedroid.item_archetypes:2865
 msgid "Defense is acquired at a high level with this durable piece of armor."
-msgstr ""
+msgstr "Man får ett mycket bra försvar med denna beständiga pansardel."
 
 #: ../map/freedroid.item_archetypes:2875
 msgid "Cap"
-msgstr ""
+msgstr "Mössa"
 
 #: ../map/freedroid.item_archetypes:2891
 msgid "A simple cover for your head. Don't expect to be incognito."
 msgstr ""
+"Ett enkelt skydd för ditt huvud. Förvänta dig inte att vara incognito."
 
 #: ../map/freedroid.item_archetypes:2895
 msgid "Small Helm"
-msgstr ""
+msgstr "Liten hjälm"
 
 #: ../map/freedroid.item_archetypes:2911
 msgid ""
 "A rather useful helmet, has a few defense issues here and there but mainly "
 "is worth the wear."
 msgstr ""
+"En ganska användbar hjälm, har en del försvarsproblem här och där men är "
+"ändå värd att bära."
 
 #: ../map/freedroid.item_archetypes:2915
 msgid "Iron Helm"
-msgstr ""
+msgstr "Järnhjälm"
 
 #: ../map/freedroid.item_archetypes:2929
 msgid ""
 "Top of the line head gear, manages to protect against a myriad of close "
 "range and long range attacks."
 msgstr ""
+"En banbrytande hjälm, som kan beskydda dig mot en myriad av när- och "
+"distansattacker."
 
 #: ../map/freedroid.item_archetypes:2933
 msgid "Pot-Helm"
-msgstr ""
+msgstr "Potthjälm"
 
 #: ../map/freedroid.item_archetypes:2947
 msgid "It might look a bit silly, but it will save your life many times"
 msgstr ""
+"Den kan se lite löjlig ut, men den kommer att rädda ditt liv många gånger"
 
 #: ../map/freedroid.item_archetypes:2951
 msgid "Iron Hat"
-msgstr ""
+msgstr "Järnhatt"
 
 #: ../map/freedroid.item_archetypes:2965
 msgid ""
 "Now this is head protection. Feel safe with sturdy iron protecting your "
 "head. Not as comfortable as other hats"
 msgstr ""
+"Detta är huvudskydd. Känn dig säker med järn som skyddar ditt huvude. Inte "
+"likan komfortabelt som andra hattar."
 
 #: ../map/freedroid.item_archetypes:2969
 msgid "Dixon's helmet"
-msgstr ""
+msgstr "Dixon's hjälm"
 
 #: ../map/freedroid.item_archetypes:2981
 msgid "A gift from Dixon. It looks like it is about to turn into dust."
-msgstr ""
+msgstr "En gåva från Dixon. Den ser ut som om den är påväg att bli damm."
 
 #: ../map/freedroid.item_archetypes:2991
 msgid "Buckler"
-msgstr ""
+msgstr "Sköld"
 
 #: ../map/freedroid.item_archetypes:3007
 msgid ""
@@ -1090,76 +1245,89 @@ msgid ""
 "getting hit, and how long it will remain operational and other cool stuff "
 "like that."
 msgstr ""
+"Denna sköld är en sammanställning av diverse objekt som råkade vara i "
+"närheten. Den har tuber, bultar och delar av metall, allt lappat ihop för "
+"att ge lite skydd mot fiender. Den är väldigt simpel och rå, men lite "
+"sensorer och lampor har blivit tillagda för att den som bär den ska veta när "
+"skölden blir träffad, hur länge den kommer att fungera och andra häftiga "
+"saker."
 
 #: ../map/freedroid.item_archetypes:3011
 msgid "Small Shield"
-msgstr ""
+msgstr "Liten skjöld"
 
 #: ../map/freedroid.item_archetypes:3025
 msgid ""
 "A small, lightweight and pretty straightforward shield. Provides decent "
 "protection."
 msgstr ""
+"En liten, lättviktig och ganska rättfram sköld. Ger ett anständigt skydd."
 
 #: ../map/freedroid.item_archetypes:3029
 msgid "Standard Shield"
-msgstr ""
+msgstr "Standard sköld"
 
 #: ../map/freedroid.item_archetypes:3045
 msgid "Better than a buckler, and a lot more effective."
-msgstr ""
+msgstr "Bättre än en sköld, och mycket effektivare."
 
 #: ../map/freedroid.item_archetypes:3049
 msgid "Medium Shield"
-msgstr ""
+msgstr "Medium skjöld"
 
 #: ../map/freedroid.item_archetypes:3063
 msgid ""
 "A medium sized, lightweight and pretty straightforward shield. Provides "
 "decent protection."
 msgstr ""
+"En normal, lättviktig och ganska rättfram sköld. Ger ett anständigt skydd."
 
 #: ../map/freedroid.item_archetypes:3067
 msgid "Large Shield"
-msgstr ""
+msgstr "Stor sköld"
 
 #: ../map/freedroid.item_archetypes:3083
 msgid "A powerful shield."
-msgstr ""
+msgstr "En kraftfull sköld"
 
 #: ../map/freedroid.item_archetypes:3093
 msgid "Shoes"
-msgstr ""
+msgstr "Skor"
 
 #: ../map/freedroid.item_archetypes:3107
 msgid ""
 "These simple boots are designed for comfort of the wearer more than to give "
 "actual protection."
 msgstr ""
+"Dessa enkla stövlar är designade mer för komfort för bäraren än skydd."
 
 #: ../map/freedroid.item_archetypes:3111
 msgid "Light Boots"
-msgstr ""
+msgstr "Lätta stövlar"
 
 #: ../map/freedroid.item_archetypes:3125
 msgid ""
 "These boots are a bit lighter than the normal version, giving of course "
 "worse protection but certainly extra comfort for the wearer."
 msgstr ""
+"Dessa stövlar är lite lättare än den vanliga versionen, som ger sämre skydd "
+"för bäraren men säkerligen mer komfort."
 
 #: ../map/freedroid.item_archetypes:3129
 msgid "Boots"
-msgstr ""
+msgstr "Stövlar"
 
 #: ../map/freedroid.item_archetypes:3143
 msgid ""
 "These boots are similar to the simple shoes, but the material they are made "
 "of is hardened for extra protection."
 msgstr ""
+"Dessa stövlar liknar enkla skor, men materialet de är gjorda av är härdat "
+"för extra skydd."
 
 #: ../map/freedroid.item_archetypes:3147
 msgid "Reinforced Boots"
-msgstr ""
+msgstr "Förstärkta stövlar"
 
 #: ../map/freedroid.item_archetypes:3161
 msgid ""
@@ -1168,10 +1336,14 @@ msgid ""
 "this makes them a bit less elegant and also less comfy to wear, but the "
 "extra protection might be worth it, at not the full price of hiking boots."
 msgstr ""
+"Dessa stövlar var ursprungligen vanliga stövlar, men har blivit extra "
+"förstärkta för att ge bäraren ett extra skydd. Självklart gör det dem mindre "
+"eleganta och även mindre komfortabla att bära, men det extra skyddet kan "
+"vara värt det, utan det fulla priset på vandrarkängor."
 
 #: ../map/freedroid.item_archetypes:3165
 msgid "Hiking Boots"
-msgstr ""
+msgstr "Vandrarkängor"
 
 #: ../map/freedroid.item_archetypes:3179
 msgid ""
@@ -1179,124 +1351,143 @@ msgid ""
 "comfort for the wearer with a good protection from collisions with blunt "
 "objects like stones, which of course also makes for a higher price."
 msgstr ""
+"Dessa vandrarkängor är väldigt sofistikerade, de kombinerr optimal komfort "
+"för bäraren med gott skydd mot kollisioner med tröga objekt som stenar, "
+"vilket också ger ett högre pris."
 
 #: ../map/freedroid.item_archetypes:3192
 msgid "Source Book of Emergency shutdown"
-msgstr ""
+msgstr "Källbok för Nödavstängning"
 
 #: ../map/freedroid.item_archetypes:3202
 msgid "Everyone needs to blow some steam every now and then."
-msgstr ""
+msgstr "Alla behöver kyla av sig lite då och då"
 
 #: ../map/freedroid.item_archetypes:3208
 msgid "Source Book of Check system integrity"
-msgstr ""
+msgstr "Källbok för att Verifiera system integritet"
 
 #: ../map/freedroid.item_archetypes:3218
 msgid "An incredible healing spell, probably only one you will ever need."
 msgstr ""
+"En otrolig läkningsformel, förmodligen den enda du någonsin kommer att "
+"behöva."
 
 #: ../map/freedroid.item_archetypes:3224
 msgid "Source Book of Analyze item"
-msgstr ""
+msgstr "Källbok för Analysera föremål"
 
 #: ../map/freedroid.item_archetypes:3234
 msgid "A book explaining the basics of item analysis."
-msgstr ""
+msgstr "En bok som förklara grunderna i föremålsidentifiering."
 
 #: ../map/freedroid.item_archetypes:3240
 msgid "Source Book of Sanctuary"
-msgstr ""
+msgstr "Källbok för Fristad"
 
 #: ../map/freedroid.item_archetypes:3250
 msgid ""
 "The art of rapidly moving away from danger is very useful. Even when used in "
 "reverse it has its uses."
 msgstr ""
+"Konsten att snabbt kunna förflytta sig från fara är väldigt användbar. Även "
+"i motsatt riktning kan det vara användbart."
 
 #: ../map/freedroid.item_archetypes:3256
 msgid "Source Book of Malformed packet"
-msgstr ""
+msgstr "Källbok för felformaterade paket"
 
 #: ../map/freedroid.item_archetypes:3266
 msgid ""
 "When computers are presented with the unexpected they can damage themselves."
-msgstr ""
+msgstr "När datorer är presenterade oväntade saker kan de skada sig själva."
 
 #: ../map/freedroid.item_archetypes:3272
 msgid "Source Book of Calculate Pi"
-msgstr ""
+msgstr "Källbok för att Räkna ut Pi"
 
 #: ../map/freedroid.item_archetypes:3282
 msgid ""
 "It is not a big problem to make a badly designed system to go hunting for "
 "the impossible, causing a performance impact."
 msgstr ""
+"Det är inget stort problem att få ett dåligt designat system att gå på jakt "
+"för det omöjliga, vilket orsakar en prestandaverkan."
 
 #: ../map/freedroid.item_archetypes:3288
 msgid "Source Book of Blue Screen"
-msgstr ""
+msgstr "Källbok om Blåskärm"
 
-#: ../map/freedroid.item_archetypes:3298 ../map/freedroid.item_archetypes:3314
+#: ../map/freedroid.item_archetypes:3298
+#: ../map/freedroid.item_archetypes:3314
 msgid ""
 "With a little touch a war machine comes crashing down to a halt. For a while."
 msgstr ""
+"Med en liten touch kan en krigsmaskin stanna med en krasch. För ett tag."
 
 #: ../map/freedroid.item_archetypes:3304
 msgid "Source Book of Broadcast Blue Screen"
-msgstr ""
+msgstr "Källbok om att Utstråla Blåskärm"
 
 #: ../map/freedroid.item_archetypes:3320
 msgid "Source Book of Invisibility"
-msgstr ""
+msgstr "Källbok om Osynlighet"
 
 #: ../map/freedroid.item_archetypes:3330
 msgid "I am not the Linarian you are looking for."
-msgstr ""
+msgstr "Jag är inte Linärianen du letar efter."
 
 #: ../map/freedroid.item_archetypes:3336
 msgid "Source Book of Virus"
-msgstr ""
+msgstr "Källbok om Virus."
 
 #: ../map/freedroid.item_archetypes:3346
 msgid ""
 "This is not just a firmware upgrade, my dear bot. You are about to find out "
 "what exactly I want to give you."
 msgstr ""
+"Det här är inte bara en mjukvaru uppdatering, min käre bot. Du ska snart få "
+"reda på exakt vad jag vill ge dig."
 
 #: ../map/freedroid.item_archetypes:3352
 msgid "Source Book of Broadcast virus"
-msgstr ""
+msgstr "Källbok om Utstråla Virus"
 
 #: ../map/freedroid.item_archetypes:3362
 msgid ""
 "The network is wide and dangerous. Many traps await for the weak and "
 "unprepared."
 msgstr ""
+"Nätverket är utbrett och farligt. Många fällor väntar den svage och "
+"oföreberedde."
 
 #: ../map/freedroid.item_archetypes:3368
 msgid "Source Book of Dispel smoke"
-msgstr ""
+msgstr "Källbok om Avge rök."
 
 #: ../map/freedroid.item_archetypes:3378
 msgid ""
 "By heating up the chips with a malformed program you can cause them to "
 "release the magic smoke which keeps the bot running."
 msgstr ""
+"Genom att värma upp chips med ett felaktigt program kan du orsaka att den "
+"magisk rök som håller roboten fungerande släpps lös."
 
 #: ../map/freedroid.item_archetypes:3384
 msgid "Source Book of Killer poke"
-msgstr ""
+msgstr "Källbok om Minnesförstöring"
 
 #: ../map/freedroid.item_archetypes:3394
 msgid ""
 "Messing around with the bot's memory can cause it to damage itself, but the "
 "damage is greatly variable."
 msgstr ""
+"Att röra om i boten's minne kan få den att skada sig själv, men skadan kan "
+"variera mycket."
 
 #: ../map/freedroid.item_archetypes:3400
 msgid "Source Book of Nethack"
-msgstr ""
+msgstr "Källbok om Nethack"
 
 #: ../map/freedroid.item_archetypes:3410
 msgid ""
@@ -1304,20 +1495,24 @@ msgid ""
 "of time. Machines don't care about it, but humans can get sucked in quite "
 "deeply."
 msgstr ""
+"Open-Source spelet Nethack är ett av världens största slöseri med tid. "
+"Maskiner bryr sig inte om det, men människor kan fastna ganska djupt i det."
 
 #: ../map/freedroid.item_archetypes:3416
 msgid "Source Book of Plasma discharge"
-msgstr ""
+msgstr "Källbok om Plasmaurladdning"
 
 #: ../map/freedroid.item_archetypes:3426
 msgid ""
 "The overload setting exists for emergencies. The plasma does not "
 "discriminate between bots and humans. Everything is equal to it."
 msgstr ""
+"Överladdningsinställningarna existerar för nödsituationer. Plasman ser ingen "
+"skillnad på robotar eller människor. Allt är lika för det."
 
 #: ../map/freedroid.item_archetypes:3432
 msgid "Source Book of Ricer CFLAGS"
-msgstr ""
+msgstr "Källbok om Ricer CFLAGS"
 
 #: ../map/freedroid.item_archetypes:3442
 msgid ""
@@ -1325,78 +1520,92 @@ msgid ""
 "improvements to your system, but in the end you are only likely to cause "
 "permanent damage."
 msgstr ""
+"Optimering är roten till all ondska. Du kan temporärt förbättra ditt system, "
+"men i slutändan är det troligt att det orsakar permanenta skador."
 
 #: ../map/freedroid.item_archetypes:3448
 msgid "Source Book of Reverse-engineer"
-msgstr ""
+msgstr "Källbok om Omvänd-Ingenjör"
 
 #: ../map/freedroid.item_archetypes:3458
 msgid ""
 "There is some dark magic in the art of turning bots inside-out to learn all "
 "their secrets."
 msgstr ""
+"Det är någon mörk magi i konsten att vränga robotar ut och in för att ta "
+"reda på alla deras hemligheter."
 
 #: ../map/freedroid.item_archetypes:3464
 msgid "Source Book of Light"
-msgstr ""
+msgstr "Källbok om Ljus"
 
 #: ../map/freedroid.item_archetypes:3474
 msgid "Let there be light..."
-msgstr ""
+msgstr "Varde ljus..."
 
 #: ../map/freedroid.item_archetypes:3480
 msgid "Source Book of Satellite image"
-msgstr ""
+msgstr "Källbok om Satellitbild"
 
 #: ../map/freedroid.item_archetypes:3490
 msgid ""
 "Getting a map of an area is pretty easy when you can look at everything from "
 "above."
 msgstr ""
+"Att få tag på en karta över ett område är rätt lätt när du kan se allting "
+"ovanifrån."
 
 #: ../map/freedroid.item_archetypes:3508
 msgid "Diet supplement"
-msgstr ""
+msgstr "Kost utfyllnad"
 
 #: ../map/freedroid.item_archetypes:3520
 msgid ""
 "Only proper vitamin and mineral intake can keep you healthy during the "
 "apocalypse. This can cure a cold."
 msgstr ""
+"Endast riktigt vitamin- och mineralintag kan hålla dig frisk under "
+"apokalypsen. Det kan bota en förkylning."
 
 #: ../map/freedroid.item_archetypes:3524
 msgid "Antibiotic"
-msgstr ""
+msgstr "Antibiotika"
 
 #: ../map/freedroid.item_archetypes:3536
 msgid ""
 "Truly wonderful things can be extracted from molds. This can cure lethal "
 "food poisoning. Wish you had that in your last Nethack game, eh?"
 msgstr ""
+"Helt underbara sker kan tas från mögel. De kan bota dödlig matförgiftning. "
+"Du önskar att du hade det i ditt senast Nethack spel, eller?"
 
 #: ../map/freedroid.item_archetypes:3540
 msgid "Doc-in-a-can"
-msgstr ""
+msgstr "Doktor-på-burk"
 
 #: ../map/freedroid.item_archetypes:3552
 msgid ""
 "This is a drink filled with nanobots designed to heal any damage that they "
 "notice inside you. It can cure decapitation. Most of the time."
 msgstr ""
+"Denna dryck är fylld med nanobotar designade för att läka alla skador de "
+"upptäcker inut i dig. De kan bota halshuggning. Oftast."
 
 #: ../map/freedroid.item_archetypes:3556
 msgid "Bottled ice"
-msgstr ""
+msgstr "Is på flaska"
 
 #: ../map/freedroid.item_archetypes:3568
 msgid ""
 "This bottle is filled with ice. It can keep you cool during a warm summer "
 "day."
 msgstr ""
+"Den här flaskan är fylld med is. Den kan hålla dig kall under en varm "
+"sommardag."
 
 #: ../map/freedroid.item_archetypes:3572
 msgid "Industrial coolant"
-msgstr ""
+msgstr "Industriell kylvätska"
 
 #: ../map/freedroid.item_archetypes:3584
 msgid ""
@@ -1404,20 +1613,25 @@ msgid ""
 "Plus the coolant is much cheaper. It can keep you cool inside a nuclear "
 "reactor."
 msgstr ""
+"Bartendrar runt om i världen använder detta i drinkarna för att kyla dem "
+"väldigt snabbt. Plus att klyaren är billigare. Den kan hålla dig kall i en "
+"kärnreaktor."
 
 #: ../map/freedroid.item_archetypes:3588
 msgid "Liquid nitrogen"
-msgstr ""
+msgstr "Flytande kväve"
 
 #: ../map/freedroid.item_archetypes:3600
 msgid ""
 "When you want something frozen solid, this is what you need. It can keep you "
 "cool even inside a class M star."
 msgstr ""
+"När du vill att något ska bli genomfruset, är detta vad du behöver. Det kan "
+"hålla dig kall i en klass M stjärna."
 
 #: ../map/freedroid.item_archetypes:3604
 msgid "Barf's Energy Drink"
-msgstr ""
+msgstr "Barf's energidryck"
 
 #: ../map/freedroid.item_archetypes:3614
 msgid ""
@@ -1425,10 +1639,13 @@ msgid ""
 "person drops dead after consuming 12 grams of caffeine. One of these bottles "
 "contains over double that amount."
 msgstr ""
+"Varning! Dessa engergidrycker innehåller höga doser av koffein! En normal "
+"person avlider efter att ha konsumerat 12 gram av koffein. En av dessa "
+"flaskor innehåller mer än dubbelt så mycket."
 
 #: ../map/freedroid.item_archetypes:3618
 msgid "Running Power Capsule"
-msgstr ""
+msgstr "Löpkraftkapsel"
 
 #: ../map/freedroid.item_archetypes:3628
 msgid ""
@@ -1436,10 +1653,13 @@ msgid ""
 "used only once, but multiple of those items can be grouped together like one "
 "item in inventory."
 msgstr ""
+"Dessa små kapslar håller renad löpstyrka. Varje kapsel kan bara används en "
+"gång, men flera kapslar kan bli grupperade tillsammans för att ta mindre "
+"plats i ditt inventarie."
 
 #: ../map/freedroid.item_archetypes:3632
 msgid "Strength Capsule"
-msgstr ""
+msgstr "Styrkekapsel"
 
 #: ../map/freedroid.item_archetypes:3642
 msgid ""
@@ -1450,7 +1670,7 @@ msgstr ""
 
 #: ../map/freedroid.item_archetypes:3646
 msgid "Dexterity Capsule"
-msgstr ""
+msgstr "Smidighetskapsel"
 
 #: ../map/freedroid.item_archetypes:3656
 msgid ""
@@ -1461,19 +1681,19 @@ msgstr ""
 
 #: ../map/freedroid.item_archetypes:3668
 msgid "Cyberbucks"
-msgstr ""
+msgstr "Cyberstålar"
 
 #: ../map/freedroid.item_archetypes:3681
 msgid "Anti-grav Pod for Droids"
-msgstr ""
+msgstr "Anti-grav Kapsel för Droider"
 
 #: ../map/freedroid.item_archetypes:3691
 msgid "The bots use this to hover around."
-msgstr ""
+msgstr "Botar använder den här för att sväva runt."
 
 #: ../map/freedroid.item_archetypes:3695
 msgid "Dixon's Toolbox"
-msgstr ""
+msgstr "Dixon's Verktygslåda"
 
 #: ../map/freedroid.item_archetypes:3704
 msgid ""
@@ -1481,40 +1701,45 @@ msgid ""
 "few dents on the outside give prof of frequent use. 'C. Dixon' is carved "
 "into the outside with fine print."
 msgstr ""
+"Detta är en verktygslåda för att serva en teleporter. Den är komplett och "
+"verktygen ligger i ordning och endast märkena på utsidan visar på att den är "
+"väl använd. C. Dixon står inristat med små bokstäver på utsidan."
 
 #: ../map/freedroid.item_archetypes:3708
 msgid "Entropy Inverter"
-msgstr ""
+msgstr "Kaos inverterare"
 
-#: ../map/freedroid.item_archetypes:3717 ../map/freedroid.item_archetypes:3730
-#: ../map/freedroid.item_archetypes:3743 ../map/freedroid.item_archetypes:3756
+#: ../map/freedroid.item_archetypes:3717
+#: ../map/freedroid.item_archetypes:3730
+#: ../map/freedroid.item_archetypes:3743
+#: ../map/freedroid.item_archetypes:3756
 #: ../map/freedroid.item_archetypes:3769
 msgid "This is an standard part within many robot types."
-msgstr ""
+msgstr "Det här är en standard del i många robot typer."
 
 #: ../map/freedroid.item_archetypes:3721
 msgid "Plasma Transistor"
-msgstr ""
+msgstr "Plasmatransistor"
 
 #: ../map/freedroid.item_archetypes:3734
 msgid "Superconducting Relay Unit"
-msgstr ""
+msgstr "Superledande reläenhet"
 
 #: ../map/freedroid.item_archetypes:3747
 msgid "Antimatter-Matter Converter"
-msgstr ""
+msgstr "Antimateriaomvandlare"
 
 #: ../map/freedroid.item_archetypes:3760
 msgid "Tachyon Condensator"
-msgstr ""
+msgstr "Tachyon kondenserare"
 
 #: ../map/freedroid.item_archetypes:3773
 msgid "Desk Lamp"
-msgstr ""
+msgstr "Bordslampa"
 
 #: ../map/freedroid.item_archetypes:3782
 msgid "What would modern science be without this important item?"
-msgstr ""
+msgstr "Vad skulle modern forskning vara utan detta viktiga föremål?"
 
 #: ../map/freedroid.item_archetypes:3786
 msgid "Red Dilitium Crystal"
@@ -1531,7 +1756,7 @@ msgstr ""
 
 #: ../map/freedroid.item_archetypes:3799
 msgid "Map Maker"
-msgstr ""
+msgstr "Kartskapare"
 
 #: ../map/freedroid.item_archetypes:3810
 msgid ""
@@ -1591,9 +1816,10 @@ msgstr ""
 
 #: ../map/freedroid.item_archetypes:3869
 msgid "Fork"
-msgstr ""
+msgstr "Gaffel"
 
-#: ../map/freedroid.item_archetypes:3878 ../map/freedroid.item_archetypes:3891
+#: ../map/freedroid.item_archetypes:3878
+#: ../map/freedroid.item_archetypes:3891
 #: ../map/freedroid.item_archetypes:3904
 msgid ""
 "This item is part of the 'Self Cleaning Kitchen' (SCK) project from before "
@@ -1605,11 +1831,11 @@ msgstr ""
 
 #: ../map/freedroid.item_archetypes:3882
 msgid "Plate"
-msgstr ""
+msgstr "Tallrik"
 
 #: ../map/freedroid.item_archetypes:3895
 msgid "Mug"
-msgstr ""
+msgstr "Mugg"
 
 #: ../map/freedroid.item_archetypes:3908
 msgid "Identification Script"
@@ -1638,7 +1864,7 @@ msgstr ""
 
 #: ../map/freedroid.item_archetypes:3938
 msgid "Kevin's Data Cube"
-msgstr ""
+msgstr "Kevin's Datakub"
 
 #: ../map/freedroid.item_archetypes:3947
 msgid ""
@@ -1652,13 +1878,15 @@ msgstr ""
 
 #: ../map/freedroid.item_archetypes:3951
 msgid "Pandora's Cube"
-msgstr ""
+msgstr "Pandora's Kub"
 
 #: ../map/freedroid.item_archetypes:3962
 msgid ""
 "This is heavy. Cannot the end of the world come in a smaller package? It "
 "would be a great time for Duncan to explain a few things..."
 msgstr ""
+"Det här är tungt. Kan inte domedagen komma i ett mindre paket? Det skulle "
+"vara ett utmärkt tillfälle för Duncan att förklara några saker..."
 
 #: ../map/freedroid.droid_archetypes:109
 msgid ""
@@ -1673,17 +1901,18 @@ msgid ""
 msgstr ""
 
 #: ../map/freedroid.droid_archetypes:178
-msgid "light duty servant robot. One of the first to use the anti-grav system."
+msgid ""
+"light duty servant robot. One of the first to use the anti-grav system."
 msgstr ""
 
 #: ../map/freedroid.droid_archetypes:212
 msgid "cheaper version of the anti-grav servant robot."
-msgstr ""
+msgstr "billigare version av anti-grav kyparroboten."
 
 #: ../map/freedroid.droid_archetypes:246
 #: ../map/freedroid.droid_archetypes:1205
 msgid "Run away! This bot will kill you!"
-msgstr ""
+msgstr "Spring iväg! Den här boten kommer att döda dig!"
 
 #: ../map/freedroid.droid_archetypes:281
 msgid ""
@@ -1691,7 +1920,8 @@ msgid ""
 msgstr ""
 
 #: ../map/freedroid.droid_archetypes:316
-msgid "early type messenger robot. Large wheels impede motion on small craft."
+msgid ""
+"early type messenger robot. Large wheels impede motion on small craft."
 msgstr ""
 
 #: ../map/freedroid.droid_archetypes:351
@@ -1750,7 +1980,7 @@ msgstr ""
 
 #: ../map/freedroid.droid_archetypes:692
 msgid "this version is the one mainly used by the Military."
-msgstr ""
+msgstr "denna version är den som används främst av Militären."
 
 #: ../map/freedroid.droid_archetypes:726
 msgid ""
@@ -1789,28 +2019,36 @@ msgid ""
 "This is a typical professor/sage character of some older age.  They are not "
 "armed as powerfully as e.g. the red guards."
 msgstr ""
+"Det här är en typisk professor/vis man karaktär i de äldre åren. De är inte "
+"armerade lika kraftfullt som t.ex Röda Gardet."
 
 #: ../map/freedroid.droid_archetypes:927
 msgid ""
 "This is a typical red (male) guard/fighter character.  They are equipped "
 "with powerful PowerExterminators."
 msgstr ""
+"Det här är en typisk Röda (man) Gardet vakt/krigare karaktär. De är "
+"beväpnade med kraftiga KraftUtrotare."
 
 #: ../map/freedroid.droid_archetypes:958
 msgid "This is the hot_mama shopkeeper character model."
-msgstr ""
+msgstr "Det här är affärsägaren hot_mama's karaktär."
 
 #: ../map/freedroid.droid_archetypes:989
 msgid ""
 "This is the female scientist character model.  They are not armed as "
 "powerfully as e.g. the red guards."
 msgstr ""
+"Det här är den kvinnliga forskarens karaktär. De är inte beväpnade lika "
+"kraftfullt som t.ex Röda Gardet."
 
 #: ../map/freedroid.droid_archetypes:1020
 msgid ""
 "This is the brown worker model.  They are not armed as powerfully as e.g. "
 "the red guards."
 msgstr ""
+"Det här är den bruna arbetarens karaktär. De är inte beväpnade lika "
+"kraftfullt som t.ex Röda Gardet."
 
 #: ../map/freedroid.droid_archetypes:1051
 msgid "This is a useless comment. Thanks for your attention."
@@ -1818,15 +2056,15 @@ msgstr ""
 
 #: ../map/freedroid.droid_archetypes:1082
 msgid "This is the cook."
-msgstr ""
+msgstr "Det här är kocken."
 
 #: ../map/freedroid.droid_archetypes:1145
 msgid "This is a typical sex bomb.  This one is even armed."
-msgstr ""
+msgstr "Detta är en typisk sexbomb. Denna är även armerad."
 
 #: ../map/freedroid.droid_archetypes:1176
 msgid "This is the bartender."
-msgstr ""
+msgstr "Det här är bartendern."
 
 #: ../map/QuestList_archetypes:40
 msgid "Bender's problem"
@@ -1972,7 +2210,8 @@ msgid ""
 msgstr ""
 
 #: ../map/QuestList_archetypes:171
-msgid "Ouch. It wasn't. At least I am alive and the warehouse is clear. Whew."
+msgid ""
+"Ouch. It wasn't. At least I am alive and the warehouse is clear. Whew."
 msgstr ""
 
 #: ../map/QuestList_archetypes:180
@@ -2070,7 +2309,7 @@ msgstr ""
 
 #: ../map/QuestList_archetypes:284
 msgid "Done. He looks happy."
-msgstr ""
+msgstr "Färdig. Han ser glad ut."
 
 #: ../map/QuestList_archetypes:293
 msgid "Tanias sanitary"
@@ -2088,4 +2327,4 @@ msgstr ""
 
 #: ../map/QuestList_archetypes:306
 msgid "Tania is free now!"
-msgstr ""
+msgstr "Tania är fri nu!"

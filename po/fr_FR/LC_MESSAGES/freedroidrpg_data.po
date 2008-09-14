@@ -4,14 +4,343 @@ msgstr ""
 "Project-Id-Version: freedroidrpg_data\n"
 "Report-Msgid-Bugs-To: CHANGE THIS TOO\n"
 "POT-Creation-Date: 2008-09-04 22:16+0000\n"
-"PO-Revision-Date: 2008-08-30 18:21+0000\n"
+"PO-Revision-Date: 2008-09-08 07:34+0000\n"
 "Last-Translator: Arthur Huillet <arthur.huillet@free.fr>\n"
 "Language-Team: <en@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-15\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-09-02 22:56+0000\n"
+"X-Launchpad-Export-Date: 2008-09-14 12:32+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
+
+#~ msgid "Program description=_"
+#~ msgstr "Description du programme=_"
+
+#~ msgid ""
+#~ "This does nothing in this version of freedroidRPG. I am not the Linarian you "
+#~ "are looking for."
+#~ msgstr ""
+#~ "Aucun effet dans cette version de freedroidRPG. Je ne suis pas le linarian "
+#~ "que vous cherchez."
+
+#~ msgid "Razor "
+#~ msgstr "Rasoir "
+
+#~ msgid "Short sword"
+#~ msgstr "Épée courte"
+
+#~ msgid "Long sword"
+#~ msgstr "Épée longue"
+
+#~ msgid ""
+#~ "The size and kinetic force achievable with this 2 handed sword is enough to "
+#~ "cleave straight through the armour of a low level droid. The strain on the "
+#~ "sword from high impact hits into metal will however require frequent "
+#~ "maintenance to not have it break in half exactly when it's most needed."
+#~ msgstr ""
+#~ "La taille et la force kinétique disponible avec l'épée à deux mains est "
+#~ "suffisante pour percer l'armure d'un droïde de bas niveau. L'effort transmis "
+#~ "à l'épée lors de violents impacts sur le métal va néanmoins nécessiter une "
+#~ "maintenance régulière pour éviter qu'elle ne se brise au moment où vous en "
+#~ "avez le plus besoin."
+
+#, fuzzy
+#~ msgid ""
+#~ "Designed to chop through meat and bones, it's not as fragile as swords when "
+#~ "used against metal enemies. Though it is a bit more slow and clumsy to use "
+#~ "then the grace full swords."
+#~ msgstr ""
+#~ "Conçue pour découper au travers des chairs et des os, elle n'est pas aussi "
+#~ "fragile que les épées utilisées contre les ennemis métalliques. Malgré cela, "
+#~ "elle est encore un peu lente et difficile à manier avec la grâce d'une vraie "
+#~ "épée."
+
+#~ msgid "Small axe"
+#~ msgstr "Petite hache"
+
+#~ msgid "Axe"
+#~ msgstr "Hache"
+
+#~ msgid ""
+#~ "Big enough to fell a small tree, it's also capable of leaving big dents in a "
+#~ "droid."
+#~ msgstr ""
+#~ "Suffisament grand pour faire tomber un peit arbre, il est également capable "
+#~ "de laisser des grosses entailles dans un droïde."
+
+#, fuzzy
+#~ msgid ""
+#~ "While this weapon is somewhat slow and cumbersome to use, it does pack a "
+#~ "pretty good punch, many times capable of taking out lesser droids in 1 "
+#~ "single hit"
+#~ msgstr ""
+#~ "Ces munitions sont lentes et encombrantes, mais un paquet est assez "
+#~ "puissant. Elles permettent souvent d'abattre les faibles droïde du premier "
+#~ "coup."
+
+#~ msgid "Dagger"
+#~ msgstr "Dague"
+
+#~ msgid ""
+#~ "A short stabbing weapon like a dagger doesn't have much effect on the metal "
+#~ "body of a droid, but with luck you might damage some wires or hoses in less "
+#~ "protected areas so it's still better then trying to take on the machines "
+#~ "with bare hands."
+#~ msgstr ""
+#~ "Une arme à courte portée comme un dague n'a pas beaucoup d'effet sur le "
+#~ "corps métallique des droïdes, mais avec de la chance, vous pouvez lui "
+#~ "endommager du câblage ou des tuyaux situés dans des régions moins protégées, "
+#~ "donc c'est toujours mieux que d'essayer d'attaquer ces machines à main nue."
+
+#~ msgid "Wooden spear"
+#~ msgstr "Lance en bois"
+
+#, fuzzy
+#~ msgid ""
+#~ "The best to be said about a wooden spear is that it will allow you to stand "
+#~ "far enough away to jab at a single enemy without giving him much chance to "
+#~ "hit back. Neither damage nor durability is very much to write home about."
+#~ msgstr ""
+#~ "La seule chose à dire à propos de l'épieu en bois, c'est qu'il vous permet "
+#~ "de rester assez loin pour frapper un ennemi seul, sans qu'il ait une chance "
+#~ "de riposter. Les dommages infligés et la durée de vie sont insuffisant pour "
+#~ "en parler."
+
+#~ msgid ""
+#~ "A spear forged from metal considerably improves from the wooden spears "
+#~ "damage and durability, but the increased weight does make it somewhat slower "
+#~ "and more cumbersome to use. It's still a fast weapon though compared to most "
+#~ "other."
+#~ msgstr ""
+#~ "Une pointe en métal forgé inflige plus de dommages et a une durée de vie "
+#~ "plus importante qu'un épieu en bois, mais l'augmentation du poids la rend "
+#~ "plus lente et plus difficile à manier. C'est cependant une arme rapide "
+#~ "considérée à la plupart des autres."
+
+#~ msgid ""
+#~ "With 1-2 good two handed swings a former droids head might fly far enough "
+#~ "for you to score a home run. Just make sure to bring a backup weapon because "
+#~ "wooden bats have a predilection for easily splitting in two after too many "
+#~ "hard hits."
+#~ msgstr ""
+#~ "Avec un ou deux swings bien balancés, la tête d'un ex-droïde peut voler "
+#~ "assez loin pour marquer un home run. Ayez tout simplement une arme de "
+#~ "dernier recours en supplément avec vous, parce que les battes en bois ont "
+#~ "une tendance à se casser en deux après des coups trop brutaux."
+
+#~ msgid "Flail"
+#~ msgstr "Fléau"
+
+#~ msgid ""
+#~ "1-3 spiked heavy metal balls connected to a rod via chains might require "
+#~ "skill to control, but once you do it sure is effective vs man and machine "
+#~ "alike..."
+#~ msgstr ""
+#~ "1-3 lourdes balles de métal hérissées de piquets réliés à un manche par des "
+#~ "chaînes peut requérir des compétences pour la maîtrise du maniement, mais "
+#~ "une fois que vous l'avez, vous pouvez être certain que c'est efficace aussi "
+#~ "bien contre les humains que les machines."
+
+#~ msgid "Lightsaber"
+#~ msgstr "Sabre laser"
+
+#~ msgid "Laserstaff"
+#~ msgstr "Bâton laser"
+
+#~ msgid ""
+#~ "A close combat master with this weapon in his hands is a pure whirling "
+#~ "dervish of death."
+#~ msgstr ""
+#~ "A maître du close-combat avec cette arme dans les mains devient un véritable "
+#~ "derviche tourneur de la mort."
+
+#, fuzzy
+#~ msgid ""
+#~ "While solid slugs or possibly 8-10 Gauge would be the most effective vs "
+#~ "armoursed targets, beggars can't be choosers. One just has to use any type "
+#~ "of shell one is lucky enough to stumbles across. And even 20+ Gauge "
+#~ "cartridges mostly used for bird hunting can with luck damage a bot."
+#~ msgstr ""
+#~ "Alors que que les balles solides ou les calibres 8-10 se veulent être les "
+#~ "plus efficaces contre les cibles à armure lourde, les mendiants ne peuvent "
+#~ "pas choisir. S'il suffit d'utiliser n'importe quel type de munitions, c'est "
+#~ "une chance. Et même le calibre 20+ majoritairement utilisé pour la chasse "
+#~ "aux oiseau peut, avec de la chance, endommager un robot."
+
+#~ msgid "2 Barrel sawn off shotgun"
+#~ msgstr "Fusil à canon scié"
+
+#~ msgid "2 Barrel shotgun"
+#~ msgstr "Carabine"
+
+#~ msgid "Laser Weapon Ammunition"
+#~ msgstr "Cristaux pour arme laser"
+
+#~ msgid ""
+#~ "Energy crystal load for laser rifles. Each round fired consumes a load "
+#~ "within the crystal."
+#~ msgstr ""
+#~ "Le cristal énergétique constitue la source d'énergie des fusils lasers. "
+#~ "Chaque tir utilise une charge d'un cristal."
+
+#~ msgid "Small Pulse Laser"
+#~ msgstr "Petit laser à impulsion"
+
+#~ msgid "Pulse Laser"
+#~ msgstr "Laser à impulsion"
+
+#, fuzzy
+#~ msgid ""
+#~ "The pulse laser technology, allowing for many repeated short burts without "
+#~ "the weapon overheating, combined with a design for military purpuse makes "
+#~ "this weapon the perfered choise for most soldiers. It's recoil free, quick "
+#~ "firing, large mag & killing power makes it the ideal weapon for cleansing "
+#~ "out big droid infestations in mere minutes."
+#~ msgstr ""
+#~ "La technologie à laser pulsé, permettant beaucoup de courts coups répétés "
+#~ "sans que le fusil ne surchauffe, combinée avec une conception prévue pour un "
+#~ "usage militaire fait de cette arme le choix de prédilection pour la plupart "
+#~ "des soldats. Elle est sans recul, avec un tir rapide, une grande bandoulière "
+#~ "et de la puissance, ce qui en fait l'arme idéale pour se débarrasser des "
+#~ "grandes invasions de droïdes en quelques minutes."
+
+#~ msgid "Plasma Weapon Ammunition"
+#~ msgstr "Munitions arme plasma"
+
+#~ msgid "EMP Shock Grenade"
+#~ msgstr "Grenade à impulsion électromagnétique"
+
+#~ msgid "Plasma Grenade"
+#~ msgstr "Grenade à plasma"
+
+#~ msgid ""
+#~ "A nice handy weapon, a good swing every now and then will prove useful in "
+#~ "critical hits."
+#~ msgstr ""
+#~ "Un fusil sympa et maniable, un bon swing vous sera utile et permettra de "
+#~ "mettre des coups critiques."
+
+#~ msgid "For bot use only."
+#~ msgstr "Utilisable par les robots uniquement."
+
+#~ msgid ""
+#~ "A true to technology modern sword. Can cut through the most impossible "
+#~ "objects like a knife through butter."
+#~ msgstr ""
+#~ "Une application de la technologie moderne à l'épée. Cela peut couper "
+#~ "n'importe les objets les plus durs comme un couteau le ferait avec une motte "
+#~ "de beurre."
+
+#~ msgid "For bot use only"
+#~ msgstr "Utilisable par les robots uniquement"
+
+#~ msgid "Droid weaponry - 296"
+#~ msgstr "Armement droïde - 296"
+
+#, fuzzy
+#~ msgid ""
+#~ "More of a mediocre addition to the laser family, this is best summed up as a "
+#~ "backup weapon."
+#~ msgstr ""
+#~ "En plus d'une médiocre addition à la famille est laser, c'est le meilleur "
+#~ "résumé comme arme de secours."
+
+#~ msgid ""
+#~ "If you do not mind waiting for a while in the heat of battle, this weapon is "
+#~ "for you."
+#~ msgstr ""
+#~ "Si tu ne t'attends pas à réfléchir dans le feu de l'action, cette arme est "
+#~ "faite pour toi."
+
+#~ msgid ""
+#~ "Think of a twin laser with twice the power. Now make it shoot half as often. "
+#~ "What you have is the 'Advanced' twin laser."
+#~ msgstr ""
+#~ "Pensez au double laser comme à un doublement de puissance. Maintenant faites "
+#~ "le tirer moitié moins souvent que d'habitude. Vous avez le double laser "
+#~ "'avancé'."
+
+#~ msgid "This is an standard part within many robots types."
+#~ msgstr "C'est une pièce standard pour un grand nombre de modèles de robots."
+
+#~ msgid "Common Monkey Wrench"
+#~ msgstr "Clé à molette classique"
+
+#~ msgid ""
+#~ "Even the most primitive civilisations cannot survive for long without a "
+#~ "large supply of those."
+#~ msgstr ""
+#~ "Même les civilisations les plus primitives ne survivraient pas longtemps "
+#~ "sans une grande quantité de ces choses."
+
+#~ msgid ""
+#~ "These pills permanently raise strength within a person. They work on a nano-"
+#~ "technological basis. Consult you physician, the receipt or pharmacy experts "
+#~ "for details on intended effects, possible interactions and side effects of "
+#~ "this drug."
+#~ msgstr ""
+#~ "Ces pilules augmentent la force d'une personne de façon permanente. Leur "
+#~ "fonctionnement est basé sur la nano-technologie. Consultez un physicien, la "
+#~ "notice ou un expert en pharmacie pour avoir le détail des effets attendus, "
+#~ "des interactions possibles avec d'autres médicaments et des effets "
+#~ "secondaires de cette drogue."
+
+#~ msgid ""
+#~ "These pills permanently raise dexterity within a person. They work on a nano-"
+#~ "technological basis. Consult you physician, the receipt or pharmacy experts "
+#~ "for details on intended effects, possible interactions and side effects of "
+#~ "this drug."
+#~ msgstr ""
+#~ "Ces pilules augmentent de façon permanente la dextérité d'une personne. Leur "
+#~ "fonctionnement est basé sur la nano-technologie. Consultez un physicien, la "
+#~ "notice ou un expert en pharmacie pour avoir plus de détails sur les effets "
+#~ "souhaités, les interactions possibles avec d'autres médicaments et les "
+#~ "effets secondaires de cette drogue."
+
+#, fuzzy
+#~ msgid ""
+#~ "These pills can reverse the harmful effects of the 'brain enlargement pills' "
+#~ "that are publicly sold via the internet. The planet-wide guild of medics has "
+#~ "recommended not to respond to these ads at all, while attempts to entirely "
+#~ "ban the distribution of those pills were never completely successful."
+#~ msgstr ""
+#~ "Ces pilules peuvent contrecarrer les effets toxiques des 'pilules "
+#~ "d'augmentation du volume cérébral' qui sont en vente libre sur internet. "
+#~ "L'organisation pharmaceutique mondial a recommandé de ne pas réagir à ces "
+#~ "publicités, tant que ces pilules n'ont pas été entièrement supprimées de la "
+#~ "distribution."
+
+#~ msgid "There, I've founda and entered the base."
+#~ msgstr "Là. J'ai trouvé la base et j'y suis entré."
+
+#, fuzzy
+#~ msgid "description text 3 here"
+#~ msgstr "description du texte 3 ici description text 3 here"
+
+#~ msgid ""
+#~ "A bit slow and cumbersome to use and prohibiting the security of a shield to "
+#~ "cover behind, this weapon isn't always a good option. But if you do hit you "
+#~ "are sure to do more damage then just a scratch."
+#~ msgstr ""
+#~ "Un peu lent et difficile à manier, ne permettant pas d'être utilisée "
+#~ "derrière la sécurité d'un bouclier, cette arme n'est pas toujours une bonne "
+#~ "option. Mais si vous vous frappez avec, vous pouvez être certain que ce sera "
+#~ "plus qu'une éraflure."
+
+#~ msgid ""
+#~ "I've overtook the control droid and activated the disruptor shield. Now the "
+#~ "town is safe."
+#~ msgstr ""
+#~ "J'ai piraté le droïde de contrôle et bloqué le bouclier disrupteur en "
+#~ "position ON. La ville est en sécurité maintenant."
+
+#~ msgid ""
+#~ "I've overtook the control droid and disabled the disruptor shield. Now I "
+#~ "should go to Hell Fortress and hack MS firmware update system."
+#~ msgstr ""
+#~ "J'ai piraté le droïde de contrôle et désactivé le bouclier disrupteur. "
+#~ "L'usine de robots est ouverte maintenant, il faut que j'y aille rapidement "
+#~ "et que je pirate le droïde de mise à jour."
 
 #: ../map/freedroid.program_archetypes:8
 msgid "Hacking"
@@ -146,7 +475,8 @@ msgstr "Grenade au gaz"
 msgid "EMP grenade"
 msgstr "Grenade IEM"
 
-#: ../map/freedroid.prefix_archetypes:10 ../map/freedroid.prefix_archetypes:37
+#: ../map/freedroid.prefix_archetypes:10
+#: ../map/freedroid.prefix_archetypes:37
 msgid "I am a big bad bug in the game. Report me. Please. "
 msgstr "Je suis un vilain gros bug. Signalez-moi. Merci. "
 
@@ -778,12 +1108,17 @@ msgstr ""
 msgid "Two Barrel sawn off shotgun"
 msgstr "Fusil à double canons sciés"
 
-#: ../map/freedroid.item_archetypes:1238 ../map/freedroid.item_archetypes:1276
-#: ../map/freedroid.item_archetypes:1314 ../map/freedroid.item_archetypes:1378
-#: ../map/freedroid.item_archetypes:1416 ../map/freedroid.item_archetypes:1480
-#: ../map/freedroid.item_archetypes:1518 ../map/freedroid.item_archetypes:3677
+#: ../map/freedroid.item_archetypes:1238
+#: ../map/freedroid.item_archetypes:1276
+#: ../map/freedroid.item_archetypes:1314
+#: ../map/freedroid.item_archetypes:1378
+#: ../map/freedroid.item_archetypes:1416
+#: ../map/freedroid.item_archetypes:1480
+#: ../map/freedroid.item_archetypes:1518
+#: ../map/freedroid.item_archetypes:3677
 msgid "This is a placeholder for a description. Feel free to help."
-msgstr "Ici pourrait se trouver une vraie description. N'hésitez pas à aider."
+msgstr ""
+"Ici pourrait se trouver une vraie description. N'hésitez pas à aider."
 
 #: ../map/freedroid.item_archetypes:1260
 msgid "Two Barrel shotgun"
@@ -797,7 +1132,8 @@ msgstr "Fusil à pompe"
 msgid "9x19mm Ammunition"
 msgstr "Balles 9x19mm"
 
-#: ../map/freedroid.item_archetypes:1350 ../map/freedroid.item_archetypes:1452
+#: ../map/freedroid.item_archetypes:1350
+#: ../map/freedroid.item_archetypes:1452
 #: ../map/freedroid.item_archetypes:1556
 msgid ""
 "Plasma crystal load. This is the most common way of loading a plasma weapon."
@@ -1064,14 +1400,22 @@ msgstr "Usage robotique seulement."
 msgid "Droid weaponry - 123 : Weak robotic arm"
 msgstr ""
 
-#: ../map/freedroid.item_archetypes:2112 ../map/freedroid.item_archetypes:2145
-#: ../map/freedroid.item_archetypes:2180 ../map/freedroid.item_archetypes:2213
-#: ../map/freedroid.item_archetypes:2248 ../map/freedroid.item_archetypes:2283
-#: ../map/freedroid.item_archetypes:2318 ../map/freedroid.item_archetypes:2353
-#: ../map/freedroid.item_archetypes:2386 ../map/freedroid.item_archetypes:2421
-#: ../map/freedroid.item_archetypes:2456 ../map/freedroid.item_archetypes:2491
-#: ../map/freedroid.item_archetypes:2526 ../map/freedroid.item_archetypes:2561
-#: ../map/freedroid.item_archetypes:2629 ../map/freedroid.item_archetypes:2666
+#: ../map/freedroid.item_archetypes:2112
+#: ../map/freedroid.item_archetypes:2145
+#: ../map/freedroid.item_archetypes:2180
+#: ../map/freedroid.item_archetypes:2213
+#: ../map/freedroid.item_archetypes:2248
+#: ../map/freedroid.item_archetypes:2283
+#: ../map/freedroid.item_archetypes:2318
+#: ../map/freedroid.item_archetypes:2353
+#: ../map/freedroid.item_archetypes:2386
+#: ../map/freedroid.item_archetypes:2421
+#: ../map/freedroid.item_archetypes:2456
+#: ../map/freedroid.item_archetypes:2491
+#: ../map/freedroid.item_archetypes:2526
+#: ../map/freedroid.item_archetypes:2561
+#: ../map/freedroid.item_archetypes:2629
+#: ../map/freedroid.item_archetypes:2666
 #: ../map/freedroid.item_archetypes:2734
 msgid "Droid weaponry"
 msgstr ""
@@ -1192,7 +1536,8 @@ msgstr "La Robe de la Garde Rouge"
 
 #: ../map/freedroid.item_archetypes:2846
 msgid "Tough as nails and able to withstand most blows."
-msgstr "Solide comme du métal et capable de résister à la plupart des impacts"
+msgstr ""
+"Solide comme du métal et capable de résister à la plupart des impacts"
 
 #: ../map/freedroid.item_archetypes:2850
 msgid "Red Guard's Heavy Robe"
@@ -1210,7 +1555,8 @@ msgstr "Casquette"
 
 #: ../map/freedroid.item_archetypes:2891
 msgid "A simple cover for your head. Don't expect to be incognito."
-msgstr "Une simple protection pour votre tête. N'espèrez pas passer incognito."
+msgstr ""
+"Une simple protection pour votre tête. N'espèrez pas passer incognito."
 
 #: ../map/freedroid.item_archetypes:2895
 msgid "Small Helm"
@@ -1460,7 +1806,8 @@ msgstr ""
 msgid "Source Book of Blue Screen"
 msgstr "Livre Source de l'Ecran Bleu"
 
-#: ../map/freedroid.item_archetypes:3298 ../map/freedroid.item_archetypes:3314
+#: ../map/freedroid.item_archetypes:3298
+#: ../map/freedroid.item_archetypes:3314
 #, fuzzy
 msgid ""
 "With a little touch a war machine comes crashing down to a halt. For a while."
@@ -1764,8 +2111,10 @@ msgstr ""
 msgid "Entropy Inverter"
 msgstr "Inverseur d'Entropie"
 
-#: ../map/freedroid.item_archetypes:3717 ../map/freedroid.item_archetypes:3730
-#: ../map/freedroid.item_archetypes:3743 ../map/freedroid.item_archetypes:3756
+#: ../map/freedroid.item_archetypes:3717
+#: ../map/freedroid.item_archetypes:3730
+#: ../map/freedroid.item_archetypes:3743
+#: ../map/freedroid.item_archetypes:3756
 #: ../map/freedroid.item_archetypes:3769
 msgid "This is an standard part within many robot types."
 msgstr "C'est une pièce standard pour un grand nombre de modèles de robots."
@@ -1885,7 +2234,8 @@ msgstr ""
 msgid "Fork"
 msgstr "Fourchette"
 
-#: ../map/freedroid.item_archetypes:3878 ../map/freedroid.item_archetypes:3891
+#: ../map/freedroid.item_archetypes:3878
+#: ../map/freedroid.item_archetypes:3891
 #: ../map/freedroid.item_archetypes:3904
 #, fuzzy
 msgid ""
@@ -1996,7 +2346,8 @@ msgstr ""
 "compressées à l'intérieur."
 
 #: ../map/freedroid.droid_archetypes:178
-msgid "light duty servant robot. One of the first to use the anti-grav system."
+msgid ""
+"light duty servant robot. One of the first to use the anti-grav system."
 msgstr ""
 "Un robot serviteur. Un des premiers à utiliser le système anti-gravité."
 
@@ -2017,7 +2368,8 @@ msgstr ""
 "sur le bas du corps."
 
 #: ../map/freedroid.droid_archetypes:316
-msgid "early type messenger robot. Large wheels impede motion on small craft."
+msgid ""
+"early type messenger robot. Large wheels impede motion on small craft."
 msgstr ""
 "Un des premiers robots de type messager. Il a des larges roues qui l'empêche "
 "d'être trop secoué."
@@ -2393,7 +2745,8 @@ msgstr ""
 "Je suis censé nettoyer le premier niveau d'un entrepôt. Ca semble facile."
 
 #: ../map/QuestList_archetypes:171
-msgid "Ouch. It wasn't. At least I am alive and the warehouse is clear. Whew."
+msgid ""
+"Ouch. It wasn't. At least I am alive and the warehouse is clear. Whew."
 msgstr ""
 "Outch. Ca ne l'était pas. Au moins, je suis vivant et cet entrepôt est vide. "
 "Whou."
@@ -2534,336 +2887,3 @@ msgstr "J'ai trouvé ce SACD et je l'ai piraté."
 #: ../map/QuestList_archetypes:306
 msgid "Tania is free now!"
 msgstr "Tania est libre maintenant !"
-
-#~ msgid "Program description=_"
-#~ msgstr "Description du programme=_"
-
-#~ msgid ""
-#~ "This does nothing in this version of freedroidRPG. I am not the Linarian "
-#~ "you are looking for."
-#~ msgstr ""
-#~ "Aucun effet dans cette version de freedroidRPG. Je ne suis pas le "
-#~ "linarian que vous cherchez."
-
-#~ msgid "Razor "
-#~ msgstr "Rasoir "
-
-#~ msgid "Short sword"
-#~ msgstr "Épée courte"
-
-#~ msgid "Long sword"
-#~ msgstr "Épée longue"
-
-#~ msgid ""
-#~ "The size and kinetic force achievable with this 2 handed sword is enough "
-#~ "to cleave straight through the armour of a low level droid. The strain on "
-#~ "the sword from high impact hits into metal will however require frequent "
-#~ "maintenance to not have it break in half exactly when it's most needed."
-#~ msgstr ""
-#~ "La taille et la force kinétique disponible avec l'épée à deux mains est "
-#~ "suffisante pour percer l'armure d'un droïde de bas niveau. L'effort "
-#~ "transmis à l'épée lors de violents impacts sur le métal va néanmoins "
-#~ "nécessiter une maintenance régulière pour éviter qu'elle ne se brise au "
-#~ "moment où vous en avez le plus besoin."
-
-#, fuzzy
-#~ msgid ""
-#~ "Designed to chop through meat and bones, it's not as fragile as swords "
-#~ "when used against metal enemies. Though it is a bit more slow and clumsy "
-#~ "to use then the grace full swords."
-#~ msgstr ""
-#~ "Conçue pour découper au travers des chairs et des os, elle n'est pas "
-#~ "aussi fragile que les épées utilisées contre les ennemis métalliques. "
-#~ "Malgré cela, elle est encore un peu lente et difficile à manier avec la "
-#~ "grâce d'une vraie épée."
-
-#~ msgid "Small axe"
-#~ msgstr "Petite hache"
-
-#~ msgid "Axe"
-#~ msgstr "Hache"
-
-#~ msgid ""
-#~ "Big enough to fell a small tree, it's also capable of leaving big dents "
-#~ "in a droid."
-#~ msgstr ""
-#~ "Suffisament grand pour faire tomber un peit arbre, il est également "
-#~ "capable de laisser des grosses entailles dans un droïde."
-
-#, fuzzy
-#~ msgid ""
-#~ "While this weapon is somewhat slow and cumbersome to use, it does pack a "
-#~ "pretty good punch, many times capable of taking out lesser droids in 1 "
-#~ "single hit"
-#~ msgstr ""
-#~ "Ces munitions sont lentes et encombrantes, mais un paquet est assez "
-#~ "puissant. Elles permettent souvent d'abattre les faibles droïde du "
-#~ "premier coup."
-
-#~ msgid "Dagger"
-#~ msgstr "Dague"
-
-#~ msgid ""
-#~ "A short stabbing weapon like a dagger doesn't have much effect on the "
-#~ "metal body of a droid, but with luck you might damage some wires or hoses "
-#~ "in less protected areas so it's still better then trying to take on the "
-#~ "machines with bare hands."
-#~ msgstr ""
-#~ "Une arme à courte portée comme un dague n'a pas beaucoup d'effet sur le "
-#~ "corps métallique des droïdes, mais avec de la chance, vous pouvez lui "
-#~ "endommager du câblage ou des tuyaux situés dans des régions moins "
-#~ "protégées, donc c'est toujours mieux que d'essayer d'attaquer ces "
-#~ "machines à main nue."
-
-#~ msgid "Wooden spear"
-#~ msgstr "Lance en bois"
-
-#, fuzzy
-#~ msgid ""
-#~ "The best to be said about a wooden spear is that it will allow you to "
-#~ "stand far enough away to jab at a single enemy without giving him much "
-#~ "chance to hit back. Neither damage nor durability is very much to write "
-#~ "home about."
-#~ msgstr ""
-#~ "La seule chose à dire à propos de l'épieu en bois, c'est qu'il vous "
-#~ "permet de rester assez loin pour frapper un ennemi seul, sans qu'il ait "
-#~ "une chance de riposter. Les dommages infligés et la durée de vie sont "
-#~ "insuffisant pour en parler."
-
-#~ msgid ""
-#~ "A spear forged from metal considerably improves from the wooden spears "
-#~ "damage and durability, but the increased weight does make it somewhat "
-#~ "slower and more cumbersome to use. It's still a fast weapon though "
-#~ "compared to most other."
-#~ msgstr ""
-#~ "Une pointe en métal forgé inflige plus de dommages et a une durée de vie "
-#~ "plus importante qu'un épieu en bois, mais l'augmentation du poids la rend "
-#~ "plus lente et plus difficile à manier. C'est cependant une arme rapide "
-#~ "considérée à la plupart des autres."
-
-#~ msgid ""
-#~ "With 1-2 good two handed swings a former droids head might fly far enough "
-#~ "for you to score a home run. Just make sure to bring a backup weapon "
-#~ "because wooden bats have a predilection for easily splitting in two after "
-#~ "too many hard hits."
-#~ msgstr ""
-#~ "Avec un ou deux swings bien balancés, la tête d'un ex-droïde peut voler "
-#~ "assez loin pour marquer un home run. Ayez tout simplement une arme de "
-#~ "dernier recours en supplément avec vous, parce que les battes en bois ont "
-#~ "une tendance à se casser en deux après des coups trop brutaux."
-
-#~ msgid "Flail"
-#~ msgstr "Fléau"
-
-#~ msgid ""
-#~ "1-3 spiked heavy metal balls connected to a rod via chains might require "
-#~ "skill to control, but once you do it sure is effective vs man and machine "
-#~ "alike..."
-#~ msgstr ""
-#~ "1-3 lourdes balles de métal hérissées de piquets réliés à un manche par "
-#~ "des chaînes peut requérir des compétences pour la maîtrise du maniement, "
-#~ "mais une fois que vous l'avez, vous pouvez être certain que c'est "
-#~ "efficace aussi bien contre les humains que les machines."
-
-#~ msgid "Lightsaber"
-#~ msgstr "Sabre laser"
-
-#~ msgid "Laserstaff"
-#~ msgstr "Bâton laser"
-
-#~ msgid ""
-#~ "A close combat master with this weapon in his hands is a pure whirling "
-#~ "dervish of death."
-#~ msgstr ""
-#~ "A maître du close-combat avec cette arme dans les mains devient un "
-#~ "véritable derviche tourneur de la mort."
-
-#, fuzzy
-#~ msgid ""
-#~ "While solid slugs or possibly 8-10 Gauge would be the most effective vs "
-#~ "armoursed targets, beggars can't be choosers. One just has to use any "
-#~ "type of shell one is lucky enough to stumbles across. And even 20+ Gauge "
-#~ "cartridges mostly used for bird hunting can with luck damage a bot."
-#~ msgstr ""
-#~ "Alors que que les balles solides ou les calibres 8-10 se veulent être les "
-#~ "plus efficaces contre les cibles à armure lourde, les mendiants ne "
-#~ "peuvent pas choisir. S'il suffit d'utiliser n'importe quel type de "
-#~ "munitions, c'est une chance. Et même le calibre 20+ majoritairement "
-#~ "utilisé pour la chasse aux oiseau peut, avec de la chance, endommager un "
-#~ "robot."
-
-#~ msgid "2 Barrel sawn off shotgun"
-#~ msgstr "Fusil à canon scié"
-
-#~ msgid "2 Barrel shotgun"
-#~ msgstr "Carabine"
-
-#~ msgid "Laser Weapon Ammunition"
-#~ msgstr "Cristaux pour arme laser"
-
-#~ msgid ""
-#~ "Energy crystal load for laser rifles. Each round fired consumes a load "
-#~ "within the crystal."
-#~ msgstr ""
-#~ "Le cristal énergétique constitue la source d'énergie des fusils lasers. "
-#~ "Chaque tir utilise une charge d'un cristal."
-
-#~ msgid "Small Pulse Laser"
-#~ msgstr "Petit laser à impulsion"
-
-#~ msgid "Pulse Laser"
-#~ msgstr "Laser à impulsion"
-
-#, fuzzy
-#~ msgid ""
-#~ "The pulse laser technology, allowing for many repeated short burts "
-#~ "without the weapon overheating, combined with a design for military "
-#~ "purpuse makes this weapon the perfered choise for most soldiers. It's "
-#~ "recoil free, quick firing, large mag & killing power makes it the ideal "
-#~ "weapon for cleansing out big droid infestations in mere minutes."
-#~ msgstr ""
-#~ "La technologie à laser pulsé, permettant beaucoup de courts coups répétés "
-#~ "sans que le fusil ne surchauffe, combinée avec une conception prévue pour "
-#~ "un usage militaire fait de cette arme le choix de prédilection pour la "
-#~ "plupart des soldats. Elle est sans recul, avec un tir rapide, une grande "
-#~ "bandoulière et de la puissance, ce qui en fait l'arme idéale pour se "
-#~ "débarrasser des grandes invasions de droïdes en quelques minutes."
-
-#~ msgid "Plasma Weapon Ammunition"
-#~ msgstr "Munitions arme plasma"
-
-#~ msgid "EMP Shock Grenade"
-#~ msgstr "Grenade à impulsion électromagnétique"
-
-#~ msgid "Plasma Grenade"
-#~ msgstr "Grenade à plasma"
-
-#~ msgid ""
-#~ "A nice handy weapon, a good swing every now and then will prove useful in "
-#~ "critical hits."
-#~ msgstr ""
-#~ "Un fusil sympa et maniable, un bon swing vous sera utile et permettra de "
-#~ "mettre des coups critiques."
-
-#~ msgid "For bot use only."
-#~ msgstr "Utilisable par les robots uniquement."
-
-#~ msgid ""
-#~ "A true to technology modern sword. Can cut through the most impossible "
-#~ "objects like a knife through butter."
-#~ msgstr ""
-#~ "Une application de la technologie moderne à l'épée. Cela peut couper "
-#~ "n'importe les objets les plus durs comme un couteau le ferait avec une "
-#~ "motte de beurre."
-
-#~ msgid "For bot use only"
-#~ msgstr "Utilisable par les robots uniquement"
-
-#~ msgid "Droid weaponry - 296"
-#~ msgstr "Armement droïde - 296"
-
-#, fuzzy
-#~ msgid ""
-#~ "More of a mediocre addition to the laser family, this is best summed up "
-#~ "as a backup weapon."
-#~ msgstr ""
-#~ "En plus d'une médiocre addition à la famille est laser, c'est le meilleur "
-#~ "résumé comme arme de secours."
-
-#~ msgid ""
-#~ "If you do not mind waiting for a while in the heat of battle, this weapon "
-#~ "is for you."
-#~ msgstr ""
-#~ "Si tu ne t'attends pas à réfléchir dans le feu de l'action, cette arme "
-#~ "est faite pour toi."
-
-#~ msgid ""
-#~ "Think of a twin laser with twice the power. Now make it shoot half as "
-#~ "often. What you have is the 'Advanced' twin laser."
-#~ msgstr ""
-#~ "Pensez au double laser comme à un doublement de puissance. Maintenant "
-#~ "faites le tirer moitié moins souvent que d'habitude. Vous avez le double "
-#~ "laser 'avancé'."
-
-#~ msgid "This is an standard part within many robots types."
-#~ msgstr "C'est une pièce standard pour un grand nombre de modèles de robots."
-
-#~ msgid "Common Monkey Wrench"
-#~ msgstr "Clé à molette classique"
-
-#~ msgid ""
-#~ "Even the most primitive civilisations cannot survive for long without a "
-#~ "large supply of those."
-#~ msgstr ""
-#~ "Même les civilisations les plus primitives ne survivraient pas longtemps "
-#~ "sans une grande quantité de ces choses."
-
-#~ msgid ""
-#~ "These pills permanently raise strength within a person. They work on a "
-#~ "nano-technological basis. Consult you physician, the receipt or pharmacy "
-#~ "experts for details on intended effects, possible interactions and side "
-#~ "effects of this drug."
-#~ msgstr ""
-#~ "Ces pilules augmentent la force d'une personne de façon permanente. Leur "
-#~ "fonctionnement est basé sur la nano-technologie. Consultez un physicien, "
-#~ "la notice ou un expert en pharmacie pour avoir le détail des effets "
-#~ "attendus, des interactions possibles avec d'autres médicaments et des "
-#~ "effets secondaires de cette drogue."
-
-#~ msgid ""
-#~ "These pills permanently raise dexterity within a person. They work on a "
-#~ "nano-technological basis. Consult you physician, the receipt or pharmacy "
-#~ "experts for details on intended effects, possible interactions and side "
-#~ "effects of this drug."
-#~ msgstr ""
-#~ "Ces pilules augmentent de façon permanente la dextérité d'une personne. "
-#~ "Leur fonctionnement est basé sur la nano-technologie. Consultez un "
-#~ "physicien, la notice ou un expert en pharmacie pour avoir plus de détails "
-#~ "sur les effets souhaités, les interactions possibles avec d'autres "
-#~ "médicaments et les effets secondaires de cette drogue."
-
-#, fuzzy
-#~ msgid ""
-#~ "These pills can reverse the harmful effects of the 'brain enlargement "
-#~ "pills' that are publicly sold via the internet. The planet-wide guild of "
-#~ "medics has recommended not to respond to these ads at all, while attempts "
-#~ "to entirely ban the distribution of those pills were never completely "
-#~ "successful."
-#~ msgstr ""
-#~ "Ces pilules peuvent contrecarrer les effets toxiques des 'pilules "
-#~ "d'augmentation du volume cérébral' qui sont en vente libre sur internet. "
-#~ "L'organisation pharmaceutique mondial a recommandé de ne pas réagir à ces "
-#~ "publicités, tant que ces pilules n'ont pas été entièrement supprimées de "
-#~ "la distribution."
-
-#~ msgid "There, I've founda and entered the base."
-#~ msgstr "Là. J'ai trouvé la base et j'y suis entré."
-
-#, fuzzy
-#~ msgid "description text 3 here"
-#~ msgstr "description du texte 3 ici description text 3 here"
-
-#~ msgid ""
-#~ "A bit slow and cumbersome to use and prohibiting the security of a shield "
-#~ "to cover behind, this weapon isn't always a good option. But if you do "
-#~ "hit you are sure to do more damage then just a scratch."
-#~ msgstr ""
-#~ "Un peu lent et difficile à manier, ne permettant pas d'être utilisée "
-#~ "derrière la sécurité d'un bouclier, cette arme n'est pas toujours une "
-#~ "bonne option. Mais si vous vous frappez avec, vous pouvez être certain "
-#~ "que ce sera plus qu'une éraflure."
-
-#~ msgid ""
-#~ "I've overtook the control droid and activated the disruptor shield. Now "
-#~ "the town is safe."
-#~ msgstr ""
-#~ "J'ai piraté le droïde de contrôle et bloqué le bouclier disrupteur en "
-#~ "position ON. La ville est en sécurité maintenant."
-
-#~ msgid ""
-#~ "I've overtook the control droid and disabled the disruptor shield. Now I "
-#~ "should go to Hell Fortress and hack MS firmware update system."
-#~ msgstr ""
-#~ "J'ai piraté le droïde de contrôle et désactivé le bouclier disrupteur. "
-#~ "L'usine de robots est ouverte maintenant, il faut que j'y aille "
-#~ "rapidement et que je pirate le droïde de mise à jour."
