@@ -937,8 +937,7 @@ ship, *Ship;
 
 typedef struct dialogue_option_s
 {
-    int position_x;
-    int position_y;
+    char enabled;
     char* option_text;
     char* option_sample_file_name;
     

@@ -534,13 +534,7 @@ delete_one_dialog_option ( int i , int FirstInitialisation )
     ChatRoster[i].option_text="";
     ChatRoster[i].option_sample_file_name="";
     
-    //--------------------
-    // Now we can set the positions of the dialog boxes within the dialog editor
-    // to 'empty' values.  This will remain completely without effect in FreedroidRPG.
-    // The only one caring about these positions is the Dialog Editor.
-    //
-    ChatRoster[i].position_x = -1;
-    ChatRoster[i].position_y = -1;
+    ChatRoster[i].enabled = 0;
     
     for ( j = 0 ; j < MAX_REPLIES_PER_OPTION ; j++ )
     {
@@ -741,18 +735,7 @@ Therefore we need not add an additional termination character now." );
 	// Now that the temporary termination character has been inserted, we can 
 	// start to hunt for position and other strings in the new terminated area...
 	//
-	if ( strstr ( SectionPointer , "PositionX=" ) != NULL )
-	{
-	    ReadValueFromString( SectionPointer , "PositionX=" , "%d" , 
-				 & ( ChatRoster[ OptionIndex ] . position_x ) , TempEndPointer );
-	    ReadValueFromString( SectionPointer , "PositionY=" , "%d" , 
-				 & ( ChatRoster[ OptionIndex ] . position_y ) , TempEndPointer );
-	}
-	else
-	{
-	    ChatRoster [ OptionIndex ] . position_x = ( 2 + ( OptionIndex % 10 ) ) * 30 ;
-	    ChatRoster [ OptionIndex ] . position_y = ( 2 + ( OptionIndex / 10 ) ) * 30 ;
-	}
+	ChatRoster[OptionIndex].enabled=1;
 	
 #define NEW_REPLY_SAMPLE_STRING "ReplySample=\""
 #define NEW_REPLY_SUBTITLE_STRING "Subtitle=_\""

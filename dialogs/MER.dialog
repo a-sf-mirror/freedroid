@@ -32,7 +32,6 @@ Beginning of new chat dialog for character="XXXXX"
 
 New Option Nr=0  OptionText=_" Login : admin  Password : *******"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
-PositionX=71  PositionY=177  
 Subtitle=_"Last login from /dev/ttyS0 on Sun, 23 mar 2057. admin@shielddefense: ~ #"
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=0 ChangeToValue=0
@@ -44,7 +43,6 @@ OnCondition="CookieIsPlanted:MER_Password:" JumpToOption=3 ElseGoto=4
 
 New Option Nr=1  OptionText=_" passwd"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
-PositionX=512  PositionY=290  
 Subtitle=_" Changing password for admin. Enter new password: "
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" Enter new password again: "
@@ -61,7 +59,6 @@ DoSomethingExtra="PlantCookie:MER_Password"
 
 New Option Nr=3  OptionText=_" I HAVE CHANGED"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-PositionX=1215  PositionY=195  
 ChangeOption=3 ChangeToValue=0
 ChangeOption=1 ChangeToValue=0
 ChangeOption=7 ChangeToValue=0
@@ -72,7 +69,6 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=4  OptionText=_" I HAVEN'T CHANGED"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-PositionX=1215  PositionY=195  
 ChangeOption=4 ChangeToValue=0
 ChangeOption=1 ChangeToValue=1
 ChangeOption=7 ChangeToValue=1
@@ -83,7 +79,6 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=7  OptionText=_" shieldmgr --disable --force"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
-PositionX=512  PositionY=290  
 Subtitle=_" Disabling disruptor shield... "
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" Shield disabled."
@@ -98,7 +93,6 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=8  OptionText=_" shieldmgr --disable --force"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
-PositionX=512  PositionY=290  
 Subtitle=_" Disabling disruptor shield... "
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" Shield disabled."
@@ -111,7 +105,6 @@ DoSomethingExtra="OpenQuestDiaryEntry:M8E3:"
 
 New Option Nr=99  OptionText=_" logout"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
-PositionX=351  PositionY=231  
 ChangeOption=99 ChangeToValue=1
 DoSomethingExtra="EndDialog"
 AlwaysExecuteThisOptionPriorToDialogStart="no"

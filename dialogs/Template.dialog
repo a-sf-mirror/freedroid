@@ -34,7 +34,6 @@ Beginning of new chat dialog for character="XXXXX"
 
 New Option Nr=0  OptionText=_"<?>"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
-PositionX=61  PositionY=200  
 Subtitle=_"<?>"
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=0 ChangeToValue=0
@@ -44,7 +43,6 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=99  OptionText=_"<?>"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
-PositionX=512  PositionY=290  
 Subtitle=_"<?>"
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=99 ChangeToValue=1

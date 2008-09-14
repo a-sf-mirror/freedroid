@@ -32,7 +32,6 @@ Beginning of new chat dialog for character="XXXXX"
 
 New Option Nr=0  OptionText=_" Who are you? "
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
-PositionX=98  PositionY=280  
 Subtitle=_"I am a 614 security bot, once one of the best-selling products of the Nicholson company."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=0 ChangeToValue=0
@@ -43,7 +42,6 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=1  OptionText=_" Have you detected any hostile bot activity?"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
-PositionX=100  PositionY=204  
 Subtitle=_"No. The hostiles have not shown up within the last 24 hours."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=1 ChangeToValue=0
@@ -53,7 +51,6 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=2  OptionText=_" What can you tell me about the 614 type? "
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
-PositionX=96  PositionY=134  
 Subtitle=_"The official manual classifies the 614 as a high class security droid."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"It was mainly used within ships to protect certain areas from intruders."
@@ -69,7 +66,6 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=3  OptionText=_" What are your orders?"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
-PositionX=100  PositionY=71  
 Subtitle=_"My orders are to protect the living beings in this camp from attacks by hostile bots."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"This has top priority. There are no other priorities."
@@ -81,7 +77,6 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=4  OptionText=_" Why are you not hostile as all the other bots?"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
-PositionX=223  PositionY=270  
 Subtitle=_"I belong to a an older generation of bots, running a custom-made security guard operating system."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"None of the bots of this generation were affected by the proceedings that led to bots attacking, generally known as the Great Assault."
@@ -97,7 +92,6 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=99  OptionText=_" See you later."
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
-PositionX=438  PositionY=268  
 Subtitle=_" Resuming guard program."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=99 ChangeToValue=1
