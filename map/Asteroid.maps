@@ -16,7 +16,7 @@ jump target south: 11
 jump target east: 9
 jump target west: 10
 use underground lighting: 0
-Name of this level=Town
+Name of this level=_"Town"
 Infcmt="This must be the Old Town.
 BgSong=town.ogg
 beginning_of_map
@@ -3818,7 +3818,7 @@ jump target south: -1
 jump target east: -1
 jump target west: -1
 use underground lighting: 1
-Name of this level=Warehouse Level 1
+Name of this level=_"Warehouse Level 1"
 Infcmt="This must be the warehouse Spencer mentioned.
 BgSong=AmbientBattle.ogg
 beginning_of_map
@@ -4808,7 +4808,7 @@ jump target south: -1
 jump target east: -1
 jump target west: -1
 use underground lighting: 1
-Name of this level=Warehouse Level 2
+Name of this level=_"Warehouse Level 2"
 Infcmt="This place is bigger even.
 BgSong=TechBattle.ogg
 beginning_of_map
@@ -5491,7 +5491,7 @@ jump target south: -1
 jump target east: -1
 jump target west: -1
 use underground lighting: 1
-Name of this level=Kevins Underground Station
+Name of this level=_"Kevins Underground Station"
 Infcmt="This must be Kevins Underground Station...
 BgSong=underground.ogg
 beginning_of_map
@@ -6001,7 +6001,7 @@ jump target south: -1
 jump target east: -1
 jump target west: -1
 use underground lighting: 1
-Name of this level=Disruption Machine Deck
+Name of this level=_"Disruption Machine Deck"
 Infcmt="This is a level, like many other levels.
 BgSong=ImperialArmy.ogg
 beginning_of_map
@@ -6824,7 +6824,7 @@ jump target south: -1
 jump target east: -1
 jump target west: -1
 use underground lighting: 1
-Name of this level=Disruptor LvV
+Name of this level=_"Disruptor LvV"
 Infcmt="UNUSED
 BgSong=underground.ogg
 beginning_of_map
@@ -7466,7 +7466,7 @@ jump target south: -1
 jump target east: -1
 jump target west: -1
 use underground lighting: 1
-Name of this level=Maintenance Tunnels
+Name of this level=_"Maintenance Tunnels"
 Infcmt="This is a level, like many other levels.
 BgSong=underground.ogg
 beginning_of_map
@@ -8054,7 +8054,7 @@ jump target south: -1
 jump target east: -1
 jump target west: -1
 use underground lighting: 1
-Name of this level=Disruptor Shield Control
+Name of this level=_"Disruptor Shield Control"
 Infcmt="This is a level, like many other levels.
 BgSong=ImperialArmy.ogg
 beginning_of_map
@@ -8777,7 +8777,7 @@ jump target south: 0
 jump target east: 17
 jump target west: 16
 use underground lighting: 0
-Name of this level=Temple Wood
+Name of this level=_"Temple Wood"
 Infcmt="This must be the main reactor level.  Humans are not allowes
 BgSong=temple.ogg
 beginning_of_map
@@ -10559,7 +10559,7 @@ jump target south: 31
 jump target east: 27
 jump target west: 0
 use underground lighting: 0
-Name of this level=Crystal Fields
+Name of this level=_"Crystal Fields"
 Infcmt="MS Facility Gate
 BgSong=TheBeginning.ogg
 beginning_of_map
@@ -11695,7 +11695,7 @@ jump target south: 12
 jump target east: 0
 jump target west: 19
 use underground lighting: 0
-Name of this level=Desert of Red Tears
+Name of this level=_"Desert of Red Tears"
 Infcmt="This is a level, like many other levels.
 BgSong=Suspicion.ogg
 beginning_of_map
@@ -12571,7 +12571,7 @@ jump target south: 23
 jump target east: 31
 jump target west: 12
 use underground lighting: 0
-Name of this level=Slasher Mountains
+Name of this level=_"Slasher Mountains"
 Infcmt="UNUSED
 BgSong=TheBeginning.ogg
 beginning_of_map
@@ -13893,7 +13893,7 @@ jump target south: 22
 jump target east: 11
 jump target west: 20
 use underground lighting: 0
-Name of this level=New Level just created...
+Name of this level=_"New Level just created..."
 Infcmt="UNUSED
 BgSong=TheBeginning.ogg
 beginning_of_map
@@ -14622,7 +14622,7 @@ jump target south: -1
 jump target east: -1
 jump target west: -1
 use underground lighting: 1
-Name of this level=Telemetry
+Name of this level=_"Telemetry"
 Infcmt="UNUSED
 BgSong=underground.ogg
 beginning_of_map
@@ -15449,7 +15449,7 @@ jump target south: -1
 jump target east: -1
 jump target west: -1
 use underground lighting: 1
-Name of this level=Scientists quarters
+Name of this level=_"Scientists quarters"
 Infcmt="These must be the private quarters of the scientific staff of the installation.
 BgSong=ImperialArmy.ogg
 beginning_of_map
@@ -16174,7 +16174,7 @@ jump target south: -1
 jump target east: -1
 jump target west: -1
 use underground lighting: 1
-Name of this level=Private Goods Storage Cellar
+Name of this level=_"Private Goods Storage Cellar"
 Infcmt="UNUSED
 BgSong=underground.ogg
 beginning_of_map
@@ -16677,7 +16677,7 @@ jump target south: 10
 jump target east: 8
 jump target west: -1
 use underground lighting: 0
-Name of this level=Terminal Field
+Name of this level=_"Terminal Field"
 Infcmt="This is a new level...
 BgSong=TheBeginning.ogg
 beginning_of_map
@@ -17601,7 +17601,7 @@ jump target south: 9
 jump target east: 28
 jump target west: 8
 use underground lighting: 0
-Name of this level=Ethereal Meadows
+Name of this level=_"Ethereal Meadows"
 Infcmt="This is a new level...
 BgSong=TheBeginning.ogg
 beginning_of_map
@@ -18523,7 +18523,7 @@ jump target south: -1
 jump target east: -1
 jump target west: -1
 use underground lighting: 1
-Name of this level=Kevins Main Energy Source
+Name of this level=_"Kevins Main Energy Source"
 Infcmt="This must be Kevin's Main Energy Source...
 BgSong=underground.ogg
 beginning_of_map
@@ -18918,7 +18918,7 @@ jump target south: 20
 jump target east: 10
 jump target west: -1
 use underground lighting: 0
-Name of this level=New Level just created...
+Name of this level=_"New Level just created..."
 Infcmt="UNUSED
 BgSong=TheBeginning.ogg
 beginning_of_map
@@ -19335,7 +19335,7 @@ jump target south: 21
 jump target east: 12
 jump target west: -1
 use underground lighting: 0
-Name of this level=New Level just created...
+Name of this level=_"New Level just created..."
 Infcmt="UNUSED
 BgSong=TheBeginning.ogg
 beginning_of_map
@@ -19987,7 +19987,7 @@ jump target south: -1
 jump target east: 22
 jump target west: -1
 use underground lighting: 0
-Name of this level=New Level just created...
+Name of this level=_"New Level just created..."
 Infcmt="This is a new level...
 BgSong=TheBeginning.ogg
 beginning_of_map
@@ -21540,7 +21540,7 @@ jump target south: -1
 jump target east: 23
 jump target west: 21
 use underground lighting: 0
-Name of this level=New Level just created...
+Name of this level=_"New Level just created..."
 Infcmt="This is a new level...
 BgSong=TheBeginning.ogg
 beginning_of_map
@@ -22517,7 +22517,7 @@ jump target south: -1
 jump target east: 24
 jump target west: 22
 use underground lighting: 0
-Name of this level=New Level just created...
+Name of this level=_"New Level just created..."
 Infcmt="This is a new level...
 BgSong=TheBeginning.ogg
 beginning_of_map
@@ -23050,7 +23050,7 @@ jump target south: -1
 jump target east: 25
 jump target west: 23
 use underground lighting: 0
-Name of this level=Hell Fortress
+Name of this level=_"Hell Fortress"
 Infcmt="This is a new level...
 BgSong=TheBeginning.ogg
 beginning_of_map
@@ -24739,7 +24739,7 @@ jump target south: -1
 jump target east: -1
 jump target west: 24
 use underground lighting: 0
-Name of this level=New Level just created...
+Name of this level=_"New Level just created..."
 Infcmt="This is a new level...
 BgSong=TheBeginning.ogg
 beginning_of_map
@@ -25529,7 +25529,7 @@ jump target south: 25
 jump target east: -1
 jump target west: 31
 use underground lighting: 0
-Name of this level=New Level just created...
+Name of this level=_"New Level just created..."
 Infcmt="This is a new level...
 BgSong=TheBeginning.ogg
 beginning_of_map
@@ -26278,7 +26278,7 @@ jump target south: 26
 jump target east: -1
 jump target west: 9
 use underground lighting: 0
-Name of this level=Broken Glass Path
+Name of this level=_"Broken Glass Path"
 Infcmt="This is a new level...
 BgSong=TheBeginning.ogg
 beginning_of_map
@@ -26809,7 +26809,7 @@ jump target south: 27
 jump target east: -1
 jump target west: 17
 use underground lighting: 0
-Name of this level=New Level just created...
+Name of this level=_"New Level just created..."
 Infcmt="Unused
 BgSong=TheBeginning.ogg
 beginning_of_map
@@ -27287,7 +27287,7 @@ jump target south: -1
 jump target east: -1
 jump target west: -1
 use underground lighting: 1
-Name of this level=Novice Arena
+Name of this level=_"Novice Arena"
 Infcmt="This is a new level...
 BgSong=ImperialArmy.ogg
 beginning_of_map
@@ -27544,7 +27544,7 @@ jump target south: -1
 jump target east: -1
 jump target west: -1
 use underground lighting: 1
-Name of this level=Master Arena
+Name of this level=_"Master Arena"
 Infcmt="This is a new level...
 BgSong=ImperialArmy.ogg
 beginning_of_map
@@ -27798,7 +27798,7 @@ jump target south: 24
 jump target east: 26
 jump target west: 11
 use underground lighting: 0
-Name of this level=Hell Fortress entrance
+Name of this level=_"Hell Fortress entrance"
 Infcmt="This must be the entrance of the Hell Fortress. I'd better be careful.
 BgSong=hellforce.ogg
 beginning_of_map
@@ -31202,7 +31202,7 @@ jump target south: -1
 jump target east: -1
 jump target west: -1
 use underground lighting: 0
-Name of this level=Power Facility Underground
+Name of this level=_"Power Facility Underground"
 Infcmt="This is a new level...
 BgSong=underground.ogg
 beginning_of_map
@@ -31517,7 +31517,7 @@ jump target south: -1
 jump target east: -1
 jump target west: -1
 use underground lighting: 1
-Name of this level=Crystal Cavens
+Name of this level=_"Crystal Cavens"
 Infcmt="This is a new level...
 BgSong=underground.ogg
 beginning_of_map
@@ -34040,7 +34040,7 @@ jump target south: -1
 jump target east: -1
 jump target west: -1
 use underground lighting: 1
-Name of this level=Forgotten bunker
+Name of this level=_"Forgotten bunker"
 Infcmt="This is a new level...
 BgSong=Ambience.ogg
 beginning_of_map
@@ -34345,7 +34345,7 @@ jump target south: -1
 jump target east: -1
 jump target west: -1
 use underground lighting: 1
-Name of this level=Secret research center
+Name of this level=_"Secret research center"
 Infcmt="Secret area
 BgSong=hellforce.ogg
 beginning_of_map
@@ -35725,7 +35725,7 @@ jump target south: -1
 jump target east: -1
 jump target west: -1
 use underground lighting: 0
-Name of this level=Secreat area service tunnels
+Name of this level=_"Secret area service tunnels"
 Infcmt="Secret area collectors
 BgSong=hellforce.ogg
 beginning_of_map

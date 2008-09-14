@@ -3684,7 +3684,7 @@ CreateNewMapLevel( void )
     NewLevel -> ylen = 90 ;
     NewLevel -> light_radius_bonus = 1 ;
     NewLevel -> minimum_light_value = 13 ;
-    NewLevel -> Levelname = "New Level just created..." ;
+    NewLevel -> Levelname = "New level just created" ;
     NewLevel -> Background_Song_Name = "TheBeginning.ogg" ;
     NewLevel -> Level_Enter_Comment = "This is a new level..." ;
     //--------------------

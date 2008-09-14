@@ -1859,7 +1859,7 @@ use underground lighting: %d\n",
     strcpy(LevelMem, linebuf);
     strcat(LevelMem, LEVEL_NAME_STRING );
     strcat(LevelMem, Lev->Levelname );
-    strcat(LevelMem, "\n" );
+    strcat(LevelMem, "\"\n" );
     strcat(LevelMem, LEVEL_ENTER_COMMENT_STRING );
     strcat(LevelMem, Lev->Level_Enter_Comment );
     strcat(LevelMem, "\n" );
@@ -2300,17 +2300,17 @@ DecodeLoadedLeveldata ( char *data )
 	ErrorMessage ( __FUNCTION__  , "No levelnumber entry found!",
 				   PLEASE_INFORM, IS_FATAL );
     }
-    
+
     DecodeInterfaceDataForThisLevel ( loadlevel , DataPointer );
-    
+
     DecodeDimensionsOfThisLevel ( loadlevel , DataPointer );
-    
-    loadlevel->Levelname = ReadAndMallocStringFromData ( data , LEVEL_NAME_STRING , "\n" );
+
+    loadlevel->Levelname = ReadAndMallocStringFromData ( data , LEVEL_NAME_STRING , "\"" );
     loadlevel->Background_Song_Name = ReadAndMallocStringFromData ( data , BACKGROUND_SONG_NAME_STRING , "\n" );
     loadlevel->Level_Enter_Comment = ReadAndMallocStringFromData ( data , LEVEL_ENTER_COMMENT_STRING , "\n" );
-    
+
     decode_obstacles_of_this_level ( loadlevel , DataPointer );
-    
+
     DecodeMapLabelsOfThisLevel ( loadlevel , DataPointer );
     
     decode_obstacle_names_of_this_level ( loadlevel , DataPointer );

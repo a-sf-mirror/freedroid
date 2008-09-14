@@ -1006,7 +1006,7 @@ teleporter_square_below_mouse_cursor ( char* ItemDescText )
 	    
 	    if ( AllTriggeredActions [ action_number ] . TeleportTargetLevel != (-1) )
 	    {
-		sprintf ( ItemDescText , _("To %s....") , curShip . AllLevels [ AllTriggeredActions [ action_number ] . TeleportTargetLevel ] -> Levelname ) ;
+		sprintf ( ItemDescText , _("To %s....") , D_(curShip . AllLevels [ AllTriggeredActions [ action_number ] . TeleportTargetLevel ] -> Levelname) ) ;
 		return ( TRUE );
 	    }
 	}
@@ -1556,7 +1556,7 @@ DisplayBanner ( void )
     {
 	    if( GameConfig.Draw_Position)
 		    sprintf ( level_name_and_time , _("%s (%03.1f:%03.1f:%d) Day %d %02d:%02d ") , 
-				  curShip . AllLevels [ Me . pos . z ] -> Levelname , 
+				  D_(curShip . AllLevels [ Me . pos . z ] -> Levelname) , 
 				  Me . pos . x , 
 				  Me . pos . y , 
 				  Me . pos . z , 
@@ -1565,7 +1565,7 @@ DisplayBanner ( void )
 				  get_minutes_of_game_duration ( Me . current_game_date ) );
 	    else
 		    sprintf ( level_name_and_time , _("%s Day %d %02d:%02d ") , 
-				  curShip . AllLevels [ Me . pos . z ] -> Levelname , 
+				  D_(curShip . AllLevels [ Me . pos . z ] -> Levelname) , 
 				  get_days_of_game_duration ( Me . current_game_date ) ,
 				  get_hours_of_game_duration ( Me . current_game_date ) ,
 				  get_minutes_of_game_duration ( Me . current_game_date ) );

@@ -1387,7 +1387,7 @@ This indicates an error in the map system of Freedroid.",
     
     if ( with_sound_and_fading ) 
     {
-	sprintf ( game_message_text , _("Arrived at %s.") , curShip . AllLevels [ Me . pos . z ] -> Levelname );
+	sprintf ( game_message_text , _("Arrived at %s.") , D_(curShip . AllLevels [ Me . pos . z ] -> Levelname) );
 	append_new_game_message ( game_message_text );
 	AssembleCombatPicture ( SHOW_ITEMS | USE_OWN_MOUSE_CURSOR ); 
 	//our_SDL_flip_wrapper();
