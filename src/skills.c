@@ -242,7 +242,7 @@ DoSkill(int skill_index, int SpellCost)
 		droid_below_mouse_cursor = GetLivingDroidBelowMouseCursor ( ) ;
 		if ( droid_below_mouse_cursor == NULL ) 
 			goto done_handling_instant_hits;
-		if ( ! DirectLineColldet ( Me . pos . x ,
+		if ( ! DirectLineFlyable ( Me . pos . x ,
 					    Me . pos . y ,
 					    translate_pixel_to_map_location ( (float) input_axis.x ,
 									      (float) input_axis.y ,

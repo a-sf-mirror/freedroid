@@ -131,6 +131,20 @@ DirectLineFlyable ( float x1, float y1 , float x2 , float y2, int z )
 }; // int DirectLineFlyable ( float x1, float y1 , float x2 , float y2, int z )
 
 /**
+ * This function is supposed to find out if a given line on an
+ * arbitrarily chosen map can be traversed by light.
+ * Thus, it merely checks for visibility.
+ */
+int
+DirectLineVisible ( float x1, float y1 , float x2 , float y2, int z )
+{
+	global_check_for_light_only_collisions_flag = TRUE ;
+    int rtn = DirectLineColldet ( x1 , y1 , x2 , y2 , z );
+    global_check_for_light_only_collisions_flag = FALSE ;
+	return ( rtn );
+}; // int DirectLineVisible ( float x1, float y1 , float x2 , float y2, int z )
+
+/**
  * This function checks if the connection between two points is free of
  * droids.  
  *

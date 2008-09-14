@@ -2362,24 +2362,28 @@ init_obstacle_data( void )
   obstacle_map [ ISO_SOFFA_CORNER_1 ] . block_area_parm_1 = 0.6;
   obstacle_map [ ISO_SOFFA_CORNER_1 ] . block_area_parm_2 = 0.6;
   obstacle_map [ ISO_SOFFA_CORNER_1 ] . flags &= ~BLOCKS_VISION_TOO;
+  obstacle_map [ ISO_SOFFA_CORNER_1 ] . flags |= GROUND_LEVEL;
   obstacle_map [ ISO_SOFFA_CORNER_1 ] . filename = "iso_chairs_0017.png";
   
   obstacle_map [ ISO_SOFFA_CORNER_2 ] . block_area_type = COLLISION_TYPE_RECTANGLE;
   obstacle_map [ ISO_SOFFA_CORNER_2 ] . block_area_parm_1 = 0.6;
   obstacle_map [ ISO_SOFFA_CORNER_2 ] . block_area_parm_2 = 0.6;
   obstacle_map [ ISO_SOFFA_CORNER_2 ] . flags &= ~BLOCKS_VISION_TOO;
+  obstacle_map [ ISO_SOFFA_CORNER_2 ] . flags |= GROUND_LEVEL;
   obstacle_map [ ISO_SOFFA_CORNER_2 ] . filename = "iso_chairs_0018.png";
 
   obstacle_map [ ISO_SOFFA_CORNER_3 ] . block_area_type = COLLISION_TYPE_RECTANGLE;
   obstacle_map [ ISO_SOFFA_CORNER_3 ] . block_area_parm_1 = 0.6;
   obstacle_map [ ISO_SOFFA_CORNER_3 ] . block_area_parm_2 = 0.6;
   obstacle_map [ ISO_SOFFA_CORNER_3 ] . flags &= ~BLOCKS_VISION_TOO;
+  obstacle_map [ ISO_SOFFA_CORNER_3 ] . flags |= GROUND_LEVEL;
   obstacle_map [ ISO_SOFFA_CORNER_3 ] . filename = "iso_chairs_0019.png";
   
   obstacle_map [ ISO_SOFFA_CORNER_4 ] . block_area_type = COLLISION_TYPE_RECTANGLE;
   obstacle_map [ ISO_SOFFA_CORNER_4 ] . block_area_parm_1 = 0.6;
   obstacle_map [ ISO_SOFFA_CORNER_4 ] . block_area_parm_2 = 0.6;
   obstacle_map [ ISO_SOFFA_CORNER_4 ] . flags &= ~BLOCKS_VISION_TOO;
+  obstacle_map [ ISO_SOFFA_CORNER_4 ] . flags |= GROUND_LEVEL;
   obstacle_map [ ISO_SOFFA_CORNER_4 ] . filename = "iso_chairs_0020.png";
 
   
@@ -3962,6 +3966,7 @@ init_obstacle_data( void )
   obstacle_map[ ISO_TRANSP_FOR_WATER ] . filename = "iso_transp_for_water.png";
   obstacle_map[ ISO_TRANSP_FOR_WATER ] . transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS; 
   obstacle_map[ ISO_TRANSP_FOR_WATER ] . flags &= ~BLOCKS_VISION_TOO ;
+  obstacle_map[ ISO_TRANSP_FOR_WATER ] . flags |= GROUND_LEVEL ;
   obstacle_map[ ISO_TRANSP_FOR_WATER ] . obstacle_short_name = _("Water");
   obstacle_map[ ISO_TRANSP_FOR_WATER ] . obstacle_long_description = _("This water seems dangerous. You will want to avoid going there. ");
     

@@ -459,7 +459,7 @@ MoveActiveSpells (void)
 		final_point . x = AllActiveSpells [ i ] . spell_center . x + Displacement . x ;
 		final_point . y = AllActiveSpells [ i ] . spell_center . y + Displacement . y ;
 		// current_active_direction = rintf ( ( Angle  ) * (float) RADIAL_SPELL_DIRECTIONS / 360.0 ); 
-		if ( ! IsPassable ( final_point . x , final_point . y , Me . pos . z ) )
+		if ( ! IsPassableForFlyingObj ( final_point . x , final_point . y , Me . pos . z ) )
 		    AllActiveSpells [ i ] . active_directions [ direction_index ] = FALSE ;
 	    }
 
@@ -626,7 +626,12 @@ handle_flash_effects ( bullet* CurBullet )
 	{
 	if ( erot->type == (-1) ) continue ;
 
-	if ( IsVisible ( & erot->pos) &&
+	int is_visible;
+	global_ignore_ground_level_objects_flag = TRUE;
+	is_visible = IsVisible( &erot->pos );
+	global_ignore_ground_level_objects_flag = FALSE;
+
+	if ( is_visible &&
 		( ! Druidmap [ erot->type ] . flashimmune ) ) 
 	    {
 	    hit_enemy ( erot, CurBullet->damage, CurBullet->mine ? 1 : 0 /*givexp*/, CurBullet->owner, CurBullet->mine );
@@ -654,7 +659,7 @@ void
 check_bullet_background_collisions ( bullet* CurBullet , int num )
 {
   // Check for collision with background
-  if ( ! IsPassable ( CurBullet -> pos . x , CurBullet -> pos . y , CurBullet -> pos . z ) )
+  if ( ! IsPassableForFlyingObj ( CurBullet -> pos . x , CurBullet -> pos . y , CurBullet -> pos . z ) )
     {
       if ( CurBullet->ignore_wall_collisions )
 	{

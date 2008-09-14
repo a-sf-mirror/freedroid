@@ -3524,7 +3524,7 @@ IsVisible ( GPS objpos )
   // -10th-frame-only code could be added here later... and in the meantime
   // old values could be used from a stored flag?!
   //
-  return ( DirectLineColldet( objpos -> x , objpos -> y , 
+  return ( DirectLineVisible( objpos -> x , objpos -> y ,
 			       Me . pos . x , Me . pos . y , 
 			       objpos -> z ) )  ;
 

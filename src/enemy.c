@@ -1516,7 +1516,7 @@ static void state_machine_situational_transitions ( enemy * ThisRobot, const mod
 
 
     /* Switch to stop_and_eye_target if appropriate - it's the prelude to any-on-any attacks */
-    if ( vect_to_target -> x != - 1000 && DirectLineWalkable ( ThisRobot->pos.x + vect_to_target->x , ThisRobot->pos.y + vect_to_target->y, ThisRobot -> pos . x , ThisRobot -> pos . y, ThisRobot->pos.z ))
+    if ( vect_to_target -> x != - 1000 && DirectLineVisible ( ThisRobot->pos.x + vect_to_target->x , ThisRobot->pos.y + vect_to_target->y, ThisRobot -> pos . x , ThisRobot -> pos . y, ThisRobot->pos.z ) )
 	{
 	    ThisRobot -> combat_state = STOP_AND_EYE_TARGET;
 	}
@@ -1570,17 +1570,19 @@ static void state_machine_stop_and_eye_target ( enemy * ThisRobot, moderately_fi
     if ( ThisRobot -> state_timeout > Druidmap [ ThisRobot -> type ] . time_spent_eyeing_tux ) 
 	{
 	ThisRobot -> state_timeout = 0;
-	if ( !ThisRobot -> attack_run_only_when_direct_line || ( ThisRobot -> attack_run_only_when_direct_line && DirectLineColldet( ThisRobot -> pos . x , ThisRobot -> pos . y , tpos -> x , tpos -> y , ThisRobot -> pos . z )))
+   	if ( !ThisRobot -> attack_run_only_when_direct_line || DirectLineColldet ( ThisRobot->pos.x , ThisRobot->pos.y, tpos->x , tpos->y , ThisRobot->pos.z ) )
 	    {
 	    SetRestOfGroupToState ( ThisRobot , ATTACK );
 	    ThisRobot -> combat_state = ATTACK ;
-	    }
-
 	if ( Druidmap [ ThisRobot -> type ] . greeting_sound_type != (-1))
 	    {
 	    play_enter_attack_run_state_sound ( Druidmap[ ThisRobot->type ].greeting_sound_type );
 	    }
-
+	}
+   		else
+   		{
+   			ThisRobot -> combat_state = SELECT_NEW_WAYPOINT;
+}
 	}
 }
 
@@ -1610,7 +1612,8 @@ static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_m
 	}
 
     float dist2 = (ThisRobot -> virt_pos . x - tpos -> x) * (ThisRobot -> virt_pos . x - tpos -> x) + (ThisRobot -> virt_pos . y - tpos -> y) * (ThisRobot -> virt_pos . y - tpos -> y);
-    int target_visible = DirectLineColldet ( ThisRobot->virt_pos.x, ThisRobot->virt_pos.y, tpos->x, tpos->y, tpos->z);
+    int target_visible = DirectLineVisible ( ThisRobot->virt_pos.x, ThisRobot->virt_pos.y, tpos->x, tpos->y, tpos->z);
+    int melee_weapon = ItemMap [ Druidmap [ ThisRobot -> type ] . weapon_item . type ] . item_weapon_is_melee;
 
     //--------------------
     // We will often have to move towards our target.
@@ -1634,7 +1637,7 @@ static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_m
 	}
 	else
 	{
-	if ( ItemMap [ Druidmap [ ThisRobot -> type ] . weapon_item . type ] . item_weapon_is_melee )
+	if ( melee_weapon )
 	    {
 	    if ( dist2 > 2.25 )
 		{ // Melee weapon and too far to strike ? get closer 
@@ -1671,8 +1674,15 @@ static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_m
 	       int a;
 	       for ( a = 0; a < 8; a ++ )
 		   {
+		   int target_reachable = FALSE;
 		   RotateVectorByAngle ( &test_t, angles_to_try[a] );
-		   if ( DirectLineColldet ( tmp.x, tmp.y, tmp.x + test_t.x, tmp.y + test_t.y, ThisRobot->pos.z) &&
+
+		   if ( melee_weapon )
+		       target_reachable = DirectLineWalkable ( ThisRobot->virt_pos.x, ThisRobot->virt_pos.y, tpos->x, tpos->y, tpos->z);
+		   else
+		       target_reachable = DirectLineFlyable ( ThisRobot->virt_pos.x, ThisRobot->virt_pos.y, tpos->x, tpos->y, tpos->z);
+
+		   if ( target_reachable &&
                         CheckIfWayIsFreeOfDroids(FALSE, tmp.x, tmp.y, tmp.x + test_t.x, tmp.y + test_t.y, ThisRobot->pos.z, ThisRobot) 
                       )
 		       break;

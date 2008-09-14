@@ -413,6 +413,7 @@ EXTERN inline float translate_pixel_to_map_location ( float axis_x , float axis_
 EXTERN int DirectLineColldet( float x1 , float y1 , float x2 , float y2 , int z );
 EXTERN int DirectLineWalkable( float x1 , float y1 , float x2 , float y2 , int z );
 EXTERN int DirectLineFlyable ( float x1, float y1 , float x2 , float y2, int z );
+EXTERN int DirectLineVisible ( float x1, float y1 , float x2 , float y2, int z );
 EXTERN int CheckIfWayIsFreeOfDroids (char test_tux, float x1 , float y1 , float x2 , float y2 , int OurLevel , enemy * ExceptedRobot ) ;
 EXTERN int IsPassable ( float x , float y , int z ) ;
 EXTERN int IsPassableForDroid ( float x , float y , int z ) ;
