@@ -96,6 +96,10 @@
 #include <iconv.h>
 #endif
 
+#ifdef HAVE_LIBGEN_H
+#include <libgen.h>
+#endif
+
 #include <errno.h>
 #include <stdarg.h>
 #include <ctype.h>
