@@ -56,11 +56,11 @@ Song name to play in the end title if the mission is completed: TheBeginning.ogg
 
 
 
-   Kontrollen
+   Steuerung
 
  Bewegung:
 
- Das Spiel wird mit der Maus gesteuert: klicken Sie mit der linken Maustaste auf die Stelle, zu der Tux gehen soll. Halten Sie die Maustaste, um weiter in diese Richtung zu gehen. Ein zusätzliches Drücken der CTRL/STRG-Taste schaltet in den Modus 'Laufen'.
+ Das Spiel wird mit der Maus gesteuert: klicken Sie mit der linken Maustaste auf die Stelle, zu der Tux gehen soll. Halten Sie die Maustaste, um weiter in diese Richtung zu gehen. Ein zusätzliches Drücken der CTRL/STRG-Taste schaltet in den Modus 'Rennen'.
 
  Angreifen:
 
@@ -72,27 +72,37 @@ Song name to play in the end title if the mission is completed: TheBeginning.ogg
 
  Andere Tasten:
 
- I ... öffnet/schließt Ausrüstungs-Anzeige
- C ... öffnet/schließt Charakter-Anzeige
- S ... öffnet/schließt Fähigkeiten-Anzeige
- Q ... blendet Missions-Statusanzeige ein
- P ... schaltet Pause ein/aus
- A ... 'A'-Taste halten, um aus dem Stand anzugreifen
- R ... Waffe nachladen
- T ... macht Wände bei Annäherung durchscheinend
- Tab ... Automap-Anzeige ein/aus
- LINKS SHIFT ... Gegenstände auf dem Boden anzeigen
- Escape ... Hauptmenü anzeigen
- F1-F9 ... Schnellschaltung zu Fähigkeiten/Fertigkeiten/Zaubersprüche
- 1-9 ... Sofortnutzung von Dingen im Quick-Inventory
- Space ... alle offenen Anzeigen schließen
- F12 ... Bildschirm-Schnappschuss machen
+ Escape    ... Hauptmenü anzeigen
+ P         ... schaltet Pause ein/aus
+
+ I         ... öffnet/schließt Ausrüstungs-Anzeige
+ C         ... öffnet/schließt Charakter-Anzeige
+ S         ... öffnet/schließt Fähigkeiten-Anzeige
+ Leertaste ... alle offenen Anzeigen schließen
+ Q         ... blendet Missions-Statusanzeige ein
+
+ 0-9       ... Sofortnutzung von Dingen im Quick-Inventory
+ F1-F10    ... Schnellschaltung zu Fähigkeiten/Fertigkeiten/Zaubersprüche
+ F11       ... Vollbildumschaltung (nur unter Linux)
+ F12       ... Bildschirm-Schnappschuss machen
+
+ A         ... Taste halten, um aus dem Stand anzugreifen
+ SHIFT     ... Beim Bewegen aktuelles Ziel beibehalten
+ Tab       ... Automap-Anzeige ein/aus
+
+ R         ... Waffe nachladen
+ STRG/CTRL ... Rennen
+ U         ... "Immer rennen" umschalten
+
+ X         ... Taste halten, um Gegenstände auf dem Boden anzuzeigen
+ Z         ... "Gegenstände auf dem Boden anzeigen" umschalten
+ T         ... macht Wände bei Annäherung durchscheinend
 
  Sprüche & Fähigkeiten:
 
  Übernahme/Kontakt:
 Um mit einem freundlichen Bot zu kommunizieren, genügt es ihn anzuklicken. 
-Um einen feindlichen Bot zu hacken, Übernahme-Icon im Fähigkeiten-Menü (Level1) anwählen, dann rechte Maustaste auf dem Opfer klicken, um die Übernahme einzuleiten.
+Um einen feindlichen Bot zu hacken, Übernahme-Icon im Fähigkeiten-Menü anwählen, dann rechte Maustaste auf dem Opfer klicken, um die Übernahme einzuleiten.
 Im Hackerspiel können Sie das Mausrad oder die Cursortasten benutzen.
 
  Rückteleportation:
