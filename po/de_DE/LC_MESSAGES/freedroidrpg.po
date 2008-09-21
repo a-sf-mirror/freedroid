@@ -215,7 +215,7 @@ msgstr "Tonne"
 
 #: ../src/blocks.c:2109
 msgid "A painted barrel, protected from rust."
-msgstr "Eine gestichene Tonne, gut vor Rost geschützt."
+msgstr "Eine gestrichene Tonne, gut vor Rost geschützt."
 
 #: ../src/blocks.c:2115
 msgid "A rusty barrel."
