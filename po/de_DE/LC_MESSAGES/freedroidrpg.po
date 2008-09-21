@@ -1060,7 +1060,7 @@ msgstr "%s ist erledigt."
 #: ../src/hud.c:190
 #, c-format
 msgid "Damage: %d to %d \n"
-msgstr "Schaden: %d an %d \n"
+msgstr "Schaden: %d bis %d \n"
 
 #: ../src/hud.c:192
 #, c-format
