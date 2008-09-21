@@ -710,7 +710,7 @@ ExecuteChatExtra ( char* ExtraCommandString , Enemy ChatDroid )
 		&TempValue , ExtraCommandString + strlen ( ExtraCommandString ) + 0 );
 	DebugPrintf( CHAT_DEBUG_LEVEL , "\n...decoding...bonus to add is: %d." , TempValue );
 	Me . Experience += TempValue;
-	sprintf( WorkString , "+%d Experience Points" , TempValue );
+	sprintf( WorkString , _("+%d Experience Points") , TempValue );
 	SetNewBigScreenMessage ( WorkString );
 	}
     else if ( CountStringOccurences ( ExtraCommandString , "AddBigScreenMessageBUT_WITH_TERMINATION_CHARACTER_PLEASE:" ) )
@@ -752,7 +752,7 @@ ExecuteChatExtra ( char* ExtraCommandString , Enemy ChatDroid )
 		&TempValue , ExtraCommandString + strlen ( ExtraCommandString ) + 0 );
 	DebugPrintf( CHAT_DEBUG_LEVEL , "\n...decoding... amount of gold mentioned is: %d." , TempValue );
 	Me . Gold -= TempValue;
-	sprintf ( WorkString , "%d bucks given" , TempValue );
+	sprintf ( WorkString , _("%d bucks given") , TempValue );
 	SetNewBigScreenMessage ( WorkString );
 	}
     else if ( CountStringOccurences ( ExtraCommandString , "ForceBotRespawnOnLevel:" ) )
@@ -770,7 +770,7 @@ ExecuteChatExtra ( char* ExtraCommandString , Enemy ChatDroid )
 		&TempValue , ExtraCommandString + strlen ( ExtraCommandString ) + 0 );
 	DebugPrintf( CHAT_DEBUG_LEVEL , "\n...decoding... amount of gold mentioned is: %d." , TempValue );
 	Me . Gold += TempValue;
-	sprintf ( WorkString , "%d bucks received" , TempValue );
+	sprintf ( WorkString , _("%d bucks received") , TempValue );
 	SetNewBigScreenMessage ( WorkString );
 	}
     else if ( ! strcmp ( ExtraCommandString , "CompletelyHealTux" ) )
