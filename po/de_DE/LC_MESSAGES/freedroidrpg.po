@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: freedroidRPG 0.10.4cvs\n"
 "Report-Msgid-Bugs-To: freedroid-discussion@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-09-14 14:57+0200\n"
+"POT-Creation-Date: 2008-09-21 13:26+0200\n"
 "PO-Revision-Date: 2008-09-05 00:37+0000\n"
 "Last-Translator: Arthur Huillet <arthur.huillet@free.fr>\n"
 "Language-Team: German\n"
@@ -1008,6 +1008,21 @@ msgstr "1 Gegenstand erhalten (liegt auf dem Boden)"
 msgid "1 Item received!"
 msgstr "1 Gegenstand erhalten!"
 
+#: ../src/chat.c:713
+#, c-format
+msgid "+%d Experience Points"
+msgstr "+%d Erfahrungspunkte"
+
+#: ../src/chat.c:755
+#, c-format
+msgid "%d bucks given"
+msgstr "%d Tribucks gegeben"
+
+#: ../src/chat.c:773
+#, c-format
+msgid "%d bucks received"
+msgstr "%d Tribucks erhalten"
+
 #: ../src/chat.c:1275
 msgid "What will you say?"
 msgstr "Was wirst du sagen?"
@@ -1015,7 +1030,7 @@ msgstr "Was wirst du sagen?"
 #: ../src/enemy.c:820
 #, c-format
 msgid "Your friend %s was killed by %s."
-msgstr "Dein Freund %s wurde getötet durch %s."
+msgstr "Dein Freund %s wurde durch %s getötet."
 
 #: ../src/enemy.c:822
 #, c-format
@@ -2273,11 +2288,11 @@ msgstr " Ausgangs-Wegpunkt gewählt : KEINER"
 msgid " Source waypoint selected : X=%d Y=%d. "
 msgstr " Ausgangs-Wegpunkt ausgewählt : X=%d Y=%d. "
 
-#: ../src/main.c:397
+#: ../src/main.c:404
 msgid "Overheating!"
 msgstr "Überhitzung!!"
 
-#: ../src/main.c:414
+#: ../src/main.c:421
 msgid "Weapon reloaded"
 msgstr "Waffe nachgeladen."
 
@@ -2676,9 +2691,9 @@ msgid ""
 "     > "
 msgstr ""
 "\n"
-"     Bitte Namen eingeben\n"
-"     für den neuen Helden: \n"
-"     (ESC zum abbrechen.)\n"
+"     Bitte einen Namen für den\n"
+"     neuen Helden eingeben: \n"
+"     (ESC zum Abbrechen.)\n"
 "\n"
 "     > "
 
@@ -2694,7 +2709,8 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"Keine Spielstände gefunden!  Laden abgebrochen. "
+"Keine Spielstände gefunden!\n"
+"Laden abgebrochen."
 
 #: ../src/menu.c:2393
 msgid "Sure!"
@@ -2713,7 +2729,8 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"Keine Spielstände gefunden! Löschen abgebrochen. "
+"Keine Spielstände gefunden!\n"
+"Löschen abgebrochen. "
 
 #: ../src/menu.c:2452
 msgid "New Hero"
