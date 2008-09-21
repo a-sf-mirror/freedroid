@@ -1275,7 +1275,7 @@ msgstr "%d%% Treffergenauigkeit"
 #: ../src/hud.c:489
 #, c-format
 msgid "%d to all attributes"
-msgstr "%d Plus zu allen Eigenschaften"
+msgstr "%d zu allen Eigenschaften"
 
 #: ../src/hud.c:506
 #, c-format
