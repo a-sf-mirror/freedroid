@@ -1225,22 +1225,22 @@ msgstr "Rechtsklick zum Benutzen"
 #: ../src/hud.c:405
 #, c-format
 msgid "%d to strength"
-msgstr "%d Plus an Stärke"
+msgstr "%d Stärke"
 
 #: ../src/hud.c:415
 #, c-format
 msgid "%d to dexterity"
-msgstr "%d Plus an Agilität"
+msgstr "%d Agilität"
 
 #: ../src/hud.c:424
 #, c-format
 msgid "%d to CPU"
-msgstr "%d Plus an CPU-Leistung"
+msgstr "%d CPU-Leistung"
 
 #: ../src/hud.c:433
 #, c-format
 msgid "%d to life"
-msgstr "%d Plus an Vitalität"
+msgstr "%d Vitalität"
 
 #: ../src/hud.c:442
 #, c-format
@@ -1270,7 +1270,7 @@ msgstr "%d Force??"
 #: ../src/hud.c:480
 #, c-format
 msgid "%d%% to hit"
-msgstr "%d%% Plus an Treffergenauigkeit"
+msgstr "%d%% Treffergenauigkeit"
 
 #: ../src/hud.c:489
 #, c-format
@@ -1280,12 +1280,12 @@ msgstr "%d Plus zu allen Eigenschaften"
 #: ../src/hud.c:506
 #, c-format
 msgid "%d%% to armour"
-msgstr "%d%% Plus an Panzerung"
+msgstr "%d%% Panzerung"
 
 #: ../src/hud.c:519
 #, c-format
 msgid "%d%% to damage"
-msgstr "%d%% Plus an Zerstörungskraft"
+msgstr "%d%% Zerstörungskraft"
 
 #: ../src/hud.c:529
 #, c-format
@@ -1295,12 +1295,12 @@ msgstr "+%d zur Disruptor-Restistenz"
 #: ../src/hud.c:538
 #, c-format
 msgid "+%d to resist fire"
-msgstr "%d Plus an Feuer-Resistenz"
+msgstr "+%d Feuer-Resistenz"
 
 #: ../src/hud.c:547
 #, c-format
 msgid "+%d to resist electricity"
-msgstr "%d Plus an elektrischer Isolation"
+msgstr "+%d Plus an elektrischer Isolation"
 
 #: ../src/hud.c:565
 #, c-format
