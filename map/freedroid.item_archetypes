@@ -1456,8 +1456,6 @@ Item description text=_"Plasma crystal load. This is the most common way of load
 Image inspiration
 CZ 527 Hunting rifle (7.62) - (6) 1.5 7 5
 http://www.theothersideofkim.com/index.php/ggps/5956/
-AK47 Assault rifle (7.62) - (7) 0.25 5 30
-http://en.wikipedia.org/wiki/AK-47
 */
 
 *disabled-v0.11* Start of new item specification subsection **
@@ -1498,23 +1496,23 @@ Item as gun: weapon requires both hands="yes"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
-*disabled-v0.11* Start of new item specification subsection **
+** Start of new item specification subsection **
 Item name=_"7.62mm AK-47"
 Item min class for drop=7
 Item max class for drop=9
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
-Item uses rotation series with prefix="weapons/laser_pulse_rifle"
+Item uses rotation series with prefix="weapons/ak47"
 Items of this type collect together in inventory="no"
 Strength minimum required to wear/wield this item=0
 Dexterity minimum required to wear/wield this item=0
 Base item duration=70
 plus duration modifier=10
-File or directory name for inventory image="weapons/laser_pulse_rifle/inv_image.png"
+File or directory name for inventory image="weapons/ak47/inv_image.png"
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=1400
 inventory_size_x=2
-inventory_size_y=5
+inventory_size_y=4
 Item description text=_"This is a placeholder for a description. Feel free to help."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.200000
@@ -1561,24 +1559,24 @@ Barrett M82 LR sniper rifle (.50) (8) - 10
 http://en.wikipedia.org/wiki/M82_Barrett_rifle
 */
 
-*disabled-v0.11* Start of new item specification subsection **
+** Start of new item specification subsection **
 Item name=_"Barrett M82 Sniper Rifle"
 Item min class for drop=8
 Item max class for drop=9
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
-Item uses rotation series with prefix="weapons/laser_pulse_rifle"
+Item uses rotation series with prefix="weapons/barrett_m82"
 Items of this type collect together in inventory="no"
 Strength minimum required to wear/wield this item=24
 Dexterity minimum required to wear/wield this item=0
 Base item duration=10
 plus duration modifier=10
-File or directory name for inventory image="weapons/laser_pulse_rifle/inv_image.png"
+File or directory name for inventory image="weapons/barrett_m82/inv_image.png"
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=2000
 inventory_size_x=2
 inventory_size_y=5
-Item description text=_"Powerfull enough to stop a truck, literally, the likelyness of even a battle droid surviving more than 2 hits by this weapon is quite slim. It doesnt even matter if the pesky droid is covering behind a wall, the bullets will break right through and make the bot ready for the scrap heap in notime."
+Item description text=_"Powerful enough to stop a truck, literally, the likelyness of even a battle droid surviving more than 2 hits by this weapon is quite slim. It doesnt even matter if the pesky droid is covering behind a wall, the bullets will break right through and make the bot ready for the scrap heap in notime."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=1.200000
 Item as gun: reloading time=4.000000
