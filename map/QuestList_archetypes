@@ -268,7 +268,7 @@ Mission diary entry=_"I've managed to propagate my (slightly modified!) firmware
 +++
 +++ note: the number code for this mission (like from inside dialogs and such) is 9
 +++ 
-Mission Name=_"SADD's pover supply"
+Mission Name=_"SADD's power supply"
 Assign this mission to influencer automatically at start : 0
 Mission target is to fetch item : "Red Dilitium Crystal"
 Mission target is to kill droids with marker : -1
