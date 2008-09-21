@@ -1025,7 +1025,7 @@ msgid ""
 "competitor, the open source community, was defeated by them about a year ago."
 msgstr ""
 "Ist es aber. Sie hatten praktisch schon ein Monopol vor 30 Jahren; aber ihr "
-"letzter Gegenspieler, die Open Source-Gemeinde, wurde von ihnen vor einem "
+"letzter Gegenspieler, die Open-Source-Gemeinde, wurde von ihnen vor einem "
 "Jahr zerschlagen."
 
 #: ../dialogs/Francis.dialog:247
