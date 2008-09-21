@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: freedroidRPG 0.10.4cvs\n"
 "Report-Msgid-Bugs-To: freedroid-discussion@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-09-21 13:26+0200\n"
+"POT-Creation-Date: 2008-09-21 14:57+0200\n"
 "PO-Revision-Date: 2008-09-05 00:37+0000\n"
 "Last-Translator: Arthur Huillet <arthur.huillet@free.fr>\n"
 "Language-Team: German\n"
@@ -2393,9 +2393,8 @@ msgid "No Description For This One"
 msgstr "Noch keine Beschreibung"
 
 #: ../src/menu.c:57
-#, fuzzy
 msgid "The first 7 characters: "
-msgstr "Die ersten 10 Buchstaben: "
+msgstr "Die ersten sieben Profile: "
 
 #: ../src/menu.c:58
 msgid "Select character to delete: "
@@ -2889,19 +2888,76 @@ msgstr ""
 "Version, seit dem Speichern des Spielstandes - wodurch das gespeicherte "
 "Spiel höchstwahrscheinlich inkompatibel ist."
 
-#: ../src/saveloadgame.c:261
+#: ../src/saveloadgame.c:120
+msgid "Jan"
+msgstr "Jan"
+
+#: ../src/saveloadgame.c:120
+msgid "Feb"
+msgstr "Feb"
+
+#: ../src/saveloadgame.c:120
+msgid "Mar"
+msgstr "Mär"
+
+#: ../src/saveloadgame.c:120
+msgid "Apr"
+msgstr "Apr"
+
+#: ../src/saveloadgame.c:120
+msgid "May"
+msgstr "Mai"
+
+#: ../src/saveloadgame.c:120
+msgid "Jun"
+msgstr "Jun"
+
+#: ../src/saveloadgame.c:121
+msgid "Jul"
+msgstr "Jul"
+
+#: ../src/saveloadgame.c:121
+msgid "Aug"
+msgstr "Aug"
+
+#: ../src/saveloadgame.c:121
+msgid "Sep"
+msgstr "Sep"
+
+#: ../src/saveloadgame.c:121
+msgid "Oct"
+msgstr "Okt"
+
+#: ../src/saveloadgame.c:121
+msgid "Nov"
+msgstr "Nov"
+
+#: ../src/saveloadgame.c:121
+msgid "Dec"
+msgstr "Dez"
+
+#: ../src/saveloadgame.c:153
+msgid "Last Modified:"
+msgstr "Letzte Änderung:"
+
+#: ../src/saveloadgame.c:187
+#, c-format
+msgid "File Size: %2.3f MB"
+msgstr "Dateigröße: %2.3f MB"
+
+#: ../src/saveloadgame.c:262
 msgid "You are dead. Savegame not modified."
 msgstr "Du bist tot. Spielstand nicht gespeichert."
 
-#: ../src/saveloadgame.c:350
+#: ../src/saveloadgame.c:351
 msgid "Game saved."
 msgstr "Spielstand gespeichert."
 
-#: ../src/saveloadgame.c:421
+#: ../src/saveloadgame.c:422
 msgid "Failed to load old game."
 msgstr "Laden des Spielstandes fehlgeschlagen."
 
-#: ../src/saveloadgame.c:527
+#: ../src/saveloadgame.c:528
 msgid ""
 "Version or structsize mismatch! The savegame is not from the same version of "
 "freedroidRPG... possible breakage.\n"
@@ -2910,11 +2966,11 @@ msgstr ""
 "aktuellen Version von FreedroidRPG gespeichert worden und daher "
 "möglicherweise unbrauchbar!\n"
 
-#: ../src/saveloadgame.c:564
+#: ../src/saveloadgame.c:565
 msgid "Updating Tux images (this may take a little while...)"
 msgstr "Tux-Images werden aktualisiert... (das könnte eine Weile dauern...)"
 
-#: ../src/saveloadgame.c:569
+#: ../src/saveloadgame.c:570
 msgid "Game loaded."
 msgstr "Spielstand geladen."
 
