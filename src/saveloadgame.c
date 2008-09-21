@@ -117,7 +117,8 @@ LoadAndShowStats ( char* CoreFilename )
     char InfoString[5000];
     struct tm *LocalTimeSplitup;
     long int FileSize;
-    char* month_names[] = { "Jan" , "Feb" , "Mar" , "Apr" , "May" , "Jun" , "Jul" , "Aug" , "Sep" , "Oct" , "Nov" , "Dec" };
+    char* month_names[] = { _("Jan") , _("Feb") , _("Mar") , _("Apr") , _("May") , _("Jun") ,
+                            _("Jul") , _("Aug") , _("Sep") , _("Oct") , _("Nov") , _("Dec") };
 
     if ( ! our_config_dir )
 	return;
@@ -149,7 +150,7 @@ or file permissions of ~/.freedroid_rpg are somehow not right.",
 	     LocalTimeSplitup->tm_hour ,
 	     LocalTimeSplitup->tm_min );
     
-    PutString ( Screen , 240 , GameConfig . screen_height - 3 * FontHeight ( GetCurrentFont () ) , "Last Modified:" );
+    PutString ( Screen , 240 , GameConfig . screen_height - 3 * FontHeight ( GetCurrentFont () ) , _("Last Modified:") );
     PutString ( Screen , 240 , GameConfig . screen_height - 2 * FontHeight ( GetCurrentFont () ) , InfoString );
     
     //--------------------
@@ -183,7 +184,7 @@ or file permissions of ~/.freedroid_rpg are somehow not right.",
         FileSize += FileInfoBuffer.st_size;
     }
     
-    sprintf( InfoString , "File Size: %2.3f MB" , 
+    sprintf( InfoString , _("File Size: %2.3f MB") , 
 	     ((float)FileSize) / ( 1024.0 * 1024.0 ) );
     
     // PutString ( Screen , 240 , GameConfig . screen_height - 2 * FontHeight ( GetCurrentFont () ) , "File Size:" );
