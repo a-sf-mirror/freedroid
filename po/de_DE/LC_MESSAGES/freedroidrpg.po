@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: freedroidRPG 0.10.4cvs\n"
 "Report-Msgid-Bugs-To: freedroid-discussion@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-09-21 14:57+0200\n"
+"POT-Creation-Date: 2008-09-21 22:37+0200\n"
 "PO-Revision-Date: 2008-09-05 00:37+0000\n"
 "Last-Translator: Arthur Huillet <arthur.huillet@free.fr>\n"
 "Language-Team: German\n"
@@ -1035,7 +1035,7 @@ msgstr "Dein Freund %s wurde durch %s getötet."
 #: ../src/enemy.c:822
 #, c-format
 msgid "You killed %s."
-msgstr "%s von dir eliminiert."
+msgstr "%s wurde von dir eliminiert."
 
 #: ../src/enemy.c:824
 #, c-format

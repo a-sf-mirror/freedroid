@@ -4794,7 +4794,7 @@ msgstr " Kann ich mir Ihre Bücher noch einmal ansehen?"
 
 #: ../dialogs/Sorenson.dialog:165
 msgid "Yes. Sure. Of course."
-msgstr "Nein. Sie haben genug gesehen."
+msgstr "Ja. Sicher. Natürlich."
 
 #: ../dialogs/Sorenson.dialog:173
 msgid " You got me curious. How can you help me understand computers better?"
