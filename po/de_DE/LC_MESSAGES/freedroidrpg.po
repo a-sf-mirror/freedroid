@@ -1411,12 +1411,12 @@ msgstr ""
 "eine Begrenzung? Jedenfalls, sieht gut aus."
 
 #: ../src/hud.c:1558
-#, fuzzy, c-format
+#, c-format
 msgid "%s (%03.1f:%03.1f:%d) Day %d %02d:%02d "
 msgstr "%s (%03.1f:%03.1f:%d) Tag %d %02d:%02d "
 
 #: ../src/hud.c:1567
-#, fuzzy, c-format
+#, c-format
 msgid "%s Day %d %02d:%02d "
 msgstr "%s Tag %d %02d:%02d "
 
