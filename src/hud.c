@@ -1545,8 +1545,8 @@ DisplayBanner ( void )
     ShowCurrentHealthAndForceLevel ( );
     
     ShowCurrentSkill ( );
-    ShowCurrentTextWindow ( );
     ShowCurrentWeapon ( );
+    ShowCurrentTextWindow ( );
 
     //--------------------
     // We display the name of the current level and the current time inside
