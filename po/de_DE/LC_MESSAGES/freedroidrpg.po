@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: freedroidRPG 0.10.4cvs\n"
 "Report-Msgid-Bugs-To: freedroid-discussion@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-09-21 22:37+0200\n"
+"POT-Creation-Date: 2008-09-22 15:44+0200\n"
 "PO-Revision-Date: 2008-09-05 00:37+0000\n"
 "Last-Translator: Arthur Huillet <arthur.huillet@free.fr>\n"
 "Language-Team: German\n"
@@ -920,85 +920,97 @@ msgstr "Disruptor-Blitz hat dir %d Schaden zugefügt."
 msgid "That one went into the armour."
 msgstr "Das ging in die Rüstung."
 
-#: ../src/character.c:230
+#: ../src/character.c:228
 msgid "Max level reached!"
 msgstr "Maximum-Level erreicht!"
 
-#: ../src/character.c:253
+#: ../src/character.c:251
 msgid "Level Gained!"
 msgstr "Erfahrungsstufe ist angestiegen!"
 
-#: ../src/character.c:581
+#: ../src/character.c:579
 msgid "Melee"
 msgstr "Nahkampf"
 
-#: ../src/character.c:599
+#: ../src/character.c:597
 msgid "Ranged"
 msgstr "Schusswaffen"
 
-#: ../src/character.c:617
+#: ../src/character.c:615
 msgid "Programming"
 msgstr "Programmierung"
 
-#: ../src/character.c:668
+#: ../src/character.c:666
 msgid "Level"
 msgstr "Stufe"
 
-#: ../src/character.c:674
+#: ../src/character.c:672
 msgid "Experience"
-msgstr "Erfahrungspunkte"
+msgstr "Erfahrung"
 
-#: ../src/character.c:680
+#: ../src/character.c:678
 msgid "Next level"
-msgstr "Nächste Stufe"
+msgstr "Aufstieg bei"
 
-#: ../src/character.c:686
+#: ../src/character.c:684
 msgid "Money"
 msgstr "Tribucks"
 
-#: ../src/character.c:692
+#: ../src/character.c:690
 msgid "Strength"
 msgstr "Stärke"
 
-#: ../src/character.c:700
+#: ../src/character.c:698
 msgid "Dexterity"
 msgstr "Agilität"
 
-#: ../src/character.c:708
+#: ../src/character.c:706
 msgid "CPU"
 msgstr "CPU"
 
-#: ../src/character.c:716
+#: ../src/character.c:714
 msgid "Life"
 msgstr "Vitalität"
 
-#: ../src/character.c:726
+#: ../src/character.c:723
 msgid "Training points"
 msgstr "Trainingspunkte"
 
-#: ../src/character.c:732
+#: ../src/character.c:729
 msgid "Health"
 msgstr "Lebenspunkte"
 
-#: ../src/character.c:738
+#: ../src/character.c:735
 msgid "Temperature"
 msgstr "Temperatur"
 
-#: ../src/character.c:744
+#: ../src/character.c:741
 msgid "Stamina"
 msgstr "Ausdauer"
 
-#: ../src/character.c:750 ../src/ship.c:602
+#: ../src/character.c:747 ../src/ship.c:602
 msgid "Armor"
 msgstr "Panzerung"
 
-#: ../src/character.c:756
+#: ../src/character.c:753
 msgid "Attack"
 msgstr "Angriff"
 
-#: ../src/character.c:762
+#: ../src/character.c:759
 msgid "Damage"
 msgstr "Schlagkraft"
+
+#: ../src/chat.c:486
+msgid "Melee fighting ability improved!"
+msgstr "Nahkampffähigkeit verbessert!"
+
+#: ../src/chat.c:491
+msgid "Ranged combat ability improved!"
+msgstr "Schießtechnik verbessert!"
+
+#: ../src/chat.c:496
+msgid "Programming ability improved!"
+msgstr "Programmierfähigkeit verbessert!"
 
 #: ../src/chat.c:595
 msgid "1 Item received (on floor)"
@@ -2859,6 +2871,11 @@ msgid ""
 "\n"
 "Details:\n"
 msgstr ""
+
+#: ../src/mission.c:196
+#, c-format
+msgid "[day %d %02d:%02d] "
+msgstr "[Tag %d %02d:%02d] "
 
 #: ../src/mission.c:345
 msgid "No open quests yet."
