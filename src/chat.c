@@ -483,17 +483,17 @@ ExecuteChatExtra ( char* ExtraCommandString , Enemy ChatDroid )
     else if ( ! strcmp ( ExtraCommandString , "IncreaseMeleeWeaponSkill" ) )
 	{
 	ImproveSkill(&Me . melee_weapon_skill); 
-	SetNewBigScreenMessage( "Melee fighting ability improved!" );
+	SetNewBigScreenMessage( _("Melee fighting ability improved!") );
 	}
     else if ( ! strcmp ( ExtraCommandString , "IncreaseRangedWeaponSkill" ) )
 	{
 	ImproveSkill(&Me . ranged_weapon_skill); 
-	SetNewBigScreenMessage( "Ranged combat ability improved!" );
+	SetNewBigScreenMessage( _("Ranged combat ability improved!") );
 	}
     else if ( ! strcmp ( ExtraCommandString , "IncreaseSpellcastingSkill" ) )
 	{
 	ImproveSkill(&Me . spellcasting_skill); 
-	SetNewBigScreenMessage( "Programming ability improved!" );
+	SetNewBigScreenMessage( _("Programming ability improved!") );
 	}
     else if ( CountStringOccurences ( ExtraCommandString , "IncreaseProgramVersionName:" ) )
 	{
