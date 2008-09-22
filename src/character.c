@@ -59,7 +59,7 @@
 // x-offset for numbers in the "armor / attack / damage" box
 #define ARMOR_NR_X 255
 // x-offset for values in the skills box
-#define SKILLS_VALUE_X 205
+#define SKILLS_VALUE_X 198
 
 // y-offsets
 #define MELEE_SKILL_Y 230

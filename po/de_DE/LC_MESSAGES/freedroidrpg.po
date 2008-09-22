@@ -3397,15 +3397,15 @@ msgstr "He, ich kenne den großen Boss von MS ! Zieh Leine..."
 
 #: ../src/vars.h:130
 msgid "novice"
-msgstr "Anfänger"
+msgstr "ungeübt"
 
 #: ../src/vars.h:131
 msgid "average"
-msgstr "Fortgeschrittener"
+msgstr "durchschnittlich"
 
 #: ../src/vars.h:132
 msgid "experienced"
-msgstr "Erfahrener"
+msgstr "erfahren"
 
 #: ../src/vars.h:133
 msgid "skilled"
@@ -3417,28 +3417,28 @@ msgstr "Könner"
 
 #: ../src/vars.h:135
 msgid "masterful"
-msgstr "Meister"
+msgstr "meisterlich"
 
 #: ../src/vars.h:136
 msgid "inhuman"
-msgstr "Übermensch"
+msgstr "übermenschlich"
 
 #: ../src/vars.h:137
 msgid "god-like"
-msgstr "Gottgleich!"
+msgstr "gottgleich"
 
 #: ../src/vars.h:138
 msgid "super-god-like"
-msgstr "Übergott!!"
+msgstr "obergottgleich"
 
 #: ../src/vars.h:139
 msgid "wicked sick"
-msgstr "Übelst krank!!!"
+msgstr "durchgeknallt"
 
 #: ../src/view.c:264
 #, c-format
 msgid "FPS: %d"
-msgstr "FPS: %d"
+msgstr "Bilder/s: %d"
 
 #: ../src/view.c:272
 #, c-format
