@@ -57,7 +57,7 @@
 // x-offset for numbers in the "health / temperature / stamina" box
 #define HEALTH_NR_X 125
 // x-offset for numbers in the "armor / attack / damage" box
-#define ARMOR_NR_X 265
+#define ARMOR_NR_X 255
 // x-offset for values in the skills box
 #define SKILLS_VALUE_X 205
 
