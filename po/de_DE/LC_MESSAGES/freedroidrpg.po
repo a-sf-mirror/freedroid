@@ -990,7 +990,7 @@ msgstr "Ausdauer"
 
 #: ../src/character.c:747 ../src/ship.c:602
 msgid "Armor"
-msgstr "Panzerung"
+msgstr "Rüstung"
 
 #: ../src/character.c:753
 msgid "Attack"
@@ -998,7 +998,7 @@ msgstr "Angriff"
 
 #: ../src/character.c:759
 msgid "Damage"
-msgstr "Schlagkraft"
+msgstr "Schaden"
 
 #: ../src/chat.c:486
 msgid "Melee fighting ability improved!"
@@ -1092,7 +1092,7 @@ msgstr "Anzahl: %d \n"
 #: ../src/hud.c:219
 #, c-format
 msgid "Armour: %d"
-msgstr "Panzerung: %d"
+msgstr "Rüstung: %d"
 
 #: ../src/hud.c:231
 #, c-format
@@ -1292,7 +1292,7 @@ msgstr "%d zu allen Eigenschaften"
 #: ../src/hud.c:506
 #, c-format
 msgid "%d%% to armour"
-msgstr "%d%% Panzerung"
+msgstr "%d%% Rüstung"
 
 #: ../src/hud.c:519
 #, c-format
@@ -1630,7 +1630,7 @@ msgid ""
 "armor hides his body."
 msgstr ""
 "Er scheint der Leiter der Torwache zu sein. Ist schwer, mehr über ihn zu "
-"sagen - sein Körper steckt in einem starken Panzer."
+"sagen - sein Körper steckt in einer starken Rüstung."
 
 #: ../src/init.c:167
 msgid "Just an another Red Guard. The armor hides his body."
@@ -1695,7 +1695,7 @@ msgstr ""
 
 #: ../src/init.c:181 ../src/init.c:183 ../src/init.c:185 ../src/init.c:187
 msgid "The armor hides his body."
-msgstr "Der Schutzpanzer verdeckt sein Äußeres."
+msgstr "Die Rüstung verdeckt sein Äußeres."
 
 #: ../src/init.c:1916
 msgid "Huh? What?  Where am I?"

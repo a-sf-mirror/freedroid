@@ -143,7 +143,7 @@ msgstr "EMP-Granate"
 
 #: ../map/QuestList_archetypes:40
 msgid "Bender's problem"
-msgstr ""
+msgstr "Benders Problem"
 
 #: ../map/QuestList_archetypes:52
 msgid ""
@@ -735,7 +735,7 @@ msgstr ""
 "Großer Angriffsradius bei ausreichend guter Handhabung im Kampf, um die "
 "Schwachpunkte in der Panzerung von Androiden zu erreichen - das sind die "
 "Vorteile dieser Waffe, die teilweise das Unvermögen einer Klinge, einem "
-"schwer gepanzerten ZIel großen Schaden zuzufügen, wieder wett machen. "
+"schwer gepanzerten Ziel großen Schaden zuzufügen, wieder wett machen. "
 "Wiederholtes Auftreffen auf Metall beschädigt die Klinge allerdings sehr "
 "schnell."
 
@@ -1353,7 +1353,7 @@ msgstr ""
 "Wenn diese Waffe auch in der Lage ist äußerst mächtige Schüsse abzufeuern, "
 "so sollte doch die außergewöhnlich lange Ladezeit erwähnt werden (Man lässt "
 "sich mit diesem Schießprügel im Anschlag besser nicht von Gegnern umzingeln, "
-"außer man verfügt über eine wirklich STARKE Panzerung!)."
+"außer man verfügt über eine wirklich STARKE Rüstung!)."
 
 #: ../map/freedroid.item_archetypes:1961
 msgid "The Super Exterminator!!!"
@@ -1598,7 +1598,7 @@ msgstr "Schwerer Schutzanzug der Roten Wache"
 #: ../map/freedroid.item_archetypes:2863
 msgid "Defense is acquired at a high level with this durable piece of armor."
 msgstr ""
-"Mit diesem dauerhaften Stück Panzerung erhält man Schutz für jede Situation "
+"Mit dieser beständigen Rüstung erhält man Schutz für jede Situation "
 "- auf hohem Niveau."
 
 #: ../map/freedroid.item_archetypes:2873
