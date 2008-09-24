@@ -190,19 +190,19 @@ Item as gun: weapon requires both hands="no"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
-*disabled-v0.11* Start of new item specification subsection **
+** Start of new item specification subsection **
 Item name=_"Antique sword"
 Item min class for drop=2
 Item max class for drop=5
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
-Item uses rotation series with prefix="weapons/laser_sword_yellow"
+Item uses rotation series with prefix="weapons/sword"
 Items of this type collect together in inventory="no"
 Strength minimum required to wear/wield this item=0
 Dexterity minimum required to wear/wield this item=20
 Base item duration=20
 plus duration modifier=10
-File or directory name for inventory image="weapons/laser_sword_yellow/inv_image.png"
+File or directory name for inventory image="weapons/sword/inv_image.png"
 inventory_size_x=1
 inventory_size_y=4
 Item uses drop sound with filename="drop_sword_sound.ogg"
