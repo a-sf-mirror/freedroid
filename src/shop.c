@@ -551,11 +551,9 @@ Error loading flag image.",
 int
 GreatShopInterface ( int NumberOfItems , item* ShowPointerList[ MAX_ITEMS_IN_INVENTORY ] , 
 		     int NumberOfItemsInTuxRow , item* TuxItemsList[ MAX_ITEMS_IN_INVENTORY] , 
-		     shop_decision* ShopOrder , int ShowChestButtons )
+		     shop_decision* ShopOrder)
 {
     int Displacement=0;
-    char finished = 0;
-    static int WasPressed = FALSE ;
     int i;
     int ClickTarget;
     static int RowStart=0;
@@ -568,6 +566,9 @@ GreatShopInterface ( int NumberOfItems , item* ShowPointerList[ MAX_ITEMS_IN_INV
     SDL_Rect HighlightRect;
     int BuyButtonActive = FALSE ;
     int SellButtonActive = FALSE ;
+    int ret = 0;
+    int old_game_status = game_status;
+    game_status = INSIDE_MENU;
 
     //--------------------
     // For the shop, we'll also try to use our own mouse cursor
@@ -582,17 +583,17 @@ GreatShopInterface ( int NumberOfItems , item* ShowPointerList[ MAX_ITEMS_IN_INV
     while ( ItemIndex >= NumberOfItems ) ItemIndex -- ;
     while ( RowStart + RowLength > NumberOfItems ) RowStart -- ;
     if ( RowStart < 0 ) RowStart = 0 ;
-    
+
     if ( TuxRowLength > NumberOfItemsInTuxRow ) TuxRowLength = NumberOfItemsInTuxRow;
     while ( TuxItemIndex >= NumberOfItemsInTuxRow ) TuxItemIndex -- ;
     while ( TuxRowStart + TuxRowLength > NumberOfItemsInTuxRow ) TuxRowStart -- ;
     if ( TuxRowStart < 0 ) TuxRowStart = 0 ;
-    
-    if ( NumberOfItemsInTuxRow <= 0 ) 
+
+    if ( NumberOfItemsInTuxRow <= 0 )
 	TuxItemIndex = (-1) ;
     if ( NumberOfItems <= 0 ) 
 	ItemIndex = (-1) ;
-    
+
 
     //--------------------
     // We initialize the text rectangle
@@ -601,12 +602,15 @@ GreatShopInterface ( int NumberOfItems , item* ShowPointerList[ MAX_ITEMS_IN_INV
     Cons_Text_Rect . y = 108 * GameConfig . screen_height / 480 ;
     Cons_Text_Rect . w = 346 * GameConfig . screen_width / 640 ;
     Cons_Text_Rect . h = 255 * GameConfig . screen_height / 480 ;
-    
+
     Displacement = 0;
 
-    while (!finished)
-    {
-	
+    while (1)
+	{
+
+	save_mouse_state();
+	input_handle();
+
 	//--------------------
 	// We limit the 'displacement', i.e. how far up and down one can
 	// scroll the text of the item description up and down a bit, so
@@ -614,10 +618,10 @@ GreatShopInterface ( int NumberOfItems , item* ShowPointerList[ MAX_ITEMS_IN_INV
 	//
 	if ( Displacement < -500 ) Displacement = -500 ;
 	if ( Displacement > 50 ) Displacement = 50 ;
-	
+
 	SDL_Delay ( 1 );
 	ShopOrder -> shop_command = DO_NOTHING ;
-	
+
 	//--------------------
 	// We show all the info and the buttons that should be in this
 	// interface...
@@ -628,8 +632,8 @@ GreatShopInterface ( int NumberOfItems , item* ShowPointerList[ MAX_ITEMS_IN_INV
 	else if ( TuxItemIndex >= 0 )
 	    ShowItemInfo ( TuxItemsList [ TuxItemIndex ] , Displacement , FALSE , ITEM_BROWSER_SHOP_BACKGROUND_CODE , FALSE );
 	else blit_special_background ( ITEM_BROWSER_SHOP_BACKGROUND_CODE );
-	
-	
+
+
 	for ( i = 0 ; i < RowLength ; i++ )
 	{
 	    ShowRescaledItem ( i , FALSE , ShowPointerList [ i + RowStart ] );
@@ -639,8 +643,8 @@ GreatShopInterface ( int NumberOfItems , item* ShowPointerList[ MAX_ITEMS_IN_INV
 	{
 	    ShowRescaledItem ( i , TRUE , TuxItemsList [ i + TuxRowStart ] );
 	}
-	
-	if ( ItemIndex >= 0 ) 
+
+	if ( ItemIndex >= 0 )
 	{
 	    HighlightRect . x = ( ShopItemRowRect . x + ( ItemIndex - RowStart ) * INITIAL_BLOCK_WIDTH * GameConfig . screen_width / 640 ) ;
 	    HighlightRect . y = ShopItemRowRect . y ;
@@ -656,56 +660,35 @@ GreatShopInterface ( int NumberOfItems , item* ShowPointerList[ MAX_ITEMS_IN_INV
 	    HighlightRect . h = INITIAL_BLOCK_HEIGHT * GameConfig . screen_height / 480 ;
 	    HighlightRectangle ( Screen , HighlightRect );
 	}
-	
-	// ShowGenericButtonFromList ( LEFT_SHOP_BUTTON );
-	// ShowGenericButtonFromList ( RIGHT_SHOP_BUTTON );
-	
-	// ShowGenericButtonFromList ( LEFT_TUX_SHOP_BUTTON );
-	// ShowGenericButtonFromList ( RIGHT_TUX_SHOP_BUTTON );
-	
+
 	if ( ItemIndex >= 0 )
-	{
-	    if ( ShowChestButtons == 2 )
-		ShowGenericButtonFromList ( REPAIR_BUTTON );
-	    else if ( ShowChestButtons > 0 )
-		ShowGenericButtonFromList ( TAKE_BUTTON );
-	    else ShowGenericButtonFromList ( BUY_BUTTON );
-	    BuyButtonActive = TRUE; 
-	    SellButtonActive = FALSE ;
-	}
-	else if ( TuxItemIndex >= 0 )
-	{
-	    SellButtonActive = FALSE;
-	    if ( ShowChestButtons ) ShowGenericButtonFromList ( PUT_BUTTON );
-	    else if ( calculate_item_sell_price( TuxItemsList [ TuxItemIndex ] ))
-			{
-			ShowGenericButtonFromList ( SELL_BUTTON );
-		        SellButtonActive = TRUE; 
-			}
-	    BuyButtonActive = FALSE ;
-	    
-	    //--------------------
-	    // If some stuff in the Tux inventory is currently highlighted, we might
-	    // eventually show repair and identify buttons, but only if appropriate, which
-	    // means if reapair/identify is applicable AND also we're in a shop and NOT IN
-	    // SOME CHEST!!!!
-	    //
-	    if ( ! ShowChestButtons )
 	    {
-		if ( ( ItemMap [ TuxItemsList [ TuxItemIndex ] -> type ] . base_item_duration >= 0 ) &&
-		     ( TuxItemsList [ TuxItemIndex ] -> max_duration > TuxItemsList [ TuxItemIndex ] -> current_duration ) )
-		    ShowGenericButtonFromList ( REPAIR_BUTTON );
-		
-		if ( ! TuxItemsList [ TuxItemIndex ] -> is_identified )
-		    ShowGenericButtonFromList ( IDENTIFY_BUTTON );
+	    ShowGenericButtonFromList ( BUY_BUTTON );
+	    BuyButtonActive = TRUE;
+	    SellButtonActive = FALSE ;
 	    }
-	    
-	}
+	else if ( TuxItemIndex >= 0 )
+	    {
+	    SellButtonActive = FALSE;
+	    if ( calculate_item_sell_price( TuxItemsList [ TuxItemIndex ] ))
+		{
+		ShowGenericButtonFromList ( SELL_BUTTON );
+		SellButtonActive = TRUE;
+		}
+	    BuyButtonActive = FALSE ;
+
+	    if ( ( ItemMap [ TuxItemsList [ TuxItemIndex ] -> type ] . base_item_duration >= 0 ) &&
+		    ( TuxItemsList [ TuxItemIndex ] -> max_duration > TuxItemsList [ TuxItemIndex ] -> current_duration ) )
+		ShowGenericButtonFromList ( REPAIR_BUTTON );
+
+	    if ( ! TuxItemsList [ TuxItemIndex ] -> is_identified )
+		ShowGenericButtonFromList ( IDENTIFY_BUTTON );
+	    }
 	else
-	{
+	    {
 	    BuyButtonActive = FALSE ;
 	    SellButtonActive = FALSE ;
-	}
+	    }
 
 	//--------------------
 	// We show the current amount of 'gold' or 'cyberbucks' the tux
@@ -715,84 +698,82 @@ GreatShopInterface ( int NumberOfItems , item* ShowPointerList[ MAX_ITEMS_IN_INV
 	sprintf ( GoldString , "%6d" , (int) Me . Gold );
 	PutStringFont ( Screen , FPS_Display_BFont, 40 * GameConfig . screen_width / 640 , 
 			370 * GameConfig . screen_height / 480 , GoldString );
-	
+
 	blit_our_own_mouse_cursor ( );
 	our_SDL_flip_wrapper();
-	
-	if ( SpacePressed() || EscapePressed() || MouseLeftPressed() )
+
+	if ( MouseLeftClicked() )
 	{
-	    if ( MouseCursorIsOnButton( DESCRIPTION_WINDOW_UP_BUTTON , GetMousePos_x() , GetMousePos_y() ) && MouseLeftPressed() && !WasPressed )
+	    if ( MouseCursorIsOnButton( DESCRIPTION_WINDOW_UP_BUTTON , GetMousePos_x() , GetMousePos_y() ))
 	    {
 		MoveMenuPositionSound();
 		Displacement += FontHeight ( GetCurrentFont () );
 	    }
-	    else if ( MouseCursorIsOnButton( DESCRIPTION_WINDOW_DOWN_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) && MouseLeftPressed() && !WasPressed )
+	    else if ( MouseCursorIsOnButton( DESCRIPTION_WINDOW_DOWN_BUTTON , GetMousePos_x()  , GetMousePos_y()  ))
 	    {
 		MoveMenuPositionSound();
 		Displacement -= FontHeight ( GetCurrentFont () );
 	    }
-	    else if ( MouseCursorIsOnButton( ITEM_BROWSER_EXIT_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) && MouseLeftPressed() && !WasPressed )
+	    else if ( MouseCursorIsOnButton( ITEM_BROWSER_EXIT_BUTTON , GetMousePos_x()  , GetMousePos_y()  ))
 	    {
-		finished = TRUE;
-		while (SpacePressed() || EscapePressed() || MouseLeftPressed());
+		while(MouseLeftPressed())
+		    SDL_Delay(1);
+		ret = -1;
+		goto out;
 	    }
-	    else if ( MouseCursorIsOnButton( LEFT_TUX_SHOP_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) && MouseLeftPressed() && !WasPressed )
+	    else if ( MouseCursorIsOnButton( LEFT_TUX_SHOP_BUTTON , GetMousePos_x()  , GetMousePos_y()  ))
 	    {
-		if ( 0 < RowStart ) 
+		if ( 0 < RowStart )
 		{
 		    RowStart --;
-		    if ( ( ItemIndex != (-1) ) && ( ItemIndex >= RowStart + RowLength ) ) 
+		    if ( ( ItemIndex != (-1) ) && ( ItemIndex >= RowStart + RowLength ) )
 		    {
 			Displacement = 0 ;
 			ItemIndex --;
 		    }
 		}
 		MoveMenuPositionSound();
-		while (SpacePressed() ||EscapePressed() || MouseLeftPressed());
 	    }
-	    else if ( MouseCursorIsOnButton( RIGHT_TUX_SHOP_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) && MouseLeftPressed() && !WasPressed )
+	    else if ( MouseCursorIsOnButton( RIGHT_TUX_SHOP_BUTTON , GetMousePos_x()  , GetMousePos_y()  ))
 	    {
-		if ( RowStart + RowLength < NumberOfItems ) 
+		if ( RowStart + RowLength < NumberOfItems )
 		{
 		    RowStart ++;
-		    if ( ( ItemIndex != (-1) ) && ( ItemIndex < RowStart ) ) 
+		    if ( ( ItemIndex != (-1) ) && ( ItemIndex < RowStart ) )
 		    {
 			Displacement = 0 ;
 			ItemIndex++;
 		    }
 		}
 		MoveMenuPositionSound();
-		while (SpacePressed() ||EscapePressed() || MouseLeftPressed());
 	    }
-	    else if ( MouseCursorIsOnButton( LEFT_SHOP_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) && MouseLeftPressed() && !WasPressed )
+	    else if ( MouseCursorIsOnButton( LEFT_SHOP_BUTTON , GetMousePos_x()  , GetMousePos_y()  ))
 	    {
-		if ( 0 < TuxRowStart ) 
+		if ( 0 < TuxRowStart )
 		{
 		    TuxRowStart --;
-		    if ( ( TuxItemIndex != (-1) ) && ( TuxItemIndex >= TuxRowStart + TuxRowLength ) ) 
+		    if ( ( TuxItemIndex != (-1) ) && ( TuxItemIndex >= TuxRowStart + TuxRowLength ) )
 		    {
 			Displacement = 0 ;
 			TuxItemIndex --;
 		    }
 		}
 		MoveMenuPositionSound();
-		while (SpacePressed() ||EscapePressed() || MouseLeftPressed());
 	    }
-	    else if ( MouseCursorIsOnButton( RIGHT_SHOP_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) && MouseLeftPressed() && !WasPressed )
+	    else if ( MouseCursorIsOnButton( RIGHT_SHOP_BUTTON , GetMousePos_x()  , GetMousePos_y()  ))
 	    {
-		if ( TuxRowStart + TuxRowLength < NumberOfItemsInTuxRow ) 
+		if ( TuxRowStart + TuxRowLength < NumberOfItemsInTuxRow )
 		{
 		    TuxRowStart ++;
-		    if ( ( TuxItemIndex != (-1) ) && ( TuxItemIndex < TuxRowStart ) ) 
+		    if ( ( TuxItemIndex != (-1) ) && ( TuxItemIndex < TuxRowStart ) )
 		    {
 			TuxItemIndex ++ ;
 			Displacement = 0 ;
 		    }
 		}
 		MoveMenuPositionSound();
-		while (SpacePressed() ||EscapePressed() || MouseLeftPressed());
 	    }
-	    else if ( ( ( ClickTarget = ClickWasOntoItemRowPosition ( GetMousePos_x()  , GetMousePos_y()  , FALSE ) ) >= 0 ) && MouseLeftPressed() && !WasPressed )
+	    else if ( ( ( ClickTarget = ClickWasOntoItemRowPosition ( GetMousePos_x()  , GetMousePos_y()  , FALSE ) ) >= 0 ))
 	    {
 		if ( ClickTarget < NumberOfItems )
 		{
@@ -801,7 +782,7 @@ GreatShopInterface ( int NumberOfItems , item* ShowPointerList[ MAX_ITEMS_IN_INV
 		    Displacement = 0 ;
 		}
 	    }
-	    else if ( ( ( ClickTarget = ClickWasOntoItemRowPosition ( GetMousePos_x()  , GetMousePos_y()  , TRUE ) ) >= 0 ) && MouseLeftPressed() && !WasPressed )
+	    else if ( ( ( ClickTarget = ClickWasOntoItemRowPosition ( GetMousePos_x()  , GetMousePos_y()  , TRUE ) ) >= 0 ))
 	    {
 		if ( ClickTarget < NumberOfItemsInTuxRow )
 		{
@@ -810,45 +791,32 @@ GreatShopInterface ( int NumberOfItems , item* ShowPointerList[ MAX_ITEMS_IN_INV
 		    Displacement = 0 ;
 		}
 	    }
-	    else if ( MouseCursorIsOnButton( BUY_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) && MouseLeftPressed() && !WasPressed )
+	    else if ( MouseCursorIsOnButton( BUY_BUTTON , GetMousePos_x()  , GetMousePos_y()  ))
 	    {
 		if ( BuyButtonActive )
 		{
 		    ShopOrder -> item_selected = ItemIndex ;
 		    ShopOrder -> shop_command = BUY_1_ITEM ;
 		    if ( ( ItemMap [ ShowPointerList [ ItemIndex ] -> type ] . item_group_together_in_inventory ) &&
-			 ( Me . Gold / ItemMap [ ShowPointerList [ ItemIndex ] -> type ] . base_list_price >= 1 ) )
-		    {
-			//--------------------
-			// If this is a shops buy menu, then we calculate what the Tux could afford here,
-			// otherwise we give the range of selection according to amount in chest/player inventory.
-			//
-			if ( ShowChestButtons == 1 )
-			    ShopOrder -> number_selected = do_graphical_number_selection_in_range ( 0 , ShowPointerList [ ItemIndex ] -> multiplicity , ShowPointerList [ ItemIndex ] -> multiplicity ) ;
-			else
-			    ShopOrder -> number_selected = do_graphical_number_selection_in_range ( 0 , Me . Gold / ItemMap [ ShowPointerList [ ItemIndex ] -> type ] . base_list_price , 1) ;
-		    }
-		    else
-		    {
-
-			if ( ( ShowChestButtons == 1 ) && ( ShowPointerList [ ItemIndex ] -> multiplicity > 1 ) )
+			    ( Me . Gold / ItemMap [ ShowPointerList [ ItemIndex ] -> type ] . base_list_price >= 1 ) )
 			{
-			    ShopOrder -> number_selected = do_graphical_number_selection_in_range ( 0 , ShowPointerList [ ItemIndex ] -> multiplicity, ShowPointerList [ ItemIndex ] -> multiplicity ) ;
+			ShopOrder -> number_selected = do_graphical_number_selection_in_range ( 0 , Me . Gold / ItemMap [ ShowPointerList [ ItemIndex ] -> type ] . base_list_price , 1) ;
 			}
-			else
-			    ShopOrder -> number_selected = 1;
-		    }
-		    while ( MouseLeftPressed() ) SDL_Delay(1);
-		    return ( 0 );
+		    else
+			{
+			ShopOrder -> number_selected = 1;
+			}
+		    ret = 0;
+		    goto out;
 		}
 	    }
-	    else if ( MouseCursorIsOnButton( SELL_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) && MouseLeftPressed() && !WasPressed )
+	    else if ( MouseCursorIsOnButton( SELL_BUTTON , GetMousePos_x()  , GetMousePos_y()  ))
 	    {
 		if ( SellButtonActive )
 		{
 		    ShopOrder -> item_selected = TuxItemIndex ;
 		    ShopOrder -> shop_command = SELL_1_ITEM ;
-		    
+
 		    if ( ( ItemMap [ TuxItemsList [ TuxItemIndex ] -> type ] . item_group_together_in_inventory ) &&
 			 ( TuxItemsList [ TuxItemIndex ] -> multiplicity > 1 ) )
 		    {
@@ -856,12 +824,11 @@ GreatShopInterface ( int NumberOfItems , item* ShowPointerList[ MAX_ITEMS_IN_INV
 		    }
 		    else
 			ShopOrder -> number_selected = 1;
-		    while ( MouseLeftPressed() ) SDL_Delay(1);
-		    return ( 0 );
+		    ret = 0;
+		    goto out;
 		}
 	    }
-	    else if ( MouseCursorIsOnButton( REPAIR_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) && 
-		      MouseLeftPressed() && !WasPressed && ( !ShowChestButtons ) )
+	    else if ( MouseCursorIsOnButton( REPAIR_BUTTON , GetMousePos_x()  , GetMousePos_y()  ))
 	    {
 		//--------------------
 		// Reference to the Tux item list must only be made, when the 'highlight'
@@ -880,12 +847,12 @@ GreatShopInterface ( int NumberOfItems , item* ShowPointerList[ MAX_ITEMS_IN_INV
 			ShopOrder -> item_selected = TuxItemIndex ;
 			ShopOrder -> shop_command = REPAIR_ITEM ;
 			ShopOrder -> number_selected = 1;
-			
-			return ( 0 );
+			ret = 0;
+			goto out;
 		    }
 		}
 	    }
-	    else if ( MouseCursorIsOnButton( IDENTIFY_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) && MouseLeftPressed() && !WasPressed && ( !ShowChestButtons ) )
+	    else if ( MouseCursorIsOnButton( IDENTIFY_BUTTON , GetMousePos_x()  , GetMousePos_y()  ))
 	    {
 		//--------------------
 		// Reference to the Tux item list must only be made, when the 'highlight'
@@ -898,17 +865,15 @@ GreatShopInterface ( int NumberOfItems , item* ShowPointerList[ MAX_ITEMS_IN_INV
 			ShopOrder -> item_selected = TuxItemIndex ;
 			ShopOrder -> shop_command = IDENTIFY_ITEM ;
 			ShopOrder -> number_selected = 1;
-			
-			return ( 0 );
+			ret = 0;
+			goto out;
 		    }
 		}
 	    }
 	}
-	
-	
-	
-	WasPressed = MouseLeftPressed();
-	
+
+
+
 	if (UpPressed() || MouseWheelUpPressed())
 	{
 	    MoveMenuPositionSound();
@@ -921,30 +886,20 @@ GreatShopInterface ( int NumberOfItems , item* ShowPointerList[ MAX_ITEMS_IN_INV
 	    while (DownPressed());
 	    Displacement -= FontHeight ( GetCurrentFont () );
 	}
-	if (RightPressed() )
-	{
-	    MoveMenuPositionSound();
-	    while (RightPressed());
-	    // if ( ItemType < Me.type) ItemType ++;
-	}
-	if (LeftPressed() )
-	{
-	    MoveMenuPositionSound();
-	    while (LeftPressed());
-	    // if (ItemType > 0) ItemType --;
-	}
 	
 	if ( EscapePressed() )
 	{
 	    while ( EscapePressed() );
-	    return (-1);
+	    ret = -1;
+	    goto out;
 	}
-	
-    } // while !finished 
-    
-    return ( -1 ) ;  // Currently equippment selection is not yet possible...
-    
-}; // int GreatShopInterface ( int NumberOfItems , item* ShowPointerList[ MAX_ITEMS_IN_INVENTORY ] )
+
+    }
+
+out:
+    game_status = old_game_status;
+    return ret;
+}
 
 
 /**
@@ -1355,7 +1310,7 @@ InitTradeWithCharacter( int CharacterCode )
 	}
 	
 	ItemSelected = GreatShopInterface ( NumberOfItemsInShop , BuyPointerList , 
-					    NumberOfItemsInTuxRow , TuxItemsList , & ( ShopOrder ) , FALSE );
+					    NumberOfItemsInTuxRow , TuxItemsList , & ( ShopOrder ));
 	switch ( ShopOrder . shop_command )
 	{
 	    case BUY_1_ITEM:
@@ -1404,129 +1359,6 @@ InitTradeWithCharacter( int CharacterCode )
     }
     
 }; // void InitTradeWithCharacter( void )
-
-/**
- * This is the menu, where you can select items for repair.
- *
- * NOTE:  THIS CODE IS CURRENTLY NOT IN USE, BECAUSE WE HAVE A GENERAL
- *        SHOP INTERFACE SIMILAR TO THE CHEST INTERFACE FOR THIS PURPOSE.
- *
- */
-void
-Repair_Items( void )
-{
-#define BASIC_ITEMS_NUMBER 10
-    item* Repair_Pointer_List[ MAX_ITEMS_IN_INVENTORY + 10 ];  // the inventory plus 7 slots or so
-    int Pointer_Index;
-    int i;
-    // int InMenuPosition = 0;
-    // int MenuInListPosition = 0;
-    int ItemSelected=0;
-    //char DescriptionText[5000];
-    char* MenuTexts[ 10 ];
-    int NumberOfItemsInTuxRow = 0 ;
-    item* TuxItemsList[ MAX_ITEMS_IN_INVENTORY ];
-    shop_decision ShopOrder;
-    MenuTexts[0]=_("Yes");
-    MenuTexts[1]=_("No");
-    MenuTexts[2]="";
-    
-    
-    Activate_Conservative_Frame_Computation();
-    
-    while ( ItemSelected != (-1) )
-    {
-	Pointer_Index=0;
-	
-	//--------------------
-	// First we clean out the new Repair_Pointer_List
-	//
-	for ( i = 0 ; i < MAX_ITEMS_IN_INVENTORY ; i ++ )
-	{
-	    Repair_Pointer_List[ i ] = NULL;
-	}
-	
-	//--------------------
-	// Now we start to fill the Repair_Pointer_List
-	//
-	if ( ( Me.weapon_item.current_duration < Me.weapon_item.max_duration ) && 
-	     ( Me.weapon_item.type != ( -1 ) ) )
-	{
-	    Repair_Pointer_List [ Pointer_Index ] = & ( Me.weapon_item );
-	    Pointer_Index ++;
-	}
-	if ( ( Me.drive_item.current_duration < Me.drive_item.max_duration ) &&
-	     ( Me.drive_item.type != ( -1 ) ) )
-	{
-	    Repair_Pointer_List [ Pointer_Index ] = & ( Me.drive_item );
-	    Pointer_Index ++;
-	}
-	if ( ( Me.armour_item.current_duration < Me.armour_item.max_duration ) &&
-	     ( Me.armour_item.type != ( -1 ) ) )
-	{
-	    Repair_Pointer_List [ Pointer_Index ] = & ( Me.armour_item );
-	    Pointer_Index ++;
-	}
-	if ( ( Me.shield_item.current_duration < Me.shield_item.max_duration ) &&
-	     ( Me.shield_item.type != ( -1 ) ) )
-	{
-	    Repair_Pointer_List [ Pointer_Index ] = & ( Me.shield_item );
-	    Pointer_Index ++;
-	}
-	if ( ( Me.special_item.current_duration < Me.special_item.max_duration ) &&
-	     ( Me.special_item.type != ( -1 ) ) )
-	{
-	    Repair_Pointer_List [ Pointer_Index ] = & ( Me.special_item );
-	    Pointer_Index ++;
-	}
-	
-	for ( i = 0 ; i < MAX_ITEMS_IN_INVENTORY ; i ++ )
-	{
-	    if ( Me.Inventory [ i ].type == (-1) ) continue;
-	    if ( Me.Inventory [ i ].max_duration == (-1) ) continue;
-	    if ( Me.Inventory [ i ].current_duration < Me.Inventory [ i ] .max_duration ) 
-	    {
-		Repair_Pointer_List [ Pointer_Index ] = & ( Me.Inventory[ i ] );
-		Pointer_Index ++;
-	    }
-	}
-	
-	if ( Pointer_Index == 0 )
-	{
-	    MenuTexts[0]=_(" BACK ");
-	    MenuTexts[1]="";
-	    DoMenuSelection ( _(" YOU DONT HAVE ANYTHING THAT WOULD NEED REPAIR ") , MenuTexts , 1 , -1 , NULL );
-	    return;
-	}
-	
-	//--------------------
-	// Now here comes the new thing:  This will be a loop from now
-	// on.  The buy and buy and buy until at one point we say 'BACK'
-	//
-	//ItemSelected = 0;
-	
-	NumberOfItemsInTuxRow = AssemblePointerListForItemShow ( &( TuxItemsList[0]), FALSE );
-	
-	ItemSelected = GreatShopInterface ( Pointer_Index,  Repair_Pointer_List, 
-					    0 , 0 , &(ShopOrder) , 2 );
-		
-	if ( ItemSelected == (-1) ) ShopOrder . shop_command = DO_NOTHING ;
-	
-	switch ( ShopOrder . shop_command )
-	{
-	    case BUY_1_ITEM:
-		TryToRepairItem( Repair_Pointer_List[ ShopOrder . item_selected ] );
-		break;
-	}
-    }
-    /*while ( ItemSelected != (-1) )
-      {
-      sprintf( DescriptionText , " I COULD REPAIR THESE ITEMS           YOUR GOLD:  %4ld" , Me.Gold );
-      ItemSelected = DoEquippmentListSelection( DescriptionText , Repair_Pointer_List , PRICING_FOR_REPAIR );
-      if ( ItemSelected != (-1) ) TryToRepairItem( Repair_Pointer_List[ ItemSelected ] ) ;
-      }*/
-    
-}; // void Repair_Items( void )
 
 #undef _shop_c
 

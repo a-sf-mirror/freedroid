@@ -43,7 +43,6 @@
 #include "fenv.h"
 #endif
 
-int ThisMessageTime;
 float LastGotIntoBlastSound = 2;
 float LastRefreshSound = 2;
 
@@ -158,7 +157,6 @@ better than nothing.  Thanks anyway for your interest in FreedroidRPG.\n\
     mouse_control = TRUE;
     classic_user_rect = FALSE;
     
-    
     InitFreedroid ( argc, argv);   // Initialisation of global variables and arrays
     
 
@@ -169,13 +167,13 @@ better than nothing.  Thanks anyway for your interest in FreedroidRPG.\n\
 	GameOver = FALSE;
 	while ( (!GameOver && !QuitProgram))
 	{
+	    game_status = INSIDE_GAME;
 	    
-	    StartTakingTimeForFPSCalculation(); 
-	    
-	    track_last_frame_input_status();
-	    keyboard_update();
-	    ReactToSpecialKeys();
-	    
+	    StartTakingTimeForFPSCalculation();
+
+	    save_mouse_state();
+	    input_handle();
+
 	    UpdateCountersForThisFrame ( ) ;
 	    
 	    CollectAutomapData ();
@@ -292,17 +290,11 @@ UpdateCountersForThisFrame ( )
     float latest_frame_time = Frame_Time();
     int level_num;
 
-    GameConfig . Mission_Log_Visible_Time += latest_frame_time;
-
     // The next couter counts the frames displayed by freedroid during this
     // whole run!!  DO NOT RESET THIS COUNTER WHEN THE GAME RESTARTS!!
     Overall_Frames_Displayed++;
     Overall_Average = ( Overall_Average * ( Overall_Frames_Displayed - 1 )
 	    + latest_frame_time ) / Overall_Frames_Displayed ;
-
-    // Here are some things, that were previously done by some periodic */
-    // interrupt function
-    ThisMessageTime++;
 
     LastGotIntoBlastSound += latest_frame_time ;
     LastRefreshSound += latest_frame_time ;

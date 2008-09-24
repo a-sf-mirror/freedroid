@@ -284,8 +284,8 @@ ScrollText (char *Text, int startx, int starty, int background_code )
 	    || ( MouseCursorIsOnButton ( SCROLL_TEXT_DOWN_BUTTON , GetMousePos_x()  , 
 					 GetMousePos_y()  ) ) )
     {
-	track_last_frame_input_status();
-	keyboard_update();
+	save_mouse_state();
+	input_handle();
 
 	if ( UpPressed () 
 	     || ( MouseLeftClicked() 
@@ -324,17 +324,7 @@ ScrollText (char *Text, int startx, int starty, int background_code )
 	if ( background_code != ( -1 ) )
 	    blit_special_background ( background_code );
 	
-	if ( ! DisplayText ( Text , startx , InsertLine , &User_Rect , TEXT_STRETCH ) )
-	{
-	    // JP: I've disabled this, since with this enabled we won't even
-	    // see a single line of the first section of the briefing.
-	    // But this leads to that we currently NEVER can see the second 
-	    // or third part of the briefing text, cause it will not start
-	    // the new text part when the lower end of the first text part
-	    // is reached.  I don't consider this bug release-critical.
-	    //
-	    // break;  /* Text has been scrolled outside User_Rect */
-	}
+	DisplayText ( Text , startx , InsertLine , &User_Rect , TEXT_STRETCH );
 	
 	InsertLine -= speed;
 	
@@ -611,17 +601,11 @@ ImprovedCheckLineBreak (char* Resttext, const SDL_Rect *clip, float text_stretch
     return 0;
 }; // int ImprovedCheckLineBreak()
 
-/* -----------------------------------------------------------------
- * This function reads a string of "MaxLen" from User-input, and 
- * echos it either to stdout or using graphics-text, depending on 
- * the parameter "echo":
- *                      echo=0    no echo
- *                      echo=1    print using printf
- *                      echo=2    print using graphics-text
+/**
+ * This function reads a string of "MaxLen" from User-input, and
+ * echoes it either using graphics-text
  *
- * values of echo > 2 are ignored and treated like echo=0
- *
- * The function does have some extra complicating elelments coming 
+ * The function does have some extra complicating elelments coming
  * from the potential slowness of machines with pure SDL and no
  * OpenGL.  These machines might not re-blit the whole background
  * fast enough for swiftly typed keystrokes, resulting in some
@@ -631,15 +615,11 @@ ImprovedCheckLineBreak (char* Resttext, const SDL_Rect *clip, float text_stretch
  * a complete re-blit is done in every cycle.
  *
  * NOTE: MaxLen is the maximal _strlen_ of the string (excl. \0 !)
- * 
+ *
  * @Ret: char *: String is allocated _here_!!!
- *       (but since it isn't such a huge amount of memory and since 
- *        it requires manual user input and therefore can't be done
- *        very often anyway, you can as well forget to free it...)
- * 
+ *
  * ----------------------------------------------------------------- */
-char *
-GetString ( int MaxLen, int echo , int background_code , const char* text_for_overhead_promt )
+char * GetString ( int MaxLen, int background_code , const char* text_for_overhead_promt )
 {
     char *input;		// pointer to the string entered by the user
     int key;          // last 'character' entered 
@@ -648,19 +628,13 @@ GetString ( int MaxLen, int echo , int background_code , const char* text_for_ov
     int x0, y0, height;
     SDL_Rect store_rect, tmp_rect;
     SDL_Surface *store = NULL;
-    
-    if (echo == 1)		/* echo to stdout */
-    {
-	printf ("\nGetString(): sorry, echo=1 currently not implemented!\n");
-	return NULL;
-    }
-    
+
     height = FontHeight (GetCurrentFont());
-    
+
     DisplayText ( text_for_overhead_promt , 50 , 50 , NULL , TEXT_STRETCH );
     x0 = MyCursorX;
     y0 = MyCursorY;
-    
+
     if ( use_open_gl )
 	StoreMenuBackground ( 0 );
     else
@@ -669,16 +643,16 @@ GetString ( int MaxLen, int echo , int background_code , const char* text_for_ov
 	Set_Rect ( store_rect , x0 , y0 , GameConfig . screen_width , height );
 	our_SDL_blit_surface_wrapper (Screen, &store_rect, store, NULL);
     }
-    
+
     // allocate memory for the users input
     input     = MyMalloc (MaxLen + 5);
-    
+
     memset (input, '.', MaxLen);
     input[MaxLen] = 0;
-    
+
     finished = FALSE;
     curpos = 0;
-    
+
     while ( !finished  )
     {
 	if ( use_open_gl )
@@ -691,16 +665,15 @@ GetString ( int MaxLen, int echo , int background_code , const char* text_for_ov
 	    Copy_Rect( store_rect, tmp_rect);
 	    our_SDL_blit_surface_wrapper (store, NULL, Screen, &tmp_rect);
 	}
-	
+
 	x0 = MyCursorX;
 	y0 = MyCursorY;
-	
+
 	PutString ( Screen, x0, y0, input);
-	// PutString ( Screen, -1 , -1 , input);
 	our_SDL_flip_wrapper();
-	
+
 	key = getchar_raw ();  
-	
+
 	if ( key == SDLK_RETURN ) 
 	{
 #ifdef __WIN32__
@@ -721,20 +694,24 @@ GetString ( int MaxLen, int echo , int background_code , const char* text_for_ov
 	    input[curpos] = 0;
 	    finished = TRUE;
 	}
-	else if ((key < SDLK_DELETE) && isprint (key) && (curpos < MaxLen) )  
-	{
+	else if ((key < SDLK_DELETE) && isprint (key) && (curpos < MaxLen) ) {
 	    DebugPrintf (3, "isprint() true for keycode: %d ('%c')\n", key, (char)key);
 	    /* printable characters are entered in string */
-	    input[curpos] = (char) key;   
+	    input[curpos] = (char) key;
 	    curpos ++;
 	}
-	else if (key == SDLK_BACKSPACE)
-	{
+	else if ((key <= SDLK_KP9) && (key >= SDLK_KP0) && (curpos < MaxLen) ) {
+	    key -= SDLK_KP0;
+	    key += '0';
+
+	    input[curpos] = (char) key;
+	    curpos++;
+	}
+	else if (key == SDLK_BACKSPACE)	{
 	    if ( curpos > 0 ) curpos --;
 	    input[curpos] = '.';
 	}
-	else if ( key == SDLK_ESCAPE )
-	{
+	else if ( key == SDLK_ESCAPE ) {
 	    while(EscapePressed());
 	    return ( NULL );
 	}
@@ -747,7 +724,7 @@ GetString ( int MaxLen, int echo , int background_code , const char* text_for_ov
     
     return (input);
     
-}; // char* GetString( ... ) 
+};
 
 /* -----------------------------------------------------------------
  * This function reads a string of "MaxLen" from User-input.

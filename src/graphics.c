@@ -577,6 +577,9 @@ do_graphical_number_selection_in_range ( int lower_range , int upper_range, int 
     int knob_is_grabbed = FALSE ;
     char number_text[1000];
     static SDL_Rect knob_target_rect;
+    SDL_Event event;
+
+    int old_game_status = game_status;
 
     DebugPrintf ( 1 , "\n%s(): graphical number selection invoked." , __FUNCTION__ );
     
@@ -607,7 +610,7 @@ ERROR LOADING SELECTION KNOB IMAGE FILE!",
     while ( SpacePressed() || MouseLeftPressed());
     while ( ! ok_button_was_pressed )
     {
-	track_last_frame_input_status(); //activate the *WasPressed functions
+	save_mouse_state(); //activate the *Clicked functions
 
 	//--------------------
 	// Now we assemble and show the screen, which includes 
@@ -628,7 +631,32 @@ ERROR LOADING SELECTION KNOB IMAGE FILE!",
 	PutStringFont( Screen , FPS_Display_BFont , UNIVERSAL_COORD_W(320) , UNIVERSAL_COORD_H(190) , number_text );
 	blit_our_own_mouse_cursor ( );
 	our_SDL_flip_wrapper();
-	
+
+	SDL_WaitEvent(&event);
+	if (event.type == SDL_KEYDOWN) {
+	    if (event.key.keysym.sym == SDLK_RIGHT) {
+		if ( knob_end_x - knob_start_x - knob_offset_x > ((knob_end_x - knob_start_x) / (upper_range - lower_range)))
+		    {
+		    knob_offset_x += (knob_end_x - knob_start_x) / (upper_range - lower_range + 1);
+		    }
+		if ( knob_offset_x < knob_end_x - knob_start_x - 1)
+		    knob_offset_x ++;
+		}
+
+	    if (event.key.keysym.sym == SDLK_LEFT) {
+		if(knob_offset_x > ((knob_end_x - knob_start_x) / (upper_range - lower_range + 1)))
+		    {
+		    knob_offset_x -= (knob_end_x - knob_start_x) / (upper_range - lower_range + 1);
+		    }
+		if(knob_offset_x > 0)
+		    knob_offset_x --;
+		}
+
+	    if (event.key.keysym.sym == SDLK_RETURN) {
+		ok_button_was_pressed = TRUE ;
+		}
+	}
+
 	if ( MouseLeftClicked() )
 	{
 	    //--------------------
@@ -640,7 +668,7 @@ ERROR LOADING SELECTION KNOB IMAGE FILE!",
 	    {
 		knob_is_grabbed = TRUE ;
 	    }
-	    
+
 	    //--------------------
 	    // OK pressed?  Then we can return the current scale value and
 	    // that's it...
@@ -666,52 +694,24 @@ ERROR LOADING SELECTION KNOB IMAGE FILE!",
 		if ( knob_offset_x < knob_end_x - knob_start_x - 1)
 			knob_offset_x ++;
 	    }
-	    
 	}
 	if ( ! MouseLeftPressed() ) knob_is_grabbed = FALSE ;
 
-	
+
 	if ( knob_is_grabbed )
 	{
 	    knob_offset_x = GetMousePos_x()  - knob_start_x ;
 	    if ( knob_offset_x >= knob_end_x - knob_start_x ) knob_offset_x = knob_end_x - knob_start_x - 1;
 	    if ( knob_offset_x <= 0 ) knob_offset_x = 0 ; 
 	}
-	
-	
- 	if ( RightPressed() &&  !RightWasPressed() )
-	    {
-	     if ( knob_end_x - knob_start_x - knob_offset_x > ((knob_end_x - knob_start_x) / (upper_range - lower_range)))
-                        {
-                        knob_offset_x += (knob_end_x - knob_start_x) / (upper_range - lower_range + 1);
-                        }
-                if ( knob_offset_x < knob_end_x - knob_start_x - 1)
-                        knob_offset_x ++;
-	
-	    }
-
-	if (LeftPressed() && !LeftWasPressed())
-	    {
-	    if(knob_offset_x > ((knob_end_x - knob_start_x) / (upper_range - lower_range + 1)))
-                        {
-                        knob_offset_x -= (knob_end_x - knob_start_x) / (upper_range - lower_range + 1);
-                        }
-                if(knob_offset_x > 0)
-                        knob_offset_x --;
-
-	    }
-
-	if (EnterPressed())
-	    {
-            ok_button_was_pressed = TRUE ;
-	    }
 
 	SDL_Delay (1);
     }
-    
+
+    game_status = old_game_status;
     int result =  (knob_offset_x * ( upper_range - lower_range + 1) / ( knob_end_x - knob_start_x ));
     return ( result > upper_range ? upper_range : result) ;
-    
+
 }; // int do_graphical_number_selection_in_range ( int lower_range , int upper_range )
 
 /**

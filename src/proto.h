@@ -43,6 +43,7 @@
 #define EXTERN extern
 #endif
 EXTERN void show_automap_data_sdl ( void );
+EXTERN void toggle_automap();
 
 // init.c
 #undef EXTERN
@@ -360,7 +361,6 @@ EXTERN int read_sdl_rect(const char *, const char *, SDL_Rect *);
 #else
 #define EXTERN extern
 #endif
-EXTERN void classic_show_mission_list ( void );
 EXTERN void quest_browser_interface ( void );
 EXTERN void AssignMission( int MissNum );
 EXTERN void GetQuestList ( char* QuestListFilename ) ;
@@ -538,7 +538,6 @@ EXTERN void UpdateAllCharacterStats ( void );
 EXTERN void ShowCharacterScreen ( void );
 EXTERN void HandleCharacterScreen ( void );
 
-// character.c
 #undef EXTERN
 #ifdef _leveleditor_c
 #define EXTERN
@@ -551,7 +550,15 @@ EXTERN void delete_obstacle ( level* EditLevel , obstacle* our_obstacle );
 EXTERN void ExportLevelInterface ( int level_num ) ;
 EXTERN void give_new_name_to_obstacle ( Level EditLevel , obstacle* our_obstacle , char* predefined_name );
 EXTERN void action_remove_obstacle ( Level EditLevel, obstacle *our_obstacle);
-
+EXTERN void ItemDropFromLevelEditor ();
+EXTERN void level_editor_cycle_marked_obstacle();
+EXTERN void level_editor_place_aligned_obstacle();
+EXTERN void level_editor_next_tab();
+EXTERN void level_editor_action_change_map_label_user();
+EXTERN void level_editor_action_undo();
+EXTERN void level_editor_action_redo();
+EXTERN void level_editor_action_toggle_waypoint_connection_user (void);
+EXTERN void level_editor_beautify_grass_tiles();
 
 // skills.c
 #undef EXTERN
@@ -569,6 +576,7 @@ EXTERN int DoSkill( int skill_index, int SpellCost);
 EXTERN void activate_nth_aquired_skill ( int skill_num );
 EXTERN void ImproveSkill(int *skill);
 EXTERN int get_program_index_with_name(const char *);
+
 // input.c 
 #undef EXTERN
 #ifdef _input_c
@@ -576,142 +584,52 @@ EXTERN int get_program_index_with_name(const char *);
 #else
 #define EXTERN extern
 #endif
-EXTERN Uint8 * key_pressed_real_frame;
-EXTERN Uint8 * key_pressed_last_frame;
+EXTERN Uint8 * key_state_array;
 EXTERN Uint8 mouse_state_last_frame;
-EXTERN int keyboard_update( void );
-EXTERN void track_last_frame_input_status(void);
+EXTERN int input_handle( void );
+EXTERN void save_mouse_state(void);
 EXTERN void init_keyboard_input_array(void);
 
 EXTERN int MouseWheelUpPressed(void);
 EXTERN int MouseWheelDownPressed(void);
 EXTERN int GetMousePos_x(void);
 EXTERN int GetMousePos_y(void);
-EXTERN int Shift_Was_Pressed(void);
-EXTERN int LeftShiftWasPressed(void);
-EXTERN int RightShiftWasPressed(void);
-EXTERN int CtrlWasPressed(void);
-EXTERN int RightCtrlWasPressed(void);
-EXTERN int LeftCtrlWasPressed(void);
-EXTERN int Alt_Was_Pressed(void);
-EXTERN int LeftAltWasPressed(void);
-EXTERN int RightAltWasPressed(void);
-EXTERN void Init_Joy(void);
-EXTERN void ReactToSpecialKeys(void);
-EXTERN void Init_SDL_Keyboard(void);
-EXTERN int getchar_raw (void);
-EXTERN void ClearKbState (void);
 EXTERN int MouseRightPressed(void); 
 EXTERN int MouseLeftPressed(void);
 EXTERN int MouseLeftClicked(void);
 EXTERN int MouseRightClicked(void);
+EXTERN int MouseLeftUnclicked(void);
+EXTERN int MouseRightUnclicked(void);
 EXTERN int LeftPressed (void) ;
 EXTERN int RightPressed (void) ;
-EXTERN int LeftWasPressed (void) ;
-EXTERN int RightWasPressed (void) ;
-EXTERN int PageUpPressed (void) ;
-EXTERN int PageDownPressed (void) ;
 EXTERN int UpPressed (void) ;
 EXTERN int DownPressed (void) ;
 EXTERN int SpacePressed (void) ;
 EXTERN int EnterPressed (void) ;
 EXTERN int EscapePressed (void) ;
-EXTERN int TabPressed (void) ;
-EXTERN int BackspacePressed (void) ;
 EXTERN int LeftCtrlPressed (void) ;
-EXTERN int CtrlWasPressed (void) ;
 EXTERN int CtrlPressed (void) ;
 EXTERN int ShiftPressed (void) ;
-EXTERN int ShiftWasPressed (void) ;
-EXTERN int AltWasPressed (void) ;
 EXTERN int AltPressed (void) ;
-EXTERN int KP_PLUS_Pressed (void) ;
-EXTERN int KP_MINUS_Pressed (void) ;
-EXTERN int KP_MULTIPLY_Pressed (void) ;
-EXTERN int KP_DIVIDE_Pressed (void) ;
-EXTERN int Number0Pressed (void) ;
-EXTERN int Number0Hit (void) ;
-EXTERN int Number1Pressed (void) ;
-EXTERN int Number1Hit (void) ;
-EXTERN int Number2Pressed (void) ;
-EXTERN int Number2Hit (void) ;
-EXTERN int Number3Pressed (void) ;
-EXTERN int Number3Hit (void) ;
-EXTERN int Number4Pressed (void) ;
-EXTERN int Number4Hit (void) ;
-EXTERN int Number5Pressed (void) ;
-EXTERN int Number5Hit (void) ;
-EXTERN int Number6Pressed (void) ;
-EXTERN int Number6Hit (void) ;
-EXTERN int Number7Pressed (void) ;
-EXTERN int Number7Hit (void) ;
-EXTERN int Number8Pressed (void) ;
-EXTERN int Number8Hit (void) ;
-EXTERN int Number9Pressed (void) ;
-EXTERN int Number9Hit (void) ;
-EXTERN int KP0Pressed (void) ;
-EXTERN int KP1Pressed (void) ;
-EXTERN int KP2Pressed (void) ;
-EXTERN int KP3Pressed (void) ;
-EXTERN int KP4Pressed (void) ;
-EXTERN int KP5Pressed (void) ;
-EXTERN int KP6Pressed (void) ;
-EXTERN int KP7Pressed (void) ;
-EXTERN int KP8Pressed (void) ;
-EXTERN int KP9Pressed (void) ;
-EXTERN int KP0Hit(void) ;
-EXTERN int KP1Hit(void) ;
-EXTERN int KP2Hit(void) ;
-EXTERN int KP3Hit(void) ;
-EXTERN int KP4Hit(void) ;
-EXTERN int KP5Hit(void) ;
-EXTERN int KP6Hit(void) ;
-EXTERN int KP7Hit(void) ;
-EXTERN int KP8Hit(void) ;
-EXTERN int KP9Hit(void) ;
-EXTERN int F1Pressed (void) ;
-EXTERN int F2Pressed (void) ;
-EXTERN int F3Pressed (void) ;
-EXTERN int F4Pressed (void) ;
-EXTERN int F5Pressed (void) ;
-EXTERN int F6Pressed (void) ;
-EXTERN int F7Pressed (void) ;
-EXTERN int F8Pressed (void) ;
-EXTERN int F9Pressed (void) ;
-EXTERN int F10Pressed (void) ;
-EXTERN int F11Pressed (void) ;
-EXTERN int F12Pressed (void) ;
 EXTERN int APressed (void) ;
-EXTERN int BPressed (void) ;
-EXTERN int CPressed (void) ;
-EXTERN int DPressed (void) ;
-EXTERN int DHit (void) ;
-EXTERN int EPressed (void) ;
-EXTERN int FPressed (void) ;
-EXTERN int GPressed (void) ;
 EXTERN int HPressed (void) ;
-EXTERN int IPressed (void) ;
-EXTERN int JPressed (void) ;
-EXTERN int KPressed (void) ;
-EXTERN int LPressed (void) ;
-EXTERN int LHit (void) ;
 EXTERN int MPressed (void) ;
-EXTERN int NPressed (void) ;
-EXTERN int OPressed (void) ;
-EXTERN int PPressed (void) ;
 EXTERN int QPressed (void) ;
-EXTERN int RPressed (void) ;
 EXTERN int SPressed (void) ;
-EXTERN int TPressed (void) ;
-EXTERN int THit (void) ;
-EXTERN int UPressed (void) ;
-EXTERN int VPressed (void) ;
 EXTERN int WPressed (void) ;
 EXTERN int XPressed (void) ;
-EXTERN int YPressed (void) ;
-EXTERN int ZWasPressed (void) ;
-EXTERN int ZHit (void) ;
-EXTERN void toggle_game_config_screen_visibility ( int screen_visible );
+
+#undef EXTERN
+#ifdef _keyboard_c
+#define EXTERN
+#else
+#define EXTERN extern
+#endif
+EXTERN int input_key_press(SDLKey, SDLMod);
+EXTERN void keychart(void);
+EXTERN void input_set_default(void);
+EXTERN void input_keyboard_init(void);
+EXTERN int getchar_raw (void);
 
 // menu.c 
 #undef EXTERN
@@ -819,7 +737,6 @@ EXTERN void enemy_generate_level_lists ();
 #else
 #define EXTERN extern
 #endif
-EXTERN int GreatItemShow ( int NumberOfItems , item** ShowPointerList );
 EXTERN void ShowDeckMap (void);
 EXTERN void ShowItemInfo ( item* ShowItem , int page , char ShowArrows , int background_code , int title_text_flag );
 EXTERN void EnterLift (void);
@@ -862,7 +779,7 @@ EXTERN int ScrollText (char *text, int startx, int starty, int background_code )
 EXTERN int ImprovedCheckLineBreak(char *text, const SDL_Rect *clip , float text_stretch );
 EXTERN char *PreviousLine (char *textstart, char *text);
 EXTERN char *NextLine (char *text);
-EXTERN char *GetString ( int max_len , int echo , int background_code , const char* text_for_overhead_promt ) ;
+EXTERN char *GetString ( int max_len , int background_code , const char* text_for_overhead_promt ) ;
 EXTERN void printf_SDL (SDL_Surface *screen, int x, int y, const char *fmt, ...);
 
 // text_public.c 
@@ -896,6 +813,7 @@ EXTERN int get_hours_of_game_duration ( float current_game_date );
 EXTERN int get_minutes_of_game_duration ( float current_game_date );
 EXTERN void append_new_game_message ( char* game_message_text );
 EXTERN void display_current_game_message_window ( void );
+EXTERN void toggle_game_config_screen_visibility ( int screen_visible );
 
 // shop.c 
 #undef EXTERN

@@ -96,8 +96,6 @@ mouse_press_button AllMousePressButtons[ MAX_MOUSE_PRESS_BUTTONS ] =
 
     /*BUY_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/buy_button.png"                   , { 199 ,  98 ,  47 ,  47 } , TRUE , FALSE } ,
     /*SELL_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/sell_button.png"                  , { 199 , 153 ,  47 ,  47 } , TRUE , FALSE } ,
-    /*TAKE_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/get_button.png"                   , { 193 ,  93 ,  60 ,  60 } , TRUE , FALSE } ,
-    /*PUT_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/put_button.png"                   , { 192 , 147 ,  60 ,  60 } , TRUE , FALSE } ,
     /*REPAIR_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/repair_button.png"                , { 199 , 225 ,  47 ,  47 } , TRUE , FALSE } ,
     /*IDENTIFY_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/identify_button.png"              , { 199 , 275 ,  47 ,  47 } , TRUE , FALSE } ,
 
@@ -790,47 +788,37 @@ void
 Pause ( void )
 {
     int Pause = TRUE;
-    
+    int cheese = FALSE; /* cheese mode: do not display GAME PAUSED  - nicer screenshots */
+    SDL_Event event;
+
     Activate_Conservative_Frame_Computation();
-    
+
     AssembleCombatPicture ( DO_SCREEN_UPDATE | USE_OWN_MOUSE_CURSOR );
     append_new_game_message ( _("Pausing game...") );
-    while ( PPressed () )
-	SDL_Delay (1); /* Wait for the pause key to be released */
 
-    while ( Pause )
-    {
-	animate_tux ( );
-	AnimateCyclingMapTiles ();
+    while ( Pause ) {
+	SDL_WaitEvent(&event);
 	DisplayBanner ( );
 	AssembleCombatPicture ( USE_OWN_MOUSE_CURSOR );
-	CenteredPutStringFont ( Screen , Menu_BFont , 200 , _("GAME PAUSED") );
+	if (!cheese)
+	    CenteredPutStringFont ( Screen , Menu_BFont , 200 , _("GAME PAUSED") );
 	our_SDL_flip_wrapper();
-	
-	if ( CPressed ( ) )
-	{
-	    DisplayBanner ( ) ;
-	    AssembleCombatPicture ( DO_SCREEN_UPDATE | USE_OWN_MOUSE_CURSOR );
-	    
-	    while (!SpacePressed ()); /* stay CHEESE until Space pressed */
-	    while ( SpacePressed() ); /* then wait for Space released */
-	    
-	} 
-	
-	if ( SpacePressed() || PPressed() || EscapePressed() )
-	{
-	    Pause = FALSE;
-	    while ( SpacePressed() || PPressed() );  /* wait for release, but not for escape, so that it brings the menu just after the game has come out of 
-																		Pause mode */
+
+	if (event.type == SDL_KEYDOWN) {
+	    switch (event.key.keysym.sym) {
+		case SDLK_p:
+		    Pause = FALSE;
+		    break;
+		case SDLK_c:
+		    cheese = !cheese;
+		    break;
+		default:
+		    break;
+	    }
 	}
-	
-	//--------------------
-	// During the Pause mode, there is again no need to hog the CPU and to 
-	// go at full force.  We introduce some rest for the CPU here...
-	//
-	SDL_Delay (1);
-	
-    } // while (Pause) 
+
+	SDL_Delay (10);
+    }
 
     append_new_game_message ( _("Game resumed.") );
     return;
@@ -1487,7 +1475,6 @@ settings file will be generated.",
     //
     GameConfig . CharacterScreen_Visible = FALSE ;
     GameConfig . Inventory_Visible = FALSE ;
-    GameConfig . Mission_Log_Visible = FALSE ;
     GameConfig . SkillScreen_Visible = FALSE ;
     GameConfig . skill_explanation_screen_visible = FALSE ;
     GameConfig . Automap_Visible = FALSE ;

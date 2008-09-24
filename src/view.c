@@ -313,8 +313,6 @@ BROWSE_ALIVE_BOTS_SAFE(erot, nerot)
 	}
     }
     
-    classic_show_mission_list ( );
-
     DisplayBigScreenMessage( );
 
 }; // void ShowCombatScreenTexts ( int mask )

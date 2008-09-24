@@ -666,8 +666,6 @@ void
 ShowCurrentSkill( void )
 {
     SDL_Rect Target_Rect;
-    static int Mouse_Button_Pressed_Previous_Frame = FALSE;
-    
     if ( Me . status == BRIEFING ) return;
     if ( ( GameConfig . SkillScreen_Visible || GameConfig . CharacterScreen_Visible )  && GameConfig . screen_width == 640 ) return;
 
@@ -684,9 +682,6 @@ ShowCurrentSkill( void )
     }
     else
 	our_SDL_blit_surface_wrapper ( SpellSkillMap [ Me.readied_skill ] . icon_surface . surface , NULL , Screen , &Target_Rect );
-    
-  Mouse_Button_Pressed_Previous_Frame = MouseLeftPressed();
-
 }; // void ShowCurrentSkill ( void )
 
 /**
@@ -699,7 +694,6 @@ void
 ShowCurrentWeapon( void )
 {
     SDL_Rect Target_Rect;
-    static int Mouse_Button_Pressed_Previous_Frame = FALSE;
     char current_ammo[10];
     if ( Me . status == BRIEFING ) return;
     if ( ( GameConfig . Inventory_Visible || GameConfig . skill_explanation_screen_visible ) && GameConfig . screen_width == 640 ) return;
@@ -710,9 +704,7 @@ ShowCurrentWeapon( void )
     Target_Rect.w = CURRENT_WEAPON_RECT_W;
     Target_Rect.h = CURRENT_WEAPON_RECT_H;
     our_SDL_blit_surface_wrapper ( ItemMap [ Me.weapon_item . type ] . inv_image . Surface , NULL , Screen , &Target_Rect );
-    
-    Mouse_Button_Pressed_Previous_Frame = MouseLeftPressed();
-	
+
     if ( ! ItemMap[ Me . weapon_item . type ] . item_gun_use_ammunition )
 	return;
 
@@ -1574,5 +1566,42 @@ DisplayBanner ( void )
     
 }; // void DisplayBanner( void ) 
 
+/**
+ * This function should toggle the visibility of the inventory/character
+ * and skill screen.  Of course, when one of them is turned on, the other
+ * ones should be turned off again.  At least that was a popular request
+ * from various sources in the past, so we heed it now.
+ */
+void
+toggle_game_config_screen_visibility ( int screen_visible )
+{
+
+    switch ( screen_visible )
+    {
+	case GAME_CONFIG_SCREEN_VISIBLE_INVENTORY :
+	    GameConfig . Inventory_Visible = ! GameConfig . Inventory_Visible;
+	    GameConfig . skill_explanation_screen_visible = FALSE;
+	    break;
+	case GAME_CONFIG_SCREEN_VISIBLE_SKILLS :
+	    GameConfig . SkillScreen_Visible = !GameConfig . SkillScreen_Visible;
+	    if ( !GameConfig . SkillScreen_Visible) GameConfig.skill_explanation_screen_visible = 0;
+	    GameConfig . CharacterScreen_Visible = FALSE ;
+	    break;
+	case GAME_CONFIG_SCREEN_VISIBLE_CHARACTER :
+	    GameConfig . CharacterScreen_Visible = !GameConfig . CharacterScreen_Visible;
+	    GameConfig . SkillScreen_Visible = FALSE ;
+	    break;
+	case GAME_CONFIG_SCREEN_VISIBLE_SKILL_EXPLANATION :
+            GameConfig.skill_explanation_screen_visible = !GameConfig.skill_explanation_screen_visible;
+	    GameConfig . Inventory_Visible = FALSE;
+	    break;
+	default:
+	    ErrorMessage ( __FUNCTION__  , "\
+unhandled skill screen code received.  something is going VERY wrong!",
+				       PLEASE_INFORM, IS_FATAL );
+	    break;
+    }
+
+}; // void toggle_game_config_screen_visibility ( int screen_visible )
 
 #undef _hud_c

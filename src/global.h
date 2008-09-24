@@ -39,24 +39,11 @@
 
 EXTERN char* floor_tile_filenames [ ALL_ISOMETRIC_FLOOR_TILES ] ;
 EXTERN obstacle_spec obstacle_map[ NUMBER_OF_OBSTACLE_TYPES ];
-// EXTERN item_image_spec ItemImageList[ NUMBER_OF_ITEM_PICTURES ];
-EXTERN char EndTitleText1[];
-EXTERN char EndTitleText2[];
-EXTERN char TitleText1[];
-EXTERN char TitleText2[];
-EXTERN char TitleText3[];
-EXTERN char TitleText4[];
 EXTERN float FPSover1;
 EXTERN float FPSover10;
 EXTERN float FPSover100;
-EXTERN char *Classes[];
-EXTERN char *Height[];
-EXTERN char *Weight[];
-EXTERN char *Entry[];
-EXTERN char *Weaponnames[];
 EXTERN char *AllSkillTexts[];
 EXTERN char *SkillName[];
-EXTERN int ThisMessageTime;
 EXTERN char font_switchto_red [ 2 ] ;
 EXTERN char font_switchto_blue [ 2 ] ;
 EXTERN char font_switchto_neon [ 2 ] ;
@@ -77,6 +64,7 @@ EXTERN int skip_initial_menus;
 EXTERN int number_of_skills;
 EXTERN supported_languages_t supported_languages[];
 EXTERN int last_bot_number;
+EXTERN enum { INSIDE_MENU = 0, INSIDE_GAME, INSIDE_LVLEDITOR } game_status;
 #endif
 
 EXTERN SDL_Rect User_Rect;

@@ -1558,30 +1558,4 @@ blit_special_background ( int background_code )
   
 }; // void blit_special_background ( int background_code )
 
-/**
- * Sometimes it might be convenient for development purposes, that the
- * backgrounds can be exchanged on disk and the game need not be restarted
- * to try out these new backgrounds.  So we introduce some 'cache flushing'
- * function here...
- */
-void
-flush_background_image_cache ( void )
-{
-    int i;
-    static iso_image empty_image = UNLOADED_ISO_IMAGE ;
-    
-    //--------------------
-    // Also we dutifully set all background variables to 'empty'
-    // status, cause re-initializing stuff might cause error or
-    // warning messages, if the 'has_been_created' flags are still
-    // set from last time...
-    //
-    for ( i = 0 ; i < ALL_KNOWN_BACKGROUNDS ; i ++ )
-    {
-	background_has_been_loaded [ i ] = 0;
-	memcpy ( & ( our_backgrounds [ i ] ) , & empty_image , sizeof ( iso_image ) );
-    }
-    
-}; // void flush_background_image_cache ( void )
-
 #undef _open_gl_c

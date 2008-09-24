@@ -1874,7 +1874,6 @@ PrepareStartOfNewCharacter ( void )
     location StartPosition;
     
     Activate_Conservative_Frame_Computation();
-    ThisMessageTime = 0;
     LevelDoorsNotMovedTime = 0.0;
     RespectVisibilityOnMap = TRUE ;
     global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL ;
@@ -2074,8 +2073,6 @@ ResetGameConfigToDefaultValues ( void )
     GameConfig . number_of_big_screen_messages = 4 ;
     GameConfig . delay_for_big_screen_messages = 6.5 ;
     GameConfig . enable_cheatkeys = FALSE ;
-    GameConfig . automap_manual_shift_x = 0 ;
-    GameConfig . automap_manual_shift_y = 0 ;
     GameConfig . automap_display_scale = 2.0 ;
     GameConfig . skip_shadow_blitting = FALSE ;
     GameConfig . xray_vision_for_tux = FALSE;
@@ -2263,6 +2260,9 @@ I will not be able to load or save games or configurations\n\
 
     GameConfig . screen_width = 800;
     GameConfig . screen_height = 600;
+    input_keyboard_init();
+    input_set_default();
+
     LoadGameConfig ();
 
     ParseCommandLine ( argc, argv );
@@ -2295,8 +2295,6 @@ I will not be able to load or save games or configurations\n\
     //
     SetSoundFXVolume( GameConfig.Current_Sound_FX_Volume );
     
-    Init_Joy ();
-    
     ShowStartupPercentage ( 10 ) ; 
     
     //--------------------
@@ -2328,7 +2326,6 @@ I will not be able to load or save games or configurations\n\
     if ( strstr( VERSION, "rc" ) )
 	 GiveMouseAlertWindow ( _("\nYou are playing a candidate release.\nMany strange bugs might still be present in the game.\nPlease report anything you may find to #freedroid at irc.freenode.net, or\n by mail to freedroid-discussion at lists.sourceforge.net\nThank you for helping us test the game.\nGood luck!\n"));
 
-    
 }; // void InitFreedroid ( void ) 
 
 /**
@@ -2350,11 +2347,14 @@ ThouArtDefeated (void)
     append_new_game_message ( _("Game over.\n") );
     GameConfig . Inventory_Visible = FALSE;
     GameConfig . CharacterScreen_Visible = FALSE;
-    GameConfig . Mission_Log_Visible = FALSE;
     ThouArtDefeatedSound ( ) ;
     start_tux_death_explosions ( ) ;
     now = SDL_GetTicks ( ) ;
     global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL;
+
+    GameConfig.SkillScreen_Visible = FALSE ;
+    GameConfig.CharacterScreen_Visible = FALSE ;
+    GameConfig.Inventory_Visible = FALSE ;
 
     //--------------------
     // Now that the influencer is dead, all this precious items
@@ -2403,10 +2403,8 @@ ThouArtDefeated (void)
 	animate_blasts ();
 	MoveBullets ();
 	MoveEnemys ();
-	MoveLevelDoors ( );	
-	
-	ReactToSpecialKeys();
-	
+	MoveLevelDoors ( );
+
 	for (j = 0; j < MAXBULLETS; j++)
 	    CheckBulletCollisions (j);
 	
@@ -2437,7 +2435,6 @@ ThouHastWon (void)
     append_new_game_message ( _("Game won.\n") );
     GameConfig . Inventory_Visible = FALSE;
     GameConfig . CharacterScreen_Visible = FALSE;
-    GameConfig . Mission_Log_Visible = FALSE;
     now = SDL_GetTicks ( ) ;
 
     GameOver = TRUE;

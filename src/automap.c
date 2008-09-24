@@ -65,6 +65,26 @@ else
 #endif
 }
 
+
+/**
+ * Toggle automap visibility
+ */
+void toggle_automap( void )
+{
+    GameConfig.Automap_Visible = !GameConfig.Automap_Visible;
+    if ( Me . map_maker_is_present )
+	{
+	if ( GameConfig.Automap_Visible )
+	    append_new_game_message ( _("Automap ON.") );
+	else
+	    append_new_game_message ( _("Automap OFF.") );
+	}
+    else
+	{
+	append_new_game_message ( _("Sorry, you don't have automap yet:  map maker item not present."));
+	}
+}
+
 /**
  *
  * This function should display the automap data, that was collected so

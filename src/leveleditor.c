@@ -52,7 +52,7 @@ int level_editor_done = FALSE;
 
 int BlockX ;
 int BlockY ;
-Level EditLevel;
+static Level EditLevel;
 int main_menu_requested;
 
 LIST_HEAD (quickbar_entries);
@@ -60,9 +60,8 @@ LIST_HEAD (quickbar_entries);
 LIST_HEAD (to_undo);
 LIST_HEAD (to_redo);
 int push_mode = NORMAL; 
-    
-void
-action_freestack ( void )
+
+static void action_freestack ( void )
 {
     struct list_head *pos, *n;
     list_for_each_safe (pos, n, &to_undo) {
@@ -91,8 +90,7 @@ action_freestack ( void )
     INIT_LIST_HEAD (&to_redo);
 }
 
-void
-action_do ( Level level, action *a )
+static void action_do ( Level level, action *a )
 {
     switch (a->type) {
     case ACT_CREATE_OBSTACLE:
@@ -125,8 +123,7 @@ action_do ( Level level, action *a )
     }
 }
 
-void 
-action_undo ( Level level ) 
+void level_editor_action_undo ()
 {
     if (!list_empty(&to_undo)) {
 	action *a = (action *)to_undo.next;
@@ -135,18 +132,17 @@ action_undo ( Level level )
 	    int i;
 	    list_del (to_undo.next);
 	    for (i = 0; i < a->d.number_fill_set; i++) {
-		action_undo (level);
+		level_editor_action_undo (EditLevel);
 	    }
 	    list_add (&a->node, &to_redo);
 	} else {
-	    action_do (level, a);
+	    action_do (EditLevel, a);
 	}
 	push_mode = NORMAL;
     }
 }
 
-void 
-action_redo ( Level level ) 
+void level_editor_action_redo ()
 {
      if (!list_empty(&to_redo)) {
 	action *a = (action *)to_redo.next;
@@ -155,11 +151,11 @@ action_redo ( Level level )
 	    int i;
 	    list_del (to_redo.next);
 	    for (i = 0; i < a->d.number_fill_set; i++) {
-		action_redo (level);
+		level_editor_action_redo ();
 	    }
 	    list_add (&a->node, &to_undo);
 	} else {
-	    action_do (level, a);
+	    action_do (EditLevel, a);
 	}
 	push_mode = NORMAL;
     }
@@ -383,7 +379,7 @@ action_toggle_waypoint_connection ( Level EditLevel, int id_origin, int id_targe
     return 1;
 }
 void
-action_toggle_waypoint_connection_user ( Level EditLevel , int BlockX , int BlockY )
+level_editor_action_toggle_waypoint_connection_user ()
 {
     int i;
  
@@ -579,13 +575,17 @@ action_change_obstacle_label ( Level EditLevel, obstacle *obstacle, char *name)
 	    }
 	}
 }
-    
-void
-action_change_obstacle_label_user ( Level EditLevel, obstacle *our_obstacle, char *predefined_name)
+
+void action_change_obstacle_label_user ( Level EditLevel, obstacle *our_obstacle, char *predefined_name)
 {
-    int cur_idx = our_obstacle->name_index;
+    int cur_idx;
     char *name;
-    
+
+    if (!our_obstacle)
+	return;
+
+    cur_idx = our_obstacle->name_index;
+
     //--------------------
     // Maybe we must query the user for the desired new name.
     // On the other hand, it might be that a name has been
@@ -606,7 +606,7 @@ action_change_obstacle_label_user ( Level EditLevel, obstacle *our_obstacle, cha
     action_change_obstacle_label ( EditLevel, our_obstacle, name);
 }   
 
-void
+static void
 action_change_map_label ( Level EditLevel, int i, char *name)
 {
     if (EditLevel -> labels [ i ] . pos . x != -1 ) {
@@ -638,15 +638,14 @@ The label just entered did already exist on this map!  Deleting old entry in fav
 	EditLevel -> labels [ i ] . pos . y = (-1) ;
     }
 }
-void
-action_change_map_label_user (Level EditLevel)
+
+void level_editor_action_change_map_label_user ()
 {
     char* NewCommentOnThisSquare;
     int i;
-    
-    while (PPressed());
+
     SetCurrentFont( FPS_Display_BFont );
-    
+
     //--------------------
     // Now we see if a map label entry is existing already for this spot
     //
@@ -1121,15 +1120,14 @@ fix_isolated_grass_tile ( level* EditLevel , int x , int y  )
  * beautify the grass.  If focuses on replacing 'full' grass tiles with 
  * proper full and part-full grass tiles.
  */
-void
-beautify_grass_tiles_on_level ( level* EditLevel )
+void level_editor_beautify_grass_tiles ()
 {
     int x ;
     int y ;
     int our_rand;
     map_tile* this_tile;
-    
-    DebugPrintf ( -4 , "\nbeautify_grass_tiles_on_level (...): process started..." );
+
+    DebugPrintf ( -4 , "\nlevel_editor_beautify_grass_tiles (...): process started..." );
 
     //--------------------
     // First we fix the pure corner pieces, cutting away quit some grass
@@ -1143,7 +1141,7 @@ beautify_grass_tiles_on_level ( level* EditLevel )
 	    if ( is_full_grass_tile ( this_tile ) )
 	    {
 		fix_corners_in_this_grass_tile ( EditLevel , x , y ) ;
-		DebugPrintf ( 1 , "\nbeautify_grass_tiles_on_level (...): found a grass tile." );
+		DebugPrintf ( 1 , "\nlevel_editor_beautify_grass_tiles (...): found a grass tile." );
 	    }
 	}
     }
@@ -1160,7 +1158,7 @@ beautify_grass_tiles_on_level ( level* EditLevel )
 	    if ( is_full_grass_tile ( this_tile ) )
 	    {
 		fix_anticorners_in_this_grass_tile ( EditLevel , x , y ) ;
-		DebugPrintf ( 1 , "\nbeautify_grass_tiles_on_level (...): found a grass tile." );
+		DebugPrintf ( 1 , "\nlevel_editor_beautify_grass_tiles (...): found a grass tile." );
 	    }
 	}
     }
@@ -1177,7 +1175,7 @@ beautify_grass_tiles_on_level ( level* EditLevel )
 	    if ( is_full_grass_tile ( this_tile ) )
 	    {
 		fix_halfpieces_in_this_grass_tile ( EditLevel , x , y ) ;
-		DebugPrintf ( 1 , "\nbeautify_grass_tiles_on_level (...): found a grass tile." );
+		DebugPrintf ( 1 , "\nlevel_editor_beautify_grass_tiles (...): found a grass tile." );
 	    }
 	}
     }
@@ -1224,12 +1222,12 @@ beautify_grass_tiles_on_level ( level* EditLevel )
 	    if ( is_full_grass_tile ( this_tile ) )
 	    {
 		fix_isolated_grass_tile ( EditLevel , x , y ) ;
-		DebugPrintf ( 1 , "\nbeautify_grass_tiles_on_level (...): found a grass tile." );
+		DebugPrintf ( 1 , "\nlevel_editor_beautify_grass_tiles (...): found a grass tile." );
 	    }
 	}
     }
 
-}; // void beautify_grass_tiles_on_level ( void )
+}; // void level_editor_beautify_grass_tiles ( void )
 
 /**
  *
@@ -1617,13 +1615,13 @@ ItemDropFromLevelEditor( void )
     static int previous_mouse_position_index = (-1) ;
     static int previous_suffix_selected = (-1) ;
     static int previous_prefix_selected = (-1) ;
+    game_status = INSIDE_MENU;
     
-    while ( GPressed() ) SDL_Delay(1);
     while ( SpacePressed()  || MouseLeftPressed() ) SDL_Delay(1);
     
     while ( !SelectionDone )
     {
-	track_last_frame_input_status();
+	save_mouse_state();
 	
 	our_SDL_fill_rect_wrapper ( Screen , NULL , 0 );
 	
@@ -1870,12 +1868,10 @@ HandleBannerMouseClick( void )
     if ( MouseCursorIsOnButton ( LEFT_LEVEL_EDITOR_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
     {
 	FirstBlock-= 8;
-	while ( PageUpPressed() ) SDL_Delay(1);	
     }
     else if ( MouseCursorIsOnButton ( RIGHT_LEVEL_EDITOR_BUTTON , GetMousePos_x()  , GetMousePos_y()))
     {
 	FirstBlock+=8 ;
-	while ( PageDownPressed() ) SDL_Delay(1);
     }
     else if( MouseCursorIsOnButton(  LEVEL_EDITOR_FLOOR_TAB, GetMousePos_x()  , GetMousePos_y()  ))
     {
@@ -2788,11 +2784,12 @@ DoLevelEditorMainMenu ( Level EditLevel )
 	MenuTexts[ i ] = "Edit Level Dimensions" ; i++;
 	MenuTexts[ i ] = "Quit Level Editor" ; i++;
 	MenuTexts[ i ] = "" ; i++;
-	
+
+	while ( EscapePressed() ) SDL_Delay(1);
+
 	MenuPosition = DoMenuSelection( "" , MenuTexts , -1 , -1 , FPS_Display_BFont );
 	
-	
-	while ( EnterPressed ( ) || SpacePressed ( ) || MouseLeftPressed() ) SDL_Delay(1);
+	while ( EnterPressed ( ) || SpacePressed ( ) || MouseLeftPressed()) SDL_Delay(1);
 	
 	switch ( MenuPosition ) 
 	{
@@ -2800,7 +2797,6 @@ DoLevelEditorMainMenu ( Level EditLevel )
 	    case (-1):
 		while ( EscapePressed() );
 		proceed_now=!proceed_now;
-		// if ( CurrentCombatScaleFactor != 1 ) SetCombatScaleTo( 1 );
 		break;
 	    case SAVE_LEVEL_POSITION:
 		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
@@ -4170,12 +4166,16 @@ ShowMapLabels( int mask )
  *
  */
 void
-HandleMapTileEditingKeys ( Level EditLevel , int BlockX , int BlockY )
+level_editor_place_aligned_obstacle ( int positionid )
 {
     struct quickbar_entry *entry = NULL;
     int obstacle_type, id;
     int placement_is_possible = TRUE;
     int obstacle_created = FALSE;
+    float position_offset_x[9] = { 0, 0.5, 1.0, 0, 0.5, 1.0, 0, 0.5, 1.0 };
+    float position_offset_y[9] = { 1.0, 1.0, 1.0, 0.5, 0.5, 0.5, 0, 0, 0 };
+
+    positionid--;
 
     if ( GameConfig . level_editor_edit_mode == LEVEL_EDITOR_SELECTION_FLOOR )
 	return;
@@ -4202,55 +4202,12 @@ HandleMapTileEditingKeys ( Level EditLevel , int BlockX , int BlockY )
 
     if ( placement_is_possible )
     {
-	if ( KP1Hit() ) 
-	{
-	    action_create_obstacle_user ( EditLevel, ((int)Me.pos.x) , ((int)Me.pos.y) + 1.0, wall_indices [ obstacle_type ] [ id ] );
-	    obstacle_created = TRUE;
-	}
-	if (KP2Hit()) 
-	{
-	    action_create_obstacle_user ( EditLevel,  ((int)Me.pos.x)+ 0.5 , ((int)Me.pos.y) + 1.0,  wall_indices [ obstacle_type ] [ id ]);
-	    obstacle_created = TRUE;
-	}
-	if (KP3Hit()) 
-	{
-	    action_create_obstacle_user ( EditLevel,  ((int)Me.pos.x)+1.0 , ((int)Me.pos.y)+1.0,  wall_indices [ obstacle_type ] [ id ]);
-	    obstacle_created = TRUE;
-	}
-	if (KP4Hit()) 
-	{
-	    action_create_obstacle_user ( EditLevel,  ((int)Me.pos.x), ((int)Me.pos.y) + 0.5,  wall_indices [ obstacle_type ] [ id ]);
-	    obstacle_created = TRUE;
-	}
-	if (KP5Hit()) 
-	{
-	    action_create_obstacle_user ( EditLevel,  ((int)Me.pos.x) + 0.5 , ((int)Me.pos.y)+0.5,  wall_indices [ obstacle_type ] [ id ]);
-	    obstacle_created = TRUE;
-	}
-	if (KP6Hit()) 
-	{
-	    action_create_obstacle_user ( EditLevel,  ((int)Me.pos.x)+ 1.0 , ((int)Me.pos.y) + 0.5,  wall_indices [ obstacle_type ] [ id ]);
-	    obstacle_created = TRUE;
-	}
-	if (KP7Hit()) 
-	{
-	    action_create_obstacle_user ( EditLevel,  ((int)Me.pos.x), ((int)Me.pos.y),  wall_indices [ obstacle_type ] [ id ]);
-	    obstacle_created = TRUE;
-	}
-	if ( KP8Hit() ) 
-	{
-	    action_create_obstacle_user ( EditLevel,  ((int)Me.pos.x)+ 0.5 , ((int)Me.pos.y),  wall_indices [ obstacle_type ] [ id ]);
-	    obstacle_created = TRUE;
-	}
-	if (KP9Hit()) 
-	{
-	    action_create_obstacle_user ( EditLevel,  ((int)Me.pos.x) + 1.0 , ((int)Me.pos.y),  wall_indices [ obstacle_type ] [ id ]);
-	    obstacle_created = TRUE;
-	}
+	action_create_obstacle_user ( EditLevel, ((int)Me.pos.x) + position_offset_x[positionid] , ((int)Me.pos.y) + position_offset_y[positionid], wall_indices [ obstacle_type ] [ id ] );
+	obstacle_created = TRUE;
 	if ( GameConfig . level_editor_edit_mode != LEVEL_EDITOR_SELECTION_QUICK && obstacle_created )
 	    quickbar_use ( obstacle_type, id );
     }
-}; // void HandleMapTileEditingKeys ( Level EditLevel , int BlockX , int BlockY )
+}
 
 /**
  *
@@ -4897,7 +4854,7 @@ void handle_rectangle_mode ( leveleditor_state *cur_state )
 	cur_state->r_step_y = (cur_state->r_len_y > 0 ? 1 : -1);
 
 	/* Undo previous rectangle */
-	action_undo ( EditLevel );
+	level_editor_action_undo ();
 
 	/* Then redo a correct one */
 	for (i = cur_state->r_start.x;
@@ -4920,7 +4877,7 @@ void end_rectangle_mode( leveleditor_state *cur_state, int place_rectangle)
 {
     cur_state->mode = NORMAL_MODE;
     if ( ! place_rectangle )
-	action_undo ( EditLevel );
+	level_editor_action_undo ();
 }
 
 
@@ -4929,55 +4886,53 @@ void end_rectangle_mode( leveleditor_state *cur_state, int place_rectangle)
  * function, we take the left mouse button handling out into a separate
  * function now.
  */
-int
-level_editor_handle_left_mouse_button ( int proceed_now, leveleditor_state *cur_state )
+int level_editor_handle_left_mouse_button ( int proceed_now, leveleditor_state *cur_state )
 {
-    static int LeftMousePressedPreviousFrame = FALSE;
     int new_x, new_y;
     moderately_finepoint pos;
-    
-    if ( MouseLeftPressed() && !LeftMousePressedPreviousFrame && cur_state->mode == NORMAL_MODE )
+
+    if ( MouseLeftClicked() && cur_state->mode == NORMAL_MODE )
     {
 	if ( ClickWasInEditorBannerRect() )
 	    HandleBannerMouseClick();
 	else if ( MouseCursorIsOnButton ( GO_LEVEL_NORTH_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
 	{
 	    if ( Me . pos . x < curShip . AllLevels [ EditLevel -> jump_target_north ] -> xlen -1 )
-		new_x = Me . pos . x ; 
-	    else 
+		new_x = Me . pos . x ;
+	    else
 		new_x = 3;
 	    new_y = curShip . AllLevels [ EditLevel -> jump_target_north ] -> xlen - 4 ;
-	    if ( EditLevel -> jump_target_north >= 0 ) 
+	    if ( EditLevel -> jump_target_north >= 0 )
 		Teleport ( EditLevel -> jump_target_north , new_x , new_y , FALSE );
 	}
 	else if ( MouseCursorIsOnButton ( GO_LEVEL_SOUTH_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
 	{
 	    if ( Me . pos . x < curShip . AllLevels [ EditLevel -> jump_target_south ] -> xlen -1 )
-		new_x = Me . pos . x ; 
-	    else 
+		new_x = Me . pos . x ;
+	    else
 		new_x = 3;
 	    new_y = 4;
-	    if ( EditLevel -> jump_target_south >= 0 ) 
+	    if ( EditLevel -> jump_target_south >= 0 )
 		Teleport ( EditLevel -> jump_target_south , new_x , new_y , FALSE );
 	}
 	else if ( MouseCursorIsOnButton ( GO_LEVEL_EAST_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
 	{
 	    new_x = 3;
 	    if ( Me . pos . y < curShip . AllLevels [ EditLevel -> jump_target_east ] -> ylen -1 )
-		new_y = Me . pos . y ; 
-	    else 
+		new_y = Me . pos . y ;
+	    else
 		new_y = 4;
-	    if ( EditLevel -> jump_target_east >= 0 ) 
+	    if ( EditLevel -> jump_target_east >= 0 )
 		Teleport ( EditLevel -> jump_target_east , new_x , new_y , FALSE );
 	}
 	else if ( MouseCursorIsOnButton ( GO_LEVEL_WEST_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
 	{
 	    new_x = curShip . AllLevels [ EditLevel -> jump_target_west ] -> xlen -4 ;
 	    if ( Me . pos . y < curShip . AllLevels [ EditLevel -> jump_target_west ] -> ylen -1 )
-		new_y = Me . pos . y ; 
-	    else 
+		new_y = Me . pos . y ;
+	    else
 		new_y = 4;
-	    if ( EditLevel -> jump_target_west >= 0 ) 
+	    if ( EditLevel -> jump_target_west >= 0 )
 		Teleport ( EditLevel -> jump_target_west , new_x , new_y , FALSE );
 	}
 	else if ( MouseCursorIsOnButton ( EXPORT_THIS_LEVEL_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
@@ -4987,17 +4942,14 @@ level_editor_handle_left_mouse_button ( int proceed_now, leveleditor_state *cur_
 	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_UNDERGROUND_LIGHT_ON_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
 	{
 	    EditLevel -> use_underground_lighting = ! EditLevel -> use_underground_lighting ;
-	    while ( MouseLeftPressed() );
 	}
 	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_UNDO_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
 	{
-	    action_undo ( EditLevel );
-	    while ( MouseLeftPressed() );
+	    level_editor_action_undo ();
 	}
 	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_REDO_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
 	{
-	    action_redo ( EditLevel );
-	    while ( MouseLeftPressed() );
+	    level_editor_action_redo ();
 	}
 	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_SAVE_SHIP_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
 	{
@@ -5005,36 +4957,32 @@ level_editor_handle_left_mouse_button ( int proceed_now, leveleditor_state *cur_
 	    char fp[2048];
 	    find_file("Asteroid.maps", MAP_DIR, fp, 0);
 	    SaveShip(fp);
-	    
+
 	    // CenteredPutString ( Screen ,  11*FontHeight(Menu_BFont),    "Your ship was saved...");
 	    // our_SDL_flip_wrapper();
-	    
+
 	    GiveMouseAlertWindow ( "\nM E S S A G E\n\nYour ship was saved to file 'Asteroids.map' in the map directory.\n\nIf you have set up something cool and you wish to contribute it to FreedroidRPG, please contact the FreedroidRPG dev team." ) ;
-	    
+
 	}
 	else if ( GameConfig . zoom_is_on && MouseCursorIsOnButton ( LEVEL_EDITOR_ZOOM_IN_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
 	{
 	    GameConfig . zoom_is_on = !GameConfig . zoom_is_on ;
-	    while ( MouseLeftPressed() );
 	}
 	else if ( !GameConfig . zoom_is_on && MouseCursorIsOnButton ( LEVEL_EDITOR_ZOOM_OUT_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
 	{
 	    GameConfig . zoom_is_on = !GameConfig . zoom_is_on ;
-	    while ( MouseLeftPressed() );
 	}
 	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_TOGGLE_WAYPOINT_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
 	{
 	    action_toggle_waypoint ( EditLevel , BlockX, BlockY , FALSE );
-	    while ( MouseLeftPressed() || SpacePressed() );
 	}
 	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_TOGGLE_CONNECTION_BLUE_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
 	{
-	    action_toggle_waypoint_connection_user ( EditLevel, BlockX, BlockY );
-	    while ( MouseLeftPressed() );
+	    level_editor_action_toggle_waypoint_connection_user ();
 	}
 	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_BEAUTIFY_GRASS_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
 	{
-	    beautify_grass_tiles_on_level ( EditLevel );
+	    level_editor_beautify_grass_tiles ( );
 	}
 	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_DELETE_OBSTACLE_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
 	{
@@ -5042,12 +4990,11 @@ level_editor_handle_left_mouse_button ( int proceed_now, leveleditor_state *cur_
 	    {
 		action_remove_obstacle_user ( EditLevel , level_editor_marked_obstacle );
 		level_editor_marked_obstacle = NULL ;
-		while ( SpacePressed() || MouseLeftPressed() ) SDL_Delay(1); 
 	    }
 	}
 	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_NEXT_OBSTACLE_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
 	{
-	    cycle_marked_obstacle( EditLevel );
+	    level_editor_cycle_marked_obstacle();
 	}
 	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_RECURSIVE_FILL_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
 	{
@@ -5058,7 +5005,6 @@ level_editor_handle_left_mouse_button ( int proceed_now, leveleditor_state *cur_
 	    if ( level_editor_marked_obstacle != NULL )
 	    {
 		action_change_obstacle_label_user ( EditLevel , level_editor_marked_obstacle , NULL );
-		while ( SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
 	    }
 	}
 	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_NEW_OBSTACLE_DESCRIPTION_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
@@ -5066,21 +5012,20 @@ level_editor_handle_left_mouse_button ( int proceed_now, leveleditor_state *cur_
 	    if ( level_editor_marked_obstacle != NULL )
 	    {
 		give_new_description_to_obstacle ( EditLevel , level_editor_marked_obstacle , NULL );
-		while ( SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
 	    }
 	}
 	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_NEW_MAP_LABEL_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
 	{
-	    action_change_map_label_user ( EditLevel );
+	    level_editor_action_change_map_label_user ();
 	}
 	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_NEW_ITEM_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
 	{
 	    ItemDropFromLevelEditor(  );
+	    game_status = INSIDE_LVLEDITOR;
 	}
 	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_ESC_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
 	{
 	    main_menu_requested = TRUE ;
-	    while ( SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
 	}
 	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_LEVEL_RESIZE_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
 	{
@@ -5142,19 +5087,19 @@ level_editor_handle_left_mouse_button ( int proceed_now, leveleditor_state *cur_
 		    ( (int)cur_state->TargetSquare . y >= 0 ) &&
 		    ( (int)cur_state->TargetSquare . y <= EditLevel->ylen-1 ) )
 	    {
-		switch ( GameConfig . level_editor_edit_mode ) 
+		switch ( GameConfig . level_editor_edit_mode )
 		{
 		    case LEVEL_EDITOR_SELECTION_FLOOR:
 			start_rectangle_mode( cur_state , FALSE );
 			quickbar_use( GameConfig . level_editor_edit_mode , Highlight );
 			break;
 		    case LEVEL_EDITOR_SELECTION_QUICK:
-			quickbar_click ( EditLevel , Highlight , cur_state); 
+			quickbar_click ( EditLevel , Highlight , cur_state);
 			break;
 		    case LEVEL_EDITOR_SELECTION_WALLS:
 			/* If the obstacle can be part of a line */
 			if ( (obstacle_map [ wall_indices [ GameConfig . level_editor_edit_mode ] [ Highlight ] ] . flags & IS_VERTICAL) ||
-				(obstacle_map [ wall_indices [ GameConfig . level_editor_edit_mode ] [ Highlight ] ] . flags & IS_HORIZONTAL) )  
+				(obstacle_map [ wall_indices [ GameConfig . level_editor_edit_mode ] [ Highlight ] ] . flags & IS_HORIZONTAL) )
 			{
 			    /* Let's start the line (FALSE because the function will
 			     * find the tile by itself) */
@@ -5178,7 +5123,7 @@ level_editor_handle_left_mouse_button ( int proceed_now, leveleditor_state *cur_
 	}
     }
 
-    if ( ! MouseLeftPressed() && LeftMousePressedPreviousFrame )
+    if ( MouseLeftUnclicked() )
     {
 	switch ( cur_state->mode )
 	{
@@ -5191,8 +5136,6 @@ level_editor_handle_left_mouse_button ( int proceed_now, leveleditor_state *cur_
 		break;
 	}
     }
-
-    LeftMousePressedPreviousFrame = MouseLeftPressed(); 
 
     return ( proceed_now );
 
@@ -5390,7 +5333,7 @@ level_editor_blit_mouse_buttons ( Level EditLevel )
  *
  */
 void
-cycle_marked_obstacle( Level EditLevel )
+level_editor_cycle_marked_obstacle()
 {
     int current_mark_index ;
     int j;
@@ -5419,34 +5362,38 @@ cycle_marked_obstacle( Level EditLevel )
 		else
 		    level_editor_marked_obstacle = & ( EditLevel -> obstacle_list [ EditLevel -> map [ BlockY ] [ BlockX ] . obstacles_glued_to_here [ 0 ] ] ) ;
 	    }
-	    
+
 	}
     }
 
-    while ( NPressed() || SpacePressed() || MouseLeftPressed() ) SDL_Delay(1);
-
-}; // void cycle_marked_obstacle( Level EditLevel )
+}; // void level_editor_cycle_marked_obstacle()
 
 
+void level_editor_next_tab()
+{
+    GameConfig . level_editor_edit_mode ++ ;
+    if ( GameConfig . level_editor_edit_mode >= NUMBER_OF_LEVEL_EDITOR_GROUPS )
+	GameConfig . level_editor_edit_mode = LEVEL_EDITOR_SELECTION_FLOOR ;
+    Highlight = 0 ;
+    FirstBlock = 0 ;
+}
 
 
 /**
- * This function provides the Level Editor integrated into 
+ * This function provides the Level Editor integrated into
  * freedroid.  Actually this function is a submenu of the big
  * Escape Menu.  In here you can edit the level and, upon pressing
  * escape, you can enter a new submenu where you can save the level,
  * change level name and quit from level editing.
  */
-void 
-LevelEditor(void)
+void LevelEditor(void)
 {
     int proceed_now = FALSE;
     int i ;
     char linebuf[10000];
     long OldTicks;
     char* NewCommentOnThisSquare;
-    int LeftMousePressedPreviousFrame = FALSE;
-    int RightMousePressedPreviousFrame = FALSE;
+
     leveleditor_state *cur_state = MyMalloc(sizeof(leveleditor_state));
     cur_state->mode = NORMAL_MODE;
 
@@ -5457,7 +5404,7 @@ LevelEditor(void)
     BlockX = rintf( Me . pos . x + 0.5 );
     BlockY = rintf( Me . pos . y + 0.5 );
     level_editor_done = FALSE;
-    
+
     //--------------------
     // We initialize some arrays with info for proper handling
     // of the level editor selection bar later...
@@ -5469,7 +5416,7 @@ LevelEditor(void)
     //
     Me . pos . x = rintf ( Me . pos . x ) + 0.5 ;
     Me . pos . y = rintf ( Me . pos . y ) + 0.5 ;
-    
+
     //--------------------
     // We disable all the 'screens' so that we have full view on the
     // map for the purpose of level editing.
@@ -5478,7 +5425,7 @@ LevelEditor(void)
     GameConfig.CharacterScreen_Visible = FALSE;
     GameConfig.SkillScreen_Visible = FALSE;
     RespectVisibilityOnMap = FALSE ;
-    
+
     //--------------------
     // We init the 'vanishing message' structs, so that there is always
     // something to display, and we set the time to 'out of date' already.
@@ -5486,18 +5433,11 @@ LevelEditor(void)
     EditLevel = curShip.AllLevels [ Me . pos . z ] ;
     strcpy ( VanishingMessage , "" );
     VanishingMessageDisplayTime = 0 ;
-    
+
     //--------------------
     // For drawing new waypoints, we init this.
     //
     OriginWaypoint = (-1);
-    
-    //--------------------
-    // Maybe the cursor has moved into the top bar with the selection tab?
-    // In that case we might want to change the appearance of the mouse 
-    // cursor a bit, like to arrow shape or something, for conveninet selection...
-    //
-  //  set_mouse_cursor_to_shape ( MOUSE_CURSOR_ARROW_SHAPE ) ;
 
     while ( !level_editor_done )
     {
@@ -5506,45 +5446,48 @@ LevelEditor(void)
 	main_menu_requested = FALSE ;
 	while ( ( !level_editor_done ) && ( ! main_menu_requested ) )
 	{
-            track_last_frame_input_status();
+	    game_status = INSIDE_LVLEDITOR;
+
+            save_mouse_state();
+	    input_handle();
 	    //--------------------
-	    // Even the level editor might be fast or slow or too slow, so we'd like to 
+	    // Even the level editor might be fast or slow or too slow, so we'd like to
 	    // know speed in here too, so that we can identify possible unnescessary lags
 	    // and then maybe do something about them...
 	    //
 	    ComputeFPSForThisFrame();
 	    if ( SkipAFewFrames ) SkipAFewFrames--;
-	    StartTakingTimeForFPSCalculation(); 
-	    
+	    StartTakingTimeForFPSCalculation();
+
 	    //--------------------
 	    // Also in the Level-Editor, there is no need to go at full framerate...
-	    // We can do with less, cause there are no objects supposed to be 
+	    // We can do with less, cause there are no objects supposed to be
 	    // moving fluently anyway.  Therefore we introduce some rest for the CPU.
 	    //
 	    if ( ! GameConfig . hog_CPU ) SDL_Delay (1);
-	    
+
 	    BlockX = rintf ( Me . pos . x - 0.5 );
 	    BlockY = rintf ( Me . pos . y - 0.5 );
-	    if ( BlockX < 0 ) 
+	    if ( BlockX < 0 )
 	    {
 		BlockX = 0 ;
 		Me . pos . x = 0.51 ;
 	    }
-	    if ( BlockY < 0 ) 
+	    if ( BlockY < 0 )
 	    {
 		BlockY = 0 ;
 		Me . pos . y = 0.51 ;
 	    }
 
-	    EditLevel = curShip.AllLevels [ Me . pos . z ] ;	  
+	    EditLevel = curShip.AllLevels [ Me . pos . z ] ;
 	    GetAllAnimatedMapTiles ( EditLevel );
-	    
+
 	    //--------------------
 	    // If the cursor is close to the currently marked obstacle, we leave everything as it
 	    // is.  (There might be some human choice made here already.)
 	    // Otherwise we just select the next best obstacle as the new marked obstacle.
 	    //
-	    if ( level_editor_marked_obstacle != NULL ) 
+	    if ( level_editor_marked_obstacle != NULL )
 	    {
 		// if ( ( fabsf ( level_editor_marked_obstacle -> pos . x - Me . pos . x ) >= 0.98 ) ||
 		// ( fabsf ( level_editor_marked_obstacle -> pos . y - Me . pos . y ) >= 0.98 ) )
@@ -5620,16 +5563,6 @@ LevelEditor(void)
 	    // highlited filed (that is Me.pos) accordingly. This is done here:
 	    //
 	    HandleLevelEditorCursorKeys( cur_state );
-	    
-	    /* Undo / Redo */
-	    if ( UPressed () ) {
-		action_undo ( EditLevel );
-		while ( UPressed ( ) );
-	    }
-	    if ( RPressed () ) {
-		action_redo ( EditLevel );
-		while ( RPressed ( ) );
-	    }
 	    //--------------------
 	    // With the 'S' key, you can attach a statement for the influencer to 
 	    // say to a given location, i.e. the location the map editor cursor
@@ -5660,62 +5593,6 @@ LevelEditor(void)
 		EditLevel->StatementList[ i ].y = rintf( Me.pos.y );
 	    }
 	    
-	    //--------------------
-	    // With the 'L' key, you can edit the current map label.
-	    // The label will be assumed to be directly under the cursor.
-	    //
-	    if ( LPressed () ) action_change_map_label_user (EditLevel);
-	    
-	    
-	    //--------------------
-	    // From the level editor, it should also be possible to drop new goods
-	    // at some location via the 'G' key. (G like in Goods.)
-	    //
-	    if ( GPressed () )
-	    {
-		ItemDropFromLevelEditor(  );
-	    }
-	    
-	    //--------------------
-	    // From the level editor, it should also be possible to drop new goods
-	    // at some location via the 'G' key. (G like in Goods.)
-	    //
-	    if ( BPressed () )
-	    {
-		if ( CtrlWasPressed() )
-		    beautify_grass_tiles_on_level ( EditLevel );
-		while ( BPressed() ) SDL_Delay ( 1 ) ;
-	    }
-	    
-	    if ( TabPressed () )
-	    {
-		GameConfig . Automap_Visible = ! GameConfig . Automap_Visible ;
-		while ( TabPressed() ) SDL_Delay(1);
-	    }
-	    
-	    //--------------------
-	    // The FKEY can be used to toggle between 'floor' and 'obstacle' edit modes
-	    //
-	    if ( FPressed () )
-	    {
-		GameConfig . level_editor_edit_mode ++ ;
-		if ( GameConfig . level_editor_edit_mode >= NUMBER_OF_LEVEL_EDITOR_GROUPS )
-		    GameConfig . level_editor_edit_mode = LEVEL_EDITOR_SELECTION_FLOOR ;
-		while ( FPressed ( ) ) SDL_Delay(1);
-		Highlight = 0 ;
-		FirstBlock = 0 ;
-	    }
-	    
-	    //--------------------
-	    // If the person using the level editor decides he/she wants a different
-	    // scale for the editing process, he/she may say so by using the O/I keys.
-	    //
-	    if ( OPressed () ) 
-	    {
-		GameConfig . zoom_is_on = !GameConfig . zoom_is_on ;
-		while ( OPressed() ) SDL_Delay(1);
-	    }
-	    
 	    if ( level_editor_marked_obstacle && XPressed () )
 	    {
 		action_remove_obstacle_user ( EditLevel , level_editor_marked_obstacle );
@@ -5728,17 +5605,8 @@ LevelEditor(void)
 	    //
 	    if ( HPressed() )
 	    {
-		if ( level_editor_marked_obstacle != NULL )
-		{
 		    action_change_obstacle_label_user ( EditLevel , level_editor_marked_obstacle , NULL );
 		    while ( HPressed() ) SDL_Delay(1);
-		}
-	    }
-	    
-	    if ( NPressed() )
-	    {
-		cycle_marked_obstacle( EditLevel );		
-		while ( NPressed() ) SDL_Delay(1);
 	    }
 	    
 	    //--------------------
@@ -5760,30 +5628,6 @@ LevelEditor(void)
 	    }
 	    
 	    //--------------------
-	    // If the person using the level editor pressed r, the waypoint on 
-	    // the current square is toggled concerning random spawning of bots.
-	    //
-	    
-	    //--------------------
-	    // If the person using the level editor presses C that indicated he/she wants
-	    // a connection between waypoints.  If this is the first selected waypoint, its
-	    // an origin and the second "C"-pressed waypoint will be used a target.
-	    // If origin and destination are the same, the operation is cancelled.
-	    //
-	    if (CPressed())
-	    {
-		action_toggle_waypoint_connection_user ( EditLevel, BlockX, BlockY );
-		while (CPressed()) SDL_Delay(1);
-		fflush(stdout);
-	    }
-	    
-	    //----------------------------------------------------------------------
-	    // If the person using the level editor pressed some editing keys, insert the
-	    // corresponding map tile.  This is done in the following:
-	    //
-	    HandleMapTileEditingKeys ( EditLevel , BlockX , BlockY );
-	    
-	    //--------------------
 	    // First we find out which map square the player MIGHT wish us to operate on
 	    // via a POTENTIAL mouse click
 	    //
@@ -5797,7 +5641,7 @@ LevelEditor(void)
 	    // obstacle moving.
 	    // 
 	    if ( MPressed () && 
-		    MouseLeftPressed() && !LeftMousePressedPreviousFrame && 
+		    MouseLeftClicked() && 
 		    level_editor_marked_obstacle != NULL )
 	    {
 		    cur_state->mode = DRAG_DROP_MODE ;
@@ -5846,7 +5690,7 @@ LevelEditor(void)
 	    if ( MouseRightPressed() )
 	    {
 
-		if ( !RightMousePressedPreviousFrame )
+		if ( MouseRightClicked() )
 		{
 		    cur_state -> c_last_right_click . x = GetMousePos_x();
 		    cur_state -> c_last_right_click . y = GetMousePos_y();
@@ -5878,11 +5722,6 @@ LevelEditor(void)
 	    }
 
 
-	    if ( QPressed ( ) &&  CtrlWasPressed() )
-	    {
-		Terminate(0);
-	    }
-
 	    if ( EscapePressed() )
 	    {
 		switch ( cur_state -> mode )
@@ -5902,17 +5741,15 @@ LevelEditor(void)
 			break;
 		}
 	    }
-	    
-	    LeftMousePressedPreviousFrame = MouseLeftPressed(); 
-	    RightMousePressedPreviousFrame = MouseRightPressed() ;
-	    
 	}
 	while( EscapePressed() ) SDL_Delay(1);
 	
+	//Hack: eat all pending events.
+	input_handle();
+
 	//--------------------
 	// After Level editing is done and escape has been pressed, 
 	// display the Menu with level save options and all that.
-	//
 	if ( !level_editor_done ) level_editor_done = DoLevelEditorMainMenu ( EditLevel );
 	
     } // while (!level_editor_done)

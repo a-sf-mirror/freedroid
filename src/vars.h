@@ -186,6 +186,7 @@ char font_switchto_msgvar [ 2 ] = { 5 , 0 };
 
 int skip_initial_menus = FALSE ;
 
+
 supported_languages_t supported_languages []=  {{ .code="C", .name="English", .font_class="", .encoding="ISO-8859-15" },
 						{ .code="fr_FR", .name="French", .font_class="", .encoding="ISO-8859-15" },
 						{ .code="de_DE", .name="Deutsch", .font_class="", .encoding="ISO-8859-15" },
@@ -194,4 +195,6 @@ supported_languages_t supported_languages []=  {{ .code="C", .name="English", .f
 						{ NULL, NULL, NULL, NULL}, };
 
 int last_bot_number;
+
+enum { INSIDE_MENU = 0, INSIDE_GAME, INSIDE_LVLEDITOR } game_status;
 

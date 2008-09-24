@@ -112,14 +112,6 @@ typedef struct configuration_for_freedroid_s
     int StandardInfluencerMessages_On_Off;
     int Mouse_Input_Permitted;
 
-    //--------------------
-    // Now we add all the variables for the current screen/hud
-    // configuration:  Is inventory screen or character screen
-    // or something like that currently visible or not.
-    //
-    int Mission_Log_Visible;
-    float Mission_Log_Visible_Time;
-    float Mission_Log_Visible_Max_Time;
     int Inventory_Visible;
     int CharacterScreen_Visible;
     int SkillScreen_Visible;
@@ -143,8 +135,6 @@ typedef struct configuration_for_freedroid_s
     float delay_for_big_screen_messages ;
     int enable_cheatkeys;
     int transparency ;
-    int automap_manual_shift_x ;
-    int automap_manual_shift_y ;
     int screen_width;
     int screen_height;
     int next_time_width_of_screen;

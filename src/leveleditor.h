@@ -196,14 +196,12 @@ void action_remove_obstacle_user ( Level EditLevel, obstacle *our_obstacle);
 void action_remove_obstacle ( Level EditLevel, obstacle *our_obstacle);
 void action_toggle_waypoint ( Level EditLevel , int BlockX , int BlockY , int toggle_random_spawn );
 int action_toggle_waypoint_connection ( Level EditLevel, int id_origin, int id_target);
-void action_toggle_waypoint_connection_user ( Level EditLevel , int BlockX , int BlockY );
 void action_set_floor ( Level EditLevel, int x, int y, int type);
 void action_fill_user_recursive ( Level EditLevel, int x, int y, int type, int *changed);
 void action_fill_user ( Level EditLevel, int BlockX, int BlockY, int SpecialMapValue);
 void action_change_obstacle_label ( Level EditLevel, obstacle *obstacle, char *name);
 void action_change_obstacle_label_user ( Level EditLevel, obstacle *our_obstacle, char *predefined_name);
-void action_change_map_label ( Level EditLevel, int i, char *name );
-void action_change_map_label_user ( Level EditLevel );
+static void action_change_map_label ( Level EditLevel, int i, char *name );
 
 
 

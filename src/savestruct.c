@@ -691,9 +691,6 @@ save_float("current_gamma_correction", &(target->current_gamma_correction));
 save_int32_t("StandardEnemyMessages_On_Off", &(target->StandardEnemyMessages_On_Off));
 save_int32_t("StandardInfluencerMessages_On_Off", &(target->StandardInfluencerMessages_On_Off));
 save_int32_t("Mouse_Input_Permitted", &(target->Mouse_Input_Permitted));
-save_int32_t("Mission_Log_Visible", &(target->Mission_Log_Visible));
-save_float("Mission_Log_Visible_Time", &(target->Mission_Log_Visible_Time));
-save_float("Mission_Log_Visible_Max_Time", &(target->Mission_Log_Visible_Max_Time));
 save_int32_t("Inventory_Visible", &(target->Inventory_Visible));
 save_int32_t("CharacterScreen_Visible", &(target->CharacterScreen_Visible));
 save_int32_t("SkillScreen_Visible", &(target->SkillScreen_Visible));
@@ -716,8 +713,6 @@ save_int32_t("number_of_big_screen_messages", &(target->number_of_big_screen_mes
 save_float("delay_for_big_screen_messages", &(target->delay_for_big_screen_messages));
 save_int32_t("enable_cheatkeys", &(target->enable_cheatkeys));
 save_int32_t("transparency", &(target->transparency));
-save_int32_t("automap_manual_shift_x", &(target->automap_manual_shift_x));
-save_int32_t("automap_manual_shift_y", &(target->automap_manual_shift_y));
 save_int32_t("screen_width", &(target->screen_width));
 save_int32_t("screen_height", &(target->screen_height));
 save_int32_t("next_time_width_of_screen", &(target->next_time_width_of_screen));
@@ -759,9 +754,6 @@ read_float(pos, "current_gamma_correction",  &(target->current_gamma_correction)
 read_int32_t(pos, "StandardEnemyMessages_On_Off",  &(target->StandardEnemyMessages_On_Off));
 read_int32_t(pos, "StandardInfluencerMessages_On_Off",  &(target->StandardInfluencerMessages_On_Off));
 read_int32_t(pos, "Mouse_Input_Permitted",  &(target->Mouse_Input_Permitted));
-read_int32_t(pos, "Mission_Log_Visible",  &(target->Mission_Log_Visible));
-read_float(pos, "Mission_Log_Visible_Time",  &(target->Mission_Log_Visible_Time));
-read_float(pos, "Mission_Log_Visible_Max_Time",  &(target->Mission_Log_Visible_Max_Time));
 read_int32_t(pos, "Inventory_Visible",  &(target->Inventory_Visible));
 read_int32_t(pos, "CharacterScreen_Visible",  &(target->CharacterScreen_Visible));
 read_int32_t(pos, "SkillScreen_Visible",  &(target->SkillScreen_Visible));
@@ -784,8 +776,6 @@ read_int32_t(pos, "number_of_big_screen_messages",  &(target->number_of_big_scre
 read_float(pos, "delay_for_big_screen_messages",  &(target->delay_for_big_screen_messages));
 read_int32_t(pos, "enable_cheatkeys",  &(target->enable_cheatkeys));
 read_int32_t(pos, "transparency",  &(target->transparency));
-read_int32_t(pos, "automap_manual_shift_x",  &(target->automap_manual_shift_x));
-read_int32_t(pos, "automap_manual_shift_y",  &(target->automap_manual_shift_y));
 read_int32_t(pos, "screen_width",  &(target->screen_width));
 read_int32_t(pos, "screen_height",  &(target->screen_height));
 read_int32_t(pos, "next_time_width_of_screen",  &(target->next_time_width_of_screen));

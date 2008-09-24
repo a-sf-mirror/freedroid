@@ -87,65 +87,6 @@ There was an illegal mission diary entry number received.",
 }; // void quest_browser_enable_new_diary_entry ( int mis_num , int mis_diary_entry_num )
 
 /**
- * This function should display the currently assigned/unassigned mission
- * and all that directly over the combat screen without interrupting the
- * game in any other way.
- */
-void 
-classic_show_mission_list ( void )
-{
-    int mis_num;
-    
-    //--------------------
-    // If the log is not set to visible right now, we do not need to 
-    // do anything more
-    //
-    if ( GameConfig.Mission_Log_Visible == FALSE ) return;
-    if ( GameConfig.Mission_Log_Visible_Time >= GameConfig.Mission_Log_Visible_Max_Time ) return;
-    
-    SetCurrentFont ( FPS_Display_BFont );
-
-    //--------------------
-    // At this point we know, that the quest log is desired and
-    // therefore we display it in-game:
-    //
-    SDL_SetClipRect( Screen , NULL );
-    DisplayText( _("\n   See quest log: \n") , User_Rect.x , User_Rect.y , &User_Rect , TEXT_STRETCH );
-    
-    for ( mis_num = 0 ; mis_num < MAX_MISSIONS_IN_GAME; mis_num ++ )
-    {
-	// In case the mission does not exist at all, we need not do anything more...
-	if ( Me.AllMissions[ mis_num ].MissionExistsAtAll != TRUE ) continue;
-	
-	// In case the mission was not yet assigned, we need not do anything more...
-	// if ( Me.AllMissions[ mis_num ].MissionWasAssigned != TRUE ) continue;
-	
-	// In case the message is rather old, we need not do anything more...
-	// if ( Me.AllMissions[ mis_num ].MissionLastStatusChangeTime > 1000 ) continue;
-	
-	// At this point we know, that the mission has recently been completed or failed
-	
-	if ( Me.AllMissions[ mis_num ].MissionIsComplete == TRUE )
-	{
-	    DisplayText( _("\n* Mission completed: ") , -1 , -1 , &User_Rect , TEXT_STRETCH );
-	}
-	else if ( Me.AllMissions[ mis_num ].MissionWasFailed == TRUE )
-	{
-	    DisplayText( _("\n* Mission failed: ") , -1 , -1 , &User_Rect , TEXT_STRETCH );
-	}
-	else if ( ! Me.AllMissions[ mis_num ].MissionWasAssigned == TRUE )
-	{
-	    DisplayText( _("\n* Mission not yet assigned: ") , -1 , -1 , &User_Rect , TEXT_STRETCH );
-	}
-	else 
-	    DisplayText( _("\n* Mission assigned: ") , -1 , -1 , &User_Rect , TEXT_STRETCH );
-	
-	DisplayText( _(Me.AllMissions[ mis_num ].MissionName) , -1 , -1 , &User_Rect , TEXT_STRETCH );
-	
-    }
-}; // void classic_show_mission_list ( void )
-
-/**
  * If there is some mission selected inside the quest browser, then we
  * should also display all info on the current status and history of that
  * particular mission, which is exactly what this function is responsible
@@ -366,22 +307,24 @@ Illegal quest browser status encountered.",
 /**
  * This function manages the quest browser.
  */
-void
-quest_browser_interface ( void )
+void quest_browser_interface ( void )
 {
     int back_to_game = FALSE;
+    int old_game_status = game_status;
     static int first_call = TRUE ;
+
+    game_status = INSIDE_MENU;
 
     //--------------------
     // On the very first 
     if ( first_call )
-    {
+	{
 	first_call = FALSE ;
 	mission_description_rect . x *= (((float)GameConfig . screen_width) / 640.0 ) ;
 	mission_description_rect . y *= (((float)GameConfig . screen_height) / 480.0 ) ;
 	mission_description_rect . w *= (((float)GameConfig . screen_width) / 640.0 ) ;
 	mission_description_rect . h *= (((float)GameConfig . screen_height) / 480.0 ) ;
-    }
+	}
 
     //--------------------
     // This might take some time, so we need to be careful here,
@@ -392,16 +335,11 @@ quest_browser_interface ( void )
     make_sure_system_mouse_cursor_is_turned_off ( );
     SetCurrentFont ( FPS_Display_BFont );
 
-    while ( EscapePressed() );
-    while ( QPressed() );
-
     blit_special_background ( QUEST_BROWSER_BACKGROUND_CODE );
     StoreMenuBackground ( 1 );
 
     while ( ! back_to_game )
-    {
-	track_last_frame_input_status(); //enable use of *WasPressed functions
-	
+	{
 	SDL_Delay ( 1 ); 
 
 	RestoreMenuBackground ( 1 );
@@ -422,58 +360,53 @@ quest_browser_interface ( void )
 
 	blit_our_own_mouse_cursor();
 	our_SDL_flip_wrapper();
-	    
-	if ( QPressed()  || EscapePressed() )
-	{
-	    while ( QPressed() || EscapePressed() ) SDL_Delay(1);
-	    back_to_game = TRUE ;
+	save_mouse_state();
+
+	SDL_Event event;
+
+	SDL_WaitEvent(&event);
+
+	if (event.type == SDL_KEYDOWN) {
+
+	    if (event.key.keysym.sym == SDLK_ESCAPE || event.key.keysym.sym == SDLK_q) {
+		back_to_game = TRUE ;
+	    }
 	}
 
-	if ( MouseLeftPressed() || SpacePressed() )
-	{
+	if (MouseLeftClicked())	{
 	    if ( MouseCursorIsOnButton ( QUEST_BROWSER_OPEN_QUESTS_BUTTON , GetMousePos_x() , GetMousePos_y() ) )
-	    {
+		{
 		current_quest_browser_mode = QUEST_BROWSER_SHOW_OPEN_MISSIONS ;
 		mission_list_scroll_override_from_user = 0 ;
-		while ( MouseLeftPressed() ) SDL_Delay(1);
-	    }
+		}
 	    if ( MouseCursorIsOnButton ( QUEST_BROWSER_DONE_QUESTS_BUTTON , GetMousePos_x() , GetMousePos_y() ) )
-	    {
+		{
 		current_quest_browser_mode = QUEST_BROWSER_SHOW_DONE_MISSIONS ;
 		mission_list_scroll_override_from_user = 0 ;
-		while ( MouseLeftPressed() ) SDL_Delay(1);
-	    }
+		}
 	    if ( MouseCursorIsOnButton ( QUEST_BROWSER_NOTES_BUTTON , GetMousePos_x() , GetMousePos_y() ) )
-	    {
+		{
 		current_quest_browser_mode = QUEST_BROWSER_SHOW_NOTES ;
 		mission_list_scroll_override_from_user = 0 ;
-		while ( MouseLeftPressed() ) SDL_Delay(1);
-	    }
+		}
 	    if ( MouseCursorIsOnButton ( QUEST_BROWSER_SCROLL_UP_BUTTON , GetMousePos_x() , GetMousePos_y() ) )
-	    {
+		{
 		mission_list_scroll_override_from_user -- ;
 		if ( mission_list_scroll_override_from_user < 0 )
-		    mission_list_scroll_override_from_user = 0; 
-		while ( MouseLeftPressed() ) SDL_Delay(1);
-	    }
+		    mission_list_scroll_override_from_user = 0;
+		}
 	    if ( MouseCursorIsOnButton ( QUEST_BROWSER_SCROLL_DOWN_BUTTON , GetMousePos_x() , GetMousePos_y() ) )
-	    {
+		{
 		mission_list_scroll_override_from_user ++ ;
-		while ( MouseLeftPressed() ) SDL_Delay(1);
-	    }
+		}
 
-            if ( MouseCursorIsOnButton ( QUEST_BROWSER_EXIT_BUTTON , GetMousePos_x() , GetMousePos_y() ) )
-	    {
+	    if ( MouseCursorIsOnButton ( QUEST_BROWSER_EXIT_BUTTON , GetMousePos_x() , GetMousePos_y() ) )
+		{
 		back_to_game = TRUE ;
-		while ( MouseLeftPressed() ) SDL_Delay(1);
-	    }
-
-
+		}
 	}
-
-	    
-    }
-
+	}
+    game_status = old_game_status;
 }; // void quest_browser_interface ( void )
 
 
@@ -668,8 +601,6 @@ CheckIfMissionIsComplete (void)
 	    // AT THIS POINT WE KNOW THAT ALL OF THE GIVEN TARGETS FOR THIS MISSION ARE FULLFILLED
 	    // We therefore mark the mission as completed
 	    //
-	    GameConfig.Mission_Log_Visible_Time = 0;
-	    GameConfig.Mission_Log_Visible = TRUE;
 	    Me.AllMissions[ mis_num ].MissionIsComplete = TRUE;
 	    Mission_Status_Change_Sound ( );
 	    for ( ActionNum = 0 ; ActionNum < MAX_MISSION_TRIGGERED_ACTIONS ; ActionNum ++ )
@@ -704,8 +635,6 @@ There was a mission number received that is outside the range of allowed values.
     }
     
     Mission_Status_Change_Sound ( );
-    GameConfig.Mission_Log_Visible = TRUE;
-    GameConfig.Mission_Log_Visible_Time = 0;
     Me . AllMissions [ MissNum ] . MissionWasAssigned = TRUE;
     
     for ( j = 0 ; j < MAX_MISSION_TRIGGERED_ACTIONS ; j ++ )
