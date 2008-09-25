@@ -29,6 +29,8 @@
 
 #define _saveloadgame_c
 
+#include <langinfo.h>
+
 #include "system.h"
 
 #include "defs.h"
@@ -117,8 +119,6 @@ LoadAndShowStats ( char* CoreFilename )
     char InfoString[5000];
     struct tm *LocalTimeSplitup;
     long int FileSize;
-    char* month_names[] = { _("Jan") , _("Feb") , _("Mar") , _("Apr") , _("May") , _("Jun") ,
-                            _("Jul") , _("Aug") , _("Sep") , _("Oct") , _("Nov") , _("Dec") };
 
     if ( ! our_config_dir )
 	return;
@@ -143,13 +143,9 @@ or file permissions of ~/.freedroid_rpg are somehow not right.",
     };
     
     LocalTimeSplitup = localtime ( & ( FileInfoBuffer.st_mtime ) ) ;
-    sprintf( InfoString , "%d %s %02d %02d:%02d" , 
-	     1900 + LocalTimeSplitup->tm_year ,
-	     month_names [ LocalTimeSplitup->tm_mon ] ,
-	     LocalTimeSplitup->tm_mday ,
-	     LocalTimeSplitup->tm_hour ,
-	     LocalTimeSplitup->tm_min );
-    
+    setlocale(LC_ALL, supported_languages[GameConfig.language].code);
+    strftime (InfoString, sizeof(InfoString), nl_langinfo (D_T_FMT), LocalTimeSplitup);
+
     PutString ( Screen , 240 , GameConfig . screen_height - 3 * FontHeight ( GetCurrentFont () ) , _("Last Modified:") );
     PutString ( Screen , 240 , GameConfig . screen_height - 2 * FontHeight ( GetCurrentFont () ) , InfoString );
     
