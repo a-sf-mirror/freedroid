@@ -132,7 +132,7 @@ char* AllSkillTexts [ NUMBER_OF_SKILL_LEVELS ] =
     N_("experienced"),
     N_("skilled"),
     N_("adept"),
-    N_("masterful"),
+    N_("masterly"),
     N_("inhuman"),
     N_("god-like"),
     N_("super-god-like"),
