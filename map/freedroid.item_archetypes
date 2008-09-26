@@ -11,7 +11,7 @@ Copyright (c) 2007 Stefan Huszics
  *       - Ranged                                                                       *
  *       - Grenades/bombs                                                               *
  *       - Droids & NPC                                                                 *
- *     Armour                                                                           *
+ *     Armor                                                                           *
  *     Potions                                                                          *
  *     Books                                                                            *
  *     Other                                                                            *
@@ -207,7 +207,7 @@ inventory_size_x=1
 inventory_size_y=4
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=100
-Item description text=_"Long reach while remaining maneuverable enough in combat to find the weak spots in droid armour are the advantages that partially makes up for the inability of a cutting blade to incur lots of damage on a heavily protected target. Repeatedly striking at metal quickly damages the blade though."
+Item description text=_"Long reach while remaining maneuverable enough in combat to find the weak spots in droid armor are the advantages that partially makes up for the inability of a cutting blade to incur lots of damage on a heavily protected target. Repeatedly striking at metal quickly damages the blade though."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.550000
 Item as gun: reloading time=0.000000
@@ -245,7 +245,7 @@ inventory_size_x=2
 inventory_size_y=5
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=300
-Item description text=_"The size and kinetic force achievable with this 2 handed sword is enough to cleave straight through the armour of a low level droid. The strain on the sword from high impact hits into metall will however require frequent maintenance to not have it break in half exactly when it's most needed."
+Item description text=_"The size and kinetic force achievable with this 2 handed sword is enough to cleave straight through the armor of a low level droid. The strain on the sword from high impact hits into metall will however require frequent maintenance to not have it break in half exactly when it's most needed."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.800000
 Item as gun: reloading time=0.000000
@@ -283,7 +283,7 @@ inventory_size_x=2
 inventory_size_y=4
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=500
-Item description text=_"Quite efficient at separating limbs off even a droid body or digging through weaker armoured parts to cause massive damage on internal electronics. But the chain wears out very quickly when used on materials harder than wood and supply shortages of new chains and other parts makes it expensive to maintain."
+Item description text=_"Quite efficient at separating limbs off even a droid body or digging through weaker armored parts to cause massive damage on internal electronics. But the chain wears out very quickly when used on materials harder than wood and supply shortages of new chains and other parts makes it expensive to maintain."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.150000
 Item as gun: reloading time=0.000000
@@ -529,7 +529,7 @@ inventory_size_x=1
 inventory_size_y=3
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=30
-Item description text=_"A medium sized water pipe from iron can turn into an effective weapon even vs a metal opponent. While not likely to penetrate the armour of a bot, the impact force alone can still damage and shake loose circuit boards and weldings beneath the protective metal layer."
+Item description text=_"A medium sized water pipe from iron can turn into an effective weapon even vs a metal opponent. While not likely to penetrate the armor of a bot, the impact force alone can still damage and shake loose circuit boards and weldings beneath the protective metal layer."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.750000
 Item as gun: reloading time=0.000000
@@ -796,7 +796,7 @@ inventory_size_x=1
 inventory_size_y=3
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=180
-Item description text=_"The mace proved already on the medieval battlefield that it was good at crushing even heavily armoured skulls. Unfortunately for the droids this old knowledge still holds true."
+Item description text=_"The mace proved already on the medieval battlefield that it was good at crushing even heavily armored skulls. Unfortunately for the droids this old knowledge still holds true."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.800000
 Item as gun: reloading time=0.000000
@@ -1115,7 +1115,7 @@ inventory_size_x=2
 inventory_size_y=1
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=4
-Item description text=_".22 Long Rifle ammunition used to be a very common ammo for targetpratice, mainly because it was cheap and gave little recoil. It's just too weak to penetrate any real droid armour though."
+Item description text=_".22 Long Rifle ammunition used to be a very common ammo for targetpratice, mainly because it was cheap and gave little recoil. It's just too weak to penetrate any real droid armor though."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
@@ -2756,7 +2756,7 @@ Item as gun: weapon requires both hands="yes"
 
 
 /**********************************************************************************************************
- *       Armour                                                                                           *
+ *       Armor                                                                                           *
  *         - Body                                                                                         *
  *         - Head                                                                                         *
  *         - Hand                                                                                         *

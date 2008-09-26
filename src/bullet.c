@@ -690,7 +690,7 @@ apply_bullet_damage_to_player ( int damage, int owner )
     if ( MyRandom(100) / monster_level >= Me . lv_1_bot_will_hit_percentage )
     {
 	Me . TextVisibleTime = 0 ;
-	Me . TextToBeDisplayed = _("That one went into the armour.");
+	Me . TextToBeDisplayed = _("That one went into the armor.");
 	DamageProtectiveEquipment ( ) ;
 	BulletReflectedSound ( ) ;
     }

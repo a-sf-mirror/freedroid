@@ -216,7 +216,7 @@ exist really (i.e. has a type = (-1) ).",
     //
     if ( CurItem->ac_bonus )
     {
-	sprintf( linebuf , _("Armour: %d"), CurItem->ac_bonus );
+	sprintf( linebuf , _("Armor: %d"), CurItem->ac_bonus );
 	strcat( ItemDescText , linebuf );
 	if ( !ForShop ) strcat( ItemDescText , " \n " );
     }
@@ -503,7 +503,7 @@ exist really (i.e. has a type = (-1) ).",
 		    }
 		    AppendToLine = TRUE;
 		    if ( CurItem->bonus_to_ac_or_damage > 0 ) strcat( ItemDescText , "+" );
-		    sprintf( linebuf , _("%d%% to armour") , CurItem->bonus_to_ac_or_damage );
+		    sprintf( linebuf , _("%d%% to armor") , CurItem->bonus_to_ac_or_damage );
 		    strcat( ItemDescText , linebuf );
 		}
 		if ( ItemMap [ CurItem->type ].base_item_gun_damage )
