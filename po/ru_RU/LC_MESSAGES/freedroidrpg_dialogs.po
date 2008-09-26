@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: freedroidrpg_dialogs\n"
 "Report-Msgid-Bugs-To: CHANGE THIS TOO\n"
-"POT-Creation-Date: 2008-09-14 19:38+0000\n"
+"POT-Creation-Date: 2008-09-26 16:20+0000\n"
 "PO-Revision-Date: 2008-09-06 16:38+0000\n"
 "Last-Translator: Dmitry Tumaikin <nevly@mail.ru>\n"
 "Language-Team: Russian\n"
@@ -1995,6 +1995,16 @@ msgstr "Они сказали, что уже переплавили его в топливо для ядерного реактора."
 #: ../dialogs/DocMoore.dialog:300 ../dialogs/Duncan.dialog:297
 msgid "See you later."
 msgstr "Увидимся позже."
+
+#: ../dialogs/StandardBotAfterTakeover.dialog:33
+#, fuzzy
+msgid ""
+"Login : tux  Password : *******\n"
+"Last login from dev/ttyS0 on Sun, 23 mar 2057.\n"
+"tux@hacked_bot: ~ #"
+msgstr ""
+"Последнее посещение было зарегистрировано на /dev/ttyS0 в субботу 23 mar "
+"2057. admin@sadefence: ~ #"
 
 #: ../dialogs/StandardBotAfterTakeover.dialog:46
 msgid " ./pull_breaks.sh"

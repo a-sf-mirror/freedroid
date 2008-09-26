@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: freedroidrpg_dialogs\n"
 "Report-Msgid-Bugs-To: CHANGE THIS TOO\n"
-"POT-Creation-Date: 2008-09-14 19:38+0000\n"
+"POT-Creation-Date: 2008-09-26 16:20+0000\n"
 "PO-Revision-Date: 2008-09-12 20:51+0000\n"
 "Last-Translator: Arthur Huillet <arthur.huillet@free.fr>\n"
 "Language-Team: <en@li.org>\n"
@@ -2040,6 +2040,15 @@ msgstr ""
 #: ../dialogs/DocMoore.dialog:300 ../dialogs/Duncan.dialog:297
 msgid "See you later."
 msgstr "À plus tard."
+
+#: ../dialogs/StandardBotAfterTakeover.dialog:33
+#, fuzzy
+msgid ""
+"Login : tux  Password : *******\n"
+"Last login from dev/ttyS0 on Sun, 23 mar 2057.\n"
+"tux@hacked_bot: ~ #"
+msgstr ""
+"Dernière connexion depuis dev/ttyS0 le Dim, 23 mar 2057. admin@sadefence: ~ #"
 
 #: ../dialogs/StandardBotAfterTakeover.dialog:46
 msgid " ./pull_breaks.sh"
@@ -10042,11 +10051,6 @@ msgstr ""
 #~ msgstr ""
 #~ "Tu as encore besoin de beaucoup travailler pour gagner ton équipage. "
 #~ "Bonne chance."
-
-#~ msgid "Last login from dev/ttyS0 on Sun, 23 mar 2057. admin@sadefence: ~ #"
-#~ msgstr ""
-#~ "Dernière connexion depuis dev/ttyS0 le Dim, 23 mar 2057. admin@sadefence: "
-#~ "~ #"
 
 #~ msgid "Connecting to perepherial controller..."
 #~ msgstr "Connexion au contrôleur périphérique..."
