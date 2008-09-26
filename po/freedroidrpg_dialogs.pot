@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CHANGE THIS\n"
 "Report-Msgid-Bugs-To: CHANGE THIS TOO\n"
-"POT-Creation-Date: 2008-09-14 19:38+0000\n"
-"PO-Revision-Date: 2008-09-14 19:38+0000\n"
+"POT-Creation-Date: 2008-09-26 16:20+0000\n"
+"PO-Revision-Date: 2008-09-26 16:20+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -1753,6 +1753,12 @@ msgstr ""
 #: ../dialogs/DocMoore.dialog:300
 #: ../dialogs/Duncan.dialog:297
 msgid "See you later."
+msgstr ""
+
+#: ../dialogs/StandardBotAfterTakeover.dialog:33
+msgid ""
+"Login : tux  Password : *******\nLast login from dev/ttyS0 on Sun, 23 mar 2057"
+".\ntux@hacked_bot: ~ #"
 msgstr ""
 
 #: ../dialogs/StandardBotAfterTakeover.dialog:46
