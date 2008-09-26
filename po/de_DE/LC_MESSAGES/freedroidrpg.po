@@ -1160,7 +1160,7 @@ msgid "Analyze one item\n"
 msgstr "Einen Gegenstand analysieren\n"
 
 #: ../src/hud.c:307
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Teleports you to a safe place or\n"
 " back to your previous position\n"
@@ -1188,7 +1188,7 @@ msgid "Recover Running Power\n"
 msgstr "Lauf-Ausdauer wiederherstellen\n"
 
 #: ../src/hud.c:327
-#, fuzzy, c-format
+#, c-format
 msgid "Temporary Boost to Strength\n"
 msgstr "Temporärer Stärkebonus\n"
 
@@ -1288,9 +1288,9 @@ msgid "%0.1f heating per second"
 msgstr "%0.1f Erhitzung pro Sekunde"
 
 #: ../src/hud.c:471
-#, fuzzy, c-format
+#, c-format
 msgid "%d Force"
-msgstr "%d Force??"
+msgstr "%d Kraft"
 
 #: ../src/hud.c:480
 #, c-format
@@ -1719,7 +1719,6 @@ msgid "Updating Tux images"
 msgstr "Tux-Images werden aktualisiert..."
 
 #: ../src/init.c:2030
-#, fuzzy
 msgid "(this may take a little while...)"
 msgstr "(das könnte einen Moment dauern...)"
 
@@ -2455,7 +2454,6 @@ msgid "Exit FreedroidRPG"
 msgstr "FreedroidRPG beenden"
 
 #: ../src/menu.c:1425
-#, fuzzy
 msgid ""
 "\n"
 "You cannot change the language\n"
@@ -2467,9 +2465,11 @@ msgid ""
 "    Thank you\n"
 msgstr ""
 "\n"
-"Die Sprache kann unter Windows\n"
-"nicht geändert werden. FreedroidRPG\n"
-"nutzt die Systemeinstellungen für Sie.\n"
+"Sie können die Sprache unter Windows\n"
+"oder Mac OS X nicht ändern.\n"
+"\n"
+"FreedroidRPG verwendet einfach die\n"
+"Sprache Ihres Systems.\n"
 "\n"
 "    Vielen Dank\n"
 
@@ -3138,12 +3138,12 @@ msgid "Damage: %c%d-%d%c "
 msgstr "Schaden: %c%d-%d%c "
 
 #: ../src/skills.c:819
-#, fuzzy, c-format
+#, c-format
 msgid "Healing: %c%d%c "
 msgstr "Heilung: %c%d%c "
 
 #: ../src/skills.c:821
-#, fuzzy, c-format
+#, c-format
 msgid "Healing: %c%d-%d%c "
 msgstr "Heilung: %c%d-%d%c "
 
@@ -3189,7 +3189,6 @@ msgstr ""
 "Durch die erfolgreiche Übernahme des Gegners gewinnst du %d Erfahrungspunkte."
 
 #: ../src/takeover.c:345
-#, fuzzy
 msgid "You cheat"
 msgstr "Du schummelst"
 
@@ -3283,7 +3282,6 @@ msgid "adept"
 msgstr "Könner"
 
 #: ../src/vars.h:135
-#, fuzzy
 msgid "masterly"
 msgstr "meisterlich"
 
