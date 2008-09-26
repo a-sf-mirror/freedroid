@@ -1004,7 +1004,7 @@ smash_obstacles_only_on_tile ( float x , float y , int map_x , int map_y )
 	    target_obstacle -> type = ISO_BLOOD_1 ; // something harmless concerning collisions
 	    if ( ! DirectLineColldet ( x , y , 
 					Me . pos . x , Me . pos . y , 
-					Me . pos . z ) )
+					Me . pos . z, NULL ) )
 	    {
 		target_obstacle -> type = stored_target_obstacle_type ;
 		continue;
@@ -3408,96 +3408,6 @@ is not really an autogun.  Instead it's something else.",
 }; // void WorkLevelGuns ( void )
 
 /**
- *
- *
- */
-int
-position_collides_with_this_obstacle ( float x , float y , obstacle* our_obstacle )
-{
-    int obs_type = our_obstacle -> type ;
-    
-    //--------------------
-    // First we check for non-existent obstacle.
-    //
-    if ( obs_type <= -1 ) return ( FALSE );
-    
-    //--------------------
-    // Now we check if maybe it's a door.  Doors should get ignored, 
-    // if the global ignore_doors_for_collisions flag is set.  This
-    // flag is introduced the reduce function overhead, especially
-    // in the recursions used here and there.
-    //
-    if ( global_ignore_doors_for_collisions_flag )
-    {
-	if ( ( obs_type >= ISO_H_DOOR_000_OPEN ) && ( obs_type <= ISO_V_DOOR_100_OPEN ) )
-	    return ( FALSE );
-	if ( ( obs_type >= ISO_OUTER_DOOR_V_00 ) && ( obs_type <= ISO_OUTER_DOOR_H_100 ) )
-	    return ( FALSE );
-    }
-    
-    //--------------------
-    // If the obstacle doesn't even have a collision rectangle, then
-    // of course it's easy, cause then there can't be any collsision
-    //
-    if ( obstacle_map [ obs_type ] . block_area_type == COLLISION_TYPE_NONE )
-	return ( FALSE );
-    
-    if ( ( ! ( obstacle_map [ obs_type ] . flags & BLOCKS_VISION_TOO) ) && ( global_check_for_light_only_collisions_flag ) )
-	return ( FALSE );
-    
-    /*
-      if ( obstacle_map [ obs_type ] . block_area_type != COLLISION_TYPE_RECTANGLE )
-      {
-      fprintf ( stderr, "\n\nCollision_area_type: %d.\n" , obstacle_map [ obs_type ] . block_area_type );
-      ErrorMessage ( __FUNCTION__  , "\
-      Error:  Unsupported type of collision area given.",
-      PLEASE_INFORM, IS_FATAL );
-      }
-    */
-    
-    //--------------------
-    // Now if the position lies inside the collision rectangle, then there's
-    // a collion.  Otherwise not.
-    //
-    if ( ( x > our_obstacle -> pos . x + obstacle_map [ obs_type ] . upper_border ) && 
-	 ( x < our_obstacle -> pos . x + obstacle_map [ obs_type ] . lower_border ) && 
-	 ( y > our_obstacle -> pos . y + obstacle_map [ obs_type ] . left_border ) && 
-	 ( y < our_obstacle -> pos . y + obstacle_map [ obs_type ] . right_border ) )
-	return ( TRUE );
-    
-    return ( FALSE );
-
-}; // int position_collides_with_this_obstacle ( float x , float y , obstacle* our_obstacle )
-
-/**
- * This function is called 100k times per frame in a labyrinth. Speak of tight loops.
- *
- */
-inline int 
-position_collides_with_obstacles_on_square ( float x, float y , int x_tile , int y_tile , Level PassLevel )
-{
-  int glue_index;
-  int obstacle_index;
-
-  //--------------------
-  // We take a look whether the position given in the parameter is 
-  // blocked by an obstacle glued close to this square...
-  //
-  for ( glue_index = 0 ; glue_index < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE ; glue_index ++ )
-    {
-      if ( PassLevel -> map [ y_tile ] [ x_tile ] . obstacles_glued_to_here [ glue_index ] == (-1) ) break;
-      obstacle_index = PassLevel -> map [ y_tile ] [ x_tile ] . obstacles_glued_to_here [ glue_index ] ;
-
-      if ( position_collides_with_this_obstacle ( x , y , & ( PassLevel -> obstacle_list [ obstacle_index ] ) ) ) 
-	return TRUE;
-    }
-
-  return ( FALSE ) ;
-  
-}; // int position_collides_with_obstacles_on_square ( int x , int y )
-
-
-/**
  * This function determines wether a given object on x/y is visible to
  * the 001 or not (due to some walls or something in between
  * 
@@ -3524,9 +3434,11 @@ IsVisible ( GPS objpos )
   // -10th-frame-only code could be added here later... and in the meantime
   // old values could be used from a stored flag?!
   //
-  return ( DirectLineVisible( objpos -> x , objpos -> y ,
+  colldet_filter filterVnF = { FilterVisibleCallback, NULL, &FilterFlyable };
+  return ( DirectLineColldet( objpos -> x , objpos -> y ,
 			       Me . pos . x , Me . pos . y , 
-			       objpos -> z ) )  ;
+			       objpos -> z,
+			       &filterVnF ) )  ;
 
 }; // int IsVisible( Point objpos )
 

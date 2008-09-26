@@ -955,4 +955,12 @@ typedef struct supported_languages_s
     char * encoding;
 } supported_languages_t;
 
+typedef struct colldet_filter_s
+{
+	int (*callback)(struct colldet_filter_s* filter, obstacle* obs);
+	void* data;
+	struct colldet_filter_s* next;
+} 
+colldet_filter;
+
 #endif

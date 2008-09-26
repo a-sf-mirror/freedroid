@@ -105,44 +105,48 @@ static inline float calc_distance_seg_point_normalized ( float x1, float y1, flo
 }
 
 /**
- * This function is supposed to find out if a given line on an
- * arbitrarily chosen map can be walked by a bot or not.
+ * This colldet filter is used to ignore the obstacles (such as doors)
+ * that can be traversed by walking bot.
  */
-int
-DirectLineWalkable ( float x1, float y1 , float x2 , float y2, int z )
+int FilterWalkableCallback(colldet_filter* this, obstacle* obs)
 {
-    global_ignore_doors_for_collisions_flag = TRUE ;
-    int rtn = DirectLineColldet ( x1 , y1 , x2 , y2 , z );
-	global_ignore_doors_for_collisions_flag = FALSE ;
-	return ( rtn );
-}; // int DirectLineWalkable ( float x1, float y1 , float x2 , float y2, int z )
+	if ( ( ISO_H_DOOR_000_OPEN <= obs->type ) && ( obs->type <= ISO_V_DOOR_100_OPEN ) ) return TRUE;
+	if ( ( ISO_OUTER_DOOR_V_00 <= obs->type ) && ( obs->type <= ISO_OUTER_DOOR_H_100 ) ) return TRUE;
+
+	if (this->next) return(this->next->callback(this->next, obs));
+	
+	return FALSE;
+}
+colldet_filter FilterWalkable = { FilterWalkableCallback, NULL, NULL };
 
 /**
- * This function is supposed to find out if a given line on an
- * arbitrarily chosen map can be traversed by a flying object.
+ * This colldet filter is used to ignore the obstacles (such as water)
+ * that can be traversed by a flying object.
  */
-int
-DirectLineFlyable ( float x1, float y1 , float x2 , float y2, int z )
+int FilterFlyableCallback(colldet_filter* this, obstacle* obs)
 {
-	global_ignore_ground_level_objects_flag = TRUE ;
-    int rtn = DirectLineColldet ( x1 , y1 , x2 , y2 , z );
-    global_ignore_ground_level_objects_flag = FALSE ;
-	return ( rtn );
-}; // int DirectLineFlyable ( float x1, float y1 , float x2 , float y2, int z )
+	if ( obstacle_map[obs->type].flags & GROUND_LEVEL ) return TRUE;
+
+	if (this->next) return(this->next->callback(this->next, obs));
+	
+	return FALSE;
+}
+colldet_filter FilterFlyable = { FilterFlyableCallback, NULL, NULL };
 
 /**
- * This function is supposed to find out if a given line on an
- * arbitrarily chosen map can be traversed by light.
+ * This colldet filter is used to ignore the obstacles
+ * that can be traversed by light.
  * Thus, it merely checks for visibility.
  */
-int
-DirectLineVisible ( float x1, float y1 , float x2 , float y2, int z )
+int FilterVisibleCallback(colldet_filter* this, obstacle* obs)
 {
-	global_check_for_light_only_collisions_flag = TRUE ;
-    int rtn = DirectLineColldet ( x1 , y1 , x2 , y2 , z );
-    global_check_for_light_only_collisions_flag = FALSE ;
-	return ( rtn );
-}; // int DirectLineVisible ( float x1, float y1 , float x2 , float y2, int z )
+	if ( ! ( obstacle_map[obs->type].flags & BLOCKS_VISION_TOO) ) return TRUE;
+
+	if (this->next) return(this->next->callback(this->next, obs));
+	
+	return FALSE;
+}
+colldet_filter FilterVisible = { FilterVisibleCallback, NULL, NULL };
 
 /**
  * This function checks if the connection between two points is free of
@@ -207,31 +211,18 @@ static inline char get_point_flag ( float xmin, float ymin, float xmax, float ym
 	return out;
 }
 
-int IsPassable ( float x, float y, int z )
+/**
+ * This function checks if a given position is free of obstacles
+ */
+int SinglePointColldet ( float x, float y, int z, colldet_filter* filter )
 {
-    return DirectLineColldet (x, y, x, y, z);
-}
+    return DirectLineColldet (x, y, x, y, z, filter);
+} // int SinglePointColldet ( float x, float y, int z, colldet_filter* filter )
 
-int IsPassableForDroid ( float x, float y, int z )
-{
-    global_ignore_doors_for_collisions_flag = TRUE;
-    int a = DirectLineColldet (x, y, x, y, z);
-    global_ignore_doors_for_collisions_flag = FALSE;
-    return a;
-}
-
-int IsPassableForFlyingObj ( float x , float y , int z )
-{
-	global_ignore_ground_level_objects_flag = TRUE;
-	int a = DirectLineColldet (x, y, x, y, z);
-	global_ignore_ground_level_objects_flag = FALSE;
-	return a;
-}
-
-/** This function checks if the line can be walked along directly against obstacles.
+/** This function checks if the line can be traversed along directly against obstacles.
  * It also handles the case of point tests (x1 == x2 && y1 == y2) properly.
  */
-int DirectLineColldet ( float x1, float y1, float x2, float y2, int z)
+int DirectLineColldet ( float x1, float y1, float x2, float y2, int z, colldet_filter* filter)
 {
 
     //Browse all obstacles around the rectangle
@@ -252,10 +243,10 @@ int DirectLineColldet ( float x1, float y1, float x2, float y2, int z)
 
 	char ispoint = ( (x1 == x2) && (y1 == y2) );
 
+	for ( y_tile = y_tile_start; y_tile <= y_tile_end; y_tile ++ )
+	{
     for ( x_tile = x_tile_start; x_tile <= x_tile_end; x_tile ++ )
 	{
-	for ( y_tile = y_tile_start; y_tile <= y_tile_end; y_tile ++ )
-	    {
 	    // We can list all obstacles here  
 	    int glue_index;
 	    
@@ -264,31 +255,10 @@ int DirectLineColldet ( float x1, float y1, float x2, float y2, int z)
 		int obstacle_index = PassLevel -> map [ y_tile ] [ x_tile ] . obstacles_glued_to_here [ glue_index ] ;
 		
 		if ( obstacle_index == (-1) ) break;
+				
 		obstacle * our_obs = &(PassLevel -> obstacle_list [ obstacle_index ]);
 
-		//--------------------
-		// Now we check if maybe it's a door.  Doors should get ignored, 
-		// if the global ignore_doors_for_collisions flag is set.  This
-		// flag is introduced the reduce function overhead, especially
-		// in the recursions used here and there.
-		//
-		if ( global_ignore_doors_for_collisions_flag )
-		    {
-		    if ( ( our_obs->type >= ISO_H_DOOR_000_OPEN ) && ( our_obs->type <= ISO_V_DOOR_100_OPEN ) )
-			continue;
-		    if ( ( our_obs->type >= ISO_OUTER_DOOR_V_00 ) && ( our_obs->type <= ISO_OUTER_DOOR_H_100 ) )
-			continue;
-		    }
-
-		//--------------------
-		// Some items (such as bullets) can fly over ground level obstacles (such a water)
-		//
-		if ( global_ignore_ground_level_objects_flag && (obstacle_map[our_obs->type].flags & GROUND_LEVEL) )
-			continue;
-
-
-		if ( ( ! ( obstacle_map [ our_obs->type ] . flags & BLOCKS_VISION_TOO) ) && ( global_check_for_light_only_collisions_flag ) )
-		    continue;
+		if ( filter && filter->callback(filter, our_obs) ) continue;
 
 		// If the obstacle doesn't even have a collision rectangle, then
 		// of course it's easy, cause then there can't be any collsision
@@ -337,11 +307,171 @@ int DirectLineColldet ( float x1, float y1, float x2, float y2, int z)
 
 		}
 
+	    } //for x_tile
 	    } //for y_tile
-	} //for x_tile
 
     return TRUE;
 
 }
+
+/**************************************************************
+ * Bots and Tux escaping code
+ */
+
+/**
+ * Small structure used to sort a list of directions
+ * (Used during escaping)
+ */
+struct dist_elt {
+	float value;
+	unsigned char direction;
+};
+
+/**
+ * Comparison function of two dist_elt.
+ * (Used by qsort during escaping)
+ */
+static int
+cmp_dist_elt( const void* elt1, const void* elt2 )
+{
+	return ( ((struct dist_elt*)elt1)->value - ((struct dist_elt*)elt1)->value );
+}
+/**
+ * Move a character outside of a collision rectangle.
+ * (Used during escaping)
+ * We have no idea of where the character came from and where it was going to
+ * when it gets stuck.
+ * Thus, we assume that the character is actually quite near a free position.
+ * We will then test each rectangle's edges, starting from the closest one.
+ */
+int
+MoveOutOfObstacle( float* posX, float* posY, int posZ, obstacle* ThisObstacle, colldet_filter* filter )
+{
+	enum { RIGHT, DOWN, LEFT, TOP };
+	unsigned int i;
+	moderately_finepoint new_pos = { 0.5, 0.5 };
+
+	//--------------------
+	// Construct a sorted list of distance between character's position and the rectangle's edges
+	//
+	moderately_finepoint rect1 = { ThisObstacle->pos.x + obstacle_map[ThisObstacle->type]. upper_border,
+	                               ThisObstacle->pos.y + obstacle_map[ThisObstacle->type]. left_border };
+	moderately_finepoint rect2 = { ThisObstacle->pos.x + obstacle_map[ThisObstacle->type]. lower_border,
+	                               ThisObstacle->pos.y + obstacle_map[ThisObstacle->type]. right_border };
+
+	struct dist_elt dist_arr[] = { { rect2.x - (*posX), RIGHT },
+	                               { (*posX) - rect1.x, LEFT  },
+	                               { rect2.y - (*posY), TOP   },
+	                               { (*posY) - rect1.y, DOWN  }
+	};
+
+	qsort(dist_arr, 4, sizeof(struct dist_elt), cmp_dist_elt);
+
+	//--------------------
+	// Check each direction of the sorted list
+	//
+	for ( i=0; i<5; ++i )
+	{
+		switch (dist_arr[i].direction)
+		{
+		case(RIGHT):
+		{
+			new_pos.x = rect2.x + 0.01; // small increment to really be outside the rectangle
+			new_pos.y = *posY;
+			break;
+		}
+		case (DOWN):
+		{
+			new_pos.x = *posX;
+			new_pos.y = rect1.y - 0.01;
+			break;
+		}
+		case (LEFT):
+		{
+			new_pos.x = rect1.x - 0.01;
+			new_pos.y = *posY;
+			break;
+		}
+		case (TOP):
+		{
+			new_pos.x = *posX;
+			new_pos.y = rect2.y + 0.01;
+			break;
+		}
+		}
+		if ( SinglePointColldet(new_pos.x, new_pos.y, posZ, filter) )
+		{ // got a free position -> move the character and returns
+			*posX = new_pos.x;
+			*posY = new_pos.y;
+			return TRUE;
+		}
+	}
+
+	// No free position was found outside the obstacle ???
+	// The caller will need to find a fallback
+	//
+	return FALSE;
+
+} // void MoveOutOfObstacle( float* posX, float* posY, int posZ, obstacle* ThisObstacle )
+
+/**
+ * This function escapes a character from an obstacle, by
+ * computing a new position
+ */
+int EscapeFromObstacle( float* posX, float* posY, int posZ, colldet_filter* filter )
+{
+	int start_x, end_x, start_y, end_y;
+	int x , y , i, obst_index ;
+	Level ThisLevel;
+
+	start_x = (int)(*posX) - 2;
+	start_y = (int)(*posY) - 2;
+	end_x = start_x + 4;
+	end_y = start_y + 4;
+
+	ThisLevel = curShip.AllLevels[posZ] ;
+
+	if ( start_x < 0 ) start_x = 0 ;
+	if ( start_y < 0 ) start_y = 0 ;
+	if ( end_x >= ThisLevel->xlen ) end_x = ThisLevel->xlen - 1 ;
+	if ( end_y >= ThisLevel->ylen ) end_y = ThisLevel->ylen - 1 ;
+
+	for ( y = start_y; y < end_y; ++y )
+	{
+		for ( x = start_x; x < end_x; ++x )
+		{
+			for ( i = 0 ; i < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE ; ++i )
+			{
+				if ( ThisLevel->map[y][x].obstacles_glued_to_here[i] == (-1) ) break;
+
+				obst_index = ThisLevel->map[y][x].obstacles_glued_to_here[i];
+				
+				obstacle* our_obs = &(ThisLevel->obstacle_list[obst_index]);
+
+				if ( filter && filter->callback(filter, our_obs) ) continue;
+
+				// If the obstacle doesn't even have a collision rectangle, then
+				// of course it's easy, cause then there can't be any collsision
+				//
+				if ( obstacle_map[our_obs->type].block_area_type == COLLISION_TYPE_NONE ) continue;
+
+				//--------------------
+				// Now if the position lies inside the collision rectangle, then there's
+				// a collision.
+				//
+				if ( ( *posX > our_obs->pos.x + obstacle_map[our_obs->type].upper_border ) && 
+					 ( *posX < our_obs->pos.x + obstacle_map[our_obs->type].lower_border ) && 
+					 ( *posY > our_obs->pos.y + obstacle_map[our_obs->type].left_border ) && 
+					 ( *posY < our_obs->pos.y + obstacle_map[our_obs->type].right_border ) )
+				{
+					// Find a new position for the character
+					return MoveOutOfObstacle( posX, posY, posZ, our_obs, filter );
+				}
+			}
+		}
+	}
+
+	return FALSE;
+} // int EscapeFromObstacle( float* posX, float* posY, int posZ, colldet_filter* filter )
 
 #undef _colldet_c

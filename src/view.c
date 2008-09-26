@@ -1909,18 +1909,6 @@ AssembleCombatPicture ( int mask )
     //
     update_light_list ( );
     
-    //--------------------
-    // Within all of this display code, we only check for LIGHT as far
-    // as 'passability' is concerned.  Outside of this function, we'll
-    // always check for real material collisions.  Accordingly we set
-    // and unset the following flag at the beginning/ending of this
-    // function respectively.
-    // (I know that this is not considered a perfectly 'clean' method,
-    //  but since collision checks are _most_ time-critical, I think
-    //  we can live with it this time...)
-    //
-    global_check_for_light_only_collisions_flag = TRUE ;
-
     isometric_show_floor_around_tux_without_doublebuffering ( mask );
 
     draw_grid_on_the_floor( mask );
@@ -1956,18 +1944,6 @@ AssembleCombatPicture ( int mask )
 	if ( mask & DO_SCREEN_UPDATE ) 
 	    our_SDL_update_rect_wrapper( Screen , 0 , 0 , Screen -> w , Screen -> h );
 	
-	//--------------------
-	// Within all of this display code, we only check for LIGHT as far
-	// as 'passability' is concerned.  Outside of this function, we'll
-	// always check for real material collisions.  Accordingly we set
-	// and unset the following flag at the beginning/ending AND OF COURSE
-	// AT ANY RETURN COMMAND of this
-	// function respectively.
-	// (I know that this is not considered a perfectly 'clean' method,
-	//  but since collision checks are _most_ time-critical, I think
-	//  we can live with it this time...)
-	//
-	global_check_for_light_only_collisions_flag = FALSE ;
 	return;
     }
     
@@ -2072,19 +2048,6 @@ AssembleCombatPicture ( int mask )
     {
 	our_SDL_update_rect_wrapper( Screen , 0 , 0 , Screen -> w , Screen -> h );
     }
-
-    //--------------------
-    // Within all of this display code, we only check for LIGHT as far
-    // as 'passability' is concerned.  Outside of this function, we'll
-    // always check for real material collisions.  Accordingly we set
-    // and unset the following flag at the beginning/ending AND OF COURSE
-    // AT ANY RETURN COMMAND of this
-    // function respectively.
-    // (I know that this is not considered a perfectly 'clean' method,
-    //  but since collision checks are _most_ time-critical, I think
-    //  we can live with it this time...)
-    //
-    global_check_for_light_only_collisions_flag = FALSE ;
 
     DebugPrintf ( 2 , "\n%s(): done with display code again." , __FUNCTION__ );
 

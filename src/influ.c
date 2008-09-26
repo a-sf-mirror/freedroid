@@ -199,7 +199,7 @@ throw_out_all_chest_content ( int obst_index )
 
   // Maybe generate a random item to be dropped
   int tries = 0;
-  while ( ! IsPassable( Me . pos . x + throw_out_offset_vector . x, Me . pos . y + throw_out_offset_vector . y, Me . pos . z)  && tries < 40)
+  while ( ! SinglePointColldet( Me . pos . x + throw_out_offset_vector . x, Me . pos . y + throw_out_offset_vector . y, Me . pos . z, NULL)  && tries < 40)
 	{
 	RotateVectorByAngle ( &throw_out_offset_vector, 10 );
 	tries ++;
@@ -658,7 +658,7 @@ correct_tux_position_according_to_jump_thresholds ( )
 	    Me . mouse_move_target . y += curShip . AllLevels [ Me . pos . z ] -> ylen ;
 	    
 	    DebugPrintf (  LEVEL_JUMP_DEBUG , "\nJUMP TO THE NORTH:  target translated:  y=%f!" , Me . mouse_move_target . y );
-	    if ( !IsPassable ( Me . mouse_move_target . x , Me . mouse_move_target . y , Me . mouse_move_target . z ) )
+	    if ( !SinglePointColldet ( Me . mouse_move_target . x , Me . mouse_move_target . y , Me . mouse_move_target . z, NULL ) )
 	    {
 		Me . mouse_move_target . x = ( -1 ) ;
 		Me . mouse_move_target . y = ( -1 ) ;
@@ -722,7 +722,7 @@ correct_tux_position_according_to_jump_thresholds ( )
 	    Me . mouse_move_target . y += 0 ;
 	    
 	    DebugPrintf ( LEVEL_JUMP_DEBUG , "\nJUMP TO THE SOUTH:  target translated to y=%f!" ,  Me . mouse_move_target . y );
-	    if ( ! IsPassable ( Me . mouse_move_target . x , Me . mouse_move_target . y , Me . mouse_move_target . z ) )
+	    if ( ! SinglePointColldet ( Me . mouse_move_target . x , Me . mouse_move_target . y , Me . mouse_move_target . z, NULL ) )
 	    {
 		Me . mouse_move_target . x = ( -1 ) ;
 		Me . mouse_move_target . y = ( -1 ) ;
@@ -785,7 +785,7 @@ correct_tux_position_according_to_jump_thresholds ( )
 	    Me . mouse_move_target . x += 0 ;
 	    
 	    DebugPrintf ( LEVEL_JUMP_DEBUG , "\nJUMP TO THE EAST:  target translated to x=%f!" ,  Me . mouse_move_target . x );
-	    if ( ! IsPassable ( Me . mouse_move_target . x , Me . mouse_move_target . y , Me . mouse_move_target . z ) )
+	    if ( ! SinglePointColldet ( Me . mouse_move_target . x , Me . mouse_move_target . y , Me . mouse_move_target . z, NULL ) )
 	    {
 		Me . mouse_move_target . x = ( -1 ) ;
 		Me . mouse_move_target . y = ( -1 ) ;
@@ -842,7 +842,7 @@ correct_tux_position_according_to_jump_thresholds ( )
 	    Me . mouse_move_target . x += curShip . AllLevels [ Me . pos . z ] -> xlen ;
 	    
 	    DebugPrintf (  LEVEL_JUMP_DEBUG , "\nJUMP TO THE NORTH:  target translated:  x=%f!" , Me . mouse_move_target . x );
-	    if ( ! IsPassable ( Me . mouse_move_target . x , Me . mouse_move_target . y , Me . mouse_move_target . z ) )
+	    if ( ! SinglePointColldet ( Me . mouse_move_target . x , Me . mouse_move_target . y , Me . mouse_move_target . z, NULL ) )
 	    {
 		Me . mouse_move_target . x = ( -1 ) ;
 		Me . mouse_move_target . y = ( -1 ) ;
@@ -1060,82 +1060,6 @@ tux_get_move_target_and_attack ( moderately_finepoint * movetgt )
 }; // void UpdateMouseMoveTargetAccoringToEnemy ( )
 
 /**
- *
- *
- */
-void
-move_tux_out_of_obstacle ( obstacle* ThisObstacle )
-{
-  moderately_finepoint out_vect;
-  float v_len;
-
-  //--------------------
-  // We find the vector pointing outwards from the obstacle center,
-  // so we know in which direction to move the Tux
-  //
-  out_vect . x = Me . pos . x - ThisObstacle -> pos . x ;
-  out_vect . y = Me . pos . y - ThisObstacle -> pos . y ;
-
-  //--------------------
-  // Determining vector length and taking precautions against
-  // division by zero
-  //
-  v_len = vect_len ( out_vect );
-  if ( v_len < 0.01 ) v_len = 0.01;
-  
-  //--------------------
-  // We norm the outward vector length to 1.0
-  //
-  out_vect . x = out_vect . x / v_len ;
-  out_vect . y = out_vect . y / v_len ;
-
-  //--------------------
-  // We set the outwards speed to 1/2
-  //
-  out_vect . x *= 0.5 ;
-  out_vect . y *= 0.5 ;
-
-  //--------------------
-  // Now we can fix the Tux position.  Of course this again
-  // has to take into account the current framerate...
-  //
-  Me . pos . x += out_vect . x * Frame_Time();
-  Me . pos . y += out_vect . y * Frame_Time();
-
-}; // void move_tux_out_of_obstacle ( obstacle* ThisObstacle )
-
-/**
- *
- *
- */
-void
-move_tux_out_of_obstacles_on_square ( int x , int y )
-{
-  Level ThisLevel = curShip . AllLevels [ Me . pos . z ] ;
-  int obst_index;
-  int i;
-  
-  for ( i = 0 ; i < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE ; i ++ )
-    {
-      if ( ThisLevel -> map [ y ] [ x ] . obstacles_glued_to_here [ i ] == (-1) )
-	{
-	  DebugPrintf ( -3 , "\nFALLBACK:  Last obstacle on correction-square reached...breaking..." );
-	  break;
-	}
-      obst_index = ThisLevel -> map [ y ] [ x ] . obstacles_glued_to_here [ i ] ;
-
-      if ( position_collides_with_this_obstacle ( Me . pos . x , 
-						  Me . pos . y , 
-						  & ( ThisLevel -> obstacle_list [ obst_index ] ) ) )
-	{
-	  DebugPrintf ( -3 , "\nFALLBACK:  One offending obstacle found.  Fixing Tux position..." );
-	  move_tux_out_of_obstacle ( & ( ThisLevel -> obstacle_list [ obst_index ] ) );
-	}
-    }
-  
-}; // void move_tux_out_of_obstacles_on_square ( int x , int y )
-
-/**
  * Self-explanatory.
  * This function also takes into account any conveyor belts the Tux might
  * be standing on.
@@ -1145,9 +1069,6 @@ MoveTuxAccordingToHisSpeed ( )
 {
   float planned_step_x;
   float planned_step_y;
-  int start_x, end_x, start_y, end_y;
-  int x , y ;
-  Level ThisLevel;
 
   //--------------------
   // Now we move influence according to current speed.  But there has been a problem
@@ -1161,7 +1082,6 @@ MoveTuxAccordingToHisSpeed ( )
   //
   planned_step_x = Me . speed . x * Frame_Time ();
   planned_step_y = Me . speed . y * Frame_Time ();
-
 
   //--------------------
   // Maybe the Tux is just executing a weapon strike.  In this case, there should
@@ -1188,43 +1108,54 @@ MoveTuxAccordingToHisSpeed ( )
       //--------------------
       // So there is no speed, so we check for passability...
       //
-      if ( ! IsPassableForDroid ( Me . pos . x , Me . pos . y , Me . pos . z ) )
+		if ( ! SinglePointColldet( Me . pos . x , Me . pos . y , Me . pos . z, &FilterWalkable ) )
 	{
 	  //--------------------
 	  // Now it's time to launch the stuck-fallback handling...
 	  //
-	  DebugPrintf ( -3 , "\nTux looks stuck...ENABLING FALLBACK just for this frame..." );
-
-	  start_x = (int) Me . pos . x - 2 ;
-	  start_y = (int) Me . pos . y - 2 ;
-	  end_x = start_x + 4 ;
-	  end_y = start_y + 4 ;
-
-	  ThisLevel = curShip . AllLevels [ Me . pos . z ] ;
-
-	  if ( start_x < 0 ) start_x = 0 ;
-	  if ( start_y < 0 ) start_y = 0 ;
-	  if ( end_x >= ThisLevel -> xlen ) end_x = ThisLevel -> xlen - 1 ;
-	  if ( end_y >= ThisLevel -> ylen ) end_y = ThisLevel -> ylen - 1 ;
-
-	  //--------------------
-	  //
-	  for ( x = start_x ; x < end_x ; x ++ )
-	    {
-	      for ( y = start_y ; y < end_y ; y ++ )
+			DebugPrintf ( -3 , "\nTux looks stuck...ESCAPING just for this frame..." );
+			float new_x = Me.pos.x;
+			float new_y = Me.pos.y;
+			int rtn = EscapeFromObstacle( &new_x, &new_y, Me.pos.z, &FilterWalkable);
+			if ( !rtn ) 
+			{
+				DebugPrintf( -3, "\nNo escape position found around Tux... Looking in position history...");
+				// First : look for a suitable position in Tux's position_history
+				int i;
+				float old_x;
+				float old_y;
+				for (i=1; i<10; i++) 
+				{
+					if ( GetInfluPositionHistoryZ(10*i) == Me.pos.z )
+					{
+						old_x = GetInfluPositionHistoryX(10*i);
+						old_y = GetInfluPositionHistoryY(10*i);
+						if ( old_x != Me.pos.x && old_y != Me.pos.y && SinglePointColldet(old_x, old_y, Me.pos.z, &FilterWalkable) )
+						{
+							// Found...
+							Me.pos.x = old_x;
+							Me.pos.y = old_y;
+							break;
+						}
+					}
+				}
+				// If no luck, last fallback
+				if ( i == 10 )
+				{
+					DebugPrintf( -3, "\nNo luck with position_history, last fallback...");
+					// Get a random direction, and move by random length from 0.5 to 1.5.
+					// With some luck, Tux will escape now, or in the future tries
+					Me.pos.x += (0.5 + (float)MyRandom(10)/10.0) * (MyRandom(10)<5)?(1):(-1);
+					Me.pos.y += (0.5 + (float)MyRandom(10)/10.0) * (MyRandom(10)<5)?(1):(-1);
+				}
+			}
+			else 
 		{
-		  if ( position_collides_with_obstacles_on_square ( Me . pos . x , 
-								    Me . pos . y , 
-								    x , y , ThisLevel ) )
-		    {
-		      DebugPrintf ( -3, "\nFALLBACK: It seems like we got the offending square.  Starting check..." );
-		      
-		      move_tux_out_of_obstacles_on_square ( x , y );
+				Me.pos.x = new_x;
+				Me.pos.y = new_y;
 		    }
 		}
 	    }
-	}
-    }
 
   //--------------------
   // Even the Tux must not leave the map!  A sanity check is done
@@ -1384,11 +1315,10 @@ streamline_intermediate_course ( enemy * droid, gps * curpos, moderately_finepoi
 	  //--------------------
 	  // Otherwise we check if maybe this is (another) reachable intermediate point (AGAIN?)
 	  //
-	  if ( DirectLineWalkable ( waypoints [ start_index ] . x ,
-					waypoints [ start_index ] . y ,
-					waypoints [ scan_index ] . x ,
-				        waypoints [ scan_index ] . y,
-				        curpos->z ) )
+	  if ( DirectLineColldet ( waypoints[start_index].x, waypoints[start_index].y,
+					           waypoints[scan_index].x, waypoints[scan_index].y,
+				               curpos->z,
+				               &FilterWalkable) )
 	    {
 	      if ( CheckIfWayIsFreeOfDroids ( FALSE, waypoints [ start_index ] . x ,
 								waypoints [ start_index ] . y ,
@@ -1441,10 +1371,10 @@ streamline_intermediate_course ( enemy * droid, gps * curpos, moderately_finepoi
   if ( waypoints [ 1 ] . x == -1 )
       return; 
 
-  if ( ( DirectLineWalkable ( curpos-> x, curpos-> y ,
+  if ( DirectLineColldet ( curpos->x, curpos->y ,
                               waypoints [ 1 ] . x ,  waypoints [ 1 ] . y,
-                              curpos->z) ) &&
-       ( waypoints [ 1 ] . x != (-1) ) )
+                           curpos->z, 
+                           &FilterWalkable) )
     {
       if ( CheckIfWayIsFreeOfDroids ( FALSE, curpos->x ,
 							curpos-> y ,
@@ -1499,7 +1429,7 @@ recursive_find_walkable_point ( enemy * droid, int levelnum, float x1 , float y1
     // go any further, but instead we select the current position as the preliminary
     // walkable target for the Tux.
     //
-    if ( ( DirectLineWalkable ( x1, y1 , x2 , y2, levelnum ) ) &&
+    if ( ( DirectLineColldet( x1, y1 , x2 , y2, levelnum, &FilterWalkable ) ) &&
 	    ( CheckIfWayIsFreeOfDroids ( FALSE, x1 , y1 , x2 , y2 , levelnum, droid ) ) ) 
 	{
 	// if the target position is directly reachable
@@ -1605,7 +1535,7 @@ recursive_find_walkable_point ( enemy * droid, int levelnum, float x1 , float y1
         float centered_y = rintf ( y1 + ordered_moves [ i ] . y + 0.5 ) - 0.5;
 
 	if ( ( recursion_grid [ (int) ( centered_x ) ] [ (int) ( centered_y ) ] == TILE_IS_UNPROCESSED ) &&
-	     ( DirectLineWalkable ( x1, y1, centered_x, centered_y, levelnum ) ) )
+	     ( DirectLineColldet( x1, y1, centered_x, centered_y, levelnum, &FilterWalkable ) ) )
 	{
 	    if ( ( CheckIfWayIsFreeOfDroids ( FALSE, x1, y1, centered_x, centered_y, levelnum , droid ) ) )
 	    {
@@ -1704,9 +1634,7 @@ set_up_intermediate_course_between_positions ( enemy * droid, gps * curpos, mode
     // If the target position cannot be reached at all, because of being inside an obstacle
     // for example, then we know what to do:  Set up one waypoint to the target and that's it.
     //
-    if ( ! IsPassableForDroid ( move_target -> x ,
-			move_target -> y ,
-			curpos -> z) )
+    if ( ! SinglePointColldet ( move_target -> x , move_target -> y , curpos -> z, &FilterWalkable) )
     {
 	//DebugPrintf ( -1 , "\nSKIPPING RECURSION BECAUSE OF UNREACHABLENESS! %d: %f/%f ->  %f/%f %d, bot %#x\n", curpos->z,curpos->x, curpos->y, move_target->x, move_target->y, curpos->z, droid );
 	return ( FALSE ) ;
@@ -2810,7 +2738,7 @@ BROWSE_LEVEL_BOTS_SAFE(erot, nerot, Me.pos.z)
 	{
 	    if ( ( fabsf ( erot-> pos . x - Weapon_Target_Vector.x ) > 0.5 ) ||
 	    	 ( fabsf ( erot-> pos . y - Weapon_Target_Vector.y ) > 0.5 ) ||
-	         !DirectLineColldet(Me.pos.x, Me.pos.y, erot->pos.x, erot->pos.y, Me.pos.z)
+	         !DirectLineColldet(Me.pos.x, Me.pos.y, erot->pos.x, erot->pos.y, Me.pos.z, NULL)
 	       )
 		continue;
 
@@ -3060,7 +2988,7 @@ void check_for_items_to_pickup ( int index_of_item_under_mouse_cursor )
 	// some walls or something...
 	//
 	if (( calc_euklid_distance( Me . pos . x, Me . pos . y, our_level -> ItemList [ index_of_item_under_mouse_cursor ] . pos .x, our_level -> ItemList [ index_of_item_under_mouse_cursor ] . pos . y ) < ITEM_TAKE_DIST ) && 
-		DirectLineColldet ( our_level -> ItemList [ index_of_item_under_mouse_cursor ] . pos . x , our_level -> ItemList [ index_of_item_under_mouse_cursor ] . pos . y , Me . pos . x , Me . pos . y , Me . pos . z ) )
+		DirectLineColldet ( our_level -> ItemList [ index_of_item_under_mouse_cursor ] . pos . x , our_level -> ItemList [ index_of_item_under_mouse_cursor ] . pos . y , Me . pos . x , Me . pos . y , Me . pos . z, NULL ) )
 	    {
 	    if ( GameConfig.Inventory_Visible == FALSE || MatchItemWithName(our_level -> ItemList [ index_of_item_under_mouse_cursor ] . type, "Cyberbucks") )
 		{
@@ -3150,8 +3078,11 @@ check_for_barrels_to_smash ( int barrel_index )
 	    
 	    for ( i = 0 ; i < 8 ; i ++ )
 	    {
-		if ( DirectLineWalkable( Me.pos.x, Me.pos.y,our_level -> obstacle_list [ barrel_index ] . pos . x + step_vector . x ,
-				  our_level -> obstacle_list [ barrel_index ] . pos . y + step_vector . y, Me.pos.z ) )
+		if ( DirectLineColldet( Me.pos.x, Me.pos.y,
+				                our_level->obstacle_list[barrel_index].pos.x + step_vector.x ,
+				                our_level->obstacle_list[barrel_index].pos.y + step_vector.y, 
+				                Me.pos.z, 
+				                &FilterWalkable ) )
 		{
 		    //--------------------
 		    // The obstacle plus the step vector give us the position to move the
@@ -3217,9 +3148,10 @@ check_for_barrels_to_smash ( int barrel_index )
 			                               step_vector . y * ( half_size . y + 0.2  );
 
 			// check if the line from point_near_barrel to point_away_from_barrel is walkable
-			if ( DirectLineWalkable( point_near_barrel . x, point_near_barrel . y,
+			if ( DirectLineColldet( point_near_barrel.x, point_near_barrel.y,
 			                         point_away_from_barrel . x, point_away_from_barrel . y,
-			                         Me . pos . z) )
+			                        Me.pos.z, 
+			                        &FilterWalkable) )
 			{
 				//--------------------
 				// point_to_barrel seems good, move Tux there

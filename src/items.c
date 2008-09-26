@@ -1688,7 +1688,7 @@ DropHeldItemToTheFloor ( void )
     y = translate_pixel_to_map_location ( input_axis.x , 
 					  input_axis.y , FALSE ) ;
 
-    if ( DirectLineColldet ( Me . pos . x, Me . pos . y,  x, y,  Me . pos . z ) )
+    if ( DirectLineColldet ( Me . pos . x, Me . pos . y,  x, y,  Me . pos . z, NULL ) )
 	    DropItemToTheFloor ( DropItemPointer , x , y , Me . pos . z ) ;
     else  {
 	fprintf(stderr, "Item drop failed because position is invalid.\n");
@@ -2219,7 +2219,7 @@ HandleInventoryScreen ( void )
 		    ( fabsf( MapPositionOfMouse . y - Me . pos . y ) < ITEM_TAKE_DIST ) &&
 		    DirectLineColldet ( PlayerLevel -> ItemList [ index_of_item_under_mouse_cursor ] . pos . x , PlayerLevel -> ItemList [ index_of_item_under_mouse_cursor ] . pos . y ,
 			Me . pos . x , Me . pos . y ,
-			Me . pos . z ) )
+			Me . pos . z, NULL ) )
 		{
 		if ( GameConfig.Inventory_Visible == FALSE || MatchItemWithName(PlayerLevel -> ItemList [ index_of_item_under_mouse_cursor ] . type, "Cyberbucks") )
 		    {

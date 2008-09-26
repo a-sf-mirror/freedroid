@@ -633,9 +633,10 @@ set_new_waypointless_walk_target ( enemy* ThisRobot, moderately_finepoint * mt)
 
 	}
 
-    if ( DirectLineWalkable ( ThisRobot -> pos . x , ThisRobot -> pos . y ,
+    if ( DirectLineColldet ( ThisRobot -> pos . x , ThisRobot -> pos . y ,
 		                      target_candidate . x , target_candidate . y,
-		                      ThisRobot -> pos . z ) )
+		                     ThisRobot -> pos . z,
+		                     &FilterWalkable) )
 	{
 	mt -> x = target_candidate . x ;
 	mt -> y = target_candidate . y ;
@@ -1017,152 +1018,6 @@ enemy_say_current_state_on_screen ( enemy* ThisRobot )
 }; // void enemy_say_current_state_on_screen ( enemy* ThisRobot )
 
 /**
- * Small structure used to sort a list of directions
- * (Used during bot escape)
- */
-struct dist_elt {
-	float value;
-	unsigned char direction;
-};
-
-/**
- * Comparison function of two dist_elt.
- * (Used by qsort during bot escape)
- */
-int
-cmp_dist_elt( const void* elt1, const void* elt2 )
-{
-	return ( ((struct dist_elt*)elt1)->value - ((struct dist_elt*)elt1)->value );
-}
-/**
- * Move a robot outside of a collision rectangle.
- * (Used during bot escape)
- * We have no idea of where the bot came from and where it was going to
- * when it gets stuck.
- * Thus, we assume that the bot is actually quite near a free position.
- * We will then test each rectangle's edges, starting from the closest one.
- */
-void
-move_enemy_out_of_obstacle( enemy* ThisRobot, obstacle* ThisObstacle )
-{
-	enum { RIGHT, DOWN, LEFT, TOP };
-	unsigned int i;
-	moderately_finepoint new_pos = { 0.5, 0.5 };
-
-	//--------------------
-	// Construct a sorted list of distance between bot position and the rectangle's edges
-	//
-	moderately_finepoint rect1 = { ThisObstacle -> pos . x + obstacle_map [ ThisObstacle->type ] . upper_border,
-	                               ThisObstacle -> pos . y + obstacle_map [ ThisObstacle->type ] . left_border };
-	moderately_finepoint rect2 = { ThisObstacle -> pos . x + obstacle_map [ ThisObstacle->type ] . lower_border,
-	                               ThisObstacle -> pos . y + obstacle_map [ ThisObstacle->type ] . right_border };
-
-	struct dist_elt dist_arr[] = { { rect2.x - ThisRobot->pos.x, RIGHT },
-	                               { ThisRobot->pos.x - rect1.x, LEFT  },
-	                               { rect2.y - ThisRobot->pos.y, TOP   },
-	                               { ThisRobot->pos.y - rect1.y, DOWN  }
-	};
-
-	qsort(dist_arr, 4, sizeof(struct dist_elt), cmp_dist_elt);
-
-	//--------------------
-	// Check each direction of the sorted list
-	//
-	for ( i=0; i<5; ++i )
-	{
-		switch (dist_arr[i].direction)
-		{
-		case(RIGHT):
-		{
-			new_pos.x = rect2.x + 0.01; // small increment to really be outside the rectangle
-			new_pos.y = ThisRobot->pos.y;
-			break;
-		}
-		case (DOWN):
-		{
-			new_pos.x = ThisRobot->pos.x;
-			new_pos.y = rect1.y - 0.01;
-			break;
-		}
-		case (LEFT):
-		{
-			new_pos.x = rect1.x - 0.01;
-			new_pos.y = ThisRobot->pos.y;
-			break;
-		}
-		case (TOP):
-		{
-			new_pos.x = ThisRobot->pos.x;
-			new_pos.y = rect2.y + 0.01;
-			break;
-		}
-		}
-		if ( IsPassableForDroid(new_pos.x, new_pos.y, ThisRobot->pos.z) )
-		{ // got a free position -> move the bot and returns
-			ThisRobot->pos.x = new_pos.x;
-			ThisRobot->pos.y = new_pos.y;
-			return;
-		}
-	}
-
-	// No free position was found outside the obstacle ???
-	// It should not happens, but since we want the bot to escape in any situation, just have a last fallback
-	//
-	ThisRobot->pos.x = curShip.AllLevels[ThisRobot->pos.z]->AllWaypoints[ThisRobot->nextwaypoint].x;
-	ThisRobot->pos.y = curShip.AllLevels[ThisRobot->pos.z]->AllWaypoints[ThisRobot->nextwaypoint].y;
-
-}; // void move_enemy_out_of_obstacle( enemy* ThisRobot, obstacle* ThisObstacle )
-
-/**
- * If a bot is stuck (see enemy_handle_stuck_in_walls()), this function will escape it
- * by moving the bot outside the obstacle.
- * This is an adapted copy of the code used to escape the Tux (see MoveTuxAccordingToHisSpeed())
- */
-void
-escape_enemy( enemy* ThisRobot )
-{
-	int start_x, end_x, start_y, end_y;
-	int x , y , i, obst_index ;
-	Level ThisLevel;
-
-	start_x = (int)(ThisRobot->pos.x) - 2;
-	start_y = (int)(ThisRobot->pos.y) - 2;
-	end_x = start_x + 4;
-	end_y = start_y + 4;
-
-	ThisLevel = curShip.AllLevels[ThisRobot->pos.z] ;
-
-	if ( start_x < 0 ) start_x = 0 ;
-	if ( start_y < 0 ) start_y = 0 ;
-	if ( end_x >= ThisLevel->xlen ) end_x = ThisLevel->xlen - 1 ;
-	if ( end_y >= ThisLevel->ylen ) end_y = ThisLevel->ylen - 1 ;
-
-	//--------------------
-	//
-	for ( x = start_x; x < end_x; ++x )
-	{
-		for ( y = start_y; y < end_y; ++y )
-		{
-			for ( i = 0 ; i < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE ; ++i )
-			{
-				if ( ThisLevel-> map[y][x].obstacles_glued_to_here[i] == (-1) ) break;
-
-				obst_index = ThisLevel->map[y][x].obstacles_glued_to_here[i];
-
-				if ( position_collides_with_this_obstacle( ThisRobot->pos.x, ThisRobot->pos.y,
-						&(ThisLevel->obstacle_list[obst_index]) ) )
-				{
-					// Find a new position for the bot
-					move_enemy_out_of_obstacle( ThisRobot, &(ThisLevel->obstacle_list[obst_index]) );
-					// Ask the bot to start selecting a new path
-					ThisRobot->combat_state = SELECT_NEW_WAYPOINT;
-				}
-			}
-		}
-	}
-} // void escape_enemy( enemy* ThisRobot )
-
-/**
  * Some robots (currently) tend to get stuck in walls.  This is an 
  * annoying bug case we have not yet been able to eliminate completely.
  * To provide some safety against this case, some extra fallback handling
@@ -1192,7 +1047,7 @@ enemy_handle_stuck_in_walls ( enemy* ThisRobot )
     // First we take a look if this bot is currently stuck in a
     // wall somewhere.
     //
-    if ( !IsPassableForDroid ( ThisRobot -> pos . x , ThisRobot -> pos . y , ThisRobot -> pos.z ) )
+    if ( !SinglePointColldet ( ThisRobot -> pos . x , ThisRobot -> pos . y , ThisRobot -> pos.z, &FilterWalkable ) )
     {
 	    //--------------------
 	    // So at this point we know, that we have a bot that is stuck right now,
@@ -1220,7 +1075,16 @@ enemy_handle_stuck_in_walls ( enemy* ThisRobot )
 	    DebugPrintf ( -2 , "\nnextwaypoint=%d. lastwaypoint=%d. combat_%s." ,
 			  ThisRobot -> nextwaypoint , ThisRobot -> lastwaypoint , 
 			  ThisRobot -> TextToBeDisplayed );
-	    escape_enemy( ThisRobot );
+	    
+	    if ( !EscapeFromObstacle( &(ThisRobot->pos.x), &(ThisRobot->pos.y), ThisRobot->pos.z, &FilterWalkable) )
+	    {
+	    	// No free position was found outside the obstacle ???
+	    	// It should not happen but since we want the bot to escape in any situation, just have a last fallback
+	    	//
+	    	ThisRobot->pos.x = curShip.AllLevels[ThisRobot->pos.z]->AllWaypoints[ThisRobot->nextwaypoint].x;
+	    	ThisRobot->pos.y = curShip.AllLevels[ThisRobot->pos.z]->AllWaypoints[ThisRobot->nextwaypoint].y;	    	
+	    }
+	    ThisRobot -> combat_state = SELECT_NEW_WAYPOINT;
 	    ThisRobot -> bot_stuck_in_wall_at_previous_check = TRUE ; 
 	    return;
     }
@@ -1516,7 +1380,7 @@ static void state_machine_situational_transitions ( enemy * ThisRobot, const mod
 
 
     /* Switch to stop_and_eye_target if appropriate - it's the prelude to any-on-any attacks */
-    if ( vect_to_target -> x != - 1000 && DirectLineVisible ( ThisRobot->pos.x + vect_to_target->x , ThisRobot->pos.y + vect_to_target->y, ThisRobot -> pos . x , ThisRobot -> pos . y, ThisRobot->pos.z ) )
+    if ( vect_to_target -> x != - 1000 && DirectLineColldet ( ThisRobot->pos.x + vect_to_target->x , ThisRobot->pos.y + vect_to_target->y, ThisRobot -> pos . x , ThisRobot -> pos . y, ThisRobot->pos.z, &FilterVisible ) )
 	{
 	    ThisRobot -> combat_state = STOP_AND_EYE_TARGET;
 	}
@@ -1570,7 +1434,7 @@ static void state_machine_stop_and_eye_target ( enemy * ThisRobot, moderately_fi
     if ( ThisRobot -> state_timeout > Druidmap [ ThisRobot -> type ] . time_spent_eyeing_tux ) 
 	{
 	ThisRobot -> state_timeout = 0;
-   	if ( !ThisRobot -> attack_run_only_when_direct_line || DirectLineColldet ( ThisRobot->pos.x , ThisRobot->pos.y, tpos->x , tpos->y , ThisRobot->pos.z ) )
+   	if ( !ThisRobot -> attack_run_only_when_direct_line || DirectLineColldet ( ThisRobot->pos.x , ThisRobot->pos.y, tpos->x , tpos->y , ThisRobot->pos.z, NULL ) )
 	    {
 	    SetRestOfGroupToState ( ThisRobot , ATTACK );
 	    ThisRobot -> combat_state = ATTACK ;
@@ -1612,7 +1476,7 @@ static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_m
 	}
 
     float dist2 = (ThisRobot -> virt_pos . x - tpos -> x) * (ThisRobot -> virt_pos . x - tpos -> x) + (ThisRobot -> virt_pos . y - tpos -> y) * (ThisRobot -> virt_pos . y - tpos -> y);
-    int target_visible = DirectLineVisible ( ThisRobot->virt_pos.x, ThisRobot->virt_pos.y, tpos->x, tpos->y, tpos->z);
+    int target_visible = DirectLineColldet ( ThisRobot->virt_pos.x, ThisRobot->virt_pos.y, tpos->x, tpos->y, tpos->z, &FilterVisible);
     int melee_weapon = ItemMap [ Druidmap [ ThisRobot -> type ] . weapon_item . type ] . item_weapon_is_melee;
 
     //--------------------
@@ -1678,9 +1542,9 @@ static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_m
 		   RotateVectorByAngle ( &test_t, angles_to_try[a] );
 
 		   if ( melee_weapon )
-		       target_reachable = DirectLineWalkable ( ThisRobot->virt_pos.x, ThisRobot->virt_pos.y, tpos->x, tpos->y, tpos->z);
+		       target_reachable = DirectLineColldet( ThisRobot->virt_pos.x, ThisRobot->virt_pos.y, tpos->x, tpos->y, tpos->z, &FilterWalkable);
 		   else
-		       target_reachable = DirectLineFlyable ( ThisRobot->virt_pos.x, ThisRobot->virt_pos.y, tpos->x, tpos->y, tpos->z);
+		       target_reachable = DirectLineColldet ( ThisRobot->virt_pos.x, ThisRobot->virt_pos.y, tpos->x, tpos->y, tpos->z, &FilterFlyable);
 
 		   if ( target_reachable &&
                         CheckIfWayIsFreeOfDroids(FALSE, tmp.x, tmp.y, tmp.x + test_t.x, tmp.y + test_t.y, ThisRobot->pos.z, ThisRobot) 
@@ -2311,7 +2175,7 @@ ConsideredMoveIsFeasible ( Enemy ThisRobot , moderately_finepoint StepVector )
 {
     if ( ( DirectLineColldet ( ThisRobot -> pos.x, ThisRobot -> pos.y, ThisRobot -> pos.x + StepVector.x ,
 			ThisRobot -> pos.y + StepVector.y ,
-			ThisRobot -> pos.z ) ) && 
+			ThisRobot -> pos.z, NULL ) ) && 
 	 ( CheckIfWayIsFreeOfDroids ( TRUE, ThisRobot->pos.x , ThisRobot->pos.y , 
 						     ThisRobot->pos.x + StepVector . x , 
 						     ThisRobot->pos.y + StepVector . y ,
@@ -2386,7 +2250,7 @@ MoveAwayFromMeleeCombat ( Enemy ThisRobot , moderately_finepoint * set_move_tgt 
 	//
 	if ( /*XXX*/ ConsideredMoveIsFeasible ( ThisRobot , RotatedStepVector ) &&
 	             DirectLineColldet( ThisRobot->virt_pos.x + RotatedStepVector.x, ThisRobot->virt_pos.y + RotatedStepVector.y,
-	                                 VictimPosition.x, VictimPosition.y, ThisRobot->pos.z )
+	                                 VictimPosition.x, VictimPosition.y, ThisRobot->pos.z, NULL )
 	   )
 	{
 	    set_move_tgt -> x = ThisRobot -> pos.x + RotatedStepVector . x ;

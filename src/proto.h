@@ -376,8 +376,6 @@ EXTERN void quest_browser_enable_new_diary_entry ( int mis_num , int mis_diary_e
 #define EXTERN extern
 #endif
 EXTERN void respawn_level ( int level_num );
-EXTERN int position_collides_with_this_obstacle ( float x , float y , obstacle* our_obstacle );
-EXTERN int position_collides_with_obstacles_on_square ( float x, float y , int x_tile , int y_tile , Level PassLevel );
 EXTERN void glue_obstacles_to_floor_tiles_for_level ( int level_num );
 EXTERN void ResolveMapLabelOnShip ( char* MapLabel , location* PositionPointer );
 EXTERN void CollectAutomapData ( void ) ;
@@ -410,14 +408,16 @@ EXTERN inline float translate_pixel_to_map_location ( float axis_x , float axis_
 #else
 #define EXTERN extern
 #endif
-EXTERN int DirectLineColldet( float x1 , float y1 , float x2 , float y2 , int z );
-EXTERN int DirectLineWalkable( float x1 , float y1 , float x2 , float y2 , int z );
-EXTERN int DirectLineFlyable ( float x1, float y1 , float x2 , float y2, int z );
-EXTERN int DirectLineVisible ( float x1, float y1 , float x2 , float y2, int z );
+EXTERN int FilterWalkableCallback(colldet_filter* this, obstacle* obs);
+EXTERN int FilterFlyableCallback(colldet_filter* this, obstacle* obs);
+EXTERN int FilterVisibleCallback(colldet_filter* this, obstacle* obs);
+EXTERN colldet_filter FilterWalkable;
+EXTERN colldet_filter FilterFlyable;
+EXTERN colldet_filter FilterVisible;
 EXTERN int CheckIfWayIsFreeOfDroids (char test_tux, float x1 , float y1 , float x2 , float y2 , int OurLevel , enemy * ExceptedRobot ) ;
-EXTERN int IsPassable ( float x , float y , int z ) ;
-EXTERN int IsPassableForDroid ( float x , float y , int z ) ;
-EXTERN int IsPassableForFlyingObj ( float x , float y , int z ) ;
+EXTERN int EscapeFromObstacle( float* posX, float* posY, int posZ, colldet_filter* filter );
+EXTERN int SinglePointColldet ( float x , float y , int z, colldet_filter* filter ) ;
+EXTERN int DirectLineColldet( float x1 , float y1 , float x2 , float y2 , int z, colldet_filter* filter );
 EXTERN int normalize_vect ( float, float, float *, float *);
 
 // sound.c  OR nosound.c 
