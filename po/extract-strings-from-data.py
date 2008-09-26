@@ -83,7 +83,7 @@ msgstr ""
 #############################################################################
 ## LINE PARSING PART
 #############################################################################
-regexp = re.compile(r'_"(.+?)"', re.M)
+regexp = re.compile(r'_"(.+?)"', re.M | re.S)
 class ArchetypeFile(object):
     def __init__(self, fname):
         self.filename = fname
@@ -97,7 +97,7 @@ class ArchetypeFile(object):
             line = self.content[:index].count('\n') + 1
             index += len(string) + 3
             contentbis = " " * (index) + contentbis[index:]
-            potfile.strings.append(string, self.filename, line)
+            potfile.strings.append(string.replace('\n', '\\n'), self.filename, line)
 
 #############################################################################
 ## SCRIPT MAIN FUNCTION
