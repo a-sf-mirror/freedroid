@@ -251,6 +251,9 @@ SaveThumbnailOfGame ( void )
 
 int SaveGame( void )
 {
+    // we have to switch to POSIX because parsing and generating numbers is locale depended
+    setlocale(LC_ALL, "C");
+
     char filename[1000];
     
     if ( Me . energy <= 0 )
@@ -343,6 +346,9 @@ or file permissions of ~/.freedroid_rpg are somehow not right.",
     SaveThumbnailOfGame ( );
     
     ShowSaveLoadGameProgressMeter( 100 , TRUE ) ;
+
+    // restore user language 
+    setlocale(LC_ALL, supported_languages[GameConfig.language].code);
     
     append_new_game_message ( _("Game saved.") );
 
@@ -391,6 +397,9 @@ DeleteGame( void )
 int 
 LoadGame( void )
 {
+    // we have to switch to POSIX because parsing and generating numbers is locale depended
+    setlocale(LC_ALL, "C");
+
     char version_check_string[1000];
     volatile char *LoadGameData = NULL;
     char filename[1000];
@@ -521,7 +530,9 @@ LoadGame( void )
     
     if ( strcmp ( Me . freedroid_version_string , version_check_string ) != 0 )
     {
+	setlocale(LC_ALL, supported_languages[GameConfig.language].code);
 	show_button_tooltip ( _("Version or structsize mismatch! The savegame is not from the same version of freedroidRPG... possible breakage.\n") );
+	setlocale(LC_ALL, "C");
 	our_SDL_flip_wrapper();
 	while ( ! MouseLeftPressed() ) SDL_Delay(1);
     }
@@ -552,6 +563,9 @@ LoadGame( void )
     
     DebugPrintf ( SAVE_LOAD_GAME_DEBUG , "\n%s(): end of function reached." , __FUNCTION__ );
     
+    // restore user language 
+    setlocale(LC_ALL, supported_languages[GameConfig.language].code);
+
     //--------------------
     // Now we know that right after loading an old saved game, the Tux might have
     // to 'change clothes' i.e. a lot of tux images need to be updated which can
