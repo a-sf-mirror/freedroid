@@ -156,17 +156,20 @@ Takeover ( enemy * target )
     int FinishTakeover = FALSE;
     char *message;
     int Finished = FALSE;
-    int WasPressed = FALSE ;
     int Displacement = 0 ;
     int reward = 0;
     char game_message_text [ 500 ] ;
+    SDL_Event event;
+    int old_status;
+
+    old_status = game_status;
 
     //--------------------
     // Prevent distortion of framerate by the delay coming from 
     // the time spent in the menu.
     //
     Activate_Conservative_Frame_Computation ();
-    
+
     //--------------------
     // We set the UserRect to full again, no matter what other windows might
     // be open right now...
@@ -175,94 +178,96 @@ Takeover ( enemy * target )
     User_Rect . y = 0 ;
     User_Rect . w = GameConfig . screen_width ;
     User_Rect . h = GameConfig . screen_height ;
-    
+
     //--------------------
     // Maybe takeover graphics haven't been loaded yet.  Then we do this
     // here now and for once.  Later calls will be ignored inside the function.
     //
     GetTakeoverGraphics ( ) ;
-    
+
     while (SpacePressed () || MouseLeftPressed()) ;  // make sure space is release before proceed 
-    
+
     SwitchBackgroundMusicTo ( TAKEOVER_BACKGROUND_MUSIC_SOUND ); // now this is a STRING!!!
-    
+
     DisplayBanner ( ) ;
     Me . status = MOBILE; // the new status _after_ the takeover game 
-    
+
     //--------------------
     // Now it is time to display the enemy of this whole takeover process...
     //
     if ( GameConfig . auto_display_to_help ) 
 	{
-        PlayATitleFile ( "TakeoverInstructions.title" );
+	PlayATitleFile ( "TakeoverInstructions.title" );
 	GameConfig . auto_display_to_help = 0;
 	}
 
-    while ( !Finished )
-    {
+    while ( !Finished )	{
 	ShowDroidInfo ( target->type, Displacement , TRUE );
 	ShowGenericButtonFromList ( TAKEOVER_HELP_BUTTON ) ;
 	blit_our_own_mouse_cursor ( );
 	our_SDL_flip_wrapper();
-	
-	if ( MouseCursorIsOnButton( UP_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) && MouseLeftPressed() && !WasPressed )
-	{
-	    MoveMenuPositionSound();
-	    Displacement += FontHeight ( GetCurrentFont () );
+
+	while(SDL_PollEvent(&event)) {
+	    if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT) {
+		if ( MouseCursorIsOnButton( UP_BUTTON , GetMousePos_x()  , GetMousePos_y()  ))
+		    {
+		    MoveMenuPositionSound();
+		    Displacement += FontHeight ( GetCurrentFont () );
+		    }
+		else if ( MouseCursorIsOnButton( DOWN_BUTTON , GetMousePos_x()  , GetMousePos_y()  ))
+		    {
+		    MoveMenuPositionSound();
+		    Displacement -= FontHeight ( GetCurrentFont () );
+		    }
+		else if ( MouseCursorIsOnButton( DRUID_SHOW_EXIT_BUTTON , GetMousePos_x ( )  , GetMousePos_y ( )  )) 
+		    {
+		    Finished = TRUE;
+		    }
+		else if ( MouseCursorIsOnButton( TAKEOVER_HELP_BUTTON , GetMousePos_x ( )  , GetMousePos_y ( )  )) 
+		    {
+		    PlayATitleFile ( "TakeoverInstructions.title" );
+		    }
+	    } else if (event.type == SDL_KEYDOWN && ((event.key.keysym.sym == SDLK_SPACE) || (event.key.keysym.sym == SDLK_ESCAPE))) {
+		Finished = TRUE ;
+	    }	
 	}
-	else if ( MouseCursorIsOnButton( DOWN_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) && MouseLeftPressed() && !WasPressed )
-	{
-	    MoveMenuPositionSound();
-	    Displacement -= FontHeight ( GetCurrentFont () );
-	}
-	else if ( MouseCursorIsOnButton( DRUID_SHOW_EXIT_BUTTON , GetMousePos_x ( )  , GetMousePos_y ( )  ) && MouseLeftPressed() && !WasPressed ) 
-	{
-	    Finished = TRUE;
-	}
-	else if ( MouseCursorIsOnButton( TAKEOVER_HELP_BUTTON , GetMousePos_x ( )  , GetMousePos_y ( )  ) && MouseLeftPressed() && !WasPressed ) 
-	{
-	    PlayATitleFile ( "TakeoverInstructions.title" );
-	}
-	WasPressed = MouseLeftPressed(); 
-	
-	if ( SpacePressed() && !MouseLeftPressed() ) Finished = TRUE ;
-	
+	SDL_Delay(1);
     }
-    
+
     while ( !( !SpacePressed() && !EscapePressed() && !MouseLeftPressed() )) ;
-    
-    
+
+
     while (!FinishTakeover)
-    {
+	{
 	//--------------------
 	// Init Color-column and Capsule-Number for each opponenet and your color 
 	//
 	for (row = 0; row < NUM_LINES; row++)
-	{
+	    {
 	    DisplayColumn[row] = (row % 2);
 	    CapsuleCountdown[GELB][0][row] = -1;
 	    CapsuleCountdown[VIOLETT][0][row] = -1;
-	} // for row 
-	
+	    } // for row 
+
 	YourColor = GELB;
 	OpponentColor = VIOLETT;
-	
+
 	CapsuleCurRow[GELB] = 0;
 	CapsuleCurRow[VIOLETT] = 0;
-	
+
 	OpponentType = target->type;
 	cDroid = target;
 	// NumCapsules[YOU] = 3 + ClassOfDruid (Me.type);
 	NumCapsules[YOU] = 2 + Me . base_skill_level [ get_program_index_with_name("Hacking") ];
 	NumCapsules[ENEMY] = 2 + Druidmap [ OpponentType ] . class ;
-	
+
 	InventPlayground ();
-	
+
 	EvaluatePlayground ();
-	
+
 	ShowPlayground ();
 	our_SDL_flip_wrapper();
-	
+
 	ChooseColor ();
 
 	//--------------------
@@ -273,37 +278,37 @@ Takeover ( enemy * target )
 	// the game must be played again in the next loop...
 	//
 	PlayGame ();
-	
+
 	//--------------------
 	// We we evaluate the final score of the game.  Maybe we're done
 	// already, maybe not...
 	//
 	if ( LeaderColor == YourColor ) 
-	{
+	    {
 	    // SwitchBackgroundMusicTo (SILENCE);
 	    Takeover_Game_Won_Sound ();
-	    
+
 	    //--------------------
 	    // We allow to gain the current energy/full health that was still in the 
 	    // other droid, since all previous damage must be due to fighting damage,
 	    // and this is exactly the sort of damage can usually be cured in refreshes.
 	    //
 	    Me . energy += target->energy;
-	    
+
 	    //--------------------
 	    // We provide some security agains too high energy/health values gained
 	    // by very rapid successions of successful takeover attempts
 	    //
 	    if ( Me . energy > Me . maxenergy ) 
 		Me . energy = Me . maxenergy;
-	    
+
 	    Me . type = target->type;
 	    Me . marker = target->marker;
 
 	    reward = Druidmap [ target->type ] . experience_reward * 1 ;
 	    Me . Experience += reward;
 	    sprintf ( game_message_text , _("For taking control of your enemy, you receive %d experience."),
-		      reward );
+		    reward );
 	    append_new_game_message ( game_message_text );
 
 	    //--------------------
@@ -314,19 +319,19 @@ Takeover ( enemy * target )
 	    // enemy isn't completely dead yet...
 	    //
 	    if ( target->on_death_drop_item_code != (-1) )
-	    {
+		{
 		DropItemAt( target->on_death_drop_item_code , 
-			    target->pos . z ,
-			    target->pos . x , 
-			    target->pos . y , -1 , -1 , 1 );
+			target->pos . z ,
+			target->pos . x , 
+			target->pos . y , -1 , -1 , 1 );
 		target->on_death_drop_item_code = -1;
-	    }  
+		}  
 
 	    target->energy =  Druidmap [ target->type ] . maxenergy ; 
 
 	    target->is_friendly = TRUE ;
 	    target->has_been_taken_over = TRUE ; 
-		
+
 	    target->combat_state = WAYPOINTLESS_WANDERING ;
 
 	    //--------------------
@@ -345,41 +350,44 @@ Takeover ( enemy * target )
 		message = _("You cheat");
 	    else				// won the proper way 
 		message = _("Complete");
-	    
+
 	    //--------------------
 	    // Ok.  The whole takeover is done now.  We can return...
 	    //
 	    FinishTakeover = TRUE;
-	}				// LeaderColor == YourColor 
+	    }				// LeaderColor == YourColor 
 	else if ( LeaderColor == OpponentColor )
-	{
+	    {
 	    Takeover_Game_Lost_Sound ();
 	    message = _("Rejected");
 	    Me . energy *= 0.5 ;
 	    target->energy = Druidmap [ target->type ] . maxenergy ;
 	    FinishTakeover = TRUE;
-	}			// if LeadColor == OpponentColor 
+	    }			// if LeadColor == OpponentColor 
 	else
-	{
+	    {
 	    Takeover_Game_Deadlock_Sound ();
 	    message = _("Deadlock");
-	}			// LeadColor == DRAW	
+	    }			// LeadColor == DRAW	
 
 	ShowPlayground ();
 	to_show_banner (message, NULL);
 	our_SDL_flip_wrapper();
-	
-    }	// while !FinishTakeover 
+	SDL_Delay(100);
+
+	}
 
     ClearGraphMem();
 
     SwitchBackgroundMusicTo ( CURLEVEL -> Background_Song_Name );
-    
+
+    game_status = old_status;
+
     if ( LeaderColor == YourColor )
 	return TRUE;
     else
 	return FALSE;
-    
+
 }; // int Takeover( int enemynum ) 
 
 
@@ -393,6 +401,7 @@ ChooseColor (void)
     int countdown = 100;  // duration in 1/10 seconds given for color choosing 
     int ColorChosen = FALSE;
     char count_text[80];
+    SDL_Event event;
     
     Uint32 prev_count_tick, count_tick_len;
     
@@ -400,28 +409,54 @@ ChooseColor (void)
 
     prev_count_tick = SDL_GetTicks ();
 
-    while (!ColorChosen)
-    {
+    while (!ColorChosen) {
+
 	// wait for next countdown tick 
-	while ( SDL_GetTicks() < prev_count_tick + count_tick_len ); 
+	while ( SDL_GetTicks() < prev_count_tick + count_tick_len );
 	
 	prev_count_tick += count_tick_len; // set for next tick 
 	
-	if ( RightPressed () || MouseWheelDownPressed() )
-	{
-	    YourColor = VIOLETT;
-	    OpponentColor = GELB;
-	}
-	if (LeftPressed () || MouseWheelUpPressed() )
-	{
-	    YourColor = GELB;
-	    OpponentColor = VIOLETT;
-	}
-	
-	if ( SpacePressed() || MouseLeftPressed() )
-	{
-	    ColorChosen = TRUE;
-	    while ( SpacePressed() || MouseLeftPressed() ) ;
+	while (SDL_PollEvent(&event)) {
+	    
+	    if (event.type == SDL_MOUSEBUTTONDOWN) {
+		switch(event.button.button) {
+		    //(clever?) hack : mouse wheel up and down behave
+		    //exactly like LEFT and RIGHT arrow, so we mangle the event
+		    case SDL_BUTTON_WHEELUP:
+			event.type = SDL_KEYDOWN;
+			event.key.keysym.sym = SDLK_LEFT;
+			break;
+		    case SDL_BUTTON_WHEELDOWN:
+			event.type = SDL_KEYDOWN;
+			event.key.keysym.sym = SDLK_RIGHT;
+			break;
+		    case SDL_BUTTON_LEFT:
+			ColorChosen = TRUE;
+			break;
+
+		    default: break;
+		}
+	    } 
+	    
+	    /* no else there! (mouse wheel) */
+	    if (event.type == SDL_KEYDOWN) { 
+		switch(event.key.keysym.sym) {
+		    case SDLK_RIGHT:
+			YourColor = VIOLETT;
+			OpponentColor = GELB;
+			break;
+		    case SDLK_LEFT:
+			YourColor = GELB;
+			OpponentColor = VIOLETT;
+			break;
+		    case SDLK_SPACE:
+			ColorChosen = TRUE;
+			break;
+		    default:
+			break;
+		}
+	    }
+	    
 	}
 	
 	countdown--; // Count down 
@@ -435,9 +470,9 @@ ChooseColor (void)
 	  ColorChosen = TRUE;
       
     } // while(!ColorChosen) 
-  
-  return;
-  
+
+    while (MouseLeftPressed())
+	SDL_Delay(1);
 }; // void ChooseColor ( void ) 
 
 
@@ -462,6 +497,8 @@ PlayGame (void)
   int up, down, set; 
   int up_counter, down_counter; 
 
+  SDL_Event event;
+
   sprintf (count_text, _("Subliminal"));   /* Make sure a value gets assigned to count_text */
   count_tick_len = 100;   /* countdown in 1/10 second steps */
   move_tick_len  = 60;    /* allow motion at this tick-speed in ms */
@@ -476,25 +513,42 @@ PlayGame (void)
   while (!FinishTakeover)
     {
       cur_time = SDL_GetTicks ();
-      
+
       /* 
        * here we register if there have been key-press events in the
        * "waiting period" between move-ticks :
        */
-      up   = ( up   | UpPressed() ) + MouseWheelUpPressed() ; 
-      down = ( down | DownPressed() ) + MouseWheelDownPressed() ;
+      up   = ( up   | UpPressed() ); 
+      down = ( down | DownPressed() );
       set  = set  | SpacePressed() | MouseLeftPressed();
+
+      while (SDL_PollEvent(&event)) {
+	  if (event.type == SDL_MOUSEBUTTONDOWN) {
+	      switch (event.button.button) {
+		  case SDL_BUTTON_WHEELUP:
+		      up ++;
+		      break;
+		  case SDL_BUTTON_WHEELDOWN:
+		      down ++;
+		      break;
+		  default:
+		      break;
+	      }
+	  } else if (event.type == SDL_KEYDOWN) {
+	      /* allow for a WIN-key that give immedate victory */
+	      event.key.keysym.mod &= ~(KMOD_CAPS | KMOD_NUM | KMOD_MODE); /* We want to ignore "global" modifiers. */
+	      if (event.key.keysym.sym == SDLK_w && (event.key.keysym.mod == (KMOD_LCTRL | KMOD_LALT))) {
+		  LeaderColor = YourColor;   /* simple as that */
+		  return;  /* leave now, to avoid changing of LeaderColor! */
+	      }
+	  } else if (event.type == SDL_QUIT) {
+	      Terminate(0);
+	  }
+      }
 
       if (!up) up_counter = 0;    /* reset counters for released keys */
       if (!down) down_counter =0;
 
-      /* allow for a WIN-key that give immedate victory */
-      if ( WPressed () && CtrlPressed () && AltPressed () )
-	{
-	  LeaderColor = YourColor;   /* simple as that */
-	  return;  /* leave now, to avoid changing of LeaderColor! */
-	} 
-	
       if ( cur_time > prev_count_tick + count_tick_len ) /* time to count 1 down */
 	{
 	  prev_count_tick += count_tick_len;  /* set for next countdown tick */
@@ -568,6 +622,11 @@ PlayGame (void)
 		  CapsuleCountdown[YourColor][0][row] = CAPSULE_COUNTDOWN * 2;
 
 		  Takeover_Set_Capsule_Sound ();
+
+		  if (!NumCapsules[YOU]) {
+		      /* You placed your last capsule ? let's speed up the end */
+		      count_tick_len *= 0.75;
+		  }
 		}	/* if (row > 0 && ... ) */
 	    } /* if ( set ) */
 
@@ -585,6 +644,7 @@ PlayGame (void)
       ShowPlayground ();
       to_show_banner (count_text, NULL);
       our_SDL_flip_wrapper();
+      SDL_Delay(10);
     }	/* while !FinishTakeover */
 
   /* Final contdown */
