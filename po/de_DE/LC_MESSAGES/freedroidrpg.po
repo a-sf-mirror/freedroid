@@ -1,22 +1,24 @@
+# translation of freedroidrpg.po to Deutsch
 # German translations for freedroidRPG package
 # German messages for freedroidRPG.
 # Copyright (C) 2007 Freedroid RPG Development Team
 # This file is distributed under the same license as the freedroidRPG package.
-#  <ahuillet@freedroid.org>, 2007.
 #
+#  <ahuillet@freedroid.org>, 2007.
+# Ronny Standtke <Ronny.Standtke@gmx.net>, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: freedroidRPG 0.10.4cvs\n"
+"Project-Id-Version: freedroidrpg\n"
 "Report-Msgid-Bugs-To: freedroid-discussion@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-09-26 18:17+0200\n"
-"PO-Revision-Date: 2008-09-05 00:37+0000\n"
-"Last-Translator: Arthur Huillet <arthur.huillet@free.fr>\n"
-"Language-Team: German\n"
+"POT-Creation-Date: 2008-09-27 21:39+0200\n"
+"PO-Revision-Date: 2008-09-27 21:55+0200\n"
+"Last-Translator: Ronny Standtke <Ronny.Standtke@gmx.net>\n"
+"Language-Team: Deutsch\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2008-09-14 12:32+0000\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: KBabel 1.11.4\n"
 
 #: ../src/automap.c:78
 msgid "Automap ON."
@@ -28,8 +30,7 @@ msgstr "Automap AUS."
 
 #: ../src/automap.c:84
 msgid "Sorry, you don't have automap yet:  map maker item not present."
-msgstr ""
-"Automapper noch nicht implantiert - Kartographie-Einheit ist nicht verfügbar!"
+msgstr "Automapper noch nicht implantiert - Kartographie-Einheit ist nicht verfügbar!"
 
 #: ../src/blocks.c:1591 ../src/blocks.c:1598 ../src/blocks.c:1606
 #: ../src/blocks.c:3039 ../src/blocks.c:3042 ../src/blocks.c:3054
@@ -61,8 +62,7 @@ msgstr "Zerbrochene Glaswand"
 
 #: ../src/blocks.c:1644
 msgid "You can get through holes, but beware of sharp edges."
-msgstr ""
-"Man kann durch die Löcher schlüpfen - aber Vorsicht vor den scharfen Kanten!"
+msgstr "Man kann durch die Löcher schlüpfen - aber Vorsicht vor den scharfen Kanten!"
 
 #: ../src/blocks.c:1701 ../src/blocks.c:1703 ../src/blocks.c:1705
 #: ../src/blocks.c:1707 ../src/blocks.c:1709 ../src/blocks.c:1711
@@ -84,8 +84,7 @@ msgstr "Tür"
 
 #: ../src/blocks.c:1747
 msgid "This is a door. Seems to open automatically when someone approaches."
-msgstr ""
-"Eine Türe. Scheint sich automatisch zu öffnen, sobald jemand davor tritt."
+msgstr "Eine Türe. Scheint sich automatisch zu öffnen, sobald jemand davor tritt."
 
 #: ../src/blocks.c:1781
 msgid "Locked door"
@@ -134,8 +133,7 @@ msgstr "Roboter-Nest"
 
 #: ../src/blocks.c:1916 ../src/blocks.c:1917 ../src/blocks.c:1918
 #: ../src/blocks.c:1919 ../src/blocks.c:1920
-msgid ""
-"This is a service droid case. You suppose it's of no use for your quest."
+msgid "This is a service droid case. You suppose it's of no use for your quest."
 msgstr ""
 "Eine Roboter-Ladestation, auch 'Roboter-Nest' genannt. Vermutlich unwichtig "
 "für deine Aufgabe."
@@ -239,16 +237,14 @@ msgid "Wooden crate"
 msgstr "Holzkiste"
 
 #: ../src/blocks.c:2122
-msgid ""
-"This is a big wooden crate that could contain interesting things. Or not."
+msgid "This is a big wooden crate that could contain interesting things. Or not."
 msgstr ""
 "Eine große Holzkiste, die interessante Dinge enthalten könnte. Oder auch "
 "nicht."
 
 #: ../src/blocks.c:2128
 msgid "This is a wooden crate that could contain interesting things. Or not."
-msgstr ""
-"Eine Holzkiste, die interessante Dinge enthalten könnte. Oder auch nicht."
+msgstr "Eine Holzkiste, die interessante Dinge enthalten könnte. Oder auch nicht."
 
 #: ../src/blocks.c:2140 ../src/blocks.c:2148 ../src/blocks.c:2156
 #: ../src/blocks.c:2164
@@ -360,8 +356,7 @@ msgstr "Schreibtisch"
 #: ../src/blocks.c:2428 ../src/blocks.c:2435 ../src/blocks.c:2442
 #: ../src/blocks.c:2449
 msgid "This desk is designed to handle extreme loads of office work."
-msgstr ""
-"Dieser Schreibtisch ist für ein extremes Quantum an Büroarbeit ausgelegt."
+msgstr "Dieser Schreibtisch ist für ein extremes Quantum an Büroarbeit ausgelegt."
 
 #: ../src/blocks.c:2497 ../src/blocks.c:2504 ../src/blocks.c:2511
 #: ../src/blocks.c:2518
@@ -384,8 +379,7 @@ msgstr "Vermittelt ein Gefühl von Komfort..."
 
 #: ../src/blocks.c:2536 ../src/blocks.c:2545 ../src/blocks.c:2554
 msgid "Taking a bath is not your current quest - what a pity !"
-msgstr ""
-"Ein Bad zu nehmen gehört nicht zu deiner derzeitigen Aufgabe - wie schade!"
+msgstr "Ein Bad zu nehmen gehört nicht zu deiner derzeitigen Aufgabe - wie schade!"
 
 #: ../src/blocks.c:2561 ../src/blocks.c:2569
 msgid "Washing tub"
@@ -667,8 +661,7 @@ msgid "This gate is little more than just a big door. A very big door."
 msgstr "Dieses Tor ist kaum mehr als eine große Tür. Eine große, große Türe."
 
 #: ../src/blocks.c:3575 ../src/blocks.c:3581
-msgid ""
-"It is locked in order to keep something out. Or maybe to keep something in?"
+msgid "It is locked in order to keep something out. Or maybe to keep something in?"
 msgstr ""
 "Ist verschlossen, damit nichts hineingelangt. Oder vielleicht, damit nichts "
 "heraus kann?"
@@ -721,10 +714,8 @@ msgid "Dead member of the Red Guard"
 msgstr "Totes Mitglied der Roten Wache"
 
 #: ../src/blocks.c:3639
-msgid ""
-"If not for the terrible wounds, you could think that he is just asleep..."
-msgstr ""
-"Wären da nicht die grässlichen Wunden, könnte man meinen, er schliefe nur..."
+msgid "If not for the terrible wounds, you could think that he is just asleep..."
+msgstr "Wären da nicht die grässlichen Wunden, könnte man meinen, er schliefe nur..."
 
 #: ../src/blocks.c:3644
 msgid "It looks like he fought to the bitter end..."
@@ -732,8 +723,7 @@ msgstr "Sieht aus als hätte er bis zum bitteren Ende gekämpft..."
 
 #: ../src/blocks.c:3649
 msgid "Numerous wounds cover the body of this brave warrior..."
-msgstr ""
-"Der Körper dieses tapferen Kämpfers ist von zahlreichen Wunden übersäht..."
+msgstr "Der Körper dieses tapferen Kämpfers ist von zahlreichen Wunden übersäht..."
 
 #: ../src/blocks.c:3654
 msgid ""
@@ -751,8 +741,7 @@ msgstr "Konferenztisch"
 #: ../src/blocks.c:3661 ../src/blocks.c:3667 ../src/blocks.c:3673
 #: ../src/blocks.c:3679
 msgid "A round conference table with chairs and a computer at every seat."
-msgstr ""
-"Ein runder Konferenztisch mit Stühlen und einem Computer an jedem Sitzplatz."
+msgstr "Ein runder Konferenztisch mit Stühlen und einem Computer an jedem Sitzplatz."
 
 #: ../src/blocks.c:3697 ../src/blocks.c:3703 ../src/blocks.c:3709
 #: ../src/blocks.c:3715
@@ -771,8 +760,7 @@ msgstr "Etagenbetten"
 
 #: ../src/blocks.c:3722 ../src/blocks.c:3728 ../src/blocks.c:3734
 #: ../src/blocks.c:3740
-msgid ""
-"To save space on the floor two sleeping capsules were stacked vertically."
+msgid "To save space on the floor two sleeping capsules were stacked vertically."
 msgstr "Um Bodenfläche zu sparen, wurden hier zwei Schlafkapseln gestapelt."
 
 #: ../src/blocks.c:3746 ../src/blocks.c:3752 ../src/blocks.c:3758
@@ -799,8 +787,7 @@ msgstr "Projektions-Leinwand"
 msgid ""
 "This is a projector screen, it allows to get better image quality than the "
 "wall."
-msgstr ""
-"Ein Projektions-Schirm; ermöglicht eine bessere Bildwiedergabe als eine Wand."
+msgstr "Ein Projektions-Schirm; ermöglicht eine bessere Bildwiedergabe als eine Wand."
 
 #: ../src/blocks.c:3791 ../src/blocks.c:3796 ../src/blocks.c:3813
 #: ../src/blocks.c:3818
@@ -829,8 +816,7 @@ msgid "No books here, just dust."
 msgstr "Keine Bücher hier, nur Staub."
 
 #: ../src/blocks.c:3814 ../src/blocks.c:3819
-msgid ""
-"Only boring books like the Necronomicon are here. Yawn. Nothing interesting."
+msgid "Only boring books like the Necronomicon are here. Yawn. Nothing interesting."
 msgstr ""
 "Nur sterbenslangweilige Bücher wie das Necronomicon. Gähn. Nichts von "
 "Interesse."
@@ -871,8 +857,7 @@ msgstr "Bartisch"
 
 #: ../src/blocks.c:3932
 msgid "You can see some food stains on this yellow round table."
-msgstr ""
-"Du kannst noch ein paar Speisereste auf dem runden gelben Tisch erkennen."
+msgstr "Du kannst noch ein paar Speisereste auf dem runden gelben Tisch erkennen."
 
 #: ../src/blocks.c:3938 ../src/blocks.c:3945
 msgid "Table"
@@ -930,7 +915,7 @@ msgid "Disruptor blast has hit you for %d damage."
 msgstr "Disruptor-Blitz hat dir %d Schaden zugefügt."
 
 #: ../src/bullet.c:693
-msgid "That one went into the armour."
+msgid "That one went into the armor."
 msgstr "Das ging in die Rüstung."
 
 #: ../src/character.c:228
@@ -1104,7 +1089,7 @@ msgstr "Anzahl: %d \n"
 
 #: ../src/hud.c:219
 #, c-format
-msgid "Armour: %d"
+msgid "Armor: %d"
 msgstr "Rüstung: %d"
 
 #: ../src/hud.c:231
@@ -1304,7 +1289,7 @@ msgstr "%d zu allen Eigenschaften"
 
 #: ../src/hud.c:506
 #, c-format
-msgid "%d%% to armour"
+msgid "%d%% to armor"
 msgstr "%d%% Rüstung"
 
 #: ../src/hud.c:519
@@ -1454,8 +1439,7 @@ msgstr "Untersuche %s.  %s"
 #: ../src/influ.c:3394
 #, c-format
 msgid "You see the floor.  It should be perfectly safe to walk on it."
-msgstr ""
-"Sieht aus wie der Boden. Sollte absolut sicher sein, sich darauf zu bewegen."
+msgstr "Sieht aus wie der Boden. Sollte absolut sicher sein, sich darauf zu bewegen."
 
 #: ../src/influ.c:3425
 #, c-format
@@ -1478,8 +1462,7 @@ msgid "Picking pockets of obstacle of type %d."
 msgstr "Beklaue Hindernis %d."
 
 #: ../src/init.c:128
-msgid ""
-"My name is Bug. Software Bug. Please report me to the developers. Thank you."
+msgid "My name is Bug. Software Bug. Please report me to the developers. Thank you."
 msgstr ""
 "Mein Name ist BUG. Sofware-BUG. Bitte melde mich den Entwicklern von "
 "FreedroidRPG. Danke."
@@ -1514,8 +1497,7 @@ msgstr ""
 
 #: ../src/init.c:137
 msgid "Don't do steroids or you will be just like him."
-msgstr ""
-"Lass die Finger von Steroiden oder es wird dir genauso wie ihm ergehen...."
+msgstr "Lass die Finger von Steroiden oder es wird dir genauso wie ihm ergehen...."
 
 #: ../src/init.c:139
 msgid ""
@@ -1647,8 +1629,7 @@ msgstr ""
 
 #: ../src/init.c:167
 msgid "Just an another Red Guard. The armor hides his body."
-msgstr ""
-"Ein weiteres Mitglied der Roten Wache, gut geschützt durch eine Rüstung."
+msgstr "Ein weiteres Mitglied der Roten Wache, gut geschützt durch eine Rüstung."
 
 #: ../src/init.c:169
 msgid ""
@@ -1823,8 +1804,7 @@ msgstr "Identifiziert: %s"
 
 #: ../src/items.c:2382
 msgid "Two-handed weapon requirements not met: shield bonus doesn't count."
-msgstr ""
-"Anforderungen für Zweihandwaffe nicht erfüllt: Schild-Bonus zählt nicht."
+msgstr "Anforderungen für Zweihandwaffe nicht erfüllt: Schild-Bonus zählt nicht."
 
 #: ../src/items.c:2401
 msgid "You cannot fight with this!"
@@ -1832,8 +1812,7 @@ msgstr "Damit kannst du nicht kämpfen!"
 
 #: ../src/items.c:2444
 msgid "Shield requirements not met: two-handed weapon bonus doesn't count."
-msgstr ""
-"Anforderungen für Schild nicht erfüllt: Zweihandwaffen-Bonus zählt nicht."
+msgstr "Anforderungen für Schild nicht erfüllt: Zweihandwaffen-Bonus zählt nicht."
 
 #: ../src/items.c:2565
 #, c-format
@@ -2797,6 +2776,8 @@ msgid ""
 "\n"
 "Details:\n"
 msgstr ""
+"\n"
+"Details:\n"
 
 #: ../src/mission.c:137
 #, c-format
@@ -2840,19 +2821,19 @@ msgstr "Letzte Änderung:"
 msgid "File Size: %2.3f MB"
 msgstr "Dateigröße: %2.3f MB"
 
-#: ../src/saveloadgame.c:258
+#: ../src/saveloadgame.c:261
 msgid "You are dead. Savegame not modified."
 msgstr "Du bist tot. Spielstand nicht gespeichert."
 
-#: ../src/saveloadgame.c:347
+#: ../src/saveloadgame.c:353
 msgid "Game saved."
 msgstr "Spielstand gespeichert."
 
-#: ../src/saveloadgame.c:418
+#: ../src/saveloadgame.c:427
 msgid "Failed to load old game."
 msgstr "Laden des Spielstandes fehlgeschlagen."
 
-#: ../src/saveloadgame.c:524
+#: ../src/saveloadgame.c:534
 msgid ""
 "Version or structsize mismatch! The savegame is not from the same version of "
 "freedroidRPG... possible breakage.\n"
@@ -2861,11 +2842,11 @@ msgstr ""
 "aktuellen Version von FreedroidRPG gespeichert worden und daher "
 "möglicherweise unbrauchbar!\n"
 
-#: ../src/saveloadgame.c:561
+#: ../src/saveloadgame.c:575
 msgid "Updating Tux images (this may take a little while...)"
 msgstr "Tux-Images werden aktualisiert... (das könnte eine Weile dauern...)"
 
-#: ../src/saveloadgame.c:566
+#: ../src/saveloadgame.c:580
 msgid "Game loaded."
 msgstr "Spielstand geladen."
 
@@ -3050,8 +3031,7 @@ msgstr " Das Schießeisen ist für Kaliber 9x19mm Kugeln ausgelegt."
 
 #: ../src/ship.c:658
 msgid " This weapon requires 7.62x39mm rounds."
-msgstr ""
-" Maschinenkarabiner, der Kaliber 7.62x39mm Munitions-Magazine aufnimmt."
+msgstr " Maschinenkarabiner, der Kaliber 7.62x39mm Munitions-Magazine aufnimmt."
 
 #: ../src/ship.c:661
 msgid " This weapon requires .50 (12.7x99mm) Browning Machine Gun rounds."
@@ -3081,8 +3061,7 @@ msgstr ""
 
 #: ../src/shop.c:997
 msgid "You can't afford to have this item identified! "
-msgstr ""
-"Du kannst es dir nicht leisten, diesen Gegenstand identifizieren zu lassen! "
+msgstr "Du kannst es dir nicht leisten, diesen Gegenstand identifizieren zu lassen! "
 
 #: ../src/shop.c:1151
 msgid ""
@@ -3182,44 +3161,43 @@ msgstr "Flüchten"
 msgid " for %c%.1f%c seconds"
 msgstr " für %c%.1f%c Sekunden"
 
-#: ../src/takeover.c:305
+#: ../src/takeover.c:310
 #, c-format
 msgid "For taking control of your enemy, you receive %d experience."
-msgstr ""
-"Durch die erfolgreiche Übernahme des Gegners gewinnst du %d Erfahrungspunkte."
+msgstr "Durch die erfolgreiche Übernahme des Gegners gewinnst du %d Erfahrungspunkte."
 
-#: ../src/takeover.c:345
+#: ../src/takeover.c:350
 msgid "You cheat"
 msgstr "Du schummelst"
 
-#: ../src/takeover.c:347
+#: ../src/takeover.c:352
 msgid "Complete"
 msgstr "Vollständig"
 
-#: ../src/takeover.c:357
+#: ../src/takeover.c:362
 msgid "Rejected"
 msgstr "Abgewehrt"
 
-#: ../src/takeover.c:365
+#: ../src/takeover.c:370
 msgid "Deadlock"
 msgstr "Totpunkt"
 
-#: ../src/takeover.c:428
+#: ../src/takeover.c:463
 #, c-format
 msgid "Color-%d"
 msgstr "Farbe-%d"
 
-#: ../src/takeover.c:465
+#: ../src/takeover.c:502
 #, c-format
 msgid "Subliminal"
 msgstr "Unterschwellig"
 
-#: ../src/takeover.c:502
+#: ../src/takeover.c:556
 #, c-format
 msgid "Finish-%d"
 msgstr "Linkzeit-%d"
 
-#: ../src/takeover.c:1747
+#: ../src/takeover.c:1807
 #, c-format
 msgid "Score"
 msgstr "Punkte"
@@ -3250,8 +3228,7 @@ msgstr "Aargh... ich wurde getroffen!  Uhh, ich hab ein mieses Gefühl..."
 
 #: ../src/text.c:219
 msgid "Ah, good, that we have an open collision avoiding standard, isn't it."
-msgstr ""
-"Ah, gut, dass wir einen offenen Anti-Kollisions-Standard haben, nicht wahr?"
+msgstr "Ah, gut, dass wir einen offenen Anti-Kollisions-Standard haben, nicht wahr?"
 
 #: ../src/text.c:226
 msgid "Hey, I'm from MS! Walk outa my way!"
@@ -3321,1280 +3298,3 @@ msgstr "Verharrungszeit: %2d:%2d "
 msgid "Bots remaining on level: %d"
 msgstr "Verbleibende Bots im Level: %d"
 
-#~ msgid ""
-#~ "This is the record of all missions you have been assigned:\n"
-#~ "\n"
-#~ msgstr ""
-#~ "Eine Aufzeichnung aller Missionen, die zugeteilt wurden:\n"
-#~ "\n"
-
-#~ msgid "SOLVED: "
-#~ msgstr "ABGESCHLOSSEN: "
-
-#~ msgid "FAILED: "
-#~ msgstr "MISSLUNGEN: "
-
-#~ msgid "ASSIGNED: "
-#~ msgstr "ZUGETEILT: "
-
-#~ msgid "UNASSIGNED: "
-#~ msgstr "NICHT ANGENOMMEN: "
-
-#~ msgid ""
-#~ "\n"
-#~ "\n"
-#~ "--- Currently no missions beyond that ---"
-#~ msgstr ""
-#~ "\n"
-#~ "\n"
-#~ "--- Bisher keine weiteren Missionen ---"
-
-#~ msgid ""
-#~ "\n"
-#~ "   See quest log: \n"
-#~ msgstr ""
-#~ "\n"
-#~ "   Abenteuer-Logbuch einsehen: \n"
-
-#~ msgid ""
-#~ "\n"
-#~ "* Mission completed: "
-#~ msgstr ""
-#~ "\n"
-#~ "* Mission beendet: "
-
-#~ msgid ""
-#~ "\n"
-#~ "* Mission failed: "
-#~ msgstr ""
-#~ "\n"
-#~ "* Mission fehlgeschlagen: "
-
-#~ msgid ""
-#~ "\n"
-#~ "* Mission not yet assigned: "
-#~ msgstr ""
-#~ "\n"
-#~ "* Mission noch nicht zugeteilt: "
-
-#~ msgid ""
-#~ "\n"
-#~ "* Mission assigned: "
-#~ msgstr ""
-#~ "\n"
-#~ "* Mission zugeteilt: "
-
-#~ msgid "Jan"
-#~ msgstr "Jan"
-
-#~ msgid "Feb"
-#~ msgstr "Feb"
-
-#~ msgid "Mar"
-#~ msgstr "Mär"
-
-#~ msgid "Apr"
-#~ msgstr "Apr"
-
-#~ msgid "May"
-#~ msgstr "Mai"
-
-#~ msgid "Jun"
-#~ msgstr "Jun"
-
-#~ msgid "Jul"
-#~ msgstr "Jul"
-
-#~ msgid "Aug"
-#~ msgstr "Aug"
-
-#~ msgid "Sep"
-#~ msgstr "Sep"
-
-#~ msgid "Oct"
-#~ msgstr "Okt"
-
-#~ msgid "Nov"
-#~ msgstr "Nov"
-
-#~ msgid "Dec"
-#~ msgstr "Dez"
-
-#~ msgid " YOU DONT HAVE ANYTHING IN INVENTORY, THAT COULD BE VIEWED. "
-#~ msgstr " SIE HABEN NICHTS IM INVENTAR, DAS ANGESEHEN WERDEN KÖNNTE. "
-
-#~ msgid " YOU DONT HAVE ANYTHING THAT WOULD NEED REPAIR "
-#~ msgstr " DU HAST NICHTS, DAS DER REPARATUR BEDARF! "
-
-#~ msgid "%s was destroyed by disruptor blast."
-#~ msgstr "%s wurde durch einen Disruptor-Blitz verdampft."
-
-#~ msgid ""
-#~ "%s was destroyed by your bullet.  For defeating your enemy, you receive %"
-#~ "d experience."
-#~ msgstr ""
-#~ "%s wurde durch dein Geschoss zerstört.  %d Erfahrungspunkte für das "
-#~ "Ausschalten des Gegners."
-
-#~ msgid "%s was destroyed by bullet from %s."
-#~ msgstr "%s wurde durch ein Geschoss von %s zerstört."
-
-#~ msgid "Your friend %s has died."
-#~ msgstr "Dein Freund %s ist gestorben."
-
-#~ msgid "Hostile %s was destroyed by melee attack from friendly %s."
-#~ msgstr ""
-#~ "%s (bösartig) wurde durch eine Attacke von %s (gutartig) vernichtet."
-
-#~ msgid "%s: option `%s' is ambiguous\n"
-#~ msgstr "%s: Option `%s' ist unbestimmbar\n"
-
-#~ msgid "%s: option `--%s' doesn't allow an argument\n"
-#~ msgstr "%s: Option `--%s' erlaubt keine Zusatzargumente\n"
-
-#~ msgid "%s: option `%c%s' doesn't allow an argument\n"
-#~ msgstr "%s: Option `%c%s' erlaubt keine Zusatzargumente\n"
-
-#~ msgid "%s: option `%s' requires an argument\n"
-#~ msgstr "%s: Option `%s' erfordert ein Zusatzargument\n"
-
-#~ msgid "%s: unrecognized option `--%s'\n"
-#~ msgstr "%s: Unbekannte Option `--%s'\n"
-
-#~ msgid "%s: unrecognized option `%c%s'\n"
-#~ msgstr "%s: Unbekannte Option `%c%s'\n"
-
-#~ msgid "%s: illegal option -- %c\n"
-#~ msgstr "%s: Unerlaubte Option -- %c\n"
-
-#~ msgid "%s: invalid option -- %c\n"
-#~ msgstr "%s: Ungültige Option -- %c\n"
-
-#~ msgid "%s: option requires an argument -- %c\n"
-#~ msgstr "%s: erfordert ein Zusatzargument -- %c\n"
-
-#~ msgid "%s: option `-W %s' is ambiguous\n"
-#~ msgstr "%s: Option `-W %s' ist unbestimmbar\n"
-
-#~ msgid "%s: option `-W %s' doesn't allow an argument\n"
-#~ msgstr "%s: Option `-W %s' erlaubt keine Zusatzargumente\n"
-
-#~ msgid ""
-#~ "XP\n"
-#~ "%ld/%ld"
-#~ msgstr ""
-#~ "Erf\n"
-#~ "%ld/%ld"
-
-#~ msgid ""
-#~ "%s was destroyed by your melee attack.  For defeating your enemy, you "
-#~ "receive %d experience."
-#~ msgstr ""
-#~ "%s wurde durch deine Attacke vernichtet.  Für die Liquidierung des "
-#~ "Gegners erhälst du %d Erfahrungspunkte."
-
-#~ msgid "You try to hack %s."
-#~ msgstr "Versuche, %s zu hacken..."
-
-#~ msgid ""
-#~ "Talking to an obstacle of type %d.  Ok.  You've told it everything.  "
-#~ "Maybe it just needs more time to digest the news."
-#~ msgstr ""
-#~ "Rede mit dem Hindernis der Sorte %d.  OK.  Du hast ihm alles erzählt.  "
-#~ "Vielleicht braucht es einfach etwas mehr Zeit, um die Neuigkeiten zu "
-#~ "verdauen."
-
-#~ msgid ""
-#~ "Linux Kernel booted.  001 transfer-tech modules loaded.  System up and "
-#~ "running."
-#~ msgstr ""
-#~ "Linux-Kernel gebootet.  001 Transtech-Module geladen.  System läuft "
-#~ "stabil."
-
-#~ msgid "Acolyte"
-#~ msgstr "Akolyth"
-
-#~ msgid "Templar"
-#~ msgstr "Templer"
-
-#~ msgid "Banshee"
-#~ msgstr "Todesfee"
-
-#~ msgid "Chicago"
-#~ msgstr "Chicago"
-
-#~ msgid "Sawmill"
-#~ msgstr "Sägewerk"
-
-#~ msgid "Nemesis"
-#~ msgstr "Rächer"
-
-#~ msgid "Sparkie"
-#~ msgstr "Funkenschleuder"
-
-#~ msgid "NaN"
-#~ msgstr "NaN"
-
-#~ msgid "Coward"
-#~ msgstr "Feigling"
-
-#~ msgid "Spinster"
-#~ msgstr "Blechjungfer"
-
-#~ msgid "Ghoul"
-#~ msgstr "Ghul"
-
-#~ msgid "Apollo"
-#~ msgstr "Apollo"
-
-#~ msgid "If"
-#~ msgstr "Wenn"
-
-#~ msgid "Soviet"
-#~ msgstr "Sowjet"
-
-#~ msgid ""
-#~ "Changes will take effect\n"
-#~ "       when you next start the game"
-#~ msgstr ""
-#~ "Änderungen werden aktiv\n"
-#~ "       nach dem Neustart des Spiels."
-
-#~ msgid ""
-#~ "\n"
-#~ "You selected 640x480 pixel.\n"
-#~ "\n"
-#~ "Change of screen resolution will\n"
-#~ "take effect automatically when you next\n"
-#~ "start FreedroidRPG.\n"
-#~ "\n"
-#~ "Thank you.\n"
-#~ msgstr ""
-#~ "\n"
-#~ "640x480 Pixel ausgewählt.\n"
-#~ "\n"
-#~ "Änderungen der Auflösung werden\n"
-#~ "automatisch mit dem Neustart\n"
-#~ "von FreedroidRPG übernommen.\n"
-#~ "\n"
-#~ "Vielen Dank...\n"
-
-#~ msgid ""
-#~ "\n"
-#~ "You selected 800x600 pixel.\n"
-#~ "\n"
-#~ "Change of screen resolution will\n"
-#~ "take effect automatically when you next\n"
-#~ "start FreedroidRPG.\n"
-#~ "\n"
-#~ "Thank you.\n"
-#~ msgstr ""
-#~ "\n"
-#~ "800x600 Pixel ausgewählt.\n"
-#~ "\n"
-#~ "Änderungen der Auflösung werden\n"
-#~ "automatisch mit dem Neustart\n"
-#~ "von FreedroidRPG übernommen.\n"
-#~ "\n"
-#~ "Vielen Dank...\n"
-
-#~ msgid ""
-#~ "\n"
-#~ "You selected 1024x768 pixel.\n"
-#~ "\n"
-#~ "Change of screen resolution will take\n"
-#~ "effect automatically when you next\n"
-#~ "start FreedroidRPG.\n"
-#~ "\n"
-#~ "Thank you.\n"
-#~ msgstr ""
-#~ "\n"
-#~ "1024x768 Pixel ausgewählt.\n"
-#~ "\n"
-#~ "Änderungen der Auflösung werden\n"
-#~ "automatisch mit dem Neustart\n"
-#~ "von FreedroidRPG übernommen.\n"
-#~ "\n"
-#~ "Vielen Dank...\n"
-
-#~ msgid ""
-#~ "\n"
-#~ "You selected 1280x1024 pixel.\n"
-#~ "\n"
-#~ "Change of screen resolution will take\n"
-#~ "effect automatically when you next\n"
-#~ "start FreedroidRPG.\n"
-#~ "\n"
-#~ "Thank you.\n"
-#~ msgstr ""
-#~ "\n"
-#~ "1280x1024 Pixel ausgewählt.\n"
-#~ "\n"
-#~ "Änderungen der Auflösung werden\n"
-#~ "automatisch mit dem Neustart\n"
-#~ "von FreedroidRPG übernommen.\n"
-#~ "\n"
-#~ "Vielen Dank...\n"
-
-#~ msgid ""
-#~ "\n"
-#~ "Unfortunately, fullscreen cannot be\n"
-#~ "toggled at runtime under Windows.\n"
-#~ "We apologise for this.\n"
-#~ "\n"
-#~ "There are good Linux distributions out there,\n"
-#~ " please check them out.\n"
-#~ "\n"
-#~ "Or you can launch the game with the -w option.\n"
-#~ "\n"
-#~ "   Thank you.\n"
-#~ msgstr ""
-#~ "\n"
-#~ "Vollbild-Modus kann in Windows leider\n"
-#~ "nicht bei laufendem Spiel geändert werden.\n"
-#~ "Wir bitten, dies zu entschuldigen.\n"
-#~ "\n"
-#~ "Es gibt mittlerweile sehr benutzerfreundliche Linux-\n"
-#~ "Distributionen, bitte versuchen Sie es doch einmal damit!\n"
-#~ "\n"
-#~ "Oder starten Sie das Spiel mit der '-w' Option.\n"
-#~ "\n"
-#~ "   Vielen Dank...\n"
-
-#~ msgid ""
-#~ "\n"
-#~ "You are using SDL instead of OpenGL\n"
-#~ "for graphics ouput right now.\n"
-#~ "\n"
-#~ "FreedroidRPG only supports 640x480\n"
-#~ "in SDL mode.\n"
-#~ "\n"
-#~ "You might want to restart the game using\n"
-#~ "OpenGL instead.\n"
-#~ "\n"
-#~ "\n"
-#~ "Thank you.\n"
-#~ msgstr ""
-#~ "\n"
-#~ "Sie benutzen im Moment SDL\n"
-#~ "anstatt OpenGL zur Grafikausgabe.\n"
-#~ "\n"
-#~ "FreedroidRPG unterstützt nur eine\n"
-#~ "Auflösung von 640x480 im SDL-Modus.\n"
-#~ "\n"
-#~ "Sie werden vielleicht stattdessen das Spiel\n"
-#~ "mit OpenGL-Unterstützung neu starten wollen.\n"
-#~ "\n"
-#~ "\n"
-#~ "Vielen Dank...\n"
-
-#~ msgid "Terminate On Missing Sample: %s"
-#~ msgstr "Stop bei fehlenden Samples: %s"
-
-#~ msgid "Show Subtitles in Dialogs: %s"
-#~ msgstr "Untertitel in Dialogen: %s"
-
-#~ msgid "Show quick inventory: %s"
-#~ msgstr "Schnell-Inventar anzeigen: %s"
-
-#~ msgid "Show Tux Energy: %s"
-#~ msgstr "Tux-Energiebalken anzeigen: %s"
-
-#~ msgid "Influencer Refresh Texts: %s"
-#~ msgstr "Meldungen - Tux-Auffrischung: %s"
-
-#~ msgid "Influencer Blast Texts: %s"
-#~ msgstr "Meldungen - Tux-Abschuss: %s"
-
-#~ msgid "Save Options"
-#~ msgstr "Optionen speichern"
-
-#~ msgid ""
-#~ "\n"
-#~ " Please enter name of server to connect to:\n"
-#~ " You can give an empty string for the local host.\n"
-#~ " > "
-#~ msgstr ""
-#~ "\n"
-#~ " Bitte Servernamen zum verbinden eingeben:\n"
-#~ " Für 'Localhost' müssen Sie nichts eingeben.\n"
-#~ " > "
-
-#~ msgid ""
-#~ "\n"
-#~ "\n"
-#~ "\n"
-#~ "                                            CREDITS\n"
-#~ "\n"
-#~ "\n"
-#~ "   PROGRAMMING:\n"
-#~ "\n"
-#~ "                                      Johannes Prix\n"
-#~ "\n"
-#~ "                                      Reinhard Prix\n"
-#~ "\n"
-#~ "                                      Arthur Huillet\n"
-#~ "\n"
-#~ "\n"
-#~ "   ARTWORK:\n"
-#~ "\n"
-#~ "                                      Bastian Salmela\n"
-#~ "\n"
-#~ "\n"
-#~ "   DIALOGUES AND MINOR TWEAKS:\n"
-#~ "\n"
-#~ "                                      Karol Swietlicki\n"
-#~ "\n"
-#~ "\n"
-#~ "   PROFILING AND TESTING:\n"
-#~ "\n"
-#~ "                                      Clint Herron\n"
-#~ "\n"
-#~ "\n"
-#~ "   SOUND EFFECTS:\n"
-#~ "\n"
-#~ "                                      Johannes Prix\n"
-#~ "\n"
-#~ "                                      Chris Hoeppner\n"
-#~ "\n"
-#~ "\n"
-#~ "   VOICES:\n"
-#~ "\n"
-#~ "                                      Tiina Heinonen\n"
-#~ "\n"
-#~ "                                      Doris Stubenrauch\n"
-#~ "\n"
-#~ "                                      Andrew A. Gill\n"
-#~ "\n"
-#~ "                                      Johannes Prix\n"
-#~ "\n"
-#~ "                                      Mbrola\n"
-#~ "                                       text-to-speech system\n"
-#~ "\n"
-#~ "                                      eSpeak\n"
-#~ "                                       text-to-speech system\n"
-#~ "\n"
-#~ "\n"
-#~ "   OGG COMPOSERS:\n"
-#~ "\n"
-#~ "                                      \"The Beginning\"\n"
-#~ "                                        by 4t thieves\n"
-#~ "                                        of kahvi collective\n"
-#~ "                                      (www.kahvi.org)\n"
-#~ "\n"
-#~ "                                      \"Daybreak\"\n"
-#~ "                                        by realsmokers\n"
-#~ "                                        of kahvi collective\n"
-#~ "                                      (www.realsmokers.de)\n"
-#~ "                                      (www.kahvi.org)\n"
-#~ "\n"
-#~ "                                      \"Bleostrada\"\n"
-#~ "                                        by stud\n"
-#~ "                                        of kahvi collective\n"
-#~ "                                      (www.atl3.com/stud)\n"
-#~ "                                      (www.kahvi.org)\n"
-#~ "\n"
-#~ "                                        Arvid Picciani\n"
-#~ "\n"
-#~ "\n"
-#~ "   VARIOUS OLDER CONTRIBUTIONS (PRE-0.9.13 people):\n"
-#~ "\n"
-#~ "                                      Ryan 'simcop2387' Voots\n"
-#~ "\n"
-#~ "                                      Andrew A. Gill\n"
-#~ "\n"
-#~ "                                      Zombie Ryushu\n"
-#~ "\n"
-#~ "                                      Ted Cipicchio\n"
-#~ "\n"
-#~ "                                      The Doctor\n"
-#~ "\n"
-#~ "                                      Simon Newton\n"
-#~ "\n"
-#~ "\n"
-#~ "\n"
-#~ "\n"
-#~ msgstr ""
-#~ "\n"
-#~ "\n"
-#~ "\n"
-#~ "                                            Beteiligte\n"
-#~ "\n"
-#~ "\n"
-#~ "   PROGRAMMIERUNG:\n"
-#~ "\n"
-#~ "                                      Johannes Prix\n"
-#~ "\n"
-#~ "                                      Reinhard Prix\n"
-#~ "\n"
-#~ "                                      Arthur Huillet\n"
-#~ "\n"
-#~ "\n"
-#~ "   KÜNSTLERISCHE GESTALTUNG:\n"
-#~ "\n"
-#~ "                                      Bastian Salmela\n"
-#~ "\n"
-#~ "\n"
-#~ "   DIALOGE UND KLEINERE ANPASSUNGEN:\n"
-#~ "\n"
-#~ "                                      Karol Swietlicki\n"
-#~ "\n"
-#~ "\n"
-#~ "   GESTALTUNG UND TESTS:\n"
-#~ "\n"
-#~ "                                      Clint Herron\n"
-#~ "\n"
-#~ "\n"
-#~ "   SOUND-EFFEKTE:\n"
-#~ "\n"
-#~ "                                      Johannes Prix\n"
-#~ "\n"
-#~ "                                      Chris Hoeppner\n"
-#~ "\n"
-#~ "\n"
-#~ "   STIMMEN:\n"
-#~ "\n"
-#~ "                                      Tiina Heinonen\n"
-#~ "\n"
-#~ "                                      Doris Stubenrauch\n"
-#~ "\n"
-#~ "                                      Andrew A. Gill\n"
-#~ "\n"
-#~ "                                      Johannes Prix\n"
-#~ "\n"
-#~ "                                      Mbrola\n"
-#~ "                                       text-to-speech system\n"
-#~ "\n"
-#~ "                                      eSpeak\n"
-#~ "                                       text-to-speech system\n"
-#~ "\n"
-#~ "\n"
-#~ "   OGG-KOMPONISTEN:\n"
-#~ "\n"
-#~ "                                      \"The Beginning\"\n"
-#~ "                                        by 4t thieves\n"
-#~ "                                        of kahvi collective\n"
-#~ "                                      (www.kahvi.org)\n"
-#~ "\n"
-#~ "                                      \"Daybreak\"\n"
-#~ "                                        by realsmokers\n"
-#~ "                                        of kahvi collective\n"
-#~ "                                      (www.realsmokers.de)\n"
-#~ "                                      (www.kahvi.org)\n"
-#~ "\n"
-#~ "                                      \"Bleostrada\"\n"
-#~ "                                        by stud\n"
-#~ "                                        of kahvi collective\n"
-#~ "                                      (www.atl3.com/stud)\n"
-#~ "                                      (www.kahvi.org)\n"
-#~ "\n"
-#~ "                                        Arvid Picciani\n"
-#~ "\n"
-#~ "\n"
-#~ "   DIVERSE ÄLTERE BEITRÄGE (PRE-0.9.13 people):\n"
-#~ "\n"
-#~ "                                      Ryan 'simcop2387' Voots\n"
-#~ "\n"
-#~ "                                      Andrew A. Gill\n"
-#~ "\n"
-#~ "                                      Zombie Ryushu\n"
-#~ "\n"
-#~ "                                      Ted Cipicchio\n"
-#~ "\n"
-#~ "                                      The Doctor\n"
-#~ "\n"
-#~ "                                      Simon Newton\n"
-#~ "\n"
-#~ "\n"
-#~ "\n"
-#~ "\n"
-
-#~ msgid ""
-#~ "\n"
-#~ "\n"
-#~ "                       HOW TO CONTRIBUTE\n"
-#~ "\n"
-#~ "\n"
-#~ "FreedroidRPG is entirely free software and free artwork.\n"
-#~ "It is developed exclusively by volunteers in their leisure time.\n"
-#~ "\n"
-#~ "FreedroidRPG depends on these contributions to become a better game.  If "
-#~ "you would like to contribute something, but are not completely sure how, "
-#~ "here's a list of things:\n"
-#~ "\n"
-#~ "\n"
-#~ "   TESTING AND BUG REPORTING:\n"
-#~ "\n"
-#~ "We need people to try out the game and report anything that does not work "
-#~ "correctly or seems to be unstable. This includes minor things, such as "
-#~ "spelling mistakes and the like. The task of testing is growing with the "
-#~ "size of FreedroidRPG. We need your help.\n"
-#~ "\n"
-#~ "\n"
-#~ "   MAP IMPROVEMENTS:\n"
-#~ "\n"
-#~ "We are looking for people who would make maps for us. There is already an "
-#~ "editor built into the game. Feel free to try it, and if you like it make "
-#~ "sure to get back to us.\n"
-#~ "\n"
-#~ "\n"
-#~ "   VOICE SAMPLES:\n"
-#~ "\n"
-#~ "Currently we are not accepting new speech. All of the dialogues are being "
-#~ "rewritten, we will add voice to them later. If you are one of our old "
-#~ "voice actors, then please get in touch with the team.\n"
-#~ "\n"
-#~ "\n"
-#~ "   SOUND EFFECTS:\n"
-#~ "\n"
-#~ "We sure could use some sound effects. If you want to contribute some to a "
-#~ "good cause we will not say no to that. :) \n"
-#~ "\n"
-#~ "\n"
-#~ "   CONTACT:\n"
-#~ "\n"
-#~ "If you would like to contribute something or give some feedback "
-#~ "concerning the game, you can easily get in contact with the developers. "
-#~ "Just send an e-mail to the following address:\n"
-#~ "\n"
-#~ "freedroid-discussion@lists.sourceforge.net\n"
-#~ "\n"
-#~ "Or, if you prefer that, you might want to pop into our IRC channel "
-#~ "(#freedroid on irc.freenode.net) Everyone's invited. Bring your friends "
-#~ "and coke, beer for Basse and Arthur.\n"
-#~ "\n"
-#~ "Thank you,\n"
-#~ "\n"
-#~ "                The FreedroidRPG dev team.\n"
-#~ "                                      \n"
-#~ "\n"
-#~ "\n"
-#~ "\n"
-#~ "\n"
-#~ msgstr ""
-#~ "\n"
-#~ "\n"
-#~ "                       WIE MAN MITHELFEN KANN\n"
-#~ "\n"
-#~ "\n"
-#~ "FreedroidRPG baut vollständig auf freier Software und freien "
-#~ "künstlerischen\n"
-#~ "Beiträgen auf. Die Entwicklung wird ausschließlich von Freiwilligen in "
-#~ "deren\n"
-#~ "Freizeit vorangetrieben.\n"
-#~ "\n"
-#~ "FreedroidRPG hängt von solchen Beiträgen ab, die das Spiel verbessern "
-#~ "helfen.\n"
-#~ "Wenn Sie etwas beisteuern möchten, sich jedoch nicht ganz sicher sind wie "
-#~ "- hier ist eine Liste an hilfreichen Dingen:\n"
-#~ "\n"
-#~ "\n"
-#~ "   SPIELETESTS UND FEHLER-REPORTS:\n"
-#~ "\n"
-#~ "Wir benötigen Spieletester, die uns über alles berichten, was nicht "
-#~ "einwandfrei funktioniert oder unstabil zu laufen scheint. Dies schließt "
-#~ "auch kleinere Bugs, wie Rechtschreibfehler und dergleichen mit ein. Die "
-#~ "Notwendigkeit von Tests wächst mit der Größe von FreedroidRPG. Dazu "
-#~ "brauchen wir Ihre Hile!\n"
-#~ "\n"
-#~ "\n"
-#~ "   MAP-ENTWICKLUNG:\n"
-#~ "\n"
-#~ "Wir suchen Karten-Entwickler, die für uns Spiele-Maps entwerfen und "
-#~ "anpassen! FreedroidRPG verfügt bereits über einen integrierten Map-"
-#~ "Editor, der laufend verbessert wird. Nur zu, experimentieren Sie ruhig "
-#~ "ein wenig herum - und wenn Sie mit dem Ergebnis zufrieden sind, melden "
-#~ "Sie sich bei uns!Sichern Sie bitte lediglich die Datei 'Asteroid.maps' in "
-#~ "Ihrem Spieleverzeichnis '/map', bevor Sie eine Karte bearbeiten, da "
-#~ "Änderungen sofort übernommen werden!\n"
-#~ "\n"
-#~ "\n"
-#~ "   STIMMEN-SAMPLES:\n"
-#~ "\n"
-#~ "Derzeit akzeptieren wir keine neuen Stimmaufnahmen. Alle unsere Dialoge "
-#~ "werden umgeschrieben; wir werden Sprachaufnahmen später hinzufügen. Falls "
-#~ "Sie einer unserer früheren Sprecher sind, melden Sie sich bitte bei "
-#~ "unseren Team.\n"
-#~ "\n"
-#~ "\n"
-#~ "   SOUND-EFFEKTE:\n"
-#~ "\n"
-#~ "Wir könnten sehr gut einige neue Sound-Effekte gebrauchen. Wenn Sie "
-#~ "welche für einen guten Zweck beisteuern wollen, werden wir nicht 'nein' "
-#~ "sagen... :) \n"
-#~ "\n"
-#~ "\n"
-#~ "   KONTAKT:\n"
-#~ "\n"
-#~ "Falls Sie etwas zum Spiel beitragen oder uns Rückmeldung zu FreedroidRPG "
-#~ "geben möchten, können Sie ganz einfach mit den Entwicklern in Kontakt "
-#~ "treten. Senden Sie eine E-Mail an folgende Adresse (wenn möglich in "
-#~ "Englisch):\n"
-#~ "\n"
-#~ "freedroid-discussion@lists.sourceforge.net\n"
-#~ "\n"
-#~ "Oder, falls Sie es bevorzugen, können Sie sich auch im IRC-Kanal "
-#~ "einklinken (#freedroid auf irc.freenode.net) - jeder is eingeladen... "
-#~ "Bringen Sie Ihre Freunde mit, Cola & Bier für Basse und Arthur!\n"
-#~ "\n"
-#~ "Vielen Dank,\n"
-#~ "\n"
-#~ "               Das FreedroidRPG-Entwicklerteam.\n"
-#~ "                                      \n"
-#~ "\n"
-#~ "\n"
-#~ "\n"
-#~ "\n"
-
-#~ msgid ""
-#~ "\n"
-#~ "Status: "
-#~ msgstr ""
-#~ "\n"
-#~ "Stand: "
-
-#~ msgid ""
-#~ "\n"
-#~ "Details: "
-#~ msgstr ""
-#~ "\n"
-#~ "Details: "
-
-#~ msgid ""
-#~ "\n"
-#~ "\n"
-#~ "    Surely you do not really want do save a game \n"
-#~ "\n"
-#~ "    where your tux is dead, do you?"
-#~ msgstr ""
-#~ "\n"
-#~ "\n"
-#~ "    Sie wollen bestimmt kein Spiel sichern, \n"
-#~ "\n"
-#~ "    wenn Ihr Tux tot ist - oder?"
-
-#~ msgid ""
-#~ "Error: Version or structsize mismatch! The saved game in question appears "
-#~ "to be from a (slightly?) different version of FreedroidRPG.\n"
-#~ "Sorry, but I refuse to load it for safety/stability reasons...\n"
-#~ "For Recovery, a blank game will be loaded...(please disregard)\n"
-#~ msgstr ""
-#~ "Error: fehlende Versions- oder 'structsize' Übereinstimmung! Der "
-#~ "fragliche Spielstand scheint von einer (leicht?) geänderten Version von "
-#~ "FreedroidRPG zu stammen.\n"
-#~ "Sorry, aber aus Sicherheits- und Stabilitätsgründen kann er nicht geladen "
-#~ "werden...\n"
-#~ "Um fortzufahren wird ein leerer Spielstand geladen... (bitte dieser "
-#~ "Meldung keine Beachtung schenken)\n"
-
-#~ msgid ""
-#~ "\n"
-#~ "\n"
-#~ "    Are you sure you wish to sell this/(some of these) item(s)?"
-#~ msgstr ""
-#~ "\n"
-#~ "\n"
-#~ "    Bist du sicher, dass du ein Stück (oder mehrere) von dieser Sorte "
-#~ "verkaufen willst?"
-
-#~ msgid " YOU DONT HAVE ANYTHING THAT WOULD NEED TO BE IDENTIFIED!"
-#~ msgstr " DU HAST NICHTS, DAS IDENTIFIZIERT WERDEN MÜSSTE!"
-
-#~ msgid ""
-#~ " YOU DONT HAVE ANYTHING IN INVENTORY (I.E. NOT WORN), THAT COULD BE SOLD. "
-#~ msgstr ""
-#~ " DU HAST NICHTS IM INVENTAR (D.H. TRÄGST NICHTS), DAS VERKAUFT WERDEN "
-#~ "KÖNNTE. "
-
-#~ msgid "Buy Basic Items"
-#~ msgstr "Kaufe Grundausrüstung"
-
-#~ msgid "Buy Premium Items"
-#~ msgstr "Kaufe hochwertige Ausrüstung"
-
-#~ msgid "Sell Items"
-#~ msgstr "Verkaufe Gegenstände"
-
-#~ msgid "Repair Items"
-#~ msgstr "Repariere Teile"
-
-#~ msgid "Leave the Sales Representative"
-#~ msgstr "Beende Dialog mit Verkäufer"
-
-#~ msgid "Identify Items"
-#~ msgstr "Identifiziere Dinge"
-
-#~ msgid "Program revision: %d "
-#~ msgstr "Programmversion: %d "
-
-#~ msgid "Heat produced: %d "
-#~ msgstr "Entstandene Hitze: %d "
-
-#~ msgid "Yeah, stay like that, haha."
-#~ msgstr "Ja, bleib genauso stehen - haha!"
-
-#~ msgid "Ghaart, I hate to stain my chassis like that."
-#~ msgstr "Ghhaarr! Ich hasse es, mein Gehäuse so zu beschmutzen..."
-
-#~ msgid "Oh no, my poor transfer connectors smolder!"
-#~ msgstr "Ah, nein! Meine armen Steckverbindungen schmoren!"
-
-#~ msgid "So that gives some more black scars on me ol' dented chassis!"
-#~ msgstr ""
-#~ "Tja, das gibt mal wieder ein paar Schrammen an meiner alten, ramponierten "
-#~ "Hülle!"
-
-#~ msgid "Mobile"
-#~ msgstr "Bewegen"
-
-#~ msgid "Transfer"
-#~ msgstr "Übertragen"
-
-#~ msgid "Captured"
-#~ msgstr "Gefangen"
-
-#~ msgid "Logged In"
-#~ msgstr "Eingelogt"
-
-#~ msgid "Debriefing"
-#~ msgstr "Entlassen"
-
-#~ msgid "Terminated"
-#~ msgstr "Liquidiert"
-
-#~ msgid "Pause"
-#~ msgstr "Pause"
-
-#~ msgid "Cheese"
-#~ msgstr "Cheese"
-
-#~ msgid "Elevator"
-#~ msgstr "Anheben"
-
-#~ msgid "Briefing"
-#~ msgstr "Einweisung"
-
-#~ msgid "Menu"
-#~ msgstr "Menü"
-
-#~ msgid "Fresh Net"
-#~ msgstr "Fresh Net"
-
-#~ msgid "Name Tran"
-#~ msgstr "Name Tran"
-
-#~ msgid "Influence device"
-#~ msgstr "Fernsteuer-Einheit"
-
-#~ msgid "Disposal robot"
-#~ msgstr "Müllroboter"
-
-#~ msgid "Servant robot"
-#~ msgstr "Dienstroboter"
-
-#~ msgid "Messenger robot"
-#~ msgstr "Botenroboter"
-
-#~ msgid "Maintenance robot"
-#~ msgstr "Reparaturbot"
-
-#~ msgid "Crew droid"
-#~ msgstr "Besatzungsandroid"
-
-#~ msgid "Sentinel droid"
-#~ msgstr "Wachrobot"
-
-#~ msgid "Battle droid"
-#~ msgstr "Kampfandroid"
-
-#~ msgid "Security droid"
-#~ msgstr "Sicherheitsandroid"
-
-#~ msgid "Cold MS Force"
-#~ msgstr "Kalte MS-Kraft"
-
-#~ msgid "Sorenson, Master of Magic"
-#~ msgstr "Sorenson, Meisterin der Codes"
-
-#~ msgid "influence"
-#~ msgstr "Fernsteuerung"
-
-#~ msgid "disposal"
-#~ msgstr "Müllentsorgung"
-
-#~ msgid "servant"
-#~ msgstr "Diener"
-
-#~ msgid "messenger"
-#~ msgstr "Bote"
-
-#~ msgid "maintenance"
-#~ msgstr "Reparatur"
-
-#~ msgid "crew"
-#~ msgstr "Besatzung"
-
-#~ msgid "sentinel"
-#~ msgstr "Wächter"
-
-#~ msgid "battle"
-#~ msgstr "Kampf"
-
-#~ msgid "security"
-#~ msgstr "Sicherheit"
-
-#~ msgid "command"
-#~ msgstr "Kommando"
-
-#~ msgid "error"
-#~ msgstr "Fehler"
-
-#~ msgid "tracks"
-#~ msgstr "Kettenantrieb"
-
-#~ msgid "anti-grav"
-#~ msgstr "Antigrav"
-
-#~ msgid "tripedal"
-#~ msgstr "Dreibeinantrieb"
-
-#~ msgid "wheels"
-#~ msgstr "Fahrwerk"
-
-#~ msgid "bipedal"
-#~ msgstr "Zweibeinantrieb"
-
-#~ msgid " - "
-#~ msgstr " - "
-
-#~ msgid "spectral"
-#~ msgstr "Spektralsensorik"
-
-#~ msgid "infra-red"
-#~ msgstr "Infrarotsensoren"
-
-#~ msgid "subsonic"
-#~ msgstr "Infraschallsonar"
-
-#~ msgid "ultra-sonic"
-#~ msgstr "Ultraschallsensoren"
-
-#~ msgid "radar"
-#~ msgstr "Radar"
-
-#~ msgid "neutronic"
-#~ msgstr "Neutronik"
-
-#~ msgid "primode"
-#~ msgstr "Primodus"
-
-#~ msgid "lasers"
-#~ msgstr "Laser"
-
-#~ msgid "laser rifle"
-#~ msgstr "Lasergewehr"
-
-#~ msgid "disruptor"
-#~ msgstr "Disruptor"
-
-#~ msgid "exterminator"
-#~ msgstr "Exterminator"
-
-#~ msgid "Energy: %d "
-#~ msgstr "Energie: %d "
-
-#~ msgid ""
-#~ "This is a droid service station. You suppose it's of no use for your "
-#~ "quest."
-#~ msgstr ""
-#~ "Androiden-Servicestation. Vermutlich für deine Aufgabe nicht von "
-#~ "Bedeutung."
-
-#~ msgid ""
-#~ "This cauldron can be used for many good things. Cooking beef or pork for "
-#~ "dinner are some of them. It can be also used for many evil things. "
-#~ "Cooking Linarians for dinner is one of them. These are rough times..."
-#~ msgstr ""
-#~ "Dieser Kessel kann für viele gute Zwecke verwendet werden. Rind- oder "
-#~ "Schweinefleisch zu garen sind deren zwei. Er kann aber auch für unschöne "
-#~ "Zwecke benutzt werden - Linarianer-Eintopf zum Mittagessen zu kochen ist "
-#~ "einer davon. Die Zeiten sind hart..."
-
-#~ msgid "A rusty barrel. Ravages of time..."
-#~ msgstr "Eine rostige Tonne. Zahn der Zeit..."
-
-#~ msgid "... a perfect room lamp!"
-#~ msgstr "... eine perfekte Zimmerlampe!"
-
-#~ msgid "You can't break it. Trust me. Find another way."
-#~ msgstr "Unzerstörbar. Glaub mir. Finde einen anderen Weg."
-
-#~ msgid "Smells good..."
-#~ msgstr "Riecht gut..."
-
-#~ msgid "An idea of what comfort is..."
-#~ msgstr "Vermittelt ein Gefühl von Komfort..."
-
-#~ msgid "A metal tub. A prehistoric washing machine, so as to say."
-#~ msgstr "Eine Metallwanne. Sozusagen eine prähistorische Waschmaschine."
-
-#~ msgid ""
-#~ "A wonderful exotic plant. You can read \"Made by Basse\" on it. Strange..."
-#~ msgstr ""
-#~ "Eine wunderschöne exotische Pflanze. Man kann daran lesen: 'entworfen von "
-#~ "Basse'. Seltsam..."
-
-#~ msgid ""
-#~ "This model of the counter features a built-in cash register and bright "
-#~ "neon lights. Sunglasses, please!"
-#~ msgstr ""
-#~ "Diese spezielle Ladentheke verfügt über eine eingebaute Kasse und grelle "
-#~ "Neonlichter. Sonnenbrille, bitte!"
-
-#~ msgid ""
-#~ "This great wall can withstand a swarm of rogue bots madly attacking it "
-#~ "for weeks*! It can belong to you for only 299.99T$ + tax, per section. *"
-#~ "( Your duration may vary. This wall comes with ABSOLUTELY NO WARRANTY! ) "
-#~ msgstr ""
-#~ "Diese große und großartige Mauer kann einer Schar durchgedrehter Bots "
-#~ "über Wochen standhalten, die wie wahnsinnig darauf einstürmen*! Zu haben "
-#~ "für nur 299,99T$ + MwSt. pro Teilabschnitt. *(Beständigkeit kann "
-#~ "variieren. Auf diesen Wandtyp wird KEINERLEI GARANTIE gewährt!) "
-
-#~ msgid "This gate is a little more than just a big door. A very big door."
-#~ msgstr ""
-#~ "Dieses Tor ist nicht einfach nur eine große Tür. Eher eine sehr große Tür."
-
-#~ msgid "Info sign"
-#~ msgstr "Info-Schild"
-
-#~ msgid "You can see some food stains on this yellow round formica table."
-#~ msgstr ""
-#~ "Man kann noch einige Essensreste auf dem runden, gelben Resopaltisch "
-#~ "sehen."
-
-#~ msgid ""
-#~ "This table is made of see-through(tm) glass, to spy on nice legs... er..."
-#~ "to catch on the topic."
-#~ msgstr ""
-#~ "Dieser Tisch ist aus Durchguck(TM)-Glas gefertigt, um schöne Beine "
-#~ "bewundern... äh... den Durchblick behalten zu können."
-
-#~ msgid "That one went into the armour!"
-#~ msgstr "Der Treffer hat die Rüstung durchschlagen!"
-
-#~ msgid "Ha! You missed me!"
-#~ msgstr "Ha! Daneben..!"
-
-#~ msgid "Maximum level reached!!!"
-#~ msgstr "Höchste Stufe erreicht!!!"
-
-#~ msgid " Durability: %d of %d"
-#~ msgstr " Beständigkeit: %d von %d"
-
-#~ msgid " Dur: %d/%d"
-#~ msgstr " Bst: %d/%d"
-
-#~ msgid " Indestructible"
-#~ msgstr " Unzerstörbar"
-
-#~ msgid "Recover health\n"
-#~ msgstr "Wiederherstellen: Gesundheit\n"
-
-#~ msgid ""
-#~ "Teleports you to town or from town\n"
-#~ " back to your previous position\n"
-#~ msgstr ""
-#~ "Teleportiert aus der/in die Stadt\n"
-#~ " zurück zur vorherigen Position\n"
-
-#~ msgid ""
-#~ "Recover health, force\n"
-#~ "and running power\n"
-#~ msgstr ""
-#~ "Wiederherstellen: Gesundheit, Kraft\n"
-#~ "und Sprint-Ausdauer\n"
-
-#~ msgid "Recover running power\n"
-#~ msgstr "Wiederherstellen: Sprint-Ausdauer\n"
-
-#~ msgid "Temporary boost to strength\n"
-#~ msgstr "Kurzzeit-Schub an Kraft\n"
-
-#~ msgid "Temporary boost to dexterity\n"
-#~ msgstr "Kurzzeit-Schub an Geschicklichkeit\n"
-
-#~ msgid "Permanently gain +1 CPU performance\n"
-#~ msgstr "Permanent: Anstieg von +1 CPU-Leistung\n"
-
-#~ msgid "%d to CPU performance"
-#~ msgstr "%d Plus an CPU-Leistung"
-
-#~ msgid "%d to illumination radius"
-#~ msgstr "%d Plus an Leuchtradius"
-
-#~ msgid ""
-#~ "This person looks totally defeated! Tattered clothes surround his "
-#~ "skeletal form. If there was a fifth raider of the apocalypse, it would be "
-#~ "him and his name would be Hard Work..."
-#~ msgstr ""
-#~ "Diese Person sieht völlig abgewrackt aus! Zerfetzte Kleider hängen an "
-#~ "seinem skelettartigen Körper herunter. Gäbe es einen fünften Reiter der "
-#~ "Apokalypse, mit Sicherheit wäre er es. Und sein Name wäre 'der "
-#~ "Arbeitswütige'."
-
-#~ msgid "He looks totally happy, in a rather detestable way..."
-#~ msgstr "Er sieht auf widerwärtige Weise äußerst fröhlich drein..."
-
-#~ msgid ""
-#~ "And now you know who is to be blamed for the truly awful food in here. "
-#~ "You are in a killing mood. Oh yeah. The cook must die. The cook must die! "
-#~ "HA HA HA!!!"
-#~ msgstr ""
-#~ "Und jetzt weißt du, wer an der wirklich grauenvollen Nahrung hier die "
-#~ "Schuld trägt. Du bist in einer 'Mordsstimmung'. Jawohl! Der Koch muss "
-#~ "dran glauben. Der Koch muss sterben! HA HA HA HA!!!"
-
-#~ msgid "GAME OVER\n"
-#~ msgstr "GAME OVER\n"
-
-#~ msgid "Congratulations! You successfully finished this episode!!\n"
-#~ msgstr "Glückwunsch! Episode erfolgreich beendet!!\n"
-
-#~ msgid "Identified: air."
-#~ msgstr "Identifiziert: Luft."
-
-#~ msgid "Identified: %s"
-#~ msgstr "Identifiziert: %s"
-
-#~ msgid "I can't carry anymore."
-#~ msgstr "Ich kann nicht NOCH mehr tragen!"
-
-#~ msgid "Overheating! Gun blocked!"
-#~ msgstr "Überhitzung - Feuersperre!"
-
-#~ msgid "Skip illumination aura: %s"
-#~ msgstr "Leucht-Aura abschalten: %s"
-
-#~ msgid "Droid comments"
-#~ msgstr "Kommentar-Optionen"
-
-#~ msgid "Really delete hero profile '%s'?"
-#~ msgstr "Heldenprofil wirklich löschen '%s'?"
-
-#~ msgid ""
-#~ "\n"
-#~ "\n"
-#~ "No saved games found!!  Deletion cancelled. "
-#~ msgstr ""
-#~ "\n"
-#~ "\n"
-#~ "Keine Spielstände gefunden!  Löschen abgebrochen. "
-
-#~ msgid "New hero"
-#~ msgstr "Neuer Held"
-
-#~ msgid "Load hero profile"
-#~ msgstr "Heldenprofil laden"
-
-#~ msgid "Delete hero profile"
-#~ msgstr "Heldenprofil löschen"
-
-#~ msgid "Arrival at %s."
-#~ msgstr "Ankunft: %s."
-
-#~ msgid ""
-#~ "Unit type %s - %s\n"
-#~ "Interfaces : %d\n"
-#~ "Micro controller : %s"
-#~ msgstr ""
-#~ "Roboter-Typ %s - %s\n"
-#~ "Schnittstellen : %d\n"
-#~ "Mikro-Controller : %s"
-
-#~ msgid ""
-#~ "\n"
-#~ "Armament : %s\n"
-#~ "Sensors  1: %s\n"
-#~ "          2: %s\n"
-#~ "          3: %s"
-#~ msgstr ""
-#~ "\n"
-#~ "Bewaffnung : %s\n"
-#~ "Sensoren  1: %s\n"
-#~ "          2: %s\n"
-#~ "          3: %s"
-
-#~ msgid "Ammo clip reloading time: %3.2f\n"
-#~ msgstr "Magazin-Nachladezeit: %3.2f\n"
-
-#~ msgid " This weapon is supplied by standard plasma gas tanks."
-#~ msgstr " Diese Waffe speist sich aus Standard-Plasmagas-Tanks."
-
-#~ msgid " An energy weapon, requiring standard laser crystal ammunition."
-#~ msgstr " Eine Energiewaffe, die Laserkristall-Standardmunition benötigt."
-
-#~ msgid ""
-#~ " Heavy duty assault weapon, utilizing special Exterminator fission "
-#~ "spheres, caliber 2mm."
-#~ msgstr ""
-#~ " Schwere Sturmwaffe unbekannter Herkunft, verwendet spezielle "
-#~ "Exterminator-Fissions-Kugeln, Kaliber 2mm."
-
-#~ msgid " Automatic for caliber .22 Long Rifle rounds."
-#~ msgstr " Automatikwaffe für Kaliber .22 Zoll Geschosse."
-
-#~ msgid " This pumpgun fires standard shotgun shells."
-#~ msgstr " Diese Pumpgun verfeuert standardmäßige Schrotgewehr-Patronen."
-
-#~ msgid " This iron is designed for 9x19mm rounds."
-#~ msgstr " Das Schießeisen ist für Kaliber 9x19mm Kugeln ausgelegt."
-
-#~ msgid " Machine carabine for 7.62x39mm ammunition clips."
-#~ msgstr ""
-#~ " Maschinenkarabiner, der Kaliber 7.62x39mm Munitions-Magazine aufnimmt."
-
-#~ msgid " I COULD IDENTIFY THESE ITEMS             TRIBUCKS:  %4ld"
-#~ msgstr " FOLGENDES IDENTIFIZIERT             TRIBUCKS:  %4ld"
-
-#~ msgid " I WOULD BUY FROM YOU THESE ITEMS        TRIBUCKS:  %4ld"
-#~ msgstr " ICH WÜRDE DIR DIESE GEGENSTÄNDE ABKAUFEN         TRIBUCKS:  %4ld"
-
-#~ msgid "You cheat!"
-#~ msgstr "Du betrügst!"
-
-#~ msgid "Command cyborg"
-#~ msgstr "Kommandocyborg"
-
-#~ msgid "Peaceful human"
-#~ msgstr "Friedfertiger Mensch"
-
-#~ msgid "Ms. Stone, shop owner"
-#~ msgstr "Miss Stone, Ladenbesitzerin"
-
-#~ msgid "Resistance founder"
-#~ msgstr "Widerstands-Initiator"
-
-#~ msgid "Town medic"
-#~ msgstr "Städtischer Mediziner"
-
-#~ msgid "Pendragon, rebel fighter"
-#~ msgstr "Pendragon, Widerstandskämpfer"
-
-#~ msgid "Dixon, teleporter service technician"
-#~ msgstr "Dixon, Teleporter-Servicetechniker"
-
-#~ msgid "councilor"
-#~ msgstr "Stadtrat"
-
-#~ msgid "superhuman"
-#~ msgstr "Übermensch"
-
-#~ msgid "god-like!"
-#~ msgstr "Göttergleich!"
-
-#~ msgid "master of the universe!!"
-#~ msgstr "Meister des Universums!!"
-
-#~ msgid "wicked sick!!!"
-#~ msgstr "Oberkrank!!!"
