@@ -230,14 +230,7 @@ ReadAndMallocStringFromDataOptional ( char* SearchString , const char* StartIndi
       // Now we move to the end with the end pointer
       EndOfStringPointer = strstr( SearchPointer , EndIndicationString );
       if ( (!EndOfStringPointer) || (EndOfStringPointer >= Limit) )
-	{
-	  fprintf( stderr, "\n\nEndIndicationString: '%s'\n" , EndIndicationString );
-	  ErrorMessage ( __FUNCTION__  , "\
-The string that is supposed to terminate an entry in a text data file\n\
-of Freedroid was not found within this text data file.\n\
-This indicates some corruption in the data file in question.",
-				     PLEASE_INFORM, IS_FATAL );
-	}
+	  return 0;
 
       // Now we allocate memory and copy the string...
       // delete_one_dialog_option() doesn't free empty strings so don't
@@ -271,7 +264,7 @@ ReadAndMallocStringFromData ( char* SearchString , const char* StartIndicationSt
   char *result = ReadAndMallocStringFromDataOptional ( SearchString, StartIndicationString, EndIndicationString, 0 );
   if ( !result )
     {
-      fprintf( stderr, "\n\nStartIndicationString: '%s'\n" , StartIndicationString );
+      fprintf( stderr, "\n\nStartIndicationString: '%s'\nEndIndicationString: '%s'\n" , StartIndicationString, EndIndicationString );
       ErrorMessage ( __FUNCTION__  , "\
 The string that is supposed to prefix an entry in a text data file\n\
 of Freedroid was not found within this text data file.\n\
