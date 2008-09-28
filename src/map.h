@@ -46,6 +46,7 @@
 
 #define AREA_NAME_STRING "Area name=\""
 #define LEVEL_NAME_STRING "Name of this level=_\""
+#define LEVEL_NAME_STRING_LEGACY "Name of this level="
 #define LEVEL_ENTER_COMMENT_STRING "Infcmt=\""
 #define BACKGROUND_SONG_NAME_STRING "BgSong="
 #define MAP_END_STRING "/pmapinfolvl"

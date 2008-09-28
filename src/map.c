@@ -2305,7 +2305,16 @@ DecodeLoadedLeveldata ( char *data )
 
     DecodeDimensionsOfThisLevel ( loadlevel , DataPointer );
 
-    loadlevel->Levelname = ReadAndMallocStringFromData ( data , LEVEL_NAME_STRING , "\"" );
+    //--------------------
+    // Read the levelname.
+    // Accept legacy ship-files that are not yet marked-up for translation
+    if ( ( loadlevel->Levelname = ReadAndMallocStringFromDataOptional ( data , LEVEL_NAME_STRING , "\"", 0 ) ) == NULL)
+    {
+        loadlevel->Levelname = ReadAndMallocStringFromData ( data , LEVEL_NAME_STRING_LEGACY , "\n" );
+        fprintf( stderr, "Warning: Leveldata seems to be created with an older version of freedroidRPG."\
+                 " When you save again, the savegame will not be compatible with the old version.\n");
+    }
+    
     loadlevel->Background_Song_Name = ReadAndMallocStringFromData ( data , BACKGROUND_SONG_NAME_STRING , "\n" );
     loadlevel->Level_Enter_Comment = ReadAndMallocStringFromData ( data , LEVEL_ENTER_COMMENT_STRING , "\n" );
 
