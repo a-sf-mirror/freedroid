@@ -1517,7 +1517,7 @@ Escape_fill (char *MenuTexts [10])
       MenuTexts[2]=_("Options");
       MenuTexts[3]=_("Level Editor");
       MenuTexts[4]=_("Load Game");
-      MenuTexts[5]=_("New Game");
+      MenuTexts[5]=_("Main Menu");
       MenuTexts[6]=_("Quit");
       MenuTexts[7]="";
 }
