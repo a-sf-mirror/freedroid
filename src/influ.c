@@ -3391,7 +3391,7 @@ handle_player_examine_command ( void )
     // was found under the mouse cursor.  Then it's the floor being
     // examined.  We say so, currently rather unspecific, but still.
     //
-    sprintf ( game_message_text , _("You see the floor.  It should be perfectly safe to walk on it.")) ;
+    sprintf ( game_message_text , _("There is nothing here.")) ;
     append_new_game_message ( game_message_text );
     global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL;
 }; // void handle_player_examine_command ( ) 
