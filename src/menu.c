@@ -53,7 +53,7 @@ extern int load_game_command_came_from_inside_running_game;
 #define REPAIR_PRICE_FACTOR (0.5)
 
 #define SINGLE_PLAYER_STRING "Play"
-#define LOAD_EXISTING_HERO_STRING _("The first 7 characters: ")
+#define LOAD_EXISTING_HERO_STRING _("Your characters: ")
 #define DELETE_EXISTING_HERO_STRING _("Select character to delete: ")
 
 #define MENU_SELECTION_DEBUG 1
@@ -250,7 +250,10 @@ DoMenuSelection( char* InitialText , char **MenuTexts, int FirstItem , int backg
 	//
 	if ( ( ( ! strcmp ( InitialText , LOAD_EXISTING_HERO_STRING ) ) ||
 	     ( ! strcmp ( InitialText , DELETE_EXISTING_HERO_STRING ) ) ) && 
-             MenuPosition < NumberOfOptionsGiven )
+             strcmp ( MenuTexts [ MenuPosition - 1], _("[down]")) && 
+	     strcmp ( MenuTexts [ MenuPosition - 1 ], _("[up]")) && 
+	     strcmp ( MenuTexts [ MenuPosition - 1 ], " ") && 
+	     MenuPosition < NumberOfOptionsGiven )
 	{
 	    //--------------------
 	    // We load the thumbnail, or at least we try to do it...
@@ -2147,11 +2150,12 @@ int
 Load_Existing_Hero_Menu ( void )
 {
     char Saved_Games_Dir[1000];
-    char* MenuTexts[ MAX_SAVED_CHARACTERS_ON_DISK + 2 ] ;
+    char* MenuTexts[ 10 ] ;
     struct dirent **eps;
     int n;  
     int cnt;
     int MenuPosition;
+    int saveoffset = 0;
     
     DebugPrintf ( 1 , "\nint Load_Existing_Hero_Menu ( void ): real function call confirmed.");
     InitiateMenu( NE_TITLE_PIC_BACKGROUND_CODE );
@@ -2197,37 +2201,49 @@ I need to know that for saving. Abort.\n");
     // EXTENTION, see GNU C Library docu for the formal details...
     //
     n = scandir ( Saved_Games_Dir , &eps, filename_filter_func , alphasort);
-    if (n > 0)
-    {
-	for (cnt = 0; cnt < n; ++cnt) 
-	{
-	    // puts ( eps[cnt]->d_name );
-	    DisplayText ( eps[cnt]->d_name , 50 , 150 + cnt * 40 , NULL , TEXT_STRETCH );
-	    if ( cnt < MAX_SAVED_CHARACTERS_ON_DISK ) 
-	    {
-		MenuTexts[ cnt ] = ReadAndMallocStringFromData ( eps[cnt]->d_name , "" , ".savegame" ) ;
-		//DebugPrintf ( 1 , "\nNOTE:  int Load_Existing_Hero_Menu(void):  Another load game name found: %s.\n" , MenuTexts [ cnt ] );
+    if (n > 0) {
+	while (1) {
+
+	    if (saveoffset != 0) {
+		/* Display "up" */
+		MenuTexts [ 0 ] = _("[up]");
+	    } else {
+		MenuTexts [ 0 ] = " ";
 	    }
-	}
-	
-	MenuTexts [ cnt ] = _("Back");
-	MenuTexts [ cnt + 1] = "";
-	
-	MenuPosition = DoMenuSelection( LOAD_EXISTING_HERO_STRING , MenuTexts , 1 , NE_TITLE_PIC_BACKGROUND_CODE , NULL );
-	
-	if ( MenuPosition == (-1) ) return ( FALSE );
-	if ( MenuPosition == cnt + 1 ) return ( FALSE );
-	else
-	{
-	    strcpy ( Me . character_name , MenuTexts [ MenuPosition -1 ] );
-	    if ( LoadGame ( ) == OK )
-	    {
-		GetEventsAndEventTriggers ( "EventsAndEventTriggers" );
-		GetQuestList ( "QuestList_archetypes" );
-   		Item_Held_In_Hand = ( -1 );
-		return ( TRUE );
+
+	    for (cnt = 1; cnt + saveoffset - 1< n && cnt < MAX_SAVED_CHARACTERS_ON_DISK; cnt++) 
+		{
+		MenuTexts[ cnt ] = ReadAndMallocStringFromData ( eps[cnt + saveoffset - 1]->d_name , "" , ".savegame" ) ;
+		}
+
+	    if (cnt >= 6) {
+		/* Display "down" */
+		MenuTexts [ cnt++ ] = _("[down]");
+	    } else MenuTexts [ cnt++ ] = " ";	
+
+	    MenuTexts [ cnt ] = _("Back");
+	    MenuTexts [ cnt + 1 ] = "";
+
+	    MenuPosition = DoMenuSelection( LOAD_EXISTING_HERO_STRING , MenuTexts , 1 , NE_TITLE_PIC_BACKGROUND_CODE , NULL );
+
+	    if ( MenuPosition == (-1) ) return ( FALSE );
+	    if ( MenuPosition == cnt + 1 ) return ( FALSE );
+	    if ( MenuPosition == cnt ) {
+		if (cnt + saveoffset - 1 < n) saveoffset++;
+	    } else if ( MenuPosition == 1 ) {
+		if (saveoffset > 0) saveoffset--;
 	    }
+	    else break;
 	}
+
+	strcpy ( Me . character_name , MenuTexts [ MenuPosition -1 ] );
+	if ( LoadGame ( ) == OK )
+	    {
+	    GetEventsAndEventTriggers ( "EventsAndEventTriggers" );
+	    GetQuestList ( "QuestList_archetypes" );
+	    Item_Held_In_Hand = ( -1 );
+	    return ( TRUE );
+	    }
     }
     else
     {
@@ -2235,7 +2251,6 @@ I need to know that for saving. Abort.\n");
 	MenuTexts[0]=_("BACK");
 	MenuTexts[1]="";
 	
-	while ( SpacePressed() || EnterPressed() );
 	DoMenuSelection ( _("\n\nNo saved games found!!  Loading Cancelled. "), MenuTexts , 1 , NE_TITLE_PIC_BACKGROUND_CODE , NULL );
 	
 	//--------------------
