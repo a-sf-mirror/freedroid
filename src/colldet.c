@@ -108,12 +108,11 @@ static inline float calc_distance_seg_point_normalized ( float x1, float y1, flo
  * This colldet filter is used to ignore the obstacles (such as doors)
  * that can be traversed by walking bot.
  */
-int FilterWalkableCallback(colldet_filter* this, obstacle* obs)
+int FilterWalkableCallback(colldet_filter* this, obstacle* obs, int obs_idx )
 {
-	if ( ( ISO_H_DOOR_000_OPEN <= obs->type ) && ( obs->type <= ISO_V_DOOR_100_OPEN ) ) return TRUE;
-	if ( ( ISO_OUTER_DOOR_V_00 <= obs->type ) && ( obs->type <= ISO_OUTER_DOOR_H_100 ) ) return TRUE;
+	if ( obstacle_map[obs->type].flags & IS_WALKABLE ) return TRUE;
 
-	if (this->next) return(this->next->callback(this->next, obs));
+	if (this->next) return(this->next->callback(this->next, obs, obs_idx));
 	
 	return FALSE;
 }
@@ -123,11 +122,11 @@ colldet_filter FilterWalkable = { FilterWalkableCallback, NULL, NULL };
  * This colldet filter is used to ignore the obstacles (such as water)
  * that can be traversed by a flying object.
  */
-int FilterFlyableCallback(colldet_filter* this, obstacle* obs)
+int FilterFlyableCallback(colldet_filter* this, obstacle* obs, int obs_idx )
 {
 	if ( obstacle_map[obs->type].flags & GROUND_LEVEL ) return TRUE;
 
-	if (this->next) return(this->next->callback(this->next, obs));
+	if (this->next) return(this->next->callback(this->next, obs, obs_idx));
 	
 	return FALSE;
 }
@@ -138,15 +137,29 @@ colldet_filter FilterFlyable = { FilterFlyableCallback, NULL, NULL };
  * that can be traversed by light.
  * Thus, it merely checks for visibility.
  */
-int FilterVisibleCallback(colldet_filter* this, obstacle* obs)
+int FilterVisibleCallback(colldet_filter* this, obstacle* obs, int obs_idx )
 {
 	if ( ! ( obstacle_map[obs->type].flags & BLOCKS_VISION_TOO) ) return TRUE;
 
-	if (this->next) return(this->next->callback(this->next, obs));
+	if (this->next) return(this->next->callback(this->next, obs, obs_idx));
 	
 	return FALSE;
 }
 colldet_filter FilterVisible = { FilterVisibleCallback, NULL, NULL };
+
+/**
+ * This colldet filter is used to ignore a given obstacle during
+ * collision detection
+ */
+int FilterObstacleByIdCallback(colldet_filter* this, obstacle* obs, int obs_idx )
+{
+	if ( obs_idx == *(int*)(this->data) ) return TRUE;
+
+	if (this->next) return(this->next->callback(this->next, obs, obs_idx));
+
+	return FALSE;
+}
+colldet_filter FilterObstacleById = { FilterObstacleByIdCallback, NULL, NULL };
 
 /**
  * This function checks if the connection between two points is free of
@@ -258,13 +271,14 @@ int DirectLineColldet ( float x1, float y1, float x2, float y2, int z, colldet_f
 				
 		obstacle * our_obs = &(PassLevel -> obstacle_list [ obstacle_index ]);
 
-		if ( filter && filter->callback(filter, our_obs) ) continue;
-
 		// If the obstacle doesn't even have a collision rectangle, then
 		// of course it's easy, cause then there can't be any collsision
 		//
 		if ( obstacle_map [ our_obs->type ] . block_area_type == COLLISION_TYPE_NONE )
 		    continue;
+
+		// Filter out some obstacles, if asked
+		if ( filter && filter->callback(filter, our_obs, obstacle_index ) ) continue;
 
 		//So we have our obstacle 
 
@@ -448,7 +462,7 @@ int EscapeFromObstacle( float* posX, float* posY, int posZ, colldet_filter* filt
 				
 				obstacle* our_obs = &(ThisLevel->obstacle_list[obst_index]);
 
-				if ( filter && filter->callback(filter, our_obs) ) continue;
+				if ( filter && filter->callback(filter, our_obs, obst_index) ) continue;
 
 				// If the obstacle doesn't even have a collision rectangle, then
 				// of course it's easy, cause then there can't be any collsision

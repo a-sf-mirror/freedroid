@@ -408,12 +408,14 @@ EXTERN inline float translate_pixel_to_map_location ( float axis_x , float axis_
 #else
 #define EXTERN extern
 #endif
-EXTERN int FilterWalkableCallback(colldet_filter* this, obstacle* obs);
-EXTERN int FilterFlyableCallback(colldet_filter* this, obstacle* obs);
-EXTERN int FilterVisibleCallback(colldet_filter* this, obstacle* obs);
+EXTERN int FilterWalkableCallback(colldet_filter* this, obstacle* obs, int obs_idx);
+EXTERN int FilterFlyableCallback(colldet_filter* this, obstacle* obs, int obs_idx);
+EXTERN int FilterVisibleCallback(colldet_filter* this, obstacle* obs, int obs_idx);
+EXTERN int FilterObstacleByIdCallback(colldet_filter* this, obstacle* obs, int obs_idx);
 EXTERN colldet_filter FilterWalkable;
 EXTERN colldet_filter FilterFlyable;
 EXTERN colldet_filter FilterVisible;
+EXTERN colldet_filter FilterObstacleById;
 EXTERN int CheckIfWayIsFreeOfDroids (char test_tux, float x1 , float y1 , float x2 , float y2 , int OurLevel , enemy * ExceptedRobot ) ;
 EXTERN int EscapeFromObstacle( float* posX, float* posY, int posZ, colldet_filter* filter );
 EXTERN int SinglePointColldet ( float x , float y , int z, colldet_filter* filter ) ;

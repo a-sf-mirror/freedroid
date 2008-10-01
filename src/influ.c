@@ -2912,12 +2912,20 @@ check_for_chests_to_open ( int chest_index )
 	if ( fabsf ( Me . pos . x - our_level -> obstacle_list [ chest_index ] . pos . x ) +
 	     fabsf ( Me . pos . y - our_level -> obstacle_list [ chest_index ] . pos . y ) < 1.1 )
 	{
+	    //--------------------
+	    // Check that the chest is really reachable, and not behind an obstacle
+		colldet_filter filter = { FilterObstacleByIdCallback, &chest_index, NULL };
+	    if ( DirectLineColldet( Me.pos.x, Me.pos.y,
+                                our_level->obstacle_list[chest_index].pos.x, our_level->obstacle_list[chest_index].pos.y,
+                                Me.pos.z, &filter) )
+	    {
 	    throw_out_all_chest_content ( chest_index ) ;
 	    
 	    if ( our_level -> obstacle_list [ chest_index ] . type == ISO_H_CHEST_CLOSED )
 		our_level -> obstacle_list [ chest_index ] . type = ISO_H_CHEST_OPEN  ;
 	    if ( our_level -> obstacle_list [ chest_index ] . type == ISO_V_CHEST_CLOSED )
 		our_level -> obstacle_list [ chest_index ] . type = ISO_V_CHEST_OPEN  ;
+	    }
 	    
 	    //--------------------
 	    // Maybe a combo_action has made us come here and open the chest.  Then of
@@ -2927,7 +2935,7 @@ check_for_chests_to_open ( int chest_index )
 	    Me . mouse_move_target_combo_action_parameter = ( -1 ) ;
 	    
 	    //--------------------
-	    // Now that the chest has been opend, we don't need to do anything more
+	    // Now that the chest has been possibly opened, we don't need to do anything more
 	    //
 	    return;
 	}
@@ -3188,6 +3196,13 @@ check_for_barrels_to_smash ( int barrel_index )
 	    our_level -> obstacle_list [ barrel_index ] . pos . y ;
 	
 	//--------------------
+       // Check that the barrel is really reachable, and not behind an obstacle
+	colldet_filter filter = { FilterObstacleByIdCallback, &barrel_index, NULL };
+       if ( DirectLineColldet( Me.pos.x, Me.pos.y,
+    		                our_level->obstacle_list[barrel_index].pos.x, our_level->obstacle_list[barrel_index].pos.y,
+    		                Me.pos.z, &filter) )
+       {
+	//--------------------
 	// We make sure the barrel gets smashed, even if the strike made by the
 	// Tux would be otherwise a miss...
 	//
@@ -3206,6 +3221,7 @@ check_for_barrels_to_smash ( int barrel_index )
 	Me . angle = - ( atan2 ( step_vector . y ,  step_vector . x ) * 180 / M_PI - 180 - 45 );
 	Me . angle += 360 / ( 2 * MAX_TUX_DIRECTIONS );
 	while ( Me . angle < 0 ) Me . angle += 360;
+       }
 	
 	//--------------------
 	// Maybe the barrel smashing came from a combo_action, i.e. the click made
@@ -3250,7 +3266,8 @@ check_for_droids_to_attack_or_talk_with ( )
 	tux_wants_to_attack_now ( TRUE ) ;
     }
     
-    if ( droid_below_mouse_cursor != NULL )
+    if ( droid_below_mouse_cursor != NULL &&
+    	 DirectLineColldet(Me.pos.x, Me.pos.y, droid_below_mouse_cursor->pos.x, droid_below_mouse_cursor->pos.y, Me.pos.z, &FilterVisible) )
     {
        
    	enemy_set_reference(&Me.current_enemy_target_n, &Me.current_enemy_target_addr, droid_below_mouse_cursor); 

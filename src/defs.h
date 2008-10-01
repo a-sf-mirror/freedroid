@@ -220,11 +220,12 @@ enum
 	IS_VERTICAL = 4,
 
 	/* Obstacle specs */
-	BLOCKS_VISION_TOO = 8,
+	BLOCKS_VISION_TOO = 8,			/* Light will not pass through this obstacle */
 	IS_SMASHABLE = 16,
 	DROPS_RANDOM_TREASURE = 32,
 	NEEDS_PRE_PUT = 64,
-	GROUND_LEVEL = 128
+	GROUND_LEVEL = 128,			/* This obstacle has a small height */
+	IS_WALKABLE = 256			/* A bot can traverse this obstacle */
 };
 
 

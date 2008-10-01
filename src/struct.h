@@ -957,7 +957,7 @@ typedef struct supported_languages_s
 
 typedef struct colldet_filter_s
 {
-	int (*callback)(struct colldet_filter_s* filter, obstacle* obs);
+	int (*callback)(struct colldet_filter_s* filter, obstacle* obs, int obs_idx);
 	void* data;
 	struct colldet_filter_s* next;
 } 
