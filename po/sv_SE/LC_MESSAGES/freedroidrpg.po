@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: freedroid\n"
 "Report-Msgid-Bugs-To: freedroid-discussion@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-10-01 12:32+0200\n"
+"POT-Creation-Date: 2008-10-01 21:22+0200\n"
 "PO-Revision-Date: 2008-08-28 18:02+0000\n"
 "Last-Translator: Christian Widell <Christian_widell@hotmail.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -1807,43 +1807,43 @@ msgstr "Föremål taget: %s"
 msgid "I can't carry any more."
 msgstr "Jag kan inte bära mer."
 
-#: ../src/leveleditor.c:1674
+#: ../src/leveleditor.c:1670
 msgid "Cancel item drop"
 msgstr "Avbryt slänga objekt"
 
-#: ../src/leveleditor.c:1974
+#: ../src/leveleditor.c:1970
 msgid "FLOOR"
 msgstr "GOLV"
 
-#: ../src/leveleditor.c:1975
+#: ../src/leveleditor.c:1971
 msgid "WALLS"
 msgstr "VÄGGAR"
 
-#: ../src/leveleditor.c:1976
+#: ../src/leveleditor.c:1972
 msgid "MACHINERY"
 msgstr "MASKINERI"
 
-#: ../src/leveleditor.c:1977
+#: ../src/leveleditor.c:1973
 msgid "FURNITURE"
 msgstr "INREDNING"
 
-#: ../src/leveleditor.c:1978
+#: ../src/leveleditor.c:1974
 msgid "CONTAINERS"
 msgstr "BEHÅLLARE"
 
-#: ../src/leveleditor.c:1979
+#: ../src/leveleditor.c:1975
 msgid "NATURE"
 msgstr "NATUR"
 
-#: ../src/leveleditor.c:1980
+#: ../src/leveleditor.c:1976
 msgid "ALL"
 msgstr "ALLA"
 
-#: ../src/leveleditor.c:1981
+#: ../src/leveleditor.c:1977
 msgid "QUICK"
 msgstr "SNABBT"
 
-#: ../src/leveleditor.c:3853
+#: ../src/leveleditor.c:3849
 #, c-format
 msgid ""
 "\n"
@@ -1854,7 +1854,7 @@ msgstr ""
 " Kartbladsinformation: \n"
 " blad_namn=\"%s\"."
 
-#: ../src/leveleditor.c:4396
+#: ../src/leveleditor.c:4392
 msgid ""
 "Go level north\n"
 "\n"
@@ -1866,7 +1866,7 @@ msgstr ""
 "Använde denna knapp för att förflytta dig en kartbit norrut, dvs den level "
 "som sitter fast med denna levels norra kant."
 
-#: ../src/leveleditor.c:4401
+#: ../src/leveleditor.c:4397
 msgid ""
 "Go level south\n"
 "\n"
@@ -1878,7 +1878,7 @@ msgstr ""
 "Använde denna knapp för att förflytta dig en kartbit söderut, dvs den level "
 "som sitter fast med denna levels södra kant."
 
-#: ../src/leveleditor.c:4406
+#: ../src/leveleditor.c:4402
 msgid ""
 "Go level east\n"
 "\n"
@@ -1890,7 +1890,7 @@ msgstr ""
 "Använde denna knapp för att förflytta dig en kartbit österut, dvs den level "
 "som sitter fast med denna levels östra kant."
 
-#: ../src/leveleditor.c:4411
+#: ../src/leveleditor.c:4407
 msgid ""
 "Go level west\n"
 "\n"
@@ -1902,7 +1902,7 @@ msgstr ""
 "Använde denna knapp för att förflytta dig en kartbit västerut, dvs den level "
 "som sitter fast med denna levels västra kant."
 
-#: ../src/leveleditor.c:4416
+#: ../src/leveleditor.c:4412
 msgid ""
 "Export this level\n"
 "\n"
@@ -1918,7 +1918,7 @@ msgstr ""
 "knapp kopierar kanterna av denna kartbiten till de som ligger brevid så att "
 "hela kartan återigen sitter ihop."
 
-#: ../src/leveleditor.c:4421
+#: ../src/leveleditor.c:4417
 #, fuzzy
 msgid ""
 "Save Map\n"
@@ -1931,7 +1931,7 @@ msgstr ""
 "Denna knapp kommer att spara din version över din nuvarande kartfil '../map/"
 "Asteroid.maps'."
 
-#: ../src/leveleditor.c:4426
+#: ../src/leveleditor.c:4422
 msgid ""
 "Toggle waypoints\n"
 "\n"
@@ -1947,7 +1947,7 @@ msgstr ""
 "\n"
 "Du kan även använda W tangenten för denna funktion."
 
-#: ../src/leveleditor.c:4433
+#: ../src/leveleditor.c:4429
 msgid ""
 "Make waypoint connection\n"
 "\n"
@@ -1957,7 +1957,7 @@ msgid ""
 "You can also use the C key for this."
 msgstr ""
 
-#: ../src/leveleditor.c:4435
+#: ../src/leveleditor.c:4431
 msgid ""
 "Complete waypoint connection\n"
 "\n"
@@ -1967,7 +1967,7 @@ msgid ""
 "You can also use the C key for this."
 msgstr ""
 
-#: ../src/leveleditor.c:4441
+#: ../src/leveleditor.c:4437
 msgid ""
 "Delete selected obstacle\n"
 "\n"
@@ -1976,7 +1976,7 @@ msgid ""
 "You can also use the X key for this."
 msgstr ""
 
-#: ../src/leveleditor.c:4446
+#: ../src/leveleditor.c:4442
 msgid ""
 "Next obstacle on currently selected tile\n"
 "\n"
@@ -1985,7 +1985,7 @@ msgid ""
 "You can also use the N key for this."
 msgstr ""
 
-#: ../src/leveleditor.c:4451
+#: ../src/leveleditor.c:4447
 msgid ""
 "Beautify grass button\n"
 "\n"
@@ -1996,7 +1996,7 @@ msgid ""
 "You can also use Ctrl-B for this."
 msgstr ""
 
-#: ../src/leveleditor.c:4457
+#: ../src/leveleditor.c:4453
 msgid ""
 "Zoom in/out\n"
 "\n"
@@ -2005,7 +2005,7 @@ msgid ""
 "You can also use the hotkey 'O' for this."
 msgstr ""
 
-#: ../src/leveleditor.c:4462
+#: ../src/leveleditor.c:4458
 msgid ""
 "Fill\n"
 "\n"
@@ -2014,7 +2014,7 @@ msgid ""
 "until a change of map tile is encountered."
 msgstr ""
 
-#: ../src/leveleditor.c:4467
+#: ../src/leveleditor.c:4463
 msgid ""
 "New obstacle label\n"
 "\n"
@@ -2023,14 +2023,14 @@ msgid ""
 " Note that you can also use the hotkey 'h' for this."
 msgstr ""
 
-#: ../src/leveleditor.c:4472
+#: ../src/leveleditor.c:4468
 msgid ""
 "New obstacle description\n"
 "\n"
 "edits the description seen when the item is selected"
 msgstr ""
 
-#: ../src/leveleditor.c:4477
+#: ../src/leveleditor.c:4473
 msgid ""
 "New map label\n"
 "\n"
@@ -2039,7 +2039,7 @@ msgid ""
 "characters or also to define locations for events and triggers."
 msgstr ""
 
-#: ../src/leveleditor.c:4482
+#: ../src/leveleditor.c:4478
 msgid ""
 "Add item\n"
 "\n"
@@ -2047,7 +2047,7 @@ msgid ""
 "hotkey 'G' for this."
 msgstr ""
 
-#: ../src/leveleditor.c:4487
+#: ../src/leveleditor.c:4483
 msgid ""
 "Menu\n"
 "\n"
@@ -2056,7 +2056,7 @@ msgid ""
 "menu."
 msgstr ""
 
-#: ../src/leveleditor.c:4492
+#: ../src/leveleditor.c:4488
 msgid ""
 "Level resize\n"
 "\n"
@@ -2065,21 +2065,21 @@ msgid ""
 "insert the new space where you would best like it to be."
 msgstr ""
 
-#: ../src/leveleditor.c:4497
+#: ../src/leveleditor.c:4493
 msgid ""
 "Level editor guide\n"
 "\n"
 "Use this button to enter the level editor keymap display."
 msgstr ""
 
-#: ../src/leveleditor.c:4502
+#: ../src/leveleditor.c:4498
 msgid ""
 "Back to game\n"
 "\n"
 "Quits the level editor and takes you into a FredroidRPG game."
 msgstr ""
 
-#: ../src/leveleditor.c:4507
+#: ../src/leveleditor.c:4503
 msgid ""
 "Underground lighting\n"
 "\n"
@@ -2089,7 +2089,7 @@ msgid ""
 "There isn't any key to toggle this on the keyboard."
 msgstr ""
 
-#: ../src/leveleditor.c:4513
+#: ../src/leveleditor.c:4509
 msgid ""
 "Toggle display enemies\n"
 "\n"
@@ -2097,7 +2097,7 @@ msgid ""
 "enemies hidden in level editor."
 msgstr ""
 
-#: ../src/leveleditor.c:4519
+#: ../src/leveleditor.c:4515
 msgid ""
 "Toggle display obstacles\n"
 "\n"
@@ -2105,7 +2105,7 @@ msgid ""
 "obstacles hidden in level editor."
 msgstr ""
 
-#: ../src/leveleditor.c:4525
+#: ../src/leveleditor.c:4521
 #, fuzzy
 msgid ""
 "Undo\n"
@@ -2116,14 +2116,14 @@ msgstr ""
 "\n"
 "Använd denna knapp för att ångra din senaste handling."
 
-#: ../src/leveleditor.c:4531
+#: ../src/leveleditor.c:4527
 msgid ""
 "Redo\n"
 "\n"
 "Use this button to redo an action."
 msgstr ""
 
-#: ../src/leveleditor.c:4537
+#: ../src/leveleditor.c:4533
 msgid ""
 "Toggle display Tux\n"
 "\n"
@@ -2131,30 +2131,30 @@ msgid ""
 "hidden in level editor."
 msgstr ""
 
-#: ../src/leveleditor.c:4543
+#: ../src/leveleditor.c:4539
 msgid ""
 "Toggle display tooltips\n"
 "\n"
 "Use this button to toggle these annoying help windows on and off."
 msgstr ""
 
-#: ../src/leveleditor.c:4549
+#: ../src/leveleditor.c:4545
 msgid ""
 "Toggle display colision rectangles\n"
 "\n"
 "Use this button to toggle the visible collision rectangles on and off."
 msgstr ""
 
-#: ../src/leveleditor.c:4556
+#: ../src/leveleditor.c:4552
 msgid "Change grid mode ( placement / full / off )"
 msgstr ""
 
-#: ../src/leveleditor.c:5559
+#: ../src/leveleditor.c:5555
 #, c-format
 msgid " Source waypoint selected : NONE"
 msgstr " Vägpunkt till källan vald : INGEN"
 
-#: ../src/leveleditor.c:5563
+#: ../src/leveleditor.c:5559
 #, c-format
 msgid " Source waypoint selected : X=%d Y=%d. "
 msgstr " Vägpunkt till källan vald : X=%d Y=%d. "
