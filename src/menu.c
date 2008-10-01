@@ -1362,7 +1362,7 @@ Startup_handle (int n)
 	UpdateAllCharacterStats ( ) ;
 	strcpy(Me.character_name, "MapEd");
 	char fp[2048];
-	find_file ( "Asteroid.maps" , MAP_DIR, fp, 0);
+	find_file ( "freedroid.levels" , MAP_DIR, fp, 0);
 	LoadShip ( fp ) ;
 	PrepareStartOfNewCharacter ( ) ;
 	skip_initial_menus = 0;
@@ -2433,7 +2433,7 @@ Single_Player_Menu (void)
 		if ( PrepareNewHero ( ) == TRUE )
 		{
 		    char fp[2048];
-		    find_file ( "Asteroid.maps" , MAP_DIR, fp, 0);
+		    find_file ( "freedroid.levels" , MAP_DIR, fp, 0);
 		    LoadShip ( fp ) ;
 		    PrepareStartOfNewCharacter ( ) ;
 		    can_continue=TRUE;

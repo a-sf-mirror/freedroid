@@ -2828,7 +2828,7 @@ DoLevelEditorMainMenu ( Level EditLevel )
 		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
 		close_all_chests_on_level ( Me . pos . z ) ;
 		char fp[2048];
-		find_file("Asteroid.maps", MAP_DIR, fp, 0);
+		find_file("freedroid.levels", MAP_DIR, fp, 0);
 		SaveShip(fp);
 		CenteredPutString ( Screen ,  11*FontHeight(Menu_BFont),    "Your ship was saved...");
 		our_SDL_flip_wrapper();
@@ -4418,7 +4418,7 @@ show_level_editor_tooltips ( void )
     else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_SAVE_SHIP_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
     {
 	if ( time_spent_on_some_button > TICKS_UNTIL_TOOLTIP )
-	    show_button_tooltip ( _("Save Map\n\nThis button will save your current map over the file '../map/Asteroid.maps' from your current working directory." ));
+	    show_button_tooltip ( _("Save Map\n\nThis button will save your current map over the file '../map/freedroid.levels' from your current working directory." ));
     }    
     else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_TOGGLE_WAYPOINT_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
     {
@@ -4981,7 +4981,7 @@ int level_editor_handle_left_mouse_button ( int proceed_now, leveleditor_state *
 	{
 	    close_all_chests_on_level ( Me . pos . z ) ;
 	    char fp[2048];
-	    find_file("Asteroid.maps", MAP_DIR, fp, 0);
+	    find_file("freedroid.levels", MAP_DIR, fp, 0);
 	    SaveShip(fp);
 
 	    // CenteredPutString ( Screen ,  11*FontHeight(Menu_BFont),    "Your ship was saved...");
