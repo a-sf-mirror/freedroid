@@ -21,7 +21,7 @@
 MODULES="freedroidrpg freedroidrpg-dialogs freedroidrpg-data"
 LANGUAGES="fr de ru"
 
-CURL=/tmp/curl-7.18.2/src/curl
+CURL=curl
 CURLOPTS="-s -k"
 
 read -p "Launchpad email: " login
