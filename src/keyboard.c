@@ -139,6 +139,21 @@ void input_set_keybind( char *keybind, SDLKey key, SDLMod mod)
     ErrorMessage(__FUNCTION__, "Unable to set keybinding '%s', that command doesn't exist.\n", PLEASE_INFORM, IS_FATAL, keybind);
 }
 
+void input_get_keybind(char *cmdname, SDLKey *key, SDLMod *mod)
+{
+    int i;
+    for (i=0; strcmp(keybindNames[i],"end"); i++) {
+	if (!strcmp(cmdname, input_keybinds[i]->name)) {
+	    if (key)
+		*key = input_keybinds[i]->key;
+	    if (mod)
+		*mod = input_keybinds[i]->mod;
+	    return;
+	}
+    }
+    ErrorMessage(__FUNCTION__, "Unable to get keybind for command '%s', that command does not exist.\n", PLEASE_INFORM, IS_FATAL, cmdname);
+}
+
 /**
  * @fn void input_setDefault (void)
  *

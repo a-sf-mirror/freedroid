@@ -630,6 +630,7 @@ EXTERN void keychart(void);
 EXTERN void input_set_default(void);
 EXTERN void input_keyboard_init(void);
 EXTERN int getchar_raw (void);
+EXTERN void input_get_keybind(char *cmdname, SDLKey *key, SDLMod *mod);
 
 // menu.c 
 #undef EXTERN
