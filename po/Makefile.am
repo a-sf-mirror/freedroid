@@ -18,7 +18,7 @@ MOFILES_SRC = $(POFILES_SRC:.po=.mo)
 MOFILES_DAT = $(POFILES_DAT:.po=.mo)
 MOFILES_DIA = $(POFILES_DIA:.po=.mo)
 
-DATAFILES = ../map/*archetypes
+DATAFILES = ../map/freedroid.*
 
 DIALOGFILES = ../dialogs/*.dialog
 
@@ -109,10 +109,10 @@ freedroidrpg.pot: $(SRCFILES)
 	-o freedroidrpg.pot $(SRCFILES)
 
 freedroidrpg_data.pot: $(DATAFILES)
-	python extract-strings-from-data.py ../map _archetypes freedroidrpg_data.pot
+	python extract-strings-from-data.py ../map 'freedroid.*' freedroidrpg_data.pot
 
 freedroidrpg_dialogs.pot: $(DIALOGFILES)
-	python extract-strings-from-data.py ../dialogs .dialog freedroidrpg_dialogs.pot
+	python extract-strings-from-data.py ../dialogs '*.dialog' freedroidrpg_dialogs.pot
 
 all-local: all-local-@USE_NLS@
 all-local-no:

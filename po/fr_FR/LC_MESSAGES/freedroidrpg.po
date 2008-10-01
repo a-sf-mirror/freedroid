@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: freedroidrpg\n"
 "Report-Msgid-Bugs-To: freedroid-discussion@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-09-26 18:17+0200\n"
+"POT-Creation-Date: 2008-10-01 12:32+0200\n"
 "PO-Revision-Date: 2008-09-08 07:34+0000\n"
 "Last-Translator: Arthur Huillet <arthur.huillet@free.fr>\n"
 "Language-Team: French\n"
@@ -32,87 +32,87 @@ msgstr ""
 "Désolé, vous ne pouvez pas encore utiliser la carte automatique : outil de "
 "cartographie non présent"
 
-#: ../src/blocks.c:1591 ../src/blocks.c:1598 ../src/blocks.c:1606
-#: ../src/blocks.c:3039 ../src/blocks.c:3042 ../src/blocks.c:3054
-#: ../src/blocks.c:3057
+#: ../src/blocks.c:1593 ../src/blocks.c:1600 ../src/blocks.c:1608
+#: ../src/blocks.c:3069 ../src/blocks.c:3072 ../src/blocks.c:3084
+#: ../src/blocks.c:3087
 msgid "Wall"
 msgstr "Mur"
 
-#: ../src/blocks.c:1592 ../src/blocks.c:1599
+#: ../src/blocks.c:1594 ../src/blocks.c:1601
 msgid "Hey ! This looks like...a WALL !"
 msgstr "Hé ! Ça ressemble... à un mur !"
 
-#: ../src/blocks.c:1608
+#: ../src/blocks.c:1610
 msgid "Maybe you could use a door to go out. This wall seems pretty solid."
 msgstr ""
 "Peut-être pourriez-vous utiliser une porte pour sortir. Ce mur semble plutôt "
 "solide."
 
-#: ../src/blocks.c:1622 ../src/blocks.c:1633
+#: ../src/blocks.c:1624 ../src/blocks.c:1635
 msgid "Glass wall"
 msgstr "Mur de verre"
 
-#: ../src/blocks.c:1623 ../src/blocks.c:1634
+#: ../src/blocks.c:1625 ../src/blocks.c:1636
 msgid "A wall made out of glass. It lets the light go through."
 msgstr "Un mur fait de verre. Il laisse passer la lumière."
 
-#: ../src/blocks.c:1643
+#: ../src/blocks.c:1646
 msgid "Broken glass wall"
 msgstr "Mur de verre brisé"
 
-#: ../src/blocks.c:1644
+#: ../src/blocks.c:1647
 #, fuzzy
 msgid "You can get through holes, but beware of sharp edges."
 msgstr ""
 "Vous pouvez passer à travers les trous, mais prenez garde des bords pointus."
 
-#: ../src/blocks.c:1701 ../src/blocks.c:1703 ../src/blocks.c:1705
-#: ../src/blocks.c:1707 ../src/blocks.c:1709 ../src/blocks.c:1711
-#: ../src/blocks.c:1713 ../src/blocks.c:1715
+#: ../src/blocks.c:1704 ../src/blocks.c:1706 ../src/blocks.c:1708
+#: ../src/blocks.c:1710 ../src/blocks.c:1712 ../src/blocks.c:1714
+#: ../src/blocks.c:1716 ../src/blocks.c:1718
 msgid "Wall with a window"
 msgstr "Mur avec une fenêtre"
 
-#: ../src/blocks.c:1702 ../src/blocks.c:1704 ../src/blocks.c:1706
-#: ../src/blocks.c:1708 ../src/blocks.c:1710 ../src/blocks.c:1712
-#: ../src/blocks.c:1714 ../src/blocks.c:1716
+#: ../src/blocks.c:1705 ../src/blocks.c:1707 ../src/blocks.c:1709
+#: ../src/blocks.c:1711 ../src/blocks.c:1713 ../src/blocks.c:1715
+#: ../src/blocks.c:1717 ../src/blocks.c:1719
 msgid "Windows, are, besides a famous joke OS trademark, very useful things."
 msgstr ""
 "Les fenêtres sont, à côté d'une célèbre marque déposée d'un système, très "
 "utiles."
 
-#: ../src/blocks.c:1746
+#: ../src/blocks.c:1753
 msgid "Door"
 msgstr "Porte"
 
-#: ../src/blocks.c:1747
+#: ../src/blocks.c:1754
 msgid "This is a door. Seems to open automatically when someone approaches."
 msgstr ""
 "C'est une porte. Elle semble s'ouvrir automatiquement lorsque quelqu'un s'en "
 "approche."
 
-#: ../src/blocks.c:1781
+#: ../src/blocks.c:1788
 msgid "Locked door"
 msgstr "Porte verrouillée"
 
-#: ../src/blocks.c:1782
+#: ../src/blocks.c:1789
 msgid "The red color probably indicates that the door is locked."
 msgstr "La couleur rouge indique probablement que la porte est verrouillée."
 
-#: ../src/blocks.c:1819 ../src/blocks.c:1824
+#: ../src/blocks.c:1830 ../src/blocks.c:1835
 msgid "Pillar"
 msgstr "Pillier"
 
-#: ../src/blocks.c:1820 ../src/blocks.c:1825
+#: ../src/blocks.c:1831 ../src/blocks.c:1836
 msgid "A pillar made out of gray concrete."
 msgstr "Un pilier fait de ciment gris."
 
-#: ../src/blocks.c:1834 ../src/blocks.c:1840 ../src/blocks.c:1846
-#: ../src/blocks.c:1852
+#: ../src/blocks.c:1845 ../src/blocks.c:1851 ../src/blocks.c:1857
+#: ../src/blocks.c:1863
 msgid "Supercluster terminal"
 msgstr "Terminal de supercluster"
 
-#: ../src/blocks.c:1835 ../src/blocks.c:1841 ../src/blocks.c:1847
-#: ../src/blocks.c:1853
+#: ../src/blocks.c:1846 ../src/blocks.c:1852 ../src/blocks.c:1858
+#: ../src/blocks.c:1864
 msgid ""
 "This is a small part of a gigantic computer cluster, maybe many square miles "
 "large..."
@@ -120,64 +120,64 @@ msgstr ""
 "C'est une petite partie d'un gigantesque cluster d'ordinateurs, peut-être de "
 "plusieurs kilomètres carrés ..."
 
-#: ../src/blocks.c:1862 ../src/blocks.c:1869 ../src/blocks.c:1876
-#: ../src/blocks.c:1883
+#: ../src/blocks.c:1873 ../src/blocks.c:1880 ../src/blocks.c:1887
+#: ../src/blocks.c:1894
 msgid "Ray emitter"
 msgstr "Emetteur de rayons"
 
-#: ../src/blocks.c:1863 ../src/blocks.c:1870 ../src/blocks.c:1877
-#: ../src/blocks.c:1884
+#: ../src/blocks.c:1874 ../src/blocks.c:1881 ../src/blocks.c:1888
+#: ../src/blocks.c:1895
 msgid "It appears to be in \"standby\" mode."
 msgstr "Il semble être en mode \"attente\"."
 
-#: ../src/blocks.c:1911 ../src/blocks.c:1912 ../src/blocks.c:1913
-#: ../src/blocks.c:1914 ../src/blocks.c:1915
+#: ../src/blocks.c:1922 ../src/blocks.c:1923 ../src/blocks.c:1924
+#: ../src/blocks.c:1925 ../src/blocks.c:1926
 msgid "Droid nest"
 msgstr "Nid de droïde"
 
-#: ../src/blocks.c:1916 ../src/blocks.c:1917 ../src/blocks.c:1918
-#: ../src/blocks.c:1919 ../src/blocks.c:1920
+#: ../src/blocks.c:1927 ../src/blocks.c:1928 ../src/blocks.c:1929
+#: ../src/blocks.c:1930 ../src/blocks.c:1931
 msgid ""
 "This is a service droid case. You suppose it's of no use for your quest."
 msgstr "C'est un petit logement pour droïdes de service, sans grand intérêt."
 
-#: ../src/blocks.c:1948 ../src/blocks.c:1957 ../src/blocks.c:1965
-#: ../src/blocks.c:1973
+#: ../src/blocks.c:1960 ../src/blocks.c:1970 ../src/blocks.c:1979
+#: ../src/blocks.c:1988
 msgid "Chest"
 msgstr "Coffre"
 
-#: ../src/blocks.c:1949 ../src/blocks.c:1966
+#: ../src/blocks.c:1961 ../src/blocks.c:1980
 msgid "This chest has already been opened"
 msgstr "Ce coffre a déjà été ouvert"
 
-#: ../src/blocks.c:1958 ../src/blocks.c:1974
+#: ../src/blocks.c:1971 ../src/blocks.c:1989
 msgid "This chest is closed."
 msgstr "Ce coffre est fermé."
 
-#: ../src/blocks.c:1980 ../src/blocks.c:1986 ../src/blocks.c:1992
-#: ../src/blocks.c:1998 ../src/blocks.c:2005 ../src/blocks.c:2011
-#: ../src/blocks.c:2017 ../src/blocks.c:2023
+#: ../src/blocks.c:1995 ../src/blocks.c:2001 ../src/blocks.c:2007
+#: ../src/blocks.c:2013 ../src/blocks.c:2020 ../src/blocks.c:2026
+#: ../src/blocks.c:2032 ../src/blocks.c:2038
 msgid "Autogun"
 msgstr "Arme automatique"
 
-#: ../src/blocks.c:1981 ../src/blocks.c:1987 ../src/blocks.c:1993
-#: ../src/blocks.c:1999
+#: ../src/blocks.c:1996 ../src/blocks.c:2002 ../src/blocks.c:2008
+#: ../src/blocks.c:2014
 msgid "A not-that-nice autogun. Beware : it could be harmful."
 msgstr ""
 "Une arme automatique pas très rassurante. Attention : ça pourrait être "
 "dangereux."
 
-#: ../src/blocks.c:2006
+#: ../src/blocks.c:2021
 msgid "A not-that-nice autogun. It seems disabled for now."
 msgstr ""
 "Une arme automatique pas très rassurante. Elle semble désactivée pour "
 "l'instant."
 
-#: ../src/blocks.c:2012
+#: ../src/blocks.c:2027
 msgid "This killing machine is disabled. For now."
 msgstr "Cette machine de mort est désactivée. Pour l'instant."
 
-#: ../src/blocks.c:2018
+#: ../src/blocks.c:2033
 msgid ""
 "It is looking at you. You are sure it is looking at you. But it does not "
 "fire. For now."
@@ -185,25 +185,25 @@ msgstr ""
 "Elle vous regarde. Vous êtes sûr qu'elle vous regarde. Mais elle ne tire "
 "pas. Pour l'instant."
 
-#: ../src/blocks.c:2024
+#: ../src/blocks.c:2039
 msgid "The autogun is disabled."
 msgstr "L'arme automatique est désactivée."
 
-#: ../src/blocks.c:2030 ../src/blocks.c:2036 ../src/blocks.c:2042
-#: ../src/blocks.c:2048 ../src/blocks.c:2054 ../src/blocks.c:2060
+#: ../src/blocks.c:2045 ../src/blocks.c:2051 ../src/blocks.c:2057
+#: ../src/blocks.c:2063 ../src/blocks.c:2069 ../src/blocks.c:2075
 msgid "Rock barrier"
 msgstr "Paroi rocheuse"
 
-#: ../src/blocks.c:2031 ../src/blocks.c:2037 ../src/blocks.c:2043
-#: ../src/blocks.c:2049 ../src/blocks.c:2055 ../src/blocks.c:2061
+#: ../src/blocks.c:2046 ../src/blocks.c:2052 ../src/blocks.c:2058
+#: ../src/blocks.c:2064 ../src/blocks.c:2070 ../src/blocks.c:2076
 msgid "No way to pass through. Find another path."
 msgstr "Impossible de passer. Il faut trouver un autre chemin."
 
-#: ../src/blocks.c:2069
+#: ../src/blocks.c:2084
 msgid "Cooking pot"
 msgstr "Marmite"
 
-#: ../src/blocks.c:2070
+#: ../src/blocks.c:2085
 msgid ""
 "This cauldron can be used for many good things. Cooking beef or pork for "
 "dinner are some of them. It can be also used for many evil things. Cooking "
@@ -213,140 +213,140 @@ msgstr ""
 "du porc pour le dîner en font partie. Il peut aussi être utilisé à des fins "
 "moins recommandables. Cuisiner du Linarien pour le dîner en fait partie."
 
-#: ../src/blocks.c:2077 ../src/blocks.c:2085 ../src/blocks.c:2093
-#: ../src/blocks.c:2101
+#: ../src/blocks.c:2092 ../src/blocks.c:2100 ../src/blocks.c:2108
+#: ../src/blocks.c:2116
 msgid "Terminal"
 msgstr "Terminal"
 
-#: ../src/blocks.c:2078 ../src/blocks.c:2086 ../src/blocks.c:2094
-#: ../src/blocks.c:2102
+#: ../src/blocks.c:2093 ../src/blocks.c:2101 ../src/blocks.c:2109
+#: ../src/blocks.c:2117
 msgid "This is a Terminus 2 terminal. Made by Parafunken."
 msgstr "C'est un terminal 'Terminus 2'. Fabriqué par Parafunken."
 
-#: ../src/blocks.c:2108 ../src/blocks.c:2114
+#: ../src/blocks.c:2123 ../src/blocks.c:2129
 msgid "Barrel"
 msgstr "Baril"
 
-#: ../src/blocks.c:2109
+#: ../src/blocks.c:2124
 msgid "A painted barrel, protected from rust."
 msgstr "Un baril peint, protégé de la rouille."
 
-#: ../src/blocks.c:2115
+#: ../src/blocks.c:2130
 msgid "A rusty barrel."
 msgstr "Un baril rouillé."
 
-#: ../src/blocks.c:2121 ../src/blocks.c:2127
+#: ../src/blocks.c:2136 ../src/blocks.c:2142
 msgid "Wooden crate"
 msgstr "Une caisse en bois"
 
-#: ../src/blocks.c:2122
+#: ../src/blocks.c:2137
 msgid ""
 "This is a big wooden crate that could contain interesting things. Or not."
 msgstr ""
 "C'est un gros coffre en bois, qui pourrait contenir des choses "
 "intéressantes. Ou pas."
 
-#: ../src/blocks.c:2128
+#: ../src/blocks.c:2143
 msgid "This is a wooden crate that could contain interesting things. Or not."
 msgstr ""
 "C'est une caisse en bois qui pourrait contenir des choses intéressantes. Ou "
 "pas."
 
-#: ../src/blocks.c:2140 ../src/blocks.c:2148 ../src/blocks.c:2156
-#: ../src/blocks.c:2164
+#: ../src/blocks.c:2156 ../src/blocks.c:2165 ../src/blocks.c:2174
+#: ../src/blocks.c:2183
 msgid "Room lamp"
 msgstr "Lampe de salle"
 
-#: ../src/blocks.c:2141
+#: ../src/blocks.c:2157
 msgid "This is a charming room lamp."
 msgstr "C'est une jolie lampe d'intérieur."
 
-#: ../src/blocks.c:2149
+#: ../src/blocks.c:2166
 msgid "This is a wonderful room lamp."
 msgstr "C'est une merveilleuse lampe d'intérieur."
 
-#: ../src/blocks.c:2157
+#: ../src/blocks.c:2175
 msgid "This is a great room lamp."
 msgstr "C'est une superbe lampe d'intérieur."
 
-#: ../src/blocks.c:2165
+#: ../src/blocks.c:2184
 msgid "This is a perfect room lamp."
 msgstr "C'est une parfaite lampe d'intérieur."
 
-#: ../src/blocks.c:2180 ../src/blocks.c:2201 ../src/blocks.c:2207
-#: ../src/blocks.c:2227
+#: ../src/blocks.c:2200 ../src/blocks.c:2221 ../src/blocks.c:2227
+#: ../src/blocks.c:2248
 msgid "Fence"
 msgstr "Barrière"
 
-#: ../src/blocks.c:2181
+#: ../src/blocks.c:2201
 msgid "This is a wooden fence. Find another path."
 msgstr "C'est une barrière en bois. Il faut trouver un autre chemin."
 
-#: ../src/blocks.c:2202 ../src/blocks.c:2228
+#: ../src/blocks.c:2222 ../src/blocks.c:2249
 msgid ""
 "This type of a barrier constructed out of wire is called the chain link "
 "fence."
 msgstr "Ce type de barrière, en fil de fer, est appelé grillage."
 
-#: ../src/blocks.c:2208
+#: ../src/blocks.c:2228
 msgid "You can't break it. Find another way."
 msgstr "Impossible à casser. Il faut trouver un autre chemin."
 
-#: ../src/blocks.c:2237 ../src/blocks.c:2246 ../src/blocks.c:2253
-#: ../src/blocks.c:2260
+#: ../src/blocks.c:2258 ../src/blocks.c:2267 ../src/blocks.c:2274
+#: ../src/blocks.c:2281
 msgid "Small toilet"
 msgstr "Petites toilettes"
 
-#: ../src/blocks.c:2238 ../src/blocks.c:2247 ../src/blocks.c:2254
-#: ../src/blocks.c:2261
+#: ../src/blocks.c:2259 ../src/blocks.c:2268 ../src/blocks.c:2275
+#: ../src/blocks.c:2282
 msgid "Smells good."
 msgstr "Elles sentent bon."
 
-#: ../src/blocks.c:2287 ../src/blocks.c:2289 ../src/blocks.c:2291
-#: ../src/blocks.c:2293
+#: ../src/blocks.c:2308 ../src/blocks.c:2310 ../src/blocks.c:2312
+#: ../src/blocks.c:2314
 msgid "Toilet"
 msgstr "Toilettes"
 
-#: ../src/blocks.c:2288 ../src/blocks.c:2290
+#: ../src/blocks.c:2309 ../src/blocks.c:2311
 msgid "Feel like defecating ?"
 msgstr "Envie de déféquer ?"
 
-#: ../src/blocks.c:2292
+#: ../src/blocks.c:2313
 msgid "Yes, they are clean."
 msgstr "Oui, elles sont propres."
 
-#: ../src/blocks.c:2294
+#: ../src/blocks.c:2315
 msgid "Would you have something to empty ?"
 msgstr "Auriez-vous quelque chose à vider ?"
 
-#: ../src/blocks.c:2302 ../src/blocks.c:2310 ../src/blocks.c:2318
-#: ../src/blocks.c:2326 ../src/blocks.c:3587 ../src/blocks.c:3593
-#: ../src/blocks.c:3599 ../src/blocks.c:3605
+#: ../src/blocks.c:2323 ../src/blocks.c:2331 ../src/blocks.c:2339
+#: ../src/blocks.c:2347 ../src/blocks.c:3641 ../src/blocks.c:3647
+#: ../src/blocks.c:3653 ../src/blocks.c:3659
 msgid "Chair"
 msgstr "Chaise"
 
-#: ../src/blocks.c:2303 ../src/blocks.c:2311 ../src/blocks.c:2319
-#: ../src/blocks.c:2327
+#: ../src/blocks.c:2324 ../src/blocks.c:2332 ../src/blocks.c:2340
+#: ../src/blocks.c:2348
 msgid "This is an orange chair which does not look too comfortable"
 msgstr "C'est une chaise orange qui ne semble pas très confortable."
 
-#: ../src/blocks.c:2334 ../src/blocks.c:2342 ../src/blocks.c:2350
-#: ../src/blocks.c:2358
+#: ../src/blocks.c:2356 ../src/blocks.c:2365 ../src/blocks.c:2374
+#: ../src/blocks.c:2383
 msgid "Sofa"
 msgstr "Canapé"
 
-#: ../src/blocks.c:2335 ../src/blocks.c:2343 ../src/blocks.c:2351
-#: ../src/blocks.c:2359
+#: ../src/blocks.c:2357 ../src/blocks.c:2366 ../src/blocks.c:2375
+#: ../src/blocks.c:2384
 msgid "A soft red sofa."
 msgstr "Un canapé rouge confortable."
 
-#: ../src/blocks.c:2395 ../src/blocks.c:2403 ../src/blocks.c:2411
-#: ../src/blocks.c:2419
+#: ../src/blocks.c:2421 ../src/blocks.c:2430 ../src/blocks.c:2439
+#: ../src/blocks.c:2448
 msgid "Plant"
 msgstr "Plante"
 
-#: ../src/blocks.c:2396 ../src/blocks.c:2404 ../src/blocks.c:2412
-#: ../src/blocks.c:2420
+#: ../src/blocks.c:2422 ../src/blocks.c:2431 ../src/blocks.c:2440
+#: ../src/blocks.c:2449
 msgid ""
 "After all the humans are killed by the bots, only plants like this one will "
 "remain."
@@ -354,103 +354,103 @@ msgstr ""
 "Lorsque tous les humains auront été tués par les robots, seules les plantes, "
 "comme celle-ci, resteront."
 
-#: ../src/blocks.c:2427 ../src/blocks.c:2434 ../src/blocks.c:2441
-#: ../src/blocks.c:2448
+#: ../src/blocks.c:2457 ../src/blocks.c:2465 ../src/blocks.c:2473
+#: ../src/blocks.c:2481
 msgid "Desk"
 msgstr "Bureau"
 
-#: ../src/blocks.c:2428 ../src/blocks.c:2435 ../src/blocks.c:2442
-#: ../src/blocks.c:2449
+#: ../src/blocks.c:2458 ../src/blocks.c:2466 ../src/blocks.c:2474
+#: ../src/blocks.c:2482
 msgid "This desk is designed to handle extreme loads of office work."
 msgstr "Ce bureau est conçu pour supporter des charges de travail extrêmes."
 
-#: ../src/blocks.c:2497 ../src/blocks.c:2504 ../src/blocks.c:2511
-#: ../src/blocks.c:2518
+#: ../src/blocks.c:2531 ../src/blocks.c:2538 ../src/blocks.c:2545
+#: ../src/blocks.c:2552
 msgid "Bench"
 msgstr "Banc"
 
-#: ../src/blocks.c:2498 ../src/blocks.c:2505 ../src/blocks.c:2512
-#: ../src/blocks.c:2519
+#: ../src/blocks.c:2532 ../src/blocks.c:2539 ../src/blocks.c:2546
+#: ../src/blocks.c:2553
 msgid "A simple white bench."
 msgstr "Un simple banc blanc."
 
-#: ../src/blocks.c:2527 ../src/blocks.c:2535 ../src/blocks.c:2544
-#: ../src/blocks.c:2553
+#: ../src/blocks.c:2561 ../src/blocks.c:2569 ../src/blocks.c:2578
+#: ../src/blocks.c:2587
 msgid "Bath tub"
 msgstr "Baignoire"
 
-#: ../src/blocks.c:2528
+#: ../src/blocks.c:2562
 msgid "An idea of what comfort is"
 msgstr "Une idée du confort présent"
 
-#: ../src/blocks.c:2536 ../src/blocks.c:2545 ../src/blocks.c:2554
+#: ../src/blocks.c:2570 ../src/blocks.c:2579 ../src/blocks.c:2588
 msgid "Taking a bath is not your current quest - what a pity !"
 msgstr ""
 "Prendre un bain ne fait pas partie de la quête en cours - quel dommage !"
 
-#: ../src/blocks.c:2561 ../src/blocks.c:2569
+#: ../src/blocks.c:2595 ../src/blocks.c:2603
 msgid "Washing tub"
 msgstr "Bassine"
 
-#: ../src/blocks.c:2562 ../src/blocks.c:2570
+#: ../src/blocks.c:2596 ../src/blocks.c:2604
 msgid "A metal tub. The washing machine of the post-assault 21st century."
 msgstr ""
 "Une bassine en métal. La machine à laver du 21ème siècle de l'après-assaut."
 
-#: ../src/blocks.c:2607 ../src/blocks.c:2614 ../src/blocks.c:2621
-#: ../src/blocks.c:2629 ../src/blocks.c:2636
+#: ../src/blocks.c:2640 ../src/blocks.c:2646 ../src/blocks.c:2652
+#: ../src/blocks.c:2659 ../src/blocks.c:2666
 msgid "Tree"
 msgstr "Arbre"
 
-#: ../src/blocks.c:2608
+#: ../src/blocks.c:2641
 msgid "This tree seems quite normal"
 msgstr "Cet arbre semble plutôt normal"
 
-#: ../src/blocks.c:2615
+#: ../src/blocks.c:2647
 msgid "This is a nice tree"
 msgstr "C'est un bel arbre"
 
-#: ../src/blocks.c:2622
+#: ../src/blocks.c:2653
 msgid "No, it definitely doesn't look like a droid"
 msgstr "Non, ça ne ressemble vraiment pas à un droïde"
 
-#: ../src/blocks.c:2630
+#: ../src/blocks.c:2660
 msgid "This tree does not look too healthy."
 msgstr "Cet arbre ne semble pas trop en forme."
 
-#: ../src/blocks.c:2637
+#: ../src/blocks.c:2667
 msgid "For some strange reason this tree has blue leaves."
 msgstr "Pour une raison mystérieuse, cet arbre a des feuilles bleues."
 
-#: ../src/blocks.c:2647 ../src/blocks.c:2654 ../src/blocks.c:2661
-#: ../src/blocks.c:2667 ../src/blocks.c:2673 ../src/blocks.c:2679
-#: ../src/blocks.c:2685 ../src/blocks.c:2691 ../src/blocks.c:2697
-#: ../src/blocks.c:2703
+#: ../src/blocks.c:2677 ../src/blocks.c:2684 ../src/blocks.c:2691
+#: ../src/blocks.c:2697 ../src/blocks.c:2703 ../src/blocks.c:2709
+#: ../src/blocks.c:2715 ../src/blocks.c:2721 ../src/blocks.c:2727
+#: ../src/blocks.c:2733
 msgid "Colony wall"
 msgstr "Mur de la colonie"
 
-#: ../src/blocks.c:2648 ../src/blocks.c:2655 ../src/blocks.c:2662
-#: ../src/blocks.c:2668 ../src/blocks.c:2674 ../src/blocks.c:2680
-#: ../src/blocks.c:2686 ../src/blocks.c:2692 ../src/blocks.c:2698
-#: ../src/blocks.c:2704
+#: ../src/blocks.c:2678 ../src/blocks.c:2685 ../src/blocks.c:2692
+#: ../src/blocks.c:2698 ../src/blocks.c:2704 ../src/blocks.c:2710
+#: ../src/blocks.c:2716 ../src/blocks.c:2722 ../src/blocks.c:2728
+#: ../src/blocks.c:2734
 msgid "This is just a pink wall."
 msgstr "C'est juste un mur rose."
 
-#: ../src/blocks.c:2754
+#: ../src/blocks.c:2784
 msgid "Restaurant shelves"
 msgstr "Étagères de restaurant"
 
-#: ../src/blocks.c:2755
+#: ../src/blocks.c:2785
 msgid "This is but standard restaurant furniture."
 msgstr "Ce sont des équipements standards pour un restaurant."
 
-#: ../src/blocks.c:2764 ../src/blocks.c:2770 ../src/blocks.c:2776
-#: ../src/blocks.c:2782
+#: ../src/blocks.c:2794 ../src/blocks.c:2800 ../src/blocks.c:2806
+#: ../src/blocks.c:2812
 msgid "Rock wall"
 msgstr "Mur de pierres"
 
-#: ../src/blocks.c:2765 ../src/blocks.c:2771 ../src/blocks.c:2777
-#: ../src/blocks.c:2783
+#: ../src/blocks.c:2795 ../src/blocks.c:2801 ../src/blocks.c:2807
+#: ../src/blocks.c:2813
 msgid ""
 "This rock is here now and forever, and it is not going anywhere. Go "
 "somewhere else."
@@ -458,13 +458,13 @@ msgstr ""
 "Ce rocher est là maintenant et pour toujours, et il n'ira nulle part. Allez, "
 "va ailleurs."
 
-#: ../src/blocks.c:2803 ../src/blocks.c:2804 ../src/blocks.c:2805
-#: ../src/blocks.c:2806
+#: ../src/blocks.c:2835 ../src/blocks.c:2836 ../src/blocks.c:2837
+#: ../src/blocks.c:2838
 msgid "Grey wall"
 msgstr "Mur gris"
 
-#: ../src/blocks.c:2807 ../src/blocks.c:2808 ../src/blocks.c:2809
-#: ../src/blocks.c:2810
+#: ../src/blocks.c:2839 ../src/blocks.c:2840 ../src/blocks.c:2841
+#: ../src/blocks.c:2842
 msgid ""
 "This is grey and seems quite hard to destroy. People usually call it a wall. "
 "You have no chance to go through : there must be another path."
@@ -473,30 +473,30 @@ msgstr ""
 "Vous n'avez aucune chance de passer au travers : il doit y avoir un autre "
 "chemin."
 
-#: ../src/blocks.c:2853 ../src/blocks.c:2861 ../src/blocks.c:3326
-#: ../src/blocks.c:3327
+#: ../src/blocks.c:2885 ../src/blocks.c:2893 ../src/blocks.c:3362
+#: ../src/blocks.c:3363
 msgid "Green wall"
 msgstr "Mur vert"
 
-#: ../src/blocks.c:2854 ../src/blocks.c:2862
+#: ../src/blocks.c:2886 ../src/blocks.c:2894
 msgid "This wall is covered by an asparagus-green wallpaper."
 msgstr "Ce mur est couvert par un papier peint vert asperge."
 
-#: ../src/blocks.c:2869 ../src/blocks.c:2877 ../src/blocks.c:2885
-#: ../src/blocks.c:2893
+#: ../src/blocks.c:2901 ../src/blocks.c:2909 ../src/blocks.c:2917
+#: ../src/blocks.c:2925
 msgid "Groovy wall"
 msgstr "Mur étrange"
 
-#: ../src/blocks.c:2870 ../src/blocks.c:2878 ../src/blocks.c:2886
-#: ../src/blocks.c:2894
+#: ../src/blocks.c:2902 ../src/blocks.c:2910 ../src/blocks.c:2918
+#: ../src/blocks.c:2926
 msgid "Man, dig that groovy wallpaper. It's a real blast!"
 msgstr "Mec, regarde ce papier peint sensass. C'est hallucinant !"
 
-#: ../src/blocks.c:2997
+#: ../src/blocks.c:3027
 msgid "Brick wall"
 msgstr "Mur de briques"
 
-#: ../src/blocks.c:2998
+#: ../src/blocks.c:3028
 msgid ""
 "A badly constructed brick wall. It looks like it was built in a rush. The "
 "color is quite nice though."
@@ -504,59 +504,59 @@ msgstr ""
 "Un mur de briques mal construit. On dirait qu'il a été construit à la va-"
 "vite. La couleur, par contre, est plutôt jolie."
 
-#: ../src/blocks.c:3040 ../src/blocks.c:3043
+#: ../src/blocks.c:3070 ../src/blocks.c:3073
 msgid "This wall is suffering. Finish it!"
 msgstr "Ce mur souffre. Il faut l'achever !"
 
-#: ../src/blocks.c:3055 ../src/blocks.c:3058
+#: ../src/blocks.c:3085 ../src/blocks.c:3088
 msgid "Well ... it was not very resistant "
 msgstr "Et bien ... ce n'était pas très solide "
 
-#: ../src/blocks.c:3118
+#: ../src/blocks.c:3146
 msgid "Blood"
 msgstr "Sang"
 
-#: ../src/blocks.c:3119
+#: ../src/blocks.c:3147
 msgid "Do droids bleed ? These do."
 msgstr "Est-ce que les droïdes saignent ? Ceux là, oui."
 
-#: ../src/blocks.c:3176
+#: ../src/blocks.c:3204
 msgid "Oil stains"
 msgstr "Tâches d'huile"
 
-#: ../src/blocks.c:3177
+#: ../src/blocks.c:3205
 msgid "Do droids bleed? These don't."
 msgstr "Est-ce que les droïdes saignent ? Ceux-là, non."
 
-#: ../src/blocks.c:3199 ../src/blocks.c:3207
+#: ../src/blocks.c:3227 ../src/blocks.c:3235
 msgid "Entrance"
 msgstr "Entrée"
 
-#: ../src/blocks.c:3200 ../src/blocks.c:3208
+#: ../src/blocks.c:3228 ../src/blocks.c:3236
 msgid "It leads into the dark tunnels below..."
 msgstr "On aperçoit les tunnels sombres en dessous..."
 
-#: ../src/blocks.c:3216 ../src/blocks.c:3225
+#: ../src/blocks.c:3244 ../src/blocks.c:3253
 msgid "Ladder"
 msgstr "Echelle"
 
-#: ../src/blocks.c:3217 ../src/blocks.c:3226
+#: ../src/blocks.c:3245 ../src/blocks.c:3254
 msgid "It leads to the surface world."
 msgstr "Ca mène à la surface du monde."
 
-#: ../src/blocks.c:3239 ../src/blocks.c:3292
+#: ../src/blocks.c:3268 ../src/blocks.c:3328
 msgid "Exotic plant"
 msgstr "Plante exotique"
 
-#: ../src/blocks.c:3240
+#: ../src/blocks.c:3269
 msgid "A wonderful exotic plant. You can read \"Made by Basse\" on it"
 msgstr "Une merveilleuse plante exotique. On peut y lire \"Fait par Basse\""
 
-#: ../src/blocks.c:3260
+#: ../src/blocks.c:3292
 msgid "Rocks"
 msgstr "Rochers"
 
-#: ../src/blocks.c:3261
+#: ../src/blocks.c:3293
 msgid ""
 "Do you think a rock can attack you ? No, MS droids can't hide themselves "
 "that way : they crash before."
@@ -564,36 +564,36 @@ msgstr ""
 "Pensez-vous qu'un rocher peut vous attaquer ? Non, les droïdes MS ne peuvent "
 "se dissimuler de cette manière : ils plantent avant."
 
-#: ../src/blocks.c:3293
+#: ../src/blocks.c:3329
 msgid "Eating too much of that could lead to a kernel panic."
 msgstr "Trop en manger pourrait provoquer un plantage du noyau."
 
-#: ../src/blocks.c:3322 ../src/blocks.c:3323
+#: ../src/blocks.c:3358 ../src/blocks.c:3359
 msgid "Red wall"
 msgstr "Mur rouge"
 
-#: ../src/blocks.c:3324 ../src/blocks.c:3325 ../src/blocks.c:3328
-#: ../src/blocks.c:3329
+#: ../src/blocks.c:3360 ../src/blocks.c:3361 ../src/blocks.c:3364
+#: ../src/blocks.c:3365
 msgid "You think it would be better with a penguin on it. You are right."
 msgstr ""
 "Vous pensez que ce serait mieux avec un manchot dessus. Vous avez raison."
 
-#: ../src/blocks.c:3339 ../src/blocks.c:3345
+#: ../src/blocks.c:3376 ../src/blocks.c:3383
 msgid "Shop counter"
 msgstr "Comptoir de magasin"
 
-#: ../src/blocks.c:3340 ../src/blocks.c:3346
+#: ../src/blocks.c:3377 ../src/blocks.c:3384
 msgid ""
 "This model of the counter features a built-in cash register and bright neon "
 "lights."
 msgstr ""
 "Ce modèle de comptoir intègre une caisse enregistreuse et un néon lumineux."
 
-#: ../src/blocks.c:3351 ../src/blocks.c:3356
+#: ../src/blocks.c:3389 ../src/blocks.c:3394
 msgid "Set of shelves"
 msgstr "Etagères"
 
-#: ../src/blocks.c:3352
+#: ../src/blocks.c:3390
 msgid ""
 "There is a lot of junk in here. Bot parts, medical supplies, scrap metal "
 "bits and other useless things like that."
@@ -601,7 +601,7 @@ msgstr ""
 "Il y a beaucoup de bibelots là-dessus. Morceaux de robots, médicaments, "
 "bouts de métal et d'autres choses inutiles du même genre."
 
-#: ../src/blocks.c:3357
+#: ../src/blocks.c:3395
 msgid ""
 "There is a lot of junk in here. Bot parts, gold bars, dead rodents, scrap "
 "metal bits and other useless things like that."
@@ -609,15 +609,15 @@ msgstr ""
 "Il y a beaucoup de bibelots là-dessus. Morceaux de robots, lingots d'or, "
 "rats morts, morceaux de métal et d'autres choses inutiles du même genre."
 
-#: ../src/blocks.c:3362 ../src/blocks.c:3367
+#: ../src/blocks.c:3400 ../src/blocks.c:3405
 msgid "Empty shelves"
 msgstr "Étagères vides"
 
-#: ../src/blocks.c:3363
+#: ../src/blocks.c:3401
 msgid "Whatever was here before, is not here anymore."
 msgstr "Quoi qu'il y ait eu ici, ça n'y est plus."
 
-#: ../src/blocks.c:3368
+#: ../src/blocks.c:3406
 msgid ""
 "These are empty shelves. Silent and hollow they sleep in Spring. No thing "
 "remains here now."
@@ -625,23 +625,23 @@ msgstr ""
 "Ce sont des étagères vides. Silencieuses et désertes, elles sommeillent. "
 "Plus rien ne reste maintenant."
 
-#: ../src/blocks.c:3390 ../src/blocks.c:3397 ../src/blocks.c:3404
-#: ../src/blocks.c:3411 ../src/blocks.c:3418 ../src/blocks.c:3424
-#: ../src/blocks.c:3432 ../src/blocks.c:3439 ../src/blocks.c:3446
-#: ../src/blocks.c:3453 ../src/blocks.c:3460 ../src/blocks.c:3467
-#: ../src/blocks.c:3473 ../src/blocks.c:3479 ../src/blocks.c:3485
-#: ../src/blocks.c:3491 ../src/blocks.c:3498 ../src/blocks.c:3504
-#: ../src/blocks.c:3510 ../src/blocks.c:3516
+#: ../src/blocks.c:3430 ../src/blocks.c:3437 ../src/blocks.c:3444
+#: ../src/blocks.c:3451 ../src/blocks.c:3458 ../src/blocks.c:3464
+#: ../src/blocks.c:3472 ../src/blocks.c:3479 ../src/blocks.c:3486
+#: ../src/blocks.c:3493 ../src/blocks.c:3500 ../src/blocks.c:3507
+#: ../src/blocks.c:3513 ../src/blocks.c:3519 ../src/blocks.c:3525
+#: ../src/blocks.c:3531 ../src/blocks.c:3538 ../src/blocks.c:3544
+#: ../src/blocks.c:3550 ../src/blocks.c:3556
 msgid "Strong wall"
 msgstr "Mur robuste"
 
-#: ../src/blocks.c:3391 ../src/blocks.c:3398 ../src/blocks.c:3405
-#: ../src/blocks.c:3412 ../src/blocks.c:3419 ../src/blocks.c:3426
-#: ../src/blocks.c:3433 ../src/blocks.c:3440 ../src/blocks.c:3447
-#: ../src/blocks.c:3454 ../src/blocks.c:3461 ../src/blocks.c:3468
-#: ../src/blocks.c:3474 ../src/blocks.c:3480 ../src/blocks.c:3486
-#: ../src/blocks.c:3492 ../src/blocks.c:3499 ../src/blocks.c:3505
-#: ../src/blocks.c:3511 ../src/blocks.c:3517
+#: ../src/blocks.c:3431 ../src/blocks.c:3438 ../src/blocks.c:3445
+#: ../src/blocks.c:3452 ../src/blocks.c:3459 ../src/blocks.c:3466
+#: ../src/blocks.c:3473 ../src/blocks.c:3480 ../src/blocks.c:3487
+#: ../src/blocks.c:3494 ../src/blocks.c:3501 ../src/blocks.c:3508
+#: ../src/blocks.c:3514 ../src/blocks.c:3520 ../src/blocks.c:3526
+#: ../src/blocks.c:3532 ../src/blocks.c:3539 ../src/blocks.c:3545
+#: ../src/blocks.c:3551 ../src/blocks.c:3557
 msgid ""
 "This great wall can withstand a swarm of rogue bots madly attacking it for "
 "weeks*! It can belong to you for only 299.99C$ + tax, per section. *( Your "
@@ -651,40 +651,40 @@ msgstr ""
 "semaines* ! Vous pouvez l'acheter pour seulement 299.99C$ HT par section. *"
 "(La durée peut varier. Ce mur est vendu SANS AUCUNE GARANTIE !) "
 
-#: ../src/blocks.c:3525 ../src/blocks.c:3529 ../src/blocks.c:3533
-#: ../src/blocks.c:3537 ../src/blocks.c:3542 ../src/blocks.c:3550
-#: ../src/blocks.c:3554 ../src/blocks.c:3558 ../src/blocks.c:3562
-#: ../src/blocks.c:3567 ../src/blocks.c:3574 ../src/blocks.c:3580
+#: ../src/blocks.c:3566 ../src/blocks.c:3572 ../src/blocks.c:3578
+#: ../src/blocks.c:3584 ../src/blocks.c:3589 ../src/blocks.c:3598
+#: ../src/blocks.c:3604 ../src/blocks.c:3610 ../src/blocks.c:3616
+#: ../src/blocks.c:3621 ../src/blocks.c:3628 ../src/blocks.c:3634
 msgid "Gate"
 msgstr "Portail"
 
-#: ../src/blocks.c:3526 ../src/blocks.c:3530 ../src/blocks.c:3534
-#: ../src/blocks.c:3538 ../src/blocks.c:3543 ../src/blocks.c:3551
-#: ../src/blocks.c:3555 ../src/blocks.c:3559 ../src/blocks.c:3563
-#: ../src/blocks.c:3568
+#: ../src/blocks.c:3567 ../src/blocks.c:3573 ../src/blocks.c:3579
+#: ../src/blocks.c:3585 ../src/blocks.c:3590 ../src/blocks.c:3599
+#: ../src/blocks.c:3605 ../src/blocks.c:3611 ../src/blocks.c:3617
+#: ../src/blocks.c:3622
 msgid "This gate is little more than just a big door. A very big door."
 msgstr ""
 "Cette porte n'est pas simplement une grosse porte. C'est une très grosse "
 "porte."
 
-#: ../src/blocks.c:3575 ../src/blocks.c:3581
+#: ../src/blocks.c:3629 ../src/blocks.c:3635
 msgid ""
 "It is locked in order to keep something out. Or maybe to keep something in?"
 msgstr ""
 "C'est verrouillé afin d'empêcher quelque chose d'entrer. Ou peut-être de "
 "sortir ?"
 
-#: ../src/blocks.c:3588 ../src/blocks.c:3594 ../src/blocks.c:3600
-#: ../src/blocks.c:3606
+#: ../src/blocks.c:3642 ../src/blocks.c:3648 ../src/blocks.c:3654
+#: ../src/blocks.c:3660
 msgid "This yellow chair looks inviting."
 msgstr "Cette chaise jaune est attrayante."
 
-#: ../src/blocks.c:3612 ../src/blocks.c:3618 ../src/blocks.c:3624
-#: ../src/blocks.c:3630
+#: ../src/blocks.c:3667 ../src/blocks.c:3674 ../src/blocks.c:3681
+#: ../src/blocks.c:3688
 msgid "Red bench"
 msgstr "Banc rouge"
 
-#: ../src/blocks.c:3613
+#: ../src/blocks.c:3668
 msgid ""
 "It is a soft bench, commonly seen in hospitals, shops and houses all around "
 "the world."
@@ -692,7 +692,7 @@ msgstr ""
 "C'est un banc confortable, que l'on trouve souvent dans les hôpitaux, les "
 "magasins et les maisons du monde entier."
 
-#: ../src/blocks.c:3619
+#: ../src/blocks.c:3675
 msgid ""
 "It is a soft bench, commonly seen in hospitals, malls and houses all around "
 "the world."
@@ -700,7 +700,7 @@ msgstr ""
 "C'est un banc confortable, que l'on trouve souvent dans les hôpitaux, les "
 "centre commerciaux et les maisons du monde entier."
 
-#: ../src/blocks.c:3625
+#: ../src/blocks.c:3682
 msgid ""
 "It is a soft bench, commonly seen in hospitals, barber shops and houses all "
 "around the world."
@@ -708,7 +708,7 @@ msgstr ""
 "C'est un banc confortable, que l'on trouve souvent dans les hôpitaux, les "
 "échoppes de barbiers et les maisons du monde entier."
 
-#: ../src/blocks.c:3631
+#: ../src/blocks.c:3689
 msgid ""
 "It is a soft bench, commonly seen in hospitals, coffee shops and houses all "
 "around the world."
@@ -716,27 +716,27 @@ msgstr ""
 "C'est un banc confortable, que l'on trouve souvent dans les hôpitaux, les "
 "cafés et les maisons du monde entier."
 
-#: ../src/blocks.c:3638 ../src/blocks.c:3643 ../src/blocks.c:3648
-#: ../src/blocks.c:3653
+#: ../src/blocks.c:3696 ../src/blocks.c:3701 ../src/blocks.c:3706
+#: ../src/blocks.c:3711
 msgid "Dead member of the Red Guard"
 msgstr "Membre de la Garde Rouge décédé"
 
-#: ../src/blocks.c:3639
+#: ../src/blocks.c:3697
 msgid ""
 "If not for the terrible wounds, you could think that he is just asleep..."
 msgstr ""
 "Sans les terribles blessures, on pourrait penser qu'il est simplement "
 "endormi..."
 
-#: ../src/blocks.c:3644
+#: ../src/blocks.c:3702
 msgid "It looks like he fought to the bitter end..."
 msgstr "On dirait qu'il s'est battu jusqu'au bout...."
 
-#: ../src/blocks.c:3649
+#: ../src/blocks.c:3707
 msgid "Numerous wounds cover the body of this brave warrior..."
 msgstr "Beaucoup de blessures couvrent le corps de ce brave guerrier...."
 
-#: ../src/blocks.c:3654
+#: ../src/blocks.c:3712
 msgid ""
 "His body is charred and twisted... Such is the price of the service in the "
 "Red Guard..."
@@ -744,48 +744,48 @@ msgstr ""
 "Son corps est carbonisé et mutilé.... Tel est le prix du service dans la "
 "Garde Rouge...."
 
-#: ../src/blocks.c:3660 ../src/blocks.c:3666 ../src/blocks.c:3672
-#: ../src/blocks.c:3678
+#: ../src/blocks.c:3719 ../src/blocks.c:3726 ../src/blocks.c:3733
+#: ../src/blocks.c:3740
 msgid "Conference table"
 msgstr "Table de conférence"
 
-#: ../src/blocks.c:3661 ../src/blocks.c:3667 ../src/blocks.c:3673
-#: ../src/blocks.c:3679
+#: ../src/blocks.c:3720 ../src/blocks.c:3727 ../src/blocks.c:3734
+#: ../src/blocks.c:3741
 msgid "A round conference table with chairs and a computer at every seat."
 msgstr ""
 "Une table de conférence ronde avec des chaises et un ordinateur à chaque "
 "place."
 
-#: ../src/blocks.c:3697 ../src/blocks.c:3703 ../src/blocks.c:3709
-#: ../src/blocks.c:3715
+#: ../src/blocks.c:3760 ../src/blocks.c:3767 ../src/blocks.c:3774
+#: ../src/blocks.c:3781
 msgid "Bed"
 msgstr "Lit"
 
-#: ../src/blocks.c:3698 ../src/blocks.c:3704 ../src/blocks.c:3710
-#: ../src/blocks.c:3716
+#: ../src/blocks.c:3761 ../src/blocks.c:3768 ../src/blocks.c:3775
+#: ../src/blocks.c:3782
 msgid "This is a standard sleeping capsule."
 msgstr "C'est une capsule de sommeil standard."
 
-#: ../src/blocks.c:3721 ../src/blocks.c:3727 ../src/blocks.c:3733
-#: ../src/blocks.c:3739
+#: ../src/blocks.c:3787 ../src/blocks.c:3793 ../src/blocks.c:3799
+#: ../src/blocks.c:3805
 msgid "Bunk beds"
 msgstr "Couchettes"
 
-#: ../src/blocks.c:3722 ../src/blocks.c:3728 ../src/blocks.c:3734
-#: ../src/blocks.c:3740
+#: ../src/blocks.c:3788 ../src/blocks.c:3794 ../src/blocks.c:3800
+#: ../src/blocks.c:3806
 msgid ""
 "To save space on the floor two sleeping capsules were stacked vertically."
 msgstr ""
 "Pour économiser de l'espace, deux capsules de sommeil ont été positionnées "
 "verticalement."
 
-#: ../src/blocks.c:3746 ../src/blocks.c:3752 ../src/blocks.c:3758
-#: ../src/blocks.c:3764
+#: ../src/blocks.c:3812 ../src/blocks.c:3818 ../src/blocks.c:3824
+#: ../src/blocks.c:3830
 msgid "Projector"
 msgstr "Projecteur"
 
-#: ../src/blocks.c:3747 ../src/blocks.c:3753 ../src/blocks.c:3759
-#: ../src/blocks.c:3765
+#: ../src/blocks.c:3813 ../src/blocks.c:3819 ../src/blocks.c:3825
+#: ../src/blocks.c:3831
 msgid ""
 "This device is used for casting images onto a wall or a screen. It uses "
 "something looking like a film reel as a source of those images."
@@ -794,13 +794,13 @@ msgstr ""
 "utilise quelque chose qui ressemble à une bobine de film comme source "
 "d'images."
 
-#: ../src/blocks.c:3770 ../src/blocks.c:3775 ../src/blocks.c:3780
-#: ../src/blocks.c:3785
+#: ../src/blocks.c:3836 ../src/blocks.c:3841 ../src/blocks.c:3846
+#: ../src/blocks.c:3851
 msgid "Projector screen"
 msgstr "Ecran de projection"
 
-#: ../src/blocks.c:3771 ../src/blocks.c:3776 ../src/blocks.c:3781
-#: ../src/blocks.c:3786
+#: ../src/blocks.c:3837 ../src/blocks.c:3842 ../src/blocks.c:3847
+#: ../src/blocks.c:3852
 msgid ""
 "This is a projector screen, it allows to get better image quality than the "
 "wall."
@@ -808,12 +808,12 @@ msgstr ""
 "C'est un écran de projection qui permet d'avoir une meilleur qualité d'image "
 "que sur le mur."
 
-#: ../src/blocks.c:3791 ../src/blocks.c:3796 ../src/blocks.c:3813
-#: ../src/blocks.c:3818
+#: ../src/blocks.c:3857 ../src/blocks.c:3862 ../src/blocks.c:3879
+#: ../src/blocks.c:3884
 msgid "Bookcase"
 msgstr "Etagère à livres"
 
-#: ../src/blocks.c:3792
+#: ../src/blocks.c:3858
 msgid ""
 "There are many interesting books here, but none of them is a switch opening "
 "a secret passage."
@@ -821,71 +821,71 @@ msgstr ""
 "Il y a beaucoup de livres intéressants ici, mais aucun d'eux est un "
 "interrupteur qui ouvre un passage secret."
 
-#: ../src/blocks.c:3797
+#: ../src/blocks.c:3863
 msgid "There are exactly 451 books here."
 msgstr "Il y a exactement 451 livres ici."
 
-#: ../src/blocks.c:3802 ../src/blocks.c:3807 ../src/blocks.c:3824
-#: ../src/blocks.c:3829
+#: ../src/blocks.c:3868 ../src/blocks.c:3873 ../src/blocks.c:3890
+#: ../src/blocks.c:3895
 msgid "Empty bookcase"
 msgstr "Bibliothèque vide"
 
-#: ../src/blocks.c:3803 ../src/blocks.c:3808
+#: ../src/blocks.c:3869 ../src/blocks.c:3874
 msgid "No books here, just dust."
 msgstr "Aucun livre ici, seulement de la poussière."
 
-#: ../src/blocks.c:3814 ../src/blocks.c:3819
+#: ../src/blocks.c:3880 ../src/blocks.c:3885
 msgid ""
 "Only boring books like the Necronomicon are here. Yawn. Nothing interesting."
 msgstr ""
 "Que des livres ennuyeux comme le Necronomicon ! Bof. Rien d'intéressant."
 
-#: ../src/blocks.c:3825 ../src/blocks.c:3830
+#: ../src/blocks.c:3891 ../src/blocks.c:3896
 msgid "Dust to trees. Trees to pages. Pages to books. Books to dust."
 msgstr ""
 "De la poussière aux arbres. Des arbres au papier. Du papier aux livres. Des "
 "livres à la poussière."
 
-#: ../src/blocks.c:3836 ../src/blocks.c:3842 ../src/blocks.c:3848
+#: ../src/blocks.c:3903 ../src/blocks.c:3910 ../src/blocks.c:3917
 msgid "Sign"
 msgstr "Pancarte"
 
-#: ../src/blocks.c:3837 ../src/blocks.c:3843
+#: ../src/blocks.c:3904 ../src/blocks.c:3911
 msgid "A sign."
 msgstr "Une pancarte."
 
-#: ../src/blocks.c:3849
+#: ../src/blocks.c:3918
 msgid "The arrow points at a direction. Maybe you should follow it"
 msgstr ""
 "La flèche pointe indique une direction. Peut-être devriez-vous la suivre"
 
-#: ../src/blocks.c:3854 ../src/blocks.c:3861 ../src/blocks.c:3867
-#: ../src/blocks.c:3873 ../src/blocks.c:3880 ../src/blocks.c:3886
-#: ../src/blocks.c:3892 ../src/blocks.c:3898 ../src/blocks.c:3905
-#: ../src/blocks.c:3911 ../src/blocks.c:3917 ../src/blocks.c:3923
+#: ../src/blocks.c:3923 ../src/blocks.c:3932 ../src/blocks.c:3939
+#: ../src/blocks.c:3946 ../src/blocks.c:3954 ../src/blocks.c:3961
+#: ../src/blocks.c:3968 ../src/blocks.c:3975 ../src/blocks.c:3983
+#: ../src/blocks.c:3990 ../src/blocks.c:3997 ../src/blocks.c:4004
 msgid "Counter"
 msgstr "Comptoir"
 
-#: ../src/blocks.c:3855 ../src/blocks.c:3862 ../src/blocks.c:3868
-#: ../src/blocks.c:3874 ../src/blocks.c:3881 ../src/blocks.c:3887
-#: ../src/blocks.c:3893 ../src/blocks.c:3899 ../src/blocks.c:3906
-#: ../src/blocks.c:3912 ../src/blocks.c:3918 ../src/blocks.c:3924
+#: ../src/blocks.c:3924 ../src/blocks.c:3933 ../src/blocks.c:3940
+#: ../src/blocks.c:3947 ../src/blocks.c:3955 ../src/blocks.c:3962
+#: ../src/blocks.c:3969 ../src/blocks.c:3976 ../src/blocks.c:3984
+#: ../src/blocks.c:3991 ../src/blocks.c:3998 ../src/blocks.c:4005
 msgid "A counter."
 msgstr "Un comptoir."
 
-#: ../src/blocks.c:3931
+#: ../src/blocks.c:4013
 msgid "Bar table"
 msgstr "Table de bar"
 
-#: ../src/blocks.c:3932
+#: ../src/blocks.c:4014
 msgid "You can see some food stains on this yellow round table."
 msgstr "On peut voir des traces de nourriture sur cette table ronde jaune."
 
-#: ../src/blocks.c:3938 ../src/blocks.c:3945
+#: ../src/blocks.c:4021 ../src/blocks.c:4029
 msgid "Table"
 msgstr "Table"
 
-#: ../src/blocks.c:3939 ../src/blocks.c:3946
+#: ../src/blocks.c:4022 ../src/blocks.c:4030
 msgid ""
 "Tables such as this one have been used for centuries to store various items "
 "on top of them."
@@ -893,38 +893,38 @@ msgstr ""
 "Des tables comme celle-ci ont été utilisées durant des siècles pour placer "
 "divers objets dessus."
 
-#: ../src/blocks.c:3954 ../src/blocks.c:3961
+#: ../src/blocks.c:4039 ../src/blocks.c:4047
 msgid "Glass table"
 msgstr "Table en verre"
 
-#: ../src/blocks.c:3955 ../src/blocks.c:3962
+#: ../src/blocks.c:4040 ../src/blocks.c:4048
 msgid "This table is made out of see-through glass."
 msgstr "Cette table est faite en verre transparent."
 
-#: ../src/blocks.c:3970
+#: ../src/blocks.c:4056
 msgid "Water"
 msgstr "Eau"
 
-#: ../src/blocks.c:3971
+#: ../src/blocks.c:4057
 msgid "This water seems dangerous. You will want to avoid going there. "
 msgstr "Cette eau semble dangereuse. Vous devriez éviter d'aller dedans. "
 
-#: ../src/blocks.c:3999 ../src/blocks.c:4006 ../src/blocks.c:4013
-#: ../src/blocks.c:4020 ../src/blocks.c:4027 ../src/blocks.c:4034
+#: ../src/blocks.c:4087 ../src/blocks.c:4094 ../src/blocks.c:4101
+#: ../src/blocks.c:4108 ../src/blocks.c:4115 ../src/blocks.c:4122
 msgid "Crystal pillar"
 msgstr "Pilier en cristal"
 
-#: ../src/blocks.c:4000 ../src/blocks.c:4007 ../src/blocks.c:4014
-#: ../src/blocks.c:4021 ../src/blocks.c:4028 ../src/blocks.c:4035
+#: ../src/blocks.c:4088 ../src/blocks.c:4095 ../src/blocks.c:4102
+#: ../src/blocks.c:4109 ../src/blocks.c:4116 ../src/blocks.c:4123
 msgid "A pillar made out of crystal."
 msgstr "Un pilier taillé dans du cristal."
 
-#: ../src/blocks.c:4060
+#: ../src/blocks.c:4148
 #, c-format
 msgid "unnamed_obstacle"
 msgstr "obstacle iconnu"
 
-#: ../src/blocks.c:4066
+#: ../src/blocks.c:4154
 #, c-format
 msgid "This obstacle seems solid."
 msgstr "Cet obstacle semble solide."
@@ -935,7 +935,8 @@ msgid "Disruptor blast has hit you for %d damage."
 msgstr "Un tir vous a causé %d dommage(s)."
 
 #: ../src/bullet.c:693
-msgid "That one went into the armour."
+#, fuzzy
+msgid "That one went into the armor."
 msgstr "Celui-là a été arrêté par l'armure."
 
 #: ../src/character.c:228
@@ -1111,8 +1112,8 @@ msgid "Multiplicity: %d \n"
 msgstr "Quantité : %d \n"
 
 #: ../src/hud.c:219
-#, c-format
-msgid "Armour: %d"
+#, fuzzy, c-format
+msgid "Armor: %d"
 msgstr "Armure : %d"
 
 #: ../src/hud.c:231
@@ -1312,8 +1313,8 @@ msgid "%d to all attributes"
 msgstr "%d à tous les attributs"
 
 #: ../src/hud.c:506
-#, c-format
-msgid "%d%% to armour"
+#, fuzzy, c-format
+msgid "%d%% to armor"
 msgstr "%d%% à l'armure"
 
 #: ../src/hud.c:519
@@ -1450,38 +1451,37 @@ msgstr "Chargeur vide, rechargement..."
 msgid "No more ammunition !"
 msgstr "Plus de munitions !"
 
-#: ../src/influ.c:3347
+#: ../src/influ.c:3364
 #, c-format
 msgid "This is a %s. %s"
 msgstr "C'est un %s. %s"
 
-#: ../src/influ.c:3372 ../src/influ.c:3379
+#: ../src/influ.c:3389 ../src/influ.c:3396
 #, c-format
 msgid "Examining %s.  %s"
 msgstr "Examine %s.  %s"
 
-#: ../src/influ.c:3394
+#: ../src/influ.c:3411
 #, c-format
-msgid "You see the floor.  It should be perfectly safe to walk on it."
+msgid "There is nothing here."
 msgstr ""
-"Vous regardez le sol. Il devrait être parfaitement sécurisé de marché dessus."
 
-#: ../src/influ.c:3425
+#: ../src/influ.c:3442
 #, c-format
 msgid "Unlocking obstacle of type %d."
 msgstr "Débloque un obstacle de type %d."
 
-#: ../src/influ.c:3454
+#: ../src/influ.c:3471
 #, c-format
 msgid "Repairing obstacle of type %d."
 msgstr "Répare un obstacle de type %d."
 
-#: ../src/influ.c:3483
+#: ../src/influ.c:3500
 #, c-format
 msgid "Attacking obstacle of type %d."
 msgstr "Attaque un obstacle de type %d."
 
-#: ../src/influ.c:3512
+#: ../src/influ.c:3529
 #, c-format
 msgid "Picking pockets of obstacle of type %d."
 msgstr "Fouille les poches de l'obstacle de type %d."
@@ -1852,43 +1852,43 @@ msgstr "Objet ramassé : %s."
 msgid "I can't carry any more."
 msgstr "Je ne peux plus rien porter."
 
-#: ../src/leveleditor.c:1648
+#: ../src/leveleditor.c:1674
 msgid "Cancel item drop"
 msgstr "Annuler le point de chute"
 
-#: ../src/leveleditor.c:1948
+#: ../src/leveleditor.c:1974
 msgid "FLOOR"
 msgstr "SOL"
 
-#: ../src/leveleditor.c:1949
+#: ../src/leveleditor.c:1975
 msgid "WALLS"
 msgstr "MURS"
 
-#: ../src/leveleditor.c:1950
+#: ../src/leveleditor.c:1976
 msgid "MACHINERY"
 msgstr "MACHINERIE"
 
-#: ../src/leveleditor.c:1951
+#: ../src/leveleditor.c:1977
 msgid "FURNITURE"
 msgstr "MEUBLE"
 
-#: ../src/leveleditor.c:1952
+#: ../src/leveleditor.c:1978
 msgid "CONTAINERS"
 msgstr "CONTENEURS"
 
-#: ../src/leveleditor.c:1953
+#: ../src/leveleditor.c:1979
 msgid "NATURE"
 msgstr "NATURE"
 
-#: ../src/leveleditor.c:1954
+#: ../src/leveleditor.c:1980
 msgid "ALL"
 msgstr "TOUT(ES)"
 
-#: ../src/leveleditor.c:1955
+#: ../src/leveleditor.c:1981
 msgid "QUICK"
 msgstr "RAPIDE"
 
-#: ../src/leveleditor.c:3827
+#: ../src/leveleditor.c:3853
 #, c-format
 msgid ""
 "\n"
@@ -1899,7 +1899,7 @@ msgstr ""
 " Nom position carte: \n"
 " label_name=\"%s\""
 
-#: ../src/leveleditor.c:4370
+#: ../src/leveleditor.c:4396
 msgid ""
 "Go level north\n"
 "\n"
@@ -1911,7 +1911,7 @@ msgstr ""
 "Utilisez ce bouton pour vous déplacer d'un niveau au nord, c'est-à-dire le "
 "prochain niveau au nord du niveau actuel."
 
-#: ../src/leveleditor.c:4375
+#: ../src/leveleditor.c:4401
 msgid ""
 "Go level south\n"
 "\n"
@@ -1923,7 +1923,7 @@ msgstr ""
 "Utilisez ce bouton pour vous déplacer d'un niveau vers le sud, c'est-à-dire "
 "vers le prochain niveau au sud de l'actuel."
 
-#: ../src/leveleditor.c:4380
+#: ../src/leveleditor.c:4406
 msgid ""
 "Go level east\n"
 "\n"
@@ -1935,7 +1935,7 @@ msgstr ""
 "Utilisez ce bouton pour vous déplacer d'un niveau vers l'est, c'est-à-dire "
 "vers le prochain niveau à l'est de l'actuel."
 
-#: ../src/leveleditor.c:4385
+#: ../src/leveleditor.c:4411
 msgid ""
 "Go level west\n"
 "\n"
@@ -1947,7 +1947,7 @@ msgstr ""
 "Utilisez ce bouton pour vous déplacer d'un niveau vers l'ouest, c'est-à-dire "
 "vers le prochain niveau à l'ouest de l'actuel."
 
-#: ../src/leveleditor.c:4390
+#: ../src/leveleditor.c:4416
 msgid ""
 "Export this level\n"
 "\n"
@@ -1963,19 +1963,20 @@ msgstr ""
 "leurs contours. Ce bouton va copier les bords de ce niveau vers les bords du "
 "niveau voisin, afin que les cartes coïncident toujours."
 
-#: ../src/leveleditor.c:4395
+#: ../src/leveleditor.c:4421
+#, fuzzy
 msgid ""
 "Save Map\n"
 "\n"
-"This button will save your current map over the file '../map/Asteroid.maps' "
-"from your current working directory."
+"This button will save your current map over the file '../map/freedroid."
+"levels' from your current working directory."
 msgstr ""
 "Sauvegarder la carte\n"
 "\n"
 "Ce bouton sauvegardera votre carte actuelle dans le fichier '../map/Asteroid."
 "maps' de votre répertoire de travail actuel."
 
-#: ../src/leveleditor.c:4400
+#: ../src/leveleditor.c:4426
 msgid ""
 "Toggle waypoints\n"
 "\n"
@@ -1991,7 +1992,7 @@ msgstr ""
 "directionnelle blanche (ou multicouleurs).\n"
 "Vous pouvez faire la même chose en utilisant la touche W."
 
-#: ../src/leveleditor.c:4407
+#: ../src/leveleditor.c:4433
 msgid ""
 "Make waypoint connection\n"
 "\n"
@@ -2007,7 +2008,7 @@ msgstr ""
 "\n"
 "Vous pouvez aussi utiliser la touche C pour le faire."
 
-#: ../src/leveleditor.c:4409
+#: ../src/leveleditor.c:4435
 msgid ""
 "Complete waypoint connection\n"
 "\n"
@@ -2024,7 +2025,7 @@ msgstr ""
 "\n"
 "Vous pouvez également utiliser la touche C pour cela."
 
-#: ../src/leveleditor.c:4415
+#: ../src/leveleditor.c:4441
 msgid ""
 "Delete selected obstacle\n"
 "\n"
@@ -2038,7 +2039,7 @@ msgstr ""
 "\n"
 "Vous pouvez aussi utiliser la touche X pour cela."
 
-#: ../src/leveleditor.c:4420
+#: ../src/leveleditor.c:4446
 msgid ""
 "Next obstacle on currently selected tile\n"
 "\n"
@@ -2052,7 +2053,7 @@ msgstr ""
 "\n"
 "Vous pouvez aussi utiliser la touche N pour cela."
 
-#: ../src/leveleditor.c:4425
+#: ../src/leveleditor.c:4451
 msgid ""
 "Beautify grass button\n"
 "\n"
@@ -2070,7 +2071,7 @@ msgstr ""
 "\n"
 "Vous pouvez également utiliser Ctrl-B pour cela."
 
-#: ../src/leveleditor.c:4431
+#: ../src/leveleditor.c:4457
 msgid ""
 "Zoom in/out\n"
 "\n"
@@ -2084,7 +2085,7 @@ msgstr ""
 "\n"
 "Vous pouvez également utiliser la touche 'O' pour cela."
 
-#: ../src/leveleditor.c:4436
+#: ../src/leveleditor.c:4462
 msgid ""
 "Fill\n"
 "\n"
@@ -2098,7 +2099,7 @@ msgstr ""
 "sélectionnées. Le remplissage va démarrer du curseur dans toutes les "
 "directions jusqu'à ce qu'un changement de dalles de la carte soit rencontré."
 
-#: ../src/leveleditor.c:4441
+#: ../src/leveleditor.c:4467
 msgid ""
 "New obstacle label\n"
 "\n"
@@ -2113,7 +2114,7 @@ msgstr ""
 "obstacles modifiés par des évènements.\n"
 " Remarquez que vous pouvez également utiliser la touche rapide 'h' pour cela."
 
-#: ../src/leveleditor.c:4446
+#: ../src/leveleditor.c:4472
 msgid ""
 "New obstacle description\n"
 "\n"
@@ -2123,7 +2124,7 @@ msgstr ""
 "\n"
 "Utilisez ce bouton pour éditer la description de l'obstacle sélectionné."
 
-#: ../src/leveleditor.c:4451
+#: ../src/leveleditor.c:4477
 msgid ""
 "New map label\n"
 "\n"
@@ -2138,7 +2139,7 @@ msgstr ""
 "définir des points de départ pour des robots et des personnages et également "
 "pour définir des endroits pour des évènements et des déclencheurs."
 
-#: ../src/leveleditor.c:4456
+#: ../src/leveleditor.c:4482
 msgid ""
 "Add item\n"
 "\n"
@@ -2150,7 +2151,7 @@ msgstr ""
 "Utilisez ce bouton pour poser un nouvel objet sur le sol. Vous pouvez "
 "également utilisez la touche rapide 'G' pour cela."
 
-#: ../src/leveleditor.c:4461
+#: ../src/leveleditor.c:4487
 msgid ""
 "Menu\n"
 "\n"
@@ -2165,7 +2166,7 @@ msgstr ""
 " Notez que vous pouvez également utiliser la touche Echap pour entrer dans "
 "le menu principal de l'éditeur de niveau."
 
-#: ../src/leveleditor.c:4466
+#: ../src/leveleditor.c:4492
 msgid ""
 "Level resize\n"
 "\n"
@@ -2180,7 +2181,7 @@ msgstr ""
 "trop endommager votre carte actuelle et insérer des espaces où vous aimeriez "
 "qu'ils soient situés."
 
-#: ../src/leveleditor.c:4471
+#: ../src/leveleditor.c:4497
 msgid ""
 "Level editor guide\n"
 "\n"
@@ -2191,7 +2192,7 @@ msgstr ""
 "Utilisez ce bouton pour entrer dans l'affichage du clavier de l'éditeur de "
 "niveau."
 
-#: ../src/leveleditor.c:4476
+#: ../src/leveleditor.c:4502
 msgid ""
 "Back to game\n"
 "\n"
@@ -2201,7 +2202,7 @@ msgstr ""
 "\n"
 "Quitte l'éditeur de niveau pour jouer à FreedroidRPG."
 
-#: ../src/leveleditor.c:4481
+#: ../src/leveleditor.c:4507
 msgid ""
 "Underground lighting\n"
 "\n"
@@ -2217,7 +2218,7 @@ msgstr ""
 "\n"
 "Il n'y a pas de touche clavier rapide pour le placement."
 
-#: ../src/leveleditor.c:4487
+#: ../src/leveleditor.c:4513
 msgid ""
 "Toggle display enemies\n"
 "\n"
@@ -2228,7 +2229,7 @@ msgstr ""
 "\n"
 "Utilisez ce bouton commuter l'affichage des ennemis dans l'éditeur de niveau."
 
-#: ../src/leveleditor.c:4493
+#: ../src/leveleditor.c:4519
 msgid ""
 "Toggle display obstacles\n"
 "\n"
@@ -2240,7 +2241,7 @@ msgstr ""
 "Utilisez ce bouton pour basculer entre afficher les obstacles et cacher les "
 "obstacles dans l'éditeur de niveau."
 
-#: ../src/leveleditor.c:4499
+#: ../src/leveleditor.c:4525
 msgid ""
 "Undo\n"
 "\n"
@@ -2250,7 +2251,7 @@ msgstr ""
 "\n"
 "Utilisez ce bouton pour annuler vos dernières actions."
 
-#: ../src/leveleditor.c:4505
+#: ../src/leveleditor.c:4531
 msgid ""
 "Redo\n"
 "\n"
@@ -2260,7 +2261,7 @@ msgstr ""
 "\n"
 "Utilisez ce bouton pour rétablir une action."
 
-#: ../src/leveleditor.c:4511
+#: ../src/leveleditor.c:4537
 msgid ""
 "Toggle display Tux\n"
 "\n"
@@ -2272,7 +2273,7 @@ msgstr ""
 "Utilisez ce bouton pour basculer entre afficher Tux ou cacher Tux dans "
 "l'éditeur de niveau."
 
-#: ../src/leveleditor.c:4517
+#: ../src/leveleditor.c:4543
 msgid ""
 "Toggle display tooltips\n"
 "\n"
@@ -2282,7 +2283,7 @@ msgstr ""
 "\n"
 "Utilisez ce bouton pour commuter l'apparition des infobulles."
 
-#: ../src/leveleditor.c:4523
+#: ../src/leveleditor.c:4549
 msgid ""
 "Toggle display colision rectangles\n"
 "\n"
@@ -2293,16 +2294,16 @@ msgstr ""
 "Utilisez ce bouton pour commuter l'affichage des rectangle frontalier aux "
 "objets."
 
-#: ../src/leveleditor.c:4530
+#: ../src/leveleditor.c:4556
 msgid "Change grid mode ( placement / full / off )"
 msgstr "Mode de grille (position/complet/off)"
 
-#: ../src/leveleditor.c:5533
+#: ../src/leveleditor.c:5559
 #, c-format
 msgid " Source waypoint selected : NONE"
 msgstr " Point de passage source : AUCUN"
 
-#: ../src/leveleditor.c:5537
+#: ../src/leveleditor.c:5563
 #, c-format
 msgid " Source waypoint selected : X=%d Y=%d. "
 msgstr " Point de passage source : X=%d Y=%d. "
@@ -2315,106 +2316,106 @@ msgstr "Surchauffe !"
 msgid "Weapon reloaded"
 msgstr "Arme rechargée"
 
-#: ../src/map.c:3012
+#: ../src/map.c:3021
 msgid "123 Acolyte"
 msgstr "123 Acolyte"
 
-#: ../src/map.c:3013
+#: ../src/map.c:3022
 msgid "139 Templar"
 msgstr "139 Templier"
 
-#: ../src/map.c:3014
+#: ../src/map.c:3023
 msgid "247 Banshee"
 msgstr "247 La Banshee"
 
-#: ../src/map.c:3015
+#: ../src/map.c:3024
 msgid "249 Chicago"
 msgstr "249 Chicago"
 
-#: ../src/map.c:3016
+#: ../src/map.c:3025
 #, fuzzy
 msgid "296 Sawmill"
 msgstr "296 Broyeur"
 
-#: ../src/map.c:3017
+#: ../src/map.c:3026
 msgid "302 Nemesis"
 msgstr "302 Nemesis"
 
-#: ../src/map.c:3018
+#: ../src/map.c:3027
 msgid "329 Sparkie"
 msgstr "329 Sparkie"
 
-#: ../src/map.c:3019
+#: ../src/map.c:3028
 msgid "420 NaN"
 msgstr "420 NaN"
 
-#: ../src/map.c:3020
+#: ../src/map.c:3029
 msgid "476 Coward"
 msgstr ""
 
-#: ../src/map.c:3021
+#: ../src/map.c:3030
 msgid "493 Spinster"
 msgstr ""
 
-#: ../src/map.c:3022
+#: ../src/map.c:3031
 msgid "516 Ghoul"
 msgstr ""
 
-#: ../src/map.c:3023
+#: ../src/map.c:3032
 msgid "543 Forest Harvester"
 msgstr ""
 
-#: ../src/map.c:3024
+#: ../src/map.c:3033
 msgid "571 Apollo"
 msgstr ""
 
-#: ../src/map.c:3025
+#: ../src/map.c:3034
 msgid "598 NaN"
 msgstr ""
 
-#: ../src/map.c:3026
+#: ../src/map.c:3035
 msgid "615 NaN"
 msgstr ""
 
-#: ../src/map.c:3027
+#: ../src/map.c:3036
 msgid "629 NaN"
 msgstr ""
 
-#: ../src/map.c:3028
+#: ../src/map.c:3037
 msgid "711 If"
 msgstr ""
 
-#: ../src/map.c:3029
+#: ../src/map.c:3038
 msgid "742 NaN"
 msgstr ""
 
-#: ../src/map.c:3030
+#: ../src/map.c:3039
 msgid "751 Soviet"
 msgstr ""
 
-#: ../src/map.c:3031
+#: ../src/map.c:3040
 msgid "821 NaN"
 msgstr ""
 
-#: ../src/map.c:3032
+#: ../src/map.c:3041
 msgid "834 NaN"
 msgstr ""
 
-#: ../src/map.c:3033
+#: ../src/map.c:3042
 msgid "883 NaN"
 msgstr ""
 
-#: ../src/map.c:3034
+#: ../src/map.c:3043
 msgid "999 NaN"
 msgstr ""
 
-#: ../src/map.c:3035
+#: ../src/map.c:3044
 msgid "No Description For This One"
 msgstr "Aucune description pour celui-là"
 
 #: ../src/menu.c:56
 #, fuzzy
-msgid "The first 7 characters: "
+msgid "Your characters: "
 msgstr "Les 10 premiers personnages : "
 
 #: ../src/menu.c:57
@@ -2439,31 +2440,39 @@ msgstr " NON "
 msgid "OpenGL output active: "
 msgstr "Sortie OpenGL activée : "
 
-#: ../src/menu.c:1390
+#: ../src/menu.c:253 ../src/menu.c:2221
+msgid "[down]"
+msgstr ""
+
+#: ../src/menu.c:254 ../src/menu.c:2209
+msgid "[up]"
+msgstr ""
+
+#: ../src/menu.c:1393
 msgid "Play"
 msgstr "Jouer"
 
-#: ../src/menu.c:1391 ../src/menu.c:1518
+#: ../src/menu.c:1394 ../src/menu.c:1521
 msgid "Level Editor"
 msgstr "Éditeur de niveau"
 
-#: ../src/menu.c:1392 ../src/menu.c:1517
+#: ../src/menu.c:1395 ../src/menu.c:1520
 msgid "Options"
 msgstr "Options"
 
-#: ../src/menu.c:1393
+#: ../src/menu.c:1396
 msgid "Credits"
 msgstr "Crédits"
 
-#: ../src/menu.c:1394
+#: ../src/menu.c:1397
 msgid "Contribute"
 msgstr "Contribuer"
 
-#: ../src/menu.c:1395
+#: ../src/menu.c:1398
 msgid "Exit FreedroidRPG"
 msgstr "Quitter FreedroidRPG"
 
-#: ../src/menu.c:1425
+#: ../src/menu.c:1428
 msgid ""
 "\n"
 "You cannot change the language\n"
@@ -2481,7 +2490,7 @@ msgstr ""
 "\n"
 "    Merci\n"
 
-#: ../src/menu.c:1434
+#: ../src/menu.c:1437
 msgid ""
 "\n"
 "The game has NOT been\n"
@@ -2497,57 +2506,57 @@ msgstr ""
 "pas disponibles.\n"
 "Merci\n"
 
-#: ../src/menu.c:1458
+#: ../src/menu.c:1461
 msgid "Graphics Options"
 msgstr "Options graphiques"
 
-#: ../src/menu.c:1459
+#: ../src/menu.c:1462
 msgid "Sound Options"
 msgstr "Options sonores"
 
-#: ../src/menu.c:1460
+#: ../src/menu.c:1463
 msgid "Language"
 msgstr "Langue"
 
-#: ../src/menu.c:1461
+#: ../src/menu.c:1464
 msgid "Droid Talk"
 msgstr "Texte complémentaire"
 
-#: ../src/menu.c:1462
+#: ../src/menu.c:1465
 msgid "On-Screen Displays"
 msgstr "Affichage à l'écran"
 
-#: ../src/menu.c:1463
+#: ../src/menu.c:1466
 msgid "Performance Tweaks"
 msgstr "Optimisation des performances"
 
-#: ../src/menu.c:1464 ../src/menu.c:1577 ../src/menu.c:1672 ../src/menu.c:1740
-#: ../src/menu.c:1811 ../src/menu.c:1926 ../src/menu.c:1967 ../src/menu.c:2213
-#: ../src/menu.c:2323 ../src/menu.c:2402
+#: ../src/menu.c:1467 ../src/menu.c:1580 ../src/menu.c:1675 ../src/menu.c:1743
+#: ../src/menu.c:1814 ../src/menu.c:1929 ../src/menu.c:1970 ../src/menu.c:2224
+#: ../src/menu.c:2338 ../src/menu.c:2417
 msgid "Back"
 msgstr "Retour"
 
-#: ../src/menu.c:1515
+#: ../src/menu.c:1518
 msgid "Save Game"
 msgstr "Sauvegarder la partie"
 
-#: ../src/menu.c:1516
+#: ../src/menu.c:1519
 msgid "Resume Game"
 msgstr "Reprendre le jeu"
 
-#: ../src/menu.c:1519
+#: ../src/menu.c:1522
 msgid "Load Game"
 msgstr "Charger une partie"
 
-#: ../src/menu.c:1520
-msgid "New Game"
-msgstr "Nouvelle partie"
+#: ../src/menu.c:1523
+msgid "Main Menu"
+msgstr ""
 
-#: ../src/menu.c:1521
+#: ../src/menu.c:1524
 msgid "Quit"
 msgstr "Quitter"
 
-#: ../src/menu.c:1621
+#: ../src/menu.c:1624
 msgid ""
 "\n"
 "This option will be taken into account after you restart the game.\n"
@@ -2560,147 +2569,147 @@ msgstr ""
 "\n"
 "   Merci\n"
 
-#: ../src/menu.c:1665
+#: ../src/menu.c:1668
 #, c-format
 msgid "Gamma Correction: %1.2f"
 msgstr "Correction gamma : %1.2f"
 
-#: ../src/menu.c:1666
+#: ../src/menu.c:1669
 #, c-format
 msgid "Fullscreen Mode: %s"
 msgstr "Mode plein ecran : %s"
 
-#: ../src/menu.c:1666 ../src/menu.c:1921 ../src/menu.c:1922 ../src/menu.c:1923
-#: ../src/menu.c:1962 ../src/menu.c:1963 ../src/menu.c:1964 ../src/menu.c:1965
-#: ../src/menu.c:1966
+#: ../src/menu.c:1669 ../src/menu.c:1924 ../src/menu.c:1925 ../src/menu.c:1926
+#: ../src/menu.c:1965 ../src/menu.c:1966 ../src/menu.c:1967 ../src/menu.c:1968
+#: ../src/menu.c:1969
 msgid "ON"
 msgstr "ON"
 
-#: ../src/menu.c:1666 ../src/menu.c:1921 ../src/menu.c:1922 ../src/menu.c:1923
-#: ../src/menu.c:1962 ../src/menu.c:1963 ../src/menu.c:1964 ../src/menu.c:1965
-#: ../src/menu.c:1966
+#: ../src/menu.c:1669 ../src/menu.c:1924 ../src/menu.c:1925 ../src/menu.c:1926
+#: ../src/menu.c:1965 ../src/menu.c:1966 ../src/menu.c:1967 ../src/menu.c:1968
+#: ../src/menu.c:1969
 msgid "OFF"
 msgstr "OFF"
 
-#: ../src/menu.c:1667
+#: ../src/menu.c:1670
 #, c-format
 msgid "Change Screen Resolution"
 msgstr "Changer la résolution"
 
-#: ../src/menu.c:1668
+#: ../src/menu.c:1671
 #, c-format
 msgid "Show Blood: %s"
 msgstr "Montrer le sang : %s"
 
-#: ../src/menu.c:1669 ../src/menu.c:1804 ../src/menu.c:1806 ../src/menu.c:1808
-#: ../src/menu.c:1810
+#: ../src/menu.c:1672 ../src/menu.c:1807 ../src/menu.c:1809 ../src/menu.c:1811
+#: ../src/menu.c:1813
 msgid "YES"
 msgstr "OUI"
 
-#: ../src/menu.c:1669 ../src/menu.c:1804 ../src/menu.c:1806 ../src/menu.c:1808
-#: ../src/menu.c:1810
+#: ../src/menu.c:1672 ../src/menu.c:1807 ../src/menu.c:1809 ../src/menu.c:1811
+#: ../src/menu.c:1813
 msgid "NO"
 msgstr "NON"
 
-#: ../src/menu.c:1670
+#: ../src/menu.c:1673
 #, c-format
 msgid "Automap Scale: %2.1f"
 msgstr "Échelle de la carte auto : %2.1f"
 
-#: ../src/menu.c:1738
+#: ../src/menu.c:1741
 #, c-format
 msgid "Background Music Volume: %1.2f"
 msgstr "Volume de la musique de fond : %1.2f"
 
-#: ../src/menu.c:1739
+#: ../src/menu.c:1742
 #, c-format
 msgid "Sound Effects Volume: %1.2f"
 msgstr "Volume des effets sonores : %1.2f"
 
-#: ../src/menu.c:1803
+#: ../src/menu.c:1806
 #, c-format
 msgid "Hog CPU for max. performance: %s"
 msgstr "Monopoliser le CPU : %s"
 
-#: ../src/menu.c:1805
+#: ../src/menu.c:1808
 #, c-format
 msgid "Highlighting mode: %s"
 msgstr "Mode de surlignage : %s"
 
-#: ../src/menu.c:1805
+#: ../src/menu.c:1808
 msgid "FULL"
 msgstr "COMPLET"
 
-#: ../src/menu.c:1805
+#: ../src/menu.c:1808
 msgid "REDUCED"
 msgstr "RÉDUIT"
 
-#: ../src/menu.c:1806
+#: ../src/menu.c:1809
 #, c-format
 msgid "Skip light radius: %s"
 msgstr "Désactiver le halo lumineux : %s"
 
-#: ../src/menu.c:1807
+#: ../src/menu.c:1810
 #, c-format
 msgid "Skip shadow blitting: %s"
 msgstr "Désactiver les ombrages : %s"
 
-#: ../src/menu.c:1809
+#: ../src/menu.c:1812
 #, c-format
 msgid "Skip fadings: %s"
 msgstr "Désactiver les fondus : %s"
 
-#: ../src/menu.c:1921
+#: ../src/menu.c:1924
 #, c-format
 msgid "Show Position: %s"
 msgstr "Afficher la position : %s"
 
-#: ../src/menu.c:1922
+#: ../src/menu.c:1925
 #, c-format
 msgid "Show Framerate: %s"
 msgstr "Afficher les FPS : %s"
 
-#: ../src/menu.c:1923
+#: ../src/menu.c:1926
 #, c-format
 msgid "Show Enemy Energy Bars: %s"
 msgstr "Montrer l'energie des ennemis : %s"
 
-#: ../src/menu.c:1924
+#: ../src/menu.c:1927
 #, c-format
 msgid "Screen Messages at most: %d"
 msgstr "Maximum de messages affichés : %d"
 
-#: ../src/menu.c:1925
+#: ../src/menu.c:1928
 #, c-format
 msgid "Screen Message time: %3.1f"
 msgstr "Temps d'affichage d'un message : %3.1f"
 
-#: ../src/menu.c:1962
+#: ../src/menu.c:1965
 #, c-format
 msgid "Enemy Hit Texts: %s"
 msgstr "Montrer lorsque l'ennemi tire : %s"
 
-#: ../src/menu.c:1963
+#: ../src/menu.c:1966
 #, c-format
 msgid "Enemy Bumped Texts: %s"
 msgstr "Montre les collisions : %s"
 
-#: ../src/menu.c:1964
+#: ../src/menu.c:1967
 #, c-format
 msgid "Enemy Aim Texts: %s"
 msgstr "Montrer lorsque l'ennemi vise : %s"
 
-#: ../src/menu.c:1965
+#: ../src/menu.c:1968
 #, c-format
 msgid "All in-game Speech: %s"
 msgstr "Messages supplémentaires (debug) : %s"
 
-#: ../src/menu.c:1966
+#: ../src/menu.c:1969
 #, c-format
 msgid "Reprogram bots after takeover: %s"
 msgstr "Reprogrammer les robots après les avoir piratés: %s"
 
-#: ../src/menu.c:1985
+#: ../src/menu.c:1988
 msgid ""
 "\n"
 "     Please enter a name\n"
@@ -2716,11 +2725,11 @@ msgstr ""
 "\n"
 "     > "
 
-#: ../src/menu.c:2235 ../src/menu.c:2341 ../src/menu.c:2356
+#: ../src/menu.c:2251 ../src/menu.c:2356 ../src/menu.c:2371
 msgid "BACK"
 msgstr "RETOUR"
 
-#: ../src/menu.c:2239
+#: ../src/menu.c:2254
 msgid ""
 "\n"
 "\n"
@@ -2730,16 +2739,16 @@ msgstr ""
 "\n"
 "Aucune sauvegarde trouvée !! Chargement annulé. "
 
-#: ../src/menu.c:2340
+#: ../src/menu.c:2355
 msgid "Sure!"
 msgstr "D'accord !"
 
-#: ../src/menu.c:2343
+#: ../src/menu.c:2358
 #, c-format
 msgid "Really delete hero '%s'?"
 msgstr "Confirmez vous la suppression du héros '%s' ?"
 
-#: ../src/menu.c:2360
+#: ../src/menu.c:2375
 msgid ""
 "\n"
 "\n"
@@ -2749,31 +2758,31 @@ msgstr ""
 "\n"
 "Pas de sauvegarde trouvée !! Suppression annulée. "
 
-#: ../src/menu.c:2399
+#: ../src/menu.c:2414
 msgid "New Hero"
 msgstr "Nouveau héros"
 
-#: ../src/menu.c:2400
+#: ../src/menu.c:2415
 msgid "Load existing Hero"
 msgstr "Charger un héros existant"
 
-#: ../src/menu.c:2401
+#: ../src/menu.c:2416
 msgid "Delete existing Hero"
 msgstr "Supprimer un héros existant"
 
-#: ../src/misc.c:797
+#: ../src/misc.c:798
 msgid "Pausing game..."
 msgstr "Jeu en pause ..."
 
-#: ../src/misc.c:804
+#: ../src/misc.c:807
 msgid "GAME PAUSED"
 msgstr "JEU EN PAUSE"
 
-#: ../src/misc.c:823
+#: ../src/misc.c:821
 msgid "Game resumed."
 msgstr "Jeu repris."
 
-#: ../src/misc.c:1378
+#: ../src/misc.c:1376
 #, c-format
 msgid "Arrived at %s."
 msgstr "Arrivé à %s."
@@ -2849,19 +2858,19 @@ msgstr ""
 msgid "File Size: %2.3f MB"
 msgstr ""
 
-#: ../src/saveloadgame.c:258
+#: ../src/saveloadgame.c:261
 msgid "You are dead. Savegame not modified."
 msgstr "Vous êtes mort. La sauvegarde du jeu n'est pas modifiée."
 
-#: ../src/saveloadgame.c:347
+#: ../src/saveloadgame.c:353
 msgid "Game saved."
 msgstr "Jeu sauvegardé."
 
-#: ../src/saveloadgame.c:418
+#: ../src/saveloadgame.c:427
 msgid "Failed to load old game."
 msgstr "Échec du chargement de l'ancienne partie."
 
-#: ../src/saveloadgame.c:524
+#: ../src/saveloadgame.c:534
 msgid ""
 "Version or structsize mismatch! The savegame is not from the same version of "
 "freedroidRPG... possible breakage.\n"
@@ -2869,11 +2878,11 @@ msgstr ""
 "Version ou taille de structure non compatible ! Cette sauvegarde ne provient "
 "pas de la même version de freedroidRPG... crash possible.\n"
 
-#: ../src/saveloadgame.c:561
+#: ../src/saveloadgame.c:575
 msgid "Updating Tux images (this may take a little while...)"
 msgstr "Mise à jour des images de Tux (veuillez patienter ...)"
 
-#: ../src/saveloadgame.c:566
+#: ../src/saveloadgame.c:580
 msgid "Game loaded."
 msgstr "Jeu chargé."
 
@@ -3118,115 +3127,115 @@ msgstr ""
 "\n"
 "    Vous n'avez pas de quoi acheter cet objet !"
 
-#: ../src/skills.c:786
+#: ../src/skills.c:794
 #, c-format
 msgid "Program revision: %c%d%c "
 msgstr ""
 
-#: ../src/skills.c:797
+#: ../src/skills.c:805
 #, c-format
 msgid "Heat produced: %c%d%c "
 msgstr ""
 
-#: ../src/skills.c:799
+#: ../src/skills.c:807
 #, c-format
 msgid "Cooling: %c%d%c "
 msgstr ""
 
-#: ../src/skills.c:812
+#: ../src/skills.c:820
 #, c-format
 msgid "Damage: %c%d%c "
 msgstr ""
 
-#: ../src/skills.c:814
+#: ../src/skills.c:822
 #, c-format
 msgid "Damage: %c%d-%d%c "
 msgstr ""
 
-#: ../src/skills.c:819
+#: ../src/skills.c:827
 #, c-format
 msgid "Healing: %c%d%c "
 msgstr ""
 
-#: ../src/skills.c:821
+#: ../src/skills.c:829
 #, c-format
 msgid "Healing: %c%d-%d%c "
 msgstr ""
 
-#: ../src/skills.c:831
+#: ../src/skills.c:839
 #, c-format
 msgid "Paralyze"
 msgstr "Paralyser"
 
-#: ../src/skills.c:833
+#: ../src/skills.c:841
 #, c-format
 msgid "Slow down"
 msgstr "Ralentir"
 
-#: ../src/skills.c:835
+#: ../src/skills.c:843
 #, c-format
 msgid "Invisible"
 msgstr "Invisible"
 
-#: ../src/skills.c:837
+#: ../src/skills.c:845
 #, c-format
 msgid "Poison"
 msgstr "Poison"
 
-#: ../src/skills.c:839
+#: ../src/skills.c:847
 #, c-format
 msgid "Takeover"
 msgstr "Piratage"
 
-#: ../src/skills.c:841
+#: ../src/skills.c:849
 #, c-format
 msgid "Escape"
 msgstr "Échappement"
 
-#: ../src/skills.c:861
+#: ../src/skills.c:869
 #, c-format
 msgid " for %c%.1f%c seconds"
 msgstr ""
 
-#: ../src/takeover.c:305
+#: ../src/takeover.c:310
 #, c-format
 msgid "For taking control of your enemy, you receive %d experience."
 msgstr ""
 "Pour avoir pris le contrôle de votre ennemi, vous recevez %d points "
 "d'experience."
 
-#: ../src/takeover.c:345
+#: ../src/takeover.c:350
 msgid "You cheat"
 msgstr "Vous avez triché"
 
-#: ../src/takeover.c:347
+#: ../src/takeover.c:352
 msgid "Complete"
 msgstr "Réussi"
 
-#: ../src/takeover.c:357
+#: ../src/takeover.c:362
 msgid "Rejected"
 msgstr "Rejeté"
 
-#: ../src/takeover.c:365
+#: ../src/takeover.c:370
 msgid "Deadlock"
 msgstr "Bloqué"
 
-#: ../src/takeover.c:428
+#: ../src/takeover.c:463
 #, c-format
 msgid "Color-%d"
 msgstr "Couleur-%d"
 
-#: ../src/takeover.c:465
+#: ../src/takeover.c:502
 #, c-format
 msgid "Subliminal"
 msgstr "Subliminal"
 
-#: ../src/takeover.c:502
+#: ../src/takeover.c:556
 #, c-format
 msgid "Finish-%d"
 msgstr "Fin-%d"
 
-#: ../src/takeover.c:1747
+#: ../src/takeover.c:1807
 #, c-format
 msgid "Score"
 msgstr "Score"
@@ -3329,6 +3338,14 @@ msgstr "Temps à tenir : %2d:%2d "
 #, c-format
 msgid "Bots remaining on level: %d"
 msgstr "Robots restant dans le niveau : %d"
+
+#~ msgid "You see the floor.  It should be perfectly safe to walk on it."
+#~ msgstr ""
+#~ "Vous regardez le sol. Il devrait être parfaitement sécurisé de marché "
+#~ "dessus."
+
+#~ msgid "New Game"
+#~ msgstr "Nouvelle partie"
 
 #~ msgid ""
 #~ "This is the record of all missions you have been assigned:\n"

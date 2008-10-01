@@ -1904,7 +1904,7 @@ PrepareStartOfNewCharacter ( void )
     // Now the mission file is read into memory.  That means we can start to decode the details given
     // in the body of the mission file.  
     //
-    GetEventsAndEventTriggers ( "EventsAndEventTriggers" );
+    GetEventsAndEventTriggers ( "freedroid.events" );
     
     if ( !skip_initial_menus )
 	PlayATitleFile ( "StartOfGame.title" );
@@ -1937,7 +1937,7 @@ PrepareStartOfNewCharacter ( void )
     // Several different targets may be specified simultaneously
     //
     clear_tux_mission_info ( );
-    GetQuestList ( "QuestList_archetypes" );
+    GetQuestList ( "freedroid.quests" );
     
     SwitchBackgroundMusicTo ( curShip.AllLevels [ Me . pos . z ] -> Background_Song_Name );
     

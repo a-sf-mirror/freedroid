@@ -2239,8 +2239,8 @@ I need to know that for saving. Abort.\n");
 	strcpy ( Me . character_name , MenuTexts [ MenuPosition -1 ] );
 	if ( LoadGame ( ) == OK )
 	    {
-	    GetEventsAndEventTriggers ( "EventsAndEventTriggers" );
-	    GetQuestList ( "QuestList_archetypes" );
+	    GetEventsAndEventTriggers ( "freedroid.events" );
+	    GetQuestList ( "freedroid.quests" );
 	    Item_Held_In_Hand = ( -1 );
 	    return ( TRUE );
 	    }

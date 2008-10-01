@@ -104,12 +104,12 @@ class ArchetypeFile(object):
 #############################################################################
 def main():
     if len(sys.argv) < 4:
-        print "Usage: %s <input-dir> <extension> <output-file>" % sys.argv[0]
+        print "Usage: %s <input-dir> <pattern> <output-file>" % sys.argv[0]
         sys.exit(1)
-    input_dir, extension, output_file = sys.argv[1:]
+    input_dir, pattern, output_file = sys.argv[1:]
     of = POTFile('CHANGE THIS', 'CHANGE THIS TOO')
     files = [ArchetypeFile(f)
-            for f in glob.glob(os.path.join(input_dir, '*' + extension))]
+            for f in glob.glob(os.path.join(input_dir, pattern))]
     for f in files:
         f.extract_strings_to(of)
     of.render_to_file(output_file)
