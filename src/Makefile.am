@@ -19,4 +19,4 @@ freedroidRPG_SOURCES = menu.c shop.c items.c character.c skills.c saveloadgame.c
 	lang.h lists.c lists.h gen_savestruct.py savestruct.c savestruct.h
 
 savestruct.c savestruct.h: struct.h
-	python gen_savestruct.py struct.h savestruct
+	python2.5 gen_savestruct.py struct.h savestruct
