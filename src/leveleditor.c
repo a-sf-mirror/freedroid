@@ -99,10 +99,6 @@ static void clear_action(action * action)
 
     else if(action->type == ACT_SET_MAP_LABEL && action->d.change_label_name.new_name != NULL)
         free(action->d.change_label_name.new_name);
-
-    else if(action->type == ACT_REMOVE_OBSTACLE)
-        free(action->d.delete_obstacle);
-   
     
    list_del(&action->node);//< removes an action from a list
    free(action); //< free's the action
