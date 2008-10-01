@@ -167,7 +167,9 @@ typedef struct leveleditor_state_s {
     moderately_finepoint c_corresponding_position;
 } leveleditor_state;
 
-
+static void action_freestack ( void );
+void clear_action_list( struct list_head *list );
+static void clear_action( action * pos);
 void ShowWaypoints( int PrintConnectionList , int maks );
 void LevelEditor(void);
 void cycle_marked_obstacle( Level EditLevel );
