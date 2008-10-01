@@ -790,11 +790,14 @@ Pause ( void )
     int Pause = TRUE;
     int cheese = FALSE; /* cheese mode: do not display GAME PAUSED  - nicer screenshots */
     SDL_Event event;
+    SDLKey key;
 
     Activate_Conservative_Frame_Computation();
 
     AssembleCombatPicture ( DO_SCREEN_UPDATE | USE_OWN_MOUSE_CURSOR );
     append_new_game_message ( _("Pausing game...") );
+
+    input_get_keybind("pause", &key, NULL);
 
     while ( Pause ) {
 	SDL_WaitEvent(&event);
@@ -805,15 +808,10 @@ Pause ( void )
 	our_SDL_flip_wrapper();
 
 	if (event.type == SDL_KEYDOWN) {
-	    switch (event.key.keysym.sym) {
-		case SDLK_p:
-		    Pause = FALSE;
-		    break;
-		case SDLK_c:
-		    cheese = !cheese;
-		    break;
-		default:
-		    break;
+	    if (event.key.keysym.sym == key) {
+		Pause = FALSE;
+	    } else if (event.key.keysym.sym == SDLK_c) {
+		cheese = !cheese;
 	    }
 	}
 
