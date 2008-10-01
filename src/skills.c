@@ -183,8 +183,9 @@ location HomeSpot;
 }; // void TeleportHome ( void )
 
 /**
- * This function handles the skills the player might have acitivated
- * or deactivated or whatever.
+ * This function handles the program the player has just activated.
+ * It checks temperature (does not increase it), and makes sure a 
+ * busy_time is set.
  */
 void
 HandleCurrentlyActivatedSkill()
@@ -221,8 +222,15 @@ HandleCurrentlyActivatedSkill()
 
     DoSkill(Me . readied_skill, SpellCost);
 
-    Me . busy_time = calculate_program_busy_time();
-    Me . busy_type = RUNNING_PROGRAM;
+    /* Certain special actions implemented through DoSkill may set their own
+     * busy time, such as weapon reload. In that case, do not touch busy_time.
+     * Otherwise, mark that we are running a program.
+     */
+
+    if (Me.busy_time == 0) {
+	Me . busy_time = calculate_program_busy_time();
+	Me . busy_type = RUNNING_PROGRAM;
+    }
 
 return;    
 }; // void HandleCurrentlyActivatedSkill( void )
