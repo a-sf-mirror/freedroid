@@ -399,7 +399,7 @@ EXTERN void CreateWaypoint (level *Lev, int x, int y);
 #define translate_map_point_to_screen_pixel_x(X,Y)  ( UserCenter_x + rintf(( (X) + Me . pos . y - Me . pos . x - (Y) ) * (iso_floor_tile_width_over_two) ) )
 #define translate_map_point_to_screen_pixel_y(X,Y)  ( UserCenter_y + rintf(( (X) + (Y) - Me . pos . x - Me . pos . y ) * (iso_floor_tile_height_over_two))) 
 EXTERN void translate_map_point_to_screen_pixel_func( float x_map_pos, float y_map_pos, int * x_res, int * y_res, float zoom_factor);
-EXTERN inline float translate_pixel_to_map_location ( float axis_x , float axis_y , int give_x ) ;
+EXTERN float translate_pixel_to_map_location ( float axis_x , float axis_y , int give_x ) ;
 
 //colldet.c
 #undef EXTERN
@@ -863,14 +863,14 @@ EXTERN int IsActive (int color, int row);
 #else
 #define EXTERN extern
 #endif
-EXTERN inline Uint32 FdGetPixel32 (SDL_Surface * Surface, Sint32 X, Sint32 Y);
-EXTERN inline Uint32 FdGetPixel24 (SDL_Surface * Surface, Sint32 X, Sint32 Y);
-EXTERN inline Uint16 FdGetPixel16 (SDL_Surface * Surface, Sint32 X, Sint32 Y);
-EXTERN inline Uint8 FdGetPixel8 (SDL_Surface * Surface, Sint32 X, Sint32 Y);
-EXTERN inline void PutPixel32 (SDL_Surface * surface, int x, int y, Uint32 pixel);
-EXTERN inline void PutPixel24 (SDL_Surface * surface, int x, int y, Uint32 pixel);
-EXTERN inline void PutPixel16 (SDL_Surface * surface, int x, int y, Uint32 pixel);
-EXTERN inline void PutPixel8 (SDL_Surface * surface, int x, int y, Uint32 pixel);
+EXTERN Uint32 FdGetPixel32 (SDL_Surface * Surface, Sint32 X, Sint32 Y);
+EXTERN Uint32 FdGetPixel24 (SDL_Surface * Surface, Sint32 X, Sint32 Y);
+EXTERN Uint16 FdGetPixel16 (SDL_Surface * Surface, Sint32 X, Sint32 Y);
+EXTERN Uint8 FdGetPixel8 (SDL_Surface * Surface, Sint32 X, Sint32 Y);
+EXTERN void PutPixel32 (SDL_Surface * surface, int x, int y, Uint32 pixel);
+EXTERN void PutPixel24 (SDL_Surface * surface, int x, int y, Uint32 pixel);
+EXTERN void PutPixel16 (SDL_Surface * surface, int x, int y, Uint32 pixel);
+EXTERN void PutPixel8 (SDL_Surface * surface, int x, int y, Uint32 pixel);
 EXTERN Uint32 FdGetPixel (SDL_Surface * Surface, Sint32 X, Sint32 Y);
 EXTERN void PutPixel (SDL_Surface * surface, int x, int y, Uint32 pixel);
 
