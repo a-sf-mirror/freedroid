@@ -317,8 +317,9 @@ DoMenuSelection( char* InitialText , char **MenuTexts, int FirstItem , int backg
 	        HighlightRect.h = h;		    
 	        HighlightRectangle ( Screen , HighlightRect );
 
-                if ( auto_scroll_run == TRUE )
+                if ( auto_scroll_run == TRUE ) {
                     auto_scroll_start += AUTO_SCROLL_RATE;
+		}
 	    }
 
             //--------------------
@@ -347,80 +348,82 @@ DoMenuSelection( char* InitialText , char **MenuTexts, int FirstItem , int backg
 	//
         int old_menu_position = MenuPosition;	
 
-	SDL_WaitEvent(&event);
+	if (SDL_PollEvent(&event)) {
 
-	//(clever?) hack : mouse wheel up and down behave
-	//exactly like UP and DOWN arrow, so we mangle the event
-	if (event.type == SDL_MOUSEBUTTONDOWN) {
-	    switch(event.button.button) {
-		case SDL_BUTTON_WHEELUP:
-		    event.type = SDL_KEYDOWN;
-		    event.key.keysym.sym = SDLK_UP;
-		    break;
-		case SDL_BUTTON_WHEELDOWN:
-		    event.type = SDL_KEYDOWN;
-		    event.key.keysym.sym = SDLK_DOWN;
-		    break;
-		default: break;
+	    //(clever?) hack : mouse wheel up and down behave
+	    //exactly like UP and DOWN arrow, so we mangle the event
+	    if (event.type == SDL_MOUSEBUTTONDOWN) {
+		switch(event.button.button) {
+		    case SDL_BUTTON_WHEELUP:
+			event.type = SDL_KEYDOWN;
+			event.key.keysym.sym = SDLK_UP;
+			break;
+		    case SDL_BUTTON_WHEELDOWN:
+			event.type = SDL_KEYDOWN;
+			event.key.keysym.sym = SDLK_DOWN;
+			break;
+		    default: break;
+		}
+	    }	
+
+	    if (event.type == SDL_KEYDOWN) {
+		switch(event.key.keysym.sym) {
+		    case SDLK_ESCAPE:
+			MenuItemDeselectedSound();
+			ret = -1;
+			goto out;
+			break;
+
+		    case SDLK_RETURN:
+		    case SDLK_SPACE:
+		    case SDLK_LEFT:
+		    case SDLK_RIGHT:
+			//--------------------
+			// The space key or enter key or arrow keys all indicate, that
+			// the user has made a selection.
+			//
+			//
+			MenuItemSelectedSound();
+			ret = MenuPosition;
+			goto out;
+			break;
+
+		    case SDLK_UP:
+			if (MenuPosition > 1) MenuPosition--;
+			MoveMenuPositionSound();
+			HighlightRect.x = UNIVERSAL_COORD_W(320) ; // ( TextWidth ( MenuTexts [ MenuPosition - 1 ] ) ) / 2 ;
+			HighlightRect.y = first_menu_item_pos_y + ( MenuPosition - 1 ) * h ;
+			SDL_WarpMouse ( HighlightRect.x , HighlightRect.y );
+			break;
+
+		    case SDLK_DOWN:
+			if ( MenuPosition < NumberOfOptionsGiven ) MenuPosition++;
+			MoveMenuPositionSound();
+			HighlightRect.x = UNIVERSAL_COORD_W(320) ; // ( TextWidth ( MenuTexts [ MenuPosition - 1 ] ) ) / 2 ;
+			HighlightRect.y = first_menu_item_pos_y + ( MenuPosition - 1 ) * h ;
+			SDL_WarpMouse ( HighlightRect.x , HighlightRect.y );
+			break;
+
+		    default: break;
+		}
 	    }
-	}	
 
-	if (event.type == SDL_KEYDOWN) {
-	    switch(event.key.keysym.sym) {
-		case SDLK_ESCAPE:
-		    MenuItemDeselectedSound();
-		    ret = -1;
-		    goto out;
-		    break;
-
-		case SDLK_RETURN:
-		case SDLK_SPACE:
-		case SDLK_LEFT:
-		case SDLK_RIGHT:
-		    //--------------------
-		    // The space key or enter key or arrow keys all indicate, that
-		    // the user has made a selection.
-		    //
-		    //
-		    MenuItemSelectedSound();
-		    ret = MenuPosition;
-		    goto out;
-		    break;
-
-		case SDLK_UP:
-		    if (MenuPosition > 1) MenuPosition--;
-		    MoveMenuPositionSound();
-		    HighlightRect.x = UNIVERSAL_COORD_W(320) ; // ( TextWidth ( MenuTexts [ MenuPosition - 1 ] ) ) / 2 ;
-		    HighlightRect.y = first_menu_item_pos_y + ( MenuPosition - 1 ) * h ;
-		    SDL_WarpMouse ( HighlightRect.x , HighlightRect.y );
-		    break;
-
-		case SDLK_DOWN:
-		    if ( MenuPosition < NumberOfOptionsGiven ) MenuPosition++;
-		    MoveMenuPositionSound();
-		    HighlightRect.x = UNIVERSAL_COORD_W(320) ; // ( TextWidth ( MenuTexts [ MenuPosition - 1 ] ) ) / 2 ;
-		    HighlightRect.y = first_menu_item_pos_y + ( MenuPosition - 1 ) * h ;
-		    SDL_WarpMouse ( HighlightRect.x , HighlightRect.y );
-		    break;
-
-		default: break;
-	    }
 	}
 
 	if ( MouseLeftClicked() )
-	{
+	    {
 	    //--------------------
 	    // Only when the mouse click really occured on the menu do we
 	    // interpret it as a menu choice.  Otherwise we'll just ignore
 	    // it.
 	    //
 	    if ( MouseCursorIsOverMenuItem( first_menu_item_pos_y , h ) == MenuPosition )
-	    {
+		{
 		MenuItemSelectedSound();
 		ret = MenuPosition;
 		goto out;
+		}
 	    }
-	}
 
 	MenuPosition = MouseCursorIsOverMenuItem( first_menu_item_pos_y , h );
 	if ( MenuPosition < 1 ) MenuPosition = 1 ;
