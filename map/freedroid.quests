@@ -266,7 +266,7 @@ Mission diary entry=_"I've managed to propagate my (slightly modified!) firmware
 +++
 +++ This is the tent'h mission:  Bring SADD dilithium cristals 
 +++
-+++ note: the number code for this mission (like from inside dialogs and such) is 9
++++ note: the number code for this mission (like from inside dialogs and such) is 10
 +++ 
 Mission Name=_"SADD's power supply"
 Assign this mission to influencer automatically at start : 0
@@ -288,7 +288,7 @@ Mission diary entry=_"Done. He looks happy."
 +++
 +++ This is the tent'h mission:  Free Tania 
 +++
-+++ note: the number code for this mission (like from inside dialogs and such) is 10
++++ note: the number code for this mission (like from inside dialogs and such) is 11
 +++ 
 Mission Name=_"Tanias sanitary"
 Assign this mission to influencer automatically at start : 0
