@@ -28,7 +28,6 @@ BEGIN OF AUTORS NOTES
 END OF AUTORS NOTES 
 
 
-Beginning of new chat dialog for character="XXXXX"
 
 New Option Nr=0  OptionText=_"THIS WILL NEVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
@@ -89,4 +88,3 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-End of chat dialog for character="XXXXX"
