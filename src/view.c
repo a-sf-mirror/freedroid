@@ -463,6 +463,7 @@ if ( ! use_open_gl ) return;
     glColor3f ( 1.0, 0.0, 0.0 ) ;
     glVertex2i ( x, y );
     glEnd ( ) ;
+    glDisable ( GL_POINT_SMOOTH );
     glEnable ( GL_TEXTURE_2D ) ;
     glPointSize ( 1.0 ) ;
 #endif
