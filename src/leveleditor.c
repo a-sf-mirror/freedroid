@@ -61,33 +61,45 @@ LIST_HEAD (to_undo);
 LIST_HEAD (to_redo);
 int push_mode = NORMAL; 
 
-static void action_freestack ( void )
+/**
+ *  @fn static void action_freestack(void)
+ *
+ *  @brief clears to_undo and to_redo when LevelEditor() exits
+ */
+static void action_freestack(void)
+{ 
+    clear_action_list(&to_redo);
+    clear_action_list(&to_undo);
+}
+
+/**
+ *  @fn void clear_action_list(struct list_head *list)
+ *
+ *  @brief clears an action list, and all its data
+ */
+void clear_action_list(struct list_head *list)
 {
-    struct list_head *pos, *n;
-    list_for_each_safe (pos, n, &to_undo) {
-	action *a = (action *)pos;
-	if (a->type == ACT_SET_OBSTACLE_LABEL)
-	    free ( a->d.change_obstacle_name.new_name );
+    // free actions individually
+    action *pos, *next;
+    list_for_each_entry_safe(pos, next, list, node)
+        clear_action(pos);
+}
 
-	else if (a->type == ACT_SET_MAP_LABEL)
-	    free ( a->d.change_label_name.new_name );
+/**
+ *  @fn void clear_action(action * pos)
+ *
+ *  @brief clears an action from its list, and pointers held within the action
+ */
+static void clear_action(action * action)
+{
+	if (action->type == ACT_SET_OBSTACLE_LABEL)
+		free(action->d.change_obstacle_name.new_name);
 
-	free ( a );
-    }
-
-    INIT_LIST_HEAD (&to_undo);
-
-    list_for_each_safe (pos, n, &to_redo) {
-	action *a = (action *)pos;
-	if (a->type == ACT_SET_OBSTACLE_LABEL)
-	    free ( a->d.change_obstacle_name.new_name );
-
-	else if (a->type == ACT_SET_MAP_LABEL && a->d.change_label_name.new_name != NULL)
-	    free ( a->d.change_label_name.new_name );
-	free ( a );
-    }
-
-    INIT_LIST_HEAD (&to_redo);
+    else if(action->type == ACT_SET_MAP_LABEL && action->d.change_label_name.new_name != NULL)
+        free(action->d.change_label_name.new_name);
+    
+   list_del(&action->node);//< removes an action from a list
+   free(action); //< free's the action
 }
 
 static void action_do ( Level level, action *a )
@@ -130,13 +142,15 @@ void level_editor_action_undo ()
 	push_mode = UNDO;
 	if (a->type == ACT_MULTIPLE_FLOOR_SETS) {
 	    int i;
-	    list_del (to_undo.next);
-	    for (i = 0; i < a->d.number_fill_set; i++) {
-		level_editor_action_undo (EditLevel);
+            
+		list_del(to_undo.next);
+            
+	    for(i = 0; i < a->d.number_fill_set; i++) {
+		level_editor_action_undo(EditLevel);
 	    }
-	    list_add (&a->node, &to_redo);
+	    list_add(&a->node, &to_redo);
 	} else {
-	    action_do (EditLevel, a);
+	    action_do(EditLevel, a);
 	}
 	push_mode = NORMAL;
     }
@@ -149,13 +163,15 @@ void level_editor_action_redo ()
 	push_mode = REDO;
 	if (a->type == ACT_MULTIPLE_FLOOR_SETS) {
 	    int i;
-	    list_del (to_redo.next);
+            
+		list_del(to_redo.next);
+            
 	    for (i = 0; i < a->d.number_fill_set; i++) {
 		level_editor_action_redo ();
 	    }
-	    list_add (&a->node, &to_undo);
+	    list_add(&a->node, &to_undo);
 	} else {
-	    action_do (EditLevel, a);
+	    action_do(EditLevel, a);
 	}
 	push_mode = NORMAL;
     }
@@ -203,11 +219,13 @@ action_push (int type, ...)
     }
 
     if (push_mode == UNDO) {
-	list_del (to_undo.next);
+        // free() and list_del()
+        clear_action((action *)to_undo.next);
 	list_add (&act->node, &to_redo);
     } else {
-	if (push_mode == REDO) list_del(to_redo.next);
-	list_add (&act->node, &to_undo);
+        if (push_mode == REDO) clear_action( (action *)to_redo.next );
+	    
+        list_add (&act->node, &to_undo);
     }
 }
 	
