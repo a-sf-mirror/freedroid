@@ -306,7 +306,7 @@ ChangeOption=23 ChangeToValue=0
 DoSomethingExtra="ExecuteActionWithLabel:disable_sadd_gun1"
 DoSomethingExtra="ExecuteActionWithLabel:disable_sadd_gun2"
 DoSomethingExtra="ExecuteActionWithLabel:breake_wall_near_sadd_1"
-DoSomethingExtra="AssignMission:9"
+DoSomethingExtra="AssignMission:10"
 DoSomethingExtra="OpenQuestDiaryEntry:M9E0:"
 DoSomethingExtra="EndDialog"
 
@@ -343,7 +343,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=27  OptionText=_" TUX STARTED ON THE QUEST"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 ChangeOption=27 ChangeToValue=0
-OnCondition="MissionAssigned:9" JumpToOption=28 ElseGoto=29
+OnCondition="MissionAssigned:10" JumpToOption=28 ElseGoto=29
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
@@ -351,7 +351,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 New Option Nr=28  OptionText=_" IS MISSION IS DONE?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 ChangeOption=28 ChangeToValue=0
-OnCondition="MissionComplete:9" JumpToOption=32 ElseGoto=34
+OnCondition="MissionComplete:10" JumpToOption=32 ElseGoto=34
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -371,7 +371,7 @@ Subtitle=_" Good. I've opened the depot door for you. Take your super exterminat
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=30 ChangeToValue=0
 ChangeOption=37 ChangeToValue=1
-DoSomethingExtra="MarkMissionComplete:9"
+DoSomethingExtra="MarkMissionComplete:10"
 DoSomethingExtra="DeleteItem:Red Dilitium Crystal"
 DoSomethingExtra="AddBigScreenMessageBUT_WITH_TERMINATION_CHARACTER_PLEASE:Restored SADD's power supply:"
 DoSomethingExtra="AddExperienceBonus:1000"
@@ -409,7 +409,7 @@ Subtitle=_" Great! Thanks. I've opened some doors for you, I hope you will find 
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=33 ChangeToValue=0
 ChangeOption=97 ChangeToValue=1
-DoSomethingExtra="MarkMissionComplete:9"
+DoSomethingExtra="MarkMissionComplete:10"
 DoSomethingExtra="DeleteItem:Red Dilitium Crystal"
 DoSomethingExtra="AddBigScreenMessageBUT_WITH_TERMINATION_CHARACTER_PLEASE:Restored SADD's power supply:"
 DoSomethingExtra="AddExperienceBonus:1500"
