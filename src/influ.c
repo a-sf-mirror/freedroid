@@ -141,6 +141,70 @@ find_free_floor_items_index ( int levelnum )
 }; // int find_free_floor_items_index ( int levelnum ) 
 
 /**
+ * Find a reachable position to drop an item near a chest.
+ *
+ * This function looks for a position near a given obstacle that
+ * satisfies : DLC(obstacle, item) && DLW(Tux, item)
+ * If no position is found, Tux current position is used as a fallback.
+ *
+ * Note: a real random position is not used, in order to minimize the CPU cost
+ */
+void find_position_near_obstacle( float* item_x, float* item_y, int obst_index, Level obst_level )
+{
+	float obst_x = obst_level->obstacle_list[obst_index].pos.x;
+	float obst_y = obst_level->obstacle_list[obst_index].pos.y;
+	moderately_finepoint offset_vector;
+	int tries;
+
+	// Initialize the item position with the fallback position
+	*item_x = Me.pos.x;
+	*item_y = Me.pos.y;
+
+	// Step 1: randomly choose one of the 8 main 45° directions around the obstacle
+	float obs_diag = obstacle_map[obst_level->obstacle_list[obst_index].type].diaglength;
+	offset_vector.x = obs_diag + 0.5;
+	offset_vector.y = 0.0;
+	RotateVectorByAngle(&offset_vector, (float)MyRandom(8)*45.0);
+
+	// Step 2: rotate offset_vector by 45° until an available start position is found
+	colldet_filter filter = { FilterObstacleByIdCallback, &obst_index, NULL };
+
+	tries = 0;
+	while ( ( !DirectLineColldet(obst_x, obst_y, obst_x + offset_vector.x, obst_y + offset_vector.y, Me.pos.z, &filter) ||
+			  !DirectLineColldet(Me.pos.x, Me.pos.y, obst_x + offset_vector.x, obst_y + offset_vector.y, Me.pos.z, &FilterWalkable) )
+			&& ( tries < 8 ) )
+	{
+		RotateVectorByAngle(&offset_vector, 45.0);
+		++tries;
+	}
+	if ( tries == 8 ) return; // No start position available : fallback to Tux's feet
+
+	// New fallback position will be that start position
+	*item_x = obst_x + offset_vector.x;
+	*item_y = obst_y + offset_vector.y;
+
+	// Step 3 : randomly choose an available position around that start position
+	tries = 0;
+	float trimmer_x, trimmer_y;
+	do
+	{
+		trimmer_x = (float)MyRandom(10)/20.0 - 0.25;
+		trimmer_y = (float)MyRandom(10)/20.0 - 0.25;
+		++tries;
+	}
+	while ( ( !DirectLineColldet(obst_x, obst_y, *item_x + trimmer_x, *item_y + trimmer_y, Me.pos.z, &filter) ||
+	          !DirectLineColldet(Me.pos.x, Me.pos.y, *item_x + trimmer_x, *item_y + trimmer_y, Me.pos.z, &FilterWalkable) )
+	        && ( tries < 100 ) );
+	if ( tries == 100 ) return; // No final position available : fallback to start position
+
+	// Step 4 : position found
+	*item_x += trimmer_x;
+	*item_y += trimmer_y;
+
+} // void find_position_near_obstacle( float* item_x, float* item_y, int obst_index, int obst_level )
+
+
+/**
  *
  *
  */
@@ -150,7 +214,7 @@ throw_out_all_chest_content ( int obst_index )
   Level chest_level;
   int i;
   int j;
-  moderately_finepoint throw_out_offset_vector = { 0 , 1 } ;
+  float item_x, item_y;
 
   chest_level = curShip . AllLevels [ Me . pos . z ] ;
 
@@ -179,6 +243,8 @@ throw_out_all_chest_content ( int obst_index )
   for ( i = 0 ; i < MAX_CHEST_ITEMS_PER_LEVEL ; i ++ )
     {
       if ( chest_level -> ChestItemList [ i ] . type == (-1) ) continue;
+
+      // An item is defined to be in a chest if it is at the same position than the chest
       if ( fabsf ( chest_level -> obstacle_list [ obst_index ] . pos . x - chest_level -> ChestItemList [ i ] . pos . x ) > 0.1 ) continue ;
       if ( fabsf ( chest_level -> obstacle_list [ obst_index ] . pos . y - chest_level -> ChestItemList [ i ] . pos . y ) > 0.1 ) continue ;
       
@@ -191,27 +257,15 @@ throw_out_all_chest_content ( int obst_index )
       j = find_free_floor_items_index ( Me . pos . z ) ;
       MoveItem ( & ( chest_level -> ChestItemList [ i ] ) , & ( chest_level -> ItemList [ j ] ) ) ;
 
-      chest_level -> ItemList [ j ] . pos . x += throw_out_offset_vector . x ;
-      chest_level -> ItemList [ j ] . pos . y += throw_out_offset_vector . y ;
+      find_position_near_obstacle( &item_x, &item_y, obst_index, chest_level );
+      chest_level -> ItemList [ j ] . pos . x = item_x;
+      chest_level -> ItemList [ j ] . pos . y = item_y;
       chest_level -> ItemList [ j ] . throw_time = 0.01 ;
-      RotateVectorByAngle ( & throw_out_offset_vector , 45 );
     }
 
   // Maybe generate a random item to be dropped
-  int tries = 0;
-  while ( ! SinglePointColldet( Me . pos . x + throw_out_offset_vector . x, Me . pos . y + throw_out_offset_vector . y, Me . pos . z, NULL)  && tries < 40)
-	{
-	RotateVectorByAngle ( &throw_out_offset_vector, 10 );
-	tries ++;
-	//printf("Unable to drop at given position, adapting throw vector\n");
-	if ( tries && ! (tries % 10) )
-		{
-		throw_out_offset_vector . x = 0;
-		throw_out_offset_vector . y -= 0.05;
-		}
-	}
-  DropRandomItem( Me . pos . z , Me . pos . x + throw_out_offset_vector . x , Me . pos . y + throw_out_offset_vector . y, 1 , FALSE );
-
+  find_position_near_obstacle( &item_x, &item_y, obst_index, chest_level );
+  DropRandomItem( Me.pos.z , item_x, item_y, 1 , FALSE );
 
   //--------------------
   // We play the sound, now that the chest is really opened...
