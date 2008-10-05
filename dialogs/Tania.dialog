@@ -28,6 +28,7 @@ BEGIN OF AUTORS NOTES
 END OF AUTORS NOTES 
 
 
+Beginning of new chat dialog for character="XXXXX"
 
 New Option Nr=0  OptionText=_"Em, hi."
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
@@ -353,3 +354,4 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
+End of chat dialog for character="XXXXX"
