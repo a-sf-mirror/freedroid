@@ -80,6 +80,22 @@ void
 DisplayButtons( void )
 {
 
+    if (GameConfig.screen_height == 480 && (GameConfig.Inventory_Visible || GameConfig.skill_explanation_screen_visible))
+	goto display_overlay_chascr;
+
+    if ( MouseCursorIsOnButton( INV_SCREEN_TOGGLE_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
+    {
+	ShowGenericButtonFromList ( INV_SCREEN_TOGGLE_BUTTON_YELLOW );
+    }
+    else if ( MouseCursorIsOnButton( LOG_SCREEN_TOGGLE_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
+    {
+	ShowGenericButtonFromList ( LOG_SCREEN_TOGGLE_BUTTON_YELLOW );
+    }
+   
+display_overlay_chascr:
+    if (GameConfig.screen_height == 480 && (GameConfig.SkillScreen_Visible || GameConfig.CharacterScreen_Visible))
+	return;
+    
     //--------------------
     // When the Tux has some extra skill points, that can be distributed
     // to some character stats or saved for later training with some trainer
@@ -92,21 +108,13 @@ DisplayButtons( void )
 	ShowGenericButtonFromList ( CHA_SCREEN_TOGGLE_BUTTON_RED );
     }
     
-    if ( MouseCursorIsOnButton( INV_SCREEN_TOGGLE_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
-    {
-	ShowGenericButtonFromList ( INV_SCREEN_TOGGLE_BUTTON_YELLOW );
-    }
-    else if ( MouseCursorIsOnButton( CHA_SCREEN_TOGGLE_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
+    if ( MouseCursorIsOnButton( CHA_SCREEN_TOGGLE_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
     {
 	ShowGenericButtonFromList ( CHA_SCREEN_TOGGLE_BUTTON_YELLOW );
     }
     else if ( MouseCursorIsOnButton( SKI_SCREEN_TOGGLE_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
     {
 	ShowGenericButtonFromList ( SKI_SCREEN_TOGGLE_BUTTON_YELLOW );
-    }
-    else if ( MouseCursorIsOnButton( LOG_SCREEN_TOGGLE_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
-    {
-	ShowGenericButtonFromList ( LOG_SCREEN_TOGGLE_BUTTON_YELLOW );
     }
     
 }; // void DisplayButtons( void )
