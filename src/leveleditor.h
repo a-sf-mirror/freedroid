@@ -83,7 +83,8 @@ enum ActionType
 	ACT_TILE_FLOOR_SET,
 	ACT_MULTIPLE_FLOOR_SETS,
 	ACT_SET_OBSTACLE_LABEL,
-	ACT_SET_MAP_LABEL
+	ACT_SET_MAP_LABEL,
+	ACT_JUMP_TO_LEVEL
     };
 
 typedef struct {
@@ -120,6 +121,10 @@ typedef struct {
 	    char *new_name;
 	}change_label_name; /* EditMapLabelData */
 
+	struct {
+		int target_level;
+		double x, y;
+	}jump_to_level;
     }d;
 }action;
 
@@ -204,6 +209,7 @@ void action_fill_user ( Level EditLevel, int BlockX, int BlockY, int SpecialMapV
 void action_change_obstacle_label ( Level EditLevel, obstacle *obstacle, char *name);
 void action_change_obstacle_label_user ( Level EditLevel, obstacle *our_obstacle, char *predefined_name);
 static void action_change_map_label ( Level EditLevel, int i, char *name );
+void action_jump_to_level(int target_map,double x,double y);
 
 
 

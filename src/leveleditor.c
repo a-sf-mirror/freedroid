@@ -131,6 +131,9 @@ static void action_do ( Level level, action *a )
     case ACT_SET_MAP_LABEL:
 	action_change_map_label (level, a->d.change_label_name.id, a->d.change_label_name.new_name);
 	break;
+	case ACT_JUMP_TO_LEVEL:
+		action_jump_to_level (a->d.jump_to_level.target_level,a->d.jump_to_level.x,a->d.jump_to_level.y);
+		break;
 
     }
 }
@@ -216,6 +219,11 @@ action_push (int type, ...)
 	act -> d . change_label_name . id = va_arg (val, int);
 	act -> d . change_label_name . new_name = va_arg (val, char *);
 	break;
+	case ACT_JUMP_TO_LEVEL:
+		act -> d . jump_to_level . target_level = va_arg (val, int);
+		act -> d . jump_to_level . x = (float) va_arg (val, double);
+		act -> d . jump_to_level . y = (float) va_arg (val, double);  
+		break;
     }
 
     if (push_mode == UNDO) {
@@ -740,7 +748,23 @@ quickbar_getimage ( int selected_index , int *placing_floor )
     }
 }
 
-/* Inserts an item in a sorted list */
+/**
+ *  @fn void jump_to_level( int target_map, float x, float y)
+ *
+ *  @brief jumps to a target level, saving this level on the undo/redo stack
+ */
+void
+action_jump_to_level( int target_level, double x, double y)
+{
+    action_push(ACT_JUMP_TO_LEVEL,EditLevel->levelnum, Me.pos.x, Me.pos.y);//< sets undo or redo stack, depending on push_mode state
+    Teleport(target_level, (float)x, (float)y, FALSE);
+}
+
+/**
+ *  @fn void quickbar_additem (struct quickbar_entry *entry)
+ * 
+ *  @brief Inserts an item in a sorted list 
+ */
 void
 quickbar_additem (struct quickbar_entry *entry)
 {
@@ -4921,7 +4945,7 @@ int level_editor_handle_left_mouse_button ( int proceed_now, leveleditor_state *
 		new_x = 3;
 	    new_y = curShip . AllLevels [ EditLevel -> jump_target_north ] -> xlen - 4 ;
 	    if ( EditLevel -> jump_target_north >= 0 )
-		Teleport ( EditLevel -> jump_target_north , new_x , new_y , FALSE );
+		action_jump_to_level(EditLevel->jump_target_north,new_x,new_y);
 	}
 	else if ( MouseCursorIsOnButton ( GO_LEVEL_SOUTH_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
 	{
@@ -4931,7 +4955,7 @@ int level_editor_handle_left_mouse_button ( int proceed_now, leveleditor_state *
 		new_x = 3;
 	    new_y = 4;
 	    if ( EditLevel -> jump_target_south >= 0 )
-		Teleport ( EditLevel -> jump_target_south , new_x , new_y , FALSE );
+		action_jump_to_level(EditLevel->jump_target_south,new_x,new_y);
 	}
 	else if ( MouseCursorIsOnButton ( GO_LEVEL_EAST_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
 	{
@@ -4941,7 +4965,7 @@ int level_editor_handle_left_mouse_button ( int proceed_now, leveleditor_state *
 	    else
 		new_y = 4;
 	    if ( EditLevel -> jump_target_east >= 0 )
-		Teleport ( EditLevel -> jump_target_east , new_x , new_y , FALSE );
+		action_jump_to_level(EditLevel->jump_target_east,new_x,new_y);
 	}
 	else if ( MouseCursorIsOnButton ( GO_LEVEL_WEST_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
 	{
@@ -4951,7 +4975,7 @@ int level_editor_handle_left_mouse_button ( int proceed_now, leveleditor_state *
 	    else
 		new_y = 4;
 	    if ( EditLevel -> jump_target_west >= 0 )
-		Teleport ( EditLevel -> jump_target_west , new_x , new_y , FALSE );
+		action_jump_to_level(EditLevel->jump_target_west,new_x,new_y);
 	}
 	else if ( MouseCursorIsOnButton ( EXPORT_THIS_LEVEL_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
 	{
