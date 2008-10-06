@@ -5003,7 +5003,7 @@ int level_editor_handle_left_mouse_button ( int proceed_now, leveleditor_state *
 	    // CenteredPutString ( Screen ,  11*FontHeight(Menu_BFont),    "Your ship was saved...");
 	    // our_SDL_flip_wrapper();
 
-	    GiveMouseAlertWindow ( "\nM E S S A G E\n\nYour ship was saved to file 'Asteroids.map' in the map directory.\n\nIf you have set up something cool and you wish to contribute it to FreedroidRPG, please contact the FreedroidRPG dev team." ) ;
+	    GiveMouseAlertWindow ( "\nM E S S A G E\n\nYour ship was saved to file 'freedroid.levels' in the map directory.\n\nIf you have set up something cool and you wish to contribute it to FreedroidRPG, please contact the FreedroidRPG dev team." ) ;
 
 	}
 	else if ( GameConfig . zoom_is_on && MouseCursorIsOnButton ( LEVEL_EDITOR_ZOOM_IN_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
