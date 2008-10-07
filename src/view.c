@@ -3896,19 +3896,20 @@ PutIndividuallyShapedDroidBody ( enemy * ThisRobot , SDL_Rect TargetRectangle , 
 
 	    }
 
-	translate_map_point_to_screen_pixel ( ThisRobot -> virt_pos.x , ThisRobot -> virt_pos.y, &(TargetRectangle.x), &(TargetRectangle.y), zf ) ;
+	int screen_x, screen_y;
+	translate_map_point_to_screen_pixel ( ThisRobot -> virt_pos.x , ThisRobot -> virt_pos.y, &screen_x, &screen_y, zf ) ;
 
 	if ( use_open_gl )
 	    {
-	    TargetRectangle.x -= ( enemy_iso_images[ RotationModel ] [ RotationIndex ] [ 0 ] . original_image_width * zf) / 2 ;
-	    TargetRectangle.y -= ( enemy_iso_images[ RotationModel ] [ RotationIndex ] [ 0 ] . original_image_height * zf) / 1 ;
+	    TargetRectangle.x = screen_x - ( enemy_iso_images[ RotationModel ] [ RotationIndex ] [ 0 ] . original_image_width * zf) / 2 ;
+	    TargetRectangle.y = screen_y - ( enemy_iso_images[ RotationModel ] [ RotationIndex ] [ 0 ] . original_image_height * zf) / 1 ;
 	    TargetRectangle.w = enemy_iso_images[ RotationModel ] [ RotationIndex ] [ 0 ] . original_image_width * zf;
 	    TargetRectangle.h = enemy_iso_images[ RotationModel ] [ RotationIndex ] [ 0 ] . original_image_height * zf;
 	    }
 	else
 	    {
-	    TargetRectangle.x -= ( enemy_iso_images[ RotationModel ] [ RotationIndex ] [ 0 ] . surface -> w ) / 2 ;
-	    TargetRectangle.y -= ( enemy_iso_images[ RotationModel ] [ RotationIndex ] [ 0 ] . surface -> h ) / 1 ;
+	    TargetRectangle.x = screen_x - ( enemy_iso_images[ RotationModel ] [ RotationIndex ] [ 0 ] . surface -> w ) / 2 ;
+	    TargetRectangle.y = screen_y - ( enemy_iso_images[ RotationModel ] [ RotationIndex ] [ 0 ] . surface -> h ) / 1 ;
 	    TargetRectangle.w = enemy_iso_images[ RotationModel ] [ RotationIndex ] [ 0 ] . surface -> w;
 	    TargetRectangle.h = enemy_iso_images[ RotationModel ] [ RotationIndex ] [ 0 ] . surface -> h;
 	    }
