@@ -60,7 +60,7 @@ const char *keybindNames[] = {
     "quick_inventory0", "quick_inventory1", "quick_inventory2",
     "quick_inventory3", "quick_inventory4", "quick_inventory5",
     "quick_inventory6", "quick_inventory7", "quick_inventory8",
-    "quick_inventory9", "game_escape_menu",
+    "quick_inventory9", "close_windows", "game_escape_menu",
 
     /* Leveleditor */
     "drop_item",
@@ -199,6 +199,7 @@ void input_set_default (void)
     input_set_keybind("quick_inventory8", SDLK_8, KMOD_NONE);
     input_set_keybind("quick_inventory9", SDLK_9, KMOD_NONE);
 
+    input_set_keybind("close_windows", SDLK_SPACE, KMOD_NONE);
     input_set_keybind("game_escape_menu", SDLK_ESCAPE, KMOD_NONE);
 
     /* Level editor */
@@ -425,6 +426,15 @@ static int input_key( int keynum, int value)
 	} else if (KEYPRESS("cheat_menu")) {
 	    Cheatmenu();
 	    return 0;
+	} else if (KEYPRESS("close_windows")) {
+	    if ( GameConfig . Inventory_Visible ||
+		    GameConfig . CharacterScreen_Visible ||
+		    GameConfig . SkillScreen_Visible || GameConfig . skill_explanation_screen_visible) {
+		GameConfig . Inventory_Visible = FALSE ;
+		GameConfig . CharacterScreen_Visible = FALSE ;
+		GameConfig . SkillScreen_Visible = FALSE ;
+		GameConfig . skill_explanation_screen_visible = FALSE;
+            }
 	} else if (KEYPRESS("game_escape_menu")) {
 	    if ( GameConfig . Inventory_Visible ||
 		    GameConfig . CharacterScreen_Visible ||
