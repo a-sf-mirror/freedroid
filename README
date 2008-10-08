@@ -93,10 +93,10 @@
    * The game will use the system language by default, you cannot select another language in-game.
 
 - Linux
-   * Pulseaudio: Using SDL-pulseaudio you are currently not likely to get sound. This has nothing to do 
+   * Pulseaudio: Using SDL-pulseaudio you are currently likely to not get sound. This has nothing to do 
      with FDRPG but with Pulseaudio and it's plugins still in general being unmature. We recomend using
-     eg SDL-esd until these problems has been fixed upstream. If you manage to get a working config, do
-     let us know so we can update this entry with versionnumbers etc.
+     eg SDL-esd or SDL-alsa until these problems has been fixed upstream. If you manage to get a working 
+     config, do let us know so we can update this entry with versionnumbers etc.
    * AMD/ATI R300 graphics cards: Mesa 6.5.2 does not support user clipping planes which breaks the 
      text in freedroidRPG. Upgrading to Mesa 7 should fix this.
    * Ubuntu: Changing language in game will not work by default since Ubuntu does not ship with standard 
@@ -126,10 +126,11 @@
      0 = 640 x 480 (default with SDL)
      1 = 800 x 600 (default with OpenGL)
      2 = 1024 x 748 
-     3 = 1280 x 1024 
-     4 = Unsupported! (1280 x 800) 
-     5 = Unsupported! (1440 x 900) 
-     6 = Unsupported! (1680 x 1050) 
+     3 = 1280 x 960 
+     4 = Unsupported! (1280 x 1024) 
+     5 = Unsupported! (1280 x 800) 
+     6 = Unsupported! (1440 x 900) 
+     7 = Unsupported! (1680 x 1050) 
  
  Start with e.g. the commandline "freedroid -r4" to choose a specific resolution.
  To get an up-to-date list of available resolutions use "freedroid -r99".
