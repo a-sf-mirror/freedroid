@@ -248,70 +248,79 @@ ShowCombatScreenTexts ( int mask )
     int seconds;
     int i;
     int remaining_bots;
+    char txt[200];
+    
+    BFont_Info* old_current_font = GetCurrentFont();
+    SetCurrentFont(FPS_Display_BFont);
+
+    SetTextCursor(User_Rect.x + 1, GameConfig.screen_height - 9*FontHeight(GetCurrentFont()));
+
+    if ( mask & ONLY_SHOW_MAP_AND_TEXT ) 
+    {
+    	snprintf(txt, sizeof(txt)-1, _("GPS: X=%3.1f Y=%3.1f Lev=%d"), Me.pos.x, Me.pos.y, DisplayLevel->levelnum);
+    	strcat(txt, "\n");
+    	DisplayText(txt, -1, -1, NULL, 1.0);
+    }
+
+    SetTextCursor(User_Rect.x + 1, User_Rect.y + 1);
     
     if ( GameConfig.Draw_Framerate )
     {
-	TimeSinceLastFPSUpdate += Frame_Time();
-	Frames_Counted ++;
-	if ( Frames_Counted > 50 )
-	{
-	    FPS_Displayed = Frames_Counted / TimeSinceLastFPSUpdate;
-	    TimeSinceLastFPSUpdate=0;
-	    Frames_Counted = 0;
-	}
-      
-	PrintStringFont( Screen , FPS_Display_BFont , User_Rect.x , 1,
-			 _("FPS: %d"), FPS_Displayed );
-	
+    	TimeSinceLastFPSUpdate += Frame_Time();
+    	Frames_Counted ++;
+    	if ( Frames_Counted > 50 )
+    	{
+    		FPS_Displayed = Frames_Counted / TimeSinceLastFPSUpdate;
+    		TimeSinceLastFPSUpdate=0;
+    		Frames_Counted = 0;
+    	}
+    	snprintf(txt, sizeof(txt)-1, _("FPS: %d"), FPS_Displayed);
+    	strcat(txt, "\n");
+    	DisplayText(txt, -1, -1, NULL, 1.0);
     }
     
-    if ( mask & ONLY_SHOW_MAP_AND_TEXT ) 
-    {
-	PrintStringFont( Screen , FPS_Display_BFont , User_Rect.x , 
-                         GameConfig.screen_height - 9*FontHeight( FPS_Display_BFont ), 
-			 _("GPS: X=%3.1f Y=%3.1f Lev=%d"), ( Me . pos . x ) , ( Me . pos . y ) , 
-                         DisplayLevel->levelnum );
-    }
     
     for ( i = 0 ; i < MAX_MISSIONS_IN_GAME ; i ++ )
     {
-	if ( ! Me . AllMissions [ i ] . MissionWasAssigned ) continue;
+    	if ( ! Me . AllMissions [ i ] . MissionWasAssigned ) continue;
 	
-	DebugPrintf ( 0 , "\nYES, Something was assigned at all...." );
+    	DebugPrintf ( 0 , "\nYES, Something was assigned at all...." );
 	
-	if ( Me . AllMissions [ i ] . MustLiveTime != (-1) )
-	{
-	    minutes = floor ( ( Me . AllMissions [ i ] . MustLiveTime - Me . MissionTimeElapsed ) / 60 );
-	    seconds = rintf ( Me . AllMissions [ i ] . MustLiveTime - Me . MissionTimeElapsed ) - 60 * minutes;
-	    if ( minutes < 0 ) 
-	    {
-		minutes = 0;
-		seconds = 0;
-	    }
-	    PrintStringFont( Screen , FPS_Display_BFont , User_Rect.x , 
-			     User_Rect.y + 0*FontHeight( FPS_Display_BFont ), 
-			     _("Time to hold out still: %2d:%2d "), minutes , seconds );
-	}
+    	if ( Me . AllMissions [ i ] . MustLiveTime != (-1) )
+    	{
+    		minutes = floor ( ( Me . AllMissions [ i ] . MustLiveTime - Me . MissionTimeElapsed ) / 60 );
+    		seconds = rintf ( Me . AllMissions [ i ] . MustLiveTime - Me . MissionTimeElapsed ) - 60 * minutes;
+    		if ( minutes < 0 ) 
+    		{
+    			minutes = 0;
+    			seconds = 0;
+    		}
+    		snprintf(txt, sizeof(txt)-1, _("Time to hold out still: %2d:%2d"), minutes , seconds);
+        	strcat(txt, "\n");
+        	DisplayText(txt, -1, -1, NULL, 1.0);    		
+    	}
 	
-	if ( ( Me . AllMissions [ i ] . must_clear_first_level == Me . pos . z ) ||
-	     ( Me . AllMissions [ i ] . must_clear_second_level == Me . pos . z ) )
-	{
-	    remaining_bots = 0 ;
+    	if ( ( Me . AllMissions [ i ] . must_clear_first_level == Me . pos . z ) ||
+    		 ( Me . AllMissions [ i ] . must_clear_second_level == Me . pos . z ) )
+    	{
+    		remaining_bots = 0 ;
 	    
-	    enemy *erot, *nerot;
-BROWSE_ALIVE_BOTS_SAFE(erot, nerot)
-	    {
-		if ( ( erot->pos . z == Me . pos . z ) &&
-		     ( ! erot->is_friendly ) )
-		    remaining_bots ++ ;
+    		enemy *erot, *nerot;
+    		BROWSE_ALIVE_BOTS_SAFE(erot, nerot)
+    		{
+    			if ( ( erot->pos . z == Me . pos . z ) &&
+    				 ( ! erot->is_friendly ) )
+    				remaining_bots ++ ;
 
-	    }
-	    PrintStringFont( Screen , FPS_Display_BFont , User_Rect.x , 
-			     User_Rect.y + 0*FontHeight( FPS_Display_BFont ), 
-			     _("Bots remaining on level: %d"), remaining_bots );
-	    DebugPrintf ( 0 , "\nYES, this is the level...." );
+    		}
+    		snprintf(txt, sizeof(txt)-1, _("Bots remaining on level: %d\n"), remaining_bots);
+        	strcat(txt, "\n");
+        	DisplayText(txt, -1, -1, NULL, 1.0);    		
+    		DebugPrintf ( 0 , "\nYES, this is the level...." );
+    	}
 	}
-    }
+
+    SetCurrentFont(old_current_font);
     
     DisplayBigScreenMessage( );
 
