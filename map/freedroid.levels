@@ -24526,7 +24526,7 @@ jump target south: -1
 jump target east: 28
 jump target west: 26
 use underground lighting: 0
-Name of this level=_"empty"
+Name of this level=_"Empty swamp"
 Infcmt="This is a new level...
 BgSong=TheBeginning.ogg
 beginning_of_map
