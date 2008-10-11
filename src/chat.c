@@ -1214,6 +1214,7 @@ DoChatFromChatRosterData( int ChatPartnerCode , Enemy ChatDroid , int clear_prot
     int MenuSelection = (-1) ;
     char* DialogMenuTexts[ MAX_ANSWERS_PER_PERSON ];
     char enemy_started_the_talk =  (ChatDroid -> will_rush_tux );
+    SDL_Event event;
 
     //--------------------
     // We always should clear the chat protocol.  Only for SUBDIALOGS it is
@@ -1254,7 +1255,7 @@ DoChatFromChatRosterData( int ChatPartnerCode , Enemy ChatDroid , int clear_prot
 	{
 	    DebugPrintf ( CHAT_DEBUG_LEVEL , "\nExecuting option no. %d prior to dialog start.\n" , i );
 	    if (( ProcessThisChatOption ( i , ChatPartnerCode , ChatDroid ) == 1))
-		return;
+		goto wait_click_and_out;
 	}
     }
    
@@ -1286,11 +1287,21 @@ DoChatFromChatRosterData( int ChatPartnerCode , Enemy ChatDroid , int clear_prot
 	    MenuSelection = END_ANSWER ;
 	}
 	
-	if (( ProcessThisChatOption ( MenuSelection , ChatPartnerCode , ChatDroid ) )  ==  1 )
-	{
-	    return;
+	if (( ProcessThisChatOption ( MenuSelection , ChatPartnerCode , ChatDroid ) )  ==  1 )	{
+	    goto wait_click_and_out;
 	}
 	
+    }
+    
+wait_click_and_out:   
+    while(1) {
+	SDL_WaitEvent(&event);
+	switch(event.type) {
+	    case SDL_KEYDOWN:
+	    case SDL_MOUSEBUTTONDOWN:
+	    case SDL_QUIT:
+		return;
+	}
     }
     
 }; // void DoChatFromChatRosterData( ... )
