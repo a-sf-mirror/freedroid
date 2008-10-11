@@ -549,6 +549,9 @@ CursorIsOnWhichSpellPageButton( int x , int y )
 void
 ShowSkillsExplanationScreen( void )
 {
+    int ICON_OFFSET_X = 20;
+    int ICON_OFFSET_Y = 20;
+    int TEXT_OFFSET_X = 15;
     SDL_Rect TargetSkillRect;
     
     //--------------------
@@ -557,16 +560,11 @@ ShowSkillsExplanationScreen( void )
     blit_special_background ( SKILL_SCREEN_EXPLANATION_BACKGROUND_CODE ) ;
 
     //--------------------
-    // We will use the FPS display font, cause the small one isn't 
-    // very well readable on the silver background
+    // Draws the skill icon at the correct position
     //
-    SetCurrentFont ( FPS_Display_BFont );
-    
-    TargetSkillRect.x = 15;
-    TargetSkillRect.y = 15;
-    
+    TargetSkillRect.x = ICON_OFFSET_X;
+    TargetSkillRect.y = ICON_OFFSET_Y;
     LoadOneSkillSurfaceIfNotYetLoaded ( Me . readied_skill );
-    
     if ( use_open_gl )
     {
 	draw_gl_textured_quad_at_screen_position ( &SpellSkillMap [ Me . readied_skill ] . icon_surface , 
@@ -577,10 +575,16 @@ ShowSkillsExplanationScreen( void )
 	our_SDL_blit_surface_wrapper ( SpellSkillMap [ Me . readied_skill ] . icon_surface . surface , 
 				       NULL , Screen , &TargetSkillRect );
     }
-    
-    
-    TargetSkillRect.w = 320 - 15 - 15;
-    TargetSkillRect.h = 480 - 15 ;
+
+    //--------------------
+    // Draws the explanation text
+    // (We will use the FPS display font, cause the small one isn't 
+    // very well readable on the silver background.)
+    //
+    TargetSkillRect.x = TEXT_OFFSET_X;
+    TargetSkillRect.w = 320 - 2 * TEXT_OFFSET_X;
+    TargetSkillRect.h = 480 - 15;
+    SetCurrentFont ( FPS_Display_BFont );
     DisplayText( D_(SpellSkillMap [ Me . readied_skill ] . description) , 16 , 16+64+16, 
 		 &TargetSkillRect , TEXT_STRETCH );
 
