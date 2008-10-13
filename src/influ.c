@@ -1892,19 +1892,24 @@ adapt_global_mode_for_player ( )
     //
     SDL_Rect upper_rect = { ( 98 * GameConfig . screen_width ) / 640 , GameConfig . screen_height - (102 * GameConfig . screen_height) / 480 , 444 * GameConfig . screen_width / 640 , (48/2)*GameConfig.screen_height / 480 } ;
     SDL_Rect lower_rect = { ( 98 * GameConfig . screen_width ) / 640 , GameConfig . screen_height - (102 * GameConfig . screen_height) / 480 + (48/2)*GameConfig.screen_height/480, 444 * GameConfig . screen_width / 640 , (48/2)*GameConfig.screen_height / 480 } ;
+
+    if ( GameConfig.screen_height == 480 && ( GameConfig . Inventory_Visible || GameConfig . CharacterScreen_Visible || GameConfig . SkillScreen_Visible || GameConfig . skill_explanation_screen_visible ))
+	    goto done_handling_scroll_updown;
+
     if ( MouseCursorIsInRect ( &upper_rect , GetMousePos_x() , GetMousePos_y() ) )
-    {
-	if ( global_ingame_mode != GLOBAL_INGAME_MODE_IDENTIFY )
-		global_ingame_mode = GLOBAL_INGAME_MODE_SCROLL_UP ;
-	return;
-    }
+	{
+	    if ( global_ingame_mode != GLOBAL_INGAME_MODE_IDENTIFY )
+		    global_ingame_mode = GLOBAL_INGAME_MODE_SCROLL_UP ;
+	    return;
+	}
     if ( MouseCursorIsInRect ( &lower_rect , GetMousePos_x() , GetMousePos_y() ) )
-    {
-	if ( global_ingame_mode != GLOBAL_INGAME_MODE_IDENTIFY )
-		global_ingame_mode = GLOBAL_INGAME_MODE_SCROLL_DOWN ;
-	return;
-    }
-    
+	{
+	    if ( global_ingame_mode != GLOBAL_INGAME_MODE_IDENTIFY )
+		    global_ingame_mode = GLOBAL_INGAME_MODE_SCROLL_DOWN ;
+	    return;
+	}
+
+done_handling_scroll_updown:
     if ( ( global_ingame_mode == GLOBAL_INGAME_MODE_SCROLL_UP ) ||
 	 ( global_ingame_mode == GLOBAL_INGAME_MODE_SCROLL_DOWN ) )
     {
