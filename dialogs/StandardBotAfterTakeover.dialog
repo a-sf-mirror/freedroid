@@ -45,7 +45,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 New Option Nr=1  OptionText=_" ./pull_breaks.sh"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle=_"Pulling breaks, using script V 1.0.2 (c) gnu.org, 2054 Checking requirements. Energy on breaks. Done. Status: All movement suppressed."
+Subtitle=_"Pulling breaks, using script V 1.0.2 (c) gnu.org, 2054 Checking requirements. Energy on brakes. Done. Status: All movement suppressed."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=1 ChangeToValue=0
 ChangeOption=2 ChangeToValue=1
@@ -71,7 +71,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=3  OptionText=_" ./move_freely.sh"
 OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
-Subtitle=_"Removing energy from breaks. Resuming normal patrol operations. Done. Status: Patrolling."
+Subtitle=_"Removing energy from brakes. Resuming normal patrol operations. Done. Status: Patrolling."
 ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=1 ChangeToValue=1
 ChangeOption=2 ChangeToValue=1
