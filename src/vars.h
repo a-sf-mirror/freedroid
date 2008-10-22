@@ -122,21 +122,21 @@ char* floor_tile_filenames [ ALL_ISOMETRIC_FLOOR_TILES ] =
 
 tux_t Me ;
 
-// We should not require translations for skillevels that will never be reachable (>6). Should be fixed. 
+// We should not require translations for skillevels that will never be reachable (>5). Should be fixed. 
 // Level 10 doesnt even seem reachable at all, even by cheating. Bug?
 
 char* AllSkillTexts [ NUMBER_OF_SKILL_LEVELS ] =
   {
     N_("novice"),
-    N_("average"),
-    N_("experienced"),
-    N_("skilled"),
-    N_("adept"),
-    N_("masterly"),
-    N_("inhuman"),
-    N_("god-like"),
-    N_("super-god-like"),
-    N_("wicked sick")
+    N_("apprentice"),
+    N_("professional"),
+    N_("master"),
+    N_("god"),
+    N_("6"),
+    N_("7"),
+    N_("8"),
+    N_("9"),
+    N_("10")
   };
 
 //--------------------
@@ -148,6 +148,7 @@ char* AllSkillTexts [ NUMBER_OF_SKILL_LEVELS ] =
 //
 // 0.9^x -> 1.0, 0.9, 0.81, 0.73, 0.66, 0.59, 0.53, 0.48, 0.43, 0.39
 // 1.1^x -> 1.0, 1.1, 1.21, 1.33, 1.46, 1.61, 1.77, 1.95, 2.14, 2.36
+// 1.2^x -> 1.0, 1.2, 1.44, 1.73, 2.07, 2.49, 2.99, 3.58, 4.30, 5.16
 
 float MeleeDamageMultiplierTable [  ] =
   {  1.0, 1.1, 1.21, 1.33, 1.46, 1.61, 1.77, 1.95, 2.14, 2.36 } ;
