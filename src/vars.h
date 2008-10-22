@@ -122,8 +122,6 @@ char* floor_tile_filenames [ ALL_ISOMETRIC_FLOOR_TILES ] =
 
 tux_t Me ;
 
-// We should not require translations for skillevels that will never be reachable (>5). Should be fixed. 
-// Level 10 doesnt even seem reachable at all, even by cheating. Bug?
 
 char* AllSkillTexts [ NUMBER_OF_SKILL_LEVELS ] =
   {
@@ -132,11 +130,11 @@ char* AllSkillTexts [ NUMBER_OF_SKILL_LEVELS ] =
     N_("professional"),
     N_("master"),
     N_("god"),
-    N_("6"),
-    N_("7"),
-    N_("8"),
-    N_("9"),
-    N_("10")
+    ("6"),
+    ("7"),
+    ("8"),
+    ("9"),
+    ("10")
   };
 
 //--------------------
