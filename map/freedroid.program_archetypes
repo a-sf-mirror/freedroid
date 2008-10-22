@@ -243,7 +243,7 @@ Program name=_"Extract bot parts"
 Program description=_"With a little knowledge, you can extract some useful parts out of the robots you kill. With each bot there is some hope of a part falling out. This skill is always active even when not selected."
 Picture="ExtractBotParts.png"
 Form="self"
-Effect="none"
+Effect="passive"
 Cost=0
 
 ## Make target item of no higher lvl then skill into another same type (book, grenade, ammo, ranged conv weap, ranged energy weap) item of same or lower level.

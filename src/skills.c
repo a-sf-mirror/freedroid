@@ -848,9 +848,14 @@ ShowSkillsScreen ( void )
 	    else if ( !strcmp ( SpellSkillMap [ SkillOfThisSlot ] . effect, "poison" ))
 		sprintf ( CharText, _("Poison"));
 	    else if ( !strcmp ( SpellSkillMap [ SkillOfThisSlot ] . effect, "takeover" ))
-		sprintf ( CharText, _("Takeover"));
+                {
+                        tmp = Me.SkillLevel [ SkillOfThisSlot ] + 2;
+                        sprintf ( CharText, _("Takeover charges: %c%d%c "),  font_switchto_msgvar[0] , tmp , font_switchto_msgstat[0] );
+                }
 	    else if ( !strcmp ( SpellSkillMap [ SkillOfThisSlot ] . effect, "teleport_home" ))
 		sprintf ( CharText, _("Escape"));
+	    else if ( !strcmp ( SpellSkillMap [ SkillOfThisSlot ] . effect, "passive" ))
+		sprintf ( CharText, _("Passive"));
 	    else if ( !strcmp ( SpellSkillMap [ SkillOfThisSlot ] . effect, "identify" ))
 		sprintf ( CharText, " ");
 	    else if ( !strcmp ( SpellSkillMap [ SkillOfThisSlot ] . effect, "weapon" ))
