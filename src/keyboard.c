@@ -74,6 +74,7 @@ const char *keybindNames[] = {
 
     /* Cheat keys */
     "cheat_xp+_1k", "cheat_xp*_2",
+    "cheat_melee", "cheat_range", "cheat_programing", "cheat_melee_down", "cheat_range_down", "cheat_programing_down",
     "cheat_identify_all",
     "cheat_drop_random_item", "cheat_drop_random_magical_item",
     "cheat_respawn_level",
@@ -226,6 +227,12 @@ void input_set_default (void)
     /* Cheat */
     input_set_keybind("cheat_xp+_1k", SDLK_KP1, KMOD_NONE);
     input_set_keybind("cheat_xp*_2", SDLK_KP2, KMOD_NONE);
+    input_set_keybind("cheat_melee", SDLK_KP7, KMOD_NONE);
+    input_set_keybind("cheat_range", SDLK_KP8, KMOD_NONE);
+    input_set_keybind("cheat_programing", SDLK_KP9, KMOD_NONE);
+    input_set_keybind("cheat_melee_down", SDLK_KP4, KMOD_NONE);
+    input_set_keybind("cheat_range_down", SDLK_KP5, KMOD_NONE);
+    input_set_keybind("cheat_programing_down", SDLK_KP6, KMOD_NONE);
     input_set_keybind("cheat_identify_all", SDLK_i, KMOD_LSHIFT);
     input_set_keybind("cheat_drop_random_item", SDLK_r, KMOD_LCTRL);
     input_set_keybind("cheat_drop_random_magical_item", SDLK_r, KMOD_LCTRL | KMOD_LSHIFT);
@@ -347,6 +354,18 @@ static int input_key( int keynum, int value)
 	    Me.Experience += 1000;
 	} else if (KEYPRESS("cheat_xp*_2")) {
 	    Me.Experience *= 2;
+	} else if (KEYPRESS("cheat_melee")) {
+	    if (Me.melee_weapon_skill < 9) Me.melee_weapon_skill += 1;
+	} else if (KEYPRESS("cheat_range")) {
+	    if (Me.ranged_weapon_skill < 9) Me.ranged_weapon_skill += 1;
+	} else if (KEYPRESS("cheat_programing")) {
+	    if (Me.spellcasting_skill < 9) Me.spellcasting_skill += 1;
+	} else if (KEYPRESS("cheat_melee_down")) {
+	    if (Me.melee_weapon_skill > 0) Me.melee_weapon_skill -= 1;
+	} else if (KEYPRESS("cheat_range_down")) {
+	    if (Me.ranged_weapon_skill > 0) Me.ranged_weapon_skill -= 1;
+	} else if (KEYPRESS("cheat_programing_down")) {
+	    if (Me.spellcasting_skill > 0) Me.spellcasting_skill -= 1;
 	} else if (KEYPRESS("cheat_identify_all")) {
 	    int i;
 	    for ( i = 0 ; i < MAX_ITEMS_IN_INVENTORY ; i ++ ) Me.Inventory[i].is_identified = TRUE;
