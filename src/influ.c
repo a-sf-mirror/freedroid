@@ -1394,7 +1394,7 @@ streamline_intermediate_course ( enemy * droid, gps * curpos, moderately_finepoi
       //--------------------
       // Now we know how much to cut away.  So we'll do it.
       //
-      for ( cut_away = 0 ; cut_away < maxwp ; cut_away ++ )
+      for ( cut_away = 0 ; (start_index + 1 + cut_away) < maxwp ; cut_away ++ )
 	{
 
 	  if ( last_index + cut_away < maxwp )
