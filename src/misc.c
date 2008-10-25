@@ -2039,6 +2039,22 @@ endian_swap(char * pdata, size_t dsize, size_t nelements)
 
 } /* endian swap */
 
+/*----------------------------------------------------------------------
+ * Get the power of 2 greater than of equal to the argument
+ * http://www-graphics.stanford.edu/~seander/bithacks.html#RoundUpPowerOf2
+ *----------------------------------------------------------------------*/
+uint32_t
+pot_gte( uint32_t v )
+{
+	uint32_t pot = v;
+	--pot;
+	pot |= pot >> 1;
+	pot |= pot >> 2;
+	pot |= pot >> 4;
+	pot |= pot >> 8;
+	pot |= pot >> 16;
+	return (++pot);
 
+} // uint32_t pot_gte( uint32_t v)
 
 #undef _misc_c

@@ -1727,7 +1727,7 @@ The resolution identifier given is not a valid resolution code.\n\
 These codes correspond to the following resolutions available:\n\
      0 = 640 x 480 (default with SDL)\n\
      1 = 800 x 600 (default with OpenGL)\n\
-     2 = 1024 x 748 \n\
+     2 = 1024 x 768 \n\
      3 = 1280 x 960 \n\
      4 = Unsupported! (1280 x 1024) \n\
      5 = Unsupported! (1280 x 800) \n\
@@ -2271,6 +2271,9 @@ I will not be able to load or save games or configurations\n\
     LoadGameConfig ();
 
     ParseCommandLine ( argc, argv );
+    
+    LightRadiusInit();
+    
     //--------------------
     // Adapt button positions for the current screen resolution.  (Note: At this
     // point the command line has been evaluated already, therefore we know if OpenGL

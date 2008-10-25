@@ -963,4 +963,15 @@ typedef struct colldet_filter_s
 } 
 colldet_filter;
 
+typedef struct light_radius_config_s
+{
+	uint32_t cells_w;
+	uint32_t cells_h;
+	uint32_t texture_w;
+	uint32_t texture_h;
+	int translate_y;
+	float scale_factor;
+}
+light_radius_config;
+
 #endif

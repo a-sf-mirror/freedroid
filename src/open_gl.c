@@ -1095,7 +1095,7 @@ set_up_stretched_texture_for_light_radius ( void )
     // We create an SDL surface, so that we can make the texture for the
     // stretched-texture method light radius from it...
     //
-    light_radius_stretch_surface = SDL_CreateRGBSurface( SDL_SWSURFACE , LIGHT_RADIUS_STRETCH_TEXTURE_WIDTH , LIGHT_RADIUS_STRETCH_TEXTURE_HEIGHT , 32, rmask , gmask, bmask , amask );
+    light_radius_stretch_surface = SDL_CreateRGBSurface( SDL_SWSURFACE , LightRadiusConfig.texture_w , LightRadiusConfig.texture_h , 32, rmask , gmask, bmask , amask );
 
     //--------------------
     // Having prepared the raw image it's now time to create the real
@@ -1121,6 +1121,8 @@ set_up_stretched_texture_for_light_radius ( void )
   
     glTexParameteri( GL_TEXTURE_2D , GL_TEXTURE_MAG_FILTER , GL_LINEAR );
     glTexParameteri( GL_TEXTURE_2D , GL_TEXTURE_MIN_FILTER , GL_LINEAR );
+    glTexParameteri( GL_TEXTURE_2D , GL_TEXTURE_WRAP_S , GL_CLAMP_TO_EDGE );
+    glTexParameteri( GL_TEXTURE_2D , GL_TEXTURE_WRAP_T , GL_CLAMP_TO_EDGE );
 
     // Generate The Texture 
     glTexImage2D( GL_TEXTURE_2D, 0, 4, light_radius_stretch_surface -> w,
@@ -1147,24 +1149,19 @@ light_radius_update_stretched_texture ( void )
     int green = 0 ;
     int alpha = 0 ;
     int light_strength ;
-    int lr_square_width = GameConfig . screen_width / 64;
-    int lr_square_height = GameConfig . screen_height / 48;
     static float alpha_factor = 255.0 / (float) NUMBER_OF_SHADOW_IMAGES;
     //--------------------
     // Now it's time to edit the automap texture.
     //
-    for ( x = 0 ; x < 64 ; x ++ )
+	for ( y = 0 ; y < LightRadiusConfig.cells_h ; y ++ )
     {
-	for ( y = 0 ; y < 48 ; y ++ )
+		for ( x = 0 ; x < LightRadiusConfig.cells_w ; x ++ )
 	{
-	    light_strength = get_light_strength_screen ( x * lr_square_width, y * lr_square_height );
-	    
-	    if ( light_strength >= NUMBER_OF_SHADOW_IMAGES ) light_strength = NUMBER_OF_SHADOW_IMAGES -1 ;
-	    if ( light_strength <= 0 ) light_strength = 0 ;
+			light_strength = get_light_strength_cell( x, y );
 	    
             alpha = ( alpha_factor ) * ( (float) light_strength ) ; 
 
-	    PutPixel32 ( light_radius_stretch_surface , x , LIGHT_RADIUS_STRETCH_TEXTURE_HEIGHT - y - 1 , 
+			PutPixel32 ( light_radius_stretch_surface , x , LightRadiusConfig.texture_w - y - 1 , 
 		       SDL_MapRGBA ( light_radius_stretch_surface -> format , red , green , blue , alpha ) ) ;
 
 	}
@@ -1173,8 +1170,8 @@ light_radius_update_stretched_texture ( void )
     glBindTexture ( GL_TEXTURE_2D , light_radius_stretch_texture );
     glTexSubImage2D ( GL_TEXTURE_2D , 0 , 
 		      0  , 0 ,
-		      64 ,
-		      64 ,
+		      LightRadiusConfig.texture_w ,
+		      LightRadiusConfig.texture_h ,
 		      GL_RGBA, 
 		      GL_UNSIGNED_BYTE, 
 		      light_radius_stretch_surface -> pixels );
@@ -1212,10 +1209,10 @@ blit_open_gl_stretched_texture_light_radius ( void )
     // in a surrounting 'iso_image', but that shouldn't be costly or anything...
     //
     local_iso_image . texture = light_radius_stretch_texture ;
-    local_iso_image . texture_width = LIGHT_RADIUS_STRETCH_TEXTURE_WIDTH ;
-    local_iso_image . texture_height = LIGHT_RADIUS_STRETCH_TEXTURE_HEIGHT ;
-    local_iso_image . original_image_width = LIGHT_RADIUS_STRETCH_TEXTURE_WIDTH ;
-    local_iso_image . original_image_height = LIGHT_RADIUS_STRETCH_TEXTURE_HEIGHT ;
+    local_iso_image . texture_width = LightRadiusConfig.texture_w ;
+    local_iso_image . texture_height = LightRadiusConfig.texture_h ;
+    local_iso_image . original_image_width = LightRadiusConfig.texture_w ;
+    local_iso_image . original_image_height = LightRadiusConfig.texture_h ;
     local_iso_image . texture_has_been_created = TRUE ;
     local_iso_image . offset_x = 0 ;    
     local_iso_image . offset_y = 0 ;
@@ -1227,11 +1224,9 @@ blit_open_gl_stretched_texture_light_radius ( void )
 
     glEnable ( GL_BLEND ) ;
 
-    draw_gl_scaled_textured_quad_at_screen_position ( 
-	& local_iso_image , 
-	0,
-	-60 * (GameConfig . screen_height / 768),
-	((float)GameConfig . screen_width) / ((float)LIGHT_RADIUS_STRETCH_TEXTURE_WIDTH) );
+    draw_gl_scaled_textured_quad_at_screen_position ( &local_iso_image , 
+                                                      0, 0,
+                                                      LightRadiusConfig.scale_factor );
     glDisable ( GL_BLEND ) ;
 
 #endif

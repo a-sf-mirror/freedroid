@@ -188,6 +188,14 @@ EXTERN int bmask;
 EXTERN int rmask;
 
 #undef EXTERN
+#ifdef _light_c
+#define EXTERN
+#else
+#define EXTERN extern
+#endif
+EXTERN light_radius_config LightRadiusConfig;
+
+#undef EXTERN
 #ifdef _sound_c
 #define EXTERN
 #else

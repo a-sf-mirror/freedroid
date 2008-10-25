@@ -167,7 +167,10 @@ EXTERN int level_is_visible ( int level_num );
 #else
 #define EXTERN extern
 #endif
+EXTERN void LightRadiusInit();
+EXTERN void LightRadiusClean();
 EXTERN int get_light_strength_screen ( int x, int y );
+EXTERN int get_light_strength_cell ( uint32_t x, uint32_t y );
 EXTERN int get_light_strength ( moderately_finepoint target_pos );
 EXTERN void update_light_list ( void );
 EXTERN void blit_light_radius ( void );
@@ -702,6 +705,7 @@ EXTERN void ExecuteEvent ( int EventNumber );
 EXTERN char *va (char *format, ...);
 EXTERN Sint16 ReadSint16 (void * memory);
 EXTERN void endian_swap(char * pdata, size_t dsize, size_t nelements);
+EXTERN uint32_t pot_gte( uint32_t v );
 
 // enemy.c 
 #undef EXTERN

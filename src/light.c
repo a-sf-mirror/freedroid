@@ -46,7 +46,91 @@
 #define MAX_NUMBER_OF_LIGHT_SOURCES 100
 moderately_finepoint light_sources [ MAX_NUMBER_OF_LIGHT_SOURCES ] ;
 int light_source_strengthes [ MAX_NUMBER_OF_LIGHT_SOURCES ] ;
-int light_strength_buffer [ 64 ] [ 48 ] ;
+
+light_radius_config LightRadiusConfig = { -1, -1, -1, -1, 0.0 };
+int* light_strength_buffer = NULL;
+#define LIGHT_RADIUS_TEXTURE_DIVISOR 10 // Default number of screen pixels per cell
+#define LIGHT_RADIUS_TEXTURE_MAX_SIZE 64 // texture max size is 64x64
+#define LIGHT_STRENGTH_CELL_ADDR(x,y) (light_strength_buffer + (y)*LightRadiusConfig.cells_w + (x))
+#define LIGHT_STRENGTH_CELL(x,y) *(int*)(light_strength_buffer + (y)*LightRadiusConfig.cells_w + (x))
+
+#define UNIVERSAL_TUX_HEIGHT 100.0 // Empirical Tux height, in the universal coordinate system
+
+/**
+ * Compute the light_radius texture size, and allocate it
+ */
+void
+LightRadiusInit()
+{
+	// Divide to screen dimensions by default divisor, to compute the default
+	// number of cells in the light_radius texture
+	LightRadiusConfig.cells_w = round( (float)GameConfig.screen_width / (float)LIGHT_RADIUS_TEXTURE_DIVISOR );
+	LightRadiusConfig.cells_h = round( (float)GameConfig.screen_height / (float)LIGHT_RADIUS_TEXTURE_DIVISOR );
+	
+	// Find the the nearest power-of-two greater than of equal to the number of cells
+	// and limit the texture's size
+	int pot_w = pot_gte( LightRadiusConfig.cells_w );
+	if ( pot_w > LIGHT_RADIUS_TEXTURE_MAX_SIZE ) pot_w = LIGHT_RADIUS_TEXTURE_MAX_SIZE;
+	int pot_h = pot_gte( LightRadiusConfig.cells_h  );
+	if ( pot_h > LIGHT_RADIUS_TEXTURE_MAX_SIZE ) pot_h = LIGHT_RADIUS_TEXTURE_MAX_SIZE;
+	
+	if ( GameConfig.screen_width >= GameConfig.screen_height )
+	{
+		// Use the whole texture width
+		LightRadiusConfig.cells_w = pot_w;
+		LightRadiusConfig.texture_w = pot_w;
+		// Compute the actual scale factor when using the whole texture width
+		LightRadiusConfig.scale_factor = (float)GameConfig.screen_width / (float)LightRadiusConfig.cells_w;
+		// Since we have an homogeneous scale factor in X and Y,
+		// compute the new number of cells in Y
+		LightRadiusConfig.cells_h = (int)ceilf( (float)GameConfig.screen_height / LightRadiusConfig.scale_factor);
+		// Check if the texture's height is now big enough. If not, take the next power-of-two
+		if ( LightRadiusConfig.cells_h <= pot_h ) LightRadiusConfig.texture_h = pot_h;
+		else LightRadiusConfig.texture_h = pot_h << 1;
+	}
+	else
+	{
+		// Same thing, if screen's height > screen's width
+		// Is it ever a used screen ratio ? Well, when fdrpg will run on smartphones,
+		// it could be :-)
+		LightRadiusConfig.cells_h = pot_h; 
+		LightRadiusConfig.texture_h = pot_h;
+		LightRadiusConfig.scale_factor = (float)GameConfig.screen_height / (float)LightRadiusConfig.cells_h;
+		LightRadiusConfig.cells_w = (int)ceilf( (float)GameConfig.screen_width / LightRadiusConfig.scale_factor);
+		if ( LightRadiusConfig.cells_w <= pot_w ) LightRadiusConfig.texture_w = pot_w;
+		else LightRadiusConfig.texture_w = pot_w << 1;
+	}
+	
+	//----------
+	// The center of the light_radius texture will be translated along the Y axe,
+	// to simulate a light coming from bot/tux heads, instead of their feet.
+	
+	// First: convert a universal unit into a screen height. 
+	// But because the UNIVERSAL_COORD macros currently works only for 4:3 screen,
+	// we take the real screen ration into account
+	float unit_screen_height = UNIVERSAL_COORD_H( ((float)GameConfig.screen_width/(float)GameConfig.screen_height) / (4.0/3.0) );
+	
+	// Second : transform Tux universal height into screen height
+	LightRadiusConfig.translate_y = (int)( UNIVERSAL_TUX_HEIGHT / unit_screen_height );
+	
+	//----------
+	// Allocate the light_radius buffer
+	light_strength_buffer = malloc( LightRadiusConfig.cells_w * LightRadiusConfig.cells_h * sizeof(int) );
+	
+} // void LightRadiusInit();
+
+/**
+ * Clean and deallocate light_radius texture
+ */
+void
+LightRadiusClean()
+{
+	if ( light_strength_buffer ) 
+	{
+		free( light_strength_buffer );
+		light_strength_buffer = NULL;
+	}
+}
 
 /**
  * There might be some obstacles that emit some light.  Yet, we can't
@@ -136,10 +220,10 @@ WARNING!  End of light sources array reached!",
     if ( map_y_start < 0 ) map_y_start = 0 ;
     if ( map_x_end >= light_level -> xlen ) map_x_end = light_level -> xlen - 1 ;
     if ( map_y_end >= light_level -> ylen ) map_y_end = light_level -> ylen - 1 ;
-    for ( map_x = map_x_start ; map_x < map_x_end ; map_x ++ )
-    {
 	for ( map_y = map_y_start ; map_y < map_y_end ; map_y ++ )
 	{
+    for ( map_x = map_x_start ; map_x < map_x_end ; map_x ++ )
+    {
 	    for ( glue_index = 0 ; glue_index < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE ; glue_index ++ )
 	    {
 		//--------------------
@@ -212,83 +296,119 @@ WARNING!  End of light sources array reached!",
 /**
  * This function is used to find the light intensity at any given point
  * on the map.
+ * Take care : despite it's name, it computes a darkness value, which is the opposite of
+ * an intensity (Darkness = -Intensity)
  */
 static int 
 calculate_light_strength ( moderately_finepoint target_pos )
 {
-    int final_darkness = NUMBER_OF_SHADOW_IMAGES;
-    int i;
-    float xdist;
-    float ydist;
-    float light_vec_len;
+	int i;
+	float xdist;
+	float ydist;
+	float squared_dist;
 
-    //--------------------
-    // Now that the light sources array is fully set up, we can start
-    // to compute the individual light strength at any given position
-    //
-    for ( i = 0 ; i < MAX_NUMBER_OF_LIGHT_SOURCES ; i ++ )
-    {
-	//--------------------
-	// Now if we've reached the end of the current list of light
-	// sources, then we can stop immediately.
+	// Full bright: final_darkness = 0 / Full dark: final_darkness = (NUMBER_OF_SHADOW_IMAGES - 1) or -(minimum light value)
+	int final_darkness = min( NUMBER_OF_SHADOW_IMAGES - 1, -(curShip.AllLevels[Me.pos.z]->minimum_light_value) );
+
+	//------------------------------------------
+	// Nota: the following code being quite obscure, so some explanations are quite mandatory:
 	//
-	if ( light_source_strengthes [ i ] == 0 )
+	// 1) Despite its name, this function compute a darkness, and not a light intensity
+	//
+	// 2) The light emitted from a light source decreases linearly with the distance.
+	//    So, at a given target position, the perceived intensity of a light is: 
+	//    I = Light_strength - 4.0*distance(Light_pos, Target_pos)
+	//        (the 4.0 factor means that a light source with a strength of 1 has a radius of 0.25)
+	//    And the resulting darkness is:
+	//    D = -I 
+	//    D is clamped between 0 and the full darkness value of this level (due to final_darkness initialization)
+	//
+	// 3) The code loops on each light source, and keeps the minimum darkness (and so maximum light intensity).
+	//    It does not accumulate light intensity.
+	//
+	// So the initial code is :
+	//
+	// 1: foreach this_light in (set of lights)
+	// 2: {
+	// 3:   if ( this_light is visible from the target )
+	// 4:   {
+	// 5:     this_light_darkness = 4.0 * distance( this_light.pos, target.pos) - this_light.strength;
+	// 6:     if ( this_ligh_darkness < final_darkness ) final_darkness = this_light_darkness;
+	// 7:   }
+	// 8: }
+	//
+	// However, this function is time-critical, simply because it's used a lot every frame for 
+	// the light radius. Therefore we want to avoid the sqrt() needed to compute a distance, if the test fails,
+	// and instead use squared values as much as possible.
+	//
+	// So, lines 5 and 6 are transformed into:
+	//       if ( 4.0 * distance - strength < final_darkness ) final_darkness = 4.0 * distance - strength;
+	// which are then transformed into:
+	//       if ( 4.0 * distance < final_darkness + strength ) final_darkness = 4.0 * distance - strength;
+	// and finally, in order to remove sqrt(), into:
+	//       if ( (4.0 * distance)^2 < (final_darkness + strength)^2 ) final_darkness = 4.0 * distance - strength;
+	// (note: we will ensure that final_darkness + strength is > 0, so there is no problem
+	//  with the sign of the inequality. see optimization 1 in the code)
+	//
+	// Visibility checking being far more costly than the darkness test, we revert the 2 tests :
+	//
+	// 1: foreach this_light in (set of lights)
+	// 2: {
+	// 3:   if ( (4.0 * distance( this_light.pos, target.pos))^2 < (final_darkness + this_light.strength)^2 )
+	// 4:   {
+	// 5:     if ( this_light is visible from the target ) 
+	// 6:       final_darkness = 4.0 * distance( this_light.pos, target.pos) - this_light.strength;
+	// 7:   }
+	// 8: }
+	//------------------------------------------
+
+	//--------------------
+	// Now, here is the final algorithm
+	//
+	for ( i = 0 ; i < MAX_NUMBER_OF_LIGHT_SOURCES ; i ++ )
 	{
-	    if ( final_darkness < -curShip . AllLevels [ Me . pos . z ] -> minimum_light_value )
-		return ( final_darkness );
-	    else
-		return ( -curShip . AllLevels [ Me . pos . z ] -> minimum_light_value );
-	}
+		//--------------------
+		// If we've reached the end of the current list of light
+		// sources, then we can stop immediately.
+		//
+		if ( light_source_strengthes [ i ] == 0 ) break;
 
-	//--------------------
-	// We could of course use a maximum function to find out the proper light at
-	// any place.  But maybe addition of light would be better, so we use the latter
-	// code.
-	//
-	// If the sign of the inequality determines the outcome already, then we need not
-	// do anything else.  This might save a lot of computation time... and also it 
-	// allows to take the square of the inequality after that SAFELY!!!
-	//
-	if ( final_darkness + light_source_strengthes [ i ] <= 0 ) continue;
+		//--------------------
+		// Otimization 1:
+		// If the absolute strength of the light source (i.e. it's intensity
+		// at the source position) is less than the current intensity, then it's
+		// even not needed to continue with this light source.
+		if ( light_source_strengthes [ i ] <= (-final_darkness) ) continue;
 
-	//--------------------
-	// This function is time-critical, simply because it's used a lot every frame for 
-	// the light radius.  Therefore we avoid square roots here and use squared for the
-	// inequality now.  Let's see if that has some numerical advantage already...
-	//
-	xdist = light_sources [ i ] . x - target_pos . x ;
-	ydist = light_sources [ i ] . y - target_pos . y ;
+		//--------------------
+		// Some pre-computations
+		xdist = light_sources [ i ] . x - target_pos . x ;
+		ydist = light_sources [ i ] . y - target_pos . y ;
+		squared_dist = xdist * xdist + ydist * ydist;
 
-	if (  ( xdist * xdist + ydist * ydist ) * 4.0 * 4.0 
-	     < 
- 	     ( final_darkness + light_source_strengthes [ i ] ) *  
-  	     ( final_darkness + light_source_strengthes [ i ] ) )
-	{
-
-	    //--------------------
-	    // Let's try something different here:  We now do some passability
-	    // checking as well!  Cool!  But only for the very first light source
-	    //
-	    /*float */light_vec_len = sqrt(xdist * xdist + ydist * ydist);
-
-	if ( light_vec_len > 0.5 )
-	    {
-		if ( curShip . AllLevels [ Me . pos . z ] -> use_underground_lighting )
-		{
-		    if ( ! DirectLineColldet( light_sources [ i ] . x , light_sources [ i ] . y , 
-					       target_pos . x , target_pos . y , 
-					       Me . pos . z, &FilterVisible ) )
+		//--------------------
+		// Comparison between current darkness and the one from the source (line 3 of the pseudo-code)
+		if ( ( squared_dist * 4.0 * 4.0 ) >= ( final_darkness + light_source_strengthes[i] ) * ( final_darkness + light_source_strengthes[i] ) )
 			continue;
+
+		//--------------------
+		// Visibility check (line 5 of pseudo_code)
+		// with a small optimization : no visibility check if the target is very closed to the light
+		if ( ( squared_dist > (0.5*0.5) ) && curShip.AllLevels[Me.pos.z]->use_underground_lighting )
+		{
+			if ( ! DirectLineColldet( light_sources[i].x, light_sources[i].y, target_pos.x, target_pos.y, Me.pos.z, &FilterVisible ) )
+				continue;
 		}
-	    }
-	    final_darkness = (int) ( light_vec_len * 4.0 ) - light_source_strengthes [ i ] ;
+
+		final_darkness = ( sqrt(squared_dist) * 4.0 ) - light_source_strengthes[i];
+
+		// Full bright, no need to test any other light source
+		// Note: this comparison cannot be transformed into (16*squared_dist < light_source_stengthes^2), 
+		// because light_source_strengthes can be a positive or a negative value
+		if ( final_darkness < 0 ) return 0;
 	}
-    }
     
-    if ( final_darkness < -curShip . AllLevels [ Me . pos . z ] -> minimum_light_value )
 	return ( final_darkness );
-    else
-	return ( -curShip . AllLevels [ Me . pos . z ] -> minimum_light_value );
     
 }; // int calculate_light_strength ( moderately_finepoint target_pos )
 
@@ -309,38 +429,40 @@ calculate_light_strength ( moderately_finepoint target_pos )
 static void
 soften_light_distribution ( void )
 {
-    int x , y ;
 #define MAX_LIGHT_STEP 3
+    uint32_t x , y ;
 
     //--------------------
     // Now that the light buffer has been set up properly, we can start to
     // smoothen it out a bit.  We do so in the direction of more light.
+	// Propagate from top-left to bottom-right
     //
-    for ( x = 1 ; x < (64-1) ; x ++ )
+	for ( y = 0 ; y < (LightRadiusConfig.cells_h-1) ; ++y )
     {
-	for ( y = 1 ; y < (48-1) ; y ++  )
+		for ( x = 0 ; x < (LightRadiusConfig.cells_w-1) ; ++x )
 	{
-	    if ( light_strength_buffer [ x + 1 ] [ y ] > light_strength_buffer [ x ] [ y ] + MAX_LIGHT_STEP )
-		light_strength_buffer [ x + 1 ] [ y ] = light_strength_buffer [ x ] [ y ] + MAX_LIGHT_STEP ;
-	    if ( light_strength_buffer [ x ] [ y + 1 ] > light_strength_buffer [ x ] [ y ] + MAX_LIGHT_STEP )
-		light_strength_buffer [ x ] [ y + 1 ] = light_strength_buffer [ x ] [ y ] + MAX_LIGHT_STEP ;
-	    if ( light_strength_buffer [ x + 1 ] [ y + 1 ] > light_strength_buffer [ x ] [ y ] + MAX_LIGHT_STEP )
-		light_strength_buffer [ x + 1 ] [ y + 1 ] = light_strength_buffer [ x ] [ y ] + MAX_LIGHT_STEP ;
+			if ( LIGHT_STRENGTH_CELL(x+1, y) > LIGHT_STRENGTH_CELL(x, y) + MAX_LIGHT_STEP )
+				LIGHT_STRENGTH_CELL(x+1, y) = LIGHT_STRENGTH_CELL(x, y) + MAX_LIGHT_STEP;
+			if ( LIGHT_STRENGTH_CELL(x, y+1) > LIGHT_STRENGTH_CELL(x, y) + MAX_LIGHT_STEP )
+				LIGHT_STRENGTH_CELL(x, y+1) = LIGHT_STRENGTH_CELL(x, y) + MAX_LIGHT_STEP;
+			if ( LIGHT_STRENGTH_CELL(x+1, y+1) > LIGHT_STRENGTH_CELL(x, y) + MAX_LIGHT_STEP )
+				LIGHT_STRENGTH_CELL(x+1, y+1) = LIGHT_STRENGTH_CELL(x, y) + MAX_LIGHT_STEP;
 	}
     }
-    // now the same again, this time from right to left
-    for ( x = (64-2) ; x > 1 ; x -- )
+	// now the same again, this time from bottom-right to top-left
+	for ( y = (LightRadiusConfig.cells_h-1) ; y > 0 ; --y )
     {
-	for ( y = ( 48 - 2 ) ; y > 1 ; y -- )
+		for ( x = (LightRadiusConfig.cells_w-1) ; x > 0 ; --x )
 	{
-	    if ( light_strength_buffer [ x - 1 ] [ y ] > light_strength_buffer [ x ] [ y ] + MAX_LIGHT_STEP )
-		light_strength_buffer [ x - 1 ] [ y ] = light_strength_buffer [ x ] [ y ] + MAX_LIGHT_STEP ;
-	    if ( light_strength_buffer [ x ] [ y - 1 ] > light_strength_buffer [ x ] [ y ] + MAX_LIGHT_STEP )
-		light_strength_buffer [ x ] [ y - 1 ] = light_strength_buffer [ x ] [ y ] + MAX_LIGHT_STEP ;
-	    if ( light_strength_buffer [ x - 1 ] [ y - 1 ] > light_strength_buffer [ x ] [ y ] + MAX_LIGHT_STEP )
-		light_strength_buffer [ x - 1 ] [ y - 1 ] = light_strength_buffer [ x ] [ y ] + MAX_LIGHT_STEP ;
+			if ( LIGHT_STRENGTH_CELL(x-1, y) > LIGHT_STRENGTH_CELL(x, y) + MAX_LIGHT_STEP )
+				LIGHT_STRENGTH_CELL(x-1, y) = LIGHT_STRENGTH_CELL(x, y) + MAX_LIGHT_STEP;
+			if ( LIGHT_STRENGTH_CELL(x, y-1) > LIGHT_STRENGTH_CELL(x, y) + MAX_LIGHT_STEP )
+				LIGHT_STRENGTH_CELL(x, y-1) = LIGHT_STRENGTH_CELL(x, y) + MAX_LIGHT_STEP;
+			if ( LIGHT_STRENGTH_CELL(x-1, y-1) > LIGHT_STRENGTH_CELL(x, y) + MAX_LIGHT_STEP )
+				LIGHT_STRENGTH_CELL(x-1, y-1) = LIGHT_STRENGTH_CELL(x, y) + MAX_LIGHT_STEP;
 	}
     }
+    
 }; // void soften_light_distribution ( void )
 
 /**
@@ -350,32 +472,42 @@ soften_light_distribution ( void )
 void 
 set_up_light_strength_buffer ( void )
 {
-    int x ;
-    int y ;
+    uint32_t x ;
+    uint32_t y ;
     moderately_finepoint target_pos ;
     int screen_x ;
     int screen_y ;
-    const float xrat = ( GameConfig . screen_width / 64 ) ;
-    const float yrat = ( GameConfig . screen_height / 48 ) ;
 
-	for ( x = 0 ; x < 64 ; x ++ )
+	for ( y = 0 ; y < LightRadiusConfig.cells_h ; ++y  )
     {
-	for ( y = 0 ; y < 48 ; y ++  )
+		for ( x = 0 ; x < LightRadiusConfig.cells_w ; ++x )
 	{
-	    screen_x = x * xrat - UserCenter_x;
-	    screen_y = y * yrat - UserCenter_y;
+			screen_x = (int)(x * LightRadiusConfig.scale_factor) - UserCenter_x;
+			// Apply a translation to Y coordinate, to simulate a light coming from bot/tux heads, instead
+			// of their feet.
+			screen_y = (int)(y * LightRadiusConfig.scale_factor) - UserCenter_y + LightRadiusConfig.translate_y;
 
 	    target_pos . x = translate_pixel_to_map_location ( screen_x , screen_y , TRUE ) ;
 	    target_pos . y = translate_pixel_to_map_location ( screen_x , screen_y , FALSE ) ;
 
-	    light_strength_buffer [ x ] [ y ] = 
-		calculate_light_strength ( target_pos );
+			LIGHT_STRENGTH_CELL(x,y) = calculate_light_strength ( target_pos );
 	}
     }
     
     soften_light_distribution();
 
 }; // void set_up_light_strength_buffer ( void )
+
+
+/**
+ * This function is used to find the light intensity at any given point
+ * on the screen.
+ */
+int 
+get_light_strength_cell ( uint32_t x, uint32_t y )
+{
+	return LIGHT_STRENGTH_CELL(x, y);
+}
 
 /**
  * This function is used to find the light intensity at any given point
@@ -384,37 +516,34 @@ set_up_light_strength_buffer ( void )
 int 
 get_light_strength_screen ( int x, int y )
 {
+	x = x / LightRadiusConfig.scale_factor;
+	y = y / LightRadiusConfig.scale_factor;
 
-    x = ( x * 64 ) / GameConfig . screen_width ;
-    y = ( y * 48 ) / GameConfig . screen_height ;
-
-    if ( ( x < 0 ) || ( y < 0 ) || ( x >= 64 ) || ( y >= 48 ) )
+	if ( ( x >=  0 ) && ( x < LightRadiusConfig.cells_w ) && ( y >= 0 ) && ( y < LightRadiusConfig.cells_h ) )
     {
+		return ( LIGHT_STRENGTH_CELL(x, y) );
+	}
+	else
+	{
 	//--------------------
 	// If a request reaches outside the prepared buffer, we use the
 	// nearest point, if we can get it easily, otherwise we'll use
 	// blackness by default.
-	//
 
-	if ( ( x >= 0 ) && ( x < 64 ) )
+		if ( ( x >= 0 ) && ( x < LightRadiusConfig.cells_w ) )
 	{
-	    if ( y >= 48 )
-		return ( light_strength_buffer [ x ] [ 47 ] );
-	    if ( y < 0 )
-		return ( light_strength_buffer [ x ] [ 0 ] );
+			if ( y >= LightRadiusConfig.cells_h ) return ( LIGHT_STRENGTH_CELL(x, LightRadiusConfig.cells_h - 1) );
+			else if ( y < 0 )                     return ( LIGHT_STRENGTH_CELL(x, 0) );
 	}
-	if ( ( y >= 0 ) && ( y < 48 ) )
+		else if ( ( y >= 0 ) && ( y < LightRadiusConfig.cells_h ) )
 	{
-	    if ( x >= 64 )
-		return ( light_strength_buffer [ 63 ] [ y ] );
-	    if ( x < 0 )
-		return ( light_strength_buffer [ 0 ] [ y ] );
+			if ( x >= LightRadiusConfig.cells_w ) return ( LIGHT_STRENGTH_CELL(LightRadiusConfig.cells_w - 1, y) );
+			else if ( x < 0 )                     return ( LIGHT_STRENGTH_CELL(0, y) );
 	}
+
 	return ( NUMBER_OF_SHADOW_IMAGES );
     }
 
-    return ( light_strength_buffer [ x ] [ y ] );
-    
 }; // int get_light_screen_strength ( moderately_finepoint target_pos )
 
 
@@ -501,11 +630,8 @@ char fpath[2048];
 	    
 	    target_rectangle . x = pos_x_grid [ our_width ] [ our_height ] ;
 	    target_rectangle . y = pos_y_grid [ our_width ] [ our_height ] ;
-	    light_strength = get_light_strength_screen ( target_rectangle . x, target_rectangle . y ) ;
+	    light_strength = get_light_strength_screen ( (uint32_t)target_rectangle . x, (uint32_t)target_rectangle . y ) ;
 	    
-	    if ( light_strength >= NUMBER_OF_SHADOW_IMAGES ) light_strength = NUMBER_OF_SHADOW_IMAGES -1 ;
-	    if ( light_strength <= 0 ) continue ;
-
 	    our_SDL_blit_surface_wrapper( light_radius_chunk [ light_strength ] . surface , NULL , Screen, &target_rectangle );
 	}
     }

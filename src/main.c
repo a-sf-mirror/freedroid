@@ -205,6 +205,9 @@ better than nothing.  Thanks anyway for your interest in FreedroidRPG.\n\
 	    
 	} // while !GameOver 
     } // while !QuitProgram 
+    
+    LightRadiusClean();
+    
     Terminate (0);
     return (0);
 }; // int main ( void )
