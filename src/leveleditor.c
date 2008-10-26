@@ -258,7 +258,7 @@ action_create_obstacle (Level EditLevel, double x, double y, int new_obstacle_ty
     }
     
     ErrorMessage ( __FUNCTION__  , "\
-Ran out of obstacle positions in target level!",
+	    Ran out of obstacle positions in target level!",
 			       PLEASE_INFORM , IS_FATAL );
     return ( NULL );
 }
@@ -312,7 +312,7 @@ action_remove_obstacle ( Level EditLevel, obstacle *our_obstacle)
     if ( obstacle_index == (-1) )
     {
 	ErrorMessage ( __FUNCTION__  , "\
-Unable to find the obstacle in question within the obstacle list!",
+		Unable to find the obstacle in question within the obstacle list!",
 				   PLEASE_INFORM , IS_FATAL );
     }
     
@@ -418,26 +418,26 @@ level_editor_action_toggle_waypoint_connection_user ()
     
     if ( i == EditLevel->num_waypoints )
     {
-	sprintf( VanishingMessage , "Sorry, don't know which waypoint you mean." );
+	sprintf( VanishingMessage , _("Sorry, don't know which waypoint you mean."));
 	VanishingMessageDisplayTime = 0;
     }
     else
     {
-	sprintf( VanishingMessage , "You specified waypoint nr. %d." , i );
+	sprintf( VanishingMessage , _("You specified waypoint nr. %d.") , i );
 	VanishingMessageDisplayTime = 0;
 	if ( OriginWaypoint== (-1) )
 	{
 	    OriginWaypoint = i;
 	    if (EditLevel->AllWaypoints[OriginWaypoint].num_connections < MAX_WP_CONNECTIONS)
 	    {
-		strcat ( VanishingMessage , "\nIt has been marked as the origin of the next connection." );
+		strcat ( VanishingMessage , _("\nIt has been marked as the origin of the next connection." ));
 		DebugPrintf (1, "\nWaypoint nr. %d. selected as origin\n", i);
 	    }
 	    else
 	    {
-		strcat ( VanishingMessage , "\nSORRY. NO MORE CONNECTIONS AVAILABLE FROM THERE." );
+		strcat ( VanishingMessage , _("\nSORRY. NO MORE CONNECTIONS AVAILABLE FROM THERE."));
 		strcat ( VanishingMessage, 
-			 va("\nSorry, maximal number of waypoint-connections (%d) reached!\n", MAX_WP_CONNECTIONS));
+			 va(_("\nSorry, maximal number of waypoint-connections (%d) reached!\n"), MAX_WP_CONNECTIONS));
 		DebugPrintf (0, "Operation not possible\n");
 		OriginWaypoint = (-1);
 	    }
@@ -446,16 +446,16 @@ level_editor_action_toggle_waypoint_connection_user ()
 	{
 	    if ( OriginWaypoint == i )
 	    {
-		strcat ( VanishingMessage , "\n\nOrigin==Target --> Connection Operation cancelled.");
+		strcat ( VanishingMessage , _("\n\nOrigin==Target --> Connection Operation cancelled."));
 		OriginWaypoint = (-1);
 	    }
 	    else
 	    {
-		sprintf( VanishingMessage , "\n\nOrigin: %d Target: %d. Operation makes sense.", OriginWaypoint , i );
+		sprintf( VanishingMessage , _("\n\nOrigin: %d Target: %d. Operation makes sense."), OriginWaypoint , i );
 		if (action_toggle_waypoint_connection ( EditLevel, OriginWaypoint, i ) < 0) {
-		    strcat ( VanishingMessage , "\nOperation done, connection removed." );
+		    strcat ( VanishingMessage , _("\nOperation done, connection removed." ));
 		} else {
-		    strcat ( VanishingMessage , "\nOperation done, connection added." );
+		    strcat ( VanishingMessage , _("\nOperation done, connection added." ));
 		}
 		OriginWaypoint = (-1);
 	    }
@@ -621,7 +621,7 @@ void action_change_obstacle_label_user ( Level EditLevel, obstacle *our_obstacle
     if ( predefined_name == NULL )
     {
 	name = 
-	    GetEditableStringInPopupWindow ( 1000 , "\nPlease enter name for this obstacle: \n\n" ,
+	    GetEditableStringInPopupWindow ( 1000 , _("\nPlease enter name for this obstacle: \n\n") ,
 					     cur_idx != -1 ? EditLevel -> obstacle_name_list [ cur_idx ] : "");
     }
     else
@@ -643,7 +643,7 @@ action_change_map_label ( Level EditLevel, int i, char *name)
 		    if ( ! strcmp ( name , EditLevel -> labels [ check_double ] . label_name ) )
 			{
 			    ErrorMessage ( __FUNCTION__  , "\
-The label just entered did already exist on this map!  Deleting old entry in favour of the new one!",
+				    The label just entered did already exist on this map!  Deleting old entry in favour of the new one!",
 					   PLEASE_INFORM , IS_WARNING_ONLY );
 			    i = check_double ;
 			    break;
@@ -659,7 +659,7 @@ The label just entered did already exist on this map!  Deleting old entry in fav
 	EditLevel -> labels [ i ] . pos . x = rintf( Me.pos.x - 0.5 );
 	EditLevel -> labels [ i ] . pos . y = rintf( Me.pos.y - 0.5 );
     } else {
-	EditLevel -> labels [ i ] . label_name = "NoLabelHere" ;
+	EditLevel -> labels [ i ] . label_name = ("NoLabelHere") ;
 	EditLevel -> labels [ i ] . pos . x = (-1) ;
 	EditLevel -> labels [ i ] . pos . y = (-1) ;
     }
@@ -686,8 +686,8 @@ void level_editor_action_change_map_label_user ()
     if ( i >= MAX_MAP_LABELS_PER_LEVEL ) 
     {
 	NewCommentOnThisSquare = 
-	    GetEditableStringInPopupWindow ( 1000 , "\nNo existing map label entry for this position found...\n Please enter new label for this map position: \n\n" ,
-					     "" );
+	    GetEditableStringInPopupWindow ( 1000 , _("\nNo existing map label entry for this position found...\n Please enter new label for this map position: \n\n") ,
+					     "");
 	
 	i=0;
 	for ( i = 0 ; i < MAX_MAP_LABELS_PER_LEVEL ; i ++ )
@@ -697,19 +697,19 @@ void level_editor_action_change_map_label_user ()
 	}
 	if ( i >= MAX_MAP_LABELS_PER_LEVEL )
 	{
-	    DisplayText ( "\nNo more free map label entry found... using first on instead ...\n" , -1 , -1 , &User_Rect , 1.0 );
+	    DisplayText ( _("\nNo more free map label entry found... using first on instead ...\n") , -1 , -1 , &User_Rect , 1.0 );
 	    i = 0;
 	}
 	else
 	{
-	    DisplayText ( "\nUsing new map label list entry...\n" , -1 , -1 , &User_Rect , 1.0 );
+	    DisplayText ( _("\nUsing new map label list entry...\n") , -1 , -1 , &User_Rect , 1.0 );
 	}
 	// Terminate( ERR );
     }
     else
     {
 	NewCommentOnThisSquare = 
-	    GetEditableStringInPopupWindow ( 1000 , "\nOverwriting existing map label list entry...\n Please enter new label for this map position: \n\n" ,
+	    GetEditableStringInPopupWindow ( 1000 , _("\nOverwriting existing map label list entry...\n Please enter new label for this map position: \n\n") ,
 					     EditLevel -> labels [ i ] . label_name );
     }
     action_change_map_label ( EditLevel, i, NewCommentOnThisSquare);
@@ -1329,7 +1329,7 @@ create_new_obstacle_on_level ( Level EditLevel , int our_obstacle_type , float p
   if ( free_index < 0 )
     {
       ErrorMessage ( __FUNCTION__  , "\
-Ran out of obstacles!   Too bad!  Raise max obstacles constant!" , 
+	      Ran out of obstacles!   Too bad!  Raise max obstacles constant!" , 
 				 PLEASE_INFORM , IS_FATAL );
     }
 
@@ -1707,7 +1707,7 @@ ItemDropFromLevelEditor( void )
 	else
 	{
 	    PutStringFont ( Screen , FPS_Display_BFont , 300 * GameConfig . screen_width / 640 , 370 * GameConfig . screen_height / 480, 
-			    "NO PREFIX" ) ;
+			    _("NO PREFIX" )) ;
 	}
 
 	if ( previous_suffix_selected != (-1) )
@@ -1718,7 +1718,7 @@ ItemDropFromLevelEditor( void )
 	else
 	{
 	    PutStringFont ( Screen , FPS_Display_BFont , 300 * GameConfig . screen_width / 640 , 410 * GameConfig . screen_height / 480 , 
-			    "NO SUFFIX" ) ;
+			    _("NO SUFFIX" )) ;
 	}
 	
 	our_SDL_flip_wrapper();
@@ -1885,10 +1885,10 @@ update_number_of_walls ( void )
 			wall_indices [ group_index ] [ inside_index ] = (-1);
 		    break;
 		case LEVEL_EDITOR_SELECTION_QUICK:
-		    break;
-		default:
+ 		    break;
+ 		default:
 		    ErrorMessage ( __FUNCTION__  , "\
-Unhandled level editor edit mode received.",
+			    		       Unhandled level editor edit mode received.",
 					       PLEASE_INFORM , IS_FATAL );
 		    break;
 	    }
@@ -2619,22 +2619,22 @@ EditLevelDimensions ( void )
 
       InitiateMenu( -1 );
       
-      MenuTexts[ 0 ] = "Insert/Remove column to the very west" ;
-      MenuTexts[ 1 ] = "Insert/Remove column just east of western Interface" ;
-      MenuTexts[ 2 ] = "Insert/Remove column just west of eastern Interface" ;
-      MenuTexts[ 3 ] = "Insert/Remove column to the very east" ;
+      MenuTexts[ 0 ] = _("Insert/Remove column to the very west") ;
+      MenuTexts[ 1 ] = _("Insert/Remove column just east of western Interface") ;
+      MenuTexts[ 2 ] = _("Insert/Remove column just west of eastern Interface") ;
+      MenuTexts[ 3 ] = _("Insert/Remove column to the very east") ;
 
-      MenuTexts[ 4 ] = "Insert/Remove line to the very north" ;
-      MenuTexts[ 5 ] = "Insert/Remove line just south of northern Interface" ;
-      MenuTexts[ 6 ] = "Insert/Remove line just north of southern Interface" ;
-      MenuTexts[ 7 ] = "Insert/Remove line to the very south" ;
+      MenuTexts[ 4 ] = _("Insert/Remove line to the very north") ;
+      MenuTexts[ 5 ] = _("Insert/Remove line just south of northern Interface") ;
+      MenuTexts[ 6 ] = _("Insert/Remove line just north of southern Interface") ;
+      MenuTexts[ 7 ] = _("Insert/Remove line to the very south") ;
       
-      sprintf( Options [ 0 ] , "Current level size in X: %d." , EditLevel->xlen );
+      sprintf( Options [ 0 ] , _("Current level size in X: %d.") , EditLevel->xlen );
       MenuTexts[ 8 ] = Options [ 0 ];
-      sprintf( Options [ 1 ] , "Current level size in Y: %d." , EditLevel->ylen  );
+      sprintf( Options [ 1 ] , _("Current level size in Y: %d.") , EditLevel->ylen  );
       MenuTexts[ 9 ] = Options [ 1 ] ;
 
-      MenuTexts[ 10 ] = "Back To Level Editor Main Menu" ;
+      MenuTexts[ 10 ] = _("Back To Level Editor Main Menu") ;
       MenuTexts[ 11 ] = "" ;
       
       MenuPosition = DoMenuSelection( "" , MenuTexts , -1 , -1 , FPS_Display_BFont );
@@ -2804,27 +2804,27 @@ DoLevelEditorMainMenu ( Level EditLevel )
 	InitiateMenu( -1 );
 	
 	i = 0 ;
-	MenuTexts[ i ] = "SAVE EVERYTHING" ; i++;
-	sprintf( Options [ 0 ] , "Current: %d.  Level Up/Down" , EditLevel->levelnum );
+	MenuTexts[ i ] = _("SAVE EVERYTHING") ; i++;
+	sprintf( Options [ 0 ] , _("Current: %d.  Level Up/Down") , EditLevel->levelnum );
 	MenuTexts[ i ] = Options [ 0 ]; i++;
-	sprintf( Options [ 1 ] , "Light radius bonus: %d" , EditLevel -> light_radius_bonus );
+	sprintf( Options [ 1 ] , _("Light radius bonus: %d") , EditLevel -> light_radius_bonus );
 	MenuTexts[ i ] = Options [ 1 ]; i++;
-	sprintf( Options [ 6 ] , "Minimal light value: %d" , EditLevel -> minimum_light_value );
+	sprintf( Options [ 6 ] , _("Minimal light value: %d") , EditLevel -> minimum_light_value );
 	MenuTexts[ i ] = Options [ 6 ]; i++;
-	sprintf( Options [ 2 ] , "Infinite running on this level: " );
-	if ( EditLevel -> infinite_running_on_this_level ) strcat ( Options [ 2 ] , "YES" ) ;
-	else ( strcat ( Options [ 2 ] , "NO" ) ) ;
+	sprintf( Options [ 2 ] , _("Infinite running on this level: " ));
+	if ( EditLevel -> infinite_running_on_this_level ) strcat ( Options [ 2 ] , _("YES"));
+	else ( strcat ( Options [ 2 ] , _("NO")));
 	MenuTexts[ i ] = Options [ 2 ]; i++;
-	sprintf( Options [ 3 ] , "Level name: %s" , EditLevel->Levelname );
+	sprintf( Options [ 3 ] , _("Level name: %s") , EditLevel->Levelname );
 	MenuTexts[ i ] = Options [ 3 ] ; i++;
-	sprintf( Options [ 4 ] , "Background music file name: %s" , EditLevel->Background_Song_Name );
+	sprintf( Options [ 4 ] , _("Background music file name: %s") , EditLevel->Background_Song_Name );
 	MenuTexts[ i ] = Options [ 4 ] ; i++;
-	sprintf( Options [ 5 ] , "Set Level Comment: %s" , EditLevel->Level_Enter_Comment );
+	sprintf( Options [ 5 ] , _("Set Level Comment: %s") , EditLevel->Level_Enter_Comment );
 	MenuTexts[ i ] = Options [ 5 ] ; i++;
-	MenuTexts[ i ] = "Add completely new level" ; i++;
-	MenuTexts[ i ] = "Set Level Interfaces" ; i++;
-	MenuTexts[ i ] = "Edit Level Dimensions" ; i++;
-	MenuTexts[ i ] = "Quit Level Editor" ; i++;
+	MenuTexts[ i ] = _("Add completely new level") ; i++;
+	MenuTexts[ i ] = _("Set Level Interfaces") ; i++;
+	MenuTexts[ i ] = _("Edit Level Dimensions") ; i++;
+	MenuTexts[ i ] = _("Quit Level Editor") ; i++;
 	MenuTexts[ i ] = "" ; i++;
 
 	while ( EscapePressed() ) SDL_Delay(1);
@@ -2846,7 +2846,7 @@ DoLevelEditorMainMenu ( Level EditLevel )
 		char fp[2048];
 		find_file("freedroid.levels", MAP_DIR, fp, 0);
 		SaveShip(fp);
-		CenteredPutString ( Screen ,  11*FontHeight(Menu_BFont),    "Your ship was saved...");
+		CenteredPutString ( Screen ,  11*FontHeight(Menu_BFont),    _("Your ship was saved..."));
 		our_SDL_flip_wrapper();
 		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
 		// proceed_now=!proceed_now;
@@ -2864,21 +2864,21 @@ DoLevelEditorMainMenu ( Level EditLevel )
 	    case SET_LEVEL_NAME:
 		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
 		EditLevel->Levelname = 
-		    GetEditableStringInPopupWindow ( 1000 , "\n Please enter new level name: \n\n" ,
+		    GetEditableStringInPopupWindow ( 1000 , _("\n Please enter new level name: \n\n") ,
 						     EditLevel->Levelname );
 		proceed_now=!proceed_now;
 		break;
 	    case SET_BACKGROUND_SONG_NAME:
 		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
 		EditLevel->Background_Song_Name = 
-		    GetEditableStringInPopupWindow ( 1000 , "\n Please enter new music file name: \n\n" ,
+		    GetEditableStringInPopupWindow ( 1000 , _("\n Please enter new music file name: \n\n") ,
 						     EditLevel->Background_Song_Name );
 		proceed_now=!proceed_now;
 		break;
 	    case SET_LEVEL_COMMENT:
 		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
 		EditLevel->Level_Enter_Comment = 
-		    GetEditableStringInPopupWindow ( 1000 , "\n Please enter new level comment: \n\n" ,
+		    GetEditableStringInPopupWindow ( 1000 , _("\n Please enter new level comment: \n\n") ,
 						     EditLevel->Level_Enter_Comment );
 		proceed_now=!proceed_now;
 		break;
@@ -3017,7 +3017,7 @@ ReportInconsistenciesForLevel ( int LevelNum )
     
     AssembleCombatPicture ( ONLY_SHOW_MAP_AND_TEXT | SHOW_GRID | SKIP_LIGHT_RADIUS );
     
-    DisplayText ( "\nThe list of inconsistencies of the jump interfaces for this level:\n\n" ,
+    DisplayText ( _("\nThe list of inconsistencies of the jump interfaces for this level:\n\n") ,
 		  ReportRect.x, ReportRect.y + FontHeight ( GetCurrentFont () ) , &ReportRect , 1.0 );
     
     //--------------------
@@ -3029,7 +3029,7 @@ ReportInconsistenciesForLevel ( int LevelNum )
 	TargetLevel = curShip.AllLevels [ LevelNum ] -> jump_target_north ;
 	if ( curShip.AllLevels [ TargetLevel ] -> jump_target_south != LevelNum )
 	{
-	    DisplayText ( "BACK-FORTH-MISMATCH: North doesn't lead back here (yet)!\n" ,
+	    DisplayText ( _("BACK-FORTH-MISMATCH: North doesn't lead back here (yet)!\n") ,
 			  -1 , -1 , &ReportRect , 1.0 );
 	}
     }
@@ -3038,7 +3038,7 @@ ReportInconsistenciesForLevel ( int LevelNum )
 	TargetLevel = curShip.AllLevels [ LevelNum ] -> jump_target_south ;
 	if ( curShip.AllLevels [ TargetLevel ] -> jump_target_north != LevelNum )
 	{
-	    DisplayText ( "BACK-FORTH-MISMATCH: South doesn't lead back here (yet)!\n" ,
+	    DisplayText ( _("BACK-FORTH-MISMATCH: South doesn't lead back here (yet)!\n") ,
 			  -1 , -1 , &ReportRect , 1.0 );
 	}
     }
@@ -3047,7 +3047,7 @@ ReportInconsistenciesForLevel ( int LevelNum )
 	TargetLevel = curShip.AllLevels [ LevelNum ] -> jump_target_east ;
 	if ( curShip.AllLevels [ TargetLevel ] -> jump_target_west != LevelNum )
 	{
-	    DisplayText ( "BACK-FORTH-MISMATCH: East doesn't lead back here (yet)!\n" ,
+	    DisplayText ( _("BACK-FORTH-MISMATCH: East doesn't lead back here (yet)!\n") ,
 			  -1 , -1 , &ReportRect , 1.0 );
 	}
     }
@@ -3056,11 +3056,11 @@ ReportInconsistenciesForLevel ( int LevelNum )
 	TargetLevel = curShip.AllLevels [ LevelNum ] -> jump_target_west ;
 	if ( curShip.AllLevels [ TargetLevel ] -> jump_target_east != LevelNum )
 	{
-	    DisplayText ( "BACK-FORTH-MISMATCH: West doesn't lead back here (yet)!\n" ,
+	    DisplayText ( _("BACK-FORTH-MISMATCH: West doesn't lead back here (yet)!\n") ,
 			  -1 , -1 , &ReportRect , 1.0 );
 	}
     }
-    DisplayText ( "\nNO OTHER BACK-FORTH-MISMATCH ERRORS other than those listed above\n\n" ,
+    DisplayText ( _("\nNO OTHER BACK-FORTH-MISMATCH ERRORS other than those listed above\n\n") ,
 		  -1 , -1 , &ReportRect , 1.0 );
     
     //--------------------
@@ -3073,7 +3073,7 @@ ReportInconsistenciesForLevel ( int LevelNum )
 	if ( curShip.AllLevels [ TargetLevel ] -> jump_threshold_south != 
 	     curShip.AllLevels [ LevelNum ] -> jump_threshold_north )
 	{
-	    DisplayText ( "INTERFACE SIZE MISMATCH: North doesn't lead so same-sized interface level!!!\n" ,
+	    DisplayText ( _("INTERFACE SIZE MISMATCH: North doesn't lead so same-sized interface level!!!\n") ,
 			  -1 , -1 , &ReportRect , 1.0 );
 	}
     }
@@ -3083,7 +3083,7 @@ ReportInconsistenciesForLevel ( int LevelNum )
 	if ( curShip.AllLevels [ TargetLevel ] -> jump_threshold_north != 
 	     curShip.AllLevels [ LevelNum ] -> jump_threshold_south )
 	{
-	    DisplayText ( "INTERFACE SIZE MISMATCH: South doesn't lead so same-sized interface level!!!\n" ,
+	    DisplayText ( _("INTERFACE SIZE MISMATCH: South doesn't lead so same-sized interface level!!!\n") ,
 			  -1 , -1 , &ReportRect , 1.0 );
 	}
     }
@@ -3093,7 +3093,7 @@ ReportInconsistenciesForLevel ( int LevelNum )
 	if ( curShip.AllLevels [ TargetLevel ] -> jump_threshold_west != 
 	     curShip.AllLevels [ LevelNum ] -> jump_threshold_east )
 	{
-	    DisplayText ( "INTERFACE SIZE MISMATCH: East doesn't lead so same-sized interface level!!!\n" ,
+	    DisplayText ( _("INTERFACE SIZE MISMATCH: East doesn't lead so same-sized interface level!!!\n") ,
 			  -1 , -1 , &ReportRect , 1.0 );
 	}
     }
@@ -3103,7 +3103,7 @@ ReportInconsistenciesForLevel ( int LevelNum )
 	if ( curShip.AllLevels [ TargetLevel ] -> jump_threshold_east != 
 	     curShip.AllLevels [ LevelNum ] -> jump_threshold_west )
 	{
-	    DisplayText ( "INTERFACE SIZE MISMATCH: West doesn't lead so same-sized interface level!!!\n" ,
+	    DisplayText ( _("INTERFACE SIZE MISMATCH: West doesn't lead so same-sized interface level!!!\n") ,
 			  -1 , -1 , &ReportRect , 1.0 );
 	}
     }
@@ -3117,7 +3117,7 @@ ReportInconsistenciesForLevel ( int LevelNum )
 	TargetLevel = curShip.AllLevels [ LevelNum ] -> jump_target_north ;
 	if ( curShip.AllLevels [ TargetLevel ] -> xlen != curShip.AllLevels [ LevelNum ] -> xlen )
 	{
-	    DisplayText ( "LEVEL DIMENSION MISMATCH: North doesn't lead so same-sized level (non-fatal, but no good comes from this)!\n" ,
+	    DisplayText ( _("LEVEL DIMENSION MISMATCH: North doesn't lead so same-sized level (non-fatal, but no good comes from this)!\n") ,
 			  -1 , -1 , &ReportRect , 1.0 );
 	}
     }
@@ -3126,7 +3126,7 @@ ReportInconsistenciesForLevel ( int LevelNum )
 	TargetLevel = curShip.AllLevels [ LevelNum ] -> jump_target_south ;
 	if ( curShip.AllLevels [ TargetLevel ] -> xlen != curShip.AllLevels [ LevelNum ] -> xlen )
 	{
-	    DisplayText ( "LEVEL DIMENSION MISMATCH: South doesn't lead so same-sized level (non-fatal, but no good comes from this)!\n" ,
+	    DisplayText ( _("LEVEL DIMENSION MISMATCH: South doesn't lead so same-sized level (non-fatal, but no good comes from this)!\n") ,
 			  -1 , -1 , &ReportRect , 1.0 );
 	}
     }
@@ -3135,7 +3135,7 @@ ReportInconsistenciesForLevel ( int LevelNum )
 	TargetLevel = curShip.AllLevels [ LevelNum ] -> jump_target_east ;
 	if ( curShip.AllLevels [ TargetLevel ] -> ylen != curShip.AllLevels [ LevelNum ] -> ylen )
 	{
-	    DisplayText ( "LEVEL DIMENSION MISMATCH: East doesn't lead so same-sized level (non-fatal, but no good comes from this)!\n" ,
+	    DisplayText ( _("LEVEL DIMENSION MISMATCH: East doesn't lead so same-sized level (non-fatal, but no good comes from this)!\n") ,
 			  -1 , -1 , &ReportRect , 1.0 );
 	}
     }
@@ -3144,7 +3144,7 @@ ReportInconsistenciesForLevel ( int LevelNum )
 	TargetLevel = curShip.AllLevels [ LevelNum ] -> jump_target_west ;
 	if ( curShip.AllLevels [ TargetLevel ] -> ylen != curShip.AllLevels [ LevelNum ] -> ylen )
 	{
-	    DisplayText ( "LEVEL DIMENSION MISMATCH: West doesn't lead so same-sized level (non-fatal, but no good comes from this)!\n" ,
+	    DisplayText ( _("LEVEL DIMENSION MISMATCH: West doesn't lead so same-sized level (non-fatal, but no good comes from this)!\n") ,
 			  -1 , -1 , &ReportRect , 1.0 );
 	}
     }
@@ -3152,7 +3152,7 @@ ReportInconsistenciesForLevel ( int LevelNum )
     //--------------------
     // This was it.  We can say so and return.
     //
-    DisplayText ( "\n\n--- End of List --- Press Space to return to menu ---\n" ,
+    DisplayText ( _("\n\n--- End of List --- Press Space to return to menu ---\n") ,
 		  -1 , -1 , &ReportRect , 1.0 );
     
     our_SDL_flip_wrapper();
@@ -3522,25 +3522,25 @@ SetLevelInterfaces ( void )
     {
 	EditLevel = curShip.AllLevels [ Me . pos . z ] ;
 	InitiateMenu( -1 );
-	sprintf( Options [ 0 ] , "Jump threshold north: %d.  Up/Down" , EditLevel->jump_threshold_north );
+	sprintf( Options [ 0 ] , _("Jump threshold north: %d.  Up/Down") , EditLevel->jump_threshold_north );
 	MenuTexts [ 0 ] = Options [ 0 ] ;
-	sprintf( Options [ 1 ] , "Jump threshold south: %d.  Up/Down" , EditLevel->jump_threshold_south );
+	sprintf( Options [ 1 ] , _("Jump threshold south: %d.  Up/Down") , EditLevel->jump_threshold_south );
 	MenuTexts [ 1 ] = Options [ 1 ] ;
-	sprintf( Options [ 2 ] , "Jump threshold east: %d.  Up/Down" , EditLevel->jump_threshold_east );
+	sprintf( Options [ 2 ] , _("Jump threshold east: %d.  Up/Down") , EditLevel->jump_threshold_east );
 	MenuTexts [ 2 ] = Options [ 2 ] ;
-	sprintf( Options [ 3 ] , "Jump threshold west: %d.  Up/Down" , EditLevel->jump_threshold_west );
+	sprintf( Options [ 3 ] , _("Jump threshold west: %d.  Up/Down") , EditLevel->jump_threshold_west );
 	MenuTexts [ 3 ] = Options [ 3 ] ;
-	sprintf( Options [ 4 ] , "Jump target north: %d.  Up/Down" , EditLevel->jump_target_north );
+	sprintf( Options [ 4 ] , _("Jump target north: %d.  Up/Down") , EditLevel->jump_target_north );
 	MenuTexts [ 4 ] = Options [ 4 ] ;
-	sprintf( Options [ 5 ] , "Jump target south: %d.  Up/Down" , EditLevel->jump_target_south );
+	sprintf( Options [ 5 ] , _("Jump target south: %d.  Up/Down") , EditLevel->jump_target_south );
 	MenuTexts [ 5 ] = Options [ 5 ] ;
-	sprintf( Options [ 6 ] , "Jump target east: %d.  Up/Down" , EditLevel->jump_target_east );
+	sprintf( Options [ 6 ] , _("Jump target east: %d.  Up/Down") , EditLevel->jump_target_east );
 	MenuTexts [ 6 ] = Options [ 6 ] ;
-	sprintf( Options [ 7 ] , "Jump target west: %d.  Up/Down" , EditLevel->jump_target_west );
+	sprintf( Options [ 7 ] , _("Jump target west: %d.  Up/Down") , EditLevel->jump_target_west );
 	MenuTexts [ 7 ] = Options [ 7 ] ;
-	MenuTexts [ 8 ] = "Export this level to other target levels" ;
-	MenuTexts [ 9 ] = "Report interface inconsistencies";
-	MenuTexts [ 10 ] = "Quit Threshold Editor" ;
+	MenuTexts [ 8 ] = _("Export this level to other target levels") ;
+	MenuTexts [ 9 ] = _("Report interface inconsistencies");
+	MenuTexts [ 10 ] = _("Quit Threshold Editor") ;
 	MenuTexts [ 11 ] = "" ;
 	
 	MenuPosition = DoMenuSelection( "" , MenuTexts , -1 , -1 , FPS_Display_BFont );
@@ -3901,7 +3901,7 @@ Highlight_Current_Block (int mask)
       if (level_editor_cursor.surface == NULL)
 	{
           ErrorMessage (__FUNCTION__, "\
-Unable to load the level editor floor cursor.", PLEASE_INFORM, IS_FATAL);
+		  Unable to load the level editor floor cursor.", PLEASE_INFORM, IS_FATAL);
 	}
       if (use_open_gl)
         make_texture_out_of_surface (&level_editor_cursor);
@@ -3958,7 +3958,7 @@ draw_connection_between_tiles ( float x1 , float y1 , float x2 , float y2 , int 
 	if ( level_editor_dot_cursor . surface == NULL )
 	{
 	    ErrorMessage ( __FUNCTION__  , "\
-Unable to load the level editor waypoint dot cursor.",
+		    Unable to load the level editor waypoint dot cursor.",
 				       PLEASE_INFORM, IS_FATAL );
 	}
 	
@@ -4044,7 +4044,7 @@ ShowWaypoints( int PrintConnectionList , int mask )
 	    if ( level_editor_waypoint_cursor [ i ] . surface == NULL )
 	    {
 		ErrorMessage ( __FUNCTION__  , "\
-Unable to load the level editor waypoint cursor.",
+		        Unable to load the level editor waypoint cursor.",
 					   PLEASE_INFORM, IS_FATAL );
 	    }
 	    
@@ -4091,7 +4091,7 @@ Unable to load the level editor waypoint cursor.",
 	//
 	if ( PrintConnectionList )
 	{
-	    strcpy( ConnectionText , "List of connection for this wp:\n" );
+	    strcpy( ConnectionText , _("List of connection for this wp:\n" ));
 	}
 	
 	for ( i=0; i < this_wp->num_connections; i++ )
@@ -4113,7 +4113,7 @@ Unable to load the level editor waypoint cursor.",
 		    if ( PrintConnectionList )
 		    {
 			SDL_UnlockSurface( Screen );
-			sprintf ( TextAddition , "To: X=%d Y=%d    " , 
+			sprintf ( TextAddition , _("To: X=%d Y=%d    ") , 
 				  EditLevel->AllWaypoints[this_wp->connections[i]].x , 
 				  EditLevel->AllWaypoints[this_wp->connections[i]].y);
 			strcat ( ConnectionText , TextAddition );
@@ -4309,7 +4309,7 @@ HandleLevelEditorCursorKeys ( leveleditor_state *cur_state )
 		{
 		obstacle_map[level_editor_marked_obstacle->type] . image . offset_y += 1;
 		}
-	    printf("Offset x %hd y %hd\n", obstacle_map[level_editor_marked_obstacle->type] . image . offset_x, obstacle_map[level_editor_marked_obstacle->type] . image . offset_y);
+	    printf(_("Offset x %hd y %hd\n"), obstacle_map[level_editor_marked_obstacle->type] . image . offset_x, obstacle_map[level_editor_marked_obstacle->type] . image . offset_y);
 #endif
 	}
 	else if ( MPressed() )
@@ -4638,7 +4638,7 @@ give_new_description_to_obstacle ( Level EditLevel , obstacle* our_obstacle , ch
 	if ( free_index < 0 ) 
 	{
 	    ErrorMessage ( __FUNCTION__  , "\
-Ran out of obstacle description positions on this map level!",
+		    Ran out of obstacle description positions on this map level!",
 				       PLEASE_INFORM , IS_WARNING_ONLY );
 	    return;
 	}
@@ -4655,8 +4655,8 @@ Ran out of obstacle description positions on this map level!",
     if ( predefined_description == NULL )
     {
 	EditLevel -> obstacle_description_list [ free_index ] = 
-	    GetEditableStringInPopupWindow ( 1000 , "\n\
-Please enter new description text for this obstacle: \n\n" ,
+	    GetEditableStringInPopupWindow ( 1000 , _("\n\
+Please enter new description text for this obstacle: \n\n") ,
 					     EditLevel -> obstacle_description_list [ free_index ] );
     }
     else
@@ -5000,10 +5000,10 @@ int level_editor_handle_left_mouse_button ( int proceed_now, leveleditor_state *
 	    find_file("freedroid.levels", MAP_DIR, fp, 0);
 	    SaveShip(fp);
 
-	    // CenteredPutString ( Screen ,  11*FontHeight(Menu_BFont),    "Your ship was saved...");
+	    // CenteredPutString ( Screen ,  11*FontHeight(Menu_BFont),    _("Your ship was saved..."));
 	    // our_SDL_flip_wrapper();
 
-	    GiveMouseAlertWindow ( "\nM E S S A G E\n\nYour ship was saved to file 'freedroid.levels' in the map directory.\n\nIf you have set up something cool and you wish to contribute it to FreedroidRPG, please contact the FreedroidRPG dev team." ) ;
+	    GiveMouseAlertWindow ( _("\nM E S S A G E\n\nYour ship was saved to file 'freedroid.levels' in the map directory.\n\nIf you have set up something cool and you wish to contribute it to FreedroidRPG, please contact the FreedroidRPG dev team." )) ;
 
 	}
 	else if ( GameConfig . zoom_is_on && MouseCursorIsOnButton ( LEVEL_EDITOR_ZOOM_IN_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
@@ -5615,15 +5615,15 @@ void LevelEditor(void)
 		while (SPressed());
 		SetCurrentFont( FPS_Display_BFont );
 		NewCommentOnThisSquare = 
-		    GetEditableStringInPopupWindow ( 1000 , "\n Please enter new statement for this tile: \n\n" ,
-						     "" );
+		    GetEditableStringInPopupWindow ( 1000 , _("\n Please enter new statement for this tile: \n\n") ,
+						     "");
 		for ( i = 0 ; i < MAX_STATEMENTS_PER_LEVEL ; i ++ )
 		{
 		    if ( EditLevel->StatementList[ i ].x == (-1) ) break;
 		}
 		if ( i == MAX_STATEMENTS_PER_LEVEL ) 
 		{
-		    DisplayText ( "\nNo more free comment position.  Using first. " , -1 , -1 , &User_Rect , 1.0 );
+		    DisplayText ( _("\nNo more free comment position.  Using first. ") , -1 , -1 , &User_Rect , 1.0 );
 		    i=0;
 		    our_SDL_flip_wrapper();
 		    getchar_raw();
