@@ -764,10 +764,10 @@ found in this option of the dialogue, which is fine.", NumberOfReplySamples );
 	for ( j = 0 ; j < NumberOfReplySamples ; j ++ )
 	{
 	    ChatRoster[ OptionIndex ] . reply_subtitle_list [ j ] =
-		ReadAndMallocStringFromData ( ReplyPointer , "Subtitle=_\"" , "\"" ) ;
+		ReadAndMallocStringFromData ( ReplyPointer , NEW_REPLY_SUBTITLE_STRING, "\"" ) ;
 	    DebugPrintf( CHAT_DEBUG_LEVEL , "\nReplySubtitle found : \"%s\"." , ChatRoster[ OptionIndex ] . reply_subtitle_list [ j ] );
 	    ChatRoster[ OptionIndex ] . reply_sample_list [ j ] =
-		ReadAndMallocStringFromData ( ReplyPointer , "ReplySample=\"" , "\"" ) ;
+		ReadAndMallocStringFromData ( ReplyPointer , NEW_REPLY_SAMPLE_STRING, "\"" ) ;
 	    DebugPrintf( CHAT_DEBUG_LEVEL , "\nReplySample found : \"%s\"." , ChatRoster[ OptionIndex ] . reply_sample_list [ j ] );
 	    
 	    //--------------------
