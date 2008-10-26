@@ -208,6 +208,11 @@ Takeover ( enemy * target )
 	our_SDL_flip_wrapper();
 
 	while(SDL_PollEvent(&event)) {
+
+	    if (event.type == SDL_QUIT) {
+		Terminate(0);
+	    }
+
 	    if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT) {
 		if ( MouseCursorIsOnButton( UP_BUTTON , GetMousePos_x()  , GetMousePos_y()  ))
 		    {
@@ -417,6 +422,10 @@ ChooseColor (void)
 	prev_count_tick += count_tick_len; // set for next tick 
 	
 	while (SDL_PollEvent(&event)) {
+
+	    if (event.type == SDL_QUIT) {
+		Terminate(0);
+	    }
 	    
 	    if (event.type == SDL_MOUSEBUTTONDOWN) {
 		switch(event.button.button) {

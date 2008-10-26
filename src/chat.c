@@ -1299,8 +1299,9 @@ wait_click_and_out:
 	switch(event.type) {
 	    case SDL_KEYDOWN:
 	    case SDL_MOUSEBUTTONDOWN:
-	    case SDL_QUIT:
 		return;
+	    case SDL_QUIT:
+		Terminate(0);
 	}
     }
     

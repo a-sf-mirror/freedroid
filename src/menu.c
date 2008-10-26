@@ -350,6 +350,10 @@ DoMenuSelection( char* InitialText , char **MenuTexts, int FirstItem , int backg
 
 	if (SDL_PollEvent(&event)) {
 
+	    if (event.type == SDL_QUIT) {
+		Terminate(0);
+	    }
+
 	    //(clever?) hack : mouse wheel up and down behave
 	    //exactly like UP and DOWN arrow, so we mangle the event
 	    if (event.type == SDL_MOUSEBUTTONDOWN) {
@@ -773,6 +777,10 @@ ChatDoMenuSelection( char* MenuTexts[ MAX_ANSWERS_PER_PERSON ] ,
 
 	// Wait for something to happen
 	SDL_WaitEvent(&event);      
+
+	if (event.type == SDL_QUIT) {
+	    Terminate(0);
+	}
 	
 	//(clever?) hack : mouse wheel up and down behave
 	//exactly like UP and DOWN arrow or PAGEUP/PAGEDOWN, so we mangle the event

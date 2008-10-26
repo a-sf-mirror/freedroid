@@ -633,6 +633,11 @@ ERROR LOADING SELECTION KNOB IMAGE FILE!",
 	our_SDL_flip_wrapper();
 
 	SDL_WaitEvent(&event);
+
+	if (event.type == SDL_QUIT) {
+	    Terminate(0);
+	}
+
 	if (event.type == SDL_KEYDOWN) {
 	    if (event.key.keysym.sym == SDLK_RIGHT) {
 		if ( knob_end_x - knob_start_x - knob_offset_x > ((knob_end_x - knob_start_x) / (upper_range - lower_range)))

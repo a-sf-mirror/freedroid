@@ -366,6 +366,10 @@ void quest_browser_interface ( void )
 
 	SDL_WaitEvent(&event);
 
+	if (event.type == SDL_QUIT) {
+	    Terminate(0);
+	}
+
 	if (event.type == SDL_KEYDOWN) {
 
 	    if (event.key.keysym.sym == SDLK_ESCAPE || event.key.keysym.sym == SDLK_q) {

@@ -801,6 +801,11 @@ Pause ( void )
 
     while ( Pause ) {
 	SDL_WaitEvent(&event);
+
+	if (event.type == SDL_QUIT) {
+	    Terminate(0);
+	}
+
 	DisplayBanner ( );
 	AssembleCombatPicture ( USE_OWN_MOUSE_CURSOR );
 	if (!cheese)

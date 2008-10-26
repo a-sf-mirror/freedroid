@@ -299,6 +299,11 @@ void keychart()
 
     while (!done) {
 	while (SDL_PollEvent(&event)) {
+            
+	    if (event.type == SDL_QUIT) {
+		Terminate(0);
+	    }
+
 	    display_keychart(startpos, cursor, FALSE);
 
 	    if (event.type == SDL_KEYDOWN) {
@@ -553,6 +558,10 @@ int getchar_raw (void)
     while (1)
     {
 	SDL_WaitEvent (&event);    /* wait for next event */
+
+	if (event.type == SDL_QUIT) {
+	    Terminate(0);
+	}
 
 	if (event.type == SDL_KEYDOWN)
 	{
