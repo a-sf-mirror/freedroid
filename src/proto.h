@@ -752,7 +752,6 @@ EXTERN void EnterCodepanel (void);
 EXTERN void EnterConsole (void);
 EXTERN void AlleLevelsGleichFaerben (void);
 void ShowDroidInfo (int droidtype, int page , char ShowArrows );
-void PaintConsoleMenu (int menu_pos);
 EXTERN void write_full_item_name_into_string ( item* ShowItem , char* full_item_name ) ;
 
 // text.c 
