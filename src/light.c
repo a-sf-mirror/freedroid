@@ -108,7 +108,10 @@ LightRadiusInit()
 	// First: convert a universal unit into a screen height. 
 	// But because the UNIVERSAL_COORD macros currently works only for 4:3 screen,
 	// we take the real screen ration into account
-	float unit_screen_height = UNIVERSAL_COORD_H( ((float)GameConfig.screen_width/(float)GameConfig.screen_height) / (4.0/3.0) );
+	//
+	// We should use UNIVERSAL_COORD_H( (GameConfig.screen_width/GameConfig.screen_height) / (4.0/3.0) ),
+	// however it returns 0 instead of 1 for a 640x480 resolution, due to floating point approximations.
+	float unit_screen_height = ( ((float)GameConfig.screen_width/(float)GameConfig.screen_height) / (4.0/3.0) ) * ((float)(GameConfig . screen_height) / 480.0);
 	
 	// Second : transform Tux universal height into screen height
 	LightRadiusConfig.translate_y = (int)( UNIVERSAL_TUX_HEIGHT / unit_screen_height );
