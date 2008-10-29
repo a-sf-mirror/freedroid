@@ -47,14 +47,14 @@ static Keybind** input_keybinds; /**< contains the players keybindings */
 /* name of each keybinding */
 const char *keybindNames[] = {
     /* General */
-    "fullscreen", "keychart", "quit",
+    "fullscreen", "keychart", "quit", "wall_transparency", 
 
     /* Ingame */
     "inventory", "skill", "character", "quests",
     "reload", "autorun",
     "quicksave", "quickload", "pause",
     "automap",
-    "wall_transparency", "show_item_labels",
+    "show_item_labels",
     "activate_program0", "activate_program1", "activate_program2", "activate_program3",
     "activate_program4", "activate_program5", "activate_program6", "activate_program7",
     "quick_inventory0", "quick_inventory1", "quick_inventory2",
@@ -165,6 +165,7 @@ void input_set_default (void)
     input_set_keybind("fullscreen", SDLK_F2, KMOD_NONE);
     input_set_keybind("keychart", SDLK_F1, KMOD_NONE);
     input_set_keybind("quit", SDLK_q, KMOD_LCTRL);
+    input_set_keybind("wall_transparency", SDLK_t, KMOD_NONE);
 
     /* Game */
     input_set_keybind("inventory", SDLK_i, KMOD_NONE);
@@ -175,7 +176,6 @@ void input_set_default (void)
     input_set_keybind("autorun", SDLK_u, KMOD_NONE);
     input_set_keybind("quicksave", SDLK_F3, KMOD_NONE);
     input_set_keybind("quickload", SDLK_F4, KMOD_NONE);
-    input_set_keybind("wall_transparency", SDLK_t, KMOD_NONE);
     input_set_keybind("pause", SDLK_p, KMOD_NONE);
     input_set_keybind("show_item_labels", SDLK_z, KMOD_NONE);
     input_set_keybind("automap", SDLK_TAB, KMOD_NONE);
@@ -415,9 +415,6 @@ static int input_key( int keynum, int value)
 	} else if (KEYPRESS("quickload")) {
 	    LoadGame();
 	    return 0;
-	} else if (KEYPRESS("wall_transparency")) {
-	    GameConfig.transparency = ! GameConfig.transparency;
-	    return 0;
 	} else if (KEYPRESS("pause")) {
 	    Pause();
 	    return 0;
@@ -520,6 +517,9 @@ static int input_key( int keynum, int value)
 	GameConfig . fullscreen_on = ! GameConfig . fullscreen_on;
 #endif
 	return 0;
+    } else if (KEYPRESS("wall_transparency")) {
+	    GameConfig.transparency = ! GameConfig.transparency;
+	    return 0;
     } else if (KEYPRESS("quit")) {
 	Terminate(0);
 	return 0;
