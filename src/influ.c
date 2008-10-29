@@ -1328,7 +1328,7 @@ int move_tux_thowards_raw_position ( float x , float y )
  *
  */
 void
-streamline_intermediate_course ( enemy * droid, gps * curpos, moderately_finepoint * waypoints, int maxwp )
+streamline_intermediate_course ( enemy * droid, int check_if_free, gps * curpos, moderately_finepoint * waypoints, int maxwp )
 {
   int start_index ;
   int last_index = -10;
@@ -1374,7 +1374,7 @@ streamline_intermediate_course ( enemy * droid, gps * curpos, moderately_finepoi
 				               curpos->z,
 				               &FilterWalkable) )
 	    {
-	      if ( CheckIfWayIsFreeOfDroids ( FALSE, waypoints [ start_index ] . x ,
+	      if ( !check_if_free || CheckIfWayIsFreeOfDroids ( FALSE, waypoints [ start_index ] . x ,
 								waypoints [ start_index ] . y ,
 								waypoints [ scan_index ] . x ,
 								waypoints[ scan_index ] . y , 
@@ -1430,7 +1430,7 @@ streamline_intermediate_course ( enemy * droid, gps * curpos, moderately_finepoi
                            curpos->z, 
                            &FilterWalkable) )
     {
-      if ( CheckIfWayIsFreeOfDroids ( FALSE, curpos->x ,
+      if ( !check_if_free || CheckIfWayIsFreeOfDroids ( FALSE, curpos->x ,
 							curpos-> y ,
 						        waypoints [ 1 ] . x ,
 							waypoints [ 1 ] . y , 
@@ -1459,7 +1459,7 @@ streamline_intermediate_course ( enemy * droid, gps * curpos, moderately_finepoi
  *
  */
 int
-recursive_find_walkable_point ( enemy * droid, int levelnum, float x1 , float y1 , float x2 , float y2 , int recursion_depth, moderately_finepoint * waypoints, int * next_index_to_set_up, int maxwp ) 
+recursive_find_walkable_point ( enemy * droid, int check_if_free, int levelnum, float x1 , float y1 , float x2 , float y2 , int recursion_depth, moderately_finepoint * waypoints, int * next_index_to_set_up, int maxwp ) 
 {
     moderately_finepoint ordered_moves[4];
     int i;
@@ -1484,7 +1484,7 @@ recursive_find_walkable_point ( enemy * droid, int levelnum, float x1 , float y1
     // walkable target for the Tux.
     //
     if ( ( DirectLineColldet( x1, y1 , x2 , y2, levelnum, &FilterWalkable ) ) &&
-	    ( CheckIfWayIsFreeOfDroids ( FALSE, x1 , y1 , x2 , y2 , levelnum, droid ) ) ) 
+	    ( !check_if_free || CheckIfWayIsFreeOfDroids ( FALSE, x1 , y1 , x2 , y2 , levelnum, droid ) ) ) 
 	{
 	// if the target position is directly reachable
 	// then we are done !
@@ -1591,13 +1591,13 @@ recursive_find_walkable_point ( enemy * droid, int levelnum, float x1 , float y1
 	if ( ( recursion_grid [ (int) ( centered_x ) ] [ (int) ( centered_y ) ] == TILE_IS_UNPROCESSED ) &&
 	     ( DirectLineColldet( x1, y1, centered_x, centered_y, levelnum, &FilterWalkable ) ) )
 	{
-	    if ( ( CheckIfWayIsFreeOfDroids ( FALSE, x1, y1, centered_x, centered_y, levelnum , droid ) ) )
+	    if ( !check_if_free || CheckIfWayIsFreeOfDroids ( FALSE, x1, y1, centered_x, centered_y, levelnum , droid ) )
 	    {
 		
 		last_sight_contact . x = x1 ;
 		last_sight_contact . y = y1 ;
 	
-		if ( recursive_find_walkable_point ( droid, levelnum, centered_x, centered_y, 
+		if ( recursive_find_walkable_point ( droid, check_if_free, levelnum, centered_x, centered_y, 
 						     x2 , y2 , recursion_depth + 1, waypoints, next_index_to_set_up, maxwp ) )
 		{
 		    
@@ -1668,7 +1668,7 @@ clear_out_intermediate_points ( gps * curpos, moderately_finepoint *intermediate
  * move target.
  */
 int
-set_up_intermediate_course_between_positions ( enemy * droid, gps * curpos, moderately_finepoint * move_target, moderately_finepoint * waypoints, int maxwp )
+set_up_intermediate_course_between_positions ( enemy * droid, int check_if_free, gps * curpos, moderately_finepoint * move_target, moderately_finepoint * waypoints, int maxwp )
 {
     int i;
     moderately_finepoint tmp;
@@ -1714,7 +1714,7 @@ set_up_intermediate_course_between_positions ( enemy * droid, gps * curpos, mode
     
     int next_index_to_set_up = 0 ;
     
-    if (  ! recursive_find_walkable_point ( droid, curpos->z,  curpos -> x, curpos -> y , move_target -> x , move_target -> y , 0, waypoints, &next_index_to_set_up, maxwp ) )
+    if (  ! recursive_find_walkable_point ( droid, check_if_free, curpos->z,  curpos -> x, curpos -> y , move_target -> x , move_target -> y , 0, waypoints, &next_index_to_set_up, maxwp ) )
 	{ 
 	return FALSE;
 	}
@@ -1768,7 +1768,7 @@ set_up_intermediate_course_between_positions ( enemy * droid, gps * curpos, mode
 	}
     }
     
-    streamline_intermediate_course ( droid, curpos, waypoints, maxwp ) ;
+    streamline_intermediate_course ( droid, check_if_free, curpos, waypoints, maxwp ) ;
     
     //--------------------
     // We print out the final result for debug purposes
@@ -1996,7 +1996,7 @@ move_tux ( )
 	if (!( ( fabsf ( move_target . x - last_given_course_target . x ) < 0.3 ) &&
 		( fabsf ( move_target . y - last_given_course_target . y ) < 0.3 ) ))
 	    {
-	    set_up_intermediate_course_between_positions ( NULL, &Me.pos, &move_target, &Me.next_intermediate_point[0], MAX_INTERMEDIATE_WAYPOINTS_FOR_TUX) ;
+	    set_up_intermediate_course_between_positions ( NULL, TRUE, &Me.pos, &move_target, &Me.next_intermediate_point[0], MAX_INTERMEDIATE_WAYPOINTS_FOR_TUX) ;
 	    last_given_course_target . x = move_target . x ;
 	    last_given_course_target . y = move_target . y ;
 	    }

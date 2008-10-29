@@ -1081,8 +1081,8 @@ enemy_handle_stuck_in_walls ( enemy* ThisRobot )
 	    	// No free position was found outside the obstacle ???
 	    	// It should not happen but since we want the bot to escape in any situation, just have a last fallback
 	    	//
-	    	ThisRobot->pos.x = curShip.AllLevels[ThisRobot->pos.z]->AllWaypoints[ThisRobot->nextwaypoint].x;
-	    	ThisRobot->pos.y = curShip.AllLevels[ThisRobot->pos.z]->AllWaypoints[ThisRobot->nextwaypoint].y;	    	
+	    	ThisRobot->pos.x = curShip.AllLevels[ThisRobot->pos.z]->AllWaypoints[ThisRobot->nextwaypoint].x + 0.5;
+	    	ThisRobot->pos.y = curShip.AllLevels[ThisRobot->pos.z]->AllWaypoints[ThisRobot->nextwaypoint].y + 0.5;   	
 	    }
 	    ThisRobot -> combat_state = SELECT_NEW_WAYPOINT;
 	    ThisRobot -> bot_stuck_in_wall_at_previous_check = TRUE ; 
@@ -1338,8 +1338,8 @@ static void state_machine_situational_transitions ( enemy * ThisRobot, const mod
 
     /* Return home if we're too far away */
     if ( ThisRobot -> max_distance_to_home != 0 &&
-	    sqrt(powf(curShip.AllLevels[ThisRobot->pos.z]->AllWaypoints[ThisRobot->homewaypoint].x - ThisRobot->pos.x, 2) +
-		powf(curShip.AllLevels[ThisRobot->pos.z]->AllWaypoints[ThisRobot->homewaypoint].y - ThisRobot->pos.y, 2))
+	    sqrt( powf( (curShip.AllLevels[ThisRobot->pos.z]->AllWaypoints[ThisRobot->homewaypoint].x + 0.5) - ThisRobot->pos.x, 2) +
+		powf( (curShip.AllLevels[ThisRobot->pos.z]->AllWaypoints[ThisRobot->homewaypoint].y + 0.5) - ThisRobot->pos.y, 2))
 	    > ThisRobot->max_distance_to_home )
 	{
 	ThisRobot->combat_state = RETURNING_HOME;
@@ -1871,7 +1871,7 @@ update_enemy ( enemy * ThisRobot )
 	{ /* If the current move target differs from the old one */
 	  /* This implies we do not re-pathfind every frame, which means we may bump into colleagues. 
 	   * This is handled in MoveThisEnemy()*/
-	    if ( set_up_intermediate_course_between_positions ( ThisRobot, &ThisRobot->pos, &new_move_target, &wps[0], 40) && wps[5].x == -1)
+	    if ( set_up_intermediate_course_between_positions ( ThisRobot, TRUE, &ThisRobot->pos, &new_move_target, &wps[0], 40) && wps[5].x == -1)
 		{ /* If position was passable *and* streamline course uses max 4 waypoints */
 		memcpy ( &ThisRobot->PrivatePathway[0], &wps[0], 5 * sizeof(moderately_finepoint));
 		}

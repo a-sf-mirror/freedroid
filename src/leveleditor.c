@@ -39,6 +39,7 @@
 #include "SDL_rotozoom.h"
 
 #include "leveleditor.h"
+#include "leveleditor_validator.h"
 
 int OriginWaypoint = (-1);
 
@@ -2767,6 +2768,59 @@ EditLevelDimensions ( void )
 }; // void EditLevelDimensions ( void )
   
 /**
+ * Run several validations
+ */
+void
+LevelValidation( int levelnum )
+{
+    SDL_Rect BackgroundRect, ReportRect;
+    Level ThisLevel = curShip.AllLevels[levelnum];
+    int is_invalid = FALSE;
+
+    BackgroundRect.x = UNIVERSAL_COORD_W(20);
+    BackgroundRect.y = UNIVERSAL_COORD_H(20);
+    BackgroundRect.w = UNIVERSAL_COORD_W(600);
+    BackgroundRect.h = UNIVERSAL_COORD_H(440);
+
+    ReportRect.x = UNIVERSAL_COORD_W(30);
+    ReportRect.y = UNIVERSAL_COORD_H(30);
+    ReportRect.w = UNIVERSAL_COORD_W(580);
+    ReportRect.h = UNIVERSAL_COORD_H(420);
+
+    level_validator_ctx ValidatorCtx = { &ReportRect, ThisLevel }; 
+    
+    AssembleCombatPicture ( ONLY_SHOW_MAP_AND_TEXT | SHOW_GRID | SKIP_LIGHT_RADIUS );
+    
+    ShadowingRectangle ( Screen, BackgroundRect );
+
+    //--------------------
+    // Title
+    //
+    DisplayText ( "Validation tests for this level:\n\n" ,
+		  ReportRect.x, ReportRect.y + FontHeight ( GetCurrentFont () ) , &ReportRect , 1.0 );
+
+    //--------------------
+    // Loop on each validation function
+    //
+    int i = 0;
+    level_validator one_validator;
+    while ( (one_validator = level_validators[i++]) != NULL ) is_invalid |= one_validator(&ValidatorCtx);
+    
+    //--------------------
+    // This was it.  We can say so and return.
+    //
+    if ( is_invalid ) 
+    	DisplayText( "\n\nSome tests were invalid. See the report in the console\n", -1, -1, &ReportRect, 1.0 );
+
+    DisplayText ( "--- End of List --- Press Space to return to menu ---\n" ,
+		  -1 , -1 , &ReportRect , 1.0 );
+    
+    our_SDL_flip_wrapper();
+    
+} // LevelValidation( int levelnum )
+
+
+/**
  *
  *
  */
@@ -2793,6 +2847,7 @@ DoLevelEditorMainMenu ( Level EditLevel )
 	    ADD_NEW_LEVEL , 
 	    SET_LEVEL_INTERFACE_POSITION , 
 	    EDIT_LEVEL_DIMENSIONS,
+	    RUN_VALIDATION,
 	    QUIT_LEVEL_EDITOR_POSITION 
 	};
     
@@ -2824,6 +2879,7 @@ DoLevelEditorMainMenu ( Level EditLevel )
 	MenuTexts[ i ] = _("Add completely new level") ; i++;
 	MenuTexts[ i ] = _("Set Level Interfaces") ; i++;
 	MenuTexts[ i ] = _("Edit Level Dimensions") ; i++;
+	MenuTexts[ i ] = _("Run Level Validation") ; i++;
 	MenuTexts[ i ] = _("Quit Level Editor") ; i++;
 	MenuTexts[ i ] = "" ; i++;
 
@@ -2902,6 +2958,12 @@ DoLevelEditorMainMenu ( Level EditLevel )
 		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
 		// proceed_now=!proceed_now;
 		EditLevelDimensions ( );
+		break;
+	    case RUN_VALIDATION:
+		while (EnterPressed() || SpacePressed() || MouseLeftPressed() ) SDL_Delay(1) ;
+		LevelValidation(Me.pos.z);
+		while ( !SpacePressed() ) SDL_Delay(1);
+		proceed_now=!proceed_now;
 		break;
 	    case QUIT_LEVEL_EDITOR_POSITION:
 		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);

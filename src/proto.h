@@ -98,7 +98,7 @@ EXTERN moderately_finepoint translate_point_to_map_location ( float axis_x , flo
 EXTERN void blit_zoomed_iso_image_to_map_position ( iso_image* our_iso_image , float pos_x , float pos_y );
 EXTERN int tux_can_walk_this_line ( float x1, float y1 , float x2 , float y2 );
 EXTERN void clear_out_intermediate_points ( gps *, moderately_finepoint *, int);
-EXTERN int set_up_intermediate_course_between_positions ( enemy * droid, gps * curpos, moderately_finepoint * move_target, moderately_finepoint * waypoints, int maxwp );
+EXTERN int set_up_intermediate_course_between_positions ( enemy * droid, int check_if_free, gps * curpos, moderately_finepoint * move_target, moderately_finepoint * waypoints, int maxwp );
 EXTERN void adapt_position_for_jump_thresholds ( gps* old_position, gps* new_position );
 
 // bullet.c 
