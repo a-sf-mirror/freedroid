@@ -51,21 +51,6 @@ level_validator level_validators[] = {
 // Helper Functions
 //===========================================================
 
-void ValidatorDisplayTitle( level_validator_ctx* val_ctx, char* txt )
-{
-	DisplayText( "* ", -1, -1, val_ctx->report_rect, 1.0 );
-	DisplayText( txt, -1, -1, val_ctx->report_rect, 1.0 );
-	DisplayText( ": ", -1, -1, val_ctx->report_rect, 1.0 );
-}
-
-void ValidatorDisplayResult( level_validator_ctx* val_ctx, int flag )
-{
-	BFont_Info* current_font = GetCurrentFont();
-	DisplayText ( (flag)?_("\1fail"):_("pass"), -1, -1, val_ctx->report_rect, 1.0 );
-	SetCurrentFont(current_font);
-	DisplayText ( "\n", -1, -1, val_ctx->report_rect, 1.0 );
-}
-
 void ValidatorPrintHeader( level_validator_ctx* val_ctx, char* title, char* comment )
 {
 	int cpt = 0;
@@ -97,8 +82,6 @@ int chest_reachable_validator( level_validator_ctx* ValidatorCtx )
 	int x_tile, y_tile, glue_index;
 	int is_invalid = FALSE;
 
-	ValidatorDisplayTitle( ValidatorCtx, _("Chests/barrels position") );
-
 	for ( y_tile = 0 ; y_tile < ValidatorCtx->this_level->ylen ; ++y_tile )
 	{
 		for ( x_tile = 0 ; x_tile < ValidatorCtx->this_level->xlen ; ++x_tile )
@@ -128,8 +111,6 @@ int chest_reachable_validator( level_validator_ctx* ValidatorCtx )
 	}
 	if ( is_invalid) puts( line );
 	
-	ValidatorDisplayResult( ValidatorCtx, is_invalid );
-
 	return is_invalid;
 }
 
@@ -143,8 +124,6 @@ int waypoint_validator( level_validator_ctx* ValidatorCtx )
 	int pos_is_invalid = FALSE;
 	int conn_is_invalid = FALSE;
 	int path_is_invalid = FALSE;
-
-	ValidatorDisplayTitle( ValidatorCtx, _("Waypoints position, connectivity and path") );
 
 	// Check waypoints position
 	for ( i = 0; i < ValidatorCtx->this_level->num_waypoints; ++i )
@@ -220,8 +199,6 @@ int waypoint_validator( level_validator_ctx* ValidatorCtx )
 	}
 	if ( path_is_invalid ) puts( line );
 
-	ValidatorDisplayResult( ValidatorCtx, pos_is_invalid || conn_is_invalid || path_is_invalid );
-
 	return ( pos_is_invalid || conn_is_invalid || path_is_invalid );
 }
 
@@ -233,8 +210,6 @@ int interface_validator( level_validator_ctx* ValidatorCtx )
 {
 	int x_tile, y_tile, glue_index;
 	int is_invalid = FALSE;
-
-	ValidatorDisplayTitle( ValidatorCtx, _("Interface areas validation") );
 
 	for ( y_tile = 0 ; y_tile < ValidatorCtx->this_level->ylen ; ++y_tile )
 	{
@@ -265,8 +240,6 @@ int interface_validator( level_validator_ctx* ValidatorCtx )
 		}
 	}
 	if ( is_invalid ) puts( line );
-	
-	ValidatorDisplayResult( ValidatorCtx, is_invalid );
 	
 	return is_invalid;
 }

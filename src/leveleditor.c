@@ -2773,50 +2773,69 @@ EditLevelDimensions ( void )
 void
 LevelValidation( int levelnum )
 {
-    SDL_Rect BackgroundRect, ReportRect;
-    Level ThisLevel = curShip.AllLevels[levelnum];
-    int is_invalid = FALSE;
+	int is_invalid = FALSE;
 
-    BackgroundRect.x = UNIVERSAL_COORD_W(20);
-    BackgroundRect.y = UNIVERSAL_COORD_H(20);
-    BackgroundRect.w = UNIVERSAL_COORD_W(600);
-    BackgroundRect.h = UNIVERSAL_COORD_H(440);
+	SDL_Rect BackgroundRect = { UNIVERSAL_COORD_W(20), UNIVERSAL_COORD_H(20), UNIVERSAL_COORD_W(600), UNIVERSAL_COORD_H(440) };
+	SDL_Rect ReportRect     = { UNIVERSAL_COORD_W(30), UNIVERSAL_COORD_H(30), UNIVERSAL_COORD_W(580), UNIVERSAL_COORD_H(420) };
 
-    ReportRect.x = UNIVERSAL_COORD_W(30);
-    ReportRect.y = UNIVERSAL_COORD_H(30);
-    ReportRect.w = UNIVERSAL_COORD_W(580);
-    ReportRect.h = UNIVERSAL_COORD_H(420);
+	BFont_Info* current_font = GetCurrentFont();
+	int raw_height = FontHeight( current_font );
+	int max_raws = (ReportRect.h / raw_height) - 4; // 4 lines are reserved for header and footer 
+	int column_width = TextWidth( "Level 000: pass" );
 
-    level_validator_ctx ValidatorCtx = { &ReportRect, ThisLevel }; 
-    
-    AssembleCombatPicture ( ONLY_SHOW_MAP_AND_TEXT | SHOW_GRID | SKIP_LIGHT_RADIUS );
-    
-    ShadowingRectangle ( Screen, BackgroundRect );
+	AssembleCombatPicture ( ONLY_SHOW_MAP_AND_TEXT | SHOW_GRID | SKIP_LIGHT_RADIUS );
+	ShadowingRectangle ( Screen, BackgroundRect );
 
-    //--------------------
-    // Title
-    //
-    DisplayText ( "Validation tests for this level:\n\n" ,
-		  ReportRect.x, ReportRect.y + FontHeight ( GetCurrentFont () ) , &ReportRect , 1.0 );
+	//--------------------
+	// Title
+	//
+	CenteredPutString( Screen, ReportRect.y, "Level Validation tests - Summary\n" );
 
-    //--------------------
-    // Loop on each validation function
-    //
-    int i = 0;
-    level_validator one_validator;
-    while ( (one_validator = level_validators[i++]) != NULL ) is_invalid |= one_validator(&ValidatorCtx);
-    
-    //--------------------
-    // This was it.  We can say so and return.
-    //
-    if ( is_invalid ) 
-    	DisplayText( "\n\nSome tests were invalid. See the report in the console\n", -1, -1, &ReportRect, 1.0 );
+	//--------------------
+	// Loop on each level
+	//
+	int l;
+	int col_pos = 0;
+	int raw_pos = 0;
+	
+	for ( l = 0; l < curShip.num_levels; ++l )
+	{
+		level_validator_ctx ValidatorCtx = { &ReportRect, curShip.AllLevels[l] };
 
-    DisplayText ( "--- End of List --- Press Space to return to menu ---\n" ,
-		  -1 , -1 , &ReportRect , 1.0 );
-    
-    our_SDL_flip_wrapper();
-    
+		// Compute raw and column position, when a new column of text starts
+		if ( (l % max_raws) == 0 )
+		{
+			col_pos = ReportRect.x + (l/max_raws) * column_width;
+			raw_pos = ReportRect.y + 2 * raw_height; // 2 lines are reserved for the header
+			SetTextCursor( col_pos, raw_pos);
+		}
+		
+		// Loop on each validation function
+		int v = 0;
+		level_validator one_validator;
+		int level_is_invalid = FALSE;
+
+		while ( (one_validator = level_validators[v++]) != NULL ) level_is_invalid |= one_validator(&ValidatorCtx);
+
+		// Display report
+		char txt[40];
+		sprintf(txt, "%s %3d: %s\n", "Level", l, (level_is_invalid)?"\1fail":"pass" );
+		DisplayText( txt, col_pos, -1, &ReportRect, 1.0 );
+		SetCurrentFont( current_font ); // Reset font in case of the red "fail" was displayed
+
+		// Set global is_invalid flag
+		is_invalid |= level_is_invalid;
+	}
+
+	//--------------------
+	// This was it.  We can say so and return.
+	//
+	if ( is_invalid ) CenteredPutString( Screen, ReportRect.y + ReportRect.h - 2.0*raw_height, "\1Some tests were invalid. See the report in the console\3" );
+
+	CenteredPutString( Screen, ReportRect.y + ReportRect.h - raw_height, "--- End of List --- Press Space to return to Level Editor ---" );
+
+	our_SDL_flip_wrapper();
+
 } // LevelValidation( int levelnum )
 
 
@@ -2879,7 +2898,7 @@ DoLevelEditorMainMenu ( Level EditLevel )
 	MenuTexts[ i ] = _("Add completely new level") ; i++;
 	MenuTexts[ i ] = _("Set Level Interfaces") ; i++;
 	MenuTexts[ i ] = _("Edit Level Dimensions") ; i++;
-	MenuTexts[ i ] = _("Run Level Validation") ; i++;
+	MenuTexts[ i ] = _("Run All Levels Validation") ; i++;
 	MenuTexts[ i ] = _("Quit Level Editor") ; i++;
 	MenuTexts[ i ] = "" ; i++;
 
