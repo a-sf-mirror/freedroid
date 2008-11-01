@@ -126,11 +126,12 @@
      0 = 640 x 480 (default with SDL)
      1 = 800 x 600 (default with OpenGL)
      2 = 1024 x 748 
-     3 = 1280 x 960 
-     4 = Unsupported! (1280 x 1024) 
-     5 = Unsupported! (1280 x 800) 
-     6 = Unsupported! (1440 x 900) 
-     7 = Unsupported! (1680 x 1050) 
+     3 = 1152 x 864
+     4 = 1280 x 960 
+     5 = Unsupported! (1280 x 1024) 
+     6 = Unsupported! (1280 x 800) 
+     7 = Unsupported! (1440 x 900) 
+     8 = Unsupported! (1680 x 1050) 
  
  Start with e.g. the commandline "freedroid -r4" to choose a specific resolution.
  To get an up-to-date list of available resolutions use "freedroid -r99".

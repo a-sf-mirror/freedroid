@@ -704,6 +704,9 @@ There are more skills defined, than the maximum number specified in the code!",
 	    ProgramToFill ->  form = PROGRAM_FORM_RADIAL;
 	if ( !strcmp(pform, "self") ) 
 	    ProgramToFill ->  form = PROGRAM_FORM_SELF;
+	if ( !strcmp(pform, "aura") ) 
+	    ProgramToFill ->  form = PROGRAM_FORM_SELF;
+
 
 	free ( pform );
 
@@ -1691,34 +1694,40 @@ ParseCommandLine (int argc, char *const argv[])
 			    DebugPrintf ( 1 , "\n%s(): Command line argument -r 2 recognized." , __FUNCTION__ );
 			    break;
 			case 3:
+			    command_line_override_for_screen_resolution = TRUE ;
+			    GameConfig . screen_width = 1152 ; 
+			    GameConfig . screen_height = 864 ;
+			    DebugPrintf ( 1 , "\n%s(): Command line argument -r 3 recognized." , __FUNCTION__ );
+			    break;
+			case 4:
 	                    command_line_override_for_screen_resolution = TRUE ;
                             GameConfig . screen_width = 1280 ;
                             GameConfig . screen_height = 960 ;
-                            DebugPrintf ( 1 , "\n%s(): Command line argument -r 3 recognized." , __FUNCTION__ );
-                            break;
-			case 4:
-                            command_line_override_for_screen_resolution = TRUE ;
-                            GameConfig . screen_width = 1280 ;
-                            GameConfig . screen_height =1024 ;
                             DebugPrintf ( 1 , "\n%s(): Command line argument -r 4 recognized." , __FUNCTION__ );
                             break;
 			case 5:
                             command_line_override_for_screen_resolution = TRUE ;
                             GameConfig . screen_width = 1280 ;
-                            GameConfig . screen_height = 800 ;
+                            GameConfig . screen_height =1024 ;
                             DebugPrintf ( 1 , "\n%s(): Command line argument -r 5 recognized." , __FUNCTION__ );
                             break;
 			case 6:
                             command_line_override_for_screen_resolution = TRUE ;
-                            GameConfig . screen_width = 1440 ;
-                            GameConfig . screen_height =900 ;
+                            GameConfig . screen_width = 1280 ;
+                            GameConfig . screen_height = 800 ;
                             DebugPrintf ( 1 , "\n%s(): Command line argument -r 6 recognized." , __FUNCTION__ );
                             break;
 			case 7:
                             command_line_override_for_screen_resolution = TRUE ;
+                            GameConfig . screen_width = 1440 ;
+                            GameConfig . screen_height =900 ;
+                            DebugPrintf ( 1 , "\n%s(): Command line argument -r 7 recognized." , __FUNCTION__ );
+                            break;
+			case 8:
+                            command_line_override_for_screen_resolution = TRUE ;
                             GameConfig . screen_width = 1680 ;
                             GameConfig . screen_height =1050 ;
-                            DebugPrintf ( 1 , "\n%s(): Command line argument -r 7 recognized." , __FUNCTION__ );
+                            DebugPrintf ( 1 , "\n%s(): Command line argument -r 8 recognized." , __FUNCTION__ );
                             break;
 			default:
 			    fprintf( stderr, "\nresolution code received: %d" , resolution_code );
@@ -1728,11 +1737,12 @@ These codes correspond to the following resolutions available:\n\
      0 = 640 x 480 (default with SDL)\n\
      1 = 800 x 600 (default with OpenGL)\n\
      2 = 1024 x 768 \n\
-     3 = 1280 x 960 \n\
-     4 = Unsupported! (1280 x 1024) \n\
-     5 = Unsupported! (1280 x 800) \n\
-     6 = Unsupported! (1440 x 900) \n\
-     7 = Unsupported! (1680 x 1050) \n\
+     3 = 1152 x 864 \n\
+     4 = 1280 x 960 \n\
+     5 = Unsupported! (1280 x 1024) \n\
+     6 = Unsupported! (1280 x 800) \n\
+     7 = Unsupported! (1440 x 900) \n\
+     8 = Unsupported! (1680 x 1050) \n\
 Anything else will not be accepted right now, but you can send in\n\
 your suggestion to the FreedroidRPG dev team to enable new resolutions.",
 						       NO_NEED_TO_INFORM , IS_FATAL );
