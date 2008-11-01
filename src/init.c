@@ -704,9 +704,6 @@ There are more skills defined, than the maximum number specified in the code!",
 	    ProgramToFill ->  form = PROGRAM_FORM_RADIAL;
 	if ( !strcmp(pform, "self") ) 
 	    ProgramToFill ->  form = PROGRAM_FORM_SELF;
-	if ( !strcmp(pform, "aura") ) 
-	    ProgramToFill ->  form = PROGRAM_FORM_SELF;
-
 
 	free ( pform );
 
