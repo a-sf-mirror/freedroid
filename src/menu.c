@@ -1536,7 +1536,6 @@ Escape_fill (char *MenuTexts [10])
       MenuTexts[7]="";
 }
 
-
 static int
 Resolution_handle (int n)
 {
@@ -1545,7 +1544,13 @@ Resolution_handle (int n)
 	    SET_640_480 = 1 , 
 	    SET_800_600, 
 	    SET_1024_768,
+	    SET_1280_960,
+/*
 	    SET_1280_1024,
+	    SET_1280_800,
+	    SET_1440_900,
+	    SET_1680_1050,
+*/
 	    LEAVE_OPTIONS_MENU 
 	};
 #define MSG(x, y) "\n"				\
@@ -1571,7 +1576,13 @@ Resolution_handle (int n)
     CASE(640,480);
     CASE(800,600);
     CASE(1024,768);
+    CASE(1280,960);
+/*
     CASE(1280,1024);
+    CASE(1280,800);
+    CASE(1440,900);
+    CASE(1680,1050);
+*/
     case LEAVE_OPTIONS_MENU:
 	while (EnterPressed() || SpacePressed() );
 	return EXIT_MENU;
@@ -1580,18 +1591,25 @@ Resolution_handle (int n)
     } 
     return CONTINUE_MENU;
 }
-    
+
 static void
 Resolution_fill (char *MenuTexts[10])
 {
-    MenuTexts[0]="640x480";
-    MenuTexts[1]="800x600";
-    MenuTexts[2]="1024x768";
-    MenuTexts[3]="1280x1024";
+    sprintf( MenuTexts[0] , "%c 640x480", GameConfig . next_time_height_of_screen==480 ? '*' : ' ' );
+    sprintf( MenuTexts[1] , "%c 800x600", GameConfig . next_time_height_of_screen==600 ? '*' : ' ' );
+    sprintf( MenuTexts[2] , "%c 1024x768", GameConfig . next_time_height_of_screen==768 ? '*' : ' ' );
+    sprintf( MenuTexts[3] , "%c 1280x960", GameConfig . next_time_height_of_screen==960 ? '*' : ' ' );
+/*
+    sprintf( MenuTexts[4] , "%c 1280x1024", GameConfig . next_time_height_of_screen==1024 ? '*' : ' ' );
+    sprintf( MenuTexts[5] , "%c 1280x800", GameConfig . next_time_height_of_screen==800 ? '*' : ' ' );
+    sprintf( MenuTexts[6] , "%c 1440x900", GameConfig . next_time_height_of_screen==900 ? '*' : ' ' );
+    sprintf( MenuTexts[7] , "%c 1680x1050", GameConfig . next_time_height_of_screen==1050 ? '*' : ' ' );
+    MenuTexts[8]=_("Back");
+    MenuTexts[9]="";
+*/
     MenuTexts[4]=_("Back");
     MenuTexts[5]="";
 }
-
 
 static int
 Graphics_handle (int n)
