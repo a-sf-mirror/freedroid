@@ -33,7 +33,7 @@
 
 ** Start of this mission target subsection **
 +++
-+++ This is the first mission:  Find a cure for Bender, suffering from brain enlargement pills
++++ This is mission 0:  Find a cure for Bender, suffering from brain enlargement pills
 +++
 +++ note: the number code for this mission (like from inside dialogs and such) is 0
 +++ 
@@ -57,7 +57,7 @@ Mission diary entry=_"Bender is fine now. He gave me some muscle enlargement pil
 
 ** Start of this mission target subsection **
 +++
-+++ This is the second mission:  Retrieve the toolkit lost by Dixon
++++ This is mission 1:  Retrieve the toolkit lost by Dixon
 +++
 +++ note: the number code for this mission (like from inside dialogs and such) is 1
 +++ 
@@ -86,7 +86,7 @@ Mission diary entry=_"I sold the toolkit to Dixon for a enormous sum of money. L
 
 ** Start of this mission target subsection **
 +++
-+++ This is the third mission:  Find some energy crystals for the cook Michelangelo
++++ This is mission 2:  Find some energy crystals for the cook Michelangelo
 +++
 +++ note: the number code for this mission (like from inside dialogs and such) is 2
 +++ 
@@ -108,7 +108,7 @@ Mission diary entry=_"I gave him enough dilithium to last him a decade. The evil
 
 ** Start of this mission target subsection **
 +++
-+++ This is the fourth mission:  Defeat the bots in the novice arena
++++ This is mission 3:  Defeat the bots in the novice arena
 +++
 +++ note: the number code for this mission (like from inside dialogs and such) is 3
 +++ 
@@ -130,7 +130,7 @@ Mission diary entry=_"Now that was easy. Yawn. I nearly fell asleep. No problem 
 
 ** Start of this mission target subsection **
 +++
-+++ This is the fifth mission:  Defeat the bots in the master arena
++++ This is mission 4:  Defeat the bots in the master arena
 +++
 +++ note: the number code for this mission (like from inside dialogs and such) is 4
 +++ 
@@ -152,7 +152,7 @@ Mission diary entry=_"I survived the master arena. A miracle. Whew."
 
 ** Start of this mission target subsection **
 +++
-+++ This is the sixth mission:  Clean out the first level of the warehouse
++++ This is mission 5:  Clean out the first level of the warehouse
 +++
 +++ note: the number code for this mission (like from inside dialogs and such) is 5
 +++ 
@@ -173,7 +173,7 @@ Mission diary entry=_"Ouch. It wasn't. At least I am alive and the warehouse is 
 
 ** Start of this mission target subsection **
 +++
-+++ This is the seventh mission:  Clean out the second level under Kevins station
++++ This is mission 6:  Clean out the second level under Kevins station
 +++
 +++ note: the number code for this mission (like from inside dialogs and such) is 6
 +++ 
@@ -194,7 +194,7 @@ Mission diary entry=_"Everything is back to normal for now. Kevin can work in pe
 
 ** Start of this mission target subsection **
 +++
-+++ This is the eighth mission:  Take Kevins data cube to the 
++++ This is mission 7:  Take Kevins data cube to the 
 +++                              cluster maintainance people inside 
 +++                              the red guard complex
 +++
@@ -218,7 +218,7 @@ Mission diary entry=_"Yes, that was simple. I wish everything else went as smoot
 
 ** Start of this mission target subsection **
 +++
-+++ This is the ninth mission:  Reach the disruptor shield generator and 
++++ This is mission 8:  Reach the disruptor shield generator and 
 +++ activate it, if possible
 +++
 +++ note: the number code for this mission (like from inside dialogs and such) is 8
@@ -244,7 +244,7 @@ Mission diary entry=_"Finally I've managed to propogate my firmware update. Now 
 
 ** Start of this mission target subsection **
 +++ 
-+++  ENDGAME MISSION - propagate faulty firmware upgrade.
++++ This is mission 9: ENDGAME MISSION - propagate faulty firmware upgrade.
 +++
 +++ This mission can only be finished through a talk with the firmware update server.
 Mission Name=_"Propagating a faulty firmware"
@@ -264,7 +264,7 @@ Mission diary entry=_"I've managed to propagate my (slightly modified!) firmware
 
 ** Start of this mission target subsection **
 +++
-+++ This is the tent'h mission:  Bring SADD dilithium cristals 
++++ This is mission 10:  Bring SADD dilithium cristals 
 +++
 +++ note: the number code for this mission (like from inside dialogs and such) is 10
 +++ 
@@ -286,7 +286,7 @@ Mission diary entry=_"Done. He looks happy."
 
 ** Start of this mission target subsection **
 +++
-+++ This is the tent'h mission:  Free Tania 
++++ This is mission 11:  Free Tania 
 +++
 +++ note: the number code for this mission (like from inside dialogs and such) is 11
 +++ 
