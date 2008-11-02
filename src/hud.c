@@ -1430,7 +1430,7 @@ get_hours_of_game_duration ( float current_game_date )
 int
 get_days_of_game_duration ( float current_game_date )
 {
-    return ( ((int)( 10 * current_game_date / ( 60 * 60 * 24 ))) );
+    return ( ((int)( 1 + 10 * current_game_date / ( 60 * 60 * 24 ))) );
 }; // void get_days_of_game_duration ( float current_game_date )
 
 /**
