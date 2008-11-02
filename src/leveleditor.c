@@ -4419,22 +4419,22 @@ HandleLevelEditorCursorKeys ( leveleditor_state *cur_state )
 	if (LeftPressed()) 
 	{
 	    if ( rintf(Me.pos.x) > 0 ) Me.pos.x-=1;
-	    while (LeftPressed());
+	    SDL_Delay(40);
 	}
 	if (RightPressed()) 
-	{
+	{ 
 	    if ( rintf(Me.pos.x) < EditLevel->xlen-1 ) Me.pos.x+=1;
-	    while (RightPressed());
+	    SDL_Delay(40);
 	}
 	if (UpPressed()) 
 	{
 	    if ( rintf(Me.pos.y) > 0 ) Me.pos.y-=1;
-	    while (UpPressed());
+	    SDL_Delay(40);
 	}
 	if (DownPressed()) 
 	{
 	    if ( rintf(Me.pos.y) < EditLevel->ylen-1 ) Me.pos.y+=1;
-	    while (DownPressed());
+	    SDL_Delay(40);
 	}
     }
 }; // void HandleLevelEditorCursorKeys ( void )
