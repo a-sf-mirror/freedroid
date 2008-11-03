@@ -1531,6 +1531,7 @@ void
 DisplayBanner ( void )
 {
     char level_name_and_time [ 1000 ] ;
+    char temp_text [ 1000 ] ;
 
     SDL_SetClipRect( Screen , NULL ); 
 
@@ -1547,23 +1548,32 @@ DisplayBanner ( void )
     if ( ! ( GameConfig . CharacterScreen_Visible || GameConfig . SkillScreen_Visible ))
     {
 	    if( GameConfig.Draw_Position)
-		    sprintf ( level_name_and_time , _("%s (%03.1f:%03.1f:%d) Day %d %02d:%02d ") , 
+            {
+		    sprintf ( level_name_and_time , "%s (%03.1f:%03.1f:%d)  " , 
 				  D_(curShip . AllLevels [ Me . pos . z ] -> Levelname) , 
 				  Me . pos . x , 
 				  Me . pos . y , 
-				  Me . pos . z , 
+				  Me . pos . z );
+		    sprintf ( temp_text , _("Day %d  %02d:%02d") , 
 				  get_days_of_game_duration ( Me . current_game_date ) ,
 				  get_hours_of_game_duration ( Me . current_game_date ) ,
 				  get_minutes_of_game_duration ( Me . current_game_date ) );
+		    strcat ( level_name_and_time , temp_text );
+		    strcat ( level_name_and_time , " " );
+            }
 	    else
-		    sprintf ( level_name_and_time , _("%s Day %d %02d:%02d ") , 
-				  D_(curShip . AllLevels [ Me . pos . z ] -> Levelname) , 
+            {
+		    sprintf ( level_name_and_time , "%s  " , 
+				  D_(curShip . AllLevels [ Me . pos . z ] -> Levelname) );
+		    sprintf ( temp_text , _("Day %d  %02d:%02d") , 
 				  get_days_of_game_duration ( Me . current_game_date ) ,
 				  get_hours_of_game_duration ( Me . current_game_date ) ,
 				  get_minutes_of_game_duration ( Me . current_game_date ) );
+		    strcat ( level_name_and_time , temp_text );
+		    strcat ( level_name_and_time , " " );
+            }
 	    RightPutStringFont ( Screen , FPS_Display_BFont , 2 , level_name_and_time );
-    }
-    
+    }    
 }; // void DisplayBanner( void ) 
 
 /**
