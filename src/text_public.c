@@ -126,17 +126,15 @@ Thanks a lot!\n\n" );
     {
 	fprintf (stderr, 
 		 "Freedroid will terminate now to draw attention to the problems it could\n\
-not resolve.  Sorry if that interrupts a major game of yours...\nBacktrace:\n" );
-	print_trace( FREEDROID_INTERNAL_ERROR_SIGNAL );
-	
+not resolve.  Sorry if that interrupts a major game of yours...\n" );
+	//print_trace( FREEDROID_INTERNAL_ERROR_SIGNAL );
     }
     else
     {
 	fprintf (stderr, 
 		 "The problem mentionned above is not fatal, we continue the execution.\n" );
+	fprintf (stderr, "----------------------------------------------------------------------\n" );
     }
-    
-    fprintf (stderr, "----------------------------------------------------------------------\n" );
     
     va_end(args);
 
