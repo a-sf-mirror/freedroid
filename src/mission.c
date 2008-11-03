@@ -751,7 +751,10 @@ GetQuestList ( char* QuestListFilename )
     while ( ( MissionTargetPointer = strstr( MissionTargetPointer , MISSION_TARGET_SUBSECTION_START_STRING ) ) != NULL )
     {
 	EndOfMissionTargetPointer = LocateStringInData ( MissionTargetPointer , MISSION_TARGET_SUBSECTION_END_STRING ) ;
-	
+
+	if (MissionTargetIndex >= MAX_MISSIONS_IN_GAME) 
+	    ErrorMessage(__FUNCTION__, "The number of quests specified in %s exceeds MAX_MISSIONS_IN_GAME (%d).\n", PLEASE_INFORM, IS_FATAL, QuestListFilename, MAX_MISSIONS_IN_GAME);
+
 	//--------------------
 	// We need to add an inner terminator here, so that the strstr operation
 	// below will know where to stop within this subsection.
