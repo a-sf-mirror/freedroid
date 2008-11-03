@@ -387,17 +387,7 @@ write_full_item_name_into_string ( item* ShowItem , char* full_item_name )
 
   if ( MatchItemWithName(ShowItem->type, "Cyberbucks") ) sprintf( full_item_name , "%d " , ShowItem->multiplicity );
 
-  //--------------------
-  // If the item is is magical, we give the prefix name of course.
-  // In any case we'll give the suffix name and then, if the item
-  // is identified we'll also append any suffix to the description
-  // string.
-  //
-  if ( ( ShowItem->prefix_code != (-1) ) && ( ShowItem->is_identified ) )
-    strcat( full_item_name , D_(PrefixList[ ShowItem->prefix_code ].bonus_name) );
   strcat( full_item_name , D_(ItemMap[ ShowItem->type ].item_name ));
-  if ( ( ShowItem->suffix_code != (-1) ) && ( ShowItem->is_identified ) )
-    strcat( full_item_name , D_(SuffixList[ ShowItem->suffix_code ].bonus_name) );
 
   //--------------------
   // If the item is magical but not identified, we might add the word
