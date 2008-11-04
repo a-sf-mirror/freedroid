@@ -2088,7 +2088,7 @@ init_obstacle_data( void )
   obstacle_map [ ISO_COOKING_POT ] . flags &= ~BLOCKS_VISION_TOO ;
   obstacle_map [ ISO_COOKING_POT ] . transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS ;
   obstacle_map [ ISO_COOKING_POT ] . obstacle_short_name = _("Cooking pot");
-  obstacle_map [ ISO_COOKING_POT ] . obstacle_long_description = _("This cauldron can be used for many good things. Cooking beef or pork for dinner are some of them. It can also be used for many evil things. To prepare Linarians for lunch is one of them.");
+  obstacle_map [ ISO_COOKING_POT ] . obstacle_long_description = _("This cauldron can be used for many good things. Cooking beef or pork for dinner are some of them. It can also be used for many evil things. Preparing Linarians for lunch is one of them.");
 
   obstacle_map [ ISO_CONSOLE_N ] . block_area_type = COLLISION_TYPE_RECTANGLE ;
   obstacle_map [ ISO_CONSOLE_N ] . block_area_parm_1 = 0.8 ;
@@ -4192,42 +4192,42 @@ init_obstacle_data( void )
     obstacle_map [ ISO_CRYSTALS_1 ] . block_area_parm_1 = 1.05 ;
     obstacle_map [ ISO_CRYSTALS_1 ] . block_area_parm_2 = 1.05 ;
     obstacle_map [ ISO_CRYSTALS_1 ] . flags &= ~BLOCKS_VISION_TOO ;
-    obstacle_map [ ISO_CRYSTALS_1 ] . obstacle_short_name = _("Xtal formation");
+    obstacle_map [ ISO_CRYSTALS_1 ] . obstacle_short_name = _("Crystal formation");
     obstacle_map [ ISO_CRYSTALS_1 ] . obstacle_long_description = _("An unusual and impressive formation of red crystals.");
     obstacle_map [ ISO_CRYSTALS_1 ] . filename = "iso_crystal_fields_0001.png";
 
     obstacle_map [ ISO_CRYSTALS_2 ] . block_area_parm_1 = 1.05 ;
     obstacle_map [ ISO_CRYSTALS_2 ] . block_area_parm_2 = 1.05 ;
     obstacle_map [ ISO_CRYSTALS_2 ] . flags &= ~BLOCKS_VISION_TOO ;
-    obstacle_map [ ISO_CRYSTALS_2 ] . obstacle_short_name = _("Xtal formation");
+    obstacle_map [ ISO_CRYSTALS_2 ] . obstacle_short_name = _("Crystal formation");
     obstacle_map [ ISO_CRYSTALS_2 ] . obstacle_long_description = _("An unusual and impressive formation of red crystals.");
     obstacle_map [ ISO_CRYSTALS_2 ] . filename = "iso_crystal_fields_0002.png";
 
     obstacle_map [ ISO_CRYSTALS_3 ] . block_area_parm_1 = 1.05 ;
     obstacle_map [ ISO_CRYSTALS_3 ] . block_area_parm_2 = 1.05 ;
     obstacle_map [ ISO_CRYSTALS_3 ] . flags &= ~BLOCKS_VISION_TOO ;
-    obstacle_map [ ISO_CRYSTALS_3 ] . obstacle_short_name = _("Xtal formation");
+    obstacle_map [ ISO_CRYSTALS_3 ] . obstacle_short_name = _("Crystal formation");
     obstacle_map [ ISO_CRYSTALS_3 ] . obstacle_long_description = _("An unusual and impressive formation of red crystals.");
     obstacle_map [ ISO_CRYSTALS_3 ] . filename = "iso_crystal_fields_0003.png";
 
     obstacle_map [ ISO_CRYSTALS_4 ] . block_area_parm_1 = 1.05 ;
     obstacle_map [ ISO_CRYSTALS_4 ] . block_area_parm_2 = 1.05 ;
     obstacle_map [ ISO_CRYSTALS_4 ] . flags &= ~BLOCKS_VISION_TOO ;
-    obstacle_map [ ISO_CRYSTALS_4 ] . obstacle_short_name = _("Xtal formation");
+    obstacle_map [ ISO_CRYSTALS_4 ] . obstacle_short_name = _("Crystal formation");
     obstacle_map [ ISO_CRYSTALS_4 ] . obstacle_long_description = _("An unusual and impressive formation of red crystals.");
     obstacle_map [ ISO_CRYSTALS_4 ] . filename = "iso_crystal_fields_0004.png";
 
     obstacle_map [ ISO_CRYSTALS_5 ] . block_area_parm_1 = 1.05 ;
     obstacle_map [ ISO_CRYSTALS_5 ] . block_area_parm_2 = 1.05 ;
     obstacle_map [ ISO_CRYSTALS_5 ] . flags &= ~BLOCKS_VISION_TOO ;
-    obstacle_map [ ISO_CRYSTALS_5 ] . obstacle_short_name = _("Xtal formation");
+    obstacle_map [ ISO_CRYSTALS_5 ] . obstacle_short_name = _("Crystal formation");
     obstacle_map [ ISO_CRYSTALS_5 ] . obstacle_long_description = _("An unusual and impressive formation of red crystals.");
     obstacle_map [ ISO_CRYSTALS_5 ] . filename = "iso_crystal_fields_0005.png";
 
     obstacle_map [ ISO_CRYSTALS_6 ] . block_area_parm_1 = 1.05 ;
     obstacle_map [ ISO_CRYSTALS_6 ] . block_area_parm_2 = 1.05 ;
     obstacle_map [ ISO_CRYSTALS_6 ] . flags &= ~BLOCKS_VISION_TOO ;
-    obstacle_map [ ISO_CRYSTALS_6 ] . obstacle_short_name = _("Xtal formation");
+    obstacle_map [ ISO_CRYSTALS_6 ] . obstacle_short_name = _("Crystal formation");
     obstacle_map [ ISO_CRYSTALS_6 ] . obstacle_long_description = _("An unusual and impressive formation of red crystals.");
     obstacle_map [ ISO_CRYSTALS_6 ] . filename = "iso_crystal_fields_0006.png";
   
