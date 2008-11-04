@@ -148,7 +148,6 @@ int
 CutDownStringToMaximalSize ( char* StringToCut , int LengthInPixels )
 {
     int StringIndex=0;
-    int LengthByNow=0;
     int i;
     
     if ( TextWidth ( StringToCut ) <= LengthInPixels ) return FALSE;
@@ -780,7 +779,8 @@ GetEditableStringInPopupWindow ( int MaxLen , char* PopupWindowTitle , char* Def
     DisplayText ( PopupWindowTitle, TargetRect . x, TargetRect . y , &TargetRect , TEXT_STRETCH )  ;
     x0 = MyCursorX;
     y0 = MyCursorY;
-    
+   
+    SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL); 
     //--------------------
     // Now we can start the enter-string cycle...
     //
@@ -878,10 +878,23 @@ GetEditableStringInPopupWindow ( int MaxLen , char* PopupWindowTitle , char* Def
 		curpos --;
 	    }
 	}
+	else if (key == SDLK_DELETE)
+	{
+	    if ( curpos > 0 ) 
+	    {
+		i = curpos ; 
+		while ( input [ i ] != 0 ) 
+		{
+		    input [ i ] = input [ i + 1] ;
+		    i++;
+		}
+	    }
+	    
+	}
 	
     } // while ( ! finished ) 
-    
-    DebugPrintf ( 1, "\n%s():  The final string is: '%s'." , __FUNCTION__ , input );
+   
+    SDL_EnableKeyRepeat(0, SDL_DEFAULT_REPEAT_INTERVAL); 
     
     return ( input );
     
