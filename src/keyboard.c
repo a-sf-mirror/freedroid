@@ -29,6 +29,7 @@
 #include "global.h"
 #include "proto.h"
 
+extern void LevelEditor(void);
 
 #define KEY_PRESS    ( 1.) /**< Key is pressed. */
 #define KEY_RELEASE  (-1.) /**< Key is released. */
@@ -78,7 +79,7 @@ const char *keybindNames[] = {
     "cheat_identify_all",
     "cheat_drop_random_item", "cheat_drop_random_magical_item",
     "cheat_respawn_level",
-    "cheat_menu",
+    "cheat_menu", "cheat_level_editor",
     "end" }; /* must terminate in "end" */
 
 
@@ -176,7 +177,7 @@ void input_set_default (void)
     input_set_keybind("autorun", SDLK_u, KMOD_NONE);
     input_set_keybind("quicksave", SDLK_F3, KMOD_NONE);
     input_set_keybind("quickload", SDLK_F4, KMOD_NONE);
-    input_set_keybind("pause", SDLK_p, KMOD_NONE);
+    input_set_keybind("pause", SDLK_PAUSE, KMOD_NONE);
     input_set_keybind("show_item_labels", SDLK_z, KMOD_NONE);
     input_set_keybind("automap", SDLK_TAB, KMOD_NONE);
 
@@ -237,6 +238,7 @@ void input_set_default (void)
     input_set_keybind("cheat_drop_random_item", SDLK_r, KMOD_LCTRL);
     input_set_keybind("cheat_drop_random_magical_item", SDLK_r, KMOD_LCTRL | KMOD_LSHIFT);
     input_set_keybind("cheat_respawn_level", SDLK_r, KMOD_LCTRL | KMOD_LALT | KMOD_LSHIFT);
+    input_set_keybind("cheat_level_editor", SDLK_e, KMOD_LCTRL | KMOD_LALT);
     input_set_keybind("cheat_menu", SDLK_c, KMOD_LCTRL | KMOD_LALT | KMOD_LSHIFT);
 
 }
@@ -443,6 +445,9 @@ static int input_key( int keynum, int value)
 	    return 0;
 	} else if (KEYPRESS("keychart")) {
 	    keychart();
+	    return 0;
+	} else if (KEYPRESS("cheat_level_editor")) {
+	    LevelEditor();
 	    return 0;
 	} else if (KEYPRESS("cheat_menu")) {
 	    Cheatmenu();
