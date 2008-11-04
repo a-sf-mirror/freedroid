@@ -1487,7 +1487,6 @@ Escape_handle (int n)
 	SAVE_GAME_POSITION=1,
 	RESUME_GAME_POSITION,
 	OPTIONS_POSITION, 
-	LEVEL_EDITOR_POSITION, 
 	LOAD_GAME_POSITION,
 	NEW_GAME_POSITION,
 	QUIT_POSITION
@@ -1499,10 +1498,6 @@ Escape_handle (int n)
 	return EXIT_MENU;
     case OPTIONS_POSITION:
 	return MENU_OPTIONS;
-    case LEVEL_EDITOR_POSITION:
-	  while (EnterPressed() || SpacePressed() );
-	  LevelEditor();
-	  return EXIT_MENU;
     case LOAD_GAME_POSITION:
 	  LoadGame ( ) ;
 	  return EXIT_MENU;
@@ -1529,11 +1524,10 @@ Escape_fill (char *MenuTexts [10])
       MenuTexts[0]=_("Save Game");
       MenuTexts[1]=_("Resume Game");
       MenuTexts[2]=_("Options");
-      MenuTexts[3]=_("Level Editor");
-      MenuTexts[4]=_("Load Game");
-      MenuTexts[5]=_("Quit Game");
-      MenuTexts[6]=_("Exit FreedroidRPG");
-      MenuTexts[7]="";
+      MenuTexts[3]=_("Load Game");
+      MenuTexts[4]=_("Quit Game");
+      MenuTexts[5]=_("Exit FreedroidRPG");
+      MenuTexts[6]="";
 }
 
 static int
