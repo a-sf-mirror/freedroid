@@ -343,6 +343,8 @@ EXTERN void save_float_array(const char *, float *, int);
 EXTERN void read_float_array(const char *, const char *, float *, int);
 
 /* Hacks */
+EXTERN void save_keybind_t_array(const char *, keybind_t * , int);
+EXTERN void read_keybind_t_array(const char *, const char *, keybind_t *, int);
 EXTERN void save_chatflags_t_array(const char *, chatflags_t * , int);
 EXTERN void read_chatflags_t_array(const char *, const char *, chatflags_t *, int);
 EXTERN void save_cookielist_t_array(const char *, cookielist_t *, int);
@@ -636,6 +638,7 @@ EXTERN void input_set_default(void);
 EXTERN void input_keyboard_init(void);
 EXTERN int getchar_raw (void);
 EXTERN void input_get_keybind(char *cmdname, SDLKey *key, SDLMod *mod);
+EXTERN void input_set_keybind( char *keybind, SDLKey key, SDLMod mod);
 
 // menu.c 
 #undef EXTERN

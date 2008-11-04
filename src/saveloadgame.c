@@ -835,6 +835,75 @@ while ( i < MAX_PERSONS )
 }
 
 
+void save_keybind_t_array(const char * tag, keybind_t * keybinds, int size)
+{
+    fprintf(SaveGameFile, "<keybinds cmd=%d>\n", size);
+    int i;
+    for ( i = 0; i < size; i ++)
+	{
+	if (!strcmp(keybinds[i].name, "end"))
+	    break;
+
+	fprintf(SaveGameFile, "%s %d %d\n", keybinds[i].name, keybinds[i].key, keybinds[i].mod);
+	}
+    fprintf(SaveGameFile, "</keybinds>\n");
+}
+
+void read_keybind_t_array(const char * buffer, const char * tag, keybind_t * kbs, int size)
+{
+int tknb;
+char * pos = strstr(buffer, "<keybinds cmd=");
+if ( ! pos ) WrapErrorMessage ( __FUNCTION__, "Unable to find keybinds.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
+char * epos = strstr(pos, "</keybinds>\n");
+if ( ! epos ) WrapErrorMessage ( __FUNCTION__, "Unable to find keybinds end.\n", PLEASE_INFORM, IS_FATAL);
+char savechar = *epos;
+*epos = '\0';
+int mc = 0;
+char tmpname[100];
+int tmpcode;
+int tmpmod;
+
+pos += strlen("<keybinds cmd=");
+while ( ! isdigit(*pos) ) pos++;
+char * erunp = pos;
+while ( (*erunp) != '>') erunp ++;
+*erunp = '\0';
+mc = atoi(pos);
+*erunp = '>';
+pos = erunp;
+
+if ( mc < size )
+    WrapErrorMessage(__FUNCTION__, "Config file defines %d keybindings, game supports only %d.\n", PLEASE_INFORM, IS_FATAL, mc, size);
+
+while ( *pos != '\n' ) pos ++;
+pos++;
+
+strtok(pos, " \n");
+tknb = 0;
+do {
+    switch(tknb) {
+	case 0: /*key name*/
+	    strncpy(tmpname, pos, 99);	    
+	    tmpname[99]=0;
+	    tknb++;
+	    break;
+	case 1: /*key code*/
+	    tmpcode = atoi(pos);
+	    tknb++;
+	    break;
+	case 2: /*key mod*/
+	    tmpmod = atoi(pos);
+	   
+	    input_set_keybind(tmpname, tmpcode, tmpmod);
+	    tknb = 0;
+	    break;
+    }
+} while((pos = strtok(NULL, " \n")));
+
+
+*epos = savechar;
+}
+
 void save_cookielist_t_array(const char * tag, cookielist_t * cookielist, int size)
 {
 fprintf(SaveGameFile, "<cookielist mc=%d>\n", MAX_COOKIES);

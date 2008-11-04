@@ -34,17 +34,6 @@ extern void LevelEditor(void);
 #define KEY_PRESS    ( 1.) /**< Key is pressed. */
 #define KEY_RELEASE  (-1.) /**< Key is released. */
 
-
-/* keybinding structure */
-typedef struct Keybind_ {
-    char *name; /**< keybinding name, taken from keybindNames */
-    SDLKey key; /**< key/axis/button event number */
-    SDLMod mod; /**< Key modifiers */
-} Keybind;
-
-
-static Keybind** input_keybinds; /**< contains the players keybindings */
-
 /* name of each keybinding */
 const char *keybindNames[] = {
     /* General */
@@ -91,19 +80,22 @@ const char *keybindNames[] = {
  */
 void input_keyboard_init (void)
 {
-    Keybind *temp;
     int i;
     for (i=0; strcmp(keybindNames[i],"end"); i++); /* gets number of bindings */
-    input_keybinds = MyMalloc(i*sizeof(Keybind*));
+
+    GameConfig.input_keybinds[0].name = "end";
+
+    if (i > sizeof(GameConfig.input_keybinds)/sizeof(GameConfig.input_keybinds[0]))
+	ErrorMessage(__FUNCTION__, "There are %d keyboard commands defined in keyboard.c, but GameConfig structure only supports %d.\n", PLEASE_INFORM, IS_FATAL, i, sizeof(GameConfig.input_keybinds)/sizeof(GameConfig.input_keybinds[0]));
 
     /* creates a null keybinding for each */
     for (i=0; strcmp(keybindNames[i],"end"); i++) {
-	temp = MyMalloc(sizeof(Keybind));
-	temp->name = (char*)keybindNames[i];
-	temp->key = SDLK_UNKNOWN;
-	temp->mod = KMOD_NONE;
-	input_keybinds[i] = temp;
+	GameConfig.input_keybinds[i] . name = (char*)keybindNames[i];
+	GameConfig.input_keybinds[i] . key = SDLK_UNKNOWN;
+	GameConfig.input_keybinds[i] . mod = KMOD_NONE;
     }
+
+    GameConfig.input_keybinds[i].name = "end";
 }
 
 
@@ -114,10 +106,6 @@ void input_keyboard_init (void)
  */
 void input_exit (void)
 {
-    int i;
-    for (i=0; strcmp(keybindNames[i],"end"); i++)
-	free(input_keybinds[i]);
-    free(input_keybinds);
 }
 
 
@@ -133,9 +121,9 @@ void input_set_keybind( char *keybind, SDLKey key, SDLMod mod)
 {
     int i;
     for (i=0; strcmp(keybindNames[i],"end"); i++)
-	if (strcmp(keybind, input_keybinds[i]->name)==0) {
-	    input_keybinds[i]->key = key;
-	    input_keybinds[i]->mod = mod;
+	if (strcmp(keybind, GameConfig.input_keybinds[i].name)==0) {
+	    GameConfig.input_keybinds[i].key = key;
+	    GameConfig.input_keybinds[i].mod = mod;
 	    return;
 	}
     ErrorMessage(__FUNCTION__, "Unable to set keybinding '%s', that command doesn't exist.\n", PLEASE_INFORM, IS_FATAL, keybind);
@@ -145,11 +133,11 @@ void input_get_keybind(char *cmdname, SDLKey *key, SDLMod *mod)
 {
     int i;
     for (i=0; strcmp(keybindNames[i],"end"); i++) {
-	if (!strcmp(cmdname, input_keybinds[i]->name)) {
+	if (!strcmp(cmdname, GameConfig.input_keybinds[i].name)) {
 	    if (key)
-		*key = input_keybinds[i]->key;
+		*key = GameConfig.input_keybinds[i].key;
 	    if (mod)
-		*mod = input_keybinds[i]->mod;
+		*mod = GameConfig.input_keybinds[i].mod;
 	    return;
 	}
     }
@@ -274,7 +262,7 @@ static int display_keychart(unsigned int startidx, unsigned int cursor, int high
     ypos = keychart_rect.y;
 
     for (i=startidx; strcmp(keybindNames[i], "end"); i++) {
-	sprintf(txt, "%c%s%s - %s\n", (i==cursor && highlight) ? '\1' : '\2', (i == cursor) ? "** " : "   ", input_keybinds[i]->name, SDL_GetKeyName(input_keybinds[i]->key));
+	sprintf(txt, "%c%s%s - %s\n", (i==cursor && highlight) ? '\1' : '\2', (i == cursor) ? "** " : "   ", GameConfig.input_keybinds[i].name, SDL_GetKeyName(GameConfig.input_keybinds[i].key));
 	PutStringFont(Screen, our_font, xpos, ypos, txt);
 
 	ypos += FontHeight(our_font);
@@ -380,7 +368,7 @@ void keychart()
 		}
 		if (event.key.keysym.sym == SDLK_RETURN) {
 		    display_keychart(startpos, cursor, TRUE);
-		    input_keybinds[cursor]->key = getchar_raw();
+		    GameConfig.input_keybinds[cursor].key = getchar_raw();
 		}
 	    }
 	}
@@ -396,7 +384,7 @@ void keychart()
  *    @param value The value of the keypress (defined above).
  *    @param abs Whether or not it's an absolute value (for them joystick).
  */
-#define KEYPRESS(s)    ((strcmp(input_keybinds[keynum]->name,s)==0) && value==KEY_PRESS)
+#define KEYPRESS(s)    ((strcmp(GameConfig.input_keybinds[keynum].name,s)==0) && value==KEY_PRESS)
 #define INGAME()	(game_status == INSIDE_GAME)
 #define INMENU()	(game_status == INSIDE_MENU)
 #define INLVLEDIT()	(game_status == INSIDE_LVLEDITOR)
@@ -470,16 +458,16 @@ static int input_key( int keynum, int value)
 	} else if (KEYPRESS("show_item_labels")) {
 	    always_show_items_text = ! always_show_items_text;
 	    return 0;
-	} else if (!strncmp(input_keybinds[keynum]->name, "activate_program", strlen("activate_program")) && value==KEY_PRESS) {
-	    int number = atoi(input_keybinds[keynum]->name + strlen("activate_program"));
+	} else if (!strncmp(GameConfig.input_keybinds[keynum].name, "activate_program", strlen("activate_program")) && value==KEY_PRESS) {
+	    int number = atoi(GameConfig.input_keybinds[keynum].name + strlen("activate_program"));
 	    if (number >= 10 || number < 0) {
 		ErrorMessage(__FUNCTION__, "Tried to activate skill number %d - only shortcuts from F1 to F9 are supported\n", PLEASE_INFORM, IS_WARNING_ONLY, number);
 		return 0;
 	    }
 
 	    activate_nth_aquired_skill(number);
-	} else if (!strncmp(input_keybinds[keynum]->name, "quick_inventory", strlen("quick_inventory")) && value==KEY_PRESS) {
-	    int number = atoi(input_keybinds[keynum]->name + strlen("quick_inventory"));
+	} else if (!strncmp(GameConfig.input_keybinds[keynum].name, "quick_inventory", strlen("quick_inventory")) && value==KEY_PRESS) {
+	    int number = atoi(GameConfig.input_keybinds[keynum].name + strlen("quick_inventory"));
 	    if (number >= 10 || number < 0) {
 		ErrorMessage(__FUNCTION__, "Tried to use quick inventory item %d - only 1-9 + 0 are supported.\n", PLEASE_INFORM, IS_WARNING_ONLY, number);
 		return 0;
@@ -547,8 +535,8 @@ static int input_key( int keynum, int value)
 	} else if (KEYPRESS("beautify_grass")) {
 	    level_editor_beautify_grass_tiles();
 	    return 0;
-	} else if (!strncmp(input_keybinds[keynum]->name, "place_obstacle_kp", strlen("place_obstacle_kp")) && value==KEY_PRESS) {
-	    int number = atoi(input_keybinds[keynum]->name + strlen("place_obstacle_kp"));
+	} else if (!strncmp(GameConfig.input_keybinds[keynum].name, "place_obstacle_kp", strlen("place_obstacle_kp")) && value==KEY_PRESS) {
+	    int number = atoi(GameConfig.input_keybinds[keynum].name + strlen("place_obstacle_kp"));
 	    if (number >= 10 || number < 0) {
 		ErrorMessage(__FUNCTION__, "Tried to place obstacle using kp%d - only supported are kp1 to kp9\n", PLEASE_INFORM, IS_WARNING_ONLY, number);
 		return 0;
@@ -586,7 +574,7 @@ static int input_key_event( SDLKey key, SDLMod mod, int value )
     mod &= ~(KMOD_CAPS | KMOD_NUM | KMOD_MODE); /* We want to ignore "global" modifiers. */
 
     for (i=0; strcmp(keybindNames[i],"end"); i++)
-	if ((input_keybinds[i]->key == key) && (input_keybinds[i]->mod==mod)) {
+	if ((GameConfig.input_keybinds[i].key == key) && (GameConfig.input_keybinds[i].mod==mod)) {
 	    if(!input_key(i, value))
 		break;
 	}

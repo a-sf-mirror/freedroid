@@ -528,6 +528,152 @@ read_float(pos, "invisible_duration",  &(target->invisible_duration));
 return 0;
 }
 
+int save_configuration_for_freedroid(char * tag, configuration_for_freedroid * target)
+{
+fprintf(SaveGameFile, "<%s>\n",tag);
+save_float("WantedTextVisibleTime", &(target->WantedTextVisibleTime));
+save_int32_t("Draw_Framerate", &(target->Draw_Framerate));
+save_int32_t("Draw_Position", &(target->Draw_Position));
+save_int32_t("Enemy_Hit_Text", &(target->Enemy_Hit_Text));
+save_int32_t("Enemy_Bump_Text", &(target->Enemy_Bump_Text));
+save_int32_t("Enemy_Aim_Text", &(target->Enemy_Aim_Text));
+save_int32_t("All_Texts_Switch", &(target->All_Texts_Switch));
+save_float("Current_BG_Music_Volume", &(target->Current_BG_Music_Volume));
+save_float("Current_Sound_FX_Volume", &(target->Current_Sound_FX_Volume));
+save_float("current_gamma_correction", &(target->current_gamma_correction));
+save_int32_t("StandardEnemyMessages_On_Off", &(target->StandardEnemyMessages_On_Off));
+save_int32_t("StandardInfluencerMessages_On_Off", &(target->StandardInfluencerMessages_On_Off));
+save_int32_t("Mouse_Input_Permitted", &(target->Mouse_Input_Permitted));
+save_int32_t("Inventory_Visible", &(target->Inventory_Visible));
+save_int32_t("CharacterScreen_Visible", &(target->CharacterScreen_Visible));
+save_int32_t("SkillScreen_Visible", &(target->SkillScreen_Visible));
+save_int32_t("Automap_Visible", &(target->Automap_Visible));
+save_int32_t("spell_level_visible", &(target->spell_level_visible));
+save_string("freedroid_version_string", &(target->freedroid_version_string));
+save_int32_t("skip_light_radius", &(target->skip_light_radius));
+save_int32_t("skill_explanation_screen_visible", &(target->skill_explanation_screen_visible));
+save_int32_t("enemy_energy_bars_visible", &(target->enemy_energy_bars_visible));
+save_int32_t("hog_CPU", &(target->hog_CPU));
+save_int32_t("highlighting_mode_full", &(target->highlighting_mode_full));
+save_int32_t("omit_tux_in_level_editor", &(target->omit_tux_in_level_editor));
+save_int32_t("omit_obstacles_in_level_editor", &(target->omit_obstacles_in_level_editor));
+save_int32_t("omit_enemies_in_level_editor", &(target->omit_enemies_in_level_editor));
+save_int32_t("level_editor_edit_mode", &(target->level_editor_edit_mode));
+save_int32_t("zoom_is_on", &(target->zoom_is_on));
+save_int32_t("show_blood", &(target->show_blood));
+save_int32_t("show_tooltips", &(target->show_tooltips));
+save_int32_t("number_of_big_screen_messages", &(target->number_of_big_screen_messages));
+save_float("delay_for_big_screen_messages", &(target->delay_for_big_screen_messages));
+save_int32_t("enable_cheatkeys", &(target->enable_cheatkeys));
+save_int32_t("transparency", &(target->transparency));
+save_int32_t("screen_width", &(target->screen_width));
+save_int32_t("screen_height", &(target->screen_height));
+save_int32_t("next_time_width_of_screen", &(target->next_time_width_of_screen));
+save_int32_t("next_time_height_of_screen", &(target->next_time_height_of_screen));
+save_float("automap_display_scale", &(target->automap_display_scale));
+save_int32_t("skip_shadow_blitting", &(target->skip_shadow_blitting));
+save_int32_t("language", &(target->language));
+save_int32_t("do_fadings", &(target->do_fadings));
+save_int32_t("auto_display_to_help", &(target->auto_display_to_help));
+save_int32_t("fullscreen_on", &(target->fullscreen_on));
+save_int32_t("talk_to_bots_after_takeover", &(target->talk_to_bots_after_takeover));
+save_int32_t("xray_vision_for_tux", &(target->xray_vision_for_tux));
+save_keybind_t_array("input_keybinds", (target->input_keybinds), 100);
+fprintf(SaveGameFile, "</%s>\n", tag);
+return 0;
+}
+
+int read_configuration_for_freedroid(char* buffer, char * tag, configuration_for_freedroid * target)
+{
+
+		char search[strlen(tag) + 5];
+		sprintf(search, "<%s>", tag);
+	        char * pos = strstr(buffer, search);
+		if ( ! pos ) return 1;
+		pos += 1 + strlen(tag);
+		sprintf(search, "</%s>", tag);
+		char * epos = strstr(buffer, search);
+		if ( ! epos ) return 2;
+		*epos = 0;
+		read_float(pos, "WantedTextVisibleTime",  &(target->WantedTextVisibleTime));
+read_int32_t(pos, "Draw_Framerate",  &(target->Draw_Framerate));
+read_int32_t(pos, "Draw_Position",  &(target->Draw_Position));
+read_int32_t(pos, "Enemy_Hit_Text",  &(target->Enemy_Hit_Text));
+read_int32_t(pos, "Enemy_Bump_Text",  &(target->Enemy_Bump_Text));
+read_int32_t(pos, "Enemy_Aim_Text",  &(target->Enemy_Aim_Text));
+read_int32_t(pos, "All_Texts_Switch",  &(target->All_Texts_Switch));
+read_float(pos, "Current_BG_Music_Volume",  &(target->Current_BG_Music_Volume));
+read_float(pos, "Current_Sound_FX_Volume",  &(target->Current_Sound_FX_Volume));
+read_float(pos, "current_gamma_correction",  &(target->current_gamma_correction));
+read_int32_t(pos, "StandardEnemyMessages_On_Off",  &(target->StandardEnemyMessages_On_Off));
+read_int32_t(pos, "StandardInfluencerMessages_On_Off",  &(target->StandardInfluencerMessages_On_Off));
+read_int32_t(pos, "Mouse_Input_Permitted",  &(target->Mouse_Input_Permitted));
+read_int32_t(pos, "Inventory_Visible",  &(target->Inventory_Visible));
+read_int32_t(pos, "CharacterScreen_Visible",  &(target->CharacterScreen_Visible));
+read_int32_t(pos, "SkillScreen_Visible",  &(target->SkillScreen_Visible));
+read_int32_t(pos, "Automap_Visible",  &(target->Automap_Visible));
+read_int32_t(pos, "spell_level_visible",  &(target->spell_level_visible));
+read_string(pos, "freedroid_version_string", (char*) &(target->freedroid_version_string));
+read_int32_t(pos, "skip_light_radius",  &(target->skip_light_radius));
+read_int32_t(pos, "skill_explanation_screen_visible",  &(target->skill_explanation_screen_visible));
+read_int32_t(pos, "enemy_energy_bars_visible",  &(target->enemy_energy_bars_visible));
+read_int32_t(pos, "hog_CPU",  &(target->hog_CPU));
+read_int32_t(pos, "highlighting_mode_full",  &(target->highlighting_mode_full));
+read_int32_t(pos, "omit_tux_in_level_editor",  &(target->omit_tux_in_level_editor));
+read_int32_t(pos, "omit_obstacles_in_level_editor",  &(target->omit_obstacles_in_level_editor));
+read_int32_t(pos, "omit_enemies_in_level_editor",  &(target->omit_enemies_in_level_editor));
+read_int32_t(pos, "level_editor_edit_mode",  &(target->level_editor_edit_mode));
+read_int32_t(pos, "zoom_is_on",  &(target->zoom_is_on));
+read_int32_t(pos, "show_blood",  &(target->show_blood));
+read_int32_t(pos, "show_tooltips",  &(target->show_tooltips));
+read_int32_t(pos, "number_of_big_screen_messages",  &(target->number_of_big_screen_messages));
+read_float(pos, "delay_for_big_screen_messages",  &(target->delay_for_big_screen_messages));
+read_int32_t(pos, "enable_cheatkeys",  &(target->enable_cheatkeys));
+read_int32_t(pos, "transparency",  &(target->transparency));
+read_int32_t(pos, "screen_width",  &(target->screen_width));
+read_int32_t(pos, "screen_height",  &(target->screen_height));
+read_int32_t(pos, "next_time_width_of_screen",  &(target->next_time_width_of_screen));
+read_int32_t(pos, "next_time_height_of_screen",  &(target->next_time_height_of_screen));
+read_float(pos, "automap_display_scale",  &(target->automap_display_scale));
+read_int32_t(pos, "skip_shadow_blitting",  &(target->skip_shadow_blitting));
+read_int32_t(pos, "language",  &(target->language));
+read_int32_t(pos, "do_fadings",  &(target->do_fadings));
+read_int32_t(pos, "auto_display_to_help",  &(target->auto_display_to_help));
+read_int32_t(pos, "fullscreen_on",  &(target->fullscreen_on));
+read_int32_t(pos, "talk_to_bots_after_takeover",  &(target->talk_to_bots_after_takeover));
+read_int32_t(pos, "xray_vision_for_tux",  &(target->xray_vision_for_tux));
+read_keybind_t_array(pos, "input_keybinds",  (target->input_keybinds), 100);
+*epos = '>'; 
+return 0;
+}
+
+int save_finepoint(char * tag, finepoint * target)
+{
+fprintf(SaveGameFile, "<%s>\n",tag);
+save_double("x", &(target->x));
+save_double("y", &(target->y));
+fprintf(SaveGameFile, "</%s>\n", tag);
+return 0;
+}
+
+int read_finepoint(char* buffer, char * tag, finepoint * target)
+{
+
+		char search[strlen(tag) + 5];
+		sprintf(search, "<%s>", tag);
+	        char * pos = strstr(buffer, search);
+		if ( ! pos ) return 1;
+		pos += 1 + strlen(tag);
+		sprintf(search, "</%s>", tag);
+		char * epos = strstr(buffer, search);
+		if ( ! epos ) return 2;
+		*epos = 0;
+		read_double(pos, "x",  &(target->x));
+read_double(pos, "y",  &(target->y));
+*epos = '>'; 
+return 0;
+}
+
 int save_item(char * tag, item * target)
 {
 fprintf(SaveGameFile, "<%s>\n",tag);
@@ -611,33 +757,6 @@ read_point(pos, "inventory_position",  &(target->inventory_position));
 return 0;
 }
 
-int save_finepoint(char * tag, finepoint * target)
-{
-fprintf(SaveGameFile, "<%s>\n",tag);
-save_double("x", &(target->x));
-save_double("y", &(target->y));
-fprintf(SaveGameFile, "</%s>\n", tag);
-return 0;
-}
-
-int read_finepoint(char* buffer, char * tag, finepoint * target)
-{
-
-		char search[strlen(tag) + 5];
-		sprintf(search, "<%s>", tag);
-	        char * pos = strstr(buffer, search);
-		if ( ! pos ) return 1;
-		pos += 1 + strlen(tag);
-		sprintf(search, "</%s>", tag);
-		char * epos = strstr(buffer, search);
-		if ( ! epos ) return 2;
-		*epos = 0;
-		read_double(pos, "x",  &(target->x));
-read_double(pos, "y",  &(target->y));
-*epos = '>'; 
-return 0;
-}
-
 int save_melee_shot(char * tag, melee_shot * target)
 {
 fprintf(SaveGameFile, "<%s>\n",tag);
@@ -675,61 +794,16 @@ read_char(pos, "level",  &(target->level));
 return 0;
 }
 
-int save_configuration_for_freedroid(char * tag, configuration_for_freedroid * target)
+int save_keybind_t(char * tag, keybind_t * target)
 {
 fprintf(SaveGameFile, "<%s>\n",tag);
-save_float("WantedTextVisibleTime", &(target->WantedTextVisibleTime));
-save_int32_t("Draw_Framerate", &(target->Draw_Framerate));
-save_int32_t("Draw_Position", &(target->Draw_Position));
-save_int32_t("Enemy_Hit_Text", &(target->Enemy_Hit_Text));
-save_int32_t("Enemy_Bump_Text", &(target->Enemy_Bump_Text));
-save_int32_t("Enemy_Aim_Text", &(target->Enemy_Aim_Text));
-save_int32_t("All_Texts_Switch", &(target->All_Texts_Switch));
-save_float("Current_BG_Music_Volume", &(target->Current_BG_Music_Volume));
-save_float("Current_Sound_FX_Volume", &(target->Current_Sound_FX_Volume));
-save_float("current_gamma_correction", &(target->current_gamma_correction));
-save_int32_t("StandardEnemyMessages_On_Off", &(target->StandardEnemyMessages_On_Off));
-save_int32_t("StandardInfluencerMessages_On_Off", &(target->StandardInfluencerMessages_On_Off));
-save_int32_t("Mouse_Input_Permitted", &(target->Mouse_Input_Permitted));
-save_int32_t("Inventory_Visible", &(target->Inventory_Visible));
-save_int32_t("CharacterScreen_Visible", &(target->CharacterScreen_Visible));
-save_int32_t("SkillScreen_Visible", &(target->SkillScreen_Visible));
-save_int32_t("Automap_Visible", &(target->Automap_Visible));
-save_int32_t("spell_level_visible", &(target->spell_level_visible));
-save_string("freedroid_version_string", &(target->freedroid_version_string));
-save_int32_t("skip_light_radius", &(target->skip_light_radius));
-save_int32_t("skill_explanation_screen_visible", &(target->skill_explanation_screen_visible));
-save_int32_t("enemy_energy_bars_visible", &(target->enemy_energy_bars_visible));
-save_int32_t("hog_CPU", &(target->hog_CPU));
-save_int32_t("highlighting_mode_full", &(target->highlighting_mode_full));
-save_int32_t("omit_tux_in_level_editor", &(target->omit_tux_in_level_editor));
-save_int32_t("omit_obstacles_in_level_editor", &(target->omit_obstacles_in_level_editor));
-save_int32_t("omit_enemies_in_level_editor", &(target->omit_enemies_in_level_editor));
-save_int32_t("level_editor_edit_mode", &(target->level_editor_edit_mode));
-save_int32_t("zoom_is_on", &(target->zoom_is_on));
-save_int32_t("show_blood", &(target->show_blood));
-save_int32_t("show_tooltips", &(target->show_tooltips));
-save_int32_t("number_of_big_screen_messages", &(target->number_of_big_screen_messages));
-save_float("delay_for_big_screen_messages", &(target->delay_for_big_screen_messages));
-save_int32_t("enable_cheatkeys", &(target->enable_cheatkeys));
-save_int32_t("transparency", &(target->transparency));
-save_int32_t("screen_width", &(target->screen_width));
-save_int32_t("screen_height", &(target->screen_height));
-save_int32_t("next_time_width_of_screen", &(target->next_time_width_of_screen));
-save_int32_t("next_time_height_of_screen", &(target->next_time_height_of_screen));
-save_float("automap_display_scale", &(target->automap_display_scale));
-save_int32_t("skip_shadow_blitting", &(target->skip_shadow_blitting));
-save_int32_t("language", &(target->language));
-save_int32_t("do_fadings", &(target->do_fadings));
-save_int32_t("auto_display_to_help", &(target->auto_display_to_help));
-save_int32_t("fullscreen_on", &(target->fullscreen_on));
-save_int32_t("talk_to_bots_after_takeover", &(target->talk_to_bots_after_takeover));
-save_int32_t("xray_vision_for_tux", &(target->xray_vision_for_tux));
+save_int32_t("key", &(target->key));
+save_int32_t("mod", &(target->mod));
 fprintf(SaveGameFile, "</%s>\n", tag);
 return 0;
 }
 
-int read_configuration_for_freedroid(char* buffer, char * tag, configuration_for_freedroid * target)
+int read_keybind_t(char* buffer, char * tag, keybind_t * target)
 {
 
 		char search[strlen(tag) + 5];
@@ -741,53 +815,8 @@ int read_configuration_for_freedroid(char* buffer, char * tag, configuration_for
 		char * epos = strstr(buffer, search);
 		if ( ! epos ) return 2;
 		*epos = 0;
-		read_float(pos, "WantedTextVisibleTime",  &(target->WantedTextVisibleTime));
-read_int32_t(pos, "Draw_Framerate",  &(target->Draw_Framerate));
-read_int32_t(pos, "Draw_Position",  &(target->Draw_Position));
-read_int32_t(pos, "Enemy_Hit_Text",  &(target->Enemy_Hit_Text));
-read_int32_t(pos, "Enemy_Bump_Text",  &(target->Enemy_Bump_Text));
-read_int32_t(pos, "Enemy_Aim_Text",  &(target->Enemy_Aim_Text));
-read_int32_t(pos, "All_Texts_Switch",  &(target->All_Texts_Switch));
-read_float(pos, "Current_BG_Music_Volume",  &(target->Current_BG_Music_Volume));
-read_float(pos, "Current_Sound_FX_Volume",  &(target->Current_Sound_FX_Volume));
-read_float(pos, "current_gamma_correction",  &(target->current_gamma_correction));
-read_int32_t(pos, "StandardEnemyMessages_On_Off",  &(target->StandardEnemyMessages_On_Off));
-read_int32_t(pos, "StandardInfluencerMessages_On_Off",  &(target->StandardInfluencerMessages_On_Off));
-read_int32_t(pos, "Mouse_Input_Permitted",  &(target->Mouse_Input_Permitted));
-read_int32_t(pos, "Inventory_Visible",  &(target->Inventory_Visible));
-read_int32_t(pos, "CharacterScreen_Visible",  &(target->CharacterScreen_Visible));
-read_int32_t(pos, "SkillScreen_Visible",  &(target->SkillScreen_Visible));
-read_int32_t(pos, "Automap_Visible",  &(target->Automap_Visible));
-read_int32_t(pos, "spell_level_visible",  &(target->spell_level_visible));
-read_string(pos, "freedroid_version_string", (char*) &(target->freedroid_version_string));
-read_int32_t(pos, "skip_light_radius",  &(target->skip_light_radius));
-read_int32_t(pos, "skill_explanation_screen_visible",  &(target->skill_explanation_screen_visible));
-read_int32_t(pos, "enemy_energy_bars_visible",  &(target->enemy_energy_bars_visible));
-read_int32_t(pos, "hog_CPU",  &(target->hog_CPU));
-read_int32_t(pos, "highlighting_mode_full",  &(target->highlighting_mode_full));
-read_int32_t(pos, "omit_tux_in_level_editor",  &(target->omit_tux_in_level_editor));
-read_int32_t(pos, "omit_obstacles_in_level_editor",  &(target->omit_obstacles_in_level_editor));
-read_int32_t(pos, "omit_enemies_in_level_editor",  &(target->omit_enemies_in_level_editor));
-read_int32_t(pos, "level_editor_edit_mode",  &(target->level_editor_edit_mode));
-read_int32_t(pos, "zoom_is_on",  &(target->zoom_is_on));
-read_int32_t(pos, "show_blood",  &(target->show_blood));
-read_int32_t(pos, "show_tooltips",  &(target->show_tooltips));
-read_int32_t(pos, "number_of_big_screen_messages",  &(target->number_of_big_screen_messages));
-read_float(pos, "delay_for_big_screen_messages",  &(target->delay_for_big_screen_messages));
-read_int32_t(pos, "enable_cheatkeys",  &(target->enable_cheatkeys));
-read_int32_t(pos, "transparency",  &(target->transparency));
-read_int32_t(pos, "screen_width",  &(target->screen_width));
-read_int32_t(pos, "screen_height",  &(target->screen_height));
-read_int32_t(pos, "next_time_width_of_screen",  &(target->next_time_width_of_screen));
-read_int32_t(pos, "next_time_height_of_screen",  &(target->next_time_height_of_screen));
-read_float(pos, "automap_display_scale",  &(target->automap_display_scale));
-read_int32_t(pos, "skip_shadow_blitting",  &(target->skip_shadow_blitting));
-read_int32_t(pos, "language",  &(target->language));
-read_int32_t(pos, "do_fadings",  &(target->do_fadings));
-read_int32_t(pos, "auto_display_to_help",  &(target->auto_display_to_help));
-read_int32_t(pos, "fullscreen_on",  &(target->fullscreen_on));
-read_int32_t(pos, "talk_to_bots_after_takeover",  &(target->talk_to_bots_after_takeover));
-read_int32_t(pos, "xray_vision_for_tux",  &(target->xray_vision_for_tux));
+		read_int32_t(pos, "key",  &(target->key));
+read_int32_t(pos, "mod",  &(target->mod));
 *epos = '>'; 
 return 0;
 }

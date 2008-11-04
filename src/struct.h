@@ -96,6 +96,12 @@ typedef struct mouse_press_button_s
 }
 mouse_press_button, *Mouse_press_button;
 
+typedef struct keybind_s {
+    char *name; /**< keybinding name, taken from keybindNames */
+    int key; /**< key/axis/button event number */
+    int mod; /**< Key modifiers */
+} keybind_t;
+
 typedef struct configuration_for_freedroid_s
 {
     float WantedTextVisibleTime;
@@ -147,6 +153,7 @@ typedef struct configuration_for_freedroid_s
     int fullscreen_on;
     int talk_to_bots_after_takeover;
     int xray_vision_for_tux;
+    keybind_t input_keybinds[100];
 }
 configuration_for_freedroid , *Configuration_for_freedroid;
 
