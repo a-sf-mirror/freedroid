@@ -251,6 +251,7 @@ SaveThumbnailOfGame ( void )
 int SaveGame( void )
 {
     char filename[1000];
+    char filename2[1000];
     
     if ( Me . energy <= 0 )
     {
@@ -274,6 +275,9 @@ int SaveGame( void )
 	      (int) MAXBULLETS );
 
     sprintf( filename , "%s/%s%s", our_config_dir, Me.character_name, ".shp" );
+    sprintf( filename2 , "%s/%s%s", our_config_dir, Me.character_name, ".bkp.shp" );
+
+    rename(filename, filename2);
 
     if ( SaveShip( filename ) != OK )
     {
@@ -289,6 +293,9 @@ or file permissions of ~/.freedroid_rpg are somehow not right.",
     }
     
     sprintf ( filename , "%s/%s%s", our_config_dir , Me.character_name, ".savegame");
+    sprintf( filename2 , "%s/%s%s", our_config_dir, Me.character_name, ".bkp.savegame" );
+
+    rename(filename, filename2);
     
     if( ( SaveGameFile = fopen(filename, "wb")) == NULL) {
 	printf("\n\nError opening save game file for writing...\n\nTerminating...\n\n");
@@ -383,6 +390,16 @@ DeleteGame( void )
     return ( OK );
 
 }; // int DeleteGame( void )
+
+/**
+ * This loads the backup for the current player name
+ */
+int LoadBackupGame()
+{
+    strcat(Me.character_name, ".bkp");
+    int ret = LoadGame();
+    return ret;
+}
 
 /**
  * This function loads an old saved game of Freedroid from a file.

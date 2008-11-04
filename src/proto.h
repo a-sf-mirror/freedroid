@@ -294,6 +294,7 @@ EXTERN Uint8 GetAlphaComponent ( SDL_Surface* surface , int x , int y );
 EXTERN void ShowSaveLoadGameProgressMeter( int Percentage , int IsSavegame ) ;
 EXTERN void LoadAndShowThumbnail ( char* CoreFilename );
 EXTERN int SaveGame( void );
+EXTERN int LoadBackupGame( void );
 EXTERN int LoadGame( void );
 EXTERN int DeleteGame( void );
 EXTERN void LoadAndShowStats ( char* CoreFilename );

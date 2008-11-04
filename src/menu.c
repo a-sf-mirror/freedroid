@@ -1488,6 +1488,7 @@ Escape_handle (int n)
 	RESUME_GAME_POSITION,
 	OPTIONS_POSITION, 
 	LOAD_GAME_POSITION,
+	LOAD_BACKUP_POSITION,
 	NEW_GAME_POSITION,
 	QUIT_POSITION
     };
@@ -1500,6 +1501,9 @@ Escape_handle (int n)
 	return MENU_OPTIONS;
     case LOAD_GAME_POSITION:
 	  LoadGame ( ) ;
+	  return EXIT_MENU;
+    case LOAD_BACKUP_POSITION:
+	  LoadBackupGame();
 	  return EXIT_MENU;
     case NEW_GAME_POSITION:
 	GameOver = TRUE ;
@@ -1525,9 +1529,10 @@ Escape_fill (char *MenuTexts [10])
       MenuTexts[1]=_("Resume Game");
       MenuTexts[2]=_("Options");
       MenuTexts[3]=_("Load Game");
-      MenuTexts[4]=_("Quit Game");
-      MenuTexts[5]=_("Exit FreedroidRPG");
-      MenuTexts[6]="";
+      MenuTexts[4]=_("Load Backup");
+      MenuTexts[5]=_("Quit Game");
+      MenuTexts[6]=_("Exit FreedroidRPG");
+      MenuTexts[7]="";
 }
 
 static int
@@ -2152,9 +2157,18 @@ static int filename_filter_func ( const struct dirent *file )
 {
 	char* pos = strstr ( file->d_name , ".savegame" );
 	
-	if ( pos != NULL ) // ".savegame" found
-		if ( strlen(pos) == 9 ) // since strlen(".savegame") is 9, then
-			return (1);         // unused->d_name *ENDS* with ".savegame"
+	if ( pos != NULL ) { // ".savegame" found
+	    if ( strlen(pos) == 9 ) {// since strlen(".savegame") is 9, then
+		// d_name *ENDS* with ".savegame"
+
+		if ( strstr(file->d_name, ".bkp.savegame") + 4 == pos) {
+		    //then we have .bkp.savegame = filter it out
+		    return 0;
+		}
+
+		return (1);
+	    }
+	}
 
 	return ( 0 );
 }; // static int filename_filter_func (const struct dirent *unused)
