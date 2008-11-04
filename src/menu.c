@@ -1063,7 +1063,7 @@ Cheatmenu (void)
 	//
 	our_SDL_flip_wrapper();
 
-	switch ( getchar_raw ( ) )
+	switch ( getchar_raw (NULL) )
 	{
 	    case 'f':
 		GameConfig . xray_vision_for_tux = ! GameConfig . xray_vision_for_tux;
@@ -1096,7 +1096,7 @@ Cheatmenu (void)
 				{
 				printf_SDL (Screen, -1, -1, " --- MORE --- \n");
 				our_SDL_flip_wrapper();
-				if( getchar_raw () == 'q')
+				if( getchar_raw (NULL) == 'q')
 				    break;
 				}
 			    if (!(l % ((GameConfig.screen_height == 768) ? 25 : 16)) )  
@@ -1173,7 +1173,7 @@ Cheatmenu (void)
 
 		    printf_SDL (Screen, -1, -1, "All robots on this deck killed!\n");
 		    our_SDL_flip_wrapper();
-		    getchar_raw ();
+		    getchar_raw (NULL);
 		    }
 		break;
 
@@ -1208,7 +1208,7 @@ Cheatmenu (void)
 		    if (i && !(i%20))
 		    {
 			printf_SDL (Screen, -1, -1, " ---- MORE -----\n");
-			if (getchar_raw () == 'q')
+			if (getchar_raw (NULL) == 'q')
 			    break;
 		    }
 		    if ( !(i%20) )
@@ -1224,7 +1224,7 @@ Cheatmenu (void)
 				WpList[i].connections[3]);
 		} /* for (all waypoints) */
 		printf_SDL (Screen, -1, -1, " --- END ---\n");
-		getchar_raw ();
+		getchar_raw (NULL);
 		break;
 
 	    case ' ':

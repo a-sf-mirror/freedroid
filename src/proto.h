@@ -636,7 +636,7 @@ EXTERN int input_key_press(SDLKey, SDLMod);
 EXTERN void keychart(void);
 EXTERN void input_set_default(void);
 EXTERN void input_keyboard_init(void);
-EXTERN int getchar_raw (void);
+EXTERN int getchar_raw (int *);
 EXTERN void input_get_keybind(char *cmdname, SDLKey *key, SDLMod *mod);
 EXTERN void input_set_keybind( char *keybind, SDLKey key, SDLMod mod);
 

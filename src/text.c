@@ -672,7 +672,7 @@ char * GetString ( int MaxLen, int background_code , const char* text_for_overhe
 	PutString ( Screen, x0, y0, input);
 	our_SDL_flip_wrapper();
 
-	key = getchar_raw ();  
+	key = getchar_raw (NULL);  
 
 	if ( key == SDLK_RETURN ) 
 	{
@@ -824,7 +824,7 @@ GetEditableStringInPopupWindow ( int MaxLen , char* PopupWindowTitle , char* Def
 	
 	our_SDL_flip_wrapper();
 	
-	key = getchar_raw ();  
+	key = getchar_raw (NULL);  
 	
 	if (key == SDLK_RETURN) 
 	{

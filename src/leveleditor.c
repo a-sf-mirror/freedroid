@@ -5707,7 +5707,7 @@ void LevelEditor(void)
 		    DisplayText ( _("\nNo more free comment position.  Using first. ") , -1 , -1 , &User_Rect , 1.0 );
 		    i=0;
 		    our_SDL_flip_wrapper();
-		    getchar_raw();
+		    getchar_raw(NULL);
 		    // Terminate( ERR );
 		}
 		

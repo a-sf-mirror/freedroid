@@ -262,7 +262,14 @@ static int display_keychart(unsigned int startidx, unsigned int cursor, int high
     ypos = keychart_rect.y;
 
     for (i=startidx; strcmp(keybindNames[i], "end"); i++) {
-	sprintf(txt, "%c%s%s - %s\n", (i==cursor && highlight) ? '\1' : '\2', (i == cursor) ? "** " : "   ", GameConfig.input_keybinds[i].name, SDL_GetKeyName(GameConfig.input_keybinds[i].key));
+	char modstring[10] = "";
+	if (GameConfig.input_keybinds[i].mod & KMOD_LCTRL || GameConfig.input_keybinds[i].mod & KMOD_RCTRL)
+	    strcat(modstring, "C-");
+	if (GameConfig.input_keybinds[i].mod & KMOD_LALT || GameConfig.input_keybinds[i].mod & KMOD_RALT)
+	    strcat(modstring, "A-");
+	if (GameConfig.input_keybinds[i].mod & KMOD_LSHIFT || GameConfig.input_keybinds[i].mod & KMOD_RSHIFT)
+	    strcat(modstring, "S-");
+	sprintf(txt, "%c%s%s - %s%s\n", (i==cursor && highlight) ? '\1' : '\2', (i == cursor) ? "** " : "   ", GameConfig.input_keybinds[i].name, modstring, SDL_GetKeyName(GameConfig.input_keybinds[i].key));
 	PutStringFont(Screen, our_font, xpos, ypos, txt);
 
 	ypos += FontHeight(our_font);
@@ -367,8 +374,11 @@ void keychart()
 			startpos ++;
 		}
 		if (event.key.keysym.sym == SDLK_RETURN) {
+		    int newmod;
 		    display_keychart(startpos, cursor, TRUE);
-		    GameConfig.input_keybinds[cursor].key = getchar_raw();
+		    GameConfig.input_keybinds[cursor].key = getchar_raw(&newmod);
+		    newmod &= ~(KMOD_CAPS | KMOD_NUM | KMOD_MODE); /* We want to ignore "global" modifiers. */
+		    GameConfig.input_keybinds[cursor].mod = newmod;
 		}
 	    }
 	}
@@ -590,7 +600,7 @@ int input_key_press (SDLKey key, SDLMod mod)
  * This function reads a character from the keyboard
  * and returns the SDLKey that was pressed.
  */
-int getchar_raw (void)
+int getchar_raw (int *mod)
 {
     SDL_Event event;
     int Returnkey;
@@ -605,14 +615,28 @@ int getchar_raw (void)
 
 	if (event.type == SDL_KEYDOWN)
 	{
+	    Returnkey = (int) event.key.keysym.sym;
+	    if ( !mod && event.key.keysym.mod & KMOD_SHIFT ) Returnkey = toupper( (int)event.key.keysym.sym );
+
+	    if (mod) {
+		/* If we have a modifier, we assign it*/
+		*mod = event.key.keysym.mod;
+
+		/* And we also discard the keypress if the sym is e.g. CTRL because we explicitely
+		 * asked to get a modifier, which makes sense only if we ignore CTRL as a key.
+		 */
+		if (event.key.keysym.sym >= SDLK_NUMLOCK && event.key.keysym.sym <= SDLK_COMPOSE) {
+		    goto next;
+		}
+	    }
 	    /*
 	     * here we use the fact that, I cite from SDL_keyboard.h:
 	     * "The keyboard syms have been cleverly chosen to map to ASCII"
 	     * ... I hope that this design feature is portable, and durable ;)
 	     */
-	    Returnkey = (int) event.key.keysym.sym;
-	    if ( event.key.keysym.mod & KMOD_SHIFT ) Returnkey = toupper( (int)event.key.keysym.sym );
 	    return ( Returnkey );
 	}
+next: ;
+
     } /* while(1) */
 } /* getchar_raw() */
