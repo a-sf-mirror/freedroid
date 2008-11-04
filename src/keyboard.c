@@ -177,7 +177,7 @@ void input_set_default (void)
     input_set_keybind("autorun", SDLK_u, KMOD_NONE);
     input_set_keybind("quicksave", SDLK_F3, KMOD_NONE);
     input_set_keybind("quickload", SDLK_F4, KMOD_NONE);
-    input_set_keybind("pause", SDLK_PAUSE, KMOD_NONE);
+    input_set_keybind("pause", SDLK_p, KMOD_NONE);
     input_set_keybind("show_item_labels", SDLK_z, KMOD_NONE);
     input_set_keybind("automap", SDLK_TAB, KMOD_NONE);
 
