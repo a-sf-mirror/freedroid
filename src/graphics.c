@@ -1882,8 +1882,7 @@ InitVideo (void)
     
     ShowStartupPercentage ( 1 ) ; 
     
-    SDL_SetGamma( 1 , 1 , 1 );
-    GameConfig.current_gamma_correction=1;
+    SDL_SetGamma( GameConfig.current_gamma_correction , GameConfig.current_gamma_correction , GameConfig.current_gamma_correction );
     
     if ( ! mouse_control )  // hide mouse pointer if not needed 
 	SDL_ShowCursor (SDL_DISABLE);
