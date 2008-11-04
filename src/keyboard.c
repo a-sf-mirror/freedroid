@@ -243,29 +243,35 @@ void input_set_default (void)
 
 }
 
+#define KEYCHART_RECT_X (GameConfig.screen_width / 10)
+#define KEYCHART_RECT_Y (GameConfig.screen_height / 10)
+#define KEYCHART_RECT_W (0.8 * GameConfig.screen_width)
+#define KEYCHART_RECT_H (0.8 * GameConfig.screen_height)
 
 /**
  * Display the keychart
+ *
+ * @return The index of the last command displayed on screen.
  */
-static void display_keychart(unsigned int startidx, unsigned int cursor, int highlight)
+static int display_keychart(unsigned int startidx, unsigned int cursor, int highlight)
 {
-    SDL_Rect our_rect = { GameConfig.screen_width / 10, GameConfig.screen_height / 10, 0.8 * GameConfig.screen_width, 0.8 * GameConfig.screen_height };
     char txt[1024];
     int i;
-    int ypos = our_rect.y;
-    int xpos = our_rect.x;
+    SDL_Rect keychart_rect = { KEYCHART_RECT_X, KEYCHART_RECT_Y, KEYCHART_RECT_W, KEYCHART_RECT_H };
+    int ypos = keychart_rect.y;
+    int xpos = keychart_rect.x;
     BFont_Info * our_font = FPS_Display_BFont;
 
     blit_special_background(SHOP_BACKGROUND_IMAGE_CODE);
 
-    ShadowingRectangle(Screen, our_rect);
+    ShadowingRectangle(Screen, keychart_rect);
 
     CenteredPutStringFont(Screen, Para_BFont, FontHeight(Para_BFont), "Key chart");
 
     if (startidx >= sizeof(keybindNames)/sizeof(keybindNames[0]))
-	return;
+	return -1;
 
-    ypos = our_rect.y;
+    ypos = keychart_rect.y;
 
     for (i=startidx; strcmp(keybindNames[i], "end"); i++) {
 	sprintf(txt, "%c%s%s - %s\n", (i==cursor && highlight) ? '\1' : '\2', (i == cursor) ? "** " : "   ", input_keybinds[i]->name, SDL_GetKeyName(input_keybinds[i]->key));
@@ -273,20 +279,42 @@ static void display_keychart(unsigned int startidx, unsigned int cursor, int hig
 
 	ypos += FontHeight(our_font);
 
-	if (ypos > our_rect.y + our_rect.h - FontHeight(our_font)) {
-	    if (xpos > our_rect.x)
+	if (ypos > keychart_rect.y + keychart_rect.h - FontHeight(our_font)) {
+	    if (xpos > keychart_rect.x)
 		break;
 	    else {
 		xpos += 300;
-		ypos = our_rect.y;
+		ypos = keychart_rect.y;
 	    }
 	}
     }
 
     PutStringFont(Screen, FPS_Display_BFont, 100, GameConfig.screen_height - FontHeight(FPS_Display_BFont), _("ARROWS to select, ENTER to remap, ESCAPE to exit"));
     our_SDL_flip_wrapper();
+
+    return i;
 }
 
+/**
+ * This function simulates displaying the keychart in order to know how many keys 
+ * appear per page
+ */
+static int get_nb_commands_per_page()
+{
+    int ypos = KEYCHART_RECT_Y;
+    BFont_Info * our_font = FPS_Display_BFont;
+    int i = 0;
+
+    while (1) {
+	ypos += FontHeight(our_font);
+	i++;
+	if (ypos > KEYCHART_RECT_Y + KEYCHART_RECT_H - FontHeight(our_font)) {
+		break;
+	}
+    }
+
+    return i;
+}
 
 /**
  * Display a keychart and allow modification of keys
@@ -295,9 +323,11 @@ void keychart()
 {
     int done = 0;
     int startpos = 0;
+    int endpos;
     int cursor = 0;
     SDL_Event event;
     const int maxcmds = sizeof(keybindNames)/sizeof(keybindNames[0]) - 2;
+    int per_page = get_nb_commands_per_page();
 
     while (!done) {
 	while (SDL_PollEvent(&event)) {
@@ -306,30 +336,47 @@ void keychart()
 		Terminate(0);
 	    }
 
-	    display_keychart(startpos, cursor, FALSE);
+	    endpos = display_keychart(startpos, cursor, FALSE);
 
 	    if (event.type == SDL_KEYDOWN) {
 		if (event.key.keysym.sym == SDLK_ESCAPE)
 		    done = 1;
-		if (event.key.keysym.sym == SDLK_RIGHT) {
-		    if (startpos < maxcmds)
-			startpos ++;
-		    if (cursor < startpos)
-			cursor = startpos;
+		if (event.key.keysym.sym == SDLK_RIGHT || event.key.keysym.sym == SDLK_PAGEDOWN) {
+		    cursor += per_page;
+		    if (cursor >= maxcmds)
+			cursor = maxcmds;
+
+		    if (cursor > endpos) {
+			startpos += per_page;
+		    }
 		}
-		if (event.key.keysym.sym == SDLK_LEFT) {
-		    startpos --;
-		    if (startpos < 0)
+		if (event.key.keysym.sym == SDLK_LEFT || event.key.keysym.sym == SDLK_PAGEUP) {
+		    cursor -= per_page;
+
+		    if (cursor < 0) {
+			cursor = 0;
+		    }
+		    
+		    if (cursor < startpos) {
+			startpos -= per_page;
+		    }
+		    
+		    if (startpos < 0) {
 			startpos = 0;
+		    }
 		}
 		if (event.key.keysym.sym == SDLK_UP) {
 		    cursor --;
 		    if (cursor < 0)
 			cursor = 0;
+		    if (cursor < startpos)
+			startpos--;
 		}
 		if (event.key.keysym.sym == SDLK_DOWN) {
 		    if (cursor < maxcmds)
 			cursor ++;
+		    if (cursor > endpos)
+			startpos ++;
 		}
 		if (event.key.keysym.sym == SDLK_RETURN) {
 		    display_keychart(startpos, cursor, TRUE);
