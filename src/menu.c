@@ -1484,8 +1484,8 @@ Escape_handle (int n)
 {
     enum
     { 
-	SAVE_GAME_POSITION=1,
-	RESUME_GAME_POSITION,
+	RESUME_GAME_POSITION=1,
+	SAVE_GAME_POSITION,
 	OPTIONS_POSITION, 
 	LOAD_GAME_POSITION,
 	LOAD_BACKUP_POSITION,
@@ -1525,12 +1525,12 @@ Escape_handle (int n)
 static void
 Escape_fill (char *MenuTexts [10])
 {
-      MenuTexts[0]=_("Save Game");
-      MenuTexts[1]=_("Resume Game");
+      MenuTexts[0]=_("Resume Play");
+      MenuTexts[1]=_("Save Hero");
       MenuTexts[2]=_("Options");
-      MenuTexts[3]=_("Load Game");
+      MenuTexts[3]=_("Load Latest");
       MenuTexts[4]=_("Load Backup");
-      MenuTexts[5]=_("Quit Game");
+      MenuTexts[5]=_("Quit to Main Menu");
       MenuTexts[6]=_("Exit FreedroidRPG");
       MenuTexts[7]="";
 }
