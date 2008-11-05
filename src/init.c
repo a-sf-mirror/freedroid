@@ -2409,7 +2409,7 @@ ThouArtDefeated (void)
     
     GameOver = TRUE;
     
-    while ( ( SDL_GetTicks() - now < 1000 * WAIT_AFTER_KILLED ) && ( GameOver == TRUE ) )
+    while ( ( SDL_GetTicks() - now < 1000 * WAIT_AFTER_KILLED ))
     {
 	StartTakingTimeForFPSCalculation(); 
 	
@@ -2454,7 +2454,7 @@ ThouHastWon (void)
 
     GameOver = TRUE;
     
-    while ( ( SDL_GetTicks() - now < 1000 * WAIT_AFTER_GAME_WON ) && ( GameOver == TRUE ) )
+    while ( ( SDL_GetTicks() - now < 1000 * WAIT_AFTER_GAME_WON ) )
     {
 	StartTakingTimeForFPSCalculation(); 
 	
