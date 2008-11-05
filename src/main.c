@@ -73,6 +73,51 @@ DoAllMovementAndAnimations ( void )
   
 }; // void DoAllMovementAndAnimations ( void )
 
+/**
+ * Run the game until it is over.
+ */
+void Game()
+{
+    GameOver = FALSE;
+    while ( (!GameOver && !QuitProgram)) {
+	game_status = INSIDE_GAME;
+
+	StartTakingTimeForFPSCalculation();
+
+	save_mouse_state();
+	input_handle();
+
+	UpdateCountersForThisFrame ( ) ;
+
+	CollectAutomapData ();
+
+	DoAllMovementAndAnimations();
+
+	AssembleCombatPicture ( SHOW_ITEMS | USE_OWN_MOUSE_CURSOR ); 
+	our_SDL_flip_wrapper();
+
+	move_tux ( );	
+
+	HandleInventoryScreen ();
+	HandleCharacterScreen ( );
+
+	UpdateAllCharacterStats ( );
+
+	MoveEnemys ();	// move all the enemys:
+
+	check_tux_enemy_collision ();
+
+	correct_tux_position_according_to_jump_thresholds ( );
+
+	CheckIfMissionIsComplete (); 
+
+	if ( ! GameConfig.hog_CPU ) 
+	    SDL_Delay (1); // we allow the CPU to also do something else..
+
+	ComputeFPSForThisFrame();
+
+    } // while !GameOver 
+}
 /* -----------------------------------------------------------------
  * This function is the heart of the game.  It contains the main
  * game loop.
@@ -139,7 +184,6 @@ better than nothing.  Thanks anyway for your interest in FreedroidRPG.\n\
 --start of real debug log--\n\n" );
 #endif
     
-    GameOver = FALSE;
     QuitProgram = FALSE;
     draw_collision_rectangles = FALSE ;
     draw_grid = TRUE ;
@@ -162,48 +206,19 @@ better than nothing.  Thanks anyway for your interest in FreedroidRPG.\n\
 
     while (!QuitProgram)
     {
-	GameOver = TRUE;
 	StartupMenu ( );
-	GameOver = FALSE;
-	while ( (!GameOver && !QuitProgram))
-	{
-	    game_status = INSIDE_GAME;
-	    
-	    StartTakingTimeForFPSCalculation();
-
-	    save_mouse_state();
-	    input_handle();
-
-	    UpdateCountersForThisFrame ( ) ;
-	    
-	    CollectAutomapData ();
-	    
-	    DoAllMovementAndAnimations();
-	    
-	    AssembleCombatPicture ( SHOW_ITEMS | USE_OWN_MOUSE_CURSOR ); 
-	    our_SDL_flip_wrapper();
-	    
-	    move_tux ( );	
-	
-	    HandleInventoryScreen ();
-	    HandleCharacterScreen ( );
-
-	    UpdateAllCharacterStats ( );
-	    
-	    MoveEnemys ();	// move all the enemys:
-	    
-	    check_tux_enemy_collision ();
-	    
-	    correct_tux_position_according_to_jump_thresholds ( );
-	    
-	    CheckIfMissionIsComplete (); 
-	    
-	    if ( ! GameConfig.hog_CPU ) 
-		SDL_Delay (1); // we allow the CPU to also do something else..
-	    
-	    ComputeFPSForThisFrame();
-	    
-	} // while !GameOver 
+	switch (game_root_mode) {
+	    case ROOT_IS_GAME:
+		Game ();
+		break;
+	    case ROOT_IS_LVLEDIT:
+		LevelEditor();
+		break;
+	    case ROOT_IS_UNKNOWN:
+		ErrorMessage(__FUNCTION__, "Game root mode is unknown - was not properly set to GAME or LVLEDIT.\n", PLEASE_INFORM, IS_FATAL);
+		break;
+	}
+		
     } // while !QuitProgram 
     
     LightRadiusClean();

@@ -347,4 +347,10 @@ EXTERN short int item_count_per_class[10];
 EXTERN item_bonus * PrefixList;
 EXTERN item_bonus * SuffixList;
 
+EXTERN int game_root_mode;
+enum {
+    ROOT_IS_UNKNOWN = 0,
+    ROOT_IS_GAME,
+    ROOT_IS_LVLEDIT,
+};
 #endif  // _global_h

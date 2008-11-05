@@ -34,6 +34,7 @@
 #else
 #define EXTERN extern
 #endif
+EXTERN void Game();
 
 // automap.c
 #undef EXTERN
@@ -567,6 +568,7 @@ EXTERN void level_editor_action_undo();
 EXTERN void level_editor_action_redo();
 EXTERN void level_editor_action_toggle_waypoint_connection_user (void);
 EXTERN void level_editor_beautify_grass_tiles();
+EXTERN void LevelEditor();
 
 // skills.c
 #undef EXTERN

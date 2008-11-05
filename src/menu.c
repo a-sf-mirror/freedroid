@@ -1364,8 +1364,10 @@ Startup_handle (int n)
     switch (n) 
     {
     case SINGLE_PLAYER_POSITION:
-	    if (  Single_Player_Menu ( ) )
+	    if (  Single_Player_Menu ( ) ) {
+		game_root_mode = ROOT_IS_GAME;
 		return EXIT_MENU;
+	    }
 	    break;
     case LVLEDIT_POSITION: //allow starting directly in leveleditor - the hack is a little dirty but it does its work.
 	skip_initial_menus = 1;
@@ -1377,7 +1379,7 @@ Startup_handle (int n)
 	LoadShip ( fp ) ;
 	PrepareStartOfNewCharacter ( ) ;
 	skip_initial_menus = 0;
-	LevelEditor () ;
+	game_root_mode = ROOT_IS_LVLEDIT;
 	return EXIT_MENU;
 	break;  
     case OPTIONS_POSITION:
@@ -1530,7 +1532,10 @@ Escape_fill (char *MenuTexts [10])
       MenuTexts[2]=_("Options");
       MenuTexts[3]=_("Load Latest");
       MenuTexts[4]=_("Load Backup");
-      MenuTexts[5]=_("Quit to Main Menu");
+      if (game_root_mode == ROOT_IS_GAME)
+	  MenuTexts[5]=_("Quit to Main Menu");
+      else 
+	  MenuTexts[5]=_("Return to Level Editor");
       MenuTexts[6]=_("Exit FreedroidRPG");
       MenuTexts[7]="";
 }

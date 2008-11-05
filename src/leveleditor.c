@@ -2867,7 +2867,8 @@ DoLevelEditorMainMenu ( Level EditLevel )
 	    SET_LEVEL_INTERFACE_POSITION , 
 	    EDIT_LEVEL_DIMENSIONS,
 	    RUN_VALIDATION,
-	    QUIT_LEVEL_EDITOR_POSITION 
+	    QUIT_LEVEL_EDITOR_POSITION,
+	    TEST_MAP_POSITION,
 	};
     
     while (!proceed_now)
@@ -2899,7 +2900,16 @@ DoLevelEditorMainMenu ( Level EditLevel )
 	MenuTexts[ i ] = _("Set Level Interfaces") ; i++;
 	MenuTexts[ i ] = _("Edit Level Dimensions") ; i++;
 	MenuTexts[ i ] = _("Run All Levels Validation") ; i++;
-	MenuTexts[ i ] = _("Quit Level Editor") ; i++;
+	
+	if (game_root_mode == ROOT_IS_LVLEDIT)
+	    MenuTexts[i] = _("Quit Level Editor") ; 
+	else 
+	    MenuTexts[i] = _("Return to game");
+	i++;
+
+	if (game_root_mode == ROOT_IS_LVLEDIT)
+	    MenuTexts[i++] = _("Test map");
+
 	MenuTexts[ i ] = "" ; i++;
 
 	while ( EscapePressed() ) SDL_Delay(1);
@@ -2988,6 +2998,11 @@ DoLevelEditorMainMenu ( Level EditLevel )
 		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
 		proceed_now=!proceed_now;
 		Done=TRUE;
+		break;
+	    case TEST_MAP_POSITION:
+		/*XXX save ship to a temp file, restore it later*/
+		Game();
+		proceed_now=!proceed_now;
 		break;
 	    case CHANGE_INFINITE_RUNNING:
 		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
@@ -5509,7 +5524,7 @@ void level_editor_next_tab()
  * escape, you can enter a new submenu where you can save the level,
  * change level name and quit from level editing.
  */
-void LevelEditor(void)
+void LevelEditor()
 {
     int proceed_now = FALSE;
     int i ;
