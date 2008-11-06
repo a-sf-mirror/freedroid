@@ -2996,14 +2996,14 @@ init_obstacle_data( void )
   //         the smashable property to the desired value.
   //
   obstacle_map [ ISO_BRICK_WALL_H ] . block_area_type = COLLISION_TYPE_RECTANGLE ;
-  obstacle_map [ ISO_BRICK_WALL_H ] . block_area_parm_1 = 1.2 ;
+  obstacle_map [ ISO_BRICK_WALL_H ] . block_area_parm_1 = 0.8 ;
   obstacle_map [ ISO_BRICK_WALL_H ] . block_area_parm_2 = 1.2 ;
   obstacle_map [ ISO_BRICK_WALL_H ] . filename = "iso_brick_wall_0001.png" ;
   obstacle_map [ ISO_BRICK_WALL_H ] . result_type_after_smashing_once = ISO_BRICK_WALL_CRACKED_1 ;
   obstacle_map [ ISO_BRICK_WALL_H ] . flags |= IS_HORIZONTAL ; 
   obstacle_map [ ISO_BRICK_WALL_V ] . block_area_type = COLLISION_TYPE_RECTANGLE ;
   obstacle_map [ ISO_BRICK_WALL_V ] . block_area_parm_1 = 1.2 ;
-  obstacle_map [ ISO_BRICK_WALL_V ] . block_area_parm_2 = 1.2 ;
+  obstacle_map [ ISO_BRICK_WALL_V ] . block_area_parm_2 = 0.8 ;
   obstacle_map [ ISO_BRICK_WALL_V ] . filename = "iso_brick_wall_0002.png" ;
   obstacle_map [ ISO_BRICK_WALL_V ] . result_type_after_smashing_once = ISO_BRICK_WALL_CRACKED_2 ;
   obstacle_map [ ISO_BRICK_WALL_V ] . flags |= IS_VERTICAL ; 
