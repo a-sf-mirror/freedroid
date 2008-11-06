@@ -891,6 +891,13 @@ GetEditableStringInPopupWindow ( int MaxLen , char* PopupWindowTitle , char* Def
 	    }
 	    
 	}
+	else if ((key <= SDLK_KP9) && (key >= SDLK_KP0) && (curpos < MaxLen) ) {
+	    key -= SDLK_KP0;
+	    key += '0';
+
+	    input[curpos] = (char) key;
+	    curpos++;
+	}
 	
     } // while ( ! finished ) 
    
