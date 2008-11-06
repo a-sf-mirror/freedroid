@@ -4575,22 +4575,22 @@ HandleLevelEditorCursorKeys ( leveleditor_state *cur_state )
 	if (LeftPressed()) 
 	{
 	    if ( rintf(Me.pos.x) > 0 ) Me.pos.x-=1;
-	    SDL_Delay(100);
+	    SDL_Delay(200);
 	}
 	if (RightPressed()) 
 	{ 
 	    if ( rintf(Me.pos.x) < EditLevel->xlen-1 ) Me.pos.x+=1;
-	    SDL_Delay(100);
+	    SDL_Delay(200);
 	}
 	if (UpPressed()) 
 	{
 	    if ( rintf(Me.pos.y) > 0 ) Me.pos.y-=1;
-	    SDL_Delay(100);
+	    SDL_Delay(200);
 	}
 	if (DownPressed()) 
 	{
 	    if ( rintf(Me.pos.y) < EditLevel->ylen-1 ) Me.pos.y+=1;
-	    SDL_Delay(100);
+	    SDL_Delay(200);
 	}
     }
 }; // void HandleLevelEditorCursorKeys ( void )
