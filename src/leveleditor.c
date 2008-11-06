@@ -2879,7 +2879,11 @@ DoLevelEditorMainMenu ( Level EditLevel )
 	InitiateMenu( -1 );
 	
 	i = 0 ;
-	MenuTexts[ i ] = _("Save Mapfile") ; i++;
+	if (game_root_mode == ROOT_IS_LVLEDIT)
+	    MenuTexts[ i ] = _("Save Mapfile") ; 
+	else 
+	    MenuTexts[ i ] = _("Save not available");
+	i++;
 	sprintf( Options [ 0 ] , _("Current: %d.  Level Up/Down") , EditLevel->levelnum );
 	MenuTexts[ i ] = Options [ 0 ]; i++;
 	sprintf( Options [ 1 ] , _("Light radius bonus: %d") , EditLevel -> light_radius_bonus );
@@ -2925,6 +2929,8 @@ DoLevelEditorMainMenu ( Level EditLevel )
 		proceed_now=!proceed_now;
 		break;
 	    case SAVE_LEVEL_POSITION:
+		if (game_root_mode == ROOT_IS_GAME) /*don't allow saving if root mode is GAME*/
+		    break;
 		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
 		close_all_chests_on_level ( Me . pos . z ) ;
 		char fp[2048];
@@ -3000,7 +3006,9 @@ DoLevelEditorMainMenu ( Level EditLevel )
 		break;
 	    case TEST_MAP_POSITION:
 		/*XXX save ship to a temp file, restore it later*/
+		SaveGame();
 		Game();
+		LoadGame();
 		proceed_now=!proceed_now;
 		break;
 	    case CHANGE_INFINITE_RUNNING:
