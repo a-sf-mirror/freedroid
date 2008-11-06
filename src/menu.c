@@ -1527,7 +1527,10 @@ Escape_handle (int n)
 static void
 Escape_fill (char *MenuTexts [10])
 {
-      MenuTexts[0]=_("Resume Play");
+      if (game_root_mode == ROOT_IS_GAME)
+	  MenuTexts[0]=_("Resume Play");
+      else 
+	  MenuTexts[0]=_("Resume Playtest");
       MenuTexts[1]=_("Save Hero");
       MenuTexts[2]=_("Options");
       MenuTexts[3]=_("Load Latest");

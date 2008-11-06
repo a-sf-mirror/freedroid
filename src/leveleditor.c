@@ -2879,7 +2879,7 @@ DoLevelEditorMainMenu ( Level EditLevel )
 	InitiateMenu( -1 );
 	
 	i = 0 ;
-	MenuTexts[ i ] = _("SAVE EVERYTHING") ; i++;
+	MenuTexts[ i ] = _("Save Mapfile") ; i++;
 	sprintf( Options [ 0 ] , _("Current: %d.  Level Up/Down") , EditLevel->levelnum );
 	MenuTexts[ i ] = Options [ 0 ]; i++;
 	sprintf( Options [ 1 ] , _("Light radius bonus: %d") , EditLevel -> light_radius_bonus );
@@ -2902,13 +2902,12 @@ DoLevelEditorMainMenu ( Level EditLevel )
 	MenuTexts[ i ] = _("Run All Levels Validation") ; i++;
 	
 	if (game_root_mode == ROOT_IS_LVLEDIT)
-	    MenuTexts[i] = _("Quit Level Editor") ; 
+	    MenuTexts[i] = _("Quit to Main Menu") ; 
 	else 
 	    MenuTexts[i] = _("Return to game");
 	i++;
-
 	if (game_root_mode == ROOT_IS_LVLEDIT)
-	    MenuTexts[i++] = _("Test map");
+	    MenuTexts[i++] = _("Playtest Mapfile");
 
 	MenuTexts[ i ] = "" ; i++;
 
