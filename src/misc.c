@@ -113,6 +113,8 @@ mouse_press_button AllMousePressButtons[ MAX_MOUSE_PRESS_BUTTONS ] =
     /*EXPORT_THIS_LEVEL_BUTTON_PUSHED*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/ExportThisLevelButtonPushed.png"        , { -60 , 90 , 0,  0 } , FALSE , FALSE } ,
     /*LEVEL_EDITOR_SAVE_SHIP_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorSaveShipButton.png"    , { -90 , 90 , 0 ,  0 } , FALSE , FALSE } ,
     /*LEVEL_EDITOR_SAVE_SHIP_BUTTON_PUSHED*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorSaveShipButtonPushed.png"    , { -90 , 90 , 0 ,  0 } , FALSE , FALSE } ,
+    /*LEVEL_EDITOR_SAVE_SHIP_BUTTON_OFF*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorSaveShipButtonOff.png"    , { -90 , 90 , 0 ,  0 } , FALSE , FALSE } ,
+    /*LEVEL_EDITOR_SAVE_SHIP_BUTTON_OFF_PUSHED*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorSaveShipButtonOffPushed.png"    , { -90 , 90 , 0 ,  0 } , FALSE , FALSE } ,
     /*LEVEL_EDITOR_TOGGLE_WAYPOINT_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorToggleWaypointButton.png" , { 00 , 150 , 0 ,  0 } , FALSE , FALSE } ,
     /*LEVEL_EDITOR_TOGGLE_WAYPOINT_BUTTON_PUSHED*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorToggleWaypointButtonPushed.png" , { 00 , 150 , 0 ,  0 } , FALSE , FALSE } ,
     /*LEVEL_EDITOR_TOGGLE_CONNECTION_BLUE_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorToggleConnectionBlueButton.png" , { 00 , 180 , 0 ,  0 } , FALSE , FALSE } ,

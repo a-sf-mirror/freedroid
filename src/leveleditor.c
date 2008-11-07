@@ -4670,8 +4670,13 @@ show_level_editor_tooltips ( void )
     }
     else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_SAVE_SHIP_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
     {
-	if ( time_spent_on_some_button > TICKS_UNTIL_TOOLTIP )
-	    show_button_tooltip ( _("Save Map\n\nThis button will save your current map over the file '../map/freedroid.levels' from your current working directory." ));
+		if ( time_spent_on_some_button > TICKS_UNTIL_TOOLTIP )
+		{
+			if (game_root_mode == ROOT_IS_GAME)			
+				show_button_tooltip ( _("Save Impossible!\n\nPlaying on a map leaves the world in an unclean state not suitable for saving. Enter the editor directly from the main menu to be able to save any changes to the map file." ));
+			if (game_root_mode == ROOT_IS_LVLEDIT)
+				show_button_tooltip ( _("Save Map\n\nThis button will save your current map over the file '../map/freedroid.levels' from your current working directory." ));
+		}
     }    
     else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_TOGGLE_WAYPOINT_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
     {
@@ -5232,15 +5237,20 @@ int level_editor_handle_left_mouse_button ( int proceed_now, leveleditor_state *
 	}
 	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_SAVE_SHIP_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
 	{
-	    close_all_chests_on_level ( Me . pos . z ) ;
-	    char fp[2048];
-	    find_file("freedroid.levels", MAP_DIR, fp, 0);
-	    SaveShip(fp);
+		if (game_root_mode == ROOT_IS_LVLEDIT) /*don't allow saving if root mode is GAME*/ 
+		{
+			close_all_chests_on_level ( Me . pos . z ) ;
+			char fp[2048];
+			find_file("freedroid.levels", MAP_DIR, fp, 0);
+			SaveShip(fp);
 
-	    // CenteredPutString ( Screen ,  11*FontHeight(Menu_BFont),    _("Your ship was saved..."));
-	    // our_SDL_flip_wrapper();
+			// CenteredPutString ( Screen ,  11*FontHeight(Menu_BFont),    _("Your ship was saved..."));
+			// our_SDL_flip_wrapper();
 
-	    GiveMouseAlertWindow ( _("\nM E S S A G E\n\nYour ship was saved to file 'freedroid.levels' in the map directory.\n\nIf you have set up something cool and you wish to contribute it to FreedroidRPG, please contact the FreedroidRPG dev team." )) ;
+			GiveMouseAlertWindow ( _("\nM E S S A G E\n\nYour ship was saved to file 'freedroid.levels' in the map directory.\n\nIf you have set up something cool and you wish to contribute it to FreedroidRPG, please contact the FreedroidRPG dev team." )) ;
+		}
+		else
+			GiveMouseAlertWindow ( _("\nM E S S A G E\n\nE R R O R ! Your ship was not saved.\n\nPlaying on a map leaves the world in an unclean state not suitable for saving. Enter the editor from the main menu to be able to save." )) ;
 
 	}
 	else if ( GameConfig . zoom_is_on && MouseCursorIsOnButton ( LEVEL_EDITOR_ZOOM_IN_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
@@ -5525,9 +5535,10 @@ level_editor_blit_mouse_buttons ( Level EditLevel )
     if ( EditLevel -> jump_target_west >= 0 )
 	A ( GO_LEVEL_WEST_BUTTON );
     A ( EXPORT_THIS_LEVEL_BUTTON );
-    
+    if ( game_root_mode == ROOT_IS_LVLEDIT )
     A ( LEVEL_EDITOR_SAVE_SHIP_BUTTON );
-    
+    else
+    A ( LEVEL_EDITOR_SAVE_SHIP_BUTTON_OFF );
     if ( GameConfig . zoom_is_on )
 	A ( LEVEL_EDITOR_ZOOM_IN_BUTTON );
     else
