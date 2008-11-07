@@ -2838,6 +2838,17 @@ LevelValidation( int levelnum )
 
 } // LevelValidation( int levelnum )
 
+void
+TestMap ( void )  /* Keeps World map in a clean state */
+{
+	if (game_root_mode == ROOT_IS_GAME) /*don't allow map testing if root mode is GAME*/
+		return;
+	SaveGame();
+	Game();
+	LoadGame();
+	return;
+} // TestMap ( void )
+
 
 void
 LevelOptions ( void )
@@ -3061,10 +3072,10 @@ DoLevelEditorMainMenu ( Level EditLevel )
 	    LEVEL_OPTIONS_POSITION,
 	    RUN_VALIDATION,
 //	    ADD_NEW_LEVEL,
-//	    MANAGE_LEVEL_POSITION,
 	    TEST_MAP_POSITION,
 	    SAVE_LEVEL_POSITION,
-	    QUIT_LEVEL_EDITOR_POSITION,
+//	    MANAGE_LEVEL_POSITION,
+	    QUIT_TO_MAIN_POSITION,
         QUIT_POSITION,
 	};
     
@@ -3080,23 +3091,22 @@ DoLevelEditorMainMenu ( Level EditLevel )
 	sprintf( Options [ 0 ] , _("Lvl: %d - %s"), EditLevel->levelnum, EditLevel->Levelname );
 	MenuTexts[i++] = Options [ 0 ];
 	MenuTexts[i++] = _("Level Options");
-		MenuTexts[i++] = _("Run Level Validator");
+	MenuTexts[i++] = _("Run Level Validator");
 	if (game_root_mode == ROOT_IS_LVLEDIT)
     {
-		//MenuTexts[i++] = _("Add New Level");
-	    MenuTexts[i++] = _("Playtest Mapfile");
-	    MenuTexts[i++] = _("Save Mapfile");
-//      MenuTexts[i++] = _("Manage Mapfiles");
-	    MenuTexts[i++] = _("Quit to Main Menu"); 
+		MenuTexts[i++] = _("Playtest Mapfile");
+		MenuTexts[i++] = _("Save Mapfile");
+//		MenuTexts[i++] = _("Manage Mapfiles");
+//		MenuTexts[i++] = _("Add New Level");
     }
 	else
     {
-		//MenuTexts[i++] = " ";
-		MenuTexts[i++] = " ";
-		MenuTexts[i++] = _("Saving not possible");
-//	    MenuTexts[i++] = " ";
 		MenuTexts[i++] = _("Return to game");
+		MenuTexts[i++] = _("Saving not possible");
+//		MenuTexts[i++] = " ";
+//		MenuTexts[i++] = " ";
     }
+	MenuTexts[i++] = _("Quit to Main Menu"); 
 	MenuTexts[i++] = _("Exit FreedroidRPG");
 	MenuTexts[i++] = "" ;
 
@@ -3109,47 +3119,53 @@ DoLevelEditorMainMenu ( Level EditLevel )
 	switch ( MenuPosition ) {
 
 	    case (-1):
-		while ( EscapePressed() );
-		proceed_now=!proceed_now;
-		break;
-	    case SAVE_LEVEL_POSITION:
-		if (game_root_mode == ROOT_IS_GAME) /*don't allow saving if root mode is GAME*/
-		    break;
-		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
-		close_all_chests_on_level ( Me . pos . z ) ;
-		char fp[2048];
-		find_file("freedroid.levels", MAP_DIR, fp, 0);
-		SaveShip(fp);
-		CenteredPutString ( Screen ,  11*FontHeight(Menu_BFont),    _("Your ship was saved..."));
-		our_SDL_flip_wrapper();
-		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
-
-		// proceed_now=!proceed_now;
-		break;
+			while ( EscapePressed() );
+			proceed_now=!proceed_now;
+			break;
 	    case ENTER_LEVEL_POSITION:
-		if (LeftPressed() || RightPressed()) //left or right arrow ? handled below
+			if (LeftPressed() || RightPressed()) //left or right arrow ? handled below
 		    break;
-		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
-		char* str;
-		int tgt;
-		str =  GetEditableStringInPopupWindow ( 1000 , _("\n Please enter new level number: \n\n") , "");
-		tgt = atoi(str);
-		free(str);
-		if ( tgt < 0 ) tgt = 0;
-		if ( tgt >= curShip.num_levels ) tgt = curShip.num_levels - 1;
-		Teleport ( tgt , 3 , 3 , FALSE );
-		proceed_now=!proceed_now;
-		break;
+			while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
+			char* str;
+			int tgt;
+			str =  GetEditableStringInPopupWindow ( 1000 , _("\n Please enter new level number: \n\n") , "");
+			tgt = atoi(str);
+			free(str);
+			if ( tgt < 0 ) tgt = 0;
+			if ( tgt >= curShip.num_levels ) tgt = curShip.num_levels - 1;
+			Teleport ( tgt , 3 , 3 , FALSE );
+			proceed_now=!proceed_now;
+			break;
 	    case LEVEL_OPTIONS_POSITION:
-		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
-		// proceed_now=!proceed_now;
-		LevelOptions ( );
-		break;
-	    case QUIT_LEVEL_EDITOR_POSITION:
-		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
-		proceed_now=!proceed_now;
-		Done=TRUE;
-		break;
+			while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
+			// proceed_now=!proceed_now;
+			LevelOptions ( );
+			break;
+	    case RUN_VALIDATION:
+			while (EnterPressed() || SpacePressed() || MouseLeftPressed() ) SDL_Delay(1) ;
+			LevelValidation(Me.pos.z);
+			while ( !SpacePressed() ) SDL_Delay(1);
+			proceed_now=!proceed_now;
+			break;
+	    case TEST_MAP_POSITION:
+			TestMap();
+			proceed_now=!proceed_now;
+			if ( game_root_mode == ROOT_IS_GAME )
+				Done=TRUE;
+			break;
+	    case SAVE_LEVEL_POSITION:
+			if (game_root_mode == ROOT_IS_GAME) /*don't allow saving if root mode is GAME*/
+		    break;
+			while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
+			close_all_chests_on_level ( Me . pos . z ) ;
+			char fp[2048];
+			find_file("freedroid.levels", MAP_DIR, fp, 0);
+			SaveShip(fp);
+			CenteredPutString ( Screen ,  11*FontHeight(Menu_BFont),    _("Your ship was saved..."));
+			our_SDL_flip_wrapper();
+			while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
+			// proceed_now=!proceed_now;
+			break;
 		/*case ADD_NEW_LEVEL:
 		  if (game_root_mode == ROOT_IS_GAME)
 		  break;
@@ -3163,26 +3179,26 @@ DoLevelEditorMainMenu ( Level EditLevel )
 		  }
 		  proceed_now=!proceed_now;
 		  break;*/
-	    case RUN_VALIDATION:
-		while (EnterPressed() || SpacePressed() || MouseLeftPressed() ) SDL_Delay(1) ;
-		LevelValidation(Me.pos.z);
-		while ( !SpacePressed() ) SDL_Delay(1);
-		proceed_now=!proceed_now;
-		break;
-	    case TEST_MAP_POSITION:
-		if (game_root_mode == ROOT_IS_GAME) /*don't allow map testing if root mode is GAME*/
-		    break;
-		SaveGame();
-		Game();
-		LoadGame();
-		proceed_now=!proceed_now;
-		break;
+	    case QUIT_TO_MAIN_POSITION:
+			while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
+			if ( game_root_mode == ROOT_IS_GAME )
+			{
+				proceed_now=!proceed_now;
+				GameOver = TRUE;
+				Done=TRUE;
+			}
+			if ( game_root_mode == ROOT_IS_LVLEDIT )
+			{
+				proceed_now=!proceed_now;
+				Done=TRUE;
+			}
+			break;
 	    case QUIT_POSITION:
-		DebugPrintf (2, "\nvoid EscapeMenu( void ): Quit Requested by user.  Terminating...");
-		Terminate(0);
-		break;
+			DebugPrintf (2, "\nvoid EscapeMenu( void ): Quit Requested by user.  Terminating...");
+			Terminate(0);
+			break;
 	    default: 
-		break;
+			break;
 
 	} // switch
 	
@@ -4668,7 +4684,8 @@ show_level_editor_tooltips ( void )
 	if ( time_spent_on_some_button > TICKS_UNTIL_TOOLTIP )
 	    show_button_tooltip ( _("Export this level\n\nIn FreedroidRPG maps can be glued together to form one big map.  But that requires that the maps are identical where they overlap.  This button will copy the borders of this level to the borders of the neighbouring levels, so that the maps are in sync again." ));
     }
-    else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_SAVE_SHIP_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
+    else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_SAVE_SHIP_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) ||
+	          MouseCursorIsOnButton ( LEVEL_EDITOR_SAVE_SHIP_BUTTON_OFF , GetMousePos_x()  , GetMousePos_y()  )	)
     {
 		if ( time_spent_on_some_button > TICKS_UNTIL_TOOLTIP )
 		{
@@ -4756,8 +4773,13 @@ show_level_editor_tooltips ( void )
     }
     else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_QUIT_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
     {
-	if ( time_spent_on_some_button > TICKS_UNTIL_TOOLTIP )
-	    show_button_tooltip ( _("Back to game\n\nQuits the level editor and takes you into a FredroidRPG game." ));
+		if ( time_spent_on_some_button > TICKS_UNTIL_TOOLTIP )
+		{
+			if (game_root_mode == ROOT_IS_GAME)			
+				show_button_tooltip ( _("Back to game\n\nChanges made to the world will be permanent for current Hero. To avoid, load a previous savegame." ));
+			if (game_root_mode == ROOT_IS_LVLEDIT)
+				show_button_tooltip ( _("Test Map\n\nThis will save your map and reload it after you finish testing, avoiding saving an unclean world state." ));
+		}
     }
     else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_UNDERGROUND_LIGHT_ON_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
     {
