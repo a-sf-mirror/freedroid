@@ -712,7 +712,7 @@ enum
 #define MAX_SAVED_CHARACTERS_ON_DISK 7
 
 #define MAX_INFLU_POSITION_HISTORY 500
-#define MAX_MISSIONS_IN_GAME 12         // how many missions can there be at most in Freedroid
+#define MAX_MISSIONS_IN_GAME 15         // how many missions can there be at most in Freedroid
 #define MAX_MISSION_TRIGGERED_ACTIONS 10
 #define MAX_MISSION_DESCRIPTION_TEXTS 10
 
