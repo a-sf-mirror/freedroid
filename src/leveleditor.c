@@ -3068,15 +3068,15 @@ DoLevelEditorMainMenu ( Level EditLevel )
 
     enum
 	{ 
-	    ENTER_LEVEL_POSITION=1,
-	    LEVEL_OPTIONS_POSITION,
-	    RUN_VALIDATION,
-//	    ADD_NEW_LEVEL,
-	    TEST_MAP_POSITION,
-	    SAVE_LEVEL_POSITION,
-//	    MANAGE_LEVEL_POSITION,
-	    QUIT_TO_MAIN_POSITION,
-        QUIT_POSITION,
+		ENTER_LEVEL_POSITION=1,
+		LEVEL_OPTIONS_POSITION,
+		RUN_VALIDATION,
+		TEST_MAP_POSITION,
+		SAVE_LEVEL_POSITION,
+//		MANAGE_LEVEL_POSITION,
+		ADD_NEW_LEVEL,
+		QUIT_TO_MAIN_POSITION,
+    	QUIT_POSITION,
 	};
     
     while (!proceed_now)
@@ -3097,14 +3097,14 @@ DoLevelEditorMainMenu ( Level EditLevel )
 		MenuTexts[i++] = _("Playtest Mapfile");
 		MenuTexts[i++] = _("Save Mapfile");
 //		MenuTexts[i++] = _("Manage Mapfiles");
-//		MenuTexts[i++] = _("Add New Level");
+		MenuTexts[i++] = _("Add New Level");
     }
 	else
     {
 		MenuTexts[i++] = _("Return to game");
-		MenuTexts[i++] = _("Saving not possible");
+		MenuTexts[i++] = _("Saving disabled");
 //		MenuTexts[i++] = " ";
-//		MenuTexts[i++] = " ";
+		MenuTexts[i++] = _("Adding Level disabled");
     }
 	MenuTexts[i++] = _("Quit to Main Menu"); 
 	MenuTexts[i++] = _("Exit FreedroidRPG");
@@ -3166,19 +3166,19 @@ DoLevelEditorMainMenu ( Level EditLevel )
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
 			// proceed_now=!proceed_now;
 			break;
-		/*case ADD_NEW_LEVEL:
-		  if (game_root_mode == ROOT_IS_GAME)
-		  break;
-		  while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
-		  if ( curShip . num_levels < MAX_LEVELS )
-		  {
-		  CreateNewMapLevel ( ) ;
-		  Me . pos . z = curShip.num_levels - 1;
-		  Me . pos . x = 3;
-		  Me . pos . y = 3;
-		  }
-		  proceed_now=!proceed_now;
-		  break;*/
+		case ADD_NEW_LEVEL:
+			if (game_root_mode == ROOT_IS_GAME)
+			break;
+			while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
+			if ( curShip . num_levels < MAX_LEVELS )
+			{
+				CreateNewMapLevel ( ) ;
+				Me . pos . z = curShip.num_levels - 1;
+				Me . pos . x = 3;
+				Me . pos . y = 3;
+			}
+			proceed_now=!proceed_now;
+			break;
 	    case QUIT_TO_MAIN_POSITION:
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
 			if ( game_root_mode == ROOT_IS_GAME )
@@ -5413,12 +5413,10 @@ int level_editor_handle_left_mouse_button ( int proceed_now, leveleditor_state *
 	}
 	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_QUIT_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
 	{
-	    proceed_now=!proceed_now;
-	    level_editor_done = TRUE;
-	    Me . mouse_move_target . x = Me . pos . x ;
-	    Me . mouse_move_target . y = Me . pos . y ;
-	    Me . mouse_move_target . z = Me . pos . z ;
-	    enemy_set_reference(&Me . current_enemy_target_n, &Me . current_enemy_target_addr, NULL);
+			TestMap();
+			proceed_now=!proceed_now;
+			if ( game_root_mode == ROOT_IS_GAME )
+			level_editor_done = TRUE;
 	}
 	else
 	{
