@@ -4606,20 +4606,21 @@ HandleLevelEditorCursorKeys ( leveleditor_state *cur_state )
 	{
 	    if (DoAct[0])
 	    {
-		level_editor_marked_obstacle-> pos. x -= 0.005;
+		level_editor_marked_obstacle-> pos. x -= 0.015;
 	    }
 	    if (DoAct[1])
 	    {
-		level_editor_marked_obstacle-> pos .x  += 0.005;
+		level_editor_marked_obstacle-> pos .x  += 0.015;
 	    }
 	    if (DoAct[2])
 	    {
-		level_editor_marked_obstacle-> pos . y += 0.005;
+		level_editor_marked_obstacle-> pos . y += 0.015;
 	    }
 	    if (DoAct[3])
 	    {
-		level_editor_marked_obstacle-> pos . y -= 0.005;
+		level_editor_marked_obstacle-> pos . y -= 0.015;
 	    }
+	    glue_obstacles_to_floor_tiles_for_level ( EditLevel -> levelnum );
 	}
     }
 
