@@ -1889,7 +1889,6 @@ PrepareStartOfNewCharacter ( void )
     
     Activate_Conservative_Frame_Computation();
     LevelDoorsNotMovedTime = 0.0;
-    RespectVisibilityOnMap = TRUE ;
     global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL ;
     
     //--------------------
@@ -2216,7 +2215,6 @@ InitFreedroid ( int argc, char ** argv )
     
     clear_out_arrays_for_fresh_game ();
 
-    RespectVisibilityOnMap = TRUE ; 
     timeout_from_item_drop = 0 ; 
     
     Overall_Average = 0.041 ;

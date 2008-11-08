@@ -5769,7 +5769,6 @@ void LevelEditor()
     GameConfig.Inventory_Visible = FALSE;
     GameConfig.CharacterScreen_Visible = FALSE;
     GameConfig.SkillScreen_Visible = FALSE;
-    RespectVisibilityOnMap = FALSE ;
 
     //--------------------
     // We init the 'vanishing message' structs, so that there is always
@@ -6100,7 +6099,6 @@ void LevelEditor()
     } // while (!level_editor_done)
     
     free(cur_state);
-    RespectVisibilityOnMap = TRUE ;
     level_editor_marked_obstacle = NULL ; 
     
     Activate_Conservative_Frame_Computation();

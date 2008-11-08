@@ -84,7 +84,6 @@ EXTERN int Number_Of_Droid_Types;
 EXTERN int QuitProgram;
 EXTERN int GameOver;
 EXTERN int AlertLevel;
-EXTERN int RespectVisibilityOnMap;
 
 extern list_head_t alive_bots_head;
 extern list_head_t dead_bots_head;
