@@ -544,7 +544,7 @@ get_light_strength_screen ( int x, int y )
 			else if ( x < 0 )                     return ( LIGHT_STRENGTH_CELL(0, y) );
 	}
 
-	return ( NUMBER_OF_SHADOW_IMAGES );
+	return ( NUMBER_OF_SHADOW_IMAGES - 1 );
     }
 
 }; // int get_light_screen_strength ( moderately_finepoint target_pos )
