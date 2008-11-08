@@ -1011,9 +1011,7 @@ InitiateMenu( int background_code )
 void
 Cheatmenu (void)
 {
-    char *input;		// string input from user 
     int can_continue;
-    int LNum, X, Y;
     int i, l;
     int x0, y0, line;
     int skip_dead = 0;
@@ -1044,12 +1042,12 @@ Cheatmenu (void)
 	printf_SDL (Screen, -1, -1, " f. xray_vision_for_tux: %s",
 		    GameConfig . xray_vision_for_tux ? "ON\n" : "OFF\n");
 	printf_SDL (Screen, -1, -1, " g. god mode: %s\n", Me . god_mode? "ON" : "OFF");
-	printf_SDL (Screen, -1, -1, " i. Make tux invisible\n");
+	printf_SDL (Screen, -1, -1, " i. Make tux invisible: %s",
+		    (Me . invisible_duration > 1) ? "ON\n" : "OFF\n");
 	printf_SDL (Screen, -1, -1, " l. robot list of current level\n");
 	printf_SDL (Screen, -1, -1, " L. alive robot list of current level\n");
 	printf_SDL (Screen, -1, -1, " k. dead robot list of current level\n");
 	printf_SDL (Screen, -1, -1, " d. destroy robots on current level\n");
-	printf_SDL (Screen, -1, -1, " t. Teleportation\n");
 	printf_SDL (Screen, -1, -1, " h. Auto-aquire all skills\n" );
 	printf_SDL (Screen, -1, -1, " n. No hidden droids: %s",
 		    show_all_droids ? "ON\n" : "OFF\n" ); 
@@ -1074,8 +1072,17 @@ Cheatmenu (void)
 		break;
 
 	    case 'i':
-		Me . invisible_duration += 50000;
-		break;
+			if ( Me . invisible_duration == 0 )
+			{
+				Me . invisible_duration += 50000;
+				break;
+			}
+			if ( Me . invisible_duration > 0 )
+			{
+				Me . invisible_duration = 0.01;
+				break;
+			}
+			break;
 
 	    case 'k':
 		skip_dead = 2;
@@ -1175,17 +1182,6 @@ Cheatmenu (void)
 		    our_SDL_flip_wrapper();
 		    getchar_raw (NULL);
 		    }
-		break;
-
-
-
-	    case 't': // Teleportation 
-		ClearGraphMem ();
-		input = GetString ( 40 , NE_TITLE_PIC_BACKGROUND_CODE , "\nEnter Level, X, Y\n(and please don't forget the commas...)\n> " );
-		if ( input == NULL ) break ; // We take into account the possibility of escape being pressed...
-		sscanf (input, "%d, %d, %d\n", &LNum, &X, &Y);
-		free (input);
-		Teleport ( LNum , X , Y , TRUE ) ;
 		break;
 
 	    case 'h': // auto-aquire all skills
