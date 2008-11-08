@@ -1,5 +1,6 @@
 # translation of freedroidrpg_dialogs.po to Deutsch
 # Ronny Standtke <Ronny.Standtke@gmx.net>, 2008.
+# Armin Winterer <blue.bits@arcor.de>, 2007, 2008
 msgid ""
 msgstr ""
 "Project-Id-Version: freedroidrpg_dialogs\n"
