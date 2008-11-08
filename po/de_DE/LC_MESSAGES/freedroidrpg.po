@@ -296,9 +296,8 @@ msgid "This is a perfect room lamp."
 msgstr "Eine perfekte Zimmerlampe!"
 
 #: ../src/blocks.c:2208 ../src/blocks.c:2237
-#, fuzzy
 msgid "Wooden fence"
-msgstr "Holzkiste"
+msgstr "Holzzaun"
 
 #: ../src/blocks.c:2209 ../src/blocks.c:2238
 msgid "You're staring at a wooden fence. You see no gap here..."
@@ -509,9 +508,8 @@ msgid "This is a nice young tree."
 msgstr "Ein schöner junger Baum."
 
 #: ../src/blocks.c:2701
-#, fuzzy
 msgid "Healthy tree"
-msgstr "Gesunder Baum"
+msgstr "Prächtiger gesunder Baum"
 
 #: ../src/blocks.c:2702
 msgid "Yes, you are sure. A tree. It appears quite healthy."
@@ -526,9 +524,8 @@ msgid "This tree does not look too healthy."
 msgstr "Dieser Baum sieht nicht mehr allzu gesund aus..."
 
 #: ../src/blocks.c:2715
-#, fuzzy
 msgid "Strange tree"
-msgstr "Seltsamer Baum"
+msgstr "Ein seltsamer Baum"
 
 #: ../src/blocks.c:2716
 msgid "For some strange reason this tree has blue leaves."
@@ -647,9 +644,8 @@ msgstr ""
 "Farbe ist allerdings recht nett."
 
 #: ../src/blocks.c:3139 ../src/blocks.c:3142
-#, fuzzy
 msgid "Cracked wall"
-msgstr "Ziegelmauer"
+msgstr "Rissige Ziegelmauer"
 
 #: ../src/blocks.c:3140 ../src/blocks.c:3143
 msgid "This wall is suffering. Finish it!"
@@ -3025,12 +3021,11 @@ msgstr ""
 "Blendet die Kollisions-Rechtecke im Level-Editor ein- oder aus."
 
 #: ../src/leveleditor.c:4870
-#, fuzzy
 msgid "Change grid mode ( placement / full / off )"
 msgstr ""
 "Cursorgitter-Modus ändern\n"
 "\n"
-"( Platzierung / voll / aus )"
+"( Platzierung / ganz / aus )"
 
 #: ../src/leveleditor.c:4956
 msgid ""
@@ -3952,9 +3947,9 @@ msgid "Poison"
 msgstr "Gift"
 
 #: ../src/skills.c:853
-#, fuzzy, c-format
+#, c-format
 msgid "Takeover charges: %c%d%c "
-msgstr "Schaden: %c%d%c "
+msgstr "Übernahme-Ladungen: %c%d%c "
 
 #: ../src/skills.c:856
 #, c-format
