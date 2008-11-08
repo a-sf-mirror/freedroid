@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: freedroidrpg\n"
 "Report-Msgid-Bugs-To: freedroid-discussion@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-11-08 12:27+0100\n"
+"POT-Creation-Date: 2008-11-08 20:03+0100\n"
 "PO-Revision-Date: 2008-10-04 00:24+0200\n"
 "Last-Translator: Ronny Standtke <Ronny.Standtke@gmx.net>\n"
 "Language-Team: Deutsch\n"
@@ -329,7 +329,8 @@ msgstr "Dieses Hindernis aus Drahtgeflecht nennt man auch Maschendrahtzaun."
 msgid ""
 "This type of a barrier constructed out of wire is called the chain link "
 "fence."
-msgstr "Dieses Hindernis aus geflochtenem Draht ist bekannt als Maschendrahtzaun."
+msgstr ""
+"Dieses Hindernis aus geflochtenem Draht ist bekannt als Maschendrahtzaun."
 
 #: ../src/blocks.c:2272 ../src/blocks.c:2281 ../src/blocks.c:2288
 #: ../src/blocks.c:2295
@@ -546,8 +547,8 @@ msgid ""
 "This is a stylish and sturdy wall. Both appealing to the eye and appalling "
 "for vandals."
 msgstr ""
-"Eine stilvolle und zugleich stabile Wand. Ebenso ansprechend für das "
-"Auge, wie abschreckend für Vandalen."
+"Eine stilvolle und zugleich stabile Wand. Ebenso ansprechend für das Auge, "
+"wie abschreckend für Vandalen."
 
 #: ../src/blocks.c:2833
 msgid "Restaurant furniture"
@@ -628,8 +629,7 @@ msgstr "Ziegelmauer mit verlegten Kabeln"
 
 #: ../src/blocks.c:3063
 msgid "A badly constructed brick wall. This one has wires installed to it."
-msgstr ""
-"Eine schlechtgemauerte Ziegelwand. An dieser hier sind Kabel verlegt."
+msgstr "Eine schlechtgemauerte Ziegelwand. An dieser hier sind Kabel verlegt."
 
 #: ../src/blocks.c:3097 ../src/blocks.c:3167 ../src/blocks.c:3175
 msgid "Brick wall"
@@ -702,8 +702,8 @@ msgstr "Exotische pilzartige Pflanze"
 #: ../src/blocks.c:3343
 msgid "A wonderful exotic fungus. You can read \"Made by Basse\" on it"
 msgstr ""
-"Ein hinreißend exotischer Pilz. Du kannst \"Hergestellt von Basse\" auf "
-"ihm lesen."
+"Ein hinreißend exotischer Pilz. Du kannst \"Hergestellt von Basse\" auf ihm "
+"lesen."
 
 #: ../src/blocks.c:3366
 msgid "Rocks"
@@ -728,8 +728,8 @@ msgstr "Gemütlich wirkende wand in Weinrot"
 #: ../src/blocks.c:3434 ../src/blocks.c:3435
 msgid "You think it would be better with a penguin on it. You are right!"
 msgstr ""
-"Dir ist, als würde das mit einem Pinguin drauf besser aussehen... "
-"Recht hast du!"
+"Dir ist, als würde das mit einem Pinguin drauf besser aussehen... Recht hast "
+"du!"
 
 #: ../src/blocks.c:3436 ../src/blocks.c:3437
 msgid "Gentle cyan-colored wall"
@@ -737,8 +737,9 @@ msgstr "Angenehm in Türkis gehaltene Wand"
 
 #: ../src/blocks.c:3438 ../src/blocks.c:3439
 msgid "A delight to the eye... could use a penguin on it, nevertheless."
-msgstr "Eine Wohltat für das Auge... könnte nichtsdestoweniger "
-"einen Pinguin darauf gebrauchen."
+msgstr ""
+"Eine Wohltat für das Auge... könnte nichtsdestoweniger einen Pinguin darauf "
+"gebrauchen."
 
 #: ../src/blocks.c:3450 ../src/blocks.c:3457
 msgid "Shop counter"
@@ -794,7 +795,8 @@ msgstr "Tresen einer Bibliothek."
 msgid ""
 "You wonder how such things can still exist in a fully computerized world.\n"
 "A faint glimmer of nostalgia is crossing your mind."
-msgstr "Du fragst dich, wie solche Dinge in einer vollständig computerisierten Welt\n"
+msgstr ""
+"Du fragst dich, wie solche Dinge in einer vollständig computerisierten Welt\n"
 "   immer noch existieren können."
 
 #: ../src/blocks.c:3508 ../src/blocks.c:3515 ../src/blocks.c:3522
@@ -837,7 +839,8 @@ msgstr "Tor"
 #: ../src/blocks.c:3683 ../src/blocks.c:3689 ../src/blocks.c:3695
 #: ../src/blocks.c:3700 ../src/blocks.c:3722 ../src/blocks.c:3730
 msgid "This gate is little more than just a big door. A very big door."
-msgstr "Dieses Tor ist kaum mehr als eine große Tür. Eine sehr, sehr große Türe."
+msgstr ""
+"Dieses Tor ist kaum mehr als eine große Tür. Eine sehr, sehr große Türe."
 
 #: ../src/blocks.c:3707 ../src/blocks.c:3714
 msgid ""
@@ -940,7 +943,9 @@ msgstr "Massive ausgefallene Wand"
 msgid ""
 "That's some rather massive, yet fancy-looking type of wall.\n"
 "A second sight reveals lots of plastics, though."
-msgstr "Eine ziemlich massive und doch ausgefallene Wand. Ein zweiter Blick enthüllt allerdings viel Plastik."
+msgstr ""
+"Eine ziemlich massive und doch ausgefallene Wand. Ein zweiter Blick enthüllt "
+"allerdings viel Plastik."
 
 #: ../src/blocks.c:3860 ../src/blocks.c:3867 ../src/blocks.c:3874
 #: ../src/blocks.c:3881
@@ -1114,7 +1119,8 @@ msgstr "\"Restaurant & Bar-Mehrzweck-Tresen (tm)\""
 msgid ""
 "A perfect fusion of practical usability, appealing optics and durability has "
 "been fitted into the design of this counter."
-msgstr "Ein perfektes Zusammenspiel von Praktikabilität, ansprechender Optik\n"
+msgstr ""
+"Ein perfektes Zusammenspiel von Praktikabilität, ansprechender Optik\n"
 "   und Dauerhaftigkeit wurde im Design dieses Tresens vereint."
 
 #: ../src/blocks.c:4181 ../src/blocks.c:4188
@@ -1128,10 +1134,13 @@ msgid ""
 "complete catering equipment.\n"
 "  Too bad there just aren't engough human guests around, to run such a "
 "business these days..."
-msgstr "In Kombination mit dem \"Restaurant & Bar-Mehrzweck-Tresen (tm)\"\n"
-"   ergänzt sich dieses professionelle Set an hochbelastbarer Kücheneinrichtung\n"
+msgstr ""
+"In Kombination mit dem \"Restaurant & Bar-Mehrzweck-Tresen (tm)\"\n"
+"   ergänzt sich dieses professionelle Set an hochbelastbarer "
+"Kücheneinrichtung\n"
 "   zu einer durchaus vollständigen Gastronomie-Ausrüstung.\n"
-"   Zu schade nur, dass es in diesen Tagen einfach nicht genügend menschliche Gäste gibt,\n"
+"   Zu schade nur, dass es in diesen Tagen einfach nicht genügend menschliche "
+"Gäste gibt,\n"
 "   um ein Geschäft wie dieses am Laufen zu halten."
 
 #: ../src/blocks.c:4195 ../src/blocks.c:4202 ../src/blocks.c:4209
@@ -2280,9 +2289,9 @@ msgid "Current level size in Y: %d."
 msgstr "Momentane Levelgröße in Y: %d."
 
 #: ../src/leveleditor.c:2638 ../src/leveleditor.c:2924
-#: ../src/leveleditor.c:3796 ../src/menu.c:1480 ../src/menu.c:1612
-#: ../src/menu.c:1714 ../src/menu.c:1782 ../src/menu.c:1853 ../src/menu.c:1968
-#: ../src/menu.c:2009 ../src/menu.c:2270 ../src/menu.c:2382
+#: ../src/leveleditor.c:3796 ../src/menu.c:1476 ../src/menu.c:1608
+#: ../src/menu.c:1710 ../src/menu.c:1778 ../src/menu.c:1849 ../src/menu.c:1964
+#: ../src/menu.c:2005 ../src/menu.c:2266 ../src/menu.c:2378
 msgid "Back"
 msgstr "Zurück"
 
@@ -2331,13 +2340,13 @@ msgstr "Minimaler Lichtwert: %d"
 msgid "Infinite running on this level: "
 msgstr "Unendliche Lauf-Ausdauer in diesem Level: "
 
-#: ../src/leveleditor.c:2921 ../src/menu.c:1711 ../src/menu.c:1846
-#: ../src/menu.c:1848 ../src/menu.c:1850 ../src/menu.c:1852
+#: ../src/leveleditor.c:2921 ../src/menu.c:1707 ../src/menu.c:1842
+#: ../src/menu.c:1844 ../src/menu.c:1846 ../src/menu.c:1848
 msgid "YES"
 msgstr "JA"
 
-#: ../src/leveleditor.c:2922 ../src/menu.c:1711 ../src/menu.c:1846
-#: ../src/menu.c:1848 ../src/menu.c:1850 ../src/menu.c:1852
+#: ../src/leveleditor.c:2922 ../src/menu.c:1707 ../src/menu.c:1842
+#: ../src/menu.c:1844 ../src/menu.c:1846 ../src/menu.c:1848
 msgid "NO"
 msgstr "NEIN"
 
@@ -2392,19 +2401,29 @@ msgstr "Probespielen"
 msgid "Save Mapfile"
 msgstr "Karte speichern"
 
+#: ../src/leveleditor.c:3100
+#, fuzzy
+msgid "Add New Level"
+msgstr "Aufstieg bei"
+
 #: ../src/leveleditor.c:3104
 msgid "Return to game"
 msgstr "Rückkehr zum Spiel"
 
 #: ../src/leveleditor.c:3105
-msgid "Saving not possible"
+#, fuzzy
+msgid "Saving disabled"
 msgstr "Speichern nicht möglich"
 
-#: ../src/leveleditor.c:3109 ../src/menu.c:1539
+#: ../src/leveleditor.c:3107
+msgid "Adding Level disabled"
+msgstr ""
+
+#: ../src/leveleditor.c:3109 ../src/menu.c:1535
 msgid "Quit to Main Menu"
 msgstr "Rückkehr zum Hauptmenü"
 
-#: ../src/leveleditor.c:3110 ../src/menu.c:1411 ../src/menu.c:1542
+#: ../src/leveleditor.c:3110 ../src/menu.c:1407 ../src/menu.c:1538
 msgid "Exit FreedroidRPG"
 msgstr "FreedroidRPG beenden"
 
@@ -2669,7 +2688,8 @@ msgid ""
 "Playing on a map leaves the world in an unclean state not suitable for "
 "saving. Enter the editor directly from the main menu to be able to save any "
 "changes to the map file."
-msgstr "Speichern nicht möglich!\n"
+msgstr ""
+"Speichern nicht möglich!\n"
 "\n"
 "Das Spielen auf einer Karte verändert diese und hinterlässt sie in einem "
 "Zustand, ungeeignet zur Speicherung. Starten Sie den Editor direkt aus dem "
@@ -2912,9 +2932,11 @@ msgid ""
 "\n"
 "Changes made to the world will be permanent for current Hero. To avoid, load "
 "a previous savegame."
-msgstr "Rückkehr zum Spiel\n"
+msgstr ""
+"Rückkehr zum Spiel\n"
 "\n"
-"Änderungen an der Karte werden permanent für den aktuellen Helden übernommen.\n"
+"Änderungen an der Karte werden permanent für den aktuellen Helden "
+"übernommen.\n"
 "Um dies zu vermeiden, laden Sie ein vorher gespeichertes Spiel."
 
 #: ../src/leveleditor.c:4815
@@ -2923,9 +2945,11 @@ msgid ""
 "\n"
 "This will save your map and reload it after you finish testing, avoiding "
 "saving an unclean world state."
-msgstr "Karte testen\n"
+msgstr ""
+"Karte testen\n"
 "\n"
-"Sichert Ihre Karte und lädt sie neu, nachdem Sie mit dem Testen fertig sind,\n"
+"Sichert Ihre Karte und lädt sie neu, nachdem Sie mit dem Testen fertig "
+"sind,\n"
 "um das Speichern einer \"beschädigten\" Karte zu verhindern."
 
 #: ../src/leveleditor.c:4821
@@ -3070,20 +3094,20 @@ msgstr ""
 "F E H L E R ! Karte wurde nicht gespeichert.\n"
 "\n"
 "Das Spielen auf einer Karte hinterlässt sie in einem zur Speicherung "
-"ungeeigneten Zustand. Starten Sie den Editor aus dem Hauptmenü heraus, "
-"um Ihre Karte speichern zu können."
+"ungeeigneten Zustand. Starten Sie den Editor aus dem Hauptmenü heraus, um "
+"Ihre Karte speichern zu können."
 
-#: ../src/leveleditor.c:5878
+#: ../src/leveleditor.c:5876
 #, c-format
 msgid " Source waypoint selected : NONE"
 msgstr " Ausgangs-Wegpunkt gewählt : KEINER"
 
-#: ../src/leveleditor.c:5882
+#: ../src/leveleditor.c:5880
 #, c-format
 msgid " Source waypoint selected : X=%d Y=%d. "
 msgstr " Ausgangs-Wegpunkt ausgewählt : X=%d Y=%d. "
 
-#: ../src/leveleditor.c:5921
+#: ../src/leveleditor.c:5919
 msgid ""
 "\n"
 " Please enter new statement for this tile: \n"
@@ -3093,7 +3117,7 @@ msgstr ""
 " Bitte neuen Kommentar für diesen Titel: \n"
 "\n"
 
-#: ../src/leveleditor.c:5929
+#: ../src/leveleditor.c:5927
 msgid ""
 "\n"
 "No more free comment position.  Using first. "
@@ -3231,35 +3255,35 @@ msgstr " NEIN "
 msgid "OpenGL output active: "
 msgstr "OpenGL-Ausgabe aktiviert: "
 
-#: ../src/menu.c:253 ../src/menu.c:2267
+#: ../src/menu.c:253 ../src/menu.c:2263
 msgid "[down]"
 msgstr "[nach unten]"
 
-#: ../src/menu.c:254 ../src/menu.c:2256
+#: ../src/menu.c:254 ../src/menu.c:2252
 msgid "[up]"
 msgstr "[nach oben]"
 
-#: ../src/menu.c:1406
+#: ../src/menu.c:1402
 msgid "Play"
 msgstr "Spielen"
 
-#: ../src/menu.c:1407
+#: ../src/menu.c:1403
 msgid "Level Editor"
 msgstr "Level-Editor"
 
-#: ../src/menu.c:1408 ../src/menu.c:1535
+#: ../src/menu.c:1404 ../src/menu.c:1531
 msgid "Options"
 msgstr "Optionen"
 
-#: ../src/menu.c:1409
+#: ../src/menu.c:1405
 msgid "Credits"
 msgstr "Mitwirkende"
 
-#: ../src/menu.c:1410
+#: ../src/menu.c:1406
 msgid "Contribute"
 msgstr "Mithelfen"
 
-#: ../src/menu.c:1441
+#: ../src/menu.c:1437
 msgid ""
 "\n"
 "You cannot change the language\n"
@@ -3279,7 +3303,7 @@ msgstr ""
 "\n"
 "    Vielen Dank\n"
 
-#: ../src/menu.c:1450
+#: ../src/menu.c:1446
 msgid ""
 "\n"
 "The game has NOT been\n"
@@ -3296,55 +3320,55 @@ msgstr ""
 "\n"
 "Danke für Ihr Verständnis.\n"
 
-#: ../src/menu.c:1474
+#: ../src/menu.c:1470
 msgid "Graphics Options"
 msgstr "Grafik-Optionen"
 
-#: ../src/menu.c:1475
+#: ../src/menu.c:1471
 msgid "Sound Options"
 msgstr "Sound-Optionen"
 
-#: ../src/menu.c:1476
+#: ../src/menu.c:1472
 msgid "Language"
 msgstr "Sprache"
 
-#: ../src/menu.c:1477
+#: ../src/menu.c:1473
 msgid "Droid Talk"
 msgstr "Roboter-Kommentare"
 
-#: ../src/menu.c:1478
+#: ../src/menu.c:1474
 msgid "On-Screen Displays"
 msgstr "On-Screen-Display"
 
-#: ../src/menu.c:1479
+#: ../src/menu.c:1475
 msgid "Performance Tweaks"
 msgstr "Leistungs-Optionen"
 
-#: ../src/menu.c:1531
+#: ../src/menu.c:1527
 msgid "Resume Play"
 msgstr "Fortsetzen"
 
-#: ../src/menu.c:1533
+#: ../src/menu.c:1529
 msgid "Resume Playtest"
 msgstr "Testspiel fortsetzen"
 
-#: ../src/menu.c:1534
+#: ../src/menu.c:1530
 msgid "Save Hero"
 msgstr "Profil speichern"
 
-#: ../src/menu.c:1536
+#: ../src/menu.c:1532
 msgid "Load Latest"
 msgstr "Neuesten Stand laden"
 
-#: ../src/menu.c:1537
+#: ../src/menu.c:1533
 msgid "Load Backup"
 msgstr "Backup laden"
 
-#: ../src/menu.c:1541
+#: ../src/menu.c:1537
 msgid "Return to Level Editor"
 msgstr "Zurück zum Level-Editor"
 
-#: ../src/menu.c:1663
+#: ../src/menu.c:1659
 msgid ""
 "\n"
 "This option will be taken into account after you restart the game.\n"
@@ -3356,137 +3380,137 @@ msgstr ""
 "\n"
 "   Vielen Dank\n"
 
-#: ../src/menu.c:1707
+#: ../src/menu.c:1703
 #, c-format
 msgid "Gamma Correction: %1.2f"
 msgstr "Gamma-Korrektur: %1.2f"
 
-#: ../src/menu.c:1708
+#: ../src/menu.c:1704
 #, c-format
 msgid "Fullscreen Mode: %s"
 msgstr "Vollbildmodus: %s"
 
-#: ../src/menu.c:1708 ../src/menu.c:1963 ../src/menu.c:1964 ../src/menu.c:1965
-#: ../src/menu.c:2004 ../src/menu.c:2005 ../src/menu.c:2006 ../src/menu.c:2007
-#: ../src/menu.c:2008
+#: ../src/menu.c:1704 ../src/menu.c:1959 ../src/menu.c:1960 ../src/menu.c:1961
+#: ../src/menu.c:2000 ../src/menu.c:2001 ../src/menu.c:2002 ../src/menu.c:2003
+#: ../src/menu.c:2004
 msgid "ON"
 msgstr "EIN"
 
-#: ../src/menu.c:1708 ../src/menu.c:1963 ../src/menu.c:1964 ../src/menu.c:1965
-#: ../src/menu.c:2004 ../src/menu.c:2005 ../src/menu.c:2006 ../src/menu.c:2007
-#: ../src/menu.c:2008
+#: ../src/menu.c:1704 ../src/menu.c:1959 ../src/menu.c:1960 ../src/menu.c:1961
+#: ../src/menu.c:2000 ../src/menu.c:2001 ../src/menu.c:2002 ../src/menu.c:2003
+#: ../src/menu.c:2004
 msgid "OFF"
 msgstr "AUS"
 
-#: ../src/menu.c:1709
+#: ../src/menu.c:1705
 #, c-format
 msgid "Change Screen Resolution"
 msgstr "Bildschirmauflösung ändern"
 
-#: ../src/menu.c:1710
+#: ../src/menu.c:1706
 #, c-format
 msgid "Show Blood: %s"
 msgstr "Blut darstellen: %s"
 
-#: ../src/menu.c:1712
+#: ../src/menu.c:1708
 #, c-format
 msgid "Automap Scale: %2.1f"
 msgstr "Automap-Maßstab: %2.1f"
 
-#: ../src/menu.c:1780
+#: ../src/menu.c:1776
 #, c-format
 msgid "Background Music Volume: %1.2f"
 msgstr "Lautstärke Hintergrundmusik: %1.2f"
 
-#: ../src/menu.c:1781
+#: ../src/menu.c:1777
 #, c-format
 msgid "Sound Effects Volume: %1.2f"
 msgstr "Lautstärke Soundeffekte: %1.2f"
 
-#: ../src/menu.c:1845
+#: ../src/menu.c:1841
 #, c-format
 msgid "Hog CPU for max. performance: %s"
 msgstr "CPU besetzen für max. Leistung: %s"
 
-#: ../src/menu.c:1847
+#: ../src/menu.c:1843
 #, c-format
 msgid "Highlighting mode: %s"
 msgstr "Highlight-Modus: %s"
 
-#: ../src/menu.c:1847
+#: ../src/menu.c:1843
 msgid "FULL"
 msgstr "VOLL"
 
-#: ../src/menu.c:1847
+#: ../src/menu.c:1843
 msgid "REDUCED"
 msgstr "REDUZIERT"
 
-#: ../src/menu.c:1848
+#: ../src/menu.c:1844
 #, c-format
 msgid "Skip light radius: %s"
 msgstr "Leuchtradius aus: %s"
 
-#: ../src/menu.c:1849
+#: ../src/menu.c:1845
 #, c-format
 msgid "Skip shadow blitting: %s"
 msgstr "Schatten-Blitting aus: %s"
 
-#: ../src/menu.c:1851
+#: ../src/menu.c:1847
 #, c-format
 msgid "Skip fadings: %s"
 msgstr "Überblendung aus: %s"
 
-#: ../src/menu.c:1963
+#: ../src/menu.c:1959
 #, c-format
 msgid "Show Position: %s"
 msgstr "Position anzeigen: %s"
 
-#: ../src/menu.c:1964
+#: ../src/menu.c:1960
 #, c-format
 msgid "Show Framerate: %s"
 msgstr "Framerate anzeigen: %s"
 
-#: ../src/menu.c:1965
+#: ../src/menu.c:1961
 #, c-format
 msgid "Show Enemy Energy Bars: %s"
 msgstr "Gegner-Energiebalken anzeigen: %s"
 
-#: ../src/menu.c:1966
+#: ../src/menu.c:1962
 #, c-format
 msgid "Screen Messages at most: %d"
 msgstr "Nachrichten-Anzahl höchstens: %d"
 
-#: ../src/menu.c:1967
+#: ../src/menu.c:1963
 #, c-format
 msgid "Screen Message time: %3.1f"
 msgstr "Nachrichten-Anzeigezeit: %3.1f"
 
-#: ../src/menu.c:2004
+#: ../src/menu.c:2000
 #, c-format
 msgid "Enemy Hit Texts: %s"
 msgstr "Meldungen - Gegner getroffen: %s"
 
-#: ../src/menu.c:2005
+#: ../src/menu.c:2001
 #, c-format
 msgid "Enemy Bumped Texts: %s"
 msgstr "Meldungen - Gegner angerempelt: %s"
 
-#: ../src/menu.c:2006
+#: ../src/menu.c:2002
 #, c-format
 msgid "Enemy Aim Texts: %s"
 msgstr "Meldungen - Gegner anvisiert: %s"
 
-#: ../src/menu.c:2007
+#: ../src/menu.c:2003
 #, c-format
 msgid "All in-game Speech: %s"
 msgstr "Sprachausgabe: %s"
 
-#: ../src/menu.c:2008
+#: ../src/menu.c:2004
 #, c-format
 msgid "Reprogram bots after takeover: %s"
 msgstr "Robot-Reprogrammierung nach Übernahme: %s"
 
-#: ../src/menu.c:2027
+#: ../src/menu.c:2023
 msgid ""
 "\n"
 "     Please enter a name\n"
@@ -3502,11 +3526,11 @@ msgstr ""
 "\n"
 "     > "
 
-#: ../src/menu.c:2301 ../src/menu.c:2324
+#: ../src/menu.c:2297 ../src/menu.c:2320
 msgid "BACK"
 msgstr "ZURÜCK"
 
-#: ../src/menu.c:2304
+#: ../src/menu.c:2300
 msgid ""
 "\n"
 "\n"
@@ -3514,26 +3538,26 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"Keine Spielstände gefunden!\n"
+"Keine Spielstände gefunden!"
 
-#: ../src/menu.c:2323
+#: ../src/menu.c:2319
 msgid "Sure!"
 msgstr "Sicher!"
 
-#: ../src/menu.c:2326
+#: ../src/menu.c:2322
 #, c-format
 msgid "Really delete hero '%s'?"
 msgstr "Profil '%s' wirklich löschen?"
 
-#: ../src/menu.c:2379
+#: ../src/menu.c:2375
 msgid "New Hero"
 msgstr "Neues Profil anlegen"
 
-#: ../src/menu.c:2380
+#: ../src/menu.c:2376
 msgid "Load existing Hero"
 msgstr "Bestehendes Profil laden"
 
-#: ../src/menu.c:2381
+#: ../src/menu.c:2377
 msgid "Delete existing Hero"
 msgstr "Bestehendes Profil löschen"
 
@@ -3623,9 +3647,46 @@ msgstr "Dateigröße: %2.3f MB"
 msgid "You are dead. Savegame not modified."
 msgstr "Du bist tot. Spielstand nicht gespeichert."
 
+#: ../src/saveloadgame.c:302
+#, c-format
+msgid ""
+"\n"
+"\n"
+"Error opening save game file for writing...\n"
+"\n"
+"Terminating...\n"
+"\n"
+msgstr ""
+
+#: ../src/saveloadgame.c:308
+#, c-format
+msgid ""
+"Version string: %s\n"
+"\n"
+msgstr ""
+
+#: ../src/saveloadgame.c:345
+#, c-format
+msgid "End of freedroidRPG savefile\n"
+msgstr ""
+
 #: ../src/saveloadgame.c:354
 msgid "Game saved."
 msgstr "Spielstand gespeichert."
+
+#: ../src/saveloadgame.c:434
+msgid ""
+"\n"
+"W A R N I N G !\n"
+"\n"
+"FreedroidRPG was unable to locate the saved game file you requested to "
+"load.\n"
+"This might mean that it really isn't there cause you tried to load a game "
+"without ever having saved the game before.  \n"
+"The other explanation of this error might be a severe error in "
+"FreedroidRPG.\n"
+"Nothing will be done about it."
+msgstr ""
 
 #: ../src/saveloadgame.c:435
 msgid "Failed to load old game."
@@ -3665,7 +3726,7 @@ msgstr "Nichts"
 #, fuzzy, c-format
 msgid ""
 "\n"
-"Armamant : %s\n"
+"Armament : %s\n"
 msgstr ""
 "\n"
 "Bewaffnung: %s\n"
@@ -4083,7 +4144,7 @@ msgstr "Unbeweglichkeit: %2d:%2d"
 #: ../src/view.c:316
 #, c-format
 msgid "Bots remaining on level: %d\n"
-msgstr "Verbleibende Bots in Level: %d"
+msgstr "Verbleibende Bots in Level: %d\n"
 
 #~ msgid ""
 #~ "Back to game\n"
