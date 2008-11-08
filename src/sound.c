@@ -446,7 +446,6 @@ void WaitInterruptible(const int timeout) {
 // ----------------------------------------------------------------------
 void PlayOnceNeededSoundSample( const char* SoundSampleFileName , const int With_Waiting , const int no_double_catching )
 {
-    int simulated_playback_starting_time;
     static char PreviousFileName [ 1000 ] = "HalloHallo";
     static Uint32 PreviousStartTicks = 0 ;
     Uint32 TicksNow;
