@@ -4591,22 +4591,22 @@ HandleLevelEditorCursorKeys ( leveleditor_state *cur_state )
 	if (LeftPressed()) 
 	{
 	    if ( rintf(Me.pos.x) > 0 ) Me.pos.x-=1;
-	    SDL_Delay(200);
+	    while(LeftPressed()) SDL_Delay(1);
 	}
 	if (RightPressed()) 
 	{ 
 	    if ( rintf(Me.pos.x) < EditLevel->xlen-1 ) Me.pos.x+=1;
-	    SDL_Delay(200);
+	    while(RightPressed()) SDL_Delay(1);
 	}
 	if (UpPressed()) 
 	{
 	    if ( rintf(Me.pos.y) > 0 ) Me.pos.y-=1;
-	    SDL_Delay(200);
+	    while(UpPressed()) SDL_Delay(1);
 	}
 	if (DownPressed()) 
 	{
 	    if ( rintf(Me.pos.y) < EditLevel->ylen-1 ) Me.pos.y+=1;
-	    SDL_Delay(200);
+	    while(DownPressed()) SDL_Delay(1);
 	}
     }
 }; // void HandleLevelEditorCursorKeys ( void )
