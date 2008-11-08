@@ -124,13 +124,9 @@ EXTERN iso_image MouseCursorImageList[ NUMBER_OF_MOUSE_CURSOR_PICTURES ];
 EXTERN iso_image SpellLevelButtonImageList[ NUMBER_OF_SKILL_PAGES ];
 
 EXTERN int Number_Of_Droids_On_Ship;
-EXTERN double Time_For_Each_Phase_Of_Door_Movement;
-EXTERN double Blast_Damage_Per_Second;
 EXTERN float LevelDoorsNotMovedTime;
 EXTERN float LevelGunsNotFiredTime;
 EXTERN configuration_for_freedroid GameConfig;
-EXTERN int MaxMessageTime;
-EXTERN int MinMessageTime;
 EXTERN BFont_Info *Menu_BFont;
 EXTERN BFont_Info *Messagevar_BFont;
 EXTERN BFont_Info *Messagestat_BFont;
@@ -245,13 +241,6 @@ EXTERN int vid_bpp; 		       // bits per pixel
 #else
 #define EXTERN extern
 #endif
-EXTERN unsigned char *BannerPicture;
-EXTERN unsigned char *Enemypointer;
-EXTERN unsigned char *Influencepointer;
-EXTERN unsigned char *MapBlocks;
-EXTERN unsigned char *Digitpointer;
-EXTERN unsigned char *MenuItemPointer;
-EXTERN unsigned char *Robotptr;
 EXTERN obstacle_spec obstacle_map [ NUMBER_OF_OBSTACLE_TYPES ];
 
 #undef EXTERN
@@ -287,9 +276,6 @@ EXTERN obstacle* level_editor_marked_obstacle;
 #else
 #define EXTERN extern
 #endif
-EXTERN SDL_Joystick *joy;
-EXTERN int joy_num_axes; /* number of joystick axes */ 
-EXTERN int joy_sensitivity;
 EXTERN point input_axis;  /* joystick (and mouse) axis values */
 EXTERN int always_show_items_text;
 

@@ -1568,7 +1568,6 @@ Usage: freedroid [-v|--version] \n\
                  [-o|--open_gl] [-n|--no_open_gl]\n\
                  [-f|--fullscreen] [-w|--window]\n\
                  [-m|--mapcheck] \n\
-                 [-j|--sensitivity]\n\
                  [-d|--debug=LEVEL]\n\
 		 [-r|--resolution=CODE]\n\
 \n\
@@ -1600,7 +1599,6 @@ ParseCommandLine (int argc, char *const argv[])
 	{"window",      0, 0,  'w'},
 	{"fullscreen",  0, 0,  'f'},
 	{"mapcheck",    0, 0,  'm'},
-	{"sensitivity", 1, 0,  'j'},
 	{"resolution",  1, 0,  'r'},	
 	{ 0,            0, 0,    0}
     };
@@ -1609,7 +1607,7 @@ ParseCommandLine (int argc, char *const argv[])
 
     while ( 1 )
     {
-	c = getopt_long ( argc , argv , "vonqst:h?d::r:wfmj:" , long_options , NULL );
+	c = getopt_long ( argc , argv , "vonqst:h?d::r:wfm" , long_options , NULL );
 	if ( c == -1 )
 	    break;
 
@@ -1643,15 +1641,6 @@ ParseCommandLine (int argc, char *const argv[])
 		
 	    case 's':
 		sound_on = TRUE;
-		break;
-		
-	    case 'j':
-		joy_sensitivity = atoi (optarg);
-		if (joy_sensitivity < 0 || joy_sensitivity > 32)
-		{
-		    printf ("\nJoystick sensitivity must lie in the range [0;32]\n");
-		    Terminate(ERR);
-		}
 		break;
 		
 	    case 'd':
@@ -2326,9 +2315,6 @@ I will not be able to load or save games or configurations\n\
      * level-start etc really different at each program start
      */
     srand(time(NULL));
-    
-    MinMessageTime = 55;
-    MaxMessageTime = 850;
     
     InitPictures ( ) ;
  
