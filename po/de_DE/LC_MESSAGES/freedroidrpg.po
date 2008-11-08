@@ -3193,7 +3193,7 @@ msgstr "615 Feuerteufel"
 
 #: ../src/map.c:3036
 msgid "629 Spitfire"
-msgstr "329 Funkenschle"
+msgstr "329 Funkenschleuder"
 
 #: ../src/map.c:3037
 msgid "711 Grillmeister"
@@ -3217,7 +3217,7 @@ msgstr "834 Irrlicht"
 
 #: ../src/map.c:3042
 msgid "883 Dalex"
-msgstr "883 "
+msgstr "883 Dalex"
 
 #: ../src/map.c:3043
 msgid "999 Cerebrum"
@@ -3731,7 +3731,7 @@ msgid ""
 "Armament : %s\n"
 msgstr ""
 "\n"
-"Bewaff: %s\n"
+"Bewaffnung: %s\n"
 
 #: ../src/ship.c:96
 #, c-format
