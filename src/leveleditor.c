@@ -2771,7 +2771,7 @@ EditLevelDimensions ( void )
  * Run several validations
  */
 void
-LevelValidation( int levelnum )
+LevelValidation()
 {
 	int is_invalid = FALSE;
 
@@ -3143,7 +3143,7 @@ DoLevelEditorMainMenu ( Level EditLevel )
 			break;
 	    case RUN_VALIDATION:
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed() ) SDL_Delay(1) ;
-			LevelValidation(Me.pos.z);
+			LevelValidation();
 			while ( !SpacePressed() ) SDL_Delay(1);
 			proceed_now=!proceed_now;
 			break;
