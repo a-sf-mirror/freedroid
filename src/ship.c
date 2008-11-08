@@ -89,7 +89,7 @@ Entry : %d\n"), Druidmap[droidtype].druidname, droidtype + 1);
     else 
 	item_name = _("none");
     
-    sprintf( TextChunk , _("\nArmamant : %s\n"),
+    sprintf( TextChunk , _("\nArmament : %s\n"),
 	     item_name);
     strcat ( InfoText , TextChunk );
     
