@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: freedroidrpg\n"
 "Report-Msgid-Bugs-To: freedroid-discussion@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-11-08 20:03+0100\n"
+"POT-Creation-Date: 2008-11-08 22:27+0100\n"
 "PO-Revision-Date: 2008-10-04 00:24+0200\n"
 "Last-Translator: Ronny Standtke <Ronny.Standtke@gmx.net>\n"
 "Language-Team: Deutsch\n"
@@ -3162,8 +3162,8 @@ msgid "329 Sparkie"
 msgstr "329 Funkenschleuder"
 
 #: ../src/map.c:3028
-msgid "420 NaN"
-msgstr "Chirurg"
+msgid "420 Surgeon"
+msgstr ""
 
 #: ../src/map.c:3029
 msgid "476 Coward"
@@ -3186,44 +3186,47 @@ msgid "571 Apollo"
 msgstr "571 Apollo"
 
 #: ../src/map.c:3034
-msgid "598 NaN"
-msgstr "598 Minister"
+#, fuzzy
+msgid "598 Minister"
+msgstr "493 Blechjungfer"
 
 #: ../src/map.c:3035
-msgid "615 NaN"
-msgstr "615 Feuerteufel"
+msgid "615 Firedevil"
+msgstr ""
 
 #: ../src/map.c:3036
-msgid "629 NaN"
-msgstr "629 Giftzwerg"
+#, fuzzy
+msgid "629 Spitfire"
+msgstr "329 Funkenschleuder"
 
 #: ../src/map.c:3037
-msgid "711 If"
-msgstr "711 Grillzange"
+msgid "711 Grillmeister"
+msgstr ""
 
 #: ../src/map.c:3038
-msgid "742 NaN"
-msgstr "742 Zeus"
+msgid "742 Zeus"
+msgstr ""
 
 #: ../src/map.c:3039
 msgid "751 Soviet"
 msgstr "751 Sowjet"
 
 #: ../src/map.c:3040
-msgid "821 NaN"
-msgstr "821 Ufo"
+msgid "821 Ufo"
+msgstr ""
 
 #: ../src/map.c:3041
-msgid "834 NaN"
-msgstr "Irrlicht"
+msgid "834 Wisp"
+msgstr ""
 
 #: ../src/map.c:3042
-msgid "883 NaN"
+#, fuzzy
+msgid "883 Dalex"
 msgstr "883 Dalex"
 
 #: ../src/map.c:3043
-msgid "999 NaN"
-msgstr "999 Großhirn"
+msgid "999 Cerebrum"
+msgstr ""
 
 #: ../src/map.c:3044
 msgid "No Description For This One"
@@ -3657,18 +3660,12 @@ msgid ""
 "Terminating...\n"
 "\n"
 msgstr ""
-
-#: ../src/saveloadgame.c:308
-#, c-format
-msgid ""
-"Version string: %s\n"
 "\n"
-msgstr ""
-
-#: ../src/saveloadgame.c:345
-#, c-format
-msgid "End of freedroidRPG savefile\n"
-msgstr ""
+"\n"
+"Fehler beim Öffnen des Spielstandes zum Speichern...\n"
+"\n"
+"Terminating...\n"
+"\n"
 
 #: ../src/saveloadgame.c:354
 msgid "Game saved."
@@ -3687,6 +3684,16 @@ msgid ""
 "FreedroidRPG.\n"
 "Nothing will be done about it."
 msgstr ""
+"\n"
+"W A R N U N G !\n"
+"\n"
+"FreedroidRPG konnte den angeforderten Spielstand nicht lokalisieren und "
+"laden. Das könnte bedeuten, dass es diesen tatsächlich nicht gibt, da Sie "
+"versuchten, einen Spielstand zu laden, ohne vorher überhaupt ein Spiel zu "
+"speichern.\n"
+"Die andere Erklärung dieser Fehlermeldung könnte in einem schweren internen "
+"Fehler von FreedroidRPG begründet liegen\n"
+"Es wird keine weitere Aktion ausgeführt."
 
 #: ../src/saveloadgame.c:435
 msgid "Failed to load old game."
@@ -4145,6 +4152,33 @@ msgstr "Unbeweglichkeit: %2d:%2d"
 #, c-format
 msgid "Bots remaining on level: %d\n"
 msgstr "Verbleibende Bots in Level: %d\n"
+
+#~ msgid "420 NaN"
+#~ msgstr "Chirurg"
+
+#~ msgid "598 NaN"
+#~ msgstr "598 Minister"
+
+#~ msgid "615 NaN"
+#~ msgstr "615 Feuerteufel"
+
+#~ msgid "629 NaN"
+#~ msgstr "629 Giftzwerg"
+
+#~ msgid "711 If"
+#~ msgstr "711 Grillzange"
+
+#~ msgid "742 NaN"
+#~ msgstr "742 Zeus"
+
+#~ msgid "821 NaN"
+#~ msgstr "821 Ufo"
+
+#~ msgid "834 NaN"
+#~ msgstr "Irrlicht"
+
+#~ msgid "999 NaN"
+#~ msgstr "999 Großhirn"
 
 #~ msgid ""
 #~ "Back to game\n"
