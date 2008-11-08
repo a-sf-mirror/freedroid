@@ -3405,7 +3405,7 @@ msgstr ""
 "Die Eigentliche Fabrik befindet sich hinter dem Bürokomplex. Mit etwas Glück "
 "müssen Sie vielleicht gar nicht dorthin. Wir wissen, dass sie ihren "
 "Update-Server in dem besagten Büro installiert haben. Wenn Sie ihn finden und "
-"dazu bringen können, ein \'fehlerhaftes\' Update zu verbreiten, könnte das "
+"dazu bringen können, ein 'fehlerhaftes' Update zu verbreiten, könnte das "
 "genügen, die Robots endgültig auszuschalten..."
 
 #: ../dialogs/Spencer.dialog:535
