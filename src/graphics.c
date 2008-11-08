@@ -1884,8 +1884,7 @@ InitVideo (void)
     
     SDL_SetGamma( GameConfig.current_gamma_correction , GameConfig.current_gamma_correction , GameConfig.current_gamma_correction );
     
-    if ( ! mouse_control )  // hide mouse pointer if not needed 
-	SDL_ShowCursor (SDL_DISABLE);
+    SDL_ShowCursor (SDL_DISABLE);
     
 }; // void InitVideo () 
 

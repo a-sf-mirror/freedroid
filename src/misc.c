@@ -455,31 +455,15 @@ adapt_button_positions_to_screen_resolution( void )
     Droid_Image_Window . w = 130*GameConfig . screen_width/640 ;
     Droid_Image_Window . h = 172*GameConfig . screen_height/480 ;
 
-    Full_Screen_Rect . x = 0 ;
-    Full_Screen_Rect . y = 0 ; 
-    Full_Screen_Rect . w = GameConfig . screen_width ;
-    Full_Screen_Rect . h = GameConfig . screen_height ;
-
-    Classic_User_Rect . x = (GameConfig . screen_width-9*INITIAL_BLOCK_WIDTH) / 2 ;
-    Classic_User_Rect . y = 2*(GameConfig . screen_height-4*INITIAL_BLOCK_HEIGHT)/3 ;
-    Classic_User_Rect . w = 9*INITIAL_BLOCK_WIDTH ;
-    Classic_User_Rect . h = 4*INITIAL_BLOCK_HEIGHT ;
-
     Full_User_Rect . x = 0 ;
     Full_User_Rect . y = 0 ;
     Full_User_Rect . w = GameConfig . screen_width ;
     Full_User_Rect . h = GameConfig . screen_height ;
-
-    Cons_Rect . x =  16 ;
-    Cons_Rect . y = 162 ;
-    Cons_Rect . w = 595 ;
-    Cons_Rect . h = 315 ;
-
+    
     Cons_Text_Rect . x = 175 ;
     Cons_Text_Rect . y = 180 ;
     Cons_Text_Rect . w = GameConfig . screen_width-175 ;
     Cons_Text_Rect . h = 305 ;
-
 
 }; // void adapt_button_positions_to_screen_resolution( void )
 

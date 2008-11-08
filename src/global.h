@@ -43,7 +43,6 @@ EXTERN float FPSover1;
 EXTERN float FPSover10;
 EXTERN float FPSover100;
 EXTERN char *AllSkillTexts[];
-EXTERN char *SkillName[];
 EXTERN char font_switchto_red [ 2 ] ;
 EXTERN char font_switchto_blue [ 2 ] ;
 EXTERN char font_switchto_neon [ 2 ] ;
@@ -68,22 +67,15 @@ EXTERN enum { INSIDE_MENU = 0, INSIDE_GAME, INSIDE_LVLEDITOR } game_status;
 #endif
 
 EXTERN SDL_Rect User_Rect;
-EXTERN SDL_Rect Full_Screen_Rect;
-EXTERN SDL_Rect Classic_User_Rect;
 EXTERN SDL_Rect Full_User_Rect;
-EXTERN SDL_Rect Cons_Rect;
 EXTERN SDL_Rect Cons_Text_Rect;
 
 extern char *our_homedir;
 extern char *our_config_dir;
 
-EXTERN const SDL_Rect Menu_Rect;
-
-
 EXTERN int Number_Of_Droid_Types;
 EXTERN int QuitProgram;
 EXTERN int GameOver;
-EXTERN int AlertLevel;
 
 extern list_head_t alive_bots_head;
 extern list_head_t dead_bots_head;
@@ -92,31 +84,19 @@ extern list_head_t level_bots_head[MAX_LEVELS];
 EXTERN spell_active AllActiveSpells[ MAX_ACTIVE_SPELLS ];
 EXTERN event_trigger AllEventTriggers[ MAX_EVENT_TRIGGERS ];
 EXTERN triggered_action AllTriggeredActions[ MAX_TRIGGERED_ACTIONS_IN_GAME ];
-EXTERN char ServerName[ 10000 ];
 
 EXTERN ship curShip;		/* the current ship-data */
-
 
 EXTERN bullet AllBullets[MAXBULLETS + 10];
 EXTERN melee_shot AllMeleeShots[MAX_MELEE_SHOTS];
 EXTERN blast AllBlasts[MAXBLASTS + 10];
-EXTERN int KeyCode;
-
-EXTERN unsigned int MapBlockIndex;
-
-EXTERN unsigned char *InternWindow;
-
-EXTERN int taste;
 
 EXTERN int sound_on;		// Toggle TRUE/FALSE for turning sounds on/off 
 EXTERN int debug_level;       	// 0=no debug 1=some debug messages 2=...etc 
 				// (currently only 0 or !=0 is implemented) 
 EXTERN int show_all_droids;     // display enemys regardless of IsVisible() 
-EXTERN int stop_influencer;     // for bullet debugging: stop where u are 
 EXTERN int draw_collision_rectangles; // to better debug collision rectangles
 EXTERN int draw_grid;           // grid to see where objects will be positioned
-EXTERN int mouse_control;       // allow for mouse control 
-EXTERN int classic_user_rect;   // use the User-Rect dimensions of the original game? 
 #undef EXTERN
 #ifdef _misc_c
 #define EXTERN
@@ -133,9 +113,6 @@ EXTERN char* character_descriptions [ MAX_PERSONS ] ;
 #ifdef HAVE_LIBGL
 EXTERN GLuint all_freedroid_textures [ MAX_AMOUNT_OF_TEXTURES_WE_WILL_USE ] ;
 EXTERN int next_texture_index_to_use ;
-#else
-// EXTERN int all_freedroid_textures [ MAX_AMOUNT_OF_TEXTURES_WE_WILL_USE ] ;
-// EXTERN int next_texture_index_to_use ;
 #endif
 
 EXTERN char previous_part_strings [ ALL_PART_GROUPS ] [ 50 ] ;
