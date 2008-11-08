@@ -2383,7 +2383,7 @@ msgstr ""
 #: ../src/leveleditor.c:3091
 #, c-format
 msgid "Lvl: %d - %s"
-msgstr ""
+msgstr "Lvl: %d - %s"
 
 #: ../src/leveleditor.c:3093
 msgid "Level Options"
@@ -2402,22 +2402,20 @@ msgid "Save Mapfile"
 msgstr "Karte speichern"
 
 #: ../src/leveleditor.c:3100
-#, fuzzy
 msgid "Add New Level"
-msgstr "Aufstieg bei"
+msgstr "Neuen Level hinzufügen"
 
 #: ../src/leveleditor.c:3104
 msgid "Return to game"
 msgstr "Rückkehr zum Spiel"
 
 #: ../src/leveleditor.c:3105
-#, fuzzy
 msgid "Saving disabled"
-msgstr "Speichern nicht möglich"
+msgstr "Speichern deaktiviert"
 
 #: ../src/leveleditor.c:3107
 msgid "Adding Level disabled"
-msgstr ""
+msgstr "Level hinzufügen deaktiviert"
 
 #: ../src/leveleditor.c:3109 ../src/menu.c:1535
 msgid "Quit to Main Menu"
@@ -3163,7 +3161,7 @@ msgstr "329 Funkenschleuder"
 
 #: ../src/map.c:3028
 msgid "420 Surgeon"
-msgstr ""
+msgstr "420 Chirurg"
 
 #: ../src/map.c:3029
 msgid "476 Coward"
@@ -3186,26 +3184,24 @@ msgid "571 Apollo"
 msgstr "571 Apollo"
 
 #: ../src/map.c:3034
-#, fuzzy
 msgid "598 Minister"
 msgstr "493 Blechjungfer"
 
 #: ../src/map.c:3035
 msgid "615 Firedevil"
-msgstr ""
+msgstr "615 Feuerteufel"
 
 #: ../src/map.c:3036
-#, fuzzy
 msgid "629 Spitfire"
-msgstr "329 Funkenschleuder"
+msgstr "329 Funkenschle"
 
 #: ../src/map.c:3037
 msgid "711 Grillmeister"
-msgstr ""
+msgstr "711 Grillmeister"
 
 #: ../src/map.c:3038
 msgid "742 Zeus"
-msgstr ""
+msgstr "742 Zeus"
 
 #: ../src/map.c:3039
 msgid "751 Soviet"
@@ -3213,20 +3209,19 @@ msgstr "751 Sowjet"
 
 #: ../src/map.c:3040
 msgid "821 Ufo"
-msgstr ""
+msgstr "821 Ufo"
 
 #: ../src/map.c:3041
 msgid "834 Wisp"
-msgstr ""
+msgstr "834 Irrlicht"
 
 #: ../src/map.c:3042
-#, fuzzy
 msgid "883 Dalex"
-msgstr "883 Dalex"
+msgstr "883 "
 
 #: ../src/map.c:3043
 msgid "999 Cerebrum"
-msgstr ""
+msgstr "999 Großhirn"
 
 #: ../src/map.c:3044
 msgid "No Description For This One"
@@ -3730,13 +3725,13 @@ msgid "none"
 msgstr "Nichts"
 
 #: ../src/ship.c:92
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "\n"
 "Armament : %s\n"
 msgstr ""
 "\n"
-"Bewaffnung: %s\n"
+"Bewaff: %s\n"
 
 #: ../src/ship.c:96
 #, c-format
