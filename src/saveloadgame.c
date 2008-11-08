@@ -299,7 +299,7 @@ or file permissions of ~/.freedroid_rpg are somehow not right.",
     rename(filename, filename2);
     
     if( ( SaveGameFile = fopen(filename, "wb")) == NULL) {
-	printf("\n\nError opening save game file for writing...\n\nTerminating...\n\n");
+	printf(_("\n\nError opening save game file for writing...\n\nTerminating...\n\n"));
 	Terminate(ERR);
     }
     
@@ -431,7 +431,7 @@ LoadGame( void )
     
     if ((DataFile = fopen ( filename , "rb")) == NULL )
     {
-	GiveMouseAlertWindow ( "\nW A R N I N G !\n\nFreedroidRPG was unable to locate the saved game file you requested to load.\nThis might mean that it really isn't there cause you tried to load a game without ever having saved the game before.  \nThe other explanation of this error might be a severe error in FreedroidRPG.\nNothing will be done about it." );
+	GiveMouseAlertWindow ( _("\nW A R N I N G !\n\nFreedroidRPG was unable to locate the saved game file you requested to load.\nThis might mean that it really isn't there cause you tried to load a game without ever having saved the game before.  \nThe other explanation of this error might be a severe error in FreedroidRPG.\nNothing will be done about it.") );
 	append_new_game_message ( _("Failed to load old game.") );
 	return ( ERR ) ;
     }
