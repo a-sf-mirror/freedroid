@@ -325,8 +325,8 @@ enum
 #define BLOCKMEM  		INITIAL_BLOCK_WIDTH*INITIAL_BLOCK_HEIGHT
 #define MAX_AMOUNT_OF_TEXTURES_WE_WILL_USE 10000
 
-#define SCROLLSTARTX		User_Rect.x
-#define SCROLLSTARTY		GameConfig . screen_height - 100
+#define TABCHAR 'W'
+#define TABWIDTH 8
 
 #define INITIAL_DIGIT_LENGTH (8*2)
 #define INITIAL_DIGIT_HEIGHT (9*2)

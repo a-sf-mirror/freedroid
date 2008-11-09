@@ -36,79 +36,76 @@ Song name to play in the end title if the mission is completed: TheBeginning.ogg
 --------------------
 --------------------
 *** START OF PURE SCROLLTEXT DATA ***
+12	34	56	78	90	12	34	56	78
+What a great day.
+  Yes, I'm being sarcastic again.
+    The whole planet is in flames.
+      Thousands of people are very dead.
+        Qwerty and Arensito are not responding.
 
-  What a great day.
-    Yes, I'm being sarcastic again.
-      The whole planet is in flames.
-        Thousands of people are very dead.
-          Qwerty and Arensito are not responding.
-
-        Ah, yes, I almost forgot.
-       The bloody bots are about to find me, too.
-      I'm not very happy with that, Not happy at all.
-     I guess I have to pretend I'm just a nice rock, yet again.
-    Don't you think it would be a great time to wake up?
-   Get up. Get here. Save my ass.
-  Please.
+      Ah, yes, I almost forgot.
+     The bloody bots are about to find me, too.
+    I'm not very happy with that, Not happy at all.
+   I guess I have to pretend I'm just a nice rock, yet again.
+  Don't you think it would be a great time to wake up?
+ Get up. Get here. Save my ass.
+Please.
 
     Dvorak, First AI
 
 
 
 
-   CONTROLS
+CONTROLS
 
- Movement
+Movement
 
- The game is controlled using the mouse. Left click onto the locations you want to move to.  Hold 
- the button down to keep moving in that direction.  Holding down CTRL key will make you run.
+The game is controlled using the mouse. Left click onto the locations you want to move to.  Hold the button down to keep moving in that direction.  Holding down CTRL key will make you run.
 
- Attack
+Attack
 
- Left clicking an enemy will cause Tux to come close to the bot and to start attacking it with the 
- current weapon. If the current weapon is a gun then Tux will stand still and shoot the bot.
+Left clicking an enemy will cause Tux to come close to the bot and to start attacking it with the current weapon. If the current weapon is a gun then Tux will stand still and shoot the bot.
  
- Special functions
+Special functions
 
- Use the right click to activate the currently selected skill/program. 
+Use the right click to activate the currently selected skill/program. 
 
- Escape     ... Show main menu
- P          ... Pause
+Escape		... Show main menu
+P		... Pause
 
- I          ... Inventory panel
- C          ... Character panel
- S          ... Skills panel
- Space      ... Close all open panels
- Q          ... Quest log
+I		... Inventory panel
+C		... Character panel
+S		... Skills panel
+Space		... Close all open panels
+Q		... Quest log
 
- 0-9        ... Use quick-inventory items 0-9
- F1-F10     ... Quick-select program 1 through 10
- F11        ... Toggle fullscreen (Linux only)
- F12        ... Take screenshot
+0-9		... Use quick-inventory items 0-9
+F1-F10		... Quick-select program 1 through 10
+F11		... Toggle fullscreen (Linux only)
+F12		... Take screenshot
 
- Hold A     ... Attack while staying at the same position
- Hold Shift ... Keep current target selected when moving
- Tab        ... Toggle automap
+Hold A		... Attack while staying at the same position
+Hold Shift	... Keep current target selected when moving
+Tab		... Toggle automap
 
- R          ... Reload weapon
- Hold Ctrl  ... Run
- U          ... Toggle always run
+R		... Reload weapon
+Hold Ctrl	... Run
+U		... Toggle always run
 
- Hold X     ... Show labels for items on the ground
- Z          ... Toggle show labels for items on the ground
- T          ... Toggle walls becoming transparent when Tux approaches
+Hold X		... Show labels for items on the ground
+Z		... Toggle show labels for items on the ground
+T		... Toggle walls becoming transparent when Tux approaches
 
- Takeover/Chat  
- To chat with a friendly droid, it's enough to click on 
- it.  To take over a hostile bot, select the takeover/chat skill from 
- the skills screen, then click the right mouse button to initiate 
- takeover.
- For the takeover game, you can use the mouse wheel or the cursor keys.
+Takeover/Chat 
+ 
+To chat with a friendly droid, it's enough to click on it.  To take over a hostile bot, select the takeover/chat skill from the skills screen, then click the right mouse button to initiate takeover.
+
+For the takeover game, you can use the mouse wheel or the cursor keys.
 
 
- If you are stuck and need help, feel free to come to #freedroid on irc.freenode.net and ask for help.
+If you are stuck and need help, feel free to come to #freedroid on irc.freenode.net and ask for help.
 
- That is all, have a nice game.
+That is all, have a nice game.
 
 
     Press any key.
@@ -136,11 +133,8 @@ Song name to play in the end title if the mission is completed: TheBeginning.ogg
 
 
 
- If you are still looking for the "any" key, then please sell your computer and make sure you do not reproduce.
- Thank you.
-
-
-
+If you are still looking for the "any" key, then please sell your computer and make sure you do not reproduce.
+Thank you.
 *** END OF PURE SCROLLTEXT DATA ***
 
 *** END OF TITLE FILE *** LEAVE THIS TERMINATOR IN HERE ***

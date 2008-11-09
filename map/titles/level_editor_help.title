@@ -73,7 +73,6 @@ To define a new map label, press the 'm' key on the keyboard.  You will be promp
 Planting obstacle labels:
 Obstacle labels are important so that some obstacles can be marked for events to happen.  If e.g. an event is supposed to remove a special wall obstacle, then this obstacle must be given a name first, so it can be referred to later in the definition of the event.
 To plant a label on an obstacle, you must first mark this obstacle (see obstacle mode explanation above).  As soon as the obstacle in question is marked, you can use the 'h' key on the keyboard.  You will be prompted for the new label to attach to this obstacle.  Giving an empty string here will delete any existing obstacle label of this obstacle.
-
 *** END OF PURE SCROLLTEXT DATA ***
 
 *** END OF TITLE FILE *** LEAVE THIS TERMINATOR IN HERE ***

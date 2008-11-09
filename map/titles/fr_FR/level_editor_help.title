@@ -43,7 +43,7 @@ FreedroidRPG est fourni avec un éditeur de niveaux intégré. Cet éditeur de nivea
 Déplacements :
 Vous pouvez utiliser le bouton gauche de la souris pour vous déplacer sur la carte aussi bien que les touches directionnelles. Pour changer le niveau courant, vous pouvez également utiliser le 'va au niveau nord/est/ouest/sud' boutons  (si disponibles) ou vous pouvez pressez la touche echap pour entrer le menu et changer de niveau via le menu.
 
-mode d'édition du sol :
+Mode d'édition du sol :
 L'éditeur de niveu de freedroidRPG a deux modes de fonctionnement : Le premier mode est le mode d'édition du sol. Dans le mode d'édition du sol, le bouton droit de la souris va 'poser' le dallage de texture du sol. Vous pouvez utiliser le bouton gauche pour sélectionner le type de dallage depuis la barre de sélection. Pour passer du mode d'édition du sol au mode d'édition d'obstacles, vous pouvez utiliser la touche 'f' du clavier.
 
 Mode d'édition des obstacles :
@@ -72,8 +72,7 @@ Les étiquettes de carte ne sont pas la même chose que les étiquettes d'obstables
 
 Placer des étiquettes d'obstacles :
 Les étiquettes d'obstacle sont importantes pour signaler quelques obstacles qui ont une importance dans l'histoire ou les évènements. Si par exemple un évènement est supposé supprimer un mur bloquant particulier, vous devez tout d'abord donner un nom à cet obstacle, auquel il est possible de faire référence plus tard dans la définition de l'évènement.
-Pour placer une étiquette sur un obstacle, vous devez tout d'abord sélectionner cet obstacle (voyez le mode d'édition des obstacle ci-dessus). Dès que l'obstacle en question est séléctionné, vous pouvez utiliser la touche 'h' du clavier. Il vous sera demander la nouvelle étiquette à donner à cet obstacle/ Donner une chaîne vide ici va supprimer tout étiquette de cet obstacle.
-
+Pour placer une étiquette sur un obstacle, vous devez tout d'abord sélectionner cet obstacle (voyez le mode d'édition des obstacle ci-dessus). Dès que l'obstacle en question est séléctionné, vous pouvez utiliser la touche 'h' du clavier. Il vous sera demander la nouvelle étiquette à donner à cet obstacle. Donner une chaîne vide ici va supprimer tout étiquette de cet obstacle.
 *** END OF PURE SCROLLTEXT DATA ***
 
 *** END OF TITLE FILE *** LEAVE THIS TERMINATOR IN HERE ***

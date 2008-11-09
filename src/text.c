@@ -251,31 +251,21 @@ SetTextCursor ( int x , int y )
  * This function scrolls a given text down inside the User-window, 
  * defined by the global SDL_Rect User_Rect
  *
- * startx/y give the Start-position, 
- * EndLine is the last line (?)
- *
  * ----------------------------------------------------------------- */
 int
-ScrollText (char *Text, int startx, int starty, int background_code )
+ScrollText (char *Text, int background_code )
 {
     int Number_Of_Line_Feeds = 0;	// number of lines used for the text
-    char *textpt;			// mobile pointer to the text
-    int InsertLine = starty;
+    int StartInsertLine, InsertLine;
     int speed = +1;
     int maxspeed = 8;
     
     Activate_Conservative_Frame_Computation( );
     
-    if ( background_code != ( -1 ) )
-	blit_special_background ( background_code );
-    
+    SDL_Rect ScrollRect = { User_Rect.x + 10, User_Rect.y, User_Rect.w - 20, User_Rect.h };
     SetCurrentFont( Para_BFont );
-    
-    // count the number of lines in the text
-    textpt = Text;
-    while (*textpt++)
-	if (*textpt == '\n')
-	    Number_Of_Line_Feeds++;
+    StartInsertLine = ScrollRect.y + ScrollRect.h;
+    InsertLine = StartInsertLine; 
     
     while ( !MouseLeftPressed () 
 	    || ( MouseCursorIsOnButton ( SCROLL_TEXT_UP_BUTTON , GetMousePos_x()  , 
@@ -283,6 +273,18 @@ ScrollText (char *Text, int startx, int starty, int background_code )
 	    || ( MouseCursorIsOnButton ( SCROLL_TEXT_DOWN_BUTTON , GetMousePos_x()  , 
 					 GetMousePos_y()  ) ) )
     {
+    if ( background_code != ( -1 ) ) blit_special_background ( background_code );
+    Number_Of_Line_Feeds = DisplayText ( Text , ScrollRect.x , InsertLine , &ScrollRect , TEXT_STRETCH );
+    //--------------------
+    // We might add some buttons to be displayed here, so that, if you don't have
+    // a mouse wheel and don't know about cursor keys, you can still click on these
+    // buttons to control the scrolling speed of the text.
+    //
+    ShowGenericButtonFromList ( SCROLL_TEXT_UP_BUTTON );
+    ShowGenericButtonFromList ( SCROLL_TEXT_DOWN_BUTTON );
+    blit_our_own_mouse_cursor();
+    our_SDL_flip_wrapper();
+    	
 	save_mouse_state();
 	input_handle();
 
@@ -318,34 +320,24 @@ ScrollText (char *Text, int startx, int starty, int background_code )
 		speed = -maxspeed;
 	}
 	
-	SDL_Delay (30);
-	
-	if ( background_code != ( -1 ) )
-	    blit_special_background ( background_code );
-	
-	DisplayText ( Text , startx , InsertLine , &User_Rect , TEXT_STRETCH );
-	
 	InsertLine -= speed;
 	
 	//--------------------
-	// We might add some buttons to be displayed here, so that, if you don't have
-	// a mouse wheel and don't know about cursor keys, you can still click on these
-	// buttons to control the scrolling speed of the text.
+	// impose some limit on the amount to scroll away downwards and topwards
 	//
-	ShowGenericButtonFromList ( SCROLL_TEXT_UP_BUTTON );
-	ShowGenericButtonFromList ( SCROLL_TEXT_DOWN_BUTTON );
-	blit_our_own_mouse_cursor();
-	our_SDL_flip_wrapper();
-	
-	//--------------------
-	// impose some limit on the amount to scroll away downwards
-	//
-	if (InsertLine > GameConfig . screen_height - 10 && (speed < 0))
+	if (InsertLine > StartInsertLine && (speed < 0))
 	{
-	    InsertLine = GameConfig . screen_height - 10;
+	    InsertLine = StartInsertLine;
 	    speed = 0;
 	}
+	if ( InsertLine + (Number_Of_Line_Feeds+1)*(int)(FontHeight(GetCurrentFont())*TEXT_STRETCH) < ScrollRect.y && (speed > 0) )
+	{
+		InsertLine = ScrollRect.y - (Number_Of_Line_Feeds+1)*(int)(FontHeight(GetCurrentFont())*TEXT_STRETCH);
+		speed = 0;
+	}
 	
+	SDL_Delay (30);
+
     } // while !Space_Pressed 
     
     while ( MouseLeftPressed() ); // so that we don't touch again immediately.
@@ -424,9 +416,8 @@ DisplayBigScreenMessage( void )
  *
  *     NOTE2: this function _does not_ update the screen
  *
- * @Ret: number of lines written if some characters where written inside the clip rectangle
- *       FALSE if not (used by ScrollText to know if Text has been scrolled
- *             out of clip-rect completely)
+ * @Ret: number of lines written (from the first text line up to the last
+ *       displayed line)
  *-----------------------------------------------------------------*/
 int
 DisplayText ( const char *Text, int startx, int starty, const SDL_Rect *clip , float text_stretch )
@@ -435,7 +426,11 @@ DisplayText ( const char *Text, int startx, int starty, const SDL_Rect *clip , f
     SDL_Rect Temp_Clipping_Rect; // adding this to prevent segfault in case of NULL as parameter
     SDL_Rect store_clip;
     short int nblines = 1;
-
+    
+    int kerning = 0;
+    if ( GetCurrentFont()==FPS_Display_BFont || GetCurrentFont()==Blue_BFont || GetCurrentFont()==Red_BFont ) kerning = -2;
+	int tab_width = TABWIDTH * (CharWidth ( GetCurrentFont(), TABCHAR) + kerning);
+	
     //--------------------
     // We position the internal text cursor on the right spot for
     // the first character to be printed.
@@ -476,40 +471,38 @@ DisplayText ( const char *Text, int startx, int starty, const SDL_Rect *clip , f
     tmp = (char*) Text;  // this is no longer a 'const' char*, but only a char*
     while ( *tmp && ( MyCursorY < clip -> y + clip -> h ) )
 	{
+   	if( ( (*tmp == ' ') || (*tmp == '\t') )
+   		  && (ImprovedCheckLineBreak( tmp , clip , text_stretch ) == 1) )   // dont write over right border 
+   	    { /*THE CALL ABOVE HAS DONE THE CARRIAGE RETURN FOR US !!!*/
+   	    nblines ++;
+   	    ++tmp;
+   	    continue;
+   	    }
+
 	if ( *tmp == '\n' )
 	    {
 	    MyCursorX = clip->x;
-	    MyCursorY += FontHeight ( GetCurrentFont() ) * text_stretch ;
+	    MyCursorY += (int)(FontHeight ( GetCurrentFont() ) * text_stretch) ;
 	    nblines ++;
 	    }
-	else 
+	else if ( *tmp == '\t' )
 	    {
-	    if ( MyCursorY <= clip -> y - FontHeight ( GetCurrentFont() ) * text_stretch) 
+	    MyCursorX = (int)ceilf( (float)MyCursorX / (float)(tab_width) ) * ( tab_width );
+	    }
+	else
+	    {
+	    if ( MyCursorY <= clip -> y - (int)(FontHeight ( GetCurrentFont() ) * text_stretch)) 
 	        display_char_disabled_local = TRUE;
 	    DisplayChar (*tmp);
 	    display_char_disabled_local = FALSE;
 	    }
 
-
 	tmp++;
-
-	if(ImprovedCheckLineBreak( tmp , clip , text_stretch ) == 1)   // dont write over right border 
-	    { /*THE CALL ABOVE HAS DONE THE CARRIAGE RETURN FOR US !!!*/
-	    nblines ++;
-	    }
 
 	}
     
     SDL_SetClipRect (Screen, &store_clip); // restore previous clip-rect 
     
-    //--------------------
-    // ScrollText() wants to know if we still wrote something inside the
-    // clip-rectangle, of if the Text has been scrolled out
-    //
-    if ( clip && 
-	 ( ( MyCursorY < clip -> y ) || ( starty > clip -> y + clip -> h ) ) )
-	return FALSE;  // no text was written inside clip 
-    else
 	return nblines; 
     
 }; // int DisplayText(...)
@@ -579,24 +572,28 @@ ImprovedCheckLineBreak (char* Resttext, const SDL_Rect *clip, float text_stretch
 {
     int NeededSpace = 0;
    
-    if ( *Resttext != ' ' ) return 0;
-    else //in case of a space, compute the size taken by the next word, counting the current space
-	{	
-	NeededSpace = CharWidth ( GetCurrentFont(), ' ');
+    int kerning = 0;
+    if ( GetCurrentFont()==FPS_Display_BFont || GetCurrentFont()==Blue_BFont || GetCurrentFont()==Red_BFont ) kerning = -2;
+    
+    if ( *Resttext == ' ' )
+    	NeededSpace = CharWidth ( GetCurrentFont(), ' ') + kerning;
+    else if ( *Resttext == '\t' )
+    	NeededSpace = TABWIDTH * (CharWidth ( GetCurrentFont(), TABCHAR) + kerning);
+    
 	Resttext ++;
-	while ( ( *Resttext != ' ') && ( *Resttext != '\n') && ( *Resttext != 0 ) )
+	while ( ( *Resttext != ' ') && ( *Resttext != '\t') && ( *Resttext != '\n') && ( *Resttext != 0 ) )
 	    { 
-	    NeededSpace += CharWidth ( GetCurrentFont() , *Resttext );
+	    NeededSpace += CharWidth ( GetCurrentFont() , *Resttext ) + kerning;
 	    Resttext ++;
 	    }
-	}
 
-    if ( (MyCursorX + NeededSpace) > (clip->x + clip->w + 10) )
+    if ( (MyCursorX + NeededSpace) > (clip->x + clip->w) )
 	{
 	MyCursorX = clip->x;
-	MyCursorY += FontHeight ( GetCurrentFont() ) * text_stretch ;
+	MyCursorY += (int)(FontHeight ( GetCurrentFont() ) * text_stretch) ;
 	return 1;
 	}
+    
     return 0;
 }; // int ImprovedCheckLineBreak()
 

@@ -1,106 +1,119 @@
 The title picture in the graphics subdirectory for this mission is : backgrounds/credits.jpg
 The title song in the sound subdirectory for this mission is : TheBeginning.ogg
 *** START OF PURE SCROLLTEXT DATA ***
+                                 FreedroidRPG 0.11
 
+PROJECT MANAGEMENT:
 
-                                            FreedroidRPG 0.11
+		Arthur Huillet
 
-   PROJECT MANAGEMENT:
-
-                                      Arthur Huillet
-
-                                      Stefan Huszics
-
-   PROGRAMMING:
-
-                                      Pierre Bourdon
-
-                                      Simon Castellan
-
-                                      Samuel Degrande
-
-                                      Arthur Huillet
-
-                                      Quentin Pradet
-
-                                      jcoral
+		Stefan Huszics
 
 
 
+PROGRAMMING:
 
-   GAME CONTENT:
-                                      Alexey Guseynov
-                                         
-                                      Stefan Huszics
+		Pierre Bourdon
 
-   GRAPHICS:
+		Simon Castellan
 
-                                      Bastian Salmela
+		Samuel Degrande
 
-   MUSIC:
+		Arthur Huillet
 
-                                      Nick "Nario" Hagman
+		Quentin Pradet
 
-   MISC:
-                                        Armin Winterer - ongoing work on german translation
+		jcoral
+
+
+
+GAME CONTENT:
+
+		Alexey Guseynov
+
+		Stefan Huszics
+
+
+
+GRAPHICS:
+
+		Bastian Salmela
+
+
+
+MUSIC:
+
+		Nick "Nario" Hagman
+
+
+
+MISC:
+
+		Armin Winterer - ongoing work on german translation
                                               
-                                      Hike Danakian - cosmetic changes for doxygen
+		Hike Danakian - cosmetic changes for doxygen
                                               
-                                      Ian Griffiths - leveleditor interface buttons
+		Ian Griffiths - leveleditor interface buttons
                                               
-                                      David Kremer - ongoing work on french translation
+		David Kremer - ongoing work on french translation
 
-                                      LOTS OF PLAYERS - bug reports and very welcomed feedback
+		LOTS OF PLAYERS - bug reports and very welcomed feedback
+
+
 
                                             
                                           
-                                           ALSO, FOR PREVIOUS VERSIONS
+                          ALSO, FOR PREVIOUS VERSIONS
+
+
+PROGRAMMING:
+
+		Johannes Prix
+
+		Reinhard Prix
 
 
 
-   PROGRAMMING:
-                                      Johannes Prix
+DIALOGUES:
 
-                                      Reinhard Prix
-
-   DIALOGUES:
-
-                                      Karol Swietlicki
+		Karol Swietlicki
 
 
-   MUSIC:
-                                      Arvid Picciani
 
-                                      "The Beginning"
-                                        by 4t thieves
+MUSIC:
 
-                                      "Daybreak"
-                                        by realsmokers
+		Arvid Picciani
 
-                                      "Bleostrada"
-                                        by stud
+		"The Beginning"
+			by 4t thieves
+
+		"Daybreak"
+			by realsmokers
+
+		"Bleostrada"
+			by stud
 
 
-   MISC:
 
-                                      Mbrola - text-to-speech
+MISC:
 
-                                      eSpeak - text-to-speech
+		Mbrola - text-to-speech
 
-                                      Ryan 'simcop2387' Voots
+		eSpeak - text-to-speech
 
-                                      Andrew A. Gill
+		Ryan 'simcop2387' Voots
 
-                                      Zombie Ryushu
+		Andrew A. Gill
 
-                                      Ted Cipicchio
+		Zombie Ryushu
 
-                                      The Doctor
+		Ted Cipicchio
 
-                                      Simon Newton
+		The Doctor
 
-                                      Clint Herron
+		Simon Newton
 
+		Clint Herron
 *** END OF PURE SCROLLTEXT DATA ***
 
 *** END OF TITLE FILE *** LEAVE THIS TERMINATOR IN HERE ***

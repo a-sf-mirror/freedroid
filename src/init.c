@@ -276,8 +276,8 @@ char fpath[2048];
     while ( ( NextSubsectionStartPointer = strstr ( NextSubsectionStartPointer, "*** START OF PURE SCROLLTEXT DATA ***")) 
 	    != NULL )
     {
-	NextSubsectionStartPointer += strlen ( "*** START OF PURE SCROLLTEXT DATA ***" );
-	if ( (TerminationPointer=strstr ( NextSubsectionStartPointer, "*** END OF PURE SCROLLTEXT DATA ***")) == NULL)
+	NextSubsectionStartPointer += strlen ( "*** START OF PURE SCROLLTEXT DATA ***\n" );
+	if ( (TerminationPointer=strstr ( NextSubsectionStartPointer, "\n*** END OF PURE SCROLLTEXT DATA ***")) == NULL)
 	{
 	    DebugPrintf (1, "\n\nvoid PlayATitleFile(...): Unterminated Subsection in Mission briefing....Terminating...");
 	    Terminate(ERR);
@@ -288,7 +288,7 @@ char fpath[2048];
 	PreparedBriefingText[ThisTextLength]=0;
 
 
-	ScrollText ( (PreparedBriefingText), SCROLLSTARTX, SCROLLSTARTY, NE_TITLE_PIC_BACKGROUND_CODE );
+	ScrollText ( (PreparedBriefingText), NE_TITLE_PIC_BACKGROUND_CODE );
 	free ( PreparedBriefingText );
     }
     

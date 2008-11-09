@@ -48,7 +48,7 @@ Um vom Boden-Edit-Modus in den Hindernis-Edit-Modus und wieder zurück zu gelange
 
 Hindernis-Bearbeitung:
 Modus 2 ist der Hindernis-Edit-Modus. In dieser Betriebsart des Editors können Sie mittels des rechten Mausbuttons neue Hindernisse auf der Karte setzen. Mit der linken Maustaste können Sie den Typ des zu setzenden Hindernisses auf der Hindernis-Auswahlleiste oben wählen.
- Allerdings ist es ein wenig ungenau, Objekte mit der rechten Maustaste zu setzen. Genauer geht es mit Hilfe des Nummernblocks. Jede der Numpad-Tasten 1 bis 9 schiebt das momentan ausgewählte Objekt an eine spezifische Standardposition innerhalb des Kartenquadrats, auf dem es steht.
+Allerdings ist es ein wenig ungenau, Objekte mit der rechten Maustaste zu setzen. Genauer geht es mit Hilfe des Nummernblocks. Jede der Numpad-Tasten 1 bis 9 schiebt das momentan ausgewählte Objekt an eine spezifische Standardposition innerhalb des Kartenquadrats, auf dem es steht.
 
 Im Hindernis-Edit-Modus gibt es noch weitere Tasten, die die Level-Bearbeitung beschleunigen können.
 Die normalen Nummerntasten 1 bis 8 (nicht Ziffernblock!) wählen je einen bestimmten Wand-Typ aus.
@@ -74,7 +74,6 @@ Um eine Karten-Markierung zu definieren drücken Sie die 'M'-Taste. Sie werden da
 Hindernis/Objekt-Marker platzieren:
 Hindernis-Marker sind wichtig, da mit ihnen Hindernisse/Objekte mit definierbaren Ereignissen verbunden werden können. Wenn z. B. ein Ereignis eine spezielle Wand entfernen soll, dann muss dieser Wand (Hindernis-Objekt) zuerst ein Name zugewiesen werden, damit darauf in der späteren Definition des Ereignisses in der Datei (map/EventsAndEventTriggers) Bezug genommen werden kann.
 Um ein Hindernis/Objekt mit einem Hindernis-Marker zu versehen müssen Sie zuerst das Objekt markieren (siehe Hindernis-Edit-Modus oben). Sobald das fragliche Objekt markiert wurde können Sie den Hindernis-Marker mit der Taste 'H' setzen. Sie werden nun nach der neuen Bezeichnung für das Objekt gefragt. Eine leere Bezeichnung löscht alle schon existierenden Hindernis-Marker von diesem Objekt.
-
 *** END OF PURE SCROLLTEXT DATA ***
 
 *** END OF TITLE FILE *** LEAVE THIS TERMINATOR IN HERE ***

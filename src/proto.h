@@ -786,7 +786,7 @@ EXTERN int DisplayText ( const char *text, int startx, int starty, const SDL_Rec
 EXTERN void display_current_chat_protocol ( int background_picture_code , enemy* ChatDroid , int with_update );
 
 EXTERN void DisplayChar (unsigned char c);
-EXTERN int ScrollText (char *text, int startx, int starty, int background_code );
+EXTERN int ScrollText (char *text, int background_code );
 
 EXTERN int ImprovedCheckLineBreak(char *text, const SDL_Rect *clip , float text_stretch );
 EXTERN char *PreviousLine (char *textstart, char *text);

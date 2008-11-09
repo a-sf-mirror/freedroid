@@ -36,85 +36,73 @@ Song name to play in the end title if the mission is completed: TheBeginning.ogg
 --------------------
 --------------------
 *** START OF PURE SCROLLTEXT DATA ***
+C'est vraiment un grand jour.
+  Oui, je suis encore saracastique.
+    La planète entière est en proie aux flammes.
+      Des milliers de personnes sont bel et bien mortes.
+        Qwerty et Arensito ne répondent pas.
 
-  C'est vraiment un grand jour.
-    Oui, je suis encore saracastique.
-      La planète entière est en proie aux flammes.
-        Des milliers de personnes sont bel et bien mortes.
-          Qwerty et Arensito ne répondent pas.
-
-        Ah oui, j'ai oublié l'essentiel.
-       Ces robots barbares me poursuivent, moi aussi.
-      Ça ne me fait pas, mais alors pas du tout plaisir.
-     Je suppose que je vais devoir me faire passer pour un rocher encore une fois.
-    Vous ne pensez pas que ce serait un bon moment pour me réveiller ?
-   Levez vous. Venez ici. Sauvez ma peau.
-  S'il vous plaît.
+      Ah oui, j'ai oublié l'essentiel.
+     Ces robots barbares me poursuivent, moi aussi.
+    Ça ne me fait pas, mais alors pas du tout plaisir.
+   Je vais devoir me faire passer pour un rocher encore une fois.
+  Vous ne pensez pas que ce serait un bon moment pour me réveiller ?
+ Levez vous. Venez ici. Sauvez ma peau.
+S'il vous plaît.
 
     Dvorak, Première IA
 
 
 
 
-   CONTRÔLES :
+CONTRÔLES :
 
- Déplacement :
+Déplacement :
 
- Le jeu est contrôlé contrôlé par la souris : Il faut un clic gauche à l'endroit
- où vous souhaitez vous déplacer. Gardez le bouton de la souris enfoncé pour
- continuer à vous déplacer dans cette direction. Maintenez la touche CTRL
- enfoncée simultanément pour courir.
+Le jeu est contrôlé contrôlé par la souris : Il faut un clic gauche à l'endroit où vous souhaitez vous déplacer. Gardez le bouton de la souris enfoncé pour continuer à vous déplacer dans cette direction. Maintenez la touche CTRL enfoncée simultanément pour courir.
 
- Attaque :
+Attaque :
 
- Un clic gauche sur un ennemi va ammener Tux à s'en rapprocher et à l'attaquer
- avec son arme actuelle. Si l'arme actuelle est un pistolet, alors Tux sera
- immobile et tirera sur le robot.
+Un clic gauche sur un ennemi va ammener Tux à s'en rapprocher et à l'attaquer avec son arme actuelle. Si l'arme actuelle est un pistolet, alors Tux sera immobile et tirera sur le robot.
 
- Fonctions particulières :
+Fonctions particulières :
 
- Utilisez le clic droit pour la compétence actuellement sélectionnée.
+Utilisez le clic droit pour la compétence actuellement sélectionnée.
 
- Escape     ... Accède au menu principal
- P          ... Pause
+Escape		... Accède au menu principal
+P		... Pause
 
- I          ... Inventaire
- C          ... paneau du Personnage
- S          ... paneau des Compétences
- Space      ... Ferme tous les paneaux ouverts
- Q          ... Informations de quête
+I		... Inventaire
+C		... Paneau du Personnage
+S		... Paneau des Compétences
+Space		... Ferme tous les paneaux ouverts
+Q		... Informations de quête
 
- 0-9        ... Utilise les objets 0-9 de l'inventaire rapide
- F1-F10     ... Sélectionne rapidement les programmes du numéro 1 à 10
- F11        ... Passe en mode plein écran (sous Linux seulement)
- F12        ... Fait une capture d'écran
+0-9		... Utilise les objets 0-9 de l'inventaire rapide
+F1-F10		... Sélectionne rapidement les programmes du numéro 1 à 10
+F11		... Passe en mode plein écran (sous Linux seulement)
+F12		... Fait une capture d'écran
 
- Hold A     ... Attaque en conservant la position
- Hold Shift ... Bouge en gardant sélectionnée la cible actuelle
- Tab        ... Active la carte
+Hold A		... Attaque en conservant la position
+Hold Shift	... Bouge en gardant sélectionnée la cible actuelle
+Tab		... Active la carte
 
- R          ... Recharge l'arme
- Ctrl       ... Courir
- U          ... Toujours courir
+R		... Recharge l'arme
+Ctrl		... Courir
+U		... Toujours courir
 
- Hold X     ... Montre les étiquettes pour les objets au sol
- Z          ... Active les étiquettes pour les objets au sol
- T          ... Active la transparence des murs lorsque Tux approche
+Hold X		... Montre les étiquettes pour les objets au sol
+Z		... Active les étiquettes pour les objets au sol
+T		... Active la transparence des murs lorsque Tux approche
 
- Languages et Compétences :
+Languages et Compétences :
 
- Prise de contrôle/Discussion :
- Pour parler avec un droïde ami,
- il suffit de cliquer dessus. Pour prendre le contrôle d'un robot ennemi,
- sélectionnez la compétence correspondante dans le panel des compétences (coin
- inférieur droit de l'écran), et faites un clic droit pour commencer le
- piratage. Pour le jeu de piratage, vous pouvez utiliser la molette de la
- souris ou les flèches directionnelles.
+Prise de contrôle/Discussion :
+Pour parler avec un droïde ami, il suffit de cliquer dessus. Pour prendre le contrôle d'un robot ennemi, sélectionnez la compétence correspondante dans le panel des compétences (coin inférieur droit de l'écran), et faites un clic droit pour commencer le piratage. Pour le jeu de piratage, vous pouvez utiliser la molette de la souris ou les flèches directionnelles.
 
-Si vous êtes en bloqué et que vous avez besoin d'aide, posez vos questions sur
-le chan IRC de freedroid, #freedroid sur irc.freenode.net
+Si vous êtes en bloqué et que vous avez besoin d'aide, posez vos questions sur le chan IRC de freedroid, #freedroid sur irc.freenode.net
 
- C'est tout, bon jeu.
+C'est tout, bon jeu.
 
 
 
@@ -143,11 +131,8 @@ le chan IRC de freedroid, #freedroid sur irc.freenode.net
 
 
 
- If you are still looking for the "any" key, then please sell your computer and make sure you do not reproduce.
- Thank you.
-
-
-
+Si vous êtes toujours en train de chercher "une touche", alors s'il vous plaît vendez votre ordinateur et assurez-vous de ne pas procréer.
+Merci.
 *** END OF PURE SCROLLTEXT DATA ***
 
 *** END OF TITLE FILE *** LEAVE THIS TERMINATOR IN HERE ***

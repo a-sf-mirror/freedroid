@@ -49,10 +49,9 @@ Durch drücken der Aktionstaste oder nachdem der Countdown abgelaufen ist, werden
 Tux muss versuchen eine Mehrheit an Feldern in der zentralen Säule mit seiner Farbe zu belegen, während der elektronische Gegner auf der anderen Seite der Tafel das gleiche für seine Farbe zu erreichen versucht.
 Um einige Felder für seine Seite zu gewinnen, kann Tux kleine Link-Bits zu den Farbfeldern des Widersachers setzen.
 Allerdings ist zu beachten, dass nur eine sehr begrenzte Anzahl zur Verfügung steht; die Menge der einsetzbaren Bits hängt direkt von Tux' Hacker-Fähigkeiten ab. Eine bessere Hacker-Fertigkeit resultiert in einer größeren Anzahl an Verbindungspunkten im Übernahmespiel, welche gesetzt werden können. Der Robot auf der gegnerischen Seite kann seine eigenen Verbindungspunkte setzen und zwar umso mehr, je höherwertiger er ist. Das bedeutet, je höher die Typ-Nummer des Roboters, umso mehr Verteidigungsbits kann er gegen Sie einsetzen.
- Man kann Mausrad und Mausbuttons oder die Cursortasten und Space verwenden, um seine Bits zu setzen - auch eine Mischtechnik ist möglich. Versuchen Sie, sich die Vorteile einer Interface-Seite zunutze zu machen und die Farbfelder der gegnerischen Farbe anzuvisieren. Die kürzesten Verbindungen sind immer auch die stärksten.
+Man kann Mausrad und Mausbuttons oder die Cursortasten und Space verwenden, um seine Bits zu setzen - auch eine Mischtechnik ist möglich. Versuchen Sie, sich die Vorteile einer Interface-Seite zunutze zu machen und die Farbfelder der gegnerischen Farbe anzuvisieren. Die kürzesten Verbindungen sind immer auch die stärksten.
 
 Sobald die Zeit abgelaufen ist wird das Übernahmespiel angehalten und das Ergebnis ausgewertet. Wenn der Kopf der mittleren Säule Tux' Farbe anzeigt, ist das Spiel gewonnen. Zeigt es Schwarz an, steht es unentschieden und eine neue Runde beginnt. Der Übernahmeversuch ist gescheitert, wenn der Kopf der Säule die Farbe des Gegners anzeigt. In diesem Fall gibt es eine Energierückkopplung - Tux büßt einen großen Teil seiner Energie ein und der Robot erlangt seine Freiheit zurück.
-
 *** END OF PURE SCROLLTEXT DATA ***
 
 *** END OF TITLE FILE *** LEAVE THIS TERMINATOR IN HERE ***
