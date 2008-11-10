@@ -1977,7 +1977,10 @@ SaveShip(const char *filename)
     // We count the levels 
     //
     level_anz = 0;
-    while( curShip . AllLevels[ level_anz ++ ] );
+	// <Fluzz> Temporary fix    
+    //while( (curShip . AllLevels[++level_anz]);
+    while( (++level_anz<=curShip.num_levels) && curShip . AllLevels[level_anz]);
+    // </Fluzz>
     level_anz --;
     
     //--------------------
@@ -2018,7 +2021,10 @@ SaveShip(const char *filename)
 	//
 	array_i =-1;
 	array_num = -1;
-	while( curShip.AllLevels[++array_i] != NULL) 
+	// <Fluzz> Temporary fix
+	//while( curShip.AllLevels[++array_i] != NULL ) 
+	while( (++array_i < curShip.num_levels) && (curShip.AllLevels[array_i] != NULL) )
+	// </Fluzz>
 	{
 	    if( curShip.AllLevels[array_i]->levelnum == i)
 	    {
