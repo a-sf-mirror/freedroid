@@ -1796,6 +1796,17 @@ init_obstacle_data( void )
     obstacle_map [ ISO_V_DOOR_LOCKED ] . obstacle_short_name = obstacle_map [ ISO_H_DOOR_LOCKED ] . obstacle_short_name;
     obstacle_map [ ISO_V_DOOR_LOCKED ] . obstacle_long_description = obstacle_map [ ISO_H_DOOR_LOCKED ] . obstacle_long_description ;
 
+    obstacle_map [ ISO_H_DDOOR_LOCKED ] . filename = "iso_doubledoors_0011.png" ;
+    obstacle_map [ ISO_H_DDOOR_LOCKED ] . block_area_parm_1 = standard_wall_width ;
+    obstacle_map [ ISO_H_DDOOR_LOCKED ] . block_area_parm_2 = standard_wall_thickness ;
+    obstacle_map [ ISO_H_DDOOR_LOCKED ] . flags &= ~BLOCKS_VISION_TOO ;
+    obstacle_map [ ISO_H_DDOOR_LOCKED ] . transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS ;
+    obstacle_map [ ISO_H_DDOOR_LOCKED ] . flags |= IS_HORIZONTAL ; 
+    //locked doors have the same description
+    obstacle_map [ ISO_H_DDOOR_LOCKED ] . obstacle_short_name = _("Locked door");
+    obstacle_map [ ISO_H_DDOOR_LOCKED ] . obstacle_long_description = _("The red color probably indicates that the door is locked.");
+
+
     obstacle_map [ ISO_H_DOOR_000_OPEN ] . block_area_parm_1 = standard_door_width ;
     obstacle_map [ ISO_H_DOOR_000_OPEN ] . block_area_parm_2 = standard_wall_thickness ;
     obstacle_map [ ISO_H_DOOR_000_OPEN ] . flags &= ~BLOCKS_VISION_TOO ;
