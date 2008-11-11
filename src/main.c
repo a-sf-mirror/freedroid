@@ -304,7 +304,7 @@ UpdateCountersForThisFrame ( )
     float my_speed ;
     float latest_frame_time = Frame_Time();
     int level_num;
-
+    float lose_life;
     // The next couter counts the frames displayed by freedroid during this
     // whole run!!  DO NOT RESET THIS COUNTER WHEN THE GAME RESTARTS!!
     Overall_Frames_Displayed++;
@@ -405,11 +405,22 @@ UpdateCountersForThisFrame ( )
     if ( Me . temperature < 0 )
 	Me . temperature = 0;
 
+    lose_life  = (Me. temperature - Me.max_temperature ) * latest_frame_time / 10;
+
     if ( Me . temperature > Me . max_temperature ) //overheat, lose life
 	{
 	if ( Me . old_temperature < Me . max_temperature ) 
 	    append_new_game_message(_("Overheating!"));
-	Me . energy -= ( Me . temperature - Me.max_temperature ) * latest_frame_time / 10;
+	if( Me . energy - lose_life < 1 && Me . paralyze_duration == 0 )
+	{
+	    DoSkill( get_program_index_with_name ("Emergency shutdown"), calculate_program_heat_cost ( get_program_index_with_name ("Emergency shutdown") ) );
+	    SetNewBigScreenMessage(_("Automatically shutting down due to near lethal overheat") );
+	    lose_life  = (Me. temperature - Me.max_temperature ) * latest_frame_time / 10;
+	}
+	if( lose_life > 0 )
+	{
+	    Me . energy -= lose_life;
+        }
 	}
 
     Me . old_temperature = Me . temperature;

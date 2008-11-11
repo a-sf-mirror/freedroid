@@ -86,7 +86,7 @@ ImproveSkill( int * skill )
 /* ------------------
  * This function calculates the heat cost of running a given program (source or blob), based on current program level and casting ability
  * -----------------*/
-static int calculate_program_heat_cost ( int program_id )
+int calculate_program_heat_cost ( int program_id )
 {
 //                                               0.9^0, 0.9^1, 0.9^2 ... ...0.9^9
     float cost_ratio [ NUMBER_OF_SKILL_LEVELS ] = { 1.0, 0.9, 0.81, 0.73, 0.66, 0.59, 0.53, 0.48, 0.43, 0.39 };
