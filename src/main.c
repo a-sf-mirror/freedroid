@@ -126,7 +126,7 @@ int
 main (int argc, char * argv[])
 {
 
-#if defined HAVE_LIBGEN_H && defined HAVE_UNISTD_H
+#if defined HAVE_UNISTD_H && defined HAVE_DIRNAME
     // change working directory to the executable's directory
     if ( chdir ( dirname ( argv [0] )))
         fprintf ( stderr, "Couldn't change working directory to %s.\n", dirname ( argv [0]));
