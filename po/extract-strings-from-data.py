@@ -83,7 +83,7 @@ msgstr ""
 #############################################################################
 ## LINE PARSING PART
 #############################################################################
-regexp = re.compile(r'_"(.*?)"', re.M | re.S)
+regexp = re.compile(r'_"(.+?)"', re.M | re.S)
 class ArchetypeFile(object):
     def __init__(self, fname):
         self.filename = fname

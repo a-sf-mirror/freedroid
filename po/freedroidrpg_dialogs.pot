@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CHANGE THIS\n"
 "Report-Msgid-Bugs-To: CHANGE THIS TOO\n"
-"POT-Creation-Date: 2008-11-10 11:55+0000\n"
-"PO-Revision-Date: 2008-11-10 11:55+0000\n"
+"POT-Creation-Date: 2008-09-26 16:20+0000\n"
+"PO-Revision-Date: 2008-09-26 16:20+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -1768,7 +1768,7 @@ msgstr ""
 #: ../dialogs/StandardBotAfterTakeover.dialog:48
 msgid ""
 "Pulling breaks, using script V 1.0.2 (c) gnu.org, 2054 Checking requirements. "
-"Energy on brakes. Done. Status: All movement suppressed."
+"Energy on breaks. Done. Status: All movement suppressed."
 msgstr ""
 
 #: ../dialogs/StandardBotAfterTakeover.dialog:59
@@ -1787,7 +1787,7 @@ msgstr ""
 
 #: ../dialogs/StandardBotAfterTakeover.dialog:74
 msgid ""
-"Removing energy from brakes. Resuming normal patrol operations. Done. Status: "
+"Removing energy from breaks. Resuming normal patrol operations. Done. Status: "
 "Patrolling."
 msgstr ""
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: freedroid\n"
 "Report-Msgid-Bugs-To: freedroid-discussion@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-11-12 21:58+0100\n"
+"POT-Creation-Date: 2008-10-01 21:22+0200\n"
 "PO-Revision-Date: 2008-08-28 18:02+0000\n"
 "Last-Translator: Christian Widell <Christian_widell@hotmail.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -31,96 +31,85 @@ msgstr ""
 "Tyvärr, du har ingen automatisk karta än: Kartskapar verktyget är inte "
 "tillgängligt."
 
-#: ../src/blocks.c:1599 ../src/blocks.c:1606 ../src/blocks.c:1614
+#: ../src/blocks.c:1593 ../src/blocks.c:1600 ../src/blocks.c:1608
+#: ../src/blocks.c:3069 ../src/blocks.c:3072 ../src/blocks.c:3084
+#: ../src/blocks.c:3087
 msgid "Wall"
 msgstr "Vägg"
 
-#: ../src/blocks.c:1600 ../src/blocks.c:1607
+#: ../src/blocks.c:1594 ../src/blocks.c:1601
 msgid "Hey ! This looks like...a WALL !"
 msgstr "Hey! Det här ser ut som... en VÄGG!"
 
-#: ../src/blocks.c:1616
+#: ../src/blocks.c:1610
 msgid "Maybe you could use a door to go out. This wall seems pretty solid."
 msgstr ""
 "Kanske kan du använda en dörr för att ta dig ut. Den här väggen är ganska "
 "solid."
 
-#: ../src/blocks.c:1630 ../src/blocks.c:1641
+#: ../src/blocks.c:1624 ../src/blocks.c:1635
 msgid "Glass wall"
 msgstr "Glasvägg"
 
-#: ../src/blocks.c:1631 ../src/blocks.c:1642
-#, fuzzy
-msgid "A wall made out of glass. It lets the light shine through."
+#: ../src/blocks.c:1625 ../src/blocks.c:1636
+msgid "A wall made out of glass. It lets the light go through."
 msgstr "En vägg gjord av glas. Det låter ljuset strömma igenom."
 
-#: ../src/blocks.c:1652
+#: ../src/blocks.c:1646
 msgid "Broken glass wall"
 msgstr ""
 
-#: ../src/blocks.c:1653
+#: ../src/blocks.c:1647
 #, fuzzy
-msgid "You can get through the holes, but beware of sharp edges."
+msgid "You can get through holes, but beware of sharp edges."
 msgstr "Du kan gå genom hålen, men akta dig för de vassa kanterna."
 
-#: ../src/blocks.c:1710 ../src/blocks.c:1712
-msgid "Gentle cyan-colored wall with a small window, a delight to the eye"
-msgstr ""
+#: ../src/blocks.c:1704 ../src/blocks.c:1706 ../src/blocks.c:1708
+#: ../src/blocks.c:1710 ../src/blocks.c:1712 ../src/blocks.c:1714
+#: ../src/blocks.c:1716 ../src/blocks.c:1718
+msgid "Wall with a window"
+msgstr "Vägg med ett fönster"
 
+#: ../src/blocks.c:1705 ../src/blocks.c:1707 ../src/blocks.c:1709
 #: ../src/blocks.c:1711 ../src/blocks.c:1713 ../src/blocks.c:1715
-#: ../src/blocks.c:1717 ../src/blocks.c:1719 ../src/blocks.c:1721
-#: ../src/blocks.c:1723 ../src/blocks.c:1725
+#: ../src/blocks.c:1717 ../src/blocks.c:1719
 msgid "Windows, are, besides a famous joke OS trademark, very useful things."
 msgstr ""
 "Fönster, är , förutom ett skämt till operativsystem, väldigt användbara "
 "saker."
 
-#: ../src/blocks.c:1714 ../src/blocks.c:1716
-msgid "Cosy wall in claret-red, with a small window"
-msgstr ""
-
-#: ../src/blocks.c:1718 ../src/blocks.c:1720
-msgid ""
-"Avocado-colored wall with a small window. You start feeling odd as you look "
-"at it"
-msgstr ""
-
-#: ../src/blocks.c:1722 ../src/blocks.c:1724
-msgid "Catch the groove! A fantastic wall with a small window"
-msgstr ""
-
-#: ../src/blocks.c:1759
+#: ../src/blocks.c:1753
 msgid "Door"
 msgstr "Dörr"
 
-#: ../src/blocks.c:1760
+#: ../src/blocks.c:1754
 msgid "This is a door. Seems to open automatically when someone approaches."
 msgstr ""
 "Detta är en dörr. Verkar öppna sig automatiskt när någon närmar sig den."
 
-#: ../src/blocks.c:1794 ../src/blocks.c:1806
+#: ../src/blocks.c:1788
 msgid "Locked door"
 msgstr "Låst dörr"
 
-#: ../src/blocks.c:1795 ../src/blocks.c:1807
+#: ../src/blocks.c:1789
 msgid "The red color probably indicates that the door is locked."
 msgstr "Den röda färgen indikerar förmodligen att dörren är låst."
 
-#: ../src/blocks.c:1847 ../src/blocks.c:1852
+#: ../src/blocks.c:1830 ../src/blocks.c:1835
 msgid "Pillar"
 msgstr "Pelare"
 
-#: ../src/blocks.c:1848 ../src/blocks.c:1853
+#: ../src/blocks.c:1831 ../src/blocks.c:1836
 msgid "A pillar made out of gray concrete."
 msgstr "En pelare gjord av grå betong."
 
-#: ../src/blocks.c:1862 ../src/blocks.c:1868 ../src/blocks.c:1874
-#: ../src/blocks.c:1880
+#: ../src/blocks.c:1845 ../src/blocks.c:1851 ../src/blocks.c:1857
+#: ../src/blocks.c:1863
 msgid "Supercluster terminal"
 msgstr "Stordator terminal"
 
-#: ../src/blocks.c:1863 ../src/blocks.c:1869 ../src/blocks.c:1875
-#: ../src/blocks.c:1881
+#: ../src/blocks.c:1846 ../src/blocks.c:1852 ../src/blocks.c:1858
+#: ../src/blocks.c:1864
 msgid ""
 "This is a small part of a gigantic computer cluster, maybe many square miles "
 "large..."
@@ -128,65 +117,63 @@ msgstr ""
 "Detta är en liten del av ett gigantiskt datorkluster, kanske flera "
 "kvaderatkilometer stort..."
 
-#: ../src/blocks.c:1890 ../src/blocks.c:1897 ../src/blocks.c:1904
-#: ../src/blocks.c:1911
+#: ../src/blocks.c:1873 ../src/blocks.c:1880 ../src/blocks.c:1887
+#: ../src/blocks.c:1894
 msgid "Ray emitter"
 msgstr "Strålsändare"
 
-#: ../src/blocks.c:1891 ../src/blocks.c:1898 ../src/blocks.c:1905
-#: ../src/blocks.c:1912
+#: ../src/blocks.c:1874 ../src/blocks.c:1881 ../src/blocks.c:1888
+#: ../src/blocks.c:1895
 msgid "It appears to be in \"standby\" mode."
 msgstr "Den verkar vara i \"standby\" läge."
 
-#: ../src/blocks.c:1939 ../src/blocks.c:1940 ../src/blocks.c:1941
-#: ../src/blocks.c:1942 ../src/blocks.c:1943
+#: ../src/blocks.c:1922 ../src/blocks.c:1923 ../src/blocks.c:1924
+#: ../src/blocks.c:1925 ../src/blocks.c:1926
 msgid "Droid nest"
 msgstr "Droid näste"
 
-#: ../src/blocks.c:1944 ../src/blocks.c:1945 ../src/blocks.c:1946
-#: ../src/blocks.c:1947 ../src/blocks.c:1948
-#, fuzzy
+#: ../src/blocks.c:1927 ../src/blocks.c:1928 ../src/blocks.c:1929
+#: ../src/blocks.c:1930 ../src/blocks.c:1931
 msgid ""
-"A droid service station, also called 'droid nest'. You suppose it's of no "
-"use for your quest."
+"This is a service droid case. You suppose it's of no use for your quest."
 msgstr ""
 "Detta är ett hölje till en service droid. Du antar att det inte har någon "
 "användning för ditt uppdrag."
 
-#: ../src/blocks.c:1977 ../src/blocks.c:1987 ../src/blocks.c:1996
-#: ../src/blocks.c:2005
+#: ../src/blocks.c:1960 ../src/blocks.c:1970 ../src/blocks.c:1979
+#: ../src/blocks.c:1988
 msgid "Chest"
 msgstr "Kista"
 
-#: ../src/blocks.c:1978 ../src/blocks.c:1997
+#: ../src/blocks.c:1961 ../src/blocks.c:1980
 msgid "This chest has already been opened"
 msgstr "Denna kista har redan öppnats"
 
-#: ../src/blocks.c:1988 ../src/blocks.c:2006
+#: ../src/blocks.c:1971 ../src/blocks.c:1989
 msgid "This chest is closed."
 msgstr "Denna kista är stängd."
 
-#: ../src/blocks.c:2012 ../src/blocks.c:2018 ../src/blocks.c:2024
-#: ../src/blocks.c:2030 ../src/blocks.c:2037 ../src/blocks.c:2043
-#: ../src/blocks.c:2049 ../src/blocks.c:2055
+#: ../src/blocks.c:1995 ../src/blocks.c:2001 ../src/blocks.c:2007
+#: ../src/blocks.c:2013 ../src/blocks.c:2020 ../src/blocks.c:2026
+#: ../src/blocks.c:2032 ../src/blocks.c:2038
 msgid "Autogun"
 msgstr "Automatpistol"
 
-#: ../src/blocks.c:2013 ../src/blocks.c:2019 ../src/blocks.c:2025
-#: ../src/blocks.c:2031
+#: ../src/blocks.c:1996 ../src/blocks.c:2002 ../src/blocks.c:2008
+#: ../src/blocks.c:2014
 msgid "A not-that-nice autogun. Beware : it could be harmful."
 msgstr "En inte-så-trevlig automatpistol. Var försiktig: den kan vara skadlig."
 
-#: ../src/blocks.c:2038
+#: ../src/blocks.c:2021
 msgid "A not-that-nice autogun. It seems disabled for now."
 msgstr ""
 "En inte-så-trevlig automatpistol. Den verkar vara avaktiverad tillfälligt."
 
-#: ../src/blocks.c:2044
+#: ../src/blocks.c:2027
 msgid "This killing machine is disabled. For now."
 msgstr "Mördarmaskinen är avaktiverad. För tillfället."
 
-#: ../src/blocks.c:2050
+#: ../src/blocks.c:2033
 msgid ""
 "It is looking at you. You are sure it is looking at you. But it does not "
 "fire. For now."
@@ -194,205 +181,165 @@ msgstr ""
 "Den tittar på dig. Du är säker på att den tittar på dig. Men den skjuter "
 "inte. För tillfället."
 
-#: ../src/blocks.c:2056
+#: ../src/blocks.c:2039
 msgid "The autogun is disabled."
 msgstr "Automatpistolen är avaktiverad."
 
-#: ../src/blocks.c:2062 ../src/blocks.c:2068 ../src/blocks.c:2074
-#: ../src/blocks.c:2080 ../src/blocks.c:2086 ../src/blocks.c:2092
+#: ../src/blocks.c:2045 ../src/blocks.c:2051 ../src/blocks.c:2057
+#: ../src/blocks.c:2063 ../src/blocks.c:2069 ../src/blocks.c:2075
 msgid "Rock barrier"
 msgstr "Stenbarriär"
 
-#: ../src/blocks.c:2063 ../src/blocks.c:2069 ../src/blocks.c:2075
-#: ../src/blocks.c:2081 ../src/blocks.c:2087 ../src/blocks.c:2093
-msgid "It's been lasting for millennia. It will last you. Find another path."
-msgstr ""
+#: ../src/blocks.c:2046 ../src/blocks.c:2052 ../src/blocks.c:2058
+#: ../src/blocks.c:2064 ../src/blocks.c:2070 ../src/blocks.c:2076
+msgid "No way to pass through. Find another path."
+msgstr "Inte en chans att du kommer förbi. Hitta en annan väg."
 
-#: ../src/blocks.c:2101
+#: ../src/blocks.c:2084
 msgid "Cooking pot"
 msgstr "Gryta"
 
-#: ../src/blocks.c:2102
-#, fuzzy
+#: ../src/blocks.c:2085
 msgid ""
 "This cauldron can be used for many good things. Cooking beef or pork for "
-"dinner are some of them. It can also be used for many evil things. Preparing "
-"Linarians for lunch is one of them."
+"dinner are some of them. It can be also used for many evil things. Cooking "
+"Linarians for dinner is one of them."
 msgstr ""
 "Denna kittel kan användas till många goda ändamål. Tillaga kött eller fläsk "
 "till middag är bara några av dem. Den kan också användas till många onda "
 "ändamål. Tillaga Linarier till middag är ett av dem."
 
-#: ../src/blocks.c:2109 ../src/blocks.c:2117 ../src/blocks.c:2125
-#: ../src/blocks.c:2133
+#: ../src/blocks.c:2092 ../src/blocks.c:2100 ../src/blocks.c:2108
+#: ../src/blocks.c:2116
 msgid "Terminal"
 msgstr "Terminal"
 
-#: ../src/blocks.c:2110 ../src/blocks.c:2118 ../src/blocks.c:2126
-#: ../src/blocks.c:2134
-#, fuzzy
-msgid "This is a Terminus 2 data terminal. Made by Parafunken."
+#: ../src/blocks.c:2093 ../src/blocks.c:2101 ../src/blocks.c:2109
+#: ../src/blocks.c:2117
+msgid "This is a Terminus 2 terminal. Made by Parafunken."
 msgstr "Detta är en Terminus 2 terminal. Tillverkad av Parafunken."
 
-#: ../src/blocks.c:2140 ../src/blocks.c:2146
+#: ../src/blocks.c:2123 ../src/blocks.c:2129
 msgid "Barrel"
 msgstr "Tunna"
 
-#: ../src/blocks.c:2141
+#: ../src/blocks.c:2124
 msgid "A painted barrel, protected from rust."
 msgstr "En målad tunna, skyddad mot rost."
 
-#: ../src/blocks.c:2147
+#: ../src/blocks.c:2130
 msgid "A rusty barrel."
 msgstr "En rostig tunna."
 
-#: ../src/blocks.c:2153 ../src/blocks.c:2159
+#: ../src/blocks.c:2136 ../src/blocks.c:2142
 msgid "Wooden crate"
 msgstr "Trälåda"
 
-#: ../src/blocks.c:2154
-#, fuzzy
+#: ../src/blocks.c:2137
 msgid ""
-"This is a big wooden crate that could contain many interesting things. Or "
-"not."
+"This is a big wooden crate that could contain interesting things. Or not."
+msgstr ""
+
+#: ../src/blocks.c:2143
+msgid "This is a wooden crate that could contain interesting things. Or not."
 msgstr "Denna trälåda kan innehålla speciellt intressanta saker. Eller inte."
 
-#: ../src/blocks.c:2160
-#, fuzzy
-msgid ""
-"This is a wooden crate that could contain many interesting things. Or not."
-msgstr "Denna trälåda kan innehålla speciellt intressanta saker. Eller inte."
-
-#: ../src/blocks.c:2173 ../src/blocks.c:2182 ../src/blocks.c:2191
-#: ../src/blocks.c:2200
+#: ../src/blocks.c:2156 ../src/blocks.c:2165 ../src/blocks.c:2174
+#: ../src/blocks.c:2183
 msgid "Room lamp"
 msgstr "Lampa för rum"
 
-#: ../src/blocks.c:2174
+#: ../src/blocks.c:2157
 msgid "This is a charming room lamp."
 msgstr "Det är en charmig lampa för rummet."
 
-#: ../src/blocks.c:2183
+#: ../src/blocks.c:2166
 msgid "This is a wonderful room lamp."
 msgstr "Det är en underbar lampa för rummet."
 
-#: ../src/blocks.c:2192
+#: ../src/blocks.c:2175
 msgid "This is a great room lamp."
 msgstr "Det är mycket bra lampa för rummet."
 
-#: ../src/blocks.c:2201
+#: ../src/blocks.c:2184
 msgid "This is a perfect room lamp."
 msgstr "Det är perfekt lampa för rummet."
 
-#: ../src/blocks.c:2219 ../src/blocks.c:2248
-#, fuzzy
-msgid "Wooden fence"
-msgstr "Trälåda"
-
-#: ../src/blocks.c:2220 ../src/blocks.c:2249
-msgid "You're staring at a wooden fence. You see no gap here..."
-msgstr ""
-
-#: ../src/blocks.c:2225 ../src/blocks.c:2256
-msgid "Wooden massive fence"
-msgstr ""
-
-#: ../src/blocks.c:2226 ../src/blocks.c:2257
-msgid ""
-"You're staring at a massive wooden fence. You Keep staring. You see no gap "
-"here..."
-msgstr ""
-
-#: ../src/blocks.c:2234 ../src/blocks.c:2242 ../src/blocks.c:2265
-#: ../src/blocks.c:2273
+#: ../src/blocks.c:2200 ../src/blocks.c:2221 ../src/blocks.c:2227
+#: ../src/blocks.c:2248
 msgid "Fence"
 msgstr "Stängsel"
 
-#: ../src/blocks.c:2235 ../src/blocks.c:2266
-#, fuzzy
-msgid ""
-"This type of a barrier constructed out of wire is called mesh wire fence."
-msgstr ""
-"Denna typ av barriär som är skapad av metalltråd kallas kedjelänkat stängsel."
+#: ../src/blocks.c:2201
+msgid "This is a wooden fence. Find another path."
+msgstr "Detta är ett stängsel gjort av trä. Hitta en annan väg."
 
-#: ../src/blocks.c:2243 ../src/blocks.c:2274
+#: ../src/blocks.c:2222 ../src/blocks.c:2249
 msgid ""
 "This type of a barrier constructed out of wire is called the chain link "
 "fence."
 msgstr ""
 "Denna typ av barriär som är skapad av metalltråd kallas kedjelänkat stängsel."
 
-#: ../src/blocks.c:2283 ../src/blocks.c:2292 ../src/blocks.c:2299
-#: ../src/blocks.c:2306
+#: ../src/blocks.c:2228
+msgid "You can't break it. Find another way."
+msgstr "Du kan göra sönder det. Hitta en annan väg."
+
+#: ../src/blocks.c:2258 ../src/blocks.c:2267 ../src/blocks.c:2274
+#: ../src/blocks.c:2281
 msgid "Small toilet"
 msgstr "Liten toalett"
 
-#: ../src/blocks.c:2284 ../src/blocks.c:2293 ../src/blocks.c:2300
-#: ../src/blocks.c:2307
+#: ../src/blocks.c:2259 ../src/blocks.c:2268 ../src/blocks.c:2275
+#: ../src/blocks.c:2282
 msgid "Smells good."
 msgstr "Luktar gott."
 
-#: ../src/blocks.c:2333 ../src/blocks.c:2335 ../src/blocks.c:2337
-#: ../src/blocks.c:2339
+#: ../src/blocks.c:2308 ../src/blocks.c:2310 ../src/blocks.c:2312
+#: ../src/blocks.c:2314
 msgid "Toilet"
 msgstr "Toalett"
 
-#: ../src/blocks.c:2334
+#: ../src/blocks.c:2309 ../src/blocks.c:2311
 msgid "Feel like defecating ?"
 msgstr "Känner du för att skita?"
 
-#: ../src/blocks.c:2336
-msgid "Do what you must."
-msgstr ""
-
-#: ../src/blocks.c:2338
+#: ../src/blocks.c:2313
 msgid "Yes, they are clean."
 msgstr "Ja, de är rena."
 
-#: ../src/blocks.c:2340
+#: ../src/blocks.c:2315
 msgid "Would you have something to empty ?"
 msgstr "Har du något att tömma?"
 
-#: ../src/blocks.c:2348 ../src/blocks.c:2356 ../src/blocks.c:2364
-#: ../src/blocks.c:2372
+#: ../src/blocks.c:2323 ../src/blocks.c:2331 ../src/blocks.c:2339
+#: ../src/blocks.c:2347 ../src/blocks.c:3641 ../src/blocks.c:3647
+#: ../src/blocks.c:3653 ../src/blocks.c:3659
 msgid "Chair"
 msgstr "Stol"
 
-#: ../src/blocks.c:2349 ../src/blocks.c:2357 ../src/blocks.c:2365
-#: ../src/blocks.c:2373
+#: ../src/blocks.c:2324 ../src/blocks.c:2332 ../src/blocks.c:2340
+#: ../src/blocks.c:2348
 msgid "This is an orange chair which does not look too comfortable"
 msgstr "Det här är en orange stol som inte ser så bekväm ut."
 
-#: ../src/blocks.c:2381 ../src/blocks.c:2390 ../src/blocks.c:2399
-#: ../src/blocks.c:2408
+#: ../src/blocks.c:2356 ../src/blocks.c:2365 ../src/blocks.c:2374
+#: ../src/blocks.c:2383
 msgid "Sofa"
 msgstr "Soffa"
 
-#: ../src/blocks.c:2382 ../src/blocks.c:2391 ../src/blocks.c:2400
-#: ../src/blocks.c:2409
+#: ../src/blocks.c:2357 ../src/blocks.c:2366 ../src/blocks.c:2375
+#: ../src/blocks.c:2384
 msgid "A soft red sofa."
 msgstr "En mjuk, röd soffa."
 
-#: ../src/blocks.c:2417 ../src/blocks.c:2426 ../src/blocks.c:2435
-#: ../src/blocks.c:2444
-#, fuzzy
-msgid "Lounge"
-msgstr "Disk"
-
-#: ../src/blocks.c:2418 ../src/blocks.c:2427 ../src/blocks.c:2436
-#: ../src/blocks.c:2445
-msgid ""
-"Part of an obviously very expensive brown leather lounge. Looks not overly "
-"comfortable, though."
-msgstr ""
-
-#: ../src/blocks.c:2453 ../src/blocks.c:2462 ../src/blocks.c:2471
-#: ../src/blocks.c:2480
+#: ../src/blocks.c:2421 ../src/blocks.c:2430 ../src/blocks.c:2439
+#: ../src/blocks.c:2448
 msgid "Plant"
 msgstr "Växt"
 
-#: ../src/blocks.c:2454 ../src/blocks.c:2463 ../src/blocks.c:2472
-#: ../src/blocks.c:2481
+#: ../src/blocks.c:2422 ../src/blocks.c:2431 ../src/blocks.c:2440
+#: ../src/blocks.c:2449
 msgid ""
 "After all the humans are killed by the bots, only plants like this one will "
 "remain."
@@ -400,178 +347,116 @@ msgstr ""
 "Efter att alla människor dödats av botarna, kommer det bara finnas växter "
 "som denna."
 
-#: ../src/blocks.c:2489 ../src/blocks.c:2497 ../src/blocks.c:2505
-#: ../src/blocks.c:2513
+#: ../src/blocks.c:2457 ../src/blocks.c:2465 ../src/blocks.c:2473
+#: ../src/blocks.c:2481
 msgid "Desk"
 msgstr "Skrivbord"
 
-#: ../src/blocks.c:2490 ../src/blocks.c:2498 ../src/blocks.c:2506
-#: ../src/blocks.c:2514
+#: ../src/blocks.c:2458 ../src/blocks.c:2466 ../src/blocks.c:2474
+#: ../src/blocks.c:2482
 msgid "This desk is designed to handle extreme loads of office work."
 msgstr ""
 "Detta skrivbord är skapat för att kunna bära exterma mängder av "
 "kontorsarbete."
 
-#: ../src/blocks.c:2521 ../src/blocks.c:2528 ../src/blocks.c:2535
-#: ../src/blocks.c:2542
-msgid "School chair"
-msgstr ""
-
-#: ../src/blocks.c:2522 ../src/blocks.c:2529 ../src/blocks.c:2536
-#: ../src/blocks.c:2543
-msgid "You'll know it when you see one. All over the universe."
-msgstr ""
-
-#: ../src/blocks.c:2550 ../src/blocks.c:2557 ../src/blocks.c:2564
-#: ../src/blocks.c:2571
-msgid "Bed"
-msgstr "Säng"
-
-#: ../src/blocks.c:2551 ../src/blocks.c:2558 ../src/blocks.c:2565
-#: ../src/blocks.c:2572
-msgid "One of those old fashioned beds. You've seen more inviting ones."
-msgstr ""
-
-#: ../src/blocks.c:2579 ../src/blocks.c:2586 ../src/blocks.c:2593
-#: ../src/blocks.c:2600
+#: ../src/blocks.c:2531 ../src/blocks.c:2538 ../src/blocks.c:2545
+#: ../src/blocks.c:2552
 msgid "Bench"
 msgstr "Bänk"
 
-#: ../src/blocks.c:2580 ../src/blocks.c:2587 ../src/blocks.c:2594
-#: ../src/blocks.c:2601
+#: ../src/blocks.c:2532 ../src/blocks.c:2539 ../src/blocks.c:2546
+#: ../src/blocks.c:2553
 msgid "A simple white bench."
 msgstr "En enkel vit bänk."
 
-#: ../src/blocks.c:2609 ../src/blocks.c:2617 ../src/blocks.c:2626
-#: ../src/blocks.c:2635
+#: ../src/blocks.c:2561 ../src/blocks.c:2569 ../src/blocks.c:2578
+#: ../src/blocks.c:2587
 msgid "Bath tub"
 msgstr "Badkar"
 
-#: ../src/blocks.c:2610
+#: ../src/blocks.c:2562
 msgid "An idea of what comfort is"
 msgstr "En idé om vad komfort innebär."
 
-#: ../src/blocks.c:2618 ../src/blocks.c:2627 ../src/blocks.c:2636
+#: ../src/blocks.c:2570 ../src/blocks.c:2579 ../src/blocks.c:2588
 msgid "Taking a bath is not your current quest - what a pity !"
 msgstr "Att ta ett bad är inte ditt aktuella uppdrag - vad synd!"
 
-#: ../src/blocks.c:2643 ../src/blocks.c:2651
+#: ../src/blocks.c:2595 ../src/blocks.c:2603
 msgid "Washing tub"
 msgstr "Tvättbalja"
 
-#: ../src/blocks.c:2644 ../src/blocks.c:2652
+#: ../src/blocks.c:2596 ../src/blocks.c:2604
 msgid "A metal tub. The washing machine of the post-assault 21st century."
 msgstr "En metallbalja. 2000-talets tvättmaskin efter kriget."
 
-#: ../src/blocks.c:2658 ../src/blocks.c:2664
-msgid "Curtain"
-msgstr ""
-
-#: ../src/blocks.c:2659 ../src/blocks.c:2665
-msgid "It's a curtain."
-msgstr ""
-
-#: ../src/blocks.c:2672 ../src/blocks.c:2679 ../src/blocks.c:2686
-#: ../src/blocks.c:2693
-#, fuzzy
-msgid "Small sofa"
-msgstr "Liten toalett"
-
-#: ../src/blocks.c:2673 ../src/blocks.c:2680 ../src/blocks.c:2687
-#: ../src/blocks.c:2694
-#, fuzzy
-msgid "A small white leather sofa."
-msgstr "En enkel vit bänk."
-
-#: ../src/blocks.c:2700
+#: ../src/blocks.c:2640 ../src/blocks.c:2646 ../src/blocks.c:2652
+#: ../src/blocks.c:2659 ../src/blocks.c:2666
 msgid "Tree"
 msgstr "Träd"
 
-#: ../src/blocks.c:2701
-#, fuzzy
-msgid "This tree seems quite ordinary."
+#: ../src/blocks.c:2641
+msgid "This tree seems quite normal"
 msgstr "Detta trädet verkar rätt normalt"
 
-#: ../src/blocks.c:2706
-msgid "Young tree"
-msgstr ""
-
-#: ../src/blocks.c:2707
-#, fuzzy
-msgid "This is a nice young tree."
+#: ../src/blocks.c:2647
+msgid "This is a nice tree"
 msgstr "Det är ett fint träd"
 
-#: ../src/blocks.c:2712
-#, fuzzy
-msgid "Healthy tree"
-msgstr "Hälsa"
+#: ../src/blocks.c:2653
+msgid "No, it definitely doesn't look like a droid"
+msgstr "Nej, det liknar defenitivt inte en droid"
 
-#: ../src/blocks.c:2713
-msgid "Yes, you are sure. A tree. It appears quite healthy."
-msgstr ""
-
-#: ../src/blocks.c:2719
-msgid "Dead tree"
-msgstr ""
-
-#: ../src/blocks.c:2720
+#: ../src/blocks.c:2660
 msgid "This tree does not look too healthy."
 msgstr "Detta träd ser inte helt friskt ut."
 
-#: ../src/blocks.c:2726
-#, fuzzy
-msgid "Strange tree"
-msgstr "Styrka"
-
-#: ../src/blocks.c:2727
+#: ../src/blocks.c:2667
 msgid "For some strange reason this tree has blue leaves."
 msgstr "Av någon konstig anledning har detta träd blåa löv."
 
-#: ../src/blocks.c:2737 ../src/blocks.c:2744 ../src/blocks.c:2751
-#: ../src/blocks.c:2757 ../src/blocks.c:2763 ../src/blocks.c:2769
-#: ../src/blocks.c:2775 ../src/blocks.c:2781 ../src/blocks.c:2787
-#: ../src/blocks.c:2793
-#, fuzzy
-msgid "Sturdy wall"
-msgstr "Stark vägg"
+#: ../src/blocks.c:2677 ../src/blocks.c:2684 ../src/blocks.c:2691
+#: ../src/blocks.c:2697 ../src/blocks.c:2703 ../src/blocks.c:2709
+#: ../src/blocks.c:2715 ../src/blocks.c:2721 ../src/blocks.c:2727
+#: ../src/blocks.c:2733
+msgid "Colony wall"
+msgstr "Kolonivägg"
 
-#: ../src/blocks.c:2738 ../src/blocks.c:2745 ../src/blocks.c:2752
-#: ../src/blocks.c:2758 ../src/blocks.c:2764 ../src/blocks.c:2770
-#: ../src/blocks.c:2776 ../src/blocks.c:2782 ../src/blocks.c:2788
-#: ../src/blocks.c:2794
-msgid ""
-"This is a stylish and sturdy wall. Both appealing to the eye and appalling "
-"for vandals."
-msgstr ""
+#: ../src/blocks.c:2678 ../src/blocks.c:2685 ../src/blocks.c:2692
+#: ../src/blocks.c:2698 ../src/blocks.c:2704 ../src/blocks.c:2710
+#: ../src/blocks.c:2716 ../src/blocks.c:2722 ../src/blocks.c:2728
+#: ../src/blocks.c:2734
+msgid "This is just a pink wall."
+msgstr "Detta är bara en rosa vägg."
 
-#: ../src/blocks.c:2844
-#, fuzzy
-msgid "Restaurant furniture"
+#: ../src/blocks.c:2784
+msgid "Restaurant shelves"
 msgstr "Restaurangshyllor"
 
-#: ../src/blocks.c:2845
+#: ../src/blocks.c:2785
 msgid "This is but standard restaurant furniture."
 msgstr "Detta är vanlig restaurang inredning."
 
-#: ../src/blocks.c:2854 ../src/blocks.c:2860 ../src/blocks.c:2866
-#: ../src/blocks.c:2872
+#: ../src/blocks.c:2794 ../src/blocks.c:2800 ../src/blocks.c:2806
+#: ../src/blocks.c:2812
 msgid "Rock wall"
 msgstr "Stenvägg"
 
-#: ../src/blocks.c:2855 ../src/blocks.c:2861 ../src/blocks.c:2867
-#: ../src/blocks.c:2873
+#: ../src/blocks.c:2795 ../src/blocks.c:2801 ../src/blocks.c:2807
+#: ../src/blocks.c:2813
 msgid ""
-"Created eons ago. Maybe lasting for some more, if there are no humans left "
-"on the planet."
+"This rock is here now and forever, and it is not going anywhere. Go "
+"somewhere else."
 msgstr ""
+"Denna sten är här och förevigt, och den går ingenstans. Gå någon annan stans."
 
-#: ../src/blocks.c:2895 ../src/blocks.c:2896 ../src/blocks.c:2897
-#: ../src/blocks.c:2898
+#: ../src/blocks.c:2835 ../src/blocks.c:2836 ../src/blocks.c:2837
+#: ../src/blocks.c:2838
 msgid "Grey wall"
 msgstr "Grå vägg"
 
-#: ../src/blocks.c:2899 ../src/blocks.c:2900 ../src/blocks.c:2901
-#: ../src/blocks.c:2902
+#: ../src/blocks.c:2839 ../src/blocks.c:2840 ../src/blocks.c:2841
+#: ../src/blocks.c:2842
 msgid ""
 "This is grey and seems quite hard to destroy. People usually call it a wall. "
 "You have no chance to go through : there must be another path."
@@ -580,56 +465,30 @@ msgstr ""
 "vanligtvis för en vägg. Du har ingen chans att komma igenom: det måste "
 "finnas en annan väg."
 
-#: ../src/blocks.c:2919 ../src/blocks.c:2926 ../src/blocks.c:2933
-#: ../src/blocks.c:2940
-msgid "Grey wall corner section"
-msgstr ""
-
-#: ../src/blocks.c:2920 ../src/blocks.c:2927 ../src/blocks.c:2934
-#: ../src/blocks.c:2941
-msgid ""
-"You remember the days when you had to stand in the corner. This wall could "
-"use a tag."
-msgstr ""
-
-#: ../src/blocks.c:2952 ../src/blocks.c:2960
+#: ../src/blocks.c:2885 ../src/blocks.c:2893 ../src/blocks.c:3362
+#: ../src/blocks.c:3363
 msgid "Green wall"
 msgstr "Grön vägg"
 
-#: ../src/blocks.c:2953 ../src/blocks.c:2961
-#, fuzzy
-msgid ""
-"This wall is covered by an avocado-green wallpaper. You feel nausea when "
-"staring at it too long"
+#: ../src/blocks.c:2886 ../src/blocks.c:2894
+msgid "This wall is covered by an asparagus-green wallpaper."
 msgstr "Denna vägg är täckt av en sparris-grön tapet."
 
-#: ../src/blocks.c:2968 ../src/blocks.c:2976 ../src/blocks.c:2984
-#: ../src/blocks.c:2992
+#: ../src/blocks.c:2901 ../src/blocks.c:2909 ../src/blocks.c:2917
+#: ../src/blocks.c:2925
 msgid "Groovy wall"
 msgstr "Helskön vägg"
 
-#: ../src/blocks.c:2969 ../src/blocks.c:2977 ../src/blocks.c:2985
-#: ../src/blocks.c:2993
+#: ../src/blocks.c:2902 ../src/blocks.c:2910 ../src/blocks.c:2918
+#: ../src/blocks.c:2926
 msgid "Man, dig that groovy wallpaper. It's a real blast!"
 msgstr "Dude, jag diggar den där helsköna väggen. Den är störtskön!"
 
-#: ../src/blocks.c:3073
-#, fuzzy
-msgid "Brick wall with wires"
-msgstr "Tegelvägg"
-
-#: ../src/blocks.c:3074
-#, fuzzy
-msgid "A badly constructed brick wall. This one has wires installed to it."
-msgstr ""
-"En dåligt konstruerad tegelvägg. Den ser ut att ha blivit byggd i brådska. "
-"Färgen är dock ganska fin."
-
-#: ../src/blocks.c:3108 ../src/blocks.c:3178 ../src/blocks.c:3186
+#: ../src/blocks.c:3027
 msgid "Brick wall"
 msgstr "Tegelvägg"
 
-#: ../src/blocks.c:3109
+#: ../src/blocks.c:3028
 msgid ""
 "A badly constructed brick wall. It looks like it was built in a rush. The "
 "color is quite nice though."
@@ -637,75 +496,59 @@ msgstr ""
 "En dåligt konstruerad tegelvägg. Den ser ut att ha blivit byggd i brådska. "
 "Färgen är dock ganska fin."
 
-#: ../src/blocks.c:3150 ../src/blocks.c:3153
-#, fuzzy
-msgid "Cracked wall"
-msgstr "Tegelvägg"
-
-#: ../src/blocks.c:3151 ../src/blocks.c:3154
+#: ../src/blocks.c:3070 ../src/blocks.c:3073
 msgid "This wall is suffering. Finish it!"
 msgstr "Denna vägg lider. Avsluta den!"
 
-#: ../src/blocks.c:3165 ../src/blocks.c:3168
-#, fuzzy
-msgid "Crumbled wall"
-msgstr "Röd vägg"
-
-#: ../src/blocks.c:3166 ../src/blocks.c:3169
+#: ../src/blocks.c:3085 ../src/blocks.c:3088
 msgid "Well ... it was not very resistant "
 msgstr "Tja... den var inte så beständing "
 
-#: ../src/blocks.c:3179 ../src/blocks.c:3187
-msgid "Hmm... something's odd about this wall "
-msgstr ""
-
-#: ../src/blocks.c:3231
+#: ../src/blocks.c:3146
 msgid "Blood"
 msgstr "Blod"
 
-#: ../src/blocks.c:3232
+#: ../src/blocks.c:3147
 msgid "Do droids bleed ? These do."
 msgstr "Blöder droider? De här gör det."
 
-#: ../src/blocks.c:3289
+#: ../src/blocks.c:3204
 msgid "Oil stains"
 msgstr "Oljefläcker"
 
-#: ../src/blocks.c:3290
+#: ../src/blocks.c:3205
 msgid "Do droids bleed? These don't."
 msgstr "Blöder droider? Inte de här."
 
-#: ../src/blocks.c:3312 ../src/blocks.c:3320
+#: ../src/blocks.c:3227 ../src/blocks.c:3235
 msgid "Entrance"
 msgstr "Ingång"
 
-#: ../src/blocks.c:3313 ../src/blocks.c:3321
+#: ../src/blocks.c:3228 ../src/blocks.c:3236
 msgid "It leads into the dark tunnels below..."
 msgstr "Den leder till en mörk tunnel nedanför..."
 
-#: ../src/blocks.c:3329 ../src/blocks.c:3338
+#: ../src/blocks.c:3244 ../src/blocks.c:3253
 msgid "Ladder"
 msgstr "Stege"
 
-#: ../src/blocks.c:3330 ../src/blocks.c:3339
+#: ../src/blocks.c:3245 ../src/blocks.c:3254
 msgid "It leads to the surface world."
 msgstr "Den leder till den ytliga världen."
 
-#: ../src/blocks.c:3353 ../src/blocks.c:3413
-#, fuzzy
-msgid "Exotic fungoid plant"
+#: ../src/blocks.c:3268 ../src/blocks.c:3328
+msgid "Exotic plant"
 msgstr "Exotisk växt"
 
-#: ../src/blocks.c:3354
-#, fuzzy
-msgid "A wonderful exotic fungus. You can read \"Made by Basse\" on it"
+#: ../src/blocks.c:3269
+msgid "A wonderful exotic plant. You can read \"Made by Basse\" on it"
 msgstr "En underbar exotisk växt. du kan läsa \"Made by Basse\" på den"
 
-#: ../src/blocks.c:3377
+#: ../src/blocks.c:3292
 msgid "Rocks"
 msgstr "Stenar"
 
-#: ../src/blocks.c:3378
+#: ../src/blocks.c:3293
 msgid ""
 "Do you think a rock can attack you ? No, MS droids can't hide themselves "
 "that way : they crash before."
@@ -713,44 +556,35 @@ msgstr ""
 "Tror du att stenen kan attackera dig? Nej, MS droider kan inte gömma sig på "
 "det sättet : de går sönder innan dess."
 
-#: ../src/blocks.c:3414
-#, fuzzy
-msgid "Eating too much of that could lead to a kernel panic..."
+#: ../src/blocks.c:3329
+msgid "Eating too much of that could lead to a kernel panic."
 msgstr "Att äta för mycket av det där kan leda till \"kernel panic\"."
 
-#: ../src/blocks.c:3443 ../src/blocks.c:3444
-msgid "Cosy wall in claret-red"
-msgstr ""
+#: ../src/blocks.c:3358 ../src/blocks.c:3359
+msgid "Red wall"
+msgstr "Röd vägg"
 
-#: ../src/blocks.c:3445 ../src/blocks.c:3446
-#, fuzzy
-msgid "You think it would be better with a penguin on it. You are right!"
+#: ../src/blocks.c:3360 ../src/blocks.c:3361 ../src/blocks.c:3364
+#: ../src/blocks.c:3365
+msgid "You think it would be better with a penguin on it. You are right."
 msgstr "Tror du att det skulle vara bättre med en pingvin på den. Du har rätt."
 
-#: ../src/blocks.c:3447 ../src/blocks.c:3448
-msgid "Gentle cyan-colored wall"
-msgstr ""
-
-#: ../src/blocks.c:3449 ../src/blocks.c:3450
-msgid "A delight to the eye... could use a penguin on it, nevertheless."
-msgstr ""
-
-#: ../src/blocks.c:3461 ../src/blocks.c:3468
+#: ../src/blocks.c:3376 ../src/blocks.c:3383
 msgid "Shop counter"
 msgstr "Kassa"
 
-#: ../src/blocks.c:3462 ../src/blocks.c:3469
+#: ../src/blocks.c:3377 ../src/blocks.c:3384
 msgid ""
 "This model of the counter features a built-in cash register and bright neon "
 "lights."
 msgstr ""
 "Denna modell av en kassa har en inbyggd kassaapparat och ljusa neonljus."
 
-#: ../src/blocks.c:3474 ../src/blocks.c:3479
+#: ../src/blocks.c:3389 ../src/blocks.c:3394
 msgid "Set of shelves"
 msgstr "Några hyllor"
 
-#: ../src/blocks.c:3475
+#: ../src/blocks.c:3390
 msgid ""
 "There is a lot of junk in here. Bot parts, medical supplies, scrap metal "
 "bits and other useless things like that."
@@ -758,7 +592,7 @@ msgstr ""
 "Det är massa skräp här. Robotdelar, sjukvårds artiklar, överbliven metall "
 "och andra värdelösa saker."
 
-#: ../src/blocks.c:3480
+#: ../src/blocks.c:3395
 msgid ""
 "There is a lot of junk in here. Bot parts, gold bars, dead rodents, scrap "
 "metal bits and other useless things like that."
@@ -766,15 +600,15 @@ msgstr ""
 "Det är massa skräp här inne. Bot delar, guld tackor, döda gnagare, skräp "
 "metall och andra värelösa saker."
 
-#: ../src/blocks.c:3485 ../src/blocks.c:3490
+#: ../src/blocks.c:3400 ../src/blocks.c:3405
 msgid "Empty shelves"
 msgstr "Tomma hyllor"
 
-#: ../src/blocks.c:3486
+#: ../src/blocks.c:3401
 msgid "Whatever was here before, is not here anymore."
 msgstr "Vad som än fanns här tidigare, är inte längre här."
 
-#: ../src/blocks.c:3491
+#: ../src/blocks.c:3406
 msgid ""
 "These are empty shelves. Silent and hollow they sleep in Spring. No thing "
 "remains here now."
@@ -782,34 +616,23 @@ msgstr ""
 "Detta är tomma hyllor. Tysta och tomma sover de igenom våren. Ingenting "
 "finns kvar här längre."
 
-#: ../src/blocks.c:3499 ../src/blocks.c:3506
-#, fuzzy
-msgid "A library counter"
-msgstr "En disk."
-
-#: ../src/blocks.c:3500 ../src/blocks.c:3507
-msgid ""
-"You wonder how such things can still exist in a fully computerized world.\n"
-"A faint glimmer of nostalgia is crossing your mind."
-msgstr ""
-
-#: ../src/blocks.c:3519 ../src/blocks.c:3526 ../src/blocks.c:3533
-#: ../src/blocks.c:3540 ../src/blocks.c:3547 ../src/blocks.c:3553
-#: ../src/blocks.c:3561 ../src/blocks.c:3568 ../src/blocks.c:3575
-#: ../src/blocks.c:3582 ../src/blocks.c:3589 ../src/blocks.c:3596
-#: ../src/blocks.c:3602 ../src/blocks.c:3608 ../src/blocks.c:3614
-#: ../src/blocks.c:3620 ../src/blocks.c:3627 ../src/blocks.c:3633
-#: ../src/blocks.c:3639 ../src/blocks.c:3645
+#: ../src/blocks.c:3430 ../src/blocks.c:3437 ../src/blocks.c:3444
+#: ../src/blocks.c:3451 ../src/blocks.c:3458 ../src/blocks.c:3464
+#: ../src/blocks.c:3472 ../src/blocks.c:3479 ../src/blocks.c:3486
+#: ../src/blocks.c:3493 ../src/blocks.c:3500 ../src/blocks.c:3507
+#: ../src/blocks.c:3513 ../src/blocks.c:3519 ../src/blocks.c:3525
+#: ../src/blocks.c:3531 ../src/blocks.c:3538 ../src/blocks.c:3544
+#: ../src/blocks.c:3550 ../src/blocks.c:3556
 msgid "Strong wall"
 msgstr "Stark vägg"
 
-#: ../src/blocks.c:3520 ../src/blocks.c:3527 ../src/blocks.c:3534
-#: ../src/blocks.c:3541 ../src/blocks.c:3548 ../src/blocks.c:3555
-#: ../src/blocks.c:3562 ../src/blocks.c:3569 ../src/blocks.c:3576
-#: ../src/blocks.c:3583 ../src/blocks.c:3590 ../src/blocks.c:3597
-#: ../src/blocks.c:3603 ../src/blocks.c:3609 ../src/blocks.c:3615
-#: ../src/blocks.c:3621 ../src/blocks.c:3628 ../src/blocks.c:3634
-#: ../src/blocks.c:3640 ../src/blocks.c:3646
+#: ../src/blocks.c:3431 ../src/blocks.c:3438 ../src/blocks.c:3445
+#: ../src/blocks.c:3452 ../src/blocks.c:3459 ../src/blocks.c:3466
+#: ../src/blocks.c:3473 ../src/blocks.c:3480 ../src/blocks.c:3487
+#: ../src/blocks.c:3494 ../src/blocks.c:3501 ../src/blocks.c:3508
+#: ../src/blocks.c:3514 ../src/blocks.c:3520 ../src/blocks.c:3526
+#: ../src/blocks.c:3532 ../src/blocks.c:3539 ../src/blocks.c:3545
+#: ../src/blocks.c:3551 ../src/blocks.c:3557
 msgid ""
 "This great wall can withstand a swarm of rogue bots madly attacking it for "
 "weeks*! It can belong to you for only 299.99C$ + tax, per section. *( Your "
@@ -819,51 +642,44 @@ msgstr ""
 "veckor*! Den kan bli din för bara 299.99C$ + skatter, per sektion. *( Dess "
 "varaktighet kan variera. Denna mur kommer med ABSOLUT INGEN GARANTI!) "
 
-#: ../src/blocks.c:3655 ../src/blocks.c:3661 ../src/blocks.c:3667
-#: ../src/blocks.c:3673 ../src/blocks.c:3678 ../src/blocks.c:3687
-#: ../src/blocks.c:3693 ../src/blocks.c:3699 ../src/blocks.c:3705
-#: ../src/blocks.c:3710 ../src/blocks.c:3717 ../src/blocks.c:3724
-#: ../src/blocks.c:3732 ../src/blocks.c:3740
+#: ../src/blocks.c:3566 ../src/blocks.c:3572 ../src/blocks.c:3578
+#: ../src/blocks.c:3584 ../src/blocks.c:3589 ../src/blocks.c:3598
+#: ../src/blocks.c:3604 ../src/blocks.c:3610 ../src/blocks.c:3616
+#: ../src/blocks.c:3621 ../src/blocks.c:3628 ../src/blocks.c:3634
 msgid "Gate"
 msgstr "Port"
 
-#: ../src/blocks.c:3656 ../src/blocks.c:3662 ../src/blocks.c:3668
-#: ../src/blocks.c:3674 ../src/blocks.c:3679 ../src/blocks.c:3688
-#: ../src/blocks.c:3694 ../src/blocks.c:3700 ../src/blocks.c:3706
-#: ../src/blocks.c:3711 ../src/blocks.c:3733 ../src/blocks.c:3741
+#: ../src/blocks.c:3567 ../src/blocks.c:3573 ../src/blocks.c:3579
+#: ../src/blocks.c:3585 ../src/blocks.c:3590 ../src/blocks.c:3599
+#: ../src/blocks.c:3605 ../src/blocks.c:3611 ../src/blocks.c:3617
+#: ../src/blocks.c:3622
 msgid "This gate is little more than just a big door. A very big door."
 msgstr "Denna port är lite mer än en stor dörr. En väldigt stor dörr."
 
-#: ../src/blocks.c:3718 ../src/blocks.c:3725
+#: ../src/blocks.c:3629 ../src/blocks.c:3635
 msgid ""
 "It is locked in order to keep something out. Or maybe to keep something in?"
 msgstr ""
 "Den är låst för att hålla något ute. Eller kanske för att hålla något inne?"
 
-#: ../src/blocks.c:3748 ../src/blocks.c:3754 ../src/blocks.c:3760
-#: ../src/blocks.c:3766
-msgid "Lounge chair"
-msgstr ""
-
-#: ../src/blocks.c:3749 ../src/blocks.c:3755 ../src/blocks.c:3761
-#: ../src/blocks.c:3767
-#, fuzzy
-msgid "The yellow lounge chair looks very inviting."
+#: ../src/blocks.c:3642 ../src/blocks.c:3648 ../src/blocks.c:3654
+#: ../src/blocks.c:3660
+msgid "This yellow chair looks inviting."
 msgstr "Den gul stolen verkar inbjudande."
 
-#: ../src/blocks.c:3774 ../src/blocks.c:3781 ../src/blocks.c:3788
-#: ../src/blocks.c:3795
+#: ../src/blocks.c:3667 ../src/blocks.c:3674 ../src/blocks.c:3681
+#: ../src/blocks.c:3688
 msgid "Red bench"
 msgstr "Röd bänk"
 
-#: ../src/blocks.c:3775
+#: ../src/blocks.c:3668
 msgid ""
 "It is a soft bench, commonly seen in hospitals, shops and houses all around "
 "the world."
 msgstr ""
 "Det är en mjuk bänk, ofta sedd på sjukhus, i affärer och hus i hela världen."
 
-#: ../src/blocks.c:3782
+#: ../src/blocks.c:3675
 msgid ""
 "It is a soft bench, commonly seen in hospitals, malls and houses all around "
 "the world."
@@ -871,7 +687,7 @@ msgstr ""
 "Det är en mjuk bänk, ofta sedd på sjukhus, på stormarkander och hus i hela "
 "världen."
 
-#: ../src/blocks.c:3789
+#: ../src/blocks.c:3682
 msgid ""
 "It is a soft bench, commonly seen in hospitals, barber shops and houses all "
 "around the world."
@@ -879,34 +695,34 @@ msgstr ""
 "Det är en mjuk bänk, ofta sedd på sjukhus, i frisersalonger och hus i hela "
 "världen."
 
-#: ../src/blocks.c:3796
+#: ../src/blocks.c:3689
 msgid ""
 "It is a soft bench, commonly seen in hospitals, coffee shops and houses all "
 "around the world."
 msgstr ""
 "Det är en mjuk bänk, ofta sedd på sjukhus, på caféer och hus i hela världen."
 
-#: ../src/blocks.c:3803 ../src/blocks.c:3808 ../src/blocks.c:3813
-#: ../src/blocks.c:3818
+#: ../src/blocks.c:3696 ../src/blocks.c:3701 ../src/blocks.c:3706
+#: ../src/blocks.c:3711
 msgid "Dead member of the Red Guard"
 msgstr "Död medlem av Röda Gardet."
 
-#: ../src/blocks.c:3804
+#: ../src/blocks.c:3697
 msgid ""
 "If not for the terrible wounds, you could think that he is just asleep..."
 msgstr ""
 "Om det inte vore för de fruktansvärda såren, skulle man kunna tro att han "
 "sov..."
 
-#: ../src/blocks.c:3809
+#: ../src/blocks.c:3702
 msgid "It looks like he fought to the bitter end..."
 msgstr "Det ser ut som om han kämpade in i det bittra slutet."
 
-#: ../src/blocks.c:3814
+#: ../src/blocks.c:3707
 msgid "Numerous wounds cover the body of this brave warrior..."
 msgstr "Oräkneliga sår över hela kroppen på denna modiga soldat."
 
-#: ../src/blocks.c:3819
+#: ../src/blocks.c:3712
 msgid ""
 "His body is charred and twisted... Such is the price of the service in the "
 "Red Guard..."
@@ -914,55 +730,45 @@ msgstr ""
 "Hans kropp är vriden och vrickad...Ett högt pris man får betala för att vara "
 "med i det Röda Gardet"
 
-#: ../src/blocks.c:3826 ../src/blocks.c:3833 ../src/blocks.c:3840
-#: ../src/blocks.c:3847
+#: ../src/blocks.c:3719 ../src/blocks.c:3726 ../src/blocks.c:3733
+#: ../src/blocks.c:3740
 msgid "Conference table"
 msgstr "Konferansbord"
 
-#: ../src/blocks.c:3827 ../src/blocks.c:3834 ../src/blocks.c:3841
-#: ../src/blocks.c:3848
+#: ../src/blocks.c:3720 ../src/blocks.c:3727 ../src/blocks.c:3734
+#: ../src/blocks.c:3741
 msgid "A round conference table with chairs and a computer at every seat."
 msgstr "Ett runt konferansbord med stolar och en dator vid varje plats."
 
-#: ../src/blocks.c:3855 ../src/blocks.c:3863
-msgid "Massive fancy wall"
-msgstr ""
+#: ../src/blocks.c:3760 ../src/blocks.c:3767 ../src/blocks.c:3774
+#: ../src/blocks.c:3781
+msgid "Bed"
+msgstr "Säng"
 
-#: ../src/blocks.c:3856 ../src/blocks.c:3864
-msgid ""
-"That's some rather massive, yet fancy-looking type of wall.\n"
-"A second sight reveals lots of plastics, though."
-msgstr ""
-
-#: ../src/blocks.c:3871 ../src/blocks.c:3878 ../src/blocks.c:3885
-#: ../src/blocks.c:3892
-msgid "Modernized bed"
-msgstr ""
-
-#: ../src/blocks.c:3872 ../src/blocks.c:3879 ../src/blocks.c:3886
-#: ../src/blocks.c:3893
+#: ../src/blocks.c:3761 ../src/blocks.c:3768 ../src/blocks.c:3775
+#: ../src/blocks.c:3782
 msgid "This is a standard sleeping capsule."
 msgstr "Det är en standard sovkapsel"
 
-#: ../src/blocks.c:3898 ../src/blocks.c:3904 ../src/blocks.c:3910
-#: ../src/blocks.c:3916
-msgid "Modernized bunk beds"
-msgstr ""
+#: ../src/blocks.c:3787 ../src/blocks.c:3793 ../src/blocks.c:3799
+#: ../src/blocks.c:3805
+msgid "Bunk beds"
+msgstr "Våningssängar"
 
-#: ../src/blocks.c:3899 ../src/blocks.c:3905 ../src/blocks.c:3911
-#: ../src/blocks.c:3917
+#: ../src/blocks.c:3788 ../src/blocks.c:3794 ../src/blocks.c:3800
+#: ../src/blocks.c:3806
 msgid ""
 "To save space on the floor two sleeping capsules were stacked vertically."
 msgstr ""
 "För att spara plats på golvet är två sovkapslar staplade ovanpå varandra."
 
-#: ../src/blocks.c:3923 ../src/blocks.c:3929 ../src/blocks.c:3935
-#: ../src/blocks.c:3941
+#: ../src/blocks.c:3812 ../src/blocks.c:3818 ../src/blocks.c:3824
+#: ../src/blocks.c:3830
 msgid "Projector"
 msgstr "Projektor"
 
-#: ../src/blocks.c:3924 ../src/blocks.c:3930 ../src/blocks.c:3936
-#: ../src/blocks.c:3942
+#: ../src/blocks.c:3813 ../src/blocks.c:3819 ../src/blocks.c:3825
+#: ../src/blocks.c:3831
 msgid ""
 "This device is used for casting images onto a wall or a screen. It uses "
 "something looking like a film reel as a source of those images."
@@ -970,24 +776,24 @@ msgstr ""
 "Detta object är använd för att visa bilder på väggar eller skärmar. Den "
 "använder vad som liknar filmfrullar för de bilderna."
 
-#: ../src/blocks.c:3947 ../src/blocks.c:3952 ../src/blocks.c:3957
-#: ../src/blocks.c:3962
+#: ../src/blocks.c:3836 ../src/blocks.c:3841 ../src/blocks.c:3846
+#: ../src/blocks.c:3851
 msgid "Projector screen"
 msgstr "Projektorskärm"
 
-#: ../src/blocks.c:3948 ../src/blocks.c:3953 ../src/blocks.c:3958
-#: ../src/blocks.c:3963
+#: ../src/blocks.c:3837 ../src/blocks.c:3842 ../src/blocks.c:3847
+#: ../src/blocks.c:3852
 msgid ""
 "This is a projector screen, it allows to get better image quality than the "
 "wall."
 msgstr "Det här är en projektorduk, den ger en bättre bildkvalitet än väggen."
 
-#: ../src/blocks.c:3968 ../src/blocks.c:3973 ../src/blocks.c:3990
-#: ../src/blocks.c:3995
+#: ../src/blocks.c:3857 ../src/blocks.c:3862 ../src/blocks.c:3879
+#: ../src/blocks.c:3884
 msgid "Bookcase"
 msgstr "Bokhylla"
 
-#: ../src/blocks.c:3969
+#: ../src/blocks.c:3858
 msgid ""
 "There are many interesting books here, but none of them is a switch opening "
 "a secret passage."
@@ -995,149 +801,104 @@ msgstr ""
 "Det är många intressanta böcker här, men ingen av dem är en gömd spak till "
 "en hemlig gång."
 
-#: ../src/blocks.c:3974
+#: ../src/blocks.c:3863
 msgid "There are exactly 451 books here."
 msgstr "Det finns exakt 451 böcker här."
 
-#: ../src/blocks.c:3979 ../src/blocks.c:3984 ../src/blocks.c:4001
-#: ../src/blocks.c:4006
+#: ../src/blocks.c:3868 ../src/blocks.c:3873 ../src/blocks.c:3890
+#: ../src/blocks.c:3895
 msgid "Empty bookcase"
 msgstr "Tom bokhylla"
 
-#: ../src/blocks.c:3980 ../src/blocks.c:3985
-#, fuzzy
-msgid "No books here, only dust."
+#: ../src/blocks.c:3869 ../src/blocks.c:3874
+msgid "No books here, just dust."
 msgstr "Inga böcker här, bara damm."
 
-#: ../src/blocks.c:3991 ../src/blocks.c:3996
-#, fuzzy
+#: ../src/blocks.c:3880 ../src/blocks.c:3885
 msgid ""
-"Only boring books like the Necronomicon here. Yawn. Nothing of interest."
+"Only boring books like the Necronomicon are here. Yawn. Nothing interesting."
 msgstr "Bara tråkiga böcker här såsom Necronomicon. Gääsp. Inget intressant."
 
-#: ../src/blocks.c:4002 ../src/blocks.c:4007
+#: ../src/blocks.c:3891 ../src/blocks.c:3896
 msgid "Dust to trees. Trees to pages. Pages to books. Books to dust."
 msgstr "Damm till träd. Träd till sidor. Sidor till böcker. Böcker till damm."
 
-#: ../src/blocks.c:4014 ../src/blocks.c:4028
+#: ../src/blocks.c:3903 ../src/blocks.c:3910 ../src/blocks.c:3917
 msgid "Sign"
 msgstr "Tecken"
 
-#: ../src/blocks.c:4015
-msgid "An informational sign..?"
-msgstr ""
+#: ../src/blocks.c:3904 ../src/blocks.c:3911
+msgid "A sign."
+msgstr "Ett tecken."
 
-#: ../src/blocks.c:4021
-#, fuzzy
-msgid "Sign!"
-msgstr "Tecken"
-
-#: ../src/blocks.c:4022
-msgid "A warning sign! But where's the danger here?"
-msgstr ""
-
-#: ../src/blocks.c:4029
+#: ../src/blocks.c:3918
 msgid "The arrow points at a direction. Maybe you should follow it"
 msgstr "Pilen pekar åt ett håll. Kanske du ska följa den"
 
-#: ../src/blocks.c:4034 ../src/blocks.c:4043 ../src/blocks.c:4050
-#: ../src/blocks.c:4057 ../src/blocks.c:4065 ../src/blocks.c:4072
-#: ../src/blocks.c:4079 ../src/blocks.c:4086 ../src/blocks.c:4094
-#: ../src/blocks.c:4101 ../src/blocks.c:4108 ../src/blocks.c:4115
+#: ../src/blocks.c:3923 ../src/blocks.c:3932 ../src/blocks.c:3939
+#: ../src/blocks.c:3946 ../src/blocks.c:3954 ../src/blocks.c:3961
+#: ../src/blocks.c:3968 ../src/blocks.c:3975 ../src/blocks.c:3983
+#: ../src/blocks.c:3990 ../src/blocks.c:3997 ../src/blocks.c:4004
 msgid "Counter"
 msgstr "Disk"
 
-#: ../src/blocks.c:4035 ../src/blocks.c:4044 ../src/blocks.c:4051
-#: ../src/blocks.c:4058
-#, fuzzy
-msgid "A counter section."
+#: ../src/blocks.c:3924 ../src/blocks.c:3933 ../src/blocks.c:3940
+#: ../src/blocks.c:3947 ../src/blocks.c:3955 ../src/blocks.c:3962
+#: ../src/blocks.c:3969 ../src/blocks.c:3976 ../src/blocks.c:3984
+#: ../src/blocks.c:3991 ../src/blocks.c:3998 ../src/blocks.c:4005
+msgid "A counter."
 msgstr "En disk."
 
-#: ../src/blocks.c:4066 ../src/blocks.c:4073 ../src/blocks.c:4080
-#: ../src/blocks.c:4087
-msgid "A rounded counter corner section."
-msgstr ""
-
-#: ../src/blocks.c:4095 ../src/blocks.c:4102 ../src/blocks.c:4109
-#: ../src/blocks.c:4116
-msgid "An orthogonal counter corner section."
-msgstr ""
-
-#: ../src/blocks.c:4124
+#: ../src/blocks.c:4013
 msgid "Bar table"
 msgstr "Barbord"
 
-#: ../src/blocks.c:4125
-#, fuzzy
-msgid "You can still see some food stains on this yellow round table."
+#: ../src/blocks.c:4014
+msgid "You can see some food stains on this yellow round table."
 msgstr "Du kan se ett par matfläckar på det här gula, runda bordet."
 
-#: ../src/blocks.c:4132 ../src/blocks.c:4140
+#: ../src/blocks.c:4021 ../src/blocks.c:4029
 msgid "Table"
 msgstr "Bord"
 
-#: ../src/blocks.c:4133 ../src/blocks.c:4141
+#: ../src/blocks.c:4022 ../src/blocks.c:4030
 msgid ""
 "Tables such as this one have been used for centuries to store various items "
 "on top of them."
 msgstr "Dessa bord har använts i århundraden för att lagra olika saker på dem."
 
-#: ../src/blocks.c:4150 ../src/blocks.c:4158
+#: ../src/blocks.c:4039 ../src/blocks.c:4047
 msgid "Glass table"
 msgstr "Glasbord"
 
-#: ../src/blocks.c:4151 ../src/blocks.c:4159
+#: ../src/blocks.c:4040 ../src/blocks.c:4048
 msgid "This table is made out of see-through glass."
 msgstr "Det här bordet är gjort av genomskinligt glas."
 
-#: ../src/blocks.c:4167
+#: ../src/blocks.c:4056
 msgid "Water"
 msgstr "Vatten"
 
-#: ../src/blocks.c:4168
-#, fuzzy
-msgid "This water seems dangerous. You'll want to avoid going there. "
+#: ../src/blocks.c:4057
+msgid "This water seems dangerous. You will want to avoid going there. "
 msgstr "Detta vatten verkar farligt. Du vill inte gå i det. "
 
-#: ../src/blocks.c:4176 ../src/blocks.c:4185
-msgid "Restaurant & bar multipurpose counter (tm)"
-msgstr ""
+#: ../src/blocks.c:4087 ../src/blocks.c:4094 ../src/blocks.c:4101
+#: ../src/blocks.c:4108 ../src/blocks.c:4115 ../src/blocks.c:4122
+msgid "Crystal pillar"
+msgstr "Kristallpelare"
 
-#: ../src/blocks.c:4177 ../src/blocks.c:4186
-msgid ""
-"A perfect fusion of practical usability, appealing optics and durability has "
-"been fitted into the design of this counter."
-msgstr ""
+#: ../src/blocks.c:4088 ../src/blocks.c:4095 ../src/blocks.c:4102
+#: ../src/blocks.c:4109 ../src/blocks.c:4116 ../src/blocks.c:4123
+msgid "A pillar made out of crystal."
+msgstr "En pelare gjord av kristall."
 
-#: ../src/blocks.c:4192 ../src/blocks.c:4199
-msgid "Restaurant & bar multipurpose furniture (tm)"
-msgstr ""
-
-#: ../src/blocks.c:4193 ../src/blocks.c:4200
-msgid ""
-"In combination with the 'Restaurant & bar multipurpose counter (tm)',\n"
-"  this professional set of heavy-duty kitchen furniture adds up to a pretty "
-"complete catering equipment.\n"
-"  Too bad there just aren't engough human guests around, to run such a "
-"business these days..."
-msgstr ""
-
-#: ../src/blocks.c:4206 ../src/blocks.c:4213 ../src/blocks.c:4220
-#: ../src/blocks.c:4227 ../src/blocks.c:4234 ../src/blocks.c:4241
-msgid "Crystal formation"
-msgstr ""
-
-#: ../src/blocks.c:4207 ../src/blocks.c:4214 ../src/blocks.c:4221
-#: ../src/blocks.c:4228 ../src/blocks.c:4235 ../src/blocks.c:4242
-msgid "An unusual and impressive formation of red crystals."
-msgstr ""
-
-#: ../src/blocks.c:4267
+#: ../src/blocks.c:4148
 #, c-format
 msgid "unnamed_obstacle"
 msgstr "ejnamngivet_hinder"
 
-#: ../src/blocks.c:4273
+#: ../src/blocks.c:4154
 #, c-format
 msgid "This obstacle seems solid."
 msgstr "Detta hinder verkar solitt."
@@ -1152,94 +913,94 @@ msgstr "Disrutorskott har träffat dig för %d skada."
 msgid "That one went into the armor."
 msgstr "Den gick in i rustningen."
 
-#: ../src/character.c:236
+#: ../src/character.c:228
 msgid "Max level reached!"
 msgstr "Max nivå nådd."
 
-#: ../src/character.c:259
+#: ../src/character.c:251
 msgid "Level Gained!"
 msgstr "Nivå Ökning!"
 
-#: ../src/character.c:587
+#: ../src/character.c:579
 msgid "Melee"
 msgstr ""
 
-#: ../src/character.c:605
+#: ../src/character.c:597
 msgid "Ranged"
 msgstr ""
 
-#: ../src/character.c:623
+#: ../src/character.c:615
 #, fuzzy
 msgid "Programming"
 msgstr "Programmering"
 
-#: ../src/character.c:674
+#: ../src/character.c:666
 msgid "Level"
 msgstr "Nivå"
 
-#: ../src/character.c:680
+#: ../src/character.c:672
 #, fuzzy
 msgid "Experience"
 msgstr "Erfarenhet"
 
-#: ../src/character.c:686
+#: ../src/character.c:678
 #, fuzzy
 msgid "Next level"
 msgstr "Nästa nivå"
 
-#: ../src/character.c:692
+#: ../src/character.c:684
 #, fuzzy
 msgid "Money"
 msgstr "Pengar"
 
-#: ../src/character.c:698
+#: ../src/character.c:690
 #, fuzzy
 msgid "Strength"
 msgstr "Styrka"
 
-#: ../src/character.c:706
+#: ../src/character.c:698
 msgid "Dexterity"
 msgstr ""
 
-#: ../src/character.c:714
+#: ../src/character.c:706
 #, fuzzy
 msgid "CPU"
 msgstr "Processor"
 
-#: ../src/character.c:722
+#: ../src/character.c:714
 #, fuzzy
 msgid "Life"
 msgstr "Liv"
 
-#: ../src/character.c:731
+#: ../src/character.c:723
 msgid "Training points"
 msgstr ""
 
-#: ../src/character.c:737
+#: ../src/character.c:729
 #, fuzzy
 msgid "Health"
 msgstr "Hälsa"
 
-#: ../src/character.c:743
+#: ../src/character.c:735
 #, fuzzy
 msgid "Temperature"
 msgstr "Temperatur"
 
-#: ../src/character.c:749
+#: ../src/character.c:741
 #, fuzzy
 msgid "Stamina"
 msgstr "Uthållighet"
 
-#: ../src/character.c:755 ../src/ship.c:453
+#: ../src/character.c:747 ../src/ship.c:463
 msgid "Armor"
 msgstr "Rustning"
 
-#: ../src/character.c:761
+#: ../src/character.c:753
 #, fuzzy
 msgid "Attack"
 msgstr "Anfall"
 
-#: ../src/character.c:767
+#: ../src/character.c:759
 #, fuzzy
 msgid "Damage"
 msgstr "Skada"
@@ -1279,7 +1040,7 @@ msgstr ""
 msgid "%d bucks received"
 msgstr "1 föremål mottaget!"
 
-#: ../src/chat.c:1276
+#: ../src/chat.c:1275
 msgid "What will you say?"
 msgstr "Vad ska du säga?"
 
@@ -1654,50 +1415,55 @@ msgstr ""
 "Bra, va? Men hur lång kan en rad vara? Finns det en gräns? Det ser bra ut i "
 "alla fall."
 
-#: ../src/hud.c:1557 ../src/hud.c:1568 ../src/mission.c:137
+#: ../src/hud.c:1550
 #, c-format
-msgid "Day %d  %02d:%02d"
+msgid "%s (%03.1f:%03.1f:%d) Day %d %02d:%02d "
 msgstr ""
 
-#: ../src/influ.c:526
+#: ../src/hud.c:1559
+#, c-format
+msgid "%s Day %d %02d:%02d "
+msgstr ""
+
+#: ../src/influ.c:472
 msgid "Clip empty, reloading..."
 msgstr "Tomt klipp, laddar om..."
 
-#: ../src/influ.c:2933
+#: ../src/influ.c:2874
 msgid "No more ammunition !"
 msgstr "Slut på ammunition !"
 
-#: ../src/influ.c:3423
+#: ../src/influ.c:3364
 #, c-format
 msgid "This is a %s. %s"
 msgstr "Det här är en %s. %s"
 
-#: ../src/influ.c:3448 ../src/influ.c:3455
+#: ../src/influ.c:3389 ../src/influ.c:3396
 #, c-format
 msgid "Examining %s.  %s"
 msgstr "Undersöker %s. %s"
 
-#: ../src/influ.c:3470
+#: ../src/influ.c:3411
 #, c-format
 msgid "There is nothing here."
 msgstr ""
 
-#: ../src/influ.c:3501
+#: ../src/influ.c:3442
 #, c-format
 msgid "Unlocking obstacle of type %d."
 msgstr "Låser upp hinder av typ %d."
 
-#: ../src/influ.c:3530
+#: ../src/influ.c:3471
 #, c-format
 msgid "Repairing obstacle of type %d."
 msgstr "Reparerar hinder av typ %d."
 
-#: ../src/influ.c:3559
+#: ../src/influ.c:3500
 #, c-format
 msgid "Attacking obstacle of type %d."
 msgstr "Anfaller hinder av typ %d."
 
-#: ../src/influ.c:3588
+#: ../src/influ.c:3529
 #, c-format
 msgid "Picking pockets of obstacle of type %d."
 msgstr "Rånar hinder av typ %d."
@@ -1925,23 +1691,23 @@ msgstr ""
 msgid "The armor hides his body."
 msgstr "Pansaret döljer hans kropp."
 
-#: ../src/init.c:1917
+#: ../src/init.c:1915
 msgid "Huh? What?  Where am I?"
 msgstr "Va? Vad? Var är jag?"
 
-#: ../src/init.c:2031
+#: ../src/init.c:2029
 msgid "Updating Tux images"
 msgstr "Uppdaterar Tux bilder"
 
-#: ../src/init.c:2032
+#: ../src/init.c:2030
 msgid "(this may take a little while...)"
 msgstr "(det här kan ta ett litet tag...)"
 
-#: ../src/init.c:2035
+#: ../src/init.c:2033
 msgid "Starting new game."
 msgstr "Startar nytt spel."
 
-#: ../src/init.c:2324
+#: ../src/init.c:2323
 msgid ""
 "\n"
 "You are playing in 640x480.\n"
@@ -1954,7 +1720,7 @@ msgid ""
 "Thank you.\n"
 msgstr ""
 
-#: ../src/init.c:2326
+#: ../src/init.c:2325
 msgid ""
 "\n"
 "You are playing a candidate release.\n"
@@ -1965,11 +1731,11 @@ msgid ""
 "Good luck!\n"
 msgstr ""
 
-#: ../src/init.c:2346
+#: ../src/init.c:2345
 msgid "Game over.\n"
 msgstr "Spelet är över.\n"
 
-#: ../src/init.c:2434
+#: ../src/init.c:2433
 msgid "Game won.\n"
 msgstr "Spelet är vunnet.\n"
 
@@ -2041,458 +1807,43 @@ msgstr "Föremål taget: %s"
 msgid "I can't carry any more."
 msgstr "Jag kan inte bära mer."
 
-#: ../src/leveleditor.c:422
-#, c-format
-msgid "Sorry, don't know which waypoint you mean."
-msgstr ""
-
-#: ../src/leveleditor.c:427
-#, c-format
-msgid "You specified waypoint nr. %d."
-msgstr ""
-
-#: ../src/leveleditor.c:434
-msgid ""
-"\n"
-"It has been marked as the origin of the next connection."
-msgstr ""
-
-#: ../src/leveleditor.c:439
-msgid ""
-"\n"
-"SORRY. NO MORE CONNECTIONS AVAILABLE FROM THERE."
-msgstr ""
-
-#: ../src/leveleditor.c:441
-#, c-format
-msgid ""
-"\n"
-"Sorry, maximal number of waypoint-connections (%d) reached!\n"
-msgstr ""
-
-#: ../src/leveleditor.c:450
-msgid ""
-"\n"
-"\n"
-"Origin==Target --> Connection Operation cancelled."
-msgstr ""
-
-#: ../src/leveleditor.c:455
-#, c-format
-msgid ""
-"\n"
-"\n"
-"Origin: %d Target: %d. Operation makes sense."
-msgstr ""
-
-#: ../src/leveleditor.c:457
-msgid ""
-"\n"
-"Operation done, connection removed."
-msgstr ""
-
-#: ../src/leveleditor.c:459
-msgid ""
-"\n"
-"Operation done, connection added."
-msgstr ""
-
-#: ../src/leveleditor.c:625
-msgid ""
-"\n"
-"Please enter name for this obstacle: \n"
-"\n"
-msgstr ""
-
-#: ../src/leveleditor.c:690
-msgid ""
-"\n"
-"No existing map label entry for this position found...\n"
-" Please enter new label for this map position: \n"
-"\n"
-msgstr ""
-
-#: ../src/leveleditor.c:701
-msgid ""
-"\n"
-"No more free map label entry found... using first on instead ...\n"
-msgstr ""
-
-#: ../src/leveleditor.c:706
-msgid ""
-"\n"
-"Using new map label list entry...\n"
-msgstr ""
-
-#: ../src/leveleditor.c:713
-msgid ""
-"\n"
-"Overwriting existing map label list entry...\n"
-" Please enter new label for this map position: \n"
-"\n"
-msgstr ""
-
-#: ../src/leveleditor.c:1691
+#: ../src/leveleditor.c:1670
 msgid "Cancel item drop"
 msgstr "Avbryt slänga objekt"
 
-#: ../src/leveleditor.c:1711
-msgid "NO PREFIX"
-msgstr ""
-
-#: ../src/leveleditor.c:1722
-msgid "NO SUFFIX"
-msgstr ""
-
-#: ../src/leveleditor.c:1991
+#: ../src/leveleditor.c:1970
 msgid "FLOOR"
 msgstr "GOLV"
 
-#: ../src/leveleditor.c:1992
+#: ../src/leveleditor.c:1971
 msgid "WALLS"
 msgstr "VÄGGAR"
 
-#: ../src/leveleditor.c:1993
+#: ../src/leveleditor.c:1972
 msgid "MACHINERY"
 msgstr "MASKINERI"
 
-#: ../src/leveleditor.c:1994
+#: ../src/leveleditor.c:1973
 msgid "FURNITURE"
 msgstr "INREDNING"
 
-#: ../src/leveleditor.c:1995
+#: ../src/leveleditor.c:1974
 msgid "CONTAINERS"
 msgstr "BEHÅLLARE"
 
-#: ../src/leveleditor.c:1996
+#: ../src/leveleditor.c:1975
 msgid "NATURE"
 msgstr "NATUR"
 
-#: ../src/leveleditor.c:1997
+#: ../src/leveleditor.c:1976
 msgid "ALL"
 msgstr "ALLA"
 
-#: ../src/leveleditor.c:1998
+#: ../src/leveleditor.c:1977
 msgid "QUICK"
 msgstr "SNABBT"
 
-#: ../src/leveleditor.c:2623
-msgid "Insert/Remove column to the very west"
-msgstr ""
-
-#: ../src/leveleditor.c:2624
-msgid "Insert/Remove column just east of western Interface"
-msgstr ""
-
-#: ../src/leveleditor.c:2625
-msgid "Insert/Remove column just west of eastern Interface"
-msgstr ""
-
-#: ../src/leveleditor.c:2626
-msgid "Insert/Remove column to the very east"
-msgstr ""
-
-#: ../src/leveleditor.c:2628
-msgid "Insert/Remove line to the very north"
-msgstr ""
-
-#: ../src/leveleditor.c:2629
-msgid "Insert/Remove line just south of northern Interface"
-msgstr ""
-
-#: ../src/leveleditor.c:2630
-msgid "Insert/Remove line just north of southern Interface"
-msgstr ""
-
-#: ../src/leveleditor.c:2631
-msgid "Insert/Remove line to the very south"
-msgstr ""
-
-#: ../src/leveleditor.c:2633
-#, c-format
-msgid "Current level size in X: %d."
-msgstr ""
-
-#: ../src/leveleditor.c:2635
-#, c-format
-msgid "Current level size in Y: %d."
-msgstr ""
-
-#: ../src/leveleditor.c:2638 ../src/leveleditor.c:2924
-#: ../src/leveleditor.c:3796 ../src/menu.c:1476 ../src/menu.c:1608
-#: ../src/menu.c:1710 ../src/menu.c:1778 ../src/menu.c:1849 ../src/menu.c:1964
-#: ../src/menu.c:2005 ../src/menu.c:2266 ../src/menu.c:2378
-msgid "Back"
-msgstr "Bakåt"
-
-#: ../src/leveleditor.c:2884
-#, c-format
-msgid "Level Number: %d."
-msgstr ""
-
-#: ../src/leveleditor.c:2887
-#, c-format
-msgid "Level Name: %s"
-msgstr ""
-
-#: ../src/leveleditor.c:2889
-#, c-format
-msgid "Level Dimensions. X: %d. Y: %d."
-msgstr ""
-
-#: ../src/leveleditor.c:2893
-#, c-format
-msgid "Level Edge Interfaces:"
-msgstr ""
-
-#: ../src/leveleditor.c:2910
-#, fuzzy, c-format
-msgid "Background music file name: %s"
-msgstr "Bakgrundsmusik volym: %1.2f"
-
-#: ../src/leveleditor.c:2912
-#, c-format
-msgid "Level Comment: %s"
-msgstr ""
-
-#: ../src/leveleditor.c:2914
-#, fuzzy, c-format
-msgid "Light radius bonus: %d"
-msgstr "Skippa ljusradie: %s"
-
-#: ../src/leveleditor.c:2917
-#, fuzzy, c-format
-msgid "Minimal light value: %d"
-msgstr "Säljvärde: %ld\n"
-
-#: ../src/leveleditor.c:2920
-#, fuzzy, c-format
-msgid "Infinite running on this level: "
-msgstr "Återstående robotar på denna nivå: %d"
-
-#: ../src/leveleditor.c:2921 ../src/menu.c:1707 ../src/menu.c:1842
-#: ../src/menu.c:1844 ../src/menu.c:1846 ../src/menu.c:1848
-msgid "YES"
-msgstr "JA"
-
-#: ../src/leveleditor.c:2922 ../src/menu.c:1707 ../src/menu.c:1842
-#: ../src/menu.c:1844 ../src/menu.c:1846 ../src/menu.c:1848
-msgid "NO"
-msgstr "NEJ"
-
-#: ../src/leveleditor.c:2953
-msgid ""
-"\n"
-" Please enter new level name: \n"
-"\n"
-msgstr ""
-
-#: ../src/leveleditor.c:2960
-msgid ""
-"\n"
-" Please enter new music file name: \n"
-"\n"
-msgstr ""
-
-#: ../src/leveleditor.c:2967
-msgid ""
-"\n"
-" Please enter new level comment: \n"
-"\n"
-msgstr ""
-
-#: ../src/leveleditor.c:3091
-#, c-format
-msgid "Lvl: %d - %s"
-msgstr ""
-
-#: ../src/leveleditor.c:3093
-#, fuzzy
-msgid "Level Options"
-msgstr "Inställningar"
-
-#: ../src/leveleditor.c:3094
-#, fuzzy
-msgid "Run Level Validator"
-msgstr "Nivåeditor"
-
-#: ../src/leveleditor.c:3097
-msgid "Playtest Mapfile"
-msgstr ""
-
-#: ../src/leveleditor.c:3098
-#, fuzzy
-msgid "Save Mapfile"
-msgstr "Spara spel"
-
-#: ../src/leveleditor.c:3100
-#, fuzzy
-msgid "Add New Level"
-msgstr "Nästa nivå"
-
-#: ../src/leveleditor.c:3104
-msgid "Return to game"
-msgstr ""
-
-#: ../src/leveleditor.c:3105
-msgid "Saving disabled"
-msgstr ""
-
-#: ../src/leveleditor.c:3107
-msgid "Adding Level disabled"
-msgstr ""
-
-#: ../src/leveleditor.c:3109 ../src/menu.c:1535
-msgid "Quit to Main Menu"
-msgstr ""
-
-#: ../src/leveleditor.c:3110 ../src/menu.c:1407 ../src/menu.c:1538
-msgid "Exit FreedroidRPG"
-msgstr "Avsluta FreedroidRPG"
-
-#: ../src/leveleditor.c:3131
-msgid ""
-"\n"
-" Please enter new level number: \n"
-"\n"
-msgstr ""
-
-#: ../src/leveleditor.c:3164
-msgid "Your ship was saved..."
-msgstr ""
-
-#: ../src/leveleditor.c:3273
-msgid ""
-"\n"
-"The list of inconsistencies of the jump interfaces for this level:\n"
-"\n"
-msgstr ""
-
-#: ../src/leveleditor.c:3285
-msgid "BACK-FORTH-MISMATCH: North doesn't lead back here (yet)!\n"
-msgstr ""
-
-#: ../src/leveleditor.c:3294
-msgid "BACK-FORTH-MISMATCH: South doesn't lead back here (yet)!\n"
-msgstr ""
-
-#: ../src/leveleditor.c:3303
-msgid "BACK-FORTH-MISMATCH: East doesn't lead back here (yet)!\n"
-msgstr ""
-
-#: ../src/leveleditor.c:3312
-msgid "BACK-FORTH-MISMATCH: West doesn't lead back here (yet)!\n"
-msgstr ""
-
-#: ../src/leveleditor.c:3316
-msgid ""
-"\n"
-"NO OTHER BACK-FORTH-MISMATCH ERRORS other than those listed above\n"
-"\n"
-msgstr ""
-
-#: ../src/leveleditor.c:3329
-msgid ""
-"INTERFACE SIZE MISMATCH: North doesn't lead so same-sized interface "
-"level!!!\n"
-msgstr ""
-
-#: ../src/leveleditor.c:3339
-msgid ""
-"INTERFACE SIZE MISMATCH: South doesn't lead so same-sized interface "
-"level!!!\n"
-msgstr ""
-
-#: ../src/leveleditor.c:3349
-msgid ""
-"INTERFACE SIZE MISMATCH: East doesn't lead so same-sized interface level!!!\n"
-msgstr ""
-
-#: ../src/leveleditor.c:3359
-msgid ""
-"INTERFACE SIZE MISMATCH: West doesn't lead so same-sized interface level!!!\n"
-msgstr ""
-
-#: ../src/leveleditor.c:3373
-msgid ""
-"LEVEL DIMENSION MISMATCH: North doesn't lead so same-sized level (non-fatal, "
-"but no good comes from this)!\n"
-msgstr ""
-
-#: ../src/leveleditor.c:3382
-msgid ""
-"LEVEL DIMENSION MISMATCH: South doesn't lead so same-sized level (non-fatal, "
-"but no good comes from this)!\n"
-msgstr ""
-
-#: ../src/leveleditor.c:3391
-msgid ""
-"LEVEL DIMENSION MISMATCH: East doesn't lead so same-sized level (non-fatal, "
-"but no good comes from this)!\n"
-msgstr ""
-
-#: ../src/leveleditor.c:3400
-msgid ""
-"LEVEL DIMENSION MISMATCH: West doesn't lead so same-sized level (non-fatal, "
-"but no good comes from this)!\n"
-msgstr ""
-
-#: ../src/leveleditor.c:3408
-msgid ""
-"\n"
-"\n"
-"--- End of List --- Press Space to return to menu ---\n"
-msgstr ""
-
-#: ../src/leveleditor.c:3778
-#, c-format
-msgid "Jump threshold north: %d.  Up/Down"
-msgstr ""
-
-#: ../src/leveleditor.c:3780
-#, c-format
-msgid "Jump threshold south: %d.  Up/Down"
-msgstr ""
-
-#: ../src/leveleditor.c:3782
-#, c-format
-msgid "Jump threshold east: %d.  Up/Down"
-msgstr ""
-
-#: ../src/leveleditor.c:3784
-#, c-format
-msgid "Jump threshold west: %d.  Up/Down"
-msgstr ""
-
-#: ../src/leveleditor.c:3786
-#, c-format
-msgid "Jump target north: %d.  Up/Down"
-msgstr ""
-
-#: ../src/leveleditor.c:3788
-#, c-format
-msgid "Jump target south: %d.  Up/Down"
-msgstr ""
-
-#: ../src/leveleditor.c:3790
-#, c-format
-msgid "Jump target east: %d.  Up/Down"
-msgstr ""
-
-#: ../src/leveleditor.c:3792
-#, c-format
-msgid "Jump target west: %d.  Up/Down"
-msgstr ""
-
-#: ../src/leveleditor.c:3794
-msgid "Export this level to other target levels"
-msgstr ""
-
-#: ../src/leveleditor.c:3795
-msgid "Report interface inconsistencies"
-msgstr ""
-
-#: ../src/leveleditor.c:4122
+#: ../src/leveleditor.c:3849
 #, c-format
 msgid ""
 "\n"
@@ -2503,21 +1854,7 @@ msgstr ""
 " Kartbladsinformation: \n"
 " blad_namn=\"%s\"."
 
-#: ../src/leveleditor.c:4347
-msgid "List of connection for this wp:\n"
-msgstr ""
-
-#: ../src/leveleditor.c:4369
-#, c-format
-msgid "To: X=%d Y=%d    "
-msgstr ""
-
-#: ../src/leveleditor.c:4602
-#, c-format
-msgid "Offset x %hd y %hd\n"
-msgstr ""
-
-#: ../src/leveleditor.c:4699
+#: ../src/leveleditor.c:4392
 msgid ""
 "Go level north\n"
 "\n"
@@ -2529,7 +1866,7 @@ msgstr ""
 "Använde denna knapp för att förflytta dig en kartbit norrut, dvs den level "
 "som sitter fast med denna levels norra kant."
 
-#: ../src/leveleditor.c:4704
+#: ../src/leveleditor.c:4397
 msgid ""
 "Go level south\n"
 "\n"
@@ -2541,7 +1878,7 @@ msgstr ""
 "Använde denna knapp för att förflytta dig en kartbit söderut, dvs den level "
 "som sitter fast med denna levels södra kant."
 
-#: ../src/leveleditor.c:4709
+#: ../src/leveleditor.c:4402
 msgid ""
 "Go level east\n"
 "\n"
@@ -2553,7 +1890,7 @@ msgstr ""
 "Använde denna knapp för att förflytta dig en kartbit österut, dvs den level "
 "som sitter fast med denna levels östra kant."
 
-#: ../src/leveleditor.c:4714
+#: ../src/leveleditor.c:4407
 msgid ""
 "Go level west\n"
 "\n"
@@ -2565,7 +1902,7 @@ msgstr ""
 "Använde denna knapp för att förflytta dig en kartbit västerut, dvs den level "
 "som sitter fast med denna levels västra kant."
 
-#: ../src/leveleditor.c:4719
+#: ../src/leveleditor.c:4412
 msgid ""
 "Export this level\n"
 "\n"
@@ -2581,16 +1918,7 @@ msgstr ""
 "knapp kopierar kanterna av denna kartbiten till de som ligger brevid så att "
 "hela kartan återigen sitter ihop."
 
-#: ../src/leveleditor.c:4727
-msgid ""
-"Save Impossible!\n"
-"\n"
-"Playing on a map leaves the world in an unclean state not suitable for "
-"saving. Enter the editor directly from the main menu to be able to save any "
-"changes to the map file."
-msgstr ""
-
-#: ../src/leveleditor.c:4729
+#: ../src/leveleditor.c:4417
 #, fuzzy
 msgid ""
 "Save Map\n"
@@ -2603,7 +1931,7 @@ msgstr ""
 "Denna knapp kommer att spara din version över din nuvarande kartfil '../map/"
 "Asteroid.maps'."
 
-#: ../src/leveleditor.c:4735
+#: ../src/leveleditor.c:4422
 msgid ""
 "Toggle waypoints\n"
 "\n"
@@ -2619,7 +1947,7 @@ msgstr ""
 "\n"
 "Du kan även använda W tangenten för denna funktion."
 
-#: ../src/leveleditor.c:4742
+#: ../src/leveleditor.c:4429
 msgid ""
 "Make waypoint connection\n"
 "\n"
@@ -2629,7 +1957,7 @@ msgid ""
 "You can also use the C key for this."
 msgstr ""
 
-#: ../src/leveleditor.c:4744
+#: ../src/leveleditor.c:4431
 msgid ""
 "Complete waypoint connection\n"
 "\n"
@@ -2639,7 +1967,7 @@ msgid ""
 "You can also use the C key for this."
 msgstr ""
 
-#: ../src/leveleditor.c:4750
+#: ../src/leveleditor.c:4437
 msgid ""
 "Delete selected obstacle\n"
 "\n"
@@ -2648,7 +1976,7 @@ msgid ""
 "You can also use the X key for this."
 msgstr ""
 
-#: ../src/leveleditor.c:4755
+#: ../src/leveleditor.c:4442
 msgid ""
 "Next obstacle on currently selected tile\n"
 "\n"
@@ -2657,7 +1985,7 @@ msgid ""
 "You can also use the N key for this."
 msgstr ""
 
-#: ../src/leveleditor.c:4760
+#: ../src/leveleditor.c:4447
 msgid ""
 "Beautify grass button\n"
 "\n"
@@ -2668,7 +1996,7 @@ msgid ""
 "You can also use Ctrl-B for this."
 msgstr ""
 
-#: ../src/leveleditor.c:4766
+#: ../src/leveleditor.c:4453
 msgid ""
 "Zoom in/out\n"
 "\n"
@@ -2677,7 +2005,7 @@ msgid ""
 "You can also use the hotkey 'O' for this."
 msgstr ""
 
-#: ../src/leveleditor.c:4771
+#: ../src/leveleditor.c:4458
 msgid ""
 "Fill\n"
 "\n"
@@ -2686,7 +2014,7 @@ msgid ""
 "until a change of map tile is encountered."
 msgstr ""
 
-#: ../src/leveleditor.c:4776
+#: ../src/leveleditor.c:4463
 msgid ""
 "New obstacle label\n"
 "\n"
@@ -2695,14 +2023,14 @@ msgid ""
 " Note that you can also use the hotkey 'h' for this."
 msgstr ""
 
-#: ../src/leveleditor.c:4781
+#: ../src/leveleditor.c:4468
 msgid ""
 "New obstacle description\n"
 "\n"
 "edits the description seen when the item is selected"
 msgstr ""
 
-#: ../src/leveleditor.c:4786
+#: ../src/leveleditor.c:4473
 msgid ""
 "New map label\n"
 "\n"
@@ -2711,7 +2039,7 @@ msgid ""
 "characters or also to define locations for events and triggers."
 msgstr ""
 
-#: ../src/leveleditor.c:4791
+#: ../src/leveleditor.c:4478
 msgid ""
 "Add item\n"
 "\n"
@@ -2719,7 +2047,7 @@ msgid ""
 "hotkey 'G' for this."
 msgstr ""
 
-#: ../src/leveleditor.c:4796
+#: ../src/leveleditor.c:4483
 msgid ""
 "Menu\n"
 "\n"
@@ -2728,7 +2056,7 @@ msgid ""
 "menu."
 msgstr ""
 
-#: ../src/leveleditor.c:4801
+#: ../src/leveleditor.c:4488
 msgid ""
 "Level resize\n"
 "\n"
@@ -2737,30 +2065,21 @@ msgid ""
 "insert the new space where you would best like it to be."
 msgstr ""
 
-#: ../src/leveleditor.c:4806
+#: ../src/leveleditor.c:4493
 msgid ""
 "Level editor guide\n"
 "\n"
 "Use this button to enter the level editor keymap display."
 msgstr ""
 
-#: ../src/leveleditor.c:4813
+#: ../src/leveleditor.c:4498
 msgid ""
 "Back to game\n"
 "\n"
-"Changes made to the world will be permanent for current Hero. To avoid, load "
-"a previous savegame."
+"Quits the level editor and takes you into a FredroidRPG game."
 msgstr ""
 
-#: ../src/leveleditor.c:4815
-msgid ""
-"Test Map\n"
-"\n"
-"This will save your map and reload it after you finish testing, avoiding "
-"saving an unclean world state."
-msgstr ""
-
-#: ../src/leveleditor.c:4821
+#: ../src/leveleditor.c:4503
 msgid ""
 "Underground lighting\n"
 "\n"
@@ -2770,7 +2089,7 @@ msgid ""
 "There isn't any key to toggle this on the keyboard."
 msgstr ""
 
-#: ../src/leveleditor.c:4827
+#: ../src/leveleditor.c:4509
 msgid ""
 "Toggle display enemies\n"
 "\n"
@@ -2778,7 +2097,7 @@ msgid ""
 "enemies hidden in level editor."
 msgstr ""
 
-#: ../src/leveleditor.c:4833
+#: ../src/leveleditor.c:4515
 msgid ""
 "Toggle display obstacles\n"
 "\n"
@@ -2786,7 +2105,7 @@ msgid ""
 "obstacles hidden in level editor."
 msgstr ""
 
-#: ../src/leveleditor.c:4839
+#: ../src/leveleditor.c:4521
 #, fuzzy
 msgid ""
 "Undo\n"
@@ -2797,14 +2116,14 @@ msgstr ""
 "\n"
 "Använd denna knapp för att ångra din senaste handling."
 
-#: ../src/leveleditor.c:4845
+#: ../src/leveleditor.c:4527
 msgid ""
 "Redo\n"
 "\n"
 "Use this button to redo an action."
 msgstr ""
 
-#: ../src/leveleditor.c:4851
+#: ../src/leveleditor.c:4533
 msgid ""
 "Toggle display Tux\n"
 "\n"
@@ -2812,184 +2131,139 @@ msgid ""
 "hidden in level editor."
 msgstr ""
 
-#: ../src/leveleditor.c:4857
+#: ../src/leveleditor.c:4539
 msgid ""
 "Toggle display tooltips\n"
 "\n"
 "Use this button to toggle these annoying help windows on and off."
 msgstr ""
 
-#: ../src/leveleditor.c:4863
+#: ../src/leveleditor.c:4545
 msgid ""
 "Toggle display colision rectangles\n"
 "\n"
 "Use this button to toggle the visible collision rectangles on and off."
 msgstr ""
 
-#: ../src/leveleditor.c:4870
+#: ../src/leveleditor.c:4552
 msgid "Change grid mode ( placement / full / off )"
 msgstr ""
 
-#: ../src/leveleditor.c:4956
-msgid ""
-"\n"
-"Please enter new description text for this obstacle: \n"
-"\n"
-msgstr ""
-
-#: ../src/leveleditor.c:5306
-msgid ""
-"\n"
-"M E S S A G E\n"
-"\n"
-"Your ship was saved to file 'freedroid.levels' in the map directory.\n"
-"\n"
-"If you have set up something cool and you wish to contribute it to "
-"FreedroidRPG, please contact the FreedroidRPG dev team."
-msgstr ""
-
-#: ../src/leveleditor.c:5309
-msgid ""
-"\n"
-"M E S S A G E\n"
-"\n"
-"E R R O R ! Your ship was not saved.\n"
-"\n"
-"Playing on a map leaves the world in an unclean state not suitable for "
-"saving. Enter the editor from the main menu to be able to save."
-msgstr ""
-
-#: ../src/leveleditor.c:5876
+#: ../src/leveleditor.c:5555
 #, c-format
 msgid " Source waypoint selected : NONE"
 msgstr " Vägpunkt till källan vald : INGEN"
 
-#: ../src/leveleditor.c:5880
+#: ../src/leveleditor.c:5559
 #, c-format
 msgid " Source waypoint selected : X=%d Y=%d. "
 msgstr " Vägpunkt till källan vald : X=%d Y=%d. "
 
-#: ../src/leveleditor.c:5919
-msgid ""
-"\n"
-" Please enter new statement for this tile: \n"
-"\n"
-msgstr ""
-
-#: ../src/leveleditor.c:5927
-msgid ""
-"\n"
-"No more free comment position.  Using first. "
-msgstr ""
-
-#: ../src/main.c:413
+#: ../src/main.c:396
 msgid "Overheating!"
 msgstr "Överhettas!"
 
-#: ../src/main.c:417
-msgid "Automatically shutting down due to near lethal overheat"
-msgstr ""
-
-#: ../src/main.c:439
+#: ../src/main.c:413
 msgid "Weapon reloaded"
 msgstr "Vapen omladdat"
 
-#: ../src/map.c:3027
+#: ../src/map.c:3021
 msgid "123 Acolyte"
 msgstr ""
 
-#: ../src/map.c:3028
+#: ../src/map.c:3022
 msgid "139 Templar"
 msgstr ""
 
-#: ../src/map.c:3029
+#: ../src/map.c:3023
 msgid "247 Banshee"
 msgstr ""
 
-#: ../src/map.c:3030
+#: ../src/map.c:3024
 #, fuzzy
 msgid "249 Chicago"
 msgstr "249 Chicago"
 
-#: ../src/map.c:3031
+#: ../src/map.c:3025
 msgid "296 Sawmill"
 msgstr ""
 
-#: ../src/map.c:3032
+#: ../src/map.c:3026
 #, fuzzy
 msgid "302 Nemesis"
 msgstr "302 Nemesis"
 
-#: ../src/map.c:3033
+#: ../src/map.c:3027
 msgid "329 Sparkie"
 msgstr ""
 
-#: ../src/map.c:3034
-msgid "420 Surgeon"
+#: ../src/map.c:3028
+msgid "420 NaN"
 msgstr ""
 
-#: ../src/map.c:3035
+#: ../src/map.c:3029
 #, fuzzy
 msgid "476 Coward"
 msgstr "476 Fegis"
 
-#: ../src/map.c:3036
+#: ../src/map.c:3030
 msgid "493 Spinster"
 msgstr ""
 
-#: ../src/map.c:3037
+#: ../src/map.c:3031
 msgid "516 Ghoul"
 msgstr ""
 
-#: ../src/map.c:3038
+#: ../src/map.c:3032
 msgid "543 Forest Harvester"
 msgstr ""
 
-#: ../src/map.c:3039
+#: ../src/map.c:3033
 msgid "571 Apollo"
 msgstr ""
 
-#: ../src/map.c:3040
-msgid "598 Minister"
+#: ../src/map.c:3034
+msgid "598 NaN"
 msgstr ""
 
-#: ../src/map.c:3041
-msgid "615 Firedevil"
+#: ../src/map.c:3035
+msgid "615 NaN"
 msgstr ""
 
-#: ../src/map.c:3042
-msgid "629 Spitfire"
+#: ../src/map.c:3036
+msgid "629 NaN"
 msgstr ""
 
-#: ../src/map.c:3043
-msgid "711 Grillmeister"
+#: ../src/map.c:3037
+#, fuzzy
+msgid "711 If"
+msgstr "711 Om"
+
+#: ../src/map.c:3038
+msgid "742 NaN"
 msgstr ""
 
-#: ../src/map.c:3044
-msgid "742 Zeus"
-msgstr ""
-
-#: ../src/map.c:3045
+#: ../src/map.c:3039
 msgid "751 Soviet"
 msgstr ""
 
-#: ../src/map.c:3046
-msgid "821 Ufo"
+#: ../src/map.c:3040
+msgid "821 NaN"
 msgstr ""
 
-#: ../src/map.c:3047
-msgid "834 Wisp"
+#: ../src/map.c:3041
+msgid "834 NaN"
 msgstr ""
 
-#: ../src/map.c:3048
-msgid "883 Dalex"
+#: ../src/map.c:3042
+msgid "883 NaN"
 msgstr ""
 
-#: ../src/map.c:3049
-msgid "999 Cerebrum"
+#: ../src/map.c:3043
+msgid "999 NaN"
 msgstr ""
 
-#: ../src/map.c:3050
+#: ../src/map.c:3044
 msgid "No Description For This One"
 msgstr "Ingen beskrivning för den här"
 
@@ -3020,35 +2294,39 @@ msgstr " NEJ "
 msgid "OpenGL output active: "
 msgstr "OpenGL utdata aktiv: "
 
-#: ../src/menu.c:253 ../src/menu.c:2263
+#: ../src/menu.c:253 ../src/menu.c:2221
 msgid "[down]"
 msgstr ""
 
-#: ../src/menu.c:254 ../src/menu.c:2252
+#: ../src/menu.c:254 ../src/menu.c:2209
 msgid "[up]"
 msgstr ""
 
-#: ../src/menu.c:1402
+#: ../src/menu.c:1393
 msgid "Play"
 msgstr "Spela"
 
-#: ../src/menu.c:1403
+#: ../src/menu.c:1394 ../src/menu.c:1521
 msgid "Level Editor"
 msgstr "Nivåeditor"
 
-#: ../src/menu.c:1404 ../src/menu.c:1531
+#: ../src/menu.c:1395 ../src/menu.c:1520
 msgid "Options"
 msgstr "Inställningar"
 
-#: ../src/menu.c:1405
+#: ../src/menu.c:1396
 msgid "Credits"
 msgstr "Tack till"
 
-#: ../src/menu.c:1406
+#: ../src/menu.c:1397
 msgid "Contribute"
 msgstr "Skicka in"
 
-#: ../src/menu.c:1437
+#: ../src/menu.c:1398
+msgid "Exit FreedroidRPG"
+msgstr "Avsluta FreedroidRPG"
+
+#: ../src/menu.c:1428
 msgid ""
 "\n"
 "You cannot change the language\n"
@@ -3060,7 +2338,7 @@ msgid ""
 "    Thank you\n"
 msgstr ""
 
-#: ../src/menu.c:1446
+#: ../src/menu.c:1437
 msgid ""
 "\n"
 "The game has NOT been\n"
@@ -3070,61 +2348,57 @@ msgid ""
 "Thanks\n"
 msgstr ""
 
-#: ../src/menu.c:1470
+#: ../src/menu.c:1461
 msgid "Graphics Options"
 msgstr "Grafiska inställningar"
 
-#: ../src/menu.c:1471
+#: ../src/menu.c:1462
 msgid "Sound Options"
 msgstr "Ljudinställningar"
 
-#: ../src/menu.c:1472
+#: ../src/menu.c:1463
 msgid "Language"
 msgstr "Språk"
 
-#: ../src/menu.c:1473
+#: ../src/menu.c:1464
 msgid "Droid Talk"
 msgstr "Droidprat"
 
-#: ../src/menu.c:1474
+#: ../src/menu.c:1465
 msgid "On-Screen Displays"
 msgstr "Skärmdisplay"
 
-#: ../src/menu.c:1475
+#: ../src/menu.c:1466
 msgid "Performance Tweaks"
 msgstr "Prestanda förändringar"
 
-#: ../src/menu.c:1527
-#, fuzzy
-msgid "Resume Play"
+#: ../src/menu.c:1467 ../src/menu.c:1580 ../src/menu.c:1675 ../src/menu.c:1743
+#: ../src/menu.c:1814 ../src/menu.c:1929 ../src/menu.c:1970 ../src/menu.c:2224
+#: ../src/menu.c:2338 ../src/menu.c:2417
+msgid "Back"
+msgstr "Bakåt"
+
+#: ../src/menu.c:1518
+msgid "Save Game"
+msgstr "Spara spel"
+
+#: ../src/menu.c:1519
+msgid "Resume Game"
 msgstr "Återuppta spel"
 
-#: ../src/menu.c:1529
-#, fuzzy
-msgid "Resume Playtest"
-msgstr "Återuppta spel"
-
-#: ../src/menu.c:1530
-#, fuzzy
-msgid "Save Hero"
-msgstr "Ny hjälte"
-
-#: ../src/menu.c:1532
-#, fuzzy
-msgid "Load Latest"
+#: ../src/menu.c:1522
+msgid "Load Game"
 msgstr "Ladda spel"
 
-#: ../src/menu.c:1533
-#, fuzzy
-msgid "Load Backup"
-msgstr "Ladda spel"
+#: ../src/menu.c:1523
+msgid "Main Menu"
+msgstr ""
 
-#: ../src/menu.c:1537
-#, fuzzy
-msgid "Return to Level Editor"
-msgstr "Nivåeditor"
+#: ../src/menu.c:1524
+msgid "Quit"
+msgstr "Avsluta"
 
-#: ../src/menu.c:1659
+#: ../src/menu.c:1624
 msgid ""
 "\n"
 "This option will be taken into account after you restart the game.\n"
@@ -3132,137 +2406,147 @@ msgid ""
 "   Thank you.\n"
 msgstr ""
 
-#: ../src/menu.c:1703
+#: ../src/menu.c:1668
 #, c-format
 msgid "Gamma Correction: %1.2f"
 msgstr "Gamma rättelse: %1.2f"
 
-#: ../src/menu.c:1704
+#: ../src/menu.c:1669
 #, c-format
 msgid "Fullscreen Mode: %s"
 msgstr "Fullskärmsläge: %s"
 
-#: ../src/menu.c:1704 ../src/menu.c:1959 ../src/menu.c:1960 ../src/menu.c:1961
-#: ../src/menu.c:2000 ../src/menu.c:2001 ../src/menu.c:2002 ../src/menu.c:2003
-#: ../src/menu.c:2004
+#: ../src/menu.c:1669 ../src/menu.c:1924 ../src/menu.c:1925 ../src/menu.c:1926
+#: ../src/menu.c:1965 ../src/menu.c:1966 ../src/menu.c:1967 ../src/menu.c:1968
+#: ../src/menu.c:1969
 msgid "ON"
 msgstr "PÅ"
 
-#: ../src/menu.c:1704 ../src/menu.c:1959 ../src/menu.c:1960 ../src/menu.c:1961
-#: ../src/menu.c:2000 ../src/menu.c:2001 ../src/menu.c:2002 ../src/menu.c:2003
-#: ../src/menu.c:2004
+#: ../src/menu.c:1669 ../src/menu.c:1924 ../src/menu.c:1925 ../src/menu.c:1926
+#: ../src/menu.c:1965 ../src/menu.c:1966 ../src/menu.c:1967 ../src/menu.c:1968
+#: ../src/menu.c:1969
 msgid "OFF"
 msgstr "AV"
 
-#: ../src/menu.c:1705
+#: ../src/menu.c:1670
 #, c-format
 msgid "Change Screen Resolution"
 msgstr "Ändra skärmupplösning"
 
-#: ../src/menu.c:1706
+#: ../src/menu.c:1671
 #, c-format
 msgid "Show Blood: %s"
 msgstr "Visa blod: %s"
 
-#: ../src/menu.c:1708
+#: ../src/menu.c:1672 ../src/menu.c:1807 ../src/menu.c:1809 ../src/menu.c:1811
+#: ../src/menu.c:1813
+msgid "YES"
+msgstr "JA"
+
+#: ../src/menu.c:1672 ../src/menu.c:1807 ../src/menu.c:1809 ../src/menu.c:1811
+#: ../src/menu.c:1813
+msgid "NO"
+msgstr "NEJ"
+
+#: ../src/menu.c:1673
 #, c-format
 msgid "Automap Scale: %2.1f"
 msgstr "Automatiskkarta skala: %2.1f"
 
-#: ../src/menu.c:1776
+#: ../src/menu.c:1741
 #, c-format
 msgid "Background Music Volume: %1.2f"
 msgstr "Bakgrundsmusik volym: %1.2f"
 
-#: ../src/menu.c:1777
+#: ../src/menu.c:1742
 #, c-format
 msgid "Sound Effects Volume: %1.2f"
 msgstr "Ljudeffekts volym: %1.2f"
 
-#: ../src/menu.c:1841
+#: ../src/menu.c:1806
 #, c-format
 msgid "Hog CPU for max. performance: %s"
 msgstr "CPU inställning för bästa prestanda: %s"
 
-#: ../src/menu.c:1843
+#: ../src/menu.c:1808
 #, c-format
 msgid "Highlighting mode: %s"
 msgstr "Belysningsläge: %s"
 
-#: ../src/menu.c:1843
+#: ../src/menu.c:1808
 msgid "FULL"
 msgstr "MAX"
 
-#: ../src/menu.c:1843
+#: ../src/menu.c:1808
 msgid "REDUCED"
 msgstr "REDUCERAD"
 
-#: ../src/menu.c:1844
+#: ../src/menu.c:1809
 #, c-format
 msgid "Skip light radius: %s"
 msgstr "Skippa ljusradie: %s"
 
-#: ../src/menu.c:1845
+#: ../src/menu.c:1810
 #, c-format
 msgid "Skip shadow blitting: %s"
 msgstr "Skippa skuggblitt: %s"
 
-#: ../src/menu.c:1847
+#: ../src/menu.c:1812
 #, c-format
 msgid "Skip fadings: %s"
 msgstr "Skippa kantutjämning: %s"
 
-#: ../src/menu.c:1959
+#: ../src/menu.c:1924
 #, c-format
 msgid "Show Position: %s"
 msgstr "Visa position: %s"
 
-#: ../src/menu.c:1960
+#: ../src/menu.c:1925
 #, c-format
 msgid "Show Framerate: %s"
 msgstr "Visa FPS: %s"
 
-#: ../src/menu.c:1961
+#: ../src/menu.c:1926
 #, c-format
 msgid "Show Enemy Energy Bars: %s"
 msgstr "Visa motståndarenergi: %s"
 
-#: ../src/menu.c:1962
+#: ../src/menu.c:1927
 #, c-format
 msgid "Screen Messages at most: %d"
 msgstr "Skärmmedelanden som mest: %d"
 
-#: ../src/menu.c:1963
+#: ../src/menu.c:1928
 #, c-format
 msgid "Screen Message time: %3.1f"
 msgstr "Skärmmedelanden tid: %3.1f"
 
-#: ../src/menu.c:2000
+#: ../src/menu.c:1965
 #, c-format
 msgid "Enemy Hit Texts: %s"
 msgstr "Motståndarträff markeringar: %s"
 
-#: ../src/menu.c:2001
+#: ../src/menu.c:1966
 #, c-format
 msgid "Enemy Bumped Texts: %s"
 msgstr "Motståndarstöt texter: %s"
 
-#: ../src/menu.c:2002
+#: ../src/menu.c:1967
 #, c-format
 msgid "Enemy Aim Texts: %s"
 msgstr "Motståndarsikte texter: %s"
 
-#: ../src/menu.c:2003
+#: ../src/menu.c:1968
 #, c-format
 msgid "All in-game Speech: %s"
 msgstr "Allt-i spelet språk: %s"
 
-#: ../src/menu.c:2004
+#: ../src/menu.c:1969
 #, c-format
 msgid "Reprogram bots after takeover: %s"
 msgstr "Programmera om botar efter övermanning: %s"
 
-#: ../src/menu.c:2023
+#: ../src/menu.c:1988
 msgid ""
 "\n"
 "     Please enter a name\n"
@@ -3278,55 +2562,64 @@ msgstr ""
 "\n"
 "     > "
 
-#: ../src/menu.c:2297 ../src/menu.c:2320
+#: ../src/menu.c:2251 ../src/menu.c:2356 ../src/menu.c:2371
 msgid "BACK"
 msgstr "BAKÅT"
 
-#: ../src/menu.c:2300
-#, fuzzy
+#: ../src/menu.c:2254
 msgid ""
 "\n"
 "\n"
-"No saved games found!"
+"No saved games found!!  Loading Cancelled. "
 msgstr ""
 "\n"
 "\n"
 "Inga sparade spel funna!! Laddningen avbruten. "
 
-#: ../src/menu.c:2319
+#: ../src/menu.c:2355
 msgid "Sure!"
 msgstr "Visst!"
 
-#: ../src/menu.c:2322
+#: ../src/menu.c:2358
 #, c-format
 msgid "Really delete hero '%s'?"
 msgstr "Säker på att du ska ta bort hjälte '%s'?"
 
 #: ../src/menu.c:2375
+msgid ""
+"\n"
+"\n"
+"No saved games found!!  Deletion Cancelled. "
+msgstr ""
+"\n"
+"\n"
+"Inga sparfiler funna!! Borttagning avbruten. "
+
+#: ../src/menu.c:2414
 msgid "New Hero"
 msgstr "Ny hjälte"
 
-#: ../src/menu.c:2376
+#: ../src/menu.c:2415
 msgid "Load existing Hero"
 msgstr "Laddar existerande hjälte"
 
-#: ../src/menu.c:2377
+#: ../src/menu.c:2416
 msgid "Delete existing Hero"
 msgstr "Tar bort existerande hjälte"
 
-#: ../src/misc.c:784
+#: ../src/misc.c:798
 msgid "Pausing game..."
 msgstr "Pausar spel..."
 
-#: ../src/misc.c:798
+#: ../src/misc.c:807
 msgid "GAME PAUSED"
 msgstr "SPEL PAUSAT"
 
-#: ../src/misc.c:812
+#: ../src/misc.c:821
 msgid "Game resumed."
 msgstr "Spel återupptaget"
 
-#: ../src/misc.c:1367
+#: ../src/misc.c:1376
 #, c-format
 msgid "Arrived at %s."
 msgstr "Ankom vid %s."
@@ -3357,15 +2650,20 @@ msgid ""
 "Details:\n"
 msgstr ""
 
-#: ../src/mission.c:288
+#: ../src/mission.c:137
+#, c-format
+msgid "[day %d %02d:%02d] "
+msgstr ""
+
+#: ../src/mission.c:286
 msgid "No open quests yet."
 msgstr "Inga olösta uppdrag än."
 
-#: ../src/mission.c:291
+#: ../src/mission.c:289
 msgid "No completed quests yet."
 msgstr "Inga slutförda uppdrag än."
 
-#: ../src/mission.c:294
+#: ../src/mission.c:292
 msgid "No notes yet."
 msgstr "Inga noteringar än."
 
@@ -3389,44 +2687,19 @@ msgstr ""
 msgid "File Size: %2.3f MB"
 msgstr ""
 
-#: ../src/saveloadgame.c:259
+#: ../src/saveloadgame.c:261
 msgid "You are dead. Savegame not modified."
 msgstr ""
 
-#: ../src/saveloadgame.c:302
-#, c-format
-msgid ""
-"\n"
-"\n"
-"Error opening save game file for writing...\n"
-"\n"
-"Terminating...\n"
-"\n"
-msgstr ""
-
-#: ../src/saveloadgame.c:354
+#: ../src/saveloadgame.c:353
 msgid "Game saved."
 msgstr "Spel sparat."
 
-#: ../src/saveloadgame.c:434
-msgid ""
-"\n"
-"W A R N I N G !\n"
-"\n"
-"FreedroidRPG was unable to locate the saved game file you requested to "
-"load.\n"
-"This might mean that it really isn't there cause you tried to load a game "
-"without ever having saved the game before.  \n"
-"The other explanation of this error might be a severe error in "
-"FreedroidRPG.\n"
-"Nothing will be done about it."
-msgstr ""
-
-#: ../src/saveloadgame.c:435
+#: ../src/saveloadgame.c:427
 msgid "Failed to load old game."
 msgstr "Misslyckades med att ladda gammlt spel."
 
-#: ../src/saveloadgame.c:541
+#: ../src/saveloadgame.c:534
 msgid ""
 "Version or structsize mismatch! The savegame is not from the same version of "
 "freedroidRPG... possible breakage.\n"
@@ -3434,11 +2707,11 @@ msgstr ""
 "Version eller structsize fel! Det sparade spelet är inte från samma version "
 "av FreedroidRPG...möjlig sönderbrytning.\n"
 
-#: ../src/saveloadgame.c:578
+#: ../src/saveloadgame.c:575
 msgid "Updating Tux images (this may take a little while...)"
 msgstr "Uppdaterar Tux bilder (det här kan ta ett litet tag...)"
 
-#: ../src/saveloadgame.c:583
+#: ../src/saveloadgame.c:580
 msgid "Game loaded."
 msgstr "Spel laddat."
 
@@ -3457,7 +2730,7 @@ msgstr "ingen"
 #, c-format
 msgid ""
 "\n"
-"Armament : %s\n"
+"Armamant : %s\n"
 msgstr ""
 
 #: ../src/ship.c:96
@@ -3469,31 +2742,31 @@ msgstr ""
 "\n"
 "Noteringar: %s\n"
 
-#: ../src/ship.c:399
+#: ../src/ship.c:409
 msgid " (Unidentified)"
 msgstr " (Oidentifierad)"
 
-#: ../src/ship.c:449
+#: ../src/ship.c:459
 msgid "Weapon"
 msgstr "Vapen"
 
-#: ../src/ship.c:451
+#: ../src/ship.c:461
 msgid "Drive"
 msgstr "Genomför"
 
-#: ../src/ship.c:455
+#: ../src/ship.c:465
 msgid "Shield"
 msgstr "Sköld"
 
-#: ../src/ship.c:457
+#: ../src/ship.c:467
 msgid "Helm"
 msgstr "Hjälm"
 
-#: ../src/ship.c:458
+#: ../src/ship.c:468
 msgid "Miscellaneous"
 msgstr "Diverse"
 
-#: ../src/ship.c:461
+#: ../src/ship.c:471
 #, c-format
 msgid ""
 "Item: %s \n"
@@ -3502,125 +2775,125 @@ msgstr ""
 "Föremål: %s \n"
 "Typ: %s\n"
 
-#: ../src/ship.c:475
+#: ../src/ship.c:485
 msgid "Specials:"
 msgstr "Specialare:"
 
-#: ../src/ship.c:487
+#: ../src/ship.c:497
 msgid "Multiplicity: "
 msgstr "Multipla: "
 
-#: ../src/ship.c:494
+#: ../src/ship.c:504
 msgid "Duration: "
 msgstr "Varaktighet: "
 
-#: ../src/ship.c:500
+#: ../src/ship.c:510
 #, c-format
 msgid "Indestructible\n"
 msgstr "Oförstörbar\n"
 
-#: ../src/ship.c:505
+#: ../src/ship.c:515
 msgid "Attributes required: "
 msgstr "Egenskaper som behövs: "
 
-#: ../src/ship.c:511
+#: ../src/ship.c:521
 msgid "NONE\n"
 msgstr "INGA\n"
 
-#: ../src/ship.c:517
+#: ../src/ship.c:527
 #, c-format
 msgid "Str: %d "
 msgstr "Str: %d "
 
-#: ../src/ship.c:522
+#: ../src/ship.c:532
 #, c-format
 msgid "Dex: %d "
 msgstr "Dex: %d "
 
-#: ../src/ship.c:527
+#: ../src/ship.c:537
 #, c-format
 msgid "Mag: %d "
 msgstr "Mag: %d "
 
-#: ../src/ship.c:565
+#: ../src/ship.c:575
 #, c-format
 msgid "Base list price: %ld\n"
 msgstr "Baspris: %ld\n"
 
-#: ../src/ship.c:568
+#: ../src/ship.c:578
 #, c-format
 msgid "Sell value: %ld\n"
 msgstr "Säljvärde: %ld\n"
 
-#: ../src/ship.c:576
+#: ../src/ship.c:586
 #, c-format
 msgid "Repair cost: %ld\n"
 msgstr "Repareringskostnad: %ld\n"
 
-#: ../src/ship.c:581
+#: ../src/ship.c:591
 #, c-format
 msgid "Unsellable\n"
 msgstr "Osäljbar\n"
 
-#: ../src/ship.c:588
+#: ../src/ship.c:598
 #, fuzzy
 msgid "Identification cost: 100\n"
 msgstr "Identifikations kostnad: 100\n"
 
-#: ../src/ship.c:596
+#: ../src/ship.c:606
 #, c-format
 msgid "Damage: %d - %d\n"
 msgstr "Skada: %d - %d\n"
 
-#: ../src/ship.c:605
+#: ../src/ship.c:615
 #, c-format
 msgid "Recharge time: %3.2f\n"
 msgstr "Uppladdningstid: %3.2f\n"
 
-#: ../src/ship.c:612
+#: ../src/ship.c:622
 #, c-format
 msgid "Time to reload ammo clip: %3.2f\n"
 msgstr "Tid för att ladda om: %3.2f\n"
 
-#: ../src/ship.c:619
+#: ../src/ship.c:629
 #, c-format
 msgid "Defense bonus: %d\n"
 msgstr "Defensiv bonus: %d\n"
 
-#: ../src/ship.c:623
+#: ../src/ship.c:633
 #, c-format
 msgid "Notes: %s"
 msgstr "Noteringar: %s"
 
-#: ../src/ship.c:630
+#: ../src/ship.c:640
 msgid " This weapon requires standard plasma ammunition."
 msgstr " Detta vapen kräver standard plasma ammunition."
 
-#: ../src/ship.c:633
+#: ../src/ship.c:643
 msgid " This weapon requires standard laser crystal ammunition."
 msgstr " Detta vapen kräver standard laserkristall ammunition."
 
-#: ../src/ship.c:636
+#: ../src/ship.c:646
 msgid " This weapon requires standard exterminator ammunition spheres."
 msgstr " Detta vapen kräver standard utrotarsfär ammunition."
 
-#: ../src/ship.c:639
+#: ../src/ship.c:649
 msgid " This weapon requires .22 Long Rifle rounds."
 msgstr " Detta vapen kräver .22 Gevärs kulor."
 
-#: ../src/ship.c:642
+#: ../src/ship.c:652
 msgid " This weapon requires Shotgun shells."
 msgstr " Detta vapen kräver hagelgevärs ammunition."
 
-#: ../src/ship.c:645
+#: ../src/ship.c:655
 msgid " This weapon requires 9x19mm rounds."
 msgstr " Detta vapen kräver 9x19mm kulor."
 
-#: ../src/ship.c:648
+#: ../src/ship.c:658
 msgid " This weapon requires 7.62x39mm rounds."
 msgstr " Detta vapen kräver 7.62x39mm kulor."
 
-#: ../src/ship.c:651
+#: ../src/ship.c:661
 msgid " This weapon requires .50 (12.7x99mm) Browning Machine Gun rounds."
 msgstr " Detta vapen kräver .50 (12.7x99m) Browning Maskingevärskulor."
 
@@ -3679,280 +2952,213 @@ msgstr ""
 "\n"
 "    Du har inte råd att köpa detta föremål!"
 
-#: ../src/skills.c:798
+#: ../src/skills.c:794
 #, c-format
 msgid "Program revision: %c%d%c "
 msgstr ""
 
-#: ../src/skills.c:809
+#: ../src/skills.c:805
 #, c-format
 msgid "Heat produced: %c%d%c "
 msgstr ""
 
-#: ../src/skills.c:811
+#: ../src/skills.c:807
 #, c-format
 msgid "Cooling: %c%d%c "
 msgstr ""
 
-#: ../src/skills.c:824
+#: ../src/skills.c:820
 #, c-format
 msgid "Damage: %c%d%c "
 msgstr ""
 
-#: ../src/skills.c:826
+#: ../src/skills.c:822
 #, c-format
 msgid "Damage: %c%d-%d%c "
 msgstr ""
 
-#: ../src/skills.c:831
+#: ../src/skills.c:827
 #, c-format
 msgid "Healing: %c%d%c "
 msgstr ""
 
-#: ../src/skills.c:833
+#: ../src/skills.c:829
 #, c-format
 msgid "Healing: %c%d-%d%c "
 msgstr ""
 
-#: ../src/skills.c:843
+#: ../src/skills.c:839
 #, c-format
 msgid "Paralyze"
 msgstr ""
 
-#: ../src/skills.c:845
+#: ../src/skills.c:841
 #, c-format
 msgid "Slow down"
 msgstr ""
 
-#: ../src/skills.c:847
+#: ../src/skills.c:843
 #, fuzzy, c-format
 msgid "Invisible"
 msgstr "Osynlig"
 
-#: ../src/skills.c:849
+#: ../src/skills.c:845
 #, fuzzy, c-format
 msgid "Poison"
 msgstr "Gift"
 
-#: ../src/skills.c:853
+#: ../src/skills.c:847
 #, c-format
-msgid "Takeover charges: %c%d%c "
+msgid "Takeover"
 msgstr ""
 
-#: ../src/skills.c:856
+#: ../src/skills.c:849
 #, c-format
 msgid "Escape"
 msgstr ""
 
-#: ../src/skills.c:858
-#, c-format
-msgid "Passive"
-msgstr ""
-
-#: ../src/skills.c:878
+#: ../src/skills.c:869
 #, c-format
 msgid " for %c%.1f%c seconds"
 msgstr ""
 
-#: ../src/takeover.c:315
+#: ../src/takeover.c:310
 #, c-format
 msgid "For taking control of your enemy, you receive %d experience."
 msgstr "För att ha tagit kontroll över din motståndare, får du %d erfarenhet."
 
-#: ../src/takeover.c:355
+#: ../src/takeover.c:350
 msgid "You cheat"
 msgstr "Du fuskar"
 
-#: ../src/takeover.c:357
+#: ../src/takeover.c:352
 msgid "Complete"
 msgstr "Färdig"
 
-#: ../src/takeover.c:367
+#: ../src/takeover.c:362
 msgid "Rejected"
 msgstr "Tillbakavisade"
 
-#: ../src/takeover.c:375
+#: ../src/takeover.c:370
 msgid "Deadlock"
 msgstr "Dödsläge"
 
-#: ../src/takeover.c:472
+#: ../src/takeover.c:463
 #, c-format
 msgid "Color-%d"
 msgstr "Färg-%d"
 
-#: ../src/takeover.c:511
+#: ../src/takeover.c:502
 #, c-format
 msgid "Subliminal"
 msgstr "Undermedveten"
 
-#: ../src/takeover.c:565
+#: ../src/takeover.c:556
 #, c-format
 msgid "Finish-%d"
 msgstr "Mål-%d"
 
-#: ../src/takeover.c:1816
+#: ../src/takeover.c:1807
 #, c-format
 msgid "Score"
 msgstr "Poäng"
 
-#: ../src/text.c:186
+#: ../src/text.c:187
 msgid "Unhandled exception fault.  Press ok to reboot."
 msgstr "Ohanterbart undantagsfel. Tryck OK för att starta om."
 
-#: ../src/text.c:189
+#: ../src/text.c:190
 msgid "System fault. Please buy a newer version."
 msgstr "Systemfel. Var god, köp en nyare version."
 
-#: ../src/text.c:192
+#: ../src/text.c:193
 msgid "System error. Might be a virus."
 msgstr "Systemfel. Kan vara ett virus."
 
-#: ../src/text.c:195
+#: ../src/text.c:196
 msgid "System error. Please buy an upgrade from MS."
 msgstr "Systemfel. Var god, köp en uppgradering från MS."
 
-#: ../src/text.c:198
+#: ../src/text.c:199
 msgid "System error. Press any key to reboot."
 msgstr "Systemfel. Klicka på valfri tanget för omstart."
 
-#: ../src/text.c:202
+#: ../src/text.c:203
 msgid "Aargh, I got hit.  Ugh, I got a bad feeling..."
 msgstr "Aargh, jag blev träffad. Urk, jag fick en dålig känsla..."
 
-#: ../src/text.c:218
+#: ../src/text.c:219
 msgid "Ah, good, that we have an open collision avoiding standard, isn't it."
 msgstr "Åh, bra, att vi har en kollision som undviker standarden, eller hur?"
 
-#: ../src/text.c:225
+#: ../src/text.c:226
 msgid "Hey, I'm from MS! Walk outa my way!"
 msgstr "Hey, Jag är från MS! Försvinn ur min väg!"
 
-#: ../src/text.c:228
+#: ../src/text.c:229
 msgid "Hey, I know the big MS boss! You better go."
 msgstr "Hey, jag känner den mäktiga MS bossen! Du borde sticka."
 
-#: ../src/vars.h:128
+#: ../src/vars.h:130
 msgid "novice"
 msgstr "novis"
 
-#: ../src/vars.h:129
-#, fuzzy
-msgid "apprentice"
-msgstr "Erfarenhet"
-
-#: ../src/vars.h:130
-msgid "professional"
-msgstr ""
-
 #: ../src/vars.h:131
-#, fuzzy
-msgid "master"
-msgstr "mästarlik"
+msgid "average"
+msgstr "medelvärde"
 
 #: ../src/vars.h:132
-msgid "god"
-msgstr ""
+msgid "experienced"
+msgstr "erfaren"
 
-#: ../src/view.c:260
-#, c-format
-msgid "GPS: X=%3.1f Y=%3.1f Lev=%d"
-msgstr "GPS: X=%3.1f Y=%3.1f Lev=%d"
+#: ../src/vars.h:133
+msgid "skilled"
+msgstr "skicklig"
 
-#: ../src/view.c:277
+#: ../src/vars.h:134
+msgid "adept"
+msgstr "adept"
+
+#: ../src/vars.h:135
+#, fuzzy
+msgid "masterly"
+msgstr "mästarlik"
+
+#: ../src/vars.h:136
+msgid "inhuman"
+msgstr "omänsklig"
+
+#: ../src/vars.h:137
+msgid "god-like"
+msgstr "gudalik"
+
+#: ../src/vars.h:138
+msgid "super-god-like"
+msgstr "super gudalik"
+
+#: ../src/vars.h:139
+msgid "wicked sick"
+msgstr "sjukt svårt"
+
+#: ../src/view.c:264
 #, c-format
 msgid "FPS: %d"
 msgstr "FPS: %d"
 
-#: ../src/view.c:298
-#, fuzzy, c-format
-msgid "Time to hold out still: %2d:%2d"
+#: ../src/view.c:272
+#, c-format
+msgid "GPS: X=%3.1f Y=%3.1f Lev=%d"
+msgstr "GPS: X=%3.1f Y=%3.1f Lev=%d"
+
+#: ../src/view.c:293
+#, c-format
+msgid "Time to hold out still: %2d:%2d "
 msgstr "Kvarstående tid att hålla ut: %2d:%2d "
 
-#: ../src/view.c:316
-#, fuzzy, c-format
-msgid "Bots remaining on level: %d\n"
+#: ../src/view.c:311
+#, c-format
+msgid "Bots remaining on level: %d"
 msgstr "Återstående robotar på denna nivå: %d"
-
-#, fuzzy
-#~ msgid "711 If"
-#~ msgstr "711 Om"
-
-#, fuzzy
-#~ msgid "Quit Game"
-#~ msgstr "Avsluta"
-
-#~ msgid "Wall with a window"
-#~ msgstr "Vägg med ett fönster"
-
-#~ msgid "No way to pass through. Find another path."
-#~ msgstr "Inte en chans att du kommer förbi. Hitta en annan väg."
-
-#~ msgid "This is a wooden fence. Find another path."
-#~ msgstr "Detta är ett stängsel gjort av trä. Hitta en annan väg."
-
-#~ msgid "You can't break it. Find another way."
-#~ msgstr "Du kan göra sönder det. Hitta en annan väg."
-
-#~ msgid "No, it definitely doesn't look like a droid"
-#~ msgstr "Nej, det liknar defenitivt inte en droid"
-
-#~ msgid "Colony wall"
-#~ msgstr "Kolonivägg"
-
-#~ msgid "This is just a pink wall."
-#~ msgstr "Detta är bara en rosa vägg."
-
-#~ msgid ""
-#~ "This rock is here now and forever, and it is not going anywhere. Go "
-#~ "somewhere else."
-#~ msgstr ""
-#~ "Denna sten är här och förevigt, och den går ingenstans. Gå någon annan "
-#~ "stans."
-
-#~ msgid "Bunk beds"
-#~ msgstr "Våningssängar"
-
-#~ msgid "A sign."
-#~ msgstr "Ett tecken."
-
-#~ msgid "Crystal pillar"
-#~ msgstr "Kristallpelare"
-
-#~ msgid "A pillar made out of crystal."
-#~ msgstr "En pelare gjord av kristall."
-
-#~ msgid ""
-#~ "\n"
-#~ "\n"
-#~ "No saved games found!!  Deletion Cancelled. "
-#~ msgstr ""
-#~ "\n"
-#~ "\n"
-#~ "Inga sparfiler funna!! Borttagning avbruten. "
-
-#~ msgid "average"
-#~ msgstr "medelvärde"
-
-#~ msgid "experienced"
-#~ msgstr "erfaren"
-
-#~ msgid "skilled"
-#~ msgstr "skicklig"
-
-#~ msgid "adept"
-#~ msgstr "adept"
-
-#~ msgid "inhuman"
-#~ msgstr "omänsklig"
-
-#~ msgid "god-like"
-#~ msgstr "gudalik"
-
-#~ msgid "super-god-like"
-#~ msgstr "super gudalik"
-
-#~ msgid "wicked sick"
-#~ msgstr "sjukt svårt"
 
 #~ msgid "You see the floor.  It should be perfectly safe to walk on it."
 #~ msgstr "Du ser golvet. Det borde vara säkert att gå på det."
