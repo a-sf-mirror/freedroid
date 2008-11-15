@@ -1567,7 +1567,6 @@ Usage: freedroid [-v|--version] \n\
                  [-s|--sound] [-q|--nosound] \n\
                  [-o|--open_gl] [-n|--no_open_gl]\n\
                  [-f|--fullscreen] [-w|--window]\n\
-                 [-m|--mapcheck] \n\
                  [-d|--debug=LEVEL]\n\
 		 [-r|--resolution=CODE]\n\
 \n\
@@ -1598,7 +1597,6 @@ ParseCommandLine (int argc, char *const argv[])
 	{"debug",       1, 0,  'd'},
 	{"window",      0, 0,  'w'},
 	{"fullscreen",  0, 0,  'f'},
-	{"mapcheck",    0, 0,  'm'},
 	{"resolution",  1, 0,  'r'},	
 	{ 0,            0, 0,    0}
     };
@@ -1607,7 +1605,7 @@ ParseCommandLine (int argc, char *const argv[])
 
     while ( 1 )
     {
-	c = getopt_long ( argc , argv , "vonqst:h?d::r:wfm" , long_options , NULL );
+	c = getopt_long ( argc , argv , "vonqst:h?d::r:wf" , long_options , NULL );
 	if ( c == -1 )
 	    break;
 
@@ -1743,10 +1741,6 @@ your suggestion to the FreedroidRPG dev team to enable new resolutions.",
 		
 	    case 'w':
 		GameConfig . fullscreen_on = FALSE;
-		break;
-		
-	    case 'm':
-		skip_initial_menus = TRUE;
 		break;
 		
 	    default:
