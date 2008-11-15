@@ -136,6 +136,7 @@ GiveMouseAlertWindow( const char* WindowText )
 
     our_SDL_flip_wrapper();
     
+    while (  EnterPressed()  ||  SpacePressed() || MouseLeftPressed()) ;
     while ( !EnterPressed()  && !SpacePressed() && !MouseLeftPressed() ) ;
     while (  EnterPressed()  ||  SpacePressed() || MouseLeftPressed()) ;
     
