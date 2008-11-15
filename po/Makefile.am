@@ -90,18 +90,6 @@ SUFFIXES = .po .mo
 .po.mo:
 	$(MSGFMT) -o $@ $<
 
-$(POFILES_SRC): freedroidrpg.pot 
-	@lang=`echo $@ | sed 's/\.po$$//'`; \
-	test -f $${lang}.po && $(MSGMERGE) $(MSGMERGE_OPTIONS) $${lang}.po freedroidrpg.pot
-
-$(POFILES_DAT): freedroidrpg_data.pot
-	@lang=`echo $@ | sed 's/\.po$$//'`; \
-	test -f $${lang}.po && $(MSGMERGE) $(MSGMERGE_OPTIONS) $${lang}.po freedroidrpg_data.pot
-
-$(POFILES_DIA): freedroidrpg_dialogs.pot
-	@lang=`echo $@ | sed 's/\.po$$//'`; \
-	test -f $${lang}.po && $(MSGMERGE) $(MSGMERGE_OPTIONS) $${lang}.po freedroidrpg_dialogs.pot
-
 freedroidrpg.pot: $(SRCFILES) 
 	$(XGETTEXT) $(XGETTEXT_OPTIONS) --default-domain=$(DOMAIN) \
 	--copyright-holder='$(COPYRIGHT_HOLDER)' \
@@ -116,7 +104,8 @@ freedroidrpg_dialogs.pot: $(DIALOGFILES)
 
 all-local: all-local-@USE_NLS@
 all-local-no:
-all-local-yes: freedroidrpg.pot freedroidrpg_data.pot freedroidrpg_dialogs.pot $(MOFILES_SRC) $(MOFILES_DAT) $(MOFILES_DIA)
+all-local-yes: freedroidrpg.pot freedroidrpg_data.pot freedroidrpg_dialogs.pot $(MOFILES_SRC) $(MOFILES_DAT) $(MOFILES_DIA) $(POFILES_SRC) $(POFILES_DAT) $(POFILES_DIA)
+
 
 install-data-local: install-data-local-@USE_NLS@
 install-data-local-no: all-local
@@ -131,3 +120,20 @@ uninstall-local-yes:
 	for file in $(MOFILES_SRC) $(MOFILES_DAT) $(MOFILES_DIA); do \
 		rm -f $(LOCALEDIR)/$$file; \
 	done;
+
+clean: 
+	rm freedroidrpg.pot freedroidrpg_data.pot freedroidrpg_dialogs.pot $(MOFILES_SRC) $(MOFILES_DAT) $(MOFILES_DIA)
+
+.PHONY:
+$(POFILES_SRC): freedroidrpg.pot 
+	@lang=`echo $@ | sed 's/\.po$$//'`; \
+	test -f $${lang}.po && $(MSGMERGE) $(MSGMERGE_OPTIONS) $${lang}.po freedroidrpg.pot
+
+$(POFILES_DAT): freedroidrpg_data.pot
+	@lang=`echo $@ | sed 's/\.po$$//'`; \
+	test -f $${lang}.po && $(MSGMERGE) $(MSGMERGE_OPTIONS) $${lang}.po freedroidrpg_data.pot
+
+$(POFILES_DIA): freedroidrpg_dialogs.pot
+	@lang=`echo $@ | sed 's/\.po$$//'`; \
+	test -f $${lang}.po && $(MSGMERGE) $(MSGMERGE_OPTIONS) $${lang}.po freedroidrpg_dialogs.pot
+
