@@ -29,8 +29,6 @@
 
 #define _saveloadgame_c
 
-#include <langinfo.h>
-
 #include "system.h"
 
 #include "defs.h"
@@ -40,6 +38,15 @@
 #include "SDL_rotozoom.h"
 #include "sys/stat.h"
 #include "savestruct.h"
+
+#ifdef HAVE_LANGINFO_H
+#include <langinfo.h>
+#endif
+
+#ifndef HAVE_NL_LANGINFO
+#define nl_langinfo(X) "%a %b %e %H:%M:%S %Y"
+#endif
+
 
 #define SAVEDGAME_EXT ".savegame"
 #define SAVE_GAME_THUMBNAIL_EXT ".thumbnail.bmp"

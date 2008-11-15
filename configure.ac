@@ -199,14 +199,14 @@ fi
 
 # Checks for header files.
 AC_CHECK_HEADERS([fcntl.h stdlib.h string.h sys/ioctl.h sys/time.h time.h \
-			  unistd.h dirent.h sys/soundcard.h soundcard.h execinfo.h signal.h locale.h stdint.h libintl.h libgen.h])
+			  unistd.h dirent.h sys/soundcard.h soundcard.h execinfo.h signal.h locale.h stdint.h libintl.h libgen.h langinfo.h])
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_TYPE_SIZE_T
 AC_HEADER_TIME
 
 # Checks for library functions.
-AC_CHECK_FUNCS([alarm getcwd gettimeofday memset sqrt strstr strtok alphasort scandir])
+AC_CHECK_FUNCS([alarm getcwd gettimeofday memset sqrt strstr strtok alphasort scandir nl_langinfo])
 
 if test x$want_backtrace = xyes; then
    AC_CHECK_FUNCS([backtrace])
