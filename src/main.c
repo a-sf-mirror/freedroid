@@ -472,7 +472,7 @@ UpdateCountersForThisFrame ( )
 		{
 		/* Do not respawn the town. At all. */
 		if (!strcmp(curShip.AllLevels[i]->Levelname, "Town"))
-		    break;
+		    continue;
 
 		DebugPrintf ( -10 , "\nNow respawning all bots on level : %d. " , i ) ;
 		Me . time_since_last_visit_or_respawn [ i ] = 0 ;
