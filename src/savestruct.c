@@ -528,6 +528,153 @@ read_float(pos, "invisible_duration",  &(target->invisible_duration));
 return 0;
 }
 
+int save_item(char * tag, item * target)
+{
+fprintf(SaveGameFile, "<%s>\n",tag);
+save_finepoint("pos", &(target->pos));
+save_sdl_rect("text_slot_rectangle", &(target->text_slot_rectangle));
+save_int32_t("type", &(target->type));
+save_int32_t("currently_held_in_hand", &(target->currently_held_in_hand));
+save_int32_t("is_identified", &(target->is_identified));
+save_int32_t("max_duration", &(target->max_duration));
+save_float("current_duration", &(target->current_duration));
+save_float("throw_time", &(target->throw_time));
+save_int32_t("prefix_code", &(target->prefix_code));
+save_int32_t("suffix_code", &(target->suffix_code));
+save_int32_t("bonus_to_dex", &(target->bonus_to_dex));
+save_int32_t("bonus_to_str", &(target->bonus_to_str));
+save_int32_t("bonus_to_vit", &(target->bonus_to_vit));
+save_int32_t("bonus_to_mag", &(target->bonus_to_mag));
+save_int32_t("bonus_to_life", &(target->bonus_to_life));
+save_int32_t("bonus_to_force", &(target->bonus_to_force));
+save_float("bonus_to_health_recovery", &(target->bonus_to_health_recovery));
+save_float("bonus_to_cooling_rate", &(target->bonus_to_cooling_rate));
+save_int32_t("bonus_to_tohit", &(target->bonus_to_tohit));
+save_int32_t("bonus_to_all_attributes", &(target->bonus_to_all_attributes));
+save_int32_t("bonus_to_ac_or_damage", &(target->bonus_to_ac_or_damage));
+save_int32_t("bonus_to_resist_fire", &(target->bonus_to_resist_fire));
+save_int32_t("bonus_to_resist_electricity", &(target->bonus_to_resist_electricity));
+save_int32_t("bonus_to_resist_disruptor", &(target->bonus_to_resist_disruptor));
+save_int32_t("ac_bonus", &(target->ac_bonus));
+save_int32_t("damage", &(target->damage));
+save_int32_t("damage_modifier", &(target->damage_modifier));
+save_int32_t("multiplicity", &(target->multiplicity));
+save_int32_t("ammo_clip", &(target->ammo_clip));
+save_point("inventory_position", &(target->inventory_position));
+fprintf(SaveGameFile, "</%s>\n", tag);
+return 0;
+}
+
+int read_item(char* buffer, char * tag, item * target)
+{
+
+		char search[strlen(tag) + 5];
+		sprintf(search, "<%s>", tag);
+	        char * pos = strstr(buffer, search);
+		if ( ! pos ) return 1;
+		pos += 1 + strlen(tag);
+		sprintf(search, "</%s>", tag);
+		char * epos = strstr(buffer, search);
+		if ( ! epos ) return 2;
+		*epos = 0;
+		read_finepoint(pos, "pos",  &(target->pos));
+read_sdl_rect(pos, "text_slot_rectangle",  &(target->text_slot_rectangle));
+read_int32_t(pos, "type",  &(target->type));
+read_int32_t(pos, "currently_held_in_hand",  &(target->currently_held_in_hand));
+read_int32_t(pos, "is_identified",  &(target->is_identified));
+read_int32_t(pos, "max_duration",  &(target->max_duration));
+read_float(pos, "current_duration",  &(target->current_duration));
+read_float(pos, "throw_time",  &(target->throw_time));
+read_int32_t(pos, "prefix_code",  &(target->prefix_code));
+read_int32_t(pos, "suffix_code",  &(target->suffix_code));
+read_int32_t(pos, "bonus_to_dex",  &(target->bonus_to_dex));
+read_int32_t(pos, "bonus_to_str",  &(target->bonus_to_str));
+read_int32_t(pos, "bonus_to_vit",  &(target->bonus_to_vit));
+read_int32_t(pos, "bonus_to_mag",  &(target->bonus_to_mag));
+read_int32_t(pos, "bonus_to_life",  &(target->bonus_to_life));
+read_int32_t(pos, "bonus_to_force",  &(target->bonus_to_force));
+read_float(pos, "bonus_to_health_recovery",  &(target->bonus_to_health_recovery));
+read_float(pos, "bonus_to_cooling_rate",  &(target->bonus_to_cooling_rate));
+read_int32_t(pos, "bonus_to_tohit",  &(target->bonus_to_tohit));
+read_int32_t(pos, "bonus_to_all_attributes",  &(target->bonus_to_all_attributes));
+read_int32_t(pos, "bonus_to_ac_or_damage",  &(target->bonus_to_ac_or_damage));
+read_int32_t(pos, "bonus_to_resist_fire",  &(target->bonus_to_resist_fire));
+read_int32_t(pos, "bonus_to_resist_electricity",  &(target->bonus_to_resist_electricity));
+read_int32_t(pos, "bonus_to_resist_disruptor",  &(target->bonus_to_resist_disruptor));
+read_int32_t(pos, "ac_bonus",  &(target->ac_bonus));
+read_int32_t(pos, "damage",  &(target->damage));
+read_int32_t(pos, "damage_modifier",  &(target->damage_modifier));
+read_int32_t(pos, "multiplicity",  &(target->multiplicity));
+read_int32_t(pos, "ammo_clip",  &(target->ammo_clip));
+read_point(pos, "inventory_position",  &(target->inventory_position));
+*epos = '>'; 
+return 0;
+}
+
+int save_finepoint(char * tag, finepoint * target)
+{
+fprintf(SaveGameFile, "<%s>\n",tag);
+save_double("x", &(target->x));
+save_double("y", &(target->y));
+fprintf(SaveGameFile, "</%s>\n", tag);
+return 0;
+}
+
+int read_finepoint(char* buffer, char * tag, finepoint * target)
+{
+
+		char search[strlen(tag) + 5];
+		sprintf(search, "<%s>", tag);
+	        char * pos = strstr(buffer, search);
+		if ( ! pos ) return 1;
+		pos += 1 + strlen(tag);
+		sprintf(search, "</%s>", tag);
+		char * epos = strstr(buffer, search);
+		if ( ! epos ) return 2;
+		*epos = 0;
+		read_double(pos, "x",  &(target->x));
+read_double(pos, "y",  &(target->y));
+*epos = '>'; 
+return 0;
+}
+
+int save_melee_shot(char * tag, melee_shot * target)
+{
+fprintf(SaveGameFile, "<%s>\n",tag);
+save_char("attack_target_type", &(target->attack_target_type));
+save_char("mine", &(target->mine));
+save_int16_t("bot_target_n", &(target->bot_target_n));
+save_int16_t("to_hit", &(target->to_hit));
+save_int16_t("damage", &(target->damage));
+save_int16_t("owner", &(target->owner));
+save_char("level", &(target->level));
+fprintf(SaveGameFile, "</%s>\n", tag);
+return 0;
+}
+
+int read_melee_shot(char* buffer, char * tag, melee_shot * target)
+{
+
+		char search[strlen(tag) + 5];
+		sprintf(search, "<%s>", tag);
+	        char * pos = strstr(buffer, search);
+		if ( ! pos ) return 1;
+		pos += 1 + strlen(tag);
+		sprintf(search, "</%s>", tag);
+		char * epos = strstr(buffer, search);
+		if ( ! epos ) return 2;
+		*epos = 0;
+		read_char(pos, "attack_target_type",  &(target->attack_target_type));
+read_char(pos, "mine",  &(target->mine));
+read_int16_t(pos, "bot_target_n",  &(target->bot_target_n));
+read_int16_t(pos, "to_hit",  &(target->to_hit));
+read_int16_t(pos, "damage",  &(target->damage));
+read_int16_t(pos, "owner",  &(target->owner));
+read_char(pos, "level",  &(target->level));
+*epos = '>'; 
+return 0;
+}
+
 int save_configuration_for_freedroid(char * tag, configuration_for_freedroid * target)
 {
 fprintf(SaveGameFile, "<%s>\n",tag);
@@ -643,180 +790,6 @@ read_int32_t(pos, "fullscreen_on",  &(target->fullscreen_on));
 read_int32_t(pos, "talk_to_bots_after_takeover",  &(target->talk_to_bots_after_takeover));
 read_int32_t(pos, "xray_vision_for_tux",  &(target->xray_vision_for_tux));
 read_keybind_t_array(pos, "input_keybinds",  (target->input_keybinds), 100);
-*epos = '>'; 
-return 0;
-}
-
-int save_finepoint(char * tag, finepoint * target)
-{
-fprintf(SaveGameFile, "<%s>\n",tag);
-save_double("x", &(target->x));
-save_double("y", &(target->y));
-fprintf(SaveGameFile, "</%s>\n", tag);
-return 0;
-}
-
-int read_finepoint(char* buffer, char * tag, finepoint * target)
-{
-
-		char search[strlen(tag) + 5];
-		sprintf(search, "<%s>", tag);
-	        char * pos = strstr(buffer, search);
-		if ( ! pos ) return 1;
-		pos += 1 + strlen(tag);
-		sprintf(search, "</%s>", tag);
-		char * epos = strstr(buffer, search);
-		if ( ! epos ) return 2;
-		*epos = 0;
-		read_double(pos, "x",  &(target->x));
-read_double(pos, "y",  &(target->y));
-*epos = '>'; 
-return 0;
-}
-
-int save_item(char * tag, item * target)
-{
-fprintf(SaveGameFile, "<%s>\n",tag);
-save_finepoint("pos", &(target->pos));
-save_sdl_rect("text_slot_rectangle", &(target->text_slot_rectangle));
-save_int32_t("type", &(target->type));
-save_int32_t("currently_held_in_hand", &(target->currently_held_in_hand));
-save_int32_t("is_identified", &(target->is_identified));
-save_int32_t("max_duration", &(target->max_duration));
-save_float("current_duration", &(target->current_duration));
-save_float("throw_time", &(target->throw_time));
-save_int32_t("prefix_code", &(target->prefix_code));
-save_int32_t("suffix_code", &(target->suffix_code));
-save_int32_t("bonus_to_dex", &(target->bonus_to_dex));
-save_int32_t("bonus_to_str", &(target->bonus_to_str));
-save_int32_t("bonus_to_vit", &(target->bonus_to_vit));
-save_int32_t("bonus_to_mag", &(target->bonus_to_mag));
-save_int32_t("bonus_to_life", &(target->bonus_to_life));
-save_int32_t("bonus_to_force", &(target->bonus_to_force));
-save_float("bonus_to_health_recovery", &(target->bonus_to_health_recovery));
-save_float("bonus_to_cooling_rate", &(target->bonus_to_cooling_rate));
-save_int32_t("bonus_to_tohit", &(target->bonus_to_tohit));
-save_int32_t("bonus_to_all_attributes", &(target->bonus_to_all_attributes));
-save_int32_t("bonus_to_ac_or_damage", &(target->bonus_to_ac_or_damage));
-save_int32_t("bonus_to_resist_fire", &(target->bonus_to_resist_fire));
-save_int32_t("bonus_to_resist_electricity", &(target->bonus_to_resist_electricity));
-save_int32_t("bonus_to_resist_disruptor", &(target->bonus_to_resist_disruptor));
-save_int32_t("ac_bonus", &(target->ac_bonus));
-save_int32_t("damage", &(target->damage));
-save_int32_t("damage_modifier", &(target->damage_modifier));
-save_int32_t("multiplicity", &(target->multiplicity));
-save_int32_t("ammo_clip", &(target->ammo_clip));
-save_point("inventory_position", &(target->inventory_position));
-fprintf(SaveGameFile, "</%s>\n", tag);
-return 0;
-}
-
-int read_item(char* buffer, char * tag, item * target)
-{
-
-		char search[strlen(tag) + 5];
-		sprintf(search, "<%s>", tag);
-	        char * pos = strstr(buffer, search);
-		if ( ! pos ) return 1;
-		pos += 1 + strlen(tag);
-		sprintf(search, "</%s>", tag);
-		char * epos = strstr(buffer, search);
-		if ( ! epos ) return 2;
-		*epos = 0;
-		read_finepoint(pos, "pos",  &(target->pos));
-read_sdl_rect(pos, "text_slot_rectangle",  &(target->text_slot_rectangle));
-read_int32_t(pos, "type",  &(target->type));
-read_int32_t(pos, "currently_held_in_hand",  &(target->currently_held_in_hand));
-read_int32_t(pos, "is_identified",  &(target->is_identified));
-read_int32_t(pos, "max_duration",  &(target->max_duration));
-read_float(pos, "current_duration",  &(target->current_duration));
-read_float(pos, "throw_time",  &(target->throw_time));
-read_int32_t(pos, "prefix_code",  &(target->prefix_code));
-read_int32_t(pos, "suffix_code",  &(target->suffix_code));
-read_int32_t(pos, "bonus_to_dex",  &(target->bonus_to_dex));
-read_int32_t(pos, "bonus_to_str",  &(target->bonus_to_str));
-read_int32_t(pos, "bonus_to_vit",  &(target->bonus_to_vit));
-read_int32_t(pos, "bonus_to_mag",  &(target->bonus_to_mag));
-read_int32_t(pos, "bonus_to_life",  &(target->bonus_to_life));
-read_int32_t(pos, "bonus_to_force",  &(target->bonus_to_force));
-read_float(pos, "bonus_to_health_recovery",  &(target->bonus_to_health_recovery));
-read_float(pos, "bonus_to_cooling_rate",  &(target->bonus_to_cooling_rate));
-read_int32_t(pos, "bonus_to_tohit",  &(target->bonus_to_tohit));
-read_int32_t(pos, "bonus_to_all_attributes",  &(target->bonus_to_all_attributes));
-read_int32_t(pos, "bonus_to_ac_or_damage",  &(target->bonus_to_ac_or_damage));
-read_int32_t(pos, "bonus_to_resist_fire",  &(target->bonus_to_resist_fire));
-read_int32_t(pos, "bonus_to_resist_electricity",  &(target->bonus_to_resist_electricity));
-read_int32_t(pos, "bonus_to_resist_disruptor",  &(target->bonus_to_resist_disruptor));
-read_int32_t(pos, "ac_bonus",  &(target->ac_bonus));
-read_int32_t(pos, "damage",  &(target->damage));
-read_int32_t(pos, "damage_modifier",  &(target->damage_modifier));
-read_int32_t(pos, "multiplicity",  &(target->multiplicity));
-read_int32_t(pos, "ammo_clip",  &(target->ammo_clip));
-read_point(pos, "inventory_position",  &(target->inventory_position));
-*epos = '>'; 
-return 0;
-}
-
-int save_melee_shot(char * tag, melee_shot * target)
-{
-fprintf(SaveGameFile, "<%s>\n",tag);
-save_char("attack_target_type", &(target->attack_target_type));
-save_char("mine", &(target->mine));
-save_int16_t("bot_target_n", &(target->bot_target_n));
-save_int16_t("to_hit", &(target->to_hit));
-save_int16_t("damage", &(target->damage));
-save_int16_t("owner", &(target->owner));
-save_char("level", &(target->level));
-fprintf(SaveGameFile, "</%s>\n", tag);
-return 0;
-}
-
-int read_melee_shot(char* buffer, char * tag, melee_shot * target)
-{
-
-		char search[strlen(tag) + 5];
-		sprintf(search, "<%s>", tag);
-	        char * pos = strstr(buffer, search);
-		if ( ! pos ) return 1;
-		pos += 1 + strlen(tag);
-		sprintf(search, "</%s>", tag);
-		char * epos = strstr(buffer, search);
-		if ( ! epos ) return 2;
-		*epos = 0;
-		read_char(pos, "attack_target_type",  &(target->attack_target_type));
-read_char(pos, "mine",  &(target->mine));
-read_int16_t(pos, "bot_target_n",  &(target->bot_target_n));
-read_int16_t(pos, "to_hit",  &(target->to_hit));
-read_int16_t(pos, "damage",  &(target->damage));
-read_int16_t(pos, "owner",  &(target->owner));
-read_char(pos, "level",  &(target->level));
-*epos = '>'; 
-return 0;
-}
-
-int save_keybind_t(char * tag, keybind_t * target)
-{
-fprintf(SaveGameFile, "<%s>\n",tag);
-save_int32_t("key", &(target->key));
-save_int32_t("mod", &(target->mod));
-fprintf(SaveGameFile, "</%s>\n", tag);
-return 0;
-}
-
-int read_keybind_t(char* buffer, char * tag, keybind_t * target)
-{
-
-		char search[strlen(tag) + 5];
-		sprintf(search, "<%s>", tag);
-	        char * pos = strstr(buffer, search);
-		if ( ! pos ) return 1;
-		pos += 1 + strlen(tag);
-		sprintf(search, "</%s>", tag);
-		char * epos = strstr(buffer, search);
-		if ( ! epos ) return 2;
-		*epos = 0;
-		read_int32_t(pos, "key",  &(target->key));
-read_int32_t(pos, "mod",  &(target->mod));
 *epos = '>'; 
 return 0;
 }

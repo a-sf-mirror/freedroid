@@ -726,7 +726,7 @@ There are more skills defined, than the maximum number specified in the code!",
 		& ProgramToFill -> heat_cost_per_level  , EndOfProgramData );
 	ReadValueFromStringWithDefault( ProgramPointer , "Present at startup=" , "%hhd" , "0",
 		& ProgramToFill -> present_at_startup  , EndOfProgramData );
-	ReadValueFromStringWithDefault( ProgramPointer , "Artwork internal code=" , "%hhd" , "-1",
+	ReadValueFromStringWithDefault( ProgramPointer , "Artwork internal code=" , "%d" , "-1",
 		& ProgramToFill -> graphics_code  , EndOfProgramData );
 	ReadValueFromStringWithDefault( ProgramPointer, "Effect duration=", "%f", "0",
 		& ProgramToFill -> effect_duration, EndOfProgramData );
