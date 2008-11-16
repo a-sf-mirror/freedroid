@@ -83,7 +83,7 @@ enum
 
 enum
   {
-    COLLISION_TYPE_NONE = -1 , 
+    COLLISION_TYPE_NONE = 1 , 
     COLLISION_TYPE_RECTANGLE = 2 ,
     COLLISION_TYPE_CIRCLE = 3 
   };
