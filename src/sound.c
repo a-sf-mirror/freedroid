@@ -402,37 +402,6 @@ void SwitchBackgroundMusicTo ( char* filename_raw_parameter )
 
 
 
-// waits for the given amount of time (in milliseconds)
-// can be interrupted by pressing ESC or space or by clicking the left mouse button
-// (also handles window closing events while waiting)
-void WaitInterruptible(const int timeout) {
-    SDL_Event event;
-    int start;
-    
-    if (EscapePressed() || SpacePressed() || MouseLeftPressed()) {
-        return;
-    }
-    start = SDL_GetTicks();
-    while (SDL_GetTicks() - start < timeout ) {
-        while (SDL_PollEvent(&event)) {
-            switch (event.type) {
-                case SDL_QUIT:
-                    Terminate(0);
-                case SDL_KEYDOWN:
-                    if (event.key.keysym.sym == SDLK_ESCAPE ||
-                        event.key.keysym.sym == SDLK_SPACE) {
-                        return;
-                    }
-                    break;
-                case SDL_MOUSEBUTTONDOWN:
-                    if (event.button.button == SDL_BUTTON_LEFT) {
-                        return;
-                    }
-            }
-        }
-        SDL_Delay(10);
-    }    
-}
 
 
 
@@ -454,6 +423,7 @@ void PlayOnceNeededSoundSample( const char* SoundSampleFileName , const int With
     int pathlen;
     char *extension;
     char *extensions[] = { ".spx", ".ogg", ".wav", NULL };  // Extensions to try for audio
+    int simulated_playback_starting_time;
 
     //--------------------
     // These variables will only be needed when compiling with sound!
@@ -491,9 +461,17 @@ void PlayOnceNeededSoundSample( const char* SoundSampleFileName , const int With
 	// be appropriate.  On pressing the left button or space or escape
 	// the waiting time will be cancelled anyway.
 	//
-	if ( With_Waiting ) {
-            WaitInterruptible(7000);
-        }
+	if ( With_Waiting )
+	    {
+	    simulated_playback_starting_time = SDL_GetTicks() ;
+
+	    while ( ( SDL_GetTicks() - simulated_playback_starting_time < 7 * 1000 ) &&
+		    !EscapePressed() && !SpacePressed() && !MouseLeftPressed())
+		SDL_Delay( 10 );
+
+	    while ( EscapePressed() || SpacePressed() || MouseLeftPressed() )
+		SDL_Delay(1);
+	    }
 
 	//--------------------
 	// Since sound is disabled otherwise we MUST return here and not
@@ -587,9 +565,17 @@ void PlayOnceNeededSoundSample( const char* SoundSampleFileName , const int With
 	// be appropriate.  On pressing the left button or space or escape
 	// the waiting time will be cancelled anyway.
 	//
-	if ( With_Waiting ) {
-            WaitInterruptible(7000);
-        }
+	if ( With_Waiting )
+	    {
+	    simulated_playback_starting_time = SDL_GetTicks() ;
+
+	    while ( ( SDL_GetTicks() - simulated_playback_starting_time < 7 * 1000 ) &&
+		    !EscapePressed() && !SpacePressed() && !MouseLeftPressed() )
+		SDL_Delay(10);
+
+	    while ( EscapePressed() || SpacePressed() || MouseLeftPressed() )
+		SDL_Delay(10);
+	    }
 
 	//--------------------
 	// Now we must return, since we do not want to 'free' the sound sample, that
