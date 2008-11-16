@@ -719,7 +719,7 @@ check_bullet_player_collisions ( bullet* CurBullet , int num )
       // Of course only active players and players on the same level
       // may be checked!
       //
-      if ( Me . energy > 0 || Me . pos . z != CurBullet -> pos . z ) return;
+      if ( Me . energy <= 0 || Me . pos . z != CurBullet -> pos . z ) return;
       
       //--------------------
       // A player is supposed not to hit himself with his bullets, so we may
