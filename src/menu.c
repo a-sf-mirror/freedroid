@@ -1958,7 +1958,7 @@ OSD_fill (char *MenuTexts[10])
 {
       sprintf( MenuTexts[0] , _("Show Position: %s"), GameConfig.Draw_Position ? _("ON") : _("OFF") );
       sprintf( MenuTexts[1] , _("Show Framerate: %s"), GameConfig.Draw_Framerate? _("ON") : _("OFF") );
-      sprintf( MenuTexts[2] , _("Show Enemy Energy Bars: %s"), GameConfig.enemy_energy_bars_visible? _("ON") : _("OFF") );
+      sprintf( MenuTexts[2] , _("Show Energy Bars: %s"), GameConfig.enemy_energy_bars_visible? _("ON") : _("OFF") );
       sprintf( MenuTexts[3] , _("Screen Messages at most: %d"), GameConfig.number_of_big_screen_messages );
       sprintf( MenuTexts[4] , _("Screen Message time: %3.1f"), GameConfig.delay_for_big_screen_messages );
       strcpy (MenuTexts[5], _("Back"));
