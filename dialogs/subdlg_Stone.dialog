@@ -33,9 +33,7 @@ Beginning of new chat dialog for character="XXXXX"
 New Option Nr=0  OptionText=_"THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"You are Tux, aren't you..."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"The hero..."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=0 ChangeToValue=0
 ChangeOption=1 ChangeToValue=1
 ChangeOption=2 ChangeToValue=1
@@ -46,19 +44,12 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 ----------------------------------------------------------------------
 
 New Option Nr=1  OptionText=_" Yes, its me."
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"I thought so. My grandfather used to tell me stories about you. He said you would come here in a time of despair."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"And here you are."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"I hope your arrival changes the tide of this war..."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"I have something here for you. I managed to hide this Shotgun from the red guard."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"It used to belong to my grandfather, so it's very dear to me, but I'm sure he would have like you to have it on your journey to save us all."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Tux, if you ever find out who started the Great Assault... GIVE THEM A KICK IN THE ASS, FROM LILY STONE!!!"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=1 ChangeToValue=0
 ChangeOption=2 ChangeToValue=0
 ChangeOption=3 ChangeToValue=0
@@ -69,11 +60,8 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=2  OptionText=_" It's not important who am I."
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"If you want to remain a stranger, I will respect your wishes."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"So be it."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=2 ChangeToValue=0
 ChangeOption=1 ChangeToValue=0
 ChangeOption=3 ChangeToValue=0
@@ -83,13 +71,9 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=3  OptionText=_" Ha ha ha, You fell for it! You get nothing from me! Hahahahah!"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"You... monster..."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"No one makes fun of Lily Stone's family store!"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Say your prayers, you oversized duck!!!"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=3 ChangeToValue=0
 DoSomethingExtra="BreakOffAndBecomeHostile"
 AlwaysExecuteThisOptionPriorToDialogStart="no"

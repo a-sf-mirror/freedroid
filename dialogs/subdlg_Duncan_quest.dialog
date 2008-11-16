@@ -33,7 +33,6 @@ Beginning of new chat dialog for character="XXXXX"
 New Option Nr=0  OptionText=_"HERE WE GO"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"So... Any news on the Koan matter?"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=0 ChangeToValue=0
 ChangeOption=40 ChangeToValue=1
 OnCondition="CookieIsPlanted:koan_spared:" JumpToOption=5 ElseGoto=1
@@ -75,9 +74,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=10  OptionText=_" Yeah. I got him. I think this is your cube."
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Yes. I appreciate your help."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=10 ChangeToValue=0
 DoSomethingExtra="AddExperienceBonus:3000"
 DoSomethingExtra="DeleteItem:Pandora's Cube"
@@ -87,9 +84,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=20  OptionText=_" I could not find him anywhere in the desert. I don't think he is there anymore."
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"I see."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=20 ChangeToValue=0
 DoSomethingExtra="EndDialog"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
@@ -97,13 +92,9 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=30  OptionText=_" Yeah, I got him. Now, what is this big cube that you had me carry all the way here?"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Just a memento after a friend."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"A little more than a portable end of the world, which I am looking forward to disassembling and learning its secrets."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Nothing that important."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=30 ChangeToValue=0
 ChangeOption=20 ChangeToValue=0
 ChangeOption=10 ChangeToValue=0
@@ -114,9 +105,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=40  OptionText=_" A 'few' bots? The place was crawling with Sawmills! I nearly got killed!"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"There were only fourty bots in the desert region. This hardly qualifies as many."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=40 ChangeToValue=0
 ChangeOption=41 ChangeToValue=1
 AlwaysExecuteThisOptionPriorToDialogStart="no"
@@ -124,9 +113,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=41  OptionText=_" What? You know exactly how many bots were on the desert? Without being there? I don't like this."
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"I just know a lot of things. You do not need to worry about it."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=41 ChangeToValue=0
 ChangeOption=50 ChangeToValue=1
 AlwaysExecuteThisOptionPriorToDialogStart="no"
@@ -134,9 +121,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=50  OptionText=_" I don't like this at all. I'm getting out of here."
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"As you wish."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=50 ChangeToValue=0
 DoSomethingExtra="EndDialog"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
@@ -144,9 +129,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=60  OptionText=_" Hey, that is really neat. Here is your cube. Enjoy disassembling it and have fun with it."
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"I will."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=60 ChangeToValue=0
 DoSomethingExtra="AddExperienceBonus:3000"
 DoSomethingExtra="DeleteItem:Pandora's Cube"
@@ -156,9 +139,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=70  OptionText=_" WHAT? No way I am giving you a doomsday device! Forget about it."
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"I understand. So be it."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=70 ChangeToValue=0
 DoSomethingExtra="EndDialog"
 AlwaysExecuteThisOptionPriorToDialogStart="no"

@@ -31,9 +31,7 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 New Option Nr=0  OptionText=_" Login : admin  Password : *******"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Last login from /dev/ttyS0 on Sun, 23 mar 2057. admin@shielddefense: ~ #"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=0 ChangeToValue=0
 ChangeOption=7 ChangeToValue=1
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
@@ -42,13 +40,9 @@ OnCondition="CookieIsPlanted:MER_Password:" JumpToOption=3 ElseGoto=4
 ----------------------------------------------------------------------
 
 New Option Nr=1  OptionText=_" passwd"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" Changing password for admin. Enter new password: "
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" Enter new password again: "
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" Password successfully changed."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 ChangeOption=1 ChangeToValue=0
 ChangeOption=7 ChangeToValue=0
@@ -78,25 +72,17 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=7  OptionText=_" shieldmgr --disable --force"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" Disabling disruptor shield... "
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" Shield disabled."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" WARNING: somebody else is using this computer. "
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" Disruptor shield is active."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=8  OptionText=_" shieldmgr --disable --force"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" Disabling disruptor shield... "
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" Shield disabled."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 DoSomethingExtra="MarkMissionComplete:8"
 DoSomethingExtra="OpenQuestDiaryEntry:M8E3:"
@@ -104,7 +90,6 @@ DoSomethingExtra="OpenQuestDiaryEntry:M8E3:"
 ----------------------------------------------------------------------
 
 New Option Nr=99  OptionText=_" logout"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=99 ChangeToValue=1
 DoSomethingExtra="EndDialog"
 AlwaysExecuteThisOptionPriorToDialogStart="no"

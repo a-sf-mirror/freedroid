@@ -33,9 +33,7 @@ Beginning of new chat dialog for character="XXXXX"
 New Option Nr=0  OptionText=_"THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Fifty triangles per a bit of information."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"So... What do you exactly want to know?"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=7 ChangeToValue=1
 ChangeOption=0 ChangeToValue=0
 ChangeOption=1 ChangeToValue=1
@@ -55,11 +53,8 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=2  OptionText=_" How many exterminators does the Red Guard have?"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"It might come as a surprise to you, but we don't have many. A bit over twenty, last time I checked."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"However, as you can clearly see, this is more than enough to keep all of the damn bots away."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=2 ChangeToValue=0
 ChangeOption=4 ChangeToValue=1
 DoSomethingExtra="SubtractGold:50"
@@ -68,11 +63,8 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=3  OptionText=_" Well, I am a bit short on cash right now..."
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Linarian, I thought we had an agreement. Fifty per infobit. My silence can be only broken with currency, so if you want to know, you have to pay."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"This conversation is now over."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=3 ChangeToValue=0
 ChangeOption=6 ChangeToValue=0
 ChangeOption=1 ChangeToValue=0
@@ -94,15 +86,10 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=5  OptionText=_" That is not a lot. Why there are so few of them right now?"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"All of them are a very lucky find. "
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"We found a crashed army truck on the Terminal Field. It had six crates inside it, each containing five exterminators."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"We tried, but we could not replicate the technology, only bullets."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"A few got damaged in battle, and we failed to recover five after a failed scout mission. We have twenty-two right now."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=5 ChangeToValue=0
 ChangeOption=9 ChangeToValue=1
 DoSomethingExtra="SubtractGold:50"
@@ -119,26 +106,18 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=7  OptionText=_" Tell me who designed the exterminator."
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"That answer is on the house. Heh."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"We do not know, Linarian. We have absolutely no clue."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=7 ChangeToValue=0
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=8  OptionText=_" What is the exterminator ammunition made from?"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"We use radioactives, whatever type happens to be on hand. Mostly plutonium and uranium, be we are not too picky."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"When we get low on ammo, we send in a chain gang of criminals and lazybums into the mine shaft K-17."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"That place was closed down ages ago because of high radiation levels. It's full of good ores from which we make bullets and which power our nuclear reactors."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"We get our fission materials and they get their sentence. It was one of the best ideas we have ever had."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=8 ChangeToValue=0
 DoSomethingExtra="SubtractGold:50"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
@@ -146,15 +125,10 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=9  OptionText=_" What was the failed mission?"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Ugh. That will cost you triple."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"No. Wait."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"I changed my mind."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Keep your money Linarian. No amount of triangles can make me talk about that accursed day."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=9 ChangeToValue=0
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -169,13 +143,9 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=12  OptionText=_" What makes the exterminator so powerful?"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"This is a tricky question. Most of the force comes from the miniature nuclear explosions which happen once the bullet hits something."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Of course the great velocity of the impact can cause tremendous devastation by itself."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"We never bothered with doing any research on that topic. It works and that is enough for us."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=12 ChangeToValue=0
 DoSomethingExtra="SubtractGold:50"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
@@ -183,9 +153,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=99  OptionText=_" That is all I want to know."
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Very well. This conversation never happened."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=99 ChangeToValue=1
 DoSomethingExtra="EndDialog"
 AlwaysExecuteThisOptionPriorToDialogStart="no"

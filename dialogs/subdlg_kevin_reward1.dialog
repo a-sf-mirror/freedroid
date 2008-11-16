@@ -42,21 +42,13 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 ----------------------------------------------------------------------
 
 New Option Nr=1  OptionText=_" I want to become a hacker."
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Your desire for information amuses me. Your wish will be granted. I will teach you how to hack."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"You must know that hacking is an art. It is easy to chop your enemy to bits with an axe or shred it to atoms with a grenade... But hacking requires skill."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Look at this terminal... I am connected to a remote system. A fool would just launch a thousand attacks, but a skilled intruder would stop and think."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"You must know when to hack and when not to hack. You must attack when the enemy is unprepared for you."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Now watch. Observe carefully. See how I enter the system... Yes. Watch the connection glowing, burning like a bright star..."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"...only to die seconds after, as the system far away collapses under it's own weight... It's done."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"That is all I want to show you for now. Maybe later I will teach you something else."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=1 ChangeToValue=0
 ChangeOption=2 ChangeToValue=0
 ChangeOption=3 ChangeToValue=0
@@ -67,9 +59,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=2  OptionText=_" I don't want any reward. Just gratitude."
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Of course you can have that. There, I'm most grateful to you. That should do."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=2 ChangeToValue=0
 ChangeOption=1 ChangeToValue=0
 ChangeOption=3 ChangeToValue=0
@@ -79,9 +69,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=3  OptionText=_" I want money."
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Eh... Here, take these 500 bucks. That should be enough."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=3 ChangeToValue=0
 ChangeOption=2 ChangeToValue=0
 ChangeOption=1 ChangeToValue=0

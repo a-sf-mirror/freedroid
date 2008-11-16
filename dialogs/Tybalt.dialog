@@ -31,9 +31,7 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 New Option Nr=0  OptionText=_" Hi! I'm new here."
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Hello. I'm Tybalt. I'm guarding the guardhouse gate. Only authorized personnel are permitted."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=0 ChangeToValue=0
 ChangeOption=1 ChangeToValue=1
 ChangeOption=2 ChangeToValue=1
@@ -42,16 +40,13 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=1  OptionText=_" Why is the guardhouse locked most of the time?"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"It's locked so no one can sneak inside while I'm not looking. That's why."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=1 ChangeToValue=0
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=2  OptionText=_" I want to get into the guardhouse."
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=2 ChangeToValue=0
 ChangeOption=0 ChangeToValue=0
 OnCondition="CookieIsPlanted:tux_has_joined_guard:" JumpToOption=3 ElseGoto=4
@@ -62,7 +57,6 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=3  OptionText=_"THE GATE OPENS"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Of course. Guard members are always authorized to enter the guardhouse. The gate is open. Enjoy your stay."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=3 ChangeToValue=0
 DoSomethingExtra="ExecuteActionWithLabel:unlock_guardhouse_door"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
@@ -72,9 +66,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=4  OptionText=_"YOU SHALL NOT PASS"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Sorry pal, but I don't think so. Only authorized personnel are permitted and that means members of the Red Guard."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Talk to Spencer if you have any issues inside. I cannot let you pass."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=4 ChangeToValue=0
 LinkedTo:60
 AlwaysExecuteThisOptionPriorToDialogStart="no"
@@ -82,9 +74,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=50  OptionText=_" I have a lot of money for you."
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Fascinating. Hundred."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=50 ChangeToValue=0
 LinkedTo:51
 AlwaysExecuteThisOptionPriorToDialogStart="no"
@@ -116,18 +106,14 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=54  OptionText=_" Erm... I don't have that much."
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Well, I cannot open the door then."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=54 ChangeToValue=0
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=55  OptionText=_" Here you go."
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Thank you."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=55 ChangeToValue=0
 ChangeOption=56 ChangeToValue=1
 DoSomethingExtra="PlantCookie:tybalt_bribe"
@@ -136,9 +122,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=56  OptionText=_" Ok, now please open the door for me."
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"What door?"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=56 ChangeToValue=0
 ChangeOption=57 ChangeToValue=1
 AlwaysExecuteThisOptionPriorToDialogStart="no"
@@ -146,11 +130,8 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=57  OptionText=_" The door to the citadel!"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"But you are not a member of the Red Guard."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"You cannot come in."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=57 ChangeToValue=0
 ChangeOption=58 ChangeToValue=1
 AlwaysExecuteThisOptionPriorToDialogStart="no"
@@ -158,9 +139,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=58  OptionText=_" I paid you!"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Really? I don't remember that."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=58 ChangeToValue=0
 ChangeOption=59 ChangeToValue=1
 AlwaysExecuteThisOptionPriorToDialogStart="no"
@@ -168,9 +147,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=59  OptionText=_" I want my money back."
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"What money?"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=59 ChangeToValue=0
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -200,9 +177,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=99  OptionText=_" See you later."
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Good riddance."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=2 ChangeToValue=1
 ChangeOption=99 ChangeToValue=1
 DoSomethingExtra="EndDialog"

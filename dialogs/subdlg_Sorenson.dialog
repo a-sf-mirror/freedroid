@@ -40,9 +40,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 ----------------------------------------------------------------------
 
 New Option Nr=1  OptionText=_" Sure. I'll sign it."
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Go0d. H3re is th3 con7ract. S1gn it!"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=1 ChangeToValue=0
 LinkedTo:20
 AlwaysExecuteThisOptionPriorToDialogStart="no"
@@ -50,9 +48,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=2  OptionText=_" Um... Your voice sounds strange. Is everything fine?"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"519n 7h3 (0n7r4(7!!!!"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=2 ChangeToValue=0
 ChangeOption=3 ChangeToValue=1
 AlwaysExecuteThisOptionPriorToDialogStart="no"
@@ -60,18 +56,14 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=3  OptionText=_" Please calm down. You must speak clearly and slowly. Please stop breathing smoke like that, it bothers my throat. And what is the deal with the red glowing eyes? You should see a doctor. "
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"519n 17!!!!"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=3 ChangeToValue=0
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=20  OptionText=_" Ok, here go --"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"N0! 1n bl00d!"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=20 ChangeToValue=0
 ChangeOption=2 ChangeToValue=1
 ChangeOption=30 ChangeToValue=1
@@ -81,7 +73,6 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=30  OptionText=_" Sure, no problem... Now, how shall I sign this?"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=30 ChangeToValue=0
 ChangeOption=3 ChangeToValue=0
 ChangeOption=2 ChangeToValue=0
@@ -101,7 +92,6 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=40  OptionText=_" Tux."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Yes! I am free! At last I am free!"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=40 ChangeToValue=0
 LinkedTo:70
 AlwaysExecuteThisOptionPriorToDialogStart="no"
@@ -111,7 +101,6 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=41  OptionText=_" Tux, the Linarian"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Yes! I am free!"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=41 ChangeToValue=0
 LinkedTo:70
 AlwaysExecuteThisOptionPriorToDialogStart="no"
@@ -121,7 +110,6 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=42  OptionText=_" I accept the contract, Tux"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Yes! I am free at last!"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=42 ChangeToValue=0
 LinkedTo:70
 AlwaysExecuteThisOptionPriorToDialogStart="no"
@@ -131,9 +119,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=43  OptionText=_" Elbereth"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"4444! 17 burn5! 7'm m3171n9! "
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"44444444444444444!"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=43 ChangeToValue=0
 DoSomethingExtra="DropDead"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
@@ -143,9 +129,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=44  OptionText=_" Francis"
 OptionSample=""
 Subtitle=_"H4! Y0ur s0ul 15 min3, Francis!"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Wh47? N07 w0rk1b9?"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=44 ChangeToValue=0
 LinkedTo:60
 AlwaysExecuteThisOptionPriorToDialogStart="no"
@@ -155,7 +139,6 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=45  OptionText=_" The great destroyer of evil, the purger of all things foul, the friend of mankind, the third duke of Linarius, esqiure, Doctorate of Computer Sciences, high priest of Kernelius, the ray of light in the darkness, the bender of spoons, His Great Magnificence, Tux."
 OptionSample=""
 Subtitle=_"Huh?"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=45 ChangeToValue=0
 LinkedTo:50
 AlwaysExecuteThisOptionPriorToDialogStart="no"
@@ -165,7 +148,6 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=46  OptionText=_" X"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"N0! S7up1d illi73r4t3 p3n9u1n! D13!!"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=46 ChangeToValue=0
 DoSomethingExtra="BreakOffAndBecomeHostile"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
@@ -173,9 +155,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=50  OptionText=_" I... Don't feel... good... Blood loss... So... Cold..."
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"N0! Idi07!"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=50 ChangeToValue=0
 DoSomethingExtra="KillTux"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
@@ -183,9 +163,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=60  OptionText=_" Erm. I have a confession to make. My name is not Francis."
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"N0000000000!!!!!!!"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=60 ChangeToValue=0
 DoSomethingExtra="BreakOffAndBecomeHostile"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
@@ -193,9 +171,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=70  OptionText=_" Huh? I d0n'7 f33l g00d."
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Yes, fool! You have freed me! I can finally die! Goodbye idiot!"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=70 ChangeToValue=0
 LinkedTo:71
 AlwaysExecuteThisOptionPriorToDialogStart="no"
@@ -203,7 +179,6 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=71  OptionText=_" W417... 1 f331... H0rr1b13..."
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=71 ChangeToValue=0
 DoSomethingExtra="DropDead"
 DoSomethingExtra="IncreaseSpellcastingSkill"
@@ -212,9 +187,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=98  OptionText=_" In blood? Yuck. I am not going to do this, blood is too messy for a binding legal contract. Forget about it."
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"N00oo00oo0! T1m3 to d1e, m0rtal foo1!"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=98 ChangeToValue=0
 DoSomethingExtra="BreakOffAndBecomeHostile"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
@@ -222,9 +195,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=99  OptionText=_" There is no way I will sign something without reading it. Forget about it."
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"N00oo00oo0! T1m3 to d1e, m0rta1 foo1!"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=99 ChangeToValue=0
 DoSomethingExtra="BreakOffAndBecomeHostile"
 AlwaysExecuteThisOptionPriorToDialogStart="no"

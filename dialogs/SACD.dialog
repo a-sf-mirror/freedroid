@@ -31,9 +31,7 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 New Option Nr=0  OptionText=_" Login : admin  Password : *******"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Last login from /dev/ttyS0 on Sun, 23 mar 2057. admin@sadefence: ~ #"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=0 ChangeToValue=0
 ChangeOption=1 ChangeToValue=1
 ChangeOption=2 ChangeToValue=0
@@ -44,13 +42,9 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 ----------------------------------------------------------------------
 
 New Option Nr=1  OptionText=_" /usr/bin/guns --disable"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Disabling guns..."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Connecting to peripheral controller..."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Guns disabled."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=1 ChangeToValue=0
 ChangeOption=2 ChangeToValue=1
 DoSomethingExtra="ExecuteActionWithLabel:disable_sadd_gun1"
@@ -61,13 +55,9 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=2  OptionText=_" /usr/bin/guns --enable"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Enabling guns..."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Connecting to peripheral controller..."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Guns enabled."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=2 ChangeToValue=0
 ChangeOption=1 ChangeToValue=1
 DoSomethingExtra="ExecuteActionWithLabel:enable_sadd_gun1"
@@ -78,28 +68,19 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=3  OptionText=_" /usr/bin/hermodoors --open"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Opening doors..."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Connecting to peripheral controller..."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Please enter unlock security password:"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 LinkedTo:5
 
 ----------------------------------------------------------------------
 
 New Option Nr=4  OptionText=_" ./hcf.py"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Executing: Halt and Catch Fire."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Cooling subsystems disabled."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Warning! Spontaneous oxidization witH emis$ion of light aND heAt detecteddd in THE#main| procesIng unit,"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"SsTeM=#faiPure%^#n 3 S 1()$++"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=4 ChangeToValue=0
 DoSomethingExtra="DropDead"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
@@ -107,9 +88,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=5  OptionText=_" CTRL+C"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"An error occured while opening doors."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=5 ChangeToValue=0
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -157,7 +136,6 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=99  OptionText=_" logout"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=99 ChangeToValue=1
 DoSomethingExtra="EndDialog"
 AlwaysExecuteThisOptionPriorToDialogStart="no"

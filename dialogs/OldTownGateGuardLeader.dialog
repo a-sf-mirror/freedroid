@@ -33,7 +33,6 @@ Beginning of new chat dialog for character="XXXXX"
 New Option Nr=0  OptionText=_"THIS WILL NEVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Hey you! Linarian! What do you want here?"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=0 ChangeToValue=0
 ChangeOption=1 ChangeToValue=1
 ChangeOption=2 ChangeToValue=1
@@ -44,17 +43,11 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=1  OptionText=_" Just taking a look around."
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Oh, great. Another curious one."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"About a week ago I let in a stranger who also said he was just taking a look around. I never saw him again."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"On that day all our computers went insane, 20 bags of food rations vanished from our storage and one of our bots was stolen."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"I think that damn freak lives somewhere to the east. I would love to get my hands on him and beat the life out of him. Slowly."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Linarian, I will let you in. Do something stupid, and you aren't coming out. Got it? Good."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=1 ChangeToValue=0
 ChangeOption=2 ChangeToValue=0
 ChangeOption=3 ChangeToValue=0
@@ -64,11 +57,8 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=2  OptionText=_" I'd like to get into town."
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Funny, exactly the same could be said about all of the crazy bots out there."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"I'll let you in, but be warned: one false move and we all have flightless waterfowl for dinner. I hope I am making myself clear."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=1 ChangeToValue=0
 ChangeOption=2 ChangeToValue=0
 ChangeOption=3 ChangeToValue=0
@@ -78,11 +68,8 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=3  OptionText=_" I'm here to assassinate your leader and you won't stop me!"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Ok, Linarian! You asked for it!"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Open fire!"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=1 ChangeToValue=0
 ChangeOption=2 ChangeToValue=0
 ChangeOption=3 ChangeToValue=0
@@ -94,9 +81,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=99  OptionText=_" I'll be going then."
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Mhmmm."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=99 ChangeToValue=1
 DoSomethingExtra="EndDialog"
 AlwaysExecuteThisOptionPriorToDialogStart="no"

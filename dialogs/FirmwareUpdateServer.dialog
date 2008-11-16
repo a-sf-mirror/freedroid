@@ -33,9 +33,7 @@ Beginning of new chat dialog for character="XXXXX"
 New Option Nr=0  OptionText=_"THIS WILL NEVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Welcome to MS firmware upgrade server for region #54658."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Please select action"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=0 ChangeToValue=0
 ChangeOption=1 ChangeToValue=1
 ChangeOption=2 ChangeToValue=1
@@ -46,28 +44,19 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 ----------------------------------------------------------------------
 
 New Option Nr=1  OptionText=_" Get current OS version"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Currently deployed firmware is v. 5.0.8+worldto-nogpl."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=1 ChangeToValue=0
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=2  OptionText=_" Propagate firmware update"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Compressing image...."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Advertising update to clients..."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Waiting for all connections...."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"..."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"..."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Firmware update propagated!"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=1 ChangeToValue=0
 ChangeOption=2 ChangeToValue=0
 ChangeOption=3 ChangeToValue=1
@@ -77,9 +66,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=3  OptionText=_" Get current OS version"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Currently deployed firmware is v. 5.0.8+tuxwashere+gpl"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=1 ChangeToValue=0
 ChangeOption=2 ChangeToValue=0
 ChangeOption=3 ChangeToValue=1
@@ -89,7 +76,6 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=99  OptionText=_" Logout"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=99 ChangeToValue=1
 DoSomethingExtra="EndDialog"
 AlwaysExecuteThisOptionPriorToDialogStart="no"

@@ -31,11 +31,8 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 New Option Nr=0  OptionText=_" Hi! I'm new here. "
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Welcome, welcome! I'm Richard. I'm the computer guy around here."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"I mostly work with this huge computer cluster here, although I also program the 614 bots in my spare time."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=0 ChangeToValue=0
 ChangeOption=1 ChangeToValue=1
 AlwaysExecuteThisOptionPriorToDialogStart="no"
@@ -43,13 +40,9 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=1  OptionText=_" A computer cluster? What's that?"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"A cluster is a group of computers, connected in a way that helps them collaborate in solving problems."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"As they say, 'two heads are better than one'. And we have a lot of heads here."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"This is why I call this cluster 'Hydra'. A lot of heads indeed."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=1 ChangeToValue=0
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -64,13 +57,9 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 ----------------------------------------------------------------------
 
 New Option Nr=6  OptionText=_" I have a data cube with some information. Can you tell me something more about it?"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Interesting. Let me see this thing. Hmm... Yes, there is quite a lot of stuff in there. Maybe we could use Hydra to evaluate the data."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Hey, what do we have here? The data is already prepared for processing by a cluster just like ours. Wow! That's excellent!"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"I'll feed it into Hydra right away. Expect the results in a short while. Hydra has never let me down so far."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=6 ChangeToValue=0
 ChangeOption=9 ChangeToValue=1
 DoSomethingExtra="MarkMissionComplete:7"
@@ -96,22 +85,16 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=9  OptionText=_" Hey, did you get something out of that data cube?"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Of course! I told you, Hydra has never failed me! I designed it myself, and I know computers very well. I never make mistakes."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Seems like the disruptor shield which prevents all our attacks on Hell Fortress can be controlled from somewhere outside or something like that."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"I was busy servicing one of Hydra's nodes, but I sent the full report to Spencer. He will tell you more."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=9 ChangeToValue=0
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=99  OptionText=_" See you later."
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Take care, Linarian."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 DoSomethingExtra="EndDialog"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 

@@ -33,21 +33,15 @@ Beginning of new chat dialog for character="XXXXX"
 New Option Nr=0 OptionText=_"THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Your bio checksum does not trigger a match in staff database. Please show proper credentials or leave the premises at once."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=0 ChangeToValue=0
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------
 New Option Nr=1  OptionText=_" Who are you and what are you doing?"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" I am a SADD - Secret Area Defence Droid"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" PRIMARY TARGET 1: do not let unauthorized people in."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" PRIMARY TARGET 2: authorized personal must have access to the zone."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" SECONDARY TARGET: prevent secret information leakage"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 ChangeOption=1 ChangeToValue=0
 ChangeOption=3 ChangeToValue=0
@@ -57,11 +51,8 @@ ChangeOption=5 ChangeToValue=1
 
 
 New Option Nr=3  OptionText=_" I mean, you are not attacking me... Don't you kill like other bots?"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" I do! I do! I kill humans, bots, linarians and even dogs, cats and other animals! I would kill anybody!"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" Em.. Anybody who would try to get in, of course."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=3 ChangeToValue=0
 ChangeOption=4 ChangeToValue=1
 ChangeOption=6 ChangeToValue=1
@@ -70,13 +61,9 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=4  OptionText=_" What is this place?"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" SECONDARY TARGET: prevent secret information leakage"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" *INFO* secret information steal attempt detected"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" Go away. You are not allowed to be here!"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=4 ChangeToValue=0
 DoSomethingExtra="EndDialog"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
@@ -84,9 +71,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=5  OptionText=_" Why are you not hostile?"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" Hostile? What do you mean?"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=5 ChangeToValue=0
 ChangeOption=3 ChangeToValue=1
 AlwaysExecuteThisOptionPriorToDialogStart="no"
@@ -95,11 +80,8 @@ LinkedTo:3
 ----------------------------------------------------------------------
 
 New Option Nr=6  OptionText=_" What about the Great Assault?"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" For security reason SADDs are not equipped with wireless modules."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" I know only that I have to be recharged, checked and have my firmware updated every 3 months."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 ChangeOption=7 ChangeToValue=1
 ChangeOption=6 ChangeToValue=0
@@ -108,15 +90,10 @@ LinkedTo:7
 ----------------------------------------------------------------------
 
 New Option Nr=7  OptionText=_" When does your last maintenance date back to?"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" One year and a half ago. My accumulator is nearly empty, so I'm going to halt soon. Gates will become unguarded..."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" *INFO* secret information steal detected!"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" *INFO* information classified as critical!"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" *INFO* locking zone!"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 DoSomethingExtra="ExecuteActionWithLabel:enable_sadd_gun1"
 DoSomethingExtra="ExecuteActionWithLabel:enable_sadd_gun2"
@@ -129,9 +106,7 @@ DoSomethingExtra="EndDialog"
 ----------------------------------------------------------------------
 
 New Option Nr=8  OptionText=_" What have you done?! How am I supposed to get out of here?"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" You are not. You have secret information, so I won't let you out."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 ChangeOption=9 ChangeToValue=1
 ChangeOption=8 ChangeToValue=0
@@ -139,9 +114,7 @@ ChangeOption=8 ChangeToValue=0
 ----------------------------------------------------------------------
 
 New Option Nr=9  OptionText=_" Why not kill me immediately?"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" And stand here alone until I die? While you are here I can speak with you. Oh, I haven't spoken to anybody for a looong time!"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 ChangeOption=9 ChangeToValue=0
 ChangeOption=10 ChangeToValue=1
@@ -150,20 +123,15 @@ ChangeOption=11 ChangeToValue=1
 ----------------------------------------------------------------------
 
 New Option Nr=10  OptionText=_" I'm thirsty and hungry. I will die within days, and you will not have an interlocutor any more!"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" My power supply will end earlier."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 ChangeOption=10 ChangeToValue=0
 
 ----------------------------------------------------------------------
 
 New Option Nr=11  OptionText=_" You speak almost like a human..."
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" Maybe I'm almost like human?"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" Anyway, that's none of your business. Soon I'll be dead, you too and nobody will enter this place ever again!"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 ChangeOption=11 ChangeToValue=0
 ChangeOption=12 ChangeToValue=1
@@ -171,15 +139,10 @@ ChangeOption=12 ChangeToValue=1
 ----------------------------------------------------------------------
 
 New Option Nr=12  OptionText=_" What are your orders again?"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" PRIMARY TARGET 1: do not let unauthorized people in."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" PRIMARY TARGET 2: authorized personal must have access to the zone."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" SECONDARY TARGET: prevent secret information leakage"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" Why do you ask?"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 ChangeOption=12 ChangeToValue=0
 ChangeOption=13 ChangeToValue=1
@@ -188,11 +151,8 @@ LinkedTo:13
 ----------------------------------------------------------------------
 
 New Option Nr=13  OptionText=_" Tell me your second order once more..."
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" PRIMARY TARGET 2: authorized personal must have access to the zone."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" Yes, it will be violated. But first order has higher priority."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 ChangeOption=13 ChangeToValue=0
 ChangeOption=14 ChangeToValue=1
@@ -201,9 +161,7 @@ LinkedTo:14
 ----------------------------------------------------------------------
 
 New Option Nr=14  OptionText=_" So you can break your orders?"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" I've already broken them, when I told you what I shouldn't have. That's because of my human nature."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 ChangeOption=14 ChangeToValue=0
 ChangeOption=15 ChangeToValue=1
@@ -212,9 +170,7 @@ ChangeOption=16 ChangeToValue=1
 ----------------------------------------------------------------------
 
 New Option Nr=15  OptionText=_" Then please, break the rule, disable the guns and let me go."
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" No way. I'm a computer, I can't break rules."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 ChangeOption=15 ChangeToValue=0
 ChangeOption=18 ChangeToValue=1
@@ -222,9 +178,7 @@ ChangeOption=18 ChangeToValue=1
 ----------------------------------------------------------------------
 
 New Option Nr=16  OptionText=_" I suggest a deal. You let me out, I bring you dilithium cristals. It will save both of us."
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" Why would I trust you?"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=21 ChangeToValue=1
 ChangeOption=22 ChangeToValue=1
 ChangeOption=16 ChangeToValue=0
@@ -238,11 +192,8 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 
 New Option Nr=18  OptionText=_" And what about your human nature?"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" Human? I've said human? I'm a computer!"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" OK, I'm almost a computer."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 ChangeOption=18 ChangeToValue=0
 ChangeOption=19 ChangeToValue=1
@@ -250,9 +201,7 @@ ChangeOption=19 ChangeToValue=1
 ----------------------------------------------------------------------
 
 New Option Nr=19  OptionText=_" Almost a computer? What does this mean?"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" It means what it means! Nothing more, nothing less! Shut up, little piece of biomass!"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 ChangeOption=19 ChangeToValue=0
 ChangeOption=20 ChangeToValue=1
@@ -261,9 +210,7 @@ DoSomethingExtra="EndDialog"
 ----------------------------------------------------------------------
 
 New Option Nr=20  OptionText=_" Almost a computer? What does this mean?"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" When I say SHUT UP, you MUST shut up! Try this, worthless grain of the universe!"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 ChangeOption=19 ChangeToValue=1
 ChangeOption=20 ChangeToValue=1
@@ -272,9 +219,7 @@ DoSomethingExtra="BreakOffAndBecomeHostile"
 ----------------------------------------------------------------------
 
 New Option Nr=21  OptionText=_" You will promise me a significant reward."
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" Damn. Ok, I'll give you a super exterminator if you give me dilithium cristals."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 ChangeOption=21 ChangeToValue=0
 ChangeOption=22 ChangeToValue=0
@@ -286,9 +231,7 @@ LinkedTo:23
 ----------------------------------------------------------------------
 
 New Option Nr=22  OptionText=_" It seems, that you are sentinent, you are a form of life. I must help any form of life."
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" Thanks a lot for your warm words. I think I can trust you."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 ChangeOption=21 ChangeToValue=0
 ChangeOption=22 ChangeToValue=0
@@ -298,9 +241,7 @@ LinkedTo:23
 ----------------------------------------------------------------------
 
 New Option Nr=23  OptionText=_" So disable the guns, please."
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" Go, and bring dilithium. I badly need it."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 ChangeOption=23 ChangeToValue=0
 DoSomethingExtra="ExecuteActionWithLabel:disable_sadd_gun1"
@@ -366,9 +307,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 New Option Nr=30  OptionText=_" I have the crystals! They were difficult to find."
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" Good. I've opened the depot door for you. Take your super exterminator and GET OUT of here!"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=30 ChangeToValue=0
 ChangeOption=37 ChangeToValue=1
 DoSomethingExtra="MarkMissionComplete:10"
@@ -384,9 +323,7 @@ DoSomethingExtra="EndDialog"
 
 
 New Option Nr=31  OptionText=_" How is your power supply?"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" Badly. Get the cristals. Remember, you promised!"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 ChangeOption=26 ChangeToValue=0
 DoSomethingExtra="EndDialog"
@@ -404,9 +341,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=33  OptionText=_" I have crystals! They were difficult to find."
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" Great! Thanks. I've opened some doors for you, I hope you will find something interesting there. That's all I can do for you."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=33 ChangeToValue=0
 ChangeOption=97 ChangeToValue=1
 DoSomethingExtra="MarkMissionComplete:10"
@@ -446,9 +381,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=37  OptionText=_" You call this a super exterminator?"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" I do. Now please leave this place before I terminate you."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 ChangeOption=37 ChangeToValue=0
 ChangeOption=38 ChangeToValue=1
@@ -456,9 +389,7 @@ ChangeOption=38 ChangeToValue=1
 ----------------------------------------------------------------------
 
 New Option Nr=38  OptionText=_" This is rubbish! Nobody can use this damned gun!"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" The door is still open. You can put it back and go. Quick."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 ChangeOption=38 ChangeToValue=0
 ChangeOption=39 ChangeToValue=1
@@ -466,9 +397,7 @@ ChangeOption=39 ChangeToValue=1
 ----------------------------------------------------------------------
 
 New Option Nr=39  OptionText=_" Give me a real gun, dude! Immediately! I have brought you what you wanted, now give me my reward!"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" You can go standing on your feet, that's your reward. And DON'T TRY MY PATIENCE!"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 ChangeOption=39 ChangeToValue=0
 ChangeOption=40 ChangeToValue=1
@@ -476,9 +405,7 @@ ChangeOption=40 ChangeToValue=1
 ----------------------------------------------------------------------
 
 New Option Nr=40  OptionText=_" I'll kill you if you don't give me my gun!"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" You are welcome. But you would never get out of here, my death won't help you."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 ChangeOption=40 ChangeToValue=0
 ChangeOption=41 ChangeToValue=1
@@ -493,41 +420,30 @@ DoSomethingExtra="EndDialog"
 ----------------------------------------------------------------------
 
 New Option Nr=41  OptionText=_" And what about your directives, especially second?"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" Now I have time. When you die, I'll disable guns."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=42  OptionText=_" Please forgive me!"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" Too late. I'm watching this great show now."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" It is called..."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" It is called..."
-ReplySample="CONDEMMED TO DEATH!"
+Subtitle=_"CONDEMNED TO DEATH!"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=43  OptionText=_" Please, disable the guns!"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" Ok, I'll disable them."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" I just need to make some preparations. You have to wait..."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" ...for your death!"
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=97  OptionText=_" Erm... hi!"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" Hi. Thanks for the help."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=98 ChangeToValue=1
 ChangeOption=97 ChangeToValue=0
 DoSomethingExtra="EndDialog"
@@ -537,9 +453,7 @@ LinkedTo:98
 ----------------------------------------------------------------------
 
 New Option Nr=98  OptionText=_" Will you let me inside the base?"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" Nice attempt. I owe you but I cannot do that. You must leave."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=98 ChangeToValue=0
 ChangeOption=99 ChangeToValue=1
 DoSomethingExtra="EndDialog"
@@ -548,9 +462,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=99  OptionText=_" I'd better get out of here..."
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_" Exactly."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=99 ChangeToValue=1
 DoSomethingExtra="EndDialog"
 AlwaysExecuteThisOptionPriorToDialogStart="no"

@@ -40,7 +40,6 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 ----------------------------------------------------------------------
 
 New Option Nr=5  OptionText=_" Improve ranged weapon skill (cost 5 training points, 100 cash) "
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 OnCondition="GoldIsLessThan:100" JumpToOption=10 ElseGoto=11
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -49,7 +48,6 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=8  OptionText=_"THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"You don't have enough experience. Come here after you see some more action."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=8 ChangeToValue=0
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -58,7 +56,6 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=10  OptionText=_"THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"You don't have enough money! I cannot afford to just give away training for free."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=10 ChangeToValue=0
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -75,19 +72,12 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=12  OptionText=_"THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Now the most important thing is that you turn off the auto-aim on your weapon, like this."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Otherwise your weapon might 'help' you and shoot somewhere you didn't intend to fire."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Next important thing is to remember how to properly fire a shot."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Watch your target closely.  Pretend you're moving with it. Aim for the head."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"When you feel completely in sync with your target, then you pull the trigger."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Good. You are learning fast. Try it a few more times."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Good. I think that it is enough for today."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=12 ChangeToValue=0
 DoSomethingExtra="SubtractPointsToDistribute:5"
 DoSomethingExtra="SubtractGold:100"

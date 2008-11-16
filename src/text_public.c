@@ -450,12 +450,14 @@ This indicates a corrupted or seriously outdated game data or saved game file.",
 void
 ReadValueFromString( char* SearchBeginPointer , const char* ValuePreceedText , const char* FormatString , void* TargetValue , char* EndOfSearchSectionPointer )
 {
-    char OldTerminaterCharValue;
+    char OldTerminaterCharValue = 0;
     char* SourceLocation;
 
-    // We shortly make a termination char into the string.
-    OldTerminaterCharValue=EndOfSearchSectionPointer[0];
-    EndOfSearchSectionPointer[0]=0;
+    // We shortly make a termination char into the string if needed
+    if (EndOfSearchSectionPointer) {
+	OldTerminaterCharValue=EndOfSearchSectionPointer[0];
+	EndOfSearchSectionPointer[0]=0;
+    }
     
     // Now we locate the spot, where we finally will find our value
     SourceLocation = LocateStringInData ( SearchBeginPointer , ValuePreceedText );
@@ -475,8 +477,10 @@ This indicates a corrupted or seriously outdated game data or saved game file.",
 				 PLEASE_INFORM, IS_FATAL );
     }
     
-    // Now that we are done, we restore the given SearchArea to former glory
-    EndOfSearchSectionPointer[0]=OldTerminaterCharValue;
+    if (EndOfSearchSectionPointer) {
+	// Now that we are done, we restore the given SearchArea to former glory
+	EndOfSearchSectionPointer[0]=OldTerminaterCharValue;
+    }
 
 }; // void ReadValueFromString( ... )
 
@@ -614,21 +618,16 @@ LoadChatRosterWithChatSequence ( char* FullPathAndFullFilename )
     char *ChatData;
     char *SectionPointer;
     char *EndOfSectionPointer;
-    char *NextChatSectionCode;
     int i , j ;
-    int OptionSectionsLeft;
     char fpath[2048];
     int OptionIndex;
     int NumberOfOptionsInSection;
-    char TempSavedCharacter = 'A' ;
-    char *TempEndPointer = NULL ;
     int NumberOfReplySubtitles;
     int NumberOfReplySamples;
     int NumberOfOptionChanges;
     int NumberOfNewOptionValues;
     int NumberOfExtraEntries;
     
-    int RestoreTempDamage;
     char* ReplyPointer;
     char* OptionChangePointer;
     char* ExtraPointer;
@@ -648,24 +647,6 @@ LoadChatRosterWithChatSequence ( char* FullPathAndFullFilename )
     SectionPointer = ChatData ;
     
     //--------------------
-    // Now we search for the desired chat section, cause most likely
-    // there will be more than one person to chat in this chat file soon
-    //
-#define UNINITIALIZED_SECTION_CODE "NOPERSONATALL"
-    NextChatSectionCode = UNINITIALIZED_SECTION_CODE ;
-    SectionPointer = ChatData;
-    
-    //--------------------
-    // Now we locate the end of this chat section and put a 
-    // termination character there, so we can use string functions
-    // conveniently on the given section.
-    //
-    // EndOfSectionPointer = LocateStringInData ( SectionPointer , CHAT_CHARACTER_END_STRING );
-    // *EndOfSectionPointer = 0;
-    //
-    EndOfSectionPointer = SectionPointer + strlen ( SectionPointer );
-    
-    //--------------------
     // At first we go take a look on how many options we have
     // to decode from this section.
     //
@@ -682,51 +663,43 @@ LoadChatRosterWithChatSequence ( char* FullPathAndFullFilename )
     {
 	SectionPointer = LocateStringInData ( SectionPointer, NEW_OPTION_BEGIN_STRING );
 	ReadValueFromString( SectionPointer , NEW_OPTION_BEGIN_STRING, "%d" , 
-			     &OptionIndex , EndOfSectionPointer );
+			     &OptionIndex , SectionPointer + strlen(NEW_OPTION_BEGIN_STRING) + 50);
+
 	DebugPrintf( CHAT_DEBUG_LEVEL , "\nFound New Option entry.  Index found is: %d. " , OptionIndex ) ;
 	SectionPointer++;
+
+	// Find the end of this dialog option
+	EndOfSectionPointer = strstr(SectionPointer, NEW_OPTION_BEGIN_STRING);
+
+	if (EndOfSectionPointer) {//then we are not the last option
+	    *EndOfSectionPointer = 0;
+	}
 	
-	//--------------------
-	// Now that we have the actual option index, we can start to
-	// fill the roster with real information.  At first, this will be only
-	// the Option string and sample
-	//
 	// Anything that is loaded into the chat roster doesn't need to be freed,
 	// cause this will be done by the next 'InitChatRoster' function anyway.
 	//
 	ChatRoster[ OptionIndex ] . option_text = 
-	    ReadAndMallocStringFromData ( SectionPointer , "OptionText=_\"" , "\"" ) ;
+	    ReadAndMallocStringFromDataOptional ( SectionPointer , "OptionText=\"" , "\"", 0 ) ;
+	if (!ChatRoster[ OptionIndex ] . option_text) {
+	    ChatRoster[ OptionIndex ] . option_text = 
+		ReadAndMallocStringFromData ( SectionPointer, "OptionText=_\"" , "\"" ) ;
+	}
+
 	DebugPrintf( CHAT_DEBUG_LEVEL , "\nOptionText found : \"%s\"." , ChatRoster[ OptionIndex ] . option_text );
+
 	ChatRoster[ OptionIndex ] . option_sample_file_name = 
-	    ReadAndMallocStringFromData ( SectionPointer , "OptionSample=\"" , "\"" ) ;
+	    ReadAndMallocStringFromDataOptional ( SectionPointer , "OptionSample=\"" , "\"", 0 ) ;
+
+	if (!ChatRoster[OptionIndex].option_sample_file_name)
+	    ChatRoster[OptionIndex].option_sample_file_name = strdup("Sorry_No_Voice_Sample_Yet_0.wav");
+
 	DebugPrintf( CHAT_DEBUG_LEVEL , "\nOptionSample found : \"%s\"." , ChatRoster[ OptionIndex ] . option_sample_file_name );
-	
-	//--------------------
-	// Now we can start to add all given Sample and Subtitle combinations
-	// But first we must add a termination character in order to not use
-	// the combinations of the next option section.
-	// 
-	if ( ( OptionSectionsLeft = CountStringOccurences ( SectionPointer , NEW_OPTION_BEGIN_STRING ) ) )
-	{
-	    DebugPrintf ( CHAT_DEBUG_LEVEL , "\nThere are still %d option sections in the file.  \n\
-Therefore we must add a new temporary termination character in between." , OptionSectionsLeft );
-	    TempEndPointer = LocateStringInData ( SectionPointer, NEW_OPTION_BEGIN_STRING );
-	    TempSavedCharacter = *TempEndPointer;
-	    *TempEndPointer = 0 ;
-	    RestoreTempDamage = TRUE;
-	}
-	else
-	{
-	    DebugPrintf ( CHAT_DEBUG_LEVEL , "\nThere is no more option section left in the file.  \n\
-Therefore we need not add an additional termination character now." );
-	    RestoreTempDamage = FALSE;
-	}
 	
 	//--------------------
 	// Now that the temporary termination character has been inserted, we can 
 	// start to hunt for position and other strings in the new terminated area...
 	//
-	ChatRoster[OptionIndex].enabled=1;
+	ChatRoster[OptionIndex].enabled = 1;
 	
 #define NEW_REPLY_SAMPLE_STRING "ReplySample=\""
 #define NEW_REPLY_SUBTITLE_STRING "Subtitle=_\""
@@ -737,21 +710,18 @@ Therefore we need not add an additional termination character now." );
 	//
 	NumberOfReplySamples = CountStringOccurences ( SectionPointer , NEW_REPLY_SAMPLE_STRING ) ;
 	NumberOfReplySubtitles = CountStringOccurences ( SectionPointer , NEW_REPLY_SUBTITLE_STRING ) ;
-	if ( NumberOfReplySamples != NumberOfReplySubtitles )
+	if ( NumberOfReplySamples != NumberOfReplySubtitles && NumberOfReplySamples > 0)
 	{
 	    fprintf( stderr, "\n\nNumberOfReplySamples: %d NumberOfReplySubtitles: %d \n" , NumberOfReplySamples , NumberOfReplySubtitles );
 	    fprintf( stderr, "The section in question looks like this: \n%s\n\n" , SectionPointer );
 	    ErrorMessage ( __FUNCTION__  , "\
 There were an unequal number of reply samples and subtitles specified\n\
 within a section of the Freedroid.dialogues file.\n\
+This is allowed in Freedroid only if there are no subtitles - ie. either specify\n\
+one subtitle per reply, or no subtitle at all.\n\
 This is currently not allowed in Freedroid and therefore indicates a\n\
 severe error.",
 				       PLEASE_INFORM, IS_FATAL );
-	}
-	else
-	{
-	    DebugPrintf ( CHAT_DEBUG_LEVEL , "\nThere were %d reply samples and an equal number of subtitles\n\
-found in this option of the dialogue, which is fine.", NumberOfReplySamples );
 	}
 	
 	//--------------------
@@ -759,22 +729,29 @@ found in this option of the dialogue, which is fine.", NumberOfReplySamples );
 	// to read out, we can well start reading exactly that many of them.
 	// 
 	ReplyPointer = SectionPointer;
-	for ( j = 0 ; j < NumberOfReplySamples ; j ++ )
-	{
+
+	for ( j = 0 ; j < NumberOfReplySubtitles ; j ++ )
+	    {
 	    ChatRoster[ OptionIndex ] . reply_subtitle_list [ j ] =
 		ReadAndMallocStringFromData ( ReplyPointer , NEW_REPLY_SUBTITLE_STRING, "\"" ) ;
-	    DebugPrintf( CHAT_DEBUG_LEVEL , "\nReplySubtitle found : \"%s\"." , ChatRoster[ OptionIndex ] . reply_subtitle_list [ j ] );
-	    ChatRoster[ OptionIndex ] . reply_sample_list [ j ] =
-		ReadAndMallocStringFromData ( ReplyPointer , NEW_REPLY_SAMPLE_STRING, "\"" ) ;
+
+	    if (!NumberOfReplySamples)
+		ChatRoster[ OptionIndex ] . reply_sample_list [ j ] = strdup("Sorry_No_Voice_Sample_Yet_0.wav");
+	    else
+		ChatRoster[ OptionIndex ] . reply_sample_list [ j ] =
+		    ReadAndMallocStringFromData ( ReplyPointer , NEW_REPLY_SAMPLE_STRING, "\"" ) ;
+
+	    DebugPrintf( CHAT_DEBUG_LEVEL , "\nSubtitle found : \"%s\"." , ChatRoster[ OptionIndex ] . reply_subtitle_list [ j ] );
+
+
 	    DebugPrintf( CHAT_DEBUG_LEVEL , "\nReplySample found : \"%s\"." , ChatRoster[ OptionIndex ] . reply_sample_list [ j ] );
-	    
+
 	    //--------------------
 	    // Now we must move the reply pointer to after the previous combination.
 	    //
-	    ReplyPointer = LocateStringInData ( ReplyPointer, "ReplySample" );
+	    ReplyPointer = LocateStringInData ( ReplyPointer, "Subtitle" );
 	    ReplyPointer ++;
-	    
-	}
+	    }
 	
 	//--------------------
 	// We count the number of Option changes and new values and then
@@ -806,9 +783,9 @@ found in this option of the dialogue, which is fine.", NumberOfOptionChanges );
 	for ( j = 0 ; j < NumberOfOptionChanges ; j ++ )
 	{
 	    ReadValueFromString( OptionChangePointer , "ChangeOption=" , "%d" , 
-				 & ( ChatRoster[ OptionIndex ] . change_option_nr [ j ] ) , TempEndPointer );
+				 & ( ChatRoster[ OptionIndex ] . change_option_nr [ j ] ) , NULL );
 	    ReadValueFromString( OptionChangePointer , "ChangeToValue=" , "%d" , 
-				 & ( ChatRoster[ OptionIndex ] . change_option_to_value [ j ] ) , TempEndPointer );
+				 & ( ChatRoster[ OptionIndex ] . change_option_to_value [ j ] ) , NULL );
 	    DebugPrintf( CHAT_DEBUG_LEVEL , "\nOption Nr. %d will change to value %d. " , 
 			 ChatRoster[ OptionIndex ] . change_option_nr [ j ] ,
 			 ChatRoster[ OptionIndex ] . change_option_to_value [ j ] );
@@ -861,9 +838,9 @@ found in this option of the dialogue, which is fine.", NumberOfOptionChanges );
 		ReadAndMallocStringFromData ( SectionPointer , "OnCondition=\"" , "\"" ) ;
 	    DebugPrintf( CHAT_DEBUG_LEVEL , "\nOnCondition text found : \"%s\"." , ChatRoster[ OptionIndex ] . on_goto_condition );
 	    ReadValueFromString( SectionPointer , "JumpToOption=" , "%d" , 
-				 & ( ChatRoster[ OptionIndex ] . on_goto_first_target ) , TempEndPointer );
+				 & ( ChatRoster[ OptionIndex ] . on_goto_first_target ) , NULL );
 	    ReadValueFromString( SectionPointer , "ElseGoto=" , "%d" , 
-				 & ( ChatRoster[ OptionIndex ] . on_goto_second_target ) , TempEndPointer );
+				 & ( ChatRoster[ OptionIndex ] . on_goto_second_target ) , NULL );
 	    DebugPrintf( CHAT_DEBUG_LEVEL , "\nOnCondition jump targets: TRUE--> %d FALSE-->%d." , 
 			 ChatRoster[ OptionIndex ] . on_goto_first_target ,
 			 ChatRoster[ OptionIndex ] . on_goto_second_target  );
@@ -872,9 +849,10 @@ found in this option of the dialogue, which is fine.", NumberOfOptionChanges );
 	{
 	    DebugPrintf( CHAT_DEBUG_LEVEL , "\nThere seems to be NO ON-GOTO-CONDITION AT ALL IN THIS OPTION." );
 	}
+	
 	if ( CountStringOccurences ( SectionPointer , "LinkedTo:" ) ) 
 	{
-	    ReadValueFromString( SectionPointer , "LinkedTo:" , "%d" ,  & ( ChatRoster[ OptionIndex ] . link_target ) , TempEndPointer );
+	    ReadValueFromString( SectionPointer , "LinkedTo:" , "%d" ,  & ( ChatRoster[ OptionIndex ] . link_target ) , NULL );
 	}
 	
 	//--------------------
@@ -909,20 +887,8 @@ This indicated a corrupted FreedroidRPG dialog.",
 	    DebugPrintf( CHAT_DEBUG_LEVEL , "\nThere seems to be NO ALWAYS-ON-START FLAG AT ALL IN THIS OPTION." );
 	}
 	
-	//--------------------
-	// Now that the whole section has been read out into the ChatRoster, we can
-	// restore the original form of the Text again and the next option section
-	// can be read out in the next run of this loop 
-	//
-	if ( RestoreTempDamage )
-	{
-	    DebugPrintf ( CHAT_DEBUG_LEVEL , "\nWe have now restored the damage from the temporary termination character." );
-	    *TempEndPointer = TempSavedCharacter ;
-	}
-	else
-	{
-	    DebugPrintf ( CHAT_DEBUG_LEVEL , "\nSince we didn't add any temp termination character, there's nothing to restore now." );
-	}
+	if (EndOfSectionPointer)
+	    *EndOfSectionPointer = NEW_OPTION_BEGIN_STRING[0];
     }
     
     //--------------------

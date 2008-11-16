@@ -41,13 +41,9 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 New Option Nr=1  OptionText=_"HERE WE GO"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"So you have come. I knew Duncan would not let me live for too long."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Once I am gone this oasis of peace in the world will dry up and die. A shame."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"I hoped to turn the whole desert into a sanctuary. And now my dream will never come true."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Do what you must."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=1 ChangeToValue=0
 ChangeOption=5 ChangeToValue=1
 ChangeOption=6 ChangeToValue=1
@@ -64,7 +60,6 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=5  OptionText=_" With pleasure."
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=5 ChangeToValue=0
 DoSomethingExtra="DropDead"
 DoSomethingExtra="ForceBotRespawnOnLevel:18"
@@ -73,13 +68,9 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=6  OptionText=_" No. I have not come here to kill you."
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Thank you."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Feel free to stay here. There is no danger."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"The water is safe to drink and the fruit from the tree is quite delicious."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=5 ChangeToValue=0
 ChangeOption=6 ChangeToValue=0
 ChangeOption=99 ChangeToValue=1
@@ -91,15 +82,10 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=10  OptionText=_" What is this place? Why there is grass and water under the desert?"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Ah, yes. That is my fault, I am afraid."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Wherever I go, life follows me."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"I thought I could hide from Duncan in this old bunker."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"When I woke up next day, things were as you see them now."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=10 ChangeToValue=0
 ChangeOption=11 ChangeToValue=1
 AlwaysExecuteThisOptionPriorToDialogStart="no"
@@ -107,37 +93,26 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=11  OptionText=_" This was a bunker?"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Yes. The place has changed a bit, as you can see."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"I like the way it is right now. The water cools everything down and the plants give the air a very fresh smell."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"As soon as I leave, everything will die. I have seen that happen before."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Because this place is just like a small bit of paradise, I decided to stay here."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"I do not want this wonderful bunker to become devoid of life again."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=11 ChangeToValue=0
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=20  OptionText=_" Why does Duncan want you dead?"
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"Very simple. He likes destruction, and I am creation."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"There is nothing more to it."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=20 ChangeToValue=0
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=99  OptionText=_" I will go now."
-OptionSample="Sorry_No_Voice_Sample_Yet_0.wav"
 Subtitle=_"This place will always wait for you."
-ReplySample="Sorry_No_Voice_Sample_Yet_0.wav"
 ChangeOption=99 ChangeToValue=1
 DoSomethingExtra="CompletelyHealTux"
 DoSomethingExtra="EndDialog"
