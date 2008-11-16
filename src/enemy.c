@@ -102,6 +102,43 @@ TeleportToClosestWaypoint ( Enemy ThisRobot )
 		  BestWaypoint, ThisRobot -> pos . x , ThisRobot -> pos . y , ThisRobot -> pos . z );
 }; // void TeleportToClosestWaypoint ( Enemy ThisRobot )
 
+int TeleportToRandomWaypoint(enemy * erot, level * ShuffleLevel, char *wp_used)
+{
+    int wp_num = ShuffleLevel->num_waypoints;
+    int testwp = MyRandom ( wp_num - 1);
+    int wp;
+
+    if ( wp_used [ testwp ] || ShuffleLevel -> AllWaypoints [ testwp ] . suppress_random_spawn) //test a random waypoint
+	{
+	int found = 0;
+	int a;
+
+	for ( a = (testwp == wp_num - 1 ) ? 0 : testwp + 1 ; a != testwp; a = (a >= wp_num - 1) ? 0 : a + 1)
+	    { /* Test waypoints starting from the current one to the last, and back from zero */
+	    if ( ! wp_used [ a ] && ! ShuffleLevel -> AllWaypoints [ a ] . suppress_random_spawn )
+		{
+		found = 1;
+		testwp = a;
+		break;
+		}
+	    }
+
+	if ( ! found )
+	    ErrorMessage(__FUNCTION__, "There was no free waypoint found on level %d to place another random bot.\n", PLEASE_INFORM, IS_WARNING_ONLY, ShuffleLevel->levelnum);
+	}
+
+    wp = testwp;
+    wp_used [ testwp ] = 1;
+
+    erot->pos.x = ShuffleLevel->AllWaypoints[wp].x + 0.5;
+    erot->pos.y = ShuffleLevel->AllWaypoints[wp].y + 0.5;
+
+    erot->lastwaypoint = wp;
+    erot->nextwaypoint = wp;
+
+    return wp;
+}
+
 /**
  * Enemys recover with time, just so.  This is done in this function, and
  * it is of course independent of the current framerate.
@@ -220,7 +257,6 @@ ShuffleEnemys ( int LevelNum )
 {
     int j;
     int wp_num;
-    int wp = 0;
     int BestWaypoint;
     Level ShuffleLevel = curShip.AllLevels[ LevelNum ];
     
@@ -278,34 +314,7 @@ ShuffleEnemys ( int LevelNum )
 	    continue;
 	    }
 
-	int testwp = MyRandom ( wp_num - 1);
-	if ( wp_used [ testwp ] || ShuffleLevel -> AllWaypoints [ testwp ] . suppress_random_spawn) //test a random waypoint
-	    {
-	    int found = 0;
-	    int a;
-	   
-	    for ( a = (testwp == wp_num - 1 ) ? 0 : testwp + 1 ; a != testwp; a = (a >= wp_num - 1) ? 0 : a + 1)
-		{ /* Test waypoints starting from the current one to the last, and back from zero */
-		if ( ! wp_used [ a ] && ! ShuffleLevel -> AllWaypoints [ a ] . suppress_random_spawn )
-		    {
-		    found = 1;
-		    testwp = a;
-		    break;
-		    }
-		}
-
-	    if ( ! found )
-		ErrorMessage(__FUNCTION__, "There was no free waypoint found on level %d to place another random bot.\n", PLEASE_INFORM, IS_WARNING_ONLY, LevelNum);
-	    }
-
-	wp = testwp;
-	wp_used [ testwp ] = 1;
-
-	erot->pos.x = ShuffleLevel->AllWaypoints[wp].x + 0.5;
-	erot->pos.y = ShuffleLevel->AllWaypoints[wp].y + 0.5;
-
-	erot->lastwaypoint = wp;
-	erot->nextwaypoint = wp;
+	TeleportToRandomWaypoint(erot, ShuffleLevel, wp_used);
 	} 
 
 }; // void ShuffleEnemys ( void ) 

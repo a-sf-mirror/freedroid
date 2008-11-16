@@ -109,15 +109,17 @@ remove_blood_obstacles_for_respawning ( int level_num )
  * (and characters) come back to life and resume their previous operation
  * from before thier death.
  */
-void
-respawn_level ( int level_num )
+void respawn_level ( int level_num )
 {
+    int wp_num = curShip.AllLevels[level_num]->num_waypoints;
+    char wp_used[wp_num];
+    memset(wp_used, 0, wp_num);
 
     //--------------------
     // First we remove all the blood obstacles...
     //
     remove_blood_obstacles_for_respawning ( level_num );
-    
+
     //--------------------
     // Now we can start to fill the enemies on this level with new life...
     //
@@ -136,30 +138,34 @@ respawn_level ( int level_num )
 	/* reinsert it into the current level list */
 	list_add(&(aerot->level_list), &level_bots_head[level_num]);
 	}
-   
-    BROWSE_ALIVE_BOTS_SAFE(erot, nerot) 
-	{
+
+    BROWSE_ALIVE_BOTS_SAFE(erot, nerot) {
 	if ( erot -> pos  . z != level_num )
 	    continue;
-		
+
 	erot->energy = Druidmap [ erot->type ] . maxenergy ;
 	erot->animation_phase = 0 ;
 	erot->animation_type = WALK_ANIMATION ; 
-        if( erot->has_been_taken_over == TRUE)
-		{
-                erot->is_friendly = FALSE ;
-                erot->has_been_taken_over = FALSE ;
-		}
+	if( erot->has_been_taken_over == TRUE)
+	    {
+	    erot->is_friendly = FALSE ;
+	    erot->has_been_taken_over = FALSE ;
+	    }
 
 	if ( ! erot->is_friendly )
-	{
-   	    erot->combat_state = SELECT_NEW_WAYPOINT ;
+	    {
+	    erot->combat_state = SELECT_NEW_WAYPOINT ;
 
 	    erot->has_greeted_influencer = FALSE ;
 	    erot->state_timeout = 0 ;
+	    }
+
+	if ( !erot->SpecialForce ) {
+	    int out = TeleportToRandomWaypoint(erot, curShip.AllLevels[level_num], wp_used);
+	    if (out > 0)
+		wp_used[out] = 1;
 	}
-	
-        }
+    }
 
 }; // void respawn_level ( int level_num )
 
