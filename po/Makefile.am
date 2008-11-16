@@ -87,19 +87,19 @@ MSGMERGE_OPTIONS = --quiet --update
 XGETTEXT_OPTIONS = --keyword=_ --keyword=N_ --force-po
 SUFFIXES = .po .mo
 
-.po.mo:
+.po.mo: $(POFILES_SRC) $(POFILES_DAT) $(POFILES_DIA)
 	$(MSGFMT) -o $@ $<
 
 $(POFILES_SRC): freedroidrpg.pot 
-	@lang=`echo $@ | sed 's/\.po$$//'`; \
+	lang=`echo $@ | sed 's/\.po$$//'`;\
 	test -f $${lang}.po && $(MSGMERGE) $(MSGMERGE_OPTIONS) $${lang}.po freedroidrpg.pot
 
 $(POFILES_DAT): freedroidrpg_data.pot
-	@lang=`echo $@ | sed 's/\.po$$//'`; \
+	lang=`echo $@ | sed 's/\.po$$//'`;\
 	test -f $${lang}.po && $(MSGMERGE) $(MSGMERGE_OPTIONS) $${lang}.po freedroidrpg_data.pot
 
 $(POFILES_DIA): freedroidrpg_dialogs.pot
-	@lang=`echo $@ | sed 's/\.po$$//'`; \
+	lang=`echo $@ | sed 's/\.po$$//'`;\
 	test -f $${lang}.po && $(MSGMERGE) $(MSGMERGE_OPTIONS) $${lang}.po freedroidrpg_dialogs.pot
 
 freedroidrpg.pot: $(SRCFILES) 
