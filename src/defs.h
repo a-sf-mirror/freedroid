@@ -954,9 +954,9 @@ enum _enemy_combat_state_machine_states
 };
 enum _enemy_combat_target_codes
 {
-    ATTACK_TARGET_IS_ENEMY = -101,
-    ATTACK_TARGET_IS_PLAYER = -102,
-    ATTACK_TARGET_IS_NOTHING = -103
+    ATTACK_TARGET_IS_ENEMY = 101,
+    ATTACK_TARGET_IS_PLAYER = 102,
+    ATTACK_TARGET_IS_NOTHING = 103
 };
 enum
 {
