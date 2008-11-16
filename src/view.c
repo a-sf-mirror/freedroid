@@ -1816,7 +1816,7 @@ draw_grid_on_the_floor (int mask)
 
 	if (draw_grid >= 2) // large grid
 	    for (line = LineStart; line < LineEnd; line++)
-		for (col = ColStart; col < ColEnd; col++)
+		for (col = ColStart; col < ColEnd; col++) {
 		    if(mask & ZOOM_OUT)
 			{
 			blit_zoomed_iso_image_to_map_position (
@@ -1827,6 +1827,7 @@ draw_grid_on_the_floor (int mask)
 			blit_iso_image_to_map_position (&grid_tile_SDL,
 				((float) col) + 0.5,
 				((float) line) + 0.5);
+		}
 	}
     else //use GL
 	{
