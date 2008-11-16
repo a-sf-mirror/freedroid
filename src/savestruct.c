@@ -311,7 +311,6 @@ int save_tux_t(char * tag, tux_t * target)
 {
 fprintf(SaveGameFile, "<%s>\n",tag);
 save_char("type", &(target->type));
-save_char("status", &(target->status));
 save_float("current_game_date", &(target->current_game_date));
 save_int32_t("current_power_bonus", &(target->current_power_bonus));
 save_float("power_bonus_end_date", &(target->power_bonus_end_date));
@@ -426,7 +425,6 @@ int read_tux_t(char* buffer, char * tag, tux_t * target)
 		if ( ! epos ) return 2;
 		*epos = 0;
 		read_char(pos, "type",  &(target->type));
-read_char(pos, "status",  &(target->status));
 read_float(pos, "current_game_date",  &(target->current_game_date));
 read_int32_t(pos, "current_power_bonus",  &(target->current_power_bonus));
 read_float(pos, "power_bonus_end_date",  &(target->power_bonus_end_date));

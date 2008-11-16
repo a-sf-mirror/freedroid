@@ -719,7 +719,7 @@ check_bullet_player_collisions ( bullet* CurBullet , int num )
       // Of course only active players and players on the same level
       // may be checked!
       //
-      if ( Me . status == INFOUT || Me . pos . z != CurBullet -> pos . z ) return;
+      if ( Me . energy > 0 || Me . pos . z != CurBullet -> pos . z ) return;
       
       //--------------------
       // A player is supposed not to hit himself with his bullets, so we may
@@ -968,7 +968,7 @@ CheckBlastCollisions (int num)
     // Now we check, if perhaps the influencer has stepped into the area
     // of effect of this one blast.  Then he'll get burnt ;)
     // 
-    if ( (Me.status != INFOUT) && 
+    if ( (Me.energy > 0) && 
 	 ( fabsf (Me.pos.x - CurBlast->pos.x ) < Blast_Radius ) &&
 	 ( fabsf (Me.pos.y - CurBlast->pos.y ) < Blast_Radius ) )
     {

@@ -3413,7 +3413,7 @@ blit_tux ( int x , int y )
 	// tux is out, so we'll query for that first, as well as for the case
 	// of other players that are not on this level.
 	//
-	if ( Me . status == INFOUT ) return;
+	if ( Me . energy < 0 ) return;
 	
 	UpperLeftBlitCorner.x = UserCenter_x - 32 ;
 	UpperLeftBlitCorner.y = UserCenter_y - 32 ;

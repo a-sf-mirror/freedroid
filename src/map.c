@@ -3094,8 +3094,6 @@ MoveLevelDoors ( )
 
   LevelDoorsNotMovedTime=0;
 
-  if ( Me . status == INFOUT ) return;
-
   // DebugPrintf ( 0 , "\nMoving Doors for Me %d on level %d . != %d " , DoorLevel -> levelnum , Me . pos . z );
 
   //--------------------
@@ -3286,8 +3284,6 @@ WorkLevelGuns ( )
 
   if ( LevelGunsNotFiredTime < 0.2 ) return;
   LevelGunsNotFiredTime = 0 ;
-
-  if ( Me . status == INFOUT ) return;
 
   // DebugPrintf ( 0 , "\nMoving Doors for Me %d on level %d . != %d " , GunLevel -> levelnum , Me . pos . z );
 

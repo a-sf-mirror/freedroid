@@ -658,7 +658,7 @@ set_new_waypointless_walk_target ( enemy* ThisRobot, moderately_finepoint * mt)
 int 
 IsActiveLevel ( int levelnum ) 
 {
-    return (Me . status != INFOUT && Me . pos . z == levelnum );
+    return (Me . energy > 0 && Me . pos . z == levelnum );
 }; // int IsActiveLevel ( int levelnum ) 
 
 /**

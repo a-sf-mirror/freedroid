@@ -190,7 +190,6 @@ Takeover ( enemy * target )
     SwitchBackgroundMusicTo ( TAKEOVER_BACKGROUND_MUSIC_SOUND ); // now this is a STRING!!!
 
     DisplayBanner ( ) ;
-    Me . status = MOBILE; // the new status _after_ the takeover game 
 
     //--------------------
     // Now it is time to display the enemy of this whole takeover process...

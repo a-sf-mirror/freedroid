@@ -891,8 +891,6 @@ enum _explosions
 enum _status
 {
     INFOUT=-30,
-    MOBILE,
-    BRIEFING,
 };
 
 enum _busytype

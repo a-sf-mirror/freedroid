@@ -666,7 +666,6 @@ void
 ShowCurrentSkill( void )
 {
     SDL_Rect Target_Rect;
-    if ( Me . status == BRIEFING ) return;
     if ( ( GameConfig . SkillScreen_Visible || GameConfig . CharacterScreen_Visible )  && GameConfig . screen_width == 640 ) return;
 
     Target_Rect.x = UNIVERSAL_COORD_W(CURRENT_SKILL_RECT_X) + (CURRENT_SKILL_RECT_W * GameConfig . screen_width / 640 - CURRENT_SKILL_RECT_W) / 2;
@@ -695,7 +694,6 @@ ShowCurrentWeapon( void )
 {
     SDL_Rect Target_Rect;
     char current_ammo[10];
-    if ( Me . status == BRIEFING ) return;
     if ( ( GameConfig . Inventory_Visible || GameConfig . skill_explanation_screen_visible ) && GameConfig . screen_width == 640 ) return;
     if ( Me . weapon_item . type == -1 ) return;
 
@@ -1305,11 +1303,6 @@ ShowCurrentTextWindow ( void )
     int InterLineDistance;
     int StringLength;
     int lines_needed;
-
-    //--------------------
-    // During the title display phase, we need not have this window visible...
-    //
-    if ( Me . status == BRIEFING ) return;
 
     //--------------------
     // We prepare the string, that is to be displayed inside the text 

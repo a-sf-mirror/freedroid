@@ -999,8 +999,6 @@ CheckIfCharacterIsStillOk ( )
     //
     if ( Me . energy <= 0 )
     {
-	Me . status = INFOUT;
-	
 	ThouArtDefeated ();
 
 	DebugPrintf ( 1 , "\n%s():  Alternate end of function reached." , __FUNCTION__ );
@@ -1234,10 +1232,7 @@ int move_tux_thowards_raw_position ( float x , float y )
     moderately_finepoint planned_step;
     float length;
 
-    //--------------------
-    // We do not move any players, who's statuses are 'OUT'.
-    //
-    if ( Me . status == INFOUT ) return ( FALSE ) ;
+    if ( Me . energy <= 0 ) return ( FALSE ) ;
 
     RemainingWay . x = - Me . pos . x + x ;
     RemainingWay . y = - Me . pos . y + y ;
@@ -2155,8 +2150,6 @@ start_tux_death_explosions (void)
 {
     int i;
     int counter;
-    
-    Me.status = INFOUT;
     
     DebugPrintf ( 1, "\n%s(): Real function call confirmed." , __FUNCTION__ );
     

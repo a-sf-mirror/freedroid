@@ -593,7 +593,6 @@ typedef char cookielist_t[MAX_COOKIE_LENGTH];
 typedef struct tux_s
 {
     char type;			  
-    char status;		  
     
     float current_game_date;      // seconds since game start, will be printed as a different 'date'
                                   // inside the game, like 14:23 is afternoon

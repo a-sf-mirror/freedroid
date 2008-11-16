@@ -269,7 +269,6 @@ char fpath[2048];
     free ( TitleSongName );
     
     SDL_SetClipRect ( Screen, NULL );
-    Me.status=BRIEFING;
     SetCurrentFont( Para_BFont );
     
     NextSubsectionStartPointer = TitleFilePointer;
@@ -1831,7 +1830,6 @@ InitHarmlessTuxStatusVariables( )
     Me . max_temperature = 10 ;
     Me . health_recovery_rate = 0.2;
     Me . cooling_rate = 0.2;
-    Me . status = MOBILE;
     Me . phase = 0;
     Me . MissionTimeElapsed=0;
     Me . Current_Victim_Resistance_Factor=1;
@@ -2336,7 +2334,6 @@ ThouArtDefeated (void)
     int now;
 
     DebugPrintf ( 1 , "\n%s(): Real function call confirmed." , __FUNCTION__ );
-    Me . status = INFOUT ;
     append_new_game_message ( _("Game over.\n") );
     GameConfig . Inventory_Visible = FALSE;
     GameConfig . CharacterScreen_Visible = FALSE;
@@ -2424,7 +2421,6 @@ ThouHastWon (void)
     int now;
 
     DebugPrintf ( 1 , "\n%s(): Real function call confirmed." , __FUNCTION__ );
-    Me . status = INFOUT ;
     append_new_game_message ( _("Game won.\n") );
     GameConfig . Inventory_Visible = FALSE;
     GameConfig . CharacterScreen_Visible = FALSE;

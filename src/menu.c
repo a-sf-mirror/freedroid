@@ -1331,7 +1331,6 @@ RunMenu (int is_startup)
 	    while ( EscapePressed() );
 	}
 	RunSubMenu (is_startup, buffer, start_menu);
-	Me.status=MOBILE;
 	ClearGraphMem();
 }
 
