@@ -1224,7 +1224,9 @@ DoChatFromChatRosterData( int ChatPartnerCode , Enemy ChatDroid , int clear_prot
     {
 	if ( chat_protocol != NULL ) free ( chat_protocol );
 	chat_protocol = MyMalloc ( 500000 ); // enough for any chat...
-	strcpy ( chat_protocol , "\2--- Start of Dialog ---\n" );
+	strcpy ( chat_protocol , "\2--- " );
+	strcat ( chat_protocol , _("Start of Dialog") );
+	strcat ( chat_protocol , " ---\n" );
 	chat_protocol_scroll_override_from_user = 0 ;
 	SetCurrentFont ( FPS_Display_BFont );
     }
