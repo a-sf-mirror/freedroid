@@ -1229,7 +1229,6 @@ move_all_items_to_level ( int target_level )
 void
 Teleport ( int LNum , float X , float Y , int with_sound_and_fading )
 {
-    int array_num = 0;
     int i;
     char game_message_text [ 500 ] ;
 
@@ -1280,10 +1279,11 @@ Teleport ( int LNum , float X , float Y , int with_sound_and_fading )
 	// We add some sanity check against teleporting to non-allowed
 	// locations (like outside of map that is)
 	//
-	if ( ( LNum < 0 ) || ( Me . pos . x < 0 ) || ( Me . pos . y < 0 ) ||
-	     ( LNum >= curShip.num_levels ) || 
-	     ( Me . pos . x >= curShip.AllLevels[ array_num ] -> xlen ) ||
-	     ( Me . pos . y >= curShip.AllLevels[ array_num ] -> ylen ) )
+	if ( ( LNum < 0 ) || ( LNum >= curShip.num_levels ) || 
+	     ( Me . pos . x < 0 ) || ( Me . pos . y < 0 ) ||
+	     ( curShip.AllLevels[LNum] == NULL ) ||
+	     ( Me . pos . x >= curShip.AllLevels[ LNum ] -> xlen ) ||
+	     ( Me . pos . y >= curShip.AllLevels[ LNum ] -> ylen ) )
 	{
 	    fprintf( stderr, "\n\ntarget location was: lev=%d x=%f y=%f.\n" , LNum , X , Y );
 	    fprintf( stderr, "source location was: lev=%d x=%f y=%f." , Me . pos . z , 
@@ -1677,6 +1677,8 @@ give_pointer_to_obstacle_with_label ( char* obstacle_label )
   //
   for ( i = 0 ; i < curShip . num_levels ; i ++ )
     {
+	  if ( curShip.AllLevels[i] == NULL ) continue;
+	  
       for ( j = 0 ; j < MAX_OBSTACLE_NAMES_PER_LEVEL ; j ++ )
 	{
 	  if ( curShip . AllLevels [ i ] -> obstacle_name_list [ j ] != NULL )
@@ -1734,6 +1736,8 @@ give_level_of_obstacle_with_label ( char* obstacle_label )
   //
   for ( i = 0 ; i < curShip . num_levels ; i ++ )
     {
+	  if ( curShip.AllLevels[i] == NULL ) continue;
+	  
       for ( j = 0 ; j < MAX_OBSTACLE_NAMES_PER_LEVEL ; j ++ )
 	{
 	  if ( curShip . AllLevels [ i ] -> obstacle_name_list [ j ] != NULL )

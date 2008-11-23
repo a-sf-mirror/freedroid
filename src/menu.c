@@ -2193,6 +2193,7 @@ static int do_savegame_selection_and_act(int action)
     int saveoffset = 0;
     char SafetyText[500];
     char *menu_title = NULL;
+    int rtn;
     
     switch (action) {
 	case SAVEGAME_LOAD:
@@ -2304,12 +2305,18 @@ static int do_savegame_selection_and_act(int action)
     return FALSE;
 
 do_action:    
+	rtn = FALSE;
     switch (action) {
 	case SAVEGAME_LOAD:
 	    if ( LoadGame ( ) == OK ) {
 		GetEventsAndEventTriggers ( "freedroid.events" );
 		GetQuestList ( "freedroid.quests" );
 		Item_Held_In_Hand = ( -1 );
+		rtn = TRUE;
+	    } 
+	    else
+	    {
+	    rtn = FALSE;
 	    }
 	    break;
 	case SAVEGAME_DELETE:
@@ -2323,11 +2330,12 @@ do_action:
 
 	    if ( FinalDecision == 1 )
 		DeleteGame( );
+	    rtn = TRUE;
 	    break;
     }
 
     our_SDL_flip_wrapper();
-    return TRUE;
+    return rtn;
 }
 
 /**

@@ -358,9 +358,9 @@ UpdateCountersForThisFrame ( )
     // In any case those counteres must be updated, but we'll only to 
     // that for the Tux current level (at present).
     //
-    for ( level_num = 0 ; level_num < MAX_LEVELS ; level_num ++ )
+    for ( level_num = 0 ; level_num < curShip.num_levels ; level_num ++ )
 	{
-	if ( level_is_visible ( level_num ) )
+	if ( (curShip.AllLevels[level_num] != NULL) && level_is_visible ( level_num ) )
 	    update_timeouts_for_bots_on_level ( level_num , latest_frame_time ) ;
 	}
 
@@ -455,8 +455,9 @@ UpdateCountersForThisFrame ( )
     // enemies, we keep track to the time spent actually in the game, i.e.
     // time actually spent passing frames...
     //
-    for ( i = 0 ; i < MAX_LEVELS ; i ++ )
+    for ( i = 0 ; i < curShip.num_levels ; i ++ )
 	{
+    	if ( curShip.AllLevels[i] == NULL ) continue;
 	if ( Me . pos . z != i )
 	    {
 	    if ( Me . time_since_last_visit_or_respawn [ i ] > (-1) )

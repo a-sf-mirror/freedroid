@@ -228,6 +228,7 @@ ResolveMapLabelOnShip ( char* MapLabel , location* PositionPointer )
     //
     for ( i = 0 ; i < curShip.num_levels ; i ++ )
     {
+    	if ( curShip.AllLevels[i] == NULL ) continue;
 	ResolveMapLabelOnLevel ( MapLabel , PositionPointer , i );
 	
 	if ( PositionPointer->x != ( -1 ) ) return;
@@ -1251,97 +1252,107 @@ Error:  A teleporter index pointing not to a teleporter obstacle found.",
 int
 LoadShip (char *filename)
 {
-    char *ShipData = NULL;
-    char *endpt;				// Pointer to end-strings 
-    char *LevelStart[MAX_LEVELS];		// Pointer to a level-start
-    int level_anz;
-    int i;
-    
-#define END_OF_SHIP_DATA_STRING "*** End of Ship Data ***"
-    for ( i = 0 ; i < curShip.num_levels ; i++ )
-    {
-	if(curShip . AllLevels [ i ] != NULL) 
-		{ //we need to free memory! otherwise 10MB leak! 
-		int ydim = curShip . AllLevels [ i ] -> ylen;
-		int row = 0;
-		 for (row = 0; row < ydim  ; row++)
-		    {
-	            free(curShip . AllLevels [ i ] -> map [ row ]);
-	            curShip . AllLevels [ i ] -> map [ row ] = NULL;
-		    }
-		free(curShip . AllLevels [ i ]);
-		curShip . AllLevels[i] = NULL;
-		}
-    }
-    
-    //--------------------
-    // Read the whole ship-data to memory 
-    //
-    ShipData = ReadAndMallocAndTerminateFile( filename , END_OF_SHIP_DATA_STRING ) ;
-    
-    //--------------------
-    // Now we read the shipname information from the loaded data
-    //
-    if ( curShip.AreaName != NULL )
-	{
-	free ( curShip.AreaName );
-	curShip . AreaName = NULL;
-	}
-    curShip.AreaName = ReadAndMallocStringFromData ( ShipData , AREA_NAME_STRING , "\"" ) ;
-    
-    //--------------------
-    // Now we count the number of levels and remember their start-addresses.
-    // This is done by searching for the LEVEL_END_STRING again and again
-    // until it is no longer found in the ship file.  good.
-    //
-    level_anz = 0;
-    endpt = ShipData;
-    LevelStart [ level_anz ] = ShipData;
-    while ( ( endpt = strstr ( endpt , LEVEL_END_STRING ) ) != NULL )
-    {
-	endpt += strlen (LEVEL_END_STRING);
-	level_anz++;
-	LevelStart[level_anz] = endpt + 1;
-    }
-    curShip . num_levels = level_anz;
-    
-    //--------------------
-    // Now we can start to take apart the information about each level...
-    //
-    for ( i = 0 ; i < curShip.num_levels ; i++ )
-    {
+	char *ShipData = NULL;	
+	char *endpt;				// Pointer to end-strings
+	char *LevelStart[MAX_LEVELS];		// Pointer to a level-start
+	int level_anz;
+	int i;
 
-	curShip . AllLevels [ i ] = DecodeLoadedLeveldata ( LevelStart [ i ] );
-	
+#define END_OF_SHIP_DATA_STRING "*** End of Ship Data ***"
+
+	for ( i = 0 ; i < MAX_LEVELS ; i++ )
+	{
+		if(curShip . AllLevels [ i ] != NULL) 
+		{ //we need to free memory! otherwise 10MB leak! 
+			int ydim = curShip . AllLevels [ i ] -> ylen;
+			int row = 0;
+			for (row = 0; row < ydim  ; row++)
+			{
+				free(curShip . AllLevels [ i ] -> map [ row ]);
+				curShip . AllLevels [ i ] -> map [ row ] = NULL;
+			}
+			free(curShip . AllLevels [ i ]);
+			curShip . AllLevels[i] = NULL;
+		}
+	}
+
 	//--------------------
-	// The level structure contains an array with the locations of all
-	// doors that might have to be opened or closed during the game.  This
-	// list is prepared in advance, so that we don't have to search for doors
-	// on all of the map during program runtime.
+	// Read the whole ship-data to memory 
 	//
-	// It requires, that the obstacles have been read in already.
-	//
-	GetAllAnimatedMapTiles ( curShip . AllLevels [ i ] );
-	
+	ShipData = ReadAndMallocAndTerminateFile( filename , END_OF_SHIP_DATA_STRING ) ;
+
 	//--------------------
-	// We attach each obstacle to a floor tile, just so that we can sort
-	// out the obstacles 'close' more easily within an array of literally
-	// thousands of obstacles...
+	// Now we read the shipname information from the loaded data
 	//
-	glue_obstacles_to_floor_tiles_for_level ( i );
-	
-	ShowSaveLoadGameProgressMeter( ( 100 * ( i + 1 ) ) / level_anz , FALSE )  ;
-	
-    }
-    
-    //--------------------
-    // Now that all the information has been copied, we can free the loaded data
-    // again.
-    //
-    free ( ShipData );
-    
-    return OK;
-    
+	if ( curShip.AreaName != NULL )
+	{
+		free ( curShip.AreaName );
+		curShip.AreaName = NULL;
+	}
+	curShip.AreaName = ReadAndMallocStringFromData ( ShipData , AREA_NAME_STRING , "\"" ) ;
+
+	//--------------------
+	// Now we count the number of levels and remember their start-addresses.
+	// This is done by searching for the LEVEL_END_STRING again and again
+	// until it is no longer found in the ship file.  good.
+	// Note : this is actually only needed to display the progressbar
+	//
+	level_anz = 0;
+	endpt = ShipData;
+	LevelStart [ level_anz ] = ShipData;
+	while ( ( endpt = strstr ( endpt , LEVEL_END_STRING ) ) != NULL )
+	{
+		endpt += strlen (LEVEL_END_STRING);
+		level_anz++;
+		if ( level_anz >= MAX_LEVELS )
+			ErrorMessage(__FUNCTION__, "Size mismatch for level array : at least %d in file, %d in game.\n", PLEASE_INFORM, IS_FATAL, level_anz+1, MAX_LEVELS);
+		LevelStart[level_anz] = endpt + 1;
+	}
+
+	//--------------------
+	// Now we can start to take apart the information about each level...
+	//
+	for ( i=0; i < level_anz; ++i )
+	{
+		Level this_level = DecodeLoadedLeveldata ( LevelStart[i] );
+		int this_levelnum = this_level->levelnum;
+		if ( this_levelnum >= MAX_LEVELS )
+			ErrorMessage(__FUNCTION__, "One levelnumber in savegame (%d) is bigger than the maximum expected (%d).\n", PLEASE_INFORM, IS_FATAL, this_levelnum, MAX_LEVELS-1);
+		if ( curShip.AllLevels[this_levelnum] != NULL )
+			ErrorMessage(__FUNCTION__, "Two levels with same levelnumber (%d) found in the savegame.\n", PLEASE_INFORM, IS_FATAL, this_levelnum);
+
+		curShip.AllLevels[this_levelnum] = this_level;
+		curShip.num_levels = this_levelnum + 1; // levels are saved in ascending number, so the last one defines the number of levels in the ship
+
+		//--------------------
+		// The level structure contains an array with the locations of all
+		// doors that might have to be opened or closed during the game.  This
+		// list is prepared in advance, so that we don't have to search for doors
+		// on all of the map during program runtime.
+		//
+		// It requires, that the obstacles have been read in already.
+		//
+		GetAllAnimatedMapTiles ( curShip . AllLevels [ this_levelnum ] );
+
+		//--------------------
+		// We attach each obstacle to a floor tile, just so that we can sort
+		// out the obstacles 'close' more easily within an array of literally
+		// thousands of obstacles...
+		//
+		glue_obstacles_to_floor_tiles_for_level ( this_levelnum );
+
+		ShowSaveLoadGameProgressMeter( ( 100 * ( i + 1 ) ) / level_anz , FALSE )  ;
+
+	}
+
+	//--------------------
+	// Now that all the information has been copied, we can free the loaded data
+	// again.
+	//
+	free ( ShipData );
+
+	return OK;
+
 }; // int LoadShip ( ... ) 
 
 /**
@@ -1976,22 +1987,10 @@ SaveShip(const char *filename)
     char *LevelMem = NULL;	 // linear memory for one Level 
     char *MapHeaderString = NULL;
     FILE *ShipFile = NULL;         // to this file we will save all the ship data...
-    int level_anz = 0;
-    int array_i, array_num;
     int i;
     
     DebugPrintf ( 2 , "\nint SaveShip(char *shipname): real function call confirmed." );
-    
-    //--------------------
-    // We count the levels 
-    //
-    level_anz = 0;
-	// <Fluzz> Temporary fix    
-    //while( (curShip . AllLevels[++level_anz]);
-    while( (++level_anz<=curShip.num_levels) && curShip . AllLevels[level_anz]);
-    // </Fluzz>
-    level_anz --;
-    
+        
     //--------------------
     // We open the ship file 
     //
@@ -2006,7 +2005,7 @@ SaveShip(const char *filename)
     ShowSaveLoadGameProgressMeter( 0 , TRUE ) ;
     
     //--------------------
-    // Now that the file is opend for writing, we can start writing.  And the first thing
+    // Now that the file is opened for writing, we can start writing.  And the first thing
     // we will write to the file will be a fine header, indicating what this file is about
     // and things like that...
     //
@@ -2022,46 +2021,19 @@ SaveShip(const char *filename)
     // Now we can save all the levels...
     //
     DebugPrintf ( 2 , "\n%s(): now saving levels..." , __FUNCTION__ );
-    for( i = 0 ; i < level_anz ; i++ ) 
+    for( i = 0 ; i < curShip.num_levels ; i++ ) 
     {
-	//--------------------
-	// What the heck does this do?
-	// Do we really need this?  Why?
-	//
-	array_i =-1;
-	array_num = -1;
-	// <Fluzz> Temporary fix
-	//while( curShip.AllLevels[++array_i] != NULL ) 
-	while( (++array_i < curShip.num_levels) && (curShip.AllLevels[array_i] != NULL) )
-	// </Fluzz>
-	{
-	    if( curShip.AllLevels[array_i]->levelnum == i)
-	    {
-		if( array_num != -1 ) 
+		if ( curShip.AllLevels[i] != NULL )
 		{
-		    ErrorMessage ( __FUNCTION__  , "Two identical levelnumbers found!" ,
-					       PLEASE_INFORM, IS_FATAL );
-		    return ERR;
-		} 
-		else array_num = array_i;
-	    }
-	} // while 
-	if ( array_num == -1 ) 
-	{
-	    ErrorMessage ( __FUNCTION__  , "Levelnumber is missing!" ,
-				       PLEASE_INFORM, IS_FATAL );
-	    level_anz ++;
-	    continue;
-	}
-	
-	//--------------------
-	// Now comes the real saving part FOR ONE LEVEL.  First THE LEVEL is packed into a string and
-	// then this string is wirtten to the file.  easy. simple.
-	//
-	LevelMem = EncodeLevelForSaving ( curShip . AllLevels [ array_num ] ) ;
-	fwrite ( LevelMem , strlen ( LevelMem ) , sizeof(char) , ShipFile );
-	free ( LevelMem );
-	ShowSaveLoadGameProgressMeter( (int) ( (100 * (i+1)) / level_anz ) , TRUE ); 
+			//--------------------
+			// Now comes the real saving part FOR ONE LEVEL.  First THE LEVEL is packed into a string and
+			// then this string is written to the file.  easy. simple.
+			//
+			LevelMem = EncodeLevelForSaving ( curShip . AllLevels [ i ] ) ;
+			fwrite ( LevelMem , strlen ( LevelMem ) , sizeof(char) , ShipFile );
+			free ( LevelMem );
+		}
+		ShowSaveLoadGameProgressMeter( (int) ( (100 * (i+1)) / curShip.num_levels ) , TRUE ); 
     }
     
     //--------------------
@@ -2326,8 +2298,6 @@ DecodeLoadedLeveldata ( char *data )
     if ( ( loadlevel->Levelname = ReadAndMallocStringFromDataOptional ( data , LEVEL_NAME_STRING , "\"", 0 ) ) == NULL)
     {
         loadlevel->Levelname = ReadAndMallocStringFromData ( data , LEVEL_NAME_STRING_LEGACY , "\n" );
-        fprintf( stderr, "Warning: Leveldata seems to be created with an older version of freedroidRPG."\
-                 " When you save again, the savegame will not be compatible with the old version.\n");
     }
     
     loadlevel->Background_Song_Name = ReadAndMallocStringFromData ( data , BACKGROUND_SONG_NAME_STRING , "\n" );
@@ -2710,8 +2680,10 @@ ReviveAllDroidsOnShip ( void )
   int i;
 
   for ( i = 0 ; i < curShip.num_levels ; i ++ )
+  {
+	if ( curShip.AllLevels[i] == NULL ) continue;  
 	respawn_level(i);
-
+  }
 }; // void ReviveAllDroidsOnShip ( void )
 
 /* -----------------------------------------------------------------

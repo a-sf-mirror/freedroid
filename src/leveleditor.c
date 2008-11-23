@@ -2781,7 +2781,7 @@ LevelValidation()
 	BFont_Info* current_font = GetCurrentFont();
 	int raw_height = FontHeight( current_font );
 	int max_raws = (ReportRect.h / raw_height) - 4; // 4 lines are reserved for header and footer 
-	int column_width = TextWidth( "Level 000: pass" );
+	int column_width = TextWidth( "Level 000: empty" );
 
 	AssembleCombatPicture ( ONLY_SHOW_MAP_AND_TEXT | SHOW_GRID | SKIP_LIGHT_RADIUS );
 	ShadowingRectangle ( Screen, BackgroundRect );
@@ -2810,6 +2810,16 @@ LevelValidation()
 			SetTextCursor( col_pos, raw_pos);
 		}
 		
+		if ( curShip.AllLevels[l] == NULL )
+		{
+			// Empty level
+			char txt[40];
+			sprintf(txt, "%s %3d: \2empty\n", "Level", l );
+			DisplayText( txt, col_pos, -1, &ReportRect, 1.0 );			
+			SetCurrentFont( current_font ); // Reset font
+		}
+		else
+		{
 		// Loop on each validation function
 		int v = 0;
 		level_validator one_validator;
@@ -2825,6 +2835,7 @@ LevelValidation()
 
 		// Set global is_invalid flag
 		is_invalid |= level_is_invalid;
+	}
 	}
 
 	//--------------------
@@ -3003,15 +3014,21 @@ LevelOptions ( void )
 		case CHANGE_LEVEL_POSITION:
 		    if ( LeftPressed() )
 		    {
-			if ( EditLevel->levelnum > 0 )
-			    Teleport ( EditLevel->levelnum -1 , 3 , 3 , FALSE );
-			while (LeftPressed());
+		    	// find first available level lower than the current one
+				int newlevel = EditLevel->levelnum - 1;
+				while ( curShip.AllLevels[newlevel] == NULL && newlevel >= 0 ) --newlevel;
+				// teleport if new level exists
+			    if ( newlevel >= 0 ) Teleport ( newlevel , 3 , 3 , FALSE );
+			    while (LeftPressed());
 		    }
 		    if ( RightPressed() )
 		    {
-			if ( EditLevel->levelnum < curShip.num_levels -1 )
-			    Teleport ( EditLevel->levelnum +1 , 3 , 3 , FALSE );
-			while (RightPressed());
+				// find first available level higher than the current one
+				int newlevel = EditLevel->levelnum + 1;
+				while ( curShip.AllLevels[newlevel] == NULL && newlevel < curShip.num_levels ) ++newlevel;
+				// teleport if new level exists
+			    if ( newlevel < curShip.num_levels ) Teleport ( newlevel , 3 , 3 , FALSE );
+			    while (RightPressed());
 		    }
 		    break;
 		    
@@ -3133,7 +3150,7 @@ DoLevelEditorMainMenu ( Level EditLevel )
 			free(str);
 			if ( tgt < 0 ) tgt = 0;
 			if ( tgt >= curShip.num_levels ) tgt = curShip.num_levels - 1;
-			Teleport ( tgt , 3 , 3 , FALSE );
+			if ( curShip.AllLevels[tgt] != NULL ) Teleport ( tgt , 3 , 3 , FALSE );
 			proceed_now=!proceed_now;
 			break;
 	    case LEVEL_OPTIONS_POSITION:
@@ -3172,8 +3189,20 @@ DoLevelEditorMainMenu ( Level EditLevel )
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
 			if ( curShip . num_levels < MAX_LEVELS )
 			{
-				CreateNewMapLevel ( ) ;
-				Me . pos . z = curShip.num_levels - 1;
+				int new_level_num = curShip.num_levels;
+				int i;
+				// search empty level, if any
+				for ( i = 0; i < curShip.num_levels; ++i )
+				{
+					if ( curShip.AllLevels[i] == NULL)
+					{
+						new_level_num = i;
+						break;
+					}
+				}
+				if ( new_level_num == curShip.num_levels ) curShip.num_levels += 1;
+				CreateNewMapLevel ( new_level_num ) ;
+				Me . pos . z = new_level_num;
 				Me . pos . x = 3;
 				Me . pos . y = 3;
 			}
@@ -3209,17 +3238,23 @@ DoLevelEditorMainMenu ( Level EditLevel )
 
 		case ENTER_LEVEL_POSITION:
 		    if ( LeftPressed() )
-			{
-			if ( EditLevel->levelnum > 0 )
-			    Teleport ( EditLevel->levelnum -1 , 3 , 3 , FALSE );
-			while (LeftPressed());
-			}
+		    {
+		    	// find first available level lower than the current one
+				int newlevel = EditLevel->levelnum - 1;
+				while ( curShip.AllLevels[newlevel] == NULL && newlevel >= 0 ) --newlevel;
+				// teleport if new level exists
+			    if ( newlevel >= 0 ) Teleport ( newlevel , 3 , 3 , FALSE );
+			    while (LeftPressed());
+		    }
 		    if ( RightPressed() )
-			{
-			if ( EditLevel->levelnum < curShip.num_levels -1 )
-			    Teleport ( EditLevel->levelnum +1 , 3 , 3 , FALSE );
-			while (RightPressed());
-			}
+		    {
+				// find first available level higher than the current one
+				int newlevel = EditLevel->levelnum + 1;
+				while ( curShip.AllLevels[newlevel] == NULL && newlevel < curShip.num_levels ) ++newlevel;
+				// teleport if new level exists
+			    if ( newlevel < curShip.num_levels ) Teleport ( newlevel , 3 , 3 , FALSE );
+			    while (RightPressed());
+		    }
 		    break;
 
 		}
@@ -3951,7 +3986,7 @@ SetLevelInterfaces ( void )
  * small and simple.
  */
 void
-CreateNewMapLevel( void )
+CreateNewMapLevel( int level_num )
 {
     Level NewLevel;
     int i, k, l ;
@@ -3970,7 +4005,7 @@ CreateNewMapLevel( void )
     // all the data structure or left something out which could
     // be terrible!
     //
-    NewLevel -> levelnum = curShip.num_levels ;
+    NewLevel -> levelnum = level_num ;
     NewLevel -> xlen = 90 ;
     NewLevel -> ylen = 90 ;
     NewLevel -> light_radius_bonus = 1 ;
@@ -4094,12 +4129,11 @@ CreateNewMapLevel( void )
 	NewLevel -> ChestItemList [ i ] . currently_held_in_hand = FALSE ;
     }
     
-    curShip . AllLevels [ curShip.num_levels ] = NewLevel ;
-    curShip . num_levels ++ ;
+    curShip . AllLevels [ level_num ] = NewLevel ;
     
-    glue_obstacles_to_floor_tiles_for_level ( NewLevel -> levelnum );
+    glue_obstacles_to_floor_tiles_for_level ( level_num );
     
-}; // void CreateNewMapLevel( void )
+}; // void CreateNewMapLevel( int )
 
 /**
  * Now we print out the map label information about this map location.

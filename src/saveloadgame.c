@@ -1077,14 +1077,15 @@ void read_automap_data_t_array(char * buffer, char * tag, automap_data_t * autom
     char *runp = pos + 1;
     runp += strlen("<automap");
 
-
+    ClearAutomapData();
+    
     while ( *runp != '\n' ) runp++;
     *runp = '\0';
     int nl, sx, sy;
     sscanf(pos, "<automap nl=%d sx=%d sy=%d>", &nl, &sx, &sy);
   
     if ( nl != MAX_LEVELS )
-	WrapErrorMessage(__FUNCTION__, "Number of levels mismatch when reading automap data : file %d, game %d\n", PLEASE_INFORM, IS_FATAL, nl, MAX_LEVELS);
+    	WrapErrorMessage(__FUNCTION__, "Number of levels mismatch when reading automap data : file %d, game %d\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY, nl, MAX_LEVELS);
     if ( sx != 100 || sy != 100 )
 	WrapErrorMessage(__FUNCTION__, "Size mismatch when reading automap data.\n", PLEASE_INFORM, IS_FATAL);
 
@@ -1092,7 +1093,7 @@ void read_automap_data_t_array(char * buffer, char * tag, automap_data_t * autom
     runp++;
     char * erunp;
     int i = 0, j = 0, k = 0;
-    while ( i < MAX_LEVELS )
+    while ( i < nl )
 	{
 	/* we're on level number */
 	while ( *runp != '\n' ) runp++;
@@ -1121,7 +1122,7 @@ void read_automap_data_t_array(char * buffer, char * tag, automap_data_t * autom
 
 	while ( *runp != '\n' ) runp++;
 	i++;
-	}
+    }
     *(epos+1) = savechar;
 
 }

@@ -1991,7 +1991,8 @@ PrepareStartOfNewCharacter ( void )
     DebugPrintf ( 1 , "\n%s():  Shuffling droids on all %d levels!" , __FUNCTION__ , curShip.num_levels );
     for ( i = 0 ; i < curShip.num_levels ; i ++ )
     {
-	ShuffleEnemys( i );
+    	if ( curShip.AllLevels[i] == NULL ) continue;
+    	ShuffleEnemys( i );
     }
     
     

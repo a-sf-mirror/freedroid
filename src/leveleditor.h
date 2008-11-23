@@ -178,7 +178,7 @@ static void clear_action( action * pos);
 void ShowWaypoints( int PrintConnectionList , int maks );
 void LevelEditor(void);
 void cycle_marked_obstacle( Level EditLevel );
-void CreateNewMapLevel( void );
+void CreateNewMapLevel( int level_num );
 void SetLevelInterfaces ( void );
 void duplicate_all_obstacles_in_area ( Level source_level ,
 				       float source_start_x , float source_start_y , 
