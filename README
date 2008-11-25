@@ -3,14 +3,16 @@
 
 0. INDEX
 =========
-   1. Introduction
-   2. Install
-   3. Basic controls
-   4. Known issues
-   5. Screen resolution
-   6. Level editor
-   7. Contact us
-   8. Licence
+  1. Introduction
+  2. Install
+  3. Basic controls
+  4. Known issues
+  5. Screen resolution
+  6. Commands
+  7. Level editor
+  8. Contact us
+  9. Licence
+
 
 1. Introduction
 ================
@@ -19,7 +21,7 @@
  mercy. You get to choose which path you wish to follow, and freedom of choice is everywhere 
  in the game.
 
- FreeDroidRPG features a complete real time combat system with melee and ranged weapons, fairly
+ FreedroidRPG features a complete real time combat system with melee and ranged weapons, fairly
  similar to the proprietary game Diablo. There also is an innovative system of magic, with features such as 
  forced casting and over 20 spells. You can use over 50 different kinds of items and fight countless 
  enemies on your way to your destiny. We have an advanced dialogue system, which aims at being at
@@ -51,6 +53,11 @@
 
   Use the right click to activate the currently selected skill/program. 
 
+
+ Keys
+
+  You can reassign most of the default keys using the key chart (F1 while playing)
+
   Escape     ... Show main menu
   P          ... Pause
 
@@ -61,9 +68,11 @@
   Q          ... Quest log
 
   0-9        ... Use quick-inventory items 0-9
-  F1-F10     ... Quick-select program 1 through 10
-  F11        ... Toggle fullscreen (Linux only)
-  F12        ... Take screenshot
+  F1	     ... Show keychart
+  F2	     ... Toggle fullscreen (Linux only)
+  F3         ... Quicksave
+  F4	     ... Quickload
+  F5-F12     ... Quick-select program 1 through 8
 
   Hold a     ... Attack while staying at the same position
   Hold Shift ... Keep current target selected when moving
@@ -75,7 +84,7 @@
 
   Hold X     ... Show labels for items on the ground
   Z          ... Toggle show labels for items on the ground
-  T          ... Toggle walls becoming transparent when Tux approaches
+  T          ... Toggle walls becoming transparent when Tux approaches (OpenGL only)
 
 
 4. Known Issues
@@ -99,10 +108,12 @@
      config, do let us know so we can update this entry with versionnumbers etc.
    * AMD/ATI R300 graphics cards: Mesa 6.5.2 does not support user clipping planes which breaks the 
      text in freedroidRPG. Upgrading to Mesa 7 should fix this.
+   * When playing in SDL windowed mode, teleporting has the side effect of changing the brightness
+     of the whole screen instead of just the game window, if the option
+     (Options -> Performance Tweaks ->) Skip fadings is set to "NO".
    * Ubuntu: Changing language in game will not work by default since Ubuntu does not ship with standard 
      ISO locales, only UTF-8 versions. You will have to manually correct this to get it working.
-    
-    Procedure
+     Procedure
         1) In commandline write 
                 sudo nano /var/lib/locales/supported.d/local
         2) Add the locales you are interested in, 1 entry on each line, e.g.
@@ -121,34 +132,25 @@
  and thus generally considered to be buggy and are unsupported. They however can still be quite useful for
  many, especially for widescreen LCDs in fullscreen mode. 
 
- As of this writing the following resolutions codes are implemented:
+ To get an up-to-date list of available resolutions use "freedroidRPG -r99".
 
-     0 = 640 x 480 (default with SDL)
-     1 = 800 x 600 (default with OpenGL)
-     2 = 1024 x 748 
-     3 = 1152 x 864
-     4 = 1280 x 960 
-     5 = Unsupported! (1280 x 1024) 
-     6 = Unsupported! (1280 x 800) 
-     7 = Unsupported! (1440 x 900) 
-     8 = Unsupported! (1680 x 1050) 
- 
- Start with e.g. the commandline "freedroid -r4" to choose a specific resolution.
- To get an up-to-date list of available resolutions use "freedroid -r99".
-
- Some known issues for these unsupported resolutions:
+ Some known issues for the unsupported resolutions:
     - Portrait image in dialogs overflows its borders
     - Off center light radius
     - Incorrect text scrolling when talking to NPCs at times
-    - Map edges might be visible when moving from one level to the next
 
 
-6. Level editor
+6. Commands
+============
+ Execute "freedroidRPG --help" (in a terminal) to get a list of commandline options.
+
+
+7. Level editor
 ================
  There is a level editor integrated into the game. It can be accessed from the main menu.
 
 
-7. Contact
+8. Contact
 ===========
  Website       ................ http://freedroid.sourceforge.net/
  IRC channel   ................ #freedroid on irc.freenode.net
@@ -156,7 +158,7 @@
  Sourceforge project page   ... http://sourceforge.net/projects/freedroid/
 
 
-8. Licence
+9. Licence
 ===========
  The game itself is licensed under GPL. Some other tools use a more permissive license, 
  please refer to the FILES file located in the same folder as this file.
