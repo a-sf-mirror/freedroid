@@ -30,7 +30,7 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-New Option Nr=0  OptionText=_"START HERE"
+New Option Nr=0  OptionText="START HERE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 ChangeOption=0 ChangeToValue=0
 ChangeOption=99 ChangeToValue=1

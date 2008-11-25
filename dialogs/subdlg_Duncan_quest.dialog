@@ -30,7 +30,7 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-New Option Nr=0  OptionText=_"HERE WE GO"
+New Option Nr=0  OptionText="HERE WE GO"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"So... Any news on the Koan matter?"
 ChangeOption=0 ChangeToValue=0
@@ -41,14 +41,14 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-New Option Nr=1  OptionText=_"DO NOTHING NODE"
+New Option Nr=1  OptionText="DO NOTHING NODE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 ChangeOption=1 ChangeToValue=0
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=5  OptionText=_"KOAN WAS SPARED"
+New Option Nr=5  OptionText="KOAN WAS SPARED"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 ChangeOption=5 ChangeToValue=0
 ChangeOption=20 ChangeToValue=1
@@ -56,7 +56,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=7  OptionText=_"GOT THE CUBE?"
+New Option Nr=7  OptionText="GOT THE CUBE?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 ChangeOption=7 ChangeToValue=0
 OnCondition="HaveItemWithName:Pandora's Cube" JumpToOption=8 ElseGoto=1
@@ -64,7 +64,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-New Option Nr=8  OptionText=_"YEAH. WE HAVE THE CUBE."
+New Option Nr=8  OptionText="YEAH. WE HAVE THE CUBE."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 ChangeOption=8 ChangeToValue=0
 ChangeOption=30 ChangeToValue=1

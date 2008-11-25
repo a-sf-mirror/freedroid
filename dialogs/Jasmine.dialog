@@ -137,7 +137,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=90  OptionText=_"JASMINE_FIRST_CHECK"
+New Option Nr=90  OptionText="JASMINE_FIRST_CHECK"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 ChangeOption=90 ChangeToValue=0
 OnCondition="CookieIsPlanted:jasmine_count1:" JumpToOption=91 ElseGoto=99
@@ -145,7 +145,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-New Option Nr=91  OptionText=_"JASMINE_CHECK_TWO"
+New Option Nr=91  OptionText="JASMINE_CHECK_TWO"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 ChangeOption=91 ChangeToValue=0
 OnCondition="CookieIsPlanted:jasmine_count2:" JumpToOption=97 ElseGoto=98
@@ -153,7 +153,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=97  OptionText=_"TWO_COUNTERS"
+New Option Nr=97  OptionText="TWO_COUNTERS"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 ChangeOption=97 ChangeToValue=0
 ChangeOption=12 ChangeToValue=1
@@ -161,7 +161,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=98  OptionText=_"ONE COUNTER"
+New Option Nr=98  OptionText="ONE COUNTER"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 ChangeOption=98 ChangeToValue=0
 ChangeOption=11 ChangeToValue=1
@@ -169,7 +169,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=99  OptionText=_"NO COUNTERS YET."
+New Option Nr=99  OptionText="NO COUNTERS YET."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 ChangeOption=99 ChangeToValue=0
 ChangeOption=10 ChangeToValue=1

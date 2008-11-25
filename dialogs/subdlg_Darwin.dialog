@@ -30,7 +30,7 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-New Option Nr=0  OptionText=_"STARTING NODE"
+New Option Nr=0  OptionText="STARTING NODE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 ChangeOption=0 ChangeToValue=0
 ChangeOption=99 ChangeToValue=0
@@ -39,7 +39,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-New Option Nr=1  OptionText=_"GOT EXPERIENCE POINTS?"
+New Option Nr=1  OptionText="GOT EXPERIENCE POINTS?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 ChangeOption=1 ChangeToValue=0
 OnCondition="PointsToDistributeAtLeast:1" JumpToOption=2 ElseGoto=91
@@ -47,7 +47,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=2  OptionText=_"ALREADY TAUGHT?"
+New Option Nr=2  OptionText="ALREADY TAUGHT?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 ChangeOption=2 ChangeToValue=0
 OnCondition="CookieIsPlanted:know_extract1:" JumpToOption=26 ElseGoto=25
@@ -64,7 +64,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=25  OptionText=_"TEACHING THE FIRST TIME"
+New Option Nr=25  OptionText="TEACHING THE FIRST TIME"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 ChangeOption=20 ChangeToValue=1
 ChangeOption=25 ChangeToValue=0
@@ -73,7 +73,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=26  OptionText=_"TEACHING MORE"
+New Option Nr=26  OptionText="TEACHING MORE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 ChangeOption=26 ChangeToValue=0
 ChangeOption=30 ChangeToValue=1
@@ -90,7 +90,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=62  OptionText=_"KNOW LESSON TWO"
+New Option Nr=62  OptionText="KNOW LESSON TWO"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 ChangeOption=62 ChangeToValue=0
 OnCondition="CookieIsPlanted:know_extract3:" JumpToOption=63 ElseGoto=72
@@ -98,7 +98,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=63  OptionText=_"KNOW LESSON THREE"
+New Option Nr=63  OptionText="KNOW LESSON THREE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 ChangeOption=63 ChangeToValue=0
 OnCondition="CookieIsPlanted:know_extract4:" JumpToOption=64 ElseGoto=73
@@ -106,7 +106,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=64  OptionText=_"KNOW LESSON FOUR"
+New Option Nr=64  OptionText="KNOW LESSON FOUR"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 ChangeOption=64 ChangeToValue=0
 OnCondition="CookieIsPlanted:know_extract5:" JumpToOption=75 ElseGoto=74
@@ -114,7 +114,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=70  OptionText=_"FIRST LESSON"
+New Option Nr=70  OptionText="FIRST LESSON"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Let us start with entropy inverters. This is quite simple."
 Subtitle=_"Just take a hammer and hit the bot sehr hard on the head."
@@ -128,7 +128,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=71  OptionText=_"SECOND LESSON"
+New Option Nr=71  OptionText="SECOND LESSON"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"How about... Plasma transistors? Trivial."
 Subtitle=_"Remove the bot's engine and look around somewhere close to the battery."
@@ -142,7 +142,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=72  OptionText=_"THIRD LESSON"
+New Option Nr=72  OptionText="THIRD LESSON"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Hmmm... Ah, gut. Superconductors."
 Subtitle=_"They are relatively easy to get out."
@@ -157,7 +157,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=73  OptionText=_"FOURTH LESSON"
+New Option Nr=73  OptionText="FOURTH LESSON"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"I will tell you everything about matter-antimatter converters."
 Subtitle=_"Yes... Converters are a problem."
@@ -173,7 +173,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=74  OptionText=_"FINAL LESSON"
+New Option Nr=74  OptionText="FINAL LESSON"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"I will teach you about tachyon converters."
 Subtitle=_"Tachyons are very interesting particles. Many stories have been told about them."
@@ -189,7 +189,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=75  OptionText=_"NO MORE LESSONS"
+New Option Nr=75  OptionText="NO MORE LESSONS"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Nein, I told you everything I know about that. No use asking me twice, ja?"
 ChangeOption=75 ChangeToValue=0
@@ -198,14 +198,14 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=76  OptionText=_"CHECK IF MONEY ENOUGH"
+New Option Nr=76  OptionText="CHECK IF MONEY ENOUGH"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 OnCondition="GoldIsLessThan:50" JumpToOption=90 ElseGoto=1
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=90  OptionText=_"TUX IS TOO POOR TO TRAIN"
+New Option Nr=90  OptionText="TUX IS TOO POOR TO TRAIN"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Hmmm..."
 Subtitle=_"Kein geld, Keine hilfe."
@@ -216,7 +216,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=91  OptionText=_"NO FREE POINTS"
+New Option Nr=91  OptionText="NO FREE POINTS"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Hmmm..."
 Subtitle=_"You look green. Toughen up. Get some experience, kill some bots."

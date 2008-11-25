@@ -139,7 +139,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=50  OptionText=_" DID TUX HARM BRUCE?"
+New Option Nr=50  OptionText="DID TUX HARM BRUCE?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 ChangeOption=50 ChangeToValue=0
 OnCondition="CookieIsPlanted:bruce_hurt:" JumpToOption=51 ElseGoto=52
@@ -147,7 +147,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-New Option Nr=51  OptionText=_" YES."
+New Option Nr=51  OptionText="YES."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 ChangeOption=51 ChangeToValue=0
 ChangeOption=98 ChangeToValue=1
@@ -155,7 +155,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=52  OptionText=_" NO."
+New Option Nr=52  OptionText="NO."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 ChangeOption=52 ChangeToValue=0
 ChangeOption=99 ChangeToValue=1

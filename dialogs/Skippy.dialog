@@ -118,7 +118,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=90  OptionText=_"CHECK FOR SKIPPY ANGER"
+New Option Nr=90  OptionText="CHECK FOR SKIPPY ANGER"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 ChangeOption=90 ChangeToValue=0
 OnCondition="CookieIsPlanted:skippy_angry:" JumpToOption=91 ElseGoto=92
@@ -126,7 +126,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-New Option Nr=91  OptionText=_"YEAH, HE IS ANGRY."
+New Option Nr=91  OptionText="YEAH, HE IS ANGRY."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"What? You again? I don't want you here, get out."
 ChangeOption=91 ChangeToValue=0
@@ -140,7 +140,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=92  OptionText=_"NO, HE IS NOT ANGRY"
+New Option Nr=92  OptionText="NO, HE IS NOT ANGRY"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 ChangeOption=92 ChangeToValue=0
 AlwaysExecuteThisOptionPriorToDialogStart="no"

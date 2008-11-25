@@ -107,7 +107,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=50  OptionText=_"KOAN QUEST"
+New Option Nr=50  OptionText="KOAN QUEST"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 ChangeOption=50 ChangeToValue=0
 OnCondition="CookieIsPlanted:duncan_known:" JumpToOption=80 ElseGoto=52
@@ -115,7 +115,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-New Option Nr=51  OptionText=_"STARTING KOAN QUEST"
+New Option Nr=51  OptionText="STARTING KOAN QUEST"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Ah. Welcome again Linarian."
 Subtitle=_"I have a little request for you."
@@ -128,14 +128,14 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=52  OptionText=_"VOID"
+New Option Nr=52  OptionText="VOID"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 ChangeOption=52 ChangeToValue=0
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=60  OptionText=_"TEST FOR BOX OR SAVING KOAN"
+New Option Nr=60  OptionText="TEST FOR BOX OR SAVING KOAN"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 ChangeOption=60 ChangeToValue=0
 OnCondition="HaveItemWithName:Pandora's Cube" JumpToOption=61 ElseGoto=62
@@ -143,7 +143,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-New Option Nr=61  OptionText=_"MURDERING DONE OR SAVED HIM"
+New Option Nr=61  OptionText="MURDERING DONE OR SAVED HIM"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 ChangeOption=61 ChangeToValue=0
 DoSomethingExtra="ExecuteSubdialog:subdlg_Duncan_quest"
@@ -151,7 +151,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=62  OptionText=_"IS KOAN SAVED?"
+New Option Nr=62  OptionText="IS KOAN SAVED?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 ChangeOption=62 ChangeToValue=0
 OnCondition="CookieIsPlanted:koan_spared:" JumpToOption=63 ElseGoto=52
@@ -159,7 +159,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=63  OptionText=_"WAS THE QUEST DONE BEFORE"
+New Option Nr=63  OptionText="WAS THE QUEST DONE BEFORE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 ChangeOption=63 ChangeToValue=0
 OnCondition="CookieIsPlanted:koan_quest_done:" JumpToOption=52 ElseGoto=61
@@ -167,7 +167,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=80  OptionText=_"PREVENTING DOUBLE TALK"
+New Option Nr=80  OptionText="PREVENTING DOUBLE TALK"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 ChangeOption=80 ChangeToValue=0
 OnCondition="CookieIsPlanted:koan_quest:" JumpToOption=52 ElseGoto=51

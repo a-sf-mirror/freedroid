@@ -30,7 +30,7 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-New Option Nr=0  OptionText=_"KILLING DOUBLE TALK"
+New Option Nr=0  OptionText="KILLING DOUBLE TALK"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 OnCondition="CookieIsPlanted:koan_spared:" JumpToOption=2 ElseGoto=1
 ChangeOption=0 ChangeToValue=0
@@ -38,7 +38,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-New Option Nr=1  OptionText=_"HERE WE GO"
+New Option Nr=1  OptionText="HERE WE GO"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"So you have come. I knew Duncan would not let me live for too long."
 Subtitle=_"Once I am gone this oasis of peace in the world will dry up and die. A shame."
@@ -51,7 +51,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=2  OptionText=_"DO NOTHING NODE"
+New Option Nr=2  OptionText="DO NOTHING NODE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 ChangeOption=2 ChangeToValue=0
 AlwaysExecuteThisOptionPriorToDialogStart="no"

@@ -198,7 +198,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=20 OptionText=_"HAD TUX DISABLED GUNS"
+New Option Nr=20 OptionText="HAD TUX DISABLED GUNS"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 ChangeOption=6 ChangeToValue=0
 OnCondition="CookieIsPlanted:SAGunsOff:" JumpToOption=26 ElseGoto=23
@@ -206,7 +206,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=21 OptionText=_"IS MISSION ASSIGNED"
+New Option Nr=21 OptionText="IS MISSION ASSIGNED"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 ChangeOption=21 ChangeToValue=0
 OnCondition="MissionAssigned:10" JumpToOption=20 ElseGoto=24
@@ -214,7 +214,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-New Option Nr=22 OptionText=_"ALL DONE"
+New Option Nr=22 OptionText="ALL DONE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 ChangeOption=22 ChangeToValue=0
 ChangeOption=27 ChangeToValue=1
@@ -225,7 +225,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=23 OptionText=_"GUNS STILL ARE ON"
+New Option Nr=23 OptionText="GUNS STILL ARE ON"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 ChangeOption=23 ChangeToValue=0
 ChangeOption=27 ChangeToValue=0
@@ -236,7 +236,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=24 OptionText=_"WE DON'T HAVE MISSION"
+New Option Nr=24 OptionText="WE DON'T HAVE MISSION"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 ChangeOption=24 ChangeToValue=0
 ChangeOption=27 ChangeToValue=0
@@ -246,7 +246,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=25 OptionText=_"MISSION IS COMPLETED"
+New Option Nr=25 OptionText="MISSION IS COMPLETED"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 ChangeOption=25 ChangeToValue=0
 ChangeOption=27 ChangeToValue=0
@@ -257,7 +257,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=26 OptionText=_"IS MISSION COMPLETED"
+New Option Nr=26 OptionText="IS MISSION COMPLETED"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 ChangeOption=26 ChangeToValue=0
 OnCondition="MissionComplete:10" JumpToOption=25 ElseGoto=22

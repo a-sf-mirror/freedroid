@@ -95,7 +95,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=6  OptionText=_"ON MISSION 0 WAS ASSIGNED..."
+New Option Nr=6  OptionText="ON MISSION 0 WAS ASSIGNED..."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 OnCondition="MissionAssigned:0" JumpToOption=8 ElseGoto=7
 ChangeOption=6 ChangeToValue=0
@@ -103,14 +103,14 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-New Option Nr=7  OptionText=_"DO NOTHING"
+New Option Nr=7  OptionText="DO NOTHING"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 ChangeOption=7 ChangeToValue=0
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=8  OptionText=_"THIS WILL NOT EVER BE VISIBLE"
+New Option Nr=8  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 ChangeOption=3 ChangeToValue=1
 ChangeOption=8 ChangeToValue=0
@@ -119,7 +119,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=9  OptionText=_"THIS SHOULD ENABLE..."
+New Option Nr=9  OptionText="THIS SHOULD ENABLE..."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 ChangeOption=2 ChangeToValue=1
 ChangeOption=9 ChangeToValue=0

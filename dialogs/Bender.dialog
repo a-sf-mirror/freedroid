@@ -174,7 +174,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=14  OptionText=_"DID TUX GET THE MISSION TO SAVE BENDER?"
+New Option Nr=14  OptionText="DID TUX GET THE MISSION TO SAVE BENDER?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 OnCondition="MissionAssigned:0" JumpToOption=15 ElseGoto=16
 ChangeOption=14 ChangeToValue=0
@@ -182,7 +182,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-New Option Nr=15  OptionText=_"DID HE FINISH IT?"
+New Option Nr=15  OptionText="DID HE FINISH IT?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER" 
 OnCondition="MissionComplete:0" JumpToOption=17 ElseGoto=18
 ChangeOption=15 ChangeToValue=0
@@ -190,14 +190,14 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=16  OptionText=_"THE GREAT UNKNOWN NODE"
+New Option Nr=16  OptionText="THE GREAT UNKNOWN NODE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 ChangeOption=16 ChangeToValue=0
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=17  OptionText=_"BENDER IS SAVED"
+New Option Nr=17  OptionText="BENDER IS SAVED"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 ChangeOption=13 ChangeToValue=1
 ChangeOption=17 ChangeToValue=0
@@ -205,7 +205,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=18  OptionText=_"DOES TUX HAVE THE CURE?"
+New Option Nr=18  OptionText="DOES TUX HAVE THE CURE?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 ChangeOption=8 ChangeToValue=0
 ChangeOption=18 ChangeToValue=0
@@ -220,7 +220,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=19  OptionText=_"THERE IS NO CURE TO GIVE"
+New Option Nr=19  OptionText="THERE IS NO CURE TO GIVE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 ChangeOption=12 ChangeToValue=1
 ChangeOption=19 ChangeToValue=0
@@ -229,7 +229,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=20  OptionText=_"YEAH, WE HAVE THE CURE"
+New Option Nr=20  OptionText="YEAH, WE HAVE THE CURE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 ChangeOption=9 ChangeToValue=1
 ChangeOption=5 ChangeToValue=0

@@ -48,7 +48,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=5  OptionText=_"THIS WILL NOT EVER BE VISIBLE"
+New Option Nr=5  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 ChangeOption=5 ChangeToValue=0
 OnCondition="HaveItemWithName:Kevin's Data Cube" JumpToOption=8 ElseGoto=7
@@ -69,14 +69,14 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=7  OptionText=_"DO NOTHING HERE..."
+New Option Nr=7  OptionText="DO NOTHING HERE..."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 ChangeOption=7 ChangeToValue=0
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=8  OptionText=_"THIS WILL NOT EVER BE VISIBLE"
+New Option Nr=8  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 ChangeOption=8 ChangeToValue=0
 ChangeOption=6 ChangeToValue=1

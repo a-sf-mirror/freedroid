@@ -30,7 +30,7 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-New Option Nr=0  OptionText=_"THIS WILL NOT EVER BE VISIBLE"
+New Option Nr=0  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 ChangeOption=0 ChangeToValue=0
 ChangeOption=9 ChangeToValue=1
@@ -59,7 +59,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=3  OptionText=_"THIS WILL NOT EVER BE VISIBLE"
+New Option Nr=3  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 ChangeOption=3 ChangeToValue=0
 OnCondition="GoldIsLessThan:100" JumpToOption=5 ElseGoto=6
@@ -67,7 +67,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=4  OptionText=_"THIS WILL NOT EVER BE VISIBLE"
+New Option Nr=4  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Hey, wake up! I taught you that stuff already. Go practice on the bots, if you really want more training."
 ChangeOption=4 ChangeToValue=0
@@ -75,7 +75,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=5  OptionText=_"THIS WILL NOT EVER BE VISIBLE"
+New Option Nr=5  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"You don't have enough bucks on you! Come back when you have the money."
 ChangeOption=5 ChangeToValue=0
@@ -83,7 +83,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=6  OptionText=_"THIS WILL NOT EVER BE VISIBLE"
+New Option Nr=6  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 ChangeOption=6 ChangeToValue=0
 OnCondition="PointsToDistributeAtLeast:5" JumpToOption=8 ElseGoto=7
@@ -91,7 +91,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=7  OptionText=_"THIS WILL NOT EVER BE VISIBLE"
+New Option Nr=7  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"You don't have enough experience. I can't teach you anything more right now."
 Subtitle=_"First collect more experience. Then we can go on."
@@ -100,7 +100,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
-New Option Nr=8  OptionText=_"THIS WILL NOT EVER BE VISIBLE"
+New Option Nr=8  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Let us begin then."
 Subtitle=_"Come closer..."
