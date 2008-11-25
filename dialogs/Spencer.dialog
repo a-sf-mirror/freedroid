@@ -377,7 +377,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=39  OptionText=_" OK. I'll be careful. But I'll do it."
-Subtitle=_"Good. The base entrance is somewhat hidden in the caves to the northwest. Best use the north gate out of town, then head west."
+Subtitle=_"Good. The base entrance is somewhat hidden in the caves to the northeast. Best use the north gate out of town, then head east, and turn north again along the shore."
 Subtitle=_"I wish you the best of luck for this operation. It might be that our survival depends on it. Don't wait for assistance."
 Subtitle=_"Try to get control over the disruptor shield if you can. The control droid should be somewhere on the lowest level of the installation. Simply destroying the droid might suffice in disabling the shield."
 ChangeOption=39 ChangeToValue=0
