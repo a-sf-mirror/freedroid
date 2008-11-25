@@ -1555,26 +1555,29 @@ char fpath[2048];
 
 char copyright[] = "\nCopyright (C) 2004 Johannes Prix, Reinhard Prix\n\
 Copyright (C) 2005-2007 Arthur Huillet, Karol Swietlicki\n\
-Freedroid comes with NO WARRANTY to the extent permitted by law.\n\
-You may redistribute copies of Freedroid\n\
+FreedroidRPG comes with NO WARRANTY to the extent permitted by law.\n\
+You may redistribute copies of FreedroidRPG\n\
 under the terms of the GNU General Public License.\n\
 For more information about these matters, see the file named COPYING.\n";
 
 
 char usage_string[] ="\
-Usage: freedroid [-v|--version] \n\
-                 [-s|--sound] [-q|--nosound] \n\
-                 [-o|--open_gl] [-n|--no_open_gl]\n\
-                 [-f|--fullscreen] [-w|--window]\n\
-                 [-d|--debug=LEVEL]\n\
-		 [-r|--resolution=CODE]\n\
+Usage: freedroidRPG [-h | --help] \n\
+                    [-v | --version] \n\
+                    [-s | --sound] [-q | --nosound] \n\
+                    [-o | --open_gl] [-n | --no_open_gl] \n\
+                    [-f | --fullscreen] [-w | --window] \n\
+                    [-d X | --debug=X]       X = 0-5; default 1 \n\
+                    [-r Y | --resolution=Y]  Y = 99 lists available resolutions. \n\
 \n\
-Please report bugs either by entering them into the bug-tracking\n\
-system on our sourceforge-website via this link:\n\n\
+Please report bugs either by entering them into the bug tracker\n\
+on our sourceforge-website at:\n\n\
 http://sourceforge.net/projects/freedroid/\n\n\
-or EVEN BETTER, report them by sending e-mail to:\n\n\
+or by sending an e-mail to:\n\n\
 freedroid-discussion@lists.sourceforge.net\n\n\
-Thanks a lot in advance, the Freedroid dev team.\n\n";
+For more information and know issues please see README.\n\
+Thanks a lot in advance.\n\
+                          / The FreedroidRPG dev team.\n\n";
 
 /* -----------------------------------------------------------------
  *  parse command line arguments and set global switches 
@@ -1727,7 +1730,7 @@ These codes correspond to the following resolutions available:\n\
      7 = Unsupported! (1440 x 900) \n\
      8 = Unsupported! (1680 x 1050) \n\
 Anything else will not be accepted right now, but you can send in\n\
-your suggestion to the FreedroidRPG dev team to enable new resolutions.",
+your suggestion to the FreedroidRPG dev team to enable new resolutions.\n",
 						       NO_NEED_TO_INFORM , IS_FATAL );
 			    break;
 		    }
@@ -2135,7 +2138,7 @@ InitFreedroid ( int argc, char ** argv )
     //
     if ( strstr ( VERSION , "svn" ) != NULL )
     {
-	DebugPrintf ( -4 , "\nThis seems to be a cvs version, so we'll exit on floating point exceptions." );
+	DebugPrintf ( -4 , "\nThis seems to be a development version, so we'll exit on floating point exceptions." );
 	// feenableexcept ( FE_ALL_EXCEPT );
 	// feenableexcept ( FE_INEXACT ) ;
 	// feenableexcept ( FE_UNDERFLOW ) ;
@@ -2227,7 +2230,7 @@ I will try to use local directory instead\n");
     {
 	DebugPrintf ( 0 , "\n----------------------------------------------------------------------\n\
 You seem not to have the directory %s in your home directory.\n\
-This directory is used by freedroid to store saved games and your personal settings.\n\
+This directory is used by FreedroidRPG to store saved games and your personal settings.\n\
 So I'll try to create it now...\n\
 ----------------------------------------------------------------------\n", our_config_dir );
 #if __WIN32__
@@ -2314,7 +2317,7 @@ I will not be able to load or save games or configurations\n\
     ShowStartupPercentage ( 100 ) ; 
 
     if(GameConfig . screen_width == 640)
-	 GiveMouseAlertWindow ( _("\nYou are playing in 640x480.\n\nWhile this resolution works correctly and will\ngive you a great gaming experience, its support is\nin the process of being dropped, therefore you will\nwant to consider using 800x600 or 1024x768.\n\nThank you.\n"));
+	 GiveMouseAlertWindow ( _("\nYou are playing in 640x480.\n\nWhile this resolution mostly work correctly and will\ngive you a great gaming experience, its support is\nin the process of being dropped, therefore you will\nwant to consider using 800x600 or higher resolution.\n\nThank you.\n"));
     if ( strstr( VERSION, "rc" ) )
 	 GiveMouseAlertWindow ( _("\nYou are playing a candidate release.\nMany strange bugs might still be present in the game.\nPlease report anything you may find to #freedroid at irc.freenode.net, or\n by mail to freedroid-discussion at lists.sourceforge.net\nThank you for helping us test the game.\nGood luck!\n"));
 
