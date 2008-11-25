@@ -96,7 +96,7 @@ Subtitle=_"Hmm... Each kind of a bot has a number consisting out of three digits
 Subtitle=_"I know a bit about three classes."
 Subtitle=_"The 100s are cleaning bots of old. They are not too troublesome most of the time."
 Subtitle=_"The 200s are more dangerous. Beware of being attacked by more than one at the same time."
-Subtitle=_"An encounter with a 300 type bot is death, so try to avoid it."
+Subtitle=_"An encounter with a 300 type bot equals death, so try to avoid it."
 Subtitle=_"I am sure there are lots more of classes out there, but I know nothing about them."
 ChangeOption=6 ChangeToValue=0
 ChangeOption=13 ChangeToValue=1
