@@ -42,8 +42,8 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-New Option Nr=1  OptionText=_" ./pull_breaks.sh"
-Subtitle=_"Pulling breaks, using script V 1.0.2 (c) gnu.org, 2054 Checking requirements. Energy on brakes. Done. Status: All movement suppressed."
+New Option Nr=1  OptionText=_" ./hold_position.sh"
+Subtitle=_"Holding position, using script V 1.0.2 (c) gnu.org, 2054 Checking requirements. Power-down movement unit. Done. Status: All movement suppressed."
 ChangeOption=1 ChangeToValue=0
 ChangeOption=2 ChangeToValue=1
 ChangeOption=3 ChangeToValue=1
@@ -54,7 +54,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=2  OptionText=_" ./follow_me.sh"
-Subtitle=_"Initiating tracking sequence. Energy on breaks removed. Trying to keep up with Tux position now. Ok. Following Tux."
+Subtitle=_"Initiating tracking sequence. Movement unit enabled. Ready. Trying to keep up with Tux position now. Ok. Following Tux."
 ChangeOption=1 ChangeToValue=1
 ChangeOption=2 ChangeToValue=0
 ChangeOption=3 ChangeToValue=1
@@ -65,7 +65,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=3  OptionText=_" ./move_freely.sh"
-Subtitle=_"Removing energy from brakes. Resuming normal patrol operations. Done. Status: Patrolling."
+Subtitle=_"Movement unit is starting up. Ready. Resuming normal patrol operations. Done. Status: Patrolling."
 ChangeOption=1 ChangeToValue=1
 ChangeOption=2 ChangeToValue=1
 ChangeOption=3 ChangeToValue=0
