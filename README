@@ -37,7 +37,7 @@
 ===========
  For help with installation, please refer to the INSTALL file located in the same folder as this file.
 
- To run the game you normally just click on the icon added during installation.
+ To run the game you normally just have to launch the executable.
  For advanced options execute "freedroidRPG --help" (in a terminal) to get a list of commandline options.
 
 
@@ -249,16 +249,11 @@ Level Editor & Developer FAQ:
 	   https://sourceforge.net/svn/?group_id=54521
 	   If you are using Windows we recomend using a tool like eg 
 	   http://tortoisesvn.tigris.org/
-	   There is also a section in the FreedroidRPG developer manual mentioned above.
-	   It should have screenshots and everything, so it should not be too hard.
 	   If you still run into problems, best again discuss it with the people on
 	   the freedroid-discussion mailing list.
 
 	Q: I want to help out with FreedroidRPG development.  What should I do first?
-	A: Best thing is to first subscribe to the freedroid-discussion mailing list, then to
-	   take a look at the FreedroidRPG developer docs. Much of it is outdated, but it still
-	   gives you a good idea about the storyline behind what goes on in the game.
-	   You can find a link to it on our project home page. 
+	A: Best thing is to first subscribe to the freedroid-discussion mailing list.
 	   Then the next thing to do is to get the latest development version of the game
 	   from SVN, then to either make a small patch right away or to discuss anything
 	   bigger you have in mind with the people on the discussion mailing list, so it
