@@ -37,7 +37,7 @@ extern void LevelEditor(void);
 /* name of each keybinding */
 const char *keybindNames[] = {
     /* General */
-    "fullscreen", "keychart", "quit", "wall_transparency", 
+    "keychart", "fullscreen", "quit", "wall_transparency", 
 
     /* Ingame */
     "inventory", "skill", "character", "quests",
@@ -151,8 +151,8 @@ void input_get_keybind(char *cmdname, SDLKey *key, SDLMod *mod)
  */
 void input_set_default (void)
 {
-    input_set_keybind("fullscreen", SDLK_F2, KMOD_NONE);
     input_set_keybind("keychart", SDLK_F1, KMOD_NONE);
+    input_set_keybind("fullscreen", SDLK_F2, KMOD_NONE);
     input_set_keybind("quit", SDLK_q, KMOD_LCTRL);
     input_set_keybind("wall_transparency", SDLK_t, KMOD_NONE);
 
