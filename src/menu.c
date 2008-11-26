@@ -1204,22 +1204,32 @@ Cheatmenu (void)
 		    if (i && !(i%20))
 		    {
 			printf_SDL (Screen, -1, -1, " ---- MORE -----\n");
-			if (getchar_raw (NULL) == 'q')
+			our_SDL_flip_wrapper();
+			
+			if (getchar_raw (NULL) == 'q') {
+			    i = -1; //ugly hack to not getchar_raw twice in a row
 			    break;
+			}
 		    }
 		    if ( !(i%20) )
 		    {
 			ClearGraphMem ();
 			printf_SDL (Screen, x0, y0, "Nr.   X   Y      C1  C2  C3  C4\n");
 			printf_SDL (Screen, -1, -1, "------------------------------------\n");
-		    }		    printf_SDL (Screen, -1, -1, "%2d   %2d  %2d      %2d  %2d  %2d  %2d\n",
+		    }		    
+		    printf_SDL (Screen, -1, -1, "%2d   %2d  %2d      %2d  %2d  %2d  %2d\n",
 				i, WpList[i].x, WpList[i].y,
 				WpList[i].connections[0],
 				WpList[i].connections[1],
 				WpList[i].connections[2],
 				WpList[i].connections[3]);
 		} /* for (all waypoints) */
+
+		if (i == -1)
+		    break;
+
 		printf_SDL (Screen, -1, -1, " --- END ---\n");
+		our_SDL_flip_wrapper();
 		getchar_raw (NULL);
 		break;
 
