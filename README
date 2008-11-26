@@ -60,10 +60,10 @@
  Default keys (most keys can be reassigned with the ingame key chart - F1)
 
   Escape     ... Show main menu
-  F1	     ... Show keychart
-  F2	     ... Toggle fullscreen (Linux only)
+  F1         ... Show keychart
+  F2         ... Toggle fullscreen (Linux only)
   F3         ... Quicksave
-  F4	     ... Quickload
+  F4         ... Quickload
   F5-F12     ... Quick-select program 1 through 8
 
   I          ... Inventory panel
@@ -74,7 +74,7 @@
   0-9        ... Use quick-inventory items 0-9
 
   P          ... Pause
-  Hold a     ... Attack while staying at the same position
+  Hold A     ... Attack while staying at the same position
   Hold Shift ... Keep current target selected when moving
   Tab        ... Toggle automap
 
