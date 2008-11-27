@@ -37,17 +37,17 @@ Song name to play in the end title if the mission is completed: TheBeginning.ogg
 --------------------
 *** START OF PURE SCROLLTEXT DATA ***
 What a great day.
-  Yes, I'm being sarcastic again.
-    The whole planet is in flames.
-      Thousands of people are very dead.
-        Qwerty and Arensito are not responding.
+Yes, I'm being sarcastic again.
+The whole planet is in flames.
+Thousands of people are very dead.
+Qwerty and Arensito are not responding.
 
-      Ah, yes, I almost forgot.
-     The bloody bots are about to find me, too.
-    I'm not very happy with that, Not happy at all.
-   I guess I have to pretend I'm just a nice rock, yet again.
-  Don't you think it would be a great time to wake up?
- Get up. Get here. Save my ass.
+Ah, yes, I almost forgot.
+The bloody bots are about to find me, too.
+I'm not very happy with that, Not happy at all.
+I guess I have to pretend I'm just a nice rock, yet again.
+Don't you think it would be a great time to wake up?
+Get up. Get here. Save my ass.
 Please.
 
     Dvorak, First AI
@@ -69,31 +69,34 @@ Special functions
 
 Use the right click to activate the currently selected skill/program. 
 
-Escape		... Show main menu
-P		... Pause
+Default keys (most keys can be reassigned with the ingame key chart - F1)
+ 
+  Escape     ... Show main menu
+  F1         ... Show keychart
+  F2         ... Toggle fullscreen (Linux only)
+  F3         ... Quicksave
+  F4         ... Quickload
+  F5-F12     ... Quick-select program 1 through 8
 
-I		... Inventory panel
-C		... Character panel
-S		... Skills panel
-Space		... Close all open panels
-Q		... Quest log
+  I          ... Inventory panel
+  C          ... Character panel
+  S          ... Skills/Program panel
+  Space      ... Close all open panels
+  Q          ... Quest log
+  0-9        ... Use quick-inventory items 0-9
 
-0-9		... Use quick-inventory items 0-9
-F1-F10		... Quick-select program 1 through 10
-F11		... Toggle fullscreen (Linux only)
-F12		... Take screenshot
+  P          ... Pause
+  Hold A     ... Attack while staying at the same position
+  Hold Shift ... Keep current target selected when moving
+  Tab        ... Toggle automap
 
-Hold A		... Attack while staying at the same position
-Hold Shift	... Keep current target selected when moving
-Tab		... Toggle automap
+  R          ... Reload weapon
+  Hold Ctrl  ... Run
+  U          ... Toggle always run
 
-R		... Reload weapon
-Hold Ctrl	... Run
-U		... Toggle always run
-
-Hold X		... Show labels for items on the ground
-Z		... Toggle show labels for items on the ground
-T		... Toggle walls becoming transparent when Tux approaches
+  Hold X     ... Show labels for items on the ground
+  Z          ... Toggle show labels for items on the ground
+  T          ... Toggle walls becoming transparent when Tux approaches (OpenGL only)
 
 Takeover/Chat 
  
