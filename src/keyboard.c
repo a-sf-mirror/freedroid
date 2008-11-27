@@ -151,6 +151,13 @@ void input_get_keybind(char *cmdname, SDLKey *key, SDLMod *mod)
  */
 void input_set_default (void)
 {
+    /*
+    If changing defaults, please make sure to update relevant parts in
+    README 
+    map/titles/StartOfGame.title
+    map/titles/level_editor_help.title
+    */
+
     input_set_keybind("keychart", SDLK_F1, KMOD_NONE);
     input_set_keybind("fullscreen", SDLK_F2, KMOD_NONE);
     input_set_keybind("quit", SDLK_q, KMOD_LCTRL);
