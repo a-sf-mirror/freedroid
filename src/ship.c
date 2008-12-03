@@ -120,8 +120,7 @@ ShowItemPicture (int PosX, int PosY, int Number )
     static char LastImageSeriesPrefix[1000] = "NONE_AT_ALL";
     static int NumberOfImagesInPreviousRotation = 0 ;
     static int NumberOfImagesInThisRotation = 0 ;
-#define NUMBER_OF_IMAGES_IN_ITEM_ROTATION 16
-#define MAX_NUMBER_OF_IMAGES_IN_ITEM_ROTATION 100
+#define MAX_NUMBER_OF_IMAGES_IN_ITEM_ROTATION 64
     static SDL_Surface *ItemRotationSurfaces[ MAX_NUMBER_OF_IMAGES_IN_ITEM_ROTATION ] = { NULL } ;
     SDL_Surface *Whole_Image;
     int i;
@@ -176,31 +175,6 @@ ShowItemPicture (int PosX, int PosY, int Number )
 		else
 		    Whole_Image = our_IMG_load_wrapper( fpath ); // This is a surface with alpha channel, since the picture is one of this type
 	    }
-	    
-	    //--------------------
-	    // If that didn't work, then it's time to try out the 'classic' rotation models directory.
-	    // Maybe there's still some rotation image there.
-	    //
-	    if ( Whole_Image == NULL )
-	    {
-		DebugPrintf ( 1 , "\nNo luck trying to load .png item image series from the 'bastian' dir... trying 'classic' dir..." );
-		sprintf ( ConstructedFileName , "rotation_models/items/%s_%04d.jpg" , ItemMap[ Number ] . item_rotation_series_prefix , i+1 );
-		if ( find_file ( ConstructedFileName , GRAPHICS_DIR, fpath, 1) )
-		    Whole_Image = NULL ;
-		else
-		    Whole_Image = our_IMG_load_wrapper( fpath ); // This is a surface with alpha channel, since the picture is one of this type
-	    }
-	    
-	    if ( Whole_Image == NULL )
-	    {
-		DebugPrintf ( 1 , "\nNo luck trying to load .jpg item image series from 'classic' dir... trying png..." );
-		sprintf ( ConstructedFileName , "rotation_models/items/%s_%04d.png" , ItemMap[ Number ] . item_rotation_series_prefix , i+1 );
-		if ( find_file ( ConstructedFileName , GRAPHICS_DIR, fpath, 1 ) )
-		    Whole_Image = NULL ;
-		else
-		    Whole_Image = our_IMG_load_wrapper( fpath ); // This is a surface with alpha channel, since the picture is one of this type
-	    }
-	    // }
 	    
 	    //--------------------
 	    // But at this point, we should have found the image!!
