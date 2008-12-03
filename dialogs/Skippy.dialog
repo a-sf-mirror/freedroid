@@ -34,18 +34,18 @@ New Option Nr=0  OptionText=_" Hi! I'm new here."
 Subtitle=_"Great! A newcomer! Welcome! Welcome! I'm Skippy, and I'm your new best friend!"
 Subtitle=_"And as a special favour I'll sell you a mapping device for half price!"
 Subtitle=_"What a GREAT offer! You're so lucky!"
-ChangeOption=0 ChangeToValue=0
-ChangeOption=20 ChangeToValue=1
-ChangeOption=1 ChangeToValue=1
-ChangeOption=2 ChangeToValue=1
-ChangeOption=3 ChangeToValue=1
+DisableOption=0
+EnableOption=20
+EnableOption=1
+EnableOption=2
+EnableOption=3
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=1  OptionText=_" Show me some of those map-making devices."
 Subtitle=_"Sure! I've got one that will perfectly fit your head."
-ChangeOption=1 ChangeToValue=1
+EnableOption=1
 DoSomethingExtra="InitTradeWithCharacter:Skippy"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -57,8 +57,8 @@ Subtitle=_"Just put that thing on your head, and the nanotechnological bots will
 Subtitle=_"They'll merge with your eyes and transmit data to your brain using the optical nerves. Nice, eh?"
 Subtitle=_"Everything within 7 meters of you will be displayed on your retinas."
 Subtitle=_"(Just press tab to see the automap.)"
-ChangeOption=2 ChangeToValue=0
-ChangeOption=4 ChangeToValue=1
+DisableOption=2
+EnableOption=4
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -67,7 +67,7 @@ New Option Nr=3  OptionText=_" You said you make those things yourself? How do y
 Subtitle=_"Oh, I've always been a geek. And I got blueprints from before the Great Assault."
 Subtitle=_"You can't order anything from a catalogue anymore."
 Subtitle=_"The only source of these gizmos is here. It's me!"
-ChangeOption=3 ChangeToValue=0
+DisableOption=3
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -77,16 +77,16 @@ Subtitle=_"No way, man, I guarantee it. Don't believe anything you might have he
 Subtitle=_"This is a perfectly safe and tried technology. No risk at all! Really!"
 Subtitle=_"There is no risk of your head being eaten by a nanotechnological nightmare, or anything funny like that."
 Subtitle=_"Trust me! I'm your best friend and I wouldn't lie to you! Never!"
-ChangeOption=4 ChangeToValue=0
-ChangeOption=5 ChangeToValue=1
+DisableOption=4
+EnableOption=5
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=5  OptionText=_" I don't trust you."
 Subtitle=_"WHAT? But I'm your best friend! You must trust me!"
-ChangeOption=5 ChangeToValue=0
-ChangeOption=6 ChangeToValue=1
+DisableOption=5
+EnableOption=6
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -94,7 +94,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=6  OptionText=_" I still do not trust you. You are selling junk to people."
 Subtitle=_"WHAT? Fine, you can forget about my great deals now! I don't want to trade with you anymore!"
 Subtitle=_"I'm no longer your best friend. Go away, you dirty hoser!"
-ChangeOption=6 ChangeToValue=0
+DisableOption=6
 DoSomethingExtra="PlantCookie:skippy_angry"
 DoSomethingExtra="EndDialog"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
@@ -104,8 +104,8 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=20  OptionText=_" Why are you so friendly?"
 Subtitle=_"Because you are my best friend!"
 Subtitle=_"I always take good care of my special buddies!"
-ChangeOption=20 ChangeToValue=0
-ChangeOption=21 ChangeToValue=1
+DisableOption=20
+EnableOption=21
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -113,14 +113,14 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=21  OptionText=_" You are friendly only to sell me your stuff, aren't you?"
 Subtitle=_"No, never! I would never be so shallow!"
 Subtitle=_"I am friendly because I like you."
-ChangeOption=21 ChangeToValue=0
+DisableOption=21
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=90  OptionText="CHECK FOR SKIPPY ANGER"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=90 ChangeToValue=0
+DisableOption=90
 OnCondition="CookieIsPlanted:skippy_angry:" JumpToOption=91 ElseGoto=92
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
@@ -129,27 +129,27 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 New Option Nr=91  OptionText="YEAH, HE IS ANGRY."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"What? You again? I don't want you here, get out."
-ChangeOption=91 ChangeToValue=0
-ChangeOption=99 ChangeToValue=0
-ChangeOption=98 ChangeToValue=1
-ChangeOption=21 ChangeToValue=0
-ChangeOption=20 ChangeToValue=0
-ChangeOption=3 ChangeToValue=0
-ChangeOption=1 ChangeToValue=0
+DisableOption=91
+DisableOption=99
+EnableOption=98
+DisableOption=21
+DisableOption=20
+DisableOption=3
+DisableOption=1
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=92  OptionText="NO, HE IS NOT ANGRY"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=92 ChangeToValue=0
+DisableOption=92
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=98  OptionText=_" See you later."
 Subtitle=_"Don't come back. I hate you."
-ChangeOption=98 ChangeToValue=1
+EnableOption=98
 DoSomethingExtra="EndDialog"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -157,7 +157,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=99  OptionText=_" See you later."
 Subtitle=_"Yes, we'll meet again, my friend, and I'll have other great deals for you."
-ChangeOption=99 ChangeToValue=1
+EnableOption=99
 DoSomethingExtra="EndDialog"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 

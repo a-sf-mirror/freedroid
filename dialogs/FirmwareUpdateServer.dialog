@@ -34,18 +34,18 @@ New Option Nr=0  OptionText="THIS WILL NEVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Welcome to MS firmware upgrade server for region #54658."
 Subtitle=_"Please select action"
-ChangeOption=0 ChangeToValue=0
-ChangeOption=1 ChangeToValue=1
-ChangeOption=2 ChangeToValue=1
-ChangeOption=3 ChangeToValue=0
-ChangeOption=99 ChangeToValue=1
+DisableOption=0
+EnableOption=1
+EnableOption=2
+DisableOption=3
+EnableOption=99
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
 New Option Nr=1  OptionText=_" Get current OS version"
 Subtitle=_"Currently deployed firmware is v. 5.0.8+worldto-nogpl."
-ChangeOption=1 ChangeToValue=0
+DisableOption=1
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -57,9 +57,9 @@ Subtitle=_"Waiting for all connections...."
 Subtitle=_"..."
 Subtitle=_"..."
 Subtitle=_"Firmware update propagated!"
-ChangeOption=1 ChangeToValue=0
-ChangeOption=2 ChangeToValue=0
-ChangeOption=3 ChangeToValue=1
+DisableOption=1
+DisableOption=2
+EnableOption=3
 DoSomethingExtra="MarkMissionComplete:9"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -67,16 +67,16 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=3  OptionText=_" Get current OS version"
 Subtitle=_"Currently deployed firmware is v. 5.0.8+tuxwashere+gpl"
-ChangeOption=1 ChangeToValue=0
-ChangeOption=2 ChangeToValue=0
-ChangeOption=3 ChangeToValue=1
+DisableOption=1
+DisableOption=2
+EnableOption=3
 DoSomethingExtra="SetMoveFreelyProperty"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=99  OptionText=_" Logout"
-ChangeOption=99 ChangeToValue=1
+EnableOption=99
 DoSomethingExtra="EndDialog"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 

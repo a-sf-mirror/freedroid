@@ -32,8 +32,8 @@ Beginning of new chat dialog for character="XXXXX"
 
 New Option Nr=0  OptionText=_" Hi! I'm new here."
 Subtitle=_"Great. Now back to where you came from. This is no place for you."
-ChangeOption=0 ChangeToValue=0
-ChangeOption=1 ChangeToValue=1
+DisableOption=0
+EnableOption=1
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -42,8 +42,8 @@ New Option Nr=1  OptionText=_" What's the matter with this gate?"
 Subtitle=_"This is a gate to an automated bot factory we call the Hell Fortress."
 Subtitle=_"You must be crazy if you want to get in there. That place is full of bots."
 Subtitle=_"Get out of here. They might attack at any moment!"
-ChangeOption=1 ChangeToValue=0
-ChangeOption=2 ChangeToValue=1
+DisableOption=1
+EnableOption=2
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -53,15 +53,15 @@ Subtitle=_"Of course not. Murdering you would be a complete waste of time."
 Subtitle=_"The bots and disruptor shield will take care of that for me."
 Subtitle=_"Just remember to give me your valuables before you commit suicide."
 Subtitle=_"You won't need any money once you're damn dead, and I could use it, eh?"
-ChangeOption=2 ChangeToValue=0
-ChangeOption=3 ChangeToValue=1
+DisableOption=2
+EnableOption=3
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=3  OptionText=_" Thanks for the advice."
 Subtitle=_"You're dead if you don't take it."
-ChangeOption=3 ChangeToValue=0
+DisableOption=3
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -69,8 +69,8 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=99  OptionText=_" I'll be going then."
 Subtitle=_"Finally."
 Subtitle=_"Don't come back."
-ChangeOption=1 ChangeToValue=1
-ChangeOption=99 ChangeToValue=1
+EnableOption=1
+EnableOption=99
 DoSomethingExtra="EndDialog"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 

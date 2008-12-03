@@ -32,9 +32,9 @@ Beginning of new chat dialog for character="XXXXX"
 
 New Option Nr=0  OptionText=_" Hi! I'm new here."
 Subtitle=_"Hello and welcome. I'm Dixon, the chief engineer of the Red Guard technical division."
-ChangeOption=0 ChangeToValue=0
-ChangeOption=1 ChangeToValue=1
-ChangeOption=19 ChangeToValue=1
+DisableOption=0
+EnableOption=1
+EnableOption=19
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -44,8 +44,8 @@ Subtitle=_"Yes. We are the engineers, the workers and the repairmen of this litt
 Subtitle=_"The military division hates us because we are made up of people who refuse to fight or are unable to do so for health reasons."
 Subtitle=_"But even they know that without us this town would have been destroyed months ago."
 Subtitle=_"We deliver resources to the places which need them, build and repair the walls, fix damaged guns, manage construction work and lots of other small things which keep the bots from killing everyone."
-ChangeOption=1 ChangeToValue=0
-ChangeOption=18 ChangeToValue=1
+DisableOption=1
+EnableOption=18
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -57,8 +57,8 @@ Subtitle=_"We need to perform statistical analysis of the energy distribution in
 Subtitle=_"Our defensive bots are falling into disrepair and many are in desperate need of a lot of maintenance."
 Subtitle=_"The technical division is very understaffed right now. On average one person has to do the jobs of three people."
 Subtitle=_"We just cannot afford to do any non-critical jobs right now. "
-ChangeOption=18 ChangeToValue=0
-ChangeOption=22 ChangeToValue=1
+DisableOption=18
+EnableOption=22
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -71,8 +71,8 @@ Subtitle=_"I got hit once in the leg and once in my left hand."
 Subtitle=_"The hand was not damaged very much, but the leg is a very different story. Doc Moore did all he could, but in the end he could not save my leg. He had to cut it off."
 Subtitle=_"Now, while you cannot see it underneath the armor, my right leg runs NetBSD."
 Subtitle=_"Now I never leave home without my protective suit. Mostly for protection, but also for aesthetic reasons. I am sure you understand."
-ChangeOption=19 ChangeToValue=0
-ChangeOption=20 ChangeToValue=1
+DisableOption=19
+EnableOption=20
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -82,7 +82,7 @@ Subtitle=_"Linarian, I cannot change the past, I can only change the future."
 Subtitle=_"Crying, screaming or begging time to rewind itself and give me a second chance will not get me anywhere."
 Subtitle=_"What I can do is to try to have a good life despite the constant threat from the bots outside the town walls."
 Subtitle=_"And besides, life is not so bad with a robotic leg. The motors inside it can mimic a normal walk very well. Most people do not even notice something is different about me."
-ChangeOption=20 ChangeToValue=0
+DisableOption=20
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -93,9 +93,9 @@ Subtitle=_"I will give you two small devices charged with plasma. If you get in 
 Subtitle=_"The entrance to the tunnels is a bit to the north. Once you exit this building, go in the direction of the town gate. Turn to your right at the first opportunity."
 Subtitle=_"It should be a blind alley. In the northern wall there is a door to the maintenance access hatch."
 Subtitle=_"Good luck. Oh, and please come back alive. Better come back with nothing than not at all."
-ChangeOption=21 ChangeToValue=0
-ChangeOption=31 ChangeToValue=1
-ChangeOption=26 ChangeToValue=0
+DisableOption=21
+EnableOption=31
+DisableOption=26
 DoSomethingExtra="ExecuteActionWithLabel:unlock_northern_maintainance_door"
 DoSomethingExtra="GiveItem:Plasma Shockwave Emitter:2"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
@@ -105,7 +105,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=22  OptionText=_" Can I help you somehow?"
 Subtitle=_"We need people badly, so it would be great if you could give us a helping hand even for a few days."
 Subtitle=_"Now, what are your skills? Where do you think you could be the most useful?"
-ChangeOption=22 ChangeToValue=0
+DisableOption=22
 LinkedTo:23
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -113,7 +113,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=23  OptionText=_" I can handle computers very well. I also know a lot about laboratory equipment."
 Subtitle=_"And what about construction? Mechanical devices? Repairing broken power lines? Building laser pistols? Anything like that? "
-ChangeOption=23 ChangeToValue=0
+DisableOption=23
 LinkedTo:24
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -126,10 +126,10 @@ Subtitle=_"Ah, I know what you could do for us. We need some autotools to automa
 Subtitle=_"It's yellow and round, and my name is engraved on the lid."
 Subtitle=_"The bots under the city took it from me during the Great Assault, I was lucky, they could have killed me with ease."
 Subtitle=_"If you could get it back for us, it would help the city very much."
-ChangeOption=24 ChangeToValue=0
-ChangeOption=21 ChangeToValue=1
-ChangeOption=25 ChangeToValue=1
-ChangeOption=26 ChangeToValue=1
+DisableOption=24
+EnableOption=21
+EnableOption=25
+EnableOption=26
 DoSomethingExtra="AssignMission:1"
 DoSomethingExtra="OpenQuestDiaryEntry:M1E0:"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
@@ -143,7 +143,7 @@ Subtitle=_"We lost control over them, but that is all."
 Subtitle=_"It was our biggest worry that they might destroy cables, pipes and other things which keep the city running."
 Subtitle=_"However, the bots seem to be very content with just being there. They do not undertake any offensive actions."
 Subtitle=_"They have fortified the tunnels and they do not let anyone in."
-ChangeOption=25 ChangeToValue=0
+DisableOption=25
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -157,8 +157,8 @@ Subtitle=_"I tried to say something, but the bot did not listen. It just continu
 Subtitle=_"'I need your toolkit, Dixon. I need it to survive,' it said. 'I need it to survive the time of the rule of metal.'"
 Subtitle=_"As soon as it released me I ran to the exit as fast as I could. That bot freaked me out and I just wanted to get away and later find it again and fix it."
 Subtitle=_"Once I got out I learned the bot was not lying. The Great Assault started. The rest is history."
-ChangeOption=26 ChangeToValue=0
-ChangeOption=27 ChangeToValue=1
+DisableOption=26
+EnableOption=27
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -166,11 +166,11 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=27  OptionText=_" Hmm... You know... I think that the bots in the tunnels might be sentient."
 Subtitle=_"WHAT? Sentient? You got to be kidding me."
 Subtitle=_"Right?"
-ChangeOption=27 ChangeToValue=0
-ChangeOption=21 ChangeToValue=0
-ChangeOption=30 ChangeToValue=1
-ChangeOption=29 ChangeToValue=1
-ChangeOption=28 ChangeToValue=1
+DisableOption=27
+DisableOption=21
+EnableOption=30
+EnableOption=29
+EnableOption=28
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -179,9 +179,9 @@ New Option Nr=28  OptionText=_" Yes, I think so. The robots must be alive. This 
 Subtitle=_"OH MY GOD! Linarian, there is no time to lose!"
 Subtitle=_"I will call the military division and arrange a sweep of the tunnels at once."
 Subtitle=_"May the heavens have mercy upon us, but better them than us."
-ChangeOption=28 ChangeToValue=0
-ChangeOption=29 ChangeToValue=0
-ChangeOption=30 ChangeToValue=0
+DisableOption=28
+DisableOption=29
+DisableOption=30
 LinkedTo:32
 DoSomethingExtra="OpenQuestDiaryEntry:M1E1:"
 DoSomethingExtra="PlantCookie:singularity_dead"
@@ -193,9 +193,9 @@ New Option Nr=29  OptionText=_" Of course I am kidding, Dixon. Lighten up! Now, 
 Subtitle=_"That was not very funny. You scared me. Sheesh."
 Subtitle=_"No one jokes about the bots anymore. We have seen too much death to do that. It is a serious matter."
 Subtitle=_"The bots are our enemies, executioners, killers. Not even Ewald tells jokes about them anymore."
-ChangeOption=29 ChangeToValue=0
-ChangeOption=28 ChangeToValue=0
-ChangeOption=30 ChangeToValue=0
+DisableOption=29
+DisableOption=28
+DisableOption=30
 DoSomethingExtra="OpenQuestDiaryEntry:M1E1:"
 DoSomethingExtra="ExecuteActionWithLabel:unlock_northern_maintainance_door"
 DoSomethingExtra="PlantCookie:singularity_killed"
@@ -209,9 +209,9 @@ Subtitle=_"I think I understand. Yes, I do not like violence, myself. The bots m
 Subtitle=_"After all, it seems like they need them more than I do."
 Subtitle=_"I will try to contact them somehow. Maybe they would help us. Ah, we shall see. It would be great to have an ally against the other bots."
 DoSomethingExtra="OpenQuestDiaryEntry:M1E2:"
-ChangeOption=30 ChangeToValue=0
-ChangeOption=28 ChangeToValue=0
-ChangeOption=29 ChangeToValue=0
+DisableOption=30
+DisableOption=28
+DisableOption=29
 DoSomethingExtra="PlantCookie:singularity_saved"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -219,7 +219,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=31  OptionText=_" How did it happen that the bots took your tools away?"
 Subtitle=_"Ah, it is a strange story, I am sure you would not believe me. I will tell you some other time."
-ChangeOption=31 ChangeToValue=0
+DisableOption=31
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -227,7 +227,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=32  OptionText=_" I will go in there first and clean out the place. Then your people can mop up after me and kill the remainder."
 Subtitle=_"Linarian, my people do not carry guns. We are mechanics. You want the military division's help."
 Subtitle=_"Erm... And aren't you being too aggressive? Maybe they do not wish us harm..."
-ChangeOption=32 ChangeToValue=0
+DisableOption=32
 LinkedTo:33
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -238,7 +238,7 @@ Subtitle=_"... *sigh*"
 Subtitle=_"With heavy heart I have to admit you are right. There are no friendly bots anymore. Those times are long gone."
 Subtitle=_"The tunnels are open. Good luck."
 Subtitle=_"I will talk to Spencer and ask him for a few attack teams. We will take care of the bots."
-ChangeOption=33 ChangeToValue=0
+DisableOption=33
 DoSomethingExtra="PlantCookie:singularity_killed"
 DoSomethingExtra="ExecuteActionWithLabel:unlock_northern_maintainance_door"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
@@ -252,7 +252,7 @@ Subtitle=_"I thank you for your help in recovering the autotools."
 Subtitle=_"Here is some money, you deserve it for getting my toolkit back."
 Subtitle=_"Finally, I would like to say that the technical division is not interested in further cooperation with you, but I think you would fit very well in the military division. You should talk to them."
 Subtitle=_"I am sorry, but I must go now. My duties call."
-ChangeOption=34 ChangeToValue=0
+DisableOption=34
 DoSomethingExtra="AddGold:150"
 DoSomethingExtra="MarkMissionComplete:1"
 DoSomethingExtra="DeleteItem:Dixon's Toolbox"
@@ -266,8 +266,8 @@ Subtitle=_"Good. We sure need the autotools."
 Subtitle=_"Our roads need fixing, our power lines need fixing, our walls need fixing... Hell, everything needs fixing in this place."
 Subtitle=_"With those little gadgets we will be able to automate a lot of those simple repairs, saving us a lot of time."
 Subtitle=_"Here is some money for your effort. And I am sure you will find this helmet useful too, it saved my life once, and I hope it saves yours one day."
-ChangeOption=35 ChangeToValue=0
-ChangeOption=36 ChangeToValue=0
+DisableOption=35
+DisableOption=36
 DoSomethingExtra="MarkMissionComplete:1"
 DoSomethingExtra="PlantCookie:singularity_dead"
 DoSomethingExtra="AddGold:100"
@@ -282,8 +282,8 @@ New Option Nr=36  OptionText=_" I got your toolkit. You can buy it from me if yo
 Subtitle=_"WHAT!? "
 Subtitle=_"You got to be kidding me, Linarian."
 Subtitle=_"Give me the toolkit and stop fooling around."
-ChangeOption=36 ChangeToValue=0
-ChangeOption=37 ChangeToValue=1
+DisableOption=36
+EnableOption=37
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -291,10 +291,10 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=37  OptionText=_" I was not joking. I am listening to your offers."
 Subtitle=_"Linarian, I curse the day on which you have arrived here."
 Subtitle=_"Two fifty."
-ChangeOption=37 ChangeToValue=0
-ChangeOption=35 ChangeToValue=0
-ChangeOption=41 ChangeToValue=1
-ChangeOption=38 ChangeToValue=1
+DisableOption=37
+DisableOption=35
+EnableOption=41
+EnableOption=38
 DoSomethingExtra="PlantCookie:dixon_angry"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -304,8 +304,8 @@ New Option Nr=38  OptionText=_" Deal. Here is your toolkit. Now cough up the mon
 Subtitle=_"Here. It is all there."
 Subtitle=_"Now get out of here. I am a pacifist, but I am willing to make a special exception just for you."
 Subtitle=_"Get out of my sight."
-ChangeOption=38 ChangeToValue=0
-ChangeOption=41 ChangeToValue=0
+DisableOption=38
+DisableOption=41
 DoSomethingExtra="MarkMissionComplete:1"
 DoSomethingExtra="DeleteItem:Dixon's Toolbox"
 DoSomethingExtra="AddGold:250"
@@ -318,8 +318,8 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=39  OptionText=_" Deal. Here is your toolkit. Now cough up the money. Fast."
 Subtitle=_"I am not happy about this. I suggest you leave the city."
 Subtitle=_"Accidents... Happen."
-ChangeOption=39 ChangeToValue=0
-ChangeOption=42 ChangeToValue=0
+DisableOption=39
+DisableOption=42
 DoSomethingExtra="MarkMissionComplete:1"
 DoSomethingExtra="DeleteItem:Dixon's Toolbox"
 DoSomethingExtra="AddGold:350"
@@ -333,7 +333,7 @@ New Option Nr=40  OptionText=_" Deal. Here is your toolkit. Now cough up the mon
 Subtitle=_"Linarian. Now we part as usual. However should I ever see you after the war is over..."
 Subtitle=_"I promise to kill you."
 Subtitle=_"Now take your money and get out of my face. I do not want to see you here ever again."
-ChangeOption=40 ChangeToValue=0
+DisableOption=40
 DoSomethingExtra="MarkMissionComplete:1"
 DoSomethingExtra="PlantCookie:dixon_very_angry"
 DoSomethingExtra="AddGold:400"
@@ -346,10 +346,10 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=41  OptionText=_" Good joke. I am sure you can do better."
 Subtitle=_"Three fifty. This is all that the technical division has as their cash resources."
-ChangeOption=41 ChangeToValue=0
-ChangeOption=39 ChangeToValue=1
-ChangeOption=38 ChangeToValue=0
-ChangeOption=42 ChangeToValue=1
+DisableOption=41
+EnableOption=39
+DisableOption=38
+EnableOption=42
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -358,9 +358,9 @@ New Option Nr=42  OptionText=_" Come on, I am sure you can do even better than t
 Subtitle=_"Four hundred. We cannot offer anything more."
 Subtitle=_"Please, we really need the autotools."
 Subtitle=_"Without them this city is doomed."
-ChangeOption=42 ChangeToValue=0
-ChangeOption=40 ChangeToValue=1
-ChangeOption=39 ChangeToValue=0
+DisableOption=42
+EnableOption=40
+DisableOption=39
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -370,7 +370,7 @@ Subtitle=_"Heh, never better!"
 Subtitle=_"All indicators are in the green, the power and water fill the pipes and even Spencer seems happier now that the town is thriving despite all odds."
 Subtitle=_"Thanks to the autotools we can start building instead of just trying to repair the damage."
 Subtitle=_"Once this is sick war is over, I will make sure you get keys to the city Linarian."
-ChangeOption=43 ChangeToValue=0
+DisableOption=43
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -378,7 +378,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=44  OptionText=_" Is everything all right?"
 Subtitle=_"Nearly. Only my conscience keeps me up at night."
 Subtitle=_"Please leave me alone with my thoughts, I do not want to talk to anyone right now."
-ChangeOption=44 ChangeToValue=0
+DisableOption=44
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -388,7 +388,7 @@ Subtitle=_"No, I am afraid not."
 Subtitle=_"While I do not regret sparing the bots in the tunnels, the town suffers for it."
 Subtitle=_"It makes me sad to see everything slowly wasting away. The bots are doing more damage than we can repair."
 Subtitle=_"This town has a few weeks left to live. After that we are all dead."
-ChangeOption=45 ChangeToValue=0
+DisableOption=45
 DoSomethingExtra="PlantCookie:dixon_one"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -398,8 +398,8 @@ New Option Nr=46  OptionText=_" Is everything all right?"
 Subtitle=_" Ha! Never better!"
 Subtitle=_"We are mass producing energy shields, creating more electric energy than we can ever imagine spending and even experimenting with new armor types."
 Subtitle=_"Life is good right now."
-ChangeOption=46 ChangeToValue=0
-ChangeOption=47 ChangeToValue=1
+DisableOption=46
+EnableOption=47
 DoSomethingExtra="MarkMissionComplete:1"
 DoSomethingExtra="PlantCookie:dixon_saved_and_talked"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
@@ -410,8 +410,8 @@ New Option Nr=47  OptionText=_" What happened? Last time I asked, you said thing
 Subtitle=_" Yes, but now everything is different."
 Subtitle=_"I met someone who decided to join us in the fight against the MegaSys bots."
 Subtitle=_"You will need a hacked computer. Type in 'ssh 10.83.13.230' as the superuser, and you will see what I mean."
-ChangeOption=47 ChangeToValue=0
-ChangeOption=48 ChangeToValue=1
+DisableOption=47
+EnableOption=48
 DoSomethingExtra="PlantCookie:got_singularity"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -422,7 +422,7 @@ Subtitle=_"Nope. Some things you just have to see with your own eyes."
 Subtitle=_"The Library of Alexandria, the Colossus of Rhodes, the Black Island..."
 Subtitle=_"And this is just one of those things."
 Subtitle=_"Just go and see for yourself. Otherwise you will not believe me."
-ChangeOption=48 ChangeToValue=0
+DisableOption=48
 DoSomethingExtra="OpenQuestDiaryEntry:M1E3:"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -430,7 +430,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=60  OptionText="IS THE TOOLKIT WITH TUX?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=60 ChangeToValue=0
+DisableOption=60
 OnCondition="HaveItemWithName:Dixon's Toolbox" JumpToOption=61 ElseGoto=80
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
@@ -438,7 +438,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 New Option Nr=61  OptionText="WAS TUX A MANIAC KILLER?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=61 ChangeToValue=0
+DisableOption=61
 OnCondition="CookieIsPlanted:singularity_killed:" JumpToOption=63 ElseGoto=62
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -446,24 +446,24 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=62  OptionText="TUX DID NOT KNOW WHAT IS HE DOING."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=62 ChangeToValue=0
-ChangeOption=36 ChangeToValue=1
-ChangeOption=35 ChangeToValue=1
+DisableOption=62
+EnableOption=36
+EnableOption=35
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=63  OptionText="YES, HE SLAUGHTERED THE BOTS FOR ENTERTAINMENT."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=63 ChangeToValue=0
-ChangeOption=34 ChangeToValue=1
+DisableOption=63
+EnableOption=34
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=70  OptionText="IS THE TOOLKIT MISSION DONE?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=70 ChangeToValue=0
+DisableOption=70
 OnCondition="MissionComplete:1" JumpToOption=77 ElseGoto=80
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
@@ -471,39 +471,39 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 New Option Nr=71  OptionText="YEAH, AND TUX HAS NO IDEA..."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=71 ChangeToValue=0
-ChangeOption=43 ChangeToValue=1
+DisableOption=71
+EnableOption=43
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=72  OptionText="YEAH, AND TUX WAS A MADMAN."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=72 ChangeToValue=0
-ChangeOption=44 ChangeToValue=1
+DisableOption=72
+EnableOption=44
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=73  OptionText="YEAH, SINGULARITY IS WELL, FIRST TIME"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=73 ChangeToValue=0
-ChangeOption=45 ChangeToValue=1
+DisableOption=73
+EnableOption=45
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=74  OptionText="YEAH, AND THIS IS THE SECOND TIME TUX ASKS. LET THE MAGIC START."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=74 ChangeToValue=0
-ChangeOption=46 ChangeToValue=1
+DisableOption=74
+EnableOption=46
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=75  OptionText="YES, AND IT WENT WITH PEACE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=75 ChangeToValue=0
+DisableOption=75
 OnCondition="CookieIsPlanted:dixon_one:" JumpToOption=74 ElseGoto=73
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -511,7 +511,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=77  OptionText="SURE, IT WAS DONE."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=77 ChangeToValue=0
+DisableOption=77
 OnCondition="CookieIsPlanted:singularity_dead:" JumpToOption=78 ElseGoto=75
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -519,7 +519,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=78  OptionText="DID TUX KNOW WHAT IS HE DOING?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=78 ChangeToValue=0
+DisableOption=78
 OnCondition="CookieIsPlanted:singularity_killed:" JumpToOption=72 ElseGoto=71
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -527,14 +527,14 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=80  OptionText="DO NOTHING NODE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=80 ChangeToValue=0
+DisableOption=80
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=81  OptionText="DID TUX ANGER DIXON?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=81 ChangeToValue=0
+DisableOption=81
 OnCondition="CookieIsPlanted:dixon_angry:" JumpToOption=82 ElseGoto=80
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
@@ -542,7 +542,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 New Option Nr=82  OptionText="HOW MUCH ANGER?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=82 ChangeToValue=0
+DisableOption=82
 OnCondition="CookieIsPlanted:dixon_very_angry:" JumpToOption=83 ElseGoto=84
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -557,7 +557,7 @@ Subtitle=_"GET."
 Subtitle=_"LOST."
 Subtitle=_"FUCK MY LIFELONG PACIFISM. I WILL FUCKING KILL YOU NOW!"
 Subtitle=_"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA!"
-ChangeOption=83 ChangeToValue=0
+DisableOption=83
 DoSomethingExtra="BreakOffAndBecomeHostile"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -567,14 +567,14 @@ New Option Nr=84  OptionText="JUST A LITTLE BIT."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Linarian, please leave. You are no longer welcome here."
 Subtitle=_"You have done me wrong and I have no desire to talk to you."
-ChangeOption=84 ChangeToValue=0
+DisableOption=84
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=90  OptionText="CHECK FOR SAVING SINGULARITY"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=90 ChangeToValue=0
+DisableOption=90
 OnCondition="CookieIsPlanted:singularity_saved:" JumpToOption=75 ElseGoto=80
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
@@ -582,7 +582,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 New Option Nr=95  OptionText="CHECK IF DIXON TALKED ALREADY"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=95 ChangeToValue=0
+DisableOption=95
 OnCondition="CookieIsPlanted:dixon_saved_and_talked:" JumpToOption=96 ElseGoto=80
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
@@ -590,14 +590,14 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 New Option Nr=96  OptionText="ELIMINATING_THE_DOUBLE_TALK"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=96 ChangeToValue=0
-ChangeOption=46 ChangeToValue=0
+DisableOption=96
+DisableOption=46
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=99  OptionText=_" I must go now."
-ChangeOption=99 ChangeToValue=1
+EnableOption=99
 DoSomethingExtra="EndDialog"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 

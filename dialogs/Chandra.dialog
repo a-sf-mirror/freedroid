@@ -32,10 +32,10 @@ Beginning of new chat dialog for character="XXXXX"
 
 New Option Nr=0  OptionText=_" Hi! I'm new here."
 Subtitle=_"Welcome. I am Chandra, the local sage in this old town."
-ChangeOption=0 ChangeToValue=0
-ChangeOption=1 ChangeToValue=1
-ChangeOption=2 ChangeToValue=1
-ChangeOption=9 ChangeToValue=1
+DisableOption=0
+EnableOption=1
+EnableOption=2
+EnableOption=9
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -43,9 +43,9 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=1  OptionText=_" What can you tell me about this place?"
 Subtitle=_"This small town existed since before the Great Assault. It used to be a somewhat successful mining community."
 Subtitle=_"But now after the Great Assault, the rest of the planet gets bombarded by automated bot ships every now and then, so being down here isn't so bad at all."
-ChangeOption=1 ChangeToValue=0
-ChangeOption=5 ChangeToValue=1
-ChangeOption=10 ChangeToValue=1
+DisableOption=1
+EnableOption=5
+EnableOption=10
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -53,7 +53,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=2  OptionText=_" Where can I get better equipment?"
 Subtitle=_"The shop is to the north. Ms. Stone always has a good range of equipment there."
 Subtitle=_"And the Red Guard always has the biggest guns and the best armor, but they do not sell them to the non-members."
-ChangeOption=2 ChangeToValue=0
+DisableOption=2
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -64,7 +64,7 @@ Subtitle=_"Now, I think you will agree with me that the following statement is t
 Subtitle=_"Now, I make the assumption that you and I are alive."
 Subtitle=_"Now, if we are not dead, and if bots are killing everything alive..."
 Subtitle=_"... THEN SOMETHING IS NOT LOGICAL!"
-ChangeOption=3 ChangeToValue=0
+DisableOption=3
 LinkedTo:4
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -75,7 +75,7 @@ Subtitle=_"There is none!"
 Subtitle=_"They could just enter the city and massacre everyone."
 Subtitle=_"But they do not do so."
 Subtitle=_"This makes no sense at all!"
-ChangeOption=4 ChangeToValue=0
+DisableOption=4
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -83,10 +83,10 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=5  OptionText=_" What do you know about the hostile bots?"
 Subtitle=_"The phenomenon of hostile bots has occupied my mind for quite some time.  There are some strange irrationalities in this behaviour, that I cannot explain."
 Subtitle=_"This concerns not only the irrationality of the attack but also the methods and the scale of it all."
-ChangeOption=7 ChangeToValue=1
-ChangeOption=6 ChangeToValue=1
-ChangeOption=5 ChangeToValue=0
-ChangeOption=3 ChangeToValue=1
+EnableOption=7
+EnableOption=6
+DisableOption=5
+EnableOption=3
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -98,10 +98,10 @@ Subtitle=_"The 100s are cleaning bots of old. They are not too troublesome most 
 Subtitle=_"The 200s are more dangerous. Beware of being attacked by more than one at the same time."
 Subtitle=_"An encounter with a 300 type bot equals death, so try to avoid it."
 Subtitle=_"I am sure there are lots more of classes out there, but I know nothing about them."
-ChangeOption=6 ChangeToValue=0
-ChangeOption=13 ChangeToValue=1
-ChangeOption=12 ChangeToValue=1
-ChangeOption=11 ChangeToValue=1
+DisableOption=6
+EnableOption=13
+EnableOption=12
+EnableOption=11
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -110,8 +110,8 @@ New Option Nr=7  OptionText=_" I want to leave this place."
 Subtitle=_"We all do, Linarian, we all do."
 Subtitle=_"The act in question is made impossible by the quasi-infinite bots outside of the city walls."
 Subtitle=_"You cannot live for long out there."
-ChangeOption=7 ChangeToValue=0
-ChangeOption=8 ChangeToValue=1
+DisableOption=7
+EnableOption=8
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -120,7 +120,7 @@ New Option Nr=8  OptionText=_" No, I meant I would like to leave this world."
 Subtitle=_"Simple. Walk outside the city walls, and the bots will send you to the other world within a few minutes."
 Subtitle=_"Unless you mean leave the planet, in which case that is impossible."
 Subtitle=_"Most likely all of our cosmodromes have been destroyed in the bot attacks."
-ChangeOption=8 ChangeToValue=0
+DisableOption=8
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -132,7 +132,7 @@ Subtitle=_"Should you fail to find something decent to shoot with, there are alw
 Subtitle=_"Ewald sells potions which can increase your abilities to fight for a while. He keeps the ingredients a secret, and the prices high."
 Subtitle=_"There was a person selling grenades too. Eh... I forgot his name, my memory is not serving me very well today. I am sure he can help you out."
 Subtitle=_"Other than that, you are on your own."
-ChangeOption=9 ChangeToValue=0
+DisableOption=9
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -141,7 +141,7 @@ New Option Nr=10  OptionText=_" Do you think I could join the guardians of this 
 Subtitle=_"The Red Guard? Unlikely. You'd have to establish a reputation before and demonstrate that you can fix things."
 Subtitle=_"Of course, the Red Guard is not a very popular organization, so if you do join them then you can expect to be hated by nearly everyone here."
 Subtitle=_"As the ancients said, 'Boni pastoris est tondere pecus, non deglubere'. A good tax must be a reasonable tax."
-ChangeOption=10 ChangeToValue=0
+DisableOption=10
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -151,7 +151,7 @@ Subtitle=_"I know of two types. The 123 and the 139."
 Subtitle=_"Because they are neither fast nor dangerous, the Red Guard uses them for target practice."
 Subtitle=_"If I were you, I would not overestimate them. "
 Subtitle=_"Nec Hercules contra plures."
-ChangeOption=11 ChangeToValue=0
+DisableOption=11
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -162,7 +162,7 @@ Subtitle=_"The 247 is often called the 'Banshee'."
 Subtitle=_"It comes close to you and tries to punch you."
 Subtitle=_"The 249 is much more dangerous."
 Subtitle=_"Its machine gun has a high rate of fire, and each bullet can damage your equipment."
-ChangeOption=12 ChangeToValue=0
+DisableOption=12
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -170,14 +170,14 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=13  OptionText=_" What other bots are out there?"
 Subtitle=_"Well, I have no idea. I have heard only rumors."
 Subtitle=_"I think most of the people who have seen a better bot are now pushing up the daisies."
-ChangeOption=13 ChangeToValue=0
+DisableOption=13
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=99  OptionText=_" Thank you for your wise words."
 Subtitle=_"Feel free to come here any time you want."
-ChangeOption=99 ChangeToValue=1
+EnableOption=99
 DoSomethingExtra="EndDialog"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 

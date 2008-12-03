@@ -32,9 +32,9 @@ Beginning of new chat dialog for character="XXXXX"
 
 New Option Nr=0  OptionText=_"HERE WE GO"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=0 ChangeToValue=0
-ChangeOption=99 ChangeToValue=1
-ChangeOption=1 ChangeToValue=1
+DisableOption=0
+EnableOption=99
+EnableOption=1
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
@@ -43,8 +43,8 @@ New Option Nr=1  OptionText=_" Tell me more."
 Subtitle=_"Ah, excellent."
 Subtitle=_"A... friend of mine, Koan, stole something of great value to me."
 Subtitle=_"He is hiding somewhere in the desert, I don't know exactly where."
-ChangeOption=1 ChangeToValue=0
-ChangeOption=2 ChangeToValue=1
+DisableOption=1
+EnableOption=2
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -54,11 +54,11 @@ Subtitle=_"Excellent. I am pleased to hear this."
 Subtitle=_"There is something you must know."
 Subtitle=_"There are not too many bots in the desert, but they are undefeatable. It is best to avoid them."
 Subtitle=_"I will be waiting here for your return."
-ChangeOption=2 ChangeToValue=0
-ChangeOption=99 ChangeToValue=0
-ChangeOption=7 ChangeToValue=1
-ChangeOption=6 ChangeToValue=1
-ChangeOption=5 ChangeToValue=1
+DisableOption=2
+DisableOption=99
+EnableOption=7
+EnableOption=6
+EnableOption=5
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -68,21 +68,21 @@ Subtitle=_"We call them 'Sawmill'."
 Subtitle=_"They were designed to chop down trees in the mountains."
 Subtitle=_"Now they chop down people."
 Subtitle=_"Their only weak point is their security system. But no one managed to stay alive long enough to hack them."
-ChangeOption=5 ChangeToValue=0
+DisableOption=5
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=6  OptionText=_" What is that thing he took from you?"
 Subtitle=_"A cube. You can't miss it. Trust me."
-ChangeOption=6 ChangeToValue=0
+DisableOption=6
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=7  OptionText=_" That is all I need to know. I will find Koan."
 Subtitle=_"Only time will tell."
-ChangeOption=7 ChangeToValue=1
+EnableOption=7
 DoSomethingExtra="EndDialog"
 DoSomethingExtra="ExecuteActionWithLabel:unlock_desert"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
@@ -91,7 +91,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=99  OptionText=_" No, I don't find bloodshed a pleasurable activity."
 Subtitle=_"That is fine. I will find someone else."
-ChangeOption=99 ChangeToValue=0
+DisableOption=99
 DoSomethingExtra="EndDialog"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 

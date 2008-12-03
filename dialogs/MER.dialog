@@ -32,8 +32,8 @@ Beginning of new chat dialog for character="XXXXX"
 
 New Option Nr=0  OptionText=_" Login : admin  Password : *******"
 Subtitle=_"Last login from /dev/ttyS0 on Sun, 23 mar 2057. admin@shielddefense: ~ #"
-ChangeOption=0 ChangeToValue=0
-ChangeOption=7 ChangeToValue=1
+DisableOption=0
+EnableOption=7
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 OnCondition="CookieIsPlanted:MER_Password:" JumpToOption=3 ElseGoto=4
 
@@ -44,29 +44,29 @@ Subtitle=_" Changing password for admin. Enter new password: "
 Subtitle=_" Enter new password again: "
 Subtitle=_" Password successfully changed."
 AlwaysExecuteThisOptionPriorToDialogStart="no"
-ChangeOption=1 ChangeToValue=0
-ChangeOption=7 ChangeToValue=0
-ChangeOption=8 ChangeToValue=1
+DisableOption=1
+DisableOption=7
+EnableOption=8
 DoSomethingExtra="PlantCookie:MER_Password"
 
 ----------------------------------------------------------------------
 
 New Option Nr=3  OptionText="I HAVE CHANGED"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=3 ChangeToValue=0
-ChangeOption=1 ChangeToValue=0
-ChangeOption=7 ChangeToValue=0
-ChangeOption=8 ChangeToValue=1
+DisableOption=3
+DisableOption=1
+DisableOption=7
+EnableOption=8
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=4  OptionText="I HAVEN'T CHANGED"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=4 ChangeToValue=0
-ChangeOption=1 ChangeToValue=1
-ChangeOption=7 ChangeToValue=1
-ChangeOption=8 ChangeToValue=0
+DisableOption=4
+EnableOption=1
+EnableOption=7
+DisableOption=8
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -90,7 +90,7 @@ DoSomethingExtra="OpenQuestDiaryEntry:M8E3:"
 ----------------------------------------------------------------------
 
 New Option Nr=99  OptionText=_" logout"
-ChangeOption=99 ChangeToValue=1
+EnableOption=99
 DoSomethingExtra="EndDialog"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 

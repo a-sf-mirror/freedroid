@@ -618,14 +618,13 @@ LoadChatRosterWithChatSequence ( char* FullPathAndFullFilename )
     char *ChatData;
     char *SectionPointer;
     char *EndOfSectionPointer;
-    int i , j ;
+    int i , j, a ;
     char fpath[2048];
     int OptionIndex;
     int NumberOfOptionsInSection;
     int NumberOfReplySubtitles;
     int NumberOfReplySamples;
     int NumberOfOptionChanges;
-    int NumberOfNewOptionValues;
     int NumberOfExtraEntries;
     
     char* ReplyPointer;
@@ -754,49 +753,27 @@ severe error.",
 	    }
 	
 	//--------------------
-	// We count the number of Option changes and new values and then
-	// we will read them out
+	// Read out option enabling/disabling commands
 	//
-	NumberOfOptionChanges = CountStringOccurences ( SectionPointer , "ChangeOption" ) ;
-	NumberOfNewOptionValues = CountStringOccurences ( SectionPointer , "ChangeToValue" ) ;
-	if ( NumberOfOptionChanges != NumberOfNewOptionValues )
-	{
-	    fprintf( stderr, "\n\nNumberOfOptionChanges: %d NumberOfNewOptionValues: %d \n" , NumberOfOptionChanges , NumberOfNewOptionValues );
-	    ErrorMessage ( __FUNCTION__  , "\
-There was number of option changes but an unequal number of new option\n\
-values specified in a section within the Freedroid.dialogues file.\n\
-This is currently not allowed in Freedroid and therefore indicates a\n\
-severe error.",
-				       PLEASE_INFORM, IS_FATAL );
-	}
-	else
-	{
-	    DebugPrintf ( CHAT_DEBUG_LEVEL , "\nThere were %d option changes and an equal number of new option values\n\
-found in this option of the dialogue, which is fine.", NumberOfOptionChanges );
-	}
+	j = 0; //option change array index
+	for ( a = 0; a < 2; a++ ) {
+	    const char * cmdstr = a ? "DisableOption=" : "EnableOption=";
+	    const int cmdval = a ? 0 : 1;
+
+	    NumberOfOptionChanges = CountStringOccurences ( SectionPointer, cmdstr );
+	   
+	    OptionChangePointer = SectionPointer;
+
+	    for ( ; NumberOfOptionChanges--; j ++ ) {
+		ReadValueFromString (OptionChangePointer, cmdstr, "%d", & ( ChatRoster[ OptionIndex ] . change_option_nr [ j ] ), NULL );
+		ChatRoster [ OptionIndex ] . change_option_to_value [ j ] = cmdval;
 	
-	//--------------------
-	// Now that we know exactly how many option changes and new option values 
-	// to read out, we can well start reading exactly that many of them.
-	// 
-	OptionChangePointer = SectionPointer;
-	for ( j = 0 ; j < NumberOfOptionChanges ; j ++ )
-	{
-	    ReadValueFromString( OptionChangePointer , "ChangeOption=" , "%d" , 
-				 & ( ChatRoster[ OptionIndex ] . change_option_nr [ j ] ) , NULL );
-	    ReadValueFromString( OptionChangePointer , "ChangeToValue=" , "%d" , 
-				 & ( ChatRoster[ OptionIndex ] . change_option_to_value [ j ] ) , NULL );
-	    DebugPrintf( CHAT_DEBUG_LEVEL , "\nOption Nr. %d will change to value %d. " , 
-			 ChatRoster[ OptionIndex ] . change_option_nr [ j ] ,
-			 ChatRoster[ OptionIndex ] . change_option_to_value [ j ] );
-	    
-	    //--------------------
-	    // Now we must move the option change pointer to after the previous combination.
-	    //
-	    OptionChangePointer = LocateStringInData ( OptionChangePointer, "ChangeToValue" );
-	    OptionChangePointer ++;
+		OptionChangePointer = LocateStringInData ( OptionChangePointer, cmdstr);
+		OptionChangePointer++;
+	    }
+
 	}
-	
+
 	//--------------------
 	// We count the number of Extras to be done then
 	// we will read them out

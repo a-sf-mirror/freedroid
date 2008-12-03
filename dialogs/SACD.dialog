@@ -32,11 +32,11 @@ Beginning of new chat dialog for character="XXXXX"
 
 New Option Nr=0  OptionText=_" Login : admin  Password : *******"
 Subtitle=_"Last login from /dev/ttyS0 on Sun, 23 mar 2057. admin@sadefence: ~ #"
-ChangeOption=0 ChangeToValue=0
-ChangeOption=1 ChangeToValue=1
-ChangeOption=2 ChangeToValue=0
-ChangeOption=3 ChangeToValue=1
-ChangeOption=4 ChangeToValue=1
+DisableOption=0
+EnableOption=1
+DisableOption=2
+EnableOption=3
+EnableOption=4
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
@@ -45,8 +45,8 @@ New Option Nr=1  OptionText=_" /usr/bin/guns --disable"
 Subtitle=_"Disabling guns..."
 Subtitle=_"Connecting to peripheral controller..."
 Subtitle=_"Guns disabled."
-ChangeOption=1 ChangeToValue=0
-ChangeOption=2 ChangeToValue=1
+DisableOption=1
+EnableOption=2
 DoSomethingExtra="ExecuteActionWithLabel:disable_sadd_gun1"
 DoSomethingExtra="ExecuteActionWithLabel:disable_sadd_gun2"
 DoSomethingExtra="PlantCookie:SAGunsOff:"
@@ -58,8 +58,8 @@ New Option Nr=2  OptionText=_" /usr/bin/guns --enable"
 Subtitle=_"Enabling guns..."
 Subtitle=_"Connecting to peripheral controller..."
 Subtitle=_"Guns enabled."
-ChangeOption=2 ChangeToValue=0
-ChangeOption=1 ChangeToValue=1
+DisableOption=2
+EnableOption=1
 DoSomethingExtra="ExecuteActionWithLabel:enable_sadd_gun1"
 DoSomethingExtra="ExecuteActionWithLabel:enable_sadd_gun2"
 DoSomethingExtra="DeleteCookie:SAGunsOff:"
@@ -81,7 +81,7 @@ Subtitle=_"Executing: Halt and Catch Fire."
 Subtitle=_"Cooling subsystems disabled."
 Subtitle=_"Warning! Spontaneous oxidization witH emis$ion of light aND heAt detecteddd in THE#main| procesIng unit,"
 Subtitle=_"SsTeM=#faiPure%^#n 3 S 1()$++"
-ChangeOption=4 ChangeToValue=0
+DisableOption=4
 DoSomethingExtra="DropDead"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -89,14 +89,14 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=5  OptionText=_" CTRL+C"
 Subtitle=_"An error occured while opening doors."
-ChangeOption=5 ChangeToValue=0
+DisableOption=5
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=6 OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=6 ChangeToValue=0
+DisableOption=6
 OnCondition="MissionAssigned:10" JumpToOption=7 ElseGoto=8
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
@@ -104,7 +104,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 New Option Nr=7 OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=7 ChangeToValue=0
+DisableOption=7
 DoSomethingExtra="OpenQuestDiaryEntry:M10E1:"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -112,14 +112,14 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=8 OptionText="DO NOTHING"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=8 ChangeToValue=0
+DisableOption=8
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=9 OptionText="IS THIS FIRST DIALOG?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=9 ChangeToValue=0
+DisableOption=9
 OnCondition="CookieIsPlanted:SACDOvertaken:" JumpToOption=8 ElseGoto=10
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
@@ -127,7 +127,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 New Option Nr=10 OptionText="DO NOTHING"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=10 ChangeToValue=0
+DisableOption=10
 DoSomethingExtra="AddExperienceBonus:1000"
 DoSomethingExtra="PlantCookie:SACDOvertaken"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
@@ -136,7 +136,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=99  OptionText=_" logout"
-ChangeOption=99 ChangeToValue=1
+EnableOption=99
 DoSomethingExtra="EndDialog"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 

@@ -32,8 +32,8 @@ Beginning of new chat dialog for character="XXXXX"
 
 New Option Nr=0  OptionText="STARTING NODE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=0 ChangeToValue=0
-ChangeOption=99 ChangeToValue=0
+DisableOption=0
+DisableOption=99
 OnCondition="CookieIsPlanted:know_extract5:" JumpToOption=75 ElseGoto=76
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
@@ -41,7 +41,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 New Option Nr=1  OptionText="GOT EXPERIENCE POINTS?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=1 ChangeToValue=0
+DisableOption=1
 OnCondition="PointsToDistributeAtLeast:1" JumpToOption=2 ElseGoto=91
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -49,15 +49,15 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=2  OptionText="ALREADY TAUGHT?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=2 ChangeToValue=0
+DisableOption=2
 OnCondition="CookieIsPlanted:know_extract1:" JumpToOption=26 ElseGoto=25
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=20  OptionText=_" I'm ready. Please show me how to extract bot parts. (cost 50 cash, 1 ability point)"
-ChangeOption=20 ChangeToValue=0
-ChangeOption=25 ChangeToValue=0
+DisableOption=20
+DisableOption=25
 LinkedTo:70
 DoSomethingExtra="IncreaseProgramVersionName:Extract bot parts"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
@@ -66,24 +66,24 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=25  OptionText="TEACHING THE FIRST TIME"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=20 ChangeToValue=1
-ChangeOption=25 ChangeToValue=0
-ChangeOption=99 ChangeToValue=1
+EnableOption=20
+DisableOption=25
+EnableOption=99
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=26  OptionText="TEACHING MORE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=26 ChangeToValue=0
-ChangeOption=30 ChangeToValue=1
-ChangeOption=99 ChangeToValue=1
+DisableOption=26
+EnableOption=30
+EnableOption=99
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=30  OptionText=_" Sure. Teach me all that you know. (cost 50 cash, 1 ability point)"
-ChangeOption=30 ChangeToValue=0
+DisableOption=30
 OnCondition="CookieIsPlanted:know_extract2:" JumpToOption=62 ElseGoto=71
 DoSomethingExtra="IncreaseProgramVersionName:Extract bot parts"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
@@ -92,7 +92,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=62  OptionText="KNOW LESSON TWO"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=62 ChangeToValue=0
+DisableOption=62
 OnCondition="CookieIsPlanted:know_extract3:" JumpToOption=63 ElseGoto=72
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -100,7 +100,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=63  OptionText="KNOW LESSON THREE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=63 ChangeToValue=0
+DisableOption=63
 OnCondition="CookieIsPlanted:know_extract4:" JumpToOption=64 ElseGoto=73
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -108,7 +108,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=64  OptionText="KNOW LESSON FOUR"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=64 ChangeToValue=0
+DisableOption=64
 OnCondition="CookieIsPlanted:know_extract5:" JumpToOption=75 ElseGoto=74
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -119,7 +119,7 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Let us start with entropy inverters. This is quite simple."
 Subtitle=_"Just take a hammer and hit the bot sehr hard on the head."
 Subtitle=_"When you have the head open wide, look around for a part which looks like two circles around a cube. That is what you are looking for."
-ChangeOption=70 ChangeToValue=0
+DisableOption=70
 DoSomethingExtra="SubtractPointsToDistribute:1"
 DoSomethingExtra="SubtractGold:50"
 DoSomethingExtra="PlantCookie:know_extract1:"
@@ -133,7 +133,7 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"How about... Plasma transistors? Trivial."
 Subtitle=_"Remove the bot's engine and look around somewhere close to the battery."
 Subtitle=_"Plasma transistors are shaped like the letter Y. Just rip them out, it's safe."
-ChangeOption=71 ChangeToValue=0
+DisableOption=71
 DoSomethingExtra="SubtractPointsToDistribute:1"
 DoSomethingExtra="SubtractGold:50"
 DoSomethingExtra="PlantCookie:know_extract2:"
@@ -148,7 +148,7 @@ Subtitle=_"Hmmm... Ah, gut. Superconductors."
 Subtitle=_"They are relatively easy to get out."
 Subtitle=_"Look around the electric system. Power coils, capacitors, generators and the like. Usually there are plenty of sehr gut parts there."
 Subtitle=_"Wear rubber gloves. Just in case, you know."
-ChangeOption=72 ChangeToValue=0
+DisableOption=72
 DoSomethingExtra="SubtractPointsToDistribute:1"
 DoSomethingExtra="SubtractGold:50"
 DoSomethingExtra="PlantCookie:know_extract3:"
@@ -164,7 +164,7 @@ Subtitle=_"Yes... Converters are a problem."
 Subtitle=_"They are easy to find, all you have to do is to get to the engine. But you must remember something very important:"
 Subtitle=_"Make sure you turn the converter off before you remove it."
 Subtitle=_"If you do not do that, you will only succeed in converting yourself to anti-matter. And as you know, there is no coming back from there."
-ChangeOption=73 ChangeToValue=0
+DisableOption=73
 DoSomethingExtra="SubtractPointsToDistribute:1"
 DoSomethingExtra="SubtractGold:50"
 DoSomethingExtra="PlantCookie:know_extract4:"
@@ -180,7 +180,7 @@ Subtitle=_"Tachyons are very interesting particles. Many stories have been told 
 Subtitle=_"I have no idea why bots have them inside. They are usually not connected to anything and serve no function."
 Subtitle=_"They are usually quite hot when you get them out, but they cool down quickly, so handling them is not a big deal."
 Subtitle=_"They can be installed just about anywhere, so you have to spend some time digging through the circuits to find one."
-ChangeOption=74 ChangeToValue=0
+DisableOption=74
 DoSomethingExtra="SubtractPointsToDistribute:1"
 DoSomethingExtra="SubtractGold:50"
 DoSomethingExtra="PlantCookie:know_extract5:"
@@ -192,7 +192,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=75  OptionText="NO MORE LESSONS"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Nein, I told you everything I know about that. No use asking me twice, ja?"
-ChangeOption=75 ChangeToValue=0
+DisableOption=75
 DoSomethingExtra="EndDialog"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -210,7 +210,7 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Hmmm..."
 Subtitle=_"Kein geld, Keine hilfe."
 Subtitle=_"Come back with some money."
-ChangeOption=90 ChangeToValue=0
+DisableOption=90
 DoSomethingExtra="EndDialog"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -221,14 +221,14 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Hmmm..."
 Subtitle=_"You look green. Toughen up. Get some experience, kill some bots."
 Subtitle=_"Then we can talk."
-ChangeOption=91 ChangeToValue=0
+DisableOption=91
 DoSomethingExtra="EndDialog"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=99  OptionText=_" Maybe another time."
-ChangeOption=99 ChangeToValue=1
+EnableOption=99
 DoSomethingExtra="EndDialog"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 

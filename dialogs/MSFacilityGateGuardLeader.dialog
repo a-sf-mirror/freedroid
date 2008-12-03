@@ -33,11 +33,11 @@ Beginning of new chat dialog for character="XXXXX"
 New Option Nr=0  OptionText="THIS WILL NEVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Hey, Linarian! What do you want here?"
-ChangeOption=0 ChangeToValue=0
-ChangeOption=5 ChangeToValue=0
-ChangeOption=1 ChangeToValue=1
-ChangeOption=3 ChangeToValue=1
-ChangeOption=99 ChangeToValue=0
+DisableOption=0
+DisableOption=5
+EnableOption=1
+EnableOption=3
+DisableOption=99
 DoSomethingExtra="PlantCookie:MS_guard_talked"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 OnCondition="MissionComplete:8" JumpToOption=6 ElseGoto=7
@@ -48,9 +48,9 @@ New Option Nr=1  OptionText=_"Just taking a look around."
 Subtitle=_"Oh, look. The bird wants to go for a walk."
 Subtitle=_"We don't call this place 'hell' for nothing."
 Subtitle=_"Get outta here!"
-ChangeOption=1 ChangeToValue=0
-ChangeOption=2 ChangeToValue=0
-ChangeOption=3 ChangeToValue=0
+DisableOption=1
+DisableOption=2
+DisableOption=3
 LinkedTo:99
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -63,9 +63,9 @@ Subtitle=_"Beside that on the other side of the door is disruptor shield, which 
 Subtitle=_"* Throws a stone through the door"
 Subtitle=_"* Stone disappears leaving a small cloud of dust"
 Subtitle=_"Find a different gate to go through."
-ChangeOption=1 ChangeToValue=0
-ChangeOption=2 ChangeToValue=0
-ChangeOption=3 ChangeToValue=0
+DisableOption=1
+DisableOption=2
+DisableOption=3
 LinkedTo:99
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -74,10 +74,10 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=3  OptionText=_"I have some business on the other side!"
 Subtitle=_"Are you in a rush to die?"
 Subtitle=_"Go away!"
-ChangeOption=1 ChangeToValue=0
-ChangeOption=2 ChangeToValue=0
-ChangeOption=8 ChangeToValue=0
-ChangeOption=3 ChangeToValue=0
+DisableOption=1
+DisableOption=2
+DisableOption=8
+DisableOption=3
 LinkedTo:99
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -85,7 +85,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=4  OptionText="TEST FOR MANY TALKS"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=4 ChangeToValue=0
+DisableOption=4
 OnCondition="CookieIsPlanted:MS_guard_talked:" JumpToOption=10 ElseGoto=0 
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
@@ -94,7 +94,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 New Option Nr=5  OptionText="NOTHING IS SAID HERE."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"GET OUT OF HERE YOU IDIOT!"
-ChangeOption=5 ChangeToValue=0
+DisableOption=5
 DoSomethingExtra="EndDialog"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -102,16 +102,16 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=6  OptionText="SHIELD DISABLED"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=2 ChangeToValue=0
-ChangeOption=8 ChangeToValue=1
+DisableOption=2
+EnableOption=8
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=7  OptionText="SHIELD NOT DISABLED"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=2 ChangeToValue=1
-ChangeOption=8 ChangeToValue=0
+EnableOption=2
+DisableOption=8
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -123,10 +123,10 @@ Subtitle=_"Beside that on the other side of the door is disruptor shield, which 
 Subtitle=_"* Throws a stone through the door"
 Subtitle=_"* Stone freely flies thourgh the gate and drops on the ground on the other side"
 Subtitle=_"SHIT! SHIELD DISABLED! PREPARE FOR BOT ATTACK!"
-ChangeOption=1 ChangeToValue=0
-ChangeOption=2 ChangeToValue=0
-ChangeOption=3 ChangeToValue=0
-ChangeOption=8 ChangeToValue=0
+DisableOption=1
+DisableOption=2
+DisableOption=3
+DisableOption=8
 LinkedTo:9
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -135,11 +135,11 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=9  OptionText=_"Calm down. This is not an attack. I've disabled the shield and I'm going to disable all bots around! Didn't Spencer inform you?"
 Subtitle=_"WHAT?! Not an attack?!"
 Subtitle=_"I hope you are honest. One second..."
-ChangeOption=1 ChangeToValue=0
-ChangeOption=2 ChangeToValue=0
-ChangeOption=8 ChangeToValue=1
-ChangeOption=3 ChangeToValue=0
-ChangeOption=9 ChangeToValue=0
+DisableOption=1
+DisableOption=2
+EnableOption=8
+DisableOption=3
+DisableOption=9
 OnCondition="MissionAssigned:9" JumpToOption=12 ElseGoto=11
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -147,7 +147,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=10  OptionText="TEST FOR DISABLED SHIELD"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=4 ChangeToValue=0
+DisableOption=4
 OnCondition="MissionComplete:8" JumpToOption=0 ElseGoto=5
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -164,11 +164,11 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=12  OptionText="HF MISSION ASSIGNED"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Right, there is a message from Spencer, you can enter Hell Fortress. And may the source be with you!"
-ChangeOption=1 ChangeToValue=0
-ChangeOption=2 ChangeToValue=0
-ChangeOption=8 ChangeToValue=0
-ChangeOption=3 ChangeToValue=0
-ChangeOption=9 ChangeToValue=0
+DisableOption=1
+DisableOption=2
+DisableOption=8
+DisableOption=3
+DisableOption=9
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 DoSomethingExtra="ExecuteActionWithLabel:unlock_ms_area_door"
 DoSomethingExtra="EndDialog"
@@ -177,8 +177,8 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=99  OptionText=_"Relax, I'm leaving."
 Subtitle=_"You better be. AND DON'T COME BACK!"
-ChangeOption=2 ChangeToValue=0
-ChangeOption=99 ChangeToValue=0
+DisableOption=2
+DisableOption=99
 DoSomethingExtra="EndDialog"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 

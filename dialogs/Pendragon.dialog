@@ -34,14 +34,14 @@ New Option Nr=0  OptionText=_" Hi! I'm new here."
 Subtitle=_"You don't say. I'm not living here either. I'm just on vacation."
 Subtitle=_"Normally I'm a fighter. But now I try to relax, chill, take it easy and have a lot of fun."
 Subtitle=_"And in case you couldn't tell, that was sarcasm."
-ChangeOption=0 ChangeToValue=0
-ChangeOption=1 ChangeToValue=1
+DisableOption=0
+EnableOption=1
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=1  OptionText=_" Could you teach me how to fight?"
-ChangeOption=1 ChangeToValue=1
+EnableOption=1
 OnCondition="CookieIsPlanted:beat_up_pendragon:" JumpToOption=2 ElseGoto=3
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -50,7 +50,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=2  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"NO! NO! Er... I mean, not right now. I am busy. Come again later."
-ChangeOption=2 ChangeToValue=0
+DisableOption=2
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -59,7 +59,7 @@ New Option Nr=3  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Sure. I can help you."
 Subtitle=_"For a price. Hundred bucks should be enough."
-ChangeOption=3 ChangeToValue=0
+DisableOption=3
 DoSomethingExtra="ExecuteSubdialog:subdlg_Pendragon"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -67,7 +67,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=99  OptionText=_" See you later."
 Subtitle=_"Have courage."
-ChangeOption=99 ChangeToValue=1
+EnableOption=99
 DoSomethingExtra="EndDialog"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 

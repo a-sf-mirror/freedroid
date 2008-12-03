@@ -32,9 +32,9 @@ Beginning of new chat dialog for character="XXXXX"
 
 New Option Nr=0  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=99 ChangeToValue=1
-ChangeOption=0 ChangeToValue=0
-ChangeOption=5 ChangeToValue=1
+EnableOption=99
+DisableOption=0
+EnableOption=5
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
@@ -48,7 +48,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=8  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"You don't have enough experience. Come here after you see some more action."
-ChangeOption=8 ChangeToValue=0
+DisableOption=8
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -56,14 +56,14 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=10  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"You don't have enough money! I cannot afford to just give away training for free."
-ChangeOption=10 ChangeToValue=0
+DisableOption=10
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=11  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=11 ChangeToValue=0
+DisableOption=11
 OnCondition="PointsToDistributeAtLeast:5" JumpToOption=12 ElseGoto=8
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -78,7 +78,7 @@ Subtitle=_"Watch your target closely.  Pretend you're moving with it. Aim for th
 Subtitle=_"When you feel completely in sync with your target, then you pull the trigger."
 Subtitle=_"Good. You are learning fast. Try it a few more times."
 Subtitle=_"Good. I think that it is enough for today."
-ChangeOption=12 ChangeToValue=0
+DisableOption=12
 DoSomethingExtra="SubtractPointsToDistribute:5"
 DoSomethingExtra="SubtractGold:100"
 DoSomethingExtra="IncreaseRangedWeaponSkill"
@@ -88,7 +88,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=99  OptionText="BACK"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=99 ChangeToValue=1
+EnableOption=99
 DoSomethingExtra="EndDialog"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 

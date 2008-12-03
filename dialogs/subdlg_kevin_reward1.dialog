@@ -32,11 +32,11 @@ Beginning of new chat dialog for character="XXXXX"
 
 New Option Nr=0  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=0 ChangeToValue=0
-ChangeOption=99 ChangeToValue=1
-ChangeOption=1 ChangeToValue=1
-ChangeOption=2 ChangeToValue=1
-ChangeOption=3 ChangeToValue=1
+DisableOption=0
+EnableOption=99
+EnableOption=1
+EnableOption=2
+EnableOption=3
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
@@ -49,9 +49,9 @@ Subtitle=_"You must know when to hack and when not to hack. You must attack when
 Subtitle=_"Now watch. Observe carefully. See how I enter the system... Yes. Watch the connection glowing, burning like a bright star..."
 Subtitle=_"...only to die seconds after, as the system far away collapses under it's own weight... It's done."
 Subtitle=_"That is all I want to show you for now. Maybe later I will teach you something else."
-ChangeOption=1 ChangeToValue=0
-ChangeOption=2 ChangeToValue=0
-ChangeOption=3 ChangeToValue=0
+DisableOption=1
+DisableOption=2
+DisableOption=3
 DoSomethingExtra="IncreaseProgramVersionName:Hacking"
 DoSomethingExtra="PlantCookie:kevin_reward1_given:"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
@@ -60,9 +60,9 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=2  OptionText=_" I don't want any reward. Just gratitude."
 Subtitle=_"Of course you can have that. There, I'm most grateful to you. That should do."
-ChangeOption=2 ChangeToValue=0
-ChangeOption=1 ChangeToValue=0
-ChangeOption=3 ChangeToValue=0
+DisableOption=2
+DisableOption=1
+DisableOption=3
 DoSomethingExtra="PlantCookie:kevin_reward1_given:"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -70,9 +70,9 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=3  OptionText=_" I want money."
 Subtitle=_"Eh... Here, take these 500 bucks. That should be enough."
-ChangeOption=3 ChangeToValue=0
-ChangeOption=2 ChangeToValue=0
-ChangeOption=1 ChangeToValue=0
+DisableOption=3
+DisableOption=2
+DisableOption=1
 DoSomethingExtra="AddGold:500"
 DoSomethingExtra="PlantCookie:kevin_reward1_given:"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
@@ -81,7 +81,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=99  OptionText=_" [BACK]"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=99 ChangeToValue=1
+EnableOption=99
 DoSomethingExtra="EndDialog"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 

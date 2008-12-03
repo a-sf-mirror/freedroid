@@ -32,17 +32,17 @@ Beginning of new chat dialog for character="XXXXX"
 
 New Option Nr=0  OptionText=_" Hello!"
 Subtitle=_"Hello. I'm Doc Moore. I'm the medic of this town."
-ChangeOption=1 ChangeToValue=1
-ChangeOption=0 ChangeToValue=0
-ChangeOption=10 ChangeToValue=1
+EnableOption=1
+DisableOption=0
+EnableOption=10
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=1  OptionText=_" Do you also trade in medical equipment?"
 Subtitle=_"Sure. Here is what I can offer today."
-ChangeOption=1 ChangeToValue=1
-ChangeOption=0 ChangeToValue=0
+EnableOption=1
+DisableOption=0
 DoSomethingExtra="InitTradeWithCharacter:DocMoore"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -50,7 +50,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=2  OptionText=_" Doc, I took some of those brain enlargement pills..."
 OnCondition="CookieIsPlanted:doc_healed_tux:" JumpToOption=5 ElseGoto=4
-ChangeOption=2 ChangeToValue=0
+DisableOption=2
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -62,7 +62,7 @@ Subtitle=_"These pills work on a nanotechnological basis with small machines con
 Subtitle=_"The machines connect together and form some inorganic artificial tissue that has been optimized for certain qualities."
 Subtitle=_"Since this invention only came shortly before the Great Assault, these pills are now very rare."
 Subtitle=_"But if you should get them, even better, because the effects are permanent, and as far as we can tell, there aren't any side effects!"
-ChangeOption=3 ChangeToValue=0
+DisableOption=3
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -74,8 +74,8 @@ Subtitle=_"Taking this stuff almost equals delayed suicide."
 Subtitle=_"Now, take this antidote. It should remove the dangerous substances within your body."
 Subtitle=_"But remember, I'll only give you this help once, cause you didn't know the effects."
 Subtitle=_"Should you take that junk again, I won't feel responsible for what happens to you any more."
-ChangeOption=4 ChangeToValue=0
-ChangeOption=2 ChangeToValue=0
+DisableOption=4
+DisableOption=2
 DoSomethingExtra="GiveItem:Brain Enlargement Pills Antidote"
 DoSomethingExtra="PlantCookie:doc_healed_tux:"
 DoSomethingExtra="OpenQuestDiaryEntry:M0E1:"
@@ -88,9 +88,9 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Sorry, but I already gave you some medical help."
 Subtitle=_"If you poison yourself, that's entirely your business and I'm not responsible."
 Subtitle=_"As far as I am concerned, in this town everyone gets everything equally."
-ChangeOption=5 ChangeToValue=0
-ChangeOption=20 ChangeToValue=1
-ChangeOption=2 ChangeToValue=0
+DisableOption=5
+EnableOption=20
+DisableOption=2
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -98,22 +98,22 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=6  OptionText="ON MISSION 0 WAS ASSIGNED..."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 OnCondition="MissionAssigned:0" JumpToOption=8 ElseGoto=7
-ChangeOption=6 ChangeToValue=0
+DisableOption=6
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
 New Option Nr=7  OptionText="DO NOTHING"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=7 ChangeToValue=0
+DisableOption=7
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=8  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=3 ChangeToValue=1
-ChangeOption=8 ChangeToValue=0
+EnableOption=3
+DisableOption=8
 OnCondition="MissionComplete:0" JumpToOption=7 ElseGoto=9
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -121,8 +121,8 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=9  OptionText="THIS SHOULD ENABLE..."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=2 ChangeToValue=1
-ChangeOption=9 ChangeToValue=0
+EnableOption=2
+DisableOption=9
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -131,10 +131,10 @@ New Option Nr=10  OptionText=_" Can you fix me up?"
 Subtitle=_"Sure, as the only doctor of this slowly growing community, I'm responsible for everyone's health."
 Subtitle=_"However, self-inflicted damage might be exempted from this rule in some cases..."
 Subtitle=_"There, it's done. You're completely fixed. You can go now."
-ChangeOption=10 ChangeToValue=0
-ChangeOption=0 ChangeToValue=0
-ChangeOption=11 ChangeToValue=1
-ChangeOption=12 ChangeToValue=1
+DisableOption=10
+DisableOption=0
+EnableOption=11
+EnableOption=12
 DoSomethingExtra="CompletelyHealTux"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -145,7 +145,7 @@ Subtitle=_"Now you see that idiotic Bender character on my doorstep?"
 Subtitle=_"He took these stupid brain enlargement pills. So no problem, he came to me to fix him. But guess what?"
 Subtitle=_"He took them again against my strict advice. Now he thinks he can drain my antidote supplies? He's wrong."
 Subtitle=_"He won't get anything from me anymore. It would be unfair to the community to waste all the supplies on him, and that's my final word on that."
-ChangeOption=11 ChangeToValue=0
+DisableOption=11
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -154,9 +154,9 @@ New Option Nr=12  OptionText=_" Can you fix me up?"
 Subtitle=_"Sure, as the only doctor of this slowly growing community, I'm responsible for everyone's health."
 Subtitle=_"However, self-inflicted damage might be exempted from this rule in some cases..."
 Subtitle=_"There, it's done. You're completely fixed. You can go now."
-ChangeOption=10 ChangeToValue=0
-ChangeOption=0 ChangeToValue=0
-ChangeOption=12 ChangeToValue=1
+DisableOption=10
+DisableOption=0
+EnableOption=12
 DoSomethingExtra="CompletelyHealTux"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -164,24 +164,24 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=20  OptionText=_" Doc... I really want the antidote."
 Subtitle=_"No! I am not giving it to you. Forget about it."
-ChangeOption=20 ChangeToValue=0
-ChangeOption=21 ChangeToValue=1
-ChangeOption=30 ChangeToValue=1
+DisableOption=20
+EnableOption=21
+EnableOption=30
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=21  OptionText=_" My patience is running out. Give me the antidote. Now."
 Subtitle=_"No! Over my dead body."
-ChangeOption=21 ChangeToValue=0
-ChangeOption=22 ChangeToValue=1
+DisableOption=21
+EnableOption=22
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=22  OptionText=_" Your wish is my command."
 Subtitle=_"Huh? What?"
-ChangeOption=22 ChangeToValue=0
+DisableOption=22
 LinkedTo:23
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -189,7 +189,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=23  OptionText=_" Humans... You are so interesting. I always wanted to know how much blood do you exacly have."
 Subtitle=_"Don't do this. Don't do this."
-ChangeOption=23 ChangeToValue=0
+DisableOption=23
 LinkedTo:24
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -198,7 +198,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=24  OptionText=_" Prepare Doc. The experiment begins."
 Subtitle=_"Don't do this! DON'T DO THIS!"
 Subtitle=_"AAAAAAAAAAAA!"
-ChangeOption=24 ChangeToValue=0
+DisableOption=24
 LinkedTo:25
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -206,7 +206,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=25  OptionText=_" Ugh. Human blood is disgusting. At least four liters. I feel sick."
 Subtitle=_" . . ."
-ChangeOption=25 ChangeToValue=0
+DisableOption=25
 LinkedTo:26
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -214,7 +214,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=26  OptionText=_" I guess this means I get to inherit all your stuff. I hope you don't mind if I take everything?"
 Subtitle=_" . . ."
-ChangeOption=26 ChangeToValue=0
+DisableOption=26
 LinkedTo:27
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -222,7 +222,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=27  OptionText=_" Good. I am very glad not to hear a disapproval."
 Subtitle=_" . . . "
-ChangeOption=27 ChangeToValue=0
+DisableOption=27
 DoSomethingExtra="GiveItem:Diet supplement:15"
 DoSomethingExtra="GiveItem:Doc-in-a-can:10"
 DoSomethingExtra="GiveItem:Antibiotic:10"
@@ -235,17 +235,17 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=30  OptionText=_" Forget it. Getting the antidote is not worth the effort."
 Subtitle=_"I am not giving it to you, and that won't change."
-ChangeOption=30 ChangeToValue=0
-ChangeOption=22 ChangeToValue=0
-ChangeOption=20 ChangeToValue=0
-ChangeOption=21 ChangeToValue=0
+DisableOption=30
+DisableOption=22
+DisableOption=20
+DisableOption=21
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=99  OptionText=_" See you later."
 Subtitle=_"See you later."
-ChangeOption=99 ChangeToValue=1
+EnableOption=99
 DoSomethingExtra="EndDialog"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 

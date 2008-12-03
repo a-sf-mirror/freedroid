@@ -33,16 +33,16 @@ Beginning of new chat dialog for character="XXXXX"
 New Option Nr=0  OptionText=_" Hi. Are you all right? You don't look too good."
 Subtitle=_"Good day. I am Bruce."
 Subtitle=_"I am unwell."
-ChangeOption=0 ChangeToValue=0
-ChangeOption=1 ChangeToValue=1
+DisableOption=0
+EnableOption=1
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=1  OptionText=_" How is it going?"
 Subtitle=_"I am very tired, but otherwise well."
-ChangeOption=1 ChangeToValue=0
-ChangeOption=2 ChangeToValue=1
+DisableOption=1
+EnableOption=2
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -50,8 +50,8 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=2  OptionText=_" You don't talk much, eh?"
 Subtitle=_"No, I am just too tired now. I have been working in the mine for two weeks now."
 Subtitle=_"I feel really wiped, so maybe it would be better if you came some other day."
-ChangeOption=2 ChangeToValue=0
-ChangeOption=3 ChangeToValue=1
+DisableOption=2
+EnableOption=3
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -60,17 +60,17 @@ New Option Nr=3  OptionText=_" Why do you work so hard in the mine?"
 Subtitle=_"Because I must! The Red Guard makes everyone work up to their limits!"
 Subtitle=_"If you do not work for a full work period, you will be in trouble."
 Subtitle=_"But I have no choice. I do not want to be a soldier again."
-ChangeOption=3 ChangeToValue=0
-ChangeOption=4 ChangeToValue=1
+DisableOption=3
+EnableOption=4
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=4  OptionText=_" You were a soldier before? "
 Subtitle=_"Yes. I would rather not talk about it."
-ChangeOption=4 ChangeToValue=0
-ChangeOption=10 ChangeToValue=1
-ChangeOption=8 ChangeToValue=1
+DisableOption=4
+EnableOption=10
+EnableOption=8
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -79,10 +79,10 @@ New Option Nr=5  OptionText=_" Good. Start talking. Now."
 Subtitle=_"Those are pretty painful and distant memories."
 Subtitle=_"After the Great Assault, I joined the Red Guard. They needed help and were looking for volunteers."
 Subtitle=_"I served there for a short while, and they even let me use an exterminator. But then after a failed mission, I resigned and never wore a uniform again."
-ChangeOption=5 ChangeToValue=0
-ChangeOption=98 ChangeToValue=1
-ChangeOption=6 ChangeToValue=1
-ChangeOption=7 ChangeToValue=1
+DisableOption=5
+EnableOption=98
+EnableOption=6
+EnableOption=7
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -92,7 +92,7 @@ Subtitle=_"It is the best weapon that the Red Guard has against the bots."
 Subtitle=_"A direct hit from one of those guns is enough to change most bots into scrap metal."
 Subtitle=_"Many of the great victories of the Red Guard are thanks to the exterminator."
 Subtitle=_"Of course because of its small clip and terribly long reloading time, equally many deaths can be attributed to it."
-ChangeOption=6 ChangeToValue=0
+DisableOption=6
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -105,16 +105,16 @@ Subtitle=_"They were waiting for us. Came in endless swarms. More and more and m
 Subtitle=_"Our ammunition ran out. They got close. It was the end of team number nine. The Hell Fortress took their lives. I ran. I survived."
 Subtitle=_"After that I decided that I am not fit to be one of the Red Guard. I resigned and started to work in the mine shortly after."
 Subtitle=_"I do not want to face the anger of the Hell Fortress ever again. Never again."
-ChangeOption=7 ChangeToValue=0
+DisableOption=7
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=8  OptionText=_" I said, I want to know about your life as a soldier."
 Subtitle=_"And I said that I do not want to talk about it. It hurts too much. Please stop asking about it and leave me alone."
-ChangeOption=8 ChangeToValue=0
-ChangeOption=10 ChangeToValue=0
-ChangeOption=9 ChangeToValue=1
+DisableOption=8
+DisableOption=10
+EnableOption=9
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -122,9 +122,9 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=9  OptionText=_" You don't understand. I wasn't asking. Now, tell me about your life as a soldier, or I will tell the guards you are slacking off."
 Subtitle=_"No! Please... I will do anything, just do not call the Red Guard! They do not like people who left the service. They do not like me. "
 Subtitle=_"I will tell you everything."
-ChangeOption=9 ChangeToValue=0
-ChangeOption=5 ChangeToValue=1
-ChangeOption=99 ChangeToValue=0
+DisableOption=9
+EnableOption=5
+DisableOption=99
 DoSomethingExtra="PlantCookie:bruce_hurt"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -132,8 +132,8 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=10  OptionText=_" I have some bad memories too. I know how hard it can be to talk about them. Keep your stories to yourself."
 Subtitle=_"Yes. And now I would like to go to sleep. Good night Linarian."
-ChangeOption=10 ChangeToValue=0
-ChangeOption=8 ChangeToValue=0
+DisableOption=10
+DisableOption=8
 DoSomethingExtra="EndDialog"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -141,7 +141,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=50  OptionText="DID TUX HARM BRUCE?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=50 ChangeToValue=0
+DisableOption=50
 OnCondition="CookieIsPlanted:bruce_hurt:" JumpToOption=51 ElseGoto=52
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
@@ -149,23 +149,23 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 New Option Nr=51  OptionText="YES."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=51 ChangeToValue=0
-ChangeOption=98 ChangeToValue=1
+DisableOption=51
+EnableOption=98
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=52  OptionText="NO."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=52 ChangeToValue=0
-ChangeOption=99 ChangeToValue=1
+DisableOption=52
+EnableOption=99
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=98  OptionText=_" I'll be going then."
 Subtitle=_". . ."
-ChangeOption=98 ChangeToValue=1
+EnableOption=98
 DoSomethingExtra="EndDialog"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -173,7 +173,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=99  OptionText=_" I'll be going then."
 Subtitle=_"Good. I need sleep."
-ChangeOption=99 ChangeToValue=1
+EnableOption=99
 DoSomethingExtra="EndDialog"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 

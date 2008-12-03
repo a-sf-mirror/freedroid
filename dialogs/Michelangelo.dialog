@@ -33,9 +33,9 @@ Beginning of new chat dialog for character="XXXXX"
 New Option Nr=0  OptionText=_" Hi! I'm new here."
 Subtitle=_"Hello. I'm Michelangelo. I haven't been here for long either."
 Subtitle=_"I wish the bots had just killed me, but I got 'lucky' and ended up in this hellhole."
-ChangeOption=0 ChangeToValue=0
-ChangeOption=10 ChangeToValue=1
-ChangeOption=11 ChangeToValue=1
+DisableOption=0
+EnableOption=10
+EnableOption=11
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -43,8 +43,8 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=10  OptionText=_" How is it going?"
 Subtitle=_"Don't ask."
 Subtitle=_"'Terribly' would be a huge understatement."
-ChangeOption=10 ChangeToValue=0
-ChangeOption=18 ChangeToValue=1
+DisableOption=10
+EnableOption=18
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -57,9 +57,9 @@ Subtitle=_"And the bots are keeping us busy by murdering, chopping, slicing, cle
 Subtitle=_"The guards gave me a filthy hovel to live in. The walls are so thin that every night I am rocked to sleep by the bots communicating with those beeps and modem sounds."
 Subtitle=_"It sounds like they are singing something. Every night they start their song... I cannot sleep thanks to that electric chorus."
 Subtitle=_"Have I mentioned that the only food that we have is some kind of pestilential military ration? The smell alone is making me want to vomit."
-ChangeOption=18 ChangeToValue=0
-ChangeOption=20 ChangeToValue=1
-ChangeOption=19 ChangeToValue=1
+DisableOption=18
+EnableOption=20
+EnableOption=19
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -68,7 +68,7 @@ New Option Nr=19  OptionText=_" Cheer up! All will be fine! Happy days are comin
 Subtitle=_"..."
 Subtitle=_"Linarian, have you been gorging on psychoactive pills or something?"
 Subtitle=_"Get a grip, the situation is bad and there is no use in pretending otherwise."
-ChangeOption=19 ChangeToValue=0
+DisableOption=19
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -77,12 +77,12 @@ New Option Nr=20  OptionText=_" You are a cook. Stop complaining about the poor 
 Subtitle=_"I cannot! My beautiful macrowave oven is out of power. The wretched Red Guard took away my uranium battery."
 Subtitle=_"I wish I could kill them all with my bare hands. They deserve it."
 Subtitle=_"If only I had some dilithium to use as a backup power source..."
-ChangeOption=20 ChangeToValue=0
-ChangeOption=80 ChangeToValue=1
-ChangeOption=70 ChangeToValue=1
-ChangeOption=40 ChangeToValue=1
-ChangeOption=41 ChangeToValue=1
-ChangeOption=42 ChangeToValue=1
+DisableOption=20
+EnableOption=80
+EnableOption=70
+EnableOption=40
+EnableOption=41
+EnableOption=42
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -91,7 +91,7 @@ New Option Nr=70  OptionText=_" Why don't you send someone for the dilithium?"
 Subtitle=_"I did."
 Subtitle=_"Yesterday a guard patrol found a few tiny bits of him and lots of dried blood."
 Subtitle=_"The bots made a bloody mess out of him."
-ChangeOption=70 ChangeToValue=0
+DisableOption=70
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -100,8 +100,8 @@ New Option Nr=80  OptionText=_" I can get you some dilithium."
 Subtitle=_"Have you gotten overheated, Linarian?"
 Subtitle=_"Look, there are dozens of ways you can kill yourself, and most hurt less than being killed by a bot."
 Subtitle=_"If you want to die just walk into a nuclear reactor or something. So much simpler."
-ChangeOption=80 ChangeToValue=0
-ChangeOption=81 ChangeToValue=1
+DisableOption=80
+EnableOption=81
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -112,13 +112,13 @@ Subtitle=_"I have seen corpses with nearly all of the fingers ripped out. People
 Subtitle=_"I smelled burnt meat and heard the screams of the captives as they were incinerated alive outside the city walls. "
 Subtitle=_"The bots know no mercy. They cannot even define it, damn scrap metal fiends."
 Subtitle=_"Feel free to go, Linarian, but make sure to be very dead before they start killing you."
-ChangeOption=81 ChangeToValue=0
-ChangeOption=19 ChangeToValue=0
-ChangeOption=82 ChangeToValue=1
-ChangeOption=40 ChangeToValue=0
-ChangeOption=42 ChangeToValue=0
-ChangeOption=41 ChangeToValue=0
-ChangeOption=70 ChangeToValue=0
+DisableOption=81
+DisableOption=19
+EnableOption=82
+DisableOption=40
+DisableOption=42
+DisableOption=41
+DisableOption=70
 DoSomethingExtra="AssignMission:2"
 DoSomethingExtra="OpenQuestDiaryEntry:M2E0:"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
@@ -129,7 +129,7 @@ New Option Nr=24  OptionText=_" Got any food yet?"
 Subtitle=_"I had prepared some delicacies, but the ravenous Red Guard ate it all."
 Subtitle=_"Not a big loss, I have a second batch of food cubes in the oven and they will be ready shortly."
 Subtitle=_"I think the mood in the town will improve once the cooking master Michelangelo gets to work. Ha!"
-ChangeOption=24 ChangeToValue=0
+DisableOption=24
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -139,8 +139,8 @@ Subtitle=_"There is no food here, just the odious military rations."
 Subtitle=_"Made fully out of artificial nutrients and carcinogenic flavors. Even the army hated them."
 Subtitle=_"It's better than starving, but some people have already committed suicide because that repulsive material is the only thing available to eat."
 Subtitle=_"I can give you some, but it's not worthy of being called food."
-ChangeOption=11 ChangeToValue=0
-ChangeOption=12 ChangeToValue=1
+DisableOption=11
+EnableOption=12
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -151,7 +151,7 @@ Subtitle=_"'Please note that the army meal model #23 you are about to eat is pro
 Subtitle=_"That includes the implied warranty of edibility or fitness for a particular purpose. The entire risk as to the quality of the food is with you."
 Subtitle=_"Should the army meal model #23 prove poisonous, you agree to cover the cost of keeping you alive by the colony medical staff or the costs of your cremation in our nuclear furnaces.'"
 Subtitle=_"Well, that is all. Here is the junk that you wanted. Enjoy."
-ChangeOption=12 ChangeToValue=0
+DisableOption=12
 LinkedTo:27
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -159,7 +159,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=27  OptionText=_" Hmm... Crunchy... That is... Oh... No. Ugh. Help."
 Subtitle=_"Oh yes. You were warned, so don't blame me."
-ChangeOption=27 ChangeToValue=0
+DisableOption=27
 LinkedTo:28
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -169,7 +169,7 @@ New Option Nr=28  OptionText=_" Bleah! That is not food! "
 Subtitle=_"We already know that. There is nothing else to eat here, so I hope you get used to the taste."
 Subtitle=_"That thing only looks well and has a nice color."
 Subtitle=_"But as you can see, the color cannot be eaten, only the taste counts."
-ChangeOption=28 ChangeToValue=0
+DisableOption=28
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -178,7 +178,7 @@ New Option Nr=29  OptionText=_" I have the dilithium you wanted."
 Subtitle=_"Really? I thought you are dead, but not only you come back alive, you also bring some power crystals for my trusty oven."
 Subtitle=_"I will start cooking at once."
 Subtitle=_"Thank you, Linarian. As soon as the food cubes are ready I will be able to give them away to the hungry people."
-ChangeOption=29 ChangeToValue=0
+DisableOption=29
 DoSomethingExtra="MarkMissionComplete:2"
 DoSomethingExtra="DeleteItem:Red Dilitium Crystal"
 DoSomethingExtra="AddBigScreenMessageBUT_WITH_TERMINATION_CHARACTER_PLEASE:Restored Michaelangelo's power supply:"
@@ -190,7 +190,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=30  OptionText="HAVE THE CRYSTALS"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=30 ChangeToValue=0
+DisableOption=30
 OnCondition="HaveItemWithName:Red Dilitium Crystal" JumpToOption=32 ElseGoto=33
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
@@ -199,31 +199,31 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 New Option Nr=31  OptionText=_" What was I supposed to do again?"
 Subtitle=_"Get me some dilithium before the whole stupid colony commits mass suicide because of poor food quality."
 Subtitle=_"Of course our heinous food might do us in far before that. I swear I saw that stuff glow it the dark and try to sneak away from my plate a few times."
-ChangeOption=31 ChangeToValue=0
+DisableOption=31
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=32  OptionText="TUX GIVES THE CRYSTALS"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=32 ChangeToValue=0
-ChangeOption=82 ChangeToValue=0
-ChangeOption=29 ChangeToValue=1
+DisableOption=32
+DisableOption=82
+EnableOption=29
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=33  OptionText="TUX DOES NOT HAVE THE CRYSTALS"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=33 ChangeToValue=0
-ChangeOption=31 ChangeToValue=1
+DisableOption=33
+EnableOption=31
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=34  OptionText="MISSION IS DONE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=34 ChangeToValue=0
+DisableOption=34
 OnCondition="MissionComplete:2" JumpToOption=35 ElseGoto=36
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
@@ -231,9 +231,9 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 New Option Nr=35  OptionText="YEAH, MISSION IS DONE."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=35 ChangeToValue=0
-ChangeOption=31 ChangeToValue=0
-ChangeOption=29 ChangeToValue=0
+DisableOption=35
+DisableOption=31
+DisableOption=29
 OnCondition="MissionComplete:2" JumpToOption=39 ElseGoto=36
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -241,14 +241,14 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=36  OptionText="DO NOTHING NODE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=36 ChangeToValue=0
+DisableOption=36
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=37  OptionText="TUX STARTED ON THE QUEST"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=37 ChangeToValue=0
+DisableOption=37
 OnCondition="MissionAssigned:2" JumpToOption=36 ElseGoto=35
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
@@ -258,7 +258,7 @@ New Option Nr=82  OptionText=_" Where can I get the crystals?"
 Subtitle=_"There is an old dilithium mine to the east. I am sure there is lots of that stuff there."
 Subtitle=_"I will talk to the guards, they will open the eastern gate for you."
 Subtitle=_"Good luck. Try not to get yourself killed."
-ChangeOption=82 ChangeToValue=0
+DisableOption=82
 DoSomethingExtra="ExecuteActionWithLabel:unlock_east_gate_of_town"
 DoSomethingExtra="AssignMission:2"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
@@ -267,8 +267,8 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=39  OptionText="MISSION IS DONE #2"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=39 ChangeToValue=0
-ChangeOption=24 ChangeToValue=1
+DisableOption=39
+EnableOption=24
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -278,7 +278,7 @@ Subtitle=_"You do not know? I thought Linarians were unmatched in their knowledg
 Subtitle=_"Dilithium is a substance which is usually seen in the form of a small crystal. "
 Subtitle=_"It somehow generates and stores amazing amounts of electricity. I do not know the details. I'm a cook, not a quantum scientist."
 Subtitle=_"A small crystal would power my oven for weeks."
-ChangeOption=40 ChangeToValue=0
+DisableOption=40
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -290,7 +290,7 @@ Subtitle=_"There is nothing to burn inside the city. If you want you can go and 
 Subtitle=_"Finally, the meal cubes which we have in the freezer are optimized for macrowaves. If we stick them in a fire they will combust and not cook."
 Subtitle=_"No oven means having to use the premacrowaved food."
 Subtitle=_"And the only such thing around is the abhorrent military sludge."
-ChangeOption=41 ChangeToValue=0
+DisableOption=41
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -298,14 +298,14 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=42  OptionText=_" Tell the Red Guard that you need your battery back."
 Subtitle=_"I did."
 Subtitle=_"They said it was already fed to their reactor as fuel."
-ChangeOption=42 ChangeToValue=0
+DisableOption=42
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=99  OptionText=_" I'll be going then."
 Subtitle=_"See you later."
-ChangeOption=99 ChangeToValue=1
+EnableOption=99
 DoSomethingExtra="EndDialog"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 

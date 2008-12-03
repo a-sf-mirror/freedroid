@@ -32,9 +32,9 @@ Beginning of new chat dialog for character="XXXXX"
 
 New Option Nr=0  OptionText=_" Hi! I'm new here."
 Subtitle=_"A newcomer! Great! We can always use more people. Welcome to the Red Guard! I'm Lukas. I'm in charge of our little armory here."
-ChangeOption=0 ChangeToValue=0
-ChangeOption=1 ChangeToValue=1
-ChangeOption=2 ChangeToValue=1
+DisableOption=0
+EnableOption=1
+EnableOption=2
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -43,7 +43,7 @@ New Option Nr=1  OptionText=_" Spencer said, you'd be able to provide me with be
 Subtitle=_"Of course. As a member of our Guard, you're entitled to wear one of our suits of armor. I can adjust it to fit any measurements, even yours."
 Subtitle=_"There are two kinds or armor, a heavy Red Guard robe and a light version of the same thing."
 Subtitle=_"Now, what will it be?"
-ChangeOption=1 ChangeToValue=1
+EnableOption=1
 DoSomethingExtra="InitTradeWithCharacter:Lukas"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -51,13 +51,13 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=2  OptionText=_" What do you do all day here at the armory?"
 Subtitle=_"Oh, there's always something to do. Don't worry. I'm pretty occupied keeping the place in order."
-ChangeOption=2 ChangeToValue=0
+DisableOption=2
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=99  OptionText=_" See you later! "
-ChangeOption=99 ChangeToValue=1
+EnableOption=99
 DoSomethingExtra="EndDialog"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 

@@ -36,8 +36,8 @@ Subtitle=_"So, stranger, welcome here. You might want to talk to Chandra or to S
 Subtitle=_"The city is presently ruled by the Red Guard. We are the police and the soldiers here. "
 Subtitle=_"There is only one law concerning outsiders here: Don't be stupid."
 Subtitle=_"I think that is enough of an introduction for now."
-ChangeOption=0 ChangeToValue=0
-ChangeOption=1 ChangeToValue=1
+DisableOption=0
+EnableOption=1
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -45,15 +45,15 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=1  OptionText=_" What are you doing here?"
 Subtitle=_"I'm on guard duty right now."
 Subtitle=_"There have been no attacks for a while now. It is too quiet, I think something big is about to happen."
-ChangeOption=1 ChangeToValue=0
+DisableOption=1
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=99  OptionText=_" I'll be going, then."
 Subtitle=_"Goodbye."
-ChangeOption=1 ChangeToValue=1
-ChangeOption=99 ChangeToValue=1
+EnableOption=1
+EnableOption=99
 DoSomethingExtra="EndDialog"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 

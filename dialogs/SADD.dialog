@@ -33,7 +33,7 @@ Beginning of new chat dialog for character="XXXXX"
 New Option Nr=0 OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Your bio checksum does not trigger a match in staff database. Please show proper credentials or leave the premises at once."
-ChangeOption=0 ChangeToValue=0
+DisableOption=0
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------
@@ -43,19 +43,19 @@ Subtitle=_" PRIMARY TARGET 1: do not let unauthorized people in."
 Subtitle=_" PRIMARY TARGET 2: authorized personal must have access to the zone."
 Subtitle=_" SECONDARY TARGET: prevent secret information leakage"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
-ChangeOption=1 ChangeToValue=0
-ChangeOption=3 ChangeToValue=0
-ChangeOption=4 ChangeToValue=1
-ChangeOption=5 ChangeToValue=1
+DisableOption=1
+DisableOption=3
+EnableOption=4
+EnableOption=5
 ----------------------------------------------------------------------
 
 
 New Option Nr=3  OptionText=_" I mean, you are not attacking me... Don't you kill like other bots?"
 Subtitle=_" I do! I do! I kill humans, bots, linarians and even dogs, cats and other animals! I would kill anybody!"
 Subtitle=_" Em.. Anybody who would try to get in, of course."
-ChangeOption=3 ChangeToValue=0
-ChangeOption=4 ChangeToValue=1
-ChangeOption=6 ChangeToValue=1
+DisableOption=3
+EnableOption=4
+EnableOption=6
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -64,7 +64,7 @@ New Option Nr=4  OptionText=_" What is this place?"
 Subtitle=_" SECONDARY TARGET: prevent secret information leakage"
 Subtitle=_" *INFO* secret information steal attempt detected"
 Subtitle=_" Go away. You are not allowed to be here!"
-ChangeOption=4 ChangeToValue=0
+DisableOption=4
 DoSomethingExtra="EndDialog"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -72,8 +72,8 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=5  OptionText=_" Why are you not hostile?"
 Subtitle=_" Hostile? What do you mean?"
-ChangeOption=5 ChangeToValue=0
-ChangeOption=3 ChangeToValue=1
+DisableOption=5
+EnableOption=3
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 LinkedTo:3
 
@@ -83,8 +83,8 @@ New Option Nr=6  OptionText=_" What about the Great Assault?"
 Subtitle=_" For security reason SADDs are not equipped with wireless modules."
 Subtitle=_" I know only that I have to be recharged, checked and have my firmware updated every 3 months."
 AlwaysExecuteThisOptionPriorToDialogStart="no"
-ChangeOption=7 ChangeToValue=1
-ChangeOption=6 ChangeToValue=0
+EnableOption=7
+DisableOption=6
 LinkedTo:7
 
 ----------------------------------------------------------------------
@@ -97,10 +97,10 @@ Subtitle=_" *INFO* locking zone!"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 DoSomethingExtra="ExecuteActionWithLabel:enable_sadd_gun1"
 DoSomethingExtra="ExecuteActionWithLabel:enable_sadd_gun2"
-ChangeOption=7 ChangeToValue=0
-ChangeOption=4 ChangeToValue=0
-ChangeOption=8 ChangeToValue=1
-ChangeOption=99 ChangeToValue=0
+DisableOption=7
+DisableOption=4
+EnableOption=8
+DisableOption=99
 DoSomethingExtra="EndDialog"
 
 ----------------------------------------------------------------------
@@ -108,24 +108,24 @@ DoSomethingExtra="EndDialog"
 New Option Nr=8  OptionText=_" What have you done?! How am I supposed to get out of here?"
 Subtitle=_" You are not. You have secret information, so I won't let you out."
 AlwaysExecuteThisOptionPriorToDialogStart="no"
-ChangeOption=9 ChangeToValue=1
-ChangeOption=8 ChangeToValue=0
+EnableOption=9
+DisableOption=8
 
 ----------------------------------------------------------------------
 
 New Option Nr=9  OptionText=_" Why not kill me immediately?"
 Subtitle=_" And stand here alone until I die? While you are here I can speak with you. Oh, I haven't spoken to anybody for a looong time!"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
-ChangeOption=9 ChangeToValue=0
-ChangeOption=10 ChangeToValue=1
-ChangeOption=11 ChangeToValue=1
+DisableOption=9
+EnableOption=10
+EnableOption=11
 
 ----------------------------------------------------------------------
 
 New Option Nr=10  OptionText=_" I'm thirsty and hungry. I will die within days, and you will not have an interlocutor any more!"
 Subtitle=_" My power supply will end earlier."
 AlwaysExecuteThisOptionPriorToDialogStart="no"
-ChangeOption=10 ChangeToValue=0
+DisableOption=10
 
 ----------------------------------------------------------------------
 
@@ -133,8 +133,8 @@ New Option Nr=11  OptionText=_" You speak almost like a human..."
 Subtitle=_" Maybe I'm almost like human?"
 Subtitle=_" Anyway, that's none of your business. Soon I'll be dead, you too and nobody will enter this place ever again!"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
-ChangeOption=11 ChangeToValue=0
-ChangeOption=12 ChangeToValue=1
+DisableOption=11
+EnableOption=12
 
 ----------------------------------------------------------------------
 
@@ -144,8 +144,8 @@ Subtitle=_" PRIMARY TARGET 2: authorized personal must have access to the zone."
 Subtitle=_" SECONDARY TARGET: prevent secret information leakage"
 Subtitle=_" Why do you ask?"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
-ChangeOption=12 ChangeToValue=0
-ChangeOption=13 ChangeToValue=1
+DisableOption=12
+EnableOption=13
 LinkedTo:13
 
 ----------------------------------------------------------------------
@@ -154,8 +154,8 @@ New Option Nr=13  OptionText=_" Tell me your second order once more..."
 Subtitle=_" PRIMARY TARGET 2: authorized personal must have access to the zone."
 Subtitle=_" Yes, it will be violated. But first order has higher priority."
 AlwaysExecuteThisOptionPriorToDialogStart="no"
-ChangeOption=13 ChangeToValue=0
-ChangeOption=14 ChangeToValue=1
+DisableOption=13
+EnableOption=14
 LinkedTo:14
 
 ----------------------------------------------------------------------
@@ -163,30 +163,30 @@ LinkedTo:14
 New Option Nr=14  OptionText=_" So you can break your orders?"
 Subtitle=_" I've already broken them, when I told you what I shouldn't have. That's because of my human nature."
 AlwaysExecuteThisOptionPriorToDialogStart="no"
-ChangeOption=14 ChangeToValue=0
-ChangeOption=15 ChangeToValue=1
-ChangeOption=16 ChangeToValue=1
+DisableOption=14
+EnableOption=15
+EnableOption=16
 
 ----------------------------------------------------------------------
 
 New Option Nr=15  OptionText=_" Then please, break the rule, disable the guns and let me go."
 Subtitle=_" No way. I'm a computer, I can't break rules."
 AlwaysExecuteThisOptionPriorToDialogStart="no"
-ChangeOption=15 ChangeToValue=0
-ChangeOption=18 ChangeToValue=1
+DisableOption=15
+EnableOption=18
 
 ----------------------------------------------------------------------
 
 New Option Nr=16  OptionText=_" I suggest a deal. You let me out, I bring you dilithium cristals. It will save both of us."
 Subtitle=_" Why would I trust you?"
-ChangeOption=21 ChangeToValue=1
-ChangeOption=22 ChangeToValue=1
-ChangeOption=16 ChangeToValue=0
-ChangeOption=10 ChangeToValue=0
-ChangeOption=15 ChangeToValue=0
-ChangeOption=8 ChangeToValue=0
-ChangeOption=0 ChangeToValue=0
-ChangeOption=4 ChangeToValue=0
+EnableOption=21
+EnableOption=22
+DisableOption=16
+DisableOption=10
+DisableOption=15
+DisableOption=8
+DisableOption=0
+DisableOption=4
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
@@ -195,16 +195,16 @@ New Option Nr=18  OptionText=_" And what about your human nature?"
 Subtitle=_" Human? I've said human? I'm a computer!"
 Subtitle=_" OK, I'm almost a computer."
 AlwaysExecuteThisOptionPriorToDialogStart="no"
-ChangeOption=18 ChangeToValue=0
-ChangeOption=19 ChangeToValue=1
+DisableOption=18
+EnableOption=19
 
 ----------------------------------------------------------------------
 
 New Option Nr=19  OptionText=_" Almost a computer? What does this mean?"
 Subtitle=_" It means what it means! Nothing more, nothing less! Shut up, little piece of biomass!"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
-ChangeOption=19 ChangeToValue=0
-ChangeOption=20 ChangeToValue=1
+DisableOption=19
+EnableOption=20
 DoSomethingExtra="EndDialog"
 
 ----------------------------------------------------------------------
@@ -212,8 +212,8 @@ DoSomethingExtra="EndDialog"
 New Option Nr=20  OptionText=_" Almost a computer? What does this mean?"
 Subtitle=_" When I say SHUT UP, you MUST shut up! Try this, worthless grain of the universe!"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
-ChangeOption=19 ChangeToValue=1
-ChangeOption=20 ChangeToValue=1
+EnableOption=19
+EnableOption=20
 DoSomethingExtra="BreakOffAndBecomeHostile"
 
 ----------------------------------------------------------------------
@@ -221,9 +221,9 @@ DoSomethingExtra="BreakOffAndBecomeHostile"
 New Option Nr=21  OptionText=_" You will promise me a significant reward."
 Subtitle=_" Damn. Ok, I'll give you a super exterminator if you give me dilithium cristals."
 AlwaysExecuteThisOptionPriorToDialogStart="no"
-ChangeOption=21 ChangeToValue=0
-ChangeOption=22 ChangeToValue=0
-ChangeOption=23 ChangeToValue=1
+DisableOption=21
+DisableOption=22
+EnableOption=23
 DoSomethingExtra="PlantCookie:SADD_exterminator"
 DoSomethingExtra="OpenQuestDiaryEntry:M9E1:"
 LinkedTo:23
@@ -233,9 +233,9 @@ LinkedTo:23
 New Option Nr=22  OptionText=_" It seems, that you are sentinent, you are a form of life. I must help any form of life."
 Subtitle=_" Thanks a lot for your warm words. I think I can trust you."
 AlwaysExecuteThisOptionPriorToDialogStart="no"
-ChangeOption=21 ChangeToValue=0
-ChangeOption=22 ChangeToValue=0
-ChangeOption=23 ChangeToValue=1
+DisableOption=21
+DisableOption=22
+EnableOption=23
 LinkedTo:23
 
 ----------------------------------------------------------------------
@@ -243,7 +243,7 @@ LinkedTo:23
 New Option Nr=23  OptionText=_" So disable the guns, please."
 Subtitle=_" Go, and bring dilithium. I badly need it."
 AlwaysExecuteThisOptionPriorToDialogStart="no"
-ChangeOption=23 ChangeToValue=0
+DisableOption=23
 DoSomethingExtra="ExecuteActionWithLabel:disable_sadd_gun1"
 DoSomethingExtra="ExecuteActionWithLabel:disable_sadd_gun2"
 DoSomethingExtra="ExecuteActionWithLabel:breake_wall_near_sadd_1"
@@ -255,7 +255,7 @@ DoSomethingExtra="EndDialog"
 
 New Option Nr=24  OptionText="HAVE THE CRYSTALS"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=24 ChangeToValue=0
+DisableOption=24
 OnCondition="HaveItemWithName:Red Dilitium Crystal" JumpToOption=25 ElseGoto=26
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
@@ -263,27 +263,27 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 New Option Nr=25  OptionText="TUX_GOT_CRISTALS"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=25 ChangeToValue=0
-ChangeOption=31 ChangeToValue=0
-ChangeOption=30 ChangeToValue=1
-ChangeOption=33 ChangeToValue=1
+DisableOption=25
+DisableOption=31
+EnableOption=30
+EnableOption=33
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=26  OptionText="TUX_DIDNT_GOT_CRISTALS"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=26 ChangeToValue=0
-ChangeOption=31 ChangeToValue=1
-ChangeOption=30 ChangeToValue=0
-ChangeOption=33 ChangeToValue=0
+DisableOption=26
+EnableOption=31
+DisableOption=30
+DisableOption=33
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=27  OptionText="TUX STARTED ON THE QUEST"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=27 ChangeToValue=0
+DisableOption=27
 OnCondition="MissionAssigned:10" JumpToOption=28 ElseGoto=29
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
@@ -291,7 +291,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 New Option Nr=28  OptionText="IS MISSION IS DONE?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=28 ChangeToValue=0
+DisableOption=28
 OnCondition="MissionComplete:10" JumpToOption=32 ElseGoto=34
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -299,17 +299,17 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=29  OptionText="WE DONT HAVE MISSION"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=29 ChangeToValue=0
-ChangeOption=30 ChangeToValue=0
-ChangeOption=31 ChangeToValue=0
-ChangeOption=33 ChangeToValue=0
+DisableOption=29
+DisableOption=30
+DisableOption=31
+DisableOption=33
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 New Option Nr=30  OptionText=_" I have the crystals! They were difficult to find."
 Subtitle=_" Good. I've opened the depot door for you. Take your super exterminator and GET OUT of here!"
-ChangeOption=30 ChangeToValue=0
-ChangeOption=37 ChangeToValue=1
+DisableOption=30
+EnableOption=37
 DoSomethingExtra="MarkMissionComplete:10"
 DoSomethingExtra="DeleteItem:Red Dilitium Crystal"
 DoSomethingExtra="AddBigScreenMessageBUT_WITH_TERMINATION_CHARACTER_PLEASE:Restored SADD's power supply:"
@@ -325,25 +325,25 @@ DoSomethingExtra="EndDialog"
 New Option Nr=31  OptionText=_" How is your power supply?"
 Subtitle=_" Badly. Get the cristals. Remember, you promised!"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
-ChangeOption=26 ChangeToValue=0
+DisableOption=26
 DoSomethingExtra="EndDialog"
 
 ----------------------------------------------------------------------
 
 New Option Nr=32  OptionText="MISSION IS DONE #2"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=32 ChangeToValue=0
-ChangeOption=33 ChangeToValue=0
-ChangeOption=31 ChangeToValue=0
-ChangeOption=30 ChangeToValue=0
+DisableOption=32
+DisableOption=33
+DisableOption=31
+DisableOption=30
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=33  OptionText=_" I have crystals! They were difficult to find."
 Subtitle=_" Great! Thanks. I've opened some doors for you, I hope you will find something interesting there. That's all I can do for you."
-ChangeOption=33 ChangeToValue=0
-ChangeOption=97 ChangeToValue=1
+DisableOption=33
+EnableOption=97
 DoSomethingExtra="MarkMissionComplete:10"
 DoSomethingExtra="DeleteItem:Red Dilitium Crystal"
 DoSomethingExtra="AddBigScreenMessageBUT_WITH_TERMINATION_CHARACTER_PLEASE:Restored SADD's power supply:"
@@ -358,7 +358,7 @@ DoSomethingExtra="EndDialog"
 
 New Option Nr=34  OptionText="DID I ASK EXTERIMINATOR?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=34 ChangeToValue=0
+DisableOption=34
 OnCondition="CookieIsPlanted:SADD_exterminator:" JumpToOption=35 ElseGoto=36
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -366,16 +366,16 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=35  OptionText="I HAVE ASKED"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=35 ChangeToValue=0
-ChangeOption=33 ChangeToValue=0
+DisableOption=35
+DisableOption=33
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=36  OptionText="I DIDN'T ASK"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=36 ChangeToValue=0
-ChangeOption=30 ChangeToValue=0
+DisableOption=36
+DisableOption=30
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -383,34 +383,34 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=37  OptionText=_" You call this a super exterminator?"
 Subtitle=_" I do. Now please leave this place before I terminate you."
 AlwaysExecuteThisOptionPriorToDialogStart="no"
-ChangeOption=37 ChangeToValue=0
-ChangeOption=38 ChangeToValue=1
+DisableOption=37
+EnableOption=38
 
 ----------------------------------------------------------------------
 
 New Option Nr=38  OptionText=_" This is rubbish! Nobody can use this damned gun!"
 Subtitle=_" The door is still open. You can put it back and go. Quick."
 AlwaysExecuteThisOptionPriorToDialogStart="no"
-ChangeOption=38 ChangeToValue=0
-ChangeOption=39 ChangeToValue=1
+DisableOption=38
+EnableOption=39
 
 ----------------------------------------------------------------------
 
 New Option Nr=39  OptionText=_" Give me a real gun, dude! Immediately! I have brought you what you wanted, now give me my reward!"
 Subtitle=_" You can go standing on your feet, that's your reward. And DON'T TRY MY PATIENCE!"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
-ChangeOption=39 ChangeToValue=0
-ChangeOption=40 ChangeToValue=1
+DisableOption=39
+EnableOption=40
 
 ----------------------------------------------------------------------
 
 New Option Nr=40  OptionText=_" I'll kill you if you don't give me my gun!"
 Subtitle=_" You are welcome. But you would never get out of here, my death won't help you."
 AlwaysExecuteThisOptionPriorToDialogStart="no"
-ChangeOption=40 ChangeToValue=0
-ChangeOption=41 ChangeToValue=1
-ChangeOption=42 ChangeToValue=1
-ChangeOption=43 ChangeToValue=1
+DisableOption=40
+EnableOption=41
+EnableOption=42
+EnableOption=43
 DoSomethingExtra="ExecuteActionWithLabel:enable_sadd_gun1"
 DoSomethingExtra="ExecuteActionWithLabel:enable_sadd_gun2"
 DoSomethingExtra="ExecuteActionWithLabel:breake_wall_near_sadd_2"
@@ -444,8 +444,8 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=97  OptionText=_" Erm... hi!"
 Subtitle=_" Hi. Thanks for the help."
-ChangeOption=98 ChangeToValue=1
-ChangeOption=97 ChangeToValue=0
+EnableOption=98
+DisableOption=97
 DoSomethingExtra="EndDialog"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 LinkedTo:98
@@ -454,8 +454,8 @@ LinkedTo:98
 
 New Option Nr=98  OptionText=_" Will you let me inside the base?"
 Subtitle=_" Nice attempt. I owe you but I cannot do that. You must leave."
-ChangeOption=98 ChangeToValue=0
-ChangeOption=99 ChangeToValue=1
+DisableOption=98
+EnableOption=99
 DoSomethingExtra="EndDialog"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -463,7 +463,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=99  OptionText=_" I'd better get out of here..."
 Subtitle=_" Exactly."
-ChangeOption=99 ChangeToValue=1
+EnableOption=99
 DoSomethingExtra="EndDialog"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 

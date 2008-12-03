@@ -32,18 +32,18 @@ Beginning of new chat dialog for character="XXXXX"
 
 New Option Nr=0  OptionText=_" Hi... Erm... Who are you?"
 Subtitle=_"Duncan McNamara, The Red Guard's resident bomb maker, at your service."
-ChangeOption=0 ChangeToValue=0
-ChangeOption=90 ChangeToValue=0
-ChangeOption=1 ChangeToValue=1
+DisableOption=0
+DisableOption=90
+EnableOption=1
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=1  OptionText=_" I would like to buy a bomb."
 Subtitle=_"Yes. I am sure we can arrange something. Take a look."
-ChangeOption=1 ChangeToValue=0
-ChangeOption=2 ChangeToValue=1
-ChangeOption=7 ChangeToValue=1
+DisableOption=1
+EnableOption=2
+EnableOption=7
 DoSomethingExtra="InitTradeWithCharacter:Duncan"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -53,11 +53,11 @@ New Option Nr=2  OptionText=_" I see only grenades. Do you have something bigger
 Subtitle=_"My deepest apologies, I do not."
 Subtitle=_"The Red Guard prohibits the sales of extremely destructive munitions."
 Subtitle=_"It is not yet the time for the fall of their rule, so I remain loyal."
-ChangeOption=2 ChangeToValue=0
-ChangeOption=5 ChangeToValue=1
-ChangeOption=6 ChangeToValue=1
-ChangeOption=4 ChangeToValue=1
-ChangeOption=3 ChangeToValue=1
+DisableOption=2
+EnableOption=5
+EnableOption=6
+EnableOption=4
+EnableOption=3
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -68,8 +68,8 @@ Subtitle=_"I am not preparing anything. I am just stating what I see as inevitab
 Subtitle=_"I have taken part in many conflicts and I have seen how governments collapse."
 Subtitle=_"As soon as the war is over, the Red Guard will disband."
 Subtitle=_"Of course, I am making the assumption of victory, which is highly unlikely with the current state of affairs."
-ChangeOption=3 ChangeToValue=0
-ChangeOption=4 ChangeToValue=0
+DisableOption=3
+DisableOption=4
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -77,15 +77,15 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=4  OptionText=_" The fall of the Red Guard? Tell me more about it."
 Subtitle=_"It is not the time to speak of such things yet. Come another day, and we shall talk about it in more detail."
 Subtitle=_"The Red Guard can have their great laser beams and plasma cannons... But nothing can save them."
-ChangeOption=4 ChangeToValue=0
-ChangeOption=3 ChangeToValue=0
+DisableOption=4
+DisableOption=3
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=5  OptionText=_" I want to buy some grenades."
 Subtitle=_"Certainly."
-ChangeOption=5 ChangeToValue=1
+EnableOption=5
 DoSomethingExtra="InitTradeWithCharacter:Duncan"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -93,7 +93,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=6  OptionText=_" What kind of grenade is the best?"
 Subtitle=_"You get what you pay for."
-ChangeOption=6 ChangeToValue=0
+DisableOption=6
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -102,14 +102,14 @@ New Option Nr=7  OptionText=_" How did you get into making explosives?"
 Subtitle=_"Twenty years ago there was a conflict."
 Subtitle=_"A grenade I threw destroyed a being which killed many of... my people."
 Subtitle=_"Now I make more to smash the destroyers."
-ChangeOption=7 ChangeToValue=0
+DisableOption=7
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=50  OptionText="KOAN QUEST"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=50 ChangeToValue=0
+DisableOption=50
 OnCondition="CookieIsPlanted:duncan_known:" JumpToOption=80 ElseGoto=52
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
@@ -121,7 +121,7 @@ Subtitle=_"Ah. Welcome again Linarian."
 Subtitle=_"I have a little request for you."
 Subtitle=_"I know someone who needs to be taught a lesson."
 Subtitle=_"Interested?"
-ChangeOption=51 ChangeToValue=0
+DisableOption=51
 DoSomethingExtra="ExecuteSubdialog:subdlg_Duncan"
 DoSomethingExtra="PlantCookie:koan_quest"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
@@ -130,14 +130,14 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=52  OptionText="VOID"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=52 ChangeToValue=0
+DisableOption=52
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=60  OptionText="TEST FOR BOX OR SAVING KOAN"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=60 ChangeToValue=0
+DisableOption=60
 OnCondition="HaveItemWithName:Pandora's Cube" JumpToOption=61 ElseGoto=62
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
@@ -145,7 +145,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 New Option Nr=61  OptionText="MURDERING DONE OR SAVED HIM"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=61 ChangeToValue=0
+DisableOption=61
 DoSomethingExtra="ExecuteSubdialog:subdlg_Duncan_quest"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -153,7 +153,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=62  OptionText="IS KOAN SAVED?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=62 ChangeToValue=0
+DisableOption=62
 OnCondition="CookieIsPlanted:koan_spared:" JumpToOption=63 ElseGoto=52
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -161,7 +161,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=63  OptionText="WAS THE QUEST DONE BEFORE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=63 ChangeToValue=0
+DisableOption=63
 OnCondition="CookieIsPlanted:koan_quest_done:" JumpToOption=52 ElseGoto=61
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -169,7 +169,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=80  OptionText="PREVENTING DOUBLE TALK"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-ChangeOption=80 ChangeToValue=0
+DisableOption=80
 OnCondition="CookieIsPlanted:koan_quest:" JumpToOption=52 ElseGoto=51
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -179,9 +179,9 @@ New Option Nr=90  OptionText=_" I feel you are... Different."
 Subtitle=_"What a great way to start a conversation."
 Subtitle=_"Yes, that is true. I am not who I seem to be."
 Subtitle=_"But then again, neither are you, so my thoughts are we are even."
-ChangeOption=90 ChangeToValue=0
-ChangeOption=0 ChangeToValue=0
-ChangeOption=91 ChangeToValue=1
+DisableOption=90
+DisableOption=0
+EnableOption=91
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -189,11 +189,11 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=91  OptionText=_" What do you mean? I am Tux and not anyone else."
 Subtitle=_"And I am Duncan McNamara, the maker of grenades and nothing else."
 Subtitle=_"I believe the topic is thoroughly exhausted now."
-ChangeOption=92 ChangeToValue=1
-ChangeOption=2 ChangeToValue=0
-ChangeOption=1 ChangeToValue=0
-ChangeOption=5 ChangeToValue=1
-ChangeOption=91 ChangeToValue=0
+EnableOption=92
+DisableOption=2
+DisableOption=1
+EnableOption=5
+DisableOption=91
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -202,22 +202,22 @@ New Option Nr=92  OptionText=_" Tell me who you are. I need to know."
 Subtitle=_"Twenty years ago, the people were kinder to each other."
 Subtitle=_"I suggest you be kind to me as well, and I will be kind to you."
 Subtitle=_"That way I get to keep my secret, and you get to keep yours."
-ChangeOption=92 ChangeToValue=0
-ChangeOption=93 ChangeToValue=1
+DisableOption=92
+EnableOption=93
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=93  OptionText=_" I don't have any secrets."
 Subtitle=_"And neither do I."
-ChangeOption=93 ChangeToValue=0
+DisableOption=93
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=96  OptionText=_" See you later."
 Subtitle=_"I wish you cold winds."
-ChangeOption=96 ChangeToValue=0
+DisableOption=96
 LinkedTo:97
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
@@ -226,17 +226,17 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=97  OptionText=_" Huh? How do you know the Linarian farewell? No one around here knows it."
 Subtitle=_"I read many books on Linarians. That is all."
 Subtitle=_"Nothing more and nothing less."
-ChangeOption=97 ChangeToValue=0
-ChangeOption=98 ChangeToValue=1
-ChangeOption=99 ChangeToValue=1
+DisableOption=97
+EnableOption=98
+EnableOption=99
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=98  OptionText=_" I wish you cold winds."
 Subtitle=_"May the ice bring you wisdom."
-ChangeOption=98 ChangeToValue=1
-ChangeOption=99 ChangeToValue=0
+EnableOption=98
+DisableOption=99
 DoSomethingExtra="EndDialog"
 DoSomethingExtra="PlantCookie:duncan_known"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
@@ -245,8 +245,8 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 New Option Nr=99  OptionText=_" See you later."
 Subtitle=_"See you later."
-ChangeOption=99 ChangeToValue=1
-ChangeOption=98 ChangeToValue=0
+EnableOption=99
+DisableOption=98
 DoSomethingExtra="EndDialog"
 DoSomethingExtra="PlantCookie:duncan_known"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
