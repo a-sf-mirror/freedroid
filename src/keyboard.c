@@ -383,10 +383,28 @@ void keychart()
 		}
 		if (event.key.keysym.sym == SDLK_RETURN) {
 		    int newmod;
+		    int oldkey, oldmod;
+		    int i;
 		    display_keychart(startpos, cursor, TRUE);
+		    oldkey = GameConfig.input_keybinds[cursor].key;
+		    oldmod = GameConfig.input_keybinds[cursor].mod;
+
 		    GameConfig.input_keybinds[cursor].key = getchar_raw(&newmod);
 		    newmod &= ~(KMOD_CAPS | KMOD_NUM | KMOD_MODE); /* We want to ignore "global" modifiers. */
 		    GameConfig.input_keybinds[cursor].mod = newmod;
+
+		    for (i=0; strcmp(keybindNames[i], "end"); i++) {
+			if (i == cursor) 
+			    continue;
+
+			if (GameConfig.input_keybinds[i].key == GameConfig.input_keybinds[cursor].key && GameConfig.input_keybinds[i].mod == newmod) {
+			    /* If the key we have just assigned was already assigned to another command... */
+			    GameConfig.input_keybinds[i].key = oldkey;
+			    GameConfig.input_keybinds[i].mod = oldmod;
+			    /* ... swap the keys (assign the old key to the conflicting command)*/
+			}
+		    }
+
 		}
 	    }
 	}
