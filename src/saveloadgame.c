@@ -84,8 +84,7 @@ ShowSaveLoadGameProgressMeter( int Percentage , int IsSavegame )
 
 }; // void ShowSaveGameProgressMeter( int Percentage ) 
 
-void
-LoadAndShowThumbnail ( char* CoreFilename )
+void LoadAndShowThumbnail ( char* CoreFilename )
 {
     char filename[1000];
     SDL_Surface* NewThumbnail;
@@ -119,8 +118,7 @@ LoadAndShowThumbnail ( char* CoreFilename )
  * 
  *
  */
-void
-LoadAndShowStats ( char* CoreFilename )
+void LoadAndShowStats ( char* CoreFilename )
 {
     char filename[1000];
     struct stat FileInfoBuffer;
@@ -153,8 +151,8 @@ or file permissions of ~/.freedroid_rpg are somehow not right.",
     LocalTimeSplitup = localtime ( & ( FileInfoBuffer.st_mtime ) ) ;
     strftime (InfoString, sizeof(InfoString), nl_langinfo (D_T_FMT), LocalTimeSplitup);
 
-    PutString ( Screen , 240 , GameConfig . screen_height - 3 * FontHeight ( GetCurrentFont () ) , _("Last Modified:") );
-    PutString ( Screen , 240 , GameConfig . screen_height - 2 * FontHeight ( GetCurrentFont () ) , InfoString );
+    PutString ( Screen , UNIVERSAL_COORD_W(240) , GameConfig . screen_height - 3 * FontHeight ( GetCurrentFont () ) , _("Last Modified:") );
+    PutString ( Screen , UNIVERSAL_COORD_W(240) , GameConfig . screen_height - 2 * FontHeight ( GetCurrentFont () ) , InfoString );
     
     //--------------------
     // Now that the modification time has been set up, we can start to compute
@@ -190,8 +188,7 @@ or file permissions of ~/.freedroid_rpg are somehow not right.",
     sprintf( InfoString , _("File Size: %2.3f MB") , 
 	     ((float)FileSize) / ( 1024.0 * 1024.0 ) );
     
-    // PutString ( Screen , 240 , GameConfig . screen_height - 2 * FontHeight ( GetCurrentFont () ) , "File Size:" );
-    PutString ( Screen , 240 , GameConfig . screen_height - 1 * FontHeight ( GetCurrentFont () ) , InfoString );
+    PutString ( Screen , UNIVERSAL_COORD_W(240) , GameConfig . screen_height - 1 * FontHeight ( GetCurrentFont () ) , InfoString );
     
 }; // void LoadAndShowStats ( char* filename );
 
