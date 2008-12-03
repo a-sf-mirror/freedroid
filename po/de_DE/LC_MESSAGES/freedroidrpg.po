@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: freedroidrpg\n"
 "Report-Msgid-Bugs-To: freedroid-discussion@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-11-16 12:36+0100\n"
+"POT-Creation-Date: 2008-12-03 18:21+0100\n"
 "PO-Revision-Date: 2008-10-04 00:24+0200\n"
 "Last-Translator: Ronny Standtke <Ronny.Standtke@gmx.net>\n"
 "Language-Team: Deutsch\n"
@@ -1242,7 +1242,7 @@ msgstr "Temperatur"
 msgid "Stamina"
 msgstr "Ausdauer"
 
-#: ../src/character.c:755 ../src/ship.c:453
+#: ../src/character.c:755 ../src/ship.c:427
 msgid "Armor"
 msgstr "Rüstung"
 
@@ -1289,36 +1289,40 @@ msgstr "%d Tribucks gegeben."
 msgid "%d bucks received"
 msgstr "%d Tribucks erhalten."
 
-#: ../src/chat.c:1276
+#: ../src/chat.c:1228
+msgid "Start of Dialog"
+msgstr ""
+
+#: ../src/chat.c:1278
 msgid "What will you say?"
 msgstr "Was wirst du sagen?"
 
-#: ../src/enemy.c:821
+#: ../src/enemy.c:830
 #, c-format
 msgid "Your friend %s was killed by %s."
 msgstr "Dein Freund %s wurde durch %s getötet."
 
-#: ../src/enemy.c:823
+#: ../src/enemy.c:832
 #, c-format
 msgid "You killed %s."
 msgstr "%s wurde von dir eliminiert."
 
-#: ../src/enemy.c:825
+#: ../src/enemy.c:834
 #, c-format
 msgid "%s is dead."
 msgstr "%s wurde ausgelöscht."
 
-#: ../src/enemy.c:830
+#: ../src/enemy.c:839
 #, c-format
 msgid "For defeating %s, you receive %d experience."
 msgstr "%s besiegt. %d Erfahrungspunkte gesammelt."
 
-#: ../src/enemy.c:833
+#: ../src/enemy.c:842
 #, c-format
 msgid "%s was killed by %s."
 msgstr "%s wurde ausgelöscht von %s."
 
-#: ../src/enemy.c:834
+#: ../src/enemy.c:843
 #, c-format
 msgid "%s died."
 msgstr "%s ist erledigt."
@@ -1577,26 +1581,26 @@ msgstr "%d zum Leuchtradius"
 msgid " UNIDENTIFIED "
 msgstr " NICHT IDENTIFIZIERT "
 
-#: ../src/hud.c:712
+#: ../src/hud.c:710
 #, c-format
 msgid "reloading"
 msgstr "lade Waffe..."
 
-#: ../src/hud.c:714
+#: ../src/hud.c:712
 #, c-format
 msgid " %sEMPTY"
 msgstr " %s LEER"
 
-#: ../src/hud.c:1001
+#: ../src/hud.c:999
 #, c-format
 msgid "To %s...."
 msgstr "Nach %s...."
 
-#: ../src/hud.c:1027
+#: ../src/hud.c:1025
 msgid "REQUIREMENTS NOT MET"
 msgstr "ANFORDERUNGEN NICHT ERFÜLLT"
 
-#: ../src/hud.c:1142
+#: ../src/hud.c:1140
 #, c-format
 msgid ""
 "Health\n"
@@ -1605,7 +1609,7 @@ msgstr ""
 "Lebenspunkte\n"
 "%s%d/%d"
 
-#: ../src/hud.c:1152
+#: ../src/hud.c:1150
 #, c-format
 msgid ""
 "Temperature \n"
@@ -1614,7 +1618,7 @@ msgstr ""
 "Temperatur \n"
 "%s%d/%d"
 
-#: ../src/hud.c:1162
+#: ../src/hud.c:1160
 #, c-format
 msgid ""
 "Run\n"
@@ -1623,7 +1627,7 @@ msgstr ""
 "Laufen\n"
 "%s%d/%d"
 
-#: ../src/hud.c:1172
+#: ../src/hud.c:1170
 #, c-format
 msgid ""
 "XP\n"
@@ -1632,24 +1636,24 @@ msgstr ""
 "Erfahrung\n"
 "%d/%d"
 
-#: ../src/hud.c:1215
+#: ../src/hud.c:1213
 msgid " C H E S T "
 msgstr " T R U H E "
 
-#: ../src/hud.c:1241
+#: ../src/hud.c:1239
 msgid " B A R R E L "
 msgstr " T O N N E "
 
-#: ../src/hud.c:1245
+#: ../src/hud.c:1243
 msgid " C R A T E "
 msgstr " K I S T E "
 
-#: ../src/hud.c:1446
+#: ../src/hud.c:1439
 #, c-format
 msgid "--- Message Protocol ---"
 msgstr "--- Nachrichten-Protokoll ---"
 
-#: ../src/hud.c:1475
+#: ../src/hud.c:1468
 #, c-format
 msgid ""
 "This is the protocol.\n"
@@ -1664,7 +1668,7 @@ msgstr ""
 "Ist das nicht toll? Aber wie lang mag jede dieser Zeilen sein? Gibt's da "
 "eine Begrenzung? Jedenfalls, sieht gut aus."
 
-#: ../src/hud.c:1557 ../src/hud.c:1568 ../src/mission.c:137
+#: ../src/hud.c:1550 ../src/hud.c:1561 ../src/mission.c:137
 #, c-format
 msgid "Day %d  %02d:%02d"
 msgstr "Tag %d %02d:%02d"
@@ -1673,41 +1677,41 @@ msgstr "Tag %d %02d:%02d"
 msgid "Clip empty, reloading..."
 msgstr "Tausche leeres Magazin..."
 
-#: ../src/influ.c:2933
+#: ../src/influ.c:2926
 msgid "No more ammunition !"
 msgstr "Keine Munition mehr !"
 
-#: ../src/influ.c:3423
+#: ../src/influ.c:3416
 #, c-format
 msgid "This is a %s. %s"
 msgstr "%s. %s"
 
-#: ../src/influ.c:3448 ../src/influ.c:3455
+#: ../src/influ.c:3441 ../src/influ.c:3448
 #, c-format
 msgid "Examining %s.  %s"
 msgstr "Untersuche %s.  %s"
 
-#: ../src/influ.c:3470
+#: ../src/influ.c:3463
 #, c-format
 msgid "There is nothing here."
 msgstr "Hier ist nichts."
 
-#: ../src/influ.c:3501
+#: ../src/influ.c:3494
 #, c-format
 msgid "Unlocking obstacle of type %d."
 msgstr "Objekt %d entriegelt."
 
-#: ../src/influ.c:3530
+#: ../src/influ.c:3523
 #, c-format
 msgid "Repairing obstacle of type %d."
 msgstr "Gegenstand %d repariert."
 
-#: ../src/influ.c:3559
+#: ../src/influ.c:3552
 #, c-format
 msgid "Attacking obstacle of type %d."
 msgstr "Greife %d-Objekt an!"
 
-#: ../src/influ.c:3588
+#: ../src/influ.c:3581
 #, c-format
 msgid "Picking pockets of obstacle of type %d."
 msgstr "Beklaue Objekt %d."
@@ -1945,31 +1949,32 @@ msgstr ""
 msgid "The armor hides his body."
 msgstr "Die Rüstung verdeckt sein Äußeres."
 
-#: ../src/init.c:1911
+#: ../src/init.c:1912
 msgid "Huh? What?  Where am I?"
 msgstr "Häh..? Was? Wo bin ich??"
 
-#: ../src/init.c:2025
+#: ../src/init.c:2027
 msgid "Updating Tux images"
 msgstr "Tux-Images werden aktualisiert..."
 
-#: ../src/init.c:2026
+#: ../src/init.c:2028
 msgid "(this may take a little while...)"
 msgstr "(das könnte einen Moment dauern...)"
 
-#: ../src/init.c:2029
+#: ../src/init.c:2031
 msgid "Starting new game."
 msgstr "Starte neues Spiel..."
 
-#: ../src/init.c:2318
+#: ../src/init.c:2320
+#, fuzzy
 msgid ""
 "\n"
 "You are playing in 640x480.\n"
 "\n"
-"While this resolution works correctly and will\n"
+"While this resolution mostly work correctly and will\n"
 "give you a great gaming experience, its support is\n"
 "in the process of being dropped, therefore you will\n"
-"want to consider using 800x600 or 1024x768.\n"
+"want to consider using 800x600 or higher resolution.\n"
 "\n"
 "Thank you.\n"
 msgstr ""
@@ -1983,7 +1988,7 @@ msgstr ""
 "\n"
 "Vielen Dank.\n"
 
-#: ../src/init.c:2320
+#: ../src/init.c:2322
 msgid ""
 "\n"
 "You are playing a candidate release.\n"
@@ -2001,7 +2006,7 @@ msgstr ""
 "oder per Email an: \n"
 "freedroid-discussions att lists.sourceforge.net\n"
 
-#: ../src/init.c:2340
+#: ../src/init.c:2341
 msgid "Game over.\n"
 msgstr "Game over.\n"
 
@@ -2288,69 +2293,69 @@ msgstr "Momentane Levelgröße in X: %d."
 msgid "Current level size in Y: %d."
 msgstr "Momentane Levelgröße in Y: %d."
 
-#: ../src/leveleditor.c:2638 ../src/leveleditor.c:2924
-#: ../src/leveleditor.c:3796 ../src/menu.c:1476 ../src/menu.c:1608
-#: ../src/menu.c:1710 ../src/menu.c:1778 ../src/menu.c:1849 ../src/menu.c:1964
-#: ../src/menu.c:2005 ../src/menu.c:2266 ../src/menu.c:2378
+#: ../src/leveleditor.c:2638 ../src/leveleditor.c:2935
+#: ../src/leveleditor.c:3831 ../src/menu.c:1485 ../src/menu.c:1617
+#: ../src/menu.c:1719 ../src/menu.c:1787 ../src/menu.c:1858 ../src/menu.c:1973
+#: ../src/menu.c:2014 ../src/menu.c:2276 ../src/menu.c:2395
 msgid "Back"
 msgstr "Zurück"
 
-#: ../src/leveleditor.c:2884
+#: ../src/leveleditor.c:2895
 #, c-format
 msgid "Level Number: %d."
 msgstr "Level-Nummer: %d"
 
-#: ../src/leveleditor.c:2887
+#: ../src/leveleditor.c:2898
 #, c-format
 msgid "Level Name: %s"
 msgstr "Level-Name: %s"
 
-#: ../src/leveleditor.c:2889
+#: ../src/leveleditor.c:2900
 #, c-format
 msgid "Level Dimensions. X: %d. Y: %d."
 msgstr "Level-Dimensionen. X: %d. Y: %d."
 
-#: ../src/leveleditor.c:2893
+#: ../src/leveleditor.c:2904
 #, c-format
 msgid "Level Edge Interfaces:"
 msgstr "Level-Grenzen:"
 
-#: ../src/leveleditor.c:2910
+#: ../src/leveleditor.c:2921
 #, c-format
 msgid "Background music file name: %s"
 msgstr "Hintergrundmusik-Filename: %s"
 
-#: ../src/leveleditor.c:2912
+#: ../src/leveleditor.c:2923
 #, c-format
 msgid "Level Comment: %s"
 msgstr "Level-Kommentar: %s"
 
-#: ../src/leveleditor.c:2914
+#: ../src/leveleditor.c:2925
 #, c-format
 msgid "Light radius bonus: %d"
 msgstr "Leuchtradius-Zusatz: %d"
 
-#: ../src/leveleditor.c:2917
+#: ../src/leveleditor.c:2928
 #, c-format
 msgid "Minimal light value: %d"
 msgstr "Minimaler Lichtwert: %d"
 
-#: ../src/leveleditor.c:2920
+#: ../src/leveleditor.c:2931
 #, c-format
 msgid "Infinite running on this level: "
 msgstr "Unendliche Lauf-Ausdauer in diesem Level: "
 
-#: ../src/leveleditor.c:2921 ../src/menu.c:1707 ../src/menu.c:1842
-#: ../src/menu.c:1844 ../src/menu.c:1846 ../src/menu.c:1848
+#: ../src/leveleditor.c:2932 ../src/menu.c:1716 ../src/menu.c:1851
+#: ../src/menu.c:1853 ../src/menu.c:1855 ../src/menu.c:1857
 msgid "YES"
 msgstr "JA"
 
-#: ../src/leveleditor.c:2922 ../src/menu.c:1707 ../src/menu.c:1842
-#: ../src/menu.c:1844 ../src/menu.c:1846 ../src/menu.c:1848
+#: ../src/leveleditor.c:2933 ../src/menu.c:1716 ../src/menu.c:1851
+#: ../src/menu.c:1853 ../src/menu.c:1855 ../src/menu.c:1857
 msgid "NO"
 msgstr "NEIN"
 
-#: ../src/leveleditor.c:2953
+#: ../src/leveleditor.c:2964
 msgid ""
 "\n"
 " Please enter new level name: \n"
@@ -2360,7 +2365,7 @@ msgstr ""
 " Bitte neuen Levelnamen eingeben: \n"
 "\n"
 
-#: ../src/leveleditor.c:2960
+#: ../src/leveleditor.c:2971
 msgid ""
 "\n"
 " Please enter new music file name: \n"
@@ -2370,7 +2375,7 @@ msgstr ""
 " Bitte neuen Musik-Filenamen eingeben: \n"
 "\n"
 
-#: ../src/leveleditor.c:2967
+#: ../src/leveleditor.c:2978
 msgid ""
 "\n"
 " Please enter new level comment: \n"
@@ -2380,52 +2385,52 @@ msgstr ""
 " Bitte neuen Level-Kommentar eingeben: \n"
 "\n"
 
-#: ../src/leveleditor.c:3091
+#: ../src/leveleditor.c:3108
 #, c-format
 msgid "Lvl: %d - %s"
 msgstr "Lvl: %d - %s"
 
-#: ../src/leveleditor.c:3093
+#: ../src/leveleditor.c:3110
 msgid "Level Options"
 msgstr "Level-Optionen"
 
-#: ../src/leveleditor.c:3094
+#: ../src/leveleditor.c:3111
 msgid "Run Level Validator"
 msgstr "Level-Prüfung starten"
 
-#: ../src/leveleditor.c:3097
+#: ../src/leveleditor.c:3114
 msgid "Playtest Mapfile"
 msgstr "Probespielen"
 
-#: ../src/leveleditor.c:3098
+#: ../src/leveleditor.c:3115
 msgid "Save Mapfile"
 msgstr "Karte speichern"
 
-#: ../src/leveleditor.c:3100
+#: ../src/leveleditor.c:3117
 msgid "Add New Level"
 msgstr "Neuen Level hinzufügen"
 
-#: ../src/leveleditor.c:3104
+#: ../src/leveleditor.c:3121
 msgid "Return to game"
 msgstr "Rückkehr zum Spiel"
 
-#: ../src/leveleditor.c:3105
+#: ../src/leveleditor.c:3122
 msgid "Saving disabled"
 msgstr "Speichern deaktiviert"
 
-#: ../src/leveleditor.c:3107
+#: ../src/leveleditor.c:3124
 msgid "Adding Level disabled"
 msgstr "Level hinzufügen deaktiviert"
 
-#: ../src/leveleditor.c:3109 ../src/menu.c:1535
+#: ../src/leveleditor.c:3126 ../src/menu.c:1544
 msgid "Quit to Main Menu"
 msgstr "Rückkehr zum Hauptmenü"
 
-#: ../src/leveleditor.c:3110 ../src/menu.c:1407 ../src/menu.c:1538
+#: ../src/leveleditor.c:3127 ../src/menu.c:1416 ../src/menu.c:1547
 msgid "Exit FreedroidRPG"
 msgstr "FreedroidRPG beenden"
 
-#: ../src/leveleditor.c:3131
+#: ../src/leveleditor.c:3148
 msgid ""
 "\n"
 " Please enter new level number: \n"
@@ -2435,11 +2440,11 @@ msgstr ""
 " Bitte neue Level-Nummer eingeben: \n"
 "\n"
 
-#: ../src/leveleditor.c:3164
+#: ../src/leveleditor.c:3181
 msgid "Your ship was saved..."
 msgstr "Karte wurde gespeichert..."
 
-#: ../src/leveleditor.c:3273
+#: ../src/leveleditor.c:3308
 msgid ""
 "\n"
 "The list of inconsistencies of the jump interfaces for this level:\n"
@@ -2449,23 +2454,23 @@ msgstr ""
 "Die Liste an Inkonsistenzen der Sprung-Grenzen für diesen Level:\n"
 "\n"
 
-#: ../src/leveleditor.c:3285
+#: ../src/leveleditor.c:3320
 msgid "BACK-FORTH-MISMATCH: North doesn't lead back here (yet)!\n"
 msgstr "VOR-ZURÜCK-FEHLER: Norden führt (noch) nicht hierher zurück!\n"
 
-#: ../src/leveleditor.c:3294
+#: ../src/leveleditor.c:3329
 msgid "BACK-FORTH-MISMATCH: South doesn't lead back here (yet)!\n"
 msgstr "VOR-ZURÜCK-FEHLER: Süden führt (noch) nicht hierher zurück!\n"
 
-#: ../src/leveleditor.c:3303
+#: ../src/leveleditor.c:3338
 msgid "BACK-FORTH-MISMATCH: East doesn't lead back here (yet)!\n"
 msgstr "VOR-ZURÜCK-FEHLER: Osten führt (noch) nicht hierher zurück!\n"
 
-#: ../src/leveleditor.c:3312
+#: ../src/leveleditor.c:3347
 msgid "BACK-FORTH-MISMATCH: West doesn't lead back here (yet)!\n"
 msgstr "VOR-ZURÜCK-FEHLER: Westen führt (noch) nicht hierher zurück!\n"
 
-#: ../src/leveleditor.c:3316
+#: ../src/leveleditor.c:3351
 msgid ""
 "\n"
 "NO OTHER BACK-FORTH-MISMATCH ERRORS other than those listed above\n"
@@ -2475,33 +2480,33 @@ msgstr ""
 "KEINE WEITEREN VOR-ZURÜCK-FEHLER, als die oben aufgelisteten\n"
 "\n"
 
-#: ../src/leveleditor.c:3329
+#: ../src/leveleditor.c:3364
 msgid ""
 "INTERFACE SIZE MISMATCH: North doesn't lead so same-sized interface "
 "level!!!\n"
 msgstr ""
 "GRENZLÄNGEN-FEHLER: Norden führt nicht zu Level mit gleichlangen Grenzen!!!\n"
 
-#: ../src/leveleditor.c:3339
+#: ../src/leveleditor.c:3374
 msgid ""
 "INTERFACE SIZE MISMATCH: South doesn't lead so same-sized interface "
 "level!!!\n"
 msgstr ""
 "GRENZLÄNGEN-FEHLER: Süden führt nicht zu Level mit gleichlangen Grenzen!!!\n"
 
-#: ../src/leveleditor.c:3349
+#: ../src/leveleditor.c:3384
 msgid ""
 "INTERFACE SIZE MISMATCH: East doesn't lead so same-sized interface level!!!\n"
 msgstr ""
 "GRENZLÄNGEN-FEHLER: Osten führt nicht zu Level mit gleichlangen Grenzen!!!\n"
 
-#: ../src/leveleditor.c:3359
+#: ../src/leveleditor.c:3394
 msgid ""
 "INTERFACE SIZE MISMATCH: West doesn't lead so same-sized interface level!!!\n"
 msgstr ""
 "GRENZLÄNGEN-FEHLER: Westen führt nicht zu Level mit gleichlangen Grenzen!!!\n"
 
-#: ../src/leveleditor.c:3373
+#: ../src/leveleditor.c:3408
 msgid ""
 "LEVEL DIMENSION MISMATCH: North doesn't lead so same-sized level (non-fatal, "
 "but no good comes from this)!\n"
@@ -2509,7 +2514,7 @@ msgstr ""
 "LEVEL-DIMENSIONSFEHLER: Norden führt nicht zu gleichgroßem Level\n"
 " (nicht fatal, aber so entstehen keine guten Spiele)!\n"
 
-#: ../src/leveleditor.c:3382
+#: ../src/leveleditor.c:3417
 msgid ""
 "LEVEL DIMENSION MISMATCH: South doesn't lead so same-sized level (non-fatal, "
 "but no good comes from this)!\n"
@@ -2517,7 +2522,7 @@ msgstr ""
 "LEVEL-DIMENSIONSFEHLER: Süden führt nicht zu gleichgroßem Level\n"
 " (nicht fatal, aber so entstehen keine guten Spiele)!\n"
 
-#: ../src/leveleditor.c:3391
+#: ../src/leveleditor.c:3426
 msgid ""
 "LEVEL DIMENSION MISMATCH: East doesn't lead so same-sized level (non-fatal, "
 "but no good comes from this)!\n"
@@ -2525,7 +2530,7 @@ msgstr ""
 "LEVEL-DIMENSIONSFEHLER: Osten führt nicht zu gleichgroßem Level\n"
 " (nicht fatal, aber so entstehen keine guten Spiele)!\n"
 
-#: ../src/leveleditor.c:3400
+#: ../src/leveleditor.c:3435
 msgid ""
 "LEVEL DIMENSION MISMATCH: West doesn't lead so same-sized level (non-fatal, "
 "but no good comes from this)!\n"
@@ -2533,7 +2538,7 @@ msgstr ""
 "LEVEL-DIMENSIONSFEHLER: Westen führt nicht zu gleichgroßem Level\n"
 " (nicht fatal, aber so entstehen keine guten Spiele)!\n"
 
-#: ../src/leveleditor.c:3408
+#: ../src/leveleditor.c:3443
 msgid ""
 "\n"
 "\n"
@@ -2543,55 +2548,55 @@ msgstr ""
 "\n"
 "--- Listenende --- Leertaste für Rückkehr zum Menü ---\n"
 
-#: ../src/leveleditor.c:3778
+#: ../src/leveleditor.c:3813
 #, c-format
 msgid "Jump threshold north: %d.  Up/Down"
 msgstr "Sprung-Grenzbereich Nord: %d.  Rauf/Runter"
 
-#: ../src/leveleditor.c:3780
+#: ../src/leveleditor.c:3815
 #, c-format
 msgid "Jump threshold south: %d.  Up/Down"
 msgstr "Sprung-Grenzbereich Süd: %d.  Rauf/Runter"
 
-#: ../src/leveleditor.c:3782
+#: ../src/leveleditor.c:3817
 #, c-format
 msgid "Jump threshold east: %d.  Up/Down"
 msgstr "Sprung-Grenzbereich Ost: %d.  Rauf/Runter"
 
-#: ../src/leveleditor.c:3784
+#: ../src/leveleditor.c:3819
 #, c-format
 msgid "Jump threshold west: %d.  Up/Down"
 msgstr "Sprung-Grenzbereich West: %d.  Rauf/Runter"
 
-#: ../src/leveleditor.c:3786
+#: ../src/leveleditor.c:3821
 #, c-format
 msgid "Jump target north: %d.  Up/Down"
 msgstr "Sprungziel Nord: %d.  Rauf/Runter"
 
-#: ../src/leveleditor.c:3788
+#: ../src/leveleditor.c:3823
 #, c-format
 msgid "Jump target south: %d.  Up/Down"
 msgstr "Sprungziel Süd: %d.  Rauf/Runter"
 
-#: ../src/leveleditor.c:3790
+#: ../src/leveleditor.c:3825
 #, c-format
 msgid "Jump target east: %d.  Up/Down"
 msgstr "Sprungziel Ost: %d.  Rauf/Runter"
 
-#: ../src/leveleditor.c:3792
+#: ../src/leveleditor.c:3827
 #, c-format
 msgid "Jump target west: %d.  Up/Down"
 msgstr "Sprungziel West: %d.  Rauf/Runter"
 
-#: ../src/leveleditor.c:3794
+#: ../src/leveleditor.c:3829
 msgid "Export this level to other target levels"
 msgstr "Diesen Level zu anderen Ziel-Leveln exportieren"
 
-#: ../src/leveleditor.c:3795
+#: ../src/leveleditor.c:3830
 msgid "Report interface inconsistencies"
 msgstr "Inkonsistenzen von Levelgrenzen auflisten"
 
-#: ../src/leveleditor.c:4122
+#: ../src/leveleditor.c:4156
 #, c-format
 msgid ""
 "\n"
@@ -2602,21 +2607,21 @@ msgstr ""
 " Kartenmarkierungs-Info:\n"
 "label_name=\"%s\"."
 
-#: ../src/leveleditor.c:4347
+#: ../src/leveleditor.c:4381
 msgid "List of connection for this wp:\n"
 msgstr "Verbindungen zum Wegpunkt auflisten:\n"
 
-#: ../src/leveleditor.c:4369
+#: ../src/leveleditor.c:4403
 #, c-format
 msgid "To: X=%d Y=%d    "
 msgstr "Nach: X=%d Y=%d    "
 
-#: ../src/leveleditor.c:4602
+#: ../src/leveleditor.c:4636
 #, c-format
 msgid "Offset x %hd y %hd\n"
 msgstr "Versatz X %hd Y %hd\n"
 
-#: ../src/leveleditor.c:4699
+#: ../src/leveleditor.c:4733
 msgid ""
 "Go level north\n"
 "\n"
@@ -2628,7 +2633,7 @@ msgstr ""
 "Springt einen Level nach Norden, d.h., zum Level, der an der nördlichen "
 "Seite des derzeitigen angefügt ist."
 
-#: ../src/leveleditor.c:4704
+#: ../src/leveleditor.c:4738
 msgid ""
 "Go level south\n"
 "\n"
@@ -2640,7 +2645,7 @@ msgstr ""
 "Springt einen Level nach Süden, d.h., zum Level, der an der südlichen Seite "
 "des derzeitigen angefügt ist."
 
-#: ../src/leveleditor.c:4709
+#: ../src/leveleditor.c:4743
 msgid ""
 "Go level east\n"
 "\n"
@@ -2652,7 +2657,7 @@ msgstr ""
 "Springt einen Level nach Osten, d.h., zum Level, der an der östlichen Seite "
 "des derzeitigen angefügt ist."
 
-#: ../src/leveleditor.c:4714
+#: ../src/leveleditor.c:4748
 msgid ""
 "Go level west\n"
 "\n"
@@ -2664,7 +2669,7 @@ msgstr ""
 "Springt einen Level nach Westen, d.h., zum Level, der an der westlichen "
 "Seite des derzeitigen angefügt ist."
 
-#: ../src/leveleditor.c:4719
+#: ../src/leveleditor.c:4753
 msgid ""
 "Export this level\n"
 "\n"
@@ -2679,7 +2684,7 @@ msgstr ""
 "wo sie aneinandergefügt werden, identisch sein. Hiermit kopieren Sie die\n"
 "Levelränder an die Grenzen aller umliegenden Level, damit sie übereinstimmen."
 
-#: ../src/leveleditor.c:4727
+#: ../src/leveleditor.c:4761
 msgid ""
 "Save Impossible!\n"
 "\n"
@@ -2693,7 +2698,7 @@ msgstr ""
 "Zustand, ungeeignet zur Speicherung. Starten Sie den Editor direkt aus dem "
 "Hauptmenü heraus, um Änderungen an der Kartendatei sichern zu können."
 
-#: ../src/leveleditor.c:4729
+#: ../src/leveleditor.c:4763
 msgid ""
 "Save Map\n"
 "\n"
@@ -2705,7 +2710,7 @@ msgstr ""
 "Überschreibt die Karten-Datei '../map/freedroid.levels' im aktuellen "
 "Spieleordner mit der aktuellen (bearbeiteten) Karte."
 
-#: ../src/leveleditor.c:4735
+#: ../src/leveleditor.c:4769
 msgid ""
 "Toggle waypoints\n"
 "\n"
@@ -2721,7 +2726,7 @@ msgstr ""
 "\n"
 "Hotkey - Taste W"
 
-#: ../src/leveleditor.c:4742
+#: ../src/leveleditor.c:4776
 msgid ""
 "Make waypoint connection\n"
 "\n"
@@ -2737,7 +2742,7 @@ msgstr ""
 "\n"
 "Hotkey - Taste C"
 
-#: ../src/leveleditor.c:4744
+#: ../src/leveleditor.c:4778
 msgid ""
 "Complete waypoint connection\n"
 "\n"
@@ -2755,7 +2760,7 @@ msgstr ""
 "\n"
 "Hotkey - Taste C"
 
-#: ../src/leveleditor.c:4750
+#: ../src/leveleditor.c:4784
 msgid ""
 "Delete selected obstacle\n"
 "\n"
@@ -2770,7 +2775,7 @@ msgstr ""
 "\n"
 "Hotkey - Taste X"
 
-#: ../src/leveleditor.c:4755
+#: ../src/leveleditor.c:4789
 msgid ""
 "Next obstacle on currently selected tile\n"
 "\n"
@@ -2785,7 +2790,7 @@ msgstr ""
 "\n"
 "Hotkey - Taste N"
 
-#: ../src/leveleditor.c:4760
+#: ../src/leveleditor.c:4794
 msgid ""
 "Beautify grass button\n"
 "\n"
@@ -2802,7 +2807,7 @@ msgstr ""
 "\n"
 "Hotkey - Taste CTRL-B"
 
-#: ../src/leveleditor.c:4766
+#: ../src/leveleditor.c:4800
 msgid ""
 "Zoom in/out\n"
 "\n"
@@ -2816,7 +2821,7 @@ msgstr ""
 "\n"
 "Hotkey - Taste O"
 
-#: ../src/leveleditor.c:4771
+#: ../src/leveleditor.c:4805
 msgid ""
 "Fill\n"
 "\n"
@@ -2831,7 +2836,7 @@ msgstr ""
 "alle Richtungen fortgesetzt, bis eine andersartige Bodenkachel erreicht ist. "
 "Dadurch können sich neue, größere Bereiche mit gleichartigen Kacheln bilden."
 
-#: ../src/leveleditor.c:4776
+#: ../src/leveleditor.c:4810
 msgid ""
 "New obstacle label\n"
 "\n"
@@ -2847,7 +2852,7 @@ msgstr ""
 "\n"
 "Hotkey - Taste H."
 
-#: ../src/leveleditor.c:4781
+#: ../src/leveleditor.c:4815
 msgid ""
 "New obstacle description\n"
 "\n"
@@ -2857,7 +2862,7 @@ msgstr ""
 "\n"
 "Setzt bzw. ändert die angezeigte Beschreibung eines markierten Objektes."
 
-#: ../src/leveleditor.c:4786
+#: ../src/leveleditor.c:4820
 msgid ""
 "New map label\n"
 "\n"
@@ -2872,7 +2877,7 @@ msgstr ""
 "Bots und Charaktere zu setzen oder um Auslösepunkte für definierbare "
 "Ereignisse festzulegen."
 
-#: ../src/leveleditor.c:4791
+#: ../src/leveleditor.c:4825
 msgid ""
 "Add item\n"
 "\n"
@@ -2885,7 +2890,7 @@ msgstr ""
 "\n"
 "Hotkey - Taste G"
 
-#: ../src/leveleditor.c:4796
+#: ../src/leveleditor.c:4830
 msgid ""
 "Menu\n"
 "\n"
@@ -2899,7 +2904,7 @@ msgstr ""
 "\n"
 "Hotkey - Taste ESC"
 
-#: ../src/leveleditor.c:4801
+#: ../src/leveleditor.c:4835
 msgid ""
 "Level resize\n"
 "\n"
@@ -2914,7 +2919,7 @@ msgstr ""
 "Ihrer aktuellen Karte vermieden und zusätzlicher Platz an der gewünschten "
 "Stelle eingefügt werden kann."
 
-#: ../src/leveleditor.c:4806
+#: ../src/leveleditor.c:4840
 msgid ""
 "Level editor guide\n"
 "\n"
@@ -2924,7 +2929,7 @@ msgstr ""
 "\n"
 "Öffnet das Tastenbelegungs-Display."
 
-#: ../src/leveleditor.c:4813
+#: ../src/leveleditor.c:4847
 msgid ""
 "Back to game\n"
 "\n"
@@ -2937,7 +2942,7 @@ msgstr ""
 "übernommen.\n"
 "Um dies zu vermeiden, laden Sie ein vorher gespeichertes Spiel."
 
-#: ../src/leveleditor.c:4815
+#: ../src/leveleditor.c:4849
 msgid ""
 "Test Map\n"
 "\n"
@@ -2950,7 +2955,7 @@ msgstr ""
 "sind,\n"
 "um das Speichern einer \"beschädigten\" Karte zu verhindern."
 
-#: ../src/leveleditor.c:4821
+#: ../src/leveleditor.c:4855
 msgid ""
 "Underground lighting\n"
 "\n"
@@ -2966,7 +2971,7 @@ msgstr ""
 "\n"
 "Keine Hotkey - Taste verfügbar."
 
-#: ../src/leveleditor.c:4827
+#: ../src/leveleditor.c:4861
 msgid ""
 "Toggle display enemies\n"
 "\n"
@@ -2978,7 +2983,7 @@ msgstr ""
 "Blendet Gegner im Level-Editor\n"
 "ein- oder aus."
 
-#: ../src/leveleditor.c:4833
+#: ../src/leveleditor.c:4867
 msgid ""
 "Toggle display obstacles\n"
 "\n"
@@ -2990,7 +2995,7 @@ msgstr ""
 "Blendet die Objekte im Level-Editor\n"
 "ein- oder aus."
 
-#: ../src/leveleditor.c:4839
+#: ../src/leveleditor.c:4873
 msgid ""
 "Undo\n"
 "\n"
@@ -3000,7 +3005,7 @@ msgstr ""
 "\n"
 "Macht die letzten Bearbeitungsschritte rückgängig."
 
-#: ../src/leveleditor.c:4845
+#: ../src/leveleditor.c:4879
 msgid ""
 "Redo\n"
 "\n"
@@ -3010,7 +3015,7 @@ msgstr ""
 "\n"
 "Stellt rückgängig gemachte Bearbeitungsschritte wieder her."
 
-#: ../src/leveleditor.c:4851
+#: ../src/leveleditor.c:4885
 msgid ""
 "Toggle display Tux\n"
 "\n"
@@ -3021,7 +3026,7 @@ msgstr ""
 "\n"
 "Blendet Tux im Level-Editor ein- oder aus."
 
-#: ../src/leveleditor.c:4857
+#: ../src/leveleditor.c:4891
 msgid ""
 "Toggle display tooltips\n"
 "\n"
@@ -3032,7 +3037,7 @@ msgstr ""
 "Hiermit können Sie die nervigen Hilfe-Popups im Level-Editor\n"
 "ein- und ausschalten."
 
-#: ../src/leveleditor.c:4863
+#: ../src/leveleditor.c:4897
 msgid ""
 "Toggle display colision rectangles\n"
 "\n"
@@ -3042,14 +3047,14 @@ msgstr ""
 "\n"
 "Blendet die Kollisions-Rechtecke im Level-Editor ein- oder aus."
 
-#: ../src/leveleditor.c:4870
+#: ../src/leveleditor.c:4904
 msgid "Change grid mode ( placement / full / off )"
 msgstr ""
 "Cursorgitter-Modus ändern\n"
 "\n"
 "( Platzierung / ganz / aus )"
 
-#: ../src/leveleditor.c:4956
+#: ../src/leveleditor.c:4990
 msgid ""
 "\n"
 "Please enter new description text for this obstacle: \n"
@@ -3058,7 +3063,7 @@ msgstr ""
 "\n"
 "Bitte neue Beschreibung für dieses Objekt eingeben: \n"
 
-#: ../src/leveleditor.c:5306
+#: ../src/leveleditor.c:5340
 msgid ""
 "\n"
 "M E S S A G E\n"
@@ -3076,7 +3081,7 @@ msgstr ""
 "Wenn Sie etwas Cooles gebaut haben und zu FreedroidRPG beisteuern möchten,\n"
 "kontaktieren Sie bitte das FreedroidRPG Entwicklerteam!"
 
-#: ../src/leveleditor.c:5309
+#: ../src/leveleditor.c:5343
 msgid ""
 "\n"
 "M E S S A G E\n"
@@ -3095,17 +3100,17 @@ msgstr ""
 "ungeeigneten Zustand. Starten Sie den Editor aus dem Hauptmenü heraus, um "
 "Ihre Karte speichern zu können."
 
-#: ../src/leveleditor.c:5876
+#: ../src/leveleditor.c:5910
 #, c-format
 msgid " Source waypoint selected : NONE"
 msgstr " Ausgangs-Wegpunkt gewählt : KEINER"
 
-#: ../src/leveleditor.c:5880
+#: ../src/leveleditor.c:5914
 #, c-format
 msgid " Source waypoint selected : X=%d Y=%d. "
 msgstr " Ausgangs-Wegpunkt ausgewählt : X=%d Y=%d. "
 
-#: ../src/leveleditor.c:5919
+#: ../src/leveleditor.c:5953
 msgid ""
 "\n"
 " Please enter new statement for this tile: \n"
@@ -3115,7 +3120,7 @@ msgstr ""
 " Bitte neuen Kommentar für diesen Titel: \n"
 "\n"
 
-#: ../src/leveleditor.c:5927
+#: ../src/leveleditor.c:5961
 msgid ""
 "\n"
 "No more free comment position.  Using first. "
@@ -3135,99 +3140,99 @@ msgstr ""
 msgid "Weapon reloaded"
 msgstr "Waffe nachgeladen."
 
-#: ../src/map.c:3027
+#: ../src/map.c:3008
 msgid "123 Acolyte"
 msgstr "123 Akolyth"
 
-#: ../src/map.c:3028
+#: ../src/map.c:3009
 msgid "139 Templar"
 msgstr "139 Templer"
 
-#: ../src/map.c:3029
+#: ../src/map.c:3010
 msgid "247 Banshee"
 msgstr "247 Todesfee"
 
-#: ../src/map.c:3030
+#: ../src/map.c:3011
 msgid "249 Chicago"
 msgstr "249 Chicago"
 
-#: ../src/map.c:3031
+#: ../src/map.c:3012
 msgid "296 Sawmill"
 msgstr "296 Sägewerk"
 
-#: ../src/map.c:3032
+#: ../src/map.c:3013
 msgid "302 Nemesis"
 msgstr "302 Rächer"
 
-#: ../src/map.c:3033
+#: ../src/map.c:3014
 msgid "329 Sparkie"
 msgstr "329 Funkenschleuder"
 
-#: ../src/map.c:3034
+#: ../src/map.c:3015
 msgid "420 Surgeon"
 msgstr "420 Chirurg"
 
-#: ../src/map.c:3035
+#: ../src/map.c:3016
 msgid "476 Coward"
 msgstr "476 Feigling"
 
-#: ../src/map.c:3036
+#: ../src/map.c:3017
 msgid "493 Spinster"
 msgstr "493 Blechjungfer"
 
-#: ../src/map.c:3037
+#: ../src/map.c:3018
 msgid "516 Ghoul"
 msgstr "516 Ghul"
 
-#: ../src/map.c:3038
+#: ../src/map.c:3019
 msgid "543 Forest Harvester"
 msgstr "543 Holzfäller"
 
-#: ../src/map.c:3039
+#: ../src/map.c:3020
 msgid "571 Apollo"
 msgstr "571 Apollo"
 
-#: ../src/map.c:3040
+#: ../src/map.c:3021
 msgid "598 Minister"
 msgstr "493 Blechjungfer"
 
-#: ../src/map.c:3041
+#: ../src/map.c:3022
 msgid "615 Firedevil"
 msgstr "615 Feuerteufel"
 
-#: ../src/map.c:3042
+#: ../src/map.c:3023
 msgid "629 Spitfire"
 msgstr "329 Funkenschleuder"
 
-#: ../src/map.c:3043
+#: ../src/map.c:3024
 msgid "711 Grillmeister"
 msgstr "711 Grillmeister"
 
-#: ../src/map.c:3044
+#: ../src/map.c:3025
 msgid "742 Zeus"
 msgstr "742 Zeus"
 
-#: ../src/map.c:3045
+#: ../src/map.c:3026
 msgid "751 Soviet"
 msgstr "751 Sowjet"
 
-#: ../src/map.c:3046
+#: ../src/map.c:3027
 msgid "821 Ufo"
 msgstr "821 Ufo"
 
-#: ../src/map.c:3047
+#: ../src/map.c:3028
 msgid "834 Wisp"
 msgstr "834 Irrlicht"
 
-#: ../src/map.c:3048
+#: ../src/map.c:3029
 msgid "883 Dalex"
 msgstr "883 Dalex"
 
-#: ../src/map.c:3049
+#: ../src/map.c:3030
 msgid "999 Cerebrum"
 msgstr "999 Großhirn"
 
-#: ../src/map.c:3050
+#: ../src/map.c:3031
 msgid "No Description For This One"
 msgstr "Noch keine Beschreibung"
 
@@ -3257,35 +3262,35 @@ msgstr " NEIN "
 msgid "OpenGL output active: "
 msgstr "OpenGL-Ausgabe aktiviert: "
 
-#: ../src/menu.c:253 ../src/menu.c:2263
+#: ../src/menu.c:253 ../src/menu.c:2273
 msgid "[down]"
 msgstr "[nach unten]"
 
-#: ../src/menu.c:254 ../src/menu.c:2252
+#: ../src/menu.c:254 ../src/menu.c:2262
 msgid "[up]"
 msgstr "[nach oben]"
 
-#: ../src/menu.c:1402
+#: ../src/menu.c:1411
 msgid "Play"
 msgstr "Spielen"
 
-#: ../src/menu.c:1403
+#: ../src/menu.c:1412
 msgid "Level Editor"
 msgstr "Level-Editor"
 
-#: ../src/menu.c:1404 ../src/menu.c:1531
+#: ../src/menu.c:1413 ../src/menu.c:1540
 msgid "Options"
 msgstr "Optionen"
 
-#: ../src/menu.c:1405
+#: ../src/menu.c:1414
 msgid "Credits"
 msgstr "Mitwirkende"
 
-#: ../src/menu.c:1406
+#: ../src/menu.c:1415
 msgid "Contribute"
 msgstr "Mithelfen"
 
-#: ../src/menu.c:1437
+#: ../src/menu.c:1446
 msgid ""
 "\n"
 "You cannot change the language\n"
@@ -3305,7 +3310,7 @@ msgstr ""
 "\n"
 "    Vielen Dank\n"
 
-#: ../src/menu.c:1446
+#: ../src/menu.c:1455
 msgid ""
 "\n"
 "The game has NOT been\n"
@@ -3322,55 +3327,55 @@ msgstr ""
 "\n"
 "Danke für Ihr Verständnis.\n"
 
-#: ../src/menu.c:1470
+#: ../src/menu.c:1479
 msgid "Graphics Options"
 msgstr "Grafik-Optionen"
 
-#: ../src/menu.c:1471
+#: ../src/menu.c:1480
 msgid "Sound Options"
 msgstr "Sound-Optionen"
 
-#: ../src/menu.c:1472
+#: ../src/menu.c:1481
 msgid "Language"
 msgstr "Sprache"
 
-#: ../src/menu.c:1473
+#: ../src/menu.c:1482
 msgid "Droid Talk"
 msgstr "Roboter-Kommentare"
 
-#: ../src/menu.c:1474
+#: ../src/menu.c:1483
 msgid "On-Screen Displays"
 msgstr "On-Screen-Display"
 
-#: ../src/menu.c:1475
+#: ../src/menu.c:1484
 msgid "Performance Tweaks"
 msgstr "Leistungs-Optionen"
 
-#: ../src/menu.c:1527
+#: ../src/menu.c:1536
 msgid "Resume Play"
 msgstr "Fortsetzen"
 
-#: ../src/menu.c:1529
+#: ../src/menu.c:1538
 msgid "Resume Playtest"
 msgstr "Testspiel fortsetzen"
 
-#: ../src/menu.c:1530
+#: ../src/menu.c:1539
 msgid "Save Hero"
 msgstr "Profil speichern"
 
-#: ../src/menu.c:1532
+#: ../src/menu.c:1541
 msgid "Load Latest"
 msgstr "Neuesten Stand laden"
 
-#: ../src/menu.c:1533
+#: ../src/menu.c:1542
 msgid "Load Backup"
 msgstr "Backup laden"
 
-#: ../src/menu.c:1537
+#: ../src/menu.c:1546
 msgid "Return to Level Editor"
 msgstr "Zurück zum Level-Editor"
 
-#: ../src/menu.c:1659
+#: ../src/menu.c:1668
 msgid ""
 "\n"
 "This option will be taken into account after you restart the game.\n"
@@ -3382,137 +3387,137 @@ msgstr ""
 "\n"
 "   Vielen Dank\n"
 
-#: ../src/menu.c:1703
+#: ../src/menu.c:1712
 #, c-format
 msgid "Gamma Correction: %1.2f"
 msgstr "Gamma-Korrektur: %1.2f"
 
-#: ../src/menu.c:1704
+#: ../src/menu.c:1713
 #, c-format
 msgid "Fullscreen Mode: %s"
 msgstr "Vollbildmodus: %s"
 
-#: ../src/menu.c:1704 ../src/menu.c:1959 ../src/menu.c:1960 ../src/menu.c:1961
-#: ../src/menu.c:2000 ../src/menu.c:2001 ../src/menu.c:2002 ../src/menu.c:2003
-#: ../src/menu.c:2004
+#: ../src/menu.c:1713 ../src/menu.c:1968 ../src/menu.c:1969 ../src/menu.c:1970
+#: ../src/menu.c:2009 ../src/menu.c:2010 ../src/menu.c:2011 ../src/menu.c:2012
+#: ../src/menu.c:2013
 msgid "ON"
 msgstr "EIN"
 
-#: ../src/menu.c:1704 ../src/menu.c:1959 ../src/menu.c:1960 ../src/menu.c:1961
-#: ../src/menu.c:2000 ../src/menu.c:2001 ../src/menu.c:2002 ../src/menu.c:2003
-#: ../src/menu.c:2004
+#: ../src/menu.c:1713 ../src/menu.c:1968 ../src/menu.c:1969 ../src/menu.c:1970
+#: ../src/menu.c:2009 ../src/menu.c:2010 ../src/menu.c:2011 ../src/menu.c:2012
+#: ../src/menu.c:2013
 msgid "OFF"
 msgstr "AUS"
 
-#: ../src/menu.c:1705
+#: ../src/menu.c:1714
 #, c-format
 msgid "Change Screen Resolution"
 msgstr "Bildschirmauflösung ändern"
 
-#: ../src/menu.c:1706
+#: ../src/menu.c:1715
 #, c-format
 msgid "Show Blood: %s"
 msgstr "Blut darstellen: %s"
 
-#: ../src/menu.c:1708
+#: ../src/menu.c:1717
 #, c-format
 msgid "Automap Scale: %2.1f"
 msgstr "Automap-Maßstab: %2.1f"
 
-#: ../src/menu.c:1776
+#: ../src/menu.c:1785
 #, c-format
 msgid "Background Music Volume: %1.2f"
 msgstr "Lautstärke Hintergrundmusik: %1.2f"
 
-#: ../src/menu.c:1777
+#: ../src/menu.c:1786
 #, c-format
 msgid "Sound Effects Volume: %1.2f"
 msgstr "Lautstärke Soundeffekte: %1.2f"
 
-#: ../src/menu.c:1841
+#: ../src/menu.c:1850
 #, c-format
 msgid "Hog CPU for max. performance: %s"
 msgstr "CPU besetzen für max. Leistung: %s"
 
-#: ../src/menu.c:1843
+#: ../src/menu.c:1852
 #, c-format
 msgid "Highlighting mode: %s"
 msgstr "Highlight-Modus: %s"
 
-#: ../src/menu.c:1843
+#: ../src/menu.c:1852
 msgid "FULL"
 msgstr "VOLL"
 
-#: ../src/menu.c:1843
+#: ../src/menu.c:1852
 msgid "REDUCED"
 msgstr "REDUZIERT"
 
-#: ../src/menu.c:1844
+#: ../src/menu.c:1853
 #, c-format
 msgid "Skip light radius: %s"
 msgstr "Leuchtradius aus: %s"
 
-#: ../src/menu.c:1845
+#: ../src/menu.c:1854
 #, c-format
 msgid "Skip shadow blitting: %s"
 msgstr "Schatten-Blitting aus: %s"
 
-#: ../src/menu.c:1847
+#: ../src/menu.c:1856
 #, c-format
 msgid "Skip fadings: %s"
 msgstr "Überblendung aus: %s"
 
-#: ../src/menu.c:1959
+#: ../src/menu.c:1968
 #, c-format
 msgid "Show Position: %s"
 msgstr "Position anzeigen: %s"
 
-#: ../src/menu.c:1960
+#: ../src/menu.c:1969
 #, c-format
 msgid "Show Framerate: %s"
 msgstr "Framerate anzeigen: %s"
 
-#: ../src/menu.c:1961
+#: ../src/menu.c:1970
 #, fuzzy, c-format
 msgid "Show Energy Bars: %s"
 msgstr "Gegner-Energiebalken anzeigen: %s"
 
-#: ../src/menu.c:1962
+#: ../src/menu.c:1971
 #, c-format
 msgid "Screen Messages at most: %d"
 msgstr "Nachrichten-Anzahl höchstens: %d"
 
-#: ../src/menu.c:1963
+#: ../src/menu.c:1972
 #, c-format
 msgid "Screen Message time: %3.1f"
 msgstr "Nachrichten-Anzeigezeit: %3.1f"
 
-#: ../src/menu.c:2000
+#: ../src/menu.c:2009
 #, c-format
 msgid "Enemy Hit Texts: %s"
 msgstr "Meldungen - Gegner getroffen: %s"
 
-#: ../src/menu.c:2001
+#: ../src/menu.c:2010
 #, c-format
 msgid "Enemy Bumped Texts: %s"
 msgstr "Meldungen - Gegner angerempelt: %s"
 
-#: ../src/menu.c:2002
+#: ../src/menu.c:2011
 #, c-format
 msgid "Enemy Aim Texts: %s"
 msgstr "Meldungen - Gegner anvisiert: %s"
 
-#: ../src/menu.c:2003
+#: ../src/menu.c:2012
 #, c-format
 msgid "All in-game Speech: %s"
 msgstr "Sprachausgabe: %s"
 
-#: ../src/menu.c:2004
+#: ../src/menu.c:2013
 #, c-format
 msgid "Reprogram bots after takeover: %s"
 msgstr "Robot-Reprogrammierung nach Übernahme: %s"
 
-#: ../src/menu.c:2023
+#: ../src/menu.c:2032
 msgid ""
 "\n"
 "     Please enter a name\n"
@@ -3528,11 +3533,11 @@ msgstr ""
 "\n"
 "     > "
 
-#: ../src/menu.c:2297 ../src/menu.c:2320
+#: ../src/menu.c:2307 ../src/menu.c:2336
 msgid "BACK"
 msgstr "ZURÜCK"
 
-#: ../src/menu.c:2300
+#: ../src/menu.c:2310
 msgid ""
 "\n"
 "\n"
@@ -3542,24 +3547,24 @@ msgstr ""
 "\n"
 "Keine Spielstände gefunden!"
 
-#: ../src/menu.c:2319
+#: ../src/menu.c:2335
 msgid "Sure!"
 msgstr "Sicher!"
 
-#: ../src/menu.c:2322
+#: ../src/menu.c:2338
 #, c-format
 msgid "Really delete hero '%s'?"
 msgstr "Profil '%s' wirklich löschen?"
 
-#: ../src/menu.c:2375
+#: ../src/menu.c:2392
 msgid "New Hero"
 msgstr "Neues Profil anlegen"
 
-#: ../src/menu.c:2376
+#: ../src/menu.c:2393
 msgid "Load existing Hero"
 msgstr "Bestehendes Profil laden"
 
-#: ../src/menu.c:2377
+#: ../src/menu.c:2394
 msgid "Delete existing Hero"
 msgstr "Bestehendes Profil löschen"
 
@@ -3746,31 +3751,31 @@ msgstr ""
 "\n"
 "Bemerkungen: %s\n"
 
-#: ../src/ship.c:399
+#: ../src/ship.c:373
 msgid " (Unidentified)"
 msgstr " (Nicht identifiziert)"
 
-#: ../src/ship.c:449
+#: ../src/ship.c:423
 msgid "Weapon"
 msgstr "Waffe"
 
-#: ../src/ship.c:451
+#: ../src/ship.c:425
 msgid "Drive"
 msgstr "Antrieb"
 
-#: ../src/ship.c:455
+#: ../src/ship.c:429
 msgid "Shield"
 msgstr "Schild"
 
-#: ../src/ship.c:457
+#: ../src/ship.c:431
 msgid "Helm"
 msgstr "Helm"
 
-#: ../src/ship.c:458
+#: ../src/ship.c:432
 msgid "Miscellaneous"
 msgstr "Diverses"
 
-#: ../src/ship.c:461
+#: ../src/ship.c:435
 #, c-format
 msgid ""
 "Item: %s \n"
@@ -3779,127 +3784,127 @@ msgstr ""
 "Gegenstand: %s \n"
 "Klasse: %s\n"
 
-#: ../src/ship.c:475
+#: ../src/ship.c:449
 msgid "Specials:"
 msgstr "Extras:"
 
-#: ../src/ship.c:487
+#: ../src/ship.c:461
 msgid "Multiplicity: "
 msgstr "Anzahl: "
 
-#: ../src/ship.c:494
+#: ../src/ship.c:468
 msgid "Duration: "
 msgstr "Beständigkeit: "
 
-#: ../src/ship.c:500
+#: ../src/ship.c:474
 #, c-format
 msgid "Indestructible\n"
 msgstr "Unzerstörbar\n"
 
-#: ../src/ship.c:505
+#: ../src/ship.c:479
 msgid "Attributes required: "
 msgstr "Erforderliche Eigenschaften: "
 
-#: ../src/ship.c:511
+#: ../src/ship.c:485
 msgid "NONE\n"
 msgstr "NICHTS\n"
 
-#: ../src/ship.c:517
+#: ../src/ship.c:491
 #, c-format
 msgid "Str: %d "
 msgstr "Str: %d "
 
-#: ../src/ship.c:522
+#: ../src/ship.c:496
 #, c-format
 msgid "Dex: %d "
 msgstr "Agi: %d "
 
-#: ../src/ship.c:527
+#: ../src/ship.c:501
 #, c-format
 msgid "Mag: %d "
 msgstr "Mag: %d "
 
-#: ../src/ship.c:565
+#: ../src/ship.c:539
 #, c-format
 msgid "Base list price: %ld\n"
 msgstr "Basis-Listenpreis: %ld\n"
 
-#: ../src/ship.c:568
+#: ../src/ship.c:542
 #, c-format
 msgid "Sell value: %ld\n"
 msgstr "Verkaufswert: %ld\n"
 
-#: ../src/ship.c:576
+#: ../src/ship.c:550
 #, c-format
 msgid "Repair cost: %ld\n"
 msgstr "Reparaturkosten: %ld\n"
 
-#: ../src/ship.c:581
+#: ../src/ship.c:555
 #, c-format
 msgid "Unsellable\n"
 msgstr "Unverkäuflich\n"
 
-#: ../src/ship.c:588
+#: ../src/ship.c:562
 msgid "Identification cost: 100\n"
 msgstr "Identifikationskosten: 100\n"
 
-#: ../src/ship.c:596
+#: ../src/ship.c:570
 #, c-format
 msgid "Damage: %d - %d\n"
 msgstr "Schaden: %d - %d\n"
 
-#: ../src/ship.c:605
+#: ../src/ship.c:579
 #, c-format
 msgid "Recharge time: %3.2f\n"
 msgstr "Nachladezeit: %3.2f\n"
 
-#: ../src/ship.c:612
+#: ../src/ship.c:586
 #, c-format
 msgid "Time to reload ammo clip: %3.2f\n"
 msgstr "Nachladezeit für Magazin: %3.2f\n"
 
-#: ../src/ship.c:619
+#: ../src/ship.c:593
 #, c-format
 msgid "Defense bonus: %d\n"
 msgstr "Verteidigungsbonus: %d\n"
 
-#: ../src/ship.c:623
+#: ../src/ship.c:597
 #, c-format
 msgid "Notes: %s"
 msgstr "Bemerkungen: %s"
 
-#: ../src/ship.c:630
+#: ../src/ship.c:604
 msgid " This weapon requires standard plasma ammunition."
 msgstr " Diese Feuerwaffe speist sich aus Standard-Plasmagas-Munition."
 
-#: ../src/ship.c:633
+#: ../src/ship.c:607
 msgid " This weapon requires standard laser crystal ammunition."
 msgstr " Eine Energiewaffe, die Laserkristall-Standardmunition benötigt."
 
-#: ../src/ship.c:636
+#: ../src/ship.c:610
 msgid " This weapon requires standard exterminator ammunition spheres."
 msgstr ""
 " Schwere Sturmwaffe unbekannter Herkunft, verwendet spezielle Exterminator-"
 "Fissions-Kugeln, Kaliber 2mm."
 
-#: ../src/ship.c:639
+#: ../src/ship.c:613
 msgid " This weapon requires .22 Long Rifle rounds."
 msgstr " Automatikwaffe für Kaliber .22 LR Geschosse."
 
-#: ../src/ship.c:642
+#: ../src/ship.c:616
 msgid " This weapon requires Shotgun shells."
 msgstr " Diese Pumpgun verfeuert standardmäßige Schrotgewehr-Patronen."
 
-#: ../src/ship.c:645
+#: ../src/ship.c:619
 msgid " This weapon requires 9x19mm rounds."
 msgstr " Das Schießeisen ist für Kaliber 9x19mm Kugeln ausgelegt."
 
-#: ../src/ship.c:648
+#: ../src/ship.c:622
 msgid " This weapon requires 7.62x39mm rounds."
 msgstr ""
 " Maschinenkarabiner, der Kaliber 7.62x39mm Munitions-Magazine aufnimmt."
 
-#: ../src/ship.c:651
+#: ../src/ship.c:625
 msgid " This weapon requires .50 (12.7x99mm) Browning Machine Gun rounds."
 msgstr " Browning-Maschinenpistole für Kaliber .50 BMG Munition."
 
@@ -4033,44 +4038,44 @@ msgstr "Passiv"
 msgid " for %c%.1f%c seconds"
 msgstr " für %c%.1f%c Sekunden"
 
-#: ../src/takeover.c:315
+#: ../src/takeover.c:314
 #, c-format
 msgid "For taking control of your enemy, you receive %d experience."
 msgstr ""
 "Durch die erfolgreiche Übernahme des Gegners gewinnst du %d Erfahrungspunkte."
 
-#: ../src/takeover.c:355
+#: ../src/takeover.c:354
 msgid "You cheat"
 msgstr "Du schummelst!"
 
-#: ../src/takeover.c:357
+#: ../src/takeover.c:356
 msgid "Complete"
 msgstr "Vollständig"
 
-#: ../src/takeover.c:367
+#: ../src/takeover.c:366
 msgid "Rejected"
 msgstr "Abgewehrt"
 
-#: ../src/takeover.c:375
+#: ../src/takeover.c:374
 msgid "Deadlock"
 msgstr "Totpunkt"
 
-#: ../src/takeover.c:472
+#: ../src/takeover.c:471
 #, c-format
 msgid "Color-%d"
 msgstr "Farbe-%d"
 
-#: ../src/takeover.c:511
+#: ../src/takeover.c:510
 #, c-format
 msgid "Subliminal"
 msgstr "Unterschwellig"
 
-#: ../src/takeover.c:565
+#: ../src/takeover.c:564
 #, c-format
 msgid "Finish-%d"
 msgstr "Linkzeit-%d"
 
-#: ../src/takeover.c:1816
+#: ../src/takeover.c:1815
 #, c-format
 msgid "Score"
 msgstr "Punkte"

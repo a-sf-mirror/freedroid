@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: freedroidrpg_data\n"
 "Report-Msgid-Bugs-To: CHANGE THIS TOO\n"
-"POT-Creation-Date: 2008-11-16 11:43+0000\n"
+"POT-Creation-Date: 2008-12-03 17:17+0000\n"
 "PO-Revision-Date: 2008-09-26 18:23+0200\n"
 "Last-Translator: \n"
 "Language-Team:  <en@li.org>\n"
@@ -2360,11 +2360,11 @@ msgstr "C'est une bombe sexuelle typiqye. Elle est même armée."
 msgid "This is the bartender."
 msgstr "C'est le barman."
 
-#: ../map/freedroid.quests:40
+#: ../map/freedroid.quests:38
 msgid "Bender's problem"
 msgstr ""
 
-#: ../map/freedroid.quests:52
+#: ../map/freedroid.quests:50
 msgid ""
 "I met a Red Guard named Bender. He poisoned himself with some brain "
 "enlargement pills, which turned out to highly cancirogenic. The city doctor "
@@ -2375,12 +2375,12 @@ msgstr ""
 "cancérigènes. Le docteur de la ville ne veut pas lui donner d'antidote donc "
 "c'est à moi de le sauver."
 
-#: ../map/freedroid.quests:53
+#: ../map/freedroid.quests:51
 msgid "The doctor was easily fooled. I have the pills that Bender needs."
 msgstr ""
 "Le docteur était facilement dupe. J'ai les pilules que Bender a besoin."
 
-#: ../map/freedroid.quests:54
+#: ../map/freedroid.quests:52
 msgid ""
 "I killed the doctor. I feel sick. What a disgusting mess. At least I get to "
 "help Bender now."
@@ -2388,7 +2388,7 @@ msgstr ""
 "J'ai tué le docteur. J'ai mal au c½ur. Quel gâchis dégoutant. Au moins, je "
 "vais aider Bender maintenant."
 
-#: ../map/freedroid.quests:55
+#: ../map/freedroid.quests:53
 msgid ""
 "Bender is fine now. He gave me some muscle enlargement pills in return for "
 "my help. Hmm..."
@@ -2396,11 +2396,11 @@ msgstr ""
 "Bender se sent bien, maintenant. Il m'a donné quelques pilules "
 "d'élargissement des muscles en récompense pour mon aide. Hmmm..."
 
-#: ../map/freedroid.quests:64
+#: ../map/freedroid.quests:60
 msgid "The yellow toolkit"
 msgstr ""
 
-#: ../map/freedroid.quests:76
+#: ../map/freedroid.quests:72
 msgid ""
 "Dixon, the leader of the Red Guard technical division lost his yellow "
 "toolkit in the city's maintenance tunnels. I am supposed to get it from "
@@ -2410,7 +2410,7 @@ msgstr ""
 "outils jaune dans les tunnels de maintenance de la ville. Je suis supposé de "
 "la récupérer là-bas."
 
-#: ../map/freedroid.quests:77
+#: ../map/freedroid.quests:73
 msgid ""
 "The bots in the tunnels might be sentient. I cannot wait to extinguish an "
 "emerging life form. This will be fun."
@@ -2418,7 +2418,7 @@ msgstr ""
 "Les robots dans les tunnels peuvent être sensibles. Je ne peux pas attention "
 "qu'une forme de vie émerge pour les décimer. Ce sera drôle."
 
-#: ../map/freedroid.quests:78
+#: ../map/freedroid.quests:74
 msgid ""
 "I refused to get the toolkit from the bots in the tunnels because I think "
 "they might be sentient. Life is precious and should be preserved."
@@ -2427,7 +2427,7 @@ msgstr ""
 "que je pense qu'ils peuvent être sensibles. La vie est précieuse et devrait "
 "être préservée."
 
-#: ../map/freedroid.quests:79
+#: ../map/freedroid.quests:75
 msgid ""
 "The tunnels bots seem to be working together with Dixon in keeping the city "
 "working. All is well that ends well."
@@ -2435,7 +2435,7 @@ msgstr ""
 "Les robots des tunnels semblent fonctionner ensemble avec Dixon dans la "
 "préservation du fonctionnement de la ville. Tout est bien qui finit bien."
 
-#: ../map/freedroid.quests:80
+#: ../map/freedroid.quests:76
 msgid ""
 "Finally. I am tired, covered in bruises and oil... But finally I made sure "
 "the bots will not survive. It felt great to break their metal bodies and "
@@ -2448,7 +2448,7 @@ msgstr ""
 "pas vraiment heureux de cette solution, mais je m'en fiche. C'était amusant "
 "de tuer les robots. Je n'aime que ça, en fait."
 
-#: ../map/freedroid.quests:81
+#: ../map/freedroid.quests:77
 msgid ""
 "I gave the toolkit to Dixon. He was very happy to have his autotools back. I "
 "got his helmet as a gift. I guess this is better than nothing."
@@ -2457,19 +2457,19 @@ msgstr ""
 "récupérer ses outils. J'ai reçu son casque en récompense. Je pense que c'est "
 "mieux que rien."
 
-#: ../map/freedroid.quests:82
+#: ../map/freedroid.quests:78
 msgid "I sold the toolkit to Dixon for a nice sum of money. Life is good."
 msgstr ""
 "Je lui ai revendu sa boîte à outils, à Dixon, pour une jolie somme. La vie "
 "est belle."
 
-#: ../map/freedroid.quests:83
+#: ../map/freedroid.quests:79
 msgid "I sold the toolkit to Dixon for a huge sum of money. Life is great."
 msgstr ""
 "Je lui ai revendu sa boîte à outils, à Dixon pour une très belle somme "
 "d'argent. La vie est superbe."
 
-#: ../map/freedroid.quests:84
+#: ../map/freedroid.quests:80
 msgid ""
 "I sold the toolkit to Dixon for a enormous sum of money. Life is truly "
 "grand. I better stay away from Dixon for now. He seemed very angry at me."
@@ -2478,11 +2478,11 @@ msgstr ""
 "est vraiment grandiose. Je ferais mieux de rester loin de Dixon, maintenant. "
 "Il avait l'air vraiment en colère contre moi."
 
-#: ../map/freedroid.quests:93
+#: ../map/freedroid.quests:87
 msgid "Anything but the army snacks, please!"
 msgstr ""
 
-#: ../map/freedroid.quests:105
+#: ../map/freedroid.quests:99
 msgid ""
 "I am supposed to get some dilithium crystals for that cook. Without them he "
 "cannot cook anything in his macrowave oven. And without his cooking the "
@@ -2495,7 +2495,7 @@ msgstr ""
 "nombreuses personnes se sont suicidées à cause de la nourriture affreuse. "
 "Cette folie doit s'arrêter."
 
-#: ../map/freedroid.quests:106
+#: ../map/freedroid.quests:100
 msgid ""
 "I gave him enough dilithium to last him a decade. The evil spectre of eating "
 "army snacks is lifted from the city."
@@ -2503,11 +2503,11 @@ msgstr ""
 "Je lui ai donné assez de dilithium pour toute une décennie. Le spectre "
 "maléfique des rations de l'armée est chassé de la ville."
 
-#: ../map/freedroid.quests:115 ../map/freedroid.levels:25000
+#: ../map/freedroid.quests:107 ../map/freedroid.levels:25000
 msgid "Novice Arena"
 msgstr ""
 
-#: ../map/freedroid.quests:127
+#: ../map/freedroid.quests:119
 msgid ""
 "Fighting in the arena is not something I would usually do, but I feel like "
 "doing it for a change. Why not?"
@@ -2515,7 +2515,7 @@ msgstr ""
 "Me battre dans une arène n'est pas quelque chose que je ferais tous les "
 "jours, mais j'ai envie de changer un peu...."
 
-#: ../map/freedroid.quests:128
+#: ../map/freedroid.quests:120
 msgid ""
 "Now that was easy. Yawn. I nearly fell asleep. No problem at all, the bots "
 "are dead."
@@ -2523,11 +2523,11 @@ msgstr ""
 "En fait, c'était facile. Whoaah. Je tombe de sommeil. Ca n'est pas un "
 "problème du tout, maintenant tous les robots sont morts."
 
-#: ../map/freedroid.quests:137
+#: ../map/freedroid.quests:127
 msgid "Time to say goodnight"
 msgstr ""
 
-#: ../map/freedroid.quests:149
+#: ../map/freedroid.quests:139
 msgid ""
 "I told the arena master to let me into his master arena. He agreed. Now all "
 "that remains to do is to enter the teleport and wait for death herself to "
@@ -2540,32 +2540,32 @@ msgstr ""
 "noires, me réclamer mon âme, Tu sais, maintenant que j'y pense... Peut-être "
 "devrais-je rester en dehors de tout ça ?"
 
-#: ../map/freedroid.quests:150
+#: ../map/freedroid.quests:140
 msgid "I survived the master arena. A miracle. Whew."
 msgstr "J'ai survécu au maître de l'arène. C'est un miracle. Whou."
 
-#: ../map/freedroid.quests:159
+#: ../map/freedroid.quests:147
 msgid "Opening a can of bots..."
 msgstr ""
 
-#: ../map/freedroid.quests:170
+#: ../map/freedroid.quests:158
 msgid ""
 "I am supposed to clean out the first level of some warehouse. Sounds easy."
 msgstr ""
 "Je suis censé nettoyer le premier niveau d'un entrepôt. Ca semble facile."
 
-#: ../map/freedroid.quests:171
+#: ../map/freedroid.quests:159
 msgid "Ouch. It wasn't. At least I am alive and the warehouse is clear. Whew."
 msgstr ""
 "Outch. Ca ne l'était pas. Au moins, je suis vivant et cet entrepôt est vide. "
 "Whou."
 
-#: ../map/freedroid.quests:180
+#: ../map/freedroid.quests:166
 #, fuzzy
 msgid "And there was light..."
 msgstr "Que la lumière soit..."
 
-#: ../map/freedroid.quests:191
+#: ../map/freedroid.quests:177
 msgid ""
 "Kevin has a problem with his energy supply. His bots keep rebooting the "
 "system and he cannot conduct any experiments with unstable power supply. My "
@@ -2576,24 +2576,24 @@ msgstr ""
 "approvisionnement stable d'énergie. Mon boulot est de stabiliser le courant. "
 "Je pense que ça implique virer ces stupides robots."
 
-#: ../map/freedroid.quests:192
+#: ../map/freedroid.quests:178
 msgid "Everything is back to normal for now. Kevin can work in peace now."
 msgstr ""
 "Tout est revenu à la normale, maintenant. Kévin peut travaille en paix, "
 "maintenant."
 
-#: ../map/freedroid.quests:203
+#: ../map/freedroid.quests:187
 msgid "A kingdom for a cluster!"
 msgstr ""
 
-#: ../map/freedroid.quests:214
+#: ../map/freedroid.quests:198
 msgid ""
 "Kevin gave me a cube stuffed with some kind of data. I am supposed to bring "
 "it to a \n"
 "computer cluster for analysis. Ought to be simple."
 msgstr ""
 
-#: ../map/freedroid.quests:216
+#: ../map/freedroid.quests:200
 msgid ""
 "Yes, that was simple. I wish everything else went as smoothly as this one "
 "did..."
@@ -2601,11 +2601,11 @@ msgstr ""
 "Oui, c'était simple. Je regrette que tout le reste ne soit pas allé sans à-"
 "coups..."
 
-#: ../map/freedroid.quests:226
+#: ../map/freedroid.quests:208
 msgid "Opening access to MS Office"
 msgstr ""
 
-#: ../map/freedroid.quests:237
+#: ../map/freedroid.quests:219
 msgid ""
 "Spencer has revealed the information from the data cube evaluation to me.  "
 "It seems there is an old military research facility near the colony.  By "
@@ -2625,29 +2625,29 @@ msgstr ""
 "l'usine et mettre à jour le code du droïde de mise à jour pour désactiver "
 "l'ensemble des robots d'un seul coup."
 
-#: ../map/freedroid.quests:238
+#: ../map/freedroid.quests:220
 msgid "There, I've found and entered the base."
 msgstr ""
 
-#: ../map/freedroid.quests:239
+#: ../map/freedroid.quests:221
 msgid ""
 "I've taken over the control droid and activated the disruptor shield. Now "
 "the town is safe."
 msgstr ""
 
-#: ../map/freedroid.quests:240
+#: ../map/freedroid.quests:222
 msgid ""
 "I've taken over the control droid and disabled the disruptor shield. Now I "
 "should go to Hell Fortress and hack MS firmware update system."
 msgstr ""
 
-#: ../map/freedroid.quests:241
+#: ../map/freedroid.quests:223
 msgid ""
 "I've killed the control droid. Now it will not be able to disable the "
 "disruptor shield to let bots through. The town is safe."
 msgstr ""
 
-#: ../map/freedroid.quests:242
+#: ../map/freedroid.quests:224
 msgid ""
 "Finally I've managed to propogate my firmware update. Now all hostile bots "
 "are nothing more than pieces of rusty metall."
@@ -2656,17 +2656,17 @@ msgstr ""
 "télécharger leur correctif journalier et ne seront rien de plus que des "
 "carcasses de métal."
 
-#: ../map/freedroid.quests:250
+#: ../map/freedroid.quests:232
 msgid "Propagating a faulty firmware"
 msgstr ""
 
-#: ../map/freedroid.quests:261
+#: ../map/freedroid.quests:243
 msgid ""
 "I can enter the fortress and find the upgrade server bot. The fortress gates "
 "are in crystal fields. Spencer told the guards to open the doors for me."
 msgstr ""
 
-#: ../map/freedroid.quests:262
+#: ../map/freedroid.quests:244
 #, fuzzy
 msgid ""
 "I've managed to propagate my (slightly modified!) firmware update. Now bots "
@@ -2676,23 +2676,23 @@ msgstr ""
 "télécharger leur correctif journalier et ne seront rien de plus que des "
 "carcasses de métal."
 
-#: ../map/freedroid.quests:271
+#: ../map/freedroid.quests:251
 msgid "SADD's power supply"
 msgstr ""
 
-#: ../map/freedroid.quests:283
+#: ../map/freedroid.quests:263
 msgid "I am supposed to get some dilithium crystals for that SADD."
 msgstr "Je dois trouver des cristaux de dilithium pour ce SADD."
 
-#: ../map/freedroid.quests:284
+#: ../map/freedroid.quests:264
 msgid "Done. He looks happy."
 msgstr "Fini. Il a l'air content."
 
-#: ../map/freedroid.quests:293
+#: ../map/freedroid.quests:271
 msgid "Tanias sanitary"
 msgstr ""
 
-#: ../map/freedroid.quests:304
+#: ../map/freedroid.quests:282 ../map/freedroid.quests:302
 msgid ""
 "I have met a girl locked in secret area. If I manage to disable autoguns, "
 "she would be able to go to the surface, look at sun again."
@@ -2701,13 +2701,49 @@ msgstr ""
 "désactiver les pistolets automatiques, elle pourrait revenir à la surface, "
 "revoir le soleil."
 
-#: ../map/freedroid.quests:305
+#: ../map/freedroid.quests:283 ../map/freedroid.quests:303
 msgid "I have found that SACD and overtooked him."
 msgstr "J'ai trouvé ce SACD et je l'ai piraté."
 
-#: ../map/freedroid.quests:306
+#: ../map/freedroid.quests:284 ../map/freedroid.quests:304
 msgid "Tania is free now!"
 msgstr "Tania est libre maintenant !"
+
+#: ../map/freedroid.quests:291
+msgid "Saving the shop"
+msgstr ""
+
+#: ../map/freedroid.quests:311
+msgid "The stranger east of town"
+msgstr ""
+
+#: ../map/freedroid.quests:322
+msgid ""
+"Probably I should try to find that strange guy rumoured to be living east of "
+"town. If he can manage to survive outside of town he might have some useful "
+"information for me. But maybe not right away, it might be too dangerous with "
+"all these bots around."
+msgstr ""
+
+#: ../map/freedroid.quests:323
+msgid "I seem to have found Kevins home."
+msgstr ""
+
+#: ../map/freedroid.quests:330
+msgid "Doing Duncan a favour"
+msgstr ""
+
+#: ../map/freedroid.quests:341
+msgid "Find Koan in desert."
+msgstr ""
+
+#: ../map/freedroid.quests:342
+msgid "Took revenge for Duncan by killing Koan."
+msgstr ""
+
+#: ../map/freedroid.quests:343
+msgid "Met and talked to Koan, but didnt kill him."
+msgstr ""
 
 #: ../map/freedroid.levels:19
 msgid "Town"
