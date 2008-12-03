@@ -992,12 +992,9 @@ ShowPlayground ( void )
     blit_tux ( xoffs + DruidStart [ YourColor ] . x ,
 	       yoffs + DruidStart [ YourColor ] . y + 30);
 
-    float saved_phase=cDroid->previous_phase;
-    cDroid->previous_phase=0;
     PutEnemy (cDroid, xoffs + DruidStart[!YourColor].x,
 		  yoffs + DruidStart[!YourColor].y , FALSE , FALSE );
-
-    cDroid->previous_phase=saved_phase;    
+    
     Set_Rect ( Target_Rect, xoffs + LEFT_OFFS_X, yoffs + LEFT_OFFS_Y,
 	       User_Rect.w, User_Rect.h);
     
