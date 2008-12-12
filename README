@@ -35,7 +35,8 @@
 
 2. Install & Play
 ===========
- For help with installation, please refer to the INSTALL file located in the same folder as this file.
+ For general help with installation, please refer to the INSTALL file located in the same folder as this file.
+ Specific instructions for Ubuntu:  http://ubuntuforums.org/showpost.php?p=6127097&postcount=16
 
  To run the game you normally just have to launch the executable.
  For advanced options execute "freedroidRPG --help" (in a terminal) to get a list of commandline options.
@@ -121,6 +122,7 @@
                 fr_FR ISO-8859-15
                 sv_SE ISO-8859-15
                 ru_RU.cp1251 cp1251
+           and then exit with ctrl+x and yes to saving the changes.
         3) Run
                 sudo dpkg-reconfigure locales
         4) You should now be able to chose the corresponding languages in the in game menu.
