@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: freedroidrpg\n"
 "Report-Msgid-Bugs-To: freedroid-discussion@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-12-03 18:21+0100\n"
+"POT-Creation-Date: 2008-12-15 18:31+0100\n"
 "PO-Revision-Date: 2008-10-04 00:24+0200\n"
 "Last-Translator: Ronny Standtke <Ronny.Standtke@gmx.net>\n"
 "Language-Team: Deutsch\n"
@@ -1254,46 +1254,46 @@ msgstr "Angriff"
 msgid "Damage"
 msgstr "Schaden"
 
-#: ../src/chat.c:486
+#: ../src/chat.c:766
 msgid "Melee fighting ability improved!"
 msgstr "Nahkampffähigkeit verbessert!"
 
-#: ../src/chat.c:491
+#: ../src/chat.c:771
 msgid "Ranged combat ability improved!"
 msgstr "Schießtechnik verbessert!"
 
-#: ../src/chat.c:496
+#: ../src/chat.c:776
 msgid "Programming ability improved!"
 msgstr "Programmierfähigkeit verbessert!"
 
-#: ../src/chat.c:595
+#: ../src/chat.c:875
 msgid "1 Item received (on floor)"
 msgstr "1 Gegenstand erhalten (liegt auf dem Boden)."
 
-#: ../src/chat.c:599
+#: ../src/chat.c:879
 msgid "1 Item received!"
 msgstr "1 Gegenstand erhalten!"
 
-#: ../src/chat.c:713
+#: ../src/chat.c:993
 #, c-format
 msgid "+%d Experience Points"
 msgstr "+%d Erfahrungspunkte."
 
-#: ../src/chat.c:755
+#: ../src/chat.c:1035
 #, c-format
 msgid "%d bucks given"
 msgstr "%d Tribucks gegeben."
 
-#: ../src/chat.c:773
+#: ../src/chat.c:1053
 #, c-format
 msgid "%d bucks received"
 msgstr "%d Tribucks erhalten."
 
-#: ../src/chat.c:1228
+#: ../src/chat.c:1508
 msgid "Start of Dialog"
 msgstr ""
 
-#: ../src/chat.c:1278
+#: ../src/chat.c:1558
 msgid "What will you say?"
 msgstr "Was wirst du sagen?"
 
@@ -2251,111 +2251,111 @@ msgstr "ALLES"
 msgid "QUICK"
 msgstr "SCHNELL"
 
-#: ../src/leveleditor.c:2623
-msgid "Insert/Remove column to the very west"
-msgstr "Einfügen/Löschen einer Spalte im äußersten Westen"
+#: ../src/leveleditor.c:2638
+msgid "N edge: -/+  (<-/->)"
+msgstr ""
 
-#: ../src/leveleditor.c:2624
-msgid "Insert/Remove column just east of western Interface"
-msgstr "Einfügen/Löschen einer Spalte direkt östlich vom westlichen Übergang"
+#: ../src/leveleditor.c:2639
+msgid "E edge: -/+  (<-/->)"
+msgstr ""
 
-#: ../src/leveleditor.c:2625
-msgid "Insert/Remove column just west of eastern Interface"
-msgstr "Einfügen/Löschen einer Spalte direkt westlich vom östlichen Übergang"
+#: ../src/leveleditor.c:2640
+msgid "S edge: -/+  (<-/->)"
+msgstr ""
 
-#: ../src/leveleditor.c:2626
-msgid "Insert/Remove column to the very east"
-msgstr "Einfügen/Löschen einer Spalte im äußersten Osten"
+#: ../src/leveleditor.c:2641
+msgid "W edge: -/+  (<-/->)"
+msgstr ""
 
-#: ../src/leveleditor.c:2628
-msgid "Insert/Remove line to the very north"
-msgstr "Einfügen/Löschen einer Spalte im äußersten Norden"
+#: ../src/leveleditor.c:2643
+msgid "N interface: -/+  (<-/->)"
+msgstr ""
 
-#: ../src/leveleditor.c:2629
-msgid "Insert/Remove line just south of northern Interface"
-msgstr "Einfügen/Löschen einer Spalte direkt südlich vom nördlichen Übergang"
+#: ../src/leveleditor.c:2644
+msgid "E interface: -/+  (<-/->)"
+msgstr ""
 
-#: ../src/leveleditor.c:2630
-msgid "Insert/Remove line just north of southern Interface"
-msgstr "Einfügen/Löschen einer Spalte direkt nördlich vom südlichen Übergang"
+#: ../src/leveleditor.c:2645
+msgid "S interface: -/+  (<-/->)"
+msgstr ""
 
-#: ../src/leveleditor.c:2631
-msgid "Insert/Remove line to the very south"
-msgstr "Einfügen/Löschen einer Spalte im äußersten Süden"
+#: ../src/leveleditor.c:2646
+msgid "W interface: -/+  (<-/->)"
+msgstr ""
 
-#: ../src/leveleditor.c:2633
+#: ../src/leveleditor.c:2648
 #, c-format
 msgid "Current level size in X: %d."
 msgstr "Momentane Levelgröße in X: %d."
 
-#: ../src/leveleditor.c:2635
+#: ../src/leveleditor.c:2650
 #, c-format
 msgid "Current level size in Y: %d."
 msgstr "Momentane Levelgröße in Y: %d."
 
-#: ../src/leveleditor.c:2638 ../src/leveleditor.c:2935
-#: ../src/leveleditor.c:3831 ../src/menu.c:1485 ../src/menu.c:1617
+#: ../src/leveleditor.c:2653 ../src/leveleditor.c:2950
+#: ../src/leveleditor.c:3846 ../src/menu.c:1485 ../src/menu.c:1617
 #: ../src/menu.c:1719 ../src/menu.c:1787 ../src/menu.c:1858 ../src/menu.c:1973
 #: ../src/menu.c:2014 ../src/menu.c:2276 ../src/menu.c:2395
 msgid "Back"
 msgstr "Zurück"
 
-#: ../src/leveleditor.c:2895
+#: ../src/leveleditor.c:2910
 #, c-format
 msgid "Level Number: %d."
 msgstr "Level-Nummer: %d"
 
-#: ../src/leveleditor.c:2898
+#: ../src/leveleditor.c:2913
 #, c-format
 msgid "Level Name: %s"
 msgstr "Level-Name: %s"
 
-#: ../src/leveleditor.c:2900
+#: ../src/leveleditor.c:2915
 #, c-format
 msgid "Level Dimensions. X: %d. Y: %d."
 msgstr "Level-Dimensionen. X: %d. Y: %d."
 
-#: ../src/leveleditor.c:2904
+#: ../src/leveleditor.c:2919
 #, c-format
 msgid "Level Edge Interfaces:"
 msgstr "Level-Grenzen:"
 
-#: ../src/leveleditor.c:2921
+#: ../src/leveleditor.c:2936
 #, c-format
 msgid "Background music file name: %s"
 msgstr "Hintergrundmusik-Filename: %s"
 
-#: ../src/leveleditor.c:2923
+#: ../src/leveleditor.c:2938
 #, c-format
 msgid "Level Comment: %s"
 msgstr "Level-Kommentar: %s"
 
-#: ../src/leveleditor.c:2925
+#: ../src/leveleditor.c:2940
 #, c-format
 msgid "Light radius bonus: %d"
 msgstr "Leuchtradius-Zusatz: %d"
 
-#: ../src/leveleditor.c:2928
+#: ../src/leveleditor.c:2943
 #, c-format
 msgid "Minimal light value: %d"
 msgstr "Minimaler Lichtwert: %d"
 
-#: ../src/leveleditor.c:2931
+#: ../src/leveleditor.c:2946
 #, c-format
 msgid "Infinite running on this level: "
 msgstr "Unendliche Lauf-Ausdauer in diesem Level: "
 
-#: ../src/leveleditor.c:2932 ../src/menu.c:1716 ../src/menu.c:1851
+#: ../src/leveleditor.c:2947 ../src/menu.c:1716 ../src/menu.c:1851
 #: ../src/menu.c:1853 ../src/menu.c:1855 ../src/menu.c:1857
 msgid "YES"
 msgstr "JA"
 
-#: ../src/leveleditor.c:2933 ../src/menu.c:1716 ../src/menu.c:1851
+#: ../src/leveleditor.c:2948 ../src/menu.c:1716 ../src/menu.c:1851
 #: ../src/menu.c:1853 ../src/menu.c:1855 ../src/menu.c:1857
 msgid "NO"
 msgstr "NEIN"
 
-#: ../src/leveleditor.c:2964
+#: ../src/leveleditor.c:2979
 msgid ""
 "\n"
 " Please enter new level name: \n"
@@ -2365,7 +2365,7 @@ msgstr ""
 " Bitte neuen Levelnamen eingeben: \n"
 "\n"
 
-#: ../src/leveleditor.c:2971
+#: ../src/leveleditor.c:2986
 msgid ""
 "\n"
 " Please enter new music file name: \n"
@@ -2375,7 +2375,7 @@ msgstr ""
 " Bitte neuen Musik-Filenamen eingeben: \n"
 "\n"
 
-#: ../src/leveleditor.c:2978
+#: ../src/leveleditor.c:2993
 msgid ""
 "\n"
 " Please enter new level comment: \n"
@@ -2385,52 +2385,52 @@ msgstr ""
 " Bitte neuen Level-Kommentar eingeben: \n"
 "\n"
 
-#: ../src/leveleditor.c:3108
+#: ../src/leveleditor.c:3123
 #, c-format
 msgid "Lvl: %d - %s"
 msgstr "Lvl: %d - %s"
 
-#: ../src/leveleditor.c:3110
+#: ../src/leveleditor.c:3125
 msgid "Level Options"
 msgstr "Level-Optionen"
 
-#: ../src/leveleditor.c:3111
+#: ../src/leveleditor.c:3126
 msgid "Run Level Validator"
 msgstr "Level-Prüfung starten"
 
-#: ../src/leveleditor.c:3114
+#: ../src/leveleditor.c:3129
 msgid "Playtest Mapfile"
 msgstr "Probespielen"
 
-#: ../src/leveleditor.c:3115
+#: ../src/leveleditor.c:3130
 msgid "Save Mapfile"
 msgstr "Karte speichern"
 
-#: ../src/leveleditor.c:3117
+#: ../src/leveleditor.c:3132
 msgid "Add New Level"
 msgstr "Neuen Level hinzufügen"
 
-#: ../src/leveleditor.c:3121
+#: ../src/leveleditor.c:3136
 msgid "Return to game"
 msgstr "Rückkehr zum Spiel"
 
-#: ../src/leveleditor.c:3122
+#: ../src/leveleditor.c:3137
 msgid "Saving disabled"
 msgstr "Speichern deaktiviert"
 
-#: ../src/leveleditor.c:3124
+#: ../src/leveleditor.c:3139
 msgid "Adding Level disabled"
 msgstr "Level hinzufügen deaktiviert"
 
-#: ../src/leveleditor.c:3126 ../src/menu.c:1544
+#: ../src/leveleditor.c:3141 ../src/menu.c:1544
 msgid "Quit to Main Menu"
 msgstr "Rückkehr zum Hauptmenü"
 
-#: ../src/leveleditor.c:3127 ../src/menu.c:1416 ../src/menu.c:1547
+#: ../src/leveleditor.c:3142 ../src/menu.c:1416 ../src/menu.c:1547
 msgid "Exit FreedroidRPG"
 msgstr "FreedroidRPG beenden"
 
-#: ../src/leveleditor.c:3148
+#: ../src/leveleditor.c:3163
 msgid ""
 "\n"
 " Please enter new level number: \n"
@@ -2440,11 +2440,11 @@ msgstr ""
 " Bitte neue Level-Nummer eingeben: \n"
 "\n"
 
-#: ../src/leveleditor.c:3181
+#: ../src/leveleditor.c:3196
 msgid "Your ship was saved..."
 msgstr "Karte wurde gespeichert..."
 
-#: ../src/leveleditor.c:3308
+#: ../src/leveleditor.c:3323
 msgid ""
 "\n"
 "The list of inconsistencies of the jump interfaces for this level:\n"
@@ -2454,23 +2454,23 @@ msgstr ""
 "Die Liste an Inkonsistenzen der Sprung-Grenzen für diesen Level:\n"
 "\n"
 
-#: ../src/leveleditor.c:3320
+#: ../src/leveleditor.c:3335
 msgid "BACK-FORTH-MISMATCH: North doesn't lead back here (yet)!\n"
 msgstr "VOR-ZURÜCK-FEHLER: Norden führt (noch) nicht hierher zurück!\n"
 
-#: ../src/leveleditor.c:3329
+#: ../src/leveleditor.c:3344
 msgid "BACK-FORTH-MISMATCH: South doesn't lead back here (yet)!\n"
 msgstr "VOR-ZURÜCK-FEHLER: Süden führt (noch) nicht hierher zurück!\n"
 
-#: ../src/leveleditor.c:3338
+#: ../src/leveleditor.c:3353
 msgid "BACK-FORTH-MISMATCH: East doesn't lead back here (yet)!\n"
 msgstr "VOR-ZURÜCK-FEHLER: Osten führt (noch) nicht hierher zurück!\n"
 
-#: ../src/leveleditor.c:3347
+#: ../src/leveleditor.c:3362
 msgid "BACK-FORTH-MISMATCH: West doesn't lead back here (yet)!\n"
 msgstr "VOR-ZURÜCK-FEHLER: Westen führt (noch) nicht hierher zurück!\n"
 
-#: ../src/leveleditor.c:3351
+#: ../src/leveleditor.c:3366
 msgid ""
 "\n"
 "NO OTHER BACK-FORTH-MISMATCH ERRORS other than those listed above\n"
@@ -2480,33 +2480,33 @@ msgstr ""
 "KEINE WEITEREN VOR-ZURÜCK-FEHLER, als die oben aufgelisteten\n"
 "\n"
 
-#: ../src/leveleditor.c:3364
+#: ../src/leveleditor.c:3379
 msgid ""
 "INTERFACE SIZE MISMATCH: North doesn't lead so same-sized interface "
 "level!!!\n"
 msgstr ""
 "GRENZLÄNGEN-FEHLER: Norden führt nicht zu Level mit gleichlangen Grenzen!!!\n"
 
-#: ../src/leveleditor.c:3374
+#: ../src/leveleditor.c:3389
 msgid ""
 "INTERFACE SIZE MISMATCH: South doesn't lead so same-sized interface "
 "level!!!\n"
 msgstr ""
 "GRENZLÄNGEN-FEHLER: Süden führt nicht zu Level mit gleichlangen Grenzen!!!\n"
 
-#: ../src/leveleditor.c:3384
+#: ../src/leveleditor.c:3399
 msgid ""
 "INTERFACE SIZE MISMATCH: East doesn't lead so same-sized interface level!!!\n"
 msgstr ""
 "GRENZLÄNGEN-FEHLER: Osten führt nicht zu Level mit gleichlangen Grenzen!!!\n"
 
-#: ../src/leveleditor.c:3394
+#: ../src/leveleditor.c:3409
 msgid ""
 "INTERFACE SIZE MISMATCH: West doesn't lead so same-sized interface level!!!\n"
 msgstr ""
 "GRENZLÄNGEN-FEHLER: Westen führt nicht zu Level mit gleichlangen Grenzen!!!\n"
 
-#: ../src/leveleditor.c:3408
+#: ../src/leveleditor.c:3423
 msgid ""
 "LEVEL DIMENSION MISMATCH: North doesn't lead so same-sized level (non-fatal, "
 "but no good comes from this)!\n"
@@ -2514,7 +2514,7 @@ msgstr ""
 "LEVEL-DIMENSIONSFEHLER: Norden führt nicht zu gleichgroßem Level\n"
 " (nicht fatal, aber so entstehen keine guten Spiele)!\n"
 
-#: ../src/leveleditor.c:3417
+#: ../src/leveleditor.c:3432
 msgid ""
 "LEVEL DIMENSION MISMATCH: South doesn't lead so same-sized level (non-fatal, "
 "but no good comes from this)!\n"
@@ -2522,7 +2522,7 @@ msgstr ""
 "LEVEL-DIMENSIONSFEHLER: Süden führt nicht zu gleichgroßem Level\n"
 " (nicht fatal, aber so entstehen keine guten Spiele)!\n"
 
-#: ../src/leveleditor.c:3426
+#: ../src/leveleditor.c:3441
 msgid ""
 "LEVEL DIMENSION MISMATCH: East doesn't lead so same-sized level (non-fatal, "
 "but no good comes from this)!\n"
@@ -2530,7 +2530,7 @@ msgstr ""
 "LEVEL-DIMENSIONSFEHLER: Osten führt nicht zu gleichgroßem Level\n"
 " (nicht fatal, aber so entstehen keine guten Spiele)!\n"
 
-#: ../src/leveleditor.c:3435
+#: ../src/leveleditor.c:3450
 msgid ""
 "LEVEL DIMENSION MISMATCH: West doesn't lead so same-sized level (non-fatal, "
 "but no good comes from this)!\n"
@@ -2538,7 +2538,7 @@ msgstr ""
 "LEVEL-DIMENSIONSFEHLER: Westen führt nicht zu gleichgroßem Level\n"
 " (nicht fatal, aber so entstehen keine guten Spiele)!\n"
 
-#: ../src/leveleditor.c:3443
+#: ../src/leveleditor.c:3458
 msgid ""
 "\n"
 "\n"
@@ -2548,55 +2548,55 @@ msgstr ""
 "\n"
 "--- Listenende --- Leertaste für Rückkehr zum Menü ---\n"
 
-#: ../src/leveleditor.c:3813
-#, c-format
-msgid "Jump threshold north: %d.  Up/Down"
+#: ../src/leveleditor.c:3828
+#, fuzzy, c-format
+msgid "Jump threshold north: %d.  (<-/->)"
 msgstr "Sprung-Grenzbereich Nord: %d.  Rauf/Runter"
 
-#: ../src/leveleditor.c:3815
-#, c-format
-msgid "Jump threshold south: %d.  Up/Down"
+#: ../src/leveleditor.c:3830
+#, fuzzy, c-format
+msgid "Jump threshold south: %d.  (<-/->)"
 msgstr "Sprung-Grenzbereich Süd: %d.  Rauf/Runter"
 
-#: ../src/leveleditor.c:3817
-#, c-format
-msgid "Jump threshold east: %d.  Up/Down"
+#: ../src/leveleditor.c:3832
+#, fuzzy, c-format
+msgid "Jump threshold east: %d.  (<-/->)"
 msgstr "Sprung-Grenzbereich Ost: %d.  Rauf/Runter"
 
-#: ../src/leveleditor.c:3819
-#, c-format
-msgid "Jump threshold west: %d.  Up/Down"
+#: ../src/leveleditor.c:3834
+#, fuzzy, c-format
+msgid "Jump threshold west: %d.  (<-/->)"
 msgstr "Sprung-Grenzbereich West: %d.  Rauf/Runter"
 
-#: ../src/leveleditor.c:3821
-#, c-format
-msgid "Jump target north: %d.  Up/Down"
+#: ../src/leveleditor.c:3836
+#, fuzzy, c-format
+msgid "Jump target north: %d.  (<-/->)"
 msgstr "Sprungziel Nord: %d.  Rauf/Runter"
 
-#: ../src/leveleditor.c:3823
-#, c-format
-msgid "Jump target south: %d.  Up/Down"
+#: ../src/leveleditor.c:3838
+#, fuzzy, c-format
+msgid "Jump target south: %d.  (<-/->)"
 msgstr "Sprungziel Süd: %d.  Rauf/Runter"
 
-#: ../src/leveleditor.c:3825
-#, c-format
-msgid "Jump target east: %d.  Up/Down"
+#: ../src/leveleditor.c:3840
+#, fuzzy, c-format
+msgid "Jump target east: %d.  (<-/->)"
 msgstr "Sprungziel Ost: %d.  Rauf/Runter"
 
-#: ../src/leveleditor.c:3827
-#, c-format
-msgid "Jump target west: %d.  Up/Down"
+#: ../src/leveleditor.c:3842
+#, fuzzy, c-format
+msgid "Jump target west: %d.  (<-/->)"
 msgstr "Sprungziel West: %d.  Rauf/Runter"
 
-#: ../src/leveleditor.c:3829
+#: ../src/leveleditor.c:3844
 msgid "Export this level to other target levels"
 msgstr "Diesen Level zu anderen Ziel-Leveln exportieren"
 
-#: ../src/leveleditor.c:3830
+#: ../src/leveleditor.c:3845
 msgid "Report interface inconsistencies"
 msgstr "Inkonsistenzen von Levelgrenzen auflisten"
 
-#: ../src/leveleditor.c:4156
+#: ../src/leveleditor.c:4171
 #, c-format
 msgid ""
 "\n"
@@ -2607,21 +2607,21 @@ msgstr ""
 " Kartenmarkierungs-Info:\n"
 "label_name=\"%s\"."
 
-#: ../src/leveleditor.c:4381
+#: ../src/leveleditor.c:4396
 msgid "List of connection for this wp:\n"
 msgstr "Verbindungen zum Wegpunkt auflisten:\n"
 
-#: ../src/leveleditor.c:4403
+#: ../src/leveleditor.c:4418
 #, c-format
 msgid "To: X=%d Y=%d    "
 msgstr "Nach: X=%d Y=%d    "
 
-#: ../src/leveleditor.c:4636
+#: ../src/leveleditor.c:4651
 #, c-format
 msgid "Offset x %hd y %hd\n"
 msgstr "Versatz X %hd Y %hd\n"
 
-#: ../src/leveleditor.c:4733
+#: ../src/leveleditor.c:4748
 msgid ""
 "Go level north\n"
 "\n"
@@ -2633,7 +2633,7 @@ msgstr ""
 "Springt einen Level nach Norden, d.h., zum Level, der an der nördlichen "
 "Seite des derzeitigen angefügt ist."
 
-#: ../src/leveleditor.c:4738
+#: ../src/leveleditor.c:4753
 msgid ""
 "Go level south\n"
 "\n"
@@ -2645,7 +2645,7 @@ msgstr ""
 "Springt einen Level nach Süden, d.h., zum Level, der an der südlichen Seite "
 "des derzeitigen angefügt ist."
 
-#: ../src/leveleditor.c:4743
+#: ../src/leveleditor.c:4758
 msgid ""
 "Go level east\n"
 "\n"
@@ -2657,7 +2657,7 @@ msgstr ""
 "Springt einen Level nach Osten, d.h., zum Level, der an der östlichen Seite "
 "des derzeitigen angefügt ist."
 
-#: ../src/leveleditor.c:4748
+#: ../src/leveleditor.c:4763
 msgid ""
 "Go level west\n"
 "\n"
@@ -2669,7 +2669,7 @@ msgstr ""
 "Springt einen Level nach Westen, d.h., zum Level, der an der westlichen "
 "Seite des derzeitigen angefügt ist."
 
-#: ../src/leveleditor.c:4753
+#: ../src/leveleditor.c:4768
 msgid ""
 "Export this level\n"
 "\n"
@@ -2684,7 +2684,7 @@ msgstr ""
 "wo sie aneinandergefügt werden, identisch sein. Hiermit kopieren Sie die\n"
 "Levelränder an die Grenzen aller umliegenden Level, damit sie übereinstimmen."
 
-#: ../src/leveleditor.c:4761
+#: ../src/leveleditor.c:4776
 msgid ""
 "Save Impossible!\n"
 "\n"
@@ -2698,7 +2698,7 @@ msgstr ""
 "Zustand, ungeeignet zur Speicherung. Starten Sie den Editor direkt aus dem "
 "Hauptmenü heraus, um Änderungen an der Kartendatei sichern zu können."
 
-#: ../src/leveleditor.c:4763
+#: ../src/leveleditor.c:4778
 msgid ""
 "Save Map\n"
 "\n"
@@ -2710,7 +2710,7 @@ msgstr ""
 "Überschreibt die Karten-Datei '../map/freedroid.levels' im aktuellen "
 "Spieleordner mit der aktuellen (bearbeiteten) Karte."
 
-#: ../src/leveleditor.c:4769
+#: ../src/leveleditor.c:4784
 msgid ""
 "Toggle waypoints\n"
 "\n"
@@ -2726,7 +2726,7 @@ msgstr ""
 "\n"
 "Hotkey - Taste W"
 
-#: ../src/leveleditor.c:4776
+#: ../src/leveleditor.c:4791
 msgid ""
 "Make waypoint connection\n"
 "\n"
@@ -2742,7 +2742,7 @@ msgstr ""
 "\n"
 "Hotkey - Taste C"
 
-#: ../src/leveleditor.c:4778
+#: ../src/leveleditor.c:4793
 msgid ""
 "Complete waypoint connection\n"
 "\n"
@@ -2760,7 +2760,7 @@ msgstr ""
 "\n"
 "Hotkey - Taste C"
 
-#: ../src/leveleditor.c:4784
+#: ../src/leveleditor.c:4799
 msgid ""
 "Delete selected obstacle\n"
 "\n"
@@ -2775,7 +2775,7 @@ msgstr ""
 "\n"
 "Hotkey - Taste X"
 
-#: ../src/leveleditor.c:4789
+#: ../src/leveleditor.c:4804
 msgid ""
 "Next obstacle on currently selected tile\n"
 "\n"
@@ -2790,7 +2790,7 @@ msgstr ""
 "\n"
 "Hotkey - Taste N"
 
-#: ../src/leveleditor.c:4794
+#: ../src/leveleditor.c:4809
 msgid ""
 "Beautify grass button\n"
 "\n"
@@ -2807,7 +2807,7 @@ msgstr ""
 "\n"
 "Hotkey - Taste CTRL-B"
 
-#: ../src/leveleditor.c:4800
+#: ../src/leveleditor.c:4815
 msgid ""
 "Zoom in/out\n"
 "\n"
@@ -2821,7 +2821,7 @@ msgstr ""
 "\n"
 "Hotkey - Taste O"
 
-#: ../src/leveleditor.c:4805
+#: ../src/leveleditor.c:4820
 msgid ""
 "Fill\n"
 "\n"
@@ -2836,7 +2836,7 @@ msgstr ""
 "alle Richtungen fortgesetzt, bis eine andersartige Bodenkachel erreicht ist. "
 "Dadurch können sich neue, größere Bereiche mit gleichartigen Kacheln bilden."
 
-#: ../src/leveleditor.c:4810
+#: ../src/leveleditor.c:4825
 msgid ""
 "New obstacle label\n"
 "\n"
@@ -2852,7 +2852,7 @@ msgstr ""
 "\n"
 "Hotkey - Taste H."
 
-#: ../src/leveleditor.c:4815
+#: ../src/leveleditor.c:4830
 msgid ""
 "New obstacle description\n"
 "\n"
@@ -2862,7 +2862,7 @@ msgstr ""
 "\n"
 "Setzt bzw. ändert die angezeigte Beschreibung eines markierten Objektes."
 
-#: ../src/leveleditor.c:4820
+#: ../src/leveleditor.c:4835
 msgid ""
 "New map label\n"
 "\n"
@@ -2877,7 +2877,7 @@ msgstr ""
 "Bots und Charaktere zu setzen oder um Auslösepunkte für definierbare "
 "Ereignisse festzulegen."
 
-#: ../src/leveleditor.c:4825
+#: ../src/leveleditor.c:4840
 msgid ""
 "Add item\n"
 "\n"
@@ -2890,7 +2890,7 @@ msgstr ""
 "\n"
 "Hotkey - Taste G"
 
-#: ../src/leveleditor.c:4830
+#: ../src/leveleditor.c:4845
 msgid ""
 "Menu\n"
 "\n"
@@ -2904,7 +2904,7 @@ msgstr ""
 "\n"
 "Hotkey - Taste ESC"
 
-#: ../src/leveleditor.c:4835
+#: ../src/leveleditor.c:4850
 msgid ""
 "Level resize\n"
 "\n"
@@ -2919,7 +2919,7 @@ msgstr ""
 "Ihrer aktuellen Karte vermieden und zusätzlicher Platz an der gewünschten "
 "Stelle eingefügt werden kann."
 
-#: ../src/leveleditor.c:4840
+#: ../src/leveleditor.c:4855
 msgid ""
 "Level editor guide\n"
 "\n"
@@ -2929,7 +2929,7 @@ msgstr ""
 "\n"
 "Öffnet das Tastenbelegungs-Display."
 
-#: ../src/leveleditor.c:4847
+#: ../src/leveleditor.c:4862
 msgid ""
 "Back to game\n"
 "\n"
@@ -2942,7 +2942,7 @@ msgstr ""
 "übernommen.\n"
 "Um dies zu vermeiden, laden Sie ein vorher gespeichertes Spiel."
 
-#: ../src/leveleditor.c:4849
+#: ../src/leveleditor.c:4864
 msgid ""
 "Test Map\n"
 "\n"
@@ -2955,7 +2955,7 @@ msgstr ""
 "sind,\n"
 "um das Speichern einer \"beschädigten\" Karte zu verhindern."
 
-#: ../src/leveleditor.c:4855
+#: ../src/leveleditor.c:4870
 msgid ""
 "Underground lighting\n"
 "\n"
@@ -2971,7 +2971,7 @@ msgstr ""
 "\n"
 "Keine Hotkey - Taste verfügbar."
 
-#: ../src/leveleditor.c:4861
+#: ../src/leveleditor.c:4876
 msgid ""
 "Toggle display enemies\n"
 "\n"
@@ -2983,7 +2983,7 @@ msgstr ""
 "Blendet Gegner im Level-Editor\n"
 "ein- oder aus."
 
-#: ../src/leveleditor.c:4867
+#: ../src/leveleditor.c:4882
 msgid ""
 "Toggle display obstacles\n"
 "\n"
@@ -2995,7 +2995,7 @@ msgstr ""
 "Blendet die Objekte im Level-Editor\n"
 "ein- oder aus."
 
-#: ../src/leveleditor.c:4873
+#: ../src/leveleditor.c:4888
 msgid ""
 "Undo\n"
 "\n"
@@ -3005,7 +3005,7 @@ msgstr ""
 "\n"
 "Macht die letzten Bearbeitungsschritte rückgängig."
 
-#: ../src/leveleditor.c:4879
+#: ../src/leveleditor.c:4894
 msgid ""
 "Redo\n"
 "\n"
@@ -3015,7 +3015,7 @@ msgstr ""
 "\n"
 "Stellt rückgängig gemachte Bearbeitungsschritte wieder her."
 
-#: ../src/leveleditor.c:4885
+#: ../src/leveleditor.c:4900
 msgid ""
 "Toggle display Tux\n"
 "\n"
@@ -3026,7 +3026,7 @@ msgstr ""
 "\n"
 "Blendet Tux im Level-Editor ein- oder aus."
 
-#: ../src/leveleditor.c:4891
+#: ../src/leveleditor.c:4906
 msgid ""
 "Toggle display tooltips\n"
 "\n"
@@ -3037,7 +3037,7 @@ msgstr ""
 "Hiermit können Sie die nervigen Hilfe-Popups im Level-Editor\n"
 "ein- und ausschalten."
 
-#: ../src/leveleditor.c:4897
+#: ../src/leveleditor.c:4912
 msgid ""
 "Toggle display colision rectangles\n"
 "\n"
@@ -3047,14 +3047,14 @@ msgstr ""
 "\n"
 "Blendet die Kollisions-Rechtecke im Level-Editor ein- oder aus."
 
-#: ../src/leveleditor.c:4904
+#: ../src/leveleditor.c:4919
 msgid "Change grid mode ( placement / full / off )"
 msgstr ""
 "Cursorgitter-Modus ändern\n"
 "\n"
 "( Platzierung / ganz / aus )"
 
-#: ../src/leveleditor.c:4990
+#: ../src/leveleditor.c:5005
 msgid ""
 "\n"
 "Please enter new description text for this obstacle: \n"
@@ -3063,7 +3063,7 @@ msgstr ""
 "\n"
 "Bitte neue Beschreibung für dieses Objekt eingeben: \n"
 
-#: ../src/leveleditor.c:5340
+#: ../src/leveleditor.c:5355
 msgid ""
 "\n"
 "M E S S A G E\n"
@@ -3081,7 +3081,7 @@ msgstr ""
 "Wenn Sie etwas Cooles gebaut haben und zu FreedroidRPG beisteuern möchten,\n"
 "kontaktieren Sie bitte das FreedroidRPG Entwicklerteam!"
 
-#: ../src/leveleditor.c:5343
+#: ../src/leveleditor.c:5358
 msgid ""
 "\n"
 "M E S S A G E\n"
@@ -3100,17 +3100,17 @@ msgstr ""
 "ungeeigneten Zustand. Starten Sie den Editor aus dem Hauptmenü heraus, um "
 "Ihre Karte speichern zu können."
 
-#: ../src/leveleditor.c:5910
+#: ../src/leveleditor.c:5925
 #, c-format
 msgid " Source waypoint selected : NONE"
 msgstr " Ausgangs-Wegpunkt gewählt : KEINER"
 
-#: ../src/leveleditor.c:5914
+#: ../src/leveleditor.c:5929
 #, c-format
 msgid " Source waypoint selected : X=%d Y=%d. "
 msgstr " Ausgangs-Wegpunkt ausgewählt : X=%d Y=%d. "
 
-#: ../src/leveleditor.c:5953
+#: ../src/leveleditor.c:5968
 msgid ""
 "\n"
 " Please enter new statement for this tile: \n"
@@ -3120,7 +3120,7 @@ msgstr ""
 " Bitte neuen Kommentar für diesen Titel: \n"
 "\n"
 
-#: ../src/leveleditor.c:5961
+#: ../src/leveleditor.c:5976
 msgid ""
 "\n"
 "No more free comment position.  Using first. "
@@ -3641,20 +3641,20 @@ msgstr ""
 "Version, seit dem Speichern des Spielstandes - wodurch das gespeicherte "
 "Spiel höchstwahrscheinlich inkompatibel ist."
 
-#: ../src/saveloadgame.c:156
+#: ../src/saveloadgame.c:154
 msgid "Last Modified:"
 msgstr "Letzte Änderung:"
 
-#: ../src/saveloadgame.c:190
+#: ../src/saveloadgame.c:188
 #, c-format
 msgid "File Size: %2.3f MB"
 msgstr "Dateigröße: %2.3f MB"
 
-#: ../src/saveloadgame.c:266
+#: ../src/saveloadgame.c:264
 msgid "You are dead. Savegame not modified."
 msgstr "Du bist tot. Spielstand nicht gespeichert."
 
-#: ../src/saveloadgame.c:309
+#: ../src/saveloadgame.c:317
 #, c-format
 msgid ""
 "\n"
@@ -3671,11 +3671,11 @@ msgstr ""
 "Terminating...\n"
 "\n"
 
-#: ../src/saveloadgame.c:361
+#: ../src/saveloadgame.c:369
 msgid "Game saved."
 msgstr "Spielstand gespeichert."
 
-#: ../src/saveloadgame.c:441
+#: ../src/saveloadgame.c:449
 msgid ""
 "\n"
 "W A R N I N G !\n"
@@ -3699,11 +3699,11 @@ msgstr ""
 "Fehler von FreedroidRPG begründet liegen\n"
 "Es wird keine weitere Aktion ausgeführt."
 
-#: ../src/saveloadgame.c:442
+#: ../src/saveloadgame.c:450
 msgid "Failed to load old game."
 msgstr "Laden des Spielstandes fehlgeschlagen."
 
-#: ../src/saveloadgame.c:548
+#: ../src/saveloadgame.c:556
 msgid ""
 "Version or structsize mismatch! The savegame is not from the same version of "
 "freedroidRPG... possible breakage.\n"
@@ -3712,11 +3712,11 @@ msgstr ""
 "aktuellen Version von FreedroidRPG gespeichert worden und daher "
 "möglicherweise unbrauchbar!\n"
 
-#: ../src/saveloadgame.c:585
+#: ../src/saveloadgame.c:593
 msgid "Updating Tux images (this may take a little while...)"
 msgstr "Tux-Images werden aktualisiert... (das könnte eine Weile dauern...)"
 
-#: ../src/saveloadgame.c:590
+#: ../src/saveloadgame.c:598
 msgid "Game loaded."
 msgstr "Spielstand geladen."
 
@@ -4075,7 +4075,7 @@ msgstr "Unterschwellig"
 msgid "Finish-%d"
 msgstr "Linkzeit-%d"
 
-#: ../src/takeover.c:1815
+#: ../src/takeover.c:1812
 #, c-format
 msgid "Score"
 msgstr "Punkte"
@@ -4156,6 +4156,34 @@ msgstr "Unbeweglichkeit: %2d:%2d"
 #, c-format
 msgid "Bots remaining on level: %d\n"
 msgstr "Verbleibende Bots in Level: %d\n"
+
+#~ msgid "Insert/Remove column to the very west"
+#~ msgstr "Einfügen/Löschen einer Spalte im äußersten Westen"
+
+#~ msgid "Insert/Remove column just east of western Interface"
+#~ msgstr ""
+#~ "Einfügen/Löschen einer Spalte direkt östlich vom westlichen Übergang"
+
+#~ msgid "Insert/Remove column just west of eastern Interface"
+#~ msgstr ""
+#~ "Einfügen/Löschen einer Spalte direkt westlich vom östlichen Übergang"
+
+#~ msgid "Insert/Remove column to the very east"
+#~ msgstr "Einfügen/Löschen einer Spalte im äußersten Osten"
+
+#~ msgid "Insert/Remove line to the very north"
+#~ msgstr "Einfügen/Löschen einer Spalte im äußersten Norden"
+
+#~ msgid "Insert/Remove line just south of northern Interface"
+#~ msgstr ""
+#~ "Einfügen/Löschen einer Spalte direkt südlich vom nördlichen Übergang"
+
+#~ msgid "Insert/Remove line just north of southern Interface"
+#~ msgstr ""
+#~ "Einfügen/Löschen einer Spalte direkt nördlich vom südlichen Übergang"
+
+#~ msgid "Insert/Remove line to the very south"
+#~ msgstr "Einfügen/Löschen einer Spalte im äußersten Süden"
 
 #~ msgid "420 NaN"
 #~ msgstr "Chirurg"
