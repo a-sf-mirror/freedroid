@@ -36,7 +36,6 @@ EnableOption=1
 DisableOption=0
 EnableOption=6
 EnableOption=2
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -48,7 +47,6 @@ DisableOption=1
 EnableOption=3
 EnableOption=4
 EnableOption=5
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -57,7 +55,6 @@ Subtitle=_"If anyone in this city knows more about guns than me, then I am not c
 Subtitle=_"Of course I will need compensation for the ammunition spent in the training and for my time. Say... Hundred triangles should be enough."
 EnableOption=2
 DoSomethingExtra="ExecuteSubdialog:subdlg_Benjamin"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -67,7 +64,6 @@ DisableOption=4
 DisableOption=5
 DisableOption=3
 DoSomethingExtra="PlantCookie:Ben_better_beams:"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -77,7 +73,6 @@ DisableOption=5
 DisableOption=3
 DisableOption=4
 DoSomethingExtra="PlantCookie:Ben_faster_shooting:"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -87,7 +82,6 @@ DisableOption=4
 DisableOption=3
 DisableOption=5
 DoSomethingExtra="PlantCookie:Ben_something_else:"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -98,7 +92,6 @@ DisableOption=6
 EnableOption=8
 EnableOption=7
 EnableOption=9
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -111,7 +104,6 @@ Subtitle=_"If you are going to use plasma weapons you need to remember one thing
 Subtitle=_"Even though our armor is designed to resist high temperatures, once the plasma containment module goes, you will die, along with anything within ten meters of you."
 Subtitle=_"Because of all those drawbacks plasma weapons are not too popular. Quite a pity, they have great potential."
 DisableOption=7
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -122,7 +114,6 @@ Subtitle=_"However, other than a good training tool for newbies, that design jus
 Subtitle=_"The shots tend to be underpowered, the gun takes a long while to power up for a shot and can overheat during intense combat."
 Subtitle=_"This is why I am trying to improve it, but so far I have had no success. I just feel like giving up."
 DisableOption=8
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -130,7 +121,6 @@ New Option Nr=9  OptionText=_" I am curious about the exterminator."
 Subtitle=_"Sorry, but that is classified and confidential. I have said too much already."
 DisableOption=9
 EnableOption=10
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -138,7 +128,6 @@ New Option Nr=10  OptionText=_" I will make it worth your while..."
 Subtitle=_"Intriguing."
 DisableOption=10
 DoSomethingExtra="ExecuteSubdialog:subdlg_Benjamin_bribe"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -146,7 +135,6 @@ New Option Nr=99  OptionText=_" I will be going then."
 Subtitle=_"See you later!"
 EnableOption=99
 DoSomethingExtra="EndDialog"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 

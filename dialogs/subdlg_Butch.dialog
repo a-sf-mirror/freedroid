@@ -43,7 +43,6 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 New Option Nr=1  OptionText=_" Give me the novice arena."
 DisableOption=1
 OnCondition="MissionAssigned:3" JumpToOption=2 ElseGoto=4
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -51,7 +50,6 @@ New Option Nr=2  OptionText="NOVICE_ARENA_ALREADY_ASSIGNED"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=2
 OnCondition="MissionComplete:3" JumpToOption=6 ElseGoto=3
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -59,7 +57,6 @@ New Option Nr=3  OptionText="GO_THERE_AND_DO_IT"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"I've already opened the door for you. All you need to do is walk in there and crush all four bots."
 DisableOption=3
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -70,7 +67,6 @@ Subtitle=_"Take the accessway. I've unlocked the door. Good luck."
 DisableOption=4
 DoSomethingExtra="ExecuteActionWithLabel:unlock_novice_arena_access_door"
 DoSomethingExtra="AssignMission:3"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -82,7 +78,6 @@ Subtitle=_"You should make sure you've got proper anti-disruptor devices on you 
 DisableOption=5
 DoSomethingExtra="ExecuteActionWithLabel:unlock_master_arena_access_door"
 DoSomethingExtra="AssignMission:4"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -92,7 +87,6 @@ Subtitle=_"You've already completed the novice arena. But since you really want 
 Subtitle=_"But you also might want to try the master arena now, maybe? If so, just say so."
 DisableOption=6
 DoSomethingExtra="ForceBotRespawnOnLevel:29"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -100,7 +94,6 @@ New Option Nr=7  OptionText=_" Give me the master arena."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=7
 OnCondition="MissionComplete:3" JumpToOption=8 ElseGoto=9
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -108,7 +101,6 @@ New Option Nr=8  OptionText="NOVICE_IS_DONE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=8
 OnCondition="MissionComplete:4" JumpToOption=11 ElseGoto=12
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -118,7 +110,6 @@ Subtitle=_"I'm sorry, but town regulations forbid access to the master arena unl
 Subtitle=_"This regulation is there for your own safely, so that no newbie accidentally signs up for the master arena."
 Subtitle=_"You might try taking the novice arena first. Then I can grant you access to the master field."
 DisableOption=9
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -128,7 +119,6 @@ Subtitle=_"But I've already opened the door. What are you waiting for? All you n
 Subtitle=_"But I can understand if you hesitate. The master arena is by no means an easy task. Maybe you should practice some more before you go down."
 Subtitle=_"When you should make sure you've got proper anti-disruptor devices on you or the 711 disruptor flash will kill you in 2 seconds."
 DisableOption=10
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -138,7 +128,6 @@ Subtitle=_"But you've already completed the master arena. Ok, but I can have the
 Subtitle=_"But certainly you've earned yourself a reputation as arena master around here now and we respect that."
 DisableOption=11
 DoSomethingExtra="ForceBotRespawnOnLevel:30"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -146,7 +135,6 @@ New Option Nr=12  OptionText="MASTER MIGHT BE FOR YOU"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=12
 OnCondition="MissionAssigned:4" JumpToOption=10 ElseGoto=5
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -154,7 +142,6 @@ New Option Nr=99  OptionText="BACK"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 EnableOption=99
 DoSomethingExtra="EndDialog"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 

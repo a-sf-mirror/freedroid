@@ -35,7 +35,6 @@ Subtitle=_"Welcome, welcome! I'm Richard. I'm the computer guy around here."
 Subtitle=_"I mostly work with this huge computer cluster here, although I also program the 614 bots in my spare time."
 DisableOption=0
 EnableOption=1
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -44,7 +43,6 @@ Subtitle=_"A cluster is a group of computers, connected in a way that helps them
 Subtitle=_"As they say, 'two heads are better than one'. And we have a lot of heads here."
 Subtitle=_"This is why I call this cluster 'Hydra'. A lot of heads indeed."
 DisableOption=1
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -65,14 +63,12 @@ EnableOption=9
 DoSomethingExtra="MarkMissionComplete:7"
 DoSomethingExtra="OpenQuestDiaryEntry:M7E1:"
 DoSomethingExtra="DeleteItem:Kevin's Data Cube"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=7  OptionText="DO NOTHING HERE..."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=7
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -80,7 +76,6 @@ New Option Nr=8  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=8
 EnableOption=6
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -89,14 +84,12 @@ Subtitle=_"Of course! I told you, Hydra has never failed me! I designed it mysel
 Subtitle=_"Seems like the disruptor shield which prevents all our attacks on Hell Fortress can be controlled from somewhere outside or something like that."
 Subtitle=_"I was busy servicing one of Hydra's nodes, but I sent the full report to Spencer. He will tell you more."
 DisableOption=9
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=99  OptionText=_" See you later."
 Subtitle=_"Take care, Linarian."
 DoSomethingExtra="EndDialog"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 

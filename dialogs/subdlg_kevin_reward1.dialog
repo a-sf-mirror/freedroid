@@ -54,7 +54,6 @@ DisableOption=2
 DisableOption=3
 DoSomethingExtra="IncreaseProgramVersionName:Hacking"
 DoSomethingExtra="PlantCookie:kevin_reward1_given:"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -64,7 +63,6 @@ DisableOption=2
 DisableOption=1
 DisableOption=3
 DoSomethingExtra="PlantCookie:kevin_reward1_given:"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -75,7 +73,6 @@ DisableOption=2
 DisableOption=1
 DoSomethingExtra="AddGold:500"
 DoSomethingExtra="PlantCookie:kevin_reward1_given:"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -83,7 +80,6 @@ New Option Nr=99  OptionText=_" [BACK]"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 EnableOption=99
 DoSomethingExtra="EndDialog"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 

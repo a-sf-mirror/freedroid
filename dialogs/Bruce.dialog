@@ -35,7 +35,6 @@ Subtitle=_"Good day. I am Bruce."
 Subtitle=_"I am unwell."
 DisableOption=0
 EnableOption=1
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -43,7 +42,6 @@ New Option Nr=1  OptionText=_" How is it going?"
 Subtitle=_"I am very tired, but otherwise well."
 DisableOption=1
 EnableOption=2
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -52,7 +50,6 @@ Subtitle=_"No, I am just too tired now. I have been working in the mine for two 
 Subtitle=_"I feel really wiped, so maybe it would be better if you came some other day."
 DisableOption=2
 EnableOption=3
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -62,7 +59,6 @@ Subtitle=_"If you do not work for a full work period, you will be in trouble."
 Subtitle=_"But I have no choice. I do not want to be a soldier again."
 DisableOption=3
 EnableOption=4
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -71,7 +67,6 @@ Subtitle=_"Yes. I would rather not talk about it."
 DisableOption=4
 EnableOption=10
 EnableOption=8
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -83,7 +78,6 @@ DisableOption=5
 EnableOption=98
 EnableOption=6
 EnableOption=7
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -93,7 +87,6 @@ Subtitle=_"A direct hit from one of those guns is enough to change most bots int
 Subtitle=_"Many of the great victories of the Red Guard are thanks to the exterminator."
 Subtitle=_"Of course because of its small clip and terribly long reloading time, equally many deaths can be attributed to it."
 DisableOption=6
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -106,7 +99,6 @@ Subtitle=_"Our ammunition ran out. They got close. It was the end of team number
 Subtitle=_"After that I decided that I am not fit to be one of the Red Guard. I resigned and started to work in the mine shortly after."
 Subtitle=_"I do not want to face the anger of the Hell Fortress ever again. Never again."
 DisableOption=7
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -115,7 +107,6 @@ Subtitle=_"And I said that I do not want to talk about it. It hurts too much. Pl
 DisableOption=8
 DisableOption=10
 EnableOption=9
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -126,7 +117,6 @@ DisableOption=9
 EnableOption=5
 DisableOption=99
 DoSomethingExtra="PlantCookie:bruce_hurt"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -135,7 +125,6 @@ Subtitle=_"Yes. And now I would like to go to sleep. Good night Linarian."
 DisableOption=10
 DisableOption=8
 DoSomethingExtra="EndDialog"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -151,7 +140,6 @@ New Option Nr=51  OptionText="YES."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=51
 EnableOption=98
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -159,7 +147,6 @@ New Option Nr=52  OptionText="NO."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=52
 EnableOption=99
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -167,7 +154,6 @@ New Option Nr=98  OptionText=_" I'll be going then."
 Subtitle=_". . ."
 EnableOption=98
 DoSomethingExtra="EndDialog"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -175,7 +161,6 @@ New Option Nr=99  OptionText=_" I'll be going then."
 Subtitle=_"Good. I need sleep."
 EnableOption=99
 DoSomethingExtra="EndDialog"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 

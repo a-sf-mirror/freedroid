@@ -36,7 +36,6 @@ DisableOption=0
 EnableOption=1
 EnableOption=3
 EnableOption=10
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -45,7 +44,6 @@ Subtitle=_"Good! Here is the selection of items I have for sale."
 EnableOption=1
 DoSomethingExtra="InitTradeWithCharacter:Stone"
 LinkedTo=5
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -54,7 +52,6 @@ Subtitle=_"Sorry, this is all we have for now. The Red Guard took away all of ou
 Subtitle=_"For our own good. Of course."
 DisableOption=2
 DoSomethingExtra="PlantCookie:Stone_no_guns:"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -64,7 +61,6 @@ Subtitle=_"Stranger, best if you don't ask such questions."
 Subtitle=_"They keep us alive and safe from the bots, but..."
 DisableOption=3
 EnableOption=4
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -76,7 +72,6 @@ Subtitle=_"Sucked dry by a bloodthirsty regime over many years or just sliced in
 Subtitle=_"... What's the difference? "
 DisableOption=4
 EnableOption=8
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -84,7 +79,6 @@ New Option Nr=5  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=5
 OnCondition="CookieIsPlanted:Stone_no_guns:" JumpToOption=6 ElseGoto=7
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -93,7 +87,6 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=6
 DisableOption=2
 LinkedTo=14
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -102,7 +95,6 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=7
 EnableOption=2
 LinkedTo=14
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -110,7 +102,6 @@ New Option Nr=8  OptionText=_" If things are so bad right now, why don't you lea
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=8
 LinkedTo=9
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -119,7 +110,6 @@ Subtitle=_"I don't want to hear this jabberwocky. "
 Subtitle=_"A hint, Linarian: We don't have much, but we're alive and we'd rather stay that way."
 Subtitle=_"If you want to start a revolution, you're on your own."
 DisableOption=9
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -127,7 +117,6 @@ New Option Nr=10  OptionText=_" How is your business going?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=10
 OnCondition="CookieIsPlanted:Helped_Stone:" JumpToOption=12 ElseGoto=11
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -138,7 +127,6 @@ Subtitle=_"The new taxes, the worldwide economic collapse and other factors are 
 DisableOption=11
 EnableOption=13
 EnableOption=16
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -146,7 +134,6 @@ New Option Nr=12  OptionText=_" How is the business going?"
 Subtitle=_"Thanks to you I have a chance now."
 Subtitle=_"Ha! It's time to show the world that Lily Stone is not going down without putting up a damn good fight."
 DisableOption=12
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -157,7 +144,6 @@ Subtitle=_"The shop is dying, and there's nothing either of us can do about it."
 DisableOption=13
 EnableOption=15
 DisableOption=16
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -174,7 +160,6 @@ Subtitle=_"I couldn't get myself to look at my finance logs for a while now. I g
 DisableOption=15
 DoSomethingExtra="PlantCookie:Helping_Stone:"
 LinkedTo=19
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -183,14 +168,12 @@ Subtitle=_"Yes. A tradition of six generations will die with this shop..."
 Subtitle=_"I guess it just had to happen one day..."
 DisableOption=16
 DisableOption=13
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=17  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=17
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -198,7 +181,6 @@ New Option Nr=18  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=18
 OnCondition="CookieIsPlanted:Helped_Stone:" JumpToOption=20 ElseGoto=19
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -206,21 +188,18 @@ New Option Nr=19  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=19
 OnCondition="GoldIsLessThan:1600" JumpToOption=21 ElseGoto=22
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=20  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=20
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=21  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=21
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -228,7 +207,6 @@ New Option Nr=22  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=22
 EnableOption=23
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -243,7 +221,6 @@ DisableOption=23
 DoSomethingExtra="SubtractGold:1547"
 DoSomethingExtra="PlantCookie:Helped_Stone:"
 DoSomethingExtra="ExecuteSubdialog:subdlg_Stone"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -251,7 +228,6 @@ New Option Nr=99  OptionText=_" See you later."
 Subtitle=_"NO_SUBTITLE_AND_NO_WAITING_EITHER"
 EnableOption=99
 DoSomethingExtra="EndDialog"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 

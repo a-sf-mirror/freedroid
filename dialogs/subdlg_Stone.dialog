@@ -55,7 +55,6 @@ DisableOption=2
 DisableOption=3
 DoSomethingExtra="GiveItem:Two Barrel shotgun"
 DoSomethingExtra="EndDialog"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -66,7 +65,6 @@ DisableOption=2
 DisableOption=1
 DisableOption=3
 DoSomethingExtra="EndDialog"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -76,7 +74,6 @@ Subtitle=_"No one makes fun of Lily Stone's family store!"
 Subtitle=_"Say your prayers, you oversized duck!!!"
 DisableOption=3
 DoSomethingExtra="BreakOffAndBecomeHostile"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 

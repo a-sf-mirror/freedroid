@@ -39,7 +39,6 @@ DisableOption=0
 EnableOption=13
 EnableOption=1
 EnableOption=2
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -50,7 +49,6 @@ Subtitle=_"No one wants to pay 499 triangles for bottom shelf swill that even Be
 Subtitle=_"The tax is quite brutal as well. And the Red Guard always demands discounts too."
 Subtitle=_"Life is tough. I am still happy though."
 DisableOption=1
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -58,7 +56,6 @@ New Option Nr=2  OptionText=_" Are you selling something other than drinks?"
 Subtitle=_"Yeah, I have some junk here... Want to see?"
 EnableOption=2
 DoSomethingExtra="InitTradeWithCharacter:Ewald"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -69,7 +66,6 @@ DisableOption=3
 EnableOption=6
 EnableOption=5
 EnableOption=4
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -79,7 +75,6 @@ DisableOption=4
 EnableOption=9
 DisableOption=6
 DisableOption=5
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -89,7 +84,6 @@ DisableOption=5
 EnableOption=8
 DisableOption=6
 DisableOption=4
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -99,7 +93,6 @@ DisableOption=6
 EnableOption=7
 DisableOption=5
 DisableOption=4
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -107,7 +100,6 @@ New Option Nr=7  OptionText=_" Ugh... Ahh... I like it. Give me some more of tha
 Subtitle=_"Uh... Sure..."
 DisableOption=7
 EnableOption=10
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -115,7 +107,6 @@ New Option Nr=8  OptionText=_" Ahh... Fresh water! Give me some more of that."
 Subtitle=_"Yeah, I thought you would like it. Here is more."
 DisableOption=8
 EnableOption=10
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -123,7 +114,6 @@ New Option Nr=9  OptionText=_" Hmm... Lots of ice. Give me one more double water
 Subtitle=_"One double water coming up."
 DisableOption=9
 EnableOption=10
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -131,7 +121,6 @@ New Option Nr=10  OptionText=_" MORE! I want more water!"
 Subtitle=_"Erm... Ok... Here, have some of my special, water colada."
 DisableOption=10
 EnableOption=11
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -140,7 +129,6 @@ Subtitle=_"Well, you drank all my water, so you cannot have any more. There is n
 Subtitle=_"I heard Linarians can drink a lot of water, but seven liters is a lot."
 DisableOption=11
 EnableOption=12
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -148,7 +136,6 @@ New Option Nr=12  OptionText=_" MORE! MORE! MORE! I WANT MORE WATER. NOW!"
 Subtitle=_"Eh... I think you had enough... Maybe you should just go for a walk for now?"
 Subtitle=_"You have had everything that I had."
 DisableOption=12
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -159,7 +146,6 @@ Subtitle=_"Fun is kinda dead right now."
 Subtitle=_"Well, unless you are in the Red Guard itself, of course. They have those big guns that can destroy a dozen bots with one shot..."
 Subtitle=_"Fun, if you ask me."
 DisableOption=13
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -167,7 +153,6 @@ New Option Nr=99  OptionText=_" See you later."
 Subtitle=_"Goodbye and remember: My bar is always open."
 EnableOption=99
 DoSomethingExtra="EndDialog"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 

@@ -38,7 +38,6 @@ EnableOption=1
 EnableOption=2
 EnableOption=3
 DisableOption=99
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -52,7 +51,6 @@ DisableOption=1
 DisableOption=2
 DisableOption=3
 EnableOption=99
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -63,7 +61,6 @@ DisableOption=1
 DisableOption=2
 DisableOption=3
 EnableOption=99
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -76,7 +73,6 @@ DisableOption=3
 EnableOption=99
 DoSomethingExtra="EverybodyBecomesHostile"
 DoSomethingExtra="BreakOffAndBecomeHostile"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -84,7 +80,6 @@ New Option Nr=99  OptionText=_" I'll be going then."
 Subtitle=_"Mhmmm."
 EnableOption=99
 DoSomethingExtra="EndDialog"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 

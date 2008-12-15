@@ -48,14 +48,12 @@ DisableOption=1
 DisableOption=9
 EnableOption=2
 EnableOption=99
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 ----------------------------------------------------------------------
 
 New Option Nr=2  OptionText=_" Yes (cost 100 cash, 5 ability points)"
 DisableOption=2
 EnableOption=99
 OnCondition="MeleeSkillLesserThan:1" JumpToOption=3 ElseGoto=4
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -63,7 +61,6 @@ New Option Nr=3  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=3
 OnCondition="GoldIsLessThan:100" JumpToOption=5 ElseGoto=6
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -71,7 +68,6 @@ New Option Nr=4  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Hey, wake up! I taught you that stuff already. Go practice on the bots, if you really want more training."
 DisableOption=4
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -79,7 +75,6 @@ New Option Nr=5  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"You don't have enough bucks on you! Come back when you have the money."
 DisableOption=5
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -87,7 +82,6 @@ New Option Nr=6  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=6
 OnCondition="PointsToDistributeAtLeast:5" JumpToOption=8 ElseGoto=7
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -96,7 +90,6 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"You don't have enough experience. I can't teach you anything more right now."
 Subtitle=_"First collect more experience. Then we can go on."
 DisableOption=7
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -110,7 +103,6 @@ LinkedTo=20
 DoSomethingExtra="SubtractPointsToDistribute:5"
 DoSomethingExtra="SubtractGold:100"
 DoSomethingExtra="IncreaseMeleeWeaponSkill"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -120,7 +112,6 @@ Subtitle=_"You are quite an ambitious fellow."
 Subtitle=_"First learn the basics. Spend a year working on that, and then I'll be able to teach you some advanced tricks."
 DisableOption=9
 EnableOption=10
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -128,7 +119,6 @@ New Option Nr=10  OptionText=_" Teach me Ninjitsu."
 Subtitle=_"Go away."
 DisableOption=10
 EnableOption=11
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -137,7 +127,6 @@ Subtitle=_"Wow."
 Subtitle=_"You have a very rich imagination. There is no such thing. Get a life."
 DisableOption=11
 EnableOption=12
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -145,7 +134,6 @@ New Option Nr=12  OptionText=_" I want to know the forbidden skill of furuike ya
 Subtitle=_"This is starting to make me angry. Shut up and go away."
 DisableOption=12
 EnableOption=13
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -156,7 +144,6 @@ Subtitle=_"You will see this only once, so make sure to pay attention."
 Subtitle=_"DIEEEE!"
 DisableOption=13
 DoSomethingExtra="BreakOffAndBecomeHostile"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -164,7 +151,6 @@ New Option Nr=20  OptionText=_" Ouch! What the hell are you doing?"
 Subtitle=_"Lesson number one. Never trust the opponent."
 DisableOption=20
 LinkedTo=21
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -174,7 +160,6 @@ Subtitle=_"They won't let you get up if you fall down. They will kill you."
 Subtitle=_"Now, lesson number -- ugh! That hurt!"
 DisableOption=21
 LinkedTo=22
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -187,7 +172,6 @@ Subtitle=_"This is enough training for today."
 DisableOption=22
 DoSomethingExtra="PlantCookie:beat_up_pendragon"
 DoSomethingExtra="EndDialog"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -195,7 +179,6 @@ New Option Nr=99  OptionText=_" Enough for now."
 Subtitle=_"Fine."
 EnableOption=99
 DoSomethingExtra="EndDialog"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 

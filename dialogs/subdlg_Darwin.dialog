@@ -43,7 +43,6 @@ New Option Nr=1  OptionText="GOT EXPERIENCE POINTS?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=1
 OnCondition="PointsToDistributeAtLeast:1" JumpToOption=2 ElseGoto=91
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -51,7 +50,6 @@ New Option Nr=2  OptionText="ALREADY TAUGHT?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=2
 OnCondition="CookieIsPlanted:know_extract1:" JumpToOption=26 ElseGoto=25
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -60,7 +58,6 @@ DisableOption=20
 DisableOption=25
 LinkedTo=70
 DoSomethingExtra="IncreaseProgramVersionName:Extract bot parts"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -69,7 +66,6 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 EnableOption=20
 DisableOption=25
 EnableOption=99
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -78,7 +74,6 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=26
 EnableOption=30
 EnableOption=99
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -86,7 +81,6 @@ New Option Nr=30  OptionText=_" Sure. Teach me all that you know. (cost 50 cash,
 DisableOption=30
 OnCondition="CookieIsPlanted:know_extract2:" JumpToOption=62 ElseGoto=71
 DoSomethingExtra="IncreaseProgramVersionName:Extract bot parts"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -94,7 +88,6 @@ New Option Nr=62  OptionText="KNOW LESSON TWO"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=62
 OnCondition="CookieIsPlanted:know_extract3:" JumpToOption=63 ElseGoto=72
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -102,7 +95,6 @@ New Option Nr=63  OptionText="KNOW LESSON THREE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=63
 OnCondition="CookieIsPlanted:know_extract4:" JumpToOption=64 ElseGoto=73
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -110,7 +102,6 @@ New Option Nr=64  OptionText="KNOW LESSON FOUR"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=64
 OnCondition="CookieIsPlanted:know_extract5:" JumpToOption=75 ElseGoto=74
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -124,7 +115,6 @@ DoSomethingExtra="SubtractPointsToDistribute:1"
 DoSomethingExtra="SubtractGold:50"
 DoSomethingExtra="PlantCookie:know_extract1:"
 DoSomethingExtra="EndDialog"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -138,7 +128,6 @@ DoSomethingExtra="SubtractPointsToDistribute:1"
 DoSomethingExtra="SubtractGold:50"
 DoSomethingExtra="PlantCookie:know_extract2:"
 DoSomethingExtra="EndDialog"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -153,7 +142,6 @@ DoSomethingExtra="SubtractPointsToDistribute:1"
 DoSomethingExtra="SubtractGold:50"
 DoSomethingExtra="PlantCookie:know_extract3:"
 DoSomethingExtra="EndDialog"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -169,7 +157,6 @@ DoSomethingExtra="SubtractPointsToDistribute:1"
 DoSomethingExtra="SubtractGold:50"
 DoSomethingExtra="PlantCookie:know_extract4:"
 DoSomethingExtra="EndDialog"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -185,7 +172,6 @@ DoSomethingExtra="SubtractPointsToDistribute:1"
 DoSomethingExtra="SubtractGold:50"
 DoSomethingExtra="PlantCookie:know_extract5:"
 DoSomethingExtra="EndDialog"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -194,14 +180,12 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Nein, I told you everything I know about that. No use asking me twice, ja?"
 DisableOption=75
 DoSomethingExtra="EndDialog"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=76  OptionText="CHECK IF MONEY ENOUGH"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 OnCondition="GoldIsLessThan:50" JumpToOption=90 ElseGoto=1
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -212,7 +196,6 @@ Subtitle=_"Kein geld, Keine hilfe."
 Subtitle=_"Come back with some money."
 DisableOption=90
 DoSomethingExtra="EndDialog"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -223,14 +206,12 @@ Subtitle=_"You look green. Toughen up. Get some experience, kill some bots."
 Subtitle=_"Then we can talk."
 DisableOption=91
 DoSomethingExtra="EndDialog"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=99  OptionText=_" Maybe another time."
 EnableOption=99
 DoSomethingExtra="EndDialog"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 

@@ -35,7 +35,6 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Oh, thank heavens! You are still alive. Maybe not all hope is lost."
 DisableOption=0
 ChooseBetween=2,11,6,13
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -50,7 +49,6 @@ Subtitle=_"During that time Linarians became known as helpers and heroes. Of cou
 Subtitle=_"If the computer is not lying, then your name is Tux."
 DisableOption=2
 EnableOption=7
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -65,7 +63,6 @@ Subtitle=_"First we made them, and then they unmade us. How ironic."
 DisableOption=3
 EnableOption=15
 LinkedTo=5
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -76,7 +73,6 @@ Subtitle=_"Then the bots started jamming our broadcasts and long distance commun
 Subtitle=_"I have no idea what happened in the world after that. We are cut off."
 Subtitle=_"For all I know the war might be already over."
 DisableOption=5
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -87,7 +83,6 @@ Subtitle=_"Most people here have a German accent, so if I had to guess, I would 
 EnableOption=8
 DisableOption=6
 EnableOption=14
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -95,7 +90,6 @@ New Option Nr=7  OptionText=_" Why did the Linarians come to this world?"
 Subtitle=_"The planet you mean? No one knows that. None of you ever said anything about it."
 Subtitle=_"Sorry, I cannot help you with that."
 DisableOption=7
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -103,7 +97,6 @@ New Option Nr=8  OptionText=_" Where in the void is this world?"
 Subtitle=_"I guess you mean in the universe?"
 DisableOption=8
 LinkedTo=10
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -114,7 +107,6 @@ Subtitle=_"This is a planetary system of ten planets, and we are presently locat
 Subtitle=_"I am not an astronomer, so I can be wrong. I am too tired to keep track of what is a planet and what is just an overweight rock."
 DisableOption=10
 LinkedTo=12
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -125,14 +117,12 @@ Subtitle=_"Currently, there is a war raging all around the globe. Humans are fig
 Subtitle=_"And it looks like we are losing the war."
 DisableOption=11
 EnableOption=3
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=12  OptionText=_" This can be just about anywhere. Your description is too ambiguous."
 Subtitle=_"Sorry, star sciences are my weak point. Maybe someone in the town might know something more."
 DisableOption=12
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -143,7 +133,6 @@ Subtitle=_"You are lucky that I found you and woke you up. A few more decades in
 DisableOption=13
 EnableOption=16
 EnableOption=21
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -154,7 +143,6 @@ Subtitle=_"All they had at the time of the bot attack were the 614 bot battle pl
 Subtitle=_"Right now the place is protected by the Red Guard, a bunch of volunteers. I cannot say I agree with their methods."
 Subtitle=_"However, I must admit that being a prisoner of a walled town looks pretty good compared to the alternative of being eviscerated alive."
 DisableOption=14
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -165,7 +153,6 @@ Subtitle=_"Not surprisingly, the bastards deny everything."
 Subtitle=_"Of course because nearly every single bot in the world runs on that junk, the situation does not look pretty."
 DisableOption=15
 EnableOption=20
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -173,7 +160,6 @@ New Option Nr=16  OptionText=_" I also heard a voice... Someone calling himself 
 Subtitle=_"Relax. Everything will be fine in a few hours."
 Subtitle=_"This is perfectly normal."
 DisableOption=16
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -181,7 +167,6 @@ New Option Nr=20  OptionText=_" It cannot be true. One company cannot control al
 Subtitle=_"It can. They got close to a monopoly 30 years ago, but their last competitor, the open source community, was defeated by them about a year ago."
 Subtitle=_"Since then all of the newly made bots have been made with MegaSys firmware burnt into their circuits."
 DisableOption=20
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -191,7 +176,6 @@ Subtitle=_"I heard the Linarians have a special gift for computers and can disab
 Subtitle=_"Even if this is only partly true, we need it. The situation is quite ugly."
 Subtitle=_"We need you."
 DisableOption=21
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -200,7 +184,6 @@ Subtitle=_"I am glad I could help you. You should be careful around here. Best h
 Subtitle=_"The path from this house should lead you directly to it."
 EnableOption=99
 DoSomethingExtra="EndDialog"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 

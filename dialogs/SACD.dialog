@@ -50,7 +50,6 @@ EnableOption=2
 DoSomethingExtra="ExecuteActionWithLabel:disable_sadd_gun1"
 DoSomethingExtra="ExecuteActionWithLabel:disable_sadd_gun2"
 DoSomethingExtra="PlantCookie:SAGunsOff:"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -63,7 +62,6 @@ EnableOption=1
 DoSomethingExtra="ExecuteActionWithLabel:enable_sadd_gun1"
 DoSomethingExtra="ExecuteActionWithLabel:enable_sadd_gun2"
 DoSomethingExtra="DeleteCookie:SAGunsOff:"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -71,7 +69,6 @@ New Option Nr=3  OptionText=_" /usr/bin/hermodoors --open"
 Subtitle=_"Opening doors..."
 Subtitle=_"Connecting to peripheral controller..."
 Subtitle=_"Please enter unlock security password:"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 LinkedTo=5
 
 ----------------------------------------------------------------------
@@ -83,14 +80,12 @@ Subtitle=_"Warning! Spontaneous oxidization witH emis$ion of light aND heAt dete
 Subtitle=_"SsTeM=#faiPure%^#n 3 S 1()$++"
 DisableOption=4
 DoSomethingExtra="DropDead"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=5  OptionText=_" CTRL+C"
 Subtitle=_"An error occured while opening doors."
 DisableOption=5
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -106,14 +101,12 @@ New Option Nr=7 OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=7
 DoSomethingExtra="OpenQuestDiaryEntry:M10E1:"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=8 OptionText="DO NOTHING"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=8
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -130,7 +123,6 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=10
 DoSomethingExtra="AddExperienceBonus:1000"
 DoSomethingExtra="PlantCookie:SACDOvertaken"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 
 ----------------------------------------------------------------------
@@ -138,7 +130,6 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=99  OptionText=_" logout"
 EnableOption=99
 DoSomethingExtra="EndDialog"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 

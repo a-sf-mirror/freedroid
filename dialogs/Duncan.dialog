@@ -35,7 +35,6 @@ Subtitle=_"Duncan McNamara, The Red Guard's resident bomb maker, at your service
 DisableOption=0
 DisableOption=90
 EnableOption=1
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -45,7 +44,6 @@ DisableOption=1
 EnableOption=2
 EnableOption=7
 DoSomethingExtra="InitTradeWithCharacter:Duncan"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -58,7 +56,6 @@ EnableOption=5
 EnableOption=6
 EnableOption=4
 EnableOption=3
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -70,7 +67,6 @@ Subtitle=_"As soon as the war is over, the Red Guard will disband."
 Subtitle=_"Of course, I am making the assumption of victory, which is highly unlikely with the current state of affairs."
 DisableOption=3
 DisableOption=4
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -79,7 +75,6 @@ Subtitle=_"It is not the time to speak of such things yet. Come another day, and
 Subtitle=_"The Red Guard can have their great laser beams and plasma cannons... But nothing can save them."
 DisableOption=4
 DisableOption=3
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -87,14 +82,12 @@ New Option Nr=5  OptionText=_" I want to buy some grenades."
 Subtitle=_"Certainly."
 EnableOption=5
 DoSomethingExtra="InitTradeWithCharacter:Duncan"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=6  OptionText=_" What kind of grenade is the best?"
 Subtitle=_"You get what you pay for."
 DisableOption=6
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -103,7 +96,6 @@ Subtitle=_"Twenty years ago there was a conflict."
 Subtitle=_"A grenade I threw destroyed a being which killed many of... my people."
 Subtitle=_"Now I make more to smash the destroyers."
 DisableOption=7
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -124,14 +116,12 @@ Subtitle=_"Interested?"
 DisableOption=51
 DoSomethingExtra="ExecuteSubdialog:subdlg_Duncan"
 DoSomethingExtra="PlantCookie:koan_quest"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=52  OptionText="VOID"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=52
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -147,7 +137,6 @@ New Option Nr=61  OptionText="MURDERING DONE OR SAVED HIM"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=61
 DoSomethingExtra="ExecuteSubdialog:subdlg_Duncan_quest"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -155,7 +144,6 @@ New Option Nr=62  OptionText="IS KOAN SAVED?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=62
 OnCondition="CookieIsPlanted:koan_spared:" JumpToOption=63 ElseGoto=52
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -163,7 +151,6 @@ New Option Nr=63  OptionText="WAS THE QUEST DONE BEFORE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=63
 OnCondition="CookieIsPlanted:koan_quest_done:" JumpToOption=52 ElseGoto=61
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -171,7 +158,6 @@ New Option Nr=80  OptionText="PREVENTING DOUBLE TALK"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=80
 OnCondition="CookieIsPlanted:koan_quest:" JumpToOption=52 ElseGoto=51
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -182,7 +168,6 @@ Subtitle=_"But then again, neither are you, so my thoughts are we are even."
 DisableOption=90
 DisableOption=0
 EnableOption=91
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -194,7 +179,6 @@ DisableOption=2
 DisableOption=1
 EnableOption=5
 DisableOption=91
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -204,14 +188,12 @@ Subtitle=_"I suggest you be kind to me as well, and I will be kind to you."
 Subtitle=_"That way I get to keep my secret, and you get to keep yours."
 DisableOption=92
 EnableOption=93
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=93  OptionText=_" I don't have any secrets."
 Subtitle=_"And neither do I."
 DisableOption=93
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -219,7 +201,6 @@ New Option Nr=96  OptionText=_" See you later."
 Subtitle=_"I wish you cold winds."
 DisableOption=96
 LinkedTo=97
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -229,7 +210,6 @@ Subtitle=_"Nothing more and nothing less."
 DisableOption=97
 EnableOption=98
 EnableOption=99
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -239,7 +219,6 @@ EnableOption=98
 DisableOption=99
 DoSomethingExtra="EndDialog"
 DoSomethingExtra="PlantCookie:duncan_known"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -249,7 +228,6 @@ EnableOption=99
 DisableOption=98
 DoSomethingExtra="EndDialog"
 DoSomethingExtra="PlantCookie:duncan_known"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 

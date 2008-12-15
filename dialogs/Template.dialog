@@ -35,7 +35,6 @@ Beginning of new chat dialog for character="XXXXX"
 New Option Nr=0  OptionText=_"<?>"
 Subtitle=_"<?>"
 DisableOption=0
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -43,7 +42,6 @@ New Option Nr=99  OptionText=_"<?>"
 Subtitle=_"<?>"
 EnableOption=99
 DoSomethingExtra="EndDialog"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 

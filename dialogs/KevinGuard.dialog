@@ -45,7 +45,6 @@ EnableOption=6
 DisableOption=3
 EnableOption=7
 DisableOption=17
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -56,7 +55,6 @@ EnableOption=3
 EnableOption=1
 DisableOption=8
 EnableOption=17
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -67,7 +65,6 @@ DisableOption=3
 EnableOption=4
 DisableOption=1
 DisableOption=17
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -76,7 +73,6 @@ DisableOption=4
 EnableOption=99
 DoSomethingExtra="ExecuteActionWithLabel:unlock_kevins_door"
 DoSomethingExtra="PlantCookie:kevin_door_open:"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -84,14 +80,12 @@ New Option Nr=5  OptionText=_" Umm... His life is in grave danger. "
 Subtitle=_"ERROR: REASON INVALID."
 DisableOption=5
 EnableOption=12
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=6  OptionText=_" The people from the uhh... city want me to have a word with him. Yeah, that's it."
 Subtitle=_"ERROR: REASON INVALID."
 DisableOption=6
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -108,7 +102,6 @@ DisableOption=13
 DisableOption=14
 DisableOption=18
 DisableOption=19
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -120,7 +113,6 @@ DisableOption=8
 EnableOption=9
 DisableOption=2
 EnableOption=10
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -130,7 +122,6 @@ Subtitle=_"SIX."
 DisableOption=9
 EnableOption=99
 DisableOption=10
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -140,7 +131,6 @@ Subtitle=_"SIX."
 DisableOption=10
 DisableOption=9
 EnableOption=11
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -149,7 +139,6 @@ Subtitle=_"FIVE."
 Subtitle=_"FOUR."
 DisableOption=11
 EnableOption=99
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -157,7 +146,6 @@ New Option Nr=12  OptionText=_" The enemies are approaching from every side!"
 Subtitle=_"ERROR: REASON INVALID."
 DisableOption=12
 EnableOption=13
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -165,7 +153,6 @@ New Option Nr=13  OptionText=_" We are surrounded! They will attack any second n
 Subtitle=_"ERROR: REASON INVALID."
 DisableOption=13
 EnableOption=14
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -173,7 +160,6 @@ New Option Nr=14  OptionText=_" Are you listening to me?"
 Subtitle=_"ERROR: REASON INVALID."
 DisableOption=14
 EnableOption=18
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -182,7 +168,6 @@ Subtitle=_"IDENTITY CONFIRMED. YOU MAY PASS."
 EnableOption=99
 DisableOption=15
 DoSomethingExtra="EndDialog"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -203,7 +188,6 @@ EnableOption=9
 EnableOption=10
 DisableOption=1
 DisableOption=3
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -211,14 +195,12 @@ New Option Nr=18  OptionText=_" I think I just found an error in your programmin
 Subtitle=_"ERROR: REASON INVALID."
 DisableOption=18
 EnableOption=19
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=19  OptionText=_" Thought so."
 Subtitle=_"ERROR: REASON INVALID."
 DisableOption=19
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -230,7 +212,6 @@ DisableOption=20
 EnableOption=2
 EnableOption=8
 DisableOption=99
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -240,7 +221,6 @@ Subtitle=_"EOT ACKNOWLEDGED. CONNECTION CLOSED."
 Subtitle=_"GOODBYE."
 DisableOption=99
 DoSomethingExtra="EndDialog"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 

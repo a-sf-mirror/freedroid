@@ -34,14 +34,12 @@ New Option Nr=0  OptionText=_" Who are you? "
 Subtitle=_"I am a 614 security bot, once one of the best-selling products of the Nicholson company."
 DisableOption=0
 EnableOption=4
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=1  OptionText=_" Have you detected any hostile bot activity?"
 Subtitle=_"No. The hostiles have not shown up within the last 24 hours."
 DisableOption=1
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -51,7 +49,6 @@ Subtitle=_"It was mainly used within ships to protect certain areas from intrude
 Subtitle=_"It is considered an old but reliable device."
 Subtitle=_"So don't worry. I'm still in pretty good shape."
 DisableOption=2
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -59,7 +56,6 @@ New Option Nr=3  OptionText=_" What are your orders?"
 Subtitle=_"My orders are to protect the living beings in this camp from attacks by hostile bots."
 Subtitle=_"This has top priority. There are no other priorities."
 DisableOption=3
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -69,7 +65,6 @@ Subtitle=_"None of the bots of this generation were affected by the proceedings 
 Subtitle=_"Even though discontinued from Nicholson Company long ago, today, some people have picked up the work and are even trying to improve the operating system running on my series."
 Subtitle=_"Don't forget to buy products from Nicholson Company. They are the best."
 DisableOption=4
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -77,7 +72,6 @@ New Option Nr=99  OptionText=_" See you later."
 Subtitle=_" Resuming guard program."
 EnableOption=99
 DoSomethingExtra="EndDialog"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 

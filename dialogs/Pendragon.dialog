@@ -36,14 +36,12 @@ Subtitle=_"Normally I'm a fighter. But now I try to relax, chill, take it easy a
 Subtitle=_"And in case you couldn't tell, that was sarcasm."
 DisableOption=0
 EnableOption=1
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=1  OptionText=_" Could you teach me how to fight?"
 EnableOption=1
 OnCondition="CookieIsPlanted:beat_up_pendragon:" JumpToOption=2 ElseGoto=3
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -51,7 +49,6 @@ New Option Nr=2  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"NO! NO! Er... I mean, not right now. I am busy. Come again later."
 DisableOption=2
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -61,7 +58,6 @@ Subtitle=_"Sure. I can help you."
 Subtitle=_"For a price. Hundred bucks should be enough."
 DisableOption=3
 DoSomethingExtra="ExecuteSubdialog:subdlg_Pendragon"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -69,7 +65,6 @@ New Option Nr=99  OptionText=_" See you later."
 Subtitle=_"Have courage."
 EnableOption=99
 DoSomethingExtra="EndDialog"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 

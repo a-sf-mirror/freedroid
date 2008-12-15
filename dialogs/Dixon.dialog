@@ -35,7 +35,6 @@ Subtitle=_"Hello and welcome. I'm Dixon, the chief engineer of the Red Guard tec
 DisableOption=0
 EnableOption=1
 EnableOption=19
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -46,7 +45,6 @@ Subtitle=_"But even they know that without us this town would have been destroye
 Subtitle=_"We deliver resources to the places which need them, build and repair the walls, fix damaged guns, manage construction work and lots of other small things which keep the bots from killing everyone."
 DisableOption=1
 EnableOption=18
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -59,7 +57,6 @@ Subtitle=_"The technical division is very understaffed right now. On average one
 Subtitle=_"We just cannot afford to do any non-critical jobs right now. "
 DisableOption=18
 EnableOption=22
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -73,7 +70,6 @@ Subtitle=_"Now, while you cannot see it underneath the armor, my right leg runs 
 Subtitle=_"Now I never leave home without my protective suit. Mostly for protection, but also for aesthetic reasons. I am sure you understand."
 DisableOption=19
 EnableOption=20
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -83,7 +79,6 @@ Subtitle=_"Crying, screaming or begging time to rewind itself and give me a seco
 Subtitle=_"What I can do is to try to have a good life despite the constant threat from the bots outside the town walls."
 Subtitle=_"And besides, life is not so bad with a robotic leg. The motors inside it can mimic a normal walk very well. Most people do not even notice something is different about me."
 DisableOption=20
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -98,7 +93,6 @@ EnableOption=31
 DisableOption=26
 DoSomethingExtra="ExecuteActionWithLabel:unlock_northern_maintainance_door"
 DoSomethingExtra="GiveItem:Plasma Shockwave Emitter:2"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -107,7 +101,6 @@ Subtitle=_"We need people badly, so it would be great if you could give us a hel
 Subtitle=_"Now, what are your skills? Where do you think you could be the most useful?"
 DisableOption=22
 LinkedTo=23
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -115,7 +108,6 @@ New Option Nr=23  OptionText=_" I can handle computers very well. I also know a 
 Subtitle=_"And what about construction? Mechanical devices? Repairing broken power lines? Building laser pistols? Anything like that? "
 DisableOption=23
 LinkedTo=24
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -132,7 +124,6 @@ EnableOption=25
 EnableOption=26
 DoSomethingExtra="AssignMission:1"
 DoSomethingExtra="OpenQuestDiaryEntry:M1E0:"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -144,7 +135,6 @@ Subtitle=_"It was our biggest worry that they might destroy cables, pipes and ot
 Subtitle=_"However, the bots seem to be very content with just being there. They do not undertake any offensive actions."
 Subtitle=_"They have fortified the tunnels and they do not let anyone in."
 DisableOption=25
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -159,7 +149,6 @@ Subtitle=_"As soon as it released me I ran to the exit as fast as I could. That 
 Subtitle=_"Once I got out I learned the bot was not lying. The Great Assault started. The rest is history."
 DisableOption=26
 EnableOption=27
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -171,7 +160,6 @@ DisableOption=21
 EnableOption=30
 EnableOption=29
 EnableOption=28
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -185,7 +173,6 @@ DisableOption=30
 LinkedTo=32
 DoSomethingExtra="OpenQuestDiaryEntry:M1E1:"
 DoSomethingExtra="PlantCookie:singularity_dead"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -199,7 +186,6 @@ DisableOption=30
 DoSomethingExtra="OpenQuestDiaryEntry:M1E1:"
 DoSomethingExtra="ExecuteActionWithLabel:unlock_northern_maintainance_door"
 DoSomethingExtra="PlantCookie:singularity_killed"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -213,14 +199,12 @@ DisableOption=30
 DisableOption=28
 DisableOption=29
 DoSomethingExtra="PlantCookie:singularity_saved"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=31  OptionText=_" How did it happen that the bots took your tools away?"
 Subtitle=_"Ah, it is a strange story, I am sure you would not believe me. I will tell you some other time."
 DisableOption=31
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -229,7 +213,6 @@ Subtitle=_"Linarian, my people do not carry guns. We are mechanics. You want the
 Subtitle=_"Erm... And aren't you being too aggressive? Maybe they do not wish us harm..."
 DisableOption=32
 LinkedTo=33
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -241,7 +224,6 @@ Subtitle=_"I will talk to Spencer and ask him for a few attack teams. We will ta
 DisableOption=33
 DoSomethingExtra="PlantCookie:singularity_killed"
 DoSomethingExtra="ExecuteActionWithLabel:unlock_northern_maintainance_door"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -257,7 +239,6 @@ DoSomethingExtra="AddGold:150"
 DoSomethingExtra="MarkMissionComplete:1"
 DoSomethingExtra="DeleteItem:Dixon's Toolbox"
 DoSomethingExtra="OpenQuestDiaryEntry:M1E4:"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -274,7 +255,6 @@ DoSomethingExtra="AddGold:100"
 DoSomethingExtra="GiveItem:Dixon's helmet"
 DoSomethingExtra="DeleteItem:Dixon's Toolbox"
 DoSomethingExtra="OpenQuestDiaryEntry:M1E5:"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -284,7 +264,6 @@ Subtitle=_"You got to be kidding me, Linarian."
 Subtitle=_"Give me the toolkit and stop fooling around."
 DisableOption=36
 EnableOption=37
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -296,7 +275,6 @@ DisableOption=35
 EnableOption=41
 EnableOption=38
 DoSomethingExtra="PlantCookie:dixon_angry"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -311,7 +289,6 @@ DoSomethingExtra="DeleteItem:Dixon's Toolbox"
 DoSomethingExtra="AddGold:250"
 DoSomethingExtra="EndDialog"
 DoSomethingExtra="OpenQuestDiaryEntry:M1E6:"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -325,7 +302,6 @@ DoSomethingExtra="DeleteItem:Dixon's Toolbox"
 DoSomethingExtra="AddGold:350"
 DoSomethingExtra="OpenQuestDiaryEntry:M1E7:"
 DoSomethingExtra="EndDialog"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -340,7 +316,6 @@ DoSomethingExtra="AddGold:400"
 DoSomethingExtra="DeleteItem:Dixon's Toolbox"
 DoSomethingExtra="OpenQuestDiaryEntry:M1E8:"
 DoSomethingExtra="EndDialog"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -350,7 +325,6 @@ DisableOption=41
 EnableOption=39
 DisableOption=38
 EnableOption=42
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -361,7 +335,6 @@ Subtitle=_"Without them this city is doomed."
 DisableOption=42
 EnableOption=40
 DisableOption=39
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -371,7 +344,6 @@ Subtitle=_"All indicators are in the green, the power and water fill the pipes a
 Subtitle=_"Thanks to the autotools we can start building instead of just trying to repair the damage."
 Subtitle=_"Once this is sick war is over, I will make sure you get keys to the city Linarian."
 DisableOption=43
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -379,7 +351,6 @@ New Option Nr=44  OptionText=_" Is everything all right?"
 Subtitle=_"Nearly. Only my conscience keeps me up at night."
 Subtitle=_"Please leave me alone with my thoughts, I do not want to talk to anyone right now."
 DisableOption=44
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -390,7 +361,6 @@ Subtitle=_"It makes me sad to see everything slowly wasting away. The bots are d
 Subtitle=_"This town has a few weeks left to live. After that we are all dead."
 DisableOption=45
 DoSomethingExtra="PlantCookie:dixon_one"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -402,7 +372,6 @@ DisableOption=46
 EnableOption=47
 DoSomethingExtra="MarkMissionComplete:1"
 DoSomethingExtra="PlantCookie:dixon_saved_and_talked"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -413,7 +382,6 @@ Subtitle=_"You will need a hacked computer. Type in 'ssh 10.83.13.230' as the su
 DisableOption=47
 EnableOption=48
 DoSomethingExtra="PlantCookie:got_singularity"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -424,7 +392,6 @@ Subtitle=_"And this is just one of those things."
 Subtitle=_"Just go and see for yourself. Otherwise you will not believe me."
 DisableOption=48
 DoSomethingExtra="OpenQuestDiaryEntry:M1E3:"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -440,7 +407,6 @@ New Option Nr=61  OptionText="WAS TUX A MANIAC KILLER?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=61
 OnCondition="CookieIsPlanted:singularity_killed:" JumpToOption=63 ElseGoto=62
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -449,7 +415,6 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=62
 EnableOption=36
 EnableOption=35
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -457,7 +422,6 @@ New Option Nr=63  OptionText="YES, HE SLAUGHTERED THE BOTS FOR ENTERTAINMENT."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=63
 EnableOption=34
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -473,7 +437,6 @@ New Option Nr=71  OptionText="YEAH, AND TUX HAS NO IDEA..."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=71
 EnableOption=43
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -481,7 +444,6 @@ New Option Nr=72  OptionText="YEAH, AND TUX WAS A MADMAN."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=72
 EnableOption=44
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -489,7 +451,6 @@ New Option Nr=73  OptionText="YEAH, SINGULARITY IS WELL, FIRST TIME"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=73
 EnableOption=45
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -497,7 +458,6 @@ New Option Nr=74  OptionText="YEAH, AND THIS IS THE SECOND TIME TUX ASKS. LET TH
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=74
 EnableOption=46
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -505,7 +465,6 @@ New Option Nr=75  OptionText="YES, AND IT WENT WITH PEACE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=75
 OnCondition="CookieIsPlanted:dixon_one:" JumpToOption=74 ElseGoto=73
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -513,7 +472,6 @@ New Option Nr=77  OptionText="SURE, IT WAS DONE."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=77
 OnCondition="CookieIsPlanted:singularity_dead:" JumpToOption=78 ElseGoto=75
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -521,14 +479,12 @@ New Option Nr=78  OptionText="DID TUX KNOW WHAT IS HE DOING?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=78
 OnCondition="CookieIsPlanted:singularity_killed:" JumpToOption=72 ElseGoto=71
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=80  OptionText="DO NOTHING NODE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=80
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -544,7 +500,6 @@ New Option Nr=82  OptionText="HOW MUCH ANGER?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=82
 OnCondition="CookieIsPlanted:dixon_very_angry:" JumpToOption=83 ElseGoto=84
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -559,7 +514,6 @@ Subtitle=_"FUCK MY LIFELONG PACIFISM. I WILL FUCKING KILL YOU NOW!"
 Subtitle=_"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA!"
 DisableOption=83
 DoSomethingExtra="BreakOffAndBecomeHostile"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -568,7 +522,6 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Linarian, please leave. You are no longer welcome here."
 Subtitle=_"You have done me wrong and I have no desire to talk to you."
 DisableOption=84
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -592,14 +545,12 @@ New Option Nr=96  OptionText="ELIMINATING_THE_DOUBLE_TALK"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=96
 DisableOption=46
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=99  OptionText=_" I must go now."
 EnableOption=99
 DoSomethingExtra="EndDialog"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 

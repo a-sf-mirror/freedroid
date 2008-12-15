@@ -43,7 +43,6 @@ New Option Nr=1  OptionText=_" passwd"
 Subtitle=_" Changing password for admin. Enter new password: "
 Subtitle=_" Enter new password again: "
 Subtitle=_" Password successfully changed."
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 DisableOption=1
 DisableOption=7
 EnableOption=8
@@ -57,7 +56,6 @@ DisableOption=3
 DisableOption=1
 DisableOption=7
 EnableOption=8
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -67,7 +65,6 @@ DisableOption=4
 EnableOption=1
 EnableOption=7
 DisableOption=8
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -76,14 +73,12 @@ Subtitle=_" Disabling disruptor shield... "
 Subtitle=_" Shield disabled."
 Subtitle=_" WARNING: somebody else is using this computer. "
 Subtitle=_" Disruptor shield is active."
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=8  OptionText=_" shieldmgr --disable --force"
 Subtitle=_" Disabling disruptor shield... "
 Subtitle=_" Shield disabled."
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 DoSomethingExtra="MarkMissionComplete:8"
 DoSomethingExtra="OpenQuestDiaryEntry:M8E3:"
 
@@ -92,7 +87,6 @@ DoSomethingExtra="OpenQuestDiaryEntry:M8E3:"
 New Option Nr=99  OptionText=_" logout"
 EnableOption=99
 DoSomethingExtra="EndDialog"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 

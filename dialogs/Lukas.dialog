@@ -35,7 +35,6 @@ Subtitle=_"A newcomer! Great! We can always use more people. Welcome to the Red 
 DisableOption=0
 EnableOption=1
 EnableOption=2
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -45,21 +44,18 @@ Subtitle=_"There are two kinds or armor, a heavy Red Guard robe and a light vers
 Subtitle=_"Now, what will it be?"
 EnableOption=1
 DoSomethingExtra="InitTradeWithCharacter:Lukas"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=2  OptionText=_" What do you do all day here at the armory?"
 Subtitle=_"Oh, there's always something to do. Don't worry. I'm pretty occupied keeping the place in order."
 DisableOption=2
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=99  OptionText=_" See you later! "
 EnableOption=99
 DoSomethingExtra="EndDialog"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 

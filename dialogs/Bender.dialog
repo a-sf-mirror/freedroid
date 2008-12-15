@@ -34,7 +34,6 @@ New Option Nr=0  OptionText=_" Hello! I'm new here."
 Subtitle=_"Hello. I'm Bender, the dead man of this camp."
 EnableOption=1
 DisableOption=0
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -44,7 +43,6 @@ Subtitle=_"But yet I might be dead soon. The doc warned me, but I didn't listen.
 DisableOption=1
 EnableOption=2
 EnableOption=3
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -55,7 +53,6 @@ DisableOption=2
 DisableOption=3
 EnableOption=4
 EnableOption=10
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -65,7 +62,6 @@ DisableOption=2
 DisableOption=3
 EnableOption=4
 EnableOption=10
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -78,14 +74,12 @@ Subtitle=_"So I thought these pills might make them think differently about me."
 DisableOption=4
 EnableOption=5
 EnableOption=6
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=5  OptionText=_" But if you aren't dumb, why the brain enlargement pills?"
 Subtitle=_"Because they said I was dumb. So I had to do something about it, eh?"
 DisableOption=5
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -96,7 +90,6 @@ Subtitle=_"They can cause some awful forms of cancer. But I didn't listen. And n
 DisableOption=6
 EnableOption=7
 EnableOption=8
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -109,7 +102,6 @@ DisableOption=8
 EnableOption=11
 DoSomethingExtra="AssignMission:0"
 DoSomethingExtra="OpenQuestDiaryEntry:M0E0:"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -119,7 +111,6 @@ Subtitle=_"But this rat would rather let me die!"
 Subtitle=_"I'll rip his guts out as soon as I get my hands on him, man."
 DisableOption=7
 DisableOption=8
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -135,7 +126,6 @@ DoSomethingExtra="DeleteItem:Brain Enlargement Pills Antidote"
 DoSomethingExtra="AddExperienceBonus:150"
 DoSomethingExtra="MarkMissionComplete:0"
 DoSomethingExtra="OpenQuestDiaryEntry:M0E3:"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -145,7 +135,6 @@ Subtitle=_"Don't say it, man."
 Subtitle=_"I can kill you so much, that no one will recognize you!"
 DisableOption=10
 EnableOption=50
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -154,7 +143,6 @@ Subtitle=_"He's right inside this building. I'm waiting here for him, man."
 Subtitle=_"When he comes out, maybe I can pound him some more. Maybe then he'll help me at last!"
 Subtitle=_"Yes, he'll get a good beating. That will make him reconsider! That rat!"
 DisableOption=11
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -163,14 +151,12 @@ Subtitle=_"What have you got?"
 Subtitle=_"What, you have nothing?"
 Subtitle=_"Man, what are you doing here? Get the medicine! I need it now!"
 DisableOption=12
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=13  OptionText=_" How are you doing?"
 Subtitle=_"Much better. I'm cured. Thanks again man! I'll vote for you if you want into the city guard! You're a good guy, man!"
 DisableOption=13
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -186,14 +172,12 @@ New Option Nr=15  OptionText="DID HE FINISH IT?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER" 
 OnCondition="MissionComplete:0" JumpToOption=17 ElseGoto=18
 DisableOption=15
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=16  OptionText="THE GREAT UNKNOWN NODE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=16
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -201,7 +185,6 @@ New Option Nr=17  OptionText="BENDER IS SAVED"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 EnableOption=13
 DisableOption=17
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -216,7 +199,6 @@ DisableOption=3
 DisableOption=2
 DisableOption=4
 OnCondition="HaveItemWithName:Brain Enlargement Pills Antidote" JumpToOption=20 ElseGoto=19
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -225,7 +207,6 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 EnableOption=12
 DisableOption=19
 DisableOption=9
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -238,7 +219,6 @@ DisableOption=10
 DisableOption=50
 DisableOption=20
 DisableOption=12
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -248,7 +228,6 @@ Subtitle=_"No one says I'm stupid! I'm NOT STUPID!"
 Subtitle=_"I'LL BEAT YOU TO SPLINTERS!"
 DisableOption=50
 DoSomethingExtra="BreakOffAndBecomeHostile"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -256,7 +235,6 @@ New Option Nr=99  OptionText=_" See you later."
 Subtitle=_"Later, man!"
 EnableOption=99
 DoSomethingExtra="EndDialog"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 

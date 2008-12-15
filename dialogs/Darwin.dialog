@@ -35,7 +35,6 @@ Subtitle=_"Hello. We are the Fleischer brothers."
 Subtitle=_"I am Engel. He is Geist, and he does not know the language."
 DisableOption=0
 EnableOption=1
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -47,7 +46,6 @@ DisableOption=1
 EnableOption=13
 EnableOption=11
 EnableOption=2
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -55,7 +53,6 @@ New Option Nr=2  OptionText=_" Can I help you somehow?"
 Subtitle=_"Nein. Let us die as warriors. That is all we ask for."
 DisableOption=2
 EnableOption=3
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -63,7 +60,6 @@ New Option Nr=3  OptionText=_" If you keep standing here more bots will come and
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=3
 LinkedTo=4
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -72,7 +68,6 @@ Subtitle=_"Sehr gut. Let them come. We are ready."
 Subtitle=_"What a beautiful day. Yes."
 DisableOption=4
 EnableOption=5
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -83,7 +78,6 @@ Subtitle=_"Today will be no different."
 Subtitle=_"Do not try to stop us. We have our rifles loaded."
 DisableOption=5
 EnableOption=7
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -93,7 +87,6 @@ Subtitle=_"There is a city a bit south from here, but if I were you, I would not
 Subtitle=_"The Rot Guard is the ruler there, and cruelty is their solution to everything."
 Subtitle=_"Real freedom is really dead."
 DisableOption=6
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -101,7 +94,6 @@ New Option Nr=7  OptionText=_" You guys are totally nuts. Get a life."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=7
 LinkedTo=8
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -109,7 +101,6 @@ New Option Nr=8  OptionText=_" You guys are tota --"
 Subtitle=_"WHAT?! What is it that you want to say?"
 DisableOption=8
 LinkedTo=9
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -117,7 +108,6 @@ New Option Nr=9  OptionText=_" Erm... I --"
 Subtitle=_"WHAT!? SPIT IT OUT!"
 DisableOption=9
 LinkedTo=10
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -127,7 +117,6 @@ Subtitle=_"I hope that one day we shall meet again, maybe in a better time."
 Subtitle=_"Maybe then you will tell us other gut jokes that you know."
 Subtitle=_"Maybe one day..."
 DisableOption=10
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -136,7 +125,6 @@ Subtitle=_"I was a bot constructor. Built the killers of my mother."
 Subtitle=_"Now I sell the parts that I remove from the bots to buy more ammunition and food."
 DisableOption=11
 EnableOption=12
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -146,14 +134,12 @@ Subtitle=_"I will sell the information for a lot of cybergeld."
 Subtitle=_"Interested?"
 EnableOption=12
 DoSomethingExtra="ExecuteSubdialog:subdlg_Darwin"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=13  OptionText=_" Can I join your hunt?"
 Subtitle=_"Nein. Our problem. Our hunt."
 DisableOption=13
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -161,7 +147,6 @@ New Option Nr=99  OptionText=_" I'll be going then."
 Subtitle=_"Goodbye and viel gluck."
 EnableOption=99
 DoSomethingExtra="EndDialog"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 

@@ -36,7 +36,6 @@ Subtitle=_"Don't worry about me. I'll be fine."
 Subtitle=_"I'm Kevin, a computer security expert."
 DisableOption=0
 LinkedTo=20
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -44,7 +43,6 @@ New Option Nr=1  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=1
 OnCondition="MissionAssigned:6" JumpToOption=2 ElseGoto=5
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -54,14 +52,12 @@ Subtitle=_"As I've told you, I cannot teach you anything right now. I don't have
 Subtitle=_"I must see to that the flaky energy stream is distributed in such a way that my research project can continue."
 Subtitle=_"If you get rid of the maintenance bots on the second underground level of this station, I will find the time to teach you something."
 DisableOption=2
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=3  OptionText=_" What can you teach me about hacking?"
 EnableOption=3
 OnCondition="MissionComplete:6" JumpToOption=4 ElseGoto=1
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -71,7 +67,6 @@ Subtitle=_"I can teach you everything. For three hundred, up front."
 Subtitle=_"Still interested? "
 DisableOption=4
 DoSomethingExtra="ExecuteSubdialog:subdlg_Kevin"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -86,7 +81,6 @@ Subtitle=_"Now, if you go down there and make the power flow stable, then I'll f
 DisableOption=5
 EnableOption=6
 EnableOption=7
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -99,7 +93,6 @@ DisableOption=7
 DisableOption=6
 DoSomethingExtra="AssignMission:6"
 DoSomethingExtra="OpenQuestDiaryEntry:M6E0:"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -107,7 +100,6 @@ New Option Nr=7  OptionText=_" I'm sorry, but I don't think there's anything I c
 Subtitle=_"Too bad. Now get out of my sight."
 DisableOption=6
 DisableOption=7
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -125,21 +117,18 @@ DisableOption=9
 EnableOption=10
 EnableOption=18
 DoSomethingExtra="OpenQuestDiaryEntry:M6E1:"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=10  OptionText=_" How about some reward for securing your energy supply area?"
 DisableOption=10
 OnCondition="CookieIsPlanted:kevin_reward1_given:" JumpToOption=12 ElseGoto=13
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=11  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=11
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -147,7 +136,6 @@ New Option Nr=12  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"I've already rewarded you for that. Don't steal my time. I'm busy."
 DisableOption=12
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -156,7 +144,6 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"What do you want?"
 DisableOption=13
 DoSomethingExtra="ExecuteSubdialog:subdlg_kevin_reward1"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -168,7 +155,6 @@ Subtitle=_"Once we've evaluated the data, we might find a way to secure the colo
 Subtitle=_"If I only had a suitable cluster. Then we could start data evaluation right away."
 DisableOption=14
 EnableOption=16
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -183,14 +169,12 @@ DisableOption=15
 DoSomethingExtra="GiveItem:Kevin's Data Cube"
 DoSomethingExtra="AssignMission:7"
 DoSomethingExtra="OpenQuestDiaryEntry:M7E0:"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=16  OptionText=_" Maybe I can help somehow to find a suitable cluster."
 DisableOption=16
 OnCondition="MissionAssigned:7" JumpToOption=17 ElseGoto=15
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -199,14 +183,12 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"You've already agreed to take my data cube to the cluster. I have no influence on this matter anymore."
 Subtitle=_"The fate of the colony now rests in your hands. Bring the data cube I gave you to the cluster. Only there the data can be evaluated properly."
 DisableOption=17
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=18  OptionText=_" About that project you said you have running..."
 DisableOption=18
 OnCondition="MissionComplete:7" JumpToOption=19 ElseGoto=14
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -215,7 +197,6 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"I've already received the results from the evaluation of my data in the cluster."
 Subtitle=_"Good work."
 DisableOption=19
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -223,7 +204,6 @@ New Option Nr=20  OptionText=_" In other words: You are a hacker."
 Subtitle=_"Eh... I guess you could put it that way, yes."
 DisableOption=20
 EnableOption=3
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -234,7 +214,6 @@ Subtitle=_"Back to the drawing board, I guess..."
 DisableOption=25
 EnableOption=26
 DoSomethingExtra="PlantCookie:kevin_sigtalk"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -242,7 +221,6 @@ New Option Nr=26  OptionText=_" I thought you would be more worried about her de
 Subtitle=_"Why? I have backups from last Friday. No reason to worry at all."
 Subtitle=_"It will be a while till I get her together again, but she will be fine."
 DisableOption=26
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -259,14 +237,12 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=51
 EnableOption=25
 OnCondition="CookieIsPlanted:kevin_sigtalk:" JumpToOption=53 ElseGoto=52
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=52  OptionText="NOT TALKED ABOUT JASMINE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=52
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -274,14 +250,12 @@ New Option Nr=53  OptionText="YES, TALKED BEFORE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=53
 DisableOption=25
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=54  OptionText="DO NOTHING NODE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=54
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -290,7 +264,6 @@ Subtitle=_"Be careful. The bots are in a foul mood today."
 Subtitle=_"Very easy to get killed. Very easy."
 EnableOption=99
 DoSomethingExtra="EndDialog"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 

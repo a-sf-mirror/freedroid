@@ -39,7 +39,6 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 New Option Nr=99  OptionText=_" logout"
 EnableOption=99
 DoSomethingExtra="EndDialog"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 

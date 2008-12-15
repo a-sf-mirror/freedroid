@@ -35,7 +35,6 @@ Subtitle=_"Verschwinde."
 DisableOption=0
 EnableOption=1
 EnableOption=2
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -45,7 +44,6 @@ Subtitle=_"Und das mit Recht; denn alles, was entsteht,"
 Subtitle=_"ist wert, dass es zugrunde geht."
 DisableOption=1
 EnableOption=3
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -55,7 +53,6 @@ Subtitle=_"ihre Kraft und Eigenschaft,"
 Subtitle=_"waere kein Meister ueber die Geister."
 DisableOption=2
 EnableOption=3
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -63,7 +60,6 @@ New Option Nr=3  OptionText=_" I wish I knew what you are talking about."
 Subtitle=_"Verschwinde."
 DisableOption=3
 DoSomethingExtra="EndDialog"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -71,7 +67,6 @@ New Option Nr=99  OptionText=_" I need to go now."
 Subtitle=_" . . ."
 EnableOption=99
 DoSomethingExtra="EndDialog"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 

@@ -44,7 +44,6 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 New Option Nr=1  OptionText="DO NOTHING NODE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=1
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -52,7 +51,6 @@ New Option Nr=5  OptionText="KOAN WAS SPARED"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=5
 EnableOption=20
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -69,7 +67,6 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=8
 EnableOption=30
 EnableOption=10
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -79,7 +76,6 @@ DisableOption=10
 DoSomethingExtra="AddExperienceBonus:3000"
 DoSomethingExtra="DeleteItem:Pandora's Cube"
 DoSomethingExtra="EndDialog"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -87,7 +83,6 @@ New Option Nr=20  OptionText=_" I could not find him anywhere in the desert. I d
 Subtitle=_"I see."
 DisableOption=20
 DoSomethingExtra="EndDialog"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -100,7 +95,6 @@ DisableOption=20
 DisableOption=10
 EnableOption=70
 EnableOption=60
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -108,7 +102,6 @@ New Option Nr=40  OptionText=_" A 'few' bots? The place was crawling with Sawmil
 Subtitle=_"There were only fourty bots in the desert region. This hardly qualifies as many."
 DisableOption=40
 EnableOption=41
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -116,7 +109,6 @@ New Option Nr=41  OptionText=_" What? You know exactly how many bots were on the
 Subtitle=_"I just know a lot of things. You do not need to worry about it."
 DisableOption=41
 EnableOption=50
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -124,7 +116,6 @@ New Option Nr=50  OptionText=_" I don't like this at all. I'm getting out of her
 Subtitle=_"As you wish."
 DisableOption=50
 DoSomethingExtra="EndDialog"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -134,7 +125,6 @@ DisableOption=60
 DoSomethingExtra="AddExperienceBonus:3000"
 DoSomethingExtra="DeleteItem:Pandora's Cube"
 DoSomethingExtra="EndDialog"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -142,7 +132,6 @@ New Option Nr=70  OptionText=_" WHAT? No way I am giving you a doomsday device! 
 Subtitle=_"I understand. So be it."
 DisableOption=70
 DoSomethingExtra="EndDialog"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 

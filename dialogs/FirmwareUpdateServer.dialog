@@ -46,7 +46,6 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 New Option Nr=1  OptionText=_" Get current OS version"
 Subtitle=_"Currently deployed firmware is v. 5.0.8+worldto-nogpl."
 DisableOption=1
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -61,7 +60,6 @@ DisableOption=1
 DisableOption=2
 EnableOption=3
 DoSomethingExtra="MarkMissionComplete:9"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -71,14 +69,12 @@ DisableOption=1
 DisableOption=2
 EnableOption=3
 DoSomethingExtra="SetMoveFreelyProperty"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=99  OptionText=_" Logout"
 EnableOption=99
 DoSomethingExtra="EndDialog"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 

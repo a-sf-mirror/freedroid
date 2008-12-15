@@ -45,7 +45,6 @@ Subtitle=_"A... friend of mine, Koan, stole something of great value to me."
 Subtitle=_"He is hiding somewhere in the desert, I don't know exactly where."
 DisableOption=1
 EnableOption=2
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -59,7 +58,6 @@ DisableOption=99
 EnableOption=7
 EnableOption=6
 EnableOption=5
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -69,14 +67,12 @@ Subtitle=_"They were designed to chop down trees in the mountains."
 Subtitle=_"Now they chop down people."
 Subtitle=_"Their only weak point is their security system. But no one managed to stay alive long enough to hack them."
 DisableOption=5
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
 New Option Nr=6  OptionText=_" What is that thing he took from you?"
 Subtitle=_"A cube. You can't miss it. Trust me."
 DisableOption=6
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -85,7 +81,6 @@ Subtitle=_"Only time will tell."
 EnableOption=7
 DoSomethingExtra="EndDialog"
 DoSomethingExtra="ExecuteActionWithLabel:unlock_desert"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
@@ -93,7 +88,6 @@ New Option Nr=99  OptionText=_" No, I don't find bloodshed a pleasurable activit
 Subtitle=_"That is fine. I will find someone else."
 DisableOption=99
 DoSomethingExtra="EndDialog"
-AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
 
