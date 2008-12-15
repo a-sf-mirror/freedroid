@@ -257,6 +257,7 @@ int SaveGame( void )
 {
     char filename[1000];
     char filename2[1000];
+    int ret;
     
     if ( Me . energy <= 0 )
     {
@@ -282,7 +283,12 @@ int SaveGame( void )
     sprintf( filename , "%s/%s%s", our_config_dir, Me.character_name, ".shp" );
     sprintf( filename2 , "%s/%s%s", our_config_dir, Me.character_name, ".bkp.shp" );
 
-    rename(filename, filename2);
+    unlink(filename2);
+    ret = rename(filename, filename2);
+
+    if (ret) {
+	ErrorMessage ( __FUNCTION__, "Unable to create the shipfile backup\n", PLEASE_INFORM, IS_WARNING_ONLY);
+    }
 
     if ( SaveShip( filename ) != OK )
     {
@@ -300,7 +306,12 @@ or file permissions of ~/.freedroid_rpg are somehow not right.",
     sprintf ( filename , "%s/%s%s", our_config_dir , Me.character_name, ".savegame");
     sprintf( filename2 , "%s/%s%s", our_config_dir, Me.character_name, ".bkp.savegame" );
 
-    rename(filename, filename2);
+    unlink(filename2);
+    ret = rename(filename, filename2);
+
+    if (ret) {
+	ErrorMessage ( __FUNCTION__, "Unable to create the savegame backup\n", PLEASE_INFORM, IS_WARNING_ONLY);
+    }
     
     if( ( SaveGameFile = fopen(filename, "wb")) == NULL) {
 	printf(_("\n\nError opening save game file for writing...\n\nTerminating...\n\n"));
