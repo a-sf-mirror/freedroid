@@ -83,7 +83,6 @@ EXTERN void tux_wants_to_attack_now ( int use_mouse_cursor_for_targeting ) ;
 EXTERN int PerformTuxAttackRaw ( int use_mouse_cursor_for_targeting ) ;
 EXTERN void TuxReloadWeapon ( void ) ;
 EXTERN void correct_tux_position_according_to_jump_thresholds ( void );
-EXTERN int isignf (float);
 EXTERN void InitInfluPositionHistory( void );
 EXTERN float GetInfluPositionHistoryX( int Index );
 EXTERN float GetInfluPositionHistoryY( int Index );
@@ -136,7 +135,6 @@ EXTERN void delete_melee_shot ( melee_shot * );
 EXTERN void update_virtual_position ( gps* target_pos , gps* source_pos , int level_num );
 EXTERN void FdFillRect (SDL_Rect rect, SDL_Color color);
 EXTERN void ShowPosition (void);
-EXTERN void DisplayItemImageAtMouseCursor( int ItemImageCode );
 EXTERN void ShowCombatScreenTexts ( int mask );
 EXTERN void isometric_show_floor_around_tux_without_doublebuffering (int mask);
 EXTERN void set_up_ordered_blitting_list ( int mask );
@@ -207,7 +205,6 @@ EXTERN void clear_screen (void) ;
 EXTERN void blit_open_gl_stretched_texture_light_radius ( void ) ;
 EXTERN void PutPixel_open_gl ( int x, int y, Uint32 pixel);
 EXTERN void GL_HighlightRectangle ( SDL_Surface* Surface , SDL_Rect * Area , unsigned char r , unsigned char g , unsigned char b , unsigned char alpha );
-EXTERN void ShowInventoryScreenBackground ( void );
 EXTERN void show_character_screen_background ( void );
 EXTERN int safely_initialize_our_default_open_gl_parameters ( void ) ;
 EXTERN void draw_gl_textured_quad_at_map_position ( iso_image * our_floor_iso_image , float our_col , float our_line , float r , float g , float b , int highlight_texture, int blend, float zoom_factor ) ;
@@ -215,7 +212,6 @@ EXTERN void draw_gl_textured_quad_at_screen_position ( iso_image * our_floor_iso
 EXTERN void draw_gl_scaled_textured_quad_at_screen_position ( iso_image * our_floor_iso_image , int x , int y , float scale_factor ) ;
 EXTERN void blit_semitransparent_open_gl_texture_to_screen_position ( iso_image * our_floor_iso_image , int x , int y , float scale_factor ) ;
 EXTERN void blit_special_background ( int background_code );
-EXTERN void flush_background_image_cache ( void );
 EXTERN void open_gl_check_error_status ( const char* name_of_calling_function );
 EXTERN void draw_gl_bg_textured_quad_at_screen_position ( iso_image * our_floor_iso_image , int x , int y ) ;
 
@@ -242,14 +238,11 @@ EXTERN void LoadAndPrepareGreenEnemyRotationModelNr ( int RotationModel );
 EXTERN void LoadAndPrepareBlueEnemyRotationModelNr ( int RotationModel );
 EXTERN void Load_Enemy_Surfaces (void);
 EXTERN void Load_Tux_Surfaces( void );
-EXTERN void LoadOneMapInsertSurfaceIfNotYetLoaded ( int i );
 EXTERN void Load_Bullet_Surfaces (void);
 EXTERN void Load_Blast_Surfaces (void);
 EXTERN void load_floor_tiles ( void );
 EXTERN void load_all_obstacles ( void );
 EXTERN void blit_iso_image_to_map_position ( iso_image * our_iso_image , float pos_x , float pos_y );
-EXTERN void blit_iso_image_to_map_position_in_buffer ( SDL_Surface *current_buffer , 
-						       iso_image * our_iso_image , float pos_x , float pos_y );
 EXTERN void blit_iso_image_to_screen_position ( iso_image * our_iso_image , float pos_x , float pos_y );
 EXTERN void blit_outline_of_iso_image_to_map_position ( iso_image * our_iso_image , float pos_x , float pos_y );
 
