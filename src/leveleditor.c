@@ -150,7 +150,7 @@ void level_editor_action_undo ()
 		list_del(to_undo.next);
             
 	    for(i = 0; i < a->d.number_fill_set; i++) {
-		level_editor_action_undo(EditLevel);
+		level_editor_action_undo();
 	    }
 	    list_add(&a->node, &to_redo);
 	} else {
