@@ -44,6 +44,56 @@
 #define PUSH_ROSTER 2
 #define POP_ROSTER 3 
 
+struct { 
+    const char *name;
+    int person_id;
+} dialog_name_to_index[] = { 
+    { "Chandra", PERSON_CHA },
+    { "Sorenson", PERSON_SORENSON},
+    { "614", PERSON_614},
+    { "Stone", PERSON_STONE},
+    { "Pendragon", PERSON_PENDRAGON},
+    { "Dixon", PERSON_DIXON},
+    { "RMS", PERSON_RMS},
+    { "MER", PERSON_MER},
+    { "Francis", PERSON_FRANCIS},
+    { "FirmwareUpdateServer", PERSON_FIRMWARE_SERVER},
+    { "Bruce", PERSON_BRUCE},
+    { "Benjamin", PERSON_BENJAMIN},
+    { "Bender", PERSON_BENDER},
+    { "Spencer", PERSON_SPENCER},
+    { "Butch", PERSON_BUTCH},
+    { "Darwin", PERSON_DARWIN},
+    { "Duncan", PERSON_DUNCAN},
+    { "DocMoore", PERSON_DOC_MOORE},
+    { "Melfis", PERSON_MELFIS},
+    { "Michelangelo", PERSON_MICHELANGELO},
+    { "Skippy", PERSON_SKIPPY},
+    { "StandardOldTownGateGuard", PERSON_STANDARD_OLD_TOWN_GATE_GUARD},
+    { "StandardNewTownGateGuard", PERSON_STANDARD_NEW_TOWN_GATE_GUARD},
+    { "OldTownGateGuardLeader", PERSON_OLD_TOWN_GATE_GUARD_LEADER},
+    { "StandardMSFacilityGateGuard", PERSON_STANDARD_MS_FACILITY_GATE_GUARD},
+    { "MSFacilityGateGuardLeader", PERSON_MS_FACILITY_GATE_GUARD_LEADER},
+    { "HEA", PERSON_HEA},
+    { "StandardBotAfterTakeover", PERSON_STANDARD_BOT_AFTER_TAKEOVER},
+    { "Tybalt", PERSON_TYBALT},
+    { "Ewald", PERSON_EWALD},
+    { "KevinGuard", PERSON_KEVINS_GUARD},
+    { "Kevin", PERSON_KEVIN},
+    { "Jasmine", PERSON_JASMINE},
+    { "Lukas", PERSON_LUKAS},
+    { "SADD", PERSON_SADD},
+    { "Tania", PERSON_TANIA},
+    { "SACD", PERSON_SACD},
+    { "Koan", PERSON_KOAN},
+    { "Boris", PERSON_BORIS},
+    { "Lina", PERSON_LINA},
+    { "Serge", PERSON_SERGE},
+    { "TestDroid", PERSON_TEST_DROID},
+    { "MSCD", PERSON_MSCD},
+    { "subdlg_", PERSON_SUBDIALOG_DUMMY},
+};
+
 dialogue_option ChatRoster[MAX_DIALOGUE_OPTIONS_IN_ROSTER];
 EXTERN char *PrefixToFilename[ ENEMY_ROTATION_MODELS_AVAILABLE ];
 char* chat_protocol = NULL ;
@@ -89,59 +139,19 @@ There was an unrecognized parameter handled to this function." ,
  * this person are stored.  It does this by exploiting on the (unique?)
  * dialog section to use entry of each (friendly) droid.
  */
-int
-ResolveDialogSectionToChatFlagsIndex ( char* SectionName )
+int ResolveDialogSectionToChatFlagsIndex ( char* SectionName )
 {
-    if ( strcmp ( SectionName , "Chandra" ) == 0 ) return PERSON_CHA ;
-    if ( strcmp ( SectionName , "Sorenson" ) == 0 ) return PERSON_SORENSON;
-    if ( strcmp ( SectionName , "614" ) == 0 ) return PERSON_614;
-    if ( strcmp ( SectionName , "Stone" ) == 0 ) return PERSON_STONE;
-    if ( strcmp ( SectionName , "Pendragon" ) == 0 ) return PERSON_PENDRAGON;
-    if ( strcmp ( SectionName , "Dixon" ) == 0 ) return PERSON_DIXON;
-    if ( strcmp ( SectionName , "RMS" ) == 0 ) return PERSON_RMS;
-    if ( strcmp ( SectionName , "MER" ) == 0 ) return PERSON_MER;
-    if ( strcmp ( SectionName , "Francis" ) == 0 ) return PERSON_FRANCIS;
-    if ( strcmp ( SectionName , "FirmwareUpdateServer" ) == 0 ) return PERSON_FIRMWARE_SERVER;
-    if ( strcmp ( SectionName , "Bruce" ) == 0 ) return PERSON_BRUCE;
-    if ( strcmp ( SectionName , "Benjamin" ) == 0 ) return PERSON_BENJAMIN;
-    if ( strcmp ( SectionName , "Bender" ) == 0 ) return PERSON_BENDER;
-    if ( strcmp ( SectionName , "Spencer" ) == 0 ) return PERSON_SPENCER;
-    if ( strcmp ( SectionName , "Butch" ) == 0 ) return PERSON_BUTCH;
-    if ( strcmp ( SectionName , "Darwin" ) == 0 ) return PERSON_DARWIN;
-    if ( strcmp ( SectionName , "Duncan" ) == 0 ) return PERSON_DUNCAN;
-    if ( strcmp ( SectionName , "DocMoore" ) == 0 ) return PERSON_DOC_MOORE;
-    if ( strcmp ( SectionName , "Melfis" ) == 0 ) return PERSON_MELFIS;
-    if ( strcmp ( SectionName , "Michelangelo" ) == 0 ) return PERSON_MICHELANGELO;
-    if ( strcmp ( SectionName , "Skippy" ) == 0 ) return PERSON_SKIPPY;
-    if ( strcmp ( SectionName , "StandardOldTownGateGuard" ) == 0 ) return PERSON_STANDARD_OLD_TOWN_GATE_GUARD;
-    if ( strcmp ( SectionName , "StandardNewTownGateGuard" ) == 0 ) return PERSON_STANDARD_NEW_TOWN_GATE_GUARD;
-    if ( strcmp ( SectionName , "OldTownGateGuardLeader" ) == 0 ) return PERSON_OLD_TOWN_GATE_GUARD_LEADER;
-    if ( strcmp ( SectionName , "StandardMSFacilityGateGuard" ) == 0 ) return PERSON_STANDARD_MS_FACILITY_GATE_GUARD;
-    if ( strcmp ( SectionName , "MSFacilityGateGuardLeader" ) == 0 ) return PERSON_MS_FACILITY_GATE_GUARD_LEADER;
-    if ( strcmp ( SectionName , "HEA" ) == 0 ) return PERSON_HEA;
-    if ( strcmp ( SectionName , "StandardBotAfterTakeover" ) == 0 ) return PERSON_STANDARD_BOT_AFTER_TAKEOVER;
-    if ( strcmp ( SectionName , "Tybalt" ) == 0 ) return PERSON_TYBALT;
-    if ( strcmp ( SectionName , "Ewald" ) == 0 ) return PERSON_EWALD;
-    if ( strcmp ( SectionName , "KevinGuard" ) == 0 ) return PERSON_KEVINS_GUARD;
-    if ( strcmp ( SectionName , "Kevin" ) == 0 ) return PERSON_KEVIN;
-    if ( strcmp ( SectionName , "Jasmine" ) == 0 ) return PERSON_JASMINE;
-    if ( strcmp ( SectionName , "Lukas" ) == 0 ) return PERSON_LUKAS;
-    if ( strcmp ( SectionName , "SADD" ) == 0 ) return PERSON_SADD;
-    if ( strcmp ( SectionName , "Tania" ) == 0 ) return PERSON_TANIA;
-    if ( strcmp ( SectionName , "SACD" ) == 0 ) return PERSON_SACD;
-    if ( strcmp ( SectionName , "Koan" ) == 0 ) return PERSON_KOAN;
-    if ( strcmp ( SectionName , "Boris" ) == 0 ) return PERSON_BORIS;
-    if ( strcmp ( SectionName , "Lina" ) == 0 ) return PERSON_LINA;
-    if ( strcmp ( SectionName , "Serge" ) == 0 ) return PERSON_SERGE;
-    if ( strcmp ( SectionName , "TestDroid" ) == 0 ) return PERSON_TEST_DROID;
-    if ( strcmp ( SectionName , "MSCD" ) == 0 ) return PERSON_MSCD;
-    if ( strncmp ( SectionName , "subdlg_" , 6 ) == 0 ) return PERSON_SUBDIALOG_DUMMY;
+    int i;
+    for ( i=0; i < sizeof(dialog_name_to_index) / sizeof(dialog_name_to_index[0]); i++) {
+	if ( !strcmp(SectionName, dialog_name_to_index[i] . name ) )
+		return dialog_name_to_index[i] . person_id;
+    }
 
     DebugPrintf ( -1000 , "\n--------------------\nSectionName: %s." , SectionName );
     ErrorMessage ( __FUNCTION__  , "\
-There was a dialogue section to be used with a droid, that does not have a \n\
-corresponding chat flags array index." ,
-			       PLEASE_INFORM, IS_FATAL );
+There was a dialog section to be used with a droid (name %s), that does not have a \n\
+corresponding chat flags array index as defined in chat.c." ,
+			       PLEASE_INFORM, IS_FATAL, SectionName );
     return (-1);
     
 }; // int ResolveDialogSectionToChatFlagsIndex ( Enemy ChatDroid )
