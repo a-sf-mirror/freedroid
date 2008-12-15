@@ -72,7 +72,7 @@ Subtitle=_"Opening doors..."
 Subtitle=_"Connecting to peripheral controller..."
 Subtitle=_"Please enter unlock security password:"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
-LinkedTo:5
+LinkedTo=5
 
 ----------------------------------------------------------------------
 

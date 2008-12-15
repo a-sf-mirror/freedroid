@@ -106,7 +106,7 @@ Subtitle=_"Let us begin then."
 Subtitle=_"Come closer..."
 Subtitle=_"HA!"
 DisableOption=8
-LinkedTo:20
+LinkedTo=20
 DoSomethingExtra="SubtractPointsToDistribute:5"
 DoSomethingExtra="SubtractGold:100"
 DoSomethingExtra="IncreaseMeleeWeaponSkill"
@@ -163,7 +163,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=20  OptionText=_" Ouch! What the hell are you doing?"
 Subtitle=_"Lesson number one. Never trust the opponent."
 DisableOption=20
-LinkedTo:21
+LinkedTo=21
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -173,7 +173,7 @@ Subtitle=_"Lesson number two. The bots have no mercy."
 Subtitle=_"They won't let you get up if you fall down. They will kill you."
 Subtitle=_"Now, lesson number -- ugh! That hurt!"
 DisableOption=21
-LinkedTo:22
+LinkedTo=22
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------

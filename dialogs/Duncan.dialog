@@ -218,7 +218,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=96  OptionText=_" See you later."
 Subtitle=_"I wish you cold winds."
 DisableOption=96
-LinkedTo:97
+LinkedTo=97
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------

@@ -33,7 +33,7 @@ Beginning of new chat dialog for character="XXXXX"
 New Option Nr=0  OptionText=_" Um... Hello?"
 Subtitle=_"AH! Visitors! Come in! Come in!"
 DisableOption=0
-LinkedTo:1
+LinkedTo=1
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
@@ -55,7 +55,7 @@ Subtitle=_"I? Sorenson is a great computer person."
 Subtitle=_"Knows the deep codes. Walks the paths."
 Subtitle=_"Sees the light of all chips. Knows how to use every keyboard."
 DisableOption=20
-LinkedTo:21
+LinkedTo=21
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -65,7 +65,7 @@ Subtitle=_"Sees the bit. Knows the bytes. Explores the great networks."
 Subtitle=_"The best friend of the clean and pure code."
 Subtitle=_"The great light on the night sky of the hollow web of computer power."
 DisableOption=21
-LinkedTo:22
+LinkedTo=22
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -74,7 +74,7 @@ New Option Nr=22  OptionText=_" Yes, I get the idea..."
 Subtitle=_"Seeker of clean languages. The great knower of obscure secrets."
 Subtitle=_"The one who speaks to hard drives. The best --"
 DisableOption=22
-LinkedTo:23
+LinkedTo=23
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -85,7 +85,7 @@ Subtitle=_"Sorenson did not tell you most yet."
 Subtitle=_"She did not tell you she is the great controler of light."
 Subtitle=_"She did not tell you she is the walker of the dark corridors --"
 DisableOption=23
-LinkedTo:24
+LinkedTo=24
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------

@@ -185,7 +185,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=15  OptionText=_" End the violence! All blood is red!"
 Subtitle=_"Hey, the bots bleed black. With oil."
 DisableOption=15
-LinkedTo:16
+LinkedTo=16
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -194,7 +194,7 @@ New Option Nr=16  OptionText=_" But... But... "
 Subtitle=_"No 'but' about it, newbie."
 Subtitle=_"The bots bleed black."
 DisableOption=16
-LinkedTo:17
+LinkedTo=17
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------

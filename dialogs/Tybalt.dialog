@@ -68,7 +68,7 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Sorry pal, but I don't think so. Only authorized personnel are permitted and that means members of the Red Guard."
 Subtitle=_"Talk to Spencer if you have any issues inside. I cannot let you pass."
 DisableOption=4
-LinkedTo:60
+LinkedTo=60
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -76,7 +76,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=50  OptionText=_" I have a lot of money for you."
 Subtitle=_"Fascinating. Hundred."
 DisableOption=50
-LinkedTo:51
+LinkedTo=51
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------

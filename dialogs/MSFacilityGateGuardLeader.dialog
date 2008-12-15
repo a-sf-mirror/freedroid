@@ -51,7 +51,7 @@ Subtitle=_"Get outta here!"
 DisableOption=1
 DisableOption=2
 DisableOption=3
-LinkedTo:99
+LinkedTo=99
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -66,7 +66,7 @@ Subtitle=_"Find a different gate to go through."
 DisableOption=1
 DisableOption=2
 DisableOption=3
-LinkedTo:99
+LinkedTo=99
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -78,7 +78,7 @@ DisableOption=1
 DisableOption=2
 DisableOption=8
 DisableOption=3
-LinkedTo:99
+LinkedTo=99
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -127,7 +127,7 @@ DisableOption=1
 DisableOption=2
 DisableOption=3
 DisableOption=8
-LinkedTo:9
+LinkedTo=9
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------

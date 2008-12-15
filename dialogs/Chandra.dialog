@@ -65,7 +65,7 @@ Subtitle=_"Now, I make the assumption that you and I are alive."
 Subtitle=_"Now, if we are not dead, and if bots are killing everything alive..."
 Subtitle=_"... THEN SOMETHING IS NOT LOGICAL!"
 DisableOption=3
-LinkedTo:4
+LinkedTo=4
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------

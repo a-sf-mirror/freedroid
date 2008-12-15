@@ -35,7 +35,7 @@ Subtitle=_"Hi. I haven't slept for a few weeks, so I'm just a little bit tired."
 Subtitle=_"Don't worry about me. I'll be fine."
 Subtitle=_"I'm Kevin, a computer security expert."
 DisableOption=0
-LinkedTo:20
+LinkedTo=20
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------

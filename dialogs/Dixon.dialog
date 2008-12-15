@@ -106,7 +106,7 @@ New Option Nr=22  OptionText=_" Can I help you somehow?"
 Subtitle=_"We need people badly, so it would be great if you could give us a helping hand even for a few days."
 Subtitle=_"Now, what are your skills? Where do you think you could be the most useful?"
 DisableOption=22
-LinkedTo:23
+LinkedTo=23
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -114,7 +114,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=23  OptionText=_" I can handle computers very well. I also know a lot about laboratory equipment."
 Subtitle=_"And what about construction? Mechanical devices? Repairing broken power lines? Building laser pistols? Anything like that? "
 DisableOption=23
-LinkedTo:24
+LinkedTo=24
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -182,7 +182,7 @@ Subtitle=_"May the heavens have mercy upon us, but better them than us."
 DisableOption=28
 DisableOption=29
 DisableOption=30
-LinkedTo:32
+LinkedTo=32
 DoSomethingExtra="OpenQuestDiaryEntry:M1E1:"
 DoSomethingExtra="PlantCookie:singularity_dead"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
@@ -228,7 +228,7 @@ New Option Nr=32  OptionText=_" I will go in there first and clean out the place
 Subtitle=_"Linarian, my people do not carry guns. We are mechanics. You want the military division's help."
 Subtitle=_"Erm... And aren't you being too aggressive? Maybe they do not wish us harm..."
 DisableOption=32
-LinkedTo:33
+LinkedTo=33
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------

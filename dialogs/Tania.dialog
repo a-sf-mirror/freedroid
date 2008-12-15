@@ -96,7 +96,7 @@ Subtitle=_"*cries*"
 DisableOption=7
 EnableOption=9
 AlwaysExecuteThisOptionPriorToDialogStart="no"
-LinkedTo:9
+LinkedTo=9
 
 --------------------------------------------------------------------
 

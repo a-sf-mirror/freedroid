@@ -75,7 +75,7 @@ Subtitle=_" Hostile? What do you mean?"
 DisableOption=5
 EnableOption=3
 AlwaysExecuteThisOptionPriorToDialogStart="no"
-LinkedTo:3
+LinkedTo=3
 
 ----------------------------------------------------------------------
 
@@ -85,7 +85,7 @@ Subtitle=_" I know only that I have to be recharged, checked and have my firmwar
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 EnableOption=7
 DisableOption=6
-LinkedTo:7
+LinkedTo=7
 
 ----------------------------------------------------------------------
 
@@ -146,7 +146,7 @@ Subtitle=_" Why do you ask?"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 DisableOption=12
 EnableOption=13
-LinkedTo:13
+LinkedTo=13
 
 ----------------------------------------------------------------------
 
@@ -156,7 +156,7 @@ Subtitle=_" Yes, it will be violated. But first order has higher priority."
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 DisableOption=13
 EnableOption=14
-LinkedTo:14
+LinkedTo=14
 
 ----------------------------------------------------------------------
 
@@ -226,7 +226,7 @@ DisableOption=22
 EnableOption=23
 DoSomethingExtra="PlantCookie:SADD_exterminator"
 DoSomethingExtra="OpenQuestDiaryEntry:M9E1:"
-LinkedTo:23
+LinkedTo=23
 
 ----------------------------------------------------------------------
 
@@ -236,7 +236,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 DisableOption=21
 DisableOption=22
 EnableOption=23
-LinkedTo:23
+LinkedTo=23
 
 ----------------------------------------------------------------------
 
@@ -448,7 +448,7 @@ EnableOption=98
 DisableOption=97
 DoSomethingExtra="EndDialog"
 AlwaysExecuteThisOptionPriorToDialogStart="no"
-LinkedTo:98
+LinkedTo=98
 
 ----------------------------------------------------------------------
 

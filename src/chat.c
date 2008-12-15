@@ -502,43 +502,41 @@ severe error.",
 	    DebugPrintf( CHAT_DEBUG_LEVEL , "\nThere seems to be NO ON-GOTO-CONDITION AT ALL IN THIS OPTION." );
 	}
 	
-	if ( CountStringOccurences ( SectionPointer , "LinkedTo:" ) ) 
+	if ( CountStringOccurences ( SectionPointer , "LinkedTo=" ) ) 
 	{
-	    ReadValueFromString( SectionPointer , "LinkedTo:" , "%d" ,  & ( ChatRoster[ OptionIndex ] . link_target ) , NULL );
+	    ReadValueFromString( SectionPointer , "LinkedTo=" , "%d" ,  & ( ChatRoster[ OptionIndex ] . link_target ) , NULL );
 	}
 	
 	//--------------------
 	// Next thing we do will be to get the always-on-startup flag status.
 	//
-	if ( CountStringOccurences ( SectionPointer , "AlwaysExecuteThisOptionPriorToDialogStart" ) ) 
-	{
+	if ( CountStringOccurences ( SectionPointer , "AlwaysExecuteThisOptionPriorToDialogStart" ) ) {
 	    DebugPrintf( CHAT_DEBUG_LEVEL , "\nWe've found an ALWAYS-ON-START FLAG IN THIS OPTION!" );
-	    
+
 	    // Now we read in if this item can be used by the influ without help
 	    YesNoString = ReadAndMallocStringFromData ( SectionPointer , "AlwaysExecuteThisOptionPriorToDialogStart=\"" , "\"" ) ;
 	    if ( strcmp( YesNoString , "yes" ) == 0 )
-	    {
+		{
 		ChatRoster[ OptionIndex ] . always_execute_this_option_prior_to_dialog_start = TRUE;
-	    }
+		}
 	    else if ( strcmp( YesNoString , "no" ) == 0 )
-	    {
+		{
 		ChatRoster[ OptionIndex ] . always_execute_this_option_prior_to_dialog_start = FALSE;
-	    }
+		}
 	    else
-	    {
+		{
 		ErrorMessage ( __FUNCTION__  , "\
-The text should contain an \n\
-answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.\n\
-This indicated a corrupted FreedroidRPG dialog.",
-					   PLEASE_INFORM, IS_FATAL );
-	    }
+			The text should contain an \n\
+			answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.\n\
+			This indicated a corrupted FreedroidRPG dialog.",
+			PLEASE_INFORM, IS_FATAL );
+		}
 	    free ( YesNoString ) ;
 	}
-	else
-	{
-	    DebugPrintf( CHAT_DEBUG_LEVEL , "\nThere seems to be NO ALWAYS-ON-START FLAG AT ALL IN THIS OPTION." );
+	else {
+	    ChatRoster[ OptionIndex ] . always_execute_this_option_prior_to_dialog_start = FALSE;
 	}
-	
+
 	if (EndOfSectionPointer)
 	    *EndOfSectionPointer = NEW_OPTION_BEGIN_STRING[0];
     }

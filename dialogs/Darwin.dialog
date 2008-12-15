@@ -62,7 +62,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=3  OptionText=_" If you keep standing here more bots will come and they will kill you. Go somewhere safe, and set up defense there."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=3
-LinkedTo:4
+LinkedTo=4
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -100,7 +100,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=7  OptionText=_" You guys are totally nuts. Get a life."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=7
-LinkedTo:8
+LinkedTo=8
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -108,7 +108,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=8  OptionText=_" You guys are tota --"
 Subtitle=_"WHAT?! What is it that you want to say?"
 DisableOption=8
-LinkedTo:9
+LinkedTo=9
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -116,7 +116,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=9  OptionText=_" Erm... I --"
 Subtitle=_"WHAT!? SPIT IT OUT!"
 DisableOption=9
-LinkedTo:10
+LinkedTo=10
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------

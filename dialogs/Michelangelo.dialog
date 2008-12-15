@@ -152,7 +152,7 @@ Subtitle=_"That includes the implied warranty of edibility or fitness for a part
 Subtitle=_"Should the army meal model #23 prove poisonous, you agree to cover the cost of keeping you alive by the colony medical staff or the costs of your cremation in our nuclear furnaces.'"
 Subtitle=_"Well, that is all. Here is the junk that you wanted. Enjoy."
 DisableOption=12
-LinkedTo:27
+LinkedTo=27
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -160,7 +160,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="no"
 New Option Nr=27  OptionText=_" Hmm... Crunchy... That is... Oh... No. Ugh. Help."
 Subtitle=_"Oh yes. You were warned, so don't blame me."
 DisableOption=27
-LinkedTo:28
+LinkedTo=28
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------

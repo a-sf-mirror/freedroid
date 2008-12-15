@@ -152,7 +152,7 @@ New Option Nr=13  OptionText="DIXON SUCCESSFUL."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Dixon told me about the matter with his toolkit. He seemed pretty impressed by you."
 DisableOption=13
-LinkedTo:17
+LinkedTo=17
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -161,7 +161,7 @@ New Option Nr=14  OptionText="DIXON NOT DONE YET"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"I think our teleporter service man, Dixon, he's got some problem. You might want to talk to him."
 DisableOption=14
-LinkedTo:17
+LinkedTo=17
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -170,7 +170,7 @@ New Option Nr=15  OptionText="MICHELANGELO DONE."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"When I was eating, Michelangelo told me about his renewed oven energy supply. He seemed very pleased, and so was I."
 DisableOption=15
-LinkedTo:18
+LinkedTo=18
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -179,7 +179,7 @@ New Option Nr=16  OptionText="MICHELANGELO NOT DONE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"I think you should visit the camp's cook sometime. He's usually in the restaurant kitchen."
 DisableOption=16
-LinkedTo:18
+LinkedTo=18
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -204,7 +204,7 @@ New Option Nr=19  OptionText="TUX IS AN ARENA MASTER"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"From Butch I hear you've become a novice arena master. Congratulations."
 DisableOption=19
-LinkedTo:21
+LinkedTo=21
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -213,7 +213,7 @@ New Option Nr=20  OptionText="TUX IS NOT AN ARENA MASTER"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"You might want to score some arena victories. That could also help your reputation a lot."
 DisableOption=20
-LinkedTo:21
+LinkedTo=21
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -230,7 +230,7 @@ New Option Nr=22  OptionText="BENDER DONE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Helping Bender along was also a smart move. But you should be very careful with this one. He can get mad rather easily. A bit of a security threat, but we can't be too picky."
 DisableOption=22
-LinkedTo:24
+LinkedTo=24
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -239,7 +239,7 @@ New Option Nr=23  OptionText="BENDER STILL SICK"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"As far as I know, Bender is still very sick."
 DisableOption=23
-LinkedTo:24
+LinkedTo=24
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
@@ -256,7 +256,7 @@ New Option Nr=25  OptionText="WAREHOUSE DONE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"But most importantly, I was very impressed with you when you cleared out the warehouse. That was a huge deed I will never forget."
 DisableOption=25
-LinkedTo:27
+LinkedTo=27
 AlwaysExecuteThisOptionPriorToDialogStart="no"
 
 ----------------------------------------------------------------------
