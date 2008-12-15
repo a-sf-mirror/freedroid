@@ -435,7 +435,6 @@ EXTERN int normalize_vect ( float, float, float *, float *);
 #else
 #define EXTERN extern
 #endif
-EXTERN void LoadAllStaticModFiles( void );
 EXTERN void PlayOnceNeededSoundSample( const char* SoundSampleFileName , const int With_Waiting , const int no_double_catching );
 EXTERN void InitAudio(void);
 EXTERN void SetBGMusicVolume(float);
