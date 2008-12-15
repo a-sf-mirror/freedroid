@@ -266,7 +266,6 @@ EXTERN void make_sure_system_mouse_cursor_is_turned_on ( void );
 EXTERN void blit_our_own_mouse_cursor ( void );
 EXTERN void blit_mouse_cursor_corona ( void );
 EXTERN SDL_Surface* rip_rectangle_from_alpha_image ( SDL_Surface* our_surface , SDL_Rect our_rect ) ;
-EXTERN SDL_Surface* CreateAlphaCombinedSurface ( SDL_Surface* FirstSurface , SDL_Surface* SecondSurface );
 EXTERN SDL_Surface* CreateColorFilteredSurface ( SDL_Surface* FirstSurface , int FilterType );
 EXTERN void fade_out_using_gamma_ramp ( void );
 EXTERN void fade_in_using_gamma_ramp ( void );
