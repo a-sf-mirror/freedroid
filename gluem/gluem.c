@@ -157,7 +157,7 @@ PutPixel (SDL_Surface * surface, int x, int y, Uint32 pixel)
  *
  * ---------------------------------------------------------------------- */
 Uint32
-GetPixel (SDL_Surface * Surface, Sint32 X, Sint32 Y)
+FdGetPixel (SDL_Surface * Surface, Sint32 X, Sint32 Y)
 {
 
   Uint8 *bits;
@@ -169,22 +169,22 @@ GetPixel (SDL_Surface * Surface, Sint32 X, Sint32 Y)
   //
   if (X < 0)
     {
-      DebugPrintf ( 1 , "x too small in GetPixel!" );
+      DebugPrintf ( 1 , "x too small in FdGetPixel!" );
       return -1;
     }
   if (X >= Surface->w)
     {
-      DebugPrintf ( 1 , "x too big in GetPixel!" );
+      DebugPrintf ( 1 , "x too big in FdGetPixel!" );
       return -1;
     }
   if (Y < 0)
     {
-      DebugPrintf ( 1 , "y too small in GetPixel!" );
+      DebugPrintf ( 1 , "y too small in FdGetPixel!" );
       return -1;
     }
   if (Y >= Surface->h)
     {
-      DebugPrintf ( 1 , "y too big in GetPixel!" );
+      DebugPrintf ( 1 , "y too big in FdGetPixel!" );
       return -1;
     }
 
@@ -925,29 +925,37 @@ add_loaded_image_to_output_file ( void )
  * does.
  * ---------------------------------------------------------------------- */
 void
-flip_image_horizontally ( SDL_Surface* tmp1 ) 
+flip_image_vertically ( SDL_Surface* tmp1 ) 
 {
-  int x , y ;
-  Uint32 temp;
+SDL_LockSurface(tmp1);
 
-  for ( y = 0 ; y < ( tmp1 -> h ) / 2 ; y ++ )
+int nHH = tmp1->h >> 1;
+int nPitch = tmp1->pitch;
+
+unsigned char pBuf[nPitch + 1];
+unsigned char * pSrc = (unsigned char *) tmp1->pixels;
+unsigned char * pDst = (unsigned char *) tmp1->pixels + nPitch*(tmp1->h - 1);
+
+while (nHH--)
     {
-      for ( x = 0 ; x < (tmp1 -> w ) ; x ++ )
-	{
-	  temp = GetPixel ( tmp1 , x , y ) ;
-	  PutPixel ( tmp1 , x , y , GetPixel ( tmp1 , x , ( tmp1 -> h - y - 1 ) ) ) ;
-	  PutPixel ( tmp1 , x , ( tmp1 -> h - y - 1 ) , temp ) ;
-	}
+    memcpy(pBuf, pSrc, nPitch);
+    memcpy(pSrc, pDst, nPitch);
+    memcpy(pDst, pBuf, nPitch);
+
+    pSrc += nPitch;
+    pDst -= nPitch;
     }
-}; // void flip_image_horizontally ( SDL_Surface* tmp1 ) 
+
+SDL_UnlockSurface(tmp1);
+
+}; // void flip_image_vertically ( SDL_Surface* tmp1 ) 
 
 
 /* -----------------------------------------------------------------
  * This function is the heart of the game.  It contains the main
  * game loop.
  * ----------------------------------------------------------------- */
-int
-main (int argc, char *const argv[])
+int main (int argc, char * argv[])
 {
     char current_filename[10000];
     int i, j;
@@ -1144,9 +1152,9 @@ Unhandled case in the AUTO image prefix code encountered!",
 		offset_iso_image . original_image_width = input_surface -> w ;
 		offset_iso_image . original_image_height = input_surface -> h ;
 
-		flip_image_horizontally ( input_surface ) ;
+		flip_image_vertically ( input_surface ) ;
 		input_surface = pad_image_for_texture ( input_surface ) ;
-		flip_image_horizontally ( input_surface ) ;
+		flip_image_vertically ( input_surface ) ;
 		DebugPrintf ( 0 , "\nImage padded to match powers of two." );
 	    }
 	    
