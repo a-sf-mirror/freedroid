@@ -2615,20 +2615,35 @@ EditLevelDimensions ( void )
 
   EditLevel = curShip.AllLevels [ Me . pos . z ] ;
 
+	enum
+	{
+		INSERTREMOVE_LINE_VERY_NORTH = 1,
+		INSERTREMOVE_COLUMN_VERY_EAST,
+		INSERTREMOVE_LINE_VERY_SOUTH,
+		INSERTREMOVE_COLUMN_VERY_WEST,
+		INSERTREMOVE_LINE_NORTHERN_INTERFACE,
+		INSERTREMOVE_COLUMN_EASTERN_INTERFACE,
+		INSERTREMOVE_LINE_SOUTHERN_INTERFACE,
+		INSERTREMOVE_COLUMN_WESTERN_INTERFACE,
+		DUMMY_NO_REACTION1,
+		DUMMY_NO_REACTION2,
+		BACK_TO_LE_MAIN_MENU
+	};
+
   while ( !proceed_now )
     {
 
       InitiateMenu( -1 );
       
-      MenuTexts[ 0 ] = _("Insert/Remove column to the very west") ;
-      MenuTexts[ 1 ] = _("Insert/Remove column just east of western Interface") ;
-      MenuTexts[ 2 ] = _("Insert/Remove column just west of eastern Interface") ;
-      MenuTexts[ 3 ] = _("Insert/Remove column to the very east") ;
+      MenuTexts[ 0 ] = _("N edge: -/+  (<-/->)") ;
+      MenuTexts[ 1 ] = _("E edge: -/+  (<-/->)") ;
+      MenuTexts[ 2 ] = _("S edge: -/+  (<-/->)") ;
+      MenuTexts[ 3 ] = _("W edge: -/+  (<-/->)") ;
 
-      MenuTexts[ 4 ] = _("Insert/Remove line to the very north") ;
-      MenuTexts[ 5 ] = _("Insert/Remove line just south of northern Interface") ;
-      MenuTexts[ 6 ] = _("Insert/Remove line just north of southern Interface") ;
-      MenuTexts[ 7 ] = _("Insert/Remove line to the very south") ;
+      MenuTexts[ 4 ] = _("N interface: -/+  (<-/->)") ;
+      MenuTexts[ 5 ] = _("E interface: -/+  (<-/->)") ;
+      MenuTexts[ 6 ] = _("S interface: -/+  (<-/->)") ;
+      MenuTexts[ 7 ] = _("W interface: -/+  (<-/->)") ;
       
       sprintf( Options [ 0 ] , _("Current level size in X: %d.") , EditLevel->xlen );
       MenuTexts[ 8 ] = Options [ 0 ];
@@ -3810,21 +3825,21 @@ SetLevelInterfaces ( void )
     {
 	EditLevel = curShip.AllLevels [ Me . pos . z ] ;
 	InitiateMenu( -1 );
-	sprintf( Options [ 0 ] , _("Jump threshold north: %d.  Up/Down") , EditLevel->jump_threshold_north );
+	sprintf( Options [ 0 ] , _("Jump threshold north: %d.  (<-/->)") , EditLevel->jump_threshold_north );
 	MenuTexts [ 0 ] = Options [ 0 ] ;
-	sprintf( Options [ 1 ] , _("Jump threshold south: %d.  Up/Down") , EditLevel->jump_threshold_south );
+	sprintf( Options [ 1 ] , _("Jump threshold south: %d.  (<-/->)") , EditLevel->jump_threshold_south );
 	MenuTexts [ 1 ] = Options [ 1 ] ;
-	sprintf( Options [ 2 ] , _("Jump threshold east: %d.  Up/Down") , EditLevel->jump_threshold_east );
+	sprintf( Options [ 2 ] , _("Jump threshold east: %d.  (<-/->)") , EditLevel->jump_threshold_east );
 	MenuTexts [ 2 ] = Options [ 2 ] ;
-	sprintf( Options [ 3 ] , _("Jump threshold west: %d.  Up/Down") , EditLevel->jump_threshold_west );
+	sprintf( Options [ 3 ] , _("Jump threshold west: %d.  (<-/->)") , EditLevel->jump_threshold_west );
 	MenuTexts [ 3 ] = Options [ 3 ] ;
-	sprintf( Options [ 4 ] , _("Jump target north: %d.  Up/Down") , EditLevel->jump_target_north );
+	sprintf( Options [ 4 ] , _("Jump target north: %d.  (<-/->)") , EditLevel->jump_target_north );
 	MenuTexts [ 4 ] = Options [ 4 ] ;
-	sprintf( Options [ 5 ] , _("Jump target south: %d.  Up/Down") , EditLevel->jump_target_south );
+	sprintf( Options [ 5 ] , _("Jump target south: %d.  (<-/->)") , EditLevel->jump_target_south );
 	MenuTexts [ 5 ] = Options [ 5 ] ;
-	sprintf( Options [ 6 ] , _("Jump target east: %d.  Up/Down") , EditLevel->jump_target_east );
+	sprintf( Options [ 6 ] , _("Jump target east: %d.  (<-/->)") , EditLevel->jump_target_east );
 	MenuTexts [ 6 ] = Options [ 6 ] ;
-	sprintf( Options [ 7 ] , _("Jump target west: %d.  Up/Down") , EditLevel->jump_target_west );
+	sprintf( Options [ 7 ] , _("Jump target west: %d.  (<-/->)") , EditLevel->jump_target_west );
 	MenuTexts [ 7 ] = Options [ 7 ] ;
 	MenuTexts [ 8 ] = _("Export this level to other target levels") ;
 	MenuTexts [ 9 ] = _("Report interface inconsistencies");
