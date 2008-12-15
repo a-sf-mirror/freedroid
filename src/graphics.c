@@ -1044,31 +1044,6 @@ MakeGridOnScreen( SDL_Rect* GridRectangle )
 }; // void MakeGridOnSchreen( SDL_Rect* GridRectangle )
 
 /**
- * This function load an image and displays it directly to the Screen
- * but without updating it.
- * This might be very handy, especially in the Title() function to 
- * display the title image and perhaps also for displaying the ship
- * and that.
- */
-void 
-DisplayImage( char *datafile )
-{
-  SDL_Surface *image;
-  
-  image = our_IMG_load_wrapper(datafile);
-  if ( image == NULL ) {
-    fprintf(stderr, "Couldn't load image %s: %s\n",
-	    datafile, IMG_GetError());
-    Terminate(ERR);
-  }
-
-  our_SDL_blit_surface_wrapper(image, NULL, Screen, NULL);
-
-  SDL_FreeSurface(image);
-
-}; // void DisplayImage( char *datafile )
-
-/**
  *
  *
  */

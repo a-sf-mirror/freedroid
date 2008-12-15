@@ -269,9 +269,7 @@ EXTERN SDL_Surface* rip_rectangle_from_alpha_image ( SDL_Surface* our_surface , 
 EXTERN SDL_Surface* CreateColorFilteredSurface ( SDL_Surface* FirstSurface , int FilterType );
 EXTERN void fade_out_using_gamma_ramp ( void );
 EXTERN void fade_in_using_gamma_ramp ( void );
-EXTERN void DisplayImage(char *file_name);
 EXTERN void MakeGridOnScreen( SDL_Rect* Grid_Rectangle );
-EXTERN void SetCombatScaleTo(float);
 EXTERN void InitPictures (void);
 EXTERN void InitTimer (void);
 EXTERN void InitVideo (void);
@@ -750,13 +748,7 @@ EXTERN int TeleportToRandomWaypoint(enemy *, level *, char *);
 #else
 #define EXTERN extern
 #endif
-EXTERN void ShowDeckMap (void);
 EXTERN void ShowItemInfo ( item* ShowItem , int page , char ShowArrows , int background_code , int title_text_flag );
-EXTERN void EnterLift (void);
-EXTERN void EnterItemIdentificationBooth( void );
-EXTERN void EnterCodepanel (void);
-EXTERN void EnterConsole (void);
-EXTERN void AlleLevelsGleichFaerben (void);
 void ShowDroidInfo (int droidtype, int page , char ShowArrows );
 EXTERN void write_full_item_name_into_string ( item* ShowItem , char* full_item_name ) ;
 
@@ -774,7 +766,6 @@ EXTERN void GiveMouseAlertWindow ( const char* WindowText ) ;
 EXTERN int CutDownStringToMaximalSize ( char* StringToCut , int LengthInPixels );
 EXTERN void SetNewBigScreenMessage( char* ScreenMessageText );
 EXTERN void DisplayBigScreenMessage( void );
-EXTERN char* GetChatWindowInput( SDL_Surface* Background , SDL_Rect* Chat_Window_Pointer );
 EXTERN void ChatWithFriendlyDroid( Enemy ChatDroid );
 EXTERN void EnemyHitByBulletText( enemy * );
 EXTERN void EnemyInfluCollisionText ( enemy * );
