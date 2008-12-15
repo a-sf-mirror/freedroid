@@ -804,7 +804,6 @@ EXTERN void printf_SDL (SDL_Surface *screen, int x, int y, const char *fmt, ...)
 #define EXTERN extern
 #endif
 
-EXTERN void LoadChatRosterWithChatSequence ( char* FullPathAndFullFilename );
 EXTERN void delete_one_dialog_option ( int i , int FirstInitialisation );
 EXTERN void InitChatRosterForNewDialogue( void );
 EXTERN void DebugPrintf (int db_level, const char *fmt, ...);
