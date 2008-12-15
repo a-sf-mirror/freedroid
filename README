@@ -36,7 +36,7 @@
 2. Install & Play
 ===========
  For general help with installation, please refer to the INSTALL file located in the same folder as this file.
- Specific instructions for Ubuntu:  http://ubuntuforums.org/showpost.php?p=6127097&postcount=16
+ Specific instructions for Ubuntu:  http://ubuntuforums.org/showthread.php?p=6127097#post6127097
 
  To run the game you normally just have to launch the executable.
  For advanced options execute "freedroidRPG --help" (in a terminal) to get a list of commandline options.
