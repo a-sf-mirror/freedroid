@@ -171,8 +171,7 @@ FindPointerToPositionCode ( int SlotCode )
  * (*) the items given suffix modifier
  * (*) AND THE CURRENT DURATION of the item in relation to its max duration.
  */
-    long
-calculate_item_buy_price ( item* BuyItem )
+unsigned long calculate_item_buy_price ( item* BuyItem )
 {
     float PrefixMultiplier = 1;
     float SuffixMultiplier = 1;
@@ -203,8 +202,7 @@ calculate_item_buy_price ( item* BuyItem )
  * (*) the items given suffix modifier
  * (*) AND THE CURRENT DURATION of the item in relation to its max duration.
  */
-long
-calculate_item_sell_price ( item* BuyItem )
+unsigned long calculate_item_sell_price ( item* BuyItem )
 {
     float PrefixMultiplier = 1;
     float SuffixMultiplier = 1;
@@ -246,8 +244,7 @@ calculate_item_sell_price ( item* BuyItem )
  * (*) the items given suffix modifier
  * (*) AND THE CURRENT DURATION of the item in relation to its max duration.
  */
-long
-calculate_item_repair_price ( item* repair_item )
+unsigned long calculate_item_repair_price ( item* repair_item )
 {
     float PrefixMultiplier = 1;
     float SuffixMultiplier = 1;
