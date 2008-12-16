@@ -22,58 +22,8 @@ DATAFILES = ../map/freedroid.*
 
 DIALOGFILES = ../dialogs/*.dialog
 
-SRCFILES = ../src/BFont.c \
-		../src/BFont.h \
-		../src/SDL_rotozoom.c \
-		../src/SDL_rotozoom.h \
-		../src/automap.c \
-		../src/blocks.c \
-		../src/bullet.c \
-		../src/character.c \
-		../src/chat.c \
-		../src/defs.h \
-		../src/enemy.c \
-		../src/getopt.c \
-		../src/getopt.h \
-		../src/getopt1.c \
-		../src/global.h \
-		../src/graphics.c \
-		../src/hud.c \
-		../src/influ.c \
-		../src/init.c \
-		../src/input.c \
-		../src/items.c \
-		../src/lang.h \
-		../src/leveleditor.c \
-		../src/light.c \
-		../src/main.c \
-		../src/colldet.c \
-		../src/map.c \
-		../src/map.h \
-		../src/menu.c \
-		../src/misc.c \
-		../src/mission.c \
-		../src/open_gl.c \
-		../src/proto.h \
-		../src/saveloadgame.c \
-		../src/scandir.c \
-		../src/scandir.h \
-		../src/ship.c \
-		../src/shop.c \
-		../src/skills.c \
-		../src/sound.c \
-		../src/sound.h \
-		../src/sound_effects.c \
-		../src/struct.h \
-		../src/system.h \
-		../src/takeover.c \
-		../src/takeover.h \
-		../src/text.c \
-		../src/text_public.c \
-		../src/vars.h \
-		../src/view.c \
-		../src/savestruct.c
-
+SRCFILES = ../src/*.c\
+	   ../src/*.h
 
 COPYRIGHT_HOLDER = Freedroid RPG Development Team
 
