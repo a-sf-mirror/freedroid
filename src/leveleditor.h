@@ -44,21 +44,6 @@ typedef struct line_element {
     list_head_t list;
 } line_element, *Line_element;
 
-enum
-  {
-    JUMP_THRESHOLD_NORTH = 1,
-    JUMP_THRESHOLD_SOUTH ,
-    JUMP_THRESHOLD_EAST ,
-    JUMP_THRESHOLD_WEST ,
-    JUMP_TARGET_NORTH ,
-    JUMP_TARGET_SOUTH ,
-    JUMP_TARGET_EAST ,
-    JUMP_TARGET_WEST ,
-    EXPORT_THIS_LEVEL , 
-    REPORT_INTERFACE_INCONSISTENCIES , 
-    QUIT_THRESHOLD_EDITOR_POSITION
-  };
-
 enum ActionType
     {
 	ACT_CREATE_OBSTACLE,
