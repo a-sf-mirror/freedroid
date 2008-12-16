@@ -433,11 +433,412 @@ Error loading flag image.",
 }; // void ShowRescaledItem ( int position , item* ShowItem )
 
 /**
+ * This function displays an item picture. 
+ */
+static void ShowItemPicture (int PosX, int PosY, int Number )
+{
+    SDL_Surface *tmp;
+    SDL_Rect target;
+    char ConstructedFileName[2048];
+    char fpath[2048];
+    static char LastImageSeriesPrefix[1000] = "NONE_AT_ALL";
+    static int NumberOfImagesInPreviousRotation = 0 ;
+    static int NumberOfImagesInThisRotation = 0 ;
+#define MAX_NUMBER_OF_IMAGES_IN_ITEM_ROTATION 64
+    static SDL_Surface *ItemRotationSurfaces[ MAX_NUMBER_OF_IMAGES_IN_ITEM_ROTATION ] = { NULL } ;
+    SDL_Surface *Whole_Image;
+    int i;
+    int RotationIndex;
+    
+    // DebugPrintf (2, "\nvoid ShowItemPicture(...): Function call confirmed.");
+    
+    // if ( !strcmp ( ItemMap[ Number ] . item_rotation_series_prefix , "NONE_AVAILABLE_YET" ) )
+    // return; // later this should be a default-correction instead
+    
+    //--------------------
+    // Maybe we have to reload the whole image series
+    //
+    if ( strcmp ( LastImageSeriesPrefix , ItemMap [ Number ] . item_rotation_series_prefix ) )
+    {
+	//--------------------
+	// Maybe we have to free the series from an old item display first
+	//
+	if ( ItemRotationSurfaces[ 0 ] != NULL )
+	{
+	    for ( i = 0 ; i < NumberOfImagesInPreviousRotation ; i ++ )
+	    {
+		SDL_FreeSurface ( ItemRotationSurfaces[ i ] ) ;
+	    }
+	}
+	
+	//--------------------
+	// Now we can start to load the whole series into memory
+	//
+	for ( i=0 ; i < MAX_NUMBER_OF_IMAGES_IN_ITEM_ROTATION ; i++ )
+	{
+	    //--------------------
+	    // At first we will try to find some item rotation models in the
+	    // new directory structure.
+	    //
+	    sprintf ( ConstructedFileName , "items/%s/portrait_%04d.jpg" , ItemMap[ Number ] . item_rotation_series_prefix , i+1 );
+	    if ( find_file ( ConstructedFileName , GRAPHICS_DIR, fpath, 1 ) )
+		Whole_Image = NULL ;
+	    else
+		Whole_Image = our_IMG_load_wrapper( fpath ); // This is a surface with alpha channel, since the picture is one of this type
+	    
+	    //--------------------
+	    // If that didn't work, then it's time to try the same directory with 'png' ending...
+	    // Maybe there's still some (old) rotation image of this kind.
+	    //
+	    if ( Whole_Image == NULL )
+	    {
+		DebugPrintf ( 1 , "\nNo luck trying to load .jpg item image series from the 'bastian' dir... trying png..." );
+		sprintf ( ConstructedFileName , "items/%s/portrait_%04d.png" , ItemMap[ Number ] . item_rotation_series_prefix , i+1 );
+		if ( find_file ( ConstructedFileName , GRAPHICS_DIR, fpath, 1 ) )
+		    Whole_Image = NULL ;
+		else
+		    Whole_Image = our_IMG_load_wrapper( fpath ); // This is a surface with alpha channel, since the picture is one of this type
+	    }
+	    
+	    //--------------------
+	    // But at this point, we should have found the image!!
+	    // or if not, this maybe indicates that we have reached the
+	    // last image in the image series...
+	    //
+	    if ( Whole_Image == NULL )
+	    {
+		NumberOfImagesInThisRotation = i ;
+		NumberOfImagesInPreviousRotation = NumberOfImagesInThisRotation ;
+		DebugPrintf ( 1 , "\nDONE LOADING ITEM IMAGE SERIES.  Loaded %d images into memory." , 
+			      NumberOfImagesInThisRotation );
+		
+		//--------------------
+		// Maybe we've received the nothing loaded case even on the first attempt
+		// to load something.  This of course would mean a severe error in Freedroid!
+		//
+		if ( NumberOfImagesInThisRotation <= 0 )
+		{
+		    fprintf( stderr, "\n\nfpath: %s. \n" , fpath );
+		    ErrorMessage ( __FUNCTION__  , "\
+Freedroid was unable to load even one image of a rotated item image series into memory.\n\
+This error indicates some installation problem with freedroid.",
+					       PLEASE_INFORM, IS_FATAL );
+		}
+		
+		break;
+	    }
+	    
+	    //--------------------
+	    // Also we must check for our upper bound of the list of 
+	    // item images.  This will most likely never be exceeded, but it
+	    // can hurt to just be on the safe side.
+	    //
+	    if ( i >= MAX_NUMBER_OF_IMAGES_IN_ITEM_ROTATION -2 )
+	    {
+		fprintf( stderr, "\n\nfpath: %s. \n" , fpath );
+		ErrorMessage ( __FUNCTION__  , "\
+Freedroid was encountered more item images in an item rotation image series\n\
+than it is able to handle.  This is a very strange error.  Someone has been\n\
+trying to make the ultra-fine item rotation series.  Strange.",
+					   PLEASE_INFORM, IS_FATAL );
+	    }
+	    
+	    SDL_SetAlpha( Whole_Image , 0 , SDL_ALPHA_OPAQUE );
+	    ItemRotationSurfaces[i] = SDL_CreateRGBSurface ( 0, Whole_Image -> w, Whole_Image -> h, 32, rmask, gmask, bmask, amask);
+	    SDL_BlitSurface ( Whole_Image, NULL, ItemRotationSurfaces[i], NULL );
+	    SDL_FreeSurface( Whole_Image );
+	    
+	    // We must remember, that his is already loaded of course
+	    strcpy ( LastImageSeriesPrefix , ItemMap [ Number ] . item_rotation_series_prefix );
+	    
+	}
+	
+    }
+    
+    RotationIndex = ( SDL_GetTicks() / 70 ) ;
+    
+    RotationIndex = RotationIndex - ( RotationIndex / NumberOfImagesInThisRotation ) * NumberOfImagesInThisRotation ;
+    
+    tmp = ItemRotationSurfaces[ RotationIndex ] ;
+    
+    SDL_SetClipRect( Screen , NULL );
+    Set_Rect ( target, PosX, PosY, GameConfig . screen_width, GameConfig . screen_height);
+    our_SDL_blit_surface_wrapper( tmp , NULL, Screen , &target);
+    
+    DebugPrintf ( 2 , "\n%s(): Usual end of function reached." , __FUNCTION__ );
+    
+}; // void ShowItemPicture ( ... )
+
+
+/* ------------------------------------------------------------
+ * This function displays information about one item on a
+ * Paradroid-console like display.
+ * ------------------------------------------------------------ */
+static void ShowItemInfo ( item* ShowItem , int Displacement , char ShowArrows , int background_code , int title_text_flag )
+{
+		static item LastItemShown;
+    static char InfoText[10000];
+    char TextChunk[2000];
+    char* ClassString;
+    long int repairPrice = 0;
+		
+		if( ShowItem == NULL) return;
+		
+    SDL_SetClipRect ( Screen , NULL );
+    
+    blit_special_background ( background_code );
+    ShowItemPicture ( 40 * GameConfig . screen_width / 1024 + ((250 * GameConfig . screen_width / 1024) - 132) / 2 , 
+		      185 * GameConfig . screen_height / 768 + ((322 * GameConfig . screen_height / 768) - 180) / 2, ShowItem->type );
+    
+    //--------------------
+    // If that is wanted, we fill out the title header line, announcing the
+    // currently browsed items name in full glory.
+    //
+    if ( title_text_flag )
+    {
+	SetCurrentFont ( Menu_BFont );
+	strcpy ( TextChunk , D_(ItemMap [ ShowItem->type ] . item_name ));
+	CutDownStringToMaximalSize ( TextChunk , 225 );
+	PutString ( Screen , 330, 38, TextChunk );
+    }
+    
+    //--------------------
+    // Now we can display the rest of the smaller-font item description.
+    // If the item has changed, we must first assemble the description
+		//
+		if( memcmp( ShowItem, &LastItemShown, sizeof(item)))
+		{
+    if ( ItemMap [ ShowItem->type ] . item_can_be_installed_in_weapon_slot )
+	ClassString = _("Weapon");
+    else if ( ItemMap [ ShowItem->type ] . item_can_be_installed_in_drive_slot )
+	ClassString = _("Drive"); 
+    else if ( ItemMap [ ShowItem->type ] . item_can_be_installed_in_armour_slot )
+	ClassString = _("Armor"); 
+    else if ( ItemMap [ ShowItem->type ] . item_can_be_installed_in_shield_slot )
+	ClassString = _("Shield"); 
+    else if ( ItemMap [ ShowItem->type ] . item_can_be_installed_in_special_slot )
+	ClassString = _("Helm"); 
+    else ClassString = _("Miscellaneous"); 
+    
+    write_full_item_name_into_string ( ShowItem , TextChunk ) ;
+    sprintf( InfoText, _("Item: %s \nClass: %s\n"), TextChunk , ClassString );
+    
+    if ( ( ShowItem->suffix_code != (-1) ) || ( ShowItem->prefix_code != (-1) ) )
+    	{
+        if ( ShowItem->is_identified == TRUE )
+            {
+	    GiveItemDescription( TextChunk, ShowItem, TRUE );
+            // Now clean up TextChunk to get only information about the special abilities of the object
+	    char * tmp = strstr(TextChunk, "             +");
+	    if(tmp) //In case something would go wrong...
+		{
+		tmp = strstr(tmp, " +");
+		strcpy(TextChunk, tmp);
+		}
+	    strcat( InfoText, _("Specials:"));
+	    strcat( InfoText, font_switchto_red);
+	    strcat( InfoText, TextChunk);
+	    strcat( InfoText, "\n");
+	    strcat( InfoText, font_switchto_neon);
+	    }
+        }
+    
+    if ( ItemMap [ ShowItem->type ] . item_group_together_in_inventory )
+    {
+	if ( ! MatchItemWithName(ShowItem -> type, "Cyberbucks") )
+		{
+		strcat ( InfoText , _("Multiplicity: "));
+		sprintf( TextChunk, "%d \n" , 
+		 (int)ShowItem->multiplicity );
+		strcat ( InfoText , TextChunk );
+		}
+    }
+    
+    strcat ( InfoText , _("Duration: "));
+    if ( ShowItem->max_duration >= 0 )
+	sprintf( TextChunk, "%d / %d\n" , 
+		 (int)ShowItem->current_duration, 
+		 ShowItem->max_duration );
+    else
+	sprintf( TextChunk, _("Indestructible\n"));
+    strcat ( InfoText , TextChunk );
+    
+    if ( ! ItemMap [ ShowItem->type ] . item_can_be_applied_in_combat )
+	{
+	strcat ( InfoText , _("Attributes required: "));
+    
+	if ( ( ItemMap [ ShowItem->type ] . item_require_strength <= 0 ) &&
+	 ( ItemMap [ ShowItem->type ] . item_require_dexterity <= 0 ) &&
+	 ( ItemMap [ ShowItem->type ] . item_require_magic <= 0) )
+	    {
+	    strcat ( InfoText , _("NONE\n"));
+	    }
+	else
+	    {
+	    if ( ItemMap [ ShowItem->type ] . item_require_strength > 0 )
+		{
+	        sprintf( TextChunk, _("Str: %d "), ItemMap [ ShowItem->type ] . item_require_strength ) ;
+	        strcat ( InfoText , TextChunk );
+		}
+	    if ( ItemMap [ ShowItem->type ] . item_require_dexterity > 0 )
+		{
+	        sprintf( TextChunk, _("Dex: %d "), ItemMap [ ShowItem->type ] . item_require_dexterity ) ;
+	        strcat ( InfoText , TextChunk );
+		}
+            if ( ItemMap [ ShowItem->type ] . item_require_magic > 0 )
+		{
+	        sprintf( TextChunk, _("Mag: %d "), ItemMap [ ShowItem->type ] . item_require_magic ) ;
+                strcat ( InfoText , TextChunk );
+         	}
+	    strcat ( InfoText , "\n" );
+	    }
+	}
+    else {
+	/*    switch ( ShowItem -> type )
+	        {
+	            case ITEM_SPELLBOOK_OF_HEALING:
+	            case ITEM_SPELLBOOK_OF_EXPLOSION_CIRCLE:
+	            case ITEM_SPELLBOOK_OF_EXPLOSION_RAY:
+	            case ITEM_SPELLBOOK_OF_TELEPORT_HOME:
+        	    case ITEM_SPELLBOOK_OF_IDENTIFY:
+	            case ITEM_SPELLBOOK_OF_PLASMA_BOLT:
+	            case ITEM_SPELLBOOK_OF_ICE_BOLT:
+	            case ITEM_SPELLBOOK_OF_POISON_BOLT:
+	            case ITEM_SPELLBOOK_OF_PETRIFICATION:
+	            case ITEM_SPELLBOOK_OF_RADIAL_EMP_WAVE:
+	            case ITEM_SPELLBOOK_OF_RADIAL_VMX_WAVE:
+	            case ITEM_SPELLBOOK_OF_RADIAL_PLASMA_WAVE:
+
+	                sprintf( TextChunk , "Spellcasting skill: %s\n " ,
+	                         _(AllSkillTexts [ required_spellcasting_skill_for_item ( ShowItem -> type ) ]));
+	                strcat( InfoText , TextChunk );
+	                sprintf( TextChunk , "Magic: %d\n " ,
+	                         required_magic_stat_for_next_level_and_item ( ShowItem -> type ) );
+	                strcat( InfoText , TextChunk );
+	                break;
+                default:
+                	break;
+        	}*/
+	}
+    //--------------------
+    // Now we give some pricing information, the base list price for the item,
+    // the repair price and the sell value
+    if ( calculate_item_buy_price ( ShowItem ) )
+	{
+	sprintf( TextChunk, _("Base list price: %ld\n"), 
+	     calculate_item_buy_price ( ShowItem ) ) ;
+        strcat ( InfoText , TextChunk );
+        sprintf( TextChunk, _("Sell value: %ld\n"), 
+	     calculate_item_sell_price ( ShowItem ) ) ;
+        strcat ( InfoText , TextChunk );
+        if ( ShowItem->current_duration == ShowItem->max_duration ||
+	     ShowItem->max_duration == ( -1 ) )
+        	repairPrice = 0;
+	else
+	        repairPrice = calculate_item_repair_price ( ShowItem );
+        sprintf( TextChunk, _("Repair cost: %ld\n"), repairPrice );
+        strcat ( InfoText , TextChunk );
+	}
+    else
+	{
+	sprintf( TextChunk, _("Unsellable\n"));
+        strcat ( InfoText , TextChunk );
+	}
+    
+    if ( ( ShowItem->suffix_code != (-1) ) || ( ShowItem->prefix_code != (-1) ) )
+    	{
+        if ( ShowItem->is_identified == FALSE )
+		strcat( InfoText, _("Identification cost: 100\n"));
+	}
+  
+    //--------------------
+    // If the item is a weapon, then we print out some weapon stats...
+    //
+    if ( ItemMap [ ShowItem->type ] . base_item_gun_damage + ItemMap [ ShowItem->type ] . item_gun_damage_modifier > 0 )
+    {
+	sprintf( TextChunk, _("Damage: %d - %d\n"), 
+		 ItemMap [ ShowItem->type ] . base_item_gun_damage,
+		 ItemMap [ ShowItem->type ] . base_item_gun_damage + 
+		 ItemMap [ ShowItem->type ] . item_gun_damage_modifier );
+	strcat ( InfoText , TextChunk );
+    }
+    
+    if ( ItemMap [ ShowItem->type ] . item_gun_recharging_time > 0 )
+    {
+	sprintf( TextChunk, _("Recharge time: %3.2f\n"), 
+		 ItemMap [ ShowItem->type ] . item_gun_recharging_time );
+	strcat ( InfoText , TextChunk );
+    }
+
+    if ( ItemMap [ ShowItem->type ] . item_gun_reloading_time > 0 )
+    {
+	sprintf( TextChunk, _("Time to reload ammo clip: %3.2f\n"), 
+		 ItemMap [ ShowItem->type ] . item_gun_reloading_time );
+	strcat ( InfoText , TextChunk );
+    }
+    
+    if ( ShowItem->ac_bonus > 0 )
+    {
+	sprintf ( TextChunk, _("Defense bonus: %d\n"), ShowItem->ac_bonus ) ;
+	strcat ( InfoText , TextChunk );
+    }
+    
+    sprintf ( TextChunk, _("Notes: %s"), 
+	      D_(ItemMap [ ShowItem->type ] . item_description) );
+    strcat ( InfoText, TextChunk );
+    
+    switch ( ItemMap [ ShowItem->type ] . item_gun_use_ammunition )
+    {
+	case 2:
+	    strcat ( InfoText, _(" This weapon requires standard plasma ammunition."));
+	    break;
+	case 1:
+	    strcat ( InfoText, _(" This weapon requires standard laser crystal ammunition."));
+	    break;
+	case 3:
+	    strcat ( InfoText, _(" This weapon requires standard exterminator ammunition spheres."));
+	    break;
+	case 4:
+	    strcat ( InfoText, _(" This weapon requires .22 Long Rifle rounds."));
+	    break;
+	case 5: 
+	    strcat ( InfoText, _(" This weapon requires Shotgun shells."));
+	    break; 
+	case 6: 
+            strcat ( InfoText, _(" This weapon requires 9x19mm rounds."));
+	    break;
+	case 7:
+            strcat ( InfoText, _(" This weapon requires 7.62x39mm rounds."));
+	    break;
+	case 8:
+            strcat ( InfoText, _(" This weapon requires .50 (12.7x99mm) Browning Machine Gun rounds."));
+	    break;
+    }
+		
+		//-----------------------
+		// We cache the item
+		// 
+		memcpy ( &LastItemShown, ShowItem, sizeof( item));
+		}
+		
+    // SetCurrentFont( Para_BFont );
+    // SetCurrentFont( Menu_BFont );
+    SetCurrentFont( FPS_Display_BFont );
+    DisplayText (InfoText, Cons_Text_Rect.x, Cons_Text_Rect.y + Displacement , &Cons_Text_Rect , TEXT_STRETCH );
+    
+    if ( ShowArrows ) 
+    {
+	ShowGenericButtonFromList ( UP_BUTTON );
+	ShowGenericButtonFromList ( DOWN_BUTTON );
+    }
+    
+}; // void ShowItemInfo ( ... )
+
+/**
  * This function does the item show when the user has selected item
  * show from the console menu.
  */
-int
-GreatShopInterface ( int NumberOfItems , item* ShowPointerList[ MAX_ITEMS_IN_INVENTORY ] , 
+int GreatShopInterface ( int NumberOfItems , item* ShowPointerList[ MAX_ITEMS_IN_INVENTORY ] , 
 		     int NumberOfItemsInTuxRow , item* TuxItemsList[ MAX_ITEMS_IN_INVENTORY] , 
 		     shop_decision* ShopOrder)
 {

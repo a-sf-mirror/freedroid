@@ -398,6 +398,7 @@ unsigned long calculate_item_repair_price ( item* repair_item );
 unsigned long calculate_item_sell_price ( item* BuyItem );
 void FillInItemProperties( item* ThisItem , int FullDuration , int multiplicity);
 void DamageProtectiveEquipment( void ) ;
+void write_full_item_name_into_string ( item* ShowItem , char* full_item_name ); 
 void DropItemAt( int ItemType , int level_num , float x , float y , int prefix , int suffix , int multiplicity );
 void Quick_ApplyItem( int ItemKey );
 int MatchItemWithName ( int type, const char * name );
@@ -589,12 +590,6 @@ int TeleportToRandomWaypoint(enemy *, level *, char *);
 #define BROWSE_DEAD_BOTS(X) list_for_each_entry(X, &dead_bots_head, global_list)
 #define BROWSE_LEVEL_BOTS_SAFE(X,Y,L) list_for_each_entry_safe(X,Y, &level_bots_head[(L)], level_list)
 #define BROWSE_LEVEL_BOTS(T,L) list_for_each_entry(T, &level_bots_head[(L)], level_list)
-
-
-// ship.c 
-void ShowItemInfo ( item* ShowItem , int page , char ShowArrows , int background_code , int title_text_flag );
-void ShowDroidInfo (int droidtype, int page , char ShowArrows );
-void write_full_item_name_into_string ( item* ShowItem , char* full_item_name ) ;
 
 // text.c 
 void show_backgrounded_label_at_map_position ( char* LabelText , float fill_status , float pos_x , float pos_y , int zoom_is_on );

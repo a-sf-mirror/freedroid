@@ -418,6 +418,45 @@ FillInItemProperties( item* ThisItem , int FullDuration, int multiplicity )
     
 }; // void FillInItemProperties( item* ThisItem , int FullDuration )
 
+void write_full_item_name_into_string ( item* ShowItem , char* full_item_name ) 
+{
+  strcpy ( full_item_name , "" );
+
+  // --------------------
+  // First clear the string and the we print out the item name.  That's simple.
+  // we also add the extension of the name, the 'suffix' to it.
+  //
+  if ( ( ShowItem->suffix_code != (-1) ) || ( ShowItem->prefix_code != (-1) ) )
+    {
+      strcat ( full_item_name , font_switchto_blue );
+    }
+  else
+    {
+      strcat ( full_item_name , font_switchto_neon );
+    }
+
+  if ( MatchItemWithName(ShowItem->type, "Cyberbucks") ) sprintf( full_item_name , "%d " , ShowItem->multiplicity );
+
+  strcat( full_item_name , D_(ItemMap[ ShowItem->type ].item_name ));
+
+  //--------------------
+  // If the item is magical but not identified, we might add the word
+  // in parentheses and red font afterwards...
+  //
+  if ( ( ( ShowItem -> suffix_code != (-1) ) || ( ShowItem -> prefix_code != (-1) ) ) && ( ! ShowItem -> is_identified ) )
+    {
+      strcat ( full_item_name , font_switchto_red );
+      strcat ( full_item_name , _(" (Unidentified)"));
+    }
+
+  //--------------------
+  // Now that the item name is out, we can switch back to the standard font color...
+  //
+  strcat ( full_item_name , font_switchto_neon );
+
+}; // void write_full_item_name_into_string ( item* ShowItem , char* full_item_name ) 
+
+
 /**
  * This function drops an item at a given place, assigning it the given
  * suffix and prefix code.
@@ -2275,7 +2314,7 @@ HandleInventoryScreen ( void )
 	}
 	else
 	    {
-	    int i;
+	    unsigned int i;
 
 	    for ( i = 0; i < sizeof(allslots)/sizeof(allslots[0]); i ++ )
 		{

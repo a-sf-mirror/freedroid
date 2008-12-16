@@ -140,6 +140,157 @@ void EvaluatePlayground ( void );
 float EvaluatePosition ( int color , int row , int layer );
 void AdvancedEnemyTakeoverMovements (void);
 
+/** 
+ * Display the picture of a droid
+ */
+static void ShowDroidPicture (int PosX, int PosY, int Number )
+{
+    SDL_Surface *tmp;
+    SDL_Rect target;
+    char ConstructedFileName[5000];
+char fpath[2048];
+    static char LastImageSeriesPrefix[1000] = "NONE_AT_ALL";
+#define NUMBER_OF_IMAGES_IN_DROID_PORTRAIT_ROTATION 32
+    static SDL_Surface *DroidRotationSurfaces[ NUMBER_OF_IMAGES_IN_DROID_PORTRAIT_ROTATION ] = { NULL } ;
+    SDL_Surface *Whole_Image;
+    int i;
+    int RotationIndex;
+    
+    DebugPrintf ( 2 , "\nvoid ShowDroidPicture(...): Function call confirmed.");
+    
+    if ( !strcmp ( Druidmap[ Number ] . droid_portrait_rotation_series_prefix , "NONE_AVAILABLE_YET" ) )
+	return; // later this should be a default-correction instead
+    
+    //--------------------
+    // Maybe we have to reload the whole image series
+    //
+    if ( strcmp ( LastImageSeriesPrefix , Druidmap [ Number ] . droid_portrait_rotation_series_prefix ) )
+    {
+	//--------------------
+	// Maybe we have to free the series from an old item display first
+	//
+	if ( DroidRotationSurfaces[ 0 ] != NULL )
+	{
+	    for ( i = 1 ; i < NUMBER_OF_IMAGES_IN_DROID_PORTRAIT_ROTATION ; i ++ )
+	    {
+		SDL_FreeSurface ( DroidRotationSurfaces[ i ] ) ;
+	    }
+	}
+	
+	//--------------------
+	// Now we can start to load the whole series into memory
+	//
+	for ( i=0 ; i < NUMBER_OF_IMAGES_IN_DROID_PORTRAIT_ROTATION ; i++ )
+	{
+	    if ( !strcmp ( Druidmap[ Number ] . droid_portrait_rotation_series_prefix , "NONE_AVAILABLE_YET" ) )
+	    {
+		Terminate ( ERR );
+	    }
+	    else
+	    {
+		sprintf ( ConstructedFileName , "droids/%s/portrait_%04d.jpg" , Druidmap[ Number ] . droid_portrait_rotation_series_prefix , i+1 );
+		DebugPrintf ( 1 , "\nConstructedFileName = %s " , ConstructedFileName );
+	    }
+	    
+	    // We must remember, that his is already loaded of course
+	    strcpy ( LastImageSeriesPrefix , Druidmap [ Number ] . droid_portrait_rotation_series_prefix );
+	    
+	    find_file (ConstructedFileName , GRAPHICS_DIR, fpath, 0 );
+	    
+	    Whole_Image = our_IMG_load_wrapper( fpath ); // This is a surface with alpha channel, since the picture is one of this type
+	    if ( Whole_Image == NULL )
+	    {
+		fprintf( stderr, "\n\nfpath: %s. \n" , fpath );
+		ErrorMessage ( __FUNCTION__  , "\
+Freedroid was unable to load an image of a rotated droid into memory.\n\
+This error indicates some installation problem with freedroid.",
+					   PLEASE_INFORM, IS_FATAL );
+	    }
+	    
+	    SDL_SetAlpha( Whole_Image , 0 , SDL_ALPHA_OPAQUE );
+	    
+	    DroidRotationSurfaces[i] = our_SDL_display_format_wrapperAlpha( Whole_Image ); // now we have an alpha-surf of right size
+	    SDL_SetColorKey( DroidRotationSurfaces[i] , 0 , 0 ); // this should clear any color key in the dest surface
+	    
+	    SDL_FreeSurface( Whole_Image );
+	}
+    }
+
+    RotationIndex = ( SDL_GetTicks() / 50 ) ;
+    
+    RotationIndex = RotationIndex - ( RotationIndex / NUMBER_OF_IMAGES_IN_DROID_PORTRAIT_ROTATION ) * NUMBER_OF_IMAGES_IN_DROID_PORTRAIT_ROTATION ;
+    
+    tmp = DroidRotationSurfaces[ RotationIndex ] ;
+    
+    SDL_SetClipRect( Screen , NULL );
+    Set_Rect ( target, PosX, PosY, GameConfig . screen_width, GameConfig . screen_height);
+    our_SDL_blit_surface_wrapper( tmp , NULL, Screen , &target);
+    
+    DebugPrintf ( 2 , "\nvoid ShowDroidPicture(...): Usual end of function reached.");
+    
+}; // void ShowDroidPicture ( ... )
+
+/* ------------------------------------------------------------
+ * display infopage page of droidtype
+ * does update the screen, no our_SDL_flip_wrapper() necesary !
+ * ------------------------------------------------------------ */
+static void ShowDroidInfo ( int droidtype, int Displacement , char ShowArrows )
+{
+    char *item_name;
+    int type;
+    char InfoText[10000];
+    char TextChunk[2000];
+    
+    //--------------------
+    // We initialize the text rectangle
+    //
+    Cons_Text_Rect . x = 258 * GameConfig . screen_width / 640 ; 
+    Cons_Text_Rect . y = 89 * GameConfig . screen_height / 480 ; 
+    Cons_Text_Rect . w = 346 * GameConfig . screen_width / 640 ; 
+    Cons_Text_Rect . h = 282 * GameConfig . screen_height / 480 ;
+    
+    SDL_SetClipRect ( Screen , NULL );
+    
+    blit_special_background ( ITEM_BROWSER_BG_PIC_BACKGROUND_CODE ) ;
+    
+    ShowDroidPicture ( 45 * GameConfig . screen_width / 640 , 190 * GameConfig . screen_height / 480 , droidtype );
+    
+    //--------------------
+    // We fill out the header area of the items browser.
+    //
+    SetCurrentFont ( Menu_BFont );
+    strcpy ( TextChunk , Druidmap [ droidtype ] . druidname );
+    CutDownStringToMaximalSize ( TextChunk , 225 );
+    PutString ( Screen , 330 * GameConfig . screen_width / 640 , 38 * GameConfig . screen_height / 480 , TextChunk );
+    
+    sprintf( InfoText, _("\
+Unit type %s\n\
+Entry : %d\n"), Druidmap[droidtype].druidname, droidtype + 1);
+    
+    if ( (type = Druidmap[droidtype].weapon_item.type) >= 0) // make sure item=-1 
+	item_name = D_(ItemMap[type].item_name);                 // does not segfault 
+    else 
+	item_name = _("none");
+    
+    sprintf( TextChunk , _("\nArmament : %s\n"),
+	     item_name);
+    strcat ( InfoText , TextChunk );
+    
+    sprintf ( TextChunk , _("\nNotes: %s\n"), D_(Druidmap[droidtype].notes));
+    strcat ( InfoText , TextChunk );
+    
+    SetCurrentFont( FPS_Display_BFont );
+    DisplayText (InfoText, Cons_Text_Rect.x, Cons_Text_Rect.y + Displacement , &Cons_Text_Rect , TEXT_STRETCH );
+    
+    if ( ShowArrows ) 
+    {
+	ShowGenericButtonFromList ( UP_BUTTON );
+	ShowGenericButtonFromList ( DOWN_BUTTON );
+    }
+    
+}; // void ShowDroidInfo ( ... )
+
+
 /*-----------------------------------------------------------------
  *
  * This function manages the whole takeover game of Tux against 
