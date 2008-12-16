@@ -28,11 +28,11 @@
 #include "struct.h"
 
 // main.c 
-void Game();
+void Game(void);
 
 // automap.c
 void show_automap_data_sdl ( void );
-void toggle_automap();
+void toggle_automap(void);
 
 // init.c
 void ResetGameConfigToDefaultValues ( void );
@@ -124,8 +124,8 @@ void grab_enemy_images_from_archive ( int enemy_model_nr );
 int level_is_visible ( int level_num );
 
 // light.c 
-void LightRadiusInit();
-void LightRadiusClean();
+void LightRadiusInit(void);
+void LightRadiusClean(void);
 int get_light_strength_screen ( int x, int y );
 int get_light_strength_cell ( uint32_t x, uint32_t y );
 int get_light_strength ( moderately_finepoint target_pos );
@@ -140,7 +140,7 @@ enum {
 		Y_DIR
 };
 
-int our_SDL_flip_wrapper ( ) ;
+int our_SDL_flip_wrapper (void ) ;
 int our_SDL_blit_surface_wrapper(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_Rect *dstrect);
 void our_SDL_update_rect_wrapper ( SDL_Surface *screen, Sint32 x, Sint32 y, Sint32 w, Sint32 h ) ;
 int our_SDL_fill_rect_wrapper (SDL_Surface *dst, SDL_Rect *dstrect, Uint32 color);
@@ -319,6 +319,7 @@ void CreateWaypoint (level *Lev, int x, int y);
 #define translate_map_point_to_screen_pixel_y(X,Y)  ( UserCenter_y + rintf(( (X) + (Y) - Me . pos . x - Me . pos . y ) * (iso_floor_tile_height_over_two))) 
 void translate_map_point_to_screen_pixel_func( float x_map_pos, float y_map_pos, int * x_res, int * y_res, float zoom_factor);
 float translate_pixel_to_map_location ( float axis_x , float axis_y , int give_x ) ;
+float translate_pixel_to_zoomed_map_location ( float axis_x , float axis_y , int give_x ) ;
 
 //colldet.c
 int FilterWalkableCallback(colldet_filter* this, obstacle* obs, int obs_idx);
@@ -440,16 +441,16 @@ void delete_obstacle ( level* EditLevel , obstacle* our_obstacle );
 void ExportLevelInterface ( int level_num ) ;
 void give_new_name_to_obstacle ( Level EditLevel , obstacle* our_obstacle , char* predefined_name );
 void action_remove_obstacle ( Level EditLevel, obstacle *our_obstacle);
-void ItemDropFromLevelEditor ();
-void level_editor_cycle_marked_obstacle();
-void level_editor_place_aligned_obstacle();
-void level_editor_next_tab();
-void level_editor_action_change_map_label_user();
-void level_editor_action_undo();
-void level_editor_action_redo();
+void ItemDropFromLevelEditor (void);
+void level_editor_cycle_marked_obstacle(void);
+void level_editor_place_aligned_obstacle(int);
+void level_editor_next_tab(void);
+void level_editor_action_change_map_label_user(void);
+void level_editor_action_undo(void);
+void level_editor_action_redo(void);
 void level_editor_action_toggle_waypoint_connection_user (void);
-void level_editor_beautify_grass_tiles();
-void LevelEditor();
+void level_editor_beautify_grass_tiles(void);
+void LevelEditor(void);
 
 // skills.c
 void RadialVMXWave ( gps ExpCenter , int SpellCostsMana );
@@ -579,7 +580,7 @@ void animate_enemy ( enemy * our_bot ) ;
 void hit_enemy ( enemy * target, float hit, char givexp, short int killertype, char mine);
 enemy * enemy_resolve_address ( short int enemy_number, enemy ** enemy_addr );
 void enemy_set_reference ( short int * enemy_number, enemy ** enemy_addr, enemy * addr);
-void enemy_generate_level_lists ();
+void enemy_generate_level_lists (void);
 int TeleportToRandomWaypoint(enemy *, level *, char *);
 
 #define BROWSE_ALIVE_BOTS_SAFE(X,Y) list_for_each_entry_safe(X, Y, &alive_bots_head, global_list)
