@@ -52,8 +52,7 @@ Level DecodeLoadedLeveldata ( char *data );
  * Therefore we need this function, which will remove all traces of blood
  * from a given level.
  */
-void
-remove_blood_obstacles_for_respawning ( int level_num )
+static void remove_blood_obstacles_for_respawning ( int level_num )
 {
     int i;
     
@@ -178,8 +177,7 @@ void respawn_level ( int level_num )
  * should be a function to conveniently resolve a given label within a
  * given map.  That's what this function is supposed to do.
  */
-void
-ResolveMapLabelOnLevel ( char* MapLabel , location* PositionPointer , int LevelNum )
+static void ResolveMapLabelOnLevel ( char* MapLabel , location* PositionPointer , int LevelNum )
 {
     Level ResolveLevel = curShip . AllLevels [ LevelNum ] ;
     int i;
@@ -247,8 +245,7 @@ This is a severe error in the game data of Freedroid.",
  * into the level struct, but WITHOUT destroying or damaging the 
  * human-readable data in the process!
  */
-void 
-DecodeInterfaceDataForThisLevel ( Level loadlevel , char* DataPointer )
+static void DecodeInterfaceDataForThisLevel ( Level loadlevel , char* DataPointer )
 {
     char* TempSectionPointer;
     char PreservedLetter;
@@ -304,8 +301,7 @@ DecodeInterfaceDataForThisLevel ( Level loadlevel , char* DataPointer )
  * the level struct, but WITHOUT destroying or damaging the human-readable
  * data in the process!
  */
-void 
-DecodeDimensionsOfThisLevel ( Level loadlevel , char* DataPointer )
+static void DecodeDimensionsOfThisLevel ( Level loadlevel , char* DataPointer )
 {
     
     int off = 0;
@@ -387,8 +383,7 @@ Sorry, but unless this constant is raised, Freedroid will refuse to load this ma
  * Next we extract the statments of the influencer on this level WITHOUT 
  * destroying or damaging the data in the process!
  */
-void 
-DecodeStatementsOfThisLevel ( Level loadlevel , char* DataPointer )
+static void DecodeStatementsOfThisLevel ( Level loadlevel , char* DataPointer )
 {
     char PreservedLetter;
     int i , NumberOfStatementsInThisLevel;
@@ -441,8 +436,7 @@ DecodeStatementsOfThisLevel ( Level loadlevel , char* DataPointer )
  * WITHOUT destroying or damaging the human-readable data in the process!
  * This is an improved parser that is not quite readable but very performant.
  */
-void
-decode_obstacles_of_this_level ( Level loadlevel , char* DataPointer )
+static void decode_obstacles_of_this_level ( Level loadlevel , char* DataPointer )
 {
     int i;
     char* curfield = NULL;
@@ -527,8 +521,7 @@ decode_obstacles_of_this_level ( Level loadlevel , char* DataPointer )
  * Next we extract the map labels of this level WITHOUT destroying
  * or damaging the data in the process!
  */
-void 
-DecodeMapLabelsOfThisLevel ( Level loadlevel , char* DataPointer )
+static void DecodeMapLabelsOfThisLevel ( Level loadlevel , char* DataPointer )
 {
     int i;
     char PreservedLetter;
@@ -600,8 +593,7 @@ DecodeMapLabelsOfThisLevel ( Level loadlevel , char* DataPointer )
  * this small subsection and loads all the obstacle data into the ship
  * struct.
  */
-void
-decode_obstacle_names_of_this_level ( Level loadlevel , char* DataPointer )
+static void decode_obstacle_names_of_this_level ( Level loadlevel , char* DataPointer )
 {
     int i;
     char PreservedLetter;
@@ -705,8 +697,7 @@ decode_obstacle_names_of_this_level ( Level loadlevel , char* DataPointer )
  * level data.  This function decodes this small subsection and loads all 
  * the obstacle data into the ship struct.
  */
-void
-decode_obstacle_descriptions_of_this_level ( Level loadlevel , char* DataPointer )
+static void decode_obstacle_descriptions_of_this_level ( Level loadlevel , char* DataPointer )
 {
     int i;
     char PreservedLetter;
@@ -971,8 +962,7 @@ CollectAutomapData ( void )
  * must be supplied so as to be able to suppress hits through walls or
  * the like.
  */
-int
-smash_obstacles_only_on_tile ( float x , float y , int map_x , int map_y )
+static int smash_obstacles_only_on_tile ( float x , float y , int map_x , int map_y )
 {
     Level BoxLevel = curShip . AllLevels [ Me . pos . z ] ;
     int i ;
@@ -1159,8 +1149,7 @@ map tiles.",
  * This function moves all the refresh fields to their next phase (if
  * it's time already).
  */
-void
-AnimateRefresh ( void )
+static void AnimateRefresh ( void )
 {
     static float InnerWaitCounter = 0;
     int i;
@@ -1363,7 +1352,7 @@ LoadShip (char *filename)
  * Enemy-Movement routines expect that the "real" entries are the
  * first entries in the connection list.
  */
-void CheckWaypointIntegrity(Level Lev)
+static void CheckWaypointIntegrity(Level Lev)
 {
     int i, j , k , l ;
     
@@ -1417,8 +1406,7 @@ void CheckWaypointIntegrity(Level Lev)
  * This should write the obstacle information in human-readable form into
  * a buffer.
  */
-void
-encode_obstacles_of_this_level ( char* LevelMem , Level Lev )
+static void encode_obstacles_of_this_level ( char* LevelMem , Level Lev )
 {
     int i;
     strcat(LevelMem, OBSTACLE_DATA_BEGIN_STRING);
@@ -1446,8 +1434,7 @@ encode_obstacles_of_this_level ( char* LevelMem , Level Lev )
  * This function adds the statement data of this level to the chunk of 
  * data that will be written out to a file later.
  */
-void
-EncodeMapLabelsOfThisLevel ( char* LevelMem , Level Lev )
+static void EncodeMapLabelsOfThisLevel ( char* LevelMem , Level Lev )
 {
     int i;
     strcat(LevelMem, MAP_LABEL_BEGIN_STRING);
@@ -1478,8 +1465,7 @@ EncodeMapLabelsOfThisLevel ( char* LevelMem , Level Lev )
  * this small subsection and puts all the obstacle data into a human
  * readable text string for saving with the map file.
  */
-void
-encode_obstacle_names_of_this_level ( char* LevelMem , Level Lev )
+static void encode_obstacle_names_of_this_level ( char* LevelMem , Level Lev )
 {
     int i;
 
@@ -1531,8 +1517,7 @@ encode_obstacle_names_of_this_level ( char* LevelMem , Level Lev )
  * saving with the map file.
  *
  */
-void
-encode_obstacle_descriptions_of_this_level ( char* LevelMem , Level Lev )
+static void encode_obstacle_descriptions_of_this_level ( char* LevelMem , Level Lev )
 {
     int i;
     strcat ( LevelMem , OBSTACLE_DESCRIPTION_BEGIN_STRING );
@@ -1555,8 +1540,7 @@ encode_obstacle_descriptions_of_this_level ( char* LevelMem , Level Lev )
  * This function adds the statement data of this level to the chunk of 
  * data that will be written out to a file later.
  */
-void
-EncodeStatementsOfThisLevel ( char* LevelMem , Level Lev )
+static void EncodeStatementsOfThisLevel ( char* LevelMem , Level Lev )
 {
     int i;
     strcat(LevelMem, STATEMENT_BEGIN_STRING);
@@ -1580,8 +1564,7 @@ EncodeStatementsOfThisLevel ( char* LevelMem , Level Lev )
  *
  * 
  */
-void
-WriteOutOneItem ( char* LevelMem , Item ItemToWriteOut ) 
+static void WriteOutOneItem ( char* LevelMem , Item ItemToWriteOut ) 
 {
   char linebuf[5000];	  
 
@@ -1742,8 +1725,7 @@ WriteOutOneItem ( char* LevelMem , Item ItemToWriteOut )
 /**
  *
  */
-void
-EncodeItemSectionOfThisLevel ( char* LevelMem , Level Lev ) 
+static void EncodeItemSectionOfThisLevel ( char* LevelMem , Level Lev ) 
 {
   // char linebuf[5000];	// Buffer 
   int i;
@@ -1776,8 +1758,7 @@ EncodeItemSectionOfThisLevel ( char* LevelMem , Level Lev )
 /**
  *
  */
-void
-EncodeChestItemSectionOfThisLevel ( char* LevelMem , Level Lev ) 
+static void EncodeChestItemSectionOfThisLevel ( char* LevelMem , Level Lev ) 
 {
   // char linebuf[5000];	// Buffer 
   int i;
@@ -1810,8 +1791,7 @@ EncodeChestItemSectionOfThisLevel ( char* LevelMem , Level Lev )
 /**
  * This function generates savable text out of the current lavel data
  */
-char *
-EncodeLevelForSaving(Level Lev)
+static char * EncodeLevelForSaving(Level Lev)
 {
     char *LevelMem;
     int i, j;
@@ -2065,8 +2045,7 @@ SaveShip(const char *filename)
  *
  *
  */
-void
-ReadInOneItem ( char* ItemPointer , char* ItemsSectionEnd , Item TargetItem )
+static void ReadInOneItem ( char* ItemPointer , char* ItemsSectionEnd , Item TargetItem )
 {
 
   char * iname = ReadAndMallocStringFromData( ItemPointer, ITEM_NAME_STRING, "\"");
@@ -2138,8 +2117,7 @@ ReadInOneItem ( char* ItemPointer , char* ItemsSectionEnd , Item TargetItem )
 //----------------------------------------------------------------------
 // From here on we take apart the items section of the loaded level...
 //----------------------------------------------------------------------
-void
-DecodeItemSectionOfThisLevel ( Level loadlevel , char* data )
+static void DecodeItemSectionOfThisLevel ( Level loadlevel , char* data )
 {
   int i;
   char Preserved_Letter;
@@ -2190,8 +2168,7 @@ DecodeItemSectionOfThisLevel ( Level loadlevel , char* data )
 //----------------------------------------------------------------------
 // From here on we take apart the chest items section of the loaded level...
 //----------------------------------------------------------------------
-void
-DecodeChestItemSectionOfThisLevel ( Level loadlevel , char* data )
+static void DecodeChestItemSectionOfThisLevel ( Level loadlevel , char* data )
 {
   int i;
   char Preserved_Letter;
@@ -2674,8 +2651,7 @@ CountNumberOfDroidsOnShip ( void )
 
 }; // void CountNumberOfDroidsOnShip ( void )
 
-void
-ReviveAllDroidsOnShip ( void )
+static void ReviveAllDroidsOnShip ( void )
 {
   int i;
 
@@ -2754,8 +2730,7 @@ GetCrew (char *filename)
  *
  *
  */
-void
-GetThisLevelsSpecialForces ( char* SearchPointer , int OurLevelNumber , char* EndOfThisLevelData )
+static void GetThisLevelsSpecialForces ( char* SearchPointer , int OurLevelNumber , char* EndOfThisLevelData )
 {
   char TypeIndicationString[1000];
   short int ListIndex;
