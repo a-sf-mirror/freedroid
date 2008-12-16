@@ -178,7 +178,7 @@ our_SDL_update_rect_wrapper ( SDL_Surface *screen, Sint32 x, Sint32 y, Sint32 w,
 {
   if ( use_open_gl )
     {
-      our_SDL_flip_wrapper ( screen ) ;
+      our_SDL_flip_wrapper () ;
     }
   else
     {
