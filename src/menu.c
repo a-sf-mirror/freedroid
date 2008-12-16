@@ -64,8 +64,7 @@ extern int load_game_command_came_from_inside_running_game;
  * This function tells over which menu item the mouse cursor would be,
  * if there were infinitely many menu items.
  */
-int
-MouseCursorIsOverMenuItem( int first_menu_item_pos_y , int h )
+static int MouseCursorIsOverMenuItem( int first_menu_item_pos_y , int h )
 {
     int PureFraction;
 
@@ -89,8 +88,7 @@ MouseCursorIsOverMenuItem( int first_menu_item_pos_y , int h )
  *
  *
  */
-void
-print_menu_text ( char* InitialText , char* MenuTexts[] , int first_menu_item_pos_y , int background_code , void* MenuFont ) 
+static void print_menu_text ( char* InitialText , char* MenuTexts[] , int first_menu_item_pos_y , int background_code , void* MenuFont ) 
 {
     char open_gl_string [ 2000 ];
     int h = FontHeight ( GetCurrentFont ( ) );
@@ -1292,8 +1290,7 @@ struct Menu menus [] = {
 };
 
 
-void
-RunSubMenu (int startup, char buffer[10][1024], int menu_id)
+static void RunSubMenu (int startup, char buffer[10][1024], int menu_id)
 {
     int can_continue = 0;
     char *texts[10];
@@ -1322,8 +1319,8 @@ RunSubMenu (int startup, char buffer[10][1024], int menu_id)
 	    RunSubMenu (startup, buffer, ret);
     }
 }
-void 
-RunMenu (int is_startup)
+
+static void RunMenu (int is_startup)
 {
 	// 1024 should be enough
 	char buffer [10][1024]; 
@@ -2022,8 +2019,7 @@ Droid_fill (char *MenuTexts[10])
 /**
  * This reads in the new name for the character...
  */
-void
-Get_New_Character_Name ( void )
+static void Get_New_Character_Name ( void )
 {
     char* Temp;
     InitiateMenu( NE_TITLE_PIC_BACKGROUND_CODE );
@@ -2133,8 +2129,7 @@ clear_player_inventory_and_stats ( void )
 /**
  * This function prepares a new hero for adventure...
  */
-int
-PrepareNewHero (void)
+static int PrepareNewHero (void)
 {
 
     clear_player_inventory_and_stats ( ) ;
@@ -2351,7 +2346,7 @@ do_action:
 /**
  * Load a savegame
  */
-int Load_Existing_Hero_Menu ( void )
+static int Load_Existing_Hero_Menu ( void )
 {
     return do_savegame_selection_and_act(SAVEGAME_LOAD);
 }
@@ -2359,7 +2354,7 @@ int Load_Existing_Hero_Menu ( void )
 /** 
  * Delete a savegame
  */
-int Delete_Existing_Hero_Menu ( void )
+static int Delete_Existing_Hero_Menu ( void )
 {
     return do_savegame_selection_and_act(SAVEGAME_DELETE);
 }

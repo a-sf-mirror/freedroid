@@ -127,7 +127,7 @@ static float calculate_program_effect_duration ( int program_id )
 /**
  * This function calculates the busy time (recovery time) for tux after running a program
  */
-static float calculate_program_busy_time ( )
+static float calculate_program_busy_time ( void )
 {
     float busy_time [ NUMBER_OF_SKILL_LEVELS ] = { 1.0, 0.9, 0.81, 0.73, 0.66, 0.59, 0.53, 0.48, 0.43, 0.39 };
     return busy_time[ Me . spellcasting_skill ];
@@ -157,28 +157,27 @@ FreedroidRPG could not find the program name above in the program spec array!",
 /**
  * This function creates a teleporter portal to the home location.
  */
-void
-TeleportHome ( void )
+static void TeleportHome ( void )
 {
-location HomeSpot;
+    location HomeSpot;
 
-     if( (! Me . teleport_anchor . x) && (! Me . teleport_anchor . y)) //if there is no anchor, teleport home
-        {
-                Me . teleport_anchor . x = Me . pos . x;
-                Me . teleport_anchor . y = Me . pos . y;
-                Me . teleport_anchor . z = Me . pos . z;
-                teleport_arrival_sound ( );
-                ResolveMapLabelOnShip ( "TeleportHomeTarget" , &(HomeSpot) );
-                Teleport ( HomeSpot.level , HomeSpot.x , HomeSpot.y , TRUE ) ;
-        }
-        else //we must teleport back to the anchor
-        {
-                teleport_arrival_sound  ( );
-                Teleport ( Me . teleport_anchor . z , Me . teleport_anchor . x , Me . teleport_anchor . y , TRUE ) ;
-		Me . teleport_anchor . x = 0;
-		Me . teleport_anchor . y = 0;
-		Me . teleport_anchor . z = 0;
-        }
+    if( (! Me . teleport_anchor . x) && (! Me . teleport_anchor . y)) //if there is no anchor, teleport home
+	{
+	Me . teleport_anchor . x = Me . pos . x;
+	Me . teleport_anchor . y = Me . pos . y;
+	Me . teleport_anchor . z = Me . pos . z;
+	teleport_arrival_sound ( );
+	ResolveMapLabelOnShip ( "TeleportHomeTarget" , &(HomeSpot) );
+	Teleport ( HomeSpot.level , HomeSpot.x , HomeSpot.y , TRUE ) ;
+	}
+    else //we must teleport back to the anchor
+	{
+	teleport_arrival_sound  ( );
+	Teleport ( Me . teleport_anchor . z , Me . teleport_anchor . x , Me . teleport_anchor . y , TRUE ) ;
+	Me . teleport_anchor . x = 0;
+	Me . teleport_anchor . y = 0;
+	Me . teleport_anchor . z = 0;
+	}
 
 }; // void TeleportHome ( void )
 
@@ -475,8 +474,7 @@ return 1;
  * This function checks if a given screen position lies within the 
  * one of the skill icons and returns the number of that skill icon.
  */
-int
-CursorIsOnWhichSkillButton( int x , int y )
+static int CursorIsOnWhichSkillButton( int x , int y )
 {
     //--------------------
     // First we check if the cursor is in at least horizontally
@@ -514,8 +512,7 @@ CursorIsOnWhichSkillButton( int x , int y )
  * one of the spell level buttons and returns the number of that 
  * spell level button.
  */
-int
-CursorIsOnWhichSpellPageButton( int x , int y )
+static int CursorIsOnWhichSpellPageButton( int x , int y )
 {
     int i;
     
@@ -546,8 +543,7 @@ CursorIsOnWhichSpellPageButton( int x , int y )
  *
  *
  */
-void
-ShowSkillsExplanationScreen( void )
+static void ShowSkillsExplanationScreen( void )
 {
     int ICON_OFFSET_X = 20;
     int ICON_OFFSET_Y = 20;
@@ -603,8 +599,7 @@ ShowSkillsExplanationScreen( void )
  * for reference.
  *
  */
-void
-establish_skill_subset_map ( int *SkillSubsetMap )
+static void establish_skill_subset_map ( int *SkillSubsetMap )
 {
   int i;
   int NextPosition=0;
@@ -873,9 +868,9 @@ ShowSkillsScreen ( void )
 
 	    
 
-	    float tmp = calculate_program_effect_duration(SkillOfThisSlot);
-	    if ( tmp > 0 )
- 	     sprintf(CharText + strlen(CharText), _(" for %c%.1f%c seconds"),  font_switchto_msgvar[0] , tmp , font_switchto_msgstat[0] );
+	    float dur = calculate_program_effect_duration(SkillOfThisSlot);
+	    if ( dur > 0 )
+ 	     sprintf(CharText + strlen(CharText), _(" for %c%.1f%c seconds"),  font_switchto_msgvar[0] , dur , font_switchto_msgstat[0] );
 	   
 	    DisplayText( CharText , 16 + 64 + 16 + SkillScreenRect.x , nextypos , &SkillScreenRect , TEXT_STRETCH );
 	    nextypos += FontHeight( GetCurrentFont() );

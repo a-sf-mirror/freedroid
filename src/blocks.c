@@ -773,8 +773,7 @@ blit_zoomed_iso_image_to_map_position ( iso_image* our_iso_image , float pos_x ,
  *
  *
  */
-void
-get_offset_for_iso_image_from_file_and_path ( char* fpath , iso_image* our_iso_image )
+static void get_offset_for_iso_image_from_file_and_path ( char* fpath , iso_image* our_iso_image )
 {
   char offset_file_name[10000];
   FILE *OffsetFile; 
@@ -896,8 +895,7 @@ get_iso_image_from_file_and_path ( char* fpath , iso_image* our_iso_image , int 
  *
  *
  */
-void
-get_iso_image_with_colorkey_from_file_and_path ( char* fpath , iso_image* our_iso_image ) 
+static void get_iso_image_with_colorkey_from_file_and_path ( char* fpath , iso_image* our_iso_image ) 
 {
     SDL_Surface* Whole_Image;
     int x , y;
@@ -1529,8 +1527,7 @@ This should be investigated as soon as possible.",
  *
  *
  */
-void
-init_obstacle_data( void )
+static void init_obstacle_data( void )
 {
     int i;
     float standard_wall_thickness = 0.4 ;

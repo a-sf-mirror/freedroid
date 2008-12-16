@@ -124,8 +124,7 @@ display_overlay_chascr:
  * This function adds any bonuses that might be on the influencers things
  * concerning ONLY PRIMARY STATS, NOT SECONDARY STATS!
  */
-void
-AddInfluencerItemAttributeBonus( item* BonusItem )
+static void AddInfluencerItemAttributeBonus( item* BonusItem )
 {
   //--------------------
   // In case of no item, the thing to do is pretty easy...
@@ -150,8 +149,7 @@ AddInfluencerItemAttributeBonus( item* BonusItem )
  * This function adds any bonuses that might be on the influencers things
  * concerning ONLY SECONDARY STATS, NOT PRIMARY STATS!
  */
-void
-AddInfluencerItemSecondaryBonus( item* BonusItem )
+static void AddInfluencerItemSecondaryBonus( item* BonusItem )
 {
     //--------------------
     // In case of no item, the thing to do is pretty easy...
