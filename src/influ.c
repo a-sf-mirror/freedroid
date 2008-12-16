@@ -3386,7 +3386,6 @@ handle_player_examine_command ( void )
     obstacle* our_obstacle;
     char game_message_text[ 1000 ] ;
     int chat_section;
-    Level obstacle_level;
     enemy * final_bot_found = NULL;
 
     if ( ! MouseCursorIsInUserRect(GetMousePos_x(), GetMousePos_y()))
@@ -3428,28 +3427,22 @@ handle_player_examine_command ( void )
     if ( obstacle_index != (-1) )
     {
 	our_obstacle = & ( curShip . AllLevels [ Me . pos . z ] -> obstacle_list [ obstacle_index ] ) ;
+	char * longdesc;
 
 	//--------------------
 	// Now if the obstacle has an individual description text, then we can 
 	// use that for the obstacle examination result.  Otherwise we'll revert
 	// to the generic description text for the obstacle type of this obstacle.
 	//
-	if ( our_obstacle -> description_index >= 0 )
-	{
-	    obstacle_level = curShip . AllLevels [ Me . pos . z ] ;
-	    
-	    sprintf ( game_message_text , _("Examining %s.  %s"), 
-		      obstacle_map [ our_obstacle -> type ] . obstacle_short_name , 
-		      obstacle_level -> obstacle_description_list [ our_obstacle -> description_index ] ) ;
-	    append_new_game_message ( game_message_text );
+	if ( our_obstacle -> description_index >= 0 ) {
+	    longdesc = curShip . AllLevels [ Me . pos . z ] -> obstacle_description_list [ our_obstacle -> description_index ];
 	}
-	else
-	{
-	    sprintf ( game_message_text , _("Examining %s.  %s"), 
-		      obstacle_map [ our_obstacle -> type ] . obstacle_short_name , 
-		      obstacle_map [ our_obstacle -> type ] . obstacle_long_description ) ;
-	    append_new_game_message ( game_message_text );
+	else {
+	    longdesc = obstacle_map [ our_obstacle -> type ] . obstacle_long_description;
 	}
+
+	sprintf ( game_message_text, _("Examining %s. %s"), obstacle_map [ our_obstacle -> type ] . obstacle_short_name, longdesc );
+	append_new_game_message ( game_message_text );
 
 	global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL;
 	return;
@@ -3465,123 +3458,6 @@ handle_player_examine_command ( void )
     global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL;
 }; // void handle_player_examine_command ( ) 
 
-
-/**
- * When the player has actiavted global mode unlock and clicked the
- * left button, the unlock command must be executed.  This function
- * should deal with the effects of one such unlock click by the player.
- *
- */
-void
-handle_player_unlock_command ( ) 
-{
-    int obstacle_index ;
-    obstacle* our_obstacle;
-    char game_message_text[ 2000 ] ;
-
-    obstacle_index = GetObstacleBelowMouseCursor ( ) ;
-    if ( obstacle_index == (-1) )
-    {
-	ErrorMessage ( __FUNCTION__  , 
-				   "Unlock command received, but there isn't any obstacle under the current mouse cursor.  Has it maybe moved away?  I'll simply ignore this request." ,
-				   NO_NEED_TO_INFORM, IS_WARNING_ONLY );
-	return;
-    }
-    our_obstacle = & ( curShip . AllLevels [ Me . pos . z ] -> obstacle_list [ obstacle_index ] ) ;
-
-    DebugPrintf ( -4 , "\n%s(): unlocking obstacle of type : %d. " , __FUNCTION__ , our_obstacle -> type );
-    
-    sprintf ( game_message_text , _("Unlocking obstacle of type %d.") , our_obstacle -> type );
-    append_new_game_message ( game_message_text );
-
-}; // void handle_player_unlock_command ( ) 
-
-/**
- * When the player has actiavted global mode repair and clicked the
- * left button, the repair command must be executed.  This function
- * should deal with the effects of one such repair click by the player.
- */
-void
-handle_player_repair_command ( ) 
-{
-    int obstacle_index ;
-    obstacle* our_obstacle;
-    char game_message_text[ 2000 ] ;
-
-    obstacle_index = GetObstacleBelowMouseCursor ( ) ;
-    if ( obstacle_index == (-1) )
-    {
-	ErrorMessage ( __FUNCTION__  , 
-				   "Repair command received, but there isn't any obstacle under the current mouse cursor.  Has it maybe moved away?  I'll simply ignore this request." ,
-				   NO_NEED_TO_INFORM, IS_WARNING_ONLY );
-	return;
-    }
-    our_obstacle = & ( curShip . AllLevels [ Me . pos . z ] -> obstacle_list [ obstacle_index ] ) ;
-
-    DebugPrintf ( -4 , "\n%s(): repairing obstacle of type : %d. " , __FUNCTION__ , our_obstacle -> type );
-    
-    sprintf ( game_message_text , _("Repairing obstacle of type %d."), our_obstacle -> type );
-    append_new_game_message ( game_message_text );
-
-}; // void handle_player_repair_command ( ) 
-
-/**
- * When the player has actiavted global attack mode and clicked the
- * left button, the attack command must be executed.  This function
- * should deal with the effects of one such attack click by the player.
- */
-void
-handle_player_attack_command ( ) 
-{
-    int obstacle_index ;
-    obstacle* our_obstacle;
-    char game_message_text[ 2000 ] ;
-
-    obstacle_index = GetObstacleBelowMouseCursor ( ) ;
-    if ( obstacle_index == (-1) )
-    {
-	ErrorMessage ( __FUNCTION__  , 
-				   "Attack command received, but there isn't any obstacle under the current mouse cursor.  Has it maybe moved away?  I'll simply ignore this request." ,
-				   NO_NEED_TO_INFORM, IS_WARNING_ONLY );
-	return;
-    }
-    our_obstacle = & ( curShip . AllLevels [ Me . pos . z ] -> obstacle_list [ obstacle_index ] ) ;
-
-    DebugPrintf ( -4 , "\n%s(): attacking obstacle of type : %d. " , __FUNCTION__ , our_obstacle -> type );
-    
-    sprintf ( game_message_text , _("Attacking obstacle of type %d."), our_obstacle -> type );
-    append_new_game_message ( game_message_text );
-
-}; // void handle_player_attack_command ( ) 
-
-/**
- * When the player has actiavted global pickpocket aid and clicked the
- * left button, the pickpocket command must be executed.  This function
- * should deal with the effects of one such pickpocket click by the player.
- */
-void
-handle_player_pickpocket_command ( ) 
-{
-    int obstacle_index ;
-    obstacle* our_obstacle;
-    char game_message_text[ 2000 ] ;
-
-    obstacle_index = GetObstacleBelowMouseCursor ( ) ;
-    if ( obstacle_index == (-1) )
-    {
-	ErrorMessage ( __FUNCTION__  , 
-				   "Pickpocket command received, but there isn't any obstacle under the current mouse cursor.  Has it maybe moved away?  I'll simply ignore this request." ,
-				   NO_NEED_TO_INFORM, IS_WARNING_ONLY );
-	return;
-    }
-    our_obstacle = & ( curShip . AllLevels [ Me . pos . z ] -> obstacle_list [ obstacle_index ] ) ;
-
-    DebugPrintf ( -4 , "\n%s(): picking pockets of obstacle of type : %d. " , __FUNCTION__ , our_obstacle -> type );
-    
-    sprintf ( game_message_text , _("Picking pockets of obstacle of type %d."), our_obstacle -> type );
-    append_new_game_message ( game_message_text );
-
-}; // void handle_player_pickpocket_command ( ) 
 
 /**
  * If the user clicked his mouse, this might have several reasons.  It 
@@ -3655,60 +3531,6 @@ AnalyzePlayersMouseClick ( )
 	    
 	    break;
 
-	case GLOBAL_INGAME_MODE_REPAIR:
-	    // if ( ButtonPressWasNotMeantAsFire( ) ) return;
-	    DebugPrintf ( -4 , "\n%s(): received repair command." , __FUNCTION__ );
-	    handle_player_repair_command ( 0 ) ;
-	    global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL ;
-	    
-	    //--------------------
-	    // To stop any movement, we wait for the release of the 
-	    // mouse button.
-	    //
-	    while ( SpacePressed() || MouseLeftPressed() || MouseRightPressed());
-	    Activate_Conservative_Frame_Computation();
-
-	    break;
-	case GLOBAL_INGAME_MODE_UNLOCK:
-	    // if ( ButtonPressWasNotMeantAsFire( ) ) return;
-	    DebugPrintf ( -4 , "\n%s(): received unlock command." , __FUNCTION__ );
-	    handle_player_unlock_command ( 0 ) ;
-	    global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL ;
-	    
-	    //--------------------
-	    // To stop any movement, we wait for the release of the 
-	    // mouse button.
-	    //
-	    while ( SpacePressed() || MouseLeftPressed() || MouseRightPressed());
-	    Activate_Conservative_Frame_Computation();
-
-	    break;
-	case GLOBAL_INGAME_MODE_ATTACK:
-	    DebugPrintf ( -4 , "\n%s(): received attack command." , __FUNCTION__ );
-	    handle_player_attack_command ( 0 ) ;
-	    global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL ;
-	    
-	    //--------------------
-	    // To stop any movement, we wait for the release of the 
-	    // mouse button.
-	    //
-	    while ( SpacePressed() || MouseLeftPressed() || MouseRightPressed());
-	    Activate_Conservative_Frame_Computation();
-
-	    break;
-	case GLOBAL_INGAME_MODE_PICKPOCKET:
-	    DebugPrintf ( -4 , "\n%s(): received pickpocket command." , __FUNCTION__ );
-	    handle_player_pickpocket_command ( 0 ) ;
-	    global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL ;
-	    
-	    //--------------------
-	    // To stop any movement, we wait for the release of the 
-	    // mouse button.
-	    //
-	    while ( SpacePressed() || MouseLeftPressed() || MouseRightPressed());
-	    Activate_Conservative_Frame_Computation();
-
-	    break;
 	default:
 	    DebugPrintf ( -4 , "\n%s(): global_ingame_mode: %d." , __FUNCTION__ , 
 			  global_ingame_mode );

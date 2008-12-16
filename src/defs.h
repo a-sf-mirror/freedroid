@@ -171,9 +171,6 @@ enum _global_ingame_modes
     GLOBAL_INGAME_MODE_SCROLL_UP = 7127, 
     GLOBAL_INGAME_MODE_SCROLL_DOWN = 7128 ,
     GLOBAL_INGAME_MODE_REPAIR = 7129 ,
-    GLOBAL_INGAME_MODE_UNLOCK = 7130 ,
-    GLOBAL_INGAME_MODE_ATTACK = 7133 ,
-    GLOBAL_INGAME_MODE_PICKPOCKET = 7134 ,
 };
 
 enum _game_config_screen_visible_parameters

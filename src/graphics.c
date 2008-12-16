@@ -299,18 +299,9 @@ Error loading flag image.",
 	case GLOBAL_INGAME_MODE_REPAIR:
 	    cursor_index = 6 ;
 	    break;
-	case GLOBAL_INGAME_MODE_UNLOCK:
-	    cursor_index = 7 ;
-	    break;
 	/*case GLOBAL_INGAME_MODE_FIRST_AID:
 	    cursor_index = 9 ;
 	    break;*/
-	case GLOBAL_INGAME_MODE_ATTACK:
-	    cursor_index = 10 ;
-	    break;
-	case GLOBAL_INGAME_MODE_PICKPOCKET:
-	    cursor_index = 11 ;
-	    break;
 	default:
 	    DebugPrintf ( -4 , "\n%s(): global_ingame_mode: %d." , __FUNCTION__ , 
 			  global_ingame_mode );
