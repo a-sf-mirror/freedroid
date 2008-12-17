@@ -2936,6 +2936,7 @@ LevelOptions ( void )
 		CHANGE_MINIMAL_LIGHT_ON_LEVEL,
 		CHANGE_INFINITE_RUNNING,
 		ADD_NEW_LEVEL,
+		RUN_VALIDATION,
 		LEAVE_OPTIONS_MENU,
 	};
 
@@ -2986,6 +2987,7 @@ LevelOptions ( void )
 		else ( strcat ( Options [ i ] , _("NO")));
 		MenuTexts[ i ] = Options [ i ]; i++;
 		MenuTexts[i++] = _("Add New Level");
+		MenuTexts[i++] = _("Run Level Validator");
 		MenuTexts[i++] = _("Back") ;
 		MenuTexts[i++] = "" ;
 
@@ -3016,6 +3018,13 @@ LevelOptions ( void )
 				EditLevel->Levelname =  
 				GetEditableStringInPopupWindow ( 1000 , _("\n Please enter new level name: \n\n") ,
 								 EditLevel->Levelname );
+				break;
+			case RUN_VALIDATION:
+				while (EnterPressed() || SpacePressed() || MouseLeftPressed() ) SDL_Delay(1);
+				LevelValidation();
+				while ( !SpacePressed() ) SDL_Delay(0);
+				//Hack: eat all pending events.
+				input_handle();
 				break;
 			case ADD_NEW_LEVEL:
 				if (game_root_mode == ROOT_IS_GAME)
@@ -3162,7 +3171,6 @@ DoLevelEditorMainMenu ( Level EditLevel )
 		TEST_MAP_POSITION,
 		SAVE_LEVEL_POSITION,
 //		MANAGE_LEVEL_POSITION,
-		RUN_VALIDATION,
 		ESCAPE_FROM_MENU_POSITION,
 		QUIT_TO_MAIN_POSITION,
     	QUIT_POSITION,
@@ -3191,7 +3199,6 @@ DoLevelEditorMainMenu ( Level EditLevel )
 			MenuTexts[i++] = _("Saving disabled");
 	//		MenuTexts[i++] = " ";
 		}
-		MenuTexts[i++] = _("Run Level Validator");
 		MenuTexts[i++] = _("Continue Editing"); 
 		MenuTexts[i++] = _("Quit to Main Menu"); 
 		MenuTexts[i++] = _("Exit FreedroidRPG");
@@ -3226,15 +3233,8 @@ DoLevelEditorMainMenu ( Level EditLevel )
 			if ( curShip.AllLevels[tgt] != NULL ) Teleport ( tgt , 3 , 3 , FALSE );
 			proceed_now=!proceed_now;
 			break;
-		case RUN_VALIDATION:
-			while (EnterPressed() || SpacePressed() || MouseLeftPressed() ) SDL_Delay(1);
-			LevelValidation();
-			while ( !SpacePressed() ) SDL_Delay(1);
-			proceed_now=!proceed_now;
-			break;
 	    case LEVEL_OPTIONS_POSITION:
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
-			// proceed_now=!proceed_now;
 			LevelOptions ( );
 			break;
 	    case TEST_MAP_POSITION:
@@ -3254,7 +3254,6 @@ DoLevelEditorMainMenu ( Level EditLevel )
 			CenteredPutString ( Screen ,  11*FontHeight(Menu_BFont),    _("Your ship was saved..."));
 			our_SDL_flip_wrapper();
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
-			// proceed_now=!proceed_now;
 			break;
 	    case QUIT_TO_MAIN_POSITION:
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
