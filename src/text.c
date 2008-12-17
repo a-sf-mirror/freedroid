@@ -41,20 +41,11 @@
 #include "global.h"
 #include "SDL_rotozoom.h"
 
-int CharsPerLine;		// line length in chars:  obsolete
-
 // curent text insertion position
 int MyCursorX;
 int MyCursorY;
 
 int display_char_disabled_local;
-
-// buffer for text environment
-int StoreCursorX;
-int StoreCursorY;
-
-unsigned int StoreTextBG;
-unsigned int StoreTextFG;
 
 /**
  *
@@ -202,38 +193,6 @@ EnemyHitByBulletText( enemy * ThisRobot )
     else
 	ThisRobot->TextToBeDisplayed=_("Aargh, I got hit.  Ugh, I got a bad feeling...");
 }; // void EnemyHitByBullet( int Enum );
-
-/**
- * This function assigns a text comment to say for an enemy right after
- * it has bumped into the player.  This can be turned off via a switch in GameConfig.
- */
-void 
-EnemyInfluCollisionText ( enemy * ThisRobot)
-{
-    if ( !GameConfig.Enemy_Bump_Text ) return;
-    
-    ThisRobot->TextVisibleTime=0;
-    
-    if ( ThisRobot->is_friendly )
-    {
-	ThisRobot->TextToBeDisplayed=_("Ah, good, that we have an open collision avoiding standard, isn't it.");
-    }
-    else
-    {
-	switch ( MyRandom ( 1 ) )
-	{
-	    case 0:
-		ThisRobot->TextToBeDisplayed=_("Hey, I'm from MS! Walk outa my way!");
-		break;
-	    case 1:
-		ThisRobot->TextToBeDisplayed=_("Hey, I know the big MS boss! You better go.");
-		break;
-	}
-    }
-    
-}; // void EnemyInfluCollisionText ( int Enum )
-
-
 
 /**
  * This function sets the text cursor used in DisplayText.

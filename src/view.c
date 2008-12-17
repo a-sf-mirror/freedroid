@@ -76,14 +76,10 @@ char* motion_class_string [ ALL_TUX_MOTION_CLASSES ] = { "sword_motion" , "gun_m
 int previously_used_motion_class = -4 ; // something we'll never really use...
 
 void FdFlashWindow (SDL_Color Flashcolor);
-void RecFlashFill (int LX, int LY, int Color, unsigned char *Parameter_Screen,
-		   int SBreite);
-int Cent (int);
 void PutRadialBlueSparks( float PosX, float PosY , float Radius , int SparkType , char active_directions [ RADIAL_SPELL_DIRECTIONS ], float age ) ;
 void insert_new_element_into_blitting_list ( float new_element_norm , int new_element_type , 
 					     void* new_element_pointer , int code_number );
 
-char *Affected;
 EXTERN int MyCursorX;
 EXTERN int MyCursorY;
 
@@ -155,8 +151,7 @@ DisplayItemImageAtMouseCursor( int ItemImageCode )
  * This function displays (several) blinking warning signs as soon as item
  * durations reach critical (<5) duration level.
  */
-void
-ShowOneItemAlarm( item* AlarmItem , int Position )
+static void ShowOneItemAlarm( item* AlarmItem , int Position )
 {
     SDL_Rect TargetRect;
     int ItemImageCode;
@@ -4320,83 +4315,6 @@ function used for this did not succeed.",
     }
     
 }; // void PutRadialBlueSparks( float PosX, float PosY , float Radius )
-
-/**
- * This function draws an item into the combat window.
- * The only given parameter is the number of the item within
- * the AllItems array.
- */
-void
-PutRadialBlueSparksBestQuality( float PosX, float PosY , float Radius )
-{
-    SDL_Rect TargetRectangle;
-    static SDL_Surface* SparkPrototypeSurface=NULL;
-    SDL_Surface* tmp_surf;
-char fpath[2048];
-    int NumberOfPicturesToUse;
-    int i;
-    float Angle;
-    moderately_finepoint Displacement;
-    
-    //--------------------
-    // We do some sanity check against too small a radius
-    // given as parameter.  This can be loosened later.
-    //
-    if ( Radius <= 1.0 ) return;
-    
-    //--------------------
-    // Now if we do not yet have all the prototype images in memory,
-    // we need to load them now and for once...
-    //
-    if ( SparkPrototypeSurface == NULL )
-    {
-	find_file ("blue_sparks_0.png" , GRAPHICS_DIR, fpath, 0 );
-	
-	tmp_surf = our_IMG_load_wrapper( fpath );
-	if ( tmp_surf == NULL )
-	{
-	    fprintf( stderr, "\n\nfpath: '%s'\n" , fpath );
-	    ErrorMessage ( __FUNCTION__  , "\
-Freedroid wanted to load a certain image file into memory, but the SDL\n\
-function used for this did not succeed.",
-				       PLEASE_INFORM, IS_FATAL );
-	}
-	// SDL_SetColorKey( tmp_surf , 0 , 0 ); 
-	
-	SparkPrototypeSurface = our_SDL_display_format_wrapperAlpha ( tmp_surf );
-	
-	SDL_FreeSurface( tmp_surf );
-    }
-    
-    NumberOfPicturesToUse = ( 2 * Radius * 64 * 3.14 ) / (float) SparkPrototypeSurface -> w;
-    NumberOfPicturesToUse += 3 ; // we want some overlap
-    
-    //--------------------
-    // Now we blit all the pictures we like to use...in this case using
-    // multiple dynamic rotations (oh god!)...
-    //
-    for ( i = 0 ; i < NumberOfPicturesToUse ; i++ )
-    {
-	Angle = 360.0 * (float)i / (float)NumberOfPicturesToUse ;
-	
-	Displacement . x = 0 ; Displacement . y = - Radius * 64 ;
-	
-	RotateVectorByAngle ( &Displacement , Angle );
-	
-	tmp_surf = 
-	    rotozoomSurface( SparkPrototypeSurface , Angle , 1.0 , FALSE );
-	
-	TargetRectangle . x = UserCenter_x - ( Me . pos . x - PosX ) * 64 + Displacement . x - ( (tmp_surf -> w) / 2 );
-	TargetRectangle . y = UserCenter_y - ( Me . pos . y - PosY ) * 64 + Displacement . y - ( (tmp_surf -> h) / 2 );
-	
-	our_SDL_blit_surface_wrapper( tmp_surf , NULL , Screen , &TargetRectangle);
-	
-	SDL_FreeSurface ( tmp_surf );
-    }
-    
-    // DebugPrintf ( 0 , "\nSparks drawn!! " );
-    
-}; // void PutRadialBlueSparksBestQuality( float PosX, float PosY , float Radius )
 
 /**
  * This function draws a blast into the combat window.
