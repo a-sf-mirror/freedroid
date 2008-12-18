@@ -379,7 +379,7 @@ DoSkill(int skill_index, int SpellCost)
 								      (float) input_axis.y , TRUE ),
 				    translate_pixel_to_map_location ( (float) input_axis.x ,
 								      (float) input_axis.y , FALSE ),
-				    Me . pos . z, NULL))
+				    Me . pos . z, &FilterFlyable))
 		goto out;
 
 
