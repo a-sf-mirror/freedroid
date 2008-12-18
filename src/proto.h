@@ -40,7 +40,7 @@ void ShowStartupPercentage ( int Percentage ) ;
 void ParseCommandLine ( int argc , char *const argv[] );
 void ClearAutomapData( void );
 void InitFreedroid ( int, char ** );
-void PrepareStartOfNewCharacter ( void ) ;
+void PrepareStartOfNewCharacter ( char * startpos ) ;
 void ThouArtDefeated ( void );
 void ThouHastWon ( void );
 void GetEventsAndEventTriggers ( const char* EventsAndEventTriggersFilename );

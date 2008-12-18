@@ -1357,6 +1357,7 @@ Startup_handle (int n)
     enum
     { 
 	SINGLE_PLAYER_POSITION=1, 
+	TUTORIAL_POSITION,
 	LVLEDIT_POSITION,
 	OPTIONS_POSITION,
 	CREDITS_POSITION,
@@ -1371,19 +1372,32 @@ Startup_handle (int n)
 		return EXIT_MENU;
 	    }
 	    break;
-    case LVLEDIT_POSITION: //allow starting directly in leveleditor - the hack is a little dirty but it does its work.
-	skip_initial_menus = 1;
-	clear_player_inventory_and_stats ( ) ;
-	UpdateAllCharacterStats ( ) ;
-	strcpy(Me.character_name, "MapEd");
-	char fp[2048];
-	find_file ( "freedroid.levels" , MAP_DIR, fp, 0);
-	LoadShip ( fp ) ;
-	PrepareStartOfNewCharacter ( ) ;
-	skip_initial_menus = 0;
-	game_root_mode = ROOT_IS_LVLEDIT;
-	return EXIT_MENU;
-	break;  
+	case LVLEDIT_POSITION: //allow starting directly in leveleditor - the hack is a little dirty but it does its work.
+		skip_initial_menus = 1;
+		clear_player_inventory_and_stats ( ) ;
+		UpdateAllCharacterStats ( ) ;
+		strcpy(Me.character_name, "MapEd");
+		char fp[2048];
+		find_file ( "freedroid.levels" , MAP_DIR, fp, 0);
+		LoadShip ( fp ) ;
+		PrepareStartOfNewCharacter ( "NewTuxStartGameSquare" ) ;
+		skip_initial_menus = 0;
+		game_root_mode = ROOT_IS_LVLEDIT;
+		return EXIT_MENU;
+		break;
+	case TUTORIAL_POSITION: //Similar hack to start Tutorial.
+		skip_initial_menus = 1;
+		clear_player_inventory_and_stats ( ) ;
+		UpdateAllCharacterStats ( ) ;
+		strcpy(Me.character_name, "TutorialTux");
+		char fpp[2048];
+		find_file ( "freedroid.levels" , MAP_DIR, fpp, 0);
+		LoadShip ( fpp ) ;
+		PrepareStartOfNewCharacter ( "TutorialTuxStart" ) ;
+		skip_initial_menus = 0;
+		game_root_mode = ROOT_IS_GAME;
+		return EXIT_MENU;
+		break;
     case OPTIONS_POSITION:
 	return MENU_OPTIONS;
     case CREDITS_POSITION:
@@ -1405,13 +1419,15 @@ Startup_handle (int n)
 static void
 Startup_fill (char *MenuTexts[10])
 {
-    MenuTexts[0]=_("Play");
-    MenuTexts[1]=_("Level Editor");
-    MenuTexts[2]=_("Options");
-    MenuTexts[3]=_("Credits");
-    MenuTexts[4]=_("Contribute");
-    MenuTexts[5]=_("Exit FreedroidRPG");
-    MenuTexts[6]="";
+	int i = 0;
+	MenuTexts[i++]=_("Play");
+	MenuTexts[i++]=_("Tutorial");
+	MenuTexts[i++]=_("Level Editor");
+	MenuTexts[i++]=_("Options");
+	MenuTexts[i++]=_("Credits");
+	MenuTexts[i++]=_("Contribute");
+	MenuTexts[i++]=_("Exit FreedroidRPG");
+	MenuTexts[i++]="";
 }
 
 
@@ -2408,7 +2424,7 @@ Single_Player_Menu (void)
 		    char fp[2048];
 		    find_file ( "freedroid.levels" , MAP_DIR, fp, 0);
 		    LoadShip ( fp ) ;
-		    PrepareStartOfNewCharacter ( ) ;
+		    PrepareStartOfNewCharacter ( "NewTuxStartGameSquare" ) ;
 		    can_continue=TRUE;
 		    load_game_command_came_from_inside_running_game = TRUE ;
 		    return ( TRUE );

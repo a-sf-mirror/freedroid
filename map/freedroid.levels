@@ -34118,10 +34118,10 @@ t29 x23.50 y51.00 l-1 d-1
 t46 x23.50 y50.00 l-1 d-1 
 /obsdata
 plabelinfolvl
-x=16 y=51 name="TutorStart"
-x=17 y=45 name="TuxStart"
-x=16 y=44 name="LeaveTutorial-1"
-x=26 y=13 name="LeaveTutorial-2"
+x=16 y=51 name="TutorialTutorStart"
+x=17 y=45 name="TutorialTuxStart"
+x=16 y=44 name="TutorialLeave-1"
+x=26 y=13 name="TutorialLeave-2"
 x=2 y=50 name="melee1"
 x=2 y=58 name="melee2"
 x=38 y=55 name="shootingrange1"

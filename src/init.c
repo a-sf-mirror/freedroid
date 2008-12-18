@@ -1862,7 +1862,7 @@ InitHarmlessTuxStatusVariables( )
  * whenever or better before any new game is started.
  * -----------------------------------------------------------------*/
 void
-PrepareStartOfNewCharacter ( void )
+PrepareStartOfNewCharacter ( char * startpos )
 {
     int i , j ;
     int StartingLevel=0;
@@ -1915,7 +1915,7 @@ PrepareStartOfNewCharacter ( void )
     
     GetCrew ( "ReturnOfTux.droids" ) ;
     
-    ResolveMapLabelOnShip ( "NewTuxStartGameSquare" , &StartPosition );
+    ResolveMapLabelOnShip ( startpos , &StartPosition );
     Teleport( StartPosition . level, StartPosition . x, StartPosition . y, FALSE);
     
     Me . teleport_anchor . x = 0 ; //no anchor at the beginning
