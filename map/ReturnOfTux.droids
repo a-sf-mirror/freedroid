@@ -713,6 +713,40 @@ Allowed Type of Random Droid for this level: 302
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
 
+** Beginning of new Level **
+Level=37
+Maximum number of Random Droids=0
+Minimum number of Random Droids=0
+Allowed Type of Random Droid for this level: 751
+
+SForce: T=123 Fixed=0 Marker=1037 Friendly=0 StartUpAtLabel="melee1" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="KillMe" attack_run_only_when_direct_line="yes"
+
+SForce: T=247 Fixed=0 Marker=2037 Friendly=0 StartUpAtLabel="melee2" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="KillMeToo" attack_run_only_when_direct_line="yes"
+
+SForce: T=123 Fixed=0 Marker=3037 Friendly=0 StartUpAtLabel="shootingrange1" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Target" attack_run_only_when_direct_line="yes"
+SForce: T=123 Fixed=0 Marker=3037 Friendly=0 StartUpAtLabel="shootingrange2" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Target" attack_run_only_when_direct_line="yes"
+SForce: T=123 Fixed=0 Marker=3037 Friendly=0 StartUpAtLabel="shootingrange3" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Target" attack_run_only_when_direct_line="yes"
+SForce: T=123 Fixed=0 Marker=3037 Friendly=0 StartUpAtLabel="shootingrange4" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Target" attack_run_only_when_direct_line="yes"
+SForce: T=123 Fixed=0 Marker=3037 Friendly=0 StartUpAtLabel="shootingrange5" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Target" attack_run_only_when_direct_line="yes"
+SForce: T=123 Fixed=0 Marker=3037 Friendly=0 StartUpAtLabel="shootingrange6" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Target" attack_run_only_when_direct_line="yes"
+SForce: T=247 Fixed=0 Marker=3037 Friendly=0 StartUpAtLabel="shootingrange7" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Target" attack_run_only_when_direct_line="yes"
+SForce: T=247 Fixed=0 Marker=3037 Friendly=0 StartUpAtLabel="shootingrange8" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Target" attack_run_only_when_direct_line="yes"
+
+SForce: T=123 Fixed=0 Marker=4037 Friendly=0 StartUpAtLabel="takeover1" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Target" attack_run_only_when_direct_line="yes"
+SForce: T=123 Fixed=0 Marker=4037 Friendly=0 StartUpAtLabel="takeover2" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Target" attack_run_only_when_direct_line="yes"
+SForce: T=247 Fixed=0 Marker=4037 Friendly=0 StartUpAtLabel="takeover3" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Target" attack_run_only_when_direct_line="yes"
+SForce: T=247 Fixed=0 Marker=4037 Friendly=0 StartUpAtLabel="takeover4" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Target" attack_run_only_when_direct_line="yes"
+SForce: T=247 Fixed=0 Marker=4037 Friendly=0 StartUpAtLabel="takeover5" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Target" attack_run_only_when_direct_line="yes"
+SForce: T=123 Fixed=0 Marker=4037 Friendly=0 StartUpAtLabel="takeover6" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Target" attack_run_only_when_direct_line="yes"
+SForce: T=123 Fixed=0 Marker=4037 Friendly=0 StartUpAtLabel="takeover7" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Target" attack_run_only_when_direct_line="yes"
+
+
+** End of this levels droid data **
+
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+
 //----------------------------------------------------------------------
 // This marker must mark the very end of this file.
 // Anything after this marker will be ignored!!!
