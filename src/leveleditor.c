@@ -2918,11 +2918,12 @@ TestMap ( void )  /* Keeps World map in a clean state */
 void
 LevelOptions ( void )
 {
-    char* MenuTexts[ 100 ];
-    char Options [ 20 ] [1000];
-    int proceed_now = FALSE ;
-    int MenuPosition=1;
-    int i;
+	char* MenuTexts[ 100 ];
+	char Options [ 20 ] [1000];
+	int proceed_now = FALSE ;
+	int MenuPosition=1;
+	int i;
+	int l = 0;
 
 	enum
 	{
@@ -2930,10 +2931,9 @@ LevelOptions ( void )
 		SET_LEVEL_NAME,
 		EDIT_LEVEL_DIMENSIONS,
 		SET_LEVEL_INTERFACE_POSITION,
+		CHANGE_LIGHT,
 		SET_BACKGROUND_SONG_NAME,
 		SET_LEVEL_COMMENT,
-		CHANGE_LIGHT_RADIUS_BONUS,
-		CHANGE_MINIMAL_LIGHT_ON_LEVEL,
 		CHANGE_INFINITE_RUNNING,
 		ADD_NEW_LEVEL,
 		RUN_VALIDATION,
@@ -2947,7 +2947,7 @@ LevelOptions ( void )
 	
 		InitiateMenu( -1 );
 	
-		i = 0 ;
+		i = 0 ; 
 		sprintf( Options [ i ] , _("Level") );
 			sprintf( Options [ i+1 ] , ": %d.  (<-/->)" , EditLevel->levelnum );
 		    strcat( Options [ i ] , Options [ i+1 ] ); 
@@ -2957,7 +2957,7 @@ LevelOptions ( void )
 		    strcat( Options [ i ] , Options [ i+1 ] ); 
 		MenuTexts[ i ] = Options [ i ] ; i++ ;
 	    sprintf( Options [ i ] , _("Size") );
-		    sprintf( Options [ i+1 ] , _(": X: %d. Y: %d.") , EditLevel->xlen , EditLevel->ylen );
+		    sprintf( Options [ i+1 ] , ":  X %d  Y %d " , EditLevel->xlen , EditLevel->ylen );
 		    strcat( Options [ i ] , Options [ i+1 ] ); 
 		MenuTexts[ i ] = Options [ i ] ; i++ ;
 		sprintf( Options [ i ] , _("Edge") );
@@ -2972,15 +2972,35 @@ LevelOptions ( void )
 		else 
 		{
 		    if ( EditLevel->jump_target_north != -1 )
-		    	sprintf( Options [ i ] + strlen(Options [ i ]) , "  N: %d(%d)", EditLevel->jump_target_north, EditLevel->jump_threshold_north ); 
+		    	sprintf( Options [ i ] + strlen(Options [ i ]) , "  N: %d/%d", EditLevel->jump_target_north, EditLevel->jump_threshold_north ); 
 		    if ( EditLevel->jump_target_east != -1 )
-		    	sprintf( Options [ i ] + strlen(Options [ i ]) , "  E: %d(%d)", EditLevel->jump_target_east, EditLevel->jump_threshold_east ); 
+		    	sprintf( Options [ i ] + strlen(Options [ i ]) , "  E: %d/%d", EditLevel->jump_target_east, EditLevel->jump_threshold_east ); 
 		    if ( EditLevel->jump_target_south != -1 )
-		    	sprintf( Options [ i ] + strlen(Options [ i ]) , "  S: %d(%d)", EditLevel->jump_target_south, EditLevel->jump_threshold_south ); 
+		    	sprintf( Options [ i ] + strlen(Options [ i ]) , "  S: %d/%d", EditLevel->jump_target_south, EditLevel->jump_threshold_south ); 
 		    if ( EditLevel->jump_target_west != -1 )
-		    	sprintf( Options [ i ] + strlen(Options [ i ]) , "  W: %d(%d)", EditLevel->jump_target_west, EditLevel->jump_threshold_west ); 
+		    	sprintf( Options [ i ] + strlen(Options [ i ]) , "  W: %d/%d", EditLevel->jump_target_west, EditLevel->jump_threshold_west ); 
 		}
 		MenuTexts[ i ] = Options [ i ] ; i++ ;
+		sprintf( Options [ i ] , _("Light") );
+		    strcat( Options [ i ] , ":  " );
+		    strcat( Options [ i ] , _("Radius") );
+			if ( l == 0 )
+			{
+				sprintf( Options [ i+1 ] , " [%d]  " , EditLevel -> light_radius_bonus );
+			    strcat( Options [ i ] , Options [ i+1 ] );
+			    strcat( Options [ i ] , _("Minimum") );
+				sprintf( Options [ i+1 ] , "  %d   (<-/->)" , EditLevel -> minimum_light_value );
+			}
+			else if ( l == 1 ) 
+			{
+				sprintf( Options [ i+1 ] , "  %d   " , EditLevel -> light_radius_bonus );
+			    strcat( Options [ i ] , Options [ i+1 ] );
+			    strcat( Options [ i ] , _("Minimum") );
+				sprintf( Options [ i+1 ] , " [%d]  (<-/->)" , EditLevel -> minimum_light_value );
+			}
+			else sprintf( Options [ i+1 ] , "Im a bug" );
+		    strcat( Options [ i ] , Options [ i+1 ] ); 
+		MenuTexts[ i ] = Options [ i ]; i++ ;
 		sprintf( Options [ i ] , _("Background Music") );
 			sprintf( Options [ i+1 ] , ": %s" , EditLevel->Background_Song_Name );
 		    strcat( Options [ i ] , Options [ i+1 ] ); 
@@ -2989,15 +3009,7 @@ LevelOptions ( void )
 			sprintf( Options [ i+1 ] , ": %s" , EditLevel->Level_Enter_Comment );
 		    strcat( Options [ i ] , Options [ i+1 ] ); 
 		MenuTexts[ i ] = Options [ i ] ; i++ ;
-		sprintf( Options [ i ] , _("Light radius") );
-			sprintf( Options [ i+1 ] , ": %d  (<-/->)" , EditLevel -> light_radius_bonus );
-		    strcat( Options [ i ] , Options [ i+1 ] ); 
-		MenuTexts[ i ] = Options [ i ]; i++ ;
-		sprintf( Options [ i ] , _("Light minimum") );
-			sprintf( Options [ i+1 ] , ": %d  (<-/->)" , EditLevel -> minimum_light_value );
-		    strcat( Options [ i ] , Options [ i+1 ] ); 
-		MenuTexts[ i ] = Options [ i ]; i++ ;
-		sprintf( Options [ i ] , _("Infinite running") );
+		sprintf( Options [ i ] , _("Infinite Running") );
 		    strcat( Options [ i ] , ": " ); 
 		if ( EditLevel -> infinite_running_on_this_level ) strcat ( Options [ i ] , _("YES"));
 		else ( strcat ( Options [ i ] , _("NO")));
@@ -3023,11 +3035,24 @@ LevelOptions ( void )
 			// if ( EditLevel->levelnum ) Teleport ( EditLevel->levelnum-1 , Me.pos.x , Me.pos.y );
 				while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
 				break;
-			case CHANGE_LIGHT_RADIUS_BONUS: 
+			case CHANGE_LIGHT:
 				while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
-				break;
-			case CHANGE_MINIMAL_LIGHT_ON_LEVEL:
-				while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
+				// Switch between Radius and Minimum modification mode.
+				if ( l == 0 )
+				{
+					if ( LeftPressed() ) l = 0;
+					else if ( RightPressed() ) l = 0;
+					else l = 1;
+				}
+				else if ( l == 1 )
+				{
+					if ( LeftPressed() ) l = 1;
+					else if ( RightPressed() ) l = 1;
+					else l = 0;
+				}
+				else l = 2;
+					Teleport ( EditLevel -> levelnum , 
+						   Me . pos . x , Me . pos . y , FALSE );
 				break;
 			case SET_LEVEL_NAME:
 				while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
@@ -3107,58 +3132,63 @@ LevelOptions ( void )
 		{
 			switch (MenuPosition)
 			{
-		
-			case CHANGE_LEVEL_POSITION:
-				if ( LeftPressed() )
-				{
-					// find first available level lower than the current one
-					int newlevel = EditLevel->levelnum - 1;
-					while ( curShip.AllLevels[newlevel] == NULL && newlevel >= 0 ) --newlevel;
-					// teleport if new level exists
-					if ( newlevel >= 0 ) Teleport ( newlevel , 3 , 3 , FALSE );
-					while (LeftPressed());
-				}
-				if ( RightPressed() )
-				{
-					// find first available level higher than the current one
-					int newlevel = EditLevel->levelnum + 1;
-					while ( curShip.AllLevels[newlevel] == NULL && newlevel < curShip.num_levels ) ++newlevel;
-					// teleport if new level exists
-					if ( newlevel < curShip.num_levels ) Teleport ( newlevel , 3 , 3 , FALSE );
-					while (RightPressed());
-				}
-				break;
+
+				case CHANGE_LEVEL_POSITION:
+					if ( LeftPressed() )
+					{
+						// find first available level lower than the current one
+						int newlevel = EditLevel->levelnum - 1;
+						while ( curShip.AllLevels[newlevel] == NULL && newlevel >= 0 ) --newlevel;
+						// teleport if new level exists
+						if ( newlevel >= 0 ) Teleport ( newlevel , 3 , 3 , FALSE );
+						while (LeftPressed());
+					}
+					if ( RightPressed() )
+					{
+						// find first available level higher than the current one
+						int newlevel = EditLevel->levelnum + 1;
+						while ( curShip.AllLevels[newlevel] == NULL && newlevel < curShip.num_levels ) ++newlevel;
+						// teleport if new level exists
+						if ( newlevel < curShip.num_levels ) Teleport ( newlevel , 3 , 3 , FALSE );
+						while (RightPressed());
+					}
+					break;
 				
-			case CHANGE_LIGHT_RADIUS_BONUS:
-				if ( RightPressed() )
-				{
-				EditLevel -> light_radius_bonus ++;
-				while (RightPressed());
-				}
-				if ( LeftPressed() )
-				{
-				EditLevel -> light_radius_bonus --;
-				while (LeftPressed());
-				}
-				Teleport ( EditLevel -> levelnum , 
-					   Me . pos . x , Me . pos . y , FALSE ); 
-				break;
-				
-			case CHANGE_MINIMAL_LIGHT_ON_LEVEL:
-				if ( RightPressed() )
-				{
-				EditLevel -> minimum_light_value ++;
-				while (RightPressed());
-				}
-				if ( LeftPressed() )
-				{
-				EditLevel -> minimum_light_value --;
-				while (LeftPressed());
-				}
-				Teleport ( EditLevel -> levelnum , 
-					   Me . pos . x , Me . pos . y , FALSE ); 
-				break;
-			}
+				case CHANGE_LIGHT:
+					if ( l == 0 )
+					{
+						if ( RightPressed() )
+						{
+						EditLevel -> light_radius_bonus ++;
+						while (RightPressed());
+						}
+						if ( LeftPressed() )
+						{
+						EditLevel -> light_radius_bonus --;
+						while (LeftPressed());
+						}
+						Teleport ( EditLevel -> levelnum , 
+							   Me . pos . x , Me . pos . y , FALSE ); 
+						break;
+					}
+					else
+					{
+						if ( RightPressed() )
+						{
+						EditLevel -> minimum_light_value ++;
+						while (RightPressed());
+						}
+						if ( LeftPressed() )
+						{
+						EditLevel -> minimum_light_value --;
+						while (LeftPressed());
+						}
+						Teleport ( EditLevel -> levelnum , 
+							   Me . pos . x , Me . pos . y , FALSE ); 
+						break;
+					}
+
+			} // switch
 		} // if LeftPressed || RightPressed
     }
     return ;
@@ -3200,7 +3230,9 @@ DoLevelEditorMainMenu ( Level EditLevel )
 		InitiateMenu( -1 );
 	
 		i = 0 ;
-		sprintf( Options [ i ] , _("Lvl: %d - %s"), EditLevel->levelnum, EditLevel->Levelname );
+		sprintf( Options [ i ] , _("Level") );
+			sprintf( Options [ i+1 ] , ": %d - %s", EditLevel->levelnum, EditLevel->Levelname );
+		    strcat( Options [ i ] , Options [ i+1 ] ); 
 		MenuTexts[ i ] = Options [ i ]; i++ ;
 		MenuTexts[i++] = _("Level Options");
 		if (game_root_mode == ROOT_IS_LVLEDIT)
