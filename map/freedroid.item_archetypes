@@ -1095,6 +1095,25 @@ Item as gun: weapon requires both hands="no"
 /****** Ranged **************************************************************************************
 ******************************************************************************************************/
 
+/*
+From blocks.c - Should be updated one day.
+  char* bullet_identifiers[] =
+      "pulse"        , // 0 "pluse" or "classic 001"
+      "single"       , // 1 "single" or "classic 476"
+      "military"     , // 2 "military" or "classic 821"
+      "flash_dummy"  , // 3 entire screen has (ugly) flash and gives damage to all - useful for EMP grenade?
+      "exterminator" , // 4 "exterminator" , same as in classic
+      "laser_rifle"  , // 5 "laser rifle" , same as in classic
+      "half_pulse"   , // 6 "just one half of the two classic 001"
+      "plasma_white" , // 7 small round white plasma ball
+      "laser_sword"  , // 8
+      "laser_axe"    , // 9
+      "single"       , // 10 repetition of the single
+      "half_green"   , // 11 that's the poison
+      "half_blue"    , // 12 that's the cold
+      "half_magenta" , // 13 that's the ??
+      "half_white"   , // 14 that's the stone
+*/
 
 
 // *** Conventional ***
@@ -1143,7 +1162,7 @@ Item as gun: speed of bullets=30.000000
 Item as gun: is melee weapon=0
 Item as gun: damage of bullets=1
 Item as gun: modifier for damage of bullets=2
-Item as gun: bullet_image_type=5
+Item as gun: bullet_image_type=6
 Item as gun: bullet_lifetime=-1.000000
 Item as gun: modifier for starting angle=0.000000
 Item as gun: ignore collisions with wall="no"
@@ -1181,7 +1200,7 @@ Item as gun: speed of bullets=30.000000
 Item as gun: is melee weapon=0
 Item as gun: damage of bullets=2
 Item as gun: modifier for damage of bullets=6
-Item as gun: bullet_image_type=5
+Item as gun: bullet_image_type=6
 Item as gun: bullet_lifetime=-1.000000
 Item as gun: modifier for starting angle=0.000000
 Item as gun: ignore collisions with wall="no"
@@ -1243,7 +1262,7 @@ Item as gun: speed of bullets=30.000000
 Item as gun: is melee weapon=0
 Item as gun: damage of bullets=2
 Item as gun: modifier for damage of bullets=8
-Item as gun: bullet_image_type=5
+Item as gun: bullet_image_type=1
 Item as gun: bullet_lifetime=-1.000000
 Item as gun: modifier for starting angle=0.000000
 Item as gun: ignore collisions with wall="no"
@@ -1281,7 +1300,7 @@ Item as gun: speed of bullets=30.000000
 Item as gun: is melee weapon=0
 Item as gun: damage of bullets=2
 Item as gun: modifier for damage of bullets=16
-Item as gun: bullet_image_type=5
+Item as gun: bullet_image_type=1
 Item as gun: bullet_lifetime=-1.000000
 Item as gun: modifier for starting angle=0.000000
 Item as gun: ignore collisions with wall="no"
@@ -1319,7 +1338,7 @@ Item as gun: speed of bullets=30.000000
 Item as gun: is melee weapon=0
 Item as gun: damage of bullets=2
 Item as gun: modifier for damage of bullets=12
-Item as gun: bullet_image_type=5
+Item as gun: bullet_image_type=1
 Item as gun: bullet_lifetime=-1.000000
 Item as gun: modifier for starting angle=0.000000
 Item as gun: ignore collisions with wall="no"
@@ -1383,7 +1402,7 @@ Item as gun: speed of bullets=30.000000
 Item as gun: is melee weapon=0
 Item as gun: damage of bullets=4
 Item as gun: modifier for damage of bullets=6
-Item as gun: bullet_image_type=5
+Item as gun: bullet_image_type=6
 Item as gun: bullet_lifetime=-1.000000
 Item as gun: modifier for starting angle=0.000000
 Item as gun: ignore collisions with wall="no"
@@ -1421,7 +1440,7 @@ Item as gun: speed of bullets=30.000000
 Item as gun: is melee weapon=0
 Item as gun: damage of bullets=3
 Item as gun: modifier for damage of bullets=5
-Item as gun: bullet_image_type=5
+Item as gun: bullet_image_type=6
 Item as gun: bullet_lifetime=-1.000000
 Item as gun: modifier for starting angle=0.000000
 Item as gun: ignore collisions with wall="no"
@@ -1483,7 +1502,7 @@ Item as gun: speed of bullets=30.000000
 Item as gun: is melee weapon=0
 Item as gun: damage of bullets=10
 Item as gun: modifier for damage of bullets=6
-Item as gun: bullet_image_type=5
+Item as gun: bullet_image_type=6
 Item as gun: bullet_lifetime=-1.000000
 Item as gun: modifier for starting angle=0.000000
 Item as gun: ignore collisions with wall="no"
@@ -1521,7 +1540,7 @@ Item as gun: speed of bullets=30.000000
 Item as gun: is melee weapon=0
 Item as gun: damage of bullets=6
 Item as gun: modifier for damage of bullets=6
-Item as gun: bullet_image_type=5
+Item as gun: bullet_image_type=6
 Item as gun: bullet_lifetime=-1.000000
 Item as gun: modifier for starting angle=0.000000
 Item as gun: ignore collisions with wall="no"
@@ -1579,7 +1598,7 @@ Item as gun: speed of bullets=30.000000
 Item as gun: is melee weapon=0
 Item as gun: damage of bullets=40
 Item as gun: modifier for damage of bullets=200
-Item as gun: bullet_image_type=5
+Item as gun: bullet_image_type=1
 Item as gun: bullet_lifetime=-1.000000
 Item as gun: modifier for starting angle=0.000000
 Item as gun: ignore collisions with wall="yes"
@@ -1636,7 +1655,7 @@ Item as gun: speed of bullets=45.000000
 Item as gun: is melee weapon=0
 Item as gun: damage of bullets=4
 Item as gun: modifier for damage of bullets=6
-Item as gun: bullet_image_type=6
+Item as gun: bullet_image_type=5
 Item as gun: bullet_lifetime=-1.000000
 Item as gun: modifier for starting angle=0.000000
 Item as gun: ignore collisions with wall="no"
@@ -1750,7 +1769,7 @@ Item as gun: speed of bullets=45.000000
 Item as gun: is melee weapon=0
 Item as gun: damage of bullets=6
 Item as gun: modifier for damage of bullets=8
-Item as gun: bullet_image_type=0
+Item as gun: bullet_image_type=2
 Item as gun: bullet_lifetime=-1.000000
 Item as gun: modifier for starting angle=0.000000
 Item as gun: ignore collisions with wall="no"
