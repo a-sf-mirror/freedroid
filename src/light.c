@@ -144,110 +144,59 @@ LightRadiusClean()
 void 
 update_light_list ( )
 {
-    int i;
-    Level light_level = curShip . AllLevels [ Me . pos . z ] ;
-    int map_x, map_y, map_x_end, map_y_end, map_x_start, map_y_start ;
-    int glue_index;
-    int obs_index;
-    int next_light_emitter_index;
-    obstacle* emitter;
-    int blast;
-
-    //--------------------
-    // At first we fill out the light sources array with 'empty' information,
-    // i.e. such positions, that won't affect our location for sure.
-    //
-    for ( i = 0 ; i < MAX_NUMBER_OF_LIGHT_SOURCES ; i ++ )
-    {
-	light_sources [ i ] . x = -200 ;
-	light_sources [ i ] . y = -200 ;
-	light_source_strengthes [ i ] = 0 ;
-    }
-    
-    //--------------------
-    // Now we fill in the Tux position as the very first light source, that will
-    // always be present.
-    //
-    light_sources [ 0 ] . x = Me . pos . x ;
-    light_sources [ 0 ] . y = Me . pos . y ;
-    light_source_strengthes [ 0 ] = 
-	light_level -> light_radius_bonus + Me . light_bonus_from_tux  ;
-    //--------------------
-    // We must not in any case tear a hole into the beginning of
-    // the list though...
-    //
-    if ( light_source_strengthes [ 0 ] <= 0 )
-	light_source_strengthes [ 0 ] = 1;
-    next_light_emitter_index = 1 ;
-
-    //--------------------
-    // Now we can fill in any explosions, that are currently going on.
-    // These will typically emanate a lot of light.
-    //
-    for ( blast = 0 ; blast < MAXBLASTS ; blast ++ )
-    {
-	if ( ! ( AllBlasts [ blast ] . type == DRUIDBLAST ) ) continue ;
-
-	light_sources [ next_light_emitter_index ] . x = AllBlasts [ blast ] . pos . x ;
-	light_sources [ next_light_emitter_index ] . y = AllBlasts [ blast ] . pos . y ;
+	int i;
+	Level light_level = curShip . AllLevels [ Me . pos . z ] ;
+	int map_x, map_y, map_x_end, map_y_end, map_x_start, map_y_start ;
+	int glue_index;
+	int obs_index;
+	int next_light_emitter_index;
+	obstacle* emitter;
+	int blast;
 
 	//--------------------
-	// We add some light strength according to the phase of the blast
+	// At first we fill out the light sources array with 'empty' information,
+	// i.e. such positions, that won't affect our location for sure.
 	//
-	light_source_strengthes [ next_light_emitter_index ] = 10 - AllBlasts [ blast ] . phase / 2 ;
-	if ( light_source_strengthes [ next_light_emitter_index ] < 0 )
-	    continue;
-	next_light_emitter_index ++ ;
-	
-	//--------------------
-	// We must not write beyond the bounds of our light sources array!
-	//
-	if ( next_light_emitter_index >= MAX_NUMBER_OF_LIGHT_SOURCES - 1 )
+	for ( i = 0 ; i < MAX_NUMBER_OF_LIGHT_SOURCES ; i ++ )
 	{
-	    ErrorMessage ( __FUNCTION__  , "\
-WARNING!  End of light sources array reached!",
-				       NO_NEED_TO_INFORM, IS_WARNING_ONLY );
-	    return;
+		light_sources [ i ] . x = -200 ;
+		light_sources [ i ] . y = -200 ;
+		light_source_strengthes [ i ] = 0 ;
 	}
-    }
+    
+	//--------------------
+	// Now we fill in the Tux position as the very first light source, that will
+	// always be present.
+	//
+	light_sources [ 0 ] . x = Me . pos . x ;
+	light_sources [ 0 ] . y = Me . pos . y ;
+	light_source_strengthes [ 0 ] = 
+	light_level -> light_radius_bonus + Me . light_bonus_from_tux  ;
+	//--------------------
+	// We must not in any case tear a hole into the beginning of
+	// the list though...
+	//
+	if ( light_source_strengthes [ 0 ] <= 0 )
+		light_source_strengthes [ 0 ] = 1;
+	next_light_emitter_index = 1 ;
 
-    //--------------------
-    // Now we can fill in the remaining light sources of this level.
-    // First we do all the obstacles:
-    //
-    map_x_start = Me . pos . x - 12 ;
-    map_y_start = Me . pos . y - 12 ;
-    map_x_end = Me . pos . x + 12 ;
-    map_y_end = Me . pos . y + 12 ;
-    if ( map_x_start < 0 ) map_x_start = 0 ;
-    if ( map_y_start < 0 ) map_y_start = 0 ;
-    if ( map_x_end >= light_level -> xlen ) map_x_end = light_level -> xlen - 1 ;
-    if ( map_y_end >= light_level -> ylen ) map_y_end = light_level -> ylen - 1 ;
-	for ( map_y = map_y_start ; map_y < map_y_end ; map_y ++ )
+	//--------------------
+	// Now we can fill in any explosions, that are currently going on.
+	// These will typically emanate a lot of light.
+	//
+	for ( blast = 0 ; blast < MAXBLASTS ; blast ++ )
 	{
-    for ( map_x = map_x_start ; map_x < map_x_end ; map_x ++ )
-    {
-	    for ( glue_index = 0 ; glue_index < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE ; glue_index ++ )
-	    {
-		//--------------------
-		// end of obstacles glued to here?  great->next square
-		//
-		if ( light_level -> map [ map_y ] [ map_x ] . obstacles_glued_to_here [ glue_index ] == (-1) )
-		    break;
+		if ( ! ( AllBlasts [ blast ] . type == DRUIDBLAST ) ) continue ;
 
-		obs_index = light_level -> map [ map_y ] [ map_x ] . obstacles_glued_to_here [ glue_index ] ;
-		emitter = & ( light_level -> obstacle_list [ obs_index ] );
-
-		if ( obstacle_map [ emitter -> type ] . emitted_light_strength == 0 )
-		    continue;
+		light_sources [ next_light_emitter_index ] . x = AllBlasts [ blast ] . pos . x ;
+		light_sources [ next_light_emitter_index ] . y = AllBlasts [ blast ] . pos . y ;
 
 		//--------------------
-		// Now we know that this one needs to be inserted!
+		// We add some light strength according to the phase of the blast
 		//
-		light_sources [ next_light_emitter_index ] . x = emitter -> pos . x ;
-		light_sources [ next_light_emitter_index ] . y = emitter -> pos . y ;
-		light_source_strengthes [ next_light_emitter_index ] = 
-		    obstacle_map [ emitter -> type ] . emitted_light_strength ;
+		light_source_strengthes [ next_light_emitter_index ] = 10 - AllBlasts [ blast ] . phase / 2 ;
+		if ( light_source_strengthes [ next_light_emitter_index ] < 0 )
+			continue;
 		next_light_emitter_index ++ ;
 
 		//--------------------
@@ -255,46 +204,97 @@ WARNING!  End of light sources array reached!",
 		//
 		if ( next_light_emitter_index >= MAX_NUMBER_OF_LIGHT_SOURCES - 1 )
 		{
-		    ErrorMessage ( __FUNCTION__  , "\
-WARNING!  End of light sources array reached!",
-					       NO_NEED_TO_INFORM, IS_WARNING_ONLY );
-		    return;
-		}
-	    }
-	}
-    }
-   
-    enemy *erot;
-    BROWSE_LEVEL_BOTS(erot, Me.pos.z) 
-    {
-	if ( fabsf ( Me . pos . x - erot->pos . x ) >= 12 ) 
-	    continue;
-
-	if ( fabsf ( Me . pos . y - erot->pos . y ) >= 12 )
-	    continue;
-
-	//--------------------
-	// Now we know that this one needs to be inserted!
-	//
-	light_sources [ next_light_emitter_index ] . x = erot->pos . x ;
-	light_sources [ next_light_emitter_index ] . y = erot->pos . y ;
-	light_source_strengthes [ next_light_emitter_index ] = -14 ;
-	next_light_emitter_index ++ ;
-
-	//--------------------
-	// We must not write beyond the bounds of our light sources array!
-	//
-	if ( next_light_emitter_index >= MAX_NUMBER_OF_LIGHT_SOURCES - 1 )
-	{
-	    ErrorMessage ( __FUNCTION__  , "\
+			ErrorMessage ( __FUNCTION__  , "\
 WARNING!  End of light sources array reached!",
 				       NO_NEED_TO_INFORM, IS_WARNING_ONLY );
-	    return;
+			return;
+		}
 	}
+
+	//--------------------
+	// Now we can fill in the remaining light sources of this level.
+	// First we do all the obstacles:
+	//
+	map_x_start = Me . pos . x - 12 ;
+	map_y_start = Me . pos . y - 12 ;
+	map_x_end = Me . pos . x + 12 ;
+	map_y_end = Me . pos . y + 12 ;
+	if ( map_x_start < 0 ) map_x_start = 0 ;
+	if ( map_y_start < 0 ) map_y_start = 0 ;
+	if ( map_x_end >= light_level -> xlen ) map_x_end = light_level -> xlen - 1 ;
+	if ( map_y_end >= light_level -> ylen ) map_y_end = light_level -> ylen - 1 ;
+	for ( map_y = map_y_start ; map_y < map_y_end ; map_y ++ )
+	{
+		for ( map_x = map_x_start ; map_x < map_x_end ; map_x ++ )
+		{
+			for ( glue_index = 0 ; glue_index < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE ; glue_index ++ )
+			{
+				//--------------------
+				// end of obstacles glued to here?  great->next square
+				//
+				if ( light_level -> map [ map_y ] [ map_x ] . obstacles_glued_to_here [ glue_index ] == (-1) )
+					break;
+
+				obs_index = light_level -> map [ map_y ] [ map_x ] . obstacles_glued_to_here [ glue_index ] ;
+				emitter = & ( light_level -> obstacle_list [ obs_index ] );
+
+				if ( obstacle_map [ emitter -> type ] . emitted_light_strength == 0 )
+					continue;
+
+				//--------------------
+				// Now we know that this one needs to be inserted!
+				//
+				light_sources [ next_light_emitter_index ] . x = emitter -> pos . x ;
+				light_sources [ next_light_emitter_index ] . y = emitter -> pos . y ;
+				light_source_strengthes [ next_light_emitter_index ] = 
+				obstacle_map [ emitter -> type ] . emitted_light_strength ;
+				next_light_emitter_index ++ ;
+
+				//--------------------
+				// We must not write beyond the bounds of our light sources array!
+				//
+				if ( next_light_emitter_index >= MAX_NUMBER_OF_LIGHT_SOURCES - 1 )
+				{
+					ErrorMessage ( __FUNCTION__  , "\
+WARNING!  End of light sources array reached!",
+					       NO_NEED_TO_INFORM, IS_WARNING_ONLY );
+					return;
+				}
+			}
+		}
+	}
+   
+	enemy *erot;
+	BROWSE_LEVEL_BOTS(erot, Me.pos.z) 
+	{
+		if ( fabsf ( Me . pos . x - erot->pos . x ) >= 12 ) 
+			continue;
+
+		if ( fabsf ( Me . pos . y - erot->pos . y ) >= 12 )
+			continue;
+
+		//--------------------
+		// Now we know that this one needs to be inserted!
+		//
+		light_sources [ next_light_emitter_index ] . x = erot->pos . x ;
+		light_sources [ next_light_emitter_index ] . y = erot->pos . y ;
+		light_source_strengthes [ next_light_emitter_index ] = -14 ;
+		next_light_emitter_index ++ ;
+
+		//--------------------
+		// We must not write beyond the bounds of our light sources array!
+		//
+		if ( next_light_emitter_index >= MAX_NUMBER_OF_LIGHT_SOURCES - 1 )
+		{
+			ErrorMessage ( __FUNCTION__  , "\
+WARNING!  End of light sources array reached!",
+				       NO_NEED_TO_INFORM, IS_WARNING_ONLY );
+			return;
+		}
 	
-    }
+	}
     
-}; // void update_light_list ( )
+} // void update_light_list ( )
 
 /**
  * This function is used to find the light intensity at any given point
@@ -413,7 +413,7 @@ calculate_light_strength ( moderately_finepoint target_pos )
     
 	return ( final_darkness );
     
-}; // int calculate_light_strength ( moderately_finepoint target_pos )
+} // int calculate_light_strength ( moderately_finepoint target_pos )
 
 /**
  * When the light radius (i.e. the shadow values for the floor) has been
@@ -433,40 +433,40 @@ static void
 soften_light_distribution ( void )
 {
 #define MAX_LIGHT_STEP 3
-    uint32_t x , y ;
+	uint32_t x , y ;
 
-    //--------------------
-    // Now that the light buffer has been set up properly, we can start to
-    // smoothen it out a bit.  We do so in the direction of more light.
+	//--------------------
+	// Now that the light buffer has been set up properly, we can start to
+	// smoothen it out a bit.  We do so in the direction of more light.
 	// Propagate from top-left to bottom-right
-    //
+	//
 	for ( y = 0 ; y < (LightRadiusConfig.cells_h-1) ; ++y )
-    {
-		for ( x = 0 ; x < (LightRadiusConfig.cells_w-1) ; ++x )
 	{
+		for ( x = 0 ; x < (LightRadiusConfig.cells_w-1) ; ++x )
+		{
 			if ( LIGHT_STRENGTH_CELL(x+1, y) > LIGHT_STRENGTH_CELL(x, y) + MAX_LIGHT_STEP )
 				LIGHT_STRENGTH_CELL(x+1, y) = LIGHT_STRENGTH_CELL(x, y) + MAX_LIGHT_STEP;
 			if ( LIGHT_STRENGTH_CELL(x, y+1) > LIGHT_STRENGTH_CELL(x, y) + MAX_LIGHT_STEP )
 				LIGHT_STRENGTH_CELL(x, y+1) = LIGHT_STRENGTH_CELL(x, y) + MAX_LIGHT_STEP;
 			if ( LIGHT_STRENGTH_CELL(x+1, y+1) > LIGHT_STRENGTH_CELL(x, y) + MAX_LIGHT_STEP )
 				LIGHT_STRENGTH_CELL(x+1, y+1) = LIGHT_STRENGTH_CELL(x, y) + MAX_LIGHT_STEP;
+		}
 	}
-    }
 	// now the same again, this time from bottom-right to top-left
 	for ( y = (LightRadiusConfig.cells_h-1) ; y > 0 ; --y )
-    {
-		for ( x = (LightRadiusConfig.cells_w-1) ; x > 0 ; --x )
 	{
+		for ( x = (LightRadiusConfig.cells_w-1) ; x > 0 ; --x )
+		{
 			if ( LIGHT_STRENGTH_CELL(x-1, y) > LIGHT_STRENGTH_CELL(x, y) + MAX_LIGHT_STEP )
 				LIGHT_STRENGTH_CELL(x-1, y) = LIGHT_STRENGTH_CELL(x, y) + MAX_LIGHT_STEP;
 			if ( LIGHT_STRENGTH_CELL(x, y-1) > LIGHT_STRENGTH_CELL(x, y) + MAX_LIGHT_STEP )
 				LIGHT_STRENGTH_CELL(x, y-1) = LIGHT_STRENGTH_CELL(x, y) + MAX_LIGHT_STEP;
 			if ( LIGHT_STRENGTH_CELL(x-1, y-1) > LIGHT_STRENGTH_CELL(x, y) + MAX_LIGHT_STEP )
 				LIGHT_STRENGTH_CELL(x-1, y-1) = LIGHT_STRENGTH_CELL(x, y) + MAX_LIGHT_STEP;
+		}
 	}
-    }
     
-}; // void soften_light_distribution ( void )
+} // void soften_light_distribution ( void )
 
 /**
  * This function is used to find the light intensity at any given point
@@ -475,16 +475,16 @@ soften_light_distribution ( void )
 void 
 set_up_light_strength_buffer ( void )
 {
-    uint32_t x ;
-    uint32_t y ;
-    moderately_finepoint target_pos ;
-    int screen_x ;
-    int screen_y ;
+	uint32_t x ;
+	uint32_t y ;
+	moderately_finepoint target_pos ;
+	int screen_x ;
+	int screen_y ;
 
 	for ( y = 0 ; y < LightRadiusConfig.cells_h ; ++y  )
-    {
-		for ( x = 0 ; x < LightRadiusConfig.cells_w ; ++x )
 	{
+		for ( x = 0 ; x < LightRadiusConfig.cells_w ; ++x )
+		{
 			screen_x = (int)(x * LightRadiusConfig.scale_factor) - UserCenter_x;
 			// Apply a translation to Y coordinate, to simulate a light coming from bot/tux heads, instead
 			// of their feet.
@@ -494,12 +494,12 @@ set_up_light_strength_buffer ( void )
 	    target_pos . y = translate_pixel_to_map_location ( screen_x , screen_y , FALSE ) ;
 
 			LIGHT_STRENGTH_CELL(x,y) = calculate_light_strength ( target_pos );
+		}
 	}
-    }
     
-    soften_light_distribution();
+	soften_light_distribution();
 
-}; // void set_up_light_strength_buffer ( void )
+} // void set_up_light_strength_buffer ( void )
 
 
 /**
@@ -523,31 +523,31 @@ get_light_strength_screen ( int x, int y )
 	y = y / LightRadiusConfig.scale_factor;
 
 	if ( ( x >=  0 ) && ( x < LightRadiusConfig.cells_w ) && ( y >= 0 ) && ( y < LightRadiusConfig.cells_h ) )
-    {
+	{
 		return ( LIGHT_STRENGTH_CELL(x, y) );
 	}
 	else
 	{
-	//--------------------
-	// If a request reaches outside the prepared buffer, we use the
-	// nearest point, if we can get it easily, otherwise we'll use
-	// blackness by default.
+		//--------------------
+		// If a request reaches outside the prepared buffer, we use the
+		// nearest point, if we can get it easily, otherwise we'll use
+		// blackness by default.
 
 		if ( ( x >= 0 ) && ( x < LightRadiusConfig.cells_w ) )
-	{
+		{
 			if ( y >= LightRadiusConfig.cells_h ) return ( LIGHT_STRENGTH_CELL(x, LightRadiusConfig.cells_h - 1) );
 			else if ( y < 0 )                     return ( LIGHT_STRENGTH_CELL(x, 0) );
-	}
+		}
 		else if ( ( y >= 0 ) && ( y < LightRadiusConfig.cells_h ) )
-	{
+		{
 			if ( x >= LightRadiusConfig.cells_w ) return ( LIGHT_STRENGTH_CELL(LightRadiusConfig.cells_w - 1, y) );
 			else if ( x < 0 )                     return ( LIGHT_STRENGTH_CELL(0, y) );
+		}
+
+		return ( NUMBER_OF_SHADOW_IMAGES - 1 );
 	}
 
-	return ( NUMBER_OF_SHADOW_IMAGES - 1 );
-    }
-
-}; // int get_light_screen_strength ( moderately_finepoint target_pos )
+} // int get_light_screen_strength ( moderately_finepoint target_pos )
 
 
 /**
@@ -557,12 +557,12 @@ get_light_strength_screen ( int x, int y )
 int 
 get_light_strength ( moderately_finepoint target_pos )
 {
-   int x , y ;
+	int x , y ;
 
-   x = translate_map_point_to_screen_pixel_x ( target_pos . x ,  target_pos . y );
-   y = translate_map_point_to_screen_pixel_y ( target_pos . x ,  target_pos . y );
+	x = translate_map_point_to_screen_pixel_x ( target_pos . x ,  target_pos . y );
+	y = translate_map_point_to_screen_pixel_y ( target_pos . x ,  target_pos . y );
 
-   return get_light_strength_screen ( x, y );
+	return get_light_strength_screen ( x, y );
 }
 
 /**
@@ -573,72 +573,112 @@ get_light_strength ( moderately_finepoint target_pos )
 void
 blit_classic_SDL_light_radius( void )
 {
-    static int first_call = TRUE ;
-    int i, j ;
-char fpath[2048];
-    char constructed_file_name[2000];
-    int our_height, our_width, our_max_height, our_max_width;
-    int light_strength;
-    static int pos_x_grid [ (int)(MAX_FLOOR_TILES_VISIBLE_AROUND_TUX * ( 1.0 / LIGHT_RADIUS_CHUNK_SIZE ) * 2) ] [ (int)(MAX_FLOOR_TILES_VISIBLE_AROUND_TUX * ( 1.0 / LIGHT_RADIUS_CHUNK_SIZE ) * 2 ) ] ;
-    static int pos_y_grid [ (int)(MAX_FLOOR_TILES_VISIBLE_AROUND_TUX * ( 1.0 / LIGHT_RADIUS_CHUNK_SIZE ) * 2) ] [ (int)(MAX_FLOOR_TILES_VISIBLE_AROUND_TUX * ( 1.0 / LIGHT_RADIUS_CHUNK_SIZE ) * 2 ) ] ;
-    static SDL_Rect target_rectangle;
-    int chunk_size_x;
-    int chunk_size_y;
-    SDL_Surface* tmp;
-    
-    //--------------------
-    // If the darkness chunks have not yet been loaded, we load them...
-    //
-    if ( first_call )
-    {
-	first_call = FALSE;
-	for ( i = 0 ; i < NUMBER_OF_SHADOW_IMAGES ; i ++ )
-	{
-	    sprintf ( constructed_file_name , "light_radius_chunks/iso_light_radius_darkness_%04d.png" , i + 1 );
-	    find_file (constructed_file_name , GRAPHICS_DIR , fpath, 0 );
-	    get_iso_image_from_file_and_path ( fpath , & ( light_radius_chunk [ i ] ) , TRUE ) ;
-	    tmp = light_radius_chunk [ i ] . surface ;
-	    light_radius_chunk [ i ] . surface = SDL_DisplayFormatAlpha ( light_radius_chunk [ i ] . surface ) ; 
-	    SDL_FreeSurface ( tmp ) ;
-	}
-	
-	pos_x_grid [ 0 ] [ 0 ] = translate_map_point_to_screen_pixel_x ( Me . pos . x - ( FLOOR_TILES_VISIBLE_AROUND_TUX ) , Me . pos . y - ( FLOOR_TILES_VISIBLE_AROUND_TUX ) ) - 10 ;
-	pos_y_grid [ 0 ] [ 0 ] = translate_map_point_to_screen_pixel_y ( Me . pos . x - ( FLOOR_TILES_VISIBLE_AROUND_TUX ) , Me . pos . y - ( FLOOR_TILES_VISIBLE_AROUND_TUX ) ) - 42 ;
-	
-	chunk_size_x = 26 /2 + 1 ;
-	chunk_size_y = 14 /2 ; 
-	
-	for ( i = 0 ; i < (int)(FLOOR_TILES_VISIBLE_AROUND_TUX * ( 1.0 / LIGHT_RADIUS_CHUNK_SIZE ) * 2) ; i ++ )
-	{
-	    for ( j = 0 ; j < (int)(FLOOR_TILES_VISIBLE_AROUND_TUX * ( 1.0 / LIGHT_RADIUS_CHUNK_SIZE ) * 2) ; j ++ )
-	    {
-		pos_x_grid [ i ] [ j ] = pos_x_grid [ 0 ] [ 0 ] + ( i - j ) * chunk_size_x ;
-		pos_y_grid [ i ] [ j ] = pos_y_grid [ 0 ] [ 0 ] + ( i + j ) * chunk_size_y ;
-	    }
-	}
-    }
-    
-    //--------------------
-    // Now it's time to apply the light radius
-    //
-    our_max_width = FLOOR_TILES_VISIBLE_AROUND_TUX * ( 1.0 / LIGHT_RADIUS_CHUNK_SIZE ) * 2 ;
-    our_max_height = our_max_width;
+	// Number of tiles along X and Y
+	static int lrc_nb_columns = 0;
+	static int lrc_nb_lines = 0;
 
-    for ( our_height = 0 ; our_height < our_max_height ; our_height ++ )
-    {
-	for ( our_width = 0 ; our_width < our_max_width ; our_width ++ )
+	/* The screen is covered with small light_radius_chunks images, placed on a regular orthogonal grid.
+	 *
+	 * Each line is composed of two half-lines :
+	 *  /\/\/\  First half of first line
+	 *  \/\/\/\
+	 *   \/\/\/ Second half of first line
+	 *   
+	 *  The ligth_strength value to apply is computed at the center of each tile. 
+	 */
+	
+	// Width and height of the tiles
+#	define LRC_ISO_WIDTH 26
+#	define LRC_ISO_HEIGHT 14
+	// The design of the tiles implies a 2 pixels gap along X, to avoid tiles overlapping
+#	define LRC_ISO_GAP_X 2
+
+	//----------
+	// Load of light_radius_chunk images, and initializes some variables, during the first call
+	//
+	static int first_call = TRUE ;
+	
+	if ( first_call )
 	{
-	    if ( our_width % LIGHT_RADIUS_CRUDENESS_FACTOR ) continue;
-	    if ( our_height % LIGHT_RADIUS_CRUDENESS_FACTOR ) continue;
-	    
-	    target_rectangle . x = pos_x_grid [ our_width ] [ our_height ] ;
-	    target_rectangle . y = pos_y_grid [ our_width ] [ our_height ] ;
-	    light_strength = get_light_strength_screen ( (uint32_t)target_rectangle . x, (uint32_t)target_rectangle . y ) ;
-	    
-	    our_SDL_blit_surface_wrapper( light_radius_chunk [ light_strength ] . surface , NULL , Screen, &target_rectangle );
+		first_call = FALSE;
+
+		int i;
+		char fpath[2048];
+		char constructed_file_name[2000];
+		SDL_Surface* tmp;
+    
+		for ( i = 0 ; i < NUMBER_OF_SHADOW_IMAGES ; i ++ )
+		{
+			sprintf( constructed_file_name, "light_radius_chunks/iso_light_radius_darkness_%04d.png", i);
+			find_file (constructed_file_name , GRAPHICS_DIR , fpath, 0 );
+			get_iso_image_from_file_and_path ( fpath , & ( light_radius_chunk [ i ] ) , TRUE ) ;
+			tmp = light_radius_chunk [ i ] . surface ;
+			light_radius_chunk [ i ] . surface = SDL_DisplayFormatAlpha ( light_radius_chunk [ i ] . surface ) ; 
+			SDL_FreeSurface ( tmp ) ;
+		}
+	
+		lrc_nb_columns = (int)ceilf( (float)GameConfig.screen_width  / (float)(LRC_ISO_WIDTH + LRC_ISO_GAP_X) );
+		lrc_nb_lines   = (int)ceilf( (float)GameConfig.screen_height / (float)(LRC_ISO_HEIGHT) );
 	}
-    }
-}; // void blit_classic_SDL_light_radius( void )
+	
+	//----------
+	// Fill the screen with the tiles
+	//
+	
+	int l, c;
+	int center_x, center_y; // Position of the center of the tile
+	SDL_Rect target_rectangle; // Used to store the position of the blitted tile, centered on (center_x,center_y)
+	                           // Note : target_rectangle is modified by the SDL_BlitSurface call, 
+                                   // so it has to be reinitialized after each call
+	
+	// First line
+	center_y = 0;
+	target_rectangle.y = center_y - (LRC_ISO_HEIGHT)/2;	
+	
+	for (l = 0; l < lrc_nb_lines; ++l)
+	{
+		// First column of the first half-line
+		center_x = 0;
+		target_rectangle.x = center_x - (LRC_ISO_WIDTH + LRC_ISO_GAP_X)/2;
+
+		for (c = 0; c <= lrc_nb_columns; ++c)
+		{
+			int light_strength;
+			light_strength = get_light_strength_screen ( (uint32_t)center_x, (uint32_t)center_y );
+			if (light_strength > 0) our_SDL_blit_surface_wrapper( light_radius_chunk[light_strength].surface, NULL, Screen, &target_rectangle );
+
+			// Next tile along X
+			center_x += (LRC_ISO_WIDTH + LRC_ISO_GAP_X);
+			target_rectangle.x = center_x - (LRC_ISO_WIDTH + LRC_ISO_GAP_X)/2;
+			target_rectangle.y = center_y - (LRC_ISO_HEIGHT)/2;	
+		}
+    
+		// Second half-line, translated by a tile's half-height
+		center_y += (LRC_ISO_HEIGHT)/2;
+		target_rectangle.y = center_y - (LRC_ISO_HEIGHT)/2;
+
+		// First column of the second half-line, translated by a tile's half-width
+		center_x = (LRC_ISO_WIDTH + LRC_ISO_GAP_X)/2;
+		target_rectangle.x = center_x - (LRC_ISO_WIDTH + LRC_ISO_GAP_X)/2;
+
+		for (c = 0; c <= lrc_nb_columns; ++c)
+		{
+			int light_strength;
+			light_strength = get_light_strength_screen ( (uint32_t)center_x, (uint32_t)center_y );
+			if (light_strength > 0) our_SDL_blit_surface_wrapper( light_radius_chunk[light_strength].surface, NULL, Screen, &target_rectangle );
+
+			// Next tile along X
+			center_x += LRC_ISO_WIDTH + LRC_ISO_GAP_X;
+			target_rectangle.x = center_x - (LRC_ISO_WIDTH + LRC_ISO_GAP_X)/2;
+			target_rectangle.y = center_y - (LRC_ISO_HEIGHT)/2;	
+		}
+
+		// Next line
+		center_y += (LRC_ISO_HEIGHT)/2;
+		target_rectangle.y = center_y - (LRC_ISO_HEIGHT)/2;
+	}
+} // void blit_classic_SDL_light_radius( void )
+
 
 /**
  * FreedroidRPG does some light/shadow computations and then draws some
@@ -654,25 +694,24 @@ char fpath[2048];
 void
 blit_light_radius ( void )
 {
+	//--------------------
+	// Before making any reference to the light, it's best to 
+	// first calculate the values in the light buffer, because
+	// those will be used when drawing the light radius.
+	//
+	set_up_light_strength_buffer ( );
 
-    //--------------------
-    // Before making any reference to the light, it's best to 
-    // first calculate the values in the light buffer, because
-    // those will be used when drawing the light radius.
-    //
-    set_up_light_strength_buffer ( );
-
-    if ( use_open_gl )
-    {
-	// blit_open_gl_light_radius ();
-	// blit_open_gl_cheap_light_radius ();
-	blit_open_gl_stretched_texture_light_radius ();
-    }
-    else
-    {
-	blit_classic_SDL_light_radius();
-    }
+	if ( use_open_gl )
+	{
+		// blit_open_gl_light_radius ();
+		// blit_open_gl_cheap_light_radius ();
+		blit_open_gl_stretched_texture_light_radius ();
+	}
+	else
+	{
+		blit_classic_SDL_light_radius();
+	}
     
-}; // void blit_light_radius ( void )
+} // void blit_light_radius ( void )
 
 #undef _light_c
