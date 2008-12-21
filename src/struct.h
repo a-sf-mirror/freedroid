@@ -980,4 +980,13 @@ typedef struct light_radius_config_s
 }
 light_radius_config;
 
+typedef struct screen_resolution_s
+{
+	int xres;
+	int yres;
+	char* comment;
+	int supported;
+}
+screen_resolution;
+
 #endif

@@ -1561,82 +1561,83 @@ Escape_fill (char *MenuTexts [10])
       MenuTexts[7]="";
 }
 
+extern screen_resolution screen_resolutions[];
+
 static int
 Resolution_handle (int n)
 {
-    enum
-	{ 
-	    SET_640_480 = 1 , 
-	    SET_800_600, 
-	    SET_1024_768,
-	    SET_1152_864,
-	    SET_1280_960,
-/*
-	    SET_1280_1024,
-	    SET_1280_800,
-	    SET_1440_900,
-	    SET_1680_1050,
-*/
-	    LEAVE_OPTIONS_MENU 
-	};
-#define MSG(x, y) "\n"				\
-	"You selected "#x "x" #y"pixel.\n\n"	\
-	"Change of screen resolution will\n"	\
-	"take effect automatically when you next\n"	\
-	"start FreedroidRPG.\n"				\
-	"\n"						\
-	"Thank you.\n"					\
+	if ( n == -1 ) return EXIT_MENU;
 	
-#define CASE(x, y) case SET_##x##_##y:		\
-    while (EnterPressed ( ) || SpacePressed ( )); \
-    GameConfig . next_time_width_of_screen = x ;	\
-    GameConfig . next_time_height_of_screen = y ;	\
-    GiveMouseAlertWindow (_(MSG(x,y)));			\
-    break;
+	// First value of 'n' is '1', so decrement it.
+	--n;
+	
+	int nb_res = 0;
+	int nb_supported_res = 0;
+	while ( screen_resolutions[nb_res].xres != -1 )
+	{
+		if ( screen_resolutions[nb_res].supported ) ++nb_supported_res;
+		++nb_res;
+	}
+	
+	// Last menu entry is 'Back'
+	if ( n == nb_supported_res ) { while ( EnterPressed() || SpacePressed() ); return EXIT_MENU; }
+	
+	// Wrong entry. How is it possible ???
+	if ( n < 0 || n > nb_supported_res ) return CONTINUE_MENU;
 
-    switch (n) 
-    {
-    case (-1):
-	return EXIT_MENU;
+	int i, j;
+	for (i=0, j=0; i<nb_res; ++i)
+	{
+		// Only supported screen resolution are displayed
+		if ( !screen_resolutions[i].supported ) continue;
+		
+		// Is the current supported resolution the selected one ?
+		if ( n == j )
+		{
+			while ( EnterPressed() || SpacePressed() );
+			GameConfig.next_time_width_of_screen = screen_resolutions[i].xres;
+			GameConfig.next_time_height_of_screen = screen_resolutions[i].yres;
+			char* fmt = _("\nYou selected %d x %d pixel.\n\n"
+			              "Change of screen resolution will\n"
+			              "take effect automatically when you next\n"
+			              "start FreedroidRPG.\n"
+			              "\n"
+			              "Thank you.\n");
+			char* txt = (char*)malloc(strlen(fmt)+20); // 20 chars should be enough to store 2 integers
+			sprintf(txt, fmt, screen_resolutions[i].xres, screen_resolutions[i].yres);
+			GiveMouseAlertWindow (txt);
+			free(txt);
+			return CONTINUE_MENU;
+		}
+		++j;
+	}
 	
-    CASE(640,480);
-    CASE(800,600);
-    CASE(1024,768);
-    CASE(1152,864);
-    CASE(1280,960);
-/*
-    CASE(1280,1024);
-    CASE(1280,800);
-    CASE(1440,900);
-    CASE(1680,1050);
-*/
-    case LEAVE_OPTIONS_MENU:
-	while (EnterPressed() || SpacePressed() );
-	return EXIT_MENU;
-    default: 
-	break;
-    } 
-    return CONTINUE_MENU;
+	return CONTINUE_MENU;
 }
 
 static void
 Resolution_fill (char *MenuTexts[10])
 {
-    sprintf( MenuTexts[0] , "%c 640x480", GameConfig . next_time_height_of_screen==480 ? '*' : ' ' );
-    sprintf( MenuTexts[1] , "%c 800x600", GameConfig . next_time_height_of_screen==600 ? '*' : ' ' );
-    sprintf( MenuTexts[2] , "%c 1024x768", GameConfig . next_time_height_of_screen==768 ? '*' : ' ' );
-    sprintf( MenuTexts[3] , "%c 1152x864", GameConfig . next_time_height_of_screen==864 ? '*' : ' ' );
-    sprintf( MenuTexts[4] , "%c 1280x960", GameConfig . next_time_height_of_screen==960 ? '*' : ' ' );
-    MenuTexts[5]=_("Back");
-    MenuTexts[6]="";
-/*
-    sprintf( MenuTexts[4] , "%c 1280x1024", GameConfig . next_time_height_of_screen==1024 ? '*' : ' ' );
-    sprintf( MenuTexts[5] , "%c 1280x800", GameConfig . next_time_height_of_screen==800 ? '*' : ' ' );
-    sprintf( MenuTexts[6] , "%c 1440x900", GameConfig . next_time_height_of_screen==900 ? '*' : ' ' );
-    sprintf( MenuTexts[7] , "%c 1680x1050", GameConfig . next_time_height_of_screen==1050 ? '*' : ' ' );
-    MenuTexts[8]=_("Back");
-    MenuTexts[9]="";
-*/
+    int i=0;
+    int j=0;
+
+    while ( screen_resolutions[i].xres != -1 )
+    {
+    	//Only supported screen resolution are displayed
+    	if ( screen_resolutions[i].supported ) {
+    		char flag = ' ';
+    		if ( GameConfig.next_time_width_of_screen == screen_resolutions[i].xres &&
+    		     GameConfig.next_time_height_of_screen == screen_resolutions[i].yres
+    		   ) 
+    		{
+    			flag = '*';
+    		}
+    		sprintf( MenuTexts[j++], "%c %dx%d", flag, screen_resolutions[i].xres, screen_resolutions[i].yres);
+    	}
+    	++i;
+    }
+    MenuTexts[j++]=_("Back");
+    MenuTexts[j++]="";
 }
 
 static int

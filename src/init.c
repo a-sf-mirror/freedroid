@@ -1579,6 +1579,22 @@ For more information and know issues please see README.\n\
 Thanks a lot in advance.\n\
                           / The FreedroidRPG dev team.\n\n";
 
+screen_resolution screen_resolutions[] = {
+		// xres,yres, cmdline comment, display in menu
+		{  640,  480, "640 x 480 (default with SDL)",    TRUE  },
+		{  800,  600, "800 x 600 (default with OpenGL)", TRUE  },
+		{ 1024,  768, "1024 x 768",                      TRUE  },
+		{ 1152,  864, "1152 x 864",                      TRUE  },
+		{ 1280,  960, "1280 x 960",                      TRUE  },
+		{ 1280, 1024, "Unsupported! (1280 x 1024)",      FALSE },
+		{ 1024,  600, "Unsupported! (1024 x 600)",       FALSE },
+		{ 1280,  800, "Unsupported! (1280 x 800)",       FALSE },
+		{ 1440,  900, "Unsupported! (1440 x 900)",       FALSE },
+		{ 1680, 1050, "Unsupported! (1680 x 1050)",      FALSE },
+		// end of list
+		{   -1,   -1, "",                                FALSE }
+};
+
 /* -----------------------------------------------------------------
  *  parse command line arguments and set global switches 
  *  exit on error, so we don't need to return success status
@@ -1658,88 +1674,37 @@ ParseCommandLine (int argc, char *const argv[])
 		}
 		else
 		{
+		    int nb_res = 0;
+		    while ( screen_resolutions[nb_res].xres != -1 ) ++nb_res;
+
 		    resolution_code = atoi (optarg);
-		    switch ( resolution_code )
+		    if ( resolution_code >= 0 && resolution_code < nb_res )
 		    {
-			case 0:
-				command_line_override_for_screen_resolution = TRUE ;
-				GameConfig . screen_width = 640 ; 
-				GameConfig . screen_height = 480 ;
-				DebugPrintf ( 1 , "\n%s(): Command line argument -r 0 recognized." , __FUNCTION__ );
-				break;
-			case 1:
-				command_line_override_for_screen_resolution = TRUE ;
-				GameConfig . screen_width = 800 ; 
-				GameConfig . screen_height = 600 ;
-				DebugPrintf ( 1 , "\n%s(): Command line argument -r 1 recognized." , __FUNCTION__ );
-				break;
-			case 2:
-				command_line_override_for_screen_resolution = TRUE ;
-				GameConfig . screen_width = 1024 ; 
-				GameConfig . screen_height = 768 ;
-				DebugPrintf ( 1 , "\n%s(): Command line argument -r 2 recognized." , __FUNCTION__ );
-				break;
-			case 3:
-				command_line_override_for_screen_resolution = TRUE ;
-				GameConfig . screen_width = 1152 ; 
-				GameConfig . screen_height = 864 ;
-				DebugPrintf ( 1 , "\n%s(): Command line argument -r 3 recognized." , __FUNCTION__ );
-				break;
-			case 4:
-				command_line_override_for_screen_resolution = TRUE ;
-				GameConfig . screen_width = 1280 ;
-				GameConfig . screen_height = 960 ;
-				DebugPrintf ( 1 , "\n%s(): Command line argument -r 4 recognized." , __FUNCTION__ );
-				break;
-			case 5:
-				command_line_override_for_screen_resolution = TRUE ;
-				GameConfig . screen_width = 1280 ;
-				GameConfig . screen_height =1024 ;
-				DebugPrintf ( 1 , "\n%s(): Command line argument -r 5 recognized." , __FUNCTION__ );
-				break;
-			case 6:
-				command_line_override_for_screen_resolution = TRUE ;
-				GameConfig . screen_width = 1024 ;
-				GameConfig . screen_height = 600 ;
-				DebugPrintf ( 1 , "\n%s(): Command line argument -r 6 recognized." , __FUNCTION__ );
-				break;
-			case 7:
-				command_line_override_for_screen_resolution = TRUE ;
-				GameConfig . screen_width = 1280 ;
-				GameConfig . screen_height = 800 ;
-				DebugPrintf ( 1 , "\n%s(): Command line argument -r 7 recognized." , __FUNCTION__ );
-				break;
-			case 8:
-				command_line_override_for_screen_resolution = TRUE ;
-				GameConfig . screen_width = 1440 ;
-				GameConfig . screen_height =900 ;
-				DebugPrintf ( 1 , "\n%s(): Command line argument -r 8 recognized." , __FUNCTION__ );
-				break;
-			case 9:
-				command_line_override_for_screen_resolution = TRUE ;
-				GameConfig . screen_width = 1680 ;
-				GameConfig . screen_height =1050 ;
-				DebugPrintf ( 1 , "\n%s(): Command line argument -r 9 recognized." , __FUNCTION__ );
-				break;
-			default:
-			    fprintf( stderr, "\nresolution code received: %d" , resolution_code );
-			    ErrorMessage ( __FUNCTION__  , "\
-The resolution identifier given is not a valid resolution code.\n\
-These codes correspond to the following resolutions available:\n\
-     0 = 640 x 480 (default with SDL)\n\
-     1 = 800 x 600 (default with OpenGL)\n\
-     2 = 1024 x 768 \n\
-     3 = 1152 x 864 \n\
-     4 = 1280 x 960 \n\
-     5 = Unsupported! (1280 x 1024) \n\
-     6 = Unsupported! (1024 x 600) \n\
-     7 = Unsupported! (1280 x 800) \n\
-     8 = Unsupported! (1440 x 900) \n\
-     9 = Unsupported! (1680 x 1050) \n\
-Anything else will not be accepted right now, but you can send in\n\
-your suggestion to the FreedroidRPG dev team to enable new resolutions.\n",
-						       NO_NEED_TO_INFORM , IS_FATAL );
-			    break;
+			    if (resolution_code != 0) command_line_override_for_screen_resolution = TRUE;
+			    GameConfig.screen_width  = screen_resolutions[resolution_code].xres;
+			    GameConfig.screen_height = screen_resolutions[resolution_code].yres;
+				DebugPrintf ( 1 , "\n%s(): Command line argument -r %d recognized." , __FUNCTION__, resolution_code );
+		    }
+		    else 
+		    {
+		    	fprintf( stderr, "\nresolution code received: %d" , resolution_code );
+		    	char* txt = (char*)malloc( (nb_res*128 + 1) * sizeof(char) );
+		    	txt[0] = '\0';
+		    	int i;
+		    	for (i=0; i<nb_res; ++i)
+		    	{
+		    		char tmp[129];
+	    			snprintf(tmp, 129, "\t\t%d = %s\n", i, screen_resolutions[i].comment);
+		    		strncat(txt, tmp, 128);
+		    	}
+		    	ErrorMessage ( __FUNCTION__, "  %s%s  %s", NO_NEED_TO_INFORM, IS_FATAL,
+		    	               "\tThe resolution identifier given is not a valid resolution code.\n"
+		    	               "\tThese codes correspond to the following resolutions available:\n",
+		    	               txt,
+		    	               "\tAnything else will not be accepted right now, but you can send in\n"
+		    	               "\tyour suggestion to the FreedroidRPG dev team to enable new resolutions.\n"
+		    			     );
+		    	free(txt);
 		    }
 		}
 		break;
