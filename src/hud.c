@@ -954,57 +954,6 @@ ShowCurrentHealthAndForceLevel( void )
 }; // void ShowCurrentHealthAndForceLevel( void )
 
 /**
- *
- *
- */
-int
-teleporter_square_below_mouse_cursor ( char* ItemDescText )
-{
-    finepoint MapPositionOfMouse;
-    int i;
-    int action_number;
-    
-    if ( MouseCursorIsInUserRect( GetMousePos_x()  , 
-				  GetMousePos_y()  ) )
-    {
-	MapPositionOfMouse . x = 
-	    translate_pixel_to_map_location ( (float) input_axis.x , 
-					      (float) input_axis.y , TRUE ) ;
-	MapPositionOfMouse . y = 
-	    translate_pixel_to_map_location ( (float) input_axis.x , 
-					      (float) input_axis.y , FALSE ) ;
-
-	for ( i = 0 ; i < MAX_EVENT_TRIGGERS ; i++ )
-	{
-	    if ( ( ( (int) MapPositionOfMouse . x ) != AllEventTriggers [ i ] . Influ_Must_Be_At_Point . x ) )
-		continue;
-	    if ( ( ( (int) MapPositionOfMouse . y ) != AllEventTriggers [ i ] . Influ_Must_Be_At_Point . y ) )
-		continue;
-	    if ( Me . pos . z != AllEventTriggers [ i ] . Influ_Must_Be_At_Level )
-		continue;
-	    
-	    // DebugPrintf ( -1000 , "\nSome trigger seems to be here..." );
-	    
-	    //--------------------
-	    // Now we know, that the mouse is currently exactly over an event trigger.  The
-	    // question to be answered still is whether this trigger also triggers a teleporter
-	    // action or not and if yes, where the connection leads to...
-	    //
-	    action_number = GiveNumberToThisActionLabel ( AllEventTriggers [ i ] . TargetActionLabel ) ;
-	    
-	    if ( action_number == -1 ) return FALSE ;
-	    
-	    if ( AllTriggeredActions [ action_number ] . TeleportTargetLevel != (-1) )
-	    {
-		sprintf ( ItemDescText , _("To %s....") , D_(curShip . AllLevels [ AllTriggeredActions [ action_number ] . TeleportTargetLevel ] -> Levelname) ) ;
-		return ( TRUE );
-	    }
-	}
-    }
-    return ( FALSE );
-}; // void teleporter_square_below_mouse_cursor ( char* ItemDescText )
-
-/**
  * This function sets up the text, that is to appear in a bigger text
  * rectangle, possibly next to the mouse cursor, e.g. when the mouse is
  * hovering over an item or barrel or crate or teleporter.

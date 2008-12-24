@@ -43,9 +43,16 @@ void InitFreedroid ( int, char ** );
 void PrepareStartOfNewCharacter ( char * startpos ) ;
 void ThouArtDefeated ( void );
 void ThouHastWon ( void );
-void GetEventsAndEventTriggers ( const char* EventsAndEventTriggersFilename );
 void PlayATitleFile ( char* Filename );
 void Get_Item_Data ( char* DataPointer );
+
+// event.c
+void GetEventsAndEventTriggers ( const char* EventsAndEventTriggersFilename );
+int GiveNumberToThisActionLabel ( char* ActionLabel );
+void ExecuteActionWithLabel ( char* ActionLabel ) ;
+void ExecuteEvent ( int EventNumber );
+void CheckForTriggeredEventsAndStatements (void);
+int teleporter_square_below_mouse_cursor ( char* ItemDescText );
 
 // influ.c 
 float calc_euklid_distance ( float pos1_x , float pos1_y , float pos2_x , float pos2_y ); 
@@ -546,14 +553,12 @@ void ReadValueFromString( char* SearchBeginPointer , const char* ValuePreceedTex
 char* ReadAndMallocAndTerminateFile( char* filename , const char* File_End_String ) ;
 char* LocateStringInData ( char* SearchBeginPointer, const char* SearchTextPointer ) ;
 int find_file (const char *fname, const char *datadir, char * File_Path, int silent);
-void CheckForTriggeredEventsAndStatements (void);
 void Pause (void);
 void ComputeFPSForThisFrame(void);
 void StartTakingTimeForFPSCalculation(void);
 int Get_Average_FPS ( void );
 float Frame_Time (void);
 void Activate_Conservative_Frame_Computation(void);
-void gotoxy (int, int);
 int MyRandom (int);
 void Teleport ( int LNum , float X , float Y , int WithSound ) ;
 int SaveGameConfig (void);
@@ -561,12 +566,11 @@ int LoadGameConfig (void);
 void InsertNewMessage (void);
 void Terminate (int);
 void ShowDebugInfos (void);
-int GiveNumberToThisActionLabel ( char* ActionLabel );
-void ExecuteActionWithLabel ( char* ActionLabel ) ;
-void ExecuteEvent ( int EventNumber );
 Sint16 ReadSint16 (void * memory);
 void endian_swap(char * pdata, size_t dsize, size_t nelements);
 uint32_t pot_gte( uint32_t v );
+obstacle * give_pointer_to_obstacle_with_label ( char* obstacle_label ); 
+int give_level_of_obstacle_with_label ( char* obstacle_label );
 
 // enemy.c 
 void robot_group_turn_hostile ( enemy * );

@@ -26,10 +26,6 @@
 /**
  * This file contains miscellaeous helpful functions for Freedroid.
  */
-/*
- * This file has been checked for remains of german comments in the code
- * I you still find some, please just kill it mercilessly.
- */
 #define _misc_c
 
 #include "system.h"
@@ -49,19 +45,22 @@
 #  include <signal.h>
 #endif
 
-//--------------------
-// The definition of the message structure can stay here,
-// because its only needed in this module.
-//
-typedef struct
-{
-  void *NextMessage;
-  int MessageCreated;
-  char *MessageText;
-}
-message, Message;
-
 extern SDL_Surface *zoomSurface(SDL_Surface * src, double zoomx, double zoomy, int smooth);
+
+long oneframedelay = 0;
+long tenframedelay = 0;
+long onehundredframedelay = 0;
+float FPSover1 = 10;
+float FPSover10 = 10;
+float FPSover100 = 10;
+Uint32 Now_SDL_Ticks;
+Uint32 One_Frame_SDL_Ticks;
+Uint32 Ten_Frame_SDL_Ticks;
+Uint32 Onehundred_Frame_SDL_Ticks;
+int framenr = 0;
+
+char *our_homedir = NULL;
+char *our_config_dir = NULL;
 
 
 mouse_press_button AllMousePressButtons[ MAX_MOUSE_PRESS_BUTTONS ] =
@@ -668,39 +667,6 @@ This is an indication of a severe bug/installation problem of freedroid.",
     
 }; // void ShowGenericButtonFromList ( int ButtonIndex )
 
-
-#define SETTINGS_STRUCTURE_RAW_DATA_STRING "\nSettings Raw Data:\n"
-#define END_OF_SETTINGS_DATA_STRING "\nEnd of Settings File.\n"
-
-#define MESPOSX 0
-#define MESPOSY 64
-#define MESHOEHE 8
-#define MESBARBREITE 320
-#define MAX_MESSAGE_LEN 100
-#define MESBAR_MEM MESBARBREITE*MESHOEHE+1000
-
-void CreateMessageBar (char *MText);
-void AdvanceQueue (void);
-
-unsigned char *MessageBar;
-message *Queue = NULL;
-// int ThisMessageTime=0;               /* Counter fuer Message-Timing */
-
-long oneframedelay = 0;
-long tenframedelay = 0;
-long onehundredframedelay = 0;
-float FPSover1 = 10;
-float FPSover10 = 10;
-float FPSover100 = 10;
-Uint32 Now_SDL_Ticks;
-Uint32 One_Frame_SDL_Ticks;
-Uint32 Ten_Frame_SDL_Ticks;
-Uint32 Onehundred_Frame_SDL_Ticks;
-int framenr = 0;
-
-char *our_homedir = NULL;
-char *our_config_dir = NULL;
-
 /* -----------------------------------------------------------------
  * find a given filename in subdir relative to FD_DATADIR, 
  *
@@ -885,11 +851,7 @@ ComputeFPSForThisFrame(void)
   // defined in time.h or so.
   // 
   // I have arranged for a definition set in defs.h to switch between the two
-  // methods of ramerate calculation.  THIS MIGHT INDEED MAKE SENSE, SINCE THERE
-  // ARE SOME UNEXPLAINED FRAMERATE PHENOMENA WHICH HAVE TO TO WITH KEYBOARD
-  // SPACE KEY, SO PLEASE DO NOT ERASE EITHER METHOD.  PLEASE ASK JP FIRST.
-  //
-
+  // methods of ramerate calculation.  
 #ifdef USE_SDL_FRAMERATE
 
   Now_SDL_Ticks = SDL_GetTicks();
@@ -1532,10 +1494,8 @@ SaveGameConfig (void)
  * This function is used for terminating freedroid.  It will close
  * the SDL submodules and exit.
  */
-void
-Terminate (int ExitCode)
+void Terminate (int ExitCode)
 {
-    DebugPrintf (2, "\nvoid Terminate(int ExitStatus) was called....");
     printf("\n----------------------------------------------------------------------");
     printf("\nTermination of freedroidRPG initiated...");
     
@@ -1544,20 +1504,9 @@ Terminate (int ExitCode)
     //
     SaveGameConfig();
 
-    // free the mixer channels...
-    // Mix_CloseAudio();
-
-    // printf("\nAnd now the final step...\n\n");
     printf("Thank you for playing freedroidRPG.\n\n");
     SDL_Quit();
     
-    //--------------------
-    // Occasionally we want the debugger to stop here.  That can be
-    // done by simply forcing a segmentation fault violation signal here,
-    // even if there hasn't been any real segmentation fault.
-    //
-    // raise ( SIGSEGV );
-
     //--------------------
     // Finally, especially on win32 systems, we should open an editor with
     // the last debug output, since people in general won't know how and where
@@ -1576,64 +1525,13 @@ Terminate (int ExitCode)
     // program has finished.
     //
     exit ( ExitCode );
-
-    return;
 }; // void Terminate ( int ExitCode )
 
 /**
- * Since numbers are not so very telling and can easily get confusing
- * we do not use numbers to reference the action from a trigger but 
- * rather we use labels already in the mission file.  However internally
- * the game needs numbers as a pointer or index in a list and therefore
- * this functions was added to go from a label to the corresponding 
- * number entry.
- */
-int
-GiveNumberToThisActionLabel ( char* ActionLabel )
-{
-  int i;
-
-  // DebugPrintf( 1 , "\nvoid ExecuteEvent ( int EventNumber ) : real function call confirmed. ");
-  // DebugPrintf( 1 , "\nvoid ExecuteEvent ( int EventNumber ) : executing event labeld : %s" , ActionLabel );
-
-  // In case of 'none' as action label, we don't do anything and return;
-  if ( strcmp ( ActionLabel , "none" ) == 0 ) return ( -1 );
-
-  //--------------------
-  // Now we find out which index the desired action has
-  //
-  for ( i = 0 ; i < MAX_TRIGGERED_ACTIONS_IN_GAME ; i++ )
-    {
-      if ( strcmp ( AllTriggeredActions[ i ].ActionLabel , ActionLabel ) == 0 ) break;
-    }
-
-  if ( i >= MAX_TRIGGERED_ACTIONS_IN_GAME )
-    {
-      fprintf( stderr, "\n\nActionLabel: '%s'\n" , ActionLabel );
-      ErrorMessage ( __FUNCTION__  , "\
-The label that should reference an action for later execution could not\n\
-be identified as valid reference to an existing action.",
-				 PLEASE_INFORM, IS_FATAL );
-    }
-
-  return ( i );
-}; // int GiveNumberToThisActionLabel ( char* ActionLabel )
-
-/**
- * This function executes an action with a label.
- */
-void 
-ExecuteActionWithLabel ( char* ActionLabel )
-{
-    ExecuteEvent( GiveNumberToThisActionLabel ( ActionLabel ) );
-}; // void ExecuteActionWithLabel ( char* ActionLabel )
-
-/**
  *
  *
  */
-obstacle* 
-give_pointer_to_obstacle_with_label ( char* obstacle_label ) 
+obstacle *give_pointer_to_obstacle_with_label ( char* obstacle_label ) 
 {
   int i, j , k;
 
@@ -1691,8 +1589,7 @@ The obstacle label given was NOT found in any levels obstacle label list." ,
  *
  *
  */
-int
-give_level_of_obstacle_with_label ( char* obstacle_label ) 
+int give_level_of_obstacle_with_label ( char* obstacle_label ) 
 {
   int i, j , k;
 
@@ -1745,186 +1642,6 @@ The obstacle label given was NOT found in any levels obstacle label list." ,
 
 }; // int give_level_of_obstacle_with_label ( char* obstacle_label ) 
 
-/**
- * 
- */
-void 
-ExecuteEvent ( int EventNumber )
-{
-    obstacle* our_obstacle;
-    int obstacle_level_num ;
-    Level obstacle_level ;
-    
-    DebugPrintf( 1 , "\nvoid ExecuteEvent ( int EventNumber ) : executing event Nr.: %d." , EventNumber );
-
-    // Do nothing in case of the empty action (-1) given.
-    if ( EventNumber == (-1) ) return;
-    
-    //--------------------
-    // Maybe the action will cause a map obstacle to change type.  If that is so, we
-    // do it here...
-    //
-    if ( strlen ( AllTriggeredActions [ EventNumber ] . modify_obstacle_with_label ) > 0 )
-    {
-	our_obstacle = give_pointer_to_obstacle_with_label ( AllTriggeredActions [ EventNumber ] . modify_obstacle_with_label ) ;
-	obstacle_level_num = give_level_of_obstacle_with_label ( AllTriggeredActions [ EventNumber ] . modify_obstacle_with_label ) ;
-	obstacle_level = curShip . AllLevels [ obstacle_level_num ] ;
-	if ( AllTriggeredActions [ EventNumber ] . modify_obstacle_to_type ) {
-	    int j;
-	    int base  = obstacle_level -> obstacle_statelist_base  [ our_obstacle -> name_index ] ;
-	    int count = obstacle_level -> obstacle_statelist_count [ our_obstacle -> name_index ] ;
-	    for (j=0; j<count; j++)
-		if ( !strcmp ( obstacle_level->obstacle_states_names [ j+base ],
-			       AllTriggeredActions [ EventNumber ] . modify_obstacle_to_type) ) {
-		    our_obstacle -> type = obstacle_level->obstacle_states_values [ j+base ];
-		    break;
-		}
-	} else {
-		action_remove_obstacle (  curShip . AllLevels [ obstacle_level_num ], our_obstacle);
-	     }
-
-	//--------------------
-	// Now we make sure the door lists and that are all updated...
-	//
-	
-	GetAllAnimatedMapTiles ( curShip . AllLevels [ obstacle_level_num ] ) ;
-	//--------------------
-	// Also make sure the other maps realize the change too, if it
-	// maybe happend in the border area where two maps are glued together
-	// only export if the obstacle falls within the interface zone
-	
-	if( our_obstacle->pos.x <= obstacle_level->jump_threshold_west ||
-	    our_obstacle->pos.x >= obstacle_level->xlen - obstacle_level->jump_threshold_east ||
-	    our_obstacle->pos.y <= obstacle_level->jump_threshold_north ||
-	    our_obstacle->pos.y >= obstacle_level->ylen - obstacle_level->jump_threshold_south
-	    ) ExportLevelInterface ( obstacle_level_num ) ;
-	
-    }
-
-    // Does the action include a teleport of the influencer to some other location?
-    if ( AllTriggeredActions [ EventNumber ] . TeleportTarget . x != (-1) )
-    {
-	DebugPrintf( 1 , "\nvoid ExecuteEvent: Now a teleportation should occur!" );
-	Teleport ( AllTriggeredActions[ EventNumber ].TeleportTargetLevel ,
-		   AllTriggeredActions[ EventNumber ].TeleportTarget.x + 0.5 ,
-		   AllTriggeredActions[ EventNumber ].TeleportTarget.y + 0.5 ,
-		   TRUE );
-    }
-   
-    // Does the action show text on user screen?
-    if ( strlen ( AllTriggeredActions [ EventNumber ] . show_big_screen_message ) > 0 ){
-        SetNewBigScreenMessage ( AllTriggeredActions [ EventNumber ] . show_big_screen_message );
-	append_new_game_message ( AllTriggeredActions [ EventNumber ] . show_big_screen_message );
-    }
-
-    // Does the defined action change another action trigger?
-    if ( strlen ( AllTriggeredActions[ EventNumber ] . modify_event_trigger_with_action_label ) > 0 )
-	{
-	//look for the target event trigger
-	event_trigger * target_event = NULL;
-	int i;
-        for ( i = 0 ; i < MAX_EVENT_TRIGGERS ; i++ )
-		{
-		if ( ! strcmp (AllEventTriggers[i].TargetActionLabel ,  AllTriggeredActions[ EventNumber ] . modify_event_trigger_with_action_label ) )
-			target_event = &AllEventTriggers[i];
-		}
-	
-	//Shall we disable the event trigger?
-	if ( AllTriggeredActions[ EventNumber ] . modify_event_trigger_value == 0 )
-		{
-		target_event -> enabled = 0;
-		}
-
-	//Shall we enable the event trigger?
-	if ( AllTriggeredActions[ EventNumber ] . modify_event_trigger_value == 1 )
-		{
-		target_event -> enabled = 1;
-		}
-	}
-
-   // Does the defined action run another action ?
-   if ( strlen ( AllTriggeredActions [ EventNumber ] . also_execute_action_label ) > 0 )
-	{
-	ExecuteActionWithLabel ( AllTriggeredActions [ EventNumber ] . also_execute_action_label );
-	}
-}; // void ExecuteEvent ( int EventNumber )
-
-/**
- *
- * This function checks for triggered events & statements.  Those events are
- * usually entered via the mission file and read into the apropriate
- * structures via the InitNewMission function.  Here we check, whether
- * the nescessary conditions for an event are satisfied, and in case that
- * they are, we order the apropriate event to be executed.
- *
- * In addition, statements are started, if the influencer is at the 
- * right location for them.
- *
- */
-void 
-CheckForTriggeredEventsAndStatements ( )
-{
-    int i;
-    int map_x, map_y;
-    Level StatementLevel = curShip.AllLevels[ Me . pos . z ] ;
-    
-    //--------------------
-    // Now we check if some statment location is reached
-    //
-    map_x = (int) rintf( (float) Me . pos . x ); map_y = (int) rintf( (float)Me . pos . y ) ;
-    for ( i = 0 ; i < MAX_STATEMENTS_PER_LEVEL ; i++ )
-    {
-	if ( ( map_x == StatementLevel -> StatementList [ i ] . x ) &&
-	     ( map_y == StatementLevel -> StatementList [ i ] . y ) )
-	{
-	    Me . TextVisibleTime = 0 ;
-	    Me . TextToBeDisplayed = CURLEVEL -> StatementList [ i ] . Statement_Text ;
-	}
-    }
-    
-    //--------------------
-    // Now we check if some event trigger is fullfilled.
-    //
-    for ( i = 0 ; i < MAX_EVENT_TRIGGERS ; i++ )
-    {
-	// if ( AllEventTriggers[i].EventNumber == (-1) ) continue;  // thats a sure sign this event doesn't need attention
-	if ( strcmp (AllEventTriggers[i].TargetActionLabel , "none" ) == 0 ) continue;  // thats a sure sign this event doesn't need attention
-	if ( AllEventTriggers[i].enabled == 0 ) continue;  // this trigger is not enabled
-	
-	// --------------------
-	// So at this point we know, that the event trigger is somehow meaningful. 
-	// Fine, so lets check the details, if the event is triggered now
-	//
-	
-	if ( AllEventTriggers[i].Influ_Must_Be_At_Point.x != (-1) )
-	{
-	    if ( rintf( AllEventTriggers[i].Influ_Must_Be_At_Point.x ) != (int) ( Me . pos.x ) ) continue;
-	}
-	
-	if ( AllEventTriggers[i].Influ_Must_Be_At_Point.y != (-1) )
-	{
-	    if ( rintf( AllEventTriggers[i].Influ_Must_Be_At_Point.y ) != (int) ( Me . pos.y ) ) continue;
-	}
-	
-	if ( AllEventTriggers[i].Influ_Must_Be_At_Level != (-1) )
-	{
-	    if ( rintf( AllEventTriggers[i].Influ_Must_Be_At_Level ) != StatementLevel->levelnum ) continue;
-	}
-	
-	DebugPrintf( 2 , "\nWARNING!! INFLU NOW IS AT SOME TRIGGER POINT OF SOME LOCATION-TRIGGERED EVENT!!!");
-	// ExecuteEvent( AllEventTriggers[i].EventNumber );
-	ExecuteActionWithLabel ( AllEventTriggers [ i ] . TargetActionLabel ) ;
-	
-	if ( AllEventTriggers[i].DeleteTriggerAfterExecution == 1 )
-	{
-	    // AllEventTriggers[i].EventNumber = (-1); // That should prevent the event from being executed again.
-	    AllEventTriggers[i].TargetActionLabel = "none"; // That should prevent the event from being executed again.
-	}
-    }
-
-}; // CheckForTriggeredEventsAndStatements (void )
-
-
 /*----------------------------------------------------------------------
  * try getting round endian-differences with minimal intervention
  * to the code.. 
@@ -1932,9 +1649,6 @@ CheckForTriggeredEventsAndStatements ( )
  * read out a 2-byte short-int from give memory pointer, either using
  * the given byte-order (PCs) or SDL's 'network byte order' (Mac)
  *
- *
- * FIXME: Ideally all binar read/write should use SDLNet_Read/Write fcts, 
- * but this would imply larger changes to the code...
  *----------------------------------------------------------------------*/
 Sint16 
 ReadSint16 (void * memory)
