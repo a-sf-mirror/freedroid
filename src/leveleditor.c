@@ -436,9 +436,7 @@ level_editor_action_toggle_waypoint_connection_user ()
 	    }
 	    else
 	    {
-		strcat ( VanishingMessage , _("\nSORRY. NO MORE CONNECTIONS AVAILABLE FROM THERE."));
-		strcat ( VanishingMessage, 
-			 va(_("\nSorry, maximal number of waypoint-connections (%d) reached!\n"), MAX_WP_CONNECTIONS));
+		sprintf (VanishingMessage, _("\nsORRY, MAXIMAL NUMBER OF WAYPOINT-CONNECTIONS (%d) REACHED!\n"), MAX_WP_CONNECTIONS);
 		DebugPrintf (0, "Operation not possible\n");
 		OriginWaypoint = (-1);
 	    }

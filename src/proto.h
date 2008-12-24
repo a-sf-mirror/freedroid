@@ -564,7 +564,6 @@ void ShowDebugInfos (void);
 int GiveNumberToThisActionLabel ( char* ActionLabel );
 void ExecuteActionWithLabel ( char* ActionLabel ) ;
 void ExecuteEvent ( int EventNumber );
-char *va (char *format, ...);
 Sint16 ReadSint16 (void * memory);
 void endian_swap(char * pdata, size_t dsize, size_t nelements);
 uint32_t pot_gte( uint32_t v );
