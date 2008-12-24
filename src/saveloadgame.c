@@ -272,7 +272,7 @@ int SaveGame( void )
     
     ShowSaveLoadGameProgressMeter( 0 , TRUE ) ;
     
-    sprintf ( Me . freedroid_version_string , 
+    sprintf ( Me . savegame_version_string , 
 	      "%s;sizeof(tux_t)=%d;sizeof(enemy)=%d;sizeof(bullet)=%d;MAXBULLETS=%d\n", 
 	      VERSION , 
 	      (int) sizeof(tux_t) , 
@@ -320,7 +320,7 @@ or file permissions of ~/.freedroid_rpg are somehow not right.",
     
     
     /* Write the version string */
-    fprintf(SaveGameFile, "Version string: %s\n\n", Me . freedroid_version_string);
+    fprintf(SaveGameFile, "Version string: %s\n\n", Me . savegame_version_string);
     
     /* Save tux*/
     save_tux_t("player", &Me);
@@ -551,7 +551,7 @@ LoadGame( void )
 	      (int) sizeof(bullet) ,
 	      (int) MAXBULLETS );
     
-    if ( strcmp ( Me . freedroid_version_string , version_check_string ) != 0 )
+    if ( strcmp ( Me . savegame_version_string , version_check_string ) != 0 )
     {
 	show_button_tooltip ( _("Version or structsize mismatch! The savegame is not from the same version of freedroidRPG... possible breakage.\n") );
 	our_SDL_flip_wrapper();

@@ -641,7 +641,7 @@ typedef struct tux_s
     float MissionTimeElapsed;
     float got_hit_time;           // how long stunned now since the last time tux got hit 
     
-    char freedroid_version_string[1000]; // a string to identify games from older freedroid versions
+    char savegame_version_string[1000]; // a string to identify games from older freedroid versions
     
     int Strength;  // character Strength value = 'power supply max. capacity'
     int Magic;     // character Magic value = 
