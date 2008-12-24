@@ -132,7 +132,7 @@ init_character_descriptions ( void )
 
     character_descriptions [ PERSON_SORENSON ] = _("You see a legend. Sorenson Clark. One of the best human programmers that have ever lived. Just like Paganini she is said to have sold her soul to the devil for her skill. Whatever is the truth, her code is like magic, and there is no denying that.");
 
-    character_descriptions [ PERSON_KEVIN ] = _("He is either a college student, a drug addict or a hacker. I bet he did not have a warm meal for days, he looks totally malnourished. His body keeps twitching. Must be the caffeine. I hope.");
+    character_descriptions [ PERSON_KEVIN ] = _("He is either a college student, a drug addict or a hacker. You bet he did not have a warm meal for days, he looks totally malnourished. His body keeps twitching. Must be the caffeine. You hope.");
 
     character_descriptions [ PERSON_BENDER ] = _("Don't do steroids or you will be just like him.");
 
@@ -154,7 +154,7 @@ init_character_descriptions ( void )
 
     character_descriptions [ PERSON_KEVINS_GUARD ] = _("It looks like a 614. It moves like a 614. It even kills like a 614. Must be a 614 then.");
 
-    character_descriptions [ PERSON_RMS ] = _("He must be the resident scientist. The only thing keeping his body alive is the massive coffee overdose that he takes early in the morning every day. The amount of cafeine that he has in his blood right now would be enough to kill ten humans, but since computer scientists are a different species, he is unharmed.");
+    character_descriptions [ PERSON_RMS ] = _("He must be the resident scientist. The only thing keeping his body alive is the massive coffee overdose that he takes early in the morning every day. The amount of caffeine that he has in his blood right now would be enough to kill ten humans, but since computer scientists are a different species, he is unharmed.");
 
     character_descriptions [ PERSON_DARWIN ] = _("Something about him makes you think of angels. Except angels are usually sane, do not have an urge to kill everything around them and are much better at singing religious songs.");
 
@@ -174,7 +174,7 @@ init_character_descriptions ( void )
 
     character_descriptions [ PERSON_MICHELANGELO ] = _("And now you know who is to be blamed for the truly awful food in here. You are in a killing mood. Oh yeah. The cook must die. The cook must die. Ha. Ha. Ha.");
 
-    character_descriptions [ PERSON_SUBDIALOG_DUMMY ] = _("This is a major bug. Please report this incident to the developers. Thank you.");
+    character_descriptions [ PERSON_SUBDIALOG_DUMMY ] = _("This is a minor bug. Please report this incident to the developers. Thank you.");
 
     character_descriptions [ PERSON_STANDARD_BOT_AFTER_TAKEOVER ] = _("Blood. Stone. Cog. The Blood has made the Cog from the Stone. Now the Cog is making more Stone from the Blood. I wonder what is the next step of the cycle...");
 
