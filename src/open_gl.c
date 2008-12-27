@@ -38,8 +38,6 @@
 #include "SDL_rotozoom.h"
 
 // 28 degress is the magic angle for our iso view
-#define COS_45 0.707106
-#define SIN_45 0.707106
 #define COS_28 0.88294759
 #define SIN_28 0.46947156
 
@@ -78,81 +76,53 @@ our_SDL_blit_surface_wrapper(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *d
 #ifdef HAVE_LIBGL
 	if ( src == NULL ) 
 	{
-	    DebugPrintf ( -4 , "\nNull source surface received. --> doing nothing." );
-	    fflush ( stdout );
-	    raise ( SIGSEGV );
+	    ErrorMessage ( __FUNCTION__, "Got NULL as source surface. src = 0x%08x, dstrect = 0x%08x x = %d y = %d w = %d h = %d.", PLEASE_INFORM, IS_FATAL, src, dstrect, dstrect ? dstrect->x : -1, dstrect ? dstrect->y : -1, dstrect ? dstrect->w : -1, dstrect ? dstrect->h : -1);
 	    return ( 0 );
 	}
 	
 	if ( dst == Screen )
 	{
-	    
-	    // DebugPrintf ( -1 , "\nReached our_SDL_blit_surface_wrapper." );
-	    // fflush ( stdout );
-	    
 	    if ( dstrect == NULL )
 		glRasterPos2i( 0 , GameConfig . screen_height - 1 );
 	    else
 	    {
-		if ( dstrect -> x == 0 )
-		    target_x = 0 ;
-		else
-		    target_x = dstrect -> x ;
-		
+		target_x = dstrect -> x ;
 		target_y = dstrect -> y + src -> h ;
-		
-		//--------------------
-		// Here we add some extra security against raster positions (e.g. for
-		// character screen and the like) SLIGHTLY out of bounds, which would
-		// cause the entire blit to be canceled due to OpenGL internal policy.
-		//
-		if ( ( target_y >= 480 ) && ( target_y <= 482 ) ) target_y = 478 ; 
 		
 		glRasterPos2i( target_x , target_y ) ;
 	    }
-	    
-	    if ( src -> w != 0 )
-		bytes = src -> pitch / src -> w ;
-	    else
-	    {
-		DebugPrintf ( -4 , "\nSurface of width 0 encountered. --> doing nothing." );
-		fflush ( stdout );
-		return ( 0 ) ;
+
+	    // error cases
+	    if (!src->w) {
+		    ErrorMessage(__FUNCTION__, "Surface of width 0 encountered, doing nothing.", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
+		    return 0;
 	    }
-	    
-	    if ( srcrect != NULL )
-	    {
-		DebugPrintf ( -4 , "\nNon-Null source rect encountered. --> doing nothing." );
-		fflush ( stdout );
-		return ( 0 ) ;
+
+	    if (srcrect != NULL) {
+		    ErrorMessage(__FUNCTION__, "srcrect is not NULL, we do not handle this.", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
+		    return 0;
 	    }
-	    
+
+	    bytes = src -> pitch / src -> w ;
+
 	    glDisable ( GL_TEXTURE_2D ); 
+	    glEnable( GL_ALPHA_TEST );  
 
-	    if ( bytes == 4 )
-	    {
-		glEnable( GL_ALPHA_TEST );  
-		glDrawPixels( src -> w , src -> h, GL_BGRA , GL_UNSIGNED_BYTE , src -> pixels );		
-		glDisable( GL_ALPHA_TEST );  
+	    switch (bytes) {
+		    case 4:
+			    glDrawPixels( src -> w , src -> h, GL_BGRA , GL_UNSIGNED_BYTE , src -> pixels );		
+			    break;
+		    case 3: 
+			    glDrawPixels( src -> w , src -> h, GL_RGB , GL_UNSIGNED_BYTE , src -> pixels );
+			    break;
+		    case 2:
+			    glDrawPixels( src -> w , src -> h, GL_RGB , GL_UNSIGNED_SHORT_5_6_5 , src -> pixels );
+			    break;
+		    default:
+			    ErrorMessage(__FUNCTION__, "Surface has %d bytes per pixel. Doing nothing.", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
+	    }
 
-	    }
-	    else if ( bytes == 3 )
-	    {
-		DebugPrintf ( 1 , "\nSurface has bytes: %d. " , bytes );
-		fflush ( stdout );
-		glDrawPixels( src -> w , src -> h, GL_RGB , GL_UNSIGNED_BYTE , src -> pixels );
-	    }
-	    else if ( bytes == 2 )
-	    {
-		DebugPrintf ( 1 , "\nSurface has bytes: %d. --> using GL_UNSIGNED_SHORT_5_6_5. " , bytes );
-		fflush ( stdout );
-		glDrawPixels( src -> w , src -> h, GL_RGB , GL_UNSIGNED_SHORT_5_6_5 , src -> pixels );
-	    }
-	    else
-	    {
-		DebugPrintf ( -4 , "\nSurface has bytes: %d.--> doing nothing. " , bytes );
-		fflush ( stdout );
-	    }
+	    glDisable( GL_ALPHA_TEST );  
 	    glEnable ( GL_TEXTURE_2D );  
 	    return ( 0 ) ;
 	}
@@ -166,7 +136,6 @@ our_SDL_blit_surface_wrapper(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *d
     }
     
     return 0 ;
-    
 }; // void our_SDL_blit_surface_wrapper(image, NULL, Screen, NULL)
 
 /**
@@ -271,7 +240,6 @@ blit_quad ( int x1 , int y1 , int x2, int y2, int x3, int y3, int x4 , int y4 , 
 	glEnd( );
 
 	glEnable( GL_TEXTURE_2D );
-	return ( 0 );
 #endif
     }
 
@@ -566,8 +534,7 @@ do_make_texture_out_of_surface ( iso_image* our_image, int txw, int txh, void * 
 
 }
 
-void
-make_texture_out_of_surface ( iso_image* our_image ) 
+void make_texture_out_of_surface ( iso_image* our_image ) 
 {
 
 #ifdef HAVE_LIBGL
