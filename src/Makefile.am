@@ -1,7 +1,9 @@
 ## Process this file with automake to produce Makefile.in
 
+freedroidRPG_LDADD = ../lua/liblua.a
+
 if WIN32
-freedroidRPG_LDADD = ../win32/freedroidRPG.coff
+freedroidRPG_LDADD += ../win32/freedroidRPG.coff
 endif
 
 bin_PROGRAMS = freedroidRPG
@@ -22,3 +24,6 @@ freedroidRPG_SOURCES = menu.c shop.c items.c character.c skills.c saveloadgame.c
 
 savestruct.c savestruct.h: struct.h
 	python2.5 gen_savestruct.py struct.h savestruct
+
+../lua/liblua.a: 
+	cd ../lua; make liblua.a
