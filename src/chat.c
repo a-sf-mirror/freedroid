@@ -691,8 +691,7 @@ GiveSubtitleNSample( char* SubtitleText , char* SampleFilename , enemy* ChatDroi
  * execute the desired effect as well.
  *
  */
-int
-ExecuteChatExtra ( char* ExtraCommandString , Enemy ChatDroid )
+static void ExecuteChatExtra ( char* ExtraCommandString , Enemy ChatDroid )
 {
     char tmp_filename [ 5000 ] ;
     char fpath[2048];
@@ -700,13 +699,13 @@ ExecuteChatExtra ( char* ExtraCommandString , Enemy ChatDroid )
     if ( ! strcmp ( ExtraCommandString , "BreakOffAndBecomeHostile" ) )
 	{
 	ChatDroid -> is_friendly = FALSE ;
-	return 1;
+	chat_control_end_dialog = 1;
 	}
     else if ( ! strcmp ( ExtraCommandString , "DropDead" ) )
 	{
 	hit_enemy(ChatDroid, ChatDroid->energy + 1, 0, -1, 0);
 	ChatDroid -> energy = 0;
-	return (1);
+	chat_control_end_dialog = 1;
 	}
     else if ( ! strcmp ( ExtraCommandString , "EverybodyBecomesHostile" ) )
 	{
@@ -788,12 +787,12 @@ ExecuteChatExtra ( char* ExtraCommandString , Enemy ChatDroid )
 	push_or_pop_chat_roster ( POP_ROSTER );
 
 	if ( ! ChatDroid -> energy ) //if the droid was killed, end the chat
-	    return 1;
+	    chat_control_end_dialog = 1;
 
 	}
     else if ( !strcmp ( ExtraCommandString , "EndDialog" ) )
 	{
-	return ( 1 );
+	chat_control_end_dialog = 1;
 	}
     else 
 	{
@@ -802,8 +801,7 @@ ExecuteChatExtra ( char* ExtraCommandString , Enemy ChatDroid )
 		ERROR:  UNKNOWN COMMAND STRING GIVEN!",
 		PLEASE_INFORM, IS_FATAL );
 	}
-    return ( 0 );
-}; // int ExecuteChatExtra ( char* ExtraCommandString )
+};
 
 /**
  *
@@ -1171,8 +1169,7 @@ static void ProcessThisChatOption ( int MenuSelection , int ChatPartnerCode , En
 	DebugPrintf ( CHAT_DEBUG_LEVEL	, "\nStarting to invoke extra.  Text is: %s.\n" ,
 		      ChatRoster [ MenuSelection ] . extra_list[i] );
 	
-	if ( ExecuteChatExtra ( ChatRoster [ MenuSelection ] . extra_list[i] , ChatDroid ) == 1 )
-		chat_control_end_dialog = 1;
+	ExecuteChatExtra ( ChatRoster [ MenuSelection ] . extra_list[i] , ChatDroid );
 	
 	if ( ! ChatDroid -> is_friendly )
 		chat_control_end_dialog = 1 ;
