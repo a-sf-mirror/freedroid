@@ -187,6 +187,28 @@ static int lua_event_improve_skill(lua_State *L)
     return 0;
 }
 
+static int lua_event_get_skill(lua_State *L)
+{
+    const char *skilltype = luaL_checkstring(L, 1);
+    int *skillptr = NULL;
+    if(!strcmp(skilltype, "melee")) {
+	skillptr = &Me . melee_weapon_skill;
+    } else if (!strcmp(skilltype, "ranged")) {
+	skillptr = &Me . ranged_weapon_skill;
+    } else if (!strcmp(skilltype, "programming")) {
+	skillptr = &Me . spellcasting_skill;
+    } else {
+	ErrorMessage(__FUNCTION__, "Lua script called me with an incorrect parameter. Accepted values are \"melee\", \"ranged\", and \"programming\".\n", PLEASE_INFORM, IS_WARNING_ONLY);
+    }
+ 
+    if (skillptr) {
+	lua_pushinteger(L, *skillptr);
+    } else
+	lua_pushinteger(L, 0);
+
+    return 1;
+}
+
 static int lua_event_improve_program(lua_State *L)
 {
     const char *pname = luaL_checkstring(L, 1);
@@ -231,6 +253,15 @@ static int lua_event_give_item(lua_State *L)
     return 0;
 }
 
+static int lua_event_has_item(lua_State *L)
+{
+    const char *itemname = luaL_checkstring(L, 1);
+
+    lua_pushinteger(L, CountItemtypeInInventory(GetItemIndexByName(itemname)));
+    
+    return 1;
+}
+
 static int lua_event_open_diary_entry(lua_State *L)
 {
     int mis_num = luaL_checkinteger(L, 1);
@@ -245,6 +276,43 @@ static int lua_event_plant_cookie(lua_State *L)
     const char *cookie = luaL_checkstring(L, 1);
     PlantCookie(cookie);
     return 0;
+}
+
+static int lua_event_cookie_planted(lua_State *L)
+{
+    const char *cookie = luaL_checkstring(L, 1);
+    int i;
+    int cond = 0;
+    for (i=0 ; i < MAX_COOKIES ; i++) {
+	if (!strlen(Me.cookie_list[i])) continue;
+	if (!strcmp(Me.cookie_list[i], cookie)) {
+	    cond=1;
+	    break;
+	}
+    }
+
+    lua_pushboolean(L, cond);
+    return 1;
+}
+
+static int lua_event_get_town_score(lua_State *L)
+{
+    int old_town_mission_score = 0 ;
+    if (Me . AllMissions [ 0 ] . MissionIsComplete)
+	old_town_mission_score += 10 ;
+    if (Me . AllMissions [ 1 ] . MissionIsComplete)
+	old_town_mission_score += 15 ;
+    if (Me . AllMissions [ 2 ] . MissionIsComplete)
+	old_town_mission_score += 10 ;
+    if (Me . AllMissions [ 3 ] . MissionIsComplete)
+	old_town_mission_score += 10 ;
+    if (Me . AllMissions [ 4 ] . MissionIsComplete)
+	old_town_mission_score += 20 ;
+    if (Me . AllMissions [ 5 ] . MissionIsComplete)
+	old_town_mission_score += 15 ;
+
+    lua_pushinteger(L, old_town_mission_score);
+    return 1;
 }
 
 static int lua_event_remove_cookie(lua_State *L)
@@ -263,9 +331,24 @@ static int lua_event_assign_mission(lua_State *L)
 
 static int lua_event_complete_mission(lua_State *L)
 {
+    /*XXX bad*/
     int misnum = luaL_checkinteger(L, 1);
     Me . AllMissions[ misnum ] . MissionIsComplete = TRUE;
     return 0;
+}
+
+static int lua_event_is_mission_assigned(lua_State *L)
+{
+    int misnum = luaL_checkinteger(L, 1);
+    lua_pushboolean(L, Me . AllMissions[ misnum ] . MissionIsComplete);
+    return 1;
+}
+
+static int lua_event_is_mission_complete(lua_State *L)
+{
+    int misnum = luaL_checkinteger(L, 1);
+    lua_pushboolean(L, Me . AllMissions[ misnum ] . MissionWasAssigned);
+    return 1;
 }
 
 static int lua_event_give_xp(lua_State *L)
@@ -288,6 +371,12 @@ static int lua_event_eat_training_points(lua_State *L)
     return 0;
 }
 
+static int lua_event_get_training_points(lua_State *L)
+{
+    lua_pushinteger(L, Me . points_to_distribute);
+    return 1;
+}
+
 static int lua_event_add_gold(lua_State *L)
 {
     int nb = luaL_checkinteger(L, 1);
@@ -299,6 +388,12 @@ static int lua_event_add_gold(lua_State *L)
 
     SetNewBigScreenMessage(tmpstr);
     return 0;
+}
+
+static int lua_event_get_gold(lua_State *L)
+{
+    lua_pushinteger(L, Me.Gold);
+    return 1;
 }
 
 static int lua_event_change_stat(lua_State *L)
@@ -409,7 +504,6 @@ static int lua_chat_make_tux_red_guard(lua_State *L)
     return 0;
 }
 
-
 luaL_reg lfuncs[] = {
     { "teleport", lua_event_teleport },
     { "display_big_message", lua_event_display_big_message },
@@ -422,17 +516,25 @@ luaL_reg lfuncs[] = {
     { "heal_tux", lua_event_heal_tux },
     { "hurt_tux", lua_event_hurt_tux },
     { "improve_skill", lua_event_improve_skill },
+    { "get_skill", lua_event_get_skill },
     { "improve_program", lua_event_improve_program },
     { "delete_item", lua_event_delete_item },
     { "give_item", lua_event_give_item },
+    { "has_item", lua_event_has_item },
     { "open_diary_entry", lua_event_open_diary_entry },
     { "plant_cookie", lua_event_plant_cookie },
+    { "cookie_planted", lua_event_cookie_planted },
     { "remove_cookie", lua_event_remove_cookie },
     { "assign_mission", lua_event_assign_mission },
+    { "is_mission_assigned", lua_event_is_mission_assigned },
     { "finish_mission", lua_event_complete_mission },
+    { "is_mission_complete", lua_event_is_mission_complete },
+    { "get_town_score", lua_event_get_town_score },
     { "give_xp", lua_event_give_xp },
     { "eat_training_points", lua_event_eat_training_points },
+    { "get_training_points", lua_event_get_training_points },
     { "add_gold", lua_event_add_gold },
+    { "get_gold", lua_event_get_gold },
     { "change_stat", lua_event_change_stat },
     { "respawn_level", lua_event_respawn_level },
     { "trade_with", lua_event_trade_with },
