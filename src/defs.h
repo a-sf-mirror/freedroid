@@ -710,13 +710,11 @@ enum
 
 #define MAX_INFLU_POSITION_HISTORY 500
 #define MAX_MISSIONS_IN_GAME 15         // how many missions can there be at most in Freedroid
-#define MAX_MISSION_TRIGGERED_ACTIONS 10
 #define MAX_MISSION_DESCRIPTION_TEXTS 10
 
 #define MAX_LEVELS		50  	// how many map levels are allowed in one ship
 
 #define MAX_EVENT_TRIGGERS      500   // how many event triggers at most to allow
-#define MAX_TRIGGERED_ACTIONS_IN_GAME   500   // how many triggerable actions to allow at most
 
 #define MAXWAYPOINTS 		220
 #define MAX_DOORS_ON_LEVEL 	150

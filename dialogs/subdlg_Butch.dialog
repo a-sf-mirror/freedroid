@@ -65,8 +65,10 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Of course. That, you might even survive."
 Subtitle=_"Take the accessway. I've unlocked the door. Good luck."
 DisableOption=4
-DoSomethingExtra="ExecuteActionWithLabel:unlock_novice_arena_access_door"
 DoSomethingExtra="AssignMission:3"
+LuaCode={
+    change_obstacle("NoviceArenaAccessDoor", "opened")
+}
 
 ----------------------------------------------------------------------
 
@@ -76,8 +78,10 @@ Subtitle=_"Ok. I've unlocked the door to the master arena now. But take care, th
 Subtitle=_"In fact, you should know that we've got a 711 battle bot in there. Its deadly disruptor flashes cannot be evaded."
 Subtitle=_"You should make sure you've got proper anti-disruptor devices on you or just kill it fast enough. Good luck!"
 DisableOption=5
-DoSomethingExtra="ExecuteActionWithLabel:unlock_master_arena_access_door"
 DoSomethingExtra="AssignMission:4"
+LuaCode={
+    change_obstacle("MasterArenaAccessDoor", "opened")
+}
 
 ----------------------------------------------------------------------
 

@@ -1,708 +1,261 @@
+This file describes location event triggers: they will execute some code
+when the player is at a certain location.
+Each trigger has the following field:
+	- name is a unique name for the trigger. For non silent triggers such 
+	as teleporters, this is this name that will be displayed on screen.
+	- silent (1 by default) is a flag that tells the game not to display the
+	trigger on screen when the player puts the mouse cursor over it
+	- trigger at label indicates what map label the event trigger is located at
+	- luacode contains the lua code to execute
 
 *** START OF EVENT ACTION AND EVENT TRIGGER FILE *** 
 
 ** Start of Mission Event Section **
 
--- Note: for better readability, try to put every action right after its correponding trigger(s)
-
--- Enter disruptor base (sci quarters)
 * New event trigger *
+Name="Enter scientists quarters"
 Trigger at label="DisruptorShieldBaseAccess"
-Action="teleport_into_the_disruptor_base"
+Silent=0
+LuaCode={
+	teleport("teleport_into_the_disruptor_base")
+}
 * End of trigger *
 
-* New event action *
-Name="teleport_into_the_disruptor_base"
-Teleport to="ScientistQuartersArrivalPoint"
-* End of action *
-
--- Back from disruptor base (sci quarters)
 * New event trigger *
+Name="Leave disruptor base"
 Trigger at label="ScientistQuartersEscapePoint"
-Action="teleport_back_from_scientist_quarters"
+Silent=0
+LuaCode={
+	teleport("DisruptorShieldBaseReturn")
+}
 * End of trigger *
 
-* New event action *
-Name="teleport_back_from_scientist_quarters"
-Teleport to="DisruptorShieldBaseReturn"
-* End of action *
-
--- Teleport into Koan bunker
 * New event trigger *
+Name="To a forgotten bunker"
 Trigger at label="ToBunker"
-Action="teleport_to_bunker"
+Silent=0
+LuaCode={
+	teleport("BunkerEntry")
+}
 * End of trigger *
 
-* New event action *
-Name="teleport_to_bunker"
-Teleport to="BunkerEntry"
-* End of action *
-
--- Back from Koan bunker
 * New event trigger *
+Name="Back from bunker"
 Trigger at label="ExitBunker"
-Action="teleport_from_bunker"
+Silent=0
+LuaCode={
+	teleport("ExitFromBunker");
+}
 * End of trigger *
 
-* New event action *
-Name="teleport_from_bunker"
-Teleport to="ExitFromBunker"
-* End of action *
-
--- Enter second level of disruptor (lvV) from scientists quarters
 * New event trigger *
+Name="Closer to the disruptor..."
 Trigger at label="DisruptorLevelVAccess"
-Action="teleport_into_disruptor_lvV"
+Silent=0
+LuaCode={
+	teleport("LvVInArr")
+}
 * End of trigger *
 
-* New event action *
-Name="teleport_into_disruptor_lvV"
-Teleport to="LvVInArr"
-* End of action *
-
--- Back from lvV to scientists quarters
 * New event trigger *
+Name="Back to scientists quarters"
 Trigger at label="LvVInExit"
-Action="teleport_back_to_quarters"
+Silent=0
+LuaCode={
+	teleport("DisruptorLevelVReturnPoint")
+}
 * End of trigger *
 
-* New event action *
-Name="teleport_back_to_quarters"
-Teleport to="DisruptorLevelVReturnPoint"
-* End of action *
-
--- Go from disruptor lvV to disruption machine level
 * New event trigger *
+Name="To disruption machine deck"
 Trigger at label="LvVOutExit"
-Action="teleport_into_disruptor_machine_level"
+Silent=0
+LuaCode={
+	teleport("ArriveAtDisruptorMachineLevel")
+}
 * End of trigger *
 
-* New event action *
-Name="teleport_into_disruptor_machine_level"
-Teleport to="ArriveAtDisruptorMachineLevel"
-* End of action *
-
--- Back from disruptor machine level to lvV
 * New event trigger *
+Name="Escape from disruption deck"
 Trigger at label="DisruptorMachineLevelEscape"
-Action="teleport_back_to_disruptor_lvV"
+Silent=0
+LuaCode={
+	teleport("LvVOutArr")
+}
 * End of trigger *
 
-* New event action *
-Name="teleport_back_to_disruptor_lvV"
-Teleport to="LvVOutArr"
-* End of action *
 
--- Teleport into the warehouse from temple wood
 * New event trigger *
+Name="Enter warehouse"
 Trigger at label="TeleportIntoTheWarehouse"
-Action="teleport_into_the_warehouse"
+Silent=0
+LuaCode={
+	teleport("ArrivePointInWarehouse")
+}
 * End of trigger *
 
-* New event action *
-Name="teleport_into_the_warehouse"
-Teleport to="ArrivePointInWarehouse"
-* End of action *
-
--- Teleport back from warehouse lv1;
 * New event trigger *
+Name="Exit warehouse"
 Trigger at label="TeleportFromWarehouseToWood"
-Action="teleport_out_from_warehouse"
+Silent=0
+LuaCode={
+	teleport("ArrivePointBackFromWarehouse")
+}
 * End of trigger *
 
-* New event action *
-Name="teleport_out_from_warehouse"
-Teleport to="ArrivePointBackFromWarehouse"
-* End of action *
-
--- Teleport from warehouse lv1 to lv2
 * New event trigger *
+Name="To warehouse level 2"
 Trigger at label="TeleportToWarehouseSecondLevel"
-Action="teleport_to_warehouse_second_lv"
+Silent=0
+LuaCode={
+	teleport("ArriveFromWarehouseFirstLevel")
+}
 * End of trigger *
 
-* New event action *
-Name="teleport_to_warehouse_second_lv"
-Teleport to="ArriveFromWarehouseFirstLevel"
-* End of action *
-
--- Teleport back from warehouse lv2 to lv1 
 * New event trigger *
+Name="To warehouse level 1"
 Trigger at label="TeleportBackToFirstCombatLevel"
-Action="teleport_back_to_warehouse_first_lv"
+Silent=0
+LuaCode={
+	teleport("ReturnFromWarehouseSecondLevel")
+}
 * End of trigger *
 
-* New event action *
-Name="teleport_back_to_warehouse_first_lv"
-Teleport to="ReturnFromWarehouseSecondLevel"
-* End of action *
-
--- Unsure (from kevin station to kevin garden?)
 * New event trigger *
+Name="FIXME1"
 Trigger at label="TeleportBackToSecondCombatLevel"
-Action="teleport_back_to_kevin_garden"
+Silent=0
+LuaCode={
+	teleport("ReturnFromKevinsUndergroundStation")
+}
 * End of trigger *
 
-* New event action *
-Name="teleport_back_to_kevin_garden"
-Teleport to="ReturnFromKevinsUndergroundStation"
-* End of action *
-
--- Enter kevin underground station
 * New event trigger *
+Name="To Kevin's underground station"
 Trigger at label="EntryToKevinsUndergroundStation"
-Action="teleport_to_kevin_underground_station"
+Silent=0
+LuaCode={
+	teleport("ArriveAtKevinsUndergroundStation")
+}
 * End of trigger *
 
-* New event action *
-Name="teleport_to_kevin_underground_station"
-Teleport to="ArriveAtKevinsUndergroundStation"
-* End of action *
-
--- Teleport from kevin underground station to energy source
 * New event trigger *
+Name="To energy station"
 Trigger at label="TeleportToKevinsEnergyStation"
-Action="teleport_to_kevins_energy_source"
+Silent=0
+LuaCode={
+	teleport("KevinEnergyArrivalPoint")
+}
 * End of trigger *
 
-* New event action *
-Name="teleport_to_kevins_energy_source"
-Teleport to="KevinEnergyArrivalPoint"
-* End of action *
-
--- Teleport from kevin energy source to underground station
 * New event trigger *
+Name="To underground station"
 Trigger at label="KevinEnergyExitPoint"
-Action="return_to_kevins_underground_station"
+Silent=0
+LuaCode={
+	teleport("ReturnToKevinUndergroundStation")
+}
 * End of trigger *
 
-* New event action *
-Name="return_to_kevins_underground_station"
-Teleport to="ReturnToKevinUndergroundStation"
-* End of action *
-
--- Teleport from town to maintenance tunnels
 * New event trigger *
+Name="To maintenance tunnels"
 Trigger at label="NorthernMaintainanceTeleporter"
-Action="teleport_from_camp_to_north_maintainance"
+Silent=0
+LuaCode={
+	teleport("MaintainanceTunnelArrivalPoint")
+}
 * End of trigger *
 
-* New event action *
-Name="teleport_from_camp_to_north_maintainance"
-Teleport to="MaintainanceTunnelArrivalPoint"
-* End of action *
-
--- Teleport back from maintenance tunnels
 * New event trigger *
+Name="Back from maintenance tunnels"
 Trigger at label="FromMaintainanceTunnelToTown"
-Action="teleport_from_north_maintainance_to_camp"
+Silent=0
+LuaCode={
+	teleport("NorthernMaintainanceTeleporterReturn")
+}
 * End of trigger *
 
-* New event action *
-Name="teleport_from_north_maintainance_to_camp"
-Teleport to="NorthernMaintainanceTeleporterReturn"
-* End of action *
-
--- Teleport to novice arena
 * New event trigger *
+Name="Enter novice arena"
 Trigger at label="NoviceArenaTeleporter"
-Action="teleport_from_camp_to_novice_arena"
+Silent=0
+LuaCode={
+	teleport("NoviceArenaTeleportInPoint")
+}
 * End of trigger *
 
-* New event action *
-Name="teleport_from_camp_to_novice_arena"
-Teleport to="NoviceArenaTeleportInPoint"
-* End of action *
-
--- Teleport back from novice arena
 * New event trigger *
+Name="Exit novice arena"
 Trigger at label="NoviceArenaTeleportOutPoint"
-Action="teleport_from_novice_arena_to_camp"
+Silent=0
+LuaCode={
+	teleport("NoviceArenaTeleporterReturn")
+}
 * End of trigger *
 
-* New event action *
-Name="teleport_from_novice_arena_to_camp"
-Teleport to="NoviceArenaTeleporterReturn"
-* End of action *
-
--- Teleport to master arena
 * New event trigger *
+Name="Enter master arena"
 Trigger at label="MasterArenaTeleporter"
-Action="teleport_from_camp_to_master_arena"
+Silent=0
+LuaCode={
+	teleport("MasterArenaTeleportInPoint")
+}
 * End of trigger *
 
-* New event action *
-Name="teleport_from_camp_to_master_arena"
-Teleport to="MasterArenaTeleportInPoint"
-* End of action *
-
--- Teleport back from master arena
 * New event trigger *
+Name="Exit master arena"
 Trigger at label="MasterArenaTeleportOutPoint"
-Action="teleport_from_master_arena_to_camp"
+Silent=0
+LuaCode={
+	teleport("MasterArenaTeleporterReturn")
+}
 * End of trigger *
 
-* New event action *
-Name="teleport_from_master_arena_to_camp"
-Teleport to="MasterArenaTeleporterReturn"
-* End of action *
-
--- Teleport back from disruptor shield control to disruptor machine deck
 * New event trigger *
+Name="To disruption machine deck"
 Trigger at label="EscapeFromDisruptorShieldControl"
-Action="teleport_back_from_disruptor_shield_control"
+Silent=0
+LuaCode={
+	teleport("ArriveFromDisruptorShieldControl")
+}
 * End of trigger *
 
-* New event action *
-Name="teleport_back_from_disruptor_shield_control"
-Teleport to="ArriveFromDisruptorShieldControl"
-* End of action *
-
--- Teleport from disruption machine deck to disruptor shield (endgame)
 * New event trigger *
+Name="Access disruptor shield control"
 Trigger at label="TeleportToDisruptorShieldControl"
-Action="teleport_to_disruptor_shield_control"
+Silent=0
+LuaCode={
+	teleport("ArriveAtDisruptorShieldControl")
+}
 * End of trigger *
 
-* New event action *
-Name="teleport_to_disruptor_shield_control"
-Teleport to="ArriveAtDisruptorShieldControl"
-* End of action *
-
--- Teleport from desert to secret research center
 * New event trigger *
+Name="Unknown place"
 Trigger at label="EnterSecretResearchCenter"
-Action="teleport_to_secret_research_center"
+Silent=0
+LuaCode={
+	teleport("SecretResearchCenterArrival")
+}
 * End of trigger *
 
-* New event action *
-Name="teleport_to_secret_research_center"
-Teleport to="SecretResearchCenterArrival"
-* End of action *
-
--- Teleport back from secret research center to desert
 * New event trigger *
+Name="Back to the desert"
 Trigger at label="ExitFromSecretResearchCenter"
-Action="teleport_back_from_secret_research_center"
-* End of trigger *
-
-* New event action *
-Name="teleport_back_from_secret_research_center"
-Teleport to="BackFromSecretResearchCenter"
-* End of action *
-
--- Unplugged/unused/etc. triggers (SecretArea*)
-* New event trigger *
-Trigger at label="SecretAreaExit1"
-Action="teleport_to_secret_area_collectors_1"
+Silent=0
+LuaCode={
+	teleport("BackFromSecretResearchCenter")
+}
 * End of trigger *
 
 * New event trigger *
-Trigger at label="SecretAreaExit2"
-Action="teleport_to_secret_area_collectors_2"
-* End of trigger *
-
-* New event trigger *
-Trigger at label="SecretAreaCollectorsExit1"
-Action="teleport_from_secret_area_collectors_1"
-* End of trigger *
-
-* New event trigger *
-Trigger at label="SecretAreaCollectorsExit2"
-Action="teleport_from_secret_area_collectors_2"
-* End of trigger *
-
-
--- Door unlocked by Kevin's guard
-* New event action *
-Name="unlock_kevins_door"
-modify_obstacle_with_label="KevinsDoor"
-modify_obstacle_to_type="opened"
-* End of action *
-
--- Open citadel (unsure)
-* New event action *
-Name="unlock_guardhouse_door"
-modify_obstacle_with_label="OldTownGuardHouseEntrance"
-modify_obstacle_to_type="opened"
-* End of action *
-
--- Open access to warehouse
-* New event action *
-Name="open_warehouse_access_door"
-modify_obstacle_with_label="AccessDoorToWarehouse"
-modify_obstacle_to_type="opened"
-* End of action *
-
--- Open exit of novice arena
-* New event action *
-Name="open_novice_arena_exit_door"
-modify_obstacle_with_label="NoviceArenaExitDoor"
-modify_obstacle_to_type="opened"
-* End of action *
-
--- Open exit of master arena
-* New event action *
-Name="open_master_arena_exit_door"
-modify_obstacle_with_label="MasterArenaExitDoor"
-modify_obstacle_to_type="opened"
-* End of action *
-
--- Open maintenance tunnels
-* New event action *
-Name="unlock_northern_maintainance_door"
-modify_obstacle_with_label="NorthernMaintainanceDoor"
-modify_obstacle_to_type="opened"
-* End of action *
-
--- Open east gate of town (crystal field)
-* New event action *
-Name="unlock_east_gate_of_town"
-modify_obstacle_with_label="EastGateOfTown"
-modify_obstacle_to_type="opened"
-* End of action *
-
--- Open access to disruptor base
-* New event action *
-Name="unlock_disruptor_base_gate"
-modify_obstacle_with_label="DisruptorShieldBaseGate"
-modify_obstacle_to_type="opened"
-* End of action *
-
--- Open access to desert
-* New event action *
-Name="unlock_desert"
-modify_obstacle_with_label="DesertGate"
-modify_obstacle_to_type="opened"
-* End of action *
-
--- Open novice arena
-* New event action *
-Name="unlock_novice_arena_access_door"
-modify_obstacle_with_label="NoviceArenaAccessDoor"
-modify_obstacle_to_type="opened"
-* End of action *
-
--- Open master arena
-* New event action *
-Name="unlock_master_arena_access_door"
-modify_obstacle_with_label="MasterArenaAccessDoor"
-modify_obstacle_to_type="opened"
-* End of action *
-
-
--- Unplugged/unusued
-* New event action *
-Name="disable_sadd_gun1"
-modify_obstacle_with_label="SADDGun1"
-modify_obstacle_to_type="disabled"
-* End of action *
-
-* New event action *
-Name="disable_sadd_gun2"
-modify_obstacle_with_label="SADDGun2"
-modify_obstacle_to_type="disabled"
-* End of action *
-
-* New event action *
-Name="enable_sadd_gun1"
-modify_obstacle_with_label="SADDGun1"
-modify_obstacle_to_type="enabled"
-* End of action *
-
-* New event action *
-Name="enable_sadd_gun2"
-modify_obstacle_with_label="SADDGun2"
-modify_obstacle_to_type="enabled"
-* End of action *
-
-* New event action *
-Name="breake_wall_near_sadd_1"
-modify_obstacle_with_label="BreakableWall1"
-modify_obstacle_to_type="broken"
-* End of action *
-
-* New event action *
-Name="breake_wall_near_sadd_2"
-modify_obstacle_with_label="BreakableWall2"
-modify_obstacle_to_type="broken"
-* End of action *
-
-* New event action *
-Name="unlock_sadd_depot_door"
-modify_obstacle_with_label="SADDDepotDoor"
-modify_obstacle_to_type="opened"
-* End of action *
-
-* New event action *
-Name="unlock_sadd_bio_door"
-modify_obstacle_with_label="SADDBioDoor"
-modify_obstacle_to_type="opened"
-* End of action *
-
-* New event action *
-Name="teleport_to_secret_area_collectors_1"
-Teleport to="SecretAreaCollectorsEnterance1"
-* End of action *
-
-* New event action *
-Name="teleport_to_secret_area_collectors_2"
-Teleport to="SecretAreaCollectorsEnterance2"
-* End of action *
-
-* New event action *
-Name="teleport_from_secret_area_collectors_1"
-Teleport to="SecretAreaEnterance1"
-* End of action *
-
-* New event action *
-Name="teleport_from_secret_area_collectors_2"
-Teleport to="SecretAreaEnterance2"
-* End of action *
-
-* New event action *
-Name="stepped_cable_tunnels"
-* End of action *
-
-* New event trigger *
+Name="FIXME2"
+Silent=0
 Trigger at label="wallEvent1Trigger"
-Action="wall1Action"
 Delete the event trigger after it has been triggered=1
+LuaCode={
+	modify_obstacle("wall1", "triggered")
+}
 * End of trigger *
-
-* New event action *
-Name="wall1Action"
-modify_obstacle_with_label="wall1"
-modify_obstacle_to_type="triggered"
-* End of action *
-
-* disabled event **
-Trigger at label="MSOLobbyDeactivateSecurity"
-Action="DeactivateIntruderDetectorsMSOLobby"
-Delete the event trigger after it has been triggered=1
-* End of trigger *
-
-* New event action *
-Name="DeactivateIntruderDetectorsMSOLobby"
-modify_event_trigger_with_action_label="IntruderDetectorsMSOLobby"
-modify_event_trigger_to=0
-* End of action *
-
-* disabled event **
-Trigger at label="IntruderDetectorMSOLobby01"
-Action="IntruderDetectorsMSOLobby"
-Delete the event trigger after it has been triggered=1
-* End of trigger *
-
-* disabled event **
-Trigger at label="IntruderDetectorMSOLobby02"
-Action="IntruderDetectorsMSOLobby"
-Delete the event trigger after it has been triggered=1
-* End of trigger *
-
-* New event action *
-Name="IntruderDetectorsMSOLobby"
-modify_obstacle_with_label="IntruderLaserTrapMSO02"
-modify_obstacle_to_type="triggered"
-Also execute action with label="IntruderDetectorsMSOLobby2"
-* End of action *
-
-* New event action *
-Name="IntruderDetectorsMSOLobby2"
-modify_obstacle_with_label="IntruderLaserTrapMSO01"
-modify_obstacle_to_type="triggered"
-* End of action *
-
-* disabled event **
-Trigger at label="SwitchOffLaserTrapMSOLobby"
-Action="DisableIntruderDetectorsMSOLobby"
-Delete the event trigger after it has been triggered=1
-* End of trigger *
-
-* New event action *
-Name="DisableIntruderDetectorsMSOLobby"
-modify_obstacle_with_label="IntruderLaserTrapMSO02"
-modify_obstacle_to_type="default"
-Also execute action with label="DisableIntruderDetectorsMSOLobby2"
-* End of action *
-
-* New event action *
-Name="DisableIntruderDetectorsMSOLobby2"
-modify_obstacle_with_label="IntruderLaserTrapMSO01"
-modify_obstacle_to_type="default"
-* End of action *
-
-* disabled event **
-Trigger at label="MSOPointOfNoReturn"
-Action="MSOPointOfNoReturnTrg"
-Delete the event trigger after it has been triggered=1
-* End of trigger *
-
-* New event action *
-Name="MSOPointOfNoReturnTrg"
-modify_obstacle_with_label="MSONoReturnDoor"
-show_big_screen_message=_"Save the world or die! Do not look back!"
-modify_obstacle_to_type="closed"
-* End of action *
-
-* disabled event **
-Trigger at label="BreakingGlassWallTrapTrigger"
-Action="BreakingGlassWallTrap"
-Delete the event trigger after it has been triggered=1
-* End of trigger *
-
-* New event action *
-Name="BreakingGlassWallTrap"
-modify_obstacle_with_label="GlassWallLaserTrap01"
-modify_obstacle_to_type="triggered"
-Also execute action with label="BreakingGlassWallTrap2"
-* End of action *
-
-* New event action *
-Name="BreakingGlassWallTrap2"
-modify_obstacle_with_label="GlassWallLaserTrap02"
-modify_obstacle_to_type="triggered"
-Also execute action with label="BreakingGlassWallTrap3"
-* End of action *
-
-* New event action *
-Name="BreakingGlassWallTrap3"
-modify_obstacle_with_label="GlassWallLaserTrap03"
-modify_obstacle_to_type="triggered"
-Also execute action with label="BreakingGlassWallTrap4"
-* End of action *
-
-* New event action *
-Name="BreakingGlassWallTrap4"
-modify_obstacle_with_label="GlassWallLaserTrap04"
-modify_obstacle_to_type="triggered"
-Also execute action with label="BreakingGlassWallTrap5"
-* End of action *
-
-* New event action *
-Name="BreakingGlassWallTrap5"
-modify_obstacle_with_label="GlassWallLaserTrap05"
-modify_obstacle_to_type="triggered"
-* End of action *
-
-* disabled event **
-Trigger at label="SwitchOffGlassWallLaserTrap"
-Action="DisableBreakingGlassWallTrap"
-Delete the event trigger after it has been triggered=1
-* End of trigger *
-
-* New event action *
-Name="DisableBreakingGlassWallTrap"
-modify_obstacle_with_label="GlassWallLaserTrap01"
-modify_obstacle_to_type="default"
-Also execute action with label="DisableBreakingGlassWallTrap2"
-* End of action *
-
-* New event action *
-Name="DisableBreakingGlassWallTrap2"
-modify_obstacle_with_label="GlassWallLaserTrap02"
-modify_obstacle_to_type="default"
-Also execute action with label="DisableBreakingGlassWallTrap3"
-* End of action *
-
-* New event action *
-Name="DisableBreakingGlassWallTrap3"
-modify_obstacle_with_label="GlassWallLaserTrap03"
-modify_obstacle_to_type="default"
-Also execute action with label="DisableBreakingGlassWallTrap4"
-* End of action *
-
-* New event action *
-Name="DisableBreakingGlassWallTrap4"
-modify_obstacle_with_label="GlassWallLaserTrap04"
-modify_obstacle_to_type="default"
-Also execute action with label="DisableBreakingGlassWallTrap5"
-* End of action *
-
-* New event action *
-Name="DisableBreakingGlassWallTrap5"
-modify_obstacle_with_label="GlassWallLaserTrap05"
-modify_obstacle_to_type="default"
-* End of action *
-
-* disabled event **
-Trigger at label="MSOMillerEntranceUnlockCounter"
-Action="MSOMillerEntranceUnlockCounter"
-Delete the event trigger after it has been triggered=1
-* End of trigger *
-
-* New event action *
-Name="MSOMillerEntranceUnlockCounter"
-modify_obstacle_with_label="MSOMillerEntranceCounterDoor"
-modify_obstacle_to_type="opened"
-show_big_screen_message=_"Control room door opened!"
-* End of action *
-
-* disabled event **
-Trigger at label="MSOMillerEntranceUnlocker"
-Action="MSOMillerEntranceUnlock"
-Delete the event trigger after it has been triggered=1
-* End of trigger *
-
-* New event action *
-Name="MSOMillerEntranceUnlock"
-modify_obstacle_with_label="MSOMillerEntrance01"
-modify_obstacle_to_type="opened"
-show_big_screen_message=_"Miller enterance unlocked!"
-Also execute action with label="MSOMillerEntranceUnlock2"
-* End of action *
-
-* New event action *
-Name="MSOMillerEntranceUnlock2"
-modify_obstacle_with_label="MSOMillerEntrance02"
-modify_obstacle_to_type="opened"
-Also execute action with label="MSOMillerEntranceUnlock3"
-* End of action *
-
-* New event action *
-Name="MSOMillerEntranceUnlock3"
-modify_obstacle_with_label="MSOMillerEntrance03"
-modify_obstacle_to_type="opened"
-* End of action *
-
-* disabled event **
-Trigger at label="MSOHQUnlocker"
-Action="MSOHQUnlock"
-Delete the event trigger after it has been triggered=1
-* End of trigger *
-
-* New event action *
-Name="MSOHQUnlock"
-modify_obstacle_with_label="MSOHQDoor01"
-modify_obstacle_to_type="opened"
-show_big_screen_message=_"Head quaters doors unlocked!"
-Also execute action with label="MSOHQUnlock2"
-* End of action *
-
-* New event action *
-Name="MSOHQUnlock2"
-modify_obstacle_with_label="MSOHQDoor02"
-modify_obstacle_to_type="opened"
-* End of action *
-
-* disabled event **
-Trigger at label="MSOHQExitSwitch"
-Action="MSOUnlockExitDoor"
-Delete the event trigger after it has been triggered=1
-* End of trigger *
-
-* New event action *
-Name="MSOUnlockExitDoor"
-modify_obstacle_with_label="MSOExitDoor00"
-modify_obstacle_to_type="opened"
-show_big_screen_message=_"Exit door unlocked!"
-* End of action *
-
-* New event action *
-Name="unlock_ms_area_door"
-modify_obstacle_with_label="MSAreaDoor"
-modify_obstacle_to_type="opened"
-* End of action *
 
 ** End of Mission Event Section **
 

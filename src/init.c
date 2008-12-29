@@ -1594,7 +1594,7 @@ PrepareStartOfNewCharacter ( char * startpos )
     // Now the mission file is read into memory.  That means we can start to decode the details given
     // in the body of the mission file.  
     //
-    GetEventsAndEventTriggers ( "freedroid.events" );
+    GetEventTriggers ( "freedroid.events" );
     
     if ( !skip_initial_menus )
 	PlayATitleFile ( "StartOfGame.title" );

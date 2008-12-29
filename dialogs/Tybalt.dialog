@@ -55,8 +55,9 @@ New Option Nr=3  OptionText="THE GATE OPENS"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Of course. Guard members are always authorized to enter the guardhouse. The gate is open. Enjoy your stay."
 DisableOption=3
-DoSomethingExtra="ExecuteActionWithLabel:unlock_guardhouse_door"
-
+LuaCode={
+    change_obstacle("OldTownGuardHouseEntrance", "opened")
+}
 ----------------------------------------------------------------------
 
 New Option Nr=4  OptionText="YOU SHALL NOT PASS"

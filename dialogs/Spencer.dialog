@@ -77,8 +77,9 @@ Subtitle=_"I wish you the best of luck."
 DisableOption=5
 DoSomethingExtra="AssignMission:5"
 DoSomethingExtra="OpenQuestDiaryEntry:M5E0:"
-DoSomethingExtra="ExecuteActionWithLabel:open_warehouse_access_door"
-
+LuaCode={
+    change_obstacle("AccessDoorToWarehouse", "opened")
+}
 ----------------------------------------------------------------------
 
 New Option Nr=6  OptionText=_" How is it going?"
@@ -345,7 +346,9 @@ Subtitle=_"Try to get control over the disruptor shield if you can. The control 
 DisableOption=39
 DisableOption=40
 DoSomethingExtra="AssignMission:8"
-DoSomethingExtra="ExecuteActionWithLabel:unlock_disruptor_base_gate"
+LuaCode={
+    change_obstacle("DisruptorShieldBaseGate", "opened")
+}
 
 ----------------------------------------------------------------------
 

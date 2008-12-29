@@ -2331,7 +2331,7 @@ do_action:
     switch (action) {
 	case SAVEGAME_LOAD:
 	    if ( LoadGame ( ) == OK ) {
-		GetEventsAndEventTriggers ( "freedroid.events" );
+		GetEventTriggers ( "freedroid.events" );
 		GetQuestList ( "freedroid.quests" );
 		Item_Held_In_Hand = ( -1 );
 		rtn = TRUE;

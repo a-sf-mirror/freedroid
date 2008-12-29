@@ -547,6 +547,10 @@ severe error.",
 	    ChatRoster[ OptionIndex ] . always_execute_this_option_prior_to_dialog_start = FALSE;
 	}
 
+	if (strstr(SectionPointer, "LuaCode")) {
+	    ChatRoster[OptionIndex] . lua_code = ReadAndMallocStringFromData(SectionPointer, "LuaCode={", "}");
+	} else  ChatRoster[OptionIndex] . lua_code = NULL;
+	
 	if (EndOfSectionPointer)
 	    *EndOfSectionPointer = NEW_OPTION_BEGIN_STRING[0];
     }
@@ -899,12 +903,6 @@ ExecuteChatExtra ( char* ExtraCommandString , Enemy ChatDroid )
 	DebugPrintf ( CHAT_DEBUG_LEVEL	, "\nreceived mission number: %d and diary entry number: %d." , 
 		mis_num , mis_diary_entry_num );
 	quest_browser_enable_new_diary_entry ( mis_num , mis_diary_entry_num );
-	}
-    else if ( CountStringOccurences ( ExtraCommandString , "ExecuteActionWithLabel:" ) )
-	{
-	DebugPrintf( CHAT_DEBUG_LEVEL , "\nExtra invoked execution of action with label: %s. Doing it... " ,
-		ExtraCommandString + strlen ( "ExecuteActionWithLabel:" ) );
-	ExecuteActionWithLabel ( ExtraCommandString + strlen ( "ExecuteActionWithLabel:" ) ) ;
 	}
     else if ( CountStringOccurences ( ExtraCommandString , "ExecuteSubdialog:" ) )
 	{
@@ -1457,7 +1455,11 @@ ProcessThisChatOption ( int MenuSelection , int ChatPartnerCode , Enemy ChatDroi
 	// which could have destroyed the background by drawing e.g. a shop interface
 	display_current_chat_protocol ( CHAT_DIALOG_BACKGROUND_PICTURE_CODE , ChatDroid , FALSE );
     }
-    
+
+    if (ChatRoster[MenuSelection].lua_code) {
+	ExecuteAction(ChatRoster[MenuSelection].lua_code);
+    }
+
     //--------------------
     // Maybe there was an ON-GOTO-CONDITION specified for this option.
     // Then of course we have to jump to the new location!!!

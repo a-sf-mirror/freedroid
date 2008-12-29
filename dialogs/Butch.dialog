@@ -88,7 +88,9 @@ DisableOption=12
 DisableOption=13
 DoSomethingExtra="AssignMission:3"
 DoSomethingExtra="OpenQuestDiaryEntry:M3E0:"
-DoSomethingExtra="ExecuteActionWithLabel:unlock_novice_arena_access_door"
+LuaCode={
+    change_obstacle("NoviceArenaAccessDoor", "opened")
+}
 
 ----------------------------------------------------------------------
 
@@ -124,8 +126,9 @@ Subtitle=_"But if you really want it, the door is open."
 DisableOption=9
 DoSomethingExtra="AssignMission:4"
 DoSomethingExtra="OpenQuestDiaryEntry:M4E0:"
-DoSomethingExtra="ExecuteActionWithLabel:unlock_master_arena_access_door"
-
+LuaCode={
+    change_obstacle("MasterArenaAccessDoor", "opened")
+}
 ----------------------------------------------------------------------
 
 New Option Nr=10  OptionText=_" The master arena is clear."
@@ -185,8 +188,10 @@ LinkedTo=17
 New Option Nr=17  OptionText=_" You... Have ruined my pacifistic slogan... I am angry... So angry that I want to smash things!"
 Subtitle=_"Great. Get in the door, newbie."
 DisableOption=17
-DoSomethingExtra="ExecuteActionWithLabel:unlock_novice_arena_access_door"
 DoSomethingExtra="AssignMission:3"
+LuaCode={
+    change_obstacle("NoviceArenaAccessDoor", "opened")
+}
 
 ----------------------------------------------------------------------
 

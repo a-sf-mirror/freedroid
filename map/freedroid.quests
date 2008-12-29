@@ -115,7 +115,10 @@ Mission target is to reach level : -1
 Mission target is to reach X-Pos : -1
 Mission target is to reach Y-Pos : -1
 Mission target is to live for how many seconds : -1
-On mission completition immediately trigger action labeled="open_novice_arena_exit_door"
+Completion LuaCode={
+    change_obstacle("NoviceArenaExitDoor", "opened")
+    display_console_message("Novice arena cleared!")
+}
 Mission diary entry=_"Fighting in the arena is not something I would usually do, but I feel like doing it for a change. Why not?"
 Mission diary entry=_"Now that was easy. Yawn. I nearly fell asleep. No problem at all, the bots are dead."
 ** End of this mission target subsection **
@@ -135,7 +138,10 @@ Mission target is to reach level : -1
 Mission target is to reach X-Pos : -1
 Mission target is to reach Y-Pos : -1
 Mission target is to live for how many seconds : -1
-On mission completition immediately trigger action labeled="open_master_arena_exit_door"
+Completion LuaCode={
+    change_obstacle("MasterArenaExitDoor", "opened")
+    display_console_message("Master arena cleared. Good job, man.")
+}
 Mission diary entry=_"I told the arena master to let me into his master arena. He agreed. Now all that remains to do is to enter the teleport and wait for death herself to come on her black wings and claim my soul. You know, now that I think about it... Maybe I should stay out of there?"
 Mission diary entry=_"I survived the master arena. A miracle. Whew."
 ** End of this mission target subsection **

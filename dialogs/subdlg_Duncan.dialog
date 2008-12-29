@@ -80,8 +80,9 @@ New Option Nr=7  OptionText=_" That is all I need to know. I will find Koan."
 Subtitle=_"Only time will tell."
 EnableOption=7
 DoSomethingExtra="EndDialog"
-DoSomethingExtra="ExecuteActionWithLabel:unlock_desert"
-
+LuaCode={
+    change_obstacle("DesertGate", "opened")
+}
 ----------------------------------------------------------------------
 
 New Option Nr=99  OptionText=_" No, I don't find bloodshed a pleasurable activity."

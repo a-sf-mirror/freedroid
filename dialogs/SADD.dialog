@@ -88,13 +88,15 @@ Subtitle=_" One year and a half ago. My accumulator is nearly empty, so I'm goin
 Subtitle=_" *INFO* secret information steal detected!"
 Subtitle=_" *INFO* information classified as critical!"
 Subtitle=_" *INFO* locking zone!"
-DoSomethingExtra="ExecuteActionWithLabel:enable_sadd_gun1"
-DoSomethingExtra="ExecuteActionWithLabel:enable_sadd_gun2"
 DisableOption=7
 DisableOption=4
 EnableOption=8
 DisableOption=99
 DoSomethingExtra="EndDialog"
+LuaCode={
+    change_obstacle("SADDGun1", "enabled")
+    change_obstacle("SADDGun2", "enabled")
+}
 
 ----------------------------------------------------------------------
 
@@ -222,12 +224,14 @@ LinkedTo=23
 New Option Nr=23  OptionText=_" So disable the guns, please."
 Subtitle=_" Go, and bring dilithium. I badly need it."
 DisableOption=23
-DoSomethingExtra="ExecuteActionWithLabel:disable_sadd_gun1"
-DoSomethingExtra="ExecuteActionWithLabel:disable_sadd_gun2"
-DoSomethingExtra="ExecuteActionWithLabel:breake_wall_near_sadd_1"
 DoSomethingExtra="AssignMission:10"
 DoSomethingExtra="OpenQuestDiaryEntry:M9E0:"
 DoSomethingExtra="EndDialog"
+LuaCode={
+    change_obstacle("SADDGun1", "disabled")
+    change_obstacle("SADDGun2", "disabled")
+    change_obstacle("BreakableWall1", "broken")
+}
 
 ----------------------------------------------------------------------
 
@@ -289,8 +293,10 @@ DoSomethingExtra="DeleteItem:Red Dilitium Crystal"
 DoSomethingExtra="AddBigScreenMessageBUT_WITH_TERMINATION_CHARACTER_PLEASE:Restored SADD's power supply:"
 DoSomethingExtra="AddExperienceBonus:1000"
 DoSomethingExtra="OpenQuestDiaryEntry:M9E3:"
-DoSomethingExtra="ExecuteActionWithLabel:unlock_sadd_depot_door"
 DoSomethingExtra="EndDialog"
+LuaCode={
+    change_obstacle("SADDDepotDoor", "opened")
+}
 
 ----------------------------------------------------------------------
 
@@ -320,9 +326,11 @@ DoSomethingExtra="DeleteItem:Red Dilitium Crystal"
 DoSomethingExtra="AddBigScreenMessageBUT_WITH_TERMINATION_CHARACTER_PLEASE:Restored SADD's power supply:"
 DoSomethingExtra="AddExperienceBonus:1500"
 DoSomethingExtra="OpenQuestDiaryEntry:M9E2:"
-DoSomethingExtra="ExecuteActionWithLabel:unlock_sadd_depot_door"
-DoSomethingExtra="ExecuteActionWithLabel:unlock_sadd_bio_door"
 DoSomethingExtra="EndDialog"
+LuaCode={
+    change_obstacle("SADDDepotDoor", "opened")
+    change_obstacle("SADDBioDoor", "opened")
+}
 
 ----------------------------------------------------------------------
 
@@ -374,11 +382,13 @@ DisableOption=40
 EnableOption=41
 EnableOption=42
 EnableOption=43
-DoSomethingExtra="ExecuteActionWithLabel:enable_sadd_gun1"
-DoSomethingExtra="ExecuteActionWithLabel:enable_sadd_gun2"
-DoSomethingExtra="ExecuteActionWithLabel:breake_wall_near_sadd_2"
 DoSomethingExtra="OpenQuestDiaryEntry:M9E4:"
 DoSomethingExtra="EndDialog"
+LuaCode={
+    change_obstacle("SADDGun1", "enabled")
+    change_obstacle("SADDGun2", "enabled")
+    change_obstacle("BreakableWall2", "broken")
+}
 
 ----------------------------------------------------------------------
 

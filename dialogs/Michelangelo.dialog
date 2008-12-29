@@ -240,8 +240,10 @@ Subtitle=_"There is an old dilithium mine to the east. I am sure there is lots o
 Subtitle=_"I will talk to the guards, they will open the eastern gate for you."
 Subtitle=_"Good luck. Try not to get yourself killed."
 DisableOption=82
-DoSomethingExtra="ExecuteActionWithLabel:unlock_east_gate_of_town"
 DoSomethingExtra="AssignMission:2"
+LuaCode={
+    change_obstacle("EastGateOfTown", "opened")
+}
 
 ----------------------------------------------------------------------
 

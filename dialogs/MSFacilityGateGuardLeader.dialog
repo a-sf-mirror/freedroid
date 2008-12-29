@@ -158,7 +158,9 @@ DisableOption=2
 DisableOption=8
 DisableOption=3
 DisableOption=9
-DoSomethingExtra="ExecuteActionWithLabel:unlock_ms_area_door"
+LuaCode={
+    change_obstacle("MSAreaDoor", "opened")
+}
 DoSomethingExtra="EndDialog"
 ----------------------------------------------------------------------
 

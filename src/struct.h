@@ -200,6 +200,8 @@ typedef struct map_label_s
 }
 map_label, *Map_Label;
 
+typedef char *luacode;
+
 typedef struct mission_s
 {
     char MissionName[500];  // this should be the name of the mission, currently uninitialized
@@ -219,40 +221,14 @@ typedef struct mission_s
     int MustBeType;
     int MustBeOne;
     
-    int ListOfActionsToBeTriggeredAtAssignment[ MAX_MISSION_TRIGGERED_ACTIONS ];
-    int ListOfActionsToBeTriggeredAtCompletition[ MAX_MISSION_TRIGGERED_ACTIONS ];
+    luacode completion_lua_code;
+    luacode assignment_lua_code;
 
     int mission_description_visible [ MAX_MISSION_DESCRIPTION_TEXTS ] ;    
     float mission_description_time [ MAX_MISSION_DESCRIPTION_TEXTS ] ;
     int expanded_display_for_this_mission;
 }
 mission, *Mission;
-
-//--------------------
-// This structure can contain things, that might be triggered by a special
-// condition, that can be specified in the mission file as well.
-//
-typedef struct triggered_action_s
-{
-    char* ActionLabel;  // this is a better reference than a number
-    
-    // Maybe the triggered action will change some obstacle on some level...
-    char* modify_obstacle_with_label;
-    char* modify_obstacle_to_type;
-
-    char * modify_event_trigger_with_action_label;
-    int modify_event_trigger_value;
-    
-    // Maybe the triggered event teleports the influencer somewhere
-    point TeleportTarget;
-    int TeleportTargetLevel;
-
-    // Maybe the triggered event shows some text on screen
-    char * show_big_screen_message;
-
-    char * also_execute_action_label; //execute another action (linked action)
-}
-triggered_action , *Triggered_action;
 
 //--------------------
 // This structure can contain conditions that must be fulfilled, so that a special
@@ -264,17 +240,13 @@ typedef struct event_trigger_s
     int Influ_Must_Be_At_Level;
     point Influ_Must_Be_At_Point;
     
-    // Maybe the event is triggered by time
-    float Mission_Time_Must_Have_Passed;
-    float Mission_Time_Must_Not_Have_Passed;
-    
     int DeleteTriggerAfterExecution;
-    // And now of course which event to trigger!!!!
-    // Thats propably the most important information at all!!!
-    // int EventNumber;
-    char* TargetActionLabel;
+    
+    luacode lua_code;
 
+    char *name;
     int enabled; //is the trigger enabled?
+    int silent; //do we have to advertise this trigger to the user? (teleporters..)
 }
 event_trigger , *Event_trigger;
 
@@ -950,6 +922,8 @@ typedef struct dialogue_option_s
     
     int change_option_nr [ MAX_DIALOGUE_OPTIONS_IN_ROSTER ];
     int change_option_to_value [ MAX_DIALOGUE_OPTIONS_IN_ROSTER ];
+
+    luacode lua_code;
 }
 dialogue_option, *Dialogue_option;
 

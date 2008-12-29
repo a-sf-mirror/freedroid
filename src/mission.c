@@ -426,7 +426,6 @@ CheckIfMissionIsComplete (void)
 {
     int ItemCounter;
     int mis_num;
-    int ActionNum;
     static int CheckMissionGrid; 
     int this_mission_seems_completed = TRUE ;
    
@@ -609,10 +608,8 @@ CheckIfMissionIsComplete (void)
 	    //
 	    Me.AllMissions[ mis_num ].MissionIsComplete = TRUE;
 	    Mission_Status_Change_Sound ( );
-	    for ( ActionNum = 0 ; ActionNum < MAX_MISSION_TRIGGERED_ACTIONS ; ActionNum ++ )
-	    {
-		ExecuteEvent( Me.AllMissions[ mis_num ].ListOfActionsToBeTriggeredAtCompletition[ ActionNum ] );
-	    }
+	    if (Me.AllMissions[ mis_num ].completion_lua_code)
+		ExecuteAction(Me.AllMissions[ mis_num ].completion_lua_code);
 	}
 	
     } // for AllMissions
@@ -627,8 +624,6 @@ CheckIfMissionIsComplete (void)
 void 
 AssignMission( int MissNum )
 {
-    int j;
-
     //--------------------
     // First some sanity check for the mission number received.
     //
@@ -642,11 +637,9 @@ There was a mission number received that is outside the range of allowed values.
     
     Mission_Status_Change_Sound ( );
     Me . AllMissions [ MissNum ] . MissionWasAssigned = TRUE;
-    
-    for ( j = 0 ; j < MAX_MISSION_TRIGGERED_ACTIONS ; j ++ )
-    {
-	ExecuteEvent( Me . AllMissions [ MissNum ] . ListOfActionsToBeTriggeredAtAssignment [ j ] );
-    }
+   
+    if (Me . AllMissions [ MissNum ] . assignment_lua_code)
+       ExecuteAction(Me.AllMissions[ MissNum ].assignment_lua_code);
 
     //--------------------
     // We also make visible the very first of the mission diary enties. 
@@ -699,12 +692,7 @@ void
 GetQuestList ( char* QuestListFilename )
 {
     char *EndOfMissionTargetPointer;
-    char *NextEventPointer;
     int MissionTargetIndex = 0;
-    int NumberOfEventsToTriggerAtThisAssignment;
-    int NumberOfEventsToTriggerAtThisCompletition;
-    int ActionNr;
-    char* ActionLabel;
     char* MissionTargetPointer;
     char fpath[2048];
     char* MissionFileContents;
@@ -731,8 +719,8 @@ GetQuestList ( char* QuestListFilename )
 #define MISSION_TARGET_MUST_BE_TYPE_STRING "Mission target is to become type : "
 #define MISSION_TARGET_MUST_BE_ONE_STRING "Mission target is to overtake a droid with marker : "
 
-#define MISSION_ASSIGNMENT_TRIGGERED_ACTION_STRING "On mission assignment immediately trigger action Nr. : "
-#define MISSION_COMPLETITION_TRIGGERED_ACTION_STRING "On mission completition immediately trigger action labeled=\""
+#define MISSION_ASSIGNMENT_LUACODE_STRING "Assignment LuaCode={"
+#define MISSION_COMPLETION_LUACODE_STRING "Completion LuaCode={"
 #define MISSION_DIARY_ENTRY_STRING "Mission diary entry=_\""
 
     //--------------------
@@ -820,61 +808,17 @@ GetQuestList ( char* QuestListFilename )
 	ReadValueFromString( MissionTargetPointer , MISSION_TARGET_MUST_LIVE_TIME_STRING , "%lf" , 
 			     &Me.AllMissions[ MissionTargetIndex ].MustLiveTime , EndOfMissionTargetPointer );
 	
-	//--------------------
-	// At this point we have read in the target values.  Now it is time to
-	// read in the events, that need to be triggered immediately after the mission has been
-	// assigned.
-	//
-	// But first we initialize all the actions to be triggered with -1
-	//
-	for ( ActionNr = 0 ; ActionNr < MAX_MISSION_TRIGGERED_ACTIONS; ActionNr ++ )
-	{
-	    Me.AllMissions[ MissionTargetIndex ].ListOfActionsToBeTriggeredAtAssignment[ ActionNr ] = (-1) ;
+	if (strstr(MissionTargetPointer, MISSION_COMPLETION_LUACODE_STRING)) {
+	    Me.AllMissions[MissionTargetIndex].completion_lua_code = ReadAndMallocStringFromData(MissionTargetPointer, MISSION_COMPLETION_LUACODE_STRING, "}");
+	} else {
+	    Me.AllMissions[MissionTargetIndex].completion_lua_code = NULL;
 	}
-	
-	NextEventPointer = MissionTargetPointer;
-	NumberOfEventsToTriggerAtThisAssignment = 0;
-	while ( ( NextEventPointer = strstr( NextEventPointer , MISSION_ASSIGNMENT_TRIGGERED_ACTION_STRING ) ) != NULL )
-	{
-	    
-	    ReadValueFromString( NextEventPointer , MISSION_ASSIGNMENT_TRIGGERED_ACTION_STRING , "%d" ,
-				 &Me.AllMissions[ MissionTargetIndex ].ListOfActionsToBeTriggeredAtAssignment[ NumberOfEventsToTriggerAtThisAssignment ] ,
-				 EndOfMissionTargetPointer );
-	    
-	    
-	    NumberOfEventsToTriggerAtThisAssignment ++;
-	    NextEventPointer ++;
+
+	if (strstr(MissionTargetPointer, MISSION_ASSIGNMENT_LUACODE_STRING)) {
+	    Me.AllMissions[MissionTargetIndex].assignment_lua_code = ReadAndMallocStringFromData(MissionTargetPointer, MISSION_ASSIGNMENT_LUACODE_STRING, "}");
+	} else {
+	    Me.AllMissions[MissionTargetIndex].assignment_lua_code = NULL;
 	}
-	DebugPrintf ( 1 , "\nDetected %d events to be triggered at this assignment." , 
-		      NumberOfEventsToTriggerAtThisAssignment ) ;
-	
-	//--------------------
-	// Now it is time to read in the events, that need to be triggered immediately after the
-	// mission has been completed.
-	//
-	// But first we initialize all the actions to be triggered with -1
-	//
-	for ( ActionNr = 0 ; ActionNr < MAX_MISSION_TRIGGERED_ACTIONS; ActionNr ++ )
-	{
-	    Me.AllMissions[ MissionTargetIndex ].ListOfActionsToBeTriggeredAtCompletition[ ActionNr ] = (-1) ;
-	}
-	NextEventPointer = MissionTargetPointer;
-	NumberOfEventsToTriggerAtThisCompletition = 0;
-	while ( ( NextEventPointer = strstr( NextEventPointer , MISSION_COMPLETITION_TRIGGERED_ACTION_STRING ) ) != NULL )
-	{
-	    
-	    ActionLabel=
-		ReadAndMallocStringFromData ( NextEventPointer , MISSION_COMPLETITION_TRIGGERED_ACTION_STRING , "\"" ) ;
-	    
-	    Me . AllMissions [ MissionTargetIndex ] . ListOfActionsToBeTriggeredAtCompletition [ NumberOfEventsToTriggerAtThisCompletition ] = GiveNumberToThisActionLabel ( ActionLabel );
-	    
-	    NumberOfEventsToTriggerAtThisCompletition ++;
-	    NextEventPointer ++;
-	    free ( ActionLabel );
-	}
-	DebugPrintf ( 1 , "\nDetected %d events to be triggered at this mission completition." , 
-		      NumberOfEventsToTriggerAtThisCompletition );
-	
 	//--------------------
 	// Now it is time to read in the mission diary entries, that might
 	// be displayed in the quest browser later.

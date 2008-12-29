@@ -55,9 +55,10 @@ OnCondition="PointsToDistributeAtLeast:5" JumpToOption=5 ElseGoto=6
 
 New Option Nr=4  OptionText=_" Improve Hacking Ability (cost 300 cash, 5 ability points)"
 EnableOption=4
-DoSomethingExtra="ExecuteActionWithLabel:unlock_kevins_door"
+LuaCode={
+    change_obstacle("KevinsDoor", "opened")
+}
 OnCondition="GoldIsLessThan:300" JumpToOption=1 ElseGoto=2
-
 ----------------------------------------------------------------------
 
 New Option Nr=5  OptionText="THIS WILL NOT EVER BE VISIBLE"

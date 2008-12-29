@@ -91,9 +91,10 @@ Subtitle=_"Good luck. Oh, and please come back alive. Better come back with noth
 DisableOption=21
 EnableOption=31
 DisableOption=26
-DoSomethingExtra="ExecuteActionWithLabel:unlock_northern_maintainance_door"
 DoSomethingExtra="GiveItem:Plasma Shockwave Emitter:2"
-
+LuaCode={
+    change_obstacle("NorthernMaintainanceDoor", "opened")
+}
 ----------------------------------------------------------------------
 
 New Option Nr=22  OptionText=_" Can I help you somehow?"
@@ -184,8 +185,10 @@ DisableOption=29
 DisableOption=28
 DisableOption=30
 DoSomethingExtra="OpenQuestDiaryEntry:M1E1:"
-DoSomethingExtra="ExecuteActionWithLabel:unlock_northern_maintainance_door"
 DoSomethingExtra="PlantCookie:singularity_killed"
+LuaCode={
+    change_obstacle("NorthernMaintainanceDoor", "opened")
+}
 
 ----------------------------------------------------------------------
 
@@ -223,7 +226,9 @@ Subtitle=_"The tunnels are open. Good luck."
 Subtitle=_"I will talk to Spencer and ask him for a few attack teams. We will take care of the bots."
 DisableOption=33
 DoSomethingExtra="PlantCookie:singularity_killed"
-DoSomethingExtra="ExecuteActionWithLabel:unlock_northern_maintainance_door"
+LuaCode={
+    change_obstacle("NorthernMaintainanceDoor", "opened")
+}
 
 ----------------------------------------------------------------------
 

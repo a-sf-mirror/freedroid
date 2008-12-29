@@ -47,10 +47,9 @@ void PlayATitleFile ( char* Filename );
 void Get_Item_Data ( char* DataPointer );
 
 // event.c
-void GetEventsAndEventTriggers ( const char* EventsAndEventTriggersFilename );
-int GiveNumberToThisActionLabel ( char* ActionLabel );
+void GetEventTriggers ( const char* EventsAndEventTriggersFilename );
+void ExecuteAction (char *code);
 void ExecuteActionWithLabel ( char* ActionLabel ) ;
-void ExecuteEvent ( int EventNumber );
 void CheckForTriggeredEventsAndStatements (void);
 int teleporter_square_below_mouse_cursor ( char* ItemDescText );
 
@@ -248,14 +247,13 @@ void LoadAndShowStats ( char* CoreFilename );
 /* Reading is slightly more difficult so we do it with functions */
 void read_int32_t(const char *, const char *, int32_t *);
 void read_int16_t(const char *, const char *, int16_t *);
-void read_char(const char *, const char *, char *);
+void read_char(const char *, const char *, signed char *);
 void read_uint32_t(const char *, const char *, uint32_t *);
 void read_uint16_t(const char *, const char *, uint16_t *);
 void read_uchar(const char *, const char *, unsigned char *);
 void read_double(const char *, const char *, double *);
 void read_float(const char *, const char *, float *);
 void read_string(const char *, const char *, char *);
-void read_enemy_ptr(const char *, const char *, enemy **);
 
 /* Array writing/reading */
 void save_moderately_finepoint_array(const char *, moderately_finepoint *, int);
@@ -291,6 +289,8 @@ void save_sdl_rect(const char *, SDL_Rect *);
 int read_sdl_rect(const char *, const char *, SDL_Rect *);
 #define save_list_head_t(X,Y) 
 #define read_list_head_t(X,Y,Z)
+void save_luacode(const char *, luacode *);
+void read_luacode(const char *, const char *, luacode *);
 
 // mission.c 
 void quest_browser_interface ( void );

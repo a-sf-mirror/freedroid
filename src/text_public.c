@@ -530,7 +530,11 @@ delete_one_dialog_option ( int i , int FirstInitialisation )
     ChatRoster[i].option_sample_file_name="";
     
     ChatRoster[i].enabled = 0;
-    
+
+    if(ChatRoster[i].lua_code)
+	free(ChatRoster[i].lua_code);
+    ChatRoster[i].lua_code = NULL;
+
     for ( j = 0 ; j < MAX_REPLIES_PER_OPTION ; j++ )
     {
 	//--------------------

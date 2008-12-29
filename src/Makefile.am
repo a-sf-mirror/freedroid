@@ -26,4 +26,4 @@ savestruct.c savestruct.h: struct.h
 	python2.5 gen_savestruct.py struct.h savestruct
 
 ../lua/liblua.a: 
-	cd ../lua; make liblua.a
+	cd ../lua; make liblua.a -DLUA_USE_APICHECK

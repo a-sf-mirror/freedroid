@@ -47,9 +47,11 @@ Subtitle=_"Connecting to peripheral controller..."
 Subtitle=_"Guns disabled."
 DisableOption=1
 EnableOption=2
-DoSomethingExtra="ExecuteActionWithLabel:disable_sadd_gun1"
-DoSomethingExtra="ExecuteActionWithLabel:disable_sadd_gun2"
 DoSomethingExtra="PlantCookie:SAGunsOff:"
+LuaCode={
+    change_obstacle("SADDGun1", "disabled")
+    change_obstacle("SADDGun2", "disabled")
+}
 
 ----------------------------------------------------------------------
 
@@ -59,9 +61,12 @@ Subtitle=_"Connecting to peripheral controller..."
 Subtitle=_"Guns enabled."
 DisableOption=2
 EnableOption=1
-DoSomethingExtra="ExecuteActionWithLabel:enable_sadd_gun1"
-DoSomethingExtra="ExecuteActionWithLabel:enable_sadd_gun2"
 DoSomethingExtra="DeleteCookie:SAGunsOff:"
+LuaCode={
+    change_obstacle("SADDGun1", "enabled")
+    change_obstacle("SADDGun2", "enabled")
+}
+
 
 ----------------------------------------------------------------------
 

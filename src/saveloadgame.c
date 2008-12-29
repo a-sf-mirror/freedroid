@@ -481,7 +481,7 @@ LoadGame( void )
     int a = 0;
     for ( i = 0 ; i < 2; i ++ )
 	{
-	char * cpos = LoadGameData;
+	volatile char * cpos = LoadGameData;
 	done = 0;
 	while ( ! done ) 
 	    {
@@ -511,7 +511,7 @@ LoadGame( void )
 
 
     /* read bullets */
-    char * cpos = LoadGameData;
+    volatile char * cpos = LoadGameData;
     done = 0;
     for ( i = 0; i < MAXBULLETS && ! done ; i ++)
 	{
@@ -625,7 +625,7 @@ void read_int16_t(const char * buffer, const char * tag, int16_t * val)
     *val = valt;
 }
 
-void read_char(const char * buffer, const char * tag, char * val)
+void read_char(const char * buffer, const char * tag, signed char * val)
 {
     int32_t valt;
     read_int32_t(buffer, tag, &valt);
@@ -692,6 +692,32 @@ void read_string(const char * buffer, const char * tag, char * val)
     *epos = '\n';
 }
 
+void save_luacode(const char * tag, luacode * val)
+{
+    if (*val)
+	fprintf(SaveGameFile, "%s:LuaCode={%s}\n", tag, *val);
+}
+
+void read_luacode(const char * buffer, const char * tag, luacode * val)
+{
+    if (*val) {
+	free(*val);
+	*val = NULL;
+    }
+
+    char search[strlen(tag) + 3];
+    sprintf(search, "\n%s:LuaCode={", tag);
+    char * pos = strstr(buffer, search);
+    if ( ! pos ) return;
+    while (*pos != '{') pos++;
+    pos++;
+    char * epos = pos;
+    while ( *epos != '}' || *(epos+1) != '\n') epos++;
+    *epos = '\0';
+    *val = malloc(strlen(pos)+1);
+    strcpy ( *val, pos );
+    *epos = '\n';
+}
 
 /* Save arrays of simple types */
 #define define_save_xxx_array(X) void save_##X##_array(const char * tag, X * val_ar, int size)\
