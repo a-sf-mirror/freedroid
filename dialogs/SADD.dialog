@@ -206,8 +206,10 @@ Subtitle=_" Damn. Ok, I'll give you a super exterminator if you give me dilithiu
 DisableOption=21
 DisableOption=22
 EnableOption=23
-DoSomethingExtra="PlantCookie:SADD_exterminator"
-DoSomethingExtra="OpenQuestDiaryEntry:M9E1:"
+LuaCode={
+    plant_cookie("SADD_exterminator")
+    open_diary_entry(9, 1)
+}
 LinkedTo=23
 
 ----------------------------------------------------------------------
@@ -224,10 +226,10 @@ LinkedTo=23
 New Option Nr=23  OptionText=_" So disable the guns, please."
 Subtitle=_" Go, and bring dilithium. I badly need it."
 DisableOption=23
-DoSomethingExtra="AssignMission:10"
-DoSomethingExtra="OpenQuestDiaryEntry:M9E0:"
 DoSomethingExtra="EndDialog"
 LuaCode={
+    assign_mission(10)
+    open_diary_entry(9, 0)
     change_obstacle("SADDGun1", "disabled")
     change_obstacle("SADDGun2", "disabled")
     change_obstacle("BreakableWall1", "broken")
@@ -288,13 +290,13 @@ New Option Nr=30  OptionText=_" I have the crystals! They were difficult to find
 Subtitle=_" Good. I've opened the depot door for you. Take your super exterminator and GET OUT of here!"
 DisableOption=30
 EnableOption=37
-DoSomethingExtra="MarkMissionComplete:10"
-DoSomethingExtra="DeleteItem:Red Dilitium Crystal"
-DoSomethingExtra="AddBigScreenMessageBUT_WITH_TERMINATION_CHARACTER_PLEASE:Restored SADD's power supply:"
-DoSomethingExtra="AddExperienceBonus:1000"
-DoSomethingExtra="OpenQuestDiaryEntry:M9E3:"
 DoSomethingExtra="EndDialog"
 LuaCode={
+    display_big_message("Restored SADD's power supply")
+    give_xp(1000)
+    finish_mission(10)
+    open_diary_entry(9, 3)
+    delete_item("Red Dilitium Crystal", 1)
     change_obstacle("SADDDepotDoor", "opened")
 }
 
@@ -321,15 +323,15 @@ New Option Nr=33  OptionText=_" I have crystals! They were difficult to find."
 Subtitle=_" Great! Thanks. I've opened some doors for you, I hope you will find something interesting there. That's all I can do for you."
 DisableOption=33
 EnableOption=97
-DoSomethingExtra="MarkMissionComplete:10"
-DoSomethingExtra="DeleteItem:Red Dilitium Crystal"
-DoSomethingExtra="AddBigScreenMessageBUT_WITH_TERMINATION_CHARACTER_PLEASE:Restored SADD's power supply:"
-DoSomethingExtra="AddExperienceBonus:1500"
-DoSomethingExtra="OpenQuestDiaryEntry:M9E2:"
 DoSomethingExtra="EndDialog"
 LuaCode={
+    display_big_message("Restored SADD's power supply")
+    give_xp(1500)
+    finish_mission(10)
+    open_diary_entry(9, 2)
     change_obstacle("SADDDepotDoor", "opened")
     change_obstacle("SADDBioDoor", "opened")
+    delete_item("Red Dilitium Crystal", 1)
 }
 
 ----------------------------------------------------------------------
@@ -382,9 +384,9 @@ DisableOption=40
 EnableOption=41
 EnableOption=42
 EnableOption=43
-DoSomethingExtra="OpenQuestDiaryEntry:M9E4:"
 DoSomethingExtra="EndDialog"
 LuaCode={
+    open_diary_entry(9, 4)
     change_obstacle("SADDGun1", "enabled")
     change_obstacle("SADDGun2", "enabled")
     change_obstacle("BreakableWall2", "broken")

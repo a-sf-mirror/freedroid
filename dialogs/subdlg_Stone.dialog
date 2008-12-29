@@ -53,8 +53,10 @@ Subtitle=_"Tux, if you ever find out who started the Great Assault... GIVE THEM 
 DisableOption=1
 DisableOption=2
 DisableOption=3
-DoSomethingExtra="GiveItem:Two Barrel shotgun"
 DoSomethingExtra="EndDialog"
+LuaCode={
+    give_item("Two Barrel shotgun",1)
+}
 
 ----------------------------------------------------------------------
 

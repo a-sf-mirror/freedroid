@@ -36,7 +36,9 @@ Subtitle=_"So... Any news on the Koan matter?"
 DisableOption=0
 EnableOption=40
 OnCondition="CookieIsPlanted:koan_spared:" JumpToOption=5 ElseGoto=1
-DoSomethingExtra="PlantCookie:koan_quest_done"
+LuaCode={
+    plant_cookie("koan_quest_done")
+}
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
@@ -73,9 +75,11 @@ EnableOption=10
 New Option Nr=10  OptionText=_" Yeah. I got him. I think this is your cube."
 Subtitle=_"Yes. I appreciate your help."
 DisableOption=10
-DoSomethingExtra="AddExperienceBonus:3000"
-DoSomethingExtra="DeleteItem:Pandora's Cube"
 DoSomethingExtra="EndDialog"
+LuaCode={
+    give_xp(3000)
+    delete_item("Pandora's Cube", 1)
+}
 
 ----------------------------------------------------------------------
 
@@ -122,9 +126,11 @@ DoSomethingExtra="EndDialog"
 New Option Nr=60  OptionText=_" Hey, that is really neat. Here is your cube. Enjoy disassembling it and have fun with it."
 Subtitle=_"I will."
 DisableOption=60
-DoSomethingExtra="AddExperienceBonus:3000"
-DoSomethingExtra="DeleteItem:Pandora's Cube"
 DoSomethingExtra="EndDialog"
+LuaCode={
+    give_xp(3000)
+    delete_item("Pandora's Cube")
+}
 
 ----------------------------------------------------------------------
 

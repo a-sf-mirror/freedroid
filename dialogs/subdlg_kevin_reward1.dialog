@@ -52,8 +52,10 @@ Subtitle=_"That is all I want to show you for now. Maybe later I will teach you 
 DisableOption=1
 DisableOption=2
 DisableOption=3
-DoSomethingExtra="IncreaseProgramVersionName:Hacking"
-DoSomethingExtra="PlantCookie:kevin_reward1_given:"
+LuaCode={
+    plant_cookie("kevin_reward1_given")
+    improve_program("Hacking")
+}
 
 ----------------------------------------------------------------------
 
@@ -62,7 +64,9 @@ Subtitle=_"Of course you can have that. There, I'm most grateful to you. That sh
 DisableOption=2
 DisableOption=1
 DisableOption=3
-DoSomethingExtra="PlantCookie:kevin_reward1_given:"
+LuaCode={
+    plant_cookie("kevin_reward1_given")
+}
 
 ----------------------------------------------------------------------
 
@@ -71,8 +75,10 @@ Subtitle=_"Eh... Here, take these 500 bucks. That should be enough."
 DisableOption=3
 DisableOption=2
 DisableOption=1
-DoSomethingExtra="AddGold:500"
-DoSomethingExtra="PlantCookie:kevin_reward1_given:"
+LuaCode={
+    add_gold(500)
+    plant_cookie("kevin_reward1_given")
+}
 
 ----------------------------------------------------------------------
 

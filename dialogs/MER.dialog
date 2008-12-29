@@ -46,7 +46,9 @@ Subtitle=_" Password successfully changed."
 DisableOption=1
 DisableOption=7
 EnableOption=8
-DoSomethingExtra="PlantCookie:MER_Password"
+LuaCode={
+    plant_cookie("MER_Password")
+}
 
 ----------------------------------------------------------------------
 
@@ -79,8 +81,10 @@ Subtitle=_" Disruptor shield is active."
 New Option Nr=8  OptionText=_" shieldmgr --disable --force"
 Subtitle=_" Disabling disruptor shield... "
 Subtitle=_" Shield disabled."
-DoSomethingExtra="MarkMissionComplete:8"
-DoSomethingExtra="OpenQuestDiaryEntry:M8E3:"
+LuaCode={
+    finish_mission(8)
+    open_diary_entry(8, 3)
+}
 
 ----------------------------------------------------------------------
 

@@ -59,7 +59,9 @@ Subtitle=_"Firmware update propagated!"
 DisableOption=1
 DisableOption=2
 EnableOption=3
-DoSomethingExtra="MarkMissionComplete:9"
+LuaCode={
+    finish_mission(9)
+}
 
 ----------------------------------------------------------------------
 

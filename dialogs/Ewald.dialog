@@ -55,7 +55,9 @@ DisableOption=1
 New Option Nr=2  OptionText=_" Are you selling something other than drinks?"
 Subtitle=_"Yeah, I have some junk here... Want to see?"
 EnableOption=2
-DoSomethingExtra="InitTradeWithCharacter:Ewald"
+LuaCode={
+    trade_with("Ewald")
+}
 
 ----------------------------------------------------------------------
 

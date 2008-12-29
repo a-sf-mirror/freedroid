@@ -100,9 +100,11 @@ Subtitle=_"Come closer..."
 Subtitle=_"HA!"
 DisableOption=8
 LinkedTo=20
-DoSomethingExtra="SubtractPointsToDistribute:5"
-DoSomethingExtra="SubtractGold:100"
-DoSomethingExtra="IncreaseMeleeWeaponSkill"
+LuaCode={
+    add_gold(-100)
+    eat_training_points(5)
+    improve_skill("melee")
+}
 
 ----------------------------------------------------------------------
 
@@ -170,7 +172,9 @@ Subtitle=_"Lesson number four. Never hit your sparring partner with full force."
 Subtitle=_"I think you broke my ribs..."
 Subtitle=_"This is enough training for today."
 DisableOption=22
-DoSomethingExtra="PlantCookie:beat_up_pendragon"
+LuaCode={
+    plant_cookie("beat_up_pendragon")
+}
 DoSomethingExtra="EndDialog"
 
 ----------------------------------------------------------------------

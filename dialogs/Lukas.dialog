@@ -43,7 +43,9 @@ Subtitle=_"Of course. As a member of our Guard, you're entitled to wear one of o
 Subtitle=_"There are two kinds or armor, a heavy Red Guard robe and a light version of the same thing."
 Subtitle=_"Now, what will it be?"
 EnableOption=1
-DoSomethingExtra="InitTradeWithCharacter:Lukas"
+LuaCode={
+    trade_with("Lukas")
+}
 
 ----------------------------------------------------------------------
 

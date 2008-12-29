@@ -56,7 +56,9 @@ Subtitle=_"It might come as a surprise to you, but we don't have many. A bit ove
 Subtitle=_"However, as you can clearly see, this is more than enough to keep all of the damn bots away."
 DisableOption=2
 EnableOption=4
-DoSomethingExtra="SubtractGold:50"
+LuaCode={
+    add_gold(-50)
+}
 
 ----------------------------------------------------------------------
 
@@ -88,7 +90,9 @@ Subtitle=_"We tried, but we could not replicate the technology, only bullets."
 Subtitle=_"A few got damaged in battle, and we failed to recover five after a failed scout mission. We have twenty-two right now."
 DisableOption=5
 EnableOption=9
-DoSomethingExtra="SubtractGold:50"
+LuaCode={
+    add_gold(-50)
+}
 
 ----------------------------------------------------------------------
 
@@ -112,7 +116,9 @@ Subtitle=_"When we get low on ammo, we send in a chain gang of criminals and laz
 Subtitle=_"That place was closed down ages ago because of high radiation levels. It's full of good ores from which we make bullets and which power our nuclear reactors."
 Subtitle=_"We get our fission materials and they get their sentence. It was one of the best ideas we have ever had."
 DisableOption=8
-DoSomethingExtra="SubtractGold:50"
+LuaCode={
+    add_gold(-50)
+}
 
 ----------------------------------------------------------------------
 
@@ -137,7 +143,9 @@ Subtitle=_"This is a tricky question. Most of the force comes from the miniature
 Subtitle=_"Of course the great velocity of the impact can cause tremendous devastation by itself."
 Subtitle=_"We never bothered with doing any research on that topic. It works and that is enough for us."
 DisableOption=12
-DoSomethingExtra="SubtractGold:50"
+LuaCode={
+    add_gold(-50)
+}
 
 ----------------------------------------------------------------------
 

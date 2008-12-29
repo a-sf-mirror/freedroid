@@ -38,7 +38,9 @@ DisableOption=5
 EnableOption=1
 EnableOption=3
 DisableOption=99
-DoSomethingExtra="PlantCookie:MS_guard_talked"
+LuaCode={
+    plant_cookie("MS_guard_talked")
+}
 OnCondition="MissionComplete:8" JumpToOption=6 ElseGoto=7
 
 ----------------------------------------------------------------------

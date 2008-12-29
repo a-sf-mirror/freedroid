@@ -86,10 +86,10 @@ Subtitle=_"But remember, the door out won't be opened until you killed all the b
 DisableOption=6
 DisableOption=12
 DisableOption=13
-DoSomethingExtra="AssignMission:3"
-DoSomethingExtra="OpenQuestDiaryEntry:M3E0:"
 LuaCode={
+    assign_mission(3)
     change_obstacle("NoviceArenaAccessDoor", "opened")
+    open_diary_entry(3, 0)
 }
 
 ----------------------------------------------------------------------
@@ -102,7 +102,9 @@ DisableOption=7
 EnableOption=11
 DisableOption=8
 EnableOption=9
-DoSomethingExtra="OpenQuestDiaryEntry:M3E1:"
+LuaCode={
+    open_diary_entry(3, 1)
+}
 
 ----------------------------------------------------------------------
 
@@ -124,10 +126,10 @@ Subtitle=_"You will die if you go there."
 Subtitle=_"I pity you, silly bird. Don't go there."
 Subtitle=_"But if you really want it, the door is open."
 DisableOption=9
-DoSomethingExtra="AssignMission:4"
-DoSomethingExtra="OpenQuestDiaryEntry:M4E0:"
 LuaCode={
+    assign_mission(4)
     change_obstacle("MasterArenaAccessDoor", "opened")
+    open_diary_entry(4, 0)
 }
 ----------------------------------------------------------------------
 
@@ -137,8 +139,10 @@ Subtitle=_"One has to be insane to try the second arena."
 Subtitle=_"You are not a newbie, but you are a TOTAL IDIOT!"
 Subtitle=_"I pity you, poor fool. You will die young."
 DisableOption=10
-DoSomethingExtra="AddExperienceBonus:8000"
-DoSomethingExtra="OpenQuestDiaryEntry:M4E1:"
+LuaCode={
+    give_xp(8000)
+    open_diary_entry(4, 1)
+}
 
 ----------------------------------------------------------------------
 
@@ -188,8 +192,8 @@ LinkedTo=17
 New Option Nr=17  OptionText=_" You... Have ruined my pacifistic slogan... I am angry... So angry that I want to smash things!"
 Subtitle=_"Great. Get in the door, newbie."
 DisableOption=17
-DoSomethingExtra="AssignMission:3"
 LuaCode={
+    assign_mission(3)
     change_obstacle("NoviceArenaAccessDoor", "opened")
 }
 
@@ -214,7 +218,9 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=52
 EnableOption=8
 EnableOption=7
-DoSomethingExtra="PlantCookie:butch_enable_first_set"
+LuaCode={
+    plant_cookie("butch_enable_first_set")
+}
 
 ----------------------------------------------------------------------
 
@@ -236,7 +242,9 @@ New Option Nr=55  OptionText="ENABLING TEXT AFTER THE SECOND ARENA VICTORY"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=55
 EnableOption=10
-DoSomethingExtra="PlantCookie:butch_enable_second_set"
+LuaCode={
+    plant_cookie("butch_enable_second_set")
+}
 
 ----------------------------------------------------------------------
 

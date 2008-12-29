@@ -113,14 +113,18 @@ New Option Nr=40  OptionText=_" I see you have a huge book collection. Mind if I
 Subtitle=_"Of course. Trade is good."
 DisableOption=40
 EnableOption=41
-DoSomethingExtra="InitTradeWithCharacter:Sorenson"
+LuaCode={
+    trade_with("Sorenson")
+}
 
 ----------------------------------------------------------------------
 
 New Option Nr=41  OptionText=_" Can I take a look at your books again?"
 Subtitle=_"Yes. Sure. Of course."
 EnableOption=41
-DoSomethingExtra="InitTradeWithCharacter:Sorenson"
+LuaCode={
+    trade_with("Sorenson")
+}
 
 ----------------------------------------------------------------------
 

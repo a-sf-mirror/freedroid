@@ -60,10 +60,11 @@ Subtitle=_"Hey, what do we have here? The data is already prepared for processin
 Subtitle=_"I'll feed it into Hydra right away. Expect the results in a short while. Hydra has never let me down so far."
 DisableOption=6
 EnableOption=9
-DoSomethingExtra="MarkMissionComplete:7"
-DoSomethingExtra="OpenQuestDiaryEntry:M7E1:"
-DoSomethingExtra="DeleteItem:Kevin's Data Cube"
-
+LuaCode={
+    finish_mission(7)
+    open_diary_entry(7, 1)
+    delete_item("Kevin's Data Cube", 1)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=7  OptionText="DO NOTHING HERE..."

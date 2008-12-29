@@ -91,8 +91,10 @@ Subtitle=_"I hope you have a laser pistol or something like that, the bots there
 Subtitle=_"Best make it quick. I'm already sick of stabilizing the stupid power grid."
 DisableOption=7
 DisableOption=6
-DoSomethingExtra="AssignMission:6"
-DoSomethingExtra="OpenQuestDiaryEntry:M6E0:"
+LuaCode={
+    assign_mission(6)
+    open_diary_entry(6, 0)
+}
 
 ----------------------------------------------------------------------
 
@@ -116,7 +118,9 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=9
 EnableOption=10
 EnableOption=18
-DoSomethingExtra="OpenQuestDiaryEntry:M6E1:"
+LuaCode={
+    open_diary_entry(6, 1)
+}
 
 ----------------------------------------------------------------------
 
@@ -166,9 +170,11 @@ Subtitle=_"And also the cluster is inside of the guard citadel. I hear it's only
 Subtitle=_"But maybe you can arrange that somehow. For me it would be impossible, because of my bad reputation."
 Subtitle=_"I'll give you the data cube. Take it to the computer cluster administration people. They will know what to do. And don't mention me there."
 DisableOption=15
-DoSomethingExtra="GiveItem:Kevin's Data Cube"
-DoSomethingExtra="AssignMission:7"
-DoSomethingExtra="OpenQuestDiaryEntry:M7E0:"
+LuaCode={
+    assign_mission(7)
+    open_diary_entry(7, 0)
+    give_item("Kevin's Data Cube",1)
+}
 
 ----------------------------------------------------------------------
 
@@ -213,7 +219,9 @@ Subtitle=_"Well, thanks for telling me."
 Subtitle=_"Back to the drawing board, I guess..."
 DisableOption=25
 EnableOption=26
-DoSomethingExtra="PlantCookie:kevin_sigtalk"
+LuaCode={
+    plant_cookie("kevin_sigtalk")
+}
 
 ----------------------------------------------------------------------
 

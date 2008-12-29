@@ -67,9 +67,11 @@ Subtitle=_"Good. The most important thing about hacking is to understand the nat
 Subtitle=_"Once you have figured out what the creators of the system were doing when setting it up, you'll also know how to best hack it."
 Subtitle=_"Now I see your hacking skill has already improved a lot."
 DisableOption=5
-DoSomethingExtra="IncreaseProgramVersionName:Hacking"
-DoSomethingExtra="SubtractPointsToDistribute:5"
-DoSomethingExtra="SubtractGold:300"
+LuaCode={
+    add_gold(-300)
+    eat_training_points(5)
+    improve_program("Hacking")
+}
 
 ----------------------------------------------------------------------
 

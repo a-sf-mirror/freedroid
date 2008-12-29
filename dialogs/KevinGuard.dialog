@@ -71,8 +71,8 @@ DisableOption=17
 New Option Nr=4  OptionText=_" Thank you."
 DisableOption=4
 EnableOption=99
-DoSomethingExtra="PlantCookie:kevin_door_open:"
 LuaCode={
+    plant_cookie("kevin_door_open")
     change_obstacle("KevinsDoor", "opened")
 }
 

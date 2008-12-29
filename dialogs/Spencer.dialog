@@ -75,9 +75,9 @@ Subtitle=_"I've unlocked the accessway to the warehouse. It's to the north of th
 Subtitle=_"The stuff we need is on the first floor. Don't go any deeper, there are only bots in there."
 Subtitle=_"I wish you the best of luck."
 DisableOption=5
-DoSomethingExtra="AssignMission:5"
-DoSomethingExtra="OpenQuestDiaryEntry:M5E0:"
 LuaCode={
+    assign_mission(5)
+    open_diary_entry(5, 0)
     change_obstacle("AccessDoorToWarehouse", "opened")
 }
 ----------------------------------------------------------------------
@@ -124,9 +124,11 @@ Subtitle=_"Man, you really did it! I can hardly believe it, but all the bots are
 Subtitle=_"Take these 500 bucks as a reward.  And be assured that you've earned my deepest respect, Linarian."
 Subtitle=_"Our people are transporting the goods as we speak. It can't be too long until new bots from ships in the orbit of the planet will beam down to replace the dead bots."
 DisableOption=11
-DoSomethingExtra="AddGold:500"
-DoSomethingExtra="PlantCookie:reward_for_warehouse_given:"
-DoSomethingExtra="OpenQuestDiaryEntry:M5E1:"
+LuaCode={
+    add_gold(500)
+    plant_cookie("reward_for_warehouse_given")
+    open_diary_entry(5, 1)
+}
 
 ----------------------------------------------------------------------
 
@@ -252,9 +254,11 @@ Subtitle=_"I hope you will prove yourself a worthy member of the Red Guard."
 DisableOption=28
 DisableOption=3
 DisableOption=12
-DoSomethingExtra="AddBigScreenMessageBUT_WITH_TERMINATION_CHARACTER_PLEASE:Joined Town Guard!!:"
 DoSomethingExtra="MakeTuxTownGuardMember"
-DoSomethingExtra="PlantCookie:tux_has_joined_guard:"
+LuaCode={
+    display_big_message("Joined Town Guard!!")
+    plant_cookie("tux_has_joined_guard")
+}
 
 ----------------------------------------------------------------------
 
@@ -345,8 +349,8 @@ Subtitle=_"I wish you the best of luck for this operation. It might be that our 
 Subtitle=_"Try to get control over the disruptor shield if you can. The control droid should be somewhere on the lowest level of the installation. Simply destroying the droid might suffice in disabling the shield."
 DisableOption=39
 DisableOption=40
-DoSomethingExtra="AssignMission:8"
 LuaCode={
+    assign_mission(8)
     change_obstacle("DisruptorShieldBaseGate", "opened")
 }
 
@@ -389,7 +393,9 @@ Subtitle=_"Look for the entrance of the office in the crystal fields. I will sen
 Subtitle=_"Good luck."
 DisableOption=44
 EnableOption=45
-DoSomethingExtra="AssignMission:9"
+LuaCode={
+    assign_mission(9)
+}
 
 ----------------------------------------------------------------------
 

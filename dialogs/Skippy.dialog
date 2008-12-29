@@ -45,7 +45,9 @@ EnableOption=3
 New Option Nr=1  OptionText=_" Show me some of those map-making devices."
 Subtitle=_"Sure! I've got one that will perfectly fit your head."
 EnableOption=1
-DoSomethingExtra="InitTradeWithCharacter:Skippy"
+LuaCode={
+    trade_with("Skippy")
+}
 
 ----------------------------------------------------------------------
 
@@ -89,7 +91,9 @@ New Option Nr=6  OptionText=_" I still do not trust you. You are selling junk to
 Subtitle=_"WHAT? Fine, you can forget about my great deals now! I don't want to trade with you anymore!"
 Subtitle=_"I'm no longer your best friend. Go away, you dirty hoser!"
 DisableOption=6
-DoSomethingExtra="PlantCookie:skippy_angry"
+LuaCode={
+    plant_cookie("skippy_angry")
+}
 DoSomethingExtra="EndDialog"
 
 ----------------------------------------------------------------------

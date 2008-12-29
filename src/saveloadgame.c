@@ -625,7 +625,7 @@ void read_int16_t(const char * buffer, const char * tag, int16_t * val)
     *val = valt;
 }
 
-void read_char(const char * buffer, const char * tag, signed char * val)
+void read_char(const char * buffer, const char * tag, char * val)
 {
     int32_t valt;
     read_int32_t(buffer, tag, &valt);

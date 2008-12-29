@@ -116,7 +116,9 @@ Subtitle=_"I will tell you everything."
 DisableOption=9
 EnableOption=5
 DisableOption=99
-DoSomethingExtra="PlantCookie:bruce_hurt"
+LuaCode={
+    plant_cookie("bruce_hurt")
+}
 
 ----------------------------------------------------------------------
 

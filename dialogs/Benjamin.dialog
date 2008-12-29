@@ -63,7 +63,9 @@ Subtitle=_"Hmm... There might be something in that idea. I will think about it."
 DisableOption=4
 DisableOption=5
 DisableOption=3
-DoSomethingExtra="PlantCookie:Ben_better_beams:"
+LuaCode={
+    plant_cookie("Ben_better_beams")
+}
 
 ----------------------------------------------------------------------
 
@@ -72,7 +74,9 @@ Subtitle=_"Hmm... I will think about it. Hmm..."
 DisableOption=5
 DisableOption=3
 DisableOption=4
-DoSomethingExtra="PlantCookie:Ben_faster_shooting:"
+LuaCode={
+    plant_cookie("Ben_faster_shooting")
+}
 
 ----------------------------------------------------------------------
 
@@ -81,7 +85,9 @@ Subtitle=_"Yeah, maybe you are right. I will think about it."
 DisableOption=4
 DisableOption=3
 DisableOption=5
-DoSomethingExtra="PlantCookie:Ben_something_else:"
+LuaCode={
+    plant_cookie("Ben_something_else")
+}
 
 ----------------------------------------------------------------------
 

@@ -60,7 +60,9 @@ DisableOption=2
 New Option Nr=5  OptionText=_" With pleasure."
 DisableOption=5
 DoSomethingExtra="DropDead"
-DoSomethingExtra="ForceBotRespawnOnLevel:18"
+LuaCode={
+    respawn_level(18)
+}
 
 ----------------------------------------------------------------------
 
@@ -73,7 +75,9 @@ DisableOption=6
 EnableOption=99
 EnableOption=20
 EnableOption=10
-DoSomethingExtra="PlantCookie:koan_spared"
+LuaCode={
+    plant_cookie("koan_spared")
+}
 
 ----------------------------------------------------------------------
 

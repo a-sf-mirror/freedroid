@@ -161,8 +161,10 @@ EnableOption=17
 New Option Nr=17  OptionText=_"I will disable guns for you."
 Subtitle=_"Thanks... please be careful. You will not be able to access the control center directly, it is behind a triple hermetic door. Try using the service tunnels."
 DisableOption=17
-DoSomethingExtra="AssignMission:10"
-DoSomethingExtra="OpenQuestDiaryEntry:M10E0:"
+LuaCode={
+    assign_mission(10)
+    open_diary_entry(10, 0)
+}
 
 ----------------------------------------------------------------------
 
@@ -243,11 +245,13 @@ New Option Nr=27  OptionText=_"The sentry guns are off. You can go now!"
 Subtitle=_"Thanks, thanks a lot! Now I will be able to see sun, trees, rivers. I missed those so much!"
 Subtitle=_"I hope these books will help you survive in this world."
 DisableOption=27
-DoSomethingExtra="MarkMissionComplete:10"
-DoSomethingExtra="AddBigScreenMessageBUT_WITH_TERMINATION_CHARACTER_PLEASE:Tania is now free!:"
-DoSomethingExtra="AddExperienceBonus:1500"
-DoSomethingExtra="GiveItem:Source Book of Check system integrity"
-DoSomethingExtra="GiveItem:Source Book of Sanctuary"
+LuaCode={
+    display_big_message("Tania is now free!")
+    give_xp(1500)
+    finish_mission(10)
+    give_item("Source Book of Check system integrity",1)
+    give_item("Source Book of Sanctuary",1)
+}
 
 ----------------------------------------------------------------------
 

@@ -91,9 +91,9 @@ Subtitle=_"Good luck. Oh, and please come back alive. Better come back with noth
 DisableOption=21
 EnableOption=31
 DisableOption=26
-DoSomethingExtra="GiveItem:Plasma Shockwave Emitter:2"
 LuaCode={
     change_obstacle("NorthernMaintainanceDoor", "opened")
+    give_item("Plasma Shockwave Emitter",2)
 }
 ----------------------------------------------------------------------
 
@@ -123,8 +123,10 @@ DisableOption=24
 EnableOption=21
 EnableOption=25
 EnableOption=26
-DoSomethingExtra="AssignMission:1"
-DoSomethingExtra="OpenQuestDiaryEntry:M1E0:"
+LuaCode={
+    assign_mission(1)
+    open_diary_entry(1, 0)
+}
 
 ----------------------------------------------------------------------
 
@@ -172,8 +174,10 @@ DisableOption=28
 DisableOption=29
 DisableOption=30
 LinkedTo=32
-DoSomethingExtra="OpenQuestDiaryEntry:M1E1:"
-DoSomethingExtra="PlantCookie:singularity_dead"
+LuaCode={
+    open_diary_entry(1, 1)
+    plant_cookie("singularity_dead")
+}
 
 ----------------------------------------------------------------------
 
@@ -184,9 +188,9 @@ Subtitle=_"The bots are our enemies, executioners, killers. Not even Ewald tells
 DisableOption=29
 DisableOption=28
 DisableOption=30
-DoSomethingExtra="OpenQuestDiaryEntry:M1E1:"
-DoSomethingExtra="PlantCookie:singularity_killed"
 LuaCode={
+    plant_cookie("singularity_killed")
+    open_diary_entry(1, 1)
     change_obstacle("NorthernMaintainanceDoor", "opened")
 }
 
@@ -197,12 +201,14 @@ Subtitle=_". . ."
 Subtitle=_"I think I understand. Yes, I do not like violence, myself. The bots may have the toolkit, I am sure there must be a second set of autotools kicking around somewhere."
 Subtitle=_"After all, it seems like they need them more than I do."
 Subtitle=_"I will try to contact them somehow. Maybe they would help us. Ah, we shall see. It would be great to have an ally against the other bots."
-DoSomethingExtra="OpenQuestDiaryEntry:M1E2:"
 DisableOption=30
 DisableOption=28
 DisableOption=29
-DoSomethingExtra="PlantCookie:singularity_saved"
-
+LuaCode={
+    plant_cookie("singularity_saved")
+    open_diary_entry(1, 2)
+}
+    
 ----------------------------------------------------------------------
 
 New Option Nr=31  OptionText=_" How did it happen that the bots took your tools away?"
@@ -225,8 +231,8 @@ Subtitle=_"With heavy heart I have to admit you are right. There are no friendly
 Subtitle=_"The tunnels are open. Good luck."
 Subtitle=_"I will talk to Spencer and ask him for a few attack teams. We will take care of the bots."
 DisableOption=33
-DoSomethingExtra="PlantCookie:singularity_killed"
 LuaCode={
+    plant_cookie("singularity_killed")
     change_obstacle("NorthernMaintainanceDoor", "opened")
 }
 
@@ -240,11 +246,12 @@ Subtitle=_"Here is some money, you deserve it for getting my toolkit back."
 Subtitle=_"Finally, I would like to say that the technical division is not interested in further cooperation with you, but I think you would fit very well in the military division. You should talk to them."
 Subtitle=_"I am sorry, but I must go now. My duties call."
 DisableOption=34
-DoSomethingExtra="AddGold:150"
-DoSomethingExtra="MarkMissionComplete:1"
-DoSomethingExtra="DeleteItem:Dixon's Toolbox"
-DoSomethingExtra="OpenQuestDiaryEntry:M1E4:"
-
+LuaCode={
+    add_gold(150)
+    finish_mission(1)
+    open_diary_entry(1, 4)
+    delete_item("Dixon's Toolbox", 1)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=35  OptionText=_" I got your toolkit. The bots were not a big problem."
@@ -254,13 +261,14 @@ Subtitle=_"With those little gadgets we will be able to automate a lot of those 
 Subtitle=_"Here is some money for your effort. And I am sure you will find this helmet useful too, it saved my life once, and I hope it saves yours one day."
 DisableOption=35
 DisableOption=36
-DoSomethingExtra="MarkMissionComplete:1"
-DoSomethingExtra="PlantCookie:singularity_dead"
-DoSomethingExtra="AddGold:100"
-DoSomethingExtra="GiveItem:Dixon's helmet"
-DoSomethingExtra="DeleteItem:Dixon's Toolbox"
-DoSomethingExtra="OpenQuestDiaryEntry:M1E5:"
-
+LuaCode={
+    add_gold(100)
+    finish_mission(1)
+    plant_cookie("singularity_dead")
+    delete_item("Dixon's Toolbox", 1)
+    open_diary_entry(1, 5)
+    give_item("Dixon's helmet",1)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=36  OptionText=_" I got your toolkit. You can buy it from me if you want."
@@ -279,7 +287,9 @@ DisableOption=37
 DisableOption=35
 EnableOption=41
 EnableOption=38
-DoSomethingExtra="PlantCookie:dixon_angry"
+LuaCode={
+    plant_cookie("dixon_angry")
+}
 
 ----------------------------------------------------------------------
 
@@ -289,11 +299,13 @@ Subtitle=_"Now get out of here. I am a pacifist, but I am willing to make a spec
 Subtitle=_"Get out of my sight."
 DisableOption=38
 DisableOption=41
-DoSomethingExtra="MarkMissionComplete:1"
-DoSomethingExtra="DeleteItem:Dixon's Toolbox"
-DoSomethingExtra="AddGold:250"
 DoSomethingExtra="EndDialog"
-DoSomethingExtra="OpenQuestDiaryEntry:M1E6:"
+LuaCode={
+    add_gold(250)
+    finish_mission(1)
+    open_diary_entry(1, 6)
+    delete_item("Dixon's Toolbox", 1)
+}
 
 ----------------------------------------------------------------------
 
@@ -302,11 +314,13 @@ Subtitle=_"I am not happy about this. I suggest you leave the city."
 Subtitle=_"Accidents... Happen."
 DisableOption=39
 DisableOption=42
-DoSomethingExtra="MarkMissionComplete:1"
-DoSomethingExtra="DeleteItem:Dixon's Toolbox"
-DoSomethingExtra="AddGold:350"
-DoSomethingExtra="OpenQuestDiaryEntry:M1E7:"
 DoSomethingExtra="EndDialog"
+LuaCode={
+    add_gold(350)
+    finish_mission(1)
+    open_diary_entry(1, 7)
+    delete_item("Dixon's Toolbox", 1)
+}
 
 ----------------------------------------------------------------------
 
@@ -315,12 +329,14 @@ Subtitle=_"Linarian. Now we part as usual. However should I ever see you after t
 Subtitle=_"I promise to kill you."
 Subtitle=_"Now take your money and get out of my face. I do not want to see you here ever again."
 DisableOption=40
-DoSomethingExtra="MarkMissionComplete:1"
-DoSomethingExtra="PlantCookie:dixon_very_angry"
-DoSomethingExtra="AddGold:400"
-DoSomethingExtra="DeleteItem:Dixon's Toolbox"
-DoSomethingExtra="OpenQuestDiaryEntry:M1E8:"
 DoSomethingExtra="EndDialog"
+LuaCode={
+    add_gold(400)
+    finish_mission(1)
+    plant_cookie("dixon_very_angry")
+    open_diary_entry(1, 8)
+    delete_item("Dixon's Toolbox", 1)
+}
 
 ----------------------------------------------------------------------
 
@@ -365,7 +381,9 @@ Subtitle=_"While I do not regret sparing the bots in the tunnels, the town suffe
 Subtitle=_"It makes me sad to see everything slowly wasting away. The bots are doing more damage than we can repair."
 Subtitle=_"This town has a few weeks left to live. After that we are all dead."
 DisableOption=45
-DoSomethingExtra="PlantCookie:dixon_one"
+LuaCode={
+    plant_cookie("dixon_one")
+}
 
 ----------------------------------------------------------------------
 
@@ -375,8 +393,10 @@ Subtitle=_"We are mass producing energy shields, creating more electric energy t
 Subtitle=_"Life is good right now."
 DisableOption=46
 EnableOption=47
-DoSomethingExtra="MarkMissionComplete:1"
-DoSomethingExtra="PlantCookie:dixon_saved_and_talked"
+LuaCode={
+    finish_mission(1)
+    plant_cookie("dixon_saved_and_talked")
+}
 
 ----------------------------------------------------------------------
 
@@ -386,7 +406,9 @@ Subtitle=_"I met someone who decided to join us in the fight against the MegaSys
 Subtitle=_"You will need a hacked computer. Type in 'ssh 10.83.13.230' as the superuser, and you will see what I mean."
 DisableOption=47
 EnableOption=48
-DoSomethingExtra="PlantCookie:got_singularity"
+LuaCode={
+    plant_cookie("got_singularity")
+}
 
 ----------------------------------------------------------------------
 
@@ -396,7 +418,9 @@ Subtitle=_"The Library of Alexandria, the Colossus of Rhodes, the Black Island..
 Subtitle=_"And this is just one of those things."
 Subtitle=_"Just go and see for yourself. Otherwise you will not believe me."
 DisableOption=48
-DoSomethingExtra="OpenQuestDiaryEntry:M1E3:"
+LuaCode={
+    open_diary_entry(1, 3)
+}
 
 ----------------------------------------------------------------------
 

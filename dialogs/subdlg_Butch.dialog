@@ -65,8 +65,8 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Of course. That, you might even survive."
 Subtitle=_"Take the accessway. I've unlocked the door. Good luck."
 DisableOption=4
-DoSomethingExtra="AssignMission:3"
 LuaCode={
+    assign_mission(3)
     change_obstacle("NoviceArenaAccessDoor", "opened")
 }
 
@@ -78,8 +78,8 @@ Subtitle=_"Ok. I've unlocked the door to the master arena now. But take care, th
 Subtitle=_"In fact, you should know that we've got a 711 battle bot in there. Its deadly disruptor flashes cannot be evaded."
 Subtitle=_"You should make sure you've got proper anti-disruptor devices on you or just kill it fast enough. Good luck!"
 DisableOption=5
-DoSomethingExtra="AssignMission:4"
 LuaCode={
+    assign_mission(4)
     change_obstacle("MasterArenaAccessDoor", "opened")
 }
 
@@ -90,7 +90,9 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"You've already completed the novice arena. But since you really want to have another go, I'll cause the bots to respawn now. There, it's done."
 Subtitle=_"But you also might want to try the master arena now, maybe? If so, just say so."
 DisableOption=6
-DoSomethingExtra="ForceBotRespawnOnLevel:29"
+LuaCode={
+    respawn_level(29)
+}
 
 ----------------------------------------------------------------------
 
@@ -131,7 +133,9 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"But you've already completed the master arena. Ok, but I can have the bots respawn for you now, so you can have another go!"
 Subtitle=_"But certainly you've earned yourself a reputation as arena master around here now and we respect that."
 DisableOption=11
-DoSomethingExtra="ForceBotRespawnOnLevel:30"
+LuaCode={
+    respawn_level(30)
+}
 
 ----------------------------------------------------------------------
 

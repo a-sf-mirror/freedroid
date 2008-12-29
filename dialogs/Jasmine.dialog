@@ -92,7 +92,9 @@ DisableOption=9
 New Option Nr=10  OptionText=_" See you later."
 Subtitle=_"Yeah. Whatever."
 DisableOption=10
-DoSomethingExtra="PlantCookie:jasmine_count1"
+LuaCode={
+    plant_cookie("jasmine_count")
+}
 DoSomethingExtra="EndDialog"
 
 ----------------------------------------------------------------------
@@ -100,7 +102,9 @@ DoSomethingExtra="EndDialog"
 New Option Nr=11  OptionText=_" See you later."
 Subtitle=_"Yeah. Whatever."
 DisableOption=11
-DoSomethingExtra="PlantCookie:jasmine_count2"
+LuaCode={
+    plant_cookie("jasmine_count")
+}
 DoSomethingExtra="EndDialog"
 
 ----------------------------------------------------------------------
@@ -121,7 +125,9 @@ Subtitle=_"Core dumped. System halted."
 DisableOption=13
 DoSomethingExtra="DropDead"
 DoSomethingExtra="BreakOffAndBecomeHostile"
-DoSomethingExtra="PlantCookie:jasmine_sigsegv"
+LuaCode={
+    plant_cookie("jasmine_sigsegv")
+}
 
 ----------------------------------------------------------------------
 

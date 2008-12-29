@@ -49,7 +49,6 @@ void Get_Item_Data ( char* DataPointer );
 // event.c
 void GetEventTriggers ( const char* EventsAndEventTriggersFilename );
 void ExecuteAction (char *code);
-void ExecuteActionWithLabel ( char* ActionLabel ) ;
 void CheckForTriggeredEventsAndStatements (void);
 int teleporter_square_below_mouse_cursor ( char* ItemDescText );
 
@@ -247,7 +246,7 @@ void LoadAndShowStats ( char* CoreFilename );
 /* Reading is slightly more difficult so we do it with functions */
 void read_int32_t(const char *, const char *, int32_t *);
 void read_int16_t(const char *, const char *, int16_t *);
-void read_char(const char *, const char *, signed char *);
+void read_char(const char *, const char *, char *);
 void read_uint32_t(const char *, const char *, uint32_t *);
 void read_uint16_t(const char *, const char *, uint16_t *);
 void read_uchar(const char *, const char *, unsigned char *);
@@ -519,7 +518,6 @@ void input_get_keybind(char *cmdname, SDLKey *key, SDLMod *mod);
 void input_set_keybind( char *keybind, SDLKey key, SDLMod mod);
 
 // menu.c 
-int ResolveDialogSectionToChatFlagsIndex ( char* SectionName );
 void clear_player_inventory_and_stats ( void );
 void StoreMenuBackground ( int backup_slot );
 void RestoreMenuBackground ( int backup_slot );
@@ -692,5 +690,11 @@ void list_splice(list_head_t *list, list_head_t *head);
 void list_splice_init(list_head_t *list, list_head_t *head);
 
 int load_texture_atlas ( const char *, const char *, char *filenames[], iso_image *, int ); 
+
+// chat.c
+void PlantCookie(const char *);
+void DeleteCookie (const char *);
+int ResolveDialogSectionToChatFlagsIndex (const char* SectionName );
+
 
 #endif

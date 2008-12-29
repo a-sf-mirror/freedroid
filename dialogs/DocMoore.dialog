@@ -42,7 +42,9 @@ New Option Nr=1  OptionText=_" Do you also trade in medical equipment?"
 Subtitle=_"Sure. Here is what I can offer today."
 EnableOption=1
 DisableOption=0
-DoSomethingExtra="InitTradeWithCharacter:DocMoore"
+LuaCode={
+    trade_with("DocMoore")
+}
 
 ----------------------------------------------------------------------
 
@@ -72,9 +74,11 @@ Subtitle=_"But remember, I'll only give you this help once, cause you didn't kno
 Subtitle=_"Should you take that junk again, I won't feel responsible for what happens to you any more."
 DisableOption=4
 DisableOption=2
-DoSomethingExtra="GiveItem:Brain Enlargement Pills Antidote"
-DoSomethingExtra="PlantCookie:doc_healed_tux:"
-DoSomethingExtra="OpenQuestDiaryEntry:M0E1:"
+LuaCode={
+    plant_cookie("doc_healed_tux")
+    open_diary_entry(0, 1)
+    give_item("Brain Enlargement Pills Antidote",1)
+}
 
 ----------------------------------------------------------------------
 
@@ -204,12 +208,19 @@ LinkedTo=27
 New Option Nr=27  OptionText=_" Good. I am very glad not to hear a disapproval."
 Subtitle=_" . . . "
 DisableOption=27
-DoSomethingExtra="GiveItem:Diet supplement:15"
-DoSomethingExtra="GiveItem:Doc-in-a-can:10"
-DoSomethingExtra="GiveItem:Antibiotic:10"
-DoSomethingExtra="GiveItem:Brain Enlargement Pills Antidote:5"
-DoSomethingExtra="GiveItem:Laserscalpel"
 DoSomethingExtra="DropDead"
+LuaCode={
+    give_item("Diet supplement",15)
+    give_item("Diet supplement",15)
+    give_item("Doc-in-a-can",10)
+    give_item("Antibiotic",10)
+    give_item("Brain Enlargement Pills Antidote",5)
+    give_item("Laserscalpel",1)
+    give_item("Doc-in-a-can",10)
+    give_item("Antibiotic",10)
+    give_item("Brain Enlargement Pills Antidote",5)
+    give_item("Laserscalpel",1)
+}
 
 ----------------------------------------------------------------------
 

@@ -107,7 +107,9 @@ New Option Nr=55  OptionText=_" Here you go."
 Subtitle=_"Thank you."
 DisableOption=55
 EnableOption=56
-DoSomethingExtra="PlantCookie:tybalt_bribe"
+LuaCode={
+    plant_cookie("tybalt_bribe")
+}
 
 ----------------------------------------------------------------------
 

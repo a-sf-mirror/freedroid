@@ -43,7 +43,9 @@ Subtitle=_"Yes. I am sure we can arrange something. Take a look."
 DisableOption=1
 EnableOption=2
 EnableOption=7
-DoSomethingExtra="InitTradeWithCharacter:Duncan"
+LuaCode={
+    trade_with("Duncan")
+}
 
 ----------------------------------------------------------------------
 
@@ -81,7 +83,9 @@ DisableOption=3
 New Option Nr=5  OptionText=_" I want to buy some grenades."
 Subtitle=_"Certainly."
 EnableOption=5
-DoSomethingExtra="InitTradeWithCharacter:Duncan"
+LuaCode={
+    trade_with("Duncan")
+}
 
 ----------------------------------------------------------------------
 
@@ -115,7 +119,9 @@ Subtitle=_"I know someone who needs to be taught a lesson."
 Subtitle=_"Interested?"
 DisableOption=51
 DoSomethingExtra="ExecuteSubdialog:subdlg_Duncan"
-DoSomethingExtra="PlantCookie:koan_quest"
+LuaCode={
+    plant_cookie("koan_quest")
+}
 
 ----------------------------------------------------------------------
 
@@ -218,7 +224,9 @@ Subtitle=_"May the ice bring you wisdom."
 EnableOption=98
 DisableOption=99
 DoSomethingExtra="EndDialog"
-DoSomethingExtra="PlantCookie:duncan_known"
+LuaCode={
+    plant_cookie("duncan_known")
+}
 
 ----------------------------------------------------------------------
 
@@ -227,7 +235,9 @@ Subtitle=_"See you later."
 EnableOption=99
 DisableOption=98
 DoSomethingExtra="EndDialog"
-DoSomethingExtra="PlantCookie:duncan_known"
+LuaCode={
+    plant_cookie("duncan_known")
+}
 
 ----------------------------------------------------------------------
 
