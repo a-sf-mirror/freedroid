@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: freedroid\n"
 "Report-Msgid-Bugs-To: freedroid-discussion@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-12-29 14:41+0100\n"
+"POT-Creation-Date: 2008-12-29 19:58+0100\n"
 "PO-Revision-Date: 2008-08-28 18:02+0000\n"
 "Last-Translator: Christian Widell <Christian_widell@hotmail.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -1245,46 +1245,11 @@ msgstr "Anfall"
 msgid "Damage"
 msgstr "Skada"
 
-#: ../src/chat.c:780
-msgid "Melee fighting ability improved!"
-msgstr ""
-
-#: ../src/chat.c:785
-msgid "Ranged combat ability improved!"
-msgstr ""
-
-#: ../src/chat.c:790
-msgid "Programming ability improved!"
-msgstr ""
-
-#: ../src/chat.c:889
-msgid "1 Item received (on floor)"
-msgstr "1 föremål mottaget (på golvet)"
-
-#: ../src/chat.c:893
-msgid "1 Item received!"
-msgstr "1 föremål mottaget!"
-
-#: ../src/chat.c:1001
-#, fuzzy, c-format
-msgid "+%d Experience Points"
-msgstr "Erfarenhet"
-
-#: ../src/chat.c:1043
-#, c-format
-msgid "%d bucks given"
-msgstr ""
-
-#: ../src/chat.c:1061
-#, fuzzy, c-format
-msgid "%d bucks received"
-msgstr "1 föremål mottaget!"
-
-#: ../src/chat.c:1520
+#: ../src/chat.c:1249
 msgid "Start of Dialog"
 msgstr ""
 
-#: ../src/chat.c:1570
+#: ../src/chat.c:1299
 msgid "What will you say?"
 msgstr "Vad ska du säga?"
 
@@ -1317,6 +1282,46 @@ msgstr "%s blev dödad av %s."
 #, c-format
 msgid "%s died."
 msgstr "%s dog."
+
+#: ../src/event.c:298
+msgid "Melee fighting ability improved!"
+msgstr ""
+
+#: ../src/event.c:301
+msgid "Ranged combat ability improved!"
+msgstr ""
+
+#: ../src/event.c:304
+msgid "Programming ability improved!"
+msgstr ""
+
+#: ../src/event.c:350
+msgid "1 Item received (on floor)"
+msgstr "1 föremål mottaget (på golvet)"
+
+#: ../src/event.c:354
+msgid "1 Item received!"
+msgstr "1 föremål mottaget!"
+
+#: ../src/event.c:401
+#, fuzzy, c-format
+msgid "+%d Experience Points"
+msgstr "Erfarenhet"
+
+#: ../src/event.c:411
+#, fuzzy, c-format
+msgid "%d training points spent!"
+msgstr "dricker en brygd!"
+
+#: ../src/event.c:422
+#, c-format
+msgid "Gained %d bucks!"
+msgstr ""
+
+#: ../src/event.c:423
+#, c-format
+msgid "Lost %d bucks!"
+msgstr ""
 
 #: ../src/hud.c:190
 #, c-format
@@ -3826,6 +3831,10 @@ msgstr "mästarlik"
 #: ../src/vars.h:132
 msgid "god"
 msgstr ""
+
+#, fuzzy
+#~ msgid "%d bucks received"
+#~ msgstr "1 föremål mottaget!"
 
 #, fuzzy
 #~ msgid "%s..."

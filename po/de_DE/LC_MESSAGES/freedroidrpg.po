@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: freedroidrpg\n"
 "Report-Msgid-Bugs-To: freedroid-discussion@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-12-29 14:41+0100\n"
+"POT-Creation-Date: 2008-12-29 19:58+0100\n"
 "PO-Revision-Date: 2008-10-04 00:24+0200\n"
 "Last-Translator: Ronny Standtke <Ronny.Standtke@gmx.net>\n"
 "Language-Team: Deutsch\n"
@@ -1255,46 +1255,11 @@ msgstr "Angriff"
 msgid "Damage"
 msgstr "Schaden"
 
-#: ../src/chat.c:780
-msgid "Melee fighting ability improved!"
-msgstr "Nahkampff‰higkeit verbessert!"
-
-#: ../src/chat.c:785
-msgid "Ranged combat ability improved!"
-msgstr "Schieﬂtechnik verbessert!"
-
-#: ../src/chat.c:790
-msgid "Programming ability improved!"
-msgstr "Programmierf‰higkeit verbessert!"
-
-#: ../src/chat.c:889
-msgid "1 Item received (on floor)"
-msgstr "1 Gegenstand erhalten (liegt auf dem Boden)."
-
-#: ../src/chat.c:893
-msgid "1 Item received!"
-msgstr "1 Gegenstand erhalten!"
-
-#: ../src/chat.c:1001
-#, c-format
-msgid "+%d Experience Points"
-msgstr "+%d Erfahrungspunkte."
-
-#: ../src/chat.c:1043
-#, c-format
-msgid "%d bucks given"
-msgstr "%d Tribucks gegeben."
-
-#: ../src/chat.c:1061
-#, c-format
-msgid "%d bucks received"
-msgstr "%d Tribucks erhalten."
-
-#: ../src/chat.c:1520
+#: ../src/chat.c:1249
 msgid "Start of Dialog"
 msgstr ""
 
-#: ../src/chat.c:1570
+#: ../src/chat.c:1299
 msgid "What will you say?"
 msgstr "Was wirst du sagen?"
 
@@ -1327,6 +1292,46 @@ msgstr "%s wurde ausgelˆscht von %s."
 #, c-format
 msgid "%s died."
 msgstr "%s ist erledigt."
+
+#: ../src/event.c:298
+msgid "Melee fighting ability improved!"
+msgstr "Nahkampff‰higkeit verbessert!"
+
+#: ../src/event.c:301
+msgid "Ranged combat ability improved!"
+msgstr "Schieﬂtechnik verbessert!"
+
+#: ../src/event.c:304
+msgid "Programming ability improved!"
+msgstr "Programmierf‰higkeit verbessert!"
+
+#: ../src/event.c:350
+msgid "1 Item received (on floor)"
+msgstr "1 Gegenstand erhalten (liegt auf dem Boden)."
+
+#: ../src/event.c:354
+msgid "1 Item received!"
+msgstr "1 Gegenstand erhalten!"
+
+#: ../src/event.c:401
+#, c-format
+msgid "+%d Experience Points"
+msgstr "+%d Erfahrungspunkte."
+
+#: ../src/event.c:411
+#, fuzzy, c-format
+msgid "%d training points spent!"
+msgstr "Trainingspunkte"
+
+#: ../src/event.c:422
+#, c-format
+msgid "Gained %d bucks!"
+msgstr ""
+
+#: ../src/event.c:423
+#, c-format
+msgid "Lost %d bucks!"
+msgstr ""
 
 #: ../src/hud.c:190
 #, c-format
@@ -4101,6 +4106,12 @@ msgstr "Groﬂmeister"
 #: ../src/vars.h:132
 msgid "god"
 msgstr "GOTT"
+
+#~ msgid "%d bucks given"
+#~ msgstr "%d Tribucks gegeben."
+
+#~ msgid "%d bucks received"
+#~ msgstr "%d Tribucks erhalten."
 
 #, fuzzy
 #~ msgid "%s..."
