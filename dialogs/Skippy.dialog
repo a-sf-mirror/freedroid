@@ -93,8 +93,8 @@ Subtitle=_"I'm no longer your best friend. Go away, you dirty hoser!"
 DisableOption=6
 LuaCode={
     plant_cookie("skippy_angry")
+    end_dialog()
 }
-DoSomethingExtra="EndDialog"
 
 ----------------------------------------------------------------------
 
@@ -143,15 +143,17 @@ DisableOption=92
 New Option Nr=98  OptionText=_" See you later."
 Subtitle=_"Don't come back. I hate you."
 EnableOption=98
-DoSomethingExtra="EndDialog"
-
+LuaCode={
+    end_dialog()
+}
 ----------------------------------------------------------------------
 
 New Option Nr=99  OptionText=_" See you later."
 Subtitle=_"Yes, we'll meet again, my friend, and I'll have other great deals for you."
 EnableOption=99
-DoSomethingExtra="EndDialog"
-
+LuaCode={
+    end_dialog()
+}
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

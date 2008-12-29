@@ -696,47 +696,7 @@ static void ExecuteChatExtra ( char* ExtraCommandString , Enemy ChatDroid )
     char tmp_filename [ 5000 ] ;
     char fpath[2048];
 
-    if ( ! strcmp ( ExtraCommandString , "BreakOffAndBecomeHostile" ) )
-	{
-	ChatDroid -> is_friendly = FALSE ;
-	chat_control_end_dialog = 1;
-	}
-    else if ( ! strcmp ( ExtraCommandString , "DropDead" ) )
-	{
-	hit_enemy(ChatDroid, ChatDroid->energy + 1, 0, -1, 0);
-	ChatDroid -> energy = 0;
-	chat_control_end_dialog = 1;
-	}
-    else if ( ! strcmp ( ExtraCommandString , "EverybodyBecomesHostile" ) )
-	{
-	enemy *erot;
-	BROWSE_ALIVE_BOTS(erot)	
-	    {
-	    erot -> is_friendly = FALSE ;
-	    }
-	SwitchBackgroundMusicTo(BIGFIGHT_BACKGROUND_MUSIC_SOUND);
-	}
-    else if ( ! strcmp ( ExtraCommandString , "SetCompletelyFixedProperty" ) )
-	{
-	ChatDroid -> CompletelyFixed = TRUE ;
-	ChatDroid -> follow_tux = FALSE;
-	}
-    else if ( ! strcmp ( ExtraCommandString , "SetFollowTuxProperty" ) )
-	{
-	ChatDroid -> follow_tux = TRUE ;
-	ChatDroid -> CompletelyFixed = FALSE ;
-	}
-    else if ( ! strcmp ( ExtraCommandString , "SetMoveFreelyProperty" ) )
-	{
-	ChatDroid -> CompletelyFixed = FALSE ;
-	ChatDroid -> follow_tux = FALSE ;
-	}
-    else if ( ! strcmp ( ExtraCommandString , "MakeTuxTownGuardMember" ) )
-	{
-	Me . is_town_guard_member = TRUE ;
-	Mission_Status_Change_Sound();
-	}
-    else if ( CountStringOccurences ( ExtraCommandString , "ExecuteSubdialog:" ) )
+    if ( CountStringOccurences ( ExtraCommandString , "ExecuteSubdialog:" ) )
 	{
 	strcpy ( tmp_filename , ExtraCommandString + strlen ( "ExecuteSubdialog:" ) ) ;
 	DebugPrintf( CHAT_DEBUG_LEVEL , "\nExtra invoked start of SUBDIALOG! with label: %s. Doing it... " ,
@@ -789,10 +749,6 @@ static void ExecuteChatExtra ( char* ExtraCommandString , Enemy ChatDroid )
 	if ( ! ChatDroid -> energy ) //if the droid was killed, end the chat
 	    chat_control_end_dialog = 1;
 
-	}
-    else if ( !strcmp ( ExtraCommandString , "EndDialog" ) )
-	{
-	chat_control_end_dialog = 1;
 	}
     else 
 	{
@@ -1483,8 +1439,7 @@ DialogPartnersTurnToEachOther ( Enemy ChatDroid )
  * function as soon as the player requests communication or there is a
  * friendly bot who rushes Tux and opens talk.
  */
-void 
-ChatWithFriendlyDroid( Enemy ChatDroid )
+void ChatWithFriendlyDroid( enemy * ChatDroid )
 {
     int i ;
     SDL_Rect Chat_Window;
@@ -1492,7 +1447,8 @@ ChatWithFriendlyDroid( Enemy ChatDroid )
     int ChatFlagsIndex = (-1);
     char fpath[2048];
     char tmp_filename[5000];
-    
+   
+    chat_control_chat_droid = ChatDroid; 
     //--------------------
     // Now that we know, that a chat with a friendly droid is planned, the 
     // friendly droid and the Tux should first turn to each other before the

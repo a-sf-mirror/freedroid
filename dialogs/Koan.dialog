@@ -59,8 +59,8 @@ DisableOption=2
 
 New Option Nr=5  OptionText=_" With pleasure."
 DisableOption=5
-DoSomethingExtra="DropDead"
 LuaCode={
+    drop_dead()
     respawn_level(18)
 }
 
@@ -111,9 +111,10 @@ DisableOption=20
 New Option Nr=99  OptionText=_" I will go now."
 Subtitle=_"This place will always wait for you."
 EnableOption=99
-DoSomethingExtra="CompletelyHealTux"
-DoSomethingExtra="EndDialog"
-
+LuaCode={
+    heal_tux()
+    end_dialog()
+}
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

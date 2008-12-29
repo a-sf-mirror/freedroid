@@ -164,8 +164,9 @@ DisableOption=13
 New Option Nr=99  OptionText=_" Thank you for your wise words."
 Subtitle=_"Feel free to come here any time you want."
 EnableOption=99
-DoSomethingExtra="EndDialog"
-
+LuaCode={
+    end_dialog()
+}
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

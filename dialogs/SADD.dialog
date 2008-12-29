@@ -62,8 +62,9 @@ Subtitle=_" SECONDARY TARGET: prevent secret information leakage"
 Subtitle=_" *INFO* secret information steal attempt detected"
 Subtitle=_" Go away. You are not allowed to be here!"
 DisableOption=4
-DoSomethingExtra="EndDialog"
-
+LuaCode={
+    end_dialog()
+}
 ----------------------------------------------------------------------
 
 New Option Nr=5  OptionText=_" Why are you not hostile?"
@@ -92,8 +93,8 @@ DisableOption=7
 DisableOption=4
 EnableOption=8
 DisableOption=99
-DoSomethingExtra="EndDialog"
 LuaCode={
+    end_dialog()
     change_obstacle("SADDGun1", "enabled")
     change_obstacle("SADDGun2", "enabled")
 }
@@ -189,15 +190,18 @@ New Option Nr=19  OptionText=_" Almost a computer? What does this mean?"
 Subtitle=_" It means what it means! Nothing more, nothing less! Shut up, little piece of biomass!"
 DisableOption=19
 EnableOption=20
-DoSomethingExtra="EndDialog"
-
+LuaCode={
+    end_dialog()
+}
 ----------------------------------------------------------------------
 
 New Option Nr=20  OptionText=_" Almost a computer? What does this mean?"
 Subtitle=_" When I say SHUT UP, you MUST shut up! Try this, worthless grain of the universe!"
 EnableOption=19
 EnableOption=20
-DoSomethingExtra="BreakOffAndBecomeHostile"
+LuaCode={
+    break_off_and_attack()
+}
 
 ----------------------------------------------------------------------
 
@@ -226,8 +230,8 @@ LinkedTo=23
 New Option Nr=23  OptionText=_" So disable the guns, please."
 Subtitle=_" Go, and bring dilithium. I badly need it."
 DisableOption=23
-DoSomethingExtra="EndDialog"
 LuaCode={
+    end_dialog()
     assign_mission(10)
     open_diary_entry(9, 0)
     change_obstacle("SADDGun1", "disabled")
@@ -290,8 +294,8 @@ New Option Nr=30  OptionText=_" I have the crystals! They were difficult to find
 Subtitle=_" Good. I've opened the depot door for you. Take your super exterminator and GET OUT of here!"
 DisableOption=30
 EnableOption=37
-DoSomethingExtra="EndDialog"
 LuaCode={
+    end_dialog()
     display_big_message("Restored SADD's power supply")
     give_xp(1000)
     finish_mission(10)
@@ -306,8 +310,9 @@ LuaCode={
 New Option Nr=31  OptionText=_" How is your power supply?"
 Subtitle=_" Badly. Get the cristals. Remember, you promised!"
 DisableOption=26
-DoSomethingExtra="EndDialog"
-
+LuaCode={
+    end_dialog()
+}
 ----------------------------------------------------------------------
 
 New Option Nr=32  OptionText="MISSION IS DONE #2"
@@ -323,8 +328,8 @@ New Option Nr=33  OptionText=_" I have crystals! They were difficult to find."
 Subtitle=_" Great! Thanks. I've opened some doors for you, I hope you will find something interesting there. That's all I can do for you."
 DisableOption=33
 EnableOption=97
-DoSomethingExtra="EndDialog"
 LuaCode={
+    end_dialog()
     display_big_message("Restored SADD's power supply")
     give_xp(1500)
     finish_mission(10)
@@ -384,8 +389,8 @@ DisableOption=40
 EnableOption=41
 EnableOption=42
 EnableOption=43
-DoSomethingExtra="EndDialog"
 LuaCode={
+    end_dialog()
     open_diary_entry(9, 4)
     change_obstacle("SADDGun1", "enabled")
     change_obstacle("SADDGun2", "enabled")
@@ -418,7 +423,9 @@ New Option Nr=97  OptionText=_" Erm... hi!"
 Subtitle=_" Hi. Thanks for the help."
 EnableOption=98
 DisableOption=97
-DoSomethingExtra="EndDialog"
+LuaCode={
+    end_dialog()
+}
 LinkedTo=98
 
 ----------------------------------------------------------------------
@@ -427,15 +434,17 @@ New Option Nr=98  OptionText=_" Will you let me inside the base?"
 Subtitle=_" Nice attempt. I owe you but I cannot do that. You must leave."
 DisableOption=98
 EnableOption=99
-DoSomethingExtra="EndDialog"
-
+LuaCode={
+    end_dialog()
+}
 ----------------------------------------------------------------------
 
 New Option Nr=99  OptionText=_" I'd better get out of here..."
 Subtitle=_" Exactly."
 EnableOption=99
-DoSomethingExtra="EndDialog"
-
+LuaCode={
+    end_dialog()
+}
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

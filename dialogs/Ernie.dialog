@@ -65,7 +65,9 @@ DisableOption=1
 DisableOption=2
 DisableOption=3
 EnableOption=99
-DoSomethingExtra="BreakOffAndBecomeHostile"
+LuaCode={
+    break_off_and_attack()
+}
 
 ----------------------------------------------------------------------
 

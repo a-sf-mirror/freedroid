@@ -75,8 +75,8 @@ EnableOption=10
 New Option Nr=10  OptionText=_" Yeah. I got him. I think this is your cube."
 Subtitle=_"Yes. I appreciate your help."
 DisableOption=10
-DoSomethingExtra="EndDialog"
 LuaCode={
+    end_dialog()
     give_xp(3000)
     delete_item("Pandora's Cube", 1)
 }
@@ -86,8 +86,9 @@ LuaCode={
 New Option Nr=20  OptionText=_" I could not find him anywhere in the desert. I don't think he is there anymore."
 Subtitle=_"I see."
 DisableOption=20
-DoSomethingExtra="EndDialog"
-
+LuaCode={
+    end_dialog()
+}
 ----------------------------------------------------------------------
 
 New Option Nr=30  OptionText=_" Yeah, I got him. Now, what is this big cube that you had me carry all the way here?"
@@ -119,15 +120,16 @@ EnableOption=50
 New Option Nr=50  OptionText=_" I don't like this at all. I'm getting out of here."
 Subtitle=_"As you wish."
 DisableOption=50
-DoSomethingExtra="EndDialog"
-
+LuaCode={
+    end_dialog()
+}
 ----------------------------------------------------------------------
 
 New Option Nr=60  OptionText=_" Hey, that is really neat. Here is your cube. Enjoy disassembling it and have fun with it."
 Subtitle=_"I will."
 DisableOption=60
-DoSomethingExtra="EndDialog"
 LuaCode={
+    end_dialog()
     give_xp(3000)
     delete_item("Pandora's Cube")
 }
@@ -137,8 +139,9 @@ LuaCode={
 New Option Nr=70  OptionText=_" WHAT? No way I am giving you a doomsday device! Forget about it."
 Subtitle=_"I understand. So be it."
 DisableOption=70
-DoSomethingExtra="EndDialog"
-
+LuaCode={
+    end_dialog()
+}
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

@@ -93,8 +93,9 @@ New Option Nr=5  OptionText="NOTHING IS SAID HERE."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"GET OUT OF HERE YOU IDIOT!"
 DisableOption=5
-DoSomethingExtra="EndDialog"
-
+LuaCode={
+    end_dialog()
+}
 ----------------------------------------------------------------------
 
 New Option Nr=6  OptionText="SHIELD DISABLED"
@@ -148,8 +149,9 @@ OnCondition="MissionComplete:8" JumpToOption=0 ElseGoto=5
 New Option Nr=11  OptionText="HF MISSION NOT YET ASSIGNED"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Nothing from Spencer, fat duck. Now leave."
-DoSomethingExtra="EndDialog"
-
+LuaCode={
+    end_dialog()
+}
 ----------------------------------------------------------------------
 
 New Option Nr=12  OptionText="HF MISSION ASSIGNED"
@@ -162,16 +164,17 @@ DisableOption=3
 DisableOption=9
 LuaCode={
     change_obstacle("MSAreaDoor", "opened")
+    end_dialog()
 }
-DoSomethingExtra="EndDialog"
 ----------------------------------------------------------------------
 
 New Option Nr=99  OptionText=_"Relax, I'm leaving."
 Subtitle=_"You better be. AND DON'T COME BACK!"
 DisableOption=2
 DisableOption=99
-DoSomethingExtra="EndDialog"
-
+LuaCode={
+    end_dialog()
+}
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

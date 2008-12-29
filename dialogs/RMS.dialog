@@ -90,8 +90,9 @@ DisableOption=9
 
 New Option Nr=99  OptionText=_" See you later."
 Subtitle=_"Take care, Linarian."
-DoSomethingExtra="EndDialog"
-
+LuaCode={
+    end_dialog()
+}
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

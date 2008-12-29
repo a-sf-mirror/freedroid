@@ -180,6 +180,7 @@ EXTERN event_trigger AllEventTriggers[ MAX_EVENT_TRIGGERS ];
 #endif
 int chat_control_next_node; //what is the next node to use?
 int chat_control_end_dialog; //end current dialog?
+enemy *chat_control_chat_droid; //droid we are chatting with
 
 #undef EXTERN
 #ifdef _sound_c

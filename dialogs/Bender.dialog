@@ -230,15 +230,18 @@ Subtitle=_"What? I'm not an idiot! Understood?"
 Subtitle=_"No one says I'm stupid! I'm NOT STUPID!"
 Subtitle=_"I'LL BEAT YOU TO SPLINTERS!"
 DisableOption=50
-DoSomethingExtra="BreakOffAndBecomeHostile"
+LuaCode={
+    break_off_and_attack()
+}
 
 ----------------------------------------------------------------------
 
 New Option Nr=99  OptionText=_" See you later."
 Subtitle=_"Later, man!"
 EnableOption=99
-DoSomethingExtra="EndDialog"
-
+LuaCode={
+    end_dialog()
+}
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

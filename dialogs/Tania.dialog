@@ -95,7 +95,9 @@ LinkedTo=9
 New Option Nr=8  OptionText=_"So you are a biologist? Could you heal me?"
 Subtitle=_"That would be something different from what I've done in the last months at least. Some entertainement."
 Subtitle=_"Let me take a look at that... it's nothing some nanobots could not take care of.... You will be all fixed up in a minute."
-DoSomethingExtra="CompletelyHealTux"
+LuaCode={
+    heal_tux()
+}
 
 ----------------------------------------------------------------------
 
@@ -269,8 +271,9 @@ DisableOption=29
 New Option Nr=99  OptionText=_"I think I have to go."
 Subtitle=_"That's ok. But please, please, come back. I'm so lonely."
 EnableOption=99
-DoSomethingExtra="EndDialog"
-
+LuaCode={
+    end_dialog()
+}
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

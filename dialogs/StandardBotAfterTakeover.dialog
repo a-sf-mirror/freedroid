@@ -48,7 +48,9 @@ DisableOption=1
 EnableOption=2
 EnableOption=3
 EnableOption=4
-DoSomethingExtra="SetCompletelyFixedProperty"
+LuaCode={
+    set_bot_state("fixed")
+}
 
 ----------------------------------------------------------------------
 
@@ -58,7 +60,9 @@ EnableOption=1
 DisableOption=2
 EnableOption=3
 EnableOption=4
-DoSomethingExtra="SetFollowTuxProperty"
+LuaCode={
+    set_bot_state("follow_tux")
+}
 
 ----------------------------------------------------------------------
 
@@ -68,7 +72,9 @@ EnableOption=1
 EnableOption=2
 DisableOption=3
 EnableOption=4
-DoSomethingExtra="SetMoveFreelyProperty"
+LuaCode={
+    set_bot_state("free")
+}
 
 ----------------------------------------------------------------------
 
@@ -135,8 +141,8 @@ New Option Nr=17  OptionText="EVERYTHING IS READY."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"()%#@(% THE BLADE IS YOURS. )##%*&%*!"
 DisableOption=17
-DoSomethingExtra="DropDead"
 LuaCode={
+    drop_dead()
     plant_cookie("tux_has_edge")
     give_item("Nobody's edge",1)
 }
@@ -146,14 +152,17 @@ LuaCode={
 New Option Nr=18  OptionText="NO."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=18
-DoSomethingExtra="DropDead"
+LuaCode={
+    drop_dead()
+}
 
 ----------------------------------------------------------------------
 
 New Option Nr=99  OptionText=_" logout"
 EnableOption=99
-DoSomethingExtra="EndDialog"
-
+LuaCode={
+    end_dialog()
+}
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

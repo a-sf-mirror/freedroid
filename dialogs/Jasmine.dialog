@@ -94,8 +94,8 @@ Subtitle=_"Yeah. Whatever."
 DisableOption=10
 LuaCode={
     plant_cookie("jasmine_count")
+    end_dialog()
 }
-DoSomethingExtra="EndDialog"
 
 ----------------------------------------------------------------------
 
@@ -104,8 +104,8 @@ Subtitle=_"Yeah. Whatever."
 DisableOption=11
 LuaCode={
     plant_cookie("jasmine_count")
+    end_dialog()
 }
-DoSomethingExtra="EndDialog"
 
 ----------------------------------------------------------------------
 
@@ -123,9 +123,8 @@ Subtitle=_"Kernel panic in module: Jasmine "
 Subtitle=_"Buffer overrun in anger.c:1532"
 Subtitle=_"Core dumped. System halted."
 DisableOption=13
-DoSomethingExtra="DropDead"
-DoSomethingExtra="BreakOffAndBecomeHostile"
 LuaCode={
+    drop_dead()
     plant_cookie("jasmine_sigsegv")
 }
 

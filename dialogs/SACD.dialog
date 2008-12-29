@@ -84,7 +84,9 @@ Subtitle=_"Cooling subsystems disabled."
 Subtitle=_"Warning! Spontaneous oxidization witH emis$ion of light aND heAt detecteddd in THE#main| procesIng unit,"
 Subtitle=_"SsTeM=#faiPure%^#n 3 S 1()$++"
 DisableOption=4
-DoSomethingExtra="DropDead"
+LuaCode={
+    drop_dead()
+}
 
 ----------------------------------------------------------------------
 
@@ -138,8 +140,9 @@ LuaCode={
 
 New Option Nr=99  OptionText=_" logout"
 EnableOption=99
-DoSomethingExtra="EndDialog"
-
+LuaCode={
+    end_dialog()
+}
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

@@ -53,8 +53,8 @@ Subtitle=_"Tux, if you ever find out who started the Great Assault... GIVE THEM 
 DisableOption=1
 DisableOption=2
 DisableOption=3
-DoSomethingExtra="EndDialog"
 LuaCode={
+    end_dialog()
     give_item("Two Barrel shotgun",1)
 }
 
@@ -66,8 +66,9 @@ Subtitle=_"So be it."
 DisableOption=2
 DisableOption=1
 DisableOption=3
-DoSomethingExtra="EndDialog"
-
+LuaCode={
+    end_dialog()
+}
 ----------------------------------------------------------------------
 
 New Option Nr=3  OptionText=_" Ha ha ha, You fell for it! You get nothing from me! Hahahahah!"
@@ -75,7 +76,9 @@ Subtitle=_"You... monster..."
 Subtitle=_"No one makes fun of Lily Stone's family store!"
 Subtitle=_"Say your prayers, you oversized duck!!!"
 DisableOption=3
-DoSomethingExtra="BreakOffAndBecomeHostile"
+LuaCode={
+    break_off_and_attack()
+}
 
 ----------------------------------------------------------------------
 

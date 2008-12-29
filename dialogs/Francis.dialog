@@ -183,8 +183,9 @@ New Option Nr=99  OptionText=_" Thanks for the help. I'll be going now."
 Subtitle=_"I am glad I could help you. You should be careful around here. Best head straight for our town."
 Subtitle=_"The path from this house should lead you directly to it."
 EnableOption=99
-DoSomethingExtra="EndDialog"
-
+LuaCode={
+    end_dialog()
+}
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

@@ -149,8 +149,9 @@ OnCondition="MissionAssigned:4" JumpToOption=10 ElseGoto=5
 New Option Nr=99  OptionText="BACK"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 EnableOption=99
-DoSomethingExtra="EndDialog"
-
+LuaCode={
+    end_dialog()
+}
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

@@ -139,8 +139,9 @@ DoSomethingExtra="ExecuteSubdialog:subdlg_Sorenson"
 New Option Nr=99  OptionText=_" I really must be going now. Goodbye."
 Subtitle=_"Please come back later, Linarian. We must talk again."
 EnableOption=99
-DoSomethingExtra="EndDialog"
-
+LuaCode={
+    end_dialog()
+}
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

@@ -113,7 +113,9 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"4444! 17 burn5! 7'm m3171n9! "
 Subtitle=_"44444444444444444!"
 DisableOption=43
-DoSomethingExtra="DropDead"
+LuaCode={
+    drop_dead()
+}
 
 ----------------------------------------------------------------------
 
@@ -138,7 +140,9 @@ New Option Nr=46  OptionText=_" X"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"N0! S7up1d illi73r4t3 p3n9u1n! D13!!"
 DisableOption=46
-DoSomethingExtra="BreakOffAndBecomeHostile"
+LuaCode={
+    break_off_and_attack()
+}
 
 ----------------------------------------------------------------------
 
@@ -154,7 +158,9 @@ LuaCode={
 New Option Nr=60  OptionText=_" Erm. I have a confession to make. My name is not Francis."
 Subtitle=_"N0000000000!!!!!!!"
 DisableOption=60
-DoSomethingExtra="BreakOffAndBecomeHostile"
+LuaCode={
+    break_off_and_attack()
+}
 
 ----------------------------------------------------------------------
 
@@ -167,9 +173,9 @@ LinkedTo=71
 
 New Option Nr=71  OptionText=_" W417... 1 f331... H0rr1b13..."
 DisableOption=71
-DoSomethingExtra="DropDead"
 LuaCode={
     improve_skill("programming")
+    drop_dead()
 }
 
 ----------------------------------------------------------------------
@@ -177,15 +183,18 @@ LuaCode={
 New Option Nr=98  OptionText=_" In blood? Yuck. I am not going to do this, blood is too messy for a binding legal contract. Forget about it."
 Subtitle=_"N00oo00oo0! T1m3 to d1e, m0rtal foo1!"
 DisableOption=98
-DoSomethingExtra="BreakOffAndBecomeHostile"
+LuaCode={
+    break_off_and_attack()
+}
 
 ----------------------------------------------------------------------
 
 New Option Nr=99  OptionText=_" There is no way I will sign something without reading it. Forget about it."
 Subtitle=_"N00oo00oo0! T1m3 to d1e, m0rta1 foo1!"
 DisableOption=99
-DoSomethingExtra="BreakOffAndBecomeHostile"
-
+LuaCode={
+    break_off_and_attack()
+}
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

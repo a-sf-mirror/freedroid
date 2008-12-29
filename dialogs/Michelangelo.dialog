@@ -287,8 +287,9 @@ DisableOption=42
 New Option Nr=99  OptionText=_" I'll be going then."
 Subtitle=_"See you later."
 EnableOption=99
-DoSomethingExtra="EndDialog"
-
+LuaCode={
+    end_dialog()
+}
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

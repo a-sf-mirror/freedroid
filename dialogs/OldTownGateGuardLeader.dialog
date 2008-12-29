@@ -71,16 +71,19 @@ DisableOption=1
 DisableOption=2
 DisableOption=3
 EnableOption=99
-DoSomethingExtra="EverybodyBecomesHostile"
-DoSomethingExtra="BreakOffAndBecomeHostile"
+LuaCode={
+    break_off_and_attack()
+    everybody_hostile()
+}
 
 ----------------------------------------------------------------------
 
 New Option Nr=99  OptionText=_" I'll be going then."
 Subtitle=_"Mhmmm."
 EnableOption=99
-DoSomethingExtra="EndDialog"
-
+LuaCode={
+    end_dialog()
+}
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

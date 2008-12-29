@@ -52,8 +52,9 @@ New Option Nr=99  OptionText=_" I'll be going, then."
 Subtitle=_"Goodbye."
 EnableOption=1
 EnableOption=99
-DoSomethingExtra="EndDialog"
-
+LuaCode={
+    end_dialog()
+}
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

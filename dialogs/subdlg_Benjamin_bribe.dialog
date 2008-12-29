@@ -72,8 +72,9 @@ DisableOption=11
 DisableOption=4
 DisableOption=7
 DisableOption=9
-DoSomethingExtra="EndDialog"
-
+LuaCode={
+    end_dialog()
+}
 ----------------------------------------------------------------------
 
 New Option Nr=4  OptionText=_" That is not a lot. Why there are so few of them right now?"
@@ -152,8 +153,9 @@ LuaCode={
 New Option Nr=99  OptionText=_" That is all I want to know."
 Subtitle=_"Very well. This conversation never happened."
 EnableOption=99
-DoSomethingExtra="EndDialog"
-
+LuaCode={
+    end_dialog()
+}
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

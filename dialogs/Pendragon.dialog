@@ -64,8 +64,9 @@ DoSomethingExtra="ExecuteSubdialog:subdlg_Pendragon"
 New Option Nr=99  OptionText=_" See you later."
 Subtitle=_"Have courage."
 EnableOption=99
-DoSomethingExtra="EndDialog"
-
+LuaCode={
+    end_dialog()
+}
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

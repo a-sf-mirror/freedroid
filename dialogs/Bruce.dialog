@@ -126,8 +126,9 @@ New Option Nr=10  OptionText=_" I have some bad memories too. I know how hard it
 Subtitle=_"Yes. And now I would like to go to sleep. Good night Linarian."
 DisableOption=10
 DisableOption=8
-DoSomethingExtra="EndDialog"
-
+LuaCode={
+    end_dialog()
+}
 ----------------------------------------------------------------------
 
 New Option Nr=50  OptionText="DID TUX HARM BRUCE?"
@@ -155,15 +156,17 @@ EnableOption=99
 New Option Nr=98  OptionText=_" I'll be going then."
 Subtitle=_". . ."
 EnableOption=98
-DoSomethingExtra="EndDialog"
-
+LuaCode={
+    end_dialog()
+}
 ----------------------------------------------------------------------
 
 New Option Nr=99  OptionText=_" I'll be going then."
 Subtitle=_"Good. I need sleep."
 EnableOption=99
-DoSomethingExtra="EndDialog"
-
+LuaCode={
+    end_dialog()
+}
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

@@ -271,8 +271,9 @@ New Option Nr=99  OptionText=_" I'll be off then."
 Subtitle=_"Be careful. The bots are in a foul mood today."
 Subtitle=_"Very easy to get killed. Very easy."
 EnableOption=99
-DoSomethingExtra="EndDialog"
-
+LuaCode={
+    end_dialog()
+}
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

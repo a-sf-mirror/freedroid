@@ -59,15 +59,17 @@ EnableOption=3
 New Option Nr=3  OptionText=_" I wish I knew what you are talking about."
 Subtitle=_"Verschwinde."
 DisableOption=3
-DoSomethingExtra="EndDialog"
-
+LuaCode={
+    end_dialog()
+}
 ----------------------------------------------------------------------
 
 New Option Nr=99  OptionText=_" I need to go now."
 Subtitle=_" . . ."
 EnableOption=99
-DoSomethingExtra="EndDialog"
-
+LuaCode={
+    end_dialog()
+}
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

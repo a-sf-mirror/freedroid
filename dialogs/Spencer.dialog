@@ -254,10 +254,10 @@ Subtitle=_"I hope you will prove yourself a worthy member of the Red Guard."
 DisableOption=28
 DisableOption=3
 DisableOption=12
-DoSomethingExtra="MakeTuxTownGuardMember"
 LuaCode={
     display_big_message("Joined Town Guard!!")
     plant_cookie("tux_has_joined_guard")
+    make_tux_red_guard()
 }
 
 ----------------------------------------------------------------------
@@ -409,8 +409,9 @@ New Option Nr=99  OptionText=_" I'll be going then."
 Subtitle=_"See you later."
 EnableOption=2
 EnableOption=99
-DoSomethingExtra="EndDialog"
-
+LuaCode={
+    end_dialog()
+}
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

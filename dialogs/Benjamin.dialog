@@ -140,8 +140,9 @@ DoSomethingExtra="ExecuteSubdialog:subdlg_Benjamin_bribe"
 New Option Nr=99  OptionText=_" I will be going then."
 Subtitle=_"See you later!"
 EnableOption=99
-DoSomethingExtra="EndDialog"
-
+LuaCode={
+    end_dialog()
+}
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

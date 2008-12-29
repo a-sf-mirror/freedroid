@@ -67,8 +67,9 @@ Subtitle=_"Finally."
 Subtitle=_"Don't come back."
 EnableOption=1
 EnableOption=99
-DoSomethingExtra="EndDialog"
-
+LuaCode={
+    end_dialog()
+}
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

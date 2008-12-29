@@ -57,8 +57,10 @@ EnableOption=3
 New Option Nr=3  OptionText=_" BANZAI! DIE DIE DIE!"
 Subtitle=_"Wha --"
 DisableOption=3
-DoSomethingExtra="DropDead"
-DoSomethingExtra="EverybodyBecomesHostile"
+LuaCode={
+    drop_dead()
+    everybody_hostile()
+}
 
 ----------------------------------------------------------------------
 
@@ -265,8 +267,9 @@ OnCondition="CookieIsPlanted:butch_enable_second_set:" JumpToOption=54 ElseGoto=
 New Option Nr=99  OptionText=_" I'll be going then."
 Subtitle=_"Sure."
 EnableOption=99
-DoSomethingExtra="EndDialog"
-
+LuaCode={
+    end_dialog()
+}
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

@@ -169,8 +169,9 @@ New Option Nr=15  OptionText=_" It's me."
 Subtitle=_"IDENTITY CONFIRMED. YOU MAY PASS."
 EnableOption=99
 DisableOption=15
-DoSomethingExtra="EndDialog"
-
+LuaCode={
+    end_dialog()
+}
 ----------------------------------------------------------------------
 
 New Option Nr=16  OptionText="THIS WILL NOT EVER BE VISIBLE"
@@ -222,8 +223,9 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"EOT ACKNOWLEDGED. CONNECTION CLOSED."
 Subtitle=_"GOODBYE."
 DisableOption=99
-DoSomethingExtra="EndDialog"
-
+LuaCode={
+    end_dialog()
+}
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

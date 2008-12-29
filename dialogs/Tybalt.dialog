@@ -165,7 +165,9 @@ New Option Nr=99  OptionText=_" See you later."
 Subtitle=_"Good riddance."
 EnableOption=2
 EnableOption=99
-DoSomethingExtra="EndDialog"
+LuaCode={
+    end_dialog()
+}
 
 ----------------------------------------------------------------------
 

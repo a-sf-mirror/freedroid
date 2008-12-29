@@ -299,8 +299,8 @@ Subtitle=_"Now get out of here. I am a pacifist, but I am willing to make a spec
 Subtitle=_"Get out of my sight."
 DisableOption=38
 DisableOption=41
-DoSomethingExtra="EndDialog"
 LuaCode={
+    end_dialog()
     add_gold(250)
     finish_mission(1)
     open_diary_entry(1, 6)
@@ -314,8 +314,8 @@ Subtitle=_"I am not happy about this. I suggest you leave the city."
 Subtitle=_"Accidents... Happen."
 DisableOption=39
 DisableOption=42
-DoSomethingExtra="EndDialog"
 LuaCode={
+    end_dialog()
     add_gold(350)
     finish_mission(1)
     open_diary_entry(1, 7)
@@ -329,8 +329,8 @@ Subtitle=_"Linarian. Now we part as usual. However should I ever see you after t
 Subtitle=_"I promise to kill you."
 Subtitle=_"Now take your money and get out of my face. I do not want to see you here ever again."
 DisableOption=40
-DoSomethingExtra="EndDialog"
 LuaCode={
+    end_dialog()
     add_gold(400)
     finish_mission(1)
     plant_cookie("dixon_very_angry")
@@ -542,7 +542,9 @@ Subtitle=_"LOST."
 Subtitle=_"FUCK MY LIFELONG PACIFISM. I WILL FUCKING KILL YOU NOW!"
 Subtitle=_"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA!"
 DisableOption=83
-DoSomethingExtra="BreakOffAndBecomeHostile"
+LuaCode={
+    break_off_and_attack()
+}
 
 ----------------------------------------------------------------------
 
@@ -579,8 +581,9 @@ DisableOption=46
 
 New Option Nr=99  OptionText=_" I must go now."
 EnableOption=99
-DoSomethingExtra="EndDialog"
-
+LuaCode={
+    end_dialog()
+}
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

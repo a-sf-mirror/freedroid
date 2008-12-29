@@ -223,8 +223,8 @@ New Option Nr=98  OptionText=_" I wish you cold winds."
 Subtitle=_"May the ice bring you wisdom."
 EnableOption=98
 DisableOption=99
-DoSomethingExtra="EndDialog"
 LuaCode={
+    end_dialog()
     plant_cookie("duncan_known")
 }
 
@@ -234,8 +234,8 @@ New Option Nr=99  OptionText=_" See you later."
 Subtitle=_"See you later."
 EnableOption=99
 DisableOption=98
-DoSomethingExtra="EndDialog"
 LuaCode={
+    end_dialog()
     plant_cookie("duncan_known")
 }
 

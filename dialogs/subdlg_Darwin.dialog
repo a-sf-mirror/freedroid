@@ -119,8 +119,8 @@ LuaCode={
     add_gold(-50)
     eat_training_points(1)
     plant_cookie("know_extract1")
+    end_dialog()
 }
-DoSomethingExtra="EndDialog"
 
 ----------------------------------------------------------------------
 
@@ -134,8 +134,8 @@ LuaCode={
     add_gold(-50)
     eat_training_points(1)
     plant_cookie("know_extract2")
+    end_dialog()
 }
-DoSomethingExtra="EndDialog"
 
 ----------------------------------------------------------------------
 
@@ -150,8 +150,8 @@ LuaCode={
     add_gold(-50)
     eat_training_points(1)
     plant_cookie("know_extract3")
+    end_dialog()
 }
-DoSomethingExtra="EndDialog"
 
 ----------------------------------------------------------------------
 
@@ -167,8 +167,8 @@ LuaCode={
     add_gold(-50)
     eat_training_points(1)
     plant_cookie("know_extract4")
+    end_dialog()
 }
-DoSomethingExtra="EndDialog"
 
 ----------------------------------------------------------------------
 
@@ -184,8 +184,8 @@ LuaCode={
     add_gold(-50)
     eat_training_points(1)
     plant_cookie("know_extract5")
+    end_dialog()
 }
-DoSomethingExtra="EndDialog"
 
 ----------------------------------------------------------------------
 
@@ -193,8 +193,9 @@ New Option Nr=75  OptionText="NO MORE LESSONS"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Nein, I told you everything I know about that. No use asking me twice, ja?"
 DisableOption=75
-DoSomethingExtra="EndDialog"
-
+LuaCode={
+    end_dialog()
+}
 ----------------------------------------------------------------------
 
 New Option Nr=76  OptionText="CHECK IF MONEY ENOUGH"
@@ -209,8 +210,9 @@ Subtitle=_"Hmmm..."
 Subtitle=_"Kein geld, Keine hilfe."
 Subtitle=_"Come back with some money."
 DisableOption=90
-DoSomethingExtra="EndDialog"
-
+LuaCode={
+    end_dialog()
+}
 ----------------------------------------------------------------------
 
 New Option Nr=91  OptionText="NO FREE POINTS"
@@ -219,14 +221,16 @@ Subtitle=_"Hmmm..."
 Subtitle=_"You look green. Toughen up. Get some experience, kill some bots."
 Subtitle=_"Then we can talk."
 DisableOption=91
-DoSomethingExtra="EndDialog"
-
+LuaCode={
+    end_dialog()
+}
 ----------------------------------------------------------------------
 
 New Option Nr=99  OptionText=_" Maybe another time."
 EnableOption=99
-DoSomethingExtra="EndDialog"
-
+LuaCode={
+    end_dialog()
+}
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

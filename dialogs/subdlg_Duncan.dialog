@@ -79,17 +79,18 @@ DisableOption=6
 New Option Nr=7  OptionText=_" That is all I need to know. I will find Koan."
 Subtitle=_"Only time will tell."
 EnableOption=7
-DoSomethingExtra="EndDialog"
 LuaCode={
     change_obstacle("DesertGate", "opened")
+    end_dialog()
 }
 ----------------------------------------------------------------------
 
 New Option Nr=99  OptionText=_" No, I don't find bloodshed a pleasurable activity."
 Subtitle=_"That is fine. I will find someone else."
 DisableOption=99
-DoSomethingExtra="EndDialog"
-
+LuaCode={
+    end_dialog()
+}
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

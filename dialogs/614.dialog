@@ -71,8 +71,9 @@ DisableOption=4
 New Option Nr=99  OptionText=_" See you later."
 Subtitle=_" Resuming guard program."
 EnableOption=99
-DoSomethingExtra="EndDialog"
-
+LuaCode={
+    end_dialog()
+}
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"
