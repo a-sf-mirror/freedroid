@@ -1094,11 +1094,12 @@ Freedroid was unable to determine the type of said condition.",
  *
  *
  */
-int
-ProcessThisChatOption ( int MenuSelection , int ChatPartnerCode , Enemy ChatDroid )
+static void ProcessThisChatOption ( int MenuSelection , int ChatPartnerCode , Enemy ChatDroid )
 {
     int i;
-    int enddialog = 0;
+    //reset chat control variables for this option
+    chat_control_end_dialog = 0;
+    chat_control_next_node = -1; 
 
     //--------------------
     // Now a menu section has been made.  We do the reaction:
@@ -1171,10 +1172,10 @@ ProcessThisChatOption ( int MenuSelection , int ChatPartnerCode , Enemy ChatDroi
 		      ChatRoster [ MenuSelection ] . extra_list[i] );
 	
 	if ( ExecuteChatExtra ( ChatRoster [ MenuSelection ] . extra_list[i] , ChatDroid ) == 1 )
-		enddialog = 1;
+		chat_control_end_dialog = 1;
 	
 	if ( ! ChatDroid -> is_friendly )
-		enddialog = 1 ;
+		chat_control_end_dialog = 1 ;
 	
 	//--------------------
 	// It can't hurt to have the overall background redrawn after each extra command
@@ -1183,11 +1184,8 @@ ProcessThisChatOption ( int MenuSelection , int ChatPartnerCode , Enemy ChatDroi
     }
 
     if (ChatRoster[MenuSelection].lua_code) {
-	ExecuteAction(ChatRoster[MenuSelection].lua_code);
+	run_lua(ChatRoster[MenuSelection].lua_code);
     }
-
-    if (Me.energy <= 0)
-	return 1;
 
     //--------------------
     // Maybe there was an ON-GOTO-CONDITION specified for this option.
@@ -1200,24 +1198,20 @@ ProcessThisChatOption ( int MenuSelection , int ChatPartnerCode , Enemy ChatDroi
 	{
 	    DebugPrintf( CHAT_DEBUG_LEVEL , "...SEEMS TRUE... CONTINUING AT OPTION: %d. " , 
 			 ChatRoster [ MenuSelection ] . on_goto_first_target );
-	    MenuSelection = ChatRoster [ MenuSelection ] . on_goto_first_target ;
+	    chat_control_next_node = ChatRoster [ MenuSelection ] . on_goto_first_target ;
 	}
 	else
 	{
 	    DebugPrintf( CHAT_DEBUG_LEVEL , "...SEEMS FALSE... CONTINUING AT OPTION: %d. " , 
 			 ChatRoster [ MenuSelection ] . on_goto_second_target );
-	    MenuSelection = ChatRoster [ MenuSelection ] . on_goto_second_target ;
+	    chat_control_next_node = ChatRoster [ MenuSelection ] . on_goto_second_target ;
 	}
-	enddialog = ProcessThisChatOption ( MenuSelection , ChatPartnerCode , ChatDroid );
     }
     else if ( ChatRoster [ MenuSelection ] . link_target )
     {
-        MenuSelection = ChatRoster [ MenuSelection ] . link_target ;
-        enddialog = ProcessThisChatOption ( MenuSelection , ChatPartnerCode , ChatDroid );
+        chat_control_next_node = ChatRoster [ MenuSelection ] . link_target ;
     }
 
-return (enddialog);  
-  
 }; // int ProcessThisChatOption ( int MenuSelection , int ChatPartnerCode , Enemy ChatDroid )
 
 
@@ -1232,10 +1226,13 @@ DoChatFromChatRosterData( int ChatPartnerCode , Enemy ChatDroid , int clear_prot
 {
     int i ;
     SDL_Rect Chat_Window;
-    int MenuSelection = (-1) ;
     char* DialogMenuTexts[ MAX_ANSWERS_PER_PERSON ];
     char enemy_started_the_talk =  (ChatDroid -> will_rush_tux );
     SDL_Event event;
+
+    // Reset chat control variables. Not necessary but this is a protection.
+    chat_control_end_dialog = 0;
+    chat_control_next_node = -1;
 
     //--------------------
     // We always should clear the chat protocol.  Only for SUBDIALOGS it is
@@ -1277,44 +1274,42 @@ DoChatFromChatRosterData( int ChatPartnerCode , Enemy ChatDroid , int clear_prot
 	if ( ChatRoster [ i ] . always_execute_this_option_prior_to_dialog_start )
 	{
 	    DebugPrintf ( CHAT_DEBUG_LEVEL , "\nExecuting option no. %d prior to dialog start.\n" , i );
-	    if (( ProcessThisChatOption ( i , ChatPartnerCode , ChatDroid ) == 1))
+	    ProcessThisChatOption ( i , ChatPartnerCode , ChatDroid );
+	    if (chat_control_end_dialog)
 		goto wait_click_and_out;
 	}
     }
+	
+    if ( enemy_started_the_talk )
+	{
+	chat_control_next_node = 0 ;
+	enemy_started_the_talk = 0;
+	}
    
     while (1)
-    {
-	//--------------------
-	// Now maybe this is one of the bots that is rushing the Tux!  Then of course
-	// we won't do the first selection, but instead immediately call the very first
-	// dialog option and then continue with normal dialog.
-	//
-	if ( enemy_started_the_talk )
 	{
-	    MenuSelection = 0 ;
-	    enemy_started_the_talk = 0;
-	}
-	else
-	{
-	    MenuSelection = ChatDoMenuSelectionFlagged ( _("What will you say?") , DialogMenuTexts , Me . Chat_Flags [ ChatPartnerCode ]  , 1 , -1 , FPS_Display_BFont , ChatDroid );
+	if (chat_control_next_node == -1)
+	    {
+	    chat_control_next_node = ChatDoMenuSelectionFlagged ( _("What will you say?") , DialogMenuTexts , Me . Chat_Flags [ ChatPartnerCode ]  , 1 , -1 , FPS_Display_BFont , ChatDroid );
 	    //--------------------
 	    // We do some correction of the menu selection variable:
 	    // The first entry of the menu will give a 1 and so on and therefore
 	    // we need to correct this to more C style.
 	    //
-	    MenuSelection --;
-	}
-	if ( ( MenuSelection >= MAX_ANSWERS_PER_PERSON ) || ( MenuSelection < 0 ) )
-	{
-	    DebugPrintf ( 0 , "%s: Error: MenuSelection %i out of range!\n" , __FUNCTION__, MenuSelection );
-	    MenuSelection = END_ANSWER ;
-	}
+	    chat_control_next_node --;
+	    }
 	
-	if (( ProcessThisChatOption ( MenuSelection , ChatPartnerCode , ChatDroid ) )  ==  1 )	{
+	if ( ( chat_control_next_node >= MAX_ANSWERS_PER_PERSON ) || ( chat_control_next_node < 0 ) )
+	    {
+	    DebugPrintf ( 0 , "%s: Error: chat_control_next_node %i out of range!\n" , __FUNCTION__, chat_control_next_node );
+	    chat_control_next_node = END_ANSWER ;
+	    }
+
+	ProcessThisChatOption ( chat_control_next_node , ChatPartnerCode , ChatDroid );
+	
+	if (chat_control_end_dialog)
 	    goto wait_click_and_out;
 	}
-	
-    }
     
 wait_click_and_out:   
     while(1) {

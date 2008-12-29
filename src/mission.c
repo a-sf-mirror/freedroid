@@ -609,7 +609,7 @@ CheckIfMissionIsComplete (void)
 	    Me.AllMissions[ mis_num ].MissionIsComplete = TRUE;
 	    Mission_Status_Change_Sound ( );
 	    if (Me.AllMissions[ mis_num ].completion_lua_code)
-		ExecuteAction(Me.AllMissions[ mis_num ].completion_lua_code);
+		run_lua(Me.AllMissions[ mis_num ].completion_lua_code);
 	}
 	
     } // for AllMissions
@@ -639,7 +639,7 @@ There was a mission number received that is outside the range of allowed values.
     Me . AllMissions [ MissNum ] . MissionWasAssigned = TRUE;
    
     if (Me . AllMissions [ MissNum ] . assignment_lua_code)
-       ExecuteAction(Me.AllMissions[ MissNum ].assignment_lua_code);
+       run_lua(Me.AllMissions[ MissNum ].assignment_lua_code);
 
     //--------------------
     // We also make visible the very first of the mission diary enties. 
