@@ -177,7 +177,7 @@ void respawn_level ( int level_num )
  * should be a function to conveniently resolve a given label within a
  * given map.  That's what this function is supposed to do.
  */
-static void ResolveMapLabelOnLevel ( char* MapLabel , location* PositionPointer , int LevelNum )
+static void ResolveMapLabelOnLevel ( const char* MapLabel , location* PositionPointer , int LevelNum )
 {
     Level ResolveLevel = curShip . AllLevels [ LevelNum ] ;
     int i;
@@ -208,8 +208,7 @@ static void ResolveMapLabelOnLevel ( char* MapLabel , location* PositionPointer 
  * This is the ultimate function to resolve a given label within a
  * given SHIP.
  */
-void
-ResolveMapLabelOnShip ( char* MapLabel , location* PositionPointer )
+void ResolveMapLabelOnShip ( const char* MapLabel , location* PositionPointer )
 {
     int i ;
     

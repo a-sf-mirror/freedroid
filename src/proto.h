@@ -303,7 +303,7 @@ void quest_browser_enable_new_diary_entry ( int mis_num , int mis_diary_entry_nu
 // map.c 
 void respawn_level ( int level_num );
 void glue_obstacles_to_floor_tiles_for_level ( int level_num );
-void ResolveMapLabelOnShip ( char* MapLabel , location* PositionPointer );
+void ResolveMapLabelOnShip (const char* MapLabel , location* PositionPointer );
 void CollectAutomapData ( void ) ;
 int smash_obstacle ( float x , float y );
 void AnimateTeleports (void);
@@ -569,8 +569,8 @@ void ShowDebugInfos (void);
 Sint16 ReadSint16 (void * memory);
 void endian_swap(char * pdata, size_t dsize, size_t nelements);
 uint32_t pot_gte( uint32_t v );
-obstacle * give_pointer_to_obstacle_with_label ( char* obstacle_label ); 
-int give_level_of_obstacle_with_label ( char* obstacle_label );
+obstacle * give_pointer_to_obstacle_with_label (const char* obstacle_label ); 
+int give_level_of_obstacle_with_label (const char* obstacle_label );
 
 // enemy.c 
 void robot_group_turn_hostile ( enemy * );
@@ -598,11 +598,11 @@ int TeleportToRandomWaypoint(enemy *, level *, char *);
 
 // text.c 
 void show_backgrounded_label_at_map_position ( char* LabelText , float fill_status , float pos_x , float pos_y , int zoom_is_on );
-void show_backgrounded_text_rectangle ( char* text , int x , int y , int w , int h );
+void show_backgrounded_text_rectangle (const char* text , int x , int y , int w , int h );
 char * GetEditableStringInPopupWindow ( int MaxLen , char* PopupWindowTitle , char* DefaultString );
 void GiveMouseAlertWindow ( const char* WindowText ) ;
 int CutDownStringToMaximalSize ( char* StringToCut , int LengthInPixels );
-void SetNewBigScreenMessage( char* ScreenMessageText );
+void SetNewBigScreenMessage(const char* ScreenMessageText );
 void DisplayBigScreenMessage( void );
 void ChatWithFriendlyDroid( Enemy ChatDroid );
 void EnemyHitByBulletText( enemy * );
@@ -639,7 +639,7 @@ void DisplayBanner ( void );
 int get_days_of_game_duration ( float current_game_date );
 int get_hours_of_game_duration ( float current_game_date );
 int get_minutes_of_game_duration ( float current_game_date );
-void append_new_game_message ( char* game_message_text );
+void append_new_game_message (const char* game_message_text );
 void display_current_game_message_window ( void );
 void toggle_game_config_screen_visibility ( int screen_visible );
 

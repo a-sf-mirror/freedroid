@@ -86,8 +86,7 @@ show_backgrounded_label_at_map_position ( char* LabelText , float fill_status , 
  *
  *
  */
-void
-show_backgrounded_text_rectangle ( char* text , int x , int y , int w , int h )
+void show_backgrounded_text_rectangle (const char* text , int x , int y , int w , int h )
 {
     SDL_Rect TargetRect;
 
@@ -313,7 +312,7 @@ ScrollText (char *Text, int background_code )
  * is counted.
  */
 void
-SetNewBigScreenMessage( char* ScreenMessageText )
+SetNewBigScreenMessage(const char* ScreenMessageText )
 {
     int i = MAX_BIG_SCREEN_MESSAGES - 1;
 

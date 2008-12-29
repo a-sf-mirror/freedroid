@@ -1380,7 +1380,7 @@ get_days_of_game_duration ( float current_game_date )
  *
  */
 void
-append_new_game_message ( char* game_message_text )
+append_new_game_message (const char* game_message_text )
 {
     if ( game_message_protocol == NULL )
     {

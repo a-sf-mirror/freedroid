@@ -1531,7 +1531,7 @@ void Terminate (int ExitCode)
  *
  *
  */
-obstacle *give_pointer_to_obstacle_with_label ( char* obstacle_label ) 
+obstacle *give_pointer_to_obstacle_with_label ( const char* obstacle_label ) 
 {
   int i, j , k;
 
@@ -1589,7 +1589,7 @@ The obstacle label given was NOT found in any levels obstacle label list." ,
  *
  *
  */
-int give_level_of_obstacle_with_label ( char* obstacle_label ) 
+int give_level_of_obstacle_with_label (const char* obstacle_label ) 
 {
   int i, j , k;
 
