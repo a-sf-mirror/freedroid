@@ -122,7 +122,7 @@ LuaCode={
 * End of trigger *
 
 * New event trigger *
-Name="FIXME1"
+Name="Back to Kevin's garden"
 Trigger at label="TeleportBackToSecondCombatLevel"
 Silent=0
 LuaCode={
