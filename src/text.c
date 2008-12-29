@@ -782,7 +782,7 @@ GetEditableStringInPopupWindow ( int MaxLen , char* PopupWindowTitle , char* Def
 	
 	key = getchar_raw (NULL);  
 	
-	if (key == SDLK_RETURN) 
+	if (key == SDLK_RETURN || key == SDLK_KP_ENTER) 
 	{
 	    // input[curpos] = 0;
 	    finished = TRUE;
