@@ -1171,9 +1171,10 @@ DoChatFromChatRosterData( int ChatPartnerCode , Enemy ChatDroid , int clear_prot
     char enemy_started_the_talk =  (ChatDroid -> will_rush_tux );
     SDL_Event event;
 
-    // Reset chat control variables. Not necessary but this is a protection.
+    // Reset chat control variables.
     chat_control_end_dialog = 0;
     chat_control_next_node = -1;
+    chat_control_partner_code = ChatPartnerCode;
 
     //--------------------
     // We always should clear the chat protocol.  Only for SUBDIALOGS it is

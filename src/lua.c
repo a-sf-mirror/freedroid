@@ -453,6 +453,20 @@ static int lua_chat_end_dialog(lua_State *L)
     return 0;
 }
 
+static int lua_chat_enable_node(lua_State *L)
+{
+    int flag = luaL_checkinteger(L, 1); 
+    Me.Chat_Flags[chat_control_partner_code][flag] = 1;
+    return 0;
+}
+
+static int lua_chat_disable_node(lua_State *L)
+{
+    int flag = luaL_checkinteger(L, 1); 
+    Me.Chat_Flags[chat_control_partner_code][flag] = 0;
+    return 0;
+}
+
 static int lua_chat_break_off_and_attack(lua_State *L)
 {
     chat_control_chat_droid->is_friendly = FALSE;
@@ -541,6 +555,9 @@ luaL_reg lfuncs[] = {
 
     { "set_next_node", lua_chat_set_next_node },
     { "end_dialog", lua_chat_end_dialog },
+    { "enable_node", lua_chat_enable_node },
+    { "disable_node", lua_chat_disable_node },
+
     { "break_off_and_attack", lua_chat_break_off_and_attack },
     { "drop_dead", lua_chat_drop_dead },
     { "everybody_hostile", lua_chat_everybody_hostile },
