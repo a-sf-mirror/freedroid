@@ -30,6 +30,13 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
+Initialization LuaCode={
+    enable_node(0, 50, 60, 90, 96)
+}
+
+----------------------------------------------------------------------
+
+
 New Option Nr=0  OptionText=_" Hi... Erm... Who are you?"
 Subtitle=_"Duncan McNamara, The Red Guard's resident bomb maker, at your service."
 DisableOption=0

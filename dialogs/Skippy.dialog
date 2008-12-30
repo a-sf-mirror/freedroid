@@ -30,6 +30,13 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
+Initialization LuaCode={
+    enable_node=(0, 90, 99)
+}
+
+----------------------------------------------------------------------
+
+
 New Option Nr=0  OptionText=_" Hi! I'm new here."
 Subtitle=_"Great! A newcomer! Welcome! Welcome! I'm Skippy, and I'm your new best friend!"
 Subtitle=_"And as a special favour I'll sell you a mapping device for half price!"

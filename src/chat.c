@@ -95,6 +95,7 @@ struct {
 };
 
 dialogue_option ChatRoster[MAX_DIALOGUE_OPTIONS_IN_ROSTER];
+char * chat_initialization_code;
 EXTERN char *PrefixToFilename[ ENEMY_ROTATION_MODELS_AVAILABLE ];
 char* chat_protocol = NULL ;
 
@@ -301,7 +302,16 @@ static void LoadDialog ( char* FullPathAndFullFilename )
     //
     ChatData = ReadAndMallocAndTerminateFile( fpath , CHAT_CHARACTER_END_STRING ) ;
     SectionPointer = ChatData ;
-    
+   
+    //--------------------
+    // Read the initialization code
+    //
+    if(chat_initialization_code) {
+	free(chat_initialization_code);
+	chat_initialization_code = NULL;
+    }
+    chat_initialization_code = ReadAndMallocStringFromData(SectionPointer, "Initialization LuaCode={", "}");
+
     //--------------------
     // At first we go take a look on how many options we have
     // to decode from this section.
@@ -709,38 +719,19 @@ static void ExecuteChatExtra ( char* ExtraCommandString , Enemy ChatDroid )
 	
 	LoadDialog ( fpath );
 
-	int i, j;
+	// we always initialize subdialogs..
+	//
+	int i;
 	for (i = 0; i < MAX_ANSWERS_PER_PERSON; i ++)
 	    {
-	    Me . Chat_Flags [ PERSON_SUBDIALOG_DUMMY    ] [ i ] = (ChatRoster [ i ] . enabled );
+	    Me . Chat_Flags [ PERSON_SUBDIALOG_DUMMY    ] [ i ] = 0;
 	    }
 
-	for (i = 0; i < MAX_ANSWERS_PER_PERSON; i ++)
-	    {
-	    for (j = 0; j < MAX_ANSWERS_PER_PERSON; j ++)
-		{
-		if( i == (ChatRoster [ i ] . change_option_nr [ j ])) continue;
-		if(ChatRoster [ i ] . change_option_nr [ j ] > 0  &&  ChatRoster [ i ] . change_option_to_value [ j ] == 1)
-		    {
-		    Me . Chat_Flags [ PERSON_SUBDIALOG_DUMMY ] [ ChatRoster [ i ] . change_option_nr [ j ] ] = 0;
-		    }
-		}
-
-	    if ( strlen ( ChatRoster [ i ] . on_goto_condition ) )
-		{
-		Me . Chat_Flags [ PERSON_SUBDIALOG_DUMMY ] [ ChatRoster [ i ] . on_goto_first_target ] = 0;
-		Me . Chat_Flags [ PERSON_SUBDIALOG_DUMMY ] [ ChatRoster [ i ] . on_goto_second_target ] = 0;
-		}
-
-	    }
-
+	run_lua(chat_initialization_code);
 
 	DoChatFromChatRosterData( PERSON_SUBDIALOG_DUMMY , ChatDroid , FALSE );
 
 	push_or_pop_chat_roster ( POP_ROSTER );
-
-	if ( ! ChatDroid -> energy ) //if the droid was killed, end the chat
-	    chat_control_end_dialog = 1;
 
 	}
     else 
@@ -1174,7 +1165,6 @@ DoChatFromChatRosterData( int ChatPartnerCode , Enemy ChatDroid , int clear_prot
     // Reset chat control variables.
     chat_control_end_dialog = 0;
     chat_control_next_node = -1;
-    chat_control_partner_code = ChatPartnerCode;
 
     //--------------------
     // We always should clear the chat protocol.  Only for SUBDIALOGS it is
@@ -1478,33 +1468,18 @@ void ChatWithFriendlyDroid( enemy * ChatDroid )
     sprintf(finaldir, "%s", DIALOG_DIR);
     find_file (tmp_filename , finaldir, fpath, 0);
     LoadDialog ( fpath );
+    
+    chat_control_partner_code = ChatFlagsIndex;
 
     if ( ! Me . chat_character_initialized [ ChatFlagsIndex ] )
 	{ // then we must initialize this character
-        int i, j;
+        int i;
 	for (i = 0; i < MAX_ANSWERS_PER_PERSON; i ++)
 		{
-		Me . Chat_Flags [ ChatFlagsIndex ] [ i ] =  (ChatRoster [ i ] . enabled );
+		Me . Chat_Flags [ ChatFlagsIndex ] [ i ] = 0;
 		}
 
-	for (i = 0; i < MAX_ANSWERS_PER_PERSON; i ++)
-		{
-		for (j = 0; j < MAX_ANSWERS_PER_PERSON; j ++)
-			{	
-			if( i == (ChatRoster [ i ] . change_option_nr [ j ])) continue;
-			if(ChatRoster [ i ] . change_option_nr [ j ] > 0  &&  ChatRoster [ i ] . change_option_to_value [ j ] == 1)
-				{
-				Me . Chat_Flags [ ChatFlagsIndex ] [ ChatRoster [ i ] . change_option_nr [ j ] ] = 0;
-				}
-			}
-
-		if ( strlen ( ChatRoster [ i ] . on_goto_condition ) )
-			{
-			Me . Chat_Flags [ ChatFlagsIndex ] [ ChatRoster [ i ] . on_goto_first_target ] = 0;
-			Me . Chat_Flags [ ChatFlagsIndex ] [ ChatRoster [ i ] . on_goto_second_target ] = 0;
-			}
-		
-		}
+	run_lua(chat_initialization_code);
 
         Me . chat_character_initialized [ ChatFlagsIndex ] = 1;
 	}

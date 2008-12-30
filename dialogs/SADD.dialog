@@ -30,6 +30,13 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
+Initialization LuaCode={
+    enable_node=(0, 1, 24, 27)
+}
+
+----------------------------------------------------------------------
+
+
 New Option Nr=0 OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Your bio checksum does not trigger a match in staff database. Please show proper credentials or leave the premises at once."

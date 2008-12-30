@@ -30,6 +30,12 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
+Initialization LuaCode={
+    enable_node(0, 1, 2, 3, 99)
+}
+
+----------------------------------------------------------------------
+
 New Option Nr=0  OptionText=_" Who are you? "
 Subtitle=_"I am a 614 security bot, once one of the best-selling products of the Nicholson company."
 DisableOption=0
@@ -70,8 +76,8 @@ DisableOption=4
 
 New Option Nr=99  OptionText=_" See you later."
 Subtitle=_" Resuming guard program."
-EnableOption=99
 LuaCode={
+    enable_node(99)
     end_dialog()
 }
 ----------------------------------------------------------------------

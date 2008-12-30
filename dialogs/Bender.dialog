@@ -30,6 +30,13 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
+Initialization LuaCode={
+    enable_node(0, 14, 99)
+}
+
+----------------------------------------------------------------------
+
+
 New Option Nr=0  OptionText=_" Hello! I'm new here."
 Subtitle=_"Hello. I'm Bender, the dead man of this camp."
 EnableOption=1

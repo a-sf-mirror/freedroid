@@ -30,11 +30,19 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
+Initialization LuaCode={
+    -- nothing by default, node 0 does it for us
+}
+
+----------------------------------------------------------------------
+
 New Option Nr=0  OptionText="THIS WILL NEVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Oh, thank heavens! You are still alive. Maybe not all hope is lost."
-DisableOption=0
-ChooseBetween=2,11,6,13
+LuaCode={
+    enable_node(2, 6, 11, 13, 99)
+    disable_node(0)
+}
 
 ----------------------------------------------------------------------
 
@@ -47,8 +55,10 @@ Subtitle=_"There was a... misunderstanding of some sort and humans welcomed your
 Subtitle=_"A few of you survived the slaughter and went into hiding and obscurity."
 Subtitle=_"During that time Linarians became known as helpers and heroes. Of course now most people think it all was just a fairy tale."
 Subtitle=_"If the computer is not lying, then your name is Tux."
-DisableOption=2
-EnableOption=7
+LuaCode={
+    disable_node(2)
+    enable_node(7)
+}
 
 ----------------------------------------------------------------------
 

@@ -30,6 +30,13 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
+Initialization LuaCode={
+    enable_node(0, 99)
+}
+
+----------------------------------------------------------------------
+
+
 New Option Nr=0  OptionText=_"Login : tux  Password : *******
 Last login from dev/ttyS0 on Sun, 23 mar 2057.
 tux@hacked_bot: ~ #"

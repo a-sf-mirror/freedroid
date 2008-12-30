@@ -30,6 +30,13 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
+Initialization LuaCode={
+    enable_node=(0)
+}
+
+----------------------------------------------------------------------
+
+
 New Option Nr=0  OptionText="THIS WILL NEVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Welcome to MS firmware upgrade server for region #54658."

@@ -30,6 +30,13 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
+Initialization LuaCode={
+    enable_node=(0, 8, 50, 99)
+}
+
+----------------------------------------------------------------------
+
+
 New Option Nr=0  OptionText=_" Hello... Oh dear... You look awful... Who did this to you? Did they torture you?"
 Subtitle=_"Hi. I haven't slept for a few weeks, so I'm just a little bit tired."
 Subtitle=_"Don't worry about me. I'll be fine."

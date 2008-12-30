@@ -30,6 +30,12 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
+Initialization LuaCode={
+}
+
+----------------------------------------------------------------------
+
+
 New Option Nr=0  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"You are Tux, aren't you..."

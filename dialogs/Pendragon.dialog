@@ -30,6 +30,13 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
+Initialization LuaCode={
+    enable_node=(0, 99)
+}
+
+----------------------------------------------------------------------
+
+
 New Option Nr=0  OptionText=_" Hi! I'm new here."
 Subtitle=_"You don't say. I'm not living here either. I'm just on vacation."
 Subtitle=_"Normally I'm a fighter. But now I try to relax, chill, take it easy and have a lot of fun."

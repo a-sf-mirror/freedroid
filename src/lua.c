@@ -457,6 +457,13 @@ static int lua_chat_enable_node(lua_State *L)
 {
     int flag = luaL_checkinteger(L, 1); 
     Me.Chat_Flags[chat_control_partner_code][flag] = 1;
+
+    int i = 1;
+    while ((flag = luaL_optinteger(L, i, -1)) != -1) {
+	// for each optional node
+	Me.Chat_Flags[chat_control_partner_code][flag] = 1;
+	i++;
+    }
     return 0;
 }
 
