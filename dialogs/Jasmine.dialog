@@ -31,7 +31,7 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 Initialization LuaCode={
-    enable_node=(0, 90)
+    enable_node(0, 90)
 }
 
 ----------------------------------------------------------------------
