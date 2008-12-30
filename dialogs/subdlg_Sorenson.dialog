@@ -42,7 +42,9 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 New Option Nr=1  OptionText=_" Sure. I'll sign it."
 Subtitle=_"Go0d. H3re is th3 con7ract. S1gn it!"
 DisableOption=1
-LinkedTo=20
+LuaCode={
+    set_next_node(20)
+}
 
 ----------------------------------------------------------------------
 
@@ -88,7 +90,9 @@ New Option Nr=40  OptionText=_" Tux."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Yes! I am free! At last I am free!"
 DisableOption=40
-LinkedTo=70
+LuaCode={
+    set_next_node(70)
+}
 
 ----------------------------------------------------------------------
 
@@ -96,7 +100,9 @@ New Option Nr=41  OptionText=_" Tux, the Linarian"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Yes! I am free!"
 DisableOption=41
-LinkedTo=70
+LuaCode={
+    set_next_node(70)
+}
 
 ----------------------------------------------------------------------
 
@@ -104,7 +110,9 @@ New Option Nr=42  OptionText=_" I accept the contract, Tux"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Yes! I am free at last!"
 DisableOption=42
-LinkedTo=70
+LuaCode={
+    set_next_node(70)
+}
 
 ----------------------------------------------------------------------
 
@@ -124,7 +132,9 @@ OptionSample=""
 Subtitle=_"H4! Y0ur s0ul 15 min3, Francis!"
 Subtitle=_"Wh47? N07 w0rk1b9?"
 DisableOption=44
-LinkedTo=60
+LuaCode={
+    set_next_node(60)
+}
 
 ----------------------------------------------------------------------
 
@@ -132,7 +142,9 @@ New Option Nr=45  OptionText=_" The great destroyer of evil, the purger of all t
 OptionSample=""
 Subtitle=_"Huh?"
 DisableOption=45
-LinkedTo=50
+LuaCode={
+    set_next_node(50)
+}
 
 ----------------------------------------------------------------------
 
@@ -167,7 +179,9 @@ LuaCode={
 New Option Nr=70  OptionText=_" Huh? I d0n'7 f33l g00d."
 Subtitle=_"Yes, fool! You have freed me! I can finally die! Goodbye idiot!"
 DisableOption=70
-LinkedTo=71
+LuaCode={
+    set_next_node(71)
+}
 
 ----------------------------------------------------------------------
 

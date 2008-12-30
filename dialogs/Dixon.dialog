@@ -101,14 +101,18 @@ New Option Nr=22  OptionText=_" Can I help you somehow?"
 Subtitle=_"We need people badly, so it would be great if you could give us a helping hand even for a few days."
 Subtitle=_"Now, what are your skills? Where do you think you could be the most useful?"
 DisableOption=22
-LinkedTo=23
+LuaCode={
+    set_next_node(23)
+}
 
 ----------------------------------------------------------------------
 
 New Option Nr=23  OptionText=_" I can handle computers very well. I also know a lot about laboratory equipment."
 Subtitle=_"And what about construction? Mechanical devices? Repairing broken power lines? Building laser pistols? Anything like that? "
 DisableOption=23
-LinkedTo=24
+LuaCode={
+    set_next_node(24)
+}
 
 ----------------------------------------------------------------------
 
@@ -173,8 +177,8 @@ Subtitle=_"May the heavens have mercy upon us, but better them than us."
 DisableOption=28
 DisableOption=29
 DisableOption=30
-LinkedTo=32
 LuaCode={
+    set_next_node(32)
     open_diary_entry(1, 1)
     plant_cookie("singularity_dead")
 }
@@ -221,7 +225,9 @@ New Option Nr=32  OptionText=_" I will go in there first and clean out the place
 Subtitle=_"Linarian, my people do not carry guns. We are mechanics. You want the military division's help."
 Subtitle=_"Erm... And aren't you being too aggressive? Maybe they do not wish us harm..."
 DisableOption=32
-LinkedTo=33
+LuaCode={
+    set_next_node(33)
+}
 
 ----------------------------------------------------------------------
 

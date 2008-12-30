@@ -175,14 +175,18 @@ EnableOption=22
 New Option Nr=22  OptionText=_" Your wish is my command."
 Subtitle=_"Huh? What?"
 DisableOption=22
-LinkedTo=23
+LuaCode={
+    set_next_node(23)
+}
 
 ----------------------------------------------------------------------
 
 New Option Nr=23  OptionText=_" Humans... You are so interesting. I always wanted to know how much blood do you exacly have."
 Subtitle=_"Don't do this. Don't do this."
 DisableOption=23
-LinkedTo=24
+LuaCode={
+    set_next_node(24)
+}
 
 ----------------------------------------------------------------------
 
@@ -190,21 +194,27 @@ New Option Nr=24  OptionText=_" Prepare Doc. The experiment begins."
 Subtitle=_"Don't do this! DON'T DO THIS!"
 Subtitle=_"AAAAAAAAAAAA!"
 DisableOption=24
-LinkedTo=25
+LuaCode={
+    set_next_node(25)
+}
 
 ----------------------------------------------------------------------
 
 New Option Nr=25  OptionText=_" Ugh. Human blood is disgusting. At least four liters. I feel sick."
 Subtitle=_" . . ."
 DisableOption=25
-LinkedTo=26
+LuaCode={
+    set_next_node(26)
+}
 
 ----------------------------------------------------------------------
 
 New Option Nr=26  OptionText=_" I guess this means I get to inherit all your stuff. I hope you don't mind if I take everything?"
 Subtitle=_" . . ."
 DisableOption=26
-LinkedTo=27
+LuaCode={
+    set_next_node(27)
+}
 
 ----------------------------------------------------------------------
 

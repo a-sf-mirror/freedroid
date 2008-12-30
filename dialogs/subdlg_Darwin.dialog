@@ -56,8 +56,8 @@ OnCondition="CookieIsPlanted:know_extract1:" JumpToOption=26 ElseGoto=25
 New Option Nr=20  OptionText=_" I'm ready. Please show me how to extract bot parts. (cost 50 cash, 1 ability point)"
 DisableOption=20
 DisableOption=25
-LinkedTo=70
 LuaCode={
+    set_next_node(70)
     improve_program("Extract bot parts")
 }
 

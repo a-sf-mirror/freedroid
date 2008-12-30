@@ -74,7 +74,9 @@ New Option Nr=3  OptionText=_" /usr/bin/hermodoors --open"
 Subtitle=_"Opening doors..."
 Subtitle=_"Connecting to peripheral controller..."
 Subtitle=_"Please enter unlock security password:"
-LinkedTo=5
+LuaCode={
+    set_next_node(5)
+}
 
 ----------------------------------------------------------------------
 

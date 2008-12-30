@@ -113,7 +113,9 @@ New Option Nr=12  OptionText=_" See you later."
 Subtitle=_"Yeah. Wha -- SIGSEGV."
 Subtitle=_"Segmentation fault."
 DisableOption=12
-LinkedTo=13
+LuaCode={
+    set_next_node(13)
+}
 
 ----------------------------------------------------------------------
 

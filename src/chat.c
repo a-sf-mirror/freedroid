@@ -484,11 +484,6 @@ severe error.",
 	    DebugPrintf( CHAT_DEBUG_LEVEL , "\nThere seems to be NO ON-GOTO-CONDITION AT ALL IN THIS OPTION." );
 	}
 	
-	if ( CountStringOccurences ( SectionPointer , "LinkedTo=" ) ) 
-	{
-	    ReadValueFromString( SectionPointer , "LinkedTo=" , "%d" ,  & ( ChatRoster[ OptionIndex ] . link_target ) , NULL );
-	}
-	
 	//--------------------
 	// Next thing we do will be to get the always-on-startup flag status.
 	//
@@ -737,8 +732,6 @@ static void ExecuteChatExtra ( char* ExtraCommandString , Enemy ChatDroid )
 		Me . Chat_Flags [ PERSON_SUBDIALOG_DUMMY ] [ ChatRoster [ i ] . on_goto_second_target ] = 0;
 		}
 
-	    if ( ChatRoster [ i ] . link_target )
-		Me . Chat_Flags [ PERSON_SUBDIALOG_DUMMY ] [ ChatRoster [ i ] . link_target ] = 0;
 	    }
 
 
@@ -1136,10 +1129,6 @@ static void ProcessThisChatOption ( int MenuSelection , int ChatPartnerCode , En
 	display_current_chat_protocol ( CHAT_DIALOG_BACKGROUND_PICTURE_CODE , ChatDroid , FALSE );
     }
 
-    if (ChatRoster[MenuSelection].lua_code) {
-	run_lua(ChatRoster[MenuSelection].lua_code);
-    }
-
     //--------------------
     // Maybe there was an ON-GOTO-CONDITION specified for this option.
     // Then of course we have to jump to the new location!!!
@@ -1160,11 +1149,10 @@ static void ProcessThisChatOption ( int MenuSelection , int ChatPartnerCode , En
 	    chat_control_next_node = ChatRoster [ MenuSelection ] . on_goto_second_target ;
 	}
     }
-    else if ( ChatRoster [ MenuSelection ] . link_target )
-    {
-        chat_control_next_node = ChatRoster [ MenuSelection ] . link_target ;
+    
+    if (ChatRoster[MenuSelection].lua_code) {
+	run_lua(ChatRoster[MenuSelection].lua_code);
     }
-
 }; // int ProcessThisChatOption ( int MenuSelection , int ChatPartnerCode , Enemy ChatDroid )
 
 
@@ -1515,8 +1503,6 @@ void ChatWithFriendlyDroid( enemy * ChatDroid )
 			Me . Chat_Flags [ ChatFlagsIndex ] [ ChatRoster [ i ] . on_goto_second_target ] = 0;
 			}
 		
-		if ( ChatRoster [ i ] . link_target ) 
-			Me . Chat_Flags [ ChatFlagsIndex ] [ ChatRoster [ i ] . link_target ] = 0;
 		}
 
         Me . chat_character_initialized [ ChatFlagsIndex ] = 1;

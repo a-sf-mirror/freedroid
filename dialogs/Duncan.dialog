@@ -206,7 +206,9 @@ DisableOption=93
 New Option Nr=96  OptionText=_" See you later."
 Subtitle=_"I wish you cold winds."
 DisableOption=96
-LinkedTo=97
+LuaCode={
+    set_next_node(97)
+}
 
 ----------------------------------------------------------------------
 

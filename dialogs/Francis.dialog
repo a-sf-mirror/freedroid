@@ -62,7 +62,9 @@ Subtitle=_"The city was full of flames, flashes of gunfire and screaming people.
 Subtitle=_"First we made them, and then they unmade us. How ironic."
 DisableOption=3
 EnableOption=15
-LinkedTo=5
+LuaCode={
+    set_next_node(5)
+}
 
 ----------------------------------------------------------------------
 
@@ -96,7 +98,9 @@ DisableOption=7
 New Option Nr=8  OptionText=_" Where in the void is this world?"
 Subtitle=_"I guess you mean in the universe?"
 DisableOption=8
-LinkedTo=10
+LuaCode={
+    set_next_node(10)
+}
 
 ----------------------------------------------------------------------
 
@@ -106,7 +110,9 @@ Subtitle=_"The galactic radius is 43,000 light years and the circumference is es
 Subtitle=_"This is a planetary system of ten planets, and we are presently located on the third one from our star, Sun."
 Subtitle=_"I am not an astronomer, so I can be wrong. I am too tired to keep track of what is a planet and what is just an overweight rock."
 DisableOption=10
-LinkedTo=12
+LuaCode={
+    set_next_node(12)
+}
 
 ----------------------------------------------------------------------
 

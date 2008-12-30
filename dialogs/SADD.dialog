@@ -71,7 +71,9 @@ New Option Nr=5  OptionText=_" Why are you not hostile?"
 Subtitle=_" Hostile? What do you mean?"
 DisableOption=5
 EnableOption=3
-LinkedTo=3
+LuaCode={
+    set_next_node(3)
+}
 
 ----------------------------------------------------------------------
 
@@ -80,7 +82,9 @@ Subtitle=_" For security reason SADDs are not equipped with wireless modules."
 Subtitle=_" I know only that I have to be recharged, checked and have my firmware updated every 3 months."
 EnableOption=7
 DisableOption=6
-LinkedTo=7
+LuaCode={
+    set_next_node(7)
+}
 
 ----------------------------------------------------------------------
 
@@ -137,7 +141,9 @@ Subtitle=_" SECONDARY TARGET: prevent secret information leakage"
 Subtitle=_" Why do you ask?"
 DisableOption=12
 EnableOption=13
-LinkedTo=13
+LuaCode={
+    set_next_node(13)
+}
 
 ----------------------------------------------------------------------
 
@@ -146,7 +152,9 @@ Subtitle=_" PRIMARY TARGET 2: authorized personal must have access to the zone."
 Subtitle=_" Yes, it will be violated. But first order has higher priority."
 DisableOption=13
 EnableOption=14
-LinkedTo=14
+LuaCode={
+    set_next_node(14)
+}
 
 ----------------------------------------------------------------------
 
@@ -213,8 +221,8 @@ EnableOption=23
 LuaCode={
     plant_cookie("SADD_exterminator")
     open_diary_entry(9, 1)
+    set_next_node(23)
 }
-LinkedTo=23
 
 ----------------------------------------------------------------------
 
@@ -223,7 +231,9 @@ Subtitle=_" Thanks a lot for your warm words. I think I can trust you."
 DisableOption=21
 DisableOption=22
 EnableOption=23
-LinkedTo=23
+LuaCode={
+    set_next_node(23)
+}
 
 ----------------------------------------------------------------------
 
@@ -424,9 +434,8 @@ Subtitle=_" Hi. Thanks for the help."
 EnableOption=98
 DisableOption=97
 LuaCode={
-    end_dialog()
+    set_next_node(98)
 }
-LinkedTo=98
 
 ----------------------------------------------------------------------
 

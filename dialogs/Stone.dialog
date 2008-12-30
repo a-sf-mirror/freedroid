@@ -44,8 +44,8 @@ Subtitle=_"Good! Here is the selection of items I have for sale."
 EnableOption=1
 LuaCode={
     trade_with("Stone")
+    set_next_node(5)
 }
-LinkedTo=5
 
 ----------------------------------------------------------------------
 
@@ -90,7 +90,9 @@ New Option Nr=6  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=6
 DisableOption=2
-LinkedTo=14
+LuaCode={
+    set_next_node(14)
+}
 
 ----------------------------------------------------------------------
 
@@ -98,14 +100,18 @@ New Option Nr=7  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=7
 EnableOption=2
-LinkedTo=14
+LuaCode={
+    set_next_node(14)
+}
 
 ----------------------------------------------------------------------
 
 New Option Nr=8  OptionText=_" If things are so bad right now, why don't you leave?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=8
-LinkedTo=9
+LuaCode={
+    set_next_node(9)
+}
 
 ----------------------------------------------------------------------
 
@@ -164,8 +170,8 @@ Subtitle=_"I couldn't get myself to look at my finance logs for a while now. I g
 DisableOption=15
 LuaCode={
     plant_cookie("Helping_Stone")
+    set_next_node(19)
 }
-LinkedTo=19
 
 ----------------------------------------------------------------------
 

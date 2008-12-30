@@ -88,7 +88,9 @@ Subtitle=_"No, Peter ate them all. That killed him."
 Subtitle=_"*cries*"
 DisableOption=7
 EnableOption=9
-LinkedTo=9
+LuaCode={
+    set_next_node(9)
+}
 
 --------------------------------------------------------------------
 
