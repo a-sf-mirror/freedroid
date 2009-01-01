@@ -1307,6 +1307,7 @@ screen_resolution screen_resolutions[] = {
 		{ 1024,  768, "1024 x 768",                      TRUE  },
 		{ 1152,  864, "1152 x 864",                      TRUE  },
 		{ 1280,  960, "1280 x 960",                      TRUE  },
+		{ 1400, 1050, "1400 x 1050",                     TRUE  },
 		{ 1280, 1024, "Unsupported! (1280 x 1024)",      FALSE },
 		{ 1024,  600, "Unsupported! (1024 x 600)",       FALSE },
 		{ 1280,  800, "Unsupported! (1280 x 800)",       FALSE },
