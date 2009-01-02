@@ -39,86 +39,84 @@ Initialization LuaCode={
 
 New Option Nr=0  OptionText=_" Hi! I'm new here."
 Subtitle=_"Hello. I'm Tybalt. I'm guarding the guardhouse gate. Only authorized personnel are permitted."
-DisableOption=0
-EnableOption=1
-EnableOption=2
+LuaCode={
+    disable_node(0)
+    enable_node(1, 2)
+}
 
 ----------------------------------------------------------------------
 
 New Option Nr=1  OptionText=_" Why is the guardhouse locked most of the time?"
 Subtitle=_"It's locked so no one can sneak inside while I'm not looking. That's why."
-DisableOption=1
+LuaCode={
+    disable_node(1)
+}
 
 ----------------------------------------------------------------------
 
 New Option Nr=2  OptionText=_" I want to get into the guardhouse."
-DisableOption=2
-DisableOption=0
-OnCondition="CookieIsPlanted:tux_has_joined_guard:" JumpToOption=3 ElseGoto=4
+LuaCode={
+    disable_node(0)
+    disable_node(2)
+    if (cookie_planted("tux_has_joined_guard")) then
+	set_next_node(3)
+    else 
+	set_next_node(4)
+    end
+}
 
 ----------------------------------------------------------------------
 
 New Option Nr=3  OptionText="THE GATE OPENS"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Of course. Guard members are always authorized to enter the guardhouse. The gate is open. Enjoy your stay."
-DisableOption=3
 LuaCode={
+    disable_node(3)
     change_obstacle("OldTownGuardHouseEntrance", "opened")
 }
+
 ----------------------------------------------------------------------
 
 New Option Nr=4  OptionText="YOU SHALL NOT PASS"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Sorry pal, but I don't think so. Only authorized personnel are permitted and that means members of the Red Guard."
 Subtitle=_"Talk to Spencer if you have any issues inside. I cannot let you pass."
-DisableOption=4
 LuaCode={
-    set_next_node(60)
+    disable_node(4)
+    -- do we propose a bribe ?
+    if(not cookie_planted("tybalt_bribe")) then
+	enable_node(50)
+    end
 }
 
 ----------------------------------------------------------------------
 
 New Option Nr=50  OptionText=_" I have a lot of money for you."
 Subtitle=_"Fascinating. Hundred."
-DisableOption=50
 LuaCode={
-    set_next_node(51)
+    disable_node(50)
+    if(get_gold() < 100) then
+	enable_node(54)
+    else
+	enable_node(55)
+    end
 }
-
-----------------------------------------------------------------------
-
-New Option Nr=51  OptionText="BRIBERY IS OCCURING"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-DisableOption=51
-OnCondition="GoldIsLessThan:100" JumpToOption=53 ElseGoto=52
-
-----------------------------------------------------------------------
-
-New Option Nr=52  OptionText="GOT ENOUGH MONEY!"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-DisableOption=52
-EnableOption=55
-
-----------------------------------------------------------------------
-
-New Option Nr=53  OptionText="DAMN, I AM POOR"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-DisableOption=53
-EnableOption=54
 
 ----------------------------------------------------------------------
 
 New Option Nr=54  OptionText=_" Erm... I don't have that much."
 Subtitle=_"Well, I cannot open the door then."
-DisableOption=54
+LuaCode={
+    disable_node(54)
+}
 
 ----------------------------------------------------------------------
 
 New Option Nr=55  OptionText=_" Here you go."
 Subtitle=_"Thank you."
-DisableOption=55
-EnableOption=56
 LuaCode={
+    enable_node(56)
+    disable_node(55)
     plant_cookie("tybalt_bribe")
 }
 
@@ -126,57 +124,43 @@ LuaCode={
 
 New Option Nr=56  OptionText=_" Ok, now please open the door for me."
 Subtitle=_"What door?"
-DisableOption=56
-EnableOption=57
+LuaCode={
+    disable_node(56)
+    set_next_node(57)
+}
 
 ----------------------------------------------------------------------
 
 New Option Nr=57  OptionText=_" The door to the citadel!"
 Subtitle=_"But you are not a member of the Red Guard."
 Subtitle=_"You cannot come in."
-DisableOption=57
-EnableOption=58
+LuaCode={
+    disable_node(57)
+    enable_node(58)
+}
 
 ----------------------------------------------------------------------
 
 New Option Nr=58  OptionText=_" I paid you!"
 Subtitle=_"Really? I don't remember that."
-DisableOption=58
-EnableOption=59
+LuaCode={
+    disable_node(58)
+    enable_node(59)
+}
 
 ----------------------------------------------------------------------
 
 New Option Nr=59  OptionText=_" I want my money back."
 Subtitle=_"What money?"
-DisableOption=59
-
-----------------------------------------------------------------------
-
-New Option Nr=60  OptionText="BRIBED BEFORE?"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-DisableOption=60
-OnCondition="CookieIsPlanted:tybalt_bribe:" JumpToOption=61 ElseGoto=62
-
-----------------------------------------------------------------------
-
-New Option Nr=61  OptionText="YEAH, ONCE BEFORE. NOT GONNA DO THAT AGAIN."
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-DisableOption=61
-
-----------------------------------------------------------------------
-
-New Option Nr=62  OptionText="NO, NEVER BEFORE."
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-DisableOption=62
-EnableOption=50
-
+LuaCode={
+    disable_node(59)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=99  OptionText=_" See you later."
 Subtitle=_"Good riddance."
-EnableOption=2
-EnableOption=99
 LuaCode={
+    enable_node(2, 99)
     end_dialog()
 }
 
