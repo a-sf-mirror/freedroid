@@ -719,9 +719,11 @@ Maximum number of Random Droids=0
 Minimum number of Random Droids=0
 Allowed Type of Random Droid for this level: 751
 
-SForce: T=123 Fixed=0 Marker=1037 Friendly=0 StartUpAtLabel="melee1" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="KillMe" attack_run_only_when_direct_line="yes"
+SForce: T=PRO Fixed=0 Marker=1037 Friendly=1 StartUpAtLabel="TutorialTutorStart" RushTux="yes" DialogSectionToUse="Francis" ShortLabel="Francis" attack_run_only_when_direct_line="no"
 
-SForce: T=247 Fixed=0 Marker=2037 Friendly=0 StartUpAtLabel="melee2" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="KillMeToo" attack_run_only_when_direct_line="yes"
+SForce: T=123 Fixed=0 Marker=1037 Friendly=0 StartUpAtLabel="melee1" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Kill Me" attack_run_only_when_direct_line="yes" on_death_drop_item_name="Big wrench"
+
+SForce: T=247 Fixed=0 Marker=2037 Friendly=0 StartUpAtLabel="melee2" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Kill Me Too" attack_run_only_when_direct_line="yes" on_death_drop_item_name=".22 Automatic"
 
 SForce: T=123 Fixed=0 Marker=3037 Friendly=0 StartUpAtLabel="shootingrange1" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Target" attack_run_only_when_direct_line="yes"
 SForce: T=123 Fixed=0 Marker=3037 Friendly=0 StartUpAtLabel="shootingrange2" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Target" attack_run_only_when_direct_line="yes"
