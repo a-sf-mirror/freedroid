@@ -6,7 +6,7 @@
 
 ** Start of new program specification subsection **
 Program name=_"Hacking"  
-Program description=_"Tux is gifted with the ability to hack any machine in no time.  To make use of this ability, select this skill. When a machine is close enough and this skill is activated by holding down the right mouse button, the takeover process will be initiated."
+Program description=_"Tux is gifted with the ability to hack any machine in no time. With this program selected and activated by pressing down the right mouse button over a hostile machine, the takeover process will be initiated."
 Picture="TakeoverTalkSkill.png"
 Form="immediate"
 Effect="takeover"
@@ -26,7 +26,7 @@ Present at startup=1
 
 ** Start of new program specification subsection **
 Program name=_"Use weapon"  
-Program description=_"Using this skill allows you to force an attack on something or for single shot firing with automatic weapons. You can also attack friendly targets by using it."
+Program description=_"Using this skill allows you to force an attack on something not normally a target or for firing single shots with automatic weapons."
 Picture="WeaponSkill.png"
 Form="immediate"
 Effect="weapon"
@@ -238,6 +238,10 @@ Effect duration per level=5
 Cost=50
 Cost per level=-5
 
+#Potential future implementation# Nethack = takeover for humans. Possibly with a new minigame where you somehow make the human get sucked into playing the game turning it to a somewhat stupid bot, freezing them in place and agreeing to do things for you (eg like Tybalt will open the gate to RG house and let you past even if you are not yet a member). This would open up a lot of options for creating alternative storylines (eg never becoming an RG member). 
+
+
+
 ** Start of new program specification subsection **
 Program name=_"Extract bot parts"  
 Program description=_"With a little knowledge, you can extract some useful parts out of the robots you kill. With each bot there is some hope of a part falling out. This skill is always active even when not selected."
@@ -246,25 +250,25 @@ Form="self"
 Effect="passive"
 Cost=0
 
-## Make target item of no higher lvl then skill into another same type (book, grenade, ammo, ranged conv weap, ranged energy weap) item of same or lower level.
 ## Or make it something that can increase melee/shooting/programming ? Permanently and/or Temporarily?
 ** Start of new program specification subsection **
 Program name=_"Reverse-engineer"
-Program description=_"There is some dark magic in the art of turning devices inside-out, picking them appart to learn all their secrets and putting them back again."
+Program description=_"There is some dark magic in the art of turning devices or programs inside-out, picking them appart to learn all their secrets and putting them back again."
 Picture="ReverseEngineer.png"
 Form="self"
+F**orm="aura"
 Effect="none"
-E**ffect="transform"
+Effect duration=1
 Base damage=0
 Cost=100
 
-## Make this into something that increases tux fighting and movementspeed, but heats him up.
+## Make this into something that increases tux fighting and movementspeed, but heats him up. Possibly make it into an "aura", active while program selected.
 ** Start of new program specification subsection **
 Program name=_"Ricer CFLAGS"
-Program description=_"This does nothing in this version of freedroidRPG. Optimization is the root of all evil. You can gain some temporary improvements to your 
-system, but in the end you are only likely to cause permanent damage."
+Program description=_"Optimization is the root of all evil. You can gain some temporary speed improvements to your system, but in the end you will likely overheat and cause permanent damage if you are not careful."
 Picture="cflag.png"
 Form="self"
+F**orm="aura"
 Effect="burnup"
 Cost=0
 
