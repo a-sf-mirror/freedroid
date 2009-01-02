@@ -626,11 +626,8 @@ void printf_SDL (SDL_Surface *screen, int x, int y, const char *fmt, ...);
 
 // text_public.c 
 
-void delete_one_dialog_option ( int i , int FirstInitialisation );
-void InitChatRosterForNewDialogue( void );
 void DebugPrintf (int db_level, const char *fmt, ...);
 void *MyMalloc (long);
-void PrepareMultipleChoiceDialog ( Enemy ChatDroid , int with_flip );
 int FS_filelength (FILE *f);
 void inflate_stream(FILE *, unsigned char **, int *);
 

@@ -103,11 +103,127 @@ char* chat_protocol = NULL ;
 void DoChatFromChatRosterData(int ChatPartnerCode , Enemy ChatDroid , int ClearProtocol );
 
 /**
+ * This function resets a dialog option to "empty" default values. It does NOT free the strings, this has to be done
+ * prior to calling this function when needed.
+ */
+static void clear_dialog_option(dialogue_option * d)
+{
+    int i;
+    d->enabled = 0;
+    d->option_text = "";
+    d->option_sample_file_name = "";
+
+    for (i=0; i < MAX_REPLIES_PER_OPTION; i++) {
+	d->reply_sample_list[i] = "";
+	d->reply_subtitle_list[i] = "";
+    }
+
+    for (i=0; i < MAX_EXTRAS_PER_OPTION; i++) {
+	d->extra_list[i] = "";
+    }
+
+    d->on_goto_condition = "";
+    d->on_goto_first_target = -1;
+    d->on_goto_second_target = -1;
+    d->always_execute_this_option_prior_to_dialog_start = 0;
+
+    for (i=0; i < MAX_DIALOGUE_OPTIONS_IN_ROSTER; i++) {
+	d->change_option_to_value[i] = -1;
+	d->change_option_nr[i] = -1;
+    }
+
+    d->lua_code = NULL;
+}
+
+/**
+ *
+ */
+static void delete_one_dialog_option ( int i , int FirstInitialisation )
+{
+    int j;
+
+    //--------------------
+    // If this is not the first initialisation, we have to free the allocated
+    // strings first, or we'll be leaking memory otherwise...
+    //
+    if ( !FirstInitialisation )
+    {
+	if ( strlen ( ChatRoster[i].option_text ) ) free ( ChatRoster[i].option_text );
+	if ( strlen ( ChatRoster[i].option_sample_file_name ) ) free ( ChatRoster[i].option_sample_file_name );
+    }
+
+    if(ChatRoster[i].lua_code)
+	free(ChatRoster[i].lua_code);
+    ChatRoster[i].lua_code = NULL;
+
+    for ( j = 0 ; j < MAX_REPLIES_PER_OPTION ; j++ )
+    {
+	//--------------------
+	// If this is not the first initialisation, we have to free the allocated
+	// strings first, or we'll be leaking memory otherwise...
+	//
+	if ( !FirstInitialisation )
+	{
+	    if ( strlen ( ChatRoster [ i ] . reply_sample_list [ j ] ) ) 
+		free ( ChatRoster [ i ] . reply_sample_list [ j ] );
+	    if ( strlen ( ChatRoster [ i ] . reply_subtitle_list [ j ] ) ) 
+		free ( ChatRoster [ i ] . reply_subtitle_list [ j ] );
+	}
+    }
+    
+    for ( j = 0 ; j < MAX_EXTRAS_PER_OPTION ; j++ )
+    {
+	//--------------------
+	// If this is not the first initialisation, we have to free the allocated
+	// strings first, or we'll be leaking memory otherwise...
+	//
+	if ( !FirstInitialisation )
+	{
+	    if ( strlen ( ChatRoster [ i ] . extra_list [ j ] ) ) 
+		free ( ChatRoster [ i ] . extra_list [ j ] );
+	}
+    }
+    
+    //--------------------
+    // If this is not the first initialisation, we have to free the allocated
+    // strings first, or we'll be leaking memory otherwise...
+    //
+    if ( !FirstInitialisation )
+    {
+	if ( strlen ( ChatRoster [ i ] . on_goto_condition ) ) 
+	    free ( ChatRoster [ i ] . on_goto_condition );
+    }
+
+    clear_dialog_option(&ChatRoster[i]);
+}; // void delete_one_dialog_option ( int i , int FirstInitialisation )
+
+/**
+ * This function should init the chat roster with empty values and thereby
+ * clean out the remnants of the previous chat dialogue.
+ */
+static void InitChatRosterForNewDialogue( void )
+{
+  int i;
+  static int FirstInitialisation = TRUE;
+  
+  for ( i = 0 ; i < MAX_DIALOGUE_OPTIONS_IN_ROSTER ; i ++ )
+    {
+      delete_one_dialog_option ( i , FirstInitialisation );
+    }
+
+  //--------------------
+  // Next time, we WILL have to free every used entry before cleaning it
+  // out, or we will be leaking memory...
+  //
+  FirstInitialisation = FALSE ;
+
+}; // void InitChatRosterForNewDialogue( void )
+
+/**
  *
  *
  */
-void
-push_or_pop_chat_roster ( int push_or_pop )
+void push_or_pop_chat_roster ( int push_or_pop )
 {
     static dialogue_option LocalChatRoster[MAX_DIALOGUE_OPTIONS_IN_ROSTER];
     
@@ -115,11 +231,8 @@ push_or_pop_chat_roster ( int push_or_pop )
     {
 	memcpy ( LocalChatRoster , ChatRoster , sizeof ( dialogue_option ) * MAX_DIALOGUE_OPTIONS_IN_ROSTER ) ;
 	int i;
-	for ( i = 0 ; i < MAX_DIALOGUE_OPTIONS_IN_ROSTER ; i ++ )
-	    {
-	    delete_one_dialog_option ( i , TRUE );
-	    }
-
+	for (i = 0; i < MAX_DIALOGUE_OPTIONS_IN_ROSTER; i++)
+	    clear_dialog_option(&ChatRoster[i]);
     }
     else if ( push_or_pop == POP_ROSTER )
     {
@@ -556,26 +669,122 @@ The '0' dialog node was empty!",
 }; // void LoadDialog ( char* SequenceCode )
 
 /**
- * This function restores all chat-with-friendly-droid variables to their
- * initial values.  This means, that NOT ALL FLAGS CAN BE SET HERE!!  Some
- * of them must remain at their current values!!! TAKE CARE!!
+ *
+ *
  */
-void
-RestoreChatVariableToInitialValue( )
+void make_sure_chat_portraits_loaded_for_this_droid ( Enemy this_droid )
+{
+    SDL_Surface* Small_Droid;
+    SDL_Surface* Large_Droid;
+    char fpath[2048];
+    char fname[500];
+    int i;
+    int model_number;
+    static int first_call = TRUE ;
+    static int this_type_has_been_loaded [ ENEMY_ROTATION_MODELS_AVAILABLE ] ;
+    
+    //--------------------
+    // We make sure we only load the portrait files once and not
+    // every time...
+    //
+    if ( first_call )
+    {
+	for ( i = 0 ; i < ENEMY_ROTATION_MODELS_AVAILABLE ; i ++ )
+	    this_type_has_been_loaded [ i ] = FALSE ;
+    }
+    first_call = FALSE ;
+    
+    //--------------------
+    // We look up the model number for this chat partner.
+    //
+    model_number = this_droid -> type ;
+    
+    //--------------------
+    // We should make sure, that we don't double-load images that we have loaded
+    // already, thereby wasting more resources, including OpenGL texture positions.
+    //
+    if ( this_type_has_been_loaded [ model_number ] )
+	return;
+    this_type_has_been_loaded [ model_number ] = TRUE ;
+    
+    //--------------------
+    // At first we try to load the image, that is named after this
+    // chat section.  If that succeeds, perfect.  If not, we'll revert
+    // to a default image.
+    //
+    strcpy( fname, "droids/" );
+    strcat( fname, PrefixToFilename [ model_number ] ) ;
+    strcat( fname , "/portrait.png" );
+    find_file (fname, GRAPHICS_DIR, fpath, 0);
+    DebugPrintf ( 2 , "\nFilename used for portrait: %s." , fpath );
+    
+    Small_Droid = our_IMG_load_wrapper (fpath) ;
+    if ( Small_Droid == NULL )
+    {
+	strcpy( fname, "droids/" );
+	strcat( fname, "DefaultPortrait.png" );
+	find_file (fname, GRAPHICS_DIR, fpath, 0);
+	Small_Droid = our_IMG_load_wrapper ( fpath ) ;
+    }
+    if ( Small_Droid == NULL )
+    {
+	fprintf( stderr, "\n\nfpath: %s \n" , fpath );
+	ErrorMessage ( __FUNCTION__  , "\
+It wanted to load a small portrait file in order to display it in the \n\
+chat interface of Freedroid.  But:  Loading this file has ALSO failed.",
+				   PLEASE_INFORM, IS_FATAL );
+    }
+    
+    Large_Droid = zoomSurface( Small_Droid , (float) Droid_Image_Window . w / (float) Small_Droid -> w , 
+			       (float) Droid_Image_Window . w / (float) Small_Droid -> w , 0 );
+    
+    SDL_FreeSurface( Small_Droid );
+    
+    if ( use_open_gl )
+	{
+	chat_portrait_of_droid [ model_number ] . surface = SDL_CreateRGBSurface(0, Large_Droid -> w, Large_Droid -> h, 32, rmask, gmask, bmask, amask);
+	SDL_SetAlpha(Large_Droid, 0, SDL_ALPHA_OPAQUE);
+	our_SDL_blit_surface_wrapper ( Large_Droid, NULL, chat_portrait_of_droid [ model_number ] . surface, NULL );
+	SDL_FreeSurface ( Large_Droid );
+	}
+    else chat_portrait_of_droid [ model_number ] . surface = Large_Droid;
+    
+    
+}; // void make_sure_chat_portraits_loaded_for_this_droid ( Enemy this_droid )
+
+
+/**
+ * This function prepares the chat background window and displays the
+ * image of the dialog partner and also sets the right font.
+ */
+static void PrepareMultipleChoiceDialog ( Enemy ChatDroid , int with_flip )
 {
     //--------------------
-    // You can always ask the moron 614 bots the same things and they
-    // will always respond in the very same manner, so no need to
-    // remember anything that has been talked in any previous conversation
-    // with them.
+    // The dialog will always take more than a few seconds to process
+    // so we need to prevent framerate distortion...
     //
-    Me . Chat_Flags [ PERSON_614 ] [ 0 ] = 1 ;
-    Me . Chat_Flags [ PERSON_614 ] [ 1 ] = 1 ;
-    Me . Chat_Flags [ PERSON_614 ] [ 2 ] = 1 ;
-    Me . Chat_Flags [ PERSON_614 ] [ 3 ] = 1 ;
+    Activate_Conservative_Frame_Computation( );
     
+    //--------------------
+    // We make sure that all the chat portraits we might need are
+    // loaded....
+    //
+    make_sure_chat_portraits_loaded_for_this_droid ( ChatDroid ) ;
     
-}; // void RestoreChatVariableToInitialValue( )
+    //--------------------
+    // We select small font for the menu interaction...
+    //
+    SetCurrentFont( FPS_Display_BFont );
+    
+//    AssembleCombatPicture ( USE_OWN_MOUSE_CURSOR ) ;
+    blit_special_background ( CHAT_DIALOG_BACKGROUND_PICTURE_CODE );
+    our_SDL_blit_surface_wrapper ( chat_portrait_of_droid [ ChatDroid -> type ] . surface , NULL , 
+				   Screen , &Droid_Image_Window );
+    
+    if ( with_flip ) 
+	our_SDL_flip_wrapper( );
+        
+}; // void PrepareMultipleChoiceDialog ( int Enum )
 
 /**
  * During the Chat with a friendly droid or human, there is a window with
@@ -742,125 +951,6 @@ static void ExecuteChatExtra ( char* ExtraCommandString , Enemy ChatDroid )
 		PLEASE_INFORM, IS_FATAL );
 	}
 };
-
-/**
- *
- *
- */
-void
-make_sure_chat_portraits_loaded_for_this_droid ( Enemy this_droid )
-{
-    SDL_Surface* Small_Droid;
-    SDL_Surface* Large_Droid;
-    char fpath[2048];
-    char fname[500];
-    int i;
-    int model_number;
-    static int first_call = TRUE ;
-    static int this_type_has_been_loaded [ ENEMY_ROTATION_MODELS_AVAILABLE ] ;
-    
-    //--------------------
-    // We make sure we only load the portrait files once and not
-    // every time...
-    //
-    if ( first_call )
-    {
-	for ( i = 0 ; i < ENEMY_ROTATION_MODELS_AVAILABLE ; i ++ )
-	    this_type_has_been_loaded [ i ] = FALSE ;
-    }
-    first_call = FALSE ;
-    
-    //--------------------
-    // We look up the model number for this chat partner.
-    //
-    model_number = this_droid -> type ;
-    
-    //--------------------
-    // We should make sure, that we don't double-load images that we have loaded
-    // already, thereby wasting more resources, including OpenGL texture positions.
-    //
-    if ( this_type_has_been_loaded [ model_number ] )
-	return;
-    this_type_has_been_loaded [ model_number ] = TRUE ;
-    
-    //--------------------
-    // At first we try to load the image, that is named after this
-    // chat section.  If that succeeds, perfect.  If not, we'll revert
-    // to a default image.
-    //
-    strcpy( fname, "droids/" );
-    strcat( fname, PrefixToFilename [ model_number ] ) ;
-    strcat( fname , "/portrait.png" );
-    find_file (fname, GRAPHICS_DIR, fpath, 0);
-    DebugPrintf ( 2 , "\nFilename used for portrait: %s." , fpath );
-    
-    Small_Droid = our_IMG_load_wrapper (fpath) ;
-    if ( Small_Droid == NULL )
-    {
-	strcpy( fname, "droids/" );
-	strcat( fname, "DefaultPortrait.png" );
-	find_file (fname, GRAPHICS_DIR, fpath, 0);
-	Small_Droid = our_IMG_load_wrapper ( fpath ) ;
-    }
-    if ( Small_Droid == NULL )
-    {
-	fprintf( stderr, "\n\nfpath: %s \n" , fpath );
-	ErrorMessage ( __FUNCTION__  , "\
-It wanted to load a small portrait file in order to display it in the \n\
-chat interface of Freedroid.  But:  Loading this file has ALSO failed.",
-				   PLEASE_INFORM, IS_FATAL );
-    }
-    
-    Large_Droid = zoomSurface( Small_Droid , (float) Droid_Image_Window . w / (float) Small_Droid -> w , 
-			       (float) Droid_Image_Window . w / (float) Small_Droid -> w , 0 );
-    
-    SDL_FreeSurface( Small_Droid );
-    
-    if ( use_open_gl )
-	{
-	chat_portrait_of_droid [ model_number ] . surface = SDL_CreateRGBSurface(0, Large_Droid -> w, Large_Droid -> h, 32, rmask, gmask, bmask, amask);
-	SDL_SetAlpha(Large_Droid, 0, SDL_ALPHA_OPAQUE);
-	our_SDL_blit_surface_wrapper ( Large_Droid, NULL, chat_portrait_of_droid [ model_number ] . surface, NULL );
-	SDL_FreeSurface ( Large_Droid );
-	}
-    else chat_portrait_of_droid [ model_number ] . surface = Large_Droid;
-    
-    
-}; // void make_sure_chat_portraits_loaded_for_this_droid ( Enemy this_droid )
-
-/**
- * This function prepares the chat background window and displays the
- * image of the dialog partner and also sets the right font.
- */
-void
-PrepareMultipleChoiceDialog ( Enemy ChatDroid , int with_flip )
-{
-    //--------------------
-    // The dialog will always take more than a few seconds to process
-    // so we need to prevent framerate distortion...
-    //
-    Activate_Conservative_Frame_Computation( );
-    
-    //--------------------
-    // We make sure that all the chat portraits we might need are
-    // loaded....
-    //
-    make_sure_chat_portraits_loaded_for_this_droid ( ChatDroid ) ;
-    
-    //--------------------
-    // We select small font for the menu interaction...
-    //
-    SetCurrentFont( FPS_Display_BFont );
-    
-//    AssembleCombatPicture ( USE_OWN_MOUSE_CURSOR ) ;
-    blit_special_background ( CHAT_DIALOG_BACKGROUND_PICTURE_CODE );
-    our_SDL_blit_surface_wrapper ( chat_portrait_of_droid [ ChatDroid -> type ] . surface , NULL , 
-				   Screen , &Droid_Image_Window );
-    
-    if ( with_flip ) 
-	our_SDL_flip_wrapper( );
-        
-}; // void PrepareMultipleChoiceDialog ( int Enum )
 
 /**
  * It is possible to specify a conditional goto command from the chat
@@ -1445,13 +1535,6 @@ void ChatWithFriendlyDroid( enemy * ChatDroid )
     {
 	DialogMenuTexts [ i ] = "" ;
     }
-    
-    //--------------------
-    // This should make all the answering possibilities available
-    // that are there without any prerequisite and that can be played
-    // through again and again without any modification.
-    //
-    RestoreChatVariableToInitialValue( ); 
     
     while ( MouseLeftPressed ( ) || MouseRightPressed() );
     

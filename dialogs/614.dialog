@@ -38,14 +38,12 @@ Initialization LuaCode={
 
 New Option Nr=0  OptionText=_" Who are you? "
 Subtitle=_"I am a 614 security bot, once one of the best-selling products of the Nicholson company."
-DisableOption=0
 EnableOption=4
 
 ----------------------------------------------------------------------
 
 New Option Nr=1  OptionText=_" Have you detected any hostile bot activity?"
 Subtitle=_"No. The hostiles have not shown up within the last 24 hours."
-DisableOption=1
 
 ----------------------------------------------------------------------
 
@@ -54,14 +52,12 @@ Subtitle=_"The official manual classifies the 614 as a high class security droid
 Subtitle=_"It was mainly used within ships to protect certain areas from intruders."
 Subtitle=_"It is considered an old but reliable device."
 Subtitle=_"So don't worry. I'm still in pretty good shape."
-DisableOption=2
 
 ----------------------------------------------------------------------
 
 New Option Nr=3  OptionText=_" What are your orders?"
 Subtitle=_"My orders are to protect the living beings in this camp from attacks by hostile bots."
 Subtitle=_"This has top priority. There are no other priorities."
-DisableOption=3
 
 ----------------------------------------------------------------------
 
