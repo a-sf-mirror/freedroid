@@ -850,6 +850,7 @@ void run_subdialog(const char * tmp_filename)
 {
     char fpath[2048];
     char finaldir[50];
+    int old_partner_code = chat_control_partner_code;
     
     push_or_pop_chat_roster ( PUSH_ROSTER );
 
@@ -858,12 +859,14 @@ void run_subdialog(const char * tmp_filename)
 
     LoadDialog ( fpath );
 
+    chat_control_partner_code = PERSON_SUBDIALOG_DUMMY;
+
     // we always initialize subdialogs..
     //
     int i;
     for (i = 0; i < MAX_ANSWERS_PER_PERSON; i ++)
 	{
-	Me . Chat_Flags [ PERSON_SUBDIALOG_DUMMY    ] [ i ] = 0;
+	Me . Chat_Flags [ PERSON_SUBDIALOG_DUMMY ] [ i ] = 0;
 	}
 
     run_lua(chat_initialization_code);
@@ -871,6 +874,10 @@ void run_subdialog(const char * tmp_filename)
     DoChatFromChatRosterData( PERSON_SUBDIALOG_DUMMY , chat_control_chat_droid , FALSE );
 
     push_or_pop_chat_roster ( POP_ROSTER );
+
+    chat_control_partner_code = old_partner_code;
+    chat_control_end_dialog = 0;
+    chat_control_next_node = -1;
 }
 
 /**
