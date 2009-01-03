@@ -74,8 +74,10 @@ New Option Nr=4  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"I can teach you everything. For three hundred, up front."
 Subtitle=_"Still interested? "
-DisableOption=4
-DoSomethingExtra="ExecuteSubdialog:subdlg_Kevin"
+LuaCode={
+    disable_node(4)
+    run_subdialog("subdlg_Kevin.dialog")
+}
 
 ----------------------------------------------------------------------
 
@@ -155,8 +157,10 @@ DisableOption=12
 New Option Nr=13  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"What do you want?"
-DisableOption=13
-DoSomethingExtra="ExecuteSubdialog:subdlg_kevin_reward1"
+LuaCode={
+    disable_node(13)
+    run_subdialog("subdlg_kevin_reward1.dialog")
+}
 
 ----------------------------------------------------------------------
 

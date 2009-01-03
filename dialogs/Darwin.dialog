@@ -147,8 +147,10 @@ New Option Nr=12  OptionText=_" I want to know how to extract modules from the b
 Subtitle=_"Yes."
 Subtitle=_"I will sell the information for a lot of cybergeld."
 Subtitle=_"Interested?"
-EnableOption=12
-DoSomethingExtra="ExecuteSubdialog:subdlg_Darwin"
+LuaCode={
+    enable_node(12)
+    run_subdialog("subdlg_Darwin.dialog")
+}
 
 ----------------------------------------------------------------------
 

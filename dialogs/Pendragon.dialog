@@ -63,8 +63,10 @@ New Option Nr=3  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Sure. I can help you."
 Subtitle=_"For a price. Hundred bucks should be enough."
-DisableOption=3
-DoSomethingExtra="ExecuteSubdialog:subdlg_Pendragon"
+LuaCode={
+    disable_node(3)
+    run_subdialog("subdlg_Pendragon.dialog")
+}
 
 ----------------------------------------------------------------------
 

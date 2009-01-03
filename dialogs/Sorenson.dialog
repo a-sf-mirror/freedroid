@@ -148,8 +148,10 @@ LuaCode={
 New Option Nr=50  OptionText=_" You got me curious. How can you help me understand computers better?"
 Subtitle=_"Simplicity! Sign this contract. No need to read it."
 Subtitle=_"You trust Sorenson, right?"
-DisableOption=50
-DoSomethingExtra="ExecuteSubdialog:subdlg_Sorenson"
+LuaCode={
+    disable_node(50)
+    run_subdialog("subdlg_Sorenson.dialog)
+}
 
 ----------------------------------------------------------------------
 

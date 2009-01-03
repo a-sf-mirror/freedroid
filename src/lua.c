@@ -438,6 +438,15 @@ static int lua_event_trade_with(lua_State *L)
     return 0;
 }
 
+static int lua_chat_run_subdialog(lua_State *L)
+{
+    const char *tmp_filename = luaL_checkstring(L, 1);
+
+    run_subdialog(tmp_filename);
+
+    return 0;
+}
+
 static int lua_chat_set_next_node(lua_State *L)
 {
     int nodenb = luaL_checkint(L, 1);
@@ -567,6 +576,7 @@ luaL_reg lfuncs[] = {
     { "respawn_level", lua_event_respawn_level },
     { "trade_with", lua_event_trade_with },
 
+    { "run_subdialog", lua_chat_run_subdialog },
     { "set_next_node", lua_chat_set_next_node },
     { "end_dialog", lua_chat_end_dialog },
     { "enable_node", lua_chat_enable_node },

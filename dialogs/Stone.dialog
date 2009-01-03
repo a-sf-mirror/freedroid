@@ -240,8 +240,8 @@ DisableOption=23
 LuaCode={
     add_gold(-1547)
     plant_cookie("Helped_Stone")
+    run_subdialog("subdlg_Stone.dialog")
 }
-DoSomethingExtra="ExecuteSubdialog:subdlg_Stone"
 
 ----------------------------------------------------------------------
 

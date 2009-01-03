@@ -695,6 +695,6 @@ int load_texture_atlas ( const char *, const char *, char *filenames[], iso_imag
 void PlantCookie(const char *);
 void DeleteCookie (const char *);
 int ResolveDialogSectionToChatFlagsIndex (const char* SectionName );
-
+void run_subdialog(const char *);
 
 #endif

@@ -124,9 +124,9 @@ Subtitle=_"Ah. Welcome again Linarian."
 Subtitle=_"I have a little request for you."
 Subtitle=_"I know someone who needs to be taught a lesson."
 Subtitle=_"Interested?"
-DisableOption=51
-DoSomethingExtra="ExecuteSubdialog:subdlg_Duncan"
 LuaCode={
+    disable_node(51)
+    run_subdialog("subdlg_Duncan.dialog")
     plant_cookie("koan_quest")
 }
 
@@ -149,7 +149,9 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 New Option Nr=61  OptionText="MURDERING DONE OR SAVED HIM"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 DisableOption=61
-DoSomethingExtra="ExecuteSubdialog:subdlg_Duncan_quest"
+LuaCode={
+    run_subdialog("subdlg_Duncan_quest")
+}
 
 ----------------------------------------------------------------------
 

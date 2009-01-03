@@ -100,7 +100,7 @@ EXTERN char *PrefixToFilename[ ENEMY_ROTATION_MODELS_AVAILABLE ];
 char* chat_protocol = NULL ;
 
 
-void DoChatFromChatRosterData(int ChatPartnerCode , Enemy ChatDroid , int ClearProtocol );
+static void DoChatFromChatRosterData(int ChatPartnerCode , Enemy ChatDroid , int ClearProtocol );
 
 /**
  * This function resets a dialog option to "empty" default values. It does NOT free the strings, this has to be done
@@ -116,10 +116,6 @@ static void clear_dialog_option(dialogue_option * d)
     for (i=0; i < MAX_REPLIES_PER_OPTION; i++) {
 	d->reply_sample_list[i] = "";
 	d->reply_subtitle_list[i] = "";
-    }
-
-    for (i=0; i < MAX_EXTRAS_PER_OPTION; i++) {
-	d->extra_list[i] = "";
     }
 
     d->on_goto_condition = "";
@@ -168,19 +164,6 @@ static void delete_one_dialog_option ( int i , int FirstInitialisation )
 		free ( ChatRoster [ i ] . reply_sample_list [ j ] );
 	    if ( strlen ( ChatRoster [ i ] . reply_subtitle_list [ j ] ) ) 
 		free ( ChatRoster [ i ] . reply_subtitle_list [ j ] );
-	}
-    }
-    
-    for ( j = 0 ; j < MAX_EXTRAS_PER_OPTION ; j++ )
-    {
-	//--------------------
-	// If this is not the first initialisation, we have to free the allocated
-	// strings first, or we'll be leaking memory otherwise...
-	//
-	if ( !FirstInitialisation )
-	{
-	    if ( strlen ( ChatRoster [ i ] . extra_list [ j ] ) ) 
-		free ( ChatRoster [ i ] . extra_list [ j ] );
 	}
     }
     
@@ -396,11 +379,9 @@ static void LoadDialog ( char* FullPathAndFullFilename )
     int NumberOfReplySubtitles;
     int NumberOfReplySamples;
     int NumberOfOptionChanges;
-    int NumberOfExtraEntries;
     
     char* ReplyPointer;
     char* OptionChangePointer;
-    char* ExtraPointer;
     char* YesNoString;
     
     sprintf(fpath, "%s", FullPathAndFullFilename);
@@ -554,36 +535,6 @@ severe error.",
 
 	}
 
-	//--------------------
-	// We count the number of Extras to be done then
-	// we will read them out
-	//
-	NumberOfExtraEntries = CountStringOccurences ( SectionPointer , "DoSomethingExtra" ) ;
-	DebugPrintf( CHAT_DEBUG_LEVEL , "\nThere were %d 'Extras' specified in this option." , 
-		     NumberOfExtraEntries );
-	
-	//--------------------
-	// Now that we know exactly how many extra entries 
-	// to read out, we can well start reading exactly that many of them.
-	// 
-	ExtraPointer = SectionPointer;
-	for ( j = 0 ; j < NumberOfExtraEntries ; j ++ )
-	{
-	    // ExtraPointer = LocateStringInData ( ExtraPointer, "DoSomethingExtra" );
-	    
-	    ChatRoster[ OptionIndex ] . extra_list [ j ] =
-		ReadAndMallocStringFromData ( ExtraPointer , "DoSomethingExtra=\"" , "\"" ) ;
-	    
-	    DebugPrintf( CHAT_DEBUG_LEVEL , "\nOption will execute this extra: %s. " , 
-			 ChatRoster[ OptionIndex ] . extra_list [ j ] );
-	    
-	    //--------------------
-	    // Now we must move the option change pointer to after the previous combination.
-	    //
-	    ExtraPointer = LocateStringInData ( ExtraPointer, "DoSomethingExtra" );
-	    ExtraPointer ++;
-	}
-	
 	//--------------------
 	// Next thing we do will be to look whether there is maybe a on-goto-command
 	// included in this option section.  If so, we'll read it out.
@@ -895,62 +846,32 @@ GiveSubtitleNSample( char* SubtitleText , char* SampleFilename , enemy* ChatDroi
     }
 }; // void GiveSubtitleNSample( char* SubtitleText , char* SampleFilename )
 
-/**
- * Chat options may contain some extra commands, that specify things that
- * the engine is supposed to do, like open a shop interface, drop some
- * extra item to the inventory, remove an item from inventory, assign a
- * mission, mark a mission as solved and such things.
- *
- * This function is supposed to decode such extra commands and then to
- * execute the desired effect as well.
- *
- */
-static void ExecuteChatExtra ( char* ExtraCommandString , Enemy ChatDroid )
+void run_subdialog(const char * tmp_filename)
 {
-    char tmp_filename [ 5000 ] ;
     char fpath[2048];
+    char finaldir[50];
+    
+    push_or_pop_chat_roster ( PUSH_ROSTER );
 
-    if ( CountStringOccurences ( ExtraCommandString , "ExecuteSubdialog:" ) )
+    sprintf(finaldir, "%s", DIALOG_DIR);
+    find_file (tmp_filename , finaldir, fpath, 0);
+
+    LoadDialog ( fpath );
+
+    // we always initialize subdialogs..
+    //
+    int i;
+    for (i = 0; i < MAX_ANSWERS_PER_PERSON; i ++)
 	{
-	strcpy ( tmp_filename , ExtraCommandString + strlen ( "ExecuteSubdialog:" ) ) ;
-	DebugPrintf( CHAT_DEBUG_LEVEL , "\nExtra invoked start of SUBDIALOG! with label: %s. Doing it... " ,
-		tmp_filename );
-
-	push_or_pop_chat_roster ( PUSH_ROSTER );
-
-	//--------------------
-	// We have to load the subdialog specified...
-	//
-	strcat ( tmp_filename , ".dialog" );
-	char finaldir[50];
-	sprintf(finaldir, "%s", DIALOG_DIR);
-	find_file (tmp_filename , finaldir, fpath, 0);
-	
-	LoadDialog ( fpath );
-
-	// we always initialize subdialogs..
-	//
-	int i;
-	for (i = 0; i < MAX_ANSWERS_PER_PERSON; i ++)
-	    {
-	    Me . Chat_Flags [ PERSON_SUBDIALOG_DUMMY    ] [ i ] = 0;
-	    }
-
-	run_lua(chat_initialization_code);
-
-	DoChatFromChatRosterData( PERSON_SUBDIALOG_DUMMY , ChatDroid , FALSE );
-
-	push_or_pop_chat_roster ( POP_ROSTER );
-
+	Me . Chat_Flags [ PERSON_SUBDIALOG_DUMMY    ] [ i ] = 0;
 	}
-    else 
-	{
-	fprintf( stderr, "\n\nExtraCommandString: %s \n" , ExtraCommandString );
-	ErrorMessage ( __FUNCTION__  , "\
-		ERROR:  UNKNOWN COMMAND STRING GIVEN!",
-		PLEASE_INFORM, IS_FATAL );
-	}
-};
+
+    run_lua(chat_initialization_code);
+
+    DoChatFromChatRosterData( PERSON_SUBDIALOG_DUMMY , chat_control_chat_droid , FALSE );
+
+    push_or_pop_chat_roster ( POP_ROSTER );
+}
 
 /**
  * It is possible to specify a conditional goto command from the chat
@@ -1184,33 +1105,6 @@ static void ProcessThisChatOption ( int MenuSelection , int ChatPartnerCode , En
     }
     
     //--------------------
-    // Maybe this option should also invoke some extra function like opening
-    // a shop interface or something.  So we do this here.
-    //
-    for ( i = 0 ; i < MAX_EXTRAS_PER_OPTION ; i ++ )
-    {
-	//--------------------
-	// Maybe all nescessary extras were executed by now.  Then it's time
-	// to quit...
-	//
-	if ( !strlen ( ChatRoster [ MenuSelection ] . extra_list [ i ] ) )
-	    break;
-	
-	DebugPrintf ( CHAT_DEBUG_LEVEL	, "\nStarting to invoke extra.  Text is: %s.\n" ,
-		      ChatRoster [ MenuSelection ] . extra_list[i] );
-	
-	ExecuteChatExtra ( ChatRoster [ MenuSelection ] . extra_list[i] , ChatDroid );
-	
-	if ( ! ChatDroid -> is_friendly )
-		chat_control_end_dialog = 1 ;
-	
-	//--------------------
-	// It can't hurt to have the overall background redrawn after each extra command
-	// which could have destroyed the background by drawing e.g. a shop interface
-	display_current_chat_protocol ( CHAT_DIALOG_BACKGROUND_PICTURE_CODE , ChatDroid , FALSE );
-    }
-
-    //--------------------
     // Maybe there was an ON-GOTO-CONDITION specified for this option.
     // Then of course we have to jump to the new location!!!
     //
@@ -1243,8 +1137,7 @@ static void ProcessThisChatOption ( int MenuSelection , int ChatPartnerCode , En
  * disk, this function is invoked to handle the actual chat interaction
  * and the dialog flow.
  */
-void
-DoChatFromChatRosterData( int ChatPartnerCode , Enemy ChatDroid , int clear_protocol )
+static void DoChatFromChatRosterData( int ChatPartnerCode , Enemy ChatDroid , int clear_protocol )
 {
     int i ;
     SDL_Rect Chat_Window;

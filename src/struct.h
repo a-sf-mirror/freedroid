@@ -912,8 +912,6 @@ typedef struct dialogue_option_s
     char* reply_sample_list[ MAX_REPLIES_PER_OPTION ] ;
     char* reply_subtitle_list[ MAX_REPLIES_PER_OPTION ];
     
-    char* extra_list[ MAX_EXTRAS_PER_OPTION ];
-    
     char* on_goto_condition;
     int on_goto_first_target;
     int on_goto_second_target;
