@@ -33,18 +33,21 @@ Beginning of new chat dialog for character="XXXXX"
 Initialization LuaCode={
     enable_node(0, 1, 2, 3, 99)
 }
-
 ----------------------------------------------------------------------
 
 New Option Nr=0  OptionText=_" Who are you? "
 Subtitle=_"I am a 614 security bot, once one of the best-selling products of the Nicholson company."
-EnableOption=4
-
+LuaCode={
+    disable_node(0)
+    enable_node(4)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=1  OptionText=_" Have you detected any hostile bot activity?"
 Subtitle=_"No. The hostiles have not shown up within the last 24 hours."
-
+LuaCode={
+    disable_node(1)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=2  OptionText=_" What can you tell me about the 614 type? "
@@ -52,13 +55,17 @@ Subtitle=_"The official manual classifies the 614 as a high class security droid
 Subtitle=_"It was mainly used within ships to protect certain areas from intruders."
 Subtitle=_"It is considered an old but reliable device."
 Subtitle=_"So don't worry. I'm still in pretty good shape."
-
+LuaCode={
+    disable_node(2)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=3  OptionText=_" What are your orders?"
 Subtitle=_"My orders are to protect the living beings in this camp from attacks by hostile bots."
 Subtitle=_"This has top priority. There are no other priorities."
-
+LuaCode={
+    disable_node(3)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=4  OptionText=_" Why are you not hostile as all the other bots?"
@@ -66,14 +73,15 @@ Subtitle=_"I belong to a an older generation of bots, running a custom-made secu
 Subtitle=_"None of the bots of this generation were affected by the proceedings that led to bots attacking, generally known as the Great Assault."
 Subtitle=_"Even though discontinued from Nicholson Company long ago, today, some people have picked up the work and are even trying to improve the operating system running on my series."
 Subtitle=_"Don't forget to buy products from Nicholson Company. They are the best."
-DisableOption=4
-
+LuaCode={
+    disable_node(4)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=99  OptionText=_" See you later."
 Subtitle=_" Resuming guard program."
 LuaCode={
-    enable_node(99)
+    enable_node(0, 1, 2, 3)
     end_dialog()
 }
 ----------------------------------------------------------------------
