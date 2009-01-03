@@ -2543,14 +2543,16 @@ of doors currently allowed in a Freedroid map.",
 	  //
 	  Lev -> refresh_obstacle_indices [ curref ] = obstacle_index ;
 	  curref++;
-	  if ( curref > MAX_REFRESHES_ON_LEVEL)
+	  if ( curref >= MAX_REFRESHES_ON_LEVEL)
 	    {
 	      fprintf( stderr , "\n\nLev->levelnum : %d MAX_REFRESHES_ON_LEVEL: %d \n" , 
 		       Lev -> levelnum , MAX_REFRESHES_ON_LEVEL );
 	      ErrorMessage ( __FUNCTION__  , "\
-The number of refreshes found in a level seems to be greater than the number\n\
-of refreshes currently allowed in a Freedroid map.",
-					 PLEASE_INFORM, IS_FATAL );
+The number of refreshes found on level %d is greater than the number\n\
+of refreshes currently allowed in a Freedroid map (%d).\n",
+					 PLEASE_INFORM, IS_WARNING_ONLY, Lev->levelnum, MAX_REFRESHES_ON_LEVEL );
+	      curref = MAX_REFRESHES_ON_LEVEL - 1;
+
 	    }
 	  break;
 
@@ -2572,7 +2574,8 @@ of refreshes currently allowed in a Freedroid map.",
 	      ErrorMessage ( __FUNCTION__  , "\
 The number of teleporters found in a level seems to be greater than the number\n\
 of teleporters currently allowed in a Freedroid map.",
-					 PLEASE_INFORM, IS_FATAL );
+					 PLEASE_INFORM, IS_WARNING_ONLY );
+	      curtele = MAX_TELEPORTERS_ON_LEVEL - 1; 
 	    }
 	  break;
 
@@ -2593,7 +2596,8 @@ of teleporters currently allowed in a Freedroid map.",
 	      ErrorMessage ( __FUNCTION__  , "\
 The number of autoguns found in a level seems to be greater than the number\n\
 of autoguns currently allowed in a Freedroid map.",
-					 PLEASE_INFORM, IS_FATAL );
+					 PLEASE_INFORM, IS_WARNING_ONLY );
+	      curautogun = MAX_TELEPORTERS_ON_LEVEL - 1;
 	    }
 	  break;
 
