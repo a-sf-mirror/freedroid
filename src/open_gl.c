@@ -483,34 +483,19 @@ pad_image_for_texture ( SDL_Surface* our_surface )
  * make_texture_out_of_surface and make_texture_out_of_prepadded_image are
  * the entry points for this function.
  */
-static void
-do_make_texture_out_of_surface ( iso_image* our_image, int txw, int txh, void * data) 
+static void do_make_texture_out_of_surface ( iso_image* our_image, int txw, int txh, void * data) 
 {
 
 #ifdef HAVE_LIBGL
 
     glPixelStorei ( GL_UNPACK_ALIGNMENT , 1 );
     
-    if ( our_image-> texture )
+    if (! our_image-> texture )
 	{
-	goto reuse_tex;
+	glGenTextures(1, &our_image->texture);
 	}
 
-    our_image -> texture = all_freedroid_textures [ next_texture_index_to_use ] ;
-    our_image -> texture_has_been_created = TRUE ;
-    next_texture_index_to_use ++ ;
-    if ( next_texture_index_to_use >= MAX_AMOUNT_OF_TEXTURES_WE_WILL_USE )
-    {
-	ErrorMessage ( __FUNCTION__  , 
-				   "Ran out of initialized texture positions to use for new textures.",
-				   PLEASE_INFORM, IS_FATAL );
-    }
-    else
-    {
-	DebugPrintf ( 1 , "\nTexture positions remaining: %d." , MAX_AMOUNT_OF_TEXTURES_WE_WILL_USE - next_texture_index_to_use );
-    }
-    
-    reuse_tex:
+    our_image -> texture_has_been_created = TRUE;
     DebugPrintf ( 1 , "Using texture %d\n", our_image->texture);
    
     glBindTexture( GL_TEXTURE_2D, ( our_image -> texture ) );
@@ -732,10 +717,6 @@ safely_initialize_our_default_open_gl_parameters ( void )
     
     safely_set_some_open_gl_flags_and_shade_model ();
     
-    glGenTextures( MAX_AMOUNT_OF_TEXTURES_WE_WILL_USE , & ( all_freedroid_textures [ 0 ] ) );  
-    
-    next_texture_index_to_use = 0 ;
-
     glGetIntegerv(GL_MAX_TEXTURE_SIZE, &gl_max_texture_size);
     
     open_gl_check_error_status ( __FUNCTION__ );
@@ -989,14 +970,7 @@ StoreMenuBackground ( int backup_slot )
 
 	if ( StoredMenuBackgroundTex [ backup_slot ] == 0 )
 		{ 
-		StoredMenuBackgroundTex [ backup_slot ] = all_freedroid_textures [ next_texture_index_to_use ] ;
-	        next_texture_index_to_use ++ ;
-		if ( next_texture_index_to_use >= MAX_AMOUNT_OF_TEXTURES_WE_WILL_USE )
-		    {
-                    ErrorMessage ( __FUNCTION__  ,
-                                   "Ran out of initialized texture positions to use for new textures.",
-                                   PLEASE_INFORM, IS_FATAL );
-                    } 
+		glGenTextures(1, &StoredMenuBackgroundTex[backup_slot]);
 		}
 
 	glEnable(GL_TEXTURE_2D);
@@ -1040,8 +1014,7 @@ StoreMenuBackground ( int backup_slot )
  * can be stretched out over the whole screen via OpenGL.
  * This function is here to set up the texture in the first place.
  */
-void
-set_up_stretched_texture_for_light_radius ( void )
+void set_up_stretched_texture_for_light_radius ( void )
 {
 #ifdef HAVE_LIBGL
 
@@ -1070,20 +1043,8 @@ set_up_stretched_texture_for_light_radius ( void )
     //
     glPixelStorei( GL_UNPACK_ALIGNMENT , 1 );
 
-    light_radius_stretch_texture = all_freedroid_textures [ next_texture_index_to_use ] ;
-    next_texture_index_to_use ++ ;
+    glGenTextures(1, &light_radius_stretch_texture);
 
-    if ( next_texture_index_to_use >= MAX_AMOUNT_OF_TEXTURES_WE_WILL_USE )
-    {
-	ErrorMessage ( __FUNCTION__  , 
-				   "Ran out of initialized texture positions to use for new textures.",
-				   PLEASE_INFORM, IS_FATAL );
-    }
-    else
-    {
-	DebugPrintf ( 0 , "\nTexture positions remaining: %d." , MAX_AMOUNT_OF_TEXTURES_WE_WILL_USE - next_texture_index_to_use );
-    }
-    
     glBindTexture( GL_TEXTURE_2D, ( light_radius_stretch_texture ) );
   
     glTexParameteri( GL_TEXTURE_2D , GL_TEXTURE_MAG_FILTER , GL_LINEAR );

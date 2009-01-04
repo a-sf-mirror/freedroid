@@ -107,11 +107,6 @@ EXTERN int command_line_override_for_screen_resolution;
 EXTERN char* mission_diary_texts [ MAX_MISSIONS_IN_GAME ] [ MAX_MISSION_DESCRIPTION_TEXTS ] ;
 EXTERN char* character_descriptions [ MAX_PERSONS ] ;
 
-#ifdef HAVE_LIBGL
-EXTERN GLuint all_freedroid_textures [ MAX_AMOUNT_OF_TEXTURES_WE_WILL_USE ] ;
-EXTERN int next_texture_index_to_use ;
-#endif
-
 EXTERN char previous_part_strings [ ALL_PART_GROUPS ] [ 50 ] ;
 EXTERN mouse_press_button AllMousePressButtons[ MAX_MOUSE_PRESS_BUTTONS ] ;
 EXTERN int Item_Held_In_Hand;
