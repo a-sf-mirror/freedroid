@@ -340,14 +340,14 @@ static int lua_event_complete_mission(lua_State *L)
 static int lua_event_is_mission_assigned(lua_State *L)
 {
     int misnum = luaL_checkinteger(L, 1);
-    lua_pushboolean(L, Me . AllMissions[ misnum ] . MissionIsComplete);
+    lua_pushboolean(L, Me . AllMissions[ misnum ] . MissionWasAssigned);
     return 1;
 }
 
 static int lua_event_is_mission_complete(lua_State *L)
 {
     int misnum = luaL_checkinteger(L, 1);
-    lua_pushboolean(L, Me . AllMissions[ misnum ] . MissionWasAssigned);
+    lua_pushboolean(L, Me . AllMissions[ misnum ] . MissionIsComplete);
     return 1;
 }
 
