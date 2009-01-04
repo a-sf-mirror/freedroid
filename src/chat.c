@@ -828,8 +828,7 @@ display_current_chat_protocol ( int background_picture_code , enemy* ChatDroid ,
  * sample.  It is not very sophisticated or complicated, but nevertheless
  * important, because this combination does indeed occur so often.
  */
-void
-GiveSubtitleNSample( char* SubtitleText , char* SampleFilename , enemy* ChatDroid , int with_update )
+void GiveSubtitleNSample(const char* SubtitleText, const char* SampleFilename , enemy* ChatDroid , int with_update )
 {
 
     strcat ( chat_protocol , SubtitleText );

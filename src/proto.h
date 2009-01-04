@@ -696,5 +696,6 @@ void PlantCookie(const char *);
 void DeleteCookie (const char *);
 int ResolveDialogSectionToChatFlagsIndex (const char* SectionName );
 void run_subdialog(const char *);
+void GiveSubtitleNSample(const char*, const char*, enemy* , int);
 
 #endif

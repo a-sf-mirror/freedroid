@@ -438,6 +438,16 @@ static int lua_event_trade_with(lua_State *L)
     return 0;
 }
 
+static int lua_chat_npc_says(lua_State *L)
+{
+    const char *answer = luaL_checkstring(L, 1);
+    const char *sample = luaL_optstring(L, 2, "NO_SUBTITLE_AND_NO_WAITING_EITHER");
+
+    GiveSubtitleNSample(answer, sample, chat_control_chat_droid, TRUE);
+
+    return 0;
+}
+    
 static int lua_chat_run_subdialog(lua_State *L)
 {
     const char *tmp_filename = luaL_checkstring(L, 1);
@@ -576,6 +586,7 @@ luaL_reg lfuncs[] = {
     { "respawn_level", lua_event_respawn_level },
     { "trade_with", lua_event_trade_with },
 
+    { "npc_says", lua_chat_npc_says },
     { "run_subdialog", lua_chat_run_subdialog },
     { "set_next_node", lua_chat_set_next_node },
     { "end_dialog", lua_chat_end_dialog },
