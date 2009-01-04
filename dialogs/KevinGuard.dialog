@@ -31,7 +31,7 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 Initialization LuaCode={
-    enable_node(0, 16)
+    enable_node(0)
 }
 
 ----------------------------------------------------------------------
@@ -39,8 +39,15 @@ Initialization LuaCode={
 
 New Option Nr=0  OptionText=_"THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-DisableOption=0
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
+LuaCode={
+	disable_node(0)
+	if(cookie_planted("kevin_door_open")) then
+		set_next_node(15)
+	else
+		set_next_node(20)
+	end
+}
 
 ----------------------------------------------------------------------
 
@@ -179,13 +186,6 @@ DisableOption=15
 LuaCode={
     end_dialog()
 }
-----------------------------------------------------------------------
-
-New Option Nr=16  OptionText="THIS WILL NOT EVER BE VISIBLE"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-DisableOption=16
-OnCondition="CookieIsPlanted:kevin_door_open:" JumpToOption=15 ElseGoto=20
-AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
