@@ -37,94 +37,94 @@ FirstTime LuaCode={
 ----------------------------------------------------------------------
 
 
-New Option Nr=0  OptionText=_" Hi. Are you all right? You don't look too good."
-Subtitle=_"Good day. I am Bruce."
-Subtitle=_"I am unwell."
+Nr=0  Text=_" Hi. Are you all right? You don't look too good."
+NPC=_"Good day. I am Bruce."
+NPC=_"I am unwell."
 LuaCode={
     disable_node(0)
     enable_node(1)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=1  OptionText=_" How is it going?"
-Subtitle=_"I am very tired, but otherwise well."
+Nr=1  Text=_" How is it going?"
+NPC=_"I am very tired, but otherwise well."
 LuaCode={
     disable_node(1)
     enable_node(2)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=2  OptionText=_" You don't talk much, eh?"
-Subtitle=_"No, I am just too tired now. I have been working in the mine for two weeks now."
-Subtitle=_"I feel really wiped, so maybe it would be better if you came some other day."
+Nr=2  Text=_" You don't talk much, eh?"
+NPC=_"No, I am just too tired now. I have been working in the mine for two weeks now."
+NPC=_"I feel really wiped, so maybe it would be better if you came some other day."
 LuaCode={
     disable_node(2)
     enable_node(3)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=3  OptionText=_" Why do you work so hard in the mine?"
-Subtitle=_"Because I must! The Red Guard makes everyone work up to their limits!"
-Subtitle=_"If you do not work for a full work period, you will be in trouble."
-Subtitle=_"But I have no choice. I do not want to be a soldier again."
+Nr=3  Text=_" Why do you work so hard in the mine?"
+NPC=_"Because I must! The Red Guard makes everyone work up to their limits!"
+NPC=_"If you do not work for a full work period, you will be in trouble."
+NPC=_"But I have no choice. I do not want to be a soldier again."
 LuaCode={
     disable_node(3)
     enable_node(4)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=4  OptionText=_" You were a soldier before? "
-Subtitle=_"Yes. I would rather not talk about it."
+Nr=4  Text=_" You were a soldier before? "
+NPC=_"Yes. I would rather not talk about it."
 LuaCode={
     disable_node(4)
     enable_node(8, 10)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=5  OptionText=_" Good. Start talking. Now."
-Subtitle=_"Those are pretty painful and distant memories."
-Subtitle=_"After the Great Assault, I joined the Red Guard. They needed help and were looking for volunteers."
-Subtitle=_"I served there for a short while, and they even let me use an exterminator. But then after a failed mission, I resigned and never wore a uniform again."
+Nr=5  Text=_" Good. Start talking. Now."
+NPC=_"Those are pretty painful and distant memories."
+NPC=_"After the Great Assault, I joined the Red Guard. They needed help and were looking for volunteers."
+NPC=_"I served there for a short while, and they even let me use an exterminator. But then after a failed mission, I resigned and never wore a uniform again."
 LuaCode={
     disable_node(5)
     enable_node(6, 7, 98)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=6  OptionText=_" You mentioned an exterminator. What is it?"
-Subtitle=_"It is the best weapon that the Red Guard has against the bots."
-Subtitle=_"A direct hit from one of those guns is enough to change most bots into scrap metal."
-Subtitle=_"Many of the great victories of the Red Guard are thanks to the exterminator."
-Subtitle=_"Of course because of its small clip and terribly long reloading time, equally many deaths can be attributed to it."
+Nr=6  Text=_" You mentioned an exterminator. What is it?"
+NPC=_"It is the best weapon that the Red Guard has against the bots."
+NPC=_"A direct hit from one of those guns is enough to change most bots into scrap metal."
+NPC=_"Many of the great victories of the Red Guard are thanks to the exterminator."
+NPC=_"Of course because of its small clip and terribly long reloading time, equally many deaths can be attributed to it."
 LuaCode={
     disable_node(6)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=7  OptionText=_" A failed mission?"
-Subtitle=_"There were six of us. Me, Wilber, Anderson and three others. I do not remember the names anymore. We were team number nine."
-Subtitle=_"It was a routine scout mission. We saw an interesting building which was not there before, and decided to take a look."
-Subtitle=_"It was a terrible fortress, many stories high. It had guns everywhere. When we got close the shooting started."
-Subtitle=_"They were waiting for us. Came in endless swarms. More and more and more. We stood our ground and kept firing, but it was no use. More of them came."
-Subtitle=_"Our ammunition ran out. They got close. It was the end of team number nine. The Hell Fortress took their lives. I ran. I survived."
-Subtitle=_"After that I decided that I am not fit to be one of the Red Guard. I resigned and started to work in the mine shortly after."
-Subtitle=_"I do not want to face the anger of the Hell Fortress ever again. Never again."
+Nr=7  Text=_" A failed mission?"
+NPC=_"There were six of us. Me, Wilber, Anderson and three others. I do not remember the names anymore. We were team number nine."
+NPC=_"It was a routine scout mission. We saw an interesting building which was not there before, and decided to take a look."
+NPC=_"It was a terrible fortress, many stories high. It had guns everywhere. When we got close the shooting started."
+NPC=_"They were waiting for us. Came in endless swarms. More and more and more. We stood our ground and kept firing, but it was no use. More of them came."
+NPC=_"Our ammunition ran out. They got close. It was the end of team number nine. The Hell Fortress took their lives. I ran. I survived."
+NPC=_"After that I decided that I am not fit to be one of the Red Guard. I resigned and started to work in the mine shortly after."
+NPC=_"I do not want to face the anger of the Hell Fortress ever again. Never again."
 LuaCode={
     disable_node(7)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=8  OptionText=_" I said, I want to know about your life as a soldier."
-Subtitle=_"And I said that I do not want to talk about it. It hurts too much. Please stop asking about it and leave me alone."
+Nr=8  Text=_" I said, I want to know about your life as a soldier."
+NPC=_"And I said that I do not want to talk about it. It hurts too much. Please stop asking about it and leave me alone."
 LuaCode={
     disable_node(8, 10)
     enable_node(9)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=9  OptionText=_" You don't understand. I wasn't asking. Now, tell me about your life as a soldier, or I will tell the guards you are slacking off."
-Subtitle=_"No! Please... I will do anything, just do not call the Red Guard! They do not like people who left the service. They do not like me. "
-Subtitle=_"I will tell you everything."
+Nr=9  Text=_" You don't understand. I wasn't asking. Now, tell me about your life as a soldier, or I will tell the guards you are slacking off."
+NPC=_"No! Please... I will do anything, just do not call the Red Guard! They do not like people who left the service. They do not like me. "
+NPC=_"I will tell you everything."
 LuaCode={
     plant_cookie("bruce_hurt")
     disable_node(9, 99)
@@ -132,8 +132,8 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=10  OptionText=_" I have some bad memories too. I know how hard it can be to talk about them. Keep your stories to yourself."
-Subtitle=_"Yes. And now I would like to go to sleep. Good night Linarian."
+Nr=10  Text=_" I have some bad memories too. I know how hard it can be to talk about them. Keep your stories to yourself."
+NPC=_"Yes. And now I would like to go to sleep. Good night Linarian."
 LuaCode={
     disable_node(8, 10)
     end_dialog()
@@ -141,7 +141,7 @@ LuaCode={
 
 ----------------------------------------------------------------------
 
-New Option Nr=50  OptionText="DID TUX HARM BRUCE?"
+Nr=50  Text="DID TUX HARM BRUCE?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
     if (cookie_planted("bruce_hurt")) then enable_node(98) else enable_node(99) end
@@ -150,15 +150,15 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-New Option Nr=98  OptionText=_" I'll be going then."
-Subtitle=_". . ."
+Nr=98  Text=_" I'll be going then."
+NPC=_". . ."
 LuaCode={
     end_dialog()
 }
 ----------------------------------------------------------------------
 
-New Option Nr=99  OptionText=_" I'll be going then."
-Subtitle=_"Good. I need sleep."
+Nr=99  Text=_" I'll be going then."
+NPC=_"Good. I need sleep."
 LuaCode={
     end_dialog()
 }

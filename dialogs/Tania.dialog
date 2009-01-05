@@ -35,145 +35,145 @@ FirstTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=0  OptionText=_"Em, hi."
-Subtitle=_"Oh! It happened! I have been waiting for you for 3226 hours!"
+Nr=0  Text=_"Em, hi."
+NPC=_"Oh! It happened! I have been waiting for you for 3226 hours!"
 LuaCode={
     disable_node(0)
     enable_node(1, 3, 14, 19)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=1  OptionText=_"You knew I would come?"
-Subtitle=_"Of course, my little imaginary friend!"
+Nr=1  Text=_"You knew I would come?"
+NPC=_"Of course, my little imaginary friend!"
 LuaCode={
     disable_node(1)
     enable_node(2, 5)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=2  OptionText=_"Imaginary?! I am as real as you are."
-Subtitle=_"This place is locked. Hermetically conservated and guarded by bots. So you can be nothing more than the product of my imagination."
+Nr=2  Text=_"Imaginary?! I am as real as you are."
+NPC=_"This place is locked. Hermetically conservated and guarded by bots. So you can be nothing more than the product of my imagination."
 LuaCode={
     disable_node(2)
     enable_node(12)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=3  OptionText=_"Where am I?"
-Subtitle=_"In a prison, a luxurious prison. I am feeling quite lonely, as you can see. Big room, plenty of food, a waterfall behind the window..."
+Nr=3  Text=_"Where am I?"
+NPC=_"In a prison, a luxurious prison. I am feeling quite lonely, as you can see. Big room, plenty of food, a waterfall behind the window..."
 LuaCode={
     disable_node(3)
     enable_node(4, 6)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=4  OptionText=_"All I see through the window are ray emitters. And we are below ground level.."
-Subtitle=_"Yes, I know. But I so badly want to see sun, rivers, trees... there definitely is waterfall behind them!"
+Nr=4  Text=_"All I see through the window are ray emitters. And we are below ground level.."
+NPC=_"Yes, I know. But I so badly want to see sun, rivers, trees... there definitely is waterfall behind them!"
 LuaCode={
     disable_node(4)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=5  OptionText=_"It is dark here."
-Subtitle=_"Main power supply is down, so only emergency light works. Peter tried to switch it back on, but he didn't succeed."
+Nr=5  Text=_"It is dark here."
+NPC=_"Main power supply is down, so only emergency light works. Peter tried to switch it back on, but he didn't succeed."
 LuaCode={
     disable_node(5)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=6  OptionText=_"This place doesn't look like a prison."
-Subtitle=_"In the past it was a secret lab. You heard about those strength pills? They were invented here. Other pills too, but I was working on strength ones."
+Nr=6  Text=_"This place doesn't look like a prison."
+NPC=_"In the past it was a secret lab. You heard about those strength pills? They were invented here. Other pills too, but I was working on strength ones."
 LuaCode={
     disable_node(6)
     enable_node(7, 8)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=7  OptionText=_"Can you give me some pills then?"
-Subtitle=_"No, Peter ate them all. That killed him."
-Subtitle=_"*cries*"
+Nr=7  Text=_"Can you give me some pills then?"
+NPC=_"No, Peter ate them all. That killed him."
+NPC=_"*cries*"
 LuaCode={
     set_next_node(9)
     disable_node(7)
 }
 --------------------------------------------------------------------
 
-New Option Nr=8  OptionText=_"So you are a biologist? Could you heal me?"
-Subtitle=_"That would be something different from what I've done in the last months at least. Some entertainement."
-Subtitle=_"Let me take a look at that... it's nothing some nanobots could not take care of.... You will be all fixed up in a minute."
+Nr=8  Text=_"So you are a biologist? Could you heal me?"
+NPC=_"That would be something different from what I've done in the last months at least. Some entertainement."
+NPC=_"Let me take a look at that... it's nothing some nanobots could not take care of.... You will be all fixed up in a minute."
 LuaCode={
     heal_tux()
 }
 ----------------------------------------------------------------------
 
-New Option Nr=9  OptionText=_"They say that strength pills are absolutely safe!"
-Subtitle=_"They are like money. Having money is good, but if you have too much, you can decide that you can do anything."
-Subtitle=_"Peter became not very strong, but very-very-very strong. He thought he could make an exit with his bare hands."
-Subtitle=_"*cries*"
-Subtitle=_"If you go further down the corridor, you will find debris and a big stone. That is his grave."
+Nr=9  Text=_"They say that strength pills are absolutely safe!"
+NPC=_"They are like money. Having money is good, but if you have too much, you can decide that you can do anything."
+NPC=_"Peter became not very strong, but very-very-very strong. He thought he could make an exit with his bare hands."
+NPC=_"*cries*"
+NPC=_"If you go further down the corridor, you will find debris and a big stone. That is his grave."
 LuaCode={
     disable_node(9)
     enable_node(10, 11)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=10  OptionText=_"You loved him?"
-Subtitle=_"I still do."
+Nr=10  Text=_"You loved him?"
+NPC=_"I still do."
 LuaCode={
     disable_node(10)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=11  OptionText=_"But why not go out through the door?"
-Subtitle=_"It is locked and very reliable. Even a tank would not be able to samsh it! And if a door is broken, SADDs would attack, that's their program."
+Nr=11  Text=_"But why not go out through the door?"
+NPC=_"It is locked and very reliable. Even a tank would not be able to samsh it! And if a door is broken, SADDs would attack, that's their program."
 LuaCode={
     disable_node(11)
     enable_node(18)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=12  OptionText=_"Autoguns have made a hole in the wall. I came through this hole."
-Subtitle=_"Do you mean I can go out to the surface ?!"
-Subtitle=_"Oh god! I've told Peter that he chosed wrong place, but he was so stubborn!"
+Nr=12  Text=_"Autoguns have made a hole in the wall. I came through this hole."
+NPC=_"Do you mean I can go out to the surface ?!"
+NPC=_"Oh god! I've told Peter that he chosed wrong place, but he was so stubborn!"
 LuaCode={
     disable_node(12)
     enable_node(13)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=13  OptionText=_"Yes, you can get to the surface. But the guns are still on."
-Subtitle=_"All hope lost! I'm a scientist, not a warrior."
+Nr=13  Text=_"Yes, you can get to the surface. But the guns are still on."
+NPC=_"All hope lost! I'm a scientist, not a warrior."
 LuaCode={
     disable_node(13)
     enable_node(15)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=14  OptionText=_"It is strange to see a girl in such a beautiful dress here."
-Subtitle=_"I'm going to spend all my life here! So forgive me some little weakneses."
+Nr=14  Text=_"It is strange to see a girl in such a beautiful dress here."
+NPC=_"I'm going to spend all my life here! So forgive me some little weakneses."
 LuaCode={
     disable_node(14)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=15  OptionText=_"Maybe is it possible to disable the guns?"
-Subtitle=_"Theoretically yes, but in practice I'm not sure you would be able to do that."
+Nr=15  Text=_"Maybe is it possible to disable the guns?"
+NPC=_"Theoretically yes, but in practice I'm not sure you would be able to do that."
 LuaCode={
     disable_node(15)
     enable_node(16)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=16  OptionText=_"How can I disable the guns?"
-Subtitle=_"Somewhere in distant part of the lab should be an SACD - secret area control droid. It controls all defense systems in the base. If you manage to persuade him, you will be able to control the base. But it's very hard to find him."
+Nr=16  Text=_"How can I disable the guns?"
+NPC=_"Somewhere in distant part of the lab should be an SACD - secret area control droid. It controls all defense systems in the base. If you manage to persuade him, you will be able to control the base. But it's very hard to find him."
 LuaCode={
     disable_node(16)
     enable_node(17)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=17  OptionText=_"I will disable guns for you."
-Subtitle=_"Thanks... please be careful. You will not be able to access the control center directly, it is behind a triple hermetic door. Try using the service tunnels."
+Nr=17  Text=_"I will disable guns for you."
+NPC=_"Thanks... please be careful. You will not be able to access the control center directly, it is behind a triple hermetic door. Try using the service tunnels."
 LuaCode={
     assign_mission(10)
     open_diary_entry(10, 0)
@@ -181,21 +181,21 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=18  OptionText=_"Why not just open them? There should be a way for unlocking the base."
-Subtitle=_"To open the door you need to know the password. Only the commander of the area and his deputy knew it. Commander was killed by bots as soon as assault started and the deputy was in town, I don't know what happened to him."
+Nr=18  Text=_"Why not just open them? There should be a way for unlocking the base."
+NPC=_"To open the door you need to know the password. Only the commander of the area and his deputy knew it. Commander was killed by bots as soon as assault started and the deputy was in town, I don't know what happened to him."
 LuaCode={
     disable_node(18)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=19  OptionText=_"Carpets, sofa, bookshelfs. Where did you get all this?"
-Subtitle=_"Peter did all he could to make this room comfortable. Sofa and armchair are from commander cabinet, books from the restroom..."
+Nr=19  Text=_"Carpets, sofa, bookshelfs. Where did you get all this?"
+NPC=_"Peter did all he could to make this room comfortable. Sofa and armchair are from commander cabinet, books from the restroom..."
 LuaCode={
     disable_node(19)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=21 OptionText="IS MISSION ASSIGNED"
+Nr=21 Text="IS MISSION ASSIGNED"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
     if (is_mission_assigned(10)) then
@@ -210,9 +210,9 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-New Option Nr=27  OptionText=_"The sentry guns are off. You can go now!"
-Subtitle=_"Thanks, thanks a lot! Now I will be able to see sun, trees, rivers. I missed those so much!"
-Subtitle=_"I hope these books will help you survive in this world."
+Nr=27  Text=_"The sentry guns are off. You can go now!"
+NPC=_"Thanks, thanks a lot! Now I will be able to see sun, trees, rivers. I missed those so much!"
+NPC=_"I hope these books will help you survive in this world."
 LuaCode={
     display_big_message("Tania is now free!")
     give_xp(1500)
@@ -223,20 +223,20 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=28  OptionText=_"Where can I find that SACD?"
-Subtitle=_"To the right from the entrance of the area, there is a hall. In the south part of this hall you will find a triple hermetic door. The control center is behind that door. But it is locked, so you will have to find another way there. Cable collectors may help you."
+Nr=28  Text=_"Where can I find that SACD?"
+NPC=_"To the right from the entrance of the area, there is a hall. In the south part of this hall you will find a triple hermetic door. The control center is behind that door. But it is locked, so you will have to find another way there. Cable collectors may help you."
 
 ----------------------------------------------------------------------
 
-New Option Nr=29  OptionText=_"Are you staying here? I can help you get to the town."
-Subtitle=_"No, thanks. I don't want to go far from Peter."
+Nr=29  Text=_"Are you staying here? I can help you get to the town."
+NPC=_"No, thanks. I don't want to go far from Peter."
 LuaCode={
     disable_node(29)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=99  OptionText=_"I think I have to go."
-Subtitle=_"That's ok. But please, please, come back. I'm so lonely."
+Nr=99  Text=_"I think I have to go."
+NPC=_"That's ok. But please, please, come back. I'm so lonely."
 LuaCode={
     end_dialog()
 }

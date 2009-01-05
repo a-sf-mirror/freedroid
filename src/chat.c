@@ -368,7 +368,7 @@ static void LoadDialog ( char* FullPathAndFullFilename )
     // #define END_OF_DIALOGUE_FILE_STRING "*** End of Dialogue File Information ***"
 #define CHAT_CHARACTER_BEGIN_STRING "Beginning of new chat dialog for character=\""
 #define CHAT_CHARACTER_END_STRING "End of chat dialog for character"
-#define NEW_OPTION_BEGIN_STRING "New Option Nr="
+#define NEW_OPTION_BEGIN_STRING "Nr="
     
     //--------------------
     // At first we read the whole chat file information into memory
@@ -418,13 +418,13 @@ static void LoadDialog ( char* FullPathAndFullFilename )
 	// cause this will be done by the next 'InitChatRoster' function anyway.
 	//
 	ChatRoster[ OptionIndex ] . option_text = 
-	    ReadAndMallocStringFromDataOptional ( SectionPointer , "OptionText=\"" , "\"", 0 ) ;
+	    ReadAndMallocStringFromDataOptional ( SectionPointer , "Text=\"" , "\"", 0 ) ;
 	if (!ChatRoster[ OptionIndex ] . option_text) {
 	    ChatRoster[ OptionIndex ] . option_text = 
-		ReadAndMallocStringFromData ( SectionPointer, "OptionText=_\"" , "\"" ) ;
+		ReadAndMallocStringFromData ( SectionPointer, "Text=_\"" , "\"" ) ;
 	}
 
-	DebugPrintf( CHAT_DEBUG_LEVEL , "\nOptionText found : \"%s\"." , ChatRoster[ OptionIndex ] . option_text );
+	DebugPrintf( CHAT_DEBUG_LEVEL , "\nText found : \"%s\"." , ChatRoster[ OptionIndex ] . option_text );
 
 	ChatRoster[ OptionIndex ] . option_sample_file_name = 
 	    ReadAndMallocStringFromDataOptional ( SectionPointer , "OptionSample=\"" , "\"", 0 ) ;
@@ -435,7 +435,7 @@ static void LoadDialog ( char* FullPathAndFullFilename )
 	DebugPrintf( CHAT_DEBUG_LEVEL , "\nOptionSample found : \"%s\"." , ChatRoster[ OptionIndex ] . option_sample_file_name );
 	
 #define NEW_REPLY_SAMPLE_STRING "ReplySample=\""
-#define NEW_REPLY_SUBTITLE_STRING "Subtitle=_\""
+#define NEW_REPLY_SUBTITLE_STRING "NPC=_\""
 	
 	//--------------------
 	// We count the number of Subtitle and Sample combinations and then
@@ -482,7 +482,7 @@ severe error.",
 	    //--------------------
 	    // Now we must move the reply pointer to after the previous combination.
 	    //
-	    ReplyPointer = LocateStringInData ( ReplyPointer, "Subtitle" );
+	    ReplyPointer = LocateStringInData ( ReplyPointer, NEW_REPLY_SUBTITLE_STRING );
 	    ReplyPointer ++;
 	    }
 	

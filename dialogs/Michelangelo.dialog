@@ -35,29 +35,29 @@ FirstTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=0  OptionText=_" Hi! I'm new here."
-Subtitle=_"Hello. I'm Michelangelo. I haven't been here for long either."
-Subtitle=_"I wish the bots had just killed me, but I got 'lucky' and ended up in this hellhole."
+Nr=0  Text=_" Hi! I'm new here."
+NPC=_"Hello. I'm Michelangelo. I haven't been here for long either."
+NPC=_"I wish the bots had just killed me, but I got 'lucky' and ended up in this hellhole."
 LuaCode={
     disable_node(0)
     enable_node(10, 11)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=10  OptionText=_" How is it going?"
-Subtitle=_"Don't ask."
-Subtitle=_"'Terribly' would be a huge understatement."
+Nr=10  Text=_" How is it going?"
+NPC=_"Don't ask."
+NPC=_"'Terribly' would be a huge understatement."
 LuaCode={
     disable_node(10)
     enable_node(18)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=11  OptionText=_" Can I buy some food here?"
-Subtitle=_"There is no food here, just the odious military rations."
-Subtitle=_"Made fully out of artificial nutrients and carcinogenic flavors. Even the army hated them."
-Subtitle=_"It's better than starving, but some people have already committed suicide because that repulsive material is the only thing available to eat."
-Subtitle=_"I can give you some, but it's not worthy of being called food."
+Nr=11  Text=_" Can I buy some food here?"
+NPC=_"There is no food here, just the odious military rations."
+NPC=_"Made fully out of artificial nutrients and carcinogenic flavors. Even the army hated them."
+NPC=_"It's better than starving, but some people have already committed suicide because that repulsive material is the only thing available to eat."
+NPC=_"I can give you some, but it's not worthy of being called food."
 LuaCode={
     disable_node(11)
     enable_node(12)
@@ -65,12 +65,12 @@ LuaCode={
 
 ----------------------------------------------------------------------
 
-New Option Nr=12  OptionText=_" I want some yummy army snacks!"
-Subtitle=_"I am supposed to read this out to all newcomers. Here goes:"
-Subtitle=_"'Please note that the army meal model #23 you are about to eat is provided 'as is' without warranty of any kind."
-Subtitle=_"That includes the implied warranty of edibility or fitness for a particular purpose. The entire risk as to the quality of the food is with you."
-Subtitle=_"Should the army meal model #23 prove poisonous, you agree to cover the cost of keeping you alive by the colony medical staff or the costs of your cremation in our nuclear furnaces.'"
-Subtitle=_"Well, that is all. Here is the junk that you wanted. Enjoy."
+Nr=12  Text=_" I want some yummy army snacks!"
+NPC=_"I am supposed to read this out to all newcomers. Here goes:"
+NPC=_"'Please note that the army meal model #23 you are about to eat is provided 'as is' without warranty of any kind."
+NPC=_"That includes the implied warranty of edibility or fitness for a particular purpose. The entire risk as to the quality of the food is with you."
+NPC=_"Should the army meal model #23 prove poisonous, you agree to cover the cost of keeping you alive by the colony medical staff or the costs of your cremation in our nuclear furnaces.'"
+NPC=_"Well, that is all. Here is the junk that you wanted. Enjoy."
 LuaCode={
     set_next_node(27)
     disable_node(12)
@@ -78,69 +78,69 @@ LuaCode={
 
 ----------------------------------------------------------------------
 
-New Option Nr=18  OptionText=_" You do not sound happy. What is wrong?"
-Subtitle=_"EVERYTHING!"
-Subtitle=_"Just look at this stupid town!"
-Subtitle=_"We are constantly pushed around by our 'saviours' the damn Red Guard. I hope they all die from rat bites as soon as possible and go to the deepest hells to boil in lava forever."
-Subtitle=_"And the bots are keeping us busy by murdering, chopping, slicing, cleaving, rending and wounding us. How wonderful. "
-Subtitle=_"The guards gave me a filthy hovel to live in. The walls are so thin that every night I am rocked to sleep by the bots communicating with those beeps and modem sounds."
-Subtitle=_"It sounds like they are singing something. Every night they start their song... I cannot sleep thanks to that electric chorus."
-Subtitle=_"Have I mentioned that the only food that we have is some kind of pestilential military ration? The smell alone is making me want to vomit."
+Nr=18  Text=_" You do not sound happy. What is wrong?"
+NPC=_"EVERYTHING!"
+NPC=_"Just look at this stupid town!"
+NPC=_"We are constantly pushed around by our 'saviours' the damn Red Guard. I hope they all die from rat bites as soon as possible and go to the deepest hells to boil in lava forever."
+NPC=_"And the bots are keeping us busy by murdering, chopping, slicing, cleaving, rending and wounding us. How wonderful. "
+NPC=_"The guards gave me a filthy hovel to live in. The walls are so thin that every night I am rocked to sleep by the bots communicating with those beeps and modem sounds."
+NPC=_"It sounds like they are singing something. Every night they start their song... I cannot sleep thanks to that electric chorus."
+NPC=_"Have I mentioned that the only food that we have is some kind of pestilential military ration? The smell alone is making me want to vomit."
 LuaCode={
     disable_node(18)
     enable_node(19, 20)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=19  OptionText=_" Cheer up! All will be fine! Happy days are coming! Hurray!"
-Subtitle=_"..."
-Subtitle=_"Linarian, have you been gorging on psychoactive pills or something?"
-Subtitle=_"Get a grip, the situation is bad and there is no use in pretending otherwise."
+Nr=19  Text=_" Cheer up! All will be fine! Happy days are coming! Hurray!"
+NPC=_"..."
+NPC=_"Linarian, have you been gorging on psychoactive pills or something?"
+NPC=_"Get a grip, the situation is bad and there is no use in pretending otherwise."
 LuaCode={
     disable_node(19)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=20  OptionText=_" You are a cook. Stop complaining about the poor food! Make some yourself."
-Subtitle=_"I cannot! My beautiful macrowave oven is out of power. The wretched Red Guard took away my uranium battery."
-Subtitle=_"I wish I could kill them all with my bare hands. They deserve it."
-Subtitle=_"If only I had some dilithium to use as a backup power source..."
+Nr=20  Text=_" You are a cook. Stop complaining about the poor food! Make some yourself."
+NPC=_"I cannot! My beautiful macrowave oven is out of power. The wretched Red Guard took away my uranium battery."
+NPC=_"I wish I could kill them all with my bare hands. They deserve it."
+NPC=_"If only I had some dilithium to use as a backup power source..."
 LuaCode={
     disable_node(20)
     enable_node(40, 41, 42, 70, 80)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=24  OptionText=_" Got any food yet?"
-Subtitle=_"I had prepared some delicacies, but the ravenous Red Guard ate it all."
-Subtitle=_"Not a big loss, I have a second batch of food cubes in the oven and they will be ready shortly."
-Subtitle=_"I think the mood in the town will improve once the cooking master Michelangelo gets to work. Ha!"
+Nr=24  Text=_" Got any food yet?"
+NPC=_"I had prepared some delicacies, but the ravenous Red Guard ate it all."
+NPC=_"Not a big loss, I have a second batch of food cubes in the oven and they will be ready shortly."
+NPC=_"I think the mood in the town will improve once the cooking master Michelangelo gets to work. Ha!"
 LuaCode={
     disable_node(24)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=27  OptionText=_" Hmm... Crunchy... That is... Oh... No. Ugh. Help."
-Subtitle=_"Oh yes. You were warned, so don't blame me."
+Nr=27  Text=_" Hmm... Crunchy... That is... Oh... No. Ugh. Help."
+NPC=_"Oh yes. You were warned, so don't blame me."
 LuaCode={
     set_next_node(28)
     disable_node(27)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=28  OptionText=_" Bleah! That is not food! "
-Subtitle=_"We already know that. There is nothing else to eat here, so I hope you get used to the taste."
-Subtitle=_"That thing only looks well and has a nice color."
-Subtitle=_"But as you can see, the color cannot be eaten, only the taste counts."
+Nr=28  Text=_" Bleah! That is not food! "
+NPC=_"We already know that. There is nothing else to eat here, so I hope you get used to the taste."
+NPC=_"That thing only looks well and has a nice color."
+NPC=_"But as you can see, the color cannot be eaten, only the taste counts."
 LuaCode={
     disable_node(28)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=29  OptionText=_" I have the dilithium you wanted."
-Subtitle=_"Really? I thought you are dead, but not only you come back alive, you also bring some power crystals for my trusty oven."
-Subtitle=_"I will start cooking at once."
-Subtitle=_"Thank you, Linarian. As soon as the food cubes are ready I will be able to give them away to the hungry people."
+Nr=29  Text=_" I have the dilithium you wanted."
+NPC=_"Really? I thought you are dead, but not only you come back alive, you also bring some power crystals for my trusty oven."
+NPC=_"I will start cooking at once."
+NPC=_"Thank you, Linarian. As soon as the food cubes are ready I will be able to give them away to the hungry people."
 LuaCode={
     display_big_message("Restored Michaelangelo's power supply")
     give_xp(350)
@@ -151,7 +151,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=30  OptionText="HAVE THE CRYSTALS"
+Nr=30  Text="HAVE THE CRYSTALS"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
     if (has_item("Red Dilitium Crystal") > 0) then    -- Tux gives crystals
@@ -164,15 +164,15 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-New Option Nr=31  OptionText=_" What was I supposed to do again?"
-Subtitle=_"Get me some dilithium before the whole stupid colony commits mass suicide because of poor food quality."
-Subtitle=_"Of course our heinous food might do us in far before that. I swear I saw that stuff glow it the dark and try to sneak away from my plate a few times."
+Nr=31  Text=_" What was I supposed to do again?"
+NPC=_"Get me some dilithium before the whole stupid colony commits mass suicide because of poor food quality."
+NPC=_"Of course our heinous food might do us in far before that. I swear I saw that stuff glow it the dark and try to sneak away from my plate a few times."
 LuaCode={
     disable_node(31)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=34  OptionText="MISSION IS DONE"
+Nr=34  Text="MISSION IS DONE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
     disable_node(34)
@@ -182,7 +182,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-New Option Nr=35  OptionText="YEAH, MISSION IS DONE."
+Nr=35  Text="YEAH, MISSION IS DONE."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
     if (is_mission_complete(2)) then enable_node(24) else end
@@ -190,7 +190,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=37  OptionText="TUX STARTED ON THE QUEST"
+Nr=37  Text="TUX STARTED ON THE QUEST"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
    if (is_mission_complete(2)) then disable_node(37) else set_next_node(35) end
@@ -199,31 +199,31 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-New Option Nr=70  OptionText=_" Why don't you send someone for the dilithium?"
-Subtitle=_"I did."
-Subtitle=_"Yesterday a guard patrol found a few tiny bits of him and lots of dried blood."
-Subtitle=_"The bots made a bloody mess out of him."
+Nr=70  Text=_" Why don't you send someone for the dilithium?"
+NPC=_"I did."
+NPC=_"Yesterday a guard patrol found a few tiny bits of him and lots of dried blood."
+NPC=_"The bots made a bloody mess out of him."
 LuaCode={
     disable_node(70)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=80  OptionText=_" I can get you some dilithium."
-Subtitle=_"Have you gotten overheated, Linarian?"
-Subtitle=_"Look, there are dozens of ways you can kill yourself, and most hurt less than being killed by a bot."
-Subtitle=_"If you want to die just walk into a nuclear reactor or something. So much simpler."
+Nr=80  Text=_" I can get you some dilithium."
+NPC=_"Have you gotten overheated, Linarian?"
+NPC=_"Look, there are dozens of ways you can kill yourself, and most hurt less than being killed by a bot."
+NPC=_"If you want to die just walk into a nuclear reactor or something. So much simpler."
 LuaCode={
     disable_node(80)
     enable_node(81)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=81  OptionText=_" I'll be fine. Don't worry."
-Subtitle=_"Do you know how the bots act? Some want to kill you as soon as possible... Others want to do the same, but slowly."
-Subtitle=_"I have seen corpses with nearly all of the fingers ripped out. People with eyes drilled out with some big tool. "
-Subtitle=_"I smelled burnt meat and heard the screams of the captives as they were incinerated alive outside the city walls. "
-Subtitle=_"The bots know no mercy. They cannot even define it, damn scrap metal fiends."
-Subtitle=_"Feel free to go, Linarian, but make sure to be very dead before they start killing you."
+Nr=81  Text=_" I'll be fine. Don't worry."
+NPC=_"Do you know how the bots act? Some want to kill you as soon as possible... Others want to do the same, but slowly."
+NPC=_"I have seen corpses with nearly all of the fingers ripped out. People with eyes drilled out with some big tool. "
+NPC=_"I smelled burnt meat and heard the screams of the captives as they were incinerated alive outside the city walls. "
+NPC=_"The bots know no mercy. They cannot even define it, damn scrap metal fiends."
+NPC=_"Feel free to go, Linarian, but make sure to be very dead before they start killing you."
 LuaCode={
     assign_mission(2)
     open_diary_entry(2, 0)
@@ -232,10 +232,10 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=82  OptionText=_" Where can I get the crystals?"
-Subtitle=_"There is an old dilithium mine to the east. I am sure there is lots of that stuff there."
-Subtitle=_"I will talk to the guards, they will open the eastern gate for you."
-Subtitle=_"Good luck. Try not to get yourself killed."
+Nr=82  Text=_" Where can I get the crystals?"
+NPC=_"There is an old dilithium mine to the east. I am sure there is lots of that stuff there."
+NPC=_"I will talk to the guards, they will open the eastern gate for you."
+NPC=_"Good luck. Try not to get yourself killed."
 LuaCode={
     assign_mission(2)
     change_obstacle("EastGateOfTown", "opened")
@@ -243,38 +243,38 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=40  OptionText=_" What is this dilithium?"
-Subtitle=_"You do not know? I thought Linarians were unmatched in their knowledge of the universe. Anyway..."
-Subtitle=_"Dilithium is a substance which is usually seen in the form of a small crystal. "
-Subtitle=_"It somehow generates and stores amazing amounts of electricity. I do not know the details. I'm a cook, not a quantum scientist."
-Subtitle=_"A small crystal would power my oven for weeks."
+Nr=40  Text=_" What is this dilithium?"
+NPC=_"You do not know? I thought Linarians were unmatched in their knowledge of the universe. Anyway..."
+NPC=_"Dilithium is a substance which is usually seen in the form of a small crystal. "
+NPC=_"It somehow generates and stores amazing amounts of electricity. I do not know the details. I'm a cook, not a quantum scientist."
+NPC=_"A small crystal would power my oven for weeks."
 LuaCode={
     disable_node(40)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=41  OptionText=_" I have an idea. Use fire to cook the food for the city."
-Subtitle=_"A nice idea, but there is a couple of major problems with it."
-Subtitle=_"We are a town of 450 hungry people. It would need to be a very big fire to supply heat for all of the meals."
-Subtitle=_"There is nothing to burn inside the city. If you want you can go and try to chop some trees in the region to the north, but odds are the bots will chop you down before you get a chance to swing the hatchet once."
-Subtitle=_"Finally, the meal cubes which we have in the freezer are optimized for macrowaves. If we stick them in a fire they will combust and not cook."
-Subtitle=_"No oven means having to use the premacrowaved food."
-Subtitle=_"And the only such thing around is the abhorrent military sludge."
+Nr=41  Text=_" I have an idea. Use fire to cook the food for the city."
+NPC=_"A nice idea, but there is a couple of major problems with it."
+NPC=_"We are a town of 450 hungry people. It would need to be a very big fire to supply heat for all of the meals."
+NPC=_"There is nothing to burn inside the city. If you want you can go and try to chop some trees in the region to the north, but odds are the bots will chop you down before you get a chance to swing the hatchet once."
+NPC=_"Finally, the meal cubes which we have in the freezer are optimized for macrowaves. If we stick them in a fire they will combust and not cook."
+NPC=_"No oven means having to use the premacrowaved food."
+NPC=_"And the only such thing around is the abhorrent military sludge."
 LuaCode={
     disable_node(41)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=42  OptionText=_" Tell the Red Guard that you need your battery back."
-Subtitle=_"I did."
-Subtitle=_"They said it was already fed to their reactor as fuel."
+Nr=42  Text=_" Tell the Red Guard that you need your battery back."
+NPC=_"I did."
+NPC=_"They said it was already fed to their reactor as fuel."
 LuaCode={
     disable_node(42)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=99  OptionText=_" I'll be going then."
-Subtitle=_"See you later."
+Nr=99  Text=_" I'll be going then."
+NPC=_"See you later."
 LuaCode={
     end_dialog()
 }

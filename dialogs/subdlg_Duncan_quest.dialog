@@ -36,9 +36,9 @@ FirstTime LuaCode={
 ----------------------------------------------------------------------
 
 
-New Option Nr=0  OptionText="HERE WE GO"
+Nr=0  Text="HERE WE GO"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-Subtitle=_"So... Any news on the Koan matter?"
+NPC=_"So... Any news on the Koan matter?"
 LuaCode={
     plant_cookie("koan_quest_done")
     if (cookie_planted("koan_spared")) then enable_node(20) else end
@@ -50,8 +50,8 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-New Option Nr=10  OptionText=_" Yeah. I got him. I think this is your cube."
-Subtitle=_"Yes. I appreciate your help."
+Nr=10  Text=_" Yeah. I got him. I think this is your cube."
+NPC=_"Yes. I appreciate your help."
 LuaCode={
     end_dialog()
     give_xp(3000)
@@ -60,50 +60,50 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=20  OptionText=_" I could not find him anywhere in the desert. I don't think he is there anymore."
-Subtitle=_"I see."
+Nr=20  Text=_" I could not find him anywhere in the desert. I don't think he is there anymore."
+NPC=_"I see."
 LuaCode={
     end_dialog()
     disable_node(20) -- FIXME this will be reenabled every time by node 0
 }
 ----------------------------------------------------------------------
 
-New Option Nr=30  OptionText=_" Yeah, I got him. Now, what is this big cube that you had me carry all the way here?"
-Subtitle=_"Just a memento after a friend."
-Subtitle=_"A little more than a portable end of the world, which I am looking forward to disassembling and learning its secrets."
-Subtitle=_"Nothing that important."
+Nr=30  Text=_" Yeah, I got him. Now, what is this big cube that you had me carry all the way here?"
+NPC=_"Just a memento after a friend."
+NPC=_"A little more than a portable end of the world, which I am looking forward to disassembling and learning its secrets."
+NPC=_"Nothing that important."
 LuaCode={
     disable_node(10, 20, 30)
     enable_node(60, 70)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=40  OptionText=_" A 'few' bots? The place was crawling with Sawmills! I nearly got killed!"
-Subtitle=_"There were only fourty bots in the desert region. This hardly qualifies as many."
+Nr=40  Text=_" A 'few' bots? The place was crawling with Sawmills! I nearly got killed!"
+NPC=_"There were only fourty bots in the desert region. This hardly qualifies as many."
 LuaCode={
     disable_node(40)
     enable_node(41)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=41  OptionText=_" What? You know exactly how many bots were on the desert? Without being there? I don't like this."
-Subtitle=_"I just know a lot of things. You do not need to worry about it."
+Nr=41  Text=_" What? You know exactly how many bots were on the desert? Without being there? I don't like this."
+NPC=_"I just know a lot of things. You do not need to worry about it."
 LuaCode={
     disable_node(41)
     enable_node(50)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=50  OptionText=_" I don't like this at all. I'm getting out of here."
-Subtitle=_"As you wish."
+Nr=50  Text=_" I don't like this at all. I'm getting out of here."
+NPC=_"As you wish."
 LuaCode={
     end_dialog()
     disable_node(50)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=60  OptionText=_" Hey, that is really neat. Here is your cube. Enjoy disassembling it and have fun with it."
-Subtitle=_"I will."
+Nr=60  Text=_" Hey, that is really neat. Here is your cube. Enjoy disassembling it and have fun with it."
+NPC=_"I will."
 LuaCode={
     end_dialog()
     give_xp(3000)
@@ -112,8 +112,8 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=70  OptionText=_" WHAT? No way I am giving you a doomsday device! Forget about it."
-Subtitle=_"I understand. So be it."
+Nr=70  Text=_" WHAT? No way I am giving you a doomsday device! Forget about it."
+NPC=_"I understand. So be it."
 LuaCode={
     end_dialog()
 }

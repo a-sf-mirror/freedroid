@@ -34,8 +34,8 @@ FirstTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=0  OptionText=_" Login : admin  Password : *******"
-Subtitle=_"Last login from /dev/ttyS0 on Sun, 23 mar 2057. admin@sadefence: ~ #"
+Nr=0  Text=_" Login : admin  Password : *******"
+NPC=_"Last login from /dev/ttyS0 on Sun, 23 mar 2057. admin@sadefence: ~ #"
 LuaCode={
     if (is_mission_assigned(10)) then open_diary_entry(10, 1) else end
 
@@ -52,10 +52,10 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-New Option Nr=1  OptionText=_" /usr/bin/guns --disable"
-Subtitle=_"Disabling guns..."
-Subtitle=_"Connecting to peripheral controller..."
-Subtitle=_"Guns disabled."
+Nr=1  Text=_" /usr/bin/guns --disable"
+NPC=_"Disabling guns..."
+NPC=_"Connecting to peripheral controller..."
+NPC=_"Guns disabled."
 LuaCode={
     plant_cookie("SAGunsOff")
     change_obstacle("SADDGun1", "disabled")
@@ -65,10 +65,10 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=2  OptionText=_" /usr/bin/guns --enable"
-Subtitle=_"Enabling guns..."
-Subtitle=_"Connecting to peripheral controller..."
-Subtitle=_"Guns enabled."
+Nr=2  Text=_" /usr/bin/guns --enable"
+NPC=_"Enabling guns..."
+NPC=_"Connecting to peripheral controller..."
+NPC=_"Guns enabled."
 LuaCode={
     change_obstacle("SADDGun1", "enabled")
     change_obstacle("SADDGun2", "enabled")
@@ -78,34 +78,34 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=3  OptionText=_" /usr/bin/hermodoors --open"
-Subtitle=_"Opening doors..."
-Subtitle=_"Connecting to peripheral controller..."
-Subtitle=_"Please enter unlock security password:"
+Nr=3  Text=_" /usr/bin/hermodoors --open"
+NPC=_"Opening doors..."
+NPC=_"Connecting to peripheral controller..."
+NPC=_"Please enter unlock security password:"
 LuaCode={
     set_next_node(5)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=4  OptionText=_" ./hcf.py"
-Subtitle=_"Executing: Halt and Catch Fire."
-Subtitle=_"Cooling subsystems disabled."
-Subtitle=_"Warning! Spontaneous oxidization witH emis$ion of light aND heAt detecteddd in THE#main| procesIng unit,"
-Subtitle=_"SsTeM=#faiPure%^#n 3 S 1()$++"
+Nr=4  Text=_" ./hcf.py"
+NPC=_"Executing: Halt and Catch Fire."
+NPC=_"Cooling subsystems disabled."
+NPC=_"Warning! Spontaneous oxidization witH emis$ion of light aND heAt detecteddd in THE#main| procesIng unit,"
+NPC=_"SsTeM=#faiPure%^#n 3 S 1()$++"
 LuaCode={
     drop_dead()
     disable_node(4)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=5  OptionText=_" CTRL+C"
-Subtitle=_"An error occured while opening doors."
+Nr=5  Text=_" CTRL+C"
+NPC=_"An error occured while opening doors."
 LuaCode={
     disable_node(5)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=99  OptionText=_" logout"
+Nr=99  Text=_" logout"
 LuaCode={
     end_dialog()
 }

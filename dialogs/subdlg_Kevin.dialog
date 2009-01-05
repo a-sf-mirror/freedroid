@@ -35,7 +35,7 @@ FirstTime LuaCode={
 ----------------------------------------------------------------------
 
 
-New Option Nr=0  OptionText="THIS WILL NOT EVER BE VISIBLE"
+Nr=0  Text="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
     disable_node(0)
@@ -45,13 +45,13 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-New Option Nr=1  OptionText="THIS WILL NOT EVER BE VISIBLE"
+Nr=1  Text="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-Subtitle=_"You don't have enough cash, cheapskate. Come back when you can afford to pay me."
+NPC=_"You don't have enough cash, cheapskate. Come back when you can afford to pay me."
 
 ----------------------------------------------------------------------
 
-New Option Nr=4  OptionText=_" Improve Hacking Ability (cost 300 cash, 5 ability points)"
+Nr=4  Text=_" Improve Hacking Ability (cost 300 cash, 5 ability points)"
 LuaCode={
     change_obstacle("KevinsDoor", "opened")
     if (get_gold() < 300 ) then set_next_node(1) 
@@ -61,11 +61,11 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=5  OptionText="THIS WILL NOT EVER BE VISIBLE"
+Nr=5  Text="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-Subtitle=_"Good. The most important thing about hacking is to understand the nature of the machine you want to hack."
-Subtitle=_"Once you have figured out what the creators of the system were doing when setting it up, you'll also know how to best hack it."
-Subtitle=_"Now I see your hacking skill has already improved a lot."
+NPC=_"Good. The most important thing about hacking is to understand the nature of the machine you want to hack."
+NPC=_"Once you have figured out what the creators of the system were doing when setting it up, you'll also know how to best hack it."
+NPC=_"Now I see your hacking skill has already improved a lot."
 LuaCode={
     add_gold(-300)
     eat_training_points(5)
@@ -73,13 +73,13 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=6  OptionText="THIS WILL NOT EVER BE VISIBLE"
+Nr=6  Text="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-Subtitle=_"You don't have enough experience. I can't teach you anything more this way."
+NPC=_"You don't have enough experience. I can't teach you anything more this way."
 
 ----------------------------------------------------------------------
 
-New Option Nr=99  OptionText=_" [BACK]"
+Nr=99  Text=_" [BACK]"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
     end_dialog()

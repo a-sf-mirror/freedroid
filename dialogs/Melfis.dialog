@@ -35,44 +35,44 @@ FirstTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=0  OptionText=_" Hello. Any idea where I can get some help here?"
-Subtitle=_"Verschwinde."
+Nr=0  Text=_" Hello. Any idea where I can get some help here?"
+NPC=_"Verschwinde."
 LuaCode={
     disable_node(0)
     enable_node(1, 2)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=1  OptionText=_" Erm... What do you mean?"
-Subtitle=_"Ich bin der Geist, der stets verneint."
-Subtitle=_"Und das mit Recht; denn alles, was entsteht,"
-Subtitle=_"ist wert, dass es zugrunde geht."
+Nr=1  Text=_" Erm... What do you mean?"
+NPC=_"Ich bin der Geist, der stets verneint."
+NPC=_"Und das mit Recht; denn alles, was entsteht,"
+NPC=_"ist wert, dass es zugrunde geht."
 LuaCode={
     disable_node(1)
     enable_node(3)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=2  OptionText=_" I really do not understand you."
-Subtitle=_"Wer sie nicht kennte, die Elemente,"
-Subtitle=_"ihre Kraft und Eigenschaft,"
-Subtitle=_"waere kein Meister ueber die Geister."
+Nr=2  Text=_" I really do not understand you."
+NPC=_"Wer sie nicht kennte, die Elemente,"
+NPC=_"ihre Kraft und Eigenschaft,"
+NPC=_"waere kein Meister ueber die Geister."
 LuaCode={
     disable_node(2)
     enable_node(3)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=3  OptionText=_" I wish I knew what you are talking about."
-Subtitle=_"Verschwinde."
+Nr=3  Text=_" I wish I knew what you are talking about."
+NPC=_"Verschwinde."
 LuaCode={
     end_dialog()
     disable_node(3)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=99  OptionText=_" I need to go now."
-Subtitle=_" . . ."
+Nr=99  Text=_" I need to go now."
+NPC=_" . . ."
 LuaCode={
     end_dialog()
 }

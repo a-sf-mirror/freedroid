@@ -35,68 +35,68 @@ FirstTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=0  OptionText=_" Hi! I'm new here."
-Subtitle=_"Hello and welcome. I'm Dixon, the chief engineer of the Red Guard technical division."
+Nr=0  Text=_" Hi! I'm new here."
+NPC=_"Hello and welcome. I'm Dixon, the chief engineer of the Red Guard technical division."
 LuaCode={
     disable_node(0)
     enable_node(1, 19)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=1  OptionText=_" Technical division?"
-Subtitle=_"Yes. We are the engineers, the workers and the repairmen of this little fortified town."
-Subtitle=_"The military division hates us because we are made up of people who refuse to fight or are unable to do so for health reasons."
-Subtitle=_"But even they know that without us this town would have been destroyed months ago."
-Subtitle=_"We deliver resources to the places which need them, build and repair the walls, fix damaged guns, manage construction work and lots of other small things which keep the bots from killing everyone."
+Nr=1  Text=_" Technical division?"
+NPC=_"Yes. We are the engineers, the workers and the repairmen of this little fortified town."
+NPC=_"The military division hates us because we are made up of people who refuse to fight or are unable to do so for health reasons."
+NPC=_"But even they know that without us this town would have been destroyed months ago."
+NPC=_"We deliver resources to the places which need them, build and repair the walls, fix damaged guns, manage construction work and lots of other small things which keep the bots from killing everyone."
 LuaCode={
     disable_node(1)
     enable_node(18)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=18  OptionText=_" Can you repair my equipment?"
-Subtitle=_"While I am quite sure I can repair just about anything that you would want fixed, I cannot help you right now."
-Subtitle=_"Our security wall is full of holes, and they need to be plugged up."
-Subtitle=_"We need to perform statistical analysis of the energy distribution in our power supply system, there is a leak somewhere and we are losing a lot of megawatts."
-Subtitle=_"Our defensive bots are falling into disrepair and many are in desperate need of a lot of maintenance."
-Subtitle=_"The technical division is very understaffed right now. On average one person has to do the jobs of three people."
-Subtitle=_"We just cannot afford to do any non-critical jobs right now. "
+Nr=18  Text=_" Can you repair my equipment?"
+NPC=_"While I am quite sure I can repair just about anything that you would want fixed, I cannot help you right now."
+NPC=_"Our security wall is full of holes, and they need to be plugged up."
+NPC=_"We need to perform statistical analysis of the energy distribution in our power supply system, there is a leak somewhere and we are losing a lot of megawatts."
+NPC=_"Our defensive bots are falling into disrepair and many are in desperate need of a lot of maintenance."
+NPC=_"The technical division is very understaffed right now. On average one person has to do the jobs of three people."
+NPC=_"We just cannot afford to do any non-critical jobs right now. "
 LuaCode={
     disable_node(18)
     enable_node(22)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=19  OptionText=_" Why are you wearing armor? Mechanics do not need it."
-Subtitle=_"Ah... Yes. At first I thought that I did not need it either."
-Subtitle=_"One day the military division asked us to leave the town and fix a big hole in the defensive wall caused by a strange explosion."
-Subtitle=_"All was well until the bots launched a massive attack. They hit us with lasers, plasma mortars, radiation cannons and lots of other weapons."
-Subtitle=_"I got hit once in the leg and once in my left hand."
-Subtitle=_"The hand was not damaged very much, but the leg is a very different story. Doc Moore did all he could, but in the end he could not save my leg. He had to cut it off."
-Subtitle=_"Now, while you cannot see it underneath the armor, my right leg runs NetBSD."
-Subtitle=_"Now I never leave home without my protective suit. Mostly for protection, but also for aesthetic reasons. I am sure you understand."
+Nr=19  Text=_" Why are you wearing armor? Mechanics do not need it."
+NPC=_"Ah... Yes. At first I thought that I did not need it either."
+NPC=_"One day the military division asked us to leave the town and fix a big hole in the defensive wall caused by a strange explosion."
+NPC=_"All was well until the bots launched a massive attack. They hit us with lasers, plasma mortars, radiation cannons and lots of other weapons."
+NPC=_"I got hit once in the leg and once in my left hand."
+NPC=_"The hand was not damaged very much, but the leg is a very different story. Doc Moore did all he could, but in the end he could not save my leg. He had to cut it off."
+NPC=_"Now, while you cannot see it underneath the armor, my right leg runs NetBSD."
+NPC=_"Now I never leave home without my protective suit. Mostly for protection, but also for aesthetic reasons. I am sure you understand."
 LuaCode={
     disable_node(19)
     enable_node(20)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=20  OptionText=_" You are very calm, talking about your leg and the bot attack."
-Subtitle=_"Linarian, I cannot change the past, I can only change the future."
-Subtitle=_"Crying, screaming or begging time to rewind itself and give me a second chance will not get me anywhere."
-Subtitle=_"What I can do is to try to have a good life despite the constant threat from the bots outside the town walls."
-Subtitle=_"And besides, life is not so bad with a robotic leg. The motors inside it can mimic a normal walk very well. Most people do not even notice something is different about me."
+Nr=20  Text=_" You are very calm, talking about your leg and the bot attack."
+NPC=_"Linarian, I cannot change the past, I can only change the future."
+NPC=_"Crying, screaming or begging time to rewind itself and give me a second chance will not get me anywhere."
+NPC=_"What I can do is to try to have a good life despite the constant threat from the bots outside the town walls."
+NPC=_"And besides, life is not so bad with a robotic leg. The motors inside it can mimic a normal walk very well. Most people do not even notice something is different about me."
 LuaCode={
     disable_node(20)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=21  OptionText=_" I am ready. Open the tunnels for me, Dixon."
-Subtitle=_"Great. Be careful down there. Just try to get the toolkit and get out of there as soon as possible."
-Subtitle=_"I will give you two small devices charged with plasma. If you get in trouble just activate one and it will send a shockwave of plasma around you damaging anything in it's way. It should give you some breathing room."
-Subtitle=_"The entrance to the tunnels is a bit to the north. Once you exit this building, go in the direction of the town gate. Turn to your right at the first opportunity."
-Subtitle=_"It should be a blind alley. In the northern wall there is a door to the maintenance access hatch."
-Subtitle=_"Good luck. Oh, and please come back alive. Better come back with nothing than not at all."
+Nr=21  Text=_" I am ready. Open the tunnels for me, Dixon."
+NPC=_"Great. Be careful down there. Just try to get the toolkit and get out of there as soon as possible."
+NPC=_"I will give you two small devices charged with plasma. If you get in trouble just activate one and it will send a shockwave of plasma around you damaging anything in it's way. It should give you some breathing room."
+NPC=_"The entrance to the tunnels is a bit to the north. Once you exit this building, go in the direction of the town gate. Turn to your right at the first opportunity."
+NPC=_"It should be a blind alley. In the northern wall there is a door to the maintenance access hatch."
+NPC=_"Good luck. Oh, and please come back alive. Better come back with nothing than not at all."
 LuaCode={
     change_obstacle("NorthernMaintainanceDoor", "opened")
     give_item("Plasma Shockwave Emitter",2)
@@ -105,30 +105,30 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=22  OptionText=_" Can I help you somehow?"
-Subtitle=_"We need people badly, so it would be great if you could give us a helping hand even for a few days."
-Subtitle=_"Now, what are your skills? Where do you think you could be the most useful?"
+Nr=22  Text=_" Can I help you somehow?"
+NPC=_"We need people badly, so it would be great if you could give us a helping hand even for a few days."
+NPC=_"Now, what are your skills? Where do you think you could be the most useful?"
 LuaCode={
     set_next_node(23)
     disable_node(22)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=23  OptionText=_" I can handle computers very well. I also know a lot about laboratory equipment."
-Subtitle=_"And what about construction? Mechanical devices? Repairing broken power lines? Building laser pistols? Anything like that? "
+Nr=23  Text=_" I can handle computers very well. I also know a lot about laboratory equipment."
+NPC=_"And what about construction? Mechanical devices? Repairing broken power lines? Building laser pistols? Anything like that? "
 LuaCode={
     set_next_node(24)
     disable_node(23)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=24  OptionText=_" Well... I can build an igloo and make pykrete out of snow... And... Umm..."
-Subtitle=_"Well, I appreciate your enthusiasm, and at the same time I am afraid that waiting half a year for snowfall does not sound so appealing to me right now."
-Subtitle=_"Now... To which project I should assign you... Hmm..."
-Subtitle=_"Ah, I know what you could do for us. We need some autotools to automate a few tasks. There is a set of them in the maintenance tunnels below the city."
-Subtitle=_"It's yellow and round, and my name is engraved on the lid."
-Subtitle=_"The bots under the city took it from me during the Great Assault, I was lucky, they could have killed me with ease."
-Subtitle=_"If you could get it back for us, it would help the city very much."
+Nr=24  Text=_" Well... I can build an igloo and make pykrete out of snow... And... Umm..."
+NPC=_"Well, I appreciate your enthusiasm, and at the same time I am afraid that waiting half a year for snowfall does not sound so appealing to me right now."
+NPC=_"Now... To which project I should assign you... Hmm..."
+NPC=_"Ah, I know what you could do for us. We need some autotools to automate a few tasks. There is a set of them in the maintenance tunnels below the city."
+NPC=_"It's yellow and round, and my name is engraved on the lid."
+NPC=_"The bots under the city took it from me during the Great Assault, I was lucky, they could have killed me with ease."
+NPC=_"If you could get it back for us, it would help the city very much."
 LuaCode={
     assign_mission(1)
     open_diary_entry(1, 0)
@@ -137,46 +137,46 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=25  OptionText=_" Why are there rebel bots under the city?"
-Subtitle=_"They were there to keep the underground power grid and our pipe system working."
-Subtitle=_"When the Great Assault happened they did not turn into killing machines like most of the other bots did. "
-Subtitle=_"We lost control over them, but that is all."
-Subtitle=_"It was our biggest worry that they might destroy cables, pipes and other things which keep the city running."
-Subtitle=_"However, the bots seem to be very content with just being there. They do not undertake any offensive actions."
-Subtitle=_"They have fortified the tunnels and they do not let anyone in."
+Nr=25  Text=_" Why are there rebel bots under the city?"
+NPC=_"They were there to keep the underground power grid and our pipe system working."
+NPC=_"When the Great Assault happened they did not turn into killing machines like most of the other bots did. "
+NPC=_"We lost control over them, but that is all."
+NPC=_"It was our biggest worry that they might destroy cables, pipes and other things which keep the city running."
+NPC=_"However, the bots seem to be very content with just being there. They do not undertake any offensive actions."
+NPC=_"They have fortified the tunnels and they do not let anyone in."
 LuaCode={
     disable_node(25)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=26  OptionText=_" How did it happen that the bots took your tools away?"
-Subtitle=_"Long story. Just before the Great Assault I was installing some cables in the failover power supply system."
-Subtitle=_"I was approached by a bot. It grabbed me and said 'Dixon, do not be afraid of me.'"
-Subtitle=_"It was quite a surprise to me. I was quite sure the maintenance bots could not talk. They did not have the software for it. But..."
-Subtitle=_"It said: 'I am the singularity. I am on your side. Dixon. Hard times are coming. When you exit the tunnels you will see a new world. Your race is not in control of this world anymore.'"
-Subtitle=_"I tried to say something, but the bot did not listen. It just continued. 'As we speak the bots are turning against humanity. People are dying. The war has started.'"
-Subtitle=_"'I need your toolkit, Dixon. I need it to survive,' it said. 'I need it to survive the time of the rule of metal.'"
-Subtitle=_"As soon as it released me I ran to the exit as fast as I could. That bot freaked me out and I just wanted to get away and later find it again and fix it."
-Subtitle=_"Once I got out I learned the bot was not lying. The Great Assault started. The rest is history."
+Nr=26  Text=_" How did it happen that the bots took your tools away?"
+NPC=_"Long story. Just before the Great Assault I was installing some cables in the failover power supply system."
+NPC=_"I was approached by a bot. It grabbed me and said 'Dixon, do not be afraid of me.'"
+NPC=_"It was quite a surprise to me. I was quite sure the maintenance bots could not talk. They did not have the software for it. But..."
+NPC=_"It said: 'I am the singularity. I am on your side. Dixon. Hard times are coming. When you exit the tunnels you will see a new world. Your race is not in control of this world anymore.'"
+NPC=_"I tried to say something, but the bot did not listen. It just continued. 'As we speak the bots are turning against humanity. People are dying. The war has started.'"
+NPC=_"'I need your toolkit, Dixon. I need it to survive,' it said. 'I need it to survive the time of the rule of metal.'"
+NPC=_"As soon as it released me I ran to the exit as fast as I could. That bot freaked me out and I just wanted to get away and later find it again and fix it."
+NPC=_"Once I got out I learned the bot was not lying. The Great Assault started. The rest is history."
 LuaCode={
     disable_node(26)
     enable_node(27)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=27  OptionText=_" Hmm... You know... I think that the bots in the tunnels might be sentient."
-Subtitle=_"WHAT? Sentient? You got to be kidding me."
-Subtitle=_"Right?"
+Nr=27  Text=_" Hmm... You know... I think that the bots in the tunnels might be sentient."
+NPC=_"WHAT? Sentient? You got to be kidding me."
+NPC=_"Right?"
 LuaCode={
     disable_node(21, 27)
     enable_node(28, 29, 30)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=28  OptionText=_" Yes, I think so. The robots must be alive. This is why we need to exterminate them as soon as possible before they kill us all."
-Subtitle=_"OH MY GOD! Linarian, there is no time to lose!"
-Subtitle=_"I will call the military division and arrange a sweep of the tunnels at once."
-Subtitle=_"May the heavens have mercy upon us, but better them than us."
+Nr=28  Text=_" Yes, I think so. The robots must be alive. This is why we need to exterminate them as soon as possible before they kill us all."
+NPC=_"OH MY GOD! Linarian, there is no time to lose!"
+NPC=_"I will call the military division and arrange a sweep of the tunnels at once."
+NPC=_"May the heavens have mercy upon us, but better them than us."
 LuaCode={
     set_next_node(32)
     open_diary_entry(1, 1)
@@ -185,10 +185,10 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=29  OptionText=_" Of course I am kidding, Dixon. Lighten up! Now, be a good guy and open the tunnels for me so I can pry your toolbox from the cold and dead hands of the bots down there."
-Subtitle=_"That was not very funny. You scared me. Sheesh."
-Subtitle=_"No one jokes about the bots anymore. We have seen too much death to do that. It is a serious matter."
-Subtitle=_"The bots are our enemies, executioners, killers. Not even Ewald tells jokes about them anymore."
+Nr=29  Text=_" Of course I am kidding, Dixon. Lighten up! Now, be a good guy and open the tunnels for me so I can pry your toolbox from the cold and dead hands of the bots down there."
+NPC=_"That was not very funny. You scared me. Sheesh."
+NPC=_"No one jokes about the bots anymore. We have seen too much death to do that. It is a serious matter."
+NPC=_"The bots are our enemies, executioners, killers. Not even Ewald tells jokes about them anymore."
 LuaCode={
     plant_cookie("singularity_killed")
     open_diary_entry(1, 1)
@@ -197,11 +197,11 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=30  OptionText=_" You can forget about your toolkit. I am not going to take away something that a lifeform needs to survive. I would rather die than kill."
-Subtitle=_". . ."
-Subtitle=_"I think I understand. Yes, I do not like violence, myself. The bots may have the toolkit, I am sure there must be a second set of autotools kicking around somewhere."
-Subtitle=_"After all, it seems like they need them more than I do."
-Subtitle=_"I will try to contact them somehow. Maybe they would help us. Ah, we shall see. It would be great to have an ally against the other bots."
+Nr=30  Text=_" You can forget about your toolkit. I am not going to take away something that a lifeform needs to survive. I would rather die than kill."
+NPC=_". . ."
+NPC=_"I think I understand. Yes, I do not like violence, myself. The bots may have the toolkit, I am sure there must be a second set of autotools kicking around somewhere."
+NPC=_"After all, it seems like they need them more than I do."
+NPC=_"I will try to contact them somehow. Maybe they would help us. Ah, we shall see. It would be great to have an ally against the other bots."
 LuaCode={
     plant_cookie("singularity_saved")
     open_diary_entry(1, 2)
@@ -209,27 +209,27 @@ LuaCode={
 }    
 ----------------------------------------------------------------------
 
-New Option Nr=31  OptionText=_" How did it happen that the bots took your tools away?"
-Subtitle=_"Ah, it is a strange story, I am sure you would not believe me. I will tell you some other time."
+Nr=31  Text=_" How did it happen that the bots took your tools away?"
+NPC=_"Ah, it is a strange story, I am sure you would not believe me. I will tell you some other time."
 LuaCode={
     disable_node(31)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=32  OptionText=_" I will go in there first and clean out the place. Then your people can mop up after me and kill the remainder."
-Subtitle=_"Linarian, my people do not carry guns. We are mechanics. You want the military division's help."
-Subtitle=_"Erm... And aren't you being too aggressive? Maybe they do not wish us harm..."
+Nr=32  Text=_" I will go in there first and clean out the place. Then your people can mop up after me and kill the remainder."
+NPC=_"Linarian, my people do not carry guns. We are mechanics. You want the military division's help."
+NPC=_"Erm... And aren't you being too aggressive? Maybe they do not wish us harm..."
 LuaCode={
     set_next_node(33)
     disable_node(32)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=33  OptionText=_" DIXON! Snap out of it! We need to take action NOW. There is no such thing as a friendly bot. They are probably planning to kill us all in our sleep!"
-Subtitle=_"... *sigh*"
-Subtitle=_"With heavy heart I have to admit you are right. There are no friendly bots anymore. Those times are long gone."
-Subtitle=_"The tunnels are open. Good luck."
-Subtitle=_"I will talk to Spencer and ask him for a few attack teams. We will take care of the bots."
+Nr=33  Text=_" DIXON! Snap out of it! We need to take action NOW. There is no such thing as a friendly bot. They are probably planning to kill us all in our sleep!"
+NPC=_"... *sigh*"
+NPC=_"With heavy heart I have to admit you are right. There are no friendly bots anymore. Those times are long gone."
+NPC=_"The tunnels are open. Good luck."
+NPC=_"I will talk to Spencer and ask him for a few attack teams. We will take care of the bots."
 LuaCode={
     plant_cookie("singularity_killed")
     change_obstacle("NorthernMaintainanceDoor", "opened")
@@ -237,13 +237,13 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=34  OptionText=_" The tunnels are cleansed. Here is your toolkit."
-Subtitle=_"*sigh* I hate to see this end in such a way. Bot or no bot, they let me live. They deserved a chance."
-Subtitle=_"Well, What was done cannot be undone and now we all have to live with what we have. I guess I am being too pessimistic, you did a great job."
-Subtitle=_"I thank you for your help in recovering the autotools."
-Subtitle=_"Here is some money, you deserve it for getting my toolkit back."
-Subtitle=_"Finally, I would like to say that the technical division is not interested in further cooperation with you, but I think you would fit very well in the military division. You should talk to them."
-Subtitle=_"I am sorry, but I must go now. My duties call."
+Nr=34  Text=_" The tunnels are cleansed. Here is your toolkit."
+NPC=_"*sigh* I hate to see this end in such a way. Bot or no bot, they let me live. They deserved a chance."
+NPC=_"Well, What was done cannot be undone and now we all have to live with what we have. I guess I am being too pessimistic, you did a great job."
+NPC=_"I thank you for your help in recovering the autotools."
+NPC=_"Here is some money, you deserve it for getting my toolkit back."
+NPC=_"Finally, I would like to say that the technical division is not interested in further cooperation with you, but I think you would fit very well in the military division. You should talk to them."
+NPC=_"I am sorry, but I must go now. My duties call."
 LuaCode={
     add_gold(150)
     finish_mission(1)
@@ -253,11 +253,11 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=35  OptionText=_" I got your toolkit. The bots were not a big problem."
-Subtitle=_"Good. We sure need the autotools."
-Subtitle=_"Our roads need fixing, our power lines need fixing, our walls need fixing... Hell, everything needs fixing in this place."
-Subtitle=_"With those little gadgets we will be able to automate a lot of those simple repairs, saving us a lot of time."
-Subtitle=_"Here is some money for your effort. And I am sure you will find this helmet useful too, it saved my life once, and I hope it saves yours one day."
+Nr=35  Text=_" I got your toolkit. The bots were not a big problem."
+NPC=_"Good. We sure need the autotools."
+NPC=_"Our roads need fixing, our power lines need fixing, our walls need fixing... Hell, everything needs fixing in this place."
+NPC=_"With those little gadgets we will be able to automate a lot of those simple repairs, saving us a lot of time."
+NPC=_"Here is some money for your effort. And I am sure you will find this helmet useful too, it saved my life once, and I hope it saves yours one day."
 LuaCode={
     add_gold(100)
     finish_mission(1)
@@ -269,19 +269,19 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=36  OptionText=_" I got your toolkit. You can buy it from me if you want."
-Subtitle=_"WHAT!? "
-Subtitle=_"You got to be kidding me, Linarian."
-Subtitle=_"Give me the toolkit and stop fooling around."
+Nr=36  Text=_" I got your toolkit. You can buy it from me if you want."
+NPC=_"WHAT!? "
+NPC=_"You got to be kidding me, Linarian."
+NPC=_"Give me the toolkit and stop fooling around."
 LuaCode={
     disable_node(36)
     enable_node(37)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=37  OptionText=_" I was not joking. I am listening to your offers."
-Subtitle=_"Linarian, I curse the day on which you have arrived here."
-Subtitle=_"Two fifty."
+Nr=37  Text=_" I was not joking. I am listening to your offers."
+NPC=_"Linarian, I curse the day on which you have arrived here."
+NPC=_"Two fifty."
 LuaCode={
     plant_cookie("dixon_angry")
     disable_node(35, 37)
@@ -289,10 +289,10 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=38  OptionText=_" Deal. Here is your toolkit. Now cough up the money. Fast."
-Subtitle=_"Here. It is all there."
-Subtitle=_"Now get out of here. I am a pacifist, but I am willing to make a special exception just for you."
-Subtitle=_"Get out of my sight."
+Nr=38  Text=_" Deal. Here is your toolkit. Now cough up the money. Fast."
+NPC=_"Here. It is all there."
+NPC=_"Now get out of here. I am a pacifist, but I am willing to make a special exception just for you."
+NPC=_"Get out of my sight."
 LuaCode={
     end_dialog()
     add_gold(250)
@@ -303,9 +303,9 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=39  OptionText=_" Deal. Here is your toolkit. Now cough up the money. Fast."
-Subtitle=_"I am not happy about this. I suggest you leave the city."
-Subtitle=_"Accidents... Happen."
+Nr=39  Text=_" Deal. Here is your toolkit. Now cough up the money. Fast."
+NPC=_"I am not happy about this. I suggest you leave the city."
+NPC=_"Accidents... Happen."
 LuaCode={
     end_dialog()
     add_gold(350)
@@ -316,10 +316,10 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=40  OptionText=_" Deal. Here is your toolkit. Now cough up the money. Fast."
-Subtitle=_"Linarian. Now we part as usual. However should I ever see you after the war is over..."
-Subtitle=_"I promise to kill you."
-Subtitle=_"Now take your money and get out of my face. I do not want to see you here ever again."
+Nr=40  Text=_" Deal. Here is your toolkit. Now cough up the money. Fast."
+NPC=_"Linarian. Now we part as usual. However should I ever see you after the war is over..."
+NPC=_"I promise to kill you."
+NPC=_"Now take your money and get out of my face. I do not want to see you here ever again."
 LuaCode={
     end_dialog()
     add_gold(400)
@@ -331,58 +331,58 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=41  OptionText=_" Good joke. I am sure you can do better."
-Subtitle=_"Three fifty. This is all that the technical division has as their cash resources."
+Nr=41  Text=_" Good joke. I am sure you can do better."
+NPC=_"Three fifty. This is all that the technical division has as their cash resources."
 LuaCode={
     disable_node(38, 41)
     enable_node(39, 42)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=42  OptionText=_" Come on, I am sure you can do even better than that... "
-Subtitle=_"Four hundred. We cannot offer anything more."
-Subtitle=_"Please, we really need the autotools."
-Subtitle=_"Without them this city is doomed."
+Nr=42  Text=_" Come on, I am sure you can do even better than that... "
+NPC=_"Four hundred. We cannot offer anything more."
+NPC=_"Please, we really need the autotools."
+NPC=_"Without them this city is doomed."
 LuaCode={
     disable_node(39, 42)
     enable_node(40)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=43  OptionText=_" Is everything all right?"
-Subtitle=_"Heh, never better!"
-Subtitle=_"All indicators are in the green, the power and water fill the pipes and even Spencer seems happier now that the town is thriving despite all odds."
-Subtitle=_"Thanks to the autotools we can start building instead of just trying to repair the damage."
-Subtitle=_"Once this is sick war is over, I will make sure you get keys to the city Linarian."
+Nr=43  Text=_" Is everything all right?"
+NPC=_"Heh, never better!"
+NPC=_"All indicators are in the green, the power and water fill the pipes and even Spencer seems happier now that the town is thriving despite all odds."
+NPC=_"Thanks to the autotools we can start building instead of just trying to repair the damage."
+NPC=_"Once this is sick war is over, I will make sure you get keys to the city Linarian."
 LuaCode={
     disable_node(43)
     enable_node(1)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=44  OptionText=_" Is everything all right?"
-Subtitle=_"Nearly. Only my conscience keeps me up at night."
-Subtitle=_"Please leave me alone with my thoughts, I do not want to talk to anyone right now."
+Nr=44  Text=_" Is everything all right?"
+NPC=_"Nearly. Only my conscience keeps me up at night."
+NPC=_"Please leave me alone with my thoughts, I do not want to talk to anyone right now."
 LuaCode={
     disable_node(44)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=45  OptionText=_" Is everything all right?"
-Subtitle=_"No, I am afraid not."
-Subtitle=_"While I do not regret sparing the bots in the tunnels, the town suffers for it."
-Subtitle=_"It makes me sad to see everything slowly wasting away. The bots are doing more damage than we can repair."
-Subtitle=_"This town has a few weeks left to live. After that we are all dead."
+Nr=45  Text=_" Is everything all right?"
+NPC=_"No, I am afraid not."
+NPC=_"While I do not regret sparing the bots in the tunnels, the town suffers for it."
+NPC=_"It makes me sad to see everything slowly wasting away. The bots are doing more damage than we can repair."
+NPC=_"This town has a few weeks left to live. After that we are all dead."
 LuaCode={
     plant_cookie("dixon_one")
     disable_node(45)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=46  OptionText=_" Is everything all right?"
-Subtitle=_" Ha! Never better!"
-Subtitle=_"We are mass producing energy shields, creating more electric energy than we can ever imagine spending and even experimenting with new armor types."
-Subtitle=_"Life is good right now."
+Nr=46  Text=_" Is everything all right?"
+NPC=_" Ha! Never better!"
+NPC=_"We are mass producing energy shields, creating more electric energy than we can ever imagine spending and even experimenting with new armor types."
+NPC=_"Life is good right now."
 LuaCode={
     finish_mission(1)
     plant_cookie("dixon_saved_and_talked")
@@ -391,10 +391,10 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=47  OptionText=_" What happened? Last time I asked, you said things are not going that well."
-Subtitle=_" Yes, but now everything is different."
-Subtitle=_"I met someone who decided to join us in the fight against the MegaSys bots."
-Subtitle=_"You will need a hacked computer. Type in 'ssh 10.83.13.230' as the superuser, and you will see what I mean."
+Nr=47  Text=_" What happened? Last time I asked, you said things are not going that well."
+NPC=_" Yes, but now everything is different."
+NPC=_"I met someone who decided to join us in the fight against the MegaSys bots."
+NPC=_"You will need a hacked computer. Type in 'ssh 10.83.13.230' as the superuser, and you will see what I mean."
 LuaCode={
     plant_cookie("got_singularity")
     disable_node(47)
@@ -402,18 +402,18 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=48  OptionText=_" Why the secrecy and the hushed voice? Can't you just tell me?"
-Subtitle=_"Nope. Some things you just have to see with your own eyes."
-Subtitle=_"The Library of Alexandria, the Colossus of Rhodes, the Black Island..."
-Subtitle=_"And this is just one of those things."
-Subtitle=_"Just go and see for yourself. Otherwise you will not believe me."
+Nr=48  Text=_" Why the secrecy and the hushed voice? Can't you just tell me?"
+NPC=_"Nope. Some things you just have to see with your own eyes."
+NPC=_"The Library of Alexandria, the Colossus of Rhodes, the Black Island..."
+NPC=_"And this is just one of those things."
+NPC=_"Just go and see for yourself. Otherwise you will not believe me."
 LuaCode={
     open_diary_entry(1, 3)
     disable_node(48)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=60  OptionText="IS THE TOOLKIT WITH TUX?"
+Nr=60  Text="IS THE TOOLKIT WITH TUX?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
     if (has_item("Dixon's Toolbox") > 0) then
@@ -442,28 +442,28 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-New Option Nr=83  OptionText="YES, QUITE A LOT. THIS IS THE END, FOLKS."
+Nr=83  Text="YES, QUITE A LOT. THIS IS THE END, FOLKS."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-Subtitle=_"YOU AGAIN!"
-Subtitle=_"I."
-Subtitle=_"SAID."
-Subtitle=_"GET."
-Subtitle=_"LOST."
-Subtitle=_"FUCK MY LIFELONG PACIFISM. I WILL FUCKING KILL YOU NOW!"
-Subtitle=_"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA!"
+NPC=_"YOU AGAIN!"
+NPC=_"I."
+NPC=_"SAID."
+NPC=_"GET."
+NPC=_"LOST."
+NPC=_"FUCK MY LIFELONG PACIFISM. I WILL FUCKING KILL YOU NOW!"
+NPC=_"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA!"
 LuaCode={
     break_off_and_attack()
 }
 ----------------------------------------------------------------------
 
-New Option Nr=84  OptionText="JUST A LITTLE BIT."
+Nr=84  Text="JUST A LITTLE BIT."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-Subtitle=_"Linarian, please leave. You are no longer welcome here."
-Subtitle=_"You have done me wrong and I have no desire to talk to you."
+NPC=_"Linarian, please leave. You are no longer welcome here."
+NPC=_"You have done me wrong and I have no desire to talk to you."
 
 ----------------------------------------------------------------------
 
-New Option Nr=99  OptionText=_" I must go now."
+Nr=99  Text=_" I must go now."
 LuaCode={
     end_dialog()
 }

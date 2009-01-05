@@ -34,7 +34,7 @@ FirstTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=0  OptionText="THIS WILL NOT EVER BE VISIBLE"
+Nr=0  Text="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
     disable_node(0)
@@ -44,7 +44,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-New Option Nr=5  OptionText=_" Improve ranged weapon skill (cost 5 training points, 100 cash) "
+Nr=5  Text=_" Improve ranged weapon skill (cost 5 training points, 100 cash) "
 LuaCode={
     if (get_gold() < 100) then set_next_node(10)
     else
@@ -53,27 +53,27 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=8  OptionText="THIS WILL NOT EVER BE VISIBLE"
+Nr=8  Text="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-Subtitle=_"You don't have enough experience. Come here after you see some more action."
+NPC=_"You don't have enough experience. Come here after you see some more action."
 
 ----------------------------------------------------------------------
 
-New Option Nr=10  OptionText="THIS WILL NOT EVER BE VISIBLE"
+Nr=10  Text="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-Subtitle=_"You don't have enough money! I cannot afford to just give away training for free."
+NPC=_"You don't have enough money! I cannot afford to just give away training for free."
 
 ----------------------------------------------------------------------
 
-New Option Nr=12  OptionText="THIS WILL NOT EVER BE VISIBLE"
+Nr=12  Text="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-Subtitle=_"Now the most important thing is that you turn off the auto-aim on your weapon, like this."
-Subtitle=_"Otherwise your weapon might 'help' you and shoot somewhere you didn't intend to fire."
-Subtitle=_"Next important thing is to remember how to properly fire a shot."
-Subtitle=_"Watch your target closely.  Pretend you're moving with it. Aim for the head."
-Subtitle=_"When you feel completely in sync with your target, then you pull the trigger."
-Subtitle=_"Good. You are learning fast. Try it a few more times."
-Subtitle=_"Good. I think that it is enough for today."
+NPC=_"Now the most important thing is that you turn off the auto-aim on your weapon, like this."
+NPC=_"Otherwise your weapon might 'help' you and shoot somewhere you didn't intend to fire."
+NPC=_"Next important thing is to remember how to properly fire a shot."
+NPC=_"Watch your target closely.  Pretend you're moving with it. Aim for the head."
+NPC=_"When you feel completely in sync with your target, then you pull the trigger."
+NPC=_"Good. You are learning fast. Try it a few more times."
+NPC=_"Good. I think that it is enough for today."
 LuaCode={
     add_gold(-100)
     eat_training_points(5)
@@ -81,7 +81,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=99  OptionText="BACK"
+Nr=99  Text="BACK"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
     end_dialog()

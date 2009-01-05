@@ -35,130 +35,130 @@ FirstTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=0  OptionText=_" Hi. You look really happy."
-Subtitle=_"Hey! I'm Ewald. I'm a bartender."
-Subtitle=_"I used to do a lot of drugs, and I destroyed my brain."
-Subtitle=_"I'm not too smart now, but I'm very happy all the time!"
-Subtitle=_"Want something to drink?"
+Nr=0  Text=_" Hi. You look really happy."
+NPC=_"Hey! I'm Ewald. I'm a bartender."
+NPC=_"I used to do a lot of drugs, and I destroyed my brain."
+NPC=_"I'm not too smart now, but I'm very happy all the time!"
+NPC=_"Want something to drink?"
 LuaCode={
     disable_node(0)
     enable_node(1, 2, 13)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=1  OptionText=_" How is your business doing?"
-Subtitle=_"Nah, No darn good at all."
-Subtitle=_"The bots ruined it for me. Now the supplies are very low and I had to make the prices high."
-Subtitle=_"No one wants to pay 499 triangles for bottom shelf swill that even Bender would not drink..."
-Subtitle=_"The tax is quite brutal as well. And the Red Guard always demands discounts too."
-Subtitle=_"Life is tough. I am still happy though."
+Nr=1  Text=_" How is your business doing?"
+NPC=_"Nah, No darn good at all."
+NPC=_"The bots ruined it for me. Now the supplies are very low and I had to make the prices high."
+NPC=_"No one wants to pay 499 triangles for bottom shelf swill that even Bender would not drink..."
+NPC=_"The tax is quite brutal as well. And the Red Guard always demands discounts too."
+NPC=_"Life is tough. I am still happy though."
 LuaCode={
     disable_node(1)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=2  OptionText=_" Are you selling something other than drinks?"
-Subtitle=_"Yeah, I have some junk here... Want to see?"
+Nr=2  Text=_" Are you selling something other than drinks?"
+NPC=_"Yeah, I have some junk here... Want to see?"
 LuaCode={
     trade_with("Ewald")
 }
 ----------------------------------------------------------------------
 
-New Option Nr=3  OptionText=_" I could use a drink. What is there to be had?"
-Subtitle=_"Well... We are a bit short on supplies right now... Erm... AH! I know!"
-Subtitle=_"I have WATER!"
+Nr=3  Text=_" I could use a drink. What is there to be had?"
+NPC=_"Well... We are a bit short on supplies right now... Erm... AH! I know!"
+NPC=_"I have WATER!"
 LuaCode={
     disable_node(3)
     enable_node(4, 5, 6)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=4  OptionText=_" I want double water on the rocks. Stirred, not shaken."
-Subtitle=_"Here you go. That one is on the house. And if the water is not enough, just ask me for more."
+Nr=4  Text=_" I want double water on the rocks. Stirred, not shaken."
+NPC=_"Here you go. That one is on the house. And if the water is not enough, just ask me for more."
 LuaCode={
     disable_node(4, 5, 6)
     enable_node(9)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=5  OptionText=_" Long Island iced water please."
-Subtitle=_"Here you go."
+Nr=5  Text=_" Long Island iced water please."
+NPC=_"Here you go."
 LuaCode={
     disable_node(4, 5, 6)
     enable_node(8)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=6  OptionText=_" I want something cheap... Give me some fortified water."
-Subtitle=_"Eh... Sure, as you wish. Here you go."
+Nr=6  Text=_" I want something cheap... Give me some fortified water."
+NPC=_"Eh... Sure, as you wish. Here you go."
 LuaCode={
     disable_node(4, 5, 6)
     enable_node(7)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=7  OptionText=_" Ugh... Ahh... I like it. Give me some more of that."
-Subtitle=_"Uh... Sure..."
+Nr=7  Text=_" Ugh... Ahh... I like it. Give me some more of that."
+NPC=_"Uh... Sure..."
 LuaCode={
     disable_node(7)
     enable_node(10)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=8  OptionText=_" Ahh... Fresh water! Give me some more of that."
-Subtitle=_"Yeah, I thought you would like it. Here is more."
+Nr=8  Text=_" Ahh... Fresh water! Give me some more of that."
+NPC=_"Yeah, I thought you would like it. Here is more."
 LuaCode={
     disable_node(8)
     enable_node(10)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=9  OptionText=_" Hmm... Lots of ice. Give me one more double water, but now without any ice."
-Subtitle=_"One double water coming up."
+Nr=9  Text=_" Hmm... Lots of ice. Give me one more double water, but now without any ice."
+NPC=_"One double water coming up."
 LuaCode={
     disable_node(9)
     enable_node(10)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=10  OptionText=_" MORE! I want more water!"
-Subtitle=_"Erm... Ok... Here, have some of my special, water colada."
+Nr=10  Text=_" MORE! I want more water!"
+NPC=_"Erm... Ok... Here, have some of my special, water colada."
 LuaCode={
     disable_node(10)
     enable_node(11)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=11  OptionText=_" I am really thirsty! I want water."
-Subtitle=_"Well, you drank all my water, so you cannot have any more. There is none left."
-Subtitle=_"I heard Linarians can drink a lot of water, but seven liters is a lot."
+Nr=11  Text=_" I am really thirsty! I want water."
+NPC=_"Well, you drank all my water, so you cannot have any more. There is none left."
+NPC=_"I heard Linarians can drink a lot of water, but seven liters is a lot."
 LuaCode={
     disable_node(11)
     enable_node(12)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=12  OptionText=_" MORE! MORE! MORE! I WANT MORE WATER. NOW!"
-Subtitle=_"Eh... I think you had enough... Maybe you should just go for a walk for now?"
-Subtitle=_"You have had everything that I had."
+Nr=12  Text=_" MORE! MORE! MORE! I WANT MORE WATER. NOW!"
+NPC=_"Eh... I think you had enough... Maybe you should just go for a walk for now?"
+NPC=_"You have had everything that I had."
 LuaCode={
     disable_node(12)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=13  OptionText=_" Any idea where I can find some entertainment here?"
-Subtitle=_"Well... Erm... No."
-Subtitle=_"What the bots did not smash, the Red Guard taxed."
-Subtitle=_"Fun is kinda dead right now."
-Subtitle=_"Well, unless you are in the Red Guard itself, of course. They have those big guns that can destroy a dozen bots with one shot..."
-Subtitle=_"Fun, if you ask me."
+Nr=13  Text=_" Any idea where I can find some entertainment here?"
+NPC=_"Well... Erm... No."
+NPC=_"What the bots did not smash, the Red Guard taxed."
+NPC=_"Fun is kinda dead right now."
+NPC=_"Well, unless you are in the Red Guard itself, of course. They have those big guns that can destroy a dozen bots with one shot..."
+NPC=_"Fun, if you ask me."
 LuaCode={
     disable_node(13)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=99  OptionText=_" See you later."
-Subtitle=_"Goodbye and remember: My bar is always open."
+Nr=99  Text=_" See you later."
+NPC=_"Goodbye and remember: My bar is always open."
 LuaCode={
     end_dialog()
 }

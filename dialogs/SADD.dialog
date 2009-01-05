@@ -35,64 +35,64 @@ FirstTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=0 OptionText="THIS WILL NOT EVER BE VISIBLE"
+Nr=0 Text="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-Subtitle=_"Your bio checksum does not trigger a match in staff database. Please show proper credentials or leave the premises at once."
+NPC=_"Your bio checksum does not trigger a match in staff database. Please show proper credentials or leave the premises at once."
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------
-New Option Nr=1  OptionText=_" Who are you and what are you doing?"
-Subtitle=_" I am a SADD - Secret Area Defence Droid"
-Subtitle=_" PRIMARY TARGET 1: do not let unauthorized people in."
-Subtitle=_" PRIMARY TARGET 2: authorized personal must have access to the zone."
-Subtitle=_" SECONDARY TARGET: prevent secret information leakage"
+Nr=1  Text=_" Who are you and what are you doing?"
+NPC=_" I am a SADD - Secret Area Defence Droid"
+NPC=_" PRIMARY TARGET 1: do not let unauthorized people in."
+NPC=_" PRIMARY TARGET 2: authorized personal must have access to the zone."
+NPC=_" SECONDARY TARGET: prevent secret information leakage"
 LuaCode={
     disable_node(1, 3)
     enable_node(4, 5)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=3  OptionText=_" I mean, you are not attacking me... Don't you kill like other bots?"
-Subtitle=_" I do! I do! I kill humans, bots, linarians and even dogs, cats and other animals! I would kill anybody!"
-Subtitle=_" Em.. Anybody who would try to get in, of course."
+Nr=3  Text=_" I mean, you are not attacking me... Don't you kill like other bots?"
+NPC=_" I do! I do! I kill humans, bots, linarians and even dogs, cats and other animals! I would kill anybody!"
+NPC=_" Em.. Anybody who would try to get in, of course."
 LuaCode={
     disable_node(3)
     enable_node(4, 6)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=4  OptionText=_" What is this place?"
-Subtitle=_" SECONDARY TARGET: prevent secret information leakage"
-Subtitle=_" *INFO* secret information steal attempt detected"
-Subtitle=_" Go away. You are not allowed to be here!"
+Nr=4  Text=_" What is this place?"
+NPC=_" SECONDARY TARGET: prevent secret information leakage"
+NPC=_" *INFO* secret information steal attempt detected"
+NPC=_" Go away. You are not allowed to be here!"
 LuaCode={
     end_dialog()
     disable_node(4)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=5  OptionText=_" Why are you not hostile?"
-Subtitle=_" Hostile? What do you mean?"
+Nr=5  Text=_" Why are you not hostile?"
+NPC=_" Hostile? What do you mean?"
 LuaCode={
     set_next_node(3)
     disable_node(5)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=6  OptionText=_" What about the Great Assault?"
-Subtitle=_" For security reason SADDs are not equipped with wireless modules."
-Subtitle=_" I know only that I have to be recharged, checked and have my firmware updated every 3 months."
+Nr=6  Text=_" What about the Great Assault?"
+NPC=_" For security reason SADDs are not equipped with wireless modules."
+NPC=_" I know only that I have to be recharged, checked and have my firmware updated every 3 months."
 LuaCode={
     set_next_node(7)
     disable_node(6)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=7  OptionText=_" When does your last maintenance date back to?"
-Subtitle=_" One year and a half ago. My accumulator is nearly empty, so I'm going to halt soon. Gates will become unguarded..."
-Subtitle=_" *INFO* secret information steal detected!"
-Subtitle=_" *INFO* information classified as critical!"
-Subtitle=_" *INFO* locking zone!"
+Nr=7  Text=_" When does your last maintenance date back to?"
+NPC=_" One year and a half ago. My accumulator is nearly empty, so I'm going to halt soon. Gates will become unguarded..."
+NPC=_" *INFO* secret information steal detected!"
+NPC=_" *INFO* information classified as critical!"
+NPC=_" *INFO* locking zone!"
 LuaCode={
     end_dialog()
     change_obstacle("SADDGun1", "enabled")
@@ -102,93 +102,93 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=8  OptionText=_" What have you done?! How am I supposed to get out of here?"
-Subtitle=_" You are not. You have secret information, so I won't let you out."
+Nr=8  Text=_" What have you done?! How am I supposed to get out of here?"
+NPC=_" You are not. You have secret information, so I won't let you out."
 LuaCode={
     disable_node(8)
     enable_node(9)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=9  OptionText=_" Why not kill me immediately?"
-Subtitle=_" And stand here alone until I die? While you are here I can speak with you. Oh, I haven't spoken to anybody for a looong time!"
+Nr=9  Text=_" Why not kill me immediately?"
+NPC=_" And stand here alone until I die? While you are here I can speak with you. Oh, I haven't spoken to anybody for a looong time!"
 LuaCode={
     disable_node(9)
     enable_node(10, 11)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=10  OptionText=_" I'm thirsty and hungry. I will die within days, and you will not have an interlocutor any more!"
-Subtitle=_" My power supply will end earlier."
+Nr=10  Text=_" I'm thirsty and hungry. I will die within days, and you will not have an interlocutor any more!"
+NPC=_" My power supply will end earlier."
 LuaCode={
     disable_node(10)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=11  OptionText=_" You speak almost like a human..."
-Subtitle=_" Maybe I'm almost like human?"
-Subtitle=_" Anyway, that's none of your business. Soon I'll be dead, you too and nobody will enter this place ever again!"
+Nr=11  Text=_" You speak almost like a human..."
+NPC=_" Maybe I'm almost like human?"
+NPC=_" Anyway, that's none of your business. Soon I'll be dead, you too and nobody will enter this place ever again!"
 LuaCode={
     disable_node(11)
     enable_node(12)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=12  OptionText=_" What are your orders again?"
-Subtitle=_" PRIMARY TARGET 1: do not let unauthorized people in."
-Subtitle=_" PRIMARY TARGET 2: authorized personal must have access to the zone."
-Subtitle=_" SECONDARY TARGET: prevent secret information leakage"
-Subtitle=_" Why do you ask?"
+Nr=12  Text=_" What are your orders again?"
+NPC=_" PRIMARY TARGET 1: do not let unauthorized people in."
+NPC=_" PRIMARY TARGET 2: authorized personal must have access to the zone."
+NPC=_" SECONDARY TARGET: prevent secret information leakage"
+NPC=_" Why do you ask?"
 LuaCode={
     set_next_node(13)
     disable_node(12)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=13  OptionText=_" Tell me your second order once more..."
-Subtitle=_" PRIMARY TARGET 2: authorized personal must have access to the zone."
-Subtitle=_" Yes, it will be violated. But first order has higher priority."
+Nr=13  Text=_" Tell me your second order once more..."
+NPC=_" PRIMARY TARGET 2: authorized personal must have access to the zone."
+NPC=_" Yes, it will be violated. But first order has higher priority."
 LuaCode={
     set_next_node(14)
     disable_node(13)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=14  OptionText=_" So you can break your orders?"
-Subtitle=_" I've already broken them, when I told you what I shouldn't have. That's because of my human nature."
+Nr=14  Text=_" So you can break your orders?"
+NPC=_" I've already broken them, when I told you what I shouldn't have. That's because of my human nature."
 LuaCode={
     disable_node(14)
     enable_node(15, 16)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=15  OptionText=_" Then please, break the rule, disable the guns and let me go."
-Subtitle=_" No way. I'm a computer, I can't break rules."
+Nr=15  Text=_" Then please, break the rule, disable the guns and let me go."
+NPC=_" No way. I'm a computer, I can't break rules."
 LuaCode={
     disable_node(15)
     enable_node(18)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=16  OptionText=_" I suggest a deal. You let me out, I bring you dilithium cristals. It will save both of us."
-Subtitle=_" Why would I trust you?"
+Nr=16  Text=_" I suggest a deal. You let me out, I bring you dilithium cristals. It will save both of us."
+NPC=_" Why would I trust you?"
 LuaCode={
     disable_node(0, 4, 8, 10, 15, 16)
     enable_node(21, 22)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=18  OptionText=_" And what about your human nature?"
-Subtitle=_" Human? I've said human? I'm a computer!"
-Subtitle=_" OK, I'm almost a computer."
+Nr=18  Text=_" And what about your human nature?"
+NPC=_" Human? I've said human? I'm a computer!"
+NPC=_" OK, I'm almost a computer."
 LuaCode={
     disable_node(18)
     enable_node(19)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=19  OptionText=_" Almost a computer? What does this mean?"
-Subtitle=_" It means what it means! Nothing more, nothing less! Shut up, little piece of biomass!"
+Nr=19  Text=_" Almost a computer? What does this mean?"
+NPC=_" It means what it means! Nothing more, nothing less! Shut up, little piece of biomass!"
 LuaCode={
     end_dialog()
     disable_node(19)
@@ -196,8 +196,8 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=20  OptionText=_" Almost a computer? What does this mean?"
-Subtitle=_" When I say SHUT UP, you MUST shut up! Try this, worthless grain of the universe!"
+Nr=20  Text=_" Almost a computer? What does this mean?"
+NPC=_" When I say SHUT UP, you MUST shut up! Try this, worthless grain of the universe!"
 LuaCode={
     break_off_and_attack()
     disable_node(19)
@@ -205,8 +205,8 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=21  OptionText=_" You will promise me a significant reward."
-Subtitle=_" Damn. Ok, I'll give you a super exterminator if you give me dilithium cristals."
+Nr=21  Text=_" You will promise me a significant reward."
+NPC=_" Damn. Ok, I'll give you a super exterminator if you give me dilithium cristals."
 LuaCode={
     plant_cookie("asked_SADD_for_exterminator")
     open_diary_entry(9, 1)
@@ -215,16 +215,16 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=22  OptionText=_" It seems, that you are sentinent, you are a form of life. I must help any form of life."
-Subtitle=_" Thanks a lot for your warm words. I think I can trust you."
+Nr=22  Text=_" It seems, that you are sentinent, you are a form of life. I must help any form of life."
+NPC=_" Thanks a lot for your warm words. I think I can trust you."
 LuaCode={
     set_next_node(23)
     disable_node(21, 22)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=23  OptionText=_" So disable the guns, please."
-Subtitle=_" Go, and bring dilithium. I badly need it."
+Nr=23  Text=_" So disable the guns, please."
+NPC=_" Go, and bring dilithium. I badly need it."
 LuaCode={
     end_dialog()
     assign_mission(10)
@@ -236,7 +236,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=24  OptionText="CHECKS"
+Nr=24  Text="CHECKS"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
     if (has_item("Red Dilitium Crystal") > 0) then disable_node(31) enable_node(30, 33) else disable_node(30, 33) enable_node(31) end
@@ -245,7 +245,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-New Option Nr=25  OptionText="CHECKS2"
+Nr=25  Text="CHECKS2"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
     if (is_mission_assigned(10)) then
@@ -258,8 +258,8 @@ LuaCode={
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
-New Option Nr=30  OptionText=_" I have the crystals! They were difficult to find."
-Subtitle=_" Good. I've opened the depot door for you. Take your super exterminator and GET OUT of here!"
+Nr=30  Text=_" I have the crystals! They were difficult to find."
+NPC=_" Good. I've opened the depot door for you. Take your super exterminator and GET OUT of here!"
 LuaCode={
     end_dialog()
     display_big_message("Restored SADD's power supply")
@@ -273,16 +273,16 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=31  OptionText=_" How is your power supply?"
-Subtitle=_" Bad. Get the cristals. Remember, you promised!"
+Nr=31  Text=_" How is your power supply?"
+NPC=_" Bad. Get the cristals. Remember, you promised!"
 LuaCode={
     end_dialog()
     disable_node(31)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=33  OptionText=_" I have crystals! They were difficult to find."
-Subtitle=_" Great! Thanks. I've opened some doors for you, I hope you will find something interesting there. That's all I can do for you."
+Nr=33  Text=_" I have crystals! They were difficult to find."
+NPC=_" Great! Thanks. I've opened some doors for you, I hope you will find something interesting there. That's all I can do for you."
 LuaCode={
     end_dialog()
     display_big_message("Restored SADD's power supply")
@@ -297,32 +297,32 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=37  OptionText=_" You call this a super exterminator?"
-Subtitle=_" I do. Now please leave this place before I terminate you."
+Nr=37  Text=_" You call this a super exterminator?"
+NPC=_" I do. Now please leave this place before I terminate you."
 LuaCode={
     disable_node(37)
     enable_node(38)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=38  OptionText=_" This is rubbish! Nobody can use this damned gun!"
-Subtitle=_" The door is still open. You can put it back and go. Quick."
+Nr=38  Text=_" This is rubbish! Nobody can use this damned gun!"
+NPC=_" The door is still open. You can put it back and go. Quick."
 LuaCode={
     disable_node(38)
     enable_node(39)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=39  OptionText=_" Give me a real gun, dude! Immediately! I have brought you what you wanted, now give me my reward!"
-Subtitle=_" You can go standing on your feet, that's your reward. And DON'T TRY MY PATIENCE!"
+Nr=39  Text=_" Give me a real gun, dude! Immediately! I have brought you what you wanted, now give me my reward!"
+NPC=_" You can go standing on your feet, that's your reward. And DON'T TRY MY PATIENCE!"
 LuaCode={
     disable_node(39)
     enable_node(40)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=40  OptionText=_" I'll kill you if you don't give me my gun!"
-Subtitle=_" You are welcome. But you would never get out of here, my death won't help you."
+Nr=40  Text=_" I'll kill you if you don't give me my gun!"
+NPC=_" You are welcome. But you would never get out of here, my death won't help you."
 LuaCode={
     end_dialog()
     open_diary_entry(9, 4)
@@ -334,50 +334,50 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=41  OptionText=_" And what about your directives, especially second?"
-Subtitle=_" Now I have time. When you die, I'll disable guns."
+Nr=41  Text=_" And what about your directives, especially second?"
+NPC=_" Now I have time. When you die, I'll disable guns."
 LuaCode={
     disable_node(41)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=42  OptionText=_" Please forgive me!"
-Subtitle=_" Too late. I'm watching this great show now."
-Subtitle=_" It is called..."
-Subtitle=_" It is called..."
-Subtitle=_"CONDEMNED TO DEATH!"
+Nr=42  Text=_" Please forgive me!"
+NPC=_" Too late. I'm watching this great show now."
+NPC=_" It is called..."
+NPC=_" It is called..."
+NPC=_"CONDEMNED TO DEATH!"
 LuaCode={
     disable_node(42)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=43  OptionText=_" Please, disable the guns!"
-Subtitle=_" Ok, I'll disable them."
-Subtitle=_" I just need to make some preparations. You have to wait..."
-Subtitle=_" ...for your death!"
+Nr=43  Text=_" Please, disable the guns!"
+NPC=_" Ok, I'll disable them."
+NPC=_" I just need to make some preparations. You have to wait..."
+NPC=_" ...for your death!"
 LuaCode={
     disable_node(43)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=97  OptionText=_" Erm... hi!"
-Subtitle=_" Hi. Thanks for the help."
+Nr=97  Text=_" Erm... hi!"
+NPC=_" Hi. Thanks for the help."
 LuaCode={
     set_next_node(98)
     disable_node(97)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=98  OptionText=_" Will you let me inside the base?"
-Subtitle=_" Nice attempt. I owe you but I cannot do that. You must leave."
+Nr=98  Text=_" Will you let me inside the base?"
+NPC=_" Nice attempt. I owe you but I cannot do that. You must leave."
 LuaCode={
     end_dialog()
     enable_node(99)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=99  OptionText=_" I'd better get out of here..."
-Subtitle=_" Exactly."
+Nr=99  Text=_" I'd better get out of here..."
+NPC=_" Exactly."
 LuaCode={
     end_dialog()
 }

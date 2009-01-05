@@ -35,18 +35,18 @@ FirstTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=0  OptionText=" I'm ready. Please show me how to extract bot parts. (cost 50 cash, 1 ability point)"
+Nr=0  Text=" I'm ready. Please show me how to extract bot parts. (cost 50 cash, 1 ability point)"
 LuaCode={
     set_next_node(2)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=1  OptionText=_" Sure. Teach me all that you know. (cost 50 cash, 1 ability point)"
+Nr=1  Text=_" Sure. Teach me all that you know. (cost 50 cash, 1 ability point)"
 LuaCode={
     set_next_node(2)
 }
 ----------------------------------------------------------------------
-New Option Nr=2  OptionText="Checks"
+Nr=2  Text="Checks"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
     if (get_gold() < 50) then set_next_node(90) -- No $$$
@@ -72,67 +72,67 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=10  OptionText="1st LESSON"
+Nr=10  Text="1st LESSON"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-Subtitle=_"Let us start with entropy inverters. This is quite simple."
-Subtitle=_"Just take a hammer and hit the bot sehr hard on the head."
-Subtitle=_"When you have the head open wide, look around for a part which looks like two circles around a cube. That is what you are looking for."
+NPC=_"Let us start with entropy inverters. This is quite simple."
+NPC=_"Just take a hammer and hit the bot sehr hard on the head."
+NPC=_"When you have the head open wide, look around for a part which looks like two circles around a cube. That is what you are looking for."
 LuaCode={
     plant_cookie("know_extract1")
     set_next_node(60)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=20  OptionText="2nd LESSON"
+Nr=20  Text="2nd LESSON"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-Subtitle=_"How about... Plasma transistors? Trivial."
-Subtitle=_"Remove the bot's engine and look around somewhere close to the battery."
-Subtitle=_"Plasma transistors are shaped like the letter Y. Just rip them out, it's safe."
+NPC=_"How about... Plasma transistors? Trivial."
+NPC=_"Remove the bot's engine and look around somewhere close to the battery."
+NPC=_"Plasma transistors are shaped like the letter Y. Just rip them out, it's safe."
 LuaCode={
     plant_cookie("know_extract2")
     set_next_node(60)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=30  OptionText="3rd LESSON"
+Nr=30  Text="3rd LESSON"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-Subtitle=_"Hmmm... Ah, gut. Superconductors."
-Subtitle=_"They are relatively easy to get out."
-Subtitle=_"Look around the electric system. Power coils, capacitors, generators and the like. Usually there are plenty of sehr gut parts there."
-Subtitle=_"Wear rubber gloves. Just in case, you know."
+NPC=_"Hmmm... Ah, gut. Superconductors."
+NPC=_"They are relatively easy to get out."
+NPC=_"Look around the electric system. Power coils, capacitors, generators and the like. Usually there are plenty of sehr gut parts there."
+NPC=_"Wear rubber gloves. Just in case, you know."
 LuaCode={
     plant_cookie("know_extract3")
     set_next_node(60)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=40  OptionText="4th LESSON"
+Nr=40  Text="4th LESSON"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-Subtitle=_"I will tell you everything about matter-antimatter converters."
-Subtitle=_"Yes... Converters are a problem."
-Subtitle=_"They are easy to find, all you have to do is to get to the engine. But you must remember something very important:"
-Subtitle=_"Make sure you turn the converter off before you remove it."
-Subtitle=_"If you do not do that, you will only succeed in converting yourself to anti-matter. And as you know, there is no coming back from there."
+NPC=_"I will tell you everything about matter-antimatter converters."
+NPC=_"Yes... Converters are a problem."
+NPC=_"They are easy to find, all you have to do is to get to the engine. But you must remember something very important:"
+NPC=_"Make sure you turn the converter off before you remove it."
+NPC=_"If you do not do that, you will only succeed in converting yourself to anti-matter. And as you know, there is no coming back from there."
 LuaCode={
     plant_cookie("know_extract4")
     set_next_node(60)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=50  OptionText="5th LESSON"
+Nr=50  Text="5th LESSON"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-Subtitle=_"I will teach you about tachyon converters."
-Subtitle=_"Tachyons are very interesting particles. Many stories have been told about them."
-Subtitle=_"I have no idea why bots have them inside. They are usually not connected to anything and serve no function."
-Subtitle=_"They are usually quite hot when you get them out, but they cool down quickly, so handling them is not a big deal."
-Subtitle=_"They can be installed just about anywhere, so you have to spend some time digging through the circuits to find one."
+NPC=_"I will teach you about tachyon converters."
+NPC=_"Tachyons are very interesting particles. Many stories have been told about them."
+NPC=_"I have no idea why bots have them inside. They are usually not connected to anything and serve no function."
+NPC=_"They are usually quite hot when you get them out, but they cool down quickly, so handling them is not a big deal."
+NPC=_"They can be installed just about anywhere, so you have to spend some time digging through the circuits to find one."
 LuaCode={
     plant_cookie("know_extract5")
     set_next_node(60)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=60  OptionText="Lesson effect"
+Nr=60  Text="Lesson effect"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
     add_gold(-50)
@@ -144,35 +144,35 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=70  OptionText="NO MORE LESSONS"
+Nr=70  Text="NO MORE LESSONS"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-Subtitle=_"Nein, I told you everything I know about that. No use asking me twice, ja?"
+NPC=_"Nein, I told you everything I know about that. No use asking me twice, ja?"
 LuaCode={
     end_dialog()
 }
 ----------------------------------------------------------------------
 
-New Option Nr=80  OptionText="NO FREE POINTS"
+Nr=80  Text="NO FREE POINTS"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-Subtitle=_"Hmmm..."
-Subtitle=_"You look green. Toughen up. Get some experience, kill some bots."
-Subtitle=_"Then we can talk."
+NPC=_"Hmmm..."
+NPC=_"You look green. Toughen up. Get some experience, kill some bots."
+NPC=_"Then we can talk."
 LuaCode={
     end_dialog()
 }
 ----------------------------------------------------------------------
 
-New Option Nr=90  OptionText="TUX IS TOO POOR TO TRAIN"
+Nr=90  Text="TUX IS TOO POOR TO TRAIN"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-Subtitle=_"Hmmm..."
-Subtitle=_"Kein geld, Keine hilfe."
-Subtitle=_"Come back with some money."
+NPC=_"Hmmm..."
+NPC=_"Kein geld, Keine hilfe."
+NPC=_"Come back with some money."
 LuaCode={
     end_dialog()
 }
 ----------------------------------------------------------------------
 
-New Option Nr=99  OptionText=_" Maybe another time."
+Nr=99  Text=_" Maybe another time."
 LuaCode={
     end_dialog()
 }

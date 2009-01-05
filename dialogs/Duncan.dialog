@@ -35,16 +35,16 @@ FirstTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=0  OptionText=_" Hi... Erm... Who are you?"
-Subtitle=_"Duncan McNamara, The Red Guard's resident bomb maker, at your service."
+Nr=0  Text=_" Hi... Erm... Who are you?"
+NPC=_"Duncan McNamara, The Red Guard's resident bomb maker, at your service."
 LuaCode={
     disable_node(0, 90)
     enable_node(1)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=1  OptionText=_" I would like to buy a bomb."
-Subtitle=_"Yes. I am sure we can arrange something. Take a look."
+Nr=1  Text=_" I would like to buy a bomb."
+NPC=_"Yes. I am sure we can arrange something. Take a look."
 LuaCode={
     trade_with("Duncan")
     disable_node(1)
@@ -52,59 +52,59 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=2  OptionText=_" I see only grenades. Do you have something bigger?"
-Subtitle=_"My deepest apologies, I do not."
-Subtitle=_"The Red Guard prohibits the sales of extremely destructive munitions."
-Subtitle=_"It is not yet the time for the fall of their rule, so I remain loyal."
+Nr=2  Text=_" I see only grenades. Do you have something bigger?"
+NPC=_"My deepest apologies, I do not."
+NPC=_"The Red Guard prohibits the sales of extremely destructive munitions."
+NPC=_"It is not yet the time for the fall of their rule, so I remain loyal."
 LuaCode={
     disable_node(2)
     enable_node(3, 4, 5, 6)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=3  OptionText=_" The fall of the Red Guard? I am going to report that you are preparing a revolution!"
-Subtitle=_"My word against yours. If you wish to try it, please, be my guest."
-Subtitle=_"I am not preparing anything. I am just stating what I see as inevitable in the future."
-Subtitle=_"I have taken part in many conflicts and I have seen how governments collapse."
-Subtitle=_"As soon as the war is over, the Red Guard will disband."
-Subtitle=_"Of course, I am making the assumption of victory, which is highly unlikely with the current state of affairs."
+Nr=3  Text=_" The fall of the Red Guard? I am going to report that you are preparing a revolution!"
+NPC=_"My word against yours. If you wish to try it, please, be my guest."
+NPC=_"I am not preparing anything. I am just stating what I see as inevitable in the future."
+NPC=_"I have taken part in many conflicts and I have seen how governments collapse."
+NPC=_"As soon as the war is over, the Red Guard will disband."
+NPC=_"Of course, I am making the assumption of victory, which is highly unlikely with the current state of affairs."
 LuaCode={
     disable_node(3, 4)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=4  OptionText=_" The fall of the Red Guard? Tell me more about it."
-Subtitle=_"It is not the time to speak of such things yet. Come another day, and we shall talk about it in more detail."
-Subtitle=_"The Red Guard can have their great laser beams and plasma cannons... But nothing can save them."
+Nr=4  Text=_" The fall of the Red Guard? Tell me more about it."
+NPC=_"It is not the time to speak of such things yet. Come another day, and we shall talk about it in more detail."
+NPC=_"The Red Guard can have their great laser beams and plasma cannons... But nothing can save them."
 LuaCode={
     disable_node(3, 4)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=5  OptionText=_" I want to buy some grenades."
-Subtitle=_"Certainly."
+Nr=5  Text=_" I want to buy some grenades."
+NPC=_"Certainly."
 LuaCode={
     trade_with("Duncan")
 }
 ----------------------------------------------------------------------
 
-New Option Nr=6  OptionText=_" What kind of grenade is the best?"
-Subtitle=_"You get what you pay for."
+Nr=6  Text=_" What kind of grenade is the best?"
+NPC=_"You get what you pay for."
 LuaCode={
     disable_node(6)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=7  OptionText=_" How did you get into making explosives?"
-Subtitle=_"Twenty years ago there was a conflict."
-Subtitle=_"A grenade I threw destroyed a being which killed many of... my people."
-Subtitle=_"Now I make more to smash the destroyers."
+Nr=7  Text=_" How did you get into making explosives?"
+NPC=_"Twenty years ago there was a conflict."
+NPC=_"A grenade I threw destroyed a being which killed many of... my people."
+NPC=_"Now I make more to smash the destroyers."
 LuaCode={
     disable_node(7)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=50  OptionText="KOAN QUEST"
+Nr=50  Text="KOAN QUEST"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
     if (cookie_planted("duncan_known")) then
@@ -122,80 +122,80 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-New Option Nr=51  OptionText="STARTING KOAN QUEST"
+Nr=51  Text="STARTING KOAN QUEST"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-Subtitle=_"Ah. Welcome again Linarian."
-Subtitle=_"I have a little request for you."
-Subtitle=_"I know someone who needs to be taught a lesson."
-Subtitle=_"Interested?"
+NPC=_"Ah. Welcome again Linarian."
+NPC=_"I have a little request for you."
+NPC=_"I know someone who needs to be taught a lesson."
+NPC=_"Interested?"
 LuaCode={
     plant_cookie("koan_quest")
     run_subdialog("subdlg_Duncan.dialog")
 }
 ----------------------------------------------------------------------
 
-New Option Nr=61  OptionText="MURDERING DONE OR SAVED HIM"
+Nr=61  Text="MURDERING DONE OR SAVED HIM"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
     run_subdialog("subdlg_Duncan_quest.dialog")
 }
 ----------------------------------------------------------------------
 
-New Option Nr=90  OptionText=_" I feel you are... Different."
-Subtitle=_"What a great way to start a conversation."
-Subtitle=_"Yes, that is true. I am not who I seem to be."
-Subtitle=_"But then again, neither are you, so my thoughts are we are even."
+Nr=90  Text=_" I feel you are... Different."
+NPC=_"What a great way to start a conversation."
+NPC=_"Yes, that is true. I am not who I seem to be."
+NPC=_"But then again, neither are you, so my thoughts are we are even."
 LuaCode={
     disable_node(0, 90)
     enable_node(91)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=91  OptionText=_" What do you mean? I am Tux and not anyone else."
-Subtitle=_"And I am Duncan McNamara, the maker of grenades and nothing else."
-Subtitle=_"I believe the topic is thoroughly exhausted now."
+Nr=91  Text=_" What do you mean? I am Tux and not anyone else."
+NPC=_"And I am Duncan McNamara, the maker of grenades and nothing else."
+NPC=_"I believe the topic is thoroughly exhausted now."
 LuaCode={
     disable_node(1, 2, 91)
     enable_node(5, 92)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=92  OptionText=_" Tell me who you are. I need to know."
-Subtitle=_"Twenty years ago, the people were kinder to each other."
-Subtitle=_"I suggest you be kind to me as well, and I will be kind to you."
-Subtitle=_"That way I get to keep my secret, and you get to keep yours."
+Nr=92  Text=_" Tell me who you are. I need to know."
+NPC=_"Twenty years ago, the people were kinder to each other."
+NPC=_"I suggest you be kind to me as well, and I will be kind to you."
+NPC=_"That way I get to keep my secret, and you get to keep yours."
 LuaCode={
     disable_node(92)
     enable_node(93)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=93  OptionText=_" I don't have any secrets."
-Subtitle=_"And neither do I."
+Nr=93  Text=_" I don't have any secrets."
+NPC=_"And neither do I."
 LuaCode={
     disable_node(93)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=96  OptionText=_" See you later."
-Subtitle=_"I wish you cold winds."
+Nr=96  Text=_" See you later."
+NPC=_"I wish you cold winds."
 LuaCode={
     set_next_node(97)
     disable_node(96)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=97  OptionText=_" Huh? How do you know the Linarian farewell? No one around here knows it."
-Subtitle=_"I read many books on Linarians. That is all."
-Subtitle=_"Nothing more and nothing less."
+Nr=97  Text=_" Huh? How do you know the Linarian farewell? No one around here knows it."
+NPC=_"I read many books on Linarians. That is all."
+NPC=_"Nothing more and nothing less."
 LuaCode={
     disable_node(97)
     enable_node(98, 99)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=98  OptionText=_" I wish you cold winds."
-Subtitle=_"May the ice bring you wisdom."
+Nr=98  Text=_" I wish you cold winds."
+NPC=_"May the ice bring you wisdom."
 LuaCode={
     end_dialog()
     plant_cookie("duncan_known")
@@ -204,8 +204,8 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=99  OptionText=_" See you later."
-Subtitle=_"See you later."
+Nr=99  Text=_" See you later."
+NPC=_"See you later."
 LuaCode={
     end_dialog()
     plant_cookie("duncan_known")

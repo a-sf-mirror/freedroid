@@ -37,25 +37,25 @@ FirstTime LuaCode={
 ----------------------------------------------------------------------
 
 
-New Option Nr=0  OptionText=_" Hi! I'm new here. "
-Subtitle=_"Welcome, welcome! I'm Richard. I'm the computer guy around here."
-Subtitle=_"I mostly work with this huge computer cluster here, although I also program the 614 bots in my spare time."
+Nr=0  Text=_" Hi! I'm new here. "
+NPC=_"Welcome, welcome! I'm Richard. I'm the computer guy around here."
+NPC=_"I mostly work with this huge computer cluster here, although I also program the 614 bots in my spare time."
 LuaCode={
     disable_node(0)
     enable_node(1)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=1  OptionText=_" A computer cluster? What's that?"
-Subtitle=_"A cluster is a group of computers, connected in a way that helps them collaborate in solving problems."
-Subtitle=_"As they say, 'two heads are better than one'. And we have a lot of heads here."
-Subtitle=_"This is why I call this cluster 'Hydra'. A lot of heads indeed."
+Nr=1  Text=_" A computer cluster? What's that?"
+NPC=_"A cluster is a group of computers, connected in a way that helps them collaborate in solving problems."
+NPC=_"As they say, 'two heads are better than one'. And we have a lot of heads here."
+NPC=_"This is why I call this cluster 'Hydra'. A lot of heads indeed."
 LuaCode={
     disable_node(1)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=5  OptionText="THIS WILL NOT EVER BE VISIBLE"
+Nr=5  Text="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
     if (has_item("Kevin's Data Cube") > 0) then enable_node(6) else end
@@ -64,10 +64,10 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-New Option Nr=6  OptionText=_" I have a data cube with some information. Can you tell me something more about it?"
-Subtitle=_"Interesting. Let me see this thing. Hmm... Yes, there is quite a lot of stuff in there. Maybe we could use Hydra to evaluate the data."
-Subtitle=_"Hey, what do we have here? The data is already prepared for processing by a cluster just like ours. Wow! That's excellent!"
-Subtitle=_"I'll feed it into Hydra right away. Expect the results in a short while. Hydra has never let me down so far."
+Nr=6  Text=_" I have a data cube with some information. Can you tell me something more about it?"
+NPC=_"Interesting. Let me see this thing. Hmm... Yes, there is quite a lot of stuff in there. Maybe we could use Hydra to evaluate the data."
+NPC=_"Hey, what do we have here? The data is already prepared for processing by a cluster just like ours. Wow! That's excellent!"
+NPC=_"I'll feed it into Hydra right away. Expect the results in a short while. Hydra has never let me down so far."
 LuaCode={
     finish_mission(7)
     open_diary_entry(7, 1)
@@ -77,17 +77,17 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=9  OptionText=_" Hey, did you get something out of that data cube?"
-Subtitle=_"Of course! I told you, Hydra has never failed me! I designed it myself, and I know computers very well. I never make mistakes."
-Subtitle=_"Seems like the disruptor shield which prevents all our attacks on Hell Fortress can be controlled from somewhere outside or something like that."
-Subtitle=_"I was busy servicing one of Hydra's nodes, but I sent the full report to Spencer. He will tell you more."
+Nr=9  Text=_" Hey, did you get something out of that data cube?"
+NPC=_"Of course! I told you, Hydra has never failed me! I designed it myself, and I know computers very well. I never make mistakes."
+NPC=_"Seems like the disruptor shield which prevents all our attacks on Hell Fortress can be controlled from somewhere outside or something like that."
+NPC=_"I was busy servicing one of Hydra's nodes, but I sent the full report to Spencer. He will tell you more."
 LuaCode={
     disable_node(9)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=99  OptionText=_" See you later."
-Subtitle=_"Take care, Linarian."
+Nr=99  Text=_" See you later."
+NPC=_"Take care, Linarian."
 LuaCode={
     end_dialog()
 }

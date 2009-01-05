@@ -35,7 +35,7 @@ FirstTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=0  OptionText=_"Login : tux  Password : *******
+Nr=0  Text=_"Login : tux  Password : *******
 Last login from dev/ttyS0 on Sun, 23 mar 2057.
 tux@hacked_bot: ~ #"
 LuaCode={
@@ -46,8 +46,8 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-New Option Nr=1  OptionText=_" ./hold_position.sh"
-Subtitle=_"Holding position, using script V 1.0.2 (c) gnu.org, 2054 Checking requirements. Power-down movement unit. Done. Status: All movement suppressed."
+Nr=1  Text=_" ./hold_position.sh"
+NPC=_"Holding position, using script V 1.0.2 (c) gnu.org, 2054 Checking requirements. Power-down movement unit. Done. Status: All movement suppressed."
 LuaCode={
     set_bot_state("fixed")
     disable_node(1)
@@ -55,8 +55,8 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=2  OptionText=_" ./follow_me.sh"
-Subtitle=_"Initiating tracking sequence. Movement unit enabled. Ready. Trying to keep up with Tux position now. Ok. Following Tux."
+Nr=2  Text=_" ./follow_me.sh"
+NPC=_"Initiating tracking sequence. Movement unit enabled. Ready. Trying to keep up with Tux position now. Ok. Following Tux."
 LuaCode={
     set_bot_state("follow_tux")
     disable_node(2)
@@ -64,8 +64,8 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=3  OptionText=_" ./move_freely.sh"
-Subtitle=_"Movement unit is starting up. Ready. Resuming normal patrol operations. Done. Status: Patrolling."
+Nr=3  Text=_" ./move_freely.sh"
+NPC=_"Movement unit is starting up. Ready. Resuming normal patrol operations. Done. Status: Patrolling."
 LuaCode={
     set_bot_state("free")
     disable_node(3)
@@ -73,11 +73,11 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=4  OptionText=_" ./hcf.py"
-Subtitle=_"Executing: Halt and Catch Fire."
-Subtitle=_"Warning! Cooling subsystems disabled."
-Subtitle=_"Warning! Spontaneous oxidization witH emis$ion of light aND heAt detecteddd in THE#main| procesIng unit."
-Subtitle=_"WArn|n*! SsTeM=#faiPure%^#n 3 S 1()$++"
+Nr=4  Text=_" ./hcf.py"
+NPC=_"Executing: Halt and Catch Fire."
+NPC=_"Warning! Cooling subsystems disabled."
+NPC=_"Warning! Spontaneous oxidization witH emis$ion of light aND heAt detecteddd in THE#main| procesIng unit."
+NPC=_"WArn|n*! SsTeM=#faiPure%^#n 3 S 1()$++"
 LuaCode={
     if (cookie_planted("dixon_very_angry")) then
         if (cookie_planted("bruce_hurt")) then
@@ -89,9 +89,9 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=17  OptionText="EVERYTHING IS READY."
+Nr=17  Text="EVERYTHING IS READY."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-Subtitle=_"()%#@(% THE BLADE IS YOURS. )##%*&%*!"
+NPC=_"()%#@(% THE BLADE IS YOURS. )##%*&%*!"
 LuaCode={
     drop_dead()
     plant_cookie("tux_has_edge")
@@ -99,7 +99,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=99  OptionText=_" logout"
+Nr=99  Text=_" logout"
 LuaCode={
     end_dialog()
 }

@@ -37,10 +37,10 @@ FirstTime LuaCode={
 ----------------------------------------------------------------------
 
 
-New Option Nr=0  OptionText="THIS WILL NEVER BE VISIBLE"
+Nr=0  Text="THIS WILL NEVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-Subtitle=_"Welcome to MS firmware upgrade server for region #54658."
-Subtitle=_"Please select action"
+NPC=_"Welcome to MS firmware upgrade server for region #54658."
+NPC=_"Please select action"
 LuaCode={
     disable_node(0, 3)
     enable_node(1, 2, 99)
@@ -49,20 +49,20 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-New Option Nr=1  OptionText=_" Get current OS version"
-Subtitle=_"Currently deployed firmware is v. 5.0.8+worldto-nogpl."
+Nr=1  Text=_" Get current OS version"
+NPC=_"Currently deployed firmware is v. 5.0.8+worldto-nogpl."
 LuaCode={
     disable_node(1)
 }
 ----------------------------------------------------------------------
 
-New Option Nr=2  OptionText=_" Propagate firmware update"
-Subtitle=_"Compressing image...."
-Subtitle=_"Advertising update to clients..."
-Subtitle=_"Waiting for all connections...."
-Subtitle=_"..."
-Subtitle=_"..."
-Subtitle=_"Firmware update propagated!"
+Nr=2  Text=_" Propagate firmware update"
+NPC=_"Compressing image...."
+NPC=_"Advertising update to clients..."
+NPC=_"Waiting for all connections...."
+NPC=_"..."
+NPC=_"..."
+NPC=_"Firmware update propagated!"
 LuaCode={
     finish_mission(9)
     disable_node(1, 2)
@@ -70,8 +70,8 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=3  OptionText=_" Get current OS version"
-Subtitle=_"Currently deployed firmware is v. 5.0.8+tuxwashere+gpl"
+Nr=3  Text=_" Get current OS version"
+NPC=_"Currently deployed firmware is v. 5.0.8+tuxwashere+gpl"
 LuaCode={
     set_bot_state("free")
     disable_node(1, 2)
@@ -79,7 +79,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=99  OptionText=_" Logout"
+Nr=99  Text=_" Logout"
 LuaCode={
     end_dialog()
 }
