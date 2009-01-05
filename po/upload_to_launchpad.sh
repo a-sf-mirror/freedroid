@@ -54,6 +54,10 @@ for module in $MODULES; do
     
     echo done
 
+    if [ "$1" = --pot-only ]; then
+	continue;
+    fi
+
     for lang in $LANGUAGES; do
  	pofile="$lang"_`echo $lang | tr a-z A-Z`/LC_MESSAGES/`echo $module | tr - _`.po
 
