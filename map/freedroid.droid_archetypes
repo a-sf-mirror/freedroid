@@ -78,7 +78,7 @@ Common factor for all droids energyloss values: 0.05
 Common factor for all droids acceleration values: 3.0
 Common factor for all droids experience_reward values: 0.8
 Common factor for all droids recovery time after hit: 1.0
-Common factor for all droids range of vision: 1
+Common factor for all droids aggression distance: 1
 
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
@@ -97,7 +97,7 @@ Maximum energy of this droid: 10.1
 Maximum mana of this droid: 10.1
 Rate of healing: 2.1
 Experience_Reward gained for destroying one of this type: 40
-Range of vision of this droid=11
+Aggression distance of this droid=11
 Time spent eyeing Tux=1.0
 Drive of this droid : 1
 Brain of this droid : 0
@@ -132,7 +132,7 @@ Maximum energy of this droid: 15.1
 Maximum mana of this droid: 15.1
 Rate of healing: 2.1
 Experience_Reward gained for destroying one of this type: 50
-Range of vision of this droid=10
+Aggression distance of this droid=10
 Time spent eyeing Tux=1.0
 Drive of this droid : 2
 Brain of this droid : 0
@@ -167,7 +167,7 @@ Maximum energy of this droid: 16.1
 Maximum mana of this droid: 16.1
 Rate of healing: 2.1
 Experience_Reward gained for destroying one of this type: 70
-Range of vision of this droid=10
+Aggression distance of this droid=10
 Time spent eyeing Tux=1.0
 Drive of this droid : 2
 Sensor 2 of this droid : 0
@@ -201,7 +201,7 @@ Maximum energy of this droid: 20.1
 Maximum mana of this droid: 20.1
 Rate of healing: 2.1
 Experience_Reward gained for destroying one of this type: 90
-Range of vision of this droid=10
+Aggression distance of this droid=10
 Time spent eyeing Tux=1.0
 Drive of this droid : 3
 Sensor 2 of this droid : 0
@@ -235,7 +235,7 @@ Maximum energy of this droid: 300.1
 Maximum mana of this droid: 30.1
 Rate of healing: 2.1
 Experience_Reward gained for destroying one of this type: 250
-Range of vision of this droid=10
+Aggression distance of this droid=10
 Time spent eyeing Tux=1.0
 Drive of this droid : 1
 Sensor 2 of this droid : 0
@@ -269,7 +269,7 @@ Maximum energy of this droid: 30.1
 Maximum mana of this droid: 30.1
 Rate of healing: 2.1
 Experience_Reward gained for destroying one of this type: 200
-Range of vision of this droid=10
+Aggression distance of this droid=10
 Time spent eyeing Tux=0.25
 Drive of this droid : 2
 Brain of this droid : 0
@@ -304,7 +304,7 @@ Maximum energy of this droid: 35.1
 Maximum mana of this droid: 35.1
 Rate of healing: 2.1
 Experience_Reward gained for destroying one of this type: 250
-Range of vision of this droid=10
+Aggression distance of this droid=10
 Time spent eyeing Tux=2.75
 Drive of this droid : 4
 Brain of this droid : 0
@@ -340,7 +340,7 @@ Maximum mana of this droid: 40.1
 Rate of healing: 2.1
 Is this droid immune to disruptor blasts? 1
 Experience_Reward gained for destroying one of this type: 300
-Range of vision of this droid=10
+Aggression distance of this droid=10
 Time spent eyeing Tux=2.0
 Drive of this droid : 1
 Sensor 2 of this droid : 0
@@ -374,7 +374,7 @@ Maximum energy of this droid: 15.1
 Maximum mana of this droid: 15.1
 Rate of healing: 2.1
 Experience_Reward gained for destroying one of this type: 400
-Range of vision of this droid=11
+Aggression distance of this droid=11
 Time spent eyeing Tux=1.0
 Drive of this droid : 2
 Sensor 2 of this droid : 2
@@ -408,7 +408,7 @@ Maximum energy of this droid: 80.1
 Maximum mana of this droid: 80.1
 Rate of healing: 3.1
 Experience_Reward gained for destroying one of this type: 600
-Range of vision of this droid=10
+Aggression distance of this droid=10
 Time spent eyeing Tux=1.75
 Drive of this droid : 2
 Sensor 2 of this droid : 0
@@ -442,7 +442,7 @@ Maximum energy of this droid: 70.1
 Maximum mana of this droid: 70.1
 Rate of healing: 3.1
 Experience_Reward gained for destroying one of this type: 600
-Range of vision of this droid=10
+Aggression distance of this droid=10
 Time spent eyeing Tux=1.0
 Drive of this droid : 5
 Sensor 2 of this droid : 0
@@ -476,7 +476,7 @@ Maximum energy of this droid: 50.1
 Maximum mana of this droid: 50.1
 Rate of healing: 3.1
 Experience_Reward gained for destroying one of this type: 320
-Range of vision of this droid=10
+Aggression distance of this droid=10
 Time spent eyeing Tux=1.5
 Drive of this droid : 5
 Sensor 2 of this droid : 0
@@ -510,7 +510,7 @@ Maximum energy of this droid: 120.1
 Maximum mana of this droid: 120.1
 Rate of healing: 3.1
 Experience_Reward gained for destroying one of this type: 400
-Range of vision of this droid=10
+Aggression distance of this droid=10
 Time spent eyeing Tux=1.5
 Drive of this droid : 5
 Sensor 2 of this droid : 0
@@ -544,7 +544,7 @@ Maximum energy of this droid: 130.1
 Maximum mana of this droid: 130.1
 Rate of healing: 3.1
 Experience_Reward gained for destroying one of this type: 460
-Range of vision of this droid=10.6
+Aggression distance of this droid=10.6
 Time spent eyeing Tux=1.25
 Drive of this droid : 4
 Sensor 2 of this droid : 3
@@ -578,7 +578,7 @@ Maximum energy of this droid: 140.1
 Maximum mana of this droid: 140.1
 Rate of healing: 3.1
 Experience_Reward gained for destroying one of this type: 500
-Range of vision of this droid=11
+Aggression distance of this droid=11
 Time spent eyeing Tux=1.25
 Drive of this droid : 2
 Sensor 2 of this droid : 2
@@ -612,7 +612,7 @@ Maximum energy of this droid: 160.1
 Maximum mana of this droid: 160.1
 Rate of healing: 3.1
 Experience_Reward gained for destroying one of this type: 600
-Range of vision of this droid=10.6
+Aggression distance of this droid=10.6
 Time spent eyeing Tux=1.0
 Drive of this droid : 1
 Sensor 2 of this droid : 3
@@ -647,7 +647,7 @@ Maximum mana of this droid: 180.1
 Rate of healing: 4.1
 Is this droid immune to disruptor blasts? 1
 Experience_Reward gained for destroying one of this type: 650
-Range of vision of this droid=16.12
+Aggression distance of this droid=16.12
 Time spent eyeing Tux=1.0
 Drive of this droid : 5
 Sensor 1 of this droid : 4
@@ -682,7 +682,7 @@ Maximum mana of this droid: 210.1
 Rate of healing: 4.1
 Is this droid immune to disruptor blasts? 1
 Experience_Reward gained for destroying one of this type: 700
-Range of vision of this droid=16
+Aggression distance of this droid=16
 Time spent eyeing Tux=0.75
 Drive of this droid : 5
 Armament of this droid : 3
@@ -715,7 +715,7 @@ Maximum energy of this droid: 150.1
 Maximum mana of this droid: 150.1
 Rate of healing: 4.1
 Experience_Reward gained for destroying one of this type: 800
-Range of vision of this droid=10
+Aggression distance of this droid=10
 Time spent eyeing Tux=0.75
 Drive of this droid : 5
 Sensor 2 of this droid : 0
@@ -750,7 +750,7 @@ Maximum mana of this droid: 200.1
 Rate of healing: 4.1
 Is this droid immune to disruptor blasts? 1
 Experience_Reward gained for destroying one of this type: 1000
-Range of vision of this droid=16.11
+Aggression distance of this droid=16.11
 Time spent eyeing Tux=0.5
 Drive of this droid : 2
 Sensor 3 of this droid : 2
@@ -784,7 +784,7 @@ Maximum energy of this droid: 220.1
 Maximum mana of this droid: 220.1
 Rate of healing: 4.1
 Experience_Reward gained for destroying one of this type: 1200
-Range of vision of this droid=16
+Aggression distance of this droid=16
 Time spent eyeing Tux=0.5
 Drive of this droid : 2
 Armament of this droid : 1
@@ -818,7 +818,7 @@ Maximum mana of this droid: 120.1
 Rate of healing: 4.1
 Experience_Reward gained for destroying one of this type: 1500
 Force how many additional magic items to be dropped=1
-Range of vision of this droid=16
+Aggression distance of this droid=16
 Time spent eyeing Tux=0.25
 Drive of this droid : 4
 Armament of this droid : 4
@@ -852,7 +852,7 @@ Maximum mana of this droid: 300.1
 Rate of healing: 15.1
 Is this droid immune to disruptor blasts? 1
 Experience_Reward gained for destroying one of this type: 2000
-Range of vision of this droid=16.116
+Aggression distance of this droid=16.116
 Time spent eyeing Tux=0.25
 Drive of this droid : 2
 Brain of this droid : 2
@@ -888,7 +888,7 @@ Maximum energy of this droid: 100.1
 Maximum mana of this droid: 100.1
 Rate of healing: 15.1
 Experience_Reward gained for destroying one of this type: 200
-Range of vision of this droid=8
+Aggression distance of this droid=8
 Time spent eyeing Tux=2
 Drive of this droid : 2
 Brain of this droid : 2
@@ -919,7 +919,7 @@ Maximum energy of this droid: 100.1
 Maximum mana of this droid: 100.1
 Rate of healing: 15.1
 Experience_Reward gained for destroying one of this type: 200
-Range of vision of this droid=8
+Aggression distance of this droid=8
 Time spent eyeing Tux=0.5
 Drive of this droid : 2
 Brain of this droid : 2
@@ -950,7 +950,7 @@ Maximum energy of this droid: 100.1
 Maximum mana of this droid: 100.1
 Rate of healing: 15.1
 Experience_Reward gained for destroying one of this type: 200
-Range of vision of this droid=8
+Aggression distance of this droid=8
 Time spent eyeing Tux=2
 Drive of this droid : 2
 Brain of this droid : 2
@@ -981,7 +981,7 @@ Maximum energy of this droid: 100.1
 Maximum mana of this droid: 100.1
 Rate of healing: 15.1
 Experience_Reward gained for destroying one of this type: 200
-Range of vision of this droid=8
+Aggression distance of this droid=8
 Time spent eyeing Tux=3
 Drive of this droid : 2
 Brain of this droid : 2
@@ -1012,7 +1012,7 @@ Maximum energy of this droid: 100.1
 Maximum mana of this droid: 100.1
 Rate of healing: 15.1
 Experience_Reward gained for destroying one of this type: 200
-Range of vision of this droid=8
+Aggression distance of this droid=8
 Time spent eyeing Tux=2
 Drive of this droid : 2
 Brain of this droid : 2
@@ -1043,7 +1043,7 @@ Maximum energy of this droid: 100.1
 Maximum mana of this droid: 100.1
 Rate of healing: 15.1
 Experience_Reward gained for destroying one of this type: 200
-Range of vision of this droid=8
+Aggression distance of this droid=8
 Time spent eyeing Tux=0.5
 Drive of this droid : 2
 Brain of this droid : 2
@@ -1074,7 +1074,7 @@ Maximum energy of this droid: 100.1
 Maximum mana of this droid: 100.1
 Rate of healing: 15.1
 Experience_Reward gained for destroying one of this type: 200
-Range of vision of this droid=8
+Aggression distance of this droid=8
 Time spent eyeing Tux=2
 Drive of this droid : 2
 Brain of this droid : 2
@@ -1106,7 +1106,7 @@ Maximum energy of this droid: 100.1
 Maximum mana of this droid: 100.1
 Rate of healing: 15.1
 Experience_Reward gained for destroying one of this type: 200
-Range of vision of this droid=8
+Aggression distance of this droid=8
 Time spent eyeing Tux=1.5
 Drive of this droid : 2
 Brain of this droid : 2
@@ -1137,7 +1137,7 @@ Maximum energy of this droid: 100.1
 Maximum mana of this droid: 100.1
 Rate of healing: 15.1
 Experience_Reward gained for destroying one of this type: 200
-Range of vision of this droid=8
+Aggression distance of this droid=8
 Time spent eyeing Tux=3
 Drive of this droid : 2
 Brain of this droid : 2
@@ -1168,7 +1168,7 @@ Maximum energy of this droid: 100.1
 Maximum mana of this droid: 100.1
 Rate of healing: 15.1
 Experience_Reward gained for destroying one of this type: 200
-Range of vision of this droid=8
+Aggression distance of this droid=8
 Time spent eyeing Tux=1
 Drive of this droid : 2
 Brain of this droid : 2
@@ -1199,7 +1199,7 @@ Maximum energy of this droid: 300.1
 Maximum mana of this droid: 30.1
 Rate of healing: 2.1
 Experience_Reward gained for destroying one of this type: 250
-Range of vision of this droid=10.0
+Aggression distance of this droid=10.0
 Time spent eyeing Tux=1.0
 Drive of this droid : 1
 Sensor 2 of this droid : 0

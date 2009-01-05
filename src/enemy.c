@@ -1213,8 +1213,8 @@ int is_potential_target( enemy* this_robot, gps* target_pos, float* squared_best
 void
 update_vector_to_shot_target_for_friend ( enemy* ThisRobot , moderately_finepoint* vect_to_target )
 {
-	float bot_vision = Druidmap[ThisRobot->type].range_of_vision;
-	float squared_bot_vision = bot_vision * bot_vision;
+	float aggression_distance = Druidmap[ThisRobot->type].aggression_distance;
+	float squared_aggression_distance = aggression_distance * aggression_distance;
 	float squared_best_dist;
 
 	//--------------------
@@ -1224,7 +1224,7 @@ update_vector_to_shot_target_for_friend ( enemy* ThisRobot , moderately_finepoin
 	vect_to_target -> x = -1000;
 	vect_to_target -> y = -1000;
 	ThisRobot -> attack_target_type = ATTACK_TARGET_IS_NOTHING ;
-	squared_best_dist = squared_bot_vision;
+	squared_best_dist = squared_aggression_distance;
     
 	enemy *erot;
 	BROWSE_LEVEL_BOTS(erot, ThisRobot->pos.z)
@@ -1258,8 +1258,8 @@ update_vector_to_shot_target_for_enemy ( enemy* this_robot , moderately_finepoin
     int our_level = this_robot -> pos . z ;
     float squared_best_dist;
     float xdist, ydist;
-    float bot_vision = Druidmap[this_robot->type].range_of_vision;
-    float squared_bot_vision = bot_vision * bot_vision;
+    float aggression_distance = Druidmap[this_robot->type].aggression_distance;
+    float squared_aggression_distance = aggression_distance * aggression_distance;
     
     gps old_target_pos;
     gps * a = enemy_get_target_position(this_robot);
@@ -1273,7 +1273,7 @@ update_vector_to_shot_target_for_enemy ( enemy* this_robot , moderately_finepoin
     xdist = old_target_pos.x - this_robot->pos.x;
     ydist = old_target_pos.y - this_robot->pos.y;
     
-    if ( old_target_pos.x != -1000 && (xdist * xdist + ydist * ydist) < 4.0 * squared_bot_vision )
+    if ( old_target_pos.x != -1000 && (xdist * xdist + ydist * ydist) < 4.0 * squared_aggression_distance )
 	{
 	vect_to_target -> x = xdist;
 	vect_to_target -> y = ydist;
@@ -1288,7 +1288,7 @@ update_vector_to_shot_target_for_enemy ( enemy* this_robot , moderately_finepoin
 	vect_to_target->x = -1000;
 	vect_to_target->y = -1000;
 	this_robot -> attack_target_type = ATTACK_TARGET_IS_NOTHING;
-	squared_best_dist = squared_bot_vision;
+	squared_best_dist = squared_aggression_distance;
 
 	if ( Me . invisible_duration <= 0 )
 	{

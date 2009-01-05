@@ -468,7 +468,7 @@ typedef struct druidspec_s
     unsigned char sensor2;
     unsigned char sensor3;
     
-    float range_of_vision;
+    float aggression_distance;
     float time_spent_eyeing_tux;
     
     short int monster_level;

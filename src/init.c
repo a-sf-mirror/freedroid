@@ -481,14 +481,14 @@ Get_Robot_Data ( void* DataPointer )
   double maxenergy_calibrator;
   float energyloss_calibrator;
   double experience_reward_calibrator;
-  double range_of_vision_calibrator;
+  double aggression_distance_calibrator;
 
 #define MAXSPEED_CALIBRATOR_STRING "Common factor for all droids maxspeed values: "
 #define ACCELERATION_CALIBRATOR_STRING "Common factor for all droids acceleration values: "
 #define MAXENERGY_CALIBRATOR_STRING "Common factor for all droids maximum energy values: "
 #define ENERGYLOSS_CALIBRATOR_STRING "Common factor for all droids energyloss values: "
 #define EXPERIENCE_REWARD_CALIBRATOR_STRING "Common factor for all droids experience_reward values: "
-#define RANGE_OF_VISION_CALIBRATOR_STRING "Common factor for all droids range of vision: "
+#define AGGRESSION_DISTANCE_CALIBRATOR_STRING "Common factor for all droids aggression distance: "
 
 #define ROBOT_SECTION_BEGIN_STRING "*** Start of Robot Data Section: ***" 
 #define ROBOT_SECTION_END_STRING "*** End of Robot Data Section: ***" 
@@ -554,8 +554,8 @@ Get_Robot_Data ( void* DataPointer )
 		       &experience_reward_calibrator , EndOfDataPointer );
 
   // Now we read in the range of vision calibration factor for all droids
-  ReadValueFromString( RobotPointer , RANGE_OF_VISION_CALIBRATOR_STRING , "%lf" , 
-		       &range_of_vision_calibrator , EndOfDataPointer );
+  ReadValueFromString( RobotPointer , AGGRESSION_DISTANCE_CALIBRATOR_STRING , "%lf" , 
+		       &aggression_distance_calibrator , EndOfDataPointer );
 
   DebugPrintf ( 1 , "\n\nStarting to read Robot data...\n\n" );
   //--------------------
@@ -632,8 +632,8 @@ Get_Robot_Data ( void* DataPointer )
 			   &Druidmap[RobotIndex].lose_health , EndOfDataPointer );
 
       // Now we read in range of vision of this droid
-      ReadValueFromString( RobotPointer , "Range of vision of this droid=" , "%f" , 
-			   &Druidmap[RobotIndex].range_of_vision , EndOfDataPointer );
+      ReadValueFromString( RobotPointer , "Aggression distance of this droid=" , "%f" , 
+			   &Druidmap[RobotIndex].aggression_distance , EndOfDataPointer );
 
       // Now we read in range of vision of this droid
       ReadValueFromString( RobotPointer , "Time spent eyeing Tux=" , "%f" , 
@@ -728,7 +728,7 @@ Get_Robot_Data ( void* DataPointer )
       Druidmap [ i ] . maxspeed *= maxspeed_calibrator;
       Druidmap [ i ] . maxenergy *= maxenergy_calibrator;
       Druidmap [ i ] . experience_reward *= experience_reward_calibrator;
-      Druidmap [ i ] . range_of_vision *= range_of_vision_calibrator;
+      Druidmap [ i ] . aggression_distance *= aggression_distance_calibrator;
       Druidmap [ i ] . lose_health *= energyloss_calibrator;
       Druidmap [ i ] . weapon_item . currently_held_in_hand = FALSE ;
     }
