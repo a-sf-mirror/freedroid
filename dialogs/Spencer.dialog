@@ -55,7 +55,7 @@ LuaCode={
 New Option Nr=2  OptionText=_" I really want to become a member."
 LuaCode={
     disable_node(2)
-    if (cookie_planted("tux_has_joined_guard")) then 32 else 33 end
+    if (cookie_planted("tux_has_joined_guard")) then set_next_node(32) else set_next_node(33) end
 }
 ----------------------------------------------------------------------
 
