@@ -420,7 +420,7 @@ LuaCode={
         if (cookie_planted("singularity_killed")) then enable_node(34) else enable_node(35, 36) end
     else end
 
-    if (did_mission(1)) then
+    if (is_mission_complete(1)) then
         if (cookie_planted("singularity_dead")) then
             if (cookie_planted("singularity_killed")) then enable_node(44) else enable_node(43) end
         else 
