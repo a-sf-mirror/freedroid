@@ -1590,5 +1590,9 @@ enum
 };
 
 #define ITEM_TAKE_DIST (1.2)
+// Maximum distance for a melee fight
+#define MELEE_MAX_DIST (2.25)
+// Minimum distance to shoot with a range weapon
+#define RANGE_SHOOT_MIN_DIST (7)
 
 #endif
