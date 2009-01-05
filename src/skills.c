@@ -258,7 +258,7 @@ DoSkill(int skill_index, int SpellCost)
 									      (float) input_axis.y ,
 									      FALSE ) ,
 					    Me . pos . z,
-					    &FilterFlyable))
+					    &FlyablePassFilter))
 		    goto done_handling_instant_hits;
 
 		if (( Druidmap [ droid_below_mouse_cursor->type ] . is_human && ! SpellSkillMap [ skill_index ]  . hurt_humans )
@@ -379,7 +379,7 @@ DoSkill(int skill_index, int SpellCost)
 								      (float) input_axis.y , TRUE ),
 				    translate_pixel_to_map_location ( (float) input_axis.x ,
 								      (float) input_axis.y , FALSE ),
-				    Me . pos . z, &FilterFlyable))
+				    Me . pos . z, &FlyablePassFilter))
 		goto out;
 
 

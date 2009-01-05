@@ -167,11 +167,11 @@ void find_position_near_obstacle( float* item_x, float* item_y, int obst_index, 
 	RotateVectorByAngle(&offset_vector, (float)MyRandom(8)*45.0);
 
 	// Step 2: rotate offset_vector by 45° until an available start position is found
-	colldet_filter filter = { FilterObstacleByIdCallback, &obst_index, NULL };
+	colldet_filter filter = { ObstacleByIdPassFilterCallback, &obst_index, NULL };
 
 	tries = 0;
 	while ( ( !DirectLineColldet(obst_x, obst_y, obst_x + offset_vector.x, obst_y + offset_vector.y, Me.pos.z, &filter) ||
-			  !DirectLineColldet(Me.pos.x, Me.pos.y, obst_x + offset_vector.x, obst_y + offset_vector.y, Me.pos.z, &FilterWalkable) )
+			  !DirectLineColldet(Me.pos.x, Me.pos.y, obst_x + offset_vector.x, obst_y + offset_vector.y, Me.pos.z, &WalkablePassFilter) )
 			&& ( tries < 8 ) )
 	{
 		RotateVectorByAngle(&offset_vector, 45.0);
@@ -193,7 +193,7 @@ void find_position_near_obstacle( float* item_x, float* item_y, int obst_index, 
 		++tries;
 	}
 	while ( ( !DirectLineColldet(obst_x, obst_y, *item_x + trimmer_x, *item_y + trimmer_y, Me.pos.z, &filter) ||
-	          !DirectLineColldet(Me.pos.x, Me.pos.y, *item_x + trimmer_x, *item_y + trimmer_y, Me.pos.z, &FilterWalkable) )
+	          !DirectLineColldet(Me.pos.x, Me.pos.y, *item_x + trimmer_x, *item_y + trimmer_y, Me.pos.z, &WalkablePassFilter) )
 	        && ( tries < 100 ) );
 	if ( tries == 100 ) return; // No final position available : fallback to start position
 
@@ -1160,7 +1160,7 @@ MoveTuxAccordingToHisSpeed ( )
       //--------------------
       // So there is no speed, so we check for passability...
       //
-		if ( ! SinglePointColldet( Me . pos . x , Me . pos . y , Me . pos . z, &FilterWalkable ) )
+		if ( ! SinglePointColldet( Me . pos . x , Me . pos . y , Me . pos . z, &WalkablePassFilter ) )
 	{
 	  //--------------------
 	  // Now it's time to launch the stuck-fallback handling...
@@ -1168,7 +1168,7 @@ MoveTuxAccordingToHisSpeed ( )
 			DebugPrintf ( -3 , "\nTux looks stuck...ESCAPING just for this frame..." );
 			float new_x = Me.pos.x;
 			float new_y = Me.pos.y;
-			int rtn = EscapeFromObstacle( &new_x, &new_y, Me.pos.z, &FilterWalkable);
+			int rtn = EscapeFromObstacle( &new_x, &new_y, Me.pos.z, &WalkablePassFilter);
 			if ( !rtn ) 
 			{
 				DebugPrintf( -3, "\nNo escape position found around Tux... Looking in position history...");
@@ -1182,7 +1182,7 @@ MoveTuxAccordingToHisSpeed ( )
 					{
 						old_x = GetInfluPositionHistoryX(10*i);
 						old_y = GetInfluPositionHistoryY(10*i);
-						if ( old_x != Me.pos.x && old_y != Me.pos.y && SinglePointColldet(old_x, old_y, Me.pos.z, &FilterWalkable) )
+						if ( old_x != Me.pos.x && old_y != Me.pos.y && SinglePointColldet(old_x, old_y, Me.pos.z, &WalkablePassFilter) )
 						{
 							// Found...
 							Me.pos.x = old_x;
@@ -1367,7 +1367,7 @@ streamline_intermediate_course ( enemy * droid, int check_if_free, gps * curpos,
 	  if ( DirectLineColldet ( waypoints[start_index].x, waypoints[start_index].y,
 					           waypoints[scan_index].x, waypoints[scan_index].y,
 				               curpos->z,
-				               &FilterWalkable) )
+				               &WalkablePassFilter) )
 	    {
 	      if ( !check_if_free || CheckIfWayIsFreeOfDroids ( FALSE, waypoints [ start_index ] . x ,
 								waypoints [ start_index ] . y ,
@@ -1423,7 +1423,7 @@ streamline_intermediate_course ( enemy * droid, int check_if_free, gps * curpos,
   if ( DirectLineColldet ( curpos->x, curpos->y ,
                               waypoints [ 1 ] . x ,  waypoints [ 1 ] . y,
                            curpos->z, 
-                           &FilterWalkable) )
+                           &WalkablePassFilter) )
     {
       if ( !check_if_free || CheckIfWayIsFreeOfDroids ( FALSE, curpos->x ,
 							curpos-> y ,
@@ -1478,7 +1478,7 @@ recursive_find_walkable_point ( enemy * droid, int check_if_free, int levelnum, 
     // go any further, but instead we select the current position as the preliminary
     // walkable target for the Tux.
     //
-    if ( ( DirectLineColldet( x1, y1 , x2 , y2, levelnum, &FilterWalkable ) ) &&
+    if ( ( DirectLineColldet( x1, y1 , x2 , y2, levelnum, &WalkablePassFilter ) ) &&
 	    ( !check_if_free || CheckIfWayIsFreeOfDroids ( FALSE, x1 , y1 , x2 , y2 , levelnum, droid ) ) ) 
 	{
 	// if the target position is directly reachable
@@ -1584,7 +1584,7 @@ recursive_find_walkable_point ( enemy * droid, int check_if_free, int levelnum, 
         float centered_y = rintf ( y1 + ordered_moves [ i ] . y + 0.5 ) - 0.5;
 
 	if ( ( recursion_grid [ (int) ( centered_x ) ] [ (int) ( centered_y ) ] == TILE_IS_UNPROCESSED ) &&
-	     ( DirectLineColldet( x1, y1, centered_x, centered_y, levelnum, &FilterWalkable ) ) )
+	     ( DirectLineColldet( x1, y1, centered_x, centered_y, levelnum, &WalkablePassFilter ) ) )
 	{
 	    if ( !check_if_free || CheckIfWayIsFreeOfDroids ( FALSE, x1, y1, centered_x, centered_y, levelnum , droid ) )
 	    {
@@ -1683,7 +1683,7 @@ set_up_intermediate_course_between_positions ( enemy * droid, int check_if_free,
     // If the target position cannot be reached at all, because of being inside an obstacle
     // for example, then we know what to do:  Set up one waypoint to the target and that's it.
     //
-    if ( ! SinglePointColldet ( move_target -> x , move_target -> y , curpos -> z, &FilterWalkable) )
+    if ( ! SinglePointColldet ( move_target -> x , move_target -> y , curpos -> z, &WalkablePassFilter) )
     {
 	//DebugPrintf ( -1 , "\nSKIPPING RECURSION BECAUSE OF UNREACHABLENESS! %d: %f/%f ->  %f/%f %d, bot %#x\n", curpos->z,curpos->x, curpos->y, move_target->x, move_target->y, curpos->z, droid );
 	return ( FALSE ) ;
@@ -2966,7 +2966,7 @@ check_for_chests_to_open ( int chest_index )
 	{
 	    //--------------------
 	    // Check that the chest is really reachable, and not behind an obstacle
-		colldet_filter filter = { FilterObstacleByIdCallback, &chest_index, NULL };
+		colldet_filter filter = { ObstacleByIdPassFilterCallback, &chest_index, NULL };
 	    if ( DirectLineColldet( Me.pos.x, Me.pos.y,
                                 our_level->obstacle_list[chest_index].pos.x, our_level->obstacle_list[chest_index].pos.y,
                                 Me.pos.z, &filter) )
@@ -3142,7 +3142,7 @@ check_for_barrels_to_smash ( int barrel_index )
 				                our_level->obstacle_list[barrel_index].pos.x + step_vector.x ,
 				                our_level->obstacle_list[barrel_index].pos.y + step_vector.y, 
 				                Me.pos.z, 
-				                &FilterWalkable ) )
+				                &WalkablePassFilter ) )
 		{
 		    //--------------------
 		    // The obstacle plus the step vector give us the position to move the
@@ -3211,7 +3211,7 @@ check_for_barrels_to_smash ( int barrel_index )
 			if ( DirectLineColldet( point_near_barrel.x, point_near_barrel.y,
 			                         point_away_from_barrel . x, point_away_from_barrel . y,
 			                        Me.pos.z, 
-			                        &FilterWalkable) )
+			                        &WalkablePassFilter) )
 			{
 				//--------------------
 				// point_to_barrel seems good, move Tux there
@@ -3249,7 +3249,7 @@ check_for_barrels_to_smash ( int barrel_index )
 	
 	//--------------------
        // Check that the barrel is really reachable, and not behind an obstacle
-	colldet_filter filter = { FilterObstacleByIdCallback, &barrel_index, NULL };
+	colldet_filter filter = { ObstacleByIdPassFilterCallback, &barrel_index, NULL };
        if ( DirectLineColldet( Me.pos.x, Me.pos.y,
     		                our_level->obstacle_list[barrel_index].pos.x, our_level->obstacle_list[barrel_index].pos.y,
     		                Me.pos.z, &filter) )
@@ -3319,7 +3319,7 @@ check_for_droids_to_attack_or_talk_with ( )
     }
     
     if ( droid_below_mouse_cursor != NULL &&
-    	 DirectLineColldet(Me.pos.x, Me.pos.y, droid_below_mouse_cursor->pos.x, droid_below_mouse_cursor->pos.y, Me.pos.z, &FilterVisible) )
+    	 DirectLineColldet(Me.pos.x, Me.pos.y, droid_below_mouse_cursor->pos.x, droid_below_mouse_cursor->pos.y, Me.pos.z, &VisiblePassFilter) )
     {
        
    	enemy_set_reference(&Me.current_enemy_target_n, &Me.current_enemy_target_addr, droid_below_mouse_cursor); 

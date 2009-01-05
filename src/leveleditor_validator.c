@@ -95,7 +95,7 @@ int chest_reachable_validator( level_validator_ctx* ValidatorCtx )
     			
 				if ( ! (IS_CHEST(this_obs->type) || IS_BARREL(this_obs->type))  ) continue;
     			
-				colldet_filter filter = { FilterObstacleByIdCallback, &obs_index, &FilterWalkable };
+				colldet_filter filter = { ObstacleByIdPassFilterCallback, &obs_index, &WalkablePassFilter };
 				if ( !SinglePointColldet(this_obs->pos.x, this_obs->pos.y, ValidatorCtx->this_level->levelnum, &filter) )
 				{
 					if ( !is_invalid )
@@ -128,7 +128,7 @@ int waypoint_validator( level_validator_ctx* ValidatorCtx )
 	// Check waypoints position
 	for ( i = 0; i < ValidatorCtx->this_level->num_waypoints; ++i )
 	{
-		if ( !SinglePointColldet(ValidatorCtx->this_level->AllWaypoints[i].x + 0.5, ValidatorCtx->this_level->AllWaypoints[i].y + 0.5, ValidatorCtx->this_level->levelnum, &FilterWalkable) )
+		if ( !SinglePointColldet(ValidatorCtx->this_level->AllWaypoints[i].x + 0.5, ValidatorCtx->this_level->AllWaypoints[i].y + 0.5, ValidatorCtx->this_level->levelnum, &WalkablePassFilter) )
 		{
 			if ( !pos_is_invalid )
 			{	// First error : print header
@@ -170,7 +170,7 @@ int waypoint_validator( level_validator_ctx* ValidatorCtx )
 			
 			if ( !DirectLineColldet(ValidatorCtx->this_level->AllWaypoints[i].x + 0.5, ValidatorCtx->this_level->AllWaypoints[i].y + 0.5,
 			                        ValidatorCtx->this_level->AllWaypoints[wp].x + 0.5, ValidatorCtx->this_level->AllWaypoints[wp].y + 0.5,
-			                        ValidatorCtx->this_level->levelnum, &FilterWalkable) )
+			                        ValidatorCtx->this_level->levelnum, &WalkablePassFilter) )
 			{
 				gps from_pos = { ValidatorCtx->this_level->AllWaypoints[i].x + 0.5, ValidatorCtx->this_level->AllWaypoints[i].y + 0.5, ValidatorCtx->this_level->levelnum };
 				moderately_finepoint to_pos = { ValidatorCtx->this_level->AllWaypoints[wp].x + 0.5, ValidatorCtx->this_level->AllWaypoints[wp].y + 0.5 };

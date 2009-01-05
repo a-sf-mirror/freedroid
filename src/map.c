@@ -3407,7 +3407,7 @@ IsVisible ( GPS objpos )
   return ( DirectLineColldet( objpos -> x , objpos -> y ,
 			       Me . pos . x , Me . pos . y , 
 			       objpos -> z,
-			       &FilterVisible ) )  ;
+			       &VisiblePassFilter ) )  ;
 
 }; // int IsVisible( Point objpos )
 

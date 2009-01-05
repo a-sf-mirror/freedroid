@@ -645,7 +645,7 @@ set_new_waypointless_walk_target ( enemy* ThisRobot, moderately_finepoint * mt)
     if ( DirectLineColldet ( ThisRobot -> pos . x , ThisRobot -> pos . y ,
 		                      target_candidate . x , target_candidate . y,
 		                     ThisRobot -> pos . z,
-		                     &FilterWalkable) )
+		                     &WalkablePassFilter) )
 	{
 	mt -> x = target_candidate . x ;
 	mt -> y = target_candidate . y ;
@@ -1056,7 +1056,7 @@ enemy_handle_stuck_in_walls ( enemy* ThisRobot )
     // First we take a look if this bot is currently stuck in a
     // wall somewhere.
     //
-    if ( !SinglePointColldet ( ThisRobot -> pos . x , ThisRobot -> pos . y , ThisRobot -> pos.z, &FilterWalkable ) )
+    if ( !SinglePointColldet ( ThisRobot -> pos . x , ThisRobot -> pos . y , ThisRobot -> pos.z, &WalkablePassFilter ) )
     {
 	    //--------------------
 	    // So at this point we know, that we have a bot that is stuck right now,
@@ -1085,7 +1085,7 @@ enemy_handle_stuck_in_walls ( enemy* ThisRobot )
 			  ThisRobot -> nextwaypoint , ThisRobot -> lastwaypoint , 
 			  ThisRobot -> TextToBeDisplayed );
 	    
-	    if ( !EscapeFromObstacle( &(ThisRobot->pos.x), &(ThisRobot->pos.y), ThisRobot->pos.z, &FilterWalkable) )
+	    if ( !EscapeFromObstacle( &(ThisRobot->pos.x), &(ThisRobot->pos.y), ThisRobot->pos.z, &WalkablePassFilter) )
 	    {
 	    	// No free position was found outside the obstacle ???
 	    	// It should not happen but since we want the bot to escape in any situation, just have a last fallback
@@ -1171,7 +1171,7 @@ int is_potential_target( enemy* this_robot, gps* target_pos, float* squared_best
 	// If the target is not visible, then it cannot be attacked
 	if ( !DirectLineColldet(this_robot->pos.x, this_robot->pos.y, 
 	                        target_pos->x, target_pos->y, 
-	                        this_robot->pos.z, &FilterVisible) )
+	                        this_robot->pos.z, &VisiblePassFilter) )
 	{
 		return FALSE;
 	}
@@ -1186,7 +1186,7 @@ int is_potential_target( enemy* this_robot, gps* target_pos, float* squared_best
 		if ( (squared_target_dist <= squared_shoot_range) && 
 		     DirectLineColldet(this_robot->pos.x, this_robot->pos.y, 
 		                       target_pos->x, target_pos->y, 
-		                       this_robot->pos.z, &FilterFlyable) )
+		                       this_robot->pos.z, &FlyablePassFilter) )
 		{
 			*squared_best_dist = squared_target_dist;
 			return TRUE;
@@ -1421,7 +1421,7 @@ static void state_machine_situational_transitions ( enemy * ThisRobot, const mod
 
 
     /* Switch to stop_and_eye_target if appropriate - it's the prelude to any-on-any attacks */
-    if ( vect_to_target -> x != - 1000 && DirectLineColldet ( ThisRobot->pos.x + vect_to_target->x , ThisRobot->pos.y + vect_to_target->y, ThisRobot -> pos . x , ThisRobot -> pos . y, ThisRobot->pos.z, &FilterVisible ) )
+    if ( vect_to_target -> x != - 1000 && DirectLineColldet ( ThisRobot->pos.x + vect_to_target->x , ThisRobot->pos.y + vect_to_target->y, ThisRobot -> pos . x , ThisRobot -> pos . y, ThisRobot->pos.z, &VisiblePassFilter ) )
 	{
 	    ThisRobot -> combat_state = STOP_AND_EYE_TARGET;
 	}
@@ -1517,7 +1517,7 @@ static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_m
 	}
 
     float dist2 = (ThisRobot -> virt_pos . x - tpos -> x) * (ThisRobot -> virt_pos . x - tpos -> x) + (ThisRobot -> virt_pos . y - tpos -> y) * (ThisRobot -> virt_pos . y - tpos -> y);
-    int target_visible = DirectLineColldet ( ThisRobot->virt_pos.x, ThisRobot->virt_pos.y, tpos->x, tpos->y, tpos->z, &FilterVisible);
+    int target_visible = DirectLineColldet ( ThisRobot->virt_pos.x, ThisRobot->virt_pos.y, tpos->x, tpos->y, tpos->z, &VisiblePassFilter);
     int melee_weapon = ItemMap [ Druidmap [ ThisRobot -> type ] . weapon_item . type ] . item_weapon_is_melee;
 
     //--------------------
@@ -1583,9 +1583,9 @@ static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_m
 		   RotateVectorByAngle ( &test_t, angles_to_try[a] );
 
 		   if ( melee_weapon )
-		       target_reachable = DirectLineColldet( ThisRobot->virt_pos.x, ThisRobot->virt_pos.y, tpos->x, tpos->y, tpos->z, &FilterWalkable);
+		       target_reachable = DirectLineColldet( ThisRobot->virt_pos.x, ThisRobot->virt_pos.y, tpos->x, tpos->y, tpos->z, &WalkablePassFilter);
 		   else
-		       target_reachable = DirectLineColldet ( ThisRobot->virt_pos.x, ThisRobot->virt_pos.y, tpos->x, tpos->y, tpos->z, &FilterFlyable);
+		       target_reachable = DirectLineColldet ( ThisRobot->virt_pos.x, ThisRobot->virt_pos.y, tpos->x, tpos->y, tpos->z, &FlyablePassFilter);
 
 		   if ( target_reachable &&
                         CheckIfWayIsFreeOfDroids(FALSE, tmp.x, tmp.y, tmp.x + test_t.x, tmp.y + test_t.y, ThisRobot->pos.z, ThisRobot) 

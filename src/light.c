@@ -399,7 +399,7 @@ calculate_light_strength ( moderately_finepoint target_pos )
 		// with a small optimization : no visibility check if the target is very closed to the light
 		if ( ( squared_dist > (0.5*0.5) ) && curShip.AllLevels[Me.pos.z]->use_underground_lighting )
 		{
-			if ( ! DirectLineColldet( light_sources[i].x, light_sources[i].y, target_pos.x, target_pos.y, Me.pos.z, &FilterVisible ) )
+			if ( ! DirectLineColldet( light_sources[i].x, light_sources[i].y, target_pos.x, target_pos.y, Me.pos.z, &VisiblePassFilter ) )
 				continue;
 		}
 

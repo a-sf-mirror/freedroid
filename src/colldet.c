@@ -108,7 +108,7 @@ static inline float calc_distance_seg_point_normalized ( float x1, float y1, flo
  * This colldet filter is used to ignore the obstacles (such as doors)
  * that can be traversed by walking bot.
  */
-int FilterWalkableCallback(colldet_filter* this, obstacle* obs, int obs_idx )
+int WalkablePassFilterCallback(colldet_filter* this, obstacle* obs, int obs_idx )
 {
 	if ( obstacle_map[obs->type].flags & IS_WALKABLE ) return TRUE;
 
@@ -116,13 +116,13 @@ int FilterWalkableCallback(colldet_filter* this, obstacle* obs, int obs_idx )
 	
 	return FALSE;
 }
-colldet_filter FilterWalkable = { FilterWalkableCallback, NULL, NULL };
+colldet_filter WalkablePassFilter = { WalkablePassFilterCallback, NULL, NULL };
 
 /**
  * This colldet filter is used to ignore the obstacles (such as water)
  * that can be traversed by a flying object.
  */
-int FilterFlyableCallback(colldet_filter* this, obstacle* obs, int obs_idx )
+int FlyablePassFilterCallback(colldet_filter* this, obstacle* obs, int obs_idx )
 {
 	if ( obstacle_map[obs->type].flags & GROUND_LEVEL ) return TRUE;
 
@@ -130,14 +130,14 @@ int FilterFlyableCallback(colldet_filter* this, obstacle* obs, int obs_idx )
 	
 	return FALSE;
 }
-colldet_filter FilterFlyable = { FilterFlyableCallback, NULL, NULL };
+colldet_filter FlyablePassFilter = { FlyablePassFilterCallback, NULL, NULL };
 
 /**
  * This colldet filter is used to ignore the obstacles
  * that can be traversed by light.
  * Thus, it merely checks for visibility.
  */
-int FilterVisibleCallback(colldet_filter* this, obstacle* obs, int obs_idx )
+int VisiblePassFilterCallback(colldet_filter* this, obstacle* obs, int obs_idx )
 {
 	if ( ! ( obstacle_map[obs->type].flags & BLOCKS_VISION_TOO) ) return TRUE;
 
@@ -145,13 +145,13 @@ int FilterVisibleCallback(colldet_filter* this, obstacle* obs, int obs_idx )
 	
 	return FALSE;
 }
-colldet_filter FilterVisible = { FilterVisibleCallback, NULL, NULL };
+colldet_filter VisiblePassFilter = { VisiblePassFilterCallback, NULL, NULL };
 
 /**
  * This colldet filter is used to ignore a given obstacle during
  * collision detection
  */
-int FilterObstacleByIdCallback(colldet_filter* this, obstacle* obs, int obs_idx )
+int ObstacleByIdPassFilterCallback(colldet_filter* this, obstacle* obs, int obs_idx )
 {
 	if ( obs_idx == *(int*)(this->data) ) return TRUE;
 
@@ -159,7 +159,7 @@ int FilterObstacleByIdCallback(colldet_filter* this, obstacle* obs, int obs_idx 
 
 	return FALSE;
 }
-colldet_filter FilterObstacleById = { FilterObstacleByIdCallback, NULL, NULL };
+colldet_filter ObstacleByIdPassFilter = { ObstacleByIdPassFilterCallback, NULL, NULL };
 
 /**
  * This function checks if the connection between two points is free of

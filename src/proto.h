@@ -333,14 +333,14 @@ float translate_pixel_to_map_location ( float axis_x , float axis_y , int give_x
 float translate_pixel_to_zoomed_map_location ( float axis_x , float axis_y , int give_x ) ;
 
 //colldet.c
-int FilterWalkableCallback(colldet_filter* this, obstacle* obs, int obs_idx);
-int FilterFlyableCallback(colldet_filter* this, obstacle* obs, int obs_idx);
-int FilterVisibleCallback(colldet_filter* this, obstacle* obs, int obs_idx);
-int FilterObstacleByIdCallback(colldet_filter* this, obstacle* obs, int obs_idx);
-colldet_filter FilterWalkable;
-colldet_filter FilterFlyable;
-colldet_filter FilterVisible;
-colldet_filter FilterObstacleById;
+int WalkablePassFilterCallback(colldet_filter* this, obstacle* obs, int obs_idx);
+int FlyablePassFilterCallback(colldet_filter* this, obstacle* obs, int obs_idx);
+int VisiblePassFilterCallback(colldet_filter* this, obstacle* obs, int obs_idx);
+int ObstacleByIdPassFilterCallback(colldet_filter* this, obstacle* obs, int obs_idx);
+colldet_filter WalkablePassFilter;
+colldet_filter FlyablePassFilter;
+colldet_filter VisiblePassFilter;
+colldet_filter ObstacleByIdPassFilter;
 int CheckIfWayIsFreeOfDroids (char test_tux, float x1 , float y1 , float x2 , float y2 , int OurLevel , enemy * ExceptedRobot ) ;
 int EscapeFromObstacle( float* posX, float* posY, int posZ, colldet_filter* filter );
 int SinglePointColldet ( float x , float y , int z, colldet_filter* filter ) ;

@@ -459,7 +459,7 @@ MoveActiveSpells (void)
 		final_point . x = AllActiveSpells [ i ] . spell_center . x + Displacement . x ;
 		final_point . y = AllActiveSpells [ i ] . spell_center . y + Displacement . y ;
 		// current_active_direction = rintf ( ( Angle  ) * (float) RADIAL_SPELL_DIRECTIONS / 360.0 ); 
-		if ( ! SinglePointColldet ( final_point . x , final_point . y , Me . pos . z, &FilterFlyable ) )
+		if ( ! SinglePointColldet ( final_point . x , final_point . y , Me . pos . z, &FlyablePassFilter ) )
 		    AllActiveSpells [ i ] . active_directions [ direction_index ] = FALSE ;
 	    }
 
@@ -654,7 +654,7 @@ void
 check_bullet_background_collisions ( bullet* CurBullet , int num )
 {
   // Check for collision with background
-  if ( ! SinglePointColldet ( CurBullet -> pos . x , CurBullet -> pos . y , CurBullet -> pos . z, &FilterFlyable ) )
+  if ( ! SinglePointColldet ( CurBullet -> pos . x , CurBullet -> pos . y , CurBullet -> pos . z, &FlyablePassFilter ) )
     {
       if ( CurBullet->ignore_wall_collisions )
 	{
