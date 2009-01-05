@@ -905,21 +905,14 @@ ship, *Ship;
 
 typedef struct dialogue_option_s
 {
-    char enabled;
     char* option_text;
     char* option_sample_file_name;
     
     char* reply_sample_list[ MAX_REPLIES_PER_OPTION ] ;
     char* reply_subtitle_list[ MAX_REPLIES_PER_OPTION ];
     
-    char* on_goto_condition;
-    int on_goto_first_target;
-    int on_goto_second_target;
     int always_execute_this_option_prior_to_dialog_start;
     
-    int change_option_nr [ MAX_DIALOGUE_OPTIONS_IN_ROSTER ];
-    int change_option_to_value [ MAX_DIALOGUE_OPTIONS_IN_ROSTER ];
-
     luacode lua_code;
 }
 dialogue_option, *Dialogue_option;

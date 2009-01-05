@@ -109,7 +109,6 @@ static void DoChatFromChatRosterData(int ChatPartnerCode , Enemy ChatDroid , int
 static void clear_dialog_option(dialogue_option * d)
 {
     int i;
-    d->enabled = 0;
     d->option_text = "";
     d->option_sample_file_name = "";
 
@@ -118,15 +117,7 @@ static void clear_dialog_option(dialogue_option * d)
 	d->reply_subtitle_list[i] = "";
     }
 
-    d->on_goto_condition = "";
-    d->on_goto_first_target = -1;
-    d->on_goto_second_target = -1;
     d->always_execute_this_option_prior_to_dialog_start = 0;
-
-    for (i=0; i < MAX_DIALOGUE_OPTIONS_IN_ROSTER; i++) {
-	d->change_option_to_value[i] = -1;
-	d->change_option_nr[i] = -1;
-    }
 
     d->lua_code = NULL;
 }
@@ -167,16 +158,6 @@ static void delete_one_dialog_option ( int i , int FirstInitialisation )
 	}
     }
     
-    //--------------------
-    // If this is not the first initialisation, we have to free the allocated
-    // strings first, or we'll be leaking memory otherwise...
-    //
-    if ( !FirstInitialisation )
-    {
-	if ( strlen ( ChatRoster [ i ] . on_goto_condition ) ) 
-	    free ( ChatRoster [ i ] . on_goto_condition );
-    }
-
     clear_dialog_option(&ChatRoster[i]);
 }; // void delete_one_dialog_option ( int i , int FirstInitialisation )
 
@@ -372,16 +353,14 @@ static void LoadDialog ( char* FullPathAndFullFilename )
     char *ChatData;
     char *SectionPointer;
     char *EndOfSectionPointer;
-    int i , j, a ;
+    int i , j ;
     char fpath[2048];
     int OptionIndex;
     int NumberOfOptionsInSection;
     int NumberOfReplySubtitles;
     int NumberOfReplySamples;
-    int NumberOfOptionChanges;
     
     char* ReplyPointer;
-    char* OptionChangePointer;
     char* YesNoString;
     
     sprintf(fpath, "%s", FullPathAndFullFilename);
@@ -455,12 +434,6 @@ static void LoadDialog ( char* FullPathAndFullFilename )
 
 	DebugPrintf( CHAT_DEBUG_LEVEL , "\nOptionSample found : \"%s\"." , ChatRoster[ OptionIndex ] . option_sample_file_name );
 	
-	//--------------------
-	// Now that the temporary termination character has been inserted, we can 
-	// start to hunt for position and other strings in the new terminated area...
-	//
-	ChatRoster[OptionIndex].enabled = 1;
-	
 #define NEW_REPLY_SAMPLE_STRING "ReplySample=\""
 #define NEW_REPLY_SUBTITLE_STRING "Subtitle=_\""
 	
@@ -514,56 +487,9 @@ severe error.",
 	    }
 	
 	//--------------------
-	// Read out option enabling/disabling commands
-	//
-	j = 0; //option change array index
-	for ( a = 0; a < 2; a++ ) {
-	    const char * cmdstr = a ? "DisableOption=" : "EnableOption=";
-	    const int cmdval = a ? 0 : 1;
-
-	    NumberOfOptionChanges = CountStringOccurences ( SectionPointer, cmdstr );
-	   
-	    OptionChangePointer = SectionPointer;
-
-	    for ( ; NumberOfOptionChanges--; j ++ ) {
-		ReadValueFromString (OptionChangePointer, cmdstr, "%d", & ( ChatRoster[ OptionIndex ] . change_option_nr [ j ] ), NULL );
-		ChatRoster [ OptionIndex ] . change_option_to_value [ j ] = cmdval;
-	
-		OptionChangePointer = LocateStringInData ( OptionChangePointer, cmdstr);
-		OptionChangePointer++;
-	    }
-
-	}
-
-	//--------------------
-	// Next thing we do will be to look whether there is maybe a on-goto-command
-	// included in this option section.  If so, we'll read it out.
-	//
-	if ( CountStringOccurences ( SectionPointer , "OnCondition" ) ) 
-	{
-	    DebugPrintf( CHAT_DEBUG_LEVEL , "\nWe've found an ON-GOTO-CONDITION IN THIS OPTION!" );
-	    ChatRoster[ OptionIndex ] . on_goto_condition = 
-		ReadAndMallocStringFromData ( SectionPointer , "OnCondition=\"" , "\"" ) ;
-	    DebugPrintf( CHAT_DEBUG_LEVEL , "\nOnCondition text found : \"%s\"." , ChatRoster[ OptionIndex ] . on_goto_condition );
-	    ReadValueFromString( SectionPointer , "JumpToOption=" , "%d" , 
-				 & ( ChatRoster[ OptionIndex ] . on_goto_first_target ) , NULL );
-	    ReadValueFromString( SectionPointer , "ElseGoto=" , "%d" , 
-				 & ( ChatRoster[ OptionIndex ] . on_goto_second_target ) , NULL );
-	    DebugPrintf( CHAT_DEBUG_LEVEL , "\nOnCondition jump targets: TRUE--> %d FALSE-->%d." , 
-			 ChatRoster[ OptionIndex ] . on_goto_first_target ,
-			 ChatRoster[ OptionIndex ] . on_goto_second_target  );
-	}
-	else
-	{
-	    DebugPrintf( CHAT_DEBUG_LEVEL , "\nThere seems to be NO ON-GOTO-CONDITION AT ALL IN THIS OPTION." );
-	}
-	
-	//--------------------
 	// Next thing we do will be to get the always-on-startup flag status.
 	//
 	if ( CountStringOccurences ( SectionPointer , "AlwaysExecuteThisOptionPriorToDialogStart" ) ) {
-	    DebugPrintf( CHAT_DEBUG_LEVEL , "\nWe've found an ALWAYS-ON-START FLAG IN THIS OPTION!" );
-
 	    // Now we read in if this item can be used by the influ without help
 	    YesNoString = ReadAndMallocStringFromData ( SectionPointer , "AlwaysExecuteThisOptionPriorToDialogStart=\"" , "\"" ) ;
 	    if ( strcmp( YesNoString , "yes" ) == 0 )
@@ -577,10 +503,8 @@ severe error.",
 	    else
 		{
 		ErrorMessage ( __FUNCTION__  , "\
-			The text should contain an \n\
-			answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.\n\
-			This indicated a corrupted FreedroidRPG dialog.",
-			PLEASE_INFORM, IS_FATAL );
+			AlwaysExecuteThisOptionPriorToDialogStart must be yes or no, was %s in file %s. \n",
+			PLEASE_INFORM, IS_FATAL, YesNoString, FullPathAndFullFilename );
 		}
 	    free ( YesNoString ) ;
 	}
@@ -605,18 +529,6 @@ severe error.",
     //
     free( ChatData );
     
-    //--------------------
-    // Some security check against missing '0' dialog node in any given
-    // dialog
-    //
-    if ( strlen ( ChatRoster [ 0 ] . option_text ) <= 0 )
-    {
-	DebugPrintf ( -4 , "\n%s(): Dialog file in question: %s." , __FUNCTION__ , FullPathAndFullFilename );
-	ErrorMessage ( __FUNCTION__  , "\
-The '0' dialog node was empty!",
-				     PLEASE_INFORM, IS_FATAL );
-    }
-
 }; // void LoadDialog ( char* SequenceCode )
 
 /**
@@ -727,7 +639,6 @@ static void PrepareMultipleChoiceDialog ( Enemy ChatDroid , int with_flip )
     //
     SetCurrentFont( FPS_Display_BFont );
     
-//    AssembleCombatPicture ( USE_OWN_MOUSE_CURSOR ) ;
     blit_special_background ( CHAT_DIALOG_BACKGROUND_PICTURE_CODE );
     our_SDL_blit_surface_wrapper ( chat_portrait_of_droid [ ChatDroid -> type ] . surface , NULL , 
 				   Screen , &Droid_Image_Window );
@@ -880,172 +791,6 @@ void run_subdialog(const char * tmp_filename)
 }
 
 /**
- * It is possible to specify a conditional goto command from the chat
- * information file 'Freedroid.dialogues'.  But in order to execute this
- * conditional jump, we need to know whether a statment given as pure text
- * string is true or not.  This function is intended to find out whether
- * it is true or not.
- */
-int
-TextConditionIsTrue ( char* ConditionString )
-{
-    int TempValue;
-    char* CookieText;
-    int i ;
-    int old_town_mission_score;
-    
-    if ( CountStringOccurences ( ConditionString , "MissionComplete" ) )
-    {
-	DebugPrintf ( CHAT_DEBUG_LEVEL , "\nCondition String identified as question for mission complete." );
-	ReadValueFromString( ConditionString , ":", "%d" , 
-			     &TempValue , ConditionString + strlen ( ConditionString ) );
-	DebugPrintf ( CHAT_DEBUG_LEVEL , "\nCondition String referred to mission number: %d." , TempValue );
-	
-	if ( Me . AllMissions [ TempValue ] . MissionIsComplete )
-	    return ( TRUE );
-	else
-	    return ( FALSE );
-    }
-    else if ( CountStringOccurences ( ConditionString , "MissionAssigned" ) )
-    {
-	DebugPrintf ( CHAT_DEBUG_LEVEL , "\nCondition String identified as question for mission assigned." );
-	ReadValueFromString( ConditionString , ":", "%d" , 
-			     &TempValue , ConditionString + strlen ( ConditionString ) );
-	DebugPrintf ( CHAT_DEBUG_LEVEL , "\nCondition String referred to mission number: %d." , TempValue );
-	
-	if ( Me . AllMissions [ TempValue ] . MissionWasAssigned )
-	    return ( TRUE );
-	else
-	    return ( FALSE );
-    }
-    else if ( CountStringOccurences ( ConditionString , "HaveItemWithName" ) )
-    {
-
-    char * pos = strstr(ConditionString, "HaveItemWithName");
-    pos += strlen("HaveItemWithName:");
-    while ( isspace(*pos) ) pos ++;
-    if ( isdigit( * pos ) )
-	ErrorMessage(__FUNCTION__, "A chat extra command tried to specify an item type number, but would be required to use a name instead. This command was %s\n", PLEASE_INFORM, IS_FATAL, ConditionString);
-
-    char * pos2 = pos;
-    while ((*pos2) != ':' && *pos2 != '\0')
-	{
-	pos2 ++;
-	}
-    char pname[100];
-    strncpy(pname, pos, pos2-pos);
-    pname[pos2-pos] = 0;
-
-    if ( CountItemtypeInInventory ( GetItemIndexByName(pname) ) )
-	return ( TRUE );
-    else
-	return ( FALSE );
-    }
-    else if ( CountStringOccurences ( ConditionString , "PointsToDistributeAtLeast" ) )
-    {
-	DebugPrintf ( CHAT_DEBUG_LEVEL , "\nCondition String identified as question for available skill points to distribute." );
-	ReadValueFromString( ConditionString , ":", "%d" , 
-			     &TempValue , ConditionString + strlen ( ConditionString ) );
-	DebugPrintf ( CHAT_DEBUG_LEVEL , "\nCondition String mentioned number of points: %d." , TempValue );
-	
-	if ( Me . points_to_distribute >= TempValue )
-	    return ( TRUE );
-	else
-	    return ( FALSE );
-    }
-    else if ( CountStringOccurences ( ConditionString , "GoldIsLessThan" ) )
-    {
-	DebugPrintf ( CHAT_DEBUG_LEVEL , "\nCondition String identified as question for amount of gold Tux has on him." );
-	ReadValueFromString( ConditionString , ":", "%d" , 
-			     &TempValue , ConditionString + strlen ( ConditionString ) );
-	DebugPrintf ( CHAT_DEBUG_LEVEL , "\nCondition String mentioned concrete amout of gold: %d." , TempValue );
-	
-	if ( Me . Gold < TempValue )
-	    return ( TRUE );
-	else
-	    return ( FALSE );
-    }
-    else if ( CountStringOccurences ( ConditionString , "MeleeSkillLesserThan" ) )
-    {
-	DebugPrintf ( CHAT_DEBUG_LEVEL , "\nCondition String identified as question for melee skill lesser than value." );
-	ReadValueFromString( ConditionString , ":", "%d" , 
-			     &TempValue , ConditionString + strlen ( ConditionString ) );
-	DebugPrintf ( CHAT_DEBUG_LEVEL , "\nCondition String mentioned level: %d." , TempValue );
-	
-	if ( Me . melee_weapon_skill < TempValue )
-	    return ( TRUE );
-	else
-	    return ( FALSE );
-    }
-    else if ( CountStringOccurences ( ConditionString , "CookieIsPlanted" ) )
-    {
-	DebugPrintf ( CHAT_DEBUG_LEVEL , "\nCondition String identified as question for cookie planted." );
-	
-	CookieText = 
-	    ReadAndMallocStringFromData ( ConditionString , "CookieIsPlanted:" , ":" ) ;
-	DebugPrintf ( CHAT_DEBUG_LEVEL , "\nCookieText mentioned: '%s'." , CookieText );
-	
-	for ( i = 0 ; i < MAX_COOKIES ; i ++ )
-	{
-	    DebugPrintf ( CHAT_DEBUG_LEVEL , "\nCookie entry to compare to: %s." , Me . cookie_list [ i ] );
-	    if ( ! strlen ( Me . cookie_list [ i ] ) ) continue;
-	    if ( ! strcmp ( Me . cookie_list [ i ] , CookieText ) ) 
-		return ( TRUE );
-	}
-	
-	free ( CookieText );
-	
-	return ( FALSE );
-	
-    }
-    else if ( CountStringOccurences ( ConditionString , "OldTownMissionScoreAtLeast" ) )
-    {
-	DebugPrintf ( CHAT_DEBUG_LEVEL , "\nCondition String identified as question for old town mission score." );
-	ReadValueFromString( ConditionString , ":", "%d" , 
-			     &TempValue , ConditionString + strlen ( ConditionString ) );
-	DebugPrintf ( CHAT_DEBUG_LEVEL , "\nCondition String mentioned mission score of : %d old town mission points." , 
-		      TempValue );
-	
-	old_town_mission_score = 0 ;
-	if ( Me . AllMissions [ 0 ] . MissionIsComplete )
-	    old_town_mission_score += 10 ;
-	if ( Me . AllMissions [ 1 ] . MissionIsComplete )
-	    old_town_mission_score += 15 ;
-	if ( Me . AllMissions [ 2 ] . MissionIsComplete )
-	    old_town_mission_score += 10 ;
-	if ( Me . AllMissions [ 3 ] . MissionIsComplete )
-	    old_town_mission_score += 10 ;
-	if ( Me . AllMissions [ 4 ] . MissionIsComplete )
-	    old_town_mission_score += 20 ;
-	if ( Me . AllMissions [ 5 ] . MissionIsComplete )
-	    old_town_mission_score += 15 ;
-	
-	if ( old_town_mission_score >= TempValue )
-	    return ( TRUE );
-	else
-	    return ( FALSE );
-    }
-    else if ( CountStringOccurences ( ConditionString , "True" ) )
-    {
-        return ( TRUE );
-    }
-    else if ( CountStringOccurences ( ConditionString , "False" ) )
-    {
-        return ( FALSE );
-    }
-
-    
-    fprintf( stderr, "\n\nConditionString: %s. \n" , ConditionString );
-    ErrorMessage ( __FUNCTION__  , "\
-There were was a Condition string (most likely used for an on-goto-command\n\
-in a dialog file, that contained a seemingly bogus condition.\n\
-Freedroid was unable to determine the type of said condition.",
-			       PLEASE_INFORM, IS_FATAL );
-    
-    return ( TRUE );
-}; // int TextConditionIsTrue ( char* ConditionString )
-
-/**
  *
  *
  */
@@ -1088,47 +833,6 @@ static void ProcessThisChatOption ( int MenuSelection , int ChatPartnerCode , En
 	
 	GiveSubtitleNSample ( L_(ChatRoster [ MenuSelection ] . reply_subtitle_list [ i ]) ,
 			      ChatRoster [ MenuSelection ] . reply_sample_list [ i ] , ChatDroid , TRUE ) ;
-    }
-    
-    //--------------------
-    // Now that all the replies have been made, we can start on changing
-    // the option flags to their new values
-    //
-    for ( i = 0 ; i < MAX_ANSWERS_PER_PERSON ; i ++ )
-    {
-	//--------------------
-	// Maybe all nescessary changes were made by now.  Then it's time
-	// to quit...
-	//
-	if ( ChatRoster [ MenuSelection ] . change_option_nr [ i ] == (-1) ) 
-	    break;
-	
-	Me . Chat_Flags [ ChatPartnerCode ] [ ChatRoster [ MenuSelection ] . change_option_nr [ i ] ] =
-	    ChatRoster [ MenuSelection ] . change_option_to_value [ i ]  ;
-	DebugPrintf ( CHAT_DEBUG_LEVEL , "\nChanged chat flag nr. %d to new value %d." ,
-		      ChatRoster [ MenuSelection ] . change_option_nr[i] ,
-		      ChatRoster [ MenuSelection ] . change_option_to_value[i] );
-    }
-    
-    //--------------------
-    // Maybe there was an ON-GOTO-CONDITION specified for this option.
-    // Then of course we have to jump to the new location!!!
-    //
-    if ( strlen ( ChatRoster [ MenuSelection ] . on_goto_condition ) )
-    {
-	DebugPrintf( CHAT_DEBUG_LEVEL , "\nON-GOTO-CONDITION ENCOUNTERED... CHECKING... " );
-	if ( TextConditionIsTrue ( ChatRoster [ MenuSelection ] . on_goto_condition ) )
-	{
-	    DebugPrintf( CHAT_DEBUG_LEVEL , "...SEEMS TRUE... CONTINUING AT OPTION: %d. " , 
-			 ChatRoster [ MenuSelection ] . on_goto_first_target );
-	    chat_control_next_node = ChatRoster [ MenuSelection ] . on_goto_first_target ;
-	}
-	else
-	{
-	    DebugPrintf( CHAT_DEBUG_LEVEL , "...SEEMS FALSE... CONTINUING AT OPTION: %d. " , 
-			 ChatRoster [ MenuSelection ] . on_goto_second_target );
-	    chat_control_next_node = ChatRoster [ MenuSelection ] . on_goto_second_target ;
-	}
     }
     
     if (ChatRoster[MenuSelection].lua_code) {
