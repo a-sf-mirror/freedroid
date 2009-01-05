@@ -191,7 +191,6 @@ New Option Nr=20  OptionText="TUX IS NOT AN ARENA MASTER"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"You might want to score some arena victories. That could also help your reputation a lot."
 LuaCode={
-    disable_node(20)
     set_next_node(21)
 }
 ----------------------------------------------------------------------
@@ -268,9 +267,6 @@ Subtitle=_"All in all, not quite so bad. But you still need to do the one thing 
 New Option Nr=31  OptionText="TUX SUCKS"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"I can't accept you into the guard like this. Get going. There are still many things to do for you."
-LuaCode={
-    disable_node(31)
-}
 
 ----------------------------------------------------------------------
 

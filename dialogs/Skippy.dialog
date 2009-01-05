@@ -48,7 +48,6 @@ LuaCode={
 New Option Nr=1  OptionText=_" Show me some of those map-making devices."
 Subtitle=_"Sure! I've got one that will perfectly fit your head."
 LuaCode={
-    enable_node(1)
     trade_with("Skippy")
 }
 ----------------------------------------------------------------------

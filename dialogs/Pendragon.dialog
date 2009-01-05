@@ -47,7 +47,6 @@ LuaCode={
 
 New Option Nr=1  OptionText=_" Could you teach me how to fight?"
 LuaCode={
-    enable_node(1)
     if (cookie_planted("beat_up_pendragon")) then 
 	set_next_node(2) 
     else 

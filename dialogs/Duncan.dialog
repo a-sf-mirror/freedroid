@@ -84,7 +84,6 @@ LuaCode={
 New Option Nr=5  OptionText=_" I want to buy some grenades."
 Subtitle=_"Certainly."
 LuaCode={
-    enable_node(5)
     trade_with("Duncan")
 }
 ----------------------------------------------------------------------

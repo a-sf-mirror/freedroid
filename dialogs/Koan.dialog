@@ -61,7 +61,6 @@ LuaCode={
 
 New Option Nr=5  OptionText=_" With pleasure."
 LuaCode={
-    disable_node(5)
     drop_dead()
     respawn_level(18)
 }
