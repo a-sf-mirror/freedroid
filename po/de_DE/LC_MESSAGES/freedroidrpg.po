@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: freedroidrpg\n"
 "Report-Msgid-Bugs-To: freedroid-discussion@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-12-29 19:58+0100\n"
+"POT-Creation-Date: 2009-01-05 20:46+0100\n"
 "PO-Revision-Date: 2008-10-04 00:24+0200\n"
 "Last-Translator: Ronny Standtke <Ronny.Standtke@gmx.net>\n"
 "Language-Team: Deutsch\n"
@@ -1255,11 +1255,11 @@ msgstr "Angriff"
 msgid "Damage"
 msgstr "Schaden"
 
-#: ../src/chat.c:1249
+#: ../src/chat.c:872
 msgid "Start of Dialog"
 msgstr ""
 
-#: ../src/chat.c:1299
+#: ../src/chat.c:919
 msgid "What will you say?"
 msgstr "Was wirst du sagen?"
 
@@ -1292,46 +1292,6 @@ msgstr "%s wurde ausgelöscht von %s."
 #, c-format
 msgid "%s died."
 msgstr "%s ist erledigt."
-
-#: ../src/event.c:298
-msgid "Melee fighting ability improved!"
-msgstr "Nahkampffähigkeit verbessert!"
-
-#: ../src/event.c:301
-msgid "Ranged combat ability improved!"
-msgstr "Schießtechnik verbessert!"
-
-#: ../src/event.c:304
-msgid "Programming ability improved!"
-msgstr "Programmierfähigkeit verbessert!"
-
-#: ../src/event.c:350
-msgid "1 Item received (on floor)"
-msgstr "1 Gegenstand erhalten (liegt auf dem Boden)."
-
-#: ../src/event.c:354
-msgid "1 Item received!"
-msgstr "1 Gegenstand erhalten!"
-
-#: ../src/event.c:401
-#, c-format
-msgid "+%d Experience Points"
-msgstr "+%d Erfahrungspunkte."
-
-#: ../src/event.c:411
-#, fuzzy, c-format
-msgid "%d training points spent!"
-msgstr "Trainingspunkte"
-
-#: ../src/event.c:422
-#, c-format
-msgid "Gained %d bucks!"
-msgstr ""
-
-#: ../src/event.c:423
-#, c-format
-msgid "Lost %d bucks!"
-msgstr ""
 
 #: ../src/hud.c:190
 #, c-format
@@ -1933,23 +1893,23 @@ msgstr ""
 msgid "The armor hides his body."
 msgstr "Die Rüstung verdeckt sein Äußeres."
 
-#: ../src/init.c:1605
+#: ../src/init.c:1606
 msgid "Huh? What?  Where am I?"
 msgstr "Häh..? Was? Wo bin ich??"
 
-#: ../src/init.c:1720
+#: ../src/init.c:1721
 msgid "Updating Tux images"
 msgstr "Tux-Images werden aktualisiert..."
 
-#: ../src/init.c:1721
+#: ../src/init.c:1722
 msgid "(this may take a little while...)"
 msgstr "(das könnte einen Moment dauern...)"
 
-#: ../src/init.c:1724
+#: ../src/init.c:1725
 msgid "Starting new game."
 msgstr "Starte neues Spiel..."
 
-#: ../src/init.c:2013
+#: ../src/init.c:2016
 #, fuzzy
 msgid ""
 "\n"
@@ -1972,7 +1932,7 @@ msgstr ""
 "\n"
 "Vielen Dank.\n"
 
-#: ../src/init.c:2015
+#: ../src/init.c:2018
 msgid ""
 "\n"
 "You are playing a candidate release.\n"
@@ -1990,11 +1950,11 @@ msgstr ""
 "oder per Email an: \n"
 "freedroid-discussions att lists.sourceforge.net\n"
 
-#: ../src/init.c:2034
+#: ../src/init.c:2037
 msgid "Game over.\n"
 msgstr "Game over.\n"
 
-#: ../src/init.c:2121
+#: ../src/init.c:2124
 msgid "Game won.\n"
 msgstr "Spiel gemeistert!!\n"
 
@@ -3077,6 +3037,46 @@ msgstr ""
 "\n"
 "Keine weitere freie Kommentar-Position. Benutze die Erste. "
 
+#: ../src/lua.c:173
+msgid "Melee fighting ability improved!"
+msgstr "Nahkampffähigkeit verbessert!"
+
+#: ../src/lua.c:176
+msgid "Ranged combat ability improved!"
+msgstr "Schießtechnik verbessert!"
+
+#: ../src/lua.c:179
+msgid "Programming ability improved!"
+msgstr "Programmierfähigkeit verbessert!"
+
+#: ../src/lua.c:247
+msgid "1 Item received (on floor)"
+msgstr "1 Gegenstand erhalten (liegt auf dem Boden)."
+
+#: ../src/lua.c:251
+msgid "1 Item received!"
+msgstr "1 Gegenstand erhalten!"
+
+#: ../src/lua.c:366
+#, c-format
+msgid "+%d Experience Points"
+msgstr "+%d Erfahrungspunkte."
+
+#: ../src/lua.c:376
+#, fuzzy, c-format
+msgid "%d training points spent!"
+msgstr "Trainingspunkte"
+
+#: ../src/lua.c:393
+#, c-format
+msgid "Gained %d bucks!"
+msgstr ""
+
+#: ../src/lua.c:394
+#, c-format
+msgid "Lost %d bucks!"
+msgstr ""
+
 #: ../src/main.c:413
 msgid "Overheating!"
 msgstr "Überhitzung!!"
@@ -3089,99 +3089,99 @@ msgstr ""
 msgid "Weapon reloaded"
 msgstr "Waffe nachgeladen."
 
-#: ../src/map.c:2982
+#: ../src/map.c:2986
 msgid "123 Acolyte"
 msgstr "123 Akolyth"
 
-#: ../src/map.c:2983
+#: ../src/map.c:2987
 msgid "139 Templar"
 msgstr "139 Templer"
 
-#: ../src/map.c:2984
+#: ../src/map.c:2988
 msgid "247 Banshee"
 msgstr "247 Todesfee"
 
-#: ../src/map.c:2985
+#: ../src/map.c:2989
 msgid "249 Chicago"
 msgstr "249 Chicago"
 
-#: ../src/map.c:2986
+#: ../src/map.c:2990
 msgid "296 Sawmill"
 msgstr "296 Sägewerk"
 
-#: ../src/map.c:2987
+#: ../src/map.c:2991
 msgid "302 Nemesis"
 msgstr "302 Rächer"
 
-#: ../src/map.c:2988
+#: ../src/map.c:2992
 msgid "329 Sparkie"
 msgstr "329 Funkenschleuder"
 
-#: ../src/map.c:2989
+#: ../src/map.c:2993
 msgid "420 Surgeon"
 msgstr "420 Chirurg"
 
-#: ../src/map.c:2990
+#: ../src/map.c:2994
 msgid "476 Coward"
 msgstr "476 Feigling"
 
-#: ../src/map.c:2991
+#: ../src/map.c:2995
 msgid "493 Spinster"
 msgstr "493 Blechjungfer"
 
-#: ../src/map.c:2992
+#: ../src/map.c:2996
 msgid "516 Ghoul"
 msgstr "516 Ghul"
 
-#: ../src/map.c:2993
+#: ../src/map.c:2997
 msgid "543 Forest Harvester"
 msgstr "543 Holzfäller"
 
-#: ../src/map.c:2994
+#: ../src/map.c:2998
 msgid "571 Apollo"
 msgstr "571 Apollo"
 
-#: ../src/map.c:2995
+#: ../src/map.c:2999
 msgid "598 Minister"
 msgstr "493 Blechjungfer"
 
-#: ../src/map.c:2996
+#: ../src/map.c:3000
 msgid "615 Firedevil"
 msgstr "615 Feuerteufel"
 
-#: ../src/map.c:2997
+#: ../src/map.c:3001
 msgid "629 Spitfire"
 msgstr "329 Funkenschleuder"
 
-#: ../src/map.c:2998
+#: ../src/map.c:3002
 msgid "711 Grillmeister"
 msgstr "711 Grillmeister"
 
-#: ../src/map.c:2999
+#: ../src/map.c:3003
 msgid "742 Zeus"
 msgstr "742 Zeus"
 
-#: ../src/map.c:3000
+#: ../src/map.c:3004
 msgid "751 Soviet"
 msgstr "751 Sowjet"
 
-#: ../src/map.c:3001
+#: ../src/map.c:3005
 msgid "821 Ufo"
 msgstr "821 Ufo"
 
-#: ../src/map.c:3002
+#: ../src/map.c:3006
 msgid "834 Wisp"
 msgstr "834 Irrlicht"
 
-#: ../src/map.c:3003
+#: ../src/map.c:3007
 msgid "883 Dalex"
 msgstr "883 Dalex"
 
-#: ../src/map.c:3004
+#: ../src/map.c:3008
 msgid "999 Cerebrum"
 msgstr "999 Großhirn"
 
-#: ../src/map.c:3005
+#: ../src/map.c:3009
 msgid "No Description For This One"
 msgstr "Noch keine Beschreibung"
 

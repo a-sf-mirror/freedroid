@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: freedroid-discussion@lists.sourceforge.net\n"
-"POT-Creation-Date: 2009-01-03 17:47+0100\n"
+"POT-Creation-Date: 2009-01-05 20:46+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1138,11 +1138,11 @@ msgstr ""
 msgid "Damage"
 msgstr ""
 
-#: ../src/chat.c:1168
+#: ../src/chat.c:872
 msgid "Start of Dialog"
 msgstr ""
 
-#: ../src/chat.c:1215
+#: ../src/chat.c:919
 msgid "What will you say?"
 msgstr ""
 
@@ -2590,22 +2590,22 @@ msgstr ""
 msgid "1 Item received!"
 msgstr ""
 
-#: ../src/lua.c:359
+#: ../src/lua.c:366
 #, c-format
 msgid "+%d Experience Points"
 msgstr ""
 
-#: ../src/lua.c:369
+#: ../src/lua.c:376
 #, c-format
 msgid "%d training points spent!"
 msgstr ""
 
-#: ../src/lua.c:386
+#: ../src/lua.c:393
 #, c-format
 msgid "Gained %d bucks!"
 msgstr ""
 
-#: ../src/lua.c:387
+#: ../src/lua.c:394
 #, c-format
 msgid "Lost %d bucks!"
 msgstr ""

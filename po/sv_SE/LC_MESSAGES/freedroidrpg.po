@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: freedroid\n"
 "Report-Msgid-Bugs-To: freedroid-discussion@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-12-29 19:58+0100\n"
+"POT-Creation-Date: 2009-01-05 20:46+0100\n"
 "PO-Revision-Date: 2008-08-28 18:02+0000\n"
 "Last-Translator: Christian Widell <Christian_widell@hotmail.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -1245,11 +1245,11 @@ msgstr "Anfall"
 msgid "Damage"
 msgstr "Skada"
 
-#: ../src/chat.c:1249
+#: ../src/chat.c:872
 msgid "Start of Dialog"
 msgstr ""
 
-#: ../src/chat.c:1299
+#: ../src/chat.c:919
 msgid "What will you say?"
 msgstr "Vad ska du säga?"
 
@@ -1282,46 +1282,6 @@ msgstr "%s blev dödad av %s."
 #, c-format
 msgid "%s died."
 msgstr "%s dog."
-
-#: ../src/event.c:298
-msgid "Melee fighting ability improved!"
-msgstr ""
-
-#: ../src/event.c:301
-msgid "Ranged combat ability improved!"
-msgstr ""
-
-#: ../src/event.c:304
-msgid "Programming ability improved!"
-msgstr ""
-
-#: ../src/event.c:350
-msgid "1 Item received (on floor)"
-msgstr "1 föremål mottaget (på golvet)"
-
-#: ../src/event.c:354
-msgid "1 Item received!"
-msgstr "1 föremål mottaget!"
-
-#: ../src/event.c:401
-#, fuzzy, c-format
-msgid "+%d Experience Points"
-msgstr "Erfarenhet"
-
-#: ../src/event.c:411
-#, fuzzy, c-format
-msgid "%d training points spent!"
-msgstr "dricker en brygd!"
-
-#: ../src/event.c:422
-#, c-format
-msgid "Gained %d bucks!"
-msgstr ""
-
-#: ../src/event.c:423
-#, c-format
-msgid "Lost %d bucks!"
-msgstr ""
 
 #: ../src/hud.c:190
 #, c-format
@@ -1913,23 +1873,23 @@ msgstr ""
 msgid "The armor hides his body."
 msgstr "Pansaret döljer hans kropp."
 
-#: ../src/init.c:1605
+#: ../src/init.c:1606
 msgid "Huh? What?  Where am I?"
 msgstr "Va? Vad? Var är jag?"
 
-#: ../src/init.c:1720
+#: ../src/init.c:1721
 msgid "Updating Tux images"
 msgstr "Uppdaterar Tux bilder"
 
-#: ../src/init.c:1721
+#: ../src/init.c:1722
 msgid "(this may take a little while...)"
 msgstr "(det här kan ta ett litet tag...)"
 
-#: ../src/init.c:1724
+#: ../src/init.c:1725
 msgid "Starting new game."
 msgstr "Startar nytt spel."
 
-#: ../src/init.c:2013
+#: ../src/init.c:2016
 msgid ""
 "\n"
 "You are playing in 640x480.\n"
@@ -1942,7 +1902,7 @@ msgid ""
 "Thank you.\n"
 msgstr ""
 
-#: ../src/init.c:2015
+#: ../src/init.c:2018
 msgid ""
 "\n"
 "You are playing a candidate release.\n"
@@ -1953,11 +1913,11 @@ msgid ""
 "Good luck!\n"
 msgstr ""
 
-#: ../src/init.c:2034
+#: ../src/init.c:2037
 msgid "Game over.\n"
 msgstr "Spelet är över.\n"
 
-#: ../src/init.c:2121
+#: ../src/init.c:2124
 msgid "Game won.\n"
 msgstr "Spelet är vunnet.\n"
 
@@ -2839,6 +2799,46 @@ msgid ""
 "No more free comment position.  Using first. "
 msgstr ""
 
+#: ../src/lua.c:173
+msgid "Melee fighting ability improved!"
+msgstr ""
+
+#: ../src/lua.c:176
+msgid "Ranged combat ability improved!"
+msgstr ""
+
+#: ../src/lua.c:179
+msgid "Programming ability improved!"
+msgstr ""
+
+#: ../src/lua.c:247
+msgid "1 Item received (on floor)"
+msgstr "1 föremål mottaget (på golvet)"
+
+#: ../src/lua.c:251
+msgid "1 Item received!"
+msgstr "1 föremål mottaget!"
+
+#: ../src/lua.c:366
+#, fuzzy, c-format
+msgid "+%d Experience Points"
+msgstr "Erfarenhet"
+
+#: ../src/lua.c:376
+#, fuzzy, c-format
+msgid "%d training points spent!"
+msgstr "dricker en brygd!"
+
+#: ../src/lua.c:393
+#, c-format
+msgid "Gained %d bucks!"
+msgstr ""
+
+#: ../src/lua.c:394
+#, c-format
+msgid "Lost %d bucks!"
+msgstr ""
+
 #: ../src/main.c:413
 msgid "Overheating!"
 msgstr "Överhettas!"
@@ -2851,102 +2851,102 @@ msgstr ""
 msgid "Weapon reloaded"
 msgstr "Vapen omladdat"
 
-#: ../src/map.c:2982
+#: ../src/map.c:2986
 msgid "123 Acolyte"
 msgstr ""
 
-#: ../src/map.c:2983
+#: ../src/map.c:2987
 msgid "139 Templar"
 msgstr ""
 
-#: ../src/map.c:2984
+#: ../src/map.c:2988
 msgid "247 Banshee"
 msgstr ""
 
-#: ../src/map.c:2985
+#: ../src/map.c:2989
 #, fuzzy
 msgid "249 Chicago"
 msgstr "249 Chicago"
 
-#: ../src/map.c:2986
+#: ../src/map.c:2990
 msgid "296 Sawmill"
 msgstr ""
 
-#: ../src/map.c:2987
+#: ../src/map.c:2991
 #, fuzzy
 msgid "302 Nemesis"
 msgstr "302 Nemesis"
 
-#: ../src/map.c:2988
+#: ../src/map.c:2992
 msgid "329 Sparkie"
 msgstr ""
 
-#: ../src/map.c:2989
+#: ../src/map.c:2993
 msgid "420 Surgeon"
 msgstr ""
 
-#: ../src/map.c:2990
+#: ../src/map.c:2994
 #, fuzzy
 msgid "476 Coward"
 msgstr "476 Fegis"
 
-#: ../src/map.c:2991
+#: ../src/map.c:2995
 msgid "493 Spinster"
 msgstr ""
 
-#: ../src/map.c:2992
+#: ../src/map.c:2996
 msgid "516 Ghoul"
 msgstr ""
 
-#: ../src/map.c:2993
+#: ../src/map.c:2997
 msgid "543 Forest Harvester"
 msgstr ""
 
-#: ../src/map.c:2994
+#: ../src/map.c:2998
 msgid "571 Apollo"
 msgstr ""
 
-#: ../src/map.c:2995
+#: ../src/map.c:2999
 msgid "598 Minister"
 msgstr ""
 
-#: ../src/map.c:2996
+#: ../src/map.c:3000
 msgid "615 Firedevil"
 msgstr ""
 
-#: ../src/map.c:2997
+#: ../src/map.c:3001
 msgid "629 Spitfire"
 msgstr ""
 
-#: ../src/map.c:2998
+#: ../src/map.c:3002
 msgid "711 Grillmeister"
 msgstr ""
 
-#: ../src/map.c:2999
+#: ../src/map.c:3003
 msgid "742 Zeus"
 msgstr ""
 
-#: ../src/map.c:3000
+#: ../src/map.c:3004
 msgid "751 Soviet"
 msgstr ""
 
-#: ../src/map.c:3001
+#: ../src/map.c:3005
 msgid "821 Ufo"
 msgstr ""
 
-#: ../src/map.c:3002
+#: ../src/map.c:3006
 msgid "834 Wisp"
 msgstr ""
 
-#: ../src/map.c:3003
+#: ../src/map.c:3007
 msgid "883 Dalex"
 msgstr ""
 
-#: ../src/map.c:3004
+#: ../src/map.c:3008
 msgid "999 Cerebrum"
 msgstr ""
 
-#: ../src/map.c:3005
+#: ../src/map.c:3009
 msgid "No Description For This One"
 msgstr "Ingen beskrivning för den här"
 
