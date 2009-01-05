@@ -52,7 +52,7 @@ LuaCode={
 
 New Option Nr=2  OptionText=_" Doc, I took some of those brain enlargement pills..."
 LuaCode={
-    if (cookie("doc_healed_tux")) then set_next_node(5) else set_next_node(4) end
+    if (cookie_planted("doc_healed_tux")) then set_next_node(5) else set_next_node(4) end
     disable_node(2)
 }
 ----------------------------------------------------------------------
