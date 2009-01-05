@@ -130,7 +130,7 @@ NPC=_"It's yellow and round, and my name is engraved on the lid."
 NPC=_"The bots under the city took it from me during the Great Assault, I was lucky, they could have killed me with ease."
 NPC=_"If you could get it back for us, it would help the city very much."
 LuaCode={
-    assign_mission(1)
+    assign_mission("The yellow toolkit")
     open_diary_entry(1, 0)
     disable_node(24)
     enable_node(21, 25, 26)
@@ -246,7 +246,7 @@ NPC=_"Finally, I would like to say that the technical division is not interested
 NPC=_"I am sorry, but I must go now. My duties call."
 LuaCode={
     add_gold(150)
-    finish_mission(1)
+    finish_mission("The yellow toolkit")
     open_diary_entry(1, 4)
     delete_item("Dixon's Toolbox", 1)
     disable_node(34)
@@ -260,7 +260,7 @@ NPC=_"With those little gadgets we will be able to automate a lot of those simpl
 NPC=_"Here is some money for your effort. And I am sure you will find this helmet useful too, it saved my life once, and I hope it saves yours one day."
 LuaCode={
     add_gold(100)
-    finish_mission(1)
+    finish_mission("The yellow toolkit")
     plant_cookie("singularity_dead")
     delete_item("Dixon's Toolbox", 1)
     open_diary_entry(1, 5)
@@ -296,7 +296,7 @@ NPC=_"Get out of my sight."
 LuaCode={
     end_dialog()
     add_gold(250)
-    finish_mission(1)
+    finish_mission("The yellow toolkit")
     open_diary_entry(1, 6)
     delete_item("Dixon's Toolbox", 1)
     disable_node(38, 41)
@@ -309,7 +309,7 @@ NPC=_"Accidents... Happen."
 LuaCode={
     end_dialog()
     add_gold(350)
-    finish_mission(1)
+    finish_mission("The yellow toolkit")
     open_diary_entry(1, 7)
     delete_item("Dixon's Toolbox", 1)
     disable_node(39, 42)
@@ -323,7 +323,7 @@ NPC=_"Now take your money and get out of my face. I do not want to see you here 
 LuaCode={
     end_dialog()
     add_gold(400)
-    finish_mission(1)
+    finish_mission("The yellow toolkit")
     plant_cookie("dixon_very_angry")
     open_diary_entry(1, 8)
     delete_item("Dixon's Toolbox", 1)
@@ -384,7 +384,7 @@ NPC=_" Ha! Never better!"
 NPC=_"We are mass producing energy shields, creating more electric energy than we can ever imagine spending and even experimenting with new armor types."
 NPC=_"Life is good right now."
 LuaCode={
-    finish_mission(1)
+    finish_mission("The yellow toolkit")
     plant_cookie("dixon_saved_and_talked")
     disable_node(46)
     enable_node(47)
@@ -420,7 +420,7 @@ LuaCode={
         if (cookie_planted("singularity_killed")) then enable_node(34) else enable_node(35, 36) end
     else end
 
-    if (is_mission_complete(1)) then
+    if (is_mission_complete("The yellow toolkit")) then
         if (cookie_planted("singularity_dead")) then
             if (cookie_planted("singularity_killed")) then enable_node(44) else enable_node(43) end
         else 

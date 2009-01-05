@@ -144,7 +144,7 @@ NPC=_"Thank you, Linarian. As soon as the food cubes are ready I will be able to
 LuaCode={
     display_big_message("Restored Michaelangelo's power supply")
     give_xp(350)
-    finish_mission(2)
+    finish_mission("Anything but the army snacks, please!")
     open_diary_entry(2, 1)
     delete_item("Red Dilitium Crystal", 1)
     disable_node(29)
@@ -176,7 +176,7 @@ Nr=34  Text="MISSION IS DONE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
     disable_node(34)
-    if (is_mission_complete(2)) then set_next_node(35) else end
+    if (is_mission_complete("Anything but the army snacks, please!")) then set_next_node(35) else end
 }
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
@@ -185,7 +185,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 Nr=35  Text="YEAH, MISSION IS DONE."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    if (is_mission_complete(2)) then enable_node(24) else end
+    if (is_mission_complete("Anything but the army snacks, please!")) then enable_node(24) else end
     disable_node(29, 31)
 }
 ----------------------------------------------------------------------
@@ -193,7 +193,7 @@ LuaCode={
 Nr=37  Text="TUX STARTED ON THE QUEST"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-   if (is_mission_complete(2)) then disable_node(37) else set_next_node(35) end
+   if (is_mission_complete("Anything but the army snacks, please!")) then disable_node(37) else set_next_node(35) end
 }
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
@@ -225,7 +225,7 @@ NPC=_"I smelled burnt meat and heard the screams of the captives as they were in
 NPC=_"The bots know no mercy. They cannot even define it, damn scrap metal fiends."
 NPC=_"Feel free to go, Linarian, but make sure to be very dead before they start killing you."
 LuaCode={
-    assign_mission(2)
+    assign_mission("Anything but the army snacks, please!")
     open_diary_entry(2, 0)
     disable_node(19, 40, 41, 42, 70, 81)
     enable_node(82)
@@ -237,7 +237,7 @@ NPC=_"There is an old dilithium mine to the east. I am sure there is lots of tha
 NPC=_"I will talk to the guards, they will open the eastern gate for you."
 NPC=_"Good luck. Try not to get yourself killed."
 LuaCode={
-    assign_mission(2)
+    assign_mission("Anything but the army snacks, please!")
     change_obstacle("EastGateOfTown", "opened")
     disable_node(82)
 }

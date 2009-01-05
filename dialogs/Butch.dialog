@@ -93,7 +93,7 @@ Nr=6  Text=_" Yeah. I want to fight."
 NPC=_"Good. I opened up the south arena gate for you so just climb down the ladder."
 NPC=_"But remember, the door out won't be opened until you killed all the bots."
 LuaCode={
-    assign_mission(3)
+    assign_mission("Novice Arena")
     change_obstacle("NoviceArenaAccessDoor", "opened")
     open_diary_entry(3, 0)
     disable_node(6, 12, 13)
@@ -128,7 +128,7 @@ NPC=_"You will die if you go there."
 NPC=_"I pity you, silly bird. Don't go there."
 NPC=_"But if you really want it, the door is open."
 LuaCode={
-    assign_mission(4)
+    assign_mission("Time to say goodnight")
     change_obstacle("MasterArenaAccessDoor", "opened")
     open_diary_entry(4, 0)
     disable_node(9)
@@ -197,7 +197,7 @@ LuaCode={
 Nr=17  Text=_" You... Have ruined my pacifistic slogan... I am angry... So angry that I want to smash things!"
 NPC=_"Great. Get in the door, newbie."
 LuaCode={
-    assign_mission(3)
+    assign_mission("Novice Arena")
     change_obstacle("NoviceArenaAccessDoor", "opened")
 }
 ----------------------------------------------------------------------
@@ -205,13 +205,13 @@ LuaCode={
 Nr=50  Text="CHECK FOR FIRST ARENA VICTORY"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    if (is_mission_complete(3)) then 
+    if (is_mission_complete("Novice Arena")) then 
         if (!cookie_planted("butch_enable_first_set")) then 
             plant_cookie("butch_enable_first_set")
             enable_node(7, 8)
         else end
     else end
-    if (is_mission_complete(4)) then 
+    if (is_mission_complete("Time to say goodnight")) then 
         if (!cookie_planted("butch_enable_second_set")) then
             plant_cookie("butch_enable_second_set")
             enable_node(10)

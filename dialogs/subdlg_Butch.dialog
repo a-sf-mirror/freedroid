@@ -46,8 +46,8 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 Nr=1  Text=_" Give me the novice arena."
 LuaCode={
-    if (is_mission_assigned(3)) then
-       if (is_mission_complete(3)) then set_next_node(6) else set_next_node(3) end
+    if (is_mission_assigned("Novice Arena")) then
+       if (is_mission_complete("Novice Arena")) then set_next_node(6) else set_next_node(3) end
     else set_next_node(4) end
     disable_node(1)
 }
@@ -64,7 +64,7 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 NPC=_"Of course. That, you might even survive."
 NPC=_"Take the accessway. I've unlocked the door. Good luck."
 LuaCode={
-    assign_mission(3)
+    assign_mission("Novice Arena")
     change_obstacle("NoviceArenaAccessDoor", "opened")
 }
 ----------------------------------------------------------------------
@@ -75,7 +75,7 @@ NPC=_"Ok. I've unlocked the door to the master arena now. But take care, this wi
 NPC=_"In fact, you should know that we've got a 711 battle bot in there. Its deadly disruptor flashes cannot be evaded."
 NPC=_"You should make sure you've got proper anti-disruptor devices on you or just kill it fast enough. Good luck!"
 LuaCode={
-    assign_mission(4)
+    assign_mission("Time to say goodnight")
     change_obstacle("MasterArenaAccessDoor", "opened")
 }
 ----------------------------------------------------------------------
@@ -92,8 +92,8 @@ LuaCode={
 Nr=7  Text=_" Give me the master arena."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    if (is_mission_complete(3)) then
-        if (is_mission_complete(4)) then set_next_node(11) else set_next_node(12) end
+    if (is_mission_complete("Novice Arena")) then
+        if (is_mission_complete("Time to say goodnight")) then set_next_node(11) else set_next_node(12) end
     else set_next_node(9) end
     disable_node(7)
 }
@@ -127,7 +127,7 @@ LuaCode={
 Nr=12  Text="MASTER MIGHT BE FOR YOU"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    if (is_mission_assigned(4)) then set_next_node(10) else set_next_node(5) end
+    if (is_mission_assigned("Time to say goodnight")) then set_next_node(10) else set_next_node(5) end
 }
 ----------------------------------------------------------------------
 

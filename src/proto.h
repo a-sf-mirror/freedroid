@@ -296,11 +296,13 @@ void read_luacode(const char *, const char *, luacode *);
 
 // mission.c 
 void quest_browser_interface ( void );
-void AssignMission( int MissNum );
+void CompleteMission(const char *);
+void AssignMission(const char *);
 void GetQuestList ( char* QuestListFilename ) ;
 void clear_tux_mission_info ( void ) ;
 void CheckIfMissionIsComplete ( void );
 void quest_browser_enable_new_diary_entry ( int mis_num , int mis_diary_entry_num );
+int GetMissionIndexByName(const char *);
 
 // map.c 
 void respawn_level ( int level_num );

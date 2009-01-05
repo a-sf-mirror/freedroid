@@ -84,7 +84,7 @@ NPC=_"I've unlocked the accessway to the warehouse. It's to the north of this to
 NPC=_"The stuff we need is on the first floor. Don't go any deeper, there are only bots in there."
 NPC=_"I wish you the best of luck."
 LuaCode={
-    assign_mission(5)
+    assign_mission("Opening a can of bots...")
     open_diary_entry(5, 0)
     change_obstacle("AccessDoorToWarehouse", "opened")
     disable_node(5)
@@ -93,8 +93,8 @@ LuaCode={
 
 Nr=6  Text=_" How is it going?"
 LuaCode={
-    if (is_mission_assigned(5)) then
-        if (is_mission_complete(5)) then
+    if (is_mission_assigned("Opening a can of bots...")) then
+        if (is_mission_complete("Opening a can of bots...")) then
             if (cookie_planted("reward_for_warehouse_given")) then set_next_node(10) else set_next_node(11) end
         else set_next_node(9) end
     else set_next_node(4) end
@@ -129,7 +129,7 @@ LuaCode={
 
 Nr=12  Text=_" Have I done enough quests to become a member now?"
 LuaCode={
-    if (is_mission_complete(1)) then set_next_node(13) else set_next_node(14) end
+    if (is_mission_complete("The yellow toolkit")) then set_next_node(13) else set_next_node(14) end
 }
 ----------------------------------------------------------------------
 
@@ -168,14 +168,14 @@ LuaCode={
 Nr=17  Text="IS MICHELANGELO DONE?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    if (is_mission_complete(2)) then set_next_node(15) else set_next_node(16) end
+    if (is_mission_complete("Anything but the army snacks, please!")) then set_next_node(15) else set_next_node(16) end
 }
 ----------------------------------------------------------------------
 
 Nr=18  Text="IS TUX AN ARENA MASTER"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    if (is_mission_complete(3)) then set_next_node(19) else set_next_node(20) end
+    if (is_mission_complete("Novice Arena")) then set_next_node(19) else set_next_node(20) end
 }
 ----------------------------------------------------------------------
 
@@ -198,7 +198,7 @@ LuaCode={
 Nr=21  Text="IS BENDER SICK?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    if (is_mission_complete(0)) then set_next_node(22) else set_next_node(23) end
+    if (is_mission_complete("Bender's problem")) then set_next_node(22) else set_next_node(23) end
 }
 ----------------------------------------------------------------------
 
@@ -221,7 +221,7 @@ LuaCode={
 Nr=24  Text="WAREHOUSE MISSION DONE?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    if (is_mission_complete(5)) then set_next_node(25) else set_next_node(27) end
+    if (is_mission_complete("Opening a can of bots...")) then set_next_node(25) else set_next_node(27) end
 }
 ----------------------------------------------------------------------
 
@@ -316,7 +316,7 @@ NPC=_"Good. The base entrance is somewhat hidden in the caves to the northeast. 
 NPC=_"I wish you the best of luck for this operation. It might be that our survival depends on it. Don't wait for assistance."
 NPC=_"Try to get control over the disruptor shield if you can. The control droid should be somewhere on the lowest level of the installation. Simply destroying the droid might suffice in disabling the shield."
 LuaCode={
-    assign_mission(8)
+    assign_mission("Opening access to MS Office")
     change_obstacle("DisruptorShieldBaseGate", "opened")
     disable_node(39, 40)
 }
@@ -333,11 +333,11 @@ LuaCode={
 Nr=41  Text="STARTED THE CUBE MISSION?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    if (not is_mission_assigned(8)) then
-        if (is_mission_complete(7)) then enable_node(37) else end
+    if (not is_mission_assigned("Opening access to MS Office")) then
+        if (is_mission_complete("A kingdom for a cluster!")) then enable_node(37) else end
     else end
 
-    if (is_mission_complete(8)) then enable_node(44) else end    -- Ready for HF?
+    if (is_mission_complete("Opening access to MS Office")) then enable_node(44) else end    -- Ready for HF?
 }
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
@@ -349,7 +349,7 @@ NPC=_"They carried out some development there, and had part of their patching di
 NPC=_"Look for the entrance of the office in the crystal fields. I will send a message to the guards so they let you pass. Then you will be on your own."
 NPC=_"Good luck."
 LuaCode={
-    assign_mission(9)
+    assign_mission("Propagating a faulty firmware")
     disable_node(44)
     enable_node(45)
 }

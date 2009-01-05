@@ -324,30 +324,37 @@ static int lua_event_remove_cookie(lua_State *L)
 
 static int lua_event_assign_mission(lua_State *L)
 {
-    int misnum = luaL_checkinteger(L, 1);
-    AssignMission(misnum);
+    const char *misname = luaL_checkstring(L, 1);
+
+    AssignMission(misname);
+
     return 0;
 }
 
 static int lua_event_complete_mission(lua_State *L)
 {
-    /*XXX bad*/
-    int misnum = luaL_checkinteger(L, 1);
-    Me . AllMissions[ misnum ] . MissionIsComplete = TRUE;
+    const char *misname = luaL_checkstring(L, 1);
+    
+    CompleteMission(misname);
+    
     return 0;
 }
 
 static int lua_event_is_mission_assigned(lua_State *L)
 {
-    int misnum = luaL_checkinteger(L, 1);
-    lua_pushboolean(L, Me . AllMissions[ misnum ] . MissionWasAssigned);
+    const char *misname = luaL_checkstring(L, 1);
+
+    lua_pushboolean(L, Me . AllMissions[ GetMissionIndexByName(misname) ] . MissionWasAssigned);
+
     return 1;
 }
 
 static int lua_event_is_mission_complete(lua_State *L)
 {
-    int misnum = luaL_checkinteger(L, 1);
-    lua_pushboolean(L, Me . AllMissions[ misnum ] . MissionIsComplete);
+    const char *misname = luaL_checkstring(L, 1);
+
+    lua_pushboolean(L, Me . AllMissions[ GetMissionIndexByName(misname) ] . MissionIsComplete);
+
     return 1;
 }
 

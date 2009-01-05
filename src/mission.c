@@ -601,40 +601,21 @@ CheckIfMissionIsComplete (void)
 	}
 	
 	if ( this_mission_seems_completed )
-	{
-	    //--------------------
-	    // AT THIS POINT WE KNOW THAT ALL OF THE GIVEN TARGETS FOR THIS MISSION ARE FULLFILLED
-	    // We therefore mark the mission as completed
-	    //
-	    Me.AllMissions[ mis_num ].MissionIsComplete = TRUE;
-	    Mission_Status_Change_Sound ( );
-	    if (Me.AllMissions[ mis_num ].completion_lua_code)
-		run_lua(Me.AllMissions[ mis_num ].completion_lua_code);
-	}
+	    CompleteMission(Me.AllMissions[mis_num].MissionName);
 	
     } // for AllMissions
     
 }; // void CheckIfMissionIsComplete
 
 /**
- * This function assigns a new mission to the influencer, which means 
+ * This function assigns a new mission to the player, which means 
  * that the status of the mission in the mission array is changed and
  * perhaps the mission log activated.
  */
-void 
-AssignMission( int MissNum )
+void AssignMission (const char *name)
 {
-    //--------------------
-    // First some sanity check for the mission number received.
-    //
-    if ( ( MissNum < 0 ) || ( MissNum >= MAX_MISSIONS_IN_GAME ) )
-    {
-	fprintf ( stderr , "\nmission number: %d." , MissNum ) ;
-	ErrorMessage ( __FUNCTION__  , "\
-There was a mission number received that is outside the range of allowed values.",
-				   PLEASE_INFORM, IS_FATAL );
-    }
-    
+    int MissNum = GetMissionIndexByName(name);
+
     Mission_Status_Change_Sound ( );
     Me . AllMissions [ MissNum ] . MissionWasAssigned = TRUE;
    
@@ -650,7 +631,21 @@ There was a mission number received that is outside the range of allowed values.
     Me . AllMissions [ MissNum ] . mission_description_visible [ 0 ] = TRUE;
     quest_browser_enable_new_diary_entry ( MissNum , 0 );
 
-}; // void AssignMission( int MissNum );
+};
+
+/**
+ * This function marks a mission as complete
+ */
+void CompleteMission (const char *name)
+{
+    int MissNum = GetMissionIndexByName(name);
+
+    Mission_Status_Change_Sound();
+    Me.AllMissions [MissNum].MissionIsComplete = TRUE;
+
+    if (Me.AllMissions[MissNum].completion_lua_code)
+	run_lua(Me.AllMissions[MissNum].completion_lua_code);
+}
 
 /**
  * At the start of every new game, the mission info (i.e. which missions
@@ -752,8 +747,6 @@ GetQuestList ( char* QuestListFilename )
 	
 	Me . AllMissions [ MissionTargetIndex ] . MissionExistsAtAll = TRUE;
 	
-	// Me.AllMissions[ MissionTargetIndex ].MissionName = 
-	// ReadAndMallocStringFromData ( MissionTargetPointer , MISSION_TARGET_NAME_INITIALIZER , "\"" ) ;
 	char * tmname =  ReadAndMallocStringFromData ( MissionTargetPointer , MISSION_TARGET_NAME_INITIALIZER , "\"" );
 	strcpy ( Me.AllMissions[ MissionTargetIndex ].MissionName , tmname ) ;
 	free ( tmname ) ;
@@ -867,6 +860,22 @@ GetQuestList ( char* QuestListFilename )
     fflush( stdout );
     free ( MissionFileContents );
 }; // void Get_Mission_Targets( ... )
+
+/**
+ * This function returns the mission that has the specified name.
+ */
+int GetMissionIndexByName (const char *name)
+{
+    int cidx;
+
+    for (cidx=0; cidx < MAX_MISSIONS_IN_GAME; cidx++) {
+	if (!strcmp(Me.AllMissions[cidx].MissionName, name))
+	    return cidx;
+    }
+
+    ErrorMessage(__FUNCTION__, "Unable to find mission named %s\n", PLEASE_INFORM, IS_FATAL, name);
+    return -1;
+}
 
 
 #undef _mission_c

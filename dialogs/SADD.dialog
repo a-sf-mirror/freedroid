@@ -227,7 +227,7 @@ Nr=23  Text=_" So disable the guns, please."
 NPC=_" Go, and bring dilithium. I badly need it."
 LuaCode={
     end_dialog()
-    assign_mission(10)
+    assign_mission(SADD's power supply)
     open_diary_entry(9, 0)
     change_obstacle("SADDGun1", "disabled")
     change_obstacle("SADDGun2", "disabled")
@@ -248,8 +248,8 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 Nr=25  Text="CHECKS2"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    if (is_mission_assigned(10)) then
-        if (is_mission_complete(10)) then disable_node(30, 31, 33) 
+    if (is_mission_assigned(SADD's power supply)) then
+        if (is_mission_complete(SADD's power supply)) then disable_node(30, 31, 33) 
         else
             if (cookie_planted("asked_SADD_for_exterminator")) then disable_node(33) else disable_node(30) end
         end
@@ -264,7 +264,7 @@ LuaCode={
     end_dialog()
     display_big_message("Restored SADD's power supply")
     give_xp(1000)
-    finish_mission(10)
+    finish_mission(SADD's power supply)
     open_diary_entry(9, 3)
     delete_item("Red Dilitium Crystal", 1)
     change_obstacle("SADDDepotDoor", "opened")
@@ -287,7 +287,7 @@ LuaCode={
     end_dialog()
     display_big_message("Restored SADD's power supply")
     give_xp(1500)
-    finish_mission(10)
+    finish_mission(SADD's power supply)
     open_diary_entry(9, 2)
     change_obstacle("SADDDepotDoor", "opened")
     change_obstacle("SADDBioDoor", "opened")
