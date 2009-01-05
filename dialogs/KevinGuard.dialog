@@ -40,6 +40,7 @@ New Option Nr=0  OptionText=_"THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
     disable_node(0)
+    if (cookie_planted("kevin_door_open")) then set_next_node(15) else set_next_node(20) end
 }
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
@@ -171,15 +172,6 @@ LuaCode={
     disable_node(15)
     enable_node(99)
 }
-----------------------------------------------------------------------
-
-New Option Nr=16  OptionText="THIS WILL NOT EVER BE VISIBLE"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-LuaCode={
-    if (cookie_planted("kevin_door_open")) then set_next_node(15) else set_next_node(20) end
-}
-AlwaysExecuteThisOptionPriorToDialogStart="yes"
-
 ----------------------------------------------------------------------
 
 New Option Nr=17  OptionText=_" I do not have to tell you anything, bot."
