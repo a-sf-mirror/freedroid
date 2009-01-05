@@ -33,39 +33,33 @@ Beginning of new chat dialog for character="XXXXX"
 Initialization LuaCode={
     enable_node(0, 50, 60, 90, 96)
 }
-
 ----------------------------------------------------------------------
-
 
 New Option Nr=0  OptionText=_" Hi... Erm... Who are you?"
 Subtitle=_"Duncan McNamara, The Red Guard's resident bomb maker, at your service."
-DisableOption=0
-DisableOption=90
-EnableOption=1
-
+LuaCode={
+    disable_node(0, 90)
+    enable_node(1)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=1  OptionText=_" I would like to buy a bomb."
 Subtitle=_"Yes. I am sure we can arrange something. Take a look."
-DisableOption=1
-EnableOption=2
-EnableOption=7
 LuaCode={
     trade_with("Duncan")
+    disable_node(1)
+    enable_node(2, 7)
 }
-
 ----------------------------------------------------------------------
 
 New Option Nr=2  OptionText=_" I see only grenades. Do you have something bigger?"
 Subtitle=_"My deepest apologies, I do not."
 Subtitle=_"The Red Guard prohibits the sales of extremely destructive munitions."
 Subtitle=_"It is not yet the time for the fall of their rule, so I remain loyal."
-DisableOption=2
-EnableOption=5
-EnableOption=6
-EnableOption=4
-EnableOption=3
-
+LuaCode={
+    disable_node(2)
+    enable_node(3, 4, 5, 6)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=3  OptionText=_" The fall of the Red Guard? I am going to report that you are preparing a revolution!"
@@ -74,17 +68,17 @@ Subtitle=_"I am not preparing anything. I am just stating what I see as inevitab
 Subtitle=_"I have taken part in many conflicts and I have seen how governments collapse."
 Subtitle=_"As soon as the war is over, the Red Guard will disband."
 Subtitle=_"Of course, I am making the assumption of victory, which is highly unlikely with the current state of affairs."
-DisableOption=3
-DisableOption=4
-
+LuaCode={
+    disable_node(3, 4)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=4  OptionText=_" The fall of the Red Guard? Tell me more about it."
 Subtitle=_"It is not the time to speak of such things yet. Come another day, and we shall talk about it in more detail."
 Subtitle=_"The Red Guard can have their great laser beams and plasma cannons... But nothing can save them."
-DisableOption=4
-DisableOption=3
-
+LuaCode={
+    disable_node(3, 4)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=5  OptionText=_" I want to buy some grenades."
@@ -93,27 +87,38 @@ EnableOption=5
 LuaCode={
     trade_with("Duncan")
 }
-
 ----------------------------------------------------------------------
 
 New Option Nr=6  OptionText=_" What kind of grenade is the best?"
 Subtitle=_"You get what you pay for."
-DisableOption=6
-
+LuaCode={
+    disable_node(6)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=7  OptionText=_" How did you get into making explosives?"
 Subtitle=_"Twenty years ago there was a conflict."
 Subtitle=_"A grenade I threw destroyed a being which killed many of... my people."
 Subtitle=_"Now I make more to smash the destroyers."
-DisableOption=7
-
+LuaCode={
+    disable_node(7)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=50  OptionText="KOAN QUEST"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-DisableOption=50
-OnCondition="CookieIsPlanted:duncan_known:" JumpToOption=80 ElseGoto=52
+LuaCode={
+    if (cookie_planted("duncan_known")) then
+        if (not cookie_planted("koan_quest")) then set_next_node(51) else end
+    else end
+
+    if (has_item("Pandora's Cube") > 0) set_next_node(61) 
+    else
+        if (cookie_planted("koan_spared")) then 
+            if (not cookie_planted("koan_quest_done")) then set_next_node(61) else end
+        else end
+    end
+}
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
@@ -125,131 +130,89 @@ Subtitle=_"I have a little request for you."
 Subtitle=_"I know someone who needs to be taught a lesson."
 Subtitle=_"Interested?"
 LuaCode={
-    disable_node(51)
-    run_subdialog("subdlg_Duncan.dialog")
     plant_cookie("koan_quest")
+    run_subdialog("subdlg_Duncan.dialog")
 }
-
-----------------------------------------------------------------------
-
-New Option Nr=52  OptionText="VOID"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-DisableOption=52
-
-----------------------------------------------------------------------
-
-New Option Nr=60  OptionText="TEST FOR BOX OR SAVING KOAN"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-DisableOption=60
-OnCondition="HaveItemWithName:Pandora's Cube" JumpToOption=61 ElseGoto=62
-AlwaysExecuteThisOptionPriorToDialogStart="yes"
-
 ----------------------------------------------------------------------
 
 New Option Nr=61  OptionText="MURDERING DONE OR SAVED HIM"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-DisableOption=61
 LuaCode={
-    run_subdialog("subdlg_Duncan_quest")
+    run_subdialog("subdlg_Duncan_quest.dialog")
 }
-
-----------------------------------------------------------------------
-
-New Option Nr=62  OptionText="IS KOAN SAVED?"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-DisableOption=62
-OnCondition="CookieIsPlanted:koan_spared:" JumpToOption=63 ElseGoto=52
-
-----------------------------------------------------------------------
-
-New Option Nr=63  OptionText="WAS THE QUEST DONE BEFORE"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-DisableOption=63
-OnCondition="CookieIsPlanted:koan_quest_done:" JumpToOption=52 ElseGoto=61
-
-----------------------------------------------------------------------
-
-New Option Nr=80  OptionText="PREVENTING DOUBLE TALK"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-DisableOption=80
-OnCondition="CookieIsPlanted:koan_quest:" JumpToOption=52 ElseGoto=51
-
 ----------------------------------------------------------------------
 
 New Option Nr=90  OptionText=_" I feel you are... Different."
 Subtitle=_"What a great way to start a conversation."
 Subtitle=_"Yes, that is true. I am not who I seem to be."
 Subtitle=_"But then again, neither are you, so my thoughts are we are even."
-DisableOption=90
-DisableOption=0
-EnableOption=91
-
+LuaCode={
+    disable_node(0, 90)
+    enable_node(91)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=91  OptionText=_" What do you mean? I am Tux and not anyone else."
 Subtitle=_"And I am Duncan McNamara, the maker of grenades and nothing else."
 Subtitle=_"I believe the topic is thoroughly exhausted now."
-EnableOption=92
-DisableOption=2
-DisableOption=1
-EnableOption=5
-DisableOption=91
-
+LuaCode={
+    disable_node(1, 2, 91)
+    enable_node(5, 92)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=92  OptionText=_" Tell me who you are. I need to know."
 Subtitle=_"Twenty years ago, the people were kinder to each other."
 Subtitle=_"I suggest you be kind to me as well, and I will be kind to you."
 Subtitle=_"That way I get to keep my secret, and you get to keep yours."
-DisableOption=92
-EnableOption=93
-
+LuaCode={
+    disable_node(92)
+    enable_node(93)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=93  OptionText=_" I don't have any secrets."
 Subtitle=_"And neither do I."
-DisableOption=93
-
+LuaCode={
+    disable_node(93)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=96  OptionText=_" See you later."
 Subtitle=_"I wish you cold winds."
-DisableOption=96
 LuaCode={
     set_next_node(97)
+    disable_node(96)
 }
-
 ----------------------------------------------------------------------
 
 New Option Nr=97  OptionText=_" Huh? How do you know the Linarian farewell? No one around here knows it."
 Subtitle=_"I read many books on Linarians. That is all."
 Subtitle=_"Nothing more and nothing less."
-DisableOption=97
-EnableOption=98
-EnableOption=99
-
+LuaCode={
+    disable_node(97)
+    enable_node(98, 99)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=98  OptionText=_" I wish you cold winds."
 Subtitle=_"May the ice bring you wisdom."
-EnableOption=98
-DisableOption=99
 LuaCode={
     end_dialog()
     plant_cookie("duncan_known")
+    disable_node(99)
+    enable_node(98)
 }
-
 ----------------------------------------------------------------------
 
 New Option Nr=99  OptionText=_" See you later."
 Subtitle=_"See you later."
-EnableOption=99
-DisableOption=98
 LuaCode={
     end_dialog()
     plant_cookie("duncan_known")
+    disable_node(98)
+    enable_node(99)
 }
-
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

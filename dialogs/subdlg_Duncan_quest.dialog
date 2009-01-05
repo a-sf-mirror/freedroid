@@ -39,61 +39,32 @@ Initialization LuaCode={
 New Option Nr=0  OptionText="HERE WE GO"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"So... Any news on the Koan matter?"
-DisableOption=0
-EnableOption=40
-OnCondition="CookieIsPlanted:koan_spared:" JumpToOption=5 ElseGoto=1
 LuaCode={
     plant_cookie("koan_quest_done")
+    if (cookie_planted("koan_spared")) then enable_node(20) else end
+    if (amount_item("Pandora's Cube") > 0) then enable_node(10, 30) else end
+    disable_node(0)
+    enable_node(40)
 }
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
-
-----------------------------------------------------------------------
-
-New Option Nr=1  OptionText="DO NOTHING NODE"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-DisableOption=1
-
-----------------------------------------------------------------------
-
-New Option Nr=5  OptionText="KOAN WAS SPARED"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-DisableOption=5
-EnableOption=20
-
-----------------------------------------------------------------------
-
-New Option Nr=7  OptionText="GOT THE CUBE?"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-DisableOption=7
-OnCondition="HaveItemWithName:Pandora's Cube" JumpToOption=8 ElseGoto=1
-AlwaysExecuteThisOptionPriorToDialogStart="yes"
-
-----------------------------------------------------------------------
-
-New Option Nr=8  OptionText="YEAH. WE HAVE THE CUBE."
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-DisableOption=8
-EnableOption=30
-EnableOption=10
 
 ----------------------------------------------------------------------
 
 New Option Nr=10  OptionText=_" Yeah. I got him. I think this is your cube."
 Subtitle=_"Yes. I appreciate your help."
-DisableOption=10
 LuaCode={
     end_dialog()
     give_xp(3000)
     delete_item("Pandora's Cube", 1)
+    disable_node(10)
 }
-
 ----------------------------------------------------------------------
 
 New Option Nr=20  OptionText=_" I could not find him anywhere in the desert. I don't think he is there anymore."
 Subtitle=_"I see."
-DisableOption=20
 LuaCode={
     end_dialog()
+    disable_node(20) -- FIXME this will be reenabled every time by node 0
 }
 ----------------------------------------------------------------------
 
@@ -101,50 +72,48 @@ New Option Nr=30  OptionText=_" Yeah, I got him. Now, what is this big cube that
 Subtitle=_"Just a memento after a friend."
 Subtitle=_"A little more than a portable end of the world, which I am looking forward to disassembling and learning its secrets."
 Subtitle=_"Nothing that important."
-DisableOption=30
-DisableOption=20
-DisableOption=10
-EnableOption=70
-EnableOption=60
-
+LuaCode={
+    disable_node(10, 20, 30)
+    enable_node(60, 70)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=40  OptionText=_" A 'few' bots? The place was crawling with Sawmills! I nearly got killed!"
 Subtitle=_"There were only fourty bots in the desert region. This hardly qualifies as many."
-DisableOption=40
-EnableOption=41
-
+LuaCode={
+    disable_node(40)
+    enable_node(41)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=41  OptionText=_" What? You know exactly how many bots were on the desert? Without being there? I don't like this."
 Subtitle=_"I just know a lot of things. You do not need to worry about it."
-DisableOption=41
-EnableOption=50
-
+LuaCode={
+    disable_node(41)
+    enable_node(50)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=50  OptionText=_" I don't like this at all. I'm getting out of here."
 Subtitle=_"As you wish."
-DisableOption=50
 LuaCode={
     end_dialog()
+    disable_node(50)
 }
 ----------------------------------------------------------------------
 
 New Option Nr=60  OptionText=_" Hey, that is really neat. Here is your cube. Enjoy disassembling it and have fun with it."
 Subtitle=_"I will."
-DisableOption=60
 LuaCode={
     end_dialog()
     give_xp(3000)
     delete_item("Pandora's Cube")
+    disable_node(60)
 }
-
 ----------------------------------------------------------------------
 
 New Option Nr=70  OptionText=_" WHAT? No way I am giving you a doomsday device! Forget about it."
 Subtitle=_"I understand. So be it."
-DisableOption=70
 LuaCode={
     end_dialog()
 }

@@ -31,19 +31,23 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 Initialization LuaCode={
-    enable_node(0)
 }
-
 ----------------------------------------------------------------------
-
 
 New Option Nr=0  OptionText=_" Login : admin  Password : *******"
 Subtitle=_"Last login from /dev/ttyS0 on Sun, 23 mar 2057. admin@sadefence: ~ #"
-DisableOption=0
-EnableOption=1
-DisableOption=2
-EnableOption=3
-EnableOption=4
+LuaCode={
+    if (is_mission_assigned(10)) then open_diary_entry(10, 1) else end
+
+    if (cookie_planted("SACDOvertaken")) then    -- possible to leave empty then?
+    else
+        give_xp(1000)
+        plant_cookie("SACDOvertaken")
+    end
+
+    disable_node(0, 2)
+    enable_node(1, 3, 4)
+}
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
@@ -52,29 +56,26 @@ New Option Nr=1  OptionText=_" /usr/bin/guns --disable"
 Subtitle=_"Disabling guns..."
 Subtitle=_"Connecting to peripheral controller..."
 Subtitle=_"Guns disabled."
-DisableOption=1
-EnableOption=2
 LuaCode={
     plant_cookie("SAGunsOff")
     change_obstacle("SADDGun1", "disabled")
     change_obstacle("SADDGun2", "disabled")
+    disable_node(1)
+    enable_node(2)
 }
-
 ----------------------------------------------------------------------
 
 New Option Nr=2  OptionText=_" /usr/bin/guns --enable"
 Subtitle=_"Enabling guns..."
 Subtitle=_"Connecting to peripheral controller..."
 Subtitle=_"Guns enabled."
-DisableOption=2
-EnableOption=1
 LuaCode={
     change_obstacle("SADDGun1", "enabled")
     change_obstacle("SADDGun2", "enabled")
     remove_cookie("SAGunsOff")
+    disable_node(2)
+    enable_node(1)
 }
-
-
 ----------------------------------------------------------------------
 
 New Option Nr=3  OptionText=_" /usr/bin/hermodoors --open"
@@ -84,7 +85,6 @@ Subtitle=_"Please enter unlock security password:"
 LuaCode={
     set_next_node(5)
 }
-
 ----------------------------------------------------------------------
 
 New Option Nr=4  OptionText=_" ./hcf.py"
@@ -92,63 +92,20 @@ Subtitle=_"Executing: Halt and Catch Fire."
 Subtitle=_"Cooling subsystems disabled."
 Subtitle=_"Warning! Spontaneous oxidization witH emis$ion of light aND heAt detecteddd in THE#main| procesIng unit,"
 Subtitle=_"SsTeM=#faiPure%^#n 3 S 1()$++"
-DisableOption=4
 LuaCode={
     drop_dead()
+    disable_node(4)
 }
-
 ----------------------------------------------------------------------
 
 New Option Nr=5  OptionText=_" CTRL+C"
 Subtitle=_"An error occured while opening doors."
-DisableOption=5
-
-----------------------------------------------------------------------
-
-New Option Nr=6 OptionText="THIS WILL NOT EVER BE VISIBLE"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-DisableOption=6
-OnCondition="MissionAssigned:10" JumpToOption=7 ElseGoto=8
-AlwaysExecuteThisOptionPriorToDialogStart="yes"
-
-----------------------------------------------------------------------
-
-New Option Nr=7 OptionText="THIS WILL NOT EVER BE VISIBLE"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-DisableOption=7
 LuaCode={
-    open_diary_entry(10, 1)
+    disable_node(5)
 }
-
-----------------------------------------------------------------------
-
-New Option Nr=8 OptionText="DO NOTHING"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-DisableOption=8
-
-----------------------------------------------------------------------
-
-New Option Nr=9 OptionText="IS THIS FIRST DIALOG?"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-DisableOption=9
-OnCondition="CookieIsPlanted:SACDOvertaken:" JumpToOption=8 ElseGoto=10
-AlwaysExecuteThisOptionPriorToDialogStart="yes"
-
-----------------------------------------------------------------------
-
-New Option Nr=10 OptionText="DO NOTHING"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-DisableOption=10
-LuaCode={
-    give_xp(1000)
-    plant_cookie("SACDOvertaken")
-}
-
-
 ----------------------------------------------------------------------
 
 New Option Nr=99  OptionText=_" logout"
-EnableOption=99
 LuaCode={
     end_dialog()
 }

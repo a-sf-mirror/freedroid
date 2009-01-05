@@ -31,34 +31,30 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 Initialization LuaCode={
-    enable_node(0, 6, 99)
+    enable_node(0, 99)
 }
-
 ----------------------------------------------------------------------
-
 
 New Option Nr=0  OptionText=_" Hello!"
 Subtitle=_"Hello. I'm Doc Moore. I'm the medic of this town."
-EnableOption=1
-DisableOption=0
-EnableOption=10
-
+LuaCode={
+    disable_node(0)
+    enable_node(1, 10)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=1  OptionText=_" Do you also trade in medical equipment?"
 Subtitle=_"Sure. Here is what I can offer today."
-EnableOption=1
-DisableOption=0
 LuaCode={
     trade_with("DocMoore")
 }
-
 ----------------------------------------------------------------------
 
 New Option Nr=2  OptionText=_" Doc, I took some of those brain enlargement pills..."
-OnCondition="CookieIsPlanted:doc_healed_tux:" JumpToOption=5 ElseGoto=4
-DisableOption=2
-
+LuaCode={
+    if (cookie("doc_healed_tux")) then set_next_node(5) else set_next_node(4) end
+    disable_node(2)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=3  OptionText=_" What can you tell me about strength pills?"
@@ -68,8 +64,9 @@ Subtitle=_"These pills work on a nanotechnological basis with small machines con
 Subtitle=_"The machines connect together and form some inorganic artificial tissue that has been optimized for certain qualities."
 Subtitle=_"Since this invention only came shortly before the Great Assault, these pills are now very rare."
 Subtitle=_"But if you should get them, even better, because the effects are permanent, and as far as we can tell, there aren't any side effects!"
-DisableOption=3
-
+LuaCode={
+    disable_node(3)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=4  OptionText=_"THIS WILL NEVER BE VISIBLE"
@@ -79,14 +76,12 @@ Subtitle=_"Taking this stuff almost equals delayed suicide."
 Subtitle=_"Now, take this antidote. It should remove the dangerous substances within your body."
 Subtitle=_"But remember, I'll only give you this help once, cause you didn't know the effects."
 Subtitle=_"Should you take that junk again, I won't feel responsible for what happens to you any more."
-DisableOption=4
-DisableOption=2
 LuaCode={
     plant_cookie("doc_healed_tux")
     open_diary_entry(0, 1)
     give_item("Brain Enlargement Pills Antidote",1)
+    disable_node(2, 4)
 }
-
 ----------------------------------------------------------------------
 
 New Option Nr=5  OptionText=_"THIS WILL NEVER BE VISIBLE"
@@ -94,38 +89,21 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Sorry, but I already gave you some medical help."
 Subtitle=_"If you poison yourself, that's entirely your business and I'm not responsible."
 Subtitle=_"As far as I am concerned, in this town everyone gets everything equally."
-DisableOption=5
-EnableOption=20
-DisableOption=2
-
+LuaCode={
+    disable_node(2, 5)
+    enable_node(20)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=6  OptionText="ON MISSION 0 WAS ASSIGNED..."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-OnCondition="MissionAssigned:0" JumpToOption=8 ElseGoto=7
-DisableOption=6
+LuaCode={
+    if (is_mission_assigned(0)) then
+        if (is_mission_complete(0)) then enable_node(3) else enable_node(2, 3) end
+    else end
+    disable_node(6)
+}
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
-
-----------------------------------------------------------------------
-
-New Option Nr=7  OptionText="DO NOTHING"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-DisableOption=7
-
-----------------------------------------------------------------------
-
-New Option Nr=8  OptionText="THIS WILL NOT EVER BE VISIBLE"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-EnableOption=3
-DisableOption=8
-OnCondition="MissionComplete:0" JumpToOption=7 ElseGoto=9
-
-----------------------------------------------------------------------
-
-New Option Nr=9  OptionText="THIS SHOULD ENABLE..."
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-EnableOption=2
-DisableOption=9
 
 ----------------------------------------------------------------------
 
@@ -133,12 +111,10 @@ New Option Nr=10  OptionText=_" Can you fix me up?"
 Subtitle=_"Sure, as the only doctor of this slowly growing community, I'm responsible for everyone's health."
 Subtitle=_"However, self-inflicted damage might be exempted from this rule in some cases..."
 Subtitle=_"There, it's done. You're completely fixed. You can go now."
-DisableOption=10
-DisableOption=0
-EnableOption=11
-EnableOption=12
 LuaCode={
     heal_tux()
+    disable_node(0, 10)
+    enable_node(11, 12)
 }
 ----------------------------------------------------------------------
 
@@ -147,87 +123,81 @@ Subtitle=_"Now you see that idiotic Bender character on my doorstep?"
 Subtitle=_"He took these stupid brain enlargement pills. So no problem, he came to me to fix him. But guess what?"
 Subtitle=_"He took them again against my strict advice. Now he thinks he can drain my antidote supplies? He's wrong."
 Subtitle=_"He won't get anything from me anymore. It would be unfair to the community to waste all the supplies on him, and that's my final word on that."
-DisableOption=11
-
+LuaCode={
+    disable_node(11)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=12  OptionText=_" Can you fix me up?"
 Subtitle=_"Sure, as the only doctor of this slowly growing community, I'm responsible for everyone's health."
 Subtitle=_"However, self-inflicted damage might be exempted from this rule in some cases..."
 Subtitle=_"There, it's done. You're completely fixed. You can go now."
-DisableOption=10
-DisableOption=0
-EnableOption=12
 LuaCode={
     heal_tux()
+    disable_node(0, 10)
+    enable_node(12)
 }
-
 ----------------------------------------------------------------------
 
 New Option Nr=20  OptionText=_" Doc... I really want the antidote."
 Subtitle=_"No! I am not giving it to you. Forget about it."
-DisableOption=20
-EnableOption=21
-EnableOption=30
-
+LuaCode={
+    disable_node(20)
+    enable_node(21, 30)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=21  OptionText=_" My patience is running out. Give me the antidote. Now."
 Subtitle=_"No! Over my dead body."
-DisableOption=21
-EnableOption=22
-
+LuaCode={
+    disable_node(21)
+    enable_node(22)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=22  OptionText=_" Your wish is my command."
 Subtitle=_"Huh? What?"
-DisableOption=22
 LuaCode={
     set_next_node(23)
+    disable_node(22)
 }
-
 ----------------------------------------------------------------------
 
 New Option Nr=23  OptionText=_" Humans... You are so interesting. I always wanted to know how much blood do you exacly have."
 Subtitle=_"Don't do this. Don't do this."
-DisableOption=23
 LuaCode={
     set_next_node(24)
+    disable_node(23)
 }
-
 ----------------------------------------------------------------------
 
 New Option Nr=24  OptionText=_" Prepare Doc. The experiment begins."
 Subtitle=_"Don't do this! DON'T DO THIS!"
 Subtitle=_"AAAAAAAAAAAA!"
-DisableOption=24
 LuaCode={
     set_next_node(25)
+    disable_node(24)
 }
-
 ----------------------------------------------------------------------
 
 New Option Nr=25  OptionText=_" Ugh. Human blood is disgusting. At least four liters. I feel sick."
 Subtitle=_" . . ."
-DisableOption=25
 LuaCode={
     set_next_node(26)
+    disable_node(25)
 }
-
 ----------------------------------------------------------------------
 
 New Option Nr=26  OptionText=_" I guess this means I get to inherit all your stuff. I hope you don't mind if I take everything?"
 Subtitle=_" . . ."
-DisableOption=26
 LuaCode={
     set_next_node(27)
+    disable_node(26)
 }
-
 ----------------------------------------------------------------------
 
 New Option Nr=27  OptionText=_" Good. I am very glad not to hear a disapproval."
 Subtitle=_" . . . "
-DisableOption=27
 LuaCode={
     drop_dead()
     give_item("Diet supplement",15)
@@ -240,22 +210,19 @@ LuaCode={
     give_item("Antibiotic",10)
     give_item("Brain Enlargement Pills Antidote",5)
     give_item("Laserscalpel",1)
+    disable_node(27)
 }
-
 ----------------------------------------------------------------------
 
 New Option Nr=30  OptionText=_" Forget it. Getting the antidote is not worth the effort."
 Subtitle=_"I am not giving it to you, and that won't change."
-DisableOption=30
-DisableOption=22
-DisableOption=20
-DisableOption=21
-
+LuaCode={
+    disable_node(20, 21, 22, 30)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=99  OptionText=_" See you later."
 Subtitle=_"See you later."
-EnableOption=99
 LuaCode={
     end_dialog()
 }

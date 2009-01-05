@@ -33,30 +33,31 @@ Beginning of new chat dialog for character="XXXXX"
 Initialization LuaCode={
     enable_node(0, 99)
 }
-
 ----------------------------------------------------------------------
-
 
 New Option Nr=0  OptionText=_" Hi! I'm new here."
 Subtitle=_"You don't say. I'm not living here either. I'm just on vacation."
 Subtitle=_"Normally I'm a fighter. But now I try to relax, chill, take it easy and have a lot of fun."
 Subtitle=_"And in case you couldn't tell, that was sarcasm."
-DisableOption=0
-EnableOption=1
-
+LuaCode={
+    disable_node(0)
+    enable_node(1)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=1  OptionText=_" Could you teach me how to fight?"
 EnableOption=1
-OnCondition="CookieIsPlanted:beat_up_pendragon:" JumpToOption=2 ElseGoto=3
-
+LuaCode={
+	if (cookie_planted("beat_up_pendragon")) then set_next_node(2) else set_next_node(3) end
+}
 ----------------------------------------------------------------------
 
 New Option Nr=2  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"NO! NO! Er... I mean, not right now. I am busy. Come again later."
-DisableOption=2
-
+LuaCode={
+    disable_node(2)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=3  OptionText="THIS WILL NOT EVER BE VISIBLE"
@@ -64,10 +65,8 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Sure. I can help you."
 Subtitle=_"For a price. Hundred bucks should be enough."
 LuaCode={
-    disable_node(3)
     run_subdialog("subdlg_Pendragon.dialog")
 }
-
 ----------------------------------------------------------------------
 
 New Option Nr=99  OptionText=_" See you later."

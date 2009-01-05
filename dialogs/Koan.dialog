@@ -39,8 +39,10 @@ Initialization LuaCode={
 
 New Option Nr=0  OptionText="KILLING DOUBLE TALK"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-OnCondition="CookieIsPlanted:koan_spared:" JumpToOption=2 ElseGoto=1
-DisableOption=0
+LuaCode={
+    if (cookie_planted("koan_spared")) then disable_node(0) else set_next_node(1) end
+    disable_node(0)
+}
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
@@ -51,17 +53,10 @@ Subtitle=_"So you have come. I knew Duncan would not let me live for too long."
 Subtitle=_"Once I am gone this oasis of peace in the world will dry up and die. A shame."
 Subtitle=_"I hoped to turn the whole desert into a sanctuary. And now my dream will never come true."
 Subtitle=_"Do what you must."
-DisableOption=1
-EnableOption=5
-EnableOption=6
-
-----------------------------------------------------------------------
-
-New Option Nr=2  OptionText="DO NOTHING NODE"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-DisableOption=2
-
-
+LuaCode={
+    disable_node(1)
+    enable_node(5, 6)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=5  OptionText=_" With pleasure."
@@ -70,22 +65,17 @@ LuaCode={
     drop_dead()
     respawn_level(18)
 }
-
 ----------------------------------------------------------------------
 
 New Option Nr=6  OptionText=_" No. I have not come here to kill you."
 Subtitle=_"Thank you."
 Subtitle=_"Feel free to stay here. There is no danger."
 Subtitle=_"The water is safe to drink and the fruit from the tree is quite delicious."
-DisableOption=5
-DisableOption=6
-EnableOption=99
-EnableOption=20
-EnableOption=10
 LuaCode={
     plant_cookie("koan_spared")
+    disable_node(5, 6)
+    enable_node(10, 20, 99)
 }
-
 ----------------------------------------------------------------------
 
 New Option Nr=10  OptionText=_" What is this place? Why there is grass and water under the desert?"
@@ -93,9 +83,10 @@ Subtitle=_"Ah, yes. That is my fault, I am afraid."
 Subtitle=_"Wherever I go, life follows me."
 Subtitle=_"I thought I could hide from Duncan in this old bunker."
 Subtitle=_"When I woke up next day, things were as you see them now."
-DisableOption=10
-EnableOption=11
-
+LuaCode={
+    disable_node(10)
+    enable_node(11)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=11  OptionText=_" This was a bunker?"
@@ -104,20 +95,21 @@ Subtitle=_"I like the way it is right now. The water cools everything down and t
 Subtitle=_"As soon as I leave, everything will die. I have seen that happen before."
 Subtitle=_"Because this place is just like a small bit of paradise, I decided to stay here."
 Subtitle=_"I do not want this wonderful bunker to become devoid of life again."
-DisableOption=11
-
+LuaCode={
+    disable_node(11)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=20  OptionText=_" Why does Duncan want you dead?"
 Subtitle=_"Very simple. He likes destruction, and I am creation."
 Subtitle=_"There is nothing more to it."
-DisableOption=20
-
+LuaCode={
+    disable_node(20)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=99  OptionText=_" I will go now."
 Subtitle=_"This place will always wait for you."
-EnableOption=99
 LuaCode={
     heal_tux()
     end_dialog()

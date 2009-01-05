@@ -33,16 +33,16 @@ Beginning of new chat dialog for character="XXXXX"
 Initialization LuaCode={
     enable_node(0, 99)
 }
-
 ----------------------------------------------------------------------
-
 
 New Option Nr=0  OptionText=_" Login : admin  Password : *******"
 Subtitle=_"Last login from /dev/ttyS0 on Sun, 23 mar 2057. admin@shielddefense: ~ #"
-DisableOption=0
-EnableOption=7
+LuaCode={
+    if (cookie_planted("MER_Password")) then set_next_node(3) else set_next_node(4) end
+    disable_node(0)
+    enable_node(7)
+}
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
-OnCondition="CookieIsPlanted:MER_Password:" JumpToOption=3 ElseGoto=4
 
 ----------------------------------------------------------------------
 
@@ -50,31 +50,27 @@ New Option Nr=1  OptionText=_" passwd"
 Subtitle=_" Changing password for admin. Enter new password: "
 Subtitle=_" Enter new password again: "
 Subtitle=_" Password successfully changed."
-DisableOption=1
-DisableOption=7
-EnableOption=8
 LuaCode={
     plant_cookie("MER_Password")
+    disable_node(1, 7)
+    enable_node(8)
 }
-
 ----------------------------------------------------------------------
 
 New Option Nr=3  OptionText="I HAVE CHANGED"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-DisableOption=3
-DisableOption=1
-DisableOption=7
-EnableOption=8
-
+LuaCode={
+    disable_node(1, 3, 7)
+    enable_node(8)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=4  OptionText="I HAVEN'T CHANGED"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-DisableOption=4
-EnableOption=1
-EnableOption=7
-DisableOption=8
-
+LuaCode={
+    disable_node(4, 8)
+    enable_node(1, 7)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=7  OptionText=_" shieldmgr --disable --force"
@@ -92,11 +88,9 @@ LuaCode={
     finish_mission(8)
     open_diary_entry(8, 3)
 }
-
 ----------------------------------------------------------------------
 
 New Option Nr=99  OptionText=_" logout"
-EnableOption=99
 LuaCode={
     end_dialog()
 }

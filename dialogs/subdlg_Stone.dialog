@@ -32,19 +32,16 @@ Beginning of new chat dialog for character="XXXXX"
 
 Initialization LuaCode={
 }
-
 ----------------------------------------------------------------------
-
 
 New Option Nr=0  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"You are Tux, aren't you..."
 Subtitle=_"The hero..."
-DisableOption=0
-EnableOption=1
-EnableOption=2
-DisableOption=99
-EnableOption=3
+LuaCode={
+    disable_node(1, 99)
+    enable_node(1, 2, 3)
+}
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
@@ -56,24 +53,19 @@ Subtitle=_"I hope your arrival changes the tide of this war..."
 Subtitle=_"I have something here for you. I managed to hide this Shotgun from the red guard."
 Subtitle=_"It used to belong to my grandfather, so it's very dear to me, but I'm sure he would have like you to have it on your journey to save us all."
 Subtitle=_"Tux, if you ever find out who started the Great Assault... GIVE THEM A KICK IN THE ASS, FROM LILY STONE!!!"
-DisableOption=1
-DisableOption=2
-DisableOption=3
 LuaCode={
     end_dialog()
     give_item("Two Barrel shotgun",1)
+    disable_node(1, 2, 3)
 }
-
 ----------------------------------------------------------------------
 
 New Option Nr=2  OptionText=_" It's not important who am I."
 Subtitle=_"If you want to remain a stranger, I will respect your wishes."
 Subtitle=_"So be it."
-DisableOption=2
-DisableOption=1
-DisableOption=3
 LuaCode={
     end_dialog()
+    disable_node(1, 2, 3)
 }
 ----------------------------------------------------------------------
 
@@ -81,11 +73,10 @@ New Option Nr=3  OptionText=_" Ha ha ha, You fell for it! You get nothing from m
 Subtitle=_"You... monster..."
 Subtitle=_"No one makes fun of Lily Stone's family store!"
 Subtitle=_"Say your prayers, you oversized duck!!!"
-DisableOption=3
 LuaCode={
     break_off_and_attack()
+    disable_node(3)
 }
-
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

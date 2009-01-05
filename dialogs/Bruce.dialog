@@ -31,7 +31,7 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 Initialization LuaCode={
-    enable_node(0, 50)
+    enable_node(0)
 }
 
 ----------------------------------------------------------------------
@@ -40,52 +40,55 @@ Initialization LuaCode={
 New Option Nr=0  OptionText=_" Hi. Are you all right? You don't look too good."
 Subtitle=_"Good day. I am Bruce."
 Subtitle=_"I am unwell."
-DisableOption=0
-EnableOption=1
-
+LuaCode={
+    disable_node(0)
+    enable_node(1)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=1  OptionText=_" How is it going?"
 Subtitle=_"I am very tired, but otherwise well."
-DisableOption=1
-EnableOption=2
-
+LuaCode={
+    disable_node(1)
+    enable_node(2)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=2  OptionText=_" You don't talk much, eh?"
 Subtitle=_"No, I am just too tired now. I have been working in the mine for two weeks now."
 Subtitle=_"I feel really wiped, so maybe it would be better if you came some other day."
-DisableOption=2
-EnableOption=3
-
+LuaCode={
+    disable_node(2)
+    enable_node(3)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=3  OptionText=_" Why do you work so hard in the mine?"
 Subtitle=_"Because I must! The Red Guard makes everyone work up to their limits!"
 Subtitle=_"If you do not work for a full work period, you will be in trouble."
 Subtitle=_"But I have no choice. I do not want to be a soldier again."
-DisableOption=3
-EnableOption=4
-
+LuaCode={
+    disable_node(3)
+    enable_node(4)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=4  OptionText=_" You were a soldier before? "
 Subtitle=_"Yes. I would rather not talk about it."
-DisableOption=4
-EnableOption=10
-EnableOption=8
-
+LuaCode={
+    disable_node(4)
+    enable_node(8, 10)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=5  OptionText=_" Good. Start talking. Now."
 Subtitle=_"Those are pretty painful and distant memories."
 Subtitle=_"After the Great Assault, I joined the Red Guard. They needed help and were looking for volunteers."
 Subtitle=_"I served there for a short while, and they even let me use an exterminator. But then after a failed mission, I resigned and never wore a uniform again."
-DisableOption=5
-EnableOption=98
-EnableOption=6
-EnableOption=7
-
+LuaCode={
+    disable_node(5)
+    enable_node(6, 7, 98)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=6  OptionText=_" You mentioned an exterminator. What is it?"
@@ -93,8 +96,9 @@ Subtitle=_"It is the best weapon that the Red Guard has against the bots."
 Subtitle=_"A direct hit from one of those guns is enough to change most bots into scrap metal."
 Subtitle=_"Many of the great victories of the Red Guard are thanks to the exterminator."
 Subtitle=_"Of course because of its small clip and terribly long reloading time, equally many deaths can be attributed to it."
-DisableOption=6
-
+LuaCode={
+    disable_node(6)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=7  OptionText=_" A failed mission?"
@@ -105,28 +109,27 @@ Subtitle=_"They were waiting for us. Came in endless swarms. More and more and m
 Subtitle=_"Our ammunition ran out. They got close. It was the end of team number nine. The Hell Fortress took their lives. I ran. I survived."
 Subtitle=_"After that I decided that I am not fit to be one of the Red Guard. I resigned and started to work in the mine shortly after."
 Subtitle=_"I do not want to face the anger of the Hell Fortress ever again. Never again."
-DisableOption=7
-
+LuaCode={
+    disable_node(7)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=8  OptionText=_" I said, I want to know about your life as a soldier."
 Subtitle=_"And I said that I do not want to talk about it. It hurts too much. Please stop asking about it and leave me alone."
-DisableOption=8
-DisableOption=10
-EnableOption=9
-
+LuaCode={
+    disable_node(8, 10)
+    enable_node(9)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=9  OptionText=_" You don't understand. I wasn't asking. Now, tell me about your life as a soldier, or I will tell the guards you are slacking off."
 Subtitle=_"No! Please... I will do anything, just do not call the Red Guard! They do not like people who left the service. They do not like me. "
 Subtitle=_"I will tell you everything."
-DisableOption=9
-EnableOption=5
-DisableOption=99
 LuaCode={
     plant_cookie("bruce_hurt")
+    disable_node(9, 99)
+    enable_node(5)
 }
-
 ----------------------------------------------------------------------
 
 New Option Nr=10  OptionText=_" I have some bad memories too. I know how hard it can be to talk about them. Keep your stories to yourself."
@@ -134,29 +137,18 @@ Subtitle=_"Yes. And now I would like to go to sleep. Good night Linarian."
 DisableOption=10
 DisableOption=8
 LuaCode={
+    disable_node(8, 10)
     end_dialog()
 }
+
 ----------------------------------------------------------------------
 
 New Option Nr=50  OptionText="DID TUX HARM BRUCE?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-DisableOption=50
-OnCondition="CookieIsPlanted:bruce_hurt:" JumpToOption=51 ElseGoto=52
+LuaCode={
+    if (cookie_planted("bruce_hurt")) then enable_node(98) else enable_node(99) end
+}
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
-
-----------------------------------------------------------------------
-
-New Option Nr=51  OptionText="YES."
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-DisableOption=51
-EnableOption=98
-
-----------------------------------------------------------------------
-
-New Option Nr=52  OptionText="NO."
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-DisableOption=52
-EnableOption=99
 
 ----------------------------------------------------------------------
 

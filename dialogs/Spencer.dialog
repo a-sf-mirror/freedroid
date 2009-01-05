@@ -31,38 +31,40 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 Initialization LuaCode={
-    enable_node(0, 41, 42, 99)
+    enable_node(0, 99)
 }
-
 ----------------------------------------------------------------------
-
 
 New Option Nr=0  OptionText=_" Hi! I'm new here."
 Subtitle=_"I'm Spencer. I'm the leader of the Red Guard. Is there anything I can help you with?"
-DisableOption=0
-EnableOption=1
-EnableOption=6
-
+LuaCode={
+    disable_node(0)
+    enable_node(1, 6)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=1  OptionText=_" I want to join the Red Guard."
 Subtitle=_"Hmm... Really? Well, you cannot join just like that, you know..."
 Subtitle=_"You must prove that you would make a good new member."
-DisableOption=1
-EnableOption=2
-
+LuaCode={
+    disable_node(1)
+    enable_node(2)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=2  OptionText=_" I really want to become a member."
 DisableOption=2
-OnCondition="CookieIsPlanted:tux_has_joined_guard:" JumpToOption=32 ElseGoto=33
-
+LuaCode={
+    disable_node(2)
+    if (cookie_planted("tux_has_joined_guard")) then 32 else 33 end
+}
 ----------------------------------------------------------------------
 
 New Option Nr=3  OptionText=_" What about some money instead?"
 Subtitle=_"For 15 million bucks, no less, hehe."
-DisableOption=3
-
+LuaCode={
+    disable_node(3)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=4  OptionText="ASSIGN WAREHOUSE MISSION"
@@ -70,9 +72,10 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"These are bad times. The interplanetary travel is made impossible by bot ships, so we need to stick to our local resources."
 Subtitle=_"We've got a list of stuff we'd need from the automated underground storage north of town. But the bots there are numerous."
 Subtitle=_"And currently I can't spare a single man from the city defenses. It's a quite difficult situation."
-EnableOption=5
-DisableOption=4
-
+LuaCode={
+    disable_node(4)
+    enable_node(5)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=5  OptionText=_" Maybe I could help somehow?"
@@ -81,39 +84,28 @@ Subtitle=_"But since you are said to be powerful and a former hero, I'll once mo
 Subtitle=_"I've unlocked the accessway to the warehouse. It's to the north of this town, somewhat hidden in the woods northeast."
 Subtitle=_"The stuff we need is on the first floor. Don't go any deeper, there are only bots in there."
 Subtitle=_"I wish you the best of luck."
-DisableOption=5
 LuaCode={
     assign_mission(5)
     open_diary_entry(5, 0)
     change_obstacle("AccessDoorToWarehouse", "opened")
+    disable_node(5)
 }
 ----------------------------------------------------------------------
 
 New Option Nr=6  OptionText=_" How is it going?"
-EnableOption=6
-OnCondition="MissionAssigned:5" JumpToOption=7 ElseGoto=4
-
-----------------------------------------------------------------------
-
-New Option Nr=7  OptionText="CHECK_WAREHOUSE_SUCCESS"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-DisableOption=7
-OnCondition="MissionComplete:5" JumpToOption=8 ElseGoto=9
-
-----------------------------------------------------------------------
-
-New Option Nr=8  OptionText="MISSION_IS_DONE"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-DisableOption=8
-OnCondition="CookieIsPlanted:reward_for_warehouse_given:" JumpToOption=10 ElseGoto=11
-
+LuaCode={
+    if (is_mission_assigned(5)) then
+        if (is_mission_complete(5)) then
+            if (cookie_planted("reward_for_warehouse_given")) then set_next_node(10) else set_next_node(11) end
+        else set_next_node(9) end
+    else set_next_node(4) end
+}
 ----------------------------------------------------------------------
 
 New Option Nr=9  OptionText="MISSION_IS_NOT_DONE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Not too good. Without the supplies from the warehouse we are doomed. So my problems are still the same."
 Subtitle=_"Maybe later, when you grow more experienced you might be able to help us after all."
-DisableOption=9
 
 ----------------------------------------------------------------------
 
@@ -121,7 +113,6 @@ New Option Nr=10  OptionText="DONT_GIVE_REWARD"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Thanks to you, we've been able to transport all the goods we need right now. You've really helped us out there."
 Subtitle=_"Rest assured that we will never forget your brave activity for our community."
-DisableOption=10
 
 ----------------------------------------------------------------------
 
@@ -130,83 +121,71 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Man, you really did it! I can hardly believe it, but all the bots are gone!"
 Subtitle=_"Take these 500 bucks as a reward.  And be assured that you've earned my deepest respect, Linarian."
 Subtitle=_"Our people are transporting the goods as we speak. It can't be too long until new bots from ships in the orbit of the planet will beam down to replace the dead bots."
-DisableOption=11
 LuaCode={
     add_gold(500)
     plant_cookie("reward_for_warehouse_given")
     open_diary_entry(5, 1)
 }
-
 ----------------------------------------------------------------------
 
 New Option Nr=12  OptionText=_" Have I done enough quests to become a member now?"
-EnableOption=12
-OnCondition="MissionComplete:1" JumpToOption=13 ElseGoto=14
-
+LuaCode={
+    if (is_mission_complete(1)) then set_next_node(13) else set_next_node(14) end
+}
 ----------------------------------------------------------------------
 
 New Option Nr=13  OptionText="DIXON SUCCESSFUL."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Dixon told me about the matter with his toolkit. He seemed pretty impressed by you."
-DisableOption=13
 LuaCode={
     set_next_node(17)
 }
-
 ----------------------------------------------------------------------
 
 New Option Nr=14  OptionText="DIXON NOT DONE YET"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"I think our teleporter service man, Dixon, he's got some problem. You might want to talk to him."
-DisableOption=14
 LuaCode={
     set_next_node(17)
 }
-
 ----------------------------------------------------------------------
 
 New Option Nr=15  OptionText="MICHELANGELO DONE."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"When I was eating, Michelangelo told me about his renewed oven energy supply. He seemed very pleased, and so was I."
-DisableOption=15
 LuaCode={
     set_next_node(18)
 }
-
 ----------------------------------------------------------------------
 
 New Option Nr=16  OptionText="MICHELANGELO NOT DONE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"I think you should visit the camp's cook sometime. He's usually in the restaurant kitchen."
-DisableOption=16
 LuaCode={
     set_next_node(18)
 }
-
 ----------------------------------------------------------------------
 
 New Option Nr=17  OptionText="IS MICHELANGELO DONE?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-DisableOption=17
-OnCondition="MissionComplete:2" JumpToOption=15 ElseGoto=16
-
+LuaCode={
+    if (is_mission_complete(2)) then set_next_node(15) else set_next_node(16) end
+}
 ----------------------------------------------------------------------
 
 New Option Nr=18  OptionText="IS TUX AN ARENA MASTER"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-DisableOption=18
-OnCondition="MissionComplete:3" JumpToOption=19 ElseGoto=20
-
+LuaCode={
+    if (is_mission_complete(3)) then set_next_node(19) else set_next_node(20) end
+}
 ----------------------------------------------------------------------
 
 New Option Nr=19  OptionText="TUX IS AN ARENA MASTER"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"From Butch I hear you've become a novice arena master. Congratulations."
-DisableOption=19
 LuaCode={
     set_next_node(21)
 }
-
 ----------------------------------------------------------------------
 
 New Option Nr=20  OptionText="TUX IS NOT AN ARENA MASTER"
@@ -216,58 +195,55 @@ DisableOption=20
 LuaCode={
     set_next_node(21)
 }
-
 ----------------------------------------------------------------------
 
 New Option Nr=21  OptionText="IS BENDER SICK?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-DisableOption=21
-OnCondition="MissionComplete:0" JumpToOption=22 ElseGoto=23
-
+LuaCode={
+    if (is_mission_complete(0)) then set_next_node(22) else set_next_node(23) end
+}
 ----------------------------------------------------------------------
 
 New Option Nr=22  OptionText="BENDER DONE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Helping Bender along was also a smart move. But you should be very careful with this one. He can get mad rather easily. A bit of a security threat, but we can't be too picky."
-DisableOption=22
 LuaCode={
     set_next_node(24)
 }
-
 ----------------------------------------------------------------------
 
 New Option Nr=23  OptionText="BENDER STILL SICK"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"As far as I know, Bender is still very sick."
-DisableOption=23
 LuaCode={
     set_next_node(24)
 }
-
 ----------------------------------------------------------------------
 
 New Option Nr=24  OptionText="WAREHOUSE MISSION DONE?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-DisableOption=24
-OnCondition="MissionComplete:5" JumpToOption=25 ElseGoto=27
-
+LuaCode={
+    if (is_mission_complete(5)) then set_next_node(25) else set_next_node(27) end
+}
 ----------------------------------------------------------------------
 
 New Option Nr=25  OptionText="WAREHOUSE DONE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"But most importantly, I was very impressed with you when you cleared out the warehouse. That was a huge deed I will never forget."
-DisableOption=25
 LuaCode={
     set_next_node(27)
 }
-
 ----------------------------------------------------------------------
 
-New Option Nr=27  OptionText="THERE ARE ENOUGH POINTS TO JOIN RG"
+New Option Nr=27  OptionText="ARE THERE ENOUGH POINTS TO JOIN RG"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-DisableOption=27
-OnCondition="OldTownMissionScoreAtLeast:50" JumpToOption=28 ElseGoto=29
-
+LuaCode={
+    if (get_town_score() > 49) then set_next_node(28)        -- Yes
+    else
+        if (get_town_score() > 29) then set_next_node(30)    -- Almost
+        else set_next_node(31) end                           -- Not even close
+    end
+}
 ----------------------------------------------------------------------
 
 New Option Nr=28  OptionText="JOINING TOWN GUARD"
@@ -276,28 +252,17 @@ Subtitle=_"OK. Your list of achievements is long enough. You can join us. So I h
 Subtitle=_"But now that you are in the Guard, know this: There is only one rule for us guards: We stick together. We survive together or we die together. But we do it together."
 Subtitle=_"And now you might want to inspect the guard house. Tell Tybalt to open the door for you. Lukas at the arms counter shall give you your armor."
 Subtitle=_"I hope you will prove yourself a worthy member of the Red Guard."
-DisableOption=28
-DisableOption=3
-DisableOption=12
 LuaCode={
     display_big_message("Joined Town Guard!!")
     plant_cookie("tux_has_joined_guard")
     make_tux_red_guard()
+    disable_node(3, 12)
 }
-
-----------------------------------------------------------------------
-
-New Option Nr=29  OptionText="SOME POINTS? ANYTHING?"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-DisableOption=29
-OnCondition="OldTownMissionScoreAtLeast:30" JumpToOption=30 ElseGoto=31
-
 ----------------------------------------------------------------------
 
 New Option Nr=30  OptionText="NEARLY THERE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"All in all, not quite so bad. But you still need to do the one thing or the other. Then we can talk about it."
-DisableOption=30
 
 ----------------------------------------------------------------------
 
@@ -311,39 +276,19 @@ DisableOption=31
 New Option Nr=32  OptionText="STUPID OPTION. IT MUST DIE."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"But you are a member of the Town Guard already! Don't be pulling my leg! Guards must stick together."
-DisableOption=32
-DisableOption=12
-
+LuaCode={
+    disable_node(12, 32)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=33  OptionText="NOT JOINED YET."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"This is not so easy. At first you must establish a reputation around here. Ask around, talk to people and build your reputation."
 Subtitle=_"Once you're a known character around here, we might let you join the ranks of the Guard."
-EnableOption=12
-EnableOption=3
-DisableOption=33
-
-----------------------------------------------------------------------
-
-New Option Nr=34  OptionText="GOT THE DATA CUBE?"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-DisableOption=34
-OnCondition="MissionComplete:7" JumpToOption=35 ElseGoto=36
-
-----------------------------------------------------------------------
-
-New Option Nr=35  OptionText="GOT IT!"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-DisableOption=35
-EnableOption=37
-
-----------------------------------------------------------------------
-
-New Option Nr=36  OptionText="DO NOTHING"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-DisableOption=36
-
+LuaCode={
+    disable_node(33)
+    enable_node(3, 12)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=37  OptionText=_" I've heard Richard obtained new information on the colony."
@@ -352,9 +297,10 @@ Subtitle=_"The data on the cube he obtained indicates the existence of a secret 
 Subtitle=_"If the information is true, then you can take over the control droid and disable the shield permanently so we can get in."
 Subtitle=_"We know that MS had a firmware update system, which could be used to propagate a malicious update to disable all bots. It is very alluring, but to perform this trick you need to hack up the control droid, which is in the heart of the HF. To enter HF you would have to disable the disruptor shield."
 Subtitle=_"This seems like a gift sent from the heavens. Cleaning the Hell Fortress is not going to be easy, though.."
-DisableOption=37
-EnableOption=38
-
+LuaCode={
+    disable_node(37)
+    enable_node(38)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=38  OptionText=_" I'd like to participate in this operation."
@@ -362,52 +308,41 @@ Subtitle=_"That's most kind of you to volunteer. So far, I've sent two scouts in
 Subtitle=_"That is a good sign, because it shows that the key combinations from the data cube were correct."
 Subtitle=_"However, we lost contact with them shortly after they went inside. They also reported heavy bot resistance."
 Subtitle=_"I'd be glad if you could take a look. But use outmost care. We can't afford to lose another guard."
-DisableOption=38
-EnableOption=39
-EnableOption=40
-
+LuaCode={
+    disable_node(38)
+    enable_node(39, 40)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=39  OptionText=_" OK. I'll be careful. But I'll do it."
 Subtitle=_"Good. The base entrance is somewhat hidden in the caves to the northeast. Best use the north gate out of town, then head east, and turn north again along the shore."
 Subtitle=_"I wish you the best of luck for this operation. It might be that our survival depends on it. Don't wait for assistance."
 Subtitle=_"Try to get control over the disruptor shield if you can. The control droid should be somewhere on the lowest level of the installation. Simply destroying the droid might suffice in disabling the shield."
-DisableOption=39
-DisableOption=40
 LuaCode={
     assign_mission(8)
     change_obstacle("DisruptorShieldBaseGate", "opened")
+    disable_node(39, 40)
 }
-
 ----------------------------------------------------------------------
 
 New Option Nr=40  OptionText=_" I don't feel like doing it now. I'd rather prepare some more."
 Subtitle=_"Good. You should be well prepared if you intend to go."
 Subtitle=_"Also there is no need to hurry with this. After all, the installation is not running away, so best take a slow approach."
-DisableOption=40
-
+LuaCode={
+    disable_node(40)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=41  OptionText="STARTED THE CUBE MISSION?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-DisableOption=41
-OnCondition="MissionAssigned:8" JumpToOption=36 ElseGoto=34
+LuaCode={
+    if (not is_mission_assigned(8)) then
+        if (is_mission_complete(7)) then enable_node(37) else end
+    else end
+
+    if (is_mission_complete(8)) then enable_node(44) else end    -- Ready for HF?
+}
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
-
-----------------------------------------------------------------------
-
-New Option Nr=42  OptionText="READY FOR HF?"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-DisableOption=42
-OnCondition="MissionComplete:8" JumpToOption=43 ElseGoto=36
-AlwaysExecuteThisOptionPriorToDialogStart="yes"
-
-----------------------------------------------------------------------
-
-New Option Nr=43  OptionText="ENABLE HF BRIEFING"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-DisableOption=43
-EnableOption=44
 
 ----------------------------------------------------------------------
 
@@ -416,26 +351,23 @@ Subtitle=_"Good. We cannot help you much in this final mission, but I can tell y
 Subtitle=_"They carried out some development there, and had part of their patching division and update management department. The actual factory is located behind the office. With a bit of luck, you might not need to access it. We know they have their update server in the office. If you can find it and get it to propagate a faulty update, this could suffice to stopping bots dead in their tracks."
 Subtitle=_"Look for the entrance of the office in the crystal fields. I will send a message to the guards so they let you pass. Then you will be on your own."
 Subtitle=_"Good luck."
-DisableOption=44
-EnableOption=45
 LuaCode={
     assign_mission(9)
+    disable_node(44)
+    enable_node(45)
 }
-
 ----------------------------------------------------------------------
 
 New Option Nr=45  OptionText=_" I will need some time to get myself ready before I clean up the Hell Fortress."
 Subtitle=_"You had better be ready."
-EnableOption=45
 
 ----------------------------------------------------------------------
 
 New Option Nr=99  OptionText=_" I'll be going then."
 Subtitle=_"See you later."
-EnableOption=2
-EnableOption=99
 LuaCode={
     end_dialog()
+    enable_node(2)
 }
 ----------------------------------------------------------------------
 

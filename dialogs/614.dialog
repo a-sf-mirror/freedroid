@@ -82,6 +82,7 @@ New Option Nr=99  OptionText=_" See you later."
 Subtitle=_" Resuming guard program."
 LuaCode={
     enable_node(0, 1, 2, 3)
+    disable_node(4)
     end_dialog()
 }
 ----------------------------------------------------------------------

@@ -32,15 +32,14 @@ Beginning of new chat dialog for character="XXXXX"
 
 Initialization LuaCode={
 }
-
 ----------------------------------------------------------------------
-
 
 New Option Nr=0  OptionText=_"HERE WE GO"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-DisableOption=0
-EnableOption=99
-EnableOption=1
+LuaCode={
+    disable_node(0)
+    enable_node(1, 99)
+}
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
@@ -49,9 +48,10 @@ New Option Nr=1  OptionText=_" Tell me more."
 Subtitle=_"Ah, excellent."
 Subtitle=_"A... friend of mine, Koan, stole something of great value to me."
 Subtitle=_"He is hiding somewhere in the desert, I don't know exactly where."
-DisableOption=1
-EnableOption=2
-
+LuaCode={
+    disable_node(1)
+    enable_node(2)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=2  OptionText=_" I will get your property back."
@@ -59,12 +59,10 @@ Subtitle=_"Excellent. I am pleased to hear this."
 Subtitle=_"There is something you must know."
 Subtitle=_"There are not too many bots in the desert, but they are undefeatable. It is best to avoid them."
 Subtitle=_"I will be waiting here for your return."
-DisableOption=2
-DisableOption=99
-EnableOption=7
-EnableOption=6
-EnableOption=5
-
+LuaCode={
+    disable_node(2, 99)
+    enable_node(5, 6, 7)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=5  OptionText=_" What are those bots?"
@@ -72,19 +70,20 @@ Subtitle=_"We call them 'Sawmill'."
 Subtitle=_"They were designed to chop down trees in the mountains."
 Subtitle=_"Now they chop down people."
 Subtitle=_"Their only weak point is their security system. But no one managed to stay alive long enough to hack them."
-DisableOption=5
-
+LuaCode={
+    disable_node(5)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=6  OptionText=_" What is that thing he took from you?"
 Subtitle=_"A cube. You can't miss it. Trust me."
-DisableOption=6
-
+LuaCode={
+    disable_node(6)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=7  OptionText=_" That is all I need to know. I will find Koan."
 Subtitle=_"Only time will tell."
-EnableOption=7
 LuaCode={
     change_obstacle("DesertGate", "opened")
     end_dialog()
@@ -93,10 +92,10 @@ LuaCode={
 
 New Option Nr=99  OptionText=_" No, I don't find bloodshed a pleasurable activity."
 Subtitle=_"That is fine. I will find someone else."
-DisableOption=99
 LuaCode={
     end_dialog()
 }
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"
+

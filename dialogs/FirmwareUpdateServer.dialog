@@ -41,19 +41,19 @@ New Option Nr=0  OptionText="THIS WILL NEVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Welcome to MS firmware upgrade server for region #54658."
 Subtitle=_"Please select action"
-DisableOption=0
-EnableOption=1
-EnableOption=2
-DisableOption=3
-EnableOption=99
+LuaCode={
+    disable_node(0, 3)
+    enable_node(1, 2, 99)
+}
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
 New Option Nr=1  OptionText=_" Get current OS version"
 Subtitle=_"Currently deployed firmware is v. 5.0.8+worldto-nogpl."
-DisableOption=1
-
+LuaCode={
+    disable_node(1)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=2  OptionText=_" Propagate firmware update"
@@ -63,29 +63,23 @@ Subtitle=_"Waiting for all connections...."
 Subtitle=_"..."
 Subtitle=_"..."
 Subtitle=_"Firmware update propagated!"
-DisableOption=1
-DisableOption=2
-EnableOption=3
 LuaCode={
     finish_mission(9)
+    disable_node(1, 2)
+    enable_node(3)
 }
-
 ----------------------------------------------------------------------
 
 New Option Nr=3  OptionText=_" Get current OS version"
 Subtitle=_"Currently deployed firmware is v. 5.0.8+tuxwashere+gpl"
-DisableOption=1
-DisableOption=2
-EnableOption=3
 LuaCode={
     set_bot_state("free")
+    disable_node(1, 2)
+    enable_node(3)
 }
-
-
 ----------------------------------------------------------------------
 
 New Option Nr=99  OptionText=_" Logout"
-EnableOption=99
 LuaCode={
     end_dialog()
 }

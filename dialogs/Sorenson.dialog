@@ -31,14 +31,12 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 Initialization LuaCode={
-    enable_node(0)
+    enable_node(20, 30, 40, 50, 99)
 }
-
 ----------------------------------------------------------------------
 
-
 New Option Nr=0  OptionText=_" Um... Hello?"
-Subtitle=_"AH! Visitors! Come in! Come in!"
+Subtitle=_"AH! A Visitor! Come in! Come in!"
 DisableOption=0
 LuaCode={
     set_next_node(1)
@@ -50,11 +48,6 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 New Option Nr=1  OptionText=_" I think I must go now. Right now. See you later."
 Subtitle=_"No, don't go. I will not let you go before we talk. Important things."
 Subtitle=_"I can help you understand computers... Greater than ever before."
-EnableOption=20
-EnableOption=99
-EnableOption=50
-EnableOption=40
-EnableOption=30
 
 ----------------------------------------------------------------------
 
@@ -62,32 +55,27 @@ New Option Nr=20  OptionText=_" Who are you?"
 Subtitle=_"I? Sorenson is a great computer person."
 Subtitle=_"Knows the deep codes. Walks the paths."
 Subtitle=_"Sees the light of all chips. Knows how to use every keyboard."
-DisableOption=20
 LuaCode={
     set_next_node(21)
+    disable_node(20)
 }
-
 ----------------------------------------------------------------------
 
 New Option Nr=21  OptionText=_" Erm..."
 Subtitle=_"Sees the bit. Knows the bytes. Explores the great networks."
 Subtitle=_"The best friend of the clean and pure code."
 Subtitle=_"The great light on the night sky of the hollow web of computer power."
-DisableOption=21
 LuaCode={
     set_next_node(22)
 }
-
 ----------------------------------------------------------------------
 
 New Option Nr=22  OptionText=_" Yes, I get the idea..."
 Subtitle=_"Seeker of clean languages. The great knower of obscure secrets."
 Subtitle=_"The one who speaks to hard drives. The best --"
-DisableOption=22
 LuaCode={
     set_next_node(23)
 }
-
 ----------------------------------------------------------------------
 
 New Option Nr=23  OptionText=_" I KNOW! I KNOW!"
@@ -95,18 +83,17 @@ Subtitle=_"Oh."
 Subtitle=_"Sorenson did not tell you most yet."
 Subtitle=_"She did not tell you she is the great controler of light."
 Subtitle=_"She did not tell you she is the walker of the dark corridors --"
-DisableOption=23
 LuaCode={
     set_next_node(24)
 }
-
 ----------------------------------------------------------------------
 
 New Option Nr=24  OptionText=_" STOP! STOP! I CANNOT TAKE THIS ANYMORE! MY HEAD HURTS!"
 Subtitle=_"Apology is being extended by me. Sorenson overdid it."
 Subtitle=_"Sorenson the coder greets you."
-DisableOption=24
-
+LuaCode={
+    disable_node(24)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=30  OptionText=_" Why are you like this? What happened to you?"
@@ -114,50 +101,47 @@ Subtitle=_"Was learning COBOL. Pain. Torture. Horrible screaming."
 Subtitle=_"Sorenson ask for help. Many days and nights."
 Subtitle=_"Light arrived. Light offered help. Sorenson changed."
 Subtitle=_"Free person now."
-DisableOption=30
-EnableOption=31
-
+LuaCode={
+    disable_node(30)
+    enable_node(31)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=31  OptionText=_" What is this COBOL?"
 Subtitle=_"COBOL is the mind-crippler."
 Subtitle=_"Don't use it. Forget the cursed name. COBOL is pain. COBOL is hate."
-DisableOption=31
-
+LuaCode={
+    disable_node(31)
+}
 ----------------------------------------------------------------------
 
-New Option Nr=40  OptionText=_" I see you have a huge book collection. Mind if I buy some from you?"
-Subtitle=_"Of course. Trade is good."
-DisableOption=40
-EnableOption=41
+New Option Nr=40  OptionText=_" I see you have a huge sourcecode book collection. Mind if I buy some from you?"
+Subtitle=_"Of course not. Trade is good."
 LuaCode={
     trade_with("Sorenson")
+    disable_node(40)
+    enable_node(41)
 }
-
 ----------------------------------------------------------------------
 
 New Option Nr=41  OptionText=_" Can I take a look at your books again?"
 Subtitle=_"Yes. Sure. Of course."
-EnableOption=41
 LuaCode={
     trade_with("Sorenson")
 }
-
 ----------------------------------------------------------------------
 
 New Option Nr=50  OptionText=_" You got me curious. How can you help me understand computers better?"
 Subtitle=_"Simplicity! Sign this contract. No need to read it."
 Subtitle=_"You trust Sorenson, right?"
 LuaCode={
-    disable_node(50)
     run_subdialog("subdlg_Sorenson.dialog")
+    disable_node(50)
 }
-
 ----------------------------------------------------------------------
 
 New Option Nr=99  OptionText=_" I really must be going now. Goodbye."
 Subtitle=_"Please come back later, Linarian. We must talk again."
-EnableOption=99
 LuaCode={
     end_dialog()
 }

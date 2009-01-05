@@ -33,22 +33,20 @@ Beginning of new chat dialog for character="XXXXX"
 Initialization LuaCode={
     enable_node(0, 99)
 }
-
 ----------------------------------------------------------------------
 
-
 New Option Nr=0  OptionText=_"This is MegaSys test bot, running very basic version of their OS. I can do nothing with this bot, because it doesn't know how to do anything."
-DisableOption=0
+LuaCode={
+    disable_node(0)
+}
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
 New Option Nr=99  OptionText=_" logout"
-EnableOption=99
 LuaCode={
     end_dialog()
 }
-
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

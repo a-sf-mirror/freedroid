@@ -32,15 +32,15 @@ Beginning of new chat dialog for character="XXXXX"
 
 Initialization LuaCode={
 }
-
 ----------------------------------------------------------------------
 
 
 New Option Nr=0  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-DisableOption=0
-EnableOption=4
-EnableOption=99
+LuaCode={
+    disable_node(0)
+    enable_node(4, 99)
+}
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
@@ -48,23 +48,17 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 New Option Nr=1  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"You don't have enough cash, cheapskate. Come back when you can afford to pay me."
-DisableOption=1
-
-----------------------------------------------------------------------
-
-New Option Nr=2  OptionText="THIS WILL NOT EVER BE VISIBLE"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-DisableOption=2
-OnCondition="PointsToDistributeAtLeast:5" JumpToOption=5 ElseGoto=6
 
 ----------------------------------------------------------------------
 
 New Option Nr=4  OptionText=_" Improve Hacking Ability (cost 300 cash, 5 ability points)"
-EnableOption=4
 LuaCode={
     change_obstacle("KevinsDoor", "opened")
+    if (get_gold() < 300 ) then set_next_node(1) 
+    else 
+       if (get_training_points() > 4) then set_next_node(5) else set_next_node(6) end
+    end
 }
-OnCondition="GoldIsLessThan:300" JumpToOption=1 ElseGoto=2
 ----------------------------------------------------------------------
 
 New Option Nr=5  OptionText="THIS WILL NOT EVER BE VISIBLE"
@@ -72,25 +66,21 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Good. The most important thing about hacking is to understand the nature of the machine you want to hack."
 Subtitle=_"Once you have figured out what the creators of the system were doing when setting it up, you'll also know how to best hack it."
 Subtitle=_"Now I see your hacking skill has already improved a lot."
-DisableOption=5
 LuaCode={
     add_gold(-300)
     eat_training_points(5)
     improve_program("Hacking")
 }
-
 ----------------------------------------------------------------------
 
 New Option Nr=6  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"You don't have enough experience. I can't teach you anything more this way."
-DisableOption=6
 
 ----------------------------------------------------------------------
 
 New Option Nr=99  OptionText=_" [BACK]"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-EnableOption=99
 LuaCode={
     end_dialog()
 }

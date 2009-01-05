@@ -32,17 +32,14 @@ Beginning of new chat dialog for character="XXXXX"
 
 Initialization LuaCode={
 }
-
 ----------------------------------------------------------------------
-
 
 New Option Nr=0  OptionText="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-DisableOption=0
-EnableOption=99
-EnableOption=1
-EnableOption=2
-EnableOption=3
+LuaCode={
+    disable_node(0)
+    enable_node(1, 2, 3, 99)
+}
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
@@ -55,46 +52,35 @@ Subtitle=_"You must know when to hack and when not to hack. You must attack when
 Subtitle=_"Now watch. Observe carefully. See how I enter the system... Yes. Watch the connection glowing, burning like a bright star..."
 Subtitle=_"...only to die seconds after, as the system far away collapses under it's own weight... It's done."
 Subtitle=_"That is all I want to show you for now. Maybe later I will teach you something else."
-DisableOption=1
-DisableOption=2
-DisableOption=3
 LuaCode={
     plant_cookie("kevin_reward1_given")
     improve_program("Hacking")
+    disable_node(1, 2, 3)
 }
-
 ----------------------------------------------------------------------
 
 New Option Nr=2  OptionText=_" I don't want any reward. Just gratitude."
 Subtitle=_"Of course you can have that. There, I'm most grateful to you. That should do."
-DisableOption=2
-DisableOption=1
-DisableOption=3
 LuaCode={
     plant_cookie("kevin_reward1_given")
+    disable_node(1, 2, 3)
 }
-
 ----------------------------------------------------------------------
 
 New Option Nr=3  OptionText=_" I want money."
 Subtitle=_"Eh... Here, take these 500 bucks. That should be enough."
-DisableOption=3
-DisableOption=2
-DisableOption=1
 LuaCode={
     add_gold(500)
     plant_cookie("kevin_reward1_given")
+    disable_node(1, 2, 3)
 }
-
 ----------------------------------------------------------------------
 
 New Option Nr=99  OptionText=_" [BACK]"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-EnableOption=99
 LuaCode={
     end_dialog()
 }
-
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"
