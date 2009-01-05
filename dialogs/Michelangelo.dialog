@@ -31,7 +31,7 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 Initialization LuaCode={
-    enable_node(0, 30, 34, 99)
+    enable_node(0, 30, 99)
 }
 ----------------------------------------------------------------------
 
@@ -51,6 +51,31 @@ LuaCode={
     disable_node(10)
     enable_node(18)
 }
+----------------------------------------------------------------------
+
+New Option Nr=11  OptionText=_" Can I buy some food here?"
+Subtitle=_"There is no food here, just the odious military rations."
+Subtitle=_"Made fully out of artificial nutrients and carcinogenic flavors. Even the army hated them."
+Subtitle=_"It's better than starving, but some people have already committed suicide because that repulsive material is the only thing available to eat."
+Subtitle=_"I can give you some, but it's not worthy of being called food."
+LuaCode={
+    disable_node(11)
+    enable_node(12)
+}
+
+----------------------------------------------------------------------
+
+New Option Nr=12  OptionText=_" I want some yummy army snacks!"
+Subtitle=_"I am supposed to read this out to all newcomers. Here goes:"
+Subtitle=_"'Please note that the army meal model #23 you are about to eat is provided 'as is' without warranty of any kind."
+Subtitle=_"That includes the implied warranty of edibility or fitness for a particular purpose. The entire risk as to the quality of the food is with you."
+Subtitle=_"Should the army meal model #23 prove poisonous, you agree to cover the cost of keeping you alive by the colony medical staff or the costs of your cremation in our nuclear furnaces.'"
+Subtitle=_"Well, that is all. Here is the junk that you wanted. Enjoy."
+LuaCode={
+    set_next_node(27)
+    disable_node(12)
+}
+
 ----------------------------------------------------------------------
 
 New Option Nr=18  OptionText=_" You do not sound happy. What is wrong?"
@@ -73,7 +98,6 @@ Subtitle=_"Linarian, have you been gorging on psychoactive pills or something?"
 Subtitle=_"Get a grip, the situation is bad and there is no use in pretending otherwise."
 LuaCode={
     disable_node(19)
-    enable_node(7)
 }
 ----------------------------------------------------------------------
 
@@ -87,68 +111,12 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-New Option Nr=70  OptionText=_" Why don't you send someone for the dilithium?"
-Subtitle=_"I did."
-Subtitle=_"Yesterday a guard patrol found a few tiny bits of him and lots of dried blood."
-Subtitle=_"The bots made a bloody mess out of him."
-LuaCode={
-    disable_node(70)
-}
-----------------------------------------------------------------------
-
-New Option Nr=80  OptionText=_" I can get you some dilithium."
-Subtitle=_"Have you gotten overheated, Linarian?"
-Subtitle=_"Look, there are dozens of ways you can kill yourself, and most hurt less than being killed by a bot."
-Subtitle=_"If you want to die just walk into a nuclear reactor or something. So much simpler."
-LuaCode={
-    disable_node(80)
-    enable_node(81)
-}
-----------------------------------------------------------------------
-
-New Option Nr=81  OptionText=_" I'll be fine. Don't worry."
-Subtitle=_"Do you know how the bots act? Some want to kill you as soon as possible... Others want to do the same, but slowly."
-Subtitle=_"I have seen corpses with nearly all of the fingers ripped out. People with eyes drilled out with some big tool. "
-Subtitle=_"I smelled burnt meat and heard the screams of the captives as they were incinerated alive outside the city walls. "
-Subtitle=_"The bots know no mercy. They cannot even define it, damn scrap metal fiends."
-Subtitle=_"Feel free to go, Linarian, but make sure to be very dead before they start killing you."
-LuaCode={
-    assign_mission(2)
-    open_diary_entry(2, 0)
-    disable_node(19, 40, 41, 42, 70, 81)
-    enable_node(82)
-}
-----------------------------------------------------------------------
-
 New Option Nr=24  OptionText=_" Got any food yet?"
 Subtitle=_"I had prepared some delicacies, but the ravenous Red Guard ate it all."
 Subtitle=_"Not a big loss, I have a second batch of food cubes in the oven and they will be ready shortly."
 Subtitle=_"I think the mood in the town will improve once the cooking master Michelangelo gets to work. Ha!"
 LuaCode={
     disable_node(24)
-}
-----------------------------------------------------------------------
-
-New Option Nr=11  OptionText=_" Can I buy some food here?"
-Subtitle=_"There is no food here, just the odious military rations."
-Subtitle=_"Made fully out of artificial nutrients and carcinogenic flavors. Even the army hated them."
-Subtitle=_"It's better than starving, but some people have already committed suicide because that repulsive material is the only thing available to eat."
-Subtitle=_"I can give you some, but it's not worthy of being called food."
-LuaCode={
-    disable_node(11)
-    enable_node(12)
-}
-----------------------------------------------------------------------
-
-New Option Nr=12  OptionText=_" I want some yummy army snacks!"
-Subtitle=_"I am supposed to read this out to all newcomers. Here goes:"
-Subtitle=_"'Please note that the army meal model #23 you are about to eat is provided 'as is' without warranty of any kind."
-Subtitle=_"That includes the implied warranty of edibility or fitness for a particular purpose. The entire risk as to the quality of the food is with you."
-Subtitle=_"Should the army meal model #23 prove poisonous, you agree to cover the cost of keeping you alive by the colony medical staff or the costs of your cremation in our nuclear furnaces.'"
-Subtitle=_"Well, that is all. Here is the junk that you wanted. Enjoy."
-LuaCode={
-    set_next_node(27)
-    disable_node(12)
 }
 ----------------------------------------------------------------------
 
@@ -207,7 +175,8 @@ LuaCode={
 New Option Nr=34  OptionText="MISSION IS DONE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-   if (is_mission_complete(2)) then set_next_node(35) else end
+    disable_node(34)
+    if (is_mission_complete(2)) then set_next_node(35) else end
 }
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
@@ -228,6 +197,39 @@ LuaCode={
 }
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
+----------------------------------------------------------------------
+
+New Option Nr=70  OptionText=_" Why don't you send someone for the dilithium?"
+Subtitle=_"I did."
+Subtitle=_"Yesterday a guard patrol found a few tiny bits of him and lots of dried blood."
+Subtitle=_"The bots made a bloody mess out of him."
+LuaCode={
+    disable_node(70)
+}
+----------------------------------------------------------------------
+
+New Option Nr=80  OptionText=_" I can get you some dilithium."
+Subtitle=_"Have you gotten overheated, Linarian?"
+Subtitle=_"Look, there are dozens of ways you can kill yourself, and most hurt less than being killed by a bot."
+Subtitle=_"If you want to die just walk into a nuclear reactor or something. So much simpler."
+LuaCode={
+    disable_node(80)
+    enable_node(81)
+}
+----------------------------------------------------------------------
+
+New Option Nr=81  OptionText=_" I'll be fine. Don't worry."
+Subtitle=_"Do you know how the bots act? Some want to kill you as soon as possible... Others want to do the same, but slowly."
+Subtitle=_"I have seen corpses with nearly all of the fingers ripped out. People with eyes drilled out with some big tool. "
+Subtitle=_"I smelled burnt meat and heard the screams of the captives as they were incinerated alive outside the city walls. "
+Subtitle=_"The bots know no mercy. They cannot even define it, damn scrap metal fiends."
+Subtitle=_"Feel free to go, Linarian, but make sure to be very dead before they start killing you."
+LuaCode={
+    assign_mission(2)
+    open_diary_entry(2, 0)
+    disable_node(19, 40, 41, 42, 70, 81)
+    enable_node(82)
+}
 ----------------------------------------------------------------------
 
 New Option Nr=82  OptionText=_" Where can I get the crystals?"
