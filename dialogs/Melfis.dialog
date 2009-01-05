@@ -65,7 +65,6 @@ LuaCode={
 
 New Option Nr=3  OptionText=_" I wish I knew what you are talking about."
 Subtitle=_"Verschwinde."
-DisableOption=3
 LuaCode={
     end_dialog()
     disable_node(3)

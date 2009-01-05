@@ -65,8 +65,8 @@ LuaCode={
 
 New Option Nr=3  OptionText=_" BANZAI! DIE DIE DIE!"
 Subtitle=_"Wha --"
-DisableOption=3
 LuaCode={
+    disable_node(3)
     drop_dead()
     everybody_hostile()
 }
@@ -180,7 +180,6 @@ LuaCode={
 
 New Option Nr=15  OptionText=_" End the violence! All blood is red!"
 Subtitle=_"Hey, the bots bleed black. With oil."
-DisableOption=15
 LuaCode={
     disable_node(15)
     set_next_node(16)

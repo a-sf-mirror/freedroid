@@ -37,8 +37,8 @@ Initialization LuaCode={
 
 New Option Nr=0  OptionText=_" Um... Hello?"
 Subtitle=_"AH! A Visitor! Come in! Come in!"
-DisableOption=0
 LuaCode={
+    disable_node(0)
     set_next_node(1)
 }
 AlwaysExecuteThisOptionPriorToDialogStart="yes"

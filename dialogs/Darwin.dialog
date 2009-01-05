@@ -104,7 +104,6 @@ LuaCode={
 
 New Option Nr=7  OptionText=_" You guys are totally nuts. Get a life."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-DisableOption=7
 LuaCode={
     set_next_node(8)
     disable_node(7)

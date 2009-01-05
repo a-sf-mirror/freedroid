@@ -108,7 +108,6 @@ LuaCode={
 New Option Nr=22  OptionText=_" Can I help you somehow?"
 Subtitle=_"We need people badly, so it would be great if you could give us a helping hand even for a few days."
 Subtitle=_"Now, what are your skills? Where do you think you could be the most useful?"
-DisableOption=22
 LuaCode={
     set_next_node(23)
     disable_node(22)
@@ -294,8 +293,6 @@ New Option Nr=38  OptionText=_" Deal. Here is your toolkit. Now cough up the mon
 Subtitle=_"Here. It is all there."
 Subtitle=_"Now get out of here. I am a pacifist, but I am willing to make a special exception just for you."
 Subtitle=_"Get out of my sight."
-DisableOption=38
-DisableOption=41
 LuaCode={
     end_dialog()
     add_gold(250)
@@ -410,7 +407,6 @@ Subtitle=_"Nope. Some things you just have to see with your own eyes."
 Subtitle=_"The Library of Alexandria, the Colossus of Rhodes, the Black Island..."
 Subtitle=_"And this is just one of those things."
 Subtitle=_"Just go and see for yourself. Otherwise you will not believe me."
-DisableOption=48
 LuaCode={
     open_diary_entry(1, 3)
     disable_node(48)

@@ -38,17 +38,18 @@ Initialization LuaCode={
 
 New Option Nr=0  OptionText="START HERE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-DisableOption=0
-EnableOption=99
-EnableOption=1
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
+LuaCode={
+    disable_node(0)
+    enable_node(1, 99)
+}
 
 ----------------------------------------------------------------------
 
 New Option Nr=1  OptionText=_" Sure. I'll sign it."
 Subtitle=_"Go0d. H3re is th3 con7ract. S1gn it!"
-DisableOption=1
 LuaCode={
+    disable_node(1)
     set_next_node(20)
 }
 
@@ -56,47 +57,55 @@ LuaCode={
 
 New Option Nr=2  OptionText=_" Um... Your voice sounds strange. Is everything fine?"
 Subtitle=_"519n 7h3 (0n7r4(7!!!!"
-DisableOption=2
-EnableOption=3
+LuaCode={
+    disable_node(2)
+    enable_node(3)
+}
 
 ----------------------------------------------------------------------
 
 New Option Nr=3  OptionText=_" Please calm down. You must speak clearly and slowly. Please stop breathing smoke like that, it bothers my throat. And what is the deal with the red glowing eyes? You should see a doctor. "
 Subtitle=_"519n 17!!!!"
-DisableOption=3
+LuaCode={
+    disable_node(3)
+}
 
 ----------------------------------------------------------------------
 
 New Option Nr=20  OptionText=_" Ok, here go --"
 Subtitle=_"N0! 1n bl00d!"
-DisableOption=20
-EnableOption=2
-EnableOption=30
-EnableOption=98
+LuaCode={
+    disable_node(20)
+    enable_node(2)
+    enable_node(30)
+    enable_node(98)
+}
 
 ----------------------------------------------------------------------
 
 New Option Nr=30  OptionText=_" Sure, no problem... Now, how shall I sign this?"
-DisableOption=30
-DisableOption=3
-DisableOption=2
-DisableOption=98
-DisableOption=99
-EnableOption=46
-EnableOption=45
-EnableOption=44
-EnableOption=43
-EnableOption=42
-EnableOption=41
-EnableOption=40
+LuaCode={
+    disable_node(30)
+    disable_node(3)
+    disable_node(2)
+    disable_node(98)
+    disable_node(99)
+    enable_node(46)
+    enable_node(45)
+    enable_node(44)
+    enable_node(43)
+    enable_node(42)
+    enable_node(41)
+    enable_node(40)
+}
 
 ----------------------------------------------------------------------
 
 New Option Nr=40  OptionText=_" Tux."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Yes! I am free! At last I am free!"
-DisableOption=40
 LuaCode={
+    disable_node(40)
     set_next_node(70)
 }
 
@@ -105,8 +114,8 @@ LuaCode={
 New Option Nr=41  OptionText=_" Tux, the Linarian"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Yes! I am free!"
-DisableOption=41
 LuaCode={
+    disable_node(41)
     set_next_node(70)
 }
 
@@ -115,8 +124,8 @@ LuaCode={
 New Option Nr=42  OptionText=_" I accept the contract, Tux"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"Yes! I am free at last!"
-DisableOption=42
 LuaCode={
+    disable_node(42)
     set_next_node(70)
 }
 
@@ -126,8 +135,8 @@ New Option Nr=43  OptionText=_" Elbereth"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"4444! 17 burn5! 7'm m3171n9! "
 Subtitle=_"44444444444444444!"
-DisableOption=43
 LuaCode={
+    disable_node(43)
     drop_dead()
 }
 
@@ -137,8 +146,8 @@ New Option Nr=44  OptionText=_" Francis"
 OptionSample=""
 Subtitle=_"H4! Y0ur s0ul 15 min3, Francis!"
 Subtitle=_"Wh47? N07 w0rk1b9?"
-DisableOption=44
 LuaCode={
+    disable_node(44)
     set_next_node(60)
 }
 
@@ -147,8 +156,8 @@ LuaCode={
 New Option Nr=45  OptionText=_" The great destroyer of evil, the purger of all things foul, the friend of mankind, the third duke of Linarius, esqiure, Doctorate of Computer Sciences, high priest of Kernelius, the ray of light in the darkness, the bender of spoons, His Great Magnificence, Tux."
 OptionSample=""
 Subtitle=_"Huh?"
-DisableOption=45
 LuaCode={
+    disable_node(45)
     set_next_node(50)
 }
 
@@ -157,8 +166,8 @@ LuaCode={
 New Option Nr=46  OptionText=_" X"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"N0! S7up1d illi73r4t3 p3n9u1n! D13!!"
-DisableOption=46
 LuaCode={
+    disable_node(46)
     break_off_and_attack()
 }
 
@@ -166,8 +175,8 @@ LuaCode={
 
 New Option Nr=50  OptionText=_" I... Don't feel... good... Blood loss... So... Cold..."
 Subtitle=_"N0! Idi07!"
-DisableOption=50
 LuaCode={
+    disable_node(50)
     kill_tux()
 }
 
@@ -175,8 +184,8 @@ LuaCode={
 
 New Option Nr=60  OptionText=_" Erm. I have a confession to make. My name is not Francis."
 Subtitle=_"N0000000000!!!!!!!"
-DisableOption=60
 LuaCode={
+    disable_node(60)
     break_off_and_attack()
 }
 
@@ -184,16 +193,16 @@ LuaCode={
 
 New Option Nr=70  OptionText=_" Huh? I d0n'7 f33l g00d."
 Subtitle=_"Yes, fool! You have freed me! I can finally die! Goodbye idiot!"
-DisableOption=70
 LuaCode={
+    disable_node(70)
     set_next_node(71)
 }
 
 ----------------------------------------------------------------------
 
 New Option Nr=71  OptionText=_" W417... 1 f331... H0rr1b13..."
-DisableOption=71
 LuaCode={
+    disable_node(71)
     improve_skill("programming")
     drop_dead()
 }
@@ -202,8 +211,8 @@ LuaCode={
 
 New Option Nr=98  OptionText=_" In blood? Yuck. I am not going to do this, blood is too messy for a binding legal contract. Forget about it."
 Subtitle=_"N00oo00oo0! T1m3 to d1e, m0rtal foo1!"
-DisableOption=98
 LuaCode={
+    disable_node(98)
     break_off_and_attack()
 }
 
@@ -211,8 +220,8 @@ LuaCode={
 
 New Option Nr=99  OptionText=_" There is no way I will sign something without reading it. Forget about it."
 Subtitle=_"N00oo00oo0! T1m3 to d1e, m0rta1 foo1!"
-DisableOption=99
 LuaCode={
+    disable_node(99)
     break_off_and_attack()
 }
 ----------------------------------------------------------------------

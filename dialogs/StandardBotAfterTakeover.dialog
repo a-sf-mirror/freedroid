@@ -92,8 +92,8 @@ LuaCode={
 New Option Nr=17  OptionText="EVERYTHING IS READY."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 Subtitle=_"()%#@(% THE BLADE IS YOURS. )##%*&%*!"
-DisableOption=17
 LuaCode={
+    disable_node(17)
     drop_dead()
     plant_cookie("tux_has_edge")
     give_item("Nobody's edge",1)

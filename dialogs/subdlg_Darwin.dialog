@@ -173,7 +173,6 @@ LuaCode={
 ----------------------------------------------------------------------
 
 New Option Nr=99  OptionText=_" Maybe another time."
-EnableOption=99
 LuaCode={
     end_dialog()
 }

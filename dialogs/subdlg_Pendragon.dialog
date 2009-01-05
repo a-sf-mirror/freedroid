@@ -137,7 +137,6 @@ Subtitle=_"*sigh*"
 Subtitle=_"Very well. Observe very carefully."
 Subtitle=_"You will see this only once, so make sure to pay attention."
 Subtitle=_"DIEEEE!"
-DisableOption=13
 LuaCode={
     break_off_and_attack()
     disable_node(13)

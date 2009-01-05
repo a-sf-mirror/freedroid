@@ -46,9 +46,13 @@ LuaCode={
 ----------------------------------------------------------------------
 
 New Option Nr=1  OptionText=_" Could you teach me how to fight?"
-EnableOption=1
 LuaCode={
-	if (cookie_planted("beat_up_pendragon")) then set_next_node(2) else set_next_node(3) end
+    enable_node(1)
+    if (cookie_planted("beat_up_pendragon")) then 
+	set_next_node(2) 
+    else 
+	set_next_node(3) 
+    end
 }
 ----------------------------------------------------------------------
 
@@ -71,7 +75,6 @@ LuaCode={
 
 New Option Nr=99  OptionText=_" See you later."
 Subtitle=_"Have courage."
-EnableOption=99
 LuaCode={
     end_dialog()
 }

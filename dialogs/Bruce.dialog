@@ -134,8 +134,6 @@ LuaCode={
 
 New Option Nr=10  OptionText=_" I have some bad memories too. I know how hard it can be to talk about them. Keep your stories to yourself."
 Subtitle=_"Yes. And now I would like to go to sleep. Good night Linarian."
-DisableOption=10
-DisableOption=8
 LuaCode={
     disable_node(8, 10)
     end_dialog()
@@ -154,7 +152,6 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 New Option Nr=98  OptionText=_" I'll be going then."
 Subtitle=_". . ."
-EnableOption=98
 LuaCode={
     end_dialog()
 }
@@ -162,7 +159,6 @@ LuaCode={
 
 New Option Nr=99  OptionText=_" I'll be going then."
 Subtitle=_"Good. I need sleep."
-EnableOption=99
 LuaCode={
     end_dialog()
 }
