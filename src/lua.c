@@ -617,14 +617,15 @@ void init_lua()
     global_lua_state = lua_open();
     luaL_openlibs(global_lua_state);
 
-    if (!find_file("script_helpers.lua", MAP_DIR, fpath, 1))
-	if (luaL_dofile(global_lua_state, fpath ))
-	    ErrorMessage(__FUNCTION__, "Cannot open script helpers file script_helpers.lua: %s.\n", PLEASE_INFORM, IS_FATAL, lua_tostring(global_lua_state, -1));
-
     for (i=0; lfuncs[i].name != NULL; i++) {
 	lua_pushcfunction(global_lua_state, lfuncs[i].func);
 	lua_setglobal(global_lua_state, lfuncs[i].name);
     }
+    
+    if (!find_file("script_helpers.lua", MAP_DIR, fpath, 1))
+	if (luaL_dofile(global_lua_state, fpath ))
+	    ErrorMessage(__FUNCTION__, "Cannot open script helpers file script_helpers.lua: %s.\n", PLEASE_INFORM, IS_FATAL, lua_tostring(global_lua_state, -1));
+
 }
 
 
