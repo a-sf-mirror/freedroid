@@ -137,7 +137,6 @@ LuaCode={
 New Option Nr=99  OptionText=_" I will be going then."
 Subtitle=_"See you later!"
 LuaCode={
-    enable_node(99)
     end_dialog()
 }
 ----------------------------------------------------------------------
