@@ -383,7 +383,7 @@ static void LoadDialog ( char* FullPathAndFullFilename )
 	free(chat_initialization_code);
 	chat_initialization_code = NULL;
     }
-    chat_initialization_code = ReadAndMallocStringFromData(SectionPointer, "Initialization LuaCode={", "}");
+    chat_initialization_code = ReadAndMallocStringFromDataOptional(SectionPointer, "FirstTime LuaCode={", "}", 0);
 
     //--------------------
     // At first we go take a look on how many options we have
@@ -779,7 +779,8 @@ void run_subdialog(const char * tmp_filename)
 	Me . Chat_Flags [ PERSON_SUBDIALOG_DUMMY ] [ i ] = 0;
 	}
 
-    run_lua(chat_initialization_code);
+    if(chat_initialization_code)
+	run_lua(chat_initialization_code);
 
     DoChatFromChatRosterData( PERSON_SUBDIALOG_DUMMY , chat_control_chat_droid , FALSE );
 
@@ -1165,7 +1166,8 @@ void ChatWithFriendlyDroid( enemy * ChatDroid )
 		Me . Chat_Flags [ ChatFlagsIndex ] [ i ] = 0;
 		}
 
-	run_lua(chat_initialization_code);
+	if(chat_initialization_code)
+	    run_lua(chat_initialization_code);
 
         Me . chat_character_initialized [ ChatFlagsIndex ] = 1;
 	}
