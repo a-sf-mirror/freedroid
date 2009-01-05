@@ -109,14 +109,10 @@ New Option Nr=50  OptionText="KOAN QUEST"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
     if (cookie_planted("duncan_known")) then
-        if (not cookie_planted("koan_quest")) then 
-	    set_next_node(51) 
-	else 
-	    end
+        if (not cookie_planted("koan_quest")) then set_next_node(51) else end
     else end
 
-    if (has_item("Pandora's Cube") > 0) then
-	set_next_node(61) 
+    if (has_item("Pandora's Cube") > 0) then set_next_node(61) 
     else
         if (cookie_planted("koan_spared")) then 
             if (not cookie_planted("koan_quest_done")) then set_next_node(61) else end
