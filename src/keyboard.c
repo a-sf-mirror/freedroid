@@ -331,6 +331,8 @@ void keychart()
     const int maxcmds = sizeof(keybindNames)/sizeof(keybindNames[0]) - 2;
     int per_page = get_nb_commands_per_page();
 
+    Activate_Conservative_Frame_Computation();
+
     SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL);
     while (!done) {
 	while (SDL_PollEvent(&event)) {
