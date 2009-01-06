@@ -99,7 +99,7 @@ NPC=_"It should be a blind alley. In the northern wall there is a door to the ma
 NPC=_"Good luck. Oh, and please come back alive. Better come back with nothing than not at all."
 LuaCode={
     change_obstacle("NorthernMaintainanceDoor", "opened")
-    give_item("Plasma Shockwave Emitter",2)
+    add_item("Plasma Shockwave Emitter",2)
     disable_node(21, 26)
     enable_node(31)
 }
@@ -264,7 +264,7 @@ LuaCode={
     add_cookie("singularity_dead")
     del_item("Dixon's Toolbox", 1)
     open_diary_entry(1, 5)
-    give_item("Dixon's helmet",1)
+    add_item("Dixon's helmet",1)
     disable_node(35, 36)
 }
 ----------------------------------------------------------------------

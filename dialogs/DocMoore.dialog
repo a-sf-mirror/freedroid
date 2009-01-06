@@ -79,7 +79,7 @@ NPC=_"Should you take that junk again, I won't feel responsible for what happens
 LuaCode={
     add_cookie("doc_healed_tux")
     open_diary_entry(0, 1)
-    give_item("Brain Enlargement Pills Antidote",1)
+    add_item("Brain Enlargement Pills Antidote",1)
     disable_node(2, 4)
 }
 ----------------------------------------------------------------------
@@ -200,16 +200,16 @@ Nr=27  Text=_" Good. I am very glad not to hear a disapproval."
 NPC=_" . . . "
 LuaCode={
     drop_dead()
-    give_item("Diet supplement",15)
-    give_item("Diet supplement",15)
-    give_item("Doc-in-a-can",10)
-    give_item("Antibiotic",10)
-    give_item("Brain Enlargement Pills Antidote",5)
-    give_item("Laserscalpel",1)
-    give_item("Doc-in-a-can",10)
-    give_item("Antibiotic",10)
-    give_item("Brain Enlargement Pills Antidote",5)
-    give_item("Laserscalpel",1)
+    add_item("Diet supplement",15)
+    add_item("Diet supplement",15)
+    add_item("Doc-in-a-can",10)
+    add_item("Antibiotic",10)
+    add_item("Brain Enlargement Pills Antidote",5)
+    add_item("Laserscalpel",1)
+    add_item("Doc-in-a-can",10)
+    add_item("Antibiotic",10)
+    add_item("Brain Enlargement Pills Antidote",5)
+    add_item("Laserscalpel",1)
     disable_node(27)
 }
 ----------------------------------------------------------------------

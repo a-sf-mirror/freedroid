@@ -55,7 +55,7 @@ NPC=_"It used to belong to my grandfather, so it's very dear to me, but I'm sure
 NPC=_"Tux, if you ever find out who started the Great Assault... GIVE THEM A KICK IN THE ASS, FROM LILY STONE!!!"
 LuaCode={
     end_dialog()
-    give_item("Two Barrel shotgun",1)
+    add_item("Two Barrel shotgun",1)
     disable_node(1, 2, 3)
 }
 ----------------------------------------------------------------------

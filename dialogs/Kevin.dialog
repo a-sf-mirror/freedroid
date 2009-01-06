@@ -175,7 +175,7 @@ NPC=_"I'll give you the data cube. Take it to the computer cluster administratio
 LuaCode={
     add_quest(7)
     open_diary_entry(7, 0)
-    give_item("Kevin's Data Cube",1)
+    add_item("Kevin's Data Cube",1)
     disable_node(15)
 }
 ----------------------------------------------------------------------

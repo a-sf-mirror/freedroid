@@ -586,7 +586,7 @@ luaL_reg lfuncs[] = {
     { "get_skill", lua_event_get_skill },
     { "improve_program", lua_event_improve_program },
     { "del_item", lua_event_delete_item },
-    { "give_item", lua_event_give_item },
+    { "add_item", lua_event_give_item },
     { "has_item", lua_event_has_item },
     { "open_diary_entry", lua_event_open_diary_entry },
     { "add_cookie", lua_event_plant_cookie },

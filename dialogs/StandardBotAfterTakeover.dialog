@@ -95,7 +95,7 @@ NPC=_"()%#@(% THE BLADE IS YOURS. )##%*&%*!"
 LuaCode={
     drop_dead()
     add_cookie("tux_has_edge")
-    give_item("Nobody's edge",1)
+    add_item("Nobody's edge",1)
 }
 ----------------------------------------------------------------------
 

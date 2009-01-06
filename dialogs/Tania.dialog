@@ -217,8 +217,8 @@ LuaCode={
     display_big_message("Tania is now free!")
     add_xp(1500)
     end_quest(10)
-    give_item("Source Book of Check system integrity",1)
-    give_item("Source Book of Sanctuary",1)
+    add_item("Source Book of Check system integrity",1)
+    add_item("Source Book of Sanctuary",1)
     disable_node(27)
 }
 ----------------------------------------------------------------------
