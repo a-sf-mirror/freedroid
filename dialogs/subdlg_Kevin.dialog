@@ -68,7 +68,7 @@ NPC=_"Once you have figured out what the creators of the system were doing when 
 NPC=_"Now I see your hacking skill has already improved a lot."
 LuaCode={
     add_gold(-300)
-    eat_training_points(5)
+    del_training_points(5)
     improve_program("Hacking")
 }
 ----------------------------------------------------------------------

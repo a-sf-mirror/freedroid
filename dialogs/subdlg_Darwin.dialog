@@ -53,15 +53,15 @@ LuaCode={
     else
         if (get_training_points() < 1) then set_next_node(80) -- No TP
         else
-            if (cookie_planted("know_extract5")) then set_next_node(70) -- Fully learned
+            if (has_cookie("know_extract5")) then set_next_node(70) -- Fully learned
             else
-                if (cookie_planted("know_extract4")) then set_next_node(50) -- Learn rev5
+                if (has_cookie("know_extract4")) then set_next_node(50) -- Learn rev5
                 else
-                    if (cookie_planted("know_extract3")) then set_next_node(40) -- Learn rev4
+                    if (has_cookie("know_extract3")) then set_next_node(40) -- Learn rev4
                     else
-                        if (cookie_planted("know_extract2")) then set_next_node(30) -- Learn rev3
+                        if (has_cookie("know_extract2")) then set_next_node(30) -- Learn rev3
                         else
-                            if (cookie_planted("know_extract1")) then set_next_node(20)  -- Learn rev2
+                            if (has_cookie("know_extract1")) then set_next_node(20)  -- Learn rev2
                             else set_next_node(10) end                               -- Learn rev1
                         end
                     end
@@ -78,7 +78,7 @@ NPC=_"Let us start with entropy inverters. This is quite simple."
 NPC=_"Just take a hammer and hit the bot sehr hard on the head."
 NPC=_"When you have the head open wide, look around for a part which looks like two circles around a cube. That is what you are looking for."
 LuaCode={
-    plant_cookie("know_extract1")
+    add_cookie("know_extract1")
     set_next_node(60)
 }
 ----------------------------------------------------------------------
@@ -89,7 +89,7 @@ NPC=_"How about... Plasma transistors? Trivial."
 NPC=_"Remove the bot's engine and look around somewhere close to the battery."
 NPC=_"Plasma transistors are shaped like the letter Y. Just rip them out, it's safe."
 LuaCode={
-    plant_cookie("know_extract2")
+    add_cookie("know_extract2")
     set_next_node(60)
 }
 ----------------------------------------------------------------------
@@ -101,7 +101,7 @@ NPC=_"They are relatively easy to get out."
 NPC=_"Look around the electric system. Power coils, capacitors, generators and the like. Usually there are plenty of sehr gut parts there."
 NPC=_"Wear rubber gloves. Just in case, you know."
 LuaCode={
-    plant_cookie("know_extract3")
+    add_cookie("know_extract3")
     set_next_node(60)
 }
 ----------------------------------------------------------------------
@@ -114,7 +114,7 @@ NPC=_"They are easy to find, all you have to do is to get to the engine. But you
 NPC=_"Make sure you turn the converter off before you remove it."
 NPC=_"If you do not do that, you will only succeed in converting yourself to anti-matter. And as you know, there is no coming back from there."
 LuaCode={
-    plant_cookie("know_extract4")
+    add_cookie("know_extract4")
     set_next_node(60)
 }
 ----------------------------------------------------------------------
@@ -127,7 +127,7 @@ NPC=_"I have no idea why bots have them inside. They are usually not connected t
 NPC=_"They are usually quite hot when you get them out, but they cool down quickly, so handling them is not a big deal."
 NPC=_"They can be installed just about anywhere, so you have to spend some time digging through the circuits to find one."
 LuaCode={
-    plant_cookie("know_extract5")
+    add_cookie("know_extract5")
     set_next_node(60)
 }
 ----------------------------------------------------------------------
@@ -136,7 +136,7 @@ Nr=60  Text="Lesson effect"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
     add_gold(-50)
-    eat_training_points(1)
+    del_training_points(1)
     improve_program("Extract bot parts")
     end_dialog()
     disable_node(0)

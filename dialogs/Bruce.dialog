@@ -126,7 +126,7 @@ Nr=9  Text=_" You don't understand. I wasn't asking. Now, tell me about your lif
 NPC=_"No! Please... I will do anything, just do not call the Red Guard! They do not like people who left the service. They do not like me. "
 NPC=_"I will tell you everything."
 LuaCode={
-    plant_cookie("bruce_hurt")
+    add_cookie("bruce_hurt")
     disable_node(9, 99)
     enable_node(5)
 }
@@ -144,7 +144,7 @@ LuaCode={
 Nr=50  Text="DID TUX HARM BRUCE?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    if (cookie_planted("bruce_hurt")) then enable_node(98) else enable_node(99) end
+    if (has_cookie("bruce_hurt")) then enable_node(98) else enable_node(99) end
 }
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 

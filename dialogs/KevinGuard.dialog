@@ -40,7 +40,7 @@ Nr=0  Text=_"THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
     disable_node(0)
-    if (cookie_planted("kevin_door_open")) then set_next_node(15) else set_next_node(20) end
+    if (has_cookie("kevin_door_open")) then set_next_node(15) else set_next_node(20) end
 }
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
@@ -73,7 +73,7 @@ LuaCode={
 
 Nr=4  Text=_" Thank you."
 LuaCode={
-    plant_cookie("kevin_door_open")
+    add_cookie("kevin_door_open")
     change_obstacle("KevinsDoor", "opened")
     disable_node(4)
     enable_node(99)

@@ -47,7 +47,7 @@ LuaCode={
 
 Nr=1  Text=_" Could you teach me how to fight?"
 LuaCode={
-    if (cookie_planted("beat_up_pendragon")) then 
+    if (has_cookie("beat_up_pendragon")) then 
 	set_next_node(2) 
     else 
 	set_next_node(3) 

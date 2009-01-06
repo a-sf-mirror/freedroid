@@ -64,7 +64,7 @@ NPC=_"..."
 NPC=_"..."
 NPC=_"Firmware update propagated!"
 LuaCode={
-    finish_mission(9)
+    end_quest(9)
     disable_node(1, 2)
     enable_node(3)
 }

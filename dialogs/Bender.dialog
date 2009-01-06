@@ -103,7 +103,7 @@ NPC=_"Man, if you could do that, I'd give you everything. I still got some of th
 NPC=_"Also I could vote for you if you seek to join the guard of the town."
 NPC=_"Just get me some cure, and I'll be forever grateful!"
 LuaCode={
-    assign_mission("Bender's problem")
+    add_quest("Bender's problem")
     open_diary_entry(0, 0)
     disable_node(7, 8)
     enable_node(11)
@@ -126,7 +126,7 @@ NPC=_"Man, you are the greatest hero!"
 NPC=_"Now, take this as a reward. And you can be sure that I'll vote for you if you seek membership in the Red Guard!"
 NPC=_"Thanks, man!"
 LuaCode={
-    finish_mission("Bender's problem")
+    end_quest("Bender's problem")
     give_xp(150)
     delete_item("Brain Enlargement Pills Antidote", 1)
     give_item("Strength Pill",2)
@@ -171,7 +171,7 @@ NPC=_"Much better. I'm cured. Thanks again man! I'll vote for you if you want in
 Nr=14  Text="DID TUX GET THE MISSION TO SAVE BENDER?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    if (is_mission_assigned("Bender's problem")) then 
+    if (has_quest("Bender's problem")) then 
         if (is_mission_complete("Bender's problem")) then set_next_node(13) else set_next_node(18) end
     else end
 }

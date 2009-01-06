@@ -40,8 +40,8 @@ Nr=0  Text="HERE WE GO"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 NPC=_"So... Any news on the Koan matter?"
 LuaCode={
-    plant_cookie("koan_quest_done")
-    if (cookie_planted("koan_spared")) then enable_node(20) else end
+    add_cookie("koan_quest_done")
+    if (has_cookie("koan_spared")) then enable_node(20) else end
     if (amount_item("Pandora's Cube") > 0) then enable_node(10, 30) else end
     disable_node(0)
     enable_node(40)
@@ -54,8 +54,8 @@ Nr=10  Text=_" Yeah. I got him. I think this is your cube."
 NPC=_"Yes. I appreciate your help."
 LuaCode={
     end_dialog()
-    give_xp(3000)
-    delete_item("Pandora's Cube", 1)
+    add_xp(3000)
+    del_item("Pandora's Cube", 1)
     disable_node(10)
 }
 ----------------------------------------------------------------------
@@ -106,8 +106,8 @@ Nr=60  Text=_" Hey, that is really neat. Here is your cube. Enjoy disassembling 
 NPC=_"I will."
 LuaCode={
     end_dialog()
-    give_xp(3000)
-    delete_item("Pandora's Cube")
+    add_xp(3000)
+    del_item("Pandora's Cube")
     disable_node(60)
 }
 ----------------------------------------------------------------------

@@ -96,7 +96,7 @@ Nr=6  Text=_" I still do not trust you. You are selling junk to people."
 NPC=_"WHAT? Fine, you can forget about my great deals now! I don't want to trade with you anymore!"
 NPC=_"I'm no longer your best friend. Go away, you dirty hoser!"
 LuaCode={
-    plant_cookie("skippy_angry")
+    add_cookie("skippy_angry")
     end_dialog()
     disable_node(6)
 }
@@ -122,7 +122,7 @@ LuaCode={
 Nr=90  Text="CHECK FOR SKIPPY ANGER"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    if (cookie_planted("skippy_angry")) then set_next_node(91) else end
+    if (has_cookie("skippy_angry")) then set_next_node(91) else end
 }
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 

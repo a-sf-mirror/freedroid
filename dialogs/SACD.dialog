@@ -37,12 +37,12 @@ FirstTime LuaCode={
 Nr=0  Text=_" Login : admin  Password : *******"
 NPC=_"Last login from /dev/ttyS0 on Sun, 23 mar 2057. admin@sadefence: ~ #"
 LuaCode={
-    if (is_mission_assigned(10)) then open_diary_entry(10, 1) else end
+    if (has_quest(10)) then open_diary_entry(10, 1) else end
 
     if (cookie_planted("SACDOvertaken")) then    -- possible to leave empty then?
     else
-        give_xp(1000)
-        plant_cookie("SACDOvertaken")
+        add_xp(1000)
+        add_cookie("SACDOvertaken")
     end
 
     disable_node(0, 2)
@@ -57,7 +57,7 @@ NPC=_"Disabling guns..."
 NPC=_"Connecting to peripheral controller..."
 NPC=_"Guns disabled."
 LuaCode={
-    plant_cookie("SAGunsOff")
+    add_cookie("SAGunsOff")
     change_obstacle("SADDGun1", "disabled")
     change_obstacle("SADDGun2", "disabled")
     disable_node(1)
@@ -72,7 +72,7 @@ NPC=_"Guns enabled."
 LuaCode={
     change_obstacle("SADDGun1", "enabled")
     change_obstacle("SADDGun2", "enabled")
-    remove_cookie("SAGunsOff")
+    del_cookie("SAGunsOff")
     disable_node(2)
     enable_node(1)
 }

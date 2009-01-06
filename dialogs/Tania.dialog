@@ -198,10 +198,10 @@ LuaCode={
 Nr=21 Text="IS MISSION ASSIGNED"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    if (is_mission_assigned(10)) then
+    if (has_quest(10)) then
         disable_node(6)
-        if (cookie_planted("SAGunsOff")) then
-            if (is_mission_complete(10)) then disable_node(17, 27, 28) enable_node(29) 
+        if (has_cookie("SAGunsOff")) then
+            if (done_quest(10)) then disable_node(17, 27, 28) enable_node(29) 
             else disable_node(17, 28, 29) enable_node(27) end
         else disable_node(17, 27, 29) enable_node(28) end
     else disable_node(27, 28, 29) end
@@ -215,8 +215,8 @@ NPC=_"Thanks, thanks a lot! Now I will be able to see sun, trees, rivers. I miss
 NPC=_"I hope these books will help you survive in this world."
 LuaCode={
     display_big_message("Tania is now free!")
-    give_xp(1500)
-    finish_mission(10)
+    add_xp(1500)
+    end_quest(10)
     give_item("Source Book of Check system integrity",1)
     give_item("Source Book of Sanctuary",1)
     disable_node(27)

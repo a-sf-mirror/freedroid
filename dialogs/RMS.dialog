@@ -69,9 +69,9 @@ NPC=_"Interesting. Let me see this thing. Hmm... Yes, there is quite a lot of st
 NPC=_"Hey, what do we have here? The data is already prepared for processing by a cluster just like ours. Wow! That's excellent!"
 NPC=_"I'll feed it into Hydra right away. Expect the results in a short while. Hydra has never let me down so far."
 LuaCode={
-    finish_mission(7)
+    end_quest(7)
     open_diary_entry(7, 1)
-    delete_item("Kevin's Data Cube", 1)
+    del_item("Kevin's Data Cube", 1)
     disable_node(6)
     enable_node(9)
 }

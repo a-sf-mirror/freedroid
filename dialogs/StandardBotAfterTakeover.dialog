@@ -79,10 +79,10 @@ NPC=_"Warning! Cooling subsystems disabled."
 NPC=_"Warning! Spontaneous oxidization witH emis$ion of light aND heAt detecteddd in THE#main| procesIng unit."
 NPC=_"WArn|n*! SsTeM=#faiPure%^#n 3 S 1()$++"
 LuaCode={
-    if (cookie_planted("dixon_very_angry")) then
-        if (cookie_planted("bruce_hurt")) then
-            if (is_mission_assigned(8)) then
-                if (cookie_planted("tux_has_edge")) then drop_dead() else set_next_node(17) end
+    if (has_cookie("dixon_very_angry")) then
+        if (has_cookie("bruce_hurt")) then
+            if (has_quest(8)) then
+                if (has_cookie("tux_has_edge")) then drop_dead() else set_next_node(17) end
             else drop_dead() end
         else drop_dead() end
     else drop_dead() end
@@ -94,7 +94,7 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 NPC=_"()%#@(% THE BLADE IS YOURS. )##%*&%*!"
 LuaCode={
     drop_dead()
-    plant_cookie("tux_has_edge")
+    add_cookie("tux_has_edge")
     give_item("Nobody's edge",1)
 }
 ----------------------------------------------------------------------

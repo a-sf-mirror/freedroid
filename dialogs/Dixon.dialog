@@ -130,7 +130,7 @@ NPC=_"It's yellow and round, and my name is engraved on the lid."
 NPC=_"The bots under the city took it from me during the Great Assault, I was lucky, they could have killed me with ease."
 NPC=_"If you could get it back for us, it would help the city very much."
 LuaCode={
-    assign_mission("The yellow toolkit")
+    add_quest("The yellow toolkit")
     open_diary_entry(1, 0)
     disable_node(24)
     enable_node(21, 25, 26)
@@ -180,7 +180,7 @@ NPC=_"May the heavens have mercy upon us, but better them than us."
 LuaCode={
     set_next_node(32)
     open_diary_entry(1, 1)
-    plant_cookie("singularity_dead")
+    add_cookie("singularity_dead")
     disable_node(28, 29, 30)
 }
 ----------------------------------------------------------------------
@@ -190,7 +190,7 @@ NPC=_"That was not very funny. You scared me. Sheesh."
 NPC=_"No one jokes about the bots anymore. We have seen too much death to do that. It is a serious matter."
 NPC=_"The bots are our enemies, executioners, killers. Not even Ewald tells jokes about them anymore."
 LuaCode={
-    plant_cookie("singularity_killed")
+    add_cookie("singularity_killed")
     open_diary_entry(1, 1)
     change_obstacle("NorthernMaintainanceDoor", "opened")
     disable_node(28, 29, 30)
@@ -203,7 +203,7 @@ NPC=_"I think I understand. Yes, I do not like violence, myself. The bots may ha
 NPC=_"After all, it seems like they need them more than I do."
 NPC=_"I will try to contact them somehow. Maybe they would help us. Ah, we shall see. It would be great to have an ally against the other bots."
 LuaCode={
-    plant_cookie("singularity_saved")
+    add_cookie("singularity_saved")
     open_diary_entry(1, 2)
     disable_node(28, 29, 30)
 }    
@@ -231,7 +231,7 @@ NPC=_"With heavy heart I have to admit you are right. There are no friendly bots
 NPC=_"The tunnels are open. Good luck."
 NPC=_"I will talk to Spencer and ask him for a few attack teams. We will take care of the bots."
 LuaCode={
-    plant_cookie("singularity_killed")
+    add_cookie("singularity_killed")
     change_obstacle("NorthernMaintainanceDoor", "opened")
     disable_node(33)
 }
@@ -246,9 +246,9 @@ NPC=_"Finally, I would like to say that the technical division is not interested
 NPC=_"I am sorry, but I must go now. My duties call."
 LuaCode={
     add_gold(150)
-    finish_mission("The yellow toolkit")
+    end_quest("The yellow toolkit")
     open_diary_entry(1, 4)
-    delete_item("Dixon's Toolbox", 1)
+    del_item("Dixon's Toolbox", 1)
     disable_node(34)
 }
 ----------------------------------------------------------------------
@@ -260,9 +260,9 @@ NPC=_"With those little gadgets we will be able to automate a lot of those simpl
 NPC=_"Here is some money for your effort. And I am sure you will find this helmet useful too, it saved my life once, and I hope it saves yours one day."
 LuaCode={
     add_gold(100)
-    finish_mission("The yellow toolkit")
-    plant_cookie("singularity_dead")
-    delete_item("Dixon's Toolbox", 1)
+    end_quest("The yellow toolkit")
+    add_cookie("singularity_dead")
+    del_item("Dixon's Toolbox", 1)
     open_diary_entry(1, 5)
     give_item("Dixon's helmet",1)
     disable_node(35, 36)
@@ -283,7 +283,7 @@ Nr=37  Text=_" I was not joking. I am listening to your offers."
 NPC=_"Linarian, I curse the day on which you have arrived here."
 NPC=_"Two fifty."
 LuaCode={
-    plant_cookie("dixon_angry")
+    add_cookie("dixon_angry")
     disable_node(35, 37)
     enable_node(38, 41)
 }
@@ -296,9 +296,9 @@ NPC=_"Get out of my sight."
 LuaCode={
     end_dialog()
     add_gold(250)
-    finish_mission("The yellow toolkit")
+    end_quest("The yellow toolkit")
     open_diary_entry(1, 6)
-    delete_item("Dixon's Toolbox", 1)
+    del_item("Dixon's Toolbox", 1)
     disable_node(38, 41)
 }
 ----------------------------------------------------------------------
@@ -309,9 +309,9 @@ NPC=_"Accidents... Happen."
 LuaCode={
     end_dialog()
     add_gold(350)
-    finish_mission("The yellow toolkit")
+    end_quest("The yellow toolkit")
     open_diary_entry(1, 7)
-    delete_item("Dixon's Toolbox", 1)
+    del_item("Dixon's Toolbox", 1)
     disable_node(39, 42)
 }
 ----------------------------------------------------------------------
@@ -323,10 +323,10 @@ NPC=_"Now take your money and get out of my face. I do not want to see you here 
 LuaCode={
     end_dialog()
     add_gold(400)
-    finish_mission("The yellow toolkit")
-    plant_cookie("dixon_very_angry")
+    end_quest("The yellow toolkit")
+    add_cookie("dixon_very_angry")
     open_diary_entry(1, 8)
-    delete_item("Dixon's Toolbox", 1)
+    del_item("Dixon's Toolbox", 1)
     disable_node(40)
 }
 ----------------------------------------------------------------------
@@ -374,7 +374,7 @@ NPC=_"While I do not regret sparing the bots in the tunnels, the town suffers fo
 NPC=_"It makes me sad to see everything slowly wasting away. The bots are doing more damage than we can repair."
 NPC=_"This town has a few weeks left to live. After that we are all dead."
 LuaCode={
-    plant_cookie("dixon_one")
+    add_cookie("dixon_one")
     disable_node(45)
 }
 ----------------------------------------------------------------------
@@ -384,8 +384,8 @@ NPC=_" Ha! Never better!"
 NPC=_"We are mass producing energy shields, creating more electric energy than we can ever imagine spending and even experimenting with new armor types."
 NPC=_"Life is good right now."
 LuaCode={
-    finish_mission("The yellow toolkit")
-    plant_cookie("dixon_saved_and_talked")
+    end_quest("The yellow toolkit")
+    add_cookie("dixon_saved_and_talked")
     disable_node(46)
     enable_node(47)
 }
@@ -396,7 +396,7 @@ NPC=_" Yes, but now everything is different."
 NPC=_"I met someone who decided to join us in the fight against the MegaSys bots."
 NPC=_"You will need a hacked computer. Type in 'ssh 10.83.13.230' as the superuser, and you will see what I mean."
 LuaCode={
-    plant_cookie("got_singularity")
+    add_cookie("got_singularity")
     disable_node(47)
     enable_node(48)
 }
@@ -417,26 +417,26 @@ Nr=60  Text="IS THE TOOLKIT WITH TUX?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
     if (has_item("Dixon's Toolbox") > 0) then
-        if (cookie_planted("singularity_killed")) then enable_node(34) else enable_node(35, 36) end
+        if (has_cookie("singularity_killed")) then enable_node(34) else enable_node(35, 36) end
     else end
 
-    if (is_mission_complete("The yellow toolkit")) then
-        if (cookie_planted("singularity_dead")) then
-            if (cookie_planted("singularity_killed")) then enable_node(44) else enable_node(43) end
+    if (done_quest("The yellow toolkit")) then
+        if (has_cookie("singularity_dead")) then
+            if (has_cookie("singularity_killed")) then enable_node(44) else enable_node(43) end
         else 
-            if (cookie_planted("dixon_one")) then enable_node(46) else enable_node(45) end
+            if (has_cookie("dixon_one")) then enable_node(46) else enable_node(45) end
         end
     else end
 
-    if (cookie_planted("dixon_angry")) then
-        if (cookie_planted("dixon_very_angry")) then set_next_node(83) else set_next_node(84) end
+    if (has_cookie("dixon_angry")) then
+        if (has_cookie("dixon_very_angry")) then set_next_node(83) else set_next_node(84) end
     else end
 
-    if (cookie_planted("singularity_saved")) then
-        if (cookie_planted("dixon_one")) then enable_node(46) else enable_node(45) end
+    if (has_cookie("singularity_saved")) then
+        if (has_cookie("dixon_one")) then enable_node(46) else enable_node(45) end
     else end
 
-    if (cookie_planted("dixon_saved_and_talked")) then disable_node(46) else end
+    if (has_cookie("dixon_saved_and_talked")) then disable_node(46) else end
 }
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 

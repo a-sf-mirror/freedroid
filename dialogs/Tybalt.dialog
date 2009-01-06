@@ -52,7 +52,7 @@ LuaCode={
 
 Nr=2  Text=_" I want to get into the guardhouse."
 LuaCode={
-    if (cookie_planted("tux_has_joined_guard")) then set_next_node(3) else set_next_node(4) end
+    if (has_cookie("tux_has_joined_guard")) then set_next_node(3) else set_next_node(4) end
     disable_node(2)
 }
 ----------------------------------------------------------------------
@@ -71,7 +71,7 @@ NPC=_"Sorry pal, but I don't think so. Only authorized personnel are permitted a
 NPC=_"Talk to Spencer if you have any issues inside. I cannot let you pass."
 LuaCode={
     -- do we propose a bribe ?
-    if(not cookie_planted("tybalt_bribe")) then	enable_node(50) else end
+    if(not has_cookie("tybalt_bribe")) then enable_node(50) else end
 }
 ----------------------------------------------------------------------
 
@@ -93,7 +93,7 @@ LuaCode={
 Nr=55  Text=_" Here you go."
 NPC=_"Thank you."
 LuaCode={
-    plant_cookie("tybalt_bribe")
+    add_cookie("tybalt_bribe")
     disable_node(55)
     enable_node(56)
 }

@@ -101,7 +101,7 @@ LuaCode={
 Nr=10  Text=_" See you later."
 NPC=_"Yeah. Whatever."
 LuaCode={
-    plant_cookie("jasmine_count1")
+    add_cookie("jasmine_count1")
     end_dialog()
     disable_node(10)
 }
@@ -110,7 +110,7 @@ LuaCode={
 Nr=11  Text=_" See you later."
 NPC=_"Yeah. Whatever."
 LuaCode={
-    plant_cookie("jasmine_count2")
+    add_cookie("jasmine_count2")
     end_dialog()
     disable_node(11)
 }
@@ -132,7 +132,7 @@ NPC=_"Buffer overrun in anger.c:1532"
 NPC=_"Core dumped. System halted."
 LuaCode={
     drop_dead()
-    plant_cookie("jasmine_sigsegv")
+    add_cookie("jasmine_sigsegv")
     disable_node(13)
 }
 ----------------------------------------------------------------------
@@ -140,8 +140,8 @@ LuaCode={
 Nr=90  Text="JASMINE_CHECK"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    if (cookie_planted("jasmine_count1")) then
-        if (cookie_planted("jasmine_count2")) then enable_node(12) else enable_node(11) end   -- 2 or 1 counter
+    if (has_cookie("jasmine_count1")) then
+        if (has_cookie("jasmine_count2")) then enable_node(12) else enable_node(11) end   -- 2 or 1 counter
     else enable_node(10) end   -- no counters yet
 }
 AlwaysExecuteThisOptionPriorToDialogStart="yes"

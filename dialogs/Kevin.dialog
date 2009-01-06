@@ -65,7 +65,7 @@ LuaCode={
 
 Nr=3  Text=_" What can you teach me about hacking?"
 LuaCode={
-    if (is_mission_complete(6)) then set_next_node(4) else set_next_node(1) end
+    if (done_quest(6)) then set_next_node(4) else set_next_node(1) end
     enable_node(3)
 }
 ----------------------------------------------------------------------
@@ -115,7 +115,7 @@ LuaCode={
 Nr=8  Text="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    if (is_mission_complete(6)) then set_next_node(9) else end
+    if (done_quest(6)) then set_next_node(9) else end
 }
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
@@ -132,7 +132,7 @@ LuaCode={
 
 Nr=10  Text=_" How about some reward for securing your energy supply area?"
 LuaCode={
-    if (cookie_planted("kevin_reward1_given")) then set_next_node(12) else set_next_node(13) end
+    if (has_cookie("kevin_reward1_given")) then set_next_node(12) else set_next_node(13) end
     disable_node(10)
 }
 ----------------------------------------------------------------------
@@ -198,7 +198,7 @@ LuaCode={
 
 Nr=18  Text=_" About that project you said you have running..."
 LuaCode={
-    if (is_mission_complete(7)) then set_next_node(19) else set_next_node(14) end
+    if (done_quest(7)) then set_next_node(19) else set_next_node(14) end
     disable_node(18)
 }
 ----------------------------------------------------------------------
@@ -225,7 +225,7 @@ NPC=_"Oh. Right."
 NPC=_"Well, thanks for telling me."
 NPC=_"Back to the drawing board, I guess..."
 LuaCode={
-    plant_cookie("kevin_sigtalk")
+    add_cookie("kevin_sigtalk")
     disable_node(25)
     enable_node(26)
 }
@@ -242,8 +242,8 @@ LuaCode={
 Nr=50  Text="JASMINE SIGSEGV"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    if (cookie_planted("jasmine_sigsegv")) then
-        if (cookie_planted("kevin_sigtalk")) then disable_node(25) else enable_node(25) end
+    if (has_cookie("jasmine_sigsegv")) then
+        if (has_cookie("kevin_sigtalk")) then disable_node(25) else enable_node(25) end
      else end
 }
 AlwaysExecuteThisOptionPriorToDialogStart="yes"

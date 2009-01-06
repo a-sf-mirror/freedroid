@@ -38,7 +38,7 @@ FirstTime LuaCode={
 Nr=0  Text=_" Login : admin  Password : *******"
 NPC=_"Last login from /dev/ttyS0 on Sun, 23 mar 2057. admin@shielddefense: ~ #"
 LuaCode={
-    if (cookie_planted("MER_Password")) then set_next_node(3) else set_next_node(4) end
+    if (has_cookie("MER_Password")) then set_next_node(3) else set_next_node(4) end
     disable_node(0)
     enable_node(7)
 }
@@ -51,7 +51,7 @@ NPC=_" Changing password for admin. Enter new password: "
 NPC=_" Enter new password again: "
 NPC=_" Password successfully changed."
 LuaCode={
-    plant_cookie("MER_Password")
+    add_cookie("MER_Password")
     disable_node(1, 7)
     enable_node(8)
 }
@@ -85,7 +85,7 @@ Nr=8  Text=_" shieldmgr --disable --force"
 NPC=_" Disabling disruptor shield... "
 NPC=_" Shield disabled."
 LuaCode={
-    finish_mission(8)
+    end_quest(8)
     open_diary_entry(8, 3)
 }
 ----------------------------------------------------------------------

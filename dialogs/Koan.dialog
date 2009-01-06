@@ -40,7 +40,7 @@ FirstTime LuaCode={
 Nr=0  Text="KILLING DOUBLE TALK"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    if (cookie_planted("koan_spared")) then disable_node(0) else set_next_node(1) end
+    if (has_cookie("koan_spared")) then disable_node(0) else set_next_node(1) end
     disable_node(0)
 }
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
@@ -71,7 +71,7 @@ NPC=_"Thank you."
 NPC=_"Feel free to stay here. There is no danger."
 NPC=_"The water is safe to drink and the fruit from the tree is quite delicious."
 LuaCode={
-    plant_cookie("koan_spared")
+    add_cookie("koan_spared")
     disable_node(5, 6)
     enable_node(10, 20, 99)
 }

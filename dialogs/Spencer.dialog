@@ -55,7 +55,7 @@ LuaCode={
 Nr=2  Text=_" I really want to become a member."
 LuaCode={
     disable_node(2)
-    if (cookie_planted("tux_has_joined_guard")) then set_next_node(32) else set_next_node(33) end
+    if (has_cookie("tux_has_joined_guard")) then set_next_node(32) else set_next_node(33) end
 }
 ----------------------------------------------------------------------
 
@@ -93,9 +93,9 @@ LuaCode={
 
 Nr=6  Text=_" How is it going?"
 LuaCode={
-    if (is_mission_assigned("Opening a can of bots...")) then
-        if (is_mission_complete("Opening a can of bots...")) then
-            if (cookie_planted("reward_for_warehouse_given")) then set_next_node(10) else set_next_node(11) end
+    if (has_quest("Opening a can of bots...")) then
+        if (done_quest("Opening a can of bots...")) then
+            if (has_cookie("reward_for_warehouse_given")) then set_next_node(10) else set_next_node(11) end
         else set_next_node(9) end
     else set_next_node(4) end
 }
@@ -122,14 +122,14 @@ NPC=_"Take these 500 bucks as a reward.  And be assured that you've earned my de
 NPC=_"Our people are transporting the goods as we speak. It can't be too long until new bots from ships in the orbit of the planet will beam down to replace the dead bots."
 LuaCode={
     add_gold(500)
-    plant_cookie("reward_for_warehouse_given")
+    add_cookie("reward_for_warehouse_given")
     open_diary_entry(5, 1)
 }
 ----------------------------------------------------------------------
 
 Nr=12  Text=_" Have I done enough quests to become a member now?"
 LuaCode={
-    if (is_mission_complete("The yellow toolkit")) then set_next_node(13) else set_next_node(14) end
+    if (done_quest("The yellow toolkit")) then set_next_node(13) else set_next_node(14) end
 }
 ----------------------------------------------------------------------
 
@@ -168,14 +168,14 @@ LuaCode={
 Nr=17  Text="IS MICHELANGELO DONE?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    if (is_mission_complete("Anything but the army snacks, please!")) then set_next_node(15) else set_next_node(16) end
+    if (done_quest("Anything but the army snacks, please!")) then set_next_node(15) else set_next_node(16) end
 }
 ----------------------------------------------------------------------
 
 Nr=18  Text="IS TUX AN ARENA MASTER"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    if (is_mission_complete("Novice Arena")) then set_next_node(19) else set_next_node(20) end
+    if (done_quest("Novice Arena")) then set_next_node(19) else set_next_node(20) end
 }
 ----------------------------------------------------------------------
 
@@ -198,7 +198,7 @@ LuaCode={
 Nr=21  Text="IS BENDER SICK?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    if (is_mission_complete("Bender's problem")) then set_next_node(22) else set_next_node(23) end
+    if (done_quest("Bender's problem")) then set_next_node(22) else set_next_node(23) end
 }
 ----------------------------------------------------------------------
 
@@ -221,7 +221,7 @@ LuaCode={
 Nr=24  Text="WAREHOUSE MISSION DONE?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    if (is_mission_complete("Opening a can of bots...")) then set_next_node(25) else set_next_node(27) end
+    if (done_quest("Opening a can of bots...")) then set_next_node(25) else set_next_node(27) end
 }
 ----------------------------------------------------------------------
 
@@ -252,7 +252,7 @@ NPC=_"And now you might want to inspect the guard house. Tell Tybalt to open the
 NPC=_"I hope you will prove yourself a worthy member of the Red Guard."
 LuaCode={
     display_big_message("Joined Town Guard!!")
-    plant_cookie("tux_has_joined_guard")
+    add_cookie("tux_has_joined_guard")
     make_tux_red_guard()
     disable_node(3, 12)
 }
@@ -333,11 +333,11 @@ LuaCode={
 Nr=41  Text="STARTED THE CUBE MISSION?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    if (not is_mission_assigned("Opening access to MS Office")) then
-        if (is_mission_complete("A kingdom for a cluster!")) then enable_node(37) else end
+    if (not has_quest("Opening access to MS Office")) then
+        if (done_quest("A kingdom for a cluster!")) then enable_node(37) else end
     else end
 
-    if (is_mission_complete("Opening access to MS Office")) then enable_node(44) else end    -- Ready for HF?
+    if (done_quest("Opening access to MS Office")) then enable_node(44) else end    -- Ready for HF?
 }
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 

@@ -39,8 +39,8 @@ Nr=0  Text="THIS WILL NEVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 NPC=_"Hey, Linarian! What do you want here?"
 LuaCode={
-    if (is_mission_complete(8)) then set_next_node(6) else set_next_node(7) end
-    plant_cookie("MS_guard_talked")
+    if (done_quest(8)) then set_next_node(6) else set_next_node(7) end
+    add_cookie("MS_guard_talked")
     disable_node(0, 5, 99)
     enable_node(1, 3)
 }
@@ -82,7 +82,7 @@ Nr=4  Text="TEST FOR MANY TALKS"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
     if (cookie_planted("MS_guard_talked")) then
-        if (is_mission_complete(8)) then set_next_node(0) else set_next_node(5) end    -- TEST FOR DISABLED SHIELD
+        if (done_quest(8)) then set_next_node(0) else set_next_node(5) end    -- TEST FOR DISABLED SHIELD
     else set_next_node(0) end
 }
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
@@ -130,7 +130,7 @@ Nr=9  Text=_"Calm down. This is not an attack. I've disabled the shield and I'm 
 NPC=_"WHAT?! Not an attack?!"
 NPC=_"I hope you are honest. One second..."
 LuaCode={
-    if (is_mission_assigned(9)) then set_next_node(12) else set_next_node(11) end
+    if (has_quest(9)) then set_next_node(12) else set_next_node(11) end
     disable_node(1, 2, 3, 9)
     enable_node(8)
 }

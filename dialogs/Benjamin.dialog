@@ -64,7 +64,7 @@ LuaCode={
 Nr=3  Text=_" Did you think about somehow gathering the excess heat and using it to make the beam stronger?"
 NPC=_"Hmm... There might be something in that idea. I will think about it."
 LuaCode={
-    plant_cookie("Ben_better_beams")
+    add_cookie("Ben_better_beams")
     disable_node(3, 4, 5)
 }
 ----------------------------------------------------------------------
@@ -72,7 +72,7 @@ LuaCode={
 Nr=4  Text=_" If I were you, I would focus my work on the firing rate."
 NPC=_"Hmm... I will think about it. Hmm..."
 LuaCode={
-    plant_cookie("Ben_faster_shooting")
+    add_cookie("Ben_faster_shooting")
     disable_node(3, 4, 5)
 }
 ----------------------------------------------------------------------
@@ -80,7 +80,7 @@ LuaCode={
 Nr=5  Text=_" You know, laser pistols are not a very promising weapon. I think you should work on something different."
 NPC=_"Yeah, maybe you are right. I will think about it."
 LuaCode={
-    plant_cookie("Ben_something_else")
+    add_cookie("Ben_something_else")
     disable_node(3, 4, 5)
 }
 ----------------------------------------------------------------------
