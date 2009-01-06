@@ -155,11 +155,14 @@ Nr=30  Text="HAVE THE CRYSTALS"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
     if (has_item("Red Dilitium Crystal") > 0) then    -- Tux gives crystals
-	display_console_message("Tux has the crystals")
         show(29)
-    else show(31) 
-	display_console_message("no crystals")
-	    end    -- Tux does not have crystals
+    else 
+	if (has_quest("Anything but the army snacks, please!")) then
+	    show(31)
+	else
+	    hide(31)
+	end
+    end    -- Tux does not have crystals
     hide(30)
 }
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
