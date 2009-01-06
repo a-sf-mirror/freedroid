@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CHANGE THIS\n"
 "Report-Msgid-Bugs-To: CHANGE THIS TOO\n"
-"POT-Creation-Date: 2009-01-02 14:12+0000\n"
-"PO-Revision-Date: 2009-01-02 14:12+0000\n"
+"POT-Creation-Date: 2009-01-06 16:23+0000\n"
+"PO-Revision-Date: 2009-01-06 16:23+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -266,170 +266,201 @@ msgstr ""
 msgid "EMP grenade"
 msgstr ""
 
-#: ../map/freedroid.droid_archetypes:122
-msgid ""
-"simple rubbish diposal robot. Common device in most space craft to maintain a "
-"clean ship."
+#: ../map/freedroid.prefix_archetypes:10
+#: ../map/freedroid.prefix_archetypes:37
+msgid "I am a big bad bug in the game. Report me. Please. "
 msgstr ""
 
-#: ../map/freedroid.droid_archetypes:157
-msgid ""
-"created by Dr. Masternak to clean up large heaps of rubbish. Its large scoop i"
-"s used to collect rubbish. It is then crushed internally."
+#: ../map/freedroid.prefix_archetypes:64
+msgid "Living "
 msgstr ""
 
-#: ../map/freedroid.droid_archetypes:191
-msgid "light duty servant robot. One of the first to use the anti-grav system."
+#: ../map/freedroid.prefix_archetypes:91
+msgid " coated in teflon"
 msgstr ""
 
-#: ../map/freedroid.droid_archetypes:225
-msgid "cheaper version of the anti-grav servant robot."
+#: ../map/freedroid.prefix_archetypes:118
+msgid " of Almost Zodiac"
 msgstr ""
 
-#: ../map/freedroid.droid_archetypes:259
-#: ../map/freedroid.droid_archetypes:1218
-msgid "Run away! This bot will kill you!"
+#: ../map/freedroid.prefix_archetypes:145
+msgid "Resonant "
 msgstr ""
 
-#: ../map/freedroid.droid_archetypes:294
-msgid "common device for moving small packages. Clamp is mounted on the lower body."
+#: ../map/freedroid.prefix_archetypes:172
+msgid "Cow "
 msgstr ""
 
-#: ../map/freedroid.droid_archetypes:329
-msgid "early type messenger robot. Large wheels impede motion on small craft."
+#: ../map/freedroid.prefix_archetypes:200
+msgid "Bull "
 msgstr ""
 
-#: ../map/freedroid.droid_archetypes:364
-msgid "slow maintenance robot. Confined to drive maintenance during flight."
+#: ../map/freedroid.prefix_archetypes:227
+msgid "Mouse "
 msgstr ""
 
-#: ../map/freedroid.droid_archetypes:398
-msgid ""
-"ship maintenance robot. Fitted with multiple arms to carry out repairs to the "
-"ship efficiently. All craft built after the Jupiter-incident are supplied with"
-" a team of these."
+#: ../map/freedroid.prefix_archetypes:254
+msgid "Jackdaw "
 msgstr ""
 
-#: ../map/freedroid.droid_archetypes:432
-msgid "slave maintenance droid. Standard version will carry its own toolbox."
+#: ../map/freedroid.prefix_archetypes:281
+msgid "Hardcoded "
 msgstr ""
 
-#: ../map/freedroid.droid_archetypes:466
-msgid ""
-"early crew droid. Able to carry out simple flight checks only. No longer suppl"
-"ied."
+#: ../map/freedroid.prefix_archetypes:308
+msgid "Melting "
 msgstr ""
 
-#: ../map/freedroid.droid_archetypes:500
-msgid "standard crew droid. Supplied with the ship."
+#: ../map/freedroid.prefix_archetypes:335
+msgid "Cursed "
 msgstr ""
 
-#: ../map/freedroid.droid_archetypes:534
-msgid "a highly sophisticated device. Able to control the Robo-Freighter on its own."
+#: ../map/freedroid.prefix_archetypes:362
+msgid "Perfect "
 msgstr ""
 
-#: ../map/freedroid.droid_archetypes:568
-msgid ""
-"low security sentinel droid. Used to protect areas of the ship from intruders."
-" A slow but sure device."
+#: ../map/freedroid.prefix_archetypes:388
+msgid "Quartz "
 msgstr ""
 
-#: ../map/freedroid.droid_archetypes:602
-msgid ""
-"sophisticated sentinel droid. Only 2000 built by the Nicholson Company. these "
-"are now very rare."
+#: ../map/freedroid.prefix_archetypes:415
+msgid "First aid "
 msgstr ""
 
-#: ../map/freedroid.droid_archetypes:636
-msgid ""
-"low sentinel droid. Lasers are built into the turret. These are mounted on a s"
-"mall tank body. May be fitted with an auto-cannon on-the Gillen version."
+#: ../map/freedroid.prefix_archetypes:442
+msgid "Razor sharp "
 msgstr ""
 
-#: ../map/freedroid.droid_archetypes:671
-msgid ""
-"heavy duty battle droid. Disruptor is built into the head. One of the first in"
-" service with the Military."
+#: ../map/freedroid.prefix_archetypes:469
+msgid "Light "
 msgstr ""
 
-#: ../map/freedroid.droid_archetypes:705
-msgid "this version is the one mainly used by the Military."
+#: ../map/freedroid.prefix_archetypes:496
+msgid "Beautiful "
 msgstr ""
 
-#: ../map/freedroid.droid_archetypes:739
-msgid ""
-"very heavy duty battle droid. Only a few have so far entered service. These ar"
-"e the most powerful battle units ever built."
+#: ../map/freedroid.prefix_archetypes:523
+msgid "Howling "
 msgstr ""
 
-#: ../map/freedroid.droid_archetypes:774
-msgid ""
-"a very reliable anti-grav unit is fitted into this droid. It will patrol the s"
-"hip and eliminate intruders as soon as detected by powerful sensors."
+#: ../map/freedroid.prefix_archetypes:550
+msgid "Accelerating "
 msgstr ""
 
-#: ../map/freedroid.droid_archetypes:807
-msgid ""
-"early type anti-grav security droid. Fitted with an over-driven anti-grav unit"
-". This droid is very fast but is not reliable."
+#: ../map/freedroid.prefix_archetypes:577
+msgid "Colorful "
 msgstr ""
 
-#: ../map/freedroid.droid_archetypes:841
-msgid ""
-"this droid was designed from archive data. For some unknown reason it instils "
-"great fear in Human adversaries."
+#: ../map/freedroid.prefix_archetypes:604
+msgid "Rainbow "
 msgstr ""
 
-#: ../map/freedroid.droid_archetypes:878
-msgid ""
-"experimental command cyborg. Fitted with a new type of brain. Mounted on a sec"
-"urity droid anti-grav unit for convenience. warning: the influence device may "
-"not control a primode brain for long."
+#: ../map/freedroid.prefix_archetypes:631
+msgid "Suicide "
 msgstr ""
 
-#: ../map/freedroid.droid_archetypes:909
-#: ../map/freedroid.droid_archetypes:1127
-msgid ""
-"This is a typical professor/sage character of some older age.  They are not ar"
-"med as powerfully as e.g. the red guards."
+#: ../map/freedroid.prefix_archetypes:658
+msgid "Broken "
 msgstr ""
 
-#: ../map/freedroid.droid_archetypes:940
-msgid ""
-"This is a typical red (male) guard/fighter character.  They are equipped with "
-"powerful PowerExterminators."
+#: ../map/freedroid.prefix_archetypes:685
+msgid "Fluorescent "
 msgstr ""
 
-#: ../map/freedroid.droid_archetypes:971
-msgid "This is the hot_mama shopkeeper character model."
+#: ../map/freedroid.prefix_archetypes:712
+msgid "Luminescent "
 msgstr ""
 
-#: ../map/freedroid.droid_archetypes:1002
-msgid ""
-"This is the female scientist character model.  They are not armed as powerfull"
-"y as e.g. the red guards."
+#: ../map/freedroid.prefix_archetypes:739
+msgid "Blazing "
 msgstr ""
 
-#: ../map/freedroid.droid_archetypes:1033
-msgid ""
-"This is the brown worker model.  They are not armed as powerfully as e.g. the "
-"red guards."
+#: ../map/freedroid.prefix_archetypes:766
+msgid "Hungry "
 msgstr ""
 
-#: ../map/freedroid.droid_archetypes:1064
-msgid "This is a useless comment. Thanks for your attention."
+#: ../map/freedroid.prefix_archetypes:793
+msgid "Devouring "
 msgstr ""
 
-#: ../map/freedroid.droid_archetypes:1095
-msgid "This is the cook."
+#: ../map/freedroid.prefix_archetypes:820
+msgid "Ravenous "
 msgstr ""
 
-#: ../map/freedroid.droid_archetypes:1158
-msgid "This is a typical sex bomb.  This one is even armed."
+#: ../map/freedroid.prefix_archetypes:847
+msgid "OMGWTF "
 msgstr ""
 
-#: ../map/freedroid.droid_archetypes:1189
-msgid "This is the bartender."
+#: ../map/freedroid.prefix_archetypes:874
+msgid " of good design"
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:897
+msgid " (C)MegaSys"
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:921
+msgid " with no suffix"
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:944
+msgid " with sharp edges"
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:969
+msgid " covered in blood"
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:992
+msgid " covered in oil"
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:1015
+msgid ", 'the Murderer'"
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:1038
+msgid ", 'the Healer'"
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:1061
+msgid ", 'the Rabbit'"
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:1084
+msgid ", 'the Seeker'"
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:1107
+msgid ", 'the World'"
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:1130
+msgid " from hell"
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:1153
+msgid " with strange runes"
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:1176
+msgid " with a curse"
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:1199
+msgid "Cool "
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:1222
+msgid "Frozen "
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:1245
+msgid " of ice"
+msgstr ""
+
+#: ../map/freedroid.prefix_archetypes:1268
+msgid " of chills"
 msgstr ""
 
 #: ../map/freedroid.item_archetypes:49
@@ -1731,6 +1762,478 @@ msgid ""
 " be a great time for Duncan to explain a few things..."
 msgstr ""
 
+#: ../map/freedroid.droid_archetypes:122
+msgid ""
+"simple rubbish diposal robot. Common device in most space craft to maintain a "
+"clean ship."
+msgstr ""
+
+#: ../map/freedroid.droid_archetypes:157
+msgid ""
+"created by Dr. Masternak to clean up large heaps of rubbish. Its large scoop i"
+"s used to collect rubbish. It is then crushed internally."
+msgstr ""
+
+#: ../map/freedroid.droid_archetypes:191
+msgid "light duty servant robot. One of the first to use the anti-grav system."
+msgstr ""
+
+#: ../map/freedroid.droid_archetypes:225
+msgid "cheaper version of the anti-grav servant robot."
+msgstr ""
+
+#: ../map/freedroid.droid_archetypes:259
+#: ../map/freedroid.droid_archetypes:1218
+msgid "Run away! This bot will kill you!"
+msgstr ""
+
+#: ../map/freedroid.droid_archetypes:294
+msgid "common device for moving small packages. Clamp is mounted on the lower body."
+msgstr ""
+
+#: ../map/freedroid.droid_archetypes:329
+msgid "early type messenger robot. Large wheels impede motion on small craft."
+msgstr ""
+
+#: ../map/freedroid.droid_archetypes:364
+msgid "slow maintenance robot. Confined to drive maintenance during flight."
+msgstr ""
+
+#: ../map/freedroid.droid_archetypes:398
+msgid ""
+"ship maintenance robot. Fitted with multiple arms to carry out repairs to the "
+"ship efficiently. All craft built after the Jupiter-incident are supplied with"
+" a team of these."
+msgstr ""
+
+#: ../map/freedroid.droid_archetypes:432
+msgid "slave maintenance droid. Standard version will carry its own toolbox."
+msgstr ""
+
+#: ../map/freedroid.droid_archetypes:466
+msgid ""
+"early crew droid. Able to carry out simple flight checks only. No longer suppl"
+"ied."
+msgstr ""
+
+#: ../map/freedroid.droid_archetypes:500
+msgid "standard crew droid. Supplied with the ship."
+msgstr ""
+
+#: ../map/freedroid.droid_archetypes:534
+msgid "a highly sophisticated device. Able to control the Robo-Freighter on its own."
+msgstr ""
+
+#: ../map/freedroid.droid_archetypes:568
+msgid ""
+"low security sentinel droid. Used to protect areas of the ship from intruders."
+" A slow but sure device."
+msgstr ""
+
+#: ../map/freedroid.droid_archetypes:602
+msgid ""
+"sophisticated sentinel droid. Only 2000 built by the Nicholson Company. these "
+"are now very rare."
+msgstr ""
+
+#: ../map/freedroid.droid_archetypes:636
+msgid ""
+"low sentinel droid. Lasers are built into the turret. These are mounted on a s"
+"mall tank body. May be fitted with an auto-cannon on-the Gillen version."
+msgstr ""
+
+#: ../map/freedroid.droid_archetypes:671
+msgid ""
+"heavy duty battle droid. Disruptor is built into the head. One of the first in"
+" service with the Military."
+msgstr ""
+
+#: ../map/freedroid.droid_archetypes:705
+msgid "this version is the one mainly used by the Military."
+msgstr ""
+
+#: ../map/freedroid.droid_archetypes:739
+msgid ""
+"very heavy duty battle droid. Only a few have so far entered service. These ar"
+"e the most powerful battle units ever built."
+msgstr ""
+
+#: ../map/freedroid.droid_archetypes:774
+msgid ""
+"a very reliable anti-grav unit is fitted into this droid. It will patrol the s"
+"hip and eliminate intruders as soon as detected by powerful sensors."
+msgstr ""
+
+#: ../map/freedroid.droid_archetypes:807
+msgid ""
+"early type anti-grav security droid. Fitted with an over-driven anti-grav unit"
+". This droid is very fast but is not reliable."
+msgstr ""
+
+#: ../map/freedroid.droid_archetypes:841
+msgid ""
+"this droid was designed from archive data. For some unknown reason it instils "
+"great fear in Human adversaries."
+msgstr ""
+
+#: ../map/freedroid.droid_archetypes:878
+msgid ""
+"experimental command cyborg. Fitted with a new type of brain. Mounted on a sec"
+"urity droid anti-grav unit for convenience. warning: the influence device may "
+"not control a primode brain for long."
+msgstr ""
+
+#: ../map/freedroid.droid_archetypes:909
+#: ../map/freedroid.droid_archetypes:1127
+msgid ""
+"This is a typical professor/sage character of some older age.  They are not ar"
+"med as powerfully as e.g. the red guards."
+msgstr ""
+
+#: ../map/freedroid.droid_archetypes:940
+msgid ""
+"This is a typical red (male) guard/fighter character.  They are equipped with "
+"powerful PowerExterminators."
+msgstr ""
+
+#: ../map/freedroid.droid_archetypes:971
+msgid "This is the hot_mama shopkeeper character model."
+msgstr ""
+
+#: ../map/freedroid.droid_archetypes:1002
+msgid ""
+"This is the female scientist character model.  They are not armed as powerfull"
+"y as e.g. the red guards."
+msgstr ""
+
+#: ../map/freedroid.droid_archetypes:1033
+msgid ""
+"This is the brown worker model.  They are not armed as powerfully as e.g. the "
+"red guards."
+msgstr ""
+
+#: ../map/freedroid.droid_archetypes:1064
+msgid "This is a useless comment. Thanks for your attention."
+msgstr ""
+
+#: ../map/freedroid.droid_archetypes:1095
+msgid "This is the cook."
+msgstr ""
+
+#: ../map/freedroid.droid_archetypes:1158
+msgid "This is a typical sex bomb.  This one is even armed."
+msgstr ""
+
+#: ../map/freedroid.droid_archetypes:1189
+msgid "This is the bartender."
+msgstr ""
+
+#: ../map/freedroid.quests:38
+msgid "Bender's problem"
+msgstr ""
+
+#: ../map/freedroid.quests:49
+msgid ""
+"I met a Red Guard named Bender. He poisoned himself with some brain enlargemen"
+"t pills, which turned out to highly cancirogenic. The city doctor will not giv"
+"e him the antidote, so it is up to me to save him."
+msgstr ""
+
+#: ../map/freedroid.quests:50
+msgid "The doctor was easily fooled. I have the pills that Bender needs."
+msgstr ""
+
+#: ../map/freedroid.quests:51
+msgid ""
+"I killed the doctor. I feel sick. What a disgusting mess. At least I get to he"
+"lp Bender now."
+msgstr ""
+
+#: ../map/freedroid.quests:52
+msgid ""
+"Bender is fine now. He gave me some muscle enlargement pills in return for my "
+"help. Hmm..."
+msgstr ""
+
+#: ../map/freedroid.quests:59
+msgid "The yellow toolkit"
+msgstr ""
+
+#: ../map/freedroid.quests:70
+msgid ""
+"Dixon, the leader of the Red Guard technical division lost his yellow toolkit "
+"in the city's maintenance tunnels. I am supposed to get it from there."
+msgstr ""
+
+#: ../map/freedroid.quests:71
+msgid ""
+"The bots in the tunnels might be sentient. I cannot wait to extinguish an emer"
+"ging life form. This will be fun."
+msgstr ""
+
+#: ../map/freedroid.quests:72
+msgid ""
+"I refused to get the toolkit from the bots in the tunnels because I think they"
+" might be sentient. Life is precious and should be preserved."
+msgstr ""
+
+#: ../map/freedroid.quests:73
+msgid ""
+"The tunnels bots seem to be working together with Dixon in keeping the city wo"
+"rking. All is well that ends well."
+msgstr ""
+
+#: ../map/freedroid.quests:74
+msgid ""
+"Finally. I am tired, covered in bruises and oil... But finally I made sure the"
+" bots will not survive. It felt great to break their metal bodies and crush th"
+"eir circuits. Dixon seemed not too happy about this solution, but I don't care"
+". It was fun killing the bots. Nothing else matters."
+msgstr ""
+
+#: ../map/freedroid.quests:75
+msgid ""
+"I gave the toolkit to Dixon. He was very happy to have his autotools back. I g"
+"ot his helmet as a gift. I guess this is better than nothing."
+msgstr ""
+
+#: ../map/freedroid.quests:76
+msgid "I sold the toolkit to Dixon for a nice sum of money. Life is good."
+msgstr ""
+
+#: ../map/freedroid.quests:77
+msgid "I sold the toolkit to Dixon for a huge sum of money. Life is great."
+msgstr ""
+
+#: ../map/freedroid.quests:78
+msgid ""
+"I sold the toolkit to Dixon for a enormous sum of money. Life is truly grand. "
+"I better stay away from Dixon for now. He seemed very angry at me."
+msgstr ""
+
+#: ../map/freedroid.quests:85
+msgid "Anything but the army snacks, please!"
+msgstr ""
+
+#: ../map/freedroid.quests:96
+msgid ""
+"I am supposed to get some dilithium crystals for that cook. Without them he ca"
+"nnot cook anything in his macrowave oven. And without his cooking the whole ci"
+"ty is stuck eating army snacks. Many people have committed suicide because of "
+"the horrible food. This madness must stop."
+msgstr ""
+
+#: ../map/freedroid.quests:97
+msgid ""
+"I gave him enough dilithium to last him a decade. The evil spectre of eating a"
+"rmy snacks is lifted from the city."
+msgstr ""
+
+#: ../map/freedroid.quests:104
+#: ../map/freedroid.levels:25000
+msgid "Novice Arena"
+msgstr ""
+
+#: ../map/freedroid.quests:118
+msgid ""
+"Fighting in the arena is not something I would usually do, but I feel like doi"
+"ng it for a change. Why not?"
+msgstr ""
+
+#: ../map/freedroid.quests:119
+msgid ""
+"Now that was easy. Yawn. I nearly fell asleep. No problem at all, the bots are"
+" dead."
+msgstr ""
+
+#: ../map/freedroid.quests:126
+msgid "Time to say goodnight"
+msgstr ""
+
+#: ../map/freedroid.quests:140
+msgid ""
+"I told the arena master to let me into his master arena. He agreed. Now all th"
+"at remains to do is to enter the teleport and wait for death herself to come o"
+"n her black wings and claim my soul. You know, now that I think about it... Ma"
+"ybe I should stay out of there?"
+msgstr ""
+
+#: ../map/freedroid.quests:141
+msgid "I survived the master arena. A miracle. Whew."
+msgstr ""
+
+#: ../map/freedroid.quests:148
+msgid "Opening a can of bots..."
+msgstr ""
+
+#: ../map/freedroid.quests:158
+msgid "I am supposed to clean out the first level of some warehouse. Sounds easy."
+msgstr ""
+
+#: ../map/freedroid.quests:159
+msgid "Ouch. It wasn't. At least I am alive and the warehouse is clear. Whew."
+msgstr ""
+
+#: ../map/freedroid.quests:166
+msgid "And there was light..."
+msgstr ""
+
+#: ../map/freedroid.quests:176
+msgid ""
+"Kevin has a problem with his energy supply. His bots keep rebooting the system"
+" and he cannot conduct any experiments with unstable power supply. My job is t"
+"o stabilize the power. I think that implies removing the stupid bots."
+msgstr ""
+
+#: ../map/freedroid.quests:177
+msgid "Everything is back to normal for now. Kevin can work in peace now."
+msgstr ""
+
+#: ../map/freedroid.quests:186
+msgid "A kingdom for a cluster!"
+msgstr ""
+
+#: ../map/freedroid.quests:196
+msgid ""
+"Kevin gave me a cube stuffed with some kind of data. I am supposed to bring it"
+" to a \ncomputer cluster for analysis. Ought to be simple."
+msgstr ""
+
+#: ../map/freedroid.quests:198
+msgid ""
+"Yes, that was simple. I wish everything else went as smoothly as this one did."
+".."
+msgstr ""
+
+#: ../map/freedroid.quests:206
+msgid "Opening access to MS Office"
+msgstr ""
+
+#: ../map/freedroid.quests:216
+msgid ""
+"Spencer has revealed the information from the data cube evaluation to me.  It "
+"seems there is an old military research facility near the colony.  By overtaki"
+"ng the control droid I would be able to control the disruptor shield at the fa"
+"cility. I can either activate it permanently, thereby locking off the Hell For"
+"tress, and the bots its producing, forever from its surrounding. Alternatively"
+" I could disable it, and fight my way through the Hell Fortress droids until I"
+" reach the main control droid and update it, thereby disabling all bots in the"
+" entire area around town in one fell swoop."
+msgstr ""
+
+#: ../map/freedroid.quests:217
+msgid "There, I've found and entered the base."
+msgstr ""
+
+#: ../map/freedroid.quests:218
+msgid ""
+"I've taken over the control droid and activated the disruptor shield. Now the "
+"town is safe."
+msgstr ""
+
+#: ../map/freedroid.quests:219
+msgid ""
+"I've taken over the control droid and disabled the disruptor shield. Now I sho"
+"uld go to Hell Fortress and hack MS firmware update system."
+msgstr ""
+
+#: ../map/freedroid.quests:220
+msgid ""
+"I've killed the control droid. Now it will not be able to disable the disrupto"
+"r shield to let bots through. The town is safe."
+msgstr ""
+
+#: ../map/freedroid.quests:221
+msgid ""
+"Finally I've managed to propogate my firmware update. Now all hostile bots are"
+" nothing more than pieces of rusty metall."
+msgstr ""
+
+#: ../map/freedroid.quests:229
+msgid "Propagating a faulty firmware"
+msgstr ""
+
+#: ../map/freedroid.quests:239
+msgid ""
+"I can enter the fortress and find the upgrade server bot. The fortress gates a"
+"re in crystal fields. Spencer told the guards to open the doors for me."
+msgstr ""
+
+#: ../map/freedroid.quests:240
+msgid ""
+"I've managed to propagate my (slightly modified!) firmware update. Now bots us"
+"ing this update server are nothing more than pieces of rusty metal."
+msgstr ""
+
+#: ../map/freedroid.quests:247
+msgid "SADD's power supply"
+msgstr ""
+
+#: ../map/freedroid.quests:258
+msgid "I am supposed to get some dilithium crystals for that SADD."
+msgstr ""
+
+#: ../map/freedroid.quests:259
+msgid "Done. He looks happy."
+msgstr ""
+
+#: ../map/freedroid.quests:266
+msgid "Tanias sanitary"
+msgstr ""
+
+#: ../map/freedroid.quests:276
+#: ../map/freedroid.quests:295
+msgid ""
+"I have met a girl locked in secret area. If I manage to disable autoguns, she "
+"would be able to go to the surface, look at sun again."
+msgstr ""
+
+#: ../map/freedroid.quests:277
+#: ../map/freedroid.quests:296
+msgid "I have found that SACD and overtooked him."
+msgstr ""
+
+#: ../map/freedroid.quests:278
+#: ../map/freedroid.quests:297
+msgid "Tania is free now!"
+msgstr ""
+
+#: ../map/freedroid.quests:285
+msgid "Saving the shop"
+msgstr ""
+
+#: ../map/freedroid.quests:304
+msgid "The stranger east of town"
+msgstr ""
+
+#: ../map/freedroid.quests:314
+msgid ""
+"Probably I should try to find that strange guy rumoured to be living east of t"
+"own. If he can manage to survive outside of town he might have some useful inf"
+"ormation for me. But maybe not right away, it might be too dangerous with all "
+"these bots around."
+msgstr ""
+
+#: ../map/freedroid.quests:315
+msgid "I seem to have found Kevins home."
+msgstr ""
+
+#: ../map/freedroid.quests:322
+msgid "Doing Duncan a favour"
+msgstr ""
+
+#: ../map/freedroid.quests:332
+msgid "Find Koan in desert."
+msgstr ""
+
+#: ../map/freedroid.quests:333
+msgid "Took revenge for Duncan by killing Koan."
+msgstr ""
+
+#: ../map/freedroid.quests:334
+msgid "Met and talked to Koan, but didnt kill him."
+msgstr ""
+
 #: ../map/freedroid.levels:19
 msgid "Town"
 msgstr ""
@@ -1832,11 +2335,6 @@ msgstr ""
 msgid "Some temple"
 msgstr ""
 
-#: ../map/freedroid.levels:25000
-#: ../map/freedroid.quests:107
-msgid "Novice Arena"
-msgstr ""
-
 #: ../map/freedroid.levels:25257
 msgid "Master Arena"
 msgstr ""
@@ -1867,503 +2365,5 @@ msgstr ""
 
 #: ../map/freedroid.levels:33527
 msgid "Tutorial"
-msgstr ""
-
-#: ../map/freedroid.quests:38
-msgid "Bender's problem"
-msgstr ""
-
-#: ../map/freedroid.quests:50
-msgid ""
-"I met a Red Guard named Bender. He poisoned himself with some brain enlargemen"
-"t pills, which turned out to highly cancirogenic. The city doctor will not giv"
-"e him the antidote, so it is up to me to save him."
-msgstr ""
-
-#: ../map/freedroid.quests:51
-msgid "The doctor was easily fooled. I have the pills that Bender needs."
-msgstr ""
-
-#: ../map/freedroid.quests:52
-msgid ""
-"I killed the doctor. I feel sick. What a disgusting mess. At least I get to he"
-"lp Bender now."
-msgstr ""
-
-#: ../map/freedroid.quests:53
-msgid ""
-"Bender is fine now. He gave me some muscle enlargement pills in return for my "
-"help. Hmm..."
-msgstr ""
-
-#: ../map/freedroid.quests:60
-msgid "The yellow toolkit"
-msgstr ""
-
-#: ../map/freedroid.quests:72
-msgid ""
-"Dixon, the leader of the Red Guard technical division lost his yellow toolkit "
-"in the city's maintenance tunnels. I am supposed to get it from there."
-msgstr ""
-
-#: ../map/freedroid.quests:73
-msgid ""
-"The bots in the tunnels might be sentient. I cannot wait to extinguish an emer"
-"ging life form. This will be fun."
-msgstr ""
-
-#: ../map/freedroid.quests:74
-msgid ""
-"I refused to get the toolkit from the bots in the tunnels because I think they"
-" might be sentient. Life is precious and should be preserved."
-msgstr ""
-
-#: ../map/freedroid.quests:75
-msgid ""
-"The tunnels bots seem to be working together with Dixon in keeping the city wo"
-"rking. All is well that ends well."
-msgstr ""
-
-#: ../map/freedroid.quests:76
-msgid ""
-"Finally. I am tired, covered in bruises and oil... But finally I made sure the"
-" bots will not survive. It felt great to break their metal bodies and crush th"
-"eir circuits. Dixon seemed not too happy about this solution, but I don't care"
-". It was fun killing the bots. Nothing else matters."
-msgstr ""
-
-#: ../map/freedroid.quests:77
-msgid ""
-"I gave the toolkit to Dixon. He was very happy to have his autotools back. I g"
-"ot his helmet as a gift. I guess this is better than nothing."
-msgstr ""
-
-#: ../map/freedroid.quests:78
-msgid "I sold the toolkit to Dixon for a nice sum of money. Life is good."
-msgstr ""
-
-#: ../map/freedroid.quests:79
-msgid "I sold the toolkit to Dixon for a huge sum of money. Life is great."
-msgstr ""
-
-#: ../map/freedroid.quests:80
-msgid ""
-"I sold the toolkit to Dixon for a enormous sum of money. Life is truly grand. "
-"I better stay away from Dixon for now. He seemed very angry at me."
-msgstr ""
-
-#: ../map/freedroid.quests:87
-msgid "Anything but the army snacks, please!"
-msgstr ""
-
-#: ../map/freedroid.quests:99
-msgid ""
-"I am supposed to get some dilithium crystals for that cook. Without them he ca"
-"nnot cook anything in his macrowave oven. And without his cooking the whole ci"
-"ty is stuck eating army snacks. Many people have committed suicide because of "
-"the horrible food. This madness must stop."
-msgstr ""
-
-#: ../map/freedroid.quests:100
-msgid ""
-"I gave him enough dilithium to last him a decade. The evil spectre of eating a"
-"rmy snacks is lifted from the city."
-msgstr ""
-
-#: ../map/freedroid.quests:122
-msgid ""
-"Fighting in the arena is not something I would usually do, but I feel like doi"
-"ng it for a change. Why not?"
-msgstr ""
-
-#: ../map/freedroid.quests:123
-msgid ""
-"Now that was easy. Yawn. I nearly fell asleep. No problem at all, the bots are"
-" dead."
-msgstr ""
-
-#: ../map/freedroid.quests:130
-msgid "Time to say goodnight"
-msgstr ""
-
-#: ../map/freedroid.quests:145
-msgid ""
-"I told the arena master to let me into his master arena. He agreed. Now all th"
-"at remains to do is to enter the teleport and wait for death herself to come o"
-"n her black wings and claim my soul. You know, now that I think about it... Ma"
-"ybe I should stay out of there?"
-msgstr ""
-
-#: ../map/freedroid.quests:146
-msgid "I survived the master arena. A miracle. Whew."
-msgstr ""
-
-#: ../map/freedroid.quests:153
-msgid "Opening a can of bots..."
-msgstr ""
-
-#: ../map/freedroid.quests:164
-msgid "I am supposed to clean out the first level of some warehouse. Sounds easy."
-msgstr ""
-
-#: ../map/freedroid.quests:165
-msgid "Ouch. It wasn't. At least I am alive and the warehouse is clear. Whew."
-msgstr ""
-
-#: ../map/freedroid.quests:172
-msgid "And there was light..."
-msgstr ""
-
-#: ../map/freedroid.quests:183
-msgid ""
-"Kevin has a problem with his energy supply. His bots keep rebooting the system"
-" and he cannot conduct any experiments with unstable power supply. My job is t"
-"o stabilize the power. I think that implies removing the stupid bots."
-msgstr ""
-
-#: ../map/freedroid.quests:184
-msgid "Everything is back to normal for now. Kevin can work in peace now."
-msgstr ""
-
-#: ../map/freedroid.quests:193
-msgid "A kingdom for a cluster!"
-msgstr ""
-
-#: ../map/freedroid.quests:204
-msgid ""
-"Kevin gave me a cube stuffed with some kind of data. I am supposed to bring it"
-" to a \ncomputer cluster for analysis. Ought to be simple."
-msgstr ""
-
-#: ../map/freedroid.quests:206
-msgid ""
-"Yes, that was simple. I wish everything else went as smoothly as this one did."
-".."
-msgstr ""
-
-#: ../map/freedroid.quests:214
-msgid "Opening access to MS Office"
-msgstr ""
-
-#: ../map/freedroid.quests:225
-msgid ""
-"Spencer has revealed the information from the data cube evaluation to me.  It "
-"seems there is an old military research facility near the colony.  By overtaki"
-"ng the control droid I would be able to control the disruptor shield at the fa"
-"cility. I can either activate it permanently, thereby locking off the Hell For"
-"tress, and the bots its producing, forever from its surrounding. Alternatively"
-" I could disable it, and fight my way through the Hell Fortress droids until I"
-" reach the main control droid and update it, thereby disabling all bots in the"
-" entire area around town in one fell swoop."
-msgstr ""
-
-#: ../map/freedroid.quests:226
-msgid "There, I've found and entered the base."
-msgstr ""
-
-#: ../map/freedroid.quests:227
-msgid ""
-"I've taken over the control droid and activated the disruptor shield. Now the "
-"town is safe."
-msgstr ""
-
-#: ../map/freedroid.quests:228
-msgid ""
-"I've taken over the control droid and disabled the disruptor shield. Now I sho"
-"uld go to Hell Fortress and hack MS firmware update system."
-msgstr ""
-
-#: ../map/freedroid.quests:229
-msgid ""
-"I've killed the control droid. Now it will not be able to disable the disrupto"
-"r shield to let bots through. The town is safe."
-msgstr ""
-
-#: ../map/freedroid.quests:230
-msgid ""
-"Finally I've managed to propogate my firmware update. Now all hostile bots are"
-" nothing more than pieces of rusty metall."
-msgstr ""
-
-#: ../map/freedroid.quests:238
-msgid "Propagating a faulty firmware"
-msgstr ""
-
-#: ../map/freedroid.quests:249
-msgid ""
-"I can enter the fortress and find the upgrade server bot. The fortress gates a"
-"re in crystal fields. Spencer told the guards to open the doors for me."
-msgstr ""
-
-#: ../map/freedroid.quests:250
-msgid ""
-"I've managed to propagate my (slightly modified!) firmware update. Now bots us"
-"ing this update server are nothing more than pieces of rusty metal."
-msgstr ""
-
-#: ../map/freedroid.quests:257
-msgid "SADD's power supply"
-msgstr ""
-
-#: ../map/freedroid.quests:269
-msgid "I am supposed to get some dilithium crystals for that SADD."
-msgstr ""
-
-#: ../map/freedroid.quests:270
-msgid "Done. He looks happy."
-msgstr ""
-
-#: ../map/freedroid.quests:277
-msgid "Tanias sanitary"
-msgstr ""
-
-#: ../map/freedroid.quests:288
-#: ../map/freedroid.quests:308
-msgid ""
-"I have met a girl locked in secret area. If I manage to disable autoguns, she "
-"would be able to go to the surface, look at sun again."
-msgstr ""
-
-#: ../map/freedroid.quests:289
-#: ../map/freedroid.quests:309
-msgid "I have found that SACD and overtooked him."
-msgstr ""
-
-#: ../map/freedroid.quests:290
-#: ../map/freedroid.quests:310
-msgid "Tania is free now!"
-msgstr ""
-
-#: ../map/freedroid.quests:297
-msgid "Saving the shop"
-msgstr ""
-
-#: ../map/freedroid.quests:317
-msgid "The stranger east of town"
-msgstr ""
-
-#: ../map/freedroid.quests:328
-msgid ""
-"Probably I should try to find that strange guy rumoured to be living east of t"
-"own. If he can manage to survive outside of town he might have some useful inf"
-"ormation for me. But maybe not right away, it might be too dangerous with all "
-"these bots around."
-msgstr ""
-
-#: ../map/freedroid.quests:329
-msgid "I seem to have found Kevins home."
-msgstr ""
-
-#: ../map/freedroid.quests:336
-msgid "Doing Duncan a favour"
-msgstr ""
-
-#: ../map/freedroid.quests:347
-msgid "Find Koan in desert."
-msgstr ""
-
-#: ../map/freedroid.quests:348
-msgid "Took revenge for Duncan by killing Koan."
-msgstr ""
-
-#: ../map/freedroid.quests:349
-msgid "Met and talked to Koan, but didnt kill him."
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:10
-#: ../map/freedroid.prefix_archetypes:37
-msgid "I am a big bad bug in the game. Report me. Please. "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:64
-msgid "Living "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:91
-msgid " coated in teflon"
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:118
-msgid " of Almost Zodiac"
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:145
-msgid "Resonant "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:172
-msgid "Cow "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:200
-msgid "Bull "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:227
-msgid "Mouse "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:254
-msgid "Jackdaw "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:281
-msgid "Hardcoded "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:308
-msgid "Melting "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:335
-msgid "Cursed "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:362
-msgid "Perfect "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:388
-msgid "Quartz "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:415
-msgid "First aid "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:442
-msgid "Razor sharp "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:469
-msgid "Light "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:496
-msgid "Beautiful "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:523
-msgid "Howling "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:550
-msgid "Accelerating "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:577
-msgid "Colorful "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:604
-msgid "Rainbow "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:631
-msgid "Suicide "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:658
-msgid "Broken "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:685
-msgid "Fluorescent "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:712
-msgid "Luminescent "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:739
-msgid "Blazing "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:766
-msgid "Hungry "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:793
-msgid "Devouring "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:820
-msgid "Ravenous "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:847
-msgid "OMGWTF "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:874
-msgid " of good design"
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:897
-msgid " (C)MegaSys"
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:921
-msgid " with no suffix"
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:944
-msgid " with sharp edges"
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:969
-msgid " covered in blood"
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:992
-msgid " covered in oil"
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:1015
-msgid ", 'the Murderer'"
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:1038
-msgid ", 'the Healer'"
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:1061
-msgid ", 'the Rabbit'"
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:1084
-msgid ", 'the Seeker'"
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:1107
-msgid ", 'the World'"
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:1130
-msgid " from hell"
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:1153
-msgid " with strange runes"
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:1176
-msgid " with a curse"
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:1199
-msgid "Cool "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:1222
-msgid "Frozen "
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:1245
-msgid " of ice"
-msgstr ""
-
-#: ../map/freedroid.prefix_archetypes:1268
-msgid " of chills"
 msgstr ""
 
