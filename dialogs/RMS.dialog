@@ -31,11 +31,9 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 FirstTime LuaCode={
-    show(0, 5, 99)
+    show(0, 99)
 }
-
 ----------------------------------------------------------------------
-
 
 Nr=0  Text=_" Hi! I'm new here. "
 NPC=_"Welcome, welcome! I'm Richard. I'm the computer guy around here."
