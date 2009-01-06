@@ -34,7 +34,6 @@ FirstTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-
 Nr=0  Text="THIS WILL NEVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 NPC=_"Hey you! Linarian! What do you want here?"
@@ -42,7 +41,7 @@ LuaCode={
     hide(99)
     show(1, 2, 3)
 }
-AlwaysExecuteThisOptionPriorToDialogStart="yes"
+A*lwaysExecuteThisOptionPriorToDialogStart="yes" With rush tux this is triggered twice currently
 
 ----------------------------------------------------------------------
 
