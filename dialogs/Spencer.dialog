@@ -31,15 +31,15 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 FirstTime LuaCode={
-    enable_node(0, 99)
+    show(0, 99)
 }
 ----------------------------------------------------------------------
 
 Nr=0  Text=_" Hi! I'm new here."
 NPC=_"I'm Spencer. I'm the leader of the Red Guard. Is there anything I can help you with?"
 LuaCode={
-    disable_node(0)
-    enable_node(1, 6)
+    hide(0)
+    show(1, 6)
 }
 ----------------------------------------------------------------------
 
@@ -47,22 +47,22 @@ Nr=1  Text=_" I want to join the Red Guard."
 NPC=_"Hmm... Really? Well, you cannot join just like that, you know..."
 NPC=_"You must prove that you would make a good new member."
 LuaCode={
-    disable_node(1)
-    enable_node(2)
+    hide(1)
+    show(2)
 }
 ----------------------------------------------------------------------
 
 Nr=2  Text=_" I really want to become a member."
 LuaCode={
-    disable_node(2)
-    if (has_cookie("tux_has_joined_guard")) then set_next_node(32) else set_next_node(33) end
+    hide(2)
+    if (has_cookie("tux_has_joined_guard")) then next(32) else next(33) end
 }
 ----------------------------------------------------------------------
 
 Nr=3  Text=_" What about some money instead?"
 NPC=_"For 15 million bucks, no less, hehe."
 LuaCode={
-    disable_node(3)
+    hide(3)
 }
 ----------------------------------------------------------------------
 
@@ -72,8 +72,8 @@ NPC=_"These are bad times. The interplanetary travel is made impossible by bot s
 NPC=_"We've got a list of stuff we'd need from the automated underground storage north of town. But the bots there are numerous."
 NPC=_"And currently I can't spare a single man from the city defenses. It's a quite difficult situation."
 LuaCode={
-    disable_node(4)
-    enable_node(5)
+    hide(4)
+    show(5)
 }
 ----------------------------------------------------------------------
 
@@ -87,7 +87,7 @@ LuaCode={
     add_quest("Opening a can of bots...")
     open_diary_entry(5, 0)
     change_obstacle("AccessDoorToWarehouse", "opened")
-    disable_node(5)
+    hide(5)
 }
 ----------------------------------------------------------------------
 
@@ -95,9 +95,9 @@ Nr=6  Text=_" How is it going?"
 LuaCode={
     if (has_quest("Opening a can of bots...")) then
         if (done_quest("Opening a can of bots...")) then
-            if (has_cookie("reward_for_warehouse_given")) then set_next_node(10) else set_next_node(11) end
-        else set_next_node(9) end
-    else set_next_node(4) end
+            if (has_cookie("reward_for_warehouse_given")) then next(10) else next(11) end
+        else next(9) end
+    else next(4) end
 }
 ----------------------------------------------------------------------
 
@@ -129,7 +129,7 @@ LuaCode={
 
 Nr=12  Text=_" Have I done enough quests to become a member now?"
 LuaCode={
-    if (done_quest("The yellow toolkit")) then set_next_node(13) else set_next_node(14) end
+    if (done_quest("The yellow toolkit")) then next(13) else next(14) end
 }
 ----------------------------------------------------------------------
 
@@ -137,7 +137,7 @@ Nr=13  Text="DIXON SUCCESSFUL."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 NPC=_"Dixon told me about the matter with his toolkit. He seemed pretty impressed by you."
 LuaCode={
-    set_next_node(17)
+    next(17)
 }
 ----------------------------------------------------------------------
 
@@ -145,7 +145,7 @@ Nr=14  Text="DIXON NOT DONE YET"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 NPC=_"I think our teleporter service man, Dixon, he's got some problem. You might want to talk to him."
 LuaCode={
-    set_next_node(17)
+    next(17)
 }
 ----------------------------------------------------------------------
 
@@ -153,7 +153,7 @@ Nr=15  Text="MICHELANGELO DONE."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 NPC=_"When I was eating, Michelangelo told me about his renewed oven energy supply. He seemed very pleased, and so was I."
 LuaCode={
-    set_next_node(18)
+    next(18)
 }
 ----------------------------------------------------------------------
 
@@ -161,21 +161,21 @@ Nr=16  Text="MICHELANGELO NOT DONE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 NPC=_"I think you should visit the camp's cook sometime. He's usually in the restaurant kitchen."
 LuaCode={
-    set_next_node(18)
+    next(18)
 }
 ----------------------------------------------------------------------
 
 Nr=17  Text="IS MICHELANGELO DONE?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    if (done_quest("Anything but the army snacks, please!")) then set_next_node(15) else set_next_node(16) end
+    if (done_quest("Anything but the army snacks, please!")) then next(15) else next(16) end
 }
 ----------------------------------------------------------------------
 
 Nr=18  Text="IS TUX AN ARENA MASTER"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    if (done_quest("Novice Arena")) then set_next_node(19) else set_next_node(20) end
+    if (done_quest("Novice Arena")) then next(19) else next(20) end
 }
 ----------------------------------------------------------------------
 
@@ -183,7 +183,7 @@ Nr=19  Text="TUX IS AN ARENA MASTER"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 NPC=_"From Butch I hear you've become a novice arena master. Congratulations."
 LuaCode={
-    set_next_node(21)
+    next(21)
 }
 ----------------------------------------------------------------------
 
@@ -191,14 +191,14 @@ Nr=20  Text="TUX IS NOT AN ARENA MASTER"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 NPC=_"You might want to score some arena victories. That could also help your reputation a lot."
 LuaCode={
-    set_next_node(21)
+    next(21)
 }
 ----------------------------------------------------------------------
 
 Nr=21  Text="IS BENDER SICK?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    if (done_quest("Bender's problem")) then set_next_node(22) else set_next_node(23) end
+    if (done_quest("Bender's problem")) then next(22) else next(23) end
 }
 ----------------------------------------------------------------------
 
@@ -206,7 +206,7 @@ Nr=22  Text="BENDER DONE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 NPC=_"Helping Bender along was also a smart move. But you should be very careful with this one. He can get mad rather easily. A bit of a security threat, but we can't be too picky."
 LuaCode={
-    set_next_node(24)
+    next(24)
 }
 ----------------------------------------------------------------------
 
@@ -214,14 +214,14 @@ Nr=23  Text="BENDER STILL SICK"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 NPC=_"As far as I know, Bender is still very sick."
 LuaCode={
-    set_next_node(24)
+    next(24)
 }
 ----------------------------------------------------------------------
 
 Nr=24  Text="WAREHOUSE MISSION DONE?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    if (done_quest("Opening a can of bots...")) then set_next_node(25) else set_next_node(27) end
+    if (done_quest("Opening a can of bots...")) then next(25) else next(27) end
 }
 ----------------------------------------------------------------------
 
@@ -229,17 +229,17 @@ Nr=25  Text="WAREHOUSE DONE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 NPC=_"But most importantly, I was very impressed with you when you cleared out the warehouse. That was a huge deed I will never forget."
 LuaCode={
-    set_next_node(27)
+    next(27)
 }
 ----------------------------------------------------------------------
 
 Nr=27  Text="ARE THERE ENOUGH POINTS TO JOIN RG"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    if (get_town_score() > 49) then set_next_node(28)        -- Yes
+    if (get_town_score() > 49) then next(28)        -- Yes
     else
-        if (get_town_score() > 29) then set_next_node(30)    -- Almost
-        else set_next_node(31) end                           -- Not even close
+        if (get_town_score() > 29) then next(30)    -- Almost
+        else next(31) end                           -- Not even close
     end
 }
 ----------------------------------------------------------------------
@@ -254,7 +254,7 @@ LuaCode={
     display_big_message("Joined Town Guard!!")
     add_cookie("tux_has_joined_guard")
     make_tux_red_guard()
-    disable_node(3, 12)
+    hide(3, 12)
 }
 ----------------------------------------------------------------------
 
@@ -274,7 +274,7 @@ Nr=32  Text="STUPID OPTION. IT MUST DIE."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 NPC=_"But you are a member of the Town Guard already! Don't be pulling my leg! Guards must stick together."
 LuaCode={
-    disable_node(12, 32)
+    hide(12, 32)
 }
 ----------------------------------------------------------------------
 
@@ -283,8 +283,8 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 NPC=_"This is not so easy. At first you must establish a reputation around here. Ask around, talk to people and build your reputation."
 NPC=_"Once you're a known character around here, we might let you join the ranks of the Guard."
 LuaCode={
-    disable_node(33)
-    enable_node(3, 12)
+    hide(33)
+    show(3, 12)
 }
 ----------------------------------------------------------------------
 
@@ -295,8 +295,8 @@ NPC=_"If the information is true, then you can take over the control droid and d
 NPC=_"We know that MS had a firmware update system, which could be used to propagate a malicious update to disable all bots. It is very alluring, but to perform this trick you need to hack up the control droid, which is in the heart of the HF. To enter HF you would have to disable the disruptor shield."
 NPC=_"This seems like a gift sent from the heavens. Cleaning the Hell Fortress is not going to be easy, though.."
 LuaCode={
-    disable_node(37)
-    enable_node(38)
+    hide(37)
+    show(38)
 }
 ----------------------------------------------------------------------
 
@@ -306,8 +306,8 @@ NPC=_"That is a good sign, because it shows that the key combinations from the d
 NPC=_"However, we lost contact with them shortly after they went inside. They also reported heavy bot resistance."
 NPC=_"I'd be glad if you could take a look. But use outmost care. We can't afford to lose another guard."
 LuaCode={
-    disable_node(38)
-    enable_node(39, 40)
+    hide(38)
+    show(39, 40)
 }
 ----------------------------------------------------------------------
 
@@ -318,7 +318,7 @@ NPC=_"Try to get control over the disruptor shield if you can. The control droid
 LuaCode={
     add_quest("Opening access to MS Office")
     change_obstacle("DisruptorShieldBaseGate", "opened")
-    disable_node(39, 40)
+    hide(39, 40)
 }
 ----------------------------------------------------------------------
 
@@ -326,7 +326,7 @@ Nr=40  Text=_" I don't feel like doing it now. I'd rather prepare some more."
 NPC=_"Good. You should be well prepared if you intend to go."
 NPC=_"Also there is no need to hurry with this. After all, the installation is not running away, so best take a slow approach."
 LuaCode={
-    disable_node(40)
+    hide(40)
 }
 ----------------------------------------------------------------------
 
@@ -334,10 +334,10 @@ Nr=41  Text="STARTED THE CUBE MISSION?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
     if (not has_quest("Opening access to MS Office")) then
-        if (done_quest("A kingdom for a cluster!")) then enable_node(37) else end
+        if (done_quest("A kingdom for a cluster!")) then show(37) else end
     else end
 
-    if (done_quest("Opening access to MS Office")) then enable_node(44) else end    -- Ready for HF?
+    if (done_quest("Opening access to MS Office")) then show(44) else end    -- Ready for HF?
 }
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
@@ -350,8 +350,8 @@ NPC=_"Look for the entrance of the office in the crystal fields. I will send a m
 NPC=_"Good luck."
 LuaCode={
     add_quest("Propagating a faulty firmware")
-    disable_node(44)
-    enable_node(45)
+    hide(44)
+    show(45)
 }
 ----------------------------------------------------------------------
 
@@ -364,7 +364,7 @@ Nr=99  Text=_" I'll be going then."
 NPC=_"See you later."
 LuaCode={
     end_dialog()
-    enable_node(2)
+    show(2)
 }
 ----------------------------------------------------------------------
 

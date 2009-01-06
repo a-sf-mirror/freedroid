@@ -31,7 +31,7 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 FirstTime LuaCode={
-    enable_node(0, 99)
+    show(0, 99)
 }
 ----------------------------------------------------------------------
 
@@ -42,8 +42,8 @@ NPC=_"The city is presently ruled by the Red Guard. We are the police and the so
 NPC=_"There is only one law concerning outsiders here: Don't be stupid."
 NPC=_"I think that is enough of an introduction for now."
 LuaCode={
-    disable_node(0)
-    enable_node(1)
+    hide(0)
+    show(1)
 }
 ----------------------------------------------------------------------
 
@@ -51,7 +51,7 @@ Nr=1  Text=_" What are you doing here?"
 NPC=_"I'm on guard duty right now."
 NPC=_"There have been no attacks for a while now. It is too quiet, I think something big is about to happen."
 LuaCode={
-    disable_node(1)
+    hide(1)
 }
 ----------------------------------------------------------------------
 
@@ -59,7 +59,7 @@ Nr=99  Text=_" I'll be going, then."
 NPC=_"Goodbye."
 LuaCode={
     end_dialog()
-    enable_node(1)
+    show(1)
 }
 ----------------------------------------------------------------------
 

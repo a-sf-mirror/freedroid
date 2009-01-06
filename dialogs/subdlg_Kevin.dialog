@@ -38,8 +38,8 @@ FirstTime LuaCode={
 Nr=0  Text="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    disable_node(0)
-    enable_node(4, 99)
+    hide(0)
+    show(4, 99)
 }
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
@@ -54,9 +54,9 @@ NPC=_"You don't have enough cash, cheapskate. Come back when you can afford to p
 Nr=4  Text=_" Improve Hacking Ability (cost 300 cash, 5 ability points)"
 LuaCode={
     change_obstacle("KevinsDoor", "opened")
-    if (get_gold() < 300 ) then set_next_node(1) 
+    if (get_gold() < 300 ) then next(1) 
     else 
-       if (get_training_points() > 4) then set_next_node(5) else set_next_node(6) end
+       if (get_training_points() > 4) then next(5) else next(6) end
     end
 }
 ----------------------------------------------------------------------

@@ -31,7 +31,7 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 FirstTime LuaCode={
-    enable_node(0)
+    show(0)
 }
 
 ----------------------------------------------------------------------
@@ -40,8 +40,8 @@ FirstTime LuaCode={
 Nr=0  Text="KILLING DOUBLE TALK"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    if (has_cookie("koan_spared")) then disable_node(0) else set_next_node(1) end
-    disable_node(0)
+    if (has_cookie("koan_spared")) then hide(0) else next(1) end
+    hide(0)
 }
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
@@ -54,8 +54,8 @@ NPC=_"Once I am gone this oasis of peace in the world will dry up and die. A sha
 NPC=_"I hoped to turn the whole desert into a sanctuary. And now my dream will never come true."
 NPC=_"Do what you must."
 LuaCode={
-    disable_node(1)
-    enable_node(5, 6)
+    hide(1)
+    show(5, 6)
 }
 ----------------------------------------------------------------------
 
@@ -72,8 +72,8 @@ NPC=_"Feel free to stay here. There is no danger."
 NPC=_"The water is safe to drink and the fruit from the tree is quite delicious."
 LuaCode={
     add_cookie("koan_spared")
-    disable_node(5, 6)
-    enable_node(10, 20, 99)
+    hide(5, 6)
+    show(10, 20, 99)
 }
 ----------------------------------------------------------------------
 
@@ -83,8 +83,8 @@ NPC=_"Wherever I go, life follows me."
 NPC=_"I thought I could hide from Duncan in this old bunker."
 NPC=_"When I woke up next day, things were as you see them now."
 LuaCode={
-    disable_node(10)
-    enable_node(11)
+    hide(10)
+    show(11)
 }
 ----------------------------------------------------------------------
 
@@ -95,7 +95,7 @@ NPC=_"As soon as I leave, everything will die. I have seen that happen before."
 NPC=_"Because this place is just like a small bit of paradise, I decided to stay here."
 NPC=_"I do not want this wonderful bunker to become devoid of life again."
 LuaCode={
-    disable_node(11)
+    hide(11)
 }
 ----------------------------------------------------------------------
 
@@ -103,7 +103,7 @@ Nr=20  Text=_" Why does Duncan want you dead?"
 NPC=_"Very simple. He likes destruction, and I am creation."
 NPC=_"There is nothing more to it."
 LuaCode={
-    disable_node(20)
+    hide(20)
 }
 ----------------------------------------------------------------------
 

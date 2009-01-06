@@ -31,22 +31,22 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 FirstTime LuaCode={
-    enable_node(0, 1, 2, 3, 99)
+    show(0, 1, 2, 3, 99)
 }
 ----------------------------------------------------------------------
 
 Nr=0  Text=_" Who are you? "
 NPC=_"I am a 614 security bot, once one of the best-selling products of the Nicholson company."
 LuaCode={
-    disable_node(0)
-    enable_node(4)
+    hide(0)
+    show(4)
 }
 ----------------------------------------------------------------------
 
 Nr=1  Text=_" Have you detected any hostile bot activity?"
 NPC=_"No. The hostiles have not shown up within the last 24 hours."
 LuaCode={
-    disable_node(1)
+    hide(1)
 }
 ----------------------------------------------------------------------
 
@@ -56,7 +56,7 @@ NPC=_"It was mainly used within ships to protect certain areas from intruders."
 NPC=_"It is considered an old but reliable device."
 NPC=_"So don't worry. I'm still in pretty good shape."
 LuaCode={
-    disable_node(2)
+    hide(2)
 }
 ----------------------------------------------------------------------
 
@@ -64,7 +64,7 @@ Nr=3  Text=_" What are your orders?"
 NPC=_"My orders are to protect the living beings in this camp from attacks by hostile bots."
 NPC=_"This has top priority. There are no other priorities."
 LuaCode={
-    disable_node(3)
+    hide(3)
 }
 ----------------------------------------------------------------------
 
@@ -74,15 +74,15 @@ NPC=_"None of the bots of this generation were affected by the proceedings that 
 NPC=_"Even though discontinued from Nicholson Company long ago, today, some people have picked up the work and are even trying to improve the operating system running on my series."
 NPC=_"Don't forget to buy products from Nicholson Company. They are the best."
 LuaCode={
-    disable_node(4)
+    hide(4)
 }
 ----------------------------------------------------------------------
 
 Nr=99  Text=_" See you later."
 NPC=_" Resuming guard program."
 LuaCode={
-    enable_node(0, 1, 2, 3)
-    disable_node(4)
+    show(0, 1, 2, 3)
+    hide(4)
     end_dialog()
 }
 ----------------------------------------------------------------------

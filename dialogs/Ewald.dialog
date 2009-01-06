@@ -31,7 +31,7 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 FirstTime LuaCode={
-    enable_node(0, 3, 99)
+    show(0, 3, 99)
 }
 ----------------------------------------------------------------------
 
@@ -41,8 +41,8 @@ NPC=_"I used to do a lot of drugs, and I destroyed my brain."
 NPC=_"I'm not too smart now, but I'm very happy all the time!"
 NPC=_"Want something to drink?"
 LuaCode={
-    disable_node(0)
-    enable_node(1, 2, 13)
+    hide(0)
+    show(1, 2, 13)
 }
 ----------------------------------------------------------------------
 
@@ -53,7 +53,7 @@ NPC=_"No one wants to pay 499 triangles for bottom shelf swill that even Bender 
 NPC=_"The tax is quite brutal as well. And the Red Guard always demands discounts too."
 NPC=_"Life is tough. I am still happy though."
 LuaCode={
-    disable_node(1)
+    hide(1)
 }
 ----------------------------------------------------------------------
 
@@ -68,64 +68,64 @@ Nr=3  Text=_" I could use a drink. What is there to be had?"
 NPC=_"Well... We are a bit short on supplies right now... Erm... AH! I know!"
 NPC=_"I have WATER!"
 LuaCode={
-    disable_node(3)
-    enable_node(4, 5, 6)
+    hide(3)
+    show(4, 5, 6)
 }
 ----------------------------------------------------------------------
 
 Nr=4  Text=_" I want double water on the rocks. Stirred, not shaken."
 NPC=_"Here you go. That one is on the house. And if the water is not enough, just ask me for more."
 LuaCode={
-    disable_node(4, 5, 6)
-    enable_node(9)
+    hide(4, 5, 6)
+    show(9)
 }
 ----------------------------------------------------------------------
 
 Nr=5  Text=_" Long Island iced water please."
 NPC=_"Here you go."
 LuaCode={
-    disable_node(4, 5, 6)
-    enable_node(8)
+    hide(4, 5, 6)
+    show(8)
 }
 ----------------------------------------------------------------------
 
 Nr=6  Text=_" I want something cheap... Give me some fortified water."
 NPC=_"Eh... Sure, as you wish. Here you go."
 LuaCode={
-    disable_node(4, 5, 6)
-    enable_node(7)
+    hide(4, 5, 6)
+    show(7)
 }
 ----------------------------------------------------------------------
 
 Nr=7  Text=_" Ugh... Ahh... I like it. Give me some more of that."
 NPC=_"Uh... Sure..."
 LuaCode={
-    disable_node(7)
-    enable_node(10)
+    hide(7)
+    show(10)
 }
 ----------------------------------------------------------------------
 
 Nr=8  Text=_" Ahh... Fresh water! Give me some more of that."
 NPC=_"Yeah, I thought you would like it. Here is more."
 LuaCode={
-    disable_node(8)
-    enable_node(10)
+    hide(8)
+    show(10)
 }
 ----------------------------------------------------------------------
 
 Nr=9  Text=_" Hmm... Lots of ice. Give me one more double water, but now without any ice."
 NPC=_"One double water coming up."
 LuaCode={
-    disable_node(9)
-    enable_node(10)
+    hide(9)
+    show(10)
 }
 ----------------------------------------------------------------------
 
 Nr=10  Text=_" MORE! I want more water!"
 NPC=_"Erm... Ok... Here, have some of my special, water colada."
 LuaCode={
-    disable_node(10)
-    enable_node(11)
+    hide(10)
+    show(11)
 }
 ----------------------------------------------------------------------
 
@@ -133,8 +133,8 @@ Nr=11  Text=_" I am really thirsty! I want water."
 NPC=_"Well, you drank all my water, so you cannot have any more. There is none left."
 NPC=_"I heard Linarians can drink a lot of water, but seven liters is a lot."
 LuaCode={
-    disable_node(11)
-    enable_node(12)
+    hide(11)
+    show(12)
 }
 ----------------------------------------------------------------------
 
@@ -142,7 +142,7 @@ Nr=12  Text=_" MORE! MORE! MORE! I WANT MORE WATER. NOW!"
 NPC=_"Eh... I think you had enough... Maybe you should just go for a walk for now?"
 NPC=_"You have had everything that I had."
 LuaCode={
-    disable_node(12)
+    hide(12)
 }
 ----------------------------------------------------------------------
 
@@ -153,7 +153,7 @@ NPC=_"Fun is kinda dead right now."
 NPC=_"Well, unless you are in the Red Guard itself, of course. They have those big guns that can destroy a dozen bots with one shot..."
 NPC=_"Fun, if you ask me."
 LuaCode={
-    disable_node(13)
+    hide(13)
 }
 ----------------------------------------------------------------------
 

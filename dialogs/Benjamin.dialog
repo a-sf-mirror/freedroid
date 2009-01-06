@@ -31,15 +31,15 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 FirstTime LuaCode={
-    enable_node(0, 99)
+    show(0, 99)
 }
 ----------------------------------------------------------------------
 
 Nr=0  Text=_" Hello!"
 NPC=_"Ah, so you are the new member. Welcome. My name is Benjamin, and I take care of our ranged weaponry here in the citadel."
 LuaCode={
-    disable_node(0)
-    enable_node(1, 2, 6)
+    hide(0)
+    show(1, 2, 6)
 }
 ----------------------------------------------------------------------
 
@@ -48,8 +48,8 @@ NPC=_"I'm experimenting with new designs. I want to redesign the laser pistol."
 NPC=_"A lot of energy is wasted somewhere during firing, and I have no idea where. If I could find the source of the problem, the gun would become much more powerful."
 NPC=_"So far all my prototypes have failed. Mostly overheating and jamming. Sometimes I wonder if I am doing something wrong."
 LuaCode={
-    disable_node(1)
-    enable_node(3, 4, 5)
+    hide(1)
+    show(3, 4, 5)
 }
 ----------------------------------------------------------------------
 
@@ -65,7 +65,7 @@ Nr=3  Text=_" Did you think about somehow gathering the excess heat and using it
 NPC=_"Hmm... There might be something in that idea. I will think about it."
 LuaCode={
     add_cookie("Ben_better_beams")
-    disable_node(3, 4, 5)
+    hide(3, 4, 5)
 }
 ----------------------------------------------------------------------
 
@@ -73,7 +73,7 @@ Nr=4  Text=_" If I were you, I would focus my work on the firing rate."
 NPC=_"Hmm... I will think about it. Hmm..."
 LuaCode={
     add_cookie("Ben_faster_shooting")
-    disable_node(3, 4, 5)
+    hide(3, 4, 5)
 }
 ----------------------------------------------------------------------
 
@@ -81,7 +81,7 @@ Nr=5  Text=_" You know, laser pistols are not a very promising weapon. I think y
 NPC=_"Yeah, maybe you are right. I will think about it."
 LuaCode={
     add_cookie("Ben_something_else")
-    disable_node(3, 4, 5)
+    hide(3, 4, 5)
 }
 ----------------------------------------------------------------------
 
@@ -89,8 +89,8 @@ Nr=6  Text=_" What weapons are available to the members of the Red Guard?"
 NPC=_"Well, for novice members there are simple laser and plasma pistols. They have their share of problems, but they do the trick nine times out of ten."
 NPC=_"For bigger bots we have bigger guns. The exterminator is the best weapon that we have. We hand them out only in case of an emergency or to highly experienced people."
 LuaCode={
-    disable_node(6)
-    enable_node(7, 8, 9)
+    hide(6)
+    show(7, 8, 9)
 }
 ----------------------------------------------------------------------
 
@@ -103,7 +103,7 @@ NPC=_"If you are going to use plasma weapons you need to remember one thing: Don
 NPC=_"Even though our armor is designed to resist high temperatures, once the plasma containment module goes, you will die, along with anything within ten meters of you."
 NPC=_"Because of all those drawbacks plasma weapons are not too popular. Quite a pity, they have great potential."
 LuaCode={
-    disable_node(7)
+    hide(7)
 }
 ----------------------------------------------------------------------
 
@@ -114,15 +114,15 @@ NPC=_"However, other than a good training tool for newbies, that design just fai
 NPC=_"The shots tend to be underpowered, the gun takes a long while to power up for a shot and can overheat during intense combat."
 NPC=_"This is why I am trying to improve it, but so far I have had no success. I just feel like giving up."
 LuaCode={
-    disable_node(8)
+    hide(8)
 }
 ----------------------------------------------------------------------
 
 Nr=9  Text=_" I am curious about the exterminator."
 NPC=_"Sorry, but that is classified and confidential. I have said too much already."
 LuaCode={
-    disable_node(9)
-    enable_node(10)
+    hide(9)
+    show(10)
 }
 ----------------------------------------------------------------------
 
@@ -130,7 +130,7 @@ Nr=10  Text=_" I will make it worth your while..."
 NPC=_"Intriguing."
 LuaCode={
     run_subdialog("subdlg_Benjamin_bribe.dialog")
-    disable_node(10)
+    hide(10)
 }
 ----------------------------------------------------------------------
 

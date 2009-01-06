@@ -31,7 +31,7 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 FirstTime LuaCode={
-    enable_node(0, 99)
+    show(0, 99)
 }
 
 ----------------------------------------------------------------------
@@ -40,8 +40,8 @@ FirstTime LuaCode={
 Nr=0  Text=_" Hi! I'm new here."
 NPC=_"Yeah, what do you want newbie?"
 LuaCode={
-    disable_node(0)
-    enable_node(1, 4)
+    hide(0)
+    show(1, 4)
 }
 ----------------------------------------------------------------------
 
@@ -50,23 +50,23 @@ NPC=_"Fine, newbie. You are greener than green and a total newbie."
 NPC=_"You can start ripping out my spine now."
 NPC=_"Ha!"
 LuaCode={
-    disable_node(1)
-    enable_node(2)
+    hide(1)
+    show(2)
 }
 ----------------------------------------------------------------------
 
 Nr=2  Text=_" I really mean it. I will kill you for that insult."
 NPC=_"Go for it."
 LuaCode={
-    disable_node(2)
-    enable_node(3)
+    hide(2)
+    show(3)
 }
 ----------------------------------------------------------------------
 
 Nr=3  Text=_" BANZAI! DIE DIE DIE!"
 NPC=_"Wha --"
 LuaCode={
-    disable_node(3)
+    hide(3)
     drop_dead()
     everybody_hostile()
 }
@@ -75,8 +75,8 @@ LuaCode={
 Nr=4  Text=_" And who are you?"
 NPC=_"Butch... The arena master."
 LuaCode={
-    disable_node(1, 4)
-    enable_node(5)
+    hide(1, 4)
+    show(5)
 }
 ----------------------------------------------------------------------
 
@@ -84,8 +84,8 @@ Nr=5  Text=_" Arena? What arena?"
 NPC=_"The underground arena."
 NPC=_"Wanna fight?"
 LuaCode={
-    disable_node(5)
-    enable_node(6, 12, 13)
+    hide(5)
+    show(6, 12, 13)
 }
 ----------------------------------------------------------------------
 
@@ -96,7 +96,7 @@ LuaCode={
     add_quest("Novice Arena")
     change_obstacle("NoviceArenaAccessDoor", "opened")
     open_diary_entry(3, 0)
-    disable_node(6, 12, 13)
+    hide(6, 12, 13)
 }
 ----------------------------------------------------------------------
 
@@ -106,8 +106,8 @@ NPC=_"You are a total newbie. But, a good newbie."
 NPC=_"I will say a good word to Spencer about this."
 LuaCode={
     open_diary_entry(3, 1)
-    disable_node(7, 8)
-    enable_node(9, 11)
+    hide(7, 8)
+    show(9, 11)
 }
 ----------------------------------------------------------------------
 
@@ -117,8 +117,8 @@ NPC=_"You wanted a fight, and you got one."
 NPC=_"I offered a fight, and you wanted that."
 NPC=_"There is nothing more to say, newbie."
 LuaCode={
-    disable_node(7, 8)
-    enable_node(9, 11)
+    hide(7, 8)
+    show(9, 11)
 }
 ----------------------------------------------------------------------
 
@@ -131,7 +131,7 @@ LuaCode={
     add_quest("Time to say goodnight")
     change_obstacle("MasterArenaAccessDoor", "opened")
     open_diary_entry(4, 0)
-    disable_node(9)
+    hide(9)
 }
 ----------------------------------------------------------------------
 
@@ -143,14 +143,14 @@ NPC=_"I pity you, poor fool. You will die young."
 LuaCode={
     add_xp(8000)
     open_diary_entry(4, 1)
-    disable_node(10)
+    hide(10)
 }
 ----------------------------------------------------------------------
 
 Nr=11  Text=_" What is wrong with you? Why do you keep calling me a newbie?"
 NPC=_"Beacuse you ARE a newbie, newbie!"
 LuaCode={
-    disable_node(11)
+    hide(11)
 }
 ----------------------------------------------------------------------
 
@@ -158,31 +158,31 @@ Nr=12  Text=_" Why the hell are you organizing fights? Enough people have died a
 NPC=_"I have a very good reason not to tell you."
 NPC=_"Not like someone as inexperienced like you could understand it anyway."
 LuaCode={
-    disable_node(12)
+    hide(12)
 }
 ----------------------------------------------------------------------
 
 Nr=13  Text=_" No way! Violence is wrong! Make love not war!"
 NPC=_" . . ."
 LuaCode={
-    disable_node(6, 13)
-    enable_node(14)
+    hide(6, 13)
+    show(14)
 }
 ----------------------------------------------------------------------
 
 Nr=14  Text=_" Roses, not destruction!"
 NPC=_" . . ."
 LuaCode={
-    disable_node(14)
-    enable_node(15)
+    hide(14)
+    show(15)
 }
 ----------------------------------------------------------------------
 
 Nr=15  Text=_" End the violence! All blood is red!"
 NPC=_"Hey, the bots bleed black. With oil."
 LuaCode={
-    disable_node(15)
-    set_next_node(16)
+    hide(15)
+    next(16)
 }
 ----------------------------------------------------------------------
 
@@ -190,7 +190,7 @@ Nr=16  Text=_" But... But... "
 NPC=_"No 'but' about it, newbie."
 NPC=_"The bots bleed black."
 LuaCode={
-    set_next_node(17)
+    next(17)
 }
 ----------------------------------------------------------------------
 
@@ -208,13 +208,13 @@ LuaCode={
     if (done_quest("Novice Arena")) then 
         if (!has_cookie("butch_enable_first_set")) then 
             add_cookie("butch_enable_first_set")
-            enable_node(7, 8)
+            show(7, 8)
         else end
     else end
     if (done_quest("Time to say goodnight")) then 
         if (!has_cookie("butch_enable_second_set")) then
             add_cookie("butch_enable_second_set")
-            enable_node(10)
+            show(10)
         else end
     else end
 }

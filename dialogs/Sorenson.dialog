@@ -31,14 +31,14 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 FirstTime LuaCode={
-    enable_node(20, 30, 40, 50, 99)
+    show(20, 30, 40, 50, 99)
 }
 ----------------------------------------------------------------------
 
 Nr=0  Text=_" Um... Hello?"
 NPC=_"AH! A Visitor! Come in! Come in!"
 LuaCode={
-    set_next_node(1)
+    next(1)
 }
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
@@ -55,8 +55,8 @@ NPC=_"I? Sorenson is a great computer person."
 NPC=_"Knows the deep codes. Walks the paths."
 NPC=_"Sees the light of all chips. Knows how to use every keyboard."
 LuaCode={
-    set_next_node(21)
-    disable_node(20)
+    next(21)
+    hide(20)
 }
 ----------------------------------------------------------------------
 
@@ -65,7 +65,7 @@ NPC=_"Sees the bit. Knows the bytes. Explores the great networks."
 NPC=_"The best friend of the clean and pure code."
 NPC=_"The great light on the night sky of the hollow web of computer power."
 LuaCode={
-    set_next_node(22)
+    next(22)
 }
 ----------------------------------------------------------------------
 
@@ -73,7 +73,7 @@ Nr=22  Text=_" Yes, I get the idea..."
 NPC=_"Seeker of clean languages. The great knower of obscure secrets."
 NPC=_"The one who speaks to hard drives. The best --"
 LuaCode={
-    set_next_node(23)
+    next(23)
 }
 ----------------------------------------------------------------------
 
@@ -83,7 +83,7 @@ NPC=_"Sorenson did not tell you most yet."
 NPC=_"She did not tell you she is the great controler of light."
 NPC=_"She did not tell you she is the walker of the dark corridors --"
 LuaCode={
-    set_next_node(24)
+    next(24)
 }
 ----------------------------------------------------------------------
 
@@ -91,7 +91,7 @@ Nr=24  Text=_" STOP! STOP! I CANNOT TAKE THIS ANYMORE! MY HEAD HURTS!"
 NPC=_"Apology is being extended by me. Sorenson overdid it."
 NPC=_"Sorenson the coder greets you."
 LuaCode={
-    disable_node(24)
+    hide(24)
 }
 ----------------------------------------------------------------------
 
@@ -101,8 +101,8 @@ NPC=_"Sorenson ask for help. Many days and nights."
 NPC=_"Light arrived. Light offered help. Sorenson changed."
 NPC=_"Free person now."
 LuaCode={
-    disable_node(30)
-    enable_node(31)
+    hide(30)
+    show(31)
 }
 ----------------------------------------------------------------------
 
@@ -110,7 +110,7 @@ Nr=31  Text=_" What is this COBOL?"
 NPC=_"COBOL is the mind-crippler."
 NPC=_"Don't use it. Forget the cursed name. COBOL is pain. COBOL is hate."
 LuaCode={
-    disable_node(31)
+    hide(31)
 }
 ----------------------------------------------------------------------
 
@@ -118,8 +118,8 @@ Nr=40  Text=_" I see you have a huge sourcecode book collection. Mind if I buy s
 NPC=_"Of course not. Trade is good."
 LuaCode={
     trade_with("Sorenson")
-    disable_node(40)
-    enable_node(41)
+    hide(40)
+    show(41)
 }
 ----------------------------------------------------------------------
 
@@ -135,7 +135,7 @@ NPC=_"Simplicity! Sign this contract. No need to read it."
 NPC=_"You trust Sorenson, right?"
 LuaCode={
     run_subdialog("subdlg_Sorenson.dialog")
-    disable_node(50)
+    hide(50)
 }
 ----------------------------------------------------------------------
 

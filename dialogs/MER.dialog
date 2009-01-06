@@ -31,16 +31,16 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 FirstTime LuaCode={
-    enable_node(0, 99)
+    show(0, 99)
 }
 ----------------------------------------------------------------------
 
 Nr=0  Text=_" Login : admin  Password : *******"
 NPC=_"Last login from /dev/ttyS0 on Sun, 23 mar 2057. admin@shielddefense: ~ #"
 LuaCode={
-    if (has_cookie("MER_Password")) then set_next_node(3) else set_next_node(4) end
-    disable_node(0)
-    enable_node(7)
+    if (has_cookie("MER_Password")) then next(3) else next(4) end
+    hide(0)
+    show(7)
 }
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
@@ -52,24 +52,24 @@ NPC=_" Enter new password again: "
 NPC=_" Password successfully changed."
 LuaCode={
     add_cookie("MER_Password")
-    disable_node(1, 7)
-    enable_node(8)
+    hide(1, 7)
+    show(8)
 }
 ----------------------------------------------------------------------
 
 Nr=3  Text="I HAVE CHANGED"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    disable_node(1, 3, 7)
-    enable_node(8)
+    hide(1, 3, 7)
+    show(8)
 }
 ----------------------------------------------------------------------
 
 Nr=4  Text="I HAVEN'T CHANGED"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    disable_node(4, 8)
-    enable_node(1, 7)
+    hide(4, 8)
+    show(1, 7)
 }
 ----------------------------------------------------------------------
 

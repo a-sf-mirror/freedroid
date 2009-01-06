@@ -37,8 +37,8 @@ FirstTime LuaCode={
 Nr=0  Text="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    disable_node(0)
-    enable_node(5, 99)
+    hide(0)
+    show(5, 99)
 }
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
@@ -46,9 +46,9 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 Nr=5  Text=_" Improve ranged weapon skill (cost 5 training points, 100 cash) "
 LuaCode={
-    if (get_gold() < 100) then set_next_node(10)
+    if (get_gold() < 100) then next(10)
     else
-        if (get_training_points() > 4) then set_next_node(12) else set_next_node(8) end
+        if (get_training_points() > 4) then next(12) else next(8) end
     end
 }
 ----------------------------------------------------------------------

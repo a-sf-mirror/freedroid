@@ -31,7 +31,7 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 FirstTime LuaCode={
-    enable_node(0)
+    show(0)
 }
 
 ----------------------------------------------------------------------
@@ -42,8 +42,8 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 NPC=_"Welcome to MS firmware upgrade server for region #54658."
 NPC=_"Please select action"
 LuaCode={
-    disable_node(0, 3)
-    enable_node(1, 2, 99)
+    hide(0, 3)
+    show(1, 2, 99)
 }
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
@@ -52,7 +52,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 Nr=1  Text=_" Get current OS version"
 NPC=_"Currently deployed firmware is v. 5.0.8+worldto-nogpl."
 LuaCode={
-    disable_node(1)
+    hide(1)
 }
 ----------------------------------------------------------------------
 
@@ -65,8 +65,8 @@ NPC=_"..."
 NPC=_"Firmware update propagated!"
 LuaCode={
     end_quest(9)
-    disable_node(1, 2)
-    enable_node(3)
+    hide(1, 2)
+    show(3)
 }
 ----------------------------------------------------------------------
 
@@ -74,8 +74,8 @@ Nr=3  Text=_" Get current OS version"
 NPC=_"Currently deployed firmware is v. 5.0.8+tuxwashere+gpl"
 LuaCode={
     set_bot_state("free")
-    disable_node(1, 2)
-    enable_node(3)
+    hide(1, 2)
+    show(3)
 }
 ----------------------------------------------------------------------
 

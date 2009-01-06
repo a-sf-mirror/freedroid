@@ -39,8 +39,8 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 NPC=_"You are Tux, aren't you..."
 NPC=_"The hero..."
 LuaCode={
-    disable_node(1, 99)
-    enable_node(1, 2, 3)
+    hide(1, 99)
+    show(1, 2, 3)
 }
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
@@ -56,7 +56,7 @@ NPC=_"Tux, if you ever find out who started the Great Assault... GIVE THEM A KIC
 LuaCode={
     end_dialog()
     add_item("Two Barrel shotgun",1)
-    disable_node(1, 2, 3)
+    hide(1, 2, 3)
 }
 ----------------------------------------------------------------------
 
@@ -65,7 +65,7 @@ NPC=_"If you want to remain a stranger, I will respect your wishes."
 NPC=_"So be it."
 LuaCode={
     end_dialog()
-    disable_node(1, 2, 3)
+    hide(1, 2, 3)
 }
 ----------------------------------------------------------------------
 
@@ -75,7 +75,7 @@ NPC=_"No one makes fun of Lily Stone's family store!"
 NPC=_"Say your prayers, you oversized duck!!!"
 LuaCode={
     break_off_and_attack()
-    disable_node(3)
+    hide(3)
 }
 ----------------------------------------------------------------------
 

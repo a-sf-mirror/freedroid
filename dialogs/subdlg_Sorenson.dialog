@@ -38,45 +38,45 @@ Nr=0  Text="START HERE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 LuaCode={
-    enable_node(1, 99)
+    show(1, 99)
 }
 ----------------------------------------------------------------------
 
 Nr=1  Text=_" Sure. I'll sign it."
 NPC=_"Go0d. H3re is th3 con7ract. S1gn it!"
 LuaCode={
-    disable_node(1)
-    set_next_node(20)
+    hide(1)
+    next(20)
 }
 ----------------------------------------------------------------------
 
 Nr=2  Text=_" Um... Your voice sounds strange. Is everything fine?"
 NPC=_"519n 7h3 (0n7r4(7!!!!"
 LuaCode={
-    disable_node(2)
-    enable_node(3)
+    hide(2)
+    show(3)
 }
 ----------------------------------------------------------------------
 
 Nr=3  Text=_" Please calm down. You must speak clearly and slowly. Please stop breathing smoke like that, it bothers my throat. And what is the deal with the red glowing eyes? You should see a doctor. "
 NPC=_"519n 17!!!!"
 LuaCode={
-    disable_node(3)
+    hide(3)
 }
 ----------------------------------------------------------------------
 
 Nr=20  Text=_" Ok, here go --"
 NPC=_"N0! 1n bl00d!"
 LuaCode={
-    disable_node(20)
-    enable_node(2, 30, 98)
+    hide(20)
+    show(2, 30, 98)
 }
 ----------------------------------------------------------------------
 
 Nr=30  Text=_" Sure, no problem... Now, how shall I sign this?"
 LuaCode={
-    disable_node(2, 3, 98, 99)
-    enable_node(40, 41, 42, ,43, 44, 45, 46)
+    hide(2, 3, 98, 99)
+    show(40, 41, 42, ,43, 44, 45, 46)
 }
 ----------------------------------------------------------------------
 
@@ -84,8 +84,8 @@ Nr=40  Text=_" Tux."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 NPC=_"Yes! I am free! At last I am free!"
 LuaCode={
-    disable_node(40)
-    set_next_node(70)
+    hide(40)
+    next(70)
 }
 ----------------------------------------------------------------------
 
@@ -93,8 +93,8 @@ Nr=41  Text=_" Tux, the Linarian"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 NPC=_"Yes! I am free!"
 LuaCode={
-    disable_node(41)
-    set_next_node(70)
+    hide(41)
+    next(70)
 }
 ----------------------------------------------------------------------
 
@@ -102,8 +102,8 @@ Nr=42  Text=_" I accept the contract, Tux"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 NPC=_"Yes! I am free at last!"
 LuaCode={
-    disable_node(42)
-    set_next_node(70)
+    hide(42)
+    next(70)
 }
 ----------------------------------------------------------------------
 
@@ -112,7 +112,7 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 NPC=_"4444! 17 burn5! 7'm m3171n9! "
 NPC=_"44444444444444444!"
 LuaCode={
-    disable_node(43)
+    hide(43)
     drop_dead()
 }
 ----------------------------------------------------------------------
@@ -122,8 +122,8 @@ OptionSample=""
 NPC=_"H4! Y0ur s0ul 15 min3, Francis!"
 NPC=_"Wh47? N07 w0rk1b9?"
 LuaCode={
-    disable_node(44)
-    set_next_node(60)
+    hide(44)
+    next(60)
 }
 ----------------------------------------------------------------------
 
@@ -131,8 +131,8 @@ Nr=45  Text=_" The great destroyer of evil, the purger of all things foul, the f
 OptionSample=""
 NPC=_"Huh?"
 LuaCode={
-    disable_node(45)
-    set_next_node(50)
+    hide(45)
+    next(50)
 }
 ----------------------------------------------------------------------
 
@@ -140,7 +140,7 @@ Nr=46  Text=_" X"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 NPC=_"N0! S7up1d illi73r4t3 p3n9u1n! D13!!"
 LuaCode={
-    disable_node(46)
+    hide(46)
     break_off_and_attack()
 }
 ----------------------------------------------------------------------
@@ -148,7 +148,7 @@ LuaCode={
 Nr=50  Text=_" I... Don't feel... good... Blood loss... So... Cold..."
 NPC=_"N0! Idi07!"
 LuaCode={
-    disable_node(50)
+    hide(50)
     kill_tux()
 }
 ----------------------------------------------------------------------
@@ -156,7 +156,7 @@ LuaCode={
 Nr=60  Text=_" Erm. I have a confession to make. My name is not Francis."
 NPC=_"N0000000000!!!!!!!"
 LuaCode={
-    disable_node(60)
+    hide(60)
     break_off_and_attack()
 }
 ----------------------------------------------------------------------
@@ -164,14 +164,14 @@ LuaCode={
 Nr=70  Text=_" Huh? I d0n'7 f33l g00d."
 NPC=_"Yes, fool! You have freed me! I can finally die! Goodbye idiot!"
 LuaCode={
-    disable_node(70)
-    set_next_node(71)
+    hide(70)
+    next(71)
 }
 ----------------------------------------------------------------------
 
 Nr=71  Text=_" W417... 1 f331... H0rr1b13..."
 LuaCode={
-    disable_node(71)
+    hide(71)
     improve_skill("programming")
     drop_dead()
 }
@@ -180,7 +180,7 @@ LuaCode={
 Nr=98  Text=_" In blood? Yuck. I am not going to do this, blood is too messy for a binding legal contract. Forget about it."
 NPC=_"N00oo00oo0! T1m3 to d1e, m0rtal foo1!"
 LuaCode={
-    disable_node(98)
+    hide(98)
     break_off_and_attack()
 }
 ----------------------------------------------------------------------
@@ -188,7 +188,7 @@ LuaCode={
 Nr=99  Text=_" There is no way I will sign something without reading it. Forget about it."
 NPC=_"N00oo00oo0! T1m3 to d1e, m0rta1 foo1!"
 LuaCode={
-    disable_node(99)
+    hide(99)
     break_off_and_attack()
 }
 ----------------------------------------------------------------------

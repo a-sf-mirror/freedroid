@@ -31,7 +31,7 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 FirstTime LuaCode={
-    enable_node(0, 99)
+    show(0, 99)
 }
 ----------------------------------------------------------------------
 
@@ -40,17 +40,17 @@ NPC=_"You don't say. I'm not living here either. I'm just on vacation."
 NPC=_"Normally I'm a fighter. But now I try to relax, chill, take it easy and have a lot of fun."
 NPC=_"And in case you couldn't tell, that was sarcasm."
 LuaCode={
-    disable_node(0)
-    enable_node(1)
+    hide(0)
+    show(1)
 }
 ----------------------------------------------------------------------
 
 Nr=1  Text=_" Could you teach me how to fight?"
 LuaCode={
     if (has_cookie("beat_up_pendragon")) then 
-	set_next_node(2) 
+	next(2) 
     else 
-	set_next_node(3) 
+	next(3) 
     end
 }
 ----------------------------------------------------------------------
@@ -59,7 +59,7 @@ Nr=2  Text="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 NPC=_"NO! NO! Er... I mean, not right now. I am busy. Come again later."
 LuaCode={
-    disable_node(2)
+    hide(2)
 }
 ----------------------------------------------------------------------
 

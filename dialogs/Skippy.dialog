@@ -31,7 +31,7 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 FirstTime LuaCode={
-    enable_node(0, 99)
+    show(0, 99)
 }
 ----------------------------------------------------------------------
 
@@ -40,8 +40,8 @@ NPC=_"Great! A newcomer! Welcome! Welcome! I'm Skippy, and I'm your new best fri
 NPC=_"And as a special favour I'll sell you a mapping device for half price!"
 NPC=_"What a GREAT offer! You're so lucky!"
 LuaCode={
-    disable_node(0)
-    enable_node(1, 2, 3, 20)
+    hide(0)
+    show(1, 2, 3, 20)
 }
 ----------------------------------------------------------------------
 
@@ -59,8 +59,8 @@ NPC=_"They'll merge with your eyes and transmit data to your brain using the opt
 NPC=_"Everything within 7 meters of you will be displayed on your retinas."
 NPC=_"(Just press tab to see the automap.)"
 LuaCode={
-    disable_node(2)
-    enable_node(4)
+    hide(2)
+    show(4)
 }
 ----------------------------------------------------------------------
 
@@ -69,7 +69,7 @@ NPC=_"Oh, I've always been a geek. And I got blueprints from before the Great As
 NPC=_"You can't order anything from a catalogue anymore."
 NPC=_"The only source of these gizmos is here. It's me!"
 LuaCode={
-    disable_node(3)
+    hide(3)
 }
 ----------------------------------------------------------------------
 
@@ -79,16 +79,16 @@ NPC=_"This is a perfectly safe and tried technology. No risk at all! Really!"
 NPC=_"There is no risk of your head being eaten by a nanotechnological nightmare, or anything funny like that."
 NPC=_"Trust me! I'm your best friend and I wouldn't lie to you! Never!"
 LuaCode={
-    disable_node(4)
-    enable_node(5)
+    hide(4)
+    show(5)
 }
 ----------------------------------------------------------------------
 
 Nr=5  Text=_" I don't trust you."
 NPC=_"WHAT? But I'm your best friend! You must trust me!"
 LuaCode={
-    disable_node(5)
-    enable_node(6)
+    hide(5)
+    show(6)
 }
 ----------------------------------------------------------------------
 
@@ -98,7 +98,7 @@ NPC=_"I'm no longer your best friend. Go away, you dirty hoser!"
 LuaCode={
     add_cookie("skippy_angry")
     end_dialog()
-    disable_node(6)
+    hide(6)
 }
 ----------------------------------------------------------------------
 
@@ -106,8 +106,8 @@ Nr=20  Text=_" Why are you so friendly?"
 NPC=_"Because you are my best friend!"
 NPC=_"I always take good care of my special buddies!"
 LuaCode={
-    disable_node(20)
-    enable_node(21)
+    hide(20)
+    show(21)
 }
 ----------------------------------------------------------------------
 
@@ -115,14 +115,14 @@ Nr=21  Text=_" You are friendly only to sell me your stuff, aren't you?"
 NPC=_"No, never! I would never be so shallow!"
 NPC=_"I am friendly because I like you."
 LuaCode={
-    disable_node(21)
+    hide(21)
 }
 ----------------------------------------------------------------------
 
 Nr=90  Text="CHECK FOR SKIPPY ANGER"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    if (has_cookie("skippy_angry")) then set_next_node(91) else end
+    if (has_cookie("skippy_angry")) then next(91) else end
 }
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
@@ -132,8 +132,8 @@ Nr=91  Text="YEAH, HE IS ANGRY."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 NPC=_"What? You again? I don't want you here, get out."
 LuaCode={
-    disable_node(1, 3, 20, 21, 91, 99)
-    enable_node(98)
+    hide(1, 3, 20, 21, 91, 99)
+    show(98)
 }
 ----------------------------------------------------------------------
 

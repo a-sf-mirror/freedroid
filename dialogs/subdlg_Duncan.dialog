@@ -37,8 +37,8 @@ FirstTime LuaCode={
 Nr=0  Text=_"HERE WE GO"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    disable_node(0)
-    enable_node(1, 99)
+    hide(0)
+    show(1, 99)
 }
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
@@ -49,8 +49,8 @@ NPC=_"Ah, excellent."
 NPC=_"A... friend of mine, Koan, stole something of great value to me."
 NPC=_"He is hiding somewhere in the desert, I don't know exactly where."
 LuaCode={
-    disable_node(1)
-    enable_node(2)
+    hide(1)
+    show(2)
 }
 ----------------------------------------------------------------------
 
@@ -60,8 +60,8 @@ NPC=_"There is something you must know."
 NPC=_"There are not too many bots in the desert, but they are undefeatable. It is best to avoid them."
 NPC=_"I will be waiting here for your return."
 LuaCode={
-    disable_node(2, 99)
-    enable_node(5, 6, 7)
+    hide(2, 99)
+    show(5, 6, 7)
 }
 ----------------------------------------------------------------------
 
@@ -71,14 +71,14 @@ NPC=_"They were designed to chop down trees in the mountains."
 NPC=_"Now they chop down people."
 NPC=_"Their only weak point is their security system. But no one managed to stay alive long enough to hack them."
 LuaCode={
-    disable_node(5)
+    hide(5)
 }
 ----------------------------------------------------------------------
 
 Nr=6  Text=_" What is that thing he took from you?"
 NPC=_"A cube. You can't miss it. Trust me."
 LuaCode={
-    disable_node(6)
+    hide(6)
 }
 ----------------------------------------------------------------------
 

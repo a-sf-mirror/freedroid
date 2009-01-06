@@ -31,15 +31,15 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 FirstTime LuaCode={
-    enable_node(0)
+    show(0)
 }
 ----------------------------------------------------------------------
 
 Nr=0  Text=_" Hi! I'm new here."
 NPC=_"Yes. Hello. What do you want?"
 LuaCode={
-    disable_node(0)
-    enable_node(1, 8)
+    hide(0)
+    show(1, 8)
 }
 ----------------------------------------------------------------------
 
@@ -47,8 +47,8 @@ Nr=1  Text=_" Who are you?"
 NPC=_"People call me Jasmine..."
 NPC=_"That is not my real name, but it will do for now."
 LuaCode={
-    disable_node(1)
-    enable_node(2, 3, 4, 5)
+    hide(1)
+    show(2, 3, 4, 5)
 }
 ----------------------------------------------------------------------
 
@@ -56,21 +56,21 @@ Nr=2  Text=_" What are you doing in Kevin's place?"
 NPC=_"I live with him, stupid."
 NPC=_"I like him. He... He is very much like me."
 LuaCode={
-    disable_node(2)
+    hide(2)
 }
 ----------------------------------------------------------------------
 
 Nr=3  Text=_" How are you?"
 NPC=_"Shitty. Now leave me alone."
 LuaCode={
-    disable_node(3)
+    hide(3)
 }
 ----------------------------------------------------------------------
 
 Nr=4  Text=_" Why does such a nice lady act so harshly? Cannot we all just get along?"
 NPC=_"No."
 LuaCode={
-    disable_node(4)
+    hide(4)
 }
 ----------------------------------------------------------------------
 
@@ -78,7 +78,7 @@ Nr=5  Text=_" What are you up to?"
 NPC=_"Nothing. Quit asking questions."
 NPC=_"Don't bore me."
 LuaCode={
-    disable_node(5)
+    hide(5)
 }
 ----------------------------------------------------------------------
 
@@ -86,15 +86,15 @@ Nr=8  Text=_" You are the most beautiful human I have ever seen."
 NPC=_"And you are at least quarter wrong."
 NPC=_"Now, please get out of my sight."
 LuaCode={
-    disable_node(8)
-    enable_node(9)
+    hide(8)
+    show(9)
 }
 ----------------------------------------------------------------------
 
 Nr=9  Text=_" Will you marry me?"
 NPC=_"Forget it."
 LuaCode={
-    disable_node(9)
+    hide(9)
 }
 ----------------------------------------------------------------------
 
@@ -103,7 +103,7 @@ NPC=_"Yeah. Whatever."
 LuaCode={
     add_cookie("jasmine_count1")
     end_dialog()
-    disable_node(10)
+    hide(10)
 }
 ----------------------------------------------------------------------
 
@@ -112,7 +112,7 @@ NPC=_"Yeah. Whatever."
 LuaCode={
     add_cookie("jasmine_count2")
     end_dialog()
-    disable_node(11)
+    hide(11)
 }
 ----------------------------------------------------------------------
 
@@ -120,8 +120,8 @@ Nr=12  Text=_" See you later."
 NPC=_"Yeah. Wha -- SIGSEGV."
 NPC=_"Segmentation fault."
 LuaCode={
-    set_next_node(13)
-    disable_node(12)
+    next(13)
+    hide(12)
 }
 ----------------------------------------------------------------------
 
@@ -133,7 +133,7 @@ NPC=_"Core dumped. System halted."
 LuaCode={
     drop_dead()
     add_cookie("jasmine_sigsegv")
-    disable_node(13)
+    hide(13)
 }
 ----------------------------------------------------------------------
 
@@ -141,8 +141,8 @@ Nr=90  Text="JASMINE_CHECK"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
     if (has_cookie("jasmine_count1")) then
-        if (has_cookie("jasmine_count2")) then enable_node(12) else enable_node(11) end   -- 2 or 1 counter
-    else enable_node(10) end   -- no counters yet
+        if (has_cookie("jasmine_count2")) then show(12) else show(11) end   -- 2 or 1 counter
+    else show(10) end   -- no counters yet
 }
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 

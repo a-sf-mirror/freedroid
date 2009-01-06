@@ -39,8 +39,8 @@ Nr=0  Text="THIS WILL NEVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 NPC=_"Hey you! Linarian! What do you want here?"
 LuaCode={
-    disable_node(99)
-    enable_node(1, 2, 3)
+    hide(99)
+    show(1, 2, 3)
 }
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
@@ -53,8 +53,8 @@ NPC=_"On that day all our computers went insane, 20 bags of food rations vanishe
 NPC=_"I think that damn freak lives somewhere to the east. I would love to get my hands on him and beat the life out of him. Slowly."
 NPC=_"Linarian, I will let you in. Do something stupid, and you aren't coming out. Got it? Good."
 LuaCode={
-    disable_node(1, 2, 3)
-    enable_node(99)
+    hide(1, 2, 3)
+    show(99)
 }
 ----------------------------------------------------------------------
 
@@ -62,8 +62,8 @@ Nr=2  Text=_" I'd like to get into town."
 NPC=_"Funny, exactly the same could be said about all of the crazy bots out there."
 NPC=_"I'll let you in, but be warned: one false move and we all have flightless waterfowl for dinner. I hope I am making myself clear."
 LuaCode={
-    disable_node(1, 2, 3)
-    enable_node(99)
+    hide(1, 2, 3)
+    show(99)
 }
 ----------------------------------------------------------------------
 
@@ -73,8 +73,8 @@ NPC=_"Open fire!"
 LuaCode={
     break_off_and_attack()
     everybody_hostile()
-    disable_node(1, 2, 3)
-    enable_node(99)
+    hide(1, 2, 3)
+    show(99)
 }
 ----------------------------------------------------------------------
 

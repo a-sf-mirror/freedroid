@@ -35,7 +35,7 @@ Beginning of new chat dialog for character="XXXXX"
 Nr=0  Text="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    enable_node(1, 9, 99)
+    show(1, 9, 99)
 }
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
@@ -45,21 +45,21 @@ Nr=1  Text=_" Teach me the basic stuff."
 NPC=_"Are you sure?"
 NPC=_"I only accept students that already have some experience in fighting bots."
 LuaCode={
-    disable_node(1, 9)
-    enable_node(2, 9, 99)
+    hide(1, 9)
+    show(2, 9, 99)
 }
 ----------------------------------------------------------------------
 
 Nr=2  Text=_" Yes (cost 100 cash, 5 ability points)"
 LuaCode={
     if (get_skill("melee") < 1) then
-        if (get_gold() < 100) then set_next_node(5) 
+        if (get_gold() < 100) then next(5) 
         else 
-            if (get_training_points() > 4) then set_next_node(8) else set_next_node(7) end
+            if (get_training_points() > 4) then next(8) else next(7) end
         end
-    else set_next_node(4) end
-    disable_node(2)
-    enable_node(99)
+    else next(4) end
+    hide(2)
+    show(99)
 }
 ----------------------------------------------------------------------
 
@@ -88,7 +88,7 @@ NPC=_"Let us begin then."
 NPC=_"Come closer..."
 NPC=_"HA!"
 LuaCode={
-    set_next_node(20)
+    next(20)
     add_gold(-100)
     del_training_points(5)
     improve_skill("melee")
@@ -100,16 +100,16 @@ NPC=_"Oh, Linarian, you amuse me so."
 NPC=_"You are quite an ambitious fellow."
 NPC=_"First learn the basics. Spend a year working on that, and then I'll be able to teach you some advanced tricks."
 LuaCode={
-    disable_node(9)
-    enable_node(10)
+    hide(9)
+    show(10)
 }
 ----------------------------------------------------------------------
 
 Nr=10  Text=_" Teach me Ninjitsu."
 NPC=_"Go away."
 LuaCode={
-    disable_node(10)
-    enable_node(11)
+    hide(10)
+    show(11)
 }
 ----------------------------------------------------------------------
 
@@ -117,16 +117,16 @@ Nr=11  Text=_" I want to know the Crazy Double-Fang Wolf-Sunlight I-Like-Tea Dea
 NPC=_"Wow."
 NPC=_"You have a very rich imagination. There is no such thing. Get a life."
 LuaCode={
-    disable_node(11)
-    enable_node(12)
+    hide(11)
+    show(12)
 }
 ----------------------------------------------------------------------
 
 Nr=12  Text=_" I want to know the forbidden skill of furuike ya kawazu tobikomu mizu no oto."
 NPC=_"This is starting to make me angry. Shut up and go away."
 LuaCode={
-    disable_node(12)
-    enable_node(13)
+    hide(12)
+    show(13)
 }
 ----------------------------------------------------------------------
 
@@ -137,14 +137,14 @@ NPC=_"You will see this only once, so make sure to pay attention."
 NPC=_"DIEEEE!"
 LuaCode={
     break_off_and_attack()
-    disable_node(13)
+    hide(13)
 }
 ----------------------------------------------------------------------
 
 Nr=20  Text=_" Ouch! What the hell are you doing?"
 NPC=_"Lesson number one. Never trust the opponent."
 LuaCode={
-    set_next_node(21)
+    next(21)
 }
 ----------------------------------------------------------------------
 
@@ -153,7 +153,7 @@ NPC=_"Lesson number two. The bots have no mercy."
 NPC=_"They won't let you get up if you fall down. They will kill you."
 NPC=_"Now, lesson number -- ugh! That hurt!"
 LuaCode={
-    set_next_node(22)
+    next(22)
 }
 ----------------------------------------------------------------------
 

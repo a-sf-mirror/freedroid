@@ -31,13 +31,13 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 FirstTime LuaCode={
-    enable_node(0, 99)
+    show(0, 99)
 }
 ----------------------------------------------------------------------
 
 Nr=0  Text=_"This is MegaSys test bot, running very basic version of their OS. I can do nothing with this bot, because it doesn't know how to do anything."
 LuaCode={
-    disable_node(0)
+    hide(0)
 }
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 

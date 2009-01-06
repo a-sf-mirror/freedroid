@@ -31,7 +31,7 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 FirstTime LuaCode={
-    enable_node(0, 6, 99)
+    show(0, 6, 99)
 }
 
 ----------------------------------------------------------------------
@@ -41,8 +41,8 @@ Nr=0  Text=_" Hi! I'm new here. "
 NPC=_"Hello. We are the Fleischer brothers."
 NPC=_"I am Engel. He is Geist, and he does not know the language."
 LuaCode={
-    disable_node(0)
-    enable_node(1)
+    hide(0)
+    show(1)
 }
 ----------------------------------------------------------------------
 
@@ -51,24 +51,24 @@ NPC=_"Revenge."
 NPC=_"The bots have killed our mother. Now we kill them."
 NPC=_"No mercy. We hunt them."
 LuaCode={
-    disable_node(1)
-    enable_node(2, 11, 13)
+    hide(1)
+    show(2, 11, 13)
 }
 ----------------------------------------------------------------------
 
 Nr=2  Text=_" Can I help you somehow?"
 NPC=_"Nein. Let us die as warriors. That is all we ask for."
 LuaCode={
-    disable_node(2)
-    enable_node(3)
+    hide(2)
+    show(3)
 }
 ----------------------------------------------------------------------
 
 Nr=3  Text=_" If you keep standing here more bots will come and they will kill you. Go somewhere safe, and set up defense there."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    set_next_node(4)
-    disable_node(3)
+    next(4)
+    hide(3)
 }
 ----------------------------------------------------------------------
 
@@ -76,8 +76,8 @@ Nr=4  Text=_" If you keep standing here more bots will come and --"
 NPC=_"Sehr gut. Let them come. We are ready."
 NPC=_"What a beautiful day. Yes."
 LuaCode={
-    disable_node(4)
-    enable_node(5)
+    hide(4)
+    show(5)
 }
 ----------------------------------------------------------------------
 
@@ -87,8 +87,8 @@ NPC=_"Every day since the mess started I come here to fight the bots."
 NPC=_"Today will be no different."
 NPC=_"Do not try to stop us. We have our rifles loaded."
 LuaCode={
-    disable_node(5)
-    enable_node(7)
+    hide(5)
+    show(7)
 }
 ----------------------------------------------------------------------
 
@@ -98,31 +98,31 @@ NPC=_"There is a city a bit south from here, but if I were you, I would not go t
 NPC=_"The Rot Guard is the ruler there, and cruelty is their solution to everything."
 NPC=_"Real freedom is really dead."
 LuaCode={
-    disable_node(6)
+    hide(6)
 }
 ----------------------------------------------------------------------
 
 Nr=7  Text=_" You guys are totally nuts. Get a life."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    set_next_node(8)
-    disable_node(7)
+    next(8)
+    hide(7)
 }
 ----------------------------------------------------------------------
 
 Nr=8  Text=_" You guys are tota --"
 NPC=_"WHAT?! What is it that you want to say?"
 LuaCode={
-    set_next_node(9)
-    disable_node(8)
+    next(9)
+    hide(8)
 }
 ----------------------------------------------------------------------
 
 Nr=9  Text=_" Erm... I --"
 NPC=_"WHAT!? SPIT IT OUT!"
 LuaCode={
-    set_next_node(10)
-    disable_node(9)
+    next(10)
+    hide(9)
 }
 ----------------------------------------------------------------------
 
@@ -132,7 +132,7 @@ NPC=_"I hope that one day we shall meet again, maybe in a better time."
 NPC=_"Maybe then you will tell us other gut jokes that you know."
 NPC=_"Maybe one day..."
 LuaCode={
-    disable_node(10)
+    hide(10)
 }
 ----------------------------------------------------------------------
 
@@ -140,8 +140,8 @@ Nr=11  Text=_" What did you use to do before you became a hunter?"
 NPC=_"I was a bot constructor. Built the killers of my mother."
 NPC=_"Now I sell the parts that I remove from the bots to buy more ammunition and food."
 LuaCode={
-    disable_node(11)
-    enable_node(12)
+    hide(11)
+    show(12)
 }
 ----------------------------------------------------------------------
 
@@ -157,7 +157,7 @@ LuaCode={
 Nr=13  Text=_" Can I join your hunt?"
 NPC=_"Nein. Our problem. Our hunt."
 LuaCode={
-    disable_node(13)
+    hide(13)
 }
 ----------------------------------------------------------------------
 

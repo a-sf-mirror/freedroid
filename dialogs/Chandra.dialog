@@ -31,7 +31,7 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 FirstTime LuaCode={
-    enable_node(0, 99)
+    show(0, 99)
 }
 
 ----------------------------------------------------------------------
@@ -40,8 +40,8 @@ FirstTime LuaCode={
 Nr=0  Text=_" Hi! I'm new here."
 NPC=_"Welcome. I am Chandra, the local sage in this old town."
 LuaCode={
-    disable_node(0)
-    enable_node(1, 2, 9)
+    hide(0)
+    show(1, 2, 9)
 }
 ----------------------------------------------------------------------
 
@@ -49,8 +49,8 @@ Nr=1  Text=_" What can you tell me about this place?"
 NPC=_"This small town existed since before the Great Assault. It used to be a somewhat successful mining community."
 NPC=_"But now after the Great Assault, the rest of the planet gets bombarded by automated bot ships every now and then, so being down here isn't so bad at all."
 LuaCode={
-    disable_node(1)
-    enable_node(5, 10)
+    hide(1)
+    show(5, 10)
 }
 ----------------------------------------------------------------------
 
@@ -58,7 +58,7 @@ Nr=2  Text=_" Where can I get better equipment?"
 NPC=_"The shop is to the north. Ms. Stone always has a good range of equipment there."
 NPC=_"And the Red Guard always has the biggest guns and the best armor, but they do not sell them to the non-members."
 LuaCode={
-    disable_node(2)
+    hide(2)
 }
 ----------------------------------------------------------------------
 
@@ -69,8 +69,8 @@ NPC=_"Now, I make the assumption that you and I are alive."
 NPC=_"Now, if we are not dead, and if bots are killing everything alive..."
 NPC=_"... THEN SOMETHING IS NOT LOGICAL!"
 LuaCode={
-    set_next_node(4)
-    disable_node(3)
+    next(4)
+    hide(3)
 }
 ----------------------------------------------------------------------
 
@@ -80,7 +80,7 @@ NPC=_"They could just enter the city and massacre everyone."
 NPC=_"But they do not do so."
 NPC=_"This makes no sense at all!"
 LuaCode={
-    disable_node(4)
+    hide(4)
 }
 ----------------------------------------------------------------------
 
@@ -88,8 +88,8 @@ Nr=5  Text=_" What do you know about the hostile bots?"
 NPC=_"The phenomenon of hostile bots has occupied my mind for quite some time.  There are some strange irrationalities in this behaviour, that I cannot explain."
 NPC=_"This concerns not only the irrationality of the attack but also the methods and the scale of it all."
 LuaCode={
-    disable_node(5)
-    enable_node(3, 6, 7)
+    hide(5)
+    show(3, 6, 7)
 }
 ----------------------------------------------------------------------
 
@@ -101,8 +101,8 @@ NPC=_"The 200s are more dangerous. Beware of being attacked by more than one at 
 NPC=_"An encounter with a 300 type bot equals death, so try to avoid it."
 NPC=_"I am sure there are lots more of classes out there, but I know nothing about them."
 LuaCode={
-    disable_node(6)
-    enable_node(11, 12, 13)
+    hide(6)
+    show(11, 12, 13)
 }
 ----------------------------------------------------------------------
 
@@ -111,8 +111,8 @@ NPC=_"We all do, Linarian, we all do."
 NPC=_"The act in question is made impossible by the quasi-infinite bots outside of the city walls."
 NPC=_"You cannot live for long out there."
 LuaCode={
-    disable_node(7)
-    enable_node(8)
+    hide(7)
+    show(8)
 }
 ----------------------------------------------------------------------
 
@@ -121,7 +121,7 @@ NPC=_"Simple. Walk outside the city walls, and the bots will send you to the oth
 NPC=_"Unless you mean leave the planet, in which case that is impossible."
 NPC=_"Most likely all of our cosmodromes have been destroyed in the bot attacks."
 LuaCode={
-    disable_node(8)
+    hide(8)
 }
 ----------------------------------------------------------------------
 
@@ -133,7 +133,7 @@ NPC=_"Ewald sells potions which can increase your abilities to fight for a while
 NPC=_"There was a person selling grenades too. Eh... I forgot his name, my memory is not serving me very well today. I am sure he can help you out."
 NPC=_"Other than that, you are on your own."
 LuaCode={
-    disable_node(9)
+    hide(9)
 }
 ----------------------------------------------------------------------
 
@@ -142,7 +142,7 @@ NPC=_"The Red Guard? Unlikely. You'd have to establish a reputation before and d
 NPC=_"Of course, the Red Guard is not a very popular organization, so if you do join them then you can expect to be hated by nearly everyone here."
 NPC=_"As the ancients said, 'Boni pastoris est tondere pecus, non deglubere'. A good tax must be a reasonable tax."
 LuaCode={
-    disable_node(10)
+    hide(10)
 }
 ----------------------------------------------------------------------
 
@@ -152,7 +152,7 @@ NPC=_"Because they are neither fast nor dangerous, the Red Guard uses them for t
 NPC=_"If I were you, I would not overestimate them. "
 NPC=_"Nec Hercules contra plures."
 LuaCode={
-    disable_node(11)
+    hide(11)
 }
 ----------------------------------------------------------------------
 
@@ -163,7 +163,7 @@ NPC=_"It comes close to you and tries to punch you."
 NPC=_"The 249 is much more dangerous."
 NPC=_"Its machine gun has a high rate of fire, and each bullet can damage your equipment."
 LuaCode={
-    disable_node(12)
+    hide(12)
 }
 ----------------------------------------------------------------------
 
@@ -171,7 +171,7 @@ Nr=13  Text=_" What other bots are out there?"
 NPC=_"Well, I have no idea. I have heard only rumors."
 NPC=_"I think most of the people who have seen a better bot are now pushing up the daisies."
 LuaCode={
-    disable_node(13)
+    hide(13)
 }
 ----------------------------------------------------------------------
 

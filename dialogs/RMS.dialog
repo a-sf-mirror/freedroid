@@ -31,7 +31,7 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 FirstTime LuaCode={
-    enable_node(0, 5, 99)
+    show(0, 5, 99)
 }
 
 ----------------------------------------------------------------------
@@ -41,8 +41,8 @@ Nr=0  Text=_" Hi! I'm new here. "
 NPC=_"Welcome, welcome! I'm Richard. I'm the computer guy around here."
 NPC=_"I mostly work with this huge computer cluster here, although I also program the 614 bots in my spare time."
 LuaCode={
-    disable_node(0)
-    enable_node(1)
+    hide(0)
+    show(1)
 }
 ----------------------------------------------------------------------
 
@@ -51,14 +51,14 @@ NPC=_"A cluster is a group of computers, connected in a way that helps them coll
 NPC=_"As they say, 'two heads are better than one'. And we have a lot of heads here."
 NPC=_"This is why I call this cluster 'Hydra'. A lot of heads indeed."
 LuaCode={
-    disable_node(1)
+    hide(1)
 }
 ----------------------------------------------------------------------
 
 Nr=5  Text="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    if (has_item("Kevin's Data Cube") > 0) then enable_node(6) else end
+    if (has_item("Kevin's Data Cube") > 0) then show(6) else end
 }
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
@@ -72,8 +72,8 @@ LuaCode={
     end_quest(7)
     open_diary_entry(7, 1)
     del_item("Kevin's Data Cube", 1)
-    disable_node(6)
-    enable_node(9)
+    hide(6)
+    show(9)
 }
 ----------------------------------------------------------------------
 
@@ -82,7 +82,7 @@ NPC=_"Of course! I told you, Hydra has never failed me! I designed it myself, an
 NPC=_"Seems like the disruptor shield which prevents all our attacks on Hell Fortress can be controlled from somewhere outside or something like that."
 NPC=_"I was busy servicing one of Hydra's nodes, but I sent the full report to Spencer. He will tell you more."
 LuaCode={
-    disable_node(9)
+    hide(9)
 }
 ----------------------------------------------------------------------
 

@@ -31,7 +31,7 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 FirstTime LuaCode={
-    enable_node(0)
+    show(0)
 }
 
 ----------------------------------------------------------------------
@@ -41,16 +41,16 @@ Nr=0  Text=_" Hi. Are you all right? You don't look too good."
 NPC=_"Good day. I am Bruce."
 NPC=_"I am unwell."
 LuaCode={
-    disable_node(0)
-    enable_node(1)
+    hide(0)
+    show(1)
 }
 ----------------------------------------------------------------------
 
 Nr=1  Text=_" How is it going?"
 NPC=_"I am very tired, but otherwise well."
 LuaCode={
-    disable_node(1)
-    enable_node(2)
+    hide(1)
+    show(2)
 }
 ----------------------------------------------------------------------
 
@@ -58,8 +58,8 @@ Nr=2  Text=_" You don't talk much, eh?"
 NPC=_"No, I am just too tired now. I have been working in the mine for two weeks now."
 NPC=_"I feel really wiped, so maybe it would be better if you came some other day."
 LuaCode={
-    disable_node(2)
-    enable_node(3)
+    hide(2)
+    show(3)
 }
 ----------------------------------------------------------------------
 
@@ -68,16 +68,16 @@ NPC=_"Because I must! The Red Guard makes everyone work up to their limits!"
 NPC=_"If you do not work for a full work period, you will be in trouble."
 NPC=_"But I have no choice. I do not want to be a soldier again."
 LuaCode={
-    disable_node(3)
-    enable_node(4)
+    hide(3)
+    show(4)
 }
 ----------------------------------------------------------------------
 
 Nr=4  Text=_" You were a soldier before? "
 NPC=_"Yes. I would rather not talk about it."
 LuaCode={
-    disable_node(4)
-    enable_node(8, 10)
+    hide(4)
+    show(8, 10)
 }
 ----------------------------------------------------------------------
 
@@ -86,8 +86,8 @@ NPC=_"Those are pretty painful and distant memories."
 NPC=_"After the Great Assault, I joined the Red Guard. They needed help and were looking for volunteers."
 NPC=_"I served there for a short while, and they even let me use an exterminator. But then after a failed mission, I resigned and never wore a uniform again."
 LuaCode={
-    disable_node(5)
-    enable_node(6, 7, 98)
+    hide(5)
+    show(6, 7, 98)
 }
 ----------------------------------------------------------------------
 
@@ -97,7 +97,7 @@ NPC=_"A direct hit from one of those guns is enough to change most bots into scr
 NPC=_"Many of the great victories of the Red Guard are thanks to the exterminator."
 NPC=_"Of course because of its small clip and terribly long reloading time, equally many deaths can be attributed to it."
 LuaCode={
-    disable_node(6)
+    hide(6)
 }
 ----------------------------------------------------------------------
 
@@ -110,15 +110,15 @@ NPC=_"Our ammunition ran out. They got close. It was the end of team number nine
 NPC=_"After that I decided that I am not fit to be one of the Red Guard. I resigned and started to work in the mine shortly after."
 NPC=_"I do not want to face the anger of the Hell Fortress ever again. Never again."
 LuaCode={
-    disable_node(7)
+    hide(7)
 }
 ----------------------------------------------------------------------
 
 Nr=8  Text=_" I said, I want to know about your life as a soldier."
 NPC=_"And I said that I do not want to talk about it. It hurts too much. Please stop asking about it and leave me alone."
 LuaCode={
-    disable_node(8, 10)
-    enable_node(9)
+    hide(8, 10)
+    show(9)
 }
 ----------------------------------------------------------------------
 
@@ -127,15 +127,15 @@ NPC=_"No! Please... I will do anything, just do not call the Red Guard! They do 
 NPC=_"I will tell you everything."
 LuaCode={
     add_cookie("bruce_hurt")
-    disable_node(9, 99)
-    enable_node(5)
+    hide(9, 99)
+    show(5)
 }
 ----------------------------------------------------------------------
 
 Nr=10  Text=_" I have some bad memories too. I know how hard it can be to talk about them. Keep your stories to yourself."
 NPC=_"Yes. And now I would like to go to sleep. Good night Linarian."
 LuaCode={
-    disable_node(8, 10)
+    hide(8, 10)
     end_dialog()
 }
 
@@ -144,7 +144,7 @@ LuaCode={
 Nr=50  Text="DID TUX HARM BRUCE?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    if (has_cookie("bruce_hurt")) then enable_node(98) else enable_node(99) end
+    if (has_cookie("bruce_hurt")) then show(98) else show(99) end
 }
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 

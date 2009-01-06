@@ -31,7 +31,7 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 FirstTime LuaCode={
-    enable_node(99)
+    show(99)
 }
 ----------------------------------------------------------------------
 
@@ -39,8 +39,8 @@ Nr=0  Text=_"Login : tux  Password : *******
 Last login from dev/ttyS0 on Sun, 23 mar 2057.
 tux@hacked_bot: ~ #"
 LuaCode={
-    disable_node(0)
-    enable_node(1, 2, 3, 4)
+    hide(0)
+    show(1, 2, 3, 4)
 }
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
@@ -50,8 +50,8 @@ Nr=1  Text=_" ./hold_position.sh"
 NPC=_"Holding position, using script V 1.0.2 (c) gnu.org, 2054 Checking requirements. Power-down movement unit. Done. Status: All movement suppressed."
 LuaCode={
     set_bot_state("fixed")
-    disable_node(1)
-    enable_node(2, 3, 4)
+    hide(1)
+    show(2, 3, 4)
 }
 ----------------------------------------------------------------------
 
@@ -59,8 +59,8 @@ Nr=2  Text=_" ./follow_me.sh"
 NPC=_"Initiating tracking sequence. Movement unit enabled. Ready. Trying to keep up with Tux position now. Ok. Following Tux."
 LuaCode={
     set_bot_state("follow_tux")
-    disable_node(2)
-    enable_node(1, 3, 4)
+    hide(2)
+    show(1, 3, 4)
 }
 ----------------------------------------------------------------------
 
@@ -68,8 +68,8 @@ Nr=3  Text=_" ./move_freely.sh"
 NPC=_"Movement unit is starting up. Ready. Resuming normal patrol operations. Done. Status: Patrolling."
 LuaCode={
     set_bot_state("free")
-    disable_node(3)
-    enable_node(1, 2, 4)
+    hide(3)
+    show(1, 2, 4)
 }
 ----------------------------------------------------------------------
 
@@ -82,7 +82,7 @@ LuaCode={
     if (has_cookie("dixon_very_angry")) then
         if (has_cookie("bruce_hurt")) then
             if (has_quest(8)) then
-                if (has_cookie("tux_has_edge")) then drop_dead() else set_next_node(17) end
+                if (has_cookie("tux_has_edge")) then drop_dead() else next(17) end
             else drop_dead() end
         else drop_dead() end
     else drop_dead() end

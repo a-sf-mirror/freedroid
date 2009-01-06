@@ -31,15 +31,15 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 FirstTime LuaCode={
-    enable_node(0, 99)
+    show(0, 99)
 }
 ----------------------------------------------------------------------
 
 Nr=0  Text=_" Hello!"
 NPC=_"Hello. I'm Doc Moore. I'm the medic of this town."
 LuaCode={
-    disable_node(0)
-    enable_node(1, 10)
+    hide(0)
+    show(1, 10)
 }
 ----------------------------------------------------------------------
 
@@ -52,8 +52,8 @@ LuaCode={
 
 Nr=2  Text=_" Doc, I took some of those brain enlargement pills..."
 LuaCode={
-    if (has_cookie("doc_healed_tux")) then set_next_node(5) else set_next_node(4) end
-    disable_node(2)
+    if (has_cookie("doc_healed_tux")) then next(5) else next(4) end
+    hide(2)
 }
 ----------------------------------------------------------------------
 
@@ -65,7 +65,7 @@ NPC=_"The machines connect together and form some inorganic artificial tissue th
 NPC=_"Since this invention only came shortly before the Great Assault, these pills are now very rare."
 NPC=_"But if you should get them, even better, because the effects are permanent, and as far as we can tell, there aren't any side effects!"
 LuaCode={
-    disable_node(3)
+    hide(3)
 }
 ----------------------------------------------------------------------
 
@@ -80,7 +80,7 @@ LuaCode={
     add_cookie("doc_healed_tux")
     open_diary_entry(0, 1)
     add_item("Brain Enlargement Pills Antidote",1)
-    disable_node(2, 4)
+    hide(2, 4)
 }
 ----------------------------------------------------------------------
 
@@ -90,8 +90,8 @@ NPC=_"Sorry, but I already gave you some medical help."
 NPC=_"If you poison yourself, that's entirely your business and I'm not responsible."
 NPC=_"As far as I am concerned, in this town everyone gets everything equally."
 LuaCode={
-    disable_node(2, 5)
-    enable_node(20)
+    hide(2, 5)
+    show(20)
 }
 ----------------------------------------------------------------------
 
@@ -99,9 +99,9 @@ Nr=6  Text="ON MISSION 0 WAS ASSIGNED..."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
     if (has_quest(0)) then
-        if (done_quest(0)) then enable_node(3) else enable_node(2, 3) end
+        if (done_quest(0)) then show(3) else show(2, 3) end
     else end
-    disable_node(6)
+    hide(6)
 }
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
@@ -113,8 +113,8 @@ NPC=_"However, self-inflicted damage might be exempted from this rule in some ca
 NPC=_"There, it's done. You're completely fixed. You can go now."
 LuaCode={
     heal_tux()
-    disable_node(0, 10)
-    enable_node(11, 12)
+    hide(0, 10)
+    show(11, 12)
 }
 ----------------------------------------------------------------------
 
@@ -124,7 +124,7 @@ NPC=_"He took these stupid brain enlargement pills. So no problem, he came to me
 NPC=_"He took them again against my strict advice. Now he thinks he can drain my antidote supplies? He's wrong."
 NPC=_"He won't get anything from me anymore. It would be unfair to the community to waste all the supplies on him, and that's my final word on that."
 LuaCode={
-    disable_node(11)
+    hide(11)
 }
 ----------------------------------------------------------------------
 
@@ -134,40 +134,40 @@ NPC=_"However, self-inflicted damage might be exempted from this rule in some ca
 NPC=_"There, it's done. You're completely fixed. You can go now."
 LuaCode={
     heal_tux()
-    disable_node(0, 10)
-    enable_node(12)
+    hide(0, 10)
+    show(12)
 }
 ----------------------------------------------------------------------
 
 Nr=20  Text=_" Doc... I really want the antidote."
 NPC=_"No! I am not giving it to you. Forget about it."
 LuaCode={
-    disable_node(20)
-    enable_node(21, 30)
+    hide(20)
+    show(21, 30)
 }
 ----------------------------------------------------------------------
 
 Nr=21  Text=_" My patience is running out. Give me the antidote. Now."
 NPC=_"No! Over my dead body."
 LuaCode={
-    disable_node(21)
-    enable_node(22)
+    hide(21)
+    show(22)
 }
 ----------------------------------------------------------------------
 
 Nr=22  Text=_" Your wish is my command."
 NPC=_"Huh? What?"
 LuaCode={
-    set_next_node(23)
-    disable_node(22)
+    next(23)
+    hide(22)
 }
 ----------------------------------------------------------------------
 
 Nr=23  Text=_" Humans... You are so interesting. I always wanted to know how much blood do you exacly have."
 NPC=_"Don't do this. Don't do this."
 LuaCode={
-    set_next_node(24)
-    disable_node(23)
+    next(24)
+    hide(23)
 }
 ----------------------------------------------------------------------
 
@@ -175,24 +175,24 @@ Nr=24  Text=_" Prepare Doc. The experiment begins."
 NPC=_"Don't do this! DON'T DO THIS!"
 NPC=_"AAAAAAAAAAAA!"
 LuaCode={
-    set_next_node(25)
-    disable_node(24)
+    next(25)
+    hide(24)
 }
 ----------------------------------------------------------------------
 
 Nr=25  Text=_" Ugh. Human blood is disgusting. At least four liters. I feel sick."
 NPC=_" . . ."
 LuaCode={
-    set_next_node(26)
-    disable_node(25)
+    next(26)
+    hide(25)
 }
 ----------------------------------------------------------------------
 
 Nr=26  Text=_" I guess this means I get to inherit all your stuff. I hope you don't mind if I take everything?"
 NPC=_" . . ."
 LuaCode={
-    set_next_node(27)
-    disable_node(26)
+    next(27)
+    hide(26)
 }
 ----------------------------------------------------------------------
 
@@ -210,14 +210,14 @@ LuaCode={
     add_item("Antibiotic",10)
     add_item("Brain Enlargement Pills Antidote",5)
     add_item("Laserscalpel",1)
-    disable_node(27)
+    hide(27)
 }
 ----------------------------------------------------------------------
 
 Nr=30  Text=_" Forget it. Getting the antidote is not worth the effort."
 NPC=_"I am not giving it to you, and that won't change."
 LuaCode={
-    disable_node(20, 21, 22, 30)
+    hide(20, 21, 22, 30)
 }
 ----------------------------------------------------------------------
 

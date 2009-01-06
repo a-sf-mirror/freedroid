@@ -38,24 +38,24 @@ Nr=0  Text="THIS WILL NEVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 NPC=_"Hey you!  Linarian!  What do you want here?"
 LuaCode={
-    disable_node(0, 99)
-    enable_node(1, 2, 3)
+    hide(0, 99)
+    show(1, 2, 3)
 }
 ----------------------------------------------------------------------
 
 Nr=1  Text=_"Just taking a look around."
 NPC=_"Ok!  But don't make any trouble!  Or you'll be in trouble!"
 LuaCode={
-    disable_node(1, 2, 3)
-    enable_node(99)
+    hide(1, 2, 3)
+    show(99)
 }
 ----------------------------------------------------------------------
 
 Nr=2  Text=_"I'd like to get into the mine."
 NPC=_"Ok!  But don't make any trouble!  Or you'll be in trouble!"
 LuaCode={
-    disable_node(1, 2, 3)
-    enable_node(99)
+    hide(1, 2, 3)
+    show(99)
 }
 ----------------------------------------------------------------------
 
@@ -63,15 +63,15 @@ Nr=3  Text=_"I'm here to make an end to your mining business."
 NPC=_"Ok Linarian!  You wanted it that way!  And I don't like penguins anyway!"
 LuaCode={
     break_off_and_attack()
-    disable_node(1, 2, 3)
-    enable_node(99)
+    hide(1, 2, 3)
+    show(99)
 }
 ----------------------------------------------------------------------
 
 Nr=99  Text=_"I'll be going then."
 NPC=_"Mhmmm."
 LuaCode={
-    enable_node(2)
+    show(2)
 }
 ----------------------------------------------------------------------
 

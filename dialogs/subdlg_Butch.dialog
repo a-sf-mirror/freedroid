@@ -37,8 +37,8 @@ FirstTime LuaCode={
 Nr=0  Text="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    disable_node(0)
-    enable_node(1, 7, 99)
+    hide(0)
+    show(1, 7, 99)
 }
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
@@ -47,9 +47,9 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 Nr=1  Text=_" Give me the novice arena."
 LuaCode={
     if (has_quest("Novice Arena")) then
-       if (done_quest("Novice Arena")) then set_next_node(6) else set_next_node(3) end
-    else set_next_node(4) end
-    disable_node(1)
+       if (done_quest("Novice Arena")) then next(6) else next(3) end
+    else next(4) end
+    hide(1)
 }
 ----------------------------------------------------------------------
 
@@ -93,9 +93,9 @@ Nr=7  Text=_" Give me the master arena."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
     if (done_quest("Novice Arena")) then
-        if (done_quest("Time to say goodnight")) then set_next_node(11) else set_next_node(12) end
-    else set_next_node(9) end
-    disable_node(7)
+        if (done_quest("Time to say goodnight")) then next(11) else next(12) end
+    else next(9) end
+    hide(7)
 }
 ----------------------------------------------------------------------
 
@@ -127,7 +127,7 @@ LuaCode={
 Nr=12  Text="MASTER MIGHT BE FOR YOU"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    if (has_quest("Time to say goodnight")) then set_next_node(10) else set_next_node(5) end
+    if (has_quest("Time to say goodnight")) then next(10) else next(5) end
 }
 ----------------------------------------------------------------------
 

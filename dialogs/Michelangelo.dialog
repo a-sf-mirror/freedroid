@@ -31,7 +31,7 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 FirstTime LuaCode={
-    enable_node(0, 30, 99)
+    show(0, 30, 99)
 }
 ----------------------------------------------------------------------
 
@@ -39,8 +39,8 @@ Nr=0  Text=_" Hi! I'm new here."
 NPC=_"Hello. I'm Michelangelo. I haven't been here for long either."
 NPC=_"I wish the bots had just killed me, but I got 'lucky' and ended up in this hellhole."
 LuaCode={
-    disable_node(0)
-    enable_node(10, 11)
+    hide(0)
+    show(10, 11)
 }
 ----------------------------------------------------------------------
 
@@ -48,8 +48,8 @@ Nr=10  Text=_" How is it going?"
 NPC=_"Don't ask."
 NPC=_"'Terribly' would be a huge understatement."
 LuaCode={
-    disable_node(10)
-    enable_node(18)
+    hide(10)
+    show(18)
 }
 ----------------------------------------------------------------------
 
@@ -59,8 +59,8 @@ NPC=_"Made fully out of artificial nutrients and carcinogenic flavors. Even the 
 NPC=_"It's better than starving, but some people have already committed suicide because that repulsive material is the only thing available to eat."
 NPC=_"I can give you some, but it's not worthy of being called food."
 LuaCode={
-    disable_node(11)
-    enable_node(12)
+    hide(11)
+    show(12)
 }
 
 ----------------------------------------------------------------------
@@ -72,8 +72,8 @@ NPC=_"That includes the implied warranty of edibility or fitness for a particula
 NPC=_"Should the army meal model #23 prove poisonous, you agree to cover the cost of keeping you alive by the colony medical staff or the costs of your cremation in our nuclear furnaces.'"
 NPC=_"Well, that is all. Here is the junk that you wanted. Enjoy."
 LuaCode={
-    set_next_node(27)
-    disable_node(12)
+    next(27)
+    hide(12)
 }
 
 ----------------------------------------------------------------------
@@ -87,8 +87,8 @@ NPC=_"The guards gave me a filthy hovel to live in. The walls are so thin that e
 NPC=_"It sounds like they are singing something. Every night they start their song... I cannot sleep thanks to that electric chorus."
 NPC=_"Have I mentioned that the only food that we have is some kind of pestilential military ration? The smell alone is making me want to vomit."
 LuaCode={
-    disable_node(18)
-    enable_node(19, 20)
+    hide(18)
+    show(19, 20)
 }
 ----------------------------------------------------------------------
 
@@ -97,7 +97,7 @@ NPC=_"..."
 NPC=_"Linarian, have you been gorging on psychoactive pills or something?"
 NPC=_"Get a grip, the situation is bad and there is no use in pretending otherwise."
 LuaCode={
-    disable_node(19)
+    hide(19)
 }
 ----------------------------------------------------------------------
 
@@ -106,8 +106,8 @@ NPC=_"I cannot! My beautiful macrowave oven is out of power. The wretched Red Gu
 NPC=_"I wish I could kill them all with my bare hands. They deserve it."
 NPC=_"If only I had some dilithium to use as a backup power source..."
 LuaCode={
-    disable_node(20)
-    enable_node(40, 41, 42, 70, 80)
+    hide(20)
+    show(40, 41, 42, 70, 80)
 }
 ----------------------------------------------------------------------
 
@@ -116,15 +116,15 @@ NPC=_"I had prepared some delicacies, but the ravenous Red Guard ate it all."
 NPC=_"Not a big loss, I have a second batch of food cubes in the oven and they will be ready shortly."
 NPC=_"I think the mood in the town will improve once the cooking master Michelangelo gets to work. Ha!"
 LuaCode={
-    disable_node(24)
+    hide(24)
 }
 ----------------------------------------------------------------------
 
 Nr=27  Text=_" Hmm... Crunchy... That is... Oh... No. Ugh. Help."
 NPC=_"Oh yes. You were warned, so don't blame me."
 LuaCode={
-    set_next_node(28)
-    disable_node(27)
+    next(28)
+    hide(27)
 }
 ----------------------------------------------------------------------
 
@@ -133,7 +133,7 @@ NPC=_"We already know that. There is nothing else to eat here, so I hope you get
 NPC=_"That thing only looks well and has a nice color."
 NPC=_"But as you can see, the color cannot be eaten, only the taste counts."
 LuaCode={
-    disable_node(28)
+    hide(28)
 }
 ----------------------------------------------------------------------
 
@@ -147,7 +147,7 @@ LuaCode={
     end_quest("Anything but the army snacks, please!")
     open_diary_entry(2, 1)
     del_item("Red Dilitium Crystal", 1)
-    disable_node(29)
+    hide(29)
 }
 ----------------------------------------------------------------------
 
@@ -155,10 +155,10 @@ Nr=30  Text="HAVE THE CRYSTALS"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
     if (has_item("Red Dilitium Crystal") > 0) then    -- Tux gives crystals
-        disable_node(32, 82)
-        enable_node(29)
-    else enable_node(31) end    -- Tux does not have crystals
-    disable_node(30)
+        hide(32, 82)
+        show(29)
+    else show(31) end    -- Tux does not have crystals
+    hide(30)
 }
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
@@ -168,15 +168,15 @@ Nr=31  Text=_" What was I supposed to do again?"
 NPC=_"Get me some dilithium before the whole stupid colony commits mass suicide because of poor food quality."
 NPC=_"Of course our heinous food might do us in far before that. I swear I saw that stuff glow it the dark and try to sneak away from my plate a few times."
 LuaCode={
-    disable_node(31)
+    hide(31)
 }
 ----------------------------------------------------------------------
 
 Nr=34  Text="MISSION IS DONE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    disable_node(34)
-    if (done_quest("Anything but the army snacks, please!")) then set_next_node(35) else end
+    hide(34)
+    if (done_quest("Anything but the army snacks, please!")) then next(35) else end
 }
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
@@ -185,15 +185,15 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 Nr=35  Text="YEAH, MISSION IS DONE."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    if (done_quest("Anything but the army snacks, please!")) then enable_node(24) else end
-    disable_node(29, 31)
+    if (done_quest("Anything but the army snacks, please!")) then show(24) else end
+    hide(29, 31)
 }
 ----------------------------------------------------------------------
 
 Nr=37  Text="TUX STARTED ON THE QUEST"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-   if (done_quest("Anything but the army snacks, please!")) then disable_node(37) else set_next_node(35) end
+   if (done_quest("Anything but the army snacks, please!")) then hide(37) else next(35) end
 }
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
@@ -204,7 +204,7 @@ NPC=_"I did."
 NPC=_"Yesterday a guard patrol found a few tiny bits of him and lots of dried blood."
 NPC=_"The bots made a bloody mess out of him."
 LuaCode={
-    disable_node(70)
+    hide(70)
 }
 ----------------------------------------------------------------------
 
@@ -213,8 +213,8 @@ NPC=_"Have you gotten overheated, Linarian?"
 NPC=_"Look, there are dozens of ways you can kill yourself, and most hurt less than being killed by a bot."
 NPC=_"If you want to die just walk into a nuclear reactor or something. So much simpler."
 LuaCode={
-    disable_node(80)
-    enable_node(81)
+    hide(80)
+    show(81)
 }
 ----------------------------------------------------------------------
 
@@ -227,8 +227,8 @@ NPC=_"Feel free to go, Linarian, but make sure to be very dead before they start
 LuaCode={
     add_quest("Anything but the army snacks, please!")
     open_diary_entry(2, 0)
-    disable_node(19, 40, 41, 42, 70, 81)
-    enable_node(82)
+    hide(19, 40, 41, 42, 70, 81)
+    show(82)
 }
 ----------------------------------------------------------------------
 
@@ -239,7 +239,7 @@ NPC=_"Good luck. Try not to get yourself killed."
 LuaCode={
     add_quest("Anything but the army snacks, please!")
     change_obstacle("EastGateOfTown", "opened")
-    disable_node(82)
+    hide(82)
 }
 ----------------------------------------------------------------------
 
@@ -249,7 +249,7 @@ NPC=_"Dilithium is a substance which is usually seen in the form of a small crys
 NPC=_"It somehow generates and stores amazing amounts of electricity. I do not know the details. I'm a cook, not a quantum scientist."
 NPC=_"A small crystal would power my oven for weeks."
 LuaCode={
-    disable_node(40)
+    hide(40)
 }
 ----------------------------------------------------------------------
 
@@ -261,7 +261,7 @@ NPC=_"Finally, the meal cubes which we have in the freezer are optimized for mac
 NPC=_"No oven means having to use the premacrowaved food."
 NPC=_"And the only such thing around is the abhorrent military sludge."
 LuaCode={
-    disable_node(41)
+    hide(41)
 }
 ----------------------------------------------------------------------
 
@@ -269,7 +269,7 @@ Nr=42  Text=_" Tell the Red Guard that you need your battery back."
 NPC=_"I did."
 NPC=_"They said it was already fed to their reactor as fuel."
 LuaCode={
-    disable_node(42)
+    hide(42)
 }
 ----------------------------------------------------------------------
 

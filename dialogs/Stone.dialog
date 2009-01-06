@@ -31,23 +31,23 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 FirstTime LuaCode={
-    enable_node(0, 99)
+    show(0, 99)
 }
 ----------------------------------------------------------------------
 
 Nr=0  Text=_" Hi! I'm new here."
 NPC=_"Welcome to this camp! I'm Ms. Stone. I run this shop."
 LuaCode={
-    disable_node(0)
-    enable_node(1, 3, 10)
+    hide(0)
+    show(1, 3, 10)
 }
 ----------------------------------------------------------------------
 
 Nr=1  Text=_" I would like to trade with you."
 NPC=_"Good! Here is the selection of items I have for sale."
 LuaCode={
-    if (has_cookie("Stone_no_guns")) then disable_node(2) else enable_node(2) end
-    set_next_node(14)
+    if (has_cookie("Stone_no_guns")) then hide(2) else show(2) end
+    next(14)
     trade_with("Stone")
 }
 ----------------------------------------------------------------------
@@ -57,7 +57,7 @@ NPC=_"Sorry, this is all we have for now. The Red Guard took away all of our pop
 NPC=_"For our own good. Of course."
 LuaCode={
     add_cookie("Stone_no_guns")
-    disable_node(2)
+    hide(2)
 }
 ----------------------------------------------------------------------
 
@@ -66,8 +66,8 @@ NPC=_"Ah, the Red Guard. "
 NPC=_"Stranger, best if you don't ask such questions."
 NPC=_"They keep us alive and safe from the bots, but..."
 LuaCode={
-    disable_node(3)
-    enable_node(4)
+    hide(3)
+    show(4)
 }
 ----------------------------------------------------------------------
 
@@ -78,16 +78,16 @@ NPC=_"I guess I should not complain. The bots are far worse than the guards can 
 NPC=_"Sucked dry by a bloodthirsty regime over many years or just sliced into bits by our former servants... "
 NPC=_"... What's the difference? "
 LuaCode={
-    disable_node(4)
-    enable_node(8)
+    hide(4)
+    show(8)
 }
 ----------------------------------------------------------------------
 
 Nr=8  Text=_" If things are so bad right now, why don't you leave?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    set_next_node(9)
-    disable_node(8)
+    next(9)
+    hide(8)
 }
 ----------------------------------------------------------------------
 
@@ -97,15 +97,15 @@ NPC=_"A hint, Linarian, we don't have much, but we're alive and we'd rather stay
 Su*btitle=_"A hint, Linarian: We don't have much, but we're alive and we'd rather stay that way."
 NPC=_"If you want to start a revolution, you're on your own."
 LuaCode={
-    disable_node(9)
+    hide(9)
 }
 ----------------------------------------------------------------------
 
 Nr=10  Text=_" How is your business going?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    if (has_cookie("Helped_Stone")) then set_next_node(12) else set_next_node(11) end
-    disable_node(10)
+    if (has_cookie("Helped_Stone")) then next(12) else next(11) end
+    hide(10)
 }
 ----------------------------------------------------------------------
 
@@ -114,8 +114,8 @@ NPC=_"I'll be finished in about a week."
 NPC=_"The Stone family always bought cheap and sold at a low profit. The times have changed, but not my prices."
 NPC=_"The new taxes, the worldwide economic collapse and other factors are slowly murdering the family store."
 LuaCode={
-    disable_node(11)
-    enable_node(13, 16)
+    hide(11)
+    show(13, 16)
 }
 ----------------------------------------------------------------------
 
@@ -123,7 +123,7 @@ Nr=12  Text=_" How is the business going?"
 NPC=_"Thanks to you I have a chance now."
 NPC=_"Ha! It's time to show the world that Lily Stone is not going down without putting up a damn good fight."
 LuaCode={
-    disable_node(12)
+    hide(12)
 }
 ----------------------------------------------------------------------
 
@@ -132,8 +132,8 @@ NPC=_"No, there's nothing that can be done anymore. I don't have enough money to
 NPC=_"I'd need thousands to just survive the month."
 NPC=_"The shop is dying, and there's nothing either of us can do about it."
 LuaCode={
-    disable_node(13, 16)
-    enable_node(15)
+    hide(13, 16)
+    show(15)
 }
 ----------------------------------------------------------------------
 
@@ -142,7 +142,7 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
     if (has_cookie("Helping_Stone")) then
         if (not has_cookie("Helped_Stone")) then
-            if (get_gold() > 1600) then enable_node(23) else end
+            if (get_gold() > 1600) then show(23) else end
         else end
     else end
 }
@@ -154,8 +154,8 @@ Nr=15  Text=_" Maybe there is still hope, Ms. Stone. How much exactly do you nee
 NPC=_"I couldn't get myself to look at my finance logs for a while now. I guess about two thousand triangles."
 LuaCode={
     add_cookie("Helping_Stone")
-    set_next_node(14)
-    disable_node(15)
+    next(14)
+    hide(15)
 }
 ----------------------------------------------------------------------
 
@@ -163,7 +163,7 @@ Nr=16  Text=_" A pity that nothing can be done about your store."
 NPC=_"Yes. A tradition of six generations will die with this shop..."
 NPC=_"I guess it just had to happen one day..."
 LuaCode={
-    disable_node(13, 16)
+    hide(13, 16)
 }
 ----------------------------------------------------------------------
 
@@ -178,7 +178,7 @@ LuaCode={
     add_gold(-1547)
     add_cookie("Helped_Stone")
     run_subdialog("subdlg_Stone.dialog")
-    disable_node(23)
+    hide(23)
 }
 ----------------------------------------------------------------------
 

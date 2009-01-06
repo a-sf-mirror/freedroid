@@ -41,10 +41,10 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 NPC=_"So... Any news on the Koan matter?"
 LuaCode={
     add_cookie("koan_quest_done")
-    if (has_cookie("koan_spared")) then enable_node(20) else end
-    if (amount_item("Pandora's Cube") > 0) then enable_node(10, 30) else end
-    disable_node(0)
-    enable_node(40)
+    if (has_cookie("koan_spared")) then show(20) else end
+    if (amount_item("Pandora's Cube") > 0) then show(10, 30) else end
+    hide(0)
+    show(40)
 }
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
@@ -56,7 +56,7 @@ LuaCode={
     end_dialog()
     add_xp(3000)
     del_item("Pandora's Cube", 1)
-    disable_node(10)
+    hide(10)
 }
 ----------------------------------------------------------------------
 
@@ -64,7 +64,7 @@ Nr=20  Text=_" I could not find him anywhere in the desert. I don't think he is 
 NPC=_"I see."
 LuaCode={
     end_dialog()
-    disable_node(20) -- FIXME this will be reenabled every time by node 0
+    hide(20) -- FIXME this will be reenabled every time by node 0
 }
 ----------------------------------------------------------------------
 
@@ -73,24 +73,24 @@ NPC=_"Just a memento after a friend."
 NPC=_"A little more than a portable end of the world, which I am looking forward to disassembling and learning its secrets."
 NPC=_"Nothing that important."
 LuaCode={
-    disable_node(10, 20, 30)
-    enable_node(60, 70)
+    hide(10, 20, 30)
+    show(60, 70)
 }
 ----------------------------------------------------------------------
 
 Nr=40  Text=_" A 'few' bots? The place was crawling with Sawmills! I nearly got killed!"
 NPC=_"There were only fourty bots in the desert region. This hardly qualifies as many."
 LuaCode={
-    disable_node(40)
-    enable_node(41)
+    hide(40)
+    show(41)
 }
 ----------------------------------------------------------------------
 
 Nr=41  Text=_" What? You know exactly how many bots were on the desert? Without being there? I don't like this."
 NPC=_"I just know a lot of things. You do not need to worry about it."
 LuaCode={
-    disable_node(41)
-    enable_node(50)
+    hide(41)
+    show(50)
 }
 ----------------------------------------------------------------------
 
@@ -98,7 +98,7 @@ Nr=50  Text=_" I don't like this at all. I'm getting out of here."
 NPC=_"As you wish."
 LuaCode={
     end_dialog()
-    disable_node(50)
+    hide(50)
 }
 ----------------------------------------------------------------------
 
@@ -108,7 +108,7 @@ LuaCode={
     end_dialog()
     add_xp(3000)
     del_item("Pandora's Cube")
-    disable_node(60)
+    hide(60)
 }
 ----------------------------------------------------------------------
 

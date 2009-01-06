@@ -31,15 +31,15 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 FirstTime LuaCode={
-    enable_node(0, 99)
+    show(0, 99)
 }
 ----------------------------------------------------------------------
 
 Nr=0  Text=_" Hello! I'm new here."
 NPC=_"Hello. I'm Bender, the dead man of this camp."
 LuaCode={
-    disable_node(0)
-    enable_node(1)
+    hide(0)
+    show(1)
 }
 ----------------------------------------------------------------------
 
@@ -47,8 +47,8 @@ Nr=1  Text=_" What's wrong? You look in pretty good shape for a dead man."
 NPC=_"Yeah. I'm the strongest man within all of the world. That's cause I took ALL of the strength pills."
 NPC=_"But yet I might be dead soon. The doc warned me, but I didn't listen. Damn."
 LuaCode={
-    disable_node(1)
-    enable_node(2, 3)
+    hide(1)
+    show(2, 3)
 }
 ----------------------------------------------------------------------
 
@@ -56,16 +56,16 @@ Nr=2  Text=_" You took too many strength pills and now you're sick?"
 NPC=_"Nah. The strength pills were fine. They made me strong. The doc said so."
 NPC=_"It was the brain enlargement pills. They did me no good, man."
 LuaCode={
-    disable_node(2, 3)
-    enable_node(4, 10)
+    hide(2, 3)
+    show(4, 10)
 }
 ----------------------------------------------------------------------
 
 Nr=3  Text=_" What did make you so sick?"
 NPC=_"It was the brain enlargement pills. They did do me no good, man."
 LuaCode={
-    disable_node(2, 3)
-    enable_node(4, 10)
+    hide(2, 3)
+    show(4, 10)
 }
 ----------------------------------------------------------------------
 
@@ -76,15 +76,15 @@ NPC=_"'Enlarg3 your brain! Bu.y pi11s! Che4p!!11!!!'"
 NPC=_"And everybody in the camp said I was dumb, which is not true."
 NPC=_"So I thought these pills might make them think differently about me."
 LuaCode={
-    disable_node(4)
-    enable_node(5, 6)
+    hide(4)
+    show(5, 6)
 }
 ----------------------------------------------------------------------
 
 Nr=5  Text=_" But if you aren't dumb, why the brain enlargement pills?"
 NPC=_"Because they said I was dumb. So I had to do something about it, eh?"
 LuaCode={
-    disable_node(5)
+    hide(5)
 }
 ----------------------------------------------------------------------
 
@@ -93,8 +93,8 @@ NPC=_"Yeah, the doc could help. But he won't. I've threatened him, but he won't.
 NPC=_"He's so angry cause I didn't listen. He warned me of the brain enlargement pill offers."
 NPC=_"They can cause some awful forms of cancer. But I didn't listen. And now he refuses to help me, man."
 LuaCode={
-    disable_node(6)
-    enable_node(7, 8)
+    hide(6)
+    show(7, 8)
 }
 ----------------------------------------------------------------------
 
@@ -105,8 +105,8 @@ NPC=_"Just get me some cure, and I'll be forever grateful!"
 LuaCode={
     add_quest("Bender's problem")
     open_diary_entry(0, 0)
-    disable_node(7, 8)
-    enable_node(11)
+    hide(7, 8)
+    show(11)
 }
 ----------------------------------------------------------------------
 
@@ -115,7 +115,7 @@ NPC=_"Of course not. You're not a doctor. Only the doctor has the right medicine
 NPC=_"But this rat would rather let me die!"
 NPC=_"I'll rip his guts out as soon as I get my hands on him, man."
 LuaCode={
-    disable_node(7, 8)
+    hide(7, 8)
 }
 ----------------------------------------------------------------------
 
@@ -131,7 +131,7 @@ LuaCode={
     del_item("Brain Enlargement Pills Antidote", 1)
     add_item("Strength Pill",2)
     open_diary_entry(0, 3)
-    disable_node(9)
+    hide(9)
 }
 ----------------------------------------------------------------------
 
@@ -140,8 +140,8 @@ NPC=_"WHAT? Did you just say I'm stupid?"
 NPC=_"Don't say it, man."
 NPC=_"I can kill you so much, that no one will recognize you!"
 LuaCode={
-    disable_node(10)
-    enable_node(50)
+    hide(10)
+    show(50)
 }
 ----------------------------------------------------------------------
 
@@ -150,7 +150,7 @@ NPC=_"He's right inside this building. I'm waiting here for him, man."
 NPC=_"When he comes out, maybe I can pound him some more. Maybe then he'll help me at last!"
 NPC=_"Yes, he'll get a good beating. That will make him reconsider! That rat!"
 LuaCode={
-    disable_node(11)
+    hide(11)
 }
 ----------------------------------------------------------------------
 
@@ -159,7 +159,7 @@ NPC=_"What have you got?"
 NPC=_"What, you have nothing?"
 NPC=_"Man, what are you doing here? Get the medicine! I need it now!"
 LuaCode={
-    disable_node(12)
+    hide(12)
 }
 ----------------------------------------------------------------------
 
@@ -172,7 +172,7 @@ Nr=14  Text="DID TUX GET THE MISSION TO SAVE BENDER?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
     if (has_quest("Bender's problem")) then 
-        if (done_quest("Bender's problem")) then set_next_node(13) else set_next_node(18) end
+        if (done_quest("Bender's problem")) then next(13) else next(18) end
     else end
 }
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
@@ -183,13 +183,13 @@ Nr=18  Text="DOES TUX HAVE THE CURE?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
     if (has_item("Brain Enlargement Pills Antidote") > 0) then
-        disable_node(5, 10, 11, 12, 50)
-        enable_node(9)
+        hide(5, 10, 11, 12, 50)
+        show(9)
     else 
-        disable_node(9)
-        enable_node(12)
+        hide(9)
+        show(12)
     end
-    disable_node(1, 2, 3, 4, 6, 7, 8)
+    hide(1, 2, 3, 4, 6, 7, 8)
 }
 ----------------------------------------------------------------------
 
@@ -199,7 +199,7 @@ NPC=_"No one says I'm stupid! I'm NOT STUPID!"
 NPC=_"I'LL BEAT YOU TO SPLINTERS!"
 LuaCode={
     break_off_and_attack()
-    disable_node(50)
+    hide(50)
 }
 ----------------------------------------------------------------------
 

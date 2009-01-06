@@ -31,15 +31,15 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 FirstTime LuaCode={
-    enable_node(0, 99)
+    show(0, 99)
 }
 ----------------------------------------------------------------------
 
 Nr=0  Text=_" Hi! I'm new here."
 NPC=_"Hello and welcome. I'm Dixon, the chief engineer of the Red Guard technical division."
 LuaCode={
-    disable_node(0)
-    enable_node(1, 19)
+    hide(0)
+    show(1, 19)
 }
 ----------------------------------------------------------------------
 
@@ -49,8 +49,8 @@ NPC=_"The military division hates us because we are made up of people who refuse
 NPC=_"But even they know that without us this town would have been destroyed months ago."
 NPC=_"We deliver resources to the places which need them, build and repair the walls, fix damaged guns, manage construction work and lots of other small things which keep the bots from killing everyone."
 LuaCode={
-    disable_node(1)
-    enable_node(18)
+    hide(1)
+    show(18)
 }
 ----------------------------------------------------------------------
 
@@ -62,8 +62,8 @@ NPC=_"Our defensive bots are falling into disrepair and many are in desperate ne
 NPC=_"The technical division is very understaffed right now. On average one person has to do the jobs of three people."
 NPC=_"We just cannot afford to do any non-critical jobs right now. "
 LuaCode={
-    disable_node(18)
-    enable_node(22)
+    hide(18)
+    show(22)
 }
 ----------------------------------------------------------------------
 
@@ -76,8 +76,8 @@ NPC=_"The hand was not damaged very much, but the leg is a very different story.
 NPC=_"Now, while you cannot see it underneath the armor, my right leg runs NetBSD."
 NPC=_"Now I never leave home without my protective suit. Mostly for protection, but also for aesthetic reasons. I am sure you understand."
 LuaCode={
-    disable_node(19)
-    enable_node(20)
+    hide(19)
+    show(20)
 }
 ----------------------------------------------------------------------
 
@@ -87,7 +87,7 @@ NPC=_"Crying, screaming or begging time to rewind itself and give me a second ch
 NPC=_"What I can do is to try to have a good life despite the constant threat from the bots outside the town walls."
 NPC=_"And besides, life is not so bad with a robotic leg. The motors inside it can mimic a normal walk very well. Most people do not even notice something is different about me."
 LuaCode={
-    disable_node(20)
+    hide(20)
 }
 ----------------------------------------------------------------------
 
@@ -100,8 +100,8 @@ NPC=_"Good luck. Oh, and please come back alive. Better come back with nothing t
 LuaCode={
     change_obstacle("NorthernMaintainanceDoor", "opened")
     add_item("Plasma Shockwave Emitter",2)
-    disable_node(21, 26)
-    enable_node(31)
+    hide(21, 26)
+    show(31)
 }
 ----------------------------------------------------------------------
 
@@ -109,16 +109,16 @@ Nr=22  Text=_" Can I help you somehow?"
 NPC=_"We need people badly, so it would be great if you could give us a helping hand even for a few days."
 NPC=_"Now, what are your skills? Where do you think you could be the most useful?"
 LuaCode={
-    set_next_node(23)
-    disable_node(22)
+    next(23)
+    hide(22)
 }
 ----------------------------------------------------------------------
 
 Nr=23  Text=_" I can handle computers very well. I also know a lot about laboratory equipment."
 NPC=_"And what about construction? Mechanical devices? Repairing broken power lines? Building laser pistols? Anything like that? "
 LuaCode={
-    set_next_node(24)
-    disable_node(23)
+    next(24)
+    hide(23)
 }
 ----------------------------------------------------------------------
 
@@ -132,8 +132,8 @@ NPC=_"If you could get it back for us, it would help the city very much."
 LuaCode={
     add_quest("The yellow toolkit")
     open_diary_entry(1, 0)
-    disable_node(24)
-    enable_node(21, 25, 26)
+    hide(24)
+    show(21, 25, 26)
 }
 ----------------------------------------------------------------------
 
@@ -145,7 +145,7 @@ NPC=_"It was our biggest worry that they might destroy cables, pipes and other t
 NPC=_"However, the bots seem to be very content with just being there. They do not undertake any offensive actions."
 NPC=_"They have fortified the tunnels and they do not let anyone in."
 LuaCode={
-    disable_node(25)
+    hide(25)
 }
 ----------------------------------------------------------------------
 
@@ -159,8 +159,8 @@ NPC=_"'I need your toolkit, Dixon. I need it to survive,' it said. 'I need it to
 NPC=_"As soon as it released me I ran to the exit as fast as I could. That bot freaked me out and I just wanted to get away and later find it again and fix it."
 NPC=_"Once I got out I learned the bot was not lying. The Great Assault started. The rest is history."
 LuaCode={
-    disable_node(26)
-    enable_node(27)
+    hide(26)
+    show(27)
 }
 ----------------------------------------------------------------------
 
@@ -168,8 +168,8 @@ Nr=27  Text=_" Hmm... You know... I think that the bots in the tunnels might be 
 NPC=_"WHAT? Sentient? You got to be kidding me."
 NPC=_"Right?"
 LuaCode={
-    disable_node(21, 27)
-    enable_node(28, 29, 30)
+    hide(21, 27)
+    show(28, 29, 30)
 }
 ----------------------------------------------------------------------
 
@@ -178,10 +178,10 @@ NPC=_"OH MY GOD! Linarian, there is no time to lose!"
 NPC=_"I will call the military division and arrange a sweep of the tunnels at once."
 NPC=_"May the heavens have mercy upon us, but better them than us."
 LuaCode={
-    set_next_node(32)
+    next(32)
     open_diary_entry(1, 1)
     add_cookie("singularity_dead")
-    disable_node(28, 29, 30)
+    hide(28, 29, 30)
 }
 ----------------------------------------------------------------------
 
@@ -193,7 +193,7 @@ LuaCode={
     add_cookie("singularity_killed")
     open_diary_entry(1, 1)
     change_obstacle("NorthernMaintainanceDoor", "opened")
-    disable_node(28, 29, 30)
+    hide(28, 29, 30)
 }
 ----------------------------------------------------------------------
 
@@ -205,14 +205,14 @@ NPC=_"I will try to contact them somehow. Maybe they would help us. Ah, we shall
 LuaCode={
     add_cookie("singularity_saved")
     open_diary_entry(1, 2)
-    disable_node(28, 29, 30)
+    hide(28, 29, 30)
 }    
 ----------------------------------------------------------------------
 
 Nr=31  Text=_" How did it happen that the bots took your tools away?"
 NPC=_"Ah, it is a strange story, I am sure you would not believe me. I will tell you some other time."
 LuaCode={
-    disable_node(31)
+    hide(31)
 }
 ----------------------------------------------------------------------
 
@@ -220,8 +220,8 @@ Nr=32  Text=_" I will go in there first and clean out the place. Then your peopl
 NPC=_"Linarian, my people do not carry guns. We are mechanics. You want the military division's help."
 NPC=_"Erm... And aren't you being too aggressive? Maybe they do not wish us harm..."
 LuaCode={
-    set_next_node(33)
-    disable_node(32)
+    next(33)
+    hide(32)
 }
 ----------------------------------------------------------------------
 
@@ -233,7 +233,7 @@ NPC=_"I will talk to Spencer and ask him for a few attack teams. We will take ca
 LuaCode={
     add_cookie("singularity_killed")
     change_obstacle("NorthernMaintainanceDoor", "opened")
-    disable_node(33)
+    hide(33)
 }
 ----------------------------------------------------------------------
 
@@ -249,7 +249,7 @@ LuaCode={
     end_quest("The yellow toolkit")
     open_diary_entry(1, 4)
     del_item("Dixon's Toolbox", 1)
-    disable_node(34)
+    hide(34)
 }
 ----------------------------------------------------------------------
 
@@ -265,7 +265,7 @@ LuaCode={
     del_item("Dixon's Toolbox", 1)
     open_diary_entry(1, 5)
     add_item("Dixon's helmet",1)
-    disable_node(35, 36)
+    hide(35, 36)
 }
 ----------------------------------------------------------------------
 
@@ -274,8 +274,8 @@ NPC=_"WHAT!? "
 NPC=_"You got to be kidding me, Linarian."
 NPC=_"Give me the toolkit and stop fooling around."
 LuaCode={
-    disable_node(36)
-    enable_node(37)
+    hide(36)
+    show(37)
 }
 ----------------------------------------------------------------------
 
@@ -284,8 +284,8 @@ NPC=_"Linarian, I curse the day on which you have arrived here."
 NPC=_"Two fifty."
 LuaCode={
     add_cookie("dixon_angry")
-    disable_node(35, 37)
-    enable_node(38, 41)
+    hide(35, 37)
+    show(38, 41)
 }
 ----------------------------------------------------------------------
 
@@ -299,7 +299,7 @@ LuaCode={
     end_quest("The yellow toolkit")
     open_diary_entry(1, 6)
     del_item("Dixon's Toolbox", 1)
-    disable_node(38, 41)
+    hide(38, 41)
 }
 ----------------------------------------------------------------------
 
@@ -312,7 +312,7 @@ LuaCode={
     end_quest("The yellow toolkit")
     open_diary_entry(1, 7)
     del_item("Dixon's Toolbox", 1)
-    disable_node(39, 42)
+    hide(39, 42)
 }
 ----------------------------------------------------------------------
 
@@ -327,15 +327,15 @@ LuaCode={
     add_cookie("dixon_very_angry")
     open_diary_entry(1, 8)
     del_item("Dixon's Toolbox", 1)
-    disable_node(40)
+    hide(40)
 }
 ----------------------------------------------------------------------
 
 Nr=41  Text=_" Good joke. I am sure you can do better."
 NPC=_"Three fifty. This is all that the technical division has as their cash resources."
 LuaCode={
-    disable_node(38, 41)
-    enable_node(39, 42)
+    hide(38, 41)
+    show(39, 42)
 }
 ----------------------------------------------------------------------
 
@@ -344,8 +344,8 @@ NPC=_"Four hundred. We cannot offer anything more."
 NPC=_"Please, we really need the autotools."
 NPC=_"Without them this city is doomed."
 LuaCode={
-    disable_node(39, 42)
-    enable_node(40)
+    hide(39, 42)
+    show(40)
 }
 ----------------------------------------------------------------------
 
@@ -355,8 +355,8 @@ NPC=_"All indicators are in the green, the power and water fill the pipes and ev
 NPC=_"Thanks to the autotools we can start building instead of just trying to repair the damage."
 NPC=_"Once this is sick war is over, I will make sure you get keys to the city Linarian."
 LuaCode={
-    disable_node(43)
-    enable_node(1)
+    hide(43)
+    show(1)
 }
 ----------------------------------------------------------------------
 
@@ -364,7 +364,7 @@ Nr=44  Text=_" Is everything all right?"
 NPC=_"Nearly. Only my conscience keeps me up at night."
 NPC=_"Please leave me alone with my thoughts, I do not want to talk to anyone right now."
 LuaCode={
-    disable_node(44)
+    hide(44)
 }
 ----------------------------------------------------------------------
 
@@ -375,7 +375,7 @@ NPC=_"It makes me sad to see everything slowly wasting away. The bots are doing 
 NPC=_"This town has a few weeks left to live. After that we are all dead."
 LuaCode={
     add_cookie("dixon_one")
-    disable_node(45)
+    hide(45)
 }
 ----------------------------------------------------------------------
 
@@ -386,8 +386,8 @@ NPC=_"Life is good right now."
 LuaCode={
     end_quest("The yellow toolkit")
     add_cookie("dixon_saved_and_talked")
-    disable_node(46)
-    enable_node(47)
+    hide(46)
+    show(47)
 }
 ----------------------------------------------------------------------
 
@@ -397,8 +397,8 @@ NPC=_"I met someone who decided to join us in the fight against the MegaSys bots
 NPC=_"You will need a hacked computer. Type in 'ssh 10.83.13.230' as the superuser, and you will see what I mean."
 LuaCode={
     add_cookie("got_singularity")
-    disable_node(47)
-    enable_node(48)
+    hide(47)
+    show(48)
 }
 ----------------------------------------------------------------------
 
@@ -409,7 +409,7 @@ NPC=_"And this is just one of those things."
 NPC=_"Just go and see for yourself. Otherwise you will not believe me."
 LuaCode={
     open_diary_entry(1, 3)
-    disable_node(48)
+    hide(48)
 }
 ----------------------------------------------------------------------
 
@@ -417,26 +417,26 @@ Nr=60  Text="IS THE TOOLKIT WITH TUX?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
     if (has_item("Dixon's Toolbox") > 0) then
-        if (has_cookie("singularity_killed")) then enable_node(34) else enable_node(35, 36) end
+        if (has_cookie("singularity_killed")) then show(34) else show(35, 36) end
     else end
 
     if (done_quest("The yellow toolkit")) then
         if (has_cookie("singularity_dead")) then
-            if (has_cookie("singularity_killed")) then enable_node(44) else enable_node(43) end
+            if (has_cookie("singularity_killed")) then show(44) else show(43) end
         else 
-            if (has_cookie("dixon_one")) then enable_node(46) else enable_node(45) end
+            if (has_cookie("dixon_one")) then show(46) else show(45) end
         end
     else end
 
     if (has_cookie("dixon_angry")) then
-        if (has_cookie("dixon_very_angry")) then set_next_node(83) else set_next_node(84) end
+        if (has_cookie("dixon_very_angry")) then next(83) else next(84) end
     else end
 
     if (has_cookie("singularity_saved")) then
-        if (has_cookie("dixon_one")) then enable_node(46) else enable_node(45) end
+        if (has_cookie("dixon_one")) then show(46) else show(45) end
     else end
 
-    if (has_cookie("dixon_saved_and_talked")) then disable_node(46) else end
+    if (has_cookie("dixon_saved_and_talked")) then hide(46) else end
 }
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 

@@ -31,7 +31,7 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 FirstTime LuaCode={
-    enable_node(0, 99)
+    show(0, 99)
 }
 ----------------------------------------------------------------------
 
@@ -40,16 +40,16 @@ NPC=_"Hi. I haven't slept for a few weeks, so I'm just a little bit tired."
 NPC=_"Don't worry about me. I'll be fine."
 NPC=_"I'm Kevin, a computer security expert."
 LuaCode={
-    set_next_node(20)
-    disable_node(0)
+    next(20)
+    hide(0)
 }
 ----------------------------------------------------------------------
 
 Nr=1  Text="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    if (has_quest(6)) then set_next_node(2) else set_next_node(5) end
-    disable_node(1)
+    if (has_quest(6)) then next(2) else next(5) end
+    hide(1)
 }
 ----------------------------------------------------------------------
 
@@ -59,14 +59,14 @@ NPC=_"As I've told you, I cannot teach you anything right now. I don't have the 
 NPC=_"I must see to that the flaky energy stream is distributed in such a way that my research project can continue."
 NPC=_"If you get rid of the maintenance bots on the second underground level of this station, I will find the time to teach you something."
 LuaCode={
-    disable_node(2)
+    hide(2)
 }
 ----------------------------------------------------------------------
 
 Nr=3  Text=_" What can you teach me about hacking?"
 LuaCode={
-    if (done_quest(6)) then set_next_node(4) else set_next_node(1) end
-    enable_node(3)
+    if (done_quest(6)) then next(4) else next(1) end
+    show(3)
 }
 ----------------------------------------------------------------------
 
@@ -88,8 +88,8 @@ NPC=_"They are trying to 'maintain' machines by rebooting them all the time. Thi
 NPC=_"I must balance the remaining power in such a way that my project can continue uninterrupted."
 NPC=_"Now, if you go down there and make the power flow stable, then I'll find the time to teach you something."
 LuaCode={
-    disable_node(5)
-    enable_node(6, 7)
+    hide(5)
+    show(6, 7)
 }
 ----------------------------------------------------------------------
 
@@ -101,21 +101,21 @@ NPC=_"Best make it quick. I'm already sick of stabilizing the stupid power grid.
 LuaCode={
     add_quest(6)
     open_diary_entry(6, 0)
-    disable_node(6, 7)
+    hide(6, 7)
 }
 ----------------------------------------------------------------------
 
 Nr=7  Text=_" I'm sorry, but I don't think there's anything I could do about that energy supply."
 NPC=_"Too bad. Now get out of my sight."
 LuaCode={
-    disable_node(6, 7)
+    hide(6, 7)
 }
 ----------------------------------------------------------------------
 
 Nr=8  Text="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    if (done_quest(6)) then set_next_node(9) else end
+    if (done_quest(6)) then next(9) else end
 }
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
@@ -125,15 +125,15 @@ Nr=9  Text="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
     open_diary_entry(6, 1)
-    disable_node(9)
-    enable_node(10, 18)
+    hide(9)
+    show(10, 18)
 }
 ----------------------------------------------------------------------
 
 Nr=10  Text=_" How about some reward for securing your energy supply area?"
 LuaCode={
-    if (has_cookie("kevin_reward1_given")) then set_next_node(12) else set_next_node(13) end
-    disable_node(10)
+    if (has_cookie("kevin_reward1_given")) then next(12) else next(13) end
+    hide(10)
 }
 ----------------------------------------------------------------------
 
@@ -141,7 +141,7 @@ Nr=12  Text="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 NPC=_"I've already rewarded you for that. Don't steal my time. I'm busy."
 LuaCode={
-    disable_node(12)
+    hide(12)
 }
 ----------------------------------------------------------------------
 
@@ -160,8 +160,8 @@ NPC=_"I've obtained secret data on the colony surroundings. We'll need a big com
 NPC=_"Once we've evaluated the data, we might find a way to secure the colony and ensure our survival. But it's too early to tell yet."
 NPC=_"If I only had a suitable cluster. Then we could start data evaluation right away."
 LuaCode={
-    disable_node(14)
-    enable_node(16)
+    hide(14)
+    show(16)
 }
 ----------------------------------------------------------------------
 
@@ -176,14 +176,14 @@ LuaCode={
     add_quest(7)
     open_diary_entry(7, 0)
     add_item("Kevin's Data Cube",1)
-    disable_node(15)
+    hide(15)
 }
 ----------------------------------------------------------------------
 
 Nr=16  Text=_" Maybe I can help somehow to find a suitable cluster."
 LuaCode={
-    if (has_quest(7)) then set_next_node(17) else set_next_node(15) end
-    disable_node(16)
+    if (has_quest(7)) then next(17) else next(15) end
+    hide(16)
 }
 ----------------------------------------------------------------------
 
@@ -192,14 +192,14 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 NPC=_"You've already agreed to take my data cube to the cluster. I have no influence on this matter anymore."
 NPC=_"The fate of the colony now rests in your hands. Bring the data cube I gave you to the cluster. Only there the data can be evaluated properly."
 LuaCode={
-    disable_node(17)
+    hide(17)
 }
 ----------------------------------------------------------------------
 
 Nr=18  Text=_" About that project you said you have running..."
 LuaCode={
-    if (done_quest(7)) then set_next_node(19) else set_next_node(14) end
-    disable_node(18)
+    if (done_quest(7)) then next(19) else next(14) end
+    hide(18)
 }
 ----------------------------------------------------------------------
 
@@ -208,15 +208,15 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 NPC=_"I've already received the results from the evaluation of my data in the cluster."
 NPC=_"Good work."
 LuaCode={
-    disable_node(19)
+    hide(19)
 }
 ----------------------------------------------------------------------
 
 Nr=20  Text=_" In other words: You are a hacker."
 NPC=_"Eh... I guess you could put it that way, yes."
 LuaCode={
-    disable_node(20)
-    enable_node(3)
+    hide(20)
+    show(3)
 }
 ----------------------------------------------------------------------
 
@@ -226,8 +226,8 @@ NPC=_"Well, thanks for telling me."
 NPC=_"Back to the drawing board, I guess..."
 LuaCode={
     add_cookie("kevin_sigtalk")
-    disable_node(25)
-    enable_node(26)
+    hide(25)
+    show(26)
 }
 ----------------------------------------------------------------------
 
@@ -235,7 +235,7 @@ Nr=26  Text=_" I thought you would be more worried about her death."
 NPC=_"Why? I have backups from last Friday. No reason to worry at all."
 NPC=_"It will be a while till I get her together again, but she will be fine."
 LuaCode={
-    disable_node(26)
+    hide(26)
 }
 ----------------------------------------------------------------------
 
@@ -243,7 +243,7 @@ Nr=50  Text="JASMINE SIGSEGV"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
     if (has_cookie("jasmine_sigsegv")) then
-        if (has_cookie("kevin_sigtalk")) then disable_node(25) else enable_node(25) end
+        if (has_cookie("kevin_sigtalk")) then hide(25) else show(25) end
      else end
 }
 AlwaysExecuteThisOptionPriorToDialogStart="yes"

@@ -31,15 +31,15 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 FirstTime LuaCode={
-    enable_node(0, 99)
+    show(0, 99)
 }
 ----------------------------------------------------------------------
 
 Nr=0  Text=_" Hi! I'm new here."
 NPC=_"A newcomer! Great! We can always use more people. Welcome to the Red Guard! I'm Lukas. I'm in charge of our little armory here."
 LuaCode={
-    disable_node(0)
-    enable_node(1, 2)
+    hide(0)
+    show(1, 2)
 }
 ----------------------------------------------------------------------
 
@@ -55,7 +55,7 @@ LuaCode={
 Nr=2  Text=_" What do you do all day here at the armory?"
 NPC=_"Oh, there's always something to do. Don't worry. I'm pretty occupied keeping the place in order."
 LuaCode={
-    disable_node(2)
+    hide(2)
 }
 ----------------------------------------------------------------------
 

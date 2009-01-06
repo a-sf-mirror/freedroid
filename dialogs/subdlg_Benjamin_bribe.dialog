@@ -41,8 +41,8 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 NPC=_"Fifty triangles per a bit of information."
 NPC=_"So... What do you exactly want to know?"
 LuaCode={
-    disable_node(0)
-    enable_node(1, 6, 7, 11, 99)
+    hide(0)
+    show(1, 6, 7, 11, 99)
 }
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
@@ -51,8 +51,8 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 Nr=1  Text=_" How many exterminators does the Red Guard have?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    if (get_gold() < 50) then set_next_node(3) else set_next_node(2) end
-    disable_node(1)
+    if (get_gold() < 50) then next(3) else next(2) end
+    hide(1)
 }
 ----------------------------------------------------------------------
 
@@ -61,7 +61,7 @@ NPC=_"It might come as a surprise to you, but we don't have many. A bit over twe
 NPC=_"However, as you can clearly see, this is more than enough to keep all of the damn bots away."
 LuaCode={
     add_gold(-50)
-    enable_node(4)
+    show(4)
 }
 ----------------------------------------------------------------------
 
@@ -70,14 +70,14 @@ NPC=_"Linarian, I thought we had an agreement. Fifty per infobit. My silence can
 NPC=_"This conversation is now over."
 LuaCode={
     end_dialog()
-    disable_node(1, 4, 6, 7, 9, 11)
+    hide(1, 4, 6, 7, 9, 11)
 }
 ----------------------------------------------------------------------
 
 Nr=4  Text=_" That is not a lot. Why there are so few of them right now?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    if (get_gold() < 50) then set_next_node(3) else set_next_node(5) end
+    if (get_gold() < 50) then next(3) else next(5) end
 }
 ----------------------------------------------------------------------
 
@@ -88,15 +88,15 @@ NPC=_"We tried, but we could not replicate the technology, only bullets."
 NPC=_"A few got damaged in battle, and we failed to recover five after a failed scout mission. We have twenty-two right now."
 LuaCode={
     add_gold(-50)
-    enable_node(9)
+    show(9)
 }
 ----------------------------------------------------------------------
 
 Nr=6  Text=_" What is the exterminator ammunition made from?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    if (get_gold() < 50) then set_next_node(3) else set_next_node(8) end
-    disable_node(6)
+    if (get_gold() < 50) then next(3) else next(8) end
+    hide(6)
 }
 ----------------------------------------------------------------------
 
@@ -104,7 +104,7 @@ Nr=7  Text=_" Tell me who designed the exterminator."
 NPC=_"That answer is on the house. Heh."
 NPC=_"We do not know, Linarian. We have absolutely no clue."
 LuaCode={
-    disable_node(7)
+    hide(7)
 }
 ----------------------------------------------------------------------
 
@@ -124,15 +124,15 @@ NPC=_"No. Wait."
 NPC=_"I changed my mind."
 NPC=_"Keep your money Linarian. No amount of triangles can make me talk about that accursed day."
 LuaCode={
-    disable_node(9)
+    hide(9)
 }
 ----------------------------------------------------------------------
 
 Nr=11  Text=_" What makes the exterminator so powerful?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    if (get_gold() < 50) then set_next_node(3) else set_next_node(12) end
-    disable_node(11)
+    if (get_gold() < 50) then next(3) else next(12) end
+    hide(11)
 }
 ----------------------------------------------------------------------
 

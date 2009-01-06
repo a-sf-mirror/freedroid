@@ -31,61 +31,61 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 FirstTime LuaCode={
-    enable_node(0, 99)
+    show(0, 99)
 }
 ----------------------------------------------------------------------
 
 Nr=0  Text=_"Em, hi."
 NPC=_"Oh! It happened! I have been waiting for you for 3226 hours!"
 LuaCode={
-    disable_node(0)
-    enable_node(1, 3, 14, 19)
+    hide(0)
+    show(1, 3, 14, 19)
 }
 ----------------------------------------------------------------------
 
 Nr=1  Text=_"You knew I would come?"
 NPC=_"Of course, my little imaginary friend!"
 LuaCode={
-    disable_node(1)
-    enable_node(2, 5)
+    hide(1)
+    show(2, 5)
 }
 ----------------------------------------------------------------------
 
 Nr=2  Text=_"Imaginary?! I am as real as you are."
 NPC=_"This place is locked. Hermetically conservated and guarded by bots. So you can be nothing more than the product of my imagination."
 LuaCode={
-    disable_node(2)
-    enable_node(12)
+    hide(2)
+    show(12)
 }
 ----------------------------------------------------------------------
 
 Nr=3  Text=_"Where am I?"
 NPC=_"In a prison, a luxurious prison. I am feeling quite lonely, as you can see. Big room, plenty of food, a waterfall behind the window..."
 LuaCode={
-    disable_node(3)
-    enable_node(4, 6)
+    hide(3)
+    show(4, 6)
 }
 ----------------------------------------------------------------------
 
 Nr=4  Text=_"All I see through the window are ray emitters. And we are below ground level.."
 NPC=_"Yes, I know. But I so badly want to see sun, rivers, trees... there definitely is waterfall behind them!"
 LuaCode={
-    disable_node(4)
+    hide(4)
 }
 ----------------------------------------------------------------------
 
 Nr=5  Text=_"It is dark here."
 NPC=_"Main power supply is down, so only emergency light works. Peter tried to switch it back on, but he didn't succeed."
 LuaCode={
-    disable_node(5)
+    hide(5)
 }
 ----------------------------------------------------------------------
 
 Nr=6  Text=_"This place doesn't look like a prison."
 NPC=_"In the past it was a secret lab. You heard about those strength pills? They were invented here. Other pills too, but I was working on strength ones."
 LuaCode={
-    disable_node(6)
-    enable_node(7, 8)
+    hide(6)
+    show(7, 8)
 }
 ----------------------------------------------------------------------
 
@@ -93,8 +93,8 @@ Nr=7  Text=_"Can you give me some pills then?"
 NPC=_"No, Peter ate them all. That killed him."
 NPC=_"*cries*"
 LuaCode={
-    set_next_node(9)
-    disable_node(7)
+    next(9)
+    hide(7)
 }
 --------------------------------------------------------------------
 
@@ -112,23 +112,23 @@ NPC=_"Peter became not very strong, but very-very-very strong. He thought he cou
 NPC=_"*cries*"
 NPC=_"If you go further down the corridor, you will find debris and a big stone. That is his grave."
 LuaCode={
-    disable_node(9)
-    enable_node(10, 11)
+    hide(9)
+    show(10, 11)
 }
 ----------------------------------------------------------------------
 
 Nr=10  Text=_"You loved him?"
 NPC=_"I still do."
 LuaCode={
-    disable_node(10)
+    hide(10)
 }
 ----------------------------------------------------------------------
 
 Nr=11  Text=_"But why not go out through the door?"
 NPC=_"It is locked and very reliable. Even a tank would not be able to samsh it! And if a door is broken, SADDs would attack, that's their program."
 LuaCode={
-    disable_node(11)
-    enable_node(18)
+    hide(11)
+    show(18)
 }
 ----------------------------------------------------------------------
 
@@ -136,39 +136,39 @@ Nr=12  Text=_"Autoguns have made a hole in the wall. I came through this hole."
 NPC=_"Do you mean I can go out to the surface ?!"
 NPC=_"Oh god! I've told Peter that he chosed wrong place, but he was so stubborn!"
 LuaCode={
-    disable_node(12)
-    enable_node(13)
+    hide(12)
+    show(13)
 }
 ----------------------------------------------------------------------
 
 Nr=13  Text=_"Yes, you can get to the surface. But the guns are still on."
 NPC=_"All hope lost! I'm a scientist, not a warrior."
 LuaCode={
-    disable_node(13)
-    enable_node(15)
+    hide(13)
+    show(15)
 }
 ----------------------------------------------------------------------
 
 Nr=14  Text=_"It is strange to see a girl in such a beautiful dress here."
 NPC=_"I'm going to spend all my life here! So forgive me some little weakneses."
 LuaCode={
-    disable_node(14)
+    hide(14)
 }
 ----------------------------------------------------------------------
 
 Nr=15  Text=_"Maybe is it possible to disable the guns?"
 NPC=_"Theoretically yes, but in practice I'm not sure you would be able to do that."
 LuaCode={
-    disable_node(15)
-    enable_node(16)
+    hide(15)
+    show(16)
 }
 ----------------------------------------------------------------------
 
 Nr=16  Text=_"How can I disable the guns?"
 NPC=_"Somewhere in distant part of the lab should be an SACD - secret area control droid. It controls all defense systems in the base. If you manage to persuade him, you will be able to control the base. But it's very hard to find him."
 LuaCode={
-    disable_node(16)
-    enable_node(17)
+    hide(16)
+    show(17)
 }
 ----------------------------------------------------------------------
 
@@ -177,21 +177,21 @@ NPC=_"Thanks... please be careful. You will not be able to access the control ce
 LuaCode={
     add_quest(10)
     open_diary_entry(10, 0)
-    disable_node(17)
+    hide(17)
 }
 ----------------------------------------------------------------------
 
 Nr=18  Text=_"Why not just open them? There should be a way for unlocking the base."
 NPC=_"To open the door you need to know the password. Only the commander of the area and his deputy knew it. Commander was killed by bots as soon as assault started and the deputy was in town, I don't know what happened to him."
 LuaCode={
-    disable_node(18)
+    hide(18)
 }
 ----------------------------------------------------------------------
 
 Nr=19  Text=_"Carpets, sofa, bookshelfs. Where did you get all this?"
 NPC=_"Peter did all he could to make this room comfortable. Sofa and armchair are from commander cabinet, books from the restroom..."
 LuaCode={
-    disable_node(19)
+    hide(19)
 }
 ----------------------------------------------------------------------
 
@@ -199,12 +199,12 @@ Nr=21 Text="IS MISSION ASSIGNED"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
     if (has_quest(10)) then
-        disable_node(6)
+        hide(6)
         if (has_cookie("SAGunsOff")) then
-            if (done_quest(10)) then disable_node(17, 27, 28) enable_node(29) 
-            else disable_node(17, 28, 29) enable_node(27) end
-        else disable_node(17, 27, 29) enable_node(28) end
-    else disable_node(27, 28, 29) end
+            if (done_quest(10)) then hide(17, 27, 28) show(29) 
+            else hide(17, 28, 29) show(27) end
+        else hide(17, 27, 29) show(28) end
+    else hide(27, 28, 29) end
 }
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
@@ -219,7 +219,7 @@ LuaCode={
     end_quest(10)
     add_item("Source Book of Check system integrity",1)
     add_item("Source Book of Sanctuary",1)
-    disable_node(27)
+    hide(27)
 }
 ----------------------------------------------------------------------
 
@@ -231,7 +231,7 @@ NPC=_"To the right from the entrance of the area, there is a hall. In the south 
 Nr=29  Text=_"Are you staying here? I can help you get to the town."
 NPC=_"No, thanks. I don't want to go far from Peter."
 LuaCode={
-    disable_node(29)
+    hide(29)
 }
 ----------------------------------------------------------------------
 

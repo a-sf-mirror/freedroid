@@ -31,15 +31,15 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 FirstTime LuaCode={
-    enable_node(0, 99)
+    show(0, 99)
 }
 ----------------------------------------------------------------------
 
 Nr=0  Text=_" Hi! I'm new here."
 NPC=_"Great. Now back to where you came from. This is no place for you."
 LuaCode={
-    disable_node(0)
-    enable_node(1)
+    hide(0)
+    show(1)
 }
 ----------------------------------------------------------------------
 
@@ -48,8 +48,8 @@ NPC=_"This is a gate to an automated bot factory we call the Hell Fortress."
 NPC=_"You must be crazy if you want to get in there. That place is full of bots."
 NPC=_"Get out of here. They might attack at any moment!"
 LuaCode={
-    disable_node(1)
-    enable_node(2)
+    hide(1)
+    show(2)
 }
 ----------------------------------------------------------------------
 
@@ -59,15 +59,15 @@ NPC=_"The bots and disruptor shield will take care of that for me."
 NPC=_"Just remember to give me your valuables before you commit suicide."
 NPC=_"You won't need any money once you're damn dead, and I could use it, eh?"
 LuaCode={
-    disable_node(2)
-    enable_node(3)
+    hide(2)
+    show(3)
 }
 ----------------------------------------------------------------------
 
 Nr=3  Text=_" Thanks for the advice."
 NPC=_"You're dead if you don't take it."
 LuaCode={
-    disable_node(3)
+    hide(3)
 }
 ----------------------------------------------------------------------
 
@@ -76,7 +76,7 @@ NPC=_"Finally."
 NPC=_"Don't come back."
 LuaCode={
     end_dialog()
-    enable_node(1)
+    show(1)
 }
 ----------------------------------------------------------------------
 

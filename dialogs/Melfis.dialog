@@ -31,15 +31,15 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 FirstTime LuaCode={
-    enable_node(0, 99)
+    show(0, 99)
 }
 ----------------------------------------------------------------------
 
 Nr=0  Text=_" Hello. Any idea where I can get some help here?"
 NPC=_"Verschwinde."
 LuaCode={
-    disable_node(0)
-    enable_node(1, 2)
+    hide(0)
+    show(1, 2)
 }
 ----------------------------------------------------------------------
 
@@ -48,8 +48,8 @@ NPC=_"Ich bin der Geist, der stets verneint."
 NPC=_"Und das mit Recht; denn alles, was entsteht,"
 NPC=_"ist wert, dass es zugrunde geht."
 LuaCode={
-    disable_node(1)
-    enable_node(3)
+    hide(1)
+    show(3)
 }
 ----------------------------------------------------------------------
 
@@ -58,8 +58,8 @@ NPC=_"Wer sie nicht kennte, die Elemente,"
 NPC=_"ihre Kraft und Eigenschaft,"
 NPC=_"waere kein Meister ueber die Geister."
 LuaCode={
-    disable_node(2)
-    enable_node(3)
+    hide(2)
+    show(3)
 }
 ----------------------------------------------------------------------
 
@@ -67,7 +67,7 @@ Nr=3  Text=_" I wish I knew what you are talking about."
 NPC=_"Verschwinde."
 LuaCode={
     end_dialog()
-    disable_node(3)
+    hide(3)
 }
 ----------------------------------------------------------------------
 
