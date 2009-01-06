@@ -2935,7 +2935,6 @@ LevelOptions ( void )
 		SET_LEVEL_COMMENT,
 		CHANGE_INFINITE_RUNNING,
 		ADD_NEW_LEVEL,
-		RUN_VALIDATION,
 		LEAVE_OPTIONS_MENU,
 	};
 
@@ -3014,7 +3013,6 @@ LevelOptions ( void )
 		else ( strcat ( Options [ i ] , _("NO")));
 		MenuTexts[ i ] = Options [ i ]; i++;
 		MenuTexts[i++] = _("Add New Level");
-		MenuTexts[i++] = _("Run Level Validator");
 		MenuTexts[i++] = _("Back") ;
 		MenuTexts[i++] = "" ;
 
@@ -3058,13 +3056,6 @@ LevelOptions ( void )
 				EditLevel->Levelname =  
 				GetEditableStringInPopupWindow ( 1000 , _("\n Please enter new level name: \n\n") ,
 								 EditLevel->Levelname );
-				break;
-			case RUN_VALIDATION:
-				while (EnterPressed() || SpacePressed() || MouseLeftPressed() ) SDL_Delay(1);
-				LevelValidation();
-				while ( !SpacePressed() ) SDL_Delay(0);
-				//Hack: eat all pending events.
-				input_handle();
 				break;
 			case ADD_NEW_LEVEL:
 				if (game_root_mode == ROOT_IS_GAME)
@@ -3193,7 +3184,66 @@ LevelOptions ( void )
     return ;
 }; // void LevelOptions ( void );
 
+void
+AdvancedOptions ( void )
+{
+	char* MenuTexts[ 100 ];
+	char Options [ 20 ] [1000];
+	int proceed_now = FALSE ;
+	int MenuPosition=1;
+	int i;
+	int l = 0;
 
+	enum
+	{
+		RUN_MAP_VALIDATION=1,
+		RUN_LUA_VALIDATION,
+		LEAVE_OPTIONS_MENU,
+	};
+
+	while (!proceed_now)
+	{
+	
+		EditLevel = curShip.AllLevels [ Me . pos . z ] ;
+	
+		InitiateMenu( -1 );
+	
+		i = 0 ; 
+		MenuTexts[i++] = _("Run Map Level Validator");
+		MenuTexts[i++] = _("Run Dialog Lua Validator");
+		MenuTexts[i++] = _("Back") ;
+		MenuTexts[i++] = "" ;
+
+		while ( EscapePressed() ) SDL_Delay(1);
+
+		MenuPosition = DoMenuSelection( "" , MenuTexts , -1 , -1 , FPS_Display_BFont );
+	
+		while ( EnterPressed ( ) || SpacePressed ( ) || MouseLeftPressed()) SDL_Delay(1);
+	
+		switch ( MenuPosition ) 
+		{
+			case (-1):
+				while ( EscapePressed() );
+				proceed_now=!proceed_now;
+				break;
+			case RUN_MAP_VALIDATION:
+				while (EnterPressed() || SpacePressed() || MouseLeftPressed() ) SDL_Delay(1);
+				LevelValidation();
+				while ( !SpacePressed() ) SDL_Delay(0);
+				//Hack: eat all pending events.
+				input_handle();
+				break;
+			case LEAVE_OPTIONS_MENU:
+				while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
+				proceed_now=!proceed_now;
+				break;
+			default: 
+				break;
+		
+		} // switch
+    }
+    return ;
+}; // void LevelOptions ( void );
 
 /**
  *
@@ -3213,6 +3263,7 @@ DoLevelEditorMainMenu ( Level EditLevel )
 	{ 
 		ENTER_LEVEL_POSITION=1,
 		LEVEL_OPTIONS_POSITION,
+		ADVANCED_OPTIONS_POSITION,
 		TEST_MAP_POSITION,
 		SAVE_LEVEL_POSITION,
 //		MANAGE_LEVEL_POSITION,
@@ -3234,6 +3285,7 @@ DoLevelEditorMainMenu ( Level EditLevel )
 		    strcat( Options [ i ] , Options [ i+1 ] ); 
 		MenuTexts[ i ] = Options [ i ]; i++ ;
 		MenuTexts[i++] = _("Level Options");
+		MenuTexts[i++] = _("Advanced Options");
 		if (game_root_mode == ROOT_IS_LVLEDIT)
 		{
 			MenuTexts[i++] = _("Playtest Mapfile");
@@ -3283,6 +3335,10 @@ DoLevelEditorMainMenu ( Level EditLevel )
 	    case LEVEL_OPTIONS_POSITION:
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
 			LevelOptions ( );
+			break;
+	    case ADVANCED_OPTIONS_POSITION:
+			while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
+			AdvancedOptions ( );
 			break;
 	    case TEST_MAP_POSITION:
 			TestMap();
