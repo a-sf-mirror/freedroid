@@ -81,7 +81,7 @@ LuaCode={
 Nr=4  Text="TEST FOR MANY TALKS"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    if (cookie_planted("MS_guard_talked")) then
+    if (has_cookie("MS_guard_talked")) then
         if (done_quest(8)) then set_next_node(0) else set_next_node(5) end    -- TEST FOR DISABLED SHIELD
     else set_next_node(0) end
 }

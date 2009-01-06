@@ -266,7 +266,7 @@ LuaCode={
     add_xp(1000)
     end_quest(SADD's power supply)
     open_diary_entry(9, 3)
-    delete_item("Red Dilitium Crystal", 1)
+    del_item("Red Dilitium Crystal", 1)
     change_obstacle("SADDDepotDoor", "opened")
     disable_node(30)
     enable_node(37)
@@ -291,7 +291,7 @@ LuaCode={
     open_diary_entry(9, 2)
     change_obstacle("SADDDepotDoor", "opened")
     change_obstacle("SADDBioDoor", "opened")
-    delete_item("Red Dilitium Crystal", 1)
+    del_item("Red Dilitium Crystal", 1)
     disable_node(33)
     enable_node(97)
 }

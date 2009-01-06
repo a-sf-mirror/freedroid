@@ -84,7 +84,7 @@ NPC=_"I've unlocked the accessway to the warehouse. It's to the north of this to
 NPC=_"The stuff we need is on the first floor. Don't go any deeper, there are only bots in there."
 NPC=_"I wish you the best of luck."
 LuaCode={
-    assign_mission("Opening a can of bots...")
+    add_quest("Opening a can of bots...")
     open_diary_entry(5, 0)
     change_obstacle("AccessDoorToWarehouse", "opened")
     disable_node(5)
@@ -316,7 +316,7 @@ NPC=_"Good. The base entrance is somewhat hidden in the caves to the northeast. 
 NPC=_"I wish you the best of luck for this operation. It might be that our survival depends on it. Don't wait for assistance."
 NPC=_"Try to get control over the disruptor shield if you can. The control droid should be somewhere on the lowest level of the installation. Simply destroying the droid might suffice in disabling the shield."
 LuaCode={
-    assign_mission("Opening access to MS Office")
+    add_quest("Opening access to MS Office")
     change_obstacle("DisruptorShieldBaseGate", "opened")
     disable_node(39, 40)
 }
@@ -349,7 +349,7 @@ NPC=_"They carried out some development there, and had part of their patching di
 NPC=_"Look for the entrance of the office in the crystal fields. I will send a message to the guards so they let you pass. Then you will be on your own."
 NPC=_"Good luck."
 LuaCode={
-    assign_mission("Propagating a faulty firmware")
+    add_quest("Propagating a faulty firmware")
     disable_node(44)
     enable_node(45)
 }

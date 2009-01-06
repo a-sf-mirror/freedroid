@@ -39,7 +39,7 @@ NPC=_"Last login from /dev/ttyS0 on Sun, 23 mar 2057. admin@sadefence: ~ #"
 LuaCode={
     if (has_quest(10)) then open_diary_entry(10, 1) else end
 
-    if (cookie_planted("SACDOvertaken")) then    -- possible to leave empty then?
+    if (has_cookie("SACDOvertaken")) then    -- possible to leave empty then?
     else
         add_xp(1000)
         add_cookie("SACDOvertaken")

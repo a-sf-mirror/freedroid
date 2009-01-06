@@ -127,8 +127,8 @@ NPC=_"Now, take this as a reward. And you can be sure that I'll vote for you if 
 NPC=_"Thanks, man!"
 LuaCode={
     end_quest("Bender's problem")
-    give_xp(150)
-    delete_item("Brain Enlargement Pills Antidote", 1)
+    add_xp(150)
+    del_item("Brain Enlargement Pills Antidote", 1)
     give_item("Strength Pill",2)
     open_diary_entry(0, 3)
     disable_node(9)
@@ -172,7 +172,7 @@ Nr=14  Text="DID TUX GET THE MISSION TO SAVE BENDER?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
     if (has_quest("Bender's problem")) then 
-        if (is_mission_complete("Bender's problem")) then set_next_node(13) else set_next_node(18) end
+        if (done_quest("Bender's problem")) then set_next_node(13) else set_next_node(18) end
     else end
 }
 AlwaysExecuteThisOptionPriorToDialogStart="yes"

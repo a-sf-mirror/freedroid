@@ -98,8 +98,8 @@ LuaCode={
 Nr=6  Text="ON MISSION 0 WAS ASSIGNED..."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    if (is_mission_assigned(0)) then
-        if (is_mission_complete(0)) then enable_node(3) else enable_node(2, 3) end
+    if (has_quest(0)) then
+        if (done_quest(0)) then enable_node(3) else enable_node(2, 3) end
     else end
     disable_node(6)
 }

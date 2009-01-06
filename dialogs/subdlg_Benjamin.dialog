@@ -76,7 +76,7 @@ NPC=_"Good. You are learning fast. Try it a few more times."
 NPC=_"Good. I think that it is enough for today."
 LuaCode={
     add_gold(-100)
-    eat_training_points(5)
+    del_training_points(5)
     improve_skill("ranged")
 }
 ----------------------------------------------------------------------

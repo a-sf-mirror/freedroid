@@ -90,7 +90,7 @@ NPC=_"HA!"
 LuaCode={
     set_next_node(20)
     add_gold(-100)
-    eat_training_points(5)
+    del_training_points(5)
     improve_skill("melee")
 }
 ----------------------------------------------------------------------
@@ -164,7 +164,7 @@ NPC=_"Lesson number four. Never hit your sparring partner with full force."
 NPC=_"I think you broke my ribs..."
 NPC=_"This is enough training for today."
 LuaCode={
-    plant_cookie("beat_up_pendragon")
+    add_cookie("beat_up_pendragon")
     end_dialog()
 }
 ----------------------------------------------------------------------

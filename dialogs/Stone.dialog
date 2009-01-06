@@ -46,7 +46,7 @@ LuaCode={
 Nr=1  Text=_" I would like to trade with you."
 NPC=_"Good! Here is the selection of items I have for sale."
 LuaCode={
-    if (cookie_planted("Stone_no_guns")) then disable_node(2) else enable_node(2) end
+    if (has_cookie("Stone_no_guns")) then disable_node(2) else enable_node(2) end
     set_next_node(14)
     trade_with("Stone")
 }
@@ -56,7 +56,7 @@ Nr=2  Text=_" Swords, clubs and maces? What is this? I want guns!"
 NPC=_"Sorry, this is all we have for now. The Red Guard took away all of our poppers."
 NPC=_"For our own good. Of course."
 LuaCode={
-    plant_cookie("Stone_no_guns")
+    add_cookie("Stone_no_guns")
     disable_node(2)
 }
 ----------------------------------------------------------------------
@@ -104,7 +104,7 @@ LuaCode={
 Nr=10  Text=_" How is your business going?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    if (cookie_planted("Helped_Stone")) then set_next_node(12) else set_next_node(11) end
+    if (has_cookie("Helped_Stone")) then set_next_node(12) else set_next_node(11) end
     disable_node(10)
 }
 ----------------------------------------------------------------------
@@ -140,8 +140,8 @@ LuaCode={
 Nr=14  Text="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    if (cookie_planted("Helping_Stone")) then
-        if (not cookie_planted("Helped_Stone")) then
+    if (has_cookie("Helping_Stone")) then
+        if (not has_cookie("Helped_Stone")) then
             if (get_gold() > 1600) then enable_node(23) else end
         else end
     else end
@@ -153,7 +153,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 Nr=15  Text=_" Maybe there is still hope, Ms. Stone. How much exactly do you need?"
 NPC=_"I couldn't get myself to look at my finance logs for a while now. I guess about two thousand triangles."
 LuaCode={
-    plant_cookie("Helping_Stone")
+    add_cookie("Helping_Stone")
     set_next_node(14)
     disable_node(15)
 }
@@ -176,7 +176,7 @@ NPC=_"You've given me a bit of hope.. "
 NPC=_"Wait a second... I think I recognize you..."
 LuaCode={
     add_gold(-1547)
-    plant_cookie("Helped_Stone")
+    add_cookie("Helped_Stone")
     run_subdialog("subdlg_Stone.dialog")
     disable_node(23)
 }
