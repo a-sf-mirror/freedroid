@@ -1641,8 +1641,7 @@ level_editor_item_drop_index ( int row_len , int line_len )
  * of item images and clicking with the mouse on an item image or on one
  * of the buttons presented to the person editing the level.
  */
-void
-ItemDropFromLevelEditor( void )
+void ItemDropFromLevelEditor( void )
 {
     int SelectionDone = FALSE;
     int NewItemCode = ( -1 );
@@ -1658,7 +1657,7 @@ ItemDropFromLevelEditor( void )
     static int previous_prefix_selected = (-1) ;
     game_status = INSIDE_MENU;
     
-    while ( SpacePressed()  || MouseLeftPressed() ) SDL_Delay(1);
+    while ( MouseLeftPressed() ) SDL_Delay(1);
     
     while ( !SelectionDone )
     {
@@ -1728,7 +1727,7 @@ ItemDropFromLevelEditor( void )
 	    return ;
 	}
 
-	if ( SpacePressed() || MouseLeftClicked())
+	if ( MouseLeftClicked())
 	{
 	    if ( MouseCursorIsOnButton ( 
 		     LEVEL_EDITOR_NEXT_ITEM_GROUP_BUTTON ,
@@ -1808,8 +1807,10 @@ ItemDropFromLevelEditor( void )
     DropItemAt( NewItemCode , Me . pos . z , rintf( Me.pos.x ) , rintf( Me.pos.y ) , 
 		previous_prefix_selected , previous_suffix_selected , our_multiplicity );
     
-    while ( SpacePressed() || MouseLeftPressed() ) SDL_Delay(1);
-    
+    while ( MouseLeftPressed() ) SDL_Delay(1);
+
+    save_mouse_state();
+    game_status = INSIDE_LVLEDITOR;
 }; // void ItemDropFromLevelEditor( void )
 
 /**
@@ -5544,7 +5545,6 @@ int level_editor_handle_left_mouse_button ( int proceed_now, leveleditor_state *
 	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_NEW_ITEM_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
 	{
 	    ItemDropFromLevelEditor(  );
-	    game_status = INSIDE_LVLEDITOR;
 	}
 	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_ESC_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
 	{
@@ -6126,6 +6126,7 @@ void LevelEditor()
 	    //
 	    if ( HPressed() )
 	    {
+	    	    while(HPressed());
 		    action_change_obstacle_label_user ( EditLevel , level_editor_marked_obstacle , NULL );
 		    while ( HPressed() ) SDL_Delay(1);
 	    }
