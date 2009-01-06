@@ -36,7 +36,6 @@
 +++ This is mission 0:  Find a cure for Bender, suffering from brain enlargement pills
 +++
 Mission Name=_"Bender's problem"
-Assign this mission to influencer automatically at start : 0
 Mission target is to fetch item : "Brain Enlargement Pills Antidote"
 Mission target is to kill droids with marker : -1
 Mission target is to kill all hostile droids this first level : -1
@@ -58,7 +57,6 @@ Mission diary entry=_"Bender is fine now. He gave me some muscle enlargement pil
 +++ This is mission 1:  Retrieve the toolkit lost by Dixon
 +++
 Mission Name=_"The yellow toolkit"
-Assign this mission to influencer automatically at start : 0
 Mission target is to fetch item : "Dixon's Toolbox"
 Mission target is to kill droids with marker : -1
 Mission target is to kill all hostile droids this first level : -1
@@ -85,7 +83,6 @@ Mission diary entry=_"I sold the toolkit to Dixon for a enormous sum of money. L
 +++ This is mission 2:  Find some energy crystals for the cook Michelangelo
 +++
 Mission Name=_"Anything but the army snacks, please!"
-Assign this mission to influencer automatically at start : 0
 Mission target is to fetch item : "Red Dilitium Crystal"
 Mission target is to kill droids with marker : -1
 Mission target is to kill all hostile droids this first level : -1
@@ -105,7 +102,6 @@ Mission diary entry=_"I gave him enough dilithium to last him a decade. The evil
 +++ This is mission 3:  Defeat the bots in the novice arena
 +++
 Mission Name=_"Novice Arena"
-Assign this mission to influencer automatically at start : 0
 Mission target is to kill droids with marker : 1029
 Mission target is to kill all hostile droids this first level : -1
 Mission target is to also kill all hostile droids on second level : -1
@@ -128,7 +124,6 @@ Mission diary entry=_"Now that was easy. Yawn. I nearly fell asleep. No problem 
 +++ This is mission 4:  Defeat the bots in the master arena
 +++
 Mission Name=_"Time to say goodnight"
-Assign this mission to influencer automatically at start : 0
 Mission target is to kill droids with marker : 1030
 Mission target is to kill all hostile droids this first level : -1
 Mission target is to also kill all hostile droids on second level : -1
@@ -151,7 +146,6 @@ Mission diary entry=_"I survived the master arena. A miracle. Whew."
 +++ This is mission 5:  Clean out the first level of the warehouse
 +++
 Mission Name=_"Opening a can of bots..."
-Assign this mission to influencer automatically at start : 0
 Mission target is to kill droids with marker : -1
 Mission target is to kill all hostile droids this first level : 1
 Mission target is to also kill all hostile droids on second level : -1
@@ -170,7 +164,6 @@ Mission diary entry=_"Ouch. It wasn't. At least I am alive and the warehouse is 
 +++ This is mission 6:  Clean out the second level under Kevins station
 +++
 Mission Name=_"And there was light..."
-Assign this mission to influencer automatically at start : 0
 Mission target is to kill droids with marker : -1
 Mission target is to kill all hostile droids this first level : 18
 Mission target is to also kill all hostile droids on second level : -1
@@ -191,7 +184,6 @@ Mission diary entry=_"Everything is back to normal for now. Kevin can work in pe
 +++                              the red guard complex
 +++
 Mission Name=_"A kingdom for a cluster!"
-Assign this mission to influencer automatically at start : 0
 Mission target is to kill droids with marker : -1
 Mission target is to kill all hostile droids this first level : -1
 Mission target is to also kill all hostile droids on second level : -1
@@ -212,7 +204,6 @@ Mission diary entry=_"Yes, that was simple. I wish everything else went as smoot
 +++ activate it, if possible
 +++
 Mission Name=_"Opening access to MS Office"
-Assign this mission to influencer automatically at start : 0
 Mission target is to kill droids with marker : 1007
 Mission target is to kill all hostile droids this first level : -1
 Mission target is to also kill all hostile droids on second level : -1
@@ -236,7 +227,6 @@ Mission diary entry=_"Finally I've managed to propogate my firmware update. Now 
 +++ This mission can only be finished through a talk with the firmware update server.
 +++ 
 Mission Name=_"Propagating a faulty firmware"
-Assign this mission to influencer automatically at start : 0
 Mission target is to kill droids with marker : -1
 Mission target is to kill all hostile droids this first level : 31
 Mission target is to also kill all hostile droids on second level : 24
@@ -255,7 +245,6 @@ Mission diary entry=_"I've managed to propagate my (slightly modified!) firmware
 +++ This is mission 10:  Bring SADD dilithium cristals 
 +++
 Mission Name=_"SADD's power supply"
-Assign this mission to influencer automatically at start : 0
 Mission target is to fetch item : "Red Dilitium Crystal"
 Mission target is to kill droids with marker : -1
 Mission target is to kill all hostile droids this first level : -1
@@ -275,7 +264,6 @@ Mission diary entry=_"Done. He looks happy."
 +++ This is mission 11:  Free Tania 
 +++
 Mission Name=_"Tanias sanitary"
-Assign this mission to influencer automatically at start : 0
 Mission target is to kill droids with marker : -1
 Mission target is to kill all hostile droids this first level : -1
 Mission target is to also kill all hostile droids on second level : -1
@@ -295,7 +283,6 @@ Mission diary entry=_"Tania is free now!"
 +++ This is mission 12: Help Stone pay tax
 +++
 Mission Name=_"Saving the shop"
-Assign this mission to influencer automatically at start : 0
 Mission target is to kill droids with marker : -1
 Mission target is to kill all hostile droids this first level : -1
 Mission target is to also kill all hostile droids on second level : -1
@@ -315,7 +302,6 @@ Mission diary entry=_"Tania is free now!"
 +++ This is mission 13: Find Kevin
 +++
 Mission Name=_"The stranger east of town"
-Assign this mission to influencer automatically at start : 0
 Mission target is to kill droids with marker : -1
 Mission target is to kill all hostile droids this first level : -1
 Mission target is to also kill all hostile droids on second level : -1
@@ -334,7 +320,6 @@ Mission diary entry=_"I seem to have found Kevins home."
 +++ This is mission 14: Find Koan?
 +++
 Mission Name=_"Doing Duncan a favour"
-Assign this mission to influencer automatically at start : 0
 Mission target is to kill droids with marker : -1
 Mission target is to kill all hostile droids this first level : -1
 Mission target is to also kill all hostile droids on second level : -1
