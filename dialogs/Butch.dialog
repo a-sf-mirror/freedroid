@@ -206,13 +206,13 @@ Nr=50  Text="CHECK FOR FIRST ARENA VICTORY"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
     if (done_quest("Novice Arena")) then 
-        if (!has_cookie("butch_enable_first_set")) then 
+        if (not has_cookie("butch_enable_first_set")) then 
             add_cookie("butch_enable_first_set")
             show(7, 8)
         else end
     else end
     if (done_quest("Time to say goodnight")) then 
-        if (!has_cookie("butch_enable_second_set")) then
+        if (not has_cookie("butch_enable_second_set")) then
             add_cookie("butch_enable_second_set")
             show(10)
         else end
