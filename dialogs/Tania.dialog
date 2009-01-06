@@ -175,7 +175,7 @@ LuaCode={
 Nr=17  Text=_"I will disable guns for you."
 NPC=_"Thanks... please be careful. You will not be able to access the control center directly, it is behind a triple hermetic door. Try using the service tunnels."
 LuaCode={
-    add_quest(10)
+    add_quest("SADD's power supply")
     open_diary_entry(10, 0)
     hide(17)
 }
@@ -198,10 +198,10 @@ LuaCode={
 Nr=21 Text="IS MISSION ASSIGNED"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    if (has_quest(10)) then
+    if (has_quest("SADD's power supply")) then
         hide(6)
         if (has_cookie("SAGunsOff")) then
-            if (done_quest(10)) then hide(17, 27, 28) show(29) 
+            if (done_quest("SADD's power supply")) then hide(17, 27, 28) show(29) 
             else hide(17, 28, 29) show(27) end
         else hide(17, 27, 29) show(28) end
     else hide(27, 28, 29) end

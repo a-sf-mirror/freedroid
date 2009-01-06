@@ -81,7 +81,7 @@ NPC=_"WArn|n*! SsTeM=#faiPure%^#n 3 S 1()$++"
 LuaCode={
     if (has_cookie("dixon_very_angry")) then
         if (has_cookie("bruce_hurt")) then
-            if (has_quest(8)) then
+            if (has_quest("Opening access to MS Office")) then
                 if (has_cookie("tux_has_edge")) then drop_dead() else next(17) end
             else drop_dead() end
         else drop_dead() end

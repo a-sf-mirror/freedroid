@@ -85,7 +85,7 @@ Nr=8  Text=_" shieldmgr --disable --force"
 NPC=_" Disabling disruptor shield... "
 NPC=_" Shield disabled."
 LuaCode={
-    end_quest(8)
+    end_quest("Opening access to MS Office")
     open_diary_entry(8, 3)
 }
 ----------------------------------------------------------------------

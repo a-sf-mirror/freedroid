@@ -98,8 +98,8 @@ LuaCode={
 Nr=6  Text="ON MISSION 0 WAS ASSIGNED..."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    if (has_quest(0)) then
-        if (done_quest(0)) then show(3) else show(2, 3) end
+    if (has_quest("Bender's problem")) then
+        if (done_quest("Bender's problem")) then show(3) else show(2, 3) end
     else end
     hide(6)
 }

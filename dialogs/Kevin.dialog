@@ -48,7 +48,7 @@ LuaCode={
 Nr=1  Text="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    if (has_quest(6)) then next(2) else next(5) end
+    if (has_quest("And there was light...")) then next(2) else next(5) end
     hide(1)
 }
 ----------------------------------------------------------------------
@@ -65,7 +65,7 @@ LuaCode={
 
 Nr=3  Text=_" What can you teach me about hacking?"
 LuaCode={
-    if (done_quest(6)) then next(4) else next(1) end
+    if (done_quest("And there was light...")) then next(4) else next(1) end
     show(3)
 }
 ----------------------------------------------------------------------
@@ -99,7 +99,7 @@ NPC=_"Best don't bother with the resistance on the first level. You only need to
 NPC=_"I hope you have a laser pistol or something like that, the bots there will rip you apart if you try to approach them."
 NPC=_"Best make it quick. I'm already sick of stabilizing the stupid power grid."
 LuaCode={
-    add_quest(6)
+    add_quest("And there was light...")
     open_diary_entry(6, 0)
     hide(6, 7)
 }
@@ -115,7 +115,7 @@ LuaCode={
 Nr=8  Text="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    if (done_quest(6)) then next(9) else end
+    if (done_quest("And there was light...")) then next(9) else end
 }
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
@@ -173,7 +173,7 @@ NPC=_"And also the cluster is inside of the guard citadel. I hear it's only allo
 NPC=_"But maybe you can arrange that somehow. For me it would be impossible, because of my bad reputation."
 NPC=_"I'll give you the data cube. Take it to the computer cluster administration people. They will know what to do. And don't mention me there."
 LuaCode={
-    add_quest(7)
+    add_quest("A kingdom for a cluster!")
     open_diary_entry(7, 0)
     add_item("Kevin's Data Cube",1)
     hide(15)
@@ -182,7 +182,7 @@ LuaCode={
 
 Nr=16  Text=_" Maybe I can help somehow to find a suitable cluster."
 LuaCode={
-    if (has_quest(7)) then next(17) else next(15) end
+    if (has_quest("A kingdom for a cluster!")) then next(17) else next(15) end
     hide(16)
 }
 ----------------------------------------------------------------------
@@ -198,7 +198,7 @@ LuaCode={
 
 Nr=18  Text=_" About that project you said you have running..."
 LuaCode={
-    if (done_quest(7)) then next(19) else next(14) end
+    if (done_quest("A kingdom for a cluster!")) then next(19) else next(14) end
     hide(18)
 }
 ----------------------------------------------------------------------
