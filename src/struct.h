@@ -209,7 +209,6 @@ typedef struct mission_s
     int MissionIsComplete; // has the mission been completed?
     int MissionWasFailed; // has the mission been failed?
     int MissionExistsAtAll; // is this mission entry used at all, or is it just unused memory?
-    int AutomaticallyAssignThisMissionAtGameStart; // well...
     
     int fetch_item;
     int KillOne;

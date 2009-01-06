@@ -702,7 +702,6 @@ GetQuestList ( char* QuestListFilename )
 
 #define MISSION_TARGET_NAME_INITIALIZER "Mission Name=_\""
 
-#define MISSION_AUTOMATICALLY_ASSIGN_STRING "Assign this mission to influencer automatically at start : "
 #define MISSION_TARGET_FETCH_ITEM_STRING "Mission target is to fetch item : \""
 #define MISSION_TARGET_KILL_ONE_STRING "Mission target is to kill droids with marker : "
 #define MISSION_TARGET_MUST_CLEAR_FIRST_LEVEL "Mission target is to kill all hostile droids this first level : "
@@ -750,17 +749,6 @@ GetQuestList ( char* QuestListFilename )
 	char * tmname =  ReadAndMallocStringFromData ( MissionTargetPointer , MISSION_TARGET_NAME_INITIALIZER , "\"" );
 	strcpy ( Me.AllMissions[ MissionTargetIndex ].MissionName , tmname ) ;
 	free ( tmname ) ;
-	//--------------------
-	// No we read in if this mission should be assigned to the influencer
-	// automatically at the game start and without the influencer having to apply
-	// for the mission first.
-	//
-	// The assignment however will take at the end of this mission list initialisation function,
-	// cause we need the rest of the mission target data and the events to properly 'assign' the mission.
-	// 
-	ReadValueFromString( MissionTargetPointer , MISSION_AUTOMATICALLY_ASSIGN_STRING , "%d" , 
-			     &Me.AllMissions[ MissionTargetIndex ].AutomaticallyAssignThisMissionAtGameStart , 
-			     EndOfMissionTargetPointer );
 	
 	//--------------------
 	// From here on we read the details of the mission target, i.e. what the

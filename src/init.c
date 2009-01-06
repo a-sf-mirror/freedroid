@@ -1562,7 +1562,6 @@ PrepareStartOfNewCharacter ( char * startpos )
     int StartingLevel=0;
     int StartingXPos=0;
     int StartingYPos=0;
-    int MissionTargetIndex = 0;
     location StartPosition;
     
     Activate_Conservative_Frame_Computation();
@@ -1692,18 +1691,6 @@ PrepareStartOfNewCharacter ( char * startpos )
     	ShuffleEnemys( i );
     }
     
-    
-    //--------------------
-    // Now we start those missions, that are to be assigned automatically to the
-    // player at game start
-    //
-    for ( MissionTargetIndex = 0 ; MissionTargetIndex < MAX_MISSIONS_IN_GAME ; MissionTargetIndex ++ )
-    {
-	if ( Me.AllMissions[ MissionTargetIndex ].AutomaticallyAssignThisMissionAtGameStart ) 
-	{
-	    AssignMission( MissionTargetIndex );
-	}
-    }
     
     Me . mouse_move_target . x = ( -1 ) ;
     Me . mouse_move_target . y = ( -1 ) ;
