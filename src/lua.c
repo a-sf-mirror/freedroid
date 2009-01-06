@@ -448,7 +448,7 @@ static int lua_event_trade_with(lua_State *L)
 static int lua_chat_tux_says(lua_State *L)
 {
     const char *answer = luaL_checkstring(L, 1);
-    const char *sample = luaL_optstring(L, 2, "NO_SUBTITLE_AND_NO_WAITING_EITHER");
+    const char *sample = luaL_optstring(L, 2, "Sorry_No_Voice_Sample_Yet_0.wav");
     extern char *chat_protocol;
 	
     strcat ( chat_protocol , "\1TUX:" );
@@ -461,7 +461,7 @@ static int lua_chat_tux_says(lua_State *L)
 static int lua_chat_npc_says(lua_State *L)
 {
     const char *answer = luaL_checkstring(L, 1);
-    const char *sample = luaL_optstring(L, 2, "NO_SUBTITLE_AND_NO_WAITING_EITHER");
+    const char *sample = luaL_optstring(L, 2, "Sorry_No_Voice_Sample_Yet_0.wav");
 
     GiveSubtitleNSample(L_(answer), sample, chat_control_chat_droid, TRUE);
 
