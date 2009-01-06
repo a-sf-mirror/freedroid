@@ -95,7 +95,8 @@ struct {
 };
 
 dialogue_option ChatRoster[MAX_DIALOGUE_OPTIONS_IN_ROSTER];
-char * chat_initialization_code;
+char *chat_initialization_code; //first time with a character-code
+char *chat_startup_code; //every time we start this dialog-code
 EXTERN char *PrefixToFilename[ ENEMY_ROTATION_MODELS_AVAILABLE ];
 char* chat_protocol = NULL ;
 
@@ -384,6 +385,12 @@ static void LoadDialog ( char* FullPathAndFullFilename )
 	chat_initialization_code = NULL;
     }
     chat_initialization_code = ReadAndMallocStringFromDataOptional(SectionPointer, "FirstTime LuaCode={", "}", 0);
+
+    if(chat_startup_code) {
+	free(chat_startup_code);
+	chat_startup_code = NULL;
+    }
+    chat_startup_code = ReadAndMallocStringFromDataOptional(SectionPointer, "AtStartup LuaCode={", "}", 0);
 
     //--------------------
     // At first we go take a look on how many options we have
@@ -895,6 +902,7 @@ static void DoChatFromChatRosterData( int ChatPartnerCode , Enemy ChatDroid , in
     // Now we execute all the options that were marked to be executed
     // prior to dialog startup
     //
+    // DEPRECATED
     for ( i = 0 ; i < MAX_ANSWERS_PER_PERSON ; i ++ )
     {
 	if ( ChatRoster [ i ] . always_execute_this_option_prior_to_dialog_start )
@@ -914,6 +922,13 @@ static void DoChatFromChatRosterData( int ChatPartnerCode , Enemy ChatDroid , in
    
     while (1)
 	{
+	// Now we run the startup code
+	if (chat_startup_code && chat_control_next_node == -1) {
+	    run_lua(chat_startup_code);
+	    free(chat_startup_code);
+	    chat_startup_code = NULL; //and free it immediately so as not to run it again in this session
+	}
+
 	if (chat_control_next_node == -1)
 	    {
 	    chat_control_next_node = ChatDoMenuSelectionFlagged ( _("What will you say?") , DialogMenuTexts , Me . Chat_Flags [ ChatPartnerCode ]  , 1 , -1 , FPS_Display_BFont , ChatDroid );
