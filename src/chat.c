@@ -94,7 +94,6 @@ struct {
     { "subdlg_", PERSON_SUBDIALOG_DUMMY},
 };
 
-dialogue_option ChatRoster[MAX_DIALOGUE_OPTIONS_IN_ROSTER];
 char *chat_initialization_code; //first time with a character-code
 char *chat_startup_code; //every time we start this dialog-code
 EXTERN char *PrefixToFilename[ ENEMY_ROTATION_MODELS_AVAILABLE ];
@@ -121,6 +120,7 @@ static void clear_dialog_option(dialogue_option * d)
     d->always_execute_this_option_prior_to_dialog_start = 0;
 
     d->lua_code = NULL;
+    d->exists = 0;
 }
 
 /**
@@ -522,6 +522,8 @@ severe error.",
 	if (strstr(SectionPointer, "LuaCode")) {
 	    ChatRoster[OptionIndex] . lua_code = ReadAndMallocStringFromData(SectionPointer, "LuaCode={", "}");
 	} else  ChatRoster[OptionIndex] . lua_code = NULL;
+
+	ChatRoster[OptionIndex].exists = 1;
 	
 	if (EndOfSectionPointer)
 	    *EndOfSectionPointer = NEW_OPTION_BEGIN_STRING[0];

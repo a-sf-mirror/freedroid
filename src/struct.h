@@ -914,6 +914,8 @@ typedef struct dialogue_option_s
     int always_execute_this_option_prior_to_dialog_start;
     
     luacode lua_code;
+
+    char exists; 
 }
 dialogue_option, *Dialogue_option;
 

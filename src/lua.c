@@ -481,6 +481,10 @@ static int lua_chat_set_next_node(lua_State *L)
 {
     int nodenb = luaL_checkint(L, 1);
 
+    if (!ChatRoster[nodenb].exists) {
+	ErrorMessage(__FUNCTION__, "A dialog tried to run node %d that does not exist.\n", PLEASE_INFORM, IS_WARNING_ONLY, nodenb);
+	return 0;
+    }
     chat_control_next_node = nodenb;
 
     return 0;
@@ -492,32 +496,29 @@ static int lua_chat_end_dialog(lua_State *L)
     return 0;
 }
 
-static int lua_chat_enable_node(lua_State *L)
+static int __lua_chat_toggle_node(lua_State *L, int value)
 {
-    int flag = luaL_checkinteger(L, 1); 
-    Me.Chat_Flags[chat_control_partner_code][flag] = 1;
-
-    int i = 1;
+    int i = 1, flag;
     while ((flag = luaL_optinteger(L, i, -1)) != -1) {
-	// for each optional node
-	Me.Chat_Flags[chat_control_partner_code][flag] = 1;
 	i++;
+	// for each optional node
+	if (!ChatRoster[flag].exists) {
+	    ErrorMessage(__FUNCTION__, "A dialog tried to %s chat node %d that does not exist.\n", PLEASE_INFORM, IS_WARNING_ONLY, value == 1 ? "enable" : "disable", flag);
+	    continue;
+	}
+	Me.Chat_Flags[chat_control_partner_code][flag] = value;
     }
     return 0;
+}
+    
+static int lua_chat_enable_node(lua_State *L)
+{
+    return __lua_chat_toggle_node(L, 1);
 }
 
 static int lua_chat_disable_node(lua_State *L)
 {
-    int flag = luaL_checkinteger(L, 1); 
-    Me.Chat_Flags[chat_control_partner_code][flag] = 0;
-    
-    int i = 1;
-    while ((flag = luaL_optinteger(L, i, -1)) != -1) {
-	// for each optional node
-	Me.Chat_Flags[chat_control_partner_code][flag] = 0;
-	i++;
-    }
-    return 0;
+    return __lua_chat_toggle_node(L, 0);
 }
 
 static int lua_chat_break_off_and_attack(lua_State *L)
