@@ -155,9 +155,11 @@ Nr=30  Text="HAVE THE CRYSTALS"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
     if (has_item("Red Dilitium Crystal") > 0) then    -- Tux gives crystals
-        hide(32, 82)
+	display_console_message("Tux has the crystals")
         show(29)
-    else show(31) end    -- Tux does not have crystals
+    else show(31) 
+	display_console_message("no crystals")
+	    end    -- Tux does not have crystals
     hide(30)
 }
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
@@ -176,24 +178,7 @@ Nr=34  Text="MISSION IS DONE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
     hide(34)
-    if (done_quest("Anything but the army snacks, please!")) then next(35) else end
-}
-AlwaysExecuteThisOptionPriorToDialogStart="yes"
-
-----------------------------------------------------------------------
-
-Nr=35  Text="YEAH, MISSION IS DONE."
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-LuaCode={
     if (done_quest("Anything but the army snacks, please!")) then show(24) else end
-    hide(29, 31)
-}
-----------------------------------------------------------------------
-
-Nr=37  Text="TUX STARTED ON THE QUEST"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-LuaCode={
-   if (done_quest("Anything but the army snacks, please!")) then hide(37) else next(35) end
 }
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
