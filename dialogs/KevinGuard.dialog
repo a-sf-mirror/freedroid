@@ -46,7 +46,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-Nr=1  Text=_" I must talk to your master."
+Nr=1  Text=_"I must talk to your master."
 NPC=_"STATE YOUR REASON."
 LuaCode={
     hide(1, 3, 17)
@@ -54,7 +54,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=2  Text=_" Don't shoot! I come in peace."
+Nr=2  Text=_"Don't shoot! I come in peace."
 NPC=_"STATE THE PURPOSE OF YOUR PRESENCE HERE."
 LuaCode={
     hide(2, 8)
@@ -62,7 +62,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=3  Text=_" I saw this building as I was walking by, and I decided to take a look inside."
+Nr=3  Text=_"I saw this building as I was walking by, and I decided to take a look inside."
 NPC=_"YOUR REASON IS CURIOSITY. MASTER KEVIN LIKES CURIOUS PEOPLE."
 NPC=_"YOU MAY PASS."
 LuaCode={
@@ -71,7 +71,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=4  Text=_" Thank you."
+Nr=4  Text=_"Thank you."
 LuaCode={
     add_cookie("kevin_door_open")
     change_obstacle("KevinsDoor", "opened")
@@ -80,7 +80,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=5  Text=_" Umm... His life is in grave danger. "
+Nr=5  Text=_"Umm... His life is in grave danger. "
 NPC=_"ERROR: REASON INVALID."
 LuaCode={
     hide(5)
@@ -88,14 +88,14 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=6  Text=_" The people from the uhh... city want me to have a word with him. Yeah, that's it."
+Nr=6  Text=_"The people from the uhh... city want me to have a word with him. Yeah, that's it."
 NPC=_"ERROR: REASON INVALID."
 LuaCode={
     hide(6)
 }
 ----------------------------------------------------------------------
 
-Nr=7  Text=_" I have some very valuable information. Your master might be interested in it."
+Nr=7  Text=_"I have some very valuable information. Your master might be interested in it."
 NPC=_"MASTER KEVIN WILL BE PLEASED. YOU MAY PASS."
 NPC=_"DOOR OPENING SEQUENCE INITIATED."
 LuaCode={
@@ -104,7 +104,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=8  Text=_" Step aside, you stupid tin can!"
+Nr=8  Text=_"Step aside, you stupid tin can!"
 NPC=_"YOU SHALL NOT PASS. ACTIVATING DISINTEGRATOR BEAM IN TEN SECONDS."
 NPC=_"NINE."
 NPC=_"EIGHT."
@@ -114,7 +114,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=9  Text=_" Wait, that's not what I meant!"
+Nr=9  Text=_"Wait, that's not what I meant!"
 NPC=_"SEVEN."
 NPC=_"SIX."
 LuaCode={
@@ -123,7 +123,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=10  Text=_" I am not afraid of you."
+Nr=10  Text=_"I am not afraid of you."
 NPC=_"SEVEN."
 NPC=_"SIX."
 LuaCode={
@@ -132,7 +132,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=11  Text=_" Wait, that's not what I meant!"
+Nr=11  Text=_"Wait, that's not what I meant!"
 NPC=_"FIVE."
 NPC=_"FOUR."
 LuaCode={
@@ -141,7 +141,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=12  Text=_" The enemies are approaching from every side!"
+Nr=12  Text=_"The enemies are approaching from every side!"
 NPC=_"ERROR: REASON INVALID."
 LuaCode={
     hide(12)
@@ -149,7 +149,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=13  Text=_" We are surrounded! They will attack any second now!"
+Nr=13  Text=_"We are surrounded! They will attack any second now!"
 NPC=_"ERROR: REASON INVALID."
 LuaCode={
     hide(13)
@@ -157,7 +157,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=14  Text=_" Are you listening to me?"
+Nr=14  Text=_"Are you listening to me?"
 NPC=_"ERROR: REASON INVALID."
 LuaCode={
     hide(14)
@@ -165,7 +165,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=15  Text=_" It's me."
+Nr=15  Text=_"It's me."
 NPC=_"IDENTITY CONFIRMED. YOU MAY PASS."
 LuaCode={
     end_dialog()
@@ -174,7 +174,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=17  Text=_" I do not have to tell you anything, bot."
+Nr=17  Text=_"I do not have to tell you anything, bot."
 NPC=_"ENGAGING AGGRESSION CIRCUITS. YOU SHALL BE DISINTEGRATED IN TEN SECONDS."
 NPC=_"NINE."
 NPC=_"EIGHT."
@@ -184,7 +184,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=18  Text=_" I think I just found an error in your programming."
+Nr=18  Text=_"I think I just found an error in your programming."
 NPC=_"ERROR: REASON INVALID."
 LuaCode={
     hide(18)
@@ -192,7 +192,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=19  Text=_" Thought so."
+Nr=19  Text=_"Thought so."
 NPC=_"ERROR: REASON INVALID."
 LuaCode={
     hide(19)
@@ -209,7 +209,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=99  Text=_" See you later, tin can."
+Nr=99  Text=_"See you later, tin can."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 NPC=_"EOT ACKNOWLEDGED. CONNECTION CLOSED."
 NPC=_"GOODBYE."

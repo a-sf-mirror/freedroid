@@ -51,7 +51,7 @@ NPC=_"You don't have enough cash, cheapskate. Come back when you can afford to p
 
 ----------------------------------------------------------------------
 
-Nr=4  Text=_" Improve Hacking Ability (cost 300 cash, 5 ability points)"
+Nr=4  Text=_"Improve Hacking Ability (cost 300 cash, 5 ability points)"
 LuaCode={
     change_obstacle("KevinsDoor", "opened")
     if (get_gold() < 300 ) then next(1) 
@@ -79,7 +79,7 @@ NPC=_"You don't have enough experience. I can't teach you anything more this way
 
 ----------------------------------------------------------------------
 
-Nr=99  Text=_" [BACK]"
+Nr=99  Text=_"[BACK]"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
     end_dialog()

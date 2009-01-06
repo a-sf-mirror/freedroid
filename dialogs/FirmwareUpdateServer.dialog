@@ -49,14 +49,14 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-Nr=1  Text=_" Get current OS version"
+Nr=1  Text=_"Get current OS version"
 NPC=_"Currently deployed firmware is v. 5.0.8+worldto-nogpl."
 LuaCode={
     hide(1)
 }
 ----------------------------------------------------------------------
 
-Nr=2  Text=_" Propagate firmware update"
+Nr=2  Text=_"Propagate firmware update"
 NPC=_"Compressing image...."
 NPC=_"Advertising update to clients..."
 NPC=_"Waiting for all connections...."
@@ -70,7 +70,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=3  Text=_" Get current OS version"
+Nr=3  Text=_"Get current OS version"
 NPC=_"Currently deployed firmware is v. 5.0.8+tuxwashere+gpl"
 LuaCode={
     set_bot_state("free")
@@ -79,7 +79,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=99  Text=_" Logout"
+Nr=99  Text=_"Logout"
 LuaCode={
     end_dialog()
 }

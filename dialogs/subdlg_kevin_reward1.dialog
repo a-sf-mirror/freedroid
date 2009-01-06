@@ -44,7 +44,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-Nr=1  Text=_" I want to become a hacker."
+Nr=1  Text=_"I want to become a hacker."
 NPC=_"Your desire for information amuses me. Your wish will be granted. I will teach you how to hack."
 NPC=_"You must know that hacking is an art. It is easy to chop your enemy to bits with an axe or shred it to atoms with a grenade... But hacking requires skill."
 NPC=_"Look at this terminal... I am connected to a remote system. A fool would just launch a thousand attacks, but a skilled intruder would stop and think."
@@ -59,7 +59,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=2  Text=_" I don't want any reward. Just gratitude."
+Nr=2  Text=_"I don't want any reward. Just gratitude."
 NPC=_"Of course you can have that. There, I'm most grateful to you. That should do."
 LuaCode={
     add_cookie("kevin_reward1_given")
@@ -67,7 +67,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=3  Text=_" I want money."
+Nr=3  Text=_"I want money."
 NPC=_"Eh... Here, take these 500 bucks. That should be enough."
 LuaCode={
     add_gold(500)
@@ -76,7 +76,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=99  Text=_" [BACK]"
+Nr=99  Text=_"[BACK]"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
     end_dialog()

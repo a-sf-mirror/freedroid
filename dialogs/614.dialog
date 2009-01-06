@@ -35,7 +35,7 @@ FirstTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=0  Text=_" Who are you? "
+Nr=0  Text=_"Who are you? "
 NPC=_"I am a 614 security bot, once one of the best-selling products of the Nicholson company."
 LuaCode={
     hide(0)
@@ -43,14 +43,14 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=1  Text=_" Have you detected any hostile bot activity?"
+Nr=1  Text=_"Have you detected any hostile bot activity?"
 NPC=_"No. The hostiles have not shown up within the last 24 hours."
 LuaCode={
     hide(1)
 }
 ----------------------------------------------------------------------
 
-Nr=2  Text=_" What can you tell me about the 614 type? "
+Nr=2  Text=_"What can you tell me about the 614 type? "
 NPC=_"The official manual classifies the 614 as a high class security droid."
 NPC=_"It was mainly used within ships to protect certain areas from intruders."
 NPC=_"It is considered an old but reliable device."
@@ -60,7 +60,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=3  Text=_" What are your orders?"
+Nr=3  Text=_"What are your orders?"
 NPC=_"My orders are to protect the living beings in this camp from attacks by hostile bots."
 NPC=_"This has top priority. There are no other priorities."
 LuaCode={
@@ -68,7 +68,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=4  Text=_" Why are you not hostile as all the other bots?"
+Nr=4  Text=_"Why are you not hostile as all the other bots?"
 NPC=_"I belong to a an older generation of bots, running a custom-made security guard operating system."
 NPC=_"None of the bots of this generation were affected by the proceedings that led to bots attacking, generally known as the Great Assault."
 NPC=_"Even though discontinued from Nicholson Company long ago, today, some people have picked up the work and are even trying to improve the operating system running on my series."
@@ -78,7 +78,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=99  Text=_" See you later."
+Nr=99  Text=_"See you later."
 NPC=_" Resuming guard program."
 LuaCode={
     show(0, 1, 2, 3)

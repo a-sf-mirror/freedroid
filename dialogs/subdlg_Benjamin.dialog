@@ -44,7 +44,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-Nr=5  Text=_" Improve ranged weapon skill (cost 5 training points, 100 cash) "
+Nr=5  Text=_"Improve ranged weapon skill (cost 5 training points, 100 cash) "
 LuaCode={
     if (get_gold() < 100) then next(10)
     else

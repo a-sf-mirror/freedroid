@@ -35,7 +35,7 @@ FirstTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=0  Text=_" Hi... Erm... Who are you?"
+Nr=0  Text=_"Hi... Erm... Who are you?"
 NPC=_"Duncan McNamara, The Red Guard's resident bomb maker, at your service."
 LuaCode={
     hide(0, 90)
@@ -43,7 +43,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=1  Text=_" I would like to buy a bomb."
+Nr=1  Text=_"I would like to buy a bomb."
 NPC=_"Yes. I am sure we can arrange something. Take a look."
 LuaCode={
     trade_with("Duncan")
@@ -52,7 +52,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=2  Text=_" I see only grenades. Do you have something bigger?"
+Nr=2  Text=_"I see only grenades. Do you have something bigger?"
 NPC=_"My deepest apologies, I do not."
 NPC=_"The Red Guard prohibits the sales of extremely destructive munitions."
 NPC=_"It is not yet the time for the fall of their rule, so I remain loyal."
@@ -62,7 +62,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=3  Text=_" The fall of the Red Guard? I am going to report that you are preparing a revolution!"
+Nr=3  Text=_"The fall of the Red Guard? I am going to report that you are preparing a revolution!"
 NPC=_"My word against yours. If you wish to try it, please, be my guest."
 NPC=_"I am not preparing anything. I am just stating what I see as inevitable in the future."
 NPC=_"I have taken part in many conflicts and I have seen how governments collapse."
@@ -73,7 +73,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=4  Text=_" The fall of the Red Guard? Tell me more about it."
+Nr=4  Text=_"The fall of the Red Guard? Tell me more about it."
 NPC=_"It is not the time to speak of such things yet. Come another day, and we shall talk about it in more detail."
 NPC=_"The Red Guard can have their great laser beams and plasma cannons... But nothing can save them."
 LuaCode={
@@ -81,21 +81,21 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=5  Text=_" I want to buy some grenades."
+Nr=5  Text=_"I want to buy some grenades."
 NPC=_"Certainly."
 LuaCode={
     trade_with("Duncan")
 }
 ----------------------------------------------------------------------
 
-Nr=6  Text=_" What kind of grenade is the best?"
+Nr=6  Text=_"What kind of grenade is the best?"
 NPC=_"You get what you pay for."
 LuaCode={
     hide(6)
 }
 ----------------------------------------------------------------------
 
-Nr=7  Text=_" How did you get into making explosives?"
+Nr=7  Text=_"How did you get into making explosives?"
 NPC=_"Twenty years ago there was a conflict."
 NPC=_"A grenade I threw destroyed a being which killed many of... my people."
 NPC=_"Now I make more to smash the destroyers."
@@ -141,7 +141,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=90  Text=_" I feel you are... Different."
+Nr=90  Text=_"I feel you are... Different."
 NPC=_"What a great way to start a conversation."
 NPC=_"Yes, that is true. I am not who I seem to be."
 NPC=_"But then again, neither are you, so my thoughts are we are even."
@@ -151,7 +151,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=91  Text=_" What do you mean? I am Tux and not anyone else."
+Nr=91  Text=_"What do you mean? I am Tux and not anyone else."
 NPC=_"And I am Duncan McNamara, the maker of grenades and nothing else."
 NPC=_"I believe the topic is thoroughly exhausted now."
 LuaCode={
@@ -160,7 +160,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=92  Text=_" Tell me who you are. I need to know."
+Nr=92  Text=_"Tell me who you are. I need to know."
 NPC=_"Twenty years ago, the people were kinder to each other."
 NPC=_"I suggest you be kind to me as well, and I will be kind to you."
 NPC=_"That way I get to keep my secret, and you get to keep yours."
@@ -170,14 +170,14 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=93  Text=_" I don't have any secrets."
+Nr=93  Text=_"I don't have any secrets."
 NPC=_"And neither do I."
 LuaCode={
     hide(93)
 }
 ----------------------------------------------------------------------
 
-Nr=96  Text=_" See you later."
+Nr=96  Text=_"See you later."
 NPC=_"I wish you cold winds."
 LuaCode={
     next(97)
@@ -185,7 +185,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=97  Text=_" Huh? How do you know the Linarian farewell? No one around here knows it."
+Nr=97  Text=_"Huh? How do you know the Linarian farewell? No one around here knows it."
 NPC=_"I read many books on Linarians. That is all."
 NPC=_"Nothing more and nothing less."
 LuaCode={
@@ -194,7 +194,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=98  Text=_" I wish you cold winds."
+Nr=98  Text=_"I wish you cold winds."
 NPC=_"May the ice bring you wisdom."
 LuaCode={
     end_dialog()
@@ -204,7 +204,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=99  Text=_" See you later."
+Nr=99  Text=_"See you later."
 NPC=_"See you later."
 LuaCode={
     end_dialog()

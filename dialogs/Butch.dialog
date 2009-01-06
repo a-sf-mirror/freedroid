@@ -37,7 +37,7 @@ FirstTime LuaCode={
 ----------------------------------------------------------------------
 
 
-Nr=0  Text=_" Hi! I'm new here."
+Nr=0  Text=_"Hi! I'm new here."
 NPC=_"Yeah, what do you want newbie?"
 LuaCode={
     hide(0)
@@ -45,7 +45,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=1  Text=_" Say 'newbie' again and I will rip your spine out."
+Nr=1  Text=_"Say 'newbie' again and I will rip your spine out."
 NPC=_"Fine, newbie. You are greener than green and a total newbie."
 NPC=_"You can start ripping out my spine now."
 NPC=_"Ha!"
@@ -55,7 +55,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=2  Text=_" I really mean it. I will kill you for that insult."
+Nr=2  Text=_"I really mean it. I will kill you for that insult."
 NPC=_"Go for it."
 LuaCode={
     hide(2)
@@ -63,7 +63,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=3  Text=_" BANZAI! DIE DIE DIE!"
+Nr=3  Text=_"BANZAI! DIE DIE DIE!"
 NPC=_"Wha --"
 LuaCode={
     hide(3)
@@ -72,7 +72,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=4  Text=_" And who are you?"
+Nr=4  Text=_"And who are you?"
 NPC=_"Butch... The arena master."
 LuaCode={
     hide(1, 4)
@@ -80,7 +80,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=5  Text=_" Arena? What arena?"
+Nr=5  Text=_"Arena? What arena?"
 NPC=_"The underground arena."
 NPC=_"Wanna fight?"
 LuaCode={
@@ -89,7 +89,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=6  Text=_" Yeah. I want to fight."
+Nr=6  Text=_"Yeah. I want to fight."
 NPC=_"Good. I opened up the south arena gate for you so just climb down the ladder."
 NPC=_"But remember, the door out won't be opened until you killed all the bots."
 LuaCode={
@@ -100,7 +100,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=7  Text=_" The bots are dead."
+Nr=7  Text=_"The bots are dead."
 NPC=_"Good for you."
 NPC=_"You are a total newbie. But, a good newbie."
 NPC=_"I will say a good word to Spencer about this."
@@ -111,7 +111,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=8  Text=_" I thought I am going to fight you, coward."
+Nr=8  Text=_"I thought I am going to fight you, coward."
 NPC=_"I NEVER said that, newbie."
 NPC=_"You wanted a fight, and you got one."
 NPC=_"I offered a fight, and you wanted that."
@@ -122,7 +122,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=9  Text=_" I want a bigger challenge."
+Nr=9  Text=_"I want a bigger challenge."
 NPC=_"Newbie, I have a second arena."
 NPC=_"You will die if you go there."
 NPC=_"I pity you, silly bird. Don't go there."
@@ -135,7 +135,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=10  Text=_" The master arena is clear."
+Nr=10  Text=_"The master arena is clear."
 NPC=_"What!? Impossible! No one survived the second arena before!"
 NPC=_"One has to be insane to try the second arena."
 NPC=_"You are not a newbie, but you are a TOTAL IDIOT!"
@@ -147,14 +147,14 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=11  Text=_" What is wrong with you? Why do you keep calling me a newbie?"
+Nr=11  Text=_"What is wrong with you? Why do you keep calling me a newbie?"
 NPC=_"Beacuse you ARE a newbie, newbie!"
 LuaCode={
     hide(11)
 }
 ----------------------------------------------------------------------
 
-Nr=12  Text=_" Why the hell are you organizing fights? Enough people have died already!"
+Nr=12  Text=_"Why the hell are you organizing fights? Enough people have died already!"
 NPC=_"I have a very good reason not to tell you."
 NPC=_"Not like someone as inexperienced like you could understand it anyway."
 LuaCode={
@@ -162,7 +162,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=13  Text=_" No way! Violence is wrong! Make love not war!"
+Nr=13  Text=_"No way! Violence is wrong! Make love not war!"
 NPC=_" . . ."
 LuaCode={
     hide(6, 13)
@@ -170,7 +170,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=14  Text=_" Roses, not destruction!"
+Nr=14  Text=_"Roses, not destruction!"
 NPC=_" . . ."
 LuaCode={
     hide(14)
@@ -178,7 +178,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=15  Text=_" End the violence! All blood is red!"
+Nr=15  Text=_"End the violence! All blood is red!"
 NPC=_"Hey, the bots bleed black. With oil."
 LuaCode={
     hide(15)
@@ -186,7 +186,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=16  Text=_" But... But... "
+Nr=16  Text=_"But... But... "
 NPC=_"No 'but' about it, newbie."
 NPC=_"The bots bleed black."
 LuaCode={
@@ -194,7 +194,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=17  Text=_" You... Have ruined my pacifistic slogan... I am angry... So angry that I want to smash things!"
+Nr=17  Text=_"You... Have ruined my pacifistic slogan... I am angry... So angry that I want to smash things!"
 NPC=_"Great. Get in the door, newbie."
 LuaCode={
     add_quest("Novice Arena")
@@ -222,7 +222,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-Nr=99  Text=_" I'll be going then."
+Nr=99  Text=_"I'll be going then."
 NPC=_"Sure."
 LuaCode={
     end_dialog()

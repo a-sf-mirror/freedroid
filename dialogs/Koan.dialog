@@ -59,14 +59,14 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=5  Text=_" With pleasure."
+Nr=5  Text=_"With pleasure."
 LuaCode={
     drop_dead()
     respawn_level(18)
 }
 ----------------------------------------------------------------------
 
-Nr=6  Text=_" No. I have not come here to kill you."
+Nr=6  Text=_"No. I have not come here to kill you."
 NPC=_"Thank you."
 NPC=_"Feel free to stay here. There is no danger."
 NPC=_"The water is safe to drink and the fruit from the tree is quite delicious."
@@ -77,7 +77,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=10  Text=_" What is this place? Why there is grass and water under the desert?"
+Nr=10  Text=_"What is this place? Why there is grass and water under the desert?"
 NPC=_"Ah, yes. That is my fault, I am afraid."
 NPC=_"Wherever I go, life follows me."
 NPC=_"I thought I could hide from Duncan in this old bunker."
@@ -88,7 +88,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=11  Text=_" This was a bunker?"
+Nr=11  Text=_"This was a bunker?"
 NPC=_"Yes. The place has changed a bit, as you can see."
 NPC=_"I like the way it is right now. The water cools everything down and the plants give the air a very fresh smell."
 NPC=_"As soon as I leave, everything will die. I have seen that happen before."
@@ -99,7 +99,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=20  Text=_" Why does Duncan want you dead?"
+Nr=20  Text=_"Why does Duncan want you dead?"
 NPC=_"Very simple. He likes destruction, and I am creation."
 NPC=_"There is nothing more to it."
 LuaCode={
@@ -107,7 +107,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=99  Text=_" I will go now."
+Nr=99  Text=_"I will go now."
 NPC=_"This place will always wait for you."
 LuaCode={
     heal_tux()

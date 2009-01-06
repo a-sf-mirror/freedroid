@@ -37,7 +37,7 @@ FirstTime LuaCode={
 ----------------------------------------------------------------------
 
 
-Nr=0  Text=_" Hi! I'm new here."
+Nr=0  Text=_"Hi! I'm new here."
 NPC=_"Welcome. I am Chandra, the local sage in this old town."
 LuaCode={
     hide(0)
@@ -45,7 +45,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=1  Text=_" What can you tell me about this place?"
+Nr=1  Text=_"What can you tell me about this place?"
 NPC=_"This small town existed since before the Great Assault. It used to be a somewhat successful mining community."
 NPC=_"But now after the Great Assault, the rest of the planet gets bombarded by automated bot ships every now and then, so being down here isn't so bad at all."
 LuaCode={
@@ -54,7 +54,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=2  Text=_" Where can I get better equipment?"
+Nr=2  Text=_"Where can I get better equipment?"
 NPC=_"The shop is to the north. Ms. Stone always has a good range of equipment there."
 NPC=_"And the Red Guard always has the biggest guns and the best armor, but they do not sell them to the non-members."
 LuaCode={
@@ -62,7 +62,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=3  Text=_" So what's so strange about the attack?"
+Nr=3  Text=_"So what's so strange about the attack?"
 NPC=_"According to my calculations from the Fermi estimate, there are about seven million bots active in the region."
 NPC=_"Now, I think you will agree with me that the following statement is true: If bots, then death to everything alive."
 NPC=_"Now, I make the assumption that you and I are alive."
@@ -74,7 +74,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=4  Text=_" Calm down. There must be some logic behind this."
+Nr=4  Text=_"Calm down. There must be some logic behind this."
 NPC=_"There is none!"
 NPC=_"They could just enter the city and massacre everyone."
 NPC=_"But they do not do so."
@@ -84,7 +84,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=5  Text=_" What do you know about the hostile bots?"
+Nr=5  Text=_"What do you know about the hostile bots?"
 NPC=_"The phenomenon of hostile bots has occupied my mind for quite some time.  There are some strange irrationalities in this behaviour, that I cannot explain."
 NPC=_"This concerns not only the irrationality of the attack but also the methods and the scale of it all."
 LuaCode={
@@ -93,7 +93,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=6  Text=_" What types of bots are out there?"
+Nr=6  Text=_"What types of bots are out there?"
 NPC=_"Hmm... Each kind of a bot has a number consisting out of three digits. The first one is the most significant, the class of a bot."
 NPC=_"I know a bit about three classes."
 NPC=_"The 100s are cleaning bots of old. They are not too troublesome most of the time."
@@ -106,7 +106,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=7  Text=_" I want to leave this place."
+Nr=7  Text=_"I want to leave this place."
 NPC=_"We all do, Linarian, we all do."
 NPC=_"The act in question is made impossible by the quasi-infinite bots outside of the city walls."
 NPC=_"You cannot live for long out there."
@@ -116,7 +116,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=8  Text=_" No, I meant I would like to leave this world."
+Nr=8  Text=_"No, I meant I would like to leave this world."
 NPC=_"Simple. Walk outside the city walls, and the bots will send you to the other world within a few minutes."
 NPC=_"Unless you mean leave the planet, in which case that is impossible."
 NPC=_"Most likely all of our cosmodromes have been destroyed in the bot attacks."
@@ -125,7 +125,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=9  Text=_" I keep getting beaten up by the bots. What can I do?"
+Nr=9  Text=_"I keep getting beaten up by the bots. What can I do?"
 NPC=_"My advice is to invest in a ranged weapon. While that can create a huge puncture in your wallet, it is better than a huge puncture in you."
 NPC=_"Currently there is a ban on selling such things. The Red Guard wants to be the only ones with good weapons."
 NPC=_"Should you fail to find something decent to shoot with, there are always other options."
@@ -137,7 +137,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=10  Text=_" Do you think I could join the guardians of this town?"
+Nr=10  Text=_"Do you think I could join the guardians of this town?"
 NPC=_"The Red Guard? Unlikely. You'd have to establish a reputation before and demonstrate that you can fix things."
 NPC=_"Of course, the Red Guard is not a very popular organization, so if you do join them then you can expect to be hated by nearly everyone here."
 NPC=_"As the ancients said, 'Boni pastoris est tondere pecus, non deglubere'. A good tax must be a reasonable tax."
@@ -146,7 +146,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=11  Text=_" What bots are in the 100 class?"
+Nr=11  Text=_"What bots are in the 100 class?"
 NPC=_"I know of two types. The 123 and the 139."
 NPC=_"Because they are neither fast nor dangerous, the Red Guard uses them for target practice."
 NPC=_"If I were you, I would not overestimate them. "
@@ -156,7 +156,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=12  Text=_" What bots are in the 200 class?"
+Nr=12  Text=_"What bots are in the 200 class?"
 NPC=_"Well, those are a bit tricky."
 NPC=_"The 247 is often called the 'Banshee'."
 NPC=_"It comes close to you and tries to punch you."
@@ -167,7 +167,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=13  Text=_" What other bots are out there?"
+Nr=13  Text=_"What other bots are out there?"
 NPC=_"Well, I have no idea. I have heard only rumors."
 NPC=_"I think most of the people who have seen a better bot are now pushing up the daisies."
 LuaCode={
@@ -175,7 +175,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=99  Text=_" Thank you for your wise words."
+Nr=99  Text=_"Thank you for your wise words."
 NPC=_"Feel free to come here any time you want."
 LuaCode={
     end_dialog()

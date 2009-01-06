@@ -44,7 +44,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-Nr=1  Text=_" Tell me more."
+Nr=1  Text=_"Tell me more."
 NPC=_"Ah, excellent."
 NPC=_"A... friend of mine, Koan, stole something of great value to me."
 NPC=_"He is hiding somewhere in the desert, I don't know exactly where."
@@ -54,7 +54,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=2  Text=_" I will get your property back."
+Nr=2  Text=_"I will get your property back."
 NPC=_"Excellent. I am pleased to hear this."
 NPC=_"There is something you must know."
 NPC=_"There are not too many bots in the desert, but they are undefeatable. It is best to avoid them."
@@ -65,7 +65,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=5  Text=_" What are those bots?"
+Nr=5  Text=_"What are those bots?"
 NPC=_"We call them 'Sawmill'."
 NPC=_"They were designed to chop down trees in the mountains."
 NPC=_"Now they chop down people."
@@ -75,14 +75,14 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=6  Text=_" What is that thing he took from you?"
+Nr=6  Text=_"What is that thing he took from you?"
 NPC=_"A cube. You can't miss it. Trust me."
 LuaCode={
     hide(6)
 }
 ----------------------------------------------------------------------
 
-Nr=7  Text=_" That is all I need to know. I will find Koan."
+Nr=7  Text=_"That is all I need to know. I will find Koan."
 NPC=_"Only time will tell."
 LuaCode={
     change_obstacle("DesertGate", "opened")
@@ -90,7 +90,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=99  Text=_" No, I don't find bloodshed a pleasurable activity."
+Nr=99  Text=_"No, I don't find bloodshed a pleasurable activity."
 NPC=_"That is fine. I will find someone else."
 LuaCode={
     end_dialog()

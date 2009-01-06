@@ -822,7 +822,7 @@ static void ProcessThisChatOption ( int MenuSelection , int ChatPartnerCode , En
     if ( strcmp ( ChatRoster [ MenuSelection ] . option_sample_file_name , "NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER" ) )
     {
 	// PlayOnceNeededSoundSample( ChatRoster [ MenuSelection ] . option_sample_file_name , TRUE );
-	strcat ( chat_protocol , "\1TUX:" );
+	strcat ( chat_protocol , "\1TUX: " );
 	GiveSubtitleNSample ( L_(ChatRoster [ MenuSelection ] . option_text) ,
 			      ChatRoster [ MenuSelection ] . option_sample_file_name , ChatDroid , TRUE ) ;
 	strcat ( chat_protocol , "\2" );

@@ -50,7 +50,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-Nr=10  Text=_" Yeah. I got him. I think this is your cube."
+Nr=10  Text=_"Yeah. I got him. I think this is your cube."
 NPC=_"Yes. I appreciate your help."
 LuaCode={
     end_dialog()
@@ -60,7 +60,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=20  Text=_" I could not find him anywhere in the desert. I don't think he is there anymore."
+Nr=20  Text=_"I could not find him anywhere in the desert. I don't think he is there anymore."
 NPC=_"I see."
 LuaCode={
     end_dialog()
@@ -68,7 +68,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=30  Text=_" Yeah, I got him. Now, what is this big cube that you had me carry all the way here?"
+Nr=30  Text=_"Yeah, I got him. Now, what is this big cube that you had me carry all the way here?"
 NPC=_"Just a memento after a friend."
 NPC=_"A little more than a portable end of the world, which I am looking forward to disassembling and learning its secrets."
 NPC=_"Nothing that important."
@@ -78,7 +78,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=40  Text=_" A 'few' bots? The place was crawling with Sawmills! I nearly got killed!"
+Nr=40  Text=_"A 'few' bots? The place was crawling with Sawmills! I nearly got killed!"
 NPC=_"There were only fourty bots in the desert region. This hardly qualifies as many."
 LuaCode={
     hide(40)
@@ -86,7 +86,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=41  Text=_" What? You know exactly how many bots were on the desert? Without being there? I don't like this."
+Nr=41  Text=_"What? You know exactly how many bots were on the desert? Without being there? I don't like this."
 NPC=_"I just know a lot of things. You do not need to worry about it."
 LuaCode={
     hide(41)
@@ -94,7 +94,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=50  Text=_" I don't like this at all. I'm getting out of here."
+Nr=50  Text=_"I don't like this at all. I'm getting out of here."
 NPC=_"As you wish."
 LuaCode={
     end_dialog()
@@ -102,7 +102,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=60  Text=_" Hey, that is really neat. Here is your cube. Enjoy disassembling it and have fun with it."
+Nr=60  Text=_"Hey, that is really neat. Here is your cube. Enjoy disassembling it and have fun with it."
 NPC=_"I will."
 LuaCode={
     end_dialog()
@@ -112,7 +112,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=70  Text=_" WHAT? No way I am giving you a doomsday device! Forget about it."
+Nr=70  Text=_"WHAT? No way I am giving you a doomsday device! Forget about it."
 NPC=_"I understand. So be it."
 LuaCode={
     end_dialog()

@@ -35,7 +35,7 @@ FirstTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=0  Text=_" Hello. Any idea where I can get some help here?"
+Nr=0  Text=_"Hello. Any idea where I can get some help here?"
 NPC=_"Verschwinde."
 LuaCode={
     hide(0)
@@ -43,7 +43,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=1  Text=_" Erm... What do you mean?"
+Nr=1  Text=_"Erm... What do you mean?"
 NPC=_"Ich bin der Geist, der stets verneint."
 NPC=_"Und das mit Recht; denn alles, was entsteht,"
 NPC=_"ist wert, dass es zugrunde geht."
@@ -53,7 +53,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=2  Text=_" I really do not understand you."
+Nr=2  Text=_"I really do not understand you."
 NPC=_"Wer sie nicht kennte, die Elemente,"
 NPC=_"ihre Kraft und Eigenschaft,"
 NPC=_"waere kein Meister ueber die Geister."
@@ -63,7 +63,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=3  Text=_" I wish I knew what you are talking about."
+Nr=3  Text=_"I wish I knew what you are talking about."
 NPC=_"Verschwinde."
 LuaCode={
     end_dialog()
@@ -71,7 +71,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=99  Text=_" I need to go now."
+Nr=99  Text=_"I need to go now."
 NPC=_" . . ."
 LuaCode={
     end_dialog()

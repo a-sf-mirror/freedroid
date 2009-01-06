@@ -37,7 +37,7 @@ FirstTime LuaCode={
 ----------------------------------------------------------------------
 
 
-Nr=0  Text=_" Hi. Are you all right? You don't look too good."
+Nr=0  Text=_"Hi. Are you all right? You don't look too good."
 NPC=_"Good day. I am Bruce."
 NPC=_"I am unwell."
 LuaCode={
@@ -46,7 +46,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=1  Text=_" How is it going?"
+Nr=1  Text=_"How is it going?"
 NPC=_"I am very tired, but otherwise well."
 LuaCode={
     hide(1)
@@ -54,7 +54,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=2  Text=_" You don't talk much, eh?"
+Nr=2  Text=_"You don't talk much, eh?"
 NPC=_"No, I am just too tired now. I have been working in the mine for two weeks now."
 NPC=_"I feel really wiped, so maybe it would be better if you came some other day."
 LuaCode={
@@ -63,7 +63,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=3  Text=_" Why do you work so hard in the mine?"
+Nr=3  Text=_"Why do you work so hard in the mine?"
 NPC=_"Because I must! The Red Guard makes everyone work up to their limits!"
 NPC=_"If you do not work for a full work period, you will be in trouble."
 NPC=_"But I have no choice. I do not want to be a soldier again."
@@ -73,7 +73,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=4  Text=_" You were a soldier before? "
+Nr=4  Text=_"You were a soldier before? "
 NPC=_"Yes. I would rather not talk about it."
 LuaCode={
     hide(4)
@@ -81,7 +81,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=5  Text=_" Good. Start talking. Now."
+Nr=5  Text=_"Good. Start talking. Now."
 NPC=_"Those are pretty painful and distant memories."
 NPC=_"After the Great Assault, I joined the Red Guard. They needed help and were looking for volunteers."
 NPC=_"I served there for a short while, and they even let me use an exterminator. But then after a failed mission, I resigned and never wore a uniform again."
@@ -91,7 +91,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=6  Text=_" You mentioned an exterminator. What is it?"
+Nr=6  Text=_"You mentioned an exterminator. What is it?"
 NPC=_"It is the best weapon that the Red Guard has against the bots."
 NPC=_"A direct hit from one of those guns is enough to change most bots into scrap metal."
 NPC=_"Many of the great victories of the Red Guard are thanks to the exterminator."
@@ -101,7 +101,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=7  Text=_" A failed mission?"
+Nr=7  Text=_"A failed mission?"
 NPC=_"There were six of us. Me, Wilber, Anderson and three others. I do not remember the names anymore. We were team number nine."
 NPC=_"It was a routine scout mission. We saw an interesting building which was not there before, and decided to take a look."
 NPC=_"It was a terrible fortress, many stories high. It had guns everywhere. When we got close the shooting started."
@@ -114,7 +114,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=8  Text=_" I said, I want to know about your life as a soldier."
+Nr=8  Text=_"I said, I want to know about your life as a soldier."
 NPC=_"And I said that I do not want to talk about it. It hurts too much. Please stop asking about it and leave me alone."
 LuaCode={
     hide(8, 10)
@@ -122,7 +122,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=9  Text=_" You don't understand. I wasn't asking. Now, tell me about your life as a soldier, or I will tell the guards you are slacking off."
+Nr=9  Text=_"You don't understand. I wasn't asking. Now, tell me about your life as a soldier, or I will tell the guards you are slacking off."
 NPC=_"No! Please... I will do anything, just do not call the Red Guard! They do not like people who left the service. They do not like me. "
 NPC=_"I will tell you everything."
 LuaCode={
@@ -132,7 +132,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=10  Text=_" I have some bad memories too. I know how hard it can be to talk about them. Keep your stories to yourself."
+Nr=10  Text=_"I have some bad memories too. I know how hard it can be to talk about them. Keep your stories to yourself."
 NPC=_"Yes. And now I would like to go to sleep. Good night Linarian."
 LuaCode={
     hide(8, 10)
@@ -150,14 +150,14 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-Nr=98  Text=_" I'll be going then."
+Nr=98  Text=_"I'll be going then."
 NPC=_". . ."
 LuaCode={
     end_dialog()
 }
 ----------------------------------------------------------------------
 
-Nr=99  Text=_" I'll be going then."
+Nr=99  Text=_"I'll be going then."
 NPC=_"Good. I need sleep."
 LuaCode={
     end_dialog()

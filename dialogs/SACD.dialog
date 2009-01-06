@@ -34,7 +34,7 @@ FirstTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=0  Text=_" Login : admin  Password : *******"
+Nr=0  Text=_"Login : admin  Password : *******"
 NPC=_"Last login from /dev/ttyS0 on Sun, 23 mar 2057. admin@sadefence: ~ #"
 LuaCode={
     if (has_quest("SADD's power supply")) then open_diary_entry(10, 1) else end
@@ -52,7 +52,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-Nr=1  Text=_" /usr/bin/guns --disable"
+Nr=1  Text=_"/usr/bin/guns --disable"
 NPC=_"Disabling guns..."
 NPC=_"Connecting to peripheral controller..."
 NPC=_"Guns disabled."
@@ -65,7 +65,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=2  Text=_" /usr/bin/guns --enable"
+Nr=2  Text=_"/usr/bin/guns --enable"
 NPC=_"Enabling guns..."
 NPC=_"Connecting to peripheral controller..."
 NPC=_"Guns enabled."
@@ -78,7 +78,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=3  Text=_" /usr/bin/hermodoors --open"
+Nr=3  Text=_"/usr/bin/hermodoors --open"
 NPC=_"Opening doors..."
 NPC=_"Connecting to peripheral controller..."
 NPC=_"Please enter unlock security password:"
@@ -87,7 +87,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=4  Text=_" ./hcf.py"
+Nr=4  Text=_"./hcf.py"
 NPC=_"Executing: Halt and Catch Fire."
 NPC=_"Cooling subsystems disabled."
 NPC=_"Warning! Spontaneous oxidization witH emis$ion of light aND heAt detecteddd in THE#main| procesIng unit,"
@@ -98,14 +98,14 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=5  Text=_" CTRL+C"
+Nr=5  Text=_"CTRL+C"
 NPC=_"An error occured while opening doors."
 LuaCode={
     hide(5)
 }
 ----------------------------------------------------------------------
 
-Nr=99  Text=_" logout"
+Nr=99  Text=_"logout"
 LuaCode={
     end_dialog()
 }

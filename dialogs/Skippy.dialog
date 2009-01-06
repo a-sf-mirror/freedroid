@@ -35,7 +35,7 @@ FirstTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=0  Text=_" Hi! I'm new here."
+Nr=0  Text=_"Hi! I'm new here."
 NPC=_"Great! A newcomer! Welcome! Welcome! I'm Skippy, and I'm your new best friend!"
 NPC=_"And as a special favour I'll sell you a mapping device for half price!"
 NPC=_"What a GREAT offer! You're so lucky!"
@@ -45,14 +45,14 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=1  Text=_" Show me some of those map-making devices."
+Nr=1  Text=_"Show me some of those map-making devices."
 NPC=_"Sure! I've got one that will perfectly fit your head."
 LuaCode={
     trade_with("Skippy")
 }
 ----------------------------------------------------------------------
 
-Nr=2  Text=_" How do I activate such a map-making device?"
+Nr=2  Text=_"How do I activate such a map-making device?"
 NPC=_"Oh, that's so simple. No need to activate anything at all."
 NPC=_"Just put that thing on your head, and the nanotechnological bots will enter your body."
 NPC=_"They'll merge with your eyes and transmit data to your brain using the optical nerves. Nice, eh?"
@@ -64,7 +64,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=3  Text=_" You said you make those things yourself? How do you do that?"
+Nr=3  Text=_"You said you make those things yourself? How do you do that?"
 NPC=_"Oh, I've always been a geek. And I got blueprints from before the Great Assault."
 NPC=_"You can't order anything from a catalogue anymore."
 NPC=_"The only source of these gizmos is here. It's me!"
@@ -73,7 +73,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=4  Text=_" Nanotechnology? Isn't that dangerous?"
+Nr=4  Text=_"Nanotechnology? Isn't that dangerous?"
 NPC=_"No way, man, I guarantee it. Don't believe anything you might have heard."
 NPC=_"This is a perfectly safe and tried technology. No risk at all! Really!"
 NPC=_"There is no risk of your head being eaten by a nanotechnological nightmare, or anything funny like that."
@@ -84,7 +84,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=5  Text=_" I don't trust you."
+Nr=5  Text=_"I don't trust you."
 NPC=_"WHAT? But I'm your best friend! You must trust me!"
 LuaCode={
     hide(5)
@@ -92,7 +92,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=6  Text=_" I still do not trust you. You are selling junk to people."
+Nr=6  Text=_"I still do not trust you. You are selling junk to people."
 NPC=_"WHAT? Fine, you can forget about my great deals now! I don't want to trade with you anymore!"
 NPC=_"I'm no longer your best friend. Go away, you dirty hoser!"
 LuaCode={
@@ -102,7 +102,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=20  Text=_" Why are you so friendly?"
+Nr=20  Text=_"Why are you so friendly?"
 NPC=_"Because you are my best friend!"
 NPC=_"I always take good care of my special buddies!"
 LuaCode={
@@ -111,7 +111,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=21  Text=_" You are friendly only to sell me your stuff, aren't you?"
+Nr=21  Text=_"You are friendly only to sell me your stuff, aren't you?"
 NPC=_"No, never! I would never be so shallow!"
 NPC=_"I am friendly because I like you."
 LuaCode={
@@ -137,14 +137,14 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=98  Text=_" See you later."
+Nr=98  Text=_"See you later."
 NPC=_"Don't come back. I hate you."
 LuaCode={
     end_dialog()
 }
 ----------------------------------------------------------------------
 
-Nr=99  Text=_" See you later."
+Nr=99  Text=_"See you later."
 NPC=_"Yes, we'll meet again, my friend, and I'll have other great deals for you."
 LuaCode={
     end_dialog()

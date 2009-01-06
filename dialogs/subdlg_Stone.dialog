@@ -46,7 +46,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-Nr=1  Text=_" Yes, its me."
+Nr=1  Text=_"Yes, its me."
 NPC=_"I thought so. My grandfather used to tell me stories about you. He said you would come here in a time of despair."
 NPC=_"And here you are."
 NPC=_"I hope your arrival changes the tide of this war..."
@@ -60,7 +60,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=2  Text=_" It's not important who am I."
+Nr=2  Text=_"It's not important who am I."
 NPC=_"If you want to remain a stranger, I will respect your wishes."
 NPC=_"So be it."
 LuaCode={
@@ -69,7 +69,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=3  Text=_" Ha ha ha, You fell for it! You get nothing from me! Hahahahah!"
+Nr=3  Text=_"Ha ha ha, You fell for it! You get nothing from me! Hahahahah!"
 NPC=_"You... monster..."
 NPC=_"No one makes fun of Lily Stone's family store!"
 NPC=_"Say your prayers, you oversized duck!!!"

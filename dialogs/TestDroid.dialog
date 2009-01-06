@@ -43,7 +43,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-Nr=99  Text=_" logout"
+Nr=99  Text=_"logout"
 LuaCode={
     end_dialog()
 }

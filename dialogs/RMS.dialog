@@ -35,7 +35,7 @@ FirstTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=0  Text=_" Hi! I'm new here. "
+Nr=0  Text=_"Hi! I'm new here. "
 NPC=_"Welcome, welcome! I'm Richard. I'm the computer guy around here."
 NPC=_"I mostly work with this huge computer cluster here, although I also program the 614 bots in my spare time."
 LuaCode={
@@ -44,7 +44,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=1  Text=_" A computer cluster? What's that?"
+Nr=1  Text=_"A computer cluster? What's that?"
 NPC=_"A cluster is a group of computers, connected in a way that helps them collaborate in solving problems."
 NPC=_"As they say, 'two heads are better than one'. And we have a lot of heads here."
 NPC=_"This is why I call this cluster 'Hydra'. A lot of heads indeed."
@@ -62,7 +62,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-Nr=6  Text=_" I have a data cube with some information. Can you tell me something more about it?"
+Nr=6  Text=_"I have a data cube with some information. Can you tell me something more about it?"
 NPC=_"Interesting. Let me see this thing. Hmm... Yes, there is quite a lot of stuff in there. Maybe we could use Hydra to evaluate the data."
 NPC=_"Hey, what do we have here? The data is already prepared for processing by a cluster just like ours. Wow! That's excellent!"
 NPC=_"I'll feed it into Hydra right away. Expect the results in a short while. Hydra has never let me down so far."
@@ -75,7 +75,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=9  Text=_" Hey, did you get something out of that data cube?"
+Nr=9  Text=_"Hey, did you get something out of that data cube?"
 NPC=_"Of course! I told you, Hydra has never failed me! I designed it myself, and I know computers very well. I never make mistakes."
 NPC=_"Seems like the disruptor shield which prevents all our attacks on Hell Fortress can be controlled from somewhere outside or something like that."
 NPC=_"I was busy servicing one of Hydra's nodes, but I sent the full report to Spencer. He will tell you more."
@@ -84,7 +84,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=99  Text=_" See you later."
+Nr=99  Text=_"See you later."
 NPC=_"Take care, Linarian."
 LuaCode={
     end_dialog()

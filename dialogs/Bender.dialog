@@ -35,7 +35,7 @@ FirstTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=0  Text=_" Hello! I'm new here."
+Nr=0  Text=_"Hello! I'm new here."
 NPC=_"Hello. I'm Bender, the dead man of this camp."
 LuaCode={
     hide(0)
@@ -43,7 +43,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=1  Text=_" What's wrong? You look in pretty good shape for a dead man."
+Nr=1  Text=_"What's wrong? You look in pretty good shape for a dead man."
 NPC=_"Yeah. I'm the strongest man within all of the world. That's cause I took ALL of the strength pills."
 NPC=_"But yet I might be dead soon. The doc warned me, but I didn't listen. Damn."
 LuaCode={
@@ -52,7 +52,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=2  Text=_" You took too many strength pills and now you're sick?"
+Nr=2  Text=_"You took too many strength pills and now you're sick?"
 NPC=_"Nah. The strength pills were fine. They made me strong. The doc said so."
 NPC=_"It was the brain enlargement pills. They did me no good, man."
 LuaCode={
@@ -61,7 +61,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=3  Text=_" What did make you so sick?"
+Nr=3  Text=_"What did make you so sick?"
 NPC=_"It was the brain enlargement pills. They did do me no good, man."
 LuaCode={
     hide(2, 3)
@@ -69,7 +69,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=4  Text=_" Brain enlargement pills? Sounds ridiculous!"
+Nr=4  Text=_"Brain enlargement pills? Sounds ridiculous!"
 NPC=_"You know man, I got those offers everybody gets."
 NPC=_"They offer some brain enlargement pills to enhance brain performance."
 NPC=_"'Enlarg3 your brain! Bu.y pi11s! Che4p!!11!!!'"
@@ -81,14 +81,14 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=5  Text=_" But if you aren't dumb, why the brain enlargement pills?"
+Nr=5  Text=_"But if you aren't dumb, why the brain enlargement pills?"
 NPC=_"Because they said I was dumb. So I had to do something about it, eh?"
 LuaCode={
     hide(5)
 }
 ----------------------------------------------------------------------
 
-Nr=6  Text=_" Isn't there some doctor in town who could cure you?"
+Nr=6  Text=_"Isn't there some doctor in town who could cure you?"
 NPC=_"Yeah, the doc could help. But he won't. I've threatened him, but he won't."
 NPC=_"He's so angry cause I didn't listen. He warned me of the brain enlargement pill offers."
 NPC=_"They can cause some awful forms of cancer. But I didn't listen. And now he refuses to help me, man."
@@ -98,7 +98,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=7  Text=_" Maybe I can help you somehow?"
+Nr=7  Text=_"Maybe I can help you somehow?"
 NPC=_"Man, if you could do that, I'd give you everything. I still got some of those strength pills left."
 NPC=_"Also I could vote for you if you seek to join the guard of the town."
 NPC=_"Just get me some cure, and I'll be forever grateful!"
@@ -110,7 +110,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=8  Text=_" I'm sorry, but it looks like there's nothing I could do for you."
+Nr=8  Text=_"I'm sorry, but it looks like there's nothing I could do for you."
 NPC=_"Of course not. You're not a doctor. Only the doctor has the right medicine."
 NPC=_"But this rat would rather let me die!"
 NPC=_"I'll rip his guts out as soon as I get my hands on him, man."
@@ -119,7 +119,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=9  Text=_" I've got your medicine. With best wishes from the doctor."
+Nr=9  Text=_"I've got your medicine. With best wishes from the doctor."
 NPC=_"Wow, you really did it! I guess you beat the hell out of him."
 NPC=_"He wouldn't help me even after I pounded him a bit. A big bit."
 NPC=_"Man, you are the greatest hero!"
@@ -135,7 +135,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=10  Text=_" Maybe taking the brain enlargement pills really was stupid."
+Nr=10  Text=_"Maybe taking the brain enlargement pills really was stupid."
 NPC=_"WHAT? Did you just say I'm stupid?"
 NPC=_"Don't say it, man."
 NPC=_"I can kill you so much, that no one will recognize you!"
@@ -145,7 +145,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=11  Text=_" Where can I find this doctor?"
+Nr=11  Text=_"Where can I find this doctor?"
 NPC=_"He's right inside this building. I'm waiting here for him, man."
 NPC=_"When he comes out, maybe I can pound him some more. Maybe then he'll help me at last!"
 NPC=_"Yes, he'll get a good beating. That will make him reconsider! That rat!"
@@ -154,7 +154,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=12  Text=_" About that medicine that you need..."
+Nr=12  Text=_"About that medicine that you need..."
 NPC=_"What have you got?"
 NPC=_"What, you have nothing?"
 NPC=_"Man, what are you doing here? Get the medicine! I need it now!"
@@ -163,7 +163,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=13  Text=_" How are you doing?"
+Nr=13  Text=_"How are you doing?"
 NPC=_"Much better. I'm cured. Thanks again man! I'll vote for you if you want into the city guard! You're a good guy, man!"
 
 ----------------------------------------------------------------------
@@ -193,7 +193,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=50  Text=_" Yeah, it was a totally idiotic idea to take those pills."
+Nr=50  Text=_"Yeah, it was a totally idiotic idea to take those pills."
 NPC=_"What? I'm not an idiot! Understood?"
 NPC=_"No one says I'm stupid! I'm NOT STUPID!"
 NPC=_"I'LL BEAT YOU TO SPLINTERS!"
@@ -203,7 +203,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=99  Text=_" See you later."
+Nr=99  Text=_"See you later."
 NPC=_"Later, man!"
 LuaCode={
     end_dialog()

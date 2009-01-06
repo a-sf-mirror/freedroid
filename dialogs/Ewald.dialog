@@ -35,7 +35,7 @@ FirstTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=0  Text=_" Hi. You look really happy."
+Nr=0  Text=_"Hi. You look really happy."
 NPC=_"Hey! I'm Ewald. I'm a bartender."
 NPC=_"I used to do a lot of drugs, and I destroyed my brain."
 NPC=_"I'm not too smart now, but I'm very happy all the time!"
@@ -46,7 +46,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=1  Text=_" How is your business doing?"
+Nr=1  Text=_"How is your business doing?"
 NPC=_"Nah, No darn good at all."
 NPC=_"The bots ruined it for me. Now the supplies are very low and I had to make the prices high."
 NPC=_"No one wants to pay 499 triangles for bottom shelf swill that even Bender would not drink..."
@@ -57,14 +57,14 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=2  Text=_" Are you selling something other than drinks?"
+Nr=2  Text=_"Are you selling something other than drinks?"
 NPC=_"Yeah, I have some junk here... Want to see?"
 LuaCode={
     trade_with("Ewald")
 }
 ----------------------------------------------------------------------
 
-Nr=3  Text=_" I could use a drink. What is there to be had?"
+Nr=3  Text=_"I could use a drink. What is there to be had?"
 NPC=_"Well... We are a bit short on supplies right now... Erm... AH! I know!"
 NPC=_"I have WATER!"
 LuaCode={
@@ -73,7 +73,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=4  Text=_" I want double water on the rocks. Stirred, not shaken."
+Nr=4  Text=_"I want double water on the rocks. Stirred, not shaken."
 NPC=_"Here you go. That one is on the house. And if the water is not enough, just ask me for more."
 LuaCode={
     hide(4, 5, 6)
@@ -81,7 +81,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=5  Text=_" Long Island iced water please."
+Nr=5  Text=_"Long Island iced water please."
 NPC=_"Here you go."
 LuaCode={
     hide(4, 5, 6)
@@ -89,7 +89,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=6  Text=_" I want something cheap... Give me some fortified water."
+Nr=6  Text=_"I want something cheap... Give me some fortified water."
 NPC=_"Eh... Sure, as you wish. Here you go."
 LuaCode={
     hide(4, 5, 6)
@@ -97,7 +97,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=7  Text=_" Ugh... Ahh... I like it. Give me some more of that."
+Nr=7  Text=_"Ugh... Ahh... I like it. Give me some more of that."
 NPC=_"Uh... Sure..."
 LuaCode={
     hide(7)
@@ -105,7 +105,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=8  Text=_" Ahh... Fresh water! Give me some more of that."
+Nr=8  Text=_"Ahh... Fresh water! Give me some more of that."
 NPC=_"Yeah, I thought you would like it. Here is more."
 LuaCode={
     hide(8)
@@ -113,7 +113,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=9  Text=_" Hmm... Lots of ice. Give me one more double water, but now without any ice."
+Nr=9  Text=_"Hmm... Lots of ice. Give me one more double water, but now without any ice."
 NPC=_"One double water coming up."
 LuaCode={
     hide(9)
@@ -121,7 +121,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=10  Text=_" MORE! I want more water!"
+Nr=10  Text=_"MORE! I want more water!"
 NPC=_"Erm... Ok... Here, have some of my special, water colada."
 LuaCode={
     hide(10)
@@ -129,7 +129,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=11  Text=_" I am really thirsty! I want water."
+Nr=11  Text=_"I am really thirsty! I want water."
 NPC=_"Well, you drank all my water, so you cannot have any more. There is none left."
 NPC=_"I heard Linarians can drink a lot of water, but seven liters is a lot."
 LuaCode={
@@ -138,7 +138,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=12  Text=_" MORE! MORE! MORE! I WANT MORE WATER. NOW!"
+Nr=12  Text=_"MORE! MORE! MORE! I WANT MORE WATER. NOW!"
 NPC=_"Eh... I think you had enough... Maybe you should just go for a walk for now?"
 NPC=_"You have had everything that I had."
 LuaCode={
@@ -146,7 +146,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=13  Text=_" Any idea where I can find some entertainment here?"
+Nr=13  Text=_"Any idea where I can find some entertainment here?"
 NPC=_"Well... Erm... No."
 NPC=_"What the bots did not smash, the Red Guard taxed."
 NPC=_"Fun is kinda dead right now."
@@ -157,7 +157,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=99  Text=_" See you later."
+Nr=99  Text=_"See you later."
 NPC=_"Goodbye and remember: My bar is always open."
 LuaCode={
     end_dialog()

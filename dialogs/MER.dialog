@@ -35,7 +35,7 @@ FirstTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=0  Text=_" Login : admin  Password : *******"
+Nr=0  Text=_"Login : admin  Password : *******"
 NPC=_"Last login from /dev/ttyS0 on Sun, 23 mar 2057. admin@shielddefense: ~ #"
 LuaCode={
     if (has_cookie("MER_Password")) then next(3) else next(4) end
@@ -46,7 +46,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-Nr=1  Text=_" passwd"
+Nr=1  Text=_"passwd"
 NPC=_" Changing password for admin. Enter new password: "
 NPC=_" Enter new password again: "
 NPC=_" Password successfully changed."
@@ -73,7 +73,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=7  Text=_" shieldmgr --disable --force"
+Nr=7  Text=_"shieldmgr --disable --force"
 NPC=_" Disabling disruptor shield... "
 NPC=_" Shield disabled."
 NPC=_" WARNING: somebody else is using this computer. "
@@ -81,7 +81,7 @@ NPC=_" Disruptor shield is active."
 
 ----------------------------------------------------------------------
 
-Nr=8  Text=_" shieldmgr --disable --force"
+Nr=8  Text=_"shieldmgr --disable --force"
 NPC=_" Disabling disruptor shield... "
 NPC=_" Shield disabled."
 LuaCode={
@@ -90,7 +90,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=99  Text=_" logout"
+Nr=99  Text=_"logout"
 LuaCode={
     end_dialog()
 }

@@ -35,7 +35,7 @@ FirstTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=0  Text=_" Um... Hello?"
+Nr=0  Text=_"Um... Hello?"
 NPC=_"AH! A Visitor! Come in! Come in!"
 LuaCode={
     next(1)
@@ -44,13 +44,13 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-Nr=1  Text=_" I think I must go now. Right now. See you later."
+Nr=1  Text=_"I think I must go now. Right now. See you later."
 NPC=_"No, don't go. I will not let you go before we talk. Important things."
 NPC=_"I can help you understand computers... Greater than ever before."
 
 ----------------------------------------------------------------------
 
-Nr=20  Text=_" Who are you?"
+Nr=20  Text=_"Who are you?"
 NPC=_"I? Sorenson is a great computer person."
 NPC=_"Knows the deep codes. Walks the paths."
 NPC=_"Sees the light of all chips. Knows how to use every keyboard."
@@ -60,7 +60,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=21  Text=_" Erm..."
+Nr=21  Text=_"Erm..."
 NPC=_"Sees the bit. Knows the bytes. Explores the great networks."
 NPC=_"The best friend of the clean and pure code."
 NPC=_"The great light on the night sky of the hollow web of computer power."
@@ -69,7 +69,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=22  Text=_" Yes, I get the idea..."
+Nr=22  Text=_"Yes, I get the idea..."
 NPC=_"Seeker of clean languages. The great knower of obscure secrets."
 NPC=_"The one who speaks to hard drives. The best --"
 LuaCode={
@@ -77,7 +77,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=23  Text=_" I KNOW! I KNOW!"
+Nr=23  Text=_"I KNOW! I KNOW!"
 NPC=_"Oh."
 NPC=_"Sorenson did not tell you most yet."
 NPC=_"She did not tell you she is the great controler of light."
@@ -87,7 +87,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=24  Text=_" STOP! STOP! I CANNOT TAKE THIS ANYMORE! MY HEAD HURTS!"
+Nr=24  Text=_"STOP! STOP! I CANNOT TAKE THIS ANYMORE! MY HEAD HURTS!"
 NPC=_"Apology is being extended by me. Sorenson overdid it."
 NPC=_"Sorenson the coder greets you."
 LuaCode={
@@ -95,7 +95,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=30  Text=_" Why are you like this? What happened to you?"
+Nr=30  Text=_"Why are you like this? What happened to you?"
 NPC=_"Was learning COBOL. Pain. Torture. Horrible screaming."
 NPC=_"Sorenson ask for help. Many days and nights."
 NPC=_"Light arrived. Light offered help. Sorenson changed."
@@ -106,7 +106,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=31  Text=_" What is this COBOL?"
+Nr=31  Text=_"What is this COBOL?"
 NPC=_"COBOL is the mind-crippler."
 NPC=_"Don't use it. Forget the cursed name. COBOL is pain. COBOL is hate."
 LuaCode={
@@ -114,7 +114,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=40  Text=_" I see you have a huge sourcecode book collection. Mind if I buy some from you?"
+Nr=40  Text=_"I see you have a huge sourcecode book collection. Mind if I buy some from you?"
 NPC=_"Of course not. Trade is good."
 LuaCode={
     trade_with("Sorenson")
@@ -123,14 +123,14 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=41  Text=_" Can I take a look at your books again?"
+Nr=41  Text=_"Can I take a look at your books again?"
 NPC=_"Yes. Sure. Of course."
 LuaCode={
     trade_with("Sorenson")
 }
 ----------------------------------------------------------------------
 
-Nr=50  Text=_" You got me curious. How can you help me understand computers better?"
+Nr=50  Text=_"You got me curious. How can you help me understand computers better?"
 NPC=_"Simplicity! Sign this contract. No need to read it."
 NPC=_"You trust Sorenson, right?"
 LuaCode={
@@ -139,7 +139,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=99  Text=_" I really must be going now. Goodbye."
+Nr=99  Text=_"I really must be going now. Goodbye."
 NPC=_"Please come back later, Linarian. We must talk again."
 LuaCode={
     end_dialog()

@@ -44,7 +44,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-Nr=1  Text=_" Give me the novice arena."
+Nr=1  Text=_"Give me the novice arena."
 LuaCode={
     if (has_quest("Novice Arena")) then
        if (done_quest("Novice Arena")) then next(6) else next(3) end
@@ -89,7 +89,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=7  Text=_" Give me the master arena."
+Nr=7  Text=_"Give me the master arena."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
     if (done_quest("Novice Arena")) then

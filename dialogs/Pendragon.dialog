@@ -35,7 +35,7 @@ FirstTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=0  Text=_" Hi! I'm new here."
+Nr=0  Text=_"Hi! I'm new here."
 NPC=_"You don't say. I'm not living here either. I'm just on vacation."
 NPC=_"Normally I'm a fighter. But now I try to relax, chill, take it easy and have a lot of fun."
 NPC=_"And in case you couldn't tell, that was sarcasm."
@@ -45,7 +45,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=1  Text=_" Could you teach me how to fight?"
+Nr=1  Text=_"Could you teach me how to fight?"
 LuaCode={
     if (has_cookie("beat_up_pendragon")) then 
 	next(2) 
@@ -72,7 +72,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=99  Text=_" See you later."
+Nr=99  Text=_"See you later."
 NPC=_"Have courage."
 LuaCode={
     end_dialog()

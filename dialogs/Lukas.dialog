@@ -35,7 +35,7 @@ FirstTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=0  Text=_" Hi! I'm new here."
+Nr=0  Text=_"Hi! I'm new here."
 NPC=_"A newcomer! Great! We can always use more people. Welcome to the Red Guard! I'm Lukas. I'm in charge of our little armory here."
 LuaCode={
     hide(0)
@@ -43,7 +43,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=1  Text=_" Spencer said, you'd be able to provide me with better armor and equipment."
+Nr=1  Text=_"Spencer said, you'd be able to provide me with better armor and equipment."
 NPC=_"Of course. As a member of our Guard, you're entitled to wear one of our suits of armor. I can adjust it to fit any measurements, even yours."
 NPC=_"There are two kinds or armor, a heavy Red Guard robe and a light version of the same thing."
 NPC=_"Now, what will it be?"
@@ -52,14 +52,14 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=2  Text=_" What do you do all day here at the armory?"
+Nr=2  Text=_"What do you do all day here at the armory?"
 NPC=_"Oh, there's always something to do. Don't worry. I'm pretty occupied keeping the place in order."
 LuaCode={
     hide(2)
 }
 ----------------------------------------------------------------------
 
-Nr=99  Text=_" See you later! "
+Nr=99  Text=_"See you later! "
 LuaCode={
     end_dialog()
 }

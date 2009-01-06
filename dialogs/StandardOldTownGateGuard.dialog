@@ -35,7 +35,7 @@ FirstTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=0  Text=_" Hi! I'm new here."
+Nr=0  Text=_"Hi! I'm new here."
 NPC=_"Ah, a newcomer. I gather you were treated rather harshly by my friend at the gate? My apologies, he lost his little sister in the Great Assault. He never got over it."
 NPC=_"So, stranger, welcome here. You might want to talk to Chandra or to Spencer, they can tell you a lot about our current situation."
 NPC=_"The city is presently ruled by the Red Guard. We are the police and the soldiers here. "
@@ -47,7 +47,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=1  Text=_" What are you doing here?"
+Nr=1  Text=_"What are you doing here?"
 NPC=_"I'm on guard duty right now."
 NPC=_"There have been no attacks for a while now. It is too quiet, I think something big is about to happen."
 LuaCode={
@@ -55,7 +55,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=99  Text=_" I'll be going, then."
+Nr=99  Text=_"I'll be going, then."
 NPC=_"Goodbye."
 LuaCode={
     end_dialog()

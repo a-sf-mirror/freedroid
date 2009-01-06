@@ -35,7 +35,7 @@ FirstTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=0  Text=_" Hi! I'm new here."
+Nr=0  Text=_"Hi! I'm new here."
 NPC=_"Welcome to this camp! I'm Ms. Stone. I run this shop."
 LuaCode={
     hide(0)
@@ -43,7 +43,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=1  Text=_" I would like to trade with you."
+Nr=1  Text=_"I would like to trade with you."
 NPC=_"Good! Here is the selection of items I have for sale."
 LuaCode={
     if (has_cookie("Stone_no_guns")) then hide(2) else show(2) end
@@ -52,7 +52,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=2  Text=_" Swords, clubs and maces? What is this? I want guns!"
+Nr=2  Text=_"Swords, clubs and maces? What is this? I want guns!"
 NPC=_"Sorry, this is all we have for now. The Red Guard took away all of our poppers."
 NPC=_"For our own good. Of course."
 LuaCode={
@@ -61,7 +61,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=3  Text=_" What can you tell me about the guards here?"
+Nr=3  Text=_"What can you tell me about the guards here?"
 NPC=_"Ah, the Red Guard. "
 NPC=_"Stranger, best if you don't ask such questions."
 NPC=_"They keep us alive and safe from the bots, but..."
@@ -71,7 +71,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=4  Text=_" But...?"
+Nr=4  Text=_"But...?"
 NPC=_"They run the city with strict laws and demand total obedience."
 NPC=_"We all need to obey their rules. We need to work hard or they hurt us."
 NPC=_"I guess I should not complain. The bots are far worse than the guards can be, but... "
@@ -83,7 +83,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=8  Text=_" If things are so bad right now, why don't you leave?"
+Nr=8  Text=_"If things are so bad right now, why don't you leave?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
     next(9)
@@ -91,7 +91,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=9  Text=_" If things are so bad right now, why --"
+Nr=9  Text=_"If things are so bad right now, why --"
 NPC=_"I don't want to hear this jabberwocky. "
 NPC=_"A hint, Linarian, we don't have much, but we're alive and we'd rather stay that way."
 Su*btitle=_"A hint, Linarian: We don't have much, but we're alive and we'd rather stay that way."
@@ -101,7 +101,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=10  Text=_" How is your business going?"
+Nr=10  Text=_"How is your business going?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
     if (has_cookie("Helped_Stone")) then next(12) else next(11) end
@@ -109,7 +109,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=11  Text=_" How is your business going?"
+Nr=11  Text=_"How is your business going?"
 NPC=_"I'll be finished in about a week."
 NPC=_"The Stone family always bought cheap and sold at a low profit. The times have changed, but not my prices."
 NPC=_"The new taxes, the worldwide economic collapse and other factors are slowly murdering the family store."
@@ -119,7 +119,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=12  Text=_" How is the business going?"
+Nr=12  Text=_"How is the business going?"
 NPC=_"Thanks to you I have a chance now."
 NPC=_"Ha! It's time to show the world that Lily Stone is not going down without putting up a damn good fight."
 LuaCode={
@@ -127,7 +127,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=13  Text=_" Can I help you somehow Ms. Stone?"
+Nr=13  Text=_"Can I help you somehow Ms. Stone?"
 NPC=_"No, there's nothing that can be done anymore. I don't have enough money to lift the shop from the downward spiral."
 NPC=_"I'd need thousands to just survive the month."
 NPC=_"The shop is dying, and there's nothing either of us can do about it."
@@ -150,7 +150,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
  
 ----------------------------------------------------------------------
 
-Nr=15  Text=_" Maybe there is still hope, Ms. Stone. How much exactly do you need?"
+Nr=15  Text=_"Maybe there is still hope, Ms. Stone. How much exactly do you need?"
 NPC=_"I couldn't get myself to look at my finance logs for a while now. I guess about two thousand triangles."
 LuaCode={
     add_cookie("Helping_Stone")
@@ -159,7 +159,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=16  Text=_" A pity that nothing can be done about your store."
+Nr=16  Text=_"A pity that nothing can be done about your store."
 NPC=_"Yes. A tradition of six generations will die with this shop..."
 NPC=_"I guess it just had to happen one day..."
 LuaCode={
@@ -167,7 +167,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=23  Text=_" I have the money you need Ms. Stone. You can have it."
+Nr=23  Text=_"I have the money you need Ms. Stone. You can have it."
 NPC=_"Is... Is this a joke? So much money? And you just give it to me?"
 NPC=_"Thank you! Thank you! Thank you! Savior!"
 NPC=_"But this isn't fair with you. The Stones are a family of fair merchants and I intend to uphold that tradition."
@@ -182,7 +182,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=99  Text=_" See you later."
+Nr=99  Text=_"See you later."
 NPC=_"NO_SUBTITLE_AND_NO_WAITING_EITHER"
 LuaCode={
     end_dialog()

@@ -35,7 +35,7 @@ FirstTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=0  Text=_" Hi! I'm new here."
+Nr=0  Text=_"Hi! I'm new here."
 NPC=_"Hello. I'm Tybalt. I'm guarding the guardhouse gate. Only authorized personnel are permitted."
 LuaCode={
     hide(0)
@@ -43,14 +43,14 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=1  Text=_" Why is the guardhouse locked most of the time?"
+Nr=1  Text=_"Why is the guardhouse locked most of the time?"
 NPC=_"It's locked so no one can sneak inside while I'm not looking. That's why."
 LuaCode={
     hide(1)
 }
 ----------------------------------------------------------------------
 
-Nr=2  Text=_" I want to get into the guardhouse."
+Nr=2  Text=_"I want to get into the guardhouse."
 LuaCode={
     if (has_cookie("tux_has_joined_guard")) then next(3) else next(4) end
     hide(2)
@@ -75,7 +75,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=50  Text=_" I have a lot of money for you."
+Nr=50  Text=_"I have a lot of money for you."
 NPC=_"Fascinating. Can I have a hundred please."
 LuaCode={
     if(get_gold() < 100) then show(54) else	show(55) end
@@ -83,14 +83,14 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=54  Text=_" Erm... I don't have that much."
+Nr=54  Text=_"Erm... I don't have that much."
 NPC=_"Well, too bad."
 LuaCode={
     hide(54)
 }
 ----------------------------------------------------------------------
 
-Nr=55  Text=_" Here you go."
+Nr=55  Text=_"Here you go."
 NPC=_"Thank you."
 LuaCode={
     add_cookie("tybalt_bribe")
@@ -99,7 +99,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=56  Text=_" Ok, now please open the door for me."
+Nr=56  Text=_"Ok, now please open the door for me."
 NPC=_"What door?"
 LuaCode={
     hide(56)
@@ -107,7 +107,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=57  Text=_" The door to the citadel!"
+Nr=57  Text=_"The door to the citadel!"
 NPC=_"But you are not a member of the Red Guard."
 NPC=_"You cannot come in."
 LuaCode={
@@ -116,7 +116,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=58  Text=_" I paid you!"
+Nr=58  Text=_"I paid you!"
 NPC=_"Really? I don't remember that."
 LuaCode={
     hide(58)
@@ -124,14 +124,14 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=59  Text=_" I want my money back."
+Nr=59  Text=_"I want my money back."
 NPC=_"What money?"
 LuaCode={
     hide(59)
 }
 ----------------------------------------------------------------------
 
-Nr=99  Text=_" See you later."
+Nr=99  Text=_"See you later."
 NPC=_"Good riddance."
 LuaCode={
     show(2)

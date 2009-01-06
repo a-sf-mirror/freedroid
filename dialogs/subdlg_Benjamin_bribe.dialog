@@ -48,7 +48,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-Nr=1  Text=_" How many exterminators does the Red Guard have?"
+Nr=1  Text=_"How many exterminators does the Red Guard have?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
     if (get_gold() < 50) then next(3) else next(2) end
@@ -56,7 +56,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=2  Text=_" How many exterminators does the Red Guard have?"
+Nr=2  Text=_"How many exterminators does the Red Guard have?"
 NPC=_"It might come as a surprise to you, but we don't have many. A bit over twenty, last time I checked."
 NPC=_"However, as you can clearly see, this is more than enough to keep all of the damn bots away."
 LuaCode={
@@ -65,7 +65,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=3  Text=_" Well, I am a bit short on cash right now..."
+Nr=3  Text=_"Well, I am a bit short on cash right now..."
 NPC=_"Linarian, I thought we had an agreement. Fifty per infobit. My silence can be only broken with currency, so if you want to know, you have to pay."
 NPC=_"This conversation is now over."
 LuaCode={
@@ -74,14 +74,14 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=4  Text=_" That is not a lot. Why there are so few of them right now?"
+Nr=4  Text=_"That is not a lot. Why there are so few of them right now?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
     if (get_gold() < 50) then next(3) else next(5) end
 }
 ----------------------------------------------------------------------
 
-Nr=5  Text=_" That is not a lot. Why there are so few of them right now?"
+Nr=5  Text=_"That is not a lot. Why there are so few of them right now?"
 NPC=_"All of them are a very lucky find. "
 NPC=_"We found a crashed army truck on the Terminal Field. It had six crates inside it, each containing five exterminators."
 NPC=_"We tried, but we could not replicate the technology, only bullets."
@@ -92,7 +92,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=6  Text=_" What is the exterminator ammunition made from?"
+Nr=6  Text=_"What is the exterminator ammunition made from?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
     if (get_gold() < 50) then next(3) else next(8) end
@@ -100,7 +100,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=7  Text=_" Tell me who designed the exterminator."
+Nr=7  Text=_"Tell me who designed the exterminator."
 NPC=_"That answer is on the house. Heh."
 NPC=_"We do not know, Linarian. We have absolutely no clue."
 LuaCode={
@@ -108,7 +108,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=8  Text=_" What is the exterminator ammunition made from?"
+Nr=8  Text=_"What is the exterminator ammunition made from?"
 NPC=_"We use radioactives, whatever type happens to be on hand. Mostly plutonium and uranium, be we are not too picky."
 NPC=_"When we get low on ammo, we send in a chain gang of criminals and lazybums into the mine shaft K-17."
 NPC=_"That place was closed down ages ago because of high radiation levels. It's full of good ores from which we make bullets and which power our nuclear reactors."
@@ -118,7 +118,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=9  Text=_" What was the failed mission?"
+Nr=9  Text=_"What was the failed mission?"
 NPC=_"Ugh. That will cost you triple."
 NPC=_"No. Wait."
 NPC=_"I changed my mind."
@@ -128,7 +128,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=11  Text=_" What makes the exterminator so powerful?"
+Nr=11  Text=_"What makes the exterminator so powerful?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
     if (get_gold() < 50) then next(3) else next(12) end
@@ -136,7 +136,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=12  Text=_" What makes the exterminator so powerful?"
+Nr=12  Text=_"What makes the exterminator so powerful?"
 NPC=_"This is a tricky question. Most of the force comes from the miniature nuclear explosions which happen once the bullet hits something."
 NPC=_"Of course the great velocity of the impact can cause tremendous devastation by itself."
 NPC=_"We never bothered with doing any research on that topic. It works and that is enough for us."
@@ -145,7 +145,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=99  Text=_" That is all I want to know."
+Nr=99  Text=_"That is all I want to know."
 NPC=_"Very well. This conversation never happened."
 LuaCode={
     end_dialog()

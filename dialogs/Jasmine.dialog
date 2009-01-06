@@ -35,7 +35,7 @@ FirstTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=0  Text=_" Hi! I'm new here."
+Nr=0  Text=_"Hi! I'm new here."
 NPC=_"Yes. Hello. What do you want?"
 LuaCode={
     hide(0)
@@ -43,7 +43,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=1  Text=_" Who are you?"
+Nr=1  Text=_"Who are you?"
 NPC=_"People call me Jasmine..."
 NPC=_"That is not my real name, but it will do for now."
 LuaCode={
@@ -52,7 +52,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=2  Text=_" What are you doing in Kevin's place?"
+Nr=2  Text=_"What are you doing in Kevin's place?"
 NPC=_"I live with him, stupid."
 NPC=_"I like him. He... He is very much like me."
 LuaCode={
@@ -60,21 +60,21 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=3  Text=_" How are you?"
+Nr=3  Text=_"How are you?"
 NPC=_"Shitty. Now leave me alone."
 LuaCode={
     hide(3)
 }
 ----------------------------------------------------------------------
 
-Nr=4  Text=_" Why does such a nice lady act so harshly? Cannot we all just get along?"
+Nr=4  Text=_"Why does such a nice lady act so harshly? Cannot we all just get along?"
 NPC=_"No."
 LuaCode={
     hide(4)
 }
 ----------------------------------------------------------------------
 
-Nr=5  Text=_" What are you up to?"
+Nr=5  Text=_"What are you up to?"
 NPC=_"Nothing. Quit asking questions."
 NPC=_"Don't bore me."
 LuaCode={
@@ -82,7 +82,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=8  Text=_" You are the most beautiful human I have ever seen."
+Nr=8  Text=_"You are the most beautiful human I have ever seen."
 NPC=_"And you are at least quarter wrong."
 NPC=_"Now, please get out of my sight."
 LuaCode={
@@ -91,14 +91,14 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=9  Text=_" Will you marry me?"
+Nr=9  Text=_"Will you marry me?"
 NPC=_"Forget it."
 LuaCode={
     hide(9)
 }
 ----------------------------------------------------------------------
 
-Nr=10  Text=_" See you later."
+Nr=10  Text=_"See you later."
 NPC=_"Yeah. Whatever."
 LuaCode={
     add_cookie("jasmine_count1")
@@ -107,7 +107,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=11  Text=_" See you later."
+Nr=11  Text=_"See you later."
 NPC=_"Yeah. Whatever."
 LuaCode={
     add_cookie("jasmine_count2")
@@ -116,7 +116,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=12  Text=_" See you later."
+Nr=12  Text=_"See you later."
 NPC=_"Yeah. Wha -- SIGSEGV."
 NPC=_"Segmentation fault."
 LuaCode={
@@ -125,7 +125,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=13  Text=_" Huh?"
+Nr=13  Text=_"Huh?"
 NPC=_"Traceback printed to stdout."
 NPC=_"Kernel panic in module: Jasmine "
 NPC=_"Buffer overrun in anger.c:1532"

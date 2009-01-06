@@ -46,7 +46,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-Nr=1  Text=_" ./hold_position.sh"
+Nr=1  Text=_"./hold_position.sh"
 NPC=_"Holding position, using script V 1.0.2 (c) gnu.org, 2054 Checking requirements. Power-down movement unit. Done. Status: All movement suppressed."
 LuaCode={
     set_bot_state("fixed")
@@ -55,7 +55,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=2  Text=_" ./follow_me.sh"
+Nr=2  Text=_"./follow_me.sh"
 NPC=_"Initiating tracking sequence. Movement unit enabled. Ready. Trying to keep up with Tux position now. Ok. Following Tux."
 LuaCode={
     set_bot_state("follow_tux")
@@ -64,7 +64,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=3  Text=_" ./move_freely.sh"
+Nr=3  Text=_"./move_freely.sh"
 NPC=_"Movement unit is starting up. Ready. Resuming normal patrol operations. Done. Status: Patrolling."
 LuaCode={
     set_bot_state("free")
@@ -73,7 +73,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=4  Text=_" ./hcf.py"
+Nr=4  Text=_"./hcf.py"
 NPC=_"Executing: Halt and Catch Fire."
 NPC=_"Warning! Cooling subsystems disabled."
 NPC=_"Warning! Spontaneous oxidization witH emis$ion of light aND heAt detecteddd in THE#main| procesIng unit."
@@ -99,7 +99,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=99  Text=_" logout"
+Nr=99  Text=_"logout"
 LuaCode={
     end_dialog()
 }

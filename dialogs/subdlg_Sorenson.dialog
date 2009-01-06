@@ -42,7 +42,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=1  Text=_" Sure. I'll sign it."
+Nr=1  Text=_"Sure. I'll sign it."
 NPC=_"Go0d. H3re is th3 con7ract. S1gn it!"
 LuaCode={
     hide(1)
@@ -50,7 +50,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=2  Text=_" Um... Your voice sounds strange. Is everything fine?"
+Nr=2  Text=_"Um... Your voice sounds strange. Is everything fine?"
 NPC=_"519n 7h3 (0n7r4(7!!!!"
 LuaCode={
     hide(2)
@@ -58,14 +58,14 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=3  Text=_" Please calm down. You must speak clearly and slowly. Please stop breathing smoke like that, it bothers my throat. And what is the deal with the red glowing eyes? You should see a doctor. "
+Nr=3  Text=_"Please calm down. You must speak clearly and slowly. Please stop breathing smoke like that, it bothers my throat. And what is the deal with the red glowing eyes? You should see a doctor. "
 NPC=_"519n 17!!!!"
 LuaCode={
     hide(3)
 }
 ----------------------------------------------------------------------
 
-Nr=20  Text=_" Ok, here go --"
+Nr=20  Text=_"Ok, here go --"
 NPC=_"N0! 1n bl00d!"
 LuaCode={
     hide(20)
@@ -73,14 +73,14 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=30  Text=_" Sure, no problem... Now, how shall I sign this?"
+Nr=30  Text=_"Sure, no problem... Now, how shall I sign this?"
 LuaCode={
     hide(2, 3, 98, 99)
     show(40, 41, 42, ,43, 44, 45, 46)
 }
 ----------------------------------------------------------------------
 
-Nr=40  Text=_" Tux."
+Nr=40  Text=_"Tux."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 NPC=_"Yes! I am free! At last I am free!"
 LuaCode={
@@ -89,7 +89,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=41  Text=_" Tux, the Linarian"
+Nr=41  Text=_"Tux, the Linarian"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 NPC=_"Yes! I am free!"
 LuaCode={
@@ -98,7 +98,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=42  Text=_" I accept the contract, Tux"
+Nr=42  Text=_"I accept the contract, Tux"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 NPC=_"Yes! I am free at last!"
 LuaCode={
@@ -107,7 +107,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=43  Text=_" Elbereth"
+Nr=43  Text=_"Elbereth"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 NPC=_"4444! 17 burn5! 7'm m3171n9! "
 NPC=_"44444444444444444!"
@@ -117,7 +117,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=44  Text=_" Francis"
+Nr=44  Text=_"Francis"
 OptionSample=""
 NPC=_"H4! Y0ur s0ul 15 min3, Francis!"
 NPC=_"Wh47? N07 w0rk1b9?"
@@ -127,7 +127,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=45  Text=_" The great destroyer of evil, the purger of all things foul, the friend of mankind, the third duke of Linarius, esqiure, Doctorate of Computer Sciences, high priest of Kernelius, the ray of light in the darkness, the bender of spoons, His Great Magnificence, Tux."
+Nr=45  Text=_"The great destroyer of evil, the purger of all things foul, the friend of mankind, the third duke of Linarius, esqiure, Doctorate of Computer Sciences, high priest of Kernelius, the ray of light in the darkness, the bender of spoons, His Great Magnificence, Tux."
 OptionSample=""
 NPC=_"Huh?"
 LuaCode={
@@ -136,7 +136,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=46  Text=_" X"
+Nr=46  Text=_"X"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 NPC=_"N0! S7up1d illi73r4t3 p3n9u1n! D13!!"
 LuaCode={
@@ -145,7 +145,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=50  Text=_" I... Don't feel... good... Blood loss... So... Cold..."
+Nr=50  Text=_"I... Don't feel... good... Blood loss... So... Cold..."
 NPC=_"N0! Idi07!"
 LuaCode={
     hide(50)
@@ -153,7 +153,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=60  Text=_" Erm. I have a confession to make. My name is not Francis."
+Nr=60  Text=_"Erm. I have a confession to make. My name is not Francis."
 NPC=_"N0000000000!!!!!!!"
 LuaCode={
     hide(60)
@@ -161,7 +161,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=70  Text=_" Huh? I d0n'7 f33l g00d."
+Nr=70  Text=_"Huh? I d0n'7 f33l g00d."
 NPC=_"Yes, fool! You have freed me! I can finally die! Goodbye idiot!"
 LuaCode={
     hide(70)
@@ -169,7 +169,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=71  Text=_" W417... 1 f331... H0rr1b13..."
+Nr=71  Text=_"W417... 1 f331... H0rr1b13..."
 LuaCode={
     hide(71)
     improve_skill("programming")
@@ -177,7 +177,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=98  Text=_" In blood? Yuck. I am not going to do this, blood is too messy for a binding legal contract. Forget about it."
+Nr=98  Text=_"In blood? Yuck. I am not going to do this, blood is too messy for a binding legal contract. Forget about it."
 NPC=_"N00oo00oo0! T1m3 to d1e, m0rtal foo1!"
 LuaCode={
     hide(98)
@@ -185,7 +185,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=99  Text=_" There is no way I will sign something without reading it. Forget about it."
+Nr=99  Text=_"There is no way I will sign something without reading it. Forget about it."
 NPC=_"N00oo00oo0! T1m3 to d1e, m0rta1 foo1!"
 LuaCode={
     hide(99)

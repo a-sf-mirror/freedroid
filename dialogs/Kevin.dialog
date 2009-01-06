@@ -35,7 +35,7 @@ FirstTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=0  Text=_" Hello... Oh dear... You look awful... Who did this to you? Did they torture you?"
+Nr=0  Text=_"Hello... Oh dear... You look awful... Who did this to you? Did they torture you?"
 NPC=_"Hi. I haven't slept for a few weeks, so I'm just a little bit tired."
 NPC=_"Don't worry about me. I'll be fine."
 NPC=_"I'm Kevin, a computer security expert."
@@ -63,7 +63,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=3  Text=_" What can you teach me about hacking?"
+Nr=3  Text=_"What can you teach me about hacking?"
 LuaCode={
     if (done_quest("And there was light...")) then next(4) else next(1) end
     show(3)
@@ -93,7 +93,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=6  Text=_" I'll see after the energy supply now."
+Nr=6  Text=_"I'll see after the energy supply now."
 NPC=_"That's great. You can't miss it. It's not hard to find. Enter my garden and find the lower station entrance there."
 NPC=_"Best don't bother with the resistance on the first level. You only need to take care of the energy supply. And that's on the SECOND level."
 NPC=_"I hope you have a laser pistol or something like that, the bots there will rip you apart if you try to approach them."
@@ -105,7 +105,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=7  Text=_" I'm sorry, but I don't think there's anything I could do about that energy supply."
+Nr=7  Text=_"I'm sorry, but I don't think there's anything I could do about that energy supply."
 NPC=_"Too bad. Now get out of my sight."
 LuaCode={
     hide(6, 7)
@@ -130,7 +130,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=10  Text=_" How about some reward for securing your energy supply area?"
+Nr=10  Text=_"How about some reward for securing your energy supply area?"
 LuaCode={
     if (has_cookie("kevin_reward1_given")) then next(12) else next(13) end
     hide(10)
@@ -180,7 +180,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=16  Text=_" Maybe I can help somehow to find a suitable cluster."
+Nr=16  Text=_"Maybe I can help somehow to find a suitable cluster."
 LuaCode={
     if (has_quest("A kingdom for a cluster!")) then next(17) else next(15) end
     hide(16)
@@ -196,7 +196,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=18  Text=_" About that project you said you have running..."
+Nr=18  Text=_"About that project you said you have running..."
 LuaCode={
     if (done_quest("A kingdom for a cluster!")) then next(19) else next(14) end
     hide(18)
@@ -212,7 +212,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=20  Text=_" In other words: You are a hacker."
+Nr=20  Text=_"In other words: You are a hacker."
 NPC=_"Eh... I guess you could put it that way, yes."
 LuaCode={
     hide(20)
@@ -220,7 +220,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=25  Text=_" Jasmine just blew up."
+Nr=25  Text=_"Jasmine just blew up."
 NPC=_"Oh. Right."
 NPC=_"Well, thanks for telling me."
 NPC=_"Back to the drawing board, I guess..."
@@ -231,7 +231,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=26  Text=_" I thought you would be more worried about her death."
+Nr=26  Text=_"I thought you would be more worried about her death."
 NPC=_"Why? I have backups from last Friday. No reason to worry at all."
 NPC=_"It will be a while till I get her together again, but she will be fine."
 LuaCode={
@@ -250,7 +250,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-Nr=99  Text=_" I'll be off then."
+Nr=99  Text=_"I'll be off then."
 NPC=_"Be careful. The bots are in a foul mood today."
 NPC=_"Very easy to get killed. Very easy."
 LuaCode={

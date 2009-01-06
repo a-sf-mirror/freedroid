@@ -45,7 +45,7 @@ A*lwaysExecuteThisOptionPriorToDialogStart="yes" With rush tux this is triggered
 
 ----------------------------------------------------------------------
 
-Nr=1  Text=_" Just taking a look around."
+Nr=1  Text=_"Just taking a look around."
 NPC=_"Oh, great. Another curious one."
 NPC=_"About a week ago I let in a stranger who also said he was just taking a look around. I never saw him again."
 NPC=_"On that day all our computers went insane, 20 bags of food rations vanished from our storage and one of our bots was stolen."
@@ -57,7 +57,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=2  Text=_" I'd like to get into town."
+Nr=2  Text=_"I'd like to get into town."
 NPC=_"Funny, exactly the same could be said about all of the crazy bots out there."
 NPC=_"I'll let you in, but be warned: one false move and we all have flightless waterfowl for dinner. I hope I am making myself clear."
 LuaCode={
@@ -66,7 +66,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=3  Text=_" I'm here to assassinate your leader and you won't stop me!"
+Nr=3  Text=_"I'm here to assassinate your leader and you won't stop me!"
 NPC=_"Ok, Linarian! You asked for it!"
 NPC=_"Open fire!"
 LuaCode={
@@ -77,7 +77,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=99  Text=_" I'll be going then."
+Nr=99  Text=_"I'll be going then."
 NPC=_"Mhmmm."
 LuaCode={
     end_dialog()

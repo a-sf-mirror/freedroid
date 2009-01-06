@@ -41,7 +41,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-Nr=1  Text=_" Teach me the basic stuff."
+Nr=1  Text=_"Teach me the basic stuff."
 NPC=_"Are you sure?"
 NPC=_"I only accept students that already have some experience in fighting bots."
 LuaCode={
@@ -50,7 +50,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=2  Text=_" Yes (cost 100 cash, 5 ability points)"
+Nr=2  Text=_"Yes (cost 100 cash, 5 ability points)"
 LuaCode={
     if (get_skill("melee") < 1) then
         if (get_gold() < 100) then next(5) 
@@ -95,7 +95,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=9  Text=_" Teach me how to smash concrete blocks with my bare hands."
+Nr=9  Text=_"Teach me how to smash concrete blocks with my bare hands."
 NPC=_"Oh, Linarian, you amuse me so."
 NPC=_"You are quite an ambitious fellow."
 NPC=_"First learn the basics. Spend a year working on that, and then I'll be able to teach you some advanced tricks."
@@ -105,7 +105,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=10  Text=_" Teach me Ninjitsu."
+Nr=10  Text=_"Teach me Ninjitsu."
 NPC=_"Go away."
 LuaCode={
     hide(10)
@@ -113,7 +113,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=11  Text=_" I want to know the Crazy Double-Fang Wolf-Sunlight I-Like-Tea Death Touch of Major Destruction Flesh-Bursting Attack!"
+Nr=11  Text=_"I want to know the Crazy Double-Fang Wolf-Sunlight I-Like-Tea Death Touch of Major Destruction Flesh-Bursting Attack!"
 NPC=_"Wow."
 NPC=_"You have a very rich imagination. There is no such thing. Get a life."
 LuaCode={
@@ -122,7 +122,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=12  Text=_" I want to know the forbidden skill of furuike ya kawazu tobikomu mizu no oto."
+Nr=12  Text=_"I want to know the forbidden skill of furuike ya kawazu tobikomu mizu no oto."
 NPC=_"This is starting to make me angry. Shut up and go away."
 LuaCode={
     hide(12)
@@ -130,7 +130,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=13  Text=_" Teach me how to flip out and kill people!"
+Nr=13  Text=_"Teach me how to flip out and kill people!"
 NPC=_"*sigh*"
 NPC=_"Very well. Observe very carefully."
 NPC=_"You will see this only once, so make sure to pay attention."
@@ -141,14 +141,14 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=20  Text=_" Ouch! What the hell are you doing?"
+Nr=20  Text=_"Ouch! What the hell are you doing?"
 NPC=_"Lesson number one. Never trust the opponent."
 LuaCode={
     next(21)
 }
 ----------------------------------------------------------------------
 
-Nr=21  Text=_" Just let me get up an -- ouch! Stop it."
+Nr=21  Text=_"Just let me get up an -- ouch! Stop it."
 NPC=_"Lesson number two. The bots have no mercy."
 NPC=_"They won't let you get up if you fall down. They will kill you."
 NPC=_"Now, lesson number -- ugh! That hurt!"
@@ -157,7 +157,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=22  Text=_" Lesson number three. Never underestimate the enemy."
+Nr=22  Text=_"Lesson number three. Never underestimate the enemy."
 NPC=_"Ugh. Yes. You are correct."
 NPC=_"I need to... Lie down for a while... My head hurts..."
 NPC=_"Lesson number four. Never hit your sparring partner with full force."
@@ -169,7 +169,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=99  Text=_" Enough for now."
+Nr=99  Text=_"Enough for now."
 NPC=_"Fine."
 LuaCode={
     end_dialog()

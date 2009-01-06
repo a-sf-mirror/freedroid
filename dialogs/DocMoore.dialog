@@ -35,7 +35,7 @@ FirstTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=0  Text=_" Hello!"
+Nr=0  Text=_"Hello!"
 NPC=_"Hello. I'm Doc Moore. I'm the medic of this town."
 LuaCode={
     hide(0)
@@ -43,21 +43,21 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=1  Text=_" Do you also trade in medical equipment?"
+Nr=1  Text=_"Do you also trade in medical equipment?"
 NPC=_"Sure. Here is what I can offer today."
 LuaCode={
     trade_with("DocMoore")
 }
 ----------------------------------------------------------------------
 
-Nr=2  Text=_" Doc, I took some of those brain enlargement pills..."
+Nr=2  Text=_"Doc, I took some of those brain enlargement pills..."
 LuaCode={
     if (has_cookie("doc_healed_tux")) then next(5) else next(4) end
     hide(2)
 }
 ----------------------------------------------------------------------
 
-Nr=3  Text=_" What can you tell me about strength pills?"
+Nr=3  Text=_"What can you tell me about strength pills?"
 NPC=_"Strength pills are only one variant of a fantastic scientific breakthrough that happened shortly before the Great Assault."
 NPC=_"Three kinds of enhancement pills were developed.  One for strength, one for dexterity and one for programming abilities."
 NPC=_"These pills work on a nanotechnological basis with small machines connecting to your muscle and nerve tissue."
@@ -107,7 +107,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-Nr=10  Text=_" Can you fix me up?"
+Nr=10  Text=_"Can you fix me up?"
 NPC=_"Sure, as the only doctor of this slowly growing community, I'm responsible for everyone's health."
 NPC=_"However, self-inflicted damage might be exempted from this rule in some cases..."
 NPC=_"There, it's done. You're completely fixed. You can go now."
@@ -118,7 +118,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=11  Text=_" What do you mean, self-inflicted damage?"
+Nr=11  Text=_"What do you mean, self-inflicted damage?"
 NPC=_"Now you see that idiotic Bender character on my doorstep?"
 NPC=_"He took these stupid brain enlargement pills. So no problem, he came to me to fix him. But guess what?"
 NPC=_"He took them again against my strict advice. Now he thinks he can drain my antidote supplies? He's wrong."
@@ -128,7 +128,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=12  Text=_" Can you fix me up?"
+Nr=12  Text=_"Can you fix me up?"
 NPC=_"Sure, as the only doctor of this slowly growing community, I'm responsible for everyone's health."
 NPC=_"However, self-inflicted damage might be exempted from this rule in some cases..."
 NPC=_"There, it's done. You're completely fixed. You can go now."
@@ -139,7 +139,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=20  Text=_" Doc... I really want the antidote."
+Nr=20  Text=_"Doc... I really want the antidote."
 NPC=_"No! I am not giving it to you. Forget about it."
 LuaCode={
     hide(20)
@@ -147,7 +147,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=21  Text=_" My patience is running out. Give me the antidote. Now."
+Nr=21  Text=_"My patience is running out. Give me the antidote. Now."
 NPC=_"No! Over my dead body."
 LuaCode={
     hide(21)
@@ -155,7 +155,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=22  Text=_" Your wish is my command."
+Nr=22  Text=_"Your wish is my command."
 NPC=_"Huh? What?"
 LuaCode={
     next(23)
@@ -163,7 +163,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=23  Text=_" Humans... You are so interesting. I always wanted to know how much blood do you exacly have."
+Nr=23  Text=_"Humans... You are so interesting. I always wanted to know how much blood do you exacly have."
 NPC=_"Don't do this. Don't do this."
 LuaCode={
     next(24)
@@ -171,7 +171,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=24  Text=_" Prepare Doc. The experiment begins."
+Nr=24  Text=_"Prepare Doc. The experiment begins."
 NPC=_"Don't do this! DON'T DO THIS!"
 NPC=_"AAAAAAAAAAAA!"
 LuaCode={
@@ -180,7 +180,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=25  Text=_" Ugh. Human blood is disgusting. At least four liters. I feel sick."
+Nr=25  Text=_"Ugh. Human blood is disgusting. At least four liters. I feel sick."
 NPC=_" . . ."
 LuaCode={
     next(26)
@@ -188,7 +188,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=26  Text=_" I guess this means I get to inherit all your stuff. I hope you don't mind if I take everything?"
+Nr=26  Text=_"I guess this means I get to inherit all your stuff. I hope you don't mind if I take everything?"
 NPC=_" . . ."
 LuaCode={
     next(27)
@@ -196,7 +196,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=27  Text=_" Good. I am very glad not to hear a disapproval."
+Nr=27  Text=_"Good. I am very glad not to hear a disapproval."
 NPC=_" . . . "
 LuaCode={
     drop_dead()
@@ -214,14 +214,14 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=30  Text=_" Forget it. Getting the antidote is not worth the effort."
+Nr=30  Text=_"Forget it. Getting the antidote is not worth the effort."
 NPC=_"I am not giving it to you, and that won't change."
 LuaCode={
     hide(20, 21, 22, 30)
 }
 ----------------------------------------------------------------------
 
-Nr=99  Text=_" See you later."
+Nr=99  Text=_"See you later."
 NPC=_"See you later."
 LuaCode={
     end_dialog()

@@ -41,7 +41,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=1  Text=_" Sure. Teach me all that you know. (cost 50 cash, 1 ability point)"
+Nr=1  Text=_"Sure. Teach me all that you know. (cost 50 cash, 1 ability point)"
 LuaCode={
     next(2)
 }
@@ -172,7 +172,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=99  Text=_" Maybe another time."
+Nr=99  Text=_"Maybe another time."
 LuaCode={
     end_dialog()
 }

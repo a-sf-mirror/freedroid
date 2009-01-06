@@ -35,7 +35,7 @@ FirstTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=0  Text=_" Hi! I'm new here."
+Nr=0  Text=_"Hi! I'm new here."
 NPC=_"Hello. I'm Michelangelo. I haven't been here for long either."
 NPC=_"I wish the bots had just killed me, but I got 'lucky' and ended up in this hellhole."
 LuaCode={
@@ -44,7 +44,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=10  Text=_" How is it going?"
+Nr=10  Text=_"How is it going?"
 NPC=_"Don't ask."
 NPC=_"'Terribly' would be a huge understatement."
 LuaCode={
@@ -53,7 +53,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=11  Text=_" Can I buy some food here?"
+Nr=11  Text=_"Can I buy some food here?"
 NPC=_"There is no food here, just the odious military rations."
 NPC=_"Made fully out of artificial nutrients and carcinogenic flavors. Even the army hated them."
 NPC=_"It's better than starving, but some people have already committed suicide because that repulsive material is the only thing available to eat."
@@ -65,7 +65,7 @@ LuaCode={
 
 ----------------------------------------------------------------------
 
-Nr=12  Text=_" I want some yummy army snacks!"
+Nr=12  Text=_"I want some yummy army snacks!"
 NPC=_"I am supposed to read this out to all newcomers. Here goes:"
 NPC=_"'Please note that the army meal model #23 you are about to eat is provided 'as is' without warranty of any kind."
 NPC=_"That includes the implied warranty of edibility or fitness for a particular purpose. The entire risk as to the quality of the food is with you."
@@ -78,7 +78,7 @@ LuaCode={
 
 ----------------------------------------------------------------------
 
-Nr=18  Text=_" You do not sound happy. What is wrong?"
+Nr=18  Text=_"You do not sound happy. What is wrong?"
 NPC=_"EVERYTHING!"
 NPC=_"Just look at this stupid town!"
 NPC=_"We are constantly pushed around by our 'saviours' the damn Red Guard. I hope they all die from rat bites as soon as possible and go to the deepest hells to boil in lava forever."
@@ -92,7 +92,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=19  Text=_" Cheer up! All will be fine! Happy days are coming! Hurray!"
+Nr=19  Text=_"Cheer up! All will be fine! Happy days are coming! Hurray!"
 NPC=_"..."
 NPC=_"Linarian, have you been gorging on psychoactive pills or something?"
 NPC=_"Get a grip, the situation is bad and there is no use in pretending otherwise."
@@ -101,7 +101,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=20  Text=_" You are a cook. Stop complaining about the poor food! Make some yourself."
+Nr=20  Text=_"You are a cook. Stop complaining about the poor food! Make some yourself."
 NPC=_"I cannot! My beautiful macrowave oven is out of power. The wretched Red Guard took away my uranium battery."
 NPC=_"I wish I could kill them all with my bare hands. They deserve it."
 NPC=_"If only I had some dilithium to use as a backup power source..."
@@ -111,7 +111,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=24  Text=_" Got any food yet?"
+Nr=24  Text=_"Got any food yet?"
 NPC=_"I had prepared some delicacies, but the ravenous Red Guard ate it all."
 NPC=_"Not a big loss, I have a second batch of food cubes in the oven and they will be ready shortly."
 NPC=_"I think the mood in the town will improve once the cooking master Michelangelo gets to work. Ha!"
@@ -120,7 +120,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=27  Text=_" Hmm... Crunchy... That is... Oh... No. Ugh. Help."
+Nr=27  Text=_"Hmm... Crunchy... That is... Oh... No. Ugh. Help."
 NPC=_"Oh yes. You were warned, so don't blame me."
 LuaCode={
     next(28)
@@ -128,7 +128,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=28  Text=_" Bleah! That is not food! "
+Nr=28  Text=_"Bleah! That is not food! "
 NPC=_"We already know that. There is nothing else to eat here, so I hope you get used to the taste."
 NPC=_"That thing only looks well and has a nice color."
 NPC=_"But as you can see, the color cannot be eaten, only the taste counts."
@@ -137,7 +137,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=29  Text=_" I have the dilithium you wanted."
+Nr=29  Text=_"I have the dilithium you wanted."
 NPC=_"Really? I thought you are dead, but not only you come back alive, you also bring some power crystals for my trusty oven."
 NPC=_"I will start cooking at once."
 NPC=_"Thank you, Linarian. As soon as the food cubes are ready I will be able to give them away to the hungry people."
@@ -166,7 +166,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-Nr=31  Text=_" What was I supposed to do again?"
+Nr=31  Text=_"What was I supposed to do again?"
 NPC=_"Get me some dilithium before the whole stupid colony commits mass suicide because of poor food quality."
 NPC=_"Of course our heinous food might do us in far before that. I swear I saw that stuff glow it the dark and try to sneak away from my plate a few times."
 LuaCode={
@@ -184,7 +184,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-Nr=70  Text=_" Why don't you send someone for the dilithium?"
+Nr=70  Text=_"Why don't you send someone for the dilithium?"
 NPC=_"I did."
 NPC=_"Yesterday a guard patrol found a few tiny bits of him and lots of dried blood."
 NPC=_"The bots made a bloody mess out of him."
@@ -193,7 +193,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=80  Text=_" I can get you some dilithium."
+Nr=80  Text=_"I can get you some dilithium."
 NPC=_"Have you gotten overheated, Linarian?"
 NPC=_"Look, there are dozens of ways you can kill yourself, and most hurt less than being killed by a bot."
 NPC=_"If you want to die just walk into a nuclear reactor or something. So much simpler."
@@ -203,7 +203,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=81  Text=_" I'll be fine. Don't worry."
+Nr=81  Text=_"I'll be fine. Don't worry."
 NPC=_"Do you know how the bots act? Some want to kill you as soon as possible... Others want to do the same, but slowly."
 NPC=_"I have seen corpses with nearly all of the fingers ripped out. People with eyes drilled out with some big tool. "
 NPC=_"I smelled burnt meat and heard the screams of the captives as they were incinerated alive outside the city walls. "
@@ -217,7 +217,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=82  Text=_" Where can I get the crystals?"
+Nr=82  Text=_"Where can I get the crystals?"
 NPC=_"There is an old dilithium mine to the east. I am sure there is lots of that stuff there."
 NPC=_"I will talk to the guards, they will open the eastern gate for you."
 NPC=_"Good luck. Try not to get yourself killed."
@@ -228,7 +228,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=40  Text=_" What is this dilithium?"
+Nr=40  Text=_"What is this dilithium?"
 NPC=_"You do not know? I thought Linarians were unmatched in their knowledge of the universe. Anyway..."
 NPC=_"Dilithium is a substance which is usually seen in the form of a small crystal. "
 NPC=_"It somehow generates and stores amazing amounts of electricity. I do not know the details. I'm a cook, not a quantum scientist."
@@ -238,7 +238,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=41  Text=_" I have an idea. Use fire to cook the food for the city."
+Nr=41  Text=_"I have an idea. Use fire to cook the food for the city."
 NPC=_"A nice idea, but there is a couple of major problems with it."
 NPC=_"We are a town of 450 hungry people. It would need to be a very big fire to supply heat for all of the meals."
 NPC=_"There is nothing to burn inside the city. If you want you can go and try to chop some trees in the region to the north, but odds are the bots will chop you down before you get a chance to swing the hatchet once."
@@ -250,7 +250,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=42  Text=_" Tell the Red Guard that you need your battery back."
+Nr=42  Text=_"Tell the Red Guard that you need your battery back."
 NPC=_"I did."
 NPC=_"They said it was already fed to their reactor as fuel."
 LuaCode={
@@ -258,7 +258,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=99  Text=_" I'll be going then."
+Nr=99  Text=_"I'll be going then."
 NPC=_"See you later."
 LuaCode={
     end_dialog()

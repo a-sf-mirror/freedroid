@@ -35,7 +35,7 @@ FirstTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=0  Text=_" Hi! I'm new here."
+Nr=0  Text=_"Hi! I'm new here."
 NPC=_"I'm Spencer. I'm the leader of the Red Guard. Is there anything I can help you with?"
 LuaCode={
     hide(0)
@@ -43,7 +43,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=1  Text=_" I want to join the Red Guard."
+Nr=1  Text=_"I want to join the Red Guard."
 NPC=_"Hmm... Really? Well, you cannot join just like that, you know..."
 NPC=_"You must prove that you would make a good new member."
 LuaCode={
@@ -52,14 +52,14 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=2  Text=_" I really want to become a member."
+Nr=2  Text=_"I really want to become a member."
 LuaCode={
     hide(2)
     if (has_cookie("tux_has_joined_guard")) then next(32) else next(33) end
 }
 ----------------------------------------------------------------------
 
-Nr=3  Text=_" What about some money instead?"
+Nr=3  Text=_"What about some money instead?"
 NPC=_"For 15 million bucks, no less, hehe."
 LuaCode={
     hide(3)
@@ -77,7 +77,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=5  Text=_" Maybe I could help somehow?"
+Nr=5  Text=_"Maybe I could help somehow?"
 NPC=_"That would be most kind of you, but I doubt that you will be able to clear out the warehouse for us."
 NPC=_"But since you are said to be powerful and a former hero, I'll once more put trust into a stranger."
 NPC=_"I've unlocked the accessway to the warehouse. It's to the north of this town, somewhat hidden in the woods northeast."
@@ -91,7 +91,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=6  Text=_" How is it going?"
+Nr=6  Text=_"How is it going?"
 LuaCode={
     if (has_quest("Opening a can of bots...")) then
         if (done_quest("Opening a can of bots...")) then
@@ -127,7 +127,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=12  Text=_" Have I done enough quests to become a member now?"
+Nr=12  Text=_"Have I done enough quests to become a member now?"
 LuaCode={
     if (done_quest("The yellow toolkit")) then next(13) else next(14) end
 }
@@ -288,7 +288,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=37  Text=_" I've heard Richard obtained new information on the colony."
+Nr=37  Text=_"I've heard Richard obtained new information on the colony."
 NPC=_"Yes, that's right, and in fact it might be crucial. As you may have heard, the MS office is defended by a disruptor shield. They open it only to let out new armies of bots."
 NPC=_"The data on the cube he obtained indicates the existence of a secret experimental facility in this region. Our findings suggest that they were testing some new form of disruptor shield for MS, so the shield can be controlled from that facility."
 NPC=_"If the information is true, then you can take over the control droid and disable the shield permanently so we can get in."
@@ -300,7 +300,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=38  Text=_" I'd like to participate in this operation."
+Nr=38  Text=_"I'd like to participate in this operation."
 NPC=_"That's most kind of you to volunteer. So far, I've sent two scouts into the area. They have found the facility entrance and unlocked the gate."
 NPC=_"That is a good sign, because it shows that the key combinations from the data cube were correct."
 NPC=_"However, we lost contact with them shortly after they went inside. They also reported heavy bot resistance."
@@ -311,7 +311,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=39  Text=_" OK. I'll be careful. But I'll do it."
+Nr=39  Text=_"OK. I'll be careful. But I'll do it."
 NPC=_"Good. The base entrance is somewhat hidden in the caves to the northeast. Best use the north gate out of town, then head east, and turn north again along the shore."
 NPC=_"I wish you the best of luck for this operation. It might be that our survival depends on it. Don't wait for assistance."
 NPC=_"Try to get control over the disruptor shield if you can. The control droid should be somewhere on the lowest level of the installation. Simply destroying the droid might suffice in disabling the shield."
@@ -322,7 +322,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=40  Text=_" I don't feel like doing it now. I'd rather prepare some more."
+Nr=40  Text=_"I don't feel like doing it now. I'd rather prepare some more."
 NPC=_"Good. You should be well prepared if you intend to go."
 NPC=_"Also there is no need to hurry with this. After all, the installation is not running away, so best take a slow approach."
 LuaCode={
@@ -343,7 +343,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-Nr=44  Text=_" It's done. Your soldiers were killed, but I managed to have a word with the shield control droid. The access to the bot factory is now open."
+Nr=44  Text=_"It's done. Your soldiers were killed, but I managed to have a word with the shield control droid. The access to the bot factory is now open."
 NPC=_"Good. We cannot help you much in this final mission, but I can tell you what our recon teams gathered behind the factory doors. You will enter a zone that used to be a MS office."
 NPC=_"They carried out some development there, and had part of their patching division and update management department. The actual factory is located behind the office. With a bit of luck, you might not need to access it. We know they have their update server in the office. If you can find it and get it to propagate a faulty update, this could suffice to stopping bots dead in their tracks."
 NPC=_"Look for the entrance of the office in the crystal fields. I will send a message to the guards so they let you pass. Then you will be on your own."
@@ -355,12 +355,12 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=45  Text=_" I will need some time to get myself ready before I clean up the Hell Fortress."
+Nr=45  Text=_"I will need some time to get myself ready before I clean up the Hell Fortress."
 NPC=_"You had better be ready."
 
 ----------------------------------------------------------------------
 
-Nr=99  Text=_" I'll be going then."
+Nr=99  Text=_"I'll be going then."
 NPC=_"See you later."
 LuaCode={
     end_dialog()
