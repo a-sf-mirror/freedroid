@@ -1299,7 +1299,7 @@ blit_preput_objects_according_to_blitting_list ( int mask )
 	    if ( ( ( (obstacle*)  blitting_list [ i ] . element_pointer ) -> type <= (-1) ) ||
 		 ( (obstacle*)  blitting_list [ i ] . element_pointer ) -> type >= NUMBER_OF_OBSTACLE_TYPES )
 	    {
-		fprintf ( stderr , "\nerrorneous obstacle type to blit: %d." , 
+		fprintf ( stderr , "\nerroneous obstacle type to blit: %d." , 
 			  ( (obstacle*)  blitting_list [ i ] . element_pointer ) -> type );
 		ErrorMessage ( __FUNCTION__  , 
 					   "The blitting list contained an illegal blitting object type.",
@@ -1432,7 +1432,7 @@ blit_nonpreput_objects_according_to_blitting_list ( int mask )
 		if ( ( ( (obstacle*)  blitting_list [ i ] . element_pointer ) -> type <= (-1) ) ||
 		     ( (obstacle*)  blitting_list [ i ] . element_pointer ) -> type >= NUMBER_OF_OBSTACLE_TYPES )
 		{
-		    fprintf ( stderr , "\nerrorneous obstacle type to blit: %d." , 
+		    fprintf ( stderr , "\nerroneous obstacle type to blit: %d." , 
 			      ( (obstacle*)  blitting_list [ i ] . element_pointer ) -> type );
 		    ErrorMessage ( __FUNCTION__  , 
 					       "The blitting list contained an illegal blitting object type.",
