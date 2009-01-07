@@ -1,7 +1,123 @@
 
 
 ------------------------------------------------------------------------
-r1488 | ahuillet | 2009-01-06 20:53:58 +0100 (mar, 06 jan 2009) | 1 line
+2009-01-07 19:45  ahuillet  r1497
+   M /src/chat.c
+
+improved dialog interface -> fixed drifting when the amount of text increases
+
+
+------------------------------------------------------------------------
+2009-01-07 19:17  ahuillet  r1496
+   M /src/saveloadgame.c
+
+do not report an error when rename(".shp", ".shp.backup") and the original .shp does not exist - case of newly saved games
+
+
+------------------------------------------------------------------------
+2009-01-07 15:09  ahuillet  r1495
+   M /src/lua.c
+
+lua del_item multiplicity parameter is now optional and defaults to 1
+
+
+------------------------------------------------------------------------
+2009-01-07 13:20  stedevil  r1494
+   M /src/leveleditor.c
+
+Removing unused variable
+
+
+
+------------------------------------------------------------------------
+2009-01-07 09:16  stedevil  r1493
+   M /map/freedroid.levels
+
+Beginning of new start level
+
+
+
+------------------------------------------------------------------------
+2009-01-07 03:52  stedevil  r1492
+   M /src/leveleditor.c
+
+Small fixes to Advanced menu
+
+
+
+------------------------------------------------------------------------
+2009-01-07 03:38  stedevil  r1491
+   M /dialogs/614.dialog
+   M /dialogs/Bender.dialog
+   M /dialogs/Benjamin.dialog
+   M /dialogs/Bruce.dialog
+   M /dialogs/Butch.dialog
+   M /dialogs/Chandra.dialog
+   M /dialogs/Darwin.dialog
+   M /dialogs/Dixon.dialog
+   M /dialogs/DocMoore.dialog
+   M /dialogs/Duncan.dialog
+   M /dialogs/Ernie.dialog
+   M /dialogs/Ewald.dialog
+   M /dialogs/FirmwareUpdateServer.dialog
+   M /dialogs/Francis.dialog
+   M /dialogs/Jasmine.dialog
+   M /dialogs/Kevin.dialog
+   M /dialogs/KevinGuard.dialog
+   M /dialogs/Koan.dialog
+   M /dialogs/Lukas.dialog
+   M /dialogs/MER.dialog
+   M /dialogs/MSFacilityGateGuardLeader.dialog
+   M /dialogs/Melfis.dialog
+   M /dialogs/Michelangelo.dialog
+   M /dialogs/OldTownGateGuardLeader.dialog
+   M /dialogs/Pendragon.dialog
+   M /dialogs/RMS.dialog
+   M /dialogs/SACD.dialog
+   M /dialogs/SADD.dialog
+   M /dialogs/Skippy.dialog
+   M /dialogs/Sorenson.dialog
+   M /dialogs/Spencer.dialog
+   M /dialogs/StandardBotAfterTakeover.dialog
+   M /dialogs/StandardMSFacilityGateGuard.dialog
+   M /dialogs/StandardOldTownGateGuard.dialog
+   M /dialogs/Stone.dialog
+   M /dialogs/Tania.dialog
+   M /dialogs/Template.dialog
+   M /dialogs/TestDroid.dialog
+   M /dialogs/Tybalt.dialog
+   M /dialogs/subdlg_Benjamin.dialog
+   M /dialogs/subdlg_Benjamin_bribe.dialog
+   M /dialogs/subdlg_Butch.dialog
+   M /dialogs/subdlg_Darwin.dialog
+   M /dialogs/subdlg_Duncan.dialog
+   M /dialogs/subdlg_Duncan_quest.dialog
+   M /dialogs/subdlg_Kevin.dialog
+   M /dialogs/subdlg_Pendragon.dialog
+   M /dialogs/subdlg_Sorenson.dialog
+   M /dialogs/subdlg_Stone.dialog
+   M /dialogs/subdlg_kevin_reward1.dialog
+
+Removing outdated dialed reference
+
+
+
+------------------------------------------------------------------------
+2009-01-06 22:06  ahuillet  r1490
+   M /dialogs/Michelangelo.dialog
+
+small fix to lua code here...
+
+
+------------------------------------------------------------------------
+2009-01-06 21:30  ahuillet  r1489
+   M /ChangeLog
+
+mmh, not sure listing files is good in ChangeLog but it does make it more usable
+
+
+------------------------------------------------------------------------
+2009-01-06 20:53  ahuillet  r1488
    D /.cvsignore
    D /src/.cvsignore
 
@@ -9,7 +125,7 @@ remove .cvsignore files :)
 
 
 ------------------------------------------------------------------------
-r1487 | ahuillet | 2009-01-06 20:52:40 +0100 (mar, 06 jan 2009) | 1 line
+2009-01-06 20:52  ahuillet  r1487
    M /gluem
    M /lua
    M /src
@@ -19,13 +135,13 @@ update svn ignore files
 
 
 ------------------------------------------------------------------------
-r1486 | ahuillet | 2009-01-06 20:51:29 +0100 (mar, 06 jan 2009) | 1 line
+2009-01-06 20:51  ahuillet  r1486
 
 grr
 
 
 ------------------------------------------------------------------------
-r1485 | stedevil | 2009-01-06 18:18:36 +0100 (mar, 06 jan 2009) | 2 lines
+2009-01-06 18:18  stedevil  r1485
    M /src/leveleditor.c
 
 Adding menu slot for Dialog Lua validator
@@ -33,13 +149,13 @@ Adding menu slot for Dialog Lua validator
 
 
 ------------------------------------------------------------------------
-r1484 | ahuillet | 2009-01-06 18:11:55 +0100 (mar, 06 jan 2009) | 1 line
+2009-01-06 18:11  ahuillet  r1484
 
 upd po crap.........
 
 
 ------------------------------------------------------------------------
-r1483 | ahuillet | 2009-01-06 17:37:10 +0100 (mar, 06 jan 2009) | 1 line
+2009-01-06 17:37  ahuillet  r1483
    M /dialogs/614.dialog
    M /dialogs/Bender.dialog
    M /dialogs/Benjamin.dialog
@@ -93,14 +209,14 @@ hardcode space after TUX:, remove it from dialogs.
 
 
 ------------------------------------------------------------------------
-r1482 | ahuillet | 2009-01-06 17:22:34 +0100 (mar, 06 jan 2009) | 1 line
+2009-01-06 17:22  ahuillet  r1482
    M /map/freedroid.quests
 
 ... and remove the auto assign flag from the data file as well
 
 
 ------------------------------------------------------------------------
-r1481 | ahuillet | 2009-01-06 17:22:05 +0100 (mar, 06 jan 2009) | 1 line
+2009-01-06 17:22  ahuillet  r1481
    M /src/init.c
    M /src/mission.c
    M /src/savestruct.c
@@ -110,7 +226,7 @@ removed useless and unused .AutomaticallyAssignThisMissionAtGameStart for quests
 
 
 ------------------------------------------------------------------------
-r1480 | ahuillet | 2009-01-06 17:20:16 +0100 (mar, 06 jan 2009) | 1 line
+2009-01-06 17:20  ahuillet  r1480
    M /src/chat.c
    M /src/global.h
    M /src/lua.c
@@ -120,56 +236,56 @@ now checking whether we are enabling/disabling/settingnext dialog nodes that act
 
 
 ------------------------------------------------------------------------
-r1479 | ahuillet | 2009-01-06 16:59:33 +0100 (mar, 06 jan 2009) | 1 line
+2009-01-06 16:59  ahuillet  r1479
    M /src/lua.c
 
 fix npc_says and tux_says to wait before moving on to the next option - those two now work just fine
 
 
 ------------------------------------------------------------------------
-r1478 | ahuillet | 2009-01-06 16:53:51 +0100 (mar, 06 jan 2009) | 1 line
+2009-01-06 16:53  ahuillet  r1478
    M /src/chat.c
 
 added chat startup code AtStartup={ and fixed set_next_node() issues in it. alwaysRunLongName still exists for now.
 
 
 ------------------------------------------------------------------------
-r1477 | ahuillet | 2009-01-06 14:59:16 +0100 (mar, 06 jan 2009) | 1 line
+2009-01-06 14:59  ahuillet  r1477
    M /src/leveleditor.c
 
 fix item drop in level editor placing an obstacle as well
 
 
 ------------------------------------------------------------------------
-r1476 | ahuillet | 2009-01-06 14:35:07 +0100 (mar, 06 jan 2009) | 1 line
+2009-01-06 14:35  ahuillet  r1476
    M /src/menu.c
 
 not sure why we need to wait for mouse left release in DoMenuSelection but it does fix certain glitches...
 
 
 ------------------------------------------------------------------------
-r1475 | ahuillet | 2009-01-06 14:28:11 +0100 (mar, 06 jan 2009) | 1 line
+2009-01-06 14:28  ahuillet  r1475
    M /src/keyboard.c
 
 make sure we do not get huge frame delays due to keychart() so that bots do not jump around when returning from keychart
 
 
 ------------------------------------------------------------------------
-r1474 | ahuillet | 2009-01-06 13:55:15 +0100 (mar, 06 jan 2009) | 1 line
+2009-01-06 13:55  ahuillet  r1474
    M /dialogs/Michelangelo.dialog
 
 fix quest
 
 
 ------------------------------------------------------------------------
-r1473 | ahuillet | 2009-01-06 13:21:04 +0100 (mar, 06 jan 2009) | 1 line
+2009-01-06 13:21  ahuillet  r1473
    M /dialogs/Butch.dialog
 
 negation operator = not in Lua.....
 
 
 ------------------------------------------------------------------------
-r1472 | stedevil | 2009-01-06 10:20:26 +0100 (mar, 06 jan 2009) | 2 lines
+2009-01-06 10:20  stedevil  r1472
    M /dialogs/OldTownGateGuardLeader.dialog
 
 Temp workaround for AlwaysLong triggering NPC= twice
@@ -177,7 +293,7 @@ Temp workaround for AlwaysLong triggering NPC= twice
 
 
 ------------------------------------------------------------------------
-r1471 | stedevil | 2009-01-06 10:09:21 +0100 (mar, 06 jan 2009) | 2 lines
+2009-01-06 10:09  stedevil  r1471
    M /dialogs/RMS.dialog
 
 Fix wrong FirstTime entry for Richard
@@ -185,7 +301,7 @@ Fix wrong FirstTime entry for Richard
 
 
 ------------------------------------------------------------------------
-r1470 | stedevil | 2009-01-06 09:50:48 +0100 (mar, 06 jan 2009) | 2 lines
+2009-01-06 09:50  stedevil  r1470
    M /dialogs/subdlg_Duncan_quest.dialog
 
 Fix amount_item / has_item mixup
@@ -193,7 +309,7 @@ Fix amount_item / has_item mixup
 
 
 ------------------------------------------------------------------------
-r1469 | stedevil | 2009-01-06 09:41:48 +0100 (mar, 06 jan 2009) | 2 lines
+2009-01-06 09:41  stedevil  r1469
    M /dialogs/DocMoore.dialog
    M /dialogs/FirmwareUpdateServer.dialog
    M /dialogs/Kevin.dialog
@@ -210,7 +326,7 @@ Fix the missing dialog quest conversion from the ByNumber -> ByName swirch in r1
 
 
 ------------------------------------------------------------------------
-r1468 | stedevil | 2009-01-06 08:33:00 +0100 (mar, 06 jan 2009) | 2 lines
+2009-01-06 08:33  stedevil  r1468
    M /dialogs/614.dialog
    M /dialogs/Bender.dialog
    M /dialogs/Benjamin.dialog
@@ -267,7 +383,7 @@ Use shorthands in .dialog
 
 
 ------------------------------------------------------------------------
-r1467 | stedevil | 2009-01-06 08:23:13 +0100 (mar, 06 jan 2009) | 2 lines
+2009-01-06 08:23  stedevil  r1467
    A /map/script_helpers.lua
 
 Addding lua dialog shothand list
@@ -275,7 +391,7 @@ Addding lua dialog shothand list
 
 
 ------------------------------------------------------------------------
-r1466 | stedevil | 2009-01-06 07:47:31 +0100 (mar, 06 jan 2009) | 2 lines
+2009-01-06 07:47  stedevil  r1466
    M /dialogs/Bender.dialog
    M /dialogs/Dixon.dialog
    M /dialogs/DocMoore.dialog
@@ -290,7 +406,7 @@ API change also give_item to add_
 
 
 ------------------------------------------------------------------------
-r1465 | stedevil | 2009-01-06 07:41:42 +0100 (mar, 06 jan 2009) | 2 lines
+2009-01-06 07:41  stedevil  r1465
    M /dialogs/Bender.dialog
    M /dialogs/Butch.dialog
    M /dialogs/DocMoore.dialog
@@ -309,7 +425,7 @@ Fix API changes that sed missed
 
 
 ------------------------------------------------------------------------
-r1464 | stedevil | 2009-01-06 06:14:28 +0100 (mar, 06 jan 2009) | 2 lines
+2009-01-06 06:14  stedevil  r1464
    M /dialogs/Bender.dialog
    M /dialogs/Benjamin.dialog
    M /dialogs/Bruce.dialog
@@ -346,13 +462,13 @@ API change: add_*, del_*, has_*, *_quest
 
 
 ------------------------------------------------------------------------
-r1463 | ahuillet | 2009-01-05 20:57:59 +0100 (lun, 05 jan 2009) | 1 line
+2009-01-05 20:57  ahuillet  r1463
 
 add --pot-only option to upload only pot files to launchpad
 
 
 ------------------------------------------------------------------------
-r1462 | ahuillet | 2009-01-05 20:57:45 +0100 (lun, 05 jan 2009) | 1 line
+2009-01-05 20:57  ahuillet  r1462
    M /dialogs/Bender.dialog
    M /dialogs/Butch.dialog
    M /dialogs/Dixon.dialog
@@ -368,20 +484,20 @@ now referencing missions by name. longer but less prone to bugs and more intuiti
 
 
 ------------------------------------------------------------------------
-r1461 | ahuillet | 2009-01-05 20:48:25 +0100 (lun, 05 jan 2009) | 1 line
+2009-01-05 20:48  ahuillet  r1461
 
 guess I have to update those po files from time to time..........
 
 
 ------------------------------------------------------------------------
-r1460 | ahuillet | 2009-01-05 20:05:25 +0100 (lun, 05 jan 2009) | 1 line
+2009-01-05 20:05  ahuillet  r1460
    M /src/lua.c
 
 add tux_says() to Lua dialog API
 
 
 ------------------------------------------------------------------------
-r1459 | ahuillet | 2009-01-05 19:53:06 +0100 (lun, 05 jan 2009) | 1 line
+2009-01-05 19:53  ahuillet  r1459
    M /dialogs/614.dialog
    M /dialogs/Bender.dialog
    M /dialogs/Benjamin.dialog
@@ -438,7 +554,7 @@ dialog format simplification : OptionText becomes Text, New Option Nr= becomes N
 
 
 ------------------------------------------------------------------------
-r1458 | fluzz | 2009-01-05 19:32:37 +0100 (lun, 05 jan 2009) | 2 lines
+2009-01-05 19:32  fluzz  r1458
    M /map/freedroid.droid_archetypes
    M /src/enemy.c
    M /src/init.c
@@ -449,7 +565,7 @@ Rename druidspec attribute 'range_of_vision' into 'aggression_distance'
 
 
 ------------------------------------------------------------------------
-r1457 | ahuillet | 2009-01-05 18:56:44 +0100 (lun, 05 jan 2009) | 1 line
+2009-01-05 18:56  ahuillet  r1457
    M /dialogs/614.dialog
    M /dialogs/Bender.dialog
    M /dialogs/Benjamin.dialog
@@ -506,14 +622,14 @@ changed "Initialization LuaCode" to "FirstTime LuaCode" as it is deemed more int
 
 
 ------------------------------------------------------------------------
-r1456 | stedevil | 2009-01-05 17:01:49 +0100 (lun, 05 jan 2009) | 1 line
+2009-01-05 17:01  stedevil  r1456
    M /map/freedroid.levels
 
 fix barrels on lvl 37
 
 
 ------------------------------------------------------------------------
-r1455 | fluzz | 2009-01-05 14:50:16 +0100 (lun, 05 jan 2009) | 2 lines
+2009-01-05 14:50  fluzz  r1455
    M /src/bullet.c
    M /src/colldet.c
    M /src/enemy.c
@@ -529,7 +645,7 @@ Change DLC filters name into something more accurate (e.g. VisibleFilter -> Visi
 
 
 ------------------------------------------------------------------------
-r1454 | fluzz | 2009-01-05 14:30:40 +0100 (lun, 05 jan 2009) | 2 lines
+2009-01-05 14:30  fluzz  r1454
    M /src/defs.h
    M /src/enemy.c
 
@@ -538,7 +654,7 @@ Improve the selection of bots' new target : choose the closest reachable enemy i
 
 
 ------------------------------------------------------------------------
-r1453 | ahuillet | 2009-01-05 12:58:17 +0100 (lun, 05 jan 2009) | 1 line
+2009-01-05 12:58  ahuillet  r1453
    M /src/chat.c
    M /src/struct.h
 
@@ -546,42 +662,42 @@ remove non-lua condition testing and option enabling.
 
 
 ------------------------------------------------------------------------
-r1452 | ahuillet | 2009-01-05 12:52:26 +0100 (lun, 05 jan 2009) | 1 line
+2009-01-05 12:52  ahuillet  r1452
    M /dialogs/KevinGuard.dialog
 
 fix kevin guard behavior.. there seems to be a bug with set_next_node and AlwaysExecuteLongName for option != 0
 
 
 ------------------------------------------------------------------------
-r1451 | ahuillet | 2009-01-05 12:51:46 +0100 (lun, 05 jan 2009) | 1 line
+2009-01-05 12:51  ahuillet  r1451
    M /dialogs/Jasmine.dialog
 
 now jasmine blows again. regexp error :)
 
 
 ------------------------------------------------------------------------
-r1450 | ahuillet | 2009-01-05 12:44:07 +0100 (lun, 05 jan 2009) | 1 line
+2009-01-05 12:44  ahuillet  r1450
    M /dialogs/Duncan.dialog
 
 grmbl duncan dialog
 
 
 ------------------------------------------------------------------------
-r1449 | ahuillet | 2009-01-05 12:41:33 +0100 (lun, 05 jan 2009) | 1 line
+2009-01-05 12:41  ahuillet  r1449
    M /dialogs/Dixon.dialog
 
 nonexisting nodes were being enabled...
 
 
 ------------------------------------------------------------------------
-r1448 | ahuillet | 2009-01-05 12:38:08 +0100 (lun, 05 jan 2009) | 1 line
+2009-01-05 12:38  ahuillet  r1448
    M /dialogs/Duncan.dialog
 
 one node should not have been enabled..
 
 
 ------------------------------------------------------------------------
-r1447 | stedevil | 2009-01-05 12:24:24 +0100 (lun, 05 jan 2009) | 2 lines
+2009-01-05 12:24  stedevil  r1447
    M /dialogs/Duncan.dialog
    M /dialogs/Kevin.dialog
    M /dialogs/Koan.dialog
@@ -597,56 +713,56 @@ Removing more poinless cruft, empty lines and unneded additions from r 1439
 
 
 ------------------------------------------------------------------------
-r1446 | ahuillet | 2009-01-05 12:09:18 +0100 (lun, 05 jan 2009) | 1 line
+2009-01-05 12:09  ahuillet  r1446
    M /dialogs/Spencer.dialog
 
 mistake in spencer dialog
 
 
 ------------------------------------------------------------------------
-r1445 | ahuillet | 2009-01-05 12:03:34 +0100 (lun, 05 jan 2009) | 1 line
+2009-01-05 12:03  ahuillet  r1445
    M /dialogs/Dixon.dialog
 
 s/did_mission/is_mission_complete/
 
 
 ------------------------------------------------------------------------
-r1444 | ahuillet | 2009-01-05 11:54:10 +0100 (lun, 05 jan 2009) | 1 line
+2009-01-05 11:54  ahuillet  r1444
    M /dialogs/Michelangelo.dialog
 
 remove enable_node() that should not have been there + reordering of options
 
 
 ------------------------------------------------------------------------
-r1443 | stedevil | 2009-01-05 11:48:44 +0100 (lun, 05 jan 2009) | 1 line
+2009-01-05 11:48  stedevil  r1443
    M /dialogs/Duncan.dialog
 
 reverting accidental formating changes from r 1441
 
 
 ------------------------------------------------------------------------
-r1442 | stedevil | 2009-01-05 11:40:21 +0100 (lun, 05 jan 2009) | 1 line
+2009-01-05 11:40  stedevil  r1442
    M /dialogs/Benjamin.dialog
 
 Removing useless addition from r1438
 
 
 ------------------------------------------------------------------------
-r1441 | ahuillet | 2009-01-05 11:40:15 +0100 (lun, 05 jan 2009) | 1 line
+2009-01-05 11:40  ahuillet  r1441
    M /dialogs/Duncan.dialog
 
 add a missing "then"
 
 
 ------------------------------------------------------------------------
-r1440 | ahuillet | 2009-01-05 11:37:58 +0100 (lun, 05 jan 2009) | 1 line
+2009-01-05 11:37  ahuillet  r1440
    M /dialogs/DocMoore.dialog
 
 s/cookie/cookie_planted/
 
 
 ------------------------------------------------------------------------
-r1439 | ahuillet | 2009-01-05 11:12:16 +0100 (lun, 05 jan 2009) | 1 line
+2009-01-05 11:12  ahuillet  r1439
    M /dialogs/Bruce.dialog
    M /dialogs/Butch.dialog
    M /dialogs/Darwin.dialog
@@ -668,14 +784,14 @@ leftover from rev. 1437
 
 
 ------------------------------------------------------------------------
-r1438 | ahuillet | 2009-01-05 11:00:52 +0100 (lun, 05 jan 2009) | 1 line
+2009-01-05 11:00  ahuillet  r1438
    M /dialogs/Benjamin.dialog
 
 leftover from previous commit
 
 
 ------------------------------------------------------------------------
-r1437 | stedevil | 2009-01-05 10:46:37 +0100 (lun, 05 jan 2009) | 2 lines
+2009-01-05 10:46  stedevil  r1437
    M /dialogs/614.dialog
    M /dialogs/Bender.dialog
    M /dialogs/Benjamin.dialog
@@ -731,21 +847,21 @@ Dialog Lualization
 
 
 ------------------------------------------------------------------------
-r1436 | ahuillet | 2009-01-05 10:37:13 +0100 (lun, 05 jan 2009) | 1 line
+2009-01-05 10:37  ahuillet  r1436
    M /src/lua.c
 
 evaluate the script helpers file after pushing the Lua API so the helpers can set "shortcuts"
 
 
 ------------------------------------------------------------------------
-r1435 | ahuillet | 2009-01-05 10:27:37 +0100 (lun, 05 jan 2009) | 1 line
+2009-01-05 10:27  ahuillet  r1435
    M /dialogs/Sorenson.dialog
 
 fix typo in sorenson dialog
 
 
 ------------------------------------------------------------------------
-r1434 | ahuillet | 2009-01-04 20:20:54 +0100 (dim, 04 jan 2009) | 1 line
+2009-01-04 20:20  ahuillet  r1434
    M /src/chat.c
    M /src/lua.c
    M /src/proto.h
@@ -754,7 +870,7 @@ added npc_says() function to Lua API for dialogs. seems to work fine.
 
 
 ------------------------------------------------------------------------
-r1433 | ahuillet | 2009-01-04 20:19:41 +0100 (dim, 04 jan 2009) | 1 line
+2009-01-04 20:19  ahuillet  r1433
    M /src/global.h
    M /src/open_gl.c
 
@@ -762,41 +878,41 @@ remove all_freedroid_textures array and call glGenTextures whenever needed. gets
 
 
 ------------------------------------------------------------------------
-r1432 | stedevil | 2009-01-04 19:52:05 +0100 (dim, 04 jan 2009) | 1 line
+2009-01-04 19:52  stedevil  r1432
    M /src/lua.c
 
 Fixing Lua assigned & completed mission mixup
 
 
 ------------------------------------------------------------------------
-r1431 | ahuillet | 2009-01-04 11:28:28 +0100 (dim, 04 jan 2009) | 1 line
+2009-01-04 11:28  ahuillet  r1431
    M /dialogs/KevinGuard.dialog
 
 fix kevin guard behavior
 
 
 ------------------------------------------------------------------------
-r1430 | stedevil | 2009-01-04 10:31:29 +0100 (dim, 04 jan 2009) | 1 line
+2009-01-04 10:31  stedevil  r1430
    M /map/freedroid.levels
 
 fix ugly grass on lvl 8
 
 
 ------------------------------------------------------------------------
-r1429 | ahuillet | 2009-01-03 17:48:12 +0100 (sam, 03 jan 2009) | 1 line
+2009-01-03 17:48  ahuillet  r1429
 
 update pots
 
 
 ------------------------------------------------------------------------
-r1428 | ahuillet | 2009-01-03 17:44:38 +0100 (sam, 03 jan 2009) | 1 line
+2009-01-03 17:44  ahuillet  r1428
    M /src/chat.c
 
 fix subdialog handling (properly reset chat control variables before giving control back to the parent dialog)
 
 
 ------------------------------------------------------------------------
-r1427 | ahuillet | 2009-01-03 13:59:32 +0100 (sam, 03 jan 2009) | 1 line
+2009-01-03 13:59  ahuillet  r1427
    M /dialogs/Benjamin.dialog
    M /dialogs/Darwin.dialog
    M /dialogs/Duncan.dialog
@@ -814,35 +930,35 @@ removed chat extras completely. subdialogs are implemented by recursion started 
 
 
 ------------------------------------------------------------------------
-r1426 | ahuillet | 2009-01-03 11:36:38 +0100 (sam, 03 jan 2009) | 1 line
+2009-01-03 11:36  ahuillet  r1426
    M /src/map.c
 
 made animated map tiles limits non fatal
 
 
 ------------------------------------------------------------------------
-r1425 | stedevil | 2009-01-03 02:48:15 +0100 (sam, 03 jan 2009) | 1 line
+2009-01-03 02:48  stedevil  r1425
    M /dialogs/614.dialog
 
 Restored 614 dialog to how it worked pre lua (verified vs r1397 and r972)
 
 
 ------------------------------------------------------------------------
-r1424 | ahuillet | 2009-01-02 16:23:41 +0100 (ven, 02 jan 2009) | 1 line
+2009-01-02 16:23  ahuillet  r1424
    M /dialogs/Tybalt.dialog
 
 update condition system to Lua code. remove all deprecated fields for Tybalt dialog
 
 
 ------------------------------------------------------------------------
-r1423 | ahuillet | 2009-01-02 16:21:52 +0100 (ven, 02 jan 2009) | 1 line
+2009-01-02 16:21  ahuillet  r1423
    M /src/lua.c
 
 multiple parameter support for disable_node in Lua
 
 
 ------------------------------------------------------------------------
-r1422 | ahuillet | 2009-01-02 11:17:19 +0100 (ven, 02 jan 2009) | 1 line
+2009-01-02 11:17  ahuillet  r1422
    M /dialogs/614.dialog
    M /src/chat.c
    M /src/proto.h
@@ -852,7 +968,7 @@ fixed subdialog chat roster clearing in order to avoid double freeing, moved cha
 
 
 ------------------------------------------------------------------------
-r1421 | stedevil | 2009-01-02 09:55:04 +0100 (ven, 02 jan 2009) | 1 line
+2009-01-02 09:55  stedevil  r1421
    M /map/ReturnOfTux.droids
    M /map/freedroid.levels
 
@@ -860,14 +976,14 @@ some small tutorial updates
 
 
 ------------------------------------------------------------------------
-r1420 | stedevil | 2009-01-02 09:40:29 +0100 (ven, 02 jan 2009) | 1 line
+2009-01-02 09:40  stedevil  r1420
    M /map/freedroid.program_archetypes
 
 some updated text and few comments added
 
 
 ------------------------------------------------------------------------
-r1419 | fluzz | 2009-01-01 22:35:44 +0100 (jeu, 01 jan 2009) | 2 lines
+2009-01-01 22:35  fluzz  r1419
    M /src/Makefile.am
 
 Fix the 'make liblua.a' command line
@@ -875,7 +991,7 @@ Fix the 'make liblua.a' command line
 
 
 ------------------------------------------------------------------------
-r1418 | stedevil | 2009-01-01 09:29:03 +0100 (jeu, 01 jan 2009) | 1 line
+2009-01-01 09:29  stedevil  r1418
    M /src/init.c
 
 adding 1400x1050 4:3 res
@@ -13855,3 +13971,6 @@ This is the zpipe utility, a public domain tool written and published by zlib au
 It is what is to be used to generate .tux_image_archive.z files from .tux_image_archive data.
 The code we use internally for decompression is copy pasted from there.
 
+
+
+------------------------------------------------------------------------
