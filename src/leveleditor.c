@@ -3192,7 +3192,6 @@ AdvancedOptions ( void )
 	int proceed_now = FALSE ;
 	int MenuPosition=1;
 	int i;
-	int l = 0;
 
 	enum
 	{
@@ -3243,7 +3242,7 @@ AdvancedOptions ( void )
 		} // switch
     }
     return ;
-}; // void LevelOptions ( void );
+}; // void AdvancedOptions ( void );
 
 /**
  *
