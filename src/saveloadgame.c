@@ -286,7 +286,7 @@ int SaveGame( void )
     unlink(filename2);
     ret = rename(filename, filename2);
 
-    if (ret) {
+    if (ret && errno != ENOENT) {
 	ErrorMessage ( __FUNCTION__, "Unable to create the shipfile backup\n", PLEASE_INFORM, IS_WARNING_ONLY);
     }
 
@@ -309,7 +309,7 @@ or file permissions of ~/.freedroid_rpg are somehow not right.",
     unlink(filename2);
     ret = rename(filename, filename2);
 
-    if (ret) {
+    if (ret && errno != ENOENT) {
 	ErrorMessage ( __FUNCTION__, "Unable to create the savegame backup\n", PLEASE_INFORM, IS_WARNING_ONLY);
     }
     
