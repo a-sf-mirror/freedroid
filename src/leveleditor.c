@@ -3188,7 +3188,6 @@ void
 AdvancedOptions ( void )
 {
 	char* MenuTexts[ 100 ];
-	char Options [ 20 ] [1000];
 	int proceed_now = FALSE ;
 	int MenuPosition=1;
 	int i;
