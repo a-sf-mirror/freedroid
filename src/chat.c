@@ -666,26 +666,20 @@ static void PrepareMultipleChoiceDialog ( Enemy ChatDroid , int with_flip )
 void
 display_current_chat_protocol ( int background_picture_code , enemy* ChatDroid , int with_update )
 {
-    SDL_Rect Subtitle_Window;
+    const SDL_Rect Subtitle_Window = { .x = CHAT_SUBDIALOG_WINDOW_X,
+				       .y = CHAT_SUBDIALOG_WINDOW_Y, 
+				       .w = CHAT_SUBDIALOG_WINDOW_W,
+				       .h = CHAT_SUBDIALOG_WINDOW_H};
     int lines_needed ;
     int protocol_offset ;
     
-#define AVERAGE_LINES_IN_PROTOCOL_WINDOW (UNIVERSAL_COORD_H(9))
+#define LINES_IN_PROTOCOL_WINDOW (UNIVERSAL_COORD_H(9))
 
     SetCurrentFont( FPS_Display_BFont );
     
-    Subtitle_Window . x = CHAT_SUBDIALOG_WINDOW_X; 
-    Subtitle_Window . y = CHAT_SUBDIALOG_WINDOW_Y; 
-    Subtitle_Window . w = CHAT_SUBDIALOG_WINDOW_W;
-    Subtitle_Window . h = CHAT_SUBDIALOG_WINDOW_H;
-
-    //--------------------
-    // First we need to know where to begin with our little display.
-    //
     lines_needed = GetNumberOfTextLinesNeeded ( chat_protocol , Subtitle_Window , TEXT_STRETCH );
-    DebugPrintf ( 1 , "\nLines needed: %d. " , lines_needed );
     
-    if ( lines_needed <= AVERAGE_LINES_IN_PROTOCOL_WINDOW ) 
+    if ( lines_needed <= LINES_IN_PROTOCOL_WINDOW ) 
     {
 	//--------------------
 	// When there isn't anything to scroll yet, we keep the default
@@ -697,11 +691,12 @@ display_current_chat_protocol ( int background_picture_code , enemy* ChatDroid ,
     }
     else
     {
-	if ( chat_protocol_scroll_override_from_user >= 3 )
+        // prevent the user from scrolling down too far
+	if ( chat_protocol_scroll_override_from_user >= 1 ) 
 	    chat_protocol_scroll_override_from_user --;
 
-	protocol_offset = ((int) ( 0.99 + FontHeight ( GetCurrentFont() ) * TEXT_STRETCH ) *
-	     ( lines_needed - AVERAGE_LINES_IN_PROTOCOL_WINDOW + chat_protocol_scroll_override_from_user )) ;
+	protocol_offset = ((int) (  FontHeight(GetCurrentFont()) * TEXT_STRETCH ) *
+	     (lines_needed - LINES_IN_PROTOCOL_WINDOW + chat_protocol_scroll_override_from_user)) ;
     }
 
     //--------------------
@@ -724,16 +719,12 @@ display_current_chat_protocol ( int background_picture_code , enemy* ChatDroid ,
     // Now we can display the text and update the screen...
     //
     SDL_SetClipRect( Screen, NULL );
-    Subtitle_Window . x = CHAT_SUBDIALOG_WINDOW_X; 
-    Subtitle_Window . y = CHAT_SUBDIALOG_WINDOW_Y; 
-    Subtitle_Window . w = CHAT_SUBDIALOG_WINDOW_W;
-    Subtitle_Window . h = CHAT_SUBDIALOG_WINDOW_H;
     DisplayText ( chat_protocol , Subtitle_Window.x , Subtitle_Window.y - protocol_offset , &Subtitle_Window , TEXT_STRETCH );
     if ( protocol_offset > 0 ) 
 	ShowGenericButtonFromList ( CHAT_PROTOCOL_SCROLL_UP_BUTTON );
     else
 	ShowGenericButtonFromList ( CHAT_PROTOCOL_SCROLL_OFF_BUTTON );
-    if ( lines_needed <= AVERAGE_LINES_IN_PROTOCOL_WINDOW || chat_protocol_scroll_override_from_user >= 2) 
+    if ( lines_needed <= LINES_IN_PROTOCOL_WINDOW || chat_protocol_scroll_override_from_user >= 0) 
 	ShowGenericButtonFromList ( CHAT_PROTOCOL_SCROLL_OFF2_BUTTON );
     else
 	ShowGenericButtonFromList ( CHAT_PROTOCOL_SCROLL_DOWN_BUTTON );
