@@ -1647,9 +1647,9 @@ Graphics_handle (int n)
 {
     enum
     { 
-	SET_GAMMA_CORRECTION = 1 , 
+	CHANGE_SCREEN_RESOLUTION = 1,
 	SET_FULLSCREEN_FLAG, 
-	CHANGE_SCREEN_RESOLUTION,
+	SET_GAMMA_CORRECTION,
 	SET_SHOW_BLOOD_FLAG,
 	SET_AUTOMAP_SCALE,
 	LEAVE_OPTIONS_MENU 
@@ -1725,15 +1725,27 @@ Graphics_handle (int n)
 static void
 Graphics_fill (char *MenuTexts[10])
 {
-	sprintf( MenuTexts[0] , _("Gamma Correction: %1.2f"), GameConfig.current_gamma_correction );
-	sprintf( MenuTexts[1] , _("Fullscreen Mode: %s"), GameConfig . fullscreen_on ? _("ON") : _("OFF"));
-	sprintf( MenuTexts[2] , _("Change Screen Resolution") );
-	sprintf( MenuTexts[3] , _("Show Blood: %s"), 
-		 GameConfig . show_blood ? _("YES") : _("NO") );
-	sprintf( MenuTexts[4] , _("Automap Scale: %2.1f"), 
-		 GameConfig . automap_display_scale );
-	MenuTexts[5]=_("Back");
-	MenuTexts[6]="";
+	char Options [ 20 ] [1000];
+	int i = 0;
+	sprintf( MenuTexts[i++] , _("Change Screen Resolution"));
+		sprintf( Options [ i ] , _("Fullscreen Mode"));
+		sprintf( Options [ i+1 ] , ": %s", GameConfig.fullscreen_on ? _("ON") : _("OFF"));
+		strcat( Options [ i ] , Options [ i+1 ] );
+	MenuTexts[ i ] = Options [ i ]; i++ ;
+		sprintf( Options [ i ] , _("Gamma Correction"));
+		sprintf( Options [ i+1 ] , ": %1.2f", GameConfig.current_gamma_correction );
+		strcat( Options [ i ] , Options [ i+1 ] );
+	MenuTexts[ i ] = Options [ i ]; i++ ;
+		sprintf( Options [ i ] , _("Show Blood"));
+		sprintf( Options [ i+1 ] , ": %s", GameConfig.show_blood ? _("YES") : _("NO"));
+		strcat( Options [ i ] , Options [ i+1 ] );
+	MenuTexts[ i ] = Options [ i ]; i++ ;
+		sprintf( Options [ i ] , _("Automap Scale"));
+		sprintf( Options [ i+1 ] , ": %2.1f", GameConfig.automap_display_scale );
+		strcat( Options [ i ] , Options [ i+1 ] );
+	MenuTexts[ i ] = Options [ i ]; i++ ;
+	MenuTexts[i++]=_("Back");
+	MenuTexts[i++]="";
 }
 
 
