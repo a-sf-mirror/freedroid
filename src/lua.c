@@ -113,7 +113,7 @@ static int event_change_obstacle_type(const char *obslabel, const char *state)
 
     //--------------------
     // Now we make sure the door lists and that are all updated...
-    GetAllAnimatedMapTiles (obstacle_level) ;
+    GetAnimatedMapTiles () ;
 
     //--------------------
     // Also make sure the other maps realize the change too, if it

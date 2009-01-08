@@ -186,7 +186,7 @@ void CheckForTriggeredEventsAndStatements ( )
 	     ( map_y == StatementLevel -> StatementList [ i ] . y ) )
 	{
 	    Me . TextVisibleTime = 0 ;
-	    Me . TextToBeDisplayed = CURLEVEL -> StatementList [ i ] . Statement_Text ;
+	    Me . TextToBeDisplayed = CURLEVEL() -> StatementList [ i ] . Statement_Text ;
 	}
     }
     

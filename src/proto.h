@@ -310,13 +310,12 @@ void glue_obstacles_to_floor_tiles_for_level ( int level_num );
 void ResolveMapLabelOnShip (const char* MapLabel , location* PositionPointer );
 void CollectAutomapData ( void ) ;
 int smash_obstacle ( float x , float y );
-void AnimateTeleports (void);
 Uint16 GetMapBrick (Level deck, float x, float y);
 
 void CountNumberOfDroidsOnShip ( void );
 int LoadShip (char *filename);
 int SaveShip(const char *filename);
-void GetAllAnimatedMapTiles (Level Lev);
+void GetAnimatedMapTiles ();
 int GetCrew (char *shipname);
 
 void AnimateCyclingMapTiles (void);
@@ -538,7 +537,7 @@ void EscapeMenu (void);
 int GetNumberOfTextLinesNeeded ( char* GivenText, SDL_Rect GivenRectangle , float text_stretch );
 
 // misc.c 
-#define CURLEVEL (curShip . AllLevels [ Me . pos . z ])
+#define CURLEVEL() (curShip . AllLevels [ Me . pos . z ])
 void print_trace ( int signum );
 void implant_backtrace_into_signal_handlers ( void ) ;
 void adapt_button_positions_to_screen_resolution( void );

@@ -1315,7 +1315,7 @@ This indicates an error in the map system of Freedroid.",
     //
     // if ( Shuffling ) ShuffleEnemys ( array_num );
     
-    SwitchBackgroundMusicTo( CURLEVEL->Background_Song_Name );
+    SwitchBackgroundMusicTo( CURLEVEL()->Background_Song_Name );
     
     //--------------------
     // Since we've mightily changed position now, we should clear the

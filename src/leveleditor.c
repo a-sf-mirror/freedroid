@@ -345,7 +345,7 @@ action_remove_obstacle ( Level EditLevel, obstacle *our_obstacle)
     // to re-assemble the lists of pointers to obstacles, like the door list, the
     // teleporter list and the refreshes list.
     //
-    GetAllAnimatedMapTiles( EditLevel );
+    GetAnimatedMapTiles();
 }
 
 
@@ -2807,7 +2807,7 @@ EditLevelDimensions ( void )
 	case (-1):
 	case BACK_TO_LE_MAIN_MENU:
 	  while (EnterPressed() || SpacePressed() || EscapePressed() || MouseLeftPressed() ) SDL_Delay(1);
-	  GetAllAnimatedMapTiles ( EditLevel );
+	  GetAnimatedMapTiles ();
 	  proceed_now=!proceed_now;
 	  break;
 
@@ -3811,7 +3811,7 @@ ExportLevelInterface ( int LevelNum )
 					  AreaWidth , AreaHeight ,
 					  curShip . AllLevels [ TargetLevel ] , 0 , curShip . AllLevels [ TargetLevel ] -> ylen-AreaHeight );
 	
-	GetAllAnimatedMapTiles ( curShip . AllLevels [ TargetLevel ] );
+	GetAnimatedMapTiles ();
     }
 
     //--------------------
@@ -3851,7 +3851,7 @@ ExportLevelInterface ( int LevelNum )
 					  AreaWidth , AreaHeight ,
 					  curShip . AllLevels [ TargetLevel ] , 0 , 0 );
 	
-	GetAllAnimatedMapTiles ( curShip . AllLevels [ TargetLevel ] );
+	GetAnimatedMapTiles ();
 	
     }
     
@@ -3893,7 +3893,7 @@ ExportLevelInterface ( int LevelNum )
 					  AreaWidth , AreaHeight ,
 					  curShip . AllLevels [ TargetLevel ] , 0 , 0 );
 	
-	GetAllAnimatedMapTiles ( curShip . AllLevels [ TargetLevel ] );
+	GetAnimatedMapTiles ();
 	
     }
     
@@ -3934,7 +3934,7 @@ ExportLevelInterface ( int LevelNum )
 	duplicate_all_obstacles_in_area ( curShip . AllLevels [ LevelNum ] , 0 , 0 , AreaWidth , AreaHeight ,
 					  curShip . AllLevels [ TargetLevel ] , curShip . AllLevels [ TargetLevel ] -> xlen - AreaWidth , 0 );
 	
-	GetAllAnimatedMapTiles ( curShip . AllLevels [ TargetLevel ] );
+	GetAnimatedMapTiles ();
     }
     
 }; // void SynchronizeLevelInterfaces ( void )
@@ -4282,7 +4282,7 @@ CreateNewMapLevel( int level_num )
     // This should initialize the lists with the refreshed and other
     // animated map tiles...
     //
-    GetAllAnimatedMapTiles ( NewLevel ) ;
+    GetAnimatedMapTiles () ;
     //--------------------
     // Now we initialize the map labels array with 'empty' information
     //
@@ -6055,7 +6055,7 @@ void LevelEditor()
 	    }
 
 	    EditLevel = curShip.AllLevels [ Me . pos . z ] ;
-	    GetAllAnimatedMapTiles ( EditLevel );
+	    GetAnimatedMapTiles ();
 
 	    //--------------------
 	    // If the cursor is close to the currently marked obstacle, we leave everything as it

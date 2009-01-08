@@ -1142,14 +1142,14 @@ prepare_text_window_content ( char* ItemDescText )
 	if ( index_of_floor_item_below_mouse_cursor != (-1) )
 	{
 	    GiveItemDescription ( 
-		ItemDescText , & ( CURLEVEL -> ItemList [ index_of_floor_item_below_mouse_cursor ] ) , 
+		ItemDescText , & ( CURLEVEL() -> ItemList [ index_of_floor_item_below_mouse_cursor ] ) , 
 		FALSE );
 	    best_banner_pos_x = translate_map_point_to_screen_pixel_x ( 
-		CURLEVEL -> ItemList [ index_of_floor_item_below_mouse_cursor ] . pos . x , 
-		CURLEVEL -> ItemList [ index_of_floor_item_below_mouse_cursor ] . pos . y  ) + 80 ;
+		CURLEVEL() -> ItemList [ index_of_floor_item_below_mouse_cursor ] . pos . x , 
+		CURLEVEL() -> ItemList [ index_of_floor_item_below_mouse_cursor ] . pos . y  ) + 80 ;
 	    best_banner_pos_y = translate_map_point_to_screen_pixel_y ( 
-		CURLEVEL -> ItemList [ index_of_floor_item_below_mouse_cursor ] . pos . x , 
-		CURLEVEL -> ItemList [ index_of_floor_item_below_mouse_cursor ] . pos . y  ) - 30 ;
+		CURLEVEL() -> ItemList [ index_of_floor_item_below_mouse_cursor ] . pos . x , 
+		CURLEVEL() -> ItemList [ index_of_floor_item_below_mouse_cursor ] . pos . y  ) - 30 ;
 	}
 	
 	//--------------------
@@ -1162,11 +1162,11 @@ prepare_text_window_content ( char* ItemDescText )
 	    strcpy ( ItemDescText , _(" C H E S T ") ); 
 	    // index_of_chest_below_mouse_cursor
 	    best_banner_pos_x = translate_map_point_to_screen_pixel_x ( 
-		CURLEVEL -> obstacle_list [ index_of_chest_below_mouse_cursor ] . pos . x , 
-		CURLEVEL -> obstacle_list [ index_of_chest_below_mouse_cursor ] . pos . y ) + 70 ;
+		CURLEVEL() -> obstacle_list [ index_of_chest_below_mouse_cursor ] . pos . x , 
+		CURLEVEL() -> obstacle_list [ index_of_chest_below_mouse_cursor ] . pos . y ) + 70 ;
 	    best_banner_pos_y = translate_map_point_to_screen_pixel_y ( 
-		CURLEVEL -> obstacle_list [ index_of_chest_below_mouse_cursor ] . pos . x , 
-		CURLEVEL -> obstacle_list [ index_of_chest_below_mouse_cursor ] . pos . y ) - 20 ;
+		CURLEVEL() -> obstacle_list [ index_of_chest_below_mouse_cursor ] . pos . x , 
+		CURLEVEL() -> obstacle_list [ index_of_chest_below_mouse_cursor ] . pos . y ) - 20 ;
 	}
 	
 	//--------------------
@@ -1199,11 +1199,11 @@ A barrel was detected, but the barrel type was not valid.",
 			break;
 	    }
 	    best_banner_pos_x = translate_map_point_to_screen_pixel_x ( 
-		CURLEVEL -> obstacle_list [ index_of_barrel_below_mouse_cursor ] . pos . x , 
-		CURLEVEL -> obstacle_list [ index_of_barrel_below_mouse_cursor ] . pos . y  ) + 70 ;
+		CURLEVEL() -> obstacle_list [ index_of_barrel_below_mouse_cursor ] . pos . x , 
+		CURLEVEL() -> obstacle_list [ index_of_barrel_below_mouse_cursor ] . pos . y  ) + 70 ;
 	    best_banner_pos_y = translate_map_point_to_screen_pixel_y ( 
-		CURLEVEL -> obstacle_list [ index_of_barrel_below_mouse_cursor ] . pos . x , 
-		CURLEVEL -> obstacle_list [ index_of_barrel_below_mouse_cursor ] . pos . y  ) - 20 ;
+		CURLEVEL() -> obstacle_list [ index_of_barrel_below_mouse_cursor ] . pos . x , 
+		CURLEVEL() -> obstacle_list [ index_of_barrel_below_mouse_cursor ] . pos . y  ) - 20 ;
 	}
 	
 	//--------------------

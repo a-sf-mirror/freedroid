@@ -785,7 +785,7 @@ MakeHeldFloorItemOutOf( item* SourceItem )
     
     for ( i = 0 ; i < MAX_ITEMS_PER_LEVEL ; i ++ )
     {
-	if ( CURLEVEL->ItemList [ i ] . type == ( -1 ) ) break;
+	if ( CURLEVEL()->ItemList [ i ] . type == ( -1 ) ) break;
     }
     if ( i >= MAX_ITEMS_PER_LEVEL )
     {
@@ -797,13 +797,13 @@ MakeHeldFloorItemOutOf( item* SourceItem )
     // --------------------
     // Now we enter the item into the item list of this level
     //
-    CopyItem( SourceItem , &(CURLEVEL->ItemList[ i ]) , FALSE );
+    CopyItem( SourceItem , &(CURLEVEL()->ItemList[ i ]) , FALSE );
     
-    CURLEVEL->ItemList[ i ].pos.x = Me.pos.x;
-    CURLEVEL->ItemList[ i ].pos.y = Me.pos.y;
-    CURLEVEL->ItemList[ i ].currently_held_in_hand = TRUE;
+    CURLEVEL()->ItemList[ i ].pos.x = Me.pos.x;
+    CURLEVEL()->ItemList[ i ].pos.y = Me.pos.y;
+    CURLEVEL()->ItemList[ i ].currently_held_in_hand = TRUE;
     
-    Item_Held_In_Hand = CURLEVEL -> ItemList [ i ] . type ;
+    Item_Held_In_Hand = CURLEVEL() -> ItemList [ i ] . type ;
     
     DeleteItem ( SourceItem ) ;
 }; // void MakeHeldFloorItemOutOf( item* SourceItem )
@@ -886,9 +886,9 @@ GetHeldItemPointer( void )
 	//
 	for ( i = 0 ; i < MAX_ITEMS_PER_LEVEL ; i++ )
 	{
-	    if ( CURLEVEL->ItemList[ i ].type == (-1) ) continue;
-	    if ( ! CURLEVEL->ItemList[ i ].currently_held_in_hand ) continue;
-	    return ( & (CURLEVEL->ItemList[ i ] ) );
+	    if ( CURLEVEL()->ItemList[ i ].type == (-1) ) continue;
+	    if ( ! CURLEVEL()->ItemList[ i ].currently_held_in_hand ) continue;
+	    return ( & (CURLEVEL()->ItemList[ i ] ) );
 	}
 	
 	// DebugPrintf( 2 , "\nitem* GetHeldItemPointer( void ) : NO ITEM AT ALL SEEMS TO HAVE BEEN HELD IN HAND!!");

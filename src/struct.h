@@ -877,15 +877,6 @@ typedef struct level_s
     
     obstacle obstacle_list[ MAX_OBSTACLES_ON_MAP ];
     
-    //--------------------
-    // Now the list of indices that need to be known every
-    // frame...
-    //
-    int refresh_obstacle_indices [ MAX_REFRESHES_ON_LEVEL ] ;
-    int teleporter_obstacle_indices [ MAX_TELEPORTERS_ON_LEVEL ] ;
-    int door_obstacle_indices [ MAX_DOORS_ON_LEVEL ];
-    int autogun_obstacle_indices [ MAX_AUTOGUNS_ON_LEVEL ] ;
-    
     map_label labels [ MAX_MAP_LABELS_PER_LEVEL ];
     int num_waypoints;
     waypoint AllWaypoints[MAXWAYPOINTS];

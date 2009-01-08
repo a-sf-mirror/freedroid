@@ -534,7 +534,7 @@ Takeover ( enemy * target )
 
     ClearGraphMem();
 
-    SwitchBackgroundMusicTo ( CURLEVEL -> Background_Song_Name );
+    SwitchBackgroundMusicTo ( CURLEVEL() -> Background_Song_Name );
 
     game_status = old_status;
 

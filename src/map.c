@@ -46,6 +46,16 @@ void TranslateToHumanReadable ( Uint16* HumanReadable , map_tile* MapInfo, int L
 void GetThisLevelsDroids( char* SectionPointer );
 Level DecodeLoadedLeveldata ( char *data );
 
+struct animated_obstacle {
+    int index;
+    struct list_head node;
+};
+
+int animated_obstacles_lists_level = -1; //level for our lists, -1 means lists are dirty
+struct list_head droid_nests_head = LIST_HEAD_INIT(droid_nests_head);
+struct list_head teleporters_head = LIST_HEAD_INIT(teleporters_head);
+struct list_head doors_head = LIST_HEAD_INIT(doors_head);
+struct list_head autoguns_head = LIST_HEAD_INIT(autoguns_head);
 /**
  * If the blood doesn't vanish, then there will be more and more blood,
  * especially after the bots on the level have respawned a few times.
@@ -1147,25 +1157,144 @@ map tiles.",
 }; // int GetMapBrick( ... ) 
 
 /**
+ * Some structures within Freedroid rpg maps are animated in the sense
+ * that the map tiles used on the secected square rotates through a number
+ * of different map tile types.
+ * We generate lists of them animated tiles in 
+ * advance and then update only according to the current list of such
+ * map tiles.  
+ */
+void GetAnimatedMapTiles ()
+{
+  int i;
+  int obstacle_index;
+  struct list_head * target_list = NULL;
+  level *Lev = CURLEVEL();
+
+  /* At first we need to clear out the existing lists */
+  struct animated_obstacle *a, *next;
+
+  for (i = 0; i < 4; i ++) {
+      switch(i) {
+	  case 0:
+	      target_list = &droid_nests_head;
+	      break;
+	  case 1:
+	      target_list = &teleporters_head;
+	      break;
+	  case 2:
+	      target_list = &doors_head;
+	      break;
+	  case 3:
+	      target_list = &autoguns_head;
+	      break;
+      }
+      list_for_each_entry_safe(a, next, target_list, node) {
+	     list_del(&a->node);
+	     free(a);
+      }
+  }
+
+  /* Now browse obstacles and fill our lists of animated obstacles. */
+  for ( obstacle_index = 0 ; obstacle_index < MAX_OBSTACLES_ON_MAP ; obstacle_index ++ ) {
+      switch ( Lev -> obstacle_list [ obstacle_index ] . type )
+	  {
+	  case ISO_H_DOOR_000_OPEN:
+	  case ISO_H_DOOR_025_OPEN:
+	  case ISO_H_DOOR_050_OPEN:
+	  case ISO_H_DOOR_075_OPEN:
+	  case ISO_H_DOOR_100_OPEN:
+
+	  case ISO_V_DOOR_000_OPEN:
+	  case ISO_V_DOOR_025_OPEN:
+	  case ISO_V_DOOR_050_OPEN:
+	  case ISO_V_DOOR_075_OPEN:
+	  case ISO_V_DOOR_100_OPEN:
+
+	  case ISO_OUTER_DOOR_V_00:
+	  case ISO_OUTER_DOOR_V_25:
+	  case ISO_OUTER_DOOR_V_50:
+	  case ISO_OUTER_DOOR_V_75:
+	  case ISO_OUTER_DOOR_V_100:
+
+	  case ISO_OUTER_DOOR_H_00:
+	  case ISO_OUTER_DOOR_H_25:
+	  case ISO_OUTER_DOOR_H_50:
+	  case ISO_OUTER_DOOR_H_75:
+	  case ISO_OUTER_DOOR_H_100:
+
+	  case ISO_DH_DOOR_000_OPEN:
+	  case ISO_DH_DOOR_025_OPEN:
+	  case ISO_DH_DOOR_050_OPEN:
+	  case ISO_DH_DOOR_075_OPEN:
+	  case ISO_DH_DOOR_100_OPEN:
+
+	  case ISO_DV_DOOR_000_OPEN:
+	  case ISO_DV_DOOR_025_OPEN:
+	  case ISO_DV_DOOR_050_OPEN:
+	  case ISO_DV_DOOR_075_OPEN:
+	  case ISO_DV_DOOR_100_OPEN:
+	      target_list = &doors_head;
+	      break;
+
+
+	  case ISO_REFRESH_1:
+	  case ISO_REFRESH_2:
+	  case ISO_REFRESH_3:
+	  case ISO_REFRESH_4:
+	  case ISO_REFRESH_5:
+	      target_list = &droid_nests_head;
+	      break;
+
+	  case ISO_TELEPORTER_1:
+	  case ISO_TELEPORTER_2:
+	  case ISO_TELEPORTER_3:
+	  case ISO_TELEPORTER_4:
+	  case ISO_TELEPORTER_5:
+	      target_list = &teleporters_head;
+	      break;
+
+	  case ISO_AUTOGUN_N:
+	  case ISO_AUTOGUN_S:
+	  case ISO_AUTOGUN_E:
+	  case ISO_AUTOGUN_W:
+	      target_list = &autoguns_head;
+	      break;
+
+	  default:
+	      target_list = NULL;
+	      break;
+	  }
+
+      if (target_list) {
+	  struct animated_obstacle * a = MyMalloc(sizeof(struct animated_obstacle));
+	  a->index = obstacle_index;
+	  list_add(&a->node, target_list);
+      }
+
+  }
+
+  animated_obstacles_lists_level = CURLEVEL()->levelnum;
+}
+
+/**
  * This function moves all the refresh fields to their next phase (if
  * it's time already).
  */
-static void AnimateRefresh ( void )
+static void AnimateRefresh (void)
 {
     static float InnerWaitCounter = 0;
-    int i;
-    Level RefreshLevel = curShip.AllLevels [ Me . pos . z ] ;
-    
-    DebugPrintf (2, "\nvoid AnimateRefresh(void):  real function call confirmed.");
+    struct animated_obstacle *a;
+    level *RefreshLevel = CURLEVEL();
     
     InnerWaitCounter += Frame_Time () * 3 ;
-    
-    for ( i = 0 ; i < MAX_REFRESHES_ON_LEVEL ; i++ )
-    {
-	if ( RefreshLevel -> refresh_obstacle_indices [ i ] <= ( -1 ) ) break;
-	
-	switch ( RefreshLevel -> obstacle_list [ RefreshLevel -> refresh_obstacle_indices [ i ] ] . type )
-	{
+  
+    if (RefreshLevel->levelnum != animated_obstacles_lists_level)
+      GetAnimatedMapTiles();
+   
+    list_for_each_entry(a, &droid_nests_head, node) {
+
+	switch (RefreshLevel -> obstacle_list [a->index].type) {
 	    case ISO_REFRESH_1:
 	    case ISO_REFRESH_2:
 	    case ISO_REFRESH_3:
@@ -1177,40 +1306,34 @@ static void AnimateRefresh ( void )
 		break;
 	    default:
 		ErrorMessage ( __FUNCTION__  , "\
-Error:  A refresh index pointing not to a refresh obstacles found.",
-					   PLEASE_INFORM, IS_FATAL );
+			Error:  A refresh index pointing not to a refresh obstacles found.",
+			PLEASE_INFORM, IS_FATAL );
 		break;
 	}
-	
-	RefreshLevel -> obstacle_list [ RefreshLevel -> refresh_obstacle_indices [ i ] ] . type = (((int) rintf (InnerWaitCounter)) % 5) + ISO_REFRESH_1;
-	
-    }	// for
-    
-    DebugPrintf ( 2 , "\nvoid AnimateRefresh(void):  end of function reached." );
-    
+
+	RefreshLevel -> obstacle_list[a->index].type = (((int) rintf (InnerWaitCounter)) % 5) + ISO_REFRESH_1;
+
+    }
 }; // void AnimateRefresh ( void )
 
 /**
  * This function moves all the teleporter fields to their next phase (if
  * it's time already).
  */
-void
-AnimateTeleports ( void )
+static void AnimateTeleports ( void )
 {
     static float InnerWaitCounter = 0;
-    int i;
-    Level TeleportLevel = curShip.AllLevels [ Me . pos . z ] ;
-    
-    DebugPrintf (2, "\nvoid AnimateTeleports(void):  real function call confirmed.");
+    struct animated_obstacle *a;
+    level * TeleportLevel = CURLEVEL();
     
     InnerWaitCounter += Frame_Time () * 10;
-    
-    for ( i = 0 ; i < MAX_TELEPORTERS_ON_LEVEL ; i ++ )
-    {
-	if ( TeleportLevel -> teleporter_obstacle_indices [ i ] <= ( -1 ) ) break;
-	
-	switch ( TeleportLevel -> obstacle_list [ TeleportLevel -> teleporter_obstacle_indices [ i ] ] . type )
-	{
+   
+    if (TeleportLevel->levelnum != animated_obstacles_lists_level)
+      GetAnimatedMapTiles();
+
+    list_for_each_entry(a, &teleporters_head, node) {
+	switch ( TeleportLevel -> obstacle_list [a->index] . type )
+	    {
 	    case ISO_TELEPORTER_1:
 	    case ISO_TELEPORTER_2:
 	    case ISO_TELEPORTER_3:
@@ -1222,16 +1345,14 @@ AnimateTeleports ( void )
 		break;
 	    default:
 		ErrorMessage ( __FUNCTION__  , "\
-Error:  A teleporter index pointing not to a teleporter obstacle found.",
-					   PLEASE_INFORM, IS_FATAL );
+			Error:  A teleporter index pointing not to a teleporter obstacle found.",
+			PLEASE_INFORM, IS_FATAL );
 		break;
-	}
-	
-	TeleportLevel -> obstacle_list [ TeleportLevel -> teleporter_obstacle_indices [ i ] ] . type = (((int) rintf (InnerWaitCounter)) % 5) + ISO_TELEPORTER_1;
-	
-    }	// for
-    
-    DebugPrintf ( 2 , "\n%s():  end of function reached." , __FUNCTION__ );
+	    }
+
+	TeleportLevel -> obstacle_list [a->index] . type = (((int) rintf (InnerWaitCounter)) % 5) + ISO_TELEPORTER_1;
+
+    }
     
 }; // void AnimateTeleports ( void )
 
@@ -1322,7 +1443,8 @@ LoadShip (char *filename)
 		//
 		// It requires, that the obstacles have been read in already.
 		//
-		GetAllAnimatedMapTiles ( curShip . AllLevels [ this_levelnum ] );
+		// Mark the list as dirty so it is regenerated automatically.
+		animated_obstacles_lists_level = -1;
 
 		//--------------------
 		// We attach each obstacle to a floor tile, just so that we can sort
@@ -2426,206 +2548,6 @@ DecodeLoadedLeveldata ( char *data )
 }; // Level DecodeLoadedLeveldata (char *data)
 
 /**
- * Some structures within Freedroid rpg maps are animated in the sense
- * that the map tiles used on the secected square rotates through a number
- * of different map tile types.
- * Now of course it would be possible to search all the map all the time
- * for tiles of this type and then update only those again and again.
- * But this would loose a lot of time checking 100x100 map tiles for a
- * lot of cases again and again.
- * Therefore it seems favorable to generate a list of these tiles in 
- * advance and then update only according to the current list of such
- * map tiles.  
- * Not this function is here to assemble such a list of animated map
- * tiles for one particular map level.
- */
-void
-GetAllAnimatedMapTiles ( Level Lev )
-{
-  int i;
-  int xlen, ylen;
-  int curdoor = 0;
-  int curautogun = 0;
-  int curref = 0;
-  int curtele = 0;
-  int obstacle_index;
-
-  xlen = Lev -> xlen;
-  ylen = Lev -> ylen;
-
-  //--------------------
-  // At first we must clear out all the junk that might
-  // still be in these arrays...
-  //
-  for (i = 0; i < MAX_DOORS_ON_LEVEL; i++)
-    Lev -> door_obstacle_indices [ i ] = ( -1 ) ;
-  for (i = 0; i < MAX_TELEPORTERS_ON_LEVEL; i++)
-    Lev -> teleporter_obstacle_indices [ i ] = ( -1 ) ;
-  for (i = 0; i < MAX_REFRESHES_ON_LEVEL; i++)
-    Lev -> refresh_obstacle_indices [ i ] = ( -1 ) ;
-  for (i = 0; i < MAX_AUTOGUNS_ON_LEVEL; i++)
-    Lev -> autogun_obstacle_indices [ i ] = ( -1 ) ;
-
-  // DebugPrintf ( 0 , "\nPretest for level %d." , Lev -> levelnum );
-  // for (i = 0; i < MAX_DOORS_ON_LEVEL; i++)
-  // {
-  // DebugPrintf ( 0 , " %d " , Lev -> door_obstacle_indices [ i ] ) ;
-  // }
-
-  //--------------------
-  // New method:  proceed through the obstacles of this level
-  // to find out where the doors are...
-  //
-  for ( obstacle_index = 0 ; obstacle_index < MAX_OBSTACLES_ON_MAP ; obstacle_index ++ )
-    {
-      /*
-      //--------------------
-      // Maybe we're done with the obstacles now...
-      //
-      if ( Lev -> obstacle_list [ obstacle_index ] . type == ( -1 ) ) 
-	{
-	  Lev -> door_obstacle_indices [ curdoor ] = ( -1 ) ;
-	  break;
-	}
-      */
-
-      switch ( Lev -> obstacle_list [ obstacle_index ] . type )
-	{
-	case ISO_H_DOOR_000_OPEN:
-	case ISO_H_DOOR_025_OPEN:
-	case ISO_H_DOOR_050_OPEN:
-	case ISO_H_DOOR_075_OPEN:
-	case ISO_H_DOOR_100_OPEN:
-
-	case ISO_V_DOOR_000_OPEN:
-	case ISO_V_DOOR_025_OPEN:
-	case ISO_V_DOOR_050_OPEN:
-	case ISO_V_DOOR_075_OPEN:
-	case ISO_V_DOOR_100_OPEN:
-	
-	case ISO_OUTER_DOOR_V_00:
-	case ISO_OUTER_DOOR_V_25:
-	case ISO_OUTER_DOOR_V_50:
-	case ISO_OUTER_DOOR_V_75:
-	case ISO_OUTER_DOOR_V_100:
-
-	case ISO_OUTER_DOOR_H_00:
-	case ISO_OUTER_DOOR_H_25:
-	case ISO_OUTER_DOOR_H_50:
-	case ISO_OUTER_DOOR_H_75:
-	case ISO_OUTER_DOOR_H_100:
-	
-	case ISO_DH_DOOR_000_OPEN:
-	case ISO_DH_DOOR_025_OPEN:
-	case ISO_DH_DOOR_050_OPEN:
-	case ISO_DH_DOOR_075_OPEN:
-	case ISO_DH_DOOR_100_OPEN:
-
-	case ISO_DV_DOOR_000_OPEN:
-	case ISO_DV_DOOR_025_OPEN:
-	case ISO_DV_DOOR_050_OPEN:
-	case ISO_DV_DOOR_075_OPEN:
-	case ISO_DV_DOOR_100_OPEN:
-
-	  //--------------------
-	  // We've found another door obstacle, so we add it's index
-	  // into the door obstacle index list of this level...
-	  //
-	  Lev -> door_obstacle_indices [ curdoor ] = obstacle_index ;
-	  curdoor++;
-	  if ( curdoor > MAX_DOORS_ON_LEVEL)
-	    {
-	      fprintf( stderr , "\n\nLev->levelnum : %d MAX_DOORS_ON_LEVEL: %d \n" , 
-		       Lev -> levelnum , MAX_DOORS_ON_LEVEL );
-	      ErrorMessage ( __FUNCTION__  , "\
-The number of doors found in a level seems to be greater than the number\n\
-of doors currently allowed in a Freedroid map.",
-					 PLEASE_INFORM, IS_FATAL );
-	    }
-	  break;
-
-
-	case ISO_REFRESH_1:
-	case ISO_REFRESH_2:
-	case ISO_REFRESH_3:
-	case ISO_REFRESH_4:
-	case ISO_REFRESH_5:
-
-	  //--------------------
-	  // We've found another refresh obstacle, so we add it's index
-	  // into the refresh obstacle index list of this level...
-	  //
-	  Lev -> refresh_obstacle_indices [ curref ] = obstacle_index ;
-	  curref++;
-	  if ( curref >= MAX_REFRESHES_ON_LEVEL)
-	    {
-	      fprintf( stderr , "\n\nLev->levelnum : %d MAX_REFRESHES_ON_LEVEL: %d \n" , 
-		       Lev -> levelnum , MAX_REFRESHES_ON_LEVEL );
-	      ErrorMessage ( __FUNCTION__  , "\
-The number of refreshes found on level %d is greater than the number\n\
-of refreshes currently allowed in a Freedroid map (%d).\n",
-					 PLEASE_INFORM, IS_WARNING_ONLY, Lev->levelnum, MAX_REFRESHES_ON_LEVEL );
-	      curref = MAX_REFRESHES_ON_LEVEL - 1;
-
-	    }
-	  break;
-
-	case ISO_TELEPORTER_1:
-	case ISO_TELEPORTER_2:
-	case ISO_TELEPORTER_3:
-	case ISO_TELEPORTER_4:
-	case ISO_TELEPORTER_5:
-	  //--------------------
-	  // We've found another teleporter obstacle, so we add it's index
-	  // into the teleporter obstacle index list of this level...
-	  //
-	  Lev -> teleporter_obstacle_indices [ curtele ] = obstacle_index ;
-	  curtele++;
-	  if ( curtele > MAX_TELEPORTERS_ON_LEVEL)
-	    {
-	      fprintf( stderr , "\n\nLev->levelnum : %d MAX_TELEPORTERS_ON_LEVEL: %d \n" , 
-		       Lev -> levelnum , MAX_TELEPORTERS_ON_LEVEL );
-	      ErrorMessage ( __FUNCTION__  , "\
-The number of teleporters found in a level seems to be greater than the number\n\
-of teleporters currently allowed in a Freedroid map.",
-					 PLEASE_INFORM, IS_WARNING_ONLY );
-	      curtele = MAX_TELEPORTERS_ON_LEVEL - 1; 
-	    }
-	  break;
-
-	case ISO_AUTOGUN_N:
-	case ISO_AUTOGUN_S:
-	case ISO_AUTOGUN_E:
-	case ISO_AUTOGUN_W:
-	  //--------------------
-	  // We've found another autogun obstacle, so we add it's index
-	  // into the autogun obstacle index list of this level...
-	  //
-	  Lev -> autogun_obstacle_indices [ curautogun ] = obstacle_index ;
-	  curautogun++;
-	  if ( curautogun > MAX_TELEPORTERS_ON_LEVEL)
-	    {
-	      fprintf( stderr , "\n\nLev->levelnum : %d MAX_AUTOGUNS_ON_LEVEL: %d \n" , 
-		       Lev -> levelnum , MAX_AUTOGUNS_ON_LEVEL );
-	      ErrorMessage ( __FUNCTION__  , "\
-The number of autoguns found in a level seems to be greater than the number\n\
-of autoguns currently allowed in a Freedroid map.",
-					 PLEASE_INFORM, IS_WARNING_ONLY );
-	      curautogun = MAX_TELEPORTERS_ON_LEVEL - 1;
-	    }
-	  break;
-
-	default:
-	  //--------------------
-	  // This isn't a door, so we do nothing here...
-	  //
-	  break;
-	}
-    }
-
-}; // void GetAllAnimatedMapTiles ( Level Lev )
-
-/**
  * This function translates map data into human readable map code, that
  * can later be written to the map file on disk.
  */
@@ -3038,209 +2960,193 @@ game data file with all droid type specifications.",
 /** 
  * This funtion moves the level doors in the sense that they are opened
  * or closed depending on whether there is a robot close to the door or
- * not.  Initially this function did not take into account the framerate
- * and just worked every frame.  But this WASTES COMPUTATION time and it
- * DOES THE ANIMATION TOO QUICKLY.  So, the most reasonable way out seems
- * to be to operate this function only from time to time, e.g. after a
- * specified delay has passed.
+ * not.  
  */
-void
-MoveLevelDoors ( )
+void MoveLevelDoors ( )
 {
-  int i;
-  float xdist, ydist;
-  float dist2;
-  int *Pos;
-  Level DoorLevel;
-  int one_player_close_enough = FALSE;
-  int door_obstacle_index;
-  int some_bot_was_close_to_this_door = FALSE ;
+    struct animated_obstacle *a;
+    float xdist, ydist;
+    float dist2;
+    int *Pos;
+    level *DoorLevel;
+    int one_player_close_enough = FALSE;
+    int door_obstacle_index;
+    int some_bot_was_close_to_this_door = FALSE ;
 
-  DoorLevel = curShip . AllLevels [ Me . pos . z ] ;
+    DoorLevel = CURLEVEL();
 
-  //--------------------
-  // This prevents animation going too quick.
-  // The constant should be replaced by a variable, that can be
-  // set from within the theme, but that may be done later...
-  //
-  if ( LevelDoorsNotMovedTime < 0.05 ) return;
+    // if the door list is dirty, regenerate it
+    if (DoorLevel->levelnum != animated_obstacles_lists_level)
+	GetAnimatedMapTiles();
 
-  LevelDoorsNotMovedTime=0;
+    //--------------------
+    // This prevents animation going too quick.
+    // The constant should be replaced by a variable, that can be
+    // set from within the theme, but that may be done later...
+    //
+    if ( LevelDoorsNotMovedTime < 0.05 ) return;
 
-  // DebugPrintf ( 0 , "\nMoving Doors for Me %d on level %d . != %d " , DoorLevel -> levelnum , Me . pos . z );
+    LevelDoorsNotMovedTime=0;
 
-  //--------------------
-  // Now we go through the whole prepared list of doors for this
-  // level.  This list has been prepared in advance, when the level
-  // was read in.
-  //
-  for ( i = 0 ; i < MAX_DOORS_ON_LEVEL ; i ++ )
-    {
-      door_obstacle_index = DoorLevel -> door_obstacle_indices [ i ] ;
-
-      // no more doors?
-      if ( door_obstacle_index == (-1) )
+    list_for_each_entry(a, &doors_head, node)
 	{
-	  // DebugPrintf ( 0 , "\nNumber of last door moved on this level : %d." , i );
-	  // DebugPrintf ( 0 , "\nNumber_Of_Droids_On_Ship : %d." , Number_Of_Droids_On_Ship );
-	  break;
-	}
+	door_obstacle_index = a->index;
 
-      //--------------------
-      // We make a convenient pointer to the type of the obstacle, that
-      // is supposed to be a door and might need to be changed as far as
-      // it's opening status is concerned...
-      //
-      Pos = & ( DoorLevel -> obstacle_list [ door_obstacle_index ] . type ) ;
+	//--------------------
+	// We make a convenient pointer to the type of the obstacle, that
+	// is supposed to be a door and might need to be changed as far as
+	// it's opening status is concerned...
+	//
+	Pos = & ( DoorLevel -> obstacle_list [ door_obstacle_index ] . type ) ;
 
-      //--------------------
-      // Some security check against changing anything that isn't a door here...
-      //
-      switch ( *Pos )
-	{
-	case ISO_H_DOOR_000_OPEN:
-	case ISO_H_DOOR_025_OPEN:
-	case ISO_H_DOOR_050_OPEN:
-	case ISO_H_DOOR_075_OPEN:
-	case ISO_H_DOOR_100_OPEN:
-
-	case ISO_V_DOOR_000_OPEN:
-	case ISO_V_DOOR_025_OPEN:
-	case ISO_V_DOOR_050_OPEN:
-	case ISO_V_DOOR_075_OPEN:
-	case ISO_V_DOOR_100_OPEN:
-
-	case ISO_OUTER_DOOR_V_00:
-	case ISO_OUTER_DOOR_V_25:
-	case ISO_OUTER_DOOR_V_50:
-	case ISO_OUTER_DOOR_V_75:
-	case ISO_OUTER_DOOR_V_100:
-
-	case ISO_OUTER_DOOR_H_00:
-	case ISO_OUTER_DOOR_H_25:
-	case ISO_OUTER_DOOR_H_50:
-	case ISO_OUTER_DOOR_H_75:
-	case ISO_OUTER_DOOR_H_100:
-
-	case ISO_DH_DOOR_000_OPEN:
-	case ISO_DH_DOOR_025_OPEN:
-	case ISO_DH_DOOR_050_OPEN:
-	case ISO_DH_DOOR_075_OPEN:
-	case ISO_DH_DOOR_100_OPEN:
-
-	case ISO_DV_DOOR_000_OPEN:
-	case ISO_DV_DOOR_025_OPEN:
-	case ISO_DV_DOOR_050_OPEN:
-	case ISO_DV_DOOR_075_OPEN:
-	case ISO_DV_DOOR_100_OPEN:
-
-	  break;
-	  
-	default:
-	  fprintf ( stderr, "\n*Pos: '%d'.\ni: %d\nlevelnum: %d\nObstacle index: %d" , *Pos , i , DoorLevel -> levelnum , door_obstacle_index );
-	  ErrorMessage ( __FUNCTION__  , "\
-Error:  Doors pointing not to door obstacles found.",
-				     PLEASE_INFORM, IS_FATAL );
-	  break;
-	}
-
-      //--------------------
-      // First we see if one of the players is close enough to the
-      // door, so that it would get opened.
-      //
-      one_player_close_enough = FALSE;
-	  //--------------------
-	  // Maybe this player is on a different level, than we are 
-	  // interested now.
-	  //
-	  if ( Me . pos . z != DoorLevel -> levelnum ) continue;
-
-	  //--------------------
-	  // But this player is on the right level, we need to check it's distance 
-	  // to this door.
-	  //
-	  xdist = Me . pos . x - DoorLevel -> obstacle_list [ door_obstacle_index ] . pos . x ;
-	  ydist = Me . pos . y - DoorLevel -> obstacle_list [ door_obstacle_index ] . pos . y ;
-	  dist2 = xdist * xdist + ydist * ydist ;
-	  if ( dist2 < DOOROPENDIST2 )
+	//--------------------
+	// Some security check against changing anything that isn't a door here...
+	//
+	switch ( *Pos )
 	    {
-	      one_player_close_enough = TRUE ;
+	    case ISO_H_DOOR_000_OPEN:
+	    case ISO_H_DOOR_025_OPEN:
+	    case ISO_H_DOOR_050_OPEN:
+	    case ISO_H_DOOR_075_OPEN:
+	    case ISO_H_DOOR_100_OPEN:
+
+	    case ISO_V_DOOR_000_OPEN:
+	    case ISO_V_DOOR_025_OPEN:
+	    case ISO_V_DOOR_050_OPEN:
+	    case ISO_V_DOOR_075_OPEN:
+	    case ISO_V_DOOR_100_OPEN:
+
+	    case ISO_OUTER_DOOR_V_00:
+	    case ISO_OUTER_DOOR_V_25:
+	    case ISO_OUTER_DOOR_V_50:
+	    case ISO_OUTER_DOOR_V_75:
+	    case ISO_OUTER_DOOR_V_100:
+
+	    case ISO_OUTER_DOOR_H_00:
+	    case ISO_OUTER_DOOR_H_25:
+	    case ISO_OUTER_DOOR_H_50:
+	    case ISO_OUTER_DOOR_H_75:
+	    case ISO_OUTER_DOOR_H_100:
+
+	    case ISO_DH_DOOR_000_OPEN:
+	    case ISO_DH_DOOR_025_OPEN:
+	    case ISO_DH_DOOR_050_OPEN:
+	    case ISO_DH_DOOR_075_OPEN:
+	    case ISO_DH_DOOR_100_OPEN:
+
+	    case ISO_DV_DOOR_000_OPEN:
+	    case ISO_DV_DOOR_025_OPEN:
+	    case ISO_DV_DOOR_050_OPEN:
+	    case ISO_DV_DOOR_075_OPEN:
+	    case ISO_DV_DOOR_100_OPEN:
+
+		break;
+
+	    default:
+		fprintf ( stderr, "\n*Pos: '%d'.\nlevelnum: %d\nObstacle index: %d" , *Pos, DoorLevel -> levelnum , door_obstacle_index );
+		ErrorMessage ( __FUNCTION__  , "\
+			Error:  Doors pointing not to door obstacles found.",
+			PLEASE_INFORM, IS_FATAL );
+		break;
 	    }
 
-      // --------------------
-      // If one of the players is close enough, the door gets opened
-      // and we are done.
-      //
-      if ( one_player_close_enough )
-	{
-	  if ( ( *Pos != ISO_H_DOOR_100_OPEN ) && ( *Pos != ISO_V_DOOR_100_OPEN )
-		 && ( *Pos != ISO_DH_DOOR_100_OPEN ) && ( *Pos != ISO_DV_DOOR_100_OPEN )
-		 && ( *Pos != ISO_OUTER_DOOR_H_100 ) && ( *Pos != ISO_OUTER_DOOR_V_100 ) )
-	    *Pos += 1;
-	}
-      else 
-	{
-	  //--------------------
-	  // But if the Tux is not close enough, then we must
-	  // see if perhaps one of the enemys is close enough, so that
-	  // the door would still get opened instead of closed.
-	  //
-	  some_bot_was_close_to_this_door = FALSE ;
+	//--------------------
+	// First we see if one of the players is close enough to the
+	// door, so that it would get opened.
+	//
+	one_player_close_enough = FALSE;
+	//--------------------
+	// Maybe this player is on a different level, than we are 
+	// interested now.
+	//
+	if ( Me . pos . z != DoorLevel -> levelnum ) continue;
 
-	  enemy *erot;
-	  BROWSE_LEVEL_BOTS(erot, DoorLevel->levelnum)
+	//--------------------
+	// But this player is on the right level, we need to check it's distance 
+	// to this door.
+	//
+	xdist = Me . pos . x - DoorLevel -> obstacle_list [ door_obstacle_index ] . pos . x ;
+	ydist = Me . pos . y - DoorLevel -> obstacle_list [ door_obstacle_index ] . pos . y ;
+	dist2 = xdist * xdist + ydist * ydist ;
+	if ( dist2 < DOOROPENDIST2 )
 	    {
-	      //--------------------
-	      // We will only consider droids, that are at least within a range of
-	      // say 2 squares in each direction.  Anything beyond that distance
-	      // can be safely ignored for this door.
-	      //
-	      xdist = abs ( erot->pos . x - DoorLevel -> obstacle_list [ door_obstacle_index ] . pos . x ) ;
-	      if ( xdist < 2.0 )
+	    one_player_close_enough = TRUE ;
+	    }
+
+	// --------------------
+	// If one of the players is close enough, the door gets opened
+	// and we are done.
+	//
+	if ( one_player_close_enough )
+	    {
+	    if ( ( *Pos != ISO_H_DOOR_100_OPEN ) && ( *Pos != ISO_V_DOOR_100_OPEN )
+		    && ( *Pos != ISO_DH_DOOR_100_OPEN ) && ( *Pos != ISO_DV_DOOR_100_OPEN )
+		    && ( *Pos != ISO_OUTER_DOOR_H_100 ) && ( *Pos != ISO_OUTER_DOOR_V_100 ) )
+		*Pos += 1;
+	    }
+	else 
+	    {
+	    //--------------------
+	    // But if the Tux is not close enough, then we must
+	    // see if perhaps one of the enemys is close enough, so that
+	    // the door would still get opened instead of closed.
+	    //
+	    some_bot_was_close_to_this_door = FALSE ;
+
+	    enemy *erot;
+	    BROWSE_LEVEL_BOTS(erot, DoorLevel->levelnum)
 		{
-		  ydist = abs ( erot->pos . y - DoorLevel -> obstacle_list [ door_obstacle_index ] . pos . y ) ;
-		  if ( ydist < 2.0 )
+		//--------------------
+		// We will only consider droids, that are at least within a range of
+		// say 2 squares in each direction.  Anything beyond that distance
+		// can be safely ignored for this door.
+		//
+		xdist = abs ( erot->pos . x - DoorLevel -> obstacle_list [ door_obstacle_index ] . pos . x ) ;
+		if ( xdist < 2.0 )
 		    {
-		      
-		      //--------------------
-		      // Now that we know, that there is some droid at least halfway
-		      // close to this door, we can start to go into more details and
-		      // compute the exact distance from the droid to the door.
-		      //
-		      dist2 = xdist * xdist + ydist * ydist;
-		      if ( dist2 < DOOROPENDIST2_FOR_DROIDS )
+		    ydist = abs ( erot->pos . y - DoorLevel -> obstacle_list [ door_obstacle_index ] . pos . y ) ;
+		    if ( ydist < 2.0 )
 			{
-			  if ( ( *Pos != ISO_H_DOOR_100_OPEN ) && ( *Pos != ISO_V_DOOR_100_OPEN )
-				 && ( *Pos != ISO_DH_DOOR_100_OPEN ) && ( *Pos != ISO_DV_DOOR_100_OPEN )
-				 && ( *Pos != ISO_OUTER_DOOR_H_100 ) && ( *Pos != ISO_OUTER_DOOR_V_100 ) )
-			    *Pos += 1;
 
-			  //--------------------
-			  // Just to make sure the last bot doesn't look like the whole loop
-			  // went through without any bot being close...
-			  //
-			  some_bot_was_close_to_this_door = TRUE ;
-			  break;  
-			}	
+			//--------------------
+			// Now that we know, that there is some droid at least halfway
+			// close to this door, we can start to go into more details and
+			// compute the exact distance from the droid to the door.
+			//
+			dist2 = xdist * xdist + ydist * ydist;
+			if ( dist2 < DOOROPENDIST2_FOR_DROIDS )
+			    {
+			    if ( ( *Pos != ISO_H_DOOR_100_OPEN ) && ( *Pos != ISO_V_DOOR_100_OPEN )
+				    && ( *Pos != ISO_DH_DOOR_100_OPEN ) && ( *Pos != ISO_DV_DOOR_100_OPEN )
+				    && ( *Pos != ISO_OUTER_DOOR_H_100 ) && ( *Pos != ISO_OUTER_DOOR_V_100 ) )
+				*Pos += 1;
 
-		    } // ydist < 2.0
-		} // xdist < 2.0
+			    //--------------------
+			    // Just to make sure the last bot doesn't look like the whole loop
+			    // went through without any bot being close...
+			    //
+			    some_bot_was_close_to_this_door = TRUE ;
+			    break;  
+			    }	
 
-	    } // bots
+			} // ydist < 2.0
+		    } // xdist < 2.0
 
-	  //--------------------
-	  // So if the whole loop when through, that means that no bot was close
-	  // enough to this door.  That means that we can close this door a bit
-	  // more...
-	  //
-	  if ( ! some_bot_was_close_to_this_door )
-	    if ( ( *Pos != ISO_V_DOOR_000_OPEN ) && ( *Pos != ISO_H_DOOR_000_OPEN )
-		   && ( *Pos != ISO_DV_DOOR_000_OPEN ) && ( *Pos != ISO_DH_DOOR_000_OPEN )
-		   && ( *Pos != ISO_OUTER_DOOR_V_00 ) && ( *Pos != ISO_OUTER_DOOR_H_00 ) )
-	      *Pos -= 1;
+		} // bots
 
-	}			/* else */
-    }				/* for */
+	    //--------------------
+	    // So if the whole loop when through, that means that no bot was close
+	    // enough to this door.  That means that we can close this door a bit
+	    // more...
+	    //
+	    if ( ! some_bot_was_close_to_this_door )
+		if ( ( *Pos != ISO_V_DOOR_000_OPEN ) && ( *Pos != ISO_H_DOOR_000_OPEN )
+			&& ( *Pos != ISO_DV_DOOR_000_OPEN ) && ( *Pos != ISO_DH_DOOR_000_OPEN )
+			&& ( *Pos != ISO_OUTER_DOOR_V_00 ) && ( *Pos != ISO_OUTER_DOOR_H_00 ) )
+		    *Pos -= 1;
+
+	    }			/* else */
+	}				/* for */
 }; // void MoveLevelDoors ( void )
 
 
@@ -3248,13 +3154,11 @@ Error:  Doors pointing not to door obstacles found.",
  * This function does all the firing for the autocannons installed in
  * the map of this level.
  */
-void
-WorkLevelGuns ( )
+void WorkLevelGuns ( )
 {
-  int i;
   float autogunx, autoguny;
   int *AutogunType;
-  Level GunLevel;
+  level *GunLevel;
 
   //--------------------
   // The variables for the gun.
@@ -3262,43 +3166,27 @@ WorkLevelGuns ( )
   int j = 0;
   /*XXX hardcoded weapon item type*/
   int weapon_item_type = GetItemIndexByName("Laser pistol") ;
-  Bullet CurBullet = NULL;  // the bullet we're currentl dealing with
+  bullet *CurBullet = NULL;  // the bullet we're currentl dealing with
   int bullet_image_type = ItemMap[ weapon_item_type ].item_gun_bullet_image_type;   // which gun do we have ? 
   float BulletSpeed = ItemMap[ weapon_item_type ].item_gun_speed;
   double speed_norm;
   moderately_finepoint speed;
+  struct animated_obstacle *a;
 
-  GunLevel = curShip . AllLevels [ Me . pos . z ] ;
+  GunLevel = CURLEVEL();
+
+  if (GunLevel->levelnum != animated_obstacles_lists_level)
+      GetAnimatedMapTiles();
 
   if ( LevelGunsNotFiredTime < 0.2 ) return;
   LevelGunsNotFiredTime = 0 ;
 
-  // DebugPrintf ( 0 , "\nMoving Doors for Me %d on level %d . != %d " , GunLevel -> levelnum , Me . pos . z );
+  list_for_each_entry(a, &autoguns_head, node) {
 
-  //--------------------
-  // Now we go through the whole prepared list of autoguns for this
-  // level.  This list has been prepared in advance, when the level
-  // was read in.
-  //
-  for ( i = 0 ; i < MAX_AUTOGUNS_ON_LEVEL ; i ++ )
-    {
-
-      autogunx = ( GunLevel -> obstacle_list [ GunLevel -> autogun_obstacle_indices [ i ] ] . pos . x );
-      autoguny = ( GunLevel -> obstacle_list [ GunLevel -> autogun_obstacle_indices [ i ] ] . pos . y );
-      // autoguny = ( GunLevel -> autoguns [ i ] . y );
-
-      // no more autoguns?
-      // if ( ( autogunx == 0 ) && ( autoguny == 0 ) )
-      // break;
-      if ( GunLevel -> autogun_obstacle_indices [ i ] == ( -1 ) ) break;
-
-      // Pos = & ( GunLevel -> map [autoguny] [autogunx]  . floor_value ) ;
-      AutogunType = & ( GunLevel -> obstacle_list [ GunLevel -> autogun_obstacle_indices [ i ] ] . type );
-
-      //--------------------
-      // From here on goes the bullet code, that originally came from
-      // the FireTuxRangesWeaponRaw function.
-      //
+      autogunx = ( GunLevel -> obstacle_list [a->index] . pos . x );
+      autoguny = ( GunLevel -> obstacle_list [a->index] . pos . y );
+      
+      AutogunType = & ( GunLevel -> obstacle_list [a->index] . type );
 
       //--------------------
       // search for the next free bullet list entry

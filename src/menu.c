@@ -1198,7 +1198,7 @@ Cheatmenu (void)
 		break;
 
 	    case 'w':  /* print waypoint info of current level */
-		WpList = CURLEVEL->AllWaypoints;
+		WpList = CURLEVEL()->AllWaypoints;
 		for (i=0; i<MAXWAYPOINTS && WpList[i].x; i++)
 		{
 		    if (i && !(i%20))

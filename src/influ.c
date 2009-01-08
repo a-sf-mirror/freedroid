@@ -323,9 +323,9 @@ mouse_cursor_is_on_that_obstacle ( int obst_index )
 {
 
     if ( mouse_cursor_is_on_that_iso_image ( 
-	     CURLEVEL -> obstacle_list [ obst_index ] . pos . x ,
-	     CURLEVEL -> obstacle_list [ obst_index ] . pos . y ,
-	     & ( obstacle_map [ CURLEVEL -> obstacle_list [ obst_index ] . type ] . image ) ) )
+	     CURLEVEL() -> obstacle_list [ obst_index ] . pos . x ,
+	     CURLEVEL() -> obstacle_list [ obst_index ] . pos . y ,
+	     & ( obstacle_map [ CURLEVEL() -> obstacle_list [ obst_index ] . type ] . image ) ) )
     {
 	return ( TRUE ) ;
     }
@@ -377,17 +377,17 @@ closed_chest_below_mouse_cursor ( )
 	{
 	    if ( ( ( (int) x ) < 0 ) ||
 		 ( ( (int) y ) < 0 ) ||
-		 ( ( (int) x ) >= CURLEVEL -> xlen ) ||
-		 ( ( (int) y ) >= CURLEVEL -> ylen ) ) continue ;
+		 ( ( (int) x ) >= CURLEVEL() -> xlen ) ||
+		 ( ( (int) y ) >= CURLEVEL() -> ylen ) ) continue ;
 	    
 	    for ( i = 0 ; i < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE ; i++ )
 	    {
 		
-		obst_index = CURLEVEL -> map [ (int) y ] [ (int) x ] . obstacles_glued_to_here [ i ] ;
+		obst_index = CURLEVEL() -> map [ (int) y ] [ (int) x ] . obstacles_glued_to_here [ i ] ;
 		
 		if ( obst_index == (-1) ) continue;
 		
-		switch ( CURLEVEL -> obstacle_list [ obst_index ] . type )
+		switch ( CURLEVEL() -> obstacle_list [ obst_index ] . type )
 		{
 		    case ISO_H_CHEST_CLOSED:
 		    case ISO_V_CHEST_CLOSED:
@@ -455,17 +455,17 @@ smashable_barrel_below_mouse_cursor ( )
 	{
 	    if ( ( ( (int) x ) < 0 ) ||
 		 ( ( (int) y ) < 0 ) ||
-		 ( ( (int) x ) >= CURLEVEL -> xlen ) ||
-		 ( ( (int) y ) >= CURLEVEL -> ylen ) ) continue ;
+		 ( ( (int) x ) >= CURLEVEL() -> xlen ) ||
+		 ( ( (int) y ) >= CURLEVEL() -> ylen ) ) continue ;
 	    
 	    for ( i = 0 ; i < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE ; i++ )
 	    {
 		
-		obst_index = CURLEVEL -> map [ (int) y ] [ (int) x ] . obstacles_glued_to_here [ i ] ;
+		obst_index = CURLEVEL() -> map [ (int) y ] [ (int) x ] . obstacles_glued_to_here [ i ] ;
 		
 		if ( obst_index == (-1) ) continue;
 		
-		switch ( CURLEVEL -> obstacle_list [ obst_index ] . type )
+		switch ( CURLEVEL() -> obstacle_list [ obst_index ] . type )
 		{
 		    case ISO_BARREL_1:
 		    case ISO_BARREL_2:
