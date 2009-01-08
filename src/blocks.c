@@ -1532,7 +1532,9 @@ static void init_obstacle_data( void )
     int i;
     float standard_wall_thickness = 0.4 ;
     float standard_wall_width = 1.1 ;
+    float double_wall_width = 2.1 ;
     float standard_door_width = 1.0 ;
+    float double_door_width = 2.0 ;
 // Extreme values for outer wall, to slightly lower problem of tux walking through outer wall door post
     float outer_wall_thickness = 1.8 ;
     float outer_wall_width = 1.8 ;
@@ -1774,17 +1776,6 @@ static void init_obstacle_data( void )
     obstacle_map [ ISO_V_DOOR_LOCKED ] . obstacle_short_name = obstacle_map [ ISO_H_DOOR_LOCKED ] . obstacle_short_name;
     obstacle_map [ ISO_V_DOOR_LOCKED ] . obstacle_long_description = obstacle_map [ ISO_H_DOOR_LOCKED ] . obstacle_long_description ;
 
-    obstacle_map [ ISO_H_DDOOR_LOCKED ] . filename = "iso_doubledoors_0011.png" ;
-    obstacle_map [ ISO_H_DDOOR_LOCKED ] . block_area_parm_1 = standard_wall_width ;
-    obstacle_map [ ISO_H_DDOOR_LOCKED ] . block_area_parm_2 = standard_wall_thickness ;
-    obstacle_map [ ISO_H_DDOOR_LOCKED ] . flags &= ~BLOCKS_VISION_TOO ;
-    obstacle_map [ ISO_H_DDOOR_LOCKED ] . transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS ;
-    obstacle_map [ ISO_H_DDOOR_LOCKED ] . flags |= IS_HORIZONTAL ; 
-    //locked doors have the same description
-    obstacle_map [ ISO_H_DDOOR_LOCKED ] . obstacle_short_name = _("Locked door");
-    obstacle_map [ ISO_H_DDOOR_LOCKED ] . obstacle_long_description = _("The red color probably indicates that the door is locked.");
-
-
     obstacle_map [ ISO_H_DOOR_000_OPEN ] . block_area_parm_1 = standard_door_width ;
     obstacle_map [ ISO_H_DOOR_000_OPEN ] . block_area_parm_2 = standard_wall_thickness ;
     obstacle_map [ ISO_H_DOOR_000_OPEN ] . flags &= ~BLOCKS_VISION_TOO ;
@@ -1815,6 +1806,90 @@ static void init_obstacle_data( void )
     obstacle_map [ ISO_H_DOOR_100_OPEN ] . filename = "iso_doors_0005.png" ;
     obstacle_map [ ISO_H_DOOR_100_OPEN ] . block_area_type = COLLISION_TYPE_NONE ;
     obstacle_map [ ISO_H_DOOR_100_OPEN ] . transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS ;
+
+    obstacle_map [ ISO_DH_DOOR_000_OPEN ] . block_area_parm_1 = double_door_width ;
+    obstacle_map [ ISO_DH_DOOR_000_OPEN ] . block_area_parm_2 = standard_wall_thickness ;
+    obstacle_map [ ISO_DH_DOOR_000_OPEN ] . flags &= ~BLOCKS_VISION_TOO ;
+    obstacle_map [ ISO_DH_DOOR_000_OPEN ] . flags |= IS_WALKABLE ;
+    obstacle_map [ ISO_DH_DOOR_000_OPEN ] . filename = "iso_doubledoors_0001.png" ;
+    obstacle_map [ ISO_DH_DOOR_000_OPEN ] . transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS ;
+    obstacle_map [ ISO_DH_DOOR_025_OPEN ] . block_area_parm_1 = double_door_width ;
+    obstacle_map [ ISO_DH_DOOR_025_OPEN ] . block_area_parm_2 = standard_wall_thickness ;
+    obstacle_map [ ISO_DH_DOOR_025_OPEN ] . flags &= ~BLOCKS_VISION_TOO ;
+    obstacle_map [ ISO_DH_DOOR_025_OPEN ] . flags |= IS_WALKABLE ;
+    obstacle_map [ ISO_DH_DOOR_025_OPEN ] . filename = "iso_doubledoors_0002.png" ;
+    obstacle_map [ ISO_DH_DOOR_025_OPEN ] . transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS ;
+    obstacle_map [ ISO_DH_DOOR_050_OPEN ] . block_area_parm_1 = double_door_width ;
+    obstacle_map [ ISO_DH_DOOR_050_OPEN ] . block_area_parm_2 = standard_wall_thickness ;
+    obstacle_map [ ISO_DH_DOOR_050_OPEN ] . flags &= ~BLOCKS_VISION_TOO ;
+    obstacle_map [ ISO_DH_DOOR_050_OPEN ] . flags |= IS_WALKABLE ;
+    obstacle_map [ ISO_DH_DOOR_050_OPEN ] . filename = "iso_doubledoors_0003.png" ;
+    obstacle_map [ ISO_DH_DOOR_050_OPEN ] . transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS ;
+    obstacle_map [ ISO_DH_DOOR_075_OPEN ] . block_area_parm_1 = double_door_width ;
+    obstacle_map [ ISO_DH_DOOR_075_OPEN ] . block_area_parm_2 = standard_wall_thickness ;
+    obstacle_map [ ISO_DH_DOOR_075_OPEN ] . flags &= ~BLOCKS_VISION_TOO ;
+    obstacle_map [ ISO_DH_DOOR_075_OPEN ] . flags |= IS_WALKABLE ;
+    obstacle_map [ ISO_DH_DOOR_075_OPEN ] . filename = "iso_doubledoors_0004.png" ;
+    obstacle_map [ ISO_DH_DOOR_075_OPEN ] . transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS ;
+    obstacle_map [ ISO_DH_DOOR_100_OPEN ] . block_area_type = COLLISION_TYPE_NONE;
+    obstacle_map [ ISO_DH_DOOR_100_OPEN ] . block_area_parm_1 = double_door_width ;
+    obstacle_map [ ISO_DH_DOOR_100_OPEN ] . block_area_parm_2 = standard_wall_thickness ;
+    obstacle_map [ ISO_DH_DOOR_100_OPEN ] . filename = "iso_doubledoors_0005.png" ;
+    obstacle_map [ ISO_DH_DOOR_100_OPEN ] . block_area_type = COLLISION_TYPE_NONE ;
+    obstacle_map [ ISO_DH_DOOR_100_OPEN ] . transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS ;
+
+
+    obstacle_map [ ISO_DH_DOOR_LOCKED ] . filename = "iso_doubledoors_0011.png" ;
+    obstacle_map [ ISO_DH_DOOR_LOCKED ] . block_area_parm_1 = double_wall_width ;
+    obstacle_map [ ISO_DH_DOOR_LOCKED ] . block_area_parm_2 = standard_wall_thickness ;
+    obstacle_map [ ISO_DH_DOOR_LOCKED ] . flags &= ~BLOCKS_VISION_TOO ;
+    obstacle_map [ ISO_DH_DOOR_LOCKED ] . transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS ;
+    obstacle_map [ ISO_DH_DOOR_LOCKED ] . flags |= IS_HORIZONTAL ; 
+    //locked doors have the same description
+    obstacle_map [ ISO_DH_DOOR_LOCKED ] . obstacle_short_name = _("Locked door");
+    obstacle_map [ ISO_DH_DOOR_LOCKED ] . obstacle_long_description = _("The red color probably indicates that the door is locked.");
+
+    obstacle_map [ ISO_DV_DOOR_000_OPEN ] . block_area_parm_1 = double_door_width ;
+    obstacle_map [ ISO_DV_DOOR_000_OPEN ] . block_area_parm_2 = standard_wall_thickness ;
+    obstacle_map [ ISO_DV_DOOR_000_OPEN ] . flags &= ~BLOCKS_VISION_TOO ;
+    obstacle_map [ ISO_DV_DOOR_000_OPEN ] . flags |= IS_WALKABLE ;
+    obstacle_map [ ISO_DV_DOOR_000_OPEN ] . filename = "iso_doubledoors_0001.png" ;
+    obstacle_map [ ISO_DV_DOOR_000_OPEN ] . transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS ;
+    obstacle_map [ ISO_DV_DOOR_025_OPEN ] . block_area_parm_1 = double_door_width ;
+    obstacle_map [ ISO_DV_DOOR_025_OPEN ] . block_area_parm_2 = standard_wall_thickness ;
+    obstacle_map [ ISO_DV_DOOR_025_OPEN ] . flags &= ~BLOCKS_VISION_TOO ;
+    obstacle_map [ ISO_DV_DOOR_025_OPEN ] . flags |= IS_WALKABLE ;
+    obstacle_map [ ISO_DV_DOOR_025_OPEN ] . filename = "iso_doubledoors_0002.png" ;
+    obstacle_map [ ISO_DV_DOOR_025_OPEN ] . transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS ;
+    obstacle_map [ ISO_DV_DOOR_050_OPEN ] . block_area_parm_1 = double_door_width ;
+    obstacle_map [ ISO_DV_DOOR_050_OPEN ] . block_area_parm_2 = standard_wall_thickness ;
+    obstacle_map [ ISO_DV_DOOR_050_OPEN ] . flags &= ~BLOCKS_VISION_TOO ;
+    obstacle_map [ ISO_DV_DOOR_050_OPEN ] . flags |= IS_WALKABLE ;
+    obstacle_map [ ISO_DV_DOOR_050_OPEN ] . filename = "iso_doubledoors_0003.png" ;
+    obstacle_map [ ISO_DV_DOOR_050_OPEN ] . transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS ;
+    obstacle_map [ ISO_DV_DOOR_075_OPEN ] . block_area_parm_1 = double_door_width ;
+    obstacle_map [ ISO_DV_DOOR_075_OPEN ] . block_area_parm_2 = standard_wall_thickness ;
+    obstacle_map [ ISO_DV_DOOR_075_OPEN ] . flags &= ~BLOCKS_VISION_TOO ;
+    obstacle_map [ ISO_DV_DOOR_075_OPEN ] . flags |= IS_WALKABLE ;
+    obstacle_map [ ISO_DV_DOOR_075_OPEN ] . filename = "iso_doubledoors_0004.png" ;
+    obstacle_map [ ISO_DV_DOOR_075_OPEN ] . transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS ;
+    obstacle_map [ ISO_DV_DOOR_100_OPEN ] . block_area_type = COLLISION_TYPE_NONE;
+    obstacle_map [ ISO_DV_DOOR_100_OPEN ] . block_area_parm_1 = double_door_width ;
+    obstacle_map [ ISO_DV_DOOR_100_OPEN ] . block_area_parm_2 = standard_wall_thickness ;
+    obstacle_map [ ISO_DV_DOOR_100_OPEN ] . filename = "iso_doubledoors_0005.png" ;
+    obstacle_map [ ISO_DV_DOOR_100_OPEN ] . block_area_type = COLLISION_TYPE_NONE ;
+    obstacle_map [ ISO_DV_DOOR_100_OPEN ] . transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS ;
+
+
+    obstacle_map [ ISO_DV_DOOR_LOCKED ] . filename = "iso_doubledoors_0011.png" ;
+    obstacle_map [ ISO_DV_DOOR_LOCKED ] . block_area_parm_1 = double_wall_width ;
+    obstacle_map [ ISO_DV_DOOR_LOCKED ] . block_area_parm_2 = standard_wall_thickness ;
+    obstacle_map [ ISO_DV_DOOR_LOCKED ] . flags &= ~BLOCKS_VISION_TOO ;
+    obstacle_map [ ISO_DV_DOOR_LOCKED ] . transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS ;
+    obstacle_map [ ISO_DV_DOOR_LOCKED ] . flags |= IS_HORIZONTAL ; 
+    //locked doors have the same description
+    obstacle_map [ ISO_DV_DOOR_LOCKED ] . obstacle_short_name = _("Locked door");
+    obstacle_map [ ISO_DV_DOOR_LOCKED ] . obstacle_long_description = _("The red color probably indicates that the door is locked.");
     
     //--------------------
     // These are the normal pillars, that appear here and there in the game.

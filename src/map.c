@@ -917,6 +917,8 @@ CollectAutomapData ( void )
 		
 		if ( ( our_obstacle->type >= ISO_H_DOOR_000_OPEN ) && ( our_obstacle->type <= ISO_V_DOOR_100_OPEN ) )
 		    continue;
+		if ( ( our_obstacle->type >= ISO_DH_DOOR_000_OPEN ) && ( our_obstacle->type <= ISO_DV_DOOR_100_OPEN ) )
+		    continue;
 		if ( ( our_obstacle->type >= ISO_OUTER_DOOR_V_00 ) && ( our_obstacle->type <= ISO_OUTER_DOOR_H_100 ) )
 		    continue;
 
@@ -2512,6 +2514,18 @@ GetAllAnimatedMapTiles ( Level Lev )
 	case ISO_OUTER_DOOR_H_50:
 	case ISO_OUTER_DOOR_H_75:
 	case ISO_OUTER_DOOR_H_100:
+	
+	case ISO_DH_DOOR_000_OPEN:
+	case ISO_DH_DOOR_025_OPEN:
+	case ISO_DH_DOOR_050_OPEN:
+	case ISO_DH_DOOR_075_OPEN:
+	case ISO_DH_DOOR_100_OPEN:
+
+	case ISO_DV_DOOR_000_OPEN:
+	case ISO_DV_DOOR_025_OPEN:
+	case ISO_DV_DOOR_050_OPEN:
+	case ISO_DV_DOOR_075_OPEN:
+	case ISO_DV_DOOR_100_OPEN:
 
 	  //--------------------
 	  // We've found another door obstacle, so we add it's index
@@ -3108,6 +3122,18 @@ MoveLevelDoors ( )
 	case ISO_OUTER_DOOR_H_75:
 	case ISO_OUTER_DOOR_H_100:
 
+	case ISO_DH_DOOR_000_OPEN:
+	case ISO_DH_DOOR_025_OPEN:
+	case ISO_DH_DOOR_050_OPEN:
+	case ISO_DH_DOOR_075_OPEN:
+	case ISO_DH_DOOR_100_OPEN:
+
+	case ISO_DV_DOOR_000_OPEN:
+	case ISO_DV_DOOR_025_OPEN:
+	case ISO_DV_DOOR_050_OPEN:
+	case ISO_DV_DOOR_075_OPEN:
+	case ISO_DV_DOOR_100_OPEN:
+
 	  break;
 	  
 	default:
@@ -3148,6 +3174,7 @@ Error:  Doors pointing not to door obstacles found.",
       if ( one_player_close_enough )
 	{
 	  if ( ( *Pos != ISO_H_DOOR_100_OPEN ) && ( *Pos != ISO_V_DOOR_100_OPEN )
+		 && ( *Pos != ISO_DH_DOOR_100_OPEN ) && ( *Pos != ISO_DV_DOOR_100_OPEN )
 		 && ( *Pos != ISO_OUTER_DOOR_H_100 ) && ( *Pos != ISO_OUTER_DOOR_V_100 ) )
 	    *Pos += 1;
 	}
@@ -3184,6 +3211,7 @@ Error:  Doors pointing not to door obstacles found.",
 		      if ( dist2 < DOOROPENDIST2_FOR_DROIDS )
 			{
 			  if ( ( *Pos != ISO_H_DOOR_100_OPEN ) && ( *Pos != ISO_V_DOOR_100_OPEN )
+				 && ( *Pos != ISO_DH_DOOR_100_OPEN ) && ( *Pos != ISO_DV_DOOR_100_OPEN )
 				 && ( *Pos != ISO_OUTER_DOOR_H_100 ) && ( *Pos != ISO_OUTER_DOOR_V_100 ) )
 			    *Pos += 1;
 
@@ -3207,6 +3235,7 @@ Error:  Doors pointing not to door obstacles found.",
 	  //
 	  if ( ! some_bot_was_close_to_this_door )
 	    if ( ( *Pos != ISO_V_DOOR_000_OPEN ) && ( *Pos != ISO_H_DOOR_000_OPEN )
+		   && ( *Pos != ISO_DV_DOOR_000_OPEN ) && ( *Pos != ISO_DH_DOOR_000_OPEN )
 		   && ( *Pos != ISO_OUTER_DOOR_V_00 ) && ( *Pos != ISO_OUTER_DOOR_H_00 ) )
 	      *Pos -= 1;
 
