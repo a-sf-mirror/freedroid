@@ -39,7 +39,6 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 NPC=_"You are Tux, aren't you..."
 NPC=_"The hero..."
 LuaCode={
-    hide(1, 99)
     show(1, 2, 3)
 }
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
