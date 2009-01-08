@@ -26,5 +26,11 @@ freedroidRPG_SOURCES = menu.c shop.c items.c character.c skills.c saveloadgame.c
 savestruct.c savestruct.h: struct.h
 	python2.5 gen_savestruct.py struct.h savestruct
 
+clean-local:
+	cd ../lua; make clean
+
 ../lua/liblua.a: 
-	cd ../lua; make liblua.a
+	cd ../lua; make CC=${CC} AR="${AR} rcu" liblua.a
+if WIN32
+	i686-pc-mingw32-ranlib ../lua/liblua.a
+endif
