@@ -888,7 +888,6 @@ level, *Level;
 typedef struct ship_s
 {
     int num_levels;
-    char* AreaName;
     Level AllLevels[MAX_LEVELS];
 }
 ship, *Ship;

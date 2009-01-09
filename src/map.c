@@ -1393,16 +1393,6 @@ LoadShip (char *filename)
 	ShipData = ReadAndMallocAndTerminateFile( filename , END_OF_SHIP_DATA_STRING ) ;
 
 	//--------------------
-	// Now we read the shipname information from the loaded data
-	//
-	if ( curShip.AreaName != NULL )
-	{
-		free ( curShip.AreaName );
-		curShip.AreaName = NULL;
-	}
-	curShip.AreaName = ReadAndMallocStringFromData ( ShipData , AREA_NAME_STRING , "\"" ) ;
-
-	//--------------------
 	// Now we count the number of levels and remember their start-addresses.
 	// This is done by searching for the LEVEL_END_STRING again and again
 	// until it is no longer found in the ship file.  good.
@@ -2114,11 +2104,6 @@ SaveShip(const char *filename)
     //
     MapHeaderString="\n";
     fwrite ( MapHeaderString , strlen( MapHeaderString), sizeof(char), ShipFile);  
-    
-    // Now we write the area name back into the file
-    fwrite ( AREA_NAME_STRING , strlen( AREA_NAME_STRING ), sizeof(char), ShipFile);  
-    fwrite ( curShip.AreaName , strlen( curShip.AreaName ), sizeof(char), ShipFile);  
-    fwrite( "\"\n\n  ", strlen( "\"\n\n  " ) , sizeof(char) , ShipFile );
     
     //--------------------
     // Now we can save all the levels...
