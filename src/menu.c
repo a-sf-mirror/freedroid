@@ -1810,10 +1810,18 @@ Sound_handle (int n)
 static void
 Sound_fill (char *MenuTexts[10])
 {
-	sprintf ( MenuTexts[0] , _("Background Music Volume: %1.2f") , GameConfig.Current_BG_Music_Volume );
-	sprintf ( MenuTexts[1] , _("Sound Effects Volume: %1.2f"), GameConfig.Current_Sound_FX_Volume );
-	MenuTexts [ 2 ] = _("Back");
-	MenuTexts [ 3 ] = "";
+	char Options [ 20 ] [1000];
+	int i = 0;
+		sprintf( Options [ i ] , _("Background Music Volume"));
+		sprintf( Options [ i+1 ] , ": %1.2f", GameConfig.Current_BG_Music_Volume );
+		strcat( Options [ i ] , Options [ i+1 ] );
+	MenuTexts[ i ] = Options [ i ]; i++ ;
+		sprintf( Options [ i ] , _("Sound Effects Volume"));
+		sprintf( Options [ i+1 ] , ": %1.2f", GameConfig.Current_Sound_FX_Volume );
+		strcat( Options [ i ] , Options [ i+1 ] );
+	MenuTexts[ i ] = Options [ i ]; i++ ;
+	MenuTexts[i++]=_("Back");
+	MenuTexts[i++]="";
 }
 
 
@@ -1875,16 +1883,30 @@ Performance_handle (int n)
 static void
 Performance_fill (char *MenuTexts[])
 {
-	sprintf ( MenuTexts[0] , _("Hog CPU for max. performance: %s"), 
-		  GameConfig.hog_CPU ? _("YES") : _("NO") );
-	sprintf ( MenuTexts[1] , _("Highlighting mode: %s"), GameConfig.highlighting_mode_full ? _("FULL") : _("REDUCED") );
-	sprintf ( MenuTexts[2] , _("Skip light radius: %s"), GameConfig . skip_light_radius ? _("YES") : _("NO") );
-	sprintf ( MenuTexts[3] , _("Skip shadow blitting: %s"), 
-		  GameConfig . skip_shadow_blitting ? _("YES") : _("NO") );
-	sprintf( MenuTexts[4] , _("Skip fadings: %s"), 
-		 GameConfig . do_fadings ? _("NO") : _("YES") );
-	MenuTexts[5]=_("Back");
-	MenuTexts[6]="";
+	char Options [ 20 ] [1000];
+	int i = 0;
+		sprintf( Options [ i ] , _("Hog CPU for max. performance"));
+		sprintf( Options [ i+1 ] , ": %s", GameConfig.hog_CPU ? _("YES") : _("NO"));
+		strcat( Options [ i ] , Options [ i+1 ] );
+	MenuTexts[ i ] = Options [ i ]; i++ ;
+		sprintf( Options [ i ] , _("Highlighting mode"));
+		sprintf( Options [ i+1 ] , ": %s", GameConfig.highlighting_mode_full ? _("FULL") : _("REDUCED"));
+		strcat( Options [ i ] , Options [ i+1 ] );
+	MenuTexts[ i ] = Options [ i ]; i++ ;
+		sprintf( Options [ i ] , _("Skip light radius"));
+		sprintf( Options [ i+1 ] , ": %s", GameConfig.skip_light_radius ? _("YES") : _("NO"));
+		strcat( Options [ i ] , Options [ i+1 ] );
+	MenuTexts[ i ] = Options [ i ]; i++ ;
+		sprintf( Options [ i ] , _("Skip shadow blitting"));
+		sprintf( Options [ i+1 ] , ": %s", GameConfig.skip_shadow_blitting ? _("YES") : _("NO"));
+		strcat( Options [ i ] , Options [ i+1 ] );
+	MenuTexts[ i ] = Options [ i ]; i++ ;
+		sprintf( Options [ i ] , _("Skip fadings"));
+		sprintf( Options [ i+1 ] , ": %s", GameConfig.do_fadings ? _("NO") : _("YES") );
+		strcat( Options [ i ] , Options [ i+1 ] );
+	MenuTexts[ i ] = Options [ i ]; i++ ;
+	MenuTexts[i++]=_("Back");
+	MenuTexts[i++]="";
 }
 
 static int
@@ -2034,13 +2056,30 @@ Droid_handle (int n)
 static void
 Droid_fill (char *MenuTexts[10])
 {
-      sprintf( MenuTexts[0] , _("Enemy Hit Texts: %s"), GameConfig.Enemy_Hit_Text ? _("ON") : _("OFF") );
-      sprintf( MenuTexts[1] , _("Enemy Bumped Texts: %s"), GameConfig.Enemy_Bump_Text ? _("ON") : _("OFF") );
-      sprintf( MenuTexts[2] , _("Enemy Aim Texts: %s"), GameConfig.Enemy_Aim_Text ? _("ON") : _("OFF") );
-      sprintf( MenuTexts[3] , _("All in-game Speech: %s"), GameConfig.All_Texts_Switch ? _("ON") : _("OFF") );
-      sprintf( MenuTexts[4], _("Reprogram bots after takeover: %s"), GameConfig.talk_to_bots_after_takeover ? _("ON") : _("OFF"));
-      MenuTexts[5] = _("Back");
-      MenuTexts[6] = "";
+	char Options [ 20 ] [1000];
+	int i = 0;
+		sprintf( Options [ i ] , _("Enemy Hit Texts"));
+		sprintf( Options [ i+1 ] , ": %s", GameConfig.Enemy_Hit_Text ? _("ON") : _("OFF"));
+		strcat( Options [ i ] , Options [ i+1 ] );
+	MenuTexts[ i ] = Options [ i ]; i++ ;
+		sprintf( Options [ i ] , _("Enemy Bumped Texts"));
+		sprintf( Options [ i+1 ] , ": %s", GameConfig.Enemy_Bump_Text ? _("ON") : _("OFF"));
+		strcat( Options [ i ] , Options [ i+1 ] );
+	MenuTexts[ i ] = Options [ i ]; i++ ;
+		sprintf( Options [ i ] , _("Enemy Aim Texts"));
+		sprintf( Options [ i+1 ] , ": %s", GameConfig.Enemy_Aim_Text ? _("ON") : _("OFF"));
+		strcat( Options [ i ] , Options [ i+1 ] );
+	MenuTexts[ i ] = Options [ i ]; i++ ;
+		sprintf( Options [ i ] , _("All in-game Speech"));
+		sprintf( Options [ i+1 ] , ": %s", GameConfig.All_Texts_Switch ? _("ON") : _("OFF"));
+		strcat( Options [ i ] , Options [ i+1 ] );
+	MenuTexts[ i ] = Options [ i ]; i++ ;
+		sprintf( Options [ i ] , _("Reprogram bots after takeover"));
+		sprintf( Options [ i+1 ] , ": %s", GameConfig.talk_to_bots_after_takeover ? _("ON") : _("OFF"));
+		strcat( Options [ i ] , Options [ i+1 ] );
+	MenuTexts[ i ] = Options [ i ]; i++ ;
+	MenuTexts[i++]=_("Back");
+	MenuTexts[i++]="";
 }
 
     
