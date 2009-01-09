@@ -33,7 +33,7 @@
 
 ** Start of this mission target subsection **
 +++
-+++ This is mission 0:  Find a cure for Bender, suffering from brain enlargement pills
++++ This is quest 0:  Find a cure for Bender, suffering from brain enlargement pills
 +++
 Mission Name=_"Bender's problem"
 Mission target is to fetch item : "Brain Enlargement Pills Antidote"
@@ -54,7 +54,7 @@ Mission diary entry=_"Bender is fine now. He gave me some muscle enlargement pil
 
 ** Start of this mission target subsection **
 +++
-+++ This is mission 1:  Retrieve the toolkit lost by Dixon
++++ This is quest 1:  Retrieve the toolkit lost by Dixon
 +++
 Mission Name=_"The yellow toolkit"
 Mission target is to fetch item : "Dixon's Toolbox"
@@ -80,7 +80,7 @@ Mission diary entry=_"I sold the toolkit to Dixon for a enormous sum of money. L
 
 ** Start of this mission target subsection **
 +++
-+++ This is mission 2:  Find some energy crystals for the cook Michelangelo
++++ This is quest 2:  Find some energy crystals for the cook Michelangelo
 +++
 Mission Name=_"Anything but the army snacks, please!"
 Mission target is to fetch item : "Red Dilitium Crystal"
@@ -99,7 +99,7 @@ Mission diary entry=_"I gave him enough dilithium to last him a decade. The evil
 
 ** Start of this mission target subsection **
 +++
-+++ This is mission 3:  Defeat the bots in the novice arena
++++ This is quest 3:  Defeat the bots in the novice arena
 +++
 Mission Name=_"Novice Arena"
 Mission target is to kill droids with marker : 1029
@@ -121,7 +121,7 @@ Mission diary entry=_"Now that was easy. Yawn. I nearly fell asleep. No problem 
 
 ** Start of this mission target subsection **
 +++
-+++ This is mission 4:  Defeat the bots in the master arena
++++ This is quest 4:  Defeat the bots in the master arena
 +++
 Mission Name=_"Time to say goodnight"
 Mission target is to kill droids with marker : 1030
@@ -143,7 +143,7 @@ Mission diary entry=_"I survived the master arena. A miracle. Whew."
 
 ** Start of this mission target subsection **
 +++
-+++ This is mission 5:  Clean out the first level of the warehouse
++++ This is quest 5:  Clean out the first level of the warehouse
 +++
 Mission Name=_"Opening a can of bots..."
 Mission target is to kill droids with marker : -1
@@ -161,7 +161,7 @@ Mission diary entry=_"Ouch. It wasn't. At least I am alive and the warehouse is 
 
 ** Start of this mission target subsection **
 +++
-+++ This is mission 6:  Clean out the second level under Kevins station
++++ This is quest 6:  Clean out the second level under Kevins station
 +++
 Mission Name=_"And there was light..."
 Mission target is to kill droids with marker : -1
@@ -179,7 +179,7 @@ Mission diary entry=_"Everything is back to normal for now. Kevin can work in pe
 
 ** Start of this mission target subsection **
 +++
-+++ This is mission 7:  Take Kevins data cube to the 
++++ This is quest 7:  Take Kevins data cube to the 
 +++                              cluster maintainance people inside 
 +++                              the red guard complex
 +++
@@ -200,7 +200,7 @@ Mission diary entry=_"Yes, that was simple. I wish everything else went as smoot
 
 ** Start of this mission target subsection **
 +++
-+++ This is mission 8:  Reach the disruptor shield generator and 
++++ This is quest 8:  Reach the disruptor shield generator and 
 +++ activate it, if possible
 +++
 Mission Name=_"Opening access to MS Office"
@@ -223,7 +223,7 @@ Mission diary entry=_"Finally I've managed to propogate my firmware update. Now 
 
 ** Start of this mission target subsection **
 +++ 
-+++ This is mission 9: ENDGAME MISSION - propagate faulty firmware upgrade.
++++ This is quest 9: ENDGAME MISSION - propagate faulty firmware upgrade.
 +++ This mission can only be finished through a talk with the firmware update server.
 +++ 
 Mission Name=_"Propagating a faulty firmware"
@@ -242,7 +242,7 @@ Mission diary entry=_"I've managed to propagate my (slightly modified!) firmware
 
 ** Start of this mission target subsection **
 +++
-+++ This is mission 10:  Bring SADD dilithium cristals 
++++ This is quest 10:  Bring SADD dilithium cristals 
 +++
 Mission Name=_"SADD's power supply"
 Mission target is to fetch item : "Red Dilitium Crystal"
@@ -261,7 +261,7 @@ Mission diary entry=_"Done. He looks happy."
 
 ** Start of this mission target subsection **
 +++
-+++ This is mission 11:  Free Tania 
++++ This is quest 11:  Free Tania 
 +++
 Mission Name=_"Tanias sanitary"
 Mission target is to kill droids with marker : -1
@@ -280,7 +280,7 @@ Mission diary entry=_"Tania is free now!"
 
 ** Start of this mission target subsection **
 +++
-+++ This is mission 12: Help Stone pay tax
++++ This is quest 12: Help Stone pay tax
 +++
 Mission Name=_"Saving the shop"
 Mission target is to kill droids with marker : -1
@@ -299,7 +299,7 @@ Mission diary entry=_"Tania is free now!"
 
 ** Start of this mission target subsection **
 +++
-+++ This is mission 13: Find Kevin
++++ This is quest 13: Find Kevin
 +++
 Mission Name=_"The stranger east of town"
 Mission target is to kill droids with marker : -1
@@ -317,7 +317,7 @@ Mission diary entry=_"I seem to have found Kevins home."
 
 ** Start of this mission target subsection **
 +++
-+++ This is mission 14: Find Koan?
++++ This is quest 14: Find Koan?
 +++
 Mission Name=_"Doing Duncan a favour"
 Mission target is to kill droids with marker : -1
