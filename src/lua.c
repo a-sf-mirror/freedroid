@@ -573,22 +573,74 @@ static int lua_chat_make_tux_red_guard(lua_State *L)
 }
 
 luaL_reg lfuncs[] = {
+    /* teleport(string map_label) 
+     * Teleports the player to the given map label.
+     */
     { "teleport", lua_event_teleport },
+
+    /* display_big_message(string msg)
+     * Displays a big vanishing message on screen (seen in game, not in the dialog).
+     */
     { "display_big_message", lua_event_display_big_message },
+    /* display_console_message(string msg)
+     * Displays a message on the game console.
+     */
     { "display_console_message", lua_event_display_console_message },
+
+    /* enable_trigger(string event_name)
+     * disable_trigger(string event_name)
+     * Enables/Disables the event trigger with the given name
+     */
     { "enable_trigger", lua_event_enable_trigger },
     { "disable_trigger", lua_event_disable_trigger },
+
+    /* change_obstacle(string obstacle_label, string obstacle_state)
+     * Changes the obstacle to the given state.
+     * FIXME: states have to be set up by hand in the ship file.
+     */
     { "change_obstacle", lua_event_change_obstacle },
+    /* del_obstacle(string obstacle_label)
+     * Delete the given obstacle
+     */
     { "del_obstacle", lua_event_delete_obstacle },
+
+    /* kill_tux()
+     * heal_tux()
+     * hurt_tux(int how_many_hp_to_remove)
+     *
+     * kill_tux kills Tux, heal_tux completely heals Tux,
+     * hurt_tux removes the given number of health points. This number
+     * can obviously be negative.
+     */
     { "kill_tux", lua_event_kill_tux },
     { "heal_tux", lua_event_heal_tux },
     { "hurt_tux", lua_event_hurt_tux },
+
+    /* improve_skill(string skill_name)
+     * get_skill()
+     * improve_skill improves one of the three "melee", "ranged" and "programming" skills
+     * by one level.
+     * get_skill returns the current level (as an integer) of one of the three skills.
+     */
     { "improve_skill", lua_event_improve_skill },
     { "get_skill", lua_event_get_skill },
+
+    /* improve_program(string program_name)
+     * Improve the program given by one level.
+     */
     { "improve_program", lua_event_improve_program },
+
+    /* del_item(string item_name[, int multiplicity = 1])
+     * add_item(string item_name, int multiplicity)
+     * has_item(string item_name)
+     *
+     * Deletes or gives the given number of items.
+     * has_time returns the number of items of the given name currently in the inventory.
+     */
     { "del_item", lua_event_delete_item },
     { "add_item", lua_event_give_item },
     { "has_item", lua_event_has_item },
+
     { "open_diary_entry", lua_event_open_diary_entry },
     { "add_cookie", lua_event_plant_cookie },
     { "has_cookie", lua_event_cookie_planted },
