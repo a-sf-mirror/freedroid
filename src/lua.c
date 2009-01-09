@@ -264,10 +264,10 @@ static int lua_event_has_item(lua_State *L)
 
 static int lua_event_open_diary_entry(lua_State *L)
 {
-    int mis_num = luaL_checkinteger(L, 1);
+    const char *mis_name = luaL_checkstring(L, 1);
     int mis_diary_entry_num = luaL_checkinteger(L, 2);
 
-    quest_browser_enable_new_diary_entry ( mis_num , mis_diary_entry_num );
+    quest_browser_enable_new_diary_entry ( mis_name , mis_diary_entry_num );
     return 0;
 }
 

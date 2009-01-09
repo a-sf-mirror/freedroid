@@ -63,17 +63,10 @@ int quest_browser_mission_lines_needed [ MAX_MISSIONS_IN_GAME ] ;
  * This function is responsible for making a new quest diary entry 
  * visible inside the quest browser.
  */
-void
-quest_browser_enable_new_diary_entry ( int mis_num , int mis_diary_entry_num )
+void quest_browser_enable_new_diary_entry ( const char * mis_name , int mis_diary_entry_num )
 {
+    int mis_num = GetMissionIndexByName(mis_name);
 
-    if ( ( mis_num < 0 ) || ( mis_num >= MAX_MISSIONS_IN_GAME ) )
-    {
-	fprintf ( stderr , "\nmission number received: %d." , mis_num );
-	ErrorMessage ( __FUNCTION__  , "\
-There was an illegal mission number received.",
-				   PLEASE_INFORM, IS_FATAL );
-    }
     if ( ( mis_diary_entry_num < 0 ) || ( mis_diary_entry_num >= MAX_MISSION_DESCRIPTION_TEXTS ) )
     {
 	fprintf ( stderr , "\nmission diary entry number received: %d." , mis_diary_entry_num );
@@ -92,22 +85,14 @@ There was an illegal mission diary entry number received.",
  * particular mission, which is exactly what this function is responsible
  * for.
  */
-void
-quest_browser_append_mission_info ( int mis_num , int full_description )
+void quest_browser_append_mission_info (const char * mis_name , int full_description )
 {
     char temp_text[10000];
     int mission_diary_index;
+    int mis_num = GetMissionIndexByName(mis_name);
 
-    if ( ( mis_num < 0 ) || ( mis_num >= MAX_MISSIONS_IN_GAME ) )
-    {
-	fprintf ( stderr , "\nmission number received: %d." , mis_num );
-	ErrorMessage ( __FUNCTION__  , "\
-There was an illegal mission number received.",
-				   PLEASE_INFORM, IS_FATAL );
-    }
 
-    SetTextCursor ( mission_description_rect . x , 
-		    mission_description_rect . y );
+    SetTextCursor (mission_description_rect . x ,  mission_description_rect . y);
 
     strcat ( complete_mission_display_text , _("Mission: "));
     strcat ( complete_mission_display_text , _(Me . AllMissions [ mis_num ] . MissionName));
@@ -193,14 +178,14 @@ quest_browser_display_mission_list ( int list_type )
 	if ( ( list_type == QUEST_BROWSER_SHOW_OPEN_MISSIONS ) &&
 	     ( Me . AllMissions[ mis_num ] . MissionIsComplete == FALSE ) )
 	{
-	    quest_browser_append_mission_info ( mis_num , Me . AllMissions [ mis_num ] . 
+	    quest_browser_append_mission_info ( Me.AllMissions[mis_num].MissionName , Me . AllMissions [ mis_num ] . 
 						expanded_display_for_this_mission );
 	    something_was_displayed = TRUE ;
 	}
 	else if ( ( list_type == QUEST_BROWSER_SHOW_DONE_MISSIONS ) &&
 	     ( Me . AllMissions[ mis_num ] . MissionIsComplete != FALSE ) )
 	{
-	    quest_browser_append_mission_info ( mis_num , Me . AllMissions [ mis_num ] . 
+	    quest_browser_append_mission_info ( Me.AllMissions[mis_num].MissionName , Me . AllMissions [ mis_num ] . 
 						expanded_display_for_this_mission );
 	    something_was_displayed = TRUE ;
 	}
@@ -421,8 +406,7 @@ void quest_browser_interface ( void )
  * mission.  If not it returns, if yes the EndTitle/Debriefing is
  * started.
  ----------------------------------------------------------------------*/
-void 
-CheckIfMissionIsComplete (void)
+void CheckIfMissionIsComplete (void)
 {
     int ItemCounter;
     int mis_num;
@@ -629,7 +613,7 @@ void AssignMission (const char *name)
     // can be assigned, so it's safe to do that automatically.
     //
     Me . AllMissions [ MissNum ] . mission_description_visible [ 0 ] = TRUE;
-    quest_browser_enable_new_diary_entry ( MissNum , 0 );
+    quest_browser_enable_new_diary_entry (name, 0);
 
 };
 
@@ -668,6 +652,8 @@ clear_tux_mission_info ( )
 	Me . AllMissions [ MissionTargetIndex ] . MissionIsComplete = FALSE;
 	Me . AllMissions [ MissionTargetIndex ] . MissionWasFailed = FALSE;
 	Me . AllMissions [ MissionTargetIndex ] . MissionWasAssigned = FALSE;
+
+	strcpy(Me . AllMissions [ MissionTargetIndex ] . MissionName, "");
 
 	for ( diary_entry_nr = 0 ; diary_entry_nr < MAX_MISSION_DESCRIPTION_TEXTS ; diary_entry_nr ++ )
 	{

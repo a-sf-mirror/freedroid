@@ -986,7 +986,7 @@ GetInfluPositionHistoryZ( int HowLongPast )
 void 
 CheckIfCharacterIsStillOk ( ) 
 {
-    if ( Me . AllMissions [ 9 ] . MissionIsComplete )
+    if ( Me . AllMissions [ GetMissionIndexByName("Propagating a faulty firmware") ] . MissionIsComplete )
 	{
 	ThouHastWon ();
 	}

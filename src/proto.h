@@ -301,7 +301,7 @@ void AssignMission(const char *);
 void GetQuestList ( char* QuestListFilename ) ;
 void clear_tux_mission_info ( void ) ;
 void CheckIfMissionIsComplete ( void );
-void quest_browser_enable_new_diary_entry ( int mis_num , int mis_diary_entry_num );
+void quest_browser_enable_new_diary_entry (const char *, int mis_diary_entry_num );
 int GetMissionIndexByName(const char *);
 
 // map.c 
