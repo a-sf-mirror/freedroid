@@ -298,6 +298,7 @@ static int lua_event_cookie_planted(lua_State *L)
 static int lua_event_get_town_score(lua_State *L)
 {
     int old_town_mission_score = 0 ;
+    ErrorMessage(__FUNCTION__, "This function should be moved to Lua code in the relevant dialog file.", PLEASE_INFORM, IS_WARNING_ONLY);
     if (Me . AllMissions [ 0 ] . MissionIsComplete)
 	old_town_mission_score += 10 ;
     if (Me . AllMissions [ 1 ] . MissionIsComplete)
