@@ -95,7 +95,7 @@ NPC=_"But remember, the door out won't be opened until you killed all the bots."
 LuaCode={
     add_quest("Novice Arena")
     change_obstacle("NoviceArenaAccessDoor", "opened")
-    open_diary_entry(3, 0)
+    open_diary_entry("Novice Arena", 0)
     hide(6, 12, 13)
 }
 ----------------------------------------------------------------------
@@ -105,7 +105,7 @@ NPC=_"Good for you."
 NPC=_"You are a total newbie. But, a good newbie."
 NPC=_"I will say a good word to Spencer about this."
 LuaCode={
-    open_diary_entry(3, 1)
+    open_diary_entry("Novice Arena", 1)
     hide(7, 8)
     show(9, 11)
 }
@@ -130,7 +130,7 @@ NPC=_"But if you really want it, the door is open."
 LuaCode={
     add_quest("Time to say goodnight")
     change_obstacle("MasterArenaAccessDoor", "opened")
-    open_diary_entry(4, 0)
+    open_diary_entry("Time to say goodnight", 0)
     hide(9)
 }
 ----------------------------------------------------------------------
@@ -142,7 +142,7 @@ NPC=_"You are not a newbie, but you are a TOTAL IDIOT!"
 NPC=_"I pity you, poor fool. You will die young."
 LuaCode={
     add_xp(8000)
-    open_diary_entry(4, 1)
+    open_diary_entry("Time to say goodnight", 1)
     hide(10)
 }
 ----------------------------------------------------------------------

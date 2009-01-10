@@ -176,7 +176,7 @@ Nr=17  Text=_"I will disable guns for you."
 NPC=_"Thanks... please be careful. You will not be able to access the control center directly, it is behind a triple hermetic door. Try using the service tunnels."
 LuaCode={
     add_quest("SADD's power supply")
-    open_diary_entry(10, 0)
+    open_diary_entry("SADD's power supply", 0)
     hide(17)
 }
 ----------------------------------------------------------------------

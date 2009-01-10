@@ -86,7 +86,7 @@ NPC=_" Disabling disruptor shield... "
 NPC=_" Shield disabled."
 LuaCode={
     end_quest("Opening access to MS Office")
-    open_diary_entry(8, 3)
+    open_diary_entry("Opening access to MS Office", 3)
 }
 ----------------------------------------------------------------------
 

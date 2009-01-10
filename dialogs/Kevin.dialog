@@ -100,7 +100,7 @@ NPC=_"I hope you have a laser pistol or something like that, the bots there will
 NPC=_"Best make it quick. I'm already sick of stabilizing the stupid power grid."
 LuaCode={
     add_quest("And there was light...")
-    open_diary_entry(6, 0)
+    open_diary_entry("And there was light...", 0)
     hide(6, 7)
 }
 ----------------------------------------------------------------------
@@ -124,7 +124,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 Nr=9  Text="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    open_diary_entry(6, 1)
+    open_diary_entry("And there was light...", 1)
     hide(9)
     show(10, 18)
 }
@@ -174,7 +174,7 @@ NPC=_"But maybe you can arrange that somehow. For me it would be impossible, bec
 NPC=_"I'll give you the data cube. Take it to the computer cluster administration people. They will know what to do. And don't mention me there."
 LuaCode={
     add_quest("A kingdom for a cluster!")
-    open_diary_entry(7, 0)
+    open_diary_entry("And there was light...", 0)
     add_item("Kevin's Data Cube",1)
     hide(15)
 }

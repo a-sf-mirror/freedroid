@@ -192,7 +192,7 @@ LuaCode={
 
 Nr=21  Text=_"Why did you wake me up? "
 NPC=_"The situation at the town is not good. The walls are crumbling and we have lost a lot of good people."
-NPC=_"I heard the Linarians have a special gift for computers and can hide them just by thinking about it."
+NPC=_"I heard the Linarians have a special gift for computers and can hack them just by thinking about it."
 NPC=_"Even if this is only partly true, we need it. The situation is quite ugly."
 NPC=_"We need you."
 LuaCode={

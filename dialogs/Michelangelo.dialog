@@ -145,7 +145,7 @@ LuaCode={
     display_big_message("Restored Michaelangelo's power supply")
     add_xp(350)
     end_quest("Anything but the army snacks, please!")
-    open_diary_entry(2, 1)
+    open_diary_entry("Anything but the army snacks, please!", 1)
     del_item("Red Dilitium Crystal", 1)
     hide(29)
 }
@@ -214,7 +214,7 @@ NPC=_"The bots know no mercy. They cannot even define it, damn scrap metal fiend
 NPC=_"Feel free to go, Linarian, but make sure to be very dead before they start killing you."
 LuaCode={
     add_quest("Anything but the army snacks, please!")
-    open_diary_entry(2, 0)
+    open_diary_entry("Anything but the army snacks, please!", 0)
     hide(19, 40, 41, 42, 70, 81)
     show(82)
 }

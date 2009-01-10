@@ -85,7 +85,7 @@ NPC=_"The stuff we need is on the first floor. Don't go any deeper, there are on
 NPC=_"I wish you the best of luck."
 LuaCode={
     add_quest("Opening a can of bots...")
-    open_diary_entry(5, 0)
+    open_diary_entry("Opening a can of bots...", 0)
     change_obstacle("AccessDoorToWarehouse", "opened")
     hide(5)
 }
@@ -123,7 +123,7 @@ NPC=_"Our people are transporting the goods as we speak. It can't be too long un
 LuaCode={
     add_gold(500)
     add_cookie("reward_for_warehouse_given")
-    open_diary_entry(5, 1)
+    open_diary_entry("Opening a can of bots...", 1)
 }
 ----------------------------------------------------------------------
 

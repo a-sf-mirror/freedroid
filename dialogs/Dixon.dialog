@@ -131,7 +131,7 @@ NPC=_"The bots under the city took it from me during the Great Assault, I was lu
 NPC=_"If you could get it back for us, it would help the city very much."
 LuaCode={
     add_quest("The yellow toolkit")
-    open_diary_entry(1, 0)
+    open_diary_entry("The yellow toolkit", 0)
     hide(24)
     show(21, 25, 26)
 }
@@ -179,7 +179,7 @@ NPC=_"I will call the military division and arrange a sweep of the tunnels at on
 NPC=_"May the heavens have mercy upon us, but better them than us."
 LuaCode={
     next(32)
-    open_diary_entry(1, 1)
+    open_diary_entry("The yellow toolkit", 1)
     add_cookie("singularity_dead")
     hide(28, 29, 30)
 }
@@ -191,7 +191,7 @@ NPC=_"No one jokes about the bots anymore. We have seen too much death to do tha
 NPC=_"The bots are our enemies, executioners, killers. Not even Ewald tells jokes about them anymore."
 LuaCode={
     add_cookie("singularity_killed")
-    open_diary_entry(1, 1)
+    open_diary_entry("The yellow toolkit", 1)
     change_obstacle("NorthernMaintainanceDoor", "opened")
     hide(28, 29, 30)
 }
@@ -204,7 +204,7 @@ NPC=_"After all, it seems like they need them more than I do."
 NPC=_"I will try to contact them somehow. Maybe they would help us. Ah, we shall see. It would be great to have an ally against the other bots."
 LuaCode={
     add_cookie("singularity_saved")
-    open_diary_entry(1, 2)
+    open_diary_entry("The yellow toolkit", 2)
     hide(28, 29, 30)
 }    
 ----------------------------------------------------------------------
@@ -247,7 +247,7 @@ NPC=_"I am sorry, but I must go now. My duties call."
 LuaCode={
     add_gold(150)
     end_quest("The yellow toolkit")
-    open_diary_entry(1, 4)
+    open_diary_entry("The yellow toolkit", 4)
     del_item("Dixon's Toolbox", 1)
     hide(34)
 }
@@ -263,7 +263,7 @@ LuaCode={
     end_quest("The yellow toolkit")
     add_cookie("singularity_dead")
     del_item("Dixon's Toolbox", 1)
-    open_diary_entry(1, 5)
+    open_diary_entry("The yellow toolkit", 5)
     add_item("Dixon's helmet",1)
     hide(35, 36)
 }
@@ -297,7 +297,7 @@ LuaCode={
     end_dialog()
     add_gold(250)
     end_quest("The yellow toolkit")
-    open_diary_entry(1, 6)
+    open_diary_entry("The yellow toolkit", 6)
     del_item("Dixon's Toolbox", 1)
     hide(38, 41)
 }
@@ -310,7 +310,7 @@ LuaCode={
     end_dialog()
     add_gold(350)
     end_quest("The yellow toolkit")
-    open_diary_entry(1, 7)
+    open_diary_entry("The yellow toolkit", 7)
     del_item("Dixon's Toolbox", 1)
     hide(39, 42)
 }
@@ -325,7 +325,7 @@ LuaCode={
     add_gold(400)
     end_quest("The yellow toolkit")
     add_cookie("dixon_very_angry")
-    open_diary_entry(1, 8)
+    open_diary_entry("The yellow toolkit", 8)
     del_item("Dixon's Toolbox", 1)
     hide(40)
 }
@@ -408,7 +408,7 @@ NPC=_"The Library of Alexandria, the Colossus of Rhodes, the Black Island..."
 NPC=_"And this is just one of those things."
 NPC=_"Just go and see for yourself. Otherwise you will not believe me."
 LuaCode={
-    open_diary_entry(1, 3)
+    open_diary_entry("The yellow toolkit", 3)
     hide(48)
 }
 ----------------------------------------------------------------------
