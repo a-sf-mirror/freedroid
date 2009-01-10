@@ -31,7 +31,17 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 FirstTime LuaCode={
-    show(0, 30, 99)
+    show(0, 99)
+}
+
+AtStartup LuaCode={
+	if (has_quest("Anything but the army snacks, please!")) then
+		if (done_quest("Anything but the army snacks, please!")) then
+			show(24)
+		else
+			if (has_item("Red Dilitium Crystal") > 0) then show(29)	else show(31) end
+		end
+	else end
 }
 ----------------------------------------------------------------------
 
@@ -62,7 +72,6 @@ LuaCode={
     hide(11)
     show(12)
 }
-
 ----------------------------------------------------------------------
 
 Nr=12  Text=_"I want some yummy army snacks!"
@@ -75,7 +84,6 @@ LuaCode={
     next(27)
     hide(12)
 }
-
 ----------------------------------------------------------------------
 
 Nr=18  Text=_"You do not sound happy. What is wrong?"
@@ -151,40 +159,12 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=30  Text="HAVE THE CRYSTALS"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-LuaCode={
-    if (has_item("Red Dilitium Crystal") > 0) then    -- Tux gives crystals
-        show(29)
-    else 
-	if (has_quest("Anything but the army snacks, please!")) then
-	    show(31)
-	else
-	    hide(31)
-	end
-    end    -- Tux does not have crystals
-    hide(30)
-}
-AlwaysExecuteThisOptionPriorToDialogStart="yes"
-
-----------------------------------------------------------------------
-
 Nr=31  Text=_"What was I supposed to do again?"
 NPC=_"Get me some dilithium before the whole stupid colony commits mass suicide because of poor food quality."
 NPC=_"Of course our heinous food might do us in far before that. I swear I saw that stuff glow it the dark and try to sneak away from my plate a few times."
 LuaCode={
     hide(31)
 }
-----------------------------------------------------------------------
-
-Nr=34  Text="MISSION IS DONE"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-LuaCode={
-    hide(34)
-    if (done_quest("Anything but the army snacks, please!")) then show(24) else end
-}
-AlwaysExecuteThisOptionPriorToDialogStart="yes"
-
 ----------------------------------------------------------------------
 
 Nr=70  Text=_"Why don't you send someone for the dilithium?"
