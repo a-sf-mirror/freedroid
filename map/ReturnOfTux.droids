@@ -548,10 +548,10 @@ Maximum number of Random Droids=0
 Minimum number of Random Droids=0
 Allowed Type of Random Droid for this level: 751
 
-SForce: T=598 Fixed=0 Marker=1030 Friendly=0 StartUpAtLabel="NoviceArenaBot1StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Melissa.I" attack_run_only_when_direct_line="no"
-SForce: T=615 Fixed=0 Marker=1030 Friendly=0 StartUpAtLabel="NoviceArenaBot2StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="ILOVEYOU" attack_run_only_when_direct_line="no"
-SForce: T=629 Fixed=0 Marker=1030 Friendly=0 StartUpAtLabel="NoviceArenaBot3StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="W32.YourDoom" attack_run_only_when_direct_line="no"
-SForce: T=711 Fixed=0 Marker=1030 Friendly=0 StartUpAtLabel="NoviceArenaBot4StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="CIH.1103" attack_run_only_when_direct_line="no"
+SForce: T=598 Fixed=0 Marker=1030 Friendly=0 StartUpAtLabel="MasterArenaBot1StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Melissa.I" attack_run_only_when_direct_line="no"
+SForce: T=615 Fixed=0 Marker=1030 Friendly=0 StartUpAtLabel="MasterArenaBot2StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="ILOVEYOU" attack_run_only_when_direct_line="no"
+SForce: T=629 Fixed=0 Marker=1030 Friendly=0 StartUpAtLabel="MasterArenaBot3StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="W32.YourDoom" attack_run_only_when_direct_line="no"
+SForce: T=711 Fixed=0 Marker=1030 Friendly=0 StartUpAtLabel="MasterArenaBot4StartGameSquare" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="CIH.1103" attack_run_only_when_direct_line="no"
 
 ** End of this levels droid data **
 
