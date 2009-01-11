@@ -446,6 +446,12 @@ static int lua_event_trade_with(lua_State *L)
     return 0;
 }
 
+static int lua_chat_player_name(lua_State *L)
+{
+    lua_pushstring(L, Me.character_name);
+    return 1;
+}
+    
 static int lua_chat_tux_says(lua_State *L)
 {
     const char *answer = luaL_checkstring(L, 1);
@@ -660,6 +666,7 @@ luaL_reg lfuncs[] = {
     { "respawn_level", lua_event_respawn_level },
     { "trade_with", lua_event_trade_with },
 
+    { "get_player_name", lua_chat_player_name },
     { "tux_says", lua_chat_tux_says },
     { "npc_says", lua_chat_npc_says },
     { "run_subdialog", lua_chat_run_subdialog },
