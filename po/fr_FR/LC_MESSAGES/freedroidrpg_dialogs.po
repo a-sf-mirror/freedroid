@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: freedroidrpg_dialogs\n"
 "Report-Msgid-Bugs-To: CHANGE THIS TOO\n"
-"POT-Creation-Date: 2009-01-06 18:52+0000\n"
+"POT-Creation-Date: 2009-01-11 16:29+0000\n"
 "PO-Revision-Date: 2008-09-13 20:51+0000\n"
 "Last-Translator: Arthur Huillet <arthur.huillet@free.fr>\n"
 "Language-Team: <en@li.org>\n"
@@ -121,7 +121,7 @@ msgstr ""
 
 #: ../dialogs/614.dialog:81 ../dialogs/Jasmine.dialog:101
 #: ../dialogs/Jasmine.dialog:110 ../dialogs/Jasmine.dialog:119
-#: ../dialogs/Michelangelo.dialog:262 ../dialogs/Stone.dialog:185
+#: ../dialogs/Michelangelo.dialog:245 ../dialogs/Stone.dialog:185
 #: ../dialogs/Ewald.dialog:160 ../dialogs/Spencer.dialog:364
 #: ../dialogs/Bender.dialog:206 ../dialogs/Tybalt.dialog:134
 #: ../dialogs/Pendragon.dialog:75 ../dialogs/Skippy.dialog:140
@@ -609,7 +609,7 @@ msgid "Nein. Our problem. Our hunt."
 msgstr "Nein. C'est notre problème. Notre vengeance."
 
 #: ../dialogs/Darwin.dialog:164 ../dialogs/OldTownGateGuardLeader.dialog:80
-#: ../dialogs/Michelangelo.dialog:261 ../dialogs/Spencer.dialog:363
+#: ../dialogs/Michelangelo.dialog:244 ../dialogs/Spencer.dialog:363
 #: ../dialogs/Bruce.dialog:153 ../dialogs/Bruce.dialog:160
 #: ../dialogs/Ernie.dialog:71 ../dialogs/Butch.dialog:225
 #: ../dialogs/StandardMSFacilityGateGuard.dialog:74
@@ -679,8 +679,9 @@ msgstr ""
 "héros. Actuellement, ces histoires sont seulement considérées comme des "
 "légendes."
 
-#: ../dialogs/Francis.dialog:56
-msgid "If the computer is not lying, then your name is Tux."
+#: ../dialogs/Francis.dialog:57
+#, fuzzy
+msgid "If the computer is not lying, then your name is "
 msgstr "Si l'ordinateur ne ment pas, votre nom est Tux."
 
 #: ../dialogs/Francis.dialog:63
@@ -1077,7 +1078,7 @@ msgstr ""
 #: ../dialogs/Francis.dialog:195
 #, fuzzy
 msgid ""
-"I heard the Linarians have a special gift for computers and can hide them "
+"I heard the Linarians have a special gift for computers and can hack them "
 "just by thinking about it."
 msgstr ""
 "J'ai entendu dire que les Linariens ont un talent spécial pour les "
@@ -1111,7 +1112,7 @@ msgstr ""
 msgid "The path from this house should lead you directly to it."
 msgstr "Le chemin qui part de cette maison vous y mènera."
 
-#: ../dialogs/Jasmine.dialog:38 ../dialogs/Michelangelo.dialog:38
+#: ../dialogs/Jasmine.dialog:38 ../dialogs/Michelangelo.dialog:48
 #: ../dialogs/Stone.dialog:38 ../dialogs/Spencer.dialog:38
 #: ../dialogs/Tybalt.dialog:38 ../dialogs/Butch.dialog:40
 #: ../dialogs/Pendragon.dialog:38 ../dialogs/Skippy.dialog:38
@@ -1513,13 +1514,13 @@ msgstr "Ouvrez le feu !"
 msgid "Mhmmm."
 msgstr "Mhmmm."
 
-#: ../dialogs/Michelangelo.dialog:39
+#: ../dialogs/Michelangelo.dialog:49
 msgid "Hello. I'm Michelangelo. I haven't been here for long either."
 msgstr ""
 "Bonjour. Je suis Michelangelo. Je ne suis pas ici depuis plus longtemps que "
 "toi."
 
-#: ../dialogs/Michelangelo.dialog:40
+#: ../dialogs/Michelangelo.dialog:50
 msgid ""
 "I wish the bots had just killed me, but I got 'lucky' and ended up in this "
 "hellhole."
@@ -1527,31 +1528,31 @@ msgstr ""
 "J'aurai aimé que les robots me tuent, simplement, mais j'ai été 'chanceux' "
 "et j'ai fini dans ce trou infernal."
 
-#: ../dialogs/Michelangelo.dialog:47 ../dialogs/Spencer.dialog:94
+#: ../dialogs/Michelangelo.dialog:57 ../dialogs/Spencer.dialog:94
 #: ../dialogs/Bruce.dialog:49
 #, fuzzy
 msgid "How is it going?"
 msgstr " Comment ça va ?"
 
-#: ../dialogs/Michelangelo.dialog:48
+#: ../dialogs/Michelangelo.dialog:58
 msgid "Don't ask."
 msgstr "Ne me demande pas."
 
-#: ../dialogs/Michelangelo.dialog:49
+#: ../dialogs/Michelangelo.dialog:59
 msgid "'Terribly' would be a huge understatement."
 msgstr "'Terriblement' serait franchement faible."
 
-#: ../dialogs/Michelangelo.dialog:56
+#: ../dialogs/Michelangelo.dialog:66
 #, fuzzy
 msgid "Can I buy some food here?"
 msgstr " Puis-je acheter un peu de nourriture ici ?"
 
-#: ../dialogs/Michelangelo.dialog:57
+#: ../dialogs/Michelangelo.dialog:67
 msgid "There is no food here, just the odious military rations."
 msgstr ""
 "Il n'y a pas de nourriture ici, seulement ces infâmes rations militaires."
 
-#: ../dialogs/Michelangelo.dialog:58
+#: ../dialogs/Michelangelo.dialog:68
 msgid ""
 "Made fully out of artificial nutrients and carcinogenic flavors. Even the "
 "army hated them."
@@ -1559,7 +1560,7 @@ msgstr ""
 "Entièrement constituées de nutriments artificiels et d'arômes cancérigènes. "
 "Même l'armée les hait."
 
-#: ../dialogs/Michelangelo.dialog:59
+#: ../dialogs/Michelangelo.dialog:69
 msgid ""
 "It's better than starving, but some people have already committed suicide "
 "because that repulsive material is the only thing available to eat."
@@ -1568,21 +1569,21 @@ msgstr ""
 "suicidées parce qu'il n'y a que cette chose dégoûtante est la seule denrée "
 "disponible."
 
-#: ../dialogs/Michelangelo.dialog:60
+#: ../dialogs/Michelangelo.dialog:70
 msgid "I can give you some, but it's not worthy of being called food."
 msgstr ""
 "Je peux t'en donner un peu, mais ça n'est pas digne d'être appelé nourriture."
 
-#: ../dialogs/Michelangelo.dialog:68
+#: ../dialogs/Michelangelo.dialog:77
 #, fuzzy
 msgid "I want some yummy army snacks!"
 msgstr " Je veux quelques une de ces alléchantes rations militaires !"
 
-#: ../dialogs/Michelangelo.dialog:69
+#: ../dialogs/Michelangelo.dialog:78
 msgid "I am supposed to read this out to all newcomers. Here goes:"
 msgstr "Je dois lire ceci à tous les nouveaux arrivants. Voilà :"
 
-#: ../dialogs/Michelangelo.dialog:70
+#: ../dialogs/Michelangelo.dialog:79
 msgid ""
 "'Please note that the army meal model #23 you are about to eat is provided "
 "'as is' without warranty of any kind."
@@ -1590,7 +1591,7 @@ msgstr ""
 "'Rappelez-vous que le repas militaire modèle #23 que vous vous apprêtez à "
 "manger est fourni 'tel que', sans garantie d'aucune sorte."
 
-#: ../dialogs/Michelangelo.dialog:71
+#: ../dialogs/Michelangelo.dialog:80
 msgid ""
 "That includes the implied warranty of edibility or fitness for a particular "
 "purpose. The entire risk as to the quality of the food is with you."
@@ -1599,7 +1600,7 @@ msgstr ""
 "les cuisiner comme vous le souhaitez. Vous assumez la totalité du risque lié "
 "à la qualité de la nourriture."
 
-#: ../dialogs/Michelangelo.dialog:72
+#: ../dialogs/Michelangelo.dialog:81
 msgid ""
 "Should the army meal model #23 prove poisonous, you agree to cover the cost "
 "of keeping you alive by the colony medical staff or the costs of your "
@@ -1609,24 +1610,24 @@ msgstr ""
 "couvrir les frais de maintien en vie engagés par l'équipe médicale ou la "
 "coût de votre propre crémation dans notre fourneau nucléaire."
 
-#: ../dialogs/Michelangelo.dialog:73
+#: ../dialogs/Michelangelo.dialog:82
 msgid "Well, that is all. Here is the junk that you wanted. Enjoy."
 msgstr "Bien, c'est tout. Voila l'horreur que tu voulais. Bon appétit."
 
-#: ../dialogs/Michelangelo.dialog:81
+#: ../dialogs/Michelangelo.dialog:89
 #, fuzzy
 msgid "You do not sound happy. What is wrong?"
 msgstr " Tu n'as pas l'air très heureux. Qu'est-ce qui ne va pas?"
 
-#: ../dialogs/Michelangelo.dialog:82
+#: ../dialogs/Michelangelo.dialog:90
 msgid "EVERYTHING!"
 msgstr "TOUT !"
 
-#: ../dialogs/Michelangelo.dialog:83
+#: ../dialogs/Michelangelo.dialog:91
 msgid "Just look at this stupid town!"
 msgstr "Regarde seulement cette ville idiote!"
 
-#: ../dialogs/Michelangelo.dialog:84
+#: ../dialogs/Michelangelo.dialog:92
 msgid ""
 "We are constantly pushed around by our 'saviours' the damn Red Guard. I hope "
 "they all die from rat bites as soon as possible and go to the deepest hells "
@@ -1636,7 +1637,7 @@ msgstr ""
 "Rouge. J'espère qu'ils mourront tous de maladie et s'en iront dans les "
 "profondeurs des enfers bouillir à jamais dans la lave."
 
-#: ../dialogs/Michelangelo.dialog:85
+#: ../dialogs/Michelangelo.dialog:93
 msgid ""
 "And the bots are keeping us busy by murdering, chopping, slicing, cleaving, "
 "rending and wounding us. How wonderful. "
@@ -1644,7 +1645,7 @@ msgstr ""
 "Et les robots ne nous laissent pas de répit en passant leur temps à tuer, "
 "découper, trancher, briser, ravager et détruire. Génial. "
 
-#: ../dialogs/Michelangelo.dialog:86
+#: ../dialogs/Michelangelo.dialog:94
 msgid ""
 "The guards gave me a filthy hovel to live in. The walls are so thin that "
 "every night I am rocked to sleep by the bots communicating with those beeps "
@@ -1654,7 +1655,7 @@ msgstr ""
 "minces, que chaque nuit, je suis réveillé par les communications des robots, "
 "avec ces bips et ces bruits de modem incessants."
 
-#: ../dialogs/Michelangelo.dialog:87
+#: ../dialogs/Michelangelo.dialog:95
 msgid ""
 "It sounds like they are singing something. Every night they start their "
 "song... I cannot sleep thanks to that electric chorus."
@@ -1662,7 +1663,7 @@ msgstr ""
 "C'est comme une chanson. Chaque nuit, ils recommencent... Je ne peux pas "
 "dormir à cause de leur chorale électrique."
 
-#: ../dialogs/Michelangelo.dialog:88
+#: ../dialogs/Michelangelo.dialog:96
 msgid ""
 "Have I mentioned that the only food that we have is some kind of "
 "pestilential military ration? The smell alone is making me want to vomit."
@@ -1670,30 +1671,31 @@ msgstr ""
 "Ai-je mentionné que la seule nourriture que nous avons est un genre de "
 "ration militaire pestilentielle ? Rien que l'odeur me donne envie de vomir."
 
-#: ../dialogs/Michelangelo.dialog:95
+#: ../dialogs/Michelangelo.dialog:103
 #, fuzzy
 msgid "Cheer up! All will be fine! Happy days are coming! Hurray!"
 msgstr " Réjouis toi ! Tout ira bien ! Les jours heureux arrivent ! Hourra !"
 
-#: ../dialogs/Michelangelo.dialog:96 ../dialogs/FirmwareUpdateServer.dialog:63
+#: ../dialogs/Michelangelo.dialog:104
+#: ../dialogs/FirmwareUpdateServer.dialog:63
 #: ../dialogs/FirmwareUpdateServer.dialog:64
 msgid "..."
 msgstr "..."
 
-#: ../dialogs/Michelangelo.dialog:97
+#: ../dialogs/Michelangelo.dialog:105
 msgid "Linarian, have you been gorging on psychoactive pills or something?"
 msgstr ""
 "Linarien, est ce que tu as avalé des substances psychoactives ou quelque "
 "chose dans le genre ?"
 
-#: ../dialogs/Michelangelo.dialog:98
+#: ../dialogs/Michelangelo.dialog:106
 msgid ""
 "Get a grip, the situation is bad and there is no use in pretending otherwise."
 msgstr ""
 "Reprends toi, la situation est mauvaise et il n'est pas possible d'envisager "
 "autre chose."
 
-#: ../dialogs/Michelangelo.dialog:104
+#: ../dialogs/Michelangelo.dialog:112
 #, fuzzy
 msgid ""
 "You are a cook. Stop complaining about the poor food! Make some yourself."
@@ -1701,7 +1703,7 @@ msgstr ""
 " Tu es un cuisinier. Arrête de te plaindre à propos de la nourriture "
 "médiocre ! Débrouille toi."
 
-#: ../dialogs/Michelangelo.dialog:105
+#: ../dialogs/Michelangelo.dialog:113
 msgid ""
 "I cannot! My beautiful macrowave oven is out of power. The wretched Red "
 "Guard took away my uranium battery."
@@ -1709,28 +1711,28 @@ msgstr ""
 "Je ne peux pas. Mon beau four à macro-ondes n'a plus de batteries. "
 "L'affreuse Garde Rouge m'a pris ma pile à uranium."
 
-#: ../dialogs/Michelangelo.dialog:106
+#: ../dialogs/Michelangelo.dialog:114
 msgid "I wish I could kill them all with my bare hands. They deserve it."
 msgstr "J'aimerais pouvoir tous les tuer de mes mains nues. Ils le méritent."
 
-#: ../dialogs/Michelangelo.dialog:107
+#: ../dialogs/Michelangelo.dialog:115
 msgid "If only I had some dilithium to use as a backup power source..."
 msgstr ""
 "Si seulement j'avais un peu de dilithium pour l'utiliser comme batterie de "
 "secours..."
 
-#: ../dialogs/Michelangelo.dialog:114
+#: ../dialogs/Michelangelo.dialog:122
 #, fuzzy
 msgid "Got any food yet?"
 msgstr " Tu as quelque chose à manger ?"
 
-#: ../dialogs/Michelangelo.dialog:115
+#: ../dialogs/Michelangelo.dialog:123
 msgid "I had prepared some delicacies, but the ravenous Red Guard ate it all."
 msgstr ""
 "J'avais préparé quelques mets délicats, mais la vorace Garde Rouge a tout "
 "mangé."
 
-#: ../dialogs/Michelangelo.dialog:116
+#: ../dialogs/Michelangelo.dialog:124
 msgid ""
 "Not a big loss, I have a second batch of food cubes in the oven and they "
 "will be ready shortly."
@@ -1738,7 +1740,7 @@ msgstr ""
 "Ce n'est pas une grande perte, j'ai un second carton de cubes nutritifs dans "
 "le four et ils seront bientôt prêts."
 
-#: ../dialogs/Michelangelo.dialog:117
+#: ../dialogs/Michelangelo.dialog:125
 msgid ""
 "I think the mood in the town will improve once the cooking master "
 "Michelangelo gets to work. Ha!"
@@ -1746,21 +1748,21 @@ msgstr ""
 "Je pense que l'ambiance en ville va s'améliorer une fois que le maître "
 "cuisinier Michelangelo va se mettre au travail. Ha !"
 
-#: ../dialogs/Michelangelo.dialog:123
+#: ../dialogs/Michelangelo.dialog:131
 #, fuzzy
 msgid "Hmm... Crunchy... That is... Oh... No. Ugh. Help."
 msgstr " Hmm... Croustillant... C'est... Oh... Non. Argh. Au secours."
 
-#: ../dialogs/Michelangelo.dialog:124
+#: ../dialogs/Michelangelo.dialog:132
 msgid "Oh yes. You were warned, so don't blame me."
 msgstr "Oh oui. Je t'avais prévenu, ne m'en veux pas."
 
-#: ../dialogs/Michelangelo.dialog:131
+#: ../dialogs/Michelangelo.dialog:139
 #, fuzzy
 msgid "Bleah! That is not food! "
 msgstr " Berk ! Ce n'est pas de la nourriture ! "
 
-#: ../dialogs/Michelangelo.dialog:132
+#: ../dialogs/Michelangelo.dialog:140
 msgid ""
 "We already know that. There is nothing else to eat here, so I hope you get "
 "used to the taste."
@@ -1768,22 +1770,22 @@ msgstr ""
 "Nous savons déjà ça. Il n'y a rien d'autre à manger ici, donc j'espère que "
 "tu t'habitueras au goût."
 
-#: ../dialogs/Michelangelo.dialog:133
+#: ../dialogs/Michelangelo.dialog:141
 msgid "That thing only looks well and has a nice color."
 msgstr "Cette chose a un bel aspect et une jolie couleur."
 
-#: ../dialogs/Michelangelo.dialog:134
+#: ../dialogs/Michelangelo.dialog:142
 msgid "But as you can see, the color cannot be eaten, only the taste counts."
 msgstr ""
 "Mais comme tu peux le voir, la couleur ne peut pas être mangée, seul l'arôme "
 "compte."
 
-#: ../dialogs/Michelangelo.dialog:140
+#: ../dialogs/Michelangelo.dialog:148
 #, fuzzy
 msgid "I have the dilithium you wanted."
 msgstr " J'ai le dilithium que tu voulais."
 
-#: ../dialogs/Michelangelo.dialog:141
+#: ../dialogs/Michelangelo.dialog:149
 msgid ""
 "Really? I thought you are dead, but not only you come back alive, you also "
 "bring some power crystals for my trusty oven."
@@ -1791,11 +1793,11 @@ msgstr ""
 "Vraiment? Je pensais que tu étais mort, mais en plus de revenir vivant, tu "
 "me rapportes quelques cristaux de puissance pour réparer mon four."
 
-#: ../dialogs/Michelangelo.dialog:142
+#: ../dialogs/Michelangelo.dialog:150
 msgid "I will start cooking at once."
 msgstr "Je vais commencer à cuisiner dans un instant."
 
-#: ../dialogs/Michelangelo.dialog:143
+#: ../dialogs/Michelangelo.dialog:151
 msgid ""
 "Thank you, Linarian. As soon as the food cubes are ready I will be able to "
 "give them away to the hungry people."
@@ -1803,12 +1805,12 @@ msgstr ""
 "Merci, Linarien. Dès que les cubes seront prêts je pourrai les donner aux "
 "gens affamés."
 
-#: ../dialogs/Michelangelo.dialog:169
+#: ../dialogs/Michelangelo.dialog:162
 #, fuzzy
 msgid "What was I supposed to do again?"
 msgstr " Qu'est ce que je dois faire, déjà ?"
 
-#: ../dialogs/Michelangelo.dialog:170
+#: ../dialogs/Michelangelo.dialog:163
 msgid ""
 "Get me some dilithium before the whole stupid colony commits mass suicide "
 "because of poor food quality."
@@ -1816,7 +1818,7 @@ msgstr ""
 "Donne moi un peu de dilithium avant que cette stupide colonie ne fasse un "
 "suicide collectif à cause de la mauvaise qualité de la nourriture."
 
-#: ../dialogs/Michelangelo.dialog:171
+#: ../dialogs/Michelangelo.dialog:164
 msgid ""
 "Of course our heinous food might do us in far before that. I swear I saw "
 "that stuff glow it the dark and try to sneak away from my plate a few times."
@@ -1825,16 +1827,16 @@ msgstr ""
 "Je jure l'avoir vue briller dans le noir et essayer de s'échapper de mon "
 "assiette quelques fois."
 
-#: ../dialogs/Michelangelo.dialog:187
+#: ../dialogs/Michelangelo.dialog:170
 #, fuzzy
 msgid "Why don't you send someone for the dilithium?"
 msgstr " Pourquoi est-ce que tu n'envoies pas quelqu'un chercher du dilithium?"
 
-#: ../dialogs/Michelangelo.dialog:188 ../dialogs/Michelangelo.dialog:254
+#: ../dialogs/Michelangelo.dialog:171 ../dialogs/Michelangelo.dialog:237
 msgid "I did."
 msgstr "Oui."
 
-#: ../dialogs/Michelangelo.dialog:189
+#: ../dialogs/Michelangelo.dialog:172
 msgid ""
 "Yesterday a guard patrol found a few tiny bits of him and lots of dried "
 "blood."
@@ -1842,20 +1844,20 @@ msgstr ""
 "Hier, une patrouille de garde a trouvé quelques petits morceaux de lui et "
 "beaucoup de sang séché."
 
-#: ../dialogs/Michelangelo.dialog:190
+#: ../dialogs/Michelangelo.dialog:173
 msgid "The bots made a bloody mess out of him."
 msgstr "Les robots l'ont vraiment écharpé."
 
-#: ../dialogs/Michelangelo.dialog:196
+#: ../dialogs/Michelangelo.dialog:179
 #, fuzzy
 msgid "I can get you some dilithium."
 msgstr " Je peux t'avoir un peu de dilithium."
 
-#: ../dialogs/Michelangelo.dialog:197
+#: ../dialogs/Michelangelo.dialog:180
 msgid "Have you gotten overheated, Linarian?"
 msgstr "Est-ce que tu es en surchauffe, Linarien ?"
 
-#: ../dialogs/Michelangelo.dialog:198
+#: ../dialogs/Michelangelo.dialog:181
 msgid ""
 "Look, there are dozens of ways you can kill yourself, and most hurt less "
 "than being killed by a bot."
@@ -1863,7 +1865,7 @@ msgstr ""
 "Écoute, des moyens de te suicider, il y en a des dizaines, et la plupart "
 "font moins mal que d'être tué par un robot."
 
-#: ../dialogs/Michelangelo.dialog:199
+#: ../dialogs/Michelangelo.dialog:182
 msgid ""
 "If you want to die just walk into a nuclear reactor or something. So much "
 "simpler."
@@ -1871,12 +1873,12 @@ msgstr ""
 "Si tu veux mourir, va marcher dans un réacteur nucléaire ou quelque chose "
 "comme ça. C'est tellement plus simple."
 
-#: ../dialogs/Michelangelo.dialog:206
+#: ../dialogs/Michelangelo.dialog:189
 #, fuzzy
 msgid "I'll be fine. Don't worry."
 msgstr " Ça ira. Ne t'inquiète pas."
 
-#: ../dialogs/Michelangelo.dialog:207
+#: ../dialogs/Michelangelo.dialog:190
 msgid ""
 "Do you know how the bots act? Some want to kill you as soon as possible... "
 "Others want to do the same, but slowly."
@@ -1884,7 +1886,7 @@ msgstr ""
 "Est-ce que tu sais comment les robots agissent? Certains veulent te tuer dès "
 "que possible... D'autres veulent faire la même chose, mais plus lentement."
 
-#: ../dialogs/Michelangelo.dialog:208
+#: ../dialogs/Michelangelo.dialog:191
 msgid ""
 "I have seen corpses with nearly all of the fingers ripped out. People with "
 "eyes drilled out with some big tool. "
@@ -1892,7 +1894,7 @@ msgstr ""
 "J'ai vu des cadavres dont tous les doigts avaient été arrachés, des gens "
 "avec les yeux percés... "
 
-#: ../dialogs/Michelangelo.dialog:209
+#: ../dialogs/Michelangelo.dialog:192
 msgid ""
 "I smelled burnt meat and heard the screams of the captives as they were "
 "incinerated alive outside the city walls. "
@@ -1900,14 +1902,14 @@ msgstr ""
 "J'ai senti l'odeur de viande grillée et entendu les cris des captifs tandis "
 "qu'ils étaient incinérés vivants à l'extérieur des murailles de la cité. "
 
-#: ../dialogs/Michelangelo.dialog:210
+#: ../dialogs/Michelangelo.dialog:193
 msgid ""
 "The bots know no mercy. They cannot even define it, damn scrap metal fiends."
 msgstr ""
 "Les robots ne connaissent pas la pitié. Ils ne peuvent même pas la définir, "
 "ces démoniaques engins métalliques."
 
-#: ../dialogs/Michelangelo.dialog:211
+#: ../dialogs/Michelangelo.dialog:194
 msgid ""
 "Feel free to go, Linarian, but make sure to be very dead before they start "
 "killing you."
@@ -1915,12 +1917,12 @@ msgstr ""
 "Vas y si tu le veux vraiment, Linarien, mais assure toi d'être bien mort "
 "avant qu'ils ne commencent à te tuer."
 
-#: ../dialogs/Michelangelo.dialog:220
+#: ../dialogs/Michelangelo.dialog:203
 #, fuzzy
 msgid "Where can I get the crystals?"
 msgstr " Où est-ce que je peux trouver des cristaux ?"
 
-#: ../dialogs/Michelangelo.dialog:221
+#: ../dialogs/Michelangelo.dialog:204
 msgid ""
 "There is an old dilithium mine to the east. I am sure there is lots of that "
 "stuff there."
@@ -1928,20 +1930,20 @@ msgstr ""
 "Il y une vieille mine de dilithium à l'est. Je suis certain qu'il y a "
 "beaucoup de ces trucs là bas."
 
-#: ../dialogs/Michelangelo.dialog:222
+#: ../dialogs/Michelangelo.dialog:205
 msgid "I will talk to the guards, they will open the eastern gate for you."
 msgstr "Je parlerai aux gardes, ils ouvriront la porte est pour toi."
 
-#: ../dialogs/Michelangelo.dialog:223
+#: ../dialogs/Michelangelo.dialog:206
 msgid "Good luck. Try not to get yourself killed."
 msgstr "Bonne chance. Essaie de ne pas te faire tuer."
 
-#: ../dialogs/Michelangelo.dialog:231
+#: ../dialogs/Michelangelo.dialog:214
 #, fuzzy
 msgid "What is this dilithium?"
 msgstr " Qu'est ce que le dilithium ?"
 
-#: ../dialogs/Michelangelo.dialog:232
+#: ../dialogs/Michelangelo.dialog:215
 msgid ""
 "You do not know? I thought Linarians were unmatched in their knowledge of "
 "the universe. Anyway..."
@@ -1949,7 +1951,7 @@ msgstr ""
 "Tu ne le sais pas ? Je pensais que les Linariens étaient imbattables dans "
 "leur connaissance de l'univers. De toutes façons..."
 
-#: ../dialogs/Michelangelo.dialog:233
+#: ../dialogs/Michelangelo.dialog:216
 msgid ""
 "Dilithium is a substance which is usually seen in the form of a small "
 "crystal. "
@@ -1957,7 +1959,7 @@ msgstr ""
 "Le dilithium est une substance qui se présente habituellement sous la forme "
 "d'un petit cristal. "
 
-#: ../dialogs/Michelangelo.dialog:234
+#: ../dialogs/Michelangelo.dialog:217
 msgid ""
 "It somehow generates and stores amazing amounts of electricity. I do not "
 "know the details. I'm a cook, not a quantum scientist."
@@ -1965,20 +1967,20 @@ msgstr ""
 "Il génère et stocke une quantité incroyable d'énergie. Je ne connais pas les "
 "détails. Je suis un cuisinier, pas un expert en physique quantique."
 
-#: ../dialogs/Michelangelo.dialog:235
+#: ../dialogs/Michelangelo.dialog:218
 msgid "A small crystal would power my oven for weeks."
 msgstr "Un petit cristal alimenterait mon four pendant des semaines."
 
-#: ../dialogs/Michelangelo.dialog:241
+#: ../dialogs/Michelangelo.dialog:224
 #, fuzzy
 msgid "I have an idea. Use fire to cook the food for the city."
 msgstr " Je sais : fais du feu pour cuire la nourriture de la cité."
 
-#: ../dialogs/Michelangelo.dialog:242
+#: ../dialogs/Michelangelo.dialog:225
 msgid "A nice idea, but there is a couple of major problems with it."
 msgstr "Une idée sympa, mais il y deux gros problèmes avec ça."
 
-#: ../dialogs/Michelangelo.dialog:243
+#: ../dialogs/Michelangelo.dialog:226
 msgid ""
 "We are a town of 450 hungry people. It would need to be a very big fire to "
 "supply heat for all of the meals."
@@ -1986,7 +1988,7 @@ msgstr ""
 "Nous sommes une ville de 450 personnes affamées. Ça nécessiterait un très "
 "grand feu pour cuire toute la nourriture."
 
-#: ../dialogs/Michelangelo.dialog:244
+#: ../dialogs/Michelangelo.dialog:227
 msgid ""
 "There is nothing to burn inside the city. If you want you can go and try to "
 "chop some trees in the region to the north, but odds are the bots will chop "
@@ -1997,7 +1999,7 @@ msgstr ""
 "risquent de te découper avant que tu ais eu le temps de balancer un seul "
 "coup de hache."
 
-#: ../dialogs/Michelangelo.dialog:245
+#: ../dialogs/Michelangelo.dialog:228
 msgid ""
 "Finally, the meal cubes which we have in the freezer are optimized for "
 "macrowaves. If we stick them in a fire they will combust and not cook."
@@ -2006,23 +2008,23 @@ msgstr ""
 "pour les macro-ondes. Si nous les mettions au feu ils brûleraient et ne "
 "cuiraient pas."
 
-#: ../dialogs/Michelangelo.dialog:246
+#: ../dialogs/Michelangelo.dialog:229
 msgid "No oven means having to use the premacrowaved food."
 msgstr ""
 "Pas de four signifie que tu es obligé d'utiliser la nourriture précuite pour "
 "le four macro-ondes."
 
-#: ../dialogs/Michelangelo.dialog:247
+#: ../dialogs/Michelangelo.dialog:230
 msgid "And the only such thing around is the abhorrent military sludge."
 msgstr ""
 "Et le seul truc de ce genre par ici est l'exécrable ration militaire marron."
 
-#: ../dialogs/Michelangelo.dialog:253
+#: ../dialogs/Michelangelo.dialog:236
 #, fuzzy
 msgid "Tell the Red Guard that you need your battery back."
 msgstr " Dis à la Garde Rouge que tu as besoin de ta batterie."
 
-#: ../dialogs/Michelangelo.dialog:255
+#: ../dialogs/Michelangelo.dialog:238
 msgid "They said it was already fed to their reactor as fuel."
 msgstr ""
 "Ils ont dit qu'ils s'en étaient déjà servi comme carburant pour leur "
@@ -4058,12 +4060,12 @@ msgstr ". . ."
 msgid "Good. I need sleep."
 msgstr "Bien. J'ai besoin de dormir."
 
-#: ../dialogs/subdlg_kevin_reward1.dialog:47
+#: ../dialogs/subdlg_kevin_reward1.dialog:33
 #, fuzzy
 msgid "I want to become a hacker."
 msgstr " Je veux devenir un hacker."
 
-#: ../dialogs/subdlg_kevin_reward1.dialog:48
+#: ../dialogs/subdlg_kevin_reward1.dialog:34
 msgid ""
 "Your desire for information amuses me. Your wish will be granted. I will "
 "teach you how to hack."
@@ -4071,7 +4073,7 @@ msgstr ""
 "Ton désir de collecter des informations m'amuse. Je vais exaucer ton "
 "souhait. Je vais t'enseigner le piratage."
 
-#: ../dialogs/subdlg_kevin_reward1.dialog:49
+#: ../dialogs/subdlg_kevin_reward1.dialog:35
 msgid ""
 "You must know that hacking is an art. It is easy to chop your enemy to bits "
 "with an axe or shred it to atoms with a grenade... But hacking requires "
@@ -4081,7 +4083,7 @@ msgstr ""
 "en morceau avec une épée ou de le désintégrer avec une grenade... Mais le "
 "hack nécessite des compétences."
 
-#: ../dialogs/subdlg_kevin_reward1.dialog:50
+#: ../dialogs/subdlg_kevin_reward1.dialog:36
 msgid ""
 "Look at this terminal... I am connected to a remote system. A fool would "
 "just launch a thousand attacks, but a skilled intruder would stop and think."
@@ -4090,7 +4092,7 @@ msgstr ""
 "inconscient va simplement lancer une centaine d'attaques en même temps, mais "
 "un intrus compétent va s'arrêter et réfléchir."
 
-#: ../dialogs/subdlg_kevin_reward1.dialog:51
+#: ../dialogs/subdlg_kevin_reward1.dialog:37
 msgid ""
 "You must know when to hack and when not to hack. You must attack when the "
 "enemy is unprepared for you."
@@ -4098,7 +4100,7 @@ msgstr ""
 "Tu dois savoir quand tu peux hacker et quand ne pas hacker. Tu dois attaquer "
 "quand l'ennemi ne s'y attend pas."
 
-#: ../dialogs/subdlg_kevin_reward1.dialog:52
+#: ../dialogs/subdlg_kevin_reward1.dialog:38
 msgid ""
 "Now watch. Observe carefully. See how I enter the system... Yes. Watch the "
 "connection glowing, burning like a bright star..."
@@ -4107,7 +4109,7 @@ msgstr ""
 "le système... Oui. Regarde la connexion étincelle, brûle comme une étoile de "
 "forte magnitude..."
 
-#: ../dialogs/subdlg_kevin_reward1.dialog:53
+#: ../dialogs/subdlg_kevin_reward1.dialog:39
 msgid ""
 "...only to die seconds after, as the system far away collapses under it's "
 "own weight... It's done."
@@ -4115,7 +4117,7 @@ msgstr ""
 "...seulement quelques secondes après, lorsque le système s'écroule sous son "
 "propre poids... C'est terminé."
 
-#: ../dialogs/subdlg_kevin_reward1.dialog:54
+#: ../dialogs/subdlg_kevin_reward1.dialog:40
 msgid ""
 "That is all I want to show you for now. Maybe later I will teach you "
 "something else."
@@ -4123,31 +4125,26 @@ msgstr ""
 "C'est tout ce que je te montrerai pour aujourd'hui. Peut être que plus tard "
 "je t'enseignerai d'autres choses."
 
-#: ../dialogs/subdlg_kevin_reward1.dialog:62
+#: ../dialogs/subdlg_kevin_reward1.dialog:48
 #, fuzzy
 msgid "I don't want any reward. Just gratitude."
 msgstr " Je ne cherche pas de récompense. Seulement de la gratitude."
 
-#: ../dialogs/subdlg_kevin_reward1.dialog:63
+#: ../dialogs/subdlg_kevin_reward1.dialog:49
 msgid ""
 "Of course you can have that. There, I'm most grateful to you. That should do."
 msgstr ""
 "Naturellement tu peux le prendre. Je te suis très reconnaissant. Ça te "
 "revient."
 
-#: ../dialogs/subdlg_kevin_reward1.dialog:70
+#: ../dialogs/subdlg_kevin_reward1.dialog:56
 #, fuzzy
 msgid "I want money."
 msgstr " Je veux de l'argent."
 
-#: ../dialogs/subdlg_kevin_reward1.dialog:71
+#: ../dialogs/subdlg_kevin_reward1.dialog:57
 msgid "Eh... Here, take these 500 bucks. That should be enough."
 msgstr "Hé... Tiens, prends ces 500 dollars. Ça devrait être suffisant."
-
-#: ../dialogs/subdlg_kevin_reward1.dialog:79 ../dialogs/subdlg_Kevin.dialog:82
-#, fuzzy
-msgid "[BACK]"
-msgstr " [BACK]"
 
 #: ../dialogs/Ernie.dialog:39
 msgid "Hey you!  Linarian!  What do you want here?"
@@ -4623,12 +4620,12 @@ msgstr "Tu es Tux, n'est-ce pas..."
 msgid "The hero..."
 msgstr "Le héros..."
 
-#: ../dialogs/subdlg_Stone.dialog:49
+#: ../dialogs/subdlg_Stone.dialog:48
 #, fuzzy
 msgid "Yes, its me."
 msgstr " Oui, c'est moi."
 
-#: ../dialogs/subdlg_Stone.dialog:50
+#: ../dialogs/subdlg_Stone.dialog:49
 msgid ""
 "I thought so. My grandfather used to tell me stories about you. He said you "
 "would come here in a time of despair."
@@ -4637,22 +4634,22 @@ msgstr ""
 "histoires à ton sujet. Il disait que tu arriverais en une époque de "
 "désespoir."
 
-#: ../dialogs/subdlg_Stone.dialog:51
+#: ../dialogs/subdlg_Stone.dialog:50
 msgid "And here you are."
 msgstr "Et maintenant tu es là."
 
-#: ../dialogs/subdlg_Stone.dialog:52
+#: ../dialogs/subdlg_Stone.dialog:51
 msgid "I hope your arrival changes the tide of this war..."
 msgstr "J'espère que ton arrivée va changer le cours de cette guerre..."
 
-#: ../dialogs/subdlg_Stone.dialog:53
+#: ../dialogs/subdlg_Stone.dialog:52
 msgid ""
 "I have something here for you. I managed to hide this Shotgun from the red "
 "guard."
 msgstr ""
 "J'ai quelque chose pour toi. J'ai réussi à cacher à la Garde Rouge ce fusil."
 
-#: ../dialogs/subdlg_Stone.dialog:54
+#: ../dialogs/subdlg_Stone.dialog:53
 msgid ""
 "It used to belong to my grandfather, so it's very dear to me, but I'm sure "
 "he would have like you to have it on your journey to save us all."
@@ -4660,7 +4657,7 @@ msgstr ""
 "Il appartenait à mon grand-père, alors il m'est très cher, mais je suis sure "
 "qu'il aurait aimé que tu l'aies pendant ton voyage pour nous sauver tous."
 
-#: ../dialogs/subdlg_Stone.dialog:55
+#: ../dialogs/subdlg_Stone.dialog:54
 msgid ""
 "Tux, if you ever find out who started the Great Assault... GIVE THEM A KICK "
 "IN THE ASS, FROM LILY STONE!!!"
@@ -4668,33 +4665,33 @@ msgstr ""
 "Tux, si jamais tu trouves celui qui a déclenché le Grand Assaut... BOTTE LUI "
 "LES FESSES, DE LA PART DE LILY STONE!!!"
 
-#: ../dialogs/subdlg_Stone.dialog:63
+#: ../dialogs/subdlg_Stone.dialog:62
 #, fuzzy
 msgid "It's not important who am I."
 msgstr " Qui je suis n'a pas d'importance."
 
-#: ../dialogs/subdlg_Stone.dialog:64
+#: ../dialogs/subdlg_Stone.dialog:63
 msgid "If you want to remain a stranger, I will respect your wishes."
 msgstr "Si tu souhaite rester un étranger, je respecterai ton choix."
 
-#: ../dialogs/subdlg_Stone.dialog:65
+#: ../dialogs/subdlg_Stone.dialog:64
 msgid "So be it."
 msgstr "Alors c'est ça."
 
-#: ../dialogs/subdlg_Stone.dialog:72
+#: ../dialogs/subdlg_Stone.dialog:71
 #, fuzzy
 msgid "Ha ha ha, You fell for it! You get nothing from me! Hahahahah!"
 msgstr " Ha ha ha, j't'ai bien eue ! Tu n'auras rien de moi ! Hahahahah !"
 
-#: ../dialogs/subdlg_Stone.dialog:73
+#: ../dialogs/subdlg_Stone.dialog:72
 msgid "You... monster..."
 msgstr "Tu es... un monstre..."
 
-#: ../dialogs/subdlg_Stone.dialog:74
+#: ../dialogs/subdlg_Stone.dialog:73
 msgid "No one makes fun of Lily Stone's family store!"
 msgstr "Personne ne se moque du magasin de la famille Stone !"
 
-#: ../dialogs/subdlg_Stone.dialog:75
+#: ../dialogs/subdlg_Stone.dialog:74
 msgid "Say your prayers, you oversized duck!!!"
 msgstr "Dis tes prières, espèce de canard obèse !!!"
 
@@ -5340,46 +5337,6 @@ msgstr " J'aimerai mieux sortir d'ici..."
 #: ../dialogs/SADD.dialog:380
 msgid " Exactly."
 msgstr " Exactement."
-
-#: ../dialogs/subdlg_Kevin.dialog:50
-msgid ""
-"You don't have enough cash, cheapskate. Come back when you can afford to pay "
-"me."
-msgstr ""
-"Tu n'as pas assez d'argent. Reviens me voir quand tu auras de quoi me payer."
-
-#: ../dialogs/subdlg_Kevin.dialog:54
-#, fuzzy
-msgid "Improve Hacking Ability (cost 300 cash, 5 ability points)"
-msgstr ""
-" Étudier le piratage des ordinateurs (300 en liquide, 5 points de compétence)"
-
-#: ../dialogs/subdlg_Kevin.dialog:66
-msgid ""
-"Good. The most important thing about hacking is to understand the nature of "
-"the machine you want to hack."
-msgstr ""
-"Bien. La chose la plus importante à propos du hack est de comprendre la "
-"nature de la machine que tu veux hacker."
-
-#: ../dialogs/subdlg_Kevin.dialog:67
-msgid ""
-"Once you have figured out what the creators of the system were doing when "
-"setting it up, you'll also know how to best hack it."
-msgstr ""
-"Une fois que tu t'es représenté ce que les créateurs de la machine ont voulu "
-"faire, tu sauras également quel est le meilleur moyen de la hacker."
-
-#: ../dialogs/subdlg_Kevin.dialog:68
-msgid "Now I see your hacking skill has already improved a lot."
-msgstr "Je vois que ton savoir en hack a déjà beaucoup augmenté."
-
-#: ../dialogs/subdlg_Kevin.dialog:78
-msgid ""
-"You don't have enough experience. I can't teach you anything more this way."
-msgstr ""
-"Tu n'as pas assez d'expérience. Je ne peux pas t'apprendre quoi que ce soit "
-"de plus de cette façon."
 
 #: ../dialogs/Pendragon.dialog:39
 msgid "You don't say. I'm not living here either. I'm just on vacation."
@@ -8817,7 +8774,7 @@ msgstr "Ni plus, ni moins."
 msgid "May the ice bring you wisdom."
 msgstr "Puisse la glace t'apporter la sagesse."
 
-#: ../dialogs/Kevin.dialog:38
+#: ../dialogs/Kevin.dialog:47
 #, fuzzy
 msgid ""
 "Hello... Oh dear... You look awful... Who did this to you? Did they torture "
@@ -8826,21 +8783,21 @@ msgstr ""
 " Bonjour... Oh, mon dieu... Vous avez très mauvaise mine... Qui vous a fait "
 "ça ? Ils vous ont torturé ?"
 
-#: ../dialogs/Kevin.dialog:39
+#: ../dialogs/Kevin.dialog:48
 msgid "Hi. I haven't slept for a few weeks, so I'm just a little bit tired."
 msgstr ""
 "Salut. Ça fait quelques semaines que je n'ai pas dormi, je suis seulement un "
 "peu fatigué."
 
-#: ../dialogs/Kevin.dialog:40
+#: ../dialogs/Kevin.dialog:49
 msgid "Don't worry about me. I'll be fine."
 msgstr "Ne t'en fais pas pour moi. Je vais bien."
 
-#: ../dialogs/Kevin.dialog:41
+#: ../dialogs/Kevin.dialog:50
 msgid "I'm Kevin, a computer security expert."
 msgstr "Je m'appelle Kevin, je suis expert en sécurité informatique."
 
-#: ../dialogs/Kevin.dialog:58
+#: ../dialogs/Kevin.dialog:56
 msgid ""
 "As I've told you, I cannot teach you anything right now. I don't have the "
 "time."
@@ -8848,7 +8805,7 @@ msgstr ""
 "Comme je te l'ai déjà dit, je ne peux rien t'enseigner pour le moment. Je "
 "n'ai pas le temps."
 
-#: ../dialogs/Kevin.dialog:59
+#: ../dialogs/Kevin.dialog:57
 msgid ""
 "I must see to that the flaky energy stream is distributed in such a way that "
 "my research project can continue."
@@ -8856,7 +8813,7 @@ msgstr ""
 "Je dois faire en sorte que le flux énergétique soit bien réparti, pour que "
 "mon projet de recherche puisse continuer."
 
-#: ../dialogs/Kevin.dialog:60
+#: ../dialogs/Kevin.dialog:58
 msgid ""
 "If you get rid of the maintenance bots on the second underground level of "
 "this station, I will find the time to teach you something."
@@ -8864,24 +8821,22 @@ msgstr ""
 "Si tu te débarrasses des robots de maintenance dans le deuxième sous-sol de "
 "cette station, je prendrais le temps de t'apprendre quelques trucs."
 
-#: ../dialogs/Kevin.dialog:66
+#: ../dialogs/Kevin.dialog:61
 #, fuzzy
 msgid "What can you teach me about hacking?"
 msgstr " Pouvez me donner des compétences en hacking ?"
 
-#: ../dialogs/Kevin.dialog:75
-msgid "I can teach you everything. For three hundred, up front."
+#: ../dialogs/Kevin.dialog:64
+#, fuzzy
+msgid ""
+"I can teach you everything. For three hundred, up front. Still interested?"
 msgstr "Je peux t'apprendre tout ce que tu veux, pour trois cents dollars."
 
-#: ../dialogs/Kevin.dialog:76
-msgid "Still interested? "
-msgstr "Toujours intéressé ? "
-
-#: ../dialogs/Kevin.dialog:84
+#: ../dialogs/Kevin.dialog:72
 msgid "Not now, I'm busy."
 msgstr "Pas maintenant, je suis occupé."
 
-#: ../dialogs/Kevin.dialog:85
+#: ../dialogs/Kevin.dialog:73
 msgid ""
 "I've got an important research project going on. In fact this project might "
 "be crucial to the survival of the whole colony."
@@ -8889,7 +8844,7 @@ msgstr ""
 "Je suis sur un projet de recherche important, en ce moment. C'est peut-être "
 "la survie de l'intégralité de la colonie qui en dépend."
 
-#: ../dialogs/Kevin.dialog:86
+#: ../dialogs/Kevin.dialog:74
 msgid ""
 "There is tremendous importance in it. But the project is in danger. There "
 "are some maintenance bots down at the energy source."
@@ -8897,7 +8852,7 @@ msgstr ""
 "Il a une importance capitale. Mais ce projet est en danger : il y a quelques "
 "robots de maintenance en bas, à la source d'énergie."
 
-#: ../dialogs/Kevin.dialog:87
+#: ../dialogs/Kevin.dialog:75
 msgid ""
 "They are trying to 'maintain' machines by rebooting them all the time. This "
 "must stop, but I can't leave this place."
@@ -8905,7 +8860,7 @@ msgstr ""
 "Il essaient de faire la 'maintenance' des machines en les redémarrant sans "
 "cesse. Il faut que cela cesse, mais je ne peux pas quitter cet endroit."
 
-#: ../dialogs/Kevin.dialog:88
+#: ../dialogs/Kevin.dialog:76
 msgid ""
 "I must balance the remaining power in such a way that my project can "
 "continue uninterrupted."
@@ -8913,7 +8868,7 @@ msgstr ""
 "Je dois équilibrer l'énergie qui reste de telle sorte que mon projet puisse "
 "continuer de fonctionner sans interruption."
 
-#: ../dialogs/Kevin.dialog:89
+#: ../dialogs/Kevin.dialog:77
 msgid ""
 "Now, if you go down there and make the power flow stable, then I'll find the "
 "time to teach you something."
@@ -8921,12 +8876,12 @@ msgstr ""
 "Alors, si tu descends là-bas et que tu stabilises le flux d'énergie, "
 "j'aurais le temps de t'apprendre quelques trucs."
 
-#: ../dialogs/Kevin.dialog:96
+#: ../dialogs/Kevin.dialog:81
 #, fuzzy
 msgid "I'll see after the energy supply now."
 msgstr " Je m'en vais à la recherche de la source d'énergie."
 
-#: ../dialogs/Kevin.dialog:97
+#: ../dialogs/Kevin.dialog:82
 msgid ""
 "That's great. You can't miss it. It's not hard to find. Enter my garden and "
 "find the lower station entrance there."
@@ -8934,7 +8889,7 @@ msgstr ""
 "C'est super. Tu ne peux pas la rater. Ce n'est pas difficile à trouver. Va "
 "dans mon jardin, tu y trouveras l'entrée de la station souterraine."
 
-#: ../dialogs/Kevin.dialog:98
+#: ../dialogs/Kevin.dialog:83
 msgid ""
 "Best don't bother with the resistance on the first level. You only need to "
 "take care of the energy supply. And that's on the SECOND level."
@@ -8942,7 +8897,7 @@ msgstr ""
 "Ne t'occupe pas des robots du premier sous-sol. Il faut uniquement que tu "
 "t'occupes de la source d'énergie, qui se trouve au Deuxième sous-sol."
 
-#: ../dialogs/Kevin.dialog:99
+#: ../dialogs/Kevin.dialog:84
 msgid ""
 "I hope you have a laser pistol or something like that, the bots there will "
 "rip you apart if you try to approach them."
@@ -8950,14 +8905,14 @@ msgstr ""
 "J'espère pour toi que tu as un pistolet laser, ou quelque chose comme ça. "
 "Les robots te pulvériserons si tu les approches."
 
-#: ../dialogs/Kevin.dialog:100
+#: ../dialogs/Kevin.dialog:85
 msgid ""
 "Best make it quick. I'm already sick of stabilizing the stupid power grid."
 msgstr ""
 "Fais au plus vite. Je me sens déjà mal de stabiliser ce stupide réseau "
 "énergétique."
 
-#: ../dialogs/Kevin.dialog:108
+#: ../dialogs/Kevin.dialog:93
 #, fuzzy
 msgid ""
 "I'm sorry, but I don't think there's anything I could do about that energy "
@@ -8966,28 +8921,28 @@ msgstr ""
 " Je suis désolé, mais je ne crois pas qu'il y ait quoi que ce soit que je "
 "puisse faire à propos de l'approvisionnement en énergie."
 
-#: ../dialogs/Kevin.dialog:109
+#: ../dialogs/Kevin.dialog:94
 msgid "Too bad. Now get out of my sight."
 msgstr "Dommage. Maintenant, hors de ma vue."
 
-#: ../dialogs/Kevin.dialog:133
+#: ../dialogs/Kevin.dialog:98
 #, fuzzy
 msgid "How about some reward for securing your energy supply area?"
 msgstr ""
 " Et si vous me donniez une récompense pour avoir nettoyé la source d'énergie "
 "de tous ces robots ?"
 
-#: ../dialogs/Kevin.dialog:142
+#: ../dialogs/Kevin.dialog:101
 msgid "I've already rewarded you for that. Don't steal my time. I'm busy."
 msgstr ""
 "Je t'ai déjà récompensé pour ça. Ne me fais pas perdre mon temps, je suis "
 "occupé."
 
-#: ../dialogs/Kevin.dialog:150
+#: ../dialogs/Kevin.dialog:103
 msgid "What do you want?"
 msgstr "Qu'est-ce que tu veux?"
 
-#: ../dialogs/Kevin.dialog:158
+#: ../dialogs/Kevin.dialog:112
 msgid ""
 "Yes, since the energy supply has been constant, results were much better. "
 "I've achieved my goal."
@@ -8995,7 +8950,7 @@ msgstr ""
 "Oui, étant donné que l'approvisionnement en énergie est resté régulier, les "
 "résultats ont été bien meilleurs. J'ai pu parvenir à mon but."
 
-#: ../dialogs/Kevin.dialog:159
+#: ../dialogs/Kevin.dialog:113
 msgid ""
 "I've obtained secret data on the colony surroundings. We'll need a big "
 "computer cluster to evaluate it properly."
@@ -9004,7 +8959,7 @@ msgstr ""
 "allons avoir besoin d'un important cluster d'ordinateurs pour les analyser "
 "correctement."
 
-#: ../dialogs/Kevin.dialog:160
+#: ../dialogs/Kevin.dialog:114
 msgid ""
 "Once we've evaluated the data, we might find a way to secure the colony and "
 "ensure our survival. But it's too early to tell yet."
@@ -9013,7 +8968,7 @@ msgstr ""
 "mesure de trouver un moyen de sécuriser la colonie et assurer notre survie. "
 "Mais il est trop tôt pour se prononcer pour l'instant."
 
-#: ../dialogs/Kevin.dialog:161
+#: ../dialogs/Kevin.dialog:115
 msgid ""
 "If I only had a suitable cluster. Then we could start data evaluation right "
 "away."
@@ -9021,7 +8976,7 @@ msgstr ""
 "Si seulement j'avais un cluster satisfaisant, je pourrais commencer "
 "l'analyse des données sur le champ..."
 
-#: ../dialogs/Kevin.dialog:170
+#: ../dialogs/Kevin.dialog:121
 msgid ""
 "That would be great of course. I know that the old town is maintaining a "
 "suitable information infrastructure and has a proper cluster running for "
@@ -9031,7 +8986,7 @@ msgstr ""
 "infrastructure de stockage d'informations assez satisfaisante. Ils ont là-"
 "bas un cluster qui tourne depuis un bout de temps."
 
-#: ../dialogs/Kevin.dialog:171
+#: ../dialogs/Kevin.dialog:122
 msgid ""
 "The only problem is, that I can't go back to town. They would probably kill "
 "me because of that misunderstanding some time ago."
@@ -9039,7 +8994,7 @@ msgstr ""
 "Le seul problème, c'est que je ne peux pas retourner à la ville. À cause "
 "d'un vieux différent, je risque d'être tué."
 
-#: ../dialogs/Kevin.dialog:172
+#: ../dialogs/Kevin.dialog:123
 msgid ""
 "And also the cluster is inside of the guard citadel. I hear it's only "
 "allowed for members of the Red Guard to enter the complex."
@@ -9048,7 +9003,7 @@ msgstr ""
 "On m'a dit que seuls les membres de la Garde Rouge ont le droit de pénétrer "
 "dans le complexe."
 
-#: ../dialogs/Kevin.dialog:173
+#: ../dialogs/Kevin.dialog:124
 msgid ""
 "But maybe you can arrange that somehow. For me it would be impossible, "
 "because of my bad reputation."
@@ -9056,7 +9011,7 @@ msgstr ""
 "Mais peut-être peux-tu te débrouiller. Pour moi c'est impossible, à cause de "
 "ma mauvaise réputation."
 
-#: ../dialogs/Kevin.dialog:174
+#: ../dialogs/Kevin.dialog:125
 msgid ""
 "I'll give you the data cube. Take it to the computer cluster administration "
 "people. They will know what to do. And don't mention me there."
@@ -9065,13 +9020,13 @@ msgstr ""
 "l'administration du cluster. Ils sauront quoi en faire. Et ne mentionne pas "
 "mon nom."
 
-#: ../dialogs/Kevin.dialog:183
+#: ../dialogs/Kevin.dialog:134
 #, fuzzy
 msgid "Maybe I can help somehow to find a suitable cluster."
 msgstr ""
 " Peut-être puis-je t'être utile dans la recherche d'un cluster adéquat."
 
-#: ../dialogs/Kevin.dialog:192
+#: ../dialogs/Kevin.dialog:143
 msgid ""
 "You've already agreed to take my data cube to the cluster. I have no "
 "influence on this matter anymore."
@@ -9079,7 +9034,7 @@ msgstr ""
 "Tu as déjà donné ton accord pour apporter mon cube de données au cluster. Je "
 "ne peux rien faire de plus avec ce truc."
 
-#: ../dialogs/Kevin.dialog:193
+#: ../dialogs/Kevin.dialog:144
 msgid ""
 "The fate of the colony now rests in your hands. Bring the data cube I gave "
 "you to the cluster. Only there the data can be evaluated properly."
@@ -9088,76 +9043,112 @@ msgstr ""
 "cluster. C'est le seul endroit où l'on pourra analyser les données "
 "correctement."
 
-#: ../dialogs/Kevin.dialog:199
+#: ../dialogs/Kevin.dialog:147
 #, fuzzy
 msgid "About that project you said you have running..."
 msgstr " à propos de ce projet que tu disais avoir en cours..."
 
-#: ../dialogs/Kevin.dialog:208
+#: ../dialogs/Kevin.dialog:150
+#, fuzzy
 msgid ""
 "I've already received the results from the evaluation of my data in the "
-"cluster."
+"cluster. Good work."
 msgstr "J'ai déjà reçu les résultats de l'analyse de mes données au cluster."
 
-#: ../dialogs/Kevin.dialog:209
-msgid "Good work."
-msgstr "Bon travail."
-
-#: ../dialogs/Kevin.dialog:215
+#: ../dialogs/Kevin.dialog:156
 #, fuzzy
 msgid "In other words: You are a hacker."
 msgstr " Autrement dit : tu es un hacker."
 
-#: ../dialogs/Kevin.dialog:216
+#: ../dialogs/Kevin.dialog:157
 msgid "Eh... I guess you could put it that way, yes."
 msgstr "Eh bien... Je suppose que tu peux le dire comme ça, oui."
 
-#: ../dialogs/Kevin.dialog:223
+#: ../dialogs/Kevin.dialog:161
 #, fuzzy
 msgid "Jasmine just blew up."
 msgstr " Jasmine vient d'imploser."
 
-#: ../dialogs/Kevin.dialog:224
+#: ../dialogs/Kevin.dialog:162
 msgid "Oh. Right."
 msgstr "Ah. D'accord."
 
-#: ../dialogs/Kevin.dialog:225
+#: ../dialogs/Kevin.dialog:163
 msgid "Well, thanks for telling me."
 msgstr "Eh bien merci de m'avoir prévenu."
 
-#: ../dialogs/Kevin.dialog:226
+#: ../dialogs/Kevin.dialog:164
 msgid "Back to the drawing board, I guess..."
 msgstr "Je crois que ça signifie un retour à l'évaluation ..."
 
-#: ../dialogs/Kevin.dialog:234
+#: ../dialogs/Kevin.dialog:172
 #, fuzzy
 msgid "I thought you would be more worried about her death."
 msgstr " Je pensais que tu serais plus alarmé que ça par l'annonce de sa mort."
 
-#: ../dialogs/Kevin.dialog:235
+#: ../dialogs/Kevin.dialog:173
 msgid "Why? I have backups from last Friday. No reason to worry at all."
 msgstr ""
 "Pourquoi ? J'ai des sauvegardes de vendredi dernier. Il n'y a aucune raison "
 "de s'inquiéter."
 
-#: ../dialogs/Kevin.dialog:236
+#: ../dialogs/Kevin.dialog:174
 msgid "It will be a while till I get her together again, but she will be fine."
 msgstr ""
 "ça prendra un peu de temps avant que je puisse les rassembler à nouveau, "
 "mais tout ira bien."
 
-#: ../dialogs/Kevin.dialog:253
+#: ../dialogs/Kevin.dialog:178
+#, fuzzy
+msgid "Improve Hacking Ability (cost 300 cash, 5 ability points)"
+msgstr ""
+" Étudier le piratage des ordinateurs (300 en liquide, 5 points de compétence)"
+
+#: ../dialogs/Kevin.dialog:182
+msgid ""
+"You don't have enough cash, cheapskate. Come back when you can afford to pay "
+"me."
+msgstr ""
+"Tu n'as pas assez d'argent. Reviens me voir quand tu auras de quoi me payer."
+
+#: ../dialogs/Kevin.dialog:186
+msgid ""
+"You don't have enough experience. I can't teach you anything more this way."
+msgstr ""
+"Tu n'as pas assez d'expérience. Je ne peux pas t'apprendre quoi que ce soit "
+"de plus de cette façon."
+
+#: ../dialogs/Kevin.dialog:194
+msgid ""
+"Good. The most important thing about hacking is to understand the nature of "
+"the machine you want to hack."
+msgstr ""
+"Bien. La chose la plus importante à propos du hack est de comprendre la "
+"nature de la machine que tu veux hacker."
+
+#: ../dialogs/Kevin.dialog:195
+msgid ""
+"Once you have figured out what the creators of the system were doing when "
+"setting it up, you'll also know how to best hack it."
+msgstr ""
+"Une fois que tu t'es représenté ce que les créateurs de la machine ont voulu "
+"faire, tu sauras également quel est le meilleur moyen de la hacker."
+
+#: ../dialogs/Kevin.dialog:196
+msgid "Now I see your hacking skill has already improved a lot."
+msgstr "Je vois que ton savoir en hack a déjà beaucoup augmenté."
+
+#: ../dialogs/Kevin.dialog:204
 #, fuzzy
 msgid "I'll be off then."
 msgstr " Eh bien je m'en vais alors."
 
-#: ../dialogs/Kevin.dialog:254
-msgid "Be careful. The bots are in a foul mood today."
+#: ../dialogs/Kevin.dialog:205
+#, fuzzy
+msgid ""
+"Be careful. The bots are in a foul mood today. Very easy to get killed. Very "
+"easy."
 msgstr "Fais attention, les robots sont de mauvaise humeur aujourd'hui."
-
-#: ../dialogs/Kevin.dialog:255
-msgid "Very easy to get killed. Very easy."
-msgstr "Il est très facile de se faire tuer... Très facile..."
 
 #: ../dialogs/StandardMSFacilityGateGuard.dialog:39
 msgid "Great. Now back to where you came from. This is no place for you."
@@ -9544,6 +9535,19 @@ msgstr ""
 #, fuzzy
 msgid "Logout"
 msgstr " Déconnecter"
+
+#, fuzzy
+#~ msgid "[BACK]"
+#~ msgstr " [BACK]"
+
+#~ msgid "Still interested? "
+#~ msgstr "Toujours intéressé ? "
+
+#~ msgid "Good work."
+#~ msgstr "Bon travail."
+
+#~ msgid "Very easy to get killed. Very easy."
+#~ msgstr "Il est très facile de se faire tuer... Très facile..."
 
 #~ msgid " See you later."
 #~ msgstr " Au revoir."
