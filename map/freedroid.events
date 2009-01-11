@@ -13,7 +13,7 @@ Each trigger has the following field:
 ** Start of Mission Event Section **
 
 * New event trigger *
-Name="Enter scientists quarters"
+Name=_"Enter scientists quarters"
 Trigger at label="DisruptorShieldBaseAccess"
 Silent=0
 LuaCode={
@@ -22,7 +22,7 @@ LuaCode={
 * End of trigger *
 
 * New event trigger *
-Name="Leave disruptor base"
+Name=_"Leave disruptor base"
 Trigger at label="ScientistQuartersEscapePoint"
 Silent=0
 LuaCode={
@@ -31,7 +31,7 @@ LuaCode={
 * End of trigger *
 
 * New event trigger *
-Name="To a forgotten bunker"
+Name=_"To a forgotten bunker"
 Trigger at label="ToBunker"
 Silent=0
 LuaCode={
@@ -40,7 +40,7 @@ LuaCode={
 * End of trigger *
 
 * New event trigger *
-Name="Back from bunker"
+Name=_"Back from bunker"
 Trigger at label="ExitBunker"
 Silent=0
 LuaCode={
@@ -49,7 +49,7 @@ LuaCode={
 * End of trigger *
 
 * New event trigger *
-Name="Closer to the disruptor..."
+Name=_"Closer to the disruptor..."
 Trigger at label="DisruptorLevelVAccess"
 Silent=0
 LuaCode={
@@ -58,7 +58,7 @@ LuaCode={
 * End of trigger *
 
 * New event trigger *
-Name="Back to scientists quarters"
+Name=_"Back to scientists quarters"
 Trigger at label="LvVInExit"
 Silent=0
 LuaCode={
@@ -67,7 +67,7 @@ LuaCode={
 * End of trigger *
 
 * New event trigger *
-Name="To disruption machine deck"
+Name=_"To disruption machine deck"
 Trigger at label="LvVOutExit"
 Silent=0
 LuaCode={
@@ -76,7 +76,7 @@ LuaCode={
 * End of trigger *
 
 * New event trigger *
-Name="Escape from disruption deck"
+Name=_"Escape from disruption deck"
 Trigger at label="DisruptorMachineLevelEscape"
 Silent=0
 LuaCode={
@@ -86,7 +86,7 @@ LuaCode={
 
 
 * New event trigger *
-Name="Enter warehouse"
+Name=_"Enter warehouse"
 Trigger at label="TeleportIntoTheWarehouse"
 Silent=0
 LuaCode={
@@ -95,7 +95,7 @@ LuaCode={
 * End of trigger *
 
 * New event trigger *
-Name="Exit warehouse"
+Name=_"Exit warehouse"
 Trigger at label="TeleportFromWarehouseToWood"
 Silent=0
 LuaCode={
@@ -104,7 +104,7 @@ LuaCode={
 * End of trigger *
 
 * New event trigger *
-Name="To warehouse level 2"
+Name=_"To warehouse level 2"
 Trigger at label="TeleportToWarehouseSecondLevel"
 Silent=0
 LuaCode={
@@ -113,7 +113,7 @@ LuaCode={
 * End of trigger *
 
 * New event trigger *
-Name="To warehouse level 1"
+Name=_"To warehouse level 1"
 Trigger at label="TeleportBackToFirstCombatLevel"
 Silent=0
 LuaCode={
@@ -122,7 +122,7 @@ LuaCode={
 * End of trigger *
 
 * New event trigger *
-Name="Back to Kevin's garden"
+Name=_"Back to Kevin's garden"
 Trigger at label="TeleportBackToSecondCombatLevel"
 Silent=0
 LuaCode={
@@ -131,7 +131,7 @@ LuaCode={
 * End of trigger *
 
 * New event trigger *
-Name="To Kevin's underground station"
+Name=_"To Kevin's underground station"
 Trigger at label="EntryToKevinsUndergroundStation"
 Silent=0
 LuaCode={
@@ -140,7 +140,7 @@ LuaCode={
 * End of trigger *
 
 * New event trigger *
-Name="To energy station"
+Name=_"To energy station"
 Trigger at label="TeleportToKevinsEnergyStation"
 Silent=0
 LuaCode={
@@ -149,7 +149,7 @@ LuaCode={
 * End of trigger *
 
 * New event trigger *
-Name="To underground station"
+Name=_"To underground station"
 Trigger at label="KevinEnergyExitPoint"
 Silent=0
 LuaCode={
@@ -158,7 +158,7 @@ LuaCode={
 * End of trigger *
 
 * New event trigger *
-Name="To maintenance tunnels"
+Name=_"To maintenance tunnels"
 Trigger at label="NorthernMaintainanceTeleporter"
 Silent=0
 LuaCode={
@@ -167,7 +167,7 @@ LuaCode={
 * End of trigger *
 
 * New event trigger *
-Name="Back from maintenance tunnels"
+Name=_"Back from maintenance tunnels"
 Trigger at label="FromMaintainanceTunnelToTown"
 Silent=0
 LuaCode={
@@ -176,7 +176,7 @@ LuaCode={
 * End of trigger *
 
 * New event trigger *
-Name="Enter novice arena"
+Name=_"Enter novice arena"
 Trigger at label="NoviceArenaTeleporter"
 Silent=0
 LuaCode={
@@ -185,7 +185,7 @@ LuaCode={
 * End of trigger *
 
 * New event trigger *
-Name="Exit novice arena"
+Name=_"Exit novice arena"
 Trigger at label="NoviceArenaTeleportOutPoint"
 Silent=0
 LuaCode={
@@ -194,7 +194,7 @@ LuaCode={
 * End of trigger *
 
 * New event trigger *
-Name="Enter master arena"
+Name=_"Enter master arena"
 Trigger at label="MasterArenaTeleporter"
 Silent=0
 LuaCode={
@@ -203,7 +203,7 @@ LuaCode={
 * End of trigger *
 
 * New event trigger *
-Name="Exit master arena"
+Name=_"Exit master arena"
 Trigger at label="MasterArenaTeleportOutPoint"
 Silent=0
 LuaCode={
@@ -212,7 +212,7 @@ LuaCode={
 * End of trigger *
 
 * New event trigger *
-Name="To disruption machine deck"
+Name=_"To disruption machine deck"
 Trigger at label="EscapeFromDisruptorShieldControl"
 Silent=0
 LuaCode={
@@ -221,7 +221,7 @@ LuaCode={
 * End of trigger *
 
 * New event trigger *
-Name="Access disruptor shield control"
+Name=_"Access disruptor shield control"
 Trigger at label="TeleportToDisruptorShieldControl"
 Silent=0
 LuaCode={
@@ -230,7 +230,7 @@ LuaCode={
 * End of trigger *
 
 * New event trigger *
-Name="Unknown place"
+Name=_"Unknown place"
 Trigger at label="EnterSecretResearchCenter"
 Silent=0
 LuaCode={
@@ -239,7 +239,7 @@ LuaCode={
 * End of trigger *
 
 * New event trigger *
-Name="Back to the desert"
+Name=_"Back to the desert"
 Trigger at label="ExitFromSecretResearchCenter"
 Silent=0
 LuaCode={
@@ -248,7 +248,7 @@ LuaCode={
 * End of trigger *
 
 * New event trigger *
-Name="FIXME2"
+Name=_"FIXME2"
 Silent=0
 Trigger at label="wallEvent1Trigger"
 Delete the event trigger after it has been triggered=1

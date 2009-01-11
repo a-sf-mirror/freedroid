@@ -65,7 +65,7 @@ clear_out_event_triggers( void )
 
 #define EVENT_TRIGGER_BEGIN_STRING "* New event trigger *"
 #define EVENT_TRIGGER_END_STRING "* End of trigger *"
-#define EVENT_TRIGGER_NAME_STRING "Name=\""
+#define EVENT_TRIGGER_NAME_STRING "Name=_\""
 
 #define EVENT_TRIGGER_IS_SILENT_STRING "Silent="
 #define EVENT_TRIGGER_DELETED_AFTER_TRIGGERING "Delete the event trigger after it has been triggered="
