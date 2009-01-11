@@ -390,7 +390,7 @@ static void LoadDialog ( char* FullPathAndFullFilename )
 	free(chat_startup_code);
 	chat_startup_code = NULL;
     }
-    chat_startup_code = ReadAndMallocStringFromDataOptional(SectionPointer, "AtStartup LuaCode={", "}", 0);
+    chat_startup_code = ReadAndMallocStringFromDataOptional(SectionPointer, "EveryTime LuaCode={", "}", 0);
 
     //--------------------
     // At first we go take a look on how many options we have

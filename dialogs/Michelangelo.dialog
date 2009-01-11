@@ -34,7 +34,7 @@ FirstTime LuaCode={
     show(0, 99)
 }
 
-AtStartup LuaCode={
+EveryTime LuaCode={
 	if (has_quest("Anything but the army snacks, please!")) then
 		if (done_quest("Anything but the army snacks, please!")) then
 			show(24)
