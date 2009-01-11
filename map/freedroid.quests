@@ -174,7 +174,12 @@ Mission target is to reach X-Pos : -1
 Mission target is to reach Y-Pos : -1
 Mission target is to live for how many seconds : -1
 Mission diary entry=_"Kevin has a problem with his energy supply. His bots keep rebooting the system and he cannot conduct any experiments with unstable power supply. My job is to stabilize the power. I think that implies removing the stupid bots."
-Mission diary entry=_"Everything is back to normal for now. Kevin can work in peace now."
+Mission diary entry=_"The entrance is in Kevins garden. According to Kevin I also dont need to bother with bots on the 1st level, just go straight for the second level."
+Mission diary entry=_"Hope everything is back to normal now. I better go check with Kevin."
+Mission diary entry=_"Everything is back to normal for now, so Kevin dont need to spend all his time on monitoring the power levels."
+Completion LuaCode={
+	open_diary_entry("And there was light...", 2)
+}
 ** End of this mission target subsection **
 
 ** Start of this mission target subsection **

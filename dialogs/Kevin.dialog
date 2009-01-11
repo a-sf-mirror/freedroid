@@ -34,9 +34,9 @@ EveryTime LuaCode={
 	if (has_quest("And there was light...")) then
 		if (done_quest("And there was light...")) then
 			open_diary_entry("And there was light...", 1)
-			show(10, 18)
-		else next(2) end
-	else next(5) end
+			show(3, 10, 18)
+		else show(6, 7) end
+	else end
 
 	if (has_cookie("jasmine_sigsegv")) then
 		if (has_cookie("kevin_sigtalk")) then hide(25) else show(25) end
@@ -63,7 +63,9 @@ LuaCode={
 	if (done_quest("And there was light...")) then 
 		npc_says(_"I can teach you everything. For three hundred, up front. Still interested?")
 		next(34)
-	else next(1) end
+	else 
+		if (has_quest("And there was light...")) then next(2) else next(5) end
+	end
 }
 ----------------------------------------------------------------------
 
@@ -75,7 +77,12 @@ NPC=_"There is tremendous importance in it. But the project is in danger. There 
 NPC=_"They are trying to 'maintain' machines by rebooting them all the time. This must stop, but I can't leave this place."
 NPC=_"I must balance the remaining power in such a way that my project can continue uninterrupted."
 NPC=_"Now, if you go down there and make the power flow stable, then I'll find the time to teach you something."
-LuaCode={ hide(5) show(6, 7) }
+LuaCode={
+    add_quest("And there was light...")
+    open_diary_entry("And there was light...", 1)
+	hide(3)
+	show(6, 7)
+}
 ----------------------------------------------------------------------
 
 Nr=6  Text=_"I'll see after the energy supply now."
@@ -84,8 +91,7 @@ NPC=_"Best don't bother with the resistance on the first level. You only need to
 NPC=_"I hope you have a laser pistol or something like that, the bots there will rip you apart if you try to approach them."
 NPC=_"Best make it quick. I'm already sick of stabilizing the stupid power grid."
 LuaCode={
-    add_quest("And there was light...")
-    open_diary_entry("And there was light...", 0)
+    open_diary_entry("And there was light...", 3)
     hide(6, 7)
 }
 ----------------------------------------------------------------------
