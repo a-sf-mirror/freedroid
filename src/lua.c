@@ -295,27 +295,6 @@ static int lua_event_cookie_planted(lua_State *L)
     return 1;
 }
 
-static int lua_event_get_town_score(lua_State *L)
-{
-    int old_town_mission_score = 0 ;
-    ErrorMessage(__FUNCTION__, "This function should be moved to Lua code in the relevant dialog file.", PLEASE_INFORM, IS_WARNING_ONLY);
-    if (Me . AllMissions [ 0 ] . MissionIsComplete)
-	old_town_mission_score += 10 ;
-    if (Me . AllMissions [ 1 ] . MissionIsComplete)
-	old_town_mission_score += 15 ;
-    if (Me . AllMissions [ 2 ] . MissionIsComplete)
-	old_town_mission_score += 10 ;
-    if (Me . AllMissions [ 3 ] . MissionIsComplete)
-	old_town_mission_score += 10 ;
-    if (Me . AllMissions [ 4 ] . MissionIsComplete)
-	old_town_mission_score += 20 ;
-    if (Me . AllMissions [ 5 ] . MissionIsComplete)
-	old_town_mission_score += 15 ;
-
-    lua_pushinteger(L, old_town_mission_score);
-    return 1;
-}
-
 static int lua_event_remove_cookie(lua_State *L)
 {
     const char *cookie = luaL_checkstring(L, 1);
@@ -656,7 +635,6 @@ luaL_reg lfuncs[] = {
     { "has_quest", lua_event_is_mission_assigned },
     { "end_quest", lua_event_complete_mission },
     { "done_quest", lua_event_is_mission_complete },
-    { "get_town_score", lua_event_get_town_score },
     { "add_xp", lua_event_give_xp },
     { "del_training_points", lua_event_eat_training_points },
     { "get_training_points", lua_event_get_training_points },
