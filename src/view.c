@@ -3840,9 +3840,13 @@ PutIndividuallyShapedDroidBody ( enemy * ThisRobot , SDL_Rect TargetRectangle , 
 	    bot_pos . x = ThisRobot -> virt_pos . x ;
 	    bot_pos . y = ThisRobot -> virt_pos . y ;
 
-	    darkness = 1.5 - 2.0 * ( ( (float) get_light_strength ( bot_pos ) ) / ( (float) NUMBER_OF_SHADOW_IMAGES ) ) ;
-	    if ( darkness > 1 ) darkness = 1.0 ;
-	    if ( darkness < 0 ) darkness = 0 ;
+	    if (!GameConfig.skip_light_radius) {
+		darkness = 1.5 - 2.0 * ( ( (float) get_light_strength ( bot_pos ) ) / ( (float) NUMBER_OF_SHADOW_IMAGES ) ) ;
+		if ( darkness > 1.0 ) darkness = 1.0 ;
+		if ( darkness < 0.0 ) darkness = 0.0 ;
+	    } else {
+		darkness = 1.0;
+	    }
 	    draw_gl_textured_quad_at_map_position ( 
 		    &enemy_iso_images [ RotationModel ] [ RotationIndex ] [ (int) ThisRobot -> animation_phase ] , 
 		    bot_pos.x , bot_pos.y , 
