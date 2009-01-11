@@ -33,7 +33,7 @@ FirstTime LuaCode={
 EveryTime LuaCode={
 	if (has_quest("And there was light...")) then
 		if (done_quest("And there was light...")) then
-			open_diary_entry("And there was light...", 1)
+			open_diary_entry("And there was light...", 3)
 			show(3, 10, 18)
 		else show(6, 7) end
 	else end
@@ -79,7 +79,7 @@ NPC=_"I must balance the remaining power in such a way that my project can conti
 NPC=_"Now, if you go down there and make the power flow stable, then I'll find the time to teach you something."
 LuaCode={
     add_quest("And there was light...")
-    open_diary_entry("And there was light...", 1)
+    open_diary_entry("And there was light...", 0)
 	hide(3)
 	show(6, 7)
 }
@@ -91,7 +91,7 @@ NPC=_"Best don't bother with the resistance on the first level. You only need to
 NPC=_"I hope you have a laser pistol or something like that, the bots there will rip you apart if you try to approach them."
 NPC=_"Best make it quick. I'm already sick of stabilizing the stupid power grid."
 LuaCode={
-    open_diary_entry("And there was light...", 3)
+    open_diary_entry("And there was light...", 1)
     hide(6, 7)
 }
 ----------------------------------------------------------------------
@@ -131,7 +131,7 @@ NPC=_"But maybe you can arrange that somehow. For me it would be impossible, bec
 NPC=_"I'll give you the data cube. Take it to the computer cluster administration people. They will know what to do. And don't mention me there."
 LuaCode={
     add_quest("A kingdom for a cluster!")
-    open_diary_entry("And there was light...", 0)
+    open_diary_entry("A kingdom for a cluster!", 0)
     add_item("Kevin's Data Cube",1)
     hide(15)
 }
