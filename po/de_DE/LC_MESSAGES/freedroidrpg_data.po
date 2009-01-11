@@ -7,29 +7,25 @@ msgstr ""
 "Project-Id-Version: freedroidrpg_data\n"
 "Report-Msgid-Bugs-To: CHANGE THIS TOO\n"
 "POT-Creation-Date: 2009-01-11 16:29+0000\n"
-"PO-Revision-Date: 2008-11-17 22:36+0100\n"
-"Last-Translator: Ronny Standtke <Ronny.Standtke@gmx.net>\n"
+"PO-Revision-Date: 2009-01-11 17:24+0000\n"
+"Last-Translator: ronny <Unknown>\n"
 "Language-Team: Deutsch\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-09-14 12:32+0000\n"
-"X-Generator: KBabel 1.11.4\n"
+"X-Launchpad-Export-Date: 2009-01-11 17:40+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
 
 #: ../map/freedroid.program_archetypes:8
 msgid "Hacking"
 msgstr "Hacken"
 
 #: ../map/freedroid.program_archetypes:9
-#, fuzzy
 msgid ""
 "Tux is gifted with the ability to hack any machine in no time. With this "
 "program selected and activated by pressing down the right mouse button over "
 "a hostile machine, the takeover process will be initiated."
 msgstr ""
-"Tux hat die Fähigkeit, im Handumdrehen jede Maschine hacken zu können. Wenn "
-"eine Maschine nahe genug ist und diese Fähigkeit durch das Drücken der "
-"rechten Maustaste aktiviert wird, beginnt der Übernahmeprozess."
 
 #: ../map/freedroid.program_archetypes:19
 msgid "Repair equipment"
@@ -54,14 +50,10 @@ msgid "Use weapon"
 msgstr "Benutze Waffe"
 
 #: ../map/freedroid.program_archetypes:29
-#, fuzzy
 msgid ""
 "Using this skill allows you to force an attack on something not normally a "
 "target or for firing single shots with automatic weapons."
 msgstr ""
-"Diese Aktion erlaubt es Ihnen, einen Angriff zu erzwingen oder mit einer "
-"automatischen Waffe einen Einzelschuss abzufeuern. Sie können mit dieser "
-"Fähigkeit auch freundliche Ziele angreifen."
 
 #: ../map/freedroid.program_archetypes:37
 msgid "Emergency shutdown"
@@ -159,7 +151,8 @@ msgid "Blue Screen"
 msgstr "BSoD-Syndrom"
 
 #: ../map/freedroid.program_archetypes:125
-#: ../map/freedroid.item_archetypes:3310 ../map/freedroid.item_archetypes:3326
+#: ../map/freedroid.item_archetypes:3310
+#: ../map/freedroid.item_archetypes:3326
 #: ../map/freedroid.item_archetypes~:3310
 #: ../map/freedroid.item_archetypes~:3326
 msgid ""
@@ -220,7 +213,7 @@ msgid ""
 "release the magic smoke which keeps the bot running. "
 msgstr ""
 "Indem man die Chips mit einem Schadprogramm erhitzt, kann man ihnen jenen "
-"magischen Rauch entlocken, der die Robots am Laufen hält."
+"magischen Rauch entlocken, der die Robots am Laufen hält. "
 
 #: ../map/freedroid.program_archetypes:197
 msgid "Killer poke"
@@ -282,30 +275,22 @@ msgid "Reverse-engineer"
 msgstr "Reverse-Engineer"
 
 #: ../map/freedroid.program_archetypes:256
-#, fuzzy
 msgid ""
 "There is some dark magic in the art of turning devices or programs inside-"
 "out, picking them appart to learn all their secrets and putting them back "
 "again."
 msgstr ""
-"Da ist schon etwas dunkle Magie in der Kunst, Geräte von innen nach außen "
-"umzukrempeln, sie auseinanderzupflücken, um ihnen alle Geheimnisse zu "
-"entreißen und sie dann wieder zusammenzusetzen."
 
 #: ../map/freedroid.program_archetypes:267
 msgid "Ricer CFLAGS"
 msgstr "Ricer CFLAGS"
 
 #: ../map/freedroid.program_archetypes:268
-#, fuzzy
 msgid ""
 "Optimization is the root of all evil. You can gain some temporary speed "
 "improvements to your system, but in the end you will likely overheat and "
 "cause permanent damage if you are not careful."
 msgstr ""
-"Optimierung ist die Wurzel allen Übels. Man kann dadurch vorübergehende "
-"Verbesserungen des Systems erzielen, aber am Ende richtet man damit sehr "
-"wahrscheinlich eher dauerhaften Schaden an."
 
 #: ../map/freedroid.program_archetypes:276
 msgid "Light"
@@ -352,7 +337,8 @@ msgstr "Gasgranate"
 msgid "EMP grenade"
 msgstr "EMP-Granate"
 
-#: ../map/freedroid.prefix_archetypes:10 ../map/freedroid.prefix_archetypes:37
+#: ../map/freedroid.prefix_archetypes:10
+#: ../map/freedroid.prefix_archetypes:37
 msgid "I am a big bad bug in the game. Report me. Please. "
 msgstr "Ich bin ein großer, böser Bug im Spiel. Melde mich. Bitte. "
 
@@ -548,7 +534,8 @@ msgstr " aus Eis"
 msgid " of chills"
 msgstr " vor Kälte"
 
-#: ../map/freedroid.item_archetypes:49 ../map/freedroid.item_archetypes~:49
+#: ../map/freedroid.item_archetypes:49
+#: ../map/freedroid.item_archetypes~:49
 msgid ""
 "Spawning item index 0 in editor or drop ingame causes CTD! Dont click this!  "
 "OK this seemes fixed now. However the first item is still VERY buggy ingame "
@@ -560,17 +547,20 @@ msgstr ""
 "fehleranfällig: kann nicht abgelegt oder vom Inventar darauf umgeschalten "
 "werden, etc."
 
-#: ../map/freedroid.item_archetypes:58 ../map/freedroid.item_archetypes~:58
+#: ../map/freedroid.item_archetypes:58
+#: ../map/freedroid.item_archetypes~:58
 msgid "Dummy item. If you see this, report a bug."
 msgstr ""
 "Dummy für einen Gegenstand. Falls Sie diese Nachricht sehen, melden Sie "
 "bitte den Fehler."
 
-#: ../map/freedroid.item_archetypes:156 ../map/freedroid.item_archetypes~:156
+#: ../map/freedroid.item_archetypes:156
+#: ../map/freedroid.item_archetypes~:156
 msgid "Big kitchen knife"
 msgstr "Großes Küchenmesser"
 
-#: ../map/freedroid.item_archetypes:172 ../map/freedroid.item_archetypes~:172
+#: ../map/freedroid.item_archetypes:172
+#: ../map/freedroid.item_archetypes~:172
 msgid ""
 "Light and maneuverable in combat, but unfortunately not very effective in "
 "cutting through steel as well as quickly reaching the point of breaking if "
@@ -581,11 +571,13 @@ msgstr ""
 "bricht, wenn man es doch versucht. Allerdings immer noch besser, als mit den "
 "blanken Fäusten auf Metall einzudreschen."
 
-#: ../map/freedroid.item_archetypes:194 ../map/freedroid.item_archetypes~:194
+#: ../map/freedroid.item_archetypes:194
+#: ../map/freedroid.item_archetypes~:194
 msgid "Antique sword"
 msgstr "Antikes Schwert"
 
-#: ../map/freedroid.item_archetypes:210 ../map/freedroid.item_archetypes~:210
+#: ../map/freedroid.item_archetypes:210
+#: ../map/freedroid.item_archetypes~:210
 msgid ""
 "Long reach while remaining maneuverable enough in combat to find the weak "
 "spots in droid armor are the advantages that partially makes up for the "
@@ -599,11 +591,13 @@ msgstr ""
 "Wiederholtes Auftreffen auf Metall beschädigt die Klinge allerdings sehr "
 "schnell."
 
-#: ../map/freedroid.item_archetypes:232 ../map/freedroid.item_archetypes~:232
+#: ../map/freedroid.item_archetypes:232
+#: ../map/freedroid.item_archetypes~:232
 msgid "Great sword"
 msgstr "Breitschwert"
 
-#: ../map/freedroid.item_archetypes:248 ../map/freedroid.item_archetypes~:248
+#: ../map/freedroid.item_archetypes:248
+#: ../map/freedroid.item_archetypes~:248
 msgid ""
 "The size and kinetic force achievable with this 2 handed sword is enough to "
 "cleave straight through the armor of a low level droid. The strain on the "
@@ -616,11 +610,13 @@ msgstr ""
 "starke Hiebe in Metall erfordern allerdings regelmäßige Ausbesserungen, "
 "damit es einem nicht im falschen Moment entzwei bricht."
 
-#: ../map/freedroid.item_archetypes:270 ../map/freedroid.item_archetypes~:270
+#: ../map/freedroid.item_archetypes:270
+#: ../map/freedroid.item_archetypes~:270
 msgid "Chainsaw"
 msgstr "Kettensäge"
 
-#: ../map/freedroid.item_archetypes:286 ../map/freedroid.item_archetypes~:286
+#: ../map/freedroid.item_archetypes:286
+#: ../map/freedroid.item_archetypes~:286
 msgid ""
 "Quite efficient at separating limbs off even a droid body or digging through "
 "weaker armored parts to cause massive damage on internal electronics. But "
@@ -635,11 +631,13 @@ msgstr ""
 "Lieferschwierigkeiten bei neuen Ketten und anderen Ersatzteilen macht die "
 "Instandhaltung reichlich teuer."
 
-#: ../map/freedroid.item_archetypes:314 ../map/freedroid.item_archetypes~:314
+#: ../map/freedroid.item_archetypes:314
+#: ../map/freedroid.item_archetypes~:314
 msgid "Meat cleaver"
 msgstr "Metzgerbeil"
 
-#: ../map/freedroid.item_archetypes:330 ../map/freedroid.item_archetypes~:330
+#: ../map/freedroid.item_archetypes:330
+#: ../map/freedroid.item_archetypes~:330
 msgid ""
 "Designed to chop through meat and bones, it's not as fragile as cutting "
 "blades when used against metal enemies. Though it is a bit more slow and "
@@ -650,11 +648,13 @@ msgstr ""
 "wird. Jedoch etwas langsamer und schwerfälliger in der Benutzung, als "
 "elegantere Waffen."
 
-#: ../map/freedroid.item_archetypes:352 ../map/freedroid.item_archetypes~:352
+#: ../map/freedroid.item_archetypes:352
+#: ../map/freedroid.item_archetypes~:352
 msgid "Small Axe"
 msgstr "Kleine Axt"
 
-#: ../map/freedroid.item_archetypes:368 ../map/freedroid.item_archetypes~:368
+#: ../map/freedroid.item_archetypes:368
+#: ../map/freedroid.item_archetypes~:368
 msgid ""
 "While this axe was made for splitting wood, with some luck it can damage "
 "vital parts of a droid as well."
@@ -662,11 +662,13 @@ msgstr ""
 "Diese Axt wurde hergestellt um Holz zu hacken. Es lassen sich aber mit viel "
 "Schwung und etwas Glück auch verwundbare Punkte an Robotern ausnutzen."
 
-#: ../map/freedroid.item_archetypes:390 ../map/freedroid.item_archetypes~:390
+#: ../map/freedroid.item_archetypes:390
+#: ../map/freedroid.item_archetypes~:390
 msgid "Large Axe"
 msgstr "Große Axt"
 
-#: ../map/freedroid.item_archetypes:406 ../map/freedroid.item_archetypes~:406
+#: ../map/freedroid.item_archetypes:406
+#: ../map/freedroid.item_archetypes~:406
 msgid ""
 "While this weapon is somewhat slow and cumbersome to use, it is as good at "
 "leaving big dents in droids as it is at felling trees. A good hit is often "
@@ -676,11 +678,13 @@ msgstr ""
 "problemlos große Beulen an großen Droiden hinterlassen. Ein gut platzierter "
 "Hieb kann für schwächere Droiden der erste und letzte sein."
 
-#: ../map/freedroid.item_archetypes:434 ../map/freedroid.item_archetypes~:434
+#: ../map/freedroid.item_archetypes:434
+#: ../map/freedroid.item_archetypes~:434
 msgid "Hunting knife"
 msgstr "Jagdmesser"
 
-#: ../map/freedroid.item_archetypes:450 ../map/freedroid.item_archetypes~:450
+#: ../map/freedroid.item_archetypes:450
+#: ../map/freedroid.item_archetypes~:450
 msgid ""
 "A short stabbing dagger weapon doesn't have much effect on the metal body of "
 "a droid, but with luck you might damage some wires or hoses in less "
@@ -693,11 +697,13 @@ msgstr ""
 "immer noch besser ist, den Maschinen hiermit, als mit bloßen Händen zu Leibe "
 "zu rücken."
 
-#: ../map/freedroid.item_archetypes:472 ../map/freedroid.item_archetypes~:472
+#: ../map/freedroid.item_archetypes:472
+#: ../map/freedroid.item_archetypes~:472
 msgid "Metal spear"
 msgstr "Metallspeer"
 
-#: ../map/freedroid.item_archetypes:488 ../map/freedroid.item_archetypes~:488
+#: ../map/freedroid.item_archetypes:488
+#: ../map/freedroid.item_archetypes~:488
 msgid ""
 "A spear forged from metal considerably improves from a wooden spears damage "
 "and durability, but the increased weight does make it somewhat slower and "
@@ -709,11 +715,13 @@ msgstr ""
 "Handhabung etwas schwerfälliger. Im Vergleich zu den meisten anderen ist es "
 "jedoch allemal eine schnelle Waffe."
 
-#: ../map/freedroid.item_archetypes:516 ../map/freedroid.item_archetypes~:516
+#: ../map/freedroid.item_archetypes:516
+#: ../map/freedroid.item_archetypes~:516
 msgid "Iron pipe"
 msgstr "Eisenrohr"
 
-#: ../map/freedroid.item_archetypes:532 ../map/freedroid.item_archetypes~:532
+#: ../map/freedroid.item_archetypes:532
+#: ../map/freedroid.item_archetypes~:532
 msgid ""
 "A medium sized water pipe from iron can turn into an effective weapon even "
 "vs a metal opponent. While not likely to penetrate the armor of a bot, the "
@@ -726,11 +734,13 @@ msgstr ""
 "doch allein die Wucht des Aufpralls Schaden zufügen und Platinen oder "
 "Lötpunkte unter der schützenden Metallwandung lösen."
 
-#: ../map/freedroid.item_archetypes:554 ../map/freedroid.item_archetypes~:554
+#: ../map/freedroid.item_archetypes:554
+#: ../map/freedroid.item_archetypes~:554
 msgid "Big wrench"
 msgstr "Großer Schraubenschlüssel"
 
-#: ../map/freedroid.item_archetypes:570 ../map/freedroid.item_archetypes~:570
+#: ../map/freedroid.item_archetypes:570
+#: ../map/freedroid.item_archetypes~:570
 msgid ""
 "A big heavy wrench can be surprizingly efficient in turning a bot into "
 "second hand parts, in a hands on brutal way if needed."
@@ -739,11 +749,13 @@ msgstr ""
 "überraschend effizient erweisen, wenn es darum geht, einen Roboter in ein "
 "Ersatzteillager umzuwandeln - wenn nötig auf die brutale Art."
 
-#: ../map/freedroid.item_archetypes:593 ../map/freedroid.item_archetypes~:593
+#: ../map/freedroid.item_archetypes:593
+#: ../map/freedroid.item_archetypes~:593
 msgid "Crowbar"
 msgstr "Brecheisen"
 
-#: ../map/freedroid.item_archetypes:609 ../map/freedroid.item_archetypes~:609
+#: ../map/freedroid.item_archetypes:609
+#: ../map/freedroid.item_archetypes~:609
 msgid ""
 "Something originally intended for breaking up doors or pulling out nails can "
 "also be used to break open droid skulls or give enough leverage to pull off "
@@ -753,11 +765,13 @@ msgstr ""
 "gedacht war, kann auch zum Aufbrechen von Androiden-Köpfen dienen oder "
 "genügend Hebelkraft verleihen, um ihre Extremitäten abzureißen."
 
-#: ../map/freedroid.item_archetypes:631 ../map/freedroid.item_archetypes~:631
+#: ../map/freedroid.item_archetypes:631
+#: ../map/freedroid.item_archetypes~:631
 msgid "Golf club"
 msgstr "Golfschläger"
 
-#: ../map/freedroid.item_archetypes:647 ../map/freedroid.item_archetypes~:647
+#: ../map/freedroid.item_archetypes:647
+#: ../map/freedroid.item_archetypes~:647
 msgid ""
 "It might not be so sturdy, but if you manage to get in a good hit the "
 "kinetic energy might be enough to damage internal electronics even if there "
@@ -768,11 +782,13 @@ msgstr ""
 "innenliegenden elektronischen Schaltkreise zu ramponieren - auch wenn von "
 "außen nur eine kleine Delle zu sehen ist."
 
-#: ../map/freedroid.item_archetypes:669 ../map/freedroid.item_archetypes~:669
+#: ../map/freedroid.item_archetypes:669
+#: ../map/freedroid.item_archetypes~:669
 msgid "Tree branch"
 msgstr "Ast"
 
-#: ../map/freedroid.item_archetypes:685 ../map/freedroid.item_archetypes~:685
+#: ../map/freedroid.item_archetypes:685
+#: ../map/freedroid.item_archetypes~:685
 msgid ""
 "A club from a tree branch is certainly not your preferred choice of weapon "
 "to use, but it might be your only..."
@@ -780,11 +796,13 @@ msgstr ""
 "Eine Keule - oder besser - ein abgebrochener Ast, ist sicher nicht die Waffe "
 "der Wahl. Aber es könnte die einzige sein..."
 
-#: ../map/freedroid.item_archetypes:707 ../map/freedroid.item_archetypes~:707
+#: ../map/freedroid.item_archetypes:707
+#: ../map/freedroid.item_archetypes~:707
 msgid "Power hammer"
 msgstr "Servo-Bolznagler"
 
-#: ../map/freedroid.item_archetypes:723 ../map/freedroid.item_archetypes~:723
+#: ../map/freedroid.item_archetypes:723
+#: ../map/freedroid.item_archetypes~:723
 msgid ""
 "The POWER NAIL DRIVER 3000 will, according to the advertisement, 'build your "
 "house for you'. While it's unclear how many nails your igloo will actually "
@@ -796,11 +814,13 @@ msgstr ""
 "von Robot-Köpfen ist er aber sicher allemal zu gebrauchen. Zumindest, "
 "solange die Batterie herhält..."
 
-#: ../map/freedroid.item_archetypes:745 ../map/freedroid.item_archetypes~:745
+#: ../map/freedroid.item_archetypes:745
+#: ../map/freedroid.item_archetypes~:745
 msgid "Table leg"
 msgstr "Tischbein"
 
-#: ../map/freedroid.item_archetypes:761 ../map/freedroid.item_archetypes~:761
+#: ../map/freedroid.item_archetypes:761
+#: ../map/freedroid.item_archetypes~:761
 msgid ""
 "In desperate situations even ordinary objects can turn into makeshift "
 "weapons."
@@ -808,11 +828,13 @@ msgstr ""
 "In Notsituationen können sogar gewöhnliche Gegenstände zu provisorischen "
 "Waffen werden..."
 
-#: ../map/freedroid.item_archetypes:783 ../map/freedroid.item_archetypes~:783
+#: ../map/freedroid.item_archetypes:783
+#: ../map/freedroid.item_archetypes~:783
 msgid "Mace"
 msgstr "Streitkolben"
 
-#: ../map/freedroid.item_archetypes:799 ../map/freedroid.item_archetypes~:799
+#: ../map/freedroid.item_archetypes:799
+#: ../map/freedroid.item_archetypes~:799
 msgid ""
 "The mace proved already on the medieval battlefield that it was good at "
 "crushing even heavily armored skulls. Unfortunately for the droids this old "
@@ -823,11 +845,13 @@ msgstr ""
 "zertrümmern. Glücklicherweise gilt diese alte Weisheit auch für die "
 "Blechköpfe der Bots von heute."
 
-#: ../map/freedroid.item_archetypes:821 ../map/freedroid.item_archetypes~:821
+#: ../map/freedroid.item_archetypes:821
+#: ../map/freedroid.item_archetypes~:821
 msgid "Baseball bat"
 msgstr "Baseballschläger"
 
-#: ../map/freedroid.item_archetypes:837 ../map/freedroid.item_archetypes~:837
+#: ../map/freedroid.item_archetypes:837
+#: ../map/freedroid.item_archetypes~:837
 msgid ""
 "With 1-2 good two handed swings a former droids head might fly far enough "
 "for you to score a home run. Just make sure to bring a backup weapon because "
@@ -839,11 +863,13 @@ msgstr ""
 "erzielen. Man sollte allerdings eine Zweitwaffe griffbereit haben, da "
 "Holzschläger mit Vorliebe nach zu vielen harten Schlägen auseinanderbrechen."
 
-#: ../map/freedroid.item_archetypes:859 ../map/freedroid.item_archetypes~:859
+#: ../map/freedroid.item_archetypes:859
+#: ../map/freedroid.item_archetypes~:859
 msgid "Iron bar"
 msgstr "Eisenstange"
 
-#: ../map/freedroid.item_archetypes:875 ../map/freedroid.item_archetypes~:875
+#: ../map/freedroid.item_archetypes:875
+#: ../map/freedroid.item_archetypes~:875
 msgid ""
 "A bit slow and cumbersome to use and prohibiting the security of a shield to "
 "cower behind, this weapon isn't always a good option. But if you do hit you "
@@ -854,11 +880,13 @@ msgstr ""
 "immer eine gute Wahl. Wenn man dann aber trifft, kann man sicher sein, mehr "
 "Schaden als nur einen Kratzer zu hinterlassen."
 
-#: ../map/freedroid.item_archetypes:897 ../map/freedroid.item_archetypes~:897
+#: ../map/freedroid.item_archetypes:897
+#: ../map/freedroid.item_archetypes~:897
 msgid "Sledgehammer"
 msgstr "Vorschlaghammer"
 
-#: ../map/freedroid.item_archetypes:913 ../map/freedroid.item_archetypes~:913
+#: ../map/freedroid.item_archetypes:913
+#: ../map/freedroid.item_archetypes~:913
 msgid ""
 "Very slow and only for the strongest, but only the thougher droids can "
 "survive more then 1-2 direct hits."
@@ -866,11 +894,13 @@ msgstr ""
 "Sehr schwerfällig und nichts für Schwächlinge, aber dafür können nur die "
 "zäheren Roboter-Typen mehr als ein bis zwei direkte Treffer verkraften."
 
-#: ../map/freedroid.item_archetypes:941 ../map/freedroid.item_archetypes~:941
+#: ../map/freedroid.item_archetypes:941
+#: ../map/freedroid.item_archetypes~:941
 msgid "Light saber"
 msgstr "Lichtsäbel"
 
-#: ../map/freedroid.item_archetypes:957 ../map/freedroid.item_archetypes~:957
+#: ../map/freedroid.item_archetypes:957
+#: ../map/freedroid.item_archetypes~:957
 msgid ""
 "In the hands of a true master, this excellent technological craftsmanship is "
 "as deadly as it is beautiful. It requires laser crystals to work properly."
@@ -879,11 +909,13 @@ msgstr ""
 "Handwerkskunst ebenso tödlich wie, es schön ist. Für den bestimmungsgemäßen "
 "Einsatz benötigt diese Waffe Laserkristalle."
 
-#: ../map/freedroid.item_archetypes:979 ../map/freedroid.item_archetypes~:979
+#: ../map/freedroid.item_archetypes:979
+#: ../map/freedroid.item_archetypes~:979
 msgid "Laser staff"
 msgstr "Laser-Kampfstab"
 
-#: ../map/freedroid.item_archetypes:994 ../map/freedroid.item_archetypes~:994
+#: ../map/freedroid.item_archetypes:994
+#: ../map/freedroid.item_archetypes~:994
 msgid ""
 "A close combat master with this weapon in his hands is a pure whirling "
 "dervish of death. It requires laser crystals to work properly."
@@ -997,10 +1029,14 @@ msgstr ""
 msgid "Two Barrel sawn off shotgun"
 msgstr "Doppelläufige, abgesägte Schrotflinte"
 
-#: ../map/freedroid.item_archetypes:1257 ../map/freedroid.item_archetypes:1295
-#: ../map/freedroid.item_archetypes:1333 ../map/freedroid.item_archetypes:1397
-#: ../map/freedroid.item_archetypes:1435 ../map/freedroid.item_archetypes:1497
-#: ../map/freedroid.item_archetypes:1535 ../map/freedroid.item_archetypes:3689
+#: ../map/freedroid.item_archetypes:1257
+#: ../map/freedroid.item_archetypes:1295
+#: ../map/freedroid.item_archetypes:1333
+#: ../map/freedroid.item_archetypes:1397
+#: ../map/freedroid.item_archetypes:1435
+#: ../map/freedroid.item_archetypes:1497
+#: ../map/freedroid.item_archetypes:1535
+#: ../map/freedroid.item_archetypes:3689
 #: ../map/freedroid.item_archetypes~:1257
 #: ../map/freedroid.item_archetypes~:1295
 #: ../map/freedroid.item_archetypes~:1333
@@ -1352,14 +1388,22 @@ msgstr "Zur alleinigen Verwendung bei Robotern"
 msgid "Droid weaponry - 123 : Weak robotic arm"
 msgstr "Robotbewaffnung - 123: schwacher Metallgreifer (Schläge)"
 
-#: ../map/freedroid.item_archetypes:2124 ../map/freedroid.item_archetypes:2157
-#: ../map/freedroid.item_archetypes:2192 ../map/freedroid.item_archetypes:2225
-#: ../map/freedroid.item_archetypes:2260 ../map/freedroid.item_archetypes:2295
-#: ../map/freedroid.item_archetypes:2330 ../map/freedroid.item_archetypes:2365
-#: ../map/freedroid.item_archetypes:2398 ../map/freedroid.item_archetypes:2433
-#: ../map/freedroid.item_archetypes:2468 ../map/freedroid.item_archetypes:2503
-#: ../map/freedroid.item_archetypes:2538 ../map/freedroid.item_archetypes:2573
-#: ../map/freedroid.item_archetypes:2641 ../map/freedroid.item_archetypes:2678
+#: ../map/freedroid.item_archetypes:2124
+#: ../map/freedroid.item_archetypes:2157
+#: ../map/freedroid.item_archetypes:2192
+#: ../map/freedroid.item_archetypes:2225
+#: ../map/freedroid.item_archetypes:2260
+#: ../map/freedroid.item_archetypes:2295
+#: ../map/freedroid.item_archetypes:2330
+#: ../map/freedroid.item_archetypes:2365
+#: ../map/freedroid.item_archetypes:2398
+#: ../map/freedroid.item_archetypes:2433
+#: ../map/freedroid.item_archetypes:2468
+#: ../map/freedroid.item_archetypes:2503
+#: ../map/freedroid.item_archetypes:2538
+#: ../map/freedroid.item_archetypes:2573
+#: ../map/freedroid.item_archetypes:2641
+#: ../map/freedroid.item_archetypes:2678
 #: ../map/freedroid.item_archetypes:2746
 #: ../map/freedroid.item_archetypes~:2124
 #: ../map/freedroid.item_archetypes~:2157
@@ -1384,7 +1428,8 @@ msgstr "Robotbewaffnung"
 #: ../map/freedroid.item_archetypes:2146
 #: ../map/freedroid.item_archetypes~:2146
 msgid "Droid weaponry - 139 : Plasma trash vaporiser"
-msgstr "Robotbewaffnung - 139: Plasmaüberdruck-Müllverdampfer (Verbrennungen)"
+msgstr ""
+"Robotbewaffnung - 139: Plasmaüberdruck-Müllverdampfer (Verbrennungen)"
 
 #: ../map/freedroid.item_archetypes:2179
 #: ../map/freedroid.item_archetypes~:2179
@@ -2197,8 +2242,10 @@ msgstr ""
 msgid "Entropy Inverter"
 msgstr "Entropie-Inverter"
 
-#: ../map/freedroid.item_archetypes:3729 ../map/freedroid.item_archetypes:3742
-#: ../map/freedroid.item_archetypes:3755 ../map/freedroid.item_archetypes:3768
+#: ../map/freedroid.item_archetypes:3729
+#: ../map/freedroid.item_archetypes:3742
+#: ../map/freedroid.item_archetypes:3755
+#: ../map/freedroid.item_archetypes:3768
 #: ../map/freedroid.item_archetypes:3781
 #: ../map/freedroid.item_archetypes~:3729
 #: ../map/freedroid.item_archetypes~:3742
@@ -2361,7 +2408,8 @@ msgstr ""
 msgid "Fork"
 msgstr "DSK.Gabel"
 
-#: ../map/freedroid.item_archetypes:3890 ../map/freedroid.item_archetypes:3903
+#: ../map/freedroid.item_archetypes:3890
+#: ../map/freedroid.item_archetypes:3903
 #: ../map/freedroid.item_archetypes:3916
 #: ../map/freedroid.item_archetypes~:3890
 #: ../map/freedroid.item_archetypes~:3903
@@ -2468,18 +2516,16 @@ msgstr ""
 "daherkommen? Wäre eine gute Zeit für Duncan, um einige Dinge zu erklären..."
 
 #: ../map/freedroid.events:16
-#, fuzzy
 msgid "Enter scientists quarters"
-msgstr "Wissenschaftler-Quartiere"
+msgstr ""
 
 #: ../map/freedroid.events:25
 msgid "Leave disruptor base"
 msgstr ""
 
 #: ../map/freedroid.events:34
-#, fuzzy
 msgid "To a forgotten bunker"
-msgstr "Vergessener Bunker"
+msgstr ""
 
 #: ../map/freedroid.events:43
 msgid "Back from bunker"
@@ -2490,14 +2536,13 @@ msgid "Closer to the disruptor..."
 msgstr ""
 
 #: ../map/freedroid.events:61
-#, fuzzy
 msgid "Back to scientists quarters"
-msgstr "Wissenschaftler-Quartiere"
+msgstr ""
 
-#: ../map/freedroid.events:70 ../map/freedroid.events:215
-#, fuzzy
+#: ../map/freedroid.events:70
+#: ../map/freedroid.events:215
 msgid "To disruption machine deck"
-msgstr "Disruptor-Maschinendeck"
+msgstr ""
 
 #: ../map/freedroid.events:79
 msgid "Escape from disruption deck"
@@ -2512,68 +2557,56 @@ msgid "Exit warehouse"
 msgstr ""
 
 #: ../map/freedroid.events:107
-#, fuzzy
 msgid "To warehouse level 2"
-msgstr "Lagerhaus Untergeschoss 2"
+msgstr ""
 
 #: ../map/freedroid.events:116
-#, fuzzy
 msgid "To warehouse level 1"
-msgstr "Lagerhaus Untergeschoss 1"
+msgstr ""
 
 #: ../map/freedroid.events:125
 msgid "Back to Kevin's garden"
 msgstr ""
 
 #: ../map/freedroid.events:134
-#, fuzzy
 msgid "To Kevin's underground station"
-msgstr "Kevins Untergrundstation"
+msgstr ""
 
 #: ../map/freedroid.events:143
-#, fuzzy
 msgid "To energy station"
-msgstr "Plasma-Energiebehälter"
+msgstr ""
 
 #: ../map/freedroid.events:152
-#, fuzzy
 msgid "To underground station"
-msgstr "Kevins Untergrundstation"
+msgstr ""
 
 #: ../map/freedroid.events:161
-#, fuzzy
 msgid "To maintenance tunnels"
-msgstr "Die Wartungstunnel"
+msgstr ""
 
 #: ../map/freedroid.events:170
-#, fuzzy
 msgid "Back from maintenance tunnels"
-msgstr "Die Wartungstunnel"
+msgstr ""
 
 #: ../map/freedroid.events:179
-#, fuzzy
 msgid "Enter novice arena"
-msgstr "Anfänger-Arena"
+msgstr ""
 
 #: ../map/freedroid.events:188
-#, fuzzy
 msgid "Exit novice arena"
-msgstr "Anfänger-Arena"
+msgstr ""
 
 #: ../map/freedroid.events:197
-#, fuzzy
 msgid "Enter master arena"
-msgstr "Experten-Arena"
+msgstr ""
 
 #: ../map/freedroid.events:206
-#, fuzzy
 msgid "Exit master arena"
-msgstr "Experten-Arena"
+msgstr ""
 
 #: ../map/freedroid.events:224
-#, fuzzy
 msgid "Access disruptor shield control"
-msgstr "Disruptorschild-Kontrolle"
+msgstr ""
 
 #: ../map/freedroid.events:233
 msgid "Unknown place"
@@ -2608,7 +2641,8 @@ msgstr ""
 "solider Objekte."
 
 #: ../map/freedroid.droid_archetypes:191
-msgid "light duty servant robot. One of the first to use the anti-grav system."
+msgid ""
+"light duty servant robot. One of the first to use the anti-grav system."
 msgstr ""
 "Dienstrobot für leichte Aufgaben. Einer der ersten, die das Anti-Grav System "
 "verwendeten."
@@ -2635,7 +2669,8 @@ msgstr ""
 "ausgerüstet."
 
 #: ../map/freedroid.droid_archetypes:329
-msgid "early type messenger robot. Large wheels impede motion on small craft."
+msgid ""
+"early type messenger robot. Large wheels impede motion on small craft."
 msgstr ""
 "Älteres Nachrichtenroboter-Modell. Große Räder verzögern die Bewegungen des "
 "kleinen Vehikels. Ab Werk ausgestattet mit Laserabtast- und Schreibfühlern."
@@ -2965,7 +3000,8 @@ msgstr ""
 "Fluch, auf Armee-Futter angewiesen zu sein, ist endlich von der Stadt "
 "genommen."
 
-#: ../map/freedroid.quests:104 ../map/freedroid.levels:25997
+#: ../map/freedroid.quests:104
+#: ../map/freedroid.levels:25997
 #: ../map/freedroid.levels~:26007
 msgid "Novice Arena"
 msgstr "Anfänger-Arena"
@@ -3020,7 +3056,8 @@ msgstr ""
 "säubern. Hört sich einfach an."
 
 #: ../map/freedroid.quests:159
-msgid "Ouch. It wasn't. At least I am alive and the warehouse is clear. Whew."
+msgid ""
+"Ouch. It wasn't. At least I am alive and the warehouse is clear. Whew."
 msgstr ""
 "Autsch. Wars gar nicht! Immerhin bin ich am Leben und das Lagerhaus ist "
 "ausgeräumt. Puh!"
@@ -3171,7 +3208,8 @@ msgstr "Geschehen. Er scheint glücklich zu sein."
 msgid "Tanias sanitary"
 msgstr "Tanias Zuflucht"
 
-#: ../map/freedroid.quests:276 ../map/freedroid.quests:295
+#: ../map/freedroid.quests:276
+#: ../map/freedroid.quests:295
 msgid ""
 "I have met a girl locked in secret area. If I manage to disable autoguns, "
 "she would be able to go to the surface, look at sun again."
@@ -3180,11 +3218,13 @@ msgstr ""
 "Wenn ich es schaffe, die Selbstschuss-Anlagen abzuschalten, könnte sie zur "
 "Oberfläche gelangen und endlich wieder die Sonne sehen."
 
-#: ../map/freedroid.quests:277 ../map/freedroid.quests:296
+#: ../map/freedroid.quests:277
+#: ../map/freedroid.quests:296
 msgid "I have found that SACD and overtooked him."
 msgstr "Ich habe diesen KAGE gefunden und übernommen."
 
-#: ../map/freedroid.quests:278 ../map/freedroid.quests:297
+#: ../map/freedroid.quests:278
+#: ../map/freedroid.quests:297
 msgid "Tania is free now!"
 msgstr "Tania ist wieder frei!"
 
@@ -3224,146 +3264,182 @@ msgstr ""
 msgid "Met and talked to Koan, but didnt kill him."
 msgstr ""
 
-#: ../map/freedroid.levels:17 ../map/freedroid.levels~:19
+#: ../map/freedroid.levels:17
+#: ../map/freedroid.levels~:19
 msgid "Town"
 msgstr "Ortschaft"
 
-#: ../map/freedroid.levels:3827 ../map/freedroid.levels~:3835
+#: ../map/freedroid.levels:3827
+#: ../map/freedroid.levels~:3835
 msgid "Warehouse Level 1"
 msgstr "Lagerhaus Untergeschoss 1"
 
-#: ../map/freedroid.levels:4817 ../map/freedroid.levels~:4825
+#: ../map/freedroid.levels:4817
+#: ../map/freedroid.levels~:4825
 msgid "Warehouse Level 2"
 msgstr "Lagerhaus Untergeschoss 2"
 
-#: ../map/freedroid.levels:5500 ../map/freedroid.levels~:5508
+#: ../map/freedroid.levels:5500
+#: ../map/freedroid.levels~:5508
 msgid "Kevins Underground Station"
 msgstr "Kevins Untergrundstation"
 
-#: ../map/freedroid.levels:6010 ../map/freedroid.levels~:6018
+#: ../map/freedroid.levels:6010
+#: ../map/freedroid.levels~:6018
 msgid "Disruption Machine Deck"
 msgstr "Disruptor-Maschinendeck"
 
-#: ../map/freedroid.levels:6833 ../map/freedroid.levels~:6841
+#: ../map/freedroid.levels:6833
+#: ../map/freedroid.levels~:6841
 msgid "Disruptor LvV"
 msgstr "Disruptor Level V"
 
-#: ../map/freedroid.levels:7475 ../map/freedroid.levels~:7483
+#: ../map/freedroid.levels:7475
+#: ../map/freedroid.levels~:7483
 msgid "Maintenance Tunnels"
 msgstr "Die Wartungstunnel"
 
-#: ../map/freedroid.levels:8063 ../map/freedroid.levels~:8071
+#: ../map/freedroid.levels:8063
+#: ../map/freedroid.levels~:8071
 msgid "Disruptor Shield Control"
 msgstr "Disruptorschild-Kontrolle"
 
-#: ../map/freedroid.levels:8786 ../map/freedroid.levels~:8794
+#: ../map/freedroid.levels:8786
+#: ../map/freedroid.levels~:8794
 msgid "Temple Wood"
 msgstr "Tempelwald"
 
-#: ../map/freedroid.levels:10569 ../map/freedroid.levels~:10579
+#: ../map/freedroid.levels:10569
+#: ../map/freedroid.levels~:10579
 msgid "Crystal Fields"
 msgstr "Kristallfelder"
 
-#: ../map/freedroid.levels:11835 ../map/freedroid.levels~:11845
+#: ../map/freedroid.levels:11835
+#: ../map/freedroid.levels~:11845
 msgid "Desert of Red Tears"
 msgstr "Wüste der roten Tränen"
 
-#: ../map/freedroid.levels:12434 ../map/freedroid.levels~:12444
+#: ../map/freedroid.levels:12434
+#: ../map/freedroid.levels~:12444
 msgid "Slasher Mountains"
 msgstr "Die Schlächterberge"
 
-#: ../map/freedroid.levels:13582 ../map/freedroid.levels~:13592
+#: ../map/freedroid.levels:13582
+#: ../map/freedroid.levels~:13592
 msgid "Cry Stasis Lab"
 msgstr ""
 
-#: ../map/freedroid.levels:14749 ../map/freedroid.levels~:14759
+#: ../map/freedroid.levels:14749
+#: ../map/freedroid.levels~:14759
 msgid "Telemetry"
 msgstr "Telemetrie"
 
-#: ../map/freedroid.levels:15576 ../map/freedroid.levels~:15586
+#: ../map/freedroid.levels:15576
+#: ../map/freedroid.levels~:15586
 msgid "Scientists quarters"
 msgstr "Wissenschaftler-Quartiere"
 
-#: ../map/freedroid.levels:16301 ../map/freedroid.levels~:16311
+#: ../map/freedroid.levels:16301
+#: ../map/freedroid.levels~:16311
 msgid "Private Goods Storage Cellar"
 msgstr "Privater Warenlager-Keller"
 
-#: ../map/freedroid.levels:16804 ../map/freedroid.levels~:16814
+#: ../map/freedroid.levels:16804
+#: ../map/freedroid.levels~:16814
 msgid "Terminal Field"
 msgstr "Terminalfeld"
 
-#: ../map/freedroid.levels:17712 ../map/freedroid.levels~:17722
+#: ../map/freedroid.levels:17712
+#: ../map/freedroid.levels~:17722
 msgid "Ethereal Meadows"
 msgstr "Himmelswiesen"
 
-#: ../map/freedroid.levels:18888 ../map/freedroid.levels~:18898
+#: ../map/freedroid.levels:18888
+#: ../map/freedroid.levels~:18898
 msgid "Kevins Main Energy Source"
 msgstr "Kevins Haupt-Energiequelle"
 
-#: ../map/freedroid.levels:19283 ../map/freedroid.levels:19412
-#: ../map/freedroid.levels:19563 ../map/freedroid.levels:21116
-#: ../map/freedroid.levels:22092 ../map/freedroid.levels~:19293
-#: ../map/freedroid.levels~:19422 ../map/freedroid.levels~:19573
-#: ../map/freedroid.levels~:21126 ../map/freedroid.levels~:22102
+#: ../map/freedroid.levels:19283
+#: ../map/freedroid.levels:19412
+#: ../map/freedroid.levels:19563
+#: ../map/freedroid.levels:21116
+#: ../map/freedroid.levels:22092
+#: ../map/freedroid.levels~:19293
+#: ../map/freedroid.levels~:19422
+#: ../map/freedroid.levels~:19573
+#: ../map/freedroid.levels~:21126
+#: ../map/freedroid.levels~:22102
 msgid "New Level just created..."
 msgstr "Neuer Level wurde angelegt..."
 
-#: ../map/freedroid.levels:22625 ../map/freedroid.levels~:22635
+#: ../map/freedroid.levels:22625
+#: ../map/freedroid.levels~:22635
 msgid "Hell Fortress"
 msgstr "Höllenfestung"
 
-#: ../map/freedroid.levels:24309 ../map/freedroid.levels~:24319
+#: ../map/freedroid.levels:24309
+#: ../map/freedroid.levels~:24319
 msgid "Broken Glass Path"
 msgstr "Glasscherbenweg"
 
-#: ../map/freedroid.levels:25215 ../map/freedroid.levels~:25225
+#: ../map/freedroid.levels:25215
+#: ../map/freedroid.levels~:25225
 msgid "Mushroom Forest"
 msgstr "Pilzwald"
 
-#: ../map/freedroid.levels:25381 ../map/freedroid.levels~:25391
+#: ../map/freedroid.levels:25381
+#: ../map/freedroid.levels~:25391
 msgid "Empty swamp"
 msgstr "Leerer Sumpf"
 
-#: ../map/freedroid.levels:25510 ../map/freedroid.levels~:25520
+#: ../map/freedroid.levels:25510
+#: ../map/freedroid.levels~:25520
 msgid "Some temple"
 msgstr "Ein Tempel"
 
-#: ../map/freedroid.levels:26254 ../map/freedroid.levels~:26264
+#: ../map/freedroid.levels:26254
+#: ../map/freedroid.levels~:26264
 msgid "Master Arena"
 msgstr "Experten-Arena"
 
-#: ../map/freedroid.levels:26508 ../map/freedroid.levels~:26518
+#: ../map/freedroid.levels:26508
+#: ../map/freedroid.levels~:26518
 msgid "Hell Fortress entrance"
 msgstr "Eingang zur Höllenfestung"
 
-#: ../map/freedroid.levels:29878 ../map/freedroid.levels~:29888
+#: ../map/freedroid.levels:29878
+#: ../map/freedroid.levels~:29888
 msgid "Power Facility Underground"
 msgstr "Kraftwerks-Untergeschoss"
 
-#: ../map/freedroid.levels:30191 ../map/freedroid.levels~:30201
+#: ../map/freedroid.levels:30191
+#: ../map/freedroid.levels~:30201
 msgid "Crystal Cavens"
 msgstr "Kristallhöhlen"
 
-#: ../map/freedroid.levels:32594 ../map/freedroid.levels~:32604
+#: ../map/freedroid.levels:32594
+#: ../map/freedroid.levels~:32604
 msgid "Forgotten bunker"
 msgstr "Vergessener Bunker"
 
-#: ../map/freedroid.levels:32898 ../map/freedroid.levels~:32908
+#: ../map/freedroid.levels:32898
+#: ../map/freedroid.levels~:32908
 msgid "Secret research center"
 msgstr "Geheimes Forschungszentrum"
 
-#: ../map/freedroid.levels:34277 ../map/freedroid.levels~:34287
+#: ../map/freedroid.levels:34277
+#: ../map/freedroid.levels~:34287
 msgid "Secret area service tunnels"
 msgstr "Geheimbereich-Wartungstunnel"
 
-#: ../map/freedroid.levels:34524 ../map/freedroid.levels~:34534
-#, fuzzy
+#: ../map/freedroid.levels:34524
+#: ../map/freedroid.levels~:34534
 msgid "Tutorial"
-msgstr "Einführung 1"
+msgstr ""
 
 #~ msgid ""
-#~ "This does nothing in this version of freedroidRPG. Optimization is the "
-#~ "root of all evil. You can gain some temporary improvements to your \n"
+#~ "This does nothing in this version of freedroidRPG. Optimization is the root "
+#~ "of all evil. You can gain some temporary improvements to your \n"
 #~ "system, but in the end you are only likely to cause permanent damage."
 #~ msgstr ""
 #~ "Dies tut nichts in dieser Version von freedroidRPG. Optimierung ist die "

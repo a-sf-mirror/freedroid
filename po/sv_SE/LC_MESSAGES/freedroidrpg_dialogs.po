@@ -6,21 +6,20 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: freedroid\n"
-"Report-Msgid-Bugs-To: CHANGE THIS TOO\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2009-01-11 16:29+0000\n"
-"PO-Revision-Date: 2008-08-25 18:06+0000\n"
+"PO-Revision-Date: 2008-10-28 08:03+0000\n"
 "Last-Translator: Christian Widell <Christian_widell@hotmail.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-09-14 12:34+0000\n"
+"X-Launchpad-Export-Date: 2009-01-11 17:40+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../dialogs/614.dialog:38
-#, fuzzy
 msgid "Who are you? "
-msgstr " Vem är du? "
+msgstr ""
 
 #: ../dialogs/614.dialog:39
 msgid ""
@@ -39,12 +38,12 @@ msgid "No. The hostiles have not shown up within the last 24 hours."
 msgstr ""
 
 #: ../dialogs/614.dialog:53
-#, fuzzy
 msgid "What can you tell me about the 614 type? "
-msgstr " Vad kan du berätta om 614 modellen? "
+msgstr ""
 
 #: ../dialogs/614.dialog:54
-msgid "The official manual classifies the 614 as a high class security droid."
+msgid ""
+"The official manual classifies the 614 as a high class security droid."
 msgstr ""
 "Den officiella manualen klassifierar 614 som en högklass säkerhets droid."
 
@@ -63,9 +62,8 @@ msgid "So don't worry. I'm still in pretty good shape."
 msgstr "Så oroa dig inte. Jag är fortfarande i ganska bra form."
 
 #: ../dialogs/614.dialog:63
-#, fuzzy
 msgid "What are your orders?"
-msgstr " Vilka är dina order?"
+msgstr ""
 
 #: ../dialogs/614.dialog:64
 msgid ""
@@ -101,20 +99,29 @@ msgid ""
 msgstr ""
 
 #: ../dialogs/614.dialog:75
-msgid "Don't forget to buy products from Nicholson Company. They are the best."
+msgid ""
+"Don't forget to buy products from Nicholson Company. They are the best."
 msgstr "Glöm inte att köpa produkter från Nicholson Company. De är de bästa."
 
-#: ../dialogs/614.dialog:81 ../dialogs/Jasmine.dialog:101
-#: ../dialogs/Jasmine.dialog:110 ../dialogs/Jasmine.dialog:119
-#: ../dialogs/Michelangelo.dialog:245 ../dialogs/Stone.dialog:185
-#: ../dialogs/Ewald.dialog:160 ../dialogs/Spencer.dialog:364
-#: ../dialogs/Bender.dialog:206 ../dialogs/Tybalt.dialog:134
-#: ../dialogs/Pendragon.dialog:75 ../dialogs/Skippy.dialog:140
-#: ../dialogs/Skippy.dialog:147 ../dialogs/RMS.dialog:87
-#: ../dialogs/DocMoore.dialog:224 ../dialogs/DocMoore.dialog:225
-#: ../dialogs/Duncan.dialog:180 ../dialogs/Duncan.dialog:207
+#: ../dialogs/614.dialog:81
+#: ../dialogs/Jasmine.dialog:101
+#: ../dialogs/Jasmine.dialog:110
+#: ../dialogs/Jasmine.dialog:119
+#: ../dialogs/Michelangelo.dialog:245
+#: ../dialogs/Stone.dialog:185
+#: ../dialogs/Ewald.dialog:160
+#: ../dialogs/Spencer.dialog:364
+#: ../dialogs/Bender.dialog:206
+#: ../dialogs/Tybalt.dialog:134
+#: ../dialogs/Pendragon.dialog:75
+#: ../dialogs/Skippy.dialog:140
+#: ../dialogs/Skippy.dialog:147
+#: ../dialogs/RMS.dialog:87
+#: ../dialogs/DocMoore.dialog:224
+#: ../dialogs/DocMoore.dialog:225
+#: ../dialogs/Duncan.dialog:180
+#: ../dialogs/Duncan.dialog:207
 #: ../dialogs/Duncan.dialog:208
-#, fuzzy
 msgid "See you later."
 msgstr "Vi ses senare."
 
@@ -122,10 +129,10 @@ msgstr "Vi ses senare."
 msgid " Resuming guard program."
 msgstr " Återupptar vakt program."
 
-#: ../dialogs/Benjamin.dialog:38 ../dialogs/DocMoore.dialog:38
-#, fuzzy
+#: ../dialogs/Benjamin.dialog:38
+#: ../dialogs/DocMoore.dialog:38
 msgid "Hello!"
-msgstr " Hej!"
+msgstr ""
 
 #: ../dialogs/Benjamin.dialog:39
 msgid ""
@@ -136,9 +143,8 @@ msgstr ""
 "tar hand om våra distansvapen här i citadellet."
 
 #: ../dialogs/Benjamin.dialog:46
-#, fuzzy
 msgid "What are you doing here alone? "
-msgstr " Vad gör du här ensam? "
+msgstr ""
 
 #: ../dialogs/Benjamin.dialog:47
 msgid ""
@@ -166,9 +172,8 @@ msgstr ""
 "överhettats eller hakat upp sig. Ibland undrar jag om jag gör något fel."
 
 #: ../dialogs/Benjamin.dialog:56
-#, fuzzy
 msgid "Can you teach me how to properly use rifles and guns?"
-msgstr " Kan du lära mig hur man korrekt använder gevär och pistoler?"
+msgstr ""
 
 #: ../dialogs/Benjamin.dialog:57
 msgid ""
@@ -187,46 +192,36 @@ msgstr ""
 "min tid. Ska vi säga... Hundra trianglar allt som allt."
 
 #: ../dialogs/Benjamin.dialog:64
-#, fuzzy
 msgid ""
 "Did you think about somehow gathering the excess heat and using it to make "
 "the beam stronger?"
 msgstr ""
-" Du har inte funderat på att samla in överskottsvärmen på något sätt och "
-"använda den energin för att förstärka strålens styrka?"
 
 #: ../dialogs/Benjamin.dialog:65
 msgid "Hmm... There might be something in that idea. I will think about it."
 msgstr "Hmm... Du har nog en poäng i den idén. Jag ska fundera på det."
 
 #: ../dialogs/Benjamin.dialog:72
-#, fuzzy
 msgid "If I were you, I would focus my work on the firing rate."
 msgstr ""
-" Om jag var du, då skulle jag koncentrera mig på att får den att skjuta "
-"snabbare."
 
 #: ../dialogs/Benjamin.dialog:73
 msgid "Hmm... I will think about it. Hmm..."
 msgstr "Hmm... Jag ska fundera på det. Hmm..."
 
 #: ../dialogs/Benjamin.dialog:80
-#, fuzzy
 msgid ""
 "You know, laser pistols are not a very promising weapon. I think you should "
 "work on something different."
 msgstr ""
-" Du vet, laserpistoler är inte särskilt lovande vapen. Jag tycker att du "
-"borde inrikta dig på något annat."
 
 #: ../dialogs/Benjamin.dialog:81
 msgid "Yeah, maybe you are right. I will think about it."
 msgstr "Ja, du kanske har rätt. Jag ska fundera på det."
 
 #: ../dialogs/Benjamin.dialog:88
-#, fuzzy
 msgid "What weapons are available to the members of the Red Guard?"
-msgstr " Vilka vapen finns tillgängliga för medlemmarna i Röda Gardet?"
+msgstr ""
 
 #: ../dialogs/Benjamin.dialog:89
 msgid ""
@@ -246,9 +241,8 @@ msgstr ""
 "Men sådana ger vi endast ut i nödfall eller till väldigt erfarna personer."
 
 #: ../dialogs/Benjamin.dialog:97
-#, fuzzy
 msgid "Plasma sounds deadly."
-msgstr " Plasma låter dödligt."
+msgstr ""
 
 #: ../dialogs/Benjamin.dialog:98
 msgid "It is!"
@@ -308,9 +302,8 @@ msgstr ""
 "populära. Lite synd faktiskt, för de har stor potential."
 
 #: ../dialogs/Benjamin.dialog:110
-#, fuzzy
 msgid "Tell me more about laser weapons."
-msgstr " Berätta mer om laservapen."
+msgstr ""
 
 #: ../dialogs/Benjamin.dialog:111
 msgid ""
@@ -354,9 +347,8 @@ msgstr ""
 "jag inte haft någon framgång. Ibland känner jag att jag bara vill ge upp."
 
 #: ../dialogs/Benjamin.dialog:121
-#, fuzzy
 msgid "I am curious about the exterminator."
-msgstr " Jag är nyfiken på utrotaren."
+msgstr ""
 
 #: ../dialogs/Benjamin.dialog:122
 msgid ""
@@ -364,29 +356,25 @@ msgid ""
 msgstr "Tyvärr, det är hemligstämplat. Jag har redan sagt för mycket."
 
 #: ../dialogs/Benjamin.dialog:129
-#, fuzzy
 msgid "I will make it worth your while..."
 msgstr ""
-" Jag tror vi kan komma överens om ett pris som skulle göra det värt för "
-"dig..."
 
 #: ../dialogs/Benjamin.dialog:130
 msgid "Intriguing."
 msgstr "Intressant."
 
 #: ../dialogs/Benjamin.dialog:137
-#, fuzzy
 msgid "I will be going then."
-msgstr " Jag går väl då."
+msgstr ""
 
 #: ../dialogs/Benjamin.dialog:138
 msgid "See you later!"
 msgstr "Ses senare!"
 
-#: ../dialogs/Darwin.dialog:40 ../dialogs/RMS.dialog:38
-#, fuzzy
+#: ../dialogs/Darwin.dialog:40
+#: ../dialogs/RMS.dialog:38
 msgid "Hi! I'm new here. "
-msgstr " Hej! Jag är ny här. "
+msgstr ""
 
 #: ../dialogs/Darwin.dialog:41
 msgid "Hello. We are the Fleischer brothers."
@@ -396,10 +384,10 @@ msgstr "Hallå. Vi är Fleischer bröderna."
 msgid "I am Engel. He is Geist, and he does not know the language."
 msgstr "Jag är Engel. Min bror heter Geist, men han kan inte språket."
 
-#: ../dialogs/Darwin.dialog:49 ../dialogs/StandardOldTownGateGuard.dialog:50
-#, fuzzy
+#: ../dialogs/Darwin.dialog:49
+#: ../dialogs/StandardOldTownGateGuard.dialog:50
 msgid "What are you doing here?"
-msgstr " Vad gör du här?"
+msgstr ""
 
 #: ../dialogs/Darwin.dialog:50
 msgid "Revenge."
@@ -413,28 +401,24 @@ msgstr "Bottarna har dödat vår mor. Nu dödar vi dem."
 msgid "No mercy. We hunt them."
 msgstr "Vi jagar dem och visar ingen nåd."
 
-#: ../dialogs/Darwin.dialog:59 ../dialogs/Dixon.dialog:108
-#, fuzzy
+#: ../dialogs/Darwin.dialog:59
+#: ../dialogs/Dixon.dialog:108
 msgid "Can I help you somehow?"
-msgstr " Kan jag hjälpa er på något sätt?"
+msgstr ""
 
 #: ../dialogs/Darwin.dialog:60
 msgid "Nein. Let us die as warriors. That is all we ask for."
 msgstr "Nein. Låt oss dö som krigare. Det är allt vi ber om."
 
 #: ../dialogs/Darwin.dialog:67
-#, fuzzy
 msgid ""
 "If you keep standing here more bots will come and they will kill you. Go "
 "somewhere safe, and set up defense there."
 msgstr ""
-" Om ni fortsätter stå här så kommer det komma fler bottar och de kommer ta "
-"kål på er. Hitta en säkrare plats, där ni kan sätta upp ett bra försvar."
 
 #: ../dialogs/Darwin.dialog:75
-#, fuzzy
 msgid "If you keep standing here more bots will come and --"
-msgstr " Om ni fortsätter stå här så kommer det komma fler bottar och --"
+msgstr ""
 
 #: ../dialogs/Darwin.dialog:76
 msgid "Sehr gut. Let them come. We are ready."
@@ -445,11 +429,11 @@ msgid "What a beautiful day. Yes."
 msgstr "Vilken vacker dag. Ja."
 
 #: ../dialogs/Darwin.dialog:84
-#, fuzzy
 msgid "You are insane. Get out of here while you still can."
-msgstr " Du är galen. Ta dig härifrån medan du fortfarande kan."
+msgstr ""
 
-#: ../dialogs/Darwin.dialog:85 ../dialogs/Jasmine.dialog:71
+#: ../dialogs/Darwin.dialog:85
+#: ../dialogs/Jasmine.dialog:71
 msgid "No."
 msgstr "Nej."
 
@@ -468,13 +452,13 @@ msgid "Do not try to stop us. We have our rifles loaded."
 msgstr "Försök inte stoppa oss. Våra gevär är laddade."
 
 #: ../dialogs/Darwin.dialog:95
-#, fuzzy
 msgid "Where can I get some help?"
-msgstr " Var kan jag få tag på hjälp?"
+msgstr ""
 
 #: ../dialogs/Darwin.dialog:96
 msgid "Nowhere. This is the end of the world. There is no help."
-msgstr "Ingenstans. Det här är världens ände, ragnarök. Det finns ingen hjälp."
+msgstr ""
+"Ingenstans. Det här är världens ände, ragnarök. Det finns ingen hjälp."
 
 #: ../dialogs/Darwin.dialog:97
 msgid ""
@@ -495,36 +479,30 @@ msgid "Real freedom is really dead."
 msgstr "Verklig frihet är helt försvunnen."
 
 #: ../dialogs/Darwin.dialog:105
-#, fuzzy
 msgid "You guys are totally nuts. Get a life."
-msgstr " Ni är ju helt galna. Skaffa er ett liv."
+msgstr ""
 
 #: ../dialogs/Darwin.dialog:113
-#, fuzzy
 msgid "You guys are tota --"
-msgstr " Ni är ju helt --"
+msgstr ""
 
 #: ../dialogs/Darwin.dialog:114
 msgid "WHAT?! What is it that you want to say?"
 msgstr "VAD?! Vad är det du försöker säga?"
 
 #: ../dialogs/Darwin.dialog:121
-#, fuzzy
 msgid "Erm... I --"
-msgstr " Umm... Jag --"
+msgstr ""
 
 #: ../dialogs/Darwin.dialog:122
 msgid "WHAT!? SPIT IT OUT!"
 msgstr "VAD!? UT MED SPRÅKET!"
 
 #: ../dialogs/Darwin.dialog:129
-#, fuzzy
 msgid ""
 "Er... You guys are really great and I admire your bravery in the face of "
 "certain death."
 msgstr ""
-" Umm... Ni grabbar är ju verkligen super och jag avundas er ert mod medan ni "
-"stirrar döden i ansiktet."
 
 #: ../dialogs/Darwin.dialog:130
 msgid "Donnerwetter, you are a funny one."
@@ -532,7 +510,8 @@ msgstr "Donnerwetter, du är då verkligen en rolig en."
 
 #: ../dialogs/Darwin.dialog:131
 msgid "I hope that one day we shall meet again, maybe in a better time."
-msgstr "Jag hoppas att vi en dag kommer att mötas igen, kanske i bättre tider."
+msgstr ""
+"Jag hoppas att vi en dag kommer att mötas igen, kanske i bättre tider."
 
 #: ../dialogs/Darwin.dialog:132
 msgid "Maybe then you will tell us other gut jokes that you know."
@@ -543,9 +522,8 @@ msgid "Maybe one day..."
 msgstr "Kanske en dag..."
 
 #: ../dialogs/Darwin.dialog:139
-#, fuzzy
 msgid "What did you use to do before you became a hunter?"
-msgstr " Vad brukade du göra innan du blev en jägare?"
+msgstr ""
 
 #: ../dialogs/Darwin.dialog:140
 msgid "I was a bot constructor. Built the killers of my mother."
@@ -560,10 +538,8 @@ msgstr ""
 "ammunition och mat."
 
 #: ../dialogs/Darwin.dialog:148
-#, fuzzy
 msgid "I want to know how to extract modules from the bots."
 msgstr ""
-" Jag skulle vilja veta hur man kan plocka ut värdefulla delar ut bottarna."
 
 #: ../dialogs/Darwin.dialog:149
 msgid "Yes."
@@ -573,23 +549,27 @@ msgstr "Ja."
 msgid "I will sell the information for a lot of cybergeld."
 msgstr "I kan sälja den informationen för en del cybergeld."
 
-#: ../dialogs/Darwin.dialog:151 ../dialogs/Duncan.dialog:130
+#: ../dialogs/Darwin.dialog:151
+#: ../dialogs/Duncan.dialog:130
 msgid "Interested?"
 msgstr "Intresserad?"
 
 #: ../dialogs/Darwin.dialog:157
-#, fuzzy
 msgid "Can I join your hunt?"
-msgstr " Kan jag gå med i eran jakt?"
+msgstr ""
 
 #: ../dialogs/Darwin.dialog:158
 msgid "Nein. Our problem. Our hunt."
 msgstr "Nein. Vårat problem. Våran jakt."
 
-#: ../dialogs/Darwin.dialog:164 ../dialogs/OldTownGateGuardLeader.dialog:80
-#: ../dialogs/Michelangelo.dialog:244 ../dialogs/Spencer.dialog:363
-#: ../dialogs/Bruce.dialog:153 ../dialogs/Bruce.dialog:160
-#: ../dialogs/Ernie.dialog:71 ../dialogs/Butch.dialog:225
+#: ../dialogs/Darwin.dialog:164
+#: ../dialogs/OldTownGateGuardLeader.dialog:80
+#: ../dialogs/Michelangelo.dialog:244
+#: ../dialogs/Spencer.dialog:363
+#: ../dialogs/Bruce.dialog:153
+#: ../dialogs/Bruce.dialog:160
+#: ../dialogs/Ernie.dialog:71
+#: ../dialogs/Butch.dialog:225
 #: ../dialogs/StandardMSFacilityGateGuard.dialog:74
 msgid "I'll be going then."
 msgstr ""
@@ -604,9 +584,8 @@ msgstr ""
 "Ahh, prisa himmelen. Du lever fortfarande. Kanske inte allt hopp är förlorat."
 
 #: ../dialogs/Francis.dialog:48
-#, fuzzy
 msgid "Who am I?"
-msgstr " Vem är jag?"
+msgstr ""
 
 #: ../dialogs/Francis.dialog:49
 msgid "Oh dear. This is not good. Not good."
@@ -645,8 +624,10 @@ msgstr ""
 "expedition med vapeneld. Ett fruktansvärt misstag från vår sida."
 
 #: ../dialogs/Francis.dialog:54
-msgid "A few of you survived the slaughter and went into hiding and obscurity."
-msgstr "Ett fåtal av er överlevde massakern och gömde sig och höll sig undan."
+msgid ""
+"A few of you survived the slaughter and went into hiding and obscurity."
+msgstr ""
+"Ett fåtal av er överlevde massakern och gömde sig och höll sig undan."
 
 #: ../dialogs/Francis.dialog:55
 msgid ""
@@ -657,14 +638,12 @@ msgstr ""
 "fördolda. Nu förtiden så tror förstås de flesta att allt bara är sagor."
 
 #: ../dialogs/Francis.dialog:57
-#, fuzzy
 msgid "If the computer is not lying, then your name is "
-msgstr "Om datorn inte ljuger, så är ditt namn Tux."
+msgstr ""
 
 #: ../dialogs/Francis.dialog:63
-#, fuzzy
 msgid "How did the war start?"
-msgstr " Hur började kriget?"
+msgstr ""
 
 #: ../dialogs/Francis.dialog:64
 msgid "It is a long story. It all happened five months ago."
@@ -717,9 +696,8 @@ msgid "First we made them, and then they unmade us. How ironic."
 msgstr "Först skapade vi dem, sedan avskaffade de oss. Ironi på högsta nivå."
 
 #: ../dialogs/Francis.dialog:78
-#, fuzzy
 msgid "What happened then?"
-msgstr " Vad hände då?"
+msgstr ""
 
 #: ../dialogs/Francis.dialog:79
 msgid "I got shot down and I crashed a few kilometers away from here."
@@ -751,7 +729,8 @@ msgstr ""
 msgid "For all I know the war might be already over."
 msgstr "Såvitt jag vet kan kriget redan vara över."
 
-#: ../dialogs/Francis.dialog:89 ../dialogs/Tania.dialog:62
+#: ../dialogs/Francis.dialog:89
+#: ../dialogs/Tania.dialog:62
 msgid "Where am I?"
 msgstr ""
 
@@ -781,9 +760,8 @@ msgstr ""
 "någonstans i Väst-Central Europa."
 
 #: ../dialogs/Francis.dialog:99
-#, fuzzy
 msgid "Why did the Linarians come to this world?"
-msgstr " Varför kom vi Linarier till denna värld?"
+msgstr ""
 
 #: ../dialogs/Francis.dialog:100
 msgid ""
@@ -798,18 +776,16 @@ msgid "Sorry, I cannot help you with that."
 msgstr "Tyvärr, jag kan inte hjälpa dig med det."
 
 #: ../dialogs/Francis.dialog:107
-#, fuzzy
 msgid "Where in the void is this world?"
-msgstr " Var är denna värld?"
+msgstr ""
 
 #: ../dialogs/Francis.dialog:108
 msgid "I guess you mean in the universe?"
 msgstr "Du menar var i universum?"
 
 #: ../dialogs/Francis.dialog:115
-#, fuzzy
 msgid "Yes, I think that is your name for it."
-msgstr " Ja, jag tror det är erat namn för det."
+msgstr ""
 
 #: ../dialogs/Francis.dialog:116
 msgid ""
@@ -845,9 +821,8 @@ msgstr ""
 "stenklump."
 
 #: ../dialogs/Francis.dialog:127
-#, fuzzy
 msgid "Who are you? What is going on?"
-msgstr " Vem är du? Vad händer?"
+msgstr ""
 
 #: ../dialogs/Francis.dialog:128
 msgid "I guess I will start with myself."
@@ -874,11 +849,8 @@ msgid "And it looks like we are losing the war."
 msgstr "Och det ser ut som om vi förlorar kriget."
 
 #: ../dialogs/Francis.dialog:138
-#, fuzzy
 msgid "This can be just about anywhere. Your description is too ambiguous."
 msgstr ""
-" Det där kan ju vara näst intill var som helst. Din beskrivning är alldeles "
-"för luddig."
 
 #: ../dialogs/Francis.dialog:139
 msgid ""
@@ -889,13 +861,10 @@ msgstr ""
 "bättre information."
 
 #: ../dialogs/Francis.dialog:145
-#, fuzzy
 msgid ""
 "I feel terrible... Was I asleep? I remember nightmares. A meteor shower "
 "striking a planet full of life and killing everything on it..."
 msgstr ""
-" Jag mår urdåligt... Sov jag? Jag kommer ihåg mardrömmar. Ett meteoritregn "
-"som träffade en planet full med liv och dödade all på den."
 
 #: ../dialogs/Francis.dialog:146
 msgid ""
@@ -924,9 +893,8 @@ msgstr ""
 "nedfryst och du skulle blivit helt tokig."
 
 #: ../dialogs/Francis.dialog:155
-#, fuzzy
 msgid "Tell me more about the town you mentioned."
-msgstr " Berätta mer om staden du nämnde."
+msgstr ""
 
 #: ../dialogs/Francis.dialog:156
 msgid "It is a small mining community with no more than 500 inhabitants..."
@@ -967,9 +935,8 @@ msgstr ""
 "är ett ganska tilltalande alternativ till att bli lemlästad av botarna."
 
 #: ../dialogs/Francis.dialog:166
-#, fuzzy
 msgid "Why did the bots attack?"
-msgstr " Varför attackerade botarna?"
+msgstr ""
 
 #: ../dialogs/Francis.dialog:167
 msgid "We don't really know the reason for this insanity. However..."
@@ -996,9 +963,8 @@ msgstr ""
 "situationen speciellt lovande ut."
 
 #: ../dialogs/Francis.dialog:177
-#, fuzzy
 msgid "I also heard a voice... Someone calling himself Dvorak... "
-msgstr " Jag hörde även en röst... Någon som kallade sig själv Dvorak... "
+msgstr ""
 
 #: ../dialogs/Francis.dialog:178
 msgid "Relax. Everything will be fine in a few hours."
@@ -1009,13 +975,10 @@ msgid "This is perfectly normal."
 msgstr "Det här är helt normalt."
 
 #: ../dialogs/Francis.dialog:185
-#, fuzzy
 msgid ""
 "It cannot be true. One company cannot control all of the bot software on a "
 "whole world."
 msgstr ""
-" Det kan inte vara sant. Ett företag kan inte kontrollera all bot mjukvara i "
-"hela världen."
 
 #: ../dialogs/Francis.dialog:186
 msgid ""
@@ -1035,9 +998,8 @@ msgstr ""
 "sina minneschips."
 
 #: ../dialogs/Francis.dialog:193
-#, fuzzy
 msgid "Why did you wake me up? "
-msgstr " Varför väckte du mig? "
+msgstr ""
 
 #: ../dialogs/Francis.dialog:194
 msgid ""
@@ -1048,13 +1010,10 @@ msgstr ""
 "vi har redan förlorat många bra människor."
 
 #: ../dialogs/Francis.dialog:195
-#, fuzzy
 msgid ""
 "I heard the Linarians have a special gift for computers and can hack them "
 "just by thinking about it."
 msgstr ""
-"Jag har hört att Linarier har en speciell förmåga att kunna stänga av "
-"processorer genom bara tankekraft."
 
 #: ../dialogs/Francis.dialog:196
 msgid ""
@@ -1068,9 +1027,8 @@ msgid "We need you."
 msgstr "Vi behöver dig."
 
 #: ../dialogs/Francis.dialog:204
-#, fuzzy
 msgid "Thanks for the help. I'll be going now."
-msgstr " Tack för hjälpen. Jag går nu."
+msgstr ""
 
 #: ../dialogs/Francis.dialog:205
 msgid ""
@@ -1084,25 +1042,30 @@ msgstr ""
 msgid "The path from this house should lead you directly to it."
 msgstr "Vägen utanför detta hus leder direkt dit."
 
-#: ../dialogs/Jasmine.dialog:38 ../dialogs/Michelangelo.dialog:48
-#: ../dialogs/Stone.dialog:38 ../dialogs/Spencer.dialog:38
-#: ../dialogs/Tybalt.dialog:38 ../dialogs/Butch.dialog:40
-#: ../dialogs/Pendragon.dialog:38 ../dialogs/Skippy.dialog:38
-#: ../dialogs/Lukas.dialog:38 ../dialogs/Dixon.dialog:38
-#: ../dialogs/Chandra.dialog:40 ../dialogs/StandardOldTownGateGuard.dialog:38
+#: ../dialogs/Jasmine.dialog:38
+#: ../dialogs/Michelangelo.dialog:48
+#: ../dialogs/Stone.dialog:38
+#: ../dialogs/Spencer.dialog:38
+#: ../dialogs/Tybalt.dialog:38
+#: ../dialogs/Butch.dialog:40
+#: ../dialogs/Pendragon.dialog:38
+#: ../dialogs/Skippy.dialog:38
+#: ../dialogs/Lukas.dialog:38
+#: ../dialogs/Dixon.dialog:38
+#: ../dialogs/Chandra.dialog:40
+#: ../dialogs/StandardOldTownGateGuard.dialog:38
 #: ../dialogs/StandardMSFacilityGateGuard.dialog:38
-#, fuzzy
 msgid "Hi! I'm new here."
-msgstr " Hej! Jag är ny här."
+msgstr ""
 
 #: ../dialogs/Jasmine.dialog:39
 msgid "Yes. Hello. What do you want?"
 msgstr "Ja. Hallå. Vad vill du?"
 
-#: ../dialogs/Jasmine.dialog:46 ../dialogs/Sorenson.dialog:53
-#, fuzzy
+#: ../dialogs/Jasmine.dialog:46
+#: ../dialogs/Sorenson.dialog:53
 msgid "Who are you?"
-msgstr " Vem är du?"
+msgstr ""
 
 #: ../dialogs/Jasmine.dialog:47
 msgid "People call me Jasmine..."
@@ -1113,9 +1076,8 @@ msgid "That is not my real name, but it will do for now."
 msgstr "Det är inte mitt riktiga namn, men det duger för tillfället."
 
 #: ../dialogs/Jasmine.dialog:55
-#, fuzzy
 msgid "What are you doing in Kevin's place?"
-msgstr " Vad gör du här hos Kevin?"
+msgstr ""
 
 #: ../dialogs/Jasmine.dialog:56
 msgid "I live with him, stupid."
@@ -1126,25 +1088,21 @@ msgid "I like him. He... He is very much like me."
 msgstr "Jag tycker om honom. Han... Han är väldigt like mig."
 
 #: ../dialogs/Jasmine.dialog:63
-#, fuzzy
 msgid "How are you?"
-msgstr " Hur mår du?"
+msgstr ""
 
 #: ../dialogs/Jasmine.dialog:64
 msgid "Shitty. Now leave me alone."
 msgstr "Dåligt. Låt mig vara!"
 
 #: ../dialogs/Jasmine.dialog:70
-#, fuzzy
-msgid "Why does such a nice lady act so harshly? Cannot we all just get along?"
+msgid ""
+"Why does such a nice lady act so harshly? Cannot we all just get along?"
 msgstr ""
-" Varför beter sig en så vacker kvinna så argt? Kan vi inte bara komma "
-"överens?"
 
 #: ../dialogs/Jasmine.dialog:77
-#, fuzzy
 msgid "What are you up to?"
-msgstr " Vad håller du på med?"
+msgstr ""
 
 #: ../dialogs/Jasmine.dialog:78
 msgid "Nothing. Quit asking questions."
@@ -1155,9 +1113,8 @@ msgid "Don't bore me."
 msgstr "Tråka inte ut mig."
 
 #: ../dialogs/Jasmine.dialog:85
-#, fuzzy
 msgid "You are the most beautiful human I have ever seen."
-msgstr " Du är den vackraste människa jag någonsin sett."
+msgstr ""
 
 #: ../dialogs/Jasmine.dialog:86
 msgid "And you are at least quarter wrong."
@@ -1168,15 +1125,15 @@ msgid "Now, please get out of my sight."
 msgstr "Kan du då äntligen försvinna ur min åsyn?"
 
 #: ../dialogs/Jasmine.dialog:94
-#, fuzzy
 msgid "Will you marry me?"
-msgstr " Vill du gifta dig med mig?"
+msgstr ""
 
 #: ../dialogs/Jasmine.dialog:95
 msgid "Forget it."
 msgstr "Glöm det."
 
-#: ../dialogs/Jasmine.dialog:102 ../dialogs/Jasmine.dialog:111
+#: ../dialogs/Jasmine.dialog:102
+#: ../dialogs/Jasmine.dialog:111
 msgid "Yeah. Whatever."
 msgstr ""
 
@@ -1188,7 +1145,8 @@ msgstr ""
 msgid "Segmentation fault."
 msgstr ""
 
-#: ../dialogs/Jasmine.dialog:128 ../dialogs/subdlg_Sorenson.dialog:132
+#: ../dialogs/Jasmine.dialog:128
+#: ../dialogs/subdlg_Sorenson.dialog:132
 msgid "Huh?"
 msgstr ""
 
@@ -1218,9 +1176,8 @@ msgstr "Nåväl, vad exakt är det du vill veta?"
 
 #: ../dialogs/subdlg_Benjamin_bribe.dialog:51
 #: ../dialogs/subdlg_Benjamin_bribe.dialog:59
-#, fuzzy
 msgid "How many exterminators does the Red Guard have?"
-msgstr " Hur många utrotare har Röda Gardet?"
+msgstr ""
 
 #: ../dialogs/subdlg_Benjamin_bribe.dialog:60
 msgid ""
@@ -1239,9 +1196,8 @@ msgstr ""
 "förbannade botarna borta."
 
 #: ../dialogs/subdlg_Benjamin_bribe.dialog:68
-#, fuzzy
 msgid "Well, I am a bit short on cash right now..."
-msgstr " Umm, jag har lite ont om kontanter just nu..."
+msgstr ""
 
 #: ../dialogs/subdlg_Benjamin_bribe.dialog:69
 msgid ""
@@ -1258,9 +1214,8 @@ msgstr "Denna konversation än nu över."
 
 #: ../dialogs/subdlg_Benjamin_bribe.dialog:77
 #: ../dialogs/subdlg_Benjamin_bribe.dialog:84
-#, fuzzy
 msgid "That is not a lot. Why there are so few of them right now?"
-msgstr " Det är inte speciellt många. Varför är det endast så få av dem?"
+msgstr ""
 
 #: ../dialogs/subdlg_Benjamin_bribe.dialog:85
 msgid "All of them are a very lucky find. "
@@ -1284,14 +1239,12 @@ msgstr ""
 
 #: ../dialogs/subdlg_Benjamin_bribe.dialog:95
 #: ../dialogs/subdlg_Benjamin_bribe.dialog:111
-#, fuzzy
 msgid "What is the exterminator ammunition made from?"
-msgstr " Vad gör utrotaren så kraftfull?"
+msgstr ""
 
 #: ../dialogs/subdlg_Benjamin_bribe.dialog:103
-#, fuzzy
 msgid "Tell me who designed the exterminator."
-msgstr " Jag är nyfiken på utrotaren."
+msgstr ""
 
 #: ../dialogs/subdlg_Benjamin_bribe.dialog:104
 msgid "That answer is on the house. Heh."
@@ -1350,9 +1303,8 @@ msgstr ""
 
 #: ../dialogs/subdlg_Benjamin_bribe.dialog:131
 #: ../dialogs/subdlg_Benjamin_bribe.dialog:139
-#, fuzzy
 msgid "What makes the exterminator so powerful?"
-msgstr " Vad gör utrotaren så kraftfull?"
+msgstr ""
 
 #: ../dialogs/subdlg_Benjamin_bribe.dialog:140
 msgid ""
@@ -1373,9 +1325,8 @@ msgid ""
 msgstr ""
 
 #: ../dialogs/subdlg_Benjamin_bribe.dialog:148
-#, fuzzy
 msgid "That is all I want to know."
-msgstr " Det är allt jag vill veta."
+msgstr ""
 
 #: ../dialogs/subdlg_Benjamin_bribe.dialog:149
 msgid "Very well. This conversation never happened."
@@ -1385,7 +1336,8 @@ msgstr ""
 msgid "Hey you! Linarian! What do you want here?"
 msgstr ""
 
-#: ../dialogs/OldTownGateGuardLeader.dialog:48 ../dialogs/Ernie.dialog:46
+#: ../dialogs/OldTownGateGuardLeader.dialog:48
+#: ../dialogs/Ernie.dialog:46
 #: ../dialogs/MSFacilityGateGuardLeader.dialog:49
 msgid "Just taking a look around."
 msgstr ""
@@ -1445,7 +1397,8 @@ msgstr ""
 msgid "Open fire!"
 msgstr ""
 
-#: ../dialogs/OldTownGateGuardLeader.dialog:81 ../dialogs/Ernie.dialog:72
+#: ../dialogs/OldTownGateGuardLeader.dialog:81
+#: ../dialogs/Ernie.dialog:72
 msgid "Mhmmm."
 msgstr ""
 
@@ -1459,7 +1412,8 @@ msgid ""
 "hellhole."
 msgstr ""
 
-#: ../dialogs/Michelangelo.dialog:57 ../dialogs/Spencer.dialog:94
+#: ../dialogs/Michelangelo.dialog:57
+#: ../dialogs/Spencer.dialog:94
 #: ../dialogs/Bruce.dialog:49
 msgid "How is it going?"
 msgstr ""
@@ -1614,7 +1568,8 @@ msgid "Got any food yet?"
 msgstr ""
 
 #: ../dialogs/Michelangelo.dialog:123
-msgid "I had prepared some delicacies, but the ravenous Red Guard ate it all."
+msgid ""
+"I had prepared some delicacies, but the ravenous Red Guard ate it all."
 msgstr ""
 
 #: ../dialogs/Michelangelo.dialog:124
@@ -1695,7 +1650,8 @@ msgstr ""
 msgid "Why don't you send someone for the dilithium?"
 msgstr ""
 
-#: ../dialogs/Michelangelo.dialog:171 ../dialogs/Michelangelo.dialog:237
+#: ../dialogs/Michelangelo.dialog:171
+#: ../dialogs/Michelangelo.dialog:237
 msgid "I did."
 msgstr ""
 
@@ -1730,9 +1686,8 @@ msgid ""
 msgstr ""
 
 #: ../dialogs/Michelangelo.dialog:189
-#, fuzzy
 msgid "I'll be fine. Don't worry."
-msgstr "Jag kommer vara klar inom en vecka."
+msgstr ""
 
 #: ../dialogs/Michelangelo.dialog:190
 msgid ""
@@ -1764,9 +1719,8 @@ msgid ""
 msgstr ""
 
 #: ../dialogs/Michelangelo.dialog:203
-#, fuzzy
 msgid "Where can I get the crystals?"
-msgstr " Var kan jag få tag på hjälp?"
+msgstr ""
 
 #: ../dialogs/Michelangelo.dialog:204
 msgid ""
@@ -1889,11 +1843,13 @@ msgid ""
 "Done. Status: Patrolling."
 msgstr ""
 
-#: ../dialogs/StandardBotAfterTakeover.dialog:76 ../dialogs/SACD.dialog:90
+#: ../dialogs/StandardBotAfterTakeover.dialog:76
+#: ../dialogs/SACD.dialog:90
 msgid "./hcf.py"
 msgstr ""
 
-#: ../dialogs/StandardBotAfterTakeover.dialog:77 ../dialogs/SACD.dialog:91
+#: ../dialogs/StandardBotAfterTakeover.dialog:77
+#: ../dialogs/SACD.dialog:91
 msgid "Executing: Halt and Catch Fire."
 msgstr ""
 
@@ -1915,8 +1871,10 @@ msgstr ""
 msgid "()%#@(% THE BLADE IS YOURS. )##%*&%*!"
 msgstr ""
 
-#: ../dialogs/StandardBotAfterTakeover.dialog:102 ../dialogs/SACD.dialog:108
-#: ../dialogs/MER.dialog:93 ../dialogs/TestDroid.dialog:46
+#: ../dialogs/StandardBotAfterTakeover.dialog:102
+#: ../dialogs/SACD.dialog:108
+#: ../dialogs/MER.dialog:93
+#: ../dialogs/TestDroid.dialog:46
 msgid "logout"
 msgstr ""
 
@@ -1947,7 +1905,8 @@ msgstr ""
 msgid "No. I have not come here to kill you."
 msgstr ""
 
-#: ../dialogs/Koan.dialog:70 ../dialogs/KevinGuard.dialog:74
+#: ../dialogs/Koan.dialog:70
+#: ../dialogs/KevinGuard.dialog:74
 #: ../dialogs/Tybalt.dialog:94
 msgid "Thank you."
 msgstr ""
@@ -2023,9 +1982,8 @@ msgid "There is nothing more to it."
 msgstr ""
 
 #: ../dialogs/Koan.dialog:110
-#, fuzzy
 msgid "I will go now."
-msgstr " Jag går väl då."
+msgstr ""
 
 #: ../dialogs/Koan.dialog:111
 msgid "This place will always wait for you."
@@ -2058,9 +2016,8 @@ msgid "For our own good. Of course."
 msgstr ""
 
 #: ../dialogs/Stone.dialog:64
-#, fuzzy
 msgid "What can you tell me about the guards here?"
-msgstr " Vad kan du berätta om 614 modellen? "
+msgstr ""
 
 #: ../dialogs/Stone.dialog:65
 msgid "Ah, the Red Guard. "
@@ -2075,16 +2032,16 @@ msgid "They keep us alive and safe from the bots, but..."
 msgstr ""
 
 #: ../dialogs/Stone.dialog:74
-#, fuzzy
 msgid "But...?"
-msgstr " Men...?"
+msgstr ""
 
 #: ../dialogs/Stone.dialog:75
 msgid "They run the city with strict laws and demand total obedience."
 msgstr ""
 
 #: ../dialogs/Stone.dialog:76
-msgid "We all need to obey their rules. We need to work hard or they hurt us."
+msgid ""
+"We all need to obey their rules. We need to work hard or they hurt us."
 msgstr ""
 
 #: ../dialogs/Stone.dialog:77
@@ -2100,19 +2057,16 @@ msgid ""
 msgstr ""
 
 #: ../dialogs/Stone.dialog:79
-#, fuzzy
 msgid "... What's the difference? "
 msgstr "... Vad är det för skillnad? "
 
 #: ../dialogs/Stone.dialog:86
-#, fuzzy
 msgid "If things are so bad right now, why don't you leave?"
-msgstr " Om saker nu är så illa, varför sticker du inte?"
+msgstr ""
 
 #: ../dialogs/Stone.dialog:94
-#, fuzzy
 msgid "If things are so bad right now, why --"
-msgstr " Om saker nu är så illa, varför sticker du inte?"
+msgstr ""
 
 #: ../dialogs/Stone.dialog:95
 msgid "I don't want to hear this jabberwocky. "
@@ -2134,12 +2088,12 @@ msgstr ""
 msgid "If you want to start a revolution, you're on your own."
 msgstr ""
 
-#: ../dialogs/Stone.dialog:104 ../dialogs/Stone.dialog:112
+#: ../dialogs/Stone.dialog:104
+#: ../dialogs/Stone.dialog:112
 msgid "How is your business going?"
 msgstr ""
 
 #: ../dialogs/Stone.dialog:113
-#, fuzzy
 msgid "I'll be finished in about a week."
 msgstr "Jag kommer vara klar inom en vecka."
 
@@ -2170,9 +2124,8 @@ msgid ""
 msgstr ""
 
 #: ../dialogs/Stone.dialog:130
-#, fuzzy
 msgid "Can I help you somehow Ms. Stone?"
-msgstr " Kan jag hjälpa er på något sätt?"
+msgstr ""
 
 #: ../dialogs/Stone.dialog:131
 msgid ""
@@ -2309,7 +2262,8 @@ msgid "I could use a drink. What is there to be had?"
 msgstr ""
 
 #: ../dialogs/Ewald.dialog:68
-msgid "Well... We are a bit short on supplies right now... Erm... AH! I know!"
+msgid ""
+"Well... We are a bit short on supplies right now... Erm... AH! I know!"
 msgstr ""
 
 #: ../dialogs/Ewald.dialog:69
@@ -2330,7 +2284,8 @@ msgstr ""
 msgid "Long Island iced water please."
 msgstr ""
 
-#: ../dialogs/Ewald.dialog:85 ../dialogs/Tybalt.dialog:93
+#: ../dialogs/Ewald.dialog:85
+#: ../dialogs/Tybalt.dialog:93
 msgid "Here you go."
 msgstr ""
 
@@ -2386,7 +2341,8 @@ msgid ""
 msgstr ""
 
 #: ../dialogs/Ewald.dialog:134
-msgid "I heard Linarians can drink a lot of water, but seven liters is a lot."
+msgid ""
+"I heard Linarians can drink a lot of water, but seven liters is a lot."
 msgstr ""
 
 #: ../dialogs/Ewald.dialog:141
@@ -2403,9 +2359,8 @@ msgid "You have had everything that I had."
 msgstr ""
 
 #: ../dialogs/Ewald.dialog:149
-#, fuzzy
 msgid "Any idea where I can find some entertainment here?"
-msgstr " Hej. Vet du var jag kan få tag på hjälp här?"
+msgstr ""
 
 #: ../dialogs/Ewald.dialog:150
 msgid "Well... Erm... No."
@@ -2482,9 +2437,8 @@ msgid ""
 msgstr ""
 
 #: ../dialogs/Spencer.dialog:80
-#, fuzzy
 msgid "Maybe I could help somehow?"
-msgstr " Kan jag hjälpa er på något sätt?"
+msgstr ""
 
 #: ../dialogs/Spencer.dialog:81
 msgid ""
@@ -2584,7 +2538,8 @@ msgid ""
 msgstr ""
 
 #: ../dialogs/Spencer.dialog:184
-msgid "From Butch I hear you've become a novice arena master. Congratulations."
+msgid ""
+"From Butch I hear you've become a novice arena master. Congratulations."
 msgstr ""
 
 #: ../dialogs/Spencer.dialog:192
@@ -2812,9 +2767,8 @@ msgid "You had better be ready."
 msgstr ""
 
 #: ../dialogs/Bender.dialog:38
-#, fuzzy
 msgid "Hello! I'm new here."
-msgstr " Hej! Jag är ny här."
+msgstr ""
 
 #: ../dialogs/Bender.dialog:39
 msgid "Hello. I'm Bender, the dead man of this camp."
@@ -2849,9 +2803,8 @@ msgid "It was the brain enlargement pills. They did me no good, man."
 msgstr ""
 
 #: ../dialogs/Bender.dialog:64
-#, fuzzy
 msgid "What did make you so sick?"
-msgstr " Vilka är dina order?"
+msgstr ""
 
 #: ../dialogs/Bender.dialog:65
 msgid "It was the brain enlargement pills. They did do me no good, man."
@@ -2911,9 +2864,8 @@ msgid ""
 msgstr ""
 
 #: ../dialogs/Bender.dialog:101
-#, fuzzy
 msgid "Maybe I can help you somehow?"
-msgstr " Kan jag hjälpa er på något sätt?"
+msgstr ""
 
 #: ../dialogs/Bender.dialog:102
 msgid ""
@@ -2989,9 +2941,8 @@ msgid "I can kill you so much, that no one will recognize you!"
 msgstr ""
 
 #: ../dialogs/Bender.dialog:148
-#, fuzzy
 msgid "Where can I find this doctor?"
-msgstr " Var är denna värld?"
+msgstr ""
 
 #: ../dialogs/Bender.dialog:149
 msgid "He's right inside this building. I'm waiting here for him, man."
@@ -3004,7 +2955,8 @@ msgid ""
 msgstr ""
 
 #: ../dialogs/Bender.dialog:151
-msgid "Yes, he'll get a good beating. That will make him reconsider! That rat!"
+msgid ""
+"Yes, he'll get a good beating. That will make him reconsider! That rat!"
 msgstr ""
 
 #: ../dialogs/Bender.dialog:157
@@ -3024,9 +2976,8 @@ msgid "Man, what are you doing here? Get the medicine! I need it now!"
 msgstr ""
 
 #: ../dialogs/Bender.dialog:166
-#, fuzzy
 msgid "How are you doing?"
-msgstr " Hur mår du?"
+msgstr ""
 
 #: ../dialogs/Bender.dialog:167
 msgid ""
@@ -3067,9 +3018,8 @@ msgid "STATE YOUR REASON."
 msgstr ""
 
 #: ../dialogs/KevinGuard.dialog:57
-#, fuzzy
 msgid "Don't shoot! I come in peace."
-msgstr "Kom inte tillbaka."
+msgstr ""
 
 #: ../dialogs/KevinGuard.dialog:58
 msgid "STATE THE PURPOSE OF YOUR PRESENCE HERE."
@@ -3092,9 +3042,12 @@ msgstr ""
 msgid "Umm... His life is in grave danger. "
 msgstr ""
 
-#: ../dialogs/KevinGuard.dialog:84 ../dialogs/KevinGuard.dialog:92
-#: ../dialogs/KevinGuard.dialog:145 ../dialogs/KevinGuard.dialog:153
-#: ../dialogs/KevinGuard.dialog:161 ../dialogs/KevinGuard.dialog:188
+#: ../dialogs/KevinGuard.dialog:84
+#: ../dialogs/KevinGuard.dialog:92
+#: ../dialogs/KevinGuard.dialog:145
+#: ../dialogs/KevinGuard.dialog:153
+#: ../dialogs/KevinGuard.dialog:161
+#: ../dialogs/KevinGuard.dialog:188
 #: ../dialogs/KevinGuard.dialog:196
 msgid "ERROR: REASON INVALID."
 msgstr ""
@@ -3126,23 +3079,28 @@ msgstr ""
 msgid "YOU SHALL NOT PASS. ACTIVATING DISINTEGRATOR BEAM IN TEN SECONDS."
 msgstr ""
 
-#: ../dialogs/KevinGuard.dialog:109 ../dialogs/KevinGuard.dialog:179
+#: ../dialogs/KevinGuard.dialog:109
+#: ../dialogs/KevinGuard.dialog:179
 msgid "NINE."
 msgstr ""
 
-#: ../dialogs/KevinGuard.dialog:110 ../dialogs/KevinGuard.dialog:180
+#: ../dialogs/KevinGuard.dialog:110
+#: ../dialogs/KevinGuard.dialog:180
 msgid "EIGHT."
 msgstr ""
 
-#: ../dialogs/KevinGuard.dialog:117 ../dialogs/KevinGuard.dialog:135
+#: ../dialogs/KevinGuard.dialog:117
+#: ../dialogs/KevinGuard.dialog:135
 msgid "Wait, that's not what I meant!"
 msgstr ""
 
-#: ../dialogs/KevinGuard.dialog:118 ../dialogs/KevinGuard.dialog:127
+#: ../dialogs/KevinGuard.dialog:118
+#: ../dialogs/KevinGuard.dialog:127
 msgid "SEVEN."
 msgstr ""
 
-#: ../dialogs/KevinGuard.dialog:119 ../dialogs/KevinGuard.dialog:128
+#: ../dialogs/KevinGuard.dialog:119
+#: ../dialogs/KevinGuard.dialog:128
 msgid "SIX."
 msgstr ""
 
@@ -3206,9 +3164,8 @@ msgid "I WILL NOT LET YOU INJURE MY MASTER."
 msgstr ""
 
 #: ../dialogs/KevinGuard.dialog:212
-#, fuzzy
 msgid "See you later, tin can."
-msgstr "Vi ses senare."
+msgstr ""
 
 #: ../dialogs/KevinGuard.dialog:214
 msgid "EOT ACKNOWLEDGED. CONNECTION CLOSED."
@@ -3262,9 +3219,8 @@ msgid "Fascinating. Can I have a hundred please."
 msgstr ""
 
 #: ../dialogs/Tybalt.dialog:86
-#, fuzzy
 msgid "Erm... I don't have that much."
-msgstr " Jag har inga hemligheter."
+msgstr ""
 
 #: ../dialogs/Tybalt.dialog:87
 msgid "Well, too bad."
@@ -3491,7 +3447,8 @@ msgstr ""
 msgid "Yes. And now I would like to go to sleep. Good night Linarian."
 msgstr ""
 
-#: ../dialogs/Bruce.dialog:154 ../dialogs/Dixon.dialog:201
+#: ../dialogs/Bruce.dialog:154
+#: ../dialogs/Dixon.dialog:201
 msgid ". . ."
 msgstr ""
 
@@ -3500,9 +3457,8 @@ msgid "Good. I need sleep."
 msgstr ""
 
 #: ../dialogs/subdlg_kevin_reward1.dialog:33
-#, fuzzy
 msgid "I want to become a hacker."
-msgstr " Med andra ord: Du är en hackare."
+msgstr ""
 
 #: ../dialogs/subdlg_kevin_reward1.dialog:34
 msgid ""
@@ -3568,7 +3524,8 @@ msgstr ""
 msgid "Hey you!  Linarian!  What do you want here?"
 msgstr ""
 
-#: ../dialogs/Ernie.dialog:47 ../dialogs/Ernie.dialog:55
+#: ../dialogs/Ernie.dialog:47
+#: ../dialogs/Ernie.dialog:55
 msgid "Ok!  But don't make any trouble!  Or you'll be in trouble!"
 msgstr ""
 
@@ -3622,9 +3579,8 @@ msgid "Wha --"
 msgstr ""
 
 #: ../dialogs/Butch.dialog:75
-#, fuzzy
 msgid "And who are you?"
-msgstr " Vem är du?"
+msgstr ""
 
 #: ../dialogs/Butch.dialog:76
 msgid "Butch... The arena master."
@@ -3750,17 +3706,19 @@ msgid "I have a very good reason not to tell you."
 msgstr ""
 
 #: ../dialogs/Butch.dialog:159
-msgid "Not like someone as inexperienced like you could understand it anyway."
+msgid ""
+"Not like someone as inexperienced like you could understand it anyway."
 msgstr ""
 
 #: ../dialogs/Butch.dialog:165
 msgid "No way! Violence is wrong! Make love not war!"
 msgstr ""
 
-#: ../dialogs/Butch.dialog:166 ../dialogs/Butch.dialog:174
-#: ../dialogs/DocMoore.dialog:184 ../dialogs/DocMoore.dialog:192
+#: ../dialogs/Butch.dialog:166
+#: ../dialogs/Butch.dialog:174
+#: ../dialogs/DocMoore.dialog:184
+#: ../dialogs/DocMoore.dialog:192
 #: ../dialogs/Melfis.dialog:75
-#, fuzzy
 msgid " . . ."
 msgstr " . . ."
 
@@ -3777,9 +3735,8 @@ msgid "Hey, the bots bleed black. With oil."
 msgstr ""
 
 #: ../dialogs/Butch.dialog:189
-#, fuzzy
 msgid "But... But... "
-msgstr " Men...?"
+msgstr ""
 
 #: ../dialogs/Butch.dialog:190
 msgid "No 'but' about it, newbie."
@@ -3804,9 +3761,8 @@ msgid "Sure."
 msgstr ""
 
 #: ../dialogs/Sorenson.dialog:38
-#, fuzzy
 msgid "Um... Hello?"
-msgstr " Hej!"
+msgstr ""
 
 #: ../dialogs/Sorenson.dialog:39
 msgid "AH! A Visitor! Come in! Come in!"
@@ -3837,9 +3793,8 @@ msgid "Sees the light of all chips. Knows how to use every keyboard."
 msgstr ""
 
 #: ../dialogs/Sorenson.dialog:63
-#, fuzzy
 msgid "Erm..."
-msgstr " Umm... Jag --"
+msgstr ""
 
 #: ../dialogs/Sorenson.dialog:64
 msgid "Sees the bit. Knows the bytes. Explores the great networks."
@@ -4082,9 +4037,8 @@ msgid "I will be waiting here for your return."
 msgstr ""
 
 #: ../dialogs/subdlg_Duncan.dialog:68
-#, fuzzy
 msgid "What are those bots?"
-msgstr " Vilka är dina order?"
+msgstr ""
 
 #: ../dialogs/subdlg_Duncan.dialog:69
 msgid "We call them 'Sawmill'."
@@ -4113,9 +4067,8 @@ msgid "A cube. You can't miss it. Trust me."
 msgstr ""
 
 #: ../dialogs/subdlg_Duncan.dialog:85
-#, fuzzy
 msgid "That is all I need to know. I will find Koan."
-msgstr " Det är allt jag vill veta."
+msgstr ""
 
 #: ../dialogs/subdlg_Duncan.dialog:86
 msgid "Only time will tell."
@@ -4129,7 +4082,8 @@ msgstr ""
 msgid "That is fine. I will find someone else."
 msgstr ""
 
-#: ../dialogs/SACD.dialog:37 ../dialogs/MER.dialog:38
+#: ../dialogs/SACD.dialog:37
+#: ../dialogs/MER.dialog:38
 msgid "Login : admin  Password : *******"
 msgstr ""
 
@@ -4145,7 +4099,8 @@ msgstr ""
 msgid "Disabling guns..."
 msgstr ""
 
-#: ../dialogs/SACD.dialog:57 ../dialogs/SACD.dialog:70
+#: ../dialogs/SACD.dialog:57
+#: ../dialogs/SACD.dialog:70
 #: ../dialogs/SACD.dialog:83
 msgid "Connecting to peripheral controller..."
 msgstr ""
@@ -4207,24 +4162,26 @@ msgid ""
 msgstr ""
 
 #: ../dialogs/SADD.dialog:44
-#, fuzzy
 msgid "Who are you and what are you doing?"
-msgstr " Vem är du? Vad händer?"
+msgstr ""
 
 #: ../dialogs/SADD.dialog:45
 msgid " I am a SADD - Secret Area Defence Droid"
 msgstr ""
 
-#: ../dialogs/SADD.dialog:46 ../dialogs/SADD.dialog:138
+#: ../dialogs/SADD.dialog:46
+#: ../dialogs/SADD.dialog:138
 msgid " PRIMARY TARGET 1: do not let unauthorized people in."
 msgstr ""
 
-#: ../dialogs/SADD.dialog:47 ../dialogs/SADD.dialog:139
+#: ../dialogs/SADD.dialog:47
+#: ../dialogs/SADD.dialog:139
 #: ../dialogs/SADD.dialog:149
 msgid " PRIMARY TARGET 2: authorized personal must have access to the zone."
 msgstr ""
 
-#: ../dialogs/SADD.dialog:48 ../dialogs/SADD.dialog:65
+#: ../dialogs/SADD.dialog:48
+#: ../dialogs/SADD.dialog:65
 #: ../dialogs/SADD.dialog:140
 msgid " SECONDARY TARGET: prevent secret information leakage"
 msgstr ""
@@ -4256,9 +4213,8 @@ msgid " Go away. You are not allowed to be here!"
 msgstr ""
 
 #: ../dialogs/SADD.dialog:74
-#, fuzzy
 msgid "Why are you not hostile?"
-msgstr " Vad gör du här?"
+msgstr ""
 
 #: ../dialogs/SADD.dialog:75
 msgid " Hostile? What do you mean?"
@@ -4343,9 +4299,8 @@ msgid ""
 msgstr ""
 
 #: ../dialogs/SADD.dialog:137
-#, fuzzy
 msgid "What are your orders again?"
-msgstr " Vilka är dina order?"
+msgstr ""
 
 #: ../dialogs/SADD.dialog:141
 msgid " Why do you ask?"
@@ -4360,9 +4315,8 @@ msgid " Yes, it will be violated. But first order has higher priority."
 msgstr ""
 
 #: ../dialogs/SADD.dialog:157
-#, fuzzy
 msgid "So you can break your orders?"
-msgstr " Vilka är dina order?"
+msgstr ""
 
 #: ../dialogs/SADD.dialog:158
 msgid ""
@@ -4400,7 +4354,8 @@ msgstr ""
 msgid " OK, I'm almost a computer."
 msgstr ""
 
-#: ../dialogs/SADD.dialog:190 ../dialogs/SADD.dialog:199
+#: ../dialogs/SADD.dialog:190
+#: ../dialogs/SADD.dialog:199
 msgid "Almost a computer? What does this mean?"
 msgstr ""
 
@@ -4473,9 +4428,8 @@ msgid ""
 msgstr ""
 
 #: ../dialogs/SADD.dialog:300
-#, fuzzy
 msgid "You call this a super exterminator?"
-msgstr " Jag är nyfiken på utrotaren."
+msgstr ""
 
 #: ../dialogs/SADD.dialog:301
 msgid " I do. Now please leave this place before I terminate you."
@@ -4527,7 +4481,8 @@ msgstr ""
 msgid " Too late. I'm watching this great show now."
 msgstr ""
 
-#: ../dialogs/SADD.dialog:346 ../dialogs/SADD.dialog:347
+#: ../dialogs/SADD.dialog:346
+#: ../dialogs/SADD.dialog:347
 msgid " It is called..."
 msgstr ""
 
@@ -4552,9 +4507,8 @@ msgid " ...for your death!"
 msgstr ""
 
 #: ../dialogs/SADD.dialog:363
-#, fuzzy
 msgid "Erm... hi!"
-msgstr " Umm... Jag --"
+msgstr ""
 
 #: ../dialogs/SADD.dialog:364
 msgid " Hi. Thanks for the help."
@@ -4617,7 +4571,8 @@ msgid ""
 msgstr ""
 
 #: ../dialogs/Skippy.dialog:40
-msgid "And as a special favour I'll sell you a mapping device for half price!"
+msgid ""
+"And as a special favour I'll sell you a mapping device for half price!"
 msgstr ""
 
 #: ../dialogs/Skippy.dialog:41
@@ -4688,7 +4643,8 @@ msgid ""
 msgstr ""
 
 #: ../dialogs/Skippy.dialog:78
-msgid "This is a perfectly safe and tried technology. No risk at all! Really!"
+msgid ""
+"This is a perfectly safe and tried technology. No risk at all! Really!"
 msgstr ""
 
 #: ../dialogs/Skippy.dialog:79
@@ -4702,9 +4658,8 @@ msgid "Trust me! I'm your best friend and I wouldn't lie to you! Never!"
 msgstr ""
 
 #: ../dialogs/Skippy.dialog:87
-#, fuzzy
 msgid "I don't trust you."
-msgstr " Jag förstår dig verkligen inte."
+msgstr ""
 
 #: ../dialogs/Skippy.dialog:88
 msgid "WHAT? But I'm your best friend! You must trust me!"
@@ -4725,9 +4680,8 @@ msgid "I'm no longer your best friend. Go away, you dirty hoser!"
 msgstr ""
 
 #: ../dialogs/Skippy.dialog:105
-#, fuzzy
 msgid "Why are you so friendly?"
-msgstr " Vad gör du här?"
+msgstr ""
 
 #: ../dialogs/Skippy.dialog:106
 msgid "Because you are my best friend!"
@@ -4800,9 +4754,8 @@ msgid ""
 msgstr ""
 
 #: ../dialogs/Lukas.dialog:62
-#, fuzzy
 msgid "See you later! "
-msgstr "Ses senare!"
+msgstr ""
 
 #: ../dialogs/Dixon.dialog:39
 msgid ""
@@ -5075,7 +5028,8 @@ msgstr ""
 msgid "They have fortified the tunnels and they do not let anyone in."
 msgstr ""
 
-#: ../dialogs/Dixon.dialog:152 ../dialogs/Dixon.dialog:212
+#: ../dialogs/Dixon.dialog:152
+#: ../dialogs/Dixon.dialog:212
 msgid "How did it happen that the bots took your tools away?"
 msgstr ""
 
@@ -5346,7 +5300,8 @@ msgstr ""
 msgid "Two fifty."
 msgstr ""
 
-#: ../dialogs/Dixon.dialog:292 ../dialogs/Dixon.dialog:306
+#: ../dialogs/Dixon.dialog:292
+#: ../dialogs/Dixon.dialog:306
 #: ../dialogs/Dixon.dialog:319
 msgid "Deal. Here is your toolkit. Now cough up the money. Fast."
 msgstr ""
@@ -5415,8 +5370,10 @@ msgstr ""
 msgid "Without them this city is doomed."
 msgstr ""
 
-#: ../dialogs/Dixon.dialog:352 ../dialogs/Dixon.dialog:363
-#: ../dialogs/Dixon.dialog:371 ../dialogs/Dixon.dialog:382
+#: ../dialogs/Dixon.dialog:352
+#: ../dialogs/Dixon.dialog:363
+#: ../dialogs/Dixon.dialog:371
+#: ../dialogs/Dixon.dialog:382
 msgid "Is everything all right?"
 msgstr ""
 
@@ -5515,7 +5472,8 @@ msgid "Nope. Some things you just have to see with your own eyes."
 msgstr ""
 
 #: ../dialogs/Dixon.dialog:407
-msgid "The Library of Alexandria, the Colossus of Rhodes, the Black Island..."
+msgid ""
+"The Library of Alexandria, the Colossus of Rhodes, the Black Island..."
 msgstr ""
 
 #: ../dialogs/Dixon.dialog:408
@@ -5563,9 +5521,8 @@ msgid "You have done me wrong and I have no desire to talk to you."
 msgstr ""
 
 #: ../dialogs/Dixon.dialog:466
-#, fuzzy
 msgid "I must go now."
-msgstr " Jag måste gå nu."
+msgstr ""
 
 #: ../dialogs/MER.dialog:39
 msgid ""
@@ -5588,15 +5545,18 @@ msgstr ""
 msgid " Password successfully changed."
 msgstr ""
 
-#: ../dialogs/MER.dialog:76 ../dialogs/MER.dialog:84
+#: ../dialogs/MER.dialog:76
+#: ../dialogs/MER.dialog:84
 msgid "shieldmgr --disable --force"
 msgstr ""
 
-#: ../dialogs/MER.dialog:77 ../dialogs/MER.dialog:85
+#: ../dialogs/MER.dialog:77
+#: ../dialogs/MER.dialog:85
 msgid " Disabling disruptor shield... "
 msgstr ""
 
-#: ../dialogs/MER.dialog:78 ../dialogs/MER.dialog:86
+#: ../dialogs/MER.dialog:78
+#: ../dialogs/MER.dialog:86
 msgid " Shield disabled."
 msgstr ""
 
@@ -5680,7 +5640,8 @@ msgid "How about... Plasma transistors? Trivial."
 msgstr ""
 
 #: ../dialogs/subdlg_Darwin.dialog:89
-msgid "Remove the bot's engine and look around somewhere close to the battery."
+msgid ""
+"Remove the bot's engine and look around somewhere close to the battery."
 msgstr ""
 
 #: ../dialogs/subdlg_Darwin.dialog:90
@@ -5764,7 +5725,8 @@ msgid ""
 "Nein, I told you everything I know about that. No use asking me twice, ja?"
 msgstr ""
 
-#: ../dialogs/subdlg_Darwin.dialog:157 ../dialogs/subdlg_Darwin.dialog:167
+#: ../dialogs/subdlg_Darwin.dialog:157
+#: ../dialogs/subdlg_Darwin.dialog:167
 msgid "Hmmm..."
 msgstr ""
 
@@ -5793,9 +5755,8 @@ msgid "Welcome. I am Chandra, the local sage in this old town."
 msgstr ""
 
 #: ../dialogs/Chandra.dialog:48
-#, fuzzy
 msgid "What can you tell me about this place?"
-msgstr " Vad kan du berätta om 614 modellen? "
+msgstr ""
 
 #: ../dialogs/Chandra.dialog:49
 msgid ""
@@ -5811,9 +5772,8 @@ msgid ""
 msgstr ""
 
 #: ../dialogs/Chandra.dialog:57
-#, fuzzy
 msgid "Where can I get better equipment?"
-msgstr " Var kan jag få tag på hjälp?"
+msgstr ""
 
 #: ../dialogs/Chandra.dialog:58
 msgid ""
@@ -6074,9 +6034,8 @@ msgid ""
 msgstr ""
 
 #: ../dialogs/Chandra.dialog:170
-#, fuzzy
 msgid "What other bots are out there?"
-msgstr " Vad gör du här?"
+msgstr ""
 
 #: ../dialogs/Chandra.dialog:171
 msgid "Well, I have no idea. I have heard only rumors."
@@ -6223,9 +6182,8 @@ msgid ""
 msgstr ""
 
 #: ../dialogs/StandardOldTownGateGuard.dialog:58
-#, fuzzy
 msgid "I'll be going, then."
-msgstr " Då går jag då."
+msgstr ""
 
 #: ../dialogs/StandardOldTownGateGuard.dialog:59
 msgid "Goodbye."
@@ -6303,7 +6261,8 @@ msgstr ""
 msgid "No, Peter ate them all. That killed him."
 msgstr ""
 
-#: ../dialogs/Tania.dialog:94 ../dialogs/Tania.dialog:112
+#: ../dialogs/Tania.dialog:94
+#: ../dialogs/Tania.dialog:112
 msgid "*cries*"
 msgstr ""
 
@@ -6569,7 +6528,6 @@ msgid "Take care, Linarian."
 msgstr ""
 
 #: ../dialogs/DocMoore.dialog:39
-#, fuzzy
 msgid "Hello. I'm Doc Moore. I'm the medic of this town."
 msgstr "Hej. Jag är doktor Moore. Jag är läkaren här i staden."
 
@@ -6578,7 +6536,6 @@ msgid "Do you also trade in medical equipment?"
 msgstr ""
 
 #: ../dialogs/DocMoore.dialog:47
-#, fuzzy
 msgid "Sure. Here is what I can offer today."
 msgstr "Visst. Här är vad jag har att erbjuda idag."
 
@@ -6587,9 +6544,8 @@ msgid "Doc, I took some of those brain enlargement pills..."
 msgstr ""
 
 #: ../dialogs/DocMoore.dialog:60
-#, fuzzy
 msgid "What can you tell me about strength pills?"
-msgstr " Vad kan du berätta om 614 modellen? "
+msgstr ""
 
 #: ../dialogs/DocMoore.dialog:61
 msgid ""
@@ -6627,7 +6583,8 @@ msgid ""
 "and as far as we can tell, there aren't any side effects!"
 msgstr ""
 
-#: ../dialogs/DocMoore.dialog:72 ../dialogs/DocMoore.dialog:87
+#: ../dialogs/DocMoore.dialog:72
+#: ../dialogs/DocMoore.dialog:87
 msgid "THIS WILL NEVER BE VISIBLE"
 msgstr "DET HÄR SKA ALDRIG ATT VARA SYNLIGT"
 
@@ -6652,7 +6609,6 @@ msgid ""
 msgstr ""
 
 #: ../dialogs/DocMoore.dialog:78
-#, fuzzy
 msgid ""
 "Should you take that junk again, I won't feel responsible for what happens "
 "to you any more."
@@ -6675,23 +6631,27 @@ msgid ""
 "As far as I am concerned, in this town everyone gets everything equally."
 msgstr ""
 
-#: ../dialogs/DocMoore.dialog:110 ../dialogs/DocMoore.dialog:131
+#: ../dialogs/DocMoore.dialog:110
+#: ../dialogs/DocMoore.dialog:131
 msgid "Can you fix me up?"
 msgstr ""
 
-#: ../dialogs/DocMoore.dialog:111 ../dialogs/DocMoore.dialog:132
+#: ../dialogs/DocMoore.dialog:111
+#: ../dialogs/DocMoore.dialog:132
 msgid ""
 "Sure, as the only doctor of this slowly growing community, I'm responsible "
 "for everyone's health."
 msgstr ""
 
-#: ../dialogs/DocMoore.dialog:112 ../dialogs/DocMoore.dialog:133
+#: ../dialogs/DocMoore.dialog:112
+#: ../dialogs/DocMoore.dialog:133
 msgid ""
 "However, self-inflicted damage might be exempted from this rule in some "
 "cases..."
 msgstr ""
 
-#: ../dialogs/DocMoore.dialog:113 ../dialogs/DocMoore.dialog:134
+#: ../dialogs/DocMoore.dialog:113
+#: ../dialogs/DocMoore.dialog:134
 msgid "There, it's done. You're completely fixed. You can go now."
 msgstr ""
 
@@ -6734,7 +6694,6 @@ msgid "My patience is running out. Give me the antidote. Now."
 msgstr ""
 
 #: ../dialogs/DocMoore.dialog:151
-#, fuzzy
 msgid "No! Over my dead body."
 msgstr "Nej! Över min döda kropp."
 
@@ -6743,7 +6702,6 @@ msgid "Your wish is my command."
 msgstr ""
 
 #: ../dialogs/DocMoore.dialog:159
-#, fuzzy
 msgid "Huh? What?"
 msgstr "Huh? Vaa?"
 
@@ -6754,7 +6712,6 @@ msgid ""
 msgstr ""
 
 #: ../dialogs/DocMoore.dialog:167
-#, fuzzy
 msgid "Don't do this. Don't do this."
 msgstr "Gör inte det här. Gör inte det här."
 
@@ -6763,12 +6720,10 @@ msgid "Prepare Doc. The experiment begins."
 msgstr ""
 
 #: ../dialogs/DocMoore.dialog:175
-#, fuzzy
 msgid "Don't do this! DON'T DO THIS!"
 msgstr "Gör inte det här! GÖR INTE DET HÄR!"
 
 #: ../dialogs/DocMoore.dialog:176
-#, fuzzy
 msgid "AAAAAAAAAAAA!"
 msgstr "AAAAAAAAAAAA!"
 
@@ -6787,7 +6742,6 @@ msgid "Good. I am very glad not to hear a disapproval."
 msgstr ""
 
 #: ../dialogs/DocMoore.dialog:200
-#, fuzzy
 msgid " . . . "
 msgstr " . . . "
 
@@ -7159,12 +7113,12 @@ msgid "N00oo00oo0! T1m3 to d1e, m0rta1 foo1!"
 msgstr ""
 
 #: ../dialogs/Duncan.dialog:38
-#, fuzzy
 msgid "Hi... Erm... Who are you?"
-msgstr " Vem är du?"
+msgstr ""
 
 #: ../dialogs/Duncan.dialog:39
-msgid "Duncan McNamara, The Red Guard's resident bomb maker, at your service."
+msgid ""
+"Duncan McNamara, The Red Guard's resident bomb maker, at your service."
 msgstr ""
 
 #: ../dialogs/Duncan.dialog:46
@@ -7263,7 +7217,8 @@ msgid "Twenty years ago there was a conflict."
 msgstr ""
 
 #: ../dialogs/Duncan.dialog:100
-msgid "A grenade I threw destroyed a being which killed many of... my people."
+msgid ""
+"A grenade I threw destroyed a being which killed many of... my people."
 msgstr ""
 
 #: ../dialogs/Duncan.dialog:101
@@ -7283,9 +7238,8 @@ msgid "I know someone who needs to be taught a lesson."
 msgstr ""
 
 #: ../dialogs/Duncan.dialog:144
-#, fuzzy
 msgid "I feel you are... Different."
-msgstr " Jag känner att du är... Annorlunda."
+msgstr ""
 
 #: ../dialogs/Duncan.dialog:145
 msgid "What a great way to start a conversation."
@@ -7300,9 +7254,8 @@ msgid "But then again, neither are you, so my thoughts are we are even."
 msgstr ""
 
 #: ../dialogs/Duncan.dialog:154
-#, fuzzy
 msgid "What do you mean? I am Tux and not anyone else."
-msgstr " Vad menar du? Jag är Tux och inte någon annan."
+msgstr ""
 
 #: ../dialogs/Duncan.dialog:155
 msgid "And I am Duncan McNamara, the maker of grenades and nothing else."
@@ -7313,9 +7266,8 @@ msgid "I believe the topic is thoroughly exhausted now."
 msgstr ""
 
 #: ../dialogs/Duncan.dialog:163
-#, fuzzy
 msgid "Tell me who you are. I need to know."
-msgstr " Berätta vem du är. Jag måste få veta."
+msgstr ""
 
 #: ../dialogs/Duncan.dialog:164
 msgid "Twenty years ago, the people were kinder to each other."
@@ -7332,15 +7284,15 @@ msgid "That way I get to keep my secret, and you get to keep yours."
 msgstr "På det sättet får jag behålla min hemlighet, och du får behålla din."
 
 #: ../dialogs/Duncan.dialog:173
-#, fuzzy
 msgid "I don't have any secrets."
-msgstr " Jag har inga hemligheter."
+msgstr ""
 
 #: ../dialogs/Duncan.dialog:174
 msgid "And neither do I."
 msgstr "Inte jag heller."
 
-#: ../dialogs/Duncan.dialog:181 ../dialogs/Duncan.dialog:197
+#: ../dialogs/Duncan.dialog:181
+#: ../dialogs/Duncan.dialog:197
 msgid "I wish you cold winds."
 msgstr ""
 
@@ -7362,13 +7314,10 @@ msgid "May the ice bring you wisdom."
 msgstr ""
 
 #: ../dialogs/Kevin.dialog:47
-#, fuzzy
 msgid ""
 "Hello... Oh dear... You look awful... Who did this to you? Did they torture "
 "you?"
 msgstr ""
-" Hej... Kära nån... Du ser hemsk ut... Vem gjorde det här mot dig? Torterade "
-"de dig?"
 
 #: ../dialogs/Kevin.dialog:48
 msgid "Hi. I haven't slept for a few weeks, so I'm just a little bit tired."
@@ -7403,9 +7352,8 @@ msgid ""
 msgstr ""
 
 #: ../dialogs/Kevin.dialog:61
-#, fuzzy
 msgid "What can you teach me about hacking?"
-msgstr " Vad kan du lära mig om hacking?"
+msgstr ""
 
 #: ../dialogs/Kevin.dialog:64
 msgid ""
@@ -7577,18 +7525,16 @@ msgid ""
 msgstr ""
 
 #: ../dialogs/Kevin.dialog:156
-#, fuzzy
 msgid "In other words: You are a hacker."
-msgstr " Med andra ord: Du är en hackare."
+msgstr ""
 
 #: ../dialogs/Kevin.dialog:157
 msgid "Eh... I guess you could put it that way, yes."
 msgstr "Eh... Jag antar att man kan se det på det sättet, ja."
 
 #: ../dialogs/Kevin.dialog:161
-#, fuzzy
 msgid "Jasmine just blew up."
-msgstr " Jasmine sprängdes just."
+msgstr ""
 
 #: ../dialogs/Kevin.dialog:162
 msgid "Oh. Right."
@@ -7611,7 +7557,8 @@ msgid "Why? I have backups from last Friday. No reason to worry at all."
 msgstr ""
 
 #: ../dialogs/Kevin.dialog:174
-msgid "It will be a while till I get her together again, but she will be fine."
+msgid ""
+"It will be a while till I get her together again, but she will be fine."
 msgstr ""
 "Det kommer att ta ett litet tag för mig att få ihop henne igen, men hon "
 "kommer att klara sig."
@@ -7648,9 +7595,8 @@ msgid "Now I see your hacking skill has already improved a lot."
 msgstr ""
 
 #: ../dialogs/Kevin.dialog:204
-#, fuzzy
 msgid "I'll be off then."
-msgstr " Då går jag då."
+msgstr ""
 
 #: ../dialogs/Kevin.dialog:205
 msgid ""
@@ -7664,9 +7610,8 @@ msgstr ""
 "Utmärkt. Gå nu tillbaka dit du kom ifrån. Det här är ingen plats för dig."
 
 #: ../dialogs/StandardMSFacilityGateGuard.dialog:46
-#, fuzzy
 msgid "What's the matter with this gate?"
-msgstr " Vad är det med den här porten?"
+msgstr ""
 
 #: ../dialogs/StandardMSFacilityGateGuard.dialog:47
 msgid "This is a gate to an automated bot factory we call the Hell Fortress."
@@ -7684,13 +7629,13 @@ msgid "Get out of here. They might attack at any moment!"
 msgstr "Försvinn härifrån. De kan attackera när som helst!"
 
 #: ../dialogs/StandardMSFacilityGateGuard.dialog:56
-#, fuzzy
 msgid "What if I just walk in there? Will you try to stop me?"
-msgstr " Vad händer om jag bara går in där? Kommer du att försöka stoppa mig?"
+msgstr ""
 
 #: ../dialogs/StandardMSFacilityGateGuard.dialog:57
 msgid "Of course not. Murdering you would be a complete waste of time."
-msgstr "Självklart inte. Att mörda dig skulle vara ett totalt slöseri med tid."
+msgstr ""
+"Självklart inte. Att mörda dig skulle vara ett totalt slöseri med tid."
 
 #: ../dialogs/StandardMSFacilityGateGuard.dialog:58
 msgid "The bots and disruptor shield will take care of that for me."
@@ -7701,13 +7646,13 @@ msgid "Just remember to give me your valuables before you commit suicide."
 msgstr "Kom bara ihåg att ge mig dina värdesaker innan du begår självmord."
 
 #: ../dialogs/StandardMSFacilityGateGuard.dialog:60
-msgid "You won't need any money once you're damn dead, and I could use it, eh?"
+msgid ""
+"You won't need any money once you're damn dead, and I could use it, eh?"
 msgstr ""
 
 #: ../dialogs/StandardMSFacilityGateGuard.dialog:67
-#, fuzzy
 msgid "Thanks for the advice."
-msgstr " Tack för rådet."
+msgstr ""
 
 #: ../dialogs/StandardMSFacilityGateGuard.dialog:68
 msgid "You're dead if you don't take it."
@@ -7722,18 +7667,17 @@ msgid "Don't come back."
 msgstr "Kom inte tillbaka."
 
 #: ../dialogs/Melfis.dialog:38
-#, fuzzy
 msgid "Hello. Any idea where I can get some help here?"
-msgstr " Hej. Vet du var jag kan få tag på hjälp här?"
+msgstr ""
 
-#: ../dialogs/Melfis.dialog:39 ../dialogs/Melfis.dialog:67
+#: ../dialogs/Melfis.dialog:39
+#: ../dialogs/Melfis.dialog:67
 msgid "Verschwinde."
 msgstr "Verschwinde."
 
 #: ../dialogs/Melfis.dialog:46
-#, fuzzy
 msgid "Erm... What do you mean?"
-msgstr " Hrm... Vad menar du?"
+msgstr ""
 
 #: ../dialogs/Melfis.dialog:47
 msgid "Ich bin der Geist, der stets verneint."
@@ -7748,9 +7692,8 @@ msgid "ist wert, dass es zugrunde geht."
 msgstr "ist wert, dass es zugrunde geht."
 
 #: ../dialogs/Melfis.dialog:56
-#, fuzzy
 msgid "I really do not understand you."
-msgstr " Jag förstår dig verkligen inte."
+msgstr ""
 
 #: ../dialogs/Melfis.dialog:57
 msgid "Wer sie nicht kennte, die Elemente,"
@@ -7765,24 +7708,23 @@ msgid "waere kein Meister ueber die Geister."
 msgstr "waere kein Meister ueber die Geister."
 
 #: ../dialogs/Melfis.dialog:66
-#, fuzzy
 msgid "I wish I knew what you are talking about."
-msgstr " Jag önskar att jag visste vad du talar om."
+msgstr ""
 
 #: ../dialogs/Melfis.dialog:74
-#, fuzzy
 msgid "I need to go now."
-msgstr " Jag måste gå nu."
+msgstr ""
 
-#: ../dialogs/Template.dialog:39 ../dialogs/Template.dialog:40
-#: ../dialogs/Template.dialog:46 ../dialogs/Template.dialog:47
+#: ../dialogs/Template.dialog:39
+#: ../dialogs/Template.dialog:40
+#: ../dialogs/Template.dialog:46
+#: ../dialogs/Template.dialog:47
 msgid "<?>"
 msgstr "<?>"
 
 #: ../dialogs/subdlg_Pendragon.dialog:44
-#, fuzzy
 msgid "Teach me the basic stuff."
-msgstr " Lär mig grunderna."
+msgstr ""
 
 #: ../dialogs/subdlg_Pendragon.dialog:45
 msgid "Are you sure?"
@@ -7804,7 +7746,8 @@ msgid ""
 msgstr ""
 
 #: ../dialogs/subdlg_Pendragon.dialog:74
-msgid "You don't have enough bucks on you! Come back when you have the money."
+msgid ""
+"You don't have enough bucks on you! Come back when you have the money."
 msgstr ""
 
 #: ../dialogs/subdlg_Pendragon.dialog:80
@@ -7831,9 +7774,8 @@ msgid "HA!"
 msgstr "HA!"
 
 #: ../dialogs/subdlg_Pendragon.dialog:98
-#, fuzzy
 msgid "Teach me how to smash concrete blocks with my bare hands."
-msgstr " Lär mig att krossa betongblock med mina bara händer."
+msgstr ""
 
 #: ../dialogs/subdlg_Pendragon.dialog:99
 msgid "Oh, Linarian, you amuse me so."
@@ -7852,22 +7794,18 @@ msgstr ""
 "att kunna lära dig några avancerade trick."
 
 #: ../dialogs/subdlg_Pendragon.dialog:108
-#, fuzzy
 msgid "Teach me Ninjitsu."
-msgstr " Lär mig Ninjitsu."
+msgstr ""
 
 #: ../dialogs/subdlg_Pendragon.dialog:109
 msgid "Go away."
 msgstr "Försvinn."
 
 #: ../dialogs/subdlg_Pendragon.dialog:116
-#, fuzzy
 msgid ""
 "I want to know the Crazy Double-Fang Wolf-Sunlight I-Like-Tea Death Touch of "
 "Major Destruction Flesh-Bursting Attack!"
 msgstr ""
-" Jag vill lära mig den Galna Dubbel-bitande Varg-Solljus Jag-gillar-te "
-"Dödsberöringen av Massiv Förstörelse Kött-Sprängande Attacken!"
 
 #: ../dialogs/subdlg_Pendragon.dialog:117
 msgid "Wow."
@@ -7888,9 +7826,8 @@ msgid "This is starting to make me angry. Shut up and go away."
 msgstr "Det här börjar göra mig arg. Håll tyst och försvinn."
 
 #: ../dialogs/subdlg_Pendragon.dialog:133
-#, fuzzy
 msgid "Teach me how to flip out and kill people!"
-msgstr " Lär mig att flippa och döda människor!"
+msgstr ""
 
 #: ../dialogs/subdlg_Pendragon.dialog:134
 msgid "*sigh*"
@@ -7911,18 +7848,16 @@ msgid "DIEEEE!"
 msgstr "DÖÖÖÖ!"
 
 #: ../dialogs/subdlg_Pendragon.dialog:144
-#, fuzzy
 msgid "Ouch! What the hell are you doing?"
-msgstr " Aj! Vad i helvete håller du på med?"
+msgstr ""
 
 #: ../dialogs/subdlg_Pendragon.dialog:145
 msgid "Lesson number one. Never trust the opponent."
 msgstr "Lektion nummer ett. Lita aldrig på din motståndare."
 
 #: ../dialogs/subdlg_Pendragon.dialog:151
-#, fuzzy
 msgid "Just let me get up an -- ouch! Stop it."
-msgstr " Låt mig bara resa mig och -- aj! Sluta."
+msgstr ""
 
 #: ../dialogs/subdlg_Pendragon.dialog:152
 msgid "Lesson number two. The bots have no mercy."
@@ -7937,9 +7872,8 @@ msgid "Now, lesson number -- ugh! That hurt!"
 msgstr "Nu, lektion nummer -- urk! Det gjorde ont!"
 
 #: ../dialogs/subdlg_Pendragon.dialog:160
-#, fuzzy
 msgid "Lesson number three. Never underestimate the enemy."
-msgstr " Lektion nummer tre. Underskatta aldrig din fiende."
+msgstr ""
 
 #: ../dialogs/subdlg_Pendragon.dialog:161
 msgid "Ugh. Yes. You are correct."
@@ -7962,9 +7896,8 @@ msgid "This is enough training for today."
 msgstr "Det här är nog med träning för idag."
 
 #: ../dialogs/subdlg_Pendragon.dialog:172
-#, fuzzy
 msgid "Enough for now."
-msgstr " Nog för tillfället."
+msgstr ""
 
 #: ../dialogs/subdlg_Pendragon.dialog:173
 msgid "Fine."
@@ -8020,34 +7953,3 @@ msgstr ""
 #: ../dialogs/FirmwareUpdateServer.dialog:82
 msgid "Logout"
 msgstr ""
-
-#~ msgid "Still interested? "
-#~ msgstr "Fortfarande intresserad? "
-
-#~ msgid "Good work."
-#~ msgstr "Bra gjort."
-
-#~ msgid "Very easy to get killed. Very easy."
-#~ msgstr "Väldigt lätt att bli dödad. Väldigt lätt."
-
-#~ msgid " See you later."
-#~ msgstr " Ses senare."
-
-#~ msgid " Where am I?"
-#~ msgstr " Var är jag?"
-
-#~ msgid " Huh?"
-#~ msgstr " Va?"
-
-#, fuzzy
-#~ msgid "DO NOTHING"
-#~ msgstr "GÖR INGENTING"
-
-#~ msgid "JASMINE_BLEW_UP"
-#~ msgstr "JASMINE_SPRÄNGDES"
-
-#~ msgid "NOT TALKED ABOUT JASMINE"
-#~ msgstr "HAR INTE TALAT OM JASMINE"
-
-#~ msgid "YES, TALKED BEFORE"
-#~ msgstr "JA, TALAT FÖRUT"
