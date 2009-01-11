@@ -12,14 +12,14 @@ msgstr ""
 "Project-Id-Version: freedroidrpg\n"
 "Report-Msgid-Bugs-To: freedroid-discussion@lists.sourceforge.net\n"
 "POT-Creation-Date: 2009-01-11 17:28+0100\n"
-"PO-Revision-Date: 2009-01-11 17:23+0000\n"
-"Last-Translator: ronny <Unknown>\n"
+"PO-Revision-Date: 2008-10-04 00:24+0200\n"
+"Last-Translator: Ronny Standtke <Ronny.Standtke@gmx.net>\n"
 "Language-Team: Deutsch\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-01-11 17:40+0000\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Launchpad-Export-Date: 2008-09-14 12:32+0000\n"
+"X-Generator: KBabel 1.11.4\n"
 
 #: ../src/automap.c:78
 msgid "Automap ON."
@@ -93,8 +93,7 @@ msgstr ""
 
 #: ../src/blocks.c:1700 ../src/blocks.c:1702
 msgid "Catch the groove! A fantastic wall with a small window"
-msgstr ""
-"Jetzt gib dir das! Fantastisch, diese Wand mit einem kleinen Fenster."
+msgstr "Jetzt gib dir das! Fantastisch, diese Wand mit einem kleinen Fenster."
 
 #: ../src/blocks.c:1737
 msgid "Door"
@@ -441,8 +440,7 @@ msgstr "Bett"
 #: ../src/blocks.c:2602 ../src/blocks.c:2609 ../src/blocks.c:2616
 #: ../src/blocks.c:2623
 msgid "One of those old fashioned beds. You've seen more inviting ones."
-msgstr ""
-"Eines dieser altmodischen Betten. Du hast schon Einladenderes gesehen."
+msgstr "Eines dieser altmodischen Betten. Du hast schon Einladenderes gesehen."
 
 #: ../src/blocks.c:2630 ../src/blocks.c:2637 ../src/blocks.c:2644
 #: ../src/blocks.c:2651
@@ -631,8 +629,7 @@ msgstr "Ziegelmauer mit verlegten Kabeln"
 
 #: ../src/blocks.c:3125
 msgid "A badly constructed brick wall. This one has wires installed to it."
-msgstr ""
-"Eine schlechtgemauerte Ziegelwand. An dieser hier sind Kabel verlegt."
+msgstr "Eine schlechtgemauerte Ziegelwand. An dieser hier sind Kabel verlegt."
 
 #: ../src/blocks.c:3159 ../src/blocks.c:3229 ../src/blocks.c:3237
 msgid "Brick wall"
@@ -664,7 +661,7 @@ msgstr "Tja... war nicht sehr widerstandsfähig. "
 
 #: ../src/blocks.c:3230 ../src/blocks.c:3238
 msgid "Hmm... something's odd about this wall "
-msgstr "Hmm... etwas ist seltsam an dieser Wand. "
+msgstr "Hmm... etwas ist seltsam an dieser Wand."
 
 #: ../src/blocks.c:3282
 msgid "Blood"
@@ -752,8 +749,7 @@ msgstr "Ladentheke"
 msgid ""
 "This model of the counter features a built-in cash register and bright neon "
 "lights."
-msgstr ""
-"Dieses Thekenmodell hat eine eingebaute Kasse und grelle Neonlichter."
+msgstr "Dieses Thekenmodell hat eine eingebaute Kasse und grelle Neonlichter."
 
 #: ../src/blocks.c:3525 ../src/blocks.c:3530
 msgid "Set of shelves"
@@ -1034,8 +1030,7 @@ msgstr ""
 
 #: ../src/blocks.c:4053 ../src/blocks.c:4058
 msgid "Dust to trees. Trees to pages. Pages to books. Books to dust."
-msgstr ""
-"Staub zu Bäumen. Bäume zu Seiten. Seiten zu Büchern. Bücher zu Staub."
+msgstr "Staub zu Bäumen. Bäume zu Seiten. Seiten zu Büchern. Bücher zu Staub."
 
 #: ../src/blocks.c:4065 ../src/blocks.c:4079
 msgid "Sign"
@@ -1055,8 +1050,7 @@ msgstr "Ein Warnschild! Aber wo ist hier irgendeine Gefahr?"
 
 #: ../src/blocks.c:4080
 msgid "The arrow points at a direction. Maybe you should follow it"
-msgstr ""
-"Der Pfeil zeigt in eine Richtung - vielleicht sollte man ihm folgen..."
+msgstr "Der Pfeil zeigt in eine Richtung - vielleicht sollte man ihm folgen..."
 
 #: ../src/blocks.c:4085 ../src/blocks.c:4094 ../src/blocks.c:4101
 #: ../src/blocks.c:4108 ../src/blocks.c:4116 ../src/blocks.c:4123
@@ -1115,8 +1109,7 @@ msgstr "Wasser"
 
 #: ../src/blocks.c:4219
 msgid "This water seems dangerous. You'll want to avoid going there. "
-msgstr ""
-"Das Wasser sieht gefährlich aus... du wirst es sicher meiden wollen. "
+msgstr "Das Wasser sieht gefährlich aus... du wirst es sicher meiden wollen. "
 
 #: ../src/blocks.c:4227 ../src/blocks.c:4236
 msgid "Restaurant & bar multipurpose counter (tm)"
@@ -1655,9 +1648,9 @@ msgid "This is a %s. %s"
 msgstr "%s. %s"
 
 #: ../src/influ.c:3444
-#, c-format
+#, fuzzy, c-format
 msgid "Examining %s. %s"
-msgstr ""
+msgstr "Untersuche %s.  %s"
 
 #: ../src/influ.c:3456
 #, c-format
@@ -1689,11 +1682,16 @@ msgstr ""
 "daran besteht kein Zweifel."
 
 #: ../src/init.c:135
+#, fuzzy
 msgid ""
 "He is either a college student, a drug addict or a hacker. You bet he did "
 "not have a warm meal for days, he looks totally malnourished. His body keeps "
 "twitching. Must be the caffeine. You hope."
 msgstr ""
+"Er ist entweder ein Student, ein Drogensüchtiger oder ein Hacker. Wetten, "
+"dass er seit Tagen keine warme Mahlzeit hatte? Er sieht völlig unterernährt "
+"aus und sein Körper zuckt unaufhörlich. Muss am Koffein liegen - "
+"hoffentlich...!"
 
 #: ../src/init.c:137
 msgid "Don't do steroids or you will be just like him."
@@ -1778,6 +1776,7 @@ msgstr ""
 "wie ein 614er Robot. IST wohl ein 614er Sicherheitsroboter."
 
 #: ../src/init.c:157
+#, fuzzy
 msgid ""
 "He must be the resident scientist. The only thing keeping his body alive is "
 "the massive coffee overdose that he takes early in the morning every day. "
@@ -1785,6 +1784,12 @@ msgid ""
 "kill ten humans, but since computer scientists are a different species, he "
 "is unharmed."
 msgstr ""
+"Er muss einer der hiesigen Forscher sein. Das einzige, das seinen Körper am "
+"Leben erhält, ist die massive Kaffee-Überdosis, die er sich jeden Morgen "
+"verabreicht. Die Menge an Koffein, die sich momentan in seinem Blutkreislauf "
+"befindet, dürfte ausreichen, um 10 Menschen zu töten. Aber da Computer-"
+"Wissenschaftler ja einer anderen Gattung angehören, übersteht er es "
+"unbeschadet..."
 
 #: ../src/init.c:159
 msgid ""
@@ -1865,10 +1870,14 @@ msgstr ""
 "sterben... HA! HA! HA!"
 
 #: ../src/init.c:177
+#, fuzzy
 msgid ""
 "This is a minor bug. Please report this incident to the developers. Thank "
 "you."
 msgstr ""
+"Ein schwerer Fehler ist aufgetreten. Bitte eine genaue Beschreibung an die "
+"Entwickler melden (wenn möglich mit Ausdruck der Fehlermeldungen aus stderr."
+"txt und stdout.txt). Näheres unter freedroid.sourceforge.net - Danke!"
 
 #: ../src/init.c:179
 msgid ""
@@ -1901,6 +1910,7 @@ msgid "Starting new game."
 msgstr "Starte neues Spiel..."
 
 #: ../src/init.c:2003
+#, fuzzy
 msgid ""
 "\n"
 "You are playing in 640x480.\n"
@@ -1912,6 +1922,15 @@ msgid ""
 "\n"
 "Thank you.\n"
 msgstr ""
+"\n"
+"Sie spielen in der Auflösung 640x480.\n"
+"\n"
+"Obwohl sie einwandfrei funktioniert und ein großartiges \n"
+"Spielerlebnis gewährleistet, wird die Unterstützung dafür \n"
+"in Kürze eingestellt werden. \n"
+"Verwenden Sie deshalb besser 800x600 oder 1024x768.\n"
+"\n"
+"Vielen Dank.\n"
 
 #: ../src/init.c:2005
 msgid ""
@@ -1974,8 +1993,7 @@ msgstr "lasse Programm laufen!"
 
 #: ../src/items.c:1161
 msgid "doing something so weird the game does not understand what it is"
-msgstr ""
-"eine so seltsame Handlung, dass das Spiel es nicht versteht ausführen"
+msgstr "eine so seltsame Handlung, dass das Spiel es nicht versteht ausführen"
 
 #: ../src/items.c:2126 ../src/items.c:2161 ../src/items.c:2163
 msgid "Identified air."
@@ -2190,9 +2208,9 @@ msgstr ""
 
 #: ../src/leveleditor.c:2645 ../src/leveleditor.c:2669
 #: ../src/leveleditor.c:3988 ../src/leveleditor.c:4012
-#, c-format
+#, fuzzy, c-format
 msgid "East"
-msgstr ""
+msgstr "Großmeister"
 
 #: ../src/leveleditor.c:2651 ../src/leveleditor.c:2675
 #: ../src/leveleditor.c:3994 ../src/leveleditor.c:4018
@@ -2202,16 +2220,16 @@ msgstr ""
 
 #: ../src/leveleditor.c:2657 ../src/leveleditor.c:2681
 #: ../src/leveleditor.c:4000 ../src/leveleditor.c:4024
-#, c-format
+#, fuzzy, c-format
 msgid "West"
-msgstr ""
+msgstr "Truhe"
 
 #: ../src/leveleditor.c:2665 ../src/leveleditor.c:2671
 #: ../src/leveleditor.c:2677 ../src/leveleditor.c:2683
 #: ../src/leveleditor.c:2963
-#, c-format
+#, fuzzy, c-format
 msgid "Interface"
-msgstr ""
+msgstr "Eingang"
 
 #: ../src/leveleditor.c:2687
 #, c-format
@@ -2231,14 +2249,14 @@ msgid "Back"
 msgstr "Zurück"
 
 #: ../src/leveleditor.c:2953
-#, c-format
+#, fuzzy, c-format
 msgid "Name"
-msgstr ""
+msgstr "Schaden"
 
 #: ../src/leveleditor.c:2957
-#, c-format
+#, fuzzy, c-format
 msgid "Size"
-msgstr ""
+msgstr "Schild"
 
 #: ../src/leveleditor.c:2982
 #, c-format
@@ -2254,19 +2272,19 @@ msgid "Minimum"
 msgstr ""
 
 #: ../src/leveleditor.c:3002
-#, c-format
+#, fuzzy, c-format
 msgid "Background Music"
-msgstr ""
+msgstr "Lautstärke Hintergrundmusik: %1.2f"
 
 #: ../src/leveleditor.c:3006
-#, c-format
+#, fuzzy, c-format
 msgid "Comment"
-msgstr ""
+msgstr "Vollständig"
 
 #: ../src/leveleditor.c:3010
-#, c-format
+#, fuzzy, c-format
 msgid "Infinite Running"
-msgstr ""
+msgstr "Unendliche Lauf-Ausdauer in diesem Level: "
 
 #: ../src/leveleditor.c:3012 ../src/menu.c:1740 ../src/menu.c:1889
 #: ../src/menu.c:1897 ../src/menu.c:1901 ../src/menu.c:1905
@@ -2313,20 +2331,23 @@ msgstr ""
 "\n"
 
 #: ../src/leveleditor.c:3210
+#, fuzzy
 msgid "Run Map Level Validator"
-msgstr ""
+msgstr "Level-Prüfung starten"
 
 #: ../src/leveleditor.c:3211
+#, fuzzy
 msgid "Run Dialog Lua Validator"
-msgstr ""
+msgstr "Level-Prüfung starten"
 
 #: ../src/leveleditor.c:3285
 msgid "Level Options"
 msgstr "Level-Optionen"
 
 #: ../src/leveleditor.c:3286
+#, fuzzy
 msgid "Advanced Options"
-msgstr ""
+msgstr "Level-Optionen"
 
 #: ../src/leveleditor.c:3289
 msgid "Playtest Mapfile"
@@ -2337,8 +2358,9 @@ msgid "Save Mapfile"
 msgstr "Karte speichern"
 
 #: ../src/leveleditor.c:3295
+#, fuzzy
 msgid "Return to Game"
-msgstr ""
+msgstr "Rückkehr zum Spiel"
 
 #: ../src/leveleditor.c:3296
 msgid "Saving disabled"
@@ -2600,8 +2622,8 @@ msgstr ""
 msgid ""
 "Save Map\n"
 "\n"
-"This button will save your current map over the file "
-"'../map/freedroid.levels' from your current working directory."
+"This button will save your current map over the file '../map/freedroid."
+"levels' from your current working directory."
 msgstr ""
 "Karte speichern\n"
 "\n"
@@ -2960,7 +2982,6 @@ msgid ""
 msgstr ""
 "\n"
 "Bitte neue Beschreibung für dieses Objekt eingeben: \n"
-"\n"
 
 #: ../src/leveleditor.c:5539
 msgid ""
@@ -3053,9 +3074,9 @@ msgid "+%d Experience Points"
 msgstr "+%d Erfahrungspunkte."
 
 #: ../src/lua.c:356
-#, c-format
+#, fuzzy, c-format
 msgid "%d training points spent!"
-msgstr ""
+msgstr "Trainingspunkte"
 
 #: ../src/lua.c:373
 #, c-format
@@ -3214,8 +3235,9 @@ msgid "Play"
 msgstr "Spielen"
 
 #: ../src/menu.c:1426
+#, fuzzy
 msgid "Tutorial"
-msgstr ""
+msgstr "Datenterminal"
 
 #: ../src/menu.c:1427
 msgid "Level Editor"
@@ -3349,9 +3371,9 @@ msgid "Change Screen Resolution"
 msgstr "Bildschirmauflösung ändern"
 
 #: ../src/menu.c:1731
-#, c-format
+#, fuzzy, c-format
 msgid "Fullscreen Mode"
-msgstr ""
+msgstr "Vollbildmodus: %s"
 
 #: ../src/menu.c:1732 ../src/menu.c:2018 ../src/menu.c:2019 ../src/menu.c:2020
 #: ../src/menu.c:2062 ../src/menu.c:2066 ../src/menu.c:2070 ../src/menu.c:2074
@@ -3366,39 +3388,39 @@ msgid "OFF"
 msgstr "AUS"
 
 #: ../src/menu.c:1735
-#, c-format
+#, fuzzy, c-format
 msgid "Gamma Correction"
-msgstr ""
+msgstr "Gamma-Korrektur: %1.2f"
 
 #: ../src/menu.c:1739
-#, c-format
+#, fuzzy, c-format
 msgid "Show Blood"
-msgstr ""
+msgstr "Blut darstellen: %s"
 
 #: ../src/menu.c:1743
-#, c-format
+#, fuzzy, c-format
 msgid "Automap Scale"
-msgstr ""
+msgstr "Automap-Maßstab: %2.1f"
 
 #: ../src/menu.c:1815
-#, c-format
+#, fuzzy, c-format
 msgid "Background Music Volume"
-msgstr ""
+msgstr "Lautstärke Hintergrundmusik: %1.2f"
 
 #: ../src/menu.c:1819
-#, c-format
+#, fuzzy, c-format
 msgid "Sound Effects Volume"
-msgstr ""
+msgstr "Lautstärke Soundeffekte: %1.2f"
 
 #: ../src/menu.c:1888
-#, c-format
+#, fuzzy, c-format
 msgid "Hog CPU for max. performance"
-msgstr ""
+msgstr "CPU besetzen für max. Leistung: %s"
 
 #: ../src/menu.c:1892
-#, c-format
+#, fuzzy, c-format
 msgid "Highlighting mode"
-msgstr ""
+msgstr "Highlight-Modus: %s"
 
 #: ../src/menu.c:1893
 msgid "FULL"
@@ -3409,19 +3431,19 @@ msgid "REDUCED"
 msgstr "REDUZIERT"
 
 #: ../src/menu.c:1896
-#, c-format
+#, fuzzy, c-format
 msgid "Skip light radius"
-msgstr ""
+msgstr "Leuchtradius aus: %s"
 
 #: ../src/menu.c:1900
-#, c-format
+#, fuzzy, c-format
 msgid "Skip shadow blitting"
-msgstr ""
+msgstr "Schatten-Blitting aus: %s"
 
 #: ../src/menu.c:1904
-#, c-format
+#, fuzzy, c-format
 msgid "Skip fadings"
-msgstr ""
+msgstr "Überblendung aus: %s"
 
 #: ../src/menu.c:2018
 #, c-format
@@ -3434,9 +3456,9 @@ msgid "Show Framerate: %s"
 msgstr "Framerate anzeigen: %s"
 
 #: ../src/menu.c:2020
-#, c-format
+#, fuzzy, c-format
 msgid "Show Energy Bars: %s"
-msgstr ""
+msgstr "Gegner-Energiebalken anzeigen: %s"
 
 #: ../src/menu.c:2021
 #, c-format
@@ -3449,29 +3471,29 @@ msgid "Screen Message time: %3.1f"
 msgstr "Nachrichten-Anzeigezeit: %3.1f"
 
 #: ../src/menu.c:2061
-#, c-format
+#, fuzzy, c-format
 msgid "Enemy Hit Texts"
-msgstr ""
+msgstr "Meldungen - Gegner getroffen: %s"
 
 #: ../src/menu.c:2065
-#, c-format
+#, fuzzy, c-format
 msgid "Enemy Bumped Texts"
-msgstr ""
+msgstr "Meldungen - Gegner angerempelt: %s"
 
 #: ../src/menu.c:2069
-#, c-format
+#, fuzzy, c-format
 msgid "Enemy Aim Texts"
-msgstr ""
+msgstr "Meldungen - Gegner anvisiert: %s"
 
 #: ../src/menu.c:2073
-#, c-format
+#, fuzzy, c-format
 msgid "All in-game Speech"
-msgstr ""
+msgstr "Sprachausgabe: %s"
 
 #: ../src/menu.c:2077
-#, c-format
+#, fuzzy, c-format
 msgid "Reprogram bots after takeover"
-msgstr ""
+msgstr "Robot-Reprogrammierung nach Übernahme: %s"
 
 #: ../src/menu.c:2098
 msgid ""
@@ -4096,17 +4118,225 @@ msgstr "Großmeister"
 msgid "god"
 msgstr "GOTT"
 
-#~ msgid "Wall with a window"
-#~ msgstr "Mauer mit Fenster"
+#~ msgid "%d bucks given"
+#~ msgstr "%d Tribucks gegeben."
+
+#~ msgid "%d bucks received"
+#~ msgstr "%d Tribucks erhalten."
+
+#, fuzzy
+#~ msgid "%s..."
+#~ msgstr "Nach %s...."
+
+#~ msgid "Unlocking obstacle of type %d."
+#~ msgstr "Objekt %d entriegelt."
+
+#~ msgid "Repairing obstacle of type %d."
+#~ msgstr "Gegenstand %d repariert."
+
+#~ msgid "Attacking obstacle of type %d."
+#~ msgstr "Greife %d-Objekt an!"
+
+#~ msgid "Picking pockets of obstacle of type %d."
+#~ msgstr "Beklaue Objekt %d."
+
+#~ msgid ""
+#~ "\n"
+#~ "SORRY. NO MORE CONNECTIONS AVAILABLE FROM THERE."
+#~ msgstr ""
+#~ "\n"
+#~ "LEIDER KEINE WEITEREN VERBINDUNGEN VON HIER MÖGLICH."
+
+#~ msgid ""
+#~ "\n"
+#~ "Sorry, maximal number of waypoint-connections (%d) reached!\n"
+#~ msgstr ""
+#~ "\n"
+#~ "Die maximale Anzahl an Wegpunkten (%d) ist ausgeschöpft!\n"
+
+#~ msgid "Level Number: %d."
+#~ msgstr "Level-Nummer: %d"
+
+#~ msgid "Level Name: %s"
+#~ msgstr "Level-Name: %s"
+
+#~ msgid "Level Dimensions. X: %d. Y: %d."
+#~ msgstr "Level-Dimensionen. X: %d. Y: %d."
+
+#~ msgid "Level Edge Interfaces:"
+#~ msgstr "Level-Grenzen:"
+
+#~ msgid "Background music file name: %s"
+#~ msgstr "Hintergrundmusik-Filename: %s"
+
+#~ msgid "Level Comment: %s"
+#~ msgstr "Level-Kommentar: %s"
+
+#~ msgid "Light radius bonus: %d"
+#~ msgstr "Leuchtradius-Zusatz: %d"
+
+#~ msgid "Minimal light value: %d"
+#~ msgstr "Minimaler Lichtwert: %d"
+
+#~ msgid "Lvl: %d - %s"
+#~ msgstr "Lvl: %d - %s"
+
+#~ msgid "Adding Level disabled"
+#~ msgstr "Level hinzufügen deaktiviert"
+
+#, fuzzy
+#~ msgid "Jump threshold north: %d.  (<-/->)"
+#~ msgstr "Sprung-Grenzbereich Nord: %d.  Rauf/Runter"
+
+#, fuzzy
+#~ msgid "Jump threshold south: %d.  (<-/->)"
+#~ msgstr "Sprung-Grenzbereich Süd: %d.  Rauf/Runter"
+
+#, fuzzy
+#~ msgid "Jump threshold east: %d.  (<-/->)"
+#~ msgstr "Sprung-Grenzbereich Ost: %d.  Rauf/Runter"
+
+#, fuzzy
+#~ msgid "Jump threshold west: %d.  (<-/->)"
+#~ msgstr "Sprung-Grenzbereich West: %d.  Rauf/Runter"
+
+#, fuzzy
+#~ msgid "Jump target north: %d.  (<-/->)"
+#~ msgstr "Sprungziel Nord: %d.  Rauf/Runter"
+
+#, fuzzy
+#~ msgid "Jump target south: %d.  (<-/->)"
+#~ msgstr "Sprungziel Süd: %d.  Rauf/Runter"
+
+#, fuzzy
+#~ msgid "Jump target east: %d.  (<-/->)"
+#~ msgstr "Sprungziel Ost: %d.  Rauf/Runter"
+
+#, fuzzy
+#~ msgid "Jump target west: %d.  (<-/->)"
+#~ msgstr "Sprungziel West: %d.  Rauf/Runter"
+
+#~ msgid ""
+#~ "Ah, good, that we have an open collision avoiding standard, isn't it."
+#~ msgstr ""
+#~ "Ah, gut, dass wir einen offenen Anti-Kollisions-Standard haben, nicht "
+#~ "wahr?"
+
+#~ msgid "Hey, I'm from MS! Walk outa my way!"
+#~ msgstr "He! Ich bin von MS! Geh mir aus dem Weg!"
+
+#~ msgid "Hey, I know the big MS boss! You better go."
+#~ msgstr "He, ich kenne den großen Boss von MS ! Zieh Leine..."
+
+#~ msgid "Insert/Remove column to the very west"
+#~ msgstr "Einfügen/Löschen einer Spalte im äußersten Westen"
+
+#~ msgid "Insert/Remove column just east of western Interface"
+#~ msgstr ""
+#~ "Einfügen/Löschen einer Spalte direkt östlich vom westlichen Übergang"
+
+#~ msgid "Insert/Remove column just west of eastern Interface"
+#~ msgstr ""
+#~ "Einfügen/Löschen einer Spalte direkt westlich vom östlichen Übergang"
+
+#~ msgid "Insert/Remove column to the very east"
+#~ msgstr "Einfügen/Löschen einer Spalte im äußersten Osten"
+
+#~ msgid "Insert/Remove line to the very north"
+#~ msgstr "Einfügen/Löschen einer Spalte im äußersten Norden"
+
+#~ msgid "Insert/Remove line just south of northern Interface"
+#~ msgstr ""
+#~ "Einfügen/Löschen einer Spalte direkt südlich vom nördlichen Übergang"
+
+#~ msgid "Insert/Remove line just north of southern Interface"
+#~ msgstr ""
+#~ "Einfügen/Löschen einer Spalte direkt nördlich vom südlichen Übergang"
+
+#~ msgid "Insert/Remove line to the very south"
+#~ msgstr "Einfügen/Löschen einer Spalte im äußersten Süden"
+
+#~ msgid "420 NaN"
+#~ msgstr "Chirurg"
+
+#~ msgid "598 NaN"
+#~ msgstr "598 Minister"
+
+#~ msgid "615 NaN"
+#~ msgstr "615 Feuerteufel"
+
+#~ msgid "629 NaN"
+#~ msgstr "629 Giftzwerg"
+
+#~ msgid "711 If"
+#~ msgstr "711 Grillzange"
+
+#~ msgid "742 NaN"
+#~ msgstr "742 Zeus"
+
+#~ msgid "821 NaN"
+#~ msgstr "821 Ufo"
+
+#~ msgid "834 NaN"
+#~ msgstr "Irrlicht"
+
+#~ msgid "999 NaN"
+#~ msgstr "999 Großhirn"
+
+#~ msgid ""
+#~ "Back to game\n"
+#~ "\n"
+#~ "Quits the level editor and takes you into a FredroidRPG game."
+#~ msgstr ""
+#~ "Zurück zum Spiel\n"
+#~ "\n"
+#~ "Verlässt den Leveleditor und kehrt in den Spiel-Modus zurück."
+
+#~ msgid "Back To Level Editor Main Menu"
+#~ msgstr "Zurück zum Leveleditor-Hauptmenü"
+
+#~ msgid "SAVE EVERYTHING"
+#~ msgstr "ALLE ÄNDERUNGEN SPEICHERN"
+
+#~ msgid "Current: %d.  Level Up/Down"
+#~ msgstr "Derzeit: %d.  Level Auf/Ab"
+
+#~ msgid "Add completely new level"
+#~ msgstr "Neuen Level anfügen"
+
+#~ msgid "Quit Threshold Editor"
+#~ msgstr "Grenzübergangs-Editor verlassen"
+
+#~ msgid "Quit Game"
+#~ msgstr "Spiel beenden"
+
+#~ msgid ""
+#~ "\n"
+#~ "\n"
+#~ "No saved games found!!  Deletion Cancelled. "
+#~ msgstr ""
+#~ "\n"
+#~ "\n"
+#~ "Keine Spielstände gefunden!\n"
+#~ "Löschen abgebrochen. "
+
+#~ msgid "%s (%03.1f:%03.1f:%d) Day %d %02d:%02d "
+#~ msgstr "%s (%03.1f:%03.1f:%d) Tag %d %02d:%02d "
+
+#~ msgid "[day %d %02d:%02d] "
+#~ msgstr "[Tag %d %02d:%02d] "
 
 #~ msgid "No way to pass through. Find another path."
 #~ msgstr "Keine Möglichkeit hindurchzukommen. Finde einen anderen Weg."
 
-#~ msgid "This is a wooden fence. Find another path."
-#~ msgstr "Der Teil eines Holzzauns. Finde einen anderen Weg."
-
 #~ msgid "You can't break it. Find another way."
 #~ msgstr "Du kannst nicht durchbrechen. Finde einen anderen Weg."
+
+#~ msgid "Wall with a window"
+#~ msgstr "Mauer mit Fenster"
+
+#~ msgid "This is a wooden fence. Find another path."
+#~ msgstr "Der Teil eines Holzzauns. Finde einen anderen Weg."
 
 #~ msgid "No, it definitely doesn't look like a droid"
 #~ msgstr "Nein, sieht definitiv nicht wie ein Robot aus!"
@@ -4136,41 +4366,17 @@ msgstr "GOTT"
 #~ msgid "A pillar made out of crystal."
 #~ msgstr "Eine aus Kristall gefertigte Säule."
 
-#, c-format
-#~ msgid "Unlocking obstacle of type %d."
-#~ msgstr "Objekt %d entriegelt."
+#~ msgid "New level just created"
+#~ msgstr "Neuer Level erzeugt"
 
-#, c-format
-#~ msgid "Repairing obstacle of type %d."
-#~ msgstr "Gegenstand %d repariert."
+#~ msgid "This is a new level..."
+#~ msgstr "Das ist ein neuer Level..."
 
-#, c-format
-#~ msgid "Attacking obstacle of type %d."
-#~ msgstr "Greife %d-Objekt an!"
+#~ msgid "No Statement loaded."
+#~ msgstr "Keine Bemerkung geladen."
 
-#, c-format
-#~ msgid "Picking pockets of obstacle of type %d."
-#~ msgstr "Beklaue Objekt %d."
-
-#~ msgid ""
-#~ "\n"
-#~ "\n"
-#~ "No saved games found!!  Deletion Cancelled. "
-#~ msgstr ""
-#~ "\n"
-#~ "\n"
-#~ "Keine Spielstände gefunden!\n"
-#~ "Löschen abgebrochen. "
-
-#~ msgid "Ah, good, that we have an open collision avoiding standard, isn't it."
-#~ msgstr ""
-#~ "Ah, gut, dass wir einen offenen Anti-Kollisions-Standard haben, nicht wahr?"
-
-#~ msgid "Hey, I'm from MS! Walk outa my way!"
-#~ msgstr "He! Ich bin von MS! Geh mir aus dem Weg!"
-
-#~ msgid "Hey, I know the big MS boss! You better go."
-#~ msgstr "He, ich kenne den großen Boss von MS ! Zieh Leine..."
+#~ msgid "Takeover"
+#~ msgstr "Übernehmen"
 
 #~ msgid "average"
 #~ msgstr "durchschnittlich"
@@ -4195,164 +4401,3 @@ msgstr "GOTT"
 
 #~ msgid "wicked sick"
 #~ msgstr "durchgeknallt"
-
-#~ msgid ""
-#~ "Back to game\n"
-#~ "\n"
-#~ "Quits the level editor and takes you into a FredroidRPG game."
-#~ msgstr ""
-#~ "Zurück zum Spiel\n"
-#~ "\n"
-#~ "Verlässt den Leveleditor und kehrt in den Spiel-Modus zurück."
-
-#, c-format
-#~ msgid "Takeover"
-#~ msgstr "Übernehmen"
-
-#~ msgid "420 NaN"
-#~ msgstr "Chirurg"
-
-#~ msgid "598 NaN"
-#~ msgstr "598 Minister"
-
-#~ msgid "615 NaN"
-#~ msgstr "615 Feuerteufel"
-
-#~ msgid "629 NaN"
-#~ msgstr "629 Giftzwerg"
-
-#~ msgid "711 If"
-#~ msgstr "711 Grillzange"
-
-#~ msgid "742 NaN"
-#~ msgstr "742 Zeus"
-
-#~ msgid "821 NaN"
-#~ msgstr "821 Ufo"
-
-#~ msgid "834 NaN"
-#~ msgstr "Irrlicht"
-
-#~ msgid "999 NaN"
-#~ msgstr "999 Großhirn"
-
-#, c-format
-#~ msgid "%s (%03.1f:%03.1f:%d) Day %d %02d:%02d "
-#~ msgstr "%s (%03.1f:%03.1f:%d) Tag %d %02d:%02d "
-
-#, c-format
-#~ msgid "%d bucks given"
-#~ msgstr "%d Tribucks gegeben."
-
-#, c-format
-#~ msgid "%d bucks received"
-#~ msgstr "%d Tribucks erhalten."
-
-#, c-format
-#~ msgid "[day %d %02d:%02d] "
-#~ msgstr "[Tag %d %02d:%02d] "
-
-#~ msgid ""
-#~ "\n"
-#~ "SORRY. NO MORE CONNECTIONS AVAILABLE FROM THERE."
-#~ msgstr ""
-#~ "\n"
-#~ "LEIDER KEINE WEITEREN VERBINDUNGEN VON HIER MÖGLICH."
-
-#, c-format
-#~ msgid ""
-#~ "\n"
-#~ "Sorry, maximal number of waypoint-connections (%d) reached!\n"
-#~ msgstr ""
-#~ "\n"
-#~ "Die maximale Anzahl an Wegpunkten (%d) ist ausgeschöpft!\n"
-
-#~ msgid "Insert/Remove column to the very west"
-#~ msgstr "Einfügen/Löschen einer Spalte im äußersten Westen"
-
-#~ msgid "Insert/Remove column just east of western Interface"
-#~ msgstr "Einfügen/Löschen einer Spalte direkt östlich vom westlichen Übergang"
-
-#~ msgid "Insert/Remove column just west of eastern Interface"
-#~ msgstr "Einfügen/Löschen einer Spalte direkt westlich vom östlichen Übergang"
-
-#~ msgid "Insert/Remove column to the very east"
-#~ msgstr "Einfügen/Löschen einer Spalte im äußersten Osten"
-
-#~ msgid "Insert/Remove line to the very north"
-#~ msgstr "Einfügen/Löschen einer Spalte im äußersten Norden"
-
-#~ msgid "Insert/Remove line just south of northern Interface"
-#~ msgstr "Einfügen/Löschen einer Spalte direkt südlich vom nördlichen Übergang"
-
-#~ msgid "Insert/Remove line just north of southern Interface"
-#~ msgstr "Einfügen/Löschen einer Spalte direkt nördlich vom südlichen Übergang"
-
-#~ msgid "Insert/Remove line to the very south"
-#~ msgstr "Einfügen/Löschen einer Spalte im äußersten Süden"
-
-#, c-format
-#~ msgid "Level Number: %d."
-#~ msgstr "Level-Nummer: %d"
-
-#, c-format
-#~ msgid "Level Name: %s"
-#~ msgstr "Level-Name: %s"
-
-#, c-format
-#~ msgid "Level Dimensions. X: %d. Y: %d."
-#~ msgstr "Level-Dimensionen. X: %d. Y: %d."
-
-#, c-format
-#~ msgid "Level Edge Interfaces:"
-#~ msgstr "Level-Grenzen:"
-
-#, c-format
-#~ msgid "Background music file name: %s"
-#~ msgstr "Hintergrundmusik-Filename: %s"
-
-#, c-format
-#~ msgid "Level Comment: %s"
-#~ msgstr "Level-Kommentar: %s"
-
-#, c-format
-#~ msgid "Light radius bonus: %d"
-#~ msgstr "Leuchtradius-Zusatz: %d"
-
-#, c-format
-#~ msgid "Minimal light value: %d"
-#~ msgstr "Minimaler Lichtwert: %d"
-
-#, c-format
-#~ msgid "Lvl: %d - %s"
-#~ msgstr "Lvl: %d - %s"
-
-#~ msgid "Adding Level disabled"
-#~ msgstr "Level hinzufügen deaktiviert"
-
-#~ msgid "Back To Level Editor Main Menu"
-#~ msgstr "Zurück zum Leveleditor-Hauptmenü"
-
-#~ msgid "SAVE EVERYTHING"
-#~ msgstr "ALLE ÄNDERUNGEN SPEICHERN"
-
-#~ msgid "Current: %d.  Level Up/Down"
-#~ msgstr "Derzeit: %d.  Level Auf/Ab"
-
-#~ msgid "Add completely new level"
-#~ msgstr "Neuen Level anfügen"
-
-#~ msgid "Quit Threshold Editor"
-#~ msgstr "Grenzübergangs-Editor verlassen"
-
-#~ msgid "Quit Game"
-#~ msgstr "Spiel beenden"
-
-#~ msgid "New level just created"
-#~ msgstr "Neuer Level erzeugt"
-
-#~ msgid "This is a new level..."
-#~ msgstr "Das ist ein neuer Level..."
-
-#~ msgid "No Statement loaded."
-#~ msgstr "Keine Bemerkung geladen."
