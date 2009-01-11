@@ -1,4 +1,3 @@
-% -*- mode: flyspell; mode: fill -*-
 ----------------------------------------------------------------------
  *  This file is part of Freedroid
  *
@@ -17,8 +16,6 @@
  *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
  *  MA  02111-1307  USA
 ----------------------------------------------------------------------
-
-
 If you have questions concerning FreedroidRPG, please send an email to:
 
 freedroid-discussion@lists.sourceforge.net
@@ -33,24 +30,25 @@ Beginning of new chat dialog for character="XXXXX"
 FirstTime LuaCode={
     show(0, 99)
 }
+EveryTime LuaCode={
+	if (has_quest("And there was light...")) then
+		if (done_quest("And there was light...")) then
+			open_diary_entry("And there was light...", 1)
+			show(10, 18)
+		else next(2) end
+	else next(5) end
+
+	if (has_cookie("jasmine_sigsegv")) then
+		if (has_cookie("kevin_sigtalk")) then hide(25) else show(25) end
+	else end
+}
 ----------------------------------------------------------------------
 
 Nr=0  Text=_"Hello... Oh dear... You look awful... Who did this to you? Did they torture you?"
 NPC=_"Hi. I haven't slept for a few weeks, so I'm just a little bit tired."
 NPC=_"Don't worry about me. I'll be fine."
 NPC=_"I'm Kevin, a computer security expert."
-LuaCode={
-    next(20)
-    hide(0)
-}
-----------------------------------------------------------------------
-
-Nr=1  Text="THIS WILL NOT EVER BE VISIBLE"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-LuaCode={
-    if (has_quest("And there was light...")) then next(2) else next(5) end
-    hide(1)
-}
+LuaCode={ next(20) hide(0) }
 ----------------------------------------------------------------------
 
 Nr=2  Text="THIS WILL NOT EVER BE VISIBLE"
@@ -58,24 +56,14 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 NPC=_"As I've told you, I cannot teach you anything right now. I don't have the time."
 NPC=_"I must see to that the flaky energy stream is distributed in such a way that my research project can continue."
 NPC=_"If you get rid of the maintenance bots on the second underground level of this station, I will find the time to teach you something."
-LuaCode={
-    hide(2)
-}
 ----------------------------------------------------------------------
 
 Nr=3  Text=_"What can you teach me about hacking?"
 LuaCode={
-    if (done_quest("And there was light...")) then next(4) else next(1) end
-    show(3)
-}
-----------------------------------------------------------------------
-
-Nr=4  Text="THIS WILL NOT EVER BE VISIBLE"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-NPC=_"I can teach you everything. For three hundred, up front."
-NPC=_"Still interested? "
-LuaCode={
-    run_subdialog("subdlg_Kevin.dialog")
+	if (done_quest("And there was light...")) then 
+		npc_says(_"I can teach you everything. For three hundred, up front. Still interested?")
+		next(34)
+	else next(1) end
 }
 ----------------------------------------------------------------------
 
@@ -87,10 +75,7 @@ NPC=_"There is tremendous importance in it. But the project is in danger. There 
 NPC=_"They are trying to 'maintain' machines by rebooting them all the time. This must stop, but I can't leave this place."
 NPC=_"I must balance the remaining power in such a way that my project can continue uninterrupted."
 NPC=_"Now, if you go down there and make the power flow stable, then I'll find the time to teach you something."
-LuaCode={
-    hide(5)
-    show(6, 7)
-}
+LuaCode={ hide(5) show(6, 7) }
 ----------------------------------------------------------------------
 
 Nr=6  Text=_"I'll see after the energy supply now."
@@ -107,49 +92,18 @@ LuaCode={
 
 Nr=7  Text=_"I'm sorry, but I don't think there's anything I could do about that energy supply."
 NPC=_"Too bad. Now get out of my sight."
-LuaCode={
-    hide(6, 7)
-}
-----------------------------------------------------------------------
-
-Nr=8  Text="THIS WILL NOT EVER BE VISIBLE"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-LuaCode={
-    if (done_quest("And there was light...")) then next(9) else end
-}
-AlwaysExecuteThisOptionPriorToDialogStart="yes"
-
-----------------------------------------------------------------------
-
-Nr=9  Text="THIS WILL NOT EVER BE VISIBLE"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-LuaCode={
-    open_diary_entry("And there was light...", 1)
-    hide(9)
-    show(10, 18)
-}
+LuaCode={ hide(6, 7) }
 ----------------------------------------------------------------------
 
 Nr=10  Text=_"How about some reward for securing your energy supply area?"
 LuaCode={
-    if (has_cookie("kevin_reward1_given")) then next(12) else next(13) end
+	if (has_cookie("kevin_reward1_given")) then
+		npc_says(_"I've already rewarded you for that. Don't steal my time. I'm busy.")
+	else
+		npc_says(_"What do you want?")
+		run_subdialog("subdlg_kevin_reward1.dialog")
+	end
     hide(10)
-}
-----------------------------------------------------------------------
-
-Nr=12  Text="THIS WILL NOT EVER BE VISIBLE"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-NPC=_"I've already rewarded you for that. Don't steal my time. I'm busy."
-LuaCode={
-    hide(12)
-}
-----------------------------------------------------------------------
-
-Nr=13  Text="THIS WILL NOT EVER BE VISIBLE"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-NPC=_"What do you want?"
-LuaCode={
-    run_subdialog("subdlg_kevin_reward1.dialog")
 }
 ----------------------------------------------------------------------
 
@@ -159,10 +113,7 @@ NPC=_"Yes, since the energy supply has been constant, results were much better. 
 NPC=_"I've obtained secret data on the colony surroundings. We'll need a big computer cluster to evaluate it properly."
 NPC=_"Once we've evaluated the data, we might find a way to secure the colony and ensure our survival. But it's too early to tell yet."
 NPC=_"If I only had a suitable cluster. Then we could start data evaluation right away."
-LuaCode={
-    hide(14)
-    show(16)
-}
+LuaCode={ show(16) }
 ----------------------------------------------------------------------
 
 Nr=15  Text="THIS WILL NOT EVER BE VISIBLE"
@@ -191,33 +142,20 @@ Nr=17  Text="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 NPC=_"You've already agreed to take my data cube to the cluster. I have no influence on this matter anymore."
 NPC=_"The fate of the colony now rests in your hands. Bring the data cube I gave you to the cluster. Only there the data can be evaluated properly."
-LuaCode={
-    hide(17)
-}
 ----------------------------------------------------------------------
 
 Nr=18  Text=_"About that project you said you have running..."
 LuaCode={
-    if (done_quest("A kingdom for a cluster!")) then next(19) else next(14) end
+    if (done_quest("A kingdom for a cluster!")) then
+		npc_says(_"I've already received the results from the evaluation of my data in the cluster. Good work.")
+	else next(14) end
     hide(18)
-}
-----------------------------------------------------------------------
-
-Nr=19  Text="THIS WILL NOT EVER BE VISIBLE"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-NPC=_"I've already received the results from the evaluation of my data in the cluster."
-NPC=_"Good work."
-LuaCode={
-    hide(19)
 }
 ----------------------------------------------------------------------
 
 Nr=20  Text=_"In other words: You are a hacker."
 NPC=_"Eh... I guess you could put it that way, yes."
-LuaCode={
-    hide(20)
-    show(3)
-}
+LuaCode={ hide(20) show(3) }
 ----------------------------------------------------------------------
 
 Nr=25  Text=_"Jasmine just blew up."
@@ -234,28 +172,38 @@ LuaCode={
 Nr=26  Text=_"I thought you would be more worried about her death."
 NPC=_"Why? I have backups from last Friday. No reason to worry at all."
 NPC=_"It will be a while till I get her together again, but she will be fine."
+LuaCode={ hide(26) }
+----------------------------------------------------------------------
+
+Nr=34  Text=_"Improve Hacking Ability (cost 300 cash, 5 ability points)"
 LuaCode={
-    hide(26)
+    change_obstacle("KevinsDoor", "opened")
+	if (get_gold() < 300 ) then
+		npc_says(_"You don't have enough cash, cheapskate. Come back when you can afford to pay me.")
+	else
+		if (get_training_points() > 4) then next(35) 
+		else 
+			npc_says(_"You don't have enough experience. I can't teach you anything more this way.")
+		end
+	end
 }
 ----------------------------------------------------------------------
 
-Nr=50  Text="JASMINE SIGSEGV"
+Nr=35  Text="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NPC=_"Good. The most important thing about hacking is to understand the nature of the machine you want to hack."
+NPC=_"Once you have figured out what the creators of the system were doing when setting it up, you'll also know how to best hack it."
+NPC=_"Now I see your hacking skill has already improved a lot."
 LuaCode={
-    if (has_cookie("jasmine_sigsegv")) then
-        if (has_cookie("kevin_sigtalk")) then hide(25) else show(25) end
-     else end
+    add_gold(-300)
+    del_training_points(5)
+    improve_program("Hacking")
 }
-AlwaysExecuteThisOptionPriorToDialogStart="yes"
-
 ----------------------------------------------------------------------
 
 Nr=99  Text=_"I'll be off then."
-NPC=_"Be careful. The bots are in a foul mood today."
-NPC=_"Very easy to get killed. Very easy."
-LuaCode={
-    end_dialog()
-}
+NPC=_"Be careful. The bots are in a foul mood today. Very easy to get killed. Very easy."
+LuaCode={ end_dialog() }
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

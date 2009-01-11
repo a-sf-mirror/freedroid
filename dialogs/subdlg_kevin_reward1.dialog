@@ -1,4 +1,3 @@
-% -*- mode: flyspell; mode: fill -*-
 ----------------------------------------------------------------------
  *  This file is part of Freedroid
  *
@@ -17,8 +16,6 @@
  *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
  *  MA  02111-1307  USA
 ----------------------------------------------------------------------
-
-
 If you have questions concerning FreedroidRPG, please send an email to:
 
 freedroid-discussion@lists.sourceforge.net
@@ -30,18 +27,7 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={
-}
-----------------------------------------------------------------------
-
-Nr=0  Text="THIS WILL NOT EVER BE VISIBLE"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-LuaCode={
-    hide(0)
-    show(1, 2, 3, 99)
-}
-AlwaysExecuteThisOptionPriorToDialogStart="yes"
-
+EveryTime LuaCode={	show(1, 2, 3) }
 ----------------------------------------------------------------------
 
 Nr=1  Text=_"I want to become a hacker."
@@ -53,17 +39,17 @@ NPC=_"Now watch. Observe carefully. See how I enter the system... Yes. Watch the
 NPC=_"...only to die seconds after, as the system far away collapses under it's own weight... It's done."
 NPC=_"That is all I want to show you for now. Maybe later I will teach you something else."
 LuaCode={
-    add_cookie("kevin_reward1_given")
-    improve_program("Hacking")
-    hide(1, 2, 3)
+	add_cookie("kevin_reward1_given")
+	improve_program("Hacking")
+	end_dialog()
 }
 ----------------------------------------------------------------------
 
 Nr=2  Text=_"I don't want any reward. Just gratitude."
 NPC=_"Of course you can have that. There, I'm most grateful to you. That should do."
 LuaCode={
-    add_cookie("kevin_reward1_given")
-    hide(1, 2, 3)
+	add_cookie("kevin_reward1_given")
+	end_dialog()
 }
 ----------------------------------------------------------------------
 
@@ -72,14 +58,7 @@ NPC=_"Eh... Here, take these 500 bucks. That should be enough."
 LuaCode={
     add_gold(500)
     add_cookie("kevin_reward1_given")
-    hide(1, 2, 3)
-}
-----------------------------------------------------------------------
-
-Nr=99  Text=_"[BACK]"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-LuaCode={
-    end_dialog()
+	end_dialog()
 }
 ----------------------------------------------------------------------
 
