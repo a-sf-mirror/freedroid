@@ -23,7 +23,7 @@ LuaCode={
 
 * New event trigger *
 Name=_"Leave disruptor base"
-Trigger at label="ScientistQuartersEscapePoint"
+Trigger at label="teleport_out_of_the_disruptor_base"
 Silent=0
 LuaCode={
 	teleport("DisruptorShieldBaseReturn")

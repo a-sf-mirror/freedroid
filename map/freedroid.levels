@@ -16223,8 +16223,8 @@ t272 x7.52 y7.41 l-1 d-1
 plabelinfolvl
 x=37 y=12 name="DisruptorLevelVAccess"
 x=37 y=13 name="DisruptorLevelVReturnPoint"
-x=7 y=7 name="ScientistQuartersEscapePoint"
-x=8 y=7 name="ScientistQuartersArrivalPoint"
+x=7 y=7 name="teleport_out_of_the_disruptor_base"
+x=8 y=7 name="teleport_into_the_disruptor_base"
 /plabelinfolvl
 pobstaclelabelinfolvl
 /pobstaclelabelinfolvl
