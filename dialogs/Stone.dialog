@@ -183,7 +183,6 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=99  Text=_"See you later."
-NPC=_"NO_SUBTITLE_AND_NO_WAITING_EITHER"
 LuaCode={
     end_dialog()
 }

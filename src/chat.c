@@ -742,19 +742,21 @@ display_current_chat_protocol ( int background_picture_code , enemy* ChatDroid ,
  */
 void GiveSubtitleNSample(const char* SubtitleText, const char* SampleFilename , enemy* ChatDroid , int with_update )
 {
+    int do_display = 1;
+    int do_wait = 1;
 
     strcat ( chat_protocol , SubtitleText );
     strcat ( chat_protocol , "\n" );
     
-    if ( strcmp ( SubtitleText , "NO_SUBTITLE_AND_NO_WAITING_EITHER" ) )
-    {
+    if (!strcmp(SampleFilename, "NO_WAIT")) {
+	do_wait = 0;
+    }
+
+    if (do_display)
 	display_current_chat_protocol ( CHAT_DIALOG_BACKGROUND_PICTURE_CODE , ChatDroid , with_update );
-	PlayOnceNeededSoundSample( SampleFilename , TRUE , FALSE );
-    }
-    else
-    {
-	PlayOnceNeededSoundSample( SampleFilename , FALSE , FALSE );
-    }
+    
+    if (do_wait)
+	PlayOnceNeededSoundSample( SampleFilename , do_wait, FALSE );
 }; // void GiveSubtitleNSample( char* SubtitleText , char* SampleFilename )
 
 void run_subdialog(const char * tmp_filename)
@@ -813,7 +815,6 @@ static void ProcessThisChatOption ( int MenuSelection , int ChatPartnerCode , En
     //printf("Processing option %d with partner %d\n", MenuSelection, ChatPartnerCode);
     if ( strcmp ( ChatRoster [ MenuSelection ] . option_sample_file_name , "NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER" ) )
     {
-	// PlayOnceNeededSoundSample( ChatRoster [ MenuSelection ] . option_sample_file_name , TRUE );
 	strcat ( chat_protocol , "\1TUX: " );
 	GiveSubtitleNSample ( L_(ChatRoster [ MenuSelection ] . option_text) ,
 			      ChatRoster [ MenuSelection ] . option_sample_file_name , ChatDroid , TRUE ) ;
