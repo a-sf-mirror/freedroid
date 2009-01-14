@@ -1,0 +1,90 @@
+% -*- mode: flyspell; mode: fill -*-
+----------------------------------------------------------------------
+ *  This file is part of Freedroid
+ *
+ *  Freedroid is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ *  Freedroid is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with Freedroid; see the file COPYING. If not, write to the 
+ *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
+ *  MA  02111-1307  USA
+----------------------------------------------------------------------
+
+
+If you have questions concerning FreedroidRPG, please send an email to:
+
+freedroid-discussion@lists.sourceforge.net
+
+BEGIN OF AUTORS NOTES
+
+END OF AUTORS NOTES 
+
+
+Beginning of new chat dialog for character="XXXXX"
+
+FirstTime LuaCode={
+    show(0, 1, 2, 3, 99)
+}
+----------------------------------------------------------------------
+
+Nr=0  Text=_"Who are you? "
+NPC=_"I am a 614 security bot, once one of the best-selling products of the Nicholson company."
+LuaCode={
+    hide(0)
+    show(4)
+}
+----------------------------------------------------------------------
+
+Nr=1  Text=_"Have you detected any hostile bot activity?"
+NPC=_"Yes. Low level hostiles bots in close proximity."
+LuaCode={
+    hide(1)
+}
+----------------------------------------------------------------------
+
+Nr=2  Text=_"What can you tell me about the 614 type? "
+NPC=_"The official manual classifies the 614 as a high class security droid."
+NPC=_"It was mainly used within ships to protect certain areas from intruders."
+NPC=_"It is considered an old but reliable device."
+NPC=_"So don't worry. I'm still in pretty good shape."
+LuaCode={
+    hide(2)
+}
+----------------------------------------------------------------------
+
+Nr=3  Text=_"What are your orders?"
+NPC=_"My orders are to protect the living beings inside this complex from attacks by hostile bots."
+NPC=_"This has top priority. There are no other priorities."
+LuaCode={
+    hide(3)
+}
+----------------------------------------------------------------------
+
+Nr=4  Text=_"Why are you not hostile as all the other bots?"
+NPC=_"I belong to a an older generation of bots, running a custom-made security guard operating system."
+NPC=_"None of the bots of this generation were affected by the proceedings that led to bots attacking, generally known as the Great Assault."
+NPC=_"Even though discontinued from Nicholson Company long ago, today, some people have picked up the work and are even trying to improve the operating system running on my series."
+NPC=_"Don't forget to buy products from Nicholson Company. They are the best."
+LuaCode={
+    hide(4)
+}
+----------------------------------------------------------------------
+
+Nr=99  Text=_"See you later."
+NPC=_" Resuming guard program."
+LuaCode={
+    show(0, 1, 2, 3)
+    hide(4)
+    end_dialog()
+}
+----------------------------------------------------------------------
+
+End of chat dialog for character="XXXXX"
