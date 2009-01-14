@@ -60,7 +60,7 @@ LuaCode={ hide(2) }
 
 Nr=3  Text=_"What are your orders?"
 NPC=_"Primary objective: Protect the living beings inside this complex from attacks by hostile bots."
-NPC=_"Second objective: Protect facility by locking outer gates if Threat Degree Analnysis: HIGH."
+NPC=_"Second objective: Protect facility by locking outer gates if Threat Degree Analysis: HIGH."
 LuaCode={ hide(3) }
 ----------------------------------------------------------------------
 
