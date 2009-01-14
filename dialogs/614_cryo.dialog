@@ -44,7 +44,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=1  Text=_"Have you detected any hostile bot activity?"
-NPC=_"Yes. Low level hostiles bots in close proximity."
+NPC=_"Yes. Large amount of hostile bots in close proximity. Scanning indicate low energy levels suggesting a low degree of threat."
 LuaCode={
     hide(1)
 }

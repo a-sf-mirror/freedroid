@@ -51,6 +51,7 @@ struct {
     { "Chandra", PERSON_CHA },
     { "Sorenson", PERSON_SORENSON},
     { "614", PERSON_614},
+    { "614_cryo", PERSON_614_CRYO},
     { "Stone", PERSON_STONE},
     { "Pendragon", PERSON_PENDRAGON},
     { "Dixon", PERSON_DIXON},
