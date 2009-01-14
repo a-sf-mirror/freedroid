@@ -33,16 +33,12 @@ Beginning of new chat dialog for character="XXXXX"
 FirstTime LuaCode={
     -- nothing by default, next 0 does it for us
 }
-
 ----------------------------------------------------------------------
 
 Nr=0  Text="THIS WILL NEVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 NPC=_"Oh, thank heavens! You are still alive. Maybe not all hope is lost."
-LuaCode={
-    hide(0)
-    show(2, 6, 11, 13, 99)
-}
+LuaCode={ hide(0) show(2, 6, 11, 13, 99) }
 ----------------------------------------------------------------------
 
 Nr=2  Text=_"Who am I?"
@@ -68,48 +64,34 @@ NPC=_"When the police bots approached at dawn, we thought that they were going t
 NPC=_"I broke into a parked hover car and used it to escape. The sight from the air was horrible."
 NPC=_"The city was full of flames, flashes of gunfire and screaming people. That image still does not let me sleep at nights."
 NPC=_"First we made them, and then they unmade us. How ironic."
-LuaCode={
-    next(5)
-    hide(3)
-    show(15)
-}
+LuaCode={ next(5) hide(3) show(15) }
 ----------------------------------------------------------------------
 
 Nr=5  Text=_"What happened then?"
 NPC=_"I got shot down and I crashed a few kilometers away from here."
 NPC=_"Later I learned that the bots started attacking all around the globe. The journalists called it 'The Great Assault'. The name stuck."
-NPC=_"Then the bots started jamming our broadcasts and long distance communication became impossible."
-NPC=_"I have no idea what happened in the world after that. We are cut off."
+NPC=_"Then the bots started jamming our broadcasts and long distance communication became impossible. I have no idea what happened in the world after that. We are cut off." 
 NPC=_"For all I know the war might be already over."
-LuaCode={
-    hide(5)
-}
+LuaCode={ hide(5) }
 ----------------------------------------------------------------------
 
 Nr=6  Text=_"Where am I?"
-NPC=_"The locals call the place Temple Wood. We are located not too far away from a mining town where we have made a stand against the damn contraptions."
-NPC=_"I am sorry to disappoint, but my knowledge of geography is a bit lacking, I have no idea where in the world we are."
-NPC=_"Most people here have a German accent, so if I had to guess, I would say Europe."
-LuaCode={
-    hide(6)
-    show(8, 14)
-}
+NPC=_"The locals call this place the popsicle storage, because of all the people lying here frozen in cryogenic sleep. All were frozen down before the Great Assault."
+NPC=_"This facility is located not too far away from a mining town where we have made a stand against the damn contraptions. However Im alone here with only 1 droid for security."
+NPC=_"There are just too few humans alive and awake to allow us to properly protect this place, and nobody else is foolish enough to stay out here alone." 
+NPC=_"I try to do my best to make sure nothing goes bad here and all these people die. Luckily, the outer gates of this place is quite sturdy."
+LuaCode={ hide(6) show(8, 14, 17, 18) }
 ----------------------------------------------------------------------
 
 Nr=7  Text=_"Why did the Linarians come to this world?"
 NPC=_"The planet you mean? No one knows that. None of you ever said anything about it."
 NPC=_"Sorry, I cannot help you with that."
-LuaCode={
-    hide(7)
-}
+LuaCode={ hide(7) }
 ----------------------------------------------------------------------
 
 Nr=8  Text=_"Where in the void is this world?"
 NPC=_"I guess you mean in the universe?"
-LuaCode={
-    next(10)
-    hide(8)
-}
+LuaCode={ next(10) hide(8) }
 ----------------------------------------------------------------------
 
 Nr=10  Text=_"Yes, I think that is your name for it."
@@ -117,11 +99,7 @@ NPC=_"Well, we are in a barred spiral galaxy, twenty-six thousand light years aw
 NPC=_"The galactic radius is 43,000 light years and the circumference is estimated at 270,000 light years."
 NPC=_"This is a planetary system of ten planets, and we are presently located on the third one from our star, Sun."
 NPC=_"I am not an astronomer, so I can be wrong. I am too tired to keep track of what is a planet and what is just an overweight rock."
-hideOption=10
-LuaCode={
-    next(12)
-    hide(10)
-}
+LuaCode={ next(12) hide(10) }
 ----------------------------------------------------------------------
 
 Nr=11  Text=_"Who are you? What is going on?"
@@ -129,27 +107,19 @@ NPC=_"I guess I will start with myself."
 NPC=_"Francis. Francis Spark. I used to be a teacher at a small university before all hell broke loose."
 NPC=_"Currently, there is a war raging all around the globe. Humans are fighting against bots."
 NPC=_"And it looks like we are losing the war."
-LuaCode={
-    hide(11)
-    show(3)
-}
+LuaCode={ hide(11) show(3) }
 ----------------------------------------------------------------------
 
 Nr=12  Text=_"This can be just about anywhere. Your description is too ambiguous."
 NPC=_"Sorry, star sciences are my weak point. Maybe someone in the town might know something more."
-LuaCode={
-    hide(12)
-}
+LuaCode={ hide(12) }
 ----------------------------------------------------------------------
 
 Nr=13  Text=_"I feel terrible... Was I asleep? I remember nightmares. A meteor shower striking a planet full of life and killing everything on it..."
 NPC=_"This is normal. You were in stasis sleep for over 70 years. Stasis is not too kind on the mind. Your strange dreams will keep recurring for several years."
 NPC=_"Whatever was the reason for putting yourself through this, it must have been a damn good one."
 NPC=_"You are lucky that I found you and woke you up. A few more decades in there and you would end up insane."
-LuaCode={
-    hide(13)
-    show(16, 21)
-}
+LuaCode={ hide(13) show(16, 21) }
 ----------------------------------------------------------------------
 
 Nr=14  Text=_"Tell me more about the town you mentioned."
@@ -158,9 +128,7 @@ NPC=_"It was a stroke of luck that it did not get destroyed by the bots. Because
 NPC=_"All they had at the time of the bot attack were the 614 bot battle platforms. They were running an old operating system and were not affected by whatever caused the other bots to go crazy."
 NPC=_"Right now the place is protected by the Red Guard, a bunch of volunteers. I cannot say I agree with their methods."
 NPC=_"However, I must admit that being a prisoner of a walled town looks pretty good compared to the alternative of being eviscerated alive."
-LuaCode={
-    hide(14)
-}
+LuaCode={ hide(14) }
 ----------------------------------------------------------------------
 
 Nr=15  Text=_"Why did the bots attack?"
@@ -168,26 +136,32 @@ NPC=_"We don't really know the reason for this insanity. However..."
 NPC=_"All of the attacking bots are using a MegaSys operating system, so we think they are responsible."
 NPC=_"Not surprisingly, the bastards deny everything."
 NPC=_"Of course because nearly every single bot in the world runs on that junk, the situation does not look pretty."
-LuaCode={
-    hide(15)
-    show(20)
-}
+LuaCode={ hide(15) show(20) }
 ----------------------------------------------------------------------
 
 Nr=16  Text=_"I also heard a voice... Someone calling himself Dvorak... "
 NPC=_"Relax. Everything will be fine in a few hours."
 NPC=_"This is perfectly normal."
-LuaCode={
-    hide(16)
-}
+LuaCode={ hide(16) }
+----------------------------------------------------------------------
+
+Nr=17  Text=_"Why not wake up all these people and attack the bots?"
+NPC=_"Well, some have a disease that cant be cured yet. Some are just old and wants to be woken up when technology can give them an extended life. Some have other reasons."
+NPC=_"But suffice to say, most of these people are not really good at fighting. Besides, we dont have enough weapons to mount a full scale counter attack at present.
+NPC=_"And an even bigger problem would be to feed everyone. Our food resources are quite scarce. So for now they are better of sleeping."
+LuaCode={ hide(17) }
+----------------------------------------------------------------------
+
+Nr=18  Text=_"Can you tell me how to get to town?"
+NPC=_"Sure. You just need to follow the road outside. After the bridge, turn right and continue follow the road and you will soon be outside of the town main gate."
+NPC=_"If you run across too many bots, you can try to circle around them. But avoid getting too far off the road, so you dont get lost. It's very dangerous out there."
+NPC=_"Once in town you will be able to purchase a few items for protection at Mrs Stone's shop just inside the town gate."
 ----------------------------------------------------------------------
 
 Nr=20  Text=_"It cannot be true. One company cannot control all of the bot software on a whole world."
 NPC=_"It can. They got close to a monopoly 30 years ago, but their last competitor, the open source community, was defeated by them about a year ago."
 NPC=_"Since then all of the newly made bots have been made with MegaSys firmware burnt into their circuits."
-LuaCode={
-    hide(20)
-}
+LuaCode={ hide(20) }
 ----------------------------------------------------------------------
 
 Nr=21  Text=_"Why did you wake me up? "
@@ -195,18 +169,13 @@ NPC=_"The situation at the town is not good. The walls are crumbling and we have
 NPC=_"I heard the Linarians have a special gift for computers and can hack them just by thinking about it."
 NPC=_"Even if this is only partly true, we need it. The situation is quite ugly."
 NPC=_"We need you."
-LuaCode={
-    hide(21)
-}
-
+LuaCode={ hide(21) }
 ----------------------------------------------------------------------
 
 Nr=99  Text=_"Thanks for the help. I'll be going now."
 NPC=_"I am glad I could help you. You should be careful around here. Best head straight for our town."
-NPC=_"The path from this house should lead you directly to it."
-LuaCode={
-    end_dialog()
-}
+NPC=_"Remember to not weer too far of the path, or your quest can be over before it begins."
+LuaCode={ end_dialog() }
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"
