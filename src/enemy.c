@@ -1136,131 +1136,78 @@ DistanceToTux ( Enemy ThisRobot )
 }; // float DistanceToTux ( Enemy ThisRobot )
 
 /**
- * This function checks if the enemy at 'target_pos' is a potential target for
- * 'this_robot'.
- * To be a potential target, the enemy has :
- * 1) to be closer to this_robot than the current best enemy (defined by its
- *    distance 'squared_best_dist')
- * 2) to be visible
- * 3) to be reachable (definition depends on the robot's weapon)
- * 
- * If the enemy is a potential target, 'squared_best_dist' is changed, and
- * the function returns TRUE.
- * 
- */
-int is_potential_target( enemy* this_robot, gps* target_pos, float* squared_best_dist )
-{
-	/* Nota : currently, DLC, and hence the pathfinder, do not cross level boundaries.
-	 * It is thus not possible to target an enemy that does not lie on the same
-	 * level than this_robot.
-	 */
-	if ( this_robot->pos.z != target_pos->z ) return FALSE;
-	
-	float xdist = target_pos->x - this_robot->pos.x;
-	float ydist = target_pos->y - this_robot->pos.y;
-	float squared_target_dist = (xdist * xdist + ydist * ydist);
-
-	// Potentially closer than current best dist ?
-	// We use the direct line distance as the distance to the target.
-	// The reason is : if two potential targets are seen through a window,
-	// we will attack the one that is visually the closest one (the bots are
-	// not omniscient and do not know the length of the path to their targets)
-	if ( squared_target_dist > *squared_best_dist )
-		return FALSE;
-
-	// If the target is not visible, then it cannot be attacked
-	if ( !DirectLineColldet(this_robot->pos.x, this_robot->pos.y, 
-	                        target_pos->x, target_pos->y, 
-	                        this_robot->pos.z, &VisiblePassFilter) )
-	{
-		return FALSE;
-	}
-
-	// For a range weapon, check if the target can be directly shot
-	int melee_weapon = ItemMap[Druidmap[this_robot->type].weapon_item.type].item_weapon_is_melee;
-
-	if (!melee_weapon)
-	{
-		float squared_shoot_range = RANGE_SHOOT_MIN_DIST * RANGE_SHOOT_MIN_DIST;
-
-		if ( (squared_target_dist <= squared_shoot_range) && 
-		     DirectLineColldet(this_robot->pos.x, this_robot->pos.y, 
-		                       target_pos->x, target_pos->y, 
-		                       this_robot->pos.z, &FlyablePassFilter) )
-		{
-			*squared_best_dist = squared_target_dist;
-			return TRUE;
-		}
-	}
-
-	// Else (if melee_weapon or if too far for a range_weapon), checks if a path exists to reach the target
-	moderately_finepoint mid_pos[40];
-	moderately_finepoint to_pos = { target_pos->x, target_pos->y };
-	int path_found = set_up_intermediate_course_between_positions(NULL, FALSE, &(this_robot->pos), &to_pos, mid_pos, 40) && (mid_pos[5].x == -1);
-	if (!path_found) return FALSE;
-
-	*squared_best_dist = squared_target_dist;
-	return TRUE;
-
-} // is_potential_target( enemy* this_robot, gps* target_pos, float* squared_best_dist )
-
-/**
- * This function selects a target for a friendly bot. 
- * It takes closest reachable enemy bot in view range.
- * A new target is selected at each frame. This should prevent a friendly bot to follow
- * an enemy and thus get too far away from its "steady" position.
+ * This function selects a target for a friendly bot. Its simply takes
+ * the first enemy bot in view range. This could be improved at a later point.
+ *
  */
 void
 update_vector_to_shot_target_for_friend ( enemy* ThisRobot , moderately_finepoint* vect_to_target )
 {
-	float aggression_distance = Druidmap[ThisRobot->type].aggression_distance;
-	float squared_aggression_distance = aggression_distance * aggression_distance;
-	float squared_best_dist;
+    float IgnoreRange = Druidmap [ ThisRobot -> type ] . aggression_distance;
+    int found_some_target = FALSE;
 
-	//--------------------
-	// We set some default values, in case there isn't anything attackable
-	// found below...
-	//
-	vect_to_target -> x = -1000;
-	vect_to_target -> y = -1000;
-	ThisRobot -> attack_target_type = ATTACK_TARGET_IS_NOTHING ;
-	squared_best_dist = squared_aggression_distance;
-    
-	enemy *erot;
-	BROWSE_LEVEL_BOTS(erot, ThisRobot->pos.z)
-	{
-		if ( erot->is_friendly ) continue;
 
-		if ( is_potential_target(ThisRobot, &erot->pos, &squared_best_dist) )
-		{
-			vect_to_target->x = erot->pos.x - ThisRobot->pos.x;
-		    vect_to_target->y = erot->pos.y - ThisRobot->pos.y;
-			ThisRobot -> attack_target_type = ATTACK_TARGET_IS_ENEMY ;
-			enemy_set_reference(&ThisRobot->bot_target_n, &ThisRobot->bot_target_addr, erot);
-		}
+    //--------------------
+    // We set some default values, in case there isn't anything attackable
+    // found below...
+    //
+    vect_to_target -> x = -1000;
+    vect_to_target -> y = -1000;
+
+        
+    enemy * tgt = NULL;
+    enemy *erot;
+    BROWSE_LEVEL_BOTS(erot, ThisRobot->pos.z)
+    {
+	if ( erot->is_friendly )
+	    continue;
+
+	float dist =  sqrt ( ( ThisRobot -> pos . x - erot->pos . x ) *
+		( ThisRobot -> pos . x - erot->pos . x ) +
+		( ThisRobot -> pos . y - erot->pos . y ) *
+		( ThisRobot -> pos . y - erot->pos . y ) );
+
+	if ( dist > IgnoreRange ) 
+	    continue;
+
+	// At this point we have found our target
+	vect_to_target -> x = erot->pos . x - ThisRobot -> pos . x ;
+	vect_to_target -> y = erot->pos . y - ThisRobot -> pos . y ;
+	found_some_target = TRUE ;
+	tgt = erot;
+
+	//Set it and update ignore range
+	IgnoreRange = dist;
     }
-
-} // void update_vector_to_shot_target_for_friend ( ThisRobot , moderately_finepoint* vect_to_target )
+    
+    if ( found_some_target ) 
+    {
+	ThisRobot -> attack_target_type = ATTACK_TARGET_IS_ENEMY ;
+	enemy_set_reference(&ThisRobot -> bot_target_n, &ThisRobot->bot_target_addr, tgt);
+    }
+    else	
+	ThisRobot -> attack_target_type = ATTACK_TARGET_IS_NOTHING ;
+    
+}; // void update_vector_to_shot_target_for_friend ( ThisRobot , moderately_finepoint* vect_to_target )
 
 /**
  * This function selects an attack target for an hostile bot.
- * Selected target is the previous target if it is still valid (see paragraph below),
+ * Selected target is the previous target if it is still valid (see paragraph bleow),
  * or the closest bot.
  *
  * For gameplay value purposes, it also performs a little hack : the target of 
- * the previous frame can be selected even if it is "slightly" out of view (2 times the range),
- * in order to simulate "pursuit". Sorry for the mess but there is no other proper place for that.
+ * the previous frame can be selected even if it is "slightly" out of view (2 times the range)
+ * range, it order to simulate "pursuit". Sorry for the mess but there is no other
+ * proper place for that.
  *
  */
 void
 update_vector_to_shot_target_for_enemy ( enemy* this_robot , moderately_finepoint* vect_to_target )
 {
     int our_level = this_robot -> pos . z ;
-    float squared_best_dist;
+    float best_dist, our_dist;
     float xdist, ydist;
-    float aggression_distance = Druidmap[this_robot->type].aggression_distance;
-    float squared_aggression_distance = aggression_distance * aggression_distance;
-    
+
     gps old_target_pos;
     gps * a = enemy_get_target_position(this_robot);
     if ( !a ) old_target_pos.x = -1000;
@@ -1270,13 +1217,10 @@ update_vector_to_shot_target_for_enemy ( enemy* this_robot , moderately_finepoin
 	old_target_pos . y = a->y;
 	}
 
-    xdist = old_target_pos.x - this_robot->pos.x;
-    ydist = old_target_pos.y - this_robot->pos.y;
-    
-    if ( old_target_pos.x != -1000 && (xdist * xdist + ydist * ydist) < 4.0 * squared_aggression_distance )
+    if ( old_target_pos.x != -1000 && (old_target_pos.x * old_target_pos.x + old_target_pos.y * old_target_pos.y) < 2 *  Druidmap[this_robot->type].aggression_distance )
 	{
-	vect_to_target -> x = xdist;
-	vect_to_target -> y = ydist;
+	vect_to_target -> x = old_target_pos.x - this_robot->pos.x;
+	vect_to_target -> y = old_target_pos.y - this_robot->pos.y;
 	//attack_target_type is left unmodified
 	return;
 	}
@@ -1285,41 +1229,65 @@ update_vector_to_shot_target_for_enemy ( enemy* this_robot , moderately_finepoin
     // By default, we set the target of this bot to the Tux himself
     // i.e. the closest (visible?) player.
     //
+    if ( Me . invisible_duration <= 0 )
+	{
+	vect_to_target -> x = Me . pos . x - this_robot -> virt_pos . x ;
+	vect_to_target -> y = Me . pos . y - this_robot -> virt_pos . y ;
+	this_robot -> attack_target_type = ATTACK_TARGET_IS_PLAYER ;
+	}
+    else 
+	{
 	vect_to_target->x = -1000;
 	vect_to_target->y = -1000;
 	this_robot -> attack_target_type = ATTACK_TARGET_IS_NOTHING;
-	squared_best_dist = squared_aggression_distance;
-
-	if ( Me . invisible_duration <= 0 )
-	{
-		if ( is_potential_target(this_robot, &Me.pos, &squared_best_dist) )
-		{
-			vect_to_target -> x = Me . pos . x - this_robot -> virt_pos . x ;
-			vect_to_target -> y = Me . pos . y - this_robot -> virt_pos . y ;
-			this_robot -> attack_target_type = ATTACK_TARGET_IS_PLAYER ;
-		}
 	}
-   
-	//--------------------
-	// But maybe there is a friend of the Tux also close.  Then maybe we
-	// should attack this one instead, since it's much closer anyway.
-	// Let's see...
-	//
-	enemy *erot;
-	BROWSE_LEVEL_BOTS(erot, our_level)
+
+    
+    //--------------------
+    // This function is time-critical, so we work with squares in the
+    // following and avoid computation of roots entirely
+    //
+    best_dist = vect_len ( *vect_to_target );
+    best_dist = best_dist * best_dist ;
+    
+    //--------------------
+    // But maybe there is a friend of the Tux also close.  Then maybe we
+    // should attack this one instead, since it's much closer anyway.
+    // Let's see...
+    //
+    enemy *erot;
+    BROWSE_LEVEL_BOTS(erot, our_level)
+    {
+	if ( ! erot->is_friendly )
+	    continue;
+	
+	xdist = this_robot -> pos . x - erot->pos . x ;
+	ydist = this_robot -> pos . y - erot->pos . y ;
+
+	our_dist = xdist * xdist + ydist * ydist ;
+	
+	if ( our_dist > 25.0 )
+	    continue;
+	
+	if ( our_dist < best_dist )
 	{
-		if ( !erot->is_friendly ) continue;
+	    best_dist = our_dist ;
+	    
+	    vect_to_target -> x = erot->pos . x - this_robot -> pos . x ;
+	    vect_to_target -> y = erot->pos . y - this_robot -> pos . y ;
+	    this_robot -> attack_target_type = ATTACK_TARGET_IS_ENEMY ;
+	    enemy_set_reference(&this_robot->bot_target_n, &this_robot->bot_target_addr, erot);
+	}
 
-		if ( is_potential_target(this_robot, &erot->pos, &squared_best_dist) )
-		{
-			vect_to_target -> x = erot->pos . x - this_robot -> pos . x ;
-		    vect_to_target -> y = erot->pos . y - this_robot -> pos . y ;
-		    this_robot -> attack_target_type = ATTACK_TARGET_IS_ENEMY ;
-		    enemy_set_reference(&this_robot->bot_target_n, &this_robot->bot_target_addr, erot);			
-		}	
     }
-
-} // void update_vector_to_shot_target_for_enemy ( ThisRobot , moderately_finepoint* vect_to_target )
+    
+    if ( sqrt(vect_to_target -> x * vect_to_target->x + vect_to_target -> y * vect_to_target->y ) > Druidmap[this_robot->type].aggression_distance )
+	{
+	vect_to_target->x = -1000;
+	vect_to_target->y = -1000;
+	this_robot -> attack_target_type = ATTACK_TARGET_IS_NOTHING;
+	}
+}; // int update_vector_to_shot_target_for_enemy ( ThisRobot , moderately_finepoint* vect_to_target )
 
 
 /**
@@ -1544,14 +1512,14 @@ static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_m
 	{
 	if ( melee_weapon )
 	    {
-	    if ( dist2 > MELEE_MAX_DIST )
+	    if ( dist2 > 2.25 )
 		{ // Melee weapon and too far to strike ? get closer 
 		move_to_target = 1;
 		}
 	    }
 	else 
 	    {
-	    if ( dist2 < RANGE_SHOOT_MIN_DIST )
+	    if ( dist2 < 7 )
 		{ // Ranged weapon and too close to be safe ? get away
 		MoveAwayFromMeleeCombat ( ThisRobot , new_move_target );
 		} 	
