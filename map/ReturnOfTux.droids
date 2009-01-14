@@ -275,8 +275,8 @@ SForce: T=598 Fixed=0 Marker=1007 Friendly=0 StartUpAtLabel="MERStartGameSquare"
 
 ** Beginning of new Level **
 Level=8
-Maximum number of Random Droids=60
-Minimum number of Random Droids=40
+Maximum number of Random Droids=80
+Minimum number of Random Droids=60
 Allowed Type of Random Droid for this level: 123
 Allowed Type of Random Droid for this level: 139
 
