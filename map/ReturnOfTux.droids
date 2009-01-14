@@ -275,21 +275,15 @@ SForce: T=598 Fixed=0 Marker=1007 Friendly=0 StartUpAtLabel="MERStartGameSquare"
 
 ** Beginning of new Level **
 Level=8
-Maximum number of Random Droids=50
-Minimum number of Random Droids=30
+Maximum number of Random Droids=60
+Minimum number of Random Droids=40
 Allowed Type of Random Droid for this level: 123
+Allowed Type of Random Droid for this level: 139
 
-SForce: T=PRO Fixed=0 Marker=9999 Friendly=1 StartUpAtLabel="FrancisStartGameSquare" RushTux="yes" DialogSectionToUse="Francis" ShortLabel="Francis" attack_run_only_when_direct_line="no"
 SForce: T=GUB Fixed=0 Marker=1008 Friendly=1 StartUpAtLabel="DarwinStartGameSquare" RushTux="no" DialogSectionToUse="Darwin" ShortLabel="Engel -- Hunter" attack_run_only_when_direct_line="no"
 SForce: T=GUB Fixed=0 Marker=1008 Friendly=1 StartUpAtLabel="MelfisStartGameSquare" RushTux="no" DialogSectionToUse="Melfis" ShortLabel="Geist -- Hunter" attack_run_only_when_direct_line="no"
 
 SForce: T=302 Fixed=0 Marker=2008 Friendly=0 StartUpAtLabel="The302InFrontOfTheTempleStart" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Nemesis" attack_run_only_when_direct_line="no"
-
-SForce: T=139 Fixed=0 Marker=2008 Friendly=0 StartUpAtLabel="Lev8Start139Nr1" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Templar" attack_run_only_when_direct_line="no"
-SForce: T=139 Fixed=0 Marker=2008 Friendly=0 StartUpAtLabel="Lev8Start139Nr2" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Templar" attack_run_only_when_direct_line="no"
-
-SForce: T=139 Fixed=0 Marker=3008 Friendly=0 StartUpAtLabel="Lev8Start139Nr3" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Templar" attack_run_only_when_direct_line="no"
-SForce: T=139 Fixed=0 Marker=3008 Friendly=0 StartUpAtLabel="Lev8Start139Nr4" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Templar" attack_run_only_when_direct_line="no"
 
 ** End of this levels droid data **
 
@@ -345,11 +339,14 @@ Allowed Type of Random Droid for this level: 123
 
 ** Beginning of new Level **
 Level=12
-Maximum number of Random Droids=0
-Minimum number of Random Droids=0
-Allowed Type of Random Droid for this level: 247
-Allowed Type of Random Droid for this level: 302
-Allowed Type of Random Droid for this level: 420
+Maximum number of Random Droids=12
+Minimum number of Random Droids=10
+Allowed Type of Random Droid for this level: 123
+
+SForce: T=PRO Fixed=0 Marker=9999 Friendly=1 StartUpAtLabel="FrancisStartGameSquare" RushTux="yes" DialogSectionToUse="Francis" ShortLabel="Francis" attack_run_only_when_direct_line="no"
+SForce: T=614 Fixed=0 Marker=1012 Friendly=1 StartUpAtLabel="Lev12-614-complex-guard" RushTux="no" DialogSectionToUse="614_cryo" ShortLabel="614 -- Cryo Lab Guard Bot" attack_run_only_when_direct_line="no"
+SForce: T=302 Fixed=0 Marker=2012 Friendly=0 StartUpAtLabel="Lev12-302" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="302 Nemesis" attack_run_only_when_direct_line="no"
+
 ** End of this levels droid data **
 
 ----------------------------------------------------------------------
