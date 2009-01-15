@@ -1,7 +1,6 @@
 /* 
  *
- *   Copyright (c) 2002, 2003 Johannes Prix
- *   Copyright (c) 2004-2008 Arthur Huillet
+ *   Copyright (c) 2008-2009 Samuel Degrande
  *
  *
  *  This file is part of Freedroid

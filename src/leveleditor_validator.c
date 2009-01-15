@@ -1,7 +1,6 @@
 /* 
  *
- *   Copyright (c) 2002, 2003 Johannes Prix
- *   Copyright (c) 2004-2008 Arthur Huillet
+ *   Copyright (c) 2008-2009 Samuel Degrande
  *
  *
  *  This file is part of Freedroid
@@ -115,6 +114,35 @@ int chest_reachable_validator( level_validator_ctx* ValidatorCtx )
 }
 
 /**
+ * Check if the connection between two waypoints is valid
+ * This is an helper function for waypoint_validator()
+ */
+enum connect_validity {
+	DIRECT_CONN  = 0,
+	NEED_PATH    = 1,
+	NO_PATH      = 2,
+	COMPLEX_PATH = 4
+};
+
+static enum connect_validity waypoints_connection_valid( gps* from_pos, gps* to_pos )
+{
+	if ( DirectLineColldet(from_pos->x, from_pos->y, to_pos->x, to_pos->y, from_pos->z, &WalkablePassFilter) )
+		return DIRECT_CONN;
+	
+	moderately_finepoint mfp_to_pos = { to_pos->x, to_pos->y };
+	moderately_finepoint mid_pos[40];
+	
+	int path_found = set_up_intermediate_course_between_positions ( NULL, FALSE, from_pos, &mfp_to_pos, mid_pos, 40);
+	if ( !path_found ) return NO_PATH;
+		
+	int nb_mp = 0;
+	while ( mid_pos[nb_mp++].x != -1 );
+	if ( nb_mp>5 ) return (NO_PATH & COMPLEX_PATH);
+		
+	return NEED_PATH; 
+}
+
+/**
  * This validator checks if waypoints are valid
  */
 
@@ -124,7 +152,9 @@ int waypoint_validator( level_validator_ctx* ValidatorCtx )
 	int pos_is_invalid = FALSE;
 	int conn_is_invalid = FALSE;
 	int path_is_invalid = FALSE;
-
+	int path_warning = FALSE;
+#	define TRSL_FACT 0.025
+	
 	// Check waypoints position
 	for ( i = 0; i < ValidatorCtx->this_level->num_waypoints; ++i )
 	{
@@ -167,39 +197,121 @@ int waypoint_validator( level_validator_ctx* ValidatorCtx )
 		for ( j = 0; j < ValidatorCtx->this_level->AllWaypoints[i].num_connections; ++j )
 		{
 			int wp = ValidatorCtx->this_level->AllWaypoints[i].connections[j];
-			
-			if ( !DirectLineColldet(ValidatorCtx->this_level->AllWaypoints[i].x + 0.5, ValidatorCtx->this_level->AllWaypoints[i].y + 0.5,
-			                        ValidatorCtx->this_level->AllWaypoints[wp].x + 0.5, ValidatorCtx->this_level->AllWaypoints[wp].y + 0.5,
-			                        ValidatorCtx->this_level->levelnum, &WalkablePassFilter) )
+
+			gps from_pos = { ValidatorCtx->this_level->AllWaypoints[i].x + 0.5,  ValidatorCtx->this_level->AllWaypoints[i].y + 0.5,  ValidatorCtx->this_level->levelnum };
+			gps to_pos   = { ValidatorCtx->this_level->AllWaypoints[wp].x + 0.5, ValidatorCtx->this_level->AllWaypoints[wp].y + 0.5, ValidatorCtx->this_level->levelnum };
+
+			enum connect_validity rtn = waypoints_connection_valid(&from_pos, &to_pos);
+			if ( rtn & NO_PATH )
 			{
-				gps from_pos = { ValidatorCtx->this_level->AllWaypoints[i].x + 0.5, ValidatorCtx->this_level->AllWaypoints[i].y + 0.5, ValidatorCtx->this_level->levelnum };
-				moderately_finepoint to_pos = { ValidatorCtx->this_level->AllWaypoints[wp].x + 0.5, ValidatorCtx->this_level->AllWaypoints[wp].y + 0.5 };
-				moderately_finepoint mid_pos[40];
-				
-				int path_found = set_up_intermediate_course_between_positions ( NULL, FALSE, &from_pos, &to_pos, mid_pos, 40);
-				int nb_mp = 0;
-				if ( path_found ) while ( mid_pos[nb_mp++].x != -1 );
-				
-				if ( !path_found || (nb_mp>5) )
-				{
-					if ( !path_is_invalid )
-					{	// First error : print header
-						ValidatorPrintHeader(ValidatorCtx, "Invalid waypoint paths list",
-						                                   "The pathfinder was not able to find a path between those waypoints.\n"
-								                           "This could lead those paths to not being usable." );
-						path_is_invalid = TRUE;
-					}
-					printf( "Path: %f/%f -> %f/%f (%s)\n", 
-					        ValidatorCtx->this_level->AllWaypoints[i].x + 0.5, ValidatorCtx->this_level->AllWaypoints[i].y + 0.5,
-					        ValidatorCtx->this_level->AllWaypoints[wp].x + 0.5, ValidatorCtx->this_level->AllWaypoints[wp].y + 0.5,
-					        (!path_found)?"path not found":"too complex");
+				if ( !path_is_invalid )
+				{	// First error : print header
+					ValidatorPrintHeader(ValidatorCtx, "Invalid waypoint paths list",
+					                                   "The pathfinder was not able to find a path between those waypoints.\n"
+							                           "This could lead those paths to not being usable." );
+					path_is_invalid = TRUE;
 				}
-			}
+				printf( "Path: %f/%f -> %f/%f (%s)\n", 
+				        from_pos.x, from_pos.y, to_pos.x, to_pos.y,
+				        (rtn & COMPLEX_PATH)?"too complex":"path not found");
+			}			
 		}
 	}
 	if ( path_is_invalid ) puts( line );
 
-	return ( pos_is_invalid || conn_is_invalid || path_is_invalid );
+	// Sometimes, a bot does not exactly follow the path between the waypoints
+	// (perhaps due to floating point approximations).
+	// So, even if the connection is in theory walkable, a bot could get stuck.
+	// By translating a bit the waypoints positions, we simulate such a behavior.
+
+	for ( i = 0; i < ValidatorCtx->this_level->num_waypoints; ++i )
+	{
+		if ( ValidatorCtx->this_level->AllWaypoints[i].num_connections == 0 ) continue;
+		
+		for ( j = 0; j < ValidatorCtx->this_level->AllWaypoints[i].num_connections; ++j )
+		{
+			int wp = ValidatorCtx->this_level->AllWaypoints[i].connections[j];
+
+			gps from_pos = { ValidatorCtx->this_level->AllWaypoints[i].x + 0.5,  ValidatorCtx->this_level->AllWaypoints[i].y + 0.5,  ValidatorCtx->this_level->levelnum };
+			gps to_pos   = { ValidatorCtx->this_level->AllWaypoints[wp].x + 0.5, ValidatorCtx->this_level->AllWaypoints[wp].y + 0.5, ValidatorCtx->this_level->levelnum };
+			
+			// Translation vector
+			moderately_finepoint line_vector;
+			line_vector.x = to_pos.x - from_pos.x;
+			line_vector.y = to_pos.y - from_pos.y;
+			float length = sqrtf(line_vector.x * line_vector.x + line_vector.y * line_vector.y);
+			line_vector.x = (line_vector.x * TRSL_FACT) / length;
+			line_vector.y = (line_vector.y * TRSL_FACT) / length;
+			
+			// Translation normal
+			moderately_finepoint line_normal = { -line_vector.y, line_vector.x };
+
+			// 1- Augment the length
+			gps trsl_from_pos = { from_pos.x - line_vector.x, from_pos.y - line_vector.y, from_pos.z };
+			gps trsl_to_pos   = { to_pos.x   + line_vector.x, to_pos.y   + line_vector.y, to_pos.z   };
+
+			enum connect_validity rtn = waypoints_connection_valid(&trsl_from_pos, &trsl_to_pos);
+			if ( rtn & NO_PATH )
+			{
+				if ( !path_warning )
+				{	// First error : print header
+					ValidatorPrintHeader(ValidatorCtx, "Waypoint paths Warning list",
+					                                   "The pathfinder was not able to find a path between two variations of those waypoints.\n"
+							                           "This could lead some bots to get stuck along those paths." );
+					path_warning = TRUE;
+				}
+				printf( "Path: %f/%f -> %f/%f (warning)\n", 
+				        from_pos.x, from_pos.y, to_pos.x, to_pos.y);
+				
+				continue; // Next connection
+			}
+			
+			// 2- Translate up in the direction of the normal
+			trsl_from_pos.x += line_normal.x;
+			trsl_from_pos.y += line_normal.y;
+			trsl_to_pos.x   += line_normal.x;
+			trsl_to_pos.y   += line_normal.y;
+
+			rtn = waypoints_connection_valid(&trsl_from_pos, &trsl_to_pos);
+			if ( rtn & NO_PATH )
+			{
+				if ( !path_warning )
+				{	// First error : print header
+					ValidatorPrintHeader(ValidatorCtx, "Waypoint paths Warning list",
+					                                   "The pathfinder was not able to find a path between two variations of those waypoints.\n"
+							                           "This could lead some bots to get stuck along those paths." );
+					path_warning = TRUE;
+				}
+				printf( "Path: %f/%f -> %f/%f (warning)\n", 
+				        from_pos.x, from_pos.y, to_pos.x, to_pos.y);
+					
+				continue; // Next connection
+			}
+			
+			// 3- Translate down in the direction of the normal
+			trsl_from_pos.x -= 2 * line_normal.x;
+			trsl_from_pos.y -= 2 * line_normal.y;
+			trsl_to_pos.x   -= 2 * line_normal.x;
+			trsl_to_pos.y   -= 2 * line_normal.y;
+
+			rtn = waypoints_connection_valid(&trsl_from_pos, &trsl_to_pos);
+			if ( rtn & NO_PATH )
+			{
+				if ( !path_warning )
+				{	// First error : print header
+					ValidatorPrintHeader(ValidatorCtx, "Waypoint paths Warning list",
+					                                   "The pathfinder was not able to find a path between two variations of those waypoints.\n"
+							                           "This could lead some bots to get stuck along those paths." );
+					path_warning = TRUE;
+				}
+				printf( "Path: %f/%f -> %f/%f (warning)\n", 
+				        from_pos.x, from_pos.y, to_pos.x, to_pos.y);
+			}
+		}
+	}
+	if ( path_warning ) puts( line );
+
+	return ( pos_is_invalid || conn_is_invalid || path_is_invalid || path_warning );
 }
 
 /**
