@@ -156,6 +156,13 @@ Nr=18  Text=_"Can you tell me how to get to town?"
 NPC=_"Sure. You just need to follow the road outside. After the bridge, turn right and continue follow the road and you will soon be outside of the town main gate."
 NPC=_"If you run across too many bots, you can try to circle around them. But avoid getting too far off the road, so you dont get lost. It's very dangerous out there."
 NPC=_"Once in town you will be able to purchase a few items for protection at Mrs Stone's shop just inside the town gate."
+LuaCode={ show(19) }
+----------------------------------------------------------------------
+
+Nr=19  Text=_"How do I get out from here?"
+NPC=_"Oh, just take the small door and corridor out to the waiting room. And from there you can get out through the customer entrance."
+NPC=_"I keep the back entrance, close to my sleeping quarters, looked at all times for safety reasons. Better safe then sorry."
+LuaCode={ hide(19) }
 ----------------------------------------------------------------------
 
 Nr=20  Text=_"It cannot be true. One company cannot control all of the bot software on a whole world."
