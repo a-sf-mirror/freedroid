@@ -895,7 +895,7 @@ Brain of this droid : 2
 Sensor 1 of this droid : 2
 Sensor 3 of this droid : 3
 Drive item=7
-Weapon item="Exterminator"
+Weapon item="NPC Hand to hand weapon"
 Greeting Sound number=4
 Got Hit Sound number=-1
 Death sound file name="none"
@@ -1019,7 +1019,7 @@ Brain of this droid : 2
 Sensor 1 of this droid : 2
 Sensor 3 of this droid : 3
 Drive item=7
-Weapon item="Exterminator"
+Weapon item="NPC Hand to hand weapon"
 Greeting Sound number=8
 Got Hit Sound number=-1
 Death sound file name="none"
@@ -1081,7 +1081,7 @@ Brain of this droid : 2
 Sensor 1 of this droid : 2
 Sensor 3 of this droid : 3
 Drive item=7
-Weapon item="Exterminator"
+Weapon item="NPC Hand to hand weapon"
 Greeting Sound number=6
 Got Hit Sound number=-1
 Death sound file name="none"
@@ -1216,7 +1216,6 @@ Time to recover after getting hit=0.03
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 33
 Notes concerning this droid=_"Run away! This bot will kill you!" 
-
 
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
