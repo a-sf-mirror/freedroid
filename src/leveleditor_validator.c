@@ -153,7 +153,7 @@ int waypoint_validator( level_validator_ctx* ValidatorCtx )
 	int conn_is_invalid = FALSE;
 	int path_is_invalid = FALSE;
 	int path_warning = FALSE;
-#	define TRSL_FACT 0.025
+#	define TRSL_FACT 0.02
 	
 	// Check waypoints position
 	for ( i = 0; i < ValidatorCtx->this_level->num_waypoints; ++i )
