@@ -147,7 +147,7 @@ LuaCode={ hide(16) }
 
 Nr=17  Text=_"Why not wake up all these people and attack the bots?"
 NPC=_"Well, some have a disease that cant be cured yet. Some are just old and wants to be woken up when technology can give them an extended life. Some have other reasons."
-NPC=_"But suffice to say, most of these people are not really good at fighting. Besides, we dont have enough weapons to mount a full scale counter attack at present.
+NPC=_"But suffice to say, most of these people are not really good at fighting. Besides, we dont have enough weapons to mount a full scale counter attack at present."
 NPC=_"And an even bigger problem would be to feed everyone. Our food resources are quite scarce. So for now they are better of sleeping."
 LuaCode={ hide(17) }
 ----------------------------------------------------------------------
