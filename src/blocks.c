@@ -1530,7 +1530,7 @@ This should be investigated as soon as possible.",
 static void init_obstacle_data( void )
 {
     int i;
-    float standard_wall_thickness = 0.9 ;
+    float standard_wall_thickness = 0.4 ;
     float standard_wall_width = 1.1 ;
     float standard_door_width = 1.0 ;
 // Extreme values for outer wall, to slightly lower problem of tux walking through outer wall door post
