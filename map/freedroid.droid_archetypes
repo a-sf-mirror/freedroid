@@ -550,7 +550,7 @@ Drive of this droid : 4
 Sensor 2 of this droid : 3
 Armament of this droid : 2
 Drive item=7
-Weapon item="Droid weaponry - 614,GUA,MUM (Power Exterminator)"
+Weapon item="Exterminator"
 Percent to drop Entropy Inverter=10
 Percent to drop Plasma Transistor=5
 Percent to drop Superconducting Relay Unit=5
@@ -926,7 +926,7 @@ Brain of this droid : 2
 Sensor 1 of this droid : 2
 Sensor 3 of this droid : 3
 Drive item=7
-Weapon item="Droid weaponry - 614,GUA,MUM (Power Exterminator)"
+Weapon item="Exterminator"
 Greeting Sound number=6
 Got Hit Sound number=-1
 Death sound file name="none"
@@ -957,7 +957,7 @@ Brain of this droid : 2
 Sensor 1 of this droid : 2
 Sensor 3 of this droid : 3
 Drive item=7
-Weapon item="Droid weaponry - 614,GUA,MUM (Power Exterminator)"
+Weapon item="Pump action shotgun"
 Greeting Sound number=-1
 Got Hit Sound number=-1
 Death sound file name="none"

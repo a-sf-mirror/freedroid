@@ -1953,7 +1953,7 @@ inventory_size_y=2
 Item description text=_"While this weapon is capable of firing really powerful shots, beware of the exceptionally long reloading times. (Don't get swarmed by enemies with this weapon unless you have powerful armor!)"
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.5000000
-Item as gun: reloading time=4.000000
+Item as gun: reloading time=5.000000
 Item as gun: speed of bullets=30.000000
 Item as gun: is melee weapon=0
 Item as gun: damage of bullets=8
@@ -2587,41 +2587,6 @@ Item as gun: pass through explosions="yes"
 Item as gun: pass through hit bodies="yes"
 Item as gun: required ammunition type="none"
 Item as gun: ammo clip size=0
-Item as gun: weapon requires both hands="yes"
------ end of part only relevant for weapons -----
-** End of new item specification subsection **
-
-** Start of new item specification subsection **
-Item name=_"Droid weaponry - 614,GUA,MUM (Power Exterminator)"
-Item min class for drop=-1
-Item can be applied in combat="no"
-Item can be installed in slot with name="weapon"
-Item uses rotation series with prefix="weapons/exterminator_simple"
-Items of this type collect together in inventory="no"
-Strength minimum required to wear/wield this item=20
-Dexterity minimum required to wear/wield this item=45
-Base item duration=10
-plus duration modifier=10
-File or directory name for inventory image="weapons/exterminator_simple/inv_image.png"
-Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
-Base list price=1001
-Item description text=_"This is one of the most powerful ranged weapons out there."
------ the following part is only relevant for weapons -----
-Item as gun: recharging time=0.50000
-Item as gun: reloading time=5.000000
-Item as gun: speed of bullets=35.000000
-Item as gun: is melee weapon=0
-Item as gun: damage of bullets=80
-Item as gun: modifier for damage of bullets=20
-Item as gun: bullet_image_type=4
-Item as gun: bullet_lifetime=-1.000000
-Item as gun: modifier for starting angle=0.000000
-Item as gun: ignore collisions with wall="no"
-Item as gun: reflect other bullets="no"
-Item as gun: pass through explosions="no"
-Item as gun: pass through hit bodies="no"
-Item as gun: required ammunition type="exterminator_ammunition"
-Item as gun: ammo clip size=2
 Item as gun: weapon requires both hands="yes"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
