@@ -2881,6 +2881,8 @@ void TuxReloadWeapon()
     if ( ItemMap [ Me . weapon_item . type ] . item_gun_ammo_clip_size == Me . weapon_item . ammo_clip )
 	return ; //clip full, return without reloading 
 
+    if  ( Me . paralyze_duration ) //do not reload when paralyzed 
+	return;
     
     switch ( ItemMap [ Me . weapon_item . type ] . item_gun_use_ammunition )
 	{
