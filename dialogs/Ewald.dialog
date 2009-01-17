@@ -33,6 +33,13 @@ Beginning of new chat dialog for character="XXXXX"
 FirstTime LuaCode={
     show(0, 3, 99)
 }
+
+EveryTime LuaCode={
+    if has_cookie("drank_all_ewald_had") then
+	-- enable tux to get a bit of water for free cooling
+	show(14)
+    end;
+}
 ----------------------------------------------------------------------
 
 Nr=0  Text=_"Hi. You look really happy."
@@ -143,6 +150,7 @@ NPC=_"Eh... I think you had enough... Maybe you should just go for a walk for no
 NPC=_"You have had everything that I had."
 LuaCode={
     hide(12)
+    add_cookie("drank_all_ewald_had")
 }
 ----------------------------------------------------------------------
 
@@ -156,6 +164,14 @@ LuaCode={
     hide(13)
 }
 ----------------------------------------------------------------------
+
+Nr=14 Text=_"Hey, I could use a refreshing drink!"
+NPC=_"Here, have a watery mary."
+LuaCode={
+    heat_tux(-1000);
+    hide(14);
+}
+-----------------------------------------------------------------------
 
 Nr=99  Text=_"See you later."
 NPC=_"Goodbye and remember: My bar is always open."

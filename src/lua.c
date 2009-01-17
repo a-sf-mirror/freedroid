@@ -164,6 +164,13 @@ static int lua_event_hurt_tux(lua_State *L)
     return 0;
 }
 
+static int lua_event_heat_tux(lua_State *L)
+{
+    int temp = luaL_checkinteger(L, 1);
+    Me . temperature += temp;
+    return 0;
+}
+
 static int lua_event_improve_skill(lua_State *L)
 {
     const char *skilltype = luaL_checkstring(L, 1);
@@ -597,10 +604,12 @@ luaL_reg lfuncs[] = {
      * kill_tux kills Tux, heal_tux completely heals Tux,
      * hurt_tux removes the given number of health points. This number
      * can obviously be negative.
+     * heat_tux increases temperature. Number can be negative as well.
      */
     { "kill_tux", lua_event_kill_tux },
     { "heal_tux", lua_event_heal_tux },
     { "hurt_tux", lua_event_hurt_tux },
+    { "heat_tux", lua_event_heat_tux },
 
     /* improve_skill(string skill_name)
      * get_skill()
