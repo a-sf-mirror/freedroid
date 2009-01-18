@@ -90,8 +90,8 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=6  Text=_"Yeah. I want to fight."
-NPC=_"Good. I opened up the south arena gate for you so just climb down the ladder."
-NPC=_"But remember, the door out won't be opened until you killed all the bots."
+NPC=_"Good. I opened up the south arena gate for you, so just climb down the ladder."
+NPC=_"But remember, the door out won't be opened until you kill all the bots."
 LuaCode={
     add_quest("Novice Arena")
     change_obstacle("NoviceArenaAccessDoor", "opened")
@@ -111,7 +111,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=8  Text=_"I thought I am going to fight you, coward."
+Nr=8  Text=_"I thought I was going to fight you, coward."
 NPC=_"I NEVER said that, newbie."
 NPC=_"You wanted a fight, and you got one."
 NPC=_"I offered a fight, and you wanted that."
@@ -136,7 +136,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=10  Text=_"The master arena is clear."
-NPC=_"What!? Impossible! No one survived the second arena before!"
+NPC=_"What!? Impossible! No one ever survives the second arena!"
 NPC=_"One has to be insane to try the second arena."
 NPC=_"You are not a newbie, but you are a TOTAL IDIOT!"
 NPC=_"I pity you, poor fool. You will die young."
@@ -156,7 +156,7 @@ LuaCode={
 
 Nr=12  Text=_"Why the hell are you organizing fights? Enough people have died already!"
 NPC=_"I have a very good reason not to tell you."
-NPC=_"Not like someone as inexperienced like you could understand it anyway."
+NPC=_"Not like someone as inexperienced as you could understand it anyway."
 LuaCode={
     hide(12)
 }

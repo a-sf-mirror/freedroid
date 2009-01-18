@@ -77,11 +77,11 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=10  Text=_"What is this place? Why there is grass and water under the desert?"
+Nr=10  Text=_"What is this place? Why is there grass and water under the desert?"
 NPC=_"Ah, yes. That is my fault, I am afraid."
 NPC=_"Wherever I go, life follows me."
 NPC=_"I thought I could hide from Duncan in this old bunker."
-NPC=_"When I woke up next day, things were as you see them now."
+NPC=_"When I woke up the next day, things were as you see them now."
 LuaCode={
     hide(10)
     show(11)

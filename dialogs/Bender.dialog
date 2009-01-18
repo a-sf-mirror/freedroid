@@ -43,9 +43,9 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=1  Text=_"What's wrong? You look in pretty good shape for a dead man."
-NPC=_"Yeah. I'm the strongest man within all of the world. That's cause I took ALL of the strength pills."
-NPC=_"But yet I might be dead soon. The doc warned me, but I didn't listen. Damn."
+Nr=1  Text=_"What's wrong? You seem to be in pretty good shape for a dead man."
+NPC=_"Yeah. I'm the strongest man in all the world. That's 'cause I took ALL of the strength pills."
+NPC=_"And yet, I might be dead soon. The doc warned me, but I didn't listen. Damn."
 LuaCode={
     hide(1)
     show(2, 3)
@@ -62,7 +62,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=3  Text=_"What did make you so sick?"
-NPC=_"It was the brain enlargement pills. They did do me no good, man."
+NPC=_"It was the brain enlargement pills. They did me no good, man."
 LuaCode={
     hide(2, 3)
     show(4, 10)
@@ -90,7 +90,7 @@ LuaCode={
 
 Nr=6  Text=_"Isn't there some doctor in town who could cure you?"
 NPC=_"Yeah, the doc could help. But he won't. I've threatened him, but he won't."
-NPC=_"He's so angry cause I didn't listen. He warned me of the brain enlargement pill offers."
+NPC=_"He's so angry cause I didn't listen. He warned me about the brain enlargement pill offers."
 NPC=_"They can cause some awful forms of cancer. But I didn't listen. And now he refuses to help me, man."
 LuaCode={
     hide(6)

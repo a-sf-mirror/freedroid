@@ -59,7 +59,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=2  Text=_"It's not important who am I."
+Nr=2  Text=_"It's not important who I am."
 NPC=_"If you want to remain a stranger, I will respect your wishes."
 NPC=_"So be it."
 LuaCode={

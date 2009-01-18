@@ -127,7 +127,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=45  Text=_"The great destroyer of evil, the purger of all things foul, the friend of mankind, the third duke of Linarius, esqiure, Doctorate of Computer Sciences, high priest of Kernelius, the ray of light in the darkness, the bender of spoons, His Great Magnificence, Tux."
+Nr=45  Text=_"The great destroyer of evil, the purger of all things foul, the friend of mankind, the third duke of Linarius, esquire, Doctorate of Computer Sciences, high priest of Kernelius, the ray of light in the darkness, the bender of spoons, His Great Magnificence, Tux."
 OptionSample=""
 NPC=_"Huh?"
 LuaCode={

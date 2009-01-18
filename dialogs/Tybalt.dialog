@@ -68,7 +68,7 @@ LuaCode={
 Nr=4  Text="YOU SHALL NOT PASS"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 NPC=_"Sorry pal, but I don't think so. Only authorized personnel are permitted and that means members of the Red Guard."
-NPC=_"Talk to Spencer if you have any issues inside. I cannot let you pass."
+NPC=_"Talk to Spencer if you have any business inside. I cannot let you pass."
 LuaCode={
     -- do we propose a bribe ?
     if(not has_cookie("tybalt_bribe")) then show(50) else end
@@ -76,7 +76,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=50  Text=_"I have a lot of money for you."
-NPC=_"Fascinating. Can I have a hundred please."
+NPC=_"Fascinating. Can I have a hundred please?"
 LuaCode={
     if(get_gold() < 100) then show(54) else	show(55) end
     hide(50)

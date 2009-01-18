@@ -68,11 +68,11 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=4  Text=_"Why are you not hostile as all the other bots?"
+Nr=4  Text=_"Why are you not hostile, as are all the other bots?"
 NPC=_"I belong to a an older generation of bots, running a custom-made security guard operating system."
 NPC=_"None of the bots of this generation were affected by the proceedings that led to bots attacking, generally known as the Great Assault."
-NPC=_"Even though discontinued from Nicholson Company long ago, today, some people have picked up the work and are even trying to improve the operating system running on my series."
-NPC=_"Don't forget to buy products from Nicholson Company. They are the best."
+NPC=_"Even though discontinued by the Nicholson Company long ago, today, some people have picked up the work and are even trying to improve the operating system running on my series."
+NPC=_"Don't forget to buy products from the Nicholson Company. They are the best."
 LuaCode={
     hide(4)
 }

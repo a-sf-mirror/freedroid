@@ -69,7 +69,7 @@ Nr=5  Text=_"What are those bots?"
 NPC=_"We call them 'Sawmill'."
 NPC=_"They were designed to chop down trees in the mountains."
 NPC=_"Now they chop down people."
-NPC=_"Their only weak point is their security system. But no one managed to stay alive long enough to hack them."
+NPC=_"Their only weak point is their security system. But no one has managed to stay alive long enough to hack them."
 LuaCode={
     hide(5)
 }

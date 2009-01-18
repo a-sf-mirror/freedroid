@@ -67,7 +67,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=4  Text=_"Why does such a nice lady act so harshly? Cannot we all just get along?"
+Nr=4  Text=_"Why does such a nice lady act so harshly? Can't we all just get along?"
 NPC=_"No."
 LuaCode={
     hide(4)
@@ -83,7 +83,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=8  Text=_"You are the most beautiful human I have ever seen."
-NPC=_"And you are at least quarter wrong."
+NPC=_"And you are at least a quarter wrong."
 NPC=_"Now, please get out of my sight."
 LuaCode={
     hide(8)

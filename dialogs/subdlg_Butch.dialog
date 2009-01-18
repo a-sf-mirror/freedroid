@@ -73,7 +73,7 @@ Nr=5  Text="ASSIGN MASTER ARENA"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 NPC=_"Ok. I've unlocked the door to the master arena now. But take care, this will not be so easy anymore."
 NPC=_"In fact, you should know that we've got a 711 battle bot in there. Its deadly disruptor flashes cannot be evaded."
-NPC=_"You should make sure you've got proper anti-disruptor devices on you or just kill it fast enough. Good luck!"
+NPC=_"You should make sure you've got proper anti-disruptor devices on you... or just kill it fast enough. Good luck!"
 LuaCode={
     add_quest("Time to say goodnight")
     change_obstacle("MasterArenaAccessDoor", "opened")
@@ -102,7 +102,7 @@ LuaCode={
 Nr=9  Text="NOVICE_NOT_YET_DONE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 NPC=_"I'm sorry, but town regulations forbid access to the master arena unless you've completed the novice arena first."
-NPC=_"This regulation is there for your own safely, so that no newbie accidentally signs up for the master arena."
+NPC=_"This regulation is in place for your own safety, so that no newbie accidentally signs up for the master arena."
 NPC=_"You might try taking the novice arena first. Then I can grant you access to the master field."
 
 ----------------------------------------------------------------------
@@ -111,7 +111,7 @@ Nr=10  Text="MASTER ALREADY ASSIGNED"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 NPC=_"But I've already opened the door. What are you waiting for? All you need to do is go down to the master arena and fight the bots."
 NPC=_"But I can understand if you hesitate. The master arena is by no means an easy task. Maybe you should practice some more before you go down."
-NPC=_"When you should make sure you've got proper anti-disruptor devices on you or the 711 disruptor flash will kill you in 2 seconds."
+NPC=_"You should make sure you've got proper anti-disruptor devices on you, or the 711 disruptor flash will kill you in 2 seconds."
 
 ----------------------------------------------------------------------
 

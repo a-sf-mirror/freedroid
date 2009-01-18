@@ -47,7 +47,7 @@ LuaCode={
 Nr=1  Text=_"A computer cluster? What's that?"
 NPC=_"A cluster is a group of computers, connected in a way that helps them collaborate in solving problems."
 NPC=_"As they say, 'two heads are better than one'. And we have a lot of heads here."
-NPC=_"This is why I call this cluster 'Hydra'. A lot of heads indeed."
+NPC=_"That is why I call this cluster 'Hydra'. A lot of heads indeed."
 LuaCode={
     hide(1)
 }
@@ -63,9 +63,9 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 ----------------------------------------------------------------------
 
 Nr=6  Text=_"I have a data cube with some information. Can you tell me something more about it?"
-NPC=_"Interesting. Let me see this thing. Hmm... Yes, there is quite a lot of stuff in there. Maybe we could use Hydra to evaluate the data."
+NPC=_"Interesting. Let me see this thing. Hmm... Yes, there is quite a lot of data in there. Maybe we could use Hydra to evaluate the data."
 NPC=_"Hey, what do we have here? The data is already prepared for processing by a cluster just like ours. Wow! That's excellent!"
-NPC=_"I'll feed it into Hydra right away. Expect the results in a short while. Hydra has never let me down so far."
+NPC=_"I'll feed it into Hydra right away. Expect the results in a short while. Hydra has never let me down."
 LuaCode={
     end_quest("A kingdom for a cluster!")
     open_diary_entry("A kingdom for a cluster!", 1)
@@ -77,7 +77,7 @@ LuaCode={
 
 Nr=9  Text=_"Hey, did you get something out of that data cube?"
 NPC=_"Of course! I told you, Hydra has never failed me! I designed it myself, and I know computers very well. I never make mistakes."
-NPC=_"Seems like the disruptor shield which prevents all our attacks on Hell Fortress can be controlled from somewhere outside or something like that."
+NPC=_"Seems like the disruptor shield which thwarts all our attacks on Hell Fortress can be controlled from somewhere outside, or something like that."
 NPC=_"I was busy servicing one of Hydra's nodes, but I sent the full report to Spencer. He will tell you more."
 LuaCode={
     hide(9)

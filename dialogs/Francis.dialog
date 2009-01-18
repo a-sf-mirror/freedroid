@@ -37,7 +37,7 @@ FirstTime LuaCode={
 
 Nr=0  Text="THIS WILL NEVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-NPC=_"Oh, thank heavens! You are still alive. Maybe not all hope is lost."
+NPC=_"Oh, thank heavens! You are still alive. Maybe all hope is not lost."
 LuaCode={ hide(0) show(2, 6, 11, 13, 99) }
 ----------------------------------------------------------------------
 
@@ -77,9 +77,9 @@ LuaCode={ hide(5) }
 
 Nr=6  Text=_"Where am I?"
 NPC=_"The locals call this place the popsicle storage, because of all the people lying here frozen in cryogenic sleep. All were frozen down before the Great Assault."
-NPC=_"This facility is located not too far away from a mining town where we have made a stand against the damn contraptions. However Im alone here with only 1 droid for security."
+NPC=_"This facility is located not too far away from a mining town where we have made a stand against the damn contraptions. However, I'm alone here with only 1 droid for security."
 NPC=_"There are just too few humans alive and awake to allow us to properly protect this place, and nobody else is foolish enough to stay out here alone." 
-NPC=_"I try to do my best to make sure nothing goes bad here and all these people die. Luckily, the outer gates of this place is quite sturdy."
+NPC=_"I try to do my best to make sure nothing goes bad here and all these people die. Luckily, the outer gates of this place are quite sturdy."
 LuaCode={ hide(6) show(8, 14, 17, 18) }
 ----------------------------------------------------------------------
 
@@ -98,7 +98,7 @@ Nr=10  Text=_"Yes, I think that is your name for it."
 NPC=_"Well, we are in a barred spiral galaxy, twenty-six thousand light years away from the galactic core."
 NPC=_"The galactic radius is 43,000 light years and the circumference is estimated at 270,000 light years."
 NPC=_"This is a planetary system of ten planets, and we are presently located on the third one from our star, Sun."
-NPC=_"I am not an astronomer, so I can be wrong. I am too tired to keep track of what is a planet and what is just an overweight rock."
+NPC=_"I am not an astronomer, so I could be wrong. I am too tired to keep track of what is a planet and what is just an oversized rock."
 LuaCode={ next(12) hide(10) }
 ----------------------------------------------------------------------
 
@@ -110,22 +110,22 @@ NPC=_"And it looks like we are losing the war."
 LuaCode={ hide(11) show(3) }
 ----------------------------------------------------------------------
 
-Nr=12  Text=_"This can be just about anywhere. Your description is too ambiguous."
+Nr=12  Text=_"This could be just about anywhere. Your description is too ambiguous."
 NPC=_"Sorry, star sciences are my weak point. Maybe someone in the town might know something more."
 LuaCode={ hide(12) }
 ----------------------------------------------------------------------
 
 Nr=13  Text=_"I feel terrible... Was I asleep? I remember nightmares. A meteor shower striking a planet full of life and killing everything on it..."
 NPC=_"This is normal. You were in stasis sleep for over 70 years. Stasis is not too kind on the mind. Your strange dreams will keep recurring for several years."
-NPC=_"Whatever was the reason for putting yourself through this, it must have been a damn good one."
+NPC=_"Whatever the reason was for putting yourself through this, it must have been a damn good one."
 NPC=_"You are lucky that I found you and woke you up. A few more decades in there and you would end up insane."
 LuaCode={ hide(13) show(16, 21) }
 ----------------------------------------------------------------------
 
 Nr=14  Text=_"Tell me more about the town you mentioned."
-NPC=_"It is a small mining community with no more than 500 inhabitants..."
+NPC=_"It is a small mining community of no more than 500 inhabitants..."
 NPC=_"It was a stroke of luck that it did not get destroyed by the bots. Because of poor funding, the city could not afford new models."
-NPC=_"All they had at the time of the bot attack were the 614 bot battle platforms. They were running an old operating system and were not affected by whatever caused the other bots to go crazy."
+NPC=_"All they had at the time of the bot attack were the 614 battle bot platforms. They were running an old operating system and were not affected by whatever caused the other bots to go crazy."
 NPC=_"Right now the place is protected by the Red Guard, a bunch of volunteers. I cannot say I agree with their methods."
 NPC=_"However, I must admit that being a prisoner of a walled town looks pretty good compared to the alternative of being eviscerated alive."
 LuaCode={ hide(14) }
@@ -146,22 +146,22 @@ LuaCode={ hide(16) }
 ----------------------------------------------------------------------
 
 Nr=17  Text=_"Why not wake up all these people and attack the bots?"
-NPC=_"Well, some have a disease that cant be cured yet. Some are just old and wants to be woken up when technology can give them an extended life. Some have other reasons."
-NPC=_"But suffice to say, most of these people are not really good at fighting. Besides, we dont have enough weapons to mount a full scale counter attack at present."
-NPC=_"And an even bigger problem would be to feed everyone. Our food resources are quite scarce. So for now they are better of sleeping."
+NPC=_"Well, some have a disease that can't be cured yet. Some are just old and want to be woken up when technology can give them an extended life. Some have other reasons."
+NPC=_"But suffice it to say, most of these people are not really good at fighting. Besides, we don't have enough weapons to mount a full scale counter attack at present."
+NPC=_"And an even bigger problem would be to feed everyone. Our food resources are quite scarce. So for now they are better off sleeping."
 LuaCode={ hide(17) }
 ----------------------------------------------------------------------
 
 Nr=18  Text=_"Can you tell me how to get to town?"
 NPC=_"Sure. You just need to follow the road outside. After the bridge, turn right and continue follow the road and you will soon be outside of the town main gate."
-NPC=_"If you run across too many bots, you can try to circle around them. But avoid getting too far off the road, so you dont get lost. It's very dangerous out there."
-NPC=_"Once in town you will be able to purchase a few items for protection at Mrs Stone's shop just inside the town gate."
+NPC=_"If you run across too many bots, you can try to circle around them. But avoid getting too far off the road, so you don't get lost. It's very dangerous out there."
+NPC=_"Once in town you will be able to purchase a few items for protection at Mrs. Stone's shop just inside the town gate."
 LuaCode={ show(19) }
 ----------------------------------------------------------------------
 
 Nr=19  Text=_"How do I get out from here?"
 NPC=_"Oh, just take the small door and corridor out to the waiting room. And from there you can get out through the customer entrance."
-NPC=_"I keep the back entrance, close to my sleeping quarters, looked at all times for safety reasons. Better safe then sorry."
+NPC=_"I keep the back entrance, close to my sleeping quarters, locked at all times for safety reasons. Better safe than sorry."
 LuaCode={ hide(19) }
 ----------------------------------------------------------------------
 
@@ -181,7 +181,7 @@ LuaCode={ hide(21) }
 
 Nr=99  Text=_"Thanks for the help. I'll be going now."
 NPC=_"I am glad I could help you. You should be careful around here. Best head straight for our town."
-NPC=_"Remember to not weer too far of the path, or your quest can be over before it begins."
+NPC=_"Remember to not veer too far off the path, or your quest could be over before it begins."
 LuaCode={ end_dialog() }
 ----------------------------------------------------------------------
 

@@ -46,7 +46,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=1  Text=_"What can you tell me about this place?"
-NPC=_"This small town existed since before the Great Assault. It used to be a somewhat successful mining community."
+NPC=_"This small town has existed since before the Great Assault. It used to be a somewhat successful mining community."
 NPC=_"But now after the Great Assault, the rest of the planet gets bombarded by automated bot ships every now and then, so being down here isn't so bad at all."
 LuaCode={
     hide(1)
@@ -94,7 +94,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=6  Text=_"What types of bots are out there?"
-NPC=_"Hmm... Each kind of a bot has a number consisting out of three digits. The first one is the most significant, the class of a bot."
+NPC=_"Hmm... Each kind of bot has a number consisting of three digits. The first one is the most significant, the class of a bot."
 NPC=_"I know a bit about three classes."
 NPC=_"The 100s are cleaning bots of old. They are not too troublesome most of the time."
 NPC=_"The 200s are more dangerous. Beware of being attacked by more than one at the same time."
@@ -138,8 +138,8 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=10  Text=_"Do you think I could join the guardians of this town?"
-NPC=_"The Red Guard? Unlikely. You'd have to establish a reputation before and demonstrate that you can fix things."
-NPC=_"Of course, the Red Guard is not a very popular organization, so if you do join them then you can expect to be hated by nearly everyone here."
+NPC=_"The Red Guard? Unlikely. You'd have to establish a reputation beforehand, and demonstrate that you can fix things."
+NPC=_"Also, the Red Guard is not a very popular organization, so if you do join them then you can expect to be hated by nearly everyone here."
 NPC=_"As the ancients said, 'Boni pastoris est tondere pecus, non deglubere'. A good tax must be a reasonable tax."
 LuaCode={
     hide(10)

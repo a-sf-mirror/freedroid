@@ -93,7 +93,7 @@ LuaCode={
 
 Nr=9  Text=_"If things are so bad right now, why --"
 NPC=_"I don't want to hear this jabberwocky. "
-NPC=_"A hint, Linarian, we don't have much, but we're alive and we'd rather stay that way."
+NPC=_"A hint, Linarian: We don't have much, but we're alive and we'd rather stay that way."
 Su*btitle=_"A hint, Linarian: We don't have much, but we're alive and we'd rather stay that way."
 NPC=_"If you want to start a revolution, you're on your own."
 LuaCode={
@@ -170,8 +170,8 @@ LuaCode={
 Nr=23  Text=_"I have the money you need Ms. Stone. You can have it."
 NPC=_"Is... Is this a joke? So much money? And you just give it to me?"
 NPC=_"Thank you! Thank you! Thank you! Savior!"
-NPC=_"But this isn't fair with you. The Stones are a family of fair merchants and I intend to uphold that tradition."
-NPC=_"I need 1,547 bucks to get through the month. I accept only that and not a cent more. Now it's fair. Thank you."
+NPC=_"But this isn't fair to you. The Stones are a family of fair merchants and I intend to uphold that tradition."
+NPC=_"I need 1,547 bucks to get through the month. I will accept only that and not a cent more. Now it's fair. Thank you."
 NPC=_"You've given me a bit of hope.. "
 NPC=_"Wait a second... I think I recognize you..."
 LuaCode={

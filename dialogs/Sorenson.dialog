@@ -44,7 +44,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
-Nr=1  Text=_"I think I must go now. Right now. See you later."
+Nr=1  Text=_"I think I should go now. Right now. See you later."
 NPC=_"No, don't go. I will not let you go before we talk. Important things."
 NPC=_"I can help you understand computers... Greater than ever before."
 
@@ -80,7 +80,7 @@ LuaCode={
 Nr=23  Text=_"I KNOW! I KNOW!"
 NPC=_"Oh."
 NPC=_"Sorenson did not tell you most yet."
-NPC=_"She did not tell you she is the great controler of light."
+NPC=_"She did not tell you she is the great controller of light."
 NPC=_"She did not tell you she is the walker of the dark corridors --"
 LuaCode={
     next(24)
@@ -97,7 +97,7 @@ LuaCode={
 
 Nr=30  Text=_"Why are you like this? What happened to you?"
 NPC=_"Was learning COBOL. Pain. Torture. Horrible screaming."
-NPC=_"Sorenson ask for help. Many days and nights."
+NPC=_"Sorenson asked for help. Many days and nights."
 NPC=_"Light arrived. Light offered help. Sorenson changed."
 NPC=_"Free person now."
 LuaCode={
@@ -114,7 +114,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=40  Text=_"I see you have a huge sourcecode book collection. Mind if I buy some from you?"
+Nr=40  Text=_"I see you have a huge source code book collection. Mind if I buy some from you?"
 NPC=_"Of course not. Trade is good."
 LuaCode={
     trade_with("Sorenson")

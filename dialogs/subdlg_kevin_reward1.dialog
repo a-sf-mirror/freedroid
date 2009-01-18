@@ -33,7 +33,7 @@ EveryTime LuaCode={	show(1, 2, 3) }
 Nr=1  Text=_"I want to become a hacker."
 NPC=_"Your desire for information amuses me. Your wish will be granted. I will teach you how to hack."
 NPC=_"You must know that hacking is an art. It is easy to chop your enemy to bits with an axe or shred it to atoms with a grenade... But hacking requires skill."
-NPC=_"Look at this terminal... I am connected to a remote system. A fool would just launch a thousand attacks, but a skilled intruder would stop and think."
+NPC=_"Look at this terminal... I am connected to a remote system. A fool would just launch a thousand attacks, but a skilled intruder stops and thinks."
 NPC=_"You must know when to hack and when not to hack. You must attack when the enemy is unprepared for you."
 NPC=_"Now watch. Observe carefully. See how I enter the system... Yes. Watch the connection glowing, burning like a bright star..."
 NPC=_"...only to die seconds after, as the system far away collapses under it's own weight... It's done."

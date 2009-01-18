@@ -57,7 +57,7 @@ LuaCode={
 Nr=18  Text=_"Can you repair my equipment?"
 NPC=_"While I am quite sure I can repair just about anything that you would want fixed, I cannot help you right now."
 NPC=_"Our security wall is full of holes, and they need to be plugged up."
-NPC=_"We need to perform statistical analysis of the energy distribution in our power supply system, there is a leak somewhere and we are losing a lot of megawatts."
+NPC=_"We need to perform a statistical analysis of the energy distribution in our power supply system, there is a leak somewhere and we are losing a lot of megawatts."
 NPC=_"Our defensive bots are falling into disrepair and many are in desperate need of a lot of maintenance."
 NPC=_"The technical division is very understaffed right now. On average one person has to do the jobs of three people."
 NPC=_"We just cannot afford to do any non-critical jobs right now. "

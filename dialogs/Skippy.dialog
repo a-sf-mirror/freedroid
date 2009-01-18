@@ -37,7 +37,7 @@ FirstTime LuaCode={
 
 Nr=0  Text=_"Hi! I'm new here."
 NPC=_"Great! A newcomer! Welcome! Welcome! I'm Skippy, and I'm your new best friend!"
-NPC=_"And as a special favour I'll sell you a mapping device for half price!"
+NPC=_"And as a special favour, I'll sell you a mapping device for half price!"
 NPC=_"What a GREAT offer! You're so lucky!"
 LuaCode={
     hide(0)
@@ -52,7 +52,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=2  Text=_"How do I activate such a map-making device?"
+Nr=2  Text=_"How do I activate such a device?"
 NPC=_"Oh, that's so simple. No need to activate anything at all."
 NPC=_"Just put that thing on your head, and the nanotechnological bots will enter your body."
 NPC=_"They'll merge with your eyes and transmit data to your brain using the optical nerves. Nice, eh?"
@@ -64,7 +64,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=3  Text=_"You said you make those things yourself? How do you do that?"
+Nr=3  Text=_"You said you make these things yourself? How do you do that?"
 NPC=_"Oh, I've always been a geek. And I got blueprints from before the Great Assault."
 NPC=_"You can't order anything from a catalogue anymore."
 NPC=_"The only source of these gizmos is here. It's me!"

@@ -68,9 +68,9 @@ LuaCode={
 
 Nr=4  Text="ASSIGN WAREHOUSE MISSION"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-NPC=_"These are bad times. The interplanetary travel is made impossible by bot ships, so we need to stick to our local resources."
-NPC=_"We've got a list of stuff we'd need from the automated underground storage north of town. But the bots there are numerous."
-NPC=_"And currently I can't spare a single man from the city defenses. It's a quite difficult situation."
+NPC=_"These are bad times. Interplanetary travel is made impossible by bot ships, so we need to stick to our local resources."
+NPC=_"We've got a list of stuff we need from the automated underground storage north of town. But the bots there are numerous."
+NPC=_"And currently I can't spare a single man from the city defenses. It's quite a difficult situation."
 LuaCode={
     hide(4)
     show(5)
@@ -143,7 +143,7 @@ LuaCode={
 
 Nr=14  Text="DIXON NOT DONE YET"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-NPC=_"I think our teleporter service man, Dixon, he's got some problem. You might want to talk to him."
+NPC=_"I think our teleporter service man, Dixon, has some problem. You might want to talk to him."
 LuaCode={
     next(17)
 }
@@ -204,7 +204,7 @@ LuaCode={
 
 Nr=22  Text="BENDER DONE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-NPC=_"Helping Bender along was also a smart move. But you should be very careful with this one. He can get mad rather easily. A bit of a security threat, but we can't be too picky."
+NPC=_"Helping Bender along was also a smart move. But you should be very careful with that one. He can get mad rather easily. A bit of a security threat, but we can't be too picky."
 LuaCode={
     next(24)
 }
@@ -248,7 +248,7 @@ Nr=28  Text="JOINING TOWN GUARD"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 NPC=_"OK. Your list of achievements is long enough. You can join us. So I hereby declare you a member of the Red Guard."
 NPC=_"But now that you are in the Guard, know this: There is only one rule for us guards: We stick together. We survive together or we die together. But we do it together."
-NPC=_"And now you might want to inspect the guard house. Tell Tybalt to open the door for you. Lukas at the arms counter shall give you your armor."
+NPC=_"And now you might want to inspect the guard house. Tell Tybalt to open the door for you. Lukas at the arms counter will give you your armor."
 NPC=_"I hope you will prove yourself a worthy member of the Red Guard."
 LuaCode={
     display_big_message("Joined Town Guard!!")
@@ -280,7 +280,7 @@ LuaCode={
 
 Nr=33  Text="NOT JOINED YET."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-NPC=_"This is not so easy. At first you must establish a reputation around here. Ask around, talk to people and build your reputation."
+NPC=_"This is not so easy. First you must establish a reputation around here. Ask around, talk to people and build your reputation."
 NPC=_"Once you're a known character around here, we might let you join the ranks of the Guard."
 LuaCode={
     hide(33)
@@ -288,11 +288,11 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=37  Text=_"I've heard Richard obtained new information on the colony."
+Nr=37  Text=_"I've heard Richard obtained new information on the town."
 NPC=_"Yes, that's right, and in fact it might be crucial. As you may have heard, the MS office is defended by a disruptor shield. They open it only to let out new armies of bots."
 NPC=_"The data on the cube he obtained indicates the existence of a secret experimental facility in this region. Our findings suggest that they were testing some new form of disruptor shield for MS, so the shield can be controlled from that facility."
 NPC=_"If the information is true, then you can take over the control droid and disable the shield permanently so we can get in."
-NPC=_"We know that MS had a firmware update system, which could be used to propagate a malicious update to disable all bots. It is very alluring, but to perform this trick you need to hack up the control droid, which is in the heart of the HF. To enter HF you would have to disable the disruptor shield."
+NPC=_"We know that MS had a firmware update system, which could be used to propagate a malicious update to disable all bots. It is very alluring, but to perform this trick you need to hack the control droid, which is in the heart of the HF. To enter HF you would have to disable the disruptor shield."
 NPC=_"This seems like a gift sent from the heavens. Cleaning the Hell Fortress is not going to be easy, though.."
 LuaCode={
     hide(37)
@@ -304,7 +304,7 @@ Nr=38  Text=_"I'd like to participate in this operation."
 NPC=_"That's most kind of you to volunteer. So far, I've sent two scouts into the area. They have found the facility entrance and unlocked the gate."
 NPC=_"That is a good sign, because it shows that the key combinations from the data cube were correct."
 NPC=_"However, we lost contact with them shortly after they went inside. They also reported heavy bot resistance."
-NPC=_"I'd be glad if you could take a look. But use outmost care. We can't afford to lose another guard."
+NPC=_"I'd be glad if you could take a look. But use the utmost care. We can't afford to lose another guard."
 LuaCode={
     hide(38)
     show(39, 40)
@@ -312,7 +312,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=39  Text=_"OK. I'll be careful. But I'll do it."
-NPC=_"Good. The base entrance is somewhat hidden in the caves to the northeast. Best use the north gate out of town, then head east, and turn north again along the shore."
+NPC=_"Good. The base entrance is somewhat hidden in the caves to the northeast. Best to use the north gate out of town, then head east, and turn north again along the shore."
 NPC=_"I wish you the best of luck for this operation. It might be that our survival depends on it. Don't wait for assistance."
 NPC=_"Try to get control over the disruptor shield if you can. The control droid should be somewhere on the lowest level of the installation. Simply destroying the droid might suffice in disabling the shield."
 LuaCode={
@@ -324,7 +324,7 @@ LuaCode={
 
 Nr=40  Text=_"I don't feel like doing it now. I'd rather prepare some more."
 NPC=_"Good. You should be well prepared if you intend to go."
-NPC=_"Also there is no need to hurry with this. After all, the installation is not running away, so best take a slow approach."
+NPC=_"Also there is no need to hurry with this. After all, the installation is not running away, so it's best take a cautious approach."
 LuaCode={
     hide(40)
 }

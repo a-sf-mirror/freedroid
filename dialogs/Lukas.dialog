@@ -43,7 +43,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=1  Text=_"Spencer said, you'd be able to provide me with better armor and equipment."
+Nr=1  Text=_"Spencer said you'd be able to provide me with better armor and equipment."
 NPC=_"Of course. As a member of our Guard, you're entitled to wear one of our suits of armor. I can adjust it to fit any measurements, even yours."
 NPC=_"There are two kinds or armor, a heavy Red Guard robe and a light version of the same thing."
 NPC=_"Now, what will it be?"

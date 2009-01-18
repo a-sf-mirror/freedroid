@@ -138,7 +138,7 @@ LuaCode={
 
 Nr=11  Text=_"I am really thirsty! I want water."
 NPC=_"Well, you drank all my water, so you cannot have any more. There is none left."
-NPC=_"I heard Linarians can drink a lot of water, but seven liters is a lot."
+NPC=_"I heard Linarians can drink a lot of water, but seven liters..."
 LuaCode={
     hide(11)
     show(12)
@@ -146,7 +146,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=12  Text=_"MORE! MORE! MORE! I WANT MORE WATER. NOW!"
-NPC=_"Eh... I think you had enough... Maybe you should just go for a walk for now?"
+NPC=_"Eh... I think you've had enough... Maybe you should just go for a walk for now?"
 NPC=_"You have had everything that I had."
 LuaCode={
     hide(12)
@@ -159,7 +159,7 @@ NPC=_"Well... Erm... No."
 NPC=_"What the bots did not smash, the Red Guard taxed."
 NPC=_"Fun is kinda dead right now."
 NPC=_"Well, unless you are in the Red Guard itself, of course. They have those big guns that can destroy a dozen bots with one shot..."
-NPC=_"Fun, if you ask me."
+NPC=_"Now THAT'S fun, if you ask me."
 LuaCode={
     hide(13)
 }

@@ -38,7 +38,7 @@ FirstTime LuaCode={
 
 Nr=0  Text="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-NPC=_"Fifty triangles per a bit of information."
+NPC=_"Fifty triangles per bit of information."
 NPC=_"So... What do you exactly want to know?"
 LuaCode={
     hide(0)
@@ -111,7 +111,7 @@ LuaCode={
 Nr=8  Text=_"What is the exterminator ammunition made from?"
 NPC=_"We use radioactives, whatever type happens to be on hand. Mostly plutonium and uranium, be we are not too picky."
 NPC=_"When we get low on ammo, we send in a chain gang of criminals and lazybums into the mine shaft K-17."
-NPC=_"That place was closed down ages ago because of high radiation levels. It's full of good ores from which we make bullets and which power our nuclear reactors."
+NPC=_"That place was closed down ages ago because of high radiation levels. It's full of good ores from which we make bullets and power our nuclear reactors."
 NPC=_"We get our fission materials and they get their sentence. It was one of the best ideas we have ever had."
 LuaCode={
     add_gold(-50)
@@ -138,7 +138,7 @@ LuaCode={
 
 Nr=12  Text=_"What makes the exterminator so powerful?"
 NPC=_"This is a tricky question. Most of the force comes from the miniature nuclear explosions which happen once the bullet hits something."
-NPC=_"Of course the great velocity of the impact can cause tremendous devastation by itself."
+NPC=_"Of course the high velocity of the impact can cause tremendous devastation by itself."
 NPC=_"We never bothered with doing any research on that topic. It works and that is enough for us."
 LuaCode={
     add_gold(-50)
