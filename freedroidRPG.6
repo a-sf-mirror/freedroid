@@ -14,346 +14,329 @@ freedroidRPG \- a graphical single player role playing game featuring Tux the Li
 .\" 
 .\" 
 .\" 
-.\" 
-.SH SYNOPSIS
-.B freedroidRPG [ options
-.B ]
-.SH DESCRIPTION
-.B FreedroidRPG
-is a graphical single player role playing game inspired by games like Diablo and Gothic.
+.\"
+.SH 0. INDEX
+ =========
 
-In a far-future world, almost all services and jobs were done by robots and droids,
-most especially the more dangerous ones like police or military services.
-The company providing the operating systems for these bots 'Monopoly Systems' used their
-closed source operating system monopoly and a back door within it's operation system
-to enslave humanity all over the galaxy.
+.TP
+.B  1. Introduction
+.TP
+.B  2. Install & Play
+.TP
+.B  3. Basic controls
+.TP
+.B  4. Known issues
+.TP
+.B  5. Screen resolution
+.TP
+.B  6. FAQ
+.B    \- Miscellaneous
+.B   
+ \- Graphics
+.B    
+ \- Sound
+.B 
+ \- Level Editor & Developer
+.TP
+.B  7. Contact us
+.TP
+.B  8. Licence
 
-But this is not the main problem.  Some 20 years after the MS has taken control of the 
-universe, suddenly a very strange thing happened.  The bots suddenly rebelled against 
-the MS and didn't respond to the commands of their former superiors at the MS any more.
-Mankind was under attack by it's bots and had to flee to various secret underground
-caverns on remote planets of the universe and cannot return any more.
 
-This is where the game begins.  The Tux awakens from several years of stasis that the MS
-has put him into and now returns to save the world from the horrible bots.
-.\" 
-.\" 
-.\" 
-.\" 
-.\" 
-.SH OPTIONS
-.TP 8
-.B -v \fRor\fB --version
-Prints out FreedroidRPG version information.
-.TP 8
-.B -q \fRor\fB --nosound
-This option will suppress all sound output.  
-Very useful if you don't have your sound card configured yet or
-don't have any sound hardware at all.
-.TP 8
-.B -f \fRor\fB --fullscreen
-This instructs FreedroidRPG to work in full screen mode, which is the default mode of operation.  
-Please note that it is strongly recommended that your X Window system is configured to feature
-a move with 640x480 screen resolution, but it will also work if this is not the case.
-Note that fullscreen or window mode can also be toggled from within the game via the options
-menu.
-.TP 8
-.B -o \fRor\fB --open_gl
-This instructs FreedroidRPG to use OpenGL as the method for graphics output.  If you have
-hardware accelerated OpenGL on your X11 or your Microsoft Windows installation, this is the
-recommended output method to achieve much better frame rates and also better graphics quality.
+.SH 1. Introduction
+================
+ This game tells the story of a world destroyed by a conflict between the droids and their human
+ masters. Play as Tux in a quest to save the world from the murderous rebel droids who know no
+ mercy. You get to choose which path you wish to follow, and freedom of choice is everywhere 
+ in the game.
 
-NOTE:  If you wish to use OpenGL for graphics output, your FreedroidRPG executable must have
-been compiled to support OpenGL.  You can see if that is the case and also if OpenGL graphics
-output is active in the very first startup menu of the game.
-.TP 8
-.B -n \fRor\fB --no_open_gl
-This instructs FreedroidRPG to use plain SDL instead of OpenGL as the method for graphics output.
-This is usually (much) slower than hardware-accelerated OpenGL graphics output and also some
-features are disabled in this mode because of speed considerations.
-.TP 8
-.B -w \fRor\fB --window
-Start FreedroidRPG in a window rather than using full screen mode.
-.TP 8
-.B -j \fRor\fB --sensitivity
-This option can be used to control joystick sensitivity.
-.TP 8
-.B -d LEVEL \fRor\fB --debug=LEVEL
-This option can be used to control debug output of the game.  Debug output will be printed to
-stderr, i.e. in most cases to the console you started FreedroidRPG from.  The variable LEVEL
-controls how much debug output you would like to have.  LEVEL 0 is the default and means (almost)
-no debug output.  LEVEL 1 prints the most important debug messages and LEVEL 2 or LEVEL 3 print
-(almost) all debug output, which might be quite a lot.
-.\" 
-.\" 
-.\" 
-.\" 
-.\" 
-.SH HOW TO PLAY
-.\" 
-.\" 
-.B Movement and attacking
-.RS
-Moving the Tux can now be done exclusively by using the left mouse button.  
-Attacking an enemy is done by clicking on that enemy.  
-The Tux will, in case of a melee weapon wielded, approach the target and then strike.  
-In order to attack an object without moving, you must hold down the shift key and then click the left mouse button.
+ FreedroidRPG features a complete real time combat system with melee and ranged weapons, fairly
+ similar to the proprietary game Diablo. There also is an innovative system of magic, with features such as 
+ forced casting and over 20 spells. You can use over 50 different kinds of items and fight countless 
+ enemies on your way to your destiny. We have an advanced dialogue system, which aims at being at
+ least on par with Fallout's. The dialogues in the game represent a large part of the gameplay. 
+ Finally, if guns are too inaccurate and blades too messy, you can always take over your enemies and
+ have them fight on your side.
 
-RUNNING:  If you hold down the left ctrl key, Tux will run instead of walk.
 
-.RE
-.\" 
-.\" 
-.B Talking to people and friendly droids
-.RS
-When left-clicking the mouse on a friendly character or droid, the Tux will start dialog with that character.
-In some cases it might also be that some other person approaches the Tux and opens dialog.
-.RE
-.\" 
-.\" 
-.B Reorganizing inventory
-.RS
-Open up the inventory screen by pressing the 'I' key.
-You can now left-click on stuff in your inventory.
-That will make you 'hold' the object in question, i.e. your mouse cursor will change into that one item you picked.
-If that item can be equipped, you can then equip the item by placing it over the appropriate slot and then left-licking again.
-When done with reorganizing inventory, you can press the 'I' key to close inventory screen again.
-.RE
-.\" 
-.\" 
-.B Activating a skill or spell
-.RS
-The Tux in the course of his travels, will learn a lot of skills and spells.  
-Some of those will even be present at the very beginning of the game.
-In order to use one of the skills of the Tux, this skill must first be selected.
-So select a skill, open the skills screen via the 'S' key.
-Select the skill of your choice by left clicking onto it.
-You can now close the skill screen again by pressing the 'S' key again.
-In order to use the selected skill, just press the right mouse button.
-Some skills might require some targeting.  
-Others will just work on the area where the Tux is standing.
-NOTE:  You can also use F1-F10 keys to quick-select a skill.  Fn will
-select the n-th present skill, which might be subject to change once
-new skills are aquired.
-.RE
-.\" 
-.\" 
-.B Opening chests and searching dead bodies or containers
-.RS
+.SH 2. Install & Play
+===========
+ For general help with installation, please refer to the INSTALL file located in the same folder as this file.
+ Specific instructions for Ubuntu:  http://ubuntuforums.org/showthread.php?p=6127097#post6127097
 
-NEW METHOD:  Clicking the left mouse button on a chest (while standing sufficiently close by) should spill all
-the chests content onto the floor.  However there is also the old method of chest interaction, which also allows
-you to put stuff back into the chest and take stuff more selectively out of the chest:
+ To run the game you normally just have to launch the executable.
+ For advanced options execute "freedroidRPG --help" (in a terminal) to get a list of commandline options.
 
-OLD METHOD:  To do this, you must be standing in front of the chest or on the dead body and then use the loot skill (see above).  
-This skill is easily recognized by the open chest icon used for it.
-This will open up an interface screen where you can then trade stuff from your inventory to the container and vice versa.
 
-.RE
-.\" 
-.\" 
-.B Skills and attribute stats of the Tux
-.RS
-To get an overview of your Tux character, press the 'C' key to open character screen.
+.SH 3. Controls
+============
+.SS Movement
+ 
+  The game is controlled using the mouse. Left click onto the locations you want to move to.  Hold 
+  the button down to keep moving in that direction.  Holding down CTRL key will make you run.
 
-You will see the current Strength, Dexterity and Magic stats.  
-These will stay very much constant unless you spend some training points with a teacher to raise those attributes.
-They are a prerequisite for equipping certain items but also influence the damage the Tux does and also his chance to hit and the like.
-Some items might also give you a bonus to your current strength, dexterity or magic scale.
-Because of this, there is the 'base' value for the bare Tux and also the 'now' value with all bonuses currently applying.
+.SS Attack
 
-Apart from this, you can see the most important combat and magic skills of the Tux below.
-The range goes novice--average--experienced--skilled--adept--masterful and so on...
-These skills strongly influence the speed at which the Tux will strike, the damage he does, the amount of capsules he will have at this disposal in takeover game (see below) and also the amount of force points the Tux can have at most.
-To raise these skills, some training points have to be spent with an appropriate teacher for this skill.
-.RE
-.\" 
-.\" 
-.B Hacking droids
-.RS
-The Tux is gifted with a unique inert skill to hack droids.  
-He can use this skill on any droid in the game.
-In order to hack a bot, which will result in the machine being destroyed, you must first activate the takeover skill.
-Then hold down right mouse button to stay in takeover mode.
-The next machine touched by the Tux while in this state will be target of the Tux' hacking attempt.
-But for this attempt to succeed, the takeover subgame must be won first.
-Losing the takeover game will result in the droid being free again and the Tux very much weakened from the failed attempt.
-.RE
-.\" 
-.\" 
-.B Playing the takeover subgame
-.RS
-After the takeover subgame was initiated, the two droids struggling for control will be presented.  
-Then the player gets to decide which side of the takeover game he wants to play.  
-The player on the left side takes the yellow color, the player on the right side takes the magenta color.  
-Note that which side to choose may be the most important decision of the takeover subgame,
-cause one side may host strong tactical advantages over the other.  
-After sides have been chosen, the takeover capsules will be placed.
-Each droid has a limited number of capsules to place and must try to convert the central status bar to his color.
-The number of capsules you have at your disposal depends on how much takeover skill you have acquired so far.
-Once the takeover subgame is won, the droid in question will be destroyed.
-Loss of takeover subgame results in the Tux being very much drained of energy and therefore very vulnerable.
-.RE
-.\" 
-.\" 
-.B Keyboard summary
-.RS
-.TP
-.B I
-Open/Close Inventory Screen
-.TP
-.B C
-C ... Open/Close Character Screen
-.TP
-.B S
-Open/Close Spells&Skills Screen
-.TP
-.B Q
-Show Quest Status Log
-.TP
-.B P 
-Turn on/off Pause Mode
-.TP
-.B Tab 
-Turn on/off automap display
-.TP
-.B Escape 
-Pops up the main menu
-.TP
-.B F1-F10
-Quick-Switch to aquired skill/ability/spells 1-10.  These numbers refer to the list of skills aquired so far and therefore their effect might be subject to some change once the Tux aquires new skills.
-.TP
-.B 1-9 
-Quick-Use items from the quick-inventory.  (That's those small items placed on the very bottom of the inventory.)
-.TP
-.B Space 
-Closes all opened screens.
-.TP
-.B Left Ctrl Key
-Running instead of walking is active as long as you hold down this key.
-.TP
-.B F12 
-Take a screenshot
-.RE
-.\" 
-.\" 
-.\" 
-.\" 
-.\" 
-.SH USING THE LEVEL EDITOR
-FreedroidRPG comes with a built in level editor.  The level editor can be entered at any point of a running game and it's also possible to continue a game after level editing.  This feature is there for testing and development purposes (and not for cheating).  To enter the level editor, use the 'Level Editor' option from the escape menu inside a running game.
+  Left clicking an enemy will cause Tux to come close to the droid and to start attacking it with the 
+  current weapon. If the current weapon is a gun then Tux will stand still and shoot the droid.
+ 
+.SS Special functions
 
-If you wish to make permanent changes to a map and then contribute the map to the Freedroid project, please make sure that you start a fresh game and then edit the fresh map.  Otherwise there will be blood on the floor, items lying around and mission relevant doors already opend and the like.  So best select 'New Game' and then enter level editor immediately after game startup.
+  Use the right click to activate the currently selected skill/program. 
 
-.B How FreedroidRPG maps are organized
-.TP
-FreedroidRPG maps contain a multitude of data.  The important data types are:
-.RS
-.TP
-.B Floor:
-This is for floor tiles like grass floor, grass-and-sand floor, stone floor...  Floor tiles are irrelevant to the Tux movement.
-.TP
-.B Obstacles:
-Obstacles are all the map parts, that are above the floor but still not items that the Tux could pick up, e.g. walls, doors, teleports, chests, ...
-.TP
-.B Items:
-Items are stuff that the Tux can pick up, e.g. laser sword, buckler,...
-.TP
-.B Level parameters:
-Level parameters are values that control the overall properties of the level, like light strength, level size, where the level is connected to other levels, what music tracks to play, ...
-.RE
+ Default keys (most keys can be reassigned with the ingame key chart - F1)
 
-.B Level editor controls
-.RS
 .TP
-.B Moving around:
-You can always use the left mouse button to move around on the given map as well as use the cursor keys for this.  To change the current level, you can either use the 'go level north/east/west/south' buttons (if available) or you can press escape to enter the menu and change the level inside the menu.
+.SM  Escape .... Show main menu
 .TP
-.B Floor edit mode:
-The FreedroidRPG level editor has 2 modes of operation:  The first mode is floor edit mode.  In floor edit mode, right mouse button will plant floor tiles.  You can use the left mouse button to select the floor tile type from the selection bar. To change from floor edit mode to obstacle edit mode and back again you can use the 'f' key on the keyboard.
+.SM  F1 ........... Show keychart
 .TP
-.B Obstacle edit mode:
-The other mode is obstacle edit mode.  In obstacle edit mode, right mouse button will plant new obstacles.  You can select the type of obstacle to be planed by clicking the left mouse button into the obstacle selection bar on top of the screen.  However, planing obstacles with the mouse is a bit unprecise.  To plant obstacles in a more precise way, you can use the number pad.  Each of the number pad keys 1-9 will plant the currently marked obstacle to a specific standard location within the tile you're currently standing on.  It doesn't matter where inside this tile you're standing if you use this mode of operation.
+.SM  F2 ........... Toggle fullscreen (Linux only)
+.TP
+.SM  F3 ........... Quicksave
+.TP
+.SM  F4 ........... Quickload
+.TP
+.SM  F5-F12 .... Quick-select program 1 through 8
+.TP
+.SM I .............. Inventory panel
+.TP
+.SM  C ............. Character panel
+.TP
+.SM  S ............. Skills/Program panel
+.TP
+.SM  Space ...... Close all open panels
+.TP
+.SM  Q ............ Quest log
+.TP
+.SM  0-9 .......... Use quick-inventory items 0-9
+.TP
+.SM  P ............. Pause
+.TP
+.SM  Hold A ..... Attack while staying at the same position
+.TP
+.SM  Hold Shift  Keep current target selected when moving
+.TP
+.SM  Tab .......... Toggle automap
+.TP
+.SM  R .............. Reload weapon
+.TP
+.SM  Hold Ctrl .. Run 
+.TP
+.SM  U ............. Toggle always run
+.TP
+.SM  Hold X ..... Show labels for items on the ground
+.TP
+.SM  Z ............. Toggle show labels for items on the ground
+.TP
+.SM  T ............. Toggle walls becoming transparent when Tux approaches (OpenGL only)
 
-In obstacle edit mode, there are also several other keys, that might help to speed up level edit operations.
-The 1-8 keys on the normal keyboard (not the number pad!) will select specific wall types.
-The T key will select teleporter. 
-The R key will select refresh.
-The U key will select a chest.
-The A key will select an alert.
 
-In obstacle edit mode, you will also notice that if you get close to some obstacle, the obstacle may get 'highlighted' i.e. it's color map will be awkwardly but noticeable shifted.  That means that this obstacle is currently marked.  If you press the 'x' key now, the obstacle in question will be deleted.  
-Sometimes there are more than one obstacle associated with the current map square.  If that is so, you can use the 'n' key to switch the marker from one obstacle to the other and back again.
-.TP
-.B Planting waypoints:
-Currently, droids (and that means all non-player characters) move about on a level using predefined waypoints.  To plant a waypoint, press the 'w' key.  This should turn on/off the waypoint on the square where you're standing.
-.TP
-.B Connecting waypoints:
-Waypoints are of no use as long as they are not connected among each other.  To connect one waypoint to another waypoint, go to the first waypoint, press the 'c' key, then go to the second waypoint and press the 'c' key again.  This has established a one-way connection from the first waypoint to the second waypoint.  To allow the droids to move the other way around as well, do the same thing with reversed order of waypoints.  
-To inspect the possible ways for droids from one waypoint to other waypoints, just step on the square with the waypoint.  You will notice a dotted line leading from this waypoint to all other waypoints that are possible targets from here.
-.TP
-.B Planting map labels:
-Map labels are not the same as obstacle labels.  Map labels can be used for various purposes, like e.g. to define the point where a teleporter should put the Tux or to define a spot that will cause some event to happen as soon as the Tux steps on this spot.
-To define a new map label, press the 'm' key on the keyboard.  You will be prompted for the map label.  Giving an empty string here will delete the existing label on this square.  Note that there will be a colorful circle appearing on any map tile that has been fitted with a map label.
-.TP
-.B Planting obstacle labels:
-Obstacle labels are important so that some obstacles can be marked for events to happen.  If e.g. an event is supposed to remove a special wall obstacle, then this obstacle must be given a name first, so it can be referred to later in the definition of the event.
-To plant a label on an obstacle, you must first mark this obstacle (see obstacle mode explanation above).  As soon as the obstacle in question is marked, you can use the 'h' key on the keyboard.  You will be prompted for the new label to attach to this obstacle.  Giving an empty string here will delete any existing obstacle label of this obstacle.
-.\" 
-.\" 
-.\" 
-.\" 
-.\" 
-.SH PROJECT HOME PAGE AND LATEST VERSIONS
-The FreedroidRPG project features a home page at freedroid.sourceforge.net.  The project itself is hosted at the Sourceforge.  The project summary page at http://sourceforge.net/projects/freedroid/ can be used to access download and status information.  Note that home page and project summary page are shared with the Freedroid classic development branch as well.
-.\" 
-.\" 
-.\" 
-.\" 
-.\" 
-.SH FILES
-.I ~/.freedroid_rpg/config
-.RS
-The file containing all configuration setting of this user.
-.RE
-.I ~/.freedroid_rpg/
-.RS
-Saved games for this user will also be placed in this directory.
-.RE
-.\" 
-.\" 
-.\" 
-.\" 
-.\" 
-.SH ENVIRONMENT
-FreedroidRPG does currently not care about any environment variables.
-.\" 
-.\" 
-.\" 
-.\" 
-.\" 
-.SH DIAGNOSTICS
-Debug output can be produced by using the -d or --debug command line options as described above.
-.\" 
-.\" 
-.\" 
-.\" 
-.\" 
-.SH BUGS, LIMITATIONS AND HELP
-While the FreedroidRPG engine can now be considered fairly stable, the story and characters are still far from completed and also the maps are seriously underdeveloped.  If you encounter any problems or bugs, have some idea for future FreedroidRPG development or wish to contribute in some way, please send e-mail to <freedroid-discussion@lists.sourceforge.net>.  
-.\" 
-.\" 
-.\" 
-.\" 
-.\" 
-.SH AUTHOR
-Johannes Prix, 
-Reinhard Prix,
-Bastian Salmela.
-.\" 
-.\" 
-.\" 
-.\" 
-.\" 
-.SH "SEE ALSO"
-.BR freedroid (6),
+.SH 4. Known Issues
+================
+.SS General
+   * Most melee and ranged weapons only have placeholder laserswords/rifles for their Tux holding 
+     and attack animations. If you are skilled with 3D modelling, please help us out to fix this.
+   * Nvidia Geforce 8&9 cards: Transparency in some parts of the game works incorrectly. E.g. instead of 
+     making the walls semi transparent when Tux comes close (in "key T" mode), they vanish completely.
+
+.SS Windows 
+   * Using the tool IZarc to unpack the downloaded zip breaks the game. IZarc apparently can not 
+     handle filenames without extensions. Please use other options, e.g. 7zip, winzip, winrar etc, to 
+     correctly unpack the game.
+   * The game will use the system language by default, you cannot select another language in-game.
+
+.SS Linux
+   * Pulseaudio: Using SDL-pulseaudio you are currently likely to not get sound. This has nothing to do 
+     with FDRPG but with Pulseaudio and it's plugins still in general being unmature. We recomend using
+     eg SDL-esd or SDL-alsa until these problems has been fixed upstream. If you manage to get a working 
+     config, do let us know so we can update this entry with versionnumbers etc.
+   * AMD/ATI R300 graphics cards: Mesa 6.5.2 does not support user clipping planes which breaks the 
+     text in freedroidRPG. Upgrading to Mesa 7 fixes this.
+   * When playing in SDL windowed mode, teleporting has the side effect of changing the brightness
+     of the whole screen instead of just the game window, if the option
+     (Options -> Performance Tweaks ->) Skip fadings is set to "NO".
+   * Ubuntu: Changing language in game will not work by default since Ubuntu does not ship with standard 
+     ISO locales, only UTF-8 versions. You will have to manually add them to make language selection work.
+     Procedure
+        1) In commandline write 
+                sudo nano /var/lib/locales/supported.d/local
+        2) Add the locales you are interested in, 1 entry on each line, e.g.
+                de_DE ISO-8859-15
+                fr_FR ISO-8859-15
+                sv_SE ISO-8859-15
+                ru_RU.cp1251 cp1251
+           and then exit with ctrl+x and yes to saving the changes.
+        3) Run
+                sudo dpkg-reconfigure locales
+        4) You should now be able to chose the corresponding languages in the in game menu.
+
+
+.SH 5. Screen resolution
+=====================
+ There are a few hidden high resolution settings only accessible from commandline. They are badly tested 
+ and thus generally considered to be buggy and are unsupported. They however can still be quite useful for
+ many, especially for widescreen LCDs in fullscreen mode. 
+
+ To get an up-to-date list of available resolutions use "freedroidRPG -r99".
+
+ Some known issues for the unsupported resolutions:
+    - Portrait image in dialogs overflows its borders
+    - Off center light radius
+    - Incorrect text scrolling when talking to NPCs at times
+
+
+.SH 6. FAQ
+============
+.SS Miscellaneous FAQ:
+
+	Q: Do I have to have Linux to try out Freedroid/FreedroidRPG?
+	A: While using Linux is greatly recommended for the sanity of the system
+	   administrator, FreedroidClassic and FreedroidRPG both have MS-Windows
+	   executables available. Note that since the FreedroidRPG development team
+	   doesn't use MS-Windows, it gets much less testing. Help with testing and
+	   feedback from Windows users thus is greatly appreciated.
+
+	Q: How can I subscribe/unsubscribe to the mailing list?
+	A: Freedroid has two mailing list. One is for discussing stuff related to
+	   Freedroid, the other one is a list with auto-generated changelogs from our 
+	   developer server and therefore usually only interesting for developers themselves.
+	   In any case, you can subscribe, unsubscribe or change your membership options
+       from the following web page:  
+	   http://sourceforge.net/mail/?group_id=54521
+
+.SS Graphics FAQ:
+
+	Q: The game is *extremely* slow on my system running Windows and using OpenGL output.
+	A: It might be that you're using the OpenGL drivers that came with your
+	   operating system from Microsoft. These drivers don't use hardware acceleration
+	   and are therefore extremely slow. You'll have to download and install a real
+	   OpenGL capable driver for you graphics card. Usually these can be downloaded 
+	   from the home page of the graphics chip manufacturer, typically Nvidia, AMD/ATI,
+	   etc. Note, that if you do absolutely cannot get OpenGL working reliably on your
+	   system, you can still run the game in pure SDL output mode. For this, you
+	   must either use a 'MS-DOS command line prompt' and type
+
+	   freedroidRPG -n 
+
+	   inside this command line, or you can also make a link to freedroidRPG.exe
+	   and then edit the link properties and add the -n after freedroidRPG.exe in
+	   the link properties dialog box.
+
+	Q: The game is *extremely* slow on my Linux machine with OpenGL enabled.
+	A: The reason for this might be that you're not using hardware accelerated OpenGL.
+	   Software OpenGL should be avoided.  If you don't have hardware-accelerated
+	   OpenGL on your system (because e.g. your graphics card manufacturer doesn't
+	   make suitable Linux drivers), you might be much better off when disabling
+	   OpenGL support altogether.  For this, you can use command line switch -n,
+	   i.e type
+
+	   freedroidRPG -n
+
+	   to start the game with OpenGL output disabled.  Graphics will revert to
+	   pure SDL mode.
+
+.SS Sound FAQ:
+
+	Q: My sound isn't working with FreedroidRPG. I don't hear anything.
+	A: 1.)  Make sure your sound is working with other applications. If you
+		    don't hear anything when trying to play simple mp3 files or ogg files,
+		    then the sound system on your machine is not properly set up and it's
+		    not a freedroid related problem. In that case, you must install your
+		    sound card properly first.
+	   2.)  See if you have the SDL_mixer libraries installed. You might want
+		    to use "locate SDL_mixer" and see if you get a lot of results.  If
+		    not, then the missing SDL_mixer library is the problem.
+		    Also check if you have libogg and libvorbis installed.
+	   3.)  If you're compiling from source, make sure the ./configure script has
+		    properly detected the SDL_mixer library. Just look at the ./configure
+		    output. There should be a line like:
+	  
+		      checking for Mix_ChannelFinished in -lSDL_mixer... yes
+
+		    If you get instead something like
+
+		      checking for Mix_ChannelFinished in -lSDL_mixer... no
+
+		    then the ./configure script didn't detect your SDL_mixer
+		    installation. You might want to make sure you've got SDL_mixer and
+		    SDL_mixer_devel packages installed or install SDL_mixer from source.
+		    You can download everything from here:
+
+		      http://www.libsdl.org/projects/SDL_mixer/
+
+		    If you compiled from source, you'll have to recompile now, because the
+		    previous compile didn't include the sound module of FreedroidRPG. If
+		    the SDL_mixer stuff is installed properly, it should work after the
+		    recompile.
+
+	Q: My sound is lagging behind. Every sound seems to be somewhat out of sync.
+	A: There might be a sound daemon running on your system.  Many window managers
+	   like e.g. KDE start a sound daemon by default upon startup. To get rid of
+	   the most common sound daemons, you can try (best as root)
+
+	   killall -9 artsd
+	   killall -9 esd
+	   killall -9 yiff
+
+	   After that, you might want to try freedroid again. The sound lag should
+	   not be present anymore.
+
+.SS Level Editor & Developer FAQ:
+
+	Q: Is there a Level editor?
+	A: Yes, we have a level editor integrated into FreedroidRPG. It can be accessed 
+       from the main menu. It has tooltips on every button to help you find your 
+       way. Play around with it a bit by yourself and don't hesitate to ask for
+       assistance on IRC or the mailing list.
+
+	Q: How can I get the latest development version of the game?
+	A: This is very simple when using Linux. You can find the details here:
+	   https://sourceforge.net/svn/?group_id=54521
+	   If you are using Windows we recomend using a tool like eg 
+	   http://tortoisesvn.tigris.org/
+	   If you still run into problems, best again discuss it with the people on
+	   the freedroid-discussion mailing list.
+
+	Q: I want to help out with FreedroidRPG development.  What should I do first?
+	A: Best thing is to first subscribe to the freedroid-discussion mailing list.
+	   Then the next thing to do is to get the latest development version of the game
+	   from SVN, then to either make a small patch right away or to discuss anything
+	   bigger you have in mind with the people on the discussion mailing list, so it
+	   can be assured that all the developers are pulling in the same direction and
+	   know what's going on and who is working on what.
+	   If you are new to the Sourceforge, you should also take at least a brief look
+	   at our Sourceforge project pages. You can find the main page here
+	   http://sourceforge.net/projects/freedroid
+	   and other relevant pages should be reachable from there.
+
+	Q: How can I add a character to FreedroidRPG?
+	A: This involves several steps:  
+	   1. A new map label must be created, so that the game knows where to place the 
+		  new character inside the game.
+	   2. A dialog section should be written, so that there can be some interaction
+		  (other than combat) with this character.
+	   3. The dialog section should get a number associated with it, which involves
+		  some very minor modification of the program code. 
+	   4. An entry in the character list has to be added, so that the new character
+		  will be added in any new games from then on. (Old saved games will remain
+		  unaffected.) You can specify what the character should look like, i.e. what 
+		  model should be used for your character and stuff like that.
+	   Hint:  Best send word to the developers.  We'll be happy to help or also to
+	   include the new character in the next version of the game, if it comes with
+	   a good dialog.
+
+
+.SH 7. Contact
+===========
+ Website       ................ http://freedroid.sourceforge.net/
+ IRC channel   ................ #freedroid on irc.freenode.net
+ Mailing list  ................ freedroid-discussion@lists.sourceforge.net
+ Sourceforge project page   ... http://sourceforge.net/projects/freedroid/
+
+
+.SH 8. Licence
+===========
+ The game itself is licensed under GPL. Some other tools use a more permissive license, 
+ please refer to the FILES file located in the same folder as this file.
+
