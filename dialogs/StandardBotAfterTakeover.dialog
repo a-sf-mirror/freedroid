@@ -56,8 +56,8 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=2  Text=_"./follow_me.sh"
-NPC=_"Initiating tracking sequence. Movement unit enabled. Ready. Trying to keep up with Tux position now. Ok. Following Tux."
 LuaCode={
+    npc_says(string.format(_"Initiating tracking sequence. Movement unit enabled. Ready. Trying to keep up with %s position now. Ok. Following %s.", get_player_name(), get_player_name()))
     set_bot_state("follow_tux")
     hide(2)
     show(1, 3, 4)

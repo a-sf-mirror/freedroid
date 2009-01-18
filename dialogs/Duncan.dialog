@@ -146,17 +146,11 @@ NPC=_"What a great way to start a conversation."
 NPC=_"Yes, that is true. I am not who I seem to be."
 NPC=_"But then again, neither are you, so my thoughts are we are even."
 LuaCode={
-    hide(0, 90)
-    show(91)
-}
-----------------------------------------------------------------------
-
-Nr=91  Text=_"What do you mean? I am Tux and not anyone else."
-NPC=_"And I am Duncan McNamara, the maker of grenades and nothing else."
-NPC=_"I believe the topic is thoroughly exhausted now."
-LuaCode={
-    hide(1, 2, 91)
+    hide(0, 1, 2, 90)
     show(5, 92)
+    tux_says(string.format(_"What do you mean? I am %s and not anyone else.", get_player_name()));
+    npc_says(_"And I am Duncan McNamara, the maker of grenades and nothing else.")
+    npc_says(_"I believe the topic is thoroughly exhausted now.")
 }
 ----------------------------------------------------------------------
 
