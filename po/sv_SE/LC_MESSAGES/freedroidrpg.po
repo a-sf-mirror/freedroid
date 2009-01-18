@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: freedroid\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2009-01-11 17:28+0100\n"
+"Report-Msgid-Bugs-To: freedroid-discussion@lists.sourceforge.net\n"
+"POT-Creation-Date: 2009-01-17 09:41+0100\n"
 "PO-Revision-Date: 2008-11-03 05:44+0000\n"
 "Last-Translator: Christian Widell <Christian_widell@hotmail.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -170,8 +170,7 @@ msgstr "Automatpistol"
 #: ../src/blocks.c:2064 ../src/blocks.c:2070 ../src/blocks.c:2076
 #: ../src/blocks.c:2082
 msgid "A not-that-nice autogun. Beware : it could be harmful."
-msgstr ""
-"En inte-så-trevlig automatpistol. Var försiktig: den kan vara skadlig."
+msgstr "En inte-så-trevlig automatpistol. Var försiktig: den kan vara skadlig."
 
 #: ../src/blocks.c:2089
 msgid "A not-that-nice autogun. It seems disabled for now."
@@ -944,8 +943,7 @@ msgstr "Projektorskärm"
 msgid ""
 "This is a projector screen, it allows to get better image quality than the "
 "wall."
-msgstr ""
-"Det här är en projektorduk, den ger en bättre bildkvalitet än väggen."
+msgstr "Det här är en projektorduk, den ger en bättre bildkvalitet än väggen."
 
 #: ../src/blocks.c:4019 ../src/blocks.c:4024 ../src/blocks.c:4041
 #: ../src/blocks.c:4046
@@ -980,8 +978,7 @@ msgstr ""
 
 #: ../src/blocks.c:4053 ../src/blocks.c:4058
 msgid "Dust to trees. Trees to pages. Pages to books. Books to dust."
-msgstr ""
-"Damm till träd. Träd till sidor. Sidor till böcker. Böcker till damm."
+msgstr "Damm till träd. Träd till sidor. Sidor till böcker. Böcker till damm."
 
 #: ../src/blocks.c:4065 ../src/blocks.c:4079
 msgid "Sign"
@@ -1041,8 +1038,7 @@ msgstr "Bord"
 msgid ""
 "Tables such as this one have been used for centuries to store various items "
 "on top of them."
-msgstr ""
-"Dessa bord har använts i århundraden för att lagra olika saker på dem."
+msgstr "Dessa bord har använts i århundraden för att lagra olika saker på dem."
 
 #: ../src/blocks.c:4201 ../src/blocks.c:4209
 msgid "Glass table"
@@ -1193,11 +1189,11 @@ msgstr "Anfall"
 msgid "Damage"
 msgstr "Skada"
 
-#: ../src/chat.c:872
+#: ../src/chat.c:874
 msgid "Start of Dialog"
 msgstr ""
 
-#: ../src/chat.c:927
+#: ../src/chat.c:929
 msgid "What will you say?"
 msgstr "Vad ska du säga?"
 
@@ -1576,21 +1572,21 @@ msgstr ""
 msgid "Clip empty, reloading..."
 msgstr "Tomt klipp, laddar om..."
 
-#: ../src/influ.c:2926
+#: ../src/influ.c:2928
 msgid "No more ammunition !"
 msgstr "Slut på ammunition !"
 
-#: ../src/influ.c:3415
+#: ../src/influ.c:3417
 #, c-format
 msgid "This is a %s. %s"
 msgstr "Det här är en %s. %s"
 
-#: ../src/influ.c:3444
+#: ../src/influ.c:3446
 #, c-format
 msgid "Examining %s. %s"
 msgstr ""
 
-#: ../src/influ.c:3456
+#: ../src/influ.c:3458
 #, c-format
 msgid "There is nothing here."
 msgstr "Det är ingenting här."
@@ -2449,8 +2445,8 @@ msgstr ""
 msgid ""
 "Save Map\n"
 "\n"
-"This button will save your current map over the file "
-"'../map/freedroid.levels' from your current working directory."
+"This button will save your current map over the file '../map/freedroid."
+"levels' from your current working directory."
 msgstr ""
 
 #: ../src/leveleditor.c:4968
@@ -2731,42 +2727,42 @@ msgid ""
 "No more free comment position.  Using first. "
 msgstr ""
 
-#: ../src/lua.c:173
+#: ../src/lua.c:180
 msgid "Melee fighting ability improved!"
 msgstr ""
 
-#: ../src/lua.c:176
+#: ../src/lua.c:183
 msgid "Ranged combat ability improved!"
 msgstr ""
 
-#: ../src/lua.c:179
+#: ../src/lua.c:186
 msgid "Programming ability improved!"
 msgstr ""
 
-#: ../src/lua.c:247
+#: ../src/lua.c:254
 msgid "1 Item received (on floor)"
 msgstr "1 föremål mottaget (på golvet)"
 
-#: ../src/lua.c:251
+#: ../src/lua.c:258
 msgid "1 Item received!"
 msgstr "1 föremål mottaget!"
 
-#: ../src/lua.c:346
+#: ../src/lua.c:353
 #, c-format
 msgid "+%d Experience Points"
 msgstr ""
 
-#: ../src/lua.c:356
+#: ../src/lua.c:363
 #, c-format
 msgid "%d training points spent!"
 msgstr ""
 
-#: ../src/lua.c:373
+#: ../src/lua.c:380
 #, c-format
 msgid "Gained %d bucks!"
 msgstr ""
 
-#: ../src/lua.c:374
+#: ../src/lua.c:381
 #, c-format
 msgid "Lost %d bucks!"
 msgstr ""
@@ -3644,8 +3640,7 @@ msgstr ""
 #: ../src/takeover.c:465
 #, c-format
 msgid "For taking control of your enemy, you receive %d experience."
-msgstr ""
-"För att ha tagit kontroll över din motståndare, får du %d erfarenhet."
+msgstr "För att ha tagit kontroll över din motståndare, får du %d erfarenhet."
 
 #: ../src/takeover.c:505
 msgid "You cheat"

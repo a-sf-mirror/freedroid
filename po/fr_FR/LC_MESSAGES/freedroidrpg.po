@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: freedroidrpg\n"
 "Report-Msgid-Bugs-To: freedroid-discussion@lists.sourceforge.net\n"
-"POT-Creation-Date: 2009-01-11 17:28+0100\n"
+"POT-Creation-Date: 2009-01-17 09:41+0100\n"
 "PO-Revision-Date: 2008-09-08 07:34+0000\n"
 "Last-Translator: Arthur Huillet <arthur.huillet@free.fr>\n"
 "Language-Team: French\n"
@@ -1260,11 +1260,11 @@ msgstr "Attaque"
 msgid "Damage"
 msgstr "Dommages"
 
-#: ../src/chat.c:872
+#: ../src/chat.c:874
 msgid "Start of Dialog"
 msgstr ""
 
-#: ../src/chat.c:927
+#: ../src/chat.c:929
 msgid "What will you say?"
 msgstr "Qu'allez-vous dire ?"
 
@@ -1644,21 +1644,21 @@ msgstr ""
 msgid "Clip empty, reloading..."
 msgstr "Chargeur vide, rechargement..."
 
-#: ../src/influ.c:2926
+#: ../src/influ.c:2928
 msgid "No more ammunition !"
 msgstr "Plus de munitions !"
 
-#: ../src/influ.c:3415
+#: ../src/influ.c:3417
 #, c-format
 msgid "This is a %s. %s"
 msgstr "C'est un %s. %s"
 
-#: ../src/influ.c:3444
+#: ../src/influ.c:3446
 #, fuzzy, c-format
 msgid "Examining %s. %s"
 msgstr "Examine %s.  %s"
 
-#: ../src/influ.c:3456
+#: ../src/influ.c:3458
 #, c-format
 msgid "There is nothing here."
 msgstr ""
@@ -2953,44 +2953,44 @@ msgid ""
 "No more free comment position.  Using first. "
 msgstr ""
 
-#: ../src/lua.c:173
+#: ../src/lua.c:180
 msgid "Melee fighting ability improved!"
 msgstr ""
 
-#: ../src/lua.c:176
+#: ../src/lua.c:183
 msgid "Ranged combat ability improved!"
 msgstr ""
 
-#: ../src/lua.c:179
+#: ../src/lua.c:186
 msgid "Programming ability improved!"
 msgstr ""
 
-#: ../src/lua.c:247
+#: ../src/lua.c:254
 msgid "1 Item received (on floor)"
 msgstr "1 objet reçu (sur le sol)"
 
-#: ../src/lua.c:251
+#: ../src/lua.c:258
 msgid "1 Item received!"
 msgstr "1 objet reçu !"
 
-#: ../src/lua.c:346
+#: ../src/lua.c:353
 #, fuzzy, c-format
 msgid "+%d Experience Points"
 msgstr "Expérience"
 
-#: ../src/lua.c:356
+#: ../src/lua.c:363
 #, fuzzy, c-format
 msgid "%d training points spent!"
 msgstr ""
 "Points\n"
 "d'entraînement"
 
-#: ../src/lua.c:373
+#: ../src/lua.c:380
 #, c-format
 msgid "Gained %d bucks!"
 msgstr ""
 
-#: ../src/lua.c:374
+#: ../src/lua.c:381
 #, c-format
 msgid "Lost %d bucks!"
 msgstr ""

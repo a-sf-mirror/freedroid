@@ -33,7 +33,7 @@ LOCALEDIR=$(DESTDIR)/$(pkgdatadir)/locale
 
 EXTRA_DIST = freedroidrpg.pot freedroidrpg_data.pot freedroidrpg_dialogs.pot $(POFILES_SRC) $(POFILES_DAT) $(POFILES_DIA) CMakeLists.txt *.py
 
-MSGMERGE_OPTIONS = --quiet --update
+MSGMERGE_OPTIONS = --update
 XGETTEXT_OPTIONS = --keyword=_ --keyword=N_ --force-po
 SUFFIXES = .po .mo
 
