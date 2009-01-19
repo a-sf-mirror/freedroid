@@ -154,6 +154,8 @@ Nr=15  Text=_"Maybe there is still hope, Ms. Stone. How much exactly do you need
 NPC=_"I couldn't get myself to look at my finance logs for a while now. I guess about two thousand triangles."
 LuaCode={
     add_cookie("Helping_Stone")
+    add_quest("Saving the shop")
+    open_diary_entry("Saving the shop", 0)
     next(14)
     hide(15)
 }

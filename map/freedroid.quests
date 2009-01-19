@@ -46,7 +46,7 @@ Mission target is to reach level : 1
 Mission target is to reach X-Pos : 0
 Mission target is to reach Y-Pos : 0
 Mission target is to live for how many seconds : -1
-Mission diary entry=_"I met a Red Guard named Bender. He poisoned himself with some brain enlargement pills, which turned out to highly cancirogenic. The city doctor will not give him the antidote, so it is up to me to save him."
+Mission diary entry=_"I met a Red Guard named Bender. He poisoned himself with some brain enlargement pills, which turned out to be highly carcinogenic. The city doctor will not give him the antidote, so it is up to me to save him."
 Mission diary entry=_"The doctor was easily fooled. I have the pills that Bender needs."
 Mission diary entry=_"I killed the doctor. I feel sick. What a disgusting mess. At least I get to help Bender now."
 Mission diary entry=_"Bender is fine now. He gave me some muscle enlargement pills in return for my help. Hmm..."
@@ -67,15 +67,15 @@ Mission target is to reach level : 1
 Mission target is to reach X-Pos : 0
 Mission target is to reach Y-Pos : 0
 Mission target is to live for how many seconds : -1
-Mission diary entry=_"Dixon, the leader of the Red Guard technical division lost his yellow toolkit in the city's maintenance tunnels. I am supposed to get it from there."
+Mission diary entry=_"Dixon, the leader of the Red Guard technical division, lost his yellow toolkit in the city's maintenance tunnels. I am supposed to get it from there."
 Mission diary entry=_"The bots in the tunnels might be sentient. I cannot wait to extinguish an emerging life form. This will be fun."
 Mission diary entry=_"I refused to get the toolkit from the bots in the tunnels because I think they might be sentient. Life is precious and should be preserved."
 Mission diary entry=_"The tunnels bots seem to be working together with Dixon in keeping the city working. All is well that ends well."
-Mission diary entry=_"Finally. I am tired, covered in bruises and oil... But finally I made sure the bots will not survive. It felt great to break their metal bodies and crush their circuits. Dixon seemed not too happy about this solution, but I don't care. It was fun killing the bots. Nothing else matters."
+Mission diary entry=_"Finally. I am tired, covered in bruises and oil... But I made sure that the all the bots are dead. It felt great to break their metal bodies and crush their circuits. Dixon didn't seem too happy about this solution, but I don't care. It was fun killing the bots. Nothing else matters."
 Mission diary entry=_"I gave the toolkit to Dixon. He was very happy to have his autotools back. I got his helmet as a gift. I guess this is better than nothing."
 Mission diary entry=_"I sold the toolkit to Dixon for a nice sum of money. Life is good."
 Mission diary entry=_"I sold the toolkit to Dixon for a huge sum of money. Life is great."
-Mission diary entry=_"I sold the toolkit to Dixon for a enormous sum of money. Life is truly grand. I better stay away from Dixon for now. He seemed very angry at me."
+Mission diary entry=_"I sold the toolkit to Dixon for a enormous sum of money. Life is truly grand. But, I better stay away from Dixon for now... He seemed very angry at me."
 ** End of this mission target subsection **
 
 ** Start of this mission target subsection **
@@ -116,7 +116,7 @@ Completion LuaCode={
     display_console_message("Novice arena cleared!")
 }
 Mission diary entry=_"Fighting in the arena is not something I would usually do, but I feel like doing it for a change. Why not?"
-Mission diary entry=_"Now that was easy. Yawn. I nearly fell asleep. No problem at all, the bots are dead."
+Mission diary entry=_"Now that was easy. *Yawn*. I nearly fell asleep. No problem at all, the bots are dead."
 ** End of this mission target subsection **
 
 ** Start of this mission target subsection **
@@ -156,7 +156,7 @@ Mission target is to reach X-Pos : -1
 Mission target is to reach Y-Pos : -1
 Mission target is to live for how many seconds : -1
 Mission diary entry=_"I am supposed to clean out the first level of some warehouse. Sounds easy."
-Mission diary entry=_"Ouch. It wasn't. At least I am alive and the warehouse is clear. Whew."
+Mission diary entry=_"Ouch. It wasn't. At least I am alive, and the warehouse is clear. *Whew*."
 ** End of this mission target subsection **
 
 ** Start of this mission target subsection **
@@ -173,10 +173,10 @@ Mission target is to reach level : -1
 Mission target is to reach X-Pos : -1
 Mission target is to reach Y-Pos : -1
 Mission target is to live for how many seconds : -1
-Mission diary entry=_"Kevin has a problem with his energy supply. His bots keep rebooting the system and he cannot conduct any experiments with unstable power supply. My job is to stabilize the power. I think that implies removing the stupid bots."
-Mission diary entry=_"The entrance is in Kevins garden. According to Kevin I also dont need to bother with bots on the 1st level, just go straight for the second level."
+Mission diary entry=_"Kevin has a problem with his energy supply. His bots keep rebooting the system, and he cannot conduct any experiments with an unstable power supply. My job is to stabilize the power. I think that implies removing the stupid bots."
+Mission diary entry=_"The entrance is in Kevins garden. According to Kevin I also don't need to bother with bots on the first level, just go straight for the second level."
 Mission diary entry=_"Hope everything is back to normal now. I better go check with Kevin."
-Mission diary entry=_"Everything is back to normal for now, so Kevin dont need to spend all his time on monitoring the power levels."
+Mission diary entry=_"Everything *is* back to normal for now, so Kevin doesn't need to spend all his time monitoring the power levels."
 Completion LuaCode={
 	open_diary_entry("And there was light...", 2)
 }
@@ -198,7 +198,7 @@ Mission target is to reach level : 50
 Mission target is to reach X-Pos : 50
 Mission target is to reach Y-Pos : 50
 Mission target is to live for how many seconds : -1
-Mission diary entry=_"Kevin gave me a cube stuffed with some kind of data. I am supposed to bring it to a 
+Mission diary entry=_"Kevin gave me a cube full of some kind of data. I am supposed to take it to a 
 computer cluster for analysis. Ought to be simple."
 Mission diary entry=_"Yes, that was simple. I wish everything else went as smoothly as this one did..."
 ** End of this mission target subsection **
@@ -218,12 +218,12 @@ Mission target is to reach level : 7
 Mission target is to reach X-Pos : -1
 Mission target is to reach Y-Pos : -1
 Mission target is to live for how many seconds : -1
-Mission diary entry=_"Spencer has revealed the information from the data cube evaluation to me.  It seems there is an old military research facility near the colony.  By overtaking the control droid I would be able to control the disruptor shield at the facility. I can either activate it permanently, thereby locking off the Hell Fortress, and the bots its producing, forever from its surrounding. Alternatively I could disable it, and fight my way through the Hell Fortress droids until I reach the main control droid and update it, thereby disabling all bots in the entire area around town in one fell swoop."
+Mission diary entry=_"Spencer has revealed the information from the data cube evaluation to me.  It seems there is an old military research facility near the town.  By taking over the control droid, I should be able to control the disruptor shield at the facility. I could activate it permanently, thereby locking off the Hell Fortress, and the bots it's producing, forever. Alternatively, I could disable it, and fight my way through the Hell Fortress droids until I reach the main control droid and update it, thereby disabling all bots in the entire area around town in one fell swoop."
 Mission diary entry=_"There, I've found and entered the base."
 Mission diary entry=_"I've taken over the control droid and activated the disruptor shield. Now the town is safe."
-Mission diary entry=_"I've taken over the control droid and disabled the disruptor shield. Now I should go to Hell Fortress and hack MS firmware update system."
+Mission diary entry=_"I've taken over the control droid and disabled the disruptor shield. Now, I should go to the Hell Fortress and hack the MS firmware update system."
 Mission diary entry=_"I've killed the control droid. Now it will not be able to disable the disruptor shield to let bots through. The town is safe."
-Mission diary entry=_"Finally I've managed to propogate my firmware update. Now all hostile bots are nothing more than pieces of rusty metall."
+Mission diary entry=_"I've finally managed to propagate my firmware update. Now, all the hostile bots are nothing more than pieces of rusty metal."
 ** End of this mission target subsection **
 
 ** Start of this mission target subsection **
@@ -241,8 +241,8 @@ Mission target is to reach level : -1
 Mission target is to reach X-Pos : -1
 Mission target is to reach Y-Pos : -1
 Mission target is to live for how many seconds : -1
-Mission diary entry=_"I can enter the fortress and find the upgrade server bot. The fortress gates are in crystal fields. Spencer told the guards to open the doors for me."
-Mission diary entry=_"I've managed to propagate my (slightly modified!) firmware update. Now bots using this update server are nothing more than pieces of rusty metal."
+Mission diary entry=_"I can now enter the fortress and find the upgrade server bot. The fortress gates are in the Crystal Fields. Spencer told the guards to open the doors for me."
+Mission diary entry=_"I've managed to propagate my (slightly modified!) firmware update. Now the bots using this update server are nothing more than pieces of rusty metal."
 ** End of this mission target subsection **
 
 ** Start of this mission target subsection **
@@ -278,8 +278,8 @@ Mission target is to reach level : 1
 Mission target is to reach X-Pos : 0
 Mission target is to reach Y-Pos : 0
 Mission target is to live for how many seconds : -1
-Mission diary entry=_"I have met a girl locked in secret area. If I manage to disable autoguns, she would be able to go to the surface, look at sun again."
-Mission diary entry=_"I have found that SACD and overtooked him."
+Mission diary entry=_"I have met a girl locked in a secret area. If I manage to disable the autoguns, she will be able to go to the surface and look at the sun again."
+Mission diary entry=_"I have found that SACD and took him over."
 Mission diary entry=_"Tania is free now!"
 ** End of this mission target subsection **
 
@@ -297,9 +297,10 @@ Mission target is to reach level : 1
 Mission target is to reach X-Pos : 0
 Mission target is to reach Y-Pos : 0
 Mission target is to live for how many seconds : -1
-Mission diary entry=_"I have met a girl locked in secret area. If I manage to disable autoguns, she would be able to go to the surface, look at sun again."
-Mission diary entry=_"I have found that SACD and overtooked him."
-Mission diary entry=_"Tania is free now!"
+Mission diary entry=_"Ms. Stone can't afford to pay her taxes, and it looks like the family business will be going under soon.  She needs 2000 cyberbucks to stay afloat.  I should try to help her out."
+Mission diary entry=_"Ms. Stone was really grateful for my help.  She took only what she needed from me, and still rewarded me with a shotgun she had been hiding from the Red Guard."
+Mission diary entry=_"Ms. Stone was really grateful for my help.  She took only what she needed from me."
+Mission diary entry=_"I tricked that Ms. Stone into believing I was going to help her out.  It was funny to see her get angry."
 ** End of this mission target subsection **
 
 ** Start of this mission target subsection **
@@ -316,7 +317,7 @@ Mission target is to reach level : 1
 Mission target is to reach X-Pos : 0
 Mission target is to reach Y-Pos : 0
 Mission target is to live for how many seconds : -1
-Mission diary entry=_"Probably I should try to find that strange guy rumoured to be living east of town. If he can manage to survive outside of town he might have some useful information for me. But maybe not right away, it might be too dangerous with all these bots around."
+Mission diary entry=_"I should probably try to find that strange guy rumoured to be living east of town. If he can manage to survive outside of town, he might have some useful information for me. But, maybe not right away, it might be too dangerous with all these bots around."
 Mission diary entry=_"I seem to have found Kevins home."
 ** End of this mission target subsection **
 
@@ -334,9 +335,9 @@ Mission target is to reach level : 1
 Mission target is to reach X-Pos : 0
 Mission target is to reach Y-Pos : 0
 Mission target is to live for how many seconds : -1
-Mission diary entry=_"Find Koan in desert."
-Mission diary entry=_"Took revenge for Duncan by killing Koan."
-Mission diary entry=_"Met and talked to Koan, but didnt kill him."
+Mission diary entry=_"Find Koan in the desert."
+Mission diary entry=_"I took revenge for Duncan by killing Koan."
+Mission diary entry=_"I met and talked to Koan, but didn't kill him."
 ** End of this mission target subsection **
 
 *** END OF QUEST LIST *** LEAVE THIS TERMINATOR IN HERE ***

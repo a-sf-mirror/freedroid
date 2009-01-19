@@ -36,9 +36,9 @@ FirstTime LuaCode={
 
 Nr=0  Text="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-NPC=_"You are Tux, aren't you..."
-NPC=_"The hero..."
 LuaCode={
+    npc_says(string.format(_"You are %s, aren't you...", get_player_name()))
+    npc_says(_"The hero...")
     show(1, 2, 3)
 }
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
@@ -49,12 +49,14 @@ Nr=1  Text=_"Yes, its me."
 NPC=_"I thought so. My grandfather used to tell me stories about you. He said you would come here in a time of despair."
 NPC=_"And here you are."
 NPC=_"I hope your arrival changes the tide of this war..."
-NPC=_"I have something here for you. I managed to hide this Shotgun from the red guard."
+NPC=_"I have something here for you. I managed to hide this Shotgun from the Red Guard."
 NPC=_"It used to belong to my grandfather, so it's very dear to me, but I'm sure he would have like you to have it on your journey to save us all."
 NPC=_"Tux, if you ever find out who started the Great Assault... GIVE THEM A KICK IN THE ASS, FROM LILY STONE!!!"
 LuaCode={
     end_dialog()
     add_item("Two Barrel shotgun",1)
+    end_quest("Saving the shop")
+    open_diary_entry("Saving the shop", 1)
     hide(1, 2, 3)
 }
 ----------------------------------------------------------------------
@@ -64,6 +66,8 @@ NPC=_"If you want to remain a stranger, I will respect your wishes."
 NPC=_"So be it."
 LuaCode={
     end_dialog()
+    end_quest("Saving the shop")
+    open_diary_entry("Saving the shop", 2)
     hide(1, 2, 3)
 }
 ----------------------------------------------------------------------
@@ -73,6 +77,9 @@ NPC=_"You... monster..."
 NPC=_"No one makes fun of Lily Stone's family store!"
 NPC=_"Say your prayers, you oversized duck!!!"
 LuaCode={
+    add_gold(1547)
+    end_quest("Saving the shop")
+    open_diary_entry("Saving the shop", 3)
     break_off_and_attack()
     hide(3)
 }

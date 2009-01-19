@@ -104,7 +104,7 @@ Other items can potentially be bigger
 //Golf club            - lvl 1 - str 0 dex23 - 1H - Dam: 1-5 - Recharge: 0.6 - Inv size 1x4 - Dur  6-10 -100 
 //Tree branch          - lvl 1 - str 0 dex 0 - 1H - Dam: 0-3 - Recharge: 0.7 - Inv size 2x3 - Dur  5-10 -  5
 //Table leg            - 1H - Size 1x4 - lvl 1 - str 0 dex 0 - Dam: 1-2  - Recharge: 0.5  - Dur  5-10 -  10
-//Enegry whip
+//Energy whip
 
 ******* Ranged ******************************************************************************************
 
@@ -245,7 +245,7 @@ inventory_size_x=2
 inventory_size_y=5
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=300
-Item description text=_"The size and kinetic force achievable with this 2 handed sword is enough to cleave straight through the armor of a low level droid. The strain on the sword from high impact hits into metall will however require frequent maintenance to not have it break in half exactly when it's most needed."
+Item description text=_"The size and kinetic force achievable with this 2 handed sword is enough to cleave straight through the armor of a low level droid. The strain on the sword from high impact hits into metal will however require frequent maintenance to keep it from breaking in half exactly when it's most needed."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.800000
 Item as gun: reloading time=0.000000
@@ -283,7 +283,7 @@ inventory_size_x=2
 inventory_size_y=4
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=500
-Item description text=_"Quite efficient at separating limbs off even a droid body or digging through weaker armored parts to cause massive damage on internal electronics. But the chain wears out very quickly when used on materials harder than wood and supply shortages of new chains and other parts makes it expensive to maintain."
+Item description text=_"Quite efficient at separating limbs from even a droid body, or digging through weaker armored parts to cause massive damage on internal electronics. But, the chain wears out very quickly when used on materials harder than wood, and supply shortages of new chains and other parts makes it expensive to maintain."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.150000
 Item as gun: reloading time=0.000000
@@ -327,7 +327,7 @@ inventory_size_x=2
 inventory_size_y=2
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=50
-Item description text=_"Designed to chop through meat and bones, it's not as fragile as cutting blades when used against metal enemies. Though it is a bit more slow and clumsy to use then more grace full weapons."
+Item description text=_"Designed to chop through meat and bones, it's not as fragile as cutting blades when used against metal enemies. However, it is a bit slower and clumsier to use than more graceful weapons."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.600000
 Item as gun: reloading time=0.000000
@@ -403,7 +403,7 @@ inventory_size_x=2
 inventory_size_y=5
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=120
-Item description text=_"While this weapon is somewhat slow and cumbersome to use, it is as good at leaving big dents in droids as it is at felling trees. A good hit is often capable of taking out lesser droids in 1 single hit"
+Item description text=_"While this weapon is somewhat slow and cumbersome to use, it is as good at leaving big dents in droids as it is at felling trees. A good hit is often capable of taking out lesser droids in a single hit"
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=1.200000
 Item as gun: reloading time=0.000000
@@ -447,7 +447,7 @@ inventory_size_x=1
 inventory_size_y=2
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=40
-Item description text=_"A short stabbing dagger weapon doesn't have much effect on the metal body of a droid, but with luck you might damage some wires or hoses in less protected areas so it's still better then trying to take on the machines with bare hands."
+Item description text=_"A short stabbing dagger doesn't have much effect on the metal body of a droid, but with luck you might damage some wires or hoses in less protected areas, so it's still better than trying to take the machines on with bare hands."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.400000
 Item as gun: reloading time=0.000000
@@ -485,7 +485,7 @@ inventory_size_x=1
 inventory_size_y=6
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=80
-Item description text=_"A spear forged from metal considerably improves from a wooden spears damage and durability, but the increased weight does make it somewhat slower and more cumbersome to use. It's still a fast weapon though compared to most other."
+Item description text=_"A spear forged from metal considerably improves on a wooden spears damage and durability, but the increased weight does make it somewhat slower and more cumbersome to use. It's still a fast weapon though, compared to most others."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.400000
 Item as gun: reloading time=0.000000
@@ -529,7 +529,7 @@ inventory_size_x=1
 inventory_size_y=3
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=30
-Item description text=_"A medium sized water pipe from iron can turn into an effective weapon even vs a metal opponent. While not likely to penetrate the armor of a bot, the impact force alone can still damage and shake loose circuit boards and weldings beneath the protective metal layer."
+Item description text=_"A medium sized water pipe of iron can turn into an effective weapon even versus a metal opponent. While not likely to penetrate the armor of a bot, the impact force alone can still damage and shake loose circuit boards and weldings beneath the protective metal layer."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.750000
 Item as gun: reloading time=0.000000
@@ -567,7 +567,7 @@ inventory_size_x=1
 inventory_size_y=3
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=60
-Item description text=_"A big heavy wrench can be surprizingly efficient in turning a bot into second hand parts, in a hands on brutal way if needed."
+Item description text=_"A big heavy wrench can be surprisingly efficient in turning a bot into second hand parts, in a hands on, brutal way if needed."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.750000
 Item as gun: reloading time=0.000000
@@ -644,7 +644,7 @@ inventory_size_x=1
 inventory_size_y=4
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=100
-Item description text=_"It might not be so sturdy, but if you manage to get in a good hit the kinetic energy might be enough to damage internal electronics even if there is a small dent on the outside."
+Item description text=_"It might not be so sturdy, but if you manage to get in a good hit, the kinetic energy might be enough to damage internal electronics even if there is only a small dent on the outside."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.600000
 Item as gun: reloading time=0.000000
@@ -682,7 +682,7 @@ inventory_size_x=2
 inventory_size_y=3
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=5
-Item description text=_"A club from a tree branch is certainly not your preferred choice of weapon to use, but it might be your only..."
+Item description text=_"A club from a tree branch is certainly not your preferred choice of weapon, but it might be your only one..."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.700000
 Item as gun: reloading time=0.000000
@@ -720,7 +720,7 @@ inventory_size_x=2
 inventory_size_y=3
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=250
-Item description text=_"The POWER NAIL DRIVER 3000 will, according to the advertisement, 'build your house for you'. While it's unclear how many nails your igloo will actually need, it sure can be handy none the less for bashing bot skulls. At least as long as the battery lasts anyway."
+Item description text=_"The POWER NAIL DRIVER 3000 will, according to the advertisement, 'build your house for you'. While it's unclear how many nails your igloo will actually need, it sure can be handy nonetheless for bashing bot skulls. As long as the battery lasts, anyway."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.250000
 Item as gun: reloading time=2.000000
@@ -796,7 +796,7 @@ inventory_size_x=1
 inventory_size_y=3
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=180
-Item description text=_"The mace proved already on the medieval battlefield that it was good at crushing even heavily armored skulls. Unfortunately for the droids this old knowledge still holds true."
+Item description text=_"The mace already proved on the medieval battlefield that it was good at crushing even heavily armored skulls. Unfortunately for the droids, this old knowledge still holds true."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.800000
 Item as gun: reloading time=0.000000
@@ -834,7 +834,7 @@ inventory_size_x=2
 inventory_size_y=4
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=30
-Item description text=_"With 1-2 good two handed swings a former droids head might fly far enough for you to score a home run. Just make sure to bring a backup weapon because wooden bats have a predilection for splitting into two after too many hard hits."
+Item description text=_"With 1-2 good two handed swings, a former droids head might fly far enough for you to score a home run. Just make sure to bring a backup weapon, because wooden bats have a predilection for splitting in two after too many hard hits."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.700000
 Item as gun: reloading time=0.000000
@@ -872,7 +872,7 @@ inventory_size_x=1
 inventory_size_y=5
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=70
-Item description text=_"A bit slow and cumbersome to use and prohibiting the security of a shield to cower behind, this weapon isn't always a good option. But if you do hit you are sure to do more damage then just a scratch."
+Item description text=_"A bit slow and cumbersome to use, and prohibiting the security of a shield to cower behind, this weapon isn't always a good option. But if you do hit, you are sure to do more damage than just a scratch."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=1.000000
 Item as gun: reloading time=0.000000
@@ -910,7 +910,7 @@ inventory_size_x=2
 inventory_size_y=5
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=150
-Item description text=_"Very slow and only for the strongest, but only the thougher droids can survive more then 1-2 direct hits."
+Item description text=_"Very slow and only for the strongest wielder, but only the tougher droids can survive more than 1-2 direct hits."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=1.500000
 Item as gun: reloading time=0.000000
@@ -1134,7 +1134,7 @@ inventory_size_x=2
 inventory_size_y=1
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=4
-Item description text=_".22 Long Rifle ammunition used to be a very common ammo for targetpratice, mainly because it was cheap and gave little recoil. It's just too weak to penetrate any real droid armor though."
+Item description text=_".22 Long Rifle ammunition used to be a very common ammo for target practice, mainly because it was cheap and gave little recoil. It's just too weak to penetrate any real droid armor though."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
@@ -1154,7 +1154,7 @@ Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=150
 inventory_size_x=1
 inventory_size_y=2
-Item description text=_"With .22 ammo it's mostly dumb luck if you actually damage a bot with this pistol. On the bright side, you will get a LOT of target practise out of each bot before a bullet or two manages to find a weak enough spot to take the bot out."
+Item description text=_"With .22 ammo, it's mostly dumb luck if you actually damage a bot with this pistol. On the bright side, you will get a LOT of target practise out of each bot before a bullet or two manages to find a weak enough spot to take the bot out."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.300000
 Item as gun: reloading time=3.000000
@@ -1192,7 +1192,7 @@ Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=250
 inventory_size_x=1
 inventory_size_y=5
-Item description text=_"A .22 hunting rifle was mainly used for sports shooting and for cheap training. As a hunting weapon it's main use was to kill small vermin such as rats and squirrels. It was also highly effective vs rabbits. Unfortunately you wont be hunting 'wabbits'..."
+Item description text=_"A .22 hunting rifle was mainly used for sports shooting and for cheap training. As a hunting weapon its main use was to kill small vermin such as rats and squirrels. It was also highly effective against rabbits. Unfortunately, you won't be hunting 'wabbits'..."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.750000
 Item as gun: reloading time=6.000000
@@ -1229,7 +1229,7 @@ inventory_size_x=2
 inventory_size_y=1
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=12
-Item description text=_"While solid slugs or possibly 8-10 Gauge would be the most effective vs armored targets, beggars can't be choosers. One just has to use any type of shell one is lucky enough to stumbles across. And even 20+ Gauge cartridges mostly used for bird hunting can with luck damage a bot."
+Item description text=_"While solid slugs, or possibly 8-10 Gauge shells, would be the most effective versus armored targets, beggars can't be choosers. One just has to use any type of shell one is lucky enough to stumble across. And even 20+ Gauge cartridges mostly used for bird hunting can, with luck, damage a bot."
 ** End of new item specification subsection **
 
 /*
@@ -1254,7 +1254,7 @@ Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=200
 inventory_size_x=2
 inventory_size_y=2
-Item description text=_"This is a placeholder for a description. Feel free to help."
+Item description text=_"Often wielded in the past by thugs or convenience store owners, this little baby is less powerful than the two-handed model, but makes up for it by letting you use a shield in conjunction with it."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.200000
 Item as gun: reloading time=3.000000
@@ -1292,7 +1292,7 @@ Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=250
 inventory_size_x=2
 inventory_size_y=4
-Item description text=_"This is a placeholder for a description. Feel free to help."
+Item description text=_"An old standby of farmers and bird hunters.  While capable of causing a fair amount of damage to droid armor, the limited clip capacity and fairly slow reloading time make this weapon preferable to melee weapons, but only just. Requires two hands to wield."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.200000
 Item as gun: reloading time=4.000000
@@ -1330,7 +1330,7 @@ Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=300
 inventory_size_x=2
 inventory_size_y=4
-Item description text=_"This is a placeholder for a description. Feel free to help."
+Item description text=_"The pump action shotgun isn't quite as powerful as the double barrel equivalent, but it does hold more ammo per clip. Requires two hands to wield."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.750000
 Item as gun: reloading time=4.000000
@@ -1394,7 +1394,7 @@ Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=400
 inventory_size_x=1
 inventory_size_y=2
-Item description text=_"This is a placeholder for a description. Feel free to help."
+Item description text=_"Nine millimeter ammo is a common caliber.  While not very powerful, it allows for more rounds per clip than bigger ammunition."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.500000
 Item as gun: reloading time=3.000000
@@ -1432,7 +1432,7 @@ Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=950
 inventory_size_x=2
 inventory_size_y=3
-Item description text=_"This is a placeholder for a description. Feel free to help."
+Item description text=_"These are commonly referred to as bullet hoses."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.200000
 Item as gun: reloading time=3.000000
@@ -1494,7 +1494,7 @@ Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=800
 inventory_size_x=2
 inventory_size_y=5
-Item description text=_"This is a placeholder for a description. Feel free to help."
+Item description text=_"7.62 millimeter ammo is commonly used in assault rifles.  This is a more civilian take on that concept."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.800000
 Item as gun: reloading time=5.000000
@@ -1532,7 +1532,7 @@ Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=1400
 inventory_size_x=2
 inventory_size_y=4
-Item description text=_"This is a placeholder for a description. Feel free to help."
+Item description text=_"The favorite weapon of third-world countries everywhere, this is a mass-produced, fairly reliable automatic weapon."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.200000
 Item as gun: reloading time=3.000000
@@ -1570,7 +1570,7 @@ inventory_size_x=1
 inventory_size_y=1
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=200
-Item description text=_"Browning Mashine Gun ammo."
+Item description text=_"Browning Machine Gun ammo."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
@@ -1590,7 +1590,7 @@ Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=2000
 inventory_size_x=2
 inventory_size_y=5
-Item description text=_"Powerful enough to stop a truck, literally, the likelyness of even a battle droid surviving more than 2 hits by this weapon is quite slim. It doesnt even matter if the pesky droid is covering behind a wall, the bullets will break right through and make the bot ready for the scrap heap in notime."
+Item description text=_"Powerful enough to stop a truck, literally, the likelihood of even a battle droid surviving more than 2 hits by this weapon is quite slim. It doesn't even matter if the pesky droid is cowering behind a wall, the bullets will break right through and make the bot ready for the scrap heap in no time."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=1.200000
 Item as gun: reloading time=4.000000
@@ -1647,7 +1647,7 @@ Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=500
 inventory_size_x=1
 inventory_size_y=2
-Item description text=_"A basic laser, but it has good uses in certain situations. No warranty of any kind though."
+Item description text=_"A basic laser, but it has good uses in certain situations. No warranty of any kind, though."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.400000
 Item as gun: reloading time=3.000000
@@ -1721,7 +1721,7 @@ plus duration modifier=20
 File or directory name for inventory image="weapons/laser_pulse_rifle/inv_image.png"
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=1000
-Item description text=_"The pulse laser technology, allowing for many repreated short burts without the weapon overheating, makes this quite a useful weapon. The damage from each shot is noticably less then from a Laser rifle, but the firing rate more then makes up for it."
+Item description text=_"The pulse laser technology, allowing for many repeated short bursts without the weapon overheating, makes this quite a useful weapon. The damage from each shot is noticably less than from a Laser rifle, but the firing rate more than makes up for it."
 inventory_size_x=3
 inventory_size_y=3
 ----- the following part is only relevant for weapons -----
@@ -1759,7 +1759,7 @@ plus duration modifier=20
 File or directory name for inventory image="weapons/laser_pulse_rifle/inv_image.png"
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=2000
-Item description text=_"The pulse laser technology, allowing for many repeated short burts without the weapon overheating, combined with a design for military purpuse makes this weapon the perfered choise for most soldiers. It's recoil free, quick firing, large mag & awesome killing power makes it the ideal weapon for cleansing out big droid infestations in mere minutes."
+Item description text=_"The pulse laser technology, allowing for many repeated short bursts without the weapon overheating, combined with a military design makes this weapon the preferred choice for most soldiers. Its quick no-recoil firing, large magazine, and awesome killing power makes it the ideal weapon for cleansing large droid infestations in mere minutes."
 inventory_size_x=4
 inventory_size_y=4
 ----- the following part is only relevant for weapons -----
@@ -1798,7 +1798,7 @@ inventory_size_x=1
 inventory_size_y=1
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=4
-Item description text=_"A container filled with all materia and energy required to make plasma weapons work in one handy and relatively safe package. This is the most common way of loading a plasma weapon."
+Item description text=_"A container filled with all materials and energy required to make plasma weapons work in one handy and relatively safe package. This is the most common way of loading a plasma weapon."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
@@ -1856,7 +1856,7 @@ Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=1200
 inventory_size_x=2
 inventory_size_y=3
-Item description text=_"A somewhat slow weapon, but once you do hit plenty a bot just melts down on the spot. A good alternative to a pulse laser for the skilled marksman."
+Item description text=_"A somewhat slow weapon, but once you do hit plenty a bot will just down on the spot. A good alternative to a pulse laser for the skilled marksman."
 the following part is only relevant for weapons -----
 Item as gun: recharging time=1.000000
 Item as gun: reloading time=5.000000
@@ -1894,7 +1894,7 @@ Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=1800
 inventory_size_x=3
 inventory_size_y=4
-Item description text=_"The very slow firing rate is made up pleanty by the awesome power of this weapon. Its main use in the military is as a close support weapon complementing the soldiers bread&butter pulse lasers, especially when attacking enemies behind cover."
+Item description text=_"The very slow firing rate is made up for by the awesome power of this weapon. Its main use in the military is as a close support weapon complementing the soldiers' bread and butter pulse lasers, especially when attacking enemies behind cover."
 the following part is only relevant for weapons -----
 Item as gun: recharging time=1.500000
 Item as gun: reloading time=7.000000
@@ -1988,7 +1988,7 @@ Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=3000
 inventory_size_x=2
 inventory_size_y=3
-Item description text=_"This bad boy has been known to blow away enemies with a single blast. A dangerous weapon that you don't want to be on the receiving end of."
+Item description text=_"This bad boy is known to blow away most enemies with a single blast. A dangerous weapon that you don't want to be on the receiving end of."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.500000
 Item as gun: reloading time=5.000000
@@ -2673,7 +2673,7 @@ plus duration modifier=10
 File or directory name for inventory image="inventory_image_26.png"
 Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
 Base list price=2500
-Item description text=_" This weapons name speaks for itself-more of a brute force weapon than most, it is best used on high defense enemies."
+Item description text=_" This weapons name speaks for itself-more of a brute force weapon than most, it is best used on well-defended enemies."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=1.000000
 Item as gun: reloading time=1.000000
@@ -3135,7 +3135,7 @@ plus duration modifier=5
 File or directory name for inventory image="boots_simple/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
 Base list price=175
-Item description text=_"These boots were originally normal boots, but have been fitted with some extra reinforcements to give better protection to the wearer.  Of course this makes them a bit less elegant and also less comfy to wear, but the extra protection might be worth it, at not the full price of hiking boots."
+Item description text=_"These boots were originally normal boots, but have been fitted with some extra reinforcements to give better protection to the wearer.  Of course this makes them a bit less elegant and also less comfy to wear, but the extra protection might be worth it, at less than the price of hiking boots."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
@@ -3192,7 +3192,7 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="spellbook/inv_image_white.png"
 Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=250
-Item description text=_"An incredible healing spell, probably only one you will ever need."
+Item description text=_"An incredible healing program, probably the only one you will ever need."
 inventory_size_x=2
 inventory_size_y=2
 ** End of new item specification subsection **
@@ -3224,7 +3224,7 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="spellbook/inv_image_green.png"
 Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=450
-Item description text=_"The art of rapidly moving away from danger is very useful. Even when used in reverse it has its uses."
+Item description text=_"The art of rapidly moving away from danger is very useful. Even when used in reverse, it has its uses."
 inventory_size_x=2
 inventory_size_y=2
 ** End of new item specification subsection **
@@ -3240,7 +3240,7 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="spellbook/inv_image_purple.png"
 Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=300
-Item description text=_"When computers are presented with the unexpected they can damage themselves."
+Item description text=_"When computers are presented with the unexpected, they can damage themselves."
 inventory_size_x=2
 inventory_size_y=2
 ** End of new item specification subsection **
@@ -3272,7 +3272,7 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="spellbook/inv_image_blue.png"
 Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=300
-Item description text=_"With a little touch a war machine comes crashing down to a halt. For a while."
+Item description text=_"With a little touch a war machine comes crashing to a halt. For a while."
 inventory_size_x=2
 inventory_size_y=2
 ** End of new item specification subsection **
@@ -3288,7 +3288,7 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="spellbook/inv_image_blue.png"
 Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=900
-Item description text=_"With a little touch a war machine comes crashing down to a halt. For a while."
+Item description text=_"With a little touch a war machine comes crashing to a halt. For a while."
 inventory_size_x=2
 inventory_size_y=2
 ** End of new item specification subsection **
@@ -3336,7 +3336,7 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="spellbook/inv_image_red.png"
 Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=1350
-Item description text=_"The network is wide and dangerous. Many traps await for the weak and unprepared."
+Item description text=_"The network is wide and dangerous. Many traps await the weak and unprepared."
 inventory_size_x=2
 inventory_size_y=2
 ** End of new item specification subsection **
@@ -3352,7 +3352,7 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="spellbook/inv_image_grey.png"
 Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=600
-Item description text=_"By heating up the chips with a malformed program you can cause them to release the magic smoke which keeps the bot running."
+Item description text=_"By heating up the chips with a malformed program, you can cause them to release the magic smoke which keeps the bot running."
 inventory_size_x=2
 inventory_size_y=2
 ** End of new item specification subsection **
@@ -3400,7 +3400,7 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="spellbook/inv_image.png"
 Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=600
-Item description text=_"The overload setting exists for emergencies. The plasma does not discriminate between bots and humans. Everything is equal to it."
+Item description text=_"The overload setting exists for emergencies. Plasma does not discriminate between bots and humans. Everything is the same to it."
 inventory_size_x=2
 inventory_size_y=2
 ** End of new item specification subsection **
@@ -3558,7 +3558,7 @@ inventory_size_x=1
 inventory_size_y=1
 Item uses drop sound with filename="drop_potion_sound.ogg"
 Base list price=30
-Item description text=_"Bartenders around the world add this to drinks to get them cold very fast. Plus the coolant is much cheaper. It can keep you cool inside a nuclear reactor."
+Item description text=_"Bartenders around the world add this to drinks to get them cold very fast. Plus, the coolant is much cheaper. It can keep you cool inside a nuclear reactor."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
@@ -3602,9 +3602,9 @@ Items of this type collect together in inventory="yes"
 File or directory name for inventory image="inventory_image_1.png"
 Item uses drop sound with filename="drop_potion_sound.ogg"
 Base list price=45
-Item description text=_"These small containers hold purified running strength.  Each capsule can be used only once, but multiple of those items can be grouped together like one item in inventory."
+Item description text=_"These small containers hold purified running strength.  Each capsule can be used only once, but many of them can be grouped together like one item in your inventory."
 ** End of new item specification subsection **
-
+ 
 ** Start of new item specification subsection **
 Item name=_"Strength Capsule"
 Item min class for drop=2
@@ -3616,7 +3616,7 @@ Items of this type collect together in inventory="yes"
 File or directory name for inventory image="inventory_image_1.png"
 Item uses drop sound with filename="drop_potion_sound.ogg"
 Base list price=150
-Item description text=_"These small containers hold purified strength.  This item will give a temporary boost to strength.  Each capsule can be used only once, but multiple of those items can be grouped together like one item in inventory."
+Item description text=_"These small containers hold purified strength.  This item will give a temporary boost to strength.  Each capsule can be used only once, but many of them can be grouped together like one item in your inventory."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
@@ -3630,7 +3630,7 @@ Items of this type collect together in inventory="yes"
 File or directory name for inventory image="inventory_image_1.png"
 Item uses drop sound with filename="drop_potion_sound.ogg"
 Base list price=150
-Item description text=_"These small containers hold purified dexterity.  This item will give a temporary bonus to dexterity.  Each capsule can be used only once, but multiple of those items can be grouped together like one item in inventory."
+Item description text=_"These small containers hold purified dexterity.  This item will give a temporary bonus to dexterity.  Each capsule can be used only once, but many of them can be grouped together like one item in your inventory."
 ** End of new item specification subsection **
 
 
@@ -3651,7 +3651,7 @@ Items of this type collect together in inventory="yes"
 File or directory name for inventory image="cyberbucks/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_2.ogg"
 Base list price=1
-Item description text=_"This is a placeholder for a description. Feel free to help."
+Item description text=_"The monetary standard of the world.  You'll be needing these."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
@@ -3678,7 +3678,7 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="dixons_toolbox/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=0
-Item description text=_"This is a teleporter service toolbox. It's complete and orderly, though a few dents on the outside give prof of frequent use. 'C. Dixon' is carved into the outside with fine print."
+Item description text=_"This is a teleporter service toolbox. It's complete and orderly, though a few dents on the outside give proof of frequent use. 'C. Dixon' is carved into the outside with fine print."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
@@ -3769,7 +3769,7 @@ Items of this type collect together in inventory="yes"
 File or directory name for inventory image="red_dilitium_crystal/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=0
-Item description text=_"These dilitium crystals are used as energy source in many modern electricity or heat based devices. Energy is extracted from the crystal by making use of the energy contained in the order of the crystal molecules. This principle has allowed to build devices that consume a lot of energy but do not need to be connected to a power line."
+Item description text=_"These dilithium crystals are used as an energy source in many modern electricity or heat based devices. Energy is extracted from the crystal by making use of the ordering of the crystal molecules. This principle has allowed us to build devices that consume a lot of energy, but do not need to be connected to a power line."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
@@ -3784,7 +3784,7 @@ inventory_size_x=2
 inventory_size_y=2
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=18
-Item description text=_"This small device automatically collects data about the area within a range of 7 times 7 meters and draws a small-scale plan of the immediate surroundings. Because of its very tiny display, it needs to be held closely to the eye and the image will then be projected directly into the eyeball of the user. Still, the collected map data will be split up by the device into several sectors for convenient viewing."
+Item description text=_"This small device automatically collects data about the area within a range of 7 times 7 meters and draws a small-scale plan of the immediate surroundings. Because of its very tiny display, it needs to be held closely to the eye, and the image will then be projected directly into the eyeball of the user. Still, the collected map data will be split up by the device into several sectors for convenient viewing."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
@@ -3826,7 +3826,7 @@ Items of this type collect together in inventory="yes"
 File or directory name for inventory image="pill_magic/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=250
-Item description text=_"Dude! This fab food will totally bump up your code skills, man! A real blast. Scarf those down to see the code."
+Item description text=_"Dude! This fab food will totally bump up your code skills, man! A real blast. Scarf these down to *see* the code."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
@@ -3852,7 +3852,7 @@ Items of this type collect together in inventory="yes"
 File or directory name for inventory image="eating_fork/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=50
-Item description text=_"This item is part of the 'Self Cleaning Kitchen' (SCK) project from before the Great Assault.  All of the items in the SCK project have an inner mechanism that will clean the object automatically if left alone for a given time.  It comes with it's own power supply and has a supposed duration of 200 years."
+Item description text=_"This item is part of the 'Self Cleaning Kitchen' (SCK) project from before the Great Assault.  All of the items in the SCK project have an inner mechanism that will clean the object automatically if left alone for a given time.  It comes with its own power supply, and has a supposed duration of 200 years."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
@@ -3865,7 +3865,7 @@ Items of this type collect together in inventory="yes"
 File or directory name for inventory image="eating_plate/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=50
-Item description text=_"This item is part of the 'Self Cleaning Kitchen' (SCK) project from before the Great Assault.  All of the items in the SCK project have an inner mechanism that will clean the object automatically if left alone for a given time.  It comes with it's own power supply and has a supposed duration of 200 years."
+Item description text=_"This item is part of the 'Self Cleaning Kitchen' (SCK) project from before the Great Assault.  All of the items in the SCK project have an inner mechanism that will clean the object automatically if left alone for a given time.  It comes with its own power supply, and has a supposed duration of 200 years."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
@@ -3878,7 +3878,7 @@ Items of this type collect together in inventory="yes"
 File or directory name for inventory image="drinking_mug/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=50
-Item description text=_"This item is part of the 'Self Cleaning Kitchen' (SCK) project from before the Great Assault.  All of the items in the SCK project have an inner mechanism that will clean the object automatically if left alone for a given time.  It comes with it's own power supply and has a supposed duration of 200 years."
+Item description text=_"This item is part of the 'Self Cleaning Kitchen' (SCK) project from before the Great Assault.  All of the items in the SCK project have an inner mechanism that will clean the object automatically if left alone for a given time.  It comes with its own power supply, and has a supposed duration of 200 years."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
@@ -3908,7 +3908,7 @@ Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=40
 inventory_size_x=1
 inventory_size_y=1
-Item description text=_"This device sends a signal to a nearby teleporter requesting a transportation and then helping with locking on and boosting the signal to ensure the teleportation attempt is succcessful. The battery inside is enough for one use only and the device becomes useless afterwards. At least, most people dont even try to use them twice, and those few who do usually end up with parts of their body missing or attached in the wrong place.  Note:  Multiple of these may be grouped together in the inventory."
+Item description text=_"This device sends a signal to a nearby teleporter requesting a transport, and then helps with locking on and boosting the signal to ensure the teleportation attempt is succcessful. The battery inside is sufficient for one use *only* and the device becomes useless afterwards. At least, most people don't try to use them twice... and those few who do usually end up with parts of their body missing or attached in the wrong place.  Note:  Multiple of these may be grouped together in the inventory."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
@@ -3921,7 +3921,7 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="datacube/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=0
-Item description text=_"This data cube contains confidential government data on the installations around the colony. Kevin hopes that when the data is evaluated properly a way out of the current crisis might be found. However, the amount of data is so vast, it can only be evaluated properly using a large cluster of computers. The Red Guard base is said to store a suitable infrastructure for this purpose."
+Item description text=_"This data cube contains confidential government data on the installations around the town. Kevin hopes that when the data is evaluated properly, a way out of the current crisis might be found. However, the amount of data is so vast, it can only be evaluated properly using a large cluster of computers. The Red Guard base is said to store an infrastructure suitable to this purpose."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **

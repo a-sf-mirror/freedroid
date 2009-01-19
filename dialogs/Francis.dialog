@@ -62,7 +62,7 @@ NPC=_"I was at a protest against MegaSys, a computer company. They killed free s
 NPC=_"Lots of people were angry about this. Protests and riots spread in waves all around the world."
 NPC=_"When the police bots approached at dawn, we thought that they were going to simply disperse the crowds. Instead, they started killing us."
 NPC=_"I broke into a parked hover car and used it to escape. The sight from the air was horrible."
-NPC=_"The city was full of flames, flashes of gunfire and screaming people. That image still does not let me sleep at nights."
+NPC=_"The city was full of flames, flashes of gunfire and screaming people. That image still does not let me sleep at night."
 NPC=_"First we made them, and then they unmade us. How ironic."
 LuaCode={ next(5) hide(3) show(15) }
 ----------------------------------------------------------------------
@@ -135,7 +135,7 @@ Nr=15  Text=_"Why did the bots attack?"
 NPC=_"We don't really know the reason for this insanity. However..."
 NPC=_"All of the attacking bots are using a MegaSys operating system, so we think they are responsible."
 NPC=_"Not surprisingly, the bastards deny everything."
-NPC=_"Of course because nearly every single bot in the world runs on that junk, the situation does not look pretty."
+NPC=_"Of course, because nearly every single bot in the world runs on that junk, the situation does not look pretty."
 LuaCode={ hide(15) show(20) }
 ----------------------------------------------------------------------
 
