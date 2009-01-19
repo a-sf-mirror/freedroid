@@ -40,11 +40,11 @@ LuaCode={ hide(0) show(4) }
 ----------------------------------------------------------------------
 
 Nr=1  Text=_"Have you detected any hostile bot activity?"
-NPC=_"Affirmative. Large amount of hostile bots in close proximity. Inititiating energy level scan."
+NPC=_"Affirmative. Large number of hostile bots in close proximity. Inititiating energy level scan."
 LuaCode={
     hide(1)
 	tux_says(_"Done yet?")
-	npc_says(_"Scanning indicate mostly low energy levels.", "NO_WAIT")
+	npc_says(_"Scanning indicates mostly low energy levels.", "NO_WAIT")
 	npc_says(_"Threat Degree Analysis: LOW", "NO_WAIT")
 	npc_says(_"Outer Gate Status: OPEN", "NO_WAIT")
 }

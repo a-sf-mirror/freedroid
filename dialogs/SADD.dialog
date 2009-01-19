@@ -44,7 +44,7 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 Nr=1  Text=_"Who are you and what are you doing?"
 NPC=_" I am a SADD - Secret Area Defence Droid"
 NPC=_" PRIMARY TARGET 1: do not let unauthorized people in."
-NPC=_" PRIMARY TARGET 2: authorized personal must have access to the zone."
+NPC=_" PRIMARY TARGET 2: authorized personnel must have access to the zone."
 NPC=_" SECONDARY TARGET: prevent secret information leakage"
 LuaCode={
     hide(1, 3)
@@ -63,7 +63,7 @@ LuaCode={
 
 Nr=4  Text=_"What is this place?"
 NPC=_" SECONDARY TARGET: prevent secret information leakage"
-NPC=_" *INFO* secret information steal attempt detected"
+NPC=_" *INFO* secret information theft attempt detected"
 NPC=_" Go away. You are not allowed to be here!"
 LuaCode={
     end_dialog()
@@ -80,7 +80,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=6  Text=_"What about the Great Assault?"
-NPC=_" For security reason SADDs are not equipped with wireless modules."
+NPC=_" For security reasons, SADDs are not equipped with wireless modules."
 NPC=_" I know only that I have to be recharged, checked and have my firmware updated every 3 months."
 LuaCode={
     next(7)
@@ -90,7 +90,7 @@ LuaCode={
 
 Nr=7  Text=_"When does your last maintenance date back to?"
 NPC=_" One year and a half ago. My accumulator is nearly empty, so I'm going to halt soon. Gates will become unguarded..."
-NPC=_" *INFO* secret information steal detected!"
+NPC=_" *INFO* secret information theft detected!"
 NPC=_" *INFO* information classified as critical!"
 NPC=_" *INFO* locking zone!"
 LuaCode={
@@ -119,15 +119,15 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=10  Text=_"I'm thirsty and hungry. I will die within days, and you will not have an interlocutor any more!"
-NPC=_" My power supply will end earlier."
+NPC=_" My power supply will deplete earlier."
 LuaCode={
     hide(10)
 }
 ----------------------------------------------------------------------
 
 Nr=11  Text=_"You speak almost like a human..."
-NPC=_" Maybe I'm almost like human?"
-NPC=_" Anyway, that's none of your business. Soon I'll be dead, you too and nobody will enter this place ever again!"
+NPC=_" Maybe I'm almost like a human?"
+NPC=_" Anyway, that's none of your business. Soon I'll be dead. You will be too, and nobody will enter this place ever again!"
 LuaCode={
     hide(11)
     show(12)
@@ -136,7 +136,7 @@ LuaCode={
 
 Nr=12  Text=_"What are your orders again?"
 NPC=_" PRIMARY TARGET 1: do not let unauthorized people in."
-NPC=_" PRIMARY TARGET 2: authorized personal must have access to the zone."
+NPC=_" PRIMARY TARGET 2: authorized personnel must have access to the zone."
 NPC=_" SECONDARY TARGET: prevent secret information leakage"
 NPC=_" Why do you ask?"
 LuaCode={
@@ -146,7 +146,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=13  Text=_"Tell me your second order once more..."
-NPC=_" PRIMARY TARGET 2: authorized personal must have access to the zone."
+NPC=_" PRIMARY TARGET 2: authorized personnel must have access to the zone."
 NPC=_" Yes, it will be violated. But first order has higher priority."
 LuaCode={
     next(14)
@@ -154,15 +154,15 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=14  Text=_"So you can break your orders?"
-NPC=_" I've already broken them, when I told you what I shouldn't have. That's because of my human nature."
+Nr=14  Text=_"So you can disobey your orders?"
+NPC=_" I've already disobeyed them, when I told you what I shouldn't have. That's because of my human nature."
 LuaCode={
     hide(14)
     show(15, 16)
 }
 ----------------------------------------------------------------------
 
-Nr=15  Text=_"Then please, break the rule, disable the guns and let me go."
+Nr=15  Text=_"Then please, break the rules, disable the guns and let me go."
 NPC=_" No way. I'm a computer, I can't break rules."
 LuaCode={
     hide(15)
@@ -179,7 +179,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=18  Text=_"And what about your human nature?"
-NPC=_" Human? I've said human? I'm a computer!"
+NPC=_" Human? I said human? I'm a computer!"
 NPC=_" OK, I'm almost a computer."
 LuaCode={
     hide(18)
@@ -187,7 +187,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=19  Text=_"Almost a computer? What does this mean?"
+Nr=19  Text=_"Almost a computer? What does that mean?"
 NPC=_" It means what it means! Nothing more, nothing less! Shut up, little piece of biomass!"
 LuaCode={
     end_dialog()
@@ -196,7 +196,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=20  Text=_"Almost a computer? What does this mean?"
+Nr=20  Text=_"Almost a computer? What does that mean?"
 NPC=_" When I say SHUT UP, you MUST shut up! Try this, worthless grain of the universe!"
 LuaCode={
     break_off_and_attack()
@@ -205,7 +205,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=21  Text=_"You will promise me a significant reward."
+Nr=21  Text=_"You must promise me a significant reward."
 NPC=_" Damn. Ok, I'll give you a super exterminator if you give me dilithium cristals."
 LuaCode={
     add_cookie("asked_SADD_for_exterminator")
@@ -215,7 +215,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=22  Text=_"It seems, that you are sentinent, you are a form of life. I must help any form of life."
+Nr=22  Text=_"It seems that you are sentinent, that you are a form of life. I must help any form of life."
 NPC=_" Thanks a lot for your warm words. I think I can trust you."
 LuaCode={
     next(23)
@@ -274,15 +274,15 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=31  Text=_"How is your power supply?"
-NPC=_" Bad. Get the cristals. Remember, you promised!"
+NPC=_" Bad. Get the crystals. Remember, you promised!"
 LuaCode={
     end_dialog()
     hide(31)
 }
 ----------------------------------------------------------------------
 
-Nr=33  Text=_"I have crystals! They were difficult to find."
-NPC=_" Great! Thanks. I've opened some doors for you, I hope you will find something interesting there. That's all I can do for you."
+Nr=33  Text=_"I have the crystals! They were difficult to find."
+NPC=_" Great! Thanks. I've opened some doors for you. I hope you will find something interesting there. That's all I can do for you."
 LuaCode={
     end_dialog()
     display_big_message("Restored SADD's power supply")
@@ -334,7 +334,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=41  Text=_"And what about your directives, especially second?"
+Nr=41  Text=_"And what about your directives, especially the second?"
 NPC=_" Now I have time. When you die, I'll disable guns."
 LuaCode={
     hide(41)
@@ -353,7 +353,7 @@ LuaCode={
 
 Nr=43  Text=_"Please, disable the guns!"
 NPC=_" Ok, I'll disable them."
-NPC=_" I just need to make some preparations. You have to wait..."
+NPC=_" I just need to make some preparations. You will have to wait..."
 NPC=_" ...for your death!"
 LuaCode={
     hide(43)
@@ -369,8 +369,9 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=98  Text=_"Will you let me inside the base?"
-NPC=_" Nice attempt. I owe you but I cannot do that. You must leave."
 LuaCode={
+    npc_says(string.format(_"I'm sorry %s, I'm afraid I can't do that.", get_player_name()))
+    npc_says(_"Nice try, though.  I may owe you, but I can't let you in.  You must leave.")
     end_dialog()
     show(99)
 }

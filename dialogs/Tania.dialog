@@ -52,7 +52,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=2  Text=_"Imaginary?! I am as real as you are."
-NPC=_"This place is locked. Hermetically conservated and guarded by bots. So you can be nothing more than the product of my imagination."
+NPC=_"This place is locked. Hermetically sealed and guarded by bots. So you can be nothing more than the product of my imagination."
 LuaCode={
     hide(2)
     show(12)
@@ -75,14 +75,14 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=5  Text=_"It is dark here."
-NPC=_"Main power supply is down, so only emergency light works. Peter tried to switch it back on, but he didn't succeed."
+NPC=_"The main power supply is down, so only the emergency lights work. Peter tried to switch it back on, but he didn't succeed."
 LuaCode={
     hide(5)
 }
 ----------------------------------------------------------------------
 
 Nr=6  Text=_"This place doesn't look like a prison."
-NPC=_"In the past it was a secret lab. You heard about those strength pills? They were invented here. Other pills too, but I was working on strength ones."
+NPC=_"In the past it was a secret lab. You heard about those strength pills? They were invented here. Other pills too, but I was working on the strength ones."
 LuaCode={
     hide(6)
     show(7, 8)
@@ -99,8 +99,8 @@ LuaCode={
 --------------------------------------------------------------------
 
 Nr=8  Text=_"So you are a biologist? Could you heal me?"
-NPC=_"That would be something different from what I've done in the last months at least. Some entertainement."
-NPC=_"Let me take a look at that... it's nothing some nanobots could not take care of.... You will be all fixed up in a minute."
+NPC=_"That would be something different from what I've done in the last months at least. Some entertainment."
+NPC=_"Let me take a look at that... it's nothing some nanobots couldn't take care of.... You will be all fixed up in a minute."
 LuaCode={
     heal_tux()
 }
@@ -125,7 +125,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=11  Text=_"But why not go out through the door?"
-NPC=_"It is locked and very reliable. Even a tank would not be able to samsh it! And if a door is broken, SADDs would attack, that's their program."
+NPC=_"It is locked and very reliable. Even a tank would not be able to smash it! And if a door was broken, SADDs would attack, that's their program."
 LuaCode={
     hide(11)
     show(18)
@@ -134,7 +134,7 @@ LuaCode={
 
 Nr=12  Text=_"Autoguns have made a hole in the wall. I came through this hole."
 NPC=_"Do you mean I can go out to the surface ?!"
-NPC=_"Oh god! I've told Peter that he chosed wrong place, but he was so stubborn!"
+NPC=_"Oh god! I've told Peter that he chosed the wrong place, but he was so stubborn!"
 LuaCode={
     hide(12)
     show(13)
@@ -142,7 +142,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=13  Text=_"Yes, you can get to the surface. But the guns are still on."
-NPC=_"All hope lost! I'm a scientist, not a warrior."
+NPC=_"All hope is lost! I'm a scientist, not a warrior."
 LuaCode={
     hide(13)
     show(15)
@@ -150,7 +150,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=14  Text=_"It is strange to see a girl in such a beautiful dress here."
-NPC=_"I'm going to spend all my life here! So forgive me some little weakneses."
+NPC=_"I'm going to spend all my life here! So forgive me some little indulgences."
 LuaCode={
     hide(14)
 }
@@ -165,31 +165,31 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=16  Text=_"How can I disable the guns?"
-NPC=_"Somewhere in distant part of the lab should be an SACD - secret area control droid. It controls all defense systems in the base. If you manage to persuade him, you will be able to control the base. But it's very hard to find him."
+NPC=_"Somewhere in a distant part of the lab should be an SACD - secret area control droid. It controls all the defense systems in the base. If you manage to persuade him, you will be able to control the base. But it's very hard to find him."
 LuaCode={
     hide(16)
     show(17)
 }
 ----------------------------------------------------------------------
 
-Nr=17  Text=_"I will disable guns for you."
+Nr=17  Text=_"I will disable the guns for you."
 NPC=_"Thanks... please be careful. You will not be able to access the control center directly, it is behind a triple hermetic door. Try using the service tunnels."
 LuaCode={
-    add_quest("SADD's power supply")
-    open_diary_entry("SADD's power supply", 0)
+    add_quest("Tania's sanitary")
+    open_diary_entry("Tania's sanitary", 0)
     hide(17)
 }
 ----------------------------------------------------------------------
 
-Nr=18  Text=_"Why not just open them? There should be a way for unlocking the base."
-NPC=_"To open the door you need to know the password. Only the commander of the area and his deputy knew it. Commander was killed by bots as soon as assault started and the deputy was in town, I don't know what happened to him."
+Nr=18  Text=_"Why not just open them? There should be a way of unlocking the base."
+NPC=_"To open the door you need to know the password. Only the commander of the area and his deputy knew it. The commander was killed by bots as soon as the assault started, and the deputy was in town, I don't know what happened to him."
 LuaCode={
     hide(18)
 }
 ----------------------------------------------------------------------
 
 Nr=19  Text=_"Carpets, sofa, bookshelfs. Where did you get all this?"
-NPC=_"Peter did all he could to make this room comfortable. Sofa and armchair are from commander cabinet, books from the restroom..."
+NPC=_"Peter did all he could to make this room comfortable. The sofa and armchair are from the commanders cabinet, the books are from the lounge..."
 LuaCode={
     hide(19)
 }
@@ -198,10 +198,10 @@ LuaCode={
 Nr=21 Text="IS MISSION ASSIGNED"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    if (has_quest("SADD's power supply")) then
+    if (has_quest("Tania's sanitary")) then
         hide(6)
         if (has_cookie("SAGunsOff")) then
-            if (done_quest("SADD's power supply")) then hide(17, 27, 28) show(29) 
+            if (done_quest("Tania's sanitary")) then hide(17, 27, 28) show(29) 
             else hide(17, 28, 29) show(27) end
         else hide(17, 27, 29) show(28) end
     else hide(27, 28, 29) end
@@ -211,20 +211,21 @@ AlwaysExecuteThisOptionPriorToDialogStart="yes"
 ----------------------------------------------------------------------
 
 Nr=27  Text=_"The sentry guns are off. You can go now!"
-NPC=_"Thanks, thanks a lot! Now I will be able to see sun, trees, rivers. I missed those so much!"
+NPC=_"Thanks, thanks a lot! Now I will be able to see the sun, trees, rivers... I missed those so much!"
 NPC=_"I hope these books will help you survive in this world."
 LuaCode={
     display_big_message("Tania is now free!")
     add_xp(1500)
-    end_quest(10)
+    end_quest("Tanias sanitary")
     add_item("Source Book of Check system integrity",1)
     add_item("Source Book of Sanctuary",1)
+    open_diary_entry("Tania's sanitary", 2)
     hide(27)
 }
 ----------------------------------------------------------------------
 
 Nr=28  Text=_"Where can I find that SACD?"
-NPC=_"To the right from the entrance of the area, there is a hall. In the south part of this hall you will find a triple hermetic door. The control center is behind that door. But it is locked, so you will have to find another way there. Cable collectors may help you."
+NPC=_"To the right from the entrance of the area, there is a hall. In the south part of this hall you will find a triple hermetic door. The control center is behind that door. But it is locked, so you will have to find another way there. The cable collectors may help you."
 
 ----------------------------------------------------------------------
 

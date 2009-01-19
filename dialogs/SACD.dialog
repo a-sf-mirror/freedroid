@@ -37,7 +37,7 @@ FirstTime LuaCode={
 Nr=0  Text=_"Login : admin  Password : *******"
 NPC=_"Last login from /dev/ttyS0 on Sun, 23 mar 2057. admin@sadefence: ~ #"
 LuaCode={
-    if (has_quest("SADD's power supply")) then open_diary_entry("SADD's power supply", 1) else end
+    if (has_quest("Tania's sanitary")) then open_diary_entry("Tania's sanitary", 1) else end
 
     if (has_cookie("SACDOvertaken")) then    -- possible to leave empty then?
     else

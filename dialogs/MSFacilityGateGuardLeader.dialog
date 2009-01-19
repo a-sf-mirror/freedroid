@@ -59,7 +59,7 @@ LuaCode={
 Nr=2  Text=_"I'd like to go through that gate."
 NPC=_"Are you totally out of your mind?"
 NPC=_"There are trillions of millions of quintillions of bots in there!"
-NPC=_"Beside that on the other side of the door is disruptor shield, which we can't control."
+NPC=_"Besides that, on the other side of the door is a disruptor shield, which we can't control."
 NPC=_"* Throws a stone through the door"
 NPC=_"* Stone disappears leaving a small cloud of dust"
 NPC=_"Find a different gate to go through."
@@ -138,7 +138,7 @@ LuaCode={
 
 Nr=11  Text="HF MISSION NOT YET ASSIGNED"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-NPC=_"Nothing from Spencer, fat duck. Now leave."
+NPC=_"Nothing from Spencer, ya fat duck. Now leave."
 LuaCode={
     end_dialog()
 }

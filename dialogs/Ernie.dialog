@@ -60,7 +60,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=3  Text=_"I'm here to make an end to your mining business."
-NPC=_"Ok Linarian!  You wanted it that way!  And I don't like penguins anyway!"
+NPC=_"Ok Linarian!  You want it this way!  And I don't like penguins anyway!"
 LuaCode={
     break_off_and_attack()
     hide(1, 2, 3)
