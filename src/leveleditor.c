@@ -5468,45 +5468,45 @@ int level_editor_handle_left_mouse_button ( int proceed_now, leveleditor_state *
     {
 	if ( ClickWasInEditorBannerRect() )
 	    HandleBannerMouseClick();
-	else if ( MouseCursorIsOnButton ( GO_LEVEL_NORTH_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
+	else if ( MouseCursorIsOnButton ( GO_LEVEL_NORTH_BUTTON , GetMousePos_x()  , GetMousePos_y()  )
+		&& ( EditLevel -> jump_target_north >= 0 ) )
 	{
 	    if ( Me . pos . x < curShip . AllLevels [ EditLevel -> jump_target_north ] -> xlen -1 )
 		new_x = Me . pos . x ;
 	    else
 		new_x = 3;
 	    new_y = curShip . AllLevels [ EditLevel -> jump_target_north ] -> xlen - 4 ;
-	    if ( EditLevel -> jump_target_north >= 0 )
-		action_jump_to_level(EditLevel->jump_target_north,new_x,new_y);
+	    action_jump_to_level(EditLevel->jump_target_north,new_x,new_y);
 	}
-	else if ( MouseCursorIsOnButton ( GO_LEVEL_SOUTH_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
+	else if ( MouseCursorIsOnButton ( GO_LEVEL_SOUTH_BUTTON , GetMousePos_x()  , GetMousePos_y()  )
+		&& ( EditLevel -> jump_target_south >= 0 ) )
 	{
 	    if ( Me . pos . x < curShip . AllLevels [ EditLevel -> jump_target_south ] -> xlen -1 )
 		new_x = Me . pos . x ;
 	    else
 		new_x = 3;
 	    new_y = 4;
-	    if ( EditLevel -> jump_target_south >= 0 )
-		action_jump_to_level(EditLevel->jump_target_south,new_x,new_y);
+	    action_jump_to_level(EditLevel->jump_target_south,new_x,new_y);
 	}
-	else if ( MouseCursorIsOnButton ( GO_LEVEL_EAST_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
+	else if ( MouseCursorIsOnButton ( GO_LEVEL_EAST_BUTTON , GetMousePos_x()  , GetMousePos_y()  )
+		&& ( EditLevel -> jump_target_east >= 0 ) )
 	{
 	    new_x = 3;
 	    if ( Me . pos . y < curShip . AllLevels [ EditLevel -> jump_target_east ] -> ylen -1 )
 		new_y = Me . pos . y ;
 	    else
 		new_y = 4;
-	    if ( EditLevel -> jump_target_east >= 0 )
-		action_jump_to_level(EditLevel->jump_target_east,new_x,new_y);
+	    action_jump_to_level(EditLevel->jump_target_east,new_x,new_y);
 	}
-	else if ( MouseCursorIsOnButton ( GO_LEVEL_WEST_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
+	else if ( MouseCursorIsOnButton ( GO_LEVEL_WEST_BUTTON , GetMousePos_x()  , GetMousePos_y()  )
+		&& ( EditLevel -> jump_target_west >= 0 ) )
 	{
 	    new_x = curShip . AllLevels [ EditLevel -> jump_target_west ] -> xlen -4 ;
 	    if ( Me . pos . y < curShip . AllLevels [ EditLevel -> jump_target_west ] -> ylen -1 )
 		new_y = Me . pos . y ;
 	    else
 		new_y = 4;
-	    if ( EditLevel -> jump_target_west >= 0 )
-		action_jump_to_level(EditLevel->jump_target_west,new_x,new_y);
+	    action_jump_to_level(EditLevel->jump_target_west,new_x,new_y);
 	}
 	else if ( MouseCursorIsOnButton ( EXPORT_THIS_LEVEL_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
 	{
