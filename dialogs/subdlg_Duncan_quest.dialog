@@ -54,6 +54,7 @@ Nr=10  Text=_"Yeah. I got him. I think this is your cube."
 NPC=_"Yes. I appreciate your help."
 LuaCode={
     end_dialog()
+    end_quest("Doing Duncan a favour")
     add_xp(3000)
     del_item("Pandora's Cube", 1)
     hide(10)
@@ -64,6 +65,7 @@ Nr=20  Text=_"I could not find him anywhere in the desert. I don't think he is t
 NPC=_"I see."
 LuaCode={
     end_dialog()
+    end_quest("Doing Duncan a favour")
     hide(20) -- FIXME this will be reenabled every time by node 0
 }
 ----------------------------------------------------------------------
@@ -106,6 +108,7 @@ Nr=60  Text=_"Hey, that is really neat. Here is your cube. Enjoy disassembling i
 NPC=_"I will."
 LuaCode={
     end_dialog()
+    end_quest("Doing Duncan a favour")
     add_xp(3000)
     del_item("Pandora's Cube")
     hide(60)
@@ -115,6 +118,7 @@ LuaCode={
 Nr=70  Text=_"WHAT? No way I am giving you a doomsday device! Forget about it."
 NPC=_"I understand. So be it."
 LuaCode={
+    end_quest("Doing Duncan a favour")
     end_dialog()
 }
 ----------------------------------------------------------------------

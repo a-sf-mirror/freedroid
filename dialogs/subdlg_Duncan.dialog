@@ -60,6 +60,8 @@ NPC=_"There is something you must know."
 NPC=_"There are not too many bots in the desert, but they are undefeatable. It is best to avoid them."
 NPC=_"I will be waiting here for your return."
 LuaCode={
+    add_quest("Doing Duncan a favour")
+    open_diary_entry("Doing Duncan a favour", 0)
     hide(2, 99)
     show(5, 6, 7)
 }
