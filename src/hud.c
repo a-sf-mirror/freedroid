@@ -1220,12 +1220,9 @@ A barrel was detected, but the barrel type was not valid.",
 	}
 	
 	//--------------------
-	// Maybe there is a living droid below the current mouse cursor.  In this
-	// case, we'll give the decription of the corresponding bot.  (Also this serves
-	// as a good way to check whether the 'droid below mouse cursor' functions are
-	// doing a good job or not.
-	//
-	if ( droid_below_mouse_cursor != NULL )
+	// Maybe there is a living droid below the current mouse cursor, and it is visible to the player.
+	// In this case, we'll give the decription of the corresponding bot.
+	if ( droid_below_mouse_cursor != NULL && DirectLineColldet(Me.pos.x, Me.pos.y, droid_below_mouse_cursor->pos.x, droid_below_mouse_cursor->pos.y, Me.pos.z, &VisiblePassFilter))
 	{
 	    create_and_blit_droid_description ( droid_below_mouse_cursor ) ;
 	    return;
