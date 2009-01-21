@@ -1,4 +1,3 @@
-% -*- mode: flyspell; mode: fill -*-
 ----------------------------------------------------------------------
  *  This file is part of Freedroid
  *
@@ -17,7 +16,6 @@
  *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
  *  MA  02111-1307  USA
 ----------------------------------------------------------------------
-
 
 If you have questions concerning FreedroidRPG, please send an email to:
 
@@ -40,13 +38,14 @@ LuaCode={ hide(0) show(4) }
 ----------------------------------------------------------------------
 
 Nr=1  Text=_"Have you detected any hostile bot activity?"
-NPC=_"Affirmative. Large number of hostile bots in close proximity. Inititiating energy level scan."
+NPC=_"Affirmative. Inititiating proximity energy level scan..."
 LuaCode={
     hide(1)
-	tux_says(_"Done yet?")
-	npc_says(_"Scanning indicates mostly low energy levels.", "NO_WAIT")
-	npc_says(_"Threat Degree Analysis: LOW", "NO_WAIT")
-	npc_says(_"Outer Gate Status: OPEN", "NO_WAIT")
+	npc_says(_"Proximity Scan Results", "NO_WAIT")
+	npc_says(_"Hostile Presence: HIGH", "NO_WAIT")
+	npc_says(_"Enemy Energy Levels: LOW", "NO_WAIT")
+	npc_says(_"Threat Degree Analysis: MODERATE", "NO_WAIT")
+	npc_says(_"Complex Gate Status: OPEN")
 }
 ----------------------------------------------------------------------
 
@@ -60,7 +59,7 @@ LuaCode={ hide(2) }
 
 Nr=3  Text=_"What are your orders?"
 NPC=_"Primary objective: Protect the living beings inside this complex from attacks by hostile bots."
-NPC=_"Second objective: Protect facility by locking outer gates if Threat Degree Analysis: HIGH."
+NPC=_"Secondary objective: Protect facility by locking outer gates if Threat Degree Analysis: HIGH."
 LuaCode={ hide(3) }
 ----------------------------------------------------------------------
 
