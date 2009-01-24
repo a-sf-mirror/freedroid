@@ -170,7 +170,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=16  Text=_"I suggest a deal. You let me out, I bring you dilithium cristals. It will save both of us."
+Nr=16  Text=_"I suggest a deal. You let me out, I bring you dilitium cristals. It will save both of us."
 NPC=_" Why would I trust you?"
 LuaCode={
     hide(0, 4, 8, 10, 15, 16)
@@ -206,7 +206,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=21  Text=_"You must promise me a significant reward."
-NPC=_" Damn. Ok, I'll give you a super exterminator if you give me dilithium cristals."
+NPC=_" Damn. Ok, I'll give you a super exterminator if you give me dilitium cristals."
 LuaCode={
     add_cookie("asked_SADD_for_exterminator")
     open_diary_entry("Propagating a faulty firmware", 1)
@@ -224,7 +224,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=23  Text=_"So disable the guns, please."
-NPC=_" Go, and bring dilithium. I badly need it."
+NPC=_" Go, and bring dilitium. I badly need it."
 LuaCode={
     end_dialog()
     add_quest("SADD's power supply")
