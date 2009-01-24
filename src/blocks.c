@@ -4316,6 +4316,25 @@ static void init_obstacle_data( void )
     obstacle_map [ ISO_BASIN_4 ] . flags &= ~BLOCKS_VISION_TOO ;
     obstacle_map [ ISO_BASIN_4 ] . obstacle_short_name = _("Washbasin");
     obstacle_map [ ISO_BASIN_4 ] . filename = "iso_basin_0004.png";
+    
+    obstacle_map [ ISO_DESKCHAIR_1 ] . block_area_parm_1 = 0.95 ;
+    obstacle_map [ ISO_DESKCHAIR_1 ] . block_area_parm_2 = 1.05 ;
+    obstacle_map [ ISO_DESKCHAIR_1 ] . flags &= ~BLOCKS_VISION_TOO ;
+    obstacle_map [ ISO_DESKCHAIR_1 ] . obstacle_short_name = _("Desk chair");
+    obstacle_map [ ISO_DESKCHAIR_1 ] . filename = "iso_deskchair_0001.png";
+    
+    obstacle_map [ ISO_DESKCHAIR_2 ] . block_area_parm_1 = 0.95 ;
+    obstacle_map [ ISO_DESKCHAIR_2 ] . block_area_parm_2 = 1.05 ;
+    obstacle_map [ ISO_DESKCHAIR_2 ] . flags &= ~BLOCKS_VISION_TOO ;
+    obstacle_map [ ISO_DESKCHAIR_2 ] . obstacle_short_name = _("Desk chair");
+    obstacle_map [ ISO_DESKCHAIR_2 ] . filename = "iso_deskchair_0002.png";
+    
+    obstacle_map [ ISO_DESKCHAIR_3 ] . block_area_parm_1 = 0.95 ;
+    obstacle_map [ ISO_DESKCHAIR_3 ] . block_area_parm_2 = 1.05 ;
+    obstacle_map [ ISO_DESKCHAIR_3 ] . flags &= ~BLOCKS_VISION_TOO ;
+    obstacle_map [ ISO_DESKCHAIR_3 ] . obstacle_short_name = _("Desk chair");
+    obstacle_map [ ISO_DESKCHAIR_3 ] . filename = "iso_deskchair_0003.png";
+    
   //--------------------
   // Now that we have defined the block area paramters, it's time to do some
   // simple but often required computations in advance:  Calculating the offsets
