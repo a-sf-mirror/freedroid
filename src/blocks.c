@@ -4293,7 +4293,29 @@ static void init_obstacle_data( void )
     obstacle_map [ ISO_CRYSTALS_6 ] . obstacle_long_description = _("An unusual and impressive formation of red crystals.");
     obstacle_map [ ISO_CRYSTALS_6 ] . filename = "iso_crystal_fields_0006.png";
   
+    obstacle_map [ ISO_BASIN_1 ] . block_area_parm_1 = 1.05 ;
+    obstacle_map [ ISO_BASIN_1 ] . block_area_parm_2 = 0.95 ;
+    obstacle_map [ ISO_BASIN_1 ] . flags &= ~BLOCKS_VISION_TOO ;
+    obstacle_map [ ISO_BASIN_1 ] . obstacle_short_name = _("Washbasin");
+    obstacle_map [ ISO_BASIN_1 ] . filename = "iso_basin_0001.png";
     
+    obstacle_map [ ISO_BASIN_2 ] . block_area_parm_1 = 0.95 ;
+    obstacle_map [ ISO_BASIN_2 ] . block_area_parm_2 = 1.05 ;
+    obstacle_map [ ISO_BASIN_2 ] . flags &= ~BLOCKS_VISION_TOO ;
+    obstacle_map [ ISO_BASIN_2 ] . obstacle_short_name = _("Washbasin");
+    obstacle_map [ ISO_BASIN_2 ] . filename = "iso_basin_0002.png";
+
+    obstacle_map [ ISO_BASIN_3 ] . block_area_parm_1 = 1.05 ;
+    obstacle_map [ ISO_BASIN_3 ] . block_area_parm_2 = 0.95 ;
+    obstacle_map [ ISO_BASIN_3 ] . flags &= ~BLOCKS_VISION_TOO ;
+    obstacle_map [ ISO_BASIN_3 ] . obstacle_short_name = _("Washbasin");
+    obstacle_map [ ISO_BASIN_3 ] . filename = "iso_basin_0003.png";
+
+    obstacle_map [ ISO_BASIN_4 ] . block_area_parm_1 = 0.95 ;
+    obstacle_map [ ISO_BASIN_4 ] . block_area_parm_2 = 1.05 ;
+    obstacle_map [ ISO_BASIN_4 ] . flags &= ~BLOCKS_VISION_TOO ;
+    obstacle_map [ ISO_BASIN_4 ] . obstacle_short_name = _("Washbasin");
+    obstacle_map [ ISO_BASIN_4 ] . filename = "iso_basin_0004.png";
   //--------------------
   // Now that we have defined the block area paramters, it's time to do some
   // simple but often required computations in advance:  Calculating the offsets
