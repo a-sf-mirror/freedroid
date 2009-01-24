@@ -241,11 +241,10 @@ void ResolveMapLabelOnShip ( const char* MapLabel , location* PositionPointer )
 	if ( PositionPointer->x != ( -1 ) ) return;
     }
     
-    fprintf ( stderr, "\n\nMapLabel: '%s'.\n" , MapLabel );
     ErrorMessage ( __FUNCTION__  , "\
-Resolving a certain map label failed on the complete ship!\n\
+Resolving map label %s failed on the complete ship!\n\
 This is a severe error in the game data of Freedroid.",
-			       PLEASE_INFORM, IS_FATAL );
+			       PLEASE_INFORM, IS_FATAL, MapLabel );
     
 };
 
