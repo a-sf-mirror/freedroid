@@ -148,12 +148,10 @@ void DoMeleeDamage (void)
 
 	    if ( ((float) Druidmap [ tg -> type ] . monster_level * (float)MyRandom ( 100 ) < CurMelS->to_hit )) {
 		if (CurMelS->mine) {
-		    printf("hitting enemy %x for %d health points. to_hit was %d.\n", tg, CurMelS->damage, CurMelS->to_hit);
 		}
 		hit_enemy(tg, CurMelS->damage, CurMelS->mine ? 1 : 0, CurMelS->owner, CurMelS->mine ? 1 : 0);
 	    } else 
 		if (CurMelS->mine) {
-		    printf("NOT hitting enemy %x for %d health points. to_hit was %d.\n", tg, CurMelS->damage, CurMelS->to_hit);
 		}
 	}
 	else if ( CurMelS -> attack_target_type == ATTACK_TARGET_IS_PLAYER ) { 
