@@ -378,6 +378,14 @@ enum _sounds
 // for these periodic happenings...
 #define CRY_SOUND_INTERVAL 2
 
+/* Those are the codes used internally to 
+ * store the state of the dialogs with 
+ * those various characters. When adding 
+ * a character, you are going to break existing
+ * savegames unless it is added at the end.
+ * Replace a PERSON_PLACEHOLDER with your new 
+ * name to minimize damage on existing savegames.
+ */
 enum _non_player_characters
   {
     PERSON_CHA = 0,
@@ -403,11 +411,9 @@ enum _non_player_characters
     PERSON_MICHELANGELO,
     PERSON_SKIPPY,
     PERSON_STANDARD_OLD_TOWN_GATE_GUARD,
-    PERSON_STANDARD_NEW_TOWN_GATE_GUARD,
     PERSON_OLD_TOWN_GATE_GUARD_LEADER,
     PERSON_STANDARD_MS_FACILITY_GATE_GUARD,
     PERSON_MS_FACILITY_GATE_GUARD_LEADER,
-    PERSON_HEA,
     PERSON_STANDARD_BOT_AFTER_TAKEOVER,
     PERSON_BRUCE,
     PERSON_SUBDIALOG_DUMMY,
@@ -426,6 +432,18 @@ enum _non_player_characters
     PERSON_SERGE,
     PERSON_TEST_DROID,
     PERSON_MSCD,
+
+    PERSON_PLACEHOLDER1,
+    PERSON_PLACEHOLDER2,
+    PERSON_PLACEHOLDER3,
+    PERSON_PLACEHOLDER4,
+    PERSON_PLACEHOLDER5,
+    PERSON_PLACEHOLDER6,
+    PERSON_PLACEHOLDER7,
+    PERSON_PLACEHOLDER8,
+    PERSON_PLACEHOLDER9,
+    PERSON_PLACEHOLDER10,
+
     LAST_PERSON
   };
 #define MAX_PERSONS             (LAST_PERSON)
