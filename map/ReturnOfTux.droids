@@ -284,6 +284,8 @@ SForce: T=GUB Fixed=0 Marker=1008 Friendly=1 StartUpAtLabel="DarwinStartGameSqua
 SForce: T=GUB Fixed=0 Marker=1008 Friendly=1 StartUpAtLabel="MelfisStartGameSquare" RushTux="no" DialogSectionToUse="Melfis" ShortLabel="Geist -- Hunter" attack_run_only_when_direct_line="no"
 
 SForce: T=302 Fixed=0 Marker=2008 Friendly=0 StartUpAtLabel="The302InFrontOfTheTempleStart" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Nemesis" attack_run_only_when_direct_line="no"
+SForce: T=302 Fixed=0 Marker=3008 Friendly=0 StartUpAtLabel="Lev8-302" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="302 Nemesis" attack_run_only_when_direct_line="no"
+
 
 ** End of this levels droid data **
 
@@ -339,13 +341,12 @@ Allowed Type of Random Droid for this level: 123
 
 ** Beginning of new Level **
 Level=12
-Maximum number of Random Droids=12
-Minimum number of Random Droids=10
+Maximum number of Random Droids=8
+Minimum number of Random Droids=6
 Allowed Type of Random Droid for this level: 123
 
 SForce: T=PRO Fixed=0 Marker=9999 Friendly=1 StartUpAtLabel="FrancisStartGameSquare" RushTux="yes" DialogSectionToUse="Francis" ShortLabel="Francis" attack_run_only_when_direct_line="no"
 SForce: T=614 Fixed=0 Marker=1012 Friendly=1 StartUpAtLabel="Lev12-614-complex-guard" RushTux="no" DialogSectionToUse="614_cryo" ShortLabel="614 -- Cryo Lab Guard Bot" attack_run_only_when_direct_line="no"
-SForce: T=302 Fixed=0 Marker=2012 Friendly=0 StartUpAtLabel="Lev12-302" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="302 Nemesis" attack_run_only_when_direct_line="no"
 
 ** End of this levels droid data **
 
