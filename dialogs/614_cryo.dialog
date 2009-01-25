@@ -40,8 +40,8 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=1  Text=_"Have you detected any hostile bot activity?"
-NPC=_"Order Received. Inititiating proximity energy level scan..."
 LuaCode={
+	npc_says(_"Order Received. Inititiating proximity energy level scan...")
 	npc_says(_"***** Proximity Scan Results *****", "NO_WAIT")
 	npc_says(_"Hostile Numeric Presence: HIGH", "NO_WAIT")
 	npc_says(_"Enemy Energy Levels: LOW", "NO_WAIT")
