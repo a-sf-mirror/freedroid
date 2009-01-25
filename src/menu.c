@@ -1440,6 +1440,7 @@ Options_handle (int n)
 	{ 
 	    GRAPHICS_OPTIONS=1, 
 	    SOUND_OPTIONS,
+	    KEYMAP_OPTIONS,
 	    LANGUAGE_OPTIONS,
 	    DROID_TALK_OPTIONS,
 	    ON_SCREEN_DISPLAYS,
@@ -1455,6 +1456,9 @@ Options_handle (int n)
 	    return MENU_GRAPHICS;
     case SOUND_OPTIONS:
 	    return MENU_SOUND;
+    case KEYMAP_OPTIONS:
+	    keychart();
+	    return CONTINUE_MENU;
     case LANGUAGE_OPTIONS:
 #if ENABLE_NLS
 #if defined(__WIN32__) || defined(__MACOSX__)
@@ -1493,12 +1497,13 @@ Options_fill (char *MenuTexts [10])
 {
 	MenuTexts[0]=_("Graphics Options");
 	MenuTexts[1]=_("Sound Options");
-	MenuTexts[2]=_("Language");
-	MenuTexts[3]=_("Droid Talk");
-	MenuTexts[4]=_("On-Screen Displays");
-	MenuTexts[5]=_("Performance Tweaks");
-	MenuTexts[6]=_("Back");
-	MenuTexts[7]="";
+	MenuTexts[2]=_("Keys");
+	MenuTexts[3]=_("Language");
+	MenuTexts[4]=_("Droid Talk");
+	MenuTexts[5]=_("On-Screen Displays");
+	MenuTexts[6]=_("Performance Tweaks");
+	MenuTexts[7]=_("Back");
+	MenuTexts[8]="";
 }
 
 static int
