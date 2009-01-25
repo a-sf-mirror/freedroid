@@ -29,7 +29,6 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 FirstTime LuaCode={
---	npc_says(_"Hey you! Linarian! What do you want here?") -- Sigsev when uncommenting this or removing Nr=0, so impossible to replace Nr=0
 	show(1, 2, 3)
 }
 ----------------------------------------------------------------------
