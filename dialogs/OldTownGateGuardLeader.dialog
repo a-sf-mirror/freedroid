@@ -1,4 +1,3 @@
-% -*- mode: flyspell; mode: fill -*-
 ----------------------------------------------------------------------
  *  This file is part of Freedroid
  *
@@ -18,7 +17,6 @@
  *  MA  02111-1307  USA
 ----------------------------------------------------------------------
 
-
 If you have questions concerning FreedroidRPG, please send an email to:
 
 freedroid-discussion@lists.sourceforge.net
@@ -31,45 +29,43 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 FirstTime LuaCode={
+--	npc_says(_"Hey you! Linarian! What do you want here?") -- Sigsev when uncommenting this or removing Nr=0, so impossible to replace Nr=0
+	show(1, 2, 3)
 }
 ----------------------------------------------------------------------
 
 Nr=0  Text="THIS WILL NEVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-NPC=_"Hey you! Linarian! What do you want here?"
 LuaCode={
-    hide(99)
-    show(1, 2, 3)
+	npc_says(_"Hey you! Linarian! What do you want here?")
 }
-A*lwaysExecuteThisOptionPriorToDialogStart="yes" With rush tux this is triggered twice currently
-
 ----------------------------------------------------------------------
 
 Nr=1  Text=_"Just taking a look around."
-NPC=_"Oh, great. Another curious one."
-NPC=_"About a week ago I let in a stranger who also said he was just taking a look around. I never saw him again."
-NPC=_"On that day all our computers went insane, 20 bags of food rations vanished from our storage and one of our bots was stolen."
-NPC=_"I think that damn freak lives somewhere to the east. I would love to get my hands on him and beat the life out of him. Slowly."
-NPC=_"Linarian, I will let you in. Do something stupid, and you aren't coming out. Got it? Good."
 LuaCode={
+	npc_says(_"Oh, great. Another curious one.")
+	npc_says(_"About a week ago I let in a stranger who also said he was just taking a look around. I never saw him again.")
+	npc_says(_"On that day all our computers went insane, 20 bags of food rations vanished from our storage and one of our bots was stolen.")
+	npc_says(_"I think that damn freak lives somewhere to the east. I would love to get my hands on him and beat the life out of him. Slowly.")
+	npc_says(_"Linarian, I will let you in. Do something stupid, and you aren't coming out. Got it? Good.")
     hide(1, 2, 3)
     show(99)
 }
 ----------------------------------------------------------------------
 
 Nr=2  Text=_"I'd like to get into town."
-NPC=_"Funny, exactly the same could be said about all of the crazy bots out there."
-NPC=_"I'll let you in, but be warned: one false move and we all have flightless waterfowl for dinner. I hope I am making myself clear."
 LuaCode={
+	npc_says(_"Funny, exactly the same could be said about all of the crazy bots out there.")
+	npc_says(_"I'll let you in, but be warned: one false move and we all have flightless waterfowl for dinner. I hope I am making myself clear.")
     hide(1, 2, 3)
     show(99)
 }
 ----------------------------------------------------------------------
 
 Nr=3  Text=_"I'm here to assassinate your leader and you won't stop me!"
-NPC=_"Ok, Linarian! You asked for it!"
-NPC=_"Open fire!"
 LuaCode={
+	npc_says(_"Ok, Linarian! You asked for it!")
+	npc_says(_"Open fire!")
     break_off_and_attack()
     everybody_hostile()
     hide(1, 2, 3)
@@ -78,8 +74,8 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=99  Text=_"I'll be going then."
-NPC=_"Mhmmm."
 LuaCode={
+	npc_says(_"Mhmmm.")
     end_dialog()
 }
 ----------------------------------------------------------------------
