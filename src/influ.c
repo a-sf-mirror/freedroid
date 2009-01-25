@@ -2875,7 +2875,10 @@ void TuxReloadWeapon()
 
     if  ( Me . paralyze_duration ) //do not reload when paralyzed 
 	return;
-    
+
+    if ( Me . weapon_item . type == -1 )
+	return; // do not reload Tux's fists
+
     switch ( ItemMap [ Me . weapon_item . type ] . item_gun_use_ammunition )
 	{
 	case 0: //no ammo
@@ -2906,7 +2909,7 @@ void TuxReloadWeapon()
 	    munition_type = GetItemIndexByName(".50 BMG (12.7x99mm) Ammunition"); 
 	    break;
 	default:
-	    ErrorMessage ( __FUNCTION__  , "Got an unknown munition type %d for your current weapon.",						                                          PLEASE_INFORM, IS_FATAL, ItemMap [ Me . weapon_item . type ] . item_gun_use_ammunition );
+	    ErrorMessage ( __FUNCTION__  , "Got an unknown munition type %d for your current weapon %s.",						                                          PLEASE_INFORM, IS_FATAL, ItemMap [ Me . weapon_item . type ] . item_gun_use_ammunition, ItemMap [ Me . weapon_item . type ] . item_name );
 	}
 
     int count = CountItemtypeInInventory ( munition_type ); 
