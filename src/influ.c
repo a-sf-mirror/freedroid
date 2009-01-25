@@ -2786,43 +2786,35 @@ PerformTuxAttackRaw ( int use_mouse_cursor_for_targeting )
 	DebugPrintf( PERFORM_TUX_ATTACK_RAW_DEBUG , "\n===> Fire Bullet target: x=%f, y=%f. " , Weapon_Target_Vector.x , Weapon_Target_Vector.y ) ;
 	
 	enemy *erot, *nerot;
-BROWSE_LEVEL_BOTS_SAFE(erot, nerot, Me.pos.z)
-	{
+	BROWSE_LEVEL_BOTS_SAFE(erot, nerot, Me.pos.z)
+	    {
 	    if ( ( fabsf ( erot-> pos . x - Weapon_Target_Vector.x ) > 0.5 ) ||
-	    	 ( fabsf ( erot-> pos . y - Weapon_Target_Vector.y ) > 0.5 ) ||
-	         !DirectLineColldet(Me.pos.x, Me.pos.y, erot->pos.x, erot->pos.y, Me.pos.z, NULL)
+		    ( fabsf ( erot-> pos . y - Weapon_Target_Vector.y ) > 0.5 ) ||
+		    !DirectLineColldet(Me.pos.x, Me.pos.y, erot->pos.x, erot->pos.y, Me.pos.z, NULL)
 	       )
 		continue;
 
-	    //--------------------
-	    // So here we know, that the Tux weapon swing might actually hit something
-	    // as far as only 'area of attack' and position of possible target is 
-	    // concerned.  So now we check, whether this weapon swing really is a 'hit'
-	    // in the sense of AD&D games, that something can either hit or miss.
-	    //
-	    if ( MyRandom ( 100 ) > Me . to_hit ) 
-		continue;
-	    
-	    int damage = Me . base_damage + MyRandom ( Me . damage_modifier );
-	    hit_enemy ( erot, damage, 1 /*givexp*/, -1, 1);
-	    
+	    /* Set up a melee attack */
+	    int shot_index = find_free_melee_shot_index ();
+	    melee_shot *NewShot = & ( AllMeleeShots [ shot_index ] );
+
+	    NewShot -> attack_target_type = ATTACK_TARGET_IS_ENEMY;
+	    NewShot -> mine = 1;
+
+	    NewShot -> bot_target_n = erot->id;
+	    NewShot -> bot_target_addr = erot;
+
+	    NewShot->to_hit = Me.to_hit;
+	    NewShot->damage = Me . base_damage + MyRandom ( Me . damage_modifier );
+	    NewShot->owner = -1; //no "bot class number" owner
+
 	    melee_weapon_hit_something = TRUE;
-	    
-	    // We'll launch the attack cry of this bot...
-	    //
-	    if ( Druidmap[ erot->type ].greeting_sound_type != (-1) && ! erot->paralysation_duration_left )
-	    {
-		play_enter_attack_run_state_sound ( Druidmap[ erot->type ].greeting_sound_type );
-	    }
-	    
+
 	    //--------------------
 	    // War tux freezes enemys with the appropriate plugin...
 	    erot->frozen += Me . freezing_melee_targets ; 
-	    
-	   /*XXX balancing issue*/ 
-	    erot->firewait += 
-		1 * ItemMap [ Druidmap [ erot->type ] . weapon_item.type ] . item_gun_recharging_time ;
-	}
+
+	    }
 	
 	//--------------------
 	// Also, we should check if there was perhaps a chest or box

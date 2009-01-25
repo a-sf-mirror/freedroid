@@ -126,43 +126,45 @@ void DoMeleeDamage (void)
     int i;
     melee_shot * CurMelS;
 
-    for ( CurMelS = AllMeleeShots, i = 0; i < MAX_MELEE_SHOTS; CurMelS++, i++)
-	{
+    /* Browse all melee shots */
+    for ( CurMelS = AllMeleeShots, i = 0; i < MAX_MELEE_SHOTS; CurMelS++, i++)	{
 	if ( CurMelS -> attack_target_type == ATTACK_TARGET_IS_NOTHING )
 	    continue;
 
-	if ( CurMelS -> attack_target_type == ATTACK_TARGET_IS_ENEMY )
-	    { /* hit enemy*/
+	if ( CurMelS -> attack_target_type == ATTACK_TARGET_IS_ENEMY )  { 
+	    /* Attack an enemy */
 	    enemy * tg = enemy_resolve_address(CurMelS -> bot_target_n, &CurMelS->bot_target_addr);
-	    if ( ! tg )
-		{
+	    if ( ! tg ) {
 		ErrorMessage(__FUNCTION__, "Melee shot was set to ATTACK_TARGET_IS_ENEMY but had no targetted enemy. Deleting.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
 		delete_melee_shot(CurMelS);
 		continue;
-		}
+	    }
 
-	    if ( tg -> energy <= 0 )
-		{
+	    if ( tg -> energy <= 0 ) {
 		// our enemy is already dead ! 
 		delete_melee_shot(CurMelS);
 		continue;
-		}
-
-	    if ( ((float) Druidmap [ tg -> type ] . monster_level * (float)MyRandom ( 100 ) < CurMelS->to_hit ))
-		{
-		hit_enemy(tg, CurMelS->damage, CurMelS->mine ? 1 : 0, CurMelS->owner, CurMelS->mine ? 1 : 0);
-		}
 	    }
-	else if ( CurMelS -> attack_target_type == ATTACK_TARGET_IS_PLAYER )
-	    { /* hit player */
-	    if ( MyRandom ( 100 ) <= Me . lv_1_bot_will_hit_percentage * CurMelS->level)
-		{
+
+	    if ( ((float) Druidmap [ tg -> type ] . monster_level * (float)MyRandom ( 100 ) < CurMelS->to_hit )) {
+		if (CurMelS->mine) {
+		    printf("hitting enemy %x for %d health points. to_hit was %d.\n", tg, CurMelS->damage, CurMelS->to_hit);
+		}
+		hit_enemy(tg, CurMelS->damage, CurMelS->mine ? 1 : 0, CurMelS->owner, CurMelS->mine ? 1 : 0);
+	    } else 
+		if (CurMelS->mine) {
+		    printf("NOT hitting enemy %x for %d health points. to_hit was %d.\n", tg, CurMelS->damage, CurMelS->to_hit);
+		}
+	}
+	else if ( CurMelS -> attack_target_type == ATTACK_TARGET_IS_PLAYER ) { 
+	    /* hit player */
+	    if ( MyRandom ( 100 ) <= Me . lv_1_bot_will_hit_percentage * CurMelS->level) {
 		Me . energy -= CurMelS -> damage;
 		if ( MyRandom ( 100 ) <= 20 ) tux_scream_sound ( );
-		}
 	    }
-	delete_melee_shot(CurMelS);
 	}
+	delete_melee_shot(CurMelS);
+    }
 }
 
 
@@ -754,7 +756,6 @@ check_bullet_enemy_collisions ( bullet* CurBullet , int num )
 {
     double xdist, ydist;
     int level = CurBullet -> pos.z ;
-    static int FBTZaehler = 0;
     
     if ( CurBullet -> type == INFOUT ) 
 	fprintf(stderr, "Caca\n");
@@ -792,10 +793,6 @@ check_bullet_enemy_collisions ( bullet* CurBullet , int num )
 		StartBlast ( CurBullet -> pos.x , CurBullet -> pos.y , CurBullet -> pos.z , BULLETBLAST, 0 );
 	    else DeleteBullet( num , TRUE ); // we want a bullet-explosion
 
-	    if (!CurBullet->mine)
-		{
-		FBTZaehler++;
-		}
 	    return;
 	    } // if distance low enough to possibly be at hit
 	} 
