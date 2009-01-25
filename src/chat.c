@@ -57,6 +57,7 @@ struct {
     { "Dixon", PERSON_DIXON},
     { "RMS", PERSON_RMS},
     { "MER", PERSON_MER},
+    { "TutorialTom", PERSON_TUTORIALTOM},
     { "Francis", PERSON_FRANCIS},
     { "FirmwareUpdateServer", PERSON_FIRMWARE_SERVER},
     { "Bruce", PERSON_BRUCE},

@@ -1,0 +1,60 @@
+----------------------------------------------------------------------
+ *  This file is part of Freedroid
+ *
+ *  Freedroid is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ *  Freedroid is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with Freedroid; see the file COPYING. If not, write to the 
+ *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
+ *  MA  02111-1307  USA
+----------------------------------------------------------------------
+
+If you have questions concerning FreedroidRPG, please send an email to:
+
+freedroid-discussion@lists.sourceforge.net
+
+BEGIN OF AUTORS NOTES
+
+END OF AUTORS NOTES 
+
+
+Beginning of new chat dialog for character="XXXXX"
+
+FirstTime LuaCode={
+	show(0, 99)
+-- we need remove all tux skills, except use weapon
+}
+EveryTime LuaCode={ show(0, 99) }
+----------------------------------------------------------------------
+
+Nr=0  Text=_"Who are you? "
+LuaCode={ 
+	npc_says(_"Hi, Im Tutorial Tom. Im here to help you.")
+	hide(0) show(4)
+}
+----------------------------------------------------------------------
+
+Nr=1  Text=_"Currently placeholder?"
+LuaCode={
+	npc_says(_"Scanning Result:", "NO_WAIT")
+	hide(1)
+}
+----------------------------------------------------------------------
+
+Nr=99  Text=_"Enough for now"
+LuaCode={
+	npc_says(_"Ok, I'll be around if you need any more questions answered. Don't hesitate to ask.")
+    hide(4)
+    end_dialog()
+}
+----------------------------------------------------------------------
+
+End of chat dialog for character="XXXXX"

@@ -723,7 +723,7 @@ Maximum number of Random Droids=0
 Minimum number of Random Droids=0
 Allowed Type of Random Droid for this level: 751
 
-SForce: T=PRO Fixed=0 Marker=9999 Friendly=1 StartUpAtLabel="TutorialTutorStart" RushTux="yes" DialogSectionToUse="Francis" ShortLabel="Francis" attack_run_only_when_direct_line="no"
+SForce: T=PRO Fixed=0 Marker=9999 Friendly=1 StartUpAtLabel="TutorialTutorStart" RushTux="yes" DialogSectionToUse="TutorialTom" ShortLabel="TutorialTom" attack_run_only_when_direct_line="no"
 
 SForce: T=123 Fixed=0 Marker=1037 Friendly=0 StartUpAtLabel="melee1" RushTux="no" DialogSectionToUse="StandardBotAfterTakeover" ShortLabel="Kill Me" attack_run_only_when_direct_line="yes" on_death_drop_item_name="Big wrench"
 
