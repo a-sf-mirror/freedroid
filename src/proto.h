@@ -583,7 +583,6 @@ int CheckEnemyEnemyCollision (enemy *);
 void MoveEnemys (void);
 void ClearEnemys (void);
 void InitEnemy (enemy *);
-void start_gethit_animation_if_applicable ( enemy* ThisRobot ) ;
 void animate_enemy ( enemy * our_bot ) ;
 void hit_enemy ( enemy * target, float hit, char givexp, short int killertype, char mine);
 enemy * enemy_resolve_address ( short int enemy_number, enemy ** enemy_addr );

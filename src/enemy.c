@@ -878,6 +878,28 @@ static int kill_enemy(enemy * target, char givexp, int killertype)
     return 0;
 };
 
+/**
+ *
+ *
+ */
+static void start_gethit_animation ( enemy* ThisRobot ) 
+{
+    //--------------------
+    // Maybe this robot is fully animated.  In this case, after getting
+    // hit, the gethit animation should be displayed, which we'll initiate here.
+    //
+    if ( ( last_gethit_animation_image [ ThisRobot -> type ] - first_gethit_animation_image [ ThisRobot -> type ] > 0 ) )
+	{
+	if ( ( ThisRobot -> animation_type == DEATH_ANIMATION ) )
+	    {
+	    DebugPrintf ( -4 , "\n%s(): WARNING: animation phase reset for INFOUT bot... " , __FUNCTION__ );
+	    }
+	ThisRobot -> animation_phase = ((float)first_gethit_animation_image [ ThisRobot -> type ]) + 0.1 ;
+	ThisRobot -> animation_type = GETHIT_ANIMATION;
+	}
+
+}; // void start_gethit_animation_if_applicable ( enemy* ThisRobot ) 
+
 
 /*
  *  Hit an enemy for "hit" HP. This is supposed to be the *only* means 
@@ -893,35 +915,48 @@ static int kill_enemy(enemy * target, char givexp, int killertype)
 void
 hit_enemy ( enemy * target, float hit, char givexp, short int killertype, char mine)
 {
-    /* remove hp
+    /*
      * turn group hostile
      * spray blood
      * enter hitstun
      * say a funny message
+     * remove hp
      * check if droid is dead
      */
-    target -> energy -= hit;
     
     if ( mine ) // tux hit ? we turn the group hostile !
 	{
 	    robot_group_turn_hostile ( target );
 	}
 
+    // no XP is given for killing a friendly bot
     if ( target->is_friendly && givexp )
-	givexp = 0; // force NO XP for killing a friendly bot
+	givexp = 0;
 
-    if ( hit > 0.5 && MyRandom(5) == 1 )
-	    enemy_spray_blood ( target ) ;
-    
-    if(target -> firewait < Druidmap [ target -> type ] . recover_time_after_getting_hit && MyRandom(100) <= 40)
-	target -> firewait = Druidmap [ target -> type ] . recover_time_after_getting_hit ;
+    // spray blood
+    if ( hit > 1 && MyRandom(6) == 1 )
+	enemy_spray_blood ( target ) ;
+   
+    // hitstun
+    // if the current wait time of the bot is greater than the hitstun duration, we do nothing
+    if(target -> firewait < Druidmap [ target -> type ] . recover_time_after_getting_hit) {
 
-    start_gethit_animation_if_applicable ( target) ;
+	// a hit that does less than 5% (over max life) damage cannot stun a bot
+	if ( hit / Druidmap[target->type].maxenergy > 0.05 ) {
+
+	    // 40% hardcoded chance to enter hitstun when possible
+	    if ( MyRandom(100) <= 40) {
+		target -> firewait = Druidmap [ target -> type ] . recover_time_after_getting_hit ;
+		start_gethit_animation ( target) ;
+	    }
+	}
+    }
 
     EnemyHitByBulletText( target );
 
     PlayEnemyGotHitSound ( Druidmap [ target->type ] . got_hit_sound_type );
 
+    target -> energy -= hit;
     if ( target -> energy <= 0 )
 	{
 	kill_enemy(target, givexp, killertype);
@@ -2453,29 +2488,6 @@ CheckEnemyEnemyCollision ( enemy * OurBot )
     
     return FALSE;
 }; // int CheckEnemyEnemyCollision
-
-/**
- *
- *
- */
-void
-start_gethit_animation_if_applicable ( enemy* ThisRobot ) 
-{
-    //--------------------
-    // Maybe this robot is already fully animated.  In this case, after getting
-    // hit, the gethit animation should be displayed, which we'll initiate here.
-    //
-    if ( ( last_gethit_animation_image [ ThisRobot -> type ] - first_gethit_animation_image [ ThisRobot -> type ] > 0 ) )
-    {
-	if ( ( ThisRobot -> animation_type == DEATH_ANIMATION ) )
-	{
-	    DebugPrintf ( -4 , "\n%s(): WARNING: animation phase reset for INFOUT bot... " , __FUNCTION__ );
-	}
-	ThisRobot -> animation_phase = ((float)first_gethit_animation_image [ ThisRobot -> type ]) + 0.1 ;
-	ThisRobot -> animation_type = GETHIT_ANIMATION;
-    }
-
-}; // void start_gethit_animation_if_applicable ( enemy* ThisRobot ) 
 
 /**
  * This function increases the phase counters for animation of a bot.
