@@ -3760,16 +3760,16 @@ Item description text=_"What would modern science be without this important item
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name=_"Red Dilitium Crystal"
+Item name=_"Red Dilithium Crystal"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
-Item uses rotation series with prefix="red_dilitium_crystal"
+Item uses rotation series with prefix="red_dilithium_crystal"
 Items of this type collect together in inventory="yes"
 File or directory name for inventory image="red_dilitium_crystal/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=0
-Item description text=_"These dilitium crystals are used as an energy source in many modern electricity or heat based devices. Energy is extracted from the crystal by making use of the ordering of the crystal molecules. This principle has allowed us to build devices that consume a lot of energy, but do not need to be connected to a power line."
+Item description text=_"These dilithium crystals are used as an energy source in many modern electricity or heat based devices. Energy is extracted from the crystal by making use of the ordering of the crystal molecules. This principle has allowed us to build devices that consume a lot of energy, but do not need to be connected to a power line."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **

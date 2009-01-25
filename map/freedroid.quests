@@ -83,7 +83,7 @@ Mission diary entry=_"I sold the toolkit to Dixon for a enormous sum of money. L
 +++ This is quest 2:  Find some energy crystals for the cook Michelangelo
 +++
 Mission Name=_"Anything but the army snacks, please!"
-Mission target is to fetch item : "Red Dilitium Crystal"
+Mission target is to fetch item : "Red Dilithium Crystal"
 Mission target is to kill droids with marker : -1
 Mission target is to kill all hostile droids this first level : -1
 Mission target is to also kill all hostile droids on second level : -1
@@ -93,8 +93,8 @@ Mission target is to reach level : 1
 Mission target is to reach X-Pos : 0
 Mission target is to reach Y-Pos : 0
 Mission target is to live for how many seconds : -1
-Mission diary entry=_"I am supposed to get some dilitium crystals for that cook. Without them he cannot cook anything in his macrowave oven. And without his cooking the whole city is stuck eating army snacks. Many people have committed suicide because of the horrible food. This madness must stop."
-Mission diary entry=_"I gave him enough dilitium to last him a decade. The evil spectre of eating army snacks is lifted from the city."
+Mission diary entry=_"I am supposed to get some dilithium crystals for that cook. Without them he cannot cook anything in his macrowave oven. And without his cooking the whole city is stuck eating army snacks. Many people have committed suicide because of the horrible food. This madness must stop."
+Mission diary entry=_"I gave him enough dilithium to last him a decade. The evil spectre of eating army snacks is lifted from the city."
 ** End of this mission target subsection **
 
 ** Start of this mission target subsection **
@@ -247,10 +247,10 @@ Mission diary entry=_"I've managed to propagate my (slightly modified!) firmware
 
 ** Start of this mission target subsection **
 +++
-+++ This is quest 10:  Bring SADD dilitium cristals 
++++ This is quest 10:  Bring SADD dilithium cristals 
 +++
 Mission Name=_"SADD's power supply"
-Mission target is to fetch item : "Red Dilitium Crystal"
+Mission target is to fetch item : "Red Dilithium Crystal"
 Mission target is to kill droids with marker : -1
 Mission target is to kill all hostile droids this first level : -1
 Mission target is to also kill all hostile droids on second level : -1
@@ -260,7 +260,7 @@ Mission target is to reach level : 1
 Mission target is to reach X-Pos : 0
 Mission target is to reach Y-Pos : 0
 Mission target is to live for how many seconds : -1
-Mission diary entry=_"I am supposed to get some dilitium crystals for that SADD."
+Mission diary entry=_"I am supposed to get some dilithium crystals for that SADD."
 Mission diary entry=_"Done. He looks happy."
 ** End of this mission target subsection **
 
