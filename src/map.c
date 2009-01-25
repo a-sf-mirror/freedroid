@@ -3204,11 +3204,7 @@ void WorkLevelGuns ( )
 
       CurBullet->is_friendly = 0;
       
-      //--------------------
-      // Depending on whether this is a real bullet (-1 given as parameter)
-      // or not, we assign this bullet the appropriate to-hit propability
-      //
-      CurBullet->to_hit = 150 ;
+      CurBullet->to_hit = 90 ;
       
       //--------------------
       // Maybe the bullet has some magic properties.  This is handled here.
