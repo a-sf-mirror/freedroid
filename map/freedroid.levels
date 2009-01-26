@@ -2241,7 +2241,6 @@ t179 x30.50 y11.00 l-1 d-1
 t169 x29.50 y11.00 l-1 d-1 
 t169 x26.50 y11.00 l-1 d-1 
 t169 x23.50 y11.00 l-1 d-1 
-t186 x25.50 y11.00 l-1 d-1 
 t173 x30.50 y10.00 l-1 d-1 
 t173 x30.50 y9.00 l-1 d-1 
 t170 x22.50 y11.00 l-1 d-1 
@@ -2278,7 +2277,6 @@ t156 x10.50 y9.50 l-1 d-1
 t250 x13.00 y11.00 l-1 d-1 
 t104 x11.29 y10.33 l-1 d-1 
 t132 x71.00 y11.00 l-1 d-1 
-t186 x28.50 y11.00 l-1 d-1 
 t248 x74.50 y11.00 l-1 d-1 
 t282 x75.00 y10.50 l-1 d-1 
 t282 x75.00 y9.50 l-1 d-1 
@@ -3173,8 +3171,6 @@ t321 x82.50 y85.50 l-1 d-1
 t321 x85.50 y80.50 l-1 d-1 
 t321 x86.50 y80.50 l-1 d-1 
 t321 x87.50 y80.50 l-1 d-1 
-t186 x25.50 y4.50 l4 d-1 
-t186 x28.50 y4.50 l8 d-1 
 t169 x26.50 y4.50 l-1 d-1 
 t169 x23.50 y4.50 l-1 d-1 
 t169 x29.50 y4.50 l-1 d-1 
@@ -3260,7 +3256,6 @@ t302 x20.00 y3.50 l-1 d-1
 t302 x21.00 y3.50 l-1 d-1 
 t79 x19.00 y8.00 l-1 d-1 
 t77 x19.50 y8.00 l-1 d-1 
-t181 x21.00 y7.00 l-1 d-1 
 t177 x21.50 y5.00 l-1 d-1 
 t309 x19.00 y7.00 l-1 d-1 
 t176 x18.00 y6.00 l-1 d-1 
@@ -3519,6 +3514,11 @@ t365 x10.49 y12.04 l-1 d-1
 t37 x80.50 y1.50 l-1 d-1 
 t321 x9.50 y0.50 l-1 d-1 
 t321 x9.50 y1.50 l-1 d-1 
+t192 x25.50 y11.00 l10 d-1 
+t192 x28.50 y11.00 l11 d-1 
+t186 x25.50 y4.50 l4 d-1 
+t186 x28.50 y4.50 l8 d-1 
+t181 x21.00 y7.00 l12 d-1 
 /obsdata
 plabelinfolvl
 x=36 y=7 name="StoneStartGameSquare"
@@ -3561,12 +3561,15 @@ obstacle_label.index=0 obstacle_label_name="NoviceArenaAccessDoor" states="close
 obstacle_label.index=1 obstacle_label_name="NorthernMaintainanceDoor" states="closed:192 opened:186"
 obstacle_label.index=2 obstacle_label_name="MasterArenaAccessDoor" states="closed:191 opened:181"
 obstacle_label.index=3 obstacle_label_name="SouthGateOfTown1"
-obstacle_label.index=4 obstacle_label_name="Outer Main Gate W"
+obstacle_label.index=4 obstacle_label_name="Main Gate Outer W" states="closed:192 opened:186"
 obstacle_label.index=5 obstacle_label_name="OldTownGuardHouseEntrance" states="closed:191 opened:181"
 obstacle_label.index=6 obstacle_label_name="SouthGateOfTown2"
 obstacle_label.index=7 obstacle_label_name="DesertGate" states="closed:191 opened:181"
-obstacle_label.index=8 obstacle_label_name="Outer Main Gate E"
+obstacle_label.index=8 obstacle_label_name="Main Gate Outer E" states="closed:192 opened:186"
 obstacle_label.index=9 obstacle_label_name="EastGateOfTown" states="closed:191 opened:181"
+obstacle_label.index=10 obstacle_label_name="Main Gate Inner W" states="closed:192 opened:186"
+obstacle_label.index=11 obstacle_label_name="Main Gate Inner E" states="closed:192 opened:186"
+obstacle_label.index=12 obstacle_label_name="Main Gate Guardhouse" states="closed:191 opened:181"
 /pobstaclelabelinfolvl
 pobsdescinfolvl
 /pobsdescinfolvl
@@ -3587,10 +3590,10 @@ Nr.=  1 x=  28 y=  19 rnd=0	 c:    0  12
 Nr.=  2 x=  21 y=  79 rnd=1	 c:  130
 Nr.=  3 x=  14 y=  24 rnd=0	 c:   73  74
 Nr.=  4 x=  29 y=   8 rnd=0	 c:    5   6
-Nr.=  5 x=  29 y=   9 rnd=0	 c:    4   7   6 198
+Nr.=  5 x=  29 y=   9 rnd=0	 c:    4   7   6 197
 Nr.=  6 x=  29 y=   6 rnd=0	 c:    5   4   7
-Nr.=  7 x=  29 y=   7 rnd=0	 c:    5   6 199
-Nr.=  8 x=  24 y=   8 rnd=0	 c:   48  47 197
+Nr.=  7 x=  29 y=   7 rnd=0	 c:    5   6 198
+Nr.=  8 x=  24 y=   8 rnd=0	 c:   48  47
 Nr.=  9 x=  26 y=   6 rnd=0	 c:   11  10
 Nr.= 10 x=  24 y=   5 rnd=0	 c:   11   9
 Nr.= 11 x=  28 y=   5 rnd=0	 c:   10   9
@@ -3629,7 +3632,7 @@ Nr.= 43 x=  18 y=  18 rnd=0	 c:   42  44
 Nr.= 44 x=  20 y=  17 rnd=0	 c:   39  45  42  43
 Nr.= 45 x=  22 y=  18 rnd=0	 c:   39  44
 Nr.= 46 x=  24 y=  19 rnd=0	 c:   39  41  40  14
-Nr.= 47 x=  22 y=   6 rnd=0	 c:    8  48 197
+Nr.= 47 x=  22 y=   6 rnd=0	 c:    8  48 202
 Nr.= 48 x=  23 y=   9 rnd=0	 c:    8  47
 Nr.= 49 x=   9 y=   7 rnd=0	 c:   88  85  81
 Nr.= 50 x=  54 y=  16 rnd=0	 c:   51  57  52
@@ -3654,7 +3657,7 @@ Nr.= 68 x=  25 y=  31 rnd=0	 c:   69  67  60
 Nr.= 69 x=  24 y=  27 rnd=0	 c:   67  68  66
 Nr.= 70 x=   8 y=  32 rnd=0	 c:   71  72  13
 Nr.= 71 x=   8 y=  33 rnd=0	 c:   72  13  70
-Nr.= 72 x=   6 y=  33 rnd=0	 c:   71  70 201
+Nr.= 72 x=   6 y=  33 rnd=0	 c:   71  70 200
 Nr.= 73 x=  12 y=  24 rnd=0	 c:    3  80
 Nr.= 74 x=  17 y=  25 rnd=0	 c:   76   3  75
 Nr.= 75 x=  20 y=  25 rnd=0	 c:   76  74
@@ -3670,8 +3673,8 @@ Nr.= 84 x=  13 y=  10 rnd=0	 c:   82
 Nr.= 85 x=   7 y=   8 rnd=0	 c:   86  49
 Nr.= 86 x=   7 y=  10 rnd=0	 c:   85
 Nr.= 87 x=   9 y=   4 rnd=0	 c:   88
-Nr.= 88 x=   9 y=   5 rnd=0	 c:   49  87 202
-Nr.= 89 x=  12 y=   4 rnd=0	 c:  202
+Nr.= 88 x=   9 y=   5 rnd=0	 c:   49  87 201
+Nr.= 89 x=  12 y=   4 rnd=0	 c:  201
 Nr.= 90 x=   7 y=  45 rnd=0	 c:   93  92  91
 Nr.= 91 x=   6 y=  44 rnd=0	 c:   90  92
 Nr.= 92 x=   7 y=  43 rnd=0	 c:   90  91
@@ -3773,18 +3776,18 @@ Nr.=187 x=  62 y=  19 rnd=0	 c:  186
 Nr.=188 x=  62 y=  12 rnd=0	 c:  189
 Nr.=189 x=  64 y=  12 rnd=0	 c:  188 186
 Nr.=190 x=  34 y=  48 rnd=0	 c:  109 110 194
-Nr.=191 x=  33 y=  53 rnd=0	 c:  193 109 192 200
-Nr.=192 x=  25 y=  45 rnd=0	 c:  191 195 200
+Nr.=191 x=  33 y=  53 rnd=0	 c:  193 109 192 199
+Nr.=192 x=  25 y=  45 rnd=0	 c:  191 195 199
 Nr.=193 x=  38 y=  53 rnd=0	 c:  191
 Nr.=194 x=  34 y=  46 rnd=0	 c:  190 110
-Nr.=195 x=  28 y=  55 rnd=0	 c:  191 196 200
+Nr.=195 x=  28 y=  55 rnd=0	 c:  191 196 199
 Nr.=196 x=  33 y=  58 rnd=0	 c:  191
-Nr.=197 x=  24 y=   6 rnd=0	 c:   47   8
-Nr.=198 x=  26 y=   9 rnd=0	 c:    5 199
-Nr.=199 x=  26 y=   7 rnd=0	 c:  198   7
-Nr.=200 x=  28 y=  49 rnd=0	 c:  195 191
-Nr.=201 x=   4 y=  33 rnd=0	 c:   72
-Nr.=202 x=  12 y=   5 rnd=0	 c:   88  89
+Nr.=197 x=  26 y=   9 rnd=0	 c:    5 198
+Nr.=198 x=  26 y=   7 rnd=0	 c:  197   7
+Nr.=199 x=  28 y=  49 rnd=0	 c:  195 191
+Nr.=200 x=   4 y=  33 rnd=0	 c:   72
+Nr.=201 x=  12 y=   5 rnd=0	 c:   88  89
+Nr.=202 x=  19 y=   6 rnd=0	 c:   47
 end_of_level
 ----------------------------------------------------------------------
 Levelnumber: 1
