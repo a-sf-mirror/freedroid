@@ -1955,7 +1955,7 @@ AssembleCombatPicture ( int mask )
     
     show_obstacle_labels ( mask );
 
-    show_automap_data_sdl ( ) ;
+    display_automap ( ) ;
     
     ShowCombatScreenTexts ( mask );
     

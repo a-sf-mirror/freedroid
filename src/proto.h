@@ -31,7 +31,7 @@
 void Game(void);
 
 // automap.c
-void show_automap_data_sdl ( void );
+void display_automap ( void );
 void toggle_automap(void);
 
 // init.c

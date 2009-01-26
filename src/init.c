@@ -1974,11 +1974,6 @@ I will not be able to load or save games or configurations\n\
     
     ShowStartupPercentage ( 10 ) ; 
     
-    //--------------------
-    // Now we prepare the automap data for later use
-    //
-    GameConfig . Automap_Visible = TRUE;
-    
     ShowStartupPercentage ( 14 ) ; 
     
     Init_Game_Data(); 

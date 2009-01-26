@@ -42,16 +42,21 @@ int AUTOMAP_TEXTURE_HEIGHT=1024;
 #define AUTOMAP_SQUARE_SIZE 3
 #define AUTOMAP_COLOR 0x0FFFF
 
+static iso_image compass;
+
 /**
  * This function clears out the Automap data.
  */
-void 
-ClearAutomapData( void )
+void ClearAutomapData( void )
 {
- memset ( Me . Automap, 0, MAX_LEVELS * 100 * 100);
-    
+    memset ( Me . Automap, 0, MAX_LEVELS * 100 * 100);
+
 }; // void ClearAutomapData ( void )
 
+/**
+ * Use GL_POINTS primitive in OpenGL mode to render automap points for better performance.
+ * In SDL mode, fallback to PutPixel.
+ */
 static inline void PutPixel_automap_wrapper(SDL_Surface * abc, int x, int y, Uint32 pixel)
 {
 if ( ! use_open_gl )
@@ -81,22 +86,47 @@ void toggle_automap( void )
 	}
     else
 	{
-	append_new_game_message ( _("Sorry, you don't have automap yet:  map maker item not present."));
+	if ( GameConfig.Automap_Visible )
+	    append_new_game_message ( _("Compass ON (no automap yet: map maker not present.") );
+	else
+	    append_new_game_message ( _("Compass OFF.") );
 	}
+}
+
+static void display_automap_compass ()
+{
+    char fpath[2048];
+
+    //load the compass if necessary
+    if (compass.surface == NULL && !compass.texture_has_been_created) {
+	find_file("compass.png", GRAPHICS_DIR, fpath, 1);
+
+	get_iso_image_from_file_and_path(fpath, &compass, 0);
+
+	if (use_open_gl) 
+	    make_texture_out_of_surface(&compass);
+    }
+
+
+    if (use_open_gl) {
+	draw_gl_textured_quad_at_screen_position(&compass, GameConfig.screen_width - compass.original_image_width, 50);
+    } else {
+	SDL_Rect dr = { .x = GameConfig.screen_width - compass.original_image_width, .y = 50, .w = compass.original_image_width, .h = compass.original_image_height };
+	our_SDL_blit_surface_wrapper(compass.surface, NULL, Screen, &dr);
+    }
+
 }
 
 /**
  *
- * This function should display the automap data, that was collected so
- * far, by the tux.
+ * This function should display the automap.
  * 
  * In this case the function only uses pixel operations with the screen.
  * This is the method of choice when using SDL for graphics output.
  * For the OpenGL case, there is a completely different function...
  *
  */
-void
-show_automap_data_sdl ( void )
+void display_automap ( void )
 {
   int x , y ;
   int TuxColor = SDL_MapRGB( Screen->format, 0 , 0 , 255 ); 
@@ -108,6 +138,9 @@ show_automap_data_sdl ( void )
   // Of course we only display the automap on demand of the user...
   //
   if ( GameConfig.Automap_Visible == FALSE ) return;
+
+  // Display the compass
+  display_automap_compass();
 
   //--------------------
   // Also if there is no map-maker present in inventory, then we need not
@@ -125,21 +158,6 @@ show_automap_data_sdl ( void )
 #endif
 
 
-  /*
-  // Draw floor (experimental)
-  for ( y = 0 ; y < automap_level->ylen ; y ++ )
-      {
-      for ( x = 0 ; x < automap_level->xlen ; x ++ )
-	  {
-	  int MapBrick = GetMapBrick (automap_level, x, y);
-	  //floor_iso_images[MapBrick % ALL_ISOMETRIC_FLOOR_TILES]
-	  //
-	  PutPixel_automap_wrapper ( Screen , 1+AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * ( automap_level -> ylen - y ) , 
-		  1+AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * y , MyRandom(1<<24));
-
-	  }
-      }*/
-  
   //--------------------
   // At first, we only blit the known data about the pure wall-type
   // obstacles on this level.

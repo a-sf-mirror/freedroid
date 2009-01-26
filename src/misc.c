@@ -1394,7 +1394,7 @@ settings file will be generated.",
     GameConfig . Inventory_Visible = FALSE ;
     GameConfig . SkillScreen_Visible = FALSE ;
     GameConfig . skill_explanation_screen_visible = FALSE ;
-    GameConfig . Automap_Visible = FALSE ;
+    GameConfig . Automap_Visible = TRUE ;
     
     if ( command_line_override_for_screen_resolution )
     {
