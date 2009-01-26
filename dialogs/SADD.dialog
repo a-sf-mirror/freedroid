@@ -47,6 +47,11 @@ EveryTime LuaCode={
 }
 ----------------------------------------------------------------------
 
+Nr=0  Text="THIS WILL NEVER BE VISIBLE"
+OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+LuaCode={ show(1, 99) }
+----------------------------------------------------------------------
+
 Nr=1  Text=_"Who are you and what are you doing?"
 LuaCode={
 	npc_says(_"I am a SADD - Secret Area Defence Droid")
