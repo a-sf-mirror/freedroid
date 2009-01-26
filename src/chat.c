@@ -794,6 +794,7 @@ void run_subdialog(const char * tmp_filename)
     chat_control_partner_code = old_partner_code;
     chat_control_end_dialog = 0;
     chat_control_next_node = -1;
+    chat_control_partner_started = 0;
 }
 
 /**
@@ -857,7 +858,7 @@ static void DoChatFromChatRosterData( int ChatPartnerCode , Enemy ChatDroid , in
     int i ;
     SDL_Rect Chat_Window;
     char* DialogMenuTexts[ MAX_ANSWERS_PER_PERSON ];
-    char enemy_started_the_talk =  (ChatDroid -> will_rush_tux );
+    chat_control_partner_started = (ChatDroid -> will_rush_tux );
     SDL_Event event;
 
     // Reset chat control variables.
@@ -911,12 +912,6 @@ static void DoChatFromChatRosterData( int ChatPartnerCode , Enemy ChatDroid , in
 	}
     }
 	
-    if ( enemy_started_the_talk )
-	{
-	chat_control_next_node = 0 ;
-	enemy_started_the_talk = 0;
-	}
-   
     while (1)
 	{
 	// Now we run the startup code

@@ -31,14 +31,14 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 FirstTime LuaCode={
-    -- nothing by default, next 0 does it for us
+    show(2, 6, 11, 13, 99) 
 }
-----------------------------------------------------------------------
 
-Nr=0  Text="THIS WILL NEVER BE VISIBLE"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-NPC=_"Oh, thank heavens! You are still alive. Maybe all hope is not lost."
-LuaCode={ hide(0) show(2, 6, 11, 13, 99) }
+EveryTime LuaCode={
+    if (partner_started()) then
+	npc_says("Oh, thank heavens! You are still alive. Maybe all hope is not lost.")
+    end
+}
 ----------------------------------------------------------------------
 
 Nr=2  Text=_"Who am I?"

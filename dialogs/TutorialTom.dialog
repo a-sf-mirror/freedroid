@@ -44,15 +44,14 @@ FirstTime LuaCode={
 -- we also need remove all tux skills, except use weapon
 	show(99)
 }
-EveryTime LuaCode={ show(99) }
-----------------------------------------------------------------------
 
-Nr=0  Text="THIS WILL NEVER BE VISIBLE"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-LuaCode={ 
+EveryTime LuaCode={ 
+    show(99) 
+    if (partner_started()) then
 	npc_says("This is still work in progress. Please dont report bugs for now on me or the Tutorial level in general. Thanks :)")
 	npc_says(_"Hi, my name is Tutorial Tom. Long stasis sleep unfortunately has the side effect of temporary memoryloss, sometimes even of simple ordinary every day things, so Im here to help you remember the basics.")
 	show(1, 9)
+    end
 }
 ----------------------------------------------------------------------
 

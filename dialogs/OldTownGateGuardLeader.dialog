@@ -31,13 +31,13 @@ Beginning of new chat dialog for character="XXXXX"
 FirstTime LuaCode={
 	show(1, 2, 3)
 }
-----------------------------------------------------------------------
 
-Nr=0  Text="THIS WILL NEVER BE VISIBLE"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-LuaCode={
+EveryTime LuaCode={
+    if (partner_started()) then
 	npc_says(_"Hey you! Linarian! What do you want here?")
+    end
 }
+
 ----------------------------------------------------------------------
 
 Nr=1  Text=_"Just taking a look around."

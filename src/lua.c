@@ -489,6 +489,13 @@ static int lua_chat_end_dialog(lua_State *L)
     return 0;
 }
 
+static int lua_chat_partner_started(lua_State *L)
+{
+    lua_pushboolean(L, chat_control_partner_started);
+
+    return 1;
+}
+
 static int __lua_chat_toggle_node(lua_State *L, int value)
 {
     int i = 1, flag;
@@ -659,6 +666,7 @@ luaL_reg lfuncs[] = {
     { "run_subdialog", lua_chat_run_subdialog },
     { "set_next_node", lua_chat_set_next_node },
     { "end_dialog", lua_chat_end_dialog },
+    { "partner_started", lua_chat_partner_started },
     { "enable_node", lua_chat_enable_node },
     { "disable_node", lua_chat_disable_node },
 

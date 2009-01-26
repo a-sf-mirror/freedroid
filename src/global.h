@@ -176,6 +176,7 @@ EXTERN event_trigger AllEventTriggers[ MAX_EVENT_TRIGGERS ];
 int chat_control_next_node; //what is the next node to use?
 int chat_control_end_dialog; //end current dialog?
 int chat_control_partner_code; //our partner code to access chat flags from Lua
+int chat_control_partner_started; //the dialog partner is the one who started the talk
 enemy *chat_control_chat_droid; //droid we are chatting with
 dialogue_option ChatRoster[MAX_DIALOGUE_OPTIONS_IN_ROSTER];
 

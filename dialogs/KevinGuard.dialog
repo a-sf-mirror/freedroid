@@ -33,16 +33,9 @@ Beginning of new chat dialog for character="XXXXX"
 FirstTime LuaCode={
 }
 
-----------------------------------------------------------------------
-
-
-Nr=0  Text=_"THIS WILL NOT EVER BE VISIBLE"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-LuaCode={
-    hide(0)
+EveryTime LuaCode={
     if (has_cookie("kevin_door_open")) then next(15) else next(20) end
 }
-AlwaysExecuteThisOptionPriorToDialogStart="yes"
 
 ----------------------------------------------------------------------
 
