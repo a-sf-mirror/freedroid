@@ -484,7 +484,6 @@ typedef struct druidspec_s
     short greeting_sound_type;              // which sample to play in order to 'greet' the influencer?
     short got_hit_sound_type;               // which sample to play in order to 'greet' the influencer?
     short to_hit;                           // chance that this droid hits an unarmoured target
-    short getting_hit_modifier;             // modifier for this droid to receive a hit from the player
     float recover_time_after_getting_hit;
     char *notes;			        // notes on the druid of this type 
     char is_human;

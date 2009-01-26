@@ -115,7 +115,6 @@ Got Hit Sound number=0
 Death sound file name="death_sound_123.ogg"
 Attack animation sound file name="death_sound_123.ogg"
 Chance of this robot scoring a hit=60
-Chance modifier, that this robot gets hit=30
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 0
@@ -150,7 +149,6 @@ Got Hit Sound number=1
 Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=60
-Chance modifier, that this robot gets hit=30
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 1
@@ -184,7 +182,6 @@ Got Hit Sound number=-1
 Death sound file name="death_sound_247.ogg"
 Attack animation sound file name="death_sound_247.ogg"
 Chance of this robot scoring a hit=80
-Chance modifier, that this robot gets hit=20
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 2
@@ -218,7 +215,6 @@ Got Hit Sound number=0
 Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=82
-Chance modifier, that this robot gets hit=10
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 3
@@ -252,7 +248,6 @@ Got Hit Sound number=-1
 Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=50
-Chance modifier, that this robot gets hit=30
 Time to recover after getting hit=0.03
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 4
@@ -287,7 +282,6 @@ Got Hit Sound number=-1
 Death sound file name="death_sound_302.ogg"
 Attack animation sound file name="death_sound_302.ogg"
 Chance of this robot scoring a hit=85
-Chance modifier, that this robot gets hit=-25
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 5
@@ -322,7 +316,6 @@ Got Hit Sound number=-1
 Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=50
-Chance modifier, that this robot gets hit=30
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 6
@@ -357,7 +350,6 @@ Got Hit Sound number=-1
 Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=50
-Chance modifier, that this robot gets hit=30
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 7
@@ -391,7 +383,6 @@ Got Hit Sound number=-1
 Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=70
-Chance modifier, that this robot gets hit=10
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 8
@@ -425,7 +416,6 @@ Got Hit Sound number=-1
 Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=50
-Chance modifier, that this robot gets hit=30
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 9
@@ -459,7 +449,6 @@ Got Hit Sound number=-1
 Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=50
-Chance modifier, that this robot gets hit=30
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 10
@@ -493,7 +482,6 @@ Got Hit Sound number=-1
 Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=50
-Chance modifier, that this robot gets hit=30
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 11
@@ -527,7 +515,6 @@ Got Hit Sound number=-1
 Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=50
-Chance modifier, that this robot gets hit=30
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 12
@@ -561,7 +548,6 @@ Got Hit Sound number=-1
 Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=50
-Chance modifier, that this robot gets hit=30
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 13
@@ -595,7 +581,6 @@ Got Hit Sound number=-1
 Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=50
-Chance modifier, that this robot gets hit=30
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 14
@@ -629,7 +614,6 @@ Got Hit Sound number=-1
 Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=50
-Chance modifier, that this robot gets hit=30
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 15
@@ -664,7 +648,6 @@ Got Hit Sound number=-1
 Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=50
-Chance modifier, that this robot gets hit=300
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 16
@@ -698,7 +681,6 @@ Got Hit Sound number=-1
 Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=50
-Chance modifier, that this robot gets hit=30
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 17
@@ -732,7 +714,6 @@ Got Hit Sound number=-1
 Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=50
-Chance modifier, that this robot gets hit=500
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 18
@@ -767,7 +748,6 @@ Got Hit Sound number=-1
 Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=50
-Chance modifier, that this robot gets hit=800
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 19
@@ -800,7 +780,6 @@ Got Hit Sound number=-1
 Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=50
-Chance modifier, that this robot gets hit=1000
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 20
@@ -834,7 +813,6 @@ Got Hit Sound number=-1
 Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=80
-Chance modifier, that this robot gets hit=30
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 21
@@ -871,7 +849,6 @@ Got Hit Sound number=-1
 Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=50
-Chance modifier, that this robot gets hit=30
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 22
@@ -901,7 +878,6 @@ Got Hit Sound number=-1
 Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=50
-Chance modifier, that this robot gets hit=30
 Time to recover after getting hit=0.30
 Armament of this droid : 1
 Is this 'droid' a human : 1
@@ -932,7 +908,6 @@ Got Hit Sound number=-1
 Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=50
-Chance modifier, that this robot gets hit=30
 Time to recover after getting hit=0.30
 Armament of this droid : 1
 Is this 'droid' a human : 1
@@ -963,7 +938,6 @@ Got Hit Sound number=-1
 Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=50
-Chance modifier, that this robot gets hit=30
 Time to recover after getting hit=0.30
 Armament of this droid : 1
 Is this 'droid' a human : 1
@@ -994,7 +968,6 @@ Got Hit Sound number=-1
 Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=50
-Chance modifier, that this robot gets hit=30
 Time to recover after getting hit=0.30
 Armament of this droid : 1
 Is this 'droid' a human : 1
@@ -1025,7 +998,6 @@ Got Hit Sound number=-1
 Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=50
-Chance modifier, that this robot gets hit=30
 Time to recover after getting hit=0.30
 Armament of this droid : 1
 Is this 'droid' a human : 1
@@ -1056,7 +1028,6 @@ Got Hit Sound number=-1
 Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=50
-Chance modifier, that this robot gets hit=30
 Time to recover after getting hit=0.30
 Armament of this droid : 1
 Is this 'droid' a human : 1
@@ -1087,7 +1058,6 @@ Got Hit Sound number=-1
 Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=50
-Chance modifier, that this robot gets hit=30
 Time to recover after getting hit=0.30
 Armament of this droid : 1
 Is this 'droid' a human : 1
@@ -1119,7 +1089,6 @@ Got Hit Sound number=-1
 Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=50
-Chance modifier, that this robot gets hit=30
 Time to recover after getting hit=0.30
 Armament of this droid : 1
 Is this 'droid' a human : 1
@@ -1150,7 +1119,6 @@ Got Hit Sound number=-1
 Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=50
-Chance modifier, that this robot gets hit=30
 Time to recover after getting hit=0.30
 Armament of this droid : 1
 Is this 'droid' a human : 1
@@ -1181,7 +1149,6 @@ Got Hit Sound number=-1
 Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=50
-Chance modifier, that this robot gets hit=30
 Time to recover after getting hit=0.30
 Armament of this droid : 1
 Is this 'droid' a human : 1
@@ -1211,7 +1178,6 @@ Got Hit Sound number=-1
 Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=50
-Chance modifier, that this robot gets hit=30
 Time to recover after getting hit=0.03
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 33
