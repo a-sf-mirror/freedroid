@@ -29,20 +29,118 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 FirstTime LuaCode={
-	show(0, 99)
--- we need remove all tux skills, except use weapon
+-- to avoid excessive map validator waypoint errors, map starts with all relevant doors open, so we need to close them here
+	change_obstacle("TutorialZigzag1", "closed")
+	change_obstacle("TutorialZigzag2", "closed")
+	change_obstacle("TutorialZigzag3", "closed")
+	change_obstacle("TutorialZigzag4", "closed")
+	change_obstacle("TutorialZigzagOut", "closed")
+	change_obstacle("TutorialEquipOut", "closed")
+	change_obstacle("TutorialExit1", "closed")
+	change_obstacle("TutorialMeleeOut", "closed")
+	change_obstacle("TutorialStorage", "closed")
+	change_obstacle("TutorialShootingOut", "closed")
+	change_obstacle("TutorialTakeover", "closed")
+-- we also need remove all tux skills, except use weapon
+	show(99)
 }
-EveryTime LuaCode={ show(0, 99) }
+EveryTime LuaCode={ show(99) }
 ----------------------------------------------------------------------
 
-Nr=0  Text=_"Who are you? "
+Nr=0  Text="THIS WILL NEVER BE VISIBLE"
+OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={ 
-	npc_says(_"Hi, Im Tutorial Tom. Im here to help you.")
-	hide(0) show(4)
+	npc_says("This is still work in progress. Please dont report bugs for now on me or the Tutorial level in general. Thanks :)")
+	npc_says(_"Hi, my name is Tutorial Tom. Long stasis sleep unfortunately has the side effect of temporary memoryloss, sometimes even of simple ordinary every day things, so Im here to help you remember the basics.")
+	show(1, 9)
 }
 ----------------------------------------------------------------------
 
-Nr=1  Text=_"Currently placeholder?"
+Nr=1  Text=_"Yes, it would be most kind of you. I dont remember anything."
+LuaCode={
+	npc_says(_"Scanning Result:", "NO_WAIT")
+	npc_says(_"Scanning")
+	hide(1)
+}
+----------------------------------------------------------------------
+
+Nr=9  Text=_"No, thanks, I still remember how to walk, run and pick up things."
+LuaCode={
+	npc_says(_"Ok, follow me into the next area then.")
+    change_obstacle("TutorialZigzag1", "opened")
+    change_obstacle("TutorialZigzag2", "opened")
+    change_obstacle("TutorialZigzag3", "opened")
+    change_obstacle("TutorialZigzag4", "opened")
+	change_obstacle("TutorialZigzagOut", "opened")
+	hide(9) show(10)
+	end_dialog()
+}
+----------------------------------------------------------------------
+
+Nr=10  Text=_"What is in those chests?"
+LuaCode={
+	npc_says(_"Well open them up and find out by simply clicking on each one of them with the left mouse button.")
+	hide(10) show(11, 19)
+}
+----------------------------------------------------------------------
+
+Nr=19  Text=_"I think Im ready for the next section of the tutorial."
+LuaCode={
+	npc_says(_"Ok, Ill open the next door then. But start preparing yourself, soon you will learn how to fight against bots in hand to hand combat.")
+	hide(10) show(11, 19)
+}
+----------------------------------------------------------------------
+
+Nr=20  Text=_"Currently placeholder?"
+LuaCode={
+	npc_says(_"Scanning Result:", "NO_WAIT")
+	hide(20)
+}
+----------------------------------------------------------------------
+
+Nr=30  Text=_"Currently placeholder?"
+LuaCode={
+	npc_says(_"Scanning Result:", "NO_WAIT")
+	hide(1)
+}
+----------------------------------------------------------------------
+
+Nr=40  Text=_"Currently placeholder?"
+LuaCode={
+	npc_says(_"Scanning Result:", "NO_WAIT")
+	hide(1)
+}
+----------------------------------------------------------------------
+
+Nr=50  Text=_"Currently placeholder?"
+LuaCode={
+	npc_says(_"Scanning Result:", "NO_WAIT")
+	hide(1)
+}
+----------------------------------------------------------------------
+
+Nr=60  Text=_"Currently placeholder?"
+LuaCode={
+	npc_says(_"Scanning Result:", "NO_WAIT")
+	hide(1)
+}
+----------------------------------------------------------------------
+
+Nr=70  Text=_"Currently placeholder?"
+LuaCode={
+	npc_says(_"Scanning Result:", "NO_WAIT")
+	hide(1)
+}
+----------------------------------------------------------------------
+
+Nr=80  Text=_"Currently placeholder?"
+LuaCode={
+	npc_says(_"Scanning Result:", "NO_WAIT")
+	hide(1)
+}
+----------------------------------------------------------------------
+
+Nr=90  Text=_"Currently placeholder?"
 LuaCode={
 	npc_says(_"Scanning Result:", "NO_WAIT")
 	hide(1)
@@ -52,8 +150,7 @@ LuaCode={
 Nr=99  Text=_"Enough for now"
 LuaCode={
 	npc_says(_"Ok, I'll be around if you need any more questions answered. Don't hesitate to ask.")
-    hide(4)
-    end_dialog()
+	end_dialog()
 }
 ----------------------------------------------------------------------
 
