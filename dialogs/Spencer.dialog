@@ -1,4 +1,3 @@
-% -*- mode: flyspell; mode: fill -*-
 ----------------------------------------------------------------------
  *  This file is part of Freedroid
  *
@@ -18,7 +17,6 @@
  *  MA  02111-1307  USA
 ----------------------------------------------------------------------
 
-
 If you have questions concerning FreedroidRPG, please send an email to:
 
 freedroid-discussion@lists.sourceforge.net
@@ -31,63 +29,71 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 FirstTime LuaCode={
-    show(0, 99)
+	show(0, 99)
+-- hide(1) -- does this work to hide an option first time that is in everytime?
+}
+
+EveryTime LuaCode={
+	if (has_cookie("tux_has_joined_guard")) then
+		npc_says(_"Greetings fellow Red Guard member.")
+		hide(2, 12)
+	else end 
+
+    if (not has_quest("Opening access to MS Office")) then
+        if (done_quest("A kingdom for a cluster!")) then show(37) else end
+    else end
+
+    if (done_quest("Opening access to MS Office")) then show(44) else end    -- Ready for HF?
 }
 ----------------------------------------------------------------------
 
 Nr=0  Text=_"Hi! I'm new here."
-NPC=_"I'm Spencer. I'm the leader of the Red Guard. Is there anything I can help you with?"
 LuaCode={
-    hide(0)
-    show(1, 6)
+	npc_says(_"I'm Spencer. I'm the leader of the Red Guard. Is there anything I can help you with?")
+	hide(0) show(1, 6)
 }
 ----------------------------------------------------------------------
 
 Nr=1  Text=_"I want to join the Red Guard."
-NPC=_"Hmm... Really? Well, you cannot join just like that, you know..."
-NPC=_"You must prove that you would make a good new member."
 LuaCode={
-    hide(1)
-    show(2)
+	npc_says(_"Hmm... Really? Well, you cannot join just like that, you know...", "NO_WAIT")
+	npc_says(_"You must prove that you would make a good new member.")
+	hide(1) show(2)
 }
 ----------------------------------------------------------------------
 
 Nr=2  Text=_"I really want to become a member."
 LuaCode={
-    hide(2)
-    if (has_cookie("tux_has_joined_guard")) then next(32) else next(33) end
+	npc_says(_"This is not so easy. First you must establish a reputation around here. Ask around, talk to people and build your reputation.")
+	npc_says(_"Once you're a known character around here, we might let you join the ranks of the Guard.")
+	hide(2) show(3, 12)
 }
 ----------------------------------------------------------------------
 
 Nr=3  Text=_"What about some money instead?"
-NPC=_"For 15 million bucks, no less, hehe."
 LuaCode={
+	npc_says(_"For 15 million bucks, no less, hehe.")
     hide(3)
 }
 ----------------------------------------------------------------------
 
 Nr=4  Text="ASSIGN WAREHOUSE MISSION"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-NPC=_"These are bad times. Interplanetary travel is made impossible by bot ships, so we need to stick to our local resources."
-NPC=_"We've got a list of stuff we need from the automated underground storage north of town. But the bots there are numerous."
-NPC=_"And currently I can't spare a single man from the city defenses. It's quite a difficult situation."
 LuaCode={
-    hide(4)
-    show(5)
 }
 ----------------------------------------------------------------------
 
 Nr=5  Text=_"Maybe I could help somehow?"
-NPC=_"That would be most kind of you, but I doubt that you will be able to clear out the warehouse for us."
-NPC=_"But since you are said to be powerful and a former hero, I'll once more put trust into a stranger."
-NPC=_"I've unlocked the accessway to the warehouse. It's to the north of this town, somewhat hidden in the woods northeast."
-NPC=_"The stuff we need is on the first floor. Don't go any deeper, there are only bots in there."
-NPC=_"I wish you the best of luck."
 LuaCode={
-    add_quest("Opening a can of bots...")
-    open_diary_entry("Opening a can of bots...", 0)
-    change_obstacle("AccessDoorToWarehouse", "opened")
-    hide(5)
+	npc_says(_"That would be most kind of you, but I doubt that you will be able to clear out the warehouse for us.")
+	npc_says(_"But since you are said to be powerful and a former hero, I'll once more put trust into a stranger.")
+	npc_says(_"I've unlocked the accessway to the warehouse. It's to the north of this town, somewhat hidden in the woods northeast.")
+	npc_says(_"The stuff we need is on the first floor. Don't go any deeper, there are only bots in there.", "NO_WAIT")
+	npc_says(_"I wish you the best of luck.")
+	add_quest("Opening a can of bots...")
+	open_diary_entry("Opening a can of bots...", 0)
+	change_obstacle("AccessDoorToWarehouse", "opened")
+	hide(5)
 }
 ----------------------------------------------------------------------
 
@@ -95,274 +101,172 @@ Nr=6  Text=_"How is it going?"
 LuaCode={
     if (has_quest("Opening a can of bots...")) then
         if (done_quest("Opening a can of bots...")) then
-            if (has_cookie("reward_for_warehouse_given")) then next(10) else next(11) end
-        else next(9) end
-    else next(4) end
-}
-----------------------------------------------------------------------
-
-Nr=9  Text="MISSION_IS_NOT_DONE"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-NPC=_"Not too good. Without the supplies from the warehouse we are doomed. So my problems are still the same."
-NPC=_"Maybe later, when you grow more experienced you might be able to help us after all."
-
-----------------------------------------------------------------------
-
-Nr=10  Text="DONT_GIVE_REWARD"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-NPC=_"Thanks to you, we've been able to transport all the goods we need right now. You've really helped us out there."
-NPC=_"Rest assured that we will never forget your brave activity for our community."
-
-----------------------------------------------------------------------
-
-Nr=11  Text="GIVE_REWARD"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-NPC=_"Man, you really did it! I can hardly believe it, but all the bots are gone!"
-NPC=_"Take these 500 bucks as a reward.  And be assured that you've earned my deepest respect, Linarian."
-NPC=_"Our people are transporting the goods as we speak. It can't be too long until new bots from ships in the orbit of the planet will beam down to replace the dead bots."
-LuaCode={
-    add_gold(500)
-    add_cookie("reward_for_warehouse_given")
-    open_diary_entry("Opening a can of bots...", 1)
+            if (has_cookie("reward_for_warehouse_given")) then
+				npc_says(_"Thanks to you, we've been able to transport all the goods we need right now. You've really helped us out there.")
+				npc_says(_"Rest assured that we will never forget your brave activity for our community.")
+			else
+				npc_says(_"Man, you really did it! I can hardly believe it, but all the bots are gone!", "NO_WAIT")
+				npc_says(_"Take these 500 bucks as a reward.  And be assured that you've earned my deepest respect, Linarian.")
+				npc_says(_"Our people are transporting the goods as we speak. It can't be too long until new bots from ships in the orbit of the planet will beam down to replace the dead bots.")
+				add_gold(500)
+				add_cookie("reward_for_warehouse_given")
+				open_diary_entry("Opening a can of bots...", 1)
+			end
+        else
+			npc_says(_"Not too good. Without the supplies from the warehouse we are doomed. So my problems are still the same.")
+			npc_says(_"Maybe later, when you grow more experienced you might be able to help us after all.")
+		end
+    else
+		npc_says(_"These are bad times. Interplanetary travel is made impossible by bot ships, so we need to stick to our local resources.")
+		npc_says(_"We've got a list of stuff we need from the automated underground storage north of town. But the bots there are numerous.")
+		npc_says(_"And currently I can't spare a single man from the city defenses. It's quite a difficult situation.")
+		show(5)
+	end
 }
 ----------------------------------------------------------------------
 
 Nr=12  Text=_"Have I done enough quests to become a member now?"
 LuaCode={
-    if (done_quest("The yellow toolkit")) then next(13) else next(14) end
-}
-----------------------------------------------------------------------
+    if (done_quest("The yellow toolkit")) then 
+		if (has_cookie("dixon_angry_250") then
+			npc_says(_"Dixon has his toolkit back.", "NO_WAIT")
+			npc_says(_"He was in bad mood and told me he had to pay you for getting his own property back.")
+			npc_says(_"I think it is the best for him if we leave him alone the next days.", "NO_WAIT")
+			npc_says(_"I'm sure he has to do a lot now.")
+			-- Joining the guard, tux has to pay 500 bucks.
+		else
+			if (has_cookie("dixon_angry_350") then
+				npc_says(_"Dixon has his toolkit back.", "NO_WAIT")
+				npc_says(_"He seemed quite aggressive and stressed.")
+				npc_says(_"Poor guy, if we weren't in such a bad situation, he could have some work-free days, but bot attacks continue all the time.", "NO_WAIT")
+				npc_says(_"You better don't bother him the next days.")
+				-- Tux will have to pay 700 bucks to join the red guard
+			else
+				if (has_cookie("dixon_very_angry") then
+					npc_says(_"Dixon has his toolkit back.", "NO_WAIT")
+					npc_says(_"He did rail against you though. He said he had to give you 400 bucks to get his toolkit back, his own property.")
+					npc_says(_"That was nearly all money he had. He said you were to greedy to become a good member and he doesn't want to see you anymore.")
+					npc_says(_"I think everybody has to get a chance. But look ahead! When you are negatively conspicuous again, we will ban you from our town!")
+					-- Tux needs to pay 800 bucks to join the guard.
+				else
+					npc_says(_"Dixon told me about the matter with his toolkit. He seemed pretty impressed by you.")
+				end
+			end
+		end
+	else npc_says(_"I think our teleporter service man, Dixon, has some problem. You might want to talk to him.") end
 
-Nr=13  Text="DIXON SUCCESSFUL."
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-NPC=_"Dixon told me about the matter with his toolkit. He seemed pretty impressed by you."
-LuaCode={
-    next(17)
-}
-----------------------------------------------------------------------
+    if (done_quest("Anything but the army snacks, please!")) then
+		npc_says(_"When I was eating, Michelangelo told me about his renewed oven energy supply. He seemed very pleased, and so was I.")
+	else
+		npc_says(_"I think you should visit the camp's cook sometime. He's usually in the restaurant kitchen.")
+	end
 
-Nr=14  Text="DIXON NOT DONE YET"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-NPC=_"I think our teleporter service man, Dixon, has some problem. You might want to talk to him."
-LuaCode={
-    next(17)
-}
-----------------------------------------------------------------------
+    if (done_quest("Novice Arena")) then
+		npc_says(_"From Butch I hear you've become a novice arena master. Congratulations.")
+	else
+		npc_says(_"You might want to score some arena victories. That could also help your reputation a lot.")
+	end
 
-Nr=15  Text="MICHELANGELO DONE."
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-NPC=_"When I was eating, Michelangelo told me about his renewed oven energy supply. He seemed very pleased, and so was I."
-LuaCode={
-    next(18)
-}
-----------------------------------------------------------------------
+    if (done_quest("Bender's problem")) then
+		npc_says(_"Helping Bender along was also a smart move. But you should be very careful with that one. He can get mad rather easily. A bit of a security threat, but we can't be too picky.")
+	else
+		npc_says(_"As far as I know, Bender is still very sick.")
+	end
 
-Nr=16  Text="MICHELANGELO NOT DONE"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-NPC=_"I think you should visit the camp's cook sometime. He's usually in the restaurant kitchen."
-LuaCode={
-    next(18)
-}
-----------------------------------------------------------------------
+    if (done_quest("Opening a can of bots...")) then
+		npc_says(_"But most importantly, I was very impressed with you when you cleared out the warehouse. That was a huge deed I will never forget.")
+	else
+		npc_says(_"Personally Im also worrying about how we will manage to get some nessecary supplies from our warehouse.")
+	end
 
-Nr=17  Text="IS MICHELANGELO DONE?"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-LuaCode={
-    if (done_quest("Anything but the army snacks, please!")) then next(15) else next(16) end
-}
-----------------------------------------------------------------------
-
-Nr=18  Text="IS TUX AN ARENA MASTER"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-LuaCode={
-    if (done_quest("Novice Arena")) then next(19) else next(20) end
-}
-----------------------------------------------------------------------
-
-Nr=19  Text="TUX IS AN ARENA MASTER"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-NPC=_"From Butch I hear you've become a novice arena master. Congratulations."
-LuaCode={
-    next(21)
-}
-----------------------------------------------------------------------
-
-Nr=20  Text="TUX IS NOT AN ARENA MASTER"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-NPC=_"You might want to score some arena victories. That could also help your reputation a lot."
-LuaCode={
-    next(21)
-}
-----------------------------------------------------------------------
-
-Nr=21  Text="IS BENDER SICK?"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-LuaCode={
-    if (done_quest("Bender's problem")) then next(22) else next(23) end
-}
-----------------------------------------------------------------------
-
-Nr=22  Text="BENDER DONE"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-NPC=_"Helping Bender along was also a smart move. But you should be very careful with that one. He can get mad rather easily. A bit of a security threat, but we can't be too picky."
-LuaCode={
-    next(24)
-}
-----------------------------------------------------------------------
-
-Nr=23  Text="BENDER STILL SICK"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-NPC=_"As far as I know, Bender is still very sick."
-LuaCode={
-    next(24)
-}
-----------------------------------------------------------------------
-
-Nr=24  Text="WAREHOUSE MISSION DONE?"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-LuaCode={
-    if (done_quest("Opening a can of bots...")) then next(25) else next(27) end
-}
-----------------------------------------------------------------------
-
-Nr=25  Text="WAREHOUSE DONE"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-NPC=_"But most importantly, I was very impressed with you when you cleared out the warehouse. That was a huge deed I will never forget."
-LuaCode={
-    next(27)
-}
-----------------------------------------------------------------------
-
-Nr=27  Text="ARE THERE ENOUGH POINTS TO JOIN RG"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-LuaCode={
-    if (get_town_score() > 49) then next(28)        -- Yes
+-- ARE THERE ENOUGH POINTS TO JOIN RG
+    if (get_town_score() > 49) then next(28)
     else
-        if (get_town_score() > 29) then next(30)    -- Almost
-        else next(31) end                           -- Not even close
+        if (get_town_score() > 29) then 
+			npc_says(_"All in all, not quite so bad. But you still need to do the one thing or the other. Then we can talk about it.")
+        else 
+			npc_says(_"I can't accept you into the guard like this. Get going. There are still many things to do for you.")
+		end
     end
 }
 ----------------------------------------------------------------------
 
 Nr=28  Text="JOINING TOWN GUARD"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-NPC=_"OK. Your list of achievements is long enough. You can join us. So I hereby declare you a member of the Red Guard."
-NPC=_"But now that you are in the Guard, know this: There is only one rule for us guards: We stick together. We survive together or we die together. But we do it together."
-NPC=_"And now you might want to inspect the guard house. Tell Tybalt to open the door for you. Lukas at the arms counter will give you your armor."
-NPC=_"I hope you will prove yourself a worthy member of the Red Guard."
 LuaCode={
-    display_big_message("Joined Town Guard!!")
-    add_cookie("tux_has_joined_guard")
-    make_tux_red_guard()
-    hide(3, 12)
-}
-----------------------------------------------------------------------
-
-Nr=30  Text="NEARLY THERE"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-NPC=_"All in all, not quite so bad. But you still need to do the one thing or the other. Then we can talk about it."
-
-----------------------------------------------------------------------
-
-Nr=31  Text="TUX SUCKS"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-NPC=_"I can't accept you into the guard like this. Get going. There are still many things to do for you."
-
-----------------------------------------------------------------------
-
-Nr=32  Text="STUPID OPTION. IT MUST DIE."
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-NPC=_"But you are a member of the Town Guard already! Don't be pulling my leg! Guards must stick together."
-LuaCode={
-    hide(12, 32)
-}
-----------------------------------------------------------------------
-
-Nr=33  Text="NOT JOINED YET."
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-NPC=_"This is not so easy. First you must establish a reputation around here. Ask around, talk to people and build your reputation."
-NPC=_"Once you're a known character around here, we might let you join the ranks of the Guard."
-LuaCode={
-    hide(33)
-    show(3, 12)
+	npc_says(_"OK. Your list of achievements is long enough. You can join us. So I hereby declare you a member of the Red Guard.")
+	npc_says(_"But now that you are in the Guard, know this: There is only one rule for us guards: We stick together. We survive together or we die together. But we do it together.")
+	npc_says(_"And now you might want to inspect the guard house. Tell Tybalt to open the door for you. Lukas at the arms counter will give you your armor.")
+	npc_says(_"I hope you will prove yourself a worthy member of the Red Guard.")
+	display_big_message("Joined Town Guard!!")
+	add_cookie("tux_has_joined_guard")
+	make_tux_red_guard()
+	hide(3, 12)
 }
 ----------------------------------------------------------------------
 
 Nr=37  Text=_"I've heard Richard obtained new information on the town."
-NPC=_"Yes, that's right, and in fact it might be crucial. As you may have heard, the MS office is defended by a disruptor shield. They open it only to let out new armies of bots."
-NPC=_"The data on the cube he obtained indicates the existence of a secret experimental facility in this region. Our findings suggest that they were testing some new form of disruptor shield for MS, so the shield can be controlled from that facility."
-NPC=_"If the information is true, then you can take over the control droid and disable the shield permanently so we can get in."
-NPC=_"We know that MS had a firmware update system, which could be used to propagate a malicious update to disable all bots. It is very alluring, but to perform this trick you need to hack the control droid, which is in the heart of the HF. To enter HF you would have to disable the disruptor shield."
-NPC=_"This seems like a gift sent from the heavens. Cleaning the Hell Fortress is not going to be easy, though.."
 LuaCode={
-    hide(37)
-    show(38)
+	npc_says(_"Yes, that's right, and in fact it might be crucial. As you may have heard, the MS office is defended by a disruptor shield. They open it only to let out new armies of bots.")
+	npc_says(_"The data on the cube he obtained indicates the existence of a secret experimental facility in this region. Our findings suggest that they were testing some new form of disruptor shield for MS, so the shield can be controlled from that facility.")
+	npc_says(_"If the information is true, then you can take over the control droid and disable the shield permanently so we can get in.")
+	npc_says(_"We know that MS had a firmware update system, which could be used to propagate a malicious update to disable all bots. It is very alluring, but to perform this trick you need to hack the control droid, which is in the heart of the HF. To enter HF you would have to disable the disruptor shield.")
+	npc_says(_"This seems like a gift sent from the heavens. Cleaning the Hell Fortress is not going to be easy, though..")
+	hide(37) show(38)
 }
 ----------------------------------------------------------------------
 
 Nr=38  Text=_"I'd like to participate in this operation."
-NPC=_"That's most kind of you to volunteer. So far, I've sent two scouts into the area. They have found the facility entrance and unlocked the gate."
-NPC=_"That is a good sign, because it shows that the key combinations from the data cube were correct."
-NPC=_"However, we lost contact with them shortly after they went inside. They also reported heavy bot resistance."
-NPC=_"I'd be glad if you could take a look. But use the utmost care. We can't afford to lose another guard."
 LuaCode={
-    hide(38)
-    show(39, 40)
+	npc_says(_"That's most kind of you to volunteer. So far, I've sent two scouts into the area. They have found the facility entrance and unlocked the gate.")
+	npc_says(_"That is a good sign, because it shows that the key combinations from the data cube were correct.")
+	npc_says(_"However, we lost contact with them shortly after they went inside. They also reported heavy bot resistance.")
+	npc_says(_"I'd be glad if you could take a look. But use the utmost care. We can't afford to lose another guard.")
+	hide(38) show(39, 40)
 }
 ----------------------------------------------------------------------
 
 Nr=39  Text=_"OK. I'll be careful. But I'll do it."
-NPC=_"Good. The base entrance is somewhat hidden in the caves to the northeast. Best to use the north gate out of town, then head east, and turn north again along the shore."
-NPC=_"I wish you the best of luck for this operation. It might be that our survival depends on it. Don't wait for assistance."
-NPC=_"Try to get control over the disruptor shield if you can. The control droid should be somewhere on the lowest level of the installation. Simply destroying the droid might suffice in disabling the shield."
 LuaCode={
-    add_quest("Opening access to MS Office")
-    change_obstacle("DisruptorShieldBaseGate", "opened")
-    hide(39, 40)
+	npc_says(_"Good. The base entrance is somewhat hidden in the caves to the northeast. Best to use the north gate out of town, then head east, and turn north again along the shore.")
+	npc_says(_"I wish you the best of luck for this operation. It might be that our survival depends on it. Don't wait for assistance.")
+	npc_says(_"Try to get control over the disruptor shield if you can. The control droid should be somewhere on the lowest level of the installation. Simply destroying the droid might suffice in disabling the shield.")
+	add_quest("Opening access to MS Office")
+	change_obstacle("DisruptorShieldBaseGate", "opened")
+	hide(39, 40)
 }
 ----------------------------------------------------------------------
 
 Nr=40  Text=_"I don't feel like doing it now. I'd rather prepare some more."
-NPC=_"Good. You should be well prepared if you intend to go."
-NPC=_"Also there is no need to hurry with this. After all, the installation is not running away, so it's best take a cautious approach."
 LuaCode={
-    hide(40)
+	npc_says(_"Good. You should be well prepared if you intend to go.")
+	npc_says(_"Also there is no need to hurry with this. After all, the installation is not running away, so it's best take a cautious approach.")
+	hide(40)
 }
-----------------------------------------------------------------------
-
-Nr=41  Text="STARTED THE CUBE MISSION?"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-LuaCode={
-    if (not has_quest("Opening access to MS Office")) then
-        if (done_quest("A kingdom for a cluster!")) then show(37) else end
-    else end
-
-    if (done_quest("Opening access to MS Office")) then show(44) else end    -- Ready for HF?
-}
-AlwaysExecuteThisOptionPriorToDialogStart="yes"
-
 ----------------------------------------------------------------------
 
 Nr=44  Text=_"It's done. Your soldiers were killed, but I managed to have a word with the shield control droid. The access to the bot factory is now open."
-NPC=_"Good. We cannot help you much in this final mission, but I can tell you what our recon teams gathered behind the factory doors. You will enter a zone that used to be a MS office."
-NPC=_"They carried out some development there, and had part of their patching division and update management department. The actual factory is located behind the office. With a bit of luck, you might not need to access it. We know they have their update server in the office. If you can find it and get it to propagate a faulty update, this could suffice to stopping bots dead in their tracks."
-NPC=_"Look for the entrance of the office in the crystal fields. I will send a message to the guards so they let you pass. Then you will be on your own."
-NPC=_"Good luck."
 LuaCode={
-    add_quest("Propagating a faulty firmware")
-    hide(44)
-    show(45)
+	npc_says(_"Good. We cannot help you much in this final mission, but I can tell you what our recon teams gathered behind the factory doors. You will enter a zone that used to be a MS office.")
+	npc_says(_"They carried out some development there, and had part of their patching division and update management department. The actual factory is located behind the office.")
+	npc_says(_"With a bit of luck, you might not need to access it. We know they have their update server in the office.")
+	npc_says(_"If you can find it and get it to propagate a faulty update, this could suffice to stopping bots dead in their tracks.")
+	npc_says(_"Look for the entrance of the office in the crystal fields. I will send a message to the guards so they let you pass. Then you will be on your own.", "NO_WAIT")
+	npc_says(_"Good luck.")
+	add_quest("Propagating a faulty firmware")
+	hide(44) show(45)
 }
 ----------------------------------------------------------------------
 
 Nr=45  Text=_"I will need some time to get myself ready before I clean up the Hell Fortress."
-NPC=_"You had better be ready."
-
+LuaCode={
+	npc_says(_"You had better be ready.")
+}
 ----------------------------------------------------------------------
 
 Nr=99  Text=_"I'll be going then."
-NPC=_"See you later."
 LuaCode={
+	npc_says(_"See you later.")
     end_dialog()
     show(2)
 }
