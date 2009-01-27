@@ -1621,11 +1621,11 @@ MoveWaypointsSouthOf ( int FromWhere , int ByWhat , Level EditLevel )
 int
 level_editor_item_drop_index ( int row_len , int line_len )
 {
-    if ( ( GetMousePos_x ( )  > 55 ) && ( GetMousePos_x ( )  < 55 + 64 * line_len * GameConfig . screen_width / 640 ) &&
-	 ( GetMousePos_y ( )  > 32 ) && ( GetMousePos_y ( )  < 32 + 66 * row_len * GameConfig . screen_height / 480 ) )
+    if ( ( GetMousePos_x ( )  > UNIVERSAL_COORD_W(55) ) && ( GetMousePos_x ( )  < UNIVERSAL_COORD_W(55 + 64 * line_len) ) &&
+	 ( GetMousePos_y ( )  > UNIVERSAL_COORD_H(32) ) && ( GetMousePos_y ( )  < UNIVERSAL_COORD_H(32 + 66 * row_len)))
 	{
-	    return (   ( GetMousePos_x()  - 55 ) / ( 64 * GameConfig . screen_width / 640 ) + 
-		     ( ( GetMousePos_y()  - 32 ) / ( 66 * GameConfig . screen_height / 480 ) ) * line_len ) ;
+	    return (   ( GetMousePos_x()  - UNIVERSAL_COORD_W(55) ) / ( 64 * GameConfig . screen_width / 640 ) + 
+		     ( ( GetMousePos_y()  - UNIVERSAL_COORD_H(32) ) / ( 66 * GameConfig . screen_height / 480 ) ) * line_len ) ;
 	}
 
     //--------------------
@@ -4856,7 +4856,7 @@ HandleLevelEditorCursorKeys ( leveleditor_state *cur_state )
 	    glue_obstacles_to_floor_tiles_for_level ( EditLevel -> levelnum );
 	}
     }
-
+#if 1
     if ( cur_state -> mode == NORMAL_MODE  && ! MPressed() )
     {
 	if (DoAct[0]) 
@@ -4876,6 +4876,7 @@ HandleLevelEditorCursorKeys ( leveleditor_state *cur_state )
 	    if ( rintf(Me.pos.y) > 0 ) Me.pos.y-=1;
 	}
     }
+#endif
 }; // void HandleLevelEditorCursorKeys ( void )
 
 
