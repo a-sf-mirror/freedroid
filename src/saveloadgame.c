@@ -862,19 +862,37 @@ while ( *erunp != '>' ) erunp ++;
 ma = atoi(runp);
 *erunp = '>';
 
-if ( mp != MAX_PERSONS )  
-    WrapErrorMessage ( __FUNCTION__, "MAX_PERSONS mismatch for array ChatFlags, %d in file, %d in game\n", PLEASE_INFORM, IS_FATAL, mp, MAX_PERSONS);
-if ( ma != MAX_ANSWERS_PER_PERSON )
-    WrapErrorMessage ( __FUNCTION__, "MAX_ANSWERS_PER_PERSON mismatch for array ChatFlags, %d in file, %d in game\n", PLEASE_INFORM, IS_FATAL, ma, MAX_ANSWERS_PER_PERSON);
+if ( mp != MAX_PERSONS )  {
+    /* If the savegame array is smaller than the game array, this is not a fatal error, however breakage is highly
+     * likely to occur in any case. */
+    int inf = PLEASE_INFORM;
+    int fat = IS_FATAL;
+    if (mp < MAX_PERSONS) {
+	inf = NO_NEED_TO_INFORM;
+	fat = IS_WARNING_ONLY;
+    }
+
+    WrapErrorMessage ( __FUNCTION__, "MAX_PERSONS mismatch for array ChatFlags, %d in file, %d in game\n", inf, fat, mp, MAX_PERSONS);
+}
+
+if ( ma != MAX_ANSWERS_PER_PERSON ) {
+    int inf = PLEASE_INFORM;
+    int fat = IS_FATAL;
+    if (ma < MAX_ANSWERS_PER_PERSON) {
+	inf = NO_NEED_TO_INFORM;
+	fat = IS_WARNING_ONLY;
+    }
+    WrapErrorMessage ( __FUNCTION__, "MAX_ANSWERS_PER_PERSON mismatch for array ChatFlags, %d in file, %d in game\n", inf, fat, ma, MAX_ANSWERS_PER_PERSON);
+}
 
 while ( *runp != '\n' ) runp++;
 runp++;
 
 int i = 0, j;
-while ( i < MAX_PERSONS )
+while ( i < mp )
 	{
 	j = 0;
-	while ( j < MAX_ANSWERS_PER_PERSON )
+	while ( j < ma )
 	    {
 	    while ( ! isdigit(*runp) ) runp++;
 	    erunp = runp + 1;
