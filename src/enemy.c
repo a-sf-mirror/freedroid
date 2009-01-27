@@ -943,12 +943,8 @@ hit_enemy ( enemy * target, float hit, char givexp, short int killertype, char m
 
 	// a hit that does less than 5% (over max life) damage cannot stun a bot
 	if ( hit / Druidmap[target->type].maxenergy > 0.05 ) {
-
-	    // 40% hardcoded chance to enter hitstun when possible
-	    if ( MyRandom(100) <= 40) {
 		target -> firewait = Druidmap [ target -> type ] . recover_time_after_getting_hit ;
 		start_gethit_animation ( target) ;
-	    }
 	}
     }
 
