@@ -372,7 +372,7 @@ static void LoadDialog ( char* FullPathAndFullFilename )
     // #define END_OF_DIALOGUE_FILE_STRING "*** End of Dialogue File Information ***"
 #define CHAT_CHARACTER_BEGIN_STRING "Beginning of new chat dialog for character=\""
 #define CHAT_CHARACTER_END_STRING "End of chat dialog for character"
-#define NEW_OPTION_BEGIN_STRING "Nr="
+#define NEW_OPTION_BEGIN_STRING "\nNr="
     
     //--------------------
     // At first we read the whole chat file information into memory
