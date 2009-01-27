@@ -128,21 +128,21 @@ LuaCode={
 Nr=12  Text=_"Have I done enough quests to become a member now?"
 LuaCode={
     if (done_quest("The yellow toolkit")) then 
-		if (has_cookie("dixon_angry_250") then
+		if (has_cookie("dixon_angry_250")) then
 			npc_says(_"Dixon has his toolkit back.", "NO_WAIT")
 			npc_says(_"He was in bad mood and told me he had to pay you for getting his own property back.")
 			npc_says(_"I think it is the best for him if we leave him alone the next days.", "NO_WAIT")
 			npc_says(_"I'm sure he has to do a lot now.")
 			-- Joining the guard, tux has to pay 500 bucks.
 		else
-			if (has_cookie("dixon_angry_350") then
+			if (has_cookie("dixon_angry_350")) then
 				npc_says(_"Dixon has his toolkit back.", "NO_WAIT")
 				npc_says(_"He seemed quite aggressive and stressed.")
 				npc_says(_"Poor guy, if we weren't in such a bad situation, he could have some work-free days, but bot attacks continue all the time.", "NO_WAIT")
 				npc_says(_"You better don't bother him the next days.")
 				-- Tux will have to pay 700 bucks to join the red guard
 			else
-				if (has_cookie("dixon_very_angry") then
+				if (has_cookie("dixon_very_angry")) then
 					npc_says(_"Dixon has his toolkit back.", "NO_WAIT")
 					npc_says(_"He did rail against you though. He said he had to give you 400 bucks to get his toolkit back, his own property.")
 					npc_says(_"That was nearly all money he had. He said you were to greedy to become a good member and he doesn't want to see you anymore.")
