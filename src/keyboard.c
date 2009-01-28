@@ -211,12 +211,12 @@ void input_set_default (void)
     input_set_keybind("place_obstacle_kp8", SDLK_KP8, KMOD_NONE);
     input_set_keybind("place_obstacle_kp9", SDLK_KP9, KMOD_NONE);
     input_set_keybind("place_obstacle_kp9", SDLK_KP9, KMOD_NONE);
-    input_set_keybind("change_map_label", SDLK_l, KMOD_NONE);
+    input_set_keybind("change_map_label", SDLK_m, KMOD_NONE);
     input_set_keybind("zoom_out", SDLK_o, KMOD_NONE);
     input_set_keybind("cycle_marked_obstacle", SDLK_n, KMOD_NONE);
     input_set_keybind("next_tab", SDLK_f, KMOD_NONE);
-    input_set_keybind("undo", SDLK_u, KMOD_NONE);
-    input_set_keybind("redo", SDLK_r, KMOD_NONE);
+    input_set_keybind("undo", SDLK_z, KMOD_NONE);
+    input_set_keybind("redo", SDLK_y, KMOD_NONE);
     input_set_keybind("beautify_grass", SDLK_b, KMOD_LCTRL);
     input_set_keybind("connect_waypoint", SDLK_c, KMOD_NONE);
 
