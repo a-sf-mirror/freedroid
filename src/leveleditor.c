@@ -62,6 +62,9 @@ LIST_HEAD (to_undo);
 LIST_HEAD (to_redo);
 int push_mode = NORMAL; 
 
+leveleditor_state * cur_state;
+long OldTicks;
+
 /**
  *  @fn static void action_freestack(void)
  *
@@ -5460,7 +5463,7 @@ void end_rectangle_mode( leveleditor_state *cur_state, int place_rectangle)
  * function, we take the left mouse button handling out into a separate
  * function now.
  */
-int level_editor_handle_left_mouse_button ( int proceed_now, leveleditor_state *cur_state )
+void level_editor_handle_left_mouse_button (leveleditor_state *cur_state )
 {
     int new_x, new_y;
     moderately_finepoint pos;
@@ -5647,7 +5650,6 @@ int level_editor_handle_left_mouse_button ( int proceed_now, leveleditor_state *
 	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_QUIT_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
 	{
 			TestMap();
-			proceed_now=!proceed_now;
 			if ( game_root_mode == ROOT_IS_GAME )
 			level_editor_done = TRUE;
 	}
@@ -5712,8 +5714,6 @@ int level_editor_handle_left_mouse_button ( int proceed_now, leveleditor_state *
 		break;
 	}
     }
-
-    return ( proceed_now );
 
 }; // void level_editor_handle_left_mouse_button ( void )
 
@@ -5956,22 +5956,9 @@ void level_editor_next_tab()
 }
 
 
-/**
- * This function provides the Level Editor integrated into
- * freedroid.  Actually this function is a submenu of the big
- * Escape Menu.  In here you can edit the level and, upon pressing
- * escape, you can enter a new submenu where you can save the level,
- * change level name and quit from level editing.
- */
-void LevelEditor()
+static void leveleditor_init() 
 {
-    int proceed_now = FALSE;
-    int i ;
-    char linebuf[10000];
-    long OldTicks;
-    char* NewCommentOnThisSquare;
-
-    leveleditor_state *cur_state = MyMalloc(sizeof(leveleditor_state));
+    cur_state = MyMalloc(sizeof(leveleditor_state));
     cur_state->mode = NORMAL_MODE;
 
     // This is only here to shutup a warning
@@ -6015,17 +6002,305 @@ void LevelEditor()
     //
     OriginWaypoint = (-1);
 
+}
+
+
+static void leveleditor_display() 
+{
+    char linebuf[1000];
+    //--------------------
+    // If the cursor is close to the currently marked obstacle, we leave everything as it
+    // is.  (There might be some human choice made here already.)
+    // Otherwise we just select the next best obstacle as the new marked obstacle.
+    //
+    if ( level_editor_marked_obstacle != NULL )
+	{
+	// if ( ( fabsf ( level_editor_marked_obstacle -> pos . x - Me . pos . x ) >= 0.98 ) ||
+	// ( fabsf ( level_editor_marked_obstacle -> pos . y - Me . pos . y ) >= 0.98 ) )
+	//level_editor_marked_obstacle = NULL ;
+	if ( ! marked_obstacle_is_glued_to_here ( EditLevel , Me . pos . x , Me . pos . y ) &&
+		cur_state -> mode != DRAG_DROP_MODE)
+	    level_editor_marked_obstacle = NULL ;
+	}
+    else
+	{
+	if ( EditLevel -> map [ BlockY ] [ BlockX ] . obstacles_glued_to_here [ 0 ] != (-1) )
+	    {
+	    level_editor_marked_obstacle = & ( EditLevel -> obstacle_list [ EditLevel -> map [ BlockY ] [ BlockX ] . obstacles_glued_to_here [ 0 ] ] ) ;
+	    DebugPrintf ( 0 , "\nObstacle marked now!" );
+	    }
+	else
+	    {
+	    level_editor_marked_obstacle = NULL ;
+	    DebugPrintf ( 0 , "\nNo obstacle marked now!" );
+	    }
+	}
+
+    VanishingMessageDisplayTime += ( SDL_GetTicks ( ) - OldTicks ) / 1000.0 ;
+    OldTicks = SDL_GetTicks ( ) ;
+
+    AssembleCombatPicture ( ONLY_SHOW_MAP_AND_TEXT | SHOW_GRID | SHOW_ITEMS | GameConfig.omit_tux_in_level_editor * OMIT_TUX | GameConfig.omit_obstacles_in_level_editor * OMIT_OBSTACLES | GameConfig.omit_enemies_in_level_editor * OMIT_ENEMIES | SHOW_OBSTACLE_NAMES | ZOOM_OUT * GameConfig . zoom_is_on | OMIT_BLASTS | SKIP_LIGHT_RADIUS );
+
+    Highlight_Current_Block(ZOOM_OUT * GameConfig . zoom_is_on );
+
+    ShowWaypoints( FALSE , ZOOM_OUT * GameConfig . zoom_is_on );
+    ShowMapLabels( ZOOM_OUT * GameConfig . zoom_is_on );
+
+    if ( MouseRightPressed() )
+	blit_leveleditor_point ( cur_state -> c_origin . x, cur_state -> c_origin . y );
+
+    SetCurrentFont ( FPS_Display_BFont ) ;
+
+    //--------------------
+    // Now we print out the current status directly onto the window:
+    //
+    if ( OriginWaypoint == ( -1 ) )
+	{
+	sprintf ( linebuf , _(" Source waypoint selected : NONE" ));
+	}
+    else
+	{
+	sprintf ( linebuf , _(" Source waypoint selected : X=%d Y=%d. ") , 
+		EditLevel -> AllWaypoints [ OriginWaypoint ] . x , 
+		EditLevel -> AllWaypoints [ OriginWaypoint ] . y );
+	}
+    LeftPutString ( Screen , GameConfig.screen_height - 2*FontHeight( GetCurrentFont() ), linebuf );
+
+    //--------------------
+    // Now we print out the latest connection operation success or failure...
+    //
+    if ( VanishingMessageDisplayTime < 7 )
+	{
+	DisplayText ( VanishingMessage ,  1 , GameConfig.screen_height - 8 * FontHeight ( GetCurrentFont () ) ,
+		NULL , 1.0 );
+	}
+
+    ShowLevelEditorTopMenu( Highlight );
+
+    level_editor_blit_mouse_buttons ( EditLevel );
+
+    //--------------------
+    // Now that everything is blitted and printed, we may update the screen again...
+    //
+    our_SDL_flip_wrapper();
+
+}
+
+static void leveleditor_process_input()
+{
+    int i;
+    //--------------------
+    // If the user of the Level editor pressed some cursor keys, move the
+    // highlited filed (that is Me.pos) accordingly. This is done here:
+    //
+    HandleLevelEditorCursorKeys( cur_state );
+    //--------------------
+    // With the 'S' key, you can attach a statement for the influencer to 
+    // say to a given location, i.e. the location the map editor cursor
+    // currently is on.
+    //
+    if ( SPressed () )
+	{
+	while (SPressed());
+	SetCurrentFont( FPS_Display_BFont );
+	char *NewCommentOnThisSquare = 
+	    GetEditableStringInPopupWindow ( 1000 , _("\n Please enter new statement for this tile: \n\n") ,
+		    "");
+	for ( i = 0 ; i < MAX_STATEMENTS_PER_LEVEL ; i ++ )
+	    {
+	    if ( EditLevel->StatementList[ i ].x == (-1) ) break;
+	    }
+	if ( i == MAX_STATEMENTS_PER_LEVEL ) 
+	    {
+	    DisplayText ( _("\nNo more free comment position.  Using first. ") , -1 , -1 , &User_Rect , 1.0 );
+	    i=0;
+	    our_SDL_flip_wrapper();
+	    getchar_raw(NULL);
+	    // Terminate( ERR );
+	    }
+
+	EditLevel->StatementList[ i ].Statement_Text = NewCommentOnThisSquare;
+	EditLevel->StatementList[ i ].x = rintf( Me.pos.x );
+	EditLevel->StatementList[ i ].y = rintf( Me.pos.y );
+	}
+
+    if ( level_editor_marked_obstacle && XPressed () )
+	{
+	action_remove_obstacle_user ( EditLevel , level_editor_marked_obstacle );
+	level_editor_marked_obstacle = NULL ;
+	while ( XPressed() ) SDL_Delay(1);
+	}
+
+    //--------------------
+    // The HKEY can be used to give a name to the currently marked obstacle
+    //
+    if ( HPressed() )
+	{
+	while(HPressed());
+	action_change_obstacle_label_user ( EditLevel , level_editor_marked_obstacle , NULL );
+	while ( HPressed() ) SDL_Delay(1);
+	}
+
+    //--------------------
+    // If the person using the level editor pressed w, the waypoint is
+    // toggled on the current square.  That means either removed or added.
+    // And in case of removal, also the connections must be removed.
+    //
+    if ( WPressed( ) )
+	{
+	if ( ! ShiftPressed() )
+	    {
+	    action_toggle_waypoint ( EditLevel , BlockX, BlockY , FALSE );
+	    }
+	else
+	    {
+	    action_toggle_waypoint ( EditLevel , BlockX, BlockY , TRUE );
+	    }
+	while ( WPressed() ) SDL_Delay(1);
+	}
+
+    //--------------------
+    // First we find out which map square the player MIGHT wish us to operate on
+    // via a POTENTIAL mouse click
+    //
+    cur_state->TargetSquare = translate_point_to_map_location (
+	    (float) GetMousePos_x()  - ( GameConfig . screen_width / 2 ) , 
+	    (float) GetMousePos_y()  - ( GameConfig . screen_height / 2 ) ,
+	    GameConfig . zoom_is_on );
+
+    //--------------------
+    // The 'M' key will activate drag&drop mode to allow for convenient
+    // obstacle moving.
+    // 
+    if ( MPressed () && 
+	    MouseLeftClicked() && 
+	    level_editor_marked_obstacle != NULL )
+	{
+	cur_state->mode = DRAG_DROP_MODE ;
+	cur_state->d_selected_obstacle = level_editor_marked_obstacle;
+	}
+
+
+    switch ( cur_state->mode )
+	{
+	case LINE_MODE:
+	    handle_line_mode(cur_state);
+	    break;
+	case RECTANGLE_MODE:
+	    if ( ( (int)cur_state->TargetSquare . x >= 0 ) &&
+		    ( (int)cur_state->TargetSquare . x <= EditLevel->xlen-1 ) &&
+		    ( (int)cur_state->TargetSquare . y >= 0 ) &&
+		    ( (int)cur_state->TargetSquare . y <= EditLevel->ylen-1 ) )
+		handle_rectangle_mode(cur_state);
+	    break;
+	case DRAG_DROP_MODE:
+	    if ( cur_state->d_selected_obstacle->pos.x != cur_state->TargetSquare.x &&
+		    cur_state->d_selected_obstacle->pos.y != cur_state->TargetSquare.y )
+		{
+		cur_state->d_selected_obstacle -> pos . x = cur_state->TargetSquare.x;
+		cur_state->d_selected_obstacle -> pos . y = cur_state->TargetSquare.y;
+		glue_obstacles_to_floor_tiles_for_level ( EditLevel -> levelnum );
+		}
+	    if ( ! MPressed () ) 
+		{
+		cur_state->mode = NORMAL_MODE;
+		}
+	    break;
+	}
+
+    level_editor_handle_mouse_wheel();
+
+    level_editor_auto_scroll();
+
+    level_editor_handle_left_mouse_button (cur_state );
+
+    //--------------------
+    // Maybe a right mouse click has in the map area.  Then it might be best to interpret this
+    // simply as bigger move command, which might indeed be much handier than 
+    // using only keyboard cursor keys to move around on the map.
+    //
+    if ( MouseRightPressed() )
+	{
+
+	if ( MouseRightClicked() )
+	    {
+	    cur_state -> c_last_right_click . x = GetMousePos_x();
+	    cur_state -> c_last_right_click . y = GetMousePos_y();
+	    cur_state -> c_origin . x = cur_state -> c_last_right_click . x;
+	    cur_state -> c_origin . y = cur_state -> c_last_right_click . y;
+	    }
+	else
+	    {
+	    cur_state -> c_corresponding_position = translate_point_to_map_location (
+		    cur_state -> c_last_right_click . x  - ( GameConfig . screen_width / 2 ) , 
+		    cur_state -> c_last_right_click . y  - ( GameConfig . screen_height / 2 ) ,
+		    GameConfig . zoom_is_on );
+
+	    /* Calculate the new position */
+	    Me . pos . x += (cur_state->TargetSquare . x - cur_state -> c_corresponding_position . x) / 30 ;
+	    Me . pos . y += (cur_state->TargetSquare . y - cur_state -> c_corresponding_position . y) / 30 ;
+
+	    }
+
+	/* Security */
+	if ( Me . pos . x > curShip.AllLevels[Me.pos.z]->xlen )
+	    Me . pos . x = curShip.AllLevels[Me.pos.z]->xlen-1 ;
+	if ( Me . pos . x < 0 )
+	    Me . pos . x = 0;
+	if ( Me . pos . y > curShip.AllLevels[Me.pos.z]->ylen )
+	    Me . pos . y = curShip.AllLevels[Me.pos.z]->ylen-1 ;
+	if ( Me . pos . y < 0 )
+	    Me . pos . y = 0;
+	}
+
+
+    if ( EscapePressed() )
+	{
+	switch ( cur_state -> mode )
+	    {
+	    case LINE_MODE:
+		// End line mode and *do not* place the walls
+		end_line_mode(cur_state, FALSE);
+		while ( EscapePressed() ) SDL_Delay(1);
+		break;
+	    case RECTANGLE_MODE:
+		// Return to normal mode and *do not* place the walls
+		end_rectangle_mode(cur_state, FALSE);
+		while ( EscapePressed() ) SDL_Delay(1);
+		break;
+	    default:
+		main_menu_requested = TRUE ;
+		break;
+	    }
+	}
+	while( EscapePressed() ) SDL_Delay(1);
+	
+	//Hack: eat all pending events.
+	input_handle();
+
+}
+/**
+ * This function provides the Level Editor integrated into
+ * freedroid.  Actually this function is a submenu of the big
+ * Escape Menu.  In here you can edit the level and, upon pressing
+ * escape, you can enter a new submenu where you can save the level,
+ * change level name and quit from level editing.
+ */
+void LevelEditor()
+{
+    leveleditor_init();
+
     while ( !level_editor_done )
-    {
-	proceed_now=FALSE;
+	{
 	OldTicks = SDL_GetTicks ( ) ;
 	main_menu_requested = FALSE ;
 	while ( ( !level_editor_done ) && ( ! main_menu_requested ) )
-	{
+	    {
 	    game_status = INSIDE_LVLEDITOR;
 
-            save_mouse_state();
+	    save_mouse_state();
 	    input_handle();
+
 	    //--------------------
 	    // Even the level editor might be fast or slow or too slow, so we'd like to
 	    // know speed in here too, so that we can identify possible unnescessary lags
@@ -6035,301 +6310,36 @@ void LevelEditor()
 	    if ( SkipAFewFrames ) SkipAFewFrames--;
 	    StartTakingTimeForFPSCalculation();
 
-	    //--------------------
-	    // Also in the Level-Editor, there is no need to go at full framerate...
-	    // We can do with less, cause there are no objects supposed to be
-	    // moving fluently anyway.  Therefore we introduce some rest for the CPU.
-	    //
-	    if ( ! GameConfig . hog_CPU ) SDL_Delay (1);
+	    if ( ! GameConfig . hog_CPU ) 
+		SDL_Delay (1);
 
 	    BlockX = rintf ( Me . pos . x - 0.5 );
 	    BlockY = rintf ( Me . pos . y - 0.5 );
 	    if ( BlockX < 0 )
-	    {
+		{
 		BlockX = 0 ;
 		Me . pos . x = 0.51 ;
-	    }
+		}
 	    if ( BlockY < 0 )
-	    {
+		{
 		BlockY = 0 ;
 		Me . pos . y = 0.51 ;
-	    }
+		}
 
 	    EditLevel = curShip.AllLevels [ Me . pos . z ] ;
 	    GetAnimatedMapTiles ();
 
-	    //--------------------
-	    // If the cursor is close to the currently marked obstacle, we leave everything as it
-	    // is.  (There might be some human choice made here already.)
-	    // Otherwise we just select the next best obstacle as the new marked obstacle.
-	    //
-	    if ( level_editor_marked_obstacle != NULL )
-	    {
-		// if ( ( fabsf ( level_editor_marked_obstacle -> pos . x - Me . pos . x ) >= 0.98 ) ||
-		// ( fabsf ( level_editor_marked_obstacle -> pos . y - Me . pos . y ) >= 0.98 ) )
-		//level_editor_marked_obstacle = NULL ;
-		if ( ! marked_obstacle_is_glued_to_here ( EditLevel , Me . pos . x , Me . pos . y ) &&
-				cur_state -> mode != DRAG_DROP_MODE)
-		    level_editor_marked_obstacle = NULL ;
+
+	    leveleditor_display();	    
+
+	    leveleditor_process_input();
 	    }
-	    else
-	    {
-		if ( EditLevel -> map [ BlockY ] [ BlockX ] . obstacles_glued_to_here [ 0 ] != (-1) )
-		{
-		    level_editor_marked_obstacle = & ( EditLevel -> obstacle_list [ EditLevel -> map [ BlockY ] [ BlockX ] . obstacles_glued_to_here [ 0 ] ] ) ;
-		    DebugPrintf ( 0 , "\nObstacle marked now!" );
-		}
-		else
-		{
-		    level_editor_marked_obstacle = NULL ;
-		    DebugPrintf ( 0 , "\nNo obstacle marked now!" );
-		}
-	    }
-	    
-	    VanishingMessageDisplayTime += ( SDL_GetTicks ( ) - OldTicks ) / 1000.0 ;
-	    OldTicks = SDL_GetTicks ( ) ;
-	    
-	    AssembleCombatPicture ( ONLY_SHOW_MAP_AND_TEXT | SHOW_GRID | SHOW_ITEMS | GameConfig.omit_tux_in_level_editor * OMIT_TUX | GameConfig.omit_obstacles_in_level_editor * OMIT_OBSTACLES | GameConfig.omit_enemies_in_level_editor * OMIT_ENEMIES | SHOW_OBSTACLE_NAMES | ZOOM_OUT * GameConfig . zoom_is_on | OMIT_BLASTS | SKIP_LIGHT_RADIUS );
-	    
-	    Highlight_Current_Block(ZOOM_OUT * GameConfig . zoom_is_on );
-	    
-	    ShowWaypoints( FALSE , ZOOM_OUT * GameConfig . zoom_is_on );
-	    ShowMapLabels( ZOOM_OUT * GameConfig . zoom_is_on );
-
-	    if ( MouseRightPressed() )
-		    blit_leveleditor_point ( cur_state -> c_origin . x, cur_state -> c_origin . y );
-	    
-	    SetCurrentFont ( FPS_Display_BFont ) ;
-	    
-	    //--------------------
-	    // Now we print out the current status directly onto the window:
-	    //
-	    if ( OriginWaypoint == ( -1 ) )
-	    {
-		sprintf ( linebuf , _(" Source waypoint selected : NONE" ));
-	    }
-	    else
-	    {
-		sprintf ( linebuf , _(" Source waypoint selected : X=%d Y=%d. ") , 
-			  EditLevel -> AllWaypoints [ OriginWaypoint ] . x , 
-			  EditLevel -> AllWaypoints [ OriginWaypoint ] . y );
-	    }
-	    LeftPutString ( Screen , GameConfig.screen_height - 2*FontHeight( GetCurrentFont() ), linebuf );
-	    
-	    //--------------------
-	    // Now we print out the latest connection operation success or failure...
-	    //
-	    if ( VanishingMessageDisplayTime < 7 )
-	    {
-		DisplayText ( VanishingMessage ,  1 , GameConfig.screen_height - 8 * FontHeight ( GetCurrentFont () ) ,
-                        NULL , 1.0 );
-	    }
-	    
-	    ShowLevelEditorTopMenu( Highlight );
-
-	    level_editor_blit_mouse_buttons ( EditLevel );
-
-	    //--------------------
-	    // Now that everything is blitted and printed, we may update the screen again...
-	    //
-	    our_SDL_flip_wrapper();
-	    
-	    //--------------------
-	    // If the user of the Level editor pressed some cursor keys, move the
-	    // highlited filed (that is Me.pos) accordingly. This is done here:
-	    //
-	    HandleLevelEditorCursorKeys( cur_state );
-	    //--------------------
-	    // With the 'S' key, you can attach a statement for the influencer to 
-	    // say to a given location, i.e. the location the map editor cursor
-	    // currently is on.
-	    //
-	    if ( SPressed () )
-	    {
-		while (SPressed());
-		SetCurrentFont( FPS_Display_BFont );
-		NewCommentOnThisSquare = 
-		    GetEditableStringInPopupWindow ( 1000 , _("\n Please enter new statement for this tile: \n\n") ,
-						     "");
-		for ( i = 0 ; i < MAX_STATEMENTS_PER_LEVEL ; i ++ )
-		{
-		    if ( EditLevel->StatementList[ i ].x == (-1) ) break;
-		}
-		if ( i == MAX_STATEMENTS_PER_LEVEL ) 
-		{
-		    DisplayText ( _("\nNo more free comment position.  Using first. ") , -1 , -1 , &User_Rect , 1.0 );
-		    i=0;
-		    our_SDL_flip_wrapper();
-		    getchar_raw(NULL);
-		    // Terminate( ERR );
-		}
-		
-		EditLevel->StatementList[ i ].Statement_Text = NewCommentOnThisSquare;
-		EditLevel->StatementList[ i ].x = rintf( Me.pos.x );
-		EditLevel->StatementList[ i ].y = rintf( Me.pos.y );
-	    }
-	    
-	    if ( level_editor_marked_obstacle && XPressed () )
-	    {
-		action_remove_obstacle_user ( EditLevel , level_editor_marked_obstacle );
-		level_editor_marked_obstacle = NULL ;
-		while ( XPressed() ) SDL_Delay(1);
-	    }
-	    
-	    //--------------------
-	    // The HKEY can be used to give a name to the currently marked obstacle
-	    //
-	    if ( HPressed() )
-	    {
-	    	    while(HPressed());
-		    action_change_obstacle_label_user ( EditLevel , level_editor_marked_obstacle , NULL );
-		    while ( HPressed() ) SDL_Delay(1);
-	    }
-	    
-	    //--------------------
-	    // If the person using the level editor pressed w, the waypoint is
-	    // toggled on the current square.  That means either removed or added.
-	    // And in case of removal, also the connections must be removed.
-	    //
-	    if ( WPressed( ) )
-	    {
-	    if ( ! ShiftPressed() )
-		{
-		action_toggle_waypoint ( EditLevel , BlockX, BlockY , FALSE );
-		}
-	    else
-		{
-		action_toggle_waypoint ( EditLevel , BlockX, BlockY , TRUE );
-		}
-		while ( WPressed() ) SDL_Delay(1);
-	    }
-	    
-	    //--------------------
-	    // First we find out which map square the player MIGHT wish us to operate on
-	    // via a POTENTIAL mouse click
-	    //
-	    cur_state->TargetSquare = translate_point_to_map_location (
-		    (float) GetMousePos_x()  - ( GameConfig . screen_width / 2 ) , 
-		    (float) GetMousePos_y()  - ( GameConfig . screen_height / 2 ) ,
-		    GameConfig . zoom_is_on );
-
-	    //--------------------
-	    // The 'M' key will activate drag&drop mode to allow for convenient
-	    // obstacle moving.
-	    // 
-	    if ( MPressed () && 
-		    MouseLeftClicked() && 
-		    level_editor_marked_obstacle != NULL )
-	    {
-		    cur_state->mode = DRAG_DROP_MODE ;
-		    cur_state->d_selected_obstacle = level_editor_marked_obstacle;
-	    }
-
-
-	    switch ( cur_state->mode )
-	    {
-		case LINE_MODE:
-		    handle_line_mode(cur_state);
-		    break;
-		case RECTANGLE_MODE:
-		    if ( ( (int)cur_state->TargetSquare . x >= 0 ) &&
-			 ( (int)cur_state->TargetSquare . x <= EditLevel->xlen-1 ) &&
-			 ( (int)cur_state->TargetSquare . y >= 0 ) &&
-			 ( (int)cur_state->TargetSquare . y <= EditLevel->ylen-1 ) )
-			handle_rectangle_mode(cur_state);
-		    break;
-		case DRAG_DROP_MODE:
-		    if ( cur_state->d_selected_obstacle->pos.x != cur_state->TargetSquare.x &&
-			    cur_state->d_selected_obstacle->pos.y != cur_state->TargetSquare.y )
-		    {
-			cur_state->d_selected_obstacle -> pos . x = cur_state->TargetSquare.x;
-			cur_state->d_selected_obstacle -> pos . y = cur_state->TargetSquare.y;
-			glue_obstacles_to_floor_tiles_for_level ( EditLevel -> levelnum );
-		    }
-		    if ( ! MPressed () ) 
-		    {
-			cur_state->mode = NORMAL_MODE;
-		    }
-		    break;
-	    }
-
-	    level_editor_handle_mouse_wheel();
-
-	    level_editor_auto_scroll();
-
-	    proceed_now = level_editor_handle_left_mouse_button ( proceed_now , cur_state );
-
-	    //--------------------
-	    // Maybe a right mouse click has in the map area.  Then it might be best to interpret this
-	    // simply as bigger move command, which might indeed be much handier than 
-	    // using only keyboard cursor keys to move around on the map.
-	    //
-	    if ( MouseRightPressed() )
-	    {
-
-		if ( MouseRightClicked() )
-		{
-		    cur_state -> c_last_right_click . x = GetMousePos_x();
-		    cur_state -> c_last_right_click . y = GetMousePos_y();
-		    cur_state -> c_origin . x = cur_state -> c_last_right_click . x;
-		    cur_state -> c_origin . y = cur_state -> c_last_right_click . y;
-		}
-		else
-		{
-		    cur_state -> c_corresponding_position = translate_point_to_map_location (
-			    cur_state -> c_last_right_click . x  - ( GameConfig . screen_width / 2 ) , 
-			    cur_state -> c_last_right_click . y  - ( GameConfig . screen_height / 2 ) ,
-			    GameConfig . zoom_is_on );
-
-		    /* Calculate the new position */
-		    Me . pos . x += (cur_state->TargetSquare . x - cur_state -> c_corresponding_position . x) / 30 ;
-		    Me . pos . y += (cur_state->TargetSquare . y - cur_state -> c_corresponding_position . y) / 30 ;
-
-		}
-
-		/* Security */
-		if ( Me . pos . x > curShip.AllLevels[Me.pos.z]->xlen )
-		    Me . pos . x = curShip.AllLevels[Me.pos.z]->xlen-1 ;
-		if ( Me . pos . x < 0 )
-		    Me . pos . x = 0;
-		if ( Me . pos . y > curShip.AllLevels[Me.pos.z]->ylen )
-		    Me . pos . y = curShip.AllLevels[Me.pos.z]->ylen-1 ;
-		if ( Me . pos . y < 0 )
-		    Me . pos . y = 0;
-	    }
-
-
-	    if ( EscapePressed() )
-	    {
-		switch ( cur_state -> mode )
-		{
-		    case LINE_MODE:
-			// End line mode and *do not* place the walls
-			end_line_mode(cur_state, FALSE);
-			while ( EscapePressed() ) SDL_Delay(1);
-			break;
-		    case RECTANGLE_MODE:
-			// Return to normal mode and *do not* place the walls
-			end_rectangle_mode(cur_state, FALSE);
-			while ( EscapePressed() ) SDL_Delay(1);
-			break;
-		    default:
-			main_menu_requested = TRUE ;
-			break;
-		}
-	    }
-	}
-	while( EscapePressed() ) SDL_Delay(1);
-	
-	//Hack: eat all pending events.
-	input_handle();
-
 	//--------------------
 	// After Level editing is done and escape has been pressed, 
 	// display the Menu with level save options and all that.
 	if ( !level_editor_done ) level_editor_done = DoLevelEditorMainMenu ( EditLevel );
-	
-    } // while (!level_editor_done)
+
+	} // while (!level_editor_done)
     
     free(cur_state);
     level_editor_marked_obstacle = NULL ; 
