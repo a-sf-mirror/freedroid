@@ -223,6 +223,15 @@ static int lua_event_improve_program(lua_State *L)
     return 0;
 }
 
+static int lua_event_downgrade_program(lua_State *L)
+{
+    const char *pname = luaL_checkstring(L, 1);
+    Me . base_skill_level [ get_program_index_with_name(pname) ] --;
+    if (Me . base_skill_level [ get_program_index_with_name(pname) ] < 0)
+	Me . base_skill_level [ get_program_index_with_name(pname) ] = 0;
+    return 0;
+}
+
 static int lua_event_delete_item(lua_State *L)
 {
     const char *itemname = luaL_checkstring(L, 1);
@@ -631,6 +640,7 @@ luaL_reg lfuncs[] = {
      * Improve the program given by one level.
      */
     { "improve_program", lua_event_improve_program },
+    { "downgrade_program", lua_event_downgrade_program },
 
     /* del_item(string item_name[, int multiplicity = 1])
      * add_item(string item_name, int multiplicity)
