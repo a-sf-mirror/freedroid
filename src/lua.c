@@ -384,7 +384,14 @@ static int lua_event_add_gold(lua_State *L)
 {
     int nb = luaL_checkinteger(L, 1);
     char tmpstr[150];
+
+    if (nb < 0 && -nb > Me.Gold) {
+	ErrorMessage(__FUNCTION__, "Tried to remove %d cyberbucks from the player that only has %d!\n", PLEASE_INFORM, IS_WARNING_ONLY, -nb, Me.Gold);
+	nb = -Me.Gold;
+    }
+
     Me . Gold += nb;
+
     if (nb > 0)
 	sprintf(tmpstr, _("Gained %d bucks!"), nb);
     else sprintf(tmpstr, _("Lost %d bucks!"), nb);
