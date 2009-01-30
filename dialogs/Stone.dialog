@@ -105,7 +105,7 @@ LuaCode={
 		npc_says(_"I'll be finished in about a week.", "NO_WAIT")
 		npc_says(_"The Stone family always bought cheap and sold at a low profit. The times have changed, but not my prices.")
 		npc_says(_"The new taxes, the worldwide economic collapse and other factors are slowly murdering the family store.")
-		hide(11) show(13, 16)
+		show(13, 16)
 	end
     hide(10)
 }
