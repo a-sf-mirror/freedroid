@@ -1,4 +1,3 @@
-% -*- mode: flyspell; mode: fill -*-
 ----------------------------------------------------------------------
  *  This file is part of Freedroid
  *
@@ -18,7 +17,6 @@
  *  MA  02111-1307  USA
 ----------------------------------------------------------------------
 
-
 If you have questions concerning FreedroidRPG, please send an email to:
 
 freedroid-discussion@lists.sourceforge.net
@@ -30,164 +28,182 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={
-    show(0, 99)
+FirstTime LuaCode={ show(0, 99) }
+
+EveryTime LuaCode={
+    if (has_cookie("Stone_helping")) then
+        if (not has_cookie("Stone_done")) then
+            if (get_gold() > 1600) then show(23) else hide(23) end
+        else end
+    else end
 }
 ----------------------------------------------------------------------
 
 Nr=0  Text=_"Hi! I'm new here."
-NPC=_"Welcome to this camp! I'm Ms. Stone. I run this shop."
 LuaCode={
-    hide(0)
-    show(1, 3, 10)
+	npc_says(_"Welcome to this camp! I'm Ms. Stone. I run this shop.")
+	hide(0) show(1, 3, 10)
 }
 ----------------------------------------------------------------------
 
 Nr=1  Text=_"I would like to trade with you."
-NPC=_"Good! Here is the selection of items I have for sale."
 LuaCode={
-    if (has_cookie("Stone_no_guns")) then hide(2) else show(2) end
-    next(14)
-    trade_with("Stone")
+	npc_says(_"Good! Here is the selection of items I have for sale.")
+	if (has_cookie("Stone_no_guns")) then hide(2) else show(2) end
+	trade_with("Stone")
 }
 ----------------------------------------------------------------------
 
 Nr=2  Text=_"Swords, clubs and maces? What is this? I want guns!"
-NPC=_"Sorry, this is all we have for now. The Red Guard took away all of our poppers."
-NPC=_"For our own good. Of course."
 LuaCode={
-    add_cookie("Stone_no_guns")
-    hide(2)
+	npc_says(_"Sorry, this is all we have for now. The Red Guard took away all of our poppers.", "NO_WAIT")
+	npc_says(_"For our own good. Of course.")
+	add_cookie("Stone_no_guns")
+	hide(2)
 }
 ----------------------------------------------------------------------
 
 Nr=3  Text=_"What can you tell me about the guards here?"
-NPC=_"Ah, the Red Guard. "
-NPC=_"Stranger, best if you don't ask such questions."
-NPC=_"They keep us alive and safe from the bots, but..."
 LuaCode={
-    hide(3)
-    show(4)
+	npc_says(_"Ah, the Red Guard.", "NO_WAIT")
+	npc_says(_"Stranger, best if you don't ask such questions.", "NO_WAIT")
+	npc_says(_"They keep us alive and safe from the bots, but...")
+	hide(3) show(4)
 }
 ----------------------------------------------------------------------
 
 Nr=4  Text=_"But...?"
-NPC=_"They run the city with strict laws and demand total obedience."
-NPC=_"We all need to obey their rules. We need to work hard or they hurt us."
-NPC=_"I guess I should not complain. The bots are far worse than the guards can be, but... "
-NPC=_"Sucked dry by a bloodthirsty regime over many years or just sliced into bits by our former servants... "
-NPC=_"... What's the difference? "
 LuaCode={
-    hide(4)
-    show(8)
+	npc_says(_"They run the city with strict laws and demand total obedience.", "NO_WAIT")
+	npc_says(_"We all need to obey their rules. We need to work hard or they hurt us.")
+	npc_says(_"I guess I should not complain. The bots are far worse than the guards can be, but...")
+	npc_says(_"Sucked dry by a bloodthirsty regime over many years or just sliced into bits by our former servants...", "NO_WAIT")
+	npc_says(_"... What's the difference?")
+	hide(4) show(8)
 }
 ----------------------------------------------------------------------
 
 Nr=8  Text=_"If things are so bad right now, why don't you leave?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-LuaCode={
-    next(9)
-    hide(8)
-}
+LuaCode={ next(9) hide(8) }
 ----------------------------------------------------------------------
 
 Nr=9  Text=_"If things are so bad right now, why --"
-NPC=_"I don't want to hear this jabberwocky. "
-NPC=_"A hint, Linarian: We don't have much, but we're alive and we'd rather stay that way."
-Su*btitle=_"A hint, Linarian: We don't have much, but we're alive and we'd rather stay that way."
-NPC=_"If you want to start a revolution, you're on your own."
 LuaCode={
-    hide(9)
+	npc_says(_"I don't want to hear this jabberwocky.", "NO_WAIT")
+	npc_says(_"A hint, Linarian: We don't have much, but we're alive and we'd rather stay that way.", "NO_WAIT")
+	npc_says(_"If you want to start a revolution, you're on your own.")
 }
 ----------------------------------------------------------------------
 
 Nr=10  Text=_"How is your business going?"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    if (has_cookie("Helped_Stone")) then next(12) else next(11) end
+    if (has_cookie("Stone_done")) then
+		npc_says(_"Thanks to you I have a chance now.", "NO_WAIT")
+		npc_says(_"Ha! It's time to show the world that Lily Stone is not going down without putting up a damn good fight.")
+	else
+		npc_says(_"I'll be finished in about a week.", "NO_WAIT")
+		npc_says(_"The Stone family always bought cheap and sold at a low profit. The times have changed, but not my prices.")
+		npc_says(_"The new taxes, the worldwide economic collapse and other factors are slowly murdering the family store.")
+		hide(11) show(13, 16)
+	end
     hide(10)
 }
 ----------------------------------------------------------------------
 
-Nr=11  Text=_"How is your business going?"
-NPC=_"I'll be finished in about a week."
-NPC=_"The Stone family always bought cheap and sold at a low profit. The times have changed, but not my prices."
-NPC=_"The new taxes, the worldwide economic collapse and other factors are slowly murdering the family store."
-LuaCode={
-    hide(11)
-    show(13, 16)
-}
-----------------------------------------------------------------------
-
-Nr=12  Text=_"How is the business going?"
-NPC=_"Thanks to you I have a chance now."
-NPC=_"Ha! It's time to show the world that Lily Stone is not going down without putting up a damn good fight."
-LuaCode={
-    hide(12)
-}
-----------------------------------------------------------------------
-
 Nr=13  Text=_"Can I help you somehow Ms. Stone?"
-NPC=_"No, there's nothing that can be done anymore. I don't have enough money to lift the shop from the downward spiral."
-NPC=_"I'd need thousands to just survive the month."
-NPC=_"The shop is dying, and there's nothing either of us can do about it."
 LuaCode={
-    hide(13, 16)
-    show(15)
+	npc_says(_"No, there's nothing that can be done anymore. I don't have enough money to lift the shop from the downward spiral.")
+	npc_says(_"I'd need thousands to just survive the month.", "NO_WAIT")
+	npc_says(_"The shop is dying, and there's nothing either of us can do about it.")
+	hide(13, 16) show(15)
 }
-----------------------------------------------------------------------
-
-Nr=14  Text="THIS WILL NOT EVER BE VISIBLE"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-LuaCode={
-    if (has_cookie("Helping_Stone")) then
-        if (not has_cookie("Helped_Stone")) then
-            if (get_gold() > 1600) then show(23) else end
-        else end
-    else end
-}
-AlwaysExecuteThisOptionPriorToDialogStart="yes"
- 
 ----------------------------------------------------------------------
 
 Nr=15  Text=_"Maybe there is still hope, Ms. Stone. How much exactly do you need?"
-NPC=_"I couldn't get myself to look at my finance logs for a while now. I guess about two thousand triangles."
 LuaCode={
-    add_cookie("Helping_Stone")
+	npc_says(_"I couldn't get myself to look at my finance logs for a while now. I guess about two thousand triangles.")
+    add_cookie("Stone_helping")
     add_quest("Saving the shop")
     open_diary_entry("Saving the shop", 0)
-    next(14)
+    if (get_gold() > 1600) then show(23) else hide(23) end
     hide(15)
 }
 ----------------------------------------------------------------------
 
 Nr=16  Text=_"A pity that nothing can be done about your store."
-NPC=_"Yes. A tradition of six generations will die with this shop..."
-NPC=_"I guess it just had to happen one day..."
 LuaCode={
-    hide(13, 16)
+	npc_says(_"Yes. A tradition of six generations will die with this shop...", "NO_WAIT")
+	npc_says(_"I guess it just had to happen one day...")
+	hide(13, 16)
 }
 ----------------------------------------------------------------------
 
 Nr=23  Text=_"I have the money you need Ms. Stone. You can have it."
-NPC=_"Is... Is this a joke? So much money? And you just give it to me?"
-NPC=_"Thank you! Thank you! Thank you! Savior!"
-NPC=_"But this isn't fair to you. The Stones are a family of fair merchants and I intend to uphold that tradition."
-NPC=_"I need 1,547 bucks to get through the month. I will accept only that and not a cent more. Now it's fair. Thank you."
-NPC=_"You've given me a bit of hope.. "
-NPC=_"Wait a second... I think I recognize you..."
 LuaCode={
-    add_gold(-1547)
-    add_cookie("Helped_Stone")
-    run_subdialog("subdlg_Stone.dialog")
-    hide(23)
+	npc_says(_"Is... Is this a joke? So much money? And you just give it to me?", "NO_WAIT")
+	npc_says(_"Thank you! Thank you! Thank you! Savior!")
+	npc_says(_"But this isn't fair to you. The Stones are a family of fair merchants and I intend to uphold that tradition.")
+	npc_says(_"I need 1,547 bucks to get through the month. I will accept only that and not a cent more.")
+    if (get_gold() < 1547) then 
+		npc_says(_"Hold on a minute, you are still a bit short on money.")
+		npc_says(_"Please return with the full amount if you want to help. Otherwise Im going down anyway and I wont accept pulling you with me.")
+	else
+		npc_says(_"Now it's fair. Thank you.", "NO_WAIT")
+		npc_says(_"You've given me a bit of hope.. ", "NO_WAIT")
+		npc_says(_"Wait a second... I think I recognize you...")
+		npc_says(string.format(_"You are %s, aren't you...", get_player_name()))
+		npc_says(_"The hero...")
+		add_gold(-1547)
+		add_cookie("Stone_done")
+		show(31, 32, 33)
+	end
+	hide(23)
+}
+----------------------------------------------------------------------
+
+Nr=31  Text=_"Yes, its me."
+LuaCode={
+	npc_says(_"I thought so. My grandfather used to tell me stories about you. He said you would come here in a time of despair.", "NO_WAIT")
+	npc_says(_"And here you are.")
+	npc_says(_"I hope your arrival changes the tide of this war...", "NO_WAIT")
+	npc_says(_"I have something here for you. I managed to hide this Shotgun from the Red Guard.")
+	npc_says(_"It used to belong to my grandfather, so it's very dear to me, but I'm sure he would have like you to have it on your journey to save us all.")
+	npc_says(_"Tux, if you ever find out who started the Great Assault... GIVE THEM A KICK IN THE ASS, FROM LILY STONE!!!")
+    end_dialog()
+    add_item("Two Barrel shotgun",1)
+    end_quest("Saving the shop")
+    open_diary_entry("Saving the shop", 1)
+    hide(1, 2, 3)
+}
+----------------------------------------------------------------------
+
+Nr=32  Text=_"It's not important who I am."
+LuaCode={
+	npc_says(_"If you want to remain a stranger, I will respect your wishes.", "NO_WAIT")
+	npc_says(_"So be it.")
+    end_dialog()
+    end_quest("Saving the shop")
+    open_diary_entry("Saving the shop", 2)
+    hide(1, 2, 3)
+}
+----------------------------------------------------------------------
+
+Nr=33  Text=_"Ha ha ha, You fell for it! You get nothing from me! Hahahahah!"
+LuaCode={
+	npc_says(_"You... monster...", "NO_WAIT")
+	npc_says(_"No one makes fun of Lily Stone's family store!", "NO_WAIT")
+	npc_says(_"Say your prayers, you oversized duck!!!")
+    add_gold(1547)
+    end_quest("Saving the shop")
+    open_diary_entry("Saving the shop", 3)
+    break_off_and_attack()
+    hide(3)
 }
 ----------------------------------------------------------------------
 
 Nr=99  Text=_"See you later."
-LuaCode={
-    end_dialog()
-}
+LuaCode={ end_dialog() }
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"
