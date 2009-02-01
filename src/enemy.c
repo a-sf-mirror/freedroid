@@ -938,14 +938,14 @@ hit_enemy ( enemy * target, float hit, char givexp, short int killertype, char m
 	enemy_spray_blood ( target ) ;
    
     // hitstun
-    // if the current wait time of the bot is greater than the hitstun duration, we do nothing
-    if(target -> firewait < Druidmap [ target -> type ] . recover_time_after_getting_hit) {
-
 	// a hit that does less than 5% (over max life) damage cannot stun a bot
-	if ( hit / Druidmap[target->type].maxenergy > 0.05 ) {
-		target -> firewait = Druidmap [ target -> type ] . recover_time_after_getting_hit ;
-		start_gethit_animation ( target) ;
-	}
+	if ( hit / Druidmap[target->type].maxenergy >= 0.05 ) {
+		start_gethit_animation (target) ;
+
+	    // if the current wait time of the bot is greater than the hitstun duration, we do nothing
+		if(target -> firewait < Druidmap [ target -> type ] . recover_time_after_getting_hit) {
+			target -> firewait = Druidmap [ target -> type ] . recover_time_after_getting_hit ;
+		}
     }
 
     EnemyHitByBulletText( target );
