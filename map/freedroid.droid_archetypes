@@ -115,7 +115,7 @@ Got Hit Sound number=0
 Death sound file name="death_sound_123.ogg"
 Attack animation sound file name="death_sound_123.ogg"
 Chance of this robot scoring a hit=60
-Time to recover after getting hit=0.30
+Time to recover after getting hit=1.00
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 0
 Notes concerning this droid=_"simple rubbish diposal robot. Common device in most space craft to maintain a clean ship." 
@@ -149,7 +149,7 @@ Got Hit Sound number=1
 Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=60
-Time to recover after getting hit=0.30
+Time to recover after getting hit=1.00
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 1
 Notes concerning this droid=_"created by Dr. Masternak to clean up large heaps of rubbish. Its large scoop is used to collect rubbish. It is then crushed internally." 
@@ -182,7 +182,7 @@ Got Hit Sound number=-1
 Death sound file name="death_sound_247.ogg"
 Attack animation sound file name="death_sound_247.ogg"
 Chance of this robot scoring a hit=80
-Time to recover after getting hit=0.30
+Time to recover after getting hit=0.80
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 2
 Notes concerning this droid=_"light duty servant robot. One of the first to use the anti-grav system." 
@@ -215,7 +215,7 @@ Got Hit Sound number=0
 Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=82
-Time to recover after getting hit=0.30
+Time to recover after getting hit=0.80
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 3
 Notes concerning this droid=_"cheaper version of the anti-grav servant robot." 
@@ -248,7 +248,7 @@ Got Hit Sound number=-1
 Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=50
-Time to recover after getting hit=0.03
+Time to recover after getting hit=0.80
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 4
 Notes concerning this droid=_"Run away! This bot will kill you!" 
@@ -282,7 +282,7 @@ Got Hit Sound number=-1
 Death sound file name="death_sound_302.ogg"
 Attack animation sound file name="death_sound_302.ogg"
 Chance of this robot scoring a hit=85
-Time to recover after getting hit=0.30
+Time to recover after getting hit=0.60
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 5
 Notes concerning this droid=_"common device for moving small packages. Clamp is mounted on the lower body." 
@@ -316,7 +316,7 @@ Got Hit Sound number=-1
 Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=50
-Time to recover after getting hit=0.30
+Time to recover after getting hit=0.60
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 6
 Notes concerning this droid=_"early type messenger robot. Large wheels impede motion on small craft."
@@ -350,7 +350,7 @@ Got Hit Sound number=-1
 Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=50
-Time to recover after getting hit=0.30
+Time to recover after getting hit=0.50
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 7
 Notes concerning this droid=_"slow maintenance robot. Confined to drive maintenance during flight." 
@@ -383,7 +383,7 @@ Got Hit Sound number=-1
 Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=70
-Time to recover after getting hit=0.30
+Time to recover after getting hit=0.50
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 8
 Notes concerning this droid=_"ship maintenance robot. Fitted with multiple arms to carry out repairs to the ship efficiently. All craft built after the Jupiter-incident are supplied with a team of these." 
@@ -416,7 +416,7 @@ Got Hit Sound number=-1
 Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=50
-Time to recover after getting hit=0.30
+Time to recover after getting hit=0.50
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 9
 Notes concerning this droid=_"slave maintenance droid. Standard version will carry its own toolbox." 
@@ -449,7 +449,7 @@ Got Hit Sound number=-1
 Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=50
-Time to recover after getting hit=0.30
+Time to recover after getting hit=0.40
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 10
 Notes concerning this droid=_"early crew droid. Able to carry out simple flight checks only. No longer supplied." 
@@ -482,7 +482,7 @@ Got Hit Sound number=-1
 Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=50
-Time to recover after getting hit=0.30
+Time to recover after getting hit=0.40
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 11
 Notes concerning this droid=_"standard crew droid. Supplied with the ship." 
@@ -515,7 +515,7 @@ Got Hit Sound number=-1
 Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=50
-Time to recover after getting hit=0.30
+Time to recover after getting hit=0.40
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 12
 Notes concerning this droid=_"a highly sophisticated device. Able to control the Robo-Freighter on its own." 
@@ -648,7 +648,7 @@ Got Hit Sound number=-1
 Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=50
-Time to recover after getting hit=0.30
+Time to recover after getting hit=0.20
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 16
 Notes concerning this droid=_"heavy duty battle droid. Disruptor is built into the head. One of the first in service with the Military." 
@@ -681,7 +681,7 @@ Got Hit Sound number=-1
 Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=50
-Time to recover after getting hit=0.30
+Time to recover after getting hit=0.20
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 17
 Notes concerning this droid=_"this version is the one mainly used by the Military." 
@@ -714,7 +714,7 @@ Got Hit Sound number=-1
 Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=50
-Time to recover after getting hit=0.30
+Time to recover after getting hit=0.20
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 18
 Notes concerning this droid=_"very heavy duty battle droid. Only a few have so far entered service. These are the most powerful battle units ever built." 
@@ -849,7 +849,7 @@ Got Hit Sound number=-1
 Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=50
-Time to recover after getting hit=0.30
+Time to recover after getting hit=0.05
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 22
 Notes concerning this droid=_"experimental command cyborg. Fitted with a new type of brain. Mounted on a security droid anti-grav unit for convenience. warning: the influence device may not control a primode brain for long." 
@@ -1178,7 +1178,7 @@ Got Hit Sound number=-1
 Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=50
-Time to recover after getting hit=0.03
+Time to recover after getting hit=0.40
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 33
 Notes concerning this droid=_"Run away! This bot will kill you!" 
