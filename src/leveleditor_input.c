@@ -310,7 +310,7 @@ void leveleditor_input_mouse_motion(SDL_Event *event)
 	previously_active_widget = w;
     }
 
-    if (w->mousemove)
+    if (w && w->mousemove)
 	w->mousemove(event, w->ext);
 }
 
@@ -477,46 +477,6 @@ void leveleditor_process_input()
     level_editor_auto_scroll();
 
     //level_editor_handle_left_mouse_button (cur_state );
-
-    //--------------------
-    // Maybe a right mouse click has in the map area.  Then it might be best to interpret this
-    // simply as bigger move command, which might indeed be much handier than 
-    // using only keyboard cursor keys to move around on the map.
-    //
-/*    if ( MouseRightPressed() )
-	{
-
-	if ( MouseRightClicked() )
-	    {
-	    cur_state -> c_last_right_click . x = GetMousePos_x();
-	    cur_state -> c_last_right_click . y = GetMousePos_y();
-	    cur_state -> c_origin . x = cur_state -> c_last_right_click . x;
-	    cur_state -> c_origin . y = cur_state -> c_last_right_click . y;
-	    }
-	else
-	    {
-	    cur_state -> c_corresponding_position = translate_point_to_map_location (
-		    cur_state -> c_last_right_click . x  - ( GameConfig . screen_width / 2 ) , 
-		    cur_state -> c_last_right_click . y  - ( GameConfig . screen_height / 2 ) ,
-		    GameConfig . zoom_is_on );
-
-	    // Calculate the new position
-	    Me . pos . x += (cur_state->TargetSquare . x - cur_state -> c_corresponding_position . x) / 30 ;
-	    Me . pos . y += (cur_state->TargetSquare . y - cur_state -> c_corresponding_position . y) / 30 ;
-
-	    }
-
-	// Security 
-	if ( Me . pos . x > curShip.AllLevels[Me.pos.z]->xlen )
-	    Me . pos . x = curShip.AllLevels[Me.pos.z]->xlen-1 ;
-	if ( Me . pos . x < 0 )
-	    Me . pos . x = 0;
-	if ( Me . pos . y > curShip.AllLevels[Me.pos.z]->ylen )
-	    Me . pos . y = curShip.AllLevels[Me.pos.z]->ylen-1 ;
-	if ( Me . pos . y < 0 )
-	    Me . pos . y = 0;
-	}
-*/
 
     if ( EscapePressed() )
 	{
