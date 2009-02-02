@@ -8,7 +8,7 @@ endif
 
 bin_PROGRAMS = freedroidRPG
 
-EXTRA_DIST = dialed.py CMakeLists.txt
+EXTRA_DIST = CMakeLists.txt
 
 freedroidRPG_SOURCES = menu.c shop.c items.c character.c skills.c saveloadgame.c \
 	event.c \
