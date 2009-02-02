@@ -1,8 +1,7 @@
 FreedroidRPG Installation 
 =========================
 
-To build FreedroidRPG from source on a Unix-like system, you have two possibilities: the standard GNU autotools way, or you
-can, at your convenience, use CMake.
+To build FreedroidRPG from source on a Unix-like system, you will use the "standard" GNU autotools way.
 
 Building with autotools
 =========================
@@ -24,112 +23,6 @@ Building with autotools
      Do not issue "make install", instead, simply go to the src/ subdirectory, and run
      ./freedroidRPG. 
 
-
-Building with CMake
-=========================
-
-You need CMake 2.4.7 or later.
-You can check this by running `cmake --version`.
-
-For the purpose of this guide, ${SOURCE_DIRECTORY} refers to
-the directory with the game sources and ${BUILD_DIRECTORY} refers to the
-directory where the binaries are being created.
-
-1) Create a out-of-source build directory
-   NB: The build directory must not be a subdirectory of the source directory
-   unless it is named 'build'
-   Run `mkdir -p ${BUILD_DIRECTORY}`
-
-2) Change the current directory to the build directory you created above
-   Run `cd ${BUILD_DIRECTORY}`
-
-3) Create the makefiles
-   Run `cmake ${SOURCE_DIRECTORY}`
-   If CMake complains about missing libraries, use your package manager to
-   install them and repeat this step.
-   Optionally you can instead disable the feature in question by passing one
-   or more of the following arguments to cmake:
-   "-DENABLE_OPENGL=OFF", "-DENABLE_SOUND=OFF", and "-DENABLE_NLS=OFF"
-
-4) Optionally: Modify the build options
-   Run `make edit_cache` and follow the on screen instructions.
-   NB: On UNIX platforms you will be presented with a not-to-user-friendly
-   ncurses interface. Novices are recommended to to ignore this step.
-
-5) Compile the sources:
-   Run `make`
-
-6) Install FreedroidRPG
-   Run `make install`.
-   NB: This will install FreedroidRPG into "/usr/local" (on UNIX) or
-   "C:\Program Files\FreedroidRPG" (on Windows).
-   You can install into another directory by passing the argument
-   "-DCMAKE_INSTALL_PREFIX=<yourdir>" to cmake above or modifying the
-   "CMAKE_INSTALL_PREFIX" build option above.
-
-
-Building on Windows
-===================
-
-Building FreedroidRPG on Windows can be a painful process. We can provide a binary
-at your request.
-
-Building FreedroidRPG for Windows is probably easier to do with a cross compiler, 
-but CMake is supposed to work under Windows natively. Nobobdy ever tested the CMake way 
-that is being described below, so feel free to test it and report back to us.
-
-To build FreedroidRPG on Windows you need to install MSYS, MinGW and CMake.
-
-CMake can be installed to any path, but make sure to add it to the system
-path (the installer will ask you whether you want to or not).
-MSYS and MinGW should be installed to C:\usr and C:\usr\mingw respectively,
-as that is the simplest way to get the UNIX path /usr/local and
-the Windows path \usr\local to refer to the same location.
-You should also modify C:\usr\etc\profile so that the section beginning
-with "if [ $MSYSTEM == MINGW32 ]; then" reads as follows:
-if [ $MSYSTEM == MINGW32 ]; then
-  export GCC_PATH="/usr/mingw"
-  export INCLUDE="/usr/local/include:${GCC_PATH}/include:/usr/include"
-  export LIB="/usr/local/lib:${GCC_PATH}/lib:/usr/lib"
-  export PATH=".:/usr/local/bin:${GCC_PATH}/bin:/usr/bin:${PATH}:${LIB}"
-  export CPATH="${INCLUDE}"
-  export LIBRARY_PATH="${LIB}"
-else
-  export PATH=".:/usr/local/bin:/usr/bin:/usr/mingw/bin:${PATH}"
-fi
-
-Then you need to build and install the following packages into /usr/local:
-zlib, libpng, jpeg, libSDL and SDL_image
-For sound support you'll also have to build and install:
-libogg, libvorbis and SDL_mixer
-For NLS support you'll also have to build and install:
-libiconv, gettext, and libiconv (again, with gettext).
-
-To build the archetype editor you'll also need to install Qt4.3 (or later).
-Qt should be installed into C:\usr\qt4 and C:\usr\etc\profile modified so
-that the section beginning with "if [ $MSYSTEM == MINGW32 ]; then" reads:
-if [ $MSYSTEM == MINGW32 ]; then
-  export QTDIR="/usr/qt4"
-  export GCC_PATH="/usr/mingw"
-  export INCLUDE="/usr/local/include::${QTDIR}/include:${GCC_PATH}/include:/usr/include"
-  export LIB="/usr/local/lib:${QTDIR}/lib:${GCC_PATH}/lib:/usr/lib"
-  export PATH=".:/usr/local/bin:${QTDIR}/bin:${GCC_PATH}/bin:/usr/bin:${PATH}:${LIB}"
-  export QMAKESPEC="win32-g++"
-  export CPATH="${INCLUDE}"
-  export LIBRARY_PATH="${LIB}"
-else
-  export PATH=".:/usr/local/bin:/usr/bin:/usr/mingw/bin:${PATH}"
-fi
-
-To be able to create the binary installer you'll have to install NSIS.
-If you have installed CMake 2.4 source and binary packages will be generated
-as tar.bz2 files, which most windows user won't be able to open. To generate
-ordinary zip files instead you must install CMake 2.6 and 7Zip.
-
-When all these prerequisites is installed, you open a MSYS terminal and follow the
-build instructions above, with the addition that you must add the argument
-"-G 'MSYS Makefiles'" to the cmake call in step 3.
-
 Cross compile for Windows with autotools
 ========================================
 
@@ -145,79 +38,6 @@ to provide translation support.
 The binary we ship supports all those features and is built with autotools.
 In special cases we may agree to sending you the complete cross-compiler archive so you can build win32 binaries
 easily.
-
-Cross compile for Windows with CMake
-====================================
-
-This method is untested. Do not hesitate to report back.
-
-To cross compile for Windows you must have CMake 2.6 installed.
-You also need mingw32. On gentoo you install it by running
-"emerge -av crossdev && crossdev i686-mingw32" as root, while on
-Debian/Ubuntu you install it by running "sudo apt-get install mingw32"
-
-Then you need to install Windows versions of the prerequisites libraries
-(see "Building on Windows" above for lists). This can be somewhat
-complicated, so I just copied C:\usr\local from my MSYS installation to
-/usr/i686-mingw32/usr/local (replace i686-mingw32 with i586-mingw32msvc
-on Debian/Ubuntu).
-Alternatively you can build it all from source, but doing so requires you
-to set up a build environment with the correct environment variables,
-which I haven't tested, so you are on your own. If you do get this to work,
-please tell me how you did it and I'll update this guide.
-Note: I have yet to get the cross compilation setup to detect Qt4. If you get
-this to work, please tell me. Otherwise the cross compilation binary package
-will simply not contain the archetype editor.
-
-Next you have to setup a CMake toolchain file. The following should do for
-Gentoo. For Debian/Ubuntu replace i686-mingw32 with i586-mingw32msvc.
-I've saved my toolchain file as "~/.cmake/Toolchain-Windows-x86.cmake". If you
-save it under another name you must change the instructions below accordingly.
------------------------------------------------------------
-# system information for the target system
-SET(CMAKE_SYSTEM_NAME Windows)
-SET(CMAKE_SYSTEM_VERSION 5.1)
-SET(CMAKE_SYSTEM_PROCESSOR x86)
-
-# compilers to use
-SET(CMAKE_C_COMPILER i686-mingw32-gcc)
-SET(CMAKE_CXX_COMPILER i686-mingw32-g++)
-
-# here is the target environment located
-SET(CMAKE_FIND_ROOT_PATH /usr/i686-mingw32)
-
-# adjust the default behaviour of the FIND_XXX() commands:
-# search headers and libraries in the target environment, search
-# programs in the host environment
-set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
-set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
-set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
------------------------------------------------------------
-
-Cross compilation requires two build directories, one for the native and
-build and one for the windows build. Below ${SOURCE_DIRECTORY} refers to the
-directory with the game sources, ${BUILD_DIRECTORY} refers to the native build
-directory, and ${WIN32_BUILD_DIRECTORY} refers to the windows build directory.
-
-1) Follow step 1 through 3 in the installation instructions above.
-
-2) Run `make png2ico`
-
-3) Run `mkdir -p ${WIN32_BUILD_DIRECTORY}`
-
-4) Run `cd ${WIN32_BUILD_DIRECTORY}`
-
-5) Run `cmake -DCMAKE_TOOLCHAIN_FILE=~/.cmake/Toolchain-Windows-x86.cmake -DIMPORT_EXECUTABLES=${BUILD_DIRECTORY}/ImportExecutables.cmake ${SOURCE_DIRECTORY}`
-   If you did not install win32 versions of all the optional libraries you
-   might have to pass one or both of the following arguments to cmake:
-   "-DENABLE_SOUND=OFF" and "-DENABLE_NLS=OFF"
-
-6) Follow step 4 and 5 in the installation instructions above.
-
-7) Run `make package` to create a Windows binary release.
-   This will create a zip file with the windows binary release,
-   and if you have installed NSIS also a windows binary installer.
-
 
 ==============================================================
 If you have problems with the compilation/installation, please

@@ -3,4 +3,4 @@ bin_PROGRAMS = croppy
 
 croppy_SOURCES = croppy.c
 
-EXTRA_DIST = croppy_background_fill.png CMakeLists.txt
+EXTRA_DIST = croppy_background_fill.png

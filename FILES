@@ -9,12 +9,10 @@ Directory structure:
 ./sound/            : The in-game sound files
 ./graphics/         : The in-game graphics files
 ./po                : Translations of the text strings in the source code
-./cmake/            : Help files for the cmake build system
 ./win32/            : Windows .exe icons
 ./croppy            : One of our helper tools for graphics 
 ./gluem             : A helper tool for graphics
 ./zpipe		    : zlib's zpipe, used as a helper for graphics
-./archetypeeditor   : A incomplete graphical editor for some of the "dynamic content" in the map directory
 
 
 Text files containing descriptions:
@@ -30,7 +28,6 @@ freedroidrpg.6        : The README file in a "man" friendly format
 Legal documents
 ---------------
 COPYING                        : A copy of GPL license, the copyright license this game is released under
-cmake/COPYING-CMAKE-SCRIPTS    : A copy of the 3 clause BSD license the CMake modules are released under 
 archetypeeditor/oxygen/COPYING : A copy of the Oxygen license, used by the oxygen icons used by the archetype editor.
                                  This is a dual lisense between CC-by-sa 3.0 and LGPL 2 with clarifications.
 
