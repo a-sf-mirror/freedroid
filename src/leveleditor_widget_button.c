@@ -141,7 +141,7 @@ static void activate_button(struct leveleditor_button *b)
 	    break;
 	case LEVEL_EDITOR_ZOOM_IN_BUTTON:
 	    GameConfig . zoom_is_on = !GameConfig . zoom_is_on ;
-	    b->active = 2*GameConfig . zoom_is_on;
+	    b->active = 2*!GameConfig . zoom_is_on;
 	    break;
 	case LEVEL_EDITOR_QUIT_BUTTON:
 	    TestMap();
