@@ -34,8 +34,7 @@
 #include "lvledit/lvledit.h"
 #include "lvledit/lvledit_actions.h"
 #include "lvledit/lvledit_widgets.h"
-#include "lvledit/lvledit_widget_toolbar.h"
-#include "lvledit/lvledit_widget_typeselect.h"
+#include "lvledit/lvledit_tools.h"
 
 static struct leveleditor_typeselect *previous_type = NULL;
 static int num_blocks_per_line = 0;
@@ -97,6 +96,15 @@ void leveleditor_toolbar_mousewheeldown(SDL_Event *event, struct leveleditor_wid
 {
     (void)vt;
     leveleditor_toolbar_right();
+}
+
+void leveleditor_toolbar_keybevent(SDL_Event *event, struct leveleditor_widget *vt)
+{
+    if (EVENT_KEYPRESS(event, SDLK_PAGEUP)) {
+	leveleditor_toolbar_scroll_left();
+    } else if (EVENT_KEYPRESS(event, SDLK_PAGEDOWN)) {
+	leveleditor_toolbar_scroll_right();
+    }
 }
 
 void leveleditor_toolbar_display(struct leveleditor_widget *vt)

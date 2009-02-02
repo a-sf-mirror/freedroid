@@ -127,6 +127,7 @@ static struct leveleditor_widget * create_toolbar()
     a->mouserightpress = leveleditor_toolbar_mouserightpress;
     a->mousewheelup = leveleditor_toolbar_mousewheelup;
     a->mousewheeldown = leveleditor_toolbar_mousewheeldown;
+    a->keybevent = leveleditor_toolbar_keybevent;
     a->enabled = 1;
 
     struct leveleditor_toolbar * t = MyMalloc(sizeof(struct leveleditor_toolbar));
