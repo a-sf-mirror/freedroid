@@ -37,6 +37,7 @@
 
 #include "leveleditor.h"
 #include "leveleditor_actions.h"
+#include "leveleditor_widgets.h"
 
 
 /**
@@ -541,11 +542,6 @@ static void show_level_editor_tooltips ( void )
 	if ( time_spent_on_some_button > TICKS_UNTIL_TOOLTIP )
 	    show_button_tooltip ( _("Level resize\n\nUse this button to enter the level resize menu.  Levels can be resized in various ways so as not to destroy your current map too much and so as to insert the new space where you would best like it to be." ));
     }
-    else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_KEYMAP_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
-    {
-	if ( time_spent_on_some_button > TICKS_UNTIL_TOOLTIP )
-	    show_button_tooltip ( _("Level editor guide\n\nUse this button to enter the level editor keymap display." ));
-    }
     else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_QUIT_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
     {
 		if ( time_spent_on_some_button > TICKS_UNTIL_TOOLTIP )
@@ -584,12 +580,6 @@ static void show_level_editor_tooltips ( void )
     {
 	if ( time_spent_on_some_button > TICKS_UNTIL_TOOLTIP && !list_empty(&to_redo))
 	    show_button_tooltip ( _("Redo\n\nUse this button to redo an action." ));
-    }
-    else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_TOGGLE_TUX_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) ||
-	      MouseCursorIsOnButton ( LEVEL_EDITOR_TOGGLE_TUX_BUTTON_OFF , GetMousePos_x()  , GetMousePos_y()  ) )
-    {
-	if ( time_spent_on_some_button > TICKS_UNTIL_TOOLTIP )
-	    show_button_tooltip ( _("Toggle display Tux\n\nUse this button to toggle between Tux displayed in level editor or Tux hidden in level editor." ));
     }
     else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_TOGGLE_TOOLTIPS_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) ||
 	      MouseCursorIsOnButton ( LEVEL_EDITOR_TOGGLE_TOOLTIPS_BUTTON_OFF , GetMousePos_x()  , GetMousePos_y()  ) )
@@ -804,114 +794,6 @@ static void ShowLevelEditorTopMenu( int Highlight )
     
 }; // void ShowLevelEditorTopMenu( void )
 
-/**
- * In an effort to reduce the massive size of the level editor main
- * function, we take the mouse button blitting out into a separate
- * function now.
- */
-static void level_editor_blit_mouse_buttons (level *EditLevel )
-{
-    int a = MouseLeftPressed();
-
-#define A(val) do { if ( !a || ! MouseCursorIsOnButton(val, GetMousePos_x() , GetMousePos_y() ) ) \
-    		 ShowGenericButtonFromList ( val );\
-    		else ShowGenericButtonFromList ( val + 1);\
-		} while(0)
-
-    if ( EditLevel -> jump_target_north >= 0 )
-	A ( GO_LEVEL_NORTH_BUTTON );
-    if ( EditLevel -> jump_target_south >= 0 )
-	A ( GO_LEVEL_SOUTH_BUTTON );
-    if ( EditLevel -> jump_target_east >= 0 )
-	A ( GO_LEVEL_EAST_BUTTON );
-    if ( EditLevel -> jump_target_west >= 0 )
-	A ( GO_LEVEL_WEST_BUTTON );
-    A ( EXPORT_THIS_LEVEL_BUTTON );
-    if ( game_root_mode == ROOT_IS_LVLEDIT )
-    A ( LEVEL_EDITOR_SAVE_SHIP_BUTTON );
-    else
-    A ( LEVEL_EDITOR_SAVE_SHIP_BUTTON_OFF );
-    if ( GameConfig . zoom_is_on )
-	A ( LEVEL_EDITOR_ZOOM_IN_BUTTON );
-    else
-	A ( LEVEL_EDITOR_ZOOM_OUT_BUTTON );
-    A ( LEVEL_EDITOR_TOGGLE_WAYPOINT_BUTTON );
-    if ( OriginWaypoint == (-1) )
-	A ( LEVEL_EDITOR_TOGGLE_CONNECTION_BLUE_BUTTON );
-    else
-	A ( LEVEL_EDITOR_TOGGLE_CONNECTION_RED_BUTTON );
-    A ( LEVEL_EDITOR_BEAUTIFY_GRASS_BUTTON );
-
-    A ( LEVEL_EDITOR_DELETE_OBSTACLE_BUTTON );
-    A ( LEVEL_EDITOR_NEXT_OBSTACLE_BUTTON );
-
-    A ( LEVEL_EDITOR_RECURSIVE_FILL_BUTTON );
-    A ( LEVEL_EDITOR_NEW_OBSTACLE_LABEL_BUTTON );
-    A ( LEVEL_EDITOR_NEW_OBSTACLE_DESCRIPTION_BUTTON );
-    A ( LEVEL_EDITOR_NEW_MAP_LABEL_BUTTON );
-    A ( LEVEL_EDITOR_NEW_ITEM_BUTTON );
-    A ( LEVEL_EDITOR_ESC_BUTTON );
-    A ( LEVEL_EDITOR_LEVEL_RESIZE_BUTTON );
-    A ( LEVEL_EDITOR_KEYMAP_BUTTON );
-    A ( LEVEL_EDITOR_QUIT_BUTTON );
-    
-    if (to_undo.next != &to_undo) {
-	A ( LEVEL_EDITOR_UNDO_BUTTON);
-    }
-
-    if (to_redo.next != &to_redo) {
-	A ( LEVEL_EDITOR_REDO_BUTTON);
-    }
-    if ( EditLevel -> use_underground_lighting )
-	ShowGenericButtonFromList ( LEVEL_EDITOR_UNDERGROUND_LIGHT_ON_BUTTON );
-    else
-	ShowGenericButtonFromList ( LEVEL_EDITOR_UNDERGROUND_LIGHT_OFF_BUTTON );
-
-    if ( GameConfig . omit_tux_in_level_editor ) 
-	A ( LEVEL_EDITOR_TOGGLE_TUX_BUTTON_OFF );
-    else
-	A ( LEVEL_EDITOR_TOGGLE_TUX_BUTTON );
-    
-    if ( GameConfig . omit_enemies_in_level_editor ) 
-	A ( LEVEL_EDITOR_TOGGLE_ENEMIES_BUTTON_OFF );
-    else 
-	A ( LEVEL_EDITOR_TOGGLE_ENEMIES_BUTTON );
-    
-    if ( GameConfig . omit_obstacles_in_level_editor ) 
-	A ( LEVEL_EDITOR_TOGGLE_OBSTACLES_BUTTON_OFF );
-    else
-	A ( LEVEL_EDITOR_TOGGLE_OBSTACLES_BUTTON );
-    
-    if ( GameConfig . show_tooltips ) 
-    {
-	A ( LEVEL_EDITOR_TOGGLE_TOOLTIPS_BUTTON );
-	show_level_editor_tooltips (  );
-    }
-    else
-	A ( LEVEL_EDITOR_TOGGLE_TOOLTIPS_BUTTON_OFF );
-
-    if ( draw_collision_rectangles ) 
-	A ( LEVEL_EDITOR_TOGGLE_COLLISION_RECTS_BUTTON );
-    else
-	A ( LEVEL_EDITOR_TOGGLE_COLLISION_RECTS_BUTTON_OFF );
-
-    switch(draw_grid){
-        case 1:
-        A( LEVEL_EDITOR_TOGGLE_GRID_BUTTON );
-          break;
-        case 2:
-          A( LEVEL_EDITOR_TOGGLE_GRID_BUTTON_FULL );
-          break;
-        case 0:
-        A( LEVEL_EDITOR_TOGGLE_GRID_BUTTON_OFF );
-          break;
-    }
-
-#undef A
-}; // void level_editor_blit_mouse_buttons (level *EditLevel )
-
-
-
 void leveleditor_display() 
 {
     char linebuf[1000];
@@ -938,7 +820,7 @@ void leveleditor_display()
 	    }
 	}
 
-    AssembleCombatPicture ( ONLY_SHOW_MAP_AND_TEXT | SHOW_GRID | SHOW_ITEMS | GameConfig.omit_tux_in_level_editor * OMIT_TUX | GameConfig.omit_obstacles_in_level_editor * OMIT_OBSTACLES | GameConfig.omit_enemies_in_level_editor * OMIT_ENEMIES | SHOW_OBSTACLE_NAMES | ZOOM_OUT * GameConfig . zoom_is_on | OMIT_BLASTS | SKIP_LIGHT_RADIUS );
+    AssembleCombatPicture ( ONLY_SHOW_MAP_AND_TEXT | SHOW_GRID | SHOW_ITEMS | OMIT_TUX | GameConfig.omit_obstacles_in_level_editor * OMIT_OBSTACLES | GameConfig.omit_enemies_in_level_editor * OMIT_ENEMIES | SHOW_OBSTACLE_NAMES | ZOOM_OUT * GameConfig . zoom_is_on | OMIT_BLASTS | SKIP_LIGHT_RADIUS );
 
     Highlight_Current_Block(ZOOM_OUT * GameConfig . zoom_is_on );
 
@@ -976,8 +858,9 @@ void leveleditor_display()
 
     ShowLevelEditorTopMenu( Highlight );
 
-    level_editor_blit_mouse_buttons ( EditLevel() );
+    show_level_editor_tooltips (  );
 
+    leveleditor_display_widgets();
     //--------------------
     // Now that everything is blitted and printed, we may update the screen again...
     //

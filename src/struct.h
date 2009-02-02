@@ -130,7 +130,6 @@ typedef struct configuration_for_freedroid_s
     int enemy_energy_bars_visible;
     int hog_CPU;
     int highlighting_mode_full;
-    int omit_tux_in_level_editor;
     int omit_obstacles_in_level_editor;
     int omit_enemies_in_level_editor;
     int level_editor_edit_mode;

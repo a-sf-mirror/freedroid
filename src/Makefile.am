@@ -28,7 +28,10 @@ freedroidRPG_SOURCES = menu.c shop.c items.c character.c skills.c saveloadgame.c
 	leveleditor_input.c leveleditor_input.h \
 	leveleditor_map.c leveleditor_map.h \
 	leveleditor_menu.c leveleditor_menu.h \
-	leveleditor_validator.c leveleditor_validator.h
+	leveleditor_validator.c leveleditor_validator.h \
+	leveleditor_widget_button.c leveleditor_widget_button.h \
+	leveleditor_widget_map.c leveleditor_widget_map.h \
+	leveleditor_widgets.c leveleditor_widgets.h
 
 savestruct.c savestruct.h: struct.h
 	python2.5 gen_savestruct.py struct.h savestruct

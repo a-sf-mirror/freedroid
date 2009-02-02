@@ -36,6 +36,8 @@
 #include "global.h"
 #include "proto.h"
 
+#include "leveleditor_input.h"
+
 #ifndef SDL_BUTTON_WHEELUP 
 #define SDL_BUTTON_WHEELUP 4
 #endif
@@ -82,6 +84,33 @@ void save_mouse_state()
     mouse_state_this_frame = SDL_GetMouseState(NULL, NULL);
 }
 
+static void input_mouse_motion(SDL_Event *event)
+{
+    if (game_status != INSIDE_LVLEDITOR) {
+	input_axis . x = event->motion . x - UserCenter_x  ;
+	input_axis . y = event->motion . y - UserCenter_y  ;
+    } else {
+	leveleditor_input_mouse_motion(event);
+    }
+}
+
+static void input_mouse_button(SDL_Event *event)
+{
+    if (game_status != INSIDE_LVLEDITOR) {
+	if (event->type == SDL_MOUSEBUTTONUP)
+	    return;
+	input_axis.x = event->button.x - UserCenter_x ;
+	input_axis.y = event->button.y - UserCenter_y ;
+
+	if (event->button.button == SDL_BUTTON_WHEELUP)
+	    MouseWheelUpMovesRecorded++;
+
+	if (event->button.button == SDL_BUTTON_WHEELDOWN)
+	    MouseWheelDownMovesRecorded++;
+    } else {
+	leveleditor_input_mouse_button(event);
+    }
+}
 
 int input_handle(void)
 {
@@ -100,25 +129,17 @@ int input_handle(void)
 		break;
 
 	    case SDL_MOUSEMOTION:
-		input_axis . x = event . motion . x - UserCenter_x  ;
-		input_axis . y = event . motion . y - UserCenter_y  ;
+		input_mouse_motion(&event);
 		break;
 
 	    case SDL_MOUSEBUTTONDOWN:
-		input_axis.x = event.button.x - UserCenter_x ;
-		input_axis.y = event.button.y - UserCenter_y ;
-		
-		if (event.button.button == SDL_BUTTON_WHEELUP)
-		    MouseWheelUpMovesRecorded++;
-
-		if (event.button.button == SDL_BUTTON_WHEELDOWN)
-		    MouseWheelDownMovesRecorded++;
+	    case SDL_MOUSEBUTTONUP:
+		input_mouse_button(&event);
 		break;
 
 	    default:
 		break;
 	    }
-
     }
     return 0;
 }

@@ -698,7 +698,6 @@ save_int32_t("skill_explanation_screen_visible", &(target->skill_explanation_scr
 save_int32_t("enemy_energy_bars_visible", &(target->enemy_energy_bars_visible));
 save_int32_t("hog_CPU", &(target->hog_CPU));
 save_int32_t("highlighting_mode_full", &(target->highlighting_mode_full));
-save_int32_t("omit_tux_in_level_editor", &(target->omit_tux_in_level_editor));
 save_int32_t("omit_obstacles_in_level_editor", &(target->omit_obstacles_in_level_editor));
 save_int32_t("omit_enemies_in_level_editor", &(target->omit_enemies_in_level_editor));
 save_int32_t("level_editor_edit_mode", &(target->level_editor_edit_mode));
@@ -762,7 +761,6 @@ read_int32_t(pos, "skill_explanation_screen_visible",  &(target->skill_explanati
 read_int32_t(pos, "enemy_energy_bars_visible",  &(target->enemy_energy_bars_visible));
 read_int32_t(pos, "hog_CPU",  &(target->hog_CPU));
 read_int32_t(pos, "highlighting_mode_full",  &(target->highlighting_mode_full));
-read_int32_t(pos, "omit_tux_in_level_editor",  &(target->omit_tux_in_level_editor));
 read_int32_t(pos, "omit_obstacles_in_level_editor",  &(target->omit_obstacles_in_level_editor));
 read_int32_t(pos, "omit_enemies_in_level_editor",  &(target->omit_enemies_in_level_editor));
 read_int32_t(pos, "level_editor_edit_mode",  &(target->level_editor_edit_mode));

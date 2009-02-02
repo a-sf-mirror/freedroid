@@ -204,6 +204,7 @@ better than nothing.  Thanks anyway for your interest in FreedroidRPG.\n\
     while (!QuitProgram)
     {
 	StartupMenu ( );
+	input_handle();
 	switch (game_root_mode) {
 	    case ROOT_IS_GAME:
 		Game ();

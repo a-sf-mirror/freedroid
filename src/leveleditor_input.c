@@ -38,6 +38,9 @@
 #include "leveleditor.h"
 #include "leveleditor_actions.h"
 #include "leveleditor_map.h"
+#include "leveleditor_widgets.h"
+
+static struct leveleditor_widget * previously_active_widget = NULL;
 
 /**
  * This function shall determine, whether a given left mouse click was in 
@@ -284,233 +287,52 @@ static void level_editor_handle_left_mouse_button (leveleditor_state *cur_state 
     {
 	if ( ClickWasInEditorBannerRect() )
 	    HandleBannerMouseClick();
-	else if ( MouseCursorIsOnButton ( GO_LEVEL_NORTH_BUTTON , GetMousePos_x()  , GetMousePos_y()  )
-		&& ( EditLevel() -> jump_target_north >= 0 ) )
-	{
-	    if ( Me . pos . x < curShip . AllLevels [ EditLevel() -> jump_target_north ] -> xlen -1 )
-		new_x = Me . pos . x ;
-	    else
-		new_x = 3;
-	    new_y = curShip . AllLevels [ EditLevel() -> jump_target_north ] -> xlen - 4 ;
-	    action_jump_to_level(EditLevel()->jump_target_north,new_x,new_y);
-	}
-	else if ( MouseCursorIsOnButton ( GO_LEVEL_SOUTH_BUTTON , GetMousePos_x()  , GetMousePos_y()  )
-		&& ( EditLevel() -> jump_target_south >= 0 ) )
-	{
-	    if ( Me . pos . x < curShip . AllLevels [ EditLevel() -> jump_target_south ] -> xlen -1 )
-		new_x = Me . pos . x ;
-	    else
-		new_x = 3;
-	    new_y = 4;
-	    action_jump_to_level(EditLevel()->jump_target_south,new_x,new_y);
-	}
-	else if ( MouseCursorIsOnButton ( GO_LEVEL_EAST_BUTTON , GetMousePos_x()  , GetMousePos_y()  )
-		&& ( EditLevel() -> jump_target_east >= 0 ) )
-	{
-	    new_x = 3;
-	    if ( Me . pos . y < curShip . AllLevels [ EditLevel() -> jump_target_east ] -> ylen -1 )
-		new_y = Me . pos . y ;
-	    else
-		new_y = 4;
-	    action_jump_to_level(EditLevel()->jump_target_east,new_x,new_y);
-	}
-	else if ( MouseCursorIsOnButton ( GO_LEVEL_WEST_BUTTON , GetMousePos_x()  , GetMousePos_y()  )
-		&& ( EditLevel() -> jump_target_west >= 0 ) )
-	{
-	    new_x = curShip . AllLevels [ EditLevel() -> jump_target_west ] -> xlen -4 ;
-	    if ( Me . pos . y < curShip . AllLevels [ EditLevel() -> jump_target_west ] -> ylen -1 )
-		new_y = Me . pos . y ;
-	    else
-		new_y = 4;
-	    action_jump_to_level(EditLevel()->jump_target_west,new_x,new_y);
-	}
-	else if ( MouseCursorIsOnButton ( EXPORT_THIS_LEVEL_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
-	{
-	    ExportLevelInterface ( Me . pos . z );
-	}
-	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_UNDERGROUND_LIGHT_ON_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
-	{
-	    EditLevel() -> use_underground_lighting = ! EditLevel() -> use_underground_lighting ;
-	}
-	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_UNDO_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
-	{
-	    level_editor_action_undo ();
-	}
-	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_REDO_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
-	{
-	    level_editor_action_redo ();
-	}
-	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_SAVE_SHIP_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
-	{
-		if (game_root_mode == ROOT_IS_LVLEDIT) /*don't allow saving if root mode is GAME*/ 
-		{
-			close_all_chests_on_level ( Me . pos . z ) ;
-			char fp[2048];
-			find_file("freedroid.levels", MAP_DIR, fp, 0);
-			SaveShip(fp);
-
-			// CenteredPutString ( Screen ,  11*FontHeight(Menu_BFont),    _("Your ship was saved..."));
-			// our_SDL_flip_wrapper();
-
-			GiveMouseAlertWindow ( _("\nM E S S A G E\n\nYour ship was saved to file 'freedroid.levels' in the map directory.\n\nIf you have set up something cool and you wish to contribute it to FreedroidRPG, please contact the FreedroidRPG dev team." )) ;
-		}
-		else
-			GiveMouseAlertWindow ( _("\nM E S S A G E\n\nE R R O R ! Your ship was not saved.\n\nPlaying on a map leaves the world in an unclean state not suitable for saving. Enter the editor from the main menu to be able to save." )) ;
-
-	}
-	else if ( GameConfig . zoom_is_on && MouseCursorIsOnButton ( LEVEL_EDITOR_ZOOM_IN_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
-	{
-	    GameConfig . zoom_is_on = !GameConfig . zoom_is_on ;
-	}
-	else if ( !GameConfig . zoom_is_on && MouseCursorIsOnButton ( LEVEL_EDITOR_ZOOM_OUT_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
-	{
-	    GameConfig . zoom_is_on = !GameConfig . zoom_is_on ;
-	}
-	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_TOGGLE_WAYPOINT_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
-	{
-	    action_toggle_waypoint ( EditLevel() , EditX(), EditY() , FALSE );
-	}
-	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_TOGGLE_CONNECTION_BLUE_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
-	{
-	    level_editor_action_toggle_waypoint_connection_user (EditLevel());
-	}
-	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_BEAUTIFY_GRASS_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
-	{
-	    level_editor_beautify_grass_tiles (EditLevel());
-	}
-	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_DELETE_OBSTACLE_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
-	{
-	    if ( level_editor_marked_obstacle != NULL )
-	    {
-		action_remove_obstacle_user ( EditLevel() , level_editor_marked_obstacle );
-		level_editor_marked_obstacle = NULL ;
-	    }
-	}
-	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_NEXT_OBSTACLE_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
-	{
-	    level_editor_cycle_marked_obstacle();
-	}
-	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_RECURSIVE_FILL_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
-	{
-	    action_fill_user ( EditLevel() , EditX(), EditY() , Highlight );
-	}
-	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_NEW_OBSTACLE_LABEL_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
-	{
-	    if ( level_editor_marked_obstacle != NULL )
-	    {
-		action_change_obstacle_label_user ( EditLevel() , level_editor_marked_obstacle , NULL );
-	    }
-	}
-	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_NEW_OBSTACLE_DESCRIPTION_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
-	{
-	    if ( level_editor_marked_obstacle != NULL )
-	    {
-		action_change_obstacle_description ( EditLevel() , level_editor_marked_obstacle , NULL );
-	    }
-	}
-	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_NEW_MAP_LABEL_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
-	{
-	    level_editor_action_change_map_label_user (EditLevel());
-	}
-	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_NEW_ITEM_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
-	{
-	    ItemDropFromLevelEditor(  );
-	}
-	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_ESC_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
-	{
-	    level_editor_done = DoLevelEditorMainMenu ( EditLevel() );
-	}
-	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_LEVEL_RESIZE_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
-	{
-	    EditLevelDimensions (  );
-	}
-	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_KEYMAP_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
-	{
-	    ShowLevelEditorKeymap (  );
-	}
-	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_TOGGLE_TUX_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) ||
-		  MouseCursorIsOnButton ( LEVEL_EDITOR_TOGGLE_TUX_BUTTON_OFF , GetMousePos_x()  , GetMousePos_y()  ) )
-	{
-	    GameConfig . omit_tux_in_level_editor = ! GameConfig . omit_tux_in_level_editor ;
-	}
-	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_TOGGLE_ENEMIES_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) ||
-		  MouseCursorIsOnButton ( LEVEL_EDITOR_TOGGLE_ENEMIES_BUTTON_OFF , GetMousePos_x()  , GetMousePos_y()  ))
-	{
-	    GameConfig . omit_enemies_in_level_editor = ! GameConfig . omit_enemies_in_level_editor ;
-	}
-	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_TOGGLE_OBSTACLES_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) ||
-		  MouseCursorIsOnButton ( LEVEL_EDITOR_TOGGLE_OBSTACLES_BUTTON_OFF , GetMousePos_x()  , GetMousePos_y()  ) )
-	{
-	    GameConfig . omit_obstacles_in_level_editor = ! GameConfig . omit_obstacles_in_level_editor ;
-	}
-	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_TOGGLE_TOOLTIPS_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) ||
-		  MouseCursorIsOnButton ( LEVEL_EDITOR_TOGGLE_TOOLTIPS_BUTTON_OFF , GetMousePos_x()  , GetMousePos_y()  ) )
-	{
-	    GameConfig . show_tooltips = ! GameConfig . show_tooltips ;
-	}
-	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_TOGGLE_COLLISION_RECTS_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) ||
-		  MouseCursorIsOnButton ( LEVEL_EDITOR_TOGGLE_COLLISION_RECTS_BUTTON_OFF , GetMousePos_x()  , GetMousePos_y()  ) )
-	{
-	    draw_collision_rectangles = ! draw_collision_rectangles;
-	}
-	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_TOGGLE_GRID_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) ||
-		  MouseCursorIsOnButton ( LEVEL_EDITOR_TOGGLE_GRID_BUTTON_FULL , GetMousePos_x()  , GetMousePos_y()  ) ||
-		  MouseCursorIsOnButton ( LEVEL_EDITOR_TOGGLE_GRID_BUTTON_OFF , GetMousePos_x()  , GetMousePos_y()  ) )
-	{
-	    draw_grid = (draw_grid+1) % 3;
-	}
-	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_QUIT_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
-	{
-			TestMap();
-			if ( game_root_mode == ROOT_IS_GAME )
-			level_editor_done = TRUE;
-	}
-	else
-	{
-	    //--------------------
-	    // With the left mouse button, it should be possible to actually 'draw'
-	    // something into the level.  This seems to work so far.  Caution is nescessary
-	    // to prevent segfault due to writing outside the level, but that's easily
-	    // accomplished.
-	    if ( ( (int)cur_state->TargetSquare . x >= 0 ) &&
-		    ( (int)cur_state->TargetSquare . x <= EditLevel()->xlen-1 ) &&
-		    ( (int)cur_state->TargetSquare . y >= 0 ) &&
-		    ( (int)cur_state->TargetSquare . y <= EditLevel()->ylen-1 ) )
-	    {
-		switch ( GameConfig . level_editor_edit_mode )
-		{
-		    case LEVEL_EDITOR_SELECTION_FLOOR:
-			start_rectangle_mode( cur_state , FALSE );
-			quickbar_use( GameConfig . level_editor_edit_mode , Highlight );
-			break;
-		    case LEVEL_EDITOR_SELECTION_QUICK:
-			quickbar_click ( EditLevel() , Highlight , cur_state);
-			break;
-		    case LEVEL_EDITOR_SELECTION_WALLS:
-			/* If the obstacle can be part of a line */
-			if ( (obstacle_map [ wall_indices [ GameConfig . level_editor_edit_mode ] [ Highlight ] ] . flags & IS_VERTICAL) ||
-				(obstacle_map [ wall_indices [ GameConfig . level_editor_edit_mode ] [ Highlight ] ] . flags & IS_HORIZONTAL) )
-			{
-			    /* Let's start the line (FALSE because the function will
-			     * find the tile by itself) */
-			    start_line_mode( cur_state , FALSE);
-			    quickbar_use ( cur_state->l_selected_mode , cur_state -> l_id );
-			}
-			break;
-		    default:
-			pos . x = cur_state -> TargetSquare . x;
-			pos . y = cur_state -> TargetSquare . y;
-			/* Completely disallow unaligned placement of walls, with tile granularity, using left click */
-			if (GameConfig . level_editor_edit_mode == LEVEL_EDITOR_SELECTION_WALLS)
-			{
-			    pos . x = (int)pos.x;
-			    pos . y = (int)pos.y;
-			}
-			action_create_obstacle_user ( EditLevel() , pos . x , pos . y , wall_indices [ GameConfig . level_editor_edit_mode ] [ Highlight ] );
-			quickbar_use ( GameConfig . level_editor_edit_mode, Highlight );
-		}
-	    }
-	}
+//	else
+//	{
+//	    //--------------------
+//	    // With the left mouse button, it should be possible to actually 'draw'
+//	    // something into the level.  This seems to work so far.  Caution is nescessary
+//	    // to prevent segfault due to writing outside the level, but that's easily
+//	    // accomplished.
+//	    if ( ( (int)cur_state->TargetSquare . x >= 0 ) &&
+//		    ( (int)cur_state->TargetSquare . x <= EditLevel()->xlen-1 ) &&
+//		    ( (int)cur_state->TargetSquare . y >= 0 ) &&
+//		    ( (int)cur_state->TargetSquare . y <= EditLevel()->ylen-1 ) )
+//	    {
+//		switch ( GameConfig . level_editor_edit_mode )
+//		{
+//		    case LEVEL_EDITOR_SELECTION_FLOOR:
+//			start_rectangle_mode( cur_state , FALSE );
+//			quickbar_use( GameConfig . level_editor_edit_mode , Highlight );
+//			break;
+//		    case LEVEL_EDITOR_SELECTION_QUICK:
+//			quickbar_click ( EditLevel() , Highlight , cur_state);
+//			break;
+//		    case LEVEL_EDITOR_SELECTION_WALLS:
+//			/* If the obstacle can be part of a line */
+//			if ( (obstacle_map [ wall_indices [ GameConfig . level_editor_edit_mode ] [ Highlight ] ] . flags & IS_VERTICAL) ||
+//				(obstacle_map [ wall_indices [ GameConfig . level_editor_edit_mode ] [ Highlight ] ] . flags & IS_HORIZONTAL) )
+//			{
+//			    /* Let's start the line (FALSE because the function will
+//			     * find the tile by itself) */
+//			    start_line_mode( cur_state , FALSE);
+//			    quickbar_use ( cur_state->l_selected_mode , cur_state -> l_id );
+//			}
+//			break;
+//		    default:
+//			pos . x = cur_state -> TargetSquare . x;
+//			pos . y = cur_state -> TargetSquare . y;
+//			/* Completely disallow unaligned placement of walls, with tile granularity, using left click */
+//			if (GameConfig . level_editor_edit_mode == LEVEL_EDITOR_SELECTION_WALLS)
+//			{
+//			    pos . x = (int)pos.x;
+//			    pos . y = (int)pos.y;
+//			}
+//			action_create_obstacle_user ( EditLevel() , pos . x , pos . y , wall_indices [ GameConfig . level_editor_edit_mode ] [ Highlight ] );
+//			quickbar_use ( GameConfig . level_editor_edit_mode, Highlight );
+//		}
+//	    }
+//	}
     }
 
     if ( MouseLeftUnclicked() )
@@ -602,9 +424,74 @@ static void level_editor_handle_mouse_wheel ( void )
     } 
 }; // void level_editor_handle_mouse_wheel ( void )
 
+void leveleditor_input_mouse_motion(SDL_Event *event)
+{
+    struct leveleditor_widget *w;
+
+    w = get_active_widget(event->motion.x, event->motion.y);
+
+    if (previously_active_widget != w) {
+	if (w) 
+	    w->mouseenter(w->ext);
+	if (previously_active_widget)
+	    previously_active_widget->mouseleave(previously_active_widget->ext);
+	previously_active_widget = w;
+    }
+}
+
+void leveleditor_input_mouse_button(SDL_Event *event)
+{
+    struct leveleditor_widget *w;
+
+    w = get_active_widget(event->button.x, event->button.y);
+
+    if (w) {
+	switch (event->type) {
+	    case SDL_MOUSEBUTTONUP:
+		switch(event->button.button) {
+		    case 1:
+			w->mouserelease(w->ext);
+			break;
+		    case 3:
+			w->mouserightrelease(w->ext);
+			break;
+		    case 4:
+		    case 5:
+			break;
+		    default:
+			ErrorMessage(__FUNCTION__, "Mouse button index %hd unhandled by leveleditor widgets.\n", PLEASE_INFORM, IS_WARNING_ONLY, event->button.button);
+		}
+		break;
+	    case SDL_MOUSEBUTTONDOWN:
+		switch(event->button.button) {
+		    case 1:
+			w->mousepress(w->ext);
+			break;
+		    case 3:
+			w->mouserightpress(w->ext);
+			break;
+		    case 4:
+			w->mousewheelup(w->ext);
+			break;
+		    case 5:
+			w->mousewheeldown(w->ext);
+			break;
+		    default:
+			ErrorMessage(__FUNCTION__, "Mouse button index %hd unhandled by leveleditor widgets.\n", PLEASE_INFORM, IS_WARNING_ONLY, event->button.button);
+		}
+		break;
+	    default:
+		ErrorMessage(__FUNCTION__, "Event type %d sent to leveleditor as a mouse button event is not recognized.\n", PLEASE_INFORM, IS_FATAL, event->type);
+	}
+    }
+}
+
 void leveleditor_process_input()
 {
     int i;
+    leveleditor_update_button_states();
+    save_mouse_state();
+    input_handle();
     
     HandleLevelEditorCursorKeys( cur_state );
     //--------------------
@@ -788,8 +675,7 @@ void leveleditor_process_input()
 	}
 	while( EscapePressed() ) SDL_Delay(1);
 	
-	//Hack: eat all pending events.
-	input_handle();
+
 
 }
 

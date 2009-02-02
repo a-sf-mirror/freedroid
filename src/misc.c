@@ -146,8 +146,6 @@ mouse_press_button AllMousePressButtons[ MAX_MOUSE_PRESS_BUTTONS ] =
     /*LEVEL_EDITOR_ESC_BUTTON_PUSHED*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorESCButtonPushed.png"         , { 430 , 90 , 0 ,  0 } , FALSE , FALSE } ,
     /*LEVEL_EDITOR_LEVEL_RESIZE_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorResizeLevelButton.png" , { 460 , 90 , 0 ,  0 } , FALSE , FALSE } ,
     /*LEVEL_EDITOR_LEVEL_RESIZE_BUTTON_PUSHED*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorResizeLevelButtonPushed.png" , { 460 , 90 , 0 ,  0 } , FALSE , FALSE } ,
-    /*LEVEL_EDITOR_KEYMAP_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorKeymapButton.png"      , { -120 , 90 , 0 ,  0 } , FALSE , FALSE } ,
-    /*LEVEL_EDITOR_KEYMAP_BUTTON_PUSHED*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorKeymapButtonPushed.png"      , { -120 , 90 , 0 ,  0 } , FALSE , FALSE } ,
     /*LEVEL_EDITOR_QUIT_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorQuitButton.png"        , { -30 , 90 , 0 ,  0 } , FALSE , FALSE } ,
     /*LEVEL_EDITOR_QUIT_BUTTON_PUSHED*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorQuitButtonPushed.png"        , { -30 , 90 , 0 ,  0 } , FALSE , FALSE } ,
 
@@ -158,10 +156,6 @@ mouse_press_button AllMousePressButtons[ MAX_MOUSE_PRESS_BUTTONS ] =
     /*LEVEL_EDITOR_UNDERGROUND_LIGHT_OFF_BUTTON_PUSHED*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorUndergroundLightOffButtonPushed.png" , { -30 , 150 , 30 ,  30 } , FALSE , FALSE } ,
 
 
-    /*LEVEL_EDITOR_TOGGLE_TUX_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorToggleTuxButton.png"        , { 210 , 90 , 0 ,  0 } , FALSE , FALSE } ,
-    /*LEVEL_EDITOR_TOGGLE_TUX_BUTTON_PUSHED*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorToggleTuxButtonPushed.png"        , { 210 , 90 , 0 ,  0 } , FALSE , FALSE } ,
-    /*LEVEL_EDITOR_TOGGLE_TUX_BUTTON_OFF*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorToggleTuxButtonOff.png"        , { 210 , 90 , 0 ,  0 } , FALSE , FALSE } ,
-    /*LEVEL_EDITOR_TOGGLE_TUX_BUTTON_OFF_PUSHED*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorToggleTuxButtonOffPushed.png"        , { 210 , 90 , 0 ,  0 } , FALSE , FALSE } ,
     /*LEVEL_EDITOR_TOGGLE_ENEMIES_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorToggleEnemiesButton.png"    , { 240 , 90 , 0 ,  0 } , FALSE , FALSE } ,
     /*LEVEL_EDITOR_TOGGLE_ENEMIES_BUTTON_PUSHED*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorToggleEnemiesButtonPushed.png"    , { 240 , 90 , 0 ,  0 } , FALSE , FALSE } ,
     /*LEVEL_EDITOR_TOGGLE_ENEMIES_BUTTON_OFF*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorToggleEnemiesButtonOff.png"    , { 240 , 90 , 0 ,  0 } , FALSE , FALSE } ,

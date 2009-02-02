@@ -1749,7 +1749,6 @@ ResetGameConfigToDefaultValues ( void )
     GameConfig . hog_CPU = FALSE ;
     GameConfig . highlighting_mode_full = TRUE ;
     GameConfig . skip_light_radius = FALSE ; 
-    GameConfig . omit_tux_in_level_editor = TRUE ;
     GameConfig . omit_obstacles_in_level_editor = FALSE ;
     GameConfig . omit_enemies_in_level_editor = TRUE ;
     GameConfig . zoom_is_on = FALSE ;

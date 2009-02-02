@@ -1,4 +1,5 @@
 /* 
+ *
  *   Copyright (c) 2009 Arthur Huillet
  *
  *
@@ -21,14 +22,16 @@
  *
  */
 
-#undef EXTERN
-#ifndef _leveleditor_display_c
-#define EXTERN extern
-#else
-#define EXTERN
+#ifndef _leveleditor_widgets_c
+#error "leveleditor_widget_map is to be used in leveleditor_wigdets.c only"
 #endif
 
-void leveleditor_display();
-
-EXTERN char * tooltip_text;
-EXTERN int tooltip_date;
+void leveleditor_map_mouseenter(void *);
+void leveleditor_map_mouseleave(void *);
+void leveleditor_map_mouserelease(void *);
+void leveleditor_map_mousepress(void *);
+void leveleditor_map_mouserightrelease(void *);
+void leveleditor_map_mouserightpress(void *);
+void leveleditor_map_mousewheelup(void *);
+void leveleditor_map_mousewheeldown(void *);
+void leveleditor_map_display(void *);

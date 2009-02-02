@@ -24,3 +24,5 @@
  */
 
 void leveleditor_process_input(void);
+void leveleditor_input_mouse_motion(SDL_Event *);
+void leveleditor_input_mouse_button(SDL_Event *);

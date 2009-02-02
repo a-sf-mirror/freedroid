@@ -1450,6 +1450,7 @@ static void leveleditor_init()
     //
     OriginWaypoint = (-1);
 
+    leveleditor_init_widgets();
 }
 
 static void leveleditor_cleanup()
@@ -1475,15 +1476,13 @@ void LevelEditor()
     while ( !level_editor_done ) {
 	game_status = INSIDE_LVLEDITOR;
 
-	save_mouse_state();
-	input_handle();
-
 	if ( ! GameConfig . hog_CPU ) 
 	    SDL_Delay (1);
 
+	leveleditor_process_input();
+	
 	leveleditor_display();	    
 
-	leveleditor_process_input();
     }
     
 
