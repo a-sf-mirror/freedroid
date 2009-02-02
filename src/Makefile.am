@@ -29,6 +29,10 @@ freedroidRPG_SOURCES = menu.c shop.c items.c character.c skills.c saveloadgame.c
 	leveleditor_map.c leveleditor_map.h \
 	leveleditor_menu.c leveleditor_menu.h \
 	leveleditor_validator.c leveleditor_validator.h \
+	leveleditor_tools.c leveleditor_tools.h \
+	leveleditor_tool_move.c leveleditor_tool_move.h \
+	leveleditor_tool_place.c leveleditor_tool_place.h \
+	leveleditor_tool_select.c leveleditor_tool_select.h \
 	leveleditor_widget_button.c leveleditor_widget_button.h \
 	leveleditor_widget_map.c leveleditor_widget_map.h \
 	leveleditor_widget_toolbar.c leveleditor_widget_toolbar.h \

@@ -59,7 +59,6 @@ int level_editor_done = FALSE;
 
 LIST_HEAD (quickbar_entries);
 
-leveleditor_state * cur_state;
 
 /**
  * Return the X coordinate of the block we are on.
@@ -249,10 +248,11 @@ quickbar_use (int obstacle, int id)
     }
 }
 
+/*
 void
 quickbar_click (level *level, int id, leveleditor_state *cur_state)
 {
-/*    struct quickbar_entry *entry = quickbar_getentry ( id );
+    struct quickbar_entry *entry = quickbar_getentry ( id );
     if ( entry ) {
 	switch ( entry->obstacle_type )
 	{
@@ -271,9 +271,9 @@ quickbar_click (level *level, int id, leveleditor_state *cur_state)
 		    wall_indices [ entry -> obstacle_type ] [ entry -> id ]);
 	}
 	entry->used ++;
-    }*/
+    }
 }    
-
+*/
 /**
  *
  *
@@ -1121,21 +1121,22 @@ int marked_obstacle_is_glued_to_here (level *EditLevel , float x , float y )
 /**
  * Begins a new line of walls
  */
+/*
 void start_line_mode(leveleditor_state *cur_state, int already_defined)
 {
     // Initialize a line
     INIT_LIST_HEAD(&(cur_state->l_elements.list));
     cur_state->mode = LINE_MODE;
     cur_state->l_direction = UNDEFINED;
-    /* If the tile is not already defined (ie. if the function is not 
-     * called from the quickbar_click function) */
-/*    if (! already_defined)
+    // If the tile is not already defined (ie. if the function is not 
+    // called from the quickbar_click function)
+    if (! already_defined)
     {
 	cur_state->l_selected_mode = GameConfig . level_editor_edit_mode;
 	cur_state->l_id = Highlight;
-    }*/
+    }
 
-    /*
+    
     cur_state->l_elements.position.x = (int)cur_state->TargetSquare.x +
 	((obstacle_map [ wall_indices [ cur_state->l_selected_mode ] [ cur_state->l_id ] ] . flags & IS_HORIZONTAL) ? 0.5 : 0);
 
@@ -1145,12 +1146,14 @@ void start_line_mode(leveleditor_state *cur_state, int already_defined)
     cur_state->l_elements.address = action_create_obstacle_user ( EditLevel() , 
 	    cur_state->l_elements.position.x , cur_state->l_elements.position.y , 
 	    wall_indices [ cur_state->l_selected_mode ] [ cur_state->l_id ] );
-	    */
+	    
 }
+*/
 
 /**
  * This function handles the line mode; adds a wall, or starts line mode
  **/
+/*
 void handle_line_mode(leveleditor_state *cur_state)
 { 
     if(cur_state->mode != LINE_MODE) {
@@ -1200,7 +1203,7 @@ void handle_line_mode(leveleditor_state *cur_state)
 	    }
 
 	// Are we going in a direction possible with that wall?
-	/*
+
 	if ( obstacle_map [ wall_indices [ cur_state->l_selected_mode ] [ cur_state->l_id ] ] . flags & IS_HORIZONTAL )
 	    {
 	    direction_is_possible =  (actual_direction == WEST) || (actual_direction == EAST);
@@ -1212,7 +1215,7 @@ void handle_line_mode(leveleditor_state *cur_state)
 	else 
 	    {
 	    direction_is_possible = FALSE;
-	    }*/
+	    }
 
 	// If the mouse is far away enoug
 	if ((distance > 1) && (direction_is_possible) &&
@@ -1241,12 +1244,12 @@ void handle_line_mode(leveleditor_state *cur_state)
 	    }
 	    // And add the wall, to the linked list and to the map
 	    //
-	    /*
+	    
 	    list_add_tail(&(wall->list), &(cur_state->l_elements.list));
 	    wall->address = action_create_obstacle_user ( EditLevel() ,
 		    wall->position.x , wall->position.y ,
 		    wall_indices [ cur_state->l_selected_mode ] [ cur_state->l_id ] );
-*/
+
 	    // If the direction is unknown (ie. we only have one wall), 
 	    // let's define it
 	    if (cur_state->l_direction == UNDEFINED)
@@ -1269,7 +1272,9 @@ void handle_line_mode(leveleditor_state *cur_state)
 	    }
     }
 }; // void handle_line_mode(line_element *wall_line, moderately_finepoint TargetSquare, int *direction)
+*/
 
+/*
 void end_line_mode(leveleditor_state *cur_state, int place_line)
 {
     line_element *tmp;
@@ -1298,46 +1303,50 @@ void end_line_mode(leveleditor_state *cur_state, int place_line)
 
 }; // void end_line_mode(line_element *wall_line, int place_line)
 
+*/
+
+/*
 void start_rectangle_mode ( leveleditor_state *cur_state , int already_defined )
 {
-    /* Start actual mode */
+    // Start actual mode
     cur_state->mode = RECTANGLE_MODE;
 
-    /* Starting values */
+    // Starting values
     cur_state->r_start.x = (int)cur_state->TargetSquare.x;
     cur_state->r_start.y = (int)cur_state->TargetSquare.y;
     cur_state->r_len_x = 0;
     cur_state->r_len_y = 0;
 
-    /* The tile we'll use */
-/*    if (! already_defined)
-	cur_state->r_tile_used = selected_tile_nb;*/
+    // The tile we'll use 
+    if (! already_defined)
+	cur_state->r_tile_used = selected_tile_nb;
 
-    /* Place the first tile */
+    // Place the first tile 
     action_set_floor ( EditLevel(), cur_state->r_start.x, cur_state->r_start.y, cur_state->r_tile_used );
     action_push ( ACT_MULTIPLE_FLOOR_SETS, 1);
 
 } // void start_rectangle_mode ( leveleditor_state cur_state , int already_defined )
-
+*/
+/*
 void handle_rectangle_mode ( leveleditor_state *cur_state )
 {
     int i, j;
     int changed_tiles = 0;
-    /* If there is something to change */
+    // If there is something to change
     if (calc_euklid_distance(cur_state->TargetSquare.x, cur_state->TargetSquare.y,
 		cur_state->r_start.x + cur_state->r_len_x,
 		cur_state->r_start.y + cur_state->r_len_y) > 0.5)
     {
-	/* Redefine the rectangle dimensions */
+	// Redefine the rectangle dimensions
 	cur_state->r_len_x = (int)cur_state->TargetSquare.x - cur_state->r_start.x; 
 	cur_state->r_step_x = (cur_state->r_len_x > 0 ? 1 : -1);
 	cur_state->r_len_y = (int)cur_state->TargetSquare.y - cur_state->r_start.y;
 	cur_state->r_step_y = (cur_state->r_len_y > 0 ? 1 : -1);
 
-	/* Undo previous rectangle */
+	// Undo previous rectangle
 	level_editor_action_undo ();
 
-	/* Then redo a correct one */
+	// Then redo a correct one
 	for (i = cur_state->r_start.x;
 		i != cur_state->r_start.x + cur_state->r_len_x + cur_state->r_step_x;
 		i += cur_state->r_step_x)
@@ -1353,34 +1362,26 @@ void handle_rectangle_mode ( leveleditor_state *cur_state )
 	action_push ( ACT_MULTIPLE_FLOOR_SETS, changed_tiles);
     }
 } // void handle_rectangle_mode (whole_rectangle *rectangle, moderately_finepoint TargetSquare)
+*/
 
+/*
 void end_rectangle_mode( leveleditor_state *cur_state, int place_rectangle)
 {
     cur_state->mode = NORMAL_MODE;
     if ( ! place_rectangle )
 	level_editor_action_undo ();
 }
-
-
-void level_editor_next_tab()
-{
-/*    GameConfig . level_editor_edit_mode ++ ;
-    if ( GameConfig . level_editor_edit_mode >= NUMBER_OF_LEVEL_EDITOR_GROUPS )
-	GameConfig . level_editor_edit_mode = LEVEL_EDITOR_SELECTION_FLOOR ;
-    Highlight = 0 ;
-    FirstBlock = 0 ;*/
-}
-
+*/
 
 static void leveleditor_init() 
 {
-    cur_state = MyMalloc(sizeof(leveleditor_state));
+/*    cur_state = MyMalloc(sizeof(leveleditor_state));
     cur_state->mode = NORMAL_MODE;
 
     // This is only here to shutup a warning
     cur_state->c_last_right_click.x = 0;
     cur_state->c_last_right_click.y = 0;
-
+*/
     level_editor_done = FALSE;
 
     //--------------------
@@ -1410,7 +1411,6 @@ static void leveleditor_init()
 
 static void leveleditor_cleanup()
 {
-    free(cur_state);
     level_editor_marked_obstacle = NULL ; 
 
     Activate_Conservative_Frame_Computation();

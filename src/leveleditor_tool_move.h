@@ -22,25 +22,5 @@
  *
  */
 
-#undef EXTERN
-#ifndef leveleditor_widget_map_c
-#define EXTERN extern
-#else
-#define EXTERN
-#endif
-
-void leveleditor_map_mouseenter(SDL_Event *, void *);
-void leveleditor_map_mouseleave(SDL_Event *, void *);
-void leveleditor_map_mouserelease(SDL_Event *, void *);
-void leveleditor_map_mousepress(SDL_Event *, void *);
-void leveleditor_map_mouserightrelease(SDL_Event *, void *);
-void leveleditor_map_mouserightpress(SDL_Event *, void *);
-void leveleditor_map_mousewheelup(SDL_Event *, void *);
-void leveleditor_map_mousewheeldown(SDL_Event *, void *);
-void leveleditor_map_mousemove(SDL_Event *, void *);
-    
-void leveleditor_map_display(void *);
-
-void leveleditor_map_init(void *);
-
-EXTERN moderately_finepoint mouse_mapcoord;
+int leveleditor_move_input(SDL_Event *event, void *m);
+int leveleditor_move_display(void *m);

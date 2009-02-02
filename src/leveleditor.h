@@ -122,33 +122,6 @@ enum
   };
 
 
-typedef struct leveleditor_state_s {
-    /* Current postion */
-    moderately_finepoint TargetSquare;
-
-    int mode;
-
-    /* drag&drop */
-    obstacle *d_selected_obstacle;
-
-    /* Line mode */
-    int l_direction;
-    int l_selected_mode;
-    int l_id;
-    line_element l_elements;
-
-    /* Rectangle mode */
-    point r_start;
-    int r_len_x, r_len_y;
-    int r_step_x, r_step_y;
-    int r_tile_used;
-
-    /* click&drag */
-    point c_origin;
-    point c_last_right_click;
-    moderately_finepoint c_corresponding_position;
-} leveleditor_state;
-
 EXTERN void LevelEditor(void);
 EXTERN void cycle_marked_obstacle( Level EditLevel );
 EXTERN void CreateNewMapLevel( int level_num );
@@ -157,12 +130,6 @@ EXTERN void duplicate_all_obstacles_in_area ( Level source_level ,
 				       float source_area_width , float source_area_height ,
 				       Level target_level ,
 				       float target_start_x , float target_start_y );
-/* Line mode */
-EXTERN void start_line_mode(leveleditor_state *cur_state, int already_defined);
-
-/* Rectangle mode */
-EXTERN void start_rectangle_mode(leveleditor_state *cur_state , int already_defined);
-
 enum leveleditor_object_type {
     OBJECT_FLOOR,
     OBJECT_OBSTACLE,
@@ -673,7 +640,6 @@ EXTERN int number_of_walls [ NUMBER_OF_LEVEL_EDITOR_GROUPS ] ;
 EXTERN iso_image * quickbar_getimage(int, int *);
 EXTERN int marked_obstacle_is_glued_to_here (level *, float, float);
 
-EXTERN leveleditor_state * cur_state;
 EXTERN int level_editor_done;
 
 EXTERN int object_type;

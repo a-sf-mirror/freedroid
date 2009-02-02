@@ -615,7 +615,7 @@ void leveleditor_display()
     // is.  (There might be some human choice made here already.)
     // Otherwise we just select the next best obstacle as the new marked obstacle.
     //
-    if ( level_editor_marked_obstacle != NULL )
+/*    if ( level_editor_marked_obstacle != NULL )
 	{
 	if ( ! marked_obstacle_is_glued_to_here ( EditLevel() , Me . pos . x , Me . pos . y ) &&
 		cur_state -> mode != DRAG_DROP_MODE)
@@ -632,7 +632,7 @@ void leveleditor_display()
 	    level_editor_marked_obstacle = NULL ;
 	    }
 	}
-
+*/
     AssembleCombatPicture ( ONLY_SHOW_MAP_AND_TEXT | SHOW_GRID | SHOW_ITEMS | OMIT_TUX | GameConfig.omit_obstacles_in_level_editor * OMIT_OBSTACLES | GameConfig.omit_enemies_in_level_editor * OMIT_ENEMIES | SHOW_OBSTACLE_NAMES | ZOOM_OUT * GameConfig . zoom_is_on | OMIT_BLASTS | SKIP_LIGHT_RADIUS );
 
     Highlight_Current_Block(ZOOM_OUT * GameConfig . zoom_is_on );
@@ -640,8 +640,8 @@ void leveleditor_display()
     ShowWaypoints( FALSE , ZOOM_OUT * GameConfig . zoom_is_on );
     ShowMapLabels( ZOOM_OUT * GameConfig . zoom_is_on );
 
-    if ( MouseRightPressed() )
-	blit_leveleditor_point ( cur_state -> c_origin . x, cur_state -> c_origin . y );
+/*    if ( MouseRightPressed() )
+	blit_leveleditor_point ( cur_state -> c_origin . x, cur_state -> c_origin . y );*/
 
     SetCurrentFont ( FPS_Display_BFont ) ;
 

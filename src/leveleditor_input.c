@@ -42,7 +42,7 @@
 
 static struct leveleditor_widget * previously_active_widget = NULL;
 
-static void HandleLevelEditorCursorKeys ( leveleditor_state *cur_state )
+static void HandleLevelEditorCursorKeys ( )
 {
    level *EditLevel;
 
@@ -157,7 +157,7 @@ static void HandleLevelEditorCursorKeys ( leveleditor_state *cur_state )
 	}
     }
 #if 1
-    if ( cur_state -> mode == NORMAL_MODE  && ! MPressed() )
+/*    if ( cur_state -> mode == NORMAL_MODE  && ! MPressed() )
     {
 	if (DoAct[0]) 
 	{
@@ -175,10 +175,11 @@ static void HandleLevelEditorCursorKeys ( leveleditor_state *cur_state )
 	{
 	    if ( rintf(Me.pos.y) > 0 ) Me.pos.y-=1;
 	}
-    }
+    }*/
 #endif
 }; // void HandleLevelEditorCursorKeys ( void )
 
+/*
 static void level_editor_handle_left_mouse_button (leveleditor_state *cur_state )
 {
     int new_x, new_y;
@@ -208,12 +209,12 @@ static void level_editor_handle_left_mouse_button (leveleditor_state *cur_state 
 //			quickbar_click ( EditLevel() , selected_tile_nb , cur_state);
 //			break;
 //		    case LEVEL_EDITOR_SELECTION_WALLS:
-//			/* If the obstacle can be part of a line */
+//			// If the obstacle can be part of a line
 //			if ( (obstacle_map [ wall_indices [ GameConfig . level_editor_edit_mode ] [ selected_tile_nb ] ] . flags & IS_VERTICAL) ||
 //				(obstacle_map [ wall_indices [ GameConfig . level_editor_edit_mode ] [ selected_tile_nb ] ] . flags & IS_HORIZONTAL) )
 //			{
-//			    /* Let's start the line (FALSE because the function will
-//			     * find the tile by itself) */
+//			    // Let's start the line (FALSE because the function will
+//			     // find the tile by itself) 
 //			    start_line_mode( cur_state , FALSE);
 //			    quickbar_use ( cur_state->l_selected_mode , cur_state -> l_id );
 //			}
@@ -221,7 +222,7 @@ static void level_editor_handle_left_mouse_button (leveleditor_state *cur_state 
 //		    default:
 //			pos . x = cur_state -> TargetSquare . x;
 //			pos . y = cur_state -> TargetSquare . y;
-//			/* Completely disallow unaligned placement of walls, with tile granularity, using left click */
+//			// Completely disallow unaligned placement of walls, with tile granularity, using left click
 //			if (GameConfig . level_editor_edit_mode == LEVEL_EDITOR_SELECTION_WALLS)
 //			{
 //			    pos . x = (int)pos.x;
@@ -239,7 +240,7 @@ static void level_editor_handle_left_mouse_button (leveleditor_state *cur_state 
 	switch ( cur_state->mode )
 	{
 	    case LINE_MODE:
-		/* Mouse right released ? terminate line of wall */
+		// Mouse right released ? terminate line of wall
 		end_line_mode(cur_state, TRUE);
 		break;
 	    case RECTANGLE_MODE:
@@ -249,6 +250,8 @@ static void level_editor_handle_left_mouse_button (leveleditor_state *cur_state 
     }
 
 }; // void level_editor_handle_left_mouse_button ( void )
+*/
+
 /**
  * This function automatically scrolls the leveleditor window when the
  * mouse reaches an edge 
@@ -306,6 +309,9 @@ void leveleditor_input_mouse_motion(SDL_Event *event)
 	    previously_active_widget->mouseleave(event, previously_active_widget->ext);
 	previously_active_widget = w;
     }
+
+    if (w->mousemove)
+	w->mousemove(event, w->ext);
 }
 
 void leveleditor_input_mouse_button(SDL_Event *event)
@@ -362,7 +368,7 @@ void leveleditor_process_input()
     save_mouse_state();
     input_handle();
     
-    HandleLevelEditorCursorKeys( cur_state );
+    HandleLevelEditorCursorKeys();
     //--------------------
     // With the 'S' key, you can attach a statement for the influencer to 
     // say to a given location, i.e. the location the map editor cursor
@@ -429,28 +435,19 @@ void leveleditor_process_input()
 	}
 
     //--------------------
-    // First we find out which map square the player MIGHT wish us to operate on
-    // via a POTENTIAL mouse click
-    //
-    cur_state->TargetSquare = translate_point_to_map_location (
-	    (float) GetMousePos_x()  - ( GameConfig . screen_width / 2 ) , 
-	    (float) GetMousePos_y()  - ( GameConfig . screen_height / 2 ) ,
-	    GameConfig . zoom_is_on );
-
-    //--------------------
     // The 'M' key will activate drag&drop mode to allow for convenient
     // obstacle moving.
     // 
-    if ( MPressed () && 
+/*    if ( MPressed () && 
 	    MouseLeftClicked() && 
 	    level_editor_marked_obstacle != NULL )
 	{
 	cur_state->mode = DRAG_DROP_MODE ;
 	cur_state->d_selected_obstacle = level_editor_marked_obstacle;
 	}
+*/
 
-
-    switch ( cur_state->mode )
+ /*   switch ( cur_state->mode )
 	{
 	case LINE_MODE:
 	    handle_line_mode(cur_state);
@@ -476,17 +473,17 @@ void leveleditor_process_input()
 		}
 	    break;
 	}
-
+*/
     level_editor_auto_scroll();
 
-    level_editor_handle_left_mouse_button (cur_state );
+    //level_editor_handle_left_mouse_button (cur_state );
 
     //--------------------
     // Maybe a right mouse click has in the map area.  Then it might be best to interpret this
     // simply as bigger move command, which might indeed be much handier than 
     // using only keyboard cursor keys to move around on the map.
     //
-    if ( MouseRightPressed() )
+/*    if ( MouseRightPressed() )
 	{
 
 	if ( MouseRightClicked() )
@@ -503,13 +500,13 @@ void leveleditor_process_input()
 		    cur_state -> c_last_right_click . y  - ( GameConfig . screen_height / 2 ) ,
 		    GameConfig . zoom_is_on );
 
-	    /* Calculate the new position */
+	    // Calculate the new position
 	    Me . pos . x += (cur_state->TargetSquare . x - cur_state -> c_corresponding_position . x) / 30 ;
 	    Me . pos . y += (cur_state->TargetSquare . y - cur_state -> c_corresponding_position . y) / 30 ;
 
 	    }
 
-	/* Security */
+	// Security 
 	if ( Me . pos . x > curShip.AllLevels[Me.pos.z]->xlen )
 	    Me . pos . x = curShip.AllLevels[Me.pos.z]->xlen-1 ;
 	if ( Me . pos . x < 0 )
@@ -519,11 +516,11 @@ void leveleditor_process_input()
 	if ( Me . pos . y < 0 )
 	    Me . pos . y = 0;
 	}
-
+*/
 
     if ( EscapePressed() )
 	{
-	switch ( cur_state -> mode )
+/*	switch ( cur_state -> mode )
 	    {
 	    case LINE_MODE:
 		// End line mode and *do not* place the walls
@@ -536,9 +533,9 @@ void leveleditor_process_input()
 		while ( EscapePressed() ) SDL_Delay(1);
 		break;
 	    default:
-		level_editor_done = DoLevelEditorMainMenu ( EditLevel() );
 		break;
-	    }
+	    }*/
+	level_editor_done = DoLevelEditorMainMenu ( EditLevel() );
 	}
 	while( EscapePressed() ) SDL_Delay(1);
 	

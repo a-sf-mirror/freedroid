@@ -1,3 +1,5 @@
+
+
 /* 
  *
  *   Copyright (c) 2009 Arthur Huillet
@@ -22,25 +24,27 @@
  *
  */
 
-#undef EXTERN
-#ifndef leveleditor_widget_map_c
-#define EXTERN extern
-#else
-#define EXTERN
-#endif
+#define leveleditor_tool_select_c
 
-void leveleditor_map_mouseenter(SDL_Event *, void *);
-void leveleditor_map_mouseleave(SDL_Event *, void *);
-void leveleditor_map_mouserelease(SDL_Event *, void *);
-void leveleditor_map_mousepress(SDL_Event *, void *);
-void leveleditor_map_mouserightrelease(SDL_Event *, void *);
-void leveleditor_map_mouserightpress(SDL_Event *, void *);
-void leveleditor_map_mousewheelup(SDL_Event *, void *);
-void leveleditor_map_mousewheeldown(SDL_Event *, void *);
-void leveleditor_map_mousemove(SDL_Event *, void *);
-    
-void leveleditor_map_display(void *);
+#include "system.h"
 
-void leveleditor_map_init(void *);
+#include "defs.h"
+#include "struct.h"
+#include "global.h"
+#include "proto.h"
 
-EXTERN moderately_finepoint mouse_mapcoord;
+#include "SDL_rotozoom.h"
+
+#include "leveleditor.h"
+#include "leveleditor_actions.h"
+
+#include "leveleditor_tools.h"
+
+int leveleditor_select_input(SDL_Event *event, struct leveleditor_select *m)
+{
+}
+
+int leveleditor_select_display(struct leveleditor_select *m)
+{
+
+}

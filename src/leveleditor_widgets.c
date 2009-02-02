@@ -84,6 +84,7 @@ static struct leveleditor_widget * create_map()
     a->mouserightpress = leveleditor_map_mouserightpress;
     a->mousewheelup = leveleditor_map_mousewheelup;
     a->mousewheeldown = leveleditor_map_mousewheeldown;
+    a->mousemove = leveleditor_map_mousemove;
     a->enabled = 1;
 
     struct leveleditor_mapwidget * m = MyMalloc(sizeof(struct leveleditor_mapwidget));
@@ -148,6 +149,7 @@ static struct leveleditor_widget * create_objectselector(int x, char * text, enu
 void leveleditor_init_widgets()
 {
     struct leveleditor_widget *floor_selector;
+    struct leveleditor_widget *map;
 
     if (!list_empty(&leveleditor_widget_list)) {
 	/* Widgets already initialized, get out */
@@ -211,10 +213,13 @@ void leveleditor_init_widgets()
     list_add_tail(&create_toolbar()->node, &leveleditor_widget_list);
 
     /* The map (has to be the latest widget in the list) */
-    list_add_tail(&create_map()->node, &leveleditor_widget_list);
+    map = create_map();
+    list_add_tail(&map->node, &leveleditor_widget_list);
 
     /* Initialize elements of the interface */
     leveleditor_typeselect_init_selected_list(floor_selector->ext);
+
+    leveleditor_map_init(map->ext);
 
 }
 

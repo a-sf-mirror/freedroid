@@ -50,6 +50,7 @@ struct leveleditor_widget {
     void (*mouserightpress)(SDL_Event *, void *);
     void (*mousewheelup)(SDL_Event *, void *);
     void (*mousewheeldown)(SDL_Event *, void *);
+    void (*mousemove)(SDL_Event *, void *);
     void * ext; //Type specific information
 };
 
