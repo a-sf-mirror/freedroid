@@ -44,17 +44,12 @@
 int OriginWaypoint = (-1);
 
 char VanishingMessage[10000]="";
-float VanishingMessageDisplayTime = 0;
+float VanishingMessageEndDate = 0;
 SDL_Rect EditorBannerRect = { 0 , 0 , 640 , 90 } ;
 int FirstBlock = 0 ;
 int Highlight = 3 ;
 int number_of_walls [ NUMBER_OF_LEVEL_EDITOR_GROUPS ] ;
 int level_editor_done = FALSE;
-
-int BlockX ;
-int BlockY ;
-static Level EditLevel;
-int main_menu_requested;
 
 LIST_HEAD (quickbar_entries);
 
@@ -63,7 +58,40 @@ LIST_HEAD (to_redo);
 int push_mode = NORMAL; 
 
 leveleditor_state * cur_state;
-long OldTicks;
+
+/**
+ * Return the X coordinate of the block we are on.
+ */
+int EditX(void) 
+{
+    int BlockX = rintf ( Me . pos . x - 0.5 );
+    if (BlockX < 0) {
+	BlockX = 0 ;
+	Me . pos . x = 0.51 ;
+	}
+    return BlockX;
+}
+
+/**
+ * Return the Y coordinate of the block we are on.
+ */
+int EditY(void)
+{
+    int BlockY = rintf ( Me . pos . y - 0.5 );
+    if (BlockY < 0) {
+	BlockY = 0 ;
+	Me . pos . y = 0.51 ;
+	}
+    return BlockY;
+}
+
+/**
+ * Return a pointer to the level we are currently editing.
+ */
+level *EditLevel(void)
+{
+    return CURLEVEL();
+}
 
 /**
  *  @fn static void action_freestack(void)
@@ -106,7 +134,7 @@ static void clear_action(action * action)
    free(action); //< free's the action
 }
 
-static void action_do ( Level level, action *a )
+static void action_do (level *level, action *a )
 {
     switch (a->type) {
     case ACT_CREATE_OBSTACLE:
@@ -157,7 +185,7 @@ void level_editor_action_undo ()
 	    }
 	    list_add(&a->node, &to_redo);
 	} else {
-	    action_do(EditLevel, a);
+	    action_do(EditLevel(), a);
 	}
 	push_mode = NORMAL;
     }
@@ -178,7 +206,7 @@ void level_editor_action_redo ()
 	    }
 	    list_add(&a->node, &to_undo);
 	} else {
-	    action_do(EditLevel, a);
+	    action_do(EditLevel(), a);
 	}
 	push_mode = NORMAL;
     }
@@ -264,6 +292,13 @@ action_create_obstacle (Level EditLevel, double x, double y, int new_obstacle_ty
     ErrorMessage ( __FUNCTION__  , "\
 	    Ran out of obstacle positions in target level!",
 			       PLEASE_INFORM , IS_FATAL );
+    //--------------------
+    // Now that we have disturbed the order of the obstacles on this level, we need
+    // to re-assemble the lists of pointers to obstacles, like the door list, the
+    // teleporter list and the refreshes list.
+    //
+    GetAnimatedMapTiles();
+    
     return ( NULL );
 }
 
@@ -285,7 +320,7 @@ action_remove_obstacle_user (Level EditLevel, obstacle *our_obstacle)
     action_remove_obstacle (EditLevel, our_obstacle);
 }
 void
-action_remove_obstacle ( Level EditLevel, obstacle *our_obstacle)
+action_remove_obstacle (level *EditLevel, obstacle *our_obstacle)
 {
     int i;
     int obstacle_index = (-1) ;
@@ -353,7 +388,7 @@ action_remove_obstacle ( Level EditLevel, obstacle *our_obstacle)
 
 
 void 
-action_toggle_waypoint ( Level EditLevel , int BlockX , int BlockY , int toggle_random_spawn )
+action_toggle_waypoint (level *EditLevel , int BlockX , int BlockY , int toggle_random_spawn )
 {
     int i;
     // find out if there is a waypoint on the current square
@@ -389,7 +424,7 @@ action_toggle_waypoint ( Level EditLevel , int BlockX , int BlockY , int toggle_
 
 
 int 
-action_toggle_waypoint_connection ( Level EditLevel, int id_origin, int id_target)
+action_toggle_waypoint_connection (level *EditLevel, int id_origin, int id_target)
 {
     int i = 0;
     waypoint *SrcWp = &(EditLevel->AllWaypoints[id_origin]);
@@ -408,27 +443,31 @@ action_toggle_waypoint_connection ( Level EditLevel, int id_origin, int id_targe
     action_push (ACT_WAYPOINT_TOGGLE_CONNECT, id_origin, id_target, -1);
     return 1;
 }
-void
-level_editor_action_toggle_waypoint_connection_user ()
+
+void level_editor_action_toggle_waypoint_connection_user (level *EditLevel)
 {
     int i;
- 
+
+
+    int xpos = EditX();
+    int ypos = EditY();
+
     // Determine which waypoint is currently targeted
     for (i=0 ; i < EditLevel->num_waypoints ; i++)
     {
-	if ( ( EditLevel->AllWaypoints[i].x == BlockX ) &&
-	     ( EditLevel->AllWaypoints[i].y == BlockY ) ) break;
+	if ( ( EditLevel->AllWaypoints[i].x == xpos ) &&
+	     ( EditLevel->AllWaypoints[i].y == ypos ) ) break;
     }
     
     if ( i == EditLevel->num_waypoints )
     {
 	sprintf( VanishingMessage , _("Sorry, don't know which waypoint you mean."));
-	VanishingMessageDisplayTime = 0;
+	VanishingMessageEndDate = SDL_GetTicks() + 7000;
     }
     else
     {
 	sprintf( VanishingMessage , _("You specified waypoint nr. %d.") , i );
-	VanishingMessageDisplayTime = 0;
+	VanishingMessageEndDate = SDL_GetTicks() + 7000;
 	if ( OriginWaypoint== (-1) )
 	{
 	    OriginWaypoint = i;
@@ -477,7 +516,7 @@ action_set_floor (Level EditLevel, int x, int y, int type)
     action_push (ACT_TILE_FLOOR_SET, x, y, old);
 }
 
-int tile_is_free ( Level EditLevel, int y_old, int x_old, int y_new, int x_new) {
+int tile_is_free (level *EditLevel, int y_old, int x_old, int y_new, int x_new) {
 	int i;
 	float x, y;
 	int wall_id = -1;
@@ -498,7 +537,7 @@ int tile_is_free ( Level EditLevel, int y_old, int x_old, int y_new, int x_new) 
 
 
 void
-action_fill_user_recursive ( Level EditLevel, int x, int y, int type, int *changed)
+action_fill_user_recursive (level *EditLevel, int x, int y, int type, int *changed)
 {
     int source_type = EditLevel->map [ y ] [ x ] . floor_value;
     /* security */
@@ -520,7 +559,7 @@ action_fill_user_recursive ( Level EditLevel, int x, int y, int type, int *chang
 	action_fill_user_recursive (EditLevel, x, y+1, type, changed);
 }
 void
-action_fill_user ( Level EditLevel, int BlockX, int BlockY, int SpecialMapValue)
+action_fill_user (level *EditLevel, int BlockX, int BlockY, int SpecialMapValue)
 {
     int number_changed = 0;
     action_fill_user_recursive ( EditLevel, BlockX, BlockY, SpecialMapValue, &number_changed);
@@ -528,7 +567,7 @@ action_fill_user ( Level EditLevel, int BlockX, int BlockY, int SpecialMapValue)
 }
 
 void
-action_change_obstacle_label ( Level EditLevel, obstacle *obstacle, char *name)
+action_change_obstacle_label (level *EditLevel, obstacle *obstacle, char *name)
 {
     int check_double;
     char *old_name = NULL;
@@ -604,7 +643,7 @@ action_change_obstacle_label ( Level EditLevel, obstacle *obstacle, char *name)
 	}
 }
 
-void action_change_obstacle_label_user ( Level EditLevel, obstacle *our_obstacle, char *predefined_name)
+void action_change_obstacle_label_user (level *EditLevel, obstacle *our_obstacle, char *predefined_name)
 {
     int cur_idx;
     char *name;
@@ -635,7 +674,7 @@ void action_change_obstacle_label_user ( Level EditLevel, obstacle *our_obstacle
 }   
 
 static void
-action_change_map_label ( Level EditLevel, int i, char *name)
+action_change_map_label (level *EditLevel, int i, char *name)
 {
     if (EditLevel -> labels [ i ] . pos . x != -1 ) {
 	int check_double;
@@ -667,7 +706,7 @@ action_change_map_label ( Level EditLevel, int i, char *name)
     }
 }
 
-void level_editor_action_change_map_label_user ()
+void level_editor_action_change_map_label_user (level *EditLevel)
 {
     char* NewCommentOnThisSquare;
     int i;
@@ -717,6 +756,47 @@ void level_editor_action_change_map_label_user ()
     action_change_map_label ( EditLevel, i, NewCommentOnThisSquare);
 }
 
+/**
+ *
+ *
+ */
+void level_editor_cycle_marked_obstacle()
+{
+    int current_mark_index ;
+    int j;
+
+    if ( level_editor_marked_obstacle != NULL )
+    {
+	//--------------------
+	// See if this floor tile has some other obstacles glued to it as well
+	//
+	if ( EditLevel() -> map [ EditY() ] [ EditX() ] . obstacles_glued_to_here [ 1 ] != (-1) )
+	{
+	    //--------------------
+	    // Find out which one of these is currently marked
+	    //
+	    current_mark_index = (-1);
+	    for ( j = 0 ; j < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE ; j ++ )
+	    {
+		if ( level_editor_marked_obstacle == & ( EditLevel() -> obstacle_list [ EditLevel() -> map [ EditY() ] [ EditX() ] . obstacles_glued_to_here [ j ] ] ) )
+		    current_mark_index = j ;
+	    }
+	    
+	    if ( current_mark_index != (-1) ) 
+	    {
+		if ( EditLevel() -> map [ EditY() ] [ EditX() ] . obstacles_glued_to_here [ current_mark_index + 1 ] != (-1) )
+		    level_editor_marked_obstacle = & ( EditLevel() -> obstacle_list [ EditLevel() -> map [ EditY() ] [ EditX() ] . obstacles_glued_to_here [ current_mark_index + 1 ] ] ) ;
+		else
+		    level_editor_marked_obstacle = & ( EditLevel() -> obstacle_list [ EditLevel() -> map [ EditY() ] [ EditX() ] . obstacles_glued_to_here [ 0 ] ] ) ;
+	    }
+
+	}
+    }
+
+}; // void level_editor_cycle_marked_obstacle()
+
+
+
 /* ------------------
  * Quickbar functions
  * ------------------
@@ -758,7 +838,7 @@ quickbar_getimage ( int selected_index , int *placing_floor )
 void
 action_jump_to_level( int target_level, double x, double y)
 {
-    action_push(ACT_JUMP_TO_LEVEL,EditLevel->levelnum, Me.pos.x, Me.pos.y);//< sets undo or redo stack, depending on push_mode state
+    action_push(ACT_JUMP_TO_LEVEL,EditLevel()->levelnum, Me.pos.x, Me.pos.y);//< sets undo or redo stack, depending on push_mode state
     Teleport(target_level, (float)x, (float)y, FALSE);
 }
 
@@ -828,7 +908,7 @@ quickbar_use (int obstacle, int id)
 }
 
 void
-quickbar_click ( Level level, int id, leveleditor_state *cur_state)
+quickbar_click (level *level, int id, leveleditor_state *cur_state)
 {
     struct quickbar_entry *entry = quickbar_getentry ( id );
     if ( entry ) {
@@ -1164,7 +1244,7 @@ fix_isolated_grass_tile ( level* EditLevel , int x , int y  )
  * beautify the grass.  If focuses on replacing 'full' grass tiles with 
  * proper full and part-full grass tiles.
  */
-void level_editor_beautify_grass_tiles ()
+void level_editor_beautify_grass_tiles (level *EditLevel)
 {
     int x ;
     int y ;
@@ -1304,7 +1384,7 @@ close_all_chests_on_level ( int l_num )
  *
  */
 void
-create_new_obstacle_on_level ( Level EditLevel , int our_obstacle_type , float pos_x , float pos_y )
+create_new_obstacle_on_level (level *EditLevel , int our_obstacle_type , float pos_x , float pos_y )
 {
     int i;
     int free_index = ( -1 ) ;
@@ -1350,7 +1430,7 @@ create_new_obstacle_on_level ( Level EditLevel , int our_obstacle_type , float p
   //
   glue_obstacles_to_floor_tiles_for_level ( EditLevel -> levelnum );
 
-}; // void create_new_obstacle_on_level ( Level EditLevel , int our_obstacle_type , float pos_x , float pos_y )
+}; // void create_new_obstacle_on_level (level *EditLevel , int our_obstacle_type , float pos_x , float pos_y )
 
 
 
@@ -1361,7 +1441,7 @@ create_new_obstacle_on_level ( Level EditLevel , int our_obstacle_type , float p
  * line must move too with the rest of the map.  This function sees to it.
  */
 void
-MoveMapLabelsSouthOf ( int FromWhere , int ByWhat , Level EditLevel )
+MoveMapLabelsSouthOf ( int FromWhere , int ByWhat, level *EditLevel )
 {
   int i;
 
@@ -1373,14 +1453,14 @@ MoveMapLabelsSouthOf ( int FromWhere , int ByWhat , Level EditLevel )
 	EditLevel -> labels [ i ] . pos . y += ByWhat;
     }
   
-}; // void MoveMapLabelsSouthOf ( int FromWhere , int ByWhat , Level EditLevel)
+}; // void MoveMapLabelsSouthOf ( int FromWhere , int ByWhat, level *EditLevel)
 
 /**
  *
  *
  */
 void
-move_obstacles_east_of ( float from_where , float by_what , Level edit_level )
+move_obstacles_east_of ( float from_where , float by_what, level *edit_level )
 {
   int i;
 
@@ -1474,14 +1554,14 @@ move_obstacles_east_of ( float from_where , float by_what , Level edit_level )
 
   glue_obstacles_to_floor_tiles_for_level ( edit_level -> levelnum ) ;
   
-}; // void move_obstacles_and_items_east_of ( float from_where , float by_what , Level edit_level )
+}; // void move_obstacles_and_items_east_of ( float from_where , float by_what, level *edit_level )
 
 /**
  *
  *
  */
 void
-move_obstacles_and_items_south_of ( float from_where , float by_what , Level edit_level )
+move_obstacles_and_items_south_of ( float from_where , float by_what, level *edit_level )
 {
   int i;
 
@@ -1576,14 +1656,14 @@ move_obstacles_and_items_south_of ( float from_where , float by_what , Level edi
 
   glue_obstacles_to_floor_tiles_for_level ( edit_level -> levelnum ) ;
   
-}; // void move_obstacles_south_of ( float from_where , float by_what , Level edit_level )
+}; // void move_obstacles_south_of ( float from_where , float by_what, level *edit_level )
 
 /**
  * When new lines are inserted into the map, the map labels east of this
  * line must move too with the rest of the map.  This function sees to it.
  */
 void
-MoveMapLabelsEastOf ( int FromWhere , int ByWhat , Level EditLevel )
+MoveMapLabelsEastOf ( int FromWhere , int ByWhat, level *EditLevel )
 {
   int i;
 
@@ -1595,14 +1675,14 @@ MoveMapLabelsEastOf ( int FromWhere , int ByWhat , Level EditLevel )
 	EditLevel -> labels [ i ] . pos . x += ByWhat;
     }
   
-}; // void MoveMapLabelsEastOf ( int FromWhere , int ByWhat , Level EditLevel)
+}; // void MoveMapLabelsEastOf ( int FromWhere , int ByWhat, level *EditLevel)
 
 /**
  * When new lines are inserted into the map, the waypoints south of this
  * line must move too with the rest of the map.  This function sees to it.
  */
 void
-MoveWaypointsSouthOf ( int FromWhere , int ByWhat , Level EditLevel )
+MoveWaypointsSouthOf ( int FromWhere , int ByWhat, level *EditLevel )
 {
   int i;
 
@@ -1614,7 +1694,7 @@ MoveWaypointsSouthOf ( int FromWhere , int ByWhat , Level EditLevel )
 	EditLevel -> AllWaypoints [ i ] . y += ByWhat;
     }
   
-}; // void MoveWaypointsSouthOf ( int FromWhere , int ByWhat , Level EditLevel)
+}; // void MoveWaypointsSouthOf ( int FromWhere , int ByWhat, level *EditLevel)
 
 /**
  * This function should associate the current mouse position with an
@@ -2172,7 +2252,7 @@ ShowLevelEditorTopMenu( int Highlight )
  * line must move too with the rest of the map.  This function sees to it.
  */
 void
-MoveWaypointsEastOf ( int FromWhere , int ByWhat , Level EditLevel )
+MoveWaypointsEastOf ( int FromWhere , int ByWhat, level *EditLevel )
 {
   int i;
 
@@ -2184,13 +2264,13 @@ MoveWaypointsEastOf ( int FromWhere , int ByWhat , Level EditLevel )
 	EditLevel -> AllWaypoints [ i ] . x += ByWhat;
     }
   
-}; // void MoveWaypointsEastOf ( int FromWhere , int ByWhat , Level EditLevel)
+}; // void MoveWaypointsEastOf ( int FromWhere , int ByWhat, level *EditLevel)
 
 /**
  * Self-explanatory.
  */
 void
-InsertLineVerySouth ( Level EditLevel )
+InsertLineVerySouth (level *EditLevel )
 {
   int i;
   int j;
@@ -2223,13 +2303,13 @@ InsertLineVerySouth ( Level EditLevel )
 	}
     }
 
-}; // void InsertLineVerySouth ( Level EditLevel )
+}; // void InsertLineVerySouth (level *EditLevel )
 
 /**
  * Self-explanatory.
  */
 void
-InsertColumnVeryEast ( Level EditLevel )
+InsertColumnVeryEast (level *EditLevel )
 {
   int i;
   map_tile* OldMapPointer;
@@ -2245,13 +2325,13 @@ InsertColumnVeryEast ( Level EditLevel )
       EditLevel->map[ i ] [ EditLevel->xlen-1 ] . floor_value = FLOOR;  
     }
 
-}; // void InsertColumnVeryEast ( Level EditLevel )
+}; // void InsertColumnVeryEast (level *EditLevel )
       
 /**
  * Self-explanatory.
  */
 void
-InsertColumnEasternInterface( Level EditLevel )
+InsertColumnEasternInterface(level *EditLevel )
 {
   int i;
 
@@ -2293,7 +2373,7 @@ InsertColumnEasternInterface( Level EditLevel )
  * Self-explanatory.
  */
 void
-RemoveColumnEasternInterface( Level EditLevel )
+RemoveColumnEasternInterface(level *EditLevel )
 {
   int i;
 
@@ -2334,13 +2414,13 @@ RemoveColumnEasternInterface( Level EditLevel )
 
   glue_obstacles_to_floor_tiles_for_level ( EditLevel -> levelnum );
 
-}; // void RemoveColumnEasternInterface( Level EditLevel );
+}; // void RemoveColumnEasternInterface(level *EditLevel );
 
 /**
  * Self-explanatory.
  */
 void
-InsertColumnWesternInterface( Level EditLevel )
+InsertColumnWesternInterface(level *EditLevel )
 {
   int BackupOfEasternInterface;
 
@@ -2360,13 +2440,13 @@ InsertColumnWesternInterface( Level EditLevel )
   InsertColumnEasternInterface ( EditLevel );
   EditLevel->jump_threshold_east = BackupOfEasternInterface ;
 
-}; // void InsertColumnWesternInterface( Level EditLevel )
+}; // void InsertColumnWesternInterface(level *EditLevel )
 
 /**
  * Self-explanatory.
  */
 void
-RemoveColumnWesternInterface( Level EditLevel )
+RemoveColumnWesternInterface(level *EditLevel )
 {
   int BackupOfEasternInterface;
 
@@ -2386,13 +2466,13 @@ RemoveColumnWesternInterface( Level EditLevel )
   RemoveColumnEasternInterface ( EditLevel );
   EditLevel->jump_threshold_east = BackupOfEasternInterface ;
 
-}; // void RemoveColumnWesternInterface( Level EditLevel )
+}; // void RemoveColumnWesternInterface(level *EditLevel )
 
 /**
  * Self-Explanatory.
  */
 void
-InsertColumnVeryWest ( Level EditLevel )
+InsertColumnVeryWest (level *EditLevel )
 {
   int OldEasternInterface;
 
@@ -2412,7 +2492,7 @@ InsertColumnVeryWest ( Level EditLevel )
  * Self-Explanatory.
  */
 void
-RemoveColumnVeryWest ( Level EditLevel )
+RemoveColumnVeryWest (level *EditLevel )
 {
   int OldEasternInterface;
 
@@ -2426,13 +2506,13 @@ RemoveColumnVeryWest ( Level EditLevel )
 
   EditLevel -> jump_threshold_east = OldEasternInterface ;
 
-}; // void RemoveColumnVeryEast ( Level EditLevel )
+}; // void RemoveColumnVeryEast (level *EditLevel )
 
 /**
  * Self-Explanatory.
  */
 void
-InsertLineSouthernInterface ( Level EditLevel )
+InsertLineSouthernInterface (level *EditLevel )
 {
   map_tile* temp;
   int i;
@@ -2474,7 +2554,7 @@ InsertLineSouthernInterface ( Level EditLevel )
  * Self-Explanatory.
  */
 void
-RemoveLineSouthernInterface ( Level EditLevel )
+RemoveLineSouthernInterface (level *EditLevel )
 {
   int i;
 
@@ -2515,7 +2595,7 @@ RemoveLineSouthernInterface ( Level EditLevel )
  * Self-Explanatory.
  */
 void
-InsertLineNorthernInterface ( Level EditLevel )
+InsertLineNorthernInterface (level *EditLevel )
 {
   int OldSouthernInterface;
 
@@ -2540,7 +2620,7 @@ InsertLineNorthernInterface ( Level EditLevel )
  * Self-Explanatory.
  */
 void
-RemoveLineNorthernInterface ( Level EditLevel )
+RemoveLineNorthernInterface (level *EditLevel )
 {
   int OldSouthernInterface;
 
@@ -2559,13 +2639,13 @@ RemoveLineNorthernInterface ( Level EditLevel )
 
   EditLevel -> jump_threshold_south = OldSouthernInterface ;
 
-}; // void RemoveLineNorthernInterface ( Level EditLevel )
+}; // void RemoveLineNorthernInterface (level *EditLevel )
 
 /**
  * Self-Explanatory.
  */
 void
-InsertLineVeryNorth ( Level EditLevel )
+InsertLineVeryNorth (level *EditLevel )
 {
   int OldSouthernInterface;
 
@@ -2585,7 +2665,7 @@ InsertLineVeryNorth ( Level EditLevel )
  * Self-Explanatory.
  */
 void
-RemoveLineVeryNorth ( Level EditLevel )
+RemoveLineVeryNorth (level *EditLevel )
 {
   int OldSouthernInterface;
 
@@ -2599,7 +2679,7 @@ RemoveLineVeryNorth ( Level EditLevel )
 
   EditLevel -> jump_threshold_south = OldSouthernInterface ;
 
-}; // void RemoveLineVeryNorth ( Level EditLevel )
+}; // void RemoveLineVeryNorth (level *EditLevel )
 
 /**
  * This a a menu interface to allow to edit the level dimensions in a
@@ -2899,7 +2979,7 @@ LevelValidation()
 	//
 	if ( is_invalid ) CenteredPutString( Screen, ReportRect.y + ReportRect.h - 2.0*raw_height, "\1Some tests were invalid. See the report in the console\3" );
 
-	CenteredPutString( Screen, ReportRect.y + ReportRect.h - raw_height, "--- End of List --- Press Space to return to Level Editor ---" );
+	CenteredPutString( Screen, ReportRect.y + ReportRect.h - raw_height, "--- End of List --- Press Space to return tolevel *Editor ---" );
 
 	our_SDL_flip_wrapper();
 
@@ -2917,332 +2997,327 @@ TestMap ( void )  /* Keeps World map in a clean state */
 } // TestMap ( void )
 
 
-void
-LevelOptions ( void )
+void LevelOptions ( void )
 {
-	char* MenuTexts[ 100 ];
-	char Options [ 20 ] [1000];
-	int proceed_now = FALSE ;
-	int MenuPosition=1;
-	int i;
-	int l = 0;
+    char* MenuTexts[ 100 ];
+    char Options [ 20 ] [1000];
+    int proceed_now = FALSE ;
+    int MenuPosition=1;
+    int i;
+    int l = 0;
 
-	enum
+    enum
 	{
-		CHANGE_LEVEL_POSITION=1,
-		SET_LEVEL_NAME,
-		EDIT_LEVEL_DIMENSIONS,
-		SET_LEVEL_INTERFACE_POSITION,
-		CHANGE_LIGHT,
-		SET_BACKGROUND_SONG_NAME,
-		SET_LEVEL_COMMENT,
-		CHANGE_INFINITE_RUNNING,
-		ADD_NEW_LEVEL,
-		LEAVE_OPTIONS_MENU,
+	CHANGE_LEVEL_POSITION=1,
+	SET_LEVEL_NAME,
+	EDIT_LEVEL_DIMENSIONS,
+	SET_LEVEL_INTERFACE_POSITION,
+	CHANGE_LIGHT,
+	SET_BACKGROUND_SONG_NAME,
+	SET_LEVEL_COMMENT,
+	CHANGE_INFINITE_RUNNING,
+	ADD_NEW_LEVEL,
+	LEAVE_OPTIONS_MENU,
 	};
 
-	while (!proceed_now)
+    while (!proceed_now)
 	{
-	
-		EditLevel = curShip.AllLevels [ Me . pos . z ] ;
-	
-		InitiateMenu( -1 );
-	
-		i = 0 ; 
-		sprintf( Options [ i ] , _("Level") );
-			sprintf( Options [ i+1 ] , ": %d.  (<-/->)" , EditLevel->levelnum );
-		    strcat( Options [ i ] , Options [ i+1 ] ); 
-		MenuTexts[ i ] = Options [ i ]; i++ ;
-		sprintf( Options [ i ] , _("Name") );
-			sprintf( Options [ i+1 ] , ": %s" , EditLevel->Levelname );
-		    strcat( Options [ i ] , Options [ i+1 ] ); 
-		MenuTexts[ i ] = Options [ i ] ; i++ ;
-	    sprintf( Options [ i ] , _("Size") );
-		    sprintf( Options [ i+1 ] , ":  X %d  Y %d " , EditLevel->xlen , EditLevel->ylen );
-		    strcat( Options [ i ] , Options [ i+1 ] ); 
-		MenuTexts[ i ] = Options [ i ] ; i++ ;
-		sprintf( Options [ i ] , _("Edge") );
-		    strcat( Options [ i ] , " " ); 
-			sprintf( Options [ i+1 ] , _("Interface") );
-		    strcat( Options [ i ] , Options [ i+1 ] ); 
-		    strcat( Options [ i ] , ":" ); 
-		if ( EditLevel->jump_target_north == -1 && EditLevel->jump_target_east == -1 && EditLevel->jump_target_south == -1 && EditLevel->jump_target_west == -1 )
-		{
-		     strcat( Options [ i ] , " none"); 
-		}
-		else 
-		{
-		    if ( EditLevel->jump_target_north != -1 )
-		    	sprintf( Options [ i ] + strlen(Options [ i ]) , "  N: %d/%d", EditLevel->jump_target_north, EditLevel->jump_threshold_north ); 
-		    if ( EditLevel->jump_target_east != -1 )
-		    	sprintf( Options [ i ] + strlen(Options [ i ]) , "  E: %d/%d", EditLevel->jump_target_east, EditLevel->jump_threshold_east ); 
-		    if ( EditLevel->jump_target_south != -1 )
-		    	sprintf( Options [ i ] + strlen(Options [ i ]) , "  S: %d/%d", EditLevel->jump_target_south, EditLevel->jump_threshold_south ); 
-		    if ( EditLevel->jump_target_west != -1 )
-		    	sprintf( Options [ i ] + strlen(Options [ i ]) , "  W: %d/%d", EditLevel->jump_target_west, EditLevel->jump_threshold_west ); 
-		}
-		MenuTexts[ i ] = Options [ i ] ; i++ ;
-		sprintf( Options [ i ] , _("Light") );
-		    strcat( Options [ i ] , ":  " );
-		    strcat( Options [ i ] , _("Radius") );
-			if ( l == 0 )
-			{
-				sprintf( Options [ i+1 ] , " [%d]  " , EditLevel -> light_radius_bonus );
-			    strcat( Options [ i ] , Options [ i+1 ] );
-			    strcat( Options [ i ] , _("Minimum") );
-				sprintf( Options [ i+1 ] , "  %d   (<-/->)" , EditLevel -> minimum_light_value );
-			}
-			else if ( l == 1 ) 
-			{
-				sprintf( Options [ i+1 ] , "  %d   " , EditLevel -> light_radius_bonus );
-			    strcat( Options [ i ] , Options [ i+1 ] );
-			    strcat( Options [ i ] , _("Minimum") );
-				sprintf( Options [ i+1 ] , " [%d]  (<-/->)" , EditLevel -> minimum_light_value );
-			}
-			else sprintf( Options [ i+1 ] , "Im a bug" );
-		    strcat( Options [ i ] , Options [ i+1 ] ); 
-		MenuTexts[ i ] = Options [ i ]; i++ ;
-		sprintf( Options [ i ] , _("Background Music") );
-			sprintf( Options [ i+1 ] , ": %s" , EditLevel->Background_Song_Name );
-		    strcat( Options [ i ] , Options [ i+1 ] ); 
-		MenuTexts[ i ] = Options [ i ] ; i++ ;
-		sprintf( Options [ i ] , _("Comment") );
-			sprintf( Options [ i+1 ] , ": %s" , EditLevel->Level_Enter_Comment );
-		    strcat( Options [ i ] , Options [ i+1 ] ); 
-		MenuTexts[ i ] = Options [ i ] ; i++ ;
-		sprintf( Options [ i ] , _("Infinite Running") );
-		    strcat( Options [ i ] , ": " ); 
-		if ( EditLevel -> infinite_running_on_this_level ) strcat ( Options [ i ] , _("YES"));
-		else ( strcat ( Options [ i ] , _("NO")));
-		MenuTexts[ i ] = Options [ i ]; i++;
-		MenuTexts[i++] = _("Add New Level");
-		MenuTexts[i++] = _("Back") ;
-		MenuTexts[i++] = "" ;
 
-		while ( EscapePressed() ) SDL_Delay(1);
+	InitiateMenu( -1 );
 
-		MenuPosition = DoMenuSelection( "" , MenuTexts , -1 , -1 , FPS_Display_BFont );
-	
-		while ( EnterPressed ( ) || SpacePressed ( ) || MouseLeftPressed()) SDL_Delay(1);
-	
-		switch ( MenuPosition ) 
+	i = 0 ; 
+	sprintf( Options [ i ] , _("Level") );
+	sprintf( Options [ i+1 ] , ": %d.  (<-/->)" , EditLevel()->levelnum );
+	strcat( Options [ i ] , Options [ i+1 ] ); 
+	MenuTexts[ i ] = Options [ i ]; i++ ;
+	sprintf( Options [ i ] , _("Name") );
+	sprintf( Options [ i+1 ] , ": %s" , EditLevel()->Levelname );
+	strcat( Options [ i ] , Options [ i+1 ] ); 
+	MenuTexts[ i ] = Options [ i ] ; i++ ;
+	sprintf( Options [ i ] , _("Size") );
+	sprintf( Options [ i+1 ] , ":  X %d  Y %d " , EditLevel()->xlen , EditLevel()->ylen );
+	strcat( Options [ i ] , Options [ i+1 ] ); 
+	MenuTexts[ i ] = Options [ i ] ; i++ ;
+	sprintf( Options [ i ] , _("Edge") );
+	strcat( Options [ i ] , " " ); 
+	sprintf( Options [ i+1 ] , _("Interface") );
+	strcat( Options [ i ] , Options [ i+1 ] ); 
+	strcat( Options [ i ] , ":" ); 
+	if ( EditLevel()->jump_target_north == -1 && EditLevel()->jump_target_east == -1 && EditLevel()->jump_target_south == -1 && EditLevel()->jump_target_west == -1 )
+	    {
+	    strcat( Options [ i ] , " none"); 
+	    }
+	else 
+	    {
+	    if ( EditLevel()->jump_target_north != -1 )
+		sprintf( Options [ i ] + strlen(Options [ i ]) , "  N: %d/%d", EditLevel()->jump_target_north, EditLevel()->jump_threshold_north ); 
+	    if ( EditLevel()->jump_target_east != -1 )
+		sprintf( Options [ i ] + strlen(Options [ i ]) , "  E: %d/%d", EditLevel()->jump_target_east, EditLevel()->jump_threshold_east ); 
+	    if ( EditLevel()->jump_target_south != -1 )
+		sprintf( Options [ i ] + strlen(Options [ i ]) , "  S: %d/%d", EditLevel()->jump_target_south, EditLevel()->jump_threshold_south ); 
+	    if ( EditLevel()->jump_target_west != -1 )
+		sprintf( Options [ i ] + strlen(Options [ i ]) , "  W: %d/%d", EditLevel()->jump_target_west, EditLevel()->jump_threshold_west ); 
+	    }
+	MenuTexts[ i ] = Options [ i ] ; i++ ;
+	sprintf( Options [ i ] , _("Light") );
+	strcat( Options [ i ] , ":  " );
+	strcat( Options [ i ] , _("Radius") );
+	if ( l == 0 )
+	    {
+	    sprintf( Options [ i+1 ] , " [%d]  " , EditLevel() -> light_radius_bonus );
+	    strcat( Options [ i ] , Options [ i+1 ] );
+	    strcat( Options [ i ] , _("Minimum") );
+	    sprintf( Options [ i+1 ] , "  %d   (<-/->)" , EditLevel() -> minimum_light_value );
+	    }
+	else if ( l == 1 ) 
+	    {
+	    sprintf( Options [ i+1 ] , "  %d   " , EditLevel() -> light_radius_bonus );
+	    strcat( Options [ i ] , Options [ i+1 ] );
+	    strcat( Options [ i ] , _("Minimum") );
+	    sprintf( Options [ i+1 ] , " [%d]  (<-/->)" , EditLevel() -> minimum_light_value );
+	    }
+	else sprintf( Options [ i+1 ] , "Im a bug" );
+	strcat( Options [ i ] , Options [ i+1 ] ); 
+	MenuTexts[ i ] = Options [ i ]; i++ ;
+	sprintf( Options [ i ] , _("Background Music") );
+	sprintf( Options [ i+1 ] , ": %s" , EditLevel()->Background_Song_Name );
+	strcat( Options [ i ] , Options [ i+1 ] ); 
+	MenuTexts[ i ] = Options [ i ] ; i++ ;
+	sprintf( Options [ i ] , _("Comment") );
+	sprintf( Options [ i+1 ] , ": %s" , EditLevel()->Level_Enter_Comment );
+	strcat( Options [ i ] , Options [ i+1 ] ); 
+	MenuTexts[ i ] = Options [ i ] ; i++ ;
+	sprintf( Options [ i ] , _("Infinite Running") );
+	strcat( Options [ i ] , ": " ); 
+	if ( EditLevel() -> infinite_running_on_this_level ) strcat ( Options [ i ] , _("YES"));
+	else ( strcat ( Options [ i ] , _("NO")));
+	MenuTexts[ i ] = Options [ i ]; i++;
+	MenuTexts[i++] = _("Add New Level");
+	MenuTexts[i++] = _("Back") ;
+	MenuTexts[i++] = "" ;
+
+	while ( EscapePressed() ) SDL_Delay(1);
+
+	MenuPosition = DoMenuSelection( "" , MenuTexts , -1 , -1 , FPS_Display_BFont );
+
+	while ( EnterPressed ( ) || SpacePressed ( ) || MouseLeftPressed()) SDL_Delay(1);
+
+	switch ( MenuPosition ) 
+	    {
+	    case (-1):
+		while ( EscapePressed() );
+		proceed_now=!proceed_now;
+		break;
+	    case CHANGE_LEVEL_POSITION: 
+		// if ( EditLevel()->levelnum ) Teleport ( EditLevel()->levelnum-1 , Me.pos.x , Me.pos.y );
+		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
+		break;
+	    case CHANGE_LIGHT:
+		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
+		// Switch between Radius and Minimum modification mode.
+		if ( l == 0 )
+		    {
+		    if ( LeftPressed() ) l = 0;
+		    else if ( RightPressed() ) l = 0;
+		    else l = 1;
+		    }
+		else if ( l == 1 )
+		    {
+		    if ( LeftPressed() ) l = 1;
+		    else if ( RightPressed() ) l = 1;
+		    else l = 0;
+		    }
+		else l = 2;
+		Teleport ( EditLevel() -> levelnum , 
+			Me . pos . x , Me . pos . y , FALSE );
+		break;
+	    case SET_LEVEL_NAME:
+		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
+		EditLevel()->Levelname =  
+		    GetEditableStringInPopupWindow ( 1000 , _("\n Please enter new level name: \n\n") ,
+			    EditLevel()->Levelname );
+		break;
+	    case ADD_NEW_LEVEL:
+		if (game_root_mode == ROOT_IS_GAME)
+		    break;
+		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
+		if ( curShip . num_levels < MAX_LEVELS )
+		    {
+		    int new_level_num = curShip.num_levels;
+		    int i;
+		    // search empty level, if any
+		    for ( i = 0; i < curShip.num_levels; ++i )
+			{
+			if ( curShip.AllLevels[i] == NULL)
+			    {
+			    new_level_num = i;
+			    break;
+			    }
+			}
+		    if ( new_level_num == curShip.num_levels ) curShip.num_levels += 1;
+		    CreateNewMapLevel ( new_level_num ) ;
+		    Me . pos . z = new_level_num;
+		    Me . pos . x = 3;
+		    Me . pos . y = 3;
+		    }
+		break;
+	    case SET_BACKGROUND_SONG_NAME:
+		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
+		EditLevel()->Background_Song_Name = 
+		    GetEditableStringInPopupWindow ( 1000 , _("\n Please enter new music file name: \n\n") ,
+			    EditLevel()->Background_Song_Name );
+		break;
+	    case SET_LEVEL_COMMENT:
+		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
+		EditLevel()->Level_Enter_Comment = 
+		    GetEditableStringInPopupWindow ( 1000 , _("\n Please enter new level comment: \n\n") ,
+			    EditLevel()->Level_Enter_Comment );
+		break;
+	    case SET_LEVEL_INTERFACE_POSITION:
+		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
+		SetLevelInterfaces ( );
+		break;
+	    case EDIT_LEVEL_DIMENSIONS:
+		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
+		EditLevelDimensions ( );
+		break;
+	    case CHANGE_INFINITE_RUNNING:
+		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
+		EditLevel() -> infinite_running_on_this_level =
+		    ! EditLevel() -> infinite_running_on_this_level ;
+		break;
+	    case LEAVE_OPTIONS_MENU:
+		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
+		proceed_now=!proceed_now;
+		break;
+	    default: 
+		break;
+
+	    } // switch
+
+	// If the user of the level editor pressed left or right, that should have
+	// an effect IF he/she is a the change level menu point
+
+	if ( LeftPressed ( ) || RightPressed ( ) ) 
+	    {
+	    switch (MenuPosition)
 		{
-			case (-1):
-				while ( EscapePressed() );
-				proceed_now=!proceed_now;
-				break;
-			case CHANGE_LEVEL_POSITION: 
-			// if ( EditLevel->levelnum ) Teleport ( EditLevel->levelnum-1 , Me.pos.x , Me.pos.y );
-				while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
-				break;
-			case CHANGE_LIGHT:
-				while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
-				// Switch between Radius and Minimum modification mode.
-				if ( l == 0 )
-				{
-					if ( LeftPressed() ) l = 0;
-					else if ( RightPressed() ) l = 0;
-					else l = 1;
-				}
-				else if ( l == 1 )
-				{
-					if ( LeftPressed() ) l = 1;
-					else if ( RightPressed() ) l = 1;
-					else l = 0;
-				}
-				else l = 2;
-					Teleport ( EditLevel -> levelnum , 
-						   Me . pos . x , Me . pos . y , FALSE );
-				break;
-			case SET_LEVEL_NAME:
-				while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
-				EditLevel->Levelname =  
-				GetEditableStringInPopupWindow ( 1000 , _("\n Please enter new level name: \n\n") ,
-								 EditLevel->Levelname );
-				break;
-			case ADD_NEW_LEVEL:
-				if (game_root_mode == ROOT_IS_GAME)
-				break;
-				while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
-				if ( curShip . num_levels < MAX_LEVELS )
-				{
-					int new_level_num = curShip.num_levels;
-					int i;
-					// search empty level, if any
-					for ( i = 0; i < curShip.num_levels; ++i )
-					{
-						if ( curShip.AllLevels[i] == NULL)
-						{
-							new_level_num = i;
-							break;
-						}
-					}
-					if ( new_level_num == curShip.num_levels ) curShip.num_levels += 1;
-					CreateNewMapLevel ( new_level_num ) ;
-					Me . pos . z = new_level_num;
-					Me . pos . x = 3;
-					Me . pos . y = 3;
-				}
-				break;
-			case SET_BACKGROUND_SONG_NAME:
-				while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
-				EditLevel->Background_Song_Name = 
-					GetEditableStringInPopupWindow ( 1000 , _("\n Please enter new music file name: \n\n") ,
-									 EditLevel->Background_Song_Name );
-				break;
-			case SET_LEVEL_COMMENT:
-				while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
-				EditLevel->Level_Enter_Comment = 
-					GetEditableStringInPopupWindow ( 1000 , _("\n Please enter new level comment: \n\n") ,
-									 EditLevel->Level_Enter_Comment );
-				break;
-			case SET_LEVEL_INTERFACE_POSITION:
-				while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
-				SetLevelInterfaces ( );
-				break;
-			case EDIT_LEVEL_DIMENSIONS:
-				while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
-				EditLevelDimensions ( );
-				break;
-			case CHANGE_INFINITE_RUNNING:
-				while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
-				EditLevel -> infinite_running_on_this_level =
-					! EditLevel -> infinite_running_on_this_level ;
-				break;
-			case LEAVE_OPTIONS_MENU:
-				while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
-				proceed_now=!proceed_now;
-				break;
-			default: 
-				break;
-		
+
+		case CHANGE_LEVEL_POSITION:
+		    if ( LeftPressed() )
+			{
+			// find first available level lower than the current one
+			int newlevel = EditLevel()->levelnum - 1;
+			while ( curShip.AllLevels[newlevel] == NULL && newlevel >= 0 ) --newlevel;
+			// teleport if new level exists
+			if ( newlevel >= 0 ) Teleport ( newlevel , 3 , 3 , FALSE );
+			while (LeftPressed());
+			}
+		    if ( RightPressed() )
+			{
+			// find first available level higher than the current one
+			int newlevel = EditLevel()->levelnum + 1;
+			while ( curShip.AllLevels[newlevel] == NULL && newlevel < curShip.num_levels ) ++newlevel;
+			// teleport if new level exists
+			if ( newlevel < curShip.num_levels ) Teleport ( newlevel , 3 , 3 , FALSE );
+			while (RightPressed());
+			}
+		    break;
+
+		case CHANGE_LIGHT:
+		    if ( l == 0 )
+			{
+			if ( RightPressed() )
+			    {
+			    EditLevel() -> light_radius_bonus ++;
+			    while (RightPressed());
+			    }
+			if ( LeftPressed() )
+			    {
+			    EditLevel() -> light_radius_bonus --;
+			    while (LeftPressed());
+			    }
+			Teleport ( EditLevel() -> levelnum , 
+				Me . pos . x , Me . pos . y , FALSE ); 
+			break;
+			}
+		    else
+			{
+			if ( RightPressed() )
+			    {
+			    EditLevel() -> minimum_light_value ++;
+			    while (RightPressed());
+			    }
+			if ( LeftPressed() )
+			    {
+			    EditLevel() -> minimum_light_value --;
+			    while (LeftPressed());
+			    }
+			Teleport ( EditLevel() -> levelnum , 
+				Me . pos . x , Me . pos . y , FALSE ); 
+			break;
+			}
+
 		} // switch
-	
-		// If the user of the level editor pressed left or right, that should have
-		// an effect IF he/she is a the change level menu point
-	
-		if ( LeftPressed ( ) || RightPressed ( ) ) 
-		{
-			switch (MenuPosition)
-			{
-
-				case CHANGE_LEVEL_POSITION:
-					if ( LeftPressed() )
-					{
-						// find first available level lower than the current one
-						int newlevel = EditLevel->levelnum - 1;
-						while ( curShip.AllLevels[newlevel] == NULL && newlevel >= 0 ) --newlevel;
-						// teleport if new level exists
-						if ( newlevel >= 0 ) Teleport ( newlevel , 3 , 3 , FALSE );
-						while (LeftPressed());
-					}
-					if ( RightPressed() )
-					{
-						// find first available level higher than the current one
-						int newlevel = EditLevel->levelnum + 1;
-						while ( curShip.AllLevels[newlevel] == NULL && newlevel < curShip.num_levels ) ++newlevel;
-						// teleport if new level exists
-						if ( newlevel < curShip.num_levels ) Teleport ( newlevel , 3 , 3 , FALSE );
-						while (RightPressed());
-					}
-					break;
-				
-				case CHANGE_LIGHT:
-					if ( l == 0 )
-					{
-						if ( RightPressed() )
-						{
-						EditLevel -> light_radius_bonus ++;
-						while (RightPressed());
-						}
-						if ( LeftPressed() )
-						{
-						EditLevel -> light_radius_bonus --;
-						while (LeftPressed());
-						}
-						Teleport ( EditLevel -> levelnum , 
-							   Me . pos . x , Me . pos . y , FALSE ); 
-						break;
-					}
-					else
-					{
-						if ( RightPressed() )
-						{
-						EditLevel -> minimum_light_value ++;
-						while (RightPressed());
-						}
-						if ( LeftPressed() )
-						{
-						EditLevel -> minimum_light_value --;
-						while (LeftPressed());
-						}
-						Teleport ( EditLevel -> levelnum , 
-							   Me . pos . x , Me . pos . y , FALSE ); 
-						break;
-					}
-
-			} // switch
-		} // if LeftPressed || RightPressed
-    }
+	    } // if LeftPressed || RightPressed
+	}
     return ;
 }; // void LevelOptions ( void );
 
-void
-AdvancedOptions ( void )
+void AdvancedOptions ( void )
 {
-	char* MenuTexts[ 100 ];
-	int proceed_now = FALSE ;
-	int MenuPosition=1;
-	int i;
+    char* MenuTexts[ 100 ];
+    int proceed_now = FALSE ;
+    int MenuPosition=1;
+    int i;
 
-	enum
+    enum
 	{
-		RUN_MAP_VALIDATION=1,
-		RUN_LUA_VALIDATION,
-		LEAVE_OPTIONS_MENU,
+	RUN_MAP_VALIDATION=1,
+	RUN_LUA_VALIDATION,
+	LEAVE_OPTIONS_MENU,
 	};
 
-	while (!proceed_now)
+    while (!proceed_now)
 	{
-	
-		EditLevel = curShip.AllLevels [ Me . pos . z ] ;
-	
-		InitiateMenu( -1 );
-	
-		i = 0 ; 
-		MenuTexts[i++] = _("Run Map Level Validator");
-		MenuTexts[i++] = _("Run Dialog Lua Validator");
-		MenuTexts[i++] = _("Back") ;
-		MenuTexts[i++] = "" ;
 
-		while ( EscapePressed() ) SDL_Delay(1);
 
-		MenuPosition = DoMenuSelection( "" , MenuTexts , -1 , -1 , FPS_Display_BFont );
-	
-		while ( EnterPressed ( ) || SpacePressed ( ) || MouseLeftPressed()) SDL_Delay(1);
-	
-		switch ( MenuPosition ) 
-		{
-			case (-1):
-				while ( EscapePressed() );
-				proceed_now=!proceed_now;
-				break;
-			case RUN_MAP_VALIDATION:
-				while (EnterPressed() || SpacePressed() || MouseLeftPressed() ) SDL_Delay(1);
-				LevelValidation();
-				while ( !SpacePressed() ) SDL_Delay(0);
-				//Hack: eat all pending events.
-				input_handle();
-				break;
-			case LEAVE_OPTIONS_MENU:
-				while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
-				proceed_now=!proceed_now;
-				break;
-			default: 
-				break;
-		
-		} // switch
-    }
+	InitiateMenu( -1 );
+
+	i = 0 ; 
+	MenuTexts[i++] = _("Run Maplevel *Validator");
+	MenuTexts[i++] = _("Run Dialog Lua Validator");
+	MenuTexts[i++] = _("Back") ;
+	MenuTexts[i++] = "" ;
+
+	while ( EscapePressed() ) SDL_Delay(1);
+
+	MenuPosition = DoMenuSelection( "" , MenuTexts , -1 , -1 , FPS_Display_BFont );
+
+	while ( EnterPressed ( ) || SpacePressed ( ) || MouseLeftPressed()) SDL_Delay(1);
+
+	switch ( MenuPosition ) 
+	    {
+	    case (-1):
+		while ( EscapePressed() );
+		proceed_now=!proceed_now;
+		break;
+	    case RUN_MAP_VALIDATION:
+		while (EnterPressed() || SpacePressed() || MouseLeftPressed() ) SDL_Delay(1);
+		LevelValidation();
+		while ( !SpacePressed() ) SDL_Delay(0);
+		//Hack: eat all pending events.
+		input_handle();
+		break;
+	    case LEAVE_OPTIONS_MENU:
+		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
+		proceed_now=!proceed_now;
+		break;
+	    default: 
+		break;
+
+	    } // switch
+	}
     return ;
 }; // void AdvancedOptions ( void );
 
@@ -3251,7 +3326,7 @@ AdvancedOptions ( void )
  *
  */
 int
-DoLevelEditorMainMenu ( Level EditLevel )
+DoLevelEditorMainMenu (level *EditLevel )
 {
     char* MenuTexts[ 100 ];
     char Options [ 20 ] [1000];
@@ -3259,6 +3334,9 @@ DoLevelEditorMainMenu ( Level EditLevel )
     int MenuPosition=1;
     int Done=FALSE;
     int i;
+
+    //hack : eat pending events
+    input_handle();
 
     enum
 	{ 
@@ -3276,7 +3354,6 @@ DoLevelEditorMainMenu ( Level EditLevel )
     while (!proceed_now)
     {
 	
-		EditLevel = curShip.AllLevels [ Me . pos . z ] ;
 	
 		InitiateMenu( -1 );
 	
@@ -3413,7 +3490,7 @@ DoLevelEditorMainMenu ( Level EditLevel )
 	
     }
     return ( Done );
-}; // void DoLevelEditorMainMenu ( Level EditLevel );
+}; // void DoLevelEditorMainMenu (level *EditLevel );
 
 /**
  * There is a 'help' screen for the level editor too.  This help screen
@@ -3604,7 +3681,7 @@ ReportInconsistenciesForLevel ( int LevelNum )
  * obstacles. :)
  */
 void
-delete_all_obstacles_in_area ( Level TargetLevel , float start_x , float start_y , float area_width , float area_height )
+delete_all_obstacles_in_area (level *TargetLevel , float start_x , float start_y , float area_width , float area_height )
 {
     int i;
     
@@ -3631,7 +3708,7 @@ delete_all_obstacles_in_area ( Level TargetLevel , float start_x , float start_y
  * cluttering in the map file.
  */
 void
-eliminate_dead_obstacle_descriptions ( Level target_level )
+eliminate_dead_obstacle_descriptions (level *target_level )
 {
     int i;
     int is_in_use;
@@ -3673,7 +3750,7 @@ eliminate_dead_obstacle_descriptions ( Level target_level )
 	DebugPrintf ( 1 , "\nNOTE: void eliminate_dead_obstacle_descriptions(...):  dead description found.  Eliminated." );
     }
 	
-}; // void eliminate_dead_obstacle_descriptions ( Level target_level )
+}; // void eliminate_dead_obstacle_descriptions (level *target_level )
 
 /**
  * This function should allow for conveninet duplication of obstacles from
@@ -3681,10 +3758,10 @@ eliminate_dead_obstacle_descriptions ( Level target_level )
  * out of obstacles already.
  */
 void
-duplicate_all_obstacles_in_area ( Level source_level ,
+duplicate_all_obstacles_in_area (level *source_level ,
 				  float source_start_x , float source_start_y , 
 				  float source_area_width , float source_area_height ,
-				  Level target_level ,
+				 level *target_level ,
 				  float target_start_x , float target_start_y )
 {
     int i;
@@ -4190,7 +4267,7 @@ SetLevelInterfaces ( void )
 void
 CreateNewMapLevel( int level_num )
 {
-    Level NewLevel;
+   level *NewLevel;
     int i, k, l ;
     
     //--------------------
@@ -4341,7 +4418,7 @@ CreateNewMapLevel( int level_num )
  * Now we print out the map label information about this map location.
  */
 void
-PrintMapLabelInformationOfThisSquare ( Level EditLevel )
+PrintMapLabelInformationOfThisSquare (level *EditLevel )
 {
     int MapLabelIndex;
     char PanelText[5000]="";
@@ -4361,18 +4438,18 @@ PrintMapLabelInformationOfThisSquare ( Level EditLevel )
     DisplayText ( PanelText , User_Rect.x , GameConfig.screen_height - 5 * FontHeight( GetCurrentFont() ) , 
             NULL/*&User_Rect*/ , 1.0 );
     
-}; // void PrintMapLabelInformationOfThisSquare ( Level EditLevel )
+}; // void PrintMapLabelInformationOfThisSquare (level *EditLevel )
 
 /**
- * This function is used by the Level Editor integrated into 
+ * This function is used by thelevel *Editor integrated into 
  * freedroid.  It highlights the map position that is currently 
  * edited or would be edited, if the user pressed something.  I.e. 
- * it provides a "cursor" for the Level Editor.
+ * it provides a "cursor" for thelevel *Editor.
  */
 void 
 Highlight_Current_Block (int mask)
 {
-    Level EditLevel;
+   level *EditLevel;
     static iso_image level_editor_cursor = { NULL, 0, 0 };
     char fpath[2048];
     
@@ -4496,7 +4573,7 @@ draw_connection_between_tiles ( float x1 , float y1 , float x2 , float y2 , int 
 }; // void draw_connection_between_tiles ( .... )
 
 /**
- * This function is used by the Level Editor integrated into 
+ * This function is used by thelevel *Editor integrated into 
  * freedroid.  It marks all waypoints with a cross.
  */
 void 
@@ -4507,7 +4584,7 @@ ShowWaypoints( int PrintConnectionList , int mask )
     int BlockX, BlockY;
     char ConnectionText[5000];
     char TextAddition[1000];
-    Level EditLevel;
+   level *EditLevel;
     static iso_image level_editor_waypoint_cursor [ 2 ] = { UNLOADED_ISO_IMAGE , UNLOADED_ISO_IMAGE } ;
     char fpath[2048];
     waypoint *this_wp;
@@ -4635,14 +4712,14 @@ ShowWaypoints( int PrintConnectionList , int mask )
 }; // void ShowWaypoints( int PrintConnectionList );
 
 /**
- * This function is used by the Level Editor integrated into 
+ * This function is used by thelevel *Editor integrated into 
  * freedroid.  It marks all places that have a label attached to them.
  */
 void 
 ShowMapLabels( int mask )
 {
     int LabelNr;
-    Level EditLevel;
+   level *EditLevel;
     static iso_image map_label_indicator = UNLOADED_ISO_IMAGE ;
     static int first_function_call = TRUE ;
     char fpath[2048];
@@ -4696,8 +4773,7 @@ ShowMapLabels( int mask )
  *
  *
  */
-void
-level_editor_place_aligned_obstacle ( int positionid )
+void level_editor_place_aligned_obstacle ( int positionid )
 {
     struct quickbar_entry *entry = NULL;
     int obstacle_type, id;
@@ -4733,7 +4809,7 @@ level_editor_place_aligned_obstacle ( int positionid )
 
     if ( placement_is_possible )
     {
-	action_create_obstacle_user ( EditLevel, ((int)Me.pos.x) + position_offset_x[positionid] , ((int)Me.pos.y) + position_offset_y[positionid], wall_indices [ obstacle_type ] [ id ] );
+	action_create_obstacle_user ( EditLevel(), ((int)Me.pos.x) + position_offset_x[positionid] , ((int)Me.pos.y) + position_offset_y[positionid], wall_indices [ obstacle_type ] [ id ] );
 	obstacle_created = TRUE;
 	if ( GameConfig . level_editor_edit_mode != LEVEL_EDITOR_SELECTION_QUICK && obstacle_created )
 	    quickbar_use ( obstacle_type, id );
@@ -4747,7 +4823,7 @@ level_editor_place_aligned_obstacle ( int positionid )
     void 
 HandleLevelEditorCursorKeys ( leveleditor_state *cur_state )
 {
-    Level EditLevel;
+   level *EditLevel;
 
     EditLevel = curShip.AllLevels [ Me . pos . z ] ;
     static int PressedSince[4] = { 0, 0, 0, 0 };
@@ -5118,7 +5194,7 @@ show_level_editor_tooltips ( void )
  *
  */
 int
-marked_obstacle_is_glued_to_here ( Level EditLevel , float x , float y )
+marked_obstacle_is_glued_to_here (level *EditLevel , float x , float y )
 {
     int j;
     int current_mark_index = (-1);
@@ -5146,7 +5222,7 @@ marked_obstacle_is_glued_to_here ( Level EditLevel , float x , float y )
  *
  */
 void
-give_new_description_to_obstacle ( Level EditLevel , obstacle* our_obstacle , char* predefined_description )
+give_new_description_to_obstacle (level *EditLevel , obstacle* our_obstacle , char* predefined_description )
 {
     int i;
     int free_index=(-1);
@@ -5242,7 +5318,7 @@ void start_line_mode(leveleditor_state *cur_state, int already_defined)
     cur_state->l_elements.position.y = (int)cur_state->TargetSquare.y + 
 	((obstacle_map [ wall_indices [ cur_state->l_selected_mode ] [ cur_state->l_id ] ] . flags & IS_HORIZONTAL) ? 0 : 0.5);
 
-    cur_state->l_elements.address = action_create_obstacle_user ( EditLevel , 
+    cur_state->l_elements.address = action_create_obstacle_user ( EditLevel() , 
 	    cur_state->l_elements.position.x , cur_state->l_elements.position.y , 
 	    wall_indices [ cur_state->l_selected_mode ] [ cur_state->l_id ] );
 }
@@ -5275,48 +5351,48 @@ void handle_line_mode(leveleditor_state *cur_state)
 	// Then we want to find out in which direction the mouse has moved
 	// since the last time, and compute the distance relatively to the axis
 	if (fabsf(offset.y) > fabsf(offset.x))
-	{
+	    {
 	    if (offset.y > 0)
-	    {
+		{
 		actual_direction = NORTH;
-	    }
+		}
 	    else
-	    {
+		{
 		actual_direction = SOUTH;
-	    }
+		}
 	    distance = fabsf(cur_state->TargetSquare.y - pos_last.y);
-	}
+	    }
 	else
-	{
+	    {
 	    if (offset.x > 0) {
 		actual_direction = WEST;
 	    }
 	    else
-	    {
+		{
 		actual_direction = EAST;
-	    }
+		}
 	    distance = fabsf(cur_state->TargetSquare.x - pos_last.x);
-	}
+	    }
 
 	// Are we going in a direction possible with that wall?
 	if ( obstacle_map [ wall_indices [ cur_state->l_selected_mode ] [ cur_state->l_id ] ] . flags & IS_HORIZONTAL )
-	{
-		direction_is_possible =  (actual_direction == WEST) || (actual_direction == EAST);
-	} 
+	    {
+	    direction_is_possible =  (actual_direction == WEST) || (actual_direction == EAST);
+	    } 
 	else if ( obstacle_map [ wall_indices [ cur_state->l_selected_mode ] [ cur_state->l_id ] ] . flags & IS_VERTICAL ) 
-	{
-		direction_is_possible = (actual_direction == NORTH) || (actual_direction == SOUTH);
-	}
+	    {
+	    direction_is_possible = (actual_direction == NORTH) || (actual_direction == SOUTH);
+	    }
 	else 
-	{
-		direction_is_possible = FALSE;
-	}
+	    {
+	    direction_is_possible = FALSE;
+	    }
 
 	// If the mouse is far away enoug
 	if ((distance > 1) && (direction_is_possible) &&
 		((cur_state->l_direction == actual_direction) || 
 		 (cur_state->l_direction == UNDEFINED))) 
-	{
+	    {
 	    wall = malloc(sizeof(line_element));
 
 	    // Then we calculate the position of the next wall
@@ -5339,30 +5415,30 @@ void handle_line_mode(leveleditor_state *cur_state)
 	    }
 	    // And add the wall, to the linked list and to the map
 	    list_add_tail(&(wall->list), &(cur_state->l_elements.list));
-	    wall->address = action_create_obstacle_user ( EditLevel ,
+	    wall->address = action_create_obstacle_user ( EditLevel() ,
 		    wall->position.x , wall->position.y ,
 		    wall_indices [ cur_state->l_selected_mode ] [ cur_state->l_id ] );
 
 	    // If the direction is unknown (ie. we only have one wall), 
 	    // let's define it
 	    if (cur_state->l_direction == UNDEFINED)
-	    {
+		{
 		cur_state->l_direction = actual_direction;
+		}
 	    }
-	}
 	if ( (cur_state->l_direction == (- actual_direction)) && 
 		(!list_empty(&(cur_state->l_elements.list))) )
-	{
+	    {
 	    // Looks like the user wants to go back, so let's remove the line wall
 	    wall = list_entry(cur_state->l_elements.list.prev, line_element, list);
-	    action_remove_obstacle_user(EditLevel, wall->address);
+	    action_remove_obstacle_user(EditLevel(), wall->address);
 	    list_del(cur_state->l_elements.list.prev);
 	    free(wall);
 	    if(list_empty(&(cur_state->l_elements.list)))
-	    {
+		{
 		cur_state->l_direction = UNDEFINED;
+		}
 	    }
-	}
     }
 }; // void handle_line_mode(line_element *wall_line, moderately_finepoint TargetSquare, int *direction)
 
@@ -5379,12 +5455,12 @@ void end_line_mode(leveleditor_state *cur_state, int place_line)
 	tmp = list_entry(cur_state->l_elements.list.prev, line_element, list);
 	free(tmp);
 	if(!place_line)
-	    action_remove_obstacle(EditLevel, cur_state->l_elements.address);
+	    action_remove_obstacle(EditLevel(), cur_state->l_elements.address);
 	list_del(cur_state->l_elements.list.prev);
 	list_length++;
     }
     if(!place_line)
-	action_remove_obstacle(EditLevel, cur_state->l_elements.address);
+	action_remove_obstacle(EditLevel(), cur_state->l_elements.address);
 
     // Remove the sentinel
     list_del(&(cur_state->l_elements.list));
@@ -5410,7 +5486,7 @@ void start_rectangle_mode ( leveleditor_state *cur_state , int already_defined )
 	cur_state->r_tile_used = Highlight;
 
     /* Place the first tile */
-    action_set_floor ( EditLevel, cur_state->r_start.x, cur_state->r_start.y, cur_state->r_tile_used );
+    action_set_floor ( EditLevel(), cur_state->r_start.x, cur_state->r_start.y, cur_state->r_tile_used );
     action_push ( ACT_MULTIPLE_FLOOR_SETS, 1);
 
 } // void start_rectangle_mode ( leveleditor_state cur_state , int already_defined )
@@ -5442,7 +5518,7 @@ void handle_rectangle_mode ( leveleditor_state *cur_state )
 		    j != cur_state->r_start.y + cur_state->r_len_y + cur_state->r_step_y;
 		    j += cur_state->r_step_y)
 	    {
-		action_set_floor ( EditLevel, i, j, cur_state->r_tile_used );
+		action_set_floor ( EditLevel(), i, j, cur_state->r_tile_used );
 		changed_tiles++;
 	    }
 	}
@@ -5473,44 +5549,44 @@ void level_editor_handle_left_mouse_button (leveleditor_state *cur_state )
 	if ( ClickWasInEditorBannerRect() )
 	    HandleBannerMouseClick();
 	else if ( MouseCursorIsOnButton ( GO_LEVEL_NORTH_BUTTON , GetMousePos_x()  , GetMousePos_y()  )
-		&& ( EditLevel -> jump_target_north >= 0 ) )
+		&& ( EditLevel() -> jump_target_north >= 0 ) )
 	{
-	    if ( Me . pos . x < curShip . AllLevels [ EditLevel -> jump_target_north ] -> xlen -1 )
+	    if ( Me . pos . x < curShip . AllLevels [ EditLevel() -> jump_target_north ] -> xlen -1 )
 		new_x = Me . pos . x ;
 	    else
 		new_x = 3;
-	    new_y = curShip . AllLevels [ EditLevel -> jump_target_north ] -> xlen - 4 ;
-	    action_jump_to_level(EditLevel->jump_target_north,new_x,new_y);
+	    new_y = curShip . AllLevels [ EditLevel() -> jump_target_north ] -> xlen - 4 ;
+	    action_jump_to_level(EditLevel()->jump_target_north,new_x,new_y);
 	}
 	else if ( MouseCursorIsOnButton ( GO_LEVEL_SOUTH_BUTTON , GetMousePos_x()  , GetMousePos_y()  )
-		&& ( EditLevel -> jump_target_south >= 0 ) )
+		&& ( EditLevel() -> jump_target_south >= 0 ) )
 	{
-	    if ( Me . pos . x < curShip . AllLevels [ EditLevel -> jump_target_south ] -> xlen -1 )
+	    if ( Me . pos . x < curShip . AllLevels [ EditLevel() -> jump_target_south ] -> xlen -1 )
 		new_x = Me . pos . x ;
 	    else
 		new_x = 3;
 	    new_y = 4;
-	    action_jump_to_level(EditLevel->jump_target_south,new_x,new_y);
+	    action_jump_to_level(EditLevel()->jump_target_south,new_x,new_y);
 	}
 	else if ( MouseCursorIsOnButton ( GO_LEVEL_EAST_BUTTON , GetMousePos_x()  , GetMousePos_y()  )
-		&& ( EditLevel -> jump_target_east >= 0 ) )
+		&& ( EditLevel() -> jump_target_east >= 0 ) )
 	{
 	    new_x = 3;
-	    if ( Me . pos . y < curShip . AllLevels [ EditLevel -> jump_target_east ] -> ylen -1 )
+	    if ( Me . pos . y < curShip . AllLevels [ EditLevel() -> jump_target_east ] -> ylen -1 )
 		new_y = Me . pos . y ;
 	    else
 		new_y = 4;
-	    action_jump_to_level(EditLevel->jump_target_east,new_x,new_y);
+	    action_jump_to_level(EditLevel()->jump_target_east,new_x,new_y);
 	}
 	else if ( MouseCursorIsOnButton ( GO_LEVEL_WEST_BUTTON , GetMousePos_x()  , GetMousePos_y()  )
-		&& ( EditLevel -> jump_target_west >= 0 ) )
+		&& ( EditLevel() -> jump_target_west >= 0 ) )
 	{
-	    new_x = curShip . AllLevels [ EditLevel -> jump_target_west ] -> xlen -4 ;
-	    if ( Me . pos . y < curShip . AllLevels [ EditLevel -> jump_target_west ] -> ylen -1 )
+	    new_x = curShip . AllLevels [ EditLevel() -> jump_target_west ] -> xlen -4 ;
+	    if ( Me . pos . y < curShip . AllLevels [ EditLevel() -> jump_target_west ] -> ylen -1 )
 		new_y = Me . pos . y ;
 	    else
 		new_y = 4;
-	    action_jump_to_level(EditLevel->jump_target_west,new_x,new_y);
+	    action_jump_to_level(EditLevel()->jump_target_west,new_x,new_y);
 	}
 	else if ( MouseCursorIsOnButton ( EXPORT_THIS_LEVEL_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
 	{
@@ -5518,7 +5594,7 @@ void level_editor_handle_left_mouse_button (leveleditor_state *cur_state )
 	}
 	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_UNDERGROUND_LIGHT_ON_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
 	{
-	    EditLevel -> use_underground_lighting = ! EditLevel -> use_underground_lighting ;
+	    EditLevel() -> use_underground_lighting = ! EditLevel() -> use_underground_lighting ;
 	}
 	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_UNDO_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
 	{
@@ -5556,21 +5632,21 @@ void level_editor_handle_left_mouse_button (leveleditor_state *cur_state )
 	}
 	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_TOGGLE_WAYPOINT_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
 	{
-	    action_toggle_waypoint ( EditLevel , BlockX, BlockY , FALSE );
+	    action_toggle_waypoint ( EditLevel() , EditX(), EditY() , FALSE );
 	}
 	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_TOGGLE_CONNECTION_BLUE_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
 	{
-	    level_editor_action_toggle_waypoint_connection_user ();
+	    level_editor_action_toggle_waypoint_connection_user (EditLevel());
 	}
 	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_BEAUTIFY_GRASS_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
 	{
-	    level_editor_beautify_grass_tiles ( );
+	    level_editor_beautify_grass_tiles (EditLevel());
 	}
 	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_DELETE_OBSTACLE_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
 	{
 	    if ( level_editor_marked_obstacle != NULL )
 	    {
-		action_remove_obstacle_user ( EditLevel , level_editor_marked_obstacle );
+		action_remove_obstacle_user ( EditLevel() , level_editor_marked_obstacle );
 		level_editor_marked_obstacle = NULL ;
 	    }
 	}
@@ -5580,25 +5656,25 @@ void level_editor_handle_left_mouse_button (leveleditor_state *cur_state )
 	}
 	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_RECURSIVE_FILL_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
 	{
-	    action_fill_user ( EditLevel , BlockX , BlockY , Highlight );
+	    action_fill_user ( EditLevel() , EditX(), EditY() , Highlight );
 	}
 	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_NEW_OBSTACLE_LABEL_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
 	{
 	    if ( level_editor_marked_obstacle != NULL )
 	    {
-		action_change_obstacle_label_user ( EditLevel , level_editor_marked_obstacle , NULL );
+		action_change_obstacle_label_user ( EditLevel() , level_editor_marked_obstacle , NULL );
 	    }
 	}
 	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_NEW_OBSTACLE_DESCRIPTION_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
 	{
 	    if ( level_editor_marked_obstacle != NULL )
 	    {
-		give_new_description_to_obstacle ( EditLevel , level_editor_marked_obstacle , NULL );
+		give_new_description_to_obstacle ( EditLevel() , level_editor_marked_obstacle , NULL );
 	    }
 	}
 	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_NEW_MAP_LABEL_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
 	{
-	    level_editor_action_change_map_label_user ();
+	    level_editor_action_change_map_label_user (EditLevel());
 	}
 	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_NEW_ITEM_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
 	{
@@ -5606,7 +5682,7 @@ void level_editor_handle_left_mouse_button (leveleditor_state *cur_state )
 	}
 	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_ESC_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
 	{
-	    main_menu_requested = TRUE ;
+	    level_editor_done = DoLevelEditorMainMenu ( EditLevel() );
 	}
 	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_LEVEL_RESIZE_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
 	{
@@ -5661,9 +5737,9 @@ void level_editor_handle_left_mouse_button (leveleditor_state *cur_state )
 	    // to prevent segfault due to writing outside the level, but that's easily
 	    // accomplished.
 	    if ( ( (int)cur_state->TargetSquare . x >= 0 ) &&
-		    ( (int)cur_state->TargetSquare . x <= EditLevel->xlen-1 ) &&
+		    ( (int)cur_state->TargetSquare . x <= EditLevel()->xlen-1 ) &&
 		    ( (int)cur_state->TargetSquare . y >= 0 ) &&
-		    ( (int)cur_state->TargetSquare . y <= EditLevel->ylen-1 ) )
+		    ( (int)cur_state->TargetSquare . y <= EditLevel()->ylen-1 ) )
 	    {
 		switch ( GameConfig . level_editor_edit_mode )
 		{
@@ -5672,7 +5748,7 @@ void level_editor_handle_left_mouse_button (leveleditor_state *cur_state )
 			quickbar_use( GameConfig . level_editor_edit_mode , Highlight );
 			break;
 		    case LEVEL_EDITOR_SELECTION_QUICK:
-			quickbar_click ( EditLevel , Highlight , cur_state);
+			quickbar_click ( EditLevel() , Highlight , cur_state);
 			break;
 		    case LEVEL_EDITOR_SELECTION_WALLS:
 			/* If the obstacle can be part of a line */
@@ -5694,7 +5770,7 @@ void level_editor_handle_left_mouse_button (leveleditor_state *cur_state )
 			    pos . x = (int)pos.x;
 			    pos . y = (int)pos.y;
 			}
-			action_create_obstacle_user ( EditLevel , pos . x , pos . y , wall_indices [ GameConfig . level_editor_edit_mode ] [ Highlight ] );
+			action_create_obstacle_user ( EditLevel() , pos . x , pos . y , wall_indices [ GameConfig . level_editor_edit_mode ] [ Highlight ] );
 			quickbar_use ( GameConfig . level_editor_edit_mode, Highlight );
 		}
 	    }
@@ -5804,7 +5880,7 @@ level_editor_handle_mouse_wheel ( void )
  * function now.
  */
 void
-level_editor_blit_mouse_buttons ( Level EditLevel )
+level_editor_blit_mouse_buttons (level *EditLevel )
 {
     int a = MouseLeftPressed();
 
@@ -5903,48 +5979,7 @@ level_editor_blit_mouse_buttons ( Level EditLevel )
     }
 
 #undef A
-}; // void level_editor_blit_mouse_buttons ( Level EditLevel )
-
-/**
- *
- *
- */
-void
-level_editor_cycle_marked_obstacle()
-{
-    int current_mark_index ;
-    int j;
-
-    if ( level_editor_marked_obstacle != NULL )
-    {
-	//--------------------
-	// See if this floor tile has some other obstacles glued to it as well
-	//
-	if ( EditLevel -> map [ BlockY ] [ BlockX ] . obstacles_glued_to_here [ 1 ] != (-1) )
-	{
-	    //--------------------
-	    // Find out which one of these is currently marked
-	    //
-	    current_mark_index = (-1);
-	    for ( j = 0 ; j < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE ; j ++ )
-	    {
-		if ( level_editor_marked_obstacle == & ( EditLevel -> obstacle_list [ EditLevel -> map [ BlockY ] [ BlockX ] . obstacles_glued_to_here [ j ] ] ) )
-		    current_mark_index = j ;
-	    }
-	    
-	    if ( current_mark_index != (-1) ) 
-	    {
-		if ( EditLevel -> map [ BlockY ] [ BlockX ] . obstacles_glued_to_here [ current_mark_index + 1 ] != (-1) )
-		    level_editor_marked_obstacle = & ( EditLevel -> obstacle_list [ EditLevel -> map [ BlockY ] [ BlockX ] . obstacles_glued_to_here [ current_mark_index + 1 ] ] ) ;
-		else
-		    level_editor_marked_obstacle = & ( EditLevel -> obstacle_list [ EditLevel -> map [ BlockY ] [ BlockX ] . obstacles_glued_to_here [ 0 ] ] ) ;
-	    }
-
-	}
-    }
-
-}; // void level_editor_cycle_marked_obstacle()
-
+}; // void level_editor_blit_mouse_buttons (level *EditLevel )
 
 void level_editor_next_tab()
 {
@@ -5965,8 +6000,6 @@ static void leveleditor_init()
     cur_state->c_last_right_click.x = 0;
     cur_state->c_last_right_click.y = 0;
 
-    BlockX = rintf( Me . pos . x + 0.5 );
-    BlockY = rintf( Me . pos . y + 0.5 );
     level_editor_done = FALSE;
 
     //--------------------
@@ -5989,13 +6022,8 @@ static void leveleditor_init()
     GameConfig.CharacterScreen_Visible = FALSE;
     GameConfig.SkillScreen_Visible = FALSE;
 
-    //--------------------
-    // We init the 'vanishing message' structs, so that there is always
-    // something to display, and we set the time to 'out of date' already.
-    //
-    EditLevel = curShip.AllLevels [ Me . pos . z ] ;
     strcpy ( VanishingMessage , "" );
-    VanishingMessageDisplayTime = 0 ;
+    VanishingMessageEndDate = 0 ;
 
     //--------------------
     // For drawing new waypoints, we init this.
@@ -6004,6 +6032,14 @@ static void leveleditor_init()
 
 }
 
+static void leveleditor_cleanup()
+{
+    free(cur_state);
+    level_editor_marked_obstacle = NULL ; 
+
+    Activate_Conservative_Frame_Computation();
+    action_freestack ( ) ;
+}
 
 static void leveleditor_display() 
 {
@@ -6015,29 +6051,21 @@ static void leveleditor_display()
     //
     if ( level_editor_marked_obstacle != NULL )
 	{
-	// if ( ( fabsf ( level_editor_marked_obstacle -> pos . x - Me . pos . x ) >= 0.98 ) ||
-	// ( fabsf ( level_editor_marked_obstacle -> pos . y - Me . pos . y ) >= 0.98 ) )
-	//level_editor_marked_obstacle = NULL ;
-	if ( ! marked_obstacle_is_glued_to_here ( EditLevel , Me . pos . x , Me . pos . y ) &&
+	if ( ! marked_obstacle_is_glued_to_here ( EditLevel() , Me . pos . x , Me . pos . y ) &&
 		cur_state -> mode != DRAG_DROP_MODE)
 	    level_editor_marked_obstacle = NULL ;
 	}
     else
 	{
-	if ( EditLevel -> map [ BlockY ] [ BlockX ] . obstacles_glued_to_here [ 0 ] != (-1) )
+	if ( EditLevel() -> map [ EditY() ] [ EditX() ] . obstacles_glued_to_here [ 0 ] != (-1) )
 	    {
-	    level_editor_marked_obstacle = & ( EditLevel -> obstacle_list [ EditLevel -> map [ BlockY ] [ BlockX ] . obstacles_glued_to_here [ 0 ] ] ) ;
-	    DebugPrintf ( 0 , "\nObstacle marked now!" );
+	    level_editor_marked_obstacle = & ( EditLevel() -> obstacle_list [ EditLevel() -> map [ EditY() ] [ EditX() ] . obstacles_glued_to_here [ 0 ] ] ) ;
 	    }
 	else
 	    {
 	    level_editor_marked_obstacle = NULL ;
-	    DebugPrintf ( 0 , "\nNo obstacle marked now!" );
 	    }
 	}
-
-    VanishingMessageDisplayTime += ( SDL_GetTicks ( ) - OldTicks ) / 1000.0 ;
-    OldTicks = SDL_GetTicks ( ) ;
 
     AssembleCombatPicture ( ONLY_SHOW_MAP_AND_TEXT | SHOW_GRID | SHOW_ITEMS | GameConfig.omit_tux_in_level_editor * OMIT_TUX | GameConfig.omit_obstacles_in_level_editor * OMIT_OBSTACLES | GameConfig.omit_enemies_in_level_editor * OMIT_ENEMIES | SHOW_OBSTACLE_NAMES | ZOOM_OUT * GameConfig . zoom_is_on | OMIT_BLASTS | SKIP_LIGHT_RADIUS );
 
@@ -6061,15 +6089,15 @@ static void leveleditor_display()
     else
 	{
 	sprintf ( linebuf , _(" Source waypoint selected : X=%d Y=%d. ") , 
-		EditLevel -> AllWaypoints [ OriginWaypoint ] . x , 
-		EditLevel -> AllWaypoints [ OriginWaypoint ] . y );
+		EditLevel() -> AllWaypoints [ OriginWaypoint ] . x , 
+		EditLevel() -> AllWaypoints [ OriginWaypoint ] . y );
 	}
     LeftPutString ( Screen , GameConfig.screen_height - 2*FontHeight( GetCurrentFont() ), linebuf );
 
     //--------------------
     // Now we print out the latest connection operation success or failure...
     //
-    if ( VanishingMessageDisplayTime < 7 )
+    if ( VanishingMessageEndDate > SDL_GetTicks() )
 	{
 	DisplayText ( VanishingMessage ,  1 , GameConfig.screen_height - 8 * FontHeight ( GetCurrentFont () ) ,
 		NULL , 1.0 );
@@ -6077,7 +6105,7 @@ static void leveleditor_display()
 
     ShowLevelEditorTopMenu( Highlight );
 
-    level_editor_blit_mouse_buttons ( EditLevel );
+    level_editor_blit_mouse_buttons ( EditLevel() );
 
     //--------------------
     // Now that everything is blitted and printed, we may update the screen again...
@@ -6090,7 +6118,7 @@ static void leveleditor_process_input()
 {
     int i;
     //--------------------
-    // If the user of the Level editor pressed some cursor keys, move the
+    // If the user of thelevel *editor pressed some cursor keys, move the
     // highlited filed (that is Me.pos) accordingly. This is done here:
     //
     HandleLevelEditorCursorKeys( cur_state );
@@ -6108,7 +6136,7 @@ static void leveleditor_process_input()
 		    "");
 	for ( i = 0 ; i < MAX_STATEMENTS_PER_LEVEL ; i ++ )
 	    {
-	    if ( EditLevel->StatementList[ i ].x == (-1) ) break;
+	    if ( EditLevel()->StatementList[ i ].x == (-1) ) break;
 	    }
 	if ( i == MAX_STATEMENTS_PER_LEVEL ) 
 	    {
@@ -6119,14 +6147,14 @@ static void leveleditor_process_input()
 	    // Terminate( ERR );
 	    }
 
-	EditLevel->StatementList[ i ].Statement_Text = NewCommentOnThisSquare;
-	EditLevel->StatementList[ i ].x = rintf( Me.pos.x );
-	EditLevel->StatementList[ i ].y = rintf( Me.pos.y );
+	EditLevel()->StatementList[ i ].Statement_Text = NewCommentOnThisSquare;
+	EditLevel()->StatementList[ i ].x = rintf( Me.pos.x );
+	EditLevel()->StatementList[ i ].y = rintf( Me.pos.y );
 	}
 
     if ( level_editor_marked_obstacle && XPressed () )
 	{
-	action_remove_obstacle_user ( EditLevel , level_editor_marked_obstacle );
+	action_remove_obstacle_user ( EditLevel() , level_editor_marked_obstacle );
 	level_editor_marked_obstacle = NULL ;
 	while ( XPressed() ) SDL_Delay(1);
 	}
@@ -6137,7 +6165,7 @@ static void leveleditor_process_input()
     if ( HPressed() )
 	{
 	while(HPressed());
-	action_change_obstacle_label_user ( EditLevel , level_editor_marked_obstacle , NULL );
+	action_change_obstacle_label_user ( EditLevel() , level_editor_marked_obstacle , NULL );
 	while ( HPressed() ) SDL_Delay(1);
 	}
 
@@ -6150,11 +6178,11 @@ static void leveleditor_process_input()
 	{
 	if ( ! ShiftPressed() )
 	    {
-	    action_toggle_waypoint ( EditLevel , BlockX, BlockY , FALSE );
+	    action_toggle_waypoint ( EditLevel() , EditX(), EditY() , FALSE );
 	    }
 	else
 	    {
-	    action_toggle_waypoint ( EditLevel , BlockX, BlockY , TRUE );
+	    action_toggle_waypoint ( EditLevel() , EditX(), EditY() , TRUE );
 	    }
 	while ( WPressed() ) SDL_Delay(1);
 	}
@@ -6188,9 +6216,9 @@ static void leveleditor_process_input()
 	    break;
 	case RECTANGLE_MODE:
 	    if ( ( (int)cur_state->TargetSquare . x >= 0 ) &&
-		    ( (int)cur_state->TargetSquare . x <= EditLevel->xlen-1 ) &&
+		    ( (int)cur_state->TargetSquare . x <= EditLevel()->xlen-1 ) &&
 		    ( (int)cur_state->TargetSquare . y >= 0 ) &&
-		    ( (int)cur_state->TargetSquare . y <= EditLevel->ylen-1 ) )
+		    ( (int)cur_state->TargetSquare . y <= EditLevel()->ylen-1 ) )
 		handle_rectangle_mode(cur_state);
 	    break;
 	case DRAG_DROP_MODE:
@@ -6199,7 +6227,7 @@ static void leveleditor_process_input()
 		{
 		cur_state->d_selected_obstacle -> pos . x = cur_state->TargetSquare.x;
 		cur_state->d_selected_obstacle -> pos . y = cur_state->TargetSquare.y;
-		glue_obstacles_to_floor_tiles_for_level ( EditLevel -> levelnum );
+		glue_obstacles_to_floor_tiles_for_level ( EditLevel() -> levelnum );
 		}
 	    if ( ! MPressed () ) 
 		{
@@ -6269,7 +6297,7 @@ static void leveleditor_process_input()
 		while ( EscapePressed() ) SDL_Delay(1);
 		break;
 	    default:
-		main_menu_requested = TRUE ;
+		level_editor_done = DoLevelEditorMainMenu ( EditLevel() );
 		break;
 	    }
 	}
@@ -6280,7 +6308,7 @@ static void leveleditor_process_input()
 
 }
 /**
- * This function provides the Level Editor integrated into
+ * This function provides thelevel *Editor integrated into
  * freedroid.  Actually this function is a submenu of the big
  * Escape Menu.  In here you can edit the level and, upon pressing
  * escape, you can enter a new submenu where you can save the level,
@@ -6290,63 +6318,22 @@ void LevelEditor()
 {
     leveleditor_init();
 
-    while ( !level_editor_done )
-	{
-	OldTicks = SDL_GetTicks ( ) ;
-	main_menu_requested = FALSE ;
-	while ( ( !level_editor_done ) && ( ! main_menu_requested ) )
-	    {
-	    game_status = INSIDE_LVLEDITOR;
+    while ( !level_editor_done ) {
+	game_status = INSIDE_LVLEDITOR;
 
-	    save_mouse_state();
-	    input_handle();
+	save_mouse_state();
+	input_handle();
 
-	    //--------------------
-	    // Even the level editor might be fast or slow or too slow, so we'd like to
-	    // know speed in here too, so that we can identify possible unnescessary lags
-	    // and then maybe do something about them...
-	    //
-	    ComputeFPSForThisFrame();
-	    if ( SkipAFewFrames ) SkipAFewFrames--;
-	    StartTakingTimeForFPSCalculation();
+	if ( ! GameConfig . hog_CPU ) 
+	    SDL_Delay (1);
 
-	    if ( ! GameConfig . hog_CPU ) 
-		SDL_Delay (1);
+	leveleditor_display();	    
 
-	    BlockX = rintf ( Me . pos . x - 0.5 );
-	    BlockY = rintf ( Me . pos . y - 0.5 );
-	    if ( BlockX < 0 )
-		{
-		BlockX = 0 ;
-		Me . pos . x = 0.51 ;
-		}
-	    if ( BlockY < 0 )
-		{
-		BlockY = 0 ;
-		Me . pos . y = 0.51 ;
-		}
-
-	    EditLevel = curShip.AllLevels [ Me . pos . z ] ;
-	    GetAnimatedMapTiles ();
-
-
-	    leveleditor_display();	    
-
-	    leveleditor_process_input();
-	    }
-	//--------------------
-	// After Level editing is done and escape has been pressed, 
-	// display the Menu with level save options and all that.
-	if ( !level_editor_done ) level_editor_done = DoLevelEditorMainMenu ( EditLevel );
-
-	} // while (!level_editor_done)
+	leveleditor_process_input();
+    }
     
-    free(cur_state);
-    level_editor_marked_obstacle = NULL ; 
-    
-    Activate_Conservative_Frame_Computation();
-    action_freestack ( ) ;
 
+    leveleditor_cleanup();
 }; // void LevelEditor ( void )
 
 #undef _leveleditor_c

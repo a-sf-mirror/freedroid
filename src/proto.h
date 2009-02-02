@@ -454,15 +454,6 @@ void delete_obstacle ( level* EditLevel , obstacle* our_obstacle );
 void ExportLevelInterface ( int level_num ) ;
 void give_new_name_to_obstacle ( Level EditLevel , obstacle* our_obstacle , char* predefined_name );
 void action_remove_obstacle ( Level EditLevel, obstacle *our_obstacle);
-void ItemDropFromLevelEditor (void);
-void level_editor_cycle_marked_obstacle(void);
-void level_editor_place_aligned_obstacle(int);
-void level_editor_next_tab(void);
-void level_editor_action_change_map_label_user(void);
-void level_editor_action_undo(void);
-void level_editor_action_redo(void);
-void level_editor_action_toggle_waypoint_connection_user (void);
-void level_editor_beautify_grass_tiles(void);
 void LevelEditor(void);
 
 // skills.c
