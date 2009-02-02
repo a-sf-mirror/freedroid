@@ -40,13 +40,15 @@
 
 #include "leveleditor_tools.h"
 
-int leveleditor_select_input(SDL_Event *event, struct leveleditor_select *m)
+static struct leveleditor_select state;
+
+int leveleditor_select_input(SDL_Event *event)
 {
     GiveMouseAlertWindow("Selection tool not implemented! :)");
     return 1;
 }
 
-int leveleditor_select_display(struct leveleditor_select *m)
+int leveleditor_select_display()
 {
     return 0;
 }

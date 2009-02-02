@@ -38,9 +38,10 @@
 #include "leveleditor_actions.h"
 
 #include "leveleditor_widgets.h"
-#include "leveleditor_widget_map.h"
 
 #include "leveleditor_tools.h"
+
+static struct leveleditor_move state;
 
 /**
  * Input events get forwarded to us this way.
@@ -48,15 +49,14 @@
  * @return 1 if we are done (disabled), 0 if we still want
  * to be forwarded input events.
  */
-int leveleditor_move_input(SDL_Event *event, void *am)
+int leveleditor_move_input(SDL_Event *event)
 {
-    struct leveleditor_move *m = am;
     moderately_finepoint a, b;
 
     if (EVENT_RIGHT_PRESS(event)||EVENT_LEFT_PRESS(event)) {
 	// Start a movement
-	m->origin.x = event->button.x;
-	m->origin.y = event->button.y;
+	state.origin.x = event->button.x;
+	state.origin.y = event->button.y;
     } else if (EVENT_RIGHT_RELEASE(event)||EVENT_LEFT_RELEASE(event)) {
 	// We are done
 	return 1;
@@ -64,8 +64,8 @@ int leveleditor_move_input(SDL_Event *event, void *am)
     
     
     if (EVENT_NONE(event)) { //time-based periodic updating
-	a = translate_point_to_map_location (m->origin.x - (GameConfig.screen_width/2), 
-		m->origin.y - (GameConfig.screen_height/2), 
+	a = translate_point_to_map_location (state.origin.x - (GameConfig.screen_width/2), 
+		state.origin.y - (GameConfig.screen_height/2), 
 		GameConfig.zoom_is_on);
 
 	b = translate_point_to_map_location (GetMousePos_x()-(GameConfig.screen_width/2), GetMousePos_y()-(GameConfig.screen_height/2),
@@ -88,10 +88,9 @@ int leveleditor_move_input(SDL_Event *event, void *am)
     return 0;    
 }
 
-int leveleditor_move_display(void *am)
+int leveleditor_move_display()
 {
-    struct leveleditor_move *m = am;
-    blit_leveleditor_point (m->origin.x, m->origin.y);
+    blit_leveleditor_point (state.origin.x, state.origin.y);
 
     return 0;
 }

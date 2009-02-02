@@ -22,5 +22,12 @@
  *
  */
 
-int leveleditor_move_input(SDL_Event *event, void *m);
-int leveleditor_move_display(void *m);
+int leveleditor_move_input(SDL_Event *event);
+int leveleditor_move_display();
+
+struct leveleditor_move {
+    /* click&drag */
+    point origin;
+    moderately_finepoint c_corresponding_position;
+};
+

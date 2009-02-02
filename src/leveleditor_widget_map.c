@@ -55,42 +55,16 @@ static void select_tool(void *t)
 	tool_selection_menu->enabled = 0;
 }
 
-static void select_other_tool(int whichway)
-{
-    struct list_head *a = whichway == 1 ? selected_tool->node.next : selected_tool->node.prev;
-
-    selected_tool = list_entry(a, struct leveleditor_tool, node);
-
-    if (selected_tool->type == TOOL_NONE) {
-	//the sentinel, skip it
-	a = whichway == 1 ? selected_tool->node.next : selected_tool->node.prev;
-	selected_tool = list_entry(a, struct leveleditor_tool, node);
-    }
-
-    switch (selected_tool->type) {
-	case TOOL_MOVE:
-	    printf("Current tool is MOVE\n");
-	    break;
-	case TOOL_PLACE:
-	    printf("Current tool is PLACE\n");
-	    break;
-	case TOOL_SELECT:
-	    printf("Current tool is SELECT\n");
-	    break;
-    }
-
-}
-
 void leveleditor_map_init()
 {
     leveleditor_init_tools();
-    selected_tool = tool_place;
+    selected_tool = &tool_place;
 }
 
 static void forward_event(SDL_Event *event)
 {
     if (active_tool) {
-	if (active_tool->input_event(event, active_tool->ext)) {
+	if (active_tool->input_event(event)) {
 	    active_tool = NULL;
 	}
     }
@@ -136,7 +110,7 @@ void leveleditor_map_mouserightpress(SDL_Event *event, struct leveleditor_widget
     (void)vm;
 
     if (!active_tool)
-	active_tool = tool_move;
+	active_tool = &tool_move;
 
     forward_event(event);
 }
@@ -189,9 +163,9 @@ int leveleditor_map_keybevent(SDL_Event *event, struct leveleditor_widget *vm)
 	    for (i = 4; i < 10; i++)
 		m->text[i][0] = 0;
 	    m->values[0] = selected_tool;
-	    m->values[1] = tool_place;
-	    m->values[2] = tool_move;
-	    m->values[3] = tool_select;
+	    m->values[1] = &tool_place;
+	    m->values[2] = &tool_move;
+	    m->values[3] = &tool_select;
 
 	    m->done_cb = select_tool;
 
@@ -213,11 +187,11 @@ void leveleditor_map_display(struct leveleditor_widget *vm)
     (void)vm;
 
     if (active_tool)
-	active_tool->display(active_tool->ext);
+	active_tool->display();
 }
 
 void leveleditor_update_tool()
 { //time-based updating if relevant
     if (active_tool)
-	active_tool->input_event(NULL, active_tool->ext);
+	active_tool->input_event(NULL);
 }

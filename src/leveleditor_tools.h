@@ -30,50 +30,19 @@
 #endif
 
 enum leveleditor_tools {
-    TOOL_NONE,
     TOOL_MOVE,
     TOOL_PLACE,
     TOOL_SELECT,
 };
 
 struct leveleditor_tool {
-    int type;
-    struct list_head node;
-    int cursor;
-    int (*input_event)(SDL_Event *, void *);
-    int (*display)(void *);
-    void *ext;
-};
-
-struct leveleditor_place {
-    enum { MODE_LINE, MODE_RECTANGLE, MODE_SINGLE } mode;
-
-    /* Line mode */
-    int l_direction;
-    int l_id;
-    line_element l_elements;
-
-    /* Rectangle mode */
-    point r_start;
-    int r_len_x, r_len_y;
-    int r_step_x, r_step_y;
-    int r_tile_used;
-};
-
-struct leveleditor_move {
-    /* click&drag */
-    point origin;
-    moderately_finepoint c_corresponding_position;
-};
-
-struct leveleditor_select {
-    /*XXX*/
-    int Iamnotimplemented;
+    int (*input_event)(SDL_Event *);
+    int (*display)();
 };
 
 EXTERN void leveleditor_init_tools(void);
 EXTERN struct list_head leveleditor_tool_list;
-EXTERN struct leveleditor_tool *tool_place, *tool_move, *tool_select;
+EXTERN struct leveleditor_tool tool_place, tool_move, tool_select;
 
 #define EVENT_LEFT_PRESS(e) (((e) && e->type == SDL_MOUSEBUTTONDOWN) && (e->button.button == 1))
 #define EVENT_RIGHT_PRESS(e) (((e) && e->type == SDL_MOUSEBUTTONDOWN) && (e->button.button == 3))
@@ -83,3 +52,9 @@ EXTERN struct leveleditor_tool *tool_place, *tool_move, *tool_select;
 #define EVENT_NONE(e) ((e == NULL))
 #define EVENT_KEYPRESS(e, s) (((e) && (e->type == SDL_KEYDOWN) && (e->key.keysym.sym == s)))
 #define EVENT_KEYRELEASE(e, s) (((e) && (e->type == SDL_KEYUP && (e->key.keysym.sym == s)))
+
+
+#include "leveleditor_tool_move.h"
+#include "leveleditor_tool_place.h"
+#include "leveleditor_tool_select.h"
+

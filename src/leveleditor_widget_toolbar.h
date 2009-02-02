@@ -22,6 +22,7 @@
  *
  */
 
+#undef EXTERN
 #ifndef _leveleditor_widgets_c
 #define EXTERN extern
 #endif

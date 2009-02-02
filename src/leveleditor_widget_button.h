@@ -22,10 +22,6 @@
  *
  */
 
-#ifndef _leveleditor_widgets_c
-#error "leveleditor_widget_button is to be used in leveleditor_wigdets.c only"
-#endif
-
 void leveleditor_button_mouseenter(SDL_Event *, struct leveleditor_widget *);
 void leveleditor_button_mouseleave(SDL_Event *, struct leveleditor_widget *);
 void leveleditor_button_mouserelease(SDL_Event *, struct leveleditor_widget *);

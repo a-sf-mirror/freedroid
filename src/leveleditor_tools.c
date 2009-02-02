@@ -37,67 +37,29 @@
 #include "leveleditor_actions.h"
 
 #include "leveleditor_widgets.h"
-#include "leveleditor_widget_map.h"
 
 #include "leveleditor_tools.h"
-#include "leveleditor_tool_move.h"
-#include "leveleditor_tool_place.h"
-#include "leveleditor_tool_select.h"
 
 LIST_HEAD(leveleditor_tool_list);
     
-
-static struct leveleditor_tool * create_move()
-{
-    struct leveleditor_tool *a = MyMalloc(sizeof(struct leveleditor_tool));
-    a->type = TOOL_MOVE;
-    a->input_event = leveleditor_move_input;
-    a->display = leveleditor_move_display;
-
-    struct leveleditor_move *m = MyMalloc(sizeof(struct leveleditor_move));
-    a->ext = m; 
-
-    return a;
-}
-
-static struct leveleditor_tool * create_place()
-{
-    struct leveleditor_tool *a = MyMalloc(sizeof(struct leveleditor_tool));
-    a->type = TOOL_PLACE;
-    a->input_event = leveleditor_place_input;
-    a->display = leveleditor_place_display;
-
-    struct leveleditor_place *m = MyMalloc(sizeof(struct leveleditor_place));
-    a->ext = m; 
-
-    return a;
-}
-
-static struct leveleditor_tool * create_select()
-{
-    struct leveleditor_tool *a = MyMalloc(sizeof(struct leveleditor_tool));
-    a->type = TOOL_SELECT;
-    a->input_event = leveleditor_select_input;
-    a->display = leveleditor_select_display;
-
-    struct leveleditor_select *m = MyMalloc(sizeof(struct leveleditor_select));
-    a->ext = m; 
-
-    return a;
-}
-
 void leveleditor_init_tools()
 {
-    if (!list_empty(&leveleditor_tool_list)) {
+    static int init_done = 0;
+    if (init_done) {
 	printf("Tools already initialized\n");
 	return;
     }
 
-    tool_move = create_move();
-    tool_place = create_place();
-    tool_select = create_select();
-    list_add(&tool_move->node, &leveleditor_tool_list);
-    list_add(&tool_place->node, &leveleditor_tool_list);
-    list_add(&tool_select->node, &leveleditor_tool_list);
+
+    tool_move.input_event = leveleditor_move_input;
+    tool_move.display = leveleditor_move_display;
+    
+    tool_place.input_event = leveleditor_place_input;
+    tool_place.display = leveleditor_place_display;
+    
+    tool_select.input_event = leveleditor_select_input;
+    tool_select.display = leveleditor_select_display;
+    
+    init_done = 1;
 }
 

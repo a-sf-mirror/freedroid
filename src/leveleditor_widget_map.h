@@ -42,7 +42,7 @@ int leveleditor_map_keybevent(SDL_Event *, struct leveleditor_widget *);
     
 void leveleditor_map_display(struct leveleditor_widget *);
 
-void leveleditor_map_init(void *);
+void leveleditor_map_init(void);
 
-void leveleditor_update_tool();
+void leveleditor_update_tool(void);
 EXTERN moderately_finepoint mouse_mapcoord;

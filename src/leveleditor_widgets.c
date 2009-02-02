@@ -37,12 +37,6 @@
 #include "leveleditor_actions.h"
 #include "leveleditor_widgets.h"
 
-#include "leveleditor_widget_button.h"
-#include "leveleditor_widget_map.h"
-#include "leveleditor_widget_menu.h"
-#include "leveleditor_widget_toolbar.h"
-#include "leveleditor_widget_typeselect.h"
-
 LIST_HEAD(leveleditor_widget_list);
 
 struct leveleditor_widget * create_button(int btype)
@@ -258,7 +252,7 @@ void leveleditor_init_widgets()
     /* Initialize elements of the interface */
     leveleditor_typeselect_init_selected_list(floor_selector->ext);
 
-    leveleditor_map_init(map->ext);
+    leveleditor_map_init();
 
 }
 

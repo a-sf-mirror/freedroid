@@ -95,3 +95,10 @@ EXTERN struct list_head leveleditor_widget_list;
 EXTERN struct leveleditor_widget * previously_active_widget;
 
 #undef EXTERN
+
+#include "leveleditor_widget_button.h"
+#include "leveleditor_widget_map.h"
+#include "leveleditor_widget_menu.h"
+#include "leveleditor_widget_toolbar.h"
+#include "leveleditor_widget_typeselect.h"
+
