@@ -10,7 +10,7 @@ else
 extradirs = win32 croppy 
 endif 
 
-SUBDIRS = src po gluem archetypeeditor $(extradirs)
+SUBDIRS = src po gluem $(extradirs)
 
 man_MANS = freedroidRPG.6
 
