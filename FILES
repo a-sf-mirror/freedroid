@@ -3,7 +3,8 @@
 Directory structure:
 --------------------
 ./                  : The root directory
-./src/              : The game and level editor source code
+./src/              : The game source code
+./src/lvledit	    : The leveleditor source code
 ./map/              : The map and some other "dynamic content" (eg. stuff not hard-coded in the game source)
 ./dialogs/          : The in-game dialogues
 ./sound/            : The in-game sound files
@@ -28,7 +29,5 @@ freedroidrpg.6        : The README file in a "man" friendly format
 Legal documents
 ---------------
 COPYING                        : A copy of GPL license, the copyright license this game is released under
-archetypeeditor/oxygen/COPYING : A copy of the Oxygen license, used by the oxygen icons used by the archetype editor.
-                                 This is a dual lisense between CC-by-sa 3.0 and LGPL 2 with clarifications.
 
 
