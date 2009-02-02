@@ -130,31 +130,31 @@ init_character_descriptions ( void )
 
     character_descriptions [ PERSON_CHA ] = _("Hmm... This must be the token town sage.");
 
-    character_descriptions [ PERSON_SORENSON ] = _("You see a legend. Sorenson Clark. One of the best human programmers that have ever lived. Just like Paganini she is said to have sold her soul to the devil for her skill. Whatever is the truth, her code is like magic, and there is no denying that.");
+    character_descriptions [ PERSON_SORENSON ] = _("You see a legend. Sorenson Clark. One of the best human programmers that has ever lived. Just like Paganini, she is said to have sold her soul to the devil for her skill. Whatever the truth is, her code is like magic, and there is no denying that.");
 
-    character_descriptions [ PERSON_KEVIN ] = _("He is either a college student, a drug addict or a hacker. You bet he did not have a warm meal for days, he looks totally malnourished. His body keeps twitching. Must be the caffeine. You hope.");
+    character_descriptions [ PERSON_KEVIN ] = _("He is either a college student, a drug addict or a hacker. You bet he has not had a warm meal for days, he looks totally malnourished. His body keeps twitching. Must be the caffeine. You hope.");
 
-    character_descriptions [ PERSON_BENDER ] = _("Don't do steroids or you will be just like him.");
+    character_descriptions [ PERSON_BENDER ] = _("Don't do steroids, or you will be just like him.");
 
     character_descriptions [ PERSON_614 ] = _("There are at least 614 reasons to stay away from the 614 bot battle platform. There are also 614 reasons why a 614 bot battle platform can be your best friend during combat...");
 
-    character_descriptions [ PERSON_FRANCIS ] = _("Francis is not looking so good today. His tattered coat is not looking that much better either. The war is taking its toll on them both.");
+    character_descriptions [ PERSON_FRANCIS ] = _("Francis is not looking so good today. His tattered coat is not looking that much better. The war is taking its toll on them both.");
 
     character_descriptions [ PERSON_DUNCAN ] = _("What a strange person. He does not seem to really fit into this reality. There is something very eerie about him. And frightening.");
 
-    character_descriptions [ PERSON_BRUCE ] = _("This person looks totally defeated. Tattered clothes surround his skeletal form. If there was a fifth raider of the apocalypse, it would be him and his name would be Hard Work.");
+    character_descriptions [ PERSON_BRUCE ] = _("This person looks totally defeated. Tattered clothes surround his skeletal form. If there was a fifth rider of the apocalypse, it would be him and his name would be Hard Work.");
 
-    character_descriptions [ PERSON_SKIPPY ] = _("It seems that even during the end of the world the species known as 'Salesman' is able to survive. Just his presence makes you want to kill all humans.");
+    character_descriptions [ PERSON_SKIPPY ] = _("It seems that even at the end of the world the species known as 'Salesman' is able to survive. Just his presence makes you want to destroy all humans.");
     
     character_descriptions [ PERSON_EWALD ] = _("He looks unexplicably happy.");
 
     character_descriptions [ PERSON_STONE ] = _("In some places of the world there exists a very interesting saying. 'Tough as nails.' However, in every place where the Stone trader family stays for a while, a new saying emerges. 'Tough as the Stones.'");
 
-    character_descriptions [ PERSON_DIXON ] = _("It is very obvious that this is not a normal Red Guard. Most of them do not have oil stains on their armor and smell of alcohol.");
+    character_descriptions [ PERSON_DIXON ] = _("It is very obvious that this is not a normal Red Guard. Most of them do not have oil stains on their armor, or smell of alcohol.");
 
     character_descriptions [ PERSON_KEVINS_GUARD ] = _("It looks like a 614. It moves like a 614. It even kills like a 614. Must be a 614 then.");
 
-    character_descriptions [ PERSON_RMS ] = _("He must be the resident scientist. The only thing keeping his body alive is the massive coffee overdose that he takes early in the morning every day. The amount of caffeine that he has in his blood right now would be enough to kill ten humans, but since computer scientists are a different species, he is unharmed.");
+    character_descriptions [ PERSON_RMS ] = _("He must be the resident scientist. The only thing keeping his body alive is the massive coffee overdose that he takes early every morning. The amount of caffeine that he has in his blood right now would be enough to kill ten humans, but since computer scientists are a different species, he is unharmed.");
 
     character_descriptions [ PERSON_DARWIN ] = _("Something about him makes you think of angels. Except angels are usually sane, do not have an urge to kill everything around them and are much better at singing religious songs.");
 
@@ -164,13 +164,13 @@ init_character_descriptions ( void )
 
     character_descriptions [ PERSON_PENDRAGON ] = _("He seems to be the chief of the gate guards. Hard to say anything more, the armor hides his body.");
 
-    character_descriptions [ PERSON_BENJAMIN ] = _("Just an another Red Guard. The armor hides his body.");
+    character_descriptions [ PERSON_BENJAMIN ] = _("Yet another Red Guard, the ranged weapons instructor. The armor hides his body.");
 
     character_descriptions [ PERSON_DOC_MOORE ] = _("Some people say that every doctor is addicted to drugs. You estimate that right now this one is high on at least four different narcotics. Doc Moore seems very happy indeed...");
 
     character_descriptions [ PERSON_BUTCH ] = _("Yet another Red Guard. You cannot say anything more, the armor hides his body.");
 
-    character_descriptions [ PERSON_SPENCER ] = _("He looks taller than most of the Red Guards, but you cannot really say anything more about him, the armor hides his body.");
+    character_descriptions [ PERSON_SPENCER ] = _("He looks taller than most of the Red Guards, but you cannot really determine anything more about him, the armor hides his body.");
 
     character_descriptions [ PERSON_MICHELANGELO ] = _("And now you know who is to be blamed for the truly awful food in here. You are in a killing mood. Oh yeah. The cook must die. The cook must die. Ha. Ha. Ha.");
 
@@ -185,6 +185,16 @@ init_character_descriptions ( void )
     character_descriptions [ PERSON_STANDARD_MS_FACILITY_GATE_GUARD ] = _("The armor hides his body.");
 
     character_descriptions [ PERSON_MS_FACILITY_GATE_GUARD_LEADER ] = _("The armor hides his body.");
+
+    character_descriptions [ PERSON_JASMINE ] = _("This very well could be the most attractive human you've ever seen. There is something odd about her, though...");
+
+    character_descriptions [ PERSON_TUTORIALTOM ] = _("This is Tom. He will introduce you to the game, and help you throughout this tutorial.");
+
+    character_descriptions [ PERSON_LUKAS ] = _("Keeper of the Red Guard armory.  The armor hides his body.");
+
+    character_descriptions [ PERSON_KOAN ] = _("This must be the guy Duncan told you about. At least, he's the only one around.");
+
+    character_descriptions [ PERSON_TANIA ] = _("A lonely scientist. The months she's spent trapped here seem to have taken their toll on her sanity.");
 
 }; // void init_character_descriptions ( void )
 
