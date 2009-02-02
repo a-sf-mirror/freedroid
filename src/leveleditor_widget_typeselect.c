@@ -96,7 +96,8 @@ void leveleditor_typeselect_display(struct leveleditor_widget *vm)
     BFont_Info * PreviousFont;
     PreviousFont = GetCurrentFont();
     SetCurrentFont( Messagevar_BFont );
-    
+
+    tr.y = 0;    
     tr . w = 2;
     tr . h = 14;
     hr . y =0 ; 

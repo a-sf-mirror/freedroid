@@ -52,9 +52,9 @@ static enum {
 
 static void place_single_obstacle(struct leveleditor_typeselect *ts)
 {
-    point pos;
-    pos.x = (int)mouse_mapcoord.x;
-    pos.y = (int)mouse_mapcoord.y;
+    moderately_finepoint pos;
+    pos.x = mouse_mapcoord.x;
+    pos.y = mouse_mapcoord.y;
     
     action_create_obstacle_user (EditLevel(), pos.x, pos.y, ts->indices[ts->selected_tile_nb]);
     //  quickbar_use ( GameConfig . level_editor_edit_mode, selected_tile_nb );
