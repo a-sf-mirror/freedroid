@@ -37,7 +37,8 @@ obstacle * action_create_obstacle_user(level *, double, double, int); //XXX rena
 void action_remove_obstacle_user (level *, obstacle *);
 void action_remove_obstacle(level *, obstacle *);
 
-void action_change_obstacle_label_user (level *EditLevel, obstacle *our_obstacle, char *predefined_name);
+void action_change_obstacle_label_user (level *, obstacle *, char *);
+void action_change_obstacle_description (level *, obstacle *, char *);
 
 /* Waypoint manipulation */
 void action_toggle_waypoint (level *, int, int, int);
@@ -52,3 +53,11 @@ void action_fill_user (level *, int, int, int);
 void level_editor_action_change_map_label_user (level *);
 void action_jump_to_level(int, double, double);
 
+#ifndef _leveleditor_actions_c
+#define EXTERN extern
+#else
+#define EXTERN
+#endif
+
+EXTERN struct list_head to_undo;
+EXTERN struct list_head to_redo;

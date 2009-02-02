@@ -448,10 +448,7 @@ void UpdateAllCharacterStats ( void );
 void ShowCharacterScreen ( void );
 void HandleCharacterScreen ( void );
 
-void show_button_tooltip ( char* tooltip_text );
-void delete_obstacle ( level* EditLevel , obstacle* our_obstacle );
-void ExportLevelInterface ( int level_num ) ;
-void give_new_name_to_obstacle ( Level EditLevel , obstacle* our_obstacle , char* predefined_name );
+// leveleditor.c
 void LevelEditor(void);
 
 // skills.c

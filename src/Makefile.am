@@ -13,7 +13,7 @@ EXTRA_DIST = dialed.py CMakeLists.txt
 freedroidRPG_SOURCES = menu.c shop.c items.c character.c skills.c saveloadgame.c \
 	event.c \
 	lua.c \
-	leveleditor.c leveleditor.h blocks.c graphics.c map.c colldet.c init.c \
+	blocks.c graphics.c map.c colldet.c init.c \
 	takeover.c bullet.c influ.c misc.c text.c text_public.c sound.c \
 	enemy.c input.c keyboard.c main.c hud.c view.c automap.c BFont.c \
 	defs.h map.h vars.h takeover.h global.h \
@@ -21,9 +21,11 @@ freedroidRPG_SOURCES = menu.c shop.c items.c character.c skills.c saveloadgame.c
 	SDL_rotozoom.c SDL_rotozoom.h open_gl.c open_gl_atlas.c mission.c chat.c light.c \
 	getopt.c getopt1.c getopt.h scandir.c scandir.h sound.h sound_effects.c \
 	lang.h lists.c lists.h gen_savestruct.py savestruct.c savestruct.h \
-	leveleditor_validator.c leveleditor_validator.h \
+	leveleditor.c leveleditor.h \
+	leveleditor_display.c leveleditor_display.h \
 	leveleditor_actions.c leveleditor_actions.h \
-	leveleditor_grass_actions.c leveleditor_grass_actions.h
+	leveleditor_grass_actions.c leveleditor_grass_actions.h \
+	leveleditor_validator.c leveleditor_validator.h
 
 savestruct.c savestruct.h: struct.h
 	python2.5 gen_savestruct.py struct.h savestruct

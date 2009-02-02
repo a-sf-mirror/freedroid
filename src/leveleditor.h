@@ -149,7 +149,6 @@ typedef struct leveleditor_state_s {
     moderately_finepoint c_corresponding_position;
 } leveleditor_state;
 
-EXTERN void ShowWaypoints( int PrintConnectionList , int maks );
 EXTERN void LevelEditor(void);
 EXTERN void cycle_marked_obstacle( Level EditLevel );
 EXTERN void CreateNewMapLevel( int level_num );
@@ -159,8 +158,6 @@ EXTERN void duplicate_all_obstacles_in_area ( Level source_level ,
 				       float source_area_width , float source_area_height ,
 				       Level target_level ,
 				       float target_start_x , float target_start_y );
-EXTERN void give_new_description_to_obstacle ( Level EditLevel , obstacle* our_obstacle , char* predefined_description );
-
 /* Line mode */
 EXTERN void start_line_mode(leveleditor_state *cur_state, int already_defined);
 
@@ -680,7 +677,10 @@ int wall_indices [ NUMBER_OF_LEVEL_EDITOR_GROUPS ] [ NUMBER_OF_OBSTACLE_TYPES ] 
 	-1
     }
 }; // end of definition of selection groups
+#else
+EXTERN int wall_indices [ NUMBER_OF_LEVEL_EDITOR_GROUPS ] [ NUMBER_OF_OBSTACLE_TYPES ]; 
 #endif
+
 EXTERN int EditX();
 EXTERN int EditY();
 EXTERN level *EditLevel();
@@ -689,5 +689,11 @@ EXTERN char VanishingMessage[10000];
 EXTERN float VanishingMessageEndDate;
 
 EXTERN int OriginWaypoint;
+EXTERN int number_of_walls [ NUMBER_OF_LEVEL_EDITOR_GROUPS ] ;
 
+EXTERN iso_image * quickbar_getimage(int, int *);
+EXTERN int marked_obstacle_is_glued_to_here (level *, float, float);
+
+EXTERN leveleditor_state * cur_state;
+EXTERN int Highlight;
 #endif
