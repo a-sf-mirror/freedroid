@@ -21,24 +21,24 @@ freedroidRPG_SOURCES = menu.c shop.c items.c character.c skills.c saveloadgame.c
 	SDL_rotozoom.c SDL_rotozoom.h open_gl.c open_gl_atlas.c mission.c chat.c light.c \
 	getopt.c getopt1.c getopt.h scandir.c scandir.h sound.h sound_effects.c \
 	lang.h lists.c lists.h gen_savestruct.py savestruct.c savestruct.h \
-	leveleditor.c leveleditor.h \
-	leveleditor_actions.c leveleditor_actions.h \
-	leveleditor_display.c leveleditor_display.h \
-	leveleditor_grass_actions.c leveleditor_grass_actions.h \
-	leveleditor_input.c \
-	leveleditor_map.c leveleditor_map.h \
-	leveleditor_menu.c leveleditor_menu.h \
-	leveleditor_validator.c leveleditor_validator.h \
-	leveleditor_tools.c leveleditor_tools.h \
-	leveleditor_tool_move.c leveleditor_tool_move.h \
-	leveleditor_tool_place.c leveleditor_tool_place.h \
-	leveleditor_tool_select.c leveleditor_tool_select.h \
-	leveleditor_widget_button.c leveleditor_widget_button.h \
-	leveleditor_widget_map.c leveleditor_widget_map.h \
-	leveleditor_widget_menu.c leveleditor_widget_menu.h \
-	leveleditor_widget_toolbar.c leveleditor_widget_toolbar.h \
-	leveleditor_widget_typeselect.c leveleditor_widget_typeselect.h \
-	leveleditor_widgets.c leveleditor_widgets.h
+	lvledit/lvledit.c lvledit/lvledit.h \
+	lvledit/lvledit_actions.c lvledit/lvledit_actions.h \
+	lvledit/lvledit_display.c lvledit/lvledit_display.h \
+	lvledit/lvledit_grass_actions.c lvledit/lvledit_grass_actions.h \
+	lvledit/lvledit_input.c \
+	lvledit/lvledit_map.c lvledit/lvledit_map.h \
+	lvledit/lvledit_menu.c lvledit/lvledit_menu.h \
+	lvledit/lvledit_validator.c lvledit/lvledit_validator.h \
+	lvledit/lvledit_tools.c lvledit/lvledit_tools.h \
+	lvledit/lvledit_tool_move.c lvledit/lvledit_tool_move.h \
+	lvledit/lvledit_tool_place.c lvledit/lvledit_tool_place.h \
+	lvledit/lvledit_tool_select.c lvledit/lvledit_tool_select.h \
+	lvledit/lvledit_widget_button.c lvledit/lvledit_widget_button.h \
+	lvledit/lvledit_widget_map.c lvledit/lvledit_widget_map.h \
+	lvledit/lvledit_widget_menu.c lvledit/lvledit_widget_menu.h \
+	lvledit/lvledit_widget_toolbar.c lvledit/lvledit_widget_toolbar.h \
+	lvledit/lvledit_widget_typeselect.c lvledit/lvledit_widget_typeselect.h \
+	lvledit/lvledit_widgets.c lvledit/lvledit_widgets.h
 
 savestruct.c savestruct.h: struct.h
 	python2.5 gen_savestruct.py struct.h savestruct

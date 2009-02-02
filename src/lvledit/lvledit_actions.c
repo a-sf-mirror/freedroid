@@ -38,9 +38,9 @@
 
 #include "SDL_rotozoom.h"
 
-#include "leveleditor.h"
-#include "leveleditor_widgets.h"
-#include "leveleditor_widget_typeselect.h"
+#include "lvledit/lvledit.h"
+#include "lvledit/lvledit_widgets.h"
+#include "lvledit/lvledit_widget_typeselect.h"
 
 /* Undo/redo action lists */
 LIST_HEAD (to_undo);

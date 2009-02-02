@@ -38,7 +38,7 @@
 
 #include "SDL_rotozoom.h"
 
-#include "leveleditor.h"
+#include "lvledit/lvledit.h"
 
 /**
  * Is this tile a 'full' grass tile, i.e. a grass tile with ABSOLUTELY

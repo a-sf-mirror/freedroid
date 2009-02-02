@@ -34,8 +34,8 @@
 
 #include "SDL_rotozoom.h"
 
-#include "leveleditor.h"
-#include "leveleditor_map.h"
+#include "lvledit/lvledit.h"
+#include "lvledit/lvledit_map.h"
 
 /**
  * This a a menu interface to allow to edit the level dimensions in a

@@ -40,7 +40,7 @@
 #include "proto.h"
 #include "global.h"
 
-#include "leveleditor_actions.h"
+#include "lvledit/lvledit_actions.h"
 #include "map.h"
 
 void TranslateToHumanReadable ( Uint16* HumanReadable , map_tile* MapInfo, int LineLength );

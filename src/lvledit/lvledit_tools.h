@@ -54,7 +54,7 @@ EXTERN struct leveleditor_tool tool_place, tool_move, tool_select;
 #define EVENT_KEYRELEASE(e, s) (((e) && (e->type == SDL_KEYUP && (e->key.keysym.sym == s)))
 
 
-#include "leveleditor_tool_move.h"
-#include "leveleditor_tool_place.h"
-#include "leveleditor_tool_select.h"
+#include "lvledit/lvledit_tool_move.h"
+#include "lvledit/lvledit_tool_place.h"
+#include "lvledit/lvledit_tool_select.h"
 

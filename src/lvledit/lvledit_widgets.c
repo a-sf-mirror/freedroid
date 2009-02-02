@@ -33,9 +33,9 @@
 
 #include "SDL_rotozoom.h"
 
-#include "leveleditor.h"
-#include "leveleditor_actions.h"
-#include "leveleditor_widgets.h"
+#include "lvledit/lvledit.h"
+#include "lvledit/lvledit_actions.h"
+#include "lvledit/lvledit_widgets.h"
 
 LIST_HEAD(leveleditor_widget_list);
 

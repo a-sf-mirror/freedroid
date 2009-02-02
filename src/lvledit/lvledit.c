@@ -38,17 +38,17 @@
 
 #include "SDL_rotozoom.h"
 
-#include "leveleditor.h"
-#include "leveleditor_validator.h"
+#include "lvledit/lvledit.h"
+#include "lvledit/lvledit_validator.h"
 
-#include "leveleditor_actions.h"
-#include "leveleditor_display.h"
-#include "leveleditor_grass_actions.h"
-#include "leveleditor_map.h"
-#include "leveleditor_menu.h"
-#include "leveleditor_widgets.h"
+#include "lvledit/lvledit_actions.h"
+#include "lvledit/lvledit_display.h"
+#include "lvledit/lvledit_grass_actions.h"
+#include "lvledit/lvledit_map.h"
+#include "lvledit/lvledit_menu.h"
+#include "lvledit/lvledit_widgets.h"
 
-#include "leveleditor_widget_map.h"
+#include "lvledit/lvledit_widget_map.h"
 
 
 int OriginWaypoint = (-1);

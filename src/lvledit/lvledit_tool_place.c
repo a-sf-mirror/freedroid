@@ -35,11 +35,11 @@
 
 #include "SDL_rotozoom.h"
 
-#include "leveleditor.h"
-#include "leveleditor_actions.h"
+#include "lvledit/lvledit.h"
+#include "lvledit/lvledit_actions.h"
 
-#include "leveleditor_widgets.h"
-#include "leveleditor_tools.h"
+#include "lvledit/lvledit_widgets.h"
+#include "lvledit/lvledit_tools.h"
 
 static enum {
         DISABLED,

@@ -31,11 +31,11 @@
 
 #include "SDL_rotozoom.h"
 
-#include "leveleditor.h"
-#include "leveleditor_actions.h"
-#include "leveleditor_widgets.h"
-#include "leveleditor_widget_toolbar.h"
-#include "leveleditor_widget_typeselect.h"
+#include "lvledit/lvledit.h"
+#include "lvledit/lvledit_actions.h"
+#include "lvledit/lvledit_widgets.h"
+#include "lvledit/lvledit_widget_toolbar.h"
+#include "lvledit/lvledit_widget_typeselect.h"
 
 static struct leveleditor_typeselect *previous_type = NULL;
 static int num_blocks_per_line = 0;

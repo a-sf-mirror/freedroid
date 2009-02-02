@@ -31,9 +31,9 @@
 
 #include "SDL_rotozoom.h"
 
-#include "leveleditor.h"
-#include "leveleditor_actions.h"
-#include "leveleditor_widgets.h"
+#include "lvledit/lvledit.h"
+#include "lvledit/lvledit_actions.h"
+#include "lvledit/lvledit_widgets.h"
 
 void leveleditor_menu_mouseenter(SDL_Event *event, struct leveleditor_widget *w)
 {

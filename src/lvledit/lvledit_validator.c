@@ -29,7 +29,7 @@
 
 #define _leveleditor_validator_c
 
-#include "leveleditor_validator.h"
+#include "lvledit/lvledit_validator.h"
 #include "lang.h"
 
 #define IS_CHEST(t)  ( (t) >= ISO_H_CHEST_CLOSED && (t) <= ISO_V_CHEST_OPEN )

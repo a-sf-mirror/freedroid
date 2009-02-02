@@ -29,9 +29,9 @@
 #include "global.h"
 #include "proto.h"
 
-#include "leveleditor.h"
-#include "leveleditor_actions.h"
-#include "leveleditor_grass_actions.h"
+#include "lvledit/lvledit.h"
+#include "lvledit/lvledit_actions.h"
+#include "lvledit/lvledit_grass_actions.h"
 
 
 #define KEY_PRESS    ( 1.) /**< Key is pressed. */
