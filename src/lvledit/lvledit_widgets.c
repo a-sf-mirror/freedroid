@@ -330,7 +330,6 @@ struct leveleditor_widget * get_active_widget(int x, int y)
 	    return w;
     }
 
-    printf("Event at %d %d reached no widget.\n", x, y);
     return NULL;
 }
 
