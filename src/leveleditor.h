@@ -618,6 +618,8 @@ EXTERN int machinery_tiles_list[];
 EXTERN int container_tiles_list[];
 #endif
 
+EXTERN int all_obstacles_list[NUMBER_OF_OBSTACLE_TYPES+1];
+
 EXTERN int EditX();
 EXTERN int EditY();
 EXTERN level *EditLevel();

@@ -206,8 +206,12 @@ void leveleditor_init_widgets()
     list_add_tail(&create_objectselector(160, _("FURNITURE"), OBJECT_OBSTACLE, furniture_tiles_list)->node, &leveleditor_widget_list); 
     list_add_tail(&create_objectselector(240, _("MACHINERY"), OBJECT_OBSTACLE, machinery_tiles_list)->node, &leveleditor_widget_list); 
     list_add_tail(&create_objectselector(320, _("CONTAINER"), OBJECT_OBSTACLE, container_tiles_list)->node, &leveleditor_widget_list); 
-    list_add_tail(&create_objectselector(400, _("PLANT"), OBJECT_OBSTACLE, plant_tiles_list)->node, &leveleditor_widget_list); 
-    list_add_tail(&create_objectselector(GameConfig.screen_width-80, _("QUICK"), OBJECT_ANY, NULL)->node, &leveleditor_widget_list); 
+    list_add_tail(&create_objectselector(400, _("PLANT"), OBJECT_OBSTACLE, plant_tiles_list)->node, &leveleditor_widget_list);
+    for (i=0; i < NUMBER_OF_OBSTACLE_TYPES; i++) 
+	all_obstacles_list[i] = i;
+    all_obstacles_list[i] = -1;
+    list_add_tail(&create_objectselector(480, _("ALLOBS."), OBJECT_OBSTACLE, all_obstacles_list)->node, &leveleditor_widget_list);
+    //list_add_tail(&create_objectselector(GameConfig.screen_width-80, _("QUICK"), OBJECT_ANY, NULL)->node, &leveleditor_widget_list); 
 
     /* The toolbar */
     list_add_tail(&create_toolbar()->node, &leveleditor_widget_list);
