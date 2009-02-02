@@ -75,7 +75,7 @@ void leveleditor_map_init()
     struct leveleditor_tool *t;
     leveleditor_init_tools();
     list_for_each_entry(t, &leveleditor_tool_list, node) {
-	if (t->type == TOOL_SELECT)
+	if (t->type == TOOL_PLACE)
 	    selected_tool = t;
 	else if (t->type == TOOL_MOVE)
 	    move_tool = t;
@@ -87,7 +87,6 @@ static void forward_event(SDL_Event *event)
     if (active_tool) {
 	if (active_tool->input_event(event, active_tool->ext)) {
 	    active_tool = NULL;
-	    printf("tool deactivated itself\n");
 	}
     }
 }

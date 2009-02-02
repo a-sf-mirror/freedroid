@@ -50,7 +50,6 @@ struct leveleditor_place {
 
     /* Line mode */
     int l_direction;
-    int l_selected_mode;
     int l_id;
     line_element l_elements;
 

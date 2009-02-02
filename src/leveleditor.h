@@ -112,15 +112,6 @@ enum
       UNDO = 1 /* pop in to_undo and push in to_redo  */
   };
 
-enum
-  {
-      NORMAL_MODE,
-      DRAG_DROP_MODE,
-      LINE_MODE,
-      RECTANGLE_MODE,
-      CLICK_DRAG_MODE,
-  };
-
 
 EXTERN void LevelEditor(void);
 EXTERN void cycle_marked_obstacle( Level EditLevel );

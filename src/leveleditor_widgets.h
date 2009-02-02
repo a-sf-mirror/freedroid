@@ -77,4 +77,7 @@ struct leveleditor_typeselect {
 
 void leveleditor_display_widgets(void);
 void leveleditor_update_button_states(void);
+
+struct leveleditor_widget * get_active_widget(int, int); 
+
 #undef EXTERN

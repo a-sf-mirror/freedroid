@@ -179,79 +179,6 @@ static void HandleLevelEditorCursorKeys ( )
 #endif
 }; // void HandleLevelEditorCursorKeys ( void )
 
-/*
-static void level_editor_handle_left_mouse_button (leveleditor_state *cur_state )
-{
-    int new_x, new_y;
-    moderately_finepoint pos;
-
-    if ( MouseLeftClicked() && cur_state->mode == NORMAL_MODE )
-    {
-//	else
-//	{
-//	    //--------------------
-//	    // With the left mouse button, it should be possible to actually 'draw'
-//	    // something into the level.  This seems to work so far.  Caution is nescessary
-//	    // to prevent segfault due to writing outside the level, but that's easily
-//	    // accomplished.
-//	    if ( ( (int)cur_state->TargetSquare . x >= 0 ) &&
-//		    ( (int)cur_state->TargetSquare . x <= EditLevel()->xlen-1 ) &&
-//		    ( (int)cur_state->TargetSquare . y >= 0 ) &&
-//		    ( (int)cur_state->TargetSquare . y <= EditLevel()->ylen-1 ) )
-//	    {
-//		switch ( GameConfig . level_editor_edit_mode )
-//		{
-//		    case LEVEL_EDITOR_SELECTION_FLOOR:
-//			start_rectangle_mode( cur_state , FALSE );
-//			quickbar_use( GameConfig . level_editor_edit_mode , selected_tile_nb );
-//			break;
-//		    case LEVEL_EDITOR_SELECTION_QUICK:
-//			quickbar_click ( EditLevel() , selected_tile_nb , cur_state);
-//			break;
-//		    case LEVEL_EDITOR_SELECTION_WALLS:
-//			// If the obstacle can be part of a line
-//			if ( (obstacle_map [ wall_indices [ GameConfig . level_editor_edit_mode ] [ selected_tile_nb ] ] . flags & IS_VERTICAL) ||
-//				(obstacle_map [ wall_indices [ GameConfig . level_editor_edit_mode ] [ selected_tile_nb ] ] . flags & IS_HORIZONTAL) )
-//			{
-//			    // Let's start the line (FALSE because the function will
-//			     // find the tile by itself) 
-//			    start_line_mode( cur_state , FALSE);
-//			    quickbar_use ( cur_state->l_selected_mode , cur_state -> l_id );
-//			}
-//			break;
-//		    default:
-//			pos . x = cur_state -> TargetSquare . x;
-//			pos . y = cur_state -> TargetSquare . y;
-//			// Completely disallow unaligned placement of walls, with tile granularity, using left click
-//			if (GameConfig . level_editor_edit_mode == LEVEL_EDITOR_SELECTION_WALLS)
-//			{
-//			    pos . x = (int)pos.x;
-//			    pos . y = (int)pos.y;
-//			}
-//			action_create_obstacle_user ( EditLevel() , pos . x , pos . y , wall_indices [ GameConfig . level_editor_edit_mode ] [ selected_tile_nb ] );
-//			quickbar_use ( GameConfig . level_editor_edit_mode, selected_tile_nb );
-//		}
-//	    }
-//	}
-    }
-
-    if ( MouseLeftUnclicked() )
-    {
-	switch ( cur_state->mode )
-	{
-	    case LINE_MODE:
-		// Mouse right released ? terminate line of wall
-		end_line_mode(cur_state, TRUE);
-		break;
-	    case RECTANGLE_MODE:
-		end_rectangle_mode(cur_state, TRUE);
-		break;
-	}
-    }
-
-}; // void level_editor_handle_left_mouse_button ( void )
-*/
-
 /**
  * This function automatically scrolls the leveleditor window when the
  * mouse reaches an edge 
@@ -449,16 +376,6 @@ void leveleditor_process_input()
 
  /*   switch ( cur_state->mode )
 	{
-	case LINE_MODE:
-	    handle_line_mode(cur_state);
-	    break;
-	case RECTANGLE_MODE:
-	    if ( ( (int)cur_state->TargetSquare . x >= 0 ) &&
-		    ( (int)cur_state->TargetSquare . x <= EditLevel()->xlen-1 ) &&
-		    ( (int)cur_state->TargetSquare . y >= 0 ) &&
-		    ( (int)cur_state->TargetSquare . y <= EditLevel()->ylen-1 ) )
-		handle_rectangle_mode(cur_state);
-	    break;
 	case DRAG_DROP_MODE:
 	    if ( cur_state->d_selected_obstacle->pos.x != cur_state->TargetSquare.x &&
 		    cur_state->d_selected_obstacle->pos.y != cur_state->TargetSquare.y )
@@ -476,28 +393,11 @@ void leveleditor_process_input()
 */
     level_editor_auto_scroll();
 
-    //level_editor_handle_left_mouse_button (cur_state );
-
     if ( EscapePressed() )
 	{
-/*	switch ( cur_state -> mode )
-	    {
-	    case LINE_MODE:
-		// End line mode and *do not* place the walls
-		end_line_mode(cur_state, FALSE);
-		while ( EscapePressed() ) SDL_Delay(1);
-		break;
-	    case RECTANGLE_MODE:
-		// Return to normal mode and *do not* place the walls
-		end_rectangle_mode(cur_state, FALSE);
-		while ( EscapePressed() ) SDL_Delay(1);
-		break;
-	    default:
-		break;
-	    }*/
 	level_editor_done = DoLevelEditorMainMenu ( EditLevel() );
 	}
-	while( EscapePressed() ) SDL_Delay(1);
+    while( EscapePressed() ) SDL_Delay(1);
 	
 
 
