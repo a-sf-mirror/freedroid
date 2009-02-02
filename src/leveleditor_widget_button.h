@@ -26,13 +26,13 @@
 #error "leveleditor_widget_button is to be used in leveleditor_wigdets.c only"
 #endif
 
-void leveleditor_button_mouseenter(void *);
-void leveleditor_button_mouseleave(void *);
-void leveleditor_button_mouserelease(void *);
-void leveleditor_button_mousepress(void *);
-void leveleditor_button_mouserightrelease(void *);
-void leveleditor_button_mouserightpress(void *);
-void leveleditor_button_mousewheelup(void *);
-void leveleditor_button_mousewheeldown(void *);
+void leveleditor_button_mouseenter(SDL_Event *, void *);
+void leveleditor_button_mouseleave(SDL_Event *, void *);
+void leveleditor_button_mouserelease(SDL_Event *, void *);
+void leveleditor_button_mousepress(SDL_Event *, void *);
+void leveleditor_button_mouserightrelease(SDL_Event *, void *);
+void leveleditor_button_mouserightpress(SDL_Event *, void *);
+void leveleditor_button_mousewheelup(SDL_Event *, void *);
+void leveleditor_button_mousewheeldown(SDL_Event *, void *);
 
 void leveleditor_button_display(void *);

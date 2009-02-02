@@ -25,14 +25,14 @@
 #ifndef _leveleditor_widgets_c
 #endif
 
-void leveleditor_typeselect_mouseenter(void *);
-void leveleditor_typeselect_mouseleave(void *);
-void leveleditor_typeselect_mouserelease(void *);
-void leveleditor_typeselect_mousepress(void *);
-void leveleditor_typeselect_mouserightrelease(void *);
-void leveleditor_typeselect_mouserightpress(void *);
-void leveleditor_typeselect_mousewheelup(void *);
-void leveleditor_typeselect_mousewheeldown(void *);
+void leveleditor_typeselect_mouseenter(SDL_Event *, void *);
+void leveleditor_typeselect_mouseleave(SDL_Event *, void *);
+void leveleditor_typeselect_mouserelease(SDL_Event *, void *);
+void leveleditor_typeselect_mousepress(SDL_Event *, void *);
+void leveleditor_typeselect_mouserightrelease(SDL_Event *, void *);
+void leveleditor_typeselect_mouserightpress(SDL_Event *, void *);
+void leveleditor_typeselect_mousewheelup(SDL_Event *, void *);
+void leveleditor_typeselect_mousewheeldown(SDL_Event *, void *);
 void leveleditor_typeselect_display(void *);
 
 struct leveleditor_typeselect *get_current_object_type(void);

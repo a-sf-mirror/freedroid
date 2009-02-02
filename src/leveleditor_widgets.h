@@ -42,14 +42,14 @@ struct leveleditor_widget {
     SDL_Rect rect; //Space occupied
     struct list_head node;
     int enabled;
-    void (*mouseenter)(void *);
-    void (*mouseleave)(void *);
-    void (*mouserelease)(void *);
-    void (*mousepress)(void *);
-    void (*mouserightrelease)(void *);
-    void (*mouserightpress)(void *);
-    void (*mousewheelup)(void *);
-    void (*mousewheeldown)(void *);
+    void (*mouseenter)(SDL_Event *, void *);
+    void (*mouseleave)(SDL_Event *, void *);
+    void (*mouserelease)(SDL_Event *, void *);
+    void (*mousepress)(SDL_Event *, void *);
+    void (*mouserightrelease)(SDL_Event *, void *);
+    void (*mouserightpress)(SDL_Event *, void *);
+    void (*mousewheelup)(SDL_Event *, void *);
+    void (*mousewheeldown)(SDL_Event *, void *);
     void * ext; //Type specific information
 };
 
@@ -66,8 +66,8 @@ struct leveleditor_mapwidget {
 };
 
 struct leveleditor_typeselect {
-    int selected_tile_nb;
-    int toolbar_first_block;
+    unsigned int selected_tile_nb;
+    unsigned int toolbar_first_block;
     int xpos;
     char * title;
     enum leveleditor_object_type type;

@@ -40,47 +40,64 @@
 static struct leveleditor_typeselect *previous_type = NULL;
 static int num_blocks_per_line = 0;
 
-void leveleditor_toolbar_mouseenter(void *vt)
+void leveleditor_toolbar_mouseenter(SDL_Event *event, void *vt)
 {
     struct leveleditor_toolbar *t = vt;
     (void)t;
 }
 
-void leveleditor_toolbar_mouseleave(void *vt)
+void leveleditor_toolbar_mouseleave(SDL_Event *event, void *vt)
 {
     struct leveleditor_toolbar *t = vt;
     (void)t;
 }
 
-void leveleditor_toolbar_mouserelease(void *vt)
+void leveleditor_toolbar_mouserelease(SDL_Event *event, void *vt)
 {
     struct leveleditor_toolbar *t = vt;
 }
 
-void leveleditor_toolbar_mousepress(void *vt)
+void leveleditor_toolbar_mousepress(SDL_Event *event, void *vt)
 {
     struct leveleditor_toolbar *t = vt;
+    struct leveleditor_typeselect *ts = get_current_object_type();
+    SDL_Rect TargetRect;
+    int i;
+    int x;
+
+    for ( i = 0 ; i < num_blocks_per_line ; i ++ ) {
+	x = INITIAL_BLOCK_WIDTH/2 + INITIAL_BLOCK_WIDTH * i; 
+
+	if (event->button.x > x && event->button.x < x + INITIAL_BLOCK_WIDTH)
+	    ts->selected_tile_nb = ts->toolbar_first_block + i;
+    }
+
+    for (i=0; ts->indices[i] != -1; i++);
+    if (ts->selected_tile_nb >= i-1)
+	ts->selected_tile_nb = i-1;
+
 }
 
-void leveleditor_toolbar_mouserightrelease(void *vt)
+void leveleditor_toolbar_mouserightrelease(SDL_Event *event, void *vt)
 {
     struct leveleditor_toolbar *t = vt;
     (void)t;
 }
 
-void leveleditor_toolbar_mouserightpress(void *vt)
+void leveleditor_toolbar_mouserightpress(SDL_Event *event, void *vt)
 {
     struct leveleditor_toolbar *t = vt;
     (void)t;
+    /*XXX maybe display info about the currently selected object?*/
 }
 
-void leveleditor_toolbar_mousewheelup(void *vt)
+void leveleditor_toolbar_mousewheelup(SDL_Event *event, void *vt)
 {
     struct leveleditor_toolbar *t = vt;
     leveleditor_toolbar_left();
 }
 
-void leveleditor_toolbar_mousewheeldown(void *vt)
+void leveleditor_toolbar_mousewheeldown(SDL_Event *event, void *vt)
 {
     struct leveleditor_toolbar *t = vt;
     leveleditor_toolbar_right();
@@ -177,7 +194,7 @@ void leveleditor_toolbar_right()
 
     for (i=0; ts->indices[i] != -1; i++);
     
-    ts->selected_tile_nb = ts->selected_tile_nb >= i ? i : ts->selected_tile_nb + 1;
+    ts->selected_tile_nb = ts->selected_tile_nb >= i - 1 ? i - 1 : ts->selected_tile_nb + 1;
     
     if (ts->selected_tile_nb >= ts->toolbar_first_block + num_blocks_per_line) {
 	ts->toolbar_first_block++;
@@ -188,9 +205,14 @@ void leveleditor_toolbar_scroll_left()
 {
     struct leveleditor_typeselect *ts = get_current_object_type();
     
-    ts->toolbar_first_block -= 8;
-    if (ts->toolbar_first_block < 0)
+    if (ts->toolbar_first_block < 8)
 	ts->toolbar_first_block = 0;
+    else
+	ts->toolbar_first_block -= 8;
+    
+    if (ts->toolbar_first_block + num_blocks_per_line <= ts->selected_tile_nb) {
+	ts->selected_tile_nb = ts->toolbar_first_block + num_blocks_per_line - 1;
+    } 
 }
 
 void leveleditor_toolbar_scroll_right()
@@ -201,7 +223,10 @@ void leveleditor_toolbar_scroll_right()
     for (i=0; ts->indices[i] != -1; i++);
     
     ts->toolbar_first_block += 8;
-    if (ts->toolbar_first_block >= i)
-	ts->toolbar_first_block =-8;
+    if (ts->toolbar_first_block >= i - 1)
+	ts->toolbar_first_block -= 8;
+    
+    if (ts->selected_tile_nb < ts->toolbar_first_block)
+	ts->selected_tile_nb = ts->toolbar_first_block;
 }
 

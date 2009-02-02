@@ -37,49 +37,49 @@
 
 static struct leveleditor_typeselect *currently_selected_list = NULL;
 
-void leveleditor_typeselect_mouseenter(void *vm)
+void leveleditor_typeselect_mouseenter(SDL_Event *event, void *vm)
 {
     struct leveleditor_typeselect *m = vm;
     (void)m;
 }
 
-void leveleditor_typeselect_mouseleave(void *vm)
+void leveleditor_typeselect_mouseleave(SDL_Event *event, void *vm)
 {
     struct leveleditor_typeselect *m = vm;
     (void)m;
 }
 
-void leveleditor_typeselect_mouserelease(void *vm)
+void leveleditor_typeselect_mouserelease(SDL_Event *event, void *vm)
 {
     struct leveleditor_typeselect *m = vm;
     (void)m;
 }
 
-void leveleditor_typeselect_mousepress(void *vm)
+void leveleditor_typeselect_mousepress(SDL_Event *event, void *vm)
 {
     struct leveleditor_typeselect *m = vm;
     currently_selected_list = m;
 }
 
-void leveleditor_typeselect_mouserightrelease(void *vm)
+void leveleditor_typeselect_mouserightrelease(SDL_Event *event, void *vm)
 {
     struct leveleditor_typeselect *m = vm;
     (void)m;
 }
 
-void leveleditor_typeselect_mouserightpress(void *vm)
+void leveleditor_typeselect_mouserightpress(SDL_Event *event, void *vm)
 {
     struct leveleditor_typeselect *m = vm;
     (void)m;
 }
 
-void leveleditor_typeselect_mousewheelup(void *vm)
+void leveleditor_typeselect_mousewheelup(SDL_Event *event, void *vm)
 {
     struct leveleditor_typeselect *m = vm;
     (void)m;
 }
 
-void leveleditor_typeselect_mousewheeldown(void *vm)
+void leveleditor_typeselect_mousewheeldown(SDL_Event *event, void *vm)
 {
     struct leveleditor_typeselect *m = vm;
     (void)m;

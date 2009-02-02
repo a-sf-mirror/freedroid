@@ -42,63 +42,6 @@
 
 static struct leveleditor_widget * previously_active_widget = NULL;
 
-/**
- * This function shall determine, whether a given left mouse click was in 
- * given rect or not.
- */
-static int ClickWasInRect ( SDL_Rect TargetRect )
-{
-    if ( GetMousePos_x()  > TargetRect.x + TargetRect.w ) return FALSE;
-    if ( GetMousePos_x()  < TargetRect.x ) return FALSE;
-    if ( GetMousePos_y()  > TargetRect.y + TargetRect.h ) return FALSE;
-    if ( GetMousePos_y()  < TargetRect.y ) return FALSE;
-    
-    return ( TRUE );
-}; // int ClickWasInRect ( SDL_Rect TargetRect )
-
-static int ClickWasInEditorBannerRect( void )
-{/*
-    extern SDL_Rect EditorBannerRect; //XXX drop that
-    return ( ClickWasInRect ( EditorBannerRect ) );*/
-}; // int ClickWasInEditorBannerRect( void )
-
-static void HandleBannerMouseClick( void )
-{
-    SDL_Rect TargetRect;
-    int i;
-    extern int FirstBlock; //XXX 
-    {
-	// could be a click on a block
-        unsigned int num_blocks = GameConfig.screen_width / INITIAL_BLOCK_WIDTH - 1;
-	for ( i = 0 ; i < num_blocks ; i ++ ) 
-        {
-	    TargetRect.x = INITIAL_BLOCK_WIDTH/2 + INITIAL_BLOCK_WIDTH * i; 
-	    TargetRect.y = INITIAL_BLOCK_HEIGHT/3;
-	    TargetRect.w = INITIAL_BLOCK_WIDTH;
-	    TargetRect.h = INITIAL_BLOCK_HEIGHT;
-//	    if ( ClickWasInRect ( TargetRect ) )
-//		selected_tile_nb = FirstBlock + i;
-        }
-    }
-    
-    // check limits
-  /*  if ( FirstBlock + 9 >= number_of_walls [ GameConfig . level_editor_edit_mode ] )
-	FirstBlock = number_of_walls [ GameConfig . level_editor_edit_mode ] - 9 ;
-    
-    if ( FirstBlock < 0 )
-	FirstBlock = 0;
-    
-    //--------------------
-    // Now some extra security against selecting indices that would point to
-    // undefined objects (floor tiles or obstacles) later
-    // The following should never occur now - SN
-    //
-    if ( selected_tile_nb >= number_of_walls [ GameConfig . level_editor_edit_mode ] )
-	selected_tile_nb = number_of_walls [ GameConfig . level_editor_edit_mode ] -1 ;
-    */
-}; // void HandleBannerMouseClick( void )
-
-
 static void HandleLevelEditorCursorKeys ( leveleditor_state *cur_state )
 {
    level *EditLevel;
@@ -243,8 +186,6 @@ static void level_editor_handle_left_mouse_button (leveleditor_state *cur_state 
 
     if ( MouseLeftClicked() && cur_state->mode == NORMAL_MODE )
     {
-	if ( ClickWasInEditorBannerRect() )
-	    HandleBannerMouseClick();
 //	else
 //	{
 //	    //--------------------
@@ -360,9 +301,9 @@ void leveleditor_input_mouse_motion(SDL_Event *event)
 
     if (previously_active_widget != w) {
 	if (w) 
-	    w->mouseenter(w->ext);
+	    w->mouseenter(event, w->ext);
 	if (previously_active_widget)
-	    previously_active_widget->mouseleave(previously_active_widget->ext);
+	    previously_active_widget->mouseleave(event, previously_active_widget->ext);
 	previously_active_widget = w;
     }
 }
@@ -378,10 +319,10 @@ void leveleditor_input_mouse_button(SDL_Event *event)
 	    case SDL_MOUSEBUTTONUP:
 		switch(event->button.button) {
 		    case 1:
-			w->mouserelease(w->ext);
+			w->mouserelease(event, w->ext);
 			break;
 		    case 3:
-			w->mouserightrelease(w->ext);
+			w->mouserightrelease(event, w->ext);
 			break;
 		    case 4:
 		    case 5:
@@ -393,16 +334,16 @@ void leveleditor_input_mouse_button(SDL_Event *event)
 	    case SDL_MOUSEBUTTONDOWN:
 		switch(event->button.button) {
 		    case 1:
-			w->mousepress(w->ext);
+			w->mousepress(event, w->ext);
 			break;
 		    case 3:
-			w->mouserightpress(w->ext);
+			w->mouserightpress(event, w->ext);
 			break;
 		    case 4:
-			w->mousewheelup(w->ext);
+			w->mousewheelup(event, w->ext);
 			break;
 		    case 5:
-			w->mousewheeldown(w->ext);
+			w->mousewheeldown(event, w->ext);
 			break;
 		    default:
 			ErrorMessage(__FUNCTION__, "Mouse button index %hd unhandled by leveleditor widgets.\n", PLEASE_INFORM, IS_WARNING_ONLY, event->button.button);

@@ -563,9 +563,9 @@ char fpath[2048];
     if ( ( ButtonIndex >= MAX_MOUSE_PRESS_BUTTONS ) || ( ButtonIndex < 0 ) )
     {
 	ErrorMessage ( __FUNCTION__  , 
-				   "A Button that should be displayed on the screen was requested, but the\n\
+				   "Request to display button index %d could not be fulfilled: the\n\
 button index given exceeds the number of buttons defined in freedroid.",
-				   PLEASE_INFORM, IS_FATAL );
+				   PLEASE_INFORM, IS_FATAL, ButtonIndex );
     }
     
     //--------------------

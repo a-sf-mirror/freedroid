@@ -35,42 +35,42 @@
 #include "leveleditor_actions.h"
 #include "leveleditor_widgets.h"
 
-void leveleditor_map_mouseenter(void *vm)
+void leveleditor_map_mouseenter(SDL_Event *event, void *vm)
 {
     struct leveleditor_mapwidget *m = vm;
 }
 
-void leveleditor_map_mouseleave(void *vm)
+void leveleditor_map_mouseleave(SDL_Event *event, void *vm)
 {
     struct leveleditor_mapwidget *m = vm;
 }
 
-void leveleditor_map_mouserelease(void *vm)
+void leveleditor_map_mouserelease(SDL_Event *event, void *vm)
 {
     struct leveleditor_mapwidget *m = vm;
 }
 
-void leveleditor_map_mousepress(void *vm)
+void leveleditor_map_mousepress(SDL_Event *event, void *vm)
 {
     struct leveleditor_mapwidget *m = vm;
 }
 
-void leveleditor_map_mouserightrelease(void *vm)
+void leveleditor_map_mouserightrelease(SDL_Event *event, void *vm)
 {
     struct leveleditor_mapwidget *m = vm;
 }
 
-void leveleditor_map_mouserightpress(void *vm)
+void leveleditor_map_mouserightpress(SDL_Event *event, void *vm)
 {
     struct leveleditor_mapwidget *m = vm;
 }
 
-void leveleditor_map_mousewheelup(void *vm)
+void leveleditor_map_mousewheelup(SDL_Event *event, void *vm)
 {
     struct leveleditor_mapwidget *m = vm;
 }
 
-void leveleditor_map_mousewheeldown(void *vm)
+void leveleditor_map_mousewheeldown(SDL_Event *event, void *vm)
 {
     struct leveleditor_mapwidget *m = vm;
 }

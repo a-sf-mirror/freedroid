@@ -201,7 +201,7 @@ static void activate_button(struct leveleditor_button *b)
     }
 }
 
-void leveleditor_button_mouseenter(void *vb)
+void leveleditor_button_mouseenter(SDL_Event *event, void *vb)
 {
     struct leveleditor_button *b = vb;
     //b->pressed = 0;
@@ -209,7 +209,7 @@ void leveleditor_button_mouseenter(void *vb)
     /*XXX  tooltip*/
 }
 
-void leveleditor_button_mouseleave(void *vb)
+void leveleditor_button_mouseleave(SDL_Event *event, void *vb)
 {
     struct leveleditor_button *b = vb;
     b->pressed = 0;
@@ -217,7 +217,7 @@ void leveleditor_button_mouseleave(void *vb)
     /* XXX tooltip*/
 }
 
-void leveleditor_button_mouserelease(void *vb)
+void leveleditor_button_mouserelease(SDL_Event *event, void *vb)
 {
     struct leveleditor_button *b = vb;
     if (b->pressed) {
@@ -227,7 +227,7 @@ void leveleditor_button_mouserelease(void *vb)
     }
 }
 
-void leveleditor_button_mousepress(void *vb)
+void leveleditor_button_mousepress(SDL_Event *event, void *vb)
 {
     struct leveleditor_button *b = vb;
     if (b->pressed) {
@@ -237,28 +237,28 @@ void leveleditor_button_mousepress(void *vb)
     b->pressed = 1;
 }
 
-void leveleditor_button_mouserightrelease(void *vb) 
+void leveleditor_button_mouserightrelease(SDL_Event *event, void *vb) 
 {
     struct leveleditor_button *b = vb;
     (void)b;
     //do nothing
 }
 
-void leveleditor_button_mouserightpress(void *vb)
+void leveleditor_button_mouserightpress(SDL_Event *event, void *vb)
 {
     struct leveleditor_button *b = vb;
     (void)b;
     //do nothing;
 }
 
-void leveleditor_button_mousewheelup(void *vb)
+void leveleditor_button_mousewheelup(SDL_Event *event, void *vb)
 {
     struct leveleditor_button *b = vb;
     (void)b;
     //do nothing;
 }
 
-void leveleditor_button_mousewheeldown(void *vb)
+void leveleditor_button_mousewheeldown(SDL_Event *event, void *vb)
 {
     struct leveleditor_button *b = vb;
     (void)b;

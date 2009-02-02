@@ -26,12 +26,12 @@
 #error "leveleditor_widget_map is to be used in leveleditor_wigdets.c only"
 #endif
 
-void leveleditor_map_mouseenter(void *);
-void leveleditor_map_mouseleave(void *);
-void leveleditor_map_mouserelease(void *);
-void leveleditor_map_mousepress(void *);
-void leveleditor_map_mouserightrelease(void *);
-void leveleditor_map_mouserightpress(void *);
-void leveleditor_map_mousewheelup(void *);
-void leveleditor_map_mousewheeldown(void *);
+void leveleditor_map_mouseenter(SDL_Event *, void *);
+void leveleditor_map_mouseleave(SDL_Event *, void *);
+void leveleditor_map_mouserelease(SDL_Event *, void *);
+void leveleditor_map_mousepress(SDL_Event *, void *);
+void leveleditor_map_mouserightrelease(SDL_Event *, void *);
+void leveleditor_map_mouserightpress(SDL_Event *, void *);
+void leveleditor_map_mousewheelup(SDL_Event *, void *);
+void leveleditor_map_mousewheeldown(SDL_Event *, void *);
 void leveleditor_map_display(void *);
