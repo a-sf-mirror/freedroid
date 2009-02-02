@@ -615,24 +615,17 @@ void leveleditor_display()
     // is.  (There might be some human choice made here already.)
     // Otherwise we just select the next best obstacle as the new marked obstacle.
     //
-/*    if ( level_editor_marked_obstacle != NULL )
-	{
-	if ( ! marked_obstacle_is_glued_to_here ( EditLevel() , Me . pos . x , Me . pos . y ) &&
-		cur_state -> mode != DRAG_DROP_MODE)
+    if (level_editor_marked_obstacle != NULL) {
+	if ( ! marked_obstacle_is_glued_to_here ( EditLevel() , Me . pos . x , Me . pos . y ))
 	    level_editor_marked_obstacle = NULL ;
-	}
-    else
-	{
-	if ( EditLevel() -> map [ EditY() ] [ EditX() ] . obstacles_glued_to_here [ 0 ] != (-1) )
-	    {
+    } else {
+	if ( EditLevel() -> map [ EditY() ] [ EditX() ] . obstacles_glued_to_here [ 0 ] != (-1) ) {
 	    level_editor_marked_obstacle = & ( EditLevel() -> obstacle_list [ EditLevel() -> map [ EditY() ] [ EditX() ] . obstacles_glued_to_here [ 0 ] ] ) ;
-	    }
-	else
-	    {
+	} else {
 	    level_editor_marked_obstacle = NULL ;
-	    }
 	}
-*/
+    }
+
     AssembleCombatPicture ( ONLY_SHOW_MAP_AND_TEXT | SHOW_GRID | SHOW_ITEMS | OMIT_TUX | GameConfig.omit_obstacles_in_level_editor * OMIT_OBSTACLES | GameConfig.omit_enemies_in_level_editor * OMIT_ENEMIES | SHOW_OBSTACLE_NAMES | ZOOM_OUT * GameConfig . zoom_is_on | OMIT_BLASTS | SKIP_LIGHT_RADIUS );
 
     Highlight_Current_Block(ZOOM_OUT * GameConfig . zoom_is_on );
