@@ -29,7 +29,9 @@
 #include "global.h"
 #include "proto.h"
 
-extern void LevelEditor(void);
+#include "leveleditor.h"
+#include "leveleditor_actions.h"
+
 
 #define KEY_PRESS    ( 1.) /**< Key is pressed. */
 #define KEY_RELEASE  (-1.) /**< Key is released. */
@@ -554,7 +556,7 @@ static int input_key( int keynum, int value)
 	    ItemDropFromLevelEditor();
 	    return 0;
 	} else if (KEYPRESS("change_map_label")) {
-	    level_editor_action_change_map_label_user();
+	    level_editor_action_change_map_label_user(CURLEVEL());
 	    return 0;
 	} else if (KEYPRESS("zoom_out")) {
 	    GameConfig . zoom_is_on = !GameConfig . zoom_is_on ;
@@ -583,7 +585,7 @@ static int input_key( int keynum, int value)
 	    level_editor_place_aligned_obstacle(number);
 	    return 0;
 	} else if (KEYPRESS("connect_waypoint")) {
-	    level_editor_action_toggle_waypoint_connection_user();
+	    level_editor_action_toggle_waypoint_connection_user(CURLEVEL());
 	    return 0;
 	}
     }

@@ -26,7 +26,7 @@
  * This file contains all the actions performed by the level editor, ie. the functions that act on the level.
  */
 
-#define _leveleditor_action_c
+#define _leveleditor_actions_c
 
 
 #include "system.h"
@@ -158,6 +158,13 @@ obstacle * action_create_obstacle (Level EditLevel, double x, double y, int new_
 	    glue_obstacles_to_floor_tiles_for_level ( EditLevel -> levelnum );
 	    DebugPrintf ( 0 , "\nNew obstacle has been added!!!" );
 	    fflush(stdout);
+	    //--------------------
+	    // Now that we have disturbed the order of the obstacles on this level, we need
+	    // to re-assemble the lists of pointers to obstacles, like the door list, the
+	    // teleporter list and the refreshes list.
+	    //
+	    GetAnimatedMapTiles();
+    
 	    return ( & ( EditLevel -> obstacle_list [ i ] ) ) ;
 	}
     }
@@ -165,13 +172,6 @@ obstacle * action_create_obstacle (Level EditLevel, double x, double y, int new_
     ErrorMessage ( __FUNCTION__  , "\
 	    Ran out of obstacle positions in target level!",
 			       PLEASE_INFORM , IS_FATAL );
-    //--------------------
-    // Now that we have disturbed the order of the obstacles on this level, we need
-    // to re-assemble the lists of pointers to obstacles, like the door list, the
-    // teleporter list and the refreshes list.
-    //
-    GetAnimatedMapTiles();
-    
     return ( NULL );
 }
 

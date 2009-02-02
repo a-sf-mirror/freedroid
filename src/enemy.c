@@ -783,23 +783,22 @@ in Freedroid RPG.\n",
  *
  * This function does the blood spraying (adding of these obstacles).
  */
-static void
-enemy_spray_blood ( enemy *CurEnemy ) 
+static void enemy_spray_blood ( enemy *CurEnemy ) 
 {
-  moderately_finepoint target_pos = { 1.0 , 0 } ;
+    extern action_create_obstacle(level*, double, double, int);
+    moderately_finepoint target_pos = { 1.0 , 0 } ;
 
-  RotateVectorByAngle ( & target_pos , MyRandom ( 360 ) );
+    RotateVectorByAngle ( & target_pos , MyRandom ( 360 ) );
 
-  target_pos . x += CurEnemy -> virt_pos . x ;
-  target_pos . y += CurEnemy -> virt_pos . y ;
+    target_pos . x += CurEnemy -> virt_pos . x ;
+    target_pos . y += CurEnemy -> virt_pos . y ;
 
-  
-  if ( Druidmap [ CurEnemy -> type ] . is_human )
-	  create_new_obstacle_on_level ( curShip . AllLevels [ CurEnemy -> pos . z ] , ISO_BLOOD_1 + MyRandom ( 7 ) , target_pos . x , target_pos . y );
-  else  
-	  create_new_obstacle_on_level ( curShip . AllLevels [ CurEnemy -> pos . z ] , ISO_OIL_STAINS_1 + MyRandom ( 7 ) , target_pos . x , target_pos . y );
 
-  
+    if ( Druidmap [ CurEnemy -> type ] . is_human )
+	action_create_obstacle (curShip.AllLevels[CurEnemy->pos.z], target_pos.x, target_pos.y,  ISO_BLOOD_1 + MyRandom (7));
+    else  
+	action_create_obstacle (curShip.AllLevels[CurEnemy->pos.z], target_pos.x, target_pos.y,  ISO_OIL_STAINS_1 + MyRandom (7));
+
 }; // void enemy_spray_blood ( Enemy CurEnemy ) 
 
 
