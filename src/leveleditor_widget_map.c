@@ -44,6 +44,16 @@ static struct leveleditor_tool *move_tool = NULL;
 
 moderately_finepoint mouse_mapcoord;
 
+static int tool_selection_menu_open;
+
+static void select_tool(struct leveleditor_tool *t) 
+{
+    if (!active_tool)
+	selected_tool = t;
+    else 
+	GiveMouseAlertWindow("Cannot select another tool: busy\n");
+}
+
 static void select_other_tool(int whichway)
 {
     struct list_head *a = whichway == 1 ? selected_tool->node.next : selected_tool->node.prev;
@@ -160,8 +170,22 @@ void leveleditor_map_mousemove(SDL_Event *event, struct leveleditor_widget *vm)
 int leveleditor_map_keybevent(SDL_Event *event, struct leveleditor_widget *vm) 
 {
     (void)vm;
-    if (!active_tool) {
+    if (!active_tool && !tool_selection_menu_open) {
 	// No active tool? Spawn a menu
+	int i;
+	SDL_Rect r = { .x = GetMousePos_x(), .y = GetMousePos_y(), .w = 100, .h = 150 };
+	char text[10][100];
+	sprintf(text[0], "Cancel");
+	sprintf(text[1], "Place");
+	sprintf(text[2], "Move");
+	sprintf(text[3], "Select");
+	for (i = 4; i < 10; i++)
+	    sprintf(text[i], "");
+	void *values[10] = { selected_tool, move_tool, move_tool, move_tool};
+
+
+	struct leveleditor_widget *a = create_menu(&r, text, select_tool, values);
+	list_add(&a->node, &leveleditor_widget_list);
 	
     }
 

@@ -77,13 +77,19 @@ struct leveleditor_typeselect {
 };
 
 struct leveleditor_menu {
+    char text[10][100];
+    void *values[10];
+    void (*done_cb)(void *);
+    int currently_selected_idx;
+    int ispressed;
 };
 
 void leveleditor_init_widgets(void);
 void leveleditor_display_widgets(void);
 void leveleditor_update_button_states(void);
 
-struct leveleditor_widget * get_active_widget(int, int); 
-
+struct leveleditor_widget *get_active_widget(int, int); 
+struct leveleditor_widget *create_button(int);
+struct leveleditor_widget *create_menu(SDL_Rect *, char [10][100], void (*)(void *), void *[10]);
 EXTERN struct list_head leveleditor_widget_list;
 #undef EXTERN

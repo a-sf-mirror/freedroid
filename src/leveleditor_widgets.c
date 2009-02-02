@@ -39,12 +39,13 @@
 
 #include "leveleditor_widget_button.h"
 #include "leveleditor_widget_map.h"
+#include "leveleditor_widget_menu.h"
 #include "leveleditor_widget_toolbar.h"
 #include "leveleditor_widget_typeselect.h"
 
 LIST_HEAD(leveleditor_widget_list);
 
-static struct leveleditor_widget * create_button(int btype)
+struct leveleditor_widget * create_button(int btype)
 {
     struct leveleditor_widget * a = MyMalloc(sizeof(struct leveleditor_widget));
     a->type = WIDGET_BUTTON;
@@ -62,6 +63,37 @@ static struct leveleditor_widget * create_button(int btype)
     struct leveleditor_button * b = MyMalloc(sizeof(struct leveleditor_button));
     b->btn_index = btype;
     b->pressed = 0;
+
+    a->ext = b;
+
+    return a;
+}
+
+struct leveleditor_widget * create_menu(SDL_Rect *rect, char text[10][100], void (*cb)(void *), void **values)
+{
+    struct leveleditor_widget * a = MyMalloc(sizeof(struct leveleditor_widget));
+    a->type = WIDGET_MENU;
+    a->rect = *rect;
+    a->mouseenter = leveleditor_menu_mouseenter;
+    a->mouseleave = leveleditor_menu_mouseleave;
+    a->mouserelease = leveleditor_menu_mouserelease;
+    a->mousepress = leveleditor_menu_mousepress;
+    a->mouserightrelease = leveleditor_menu_mouserightrelease;
+    a->mouserightpress = leveleditor_menu_mouserightpress;
+    a->mousewheelup = leveleditor_menu_mousewheelup;
+    a->mousewheeldown = leveleditor_menu_mousewheeldown;
+    a->mousemove = leveleditor_menu_mousemove;
+    a->keybevent = NULL; //leveleditor_menu_keybevent;
+    a->enabled = 1;
+
+    struct leveleditor_menu *b = MyMalloc(sizeof(struct leveleditor_menu));
+    int i;
+    for (i=0; i < 10; i++) {
+	strncpy(b->text[i], text[i], 99);
+	b->text[i][99] = 0;
+	b->values[i] = values[i];
+	b->done_cb = cb;
+    }
 
     a->ext = b;
 
@@ -144,6 +176,15 @@ static struct leveleditor_widget * create_objectselector(int x, char * text, enu
 
     a->ext = o;
     return a;
+}
+
+void leveleditor_destroy_widget(struct leveleditor_widget *w) 
+{
+    free(w->ext);
+
+    list_del(&w->node);
+
+    free(w);
 }
 
 void leveleditor_init_widgets()
@@ -303,6 +344,9 @@ void leveleditor_display_widgets()
 		break;
 	    case WIDGET_OBJECTTYPESELECTORBUTTON:
 		leveleditor_typeselect_display(w);
+		break;
+	    case WIDGET_MENU:
+		leveleditor_menu_display(w);
 		break;
 	}
     }
