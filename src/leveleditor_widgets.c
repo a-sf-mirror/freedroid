@@ -272,6 +272,27 @@ void leveleditor_update_button_states()
 
 	b = w->ext;
 	switch (b->btn_index) {
+	    case LEVEL_EDITOR_TOGGLE_ENEMIES_BUTTON:
+		b->active = 2*GameConfig . omit_enemies_in_level_editor;
+		break;
+	    case LEVEL_EDITOR_TOGGLE_TOOLTIPS_BUTTON:
+		b->active = 2*!GameConfig . show_tooltips;
+		break;
+	    case LEVEL_EDITOR_TOGGLE_COLLISION_RECTS_BUTTON:
+		b->active = 2*!draw_collision_rectangles;
+		break;
+	    case LEVEL_EDITOR_ZOOM_IN_BUTTON:
+		b->active = 2*!GameConfig . zoom_is_on;
+		break;
+	    case LEVEL_EDITOR_TOGGLE_OBSTACLES_BUTTON:
+		b->active = 2*GameConfig . omit_obstacles_in_level_editor;
+		break;
+	    case LEVEL_EDITOR_TOGGLE_GRID_BUTTON_OFF:
+		b->active = 2*(draw_grid);
+		break;
+	    case LEVEL_EDITOR_UNDERGROUND_LIGHT_ON_BUTTON:
+		b->active = 2* EditLevel() -> use_underground_lighting;
+		break;
 	    case GO_LEVEL_NORTH_BUTTON:
 		w->enabled = (EditLevel() -> jump_target_north >= 0);
 		break;

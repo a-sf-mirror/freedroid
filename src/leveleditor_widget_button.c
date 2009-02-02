@@ -50,7 +50,6 @@ static void activate_button(struct leveleditor_button *b)
 	    break;
 	case LEVEL_EDITOR_UNDERGROUND_LIGHT_ON_BUTTON:
 	    EditLevel() -> use_underground_lighting = !EditLevel() -> use_underground_lighting ;
-	    b->active = 2* EditLevel() -> use_underground_lighting;
 	    break;
 	case LEVEL_EDITOR_UNDO_BUTTON:
 	    level_editor_action_undo ();
@@ -124,27 +123,21 @@ static void activate_button(struct leveleditor_button *b)
 	    break;
 	case LEVEL_EDITOR_TOGGLE_ENEMIES_BUTTON:
 	    GameConfig . omit_enemies_in_level_editor = ! GameConfig . omit_enemies_in_level_editor ;
-	    b->active = 2*GameConfig . omit_enemies_in_level_editor;
 	    break;
 	case LEVEL_EDITOR_TOGGLE_TOOLTIPS_BUTTON:
 	    GameConfig . show_tooltips = ! GameConfig . show_tooltips ;
-	    b->active = 2*!GameConfig . show_tooltips;
 	    break;
 	case LEVEL_EDITOR_TOGGLE_COLLISION_RECTS_BUTTON:
 	    draw_collision_rectangles = ! draw_collision_rectangles;
-	    b->active = 2*!draw_collision_rectangles;
 	    break;
 	case LEVEL_EDITOR_TOGGLE_GRID_BUTTON_OFF:
 	    draw_grid = (draw_grid+1) % 3;
-	    b->active = 2*(draw_grid);
 	    break;
 	case LEVEL_EDITOR_TOGGLE_OBSTACLES_BUTTON:
 	    GameConfig . omit_obstacles_in_level_editor = ! GameConfig . omit_obstacles_in_level_editor ;
-	    b->active = 2*GameConfig . omit_obstacles_in_level_editor;
 	    break;
 	case LEVEL_EDITOR_ZOOM_IN_BUTTON:
 	    GameConfig . zoom_is_on = !GameConfig . zoom_is_on ;
-	    b->active = 2*!GameConfig . zoom_is_on;
 	    break;
 	case LEVEL_EDITOR_QUIT_BUTTON:
 	    TestMap();
