@@ -116,6 +116,7 @@ void show_backgrounded_text_rectangle (const char* text , int x , int y , int w 
 void
 GiveMouseAlertWindow( const char* WindowText )
 {
+    SDL_Event e;
 
     Activate_Conservative_Frame_Computation();
   
@@ -126,10 +127,19 @@ GiveMouseAlertWindow( const char* WindowText )
 
     our_SDL_flip_wrapper();
     
-    while (  EnterPressed()  ||  SpacePressed() || MouseLeftPressed()) ;
-    while ( !EnterPressed()  && !SpacePressed() && !MouseLeftPressed() ) ;
-    while (  EnterPressed()  ||  SpacePressed() || MouseLeftPressed()) ;
-    
+    while (1) {
+	SDL_WaitEvent(&e);
+	switch (e.type) {
+	    case SDL_KEYDOWN:
+		if (e.key.keysym.sym == SDLK_SPACE || e.key.keysym.sym == SDLK_RETURN || e.key.keysym.sym == SDLK_ESCAPE)
+		    return;
+		break;
+	    case SDL_MOUSEBUTTONDOWN:
+		if (e.button.button == 1)
+		    return;
+		break;
+	}
+    }
 }; // void GiveMouseAlertWindow( char* WindowText )
 
 /**
