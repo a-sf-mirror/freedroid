@@ -164,3 +164,9 @@ void leveleditor_map_display(void *vm)
     if (active_tool)
 	active_tool->display(active_tool->ext);
 }
+
+void leveleditor_update_tool()
+{ //time-based updating if relevant
+    if (active_tool)
+	active_tool->input_event(NULL, active_tool->ext);
+}

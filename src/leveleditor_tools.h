@@ -75,8 +75,9 @@ struct leveleditor_select {
 EXTERN void leveleditor_init_tools(void);
 EXTERN struct list_head leveleditor_tool_list;
 
-#define EVENT_LEFT_PRESS(e) ((e->type == SDL_MOUSEBUTTONDOWN) && (e->button.button == 1))
-#define EVENT_RIGHT_PRESS(e) ((e->type == SDL_MOUSEBUTTONDOWN) && (e->button.button == 3))
-#define EVENT_LEFT_RELEASE(e) ((e->type == SDL_MOUSEBUTTONUP) && (e->button.button == 1))
-#define EVENT_RIGHT_RELEASE(e) ((e->type == SDL_MOUSEBUTTONUP) && (e->button.button == 3))
-#define EVENT_MOVE(e) ((e->type == SDL_MOUSEMOTION))
+#define EVENT_LEFT_PRESS(e) (((e) && e->type == SDL_MOUSEBUTTONDOWN) && (e->button.button == 1))
+#define EVENT_RIGHT_PRESS(e) (((e) && e->type == SDL_MOUSEBUTTONDOWN) && (e->button.button == 3))
+#define EVENT_LEFT_RELEASE(e) (((e) && e->type == SDL_MOUSEBUTTONUP) && (e->button.button == 1))
+#define EVENT_RIGHT_RELEASE(e) (((e) && e->type == SDL_MOUSEBUTTONUP) && (e->button.button == 3))
+#define EVENT_MOVE(e) (((e) && e->type == SDL_MOUSEMOTION))
+#define EVENT_NONE(e) ((e == NULL))

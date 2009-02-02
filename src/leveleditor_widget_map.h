@@ -43,4 +43,5 @@ void leveleditor_map_display(void *);
 
 void leveleditor_map_init(void *);
 
+void leveleditor_update_tool();
 EXTERN moderately_finepoint mouse_mapcoord;

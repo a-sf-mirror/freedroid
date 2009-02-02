@@ -50,24 +50,30 @@
 int leveleditor_move_input(SDL_Event *event, void *am)
 {
     struct leveleditor_move *m = am;
+    moderately_finepoint a, b;
 
-    if (EVENT_RIGHT_PRESS(event)) {
+    if (EVENT_RIGHT_PRESS(event)||EVENT_LEFT_PRESS(event)) {
 	// Start a movement
 	m->origin.x = event->button.x;
 	m->origin.y = event->button.y;
-    } else if (EVENT_RIGHT_RELEASE(event)) {
+    } else if (EVENT_RIGHT_RELEASE(event)||EVENT_LEFT_RELEASE(event)) {
 	// We are done
 	return 1;
-    } else if (EVENT_MOVE(event)) {
-	m -> c_corresponding_position = translate_point_to_map_location (
-		m->origin.x - (GameConfig.screen_width/2), 
-		m->origin.y - (GameConfig.screen_height/2),
+    } 
+    
+    
+    if (EVENT_NONE(event)) { //time-based periodic updating
+	a = translate_point_to_map_location (m->origin.x - (GameConfig.screen_width/2), 
+		m->origin.y - (GameConfig.screen_height/2), 
+		GameConfig.zoom_is_on);
+
+	b = translate_point_to_map_location (GetMousePos_x()-(GameConfig.screen_width/2), GetMousePos_y()-(GameConfig.screen_height/2),
 		GameConfig.zoom_is_on);
 
 	// Calculate the new position
-	Me . pos . x += (mouse_mapcoord.x - m->c_corresponding_position.x) / 30 ;
-	Me . pos . y += (mouse_mapcoord.y - m->c_corresponding_position.y) / 30 ;
-	
+	Me . pos . x += (b.x - a.x) / 30;
+	Me . pos . y += (b.y - a.y) / 30;
+
 	if ( Me . pos . x > curShip.AllLevels[Me.pos.z]->xlen )
 	    Me . pos . x = curShip.AllLevels[Me.pos.z]->xlen-1 ;
 	if ( Me . pos . x < 0 )
@@ -78,7 +84,6 @@ int leveleditor_move_input(SDL_Event *event, void *am)
 	    Me . pos . y = 0;
     }
 
-
     return 0;    
 }
 
@@ -86,4 +91,6 @@ int leveleditor_move_display(void *am)
 {
     struct leveleditor_move *m = am;
     blit_leveleditor_point (m->origin.x, m->origin.y);
+
+    return 0;
 }

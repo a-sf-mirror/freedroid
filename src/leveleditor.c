@@ -48,6 +48,9 @@
 #include "leveleditor_map.h"
 #include "leveleditor_menu.h"
 
+#include "leveleditor_widget_map.h"
+
+
 int OriginWaypoint = (-1);
 
 char VanishingMessage[10000]="";
@@ -1435,7 +1438,8 @@ void LevelEditor()
 	    SDL_Delay (1);
 
 	leveleditor_process_input();
-	
+
+	leveleditor_update_tool(); 	
 	leveleditor_display();	    
 
     }
