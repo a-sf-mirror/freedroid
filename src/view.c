@@ -604,9 +604,9 @@ There was an obstacle type given, that exceeds the number of\n\
 	{
 	    draw_gl_textured_quad_at_map_position ( &obstacle_map [ our_obstacle -> type ] . image , 
 						   obs_onscreen_position . x , obs_onscreen_position . y , 
-						   ( SDL_GetTicks() % 3) / 2.0  , 
-						   ( ( SDL_GetTicks() + 1 ) % 3) / 2.0 , 
-						   ( ( SDL_GetTicks() + 2 ) % 3) / 2.0 , TRUE , FALSE, 1.0) ;
+						   ( (SDL_GetTicks() >> 7) % 3) / 2.0  , 
+						   ( ( (SDL_GetTicks() >> 7) + 1 ) % 3) / 2.0 , 
+						   ( ( (SDL_GetTicks() >> 7) + 2 ) % 3) / 2.0 , TRUE , FALSE, 1.0) ;
 	}
 	else
 	{
