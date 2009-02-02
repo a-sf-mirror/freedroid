@@ -36,8 +36,6 @@
 #include "global.h"
 #include "proto.h"
 
-#include "leveleditor_input.h"
-
 #ifndef SDL_BUTTON_WHEELUP 
 #define SDL_BUTTON_WHEELUP 4
 #endif
@@ -125,7 +123,7 @@ int input_handle(void)
 		break;
 
 	    case SDL_KEYDOWN:
-		input_key_press(event.key.keysym.sym, event.key.keysym.mod);
+		input_key_press(&event);
 		break;
 
 	    case SDL_MOUSEMOTION:

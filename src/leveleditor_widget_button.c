@@ -201,25 +201,25 @@ static void activate_button(struct leveleditor_button *b)
     }
 }
 
-void leveleditor_button_mouseenter(SDL_Event *event, void *vb)
+void leveleditor_button_mouseenter(SDL_Event *event, struct leveleditor_widget *vb)
 {
-    struct leveleditor_button *b = vb;
+    struct leveleditor_button *b = vb->ext;
     //b->pressed = 0;
 
     /*XXX  tooltip*/
 }
 
-void leveleditor_button_mouseleave(SDL_Event *event, void *vb)
+void leveleditor_button_mouseleave(SDL_Event *event, struct leveleditor_widget *vb)
 {
-    struct leveleditor_button *b = vb;
+    struct leveleditor_button *b = vb->ext;
     b->pressed = 0;
 
     /* XXX tooltip*/
 }
 
-void leveleditor_button_mouserelease(SDL_Event *event, void *vb)
+void leveleditor_button_mouserelease(SDL_Event *event, struct leveleditor_widget *vb)
 {
-    struct leveleditor_button *b = vb;
+    struct leveleditor_button *b = vb->ext;
     if (b->pressed) {
 	/* Validate the click: ACTION */
 	activate_button(b);
@@ -227,9 +227,9 @@ void leveleditor_button_mouserelease(SDL_Event *event, void *vb)
     }
 }
 
-void leveleditor_button_mousepress(SDL_Event *event, void *vb)
+void leveleditor_button_mousepress(SDL_Event *event, struct leveleditor_widget *vb)
 {
-    struct leveleditor_button *b = vb;
+    struct leveleditor_button *b = vb->ext;
     if (b->pressed) {
 	ErrorMessage(__FUNCTION__, "Mouse button type %d was already pressed ?!", PLEASE_INFORM, IS_WARNING_ONLY, b->btn_index);
     }
@@ -237,37 +237,37 @@ void leveleditor_button_mousepress(SDL_Event *event, void *vb)
     b->pressed = 1;
 }
 
-void leveleditor_button_mouserightrelease(SDL_Event *event, void *vb) 
+void leveleditor_button_mouserightrelease(SDL_Event *event, struct leveleditor_widget *vb) 
 {
-    struct leveleditor_button *b = vb;
+    struct leveleditor_button *b = vb->ext;
     (void)b;
     //do nothing
 }
 
-void leveleditor_button_mouserightpress(SDL_Event *event, void *vb)
+void leveleditor_button_mouserightpress(SDL_Event *event, struct leveleditor_widget *vb)
 {
-    struct leveleditor_button *b = vb;
+    struct leveleditor_button *b = vb->ext;
     (void)b;
     //do nothing;
 }
 
-void leveleditor_button_mousewheelup(SDL_Event *event, void *vb)
+void leveleditor_button_mousewheelup(SDL_Event *event, struct leveleditor_widget *vb)
 {
-    struct leveleditor_button *b = vb;
+    struct leveleditor_button *b = vb->ext;
     (void)b;
     //do nothing;
 }
 
-void leveleditor_button_mousewheeldown(SDL_Event *event, void *vb)
+void leveleditor_button_mousewheeldown(SDL_Event *event, struct leveleditor_widget *vb)
 {
-    struct leveleditor_button *b = vb;
+    struct leveleditor_button *b = vb->ext;
     (void)b;
     //do nothing;
 }
 
-void leveleditor_button_display(void *vb)
+void leveleditor_button_display(struct leveleditor_widget *vb)
 {
-    struct leveleditor_button *b = vb;
+    struct leveleditor_button *b = vb->ext;
 
     int pushoffset = b->pressed ? 1 : 0;
     int activeoffset = b->active;

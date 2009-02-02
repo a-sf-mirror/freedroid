@@ -25,15 +25,15 @@
 #ifndef _leveleditor_widgets_c
 #endif
 
-void leveleditor_typeselect_mouseenter(SDL_Event *, void *);
-void leveleditor_typeselect_mouseleave(SDL_Event *, void *);
-void leveleditor_typeselect_mouserelease(SDL_Event *, void *);
-void leveleditor_typeselect_mousepress(SDL_Event *, void *);
-void leveleditor_typeselect_mouserightrelease(SDL_Event *, void *);
-void leveleditor_typeselect_mouserightpress(SDL_Event *, void *);
-void leveleditor_typeselect_mousewheelup(SDL_Event *, void *);
-void leveleditor_typeselect_mousewheeldown(SDL_Event *, void *);
-void leveleditor_typeselect_display(void *);
+void leveleditor_typeselect_mouseenter(SDL_Event *, struct leveleditor_widget *);
+void leveleditor_typeselect_mouseleave(SDL_Event *, struct leveleditor_widget *);
+void leveleditor_typeselect_mouserelease(SDL_Event *, struct leveleditor_widget *);
+void leveleditor_typeselect_mousepress(SDL_Event *, struct leveleditor_widget *);
+void leveleditor_typeselect_mouserightrelease(SDL_Event *, struct leveleditor_widget *);
+void leveleditor_typeselect_mouserightpress(SDL_Event *, struct leveleditor_widget *);
+void leveleditor_typeselect_mousewheelup(SDL_Event *, struct leveleditor_widget *);
+void leveleditor_typeselect_mousewheeldown(SDL_Event *, struct leveleditor_widget *);
+void leveleditor_typeselect_display(struct leveleditor_widget *);
 
 struct leveleditor_typeselect *get_current_object_type(void);
 void leveleditor_typeselect_init_selected_list(struct leveleditor_typeselect *);

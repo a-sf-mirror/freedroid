@@ -37,66 +37,61 @@
 
 static struct leveleditor_typeselect *currently_selected_list = NULL;
 
-void leveleditor_typeselect_mouseenter(SDL_Event *event, void *vm)
+void leveleditor_typeselect_mouseenter(SDL_Event *event, struct leveleditor_widget *vm)
 {
-    struct leveleditor_typeselect *m = vm;
+    struct leveleditor_typeselect *m = vm->ext;
     (void)m;
 }
 
-void leveleditor_typeselect_mouseleave(SDL_Event *event, void *vm)
+void leveleditor_typeselect_mouseleave(SDL_Event *event, struct leveleditor_widget *vm)
 {
-    struct leveleditor_typeselect *m = vm;
+    struct leveleditor_typeselect *m = vm->ext;
     (void)m;
 }
 
-void leveleditor_typeselect_mouserelease(SDL_Event *event, void *vm)
+void leveleditor_typeselect_mouserelease(SDL_Event *event, struct leveleditor_widget *vm)
 {
-    struct leveleditor_typeselect *m = vm;
+    struct leveleditor_typeselect *m = vm->ext;
     (void)m;
 }
 
-void leveleditor_typeselect_mousepress(SDL_Event *event, void *vm)
+void leveleditor_typeselect_mousepress(SDL_Event *event, struct leveleditor_widget *vm)
 {
-    struct leveleditor_typeselect *m = vm;
+    struct leveleditor_typeselect *m = vm->ext;
     currently_selected_list = m;
 }
 
-void leveleditor_typeselect_mouserightrelease(SDL_Event *event, void *vm)
+void leveleditor_typeselect_mouserightrelease(SDL_Event *event, struct leveleditor_widget *vm)
 {
-    struct leveleditor_typeselect *m = vm;
+    struct leveleditor_typeselect *m = vm->ext;
     (void)m;
 }
 
-void leveleditor_typeselect_mouserightpress(SDL_Event *event, void *vm)
+void leveleditor_typeselect_mouserightpress(SDL_Event *event, struct leveleditor_widget *vm)
 {
-    struct leveleditor_typeselect *m = vm;
+    struct leveleditor_typeselect *m = vm->ext;
     (void)m;
 }
 
-void leveleditor_typeselect_mousewheelup(SDL_Event *event, void *vm)
+void leveleditor_typeselect_mousewheelup(SDL_Event *event, struct leveleditor_widget *vm)
 {
-    struct leveleditor_typeselect *m = vm;
+    struct leveleditor_typeselect *m = vm->ext;
     (void)m;
 }
 
-void leveleditor_typeselect_mousewheeldown(SDL_Event *event, void *vm)
+void leveleditor_typeselect_mousewheeldown(SDL_Event *event, struct leveleditor_widget *vm)
 {
-    struct leveleditor_typeselect *m = vm;
+    struct leveleditor_typeselect *m = vm->ext;
     (void)m;
 }
 
-void leveleditor_typeselect_display(void *vm)
+void leveleditor_typeselect_display(struct leveleditor_widget *vm)
 {
-    struct leveleditor_typeselect *m = vm;
+    struct leveleditor_typeselect *m = vm->ext;
     SDL_Rect tr, hr;
     int tab_width = 80;
 
-    tr.x = m->xpos; 
-    tr . y = 0; 
-    tr . h = 14; 
-    tr . w = tab_width;
-
-    our_SDL_fill_rect_wrapper(Screen, &tr, 0x656565);
+    our_SDL_fill_rect_wrapper(Screen, &vm->rect, 0x656565);
 
     BFont_Info * PreviousFont;
     PreviousFont = GetCurrentFont();
@@ -108,7 +103,7 @@ void leveleditor_typeselect_display(void *vm)
     hr.w = tab_width-2; 
     hr.h = 14;
 
-    hr.x=m->xpos;
+    hr.x=vm->rect.x;
 
     if (m == currently_selected_list)
 	our_SDL_fill_rect_wrapper(Screen, &hr, 0x556889);

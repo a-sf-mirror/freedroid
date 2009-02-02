@@ -80,3 +80,5 @@ EXTERN struct list_head leveleditor_tool_list;
 #define EVENT_RIGHT_RELEASE(e) (((e) && e->type == SDL_MOUSEBUTTONUP) && (e->button.button == 3))
 #define EVENT_MOVE(e) (((e) && e->type == SDL_MOUSEMOTION))
 #define EVENT_NONE(e) ((e == NULL))
+#define EVENT_KEYPRESS(e, s) (((e) && (e->type == SDL_KEYDOWN) && (e->key.keysym.sym == s)))
+#define EVENT_KEYRELEASE(e, s) (((e) && (e->type == SDL_KEYUP && (e->key.keysym.sym == s)))

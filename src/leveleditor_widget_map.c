@@ -91,44 +91,44 @@ static void forward_event(SDL_Event *event)
     }
 }
 
-void leveleditor_map_mouseenter(SDL_Event *event, void *vm)
+void leveleditor_map_mouseenter(SDL_Event *event, struct leveleditor_widget *vm)
 {
-    struct leveleditor_mapwidget *m = vm;
+    struct leveleditor_mapwidget *m = vm->ext;
 }
 
-void leveleditor_map_mouseleave(SDL_Event *event, void *vm)
+void leveleditor_map_mouseleave(SDL_Event *event, struct leveleditor_widget *vm)
 {
-    struct leveleditor_mapwidget *m = vm;
+    struct leveleditor_mapwidget *m = vm->ext;
 
     /* XXX do we disable the current tool when we lose focus ? */
 }
 
-void leveleditor_map_mouserelease(SDL_Event *event, void *vm)
+void leveleditor_map_mouserelease(SDL_Event *event, struct leveleditor_widget *vm)
 {
-    struct leveleditor_mapwidget *m = vm;
+    struct leveleditor_mapwidget *m = vm->ext;
     
     forward_event(event);
 }
 
-void leveleditor_map_mousepress(SDL_Event *event, void *vm)
+void leveleditor_map_mousepress(SDL_Event *event, struct leveleditor_widget *vm)
 {
-    struct leveleditor_mapwidget *m = vm;
+    struct leveleditor_mapwidget *m = vm->ext;
     if (!active_tool)
 	active_tool = selected_tool;
 
     forward_event(event);
 }
 
-void leveleditor_map_mouserightrelease(SDL_Event *event, void *vm)
+void leveleditor_map_mouserightrelease(SDL_Event *event, struct leveleditor_widget *vm)
 {
-    struct leveleditor_mapwidget *m = vm;
+    struct leveleditor_mapwidget *m = vm->ext;
     
     forward_event(event);
 }
 
-void leveleditor_map_mouserightpress(SDL_Event *event, void *vm)
+void leveleditor_map_mouserightpress(SDL_Event *event, struct leveleditor_widget *vm)
 {
-    struct leveleditor_mapwidget *m = vm;
+    struct leveleditor_mapwidget *m = vm->ext;
 
     if (!active_tool)
 	active_tool = move_tool;
@@ -136,19 +136,19 @@ void leveleditor_map_mouserightpress(SDL_Event *event, void *vm)
     forward_event(event);
 }
 
-void leveleditor_map_mousewheelup(SDL_Event *event, void *vm)
+void leveleditor_map_mousewheelup(SDL_Event *event, struct leveleditor_widget *vm)
 {
     struct leveleditor_tool *n = selected_tool;
     select_other_tool(-1);
 }
 
-void leveleditor_map_mousewheeldown(SDL_Event *event, void *vm)
+void leveleditor_map_mousewheeldown(SDL_Event *event, struct leveleditor_widget *vm)
 {
-    struct leveleditor_mapwidget *m = vm;
+    struct leveleditor_mapwidget *m = vm->ext;
     select_other_tool(1);
 }
 
-void leveleditor_map_mousemove(SDL_Event *event, void *vm) 
+void leveleditor_map_mousemove(SDL_Event *event, struct leveleditor_widget *vm) 
 {
     mouse_mapcoord =  translate_point_to_map_location ((float)event->motion.x -(GameConfig.screen_width/2), (float)event->motion.y - (GameConfig.screen_height/2),
  GameConfig.zoom_is_on);
@@ -156,9 +156,20 @@ void leveleditor_map_mousemove(SDL_Event *event, void *vm)
     forward_event(event);
 }
 
-void leveleditor_map_display(void *vm)
+int leveleditor_map_keybevent(SDL_Event *event, struct leveleditor_widget *vm) 
 {
-    struct leveleditor_mapwidget *m = vm;
+    if (!active_tool) {
+	// No active tool? Spawn a menu
+	
+    }
+
+    // Forward the key to the active tool
+    forward_event(event);
+}
+
+void leveleditor_map_display(struct leveleditor_widget *vm)
+{
+    struct leveleditor_mapwidget *m = vm->ext;
 
     if (active_tool)
 	active_tool->display(active_tool->ext);

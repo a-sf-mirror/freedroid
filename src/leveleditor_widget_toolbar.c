@@ -40,26 +40,26 @@
 static struct leveleditor_typeselect *previous_type = NULL;
 static int num_blocks_per_line = 0;
 
-void leveleditor_toolbar_mouseenter(SDL_Event *event, void *vt)
+void leveleditor_toolbar_mouseenter(SDL_Event *event, struct leveleditor_widget *vt)
 {
-    struct leveleditor_toolbar *t = vt;
+    struct leveleditor_toolbar *t = vt->ext;
     (void)t;
 }
 
-void leveleditor_toolbar_mouseleave(SDL_Event *event, void *vt)
+void leveleditor_toolbar_mouseleave(SDL_Event *event, struct leveleditor_widget *vt)
 {
-    struct leveleditor_toolbar *t = vt;
+    struct leveleditor_toolbar *t = vt->ext;
     (void)t;
 }
 
-void leveleditor_toolbar_mouserelease(SDL_Event *event, void *vt)
+void leveleditor_toolbar_mouserelease(SDL_Event *event, struct leveleditor_widget *vt)
 {
-    struct leveleditor_toolbar *t = vt;
+    struct leveleditor_toolbar *t = vt->ext;
 }
 
-void leveleditor_toolbar_mousepress(SDL_Event *event, void *vt)
+void leveleditor_toolbar_mousepress(SDL_Event *event, struct leveleditor_widget *vt)
 {
-    struct leveleditor_toolbar *t = vt;
+    struct leveleditor_toolbar *t = vt->ext;
     struct leveleditor_typeselect *ts = get_current_object_type();
     SDL_Rect TargetRect;
     int i;
@@ -78,34 +78,34 @@ void leveleditor_toolbar_mousepress(SDL_Event *event, void *vt)
 
 }
 
-void leveleditor_toolbar_mouserightrelease(SDL_Event *event, void *vt)
+void leveleditor_toolbar_mouserightrelease(SDL_Event *event, struct leveleditor_widget *vt)
 {
-    struct leveleditor_toolbar *t = vt;
+    struct leveleditor_toolbar *t = vt->ext;
     (void)t;
 }
 
-void leveleditor_toolbar_mouserightpress(SDL_Event *event, void *vt)
+void leveleditor_toolbar_mouserightpress(SDL_Event *event, struct leveleditor_widget *vt)
 {
-    struct leveleditor_toolbar *t = vt;
+    struct leveleditor_toolbar *t = vt->ext;
     (void)t;
     /*XXX maybe display info about the currently selected object?*/
 }
 
-void leveleditor_toolbar_mousewheelup(SDL_Event *event, void *vt)
+void leveleditor_toolbar_mousewheelup(SDL_Event *event, struct leveleditor_widget *vt)
 {
-    struct leveleditor_toolbar *t = vt;
+    struct leveleditor_toolbar *t = vt->ext;
     leveleditor_toolbar_left();
 }
 
-void leveleditor_toolbar_mousewheeldown(SDL_Event *event, void *vt)
+void leveleditor_toolbar_mousewheeldown(SDL_Event *event, struct leveleditor_widget *vt)
 {
-    struct leveleditor_toolbar *t = vt;
+    struct leveleditor_toolbar *t = vt->ext;
     leveleditor_toolbar_right();
 }
 
-void leveleditor_toolbar_display(void *vt)
+void leveleditor_toolbar_display(struct leveleditor_widget *vt)
 {
-    struct leveleditor_toolbar *t = vt;
+    struct leveleditor_toolbar *t = vt->ext;
     struct leveleditor_typeselect *ts = get_current_object_type();
 
     if (ts != previous_type) {

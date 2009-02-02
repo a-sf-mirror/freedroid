@@ -44,9 +44,9 @@
 #include "leveleditor_actions.h"
 #include "leveleditor_display.h"
 #include "leveleditor_grass_actions.h"
-#include "leveleditor_input.h"
 #include "leveleditor_map.h"
 #include "leveleditor_menu.h"
+#include "leveleditor_widgets.h"
 
 #include "leveleditor_widget_map.h"
 

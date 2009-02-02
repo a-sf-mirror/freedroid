@@ -305,7 +305,7 @@ int leveleditor_place_input(SDL_Event *event, struct leveleditor_place *m)
 	} else if (EVENT_MOVE(event)) {
 	    //change rectangle size
 	    handle_rectangle_floor(m);
-	} else if (EVENT_RIGHT_PRESS(event)) {
+	} else if (EVENT_RIGHT_PRESS(event) || EVENT_KEYPRESS(event, SDLK_SPACE)) {
 	    end_rectangle_floor(0);
 	    return 1;
 	}
@@ -315,7 +315,7 @@ int leveleditor_place_input(SDL_Event *event, struct leveleditor_place *m)
 	    return 1;
 	} else if (EVENT_MOVE(event)) {
 	    handle_line_walls(m);
-	} else if (EVENT_RIGHT_PRESS(event)) {
+	} else if (EVENT_RIGHT_PRESS(event) || EVENT_KEYPRESS(event, SDLK_ESCAPE)) {
 	    end_line_walls(m, 0);
 	    return 1;
 	}

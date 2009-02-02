@@ -231,14 +231,14 @@ void leveleditor_input_mouse_motion(SDL_Event *event)
 
     if (previously_active_widget != w) {
 	if (w) 
-	    w->mouseenter(event, w->ext);
+	    w->mouseenter(event, w);
 	if (previously_active_widget)
-	    previously_active_widget->mouseleave(event, previously_active_widget->ext);
+	    previously_active_widget->mouseleave(event, previously_active_widget);
 	previously_active_widget = w;
     }
 
     if (w && w->mousemove)
-	w->mousemove(event, w->ext);
+	w->mousemove(event, w);
 }
 
 void leveleditor_input_mouse_button(SDL_Event *event)
@@ -252,10 +252,10 @@ void leveleditor_input_mouse_button(SDL_Event *event)
 	    case SDL_MOUSEBUTTONUP:
 		switch(event->button.button) {
 		    case 1:
-			w->mouserelease(event, w->ext);
+			w->mouserelease(event, w);
 			break;
 		    case 3:
-			w->mouserightrelease(event, w->ext);
+			w->mouserightrelease(event, w);
 			break;
 		    case 4:
 		    case 5:
@@ -267,16 +267,16 @@ void leveleditor_input_mouse_button(SDL_Event *event)
 	    case SDL_MOUSEBUTTONDOWN:
 		switch(event->button.button) {
 		    case 1:
-			w->mousepress(event, w->ext);
+			w->mousepress(event, w);
 			break;
 		    case 3:
-			w->mouserightpress(event, w->ext);
+			w->mouserightpress(event, w);
 			break;
 		    case 4:
-			w->mousewheelup(event, w->ext);
+			w->mousewheelup(event, w);
 			break;
 		    case 5:
-			w->mousewheeldown(event, w->ext);
+			w->mousewheeldown(event, w);
 			break;
 		    default:
 			ErrorMessage(__FUNCTION__, "Mouse button index %hd unhandled by leveleditor widgets.\n", PLEASE_INFORM, IS_WARNING_ONLY, event->button.button);
@@ -286,6 +286,27 @@ void leveleditor_input_mouse_button(SDL_Event *event)
 		ErrorMessage(__FUNCTION__, "Event type %d sent to leveleditor as a mouse button event is not recognized.\n", PLEASE_INFORM, IS_FATAL, event->type);
 	}
     }
+}
+
+void leveleditor_input_keybevent(SDL_Event *event)
+{
+    struct leveleditor_widget *w;
+       
+    w = get_active_widget(GetMousePos_x(), GetMousePos_y());
+
+    // When we get a keyboard event that wasn't handled by the "general" keybinding system,
+    // it means we have something widget- and state- dependant.
+    // We will forward the event to the currently active widget, and if it did not handle it,
+    // forward it to each widget in the list in order.
+
+    if (w && w->keybevent && !w->keybevent(event, w))
+	return;
+
+    list_for_each_entry(w, &leveleditor_widget_list, node) {
+	if (w && w->keybevent && !w->keybevent(event, w))
+	    return;
+    }       
+
 }
 
 void leveleditor_process_input()

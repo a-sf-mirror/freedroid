@@ -26,15 +26,15 @@
 #define EXTERN extern
 #endif
 
-void leveleditor_toolbar_mouseenter(SDL_Event *, void *);
-void leveleditor_toolbar_mouseleave(SDL_Event *, void *);
-void leveleditor_toolbar_mouserelease(SDL_Event *, void *);
-void leveleditor_toolbar_mousepress(SDL_Event *, void *);
-void leveleditor_toolbar_mouserightrelease(SDL_Event *, void *);
-void leveleditor_toolbar_mouserightpress(SDL_Event *, void *);
-void leveleditor_toolbar_mousewheelup(SDL_Event *, void *);
-void leveleditor_toolbar_mousewheeldown(SDL_Event *, void *);
-void leveleditor_toolbar_display(void *);
+void leveleditor_toolbar_mouseenter(SDL_Event *, struct leveleditor_widget *);
+void leveleditor_toolbar_mouseleave(SDL_Event *, struct leveleditor_widget *);
+void leveleditor_toolbar_mouserelease(SDL_Event *, struct leveleditor_widget *);
+void leveleditor_toolbar_mousepress(SDL_Event *, struct leveleditor_widget *);
+void leveleditor_toolbar_mouserightrelease(SDL_Event *, struct leveleditor_widget *);
+void leveleditor_toolbar_mouserightpress(SDL_Event *, struct leveleditor_widget *);
+void leveleditor_toolbar_mousewheelup(SDL_Event *, struct leveleditor_widget *);
+void leveleditor_toolbar_mousewheeldown(SDL_Event *, struct leveleditor_widget *);
+void leveleditor_toolbar_display(struct leveleditor_widget *);
 
 void leveleditor_toolbar_left(void);
 void leveleditor_toolbar_right(void);

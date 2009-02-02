@@ -85,6 +85,7 @@ static struct leveleditor_widget * create_map()
     a->mousewheelup = leveleditor_map_mousewheelup;
     a->mousewheeldown = leveleditor_map_mousewheeldown;
     a->mousemove = leveleditor_map_mousemove;
+    a->keybevent = leveleditor_map_keybevent;
     a->enabled = 1;
 
     struct leveleditor_mapwidget * m = MyMalloc(sizeof(struct leveleditor_mapwidget));
@@ -140,7 +141,6 @@ static struct leveleditor_widget * create_objectselector(int x, char * text, enu
     o->type = type;
     o->indices = olist;
     o->title = text;
-    o->xpos = x;
 
     a->ext = o;
     return a;
@@ -293,16 +293,16 @@ void leveleditor_display_widgets()
 
 	switch (w->type) {
 	    case WIDGET_BUTTON:
-		leveleditor_button_display(w->ext);
+		leveleditor_button_display(w);
 		break;
 	    case WIDGET_TOOLBAR:
-		leveleditor_toolbar_display(w->ext);
+		leveleditor_toolbar_display(w);
 		break;
 	    case WIDGET_MAP:
-		leveleditor_map_display(w->ext);
+		leveleditor_map_display(w);
 		break;
 	    case WIDGET_OBJECTTYPESELECTORBUTTON:
-		leveleditor_typeselect_display(w->ext);
+		leveleditor_typeselect_display(w);
 		break;
 	}
     }

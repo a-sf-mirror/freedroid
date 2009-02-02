@@ -499,7 +499,7 @@ int SPressed (void) ;
 int WPressed (void) ;
 int XPressed (void) ;
 
-int input_key_press(SDLKey, SDLMod);
+int input_key_press(SDL_Event *);
 void keychart(void);
 void input_set_default(void);
 void input_keyboard_init(void);
@@ -683,5 +683,11 @@ void DeleteCookie (const char *);
 int ResolveDialogSectionToChatFlagsIndex (const char* SectionName );
 void run_subdialog(const char *);
 void GiveSubtitleNSample(const char*, const char*, enemy* , int);
+
+// leveleditor_input.c
+void leveleditor_process_input(void);
+void leveleditor_input_mouse_motion(SDL_Event *);
+void leveleditor_input_mouse_button(SDL_Event *);
+void leveleditor_input_keybevent(SDL_Event *);
 
 #endif

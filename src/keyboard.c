@@ -423,7 +423,6 @@ void keychart()
  *
  *    @param keynum The index of the  keybind.
  *    @param value The value of the keypress (defined above).
- *    @param abs Whether or not it's an absolute value (for them joystick).
  */
 #define KEYPRESS(s)    ((strcmp(GameConfig.input_keybinds[keynum].name,s)==0) && value==KEY_PRESS)
 #define INGAME()	(game_status == INSIDE_GAME)
@@ -612,19 +611,27 @@ static int input_key( int keynum, int value)
 static int input_key_event( SDLKey key, SDLMod mod, int value )
 {
     int i;
+    int noteaten = -1;
     mod &= ~(KMOD_CAPS | KMOD_NUM | KMOD_MODE); /* We want to ignore "global" modifiers. */
 
     for (i=0; strcmp(keybindNames[i],"end"); i++)
 	if ((GameConfig.input_keybinds[i].key == key) && (GameConfig.input_keybinds[i].mod==mod)) {
-	    if(!input_key(i, value))
+	    if(!(noteaten = input_key(i, value)))
 		break;
 	}
-    return 0;
+    return noteaten;
 }
 
-int input_key_press (SDLKey key, SDLMod mod)
+int input_key_press (SDL_Event *event)
 {
-    return input_key_event(key, mod, KEY_PRESS);
+    int noteaten;
+    noteaten = input_key_event(event->key.keysym.sym, event->key.keysym.mod, KEY_PRESS);
+
+    if (!noteaten)
+	return 0;
+    else if (INLVLEDIT()) {
+	leveleditor_input_keybevent(event);
+    }
 }
 
 /**

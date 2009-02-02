@@ -34,6 +34,7 @@ enum leveleditor_widget_type {
     WIDGET_TOOLBAR,
     WIDGET_MAP,
     WIDGET_OBJECTTYPESELECTORBUTTON, //hahaha what a name! behold!
+    WIDGET_MENU,
 };
 
 /* A widget in the level editor */
@@ -42,15 +43,16 @@ struct leveleditor_widget {
     SDL_Rect rect; //Space occupied
     struct list_head node;
     int enabled;
-    void (*mouseenter)(SDL_Event *, void *);
-    void (*mouseleave)(SDL_Event *, void *);
-    void (*mouserelease)(SDL_Event *, void *);
-    void (*mousepress)(SDL_Event *, void *);
-    void (*mouserightrelease)(SDL_Event *, void *);
-    void (*mouserightpress)(SDL_Event *, void *);
-    void (*mousewheelup)(SDL_Event *, void *);
-    void (*mousewheeldown)(SDL_Event *, void *);
-    void (*mousemove)(SDL_Event *, void *);
+    void (*mouseenter)(SDL_Event *, struct leveleditor_widget *);
+    void (*mouseleave)(SDL_Event *, struct leveleditor_widget *);
+    void (*mouserelease)(SDL_Event *, struct leveleditor_widget *);
+    void (*mousepress)(SDL_Event *, struct leveleditor_widget *);
+    void (*mouserightrelease)(SDL_Event *, struct leveleditor_widget *);
+    void (*mouserightpress)(SDL_Event *, struct leveleditor_widget *);
+    void (*mousewheelup)(SDL_Event *, struct leveleditor_widget *);
+    void (*mousewheeldown)(SDL_Event *, struct leveleditor_widget *);
+    void (*mousemove)(SDL_Event *, struct leveleditor_widget *);
+    int (*keybevent)(SDL_Event *, struct leveleditor_widget *);
     void * ext; //Type specific information
 };
 
@@ -69,15 +71,19 @@ struct leveleditor_mapwidget {
 struct leveleditor_typeselect {
     unsigned int selected_tile_nb;
     unsigned int toolbar_first_block;
-    int xpos;
     char * title;
     enum leveleditor_object_type type;
     int * indices;
 };
 
+struct leveleditor_menu {
+};
+
+void leveleditor_init_widgets(void);
 void leveleditor_display_widgets(void);
 void leveleditor_update_button_states(void);
 
 struct leveleditor_widget * get_active_widget(int, int); 
 
+EXTERN struct list_head leveleditor_widget_list;
 #undef EXTERN
