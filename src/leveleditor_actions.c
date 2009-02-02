@@ -783,6 +783,53 @@ void level_editor_action_redo ()
     }
 }
     
+/**
+ *
+ *
+ */
+void level_editor_place_aligned_obstacle ( int positionid )
+{
+    struct quickbar_entry *entry = NULL;
+    int obstacle_type, id;
+    int placement_is_possible = TRUE;
+    int obstacle_created = FALSE;
+    float position_offset_x[9] = { 0, 0.5, 1.0, 0, 0.5, 1.0, 0, 0.5, 1.0 };
+    float position_offset_y[9] = { 1.0, 1.0, 1.0, 0.5, 0.5, 0.5, 0, 0, 0 };
+
+    positionid--;
+
+    if ( GameConfig . level_editor_edit_mode == LEVEL_EDITOR_SELECTION_FLOOR )
+	return;
+
+    /* Try to get a quickbar entry */
+    if ( GameConfig . level_editor_edit_mode == LEVEL_EDITOR_SELECTION_QUICK )
+    {
+	entry = quickbar_getentry ( Highlight );
+	if (entry)
+	{
+	    obstacle_type = entry -> obstacle_type;
+	    id = entry -> id;
+	}
+	else
+	{
+	    placement_is_possible = FALSE;
+	}
+    }
+    else
+    {
+	obstacle_type = GameConfig . level_editor_edit_mode;
+	id = Highlight;
+    }
+
+    if ( placement_is_possible )
+    {
+	action_create_obstacle_user ( EditLevel(), ((int)Me.pos.x) + position_offset_x[positionid] , ((int)Me.pos.y) + position_offset_y[positionid], wall_indices [ obstacle_type ] [ id ] );
+	obstacle_created = TRUE;
+	if ( GameConfig . level_editor_edit_mode != LEVEL_EDITOR_SELECTION_QUICK && obstacle_created )
+	    quickbar_use ( obstacle_type, id );
+    }
+}
+
 
 #undef _leveleditor_action_c
 

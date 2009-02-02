@@ -515,7 +515,6 @@ static void LevelOptions ( void )
 	SET_LEVEL_INTERFACE_POSITION,
 	CHANGE_LIGHT,
 	SET_BACKGROUND_SONG_NAME,
-	SET_LEVEL_COMMENT,
 	CHANGE_INFINITE_RUNNING,
 	ADD_NEW_LEVEL,
 	LEAVE_OPTIONS_MENU,
@@ -582,10 +581,6 @@ static void LevelOptions ( void )
 	MenuTexts[ i ] = Options [ i ]; i++ ;
 	sprintf( Options [ i ] , _("Background Music") );
 	sprintf( Options [ i+1 ] , ": %s" , EditLevel()->Background_Song_Name );
-	strcat( Options [ i ] , Options [ i+1 ] ); 
-	MenuTexts[ i ] = Options [ i ] ; i++ ;
-	sprintf( Options [ i ] , _("Comment") );
-	sprintf( Options [ i+1 ] , ": %s" , EditLevel()->Level_Enter_Comment );
 	strcat( Options [ i ] , Options [ i+1 ] ); 
 	MenuTexts[ i ] = Options [ i ] ; i++ ;
 	sprintf( Options [ i ] , _("Infinite Running") );
@@ -667,12 +662,6 @@ static void LevelOptions ( void )
 		EditLevel()->Background_Song_Name = 
 		    GetEditableStringInPopupWindow ( 1000 , _("\n Please enter new music file name: \n\n") ,
 			    EditLevel()->Background_Song_Name );
-		break;
-	    case SET_LEVEL_COMMENT:
-		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
-		EditLevel()->Level_Enter_Comment = 
-		    GetEditableStringInPopupWindow ( 1000 , _("\n Please enter new level comment: \n\n") ,
-			    EditLevel()->Level_Enter_Comment );
 		break;
 	    case SET_LEVEL_INTERFACE_POSITION:
 		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);

@@ -1972,9 +1972,6 @@ use underground lighting: %d\n",
     strcat(LevelMem, LEVEL_NAME_STRING );
     strcat(LevelMem, Lev->Levelname );
     strcat(LevelMem, "\"\n" );
-    strcat(LevelMem, LEVEL_ENTER_COMMENT_STRING );
-    strcat(LevelMem, Lev->Level_Enter_Comment );
-    strcat(LevelMem, "\n" );
     strcat(LevelMem, BACKGROUND_SONG_NAME_STRING );
     strcat(LevelMem, Lev->Background_Song_Name );
     strcat(LevelMem, "\n" );
@@ -2385,7 +2382,6 @@ DecodeLoadedLeveldata ( char *data )
     }
     
     loadlevel->Background_Song_Name = ReadAndMallocStringFromData ( data , BACKGROUND_SONG_NAME_STRING , "\n" );
-    loadlevel->Level_Enter_Comment = ReadAndMallocStringFromData ( data , LEVEL_ENTER_COMMENT_STRING , "\n" );
 
     decode_obstacles_of_this_level ( loadlevel , DataPointer );
 

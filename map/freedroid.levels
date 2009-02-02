@@ -15,7 +15,6 @@ jump target east: 9
 jump target west: 10
 use underground lighting: 0
 Name of this level=_"Town"
-Infcmt="This must be the Old Town.
 BgSong=town.ogg
 beginning_of_map
  30  30  30  30  30  30  30  30  30  30  35   8   7   6   7   9   9   7   9   8   7   8   6  13  54  52   9  54  52   8   7   6   6   7   8   6   9   8   6   7   9   9   9   6   7   7   6   6   9   6   7   6   7   6   7   8  35   8   7   8   7   7   6   8   9   8   8   7   8   8  35   8   9  33   9   7   6   7  35   6   7   9   6   7   6   8  34   8   8  34 
@@ -3806,7 +3805,6 @@ jump target east: -1
 jump target west: -1
 use underground lighting: 1
 Name of this level=_"Warehouse Level 1"
-Infcmt="This must be the warehouse Spencer mentioned.
 BgSong=AmbientBattle.ogg
 beginning_of_map
  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31 
@@ -4796,7 +4794,6 @@ jump target east: -1
 jump target west: -1
 use underground lighting: 1
 Name of this level=_"Warehouse Level 2"
-Infcmt="This place is bigger even.
 BgSong=TechBattle.ogg
 beginning_of_map
  32  32  32  32  32  32  32  31  31  31  31  31  31  32  32  32  32  32  32  32  32  32  31  31  31  31  31  31  31  31  31  31  31  31  31  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  31  31  31 
@@ -5479,7 +5476,6 @@ jump target east: -1
 jump target west: -1
 use underground lighting: 1
 Name of this level=_"Kevins Underground Station"
-Infcmt="This must be Kevins Underground Station...
 BgSong=underground.ogg
 beginning_of_map
  31  31  31  31   1   1   1   1   1   1   1   1  31  31  31  31  31   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1  31  31 
@@ -5989,7 +5985,6 @@ jump target east: -1
 jump target west: -1
 use underground lighting: 1
 Name of this level=_"Disruption Machine Deck"
-Infcmt="This is a level, like many other levels.
 BgSong=ImperialArmy.ogg
 beginning_of_map
   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1  31  31  31  31  31  31  31  31  31  31  31 
@@ -6812,7 +6807,6 @@ jump target east: -1
 jump target west: -1
 use underground lighting: 1
 Name of this level=_"Disruptor LvV"
-Infcmt="UNUSED
 BgSong=underground.ogg
 beginning_of_map
  31  31  31  31  31  31  31   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1  31  31  31  31  31  31  31  31  31 
@@ -7454,7 +7448,6 @@ jump target east: -1
 jump target west: -1
 use underground lighting: 1
 Name of this level=_"Maintenance Tunnels"
-Infcmt="This is a level, like many other levels.
 BgSong=underground.ogg
 beginning_of_map
  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31 
@@ -8042,7 +8035,6 @@ jump target east: -1
 jump target west: -1
 use underground lighting: 1
 Name of this level=_"Disruptor Shield Control"
-Infcmt="This is a level, like many other levels.
 BgSong=ImperialArmy.ogg
 beginning_of_map
   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1  31  31  31   1   1   1   1   1   1   1   1  31  31  31  31   1   1   1   1   1   1   1  31  31  31  31 
@@ -8765,7 +8757,6 @@ jump target east: 17
 jump target west: 12
 use underground lighting: 0
 Name of this level=_"Temple Wood"
-Infcmt="This must be the main reactor level.  Humans are not allowed
 BgSong=temple.ogg
 beginning_of_map
  31  31  31  31  31  30  30  30  30  30   4   4  73   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   4   4   4   4   4   4   4   4   4  30   4   4   4   4  26  26  11  73  73  73  73  73  73  73  73  73  73  73  73  73  73  73   0 
@@ -10625,7 +10616,6 @@ jump target east: -1
 jump target west: 0
 use underground lighting: 0
 Name of this level=_"Crystal Fields"
-Infcmt="MS Facility Gate
 BgSong=TheBeginning.ogg
 beginning_of_map
   8  34   6   7   6   8  34   8   8  34   9   6   9   7   9   6   8   6   8   6   7   8   9   9   6   9   6  10   7   8   6   7   8   8   7   6   8   8   9   6   8   7   8   7   9   7  21  23  26  35  35   8   7   7   7   9   8  34   8   8   8   9   7   8   7   7  25  17  18  17  18  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30 
@@ -11667,7 +11657,6 @@ jump target east: 0
 jump target west: -1
 use underground lighting: 0
 Name of this level=_"Desert of Red Tears"
-Infcmt="This is a level, like many other levels.
 BgSong=Suspicion.ogg
 beginning_of_map
  30  30  30   9   9   9   9   9   9   9   9   9   9  30  30  30  30   9   9   9   9   9   9   9   9   9   9   9   9   9   9   9   9   9  30  30  30  30  30  30  30  30  30  30  30  30   9   9   9   9   9   9   9   9   9   9   9   9   9   9  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30 
@@ -12274,7 +12263,6 @@ jump target east: 31
 jump target west: -1
 use underground lighting: 0
 Name of this level=_"Slasher Mountains"
-Infcmt="UNUSED
 BgSong=TheBeginning.ogg
 beginning_of_map
   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4  77  38  38  38  38  38  38  38  38 
@@ -13410,7 +13398,6 @@ jump target east: 8
 jump target west: -1
 use underground lighting: 0
 Name of this level=_"Cryo Stasis Lab"
-Infcmt="UNUSED
 BgSong=TheBeginning.ogg
 beginning_of_map
   1   1   0   0   1   1  31  31   1   1   1   1   1   1   1   1   1   1   1   1   1   1  31  31   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31 
@@ -15665,7 +15652,6 @@ jump target east: -1
 jump target west: -1
 use underground lighting: 1
 Name of this level=_"Telemetry"
-Infcmt="UNUSED
 BgSong=underground.ogg
 beginning_of_map
  31  31  31  31   1   1  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31   1   1  31  31  31  31  31  31 
@@ -16492,7 +16478,6 @@ jump target east: -1
 jump target west: -1
 use underground lighting: 1
 Name of this level=_"Scientists quarters"
-Infcmt="These must be the private quarters of the scientific staff of the installation.
 BgSong=ImperialArmy.ogg
 beginning_of_map
  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31 
@@ -17213,7 +17198,6 @@ jump target east: -1
 jump target west: -1
 use underground lighting: 1
 Name of this level=_"Private Goods Storage Cellar"
-Infcmt="UNUSED
 BgSong=underground.ogg
 beginning_of_map
   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1 
@@ -17716,7 +17700,6 @@ jump target east: -1
 jump target west: -1
 use underground lighting: 0
 Name of this level=_"Terminal Field"
-Infcmt="This is a new level...
 BgSong=TheBeginning.ogg
 beginning_of_map
  31  31  31   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4  30  30  30  30  30  30  30  30  30  30 
@@ -18625,7 +18608,6 @@ jump target east: 25
 jump target west: 8
 use underground lighting: 0
 Name of this level=_"Ethereal Meadows"
-Infcmt="This is a new level...
 BgSong=TheBeginning.ogg
 beginning_of_map
  73   0  73  73  73  73  73  73   4  11   4   4  11   8   8   8   8   8   8   8   8   8   8  10   9   9   9   9   9   9   9   9   9   9   9   9   9   9   9   9   9  14   4   4  11   9   9   9   9   9  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30 
@@ -19722,7 +19704,6 @@ jump target east: -1
 jump target west: -1
 use underground lighting: 1
 Name of this level=_"Kevins Main Energy Source"
-Infcmt="This must be Kevin's Main Energy Source...
 BgSong=underground.ogg
 beginning_of_map
  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31 
@@ -20117,7 +20098,6 @@ jump target east: -1
 jump target west: -1
 use underground lighting: 0
 Name of this level=_"New Level just created..."
-Infcmt="UNUSED
 BgSong=TheBeginning.ogg
 beginning_of_map
   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4  31  31  31   4   4   4   4 
@@ -20246,7 +20226,6 @@ jump target east: -1
 jump target west: -1
 use underground lighting: 0
 Name of this level=_"New Level just created..."
-Infcmt="UNUSED
 BgSong=TheBeginning.ogg
 beginning_of_map
  31  31   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4 
@@ -20397,7 +20376,6 @@ jump target east: -1
 jump target west: -1
 use underground lighting: 0
 Name of this level=_"New Level just created..."
-Infcmt="This is a new level...
 BgSong=TheBeginning.ogg
 beginning_of_map
   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4 
@@ -21950,7 +21928,6 @@ jump target east: -1
 jump target west: -1
 use underground lighting: 0
 Name of this level=_"New Level just created..."
-Infcmt="This is a new level...
 BgSong=TheBeginning.ogg
 beginning_of_map
   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4 
@@ -22926,7 +22903,6 @@ jump target east: -1
 jump target west: -1
 use underground lighting: 0
 Name of this level=_"New Level just created..."
-Infcmt="This is a new level...
 BgSong=TheBeginning.ogg
 beginning_of_map
   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4  30  30   4  30  30  30  30  30  30  51  51  51 
@@ -23459,7 +23435,6 @@ jump target east: -1
 jump target west: -1
 use underground lighting: 0
 Name of this level=_"Hell Fortress"
-Infcmt="This is a new level...
 BgSong=TheBeginning.ogg
 beginning_of_map
   4  30  30  30  30  30  30  51  51  51  51  51  51  51   5  45  45  45   5   5   5   5   5   5   5   5   5   5  51  51   5   5  51   5   5  51   5   5  51   5   5  51  51  71  70  52  50  50  50  50  50  50  50  50  50  73  19  22  18  18  17  18  17  66   5  51   5  51  51  51   5   5   5  51   5   5   5   5  51  51   5   5   5   4   4   4   4   4   4   4 
@@ -25143,7 +25118,6 @@ jump target east: 26
 jump target west: 17
 use underground lighting: 0
 Name of this level=_"Broken Glass Path"
-Infcmt="This is a new level...
 BgSong=TheBeginning.ogg
 beginning_of_map
  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30 
@@ -26049,7 +26023,6 @@ jump target east: 27
 jump target west: 25
 use underground lighting: 0
 Name of this level=_"Mushroom Forest"
-Infcmt="This is a new level...
 BgSong=TheBeginning.ogg
 beginning_of_map
  30  30   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4  31  31 
@@ -26215,7 +26188,6 @@ jump target east: 28
 jump target west: 26
 use underground lighting: 0
 Name of this level=_"Empty swamp"
-Infcmt="This is a new level...
 BgSong=TheBeginning.ogg
 beginning_of_map
  31  31   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0 
@@ -26344,7 +26316,6 @@ jump target east: -1
 jump target west: 27
 use underground lighting: 0
 Name of this level=_"Some temple"
-Infcmt="Unused
 BgSong=TheBeginning.ogg
 beginning_of_map
   0   0   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   0   0   0   0   0   0   0   0   0   0 
@@ -26831,7 +26802,6 @@ jump target east: -1
 jump target west: -1
 use underground lighting: 1
 Name of this level=_"Novice Arena"
-Infcmt="This is a new level...
 BgSong=ImperialArmy.ogg
 beginning_of_map
   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   4   4   4 
@@ -27088,7 +27058,6 @@ jump target east: -1
 jump target west: -1
 use underground lighting: 1
 Name of this level=_"Master Arena"
-Infcmt="This is a new level...
 BgSong=ImperialArmy.ogg
 beginning_of_map
   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   4   4   4 
@@ -27342,7 +27311,6 @@ jump target east: -1
 jump target west: 11
 use underground lighting: 0
 Name of this level=_"Hell Fortress entrance"
-Infcmt="This must be the entrance of the Hell Fortress. I'd better be careful.
 BgSong=hellforce.ogg
 beginning_of_map
  38  38  38  38  38  38  38  38  38  38  38  38  38  38  38  38  38  38  38  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  40  42  39   4   4   4  30  30  30  30  30  30  30  30  30  30  30 
@@ -30704,7 +30672,6 @@ jump target east: -1
 jump target west: -1
 use underground lighting: 0
 Name of this level=_"Power Facility Underground"
-Infcmt="This is a new level...
 BgSong=underground.ogg
 beginning_of_map
  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31 
@@ -31017,7 +30984,6 @@ jump target east: -1
 jump target west: -1
 use underground lighting: 1
 Name of this level=_"Crystal Cavens"
-Infcmt="This is a new level...
 BgSong=underground.ogg
 beginning_of_map
  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31 
@@ -33451,7 +33417,6 @@ jump target east: -1
 jump target west: -1
 use underground lighting: 1
 Name of this level=_"Forgotten bunker"
-Infcmt="This is a new level...
 BgSong=Ambience.ogg
 beginning_of_map
  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31 
@@ -33755,7 +33720,6 @@ jump target east: -1
 jump target west: -1
 use underground lighting: 1
 Name of this level=_"Secret research center"
-Infcmt="Secret area
 BgSong=hellforce.ogg
 beginning_of_map
  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31 
@@ -35134,7 +35098,6 @@ jump target east: -1
 jump target west: -1
 use underground lighting: 0
 Name of this level=_"Secret area service tunnels"
-Infcmt="Secret area collectors
 BgSong=hellforce.ogg
 beginning_of_map
  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31 
@@ -35381,7 +35344,6 @@ jump target east: -1
 jump target west: -1
 use underground lighting: 0
 Name of this level=_"Tutorial"
-Infcmt="To giude the Pengu coming staright from the egg.
 BgSong=TheBeginning.ogg
 beginning_of_map
  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31 

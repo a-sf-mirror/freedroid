@@ -854,7 +854,6 @@ typedef struct level_s
     int infinite_running_on_this_level;
     char *Levelname;
     char *Background_Song_Name;
-    char *Level_Enter_Comment;
     map_statement StatementList [ MAX_STATEMENTS_PER_LEVEL ];
     char *obstacle_name_list [ MAX_OBSTACLE_NAMES_PER_LEVEL ];
     char *obstacle_description_list [ MAX_OBSTACLE_DESCRIPTIONS_PER_LEVEL ];
