@@ -695,4 +695,5 @@ EXTERN int marked_obstacle_is_glued_to_here (level *, float, float);
 
 EXTERN leveleditor_state * cur_state;
 EXTERN int Highlight;
+EXTERN int level_editor_done;
 #endif
