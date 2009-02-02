@@ -40,8 +40,6 @@
 #include "leveleditor_map.h"
 #include "leveleditor_widgets.h"
 
-static struct leveleditor_widget * previously_active_widget = NULL;
-
 static void HandleLevelEditorCursorKeys ( )
 {
    level *EditLevel;
@@ -290,7 +288,7 @@ void leveleditor_input_mouse_button(SDL_Event *event)
 
 void leveleditor_input_keybevent(SDL_Event *event)
 {
-    struct leveleditor_widget *w;
+    struct leveleditor_widget *w, *n;
        
     w = get_active_widget(GetMousePos_x(), GetMousePos_y());
 
@@ -302,7 +300,7 @@ void leveleditor_input_keybevent(SDL_Event *event)
     if (w && w->keybevent && !w->keybevent(event, w))
 	return;
 
-    list_for_each_entry(w, &leveleditor_widget_list, node) {
+    list_for_each_entry_safe(w, n, &leveleditor_widget_list, node) {
 	if (w && w->keybevent && !w->keybevent(event, w))
 	    return;
     }       

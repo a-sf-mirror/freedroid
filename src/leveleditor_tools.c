@@ -44,6 +44,7 @@
 #include "leveleditor_tool_select.h"
 
 LIST_HEAD(leveleditor_tool_list);
+    
 
 static struct leveleditor_tool * create_move()
 {
@@ -86,16 +87,16 @@ static struct leveleditor_tool * create_select()
 
 void leveleditor_init_tools()
 {
-    struct leveleditor_tool *place, *move;
     if (!list_empty(&leveleditor_tool_list)) {
 	printf("Tools already initialized\n");
 	return;
     }
 
-    move = create_move();
-    place = create_place();
-    list_add(&move->node, &leveleditor_tool_list);
-    list_add(&place->node, &leveleditor_tool_list);
-    list_add(&create_select()->node, &leveleditor_tool_list);
+    tool_move = create_move();
+    tool_place = create_place();
+    tool_select = create_select();
+    list_add(&tool_move->node, &leveleditor_tool_list);
+    list_add(&tool_place->node, &leveleditor_tool_list);
+    list_add(&tool_select->node, &leveleditor_tool_list);
 }
 

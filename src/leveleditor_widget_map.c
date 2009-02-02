@@ -40,11 +40,9 @@
 static struct leveleditor_tool *selected_tool = NULL;
 static struct leveleditor_tool *active_tool = NULL;
 
-static struct leveleditor_tool *move_tool = NULL;
-
 moderately_finepoint mouse_mapcoord;
 
-static int tool_selection_menu_open;
+static struct leveleditor_widget *tool_selection_menu;
 
 static void select_tool(struct leveleditor_tool *t) 
 {
@@ -52,6 +50,9 @@ static void select_tool(struct leveleditor_tool *t)
 	selected_tool = t;
     else 
 	GiveMouseAlertWindow("Cannot select another tool: busy\n");
+
+    if (tool_selection_menu)
+	tool_selection_menu->enabled = 0;
 }
 
 static void select_other_tool(int whichway)
@@ -82,14 +83,8 @@ static void select_other_tool(int whichway)
 
 void leveleditor_map_init()
 {
-    struct leveleditor_tool *t;
     leveleditor_init_tools();
-    list_for_each_entry(t, &leveleditor_tool_list, node) {
-	if (t->type == TOOL_PLACE)
-	    selected_tool = t;
-	else if (t->type == TOOL_MOVE)
-	    move_tool = t;
-    }
+    selected_tool = tool_place;
 }
 
 static void forward_event(SDL_Event *event)
@@ -141,7 +136,7 @@ void leveleditor_map_mouserightpress(SDL_Event *event, struct leveleditor_widget
     (void)vm;
 
     if (!active_tool)
-	active_tool = move_tool;
+	active_tool = tool_move;
 
     forward_event(event);
 }
@@ -170,24 +165,36 @@ void leveleditor_map_mousemove(SDL_Event *event, struct leveleditor_widget *vm)
 int leveleditor_map_keybevent(SDL_Event *event, struct leveleditor_widget *vm) 
 {
     (void)vm;
-    if (!active_tool && !tool_selection_menu_open) {
+    if (EVENT_KEYPRESS(event, SDLK_SPACE) && !active_tool) {
 	// No active tool? Spawn a menu
+
+	if (!tool_selection_menu) {
+	    tool_selection_menu = create_menu();
+	    list_add(&tool_selection_menu->node, &leveleditor_widget_list);
+	} else if (tool_selection_menu->enabled) {
+	    //We already have a menu, get out
+	    return 0;
+	}
+
+	struct leveleditor_menu *m = tool_selection_menu->ext;
 	int i;
 	SDL_Rect r = { .x = GetMousePos_x(), .y = GetMousePos_y(), .w = 100, .h = 150 };
-	char text[10][100];
-	sprintf(text[0], "Cancel");
-	sprintf(text[1], "Place");
-	sprintf(text[2], "Move");
-	sprintf(text[3], "Select");
+	tool_selection_menu->rect = r;
+	sprintf(m->text[0], "Cancel");
+	sprintf(m->text[1], "Place");
+	sprintf(m->text[2], "Move");
+	sprintf(m->text[3], "Select");
 	for (i = 4; i < 10; i++)
-	    sprintf(text[i], "");
-	void *values[10] = { selected_tool, move_tool, move_tool, move_tool};
+	    m->text[i][0] = 0;
+	m->values[0] = selected_tool;
+	m->values[1] = tool_place;
+	m->values[2] = tool_move;
+	m->values[3] = tool_select;
 
+	m->done_cb = select_tool;
 
-	struct leveleditor_widget *a = create_menu(&r, text, select_tool, values);
-	list_add(&a->node, &leveleditor_widget_list);
-	
-    }
+	tool_selection_menu->enabled = 1;
+    } 
 
     // Forward the key to the active tool
     forward_event(event);

@@ -52,7 +52,8 @@ void leveleditor_menu_mouserelease(SDL_Event *event, struct leveleditor_widget *
     struct leveleditor_menu *m = w->ext;
     m->done_cb(m->values[m->currently_selected_idx]);
 
-    //XXX autodestroy
+    // autodisable
+    w->enabled = 0;
 }
 
 void leveleditor_menu_mousepress(SDL_Event *event, struct leveleditor_widget *w)

@@ -69,11 +69,10 @@ struct leveleditor_widget * create_button(int btype)
     return a;
 }
 
-struct leveleditor_widget * create_menu(SDL_Rect *rect, char text[10][100], void (*cb)(void *), void **values)
+struct leveleditor_widget * create_menu()
 {
     struct leveleditor_widget * a = MyMalloc(sizeof(struct leveleditor_widget));
     a->type = WIDGET_MENU;
-    a->rect = *rect;
     a->mouseenter = leveleditor_menu_mouseenter;
     a->mouseleave = leveleditor_menu_mouseleave;
     a->mouserelease = leveleditor_menu_mouserelease;
@@ -84,17 +83,9 @@ struct leveleditor_widget * create_menu(SDL_Rect *rect, char text[10][100], void
     a->mousewheeldown = leveleditor_menu_mousewheeldown;
     a->mousemove = leveleditor_menu_mousemove;
     a->keybevent = NULL; //leveleditor_menu_keybevent;
-    a->enabled = 1;
+    a->enabled = 0;
 
     struct leveleditor_menu *b = MyMalloc(sizeof(struct leveleditor_menu));
-    int i;
-    for (i=0; i < 10; i++) {
-	strncpy(b->text[i], text[i], 99);
-	b->text[i][99] = 0;
-	b->values[i] = values[i];
-	b->done_cb = cb;
-    }
-
     a->ext = b;
 
     return a;
@@ -185,6 +176,9 @@ void leveleditor_destroy_widget(struct leveleditor_widget *w)
     list_del(&w->node);
 
     free(w);
+
+    if (previously_active_widget == w)
+	previously_active_widget = NULL;
 }
 
 void leveleditor_init_widgets()

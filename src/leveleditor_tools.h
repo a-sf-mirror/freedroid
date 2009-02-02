@@ -23,7 +23,7 @@
  */
 
 #undef EXTERN
-#ifndef _leveleditor_tools_c
+#ifndef leveleditor_tools_c
 #define EXTERN extern
 #else
 #define EXTERN
@@ -73,6 +73,7 @@ struct leveleditor_select {
 
 EXTERN void leveleditor_init_tools(void);
 EXTERN struct list_head leveleditor_tool_list;
+EXTERN struct leveleditor_tool *tool_place, *tool_move, *tool_select;
 
 #define EVENT_LEFT_PRESS(e) (((e) && e->type == SDL_MOUSEBUTTONDOWN) && (e->button.button == 1))
 #define EVENT_RIGHT_PRESS(e) (((e) && e->type == SDL_MOUSEBUTTONDOWN) && (e->button.button == 3))
