@@ -30,6 +30,13 @@
 #ifndef _leveleditor_h_
 #define _leveleditor_h_
 
+#undef EXTERN
+#ifndef _leveleditor_c
+#define EXTERN extern
+#else
+#define EXTERN
+#endif
+
 struct quickbar_entry {
     struct list_head node;
     int id;
@@ -142,47 +149,25 @@ typedef struct leveleditor_state_s {
     moderately_finepoint c_corresponding_position;
 } leveleditor_state;
 
-static void action_freestack ( void );
-void clear_action_list( struct list_head *list );
-static void clear_action( action * pos);
-void ShowWaypoints( int PrintConnectionList , int maks );
-void LevelEditor(void);
-void cycle_marked_obstacle( Level EditLevel );
-void CreateNewMapLevel( int level_num );
-void SetLevelInterfaces ( void );
-void duplicate_all_obstacles_in_area ( Level source_level ,
+EXTERN void ShowWaypoints( int PrintConnectionList , int maks );
+EXTERN void LevelEditor(void);
+EXTERN void cycle_marked_obstacle( Level EditLevel );
+EXTERN void CreateNewMapLevel( int level_num );
+EXTERN void SetLevelInterfaces ( void );
+EXTERN void duplicate_all_obstacles_in_area ( Level source_level ,
 				       float source_start_x , float source_start_y , 
 				       float source_area_width , float source_area_height ,
 				       Level target_level ,
 				       float target_start_x , float target_start_y );
-void give_new_description_to_obstacle ( Level EditLevel , obstacle* our_obstacle , char* predefined_description );
+EXTERN void give_new_description_to_obstacle ( Level EditLevel , obstacle* our_obstacle , char* predefined_description );
 
 /* Line mode */
-void start_line_mode(leveleditor_state *cur_state, int already_defined);
+EXTERN void start_line_mode(leveleditor_state *cur_state, int already_defined);
 
 /* Rectangle mode */
-void start_rectangle_mode(leveleditor_state *cur_state , int already_defined);
+EXTERN void start_rectangle_mode(leveleditor_state *cur_state , int already_defined);
 
-
-/* Undoable actions*/
-obstacle *
-action_create_obstacle (Level EditLevel, double x, double y, int new_obstacle_type);
-obstacle *
-action_create_obstacle_user (Level EditLevel, double x, double y, int new_obstacle_type);
-void action_remove_obstacle_user ( Level EditLevel, obstacle *our_obstacle);
-void action_remove_obstacle ( Level EditLevel, obstacle *our_obstacle);
-void action_toggle_waypoint ( Level EditLevel , int BlockX , int BlockY , int toggle_random_spawn );
-int action_toggle_waypoint_connection ( Level EditLevel, int id_origin, int id_target);
-void action_set_floor ( Level EditLevel, int x, int y, int type);
-void action_fill_user_recursive ( Level EditLevel, int x, int y, int type, int *changed);
-void action_fill_user ( Level EditLevel, int BlockX, int BlockY, int SpecialMapValue);
-void action_change_obstacle_label ( Level EditLevel, obstacle *obstacle, char *name);
-void action_change_obstacle_label_user ( Level EditLevel, obstacle *our_obstacle, char *predefined_name);
-static void action_change_map_label ( Level EditLevel, int i, char *name );
-void action_jump_to_level(int target_map,double x,double y);
-
-
-
+#ifdef _leveleditor_c
 int wall_indices [ NUMBER_OF_LEVEL_EDITOR_GROUPS ] [ NUMBER_OF_OBSTACLE_TYPES ] = 
 {
     //--------------------
@@ -695,7 +680,14 @@ int wall_indices [ NUMBER_OF_LEVEL_EDITOR_GROUPS ] [ NUMBER_OF_OBSTACLE_TYPES ] 
 	-1
     }
 }; // end of definition of selection groups
+#endif
+EXTERN int EditX();
+EXTERN int EditY();
+EXTERN level *EditLevel();
 
+EXTERN char VanishingMessage[10000];
+EXTERN float VanishingMessageEndDate;
 
+EXTERN int OriginWaypoint;
 
 #endif
