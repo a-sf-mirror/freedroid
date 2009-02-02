@@ -39,6 +39,8 @@
 #include "SDL_rotozoom.h"
 
 #include "leveleditor.h"
+#include "leveleditor_widgets.h"
+#include "leveleditor_widget_typeselect.h"
 
 /* Undo/redo action lists */
 LIST_HEAD (to_undo);
@@ -790,7 +792,8 @@ void level_editor_action_redo ()
 void level_editor_place_aligned_obstacle ( int positionid )
 {
     struct quickbar_entry *entry = NULL;
-    int obstacle_type, id;
+    struct leveleditor_typeselect *ts = get_current_object_type();
+    int obstacle_id;
     int placement_is_possible = TRUE;
     int obstacle_created = FALSE;
     float position_offset_x[9] = { 0, 0.5, 1.0, 0, 0.5, 1.0, 0, 0.5, 1.0 };
@@ -798,35 +801,31 @@ void level_editor_place_aligned_obstacle ( int positionid )
 
     positionid--;
 
-    if (object_type != OBJECT_OBSTACLE && object_type != OBJECT_ANY )
-	return;
+    if (ts->type != OBJECT_OBSTACLE && ts->type != OBJECT_ANY )
+	ErrorMessage(__FUNCTION__, "Cannot \"place aligned obstacle\" for selected object type %d\n", PLEASE_INFORM, IS_FATAL, ts->type);
 
     /* Try to get a quickbar entry */
-    if (object_type == OBJECT_ANY)
-	{
-	//entry = quickbar_getentry ( selected_tile_nb );
-	if (entry)
-	    {
-	    obstacle_type = entry -> obstacle_type;
-	    id = entry -> id;
-	    }
-	else
-	    {
-	    placement_is_possible = FALSE;
-	    }
-	}
-    else
-	{
-//XXX	obstacle_type = GameConfig . level_editor_edit_mode;
-//	id = selected_tile_nb;
-	}
+    if (ts->type == OBJECT_ANY) {
+	GiveMouseAlertWindow("Implement quickbar");
+	/*entry = quickbar_getentry ( selected_tile_nb );
+	  if (entry)
+	  {
+	  obstacle_type = entry -> obstacle_type;
+	  id = entry -> id;
+	  }
+	  else
+	  {
+	  placement_is_possible = FALSE;
+	  }*/
+    } else {
+	obstacle_id = ts->indices[ts->selected_tile_nb];
+    }
 
-    if ( placement_is_possible )
-    {
-//	action_create_obstacle_user ( EditLevel(), ((int)Me.pos.x) + position_offset_x[positionid] , ((int)Me.pos.y) + position_offset_y[positionid], wall_indices [ obstacle_type ] [ id ] );
+    if (placement_is_possible)  {
+	action_create_obstacle_user (EditLevel(), ((int)Me.pos.x) + position_offset_x[positionid], ((int)Me.pos.y) + position_offset_y[positionid], obstacle_id);
 	obstacle_created = TRUE;
-/*	if (object_list !=  && obstacle_created )
-	    quickbar_use ( obstacle_type, id );*/
+	/*	if (object_list !=  && obstacle_created )
+		quickbar_use ( obstacle_type, id );*/
     }
 }
 

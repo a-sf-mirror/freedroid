@@ -634,7 +634,4 @@ EXTERN iso_image * quickbar_getimage(int, int *);
 EXTERN int marked_obstacle_is_glued_to_here (level *, float, float);
 
 EXTERN int level_editor_done;
-
-EXTERN int object_type;
-EXTERN int *object_list;
 #endif
