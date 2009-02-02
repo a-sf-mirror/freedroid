@@ -1,0 +1,995 @@
+/* 
+ *
+ *   Copyright (c) 2004-2009 Arthur Huillet
+ *
+ *
+ *  This file is part of Freedroid
+ *
+ *  Freedroid is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ *  Freedroid is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with Freedroid; see the file COPYING. If not, write to the 
+ *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
+ *  MA  02111-1307  USA
+ *
+ */
+
+#define _leveleditor_menu_c
+
+
+#include "system.h"
+
+#include "defs.h"
+#include "struct.h"
+#include "global.h"
+#include "proto.h"
+
+#include "SDL_rotozoom.h"
+
+#include "leveleditor.h"
+#include "leveleditor_map.h"
+
+/**
+ * This a a menu interface to allow to edit the level dimensions in a
+ * convenient way, i.e. so that little stupid copying work or things like
+ * that have to be done and more time can be spent creating game material.
+ */
+void EditLevelDimensions ( void )
+{
+	char* MenuTexts[ 20 ];
+	char Options [ 20 ] [1000];
+	int MenuPosition = 1 ;
+	int proceed_now = FALSE ;
+	int i;
+	Level EditLevel;
+
+	EditLevel = curShip.AllLevels [ Me . pos . z ] ;
+
+	enum
+	{
+		INSERTREMOVE_LINE_VERY_NORTH = 1,
+		INSERTREMOVE_COLUMN_VERY_EAST,
+		INSERTREMOVE_LINE_VERY_SOUTH,
+		INSERTREMOVE_COLUMN_VERY_WEST,
+		INSERTREMOVE_LINE_NORTHERN_INTERFACE,
+		INSERTREMOVE_COLUMN_EASTERN_INTERFACE,
+		INSERTREMOVE_LINE_SOUTHERN_INTERFACE,
+		INSERTREMOVE_COLUMN_WESTERN_INTERFACE,
+		DUMMY_NO_REACTION1,
+		DUMMY_NO_REACTION2,
+		BACK_TO_LE_MAIN_MENU
+	};
+
+	while ( !proceed_now )
+	{
+
+		InitiateMenu( -1 );
+
+		i = 0;
+		sprintf( Options [ i ] , _("North") );
+		strcat( Options [ i ] , " " );
+		strcat( Options [ i ] , _("Edge") );
+		strcat( Options [ i ] , ": -/+  (<-/->)"); 
+		MenuTexts[ i ] = Options [ i ]; i++ ;
+
+		sprintf( Options [ i ] , _("East") );
+		strcat( Options [ i ] , " " );
+		strcat( Options [ i ] , _("Edge") );
+		strcat( Options [ i ] , ": -/+  (<-/->)"); 
+		MenuTexts[ i ] = Options [ i ]; i++ ;
+
+		sprintf( Options [ i ] , _("South") );
+		strcat( Options [ i ] , " " );
+		strcat( Options [ i ] , _("Edge") );
+		strcat( Options [ i ] , ": -/+  (<-/->)"); 
+		MenuTexts[ i ] = Options [ i ]; i++ ;
+
+		sprintf( Options [ i ] , _("West") );
+		strcat( Options [ i ] , " " );
+		strcat( Options [ i ] , _("Edge") );
+		strcat( Options [ i ] , ": -/+  (<-/->)"); 
+		MenuTexts[ i ] = Options [ i ]; i++ ;
+
+		sprintf( Options [ i ] , _("North") );
+		strcat( Options [ i ] , " " );
+		strcat( Options [ i ] , _("Interface") );
+		strcat( Options [ i ] , ": -/+  (<-/->)"); 
+		MenuTexts[ i ] = Options [ i ]; i++ ;
+
+		sprintf( Options [ i ] , _("East") );
+		strcat( Options [ i ] , " " );
+		strcat( Options [ i ] , _("Interface") );
+		strcat( Options [ i ] , ": -/+  (<-/->)"); 
+		MenuTexts[ i ] = Options [ i ]; i++ ;
+
+		sprintf( Options [ i ] , _("South") );
+		strcat( Options [ i ] , " " );
+		strcat( Options [ i ] , _("Interface") );
+		strcat( Options [ i ] , ": -/+  (<-/->)"); 
+		MenuTexts[ i ] = Options [ i ]; i++ ;
+
+		sprintf( Options [ i ] , _("West") );
+		strcat( Options [ i ] , " " );
+		strcat( Options [ i ] , _("Interface") );
+		strcat( Options [ i ] , ": -/+  (<-/->)"); 
+		MenuTexts[ i ] = Options [ i ]; i++ ;
+
+		sprintf( Options [ i ] , _("Current level size in X: %d.") , EditLevel->xlen );
+		MenuTexts[ i ] = Options [ i ]; i++ ;
+		sprintf( Options [ i ] , _("Current level size in Y: %d.") , EditLevel->ylen  );
+		MenuTexts[ i ] = Options [ i ] ; i++ ;
+		MenuTexts[i++] = _("Back") ;
+		MenuTexts[i++] = "" ;
+
+		MenuPosition = DoMenuSelection( "" , MenuTexts , -1 , -1 , FPS_Display_BFont );
+
+		while (EnterPressed() || SpacePressed() || MouseLeftPressed() ) SDL_Delay(1);
+      
+      switch (MenuPosition) 
+	{
+	case INSERTREMOVE_COLUMN_VERY_EAST:
+	  if ( RightPressed() )
+	    {
+	      InsertColumnVeryEast( EditLevel );
+	      while (RightPressed());
+	    }
+	  if ( LeftPressed() )
+	    {
+	      EditLevel->xlen--; // making it smaller is always easy:  just modify the value for size
+	      // allocation of new memory or things like that are not nescessary
+	      while (LeftPressed());
+	    }
+	  break;
+
+	case INSERTREMOVE_COLUMN_EASTERN_INTERFACE:
+	  if ( RightPressed() )
+	    {
+	      InsertColumnEasternInterface( EditLevel );
+	      while (RightPressed());
+	    }
+	  if ( LeftPressed() )
+	    {
+	      RemoveColumnEasternInterface( EditLevel );
+	      while (LeftPressed());
+	    }
+	  break;
+
+	case INSERTREMOVE_COLUMN_WESTERN_INTERFACE:
+	  if ( RightPressed() )
+	    {
+	      InsertColumnWesternInterface( EditLevel );
+	      while (RightPressed());
+	    }
+	  if ( LeftPressed() )
+	    {
+	      RemoveColumnWesternInterface( EditLevel );
+	      while (LeftPressed());
+	    }
+	  break;
+	  
+	case INSERTREMOVE_COLUMN_VERY_WEST:
+	  if ( RightPressed() )
+	    {
+	      InsertColumnVeryWest ( EditLevel );
+	      while (RightPressed());
+	    }
+	  if ( LeftPressed() )
+	    {
+	      RemoveColumnVeryWest ( EditLevel );
+	      while (LeftPressed());
+	    }
+	  break;
+
+	case INSERTREMOVE_LINE_VERY_SOUTH:
+	  if ( RightPressed() )
+	    {
+	      InsertLineVerySouth ( EditLevel );
+	      while (RightPressed());
+	    }
+	  
+	  if ( LeftPressed() )
+	    {
+	      EditLevel->ylen--; // making it smaller is always easy:  just modify the value for size
+	      // allocation of new memory or things like that are not nescessary.
+	      while (LeftPressed());
+	    }
+	  break;
+
+	case INSERTREMOVE_LINE_SOUTHERN_INTERFACE:
+	  if ( RightPressed() )
+	    {
+	      InsertLineSouthernInterface ( EditLevel );
+	      while (RightPressed());
+	    }
+	  if ( LeftPressed() )
+	    {
+	      RemoveLineSouthernInterface ( EditLevel );
+	      while (LeftPressed());
+	    }
+	  break;
+
+	case INSERTREMOVE_LINE_NORTHERN_INTERFACE:
+	  if ( RightPressed() )
+	    {
+	      InsertLineNorthernInterface ( EditLevel );
+	      while (RightPressed());
+	    }
+	  if ( LeftPressed() )
+	    {
+	      RemoveLineNorthernInterface ( EditLevel );
+	      while (LeftPressed());
+	    }
+	  break;
+
+	case INSERTREMOVE_LINE_VERY_NORTH:
+	  if ( RightPressed() )
+	    {
+	      InsertLineVeryNorth ( EditLevel );
+	      while (RightPressed());
+	    }
+	  if ( LeftPressed() )
+	    {
+	      RemoveLineVeryNorth ( EditLevel );
+	      while (LeftPressed());
+	    }
+	  break;
+
+	case (-1):
+	case BACK_TO_LE_MAIN_MENU:
+	  while (EnterPressed() || SpacePressed() || EscapePressed() || MouseLeftPressed() ) SDL_Delay(1);
+	  GetAnimatedMapTiles ();
+	  proceed_now=!proceed_now;
+	  break;
+
+	default: 
+	  break;
+
+	}
+
+    } // while (!proceed_now)
+    
+}; // void EditLevelDimensions ( void )
+
+/**
+ *
+ *
+ */
+static void SetLevelInterfaces ( void )
+{
+	char *MenuTexts[ 100 ];
+	int proceed_now = FALSE;
+	int MenuPosition = 1 ;
+	char Options [ 20 ] [ 500 ] ;
+	int i;
+	Level EditLevel;
+
+	EditLevel = curShip.AllLevels [ Me . pos . z ] ;
+
+	enum
+	{
+		JUMP_THRESHOLD_NORTH = 1,
+		JUMP_THRESHOLD_EAST ,
+		JUMP_THRESHOLD_SOUTH ,
+		JUMP_THRESHOLD_WEST ,
+		JUMP_TARGET_NORTH ,
+		JUMP_TARGET_EAST ,
+		JUMP_TARGET_SOUTH ,
+		JUMP_TARGET_WEST ,
+		EXPORT_THIS_LEVEL , 
+		REPORT_INTERFACE_INCONSISTENCIES , 
+		QUIT_THRESHOLD_EDITOR_POSITION
+	};
+
+	while (!proceed_now)
+	{
+		EditLevel = curShip.AllLevels [ Me . pos . z ] ;
+		InitiateMenu( -1 );
+
+		i = 0 ;
+
+		sprintf( Options [ i ] , _("Jump threshold") );
+			strcat( Options [ i ] , " " );
+			strcat( Options [ i ] , _("North") );
+			sprintf( Options [ i+1 ] , ": %d.  (<-/->)" , EditLevel->jump_threshold_north );
+			strcat( Options [ i ] , Options [ i+1 ] ); 
+		MenuTexts[ i ] = Options [ i ]; i++ ;
+		sprintf( Options [ i ] , _("Jump threshold") );
+			strcat( Options [ i ] , " " );
+			strcat( Options [ i ] , _("East") );
+			sprintf( Options [ i+1 ] , ": %d.  (<-/->)" , EditLevel->jump_threshold_east );
+			strcat( Options [ i ] , Options [ i+1 ] ); 
+		MenuTexts[ i ] = Options [ i ]; i++ ;
+		sprintf( Options [ i ] , _("Jump threshold") );
+			strcat( Options [ i ] , " " );
+			strcat( Options [ i ] , _("South") );
+			sprintf( Options [ i+1 ] , ": %d.  (<-/->)" , EditLevel->jump_threshold_south );
+			strcat( Options [ i ] , Options [ i+1 ] ); 
+		MenuTexts[ i ] = Options [ i ]; i++ ;
+		sprintf( Options [ i ] , _("Jump threshold") );
+			strcat( Options [ i ] , " " );
+			strcat( Options [ i ] , _("West") );
+			sprintf( Options [ i+1 ] , ": %d.  (<-/->)" , EditLevel->jump_threshold_west );
+			strcat( Options [ i ] , Options [ i+1 ] ); 
+		MenuTexts[ i ] = Options [ i ]; i++ ;
+		sprintf( Options [ i ] , _("Jump target") );
+			strcat( Options [ i ] , " " );
+			strcat( Options [ i ] , _("North") );
+			sprintf( Options [ i+1 ] , ": %d.  (<-/->)" , EditLevel->jump_target_north );
+			strcat( Options [ i ] , Options [ i+1 ] ); 
+		MenuTexts[ i ] = Options [ i ]; i++ ;
+		sprintf( Options [ i ] , _("Jump target") );
+			strcat( Options [ i ] , " " );
+			strcat( Options [ i ] , _("East") );
+			sprintf( Options [ i+1 ] , ": %d.  (<-/->)" , EditLevel->jump_target_east );
+			strcat( Options [ i ] , Options [ i+1 ] ); 
+		MenuTexts[ i ] = Options [ i ]; i++ ;
+		sprintf( Options [ i ] , _("Jump target") );
+			strcat( Options [ i ] , " " );
+			strcat( Options [ i ] , _("South") );
+			sprintf( Options [ i+1 ] , ": %d.  (<-/->)" , EditLevel->jump_target_south );
+			strcat( Options [ i ] , Options [ i+1 ] ); 
+		MenuTexts[ i ] = Options [ i ]; i++ ;
+		sprintf( Options [ i ] , _("Jump target") );
+			strcat( Options [ i ] , " " );
+			strcat( Options [ i ] , _("West") );
+			sprintf( Options [ i+1 ] , ": %d.  (<-/->)" , EditLevel->jump_target_west );
+			strcat( Options [ i ] , Options [ i+1 ] ); 
+		MenuTexts[ i ] = Options [ i ]; i++ ;
+		MenuTexts [i++] = _("Export this level to other target levels") ;
+		MenuTexts [i++] = _("Report interface inconsistencies");
+		MenuTexts [i++] = _("Back") ;
+		MenuTexts [i++] = "" ;
+	
+		MenuPosition = DoMenuSelection( "" , MenuTexts , -1 , -1 , FPS_Display_BFont );
+	
+		while (EnterPressed() || MouseLeftPressed() ) SDL_Delay(1);
+	
+	switch (MenuPosition) 
+	{
+	    case (-1):
+		while ( EscapePressed() ) SDL_Delay(1);
+		proceed_now=!proceed_now;
+		break;
+	    case EXPORT_THIS_LEVEL:
+		while (EnterPressed() || MouseLeftPressed() ) SDL_Delay(1);
+		ExportLevelInterface ( Me . pos . z );
+		// proceed_now=!proceed_now;
+		break;
+	    case REPORT_INTERFACE_INCONSISTENCIES:
+		while (EnterPressed() || SpacePressed() || MouseLeftPressed() ) SDL_Delay(1) ;
+		ReportInconsistenciesForLevel ( Me . pos . z );
+		while ( !EnterPressed() && !SpacePressed() && !MouseLeftPressed()) SDL_Delay(1);
+		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1) ;
+		break;
+		
+	    case QUIT_THRESHOLD_EDITOR_POSITION:
+		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1) ;
+		proceed_now=!proceed_now;
+		break;
+	    default: 
+		break;
+	} // switch
+	
+	  // If the user of the level editor pressed left or right, that should have
+	  // an effect IF he/she is a the change level menu point
+	
+	if (LeftPressed() || RightPressed() ) 
+	{
+	    switch (MenuPosition)
+	    {
+		case JUMP_THRESHOLD_NORTH:
+		    if ( LeftPressed() )
+		    {
+			if ( EditLevel->jump_threshold_north >= 0 ) EditLevel->jump_threshold_north -- ;
+			while (LeftPressed());
+		    }
+		    if ( RightPressed() )
+		    {
+			EditLevel->jump_threshold_north ++ ;
+			while (RightPressed());
+		    }
+		    break;
+		    
+		case JUMP_THRESHOLD_SOUTH:
+		    if ( LeftPressed() )
+		    {
+			if ( EditLevel->jump_threshold_south >= 0 ) EditLevel->jump_threshold_south -- ;
+			while (LeftPressed());
+		    }
+		    if ( RightPressed() )
+		    {
+			EditLevel->jump_threshold_south ++ ;
+			while (RightPressed());
+		    }
+		    break;
+		    
+		case JUMP_THRESHOLD_EAST:
+		    if ( LeftPressed() )
+		    {
+			if ( EditLevel->jump_threshold_east >= 0 ) EditLevel->jump_threshold_east -- ;
+			while (LeftPressed());
+		    }
+		    if ( RightPressed() )
+		    {
+			EditLevel->jump_threshold_east ++ ;
+			while (RightPressed());
+		    }
+		    break;
+		    
+		case JUMP_THRESHOLD_WEST:
+		    if ( LeftPressed() )
+		    {
+			if ( EditLevel->jump_threshold_west >= 0 ) EditLevel->jump_threshold_west -- ;
+			while (LeftPressed());
+		    }
+		    if ( RightPressed() )
+		    {
+			EditLevel->jump_threshold_west ++ ;
+			while (RightPressed());
+		    }
+		    break;
+		    
+		case JUMP_TARGET_NORTH:
+		    if ( LeftPressed() )
+		    {
+			if ( EditLevel->jump_target_north >= 0 ) EditLevel->jump_target_north -- ;
+			while (LeftPressed());
+		    }
+		    if ( RightPressed() )
+		    {
+			EditLevel->jump_target_north ++ ;
+			while (RightPressed());
+		    }
+		    break;
+		    
+		case JUMP_TARGET_SOUTH:
+		    if ( LeftPressed() )
+		    {
+			if ( EditLevel->jump_target_south >= 0 ) EditLevel->jump_target_south -- ;
+			while (LeftPressed());
+		    }
+		    if ( RightPressed() )
+		    {
+			EditLevel->jump_target_south ++ ;
+			while (RightPressed());
+		    }
+		    break;
+		    
+		case JUMP_TARGET_EAST:
+		    if ( LeftPressed() )
+		    {
+			if ( EditLevel->jump_target_east >= 0 ) EditLevel->jump_target_east -- ;
+			while (LeftPressed());
+		    }
+		    if ( RightPressed() )
+		    {
+			EditLevel->jump_target_east ++ ;
+			while (RightPressed());
+		    }
+		    break;
+		    
+		case JUMP_TARGET_WEST:
+		    if ( LeftPressed() )
+		    {
+			if ( EditLevel->jump_target_west >= 0 ) EditLevel->jump_target_west -- ;
+			while (LeftPressed());
+		    }
+		    if ( RightPressed() )
+		    {
+			EditLevel->jump_target_west ++ ;
+			while (RightPressed());
+		    }
+		    break;
+		    
+		    
+	    }
+	} // if LeftPressed || RightPressed
+	
+    }
+    
+}; // void SetLevelInterfaces ( void )
+
+  
+static void LevelOptions ( void )
+{
+    char* MenuTexts[ 100 ];
+    char Options [ 20 ] [1000];
+    int proceed_now = FALSE ;
+    int MenuPosition=1;
+    int i;
+    int l = 0;
+
+    enum
+	{
+	CHANGE_LEVEL_POSITION=1,
+	SET_LEVEL_NAME,
+	EDIT_LEVEL_DIMENSIONS,
+	SET_LEVEL_INTERFACE_POSITION,
+	CHANGE_LIGHT,
+	SET_BACKGROUND_SONG_NAME,
+	SET_LEVEL_COMMENT,
+	CHANGE_INFINITE_RUNNING,
+	ADD_NEW_LEVEL,
+	LEAVE_OPTIONS_MENU,
+	};
+
+    while (!proceed_now)
+	{
+
+	InitiateMenu( -1 );
+
+	i = 0 ; 
+	sprintf( Options [ i ] , _("Level") );
+	sprintf( Options [ i+1 ] , ": %d.  (<-/->)" , EditLevel()->levelnum );
+	strcat( Options [ i ] , Options [ i+1 ] ); 
+	MenuTexts[ i ] = Options [ i ]; i++ ;
+	sprintf( Options [ i ] , _("Name") );
+	sprintf( Options [ i+1 ] , ": %s" , EditLevel()->Levelname );
+	strcat( Options [ i ] , Options [ i+1 ] ); 
+	MenuTexts[ i ] = Options [ i ] ; i++ ;
+	sprintf( Options [ i ] , _("Size") );
+	sprintf( Options [ i+1 ] , ":  X %d  Y %d " , EditLevel()->xlen , EditLevel()->ylen );
+	strcat( Options [ i ] , Options [ i+1 ] ); 
+	MenuTexts[ i ] = Options [ i ] ; i++ ;
+	sprintf( Options [ i ] , _("Edge") );
+	strcat( Options [ i ] , " " ); 
+	sprintf( Options [ i+1 ] , _("Interface") );
+	strcat( Options [ i ] , Options [ i+1 ] ); 
+	strcat( Options [ i ] , ":" ); 
+	if ( EditLevel()->jump_target_north == -1 && EditLevel()->jump_target_east == -1 && EditLevel()->jump_target_south == -1 && EditLevel()->jump_target_west == -1 )
+	    {
+	    strcat( Options [ i ] , " none"); 
+	    }
+	else 
+	    {
+	    if ( EditLevel()->jump_target_north != -1 )
+		sprintf( Options [ i ] + strlen(Options [ i ]) , "  N: %d/%d", EditLevel()->jump_target_north, EditLevel()->jump_threshold_north ); 
+	    if ( EditLevel()->jump_target_east != -1 )
+		sprintf( Options [ i ] + strlen(Options [ i ]) , "  E: %d/%d", EditLevel()->jump_target_east, EditLevel()->jump_threshold_east ); 
+	    if ( EditLevel()->jump_target_south != -1 )
+		sprintf( Options [ i ] + strlen(Options [ i ]) , "  S: %d/%d", EditLevel()->jump_target_south, EditLevel()->jump_threshold_south ); 
+	    if ( EditLevel()->jump_target_west != -1 )
+		sprintf( Options [ i ] + strlen(Options [ i ]) , "  W: %d/%d", EditLevel()->jump_target_west, EditLevel()->jump_threshold_west ); 
+	    }
+	MenuTexts[ i ] = Options [ i ] ; i++ ;
+	sprintf( Options [ i ] , _("Light") );
+	strcat( Options [ i ] , ":  " );
+	strcat( Options [ i ] , _("Radius") );
+	if ( l == 0 )
+	    {
+	    sprintf( Options [ i+1 ] , " [%d]  " , EditLevel() -> light_radius_bonus );
+	    strcat( Options [ i ] , Options [ i+1 ] );
+	    strcat( Options [ i ] , _("Minimum") );
+	    sprintf( Options [ i+1 ] , "  %d   (<-/->)" , EditLevel() -> minimum_light_value );
+	    }
+	else if ( l == 1 ) 
+	    {
+	    sprintf( Options [ i+1 ] , "  %d   " , EditLevel() -> light_radius_bonus );
+	    strcat( Options [ i ] , Options [ i+1 ] );
+	    strcat( Options [ i ] , _("Minimum") );
+	    sprintf( Options [ i+1 ] , " [%d]  (<-/->)" , EditLevel() -> minimum_light_value );
+	    }
+	else sprintf( Options [ i+1 ] , "Im a bug" );
+	strcat( Options [ i ] , Options [ i+1 ] ); 
+	MenuTexts[ i ] = Options [ i ]; i++ ;
+	sprintf( Options [ i ] , _("Background Music") );
+	sprintf( Options [ i+1 ] , ": %s" , EditLevel()->Background_Song_Name );
+	strcat( Options [ i ] , Options [ i+1 ] ); 
+	MenuTexts[ i ] = Options [ i ] ; i++ ;
+	sprintf( Options [ i ] , _("Comment") );
+	sprintf( Options [ i+1 ] , ": %s" , EditLevel()->Level_Enter_Comment );
+	strcat( Options [ i ] , Options [ i+1 ] ); 
+	MenuTexts[ i ] = Options [ i ] ; i++ ;
+	sprintf( Options [ i ] , _("Infinite Running") );
+	strcat( Options [ i ] , ": " ); 
+	if ( EditLevel() -> infinite_running_on_this_level ) strcat ( Options [ i ] , _("YES"));
+	else ( strcat ( Options [ i ] , _("NO")));
+	MenuTexts[ i ] = Options [ i ]; i++;
+	MenuTexts[i++] = _("Add New Level");
+	MenuTexts[i++] = _("Back") ;
+	MenuTexts[i++] = "" ;
+
+	while ( EscapePressed() ) SDL_Delay(1);
+
+	MenuPosition = DoMenuSelection( "" , MenuTexts , -1 , -1 , FPS_Display_BFont );
+
+	while ( EnterPressed ( ) || SpacePressed ( ) || MouseLeftPressed()) SDL_Delay(1);
+
+	switch ( MenuPosition ) 
+	    {
+	    case (-1):
+		while ( EscapePressed() );
+		proceed_now=!proceed_now;
+		break;
+	    case CHANGE_LEVEL_POSITION: 
+		// if ( EditLevel()->levelnum ) Teleport ( EditLevel()->levelnum-1 , Me.pos.x , Me.pos.y );
+		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
+		break;
+	    case CHANGE_LIGHT:
+		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
+		// Switch between Radius and Minimum modification mode.
+		if ( l == 0 )
+		    {
+		    if ( LeftPressed() ) l = 0;
+		    else if ( RightPressed() ) l = 0;
+		    else l = 1;
+		    }
+		else if ( l == 1 )
+		    {
+		    if ( LeftPressed() ) l = 1;
+		    else if ( RightPressed() ) l = 1;
+		    else l = 0;
+		    }
+		else l = 2;
+		Teleport ( EditLevel() -> levelnum , 
+			Me . pos . x , Me . pos . y , FALSE );
+		break;
+	    case SET_LEVEL_NAME:
+		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
+		EditLevel()->Levelname =  
+		    GetEditableStringInPopupWindow ( 1000 , _("\n Please enter new level name: \n\n") ,
+			    EditLevel()->Levelname );
+		break;
+	    case ADD_NEW_LEVEL:
+		if (game_root_mode == ROOT_IS_GAME)
+		    break;
+		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
+		if ( curShip . num_levels < MAX_LEVELS )
+		    {
+		    int new_level_num = curShip.num_levels;
+		    int i;
+		    // search empty level, if any
+		    for ( i = 0; i < curShip.num_levels; ++i )
+			{
+			if ( curShip.AllLevels[i] == NULL)
+			    {
+			    new_level_num = i;
+			    break;
+			    }
+			}
+		    if ( new_level_num == curShip.num_levels ) curShip.num_levels += 1;
+		    CreateNewMapLevel ( new_level_num ) ;
+		    Me . pos . z = new_level_num;
+		    Me . pos . x = 3;
+		    Me . pos . y = 3;
+		    }
+		break;
+	    case SET_BACKGROUND_SONG_NAME:
+		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
+		EditLevel()->Background_Song_Name = 
+		    GetEditableStringInPopupWindow ( 1000 , _("\n Please enter new music file name: \n\n") ,
+			    EditLevel()->Background_Song_Name );
+		break;
+	    case SET_LEVEL_COMMENT:
+		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
+		EditLevel()->Level_Enter_Comment = 
+		    GetEditableStringInPopupWindow ( 1000 , _("\n Please enter new level comment: \n\n") ,
+			    EditLevel()->Level_Enter_Comment );
+		break;
+	    case SET_LEVEL_INTERFACE_POSITION:
+		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
+		SetLevelInterfaces ( );
+		break;
+	    case EDIT_LEVEL_DIMENSIONS:
+		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
+		EditLevelDimensions ( );
+		break;
+	    case CHANGE_INFINITE_RUNNING:
+		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
+		EditLevel() -> infinite_running_on_this_level =
+		    ! EditLevel() -> infinite_running_on_this_level ;
+		break;
+	    case LEAVE_OPTIONS_MENU:
+		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
+		proceed_now=!proceed_now;
+		break;
+	    default: 
+		break;
+
+	    } // switch
+
+	// If the user of the level editor pressed left or right, that should have
+	// an effect IF he/she is a the change level menu point
+
+	if ( LeftPressed ( ) || RightPressed ( ) ) 
+	    {
+	    switch (MenuPosition)
+		{
+
+		case CHANGE_LEVEL_POSITION:
+		    if ( LeftPressed() )
+			{
+			// find first available level lower than the current one
+			int newlevel = EditLevel()->levelnum - 1;
+			while ( curShip.AllLevels[newlevel] == NULL && newlevel >= 0 ) --newlevel;
+			// teleport if new level exists
+			if ( newlevel >= 0 ) Teleport ( newlevel , 3 , 3 , FALSE );
+			while (LeftPressed());
+			}
+		    if ( RightPressed() )
+			{
+			// find first available level higher than the current one
+			int newlevel = EditLevel()->levelnum + 1;
+			while ( curShip.AllLevels[newlevel] == NULL && newlevel < curShip.num_levels ) ++newlevel;
+			// teleport if new level exists
+			if ( newlevel < curShip.num_levels ) Teleport ( newlevel , 3 , 3 , FALSE );
+			while (RightPressed());
+			}
+		    break;
+
+		case CHANGE_LIGHT:
+		    if ( l == 0 )
+			{
+			if ( RightPressed() )
+			    {
+			    EditLevel() -> light_radius_bonus ++;
+			    while (RightPressed());
+			    }
+			if ( LeftPressed() )
+			    {
+			    EditLevel() -> light_radius_bonus --;
+			    while (LeftPressed());
+			    }
+			Teleport ( EditLevel() -> levelnum , 
+				Me . pos . x , Me . pos . y , FALSE ); 
+			break;
+			}
+		    else
+			{
+			if ( RightPressed() )
+			    {
+			    EditLevel() -> minimum_light_value ++;
+			    while (RightPressed());
+			    }
+			if ( LeftPressed() )
+			    {
+			    EditLevel() -> minimum_light_value --;
+			    while (LeftPressed());
+			    }
+			Teleport ( EditLevel() -> levelnum , 
+				Me . pos . x , Me . pos . y , FALSE ); 
+			break;
+			}
+
+		} // switch
+	    } // if LeftPressed || RightPressed
+	}
+    return ;
+}; // void LevelOptions ( void );
+
+static void AdvancedOptions ( void )
+{
+    char* MenuTexts[ 100 ];
+    int proceed_now = FALSE ;
+    int MenuPosition=1;
+    int i;
+
+    enum
+	{
+	RUN_MAP_VALIDATION=1,
+	RUN_LUA_VALIDATION,
+	LEAVE_OPTIONS_MENU,
+	};
+
+    while (!proceed_now)
+	{
+
+
+	InitiateMenu( -1 );
+
+	i = 0 ; 
+	MenuTexts[i++] = _("Run Maplevel *Validator");
+	MenuTexts[i++] = _("Run Dialog Lua Validator");
+	MenuTexts[i++] = _("Back") ;
+	MenuTexts[i++] = "" ;
+
+	while ( EscapePressed() ) SDL_Delay(1);
+
+	MenuPosition = DoMenuSelection( "" , MenuTexts , -1 , -1 , FPS_Display_BFont );
+
+	while ( EnterPressed ( ) || SpacePressed ( ) || MouseLeftPressed()) SDL_Delay(1);
+
+	switch ( MenuPosition ) 
+	    {
+	    case (-1):
+		while ( EscapePressed() );
+		proceed_now=!proceed_now;
+		break;
+	    case RUN_MAP_VALIDATION:
+		while (EnterPressed() || SpacePressed() || MouseLeftPressed() ) SDL_Delay(1);
+		LevelValidation();
+		while ( !SpacePressed() ) SDL_Delay(0);
+		//Hack: eat all pending events.
+		input_handle();
+		break;
+	    case LEAVE_OPTIONS_MENU:
+		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
+		proceed_now=!proceed_now;
+		break;
+	    default: 
+		break;
+
+	    } // switch
+	}
+    return ;
+}; // void AdvancedOptions ( void );
+
+/**
+ *
+ *
+ */
+int DoLevelEditorMainMenu (level *EditLevel )
+{
+    char* MenuTexts[ 100 ];
+    char Options [ 20 ] [1000];
+    int proceed_now = FALSE ;
+    int MenuPosition=1;
+    int Done=FALSE;
+    int i;
+
+    //hack : eat pending events
+    input_handle();
+
+    enum
+	{ 
+		ENTER_LEVEL_POSITION=1,
+		LEVEL_OPTIONS_POSITION,
+		ADVANCED_OPTIONS_POSITION,
+		TEST_MAP_POSITION,
+		SAVE_LEVEL_POSITION,
+//		MANAGE_LEVEL_POSITION,
+		ESCAPE_FROM_MENU_POSITION,
+		QUIT_TO_MAIN_POSITION,
+    	QUIT_POSITION,
+	};
+    
+    while (!proceed_now)
+    {
+	
+	
+		InitiateMenu( -1 );
+	
+		i = 0 ;
+		sprintf( Options [ i ] , _("Level") );
+			sprintf( Options [ i+1 ] , ": %d - %s", EditLevel->levelnum, EditLevel->Levelname );
+		    strcat( Options [ i ] , Options [ i+1 ] ); 
+		MenuTexts[ i ] = Options [ i ]; i++ ;
+		MenuTexts[i++] = _("Level Options");
+		MenuTexts[i++] = _("Advanced Options");
+		if (game_root_mode == ROOT_IS_LVLEDIT)
+		{
+			MenuTexts[i++] = _("Playtest Mapfile");
+			MenuTexts[i++] = _("Save Mapfile");
+	//		MenuTexts[i++] = _("Manage Mapfiles");
+		}
+		else
+		{
+			MenuTexts[i++] = _("Return to Game");
+			MenuTexts[i++] = _("Saving disabled");
+	//		MenuTexts[i++] = " ";
+		}
+		MenuTexts[i++] = _("Continue Editing"); 
+		MenuTexts[i++] = _("Quit to Main Menu"); 
+		MenuTexts[i++] = _("Exit FreedroidRPG");
+		MenuTexts[i++] = "" ;
+
+		while ( EscapePressed() ) SDL_Delay(1);
+
+		MenuPosition = DoMenuSelection( "" , MenuTexts , -1 , -1 , FPS_Display_BFont );
+	
+		while ( EnterPressed ( ) || SpacePressed ( ) || MouseLeftPressed()) SDL_Delay(1);
+	
+	switch ( MenuPosition ) {
+
+	    case (-1):
+			while ( EscapePressed() );
+			proceed_now=!proceed_now;
+			break;
+		case ESCAPE_FROM_MENU_POSITION:
+			proceed_now=!proceed_now;
+			break;
+	    case ENTER_LEVEL_POSITION:
+			if (LeftPressed() || RightPressed()) //left or right arrow ? handled below
+		    break;
+			while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
+			char* str;
+			int tgt;
+			str =  GetEditableStringInPopupWindow ( 1000 , _("\n Please enter new level number: \n\n") , "");
+			tgt = atoi(str);
+			free(str);
+			if ( tgt < 0 ) tgt = 0;
+			if ( tgt >= curShip.num_levels ) tgt = curShip.num_levels - 1;
+			if ( curShip.AllLevels[tgt] != NULL ) Teleport ( tgt , 3 , 3 , FALSE );
+			proceed_now=!proceed_now;
+			break;
+	    case LEVEL_OPTIONS_POSITION:
+			while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
+			LevelOptions ( );
+			break;
+	    case ADVANCED_OPTIONS_POSITION:
+			while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
+			AdvancedOptions ( );
+			break;
+	    case TEST_MAP_POSITION:
+			TestMap();
+			proceed_now=!proceed_now;
+			if ( game_root_mode == ROOT_IS_GAME )
+				Done=TRUE;
+			break;
+	    case SAVE_LEVEL_POSITION:
+			if (game_root_mode == ROOT_IS_GAME) /*don't allow saving if root mode is GAME*/
+		    break;
+			while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
+			close_all_chests_on_level ( Me . pos . z ) ;
+			char fp[2048];
+			find_file("freedroid.levels", MAP_DIR, fp, 0);
+			SaveShip(fp);
+			CenteredPutString ( Screen ,  11*FontHeight(Menu_BFont),    _("Your ship was saved..."));
+			our_SDL_flip_wrapper();
+			while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
+			break;
+	    case QUIT_TO_MAIN_POSITION:
+			while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
+			if ( game_root_mode == ROOT_IS_GAME )
+			{
+				proceed_now=!proceed_now;
+				GameOver = TRUE;
+				Done=TRUE;
+			}
+			if ( game_root_mode == ROOT_IS_LVLEDIT )
+			{
+				proceed_now=!proceed_now;
+				Done=TRUE;
+			}
+			break;
+	    case QUIT_POSITION:
+			DebugPrintf (2, "\nvoid EscapeMenu( void ): Quit Requested by user.  Terminating...");
+			Terminate(0);
+			break;
+	    default: 
+			break;
+
+	} // switch
+	
+	if ( LeftPressed ( ) || RightPressed ( ) ) 
+	    {
+	    switch (MenuPosition)
+		{
+
+		case ENTER_LEVEL_POSITION:
+		    if ( LeftPressed() )
+		    {
+		    	// find first available level lower than the current one
+				int newlevel = EditLevel->levelnum - 1;
+				while ( curShip.AllLevels[newlevel] == NULL && newlevel >= 0 ) --newlevel;
+				// teleport if new level exists
+			    if ( newlevel >= 0 ) Teleport ( newlevel , 3 , 3 , FALSE );
+			    while (LeftPressed());
+		    }
+		    if ( RightPressed() )
+		    {
+				// find first available level higher than the current one
+				int newlevel = EditLevel->levelnum + 1;
+				while ( curShip.AllLevels[newlevel] == NULL && newlevel < curShip.num_levels ) ++newlevel;
+				// teleport if new level exists
+			    if ( newlevel < curShip.num_levels ) Teleport ( newlevel , 3 , 3 , FALSE );
+			    while (RightPressed());
+		    }
+		    break;
+
+		}
+	    } // if LeftPressed || RightPressed
+	
+    }
+    return ( Done );
+}; // void DoLevelEditorMainMenu (level *EditLevel );
+
+

@@ -152,7 +152,6 @@ typedef struct leveleditor_state_s {
 EXTERN void LevelEditor(void);
 EXTERN void cycle_marked_obstacle( Level EditLevel );
 EXTERN void CreateNewMapLevel( int level_num );
-EXTERN void SetLevelInterfaces ( void );
 EXTERN void duplicate_all_obstacles_in_area ( Level source_level ,
 				       float source_start_x , float source_start_y , 
 				       float source_area_width , float source_area_height ,
