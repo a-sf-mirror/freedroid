@@ -39,6 +39,7 @@
 
 #include "leveleditor_widget_button.h"
 #include "leveleditor_widget_map.h"
+#include "leveleditor_widget_toolbar.h"
 
 LIST_HEAD(leveleditor_widget_list);
 
@@ -90,6 +91,30 @@ static struct leveleditor_widget * create_map()
     return a;
 }
 
+static struct leveleditor_widget * create_toolbar()
+{
+    struct leveleditor_widget * a = MyMalloc(sizeof(struct leveleditor_widget));
+    a->type = WIDGET_TOOLBAR;
+    a->rect.x = 0;
+    a->rect.y = 0;
+    a->rect.w = GameConfig.screen_width;
+    a->rect.h = 90;
+    a->mouseenter = leveleditor_toolbar_mouseenter;
+    a->mouseleave = leveleditor_toolbar_mouseleave;
+    a->mouserelease = leveleditor_toolbar_mouserelease;
+    a->mousepress = leveleditor_toolbar_mousepress;
+    a->mouserightrelease = leveleditor_toolbar_mouserightrelease;
+    a->mouserightpress = leveleditor_toolbar_mouserightpress;
+    a->mousewheelup = leveleditor_toolbar_mousewheelup;
+    a->mousewheeldown = leveleditor_toolbar_mousewheeldown;
+    a->enabled = 1;
+
+    struct leveleditor_toolbar * t = MyMalloc(sizeof(struct leveleditor_toolbar));
+    a->ext = t;
+
+    return a;
+}
+
 void leveleditor_init_widgets()
 {
     if (!list_empty(&leveleditor_widget_list)) {
@@ -136,6 +161,9 @@ void leveleditor_init_widgets()
 	ShowGenericButtonFromList(t[i]); //we need that to have .w and .h of the button rect initialized.
 	list_add(&create_button(t[i])->node, &leveleditor_widget_list);
     }
+
+    /* The toolbar */
+    list_add_tail(&create_toolbar()->node, &leveleditor_widget_list);
 
     /* The map (has to be the latest widget in the list) */
     list_add_tail(&create_map()->node, &leveleditor_widget_list);
