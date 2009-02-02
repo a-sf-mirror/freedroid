@@ -1880,8 +1880,6 @@ InitFreedroid ( int argc, char ** argv )
     //
     implant_backtrace_into_signal_handlers ( ) ;
     
-    GameConfig . level_editor_edit_mode = LEVEL_EDITOR_SELECTION_FLOOR ;
-
     init_character_descriptions ( );
     
     clear_out_arrays_for_fresh_game ();

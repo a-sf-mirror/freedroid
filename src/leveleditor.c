@@ -52,9 +52,8 @@ int OriginWaypoint = (-1);
 
 char VanishingMessage[10000]="";
 float VanishingMessageEndDate = 0;
-SDL_Rect EditorBannerRect = { 0 , 0 , 640 , 90 } ;
 int FirstBlock = 0 ;
-int Highlight = 3 ;
+int *object_list;
 int number_of_walls [ NUMBER_OF_LEVEL_EDITOR_GROUPS ] ;
 int level_editor_done = FALSE;
 
@@ -94,6 +93,22 @@ int EditY(void)
 level *EditLevel(void)
 {
     return CURLEVEL();
+}
+
+iso_image *leveleditor_get_object_image(enum leveleditor_object_type type, int * array, int idx)
+{
+    switch(type) {
+	case OBJECT_FLOOR:
+	    return &(floor_iso_images[array[idx]]);
+	case OBJECT_OBSTACLE:
+	    return &(obstacle_map[array[idx]].image);
+	case OBJECT_NPC:
+	case OBJECT_ANY:
+	    ErrorMessage(__FUNCTION__, "Abstract object type %d for leveleditor not supported.\n", PLEASE_INFORM, IS_FATAL, type);
+	    break;
+    }
+
+    return NULL;
 }
 
 /**
@@ -158,7 +173,7 @@ quickbar_getentry ( int id )
 
 iso_image * quickbar_getimage ( int selected_index , int *placing_floor ) 
 {
-    struct quickbar_entry *entry = quickbar_getentry ( selected_index );
+/*    struct quickbar_entry *entry = quickbar_getentry ( selected_index );
     if (!entry) 
 	return NULL;
     if (entry->obstacle_type == LEVEL_EDITOR_SELECTION_FLOOR) {
@@ -166,7 +181,7 @@ iso_image * quickbar_getimage ( int selected_index , int *placing_floor )
 	return &floor_iso_images  [ entry->id ];
     } else {
 	return &obstacle_map [wall_indices [ entry -> obstacle_type ] [ entry->id ] ] . image;
-    }
+    }*/
 }
 
 /**
@@ -237,7 +252,7 @@ quickbar_use (int obstacle, int id)
 void
 quickbar_click (level *level, int id, leveleditor_state *cur_state)
 {
-    struct quickbar_entry *entry = quickbar_getentry ( id );
+/*    struct quickbar_entry *entry = quickbar_getentry ( id );
     if ( entry ) {
 	switch ( entry->obstacle_type )
 	{
@@ -256,7 +271,7 @@ quickbar_click (level *level, int id, leveleditor_state *cur_state)
 		    wall_indices [ entry -> obstacle_type ] [ entry -> id ]);
 	}
 	entry->used ++;
-    }
+    }*/
 }    
 
 /**
@@ -484,65 +499,6 @@ void ItemDropFromLevelEditor( void )
     save_mouse_state();
     game_status = INSIDE_LVLEDITOR;
 }; // void ItemDropFromLevelEditor( void )
-
-/**
- *
- *
- */
-void
-update_number_of_walls ( void )
-{
-    int inside_index ;
-    int group_index ;
-    
-    for ( group_index = 0 ; group_index < NUMBER_OF_LEVEL_EDITOR_GROUPS ; group_index ++ )
-    {
-	for ( inside_index = 0 ; inside_index < NUMBER_OF_OBSTACLE_TYPES ; inside_index ++ )
-	{
-	    switch ( group_index )
-	    {
-		case LEVEL_EDITOR_SELECTION_FLOOR:
-		    number_of_walls [ group_index ] = ALL_ISOMETRIC_FLOOR_TILES ;
-		    if ( inside_index < ALL_ISOMETRIC_FLOOR_TILES )
-			wall_indices [ group_index ] [ inside_index ] = inside_index ;
-		    else
-			wall_indices [ group_index ] [ inside_index ] = (-1);
-		    break;
-		case LEVEL_EDITOR_SELECTION_WALLS:
-		case LEVEL_EDITOR_SELECTION_MACHINERY:
-		case LEVEL_EDITOR_SELECTION_FURNITURE:
-		case LEVEL_EDITOR_SELECTION_CONTAINERS:
-		case LEVEL_EDITOR_SELECTION_PLANTS:
-		    if ( wall_indices [ group_index ] [ inside_index ] == (-1) )
-		    {
-			number_of_walls [ group_index ] = inside_index ;
-			inside_index = NUMBER_OF_OBSTACLE_TYPES ; // --> we MUST leave the loop here!
-			break;
-		    }
-		    break;
-		case LEVEL_EDITOR_SELECTION_ALL:
-		    //--------------------
-		    // In this case we have to fill the array with data, cause it's
-		    // not hard-coded for this group...
-		    //
-		    number_of_walls [ group_index ] = NUMBER_OF_OBSTACLE_TYPES ;
-		    if ( inside_index < NUMBER_OF_OBSTACLE_TYPES )
-			wall_indices [ group_index ] [ inside_index ] = inside_index ;
-		    else
-			wall_indices [ group_index ] [ inside_index ] = (-1);
-		    break;
-		case LEVEL_EDITOR_SELECTION_QUICK:
- 		    break;
- 		default:
-		    ErrorMessage ( __FUNCTION__  , "\
-			    		       Unhandled level editor edit mode received.",
-					       PLEASE_INFORM , IS_FATAL );
-		    break;
-	    }
-	}
-    }
-    
-}; // void update_number_of_walls ( void )
 
 /**
  * Run several validations
@@ -1173,12 +1129,13 @@ void start_line_mode(leveleditor_state *cur_state, int already_defined)
     cur_state->l_direction = UNDEFINED;
     /* If the tile is not already defined (ie. if the function is not 
      * called from the quickbar_click function) */
-    if (! already_defined)
+/*    if (! already_defined)
     {
 	cur_state->l_selected_mode = GameConfig . level_editor_edit_mode;
 	cur_state->l_id = Highlight;
-    }
+    }*/
 
+    /*
     cur_state->l_elements.position.x = (int)cur_state->TargetSquare.x +
 	((obstacle_map [ wall_indices [ cur_state->l_selected_mode ] [ cur_state->l_id ] ] . flags & IS_HORIZONTAL) ? 0.5 : 0);
 
@@ -1188,6 +1145,7 @@ void start_line_mode(leveleditor_state *cur_state, int already_defined)
     cur_state->l_elements.address = action_create_obstacle_user ( EditLevel() , 
 	    cur_state->l_elements.position.x , cur_state->l_elements.position.y , 
 	    wall_indices [ cur_state->l_selected_mode ] [ cur_state->l_id ] );
+	    */
 }
 
 /**
@@ -1242,6 +1200,7 @@ void handle_line_mode(leveleditor_state *cur_state)
 	    }
 
 	// Are we going in a direction possible with that wall?
+	/*
 	if ( obstacle_map [ wall_indices [ cur_state->l_selected_mode ] [ cur_state->l_id ] ] . flags & IS_HORIZONTAL )
 	    {
 	    direction_is_possible =  (actual_direction == WEST) || (actual_direction == EAST);
@@ -1253,7 +1212,7 @@ void handle_line_mode(leveleditor_state *cur_state)
 	else 
 	    {
 	    direction_is_possible = FALSE;
-	    }
+	    }*/
 
 	// If the mouse is far away enoug
 	if ((distance > 1) && (direction_is_possible) &&
@@ -1281,11 +1240,13 @@ void handle_line_mode(leveleditor_state *cur_state)
 		    break;
 	    }
 	    // And add the wall, to the linked list and to the map
+	    //
+	    /*
 	    list_add_tail(&(wall->list), &(cur_state->l_elements.list));
 	    wall->address = action_create_obstacle_user ( EditLevel() ,
 		    wall->position.x , wall->position.y ,
 		    wall_indices [ cur_state->l_selected_mode ] [ cur_state->l_id ] );
-
+*/
 	    // If the direction is unknown (ie. we only have one wall), 
 	    // let's define it
 	    if (cur_state->l_direction == UNDEFINED)
@@ -1349,8 +1310,8 @@ void start_rectangle_mode ( leveleditor_state *cur_state , int already_defined )
     cur_state->r_len_y = 0;
 
     /* The tile we'll use */
-    if (! already_defined)
-	cur_state->r_tile_used = Highlight;
+/*    if (! already_defined)
+	cur_state->r_tile_used = selected_tile_nb;*/
 
     /* Place the first tile */
     action_set_floor ( EditLevel(), cur_state->r_start.x, cur_state->r_start.y, cur_state->r_tile_used );
@@ -1403,11 +1364,11 @@ void end_rectangle_mode( leveleditor_state *cur_state, int place_rectangle)
 
 void level_editor_next_tab()
 {
-    GameConfig . level_editor_edit_mode ++ ;
+/*    GameConfig . level_editor_edit_mode ++ ;
     if ( GameConfig . level_editor_edit_mode >= NUMBER_OF_LEVEL_EDITOR_GROUPS )
 	GameConfig . level_editor_edit_mode = LEVEL_EDITOR_SELECTION_FLOOR ;
     Highlight = 0 ;
-    FirstBlock = 0 ;
+    FirstBlock = 0 ;*/
 }
 
 
@@ -1421,12 +1382,6 @@ static void leveleditor_init()
     cur_state->c_last_right_click.y = 0;
 
     level_editor_done = FALSE;
-
-    //--------------------
-    // We initialize some arrays with info for proper handling
-    // of the level editor selection bar later...
-    //
-    update_number_of_walls ( );
 
     //--------------------
     // We set the Tux position to something 'round'.

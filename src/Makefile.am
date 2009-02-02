@@ -32,6 +32,7 @@ freedroidRPG_SOURCES = menu.c shop.c items.c character.c skills.c saveloadgame.c
 	leveleditor_widget_button.c leveleditor_widget_button.h \
 	leveleditor_widget_map.c leveleditor_widget_map.h \
 	leveleditor_widget_toolbar.c leveleditor_widget_toolbar.h \
+	leveleditor_widget_typeselect.c leveleditor_widget_typeselect.h \
 	leveleditor_widgets.c leveleditor_widgets.h
 
 savestruct.c savestruct.h: struct.h

@@ -798,35 +798,35 @@ void level_editor_place_aligned_obstacle ( int positionid )
 
     positionid--;
 
-    if ( GameConfig . level_editor_edit_mode == LEVEL_EDITOR_SELECTION_FLOOR )
+    if (object_type != OBJECT_OBSTACLE && object_type != OBJECT_ANY )
 	return;
 
     /* Try to get a quickbar entry */
-    if ( GameConfig . level_editor_edit_mode == LEVEL_EDITOR_SELECTION_QUICK )
-    {
-	entry = quickbar_getentry ( Highlight );
-	if (entry)
+    if (object_type == OBJECT_ANY)
 	{
+	//entry = quickbar_getentry ( selected_tile_nb );
+	if (entry)
+	    {
 	    obstacle_type = entry -> obstacle_type;
 	    id = entry -> id;
-	}
+	    }
 	else
-	{
+	    {
 	    placement_is_possible = FALSE;
+	    }
 	}
-    }
     else
-    {
-	obstacle_type = GameConfig . level_editor_edit_mode;
-	id = Highlight;
-    }
+	{
+//XXX	obstacle_type = GameConfig . level_editor_edit_mode;
+//	id = selected_tile_nb;
+	}
 
     if ( placement_is_possible )
     {
-	action_create_obstacle_user ( EditLevel(), ((int)Me.pos.x) + position_offset_x[positionid] , ((int)Me.pos.y) + position_offset_y[positionid], wall_indices [ obstacle_type ] [ id ] );
+//	action_create_obstacle_user ( EditLevel(), ((int)Me.pos.x) + position_offset_x[positionid] , ((int)Me.pos.y) + position_offset_y[positionid], wall_indices [ obstacle_type ] [ id ] );
 	obstacle_created = TRUE;
-	if ( GameConfig . level_editor_edit_mode != LEVEL_EDITOR_SELECTION_QUICK && obstacle_created )
-	    quickbar_use ( obstacle_type, id );
+/*	if (object_list !=  && obstacle_created )
+	    quickbar_use ( obstacle_type, id );*/
     }
 }
 

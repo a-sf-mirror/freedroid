@@ -40,6 +40,7 @@
 #include "leveleditor_widget_button.h"
 #include "leveleditor_widget_map.h"
 #include "leveleditor_widget_toolbar.h"
+#include "leveleditor_widget_typeselect.h"
 
 LIST_HEAD(leveleditor_widget_list);
 
@@ -96,9 +97,9 @@ static struct leveleditor_widget * create_toolbar()
     struct leveleditor_widget * a = MyMalloc(sizeof(struct leveleditor_widget));
     a->type = WIDGET_TOOLBAR;
     a->rect.x = 0;
-    a->rect.y = 0;
+    a->rect.y = 14;
     a->rect.w = GameConfig.screen_width;
-    a->rect.h = 90;
+    a->rect.h = 76;
     a->mouseenter = leveleditor_toolbar_mouseenter;
     a->mouseleave = leveleditor_toolbar_mouseleave;
     a->mouserelease = leveleditor_toolbar_mouserelease;
@@ -115,8 +116,39 @@ static struct leveleditor_widget * create_toolbar()
     return a;
 }
 
+static struct leveleditor_widget * create_objectselector(int x, char * text, enum leveleditor_object_type type, int * olist)
+{
+    struct leveleditor_widget * a = MyMalloc(sizeof(struct leveleditor_widget));
+    a->type = WIDGET_OBJECTTYPESELECTORBUTTON;
+    a->rect.x = x;
+    a->rect.y = 0;
+    a->rect.w = 80;
+    a->rect.h = 14;
+    a->mouseenter = leveleditor_typeselect_mouseenter;
+    a->mouseleave = leveleditor_typeselect_mouseleave;
+    a->mouserelease = leveleditor_typeselect_mouserelease;
+    a->mousepress = leveleditor_typeselect_mousepress;
+    a->mouserightrelease = leveleditor_typeselect_mouserightrelease;
+    a->mouserightpress = leveleditor_typeselect_mouserightpress;
+    a->mousewheelup = leveleditor_typeselect_mousewheelup;
+    a->mousewheeldown = leveleditor_typeselect_mousewheeldown;
+    a->enabled = 1;
+
+    struct leveleditor_typeselect * o = MyMalloc(sizeof(struct leveleditor_typeselect));
+
+    o->type = type;
+    o->indices = olist;
+    o->title = text;
+    o->xpos = x;
+
+    a->ext = o;
+    return a;
+}
+
 void leveleditor_init_widgets()
 {
+    struct leveleditor_widget *floor_selector;
+
     if (!list_empty(&leveleditor_widget_list)) {
 	/* Widgets already initialized, get out */
 	printf("Widgets already initialized!\n");
@@ -145,7 +177,7 @@ void leveleditor_init_widgets()
 	LEVEL_EDITOR_TOGGLE_ENEMIES_BUTTON,
 	LEVEL_EDITOR_TOGGLE_TOOLTIPS_BUTTON,
 	LEVEL_EDITOR_TOGGLE_COLLISION_RECTS_BUTTON,
-	LEVEL_EDITOR_TOGGLE_GRID_BUTTON,
+	LEVEL_EDITOR_TOGGLE_GRID_BUTTON_OFF,
 	LEVEL_EDITOR_TOGGLE_OBSTACLES_BUTTON,
 	LEVEL_EDITOR_ZOOM_IN_BUTTON,
 	LEVEL_EDITOR_QUIT_BUTTON,
@@ -153,6 +185,8 @@ void leveleditor_init_widgets()
 	GO_LEVEL_SOUTH_BUTTON,
 	GO_LEVEL_EAST_BUTTON,
 	GO_LEVEL_WEST_BUTTON,
+	RIGHT_LEVEL_EDITOR_BUTTON,
+	LEFT_LEVEL_EDITOR_BUTTON,
     };
 
     int i;
@@ -162,11 +196,26 @@ void leveleditor_init_widgets()
 	list_add(&create_button(t[i])->node, &leveleditor_widget_list);
     }
 
+    /* The object type selectors */
+    floor_selector = create_objectselector(0, _("FLOOR"), OBJECT_FLOOR, floor_tiles_list);
+
+    list_add_tail(&floor_selector->node, &leveleditor_widget_list); 
+    list_add_tail(&create_objectselector(80, _("WALL"), OBJECT_OBSTACLE, wall_tiles_list)->node, &leveleditor_widget_list); 
+    list_add_tail(&create_objectselector(160, _("FURNITURE"), OBJECT_OBSTACLE, furniture_tiles_list)->node, &leveleditor_widget_list); 
+    list_add_tail(&create_objectselector(240, _("MACHINERY"), OBJECT_OBSTACLE, machinery_tiles_list)->node, &leveleditor_widget_list); 
+    list_add_tail(&create_objectselector(320, _("CONTAINER"), OBJECT_OBSTACLE, container_tiles_list)->node, &leveleditor_widget_list); 
+    list_add_tail(&create_objectselector(400, _("PLANT"), OBJECT_OBSTACLE, plant_tiles_list)->node, &leveleditor_widget_list); 
+    list_add_tail(&create_objectselector(GameConfig.screen_width-80, _("QUICK"), OBJECT_ANY, NULL)->node, &leveleditor_widget_list); 
+
     /* The toolbar */
     list_add_tail(&create_toolbar()->node, &leveleditor_widget_list);
 
     /* The map (has to be the latest widget in the list) */
     list_add_tail(&create_map()->node, &leveleditor_widget_list);
+
+    /* Initialize elements of the interface */
+    leveleditor_typeselect_init_selected_list(floor_selector->ext);
+
 }
 
 void leveleditor_update_button_states()
@@ -238,9 +287,13 @@ void leveleditor_display_widgets()
 		leveleditor_button_display(w->ext);
 		break;
 	    case WIDGET_TOOLBAR:
+		leveleditor_toolbar_display(w->ext);
 		break;
 	    case WIDGET_MAP:
 		leveleditor_map_display(w->ext);
+		break;
+	    case WIDGET_OBJECTTYPESELECTORBUTTON:
+		leveleditor_typeselect_display(w->ext);
 		break;
 	}
     }

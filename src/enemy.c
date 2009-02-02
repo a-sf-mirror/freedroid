@@ -785,7 +785,7 @@ in Freedroid RPG.\n",
  */
 static void enemy_spray_blood ( enemy *CurEnemy ) 
 {
-    extern action_create_obstacle(level*, double, double, int);
+    extern obstacle *action_create_obstacle(level*, double, double, int);
     moderately_finepoint target_pos = { 1.0 , 0 } ;
 
     RotateVectorByAngle ( & target_pos , MyRandom ( 360 ) );

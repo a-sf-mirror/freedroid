@@ -132,7 +132,6 @@ typedef struct configuration_for_freedroid_s
     int highlighting_mode_full;
     int omit_obstacles_in_level_editor;
     int omit_enemies_in_level_editor;
-    int level_editor_edit_mode;
     int zoom_is_on;
     int show_blood; // this can be used to make the game more friendly for children...
     int show_tooltips;

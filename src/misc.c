@@ -86,7 +86,9 @@ mouse_press_button AllMousePressButtons[ MAX_MOUSE_PRESS_BUTTONS ] =
     /*LEFT_TUX_SHOP_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LeftShopButton.png"               , {   5 ,  16 ,  26 ,  26 } , TRUE , FALSE } ,
     /*RIGHT_TUX_SHOP_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/RightShopButton.png"              , { 580 ,  13 ,  26 ,  26 } , TRUE , FALSE } ,
     /*LEFT_LEVEL_EDITOR_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorObjectSelectorLeft.png", {  3 ,  25 ,  15 ,  60 } , FALSE , FALSE } ,
-    /*RIGHT_LEVEL_EDITOR_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorObjectSelectorRight.png", { 620 ,  26 ,  15 ,  60 } , FALSE , FALSE } ,
+    /*LEFT_LEVEL_EDITOR_BUTTON_PUSHED*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorObjectSelectorLeft.png", {  3 ,  25 ,  15 ,  60 } , FALSE , FALSE } ,
+    /*RIGHT_LEVEL_EDITOR_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorObjectSelectorRight.png", { -16 ,  26 ,  15 ,  60 } , FALSE , FALSE } ,
+    /*RIGHT_LEVEL_EDITOR_BUTTON_PUSHED*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorObjectSelectorRight.png", { -16 ,  26 ,  15 ,  60 } , FALSE , FALSE } ,
 
 
     /*NUMBER_SELECTOR_OK_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/number_selector_ok_button.png"    , { 308 , 288 ,  48 ,  48 } , TRUE , FALSE } ,
@@ -172,13 +174,13 @@ mouse_press_button AllMousePressButtons[ MAX_MOUSE_PRESS_BUTTONS ] =
     /*LEVEL_EDITOR_TOGGLE_COLLISION_RECTS_BUTTON_PUSHED */    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorToggleCollisionRectsButtonPushed.png"  , { 330 , 90 , 0 ,  0 } , FALSE , FALSE } , 
     /*LEVEL_EDITOR_TOGGLE_COLLISION_RECTS_BUTTON_OFF*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorToggleCollisionRectsButtonOff.png"  , { 330 , 90 , 0 ,  0 } , FALSE , FALSE } , 
     /*LEVEL_EDITOR_TOGGLE_COLLISION_RECTS_BUTTON_OFF_PUSHED*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorToggleCollisionRectsButtonOffPushed.png"  , { 330 , 90 , 0 ,  0 } , FALSE , FALSE } , 
+    /*LEVEL_EDITOR_TOGGLE_GRID_BUTTON_OFF*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorToggleGridButtonOff.png"  , { 360 , 90 , 0 ,  0 } , FALSE , FALSE } ,
+    /*LEVEL_EDITOR_TOGGLE_GRID_BUTTON_OFF_PUSHED*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorToggleGridButtonOffPushed.png"  , { 360 , 90 , 0 ,  0 } , FALSE , FALSE } ,  
+
     /*LEVEL_EDITOR_TOGGLE_GRID_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorToggleGridButton.png"  , { 360 , 90 , 0 ,  0 } , FALSE , FALSE } , 
     /*LEVEL_EDITOR_TOGGLE_GRID_BUTTON_PUSHED*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorToggleGridButtonPushed.png"  , { 360 , 90 , 0 ,  0 } , FALSE , FALSE } , 
     /*LEVEL_EDITOR_TOGGLE_GRID_BUTTON_FULL*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorToggleGridButtonFull.png"  , { 360 , 90 , 0 ,  0 } , FALSE , FALSE } ,
     /*LEVEL_EDITOR_TOGGLE_GRID_BUTTON_FULL_PUSHED*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorToggleGridButtonFullPushed.png"  , { 360 , 90 , 0 ,  0 } , FALSE , FALSE } ,  
-    /*LEVEL_EDITOR_TOGGLE_GRID_BUTTON_OFF*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorToggleGridButtonOff.png"  , { 360 , 90 , 0 ,  0 } , FALSE , FALSE } ,
-    /*LEVEL_EDITOR_TOGGLE_GRID_BUTTON_OFF_PUSHED*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorToggleGridButtonOffPushed.png"  , { 360 , 90 , 0 ,  0 } , FALSE , FALSE } ,  
-
     /*LEVEL_EDITOR_NEXT_ITEM_GROUP_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorNextItemGroup.png"     , { 55 + 64 * 8 , 32+5*66 , 0 ,  0 } , TRUE , FALSE } ,
     /*LEVEL_EDITOR_PREV_ITEM_GROUP_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorPrevItemGroup.png"     , { 55          , 32+5*66 , 0 ,  0 } , TRUE , FALSE } ,
     /*LEVEL_EDITOR_NEXT_PREFIX_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorNextItemGroup.png"     , { 55 + 400    , 32+5*66 , 0 ,  0 } , TRUE , FALSE } ,

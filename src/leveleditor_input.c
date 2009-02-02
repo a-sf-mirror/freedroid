@@ -57,9 +57,9 @@ static int ClickWasInRect ( SDL_Rect TargetRect )
 }; // int ClickWasInRect ( SDL_Rect TargetRect )
 
 static int ClickWasInEditorBannerRect( void )
-{
+{/*
     extern SDL_Rect EditorBannerRect; //XXX drop that
-    return ( ClickWasInRect ( EditorBannerRect ) );
+    return ( ClickWasInRect ( EditorBannerRect ) );*/
 }; // int ClickWasInEditorBannerRect( void )
 
 static void HandleBannerMouseClick( void )
@@ -67,48 +67,6 @@ static void HandleBannerMouseClick( void )
     SDL_Rect TargetRect;
     int i;
     extern int FirstBlock; //XXX 
-    
-    if ( MouseCursorIsOnButton ( LEFT_LEVEL_EDITOR_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
-    {
-	FirstBlock-= 8;
-    }
-    else if ( MouseCursorIsOnButton ( RIGHT_LEVEL_EDITOR_BUTTON , GetMousePos_x()  , GetMousePos_y()))
-    {
-	FirstBlock+=8 ;
-    }
-    else if( MouseCursorIsOnButton(  LEVEL_EDITOR_FLOOR_TAB, GetMousePos_x()  , GetMousePos_y()  ))
-    {
-	GameConfig . level_editor_edit_mode = LEVEL_EDITOR_SELECTION_FLOOR ;
-    }
-    else if( MouseCursorIsOnButton(  LEVEL_EDITOR_WALLS_TAB, GetMousePos_x()  , GetMousePos_y()  ))
-    {
-	GameConfig . level_editor_edit_mode = LEVEL_EDITOR_SELECTION_FLOOR + 1;
-    }
-    else if( MouseCursorIsOnButton(  LEVEL_EDITOR_MACHINERY_TAB, GetMousePos_x()  , GetMousePos_y()  ))
-    {
-	GameConfig . level_editor_edit_mode = LEVEL_EDITOR_SELECTION_FLOOR + 2 ;
-    }
-    else if( MouseCursorIsOnButton(  LEVEL_EDITOR_FURNITURE_TAB, GetMousePos_x()  , GetMousePos_y()  ))
-    {
-	GameConfig . level_editor_edit_mode = LEVEL_EDITOR_SELECTION_FLOOR + 3;
-    }
-    else if( MouseCursorIsOnButton(  LEVEL_EDITOR_CONTAINERS_TAB, GetMousePos_x()  , GetMousePos_y()  ))
-    {
-	GameConfig . level_editor_edit_mode = LEVEL_EDITOR_SELECTION_FLOOR + 4;
-    }
-    else if( MouseCursorIsOnButton(  LEVEL_EDITOR_PLANTS_TAB, GetMousePos_x()  , GetMousePos_y()  ))
-    {
-	GameConfig . level_editor_edit_mode = LEVEL_EDITOR_SELECTION_FLOOR + 5;
-    }
-    else if( MouseCursorIsOnButton(  LEVEL_EDITOR_ALL_TAB, GetMousePos_x()  , GetMousePos_y()  ))
-    {
-	GameConfig . level_editor_edit_mode = LEVEL_EDITOR_SELECTION_FLOOR + 6;
-    }
-    else if( MouseCursorIsOnButton(  LEVEL_EDITOR_QUICK_TAB, GetMousePos_x()  , GetMousePos_y()  ))
-    {
-	GameConfig . level_editor_edit_mode = LEVEL_EDITOR_SELECTION_FLOOR + 7;
-    }
-    else
     {
 	// could be a click on a block
         unsigned int num_blocks = GameConfig.screen_width / INITIAL_BLOCK_WIDTH - 1;
@@ -118,13 +76,13 @@ static void HandleBannerMouseClick( void )
 	    TargetRect.y = INITIAL_BLOCK_HEIGHT/3;
 	    TargetRect.w = INITIAL_BLOCK_WIDTH;
 	    TargetRect.h = INITIAL_BLOCK_HEIGHT;
-	    if ( ClickWasInRect ( TargetRect ) )
-		Highlight = FirstBlock + i;
+//	    if ( ClickWasInRect ( TargetRect ) )
+//		selected_tile_nb = FirstBlock + i;
         }
     }
     
     // check limits
-    if ( FirstBlock + 9 >= number_of_walls [ GameConfig . level_editor_edit_mode ] )
+  /*  if ( FirstBlock + 9 >= number_of_walls [ GameConfig . level_editor_edit_mode ] )
 	FirstBlock = number_of_walls [ GameConfig . level_editor_edit_mode ] - 9 ;
     
     if ( FirstBlock < 0 )
@@ -135,9 +93,9 @@ static void HandleBannerMouseClick( void )
     // undefined objects (floor tiles or obstacles) later
     // The following should never occur now - SN
     //
-    if ( Highlight >= number_of_walls [ GameConfig . level_editor_edit_mode ] )
-	Highlight = number_of_walls [ GameConfig . level_editor_edit_mode ] -1 ;
-    
+    if ( selected_tile_nb >= number_of_walls [ GameConfig . level_editor_edit_mode ] )
+	selected_tile_nb = number_of_walls [ GameConfig . level_editor_edit_mode ] -1 ;
+    */
 }; // void HandleBannerMouseClick( void )
 
 
@@ -303,15 +261,15 @@ static void level_editor_handle_left_mouse_button (leveleditor_state *cur_state 
 //		{
 //		    case LEVEL_EDITOR_SELECTION_FLOOR:
 //			start_rectangle_mode( cur_state , FALSE );
-//			quickbar_use( GameConfig . level_editor_edit_mode , Highlight );
+//			quickbar_use( GameConfig . level_editor_edit_mode , selected_tile_nb );
 //			break;
 //		    case LEVEL_EDITOR_SELECTION_QUICK:
-//			quickbar_click ( EditLevel() , Highlight , cur_state);
+//			quickbar_click ( EditLevel() , selected_tile_nb , cur_state);
 //			break;
 //		    case LEVEL_EDITOR_SELECTION_WALLS:
 //			/* If the obstacle can be part of a line */
-//			if ( (obstacle_map [ wall_indices [ GameConfig . level_editor_edit_mode ] [ Highlight ] ] . flags & IS_VERTICAL) ||
-//				(obstacle_map [ wall_indices [ GameConfig . level_editor_edit_mode ] [ Highlight ] ] . flags & IS_HORIZONTAL) )
+//			if ( (obstacle_map [ wall_indices [ GameConfig . level_editor_edit_mode ] [ selected_tile_nb ] ] . flags & IS_VERTICAL) ||
+//				(obstacle_map [ wall_indices [ GameConfig . level_editor_edit_mode ] [ selected_tile_nb ] ] . flags & IS_HORIZONTAL) )
 //			{
 //			    /* Let's start the line (FALSE because the function will
 //			     * find the tile by itself) */
@@ -328,8 +286,8 @@ static void level_editor_handle_left_mouse_button (leveleditor_state *cur_state 
 //			    pos . x = (int)pos.x;
 //			    pos . y = (int)pos.y;
 //			}
-//			action_create_obstacle_user ( EditLevel() , pos . x , pos . y , wall_indices [ GameConfig . level_editor_edit_mode ] [ Highlight ] );
-//			quickbar_use ( GameConfig . level_editor_edit_mode, Highlight );
+//			action_create_obstacle_user ( EditLevel() , pos . x , pos . y , wall_indices [ GameConfig . level_editor_edit_mode ] [ selected_tile_nb ] );
+//			quickbar_use ( GameConfig . level_editor_edit_mode, selected_tile_nb );
 //		}
 //	    }
 //	}
@@ -393,36 +351,6 @@ if ( Me . pos . y >= curShip.AllLevels[Me.pos.z]->ylen-1 )
         Me . pos . y = curShip.AllLevels[Me.pos.z]->ylen-1 ;
 if ( Me . pos . y <= 0 ) Me . pos . y = 0;
 }	
-
-static void level_editor_handle_mouse_wheel ( void )
-{
-    extern int FirstBlock; //XXX 
-    if ( MouseWheelDownPressed() )
-    {
-	if ( Highlight < number_of_walls [ GameConfig . level_editor_edit_mode ] -1 )
-	    Highlight++;
-	
-	// check if we have to scroll the list
-	if( Highlight < FirstBlock )
-	    // block is to the left
-	    FirstBlock = Highlight ;
-	else if (Highlight > FirstBlock +8)
-	    // block is to the right
-	    FirstBlock = Highlight - 8;
-    } 
-    if ( MouseWheelUpPressed() && Highlight != 0)
-    {
-	Highlight--;
-	
-	// check if we have to scroll the list
-	if(Highlight < FirstBlock )
-	    // block is to the left
-	    FirstBlock = Highlight ;
-	else if (Highlight > FirstBlock +8)
-	    // block is to the right
-	    FirstBlock = Highlight - 8;
-    } 
-}; // void level_editor_handle_mouse_wheel ( void )
 
 void leveleditor_input_mouse_motion(SDL_Event *event)
 {
@@ -607,8 +535,6 @@ void leveleditor_process_input()
 		}
 	    break;
 	}
-
-    level_editor_handle_mouse_wheel();
 
     level_editor_auto_scroll();
 

@@ -397,7 +397,7 @@ static void ShowMapLabels( int mask )
  * mouse cursor.  Bringing up this tooltip window is the purpose of this
  * function.
  */
-void show_button_tooltip ( char* tooltip_text )
+static void show_button_tooltip ( char* tooltip_text )
 {
     SDL_Rect TargetRect;
     
@@ -607,193 +607,6 @@ static void show_level_editor_tooltips ( void )
     
 }; // void show_level_editor_tooltips ( void )
 
-/**
- * On the very top of the screen during level editor work, there is a 
- * scrollbar with the various tiles that may be placed on the floor of the
- * map.  This scrollbar is drawn here.
- */
-
-static void build_level_editor_banner(unsigned int selected_tab)
-{
-    char *tab_text[9]={
-	_("FLOOR") ,     
-	_("WALLS") ,     
-	_("MACHINERY") , 
-	_("FURNITURE") , 
-	_("CONTAINERS"), 
-	_("NATURE")    , 
-	_("ALL") ,       
-	_("QUICK"),
-	NULL
-    };
-    unsigned int tab_num=8;
-    extern SDL_Rect EditorBannerRect; //XXX drop that
-
-    SDL_Rect tr,hr;
-
-    // here I modify default values 
-    AllMousePressButtons[ RIGHT_LEVEL_EDITOR_BUTTON ] . button_rect . x = 
-	GameConfig.screen_width - 16;
-    EditorBannerRect.w = GameConfig.screen_width;
-
-    // object selector background
-    tr . x = 0 ;
-    tr . w = GameConfig.screen_width;
-    tr . y = 14 ;
-    tr . h = 77;
-    our_SDL_fill_rect_wrapper(Screen, &tr, 0x556889);
-
-    ShowGenericButtonFromList (  LEFT_LEVEL_EDITOR_BUTTON );
-    ShowGenericButtonFromList ( RIGHT_LEVEL_EDITOR_BUTTON );
-
-    // object selector tabset background
-    tr.x = 0; tr . y = 0; tr . h = 14; tr . w = 640;
-    our_SDL_fill_rect_wrapper(Screen, &tr, 0x656565);
-
-    // tabset
-    BFont_Info * PreviousFont;
-    PreviousFont = GetCurrentFont();
-    SetCurrentFont( Messagevar_BFont );
-    unsigned int tab_y=1, tab_width = 80, ii;
-    tr . w = 2;
-    tr . h = 14;
-    hr . y =0 ; hr.w = tab_width-2; hr.h = 14;
-
-    for(ii=0;ii<tab_num;ii++){
-	unsigned int tab_x = ii * tab_width;
-	hr.x=tab_x;
-	if(ii==selected_tab) // the currently selected tab has different color
-	    our_SDL_fill_rect_wrapper(Screen,&hr,0x556889);
-	DisplayText( tab_text[ii] , tab_x+2 , tab_y , &hr , TEXT_STRETCH );
-	tr.x = tab_x + tab_width - 2;
-	// tab separators
-	our_SDL_fill_rect_wrapper(Screen,&tr,0x88000000);
-    }
-    SetCurrentFont( PreviousFont );
-}
-
-static void ShowLevelEditorTopMenu( int Highlight )
-{
-    int i;
-    extern int FirstBlock; //XXX 
-    SDL_Rect TargetRectangle;
-    int selected_index = FirstBlock;
-    int placing_floor;
-    SDL_Surface *tmp = NULL;
-    float zoom_factor;
-
-    build_level_editor_banner(GameConfig.level_editor_edit_mode);
-
-    //--------------------
-    // Time to fill something into the top selection banner, so that the
-    // user can really has something to select from there.  But this must be
-    // done differently, depending on whether we show the menu for the floor
-    // edit mode or for the obstacle edit mode.
-    //
-    unsigned int num_blocks = GameConfig.screen_width / INITIAL_BLOCK_WIDTH - 1;
-    for ( i = 0 ; i < num_blocks ; i ++ )
-    {
-	if ( selected_index >= number_of_walls [ GameConfig . level_editor_edit_mode ] ) 
-	    break;
-
-	TargetRectangle.x = INITIAL_BLOCK_WIDTH/2 + INITIAL_BLOCK_WIDTH * i ;
-	TargetRectangle.y = INITIAL_BLOCK_HEIGHT/3 ;
-	TargetRectangle.w = INITIAL_BLOCK_WIDTH ;
-	TargetRectangle.h = INITIAL_BLOCK_HEIGHT ;
-	    
-        iso_image * img=NULL;
-        int y_off;
-        y_off=TargetRectangle.y;
-	placing_floor = FALSE;
-	switch ( GameConfig . level_editor_edit_mode )
-	{
-	    case LEVEL_EDITOR_SELECTION_FLOOR:
-		img = & (floor_iso_images [ selected_index ]);
-		placing_floor = TRUE;
-		break;
-	    case LEVEL_EDITOR_SELECTION_WALLS:
-	    case LEVEL_EDITOR_SELECTION_MACHINERY:
-	    case LEVEL_EDITOR_SELECTION_FURNITURE:
-	    case LEVEL_EDITOR_SELECTION_CONTAINERS:
-	    case LEVEL_EDITOR_SELECTION_PLANTS:
-	    case LEVEL_EDITOR_SELECTION_ALL:
-                img = &(obstacle_map [wall_indices [ GameConfig . level_editor_edit_mode ] [ selected_index ] ] . image);
-                break;
-	    case LEVEL_EDITOR_SELECTION_QUICK:
-		img = quickbar_getimage ( selected_index, &placing_floor );
-		break;
-	    default:
-		ErrorMessage ( __FUNCTION__  , 
-					   "Unhandled level editor edit mode received.",
-					   PLEASE_INFORM , IS_FATAL );
-		break;
-        }
-	if (!img) break; 
-	// We find the proper zoom_factor, so that the obstacle/tile in question will
-	// fit into one tile in the level editor top status selection row.
-	//
-	if ( use_open_gl )
-	    {
-	    zoom_factor = min ( 
-		    ( (float)INITIAL_BLOCK_WIDTH / (float)img -> original_image_width ) ,
-		    ( (float)INITIAL_BLOCK_HEIGHT / (float)img -> original_image_height ) );
-	    }
-	else
-	    {
-	    zoom_factor = min ( 
-		    ( (float)INITIAL_BLOCK_WIDTH / (float)img -> surface->w ) ,
-		    ( (float)INITIAL_BLOCK_HEIGHT / (float)img -> surface->h ) );
-	    }
-
-	if( placing_floor )
-	    y_off = TargetRectangle . y + 0.75 * TargetRectangle.h - 
-		zoom_factor * (float)(img -> original_image_height);
-
-	if ( use_open_gl )
-	    {
-	    draw_gl_scaled_textured_quad_at_screen_position ( img , TargetRectangle . x , 
-		    y_off, zoom_factor) ;
-	    //additionally in the ALL tab, display object number
-	    if ( GameConfig . level_editor_edit_mode == LEVEL_EDITOR_SELECTION_ALL)
-		{
-		char obsnum[5];
-		BFont_Info * PreviousFont = GetCurrentFont ();
-		SetCurrentFont ( Messagevar_BFont );
-		sprintf(obsnum, "%d", wall_indices [ GameConfig . level_editor_edit_mode ] [ selected_index ] );
-		DisplayText(obsnum, TargetRectangle . x, y_off, NULL, 1);
-		SetCurrentFont (PreviousFont);
-		}
-	    }
-	else
-	    {
-	    //--------------------
-	    // We create a scaled version of the obstacle/floorpiece in question
-	    //
-	    tmp = zoomSurface ( img -> surface , zoom_factor, zoom_factor, FALSE );
-
-	    //--------------------
-	    // Now we can show and free the scaled verion of the floor tile again.
-	    //
-	    our_SDL_blit_surface_wrapper( tmp , NULL , Screen, &TargetRectangle);
-	    SDL_FreeSurface ( tmp );
-	    }
-
-	//--------------------
-	// Maybe we've just displayed the obstacle/floorpiece that is currently
-	// selected.  In this case we should also draw the marker right on it.
-	//
-	if ( selected_index == Highlight ) 
-	    HighlightRectangle ( Screen , TargetRectangle );
-	  
-	//--------------------
-	// We can proceed here, since 'out of bounds' checks are done
-	// above anyway.
-	//
-	selected_index ++ ;
-    }
-    
-}; // void ShowLevelEditorTopMenu( void )
-
 void leveleditor_display() 
 {
     char linebuf[1000];
@@ -855,8 +668,6 @@ void leveleditor_display()
 	DisplayText ( VanishingMessage ,  1 , GameConfig.screen_height - 8 * FontHeight ( GetCurrentFont () ) ,
 		NULL , 1.0 );
 	}
-
-    ShowLevelEditorTopMenu( Highlight );
 
     show_level_editor_tooltips (  );
 

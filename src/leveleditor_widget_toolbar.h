@@ -23,7 +23,7 @@
  */
 
 #ifndef _leveleditor_widgets_c
-#error "leveleditor_widget_toolbar is to be used in leveleditor_wigdets.c only"
+#define EXTERN extern
 #endif
 
 void leveleditor_toolbar_mouseenter(void *);
@@ -35,3 +35,8 @@ void leveleditor_toolbar_mouserightpress(void *);
 void leveleditor_toolbar_mousewheelup(void *);
 void leveleditor_toolbar_mousewheeldown(void *);
 void leveleditor_toolbar_display(void *);
+
+void leveleditor_toolbar_left(void);
+void leveleditor_toolbar_right(void);
+void leveleditor_toolbar_scroll_left(void);
+void leveleditor_toolbar_scroll_right(void);

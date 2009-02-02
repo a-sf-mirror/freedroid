@@ -553,7 +553,7 @@ LoadGame( void )
     
     if ( strcmp ( Me . savegame_version_string , version_check_string ) != 0 )
     {
-	show_button_tooltip ( _("Version or structsize mismatch! The savegame is not from the same version of freedroidRPG... possible breakage.\n") );
+	GiveMouseAlertWindow( _("Version or structsize mismatch! The savegame is not from the same version of freedroidRPG... possible breakage.\n") );
 	our_SDL_flip_wrapper();
 	while ( ! MouseLeftPressed() ) SDL_Delay(1);
     }
