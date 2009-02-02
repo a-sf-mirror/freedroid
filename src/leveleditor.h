@@ -114,13 +114,19 @@ enum
 
 
 EXTERN void LevelEditor(void);
-EXTERN void cycle_marked_obstacle( Level EditLevel );
-EXTERN void CreateNewMapLevel( int level_num );
+EXTERN void ItemDropFromLevelEditor(void);
+EXTERN void level_editor_cycle_marked_obstacle(void);
 EXTERN void duplicate_all_obstacles_in_area ( Level source_level ,
 				       float source_start_x , float source_start_y , 
 				       float source_area_width , float source_area_height ,
 				       Level target_level ,
 				       float target_start_x , float target_start_y );
+EXTERN void ReportInconsistenciesForLevel (int);
+EXTERN void CreateNewMapLevel(int);
+EXTERN void LevelValidation();
+EXTERN void TestMap ();
+EXTERN void close_all_chests_on_level (int); 
+
 enum leveleditor_object_type {
     OBJECT_FLOOR,
     OBJECT_OBSTACLE,

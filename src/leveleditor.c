@@ -184,6 +184,7 @@ iso_image * quickbar_getimage ( int selected_index , int *placing_floor )
     } else {
 	return &obstacle_map [wall_indices [ entry -> obstacle_type ] [ entry->id ] ] . image;
     }*/
+    return NULL;
 }
 
 /**
@@ -778,29 +779,6 @@ void ReportInconsistenciesForLevel ( int LevelNum )
 }; // void ReportInconsistenciesForLevel ( int LevelNum )
 
 /**
- * If we want to synchronize two levels, we need to remove the old obstacles
- * before we can add new ones.  Else the place might get too crowded with
- * obstacles. :)
- */
-void
-delete_all_obstacles_in_area (level *TargetLevel , float start_x , float start_y , float area_width , float area_height )
-{
-    int i;
-    
-    for ( i = 0 ; i < MAX_OBSTACLES_ON_MAP ; i ++ )
-    {
-	if ( TargetLevel -> obstacle_list [ i ] . type <= (-1) ) continue;
-	if ( TargetLevel -> obstacle_list [ i ] . pos . x < start_x ) continue;
-	if ( TargetLevel -> obstacle_list [ i ] . pos . y < start_y ) continue;
-	if ( TargetLevel -> obstacle_list [ i ] . pos . x > start_x + area_width ) continue;
-	if ( TargetLevel -> obstacle_list [ i ] . pos . y > start_y + area_height ) continue;
-	action_remove_obstacle ( TargetLevel , & ( TargetLevel -> obstacle_list [ i ] ) );
-	i--; // this is so that this obstacle will be processed AGAIN, since deleting might
-	// have moved a different obstacle to this list position.
-    }
-}; // void delete_all_obstacles_in_area ( curShip . AllLevels [ TargetLevel ] , 0 , TargetLevel->ylen-AreaHeight , AreaWidth , AreaHeight )
-
-/**
  * After exporting a level, there might be some old corpses of 
  * descriptions that were deleted when the target level was partly cleared
  * out and overwritten with the new obstacles that brought their own new
@@ -918,23 +896,6 @@ duplicate_all_obstacles_in_area (level *source_level ,
     eliminate_dead_obstacle_descriptions ( target_level );
     
 }; // void duplicate_all_obstacles_in_area ( ... )
-
-/**
- *
- *
- */      
-void 
-floor_copy ( map_tile* target_pointer , map_tile* source_pointer , int amount )
-{
-    int i;
-    
-    for ( i = 0 ; i < amount ; i ++ )
-    {
-	target_pointer -> floor_value = source_pointer -> floor_value ;
-	target_pointer ++ ;
-	source_pointer ++ ;
-    }
-}; // void floor_copy ( map_tile* target_pointer , map_tile* source_pointer , int amount )
 
 /**
  * This function should create a completely new level into the existing

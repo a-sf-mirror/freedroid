@@ -44,7 +44,7 @@ moderately_finepoint mouse_mapcoord;
 
 static struct leveleditor_widget *tool_selection_menu;
 
-static void select_tool(struct leveleditor_tool *t) 
+static void select_tool(void *t) 
 {
     if (!active_tool)
 	selected_tool = t;
@@ -201,18 +201,6 @@ int leveleditor_map_keybevent(SDL_Event *event, struct leveleditor_widget *vm)
 	    tool_selection_menu->enabled = 0;
 	}
     }
-
-    // Map scrolling
-    if (!active_tool) {
-	if (event->type == SDL_KEYDOWN) {
-	    switch(event->key.keysym.sym) {
-		case SDLK_LEFT:
-		case SDLK_RIGHT:
-		case SDLK_UP:
-		case SDLK_DOWN:
-	    }
-	}
-    } 
 
     // Forward the key to the active tool
     forward_event(event);

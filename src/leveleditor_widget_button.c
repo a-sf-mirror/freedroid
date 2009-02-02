@@ -33,6 +33,9 @@
 
 #include "leveleditor.h"
 #include "leveleditor_actions.h"
+#include "leveleditor_grass_actions.h"
+#include "leveleditor_map.h"
+#include "leveleditor_menu.h"
 #include "leveleditor_widgets.h"
 
 #include "leveleditor_widget_toolbar.h"
@@ -204,17 +207,14 @@ static void activate_button(struct leveleditor_button *b)
 void leveleditor_button_mouseenter(SDL_Event *event, struct leveleditor_widget *vb)
 {
     struct leveleditor_button *b = vb->ext;
+    (void)b;
     //b->pressed = 0;
-
-    /*XXX  tooltip*/
 }
 
 void leveleditor_button_mouseleave(SDL_Event *event, struct leveleditor_widget *vb)
 {
     struct leveleditor_button *b = vb->ext;
     b->pressed = 0;
-
-    /* XXX tooltip*/
 }
 
 void leveleditor_button_mouserelease(SDL_Event *event, struct leveleditor_widget *vb)

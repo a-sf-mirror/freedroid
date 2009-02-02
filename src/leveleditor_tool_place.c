@@ -326,5 +326,6 @@ int leveleditor_place_input(SDL_Event *event, struct leveleditor_place *m)
 
 int leveleditor_place_display(struct leveleditor_place *m)
 {
-
+    (void) m;
+    return 0;
 }

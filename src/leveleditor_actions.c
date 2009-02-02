@@ -793,7 +793,7 @@ void level_editor_place_aligned_obstacle ( int positionid )
 {
     struct quickbar_entry *entry = NULL;
     struct leveleditor_typeselect *ts = get_current_object_type();
-    int obstacle_id;
+    int obstacle_id = -1;
     int placement_is_possible = TRUE;
     int obstacle_created = FALSE;
     float position_offset_x[9] = { 0, 0.5, 1.0, 0, 0.5, 1.0, 0, 0.5, 1.0 };

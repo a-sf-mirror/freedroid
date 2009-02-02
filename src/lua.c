@@ -34,6 +34,9 @@
 #include "proto.h"
 #include "savestruct.h"
 
+#include "leveleditor_actions.h"
+#include "leveleditor_map.h"
+
 #include "../lua/lua.h"
 #include "../lua/lauxlib.h"
 #include "../lua/lualib.h"

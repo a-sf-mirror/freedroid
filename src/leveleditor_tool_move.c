@@ -37,6 +37,7 @@
 #include "leveleditor.h"
 #include "leveleditor_actions.h"
 
+#include "leveleditor_widgets.h"
 #include "leveleditor_widget_map.h"
 
 #include "leveleditor_tools.h"

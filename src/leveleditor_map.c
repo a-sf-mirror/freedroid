@@ -36,7 +36,252 @@
 #include "SDL_rotozoom.h"
 
 #include "leveleditor.h"
+#include "leveleditor_actions.h"
 #include "leveleditor_map.h"
+
+/**
+ *
+ *
+ */      
+void 
+floor_copy ( map_tile* target_pointer , map_tile* source_pointer , int amount )
+{
+    int i;
+    
+    for ( i = 0 ; i < amount ; i ++ )
+    {
+	target_pointer -> floor_value = source_pointer -> floor_value ;
+	target_pointer ++ ;
+	source_pointer ++ ;
+    }
+}; // void floor_copy ( map_tile* target_pointer , map_tile* source_pointer , int amount )
+
+/**
+ * If we want to synchronize two levels, we need to remove the old obstacles
+ * before we can add new ones.  Else the place might get too crowded with
+ * obstacles. :)
+ */
+void
+delete_all_obstacles_in_area (level *TargetLevel , float start_x , float start_y , float area_width , float area_height )
+{
+    int i;
+    
+    for ( i = 0 ; i < MAX_OBSTACLES_ON_MAP ; i ++ )
+    {
+	if ( TargetLevel -> obstacle_list [ i ] . type <= (-1) ) continue;
+	if ( TargetLevel -> obstacle_list [ i ] . pos . x < start_x ) continue;
+	if ( TargetLevel -> obstacle_list [ i ] . pos . y < start_y ) continue;
+	if ( TargetLevel -> obstacle_list [ i ] . pos . x > start_x + area_width ) continue;
+	if ( TargetLevel -> obstacle_list [ i ] . pos . y > start_y + area_height ) continue;
+	action_remove_obstacle ( TargetLevel , & ( TargetLevel -> obstacle_list [ i ] ) );
+	i--; // this is so that this obstacle will be processed AGAIN, since deleting might
+	// have moved a different obstacle to this list position.
+    }
+}; // void delete_all_obstacles_in_area ( curShip . AllLevels [ TargetLevel ] , 0 , TargetLevel->ylen-AreaHeight , AreaWidth , AreaHeight )
+
+
+/**
+ *
+ *
+ */
+void move_obstacles_and_items_south_of ( float from_where , float by_what, level *edit_level )
+{
+  int i;
+
+  for ( i = 0 ; i < MAX_OBSTACLES_ON_MAP ; i ++ )
+    {
+      //--------------------
+      // Maybe the obstacle entry isn't used at all.  That's the simplest
+      // case...: do nothing.
+      //
+      if ( edit_level -> obstacle_list [ i ] . type <= ( -1 ) ) continue;
+      // if ( edit_level -> obstacle_list [ i ] . pos . y <= ( -1 ) ) continue;
+      
+      //--------------------
+      // Maybe the obstacle is right on the spot where it must be deleted
+      // because the floor under it will move out.
+      //
+      if ( ( edit_level -> obstacle_list [ i ] . pos . y >= from_where ) &&
+	   ( edit_level -> obstacle_list [ i ] . pos . y <= from_where - by_what ) )
+	{
+	  action_remove_obstacle ( edit_level , & ( edit_level -> obstacle_list [ i ] ) ) ;
+	  i -- ;
+	  DebugPrintf ( 0 , "\nRemoved another obstacle in resizing operation." );
+	  continue;
+	}
+
+      //--------------------
+      // Now at this point we can be sure that the obstacle just needs to be 
+      // moved a bit.  That shouldn't be too hard to do...
+      //
+      if ( edit_level -> obstacle_list [ i ] . pos . y > from_where )
+	edit_level -> obstacle_list [ i ] . pos . y += by_what ;
+    }
+  
+
+  for ( i = 0 ; i < MAX_ITEMS_PER_LEVEL ; i ++ )
+    {
+      //--------------------
+      // Maybe the item entry isn't used at all.  That's the simplest
+      // case...: do nothing.
+      //
+      if ( edit_level -> ItemList [ i ] . type <= ( -1 ) ) continue;
+      if ( edit_level -> ItemList [ i ] . pos . y <= ( -1 ) ) continue;
+      
+      //--------------------
+      // Maybe the item is right on the spot where it must be deleted
+      // because the floor under it will move out.
+      //
+      if ( ( edit_level -> ItemList [ i ] . pos . y >= from_where ) &&
+	   ( edit_level -> ItemList [ i ] . pos . y <= from_where - by_what ) )
+	{
+	  DeleteItem ( & ( edit_level -> ItemList [ i ] ) ) ;
+	  DebugPrintf ( 0 , "\nRemoved another item in resizing operation." );
+	  continue;
+	}
+
+      //--------------------
+      // Now at this point we can be sure that the obstacle just needs to be 
+      // moved a bit.  That shouldn't be too hard to do...
+      //
+      if ( edit_level -> ItemList [ i ] . pos . y > from_where )
+	edit_level -> ItemList [ i ] . pos . y += by_what ;
+    }
+
+  for ( i = 0 ; i < MAX_CHEST_ITEMS_PER_LEVEL ; i ++ )
+    {
+      //--------------------
+      // Maybe the item entry isn't used at all.  That's the simplest
+      // case...: do nothing.
+      //
+      if ( edit_level -> ChestItemList [ i ] . type <= ( -1 ) ) continue;
+      if ( edit_level -> ChestItemList [ i ] . pos . y <= ( -1 ) ) continue;
+      
+      //--------------------
+      // Maybe the item is right on the spot where it must be deleted
+      // because the floor under it will move out.
+      //
+      if ( ( edit_level -> ChestItemList [ i ] . pos . y >= from_where ) &&
+	   ( edit_level -> ChestItemList [ i ] . pos . y <= from_where - by_what ) )
+	{
+	  DeleteItem ( & ( edit_level -> ChestItemList [ i ] ) ) ;
+	  DebugPrintf ( 0 , "\nRemoved another item in resizing operation." );
+	  continue;
+	}
+
+      //--------------------
+      // Now at this point we can be sure that the obstacle just needs to be 
+      // moved a bit.  That shouldn't be too hard to do...
+      //
+      if ( edit_level -> ChestItemList [ i ] . pos . y > from_where )
+	edit_level -> ChestItemList [ i ] . pos . y += by_what ;
+    }
+
+  glue_obstacles_to_floor_tiles_for_level ( edit_level -> levelnum ) ;
+  
+}; // void move_obstacles_south_of ( float from_where , float by_what, level *edit_level )
+
+
+/**
+ *
+ *
+ */
+void
+move_obstacles_east_of ( float from_where , float by_what, level *edit_level )
+{
+  int i;
+
+  for ( i = 0 ; i < MAX_OBSTACLES_ON_MAP ; i ++ )
+    {
+      //--------------------
+      // Maybe the obstacle entry isn't used at all.  That's the simplest
+      // case...: do nothing.
+      //
+      if ( edit_level -> obstacle_list [ i ] . type <= ( -1 ) ) continue;
+      if ( edit_level -> obstacle_list [ i ] . pos . x <= ( -1 ) ) continue;
+      
+      //--------------------
+      // Maybe the obstacle is right on the spot where it must be deleted
+      // because the floor under it will move out.
+      //
+      if ( ( edit_level -> obstacle_list [ i ] . pos . x >= from_where ) &&
+	   ( edit_level -> obstacle_list [ i ] . pos . x <= from_where - by_what ) )
+	{
+	  action_remove_obstacle ( edit_level , & ( edit_level -> obstacle_list [ i ] ) ) ;
+	  i -- ; 
+	  DebugPrintf ( 0 , "\nRemoved another obstacle in resizing operation." );
+	  continue;
+	}
+
+      //--------------------
+      // Now at this point we can be sure that the obstacle just needs to be 
+      // moved a bit.  That shouldn't be too hard to do...
+      //
+      if ( edit_level -> obstacle_list [ i ] . pos . x > from_where )
+	edit_level -> obstacle_list [ i ] . pos . x += by_what ;
+    }
+
+  for ( i = 0 ; i < MAX_ITEMS_PER_LEVEL ; i ++ )
+    {
+      //--------------------
+      // Maybe the item entry isn't used at all.  That's the simplest
+      // case...: do nothing.
+      //
+      if ( edit_level -> ItemList [ i ] . type <= ( -1 ) ) continue;
+      if ( edit_level -> ItemList [ i ] . pos . x <= ( -1 ) ) continue;
+      
+      //--------------------
+      // Maybe the item is right on the spot where it must be deleted
+      // because the floor under it will move out.
+      //
+      if ( ( edit_level -> ItemList [ i ] . pos . x >= from_where ) &&
+	   ( edit_level -> ItemList [ i ] . pos . x <= from_where - by_what ) )
+	{
+	  DeleteItem ( & ( edit_level -> ItemList [ i ] ) ) ;
+	  DebugPrintf ( 0 , "\nRemoved another item in resizing operation." );
+	  continue;
+	}
+
+      //--------------------
+      // Now at this point we can be sure that the obstacle just needs to be 
+      // moved a bit.  That shouldn't be too hard to do...
+      //
+      if ( edit_level -> ItemList [ i ] . pos . x > from_where )
+	edit_level -> ItemList [ i ] . pos . x += by_what ;
+    }
+
+  for ( i = 0 ; i < MAX_CHEST_ITEMS_PER_LEVEL ; i ++ )
+    {
+      //--------------------
+      // Maybe the item entry isn't used at all.  That's the simplest
+      // case...: do nothing.
+      //
+      if ( edit_level -> ChestItemList [ i ] . type <= ( -1 ) ) continue;
+      if ( edit_level -> ChestItemList [ i ] . pos . x <= ( -1 ) ) continue;
+      
+      //--------------------
+      // Maybe the item is right on the spot where it must be deleted
+      // because the floor under it will move out.
+      //
+      if ( ( edit_level -> ChestItemList [ i ] . pos . x >= from_where ) &&
+	   ( edit_level -> ChestItemList [ i ] . pos . x <= from_where - by_what ) )
+	{
+	  DeleteItem ( & ( edit_level -> ChestItemList [ i ] ) ) ;
+	  DebugPrintf ( 0 , "\nRemoved another item in resizing operation." );
+	  continue;
+	}
+
+      //--------------------
+      // Now at this point we can be sure that the obstacle just needs to be 
+      // moved a bit.  That shouldn't be too hard to do...
+      //
+      if ( edit_level -> ChestItemList [ i ] . pos . x > from_where )
+	edit_level -> ChestItemList [ i ] . pos . x += by_what ;
+    }
+
+  glue_obstacles_to_floor_tiles_for_level ( edit_level -> levelnum ) ;
+  
+}; // void move_obstacles_and_items_east_of ( float from_where , float by_what, level *edit_level )
 
 
 /**
@@ -456,209 +701,6 @@ void RemoveLineVeryNorth (level *EditLevel )
 }; // void RemoveLineVeryNorth (level *EditLevel )
 
 
-
-/**
- *
- *
- */
-void
-move_obstacles_east_of ( float from_where , float by_what, level *edit_level )
-{
-  int i;
-
-  for ( i = 0 ; i < MAX_OBSTACLES_ON_MAP ; i ++ )
-    {
-      //--------------------
-      // Maybe the obstacle entry isn't used at all.  That's the simplest
-      // case...: do nothing.
-      //
-      if ( edit_level -> obstacle_list [ i ] . type <= ( -1 ) ) continue;
-      if ( edit_level -> obstacle_list [ i ] . pos . x <= ( -1 ) ) continue;
-      
-      //--------------------
-      // Maybe the obstacle is right on the spot where it must be deleted
-      // because the floor under it will move out.
-      //
-      if ( ( edit_level -> obstacle_list [ i ] . pos . x >= from_where ) &&
-	   ( edit_level -> obstacle_list [ i ] . pos . x <= from_where - by_what ) )
-	{
-	  action_remove_obstacle ( edit_level , & ( edit_level -> obstacle_list [ i ] ) ) ;
-	  i -- ; 
-	  DebugPrintf ( 0 , "\nRemoved another obstacle in resizing operation." );
-	  continue;
-	}
-
-      //--------------------
-      // Now at this point we can be sure that the obstacle just needs to be 
-      // moved a bit.  That shouldn't be too hard to do...
-      //
-      if ( edit_level -> obstacle_list [ i ] . pos . x > from_where )
-	edit_level -> obstacle_list [ i ] . pos . x += by_what ;
-    }
-
-  for ( i = 0 ; i < MAX_ITEMS_PER_LEVEL ; i ++ )
-    {
-      //--------------------
-      // Maybe the item entry isn't used at all.  That's the simplest
-      // case...: do nothing.
-      //
-      if ( edit_level -> ItemList [ i ] . type <= ( -1 ) ) continue;
-      if ( edit_level -> ItemList [ i ] . pos . x <= ( -1 ) ) continue;
-      
-      //--------------------
-      // Maybe the item is right on the spot where it must be deleted
-      // because the floor under it will move out.
-      //
-      if ( ( edit_level -> ItemList [ i ] . pos . x >= from_where ) &&
-	   ( edit_level -> ItemList [ i ] . pos . x <= from_where - by_what ) )
-	{
-	  DeleteItem ( & ( edit_level -> ItemList [ i ] ) ) ;
-	  DebugPrintf ( 0 , "\nRemoved another item in resizing operation." );
-	  continue;
-	}
-
-      //--------------------
-      // Now at this point we can be sure that the obstacle just needs to be 
-      // moved a bit.  That shouldn't be too hard to do...
-      //
-      if ( edit_level -> ItemList [ i ] . pos . x > from_where )
-	edit_level -> ItemList [ i ] . pos . x += by_what ;
-    }
-
-  for ( i = 0 ; i < MAX_CHEST_ITEMS_PER_LEVEL ; i ++ )
-    {
-      //--------------------
-      // Maybe the item entry isn't used at all.  That's the simplest
-      // case...: do nothing.
-      //
-      if ( edit_level -> ChestItemList [ i ] . type <= ( -1 ) ) continue;
-      if ( edit_level -> ChestItemList [ i ] . pos . x <= ( -1 ) ) continue;
-      
-      //--------------------
-      // Maybe the item is right on the spot where it must be deleted
-      // because the floor under it will move out.
-      //
-      if ( ( edit_level -> ChestItemList [ i ] . pos . x >= from_where ) &&
-	   ( edit_level -> ChestItemList [ i ] . pos . x <= from_where - by_what ) )
-	{
-	  DeleteItem ( & ( edit_level -> ChestItemList [ i ] ) ) ;
-	  DebugPrintf ( 0 , "\nRemoved another item in resizing operation." );
-	  continue;
-	}
-
-      //--------------------
-      // Now at this point we can be sure that the obstacle just needs to be 
-      // moved a bit.  That shouldn't be too hard to do...
-      //
-      if ( edit_level -> ChestItemList [ i ] . pos . x > from_where )
-	edit_level -> ChestItemList [ i ] . pos . x += by_what ;
-    }
-
-  glue_obstacles_to_floor_tiles_for_level ( edit_level -> levelnum ) ;
-  
-}; // void move_obstacles_and_items_east_of ( float from_where , float by_what, level *edit_level )
-
-/**
- *
- *
- */
-void
-move_obstacles_and_items_south_of ( float from_where , float by_what, level *edit_level )
-{
-  int i;
-
-  for ( i = 0 ; i < MAX_OBSTACLES_ON_MAP ; i ++ )
-    {
-      //--------------------
-      // Maybe the obstacle entry isn't used at all.  That's the simplest
-      // case...: do nothing.
-      //
-      if ( edit_level -> obstacle_list [ i ] . type <= ( -1 ) ) continue;
-      // if ( edit_level -> obstacle_list [ i ] . pos . y <= ( -1 ) ) continue;
-      
-      //--------------------
-      // Maybe the obstacle is right on the spot where it must be deleted
-      // because the floor under it will move out.
-      //
-      if ( ( edit_level -> obstacle_list [ i ] . pos . y >= from_where ) &&
-	   ( edit_level -> obstacle_list [ i ] . pos . y <= from_where - by_what ) )
-	{
-	  action_remove_obstacle ( edit_level , & ( edit_level -> obstacle_list [ i ] ) ) ;
-	  i -- ;
-	  DebugPrintf ( 0 , "\nRemoved another obstacle in resizing operation." );
-	  continue;
-	}
-
-      //--------------------
-      // Now at this point we can be sure that the obstacle just needs to be 
-      // moved a bit.  That shouldn't be too hard to do...
-      //
-      if ( edit_level -> obstacle_list [ i ] . pos . y > from_where )
-	edit_level -> obstacle_list [ i ] . pos . y += by_what ;
-    }
-  
-
-  for ( i = 0 ; i < MAX_ITEMS_PER_LEVEL ; i ++ )
-    {
-      //--------------------
-      // Maybe the item entry isn't used at all.  That's the simplest
-      // case...: do nothing.
-      //
-      if ( edit_level -> ItemList [ i ] . type <= ( -1 ) ) continue;
-      if ( edit_level -> ItemList [ i ] . pos . y <= ( -1 ) ) continue;
-      
-      //--------------------
-      // Maybe the item is right on the spot where it must be deleted
-      // because the floor under it will move out.
-      //
-      if ( ( edit_level -> ItemList [ i ] . pos . y >= from_where ) &&
-	   ( edit_level -> ItemList [ i ] . pos . y <= from_where - by_what ) )
-	{
-	  DeleteItem ( & ( edit_level -> ItemList [ i ] ) ) ;
-	  DebugPrintf ( 0 , "\nRemoved another item in resizing operation." );
-	  continue;
-	}
-
-      //--------------------
-      // Now at this point we can be sure that the obstacle just needs to be 
-      // moved a bit.  That shouldn't be too hard to do...
-      //
-      if ( edit_level -> ItemList [ i ] . pos . y > from_where )
-	edit_level -> ItemList [ i ] . pos . y += by_what ;
-    }
-
-  for ( i = 0 ; i < MAX_CHEST_ITEMS_PER_LEVEL ; i ++ )
-    {
-      //--------------------
-      // Maybe the item entry isn't used at all.  That's the simplest
-      // case...: do nothing.
-      //
-      if ( edit_level -> ChestItemList [ i ] . type <= ( -1 ) ) continue;
-      if ( edit_level -> ChestItemList [ i ] . pos . y <= ( -1 ) ) continue;
-      
-      //--------------------
-      // Maybe the item is right on the spot where it must be deleted
-      // because the floor under it will move out.
-      //
-      if ( ( edit_level -> ChestItemList [ i ] . pos . y >= from_where ) &&
-	   ( edit_level -> ChestItemList [ i ] . pos . y <= from_where - by_what ) )
-	{
-	  DeleteItem ( & ( edit_level -> ChestItemList [ i ] ) ) ;
-	  DebugPrintf ( 0 , "\nRemoved another item in resizing operation." );
-	  continue;
-	}
-
-      //--------------------
-      // Now at this point we can be sure that the obstacle just needs to be 
-      // moved a bit.  That shouldn't be too hard to do...
-      //
-      if ( edit_level -> ChestItemList [ i ] . pos . y > from_where )
-	edit_level -> ChestItemList [ i ] . pos . y += by_what ;
-    }
-
-  glue_obstacles_to_floor_tiles_for_level ( edit_level -> levelnum ) ;
-  
-}; // void move_obstacles_south_of ( float from_where , float by_what, level *edit_level )
 
 /**
  * When new lines are inserted into the map, the map labels east of this

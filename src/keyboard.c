@@ -31,6 +31,7 @@
 
 #include "leveleditor.h"
 #include "leveleditor_actions.h"
+#include "leveleditor_grass_actions.h"
 
 
 #define KEY_PRESS    ( 1.) /**< Key is pressed. */
@@ -573,7 +574,7 @@ static int input_key( int keynum, int value)
 	    level_editor_action_redo();
 	    return 0;
 	} else if (KEYPRESS("beautify_grass")) {
-	    level_editor_beautify_grass_tiles();
+	    level_editor_beautify_grass_tiles(EditLevel());
 	    return 0;
 	} else if (!strncmp(GameConfig.input_keybinds[keynum].name, "place_obstacle_kp", strlen("place_obstacle_kp")) && value==KEY_PRESS) {
 	    int number = atoi(GameConfig.input_keybinds[keynum].name + strlen("place_obstacle_kp"));
@@ -632,6 +633,8 @@ int input_key_press (SDL_Event *event)
     else if (INLVLEDIT()) {
 	leveleditor_input_keybevent(event);
     }
+
+    return 0;
 }
 
 /**

@@ -38,6 +38,7 @@
 void leveleditor_menu_mouseenter(SDL_Event *event, struct leveleditor_widget *w)
 {
     struct leveleditor_menu *m = w->ext;
+    (void) m;
 }
 
 void leveleditor_menu_mouseleave(SDL_Event *event, struct leveleditor_widget *w)
@@ -65,21 +66,25 @@ void leveleditor_menu_mousepress(SDL_Event *event, struct leveleditor_widget *w)
 void leveleditor_menu_mouserightrelease(SDL_Event *event, struct leveleditor_widget *w)
 {
     struct leveleditor_menu *m = w->ext;
+    (void) m;
 }
 
 void leveleditor_menu_mouserightpress(SDL_Event *event, struct leveleditor_widget *w)
 {
     struct leveleditor_menu *m = w->ext;
+    (void) m;
 }
 
 void leveleditor_menu_mousewheelup(SDL_Event *event, struct leveleditor_widget *w)
 {
     struct leveleditor_menu *m = w->ext;
+    (void) m;
 }
 
 void leveleditor_menu_mousewheeldown(SDL_Event *event, struct leveleditor_widget *w)
 {
     struct leveleditor_menu *m = w->ext;
+    (void) m;
 }
 
 void leveleditor_menu_mousemove(SDL_Event *event, struct leveleditor_widget *w)

@@ -42,9 +42,11 @@
 
 int leveleditor_select_input(SDL_Event *event, struct leveleditor_select *m)
 {
+    GiveMouseAlertWindow("Selection tool not implemented! :)");
+    return 1;
 }
 
 int leveleditor_select_display(struct leveleditor_select *m)
 {
-
+    return 0;
 }

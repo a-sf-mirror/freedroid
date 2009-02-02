@@ -38,6 +38,7 @@
 #include "leveleditor.h"
 #include "leveleditor_actions.h"
 #include "leveleditor_map.h"
+#include "leveleditor_menu.h"
 #include "leveleditor_widgets.h"
 
 static void HandleLevelEditorCursorKeys ( )
@@ -155,7 +156,7 @@ static void HandleLevelEditorCursorKeys ( )
 	}
     }
 #if 1
-/*    if ( cur_state -> mode == NORMAL_MODE  && ! MPressed() )
+    if (!MPressed())
     {
 	if (DoAct[0]) 
 	{
@@ -173,7 +174,7 @@ static void HandleLevelEditorCursorKeys ( )
 	{
 	    if ( rintf(Me.pos.y) > 0 ) Me.pos.y-=1;
 	}
-    }*/
+    }
 #endif
 }; // void HandleLevelEditorCursorKeys ( void )
 
