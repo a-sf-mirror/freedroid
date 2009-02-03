@@ -98,15 +98,6 @@ void leveleditor_toolbar_mousewheeldown(SDL_Event *event, struct leveleditor_wid
     leveleditor_toolbar_right();
 }
 
-void leveleditor_toolbar_keybevent(SDL_Event *event, struct leveleditor_widget *vt)
-{
-    if (EVENT_KEYPRESS(event, SDLK_PAGEUP)) {
-	leveleditor_toolbar_scroll_left();
-    } else if (EVENT_KEYPRESS(event, SDLK_PAGEDOWN)) {
-	leveleditor_toolbar_scroll_right();
-    }
-}
-
 void leveleditor_toolbar_display(struct leveleditor_widget *vt)
 {
     (void)vt;

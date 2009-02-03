@@ -118,13 +118,13 @@ void leveleditor_map_mouserightpress(SDL_Event *event, struct leveleditor_widget
 void leveleditor_map_mousewheelup(SDL_Event *event, struct leveleditor_widget *vm)
 {
     (void)vm;
-    //select_other_tool(-1);
+    leveleditor_toolbar_left();
 }
 
 void leveleditor_map_mousewheeldown(SDL_Event *event, struct leveleditor_widget *vm)
 {
     (void)vm;
-    //select_other_tool(1);
+    leveleditor_toolbar_right();
 }
 
 void leveleditor_map_mousemove(SDL_Event *event, struct leveleditor_widget *vm) 

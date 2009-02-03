@@ -32,6 +32,7 @@
 #include "lvledit/lvledit.h"
 #include "lvledit/lvledit_actions.h"
 #include "lvledit/lvledit_grass_actions.h"
+#include "lvledit/lvledit_widgets.h"
 
 
 #define KEY_PRESS    ( 1.) /**< Key is pressed. */
@@ -64,6 +65,7 @@ const char *keybindNames[] = {
     "cycle_marked_obstacle",
     "next_tab", "undo", "redo", "beautify_grass",
     "connect_waypoint",
+    "toolbar_scroll_left", "toolbar_scroll_right",
 
     /* Cheat keys */
     "cheat_xp+_1k", "cheat_xp*_2",
@@ -129,7 +131,7 @@ void input_set_keybind( char *keybind, SDLKey key, SDLMod mod)
 	    GameConfig.input_keybinds[i].mod = mod;
 	    return;
 	}
-    ErrorMessage(__FUNCTION__, "Unable to set keybinding '%s', that command doesn't exist.\n", PLEASE_INFORM, IS_FATAL, keybind);
+    ErrorMessage(__FUNCTION__, "Unable to set keybinding '%s', that command doesn't exist.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY, keybind);
 }
 
 void input_get_keybind(char *cmdname, SDLKey *key, SDLMod *mod)
@@ -222,6 +224,8 @@ void input_set_default (void)
     input_set_keybind("redo", SDLK_y, KMOD_NONE);
     input_set_keybind("beautify_grass", SDLK_b, KMOD_LCTRL);
     input_set_keybind("connect_waypoint", SDLK_c, KMOD_NONE);
+    input_set_keybind("toolbar_scroll_left", SDLK_PAGEUP, KMOD_NONE);
+    input_set_keybind("toolbar_scroll_right", SDLK_PAGEDOWN, KMOD_NONE);
 
     /* Cheat */
     input_set_keybind("cheat_xp+_1k", SDLK_KP1, KMOD_NONE);
@@ -575,6 +579,12 @@ static int input_key( int keynum, int value)
 	    return 0;
 	} else if (KEYPRESS("beautify_grass")) {
 	    level_editor_beautify_grass_tiles(EditLevel());
+	    return 0;
+	} else if (KEYPRESS("toolbar_scroll_left")) {
+	    leveleditor_toolbar_scroll_left();
+	    return 0;
+	} else if (KEYPRESS("toolbar_scroll_right")) {
+	    leveleditor_toolbar_scroll_right();
 	    return 0;
 	} else if (!strncmp(GameConfig.input_keybinds[keynum].name, "place_obstacle_kp", strlen("place_obstacle_kp")) && value==KEY_PRESS) {
 	    int number = atoi(GameConfig.input_keybinds[keynum].name + strlen("place_obstacle_kp"));

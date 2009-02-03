@@ -35,7 +35,6 @@ void leveleditor_toolbar_mouserightrelease(SDL_Event *, struct leveleditor_widge
 void leveleditor_toolbar_mouserightpress(SDL_Event *, struct leveleditor_widget *);
 void leveleditor_toolbar_mousewheelup(SDL_Event *, struct leveleditor_widget *);
 void leveleditor_toolbar_mousewheeldown(SDL_Event *, struct leveleditor_widget *);
-void leveleditor_toolbar_keybevent(SDL_Event *, struct leveleditor_widget *);
 
 void leveleditor_toolbar_display(struct leveleditor_widget *);
 
