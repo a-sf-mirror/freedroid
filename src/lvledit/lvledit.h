@@ -55,13 +55,14 @@ enum ActionType
     {
 	ACT_CREATE_OBSTACLE,
 	ACT_REMOVE_OBSTACLE,
+	ACT_MOVE_OBSTACLE,
 	ACT_WAYPOINT_TOGGLE,
 	ACT_WAYPOINT_TOGGLE_CONNECT,
 	ACT_TILE_FLOOR_SET,
-	ACT_MULTIPLE_FLOOR_SETS,
 	ACT_SET_OBSTACLE_LABEL,
 	ACT_SET_MAP_LABEL,
-	ACT_JUMP_TO_LEVEL
+	ACT_JUMP_TO_LEVEL,
+	ACT_MULTIPLE_ACTIONS,
     };
 
 typedef struct {
@@ -77,6 +78,13 @@ typedef struct {
 	obstacle *delete_obstacle;
 
 	struct {
+	    obstacle *obstacle;
+	    float newx;
+	    float newy;
+	} move_obstacle;
+
+
+	struct {
 	    int x, y;
 	    int spawn_toggle;
 	}waypoint_toggle; /* ToogleWaypoint */
@@ -84,9 +92,9 @@ typedef struct {
 	struct {
 	    int x, y;
 	    int type;
-	}change_floor; /* 5663 */
+	}change_floor; 
 
-	int number_fill_set; /* RecFill */
+	int number_actions;
 	
 	struct {
 	    obstacle *obstacle;

@@ -37,6 +37,8 @@ void level_editor_place_aligned_obstacle (int);
 void action_remove_obstacle_user (level *, obstacle *);
 void action_remove_obstacle(level *, obstacle *);
 
+void action_move_obstacle(level *, obstacle *, float, float);
+
 void action_change_obstacle_label_user (level *, obstacle *, char *);
 void action_change_obstacle_description (level *, obstacle *, char *);
 

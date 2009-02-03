@@ -74,7 +74,7 @@ static void start_rectangle_floor(int findex)
 
     // Place the first tile 
     action_set_floor (EditLevel(), state.r_start.x, state.r_start.y, state.r_tile_used );
-    action_push (ACT_MULTIPLE_FLOOR_SETS, 1);
+    action_push (ACT_MULTIPLE_ACTIONS, 1);
 
 } // void start_rectangle_mode ( leveleditor_state cur_state , int already_defined )
 
@@ -109,7 +109,7 @@ static void handle_rectangle_floor ()
 		changed_tiles++;
 		}
 	    }
-	action_push ( ACT_MULTIPLE_FLOOR_SETS, changed_tiles);
+	action_push (ACT_MULTIPLE_ACTIONS, changed_tiles);
 	}
 }
 
@@ -264,7 +264,7 @@ static void end_line_walls(int commit)
     list_del(&(state.l_elements.list));
 
     if (commit)
-	action_push(ACT_MULTIPLE_FLOOR_SETS, list_length);
+	action_push(ACT_MULTIPLE_ACTIONS, list_length);
 
 }
 

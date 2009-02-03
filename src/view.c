@@ -44,6 +44,9 @@
 #include "proto.h"
 #include "SDL_rotozoom.h"
 
+#include "lvledit/lvledit.h"
+#include "lvledit/lvledit_tools.h"
+
 #include <zlib.h>
 
 #if SDL_BYTEORDER == SDL_LIL_ENDIAN
@@ -595,7 +598,7 @@ There was an obstacle type given, that exceeds the number of\n\
     // obstacle has been marked, we apply a color filter to it.  Otherwise we blit
     // it just so.
     //
-    if ( our_obstacle == level_editor_marked_obstacle )
+    if (element_in_selection(our_obstacle) || level_editor_marked_obstacle == our_obstacle)
     {
 	obs_onscreen_position . x = our_obstacle -> pos . x ;
 	obs_onscreen_position . y = our_obstacle -> pos . y ;

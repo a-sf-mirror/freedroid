@@ -26,9 +26,5 @@
 
 int leveleditor_select_input(SDL_Event *event);
 int leveleditor_select_display();
-
-struct leveleditor_select {
-    /*XXX*/
-    int Iamnotimplemented;
-};
+int element_in_selection(void *);
 

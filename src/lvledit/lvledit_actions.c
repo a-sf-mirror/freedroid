@@ -105,6 +105,11 @@ void action_push (int type, ...)
     case ACT_REMOVE_OBSTACLE:
 	act -> d . delete_obstacle = va_arg (val, obstacle *);
 	break;
+    case ACT_MOVE_OBSTACLE:
+	act->d.move_obstacle.obstacle = va_arg(val, obstacle *);
+	act->d.move_obstacle.newx = va_arg(val, double);
+	act->d.move_obstacle.newy = va_arg(val, double);
+	break;
     case ACT_WAYPOINT_TOGGLE:
     case ACT_WAYPOINT_TOGGLE_CONNECT:
 	act -> d . waypoint_toggle . x = va_arg (val, int);
@@ -116,8 +121,8 @@ void action_push (int type, ...)
 	act -> d . change_floor . y = va_arg (val, int);
 	act -> d . change_floor . type = va_arg (val, int);
 	break;
-    case ACT_MULTIPLE_FLOOR_SETS:
-	act -> d . number_fill_set = va_arg (val, int);
+    case ACT_MULTIPLE_ACTIONS:
+	act -> d . number_actions = va_arg (val, int);
 	break;
     case ACT_SET_OBSTACLE_LABEL:
 	act -> d . change_obstacle_name . obstacle = va_arg (val, obstacle *);
@@ -127,11 +132,11 @@ void action_push (int type, ...)
 	act -> d . change_label_name . id = va_arg (val, int);
 	act -> d . change_label_name . new_name = va_arg (val, char *);
 	break;
-	case ACT_JUMP_TO_LEVEL:
-		act -> d . jump_to_level . target_level = va_arg (val, int);
-		act -> d . jump_to_level . x = (float) va_arg (val, double);
-		act -> d . jump_to_level . y = (float) va_arg (val, double);  
-		break;
+    case ACT_JUMP_TO_LEVEL:
+	act -> d . jump_to_level . target_level = va_arg (val, int);
+	act -> d . jump_to_level . x = (float) va_arg (val, double);
+	act -> d . jump_to_level . y = (float) va_arg (val, double);  
+	break;
     }
 
     if (push_mode == UNDO) {
@@ -175,6 +180,14 @@ obstacle * action_create_obstacle (Level EditLevel, double x, double y, int new_
 	    Ran out of obstacle positions in target level!",
 			       PLEASE_INFORM , IS_FATAL );
     return ( NULL );
+}
+
+void action_move_obstacle(level *EditLevel, obstacle *obs, float newx, float newy)
+{
+    action_push(ACT_MOVE_OBSTACLE, obs, obs->pos.x, obs->pos.y); 
+    obs->pos.x = newx;
+    obs->pos.y = newy;
+    glue_obstacles_to_floor_tiles_for_level(EditLevel->levelnum);
 }
 
 obstacle * action_create_obstacle_user (Level EditLevel, double x, double y, int new_obstacle)
@@ -611,7 +624,7 @@ void action_fill_user (level *EditLevel, int BlockX, int BlockY, int SpecialMapV
 {
     int number_changed = 0;
     action_fill_user_recursive ( EditLevel, BlockX, BlockY, SpecialMapValue, &number_changed);
-    action_push ( ACT_MULTIPLE_FLOOR_SETS, number_changed);
+    action_push ( ACT_MULTIPLE_ACTIONS, number_changed);
 }
 
 static void action_change_map_label (level *EditLevel, int i, char *name)
@@ -717,6 +730,9 @@ static void action_do (level *level, action *a )
     case ACT_REMOVE_OBSTACLE:
 	action_remove_obstacle_user ( level, a->d.delete_obstacle);
 	break;
+    case ACT_MOVE_OBSTACLE:
+	action_move_obstacle(level, a->d.move_obstacle.obstacle, a->d.move_obstacle.newx, a->d.move_obstacle.newy);
+	break;
     case ACT_WAYPOINT_TOGGLE:
 	action_toggle_waypoint ( level, a->d.waypoint_toggle.x, a->d.waypoint_toggle.y,
 				 a->d.waypoint_toggle.spawn_toggle );
@@ -727,7 +743,7 @@ static void action_do (level *level, action *a )
     case ACT_TILE_FLOOR_SET:
 	action_set_floor ( level, a->d.change_floor.x, a->d.change_floor.y, a->d.change_floor.type);
 	break; 
-    case ACT_MULTIPLE_FLOOR_SETS:
+    case ACT_MULTIPLE_ACTIONS:
 	break;
     case ACT_SET_OBSTACLE_LABEL:
 	action_change_obstacle_label (level, a->d.change_obstacle_name.obstacle, 
@@ -736,9 +752,9 @@ static void action_do (level *level, action *a )
     case ACT_SET_MAP_LABEL:
 	action_change_map_label (level, a->d.change_label_name.id, a->d.change_label_name.new_name);
 	break;
-	case ACT_JUMP_TO_LEVEL:
-		action_jump_to_level (a->d.jump_to_level.target_level,a->d.jump_to_level.x,a->d.jump_to_level.y);
-		break;
+    case ACT_JUMP_TO_LEVEL:
+	action_jump_to_level (a->d.jump_to_level.target_level,a->d.jump_to_level.x,a->d.jump_to_level.y);
+	break;
 
     }
 }
@@ -748,12 +764,12 @@ void level_editor_action_undo ()
     if (!list_empty(&to_undo)) {
 	action *a = (action *)to_undo.next;
 	push_mode = UNDO;
-	if (a->type == ACT_MULTIPLE_FLOOR_SETS) {
+	if (a->type == ACT_MULTIPLE_ACTIONS) {
 	    int i;
             
 		list_del(to_undo.next);
             
-	    for(i = 0; i < a->d.number_fill_set; i++) {
+	    for(i = 0; i < a->d.number_actions; i++) {
 		level_editor_action_undo();
 	    }
 	    list_add(&a->node, &to_redo);
@@ -769,12 +785,12 @@ void level_editor_action_redo ()
      if (!list_empty(&to_redo)) {
 	action *a = (action *)to_redo.next;
 	push_mode = REDO;
-	if (a->type == ACT_MULTIPLE_FLOOR_SETS) {
+	if (a->type == ACT_MULTIPLE_ACTIONS) {
 	    int i;
             
 		list_del(to_redo.next);
             
-	    for (i = 0; i < a->d.number_fill_set; i++) {
+	    for (i = 0; i < a->d.number_actions; i++) {
 		level_editor_action_redo ();
 	    }
 	    list_add(&a->node, &to_undo);
