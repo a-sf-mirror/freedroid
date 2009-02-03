@@ -802,7 +802,8 @@ void level_editor_place_aligned_obstacle ( int positionid )
     positionid--;
 
     if (ts->type != OBJECT_OBSTACLE && ts->type != OBJECT_ANY )
-	ErrorMessage(__FUNCTION__, "Cannot \"place aligned obstacle\" for selected object type %d\n", PLEASE_INFORM, IS_FATAL, ts->type);
+	return;
+	//ErrorMessage(__FUNCTION__, "Cannot \"place aligned obstacle\" for selected object type %d\n", PLEASE_INFORM, IS_FATAL, ts->type);
 
     /* Try to get a quickbar entry */
     if (ts->type == OBJECT_ANY) {
