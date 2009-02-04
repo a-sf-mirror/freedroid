@@ -125,8 +125,8 @@
 //--------------------
 // Distance, where door opens 
 //
-#define DOOROPENDIST2 (1.0)
-#define DOOROPENDIST2_FOR_DROIDS (0.5)
+#define DOOROPENDIST2 (2.0)
+#define DOOROPENDIST2_FOR_DROIDS (1.0)
 
 //--------------------
 // How big is the margin the walls have as far as collisions are concerned.
