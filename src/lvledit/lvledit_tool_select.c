@@ -140,8 +140,10 @@ static void start_rect_select()
     int idx, a;
     for (a = 0; a < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE && EditLevel()->map[state.rect_start.y][state.rect_start.x].obstacles_glued_to_here[a] != -1; a++) {
 	idx = EditLevel()->map[state.rect_start.y][state.rect_start.x].obstacles_glued_to_here[a];
-	add_obstacle_to_selection(&EditLevel()->obstacle_list[idx]);
-	state.rect_nbelem_selected ++;
+	if (!element_in_selection(&EditLevel()->obstacle_list[idx])) {
+	    add_obstacle_to_selection(&EditLevel()->obstacle_list[idx]);
+	    state.rect_nbelem_selected ++;
+	}
     }
 }
 
