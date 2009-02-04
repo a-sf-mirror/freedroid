@@ -93,10 +93,11 @@ void leveleditor_map_mousepress(SDL_Event *event, struct leveleditor_widget *vm)
 {
     (void)vm;
     if (!active_tool) {
-	if (CtrlPressed())
-	    selected_tool = &tool_select;
-	
 	active_tool = selected_tool;
+
+	if (CtrlPressed()) {
+	    active_tool = (selected_tool == &tool_place ? &tool_select : &tool_place);
+	}
     }
 
     forward_event(event);
