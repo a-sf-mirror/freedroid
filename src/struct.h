@@ -247,13 +247,6 @@ typedef struct event_trigger_s
 }
 event_trigger , *Event_trigger;
 
-typedef struct map_statement_s
-{
-    int x;
-    int y;
-    char* Statement_Text;
-} map_statement , *Map_statement;
-
 typedef struct obstacle_spec_s
 {
     iso_image image;
@@ -852,7 +845,6 @@ typedef struct level_s
     int infinite_running_on_this_level;
     char *Levelname;
     char *Background_Song_Name;
-    map_statement StatementList [ MAX_STATEMENTS_PER_LEVEL ];
     char *obstacle_name_list [ MAX_OBSTACLE_NAMES_PER_LEVEL ];
     char *obstacle_description_list [ MAX_OBSTACLE_DESCRIPTIONS_PER_LEVEL ];
     int obstacle_statelist_base [ MAX_OBSTACLE_NAMES_PER_LEVEL ];

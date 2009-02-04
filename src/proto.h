@@ -48,7 +48,7 @@ void Get_Item_Data ( char* DataPointer );
 
 // event.c
 void GetEventTriggers ( const char* EventsAndEventTriggersFilename );
-void CheckForTriggeredEventsAndStatements (void);
+void CheckForTriggeredEvents(void);
 int teleporter_square_below_mouse_cursor ( char* ItemDescText );
 
 // lua.c

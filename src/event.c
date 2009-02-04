@@ -160,35 +160,16 @@ void GetEventTriggers ( const char* EventsAndEventTriggersFilename )
 
 /**
  *
- * This function checks for triggered events & statements.  Those events are
+ * This function checks for triggered events.  Those events are
  * usually entered via the mission file and read into the apropriate
  * structures via the InitNewMission function.  Here we check, whether
  * the nescessary conditions for an event are satisfied, and in case that
  * they are, we order the apropriate event to be executed.
  *
- * In addition, statements are started, if the influencer is at the 
- * right location for them.
- *
  */
-void CheckForTriggeredEventsAndStatements ( )
+void CheckForTriggeredEvents ( )
 {
     int i;
-    int map_x, map_y;
-    Level StatementLevel = curShip.AllLevels[ Me . pos . z ] ;
-    
-    //--------------------
-    // Now we check if some statment location is reached
-    //
-    map_x = (int) rintf( (float) Me . pos . x ); map_y = (int) rintf( (float)Me . pos . y ) ;
-    for ( i = 0 ; i < MAX_STATEMENTS_PER_LEVEL ; i++ )
-    {
-	if ( ( map_x == StatementLevel -> StatementList [ i ] . x ) &&
-	     ( map_y == StatementLevel -> StatementList [ i ] . y ) )
-	{
-	    Me . TextVisibleTime = 0 ;
-	    Me . TextToBeDisplayed = CURLEVEL() -> StatementList [ i ] . Statement_Text ;
-	}
-    }
     
     //--------------------
     // Now we check if some event trigger is fullfilled.
@@ -201,7 +182,7 @@ void CheckForTriggeredEventsAndStatements ( )
 	// So at this point we know, that the event trigger is somehow meaningful. 
 	// Fine, so lets check the details, if the event is triggered now
 	//
-	if ( rintf( AllEventTriggers[i].Influ_Must_Be_At_Level ) != StatementLevel->levelnum ) continue;
+	if ( rintf( AllEventTriggers[i].Influ_Must_Be_At_Level ) != CURLEVEL()->levelnum ) continue;
 
 	if ( rintf( AllEventTriggers[i].Influ_Must_Be_At_Point.x ) != (int) ( Me . pos.x ) ) continue;
 
@@ -215,7 +196,7 @@ void CheckForTriggeredEventsAndStatements ( )
 	}
     }
 
-}; // CheckForTriggeredEventsAndStatements (void )
+}; // CheckForTriggeredEvents(void )
 
 /**
  *

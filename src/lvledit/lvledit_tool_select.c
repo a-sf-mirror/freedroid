@@ -330,15 +330,6 @@ void level_editor_paste_selection()
 }
 
 
-/*
- * LMB : rect selection
- * then:
- * 	RMB : discard and quit
- * 	LMB : start drag and drop
- * 	X : cut
- * 	C : copy
- */
-
 int leveleditor_select_input(SDL_Event *event)
 {
     switch (mode) {

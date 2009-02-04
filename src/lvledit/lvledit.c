@@ -888,15 +888,6 @@ void CreateNewMapLevel( int level_num )
     NewLevel -> Levelname = "New level just created" ;
     NewLevel -> Background_Song_Name = "TheBeginning.ogg" ;
     //--------------------
-    // Now we initialize the statement array with 'empty' values
-    //
-    for ( i = 0 ; i < MAX_STATEMENTS_PER_LEVEL ; i ++ )
-    {
-	NewLevel -> StatementList [ i ] . x = ( -1 ) ;
-	NewLevel -> StatementList [ i ] . y = ( -1 ) ;
-	NewLevel -> StatementList [ i ] . Statement_Text = "No Statement loaded." ;
-    }
-    //--------------------
     // Now we initialize the obstacle name list with 'empty' values
     //
     for ( i = 0 ; i < MAX_OBSTACLE_NAMES_PER_LEVEL ; i ++ )

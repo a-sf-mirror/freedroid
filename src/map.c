@@ -386,58 +386,6 @@ Sorry, but unless this constant is raised, Freedroid will refuse to load this ma
 }; // void DecodeDimensionsOfThisLevel ( Level loadlevel , char* DataPointer );
 
 /**
- * Next we extract the statments of the influencer on this level WITHOUT 
- * destroying or damaging the data in the process!
- */
-static void DecodeStatementsOfThisLevel ( Level loadlevel , char* DataPointer )
-{
-    char PreservedLetter;
-    int i , NumberOfStatementsInThisLevel;
-    char* StatementSectionBegin;
-    char* StatementSectionEnd;
-    char* StatementPointer;
-    
-    //--------------------
-    // First we initialize the statement array with 'empty' values
-    //
-    for ( i = 0 ; i < MAX_STATEMENTS_PER_LEVEL ; i ++ )
-    {
-	loadlevel->StatementList[ i ].x = ( -1 ) ;
-	loadlevel->StatementList[ i ].y = ( -1 ) ;
-	loadlevel->StatementList[ i ].Statement_Text = "No Statement loaded." ;
-    }
-    
-    // We look for the beginning and end of the map statement section
-    StatementSectionBegin = LocateStringInData( DataPointer , STATEMENT_BEGIN_STRING );
-    StatementSectionEnd = LocateStringInData( StatementSectionBegin , STATEMENT_END_STRING );
-    
-    // We add a terminator at the end, but ONLY TEMPORARY.  The damage will be restored later!
-    PreservedLetter=StatementSectionEnd[0];
-    StatementSectionEnd[0]=0;
-    NumberOfStatementsInThisLevel = CountStringOccurences ( StatementSectionBegin , STATEMENT_ITSELF_ANNOUNCE_STRING ) ;
-    DebugPrintf( 1 , "\nNumber of statements found in this level : %d." , NumberOfStatementsInThisLevel );
-    
-    StatementPointer=StatementSectionBegin;
-    for ( i = 0 ; i < NumberOfStatementsInThisLevel ; i ++ )
-    {
-	StatementPointer = strstr ( StatementPointer + 1 , X_POSITION_OF_STATEMENT_STRING );
-	ReadValueFromString( StatementPointer , X_POSITION_OF_STATEMENT_STRING , "%d" , 
-			     &(loadlevel->StatementList[ i ].x) , StatementSectionEnd );
-	ReadValueFromString( StatementPointer , Y_POSITION_OF_STATEMENT_STRING , "%d" , 
-			     &(loadlevel->StatementList[ i ].y) , StatementSectionEnd );
-	loadlevel->StatementList[ i ].Statement_Text = 
-	    ReadAndMallocStringFromData ( StatementPointer , STATEMENT_ITSELF_ANNOUNCE_STRING , "\"" ) ;
-	
-	DebugPrintf( 1 , "\nPosX=%d PosY=%d Statement=\"%s\"" , loadlevel->StatementList[ i ].x , 
-		     loadlevel->StatementList[ i ].y , loadlevel->StatementList[ i ].Statement_Text );
-    }
-    
-    // Now we repair the damage done to the loaded level data
-    StatementSectionEnd[0]=PreservedLetter;
-    
-}; // void DecodeStatementsOfThisLevel ( Level loadlevel , char* DataPointer );
-
-/**
  * Next we extract the human readable obstacle data into the level struct
  * WITHOUT destroying or damaging the human-readable data in the process!
  * This is an improved parser that is not quite readable but very performant.
@@ -1645,30 +1593,6 @@ static void encode_obstacle_descriptions_of_this_level ( char* LevelMem , Level 
 }; // void encode_obstacle_descriptions_of_this_level ( char* LevelMem , Level Lev )
 
 /**
- * This function adds the statement data of this level to the chunk of 
- * data that will be written out to a file later.
- */
-static void EncodeStatementsOfThisLevel ( char* LevelMem , Level Lev )
-{
-    int i;
-    strcat(LevelMem, STATEMENT_BEGIN_STRING);
-    strcat(LevelMem, "\n");
-    LevelMem += strlen(LevelMem);
-    
-    for ( i = 0 ; i < MAX_STATEMENTS_PER_LEVEL ; i ++ )
-    {
-	if ( Lev->StatementList[ i ].x == (-1) ) continue;
-	sprintf( LevelMem, "%s%d %s%d %s%s\"\n", X_POSITION_OF_STATEMENT_STRING, Lev->StatementList[ i ].x, Y_POSITION_OF_STATEMENT_STRING,
-		Lev->StatementList[ i ].y, STATEMENT_ITSELF_ANNOUNCE_STRING, Lev->StatementList[ i ].Statement_Text);	
-        LevelMem += strlen(LevelMem);
-    }
-    
-    strcat(LevelMem, STATEMENT_END_STRING);
-    strcat(LevelMem, "\n\n");
-    
-}; // void EncodeStatementsOfThisLevel ( char* LevelMem , Level Lev )
-
-/**
  *
  * 
  */
@@ -2001,8 +1925,6 @@ use underground lighting: %d\n",
     encode_obstacle_names_of_this_level ( LevelMem , Lev );
 
     encode_obstacle_descriptions_of_this_level ( LevelMem , Lev );
-    
-    EncodeStatementsOfThisLevel ( LevelMem , Lev );
     
     EncodeItemSectionOfThisLevel ( LevelMem , Lev ) ;
     
@@ -2391,7 +2313,6 @@ DecodeLoadedLeveldata ( char *data )
     // Next we extract the statments of the influencer on this level WITHOUT destroying
     // or damaging the data in the process!
     //
-    DecodeStatementsOfThisLevel ( loadlevel , DataPointer );
     DecodeItemSectionOfThisLevel ( loadlevel , data );
     
     DecodeChestItemSectionOfThisLevel ( loadlevel , data );

@@ -287,107 +287,27 @@ void leveleditor_input_keybevent(SDL_Event *event)
 
 void leveleditor_process_input()
 {
-    int i;
     leveleditor_update_button_states();
     save_mouse_state();
     input_handle();
     
     HandleLevelEditorCursorKeys();
-    //--------------------
-    // With the 'S' key, you can attach a statement for the influencer to 
-    // say to a given location, i.e. the location the map editor cursor
-    // currently is on.
-    //
-    if ( SPressed () )
-	{
-	while (SPressed());
-	SetCurrentFont( FPS_Display_BFont );
-	char *NewCommentOnThisSquare = 
-	    GetEditableStringInPopupWindow ( 1000 , _("\n Please enter new statement for this tile: \n\n") ,
-		    "");
-	for ( i = 0 ; i < MAX_STATEMENTS_PER_LEVEL ; i ++ )
-	    {
-	    if ( EditLevel()->StatementList[ i ].x == (-1) ) break;
-	    }
-	if ( i == MAX_STATEMENTS_PER_LEVEL ) 
-	    {
-	    DisplayText ( _("\nNo more free comment position.  Using first. ") , -1 , -1 , &User_Rect , 1.0 );
-	    i=0;
-	    our_SDL_flip_wrapper();
-	    getchar_raw(NULL);
-	    // Terminate( ERR );
-	    }
-
-	EditLevel()->StatementList[ i ].Statement_Text = NewCommentOnThisSquare;
-	EditLevel()->StatementList[ i ].x = rintf( Me.pos.x );
-	EditLevel()->StatementList[ i ].y = rintf( Me.pos.y );
-	}
-
-   /*XXX if ( level_editor_marked_obstacle && XPressed () )
-	{
-	action_remove_obstacle_user ( EditLevel() , level_editor_marked_obstacle );
-	level_editor_marked_obstacle = NULL ;
-	while ( XPressed() ) SDL_Delay(1);
-	}*/
-
-    //--------------------
-    // The HKEY can be used to give a name to the currently marked obstacle
-    //
-    if ( HPressed() )
-	{
-	while(HPressed());
-	//XXXaction_change_obstacle_label_user ( EditLevel() , level_editor_marked_obstacle , NULL );
-	while ( HPressed() ) SDL_Delay(1);
-	}
-
+   
     //--------------------
     // If the person using the level editor pressed w, the waypoint is
     // toggled on the current square.  That means either removed or added.
     // And in case of removal, also the connections must be removed.
     //
-    if ( WPressed( ) )
-	{
-	if ( ! ShiftPressed() )
-	    {
+    if (WPressed())	{
+	if (!ShiftPressed()) {
 	    action_toggle_waypoint ( EditLevel() , EditX(), EditY() , FALSE );
-	    }
-	else
-	    {
+	} else {
 	    action_toggle_waypoint ( EditLevel() , EditX(), EditY() , TRUE );
-	    }
+	}
 	while ( WPressed() ) SDL_Delay(1);
-	}
+    }
 
-    //--------------------
-    // The 'M' key will activate drag&drop mode to allow for convenient
-    // obstacle moving.
-    // 
-/*    if ( MPressed () && 
-	    MouseLeftClicked() && 
-	    level_editor_marked_obstacle != NULL )
-	{
-	cur_state->mode = DRAG_DROP_MODE ;
-	cur_state->d_selected_obstacle = level_editor_marked_obstacle;
-	}
-*/
-
- /*   switch ( cur_state->mode )
-	{
-	case DRAG_DROP_MODE:
-	    if ( cur_state->d_selected_obstacle->pos.x != cur_state->TargetSquare.x &&
-		    cur_state->d_selected_obstacle->pos.y != cur_state->TargetSquare.y )
-		{
-		cur_state->d_selected_obstacle -> pos . x = cur_state->TargetSquare.x;
-		cur_state->d_selected_obstacle -> pos . y = cur_state->TargetSquare.y;
-		glue_obstacles_to_floor_tiles_for_level ( EditLevel() -> levelnum );
-		}
-	    if ( ! MPressed () ) 
-		{
-		cur_state->mode = NORMAL_MODE;
-		}
-	    break;
-	}
-*/
+    
     level_editor_auto_scroll();
 
     if ( EscapePressed() )

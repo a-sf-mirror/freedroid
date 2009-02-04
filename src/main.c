@@ -59,7 +59,7 @@ DoAllMovementAndAnimations ( void )
     
     WorkLevelGuns( ); // this should fire all autocannons on this level
     
-    CheckForTriggeredEventsAndStatements ( ) ;
+    CheckForTriggeredEvents ( ) ;
     
     AnimateCyclingMapTiles (); // this is a pure client issue.  Not dependent upon the players.
     
