@@ -36,14 +36,15 @@
 #include "lvledit/lvledit_grass_actions.h"
 #include "lvledit/lvledit_map.h"
 #include "lvledit/lvledit_menu.h"
+#include "lvledit/lvledit_tools.h"
 #include "lvledit/lvledit_widgets.h"
 
-#include "lvledit/lvledit_widget_toolbar.h"
 
 static void activate_button(struct leveleditor_button *b)
 {
     int idx = b->btn_index;
     int new_x, new_y;
+    struct leveleditor_typeselect *ts;
     switch(idx) {
 	case EXPORT_THIS_LEVEL_BUTTON:
 	    ExportLevelInterface ( Me . pos . z );
@@ -65,9 +66,6 @@ static void activate_button(struct leveleditor_button *b)
 		find_file("freedroid.levels", MAP_DIR, fp, 0);
 		SaveShip(fp);
 
-		// CenteredPutString ( Screen ,  11*FontHeight(Menu_BFont),    _("Your ship was saved..."));
-		// our_SDL_flip_wrapper();
-
 		GiveMouseAlertWindow ( _("\nM E S S A G E\n\nYour ship was saved to file 'freedroid.levels' in the map directory.\n\nIf you have set up something cool and you wish to contribute it to FreedroidRPG, please contact the FreedroidRPG dev team." )) ;
 		}
 	    else
@@ -83,31 +81,26 @@ static void activate_button(struct leveleditor_button *b)
 	    level_editor_beautify_grass_tiles (EditLevel());
 	    break;
 	case LEVEL_EDITOR_DELETE_OBSTACLE_BUTTON:
-	    if ( level_editor_marked_obstacle != NULL )
-		{
-		action_remove_obstacle_user ( EditLevel() , level_editor_marked_obstacle );
-		level_editor_marked_obstacle = NULL ;
-		}
+	    level_editor_cut_selection();
 	    break;
 	case LEVEL_EDITOR_NEXT_OBSTACLE_BUTTON:
 	    level_editor_cycle_marked_obstacle();
 	    break;
 	case LEVEL_EDITOR_RECURSIVE_FILL_BUTTON:
-	    //XXX
-	    //action_fill_user ( EditLevel() , EditX(), EditY() , selected_tile_nb);
-	    GiveMouseAlertWindow("Need to implement that :)");
+	    ts = get_current_object_type();
+	    if(ts->type == OBJECT_FLOOR) {
+		action_fill_user ( EditLevel() , EditX(), EditY() , ts->indices[ts->selected_tile_nb]);
+	    }
 	    break;
 	case LEVEL_EDITOR_NEW_OBSTACLE_LABEL_BUTTON:
-	    if ( level_editor_marked_obstacle != NULL )
-		{
-		action_change_obstacle_label_user ( EditLevel() , level_editor_marked_obstacle , NULL );
-		}
+	    if (single_tile_selection()) {
+		action_change_obstacle_label_user(EditLevel(), single_tile_selection(), NULL);
+	    }
 	    break;
 	case LEVEL_EDITOR_NEW_OBSTACLE_DESCRIPTION_BUTTON:
-	    if ( level_editor_marked_obstacle != NULL )
-		{
-		action_change_obstacle_description ( EditLevel() , level_editor_marked_obstacle , NULL );
-		}
+	    if (single_tile_selection()) {
+		action_change_obstacle_description(EditLevel(), single_tile_selection(), NULL);
+	    }
 	    break;
 	case LEVEL_EDITOR_NEW_MAP_LABEL_BUTTON:
 	    level_editor_action_change_map_label_user (EditLevel());
@@ -201,7 +194,6 @@ void leveleditor_button_mouseenter(SDL_Event *event, struct leveleditor_widget *
 {
     struct leveleditor_button *b = vb->ext;
     (void)b;
-    //b->pressed = 0;
 }
 
 void leveleditor_button_mouseleave(SDL_Event *event, struct leveleditor_widget *vb)

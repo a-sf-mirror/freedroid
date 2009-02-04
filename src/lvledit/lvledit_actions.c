@@ -201,55 +201,13 @@ obstacle * action_create_obstacle_user (Level EditLevel, double x, double y, int
     
 void action_remove_obstacle (level *EditLevel, obstacle *our_obstacle)
 {
-    int i;
-    int obstacle_index = (-1) ;
-    
     //--------------------
     // The likely case that no obstacle was currently marked.
     //
-    if ( our_obstacle == NULL ) return;
+    if (our_obstacle == NULL) 
+	return;
     
-    //--------------------
-    // We need to find out the index of the obstacle in question,
-    // so that we can find out and eliminate any glue for this 
-    // obstacle.
-    //
-    for ( i = 0 ; i < MAX_OBSTACLES_ON_MAP ; i ++ )
-    {
-	if ( our_obstacle == & ( EditLevel -> obstacle_list [ i ] ) )
-	{
-	    obstacle_index = i ;
-	    break;
-	}
-    }
-    
-    //--------------------
-    // Maybe there is a severe bug somewhere in FreedroidRPG.  We catch
-    // this case as well...
-    //
-    if ( obstacle_index == (-1) )
-    {
-	ErrorMessage ( __FUNCTION__  , "\
-		Unable to find the obstacle in question within the obstacle list!",
-				   PLEASE_INFORM , IS_FATAL );
-    }
-    
-    //--------------------
-    // And of course we must not forget to delete the obstalce itself
-    // as well, not only the glue...
-    //
     our_obstacle -> type = ( -1 ) ;
-    
-    //--------------------
-    // Maybe filling out the gap isn't so desireable after all.  Might that cause
-    // problems with keeping track of the indices when obstacles are named?  Should
-    // we do away with this?  But then we also need to go over -1 entries in the
-    // loops coursing throught he whole list in other places...  So it will stay for
-    // now I guess...
-    //
-    memmove ( & ( EditLevel -> obstacle_list [ obstacle_index ] ) , 
-	      & ( EditLevel -> obstacle_list [ obstacle_index + 1 ] ) ,
-	      ( MAX_OBSTACLES_ON_MAP - obstacle_index - 2 ) * sizeof ( obstacle ) );
     
     //--------------------
     // Now doing that must have shifted the glue!  That is a problem.  We need to

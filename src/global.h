@@ -281,8 +281,6 @@ EXTERN SDL_Rect Droid_Image_Window;
 #define EXTERN extern
 #endif
 
-EXTERN obstacle* level_editor_marked_obstacle;
-
 #undef EXTERN
 #ifdef _input_c
 #define EXTERN

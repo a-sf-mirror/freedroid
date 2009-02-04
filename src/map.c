@@ -79,9 +79,6 @@ static void remove_blood_obstacles_for_respawning ( int level_num )
 	    // In case we encounter the -1 obstacle, we're done, cause 'holes'
 	    // aren't permitted inside the obstacle list of a level...
 	    //
-	    case (-1) :
-		return;
-		break;
 	    case ISO_BLOOD_1:
 	    case ISO_BLOOD_2:
 	    case ISO_BLOOD_3:
@@ -799,10 +796,8 @@ glue_obstacles_to_floor_tiles_for_level ( int level_num )
     //
     for ( obstacle_counter = 0 ; obstacle_counter < MAX_OBSTACLES_ON_MAP ; obstacle_counter  ++ )
     {
-	//--------------------
-	// Maybe we're done here already...?
-	//
-	if ( loadlevel -> obstacle_list [ obstacle_counter ] . type <= (-1) ) break;
+	if ( loadlevel -> obstacle_list [ obstacle_counter ] . type == -1)
+	    continue;
 	
 	//--------------------
 	// We need to glue this one and we glue it to the closest map tile center we have...

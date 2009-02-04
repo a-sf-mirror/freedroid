@@ -598,7 +598,7 @@ There was an obstacle type given, that exceeds the number of\n\
     // obstacle has been marked, we apply a color filter to it.  Otherwise we blit
     // it just so.
     //
-    if (element_in_selection(our_obstacle) || level_editor_marked_obstacle == our_obstacle)
+    if (element_in_selection(our_obstacle))
     {
 	obs_onscreen_position . x = our_obstacle -> pos . x ;
 	obs_onscreen_position . y = our_obstacle -> pos . y ;
@@ -741,7 +741,7 @@ There was an obstacle type given, that exceeds the number of\n\
     // obstacle has been marked, we apply a color filter to it.  Otherwise we blit
     // it just so.
     //
-    if ( our_obstacle == level_editor_marked_obstacle )
+    if (element_in_selection(our_obstacle))
     {
 	
 	if ( use_open_gl )
@@ -1548,6 +1548,7 @@ show_obstacle_labels ( int mask )
     // confine ourselves to the currently marked obstacle and blit the
     // description of that one.
     //
+    /*XXX
     if ( level_editor_marked_obstacle != NULL )
     {
 	if ( level_editor_marked_obstacle -> description_index >= 0 )
@@ -1568,14 +1569,14 @@ WARNING!  Null string for description found.  Deleting description index in ques
 					       translate_map_point_to_screen_pixel_x ( level_editor_marked_obstacle -> pos . x , level_editor_marked_obstacle -> pos . y ) ,
 					       translate_map_point_to_screen_pixel_y ( level_editor_marked_obstacle -> pos . x , level_editor_marked_obstacle -> pos . y ) ,
 					       320 , 240 ) ;
-	    /*
-	    show_backgrounded_label_at_map_position ( EditLevel -> obstacle_description_list [ level_editor_marked_obstacle -> description_index ]  ,
-						      0 , level_editor_marked_obstacle -> pos . x , 
-						      level_editor_marked_obstacle -> pos . y ,
-						      mask & ZOOM_OUT );
-	    */
+	    
+	    //show_backgrounded_label_at_map_position ( EditLevel -> obstacle_description_list [ level_editor_marked_obstacle -> description_index ]  ,
+	//					      0 , level_editor_marked_obstacle -> pos . x , 
+	//					      level_editor_marked_obstacle -> pos . y ,
+	//					      mask & ZOOM_OUT );
+	    
 	}
-    }
+    }*/
     
     // show_backgrounded_label_at_map_position ( "This is a test" , 0 , Me . pos . x + 1 , Me . pos . y + 1 , mask & ZOOM_OUT );
     

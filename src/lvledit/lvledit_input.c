@@ -84,10 +84,10 @@ static void HandleLevelEditorCursorKeys ( )
 	}
     }
     
-    if (level_editor_marked_obstacle)
+/*    if (level_editor_marked_obstacle)
     {
 	if ( CtrlPressed() )
-	{
+	{*/
 #if 0
 	    //Uncomment to be able to change the borders of the currently marked obstacle 
 	    if (DoAct[0])
@@ -133,31 +133,9 @@ static void HandleLevelEditorCursorKeys ( )
 		}
 	    printf(_("Offset x %hd y %hd\n"), obstacle_map[level_editor_marked_obstacle->type] . image . offset_x, obstacle_map[level_editor_marked_obstacle->type] . image . offset_y);
 #endif
-	}
-	else if ( MPressed() )
-	{
-	    if (DoAct[0])
-	    {
-		level_editor_marked_obstacle-> pos. x -= 0.015;
-	    }
-	    if (DoAct[1])
-	    {
-		level_editor_marked_obstacle-> pos .x  += 0.015;
-	    }
-	    if (DoAct[2])
-	    {
-		level_editor_marked_obstacle-> pos . y += 0.015;
-	    }
-	    if (DoAct[3])
-	    {
-		level_editor_marked_obstacle-> pos . y -= 0.015;
-	    }
-	    glue_obstacles_to_floor_tiles_for_level ( EditLevel -> levelnum );
-	}
-    }
+	/*}
+    }*/
 #if 1
-    if (!MPressed())
-    {
 	if (DoAct[0]) 
 	{
 	    if ( rintf(Me.pos.x) > 0 ) Me.pos.x-=1;
@@ -174,7 +152,6 @@ static void HandleLevelEditorCursorKeys ( )
 	{
 	    if ( rintf(Me.pos.y) > 0 ) Me.pos.y-=1;
 	}
-    }
 #endif
 }; // void HandleLevelEditorCursorKeys ( void )
 
@@ -346,12 +323,12 @@ void leveleditor_process_input()
 	EditLevel()->StatementList[ i ].y = rintf( Me.pos.y );
 	}
 
-    if ( level_editor_marked_obstacle && XPressed () )
+   /*XXX if ( level_editor_marked_obstacle && XPressed () )
 	{
 	action_remove_obstacle_user ( EditLevel() , level_editor_marked_obstacle );
 	level_editor_marked_obstacle = NULL ;
 	while ( XPressed() ) SDL_Delay(1);
-	}
+	}*/
 
     //--------------------
     // The HKEY can be used to give a name to the currently marked obstacle
@@ -359,7 +336,7 @@ void leveleditor_process_input()
     if ( HPressed() )
 	{
 	while(HPressed());
-	action_change_obstacle_label_user ( EditLevel() , level_editor_marked_obstacle , NULL );
+	//XXXaction_change_obstacle_label_user ( EditLevel() , level_editor_marked_obstacle , NULL );
 	while ( HPressed() ) SDL_Delay(1);
 	}
 

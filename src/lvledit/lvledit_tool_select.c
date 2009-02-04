@@ -45,6 +45,9 @@ static struct leveleditor_select {
     point rect_start;
     point rect_len;
     point rect_step;
+    int rect_nbelem_selected;
+
+    int single_tile_mark_index;
 
     moderately_finepoint drag_start;
     moderately_finepoint cur_drag_pos;
@@ -60,6 +63,33 @@ struct selected_element {
 
 static LIST_HEAD(selected_elements);
 
+/**
+ * Check whether the selection is currently empty.
+ */
+int selection_empty()
+{
+    if (list_empty(&selected_elements))
+	return 1;
+    return 0;
+}
+
+/**
+ * Check if there is exactly one element selected.
+ * Returns this element, or NULL.
+ */
+void * single_tile_selection()
+{
+    if (list_empty(&selected_elements))
+	return NULL;
+    if (selected_elements.next->next != &selected_elements)
+	return NULL;
+
+    return list_entry(selected_elements.next, struct selected_element, node)->data;
+}
+
+/**
+ * Check whether the given element is among the selected objects.
+ */
 int element_in_selection(void *data)
 {
     struct selected_element *e;
@@ -80,10 +110,18 @@ static void add_obstacle_to_selection(obstacle * a)
     list_add(&e->node, &selected_elements);
 }
 
-static void clear_selection()
+/**
+ * Clear the current selection
+ *
+ * @param nbelem -1 : Clear the whole list, any other number indicates
+ * the number of elements to remove from the list.
+ */
+static void clear_selection(int nbelem)
 {
     struct selected_element *e, *ne;
     list_for_each_entry_safe(e, ne, &selected_elements, node) {
+	if (nbelem-- == 0)
+	    return;
 	list_del(&e->node);
 	free(e);
     }
@@ -97,6 +135,14 @@ static void start_rect_select()
     state.rect_start.y = mouse_mapcoord.y;
     state.rect_len.x = 1;
     state.rect_len.y = 1;
+    state.rect_nbelem_selected = 0;
+    
+    int idx, a;
+    for (a = 0; a < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE && EditLevel()->map[state.rect_start.y][state.rect_start.x].obstacles_glued_to_here[a] != -1; a++) {
+	idx = EditLevel()->map[state.rect_start.y][state.rect_start.x].obstacles_glued_to_here[a];
+	add_obstacle_to_selection(&EditLevel()->obstacle_list[idx]);
+	state.rect_nbelem_selected ++;
+    }
 }
 
 static void do_rect_select()
@@ -135,7 +181,8 @@ static void do_rect_select()
 	state.rect_len.y = ylen;
 
 	// Undo previous rectangle
-	clear_selection();
+	clear_selection(state.rect_nbelem_selected);
+	state.rect_nbelem_selected = 0;
 
 	// Then redo a correct one
 	for (i = state.rect_start.x; i != state.rect_start.x + state.rect_len.x + state.rect_step.x;
@@ -147,6 +194,7 @@ static void do_rect_select()
 		for (a = 0; a < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE && EditLevel()->map[j][i].obstacles_glued_to_here[a] != -1; a++) {
 		    idx = EditLevel()->map[j][i].obstacles_glued_to_here[a];
 		    add_obstacle_to_selection(&EditLevel()->obstacle_list[idx]);
+		    state.rect_nbelem_selected++;
 		}
 	    }
 	}
@@ -155,10 +203,11 @@ static void do_rect_select()
 
 static void end_rect_select()
 {
-    struct selected_element *e;
-    mode = RECTDONE;
-    list_for_each_entry(e, &selected_elements, node) {
-    }
+    if (!list_empty(&selected_elements))
+	mode = RECTDONE;
+    else mode = DISABLED;
+
+    state.single_tile_mark_index = 0;
 }
 
 static void start_drag_drop()
@@ -200,16 +249,84 @@ static void end_drag_drop()
     mode = RECTDONE; 
 }
 
-static void copy()
+int level_editor_can_cycle_obs()
 {
+    if (mode != RECTDONE) {
+	// We get called from the outside so check mode coherency first
+	return 0;
+    }
+
+    // N key does nothing on a selection larger than one tile
+    if (abs(state.rect_len.x) != 1 || abs(state.rect_len.y) != 1)
+	return 0;
+
+    if ((EditLevel()->map[state.rect_start.y][state.rect_start.x].obstacles_glued_to_here[0] == -1) ||
+        (EditLevel()->map[state.rect_start.y][state.rect_start.x].obstacles_glued_to_here[1] == -1))
+	return 0;
+
+
+    return 1;
 }
 
-static void cut()
+void level_editor_cycle_marked_obstacle()
 {
+    //This function will select only one of the obstacles attached to a given tile,
+    //and browse through them for each subsequent call.
+
+    if (!level_editor_can_cycle_obs())
+	return;
+
+    // clear the selection and take the next obstacle in the list
+    clear_selection(state.rect_nbelem_selected);
+    state.rect_nbelem_selected = 0;
+
+    if (EditLevel()->map[state.rect_start.y][state.rect_start.x].obstacles_glued_to_here[state.single_tile_mark_index] == -1) {
+	state.single_tile_mark_index = 0;
+    }
+
+    int idx = EditLevel()->map[state.rect_start.y][state.rect_start.x].obstacles_glued_to_here[state.single_tile_mark_index];
+    add_obstacle_to_selection(&EditLevel()->obstacle_list[idx]);
+    state.single_tile_mark_index ++;
+    state.rect_nbelem_selected ++;
 }
 
-static void paste()
+
+void level_editor_copy_selection()
 {
+    if (mode != RECTDONE) {
+	// We get called from the outside so check mode coherency first
+	return;
+    }
+}
+
+void level_editor_cut_selection()
+{
+    struct selected_element *e;
+    int nbelem = 0;
+    if (mode != RECTDONE) {
+	// We get called from the outside so check mode coherency first
+	return;
+    }
+
+    /*XXX for now we simply delete the selection*/
+    list_for_each_entry(e, &selected_elements, node) {
+	action_remove_obstacle_user(EditLevel(), e->data);
+
+	nbelem ++;
+    }
+
+    action_push(ACT_MULTIPLE_ACTIONS, nbelem);
+
+    clear_selection(-1);
+
+}
+
+void level_editor_paste_selection()
+{
+    if (mode != RECTDONE) {
+	// We get called from the outside so check mode coherency first
+	return;
+    }
 }
 
 
@@ -234,26 +351,29 @@ int leveleditor_select_input(SDL_Event *event)
 	case RECT:
 	    if (EVENT_LEFT_RELEASE(event)) {
 		end_rect_select();
-		return 0;
+		return 1;
 	    } else if (EVENT_MOVE(event)) {
 		do_rect_select();
 		return 0;
 	    }
 	    break;
 	case RECTDONE:
-	    if (EVENT_RIGHT_PRESS(event)) {
-		clear_selection();
-		mode = DISABLED;
-		return 1;
-	    } else if (EVENT_LEFT_PRESS(event)) {
-		start_drag_drop();
+	    if (EVENT_LEFT_PRESS(event)) {
+		if (ShiftPressed()) {
+		    start_drag_drop();
+		} else {
+		    if (!CtrlPressed()) {
+			clear_selection(-1);
+		    }
+		    start_rect_select();
+		}
 		return 0;
 	    } 
 	    break;
 	case DRAGDROP:
 	    if (EVENT_LEFT_RELEASE(event)) {
 		end_drag_drop();
-		return 0;
+		return 1;
 	    } else if (EVENT_MOVE(event)) {
 		do_drag_drop();
 		return 0;
@@ -267,14 +387,14 @@ int leveleditor_select_input(SDL_Event *event)
 int leveleditor_select_display()
 {
     int r1, r2, r3, r4, c1, c2, c3, c4 ;
+    float zf = GameConfig . zoom_is_on ? ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT : 1.0;
     switch(mode) {
 	case RECT:
 	    //display the selection rectangle
-	    //XXX clean that up...
-	    translate_map_point_to_screen_pixel (state.rect_start.x , state.rect_start.y , &r1, &c1, 1.0);
-	    translate_map_point_to_screen_pixel ( state.rect_start.x , state.rect_start.y + state.rect_len.y , &r2, &c2, 1.0);
-	    translate_map_point_to_screen_pixel ( state.rect_start.x + state.rect_len.x , state.rect_start.y + state.rect_len.y , &r3, &c3, 1.0);
-	    translate_map_point_to_screen_pixel ( state.rect_start.x + state.rect_len.x , state.rect_start.y , &r4, &c4, 1.0);
+	    translate_map_point_to_screen_pixel (state.rect_start.x , state.rect_start.y , &r1, &c1, zf);
+	    translate_map_point_to_screen_pixel ( state.rect_start.x , state.rect_start.y + state.rect_len.y , &r2, &c2, zf);
+	    translate_map_point_to_screen_pixel ( state.rect_start.x + state.rect_len.x , state.rect_start.y + state.rect_len.y , &r3, &c3, zf);
+	    translate_map_point_to_screen_pixel ( state.rect_start.x + state.rect_len.x , state.rect_start.y , &r4, &c4, zf);
 
 #ifdef HAVE_LIBGL
 	    if (use_open_gl) {

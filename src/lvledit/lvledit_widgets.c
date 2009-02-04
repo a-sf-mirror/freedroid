@@ -35,6 +35,7 @@
 
 #include "lvledit/lvledit.h"
 #include "lvledit/lvledit_actions.h"
+#include "lvledit/lvledit_tools.h"
 #include "lvledit/lvledit_widgets.h"
 
 LIST_HEAD(leveleditor_widget_list);
@@ -302,10 +303,15 @@ void leveleditor_update_button_states()
 	    case LEVEL_EDITOR_SAVE_SHIP_BUTTON:
 		w->enabled = (game_root_mode == ROOT_IS_LVLEDIT);
 		break;
+	    case LEVEL_EDITOR_NEXT_OBSTACLE_BUTTON:
+		w->enabled = level_editor_can_cycle_obs();
+		break;
 	    case LEVEL_EDITOR_DELETE_OBSTACLE_BUTTON:
+		w->enabled = !selection_empty();
+		break;
 	    case LEVEL_EDITOR_NEW_OBSTACLE_LABEL_BUTTON:
 	    case LEVEL_EDITOR_NEW_OBSTACLE_DESCRIPTION_BUTTON:
-		w->enabled = (level_editor_marked_obstacle != NULL);
+		w->enabled = single_tile_selection() ? 1 : 0;
 		break;
 	    case LEVEL_EDITOR_UNDO_BUTTON:
 		w->enabled = !list_empty(&to_undo);

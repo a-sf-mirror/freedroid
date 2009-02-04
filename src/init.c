@@ -81,8 +81,6 @@ clear_out_arrays_for_fresh_game ( void )
 {
     int i;
 
-    level_editor_marked_obstacle = NULL ;
-
     for ( i = 0; i < MAX_MELEE_SHOTS; i ++)
 	delete_melee_shot(&AllMeleeShots[i]);
 

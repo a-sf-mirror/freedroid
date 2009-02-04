@@ -113,47 +113,6 @@ iso_image *leveleditor_get_object_image(enum leveleditor_object_type type, int *
     return NULL;
 }
 
-/**
- *
- *
- */
-void level_editor_cycle_marked_obstacle()
-{
-    int current_mark_index ;
-    int j;
-
-    if ( level_editor_marked_obstacle != NULL )
-    {
-	//--------------------
-	// See if this floor tile has some other obstacles glued to it as well
-	//
-	if ( EditLevel() -> map [ EditY() ] [ EditX() ] . obstacles_glued_to_here [ 1 ] != (-1) )
-	{
-	    //--------------------
-	    // Find out which one of these is currently marked
-	    //
-	    current_mark_index = (-1);
-	    for ( j = 0 ; j < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE ; j ++ )
-	    {
-		if ( level_editor_marked_obstacle == & ( EditLevel() -> obstacle_list [ EditLevel() -> map [ EditY() ] [ EditX() ] . obstacles_glued_to_here [ j ] ] ) )
-		    current_mark_index = j ;
-	    }
-	    
-	    if ( current_mark_index != (-1) ) 
-	    {
-		if ( EditLevel() -> map [ EditY() ] [ EditX() ] . obstacles_glued_to_here [ current_mark_index + 1 ] != (-1) )
-		    level_editor_marked_obstacle = & ( EditLevel() -> obstacle_list [ EditLevel() -> map [ EditY() ] [ EditX() ] . obstacles_glued_to_here [ current_mark_index + 1 ] ] ) ;
-		else
-		    level_editor_marked_obstacle = & ( EditLevel() -> obstacle_list [ EditLevel() -> map [ EditY() ] [ EditX() ] . obstacles_glued_to_here [ 0 ] ] ) ;
-	    }
-
-	}
-    }
-
-}; // void level_editor_cycle_marked_obstacle()
-
-
-
 /* ------------------
  * Quickbar functions
  * ------------------
@@ -1051,29 +1010,6 @@ void CreateNewMapLevel( int level_num )
 }; // void CreateNewMapLevel( int )
 
 
-/**
- *
- *
- */
-int marked_obstacle_is_glued_to_here (level *EditLevel , float x , float y )
-{
-    int j;
-    int current_mark_index = (-1);
-    
-    if ( level_editor_marked_obstacle == NULL ) return ( FALSE );
-    
-    for ( j = 0 ; j < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE ; j ++ )
-    {
-	if ( level_editor_marked_obstacle == & ( EditLevel -> obstacle_list [ EditLevel -> map [ (int)y ] [ (int)x ] . obstacles_glued_to_here [ j ] ] ) )
-	current_mark_index = j ;
-    }
-    
-    if ( current_mark_index != (-1) ) return ( TRUE );
-    return ( FALSE );
-    
-}; // int marked_obstacle_is_glued_to_here ( Me . pos . x , Me . pos . y )
-
-
 static void leveleditor_init() 
 {
     level_editor_done = FALSE;
@@ -1105,8 +1041,6 @@ static void leveleditor_init()
 
 static void leveleditor_cleanup()
 {
-    level_editor_marked_obstacle = NULL ; 
-
     Activate_Conservative_Frame_Computation();
     action_freestack ( ) ;
 }
