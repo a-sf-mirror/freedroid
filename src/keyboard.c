@@ -67,7 +67,7 @@ const char *keybindNames[] = {
     "cut", "copy", "paste",
     "next_tab", "undo", "redo", "beautify_grass",
     "connect_waypoint",
-    "toolbar_scroll_left", "toolbar_scroll_right",
+    "toolbar_scroll_left", "toolbar_scroll_right", "toolbar_step_left", "toolbar_step_right",
 
     /* Cheat keys */
     "cheat_xp+_1k", "cheat_xp*_2",
@@ -228,6 +228,8 @@ void input_set_default (void)
     input_set_keybind("connect_waypoint", SDLK_c, KMOD_NONE);
     input_set_keybind("toolbar_scroll_left", SDLK_PAGEUP, KMOD_NONE);
     input_set_keybind("toolbar_scroll_right", SDLK_PAGEDOWN, KMOD_NONE);
+    input_set_keybind("toolbar_step_left", SDLK_PAGEUP, KMOD_LCTRL);
+    input_set_keybind("toolbar_step_right", SDLK_PAGEDOWN, KMOD_LCTRL);
     input_set_keybind("cut", SDLK_x, KMOD_NONE);
     input_set_keybind("copy", SDLK_c, KMOD_NONE);
     input_set_keybind("paste", SDLK_v, KMOD_NONE);
@@ -590,6 +592,12 @@ static int input_key( int keynum, int value)
 	    return 0;
 	} else if (KEYPRESS("toolbar_scroll_right")) {
 	    leveleditor_toolbar_scroll_right();
+	    return 0;
+	} else if (KEYPRESS("toolbar_step_left")) {
+	    leveleditor_toolbar_left();
+	    return 0;
+	} else if (KEYPRESS("toolbar_step_right")) {
+	    leveleditor_toolbar_right();
 	    return 0;
 	} else if (!strncmp(GameConfig.input_keybinds[keynum].name, "place_obstacle_kp", strlen("place_obstacle_kp")) && value==KEY_PRESS) {
 	    int number = atoi(GameConfig.input_keybinds[keynum].name + strlen("place_obstacle_kp"));
