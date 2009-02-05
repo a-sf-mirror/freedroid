@@ -137,6 +137,16 @@ static void start_rect_select()
     state.rect_len.y = 1;
     state.rect_nbelem_selected = 0;
     
+    if (state.rect_start.x < 0)
+	state.rect_start.x = 0;
+    else if (state.rect_start.x >= EditLevel()->xlen -1)
+	state.rect_start.x = EditLevel()->xlen -1;
+
+    if (state.rect_start.y < 0)
+	state.rect_start.y = 0;
+    else if (state.rect_start.y >= EditLevel()->ylen -1)
+	state.rect_start.y = EditLevel()->ylen -1;
+    
     int idx, a;
     for (a = 0; a < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE && EditLevel()->map[state.rect_start.y][state.rect_start.x].obstacles_glued_to_here[a] != -1; a++) {
 	idx = EditLevel()->map[state.rect_start.y][state.rect_start.x].obstacles_glued_to_here[a];
@@ -185,6 +195,26 @@ static void do_rect_select()
 	// Undo previous rectangle
 	clear_selection(state.rect_nbelem_selected);
 	state.rect_nbelem_selected = 0;
+    
+	if (state.rect_start.x < 0)
+	    state.rect_start.x = 0;
+	else if (state.rect_start.x >= EditLevel()->xlen -1)
+	    state.rect_start.x = EditLevel()->xlen -1;
+
+	if (state.rect_start.y < 0)
+	    state.rect_start.y = 0;
+	else if (state.rect_start.y >= EditLevel()->ylen -1)
+	    state.rect_start.y = EditLevel()->ylen -1;
+
+	if (state.rect_start.x + state.rect_len.x < 0)
+	    state.rect_len.x = -state.rect_start.x;
+	else if (state.rect_start.x + state.rect_len.x >= EditLevel()->xlen -1)
+	    state.rect_len.x = EditLevel()->xlen -1 - state.rect_start.x;
+
+	if (state.rect_start.y + state.rect_len.y < 0)
+	    state.rect_len.y = -state.rect_start.y;
+	else if (state.rect_start.y + state.rect_len.y >= EditLevel()->ylen -1)
+	    state.rect_len.y = EditLevel()->ylen -1 - state.rect_start.y;
 
 	// Then redo a correct one
 	for (i = state.rect_start.x; i != state.rect_start.x + state.rect_len.x + state.rect_step.x;
