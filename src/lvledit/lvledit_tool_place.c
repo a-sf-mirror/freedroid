@@ -144,6 +144,16 @@ static void start_rectangle_floor(int findex)
     // The tile we'll use 
     state.r_tile_used = findex;
 
+    if (state.r_start.x < 0)
+	state.r_start.x = 0;
+    else if (state.r_start.x >= EditLevel()->xlen -1)
+	state.r_start.x = EditLevel()->xlen -1;
+
+    if (state.r_start.y < 0)
+	state.r_start.y = 0;
+    else if (state.r_start.y >= EditLevel()->ylen -1)
+	state.r_start.y = EditLevel()->ylen -1;
+
     // Place the first tile 
     action_set_floor (EditLevel(), state.r_start.x, state.r_start.y, state.r_tile_used );
     action_push (ACT_MULTIPLE_ACTIONS, 1);
@@ -168,7 +178,6 @@ static void handle_rectangle_floor ()
 	// Undo previous rectangle
 	level_editor_action_undo ();
 
-	printf("start x %d %d start y %d %d\n", state.r_start.x, state.r_len_x, state.r_start.y, state.r_len_y);
 	if (state.r_start.x < 0)
 	    state.r_start.x = 0;
 	else if (state.r_start.x >= EditLevel()->xlen -1)
@@ -188,7 +197,6 @@ static void handle_rectangle_floor ()
 	    state.r_len_y = -state.r_start.y;
 	else if (state.r_start.y + state.r_len_y >= EditLevel()->ylen -1)
 	    state.r_len_y = EditLevel()->ylen -1 - state.r_start.y;
-	printf("turned into start x %d %d start y %d %d\n", state.r_start.x, state.r_len_x, state.r_start.y, state.r_len_y);
 	
 
 
