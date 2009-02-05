@@ -37,3 +37,4 @@ void level_editor_cut_selection();
 void level_editor_copy_selection();
 void level_editor_paste_selection();
 
+void clear_selection(int);

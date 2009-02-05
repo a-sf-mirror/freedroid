@@ -46,9 +46,9 @@
 #include "lvledit/lvledit_grass_actions.h"
 #include "lvledit/lvledit_map.h"
 #include "lvledit/lvledit_menu.h"
+#include "lvledit/lvledit_tools.h"
 #include "lvledit/lvledit_widgets.h"
 
-#include "lvledit/lvledit_widget_map.h"
 
 
 int OriginWaypoint = (-1);
@@ -547,17 +547,6 @@ void LevelValidation()
 
 } // LevelValidation( int levelnum )
 
-void TestMap ( void )  /* Keeps World map in a clean state */
-{
-	if (game_root_mode == ROOT_IS_GAME) /*don't allow map testing if root mode is GAME*/
-		return;
-	SaveGame();
-	Game();
-	LoadGame();
-	return;
-} // TestMap ( void )
-
-
 /**
  * There is a 'help' screen for the level editor too.  This help screen
  * is presented as a scrolling text, giving a short introduction and also
@@ -1003,7 +992,6 @@ void CreateNewMapLevel( int level_num )
     
 }; // void CreateNewMapLevel( int )
 
-
 static void leveleditor_init() 
 {
     level_editor_done = FALSE;
@@ -1037,7 +1025,21 @@ static void leveleditor_cleanup()
 {
     Activate_Conservative_Frame_Computation();
     action_freestack ( ) ;
+    clear_selection(-1);
 }
+
+void TestMap ( void )  /* Keeps World map in a clean state */
+{
+    leveleditor_cleanup(); //free current selection and undo stack as a workaround for existing problems
+    if (game_root_mode == ROOT_IS_GAME) /*don't allow map testing if root mode is GAME*/
+	return;
+    SaveGame();
+    Game();
+    LoadGame();
+    leveleditor_init();
+    return;
+} // TestMap ( void )
+
 
 /**
  * This function provides thelevel *Editor integrated into

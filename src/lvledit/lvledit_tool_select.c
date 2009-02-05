@@ -116,7 +116,7 @@ static void add_obstacle_to_selection(obstacle * a)
  * @param nbelem -1 : Clear the whole list, any other number indicates
  * the number of elements to remove from the list.
  */
-static void clear_selection(int nbelem)
+void clear_selection(int nbelem)
 {
     struct selected_element *e, *ne;
     list_for_each_entry_safe(e, ne, &selected_elements, node) {

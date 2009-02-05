@@ -183,7 +183,6 @@ void leveleditor_init_widgets()
 
     if (!list_empty(&leveleditor_widget_list)) {
 	/* Widgets already initialized, get out */
-	printf("Widgets already initialized!\n");
 	return;
     }
 
