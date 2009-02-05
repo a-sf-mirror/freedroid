@@ -168,6 +168,30 @@ static void handle_rectangle_floor ()
 	// Undo previous rectangle
 	level_editor_action_undo ();
 
+	printf("start x %d %d start y %d %d\n", state.r_start.x, state.r_len_x, state.r_start.y, state.r_len_y);
+	if (state.r_start.x < 0)
+	    state.r_start.x = 0;
+	else if (state.r_start.x >= EditLevel()->xlen -1)
+	    state.r_start.x = EditLevel()->xlen -1;
+	
+	if (state.r_start.y < 0)
+	    state.r_start.y = 0;
+	else if (state.r_start.y >= EditLevel()->ylen -1)
+	    state.r_start.y = EditLevel()->ylen -1;
+
+	if (state.r_start.x + state.r_len_x < 0)
+	    state.r_len_x = -state.r_start.x;
+	else if (state.r_start.x + state.r_len_x >= EditLevel()->xlen -1)
+	    state.r_len_x = EditLevel()->xlen -1 - state.r_start.x;
+
+	if (state.r_start.y + state.r_len_y < 0)
+	    state.r_len_y = -state.r_start.y;
+	else if (state.r_start.y + state.r_len_y >= EditLevel()->ylen -1)
+	    state.r_len_y = EditLevel()->ylen -1 - state.r_start.y;
+	printf("turned into start x %d %d start y %d %d\n", state.r_start.x, state.r_len_x, state.r_start.y, state.r_len_y);
+	
+
+
 	// Then redo a correct one
 	for (i = state.r_start.x;
 		i != state.r_start.x + state.r_len_x + state.r_step_x;
