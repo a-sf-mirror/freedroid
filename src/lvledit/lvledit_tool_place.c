@@ -37,6 +37,7 @@
 
 #include "lvledit/lvledit.h"
 #include "lvledit/lvledit_actions.h"
+#include "lvledit/lvledit_display.h"
 
 #include "lvledit/lvledit_widgets.h"
 #include "lvledit/lvledit_tools.h"
@@ -45,9 +46,80 @@ static enum {
         DISABLED,
 	RECTANGLE_FLOOR,
 	LINE_WALLS,
+	CONNECT_WAYPOINT,
 } our_mode;
 
-static struct leveleditor_place state;
+static struct leveleditor_place {
+    /* Line mode */
+    int l_direction;
+    int l_id;
+    line_element l_elements;
+
+    /* Rectangle mode */
+    point r_start;
+    int r_len_x, r_len_y;
+    int r_step_x, r_step_y;
+    int r_tile_used;
+
+    /* Waypoint mode */
+    int origwp;
+    int startwp;
+    int nbactions;
+} state;
+
+static void end_waypoint_route()
+{
+    our_mode = DISABLED;
+    action_push(ACT_MULTIPLE_ACTIONS, state.nbactions);
+}
+
+static int do_waypoint_route(int rspawn)
+{
+    int wpnum;
+    int isnew;
+
+    wpnum = CreateWaypoint(EditLevel(), mouse_mapcoord.x, mouse_mapcoord.y, &isnew);
+
+    if (our_mode != CONNECT_WAYPOINT) {
+	//we are starting a new route
+	state.startwp = -1;
+	state.nbactions = 0;
+    } 
+    if (isnew) {
+	action_push(ACT_WAYPOINT_TOGGLE, (int)mouse_mapcoord.x, (int)mouse_mapcoord.y, rspawn);
+	state.nbactions ++;
+    } 
+   
+    if (state.startwp != -1) {
+	// Connect to the previous waypoint
+	if (action_toggle_waypoint_connection(EditLevel(), state.startwp, wpnum, 0) == 1)
+	    state.nbactions++;
+	if (action_toggle_waypoint_connection(EditLevel(), wpnum, state.startwp, 0) == 1)
+	    state.nbactions++;
+    }
+   
+    EditLevel()->AllWaypoints[wpnum].suppress_random_spawn = rspawn;
+
+    if (wpnum == state.startwp) {
+	// Click on the same waypoint ? end the route
+	end_waypoint_route();
+	return 1;
+    }
+    
+    if (!isnew && wpnum == state.origwp) {
+	end_waypoint_route();
+	return 1;
+    }
+
+
+    if (our_mode != CONNECT_WAYPOINT) {    
+	our_mode = CONNECT_WAYPOINT;
+	state.origwp = wpnum; 
+    }
+    
+    state.startwp = wpnum;
+    return 0;
+}
 
 static void place_single_obstacle(struct leveleditor_typeselect *ts)
 {
@@ -271,13 +343,12 @@ static void end_line_walls(int commit)
 int leveleditor_place_input(SDL_Event *event)
 {
     struct leveleditor_typeselect *ts;
+    ts = get_current_object_type();
 
 
     if (our_mode == DISABLED) {
 	// Try to place something
 	if (EVENT_LEFT_PRESS(event)) {
-	    ts = get_current_object_type();
-
 	    switch (ts->type) {
 		case OBJECT_FLOOR:
 		    start_rectangle_floor(ts->indices[ts->selected_tile_nb]);
@@ -291,6 +362,9 @@ int leveleditor_place_input(SDL_Event *event)
 			place_single_obstacle(ts);
 			return 1;
 		    }
+		    break;
+		case OBJECT_WAYPOINT:
+		    return do_waypoint_route(ts->indices[ts->selected_tile_nb]);
 		    break;
 		default:
 		    GiveMouseAlertWindow("Place tool does not support this type of object.");
@@ -318,12 +392,26 @@ int leveleditor_place_input(SDL_Event *event)
 	    end_line_walls(0);
 	    return 1;
 	}
+    } else if (our_mode == CONNECT_WAYPOINT) {
+	if (ts->type != OBJECT_WAYPOINT) {
+	    end_waypoint_route();
+	    return 1;
+	}
+	if (EVENT_LEFT_PRESS(event)) {
+	    return do_waypoint_route(ts->indices[ts->selected_tile_nb]);
+	}
     }
+
 
     return 0;
 }
 
 int leveleditor_place_display()
 {
+    if (our_mode == CONNECT_WAYPOINT) {
+	    draw_connection_between_tiles ( EditLevel()->AllWaypoints[state.startwp].x + 0.5, EditLevel()->AllWaypoints[state.startwp].y + 0.5, mouse_mapcoord.x, mouse_mapcoord.y, GameConfig.zoom_is_on ? ZOOM_OUT : 0 );
+    }
+
+
     return 0;
 }

@@ -39,6 +39,7 @@
 #include "lvledit/lvledit_actions.h"
 #include "lvledit/lvledit_widgets.h"
 
+iso_image level_editor_waypoint_cursor [ 2 ] = { UNLOADED_ISO_IMAGE , UNLOADED_ISO_IMAGE } ;
 
 /**
  * Now we print out the map label information about this map location.
@@ -128,7 +129,7 @@ static void Highlight_Current_Block (int mask)
  * mainly used for the map editor to highlight connections and the 
  * current map tile target.
  */
-static void draw_connection_between_tiles ( float x1 , float y1 , float x2 , float y2 , int mask )
+void draw_connection_between_tiles ( float x1 , float y1 , float x2 , float y2 , int mask )
 {
     float steps;
     float dist;
@@ -207,7 +208,6 @@ static void ShowWaypoints( int PrintConnectionList , int mask )
     char ConnectionText[5000];
     char TextAddition[1000];
    level *EditLevel;
-    static iso_image level_editor_waypoint_cursor [ 2 ] = { UNLOADED_ISO_IMAGE , UNLOADED_ISO_IMAGE } ;
     char fpath[2048];
     waypoint *this_wp;
     

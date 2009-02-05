@@ -413,49 +413,45 @@ Please enter new description text for this obstacle: \n\n") ,
 
 void action_toggle_waypoint (level *EditLevel , int BlockX , int BlockY , int toggle_random_spawn )
 {
-    int i;
-    // find out if there is a waypoint on the current square
-    for ( i = 0 ; i < EditLevel->num_waypoints ; i++ )
-    {
-	if ( ( EditLevel->AllWaypoints[i].x == BlockX ) &&
-	     ( EditLevel->AllWaypoints[i].y == BlockY ) ) break;
-    }
-    
+    int wpnum;
+    int isnew = 0;
+
+    wpnum = CreateWaypoint(EditLevel, BlockX, BlockY, &isnew);
+
     //--------------------
     // If its waypoint already, this waypoint must either be deleted
     // or the random spawn bit reset...
     //
-    if ( i < EditLevel -> num_waypoints )
+    if (!isnew)
     {
 	if ( toggle_random_spawn )
 	{
-	    if ( EditLevel -> AllWaypoints [ i ] . suppress_random_spawn )
-		EditLevel -> AllWaypoints [ i ] . suppress_random_spawn = 0 ;
+	    if ( EditLevel -> AllWaypoints [wpnum] . suppress_random_spawn )
+		EditLevel -> AllWaypoints [wpnum] . suppress_random_spawn = 0 ;
 	    else
-		EditLevel -> AllWaypoints [ i ] . suppress_random_spawn = 1 ;
+		EditLevel -> AllWaypoints [wpnum] . suppress_random_spawn = 1 ;
 	}
 	else
-	    DeleteWaypoint ( EditLevel , i );
+	    DeleteWaypoint ( EditLevel , wpnum);
     }
-    else // if its not a waypoint already, it must be made into one
-    {
-	if ( ! toggle_random_spawn )
-	    CreateWaypoint ( EditLevel , BlockX , BlockY );
-    }
+    
     action_push (ACT_WAYPOINT_TOGGLE, BlockX, BlockY, toggle_random_spawn);
 }
 
 
-int action_toggle_waypoint_connection (level *EditLevel, int id_origin, int id_target)
+int action_toggle_waypoint_connection (level *EditLevel, int id_origin, int id_target, int removeifpresent)
 {
     int i = 0;
     waypoint *SrcWp = &(EditLevel->AllWaypoints[id_origin]);
     for (i = 0; i < SrcWp -> num_connections; i++) {
-	// Already a waypoint, remove it
 	if (SrcWp -> connections [ i ] == id_target) {
-	    memmove (SrcWp->connections + i, SrcWp->connections + i + 1,
-		     (SrcWp->num_connections - (i + 1)) * sizeof (SrcWp->connections[0]));
-	    SrcWp -> num_connections -- ;
+	// Already a waypoint, remove it
+	    if (removeifpresent) {
+		memmove (SrcWp->connections + i, SrcWp->connections + i + 1,
+			(SrcWp->num_connections - (i + 1)) * sizeof (SrcWp->connections[0]));
+		SrcWp -> num_connections -- ;
+	    }
+	    action_push (ACT_WAYPOINT_TOGGLE_CONNECT, id_origin, id_target, -1);
 	    return -1;
 	}
     }
@@ -515,7 +511,7 @@ void level_editor_action_toggle_waypoint_connection_user (level *EditLevel)
 	    else
 	    {
 		sprintf( VanishingMessage , _("\n\nOrigin: %d Target: %d. Operation makes sense."), OriginWaypoint , i );
-		if (action_toggle_waypoint_connection ( EditLevel, OriginWaypoint, i ) < 0) {
+		if (action_toggle_waypoint_connection ( EditLevel, OriginWaypoint, i, 1 ) < 0) {
 		    strcat ( VanishingMessage , _("\nOperation done, connection removed." ));
 		} else {
 		    strcat ( VanishingMessage , _("\nOperation done, connection added." ));
@@ -696,7 +692,7 @@ static void action_do (level *level, action *a )
 				 a->d.waypoint_toggle.spawn_toggle );
 	break;
     case ACT_WAYPOINT_TOGGLE_CONNECT:
-	action_toggle_waypoint_connection ( level, a->d.waypoint_toggle.x, a->d.waypoint_toggle.y);
+	action_toggle_waypoint_connection ( level, a->d.waypoint_toggle.x, a->d.waypoint_toggle.y, 1);
 	break;
     case ACT_TILE_FLOOR_SET:
 	action_set_floor ( level, a->d.change_floor.x, a->d.change_floor.y, a->d.change_floor.type);
@@ -720,13 +716,13 @@ static void action_do (level *level, action *a )
 void level_editor_action_undo ()
 {
     if (!list_empty(&to_undo)) {
-	action *a = (action *)to_undo.next;
+	action *a = list_entry(to_undo.next, action, node);
 	push_mode = UNDO;
 	if (a->type == ACT_MULTIPLE_ACTIONS) {
 	    int i;
-            
-		list_del(to_undo.next);
-            
+
+	    list_del(&a->node);
+
 	    for(i = 0; i < a->d.number_actions; i++) {
 		level_editor_action_undo();
 	    }

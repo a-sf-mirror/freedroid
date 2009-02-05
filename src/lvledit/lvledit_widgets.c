@@ -241,6 +241,7 @@ void leveleditor_init_widgets()
 	all_obstacles_list[i] = i;
     all_obstacles_list[i] = -1;
     list_add_tail(&create_objectselector(480, _("ALLOBS."), OBJECT_OBSTACLE, all_obstacles_list)->node, &leveleditor_widget_list);
+    list_add_tail(&create_objectselector(560, _("WAYPT"), OBJECT_WAYPOINT, waypoint_list)->node, &leveleditor_widget_list);
     //list_add_tail(&create_objectselector(GameConfig.screen_width-80, _("QUICK"), OBJECT_ANY, NULL)->node, &leveleditor_widget_list); 
 
     /* The toolbar */

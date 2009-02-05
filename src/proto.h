@@ -323,7 +323,7 @@ void MoveLevelDoors ( void ) ;
 void WorkLevelGuns ( void ) ;
 int IsVisible ( GPS objpos ) ;
 void DeleteWaypoint (level *Lev, int num);
-void CreateWaypoint (level *Lev, int x, int y);
+int CreateWaypoint (level *Lev, int x, int y, int *);
 #define translate_map_point_to_screen_pixel translate_map_point_to_screen_pixel_func
 #define translate_map_point_to_screen_pixel_x(X,Y)  ( UserCenter_x + ceilf((X)*iso_floor_tile_width_over_two) - ceilf((Y)*iso_floor_tile_width_over_two) \
 		                                                           + ceilf(Me.pos.y*iso_floor_tile_width_over_two) - ceilf(Me.pos.x*iso_floor_tile_width_over_two) )

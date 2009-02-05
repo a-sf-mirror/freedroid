@@ -99,11 +99,14 @@ level *EditLevel(void)
 
 iso_image *leveleditor_get_object_image(enum leveleditor_object_type type, int * array, int idx)
 {
+    extern iso_image level_editor_waypoint_cursor[];
     switch(type) {
 	case OBJECT_FLOOR:
 	    return &(floor_iso_images[array[idx]]);
 	case OBJECT_OBSTACLE:
 	    return &(obstacle_map[array[idx]].image);
+	case OBJECT_WAYPOINT:
+	    return &(level_editor_waypoint_cursor[idx]);
 	case OBJECT_NPC:
 	case OBJECT_ANY:
 	    ErrorMessage(__FUNCTION__, "Abstract object type %d for leveleditor not supported.\n", PLEASE_INFORM, IS_FATAL, type);

@@ -3284,8 +3284,7 @@ DeleteWaypoint (level *Lev, int num)
 /*----------------------------------------------------------------------
  * create a new empty waypoint on position x/y
  *----------------------------------------------------------------------*/
-void
-CreateWaypoint (level *Lev, int x, int y)
+int CreateWaypoint (level *Lev, int x, int y, int *isnew)
 {
   int num;
 
@@ -3294,8 +3293,19 @@ CreateWaypoint (level *Lev, int x, int y)
       DebugPrintf ( 0 , "WARNING: maximal number of waypoints (%d) reached on this level!!\n",
 		   MAXWAYPOINTS);
       DebugPrintf ( 0 , "... cannot insert any more, sorry!\n");
-      return;
+      return -1;
     }
+    
+  int i;
+  // find out if there is already a waypoint on the current square
+  for ( i = 0 ; i < Lev->num_waypoints ; i++ ) {
+      if ((Lev->AllWaypoints[i].x == x) &&
+	      (Lev->AllWaypoints[i].y == y)) {
+	  *isnew = 0;
+	  return i;
+      }
+  }
+    
 
   num = Lev -> num_waypoints;
   Lev -> num_waypoints ++;
@@ -3306,7 +3316,8 @@ CreateWaypoint (level *Lev, int x, int y)
   Lev -> AllWaypoints [ num ] . num_connections = 0 ;
   Lev -> AllWaypoints [ num ] . suppress_random_spawn = 0 ;
 
-  return;
+  *isnew = 1;
+  return num;
 
 } // CreateWaypoint()
 

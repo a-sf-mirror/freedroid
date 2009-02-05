@@ -29,6 +29,7 @@
 #endif
 
 void leveleditor_display();
+void draw_connection_between_tiles (float, float, float, float, int);
 
 EXTERN char * tooltip_text;
 EXTERN int tooltip_date;

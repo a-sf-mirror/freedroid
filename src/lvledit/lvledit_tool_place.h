@@ -26,18 +26,3 @@
 int leveleditor_place_input(SDL_Event *event);
 int leveleditor_place_display();
 
-struct leveleditor_place {
-    enum { MODE_LINE, MODE_RECTANGLE, MODE_SINGLE } mode;
-
-    /* Line mode */
-    int l_direction;
-    int l_id;
-    line_element l_elements;
-
-    /* Rectangle mode */
-    point r_start;
-    int r_len_x, r_len_y;
-    int r_step_x, r_step_y;
-    int r_tile_used;
-};
-

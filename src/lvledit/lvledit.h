@@ -138,6 +138,7 @@ enum leveleditor_object_type {
     OBJECT_FLOOR,
     OBJECT_OBSTACLE,
     OBJECT_NPC, //just kidding, not implemented :)
+    OBJECT_WAYPOINT,
     OBJECT_ANY,
 };
 
@@ -633,6 +634,12 @@ int plant_tiles_list[] = {
     -1,
 };
 
+int waypoint_list[] = {
+    0, //random spawn
+    1, //no random spawn 
+    -1
+};
+
 #else
 EXTERN int floor_tiles_list[];
 EXTERN int wall_tiles_list[];
@@ -640,6 +647,7 @@ EXTERN int furniture_tiles_list[];
 EXTERN int plant_tiles_list[];
 EXTERN int machinery_tiles_list[];
 EXTERN int container_tiles_list[];
+EXTERN int waypoint_list[];
 #endif
 
 EXTERN int all_obstacles_list[NUMBER_OF_OBSTACLE_TYPES+1];
