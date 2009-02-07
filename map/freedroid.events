@@ -66,7 +66,6 @@ LuaCode={
 ##############
 ## Level  2 ##
 ##############
-
 * New event trigger *
 Name=_"To warehouse level 1"
 Trigger at label="TeleportBackToFirstCombatLevel"
@@ -79,7 +78,6 @@ LuaCode={
 ##############
 ## Level  3 ##
 ##############
-
 * New event trigger *
 Name=_"Back to Kevin's garden"
 Trigger at label="TeleportBackToSecondCombatLevel"
@@ -101,7 +99,6 @@ LuaCode={
 ##############
 ## Level  4 ##
 ##############
-
 * New event trigger *
 Name=_"Escape from disruption deck"
 Trigger at label="DisruptorMachineLevelEscape"
@@ -123,7 +120,6 @@ LuaCode={
 ##############
 ## Level  5 ##
 ##############
-
 * New event trigger *
 Name=_"Back to scientists quarters"
 Trigger at label="LvVInExit"
@@ -145,7 +141,6 @@ LuaCode={
 ##############
 ## Level  6 ##
 ##############
-
 * New event trigger *
 Name=_"Back from maintenance tunnels"
 Trigger at label="FromMaintainanceTunnelToTown"
@@ -167,8 +162,6 @@ LuaCode={
 }
 * End of trigger *
 
-
-
 ##############
 ## Level  8 ##
 ##############
@@ -184,7 +177,6 @@ LuaCode={
 ##############
 ## Level  9 ##
 ##############
-
 * New event trigger *
 Name=_"Down into Crystal Caves"
 Trigger at label="CrystalCavensDown"
@@ -230,7 +222,6 @@ LuaCode={
 ##############
 ## Level 14 ##
 ##############
-
 * New event trigger *
 Name=_"Closer to the disruptor..."
 Trigger at label="DisruptorLevelVAccess"
@@ -251,7 +242,6 @@ LuaCode={
 ##############
 ## Level 17 ##
 ##############
-
 * New event trigger *
 Name=_"To Kevin's underground station"
 Trigger at label="EntryToKevinsUndergroundStation"
@@ -264,7 +254,6 @@ LuaCode={
 ##############
 ## Level 18 ##
 ##############
-
 * New event trigger *
 Name=_"To underground station"
 Trigger at label="KevinEnergyExitPoint"
@@ -317,7 +306,6 @@ LuaCode={
 ##############
 ## Level 29 ##
 ##############
-
 * New event trigger *
 Name=_"Exit novice arena"
 Trigger at label="NoviceArenaTeleportOutPoint"
@@ -330,7 +318,6 @@ LuaCode={
 ##############
 ## Level 30 ##
 ##############
-
 * New event trigger *
 Name=_"Exit master arena"
 Trigger at label="MasterArenaTeleportOutPoint"
@@ -347,7 +334,6 @@ LuaCode={
 ##############
 ## Level 32 ##
 ##############
-
 * New event trigger *
 Name=_"FIXME2"
 Silent=0
@@ -361,7 +347,6 @@ LuaCode={
 ##############
 ## Level 33 ##
 ##############
-
 * New event trigger *
 Name=_"Exit Crystal Caves"
 Trigger at label="CrystalCavensUp"
@@ -412,12 +397,8 @@ LuaCode={
 ##############
 
 
-
 ** End of Mission Event Section **
-
 *** End of Mission File ***
-
 (leave the above termination text in the file or we might get a segfault/corrupt file termination)
-
 *** END OF EVENT ACTION AND EVENT TRIGGER FILE *** LEAVE THIS TERMINATOR IN HERE ***
 
