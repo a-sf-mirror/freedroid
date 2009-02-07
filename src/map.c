@@ -2614,7 +2614,7 @@ file you use.",
       ReadValueFromStringWithDefault ( SearchPointer ,"MaxDistanceToHome=","%hd", "0", &newen.max_distance_to_home , EndOfThisLevelData );
       ReadValueFromString ( SearchPointer ,"Friendly=","%hhd", &newen.is_friendly , EndOfThisLevelData );
       StartMapLabel = 
-	ReadAndMallocStringFromData ( SearchPointer , "StartUpAtLabel=\"" , "\"" ) ;
+	ReadAndMallocStringFromData ( SearchPointer , "StartLabel=\"" , "\"" ) ;
       ResolveMapLabelOnShip ( StartMapLabel , &StartupLocation );
       newen.pos.x = StartupLocation.x;
       newen.pos.y = StartupLocation.y;
@@ -2643,7 +2643,7 @@ the item specification section.",
       free ( YesNoString );
 
       DialogSection = 
-	ReadAndMallocStringFromData ( SearchPointer , "DialogSectionToUse=\"" , "\"" ) ;
+	ReadAndMallocStringFromData ( SearchPointer , "UseDialog=\"" , "\"" ) ;
       if ( strlen ( DialogSection ) >= MAX_LENGTH_FOR_DIALOG_SECTION_NAME-1 )
 	{
 	  ErrorMessage ( __FUNCTION__  , "\

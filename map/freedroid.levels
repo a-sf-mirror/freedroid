@@ -18575,23 +18575,6 @@ t36 x23.50 y1.50 l-1 d-1
 t39 x24.50 y1.50 l-1 d-1 
 /obsdata
 plabelinfolvl
-x=29 y=57 name="493AvengerBot1StartGameSquare"
-x=44 y=54 name="493AvengerBot2StartGameSquare"
-x=28 y=68 name="493AvengerBot3StartGameSquare"
-x=15 y=57 name="493AvengerBot4StartGameSquare"
-x=60 y=64 name="Level16Lurker1StartGameSquare"
-x=60 y=68 name="Level16Lurker2StartGameSquare"
-x=50 y=17 name="Level16Stalker1StartGameSquare"
-x=46 y=13 name="Level16Stalker2StartGameSquare"
-x=50 y=9 name="Level16Stalker3StartGameSquare"
-x=54 y=13 name="Level16Stalker4StartGameSquare"
-x=48 y=32 name="Level16Wanderer1StartGameSquare"
-x=53 y=25 name="Level16Wanderer2StartGameSquare"
-x=62 y=32 name="Level16Wanderer3StartGameSquare"
-x=56 y=41 name="Level16Wanderer4StartGameSquare"
-x=56 y=35 name="Level16Wanderer5StartGameSquare"
-x=54 y=66 name="Level16Lurker3StartGameSquare"
-x=66 y=66 name="Level16Lurker4StartGameSquare"
 /plabelinfolvl
 pobstaclelabelinfolvl
 obstacle_label.index=2 obstacle_label_name="DisruptorShieldBaseGate" states="closed:191 opened:181"
@@ -18604,41 +18587,41 @@ piteminfolvl
 pchestinfolvl
 /pchestinfolvl
 wp
-Nr.=  0 x=  28 y=  68 rnd=1	 c:    1
+Nr.=  0 x=  28 y=  68 rnd=0	 c:    1
 Nr.=  1 x=  31 y=  64 rnd=0	 c:    0   2  86
-Nr.=  2 x=  29 y=  57 rnd=1	 c:    1
-Nr.=  3 x=  44 y=  54 rnd=1	 c:    4  87  88
+Nr.=  2 x=  29 y=  57 rnd=0	 c:    1
+Nr.=  3 x=  44 y=  54 rnd=0	 c:    4  87  88
 Nr.=  4 x=  41 y=  63 rnd=0	 c:    3  39
-Nr.=  5 x=  15 y=  57 rnd=1	 c:   79
-Nr.=  6 x=  60 y=  68 rnd=1	 c:    9   7  10  31
+Nr.=  5 x=  15 y=  57 rnd=0	 c:   79
+Nr.=  6 x=  60 y=  68 rnd=0	 c:    9   7  10  31
 Nr.=  7 x=  62 y=  66 rnd=0	 c:    8   6  10  32
-Nr.=  8 x=  60 y=  64 rnd=1	 c:    9   7  10  33
+Nr.=  8 x=  60 y=  64 rnd=0	 c:    9   7  10  33
 Nr.=  9 x=  58 y=  66 rnd=0	 c:    6   8  10  34
 Nr.= 10 x=  60 y=  66 rnd=0	 c:    6   8   7   9
-Nr.= 11 x=  46 y=  13 rnd=1	 c:   12  18
+Nr.= 11 x=  46 y=  13 rnd=0	 c:   12  18
 Nr.= 12 x=  48 y=  11 rnd=0	 c:   11  13
-Nr.= 13 x=  50 y=   9 rnd=1	 c:   12  14
+Nr.= 13 x=  50 y=   9 rnd=0	 c:   12  14
 Nr.= 14 x=  52 y=  11 rnd=0	 c:   13  15
-Nr.= 15 x=  54 y=  13 rnd=1	 c:   14  16
+Nr.= 15 x=  54 y=  13 rnd=0	 c:   14  16
 Nr.= 16 x=  52 y=  15 rnd=0	 c:   15  17
-Nr.= 17 x=  50 y=  17 rnd=1	 c:   16  18
+Nr.= 17 x=  50 y=  17 rnd=0	 c:   16  18
 Nr.= 18 x=  48 y=  15 rnd=0	 c:   17  11
-Nr.= 19 x=  53 y=  25 rnd=1	 c:   20  22
+Nr.= 19 x=  53 y=  25 rnd=0	 c:   20  22
 Nr.= 20 x=  56 y=  25 rnd=0	 c:   21  19
 Nr.= 21 x=  56 y=  32 rnd=0	 c:   22  24  26  20
 Nr.= 22 x=  53 y=  32 rnd=0	 c:   30  23  21  19
 Nr.= 23 x=  53 y=  35 rnd=0	 c:   29  24  22  28
-Nr.= 24 x=  56 y=  35 rnd=1	 c:   23  21  25  27
+Nr.= 24 x=  56 y=  35 rnd=0	 c:   23  21  25  27
 Nr.= 25 x=  62 y=  35 rnd=0	 c:   24  26
-Nr.= 26 x=  62 y=  32 rnd=1	 c:   21  25
-Nr.= 27 x=  56 y=  41 rnd=1	 c:   24  28
+Nr.= 26 x=  62 y=  32 rnd=0	 c:   21  25
+Nr.= 27 x=  56 y=  41 rnd=0	 c:   24  28
 Nr.= 28 x=  53 y=  41 rnd=0	 c:   23  27
 Nr.= 29 x=  48 y=  35 rnd=0	 c:   30  23
-Nr.= 30 x=  48 y=  32 rnd=1	 c:   22  29
+Nr.= 30 x=  48 y=  32 rnd=0	 c:   22  29
 Nr.= 31 x=  60 y=  72 rnd=0	 c:    6  32  34
-Nr.= 32 x=  66 y=  66 rnd=1	 c:    7  33  31
+Nr.= 32 x=  66 y=  66 rnd=0	 c:    7  33  31
 Nr.= 33 x=  60 y=  60 rnd=0	 c:    8  32  34
-Nr.= 34 x=  54 y=  66 rnd=1	 c:    9  33  31
+Nr.= 34 x=  54 y=  66 rnd=0	 c:    9  33  31
 Nr.= 35 x=  60 y=  75 rnd=0	 c:   36
 Nr.= 36 x=  55 y=  75 rnd=0	 c:   35
 Nr.= 37 x=  46 y=  70 rnd=0	 c:   38  87  39
@@ -18694,7 +18677,7 @@ Nr.= 86 x=  30 y=  61 rnd=0	 c:    1   2  91
 Nr.= 87 x=  46 y=  59 rnd=0	 c:    3  37  39
 Nr.= 88 x=  46 y=  49 rnd=0	 c:    3  80  29
 Nr.= 89 x=  23 y=  40 rnd=0	 c:   83
-Nr.= 90 x=  18 y=  54 rnd=1	 c:   85
+Nr.= 90 x=  18 y=  54 rnd=0	 c:   85
 Nr.= 91 x=  26 y=  56 rnd=0	 c:   85  86
 end_of_level
 ----------------------------------------------------------------------
