@@ -2656,7 +2656,7 @@ the dialog section name for one special force droid/character.",
       free ( DialogSection );
 
       ShortDescription = 
-	ReadAndMallocStringFromData ( SearchPointer , "ShortLabel=\"" , "\"" ) ;
+	ReadAndMallocStringFromData ( SearchPointer , "ShortLabel=_\"" , "\"" ) ;
       if ( strlen ( ShortDescription ) >= MAX_LENGTH_OF_SHORT_DESCRIPTION_STRING )
 	{
 	  ErrorMessage ( __FUNCTION__  , "\
