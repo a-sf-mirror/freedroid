@@ -42,6 +42,9 @@ FirstTime LuaCode={
 	change_obstacle("TutorialShootingOut", "closed")
 	change_obstacle("TutorialTakeover", "closed")
 -- we also need remove all tux skills, except use weapon
+	downgrade_program("Hacking")
+	downgrade_program("Repair equipment")
+	downgrade_program("Emergency shutdown")
 	show(99)
 }
 
@@ -49,21 +52,33 @@ EveryTime LuaCode={
     show(99) 
     if (partner_started()) then
 	npc_says("This is still work in progress. Please dont report bugs for now on me or the Tutorial level in general. Thanks :)")
-	npc_says(_"Hi, my name is Tutorial Tom. Long stasis sleep unfortunately has the side effect of temporary memoryloss, sometimes even of simple ordinary every day things, so Im here to help you remember the basics.")
+	npc_says(_"Hi Linarian, I've been expecting you. My name is Tutorial Tom.")
+	npc_says(_"Long stasis sleep unfortunately has the side effect of temporary memoryloss, sometimes even of simple ordinary every day things.")
+	npc_says(_"So lets start with the basics shall we?")
 	show(1, 9)
     end
 }
+
+
+
+
 ----------------------------------------------------------------------
 
 Nr=1  Text=_"Yes, it would be most kind of you. I dont remember anything."
 LuaCode={
 	npc_says(_"Scanning Result:", "NO_WAIT")
 	npc_says(_"Scanning")
-	hide(1)
+	hide(1) -- show(2, 3, 4)
+
+--[[
+Explain some basics - N-S-E-W ; Hacking & cooldown programs removed ; automap
+move (point and click) run, stamina
+see things on floor, even if behind a wall (default x and z buttons)
+--]]
 }
 ----------------------------------------------------------------------
 
-Nr=9  Text=_"No, thanks, I still remember how to walk, run and pick up things."
+Nr=9  Text=_"No, thanks, I still remember how to walk, run and pick up things and which way is north."
 LuaCode={
 	npc_says(_"Ok, follow me into the next area then.")
     change_obstacle("TutorialZigzag1", "opened")
@@ -150,6 +165,73 @@ Nr=99  Text=_"Enough for now"
 LuaCode={
 	npc_says(_"Ok, I'll be around if you need any more questions answered. Don't hesitate to ask.")
 	end_dialog()
+
+--[[
+
+This Lua block comment explains how the tutorial is ment to "work".
+
+First tux enters and get rushed by TutorialTom
+That part is half implemented and comments are in the relevant section
+
+***
+After that we move to next room (or hallway rather)
+discuss chests & armour-items
+how to equip etc, how to see when things are starting to fall apart
+also that you can fix things in a shop
+possibly add the repair skill and explain how to fix broken stuff
+this means explaining how skills work (select them, read the help texts etc)
+
+* Protective clothing - How does wearing clothes and shields help me?
+"Even the best of fighters sometimes gets hit by the enemies blows. I would wear those before getting into a a hand to hand fight with those bots if I were you. However, every time you get hit, there is a chance what you wear and use for protection will get slightly damaged."
+
+***
+
+When user think he is ready, we move on to melee rooms
+
+explain, fighting melee ; fight first bot with fists or give melee weapon? ; 
+Kill of next bot too
+"we keep 2 bots for melee practice. Further south there is a locked door that I will open for you once you have taken care of the two melee bots."
+"After you have disabled both of them, I will open the locked door further south so you can walk through it and follow the corridor east to the shooting range."
+
+tell to pick up gun 2nd bot dropped and ask if you are eager to try out ranged weapons
+Tom should also be able to heal you, just in case you get much damage. 
+Possibly tell about stamina and health, and instant healing potions (give 2-3 for tux to test)
+tell about the instant access "belt" where you can put "potions" items and use with button 0-9
+
+****
+
+
+Tom continues with explaining shooting (single fire, other fire specials, reload etc); 
+Open doors to allow walking to "shooting range" ; follows you 
+Open doors to crate room, for more ammo and alternative guns
+describe plasma pistol, laser pistol and .22 (how much it sucks eg)
+Kill all bots behind fence with ranged fire (NPC 1 stands nearby if you want to get repeat of instructions)
+All bots killed = opens next gate
+
+****
+
+He explains you have to leave ranged weapons and you will now train your "mental" skills. ; remove the range weapons
+give some bonus XP to reach higher level and then explain about stats and allocationg points.
+
+
+****
+
+Continue to room with bots behind 1 more fence.
+Gives you cooldown prog and hacking. (and perhaps a few other prog books: healing, Analyze item?  mention there are lots of other programs that can help you in your quests)
+explain Heat and cooling, emergency auto shutdown and manual shutdown.
+Teach you what takeover game is and let you take over some bots behind fences and let them kill each other.
+if we implement slowing down TO in tutorial, Tutorial Tom say something like "These bots have been deliberately slowed down for practice reasons. Real enemies are much faster".
+
+When no enemies remaines, tutorial finished?
+
+****
+
+Perhaps the minimap should be mentioned as well? And that it's an item you can get inside the game.
+
+Im sure we will remember other things we should put in as well.
+
+--]]
+
 }
 ----------------------------------------------------------------------
 
