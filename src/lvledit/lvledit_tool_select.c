@@ -62,6 +62,7 @@ struct selected_element {
 };
 
 static LIST_HEAD(selected_elements);
+static LIST_HEAD(clipboard_elements);
 
 /**
  * Check whether the selection is currently empty.
@@ -101,13 +102,24 @@ int element_in_selection(void *data)
     return 0;
 }
 
-static void add_obstacle_to_selection(obstacle * a)
+static void add_obstacle_to_list(struct list_head *list, obstacle * a)
 {
     struct selected_element *e = MyMalloc(sizeof(struct selected_element));
     e->type = OBJECT_OBSTACLE;
     e->data = a;
 
-    list_add(&e->node, &selected_elements);
+    list_add(&e->node, list);
+}
+
+static void __clear_selected_list(struct list_head *lst, int nbelem)
+{
+    struct selected_element *e, *ne;
+    list_for_each_entry_safe(e, ne, lst, node) {
+	if (nbelem-- == 0)
+	    return;
+	list_del(&e->node);
+	free(e);
+    }
 }
 
 /**
@@ -117,14 +129,15 @@ static void add_obstacle_to_selection(obstacle * a)
  * the number of elements to remove from the list.
  */
 void clear_selection(int nbelem)
+
 {
-    struct selected_element *e, *ne;
-    list_for_each_entry_safe(e, ne, &selected_elements, node) {
-	if (nbelem-- == 0)
-	    return;
-	list_del(&e->node);
-	free(e);
-    }
+    __clear_selected_list(&selected_elements, nbelem);
+}
+
+void clear_clipboard(int nbelem)
+
+{
+    __clear_selected_list(&clipboard_elements, nbelem);
 }
 
 static void start_rect_select()
@@ -151,7 +164,7 @@ static void start_rect_select()
     for (a = 0; a < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE && EditLevel()->map[state.rect_start.y][state.rect_start.x].obstacles_glued_to_here[a] != -1; a++) {
 	idx = EditLevel()->map[state.rect_start.y][state.rect_start.x].obstacles_glued_to_here[a];
 	if (!element_in_selection(&EditLevel()->obstacle_list[idx])) {
-	    add_obstacle_to_selection(&EditLevel()->obstacle_list[idx]);
+	    add_obstacle_to_list(&selected_elements, &EditLevel()->obstacle_list[idx]);
 	    state.rect_nbelem_selected ++;
 	}
     }
@@ -225,7 +238,7 @@ static void do_rect_select()
 		int idx;
 		for (a = 0; a < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE && EditLevel()->map[j][i].obstacles_glued_to_here[a] != -1; a++) {
 		    idx = EditLevel()->map[j][i].obstacles_glued_to_here[a];
-		    add_obstacle_to_selection(&EditLevel()->obstacle_list[idx]);
+		    add_obstacle_to_list(&selected_elements, &EditLevel()->obstacle_list[idx]);
 		    state.rect_nbelem_selected++;
 		}
 	    }
@@ -317,7 +330,7 @@ void level_editor_cycle_marked_obstacle()
     }
 
     int idx = EditLevel()->map[state.rect_start.y][state.rect_start.x].obstacles_glued_to_here[state.single_tile_mark_index];
-    add_obstacle_to_selection(&EditLevel()->obstacle_list[idx]);
+    add_obstacle_to_list(&selected_elements, &EditLevel()->obstacle_list[idx]);
     state.single_tile_mark_index ++;
     state.rect_nbelem_selected ++;
 }
@@ -325,9 +338,20 @@ void level_editor_cycle_marked_obstacle()
 
 void level_editor_copy_selection()
 {
+    struct selected_element *e;
+
     if (mode != RECTDONE) {
 	// We get called from the outside so check mode coherency first
 	return;
+    }
+    
+    clear_clipboard(-1);
+
+    list_for_each_entry(e, &selected_elements, node) {
+	obstacle *a = MyMalloc(sizeof(obstacle));
+	memcpy(a, e->data, sizeof(obstacle));
+
+	add_obstacle_to_list(&clipboard_elements, a);
     }
 }
 
@@ -340,6 +364,8 @@ void level_editor_cut_selection()
 	return;
     }
 
+    level_editor_copy_selection();
+
     /*XXX for now we simply delete the selection*/
     list_for_each_entry(e, &selected_elements, node) {
 	action_remove_obstacle_user(EditLevel(), e->data);
@@ -350,17 +376,54 @@ void level_editor_cut_selection()
     action_push(ACT_MULTIPLE_ACTIONS, nbelem);
 
     clear_selection(-1);
-
 }
 
 void level_editor_paste_selection()
 {
+    struct selected_element *e;
+    obstacle *o;
+    int nbact = 0;
+    moderately_finepoint cmin = { 77777, 7777 }, cmax = { 0, 0}, center;
+
     if (mode != RECTDONE) {
 	// We get called from the outside so check mode coherency first
 	return;
     }
-}
 
+
+    list_for_each_entry(e, &clipboard_elements, node) {
+	o = e->data;
+
+	if (o->pos.x < cmin.x)
+	    cmin.x = o->pos.x;
+	if (o->pos.y < cmin.y)
+	    cmin.y = o->pos.y;
+	if (o->pos.x > cmax.x)
+	    cmax.x = o->pos.x;
+	if (o->pos.y > cmax.y)
+	    cmax.y = o->pos.y;
+    }
+
+    center.x = (cmax.x + cmin.x) / 2;
+    center.y = (cmax.y + cmin.y) / 2;
+   
+    list_for_each_entry(e, &clipboard_elements, node) {
+
+	o = e->data;
+	o->pos.x -= center.x;
+	o->pos.y -= center.y;
+
+	o->pos.x += mouse_mapcoord.x;
+	o->pos.y += mouse_mapcoord.y;
+
+	// Add and select
+	add_obstacle_to_list(&selected_elements, action_create_obstacle_user(EditLevel(), o->pos.x, o->pos.y, o->type)); 
+
+	nbact ++;
+    }
+
+    action_push(ACT_MULTIPLE_ACTIONS, nbact);
+}
 
 int leveleditor_select_input(SDL_Event *event)
 {
