@@ -530,9 +530,6 @@ static int input_key( int keynum, int value)
 	} else if (KEYPRESS("automap")) {
 	    toggle_automap();
 	    return 0;
-	} else if (KEYPRESS("keychart")) {
-	    keychart();
-	    return 0;
 	} else if (KEYPRESS("cheat_level_editor")) {
 	    LevelEditor();
 	    return 0;
@@ -633,6 +630,9 @@ static int input_key( int keynum, int value)
     } else if (KEYPRESS("wall_transparency")) {
 	    GameConfig.transparency = ! GameConfig.transparency;
 	    return 0;
+    } else if (KEYPRESS("keychart")) {
+	keychart();
+	return 0;
     } else if (KEYPRESS("quit")) {
 	Terminate(0);
 	return 0;
