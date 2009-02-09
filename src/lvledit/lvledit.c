@@ -541,7 +541,7 @@ void LevelValidation()
 	//
 	if ( is_invalid ) CenteredPutString( Screen, ReportRect.y + ReportRect.h - 2.0*raw_height, "\1Some tests were invalid. See the report in the console\3" );
 
-	CenteredPutString( Screen, ReportRect.y + ReportRect.h - raw_height, "--- End of List --- Press Space to return tolevel *Editor ---" );
+	CenteredPutString( Screen, ReportRect.y + ReportRect.h - raw_height, "--- End of List --- Press Space to return to leveleditor ---" );
 
 	our_SDL_flip_wrapper();
 
@@ -1042,7 +1042,7 @@ void TestMap ( void )  /* Keeps World map in a clean state */
 
 
 /**
- * This function provides thelevel *Editor integrated into
+ * This function provides the leveleditor integrated into
  * freedroid.  Actually this function is a submenu of the big
  * Escape Menu.  In here you can edit the level and, upon pressing
  * escape, you can enter a new submenu where you can save the level,
