@@ -768,6 +768,8 @@ static void AdvancedOptions ( void )
 	LEAVE_OPTIONS_MENU,
 	};
 
+    game_status = INSIDE_MENU;
+
     while (!proceed_now)
 	{
 
@@ -775,7 +777,7 @@ static void AdvancedOptions ( void )
 	InitiateMenu( -1 );
 
 	i = 0 ; 
-	MenuTexts[i++] = _("Run Maplevel *Validator");
+	MenuTexts[i++] = _("Run map level validator");
 	MenuTexts[i++] = _("Run Dialog Lua Validator");
 	MenuTexts[i++] = _("Back") ;
 	MenuTexts[i++] = "" ;
@@ -808,6 +810,8 @@ static void AdvancedOptions ( void )
 
 	    } // switch
 	}
+
+    game_status = INSIDE_LVLEDITOR;
     return ;
 }; // void AdvancedOptions ( void );
 
