@@ -376,8 +376,8 @@ Allowed Type of Random Droid for this level: 751
 Allowed Type of Random Droid for this level: 629
 Allowed Type of Random Droid for this level: 883
 
-SForce: T=598 Fixed=0 Marker=1024 Friendly=0 StartLabel="MSCDStartGameSquare" RushTux="no" UseDialog="StandardBotAfterTakeover" ShortLabel=_"MSCD - MegaSys Control Droid"
-S*Force: T=598 Fixed=0 Marker=1024 Friendly=0 StartLabel="MSCDStartGameSquare" RushTux="no" UseDialog="MSCD" ShortLabel=_"MSCD - MegaSys Control Droid"  
+SForce: T=598 Fixed=0 Marker=1024 Friendly=0 StartLabel="MSCDStartGameSquare" RushTux="no" UseDialog="StandardBotAfterTakeover" ShortLabel=_"MSCD - MegaSys Control Droid" attack_run_only_when_direct_line="no"
+S*Force: T=598 Fixed=0 Marker=1024 Friendly=0 StartLabel="MSCDStartGameSquare" RushTux="no" UseDialog="MSCD" ShortLabel=_"MSCD - MegaSys Control Droid" attack_run_only_when_direct_line="no"  
 ** End of this levels droid data **
 
 ----------------------------------------------------------------------
