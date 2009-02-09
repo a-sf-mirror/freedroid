@@ -462,13 +462,9 @@ int action_toggle_waypoint_connection (level *EditLevel, int id_origin, int id_t
     return 1;
 }
 
-void level_editor_action_toggle_waypoint_connection_user (level *EditLevel)
+void level_editor_action_toggle_waypoint_connection_user (level *EditLevel, int xpos, int ypos)
 {
     int i;
-
-
-    int xpos = EditX();
-    int ypos = EditY();
 
     // Determine which waypoint is currently targeted
     for (i=0 ; i < EditLevel->num_waypoints ; i++)

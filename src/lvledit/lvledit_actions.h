@@ -45,7 +45,7 @@ void action_change_obstacle_description (level *, obstacle *, char *);
 /* Waypoint manipulation */
 void action_toggle_waypoint (level *, int, int, int);
 int action_toggle_waypoint_connection (level *, int , int, int);
-void level_editor_action_toggle_waypoint_connection_user(level *);
+void level_editor_action_toggle_waypoint_connection_user(level *, int, int);
 
 /* Floor tiles manipulation */
 void action_set_floor (level *, int, int, int);
