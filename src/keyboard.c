@@ -230,9 +230,9 @@ void input_set_default (void)
     input_set_keybind("toolbar_scroll_right", SDLK_PAGEDOWN, KMOD_NONE);
     input_set_keybind("toolbar_step_left", SDLK_PAGEUP, KMOD_LCTRL);
     input_set_keybind("toolbar_step_right", SDLK_PAGEDOWN, KMOD_LCTRL);
-    input_set_keybind("cut", SDLK_x, KMOD_NONE);
-    input_set_keybind("copy", SDLK_c, KMOD_NONE);
-    input_set_keybind("paste", SDLK_v, KMOD_NONE);
+    input_set_keybind("cut", SDLK_x, KMOD_LCTRL);
+    input_set_keybind("copy", SDLK_c, KMOD_LCTRL);
+    input_set_keybind("paste", SDLK_v, KMOD_LCTRL);
 
     /* Cheat */
     input_set_keybind("cheat_xp+_1k", SDLK_KP1, KMOD_NONE);
@@ -605,7 +605,7 @@ static int input_key( int keynum, int value)
 	    level_editor_place_aligned_obstacle(number);
 	    return 0;
 	} else if (KEYPRESS("connect_waypoint")) {
-	    level_editor_action_toggle_waypoint_connection_user(CURLEVEL());
+	    level_editor_action_toggle_waypoint_connection_user(CURLEVEL(), EditX(), EditY());
 	    return 0;
 	} else if (KEYPRESS("cut")) {
 	    level_editor_cut_selection();
