@@ -36082,23 +36082,23 @@ t282 x19.00 y29.50 l-1 d-1
 t282 x18.00 y29.50 l-1 d-1 
 t282 x16.00 y29.50 l-1 d-1 
 t282 x15.00 y29.50 l-1 d-1 
-t282 x14.00 y29.50 l-1 d-1 
-t282 x13.00 y29.50 l-1 d-1 
-t282 x11.00 y29.50 l-1 d-1 
-t282 x17.00 y22.50 l0 d-1 
-t282 x17.00 y24.50 l1 d-1 
-t282 x17.00 y27.50 l2 d-1 
-t282 x17.00 y29.50 l3 d-1 
+t281 x14.50 y30.00 l-1 d-1 
+t281 x14.50 y31.00 l-1 d-1 
+t281 x14.50 y32.00 l-1 d-1 
+t6 x17.00 y22.50 l0 d-1 
+t6 x17.00 y24.50 l1 d-1 
+t6 x17.00 y27.50 l2 d-1 
+t6 x17.00 y29.50 l3 d-1 
 t48 x15.50 y45.00 l-1 d-1 
 t48 x19.00 y45.00 l-1 d-1 
 t48 x19.00 y37.00 l-1 d-1 
 t48 x15.50 y37.00 l-1 d-1 
-t48 x10.00 y33.00 l-1 d-1 
-t48 x24.00 y33.00 l-1 d-1 
+t48 x9.83 y32.84 l-1 d-1 
+t48 x23.84 y32.85 l-1 d-1 
 t48 x23.50 y26.00 l-1 d-1 
 t48 x10.50 y26.00 l-1 d-1 
 t48 x10.00 y19.00 l-1 d-1 
-t48 x24.00 y19.00 l-1 d-1 
+t48 x23.87 y18.92 l-1 d-1 
 t48 x21.00 y15.50 l-1 d-1 
 t48 x29.00 y15.50 l-1 d-1 
 t48 x29.00 y12.50 l-1 d-1 
@@ -36134,6 +36134,8 @@ t281 x19.50 y31.00 l-1 d-1
 t281 x19.50 y32.00 l-1 d-1 
 t352 x19.50 y13.50 l6 d-1 
 t353 x16.50 y18.50 l11 d-1 
+t29 x23.50 y48.00 l-1 d-1 
+t29 x23.50 y52.00 l-1 d-1 
 /obsdata
 plabelinfolvl
 x=17 y=16 name="TutorialTutorStart"
@@ -36178,15 +36180,15 @@ pobsdescinfolvl
 /pobsdescinfolvl
 
 piteminfolvl
-it: n="Laser pistol"  X=35.000000  Y=53.000000  Dmg=4  DmgMod=6  MDur=108  CDur=35.000000  AClip=0  Multi=1  IsIdent=1 
-it: n="Laser power pack"  X=23.000000  Y=51.000000  Dmg=0  DmgMod=0  MDur=-1  CDur=1.000000  AClip=0  Multi=80  IsIdent=1 
-it: n="Plasma pistol"  X=35.000000  Y=48.000000  Dmg=12  DmgMod=6  MDur=30  CDur=13.000000  AClip=0  Multi=1  IsIdent=1 
-it: n="Plasma energy container"  X=23.000000  Y=49.000000  Dmg=0  DmgMod=0  MDur=-1  CDur=1.000000  AClip=0  Multi=40  IsIdent=1 
 it: n="Plasma Transistor"  X=12.000000  Y=21.000000  Dmg=0  DmgMod=0  MDur=-1  CDur=1.000000  AClip=0  Multi=1  IsIdent=1 
 it: n="Anti-grav Pod for Droids"  X=19.000000  Y=26.000000  Dmg=0  DmgMod=0  MDur=-1  CDur=1.000000  AClip=0  Multi=1  IsIdent=1 
 it: n="Mug"  X=22.000000  Y=31.000000  Dmg=0  DmgMod=0  MDur=-1  CDur=1.000000  AClip=0  Multi=1  IsIdent=1 
 /piteminfolvl
 pchestinfolvl
+it: n="Laser pistol"  X=23.500000  Y=51.000000  Dmg=4  DmgMod=6  MDur=108  CDur=35.000000  AClip=0  Multi=1  IsIdent=1 
+it: n="Laser power pack"  X=23.500000  Y=52.000000  Dmg=0  DmgMod=0  MDur=-1  CDur=1.000000  AClip=0  Multi=80  IsIdent=1 
+it: n="Plasma pistol"  X=23.500000  Y=49.000000  Dmg=12  DmgMod=6  MDur=30  CDur=13.000000  AClip=0  Multi=1  IsIdent=1 
+it: n="Plasma energy container"  X=23.500000  Y=48.000000  Dmg=0  DmgMod=0  MDur=-1  CDur=1.000000  AClip=0  Multi=40  IsIdent=1 
 it: n="Cap"  X=15.500000  Y=53.500000  AC=4  Dmg=0  DmgMod=0  MDur=11  CDur=6.000000  AClip=0  Multi=1  IsIdent=1 
 it: n="Simple Jacket"  X=15.500000  Y=54.500000  AC=6  Dmg=0  DmgMod=0  MDur=18  CDur=12.000000  AClip=0  Multi=1  IsIdent=1 
 it: n="Boots"  X=15.500000  Y=55.500000  AC=2  Dmg=0  DmgMod=0  MDur=27  CDur=3.000000  AClip=0  Multi=1  IsIdent=1 
