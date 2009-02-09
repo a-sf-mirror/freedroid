@@ -116,7 +116,7 @@ void leveleditor_toolbar_display(struct leveleditor_widget *vt)
 
     // toolbar background
     SDL_Rect tr = {.x = 0, .y = 13, .w = GameConfig.screen_width, .h = 77 };
-    our_SDL_fill_rect_wrapper(Screen, &tr, 0x556889);
+    our_SDL_fill_rect_wrapper(Screen, &tr, SDL_MapRGB(Screen->format, 0x55, 0x68, 0x89));
 
     // now the tiles to be selected   
     

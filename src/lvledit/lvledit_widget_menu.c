@@ -97,48 +97,51 @@ void leveleditor_menu_mousemove(SDL_Event *event, struct leveleditor_widget *w)
 void leveleditor_menu_display(struct leveleditor_widget *w)
 {
     struct leveleditor_menu *m = w->ext;
-    SDL_Rect tr, hr;
+    SDL_Rect separ, txt, high;
     int i;
 
-    our_SDL_fill_rect_wrapper(Screen, &w->rect, 0x656565);
+    our_SDL_fill_rect_wrapper(Screen, &w->rect, SDL_MapRGB(Screen->format, 0x65, 0x65, 0x65));
 
     BFont_Info * PreviousFont;
     PreviousFont = GetCurrentFont();
     SetCurrentFont( Messagevar_BFont );
 
-    tr.x = w->rect.x;
-    tr.y = w->rect.y + FontHeight(GetCurrentFont()) + 4;
-    tr.w = w->rect.w;
+    separ.x = w->rect.x;
+    separ.y = w->rect.y + FontHeight(GetCurrentFont()) + 4;
+    separ.w = w->rect.w;
+    separ.h = 2;
 
-    tr.h = 2;
-    
-    hr.x=w->rect.x;
-    hr.y = w->rect.y + 1;
-    hr.w = w->rect.w;
-    hr.h = FontHeight(GetCurrentFont()) + 6;
+    txt.x = w->rect.x;
+    txt.y = w->rect.y + 1;
+    txt.w = w->rect.w;
+    txt.h = FontHeight(GetCurrentFont()) + 6;
 
+    high.x = w->rect.x;
+    high.y = w->rect.y;
+    high.w = w->rect.w;
+    high.h = FontHeight(GetCurrentFont()) + 6;
 
-  
     for (i=0; i < 10; i++) {
 	if (!strlen(m->text[i]))
 		break;
 
 	if (i == m->currently_selected_idx) {
 	    if (m->ispressed)
-		our_SDL_fill_rect_wrapper(Screen, &hr, 0x455879);
+		our_SDL_fill_rect_wrapper(Screen, &high, SDL_MapRGB(Screen->format, 0x45, 0x58, 0x79));
 	    else
-		our_SDL_fill_rect_wrapper(Screen, &hr, 0x556889);
+		our_SDL_fill_rect_wrapper(Screen, &high, SDL_MapRGB(Screen->format, 0x55, 0x68, 0x89));
 	}
 
-	DisplayText (m->text[i], hr.x, hr.y, &hr, TEXT_STRETCH);
-	our_SDL_fill_rect_wrapper(Screen,&tr,0x88000000);
-	tr.y += hr.h;
-	hr.y += hr.h;
+	DisplayText (m->text[i], txt.x, txt.y, &txt, TEXT_STRETCH);
+	our_SDL_fill_rect_wrapper(Screen,&separ, SDL_MapRGBA(Screen->format, 0x00, 0x00, 0x00, 0x88));
+	txt.y += txt.h;
+	high.y += txt.h;
+	separ.y += txt.h;
     }
     SetCurrentFont( PreviousFont );
 
     //update widget height according to what we know
-    w->rect.h = hr.y - w->rect.y;
+    w->rect.h = txt.y - w->rect.y;
 }
 
 

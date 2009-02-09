@@ -91,7 +91,7 @@ void leveleditor_typeselect_display(struct leveleditor_widget *vm)
     SDL_Rect tr, hr;
     int tab_width = 80;
 
-    our_SDL_fill_rect_wrapper(Screen, &vm->rect, 0x656565);
+    our_SDL_fill_rect_wrapper(Screen, &vm->rect, SDL_MapRGB(Screen->format, 0x65, 0x65, 0x65));
 
     BFont_Info * PreviousFont;
     PreviousFont = GetCurrentFont();
@@ -107,11 +107,11 @@ void leveleditor_typeselect_display(struct leveleditor_widget *vm)
     hr.x=vm->rect.x;
 
     if (m == currently_selected_list)
-	our_SDL_fill_rect_wrapper(Screen, &hr, 0x556889);
+	our_SDL_fill_rect_wrapper(Screen, &hr, SDL_MapRGB(Screen->format, 0x55, 0x68, 0x89));
     
     DisplayText (m->title, hr.x+2 , 1 , &hr , TEXT_STRETCH);
     tr.x = hr.x + tab_width - 2;
-    our_SDL_fill_rect_wrapper(Screen,&tr,0x88000000);
+    our_SDL_fill_rect_wrapper(Screen,&tr,SDL_MapRGBA(Screen->format, 0x00, 0x00, 0x00, 0x88));
     SetCurrentFont( PreviousFont );
 
 }
