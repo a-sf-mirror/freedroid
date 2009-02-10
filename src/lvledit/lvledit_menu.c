@@ -896,15 +896,24 @@ int DoLevelEditorMainMenu ()
 			    break;
 			}
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
-			char* str;
-			int tgt;
+			char *str, *cstr;
+			int tgt = 0;
 			str =  GetEditableStringInPopupWindow ( 1000 , _("\n Please enter new level number: \n\n") , "");
-			tgt = atoi(str);
-			free(str);
-			if ( tgt < 0 ) tgt = 0;
-			if ( tgt >= curShip.num_levels ) tgt = curShip.num_levels - 1;
-			if ( curShip.AllLevels[tgt] != NULL ) Teleport ( tgt , 3 , 3 , FALSE );
-			proceed_now=!proceed_now;
+			cstr = str;
+			while(*cstr) {
+			    if(!isdigit(*cstr))
+				tgt = -1;
+			    cstr++;
+			}
+
+			if (!tgt)
+			    tgt = atoi(str);
+			
+			    free(str);
+			if ( tgt >= 0 && tgt < curShip.num_levels ) {
+			    if ( curShip.AllLevels[tgt] != NULL ) Teleport ( tgt , 3 , 3 , FALSE );
+			    proceed_now=!proceed_now;
+			}
 			break;
 	    case LEVEL_OPTIONS_POSITION:
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
