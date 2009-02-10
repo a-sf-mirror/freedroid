@@ -568,14 +568,15 @@ SetNewRandomWaypoint ( Enemy ThisRobot )
     // At this point, we should check, if there is another waypoint 
     // and also if the way there is free of other droids
     //
+    freeway_context frw_ctx = { TRUE, { ThisRobot, NULL } };
+    
     for ( i = 0; i < num_conn ; i++ )
     {
-	FreeWays [ i ] = CheckIfWayIsFreeOfDroids ( TRUE, 
-	    WpList [ ThisRobot -> lastwaypoint ] . x + 0.5 , 
+	FreeWays [ i ] = CheckIfWayIsFreeOfDroids ( WpList [ ThisRobot -> lastwaypoint ] . x + 0.5 , 
 	    WpList [ ThisRobot -> lastwaypoint ] . y + 0.5 , 
 	    WpList [ WpList [ ThisRobot -> lastwaypoint ] . connections [ i ] ] . x + 0.5 , 
 	    WpList [ WpList [ ThisRobot -> lastwaypoint ] . connections [ i ] ] . y + 0.5 , 
-	    ThisRobot->pos.z , ThisRobot );
+	    ThisRobot->pos.z , &frw_ctx );
     }
     
     //--------------------
@@ -1585,8 +1586,9 @@ static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_m
 		   else
 		       target_reachable = DirectLineColldet ( ThisRobot->virt_pos.x, ThisRobot->virt_pos.y, tpos->x, tpos->y, tpos->z, &FlyablePassFilter);
 
+		   freeway_context frw_ctx = { FALSE, { ThisRobot, NULL } };
 		   if ( target_reachable &&
-                        CheckIfWayIsFreeOfDroids(FALSE, tmp.x, tmp.y, tmp.x + test_t.x, tmp.y + test_t.y, ThisRobot->pos.z, ThisRobot) 
+                        CheckIfWayIsFreeOfDroids( tmp.x, tmp.y, tmp.x + test_t.x, tmp.y + test_t.y, ThisRobot->pos.z, &frw_ctx ) 
                       )
 		       break;
 		   }
@@ -1906,11 +1908,14 @@ update_enemy ( enemy * ThisRobot )
     moderately_finepoint old_move_target;
     enemy_get_current_walk_target(ThisRobot, &old_move_target);
 
+    freeway_context fw_ctx = { FALSE, { ThisRobot, NULL } };
+    pathfinder_context pf_ctx = { &WalkablePassFilter, &fw_ctx };
+    
     if (((new_move_target . x != old_move_target . x) || (new_move_target .y != old_move_target . y)))
 	{ /* If the current move target differs from the old one */
 	  /* This implies we do not re-pathfind every frame, which means we may bump into colleagues. 
 	   * This is handled in MoveThisEnemy()*/
-	    if ( set_up_intermediate_course_between_positions ( ThisRobot, TRUE, &ThisRobot->pos, &new_move_target, &wps[0], 40) && wps[5].x == -1)
+	    if ( set_up_intermediate_course_between_positions ( &ThisRobot->pos, &new_move_target, &wps[0], 40, &pf_ctx) && wps[5].x == -1)
 		{ /* If position was passable *and* streamline course uses max 4 waypoints */
 		memcpy ( &ThisRobot->PrivatePathway[0], &wps[0], 5 * sizeof(moderately_finepoint));
 		}
@@ -2212,13 +2217,15 @@ ClosestOtherEnemyDroid ( Enemy ThisRobot )
 int
 ConsideredMoveIsFeasible ( Enemy ThisRobot , moderately_finepoint StepVector )
 {
+	freeway_context frw_ctx = { TRUE, { ThisRobot, NULL } };
+	
     if ( ( DirectLineColldet ( ThisRobot -> pos.x, ThisRobot -> pos.y, ThisRobot -> pos.x + StepVector.x ,
 			ThisRobot -> pos.y + StepVector.y ,
 			ThisRobot -> pos.z, NULL ) ) && 
-	 ( CheckIfWayIsFreeOfDroids ( TRUE, ThisRobot->pos.x , ThisRobot->pos.y , 
+	 ( CheckIfWayIsFreeOfDroids ( ThisRobot->pos.x , ThisRobot->pos.y , 
 						     ThisRobot->pos.x + StepVector . x , 
 						     ThisRobot->pos.y + StepVector . y ,
-						     ThisRobot->pos.z , ThisRobot ) )  )
+						     ThisRobot->pos.z , &frw_ctx ) )  )
     {
 	return TRUE;
     }

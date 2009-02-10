@@ -1631,4 +1631,8 @@ enum
 // Minimum distance to shoot with a range weapon
 #define RANGE_SHOOT_MIN_DIST (7)
 
+//-----
+// Pathfinder constants
+#define DEBUG_TUX_PATHFINDING 1  // debug level for tux pathfinding...
+
 #endif

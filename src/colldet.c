@@ -172,8 +172,7 @@ colldet_filter ObstacleByIdPassFilter = { ObstacleByIdPassFilterCallback, NULL, 
  *
  */
 int 
-CheckIfWayIsFreeOfDroids (char test_tux, float x1 , float y1 , float x2 , float y2 , int OurLevel , 
-					  Enemy ExceptedRobot ) 
+CheckIfWayIsFreeOfDroids ( float x1 , float y1 , float x2 , float y2 , int OurLevel , freeway_context* ctx )
 {
     const float Druid_Radius = 0.5;
      
@@ -181,21 +180,30 @@ CheckIfWayIsFreeOfDroids (char test_tux, float x1 , float y1 , float x2 , float 
     float y2n = y2;
     normalize_vect ( x1, y1, &x2n, &y2n);
 
+    if ( ctx->check_tux )
+    {
+    	float dist = calc_distance_seg_point_normalized ( x1, y1, x2, y2, x2n, y2n, Me.pos.x, Me.pos.y);
+    	if ( dist < Druid_Radius )
+    		return FALSE;
+    }
+    
     enemy * this_enemy;
     BROWSE_LEVEL_BOTS(this_enemy, OurLevel)
 	{
-	if (( this_enemy -> pure_wait > 0 )  || (this_enemy == ExceptedRobot ) )
-	    continue;
+		if ( ( this_enemy->pure_wait > 0 ) ||
+		     ( ctx->except_bots[0] != NULL && ctx->except_bots[0] == this_enemy ) ||
+		     ( ctx->except_bots[1] != NULL && ctx->except_bots[1] == this_enemy ) )
+			continue;
 
-	float dist = calc_distance_seg_point_normalized ( x1, y1, x2, y2, x2n, y2n, this_enemy->pos.x, this_enemy->pos.y);
+		float dist = calc_distance_seg_point_normalized ( x1, y1, x2, y2, x2n, y2n, this_enemy->pos.x, this_enemy->pos.y);
 
-	if ( dist < Druid_Radius )
-	    return FALSE;
+		if ( dist < Druid_Radius )
+			return FALSE;
 	}
 
     return TRUE;
 
-}; // CheckIfWayIsFreeOfDroids ( char test_tux, float x1 , float y1 , float x2 , float y2 , int OurLevel , int ExceptedDroid )
+}; // CheckIfWayIsFreeOfDroids ( float x1 , float y1 , float x2 , float y2 , int OurLevel , freeway_ctx* ctx )
 
 enum {
 	RECT_IN = 0,

@@ -81,9 +81,11 @@ void skew_and_blit_rect( float x1, float y1, float x2, float y2, Uint32 color);
 moderately_finepoint translate_point_to_map_location ( float axis_x , float axis_y , int zoom_is_on );
 void blit_zoomed_iso_image_to_map_position ( iso_image* our_iso_image , float pos_x , float pos_y );
 int tux_can_walk_this_line ( float x1, float y1 , float x2 , float y2 );
-void clear_out_intermediate_points ( gps *, moderately_finepoint *, int);
-int set_up_intermediate_course_between_positions ( enemy * droid, int check_if_free, gps * curpos, moderately_finepoint * move_target, moderately_finepoint * waypoints, int maxwp );
 void adapt_position_for_jump_thresholds ( gps* old_position, gps* new_position );
+
+// pathfinder.c
+int set_up_intermediate_course_between_positions ( gps* curpos, moderately_finepoint* move_target, moderately_finepoint* waypoints, int maxwp, pathfinder_context* ctx );
+void clear_out_intermediate_points ( gps *, moderately_finepoint *, int);
 
 // bullet.c 
 void RotateVectorByAngle ( moderately_finepoint* vector , float rot_angle );
@@ -342,7 +344,7 @@ colldet_filter WalkablePassFilter;
 colldet_filter FlyablePassFilter;
 colldet_filter VisiblePassFilter;
 colldet_filter ObstacleByIdPassFilter;
-int CheckIfWayIsFreeOfDroids (char test_tux, float x1 , float y1 , float x2 , float y2 , int OurLevel , enemy * ExceptedRobot ) ;
+int CheckIfWayIsFreeOfDroids( float x1 , float y1 , float x2 , float y2 , int OurLevel , freeway_context* ctx ); 
 int EscapeFromObstacle( float* posX, float* posY, int posZ, colldet_filter* filter );
 int SinglePointColldet ( float x , float y , int z, colldet_filter* filter ) ;
 int DirectLineColldet( float x1 , float y1 , float x2 , float y2 , int z, colldet_filter* filter );

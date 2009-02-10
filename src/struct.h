@@ -932,4 +932,27 @@ typedef struct screen_resolution_s
 }
 screen_resolution;
 
+/*
+ * CheckIfWayIsFreeOfDroids's execution context
+ * 
+ * Note : '2' excepted bots are needed when the pathfinder is called
+ *         to let a bot reach an other one (used during attack, for example).
+ */
+typedef struct freeway_context_s
+{
+	int check_tux;        // Check if Tux is along the way
+	Enemy except_bots[2]; // Do not check if those bots are along the way (see note below)
+}
+freeway_context;
+
+/*
+ * Pathfinder's execution context
+ */
+typedef struct pathfinder_context_s
+{
+	colldet_filter* dlc_filter; // DLC filter to use
+	freeway_context* frw_ctx;   // CheckIfWayIsFreeOfDroids's execution context to use
+}
+pathfinder_context;
+
 #endif

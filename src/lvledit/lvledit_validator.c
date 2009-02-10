@@ -133,7 +133,9 @@ static enum connect_validity waypoints_connection_valid( gps* from_pos, gps* to_
 	moderately_finepoint mfp_to_pos = { to_pos->x, to_pos->y };
 	moderately_finepoint mid_pos[40];
 	
-	int path_found = set_up_intermediate_course_between_positions ( NULL, FALSE, from_pos, &mfp_to_pos, mid_pos, 40);
+	pathfinder_context pf_ctx = { &WalkablePassFilter, NULL };
+	
+	int path_found = set_up_intermediate_course_between_positions ( from_pos, &mfp_to_pos, mid_pos, 40, &pf_ctx);
 	if ( !path_found ) return NO_PATH;
 		
 	int nb_mp = 0;
