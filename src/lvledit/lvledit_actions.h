@@ -54,6 +54,8 @@ void action_fill_user (level *, int , int , int );
 /* Map manipulation */
 void level_editor_action_change_map_label_user (level *);
 void action_jump_to_level(int, double, double);
+void CreateNewMapLevel(int);
+void delete_map_level(int);
 
 #ifndef _leveleditor_actions_c
 #define EXTERN extern

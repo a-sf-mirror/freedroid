@@ -129,8 +129,6 @@ EXTERN void duplicate_all_obstacles_in_area ( Level source_level ,
 				       Level target_level ,
 				       float target_start_x , float target_start_y );
 EXTERN void ReportInconsistenciesForLevel (int);
-EXTERN void CreateNewMapLevel(int);
-EXTERN void LevelValidation();
 EXTERN void TestMap ();
 EXTERN void close_all_chests_on_level (int); 
 

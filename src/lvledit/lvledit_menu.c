@@ -35,7 +35,9 @@
 #include "SDL_rotozoom.h"
 
 #include "lvledit/lvledit.h"
+#include "lvledit/lvledit_actions.h"
 #include "lvledit/lvledit_map.h"
+#include "lvledit/lvledit_validator.h"
 
 /**
  * This a a menu interface to allow to edit the level dimensions in a
@@ -517,6 +519,7 @@ static void LevelOptions ( void )
 	SET_BACKGROUND_SONG_NAME,
 	CHANGE_INFINITE_RUNNING,
 	ADD_NEW_LEVEL,
+	REMOVE_CURRENT_LEVEL,
 	LEAVE_OPTIONS_MENU,
 	};
 
@@ -589,6 +592,7 @@ static void LevelOptions ( void )
 	else ( strcat ( Options [ i ] , _("NO")));
 	MenuTexts[ i ] = Options [ i ]; i++;
 	MenuTexts[i++] = _("Add New Level");
+	MenuTexts[i++] = _("Remove Current Level");
 	MenuTexts[i++] = _("Back") ;
 	MenuTexts[i++] = "" ;
 
@@ -656,6 +660,22 @@ static void LevelOptions ( void )
 		    Me . pos . x = 3;
 		    Me . pos . y = 3;
 		    }
+		break;
+	    case REMOVE_CURRENT_LEVEL:
+		if (game_root_mode == ROOT_IS_GAME)
+		    break;
+		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
+
+		if (EditLevel()->levelnum == 0) {
+		    GiveMouseAlertWindow("Cannot remove level number 0.\n");
+		    break;
+		}
+
+		delete_map_level(EditLevel()->levelnum);
+
+		Me.pos.z = 0;
+		Me.pos.x = 3;
+		Me.pos.y = 3;
 		break;
 	    case SET_BACKGROUND_SONG_NAME:
 		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);

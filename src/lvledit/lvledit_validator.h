@@ -52,7 +52,9 @@ typedef int (*level_validator)(  level_validator_ctx* ValidatorCtx  );
 extern level_validator level_validators[];
 
 EXTERN int chest_reachable_validator( level_validator_ctx* ValidatorCtx );
-EXTERN int waypoint_validator( level_validator_ctx* ValidatorCtx );
-EXTERN int interface_validator( level_validator_ctx* ValidatorCtx );
+EXTERN int waypoint_validator(level_validator_ctx *ValidatorCtx);
+EXTERN int interface_validator(level_validator_ctx *ValidatorCtx);
+EXTERN int jumptarget_validator(level_validator_ctx *ValidatorCtx);
+EXTERN void LevelValidation();
 
 #endif // _leveleditor_validator_h_

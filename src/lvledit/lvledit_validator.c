@@ -43,6 +43,7 @@ level_validator level_validators[] = {
 		chest_reachable_validator,
 		waypoint_validator,
 		interface_validator,
+		jumptarget_validator,
 		NULL
 	};
 
@@ -317,6 +318,41 @@ int waypoint_validator( level_validator_ctx* ValidatorCtx )
 /**
  * This validator checks if level interfaces are valid
  */
+int jumptarget_validator(level_validator_ctx *ValidatorCtx) 
+{
+    int is_invalid = FALSE;
+
+    if (ValidatorCtx->this_level->jump_target_north != -1 && curShip.AllLevels[ValidatorCtx->this_level->jump_target_north] == NULL) {
+	ValidatorPrintHeader(ValidatorCtx, "Non existant jump target", "The north jump target on a level points to a non existing level.");
+	is_invalid = TRUE;
+
+	printf("Level %d has north interface pointing to %d which does not exist.\n", ValidatorCtx->this_level->levelnum, ValidatorCtx->this_level->jump_target_north);
+    }
+
+    if (ValidatorCtx->this_level->jump_target_west != -1 && curShip.AllLevels[ValidatorCtx->this_level->jump_target_west] == NULL) {
+	ValidatorPrintHeader(ValidatorCtx, "Non existant jump target", "The west jump target on a level points to a non existing level.");
+	is_invalid = TRUE;
+
+	printf("Level %d has west interface pointing to %d which does not exist.\n", ValidatorCtx->this_level->levelnum, ValidatorCtx->this_level->jump_target_west);
+    }
+
+    if (ValidatorCtx->this_level->jump_target_east != -1 && curShip.AllLevels[ValidatorCtx->this_level->jump_target_east] == NULL) {
+	ValidatorPrintHeader(ValidatorCtx, "Non existant jump target", "The east jump target on a level points to a non existing level.");
+	is_invalid = TRUE;
+
+	printf("Level %d has east interface pointing to %d which does not exist.\n", ValidatorCtx->this_level->levelnum, ValidatorCtx->this_level->jump_target_east);
+    }
+
+    if (ValidatorCtx->this_level->jump_target_south != -1 && curShip.AllLevels[ValidatorCtx->this_level->jump_target_south] == NULL) {
+	ValidatorPrintHeader(ValidatorCtx, "Non existant jump target", "The south jump target on a level points to a non existing level.");
+	is_invalid = TRUE;
+
+	printf("Level %d has south interface pointing to %d which does not exist.\n", ValidatorCtx->this_level->levelnum, ValidatorCtx->this_level->jump_target_south);
+    }
+
+    return is_invalid;
+}
+
 
 int interface_validator( level_validator_ctx* ValidatorCtx )
 {
@@ -355,5 +391,87 @@ int interface_validator( level_validator_ctx* ValidatorCtx )
 	
 	return is_invalid;
 }
+
+
+/**
+ * Run several validations
+ */
+void LevelValidation()
+{
+	int is_invalid = FALSE;
+
+	SDL_Rect BackgroundRect = { UNIVERSAL_COORD_W(20), UNIVERSAL_COORD_H(20), UNIVERSAL_COORD_W(600), UNIVERSAL_COORD_H(440) };
+	SDL_Rect ReportRect     = { UNIVERSAL_COORD_W(30), UNIVERSAL_COORD_H(30), UNIVERSAL_COORD_W(580), UNIVERSAL_COORD_H(420) };
+
+	BFont_Info* current_font = GetCurrentFont();
+	int raw_height = FontHeight( current_font );
+	int max_raws = (ReportRect.h / raw_height) - 4; // 4 lines are reserved for header and footer 
+	int column_width = TextWidth( "Level 000: empty" );
+
+	AssembleCombatPicture ( ONLY_SHOW_MAP_AND_TEXT | SHOW_GRID | SKIP_LIGHT_RADIUS );
+	ShadowingRectangle ( Screen, BackgroundRect );
+
+	//--------------------
+	// Title
+	//
+	CenteredPutString( Screen, ReportRect.y, "Level Validation tests - Summary\n" );
+
+	//--------------------
+	// Loop on each level
+	//
+	int l;
+	int col_pos = 0;
+	int raw_pos = 0;
+	
+	for ( l = 0; l < curShip.num_levels; ++l )
+	{
+		level_validator_ctx ValidatorCtx = { &ReportRect, curShip.AllLevels[l] };
+
+		// Compute raw and column position, when a new column of text starts
+		if ( (l % max_raws) == 0 )
+		{
+			col_pos = ReportRect.x + (l/max_raws) * column_width;
+			raw_pos = ReportRect.y + 2 * raw_height; // 2 lines are reserved for the header
+			SetTextCursor( col_pos, raw_pos);
+		}
+		
+		if ( curShip.AllLevels[l] == NULL )
+		{
+			// Empty level
+			char txt[40];
+			sprintf(txt, "%s %3d: \2empty\n", "Level", l );
+			DisplayText( txt, col_pos, -1, &ReportRect, 1.0 );			
+			SetCurrentFont( current_font ); // Reset font
+		}
+		else
+		{
+		// Loop on each validation function
+		int v = 0;
+		level_validator one_validator;
+		int level_is_invalid = FALSE;
+
+		while ( (one_validator = level_validators[v++]) != NULL ) level_is_invalid |= one_validator(&ValidatorCtx);
+
+		// Display report
+		char txt[40];
+		sprintf(txt, "%s %3d: %s\n", "Level", l, (level_is_invalid)?"\1fail":"pass" );
+		DisplayText( txt, col_pos, -1, &ReportRect, 1.0 );
+		SetCurrentFont( current_font ); // Reset font in case of the red "fail" was displayed
+
+		// Set global is_invalid flag
+		is_invalid |= level_is_invalid;
+	}
+	}
+
+	//--------------------
+	// This was it.  We can say so and return.
+	//
+	if ( is_invalid ) CenteredPutString( Screen, ReportRect.y + ReportRect.h - 2.0*raw_height, "\1Some tests were invalid. See the report in the console\3" );
+
+	CenteredPutString( Screen, ReportRect.y + ReportRect.h - raw_height, "--- End of List --- Press Space to return to leveleditor ---" );
+
+	our_SDL_flip_wrapper();
+
+} // LevelValidation( int levelnum )
 
 #undef _leveleditor_validator_c
