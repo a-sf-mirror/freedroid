@@ -1629,7 +1629,8 @@ blit_all_item_slots ( void )
 	    }
 	    else
 	    {
-		our_SDL_fill_rect_wrapper ( Screen , & ( item_level -> ItemList [ i ] . text_slot_rectangle ) , 
+	        SDL_Rect our_rect = item_level -> ItemList [ i ] . text_slot_rectangle; //we need that because SDL_FillRect modifies the dstrect
+		our_SDL_fill_rect_wrapper ( Screen , & (our_rect) , 
 					    SDL_MapRGB ( Screen->format , 0x000 , 0x000 , 0x000 ) );
 	    }
 	}
@@ -3640,9 +3641,9 @@ PutEnemyEnergyBar ( enemy * e , SDL_Rect TargetRectangle )
 	// empty part of the energy bar (but only of course, if there is some
 	// empty part at all!  (Otherwise we get indefinately large energy
 	// bars...
-	FillRect . x += (Percentage * TargetRectangle . w) ;
+	FillRect . x = TargetRectangle.x +  (Percentage * TargetRectangle . w) ;
 	FillRect . w = (1-Percentage) * TargetRectangle . w ;
-	
+
 	if ( Percentage < 1.0 )
 	    our_SDL_fill_rect_wrapper ( Screen , &FillRect , energy_empty_color ) ;
     }
