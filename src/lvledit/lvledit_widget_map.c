@@ -78,8 +78,6 @@ void leveleditor_map_mouseenter(SDL_Event *event, struct leveleditor_widget *vm)
 void leveleditor_map_mouseleave(SDL_Event *event, struct leveleditor_widget *vm)
 {
     (void)vm;
-
-    /* XXX do we disable the current tool when we lose focus ? */
 }
 
 void leveleditor_map_mouserelease(SDL_Event *event, struct leveleditor_widget *vm)
@@ -197,6 +195,5 @@ void leveleditor_map_display(struct leveleditor_widget *vm)
 
 void leveleditor_update_tool()
 { //time-based updating if relevant
-    if (active_tool)
-	active_tool->input_event(NULL);
+    forward_event(NULL);
 }
