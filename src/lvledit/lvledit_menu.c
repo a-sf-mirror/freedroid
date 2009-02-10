@@ -819,7 +819,7 @@ static void AdvancedOptions ( void )
  *
  *
  */
-int DoLevelEditorMainMenu (level *EditLevel )
+int DoLevelEditorMainMenu ()
 {
     char* MenuTexts[ 100 ];
     char Options [ 20 ] [1000];
@@ -827,6 +827,8 @@ int DoLevelEditorMainMenu (level *EditLevel )
     int MenuPosition=1;
     int Done=FALSE;
     int i;
+
+    game_status = INSIDE_MENU;
 
     //hack : eat pending events
     input_handle();
@@ -852,7 +854,7 @@ int DoLevelEditorMainMenu (level *EditLevel )
 	
 		i = 0 ;
 		sprintf( Options [ i ] , _("Level") );
-			sprintf( Options [ i+1 ] , ": %d - %s", EditLevel->levelnum, EditLevel->Levelname );
+			sprintf( Options [ i+1 ] , ": %d - %s", EditLevel()->levelnum, EditLevel()->Levelname );
 		    strcat( Options [ i ] , Options [ i+1 ] ); 
 		MenuTexts[ i ] = Options [ i ]; i++ ;
 		MenuTexts[i++] = _("Level Options");
@@ -877,7 +879,7 @@ int DoLevelEditorMainMenu (level *EditLevel )
 		while ( EscapePressed() ) SDL_Delay(1);
 
 		MenuPosition = DoMenuSelection( "" , MenuTexts , -1 , -1 , FPS_Display_BFont );
-	
+
 		while ( EnterPressed ( ) || SpacePressed ( ) || MouseLeftPressed()) SDL_Delay(1);
 	
 	switch ( MenuPosition ) {
@@ -890,8 +892,9 @@ int DoLevelEditorMainMenu (level *EditLevel )
 			proceed_now=!proceed_now;
 			break;
 	    case ENTER_LEVEL_POSITION:
-			if (LeftPressed() || RightPressed()) //left or right arrow ? handled below
-		    break;
+			if (LeftPressed() || RightPressed()) {//left or right arrow ? handled below 
+			    break;
+			}
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
 			char* str;
 			int tgt;
@@ -961,7 +964,7 @@ int DoLevelEditorMainMenu (level *EditLevel )
 		    if ( LeftPressed() )
 		    {
 		    	// find first available level lower than the current one
-				int newlevel = EditLevel->levelnum - 1;
+				int newlevel = EditLevel()->levelnum - 1;
 				while ( curShip.AllLevels[newlevel] == NULL && newlevel >= 0 ) --newlevel;
 				// teleport if new level exists
 			    if ( newlevel >= 0 ) Teleport ( newlevel , 3 , 3 , FALSE );
@@ -970,7 +973,7 @@ int DoLevelEditorMainMenu (level *EditLevel )
 		    if ( RightPressed() )
 		    {
 				// find first available level higher than the current one
-				int newlevel = EditLevel->levelnum + 1;
+				int newlevel = EditLevel()->levelnum + 1;
 				while ( curShip.AllLevels[newlevel] == NULL && newlevel < curShip.num_levels ) ++newlevel;
 				// teleport if new level exists
 			    if ( newlevel < curShip.num_levels ) Teleport ( newlevel , 3 , 3 , FALSE );
@@ -982,7 +985,8 @@ int DoLevelEditorMainMenu (level *EditLevel )
 	    } // if LeftPressed || RightPressed
 	
     }
+    game_status = INSIDE_LVLEDITOR;
     return ( Done );
-}; // void DoLevelEditorMainMenu (level *EditLevel );
+};
 
 

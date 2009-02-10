@@ -312,7 +312,7 @@ void leveleditor_process_input()
 
     if ( EscapePressed() )
 	{
-	level_editor_done = DoLevelEditorMainMenu ( EditLevel() );
+	level_editor_done = DoLevelEditorMainMenu ();
 	}
     while( EscapePressed() ) SDL_Delay(1);
 	

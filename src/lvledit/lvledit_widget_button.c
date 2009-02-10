@@ -109,7 +109,7 @@ static void activate_button(struct leveleditor_button *b)
 	    ItemDropFromLevelEditor(  );
 	    break;
 	case LEVEL_EDITOR_ESC_BUTTON:
-	    level_editor_done = DoLevelEditorMainMenu ( EditLevel() );
+	    level_editor_done = DoLevelEditorMainMenu ();
 	    break;
 	case LEVEL_EDITOR_LEVEL_RESIZE_BUTTON:
 	    EditLevelDimensions (  );
