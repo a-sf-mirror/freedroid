@@ -237,7 +237,8 @@ void leveleditor_input_mouse_button(SDL_Event *event)
 		    case 5:
 			break;
 		    default:
-			ErrorMessage(__FUNCTION__, "Mouse button index %hd unhandled by leveleditor widgets.\n", PLEASE_INFORM, IS_WARNING_ONLY, event->button.button);
+			break;
+			//ErrorMessage(__FUNCTION__, "Mouse button index %hd unhandled by leveleditor widgets.\n", PLEASE_INFORM, IS_WARNING_ONLY, event->button.button);
 		}
 		break;
 	    case SDL_MOUSEBUTTONDOWN:
@@ -255,7 +256,8 @@ void leveleditor_input_mouse_button(SDL_Event *event)
 			w->mousewheeldown(event, w);
 			break;
 		    default:
-			ErrorMessage(__FUNCTION__, "Mouse button index %hd unhandled by leveleditor widgets.\n", PLEASE_INFORM, IS_WARNING_ONLY, event->button.button);
+			break;
+			//ErrorMessage(__FUNCTION__, "Mouse button index %hd unhandled by leveleditor widgets.\n", PLEASE_INFORM, IS_WARNING_ONLY, event->button.button);
 		}
 		break;
 	    default:
