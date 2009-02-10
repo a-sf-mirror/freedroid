@@ -3389,6 +3389,21 @@ static void init_obstacle_data( void )
   obstacle_map [ ISO_EXIT_4 ] . obstacle_short_name = _("Ladder");
   obstacle_map [ ISO_EXIT_4 ] . obstacle_long_description = _("It leads to the surface world.");
 
+  obstacle_map [ ISO_EXIT_5 ] . block_area_type = COLLISION_TYPE_NONE ;
+  obstacle_map [ ISO_EXIT_5 ] . block_area_parm_1 = 1.0 ;
+  obstacle_map [ ISO_EXIT_5 ] . block_area_parm_2 = 1.0 ;
+  obstacle_map [ ISO_EXIT_5 ] . filename = "iso_exits_0005.png" ;
+  obstacle_map [ ISO_EXIT_5 ] . flags &= ~NEEDS_PRE_PUT ;
+  obstacle_map [ ISO_EXIT_5 ] . obstacle_short_name = _("Ladder");
+  obstacle_map [ ISO_EXIT_5 ] . obstacle_long_description = _("This is a ladder.");
+  
+  obstacle_map [ ISO_EXIT_6 ] . block_area_type = COLLISION_TYPE_NONE ;
+  obstacle_map [ ISO_EXIT_6 ] . block_area_parm_1 = 1.0 ;
+  obstacle_map [ ISO_EXIT_6 ] . block_area_parm_2 = 1.0 ;
+  obstacle_map [ ISO_EXIT_6 ] . filename = "iso_exits_0006.png" ;
+  obstacle_map [ ISO_EXIT_6 ] . flags &= ~NEEDS_PRE_PUT ;
+  obstacle_map [ ISO_EXIT_6 ] . obstacle_short_name = _("Ladder");
+  obstacle_map [ ISO_EXIT_6 ] . obstacle_long_description = _("This is a ladder.");
   //--------------------
   // This is the wonderful littel exotic plant provided by Basse.
   // It will block the Tux movement but vision should pass through
