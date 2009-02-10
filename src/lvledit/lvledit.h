@@ -423,6 +423,8 @@ int machinery_tiles_list[] = {
     ISO_EXIT_1 ,
     ISO_EXIT_4 ,
     ISO_EXIT_3 ,
+    ISO_EXIT_5 ,
+    ISO_EXIT_6 ,
 
     -1,
 };
