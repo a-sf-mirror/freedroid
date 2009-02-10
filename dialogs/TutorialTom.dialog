@@ -53,8 +53,8 @@ EveryTime LuaCode={
     if (partner_started()) then
 	npc_says("This is still work in progress. Please dont report bugs for now on me or the Tutorial level in general. Thanks :)")
 	npc_says(_"Hi Linarian, I've been expecting you. My name is Tutorial Tom.")
-	npc_says(_"Long stasis sleep unfortunately has the side effect of temporary memoryloss, sometimes even of simple ordinary every day things.")
-	npc_says(_"So lets start with the basics shall we?")
+	npc_says(_"Long stasis sleep unfortunately has the side effect of temporary memory loss, sometimes even for simple ordinary every day things.")
+	npc_says(_"So let's start with the basics, shall we?")
 	show(1, 9)
     end
 }
@@ -66,8 +66,13 @@ EveryTime LuaCode={
 
 Nr=1  Text=_"Yes, it would be most kind of you. I dont remember anything."
 LuaCode={
-	npc_says(_"Scanning Result:", "NO_WAIT")
-	npc_says(_"Scanning")
+	npc_says(_"As I understand it, you Linarians see the world in a way very similar to the Heads Up Displays used in our computer games of the past.  I'll use the term "HUD" to denote that in this explanation.", "NO_WAIT")
+  npc_says(_"I'll start with your compass.  Linarians have a remarkable internal sense of direction, represented on your HUD by four arrows in the upper right corner. It's fairly simple, but it does show all four cardinal directions, and North is marked.  Going clockwise from North, you have East, South, and West.", "NO_WAIT")
+  npc_says(_"I'll go ahead and mention the automap.  Rumor has it that there was once a world-wide mapping network that you as a Linarian could tap into.  Much of the bot activity has made it difficult or impossible to use, but there is supposed to be a man in town that provides a very similar ability through the use of nanotechnology.  Rumous abound, of course, and there may not be a bit of truth to it, but if there's any chance it may help you on your journey, it may be worth investigating.")
+	npc_says(_"I suppose I should also help you out with movement. It's second nature to we humans, but our research with you Linarians before the Great Assault showed that your brains seem to work more like a computer.  To move somewhere, you first need to determine where you want to go, then motivate yourself to go there.  As I understand it, this is represented on your HUD by moving a pointer to a location in your view and left clicking, which I hope means more to you than it does to me.")
+  npc_says(_"Going along with that, you do have the ability to run for a reasonable distance.  This distance is determined by your stamina; the more you have, the farther you can run without becoming winded.  To do so, use the Control key.")
+  npc_says(_"As a Linarian, you have some special abilities that no human does.  In specific, you seem to be able to translate programming source code into special, metaphysical abilities. Using these abilities, called programs, seem to affect your body temperature, which you must regulate.  Using most programs increases your body temperature, although a special ability called Emergency Shutdown, you can cool your body significantly, at the cost of shutting down for several seconds. Normally, you would have this ability as well as the ability to hack bots, but your mind is probably still recovering from the stasis.")
+  npc_says(_"Something here about seeing things on the floor behind a wall.  I don't know what that's about.") 
 	hide(1) -- show(2, 3, 4)
 
 --[[
@@ -98,9 +103,9 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=19  Text=_"I think Im ready for the next section of the tutorial."
+Nr=19  Text=_"I think I'm ready for the next section of the tutorial."
 LuaCode={
-	npc_says(_"Ok, Ill open the next door then. But start preparing yourself, soon you will learn how to fight against bots in hand to hand combat.")
+	npc_says(_"Ok, I'll open the next door then. But prepare yourself, soon you will learn how to fight against bots in hand to hand combat.")
 	hide(10) show(11, 19)
 }
 ----------------------------------------------------------------------
