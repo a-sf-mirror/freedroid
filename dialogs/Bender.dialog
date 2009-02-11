@@ -1,4 +1,3 @@
-% -*- mode: flyspell; mode: fill -*-
 ----------------------------------------------------------------------
  *  This file is part of Freedroid
  *
@@ -18,7 +17,6 @@
  *  MA  02111-1307  USA
 ----------------------------------------------------------------------
 
-
 If you have questions concerning FreedroidRPG, please send an email to:
 
 freedroid-discussion@lists.sourceforge.net
@@ -30,43 +28,44 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={
-    show(0, 99)
+FirstTime LuaCode={ show(0, 99) }
+EveryTime LuaCode={
+	if (has_quest("Bender's problem")) then 
+		if (done_quest("Bender's problem")) then next(13)
+		else
+			hide(1, 2, 3, 4, 6, 7, 8)
+			if (has_item("Brain Enlargement Pills Antidote") > 0) then
+				hide(5, 10, 11, 12, 50)
+				show(9)
+			else 
+				hide(9)
+				show(12)
+			end
+		end
+	else end
 }
 ----------------------------------------------------------------------
 
 Nr=0  Text=_"Hello! I'm new here."
 NPC=_"Hello. I'm Bender, the dead man of this camp."
-LuaCode={
-    hide(0)
-    show(1)
-}
+LuaCode={ hide(0) show(1) }
 ----------------------------------------------------------------------
 
 Nr=1  Text=_"What's wrong? You seem to be in pretty good shape for a dead man."
 NPC=_"Yeah. I'm the strongest man in all the world. That's 'cause I took ALL of the strength pills."
 NPC=_"And yet, I might be dead soon. The doc warned me, but I didn't listen. Damn."
-LuaCode={
-    hide(1)
-    show(2, 3)
-}
+LuaCode={ hide(1) show(2, 3) }
 ----------------------------------------------------------------------
 
 Nr=2  Text=_"You took too many strength pills and now you're sick?"
 NPC=_"Nah. The strength pills were fine. They made me strong. The doc said so."
 NPC=_"It was the brain enlargement pills. They did me no good, man."
-LuaCode={
-    hide(2, 3)
-    show(4, 10)
-}
+LuaCode={ hide(2, 3) show(4, 10) }
 ----------------------------------------------------------------------
 
 Nr=3  Text=_"What did make you so sick?"
 NPC=_"It was the brain enlargement pills. They did me no good, man."
-LuaCode={
-    hide(2, 3)
-    show(4, 10)
-}
+LuaCode={ hide(2, 3) show(4, 10) }
 ----------------------------------------------------------------------
 
 Nr=4  Text=_"Brain enlargement pills? Sounds ridiculous!"
@@ -75,27 +74,19 @@ NPC=_"They offer some brain enlargement pills to enhance brain performance."
 NPC=_"'Enlarg3 your brain! Bu.y pi11s! Che4p!!11!!!'"
 NPC=_"And everybody in the camp said I was dumb, which is not true."
 NPC=_"So I thought these pills might make them think differently about me."
-LuaCode={
-    hide(4)
-    show(5, 6)
-}
+LuaCode={ hide(4) show(5, 6) }
 ----------------------------------------------------------------------
 
 Nr=5  Text=_"But if you aren't dumb, why the brain enlargement pills?"
 NPC=_"Because they said I was dumb. So I had to do something about it, eh?"
-LuaCode={
-    hide(5)
-}
+LuaCode={ hide(5) }
 ----------------------------------------------------------------------
 
 Nr=6  Text=_"Isn't there some doctor in town who could cure you?"
 NPC=_"Yeah, the doc could help. But he won't. I've threatened him, but he won't."
 NPC=_"He's so angry cause I didn't listen. He warned me about the brain enlargement pill offers."
 NPC=_"They can cause some awful forms of cancer. But I didn't listen. And now he refuses to help me, man."
-LuaCode={
-    hide(6)
-    show(7, 8)
-}
+LuaCode={ hide(6) show(7, 8) }
 ----------------------------------------------------------------------
 
 Nr=7  Text=_"Maybe I can help you somehow?"
@@ -114,9 +105,7 @@ Nr=8  Text=_"I'm sorry, but it looks like there's nothing I could do for you."
 NPC=_"Of course not. You're not a doctor. Only the doctor has the right medicine."
 NPC=_"But this rat would rather let me die!"
 NPC=_"I'll rip his guts out as soon as I get my hands on him, man."
-LuaCode={
-    hide(7, 8)
-}
+LuaCode={ hide(7, 8) }
 ----------------------------------------------------------------------
 
 Nr=9  Text=_"I've got your medicine. With best wishes from the doctor."
@@ -126,6 +115,7 @@ NPC=_"Man, you are the greatest hero!"
 NPC=_"Now, take this as a reward. And you can be sure that I'll vote for you if you seek membership in the Red Guard!"
 NPC=_"Thanks, man!"
 LuaCode={
+	change_obstacle("TownDocBackdoor", "opened") -- Allows Bender to do something useful insted of just keeping watch outside the Docs after healed.
     end_quest("Bender's problem")
     add_xp(150)
     del_item("Brain Enlargement Pills Antidote", 1)
@@ -139,58 +129,25 @@ Nr=10  Text=_"Maybe taking the brain enlargement pills really was stupid."
 NPC=_"WHAT? Did you just say I'm stupid?"
 NPC=_"Don't say it, man."
 NPC=_"I can kill you so much, that no one will recognize you!"
-LuaCode={
-    hide(10)
-    show(50)
-}
+LuaCode={ hide(10) show(50) }
 ----------------------------------------------------------------------
 
 Nr=11  Text=_"Where can I find this doctor?"
 NPC=_"He's right inside this building. I'm waiting here for him, man."
 NPC=_"When he comes out, maybe I can pound him some more. Maybe then he'll help me at last!"
 NPC=_"Yes, he'll get a good beating. That will make him reconsider! That rat!"
-LuaCode={
-    hide(11)
-}
+LuaCode={ hide(11) }
 ----------------------------------------------------------------------
 
 Nr=12  Text=_"About that medicine that you need..."
 NPC=_"What have you got?"
 NPC=_"What, you have nothing?"
 NPC=_"Man, what are you doing here? Get the medicine! I need it now!"
-LuaCode={
-    hide(12)
-}
+LuaCode={ hide(12) }
 ----------------------------------------------------------------------
 
 Nr=13  Text=_"How are you doing?"
 NPC=_"Much better. I'm cured. Thanks again man! I'll vote for you if you want into the city guard! You're a good guy, man!"
-
-----------------------------------------------------------------------
-
-Nr=14  Text="DID TUX GET THE MISSION TO SAVE BENDER?"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-LuaCode={
-    if (has_quest("Bender's problem")) then 
-        if (done_quest("Bender's problem")) then next(13) else next(18) end
-    else end
-}
-AlwaysExecuteThisOptionPriorToDialogStart="yes"
-
-----------------------------------------------------------------------
-
-Nr=18  Text="DOES TUX HAVE THE CURE?"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-LuaCode={
-    if (has_item("Brain Enlargement Pills Antidote") > 0) then
-        hide(5, 10, 11, 12, 50)
-        show(9)
-    else 
-        hide(9)
-        show(12)
-    end
-    hide(1, 2, 3, 4, 6, 7, 8)
-}
 ----------------------------------------------------------------------
 
 Nr=50  Text=_"Yeah, it was a totally idiotic idea to take those pills."
@@ -205,9 +162,7 @@ LuaCode={
 
 Nr=99  Text=_"See you later."
 NPC=_"Later, man!"
-LuaCode={
-    end_dialog()
-}
+LuaCode={ end_dialog() }
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"
