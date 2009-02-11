@@ -243,6 +243,9 @@ int waypoint_validator( level_validator_ctx* ValidatorCtx )
 			line_vector.x = to_pos.x - from_pos.x;
 			line_vector.y = to_pos.y - from_pos.y;
 			float length = sqrtf(line_vector.x * line_vector.x + line_vector.y * line_vector.y);
+			// Emergency hack. To be fixed
+			if ( length < 0.005 ) continue;
+
 			line_vector.x = (line_vector.x * TRSL_FACT) / length;
 			line_vector.y = (line_vector.y * TRSL_FACT) / length;
 			
