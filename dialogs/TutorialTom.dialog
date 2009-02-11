@@ -66,12 +66,20 @@ EveryTime LuaCode={
 
 Nr=1  Text=_"Yes, it would be most kind of you. I dont remember anything."
 LuaCode={
-	npc_says(_"As I understand it, you Linarians see the world in a way very similar to the Heads Up Displays used in our computer games of the past.  I'll use the term "HUD" to denote that in this explanation.", "NO_WAIT")
-  npc_says(_"I'll start with your compass.  Linarians have a remarkable internal sense of direction, represented on your HUD by four arrows in the upper right corner. It's fairly simple, but it does show all four cardinal directions, and North is marked.  Going clockwise from North, you have East, South, and West.", "NO_WAIT")
-  npc_says(_"I'll go ahead and mention the automap.  Rumor has it that there was once a world-wide mapping network that you as a Linarian could tap into.  Much of the bot activity has made it difficult or impossible to use, but there is supposed to be a man in town that provides a very similar ability through the use of nanotechnology.  Rumous abound, of course, and there may not be a bit of truth to it, but if there's any chance it may help you on your journey, it may be worth investigating.")
-	npc_says(_"I suppose I should also help you out with movement. It's second nature to we humans, but our research with you Linarians before the Great Assault showed that your brains seem to work more like a computer.  To move somewhere, you first need to determine where you want to go, then motivate yourself to go there.  As I understand it, this is represented on your HUD by moving a pointer to a location in your view and left clicking, which I hope means more to you than it does to me.")
+	npc_says(_"As I understand it, you Linarians see the world in a way very similar to the Heads Up Displays used in our computer games of the past.  I'll use the term HUD to denote that in this explanation.")
+  npc_says(_"I'll start with your compass.  Linarians have a remarkable internal sense of direction, represented on your HUD by four arrows in the upper right corner. It's fairly simple, but it does show all four cardinal directions, and North is marked.  Going clockwise from North, you have East, South, and West.")
+  npc_says(_"I'll go ahead and mention the automap.  Rumor has it that there was once a world-wide mapping network that you as a Linarian could tap into.  Much of the bot activity has made it difficult or impossible to use, but there is supposed to be a man in town that provides a very similar ability through the use of nanotechnology.")
+  npc_says(_"Rumors abound, of course, and there may not be a bit of truth to it, but if there's any chance it may help you on your journey, it may be worth investigating.")
+	tux_says(_"I'll have to keep that in mind.")
+  npc_says(_"I suppose I should also help you out with movement. It's second nature to we humans, but our research with you Linarians before the Great Assault showed that your brains seem to work more like a computer.")
+  npc_says(_"To move somewhere, you first need to determine where you want to go, then motivate yourself to go there.  As I understand it, this is represented on your HUD by moving a pointer to a location in your view and left clicking, which I hope means more to you than it does to me.")
+  tux_says(_"I think I understand.")
   npc_says(_"Going along with that, you do have the ability to run for a reasonable distance.  This distance is determined by your stamina; the more you have, the farther you can run without becoming winded.  To do so, use the Control key.")
-  npc_says(_"As a Linarian, you have some special abilities that no human does.  In specific, you seem to be able to translate programming source code into special, metaphysical abilities. Using these abilities, called programs, seem to affect your body temperature, which you must regulate.  Using most programs increases your body temperature, although a special ability called Emergency Shutdown, you can cool your body significantly, at the cost of shutting down for several seconds. Normally, you would have this ability as well as the ability to hack bots, but your mind is probably still recovering from the stasis.")
+  tux_says(_"Key... That makes sense.")
+  npc_says(_"As a Linarian, you have some special abilities that no human does.  In specific, you seem to be able to translate programming source code into special, metaphysical abilities.")
+  npc_says(_"Using these abilities, called programs, seem to affect your body temperature, which you must regulate.  Using most programs increases your body temperature, although a special ability called Emergency Shutdown, you can cool your body significantly, at the cost of shutting down for several seconds.")
+  npc_says(_"Normally, you would have this ability as well as the ability to hack bots, but your mind is probably still recovering from the stasis.")
+  tux_says(_"That sounds familiar.")
   npc_says(_"Something here about seeing things on the floor behind a wall.  I don't know what that's about.") 
 	hide(1) -- show(2, 3, 4)
 
@@ -110,56 +118,56 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=20  Text=_"Currently placeholder?"
+Nr=20  Text=_"Currently placeholder? Node 20"
 LuaCode={
 	npc_says(_"Scanning Result:", "NO_WAIT")
 	hide(20)
 }
 ----------------------------------------------------------------------
 
-Nr=30  Text=_"Currently placeholder?"
+Nr=30  Text=_"Currently placeholder? Node 30"
 LuaCode={
 	npc_says(_"Scanning Result:", "NO_WAIT")
 	hide(1)
 }
 ----------------------------------------------------------------------
 
-Nr=40  Text=_"Currently placeholder?"
+Nr=40  Text=_"Currently placeholder? Node 40"
 LuaCode={
 	npc_says(_"Scanning Result:", "NO_WAIT")
 	hide(1)
 }
 ----------------------------------------------------------------------
 
-Nr=50  Text=_"Currently placeholder?"
+Nr=50  Text=_"Currently placeholder? Node 50"
 LuaCode={
 	npc_says(_"Scanning Result:", "NO_WAIT")
 	hide(1)
 }
 ----------------------------------------------------------------------
 
-Nr=60  Text=_"Currently placeholder?"
+Nr=60  Text=_"Currently placeholder? Node 60"
 LuaCode={
 	npc_says(_"Scanning Result:", "NO_WAIT")
 	hide(1)
 }
 ----------------------------------------------------------------------
 
-Nr=70  Text=_"Currently placeholder?"
+Nr=70  Text=_"Currently placeholder? Node 70"
 LuaCode={
 	npc_says(_"Scanning Result:", "NO_WAIT")
 	hide(1)
 }
 ----------------------------------------------------------------------
 
-Nr=80  Text=_"Currently placeholder?"
+Nr=80  Text=_"Currently placeholder? Node 80"
 LuaCode={
 	npc_says(_"Scanning Result:", "NO_WAIT")
 	hide(1)
 }
 ----------------------------------------------------------------------
 
-Nr=90  Text=_"Currently placeholder?"
+Nr=90  Text=_"Currently placeholder? Node 90"
 LuaCode={
 	npc_says(_"Scanning Result:", "NO_WAIT")
 	hide(1)
