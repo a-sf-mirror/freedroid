@@ -46,10 +46,11 @@
 
 void check_if_switching_to_stopandeyetuxmode_makes_sense ( enemy* );
 static int TurnABitTowardsPosition ( Enemy, float, float, float);
+static void MoveToMeleeCombat ( Enemy, gps*, moderately_finepoint *);
 static void MoveAwayFromMeleeCombat ( Enemy, moderately_finepoint *);
+static void ReachMeleeCombat( Enemy, gps*, moderately_finepoint*, pathfinder_context* );
 static void RawStartEnemysShot( enemy*, float, float);
-
-
+static int is_potential_target( enemy* this_robot, gps* target_pos, float* squared_best_dist );
 
 LIST_HEAD(alive_bots_head);
 LIST_HEAD(dead_bots_head);
@@ -655,7 +656,7 @@ set_new_waypointless_walk_target ( enemy* ThisRobot, moderately_finepoint * mt)
 
     if ( ! success )
 	{
-	ThisRobot -> pure_wait = 1;
+    	ThisRobot -> pure_wait = WAIT_COLLISION;
 	}
 }; // void set_new_waypointless_walk_target ( enemy* ThisRobot )
 
@@ -986,75 +987,130 @@ MoveThisEnemy( enemy * ThisRobot )
 
 /**
  * This function returns a gps (position) for a robot's current target, 
- * or NULL if such target doesn't exist
+ * or NULL if such target doesn't exist or is dead or is invisible (if target is Tux)
  */
 static gps * enemy_get_target_position ( enemy *ThisRobot )
 {
-    if ( ( ThisRobot -> attack_target_type == ATTACK_TARGET_IS_PLAYER ) )
-	return & Me . pos;
-    else if ( ThisRobot -> attack_target_type == ATTACK_TARGET_IS_ENEMY ) 
-    {
-        enemy* bot_enemy = enemy_resolve_address(ThisRobot->bot_target_n, &ThisRobot->bot_target_addr);
-        if ( !bot_enemy ) return NULL;
-	 else return &bot_enemy->pos;
-    }
-    else 
-	{ /* No (more) target */
-	return NULL;
+	if ( ( ThisRobot -> attack_target_type == ATTACK_TARGET_IS_PLAYER ) )
+	{
+		if ( Me.invisible_duration > 0 ) return NULL;
+		return & Me . pos;
 	}
+	else if ( ThisRobot -> attack_target_type == ATTACK_TARGET_IS_ENEMY ) 
+	{
+		enemy* bot_enemy = enemy_resolve_address(ThisRobot->bot_target_n, &ThisRobot->bot_target_addr);
+		if ( !bot_enemy || bot_enemy->energy <= 0 ) return NULL;
+		return &bot_enemy->pos;
+	}
+
+	/* No (more) target */
+	return NULL;
 }
 
 /**
  * More for debugging purposes, we print out the current state of the
  * robot as his in-game text.
  */
-    void
+void
 enemy_say_current_state_on_screen ( enemy* ThisRobot )
 {
-    switch ( ThisRobot -> combat_state )
-	{                  
-	case MOVE_ALONG_RANDOM_WAYPOINTS:
-	    ThisRobot->TextToBeDisplayed = ("state:  Wandering along waypoints.") ;
-	    break;     
-	case SELECT_NEW_WAYPOINT:
-	    ThisRobot->TextToBeDisplayed = ("state: Select next WP.");
-	    break;
-	case TURN_TOWARDS_NEXT_WAYPOINT:
-	    ThisRobot->TextToBeDisplayed = ("state:  Turn towards next WP.") ;
-	    break;     
-	case RUSH_TUX_AND_OPEN_TALK:
-	    ThisRobot->TextToBeDisplayed = ("state:  Rush Tux and open talk.") ;
-	    break;     
-	case STOP_AND_EYE_TARGET:
-	    ThisRobot->TextToBeDisplayed = ("state:  Stop and eye target.") ;
-	    break;     
-	case ATTACK:
-	    ThisRobot->TextToBeDisplayed = ("state:  Attack.") ;
-	    break;     
-	case RETURNING_HOME:
-	    ThisRobot->TextToBeDisplayed = ("state:  Returning home.") ;
-	    break;
-	case WAYPOINTLESS_WANDERING:
-	    ThisRobot->TextToBeDisplayed = ("state:  Waypointless wandering.") ;
-	    break;
-	case PARALYZED:
-	    ThisRobot->TextToBeDisplayed = ("state:  Paralyzed.") ;
-	    break;
-	case COMPLETELY_FIXED:
-	    ThisRobot->TextToBeDisplayed = ("state: Completely fixed.");
-	    break;
-	case FOLLOW_TUX:
-	    ThisRobot->TextToBeDisplayed = ("state: Follow Tux.") ;
-	    break;
-	default:
-	    ThisRobot->TextToBeDisplayed = ("state:  UNHANDLED!!") ;
-	    break;
-	}      
+    if ( ThisRobot->pure_wait <= 0 )
+    {
+		switch ( ThisRobot -> combat_state )
+		{                  
+		case MOVE_ALONG_RANDOM_WAYPOINTS:
+			ThisRobot->TextToBeDisplayed = ("state:  Wandering along waypoints.") ;
+			break;     
+		case SELECT_NEW_WAYPOINT:
+			ThisRobot->TextToBeDisplayed = ("state: Select next WP.");
+			break;
+		case TURN_TOWARDS_NEXT_WAYPOINT:
+			ThisRobot->TextToBeDisplayed = ("state:  Turn towards next WP.") ;
+			break;     
+		case RUSH_TUX_AND_OPEN_TALK:
+			ThisRobot->TextToBeDisplayed = ("state:  Rush Tux and open talk.") ;
+			break;     
+		case STOP_AND_EYE_TARGET:
+			ThisRobot->TextToBeDisplayed = ("state:  Stop and eye target.") ;
+			break;     
+		case ATTACK:
+			ThisRobot->TextToBeDisplayed = ("state:  Attack.") ;
+			break;     
+		case RETURNING_HOME:
+			ThisRobot->TextToBeDisplayed = ("state:  Returning home.") ;
+			break;
+		case WAYPOINTLESS_WANDERING:
+			ThisRobot->TextToBeDisplayed = ("state:  Waypointless wandering.") ;
+			break;
+		case PARALYZED:
+			ThisRobot->TextToBeDisplayed = ("state:  Paralyzed.") ;
+			break;
+		case COMPLETELY_FIXED:
+			ThisRobot->TextToBeDisplayed = ("state: Completely fixed.");
+			break;
+		case FOLLOW_TUX:
+			ThisRobot->TextToBeDisplayed = ("state: Follow Tux.") ;
+			break;
+		case UNDEFINED_STATE:
+			ThisRobot->TextToBeDisplayed = ("state: None.") ;
+			break;
+		default:
+			ThisRobot->TextToBeDisplayed = ("state:  UNHANDLED!!") ;
+			break;
+		}
+    }
+    else
+    {
+#if 1    	
+    	ThisRobot->TextToBeDisplayed = ("purewait");
+#else
+    	switch ( ThisRobot -> combat_state )
+    	{                  
+    	case MOVE_ALONG_RANDOM_WAYPOINTS:
+    	    ThisRobot->TextToBeDisplayed = ("purewait (MARW)");
+    	    break;     
+    	case SELECT_NEW_WAYPOINT:
+    	    ThisRobot->TextToBeDisplayed = ("purewait (SNW)");
+    	    break;
+    	case TURN_TOWARDS_NEXT_WAYPOINT:
+    	    ThisRobot->TextToBeDisplayed = ("purewait (TTNW)");
+    	    break;     
+    	case RUSH_TUX_AND_OPEN_TALK:
+    	    ThisRobot->TextToBeDisplayed = ("purewait (RTAOT)");
+    	    break;     
+    	case STOP_AND_EYE_TARGET:
+    	    ThisRobot->TextToBeDisplayed = ("purewait (SAET)");
+    	    break;     
+    	case ATTACK:
+    	    ThisRobot->TextToBeDisplayed = ("purewait (A)");
+    	    break;     
+    	case RETURNING_HOME:
+    	    ThisRobot->TextToBeDisplayed = ("purewait (RH)");
+    	    break;
+    	case WAYPOINTLESS_WANDERING:
+    	    ThisRobot->TextToBeDisplayed = ("purewait (WW)");
+    	    break;
+    	case PARALYZED:
+    	    ThisRobot->TextToBeDisplayed = ("purewait (P)");
+    	    break;
+    	case COMPLETELY_FIXED:
+    	    ThisRobot->TextToBeDisplayed = ("purewait (CF)");
+    	    break;
+    	case FOLLOW_TUX:
+    	    ThisRobot->TextToBeDisplayed = ("purewait (FT)");
+    	    break;
+    	case UNDEFINED_STATE:
+    	    ThisRobot->TextToBeDisplayed = ("purewait (US)");
+    	    break;
+    	default:
+    	    ThisRobot->TextToBeDisplayed = ("purewait (UNH)");
+    	    break;
+    	}      
+#endif
+    }
+
     ThisRobot->TextVisibleTime = 0 ; 
-
-    if ( ThisRobot->pure_wait > 0 )
-	ThisRobot->TextToBeDisplayed = "purewait";
-
+    
 }; // void enemy_say_current_state_on_screen ( enemy* ThisRobot )
 
 /**
@@ -1167,165 +1223,163 @@ DistanceToTux ( Enemy ThisRobot )
 }; // float DistanceToTux ( Enemy ThisRobot )
 
 /**
- * This function selects a target for a friendly bot. Its simply takes
- * the first enemy bot in view range. This could be improved at a later point.
+ * This function selects a target for a friendly bot. 
+ * It takes closest reachable enemy bot in view range.
+ * A new target is selected at each frame. This should prevent a friendly bot to follow
+ * an enemy and thus get too far away from its "steady" position.
  *
+ * Note : this function does set ThisRobbot->attack_target_type, and calls enemy_set_reference()
+ *        accordingly to its finding.
  */
 void
-update_vector_to_shot_target_for_friend ( enemy* ThisRobot , moderately_finepoint* vect_to_target )
+update_vector_to_shot_target_for_friend ( enemy* ThisRobot )
 {
-    float IgnoreRange = Druidmap [ ThisRobot -> type ] . aggression_distance;
-    int found_some_target = FALSE;
-
-
-    //--------------------
-    // We set some default values, in case there isn't anything attackable
-    // found below...
-    //
-    vect_to_target -> x = -1000;
-    vect_to_target -> y = -1000;
-
-        
-    enemy * tgt = NULL;
-    enemy *erot;
-    BROWSE_LEVEL_BOTS(erot, ThisRobot->pos.z)
-    {
-	if ( erot->is_friendly )
-	    continue;
-
-	float dist =  sqrt ( ( ThisRobot -> pos . x - erot->pos . x ) *
-		( ThisRobot -> pos . x - erot->pos . x ) +
-		( ThisRobot -> pos . y - erot->pos . y ) *
-		( ThisRobot -> pos . y - erot->pos . y ) );
-
-	if ( dist > IgnoreRange ) 
-	    continue;
-
-	// At this point we have found our target
-	vect_to_target -> x = erot->pos . x - ThisRobot -> pos . x ;
-	vect_to_target -> y = erot->pos . y - ThisRobot -> pos . y ;
-	found_some_target = TRUE ;
-	tgt = erot;
-
-	//Set it and update ignore range
-	IgnoreRange = dist;
-    }
+	float aggression_distance = Druidmap[ThisRobot->type].aggression_distance;
+	float squared_aggression_distance = aggression_distance * aggression_distance;
+	float squared_best_dist;
+	
+	/*
+	if ( ThisRobot->pure_wait > 0 )
+	{	// Target was not reachable
+		// We could, for example, try to find an other target
+		// But we should not do that as soon as the bot is pure_waiting,
+		// because it could be a very temporary state.
+		// So, a "pure_waiting" counter would be needed...
+	}
+	*/
+	
+	// We set some default values, in case there isn't anything attackable
+	// found below...
+	ThisRobot->attack_target_type = ATTACK_TARGET_IS_NOTHING ;
+	enemy_set_reference(&ThisRobot->bot_target_n, &ThisRobot->bot_target_addr, NULL);
+	
+	// This initialization ensures that only targets inside aggression_distance are checked.
+	squared_best_dist = squared_aggression_distance;
     
-    if ( found_some_target ) 
-    {
-	ThisRobot -> attack_target_type = ATTACK_TARGET_IS_ENEMY ;
-	enemy_set_reference(&ThisRobot -> bot_target_n, &ThisRobot->bot_target_addr, tgt);
+	enemy *erot;
+	BROWSE_LEVEL_BOTS(erot, ThisRobot->pos.z)
+	{
+		if ( erot->is_friendly ) continue;
+		
+		if ( is_potential_target(ThisRobot, &erot->pos, &squared_best_dist) )
+		{
+			ThisRobot->attack_target_type = ATTACK_TARGET_IS_ENEMY ;
+			enemy_set_reference(&ThisRobot->bot_target_n, &ThisRobot->bot_target_addr, erot);
+		}
     }
-    else	
-	ThisRobot -> attack_target_type = ATTACK_TARGET_IS_NOTHING ;
-    
-}; // void update_vector_to_shot_target_for_friend ( ThisRobot , moderately_finepoint* vect_to_target )
+	
+} // void update_vector_to_shot_target_for_friend ( ThisRobot )
 
 /**
  * This function selects an attack target for an hostile bot.
- * Selected target is the previous target if it is still valid (see paragraph bleow),
- * or the closest bot.
+ * Selected target is the previous target if it is still valid (see paragraph below),
+ * or the closest potential target.
  *
  * For gameplay value purposes, it also performs a little hack : the target of 
- * the previous frame can be selected even if it is "slightly" out of view (2 times the range)
- * range, it order to simulate "pursuit". Sorry for the mess but there is no other
- * proper place for that.
+ * the previous frame can be selected even if it is "slightly" out of view (2 times the range),
+ * in order to simulate "pursuit". Sorry for the mess but there is no other proper place for that.
  *
+ * Note : this function does set this_robbot->attack_target_type, and calls enemy_set_reference()
+ *        accordingly to its finding.
  */
 void
-update_vector_to_shot_target_for_enemy ( enemy* this_robot , moderately_finepoint* vect_to_target )
+update_vector_to_shot_target_for_enemy ( enemy* this_robot )
 {
-    int our_level = this_robot -> pos . z ;
-    float best_dist, our_dist;
-    float xdist, ydist;
+	int our_level = this_robot->pos.z ;
+	float squared_best_dist;
+	float xdist, ydist;
+	float aggression_distance = Druidmap[this_robot->type].aggression_distance;
+	float squared_aggression_distance = aggression_distance * aggression_distance;
 
-    gps old_target_pos;
-    gps * a = enemy_get_target_position(this_robot);
-    if ( !a ) old_target_pos.x = -1000;
-    else 
-	{
-	old_target_pos . x = a->x;
-	old_target_pos . y = a->y;
+	//--------------------
+	// Check validity of old target (if any)
+	//
+	// Logic : 
+	// A target is valid if :
+	// 1- always available (not dead and not invisible)
+	// 2- was reachable (this_robot was not blocked along its way to the target)
+	// 3- is not too far
+	// 
+	gps* tpos = enemy_get_target_position(this_robot);
+		
+	if ( !tpos ) 
+	{	// Old target is no more available
+		this_robot->attack_target_type = ATTACK_TARGET_IS_NOTHING;
+		enemy_set_reference(&this_robot->bot_target_n, &this_robot->bot_target_addr, NULL);
 	}
-
-    if ( old_target_pos.x != -1000 && (old_target_pos.x * old_target_pos.x + old_target_pos.y * old_target_pos.y) < 2 *  Druidmap[this_robot->type].aggression_distance )
-	{
-	vect_to_target -> x = old_target_pos.x - this_robot->pos.x;
-	vect_to_target -> y = old_target_pos.y - this_robot->pos.y;
-	//attack_target_type is left unmodified
-	return;
+	/*
+	else if ( this_robot->pure_wait > 0 )
+	{	// Target was not reachable
+		// We could, for example, try to find an other target
+		// But we should not do that as soon as the bot is pure_waiting,
+		// because it could be a very temporary state.
+		// So, a "pure_waiting" counter would be needed...
 	}
-    
-    //--------------------
-    // By default, we set the target of this bot to the Tux himself
-    // i.e. the closest (visible?) player.
-    //
-    if ( Me . invisible_duration <= 0 )
+	*/
+	else if ( this_robot->attack_target_type != ATTACK_TARGET_IS_NOTHING )
 	{
-	vect_to_target -> x = Me . pos . x - this_robot -> virt_pos . x ;
-	vect_to_target -> y = Me . pos . y - this_robot -> virt_pos . y ;
-	this_robot -> attack_target_type = ATTACK_TARGET_IS_PLAYER ;
-	}
-    else 
-	{
-	vect_to_target->x = -1000;
-	vect_to_target->y = -1000;
-	this_robot -> attack_target_type = ATTACK_TARGET_IS_NOTHING;
-	}
-
-    
-    //--------------------
-    // This function is time-critical, so we work with squares in the
-    // following and avoid computation of roots entirely
-    //
-    best_dist = vect_len ( *vect_to_target );
-    best_dist = best_dist * best_dist ;
-    
-    //--------------------
-    // But maybe there is a friend of the Tux also close.  Then maybe we
-    // should attack this one instead, since it's much closer anyway.
-    // Let's see...
-    //
-    enemy *erot;
-    BROWSE_LEVEL_BOTS(erot, our_level)
-    {
-	if ( ! erot->is_friendly )
-	    continue;
+		// Check virtual distance
+		update_virtual_position(&this_robot->virt_pos, &this_robot->pos, tpos->z);
+		if ( this_robot->virt_pos . z  == -1 )
+		{ // Target is at more than one level away
+			this_robot->attack_target_type = ATTACK_TARGET_IS_NOTHING;
+			enemy_set_reference(&this_robot->bot_target_n, &this_robot->bot_target_addr, NULL);
+		}
+		else
+		{
+			xdist = tpos->x - this_robot->virt_pos.x;
+			ydist = tpos->y - this_robot->virt_pos.y;
 	
-	xdist = this_robot -> pos . x - erot->pos . x ;
-	ydist = this_robot -> pos . y - erot->pos . y ;
-
-	our_dist = xdist * xdist + ydist * ydist ;
-	
-	if ( our_dist > 25.0 )
-	    continue;
-	
-	if ( our_dist < best_dist )
-	{
-	    best_dist = our_dist ;
-	    
-	    vect_to_target -> x = erot->pos . x - this_robot -> pos . x ;
-	    vect_to_target -> y = erot->pos . y - this_robot -> pos . y ;
-	    this_robot -> attack_target_type = ATTACK_TARGET_IS_ENEMY ;
-	    enemy_set_reference(&this_robot->bot_target_n, &this_robot->bot_target_addr, erot);
+			if ( (xdist * xdist + ydist * ydist) > 4.0 * squared_aggression_distance )
+			{	// Old target is too far
+				this_robot->attack_target_type = ATTACK_TARGET_IS_NOTHING;
+				enemy_set_reference(&this_robot->bot_target_n, &this_robot->bot_target_addr, NULL);
+			}
+			else
+			{
+				// All tests passed : Continue with same target
+				return;
+			}
+		}
 	}
 
-    }
-    
-    if ( sqrt(vect_to_target -> x * vect_to_target->x + vect_to_target -> y * vect_to_target->y ) > Druidmap[this_robot->type].aggression_distance )
-	{
-	vect_to_target->x = -1000;
-	vect_to_target->y = -1000;
-	this_robot -> attack_target_type = ATTACK_TARGET_IS_NOTHING;
-	}
-}; // int update_vector_to_shot_target_for_enemy ( ThisRobot , moderately_finepoint* vect_to_target )
+	//--------------------
+	// Search for a new target
+	//
+	
+	// This initialization ensures that only targets inside aggression_distance are checked.
+	squared_best_dist = squared_aggression_distance;
 
+	// First check if Tux is a potential target
+	if ( Me . invisible_duration <= 0 )
+	{
+		if ( is_potential_target(this_robot, &Me.pos, &squared_best_dist) )
+		{
+			this_robot -> attack_target_type = ATTACK_TARGET_IS_PLAYER ;
+		}
+	}
+
+	// But maybe there is a friend of the Tux also close.  Then maybe we
+	// should attack this one instead, since it's much closer anyway.
+	enemy *erot;
+	BROWSE_LEVEL_BOTS(erot, our_level)
+	{
+		if ( !erot->is_friendly ) continue;
+
+		if ( is_potential_target(this_robot, &erot->pos, &squared_best_dist) )
+		{
+			this_robot -> attack_target_type = ATTACK_TARGET_IS_ENEMY ;
+			enemy_set_reference(&this_robot->bot_target_n, &this_robot->bot_target_addr, erot);			
+		}	
+	}
+
+} // void update_vector_to_shot_target_for_enemy ( ThisRobot )
 
 /**
  * This function handles the inconditional updates done to the bots by
  * the automaton powering them. See update_enemy().
  */
-static void state_machine_inconditional_updates ( enemy * ThisRobot, moderately_finepoint * vect_to_target)
+static void state_machine_inconditional_updates ( enemy * ThisRobot )
 {
     // Robots that are paralyzed are completely stuck and do not 
     // see their state machine running
@@ -1347,11 +1401,11 @@ static void state_machine_inconditional_updates ( enemy * ThisRobot, moderately_
     //
     if ( ThisRobot->is_friendly )
 	{
-	update_vector_to_shot_target_for_friend ( ThisRobot , vect_to_target ) ;
+    	update_vector_to_shot_target_for_friend ( ThisRobot ) ;
 	}
     else
 	{
-	update_vector_to_shot_target_for_enemy ( ThisRobot , vect_to_target ) ;
+    	update_vector_to_shot_target_for_enemy ( ThisRobot ) ;
 	}
  
     ThisRobot->speed.x=0;
@@ -1364,7 +1418,7 @@ static void state_machine_inconditional_updates ( enemy * ThisRobot, moderately_
  * the external situation and not on the current state of the bot. 
  * The purpose is to reduce code duplication in the "big switch" that follows.
  */
-static void state_machine_situational_transitions ( enemy * ThisRobot, const moderately_finepoint * vect_to_target )
+static void state_machine_situational_transitions ( enemy * ThisRobot )
 {
     /* The various situations are listed in increasing priority order (ie. they may override each other, so the least priority comes first. */
     /* In an ideal world, this would not exist and be done for each state. But we're in reality and have to limit code duplication. */
@@ -1382,7 +1436,9 @@ static void state_machine_situational_transitions ( enemy * ThisRobot, const mod
 		powf( (curShip.AllLevels[ThisRobot->pos.z]->AllWaypoints[ThisRobot->homewaypoint].y + 0.5) - ThisRobot->pos.y, 2))
 	    > ThisRobot->max_distance_to_home )
 	{
-	ThisRobot->combat_state = RETURNING_HOME;
+    	ThisRobot->combat_state = RETURNING_HOME;
+    	ThisRobot->attack_target_type = ATTACK_TARGET_IS_NOTHING;
+    	enemy_set_reference(&ThisRobot->bot_target_n, &ThisRobot->bot_target_addr, NULL);
 	}
 
     /* Paralyze if appropriate */
@@ -1418,13 +1474,17 @@ static void state_machine_situational_transitions ( enemy * ThisRobot, const mod
 	ThisRobot -> combat_state = FOLLOW_TUX;
 	}
 
-
     /* Switch to stop_and_eye_target if appropriate - it's the prelude to any-on-any attacks */
-    if ( vect_to_target -> x != - 1000 && DirectLineColldet ( ThisRobot->pos.x + vect_to_target->x , ThisRobot->pos.y + vect_to_target->y, ThisRobot -> pos . x , ThisRobot -> pos . y, ThisRobot->pos.z, &VisiblePassFilter ) )
+    if ( ThisRobot->attack_target_type != ATTACK_TARGET_IS_NOTHING )
 	{
 	    ThisRobot -> combat_state = STOP_AND_EYE_TARGET;
 	}
 
+    /* If combat_state is always UNDEFINED_STATE, go to SELECT_NEW_WAYPOINT state */
+    if ( ThisRobot->combat_state == UNDEFINED_STATE )
+    {
+    	ThisRobot->combat_state = SELECT_NEW_WAYPOINT;
+    }
 }
 
 /* ----------------------------------------------------------
@@ -1432,195 +1492,272 @@ static void state_machine_situational_transitions ( enemy * ThisRobot, const mod
  * ---------------------------------------------------------- */
 static void state_machine_stop_and_eye_target ( enemy * ThisRobot, moderately_finepoint * new_move_target )
 {
-    gps * tpos = enemy_get_target_position( ThisRobot );
-    
-    /* Don't move */
-    new_move_target -> x = ThisRobot -> pos . x;
-    new_move_target -> y = ThisRobot -> pos . y;
+	gps * tpos = enemy_get_target_position( ThisRobot );
 
-    /* If no more target */ 
-    if ( ! tpos ) 
+	// Target no more available -> going to default state
+	if ( !tpos )
 	{
-	ThisRobot -> state_timeout = 0;
-	ThisRobot -> combat_state = SELECT_NEW_WAYPOINT;
-	return;
+		ThisRobot -> state_timeout = 0;
+		ThisRobot -> combat_state = UNDEFINED_STATE;
+		ThisRobot->attack_target_type = ATTACK_TARGET_IS_NOTHING;
+		enemy_set_reference(&ThisRobot->bot_target_n, &ThisRobot->bot_target_addr, NULL);
+		return;
 	}
 
-    update_virtual_position(&ThisRobot->virt_pos, &ThisRobot->pos, tpos->z);
+	update_virtual_position(&ThisRobot->virt_pos, &ThisRobot->pos, tpos->z);
 
-    /* Make sure we're looking at the target */
-    /*XXX won't work if tpos and ThisRobot are not on the same level*/
-    TurnABitTowardsPosition ( ThisRobot , tpos -> x , tpos -> y , 120 );
+	/* Make sure we're looking at the target */
+	/*XXX won't work if tpos and ThisRobot are not on the same level*/
+	TurnABitTowardsPosition ( ThisRobot , tpos -> x , tpos -> y , 120 );
 
-    /* Do greet sound if not already done */
-    if ( ThisRobot -> has_greeted_influencer == FALSE )
+	/* Do greet sound if not already done */
+	if ( ThisRobot -> has_greeted_influencer == FALSE )
 	{
-	ThisRobot->has_greeted_influencer = TRUE;
-	if ( Druidmap [ ThisRobot -> type ] . greeting_sound_type != (-1) )
-	    {
-	    PlayGreetingSound ( Druidmap[ ThisRobot -> type ] . greeting_sound_type );
-	    }
+		ThisRobot->has_greeted_influencer = TRUE;
+		if ( Druidmap [ ThisRobot -> type ] . greeting_sound_type != (-1) )
+		{
+			PlayGreetingSound ( Druidmap[ ThisRobot -> type ] . greeting_sound_type );
+		}
 	}
 
-    /* Check state timeout */
+	/* Check state timeout */
 
-    //--------------------
-    // After some time, we'll no longer eye the Tux but rather do something,
-    // like attack the Tux or maybe also return to 'normal' operation and do
-    // nothing.  When Tux is still visible at timeout, then it will be attacked... otherwise
-    // the robot resumes normal operation...
-    //
-    ThisRobot -> state_timeout += Frame_Time();
-    if ( ThisRobot -> state_timeout > Druidmap [ ThisRobot -> type ] . time_spent_eyeing_tux ) 
+	//--------------------
+	// After some time, we'll no longer eye the Tux but rather do something,
+	// like attack the Tux or maybe also return to 'normal' operation and do
+	// nothing.  When Tux is still visible at timeout, then it will be attacked... otherwise
+	// the robot resumes normal operation...
+	//
+	ThisRobot -> state_timeout += Frame_Time();
+	if ( ThisRobot -> state_timeout > Druidmap [ ThisRobot -> type ] . time_spent_eyeing_tux ) 
 	{
-	ThisRobot -> state_timeout = 0;
-   	if ( !ThisRobot -> attack_run_only_when_direct_line || DirectLineColldet ( ThisRobot->pos.x , ThisRobot->pos.y, tpos->x , tpos->y , ThisRobot->pos.z, NULL ) )
-	    {
-	    SetRestOfGroupToState ( ThisRobot , ATTACK );
-	    ThisRobot -> combat_state = ATTACK ;
-	if ( Druidmap [ ThisRobot -> type ] . greeting_sound_type != (-1))
-	    {
-	    play_enter_attack_run_state_sound ( Druidmap[ ThisRobot->type ].greeting_sound_type );
-	    }
-	}
-   		else
-   		{
-   			ThisRobot -> combat_state = SELECT_NEW_WAYPOINT;
-}
+		ThisRobot -> state_timeout = 0;
+		if ( !ThisRobot -> attack_run_only_when_direct_line || DirectLineColldet ( ThisRobot->pos.x , ThisRobot->pos.y, tpos->x , tpos->y , ThisRobot->pos.z, NULL ) )
+		{
+			SetRestOfGroupToState ( ThisRobot , ATTACK );
+			ThisRobot -> combat_state = ATTACK ;
+			ThisRobot->last_combat_step = 1.0; // So that attack will start immediately
+			if ( Druidmap [ ThisRobot -> type ] . greeting_sound_type != (-1))
+			{
+				play_enter_attack_run_state_sound ( Druidmap[ ThisRobot->type ].greeting_sound_type );
+			}
+		}
+		else
+		{
+			ThisRobot -> combat_state = UNDEFINED_STATE;
+			ThisRobot->attack_target_type = ATTACK_TARGET_IS_NOTHING;
+			enemy_set_reference(&ThisRobot->bot_target_n, &ThisRobot->bot_target_addr, NULL);
+		}
 	}
 }
 
 /* ---------------------------------
  * "attack tux" state
+ * 
+ * This fonction will compute the destination position of a bot in order
+ * to reach its target. In the callee (update_ennemy), the pathfinder is 
+ * called, to define the path of the bot up to its target.
+ * 
+ * This fonction will also eventually start a shoot.
+ * 
  * --------------------------------- */
-static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_move_target)
+
+/*
+ * Note concerning the modification of pathfinder_context :
+ * 
+ * When we ask the pathfinder to find a path between two points, the pathfinder 
+ * will, by default, check if no bots are blocking the path.
+ * Let consider the following case : an attacking bot (B1) with a melee weapon 
+ * is at the entrance of a corridor. Its target (T) is inside the corridor, and an 
+ * other bot (B2) is also inside the corridor :
+ *       ---------------------
+ *   B1                 B2 T
+ *       ---------------------
+ * In this case, the pathfinder will not be able to find a way between B1 and T.
+ * B1 will thus not move.
+ * 
+ * However, if B1 were able to go just behind B2, it could be near enough to its
+ * target to shoot it :
+ *       ---------------------
+ *                   B1 B2 T
+ *       ---------------------
+ * Such behavior will make B1 be as aggressive as possible.
+ * We will only use it with friendly bots, so that the game is not too hard.
+ * 
+ * To implement this behavior, we have to tell the pathfinder not to check
+ * collisions with bots. This is implemented in ReachMeleeCombat(). 
+ */
+static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_move_target, pathfinder_context *pf_ctx )
 {
-    gps * tpos = enemy_get_target_position(ThisRobot);
+	// Not yet time to computer a new bot's move, or to start a new shoot
+	if ( ThisRobot->firewait && ThisRobot->last_combat_step < ATTACK_MOVE_RATE ) return;
+	
+	// Get old target's position
+	gps * tpos = enemy_get_target_position(ThisRobot);
     
-    if ( !tpos )
+	// Target no more available -> going to default state
+	if ( !tpos )
 	{
+		ThisRobot->combat_state = UNDEFINED_STATE;
+		ThisRobot->attack_target_type = ATTACK_TARGET_IS_NOTHING;
+		enemy_set_reference(&ThisRobot->bot_target_n, &ThisRobot->bot_target_addr, NULL);
+		return;
+	}
+
+	// In case the target is on another level, evaluate the virtual position of the bot
+	// in the target's level
+	update_virtual_position( &ThisRobot->virt_pos, &ThisRobot->pos, tpos->z );
+
 	//--------------------
-	// If a bot is attacking, but has lost eye contact with the target, it should return to waypointless
-	// wandering or waypoint based movement.
-	ThisRobot -> combat_state = SELECT_NEW_WAYPOINT;
-	return;
-	}	    
-
-    /* In case the target is on another level, evaluate the virtual position */
-    update_virtual_position( &ThisRobot->virt_pos, &ThisRobot->pos, tpos -> z );
-
-    if ( ThisRobot->virt_pos . z  == -1 )
-	{ // target not reachable ?
-	ThisRobot -> combat_state = SELECT_NEW_WAYPOINT;
-	return;
+	// First compute the type of the bot's move, and if the target can be shot,
+	// depending on the weapon's type and the distance to the target
+	//
+	gps move_pos = { tpos->x, tpos->y, tpos->z };
+	
+	enum {
+		NO_MOVE,
+		REACH_MELEE,
+		MOVE_MELEE,
+		MOVE_AWAY
+	} move_type = NO_MOVE;
+	
+	int shoot_target = FALSE;
+	
+	// The bot and its target are on different levels. 
+	if ( ThisRobot->pos.z != move_pos.z )
+	{
+		// Before to start the attack, the bot has to reach its target's level.
+		// Hence, compute virtual position to reach, and wait until the bot is at
+		// the right level.
+		update_virtual_position( &move_pos, tpos, ThisRobot->pos.z );
+		move_type = REACH_MELEE;
+		shoot_target = FALSE;
+		goto EXECUTE_ATTACK;
 	}
 
-    float dist2 = (ThisRobot -> virt_pos . x - tpos -> x) * (ThisRobot -> virt_pos . x - tpos -> x) + (ThisRobot -> virt_pos . y - tpos -> y) * (ThisRobot -> virt_pos . y - tpos -> y);
-    int target_visible = DirectLineColldet ( ThisRobot->virt_pos.x, ThisRobot->virt_pos.y, tpos->x, tpos->y, tpos->z, &VisiblePassFilter);
-    int melee_weapon = ItemMap [ Druidmap [ ThisRobot -> type ] . weapon_item . type ] . item_weapon_is_melee;
+	int melee_weapon = ItemMap[ Druidmap[ThisRobot->type].weapon_item.type ].item_weapon_is_melee;
 
-    //--------------------
-    // We will often have to move towards our target.
-    //
-    // But this moving around can lead to jittering of droids moving back and 
-    // forth between two positions very rapidly.  Therefore we will not do this
-    // movement thing every frame, but rather only sometimes
-    //
-    if ( ThisRobot -> last_combat_step > 0.20 )
+	if ( melee_weapon )
 	{
-	// Depending on the weapon of the bot, we will go to melee combat or try and avoid it
-	ThisRobot -> last_combat_step = 0 ; 
+		//-----
+		// Check visibility
+		int target_visible = DirectLineColldet ( ThisRobot->virt_pos.x, ThisRobot->virt_pos.y, move_pos.x, move_pos.y, move_pos.z, &WalkablePassFilter);
+		
+		if ( !target_visible ) 
+		{
+			move_type = REACH_MELEE;
+			shoot_target = FALSE;
+			goto EXECUTE_ATTACK;
+		}
 
-	char move_to_target = 0;
+		//-----
+		// Check distance		
+		float dist2 = (ThisRobot->virt_pos.x - move_pos.x) * (ThisRobot->virt_pos.x - move_pos.x) + (ThisRobot->virt_pos.y - move_pos.y) * (ThisRobot->virt_pos.y - move_pos.y);
+		
+		if ( dist2 > SQUARED_MELEE_APPROACH_DIST )
+		{
+			move_type = REACH_MELEE;
+			shoot_target = FALSE;
+			goto EXECUTE_ATTACK;
+		}
 
-	//----------
-	// If bot's target is not visible, start moving to reach it
-	if ( !target_visible )
-	{
-		move_to_target = 1;
+		if ( dist2 > SQUARED_MELEE_MAX_DIST ) 
+		{   // Approaching the target -> find a place near the bot
+			move_type = MOVE_MELEE;
+			shoot_target = FALSE;
+			goto EXECUTE_ATTACK;
+		}
+		
+		// All tests passed, the bot can shot.
+		shoot_target = TRUE;
+		goto EXECUTE_ATTACK;
 	}
+	
+	else // Range weapon
+
+	{
+		//-----
+		// Check visibility			
+		int target_visible = DirectLineColldet ( ThisRobot->virt_pos.x, ThisRobot->virt_pos.y, move_pos.x, move_pos.y, move_pos.z, &FlyablePassFilter);
+		
+		if ( !target_visible ) 
+		{
+			move_type = REACH_MELEE;
+			shoot_target = FALSE;
+			goto EXECUTE_ATTACK;
+		}
+		
+		//-----
+		// Check distance
+		float dist2 = (ThisRobot->virt_pos.x - move_pos.x) * (ThisRobot->virt_pos.x - move_pos.x) + (ThisRobot->virt_pos.y - move_pos.y) * (ThisRobot->virt_pos.y - move_pos.y);
+		
+		if ( dist2 < SQUARED_RANGE_SHOOT_MIN_DIST )
+		{   // Too close -> move away, and start shooting
+			move_type = MOVE_AWAY;
+			shoot_target = TRUE;
+			goto EXECUTE_ATTACK;
+		}
+		
+		// Check if outside of bullet range
+		itemspec* bot_weapon = &ItemMap[Druidmap[ThisRobot->type].weapon_item.type];
+		float shot_range = bot_weapon->item_gun_bullet_lifetime * bot_weapon->item_gun_speed;
+		float squared_shot_range = shot_range * shot_range;
+			
+		if ( dist2 >= squared_shot_range )
+		{
+			move_type = REACH_MELEE;
+			shoot_target = FALSE;
+			goto EXECUTE_ATTACK;
+		}
+			
+		// All tests passed, the bot can shoot.
+		shoot_target = TRUE;
+		goto EXECUTE_ATTACK;
+
+	}
+
+EXECUTE_ATTACK:
+
+	//--------------------
+	// Execute the bot's move
+	//
+	// We will often have to move towards our target.
+	// But this moving around can lead to jittering of droids moving back and 
+	// forth between two positions very rapidly.  Therefore we will not do this
+	// movement thing every frame, but rather only sometimes
+	//
+
+	if ( ThisRobot -> last_combat_step >= ATTACK_MOVE_RATE )
+	{
+		ThisRobot -> last_combat_step = 0 ; 
+
+		switch (move_type)
+		{
+		case REACH_MELEE:
+			ReachMeleeCombat( ThisRobot, &move_pos, new_move_target, pf_ctx );
+			break;
+		case MOVE_MELEE:
+			MoveToMeleeCombat( ThisRobot , &move_pos, new_move_target );
+			break;
+		case MOVE_AWAY:
+			MoveAwayFromMeleeCombat( ThisRobot , new_move_target );
+			break;
+		default:
+			break;
+		}
+	}	
 	else
 	{
-	if ( melee_weapon )
-	    {
-	    if ( dist2 > 2.25 )
-		{ // Melee weapon and too far to strike ? get closer 
-		move_to_target = 1;
-		}
-	    }
-	else 
-	    {
-	    if ( dist2 < 7 )
-		{ // Ranged weapon and too close to be safe ? get away
-		MoveAwayFromMeleeCombat ( ThisRobot , new_move_target );
-		} 	
-	    }
+		ThisRobot -> last_combat_step += Frame_Time ();
 	}
-
-	if ( move_to_target ) 
-	    {  // Here we know we will move to the target but do not know exactly where
-	       // When Tux is the target, setting its position directly will work, but 
-	       // if the target is another bot, then pathfinding will consider it non passable.
-	       
-	       // So the approach is to consider the target -> our bot vector, normalize it, see if the end is 
-	       // passable (in terms of droids only for now, not obstacles), and if not try the rotations.
-	       //
-	       // Bots will tend to oscillate a little bit but my tests seem to show it as mostly OK.
-	 
-	       gps tmp;
-   	       update_virtual_position ( &tmp, tpos, ThisRobot->pos.z); //get target position in terms of current position
-	       moderately_finepoint test_t = { ThisRobot->pos.x , ThisRobot->pos.y }; // target -> bot vector
-	       normalize_vect ( tmp.x, tmp.y, &(test_t.x), &(test_t.y) );
-	       test_t.x -= tmp.x;
-	       test_t.y -= tmp.y; //test_t holds the coordinates of normalized target -> bot vector
-
-	       float angles_to_try[8] = { 0, 45, -45, 90, -90, 135, -135, 180 };
-	       int a;
-	       for ( a = 0; a < 8; a ++ )
-		   {
-		   int target_reachable = FALSE;
-		   RotateVectorByAngle ( &test_t, angles_to_try[a] );
-
-		   if ( melee_weapon )
-		       target_reachable = DirectLineColldet( ThisRobot->virt_pos.x, ThisRobot->virt_pos.y, tpos->x, tpos->y, tpos->z, &WalkablePassFilter);
-		   else
-		       target_reachable = DirectLineColldet ( ThisRobot->virt_pos.x, ThisRobot->virt_pos.y, tpos->x, tpos->y, tpos->z, &FlyablePassFilter);
-
-		   freeway_context frw_ctx = { FALSE, { ThisRobot, NULL } };
-		   if ( target_reachable &&
-                        CheckIfWayIsFreeOfDroids( tmp.x, tmp.y, tmp.x + test_t.x, tmp.y + test_t.y, ThisRobot->pos.z, &frw_ctx ) 
-                      )
-		       break;
-		   }
-
-	        if ( a == 8 )
-		    { //no passability ? we rush into the target anyway
-		    new_move_target -> x = tmp.x;
-		    new_move_target -> y = tmp.y;
-		    }
-
-		new_move_target -> x = tmp.x + test_t.x;
-		new_move_target -> y = tmp.y + test_t.y;
-	    }
-
-	}
-    else
-	ThisRobot -> last_combat_step += Frame_Time ();
-   
-
-    //--------------------
-    // Melee weapons have a certain limited range.  If such a weapon is used,
-    // don't fire if the influencer is several squares away!
-    //
-    if ( ( ItemMap [ Druidmap [ ThisRobot -> type ] . weapon_item . type ] . item_weapon_is_melee ) && 
-	 ( dist2 > 2.25 ) ) return;
-    
-    if ( ThisRobot->firewait ) return;
-
-    /* Great suggestion of Sarayan : we do not care about friendly fire, and make bullets go through people of the same side. */
-    if ( target_visible )
-        RawStartEnemysShot( ThisRobot , tpos->x - ThisRobot->virt_pos.x, tpos->y - ThisRobot->virt_pos.y);
-
+	
+	//---------------
+	// Execute the bot's shoot
+	
+	/* Great suggestion of Sarayan : we do not care about friendly fire, and make bullets go through people of the same side. */
+	if ( shoot_target && !ThisRobot->firewait )
+		RawStartEnemysShot( ThisRobot , move_pos.x - ThisRobot->virt_pos.x, move_pos.y - ThisRobot->virt_pos.y);
+	
 }
 
 
@@ -1736,7 +1873,7 @@ static void state_machine_rush_tux_and_open_talk(enemy * ThisRobot, moderately_f
 
 static void state_machine_follow_tux(enemy * ThisRobot, moderately_finepoint * new_move_target)
 {
-    if ( ! ThisRobot->follow_tux )
+    if ( ! ThisRobot->follow_tux || Me.invisible_duration > 0 )
 	{
 	ThisRobot->combat_state = WAYPOINTLESS_WANDERING;
 	new_move_target -> x = ThisRobot->pos.x;
@@ -1744,11 +1881,16 @@ static void state_machine_follow_tux(enemy * ThisRobot, moderately_finepoint * n
 	return;
 	}
 
-    /* Move target */
-    if ( GetInfluPositionHistoryZ(50) == ThisRobot -> pos . z )
+    /* Move target - The friendly bot will follow Tux, but with a small delay */
+    
+    // Compute a FrameRate independent delay
+    int delay = 0.5 * 1.0/Frame_Time(); // Number of frame for a 0.5 seconds
+    delay <<= 1; // InfluPosition is only stored every two frames
+    
+    if ( GetInfluPositionHistoryZ(delay) == ThisRobot -> pos . z )
 	{
-	new_move_target -> x = GetInfluPositionHistoryX(50);
-	new_move_target -> y = GetInfluPositionHistoryY(50);
+	new_move_target -> x = GetInfluPositionHistoryX(delay);
+	new_move_target -> y = GetInfluPositionHistoryY(delay);
 	
 	moderately_finepoint ab = { ThisRobot -> pos . x - new_move_target -> x, ThisRobot -> pos . y - new_move_target -> y};
 	if ( fabsf(ab . x) < 1 && fabsf(ab . y) < 1 )
@@ -1803,7 +1945,6 @@ static void state_machine_waypointless_wandering(enemy * ThisRobot, moderately_f
 void
 update_enemy ( enemy * ThisRobot )
 {
-
     /* New structure :
      *
      * Inconditional updates:
@@ -1828,13 +1969,12 @@ update_enemy ( enemy * ThisRobot )
      *	  move (special case target = cur. position)
      *
      */
-    moderately_finepoint vect_to_target;
   
     /* Inconditional updates */
-    state_machine_inconditional_updates(ThisRobot, &vect_to_target); 
+    state_machine_inconditional_updates(ThisRobot); 
     
     /* Situational state changes */
-    state_machine_situational_transitions(ThisRobot, &vect_to_target);
+    state_machine_situational_transitions(ThisRobot);
 
     moderately_finepoint new_move_target;
     enemy_get_current_walk_target(ThisRobot, &new_move_target);
@@ -1842,6 +1982,12 @@ update_enemy ( enemy * ThisRobot )
     /* Handle per-state switches and actions.
      * Each state much set move_target and combat_state.
      */
+
+    // Default pathfinder execution context
+    // Can eventually be changed by a state_machine_xxxx function
+    freeway_context frw_ctx = { FALSE, { ThisRobot, NULL } };
+	pathfinder_context pf_ctx = { &WalkablePassFilter, &frw_ctx };
+    
     switch ( ThisRobot -> combat_state )
 	{
 	case STOP_AND_EYE_TARGET:
@@ -1849,7 +1995,7 @@ update_enemy ( enemy * ThisRobot )
 	    break;
 
 	case ATTACK:
-	    state_machine_attack ( ThisRobot, &new_move_target );
+	    state_machine_attack ( ThisRobot, &new_move_target, &pf_ctx );
 	    break;
 
 	case PARALYZED:
@@ -1880,7 +2026,6 @@ update_enemy ( enemy * ThisRobot )
 	    state_machine_move_along_random_waypoints ( ThisRobot, &new_move_target );
 	    break;
 
-
 	case RUSH_TUX_AND_OPEN_TALK:
 	    state_machine_rush_tux_and_open_talk ( ThisRobot, &new_move_target );
 	    break;
@@ -1908,35 +2053,38 @@ update_enemy ( enemy * ThisRobot )
     moderately_finepoint old_move_target;
     enemy_get_current_walk_target(ThisRobot, &old_move_target);
 
-    freeway_context fw_ctx = { FALSE, { ThisRobot, NULL } };
-    pathfinder_context pf_ctx = { &WalkablePassFilter, &fw_ctx };
-    
-    if (((new_move_target . x != old_move_target . x) || (new_move_target .y != old_move_target . y)))
-	{ /* If the current move target differs from the old one */
-	  /* This implies we do not re-pathfind every frame, which means we may bump into colleagues. 
-	   * This is handled in MoveThisEnemy()*/
-	    if ( set_up_intermediate_course_between_positions ( &ThisRobot->pos, &new_move_target, &wps[0], 40, &pf_ctx) && wps[5].x == -1)
-		{ /* If position was passable *and* streamline course uses max 4 waypoints */
-		memcpy ( &ThisRobot->PrivatePathway[0], &wps[0], 5 * sizeof(moderately_finepoint));
-		}
-	    else
-		{
-		ThisRobot->PrivatePathway[0].x = ThisRobot->pos.x;
-		ThisRobot->PrivatePathway[0].y = ThisRobot->pos.y;
-		ThisRobot->PrivatePathway[1].x = -1;
-		ThisRobot->PrivatePathway[1].y = -1;
-		if ( ThisRobot->pure_wait < 1 )
-		    ThisRobot->pure_wait = 1;
-		}
-
-	}
+    if ( (new_move_target.x == ThisRobot->pos.x) && (new_move_target.y == ThisRobot->pos.y) )
+    {   // If the bot stopped moving, create a void path
+    	ThisRobot->PrivatePathway[0].x = ThisRobot->pos.x;
+    	ThisRobot->PrivatePathway[0].y = ThisRobot->pos.y;
+    	ThisRobot->PrivatePathway[1].x = -1;
+    	ThisRobot->PrivatePathway[1].y = -1;    	
+    }
+    else if (((new_move_target . x != old_move_target . x) || (new_move_target .y != old_move_target . y)))
+    {   // If the current move target differs from the old one
+    	// This implies we do not re-pathfind every frame, which means we may bump into colleagues. 
+    	// This is handled in MoveThisEnemy()
+    	if ( set_up_intermediate_course_between_positions ( &ThisRobot->pos, &new_move_target, &wps[0], 40, &pf_ctx ) && wps[5].x == -1)
+    	{ /* If position was passable *and* streamline course uses max 4 waypoints */
+    		memcpy ( &ThisRobot->PrivatePathway[0], &wps[0], 5 * sizeof(moderately_finepoint));
+    	}
+    	else
+    	{
+    		ThisRobot->PrivatePathway[0].x = ThisRobot->pos.x;
+    		ThisRobot->PrivatePathway[0].y = ThisRobot->pos.y;
+    		ThisRobot->PrivatePathway[1].x = -1;
+    		ThisRobot->PrivatePathway[1].y = -1;
+    		if ( ThisRobot->pure_wait < WAIT_COLLISION )
+    			ThisRobot->pure_wait = WAIT_COLLISION;
+    	}
+    }
     
     if ( ThisRobot->PrivatePathway[0].x == -1)
-	{
-	/* This happens at the very beginning of the game. If it happens afterwards this is a ugly bug. */
-	ThisRobot -> PrivatePathway[0] . x = ThisRobot->pos.x;
-	ThisRobot -> PrivatePathway[0] . y = ThisRobot->pos.y;
-	}
+    {
+    	/* This happens at the very beginning of the game. If it happens afterwards this is a ugly bug. */
+    	ThisRobot -> PrivatePathway[0] . x = ThisRobot->pos.x;
+    	ThisRobot -> PrivatePathway[0] . y = ThisRobot->pos.y;
+    }
 
     MoveThisEnemy(ThisRobot);
 }; // void update_enemy()
@@ -2222,10 +2370,10 @@ ConsideredMoveIsFeasible ( Enemy ThisRobot , moderately_finepoint StepVector )
     if ( ( DirectLineColldet ( ThisRobot -> pos.x, ThisRobot -> pos.y, ThisRobot -> pos.x + StepVector.x ,
 			ThisRobot -> pos.y + StepVector.y ,
 			ThisRobot -> pos.z, NULL ) ) && 
-	 ( CheckIfWayIsFreeOfDroids ( ThisRobot->pos.x , ThisRobot->pos.y , 
-						     ThisRobot->pos.x + StepVector . x , 
-						     ThisRobot->pos.y + StepVector . y ,
-						     ThisRobot->pos.z , &frw_ctx ) )  )
+	     ( CheckIfWayIsFreeOfDroids ( ThisRobot->pos.x , ThisRobot->pos.y , 
+			ThisRobot->pos.x + StepVector . x , 
+			ThisRobot->pos.y + StepVector . y ,
+			ThisRobot->pos.z , &frw_ctx ) )  )
     {
 	return TRUE;
     }
@@ -2233,6 +2381,67 @@ ConsideredMoveIsFeasible ( Enemy ThisRobot , moderately_finepoint StepVector )
     return FALSE;
 
 }; // int ConsideredMoveIsFeasible ( Enemy ThisRobot , finepoint StepVector )
+
+/*
+ * This function will find a place near target_pos that is free of any bots.
+ * 
+ * During a melee, several bots will try to shoot a common enemy.
+ * We will "distribute" them around the enemy.
+ * 
+ * The approach is :
+ * - compute several positions around the target, by rotating a unit vector
+ * - halt as soon as one of those positions is free
+ */
+
+static void MoveToMeleeCombat( Enemy ThisRobot, gps* target_pos, moderately_finepoint* set_move_tgt )
+{
+	freeway_context frw_ctx = { ThisRobot->is_friendly, { ThisRobot->bot_target_addr, NULL } };
+	
+	// All computations are done in the target's level
+	gps bot_vpos;
+	update_virtual_position ( &bot_vpos, &ThisRobot->pos, target_pos->z);
+	
+	// Compute a unit vector from target to ThisRobot
+	moderately_finepoint vector_from_target = { bot_vpos.x, bot_vpos.y }; //
+	normalize_vect ( target_pos->x , target_pos->y, &(vector_from_target.x), &(vector_from_target.y) );
+	vector_from_target.x -= target_pos->x;
+	vector_from_target.y -= target_pos->y; // vector_from_target holds the coordinates of normalized target -> bot vector
+
+	// Fallback if there are no free positions -> Rush on Tux
+	gps final_pos = { target_pos->x + vector_from_target.x*MELEE_MIN_DIST, target_pos->y + vector_from_target.y*MELEE_MIN_DIST, target_pos->z }; 
+
+	// Rotate the unit vector
+	float angles_to_try[8] = { 0, 45, -45, 90, -90, 135, -135, 180 };
+	int a;
+	for ( a = 0; a < 8; ++a )
+	{
+		int target_reachable = FALSE;
+		moderately_finepoint checked_vector = { vector_from_target.x, vector_from_target.y };
+		RotateVectorByAngle ( &checked_vector, angles_to_try[a] );
+		moderately_finepoint checked_pos = { target_pos->x + checked_vector.x*MELEE_MIN_DIST, target_pos->y + checked_vector.y*MELEE_MIN_DIST }; 
+
+		// Lower quantization of checked_pos, to limit bot jittering around the target
+		checked_pos.x = floorf(checked_pos.x * 10.0) / 10.0;
+		checked_pos.y = floorf(checked_pos.y * 10.0) / 10.0;
+		
+		if ( CheckIfWayIsFreeOfDroids( target_pos->x, target_pos->y, checked_pos.x, checked_pos.y, target_pos->z, &frw_ctx ) )
+		{
+			// If the checked_pos is free, also check that the target is reachable
+			target_reachable = DirectLineColldet( checked_pos.x, checked_pos.y, target_pos->x, target_pos->y, target_pos->z, &WalkablePassFilter);
+			if ( target_reachable ) 
+			{   // The position has been found
+				final_pos.x = checked_pos.x;
+				final_pos.y = checked_pos.y;
+				break;
+			}
+		}
+	}
+
+	// Transform back into ThisRobot's reference level
+	update_virtual_position( &bot_vpos, &final_pos, ThisRobot->pos.z );
+	set_move_tgt->x = bot_vpos.x;
+	set_move_tgt->y = bot_vpos.y;
+}
 
 /**
  *
@@ -2313,7 +2522,29 @@ MoveAwayFromMeleeCombat ( Enemy ThisRobot , moderately_finepoint * set_move_tgt 
 }; // void MoveAwayFromMeleeCombat( Enemy ThisRobot , moderately_finepoint * set_move_tgt )
 
 /**
- * At some points it may be nescessary, that an enemy turns around to
+ * 
+ */
+static void ReachMeleeCombat( Enemy ThisRobot, gps* tpos, moderately_finepoint* new_move_target, pathfinder_context *pf_ctx )
+{
+	// Target not reachable -> roughly reach the target.
+	// The exact destination will be computed later.
+	new_move_target->x = tpos->x;
+	new_move_target->y = tpos->y;
+	
+	// If ThisRobot is a friend, we want him to move as far as possible,
+	// so we de-activate the bot-collision test during the pathfinder call.
+	// ( see the function's commnent of state_machine_attack() )
+	//
+	// Else, a classical pathfinder context is used. However, the final position
+	// is the target position, and so we have to add the target into the bot-collision
+	// exception's list.
+
+	if ( ThisRobot->is_friendly ) pf_ctx->frw_ctx = NULL;
+	else pf_ctx->frw_ctx->except_bots[1] = ThisRobot->bot_target_addr;
+}
+
+/**
+ * At some points it may be necessary, that an enemy turns around to
  * face the Tux.  This function does that, but only so much as can be
  * done in the current frame, i.e. NON-BLOCKING operation.
  *
@@ -2650,4 +2881,74 @@ BROWSE_ALIVE_BOTS(erot)
     }
 
 }
+
+/**
+ * This function checks if the enemy at 'target_pos' is a potential target for
+ * 'this_robot'.
+ * To be a potential target, the enemy has :
+ * 1) to be closer to this_robot than the current best target (defined by its
+ *    distance 'squared_best_dist')
+ * 2) to be visible
+ * 3) to be reachable (definition depends on the robot's weapon)
+ * 
+ * If the enemy is a potential target, 'squared_best_dist' is changed, and
+ * the function returns TRUE.
+ * 
+ * Note: All operations are executed in this_robot's level
+ * 
+ */
+static int is_potential_target( enemy* this_robot, gps* target_pos, float* squared_best_dist )
+{
+	// Get target's virtual position in term of this_robot's level
+	gps target_vpos;
+	update_virtual_position(&target_vpos, target_pos, this_robot->pos.z);
+	
+	// Potentially closer than current best dist ?
+	// We use the direct line distance as the distance to the target.
+	// The reason is : if two potential targets are seen through a window,
+	// we will attack the one that is visually the closest one (the bots are
+	// not omniscient and do not know the real length of the path to their targets)
+	float xdist = target_vpos.x - this_robot->pos.x;
+	float ydist = target_vpos.y - this_robot->pos.y;
+	float squared_target_dist = (xdist * xdist + ydist * ydist);
+
+	if ( squared_target_dist > *squared_best_dist )
+	{
+		return FALSE;
+	}
+	
+	// If the target is not visible, then it cannot be attacked
+	if ( !DirectLineColldet(this_robot->pos.x, this_robot->pos.y, 
+	                        target_vpos.x, target_vpos.y, 
+	                        this_robot->pos.z, &VisiblePassFilter) )
+	{
+		return FALSE;
+	}
+
+	// For a range weapon, check if the target can be directly shot
+	int melee_weapon = ItemMap[Druidmap[this_robot->type].weapon_item.type].item_weapon_is_melee;
+
+	if (!melee_weapon)
+	{
+		if ( DirectLineColldet(this_robot->pos.x, this_robot->pos.y, 
+		                       target_vpos.x, target_vpos.y, 
+		                       this_robot->pos.z, &FlyablePassFilter) )
+		{
+			*squared_best_dist = squared_target_dist;
+			return TRUE;
+		}
+	}
+
+	// Else (if melee_weapon or not shootable for a range_weapon), checks if a path exists to reach the target
+	moderately_finepoint mid_pos[40];
+	moderately_finepoint to_pos = { target_vpos.x, target_vpos.y };
+	pathfinder_context pf_ctx = { &WalkablePassFilter, NULL };
+	int path_found = set_up_intermediate_course_between_positions( &(this_robot->pos), &to_pos, mid_pos, 40, &pf_ctx) && (mid_pos[5].x == -1);
+	if (!path_found) return FALSE;
+
+	*squared_best_dist = squared_target_dist;
+	return TRUE;
+
+} // is_potential_target( enemy* this_robot, gps* target_pos, float* squared_best_dist )
+
 #undef _enemy_c

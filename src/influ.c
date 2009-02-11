@@ -542,8 +542,6 @@ tux_wants_to_attack_now ( int use_mouse_cursor_for_targeting )
 	    }
 	}
 
-
-
 }; // void tux_wants_to_attack_now ( ) 
 
 /**
@@ -1492,7 +1490,6 @@ move_tux ( )
 
     moderately_finepoint move_target;
 
-
     tux_get_move_target_and_attack(&move_target);
     
     if ( move_target . x != -1 )
@@ -1506,9 +1503,9 @@ move_tux ( )
 	    {
 		freeway_context frw_ctx = { FALSE, { NULL, NULL } };
 		pathfinder_context pf_ctx = { &WalkablePassFilter, &frw_ctx };
-	    set_up_intermediate_course_between_positions ( &Me.pos, &move_target, &Me.next_intermediate_point[0], MAX_INTERMEDIATE_WAYPOINTS_FOR_TUX, &pf_ctx ) ;
-	    last_given_course_target . x = move_target . x ;
-	    last_given_course_target . y = move_target . y ;
+		set_up_intermediate_course_between_positions ( &Me.pos, &move_target, &Me.next_intermediate_point[0], MAX_INTERMEDIATE_WAYPOINTS_FOR_TUX, &pf_ctx ) ;
+		last_given_course_target . x = move_target . x ;
+		last_given_course_target . y = move_target . y ;
 	    }
 	}
 
@@ -1805,7 +1802,6 @@ GetLivingDroidBelowMouseCursor ( )
     return ( NULL );
     
 }; // int GetLivingDroidBelowMouseCursor ( )
-
 
 /**
  * This function checks if there is some living droid below the current
@@ -2373,8 +2369,6 @@ PerformTuxAttackRaw ( int use_mouse_cursor_for_targeting )
     return 0;
 }; // void PerformTuxAttackRaw ( ) ;
 
-
-
 /**
  * Reload the ammo clip
  *
@@ -2446,8 +2440,6 @@ void TuxReloadWeapon()
     Me . busy_time *= RangedRechargeMultiplierTable [ Me . ranged_weapon_skill ] ;
     Me . busy_type = WEAPON_RELOAD;
 }
-
-
 
 /**
  * When the player has left-clicked into the game area (i.e. the isometric
@@ -2592,6 +2584,7 @@ void check_for_items_to_pickup ( int index_of_item_under_mouse_cursor )
 	    }
 	}
 }
+
 /**
  * When the player has left-clicked into the game area (i.e. the isometric
  * display of the game world), we need to check if maybe the click was
@@ -2969,7 +2962,6 @@ handle_player_examine_command ( void )
     append_new_game_message ( game_message_text );
     global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL;
 }; // void handle_player_examine_command ( ) 
-
 
 /**
  * If the user clicked his mouse, this might have several reasons.  It 

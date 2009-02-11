@@ -700,6 +700,8 @@ enum
 #define AGGRESSIONMAX  		100
 #define ROBOT_MAX_WAIT_BETWEEN_SHOTS 5  // how long shoud each droid wait at most until
                                         // is considers fireing again?
+#define ATTACK_MOVE_RATE 0.2 // Minimum number of seconds between to displacement computation
+                             // during attack
 
 //--------------------
 // Map- and levelrelated defines
@@ -950,17 +952,18 @@ enum _level_editor_directions
 
 enum _enemy_combat_state_machine_states
 {
-    MOVE_ALONG_RANDOM_WAYPOINTS, 
-    STOP_AND_EYE_TARGET,
-    ATTACK, 
-    PARALYZED,
-    COMPLETELY_FIXED,
-    FOLLOW_TUX,
-    RETURNING_HOME,
-    SELECT_NEW_WAYPOINT,
-    TURN_TOWARDS_NEXT_WAYPOINT,
-    RUSH_TUX_AND_OPEN_TALK,
-    WAYPOINTLESS_WANDERING,
+    MOVE_ALONG_RANDOM_WAYPOINTS = 0, 
+    STOP_AND_EYE_TARGET = 1,
+    ATTACK = 2, 
+    PARALYZED = 3,
+    COMPLETELY_FIXED = 4,
+    FOLLOW_TUX = 5,
+    RETURNING_HOME = 6,
+    SELECT_NEW_WAYPOINT = 7,
+    TURN_TOWARDS_NEXT_WAYPOINT = 8,
+    RUSH_TUX_AND_OPEN_TALK = 9,
+    WAYPOINTLESS_WANDERING = 10,
+    UNDEFINED_STATE = 100
 };
 enum _enemy_combat_target_codes
 {
@@ -1627,11 +1630,16 @@ enum
 };
 
 #define ITEM_TAKE_DIST (1.2)
-// Maximum distance for a melee fight
-#define MELEE_MAX_DIST (2.25)
+// Maximum and minimum distance for a melee fight
+#define SQUARED_MELEE_MAX_DIST (2.25)
+#define MELEE_MIN_DIST (1.0)
+#define SQUARED_MELEE_MIN_DIST (MELEE_MIN_DIST*MELEE_MIN_DIST)
+// Distance at which a bot with a melee weapon will start to find 
+// a free place around its target 
+#define SQUARED_MELEE_APPROACH_DIST (16.0)
 // Minimum distance to shoot with a range weapon
-#define RANGE_SHOOT_MIN_DIST (7)
-
+#define SQUARED_RANGE_SHOOT_MIN_DIST (7.0)
+  
 //-----
 // Pathfinder constants
 #define DEBUG_TUX_PATHFINDING 1  // debug level for tux pathfinding...
