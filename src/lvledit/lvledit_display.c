@@ -610,15 +610,12 @@ static void show_level_editor_tooltips ( void )
 void leveleditor_display() 
 {
     char linebuf[1000];
-    AssembleCombatPicture ( ONLY_SHOW_MAP_AND_TEXT | SHOW_GRID | SHOW_ITEMS | OMIT_TUX | GameConfig.omit_obstacles_in_level_editor * OMIT_OBSTACLES | GameConfig.omit_enemies_in_level_editor * OMIT_ENEMIES | SHOW_OBSTACLE_NAMES | ZOOM_OUT * GameConfig . zoom_is_on | OMIT_BLASTS | SKIP_LIGHT_RADIUS );
+    AssembleCombatPicture ( ONLY_SHOW_MAP_AND_TEXT | SHOW_GRID | SHOW_ITEMS | OMIT_TUX | GameConfig.omit_obstacles_in_level_editor * OMIT_OBSTACLES | GameConfig.omit_enemies_in_level_editor * OMIT_ENEMIES | SHOW_OBSTACLE_NAMES | ZOOM_OUT * GameConfig . zoom_is_on | OMIT_BLASTS | SKIP_LIGHT_RADIUS | NO_CURSOR );
 
     Highlight_Current_Block(ZOOM_OUT * GameConfig . zoom_is_on );
 
     ShowWaypoints( FALSE , ZOOM_OUT * GameConfig . zoom_is_on );
     ShowMapLabels( ZOOM_OUT * GameConfig . zoom_is_on );
-
-/*    if ( MouseRightPressed() )
-	blit_leveleditor_point ( cur_state -> c_origin . x, cur_state -> c_origin . y );*/
 
     SetCurrentFont ( FPS_Display_BFont ) ;
 

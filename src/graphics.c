@@ -241,8 +241,7 @@ make_sure_system_mouse_cursor_is_turned_on ( void )
  * mouse cursor instead.  That is good, because that we we can even use
  * many colors and maybe also some small animation in a controlled way.
  */
-void
-blit_our_own_mouse_cursor ( void )
+void blit_our_own_mouse_cursor ( void )
 {
     static int first_call = TRUE ;
     int i;
@@ -250,6 +249,7 @@ blit_our_own_mouse_cursor ( void )
     char constructed_filename[2000];
     char fpath[2048];
     int cursor_index = (-1) ;
+    point cursoff = { 0, 0 };
 
     //--------------------
     // On the first function call ever, we load the surfaces for the
@@ -257,7 +257,7 @@ blit_our_own_mouse_cursor ( void )
     //
     if ( first_call )
     {
-	for ( i = 0 ; i < 12 ; i ++ )
+	for ( i = 0 ; i < 10 ; i ++ )
 	{
 	    sprintf ( constructed_filename , "mouse_cursor_%04d.png" , i );
 	    find_file (constructed_filename , GRAPHICS_DIR, fpath, 0 );
@@ -299,9 +299,11 @@ Error loading flag image.",
 	case GLOBAL_INGAME_MODE_REPAIR:
 	    cursor_index = 6 ;
 	    break;
-	/*case GLOBAL_INGAME_MODE_FIRST_AID:
-	    cursor_index = 9 ;
-	    break;*/
+	case GLOBAL_INGAME_MODE_SELECT_TOOL:
+	    cursor_index = 9;
+	    cursoff.x = -32;
+	    cursoff.y = -16;
+	    break;
 	default:
 	    DebugPrintf ( -4 , "\n%s(): global_ingame_mode: %d." , __FUNCTION__ , 
 			  global_ingame_mode );
@@ -317,12 +319,12 @@ Error loading flag image.",
     if ( use_open_gl )
     {
 	draw_gl_textured_quad_at_screen_position ( &mouse_cursors [ cursor_index ] , 
-						  GetMousePos_x () , GetMousePos_y () );
+						  GetMousePos_x() + cursoff.x , GetMousePos_y() + cursoff.y);
     }
     else
     {
 	blit_iso_image_to_screen_position ( &mouse_cursors [ cursor_index ] , 
-					    GetMousePos_x () , GetMousePos_y () );
+					    GetMousePos_x() + cursoff.x , GetMousePos_y() + cursoff.y);
     }
 
 }; // void blit_our_own_mouse_cursor ( void )

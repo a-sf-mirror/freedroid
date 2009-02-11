@@ -1907,7 +1907,7 @@ AssembleCombatPicture ( int mask )
     
     clear_screen() ;
     
-    if ( mask & USE_OWN_MOUSE_CURSOR )
+    if ( mask & USE_OWN_MOUSE_CURSOR || mask & NO_CURSOR)
 	make_sure_system_mouse_cursor_is_turned_off();
     else
 	make_sure_system_mouse_cursor_is_turned_on();
@@ -2004,7 +2004,7 @@ AssembleCombatPicture ( int mask )
 	User_Rect.w = GameConfig . screen_width - User_Rect.x;
 	}
 
-    if ( mask & USE_OWN_MOUSE_CURSOR )
+    if ( mask & USE_OWN_MOUSE_CURSOR && ! (mask & NO_CURSOR) )
 	{
 	blit_our_own_mouse_cursor ();
 	blit_mouse_cursor_corona ();

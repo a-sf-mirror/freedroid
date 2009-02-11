@@ -311,6 +311,8 @@ void ItemDropFromLevelEditor( void )
     game_status = INSIDE_MENU;
     
     while ( MouseLeftPressed() ) SDL_Delay(1);
+
+    make_sure_system_mouse_cursor_is_turned_on ();
     
     while ( !SelectionDone )
     {
@@ -794,6 +796,8 @@ static void leveleditor_init()
     OriginWaypoint = (-1);
 
     leveleditor_init_widgets();
+
+    global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL;
 }
 
 static void leveleditor_cleanup()
@@ -801,6 +805,8 @@ static void leveleditor_cleanup()
     Activate_Conservative_Frame_Computation();
     action_freestack ( ) ;
     clear_selection(-1);
+    
+    global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL;
 }
 
 void TestMap ( void )  /* Keeps World map in a clean state */

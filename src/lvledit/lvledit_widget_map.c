@@ -44,7 +44,7 @@ moderately_finepoint mouse_mapcoord;
 
 static struct leveleditor_widget *tool_selection_menu;
 
-static void select_tool(void *t) 
+void select_tool(void *t) 
 {
     if (!active_tool)
 	selected_tool = t;
@@ -93,9 +93,11 @@ void leveleditor_map_mousepress(SDL_Event *event, struct leveleditor_widget *vm)
     if (!active_tool) {
 	active_tool = selected_tool;
 
-	if (CtrlPressed()) {
+	/* disable temporary-switching by CTRL because it conflicts with modifiers used in select tool
+	 if (CtrlPressed()) {
 	    active_tool = (selected_tool == &tool_place ? &tool_select : &tool_place);
 	}
+	*/
     }
 
     forward_event(event);
@@ -145,6 +147,11 @@ int leveleditor_map_keybevent(SDL_Event *event, struct leveleditor_widget *vm)
 
     // Tool selection menu via space
     if (EVENT_KEYPRESS(event, SDLK_SPACE) && !active_tool) {
+	// No active tool? Cycle the currently selected one.
+	//
+	selected_tool = (selected_tool == &tool_place ? &tool_select : &tool_place);
+
+	/* Disable the annoying menu.
 	// No active tool? Spawn a menu
 
 	if (!tool_selection_menu) { 
@@ -177,6 +184,7 @@ int leveleditor_map_keybevent(SDL_Event *event, struct leveleditor_widget *vm)
 	    //Disable the existing menu
 	    tool_selection_menu->enabled = 0;
 	}
+	*/
     }
 
     // Forward the key to the active tool
@@ -188,9 +196,18 @@ int leveleditor_map_keybevent(SDL_Event *event, struct leveleditor_widget *vm)
 void leveleditor_map_display(struct leveleditor_widget *vm)
 {
     (void)vm;
+    int oldmode = global_ingame_mode;
 
     if (active_tool)
 	active_tool->display();
+
+    if (selected_tool == &tool_select) {
+	global_ingame_mode = GLOBAL_INGAME_MODE_SELECT_TOOL;
+    }
+
+    blit_our_own_mouse_cursor();
+
+    global_ingame_mode = oldmode;
 }
 
 void leveleditor_update_tool()
