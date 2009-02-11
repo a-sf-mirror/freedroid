@@ -66,29 +66,64 @@ EveryTime LuaCode={
 
 Nr=1  Text=_"Yes, it would be most kind of you. I dont remember anything."
 LuaCode={
-	npc_says(_"As I understand it, you Linarians see the world in a way very similar to the Heads Up Displays used in our computer games of the past.  I'll use the term HUD to denote that in this explanation.")
-  npc_says(_"I'll start with your compass.  Linarians have a remarkable internal sense of direction, represented on your HUD by four arrows in the upper right corner. It's fairly simple, but it does show all four cardinal directions, and North is marked.  Going clockwise from North, you have East, South, and West.")
-  npc_says(_"I'll go ahead and mention the automap.  Rumor has it that there was once a world-wide mapping network that you as a Linarian could tap into.  Much of the bot activity has made it difficult or impossible to use, but there is supposed to be a man in town that provides a very similar ability through the use of nanotechnology.")
+	npc_says(_"What can I help you with?")
+  hide(1) show(2, 3, 4, 5)
+}
+----------------------------------------------------------------------
+
+Nr=2  Text=_"What can you tell me about finding my way in the world?"
+LuaCode={
+  npc_says(_"As I understand it, you Linarians see the world in a way very similar to the Heads Up Displays used in our computer games of the past.")
+  npc_says(_"I'll use the term HUD to denote that in this explanation.")
+  npc_says(_"I'll start with your compass.  Linarians have a remarkable internal sense of direction, represented on your HUD by four arrows in the upper right corner.")
+  npc_says(_"It's fairly simple, but it does show all four cardinal directions, and North is marked.  Going clockwise from North, you have East, South, and West.")
+  npc_says(_"I'll go ahead and mention the automap.  Rumor has it that there was once a world-wide mapping network that you as a Linarian could tap into.")
+  npc_says(_"Much of the bot activity has made it difficult or impossible to use.")
+  npc_says(_"That said, there is supposed to be a man in town that provides a very similar ability through the use of nanotechnology.")
   npc_says(_"Rumors abound, of course, and there may not be a bit of truth to it, but if there's any chance it may help you on your journey, it may be worth investigating.")
 	tux_says(_"I'll have to keep that in mind.")
-  npc_says(_"I suppose I should also help you out with movement. It's second nature to we humans, but our research with you Linarians before the Great Assault showed that your brains seem to work more like a computer.")
-  npc_says(_"To move somewhere, you first need to determine where you want to go, then motivate yourself to go there.  As I understand it, this is represented on your HUD by moving a pointer to a location in your view and left clicking, which I hope means more to you than it does to me.")
-  tux_says(_"I think I understand.")
-  npc_says(_"Going along with that, you do have the ability to run for a reasonable distance.  This distance is determined by your stamina; the more you have, the farther you can run without becoming winded.  To do so, use the Control key.")
-  tux_says(_"Key... That makes sense.")
-  npc_says(_"As a Linarian, you have some special abilities that no human does.  In specific, you seem to be able to translate programming source code into special, metaphysical abilities.")
-  npc_says(_"Using these abilities, called programs, seem to affect your body temperature, which you must regulate.  Using most programs increases your body temperature, although a special ability called Emergency Shutdown, you can cool your body significantly, at the cost of shutting down for several seconds.")
-  npc_says(_"Normally, you would have this ability as well as the ability to hack bots, but your mind is probably still recovering from the stasis.")
-  tux_says(_"That sounds familiar.")
-  npc_says(_"Something here about seeing things on the floor behind a wall.  I don't know what that's about.") 
-	hide(1) -- show(2, 3, 4)
-
---[[
-Explain some basics - N-S-E-W ; Hacking & cooldown programs removed ; automap
-move (point and click) run, stamina
-see things on floor, even if behind a wall (default x and z buttons)
---]]
+  hide (2)
 }
+----------------------------------------------------------------------
+
+Nr=3  Text=_"My limbs don't seem to want to work properly.  Can you help me with that?"
+LuaCode={
+  npc_says(_"Ah yes, movement. It's second nature to us humans, but our research with you in the past showed that your brain seems to work more like a computer.")
+  npc_says(_"To move somewhere, you first need to determine where you want to go, then motivate yourself to go there.")
+  npc_says(_"As I understand it, this is represented on your HUD by moving a pointer to a location in your view and left clicking.")
+  npc_says(_"I hope that means more to you than it does to me.")
+  tux_says(_"I think I understand.")
+  npc_says(_"Going along with that, you do have the ability to run for a reasonable distance.")
+  npc_says(_"This distance is determined by your stamina; the more you have, the farther you can run without becoming winded.  To do so, use the Control key.")
+  hide(3)
+}
+----------------------------------------------------------------------
+
+Nr=4  Text=_"What else makes me different as a Linarian?"
+LuaCode={
+  npc_says(_"As a Linarian, you have some special abilities that no human does.  In specific, you seem to be able to translate programming source code into something like magic.")
+  npc_says(_"Using these abilities, called programs, seems to affect your body temperature, which you must regulate.")
+  npc_says(_"Using most programs increases your body temperature.")
+  npc_says(_"However, using a special ability called Emergency Shutdown, you can cool your body significantly, at the cost of shutting down for several seconds.")
+  npc_says(_"Normally, you would have this ability as well as the ability to hack bots, but your mind is probably still recovering from the stasis.")
+  npc_says(_"We'll talk about programs in depth later on, but for now you can access the Skills menu by pressing S.")
+  hide(4)
+}
+----------------------------------------------------------------------
+
+Nr=5  Text=_"I'm sensing some sort of strange presence in the vicinity."
+LuaCode={
+  npc_says(_"Ah, yes.  Linarians seem to have some sort of affinity for the detection of items.")
+  npc_says(_"Like any sighted being, you can detect items by looking at them as they enter your field of view.")
+  npc_says(_"Pressing the Z key will turn on labels for all items on the ground. Pressing it a second time will turn the labels off.")
+  npc_says(_"If you just want to look for a moment, you can press and hold the X key to do the same thing.")
+  npc_says(_"Unlike people, you can even examine items from behind a wall using this technique.")
+  npc_says(_"Moving your mouse over an item will tell you more about that item.")
+  npc_says(_"On our way to the next stopping point, we'll pass some items on the floor.")
+  npc_says(_"Feel free to stop and examine them to get practice. You can also pick them up, and view the inventory by pressing I.")
+	hide(5)
+}
+
 ----------------------------------------------------------------------
 
 Nr=9  Text=_"No, thanks, I still remember how to walk, run and pick up things and which way is north."
@@ -99,15 +134,101 @@ LuaCode={
     change_obstacle("TutorialZigzag3", "opened")
     change_obstacle("TutorialZigzag4", "opened")
 	change_obstacle("TutorialZigzagOut", "opened")
-	hide(9) show(10)
+	hide(1, 2, 3, 4, 5, 9) show(10)
 	end_dialog()
 }
 ----------------------------------------------------------------------
 
 Nr=10  Text=_"What is in those chests?"
 LuaCode={
-	npc_says(_"Well open them up and find out by simply clicking on each one of them with the left mouse button.")
-	hide(10) show(11, 19)
+	npc_says(_"Well, open them up and find out by simply clicking on each one of them with the left mouse button.")
+  npc_says(_"I'll tell you more after you've done it.")
+  hide(10) show(11, 19)
+  end_dialog()
+}
+----------------------------------------------------------------------
+
+Nr=11  Text=_"Some items came out."
+LuaCode={
+  npc_says(_"Well, you've discovered a great secret: chests sometimes contain items.")
+  npc_says(_"We humans have a fascination with hiding our treasures.  What comprises a treasure means different things to different people.")
+  npc_says(_"For some, it's cyberbucks.  That's the current monetary standard on our world.")
+  npc_says(_"For others, it may be weapons, or even just items that may be used as weapons in a pinch.")
+  npc_says(_"Still others, odd as it may sound, keep dishes hidden away.")
+  npc_says(_"Perhaps the best thing you can find, though, is armor.  At least, given the current situation with the bots, that is.")
+  hide(11) show(12, 13)
+}
+----------------------------------------------------------------------
+
+Nr=12  Text=_"Armor?  I should know more about this."
+LuaCode={
+  npc_says(_"In the years since you entered stasis, mankind has done much research in the field of robotics.")
+  npc_says(_"One branch in particular that has served us well is the realm of nanotechnology.")
+  npc_says(_"Because they run a very simple operating system, nanobots were not affected by whatever caused the Great Assault.")
+  npc_says(_"To this day, our armor and clothing are made out of nanobots.  This enables many different sizes of people to wear the same clothing.")
+  npc_says(_"The nanobots reshape the garment for a comfortable fit, so even you should be able to wear them without problem.")
+  hide(12) show (14)
+}
+----------------------------------------------------------------------
+
+Nr=13  Text=_"How does wearing clothes and holding shields help me?"
+LuaCode={
+  npc_says(_"Well, it can help you avoid indecent exposure charges.")
+  tux_says(_"...")
+  npc_says(_"But all jokes aside, the bots will not mess around.")
+  npc_says(_"Even the best of fighters sometimes get hit by enemy blows. If I were you, I would seriously consider wearing some sort of armor before mixing it up with those bots.")
+  npc_says(_"They will help to mitigate some of the damage you take from melee or ranged combat.")
+  npc_says(_"Keep in mind, though, that there is a chance that your armor will take damage whenever you get hit.  Keep an eye on it, or you'll lose it.")
+  hide(13) show(15)
+}
+----------------------------------------------------------------------
+
+Nr=14  Text=_"That sounds useful.  How do I use armor?"
+LuaCode={
+  npc_says(_"Well, let me start by saying that there are four classes of armor: headgear, shoes, body armor, and shields.")
+  npc_says(_"When you pick up a piece of armor of a particular class, and you don't already have one equipped, you will automatically equip it if you can.")
+  npc_says(_"Picking up armor and other items can be accomplished by left clicking on the item on the ground. If you have enough room in your inventory, you will pick the item up.")
+  npc_says(_"If you currently have one piece of armor equipped that you would like to swap out for another, simple drag the new armor piece to the current armor piece.")
+  npc_says(_"They will swap places, and you can put the other piece of armor back into your inventory.")
+  npc_says(_"Alternatively, you can drag it into your field of view and drop it on the ground.")
+  hide(14) show(16)
+}
+----------------------------------------------------------------------
+
+Nr=15  Text=_"I wouldn't want to lose any armor. What can I do about that?"
+LuaCode={
+  npc_says(_"Well, there are several ways to keep that from happening.")
+  npc_says(_"First, any equipped item in poor condition will show up yellow on your HUD. If the item reaches critical condition, it will be red.")
+  npc_says(_"If you don't unequip the item then, you run the risk of it becoming ruined.")
+  npc_says(_"There are three things you can do when an item reaches critical condition.")
+  npc_says(_"The first is to sell or discard the item.")
+  npc_says(_"A better choice would be to use your repair skill on the item. This allows you to repair the item, at the cost of losing a percentage of it's maximum useful life.")
+  npc_says(_"Most of the time, though, your best choice will be to pay to have the item repaired at a shop.  This maintains the useful life of the item.")
+  hide(15) show(17)
+}
+----------------------------------------------------------------------
+
+Nr=16  Text=_"You mentioned discarding an item.  Why would I want to do that?"
+LuaCode={
+  npc_says(_"Well, I can think of a few reasons.")
+  npc_says(_"The most obvious would be not having enough room in your inventory. If you need a different item more, then you shouldn't be afraid to drop a less valuable item.")
+  npc_says(_"If an item is close to being destroyed, you might also consider dropping it.")
+  npc_says(_"You may also encounter items that give negative status effects.  Certain pieces of armor or weapons may affect you in different ways.")
+  npc_says(_"Some will help you out, for example by increasing your cooling rate or increasing your dexterity. This is the work of specialized nanobots.")
+  npc_says(_"Some items, on the other hand, may affect you negatively.  They may decrease your strength or cause you to heat up.")
+  npc_says(_"Because they are undesirable, these cannot be sold, and so must either be used or discarded.  Discarding is usually the preferred choice.")
+  hide(16)
+}
+----------------------------------------------------------------------
+
+Nr=17  Text=_"Repair skill?  How do I use that?"
+LuaCode={
+  npc_says(_"Perhaps I should start by explaining skills. You already know about programs, and that they can be accessed through your HUD.")
+  npc_says(_"Programs are a type of skill, along with repairing and firing your weapon. Skills can be used in a couple of different ways")
+  npc_says(_"To use a skill, select it through your HUD. Then, apply the skill by right clicking.  This can be used on an enemy, an item, or just the world depending on the skill.")
+  npc_says(_"If you're curious what a skill does, you can find out by clicking the question mark in the Skills menu.")
+  npc_says(_"Now, to answer your question, you use your repair skill by selecting it in the Skills menu, then right clicking on the item you wish to repair.")
+  hide(17)
 }
 ----------------------------------------------------------------------
 
@@ -183,10 +304,12 @@ LuaCode={
 
 This Lua block comment explains how the tutorial is ment to "work".
 
+IMPLEMENTED -- JK
 First tux enters and get rushed by TutorialTom
 That part is half implemented and comments are in the relevant section
 
 ***
+IMPLEMENTED -- JK
 After that we move to next room (or hallway rather)
 discuss chests & armour-items
 how to equip etc, how to see when things are starting to fall apart
