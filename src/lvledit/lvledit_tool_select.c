@@ -208,7 +208,7 @@ static void do_rect_select()
 	// Undo previous rectangle
 	clear_selection(state.rect_nbelem_selected);
 	state.rect_nbelem_selected = 0;
-    
+
 	if (state.rect_start.x < 0)
 	    state.rect_start.x = 0;
 	else if (state.rect_start.x >= EditLevel()->xlen -1)
@@ -238,8 +238,10 @@ static void do_rect_select()
 		int idx;
 		for (a = 0; a < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE && EditLevel()->map[j][i].obstacles_glued_to_here[a] != -1; a++) {
 		    idx = EditLevel()->map[j][i].obstacles_glued_to_here[a];
-		    add_obstacle_to_list(&selected_elements, &EditLevel()->obstacle_list[idx]);
-		    state.rect_nbelem_selected++;
+		    if (!element_in_selection(&EditLevel()->obstacle_list[idx])) {
+			add_obstacle_to_list(&selected_elements, &EditLevel()->obstacle_list[idx]);
+			state.rect_nbelem_selected++;
+		    }
 		}
 	    }
 	}
