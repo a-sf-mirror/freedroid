@@ -247,7 +247,7 @@ LuaCode={
 	end_quest("The yellow toolkit")
 	open_diary_entry("The yellow toolkit", 4)
 	del_item("Dixon's Toolbox", 1)
-	hide(34)
+	hide(34, 35, 36)
 }
 ----------------------------------------------------------------------
 
@@ -263,7 +263,7 @@ LuaCode={
 	del_item("Dixon's Toolbox", 1)
 	open_diary_entry("The yellow toolkit", 5)
 	add_item("Dixon's helmet",1)
-	hide(35, 36)
+	hide(34, 35, 36)
 }
 ----------------------------------------------------------------------
 
@@ -272,7 +272,7 @@ LuaCode={
 	npc_says(_"WHAT!? ", "NO_WAIT")
 	npc_says(_"You got to be kidding me, Linarian.", "NO_WAIT")
 	npc_says(_"Give me the toolkit and stop fooling around.")
-	hide(36) show(37)
+	hide(34, 35, 36) show(37)
 }
 ----------------------------------------------------------------------
 
