@@ -90,7 +90,7 @@ static int do_waypoint_route(int rspawn)
 	state.nbactions ++;
     } 
    
-    if (state.startwp != -1) {
+    if (state.startwp != -1 && wpnum != state.startwp) {
 	// Connect to the previous waypoint
 	if (action_toggle_waypoint_connection(EditLevel(), state.startwp, wpnum, 0) == 1)
 	    state.nbactions++;
