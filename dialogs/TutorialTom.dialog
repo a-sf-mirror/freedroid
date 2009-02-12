@@ -67,7 +67,7 @@ EveryTime LuaCode={
 Nr=1  Text=_"Yes, it would be most kind of you. I dont remember anything."
 LuaCode={
 	npc_says(_"What can I help you with?")
-  hide(1) show(2, 3, 4, 5)
+  hide(1, 9) show(2, 3, 4, 5, 8)
 }
 ----------------------------------------------------------------------
 
@@ -86,7 +86,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=3  Text=_"My limbs don't seem to want to work properly.  Can you help me with that?"
+Nr=3  Text=_"My limbs don't seem to want to work properly. Can you help me with that?"
 LuaCode={
   npc_says(_"Ah yes, movement. It's second nature to us humans, but our research with you in the past showed that your brain seems to work more like a computer.")
   npc_says(_"To move somewhere, you first need to determine where you want to go, then motivate yourself to go there.")
@@ -94,14 +94,14 @@ LuaCode={
   npc_says(_"I hope that means more to you than it does to me.")
   tux_says(_"I think I understand.")
   npc_says(_"Going along with that, you do have the ability to run for a reasonable distance.")
-  npc_says(_"This distance is determined by your stamina; the more you have, the farther you can run without becoming winded.  To do so, use the Control key.")
+  npc_says(_"This distance is determined by your stamina; the more you have, the farther you can run without becoming winded. To do so, use the Control key.")
   hide(3)
 }
 ----------------------------------------------------------------------
 
 Nr=4  Text=_"What else makes me different as a Linarian?"
 LuaCode={
-  npc_says(_"As a Linarian, you have some special abilities that no human does.  In specific, you seem to be able to translate programming source code into something like magic.")
+  npc_says(_"As a Linarian, you have some special abilities that no human does. In specific, you seem to be able to translate programming source code into something like magic.")
   npc_says(_"Using these abilities, called programs, seems to affect your body temperature, which you must regulate.")
   npc_says(_"Using most programs increases your body temperature.")
   npc_says(_"However, using a special ability called Emergency Shutdown, you can cool your body significantly, at the cost of shutting down for several seconds.")
@@ -124,6 +124,19 @@ LuaCode={
 	hide(5)
 }
 
+----------------------------------------------------------------------
+
+Nr=8  Text=_"Thank you, that was very informative. Can we move on now?"
+LuaCode={
+  npc_says(_"Ok, follow me into the next area then.")
+    change_obstacle("TutorialZigzag1", "opened")
+    change_obstacle("TutorialZigzag2", "opened")
+    change_obstacle("TutorialZigzag3", "opened")
+    change_obstacle("TutorialZigzag4", "opened")
+	change_obstacle("TutorialZigzagOut", "opened")
+	hide(1, 2, 3, 4, 5, 8) show(10)
+	end_dialog()
+}
 ----------------------------------------------------------------------
 
 Nr=9  Text=_"No, thanks, I still remember how to walk, run and pick up things and which way is north."
@@ -151,11 +164,11 @@ LuaCode={
 Nr=11  Text=_"Some items came out."
 LuaCode={
   npc_says(_"Well, you've discovered a great secret: chests sometimes contain items.")
-  npc_says(_"We humans have a fascination with hiding our treasures.  What comprises a treasure means different things to different people.")
-  npc_says(_"For some, it's cyberbucks.  That's the current monetary standard on our world.")
+  npc_says(_"We humans have a fascination with hiding our treasures. What comprises a treasure means different things to different people.")
+  npc_says(_"For some, it's cyberbucks. That's the current monetary standard on our world.")
   npc_says(_"For others, it may be weapons, or even just items that may be used as weapons in a pinch.")
   npc_says(_"Still others, odd as it may sound, keep dishes hidden away.")
-  npc_says(_"Perhaps the best thing you can find, though, is armor.  At least, given the current situation with the bots, that is.")
+  npc_says(_"Perhaps the best thing you can find, though, is armor. At least, given the current situation with the bots, that is.")
   hide(11) show(12, 13)
 }
 ----------------------------------------------------------------------
@@ -165,7 +178,7 @@ LuaCode={
   npc_says(_"In the years since you entered stasis, mankind has done much research in the field of robotics.")
   npc_says(_"One branch in particular that has served us well is the realm of nanotechnology.")
   npc_says(_"Because they run a very simple operating system, nanobots were not affected by whatever caused the Great Assault.")
-  npc_says(_"To this day, our armor and clothing are made out of nanobots.  This enables many different sizes of people to wear the same clothing.")
+  npc_says(_"To this day, our armor and clothing are made out of nanobots. This enables many different sizes of people to wear the same clothing.")
   npc_says(_"The nanobots reshape the garment for a comfortable fit, so even you should be able to wear them without problem.")
   hide(12) show (14)
 }
@@ -178,17 +191,17 @@ LuaCode={
   npc_says(_"But all jokes aside, the bots will not mess around.")
   npc_says(_"Even the best of fighters sometimes get hit by enemy blows. If I were you, I would seriously consider wearing some sort of armor before mixing it up with those bots.")
   npc_says(_"They will help to mitigate some of the damage you take from melee or ranged combat.")
-  npc_says(_"Keep in mind, though, that there is a chance that your armor will take damage whenever you get hit.  Keep an eye on it, or you'll lose it.")
+  npc_says(_"Keep in mind, though, that there is a chance that your armor will take damage whenever you get hit. Keep an eye on it, or you'll lose it.")
   hide(13) show(15)
 }
 ----------------------------------------------------------------------
 
-Nr=14  Text=_"That sounds useful.  How do I use armor?"
+Nr=14  Text=_"That sounds useful. How do I use armor?"
 LuaCode={
   npc_says(_"Well, let me start by saying that there are four classes of armor: headgear, shoes, body armor, and shields.")
   npc_says(_"When you pick up a piece of armor of a particular class, and you don't already have one equipped, you will automatically equip it if you can.")
   npc_says(_"Picking up armor and other items can be accomplished by left clicking on the item on the ground. If you have enough room in your inventory, you will pick the item up.")
-  npc_says(_"If you currently have one piece of armor equipped that you would like to swap out for another, simple drag the new armor piece to the current armor piece.")
+  npc_says(_"If you currently have one piece of armor equipped that you would like to swap out for another, simply drag the new armor piece to the current armor piece.")
   npc_says(_"They will swap places, and you can put the other piece of armor back into your inventory.")
   npc_says(_"Alternatively, you can drag it into your field of view and drop it on the ground.")
   hide(14) show(16)
@@ -202,30 +215,30 @@ LuaCode={
   npc_says(_"If you don't unequip the item then, you run the risk of it becoming ruined.")
   npc_says(_"There are three things you can do when an item reaches critical condition.")
   npc_says(_"The first is to sell or discard the item.")
-  npc_says(_"A better choice would be to use your repair skill on the item. This allows you to repair the item, at the cost of losing a percentage of it's maximum useful life.")
-  npc_says(_"Most of the time, though, your best choice will be to pay to have the item repaired at a shop.  This maintains the useful life of the item.")
+  npc_says(_"A better choice would be to use your repair skill on the item. This allows you to repair the item, at the cost of losing a percentage of its maximum useful life.")
+  npc_says(_"Most of the time, though, your best choice will be to pay to have the item repaired at a shop. This maintains the useful life of the item.")
   hide(15) show(17)
 }
 ----------------------------------------------------------------------
 
-Nr=16  Text=_"You mentioned discarding an item.  Why would I want to do that?"
+Nr=16  Text=_"You mentioned discarding an item. Why would I want to do that?"
 LuaCode={
   npc_says(_"Well, I can think of a few reasons.")
   npc_says(_"The most obvious would be not having enough room in your inventory. If you need a different item more, then you shouldn't be afraid to drop a less valuable item.")
   npc_says(_"If an item is close to being destroyed, you might also consider dropping it.")
-  npc_says(_"You may also encounter items that give negative status effects.  Certain pieces of armor or weapons may affect you in different ways.")
+  npc_says(_"You may also encounter items that give negative status effects. Certain pieces of armor or weapons may affect you in different ways.")
   npc_says(_"Some will help you out, for example by increasing your cooling rate or increasing your dexterity. This is the work of specialized nanobots.")
-  npc_says(_"Some items, on the other hand, may affect you negatively.  They may decrease your strength or cause you to heat up.")
-  npc_says(_"Because they are undesirable, these cannot be sold, and so must either be used or discarded.  Discarding is usually the preferred choice.")
+  npc_says(_"Some items, on the other hand, may affect you negatively. They may decrease your strength or cause you to heat up.")
+  npc_says(_"Because they are undesirable, these cannot be sold, and so must either be used or discarded. Discarding is usually the preferred choice.")
   hide(16)
 }
 ----------------------------------------------------------------------
 
-Nr=17  Text=_"Repair skill?  How do I use that?"
+Nr=17  Text=_"Repair skill? How do I use that?"
 LuaCode={
   npc_says(_"Perhaps I should start by explaining skills. You already know about programs, and that they can be accessed through your HUD.")
   npc_says(_"Programs are a type of skill, along with repairing and firing your weapon. Skills can be used in a couple of different ways")
-  npc_says(_"To use a skill, select it through your HUD. Then, apply the skill by right clicking.  This can be used on an enemy, an item, or just the world depending on the skill.")
+  npc_says(_"To use a skill, select it through your HUD. Then, apply the skill by right clicking. This can be used on an enemy, an item, or just the world depending on the skill.")
   npc_says(_"If you're curious what a skill does, you can find out by clicking the question mark in the Skills menu.")
   npc_says(_"Now, to answer your question, you use your repair skill by selecting it in the Skills menu, then right clicking on the item you wish to repair.")
   hide(17)
@@ -235,14 +248,150 @@ LuaCode={
 Nr=19  Text=_"I think I'm ready for the next section of the tutorial."
 LuaCode={
 	npc_says(_"Ok, I'll open the next door then. But prepare yourself, soon you will learn how to fight against bots in hand to hand combat.")
-	hide(10) show(11, 19)
+	hide(10, 11, 19) show(20)
+  improve_program("Repair equipment")
+  change_obstacle("TutorialEquipOut", "opened")
+  end_dialog()
 }
 ----------------------------------------------------------------------
 
-Nr=20  Text=_"Currently placeholder? Node 20"
+Nr=20  Text=_"Can you tell me how to fight the bots?"
 LuaCode={
-	npc_says(_"Scanning Result:", "NO_WAIT")
-	hide(20)
+	npc_says(_"I will certainly try my best.")
+  npc_says(_"We prefer to fight the damn droids at a distance. They're less likely to rend us limb from limb that way.")
+  npc_says(_"Unfortunately, guns and other ranged weaponry are hard to come by these days.")
+  npc_says(_"That goes double for ammunition. Because these are bots, you really can't effectively cause damage with an empty weapon.")
+  npc_says(_"With that in mind, your most reliable weapons are your fists. They never run out of ammo or wear down.")
+  npc_says(_"It's odd to think that a flightless bird would be such a scrapper, but you Linarians have been surprising us since the beginning.")
+    hide(20) show (21, 23)
+}
+---------------------------------------------------------------------
+
+Nr=21  Text=_"So I'm supposed to fight bots with my fists?"
+LuaCode={
+  npc_says(_"There may be times when you have no choice.")
+  npc_says(_"Melee combat, armed or unarmed, can be initiated by left clicking on an enemy.")
+  npc_says(_"You will then walk over to the enemy and start hitting them.")
+  npc_says(_"Now, I understand you may have some concerns over your safety during this...")
+  tux_says(_"CONCERNS? Erm... Yes, this doesn't sound like a particularly healthy endeavour.")
+  npc_says(_"Fred, if you're afraid, you'll have to overlook it. Besides, you knew the job was dangerous when you took it.")
+  tux_says(_"I beg your pardon? Who is Fred?")
+  npc_says(_"Nevermind, just an old song.")
+  npc_says(_"Fighting the bots hand-to-hand has risks, there is no question. However, there are things you can do to even the odds.")
+  npc_says(_"We already discussed armor. Another useful type of item is medical supplies.")
+  npc_says(_"There are a few different types of restorative items. The most common are health drinks.")
+  hide(21) show(22)
+}
+----------------------------------------------------------------------
+
+Nr=22  Text=_"Tell me about health drinks.")
+LuaCode={
+  npc_says(_"Man has practiced medicine in one form or another for hundreds of years.")
+  npc_says(_"Using some of the same nanotechnology that makes up your armor, we've perfected drinks that instantaneously restore your health.")
+  npc_says(_"There are many kinds, but all accomplish the same thing, to varying degrees.")
+  npc_says(_"Certain items, like health drinks, can be used directly without clicking on them.")
+  npc_says(_"At the bottom of your HUD, you'll notice your item access belt. Small items can go here and be used by pressing the numbers 0 through 9.")
+  npc_says(_"Unlike armor or weapons, multiple of these items will group together in your inventory slots.")
+  npc_says(_"If you have Diet Supplements equipped in item slot 1, you can press 1 to use one.")
+  npc_says(_"This will restore your health, and will be invaluable in the heat of battle.")
+  hide(22)
+}
+----------------------------------------------------------------------
+
+Nr=23  Text=_"I'm ready to fight my first bot."
+LuaCode={
+  npc_says(_"We keep two bots captive for melee practice.")
+  npc_says(_"I've unlocked the door leading to the first bot. Take care of it, then come back and talk to me.")
+  npc_says(_"I'm also giving you some health drinks. Feel free to use them, though I can heal you if you need it.")
+  npc_says(_"Your health will also regenerate over time. I wish it were so easy for us humans.")
+  npc_says(_"The first bot is carrying a wrench. Bring it to me to prove you've beaten it.")
+  npc_says(_"Come back and talk to me when you have the wrench.")
+  change_obstacle("TutorialMelee1", "opened")
+  add_item("Doc-in-a-can", 3)
+  hide(23) show(24, 25)
+  end_dialog()
+}
+----------------------------------------------------------------------
+
+Nr=24  Text=_"Can you heal me?"
+LuaCode={
+  npc_says(_"You should be more careful, Linarian. But yes, I can heal you.")
+  npc_says(_"There, all better.")
+  heal_tux()
+}
+----------------------------------------------------------------------
+
+Nr=25  Text=_"I've beaten the first bot."
+LuaCode={
+  if (has_item("Big wrench") > 0) then
+    npc_says(_"So you have. Well done.")
+    hide(25) show(26)
+  else
+    npc_says(_"Trying to cheat your way through the tutorial doesn't bode well for your chances in the real world.")
+    npc_says(_"I'll need proof that you've beaten the first bot.")
+    npc_says(_"Don't come back without the wrench it was carrying.")
+    end_dialog()
+  end
+}
+----------------------------------------------------------------------
+
+Nr=26  Text=_"You mentioned another bot?"
+LuaCode={
+  npc_says(_"That's correct. The second bot is a lot more dangerous, and you're not likely to make much headway against it with your fists.")
+  npc_says(_"Lucky for you, there's another dimension to melee combat.")
+  npc_says(_"Fighting bots with your fists is fine, but there are a number of items you can use for melee.")
+  npc_says(_"There are several traditional weapons in the world such as swords or light sabers that can be used against the bots.")
+  npc_says(_"However, more common items you encounter everyday can often be used to bash or pry at droid armor.")
+  npc_says(_"For example, that wrench you picked up from the last bot will increase the damage you do, and should let you best the next bot.")
+  hide(26) show(27)
+}
+----------------------------------------------------------------------
+
+Nr=27  Text=_"I'm ready to take the next bot on."
+LuaCode={
+  npc_says(_"I certainly hope so. I will heal you before you go to the next room.")
+  npc_says(_"I'm also giving you another healing drink, just in case.")
+  npc_says(_"A 247 is nothing to trifle with, so I'm giving you a shield in the hopes that it'll help keep you alive.")
+  npc_says(_"Finally, I'm giving you couple of somewhat experimental pills that will temporarily increase your strength and dexterity, respectively.")
+  npc_says(_"Use them in the same way you would use a health drink.")
+  npc_says(_"If I were you, I would think about using your repair skill on your armor and that wrench before you go into the room.")
+  npc_says(_"Like the last bot, this one will be carrying a weapon. Bring me the .22 Automatic it is carrying to continue.")
+  npc_says(_"I've unlocked the door. Good luck, and talk to me when you have the pistol.")
+  change_obstacle("TutorialMelee2", "opened")
+  heal_tux()
+  add_item("Doc-in-a-can", 1)
+  add_item("Strength Capsule", 1)
+  add_item("Dexterity Capsule", 2)
+  add_item("Medium Shield", 1)
+  hide(27) show(28)
+}
+----------------------------------------------------------------------
+
+Nr=28  Text=_"I've beaten the second bot."
+LuaCode={
+  if (has_item(".22 Automatic") > 0) then
+    npc_says("Very good! You've completed your melee training.")
+    npc_says("These skills will serve you well in the future.")
+    npc_says("Talk to me when you're ready to move on to the next part of the tutorial.")
+    hide(28) show(29)
+    heal_tux()
+  else
+    npc_says("You didn't bring back the .22 Automatic. You'll need to bring it back before we can continue.")
+    npc_says("I'll go ahead and heal you. If your weapon or armor are in bad shape, perhaps you should repair them before going back in there.")
+    npc_says("Don't come back without the .22 Automatic.")
+    heal_tux()
+  end
+}
+----------------------------------------------------------------------
+
+Nr=29  Text=_"I'm ready to move on.")
+LuaCode={
+  npc_says(_"I'll bet you're itching to try that pistol out on some bots.")
+  npc_says(_"Our next destination is the ranged combat training area, so you're in luck.")
+  npc_says(_"I'll unlock the door to the south. Follow the corridor east to the shooting range.")
+  change_obstacle("TutorialMeleeOut", "opened")
+  hide(24, 29) show(30)
+  end_dialog()
 }
 ----------------------------------------------------------------------
 
@@ -321,7 +470,7 @@ this means explaining how skills work (select them, read the help texts etc)
 "Even the best of fighters sometimes gets hit by the enemies blows. I would wear those before getting into a a hand to hand fight with those bots if I were you. However, every time you get hit, there is a chance what you wear and use for protection will get slightly damaged."
 
 ***
-
+IMPLEMENTED -- JK
 When user think he is ready, we move on to melee rooms
 
 explain, fighting melee ; fight first bot with fists or give melee weapon? ; 
