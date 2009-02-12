@@ -193,9 +193,8 @@ int leveleditor_map_keybevent(SDL_Event *event, struct leveleditor_widget *vm)
     return 0;
 }
 
-void leveleditor_map_display(struct leveleditor_widget *vm)
+void leveleditor_map_display_cursor()
 {
-    (void)vm;
     int oldmode = global_ingame_mode;
 
     if (active_tool)
@@ -208,6 +207,11 @@ void leveleditor_map_display(struct leveleditor_widget *vm)
     blit_our_own_mouse_cursor();
 
     global_ingame_mode = oldmode;
+}
+    
+void leveleditor_map_display(struct leveleditor_widget *vm)
+{
+    (void)vm;
 }
 
 void leveleditor_update_tool()

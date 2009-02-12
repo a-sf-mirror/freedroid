@@ -607,6 +607,22 @@ static void show_level_editor_tooltips ( void )
     
 }; // void show_level_editor_tooltips ( void )
 
+/**
+ * Display the cursor in the leveleditor according to the currently
+ * selected tool etc.
+ */
+static void display_cursor()
+{
+    struct leveleditor_widget *w;
+    w = get_active_widget(GetMousePos_x(), GetMousePos_y());
+
+    if (w) {
+	if (w->type != WIDGET_MAP)
+	    blit_our_own_mouse_cursor();
+	else leveleditor_map_display_cursor();
+    }
+}
+
 void leveleditor_display() 
 {
     char linebuf[1000];
@@ -646,6 +662,8 @@ void leveleditor_display()
     show_level_editor_tooltips (  );
 
     leveleditor_display_widgets();
+
+    display_cursor();
     //--------------------
     // Now that everything is blitted and printed, we may update the screen again...
     //
