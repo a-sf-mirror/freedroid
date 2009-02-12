@@ -154,9 +154,11 @@ int waypoint_validator( level_validator_ctx* ValidatorCtx )
 	int i, j;
 	int pos_is_invalid = FALSE;
 	int conn_is_invalid = FALSE;
+	int dist_is_invalid = FALSE;
 	int path_is_invalid = FALSE;
 	int path_warning = FALSE;
 #	define TRSL_FACT 0.02
+#	define MIN_DIST 1.0
 	
 	// Check waypoints position
 	for ( i = 0; i < ValidatorCtx->this_level->num_waypoints; ++i )
@@ -170,7 +172,7 @@ int waypoint_validator( level_validator_ctx* ValidatorCtx )
 				                                   "This could lead to some bots being stuck." );
 				pos_is_invalid = TRUE;
 			}
-			printf( "Pos: %f/%f\n", ValidatorCtx->this_level->AllWaypoints[i].x + 0.5, ValidatorCtx->this_level->AllWaypoints[i].y + 0.5);			
+			printf( "Id: %d - Pos: %f/%f\n", i, ValidatorCtx->this_level->AllWaypoints[i].x + 0.5, ValidatorCtx->this_level->AllWaypoints[i].y + 0.5);			
 		}
 	}
 	if ( pos_is_invalid ) puts( line );
@@ -183,25 +185,67 @@ int waypoint_validator( level_validator_ctx* ValidatorCtx )
 			if ( !conn_is_invalid )
 			{	// First error : print header
 				ValidatorPrintHeader(ValidatorCtx, "Unconnected waypoints list",
-				                                   "The following waypoints were found to be without connection.\n"
+				                                   "The following waypoints were found to be without connection (O).\n"
+						                           "or self-connected (S).\n"
 						                           "This could lead to some bots being stuck on those waypoints." );
 				conn_is_invalid = TRUE;
 			}
-			printf( "Pos: %f/%f\n", ValidatorCtx->this_level->AllWaypoints[i].x + 0.5, ValidatorCtx->this_level->AllWaypoints[i].y + 0.5 );			
+			printf( "(O) wp#%d (%f/%f)\n", i, ValidatorCtx->this_level->AllWaypoints[i].x + 0.5, ValidatorCtx->this_level->AllWaypoints[i].y + 0.5 );			
+		}
+		for ( j = 0; j < ValidatorCtx->this_level->AllWaypoints[i].num_connections; ++j )
+		{
+			int wp = ValidatorCtx->this_level->AllWaypoints[i].connections[j];
+			if ( wp == i )
+			{
+				if ( !conn_is_invalid )
+				{	// First error : print header
+					ValidatorPrintHeader(ValidatorCtx, "Unconnected waypoints list",
+					                                   "The following waypoints were found to be without connection (O).\n"
+							                           "or self-connected (S).\n"
+							                           "This could lead to some bots being stuck on those waypoints." );
+					conn_is_invalid = TRUE;
+				}
+				printf( "(S) wp#%d (%f/%f)\n", i, ValidatorCtx->this_level->AllWaypoints[i].x + 0.5, ValidatorCtx->this_level->AllWaypoints[i].y + 0.5 );
+				continue;
+			}
 		}
 	}
 	if ( conn_is_invalid ) puts( line );
+	
+	// Check waypoints distance
+	for ( i = 0; i < ValidatorCtx->this_level->num_waypoints - 1; ++i )
+	{
+		gps wp_i = { ValidatorCtx->this_level->AllWaypoints[i].x + 0.5,  ValidatorCtx->this_level->AllWaypoints[i].y + 0.5,  ValidatorCtx->this_level->levelnum };
+
+		for ( j = i+1; j < ValidatorCtx->this_level->num_waypoints; ++j )
+		{			
+			gps wp_j = { ValidatorCtx->this_level->AllWaypoints[j].x + 0.5,  ValidatorCtx->this_level->AllWaypoints[j].y + 0.5,  ValidatorCtx->this_level->levelnum };
+			float dist = sqrt( (wp_j.x - wp_i.x)*(wp_j.x - wp_i.x) + (wp_j.y - wp_i.y)*(wp_j.y - wp_i.y) );
+			
+			if ( dist < MIN_DIST ) {
+				if ( !dist_is_invalid )
+				{	// First error : print header
+					ValidatorPrintHeader(ValidatorCtx, "Invalid waypoints distance",
+					                                   "Two waypoints were found to be too close" );
+					dist_is_invalid = TRUE;
+				}
+				printf( "wp#%d (%f/%f) - wp#%d (%f/%f) : distance = %.3f\n", 
+				        i, wp_i.x, wp_i.y, j, wp_j.x, wp_j.y, dist);
+			}
+		}
+	}
 	
 	// Check waypoint paths walkability
 	for ( i = 0; i < ValidatorCtx->this_level->num_waypoints; ++i )
 	{
 		if ( ValidatorCtx->this_level->AllWaypoints[i].num_connections == 0 ) continue;
 		
+		gps from_pos = { ValidatorCtx->this_level->AllWaypoints[i].x + 0.5,  ValidatorCtx->this_level->AllWaypoints[i].y + 0.5,  ValidatorCtx->this_level->levelnum };
+
 		for ( j = 0; j < ValidatorCtx->this_level->AllWaypoints[i].num_connections; ++j )
 		{
 			int wp = ValidatorCtx->this_level->AllWaypoints[i].connections[j];
 
-			gps from_pos = { ValidatorCtx->this_level->AllWaypoints[i].x + 0.5,  ValidatorCtx->this_level->AllWaypoints[i].y + 0.5,  ValidatorCtx->this_level->levelnum };
 			gps to_pos   = { ValidatorCtx->this_level->AllWaypoints[wp].x + 0.5, ValidatorCtx->this_level->AllWaypoints[wp].y + 0.5, ValidatorCtx->this_level->levelnum };
 
 			enum connect_validity rtn = waypoints_connection_valid(&from_pos, &to_pos);
@@ -214,8 +258,8 @@ int waypoint_validator( level_validator_ctx* ValidatorCtx )
 							                           "This could lead those paths to not being usable." );
 					path_is_invalid = TRUE;
 				}
-				printf( "Path: %f/%f -> %f/%f (%s)\n", 
-				        from_pos.x, from_pos.y, to_pos.x, to_pos.y,
+				printf( "Path: wp#%d (%f/%f) -> wp#%d (%f/%f) (%s)\n", 
+				        i, from_pos.x, from_pos.y, j, to_pos.x, to_pos.y,
 				        (rtn & COMPLEX_PATH)?"too complex":"path not found");
 			}			
 		}
@@ -242,9 +286,9 @@ int waypoint_validator( level_validator_ctx* ValidatorCtx )
 			moderately_finepoint line_vector;
 			line_vector.x = to_pos.x - from_pos.x;
 			line_vector.y = to_pos.y - from_pos.y;
+			
 			float length = sqrtf(line_vector.x * line_vector.x + line_vector.y * line_vector.y);
-			// Emergency hack. To be fixed
-			if ( length < 0.005 ) continue;
+			if ( length < MIN_DIST ) continue; // Too close waypoints. Already handled
 
 			line_vector.x = (line_vector.x * TRSL_FACT) / length;
 			line_vector.y = (line_vector.y * TRSL_FACT) / length;
@@ -266,8 +310,8 @@ int waypoint_validator( level_validator_ctx* ValidatorCtx )
 							                           "This could lead some bots to get stuck along those paths." );
 					path_warning = TRUE;
 				}
-				printf( "Path: %f/%f -> %f/%f (warning)\n", 
-				        from_pos.x, from_pos.y, to_pos.x, to_pos.y);
+				printf( "Path: wp#%d (%f/%f) -> wp#%d (%f/%f) (warning)\n", 
+				        i, from_pos.x, from_pos.y, wp, to_pos.x, to_pos.y);
 				
 				continue; // Next connection
 			}
@@ -288,8 +332,8 @@ int waypoint_validator( level_validator_ctx* ValidatorCtx )
 							                           "This could lead some bots to get stuck along those paths." );
 					path_warning = TRUE;
 				}
-				printf( "Path: %f/%f -> %f/%f (warning)\n", 
-				        from_pos.x, from_pos.y, to_pos.x, to_pos.y);
+				printf( "Path: wp#%d (%f/%f) -> wp#%d (%f/%f) (warning)\n", 
+				        i, from_pos.x, from_pos.y, wp, to_pos.x, to_pos.y);
 					
 				continue; // Next connection
 			}
@@ -310,14 +354,14 @@ int waypoint_validator( level_validator_ctx* ValidatorCtx )
 							                           "This could lead some bots to get stuck along those paths." );
 					path_warning = TRUE;
 				}
-				printf( "Path: %f/%f -> %f/%f (warning)\n", 
-				        from_pos.x, from_pos.y, to_pos.x, to_pos.y);
+				printf( "Path: wp#%d (%f/%f) -> wp#%d (%f/%f) (warning)\n", 
+				        i, from_pos.x, from_pos.y, wp, to_pos.x, to_pos.y);
 			}
 		}
 	}
 	if ( path_warning ) puts( line );
 
-	return ( pos_is_invalid || conn_is_invalid || path_is_invalid || path_warning );
+	return ( pos_is_invalid || conn_is_invalid || dist_is_invalid || path_is_invalid || path_warning );
 }
 
 /**
@@ -388,7 +432,7 @@ int interface_validator( level_validator_ctx* ValidatorCtx )
 							                           "The activation of those objects will not be reflected on the neighborhood." );
 					is_invalid = TRUE;
 				}
-				printf( "Idx: %d (%s) - Pos: %f/%f\n", obs_index, obstacle_map[this_obs->type].obstacle_short_name, this_obs->pos.x, this_obs->pos.y );
+				printf( "obs#%d (%f/%f) : %s\n", obs_index, this_obs->pos.x, this_obs->pos.y, obstacle_map[this_obs->type].obstacle_short_name );
 			}
 		}
 	}
