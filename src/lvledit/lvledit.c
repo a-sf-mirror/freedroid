@@ -798,6 +798,8 @@ static void leveleditor_init()
     leveleditor_init_widgets();
 
     global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL;
+
+    SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL);
 }
 
 static void leveleditor_cleanup()
@@ -807,6 +809,8 @@ static void leveleditor_cleanup()
     clear_selection(-1);
     
     global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL;
+    
+    SDL_EnableKeyRepeat(0, SDL_DEFAULT_REPEAT_INTERVAL);
 }
 
 void TestMap ( void )  /* Keeps World map in a clean state */
