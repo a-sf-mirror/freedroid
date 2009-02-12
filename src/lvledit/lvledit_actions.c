@@ -944,13 +944,32 @@ void delete_map_level(int lnum)
     int i;
     level *l = curShip.AllLevels[lnum];
 
+    // Delete floor tiles
     for (i=0; i < l->ylen; i++)
 	free(l->map[i]);
 
-    free(curShip.AllLevels[lnum] = NULL);
+    // Remove references to this level from others
+    for (i=0; i < MAX_LEVELS; i++) {
+	if (curShip.AllLevels[i] == NULL)
+	    continue;
+
+	if (curShip.AllLevels[i]->jump_target_north == lnum)
+	    curShip.AllLevels[i]->jump_target_north = -1;
+	if (curShip.AllLevels[i]->jump_target_south == lnum)
+	    curShip.AllLevels[i]->jump_target_south = -1;
+	if (curShip.AllLevels[i]->jump_target_west == lnum)
+	    curShip.AllLevels[i]->jump_target_west = -1;
+	if (curShip.AllLevels[i]->jump_target_east == lnum)
+	    curShip.AllLevels[i]->jump_target_east = -1;
+    }
+
+
+    // Free memory
+    free(curShip.AllLevels[lnum]);
     
     curShip.AllLevels[lnum] = NULL;
     
+
     if (lnum == curShip.num_levels)
 	curShip.num_levels--;
 
