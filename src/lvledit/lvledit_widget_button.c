@@ -145,7 +145,7 @@ static void activate_button(struct leveleditor_button *b)
 		new_x = Me . pos . x ;
 	    else
 		new_x = 3;
-	    new_y = curShip . AllLevels [ EditLevel() -> jump_target_north ] -> xlen - 4 ;
+	    new_y = curShip . AllLevels [ EditLevel() -> jump_target_north ] -> ylen - 4 ;
 	    action_jump_to_level(EditLevel()->jump_target_north,new_x,new_y);
 
 	    break;
