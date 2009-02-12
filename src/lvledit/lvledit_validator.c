@@ -172,7 +172,7 @@ int waypoint_validator( level_validator_ctx* ValidatorCtx )
 				                                   "This could lead to some bots being stuck." );
 				pos_is_invalid = TRUE;
 			}
-			printf( "Id: %d - Pos: %f/%f\n", i, ValidatorCtx->this_level->AllWaypoints[i].x + 0.5, ValidatorCtx->this_level->AllWaypoints[i].y + 0.5);			
+			printf( "wp#%d (%f/%f)\n", i, ValidatorCtx->this_level->AllWaypoints[i].x + 0.5, ValidatorCtx->this_level->AllWaypoints[i].y + 0.5);			
 		}
 	}
 	if ( pos_is_invalid ) puts( line );
@@ -259,7 +259,7 @@ int waypoint_validator( level_validator_ctx* ValidatorCtx )
 					path_is_invalid = TRUE;
 				}
 				printf( "Path: wp#%d (%f/%f) -> wp#%d (%f/%f) (%s)\n", 
-				        i, from_pos.x, from_pos.y, j, to_pos.x, to_pos.y,
+				        i, from_pos.x, from_pos.y, wp, to_pos.x, to_pos.y,
 				        (rtn & COMPLEX_PATH)?"too complex":"path not found");
 			}			
 		}
