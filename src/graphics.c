@@ -1733,5 +1733,202 @@ HighlightRectangle ( SDL_Surface* Surface , SDL_Rect Area )
 
 }; // void HighlightRectangle
 
+/**
+ * This function draws a line in SDL mode.
+ * Classical Bresenham algorithm 
+ */
+void DrawLine ( SDL_Surface *Surface, int x1, int y1, int x2, int y2, int r, int g, int b )
+{
+	if ( use_open_gl ) return;
+
+	Uint32 color = SDL_MapRGB( Surface->format, r, g, b );
+	
+	int delta_x, incr_x;
+	int delta_y, incr_y;
+	int error_accum;
+
+	// Algorithm initialization
+	
+	delta_x = x2 - x1;
+	incr_x = 1;
+	if ( delta_x < 0 )
+	{
+		delta_x = -delta_x;
+		incr_x = -1;
+	}
+	
+	delta_y = y2 - y1;
+	incr_y = 1;
+	if ( delta_y < 0 )
+	{
+		delta_y = -delta_y;
+		incr_y = -1;
+	}
+	
+	// Incremental line drawing
+	
+	if ( delta_y < delta_x ) 
+	{
+		error_accum = delta_x >> 1;
+		while ( x1 != x2 ) 
+		{
+			PutPixel(Surface, x1, y1, color);
+			error_accum += delta_y;
+			if (error_accum > delta_x) {
+				error_accum -= delta_x;
+				y1 += incr_y;
+			}
+			x1 += incr_x;
+	    }
+		PutPixel(Surface, x1, y1, color);
+	}
+	else
+	{
+		error_accum = delta_y >> 1;
+		while ( y1 != y2 ) 
+		{
+			PutPixel(Surface, x1, y1, color);
+			error_accum += delta_x;
+			if (error_accum > delta_y) {
+				error_accum -= delta_y;
+				x1 += incr_x;
+			}
+			y1 += incr_y;
+		}
+		PutPixel(Surface, x1, y1, color);
+	}
+}
+
+/*
+ * Draw an horizontally hatched quad in SDL mode
+ * 
+ * Note : this function is not completely generic.
+ * The 4 vertices must be in clockwise or anti-clockwise order.
+ * 
+ * Here we use floating computations. This could definitively be
+ * improved with incremental methods
+ */
+void DrawHatchedQuad ( SDL_Surface* Surface, int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, int r, int g, int b )
+{
+	if ( use_open_gl ) return;
+
+	//---------------
+	// Draw edges
+	//
+	DrawLine(Surface, x1, y1, x2, y2, r, g, b);
+	DrawLine(Surface, x2, y2, x3, y3, r, g, b);
+	DrawLine(Surface, x3, y3, x4, y4, r, g, b);
+	DrawLine(Surface, x4, y4, x1, y1, r, g, b);
+	
+	//---------------
+	// Reorder vertices, so that bottom-most is the first one
+	//
+	struct vertex {
+		int x;
+		int y;
+	} vertices[4] = { {x1, y1}, {x2, y2}, {x3, y3}, {x4, y4} };
+	int vindex[4] = { 0, 1, 2, 3 };
+
+	/* Init */
+	int min_index = 0;
+	int y_min = y1;
+	
+	/* Check each vertex */
+	if ( y2 < y_min ) {
+		min_index = 1;
+		y_min = y2;
+	}
+	if ( y3 < y_min ) {
+		min_index = 2;
+		y_min = y3;
+	}
+	if ( y4 < y_min ) {
+		min_index = 3;
+		y_min = y4;
+	}
+	
+	/* Rotate indices, until vertices[min_index] is at 0 position */
+	while ( min_index != 0 )
+	{
+		int tmp = vindex[0];
+		vindex[0] = vindex[1];
+		vindex[1] = vindex[2];
+		vindex[2] = vindex[3];
+		vindex[3] = tmp;
+		
+		--min_index;
+	}
+		
+	//---------------
+	// Store the 2 left edges, and the 2 right edges
+	//
+	struct edge
+	{
+		int x;
+		int y;
+		int ymax;
+		int deltax;
+		int deltay;
+	} left_edges[2], right_edges[2];
+	
+	left_edges[0].x = vertices[vindex[0]].x;
+	left_edges[0].y = vertices[vindex[0]].y;
+	left_edges[0].ymax = vertices[vindex[1]].y;
+	left_edges[0].deltax = (vertices[vindex[1]].x - vertices[vindex[0]].x);
+	left_edges[0].deltay = (vertices[vindex[1]].y - vertices[vindex[0]].y);
+	
+	left_edges[1].x = vertices[vindex[1]].x;
+	left_edges[1].y = vertices[vindex[1]].y;
+	left_edges[1].ymax = vertices[vindex[2]].y;
+	left_edges[1].deltax = (vertices[vindex[2]].x - vertices[vindex[1]].x);
+	left_edges[1].deltay = (vertices[vindex[2]].y - vertices[vindex[1]].y);
+
+	right_edges[0].x = vertices[vindex[0]].x;
+	right_edges[0].y = vertices[vindex[0]].y;
+	right_edges[0].ymax = vertices[vindex[3]].y;
+	right_edges[0].deltax = (vertices[vindex[3]].x - vertices[vindex[0]].x);
+	right_edges[0].deltay = (vertices[vindex[3]].y - vertices[vindex[0]].y);
+
+	right_edges[1].x = vertices[vindex[3]].x;
+	right_edges[1].y = vertices[vindex[3]].y;
+	right_edges[1].ymax = vertices[vindex[2]].y;
+	right_edges[1].deltax = (vertices[vindex[2]].x - vertices[vindex[3]].x);
+	right_edges[1].deltay = (vertices[vindex[2]].y - vertices[vindex[3]].y);
+	
+	//---------------
+	// Quad filling, by creating horizontal spans between the left and right edges
+	// There is a 3 line step between two spans, to create hatches
+	//
+#define LEDGE left_edges[left_idx]
+#define REDGE right_edges[right_idx]
+		
+	int left_idx = 0; // Active left edge
+	int right_idx = 0; // Active right edge
+	int y_curr;
+	
+	for (y_curr = left_edges[0].y + 3; y_curr < left_edges[1].ymax; y_curr += 3)
+	{
+		// Change active left edge, if needed
+		if ( LEDGE.ymax <= y_curr ) {
+			++left_idx;
+		}
+		
+		// Change active right edge, if needed
+		if ( REDGE.ymax <= y_curr ) {
+			++right_idx;
+		}
+
+		// Start and end position of the span (this is the part that could
+		// be improved with an incremental code
+		float x_left = (float)LEDGE.x + (float)(y_curr - LEDGE.y)*(float)LEDGE.deltax/(float)LEDGE.deltay;
+		float x_right = (float)REDGE.x + (float)(y_curr - REDGE.y)*(float)REDGE.deltax/(float)REDGE.deltay;
+		
+		// Draw the span
+		DrawLine( Surface, x_left, y_curr, x_right, y_curr, r, g, b);
+	}
+	
+#undef LEDGE
+#undef REDGE
+}
 
 #undef _graphics_c

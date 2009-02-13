@@ -484,8 +484,13 @@ int leveleditor_select_display()
 	    translate_map_point_to_screen_pixel ( state.rect_start.x + state.rect_len.x , state.rect_start.y + state.rect_len.y , &r3, &c3, zf);
 	    translate_map_point_to_screen_pixel ( state.rect_start.x + state.rect_len.x , state.rect_start.y , &r4, &c4, zf);
 
+	    if ( !use_open_gl )
+	    {
+	    	DrawHatchedQuad( Screen, r1, c1, r2, c2, r3, c3, r4, c4, 0x1f, 0x7f, 0x8f );
+	    }
 #ifdef HAVE_LIBGL
-	    if (use_open_gl) {
+	    else
+	    {
 		glDisable ( GL_TEXTURE_2D );
 		glEnable ( GL_BLEND );
 
