@@ -841,13 +841,6 @@ insert_obstacles_into_blitting_list ( int mask )
 	    {
 		if ( obstacle_level -> map [ line ] [ col ] . obstacles_glued_to_here [ i ] != (-1) )
 		{
-		    if ( i >= MAX_ELEMENTS_IN_BLITTING_LIST )
-		    {
-			ErrorMessage ( __FUNCTION__  , "\
-The blitting list size was exceeded!",
-						   PLEASE_INFORM, IS_FATAL );
-		    }
-		    
 		    //--------------------
 		    // Now we have to insert this obstacle.  We do this of course respecting
 		    // the blitting order, as always...
