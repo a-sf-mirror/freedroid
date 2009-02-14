@@ -1146,7 +1146,7 @@ ApplyItem( item* CurItem )
 				strcat(msg, _("drinking a potion!"));
 				break;
 			case WEAPON_FIREWAIT:
-				strcat(msg, _("waiting for you weapon to fire again!"));
+				strcat(msg, _("waiting for your weapon to fire again!"));
 				break;
 			case WEAPON_RELOAD:
 				strcat(msg, _("reloading your weapon!"));
