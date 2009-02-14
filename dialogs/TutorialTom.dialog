@@ -191,7 +191,7 @@ LuaCode={
 	npc_says(_"Well, let me start by saying that there are four classes of armor: headgear, shoes, body armor, and shields.")
 	npc_says(_"When you pick up a piece of armor of a particular class, and you don't already have one equipped, you will automatically equip it if you can.")
 	npc_says(_"Picking up armor and other items can be accomplished by left clicking on the item on the ground. If you have enough room in your inventory, you will pick the item up.")
-	npc_says(_"If you currently have one piece of armor equipped that you would like to swap out for another, simply drag the new armor piece to the current armor piece.")
+	npc_says(_"If you currently have one piece of armor equipped that you would like to swap out for another, simply drag the new armor piece to the current armor piece and left click.")
 	npc_says(_"They will swap places, and you can put the other piece of armor back into your inventory.")
 	npc_says(_"Alternatively, you can drag it into your field of view and drop it on the ground.")
 	hide(14) show(16)
@@ -238,7 +238,7 @@ LuaCode={
 Nr=19  Text=_"I think I'm ready for the next section of the tutorial."
 LuaCode={
 	npc_says(_"Ok, I'll open the next door then. But prepare yourself, soon you will learn how to fight against bots in hand to hand combat.")
-	hide(10, 11, 19) show(20)
+	hide(10, 11, 12, 13, 14, 15, 16, 17, 19) show(20)
 	improve_program("Repair equipment")
 	change_obstacle("TutorialEquipOut", "opened")
 	end_dialog()
@@ -311,6 +311,11 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
+
+-- NOTE: Ideally, we would rather check to see that the bot's dead.
+-- Checking for the wrench isn't optimal, because Tux equips it, and
+-- we can't check for that. Maybe the bot should drop loot instead,
+-- and Tom exchanges it for the wrench?
 Nr=25  Text=_"I've beaten the first bot."
 LuaCode={
 	if (has_item("Big wrench") > 0) then
@@ -354,9 +359,13 @@ LuaCode={
 	add_item("Dexterity Capsule", 2)
 	add_item("Medium Shield", 1)
 	hide(27) show(28)
+  end_dialog()
 }
 ----------------------------------------------------------------------
 
+-- NOTE: Same deal with this bot. There's not guarantee that
+-- that player won't equip the gun. Asking them to unequip
+-- it seems hacky.
 Nr=28  Text=_"I've beaten the second bot."
 LuaCode={
 	if (has_item(".22 Automatic") > 0) then
@@ -370,6 +379,7 @@ LuaCode={
 		npc_says("I'll go ahead and heal you. If your weapon or armor are in bad shape, perhaps you should repair them before going back in there.")
 		npc_says("Don't come back without the .22 Automatic.")
 		heal_tux()
+    end_dialog()
 	end
 }
 ----------------------------------------------------------------------
@@ -385,17 +395,121 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=30  Text=_"Currently placeholder? Node 30"
+Nr=30  Text=_"Ranged weaponry seems safer than getting up close and personal."
 LuaCode={
-	npc_says(_"Scanning Result:", "NO_WAIT")
-	hide(1)
+	npc_says(_"Well, Linarian, most of the time, it is.")
+  npc_says(_"There are some bots with ranged weaponry, but we don't have any of those in captivity.")
+	hide(30) show(31)
 }
 ----------------------------------------------------------------------
 
-Nr=40  Text=_"Currently placeholder? Node 40"
+Nr=31  Text=_"So what can you tell me about guns?"
 LuaCode={
-	npc_says(_"Scanning Result:", "NO_WAIT")
-	hide(1)
+  npc_says(_"The basic idea behind ranged weaponry is to hurt or kill an enemy without having to come in swinging range.")
+  npc_says(_"There are three basic ways to do this: traditional firearms, lasers, and plasma weapons.")
+  npc_says(_"Traditional firearms are things that go bang. A small explosion accelerates the ammunition towards the target at a high velocity, causing injory.")
+  npc_says(_"Lasers use an intensified beam of light to burn through the intended victim. These operate on replaceable charge packs.")
+  npc_says(_"Plasma weapons use superheated ionized gas to burn the target. The gas comes in loadable canisters.")
+  npc_says(_"All the other weapons are variations of these three. We have a few in storage for training purposes.")
+  hide(31) show(32)
+}
+----------------------------------------------------------------------
+
+Nr=32  Text=_"So how do I use guns?"
+LuaCode={
+  npc_says(_"Well, firing is pretty simple. First, equip a ranged weapon that you have ammunition for.")
+  npc_says(_"Next, simply left click on your target, and you'll begin firing.")
+  npc_says(_"Alternatively, you can select the Fire Weapon skill, and right click on the enemy.")
+  npc_says(_"There are a couple of new tricks with ranged weapons. If you want to move while firing, simply hold shift and left click your desired position.")
+  npc_says(_"If you'd rather stay in place, Hold A, then left click your target.")
+  npc_says(_"When your weapon runs out of ammo during combat, it will try to automatically reload if you have extra ammunition for it.")
+  npc_says(_"Sometimes, you will need to manually reload. You can do this by pressing R.")
+  if (not has_cookie("opened_door")) then
+    show(33)
+  end
+}
+----------------------------------------------------------------------
+
+Nr=33  Text=_"I think I understand how to use guns now."
+LuaCode={
+  npc_says(_"In that case, I'll let you in to the armory. There are some crates and chests in there with weapons and ammunition.")
+  npc_says(_"You already got a .22 pistol from that 247 you killed earlier. It's not much as guns go, but it can do the trick.")
+  npc_says(_"You'll no doubt get more mileage out of the plasma pistol, though. Or any other gun, for that matter.")
+  npc_says(_"Practice switching weapons and reloading.")
+  npc_says(_"On the other side of that fence are some bots. Practice killing them off with various ranged weapons.")
+  npc_says(_"Once you've gotten rid of them all, we can move on.")
+  hide(33) show(37)
+  add_cookie("opened_door")
+  change_obstacle("TutorialStorage", "opened")
+  end_dialog()
+}
+----------------------------------------------------------------------
+
+-- Need to check for dead bots here. If not, tell player
+-- to come back when they're all dead.
+Nr=37  Text=_"I killed all the bots."
+LuaCode={
+  -- So I don't know that they're dead. We'll pretend like they are for now.
+  npc_says(_"Excellent job.")
+  npc_says(_"Keep shooting like that, and the bots will never stand a chance, as long as you still have ammo.")
+  npc_says(_"Next, we'll be moving on to learning the TakeOver skill.")
+  npc_says(_"But first, you'll need to give me your weapons.")
+  npc_says(_"Unequip all your weapons, then talk to me and we'll move on.")
+  hide(37) show(39)
+  end_dialog()
+}
+
+Nr=39  Text=_"I'm ready to move on."
+LuaCode={
+  if (has_item(".22 Automatic") > 0 and has_item("Laser pistol") > 0 and has_item("Plasma pistol") > 0) then
+    npc_says(_"Thank you, Linarian. We'll now move on to hacking.")
+    change_obstacle("TutorialShootingOut", "opened")
+    del_item(".22 Automatic")
+    del_item("Laser pistol")
+    del_item("Plasma pistol")
+    hide(32, 33, 37, 39) show(40)
+    end_dialog()
+  else
+    npc_says(_"I'll need you to surrender your guns. Unequip them all, then talk to me again.")
+    end_dialog()
+  end
+}
+----------------------------------------------------------------------
+
+Nr=40  Text=_"Why are we stopping?"
+LuaCode={
+	npc_says(_"You've done well so far, Linarian. Let's take a little break.")
+  npc_says(_"Once you get out into the real world, you'll find that your current abilities aren't always enough to survive.")
+  npc_says(_"As you achieve combat experience, you'll be able to apply it to better yourself.")
+  npc_says(_"As with most things, you view this as a panel in your HUD. Press C to open the Character panel.")
+  npc_says(_"Once you've gained enough experience, you'll level up. This will automatically improve some of your statistics.")
+  npc_says(_"You'll also be given 5 points to spend however you choose in four different areas.")
+  npc_says(_"Strength governs the amount of damage you do with each hit in melee combat.")
+  npc_says(_"Dexterity controls your hit rate, or how likely you are to hit the enemy. It also determines how likely you are to dodge.")
+  npc_says(_"CPU is your mental state, and controls how much heat you can take.")
+  npc_says(_"Finally, Life determines how much health you have.")
+  hide(40) show(41)
+}
+----------------------------------------------------------------------
+
+Nr=41  Text=_"I'll have to keep that in mind."
+LuaCode={
+  npc_says(_"Well, how about you try it out?")
+  npc_says(_"I'll give you some points to spend, and you can distribute them as you like.")
+  npc_says(_"Since you'll be hacking up ahead, you should probably use a few of them on CPU.")
+  npc_says(_"But, again, that's your choice.")
+  add_xp("2000")
+  hide(41) show(42)
+  end_dialog()
+}
+----------------------------------------------------------------------
+
+Nr=42  Text=_"Alright, I'm ready to go hack some bots."
+LuaCode={
+  npc_says("I'll unlock the door then. Talk to me in the next area.")
+  change_obstacle("TutorialTakeover", "opened")
+  hide(42) show(50)
+  end_dialog()
 }
 ----------------------------------------------------------------------
 
@@ -475,7 +589,7 @@ tell about the instant access "belt" where you can put "potions" items and use w
 
 ****
 
-
+MOSTLY IMPLEMENTED -- JK
 Tom continues with explaining shooting (single fire, other fire specials, reload etc); 
 Open doors to allow walking to "shooting range" ; follows you 
 Open doors to crate room, for more ammo and alternative guns
@@ -484,7 +598,7 @@ Kill all bots behind fence with ranged fire (NPC 1 stands nearby if you want to 
 All bots killed = opens next gate
 
 ****
-
+IMPLEMENTED -- JK
 He explains you have to leave ranged weapons and you will now train your "mental" skills. ; remove the range weapons
 give some bonus XP to reach higher level and then explain about stats and allocationg points.
 
