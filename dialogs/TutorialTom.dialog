@@ -464,9 +464,9 @@ LuaCode={
   if (has_item_backpack(".22 Automatic") > 0 and has_item_backpack("Laser pistol") > 0 and has_item_backpack("Plasma pistol") > 0) then
     npc_says(_"Thank you, Linarian. We'll now move on to hacking.")
     change_obstacle("TutorialShootingOut", "opened")
-    del_item(".22 Automatic")
-    del_item("Laser pistol")
-    del_item("Plasma pistol")
+    del_item_backpack(".22 Automatic")
+    del_item_backpack("Laser pistol")
+    del_item_backpack("Plasma pistol")
     hide(32, 33, 37, 39) show(40)
     end_dialog()
   else

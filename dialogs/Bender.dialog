@@ -118,7 +118,7 @@ LuaCode={
 	change_obstacle("TownDocBackdoor", "opened") -- Allows Bender to do something useful insted of just keeping watch outside the Docs after healed.
     end_quest("Bender's problem")
     add_xp(150)
-    del_item("Brain Enlargement Pills Antidote", 1)
+    del_item_backpack("Brain Enlargement Pills Antidote", 1)
     add_item("Strength Pill",2)
     open_diary_entry("Bender's problem", 3)
     hide(9)

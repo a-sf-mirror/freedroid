@@ -200,7 +200,7 @@ LuaCode={
     add_xp(1000)
     end_quest("SADD's power supply")
     open_diary_entry("Propagating a faulty firmware", 3)
-    del_item("Red Dilithium Crystal", 1)
+    del_item_backpack("Red Dilithium Crystal", 1)
     change_obstacle("SADDDepotDoor", "opened")
     hide(30)
     show(37)
@@ -225,7 +225,7 @@ LuaCode={
     open_diary_entry("Propagating a faulty firmware", 2)
     change_obstacle("SADDDepotDoor", "opened")
     change_obstacle("SADDBioDoor", "opened")
-    del_item("Red Dilithium Crystal", 1)
+    del_item_backpack("Red Dilithium Crystal", 1)
     hide(33)
     show(97)
 }

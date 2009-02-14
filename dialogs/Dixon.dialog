@@ -246,7 +246,7 @@ LuaCode={
 	add_gold(150)
 	end_quest("The yellow toolkit")
 	open_diary_entry("The yellow toolkit", 4)
-	del_item("Dixon's Toolbox", 1)
+	del_item_backpack("Dixon's Toolbox", 1)
 	hide(34, 35, 36)
 }
 ----------------------------------------------------------------------
@@ -260,7 +260,7 @@ LuaCode={
 	add_gold(100)
 	end_quest("The yellow toolkit")
 	add_cookie("singularity_dead")
-	del_item("Dixon's Toolbox", 1)
+	del_item_backpack("Dixon's Toolbox", 1)
 	open_diary_entry("The yellow toolkit", 5)
 	add_item("Dixon's helmet",1)
 	hide(34, 35, 36)
@@ -294,7 +294,7 @@ LuaCode={
     add_cookie("dixon_angry_250")
     end_quest("The yellow toolkit")
     open_diary_entry("The yellow toolkit", 6)
-    del_item("Dixon's Toolbox", 1)
+    del_item_backpack("Dixon's Toolbox", 1)
     hide(38, 41)
 }
 ----------------------------------------------------------------------
@@ -308,7 +308,7 @@ LuaCode={
 	add_cookie("dixon_angry_350")
 	end_quest("The yellow toolkit")
 	open_diary_entry("The yellow toolkit", 7)
-	del_item("Dixon's Toolbox", 1)
+	del_item_backpack("Dixon's Toolbox", 1)
 	hide(39, 42)
 }
 ----------------------------------------------------------------------
@@ -323,7 +323,7 @@ LuaCode={
 	end_quest("The yellow toolkit")
 	add_cookie("dixon_very_angry")
 	open_diary_entry("The yellow toolkit", 8)
-	del_item("Dixon's Toolbox", 1)
+	del_item_backpack("Dixon's Toolbox", 1)
 	hide(40)
 }
 ----------------------------------------------------------------------

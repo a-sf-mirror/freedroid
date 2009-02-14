@@ -154,7 +154,7 @@ LuaCode={
     add_xp(350)
     end_quest("Anything but the army snacks, please!")
     open_diary_entry("Anything but the army snacks, please!", 1)
-    del_item("Red Dilithium Crystal", 1)
+    del_item_backpack("Red Dilithium Crystal", 1)
     hide(29)
 }
 ----------------------------------------------------------------------

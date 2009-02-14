@@ -56,7 +56,7 @@ LuaCode={
     end_dialog()
     end_quest("Doing Duncan a favour")
     add_xp(3000)
-    del_item("Pandora's Cube", 1)
+    del_item_backpack("Pandora's Cube", 1)
     hide(10)
 }
 ----------------------------------------------------------------------
@@ -110,7 +110,7 @@ LuaCode={
     end_dialog()
     end_quest("Doing Duncan a favour")
     add_xp(3000)
-    del_item("Pandora's Cube")
+    del_item_backpack("Pandora's Cube")
     hide(60)
 }
 ----------------------------------------------------------------------
