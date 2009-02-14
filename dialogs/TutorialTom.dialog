@@ -318,7 +318,7 @@ LuaCode={
 -- and Tom exchanges it for the wrench?
 Nr=25  Text=_"I've beaten the first bot."
 LuaCode={
-	if (has_item("Big wrench") > 0) then
+	if (has_item_backpack("Big wrench") > 0) then
 		npc_says(_"So you have. Well done.")
 		hide(25) show(26)
 	else
@@ -368,7 +368,7 @@ LuaCode={
 -- it seems hacky.
 Nr=28  Text=_"I've beaten the second bot."
 LuaCode={
-	if (has_item(".22 Automatic") > 0) then
+	if (has_item_backpack(".22 Automatic") > 0) then
 		npc_says("Very good! You've completed your melee training.")
 		npc_says("These skills will serve you well in the future.")
 		npc_says("Talk to me when you're ready to move on to the next part of the tutorial.")
@@ -461,7 +461,7 @@ LuaCode={
 
 Nr=39  Text=_"I'm ready to move on."
 LuaCode={
-  if (has_item(".22 Automatic") > 0 and has_item("Laser pistol") > 0 and has_item("Plasma pistol") > 0) then
+  if (has_item_backpack(".22 Automatic") > 0 and has_item_backpack("Laser pistol") > 0 and has_item_backpack("Plasma pistol") > 0) then
     npc_says(_"Thank you, Linarian. We'll now move on to hacking.")
     change_obstacle("TutorialShootingOut", "opened")
     del_item(".22 Automatic")

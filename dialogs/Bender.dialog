@@ -34,7 +34,7 @@ EveryTime LuaCode={
 		if (done_quest("Bender's problem")) then next(13)
 		else
 			hide(1, 2, 3, 4, 6, 7, 8)
-			if (has_item("Brain Enlargement Pills Antidote") > 0) then
+			if (has_item_backpack("Brain Enlargement Pills Antidote") > 0) then
 				hide(5, 10, 11, 12, 50)
 				show(9)
 			else 

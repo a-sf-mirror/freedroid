@@ -56,7 +56,7 @@ LuaCode={
 Nr=5  Text="THIS WILL NOT EVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    if (has_item("Kevin's Data Cube") > 0) then show(6) else end
+    if (has_item_backpack("Kevin's Data Cube") > 0) then show(6) else end
 }
 AlwaysExecuteThisOptionPriorToDialogStart="yes"
 

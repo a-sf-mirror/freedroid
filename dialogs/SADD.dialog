@@ -37,7 +37,7 @@ EveryTime LuaCode={
 	if (has_quest("SADD's power supply")) then
 		if (done_quest("SADD's power supply")) then hide(30, 31, 33) -- add in more lab missions here in the future
 		else
-			if (has_item("Red Dilithium Crystal") > 0) then
+			if (has_item_backpack("Red Dilithium Crystal") > 0) then
 				if (has_cookie("asked_SADD_for_exterminator")) then show(33) else show(30) end
 			else
 				show(31)

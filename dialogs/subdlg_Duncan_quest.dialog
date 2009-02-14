@@ -42,7 +42,7 @@ NPC=_"So... Any news on the Koan matter?"
 LuaCode={
     add_cookie("koan_quest_done")
     if (has_cookie("koan_spared")) then show(20) else end
-    if (has_item("Pandora's Cube") > 0) then show(10, 30) else end
+    if (has_item_backpack("Pandora's Cube") > 0) then show(10, 30) else end
     hide(0)
     show(40)
 }

@@ -272,7 +272,7 @@ static int lua_event_give_item(lua_State *L)
     return 0;
 }
 
-static int lua_event_has_item(lua_State *L)
+static int lua_event_has_item_backpack(lua_State *L)
 {
     const char *itemname = luaL_checkstring(L, 1);
 
@@ -654,14 +654,14 @@ luaL_reg lfuncs[] = {
 
     /* del_item(string item_name[, int multiplicity = 1])
      * add_item(string item_name, int multiplicity)
-     * has_item(string item_name)
+     * has_item_backpack(string item_name)
      *
      * Deletes or gives the given number of items.
      * has_time returns the number of items of the given name currently in the inventory.
      */
     { "del_item", lua_event_delete_item },
     { "add_item", lua_event_give_item },
-    { "has_item", lua_event_has_item },
+    { "has_item_backpack", lua_event_has_item_backpack },
 
     { "open_diary_entry", lua_event_open_diary_entry },
     { "add_cookie", lua_event_plant_cookie },
