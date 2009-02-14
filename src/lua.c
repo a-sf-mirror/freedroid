@@ -652,14 +652,14 @@ luaL_reg lfuncs[] = {
     { "improve_program", lua_event_improve_program },
     { "downgrade_program", lua_event_downgrade_program },
 
-    /* del_item(string item_name[, int multiplicity = 1])
+    /* del_item_backpack(string item_name[, int multiplicity = 1])
      * add_item(string item_name, int multiplicity)
      * has_item_backpack(string item_name)
      *
      * Deletes or gives the given number of items.
      * has_time returns the number of items of the given name currently in the inventory.
      */
-    { "del_item", lua_event_delete_item },
+    { "del_item_backpack", lua_event_delete_item },
     { "add_item", lua_event_give_item },
     { "has_item_backpack", lua_event_has_item_backpack },
 
