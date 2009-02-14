@@ -499,6 +499,118 @@ static void SetLevelInterfaces ( void )
     
 }; // void SetLevelInterfaces ( void )
 
+static void AddRemLevel ( void )
+{
+    char* MenuTexts[ 100 ];
+    int proceed_now = FALSE ;
+    int MenuPosition=1;
+    int i;
+
+    enum
+	{
+	ADD_NEW_LEVEL=1,
+	REMOVE_CURRENT_LEVEL,
+	LEAVE_OPTIONS_MENU,
+	};
+
+    game_status = INSIDE_MENU;
+
+    while (!proceed_now)
+	{
+		InitiateMenu( -1 );
+		i = 0 ; 
+		MenuTexts[i++] = _("Add New Level");
+/*
+		sprintf( Options [ i ] , _("Add New Level") );
+			strcat( Options [ i ] , " " );
+			strcat( Options [ i ] , _("Unconnected") );
+		MenuTexts[ i ] = Options [ i ]; i++ ;
+		sprintf( Options [ i ] , _("Add New Level") );
+			strcat( Options [ i ] , " " );
+			strcat( Options [ i ] , _("North") );
+		MenuTexts[ i ] = Options [ i ]; i++ ;
+		sprintf( Options [ i ] , _("Add New Level") );
+			strcat( Options [ i ] , " " );
+			strcat( Options [ i ] , _("East") );
+		MenuTexts[ i ] = Options [ i ]; i++ ;
+		sprintf( Options [ i ] , _("Add New Level") );
+			strcat( Options [ i ] , " " );
+			strcat( Options [ i ] , _("South") );
+		MenuTexts[ i ] = Options [ i ]; i++ ;
+		sprintf( Options [ i ] , _("Add New Level") );
+			strcat( Options [ i ] , " " );
+			strcat( Options [ i ] , _("West") );
+		MenuTexts[ i ] = Options [ i ]; i++ ;
+*/
+	MenuTexts[i++] = _("Remove Current Level");
+	MenuTexts[i++] = _("Back") ;
+	MenuTexts[i++] = "" ;
+
+	while ( EscapePressed() ) SDL_Delay(1);
+
+	MenuPosition = DoMenuSelection( "" , MenuTexts , -1 , -1 , FPS_Display_BFont );
+
+	while ( EnterPressed ( ) || SpacePressed ( ) || MouseLeftPressed()) SDL_Delay(1);
+
+	switch ( MenuPosition ) 
+		{
+		case (-1):
+			while ( EscapePressed() );
+			proceed_now=!proceed_now;
+			break;
+		case ADD_NEW_LEVEL:
+			if (game_root_mode == ROOT_IS_GAME)
+		    break;
+			while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
+			if ( curShip . num_levels < MAX_LEVELS )
+		    {
+				int new_level_num = curShip.num_levels;
+				int i;
+				// search empty level, if any
+				for ( i = 0; i < curShip.num_levels; ++i )
+				{
+					if ( curShip.AllLevels[i] == NULL)
+					{
+						new_level_num = i;
+						break;
+					}
+				}
+				if ( new_level_num == curShip.num_levels ) curShip.num_levels += 1;
+				CreateNewMapLevel ( new_level_num ) ;
+				Me . pos . z = new_level_num;
+				Me . pos . x = 3;
+				Me . pos . y = 3;
+		    }
+			break;
+		case REMOVE_CURRENT_LEVEL:
+			if (game_root_mode == ROOT_IS_GAME)
+		    break;
+			while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
+
+			if (EditLevel()->levelnum == 0) {
+				GiveMouseAlertWindow("Cannot remove level number 0.\n");
+				break;
+			}
+
+			delete_map_level(EditLevel()->levelnum);
+
+			Me.pos.z = 0;
+			Me.pos.x = 3;
+			Me.pos.y = 3;
+			break;
+		case LEAVE_OPTIONS_MENU:
+			while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
+			proceed_now=!proceed_now;
+			break;
+		default: 
+			break;
+
+	    } // switch
+	}
+
+    game_status = INSIDE_LVLEDITOR;
+    return ;
+}; // void AddRemLevel ( void );
   
 static void LevelOptions ( void )
 {
@@ -518,8 +630,7 @@ static void LevelOptions ( void )
 	CHANGE_LIGHT,
 	SET_BACKGROUND_SONG_NAME,
 	CHANGE_INFINITE_RUNNING,
-	ADD_NEW_LEVEL,
-	REMOVE_CURRENT_LEVEL,
+	ADD_REM_LEVEL,
 	LEAVE_OPTIONS_MENU,
 	};
 
@@ -591,8 +702,7 @@ static void LevelOptions ( void )
 	if ( EditLevel() -> infinite_running_on_this_level ) strcat ( Options [ i ] , _("YES"));
 	else ( strcat ( Options [ i ] , _("NO")));
 	MenuTexts[ i ] = Options [ i ]; i++;
-	MenuTexts[i++] = _("Add New Level");
-	MenuTexts[i++] = _("Remove Current Level");
+	MenuTexts[i++] = _("Add/Rem Level");
 	MenuTexts[i++] = _("Back") ;
 	MenuTexts[i++] = "" ;
 
@@ -637,46 +747,6 @@ static void LevelOptions ( void )
 		    GetEditableStringInPopupWindow ( 1000 , _("\n Please enter new level name: \n\n") ,
 			    EditLevel()->Levelname );
 		break;
-	    case ADD_NEW_LEVEL:
-		if (game_root_mode == ROOT_IS_GAME)
-		    break;
-		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
-		if ( curShip . num_levels < MAX_LEVELS )
-		    {
-		    int new_level_num = curShip.num_levels;
-		    int i;
-		    // search empty level, if any
-		    for ( i = 0; i < curShip.num_levels; ++i )
-			{
-			if ( curShip.AllLevels[i] == NULL)
-			    {
-			    new_level_num = i;
-			    break;
-			    }
-			}
-		    if ( new_level_num == curShip.num_levels ) curShip.num_levels += 1;
-		    CreateNewMapLevel ( new_level_num ) ;
-		    Me . pos . z = new_level_num;
-		    Me . pos . x = 3;
-		    Me . pos . y = 3;
-		    }
-		break;
-	    case REMOVE_CURRENT_LEVEL:
-		if (game_root_mode == ROOT_IS_GAME)
-		    break;
-		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
-
-		if (EditLevel()->levelnum == 0) {
-		    GiveMouseAlertWindow("Cannot remove level number 0.\n");
-		    break;
-		}
-
-		delete_map_level(EditLevel()->levelnum);
-
-		Me.pos.z = 0;
-		Me.pos.x = 3;
-		Me.pos.y = 3;
-		break;
 	    case SET_BACKGROUND_SONG_NAME:
 		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
 		EditLevel()->Background_Song_Name = 
@@ -696,6 +766,10 @@ static void LevelOptions ( void )
 		EditLevel() -> infinite_running_on_this_level =
 		    ! EditLevel() -> infinite_running_on_this_level ;
 		break;
+	    case ADD_REM_LEVEL:
+			while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
+			AddRemLevel ( );
+			break;
 	    case LEAVE_OPTIONS_MENU:
 		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
 		proceed_now=!proceed_now;
@@ -797,7 +871,7 @@ static void AdvancedOptions ( void )
 	InitiateMenu( -1 );
 
 	i = 0 ; 
-	MenuTexts[i++] = _("Run map level validator");
+	MenuTexts[i++] = _("Run Map Level Validator");
 	MenuTexts[i++] = _("Run Dialog Lua Validator");
 	MenuTexts[i++] = _("Back") ;
 	MenuTexts[i++] = "" ;
