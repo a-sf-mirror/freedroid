@@ -480,28 +480,37 @@ if ( ! use_open_gl ) return;
 static void
 skew_and_blit_line (float x1, float y1, float x2, float y2, Uint32 color, int glwidth)
 {
-if ( ! use_open_gl ) return;
+	float rr, gg, bb, zoom_factor;
+	zoom_factor = (GameConfig.zoom_is_on ? ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT : 1.0);
+	rr = (color & 0xff0000) >> 16;
+	gg = (color & 0xff00) >> 8;
+	bb = color & 0xff;
+
+	if ( ! use_open_gl )
+	{
+		int r1, c1, r2, c2;
+		translate_map_point_to_screen_pixel(x1,y1,&r1,&c1,zoom_factor);
+		translate_map_point_to_screen_pixel(x2,y2,&r2,&c2,zoom_factor);
+		DrawLine( Screen, r1, c1, r2, c2, rr, gg, bb, 1);
+	}
 #ifdef HAVE_LIBGL
-  int r, c;
-  float rr, gg, bb, zoom_factor;
-  zoom_factor = (GameConfig.zoom_is_on ? ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT : 1.0);
-  rr = ((color & 0xff0000) >> 16) / 255.0;
-  gg = ((color & 0xff00) >> 8) / 255.0;
-  bb = (color & 0xff) / 255.0;
-  glLineWidth (glwidth);
-  glColor3f (rr, gg, bb);
+	else
+	{
+		int r, c;
+		glLineWidth (glwidth);
+		glColor3ub (rr, gg, bb);
 
-  glDisable (GL_TEXTURE_2D);
+		glDisable (GL_TEXTURE_2D);
 
-  glBegin (GL_LINES);
-  translate_map_point_to_screen_pixel(x1,y1,&r,&c,zoom_factor);
-  glVertex2i (r, c);
-  translate_map_point_to_screen_pixel(x2,y2,&r,&c,zoom_factor);
-  glVertex2i (r, c);
-  glEnd ();
+		glBegin (GL_LINES);
+		translate_map_point_to_screen_pixel(x1,y1,&r,&c,zoom_factor);
+		glVertex2i (r, c);
+		translate_map_point_to_screen_pixel(x2,y2,&r,&c,zoom_factor);
+		glVertex2i (r, c);
+		glEnd ();
 
-  glEnable (GL_TEXTURE_2D);
-
+		glEnable (GL_TEXTURE_2D);
+	}
 #endif
 }
 /**
@@ -1783,8 +1792,7 @@ draw_grid_on_the_floor (int mask)
 	return;
 
     float zoom_factor = (GameConfig.zoom_is_on ? ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT : 1.0);
-    static iso_image grid_tile_SDL = { NULL, 0, 0 } ;
-    int LineStart, LineEnd, ColStart, ColEnd, line, col;
+    int LineStart, LineEnd, ColStart, ColEnd;
     float x, y;
     Level our_level = curShip . AllLevels [ Me . pos . z ] ;
 
@@ -1793,52 +1801,20 @@ draw_grid_on_the_floor (int mask)
     x = rintf (Me.pos.x + 0.5);
     y = rintf (Me.pos.y + 0.5);
 
-    if (!use_open_gl)
-	{
-	if ( grid_tile_SDL . surface == NULL ) 
-	    { //We must load the SDL grid tile image
-	    char fpath[2048];
-	    find_file ("grid_tile.png", GRAPHICS_DIR, fpath, 0);
-	    get_iso_image_from_file_and_path (fpath, &(grid_tile_SDL), TRUE);
-	    if (grid_tile_SDL.surface == NULL)
-		{
-		ErrorMessage (__FUNCTION__, "\
-			Unable to load the grid tile.", PLEASE_INFORM, IS_FATAL);
-		}
-	    }
+   	float dd;
 
-	if (draw_grid >= 2) // large grid
-	    for (line = LineStart; line < LineEnd; line++)
-		for (col = ColStart; col < ColEnd; col++) {
-		    if(mask & ZOOM_OUT)
-			{
-			blit_zoomed_iso_image_to_map_position (
-				&(grid_tile_SDL),
-				((float) col) + 0.5, ((float) line) + 0.5);
-			}
-		    else
-			blit_iso_image_to_map_position (&grid_tile_SDL,
-				((float) col) + 0.5,
-				((float) line) + 0.5);
-		}
-	}
-    else //use GL
-	{
-	float dd;
+   	if (draw_grid >= 2) // large grid
+   		for (dd = -20; dd <= 20; dd ++)
+   		{
+   			skew_and_blit_line (x - 20, y - dd, x + 20, y - dd, 0x99FFFF, 1); // light cyan
+   			skew_and_blit_line (x - dd, y - 20, x - dd, y + 20, 0x99FFFF, 1);
+   		}
+   	for (dd = 0; dd <= 1; dd += .5 ) // quick-placement grid
+   	{
+   		skew_and_blit_line (x - 1.5, y - dd, x + 0.5, y - dd, 0xFF00FF, 1); // magenta
+   		skew_and_blit_line (x - dd, y - 1.5, x - dd, y + 0.5, 0xFF00FF, 1); // magenta
+   	}
 
-	if (draw_grid >= 2) // large grid
-	    for (dd = -20; dd <= 20; dd ++)
-		{
-		skew_and_blit_line (x - 20, y - dd, x + 20, y - dd, 0x99FFFF, 1); // light cyan
-		skew_and_blit_line (x - dd, y - 20, x - dd, y + 20, 0x99FFFF, 1);
-		}
-	for (dd = 0; dd <= 1; dd += .5 ) // quick-placement grid
-	    {
-	    skew_and_blit_line (x - 1.5, y - dd, x + 0.5, y - dd, 0xFF00FF, 1); // magenta
-	    skew_and_blit_line (x - dd, y - 1.5, x - dd, y + 0.5, 0xFF00FF, 1); // magenta
-	    }
-
-	}
     // display numbers, corresponding to the numpad keys for quick placing 
     BFont_Info *PreviousFont;
     PreviousFont = GetCurrentFont ();
