@@ -101,19 +101,19 @@ LuaCode={
 ##############
 * New event trigger *
 Name=_"Escape from disruption deck"
-Trigger at label="DisruptorMachineLevelEscape"
+Trigger at label="Lv4to5"
 Silent=0
 LuaCode={
-	teleport("LvVOutArr")
+	teleport("Lv5from4")
 }
 * End of trigger *
 
 * New event trigger *
 Name=_"Access disruptor shield control"
-Trigger at label="TeleportToDisruptorShieldControl"
+Trigger at label="Lv4to7"
 Silent=0
 LuaCode={
-	teleport("ArriveAtDisruptorShieldControl")
+	teleport("Lv7from4")
 }
 * End of trigger *
 
@@ -122,10 +122,10 @@ LuaCode={
 ##############
 * New event trigger *
 Name=_"To disruption machine deck"
-Trigger at label="LvVOutExit"
+Trigger at label="Lv5to4"
 Silent=0
 LuaCode={
-	teleport("ArriveAtDisruptorMachineLevel")
+	teleport("Lv4from5")
 }
 * End of trigger *
 
@@ -146,10 +146,10 @@ LuaCode={
 ##############
 * New event trigger *
 Name=_"To disruption machine deck"
-Trigger at label="EscapeFromDisruptorShieldControl"
+Trigger at label="Lv7to4"
 Silent=0
 LuaCode={
-	teleport("ArriveFromDisruptorShieldControl")
+	teleport("Lv4from7")
 }
 * End of trigger *
 
