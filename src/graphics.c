@@ -1733,11 +1733,32 @@ HighlightRectangle ( SDL_Surface* Surface , SDL_Rect Area )
 
 }; // void HighlightRectangle
 
+/*
+ * Draw an 'expanded' pixel.
+ * Used to draw thick lines.
+ */
+static void draw_expanded_pixel ( SDL_Surface *Surface, int x, int y, int xincr, int yincr, int color, int thickness )
+{
+	int i;
+	
+	PutPixel(Surface, x, y, color);
+
+	if ( thickness <= 1 ) return;
+	for ( i = x + xincr; i != x + thickness*xincr; i += xincr )
+	{
+		PutPixel(Surface, i, y, color);
+	}
+	for ( i = y + yincr; i != y + thickness*yincr; i += yincr )
+	{
+		PutPixel(Surface, x, i, color);
+	}
+}
+
 /**
  * This function draws a line in SDL mode.
  * Classical Bresenham algorithm 
  */
-void DrawLine ( SDL_Surface *Surface, int x1, int y1, int x2, int y2, int r, int g, int b )
+void DrawLine ( SDL_Surface *Surface, int x1, int y1, int x2, int y2, int r, int g, int b, int thickness )
 {
 	if ( use_open_gl ) return;
 
@@ -1772,7 +1793,7 @@ void DrawLine ( SDL_Surface *Surface, int x1, int y1, int x2, int y2, int r, int
 		error_accum = delta_x >> 1;
 		while ( x1 != x2 ) 
 		{
-			PutPixel(Surface, x1, y1, color);
+			draw_expanded_pixel( Surface, x1, y1, incr_x, incr_y, color, thickness );
 			error_accum += delta_y;
 			if (error_accum > delta_x) {
 				error_accum -= delta_x;
@@ -1780,14 +1801,14 @@ void DrawLine ( SDL_Surface *Surface, int x1, int y1, int x2, int y2, int r, int
 			}
 			x1 += incr_x;
 	    }
-		PutPixel(Surface, x1, y1, color);
+		draw_expanded_pixel( Surface, x1, y1, incr_x, incr_y, color, thickness );
 	}
 	else
 	{
 		error_accum = delta_y >> 1;
 		while ( y1 != y2 ) 
 		{
-			PutPixel(Surface, x1, y1, color);
+			draw_expanded_pixel( Surface, x1, y1, incr_x, incr_y, color, thickness );
 			error_accum += delta_x;
 			if (error_accum > delta_y) {
 				error_accum -= delta_y;
@@ -1795,7 +1816,7 @@ void DrawLine ( SDL_Surface *Surface, int x1, int y1, int x2, int y2, int r, int
 			}
 			y1 += incr_y;
 		}
-		PutPixel(Surface, x1, y1, color);
+		draw_expanded_pixel( Surface, x1, y1, incr_x, incr_y, color, thickness );
 	}
 }
 
@@ -1815,11 +1836,11 @@ void DrawHatchedQuad ( SDL_Surface* Surface, int x1, int y1, int x2, int y2, int
 	//---------------
 	// Draw edges
 	//
-	DrawLine(Surface, x1, y1, x2, y2, r, g, b);
-	DrawLine(Surface, x2, y2, x3, y3, r, g, b);
-	DrawLine(Surface, x3, y3, x4, y4, r, g, b);
-	DrawLine(Surface, x4, y4, x1, y1, r, g, b);
-	
+	DrawLine(Surface, x1, y1, x2, y2, r, g, b, 1);
+	DrawLine(Surface, x2, y2, x3, y3, r, g, b, 1);
+	DrawLine(Surface, x3, y3, x4, y4, r, g, b, 1);
+	DrawLine(Surface, x4, y4, x1, y1, r, g, b, 1);
+
 	//---------------
 	// Reorder vertices, so that bottom-most is the first one
 	//
@@ -1861,6 +1882,10 @@ void DrawHatchedQuad ( SDL_Surface* Surface, int x1, int y1, int x2, int y2, int
 		
 	//---------------
 	// Store the 2 left edges, and the 2 right edges
+	//
+	// Note : since spans can be drawn from left to right or right to left
+	// we do not take care of the direction of drawing.
+	// So 'left' and 'right' below are pure conventional names.
 	//
 	struct edge
 	{
@@ -1924,7 +1949,7 @@ void DrawHatchedQuad ( SDL_Surface* Surface, int x1, int y1, int x2, int y2, int
 		float x_right = (float)REDGE.x + (float)(y_curr - REDGE.y)*(float)REDGE.deltax/(float)REDGE.deltay;
 		
 		// Draw the span
-		DrawLine( Surface, x_left, y_curr, x_right, y_curr, r, g, b);
+		DrawLine( Surface, x_left, y_curr, x_right, y_curr, r, g, b, 1);
 	}
 	
 #undef LEDGE
