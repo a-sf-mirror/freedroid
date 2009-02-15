@@ -125,16 +125,16 @@ tux_t Me ;
 
 char* AllSkillTexts [ NUMBER_OF_SKILL_LEVELS ] =
   {
-    N_("novice"),
-    N_("apprentice"),
-    N_("professional"),
-    N_("master"),
-    N_("god"),
+	N_("untrained"),
+	N_("novice"),
+	N_("apprentice"),
+	N_("professional"),
+	N_("master"),
+	N_("god"),
     ("6"),
     ("7"),
     ("8"),
-    ("9"),
-    ("10")
+    ("9")
   };
 
 //--------------------
