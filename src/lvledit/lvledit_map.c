@@ -341,6 +341,9 @@ static void MoveWaypointsEastOf ( int FromWhere , int ByWhat, level *EditLevel )
 void InsertLineVeryNorth (level *EditLevel )
 {
   int OldSouthernInterface;
+	
+  if (EditLevel->ylen + 1 >= MAX_MAP_LINES )
+	  return;
 
   //--------------------
   // We shortly change the southern interface to reuse the code for there
@@ -357,36 +360,30 @@ void InsertLineVeryNorth (level *EditLevel )
 
 void InsertLineVerySouth (level *EditLevel )
 {
-  int i;
-  int j;
+	int i;
+	int j;
 
-  //--------------------
-  // The enlargement of levels in y direction is limited by a constant
-  // defined in defs.h.  This is carefully checked or no operation at
-  // all will be performed.
-  //
-  if ( (EditLevel->ylen)+1 < MAX_MAP_LINES )
-    {
-      EditLevel->ylen++;
-      // In case of enlargement, we need to do more:
-      EditLevel->map[ EditLevel->ylen-1 ] = MyMalloc( ( EditLevel->xlen + 1 ) * sizeof ( map_tile ) ) ;
-      // We don't want to fill the new area with junk, do we? So we make it floor tiles
+	//--------------------
+	// The enlargement of levels in y direction is limited by a constant
+	// defined in defs.h.  This is carefully checked or no operation at
+	// all will be performed.
+	//
+	if ( EditLevel->ylen + 1 >= MAX_MAP_LINES )	
+		return;
+	
+	EditLevel->ylen++;
+	// In case of enlargement, we need to do more:
+	EditLevel->map[ EditLevel->ylen-1 ] = MyMalloc( ( EditLevel->xlen + 1 ) * sizeof ( map_tile ) ) ;
+	// We don't want to fill the new area with junk, do we? So we make it floor tiles
 
-      //--------------------
-      // Now we insert the new line.  But we can't just initialize it with memset like
-      // earlier, but instead this has to be done with more care, using the map_tile
-      // structures.
-      //
-      //memset( EditLevel->map[ EditLevel->ylen-1 ] , FLOOR , EditLevel->xlen );
-      for ( i = 0 ; i < EditLevel->xlen ; i ++ )
-	{
-	  EditLevel->map[ EditLevel->ylen-1 ] [ i ] . floor_value = ISO_FLOOR_SAND ;
-	  for ( j = 0 ; j < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE ; j ++ )
-	    {
-	      EditLevel->map[ EditLevel->ylen-1 ] [ i ] . obstacles_glued_to_here [ j ] = (-1) ;
-	    }
+	//--------------------
+	// Now we insert the new line.
+	for ( i = 0 ; i < EditLevel->xlen ; i ++ ) {
+		EditLevel->map[ EditLevel->ylen-1 ] [ i ] . floor_value = ISO_FLOOR_SAND ;
+		for ( j = 0 ; j < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE ; j ++ ) {
+			EditLevel->map[ EditLevel->ylen-1 ] [ i ] . obstacles_glued_to_here [ j ] = (-1) ;
+		}
 	}
-    }
 
 }; // void InsertLineVerySouth (level *EditLevel )
 
@@ -574,6 +571,8 @@ void InsertLineSouthernInterface (level *EditLevel )
   // First a sanity check for existing interface
   //
   if ( EditLevel -> jump_threshold_south <= 0 ) return;
+
+  if (EditLevel->ylen >= MAX_MAP_LINES) return;
 
   //--------------------
   // We build upon the existing code again.
