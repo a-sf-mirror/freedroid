@@ -121,15 +121,6 @@ LuaCode={
 ## Level  5 ##
 ##############
 * New event trigger *
-Name=_"Back to scientists quarters"
-Trigger at label="LvVInExit"
-Silent=0
-LuaCode={
-	teleport("DisruptorLevelVReturnPoint")
-}
-* End of trigger *
-
-* New event trigger *
 Name=_"To disruption machine deck"
 Trigger at label="LvVOutExit"
 Silent=0
@@ -222,14 +213,6 @@ LuaCode={
 ##############
 ## Level 14 ##
 ##############
-* New event trigger *
-Name=_"Closer to the disruptor..."
-Trigger at label="DisruptorLevelVAccess"
-Silent=0
-LuaCode={
-	teleport("LvVInArr")
-}
-* End of trigger *
 
 ##############
 ## Level 15 ##
