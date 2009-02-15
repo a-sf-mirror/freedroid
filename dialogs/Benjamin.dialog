@@ -56,9 +56,7 @@ LuaCode={
 Nr=2  Text=_"Can you teach me how to properly use rifles and guns?"
 NPC=_"If anyone in this city knows more about guns than me, then my name's not Benjamin."
 NPC=_"Of course, I will need compensation for the ammunition spent in the training and for my time. Say... A hundred triangles should be enough."
-LuaCode={
-    run_subdialog("subdlg_Benjamin.dialog")
-}
+LuaCode={ next(25) }
 ----------------------------------------------------------------------
 
 Nr=3  Text=_"Did you think about somehow gathering the excess heat and using it to make the beam stronger?"
@@ -129,11 +127,161 @@ LuaCode={
 Nr=10  Text=_"I will make it worth your while..."
 NPC=_"Intriguing."
 LuaCode={
-    run_subdialog("subdlg_Benjamin_bribe.dialog")
+	next(40)
     hide(10)
 }
 ----------------------------------------------------------------------
 
+Nr=25  Text=_"Improve ranged weapon skill (cost 5 training points, 100 cash) "
+LuaCode={
+    if (get_gold() < 100) then next(10)
+    else
+        if (get_training_points() > 4) then next(32) else next(28) end
+    end
+}
+----------------------------------------------------------------------
+
+Nr=28  Text="THIS WILL NOT EVER BE VISIBLE"
+OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NPC=_"You don't have enough experience. Come here after you see some more action."
+
+----------------------------------------------------------------------
+
+Nr=30  Text="THIS WILL NOT EVER BE VISIBLE"
+OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NPC=_"You don't have enough money! I cannot afford to just give away training for free."
+
+----------------------------------------------------------------------
+
+Nr=32  Text="THIS WILL NOT EVER BE VISIBLE"
+OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NPC=_"Now the most important thing is that you turn off the auto-aim on your weapon, like this."
+NPC=_"Otherwise your weapon might 'help' you and shoot somewhere you didn't intend to fire."
+NPC=_"Next important thing is to remember how to properly fire a shot."
+NPC=_"Watch your target closely.  Pretend you're moving with it. Aim for the head."
+NPC=_"When you feel completely in sync with your target, then you pull the trigger."
+NPC=_"Good. You are learning fast. Try it a few more times."
+NPC=_"Good. I think that it is enough for today."
+LuaCode={
+    add_gold(-100)
+    del_training_points(5)
+    improve_skill("ranged")
+}
+
+----------------------------------------------------------------------
+
+Nr=40  Text="THIS WILL NOT EVER BE VISIBLE"
+OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NPC=_"Fifty triangles per bit of information."
+NPC=_"So... What do you exactly want to know?"
+LuaCode={
+    hide(40)
+    show(41, 46, 47, 51, 69)
+}
+
+----------------------------------------------------------------------
+
+Nr=41  Text=_"How many exterminators does the Red Guard have?"
+OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+LuaCode={
+    if (get_gold() < 50) then next(43) else next(42) end
+    hide(41)
+}
+----------------------------------------------------------------------
+
+Nr=42  Text=_"How many exterminators does the Red Guard have?"
+NPC=_"It might come as a surprise to you, but we don't have many. A bit over twenty, last time I checked."
+NPC=_"However, as you can clearly see, this is more than enough to keep all of the damn bots away."
+LuaCode={
+    add_gold(-50)
+    show(44)
+}
+----------------------------------------------------------------------
+
+Nr=43  Text=_"Well, I am a bit short on cash right now..."
+NPC=_"Linarian, I thought we had an agreement. Fifty per infobit. My silence can be only broken with currency, so if you want to know, you have to pay."
+NPC=_"This conversation is now over."
+LuaCode={
+    end_dialog()
+    hide(41, 44, 46, 47, 49, 51)
+}
+----------------------------------------------------------------------
+
+Nr=44  Text=_"That is not a lot. Why there are so few of them right now?"
+OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+LuaCode={
+    if (get_gold() < 50) then next(43) else next(45) end
+}
+----------------------------------------------------------------------
+
+Nr=45  Text=_"That is not a lot. Why there are so few of them right now?"
+NPC=_"All of them are a very lucky find. "
+NPC=_"We found a crashed army truck on the Terminal Field. It had six crates inside it, each containing five exterminators."
+NPC=_"We tried, but we could not replicate the technology, only bullets."
+NPC=_"A few got damaged in battle, and we failed to recover five after a failed scout mission. We have twenty-two right now."
+LuaCode={
+    add_gold(-50)
+    show(49)
+}
+----------------------------------------------------------------------
+
+Nr=46  Text=_"What is the exterminator ammunition made from?"
+OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+LuaCode={
+    if (get_gold() < 50) then next(43) else next(48) end
+    hide(46)
+}
+----------------------------------------------------------------------
+
+Nr=47  Text=_"Tell me who designed the exterminator."
+NPC=_"That answer is on the house. Heh."
+NPC=_"We do not know, Linarian. We have absolutely no clue."
+LuaCode={
+    hide(47)
+}
+----------------------------------------------------------------------
+
+Nr=48  Text=_"What is the exterminator ammunition made from?"
+NPC=_"We use radioactives, whatever type happens to be on hand. Mostly plutonium and uranium, be we are not too picky."
+NPC=_"When we get low on ammo, we send in a chain gang of criminals and lazybums into the mine shaft K-17."
+NPC=_"That place was closed down ages ago because of high radiation levels. It's full of good ores from which we make bullets and power our nuclear reactors."
+NPC=_"We get our fission materials and they get their sentence. It was one of the best ideas we have ever had."
+LuaCode={
+    add_gold(-50)
+}
+----------------------------------------------------------------------
+
+Nr=49  Text=_"What was the failed mission?"
+NPC=_"Ugh. That will cost you triple."
+NPC=_"No. Wait."
+NPC=_"I changed my mind."
+NPC=_"Keep your money Linarian. No amount of triangles can make me talk about that accursed day."
+LuaCode={
+    hide(49)
+}
+----------------------------------------------------------------------
+
+Nr=51  Text=_"What makes the exterminator so powerful?"
+OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+LuaCode={
+    if (get_gold() < 50) then next(43) else next(52) end
+    hide(51)
+}
+----------------------------------------------------------------------
+
+Nr=52  Text=_"What makes the exterminator so powerful?"
+NPC=_"This is a tricky question. Most of the force comes from the miniature nuclear explosions which happen once the bullet hits something."
+NPC=_"Of course the high velocity of the impact can cause tremendous devastation by itself."
+NPC=_"We never bothered with doing any research on that topic. It works and that is enough for us."
+LuaCode={
+    add_gold(-50)
+}
+----------------------------------------------------------------------
+
+Nr=69  Text=_"That is all I want to know."
+NPC=_"Very well. This conversation never happened."
+
+----------------------------------------------------------------------
 Nr=99  Text=_"I will be going then."
 NPC=_"See you later!"
 LuaCode={
