@@ -51,7 +51,7 @@ FirstTime LuaCode={
 EveryTime LuaCode={ 
 	show(99) 
 	if (partner_started()) then
-		npc_says("This is still work in progress. Please dont report bugs for now on me or the Tutorial level in general. Thanks :)")
+		npc_says(_"This is still work in progress. Please dont report bugs for now on me or the Tutorial level in general. Thanks :)")
 		npc_says(_"Hi Linarian, I've been expecting you. My name is Tutorial Tom.")
 		npc_says(_"Long stasis sleep unfortunately has the side effect of temporary memory loss, sometimes even for simple ordinary every day things.")
 		npc_says(_"So let's start with the basics, shall we?")
@@ -294,8 +294,8 @@ LuaCode={
 	npc_says(_"I've unlocked the door leading to the first bot. Take care of it, then come back and talk to me.")
 	npc_says(_"I'm also giving you some health drinks. Feel free to use them, though I can heal you if you need it.")
 	npc_says(_"Your health will also regenerate over time. I wish it were so easy for us humans.")
-	npc_says(_"The first bot is carrying a wrench. Bring it to me to prove you've beaten it.")
-	npc_says(_"Come back and talk to me when you have the wrench.")
+	npc_says(_"The first bot is carrying an Entropy Inverter . Bring it to me to prove you've beaten it.")
+	npc_says(_"Come back and talk to me when you have the Entropy Inverter.")
 	change_obstacle("TutorialMelee1", "opened")
 	add_item("Doc-in-a-can", 3)
 	hide(23) show(24, 25)
@@ -311,20 +311,22 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-
--- NOTE: Ideally, we would rather check to see that the bot's dead.
--- Checking for the wrench isn't optimal, because Tux equips it, and
--- we can't check for that. Maybe the bot should drop loot instead,
--- and Tom exchanges it for the wrench?
 Nr=25  Text=_"I've beaten the first bot."
 LuaCode={
-	if (has_item_backpack("Big wrench") > 0) then
+	if (has_item_backpack("Entropy Inverter") > 0) then
 		npc_says(_"So you have. Well done.")
+    npc_says(_"I'll trade you this wrench for it. I think you'll find it handy.")
+    npc_says(_"Now would be an appropriate time to mention bot parts, I guess.")
+    npc_says(_"Certain parts in the bots are valuable. You can sell them at stores for cash.")
+    npc_says(_"If you can learn to extract these parts, it can help improve your lot in the world.")
+    npc_says(_"Hopefully, you can find someone to teach you.")
+    del_item_backpack("Entropy Inverter", 1)
+    add_item("Big wrench", 1)
 		hide(25) show(26)
 	else
 		npc_says(_"Trying to cheat your way through the tutorial doesn't bode well for your chances in the real world.")
 		npc_says(_"I'll need proof that you've beaten the first bot.")
-		npc_says(_"Don't come back without the wrench it was carrying.")
+		npc_says(_"Don't come back without the Entropy Inverter it was carrying.")
 		end_dialog()
 	end
 }
@@ -337,7 +339,7 @@ LuaCode={
 	npc_says(_"Fighting bots with your fists is fine, but there are a number of items you can use for melee.")
 	npc_says(_"There are several traditional weapons in the world such as swords or light sabers that can be used against the bots.")
 	npc_says(_"However, more common items you encounter everyday can often be used to bash or pry at droid armor.")
-	npc_says(_"For example, that wrench you picked up from the last bot will increase the damage you do, and should let you best the next bot.")
+	npc_says(_"For example, that wrench I just gave you will increase the damage you do, and should let you best the next bot.")
 	hide(26) show(27)
 }
 ----------------------------------------------------------------------
@@ -350,8 +352,9 @@ LuaCode={
 	npc_says(_"Finally, I'm giving you couple of somewhat experimental pills that will temporarily increase your strength and dexterity, respectively.")
 	npc_says(_"Use them in the same way you would use a health drink.")
 	npc_says(_"If I were you, I would think about using your repair skill on your armor and that wrench before you go into the room.")
-	npc_says(_"Like the last bot, this one will be carrying a weapon. Bring me the .22 Automatic it is carrying to continue.")
-	npc_says(_"I've unlocked the door. Good luck, and talk to me when you have the pistol.")
+  npc_says(_"You'll also need to equip them. I won't do that for you.")
+	npc_says(_"Like the last bot, this one will be carrying an item. Bring me the Tachyon Condensator it is carrying to continue.")
+	npc_says(_"I've unlocked the door. Good luck, and talk to me when you have the Tachyon Condensator.")
 	change_obstacle("TutorialMelee2", "opened")
 	heal_tux()
 	add_item("Doc-in-a-can", 1)
@@ -363,21 +366,21 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
--- NOTE: Same deal with this bot. There's not guarantee that
--- that player won't equip the gun. Asking them to unequip
--- it seems hacky.
 Nr=28  Text=_"I've beaten the second bot."
 LuaCode={
-	if (has_item_backpack(".22 Automatic") > 0) then
-		npc_says("Very good! You've completed your melee training.")
-		npc_says("These skills will serve you well in the future.")
-		npc_says("Talk to me when you're ready to move on to the next part of the tutorial.")
+	if (has_item_backpack("Tachyon Condensator") > 0) then
+		npc_says(_"Very good! You've completed your melee training.")
+		npc_says(_"These skills will serve you well in the future.")
+    npc_says(_"As a reward, I'm trading you a .22 Automatic pistol for that Tachyon Condensator.")
+		npc_says(_"Talk to me when you're ready to move on to the next part of the tutorial.")
+    del_item_backpack("Tachyon Condensator", 1)
+    add_item(".22 Automatic", 1)
 		hide(28) show(29)
 		heal_tux()
 	else
-		npc_says("You didn't bring back the .22 Automatic. You'll need to bring it back before we can continue.")
-		npc_says("I'll go ahead and heal you. If your weapon or armor are in bad shape, perhaps you should repair them before going back in there.")
-		npc_says("Don't come back without the .22 Automatic.")
+		npc_says(_"You didn't bring back the Tachyon Condensator. You'll need to bring it back before we can continue.")
+		npc_says(_"I'll go ahead and heal you. If your weapon or armor are in bad shape, perhaps you should repair them before going back in there.")
+		npc_says(_"Don't come back without the Tachyon Condensator.")
 		heal_tux()
     end_dialog()
 	end
@@ -471,6 +474,7 @@ LuaCode={
     end_dialog()
   else
     npc_says(_"I'll need you to surrender your guns. Unequip them all, then talk to me again.")
+    npc_says(_"You will need to have the guns in your inventory to give them to me, so if you dropped them, please go get them.")
     end_dialog()
   end
 }
@@ -506,17 +510,125 @@ LuaCode={
 
 Nr=42  Text=_"Alright, I'm ready to go hack some bots."
 LuaCode={
-  npc_says("I'll unlock the door then. Talk to me in the next area.")
+  npc_says(_"I'll unlock the door then. Talk to me in the next area.")
   change_obstacle("TutorialTakeover", "opened")
   hide(42) show(50)
   end_dialog()
 }
 ----------------------------------------------------------------------
 
-Nr=50  Text=_"Currently placeholder? Node 50"
+Nr=50  Text=_"So how does this work?"
 LuaCode={
-	npc_says(_"Scanning Result:", "NO_WAIT")
-	hide(1)
+	npc_says(_"We talked about skills before. Now, we're going to focus on hacking skills in particular.")
+  npc_says(_"As I mentioned before, your brain works in a way remarkably similar to a central processing unit.")
+  npc_says(_"In many ways, you interact with the world around you as a virtual environment.")
+  npc_says(_"You seem to have access to an API that isn't exposed to humans. You can interact with the environment in ways we only dream of.")
+  npc_says(_"Because of this, you can run various programs on the bots.")
+  npc_says(_"You can attempt to take them over, or monkey with their programming, or even cause them to damage themselves.")
+  npc_says(_"Likewise, there are certain programs that affect you or items around you.")
+  hide(50) show(51, 52, 53)
+}
+----------------------------------------------------------------------
+
+Nr=51  Text=_"Tell me about taking bots over."
+LuaCode={
+  npc_says(_"I'm afraid that you will have to experience it for yourself to really understand.")
+  npc_says(_"However, you did leave yourself instructions before you went into stasis sleep.")
+  npc_says(_"Takeover, or hacking, comes in the form of a game or competition placing you against the bot.")
+  npc_says(_"You initiate it by selecting the Hacking skill, then right-clicking on a hostile bot.")
+  npc_says(_"The field of play is split into two sides, one green, one maroon, representing circuit boards.")
+  npc_says(_"In the center of the field is a column of boxes known as logic cores. These cores have wires attached to them from both circuit boards.")
+  npc_says(_"Your objective is to activate as many cores in your chosen color as possible at the end of each round.")
+  npc_says(_"This is accomplished by selecting a wire with the up or down buttons, then pressing spacebar to activate that core.")
+  npc_says(_"You will be given about 10 seconds initially to select which color you want with spacebar.")
+  npc_says(_"At that point, you have 10 more seconds in which to activate more cores than the bot.")
+  npc_says(_"You have a limited number of charges, 3 by default, so choose your targets carefully.")
+  npc_says(_"I can tell you about some more advanced techniques, if you'd like.")
+  show(52, 53, 54)
+}
+----------------------------------------------------------------------
+
+Nr=52  Text=_"What was that about activating more cores than the bot?"
+LuaCode={
+  npc_says(_"Ah, yes. While you are busy trying to take the bot over, it will be busy trying to stop you.")
+  npc_says(_"The truth is, if the bot programming was perfect, it would be almost impossible to defeat.")
+  npc_says(_"Fortunately for you, software bugs do indeed exist, and therefore some cores will be on your side from the beginning.")
+  npc_says(_"Likewise, the bots only have a limited number of charges. Occasionally, they will have more than you, but that is a risk you have to take.")
+  npc_says(_"Because you are initiating the attack, you do get to choose your side, which can let you handicap the bot greatly if used wisely.")
+}
+----------------------------------------------------------------------
+
+Nr=53  Text=_"Tell me about more advanced techniques."
+LuaCode={
+  npc_says(_"Each charge will activate and remain active for a certain amount of time. This will let you take over a core that a bot just took over.")
+  npc_says(_"Sometimes, the bots will already have charges on the wires. When you activate one of these, it will increase the time that wire is activated for.")
+  npc_says(_"The bot can use this trick to, so it may be wise to give up a heavily guarded wire for an easier target.")
+  npc_says(_"The wiring inside the bots sometimes contain splitters. These can be used in two ways.")
+  npc_says(_"A 2-to-1 splitter is undesirable. This requires two charges to activate one core, halving your efficiency.")
+  npc_says(_"A 1-to-2 splitter, however, will activate two nodes for the price of one charge.")
+  npc_says(_"Sometimes these splitters will be stacked. Tracing the route ahead of time will be crucial to your tactical success.")
+  npc_says(_"Ideally, you want to stick your opponent with 2-to-1 splitters, while you have 1-to-2 splitters at your disposal.")
+  npc_says(_"Finally, remember that patience is often a virtue. Taking over all cores early on only to lose them later can be a crushing blow.")
+}
+----------------------------------------------------------------------
+
+Nr=54  Text=_"I'm ready to try hacking bots."
+LuaCode={
+  npc_says(_"I certainly hope so.")
+  npc_says(_"I should, however, take the time to tell you a few more things.")
+  npc_says(_"Hacking, like most other skills, incurs a cost to you.")
+  npc_says(_"Processing programs seems to heat up your brain.")
+  npc_says(_"You seem to be able to handle quite a bit of heat, but you have your limits.")
+  npc_says(_"If you accumulate too much heat, you will automatically shut down in order to cool off.")
+  npc_says(_"Over time, the heat will seep away from your body naturally. However, there are ways to speed up the process.")
+  npc_says(_"If you can find them, cooling drinks will quickly relieve your thermal discomfort, in much the same way healing drinks help your health.")
+  npc_says(_"You also have a special program called Emergency Shutdown that will lower your heat level drastically, although not without cost.")
+  npc_says(_"Using it will paralyze you for several seconds, during which you are a sitting duck... er, penguin.")
+  tux_says(_"I take it that was a joke also?")
+  npc_says(_"Quite. In addition to hacking, you have the ability to execute arbitrary code on bots.")
+  npc_says(_"These scripts and programs can be learned through reading source code books. To read a book, right-click on it in inventory.")
+  npc_says(_"You should have recovered your hacking ability by now, and I'll give you a couple of source code books as well.")
+  show(55)
+}
+----------------------------------------------------------------------
+
+Nr=55  Text=_"Thanks. I'm ready now."
+LuaCode={
+  npc_says(_"We have several bots behind that fence for you to practice on.")
+  npc_says(_"Take them over, then talk to me when they're all dead, and we'll be done with the tutorial.")
+  npc_says(_"If you need more help, don't hesitate to ask.")
+  npc_says(_"Oh, and Linarian... If you fail when hacking, you'll receive an electrical shock.")
+  npc_says(_"It shouldn't kill you, but you need to be aware of it nonetheless.")
+  improve_program("Hacking")
+  improve_program("Emergency shutdown")
+  add_item("Liquid nitrogen", 1)
+  add_item("Source Book of Emergency shutdown", 1)
+  add_item("Source Book of Calculate Pi", 1)
+  add_item("Source Book of Analyze item", 1)
+  add_item("Source Book of Malformed packet", 1)
+  hide(55) show(56)
+  end_dialog()
+}
+----------------------------------------------------------------------
+
+Nr=56  Text=_"I'm finished, the bots are neutralized, and I'm ready to move on."
+LuaCode={
+  if (has_item_backpack("Boots") > 0) then -- This is a hack, I'm too tired to fix it, but we need to check for all dead bots.
+    npc_says(_"Well done! That concludes our tutorial.")
+    npc_says(_"Now, there's one last thing you should know.")
+    npc_says(_"You Linarians can apparently withdraw from our world temporarily.")
+    npc_says(_"Time stops, and everything freezes in place.")
+    npc_says(_"This can be accomplished by using the Esc key. Your final task is to leave us using this menu.")
+    npc_says(_"I'm afraid there's nothing more I can teach you. I wish you good luck, Linarian.")
+    npc_says(_"You'll need it if our world is to survive.")
+    hide(51, 52, 53, 54, 55)
+    end_dialog()
+  else
+    npc_says(_"The bots aren't dead, Linarian.")
+    npc_says(_"Come back and talk to me after they are.")
+    npc_says(_"If you're having trouble, you might try the Malformed packet program.")
+    end_dialog()
+  end
 }
 ----------------------------------------------------------------------
 
@@ -604,7 +716,7 @@ give some bonus XP to reach higher level and then explain about stats and alloca
 
 
 ****
-
+MOSTLY IMPLEMENTED -- JK
 Continue to room with bots behind 1 more fence.
 Gives you cooldown prog and hacking. (and perhaps a few other prog books: healing, Analyze item?	mention there are lots of other programs that can help you in your quests)
 explain Heat and cooling, emergency auto shutdown and manual shutdown.
