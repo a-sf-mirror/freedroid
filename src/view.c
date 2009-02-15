@@ -491,7 +491,7 @@ skew_and_blit_line (float x1, float y1, float x2, float y2, Uint32 color, int gl
 		int r1, c1, r2, c2;
 		translate_map_point_to_screen_pixel(x1,y1,&r1,&c1,zoom_factor);
 		translate_map_point_to_screen_pixel(x2,y2,&r2,&c2,zoom_factor);
-		DrawLine( Screen, r1, c1, r2, c2, rr, gg, bb, 1);
+		DrawLine( Screen, r1, c1, r2, c2, rr, gg, bb, glwidth);
 	}
 #ifdef HAVE_LIBGL
 	else
@@ -1839,6 +1839,12 @@ draw_grid_on_the_floor (int mask)
 	    DisplayText (numbers[ii][jj], r - 5, c - 5, &tr, TEXT_STRETCH);
 	    }
     SetCurrentFont (PreviousFont);
+
+    // display level's interface edges
+    skew_and_blit_line ( our_level->jump_threshold_west, 0, our_level->jump_threshold_west, our_level->ylen, 0x0000FF, 3);
+    skew_and_blit_line ( our_level->xlen - our_level->jump_threshold_east, 0, our_level->xlen - our_level->jump_threshold_east, our_level->ylen, 0x0000FF, 3);
+    skew_and_blit_line ( 0, our_level->jump_threshold_north, our_level->xlen, our_level->jump_threshold_north, 0x0000FF, 3);
+    skew_and_blit_line ( 0, our_level->ylen - our_level->jump_threshold_south, our_level->xlen, our_level->ylen - our_level->jump_threshold_south, 0x0000FF, 3);
 
     // now display the level borders
     skew_and_blit_line ( our_level->jump_threshold_west/2.0, 0, our_level->jump_threshold_west/2.0, our_level->ylen, 0xFF0000, 3);
