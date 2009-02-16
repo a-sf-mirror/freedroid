@@ -52,7 +52,7 @@ static struct leveleditor_select {
     moderately_finepoint cur_drag_pos;
 } state;
 
-enum { DISABLED, RECT, RECTDONE, DRAGDROP } mode; 
+enum { DISABLED, FD_RECT, FD_RECTDONE, DRAGDROP } mode; 
 
 struct selected_element {
     enum leveleditor_object_type type;
@@ -141,7 +141,7 @@ void clear_clipboard(int nbelem)
 
 static void start_rect_select()
 {
-	mode = RECT;
+	mode = FD_RECT;
 
 	// Store mouse position
 	state.drag_start.x = (int)mouse_mapcoord.x;
@@ -234,7 +234,7 @@ static void do_rect_select()
 static void end_rect_select()
 {
 	if (!list_empty(&selected_elements))
-		mode = RECTDONE;
+		mode = FD_RECTDONE;
 	else mode = DISABLED;
 
 	state.single_tile_mark_index = 0;
@@ -276,12 +276,12 @@ static void end_drag_drop()
 
 	action_push (ACT_MULTIPLE_ACTIONS, enb);
 
-	mode = RECTDONE; 
+	mode = FD_RECTDONE; 
 }
 
 int level_editor_can_cycle_obs()
 {
-    if (mode != RECTDONE) {
+    if (mode != FD_RECTDONE) {
 	// We get called from the outside so check mode coherency first
 	return 0;
     }
@@ -325,7 +325,7 @@ void level_editor_copy_selection()
 {
     struct selected_element *e;
 
-    if (mode != RECTDONE) {
+    if (mode != FD_RECTDONE) {
 	// We get called from the outside so check mode coherency first
 	return;
     }
@@ -344,7 +344,7 @@ void level_editor_cut_selection()
 {
     struct selected_element *e;
     int nbelem = 0;
-    if (mode != RECTDONE) {
+    if (mode != FD_RECTDONE) {
 	// We get called from the outside so check mode coherency first
 	return;
     }
@@ -370,7 +370,7 @@ void level_editor_paste_selection()
     int nbact = 0;
     moderately_finepoint cmin = { 77777, 7777 }, cmax = { 0, 0}, center;
 
-    if (mode != RECTDONE) {
+    if (mode != FD_RECTDONE) {
 	// We get called from the outside so check mode coherency first
 	return;
     }
@@ -419,7 +419,7 @@ int leveleditor_select_input(SDL_Event *event)
 			return 0;
 		}
 		break;
-	case RECT:
+	case FD_RECT:
 		if (EVENT_LEFT_RELEASE(event)) {
 			end_rect_select();
 			return 1;
@@ -428,7 +428,7 @@ int leveleditor_select_input(SDL_Event *event)
 			return 0;
 		}
 		break;
-	case RECTDONE:
+	case FD_RECTDONE:
 		if (EVENT_LEFT_PRESS(event)) {
 			if (ShiftPressed()) {
 				start_drag_drop();
@@ -460,7 +460,7 @@ int leveleditor_select_display()
 	int r1, r2, r3, r4, c1, c2, c3, c4 ;
 	float zf = GameConfig . zoom_is_on ? ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT : 1.0;
 	switch(mode) {
-	case RECT:
+	case FD_RECT:
 		//display the selection rectangle
 		translate_map_point_to_screen_pixel (state.rect_start.x , state.rect_start.y , &r1, &c1, zf);
 		translate_map_point_to_screen_pixel ( state.rect_start.x , state.rect_start.y + state.rect_len.y , &r2, &c2, zf);
