@@ -36354,7 +36354,6 @@ t272 x10.13 y14.08 l-1 d-1
 /obsdata
 plabelinfolvl
 x=15 y=13 name="TutorialTutorStart"
-x=10 y=14 name="TutorialTuxStart"
 x=9 y=13 name="TutorialLeave"
 x=2 y=50 name="melee1"
 x=2 y=58 name="melee2"
@@ -36373,6 +36372,7 @@ x=42 y=11 name="takeover4"
 x=41 y=8 name="takeover5"
 x=39 y=6 name="takeover6"
 x=42 y=5 name="takeover7"
+x=11 y=14 name="TutorialTuxStart"
 /plabelinfolvl
 pobstaclelabelinfolvl
 obstacle_label.index=0 obstacle_label_name="TutorialZigzag1" states="closed:282 opened:6"
