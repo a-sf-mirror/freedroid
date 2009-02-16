@@ -51,7 +51,6 @@ FirstTime LuaCode={
 EveryTime LuaCode={ 
 	show(99) 
 	if (partner_started()) then
-		npc_says(_"This is still work in progress. Please dont report bugs for now on me or the Tutorial level in general. Thanks :)")
 		npc_says(_"Hi Linarian, I've been expecting you. My name is Tutorial Tom.")
 		npc_says(_"Long stasis sleep unfortunately has the side effect of temporary memory loss, sometimes even for simple ordinary every day things.")
 		npc_says(_"So let's start with the basics, shall we?")
@@ -71,9 +70,9 @@ Nr=2  Text=_"What can you tell me about finding my way in the world?"
 LuaCode={
 	npc_says(_"As I understand it, you Linarians see the world in a way very similar to the Heads Up Displays used in our computer games of the past.")
 	npc_says(_"I'll use the term HUD to denote that in this explanation.")
-	npc_says(_"I'll start with your compass.	Linarians have a remarkable internal sense of direction, represented on your HUD by four arrows in the upper right corner.")
-	npc_says(_"It's fairly simple, but it does show all four cardinal directions, and North is marked.	Going clockwise from North, you have East, South, and West.")
-	npc_says(_"I'll go ahead and mention the automap.	Rumor has it that there was once a world-wide mapping network that you as a Linarian could tap into.")
+	npc_says(_"I'll start with your compass. Linarians have a remarkable internal sense of direction, represented on your HUD by four arrows in the upper right corner.")
+	npc_says(_"It's fairly simple, but it does show all four cardinal directions, and North is marked. Going clockwise from North, you have East, South, and West.")
+	npc_says(_"I'll go ahead and mention the automap. Rumor has it that there was once a world-wide mapping network that you as a Linarian could tap into.")
 	npc_says(_"Much of the bot activity has made it difficult or impossible to use.")
 	npc_says(_"That said, there is supposed to be a man in town that provides a very similar ability through the use of nanotechnology.")
 	npc_says(_"Rumors abound, of course, and there may not be a bit of truth to it, but if there's any chance it may help you on your journey, it may be worth investigating.")
@@ -396,7 +395,7 @@ LuaCode={
   end
   npc_says(_"I'll unlock the door to the south. Follow the corridor east to the shooting range.")
   change_obstacle("TutorialMeleeOut", "opened")
-	hide(24, 29) show(30, 39)
+	hide(20, 24, 29) show(30, 39)
   end_dialog()
 }
 ----------------------------------------------------------------------
@@ -469,6 +468,7 @@ LuaCode={
     npc_says(_"I don't mind if you don't want to do this, but please don't try to trick me.")
     npc_says(_"I don't have verified kills on all those bots, so you're not moving on.")
 }
+----------------------------------------------------------------------
 
 Nr=38  Text=_"I'm ready to move on."
 LuaCode={
@@ -478,7 +478,7 @@ LuaCode={
     del_item_backpack(".22 Automatic")
     del_item_backpack("Laser pistol")
     del_item_backpack("Plasma pistol")
-    hide(32, 33, 37, 38) show(40)
+    hide(30, 31, 32, 33, 37, 38) show(40)
     end_dialog()
   else
     npc_says(_"I'll need you to surrender your guns. Unequip them all, then talk to me again.")
@@ -491,7 +491,7 @@ LuaCode={
 Nr=39  Text=_"I'd rather just move on to the next section of the tutorial."
 LuaCode={
   npc_says(_"As you wish, Linarian.")
-  change_obstacle("TutorialShootingOut", "opened"
+  change_obstacle("TutorialShootingOut", "opened")
   hide(30, 31, 32, 33, 37, 38, 39) show(40)
   end_dialog()
 }
@@ -529,7 +529,7 @@ Nr=42  Text=_"Alright, I'm ready to go hack some bots."
 LuaCode={
   npc_says(_"I'll unlock the door then. Talk to me in the next area.")
   change_obstacle("TutorialTakeover", "opened")
-  hide(42) show(50, 57)
+  hide(42) show(50, 56)
   end_dialog()
 }
 ----------------------------------------------------------------------
@@ -632,137 +632,34 @@ LuaCode={
 Nr=56  Text=_"I'm finished. I'm ready to move on."
 LuaCode={
   if (has_cookie("hacking_bots")) then
-    if (true) then -- This is a hack, I'm too tired to fix it, but we need to check for all dead bots.
+    if (true) then -- This is a hack, We're not ready to fix it yet, but we need to check for all dead bots.
       npc_says(_"The bots aren't dead, Linarian.")
       npc_says(_"Come back and talk to me after they are.")
       npc_says(_"If you're having trouble, you might try the Malformed packet program.")
-      end_dialog()
     else
       npc_says(_"Well done! That concludes our tutorial.")
-      npc_says(_"Now, there's one last thing you should know.")
-      npc_says(_"You Linarians can apparently withdraw from our world temporarily.")
-      npc_says(_"Time stops, and everything freezes in place.")
-      npc_says(_"This can be accomplished by using the Esc key. Your final task is to leave us using this menu.")
-      npc_says(_"I'm afraid there's nothing more I can teach you. I wish you good luck, Linarian.")
-      npc_says(_"You'll need it if our world is to survive.")
+      del_cookie("hacking_bots")
       hide(51, 52, 53, 54, 55)
-      end_dialog()
     end
-  else
-    npc_says(_"Well done! That concludes our tutorial.")
-    npc_says(_"Now, there's one last thing you should know.")
-    npc_says(_"You Linarians can apparently withdraw from our world temporarily.")
-    npc_says(_"Time stops, and everything freezes in place.")
-    npc_says(_"This can be accomplished by using the Esc key. Your final task is to leave us using this menu.")
+  end
+  npc_says(_"Now, there's one last thing you should know.")
+  npc_says(_"You Linarians can apparently withdraw from our world temporarily.")
+  npc_says(_"Time stops, and everything freezes in place.")
+  npc_says(_"This can be accomplished by using the Esc key.")
+  if (not has_cookie(_"hacking_bots")) then
+    npc_says(_"Your final task is to leave us using this menu.")
     npc_says(_"I'm afraid there's nothing more I can teach you. I wish you good luck, Linarian.")
     npc_says(_"You'll need it if our world is to survive.")
-    hide(51, 52, 53, 54, 55)
-    end_dialog()
   end
-}
-----------------------------------------------------------------------
-
-Nr=60  Text=_"Currently placeholder? Node 60"
-LuaCode={
-	npc_says(_"Scanning Result:", "NO_WAIT")
-	hide(1)
-}
-----------------------------------------------------------------------
-
-Nr=70  Text=_"Currently placeholder? Node 70"
-LuaCode={
-	npc_says(_"Scanning Result:", "NO_WAIT")
-	hide(1)
-}
-----------------------------------------------------------------------
-
-Nr=80  Text=_"Currently placeholder? Node 80"
-LuaCode={
-	npc_says(_"Scanning Result:", "NO_WAIT")
-	hide(1)
-}
-----------------------------------------------------------------------
-
-Nr=90  Text=_"Currently placeholder? Node 90"
-LuaCode={
-	npc_says(_"Scanning Result:", "NO_WAIT")
-	hide(1)
-}
+  hide(51, 52, 53, 54, 55)
+  end_dialog()
+  }
 ----------------------------------------------------------------------
 
 Nr=99  Text=_"Enough for now"
 LuaCode={
 	npc_says(_"Ok, I'll be around if you need any more questions answered. Don't hesitate to ask.")
 	end_dialog()
-
---[[
-
-This Lua block comment explains how the tutorial is ment to "work".
-
-IMPLEMENTED -- JK
-First tux enters and get rushed by TutorialTom
-That part is half implemented and comments are in the relevant section
-
-***
-IMPLEMENTED -- JK
-After that we move to next room (or hallway rather)
-discuss chests & armour-items
-how to equip etc, how to see when things are starting to fall apart
-also that you can fix things in a shop
-possibly add the repair skill and explain how to fix broken stuff
-this means explaining how skills work (select them, read the help texts etc)
-
-* Protective clothing - How does wearing clothes and shields help me?
-"Even the best of fighters sometimes gets hit by the enemies blows. I would wear those before getting into a a hand to hand fight with those bots if I were you. However, every time you get hit, there is a chance what you wear and use for protection will get slightly damaged."
-
-***
-IMPLEMENTED -- JK
-When user think he is ready, we move on to melee rooms
-
-explain, fighting melee ; fight first bot with fists or give melee weapon? ; 
-Kill of next bot too
-"we keep 2 bots for melee practice. Further south there is a locked door that I will open for you once you have taken care of the two melee bots."
-"After you have disabled both of them, I will open the locked door further south so you can walk through it and follow the corridor east to the shooting range."
-
-tell to pick up gun 2nd bot dropped and ask if you are eager to try out ranged weapons
-Tom should also be able to heal you, just in case you get much damage. 
-Possibly tell about stamina and health, and instant healing potions (give 2-3 for tux to test)
-tell about the instant access "belt" where you can put "potions" items and use with button 0-9
-
-****
-
-MOSTLY IMPLEMENTED -- JK
-Tom continues with explaining shooting (single fire, other fire specials, reload etc); 
-Open doors to allow walking to "shooting range" ; follows you 
-Open doors to crate room, for more ammo and alternative guns
-describe plasma pistol, laser pistol and .22 (how much it sucks eg)
-Kill all bots behind fence with ranged fire (NPC 1 stands nearby if you want to get repeat of instructions)
-All bots killed = opens next gate
-
-****
-IMPLEMENTED -- JK
-He explains you have to leave ranged weapons and you will now train your "mental" skills. ; remove the range weapons
-give some bonus XP to reach higher level and then explain about stats and allocationg points.
-
-
-****
-MOSTLY IMPLEMENTED -- JK
-Continue to room with bots behind 1 more fence.
-Gives you cooldown prog and hacking. (and perhaps a few other prog books: healing, Analyze item?	mention there are lots of other programs that can help you in your quests)
-explain Heat and cooling, emergency auto shutdown and manual shutdown.
-Teach you what takeover game is and let you take over some bots behind fences and let them kill each other.
-if we implement slowing down TO in tutorial, Tutorial Tom say something like "These bots have been deliberately slowed down for practice reasons. Real enemies are much faster".
-
-When no enemies remaines, tutorial finished?
-
-****
-
-Perhaps the minimap should be mentioned as well? And that it's an item you can get inside the game.
-
-Im sure we will remember other things we should put in as well.
-
---]]
-
 }
 ----------------------------------------------------------------------
 
