@@ -10562,8 +10562,8 @@ it: n="Plate"  X=52.750000  Y=27.500000  Dmg=0  DmgMod=0  MDur=-1  CDur=1.000000
 it: n="Mug"  X=53.500000  Y=10.500000  Dmg=0  DmgMod=0  MDur=-1  CDur=1.000000  AClip=0  Multi=1  IsIdent=1 
 it: n="Antibiotic"  X=45.500000  Y=17.250000  Dmg=0  DmgMod=0  MDur=-1  CDur=1.000000  AClip=0  Multi=2  IsIdent=1 
 it: n="Fork"  X=53.419998  Y=26.580000  Dmg=0  DmgMod=0  MDur=-1  CDur=1.000000  AClip=0  Multi=1  IsIdent=1 
-it: n="Big kitchen knife"  X=11.500000  Y=7.500000  Dmg=0  DmgMod=0  MDur=-1  CDur=1.000000  AClip=0  Multi=1  IsIdent=1 
-it: n="Antique sword"  X=49.500000  Y=0.500000  Dmg=0  DmgMod=0  MDur=-1  CDur=1.000000  AClip=0  Multi=1  IsIdent=1 
+it: n="Big kitchen knife"  X=11.500000  Y=7.500000  Dmg=1  DmgMod=1  MDur=14  CDur=3.000000  AClip=0  Multi=1  IsIdent=1 
+it: n="Antique sword"  X=49.500000  Y=0.500000  Dmg=2  DmgMod=2  MDur=25  CDur=16.000000  AClip=0  Multi=1  IsIdent=1 
 /pchestinfolvl
 wp
 Nr.=  0 x=  35 y=  57 rnd=1	 c:  127 121
