@@ -1,38 +1,20 @@
 The title picture in the graphics subdirectory for this mission is : backgrounds/credits.jpg
 The title song in the sound subdirectory for this mission is : TheBeginning.ogg
 *** START OF PURE SCROLLTEXT DATA ***
-                                 FreedroidRPG 0.11.1
-
-PROJECT MANAGEMENT:
-
-		Arthur Huillet
-
-		Stefan Huszics
-
-
+                                 FreedroidRPG 0.12
 
 PROGRAMMING:
-
-		Pierre Bourdon
-
-		Simon Castellan
 
 		Samuel Degrande
 
 		Arthur Huillet
 
-		Quentin Pradet
-
-		jcoral
-
-
 
 GAME CONTENT:
 
-		Alexey Guseynov
-
 		Stefan Huszics
 
+		JK Wood
 
 
 GRAPHICS:
@@ -49,21 +31,13 @@ MUSIC:
 
 MISC:
 
-		Armin Winterer - ongoing work on german translation
-                                              
-		Hike Danakian - cosmetic changes for doxygen
-                                              
-		Ian Griffiths - leveleditor interface buttons
-                                              
-		David Kremer - ongoing work on french translation
-
+		Armin Winterer
+		
 		LOTS OF PLAYERS - bug reports and very welcomed feedback
-
-
 
                                             
                                           
-                          ALSO, FOR PREVIOUS VERSIONS
+                          ALSO, IN PREVIOUS VERSIONS
 
 
 PROGRAMMING:
@@ -71,6 +45,14 @@ PROGRAMMING:
 		Johannes Prix
 
 		Reinhard Prix
+		
+		Quentin Pradet
+
+		jcoral
+		
+		Pierre Bourdon
+
+		Simon Castellan
 
 
 
@@ -114,6 +96,13 @@ MISC:
 		Simon Newton
 
 		Clint Herron
-*** END OF PURE SCROLLTEXT DATA ***
+		
+		Hike Danakian
+                                              
+		Ian Griffiths
+                                              
+		David Kremer
+
+		*** END OF PURE SCROLLTEXT DATA ***
 
 *** END OF TITLE FILE *** LEAVE THIS TERMINATOR IN HERE ***
