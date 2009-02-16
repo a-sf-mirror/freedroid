@@ -286,8 +286,7 @@ char fpath[2048];
 	NextSubsectionStartPointer += strlen ( "*** START OF PURE SCROLLTEXT DATA ***\n" );
 	if ( (TerminationPointer=strstr ( NextSubsectionStartPointer, "\n*** END OF PURE SCROLLTEXT DATA ***")) == NULL)
 	{
-	    DebugPrintf (1, "\n\nvoid PlayATitleFile(...): Unterminated Subsection in Mission briefing....Terminating...");
-	    Terminate(ERR);
+		ErrorMessage(__FUNCTION__, "Unterminated Subsection in Mission briefing....Terminating...\n", PLEASE_INFORM, IS_FATAL);
 	}
 	ThisTextLength=TerminationPointer-NextSubsectionStartPointer;
 	PreparedBriefingText = MyMalloc (ThisTextLength + 10);
