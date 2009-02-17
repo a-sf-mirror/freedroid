@@ -142,6 +142,7 @@ enum leveleditor_object_type {
 
 
 EXTERN iso_image *leveleditor_get_object_image(enum leveleditor_object_type type, int * array, int idx);
+EXTERN void leveleditor_print_object_info(enum leveleditor_object_type type, int * array, int idx, char *str);
 
 #ifdef _leveleditor_c
 int floor_tiles_list[] =    {

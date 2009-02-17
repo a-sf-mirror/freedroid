@@ -97,6 +97,23 @@ level *EditLevel(void)
     return CURLEVEL();
 }
 
+void leveleditor_print_object_info(enum leveleditor_object_type type, int * array, int idx, char *str)
+{
+	switch (type) {
+		case OBJECT_FLOOR:
+			sprintf(str, "Floor tile number %d\n", array[idx]);
+			break;
+		case OBJECT_OBSTACLE:
+			sprintf(str, "Obs. number %d, %s\n", array[idx], obstacle_map[array[idx]].filename);
+			break;
+		case OBJECT_WAYPOINT:
+			sprintf(str, "Waypt %s connection, %s for random spawn\n", "two way", array[idx] ? "NOK" : "OK");
+			break;
+		default:
+			*str = 0;
+	}
+}
+
 iso_image *leveleditor_get_object_image(enum leveleditor_object_type type, int * array, int idx)
 {
     extern iso_image level_editor_waypoint_cursor[];

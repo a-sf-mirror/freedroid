@@ -39,6 +39,8 @@
 static struct leveleditor_typeselect *previous_type = NULL;
 static int num_blocks_per_line = 0;
 
+static int display_info = 0;
+
 void leveleditor_toolbar_mouseenter(SDL_Event *event, struct leveleditor_widget *vt)
 {
     (void)vt;
@@ -47,6 +49,7 @@ void leveleditor_toolbar_mouseenter(SDL_Event *event, struct leveleditor_widget 
 void leveleditor_toolbar_mouseleave(SDL_Event *event, struct leveleditor_widget *vt)
 {
     (void)vt;
+	display_info = 0;
 }
 
 void leveleditor_toolbar_mouserelease(SDL_Event *event, struct leveleditor_widget *vt)
@@ -78,12 +81,14 @@ void leveleditor_toolbar_mousepress(SDL_Event *event, struct leveleditor_widget 
 void leveleditor_toolbar_mouserightrelease(SDL_Event *event, struct leveleditor_widget *vt)
 {
     (void)vt;
+	display_info = 0;
 }
 
 void leveleditor_toolbar_mouserightpress(SDL_Event *event, struct leveleditor_widget *vt)
 {
     (void)vt;
-    /*XXX maybe display info about the currently selected object?*/
+	display_info = 1;
+	leveleditor_toolbar_mousepress(event, vt);
 }
 
 void leveleditor_toolbar_mousewheelup(SDL_Event *event, struct leveleditor_widget *vt)
@@ -100,76 +105,82 @@ void leveleditor_toolbar_mousewheeldown(SDL_Event *event, struct leveleditor_wid
 
 void leveleditor_toolbar_display(struct leveleditor_widget *vt)
 {
-    (void)vt;
-    struct leveleditor_typeselect *ts = get_current_object_type();
+	(void)vt;
+	struct leveleditor_typeselect *ts = get_current_object_type();
 
-    if (ts != previous_type) {
-	previous_type = ts;
-    }
-
-    int number_of_tiles = 0;
-    int i;
-    int cindex = ts->toolbar_first_block;
-    float zoom_factor;
-    SDL_Surface *tmp;
-    SDL_Rect TargetRectangle;
-
-    // toolbar background
-    SDL_Rect tr = {.x = 0, .y = 13, .w = GameConfig.screen_width, .h = 77 };
-    our_SDL_fill_rect_wrapper(Screen, &tr, SDL_MapRGB(Screen->format, 0x55, 0x68, 0x89));
-
-    // now the tiles to be selected   
-    
-    // compute the number of tiles in this list
-    for (i=0; ts->indices[i] != -1; i++);
-    number_of_tiles = i;
-
-    if (num_blocks_per_line == 0) {
-	num_blocks_per_line = GameConfig.screen_width / INITIAL_BLOCK_WIDTH - 1;
-    }
-
-    for ( i = 0 ; i < num_blocks_per_line ; i ++ )  {
-
-	if (cindex >= number_of_tiles) 
-	    break;
-
-	TargetRectangle.x = INITIAL_BLOCK_WIDTH/2 + INITIAL_BLOCK_WIDTH * i ;
-	TargetRectangle.y = INITIAL_BLOCK_HEIGHT/3 ;
-	TargetRectangle.w = INITIAL_BLOCK_WIDTH ;
-	TargetRectangle.h = INITIAL_BLOCK_HEIGHT ;
-
-	iso_image * img = leveleditor_get_object_image(ts->type, ts->indices, cindex);
-	if (!img) break;
-
-	// We find the proper zoom_factor, so that the obstacle/tile in question will
-	// fit into one tile in the level editor top status selection row.
-	//
-	if ( use_open_gl )  {
-	    zoom_factor = min ( 
-		    ((float)INITIAL_BLOCK_WIDTH / (float)img -> original_image_width),
-		    ((float)INITIAL_BLOCK_HEIGHT / (float)img -> original_image_height));
-	} else {
-	    zoom_factor = min ( 
-		    ((float)INITIAL_BLOCK_WIDTH / (float)img -> surface->w),
-		    ((float)INITIAL_BLOCK_HEIGHT / (float)img -> surface->h));
+	if (ts != previous_type) {
+		previous_type = ts;
 	}
 
-	if (use_open_gl) {
-	    draw_gl_scaled_textured_quad_at_screen_position (img, TargetRectangle.x, TargetRectangle.y, zoom_factor) ;
-	} else {
-	    // We create a scaled version of the obstacle/floorpiece in question
-	    tmp = zoomSurface ( img -> surface , zoom_factor, zoom_factor, FALSE );
+	int number_of_tiles = 0;
+	int i;
+	int cindex = ts->toolbar_first_block;
+	float zoom_factor;
+	SDL_Surface *tmp;
+	SDL_Rect TargetRectangle;
 
-	    // Now we can show and free the scaled verion of the floor tile again.
-	    our_SDL_blit_surface_wrapper( tmp , NULL , Screen, &TargetRectangle);
-	    SDL_FreeSurface ( tmp );
+	// toolbar background
+	SDL_Rect tr = {.x = 0, .y = 13, .w = GameConfig.screen_width, .h = 77 };
+	our_SDL_fill_rect_wrapper(Screen, &tr, SDL_MapRGB(Screen->format, 0x55, 0x68, 0x89));
+
+	// now the tiles to be selected   
+
+	// compute the number of tiles in this list
+	for (i=0; ts->indices[i] != -1; i++);
+	number_of_tiles = i;
+
+	if (num_blocks_per_line == 0) {
+		num_blocks_per_line = GameConfig.screen_width / INITIAL_BLOCK_WIDTH - 1;
 	}
 
-	if (cindex == ts->selected_tile_nb) 
-	    HighlightRectangle ( Screen , TargetRectangle );
+	for ( i = 0 ; i < num_blocks_per_line ; i ++ )  {
 
-	cindex ++ ;
-    }
+		if (cindex >= number_of_tiles) 
+			break;
+
+		TargetRectangle.x = INITIAL_BLOCK_WIDTH/2 + INITIAL_BLOCK_WIDTH * i ;
+		TargetRectangle.y = INITIAL_BLOCK_HEIGHT/3 ;
+		TargetRectangle.w = INITIAL_BLOCK_WIDTH ;
+		TargetRectangle.h = INITIAL_BLOCK_HEIGHT ;
+
+		iso_image * img = leveleditor_get_object_image(ts->type, ts->indices, cindex);
+		if (!img) break;
+
+		// We find the proper zoom_factor, so that the obstacle/tile in question will
+		// fit into one tile in the level editor top status selection row.
+		//
+		if ( use_open_gl )  {
+			zoom_factor = min ( 
+					((float)INITIAL_BLOCK_WIDTH / (float)img -> original_image_width),
+					((float)INITIAL_BLOCK_HEIGHT / (float)img -> original_image_height));
+		} else {
+			zoom_factor = min ( 
+					((float)INITIAL_BLOCK_WIDTH / (float)img -> surface->w),
+					((float)INITIAL_BLOCK_HEIGHT / (float)img -> surface->h));
+		}
+
+		if (use_open_gl) {
+			draw_gl_scaled_textured_quad_at_screen_position (img, TargetRectangle.x, TargetRectangle.y, zoom_factor) ;
+		} else {
+			// We create a scaled version of the obstacle/floorpiece in question
+			tmp = zoomSurface ( img -> surface , zoom_factor, zoom_factor, FALSE );
+
+			// Now we can show and free the scaled verion of the floor tile again.
+			our_SDL_blit_surface_wrapper( tmp , NULL , Screen, &TargetRectangle);
+			SDL_FreeSurface ( tmp );
+		}
+
+		if (cindex == ts->selected_tile_nb) {
+			HighlightRectangle ( Screen , TargetRectangle );
+			if (display_info) {
+				// Display information about the currently selected object
+				leveleditor_print_object_info(ts->type, ts->indices, cindex, VanishingMessage);
+				VanishingMessageEndDate = SDL_GetTicks() + 50;
+			}
+		}
+
+		cindex ++ ;
+	}
 }
 
 void leveleditor_toolbar_left()
