@@ -757,42 +757,36 @@ void level_editor_action_redo ()
  */
 void level_editor_place_aligned_obstacle ( int positionid )
 {
-    struct leveleditor_typeselect *ts = get_current_object_type();
-    int obstacle_id = -1;
-    int placement_is_possible = TRUE;
-    int obstacle_created = FALSE;
-    float position_offset_x[9] = { 0, 0.5, 1.0, 0, 0.5, 1.0, 0, 0.5, 1.0 };
-    float position_offset_y[9] = { 1.0, 1.0, 1.0, 0.5, 0.5, 0.5, 0, 0, 0 };
+	struct leveleditor_typeselect *ts = get_current_object_type();
+	int obstacle_id = -1;
+	int placement_is_possible = TRUE;
+	int obstacle_created = FALSE;
+	float position_offset_x[9] = { 0, 0.5, 1.0, 0, 0.5, 1.0, 0, 0.5, 1.0 };
+	float position_offset_y[9] = { 1.0, 1.0, 1.0, 0.5, 0.5, 0.5, 0, 0, 0 };
 
-    positionid--;
+	positionid--;
 
-    if (ts->type != OBJECT_OBSTACLE && ts->type != OBJECT_ANY )
-	return;
-	//ErrorMessage(__FUNCTION__, "Cannot \"place aligned obstacle\" for selected object type %d\n", PLEASE_INFORM, IS_FATAL, ts->type);
+	if (ts->type != OBJECT_OBSTACLE && ts->type != OBJECT_FLOOR)
+		return;
 
-    /* Try to get a quickbar entry */
-    if (ts->type == OBJECT_ANY) {
-	GiveMouseAlertWindow("Implement quickbar");
-	/*entry = quickbar_getentry ( selected_tile_nb );
-	  if (entry)
-	  {
-	  obstacle_type = entry -> obstacle_type;
-	  id = entry -> id;
-	  }
-	  else
-	  {
-	  placement_is_possible = FALSE;
-	  }*/
-    } else {
-	obstacle_id = ts->indices[ts->selected_tile_nb];
-    }
+	switch (ts->type) {
+		case OBJECT_ANY:
+			GiveMouseAlertWindow("Quickbar support was removed.");
+			break;
 
-    if (placement_is_possible)  {
-	action_create_obstacle_user (EditLevel(), ((int)Me.pos.x) + position_offset_x[positionid], ((int)Me.pos.y) + position_offset_y[positionid], obstacle_id);
-	obstacle_created = TRUE;
-	/*	if (object_list !=  && obstacle_created )
-		quickbar_use ( obstacle_type, id );*/
-    }
+		case OBJECT_OBSTACLE:
+			obstacle_id = ts->indices[ts->selected_tile_nb];
+			action_create_obstacle_user (EditLevel(), ((int)Me.pos.x) + position_offset_x[positionid], ((int)Me.pos.y) + position_offset_y[positionid], obstacle_id);
+			obstacle_created = TRUE;
+			break;
+
+		case OBJECT_FLOOR:
+			action_set_floor(EditLevel(), (int)Me.pos.x, (int)Me.pos.y, ts->indices[ts->selected_tile_nb]);
+			break;
+
+		default:
+			return;
+	}
 }
 
 /**
