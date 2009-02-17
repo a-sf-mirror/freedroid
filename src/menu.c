@@ -1292,7 +1292,7 @@ struct Menu menus [] = {
 };
 
 
-static void RunSubMenu (int startup, char buffer[10][1024], int menu_id)
+static void RunSubMenu (int startup, int menu_id)
 {
     int can_continue = 0;
     char *texts[10];
@@ -1302,7 +1302,7 @@ static void RunSubMenu (int startup, char buffer[10][1024], int menu_id)
 	int pos;
 	// We need to fill at each loop because
 	// several menus change their contents
-	for (i = 0; i < 9; i++) texts[i] = buffer[i];
+	for (i = 0; i < 10; i++) texts[i] = (char*)malloc(1024*sizeof(char));
 	menus [ menu_id ] . FillText ( texts );
 	
 	if (startup)
@@ -1312,20 +1312,20 @@ static void RunSubMenu (int startup, char buffer[10][1024], int menu_id)
 	
 	int ret = menus [ menu_id ] . HandleSelection (pos);
 	
+	for (i = 0; i < 10; i++) free(texts[i]);
+	
 	if (ret == EXIT_MENU) 
 	{
 	    can_continue = TRUE;
 	}
 	
 	if (ret > 0)
-	    RunSubMenu (startup, buffer, ret);
+	    RunSubMenu (startup, ret);
     }
 }
 
 static void RunMenu (int is_startup)
 {
-	// 1024 should be enough
-	char buffer [10][1024]; 
 	int start_menu = is_startup ? MENU_STARTUP : MENU_ESCAPE;
 	SetCurrentFont ( Menu_BFont );
 	Activate_Conservative_Frame_Computation ( ) ;	
@@ -1339,7 +1339,7 @@ static void RunMenu (int is_startup)
 	} else {
 	    while ( EscapePressed() );
 	}
-	RunSubMenu (is_startup, buffer, start_menu);
+	RunSubMenu (is_startup, start_menu);
 	ClearGraphMem();
 }
 
@@ -1422,14 +1422,14 @@ static void
 Startup_fill (char *MenuTexts[10])
 {
 	int i = 0;
-	MenuTexts[i++]=_("Play");
-	MenuTexts[i++]=_("Tutorial");
-	MenuTexts[i++]=_("Level Editor");
-	MenuTexts[i++]=_("Options");
-	MenuTexts[i++]=_("Credits");
-	MenuTexts[i++]=_("Contribute");
-	MenuTexts[i++]=_("Exit FreedroidRPG");
-	MenuTexts[i++]="";
+	strncpy(MenuTexts[i++], _("Play"), 1024);
+	strncpy(MenuTexts[i++], _("Tutorial"), 1024);
+	strncpy(MenuTexts[i++], _("Level Editor"), 1024);
+	strncpy(MenuTexts[i++], _("Options"), 1024);
+	strncpy(MenuTexts[i++], _("Credits"), 1024);
+	strncpy(MenuTexts[i++], _("Contribute"), 1024);
+	strncpy(MenuTexts[i++], _("Exit FreedroidRPG"), 1024);
+	MenuTexts[i++][0]='\0';
 }
 
 
@@ -1495,15 +1495,15 @@ Options_handle (int n)
 static void
 Options_fill (char *MenuTexts [10])
 {
-	MenuTexts[0]=_("Graphics Options");
-	MenuTexts[1]=_("Sound Options");
-	MenuTexts[2]=_("Keys");
-	MenuTexts[3]=_("Language");
-	MenuTexts[4]=_("Droid Talk");
-	MenuTexts[5]=_("On-Screen Displays");
-	MenuTexts[6]=_("Performance Tweaks");
-	MenuTexts[7]=_("Back");
-	MenuTexts[8]="";
+	strncpy(MenuTexts[0], _("Graphics Options"), 1024);
+	strncpy(MenuTexts[1], _("Sound Options"), 1024);
+	strncpy(MenuTexts[2], _("Keys"), 1024);
+	strncpy(MenuTexts[3], _("Language"), 1024);
+	strncpy(MenuTexts[4], _("Droid Talk"), 1024);
+	strncpy(MenuTexts[5], _("On-Screen Displays"), 1024);
+	strncpy(MenuTexts[6], _("Performance Tweaks"), 1024);
+	strncpy(MenuTexts[7], _("Back"), 1024);
+	MenuTexts[8][0]='\0';
 }
 
 static int
@@ -1553,19 +1553,20 @@ static void
 Escape_fill (char *MenuTexts [10])
 {
       if (game_root_mode == ROOT_IS_GAME)
-	  MenuTexts[0]=_("Resume Play");
+	  strncpy(MenuTexts[0], _("Resume Play"), 1024);
       else 
-	  MenuTexts[0]=_("Resume Playtest");
-      MenuTexts[1]=_("Save Hero");
-      MenuTexts[2]=_("Options");
-      MenuTexts[3]=_("Load Latest");
-      MenuTexts[4]=_("Load Backup");
+	  strncpy(MenuTexts[0], _("Resume Playtest"), 1024);
+	  
+      strncpy(MenuTexts[1], _("Save Hero"), 1024);
+      strncpy(MenuTexts[2], _("Options"), 1024);
+      strncpy(MenuTexts[3], _("Load Latest"), 1024);
+      strncpy(MenuTexts[4], _("Load Backup"), 1024);
       if (game_root_mode == ROOT_IS_GAME)
-	  MenuTexts[5]=_("Quit to Main Menu");
+	  strncpy(MenuTexts[5], _("Quit to Main Menu"), 1024);
       else 
-	  MenuTexts[5]=_("Return to Level Editor");
-      MenuTexts[6]=_("Exit FreedroidRPG");
-      MenuTexts[7]="";
+	  strncpy(MenuTexts[5], _("Return to Level Editor"), 1024);
+      strncpy(MenuTexts[6], _("Exit FreedroidRPG"), 1024);
+      MenuTexts[7][0]='\0';
 }
 
 extern screen_resolution screen_resolutions[];
@@ -1643,8 +1644,8 @@ Resolution_fill (char *MenuTexts[10])
     	}
     	++i;
     }
-    MenuTexts[j++]=_("Back");
-    MenuTexts[j++]="";
+    strncpy(MenuTexts[j++], _("Back"), 1024);
+    MenuTexts[j++][0]='\0';
 }
 
 static int
@@ -1736,21 +1737,21 @@ Graphics_fill (char *MenuTexts[10])
 		sprintf( Options [ i ] , _("Fullscreen Mode"));
 		sprintf( Options [ i+1 ] , ": %s", GameConfig.fullscreen_on ? _("ON") : _("OFF"));
 		strcat( Options [ i ] , Options [ i+1 ] );
-	MenuTexts[ i ] = Options [ i ]; i++ ;
+	strncpy(MenuTexts[ i ], Options [ i ], 1024); i++ ;
 		sprintf( Options [ i ] , _("Gamma Correction"));
 		sprintf( Options [ i+1 ] , ": %1.2f", GameConfig.current_gamma_correction );
 		strcat( Options [ i ] , Options [ i+1 ] );
-	MenuTexts[ i ] = Options [ i ]; i++ ;
+	strncpy(MenuTexts[ i ], Options [ i ], 1024); i++ ;
 		sprintf( Options [ i ] , _("Show Blood"));
 		sprintf( Options [ i+1 ] , ": %s", GameConfig.show_blood ? _("YES") : _("NO"));
 		strcat( Options [ i ] , Options [ i+1 ] );
-	MenuTexts[ i ] = Options [ i ]; i++ ;
+	strncpy(MenuTexts[ i ], Options [ i ], 1024); i++ ;
 		sprintf( Options [ i ] , _("Automap Scale"));
 		sprintf( Options [ i+1 ] , ": %2.1f", GameConfig.automap_display_scale );
 		strcat( Options [ i ] , Options [ i+1 ] );
-	MenuTexts[ i ] = Options [ i ]; i++ ;
-	MenuTexts[i++]=_("Back");
-	MenuTexts[i++]="";
+	strncpy(MenuTexts[ i ], Options [ i ], 1024); i++ ;
+	strncpy(MenuTexts[i++], _("Back"), 1024);
+	MenuTexts[i++][0]='\0';
 }
 
 
@@ -1820,13 +1821,13 @@ Sound_fill (char *MenuTexts[10])
 		sprintf( Options [ i ] , _("Background Music Volume"));
 		sprintf( Options [ i+1 ] , ": %1.2f", GameConfig.Current_BG_Music_Volume );
 		strcat( Options [ i ] , Options [ i+1 ] );
-	MenuTexts[ i ] = Options [ i ]; i++ ;
+	strncpy(MenuTexts[ i ], Options [ i ], 1024); i++ ;
 		sprintf( Options [ i ] , _("Sound Effects Volume"));
 		sprintf( Options [ i+1 ] , ": %1.2f", GameConfig.Current_Sound_FX_Volume );
 		strcat( Options [ i ] , Options [ i+1 ] );
-	MenuTexts[ i ] = Options [ i ]; i++ ;
-	MenuTexts[i++]=_("Back");
-	MenuTexts[i++]="";
+	strncpy(MenuTexts[ i ], Options [ i ], 1024); i++ ;
+	strncpy(MenuTexts[i++], _("Back"), 1024);
+	MenuTexts[i++][0]='\0';
 }
 
 
@@ -1893,25 +1894,25 @@ Performance_fill (char *MenuTexts[])
 		sprintf( Options [ i ] , _("Hog CPU for max. performance"));
 		sprintf( Options [ i+1 ] , ": %s", GameConfig.hog_CPU ? _("YES") : _("NO"));
 		strcat( Options [ i ] , Options [ i+1 ] );
-	MenuTexts[ i ] = Options [ i ]; i++ ;
+	strncpy(MenuTexts[ i ], Options [ i ], 1024); i++ ;
 		sprintf( Options [ i ] , _("Highlighting mode"));
 		sprintf( Options [ i+1 ] , ": %s", GameConfig.highlighting_mode_full ? _("FULL") : _("REDUCED"));
 		strcat( Options [ i ] , Options [ i+1 ] );
-	MenuTexts[ i ] = Options [ i ]; i++ ;
+	strncpy(MenuTexts[ i ], Options [ i ], 1024); i++ ;
 		sprintf( Options [ i ] , _("Skip light radius"));
 		sprintf( Options [ i+1 ] , ": %s", GameConfig.skip_light_radius ? _("YES") : _("NO"));
 		strcat( Options [ i ] , Options [ i+1 ] );
-	MenuTexts[ i ] = Options [ i ]; i++ ;
-		sprintf( Options [ i ] , _("Skip shadow blitting"));
+		strncpy(MenuTexts[ i ], Options [ i ], 1024); i++ ;
+	sprintf( Options [ i ] , _("Skip shadow blitting"));
 		sprintf( Options [ i+1 ] , ": %s", GameConfig.skip_shadow_blitting ? _("YES") : _("NO"));
 		strcat( Options [ i ] , Options [ i+1 ] );
-	MenuTexts[ i ] = Options [ i ]; i++ ;
-		sprintf( Options [ i ] , _("Skip fadings"));
+		strncpy(MenuTexts[ i ], Options [ i ], 1024); i++ ;
+	sprintf( Options [ i ] , _("Skip fadings"));
 		sprintf( Options [ i+1 ] , ": %s", GameConfig.do_fadings ? _("NO") : _("YES") );
 		strcat( Options [ i ] , Options [ i+1 ] );
-	MenuTexts[ i ] = Options [ i ]; i++ ;
-	MenuTexts[i++]=_("Back");
-	MenuTexts[i++]="";
+	strncpy(MenuTexts[ i ], Options [ i ], 1024); i++ ;
+	strncpy(MenuTexts[i++], _("Back"), 1024);
+	MenuTexts[i++][0]='\0';
 }
 
 static int
@@ -1940,10 +1941,10 @@ Language_fill (char *MenuTexts[10])
     int i = 0;
     while ( supported_languages[i].code != NULL )
 	{
-	MenuTexts[i] = supported_languages[i].name;
+	strncpy(MenuTexts[i], supported_languages[i].name, 1024);
 	i ++;
 	}
-    MenuTexts[i] = "";
+    MenuTexts[i][0] = '\0';
 }
 
 
@@ -2066,25 +2067,25 @@ Droid_fill (char *MenuTexts[10])
 		sprintf( Options [ i ] , _("Enemy Hit Texts"));
 		sprintf( Options [ i+1 ] , ": %s", GameConfig.Enemy_Hit_Text ? _("ON") : _("OFF"));
 		strcat( Options [ i ] , Options [ i+1 ] );
-	MenuTexts[ i ] = Options [ i ]; i++ ;
+	strncpy(MenuTexts[ i ], Options [ i ], 1024); i++ ;
 		sprintf( Options [ i ] , _("Enemy Bumped Texts"));
 		sprintf( Options [ i+1 ] , ": %s", GameConfig.Enemy_Bump_Text ? _("ON") : _("OFF"));
 		strcat( Options [ i ] , Options [ i+1 ] );
-	MenuTexts[ i ] = Options [ i ]; i++ ;
+	strncpy(MenuTexts[ i ], Options [ i ], 1024); i++ ;
 		sprintf( Options [ i ] , _("Enemy Aim Texts"));
 		sprintf( Options [ i+1 ] , ": %s", GameConfig.Enemy_Aim_Text ? _("ON") : _("OFF"));
 		strcat( Options [ i ] , Options [ i+1 ] );
-	MenuTexts[ i ] = Options [ i ]; i++ ;
+	strncpy(MenuTexts[ i ], Options [ i ], 1024); i++ ;
 		sprintf( Options [ i ] , _("All in-game Speech"));
 		sprintf( Options [ i+1 ] , ": %s", GameConfig.All_Texts_Switch ? _("ON") : _("OFF"));
 		strcat( Options [ i ] , Options [ i+1 ] );
-	MenuTexts[ i ] = Options [ i ]; i++ ;
+	strncpy(MenuTexts[ i ], Options [ i ], 1024); i++ ;
 		sprintf( Options [ i ] , _("Reprogram bots after takeover"));
 		sprintf( Options [ i+1 ] , ": %s", GameConfig.talk_to_bots_after_takeover ? _("ON") : _("OFF"));
 		strcat( Options [ i ] , Options [ i+1 ] );
-	MenuTexts[ i ] = Options [ i ]; i++ ;
-	MenuTexts[i++]=_("Back");
-	MenuTexts[i++]="";
+	strncpy(MenuTexts[ i ], Options [ i ], 1024); i++ ;
+	strncpy(MenuTexts[i++], _("Back"), 1024);
+	MenuTexts[i++][0]='\0';
 }
 
     
