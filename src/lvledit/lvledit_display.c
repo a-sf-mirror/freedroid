@@ -638,17 +638,12 @@ void leveleditor_display()
     //--------------------
     // Now we print out the current status directly onto the window:
     //
-    if ( OriginWaypoint == ( -1 ) )
-	{
-	sprintf ( linebuf , _(" Source waypoint selected : NONE" ));
+	if (OriginWaypoint != -1) {
+		sprintf ( linebuf , _(" Source waypoint selected : X=%d Y=%d. ") , 
+				EditLevel() -> AllWaypoints [ OriginWaypoint ] . x , 
+				EditLevel() -> AllWaypoints [ OriginWaypoint ] . y );
+		LeftPutString ( Screen , GameConfig.screen_height - 2*FontHeight( GetCurrentFont() ), linebuf );
 	}
-    else
-	{
-	sprintf ( linebuf , _(" Source waypoint selected : X=%d Y=%d. ") , 
-		EditLevel() -> AllWaypoints [ OriginWaypoint ] . x , 
-		EditLevel() -> AllWaypoints [ OriginWaypoint ] . y );
-	}
-    LeftPutString ( Screen , GameConfig.screen_height - 2*FontHeight( GetCurrentFont() ), linebuf );
 
     //--------------------
     // Now we print out the latest connection operation success or failure...
