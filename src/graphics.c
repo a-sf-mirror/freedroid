@@ -304,6 +304,9 @@ Error loading flag image.",
 	    cursoff.x = -32;
 	    cursoff.y = -16;
 	    break;
+	case GLOBAL_INGAME_MODE_DRAGDROP_TOOL:
+	    cursor_index = 3;
+	    break;
 	default:
 	    DebugPrintf ( -4 , "\n%s(): global_ingame_mode: %d." , __FUNCTION__ , 
 			  global_ingame_mode );

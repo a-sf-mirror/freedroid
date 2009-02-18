@@ -171,6 +171,7 @@ enum _global_ingame_modes
     GLOBAL_INGAME_MODE_SCROLL_DOWN = 7128 ,
     GLOBAL_INGAME_MODE_REPAIR = 7129 ,
     GLOBAL_INGAME_MODE_SELECT_TOOL = 7130 ,
+    GLOBAL_INGAME_MODE_DRAGDROP_TOOL = 7131 ,
 };
 
 enum _game_config_screen_visible_parameters

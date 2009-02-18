@@ -200,9 +200,14 @@ void leveleditor_map_display_cursor()
     if (active_tool)
 	active_tool->display();
 
-    if (selected_tool == &tool_select) {
-	global_ingame_mode = GLOBAL_INGAME_MODE_SELECT_TOOL;
-    }
+	if (selected_tool == &tool_select) {
+		if (ShiftPressed() && !selection_empty()) {
+			//dragdrop
+			global_ingame_mode = GLOBAL_INGAME_MODE_DRAGDROP_TOOL;
+		} else {
+			global_ingame_mode = GLOBAL_INGAME_MODE_SELECT_TOOL;
+		}
+	}
 
     blit_our_own_mouse_cursor();
 
