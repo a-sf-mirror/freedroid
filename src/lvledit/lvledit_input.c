@@ -43,116 +43,67 @@
 
 static void HandleLevelEditorCursorKeys ( )
 {
-   level *EditLevel;
+	level *EditLevel;
 
-    EditLevel = curShip.AllLevels [ Me . pos . z ] ;
-    static int PressedSince[4] = { 0, 0, 0, 0 };
-    int DoAct[4] = { 0, 0, 0, 0};
-    int i;
+	EditLevel = curShip.AllLevels [ Me . pos . z ] ;
+	static int PressedSince[4] = { 0, 0, 0, 0 };
+	int DoAct[4] = { 0, 0, 0, 0};
+	int i;
+	int repeat = 1;
 
-    // Keys that are released have to be marked as such
-    if (!LeftPressed())
-	PressedSince[0] = 0;
-    if (!RightPressed())
-	PressedSince[1] = 0;
-    if (!DownPressed())
-	PressedSince[2] = 0;
-    if (!UpPressed())
-	PressedSince[3] = 0;
+	// Keys that are released have to be marked as such
+	if (!LeftPressed())
+		PressedSince[0] = 0;
+	if (!RightPressed())
+		PressedSince[1] = 0;
+	if (!DownPressed())
+		PressedSince[2] = 0;
+	if (!UpPressed())
+		PressedSince[3] = 0;
 
-    if (LeftPressed() && PressedSince[0] == 0) {
-	PressedSince[0] = SDL_GetTicks();
-	DoAct[0] = 1;
-    }
-    if (RightPressed() && PressedSince[1] == 0) {
-	PressedSince[1] = SDL_GetTicks();
-	DoAct[1] = 1;
-    }
-    if (DownPressed() && PressedSince[2] == 0) {
-	PressedSince[2] = SDL_GetTicks();
-	DoAct[2] = 1;
-    } 
-    if (UpPressed() && PressedSince[3] == 0) {
-	PressedSince[3] = SDL_GetTicks();
-	DoAct[3] = 1;
-    }
-
-    for (i = 0; i < 4; i++) {
-	if (PressedSince[i] && SDL_GetTicks() - PressedSince[i] > 500) {
-	    DoAct[i] = 1;
-	    PressedSince[i] = SDL_GetTicks() - 450;
+	if (LeftPressed() && PressedSince[0] == 0) {
+		PressedSince[0] = SDL_GetTicks();
+		DoAct[0] = 1;
 	}
-    }
-    
-/*    if (level_editor_marked_obstacle)
-    {
-	if ( CtrlPressed() )
-	{*/
-#if 0
-	    //Uncomment to be able to change the borders of the currently marked obstacle 
-	    if (DoAct[0])
-		{
-		obstacle_map[level_editor_marked_obstacle->type] . left_border -= 0.05;
-		obstacle_map[level_editor_marked_obstacle->type] . right_border -= 0.05;
-		}
-	    if (DoAct[1])
-		{
-		obstacle_map[level_editor_marked_obstacle->type] . left_border += 0.05;
-		obstacle_map[level_editor_marked_obstacle->type] . right_border += 0.05;
-		}
-	    if (DoAct[2])
-		{
-		obstacle_map[level_editor_marked_obstacle->type] . upper_border += 0.05;
-		obstacle_map[level_editor_marked_obstacle->type] . lower_border += 0.05;
-		}
-	    if (DoAct[3])
-		{
-		obstacle_map[level_editor_marked_obstacle->type] . upper_border -= 0.05;
-		obstacle_map[level_editor_marked_obstacle->type] . lower_border -= 0.05;
-		}
-#endif
+	if (RightPressed() && PressedSince[1] == 0) {
+		PressedSince[1] = SDL_GetTicks();
+		DoAct[1] = 1;
+	}
+	if (DownPressed() && PressedSince[2] == 0) {
+		PressedSince[2] = SDL_GetTicks();
+		DoAct[2] = 1;
+	} 
+	if (UpPressed() && PressedSince[3] == 0) {
+		PressedSince[3] = SDL_GetTicks();
+		DoAct[3] = 1;
+	}
 
-#if 0
-	    //Uncomment to be able to change the offset of the currently marked obstacle 
+	for (i = 0; i < 4; i++) {
+		if (PressedSince[i] && SDL_GetTicks() - PressedSince[i] > 500) {
+			DoAct[i] = 1;
+			PressedSince[i] = SDL_GetTicks() - 450;
+		}
+	}
 
-	    if (DoAct[0])
-		{
-		obstacle_map[level_editor_marked_obstacle->type] . image . offset_x -= 1;
-		}
-	    if (DoAct[1])
-		{
-		obstacle_map[level_editor_marked_obstacle->type] . image . offset_x += 1;
-		}
-	    if (DoAct[2])
-		{
-		obstacle_map[level_editor_marked_obstacle->type] . image . offset_y -= 1;
-		}
-	    if (DoAct[3])
-		{
-		obstacle_map[level_editor_marked_obstacle->type] . image . offset_y += 1;
-		}
-	    printf(_("Offset x %hd y %hd\n"), obstacle_map[level_editor_marked_obstacle->type] . image . offset_x, obstacle_map[level_editor_marked_obstacle->type] . image . offset_y);
-#endif
-	/*}
-    }*/
-#if 1
-	if (DoAct[0]) 
-	{
-	    if ( rintf(Me.pos.x) > 0 ) Me.pos.x-=1;
+	if (CtrlPressed())
+		repeat = FLOOR_TILES_VISIBLE_AROUND_TUX;
+
+	if (DoAct[0]) {
+		for (i = 0; i < repeat; i++)
+			if (rintf(Me.pos.x) > 0) Me.pos.x-=1;
 	}
-	if (DoAct[1]) 
-	{ 
-	    if ( rintf(Me.pos.x) < EditLevel->xlen-1 ) Me.pos.x+=1;
+	if (DoAct[1]) { 
+		for (i = 0; i < repeat; i++)
+			if (rintf(Me.pos.x) < EditLevel->xlen-1) Me.pos.x+=1;
 	}
-	if (DoAct[2]) 
-	{
-	    if ( rintf(Me.pos.y) < EditLevel->ylen-1 ) Me.pos.y+=1;
+	if (DoAct[2]) {
+		for (i = 0; i < repeat; i++)
+			if (rintf(Me.pos.y) < EditLevel->ylen-1) Me.pos.y+=1;
 	}
-	if (DoAct[3]) 
-	{
-	    if ( rintf(Me.pos.y) > 0 ) Me.pos.y-=1;
+	if (DoAct[3]) {
+		for (i = 0; i < repeat; i++)
+			if (rintf(Me.pos.y) > 0) Me.pos.y-=1;
 	}
-#endif
 }; // void HandleLevelEditorCursorKeys ( void )
 
 /**
