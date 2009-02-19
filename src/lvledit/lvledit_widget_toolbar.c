@@ -120,8 +120,7 @@ void leveleditor_toolbar_display(struct leveleditor_widget *vt)
 	SDL_Rect TargetRectangle;
 
 	// toolbar background
-	SDL_Rect tr = {.x = 0, .y = 13, .w = GameConfig.screen_width, .h = 77 };
-	our_SDL_fill_rect_wrapper(Screen, &tr, SDL_MapRGB(Screen->format, 0x55, 0x68, 0x89));
+	our_SDL_fill_rect_wrapper(Screen, &vt->rect, SDL_MapRGB(Screen->format, 0x55, 0x68, 0x89));
 
 	// now the tiles to be selected   
 
@@ -139,7 +138,7 @@ void leveleditor_toolbar_display(struct leveleditor_widget *vt)
 			break;
 
 		TargetRectangle.x = INITIAL_BLOCK_WIDTH/2 + INITIAL_BLOCK_WIDTH * i ;
-		TargetRectangle.y = INITIAL_BLOCK_HEIGHT/3 ;
+		TargetRectangle.y = vt->rect.y + 2 ;
 		TargetRectangle.w = INITIAL_BLOCK_WIDTH ;
 		TargetRectangle.h = INITIAL_BLOCK_HEIGHT ;
 

@@ -85,10 +85,10 @@ mouse_press_button AllMousePressButtons[ MAX_MOUSE_PRESS_BUTTONS ] =
     /*RIGHT_SHOP_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/RightShopButton.png"              , { 576 , 447 ,  26 ,  26 } , TRUE , FALSE } ,
     /*LEFT_TUX_SHOP_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LeftShopButton.png"               , {   5 ,  16 ,  26 ,  26 } , TRUE , FALSE } ,
     /*RIGHT_TUX_SHOP_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/RightShopButton.png"              , { 580 ,  13 ,  26 ,  26 } , TRUE , FALSE } ,
-    /*LEFT_LEVEL_EDITOR_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorObjectSelectorLeft.png", {  3 ,  25 ,  15 ,  60 } , FALSE , FALSE } ,
-    /*LEFT_LEVEL_EDITOR_BUTTON_PUSHED*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorObjectSelectorLeft.png", {  3 ,  25 ,  15 ,  60 } , FALSE , FALSE } ,
-    /*RIGHT_LEVEL_EDITOR_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorObjectSelectorRight.png", { -16 ,  26 ,  15 ,  60 } , FALSE , FALSE } ,
-    /*RIGHT_LEVEL_EDITOR_BUTTON_PUSHED*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorObjectSelectorRight.png", { -16 ,  26 ,  15 ,  60 } , FALSE , FALSE } ,
+    /*LEFT_LEVEL_EDITOR_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorObjectSelectorLeft.png", {  3 ,  8 ,  15 ,  60 } , FALSE , FALSE } ,
+    /*LEFT_LEVEL_EDITOR_BUTTON_PUSHED*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorObjectSelectorLeft.png", {  3 ,  8 ,  15 ,  60 } , FALSE , FALSE } ,
+    /*RIGHT_LEVEL_EDITOR_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorObjectSelectorRight.png", { -16 ,  8 ,  15 ,  60 } , FALSE , FALSE } ,
+    /*RIGHT_LEVEL_EDITOR_BUTTON_PUSHED*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorObjectSelectorRight.png", { -16 ,  8 ,  15 ,  60 } , FALSE , FALSE } ,
 
 
     /*NUMBER_SELECTOR_OK_BUTTON*/    { UNLOADED_ISO_IMAGE , "mouse_buttons/number_selector_ok_button.png"    , { 308 , 288 ,  48 ,  48 } , TRUE , FALSE } ,

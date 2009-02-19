@@ -91,9 +91,9 @@ static struct leveleditor_widget * create_map()
     struct leveleditor_widget * a = MyMalloc(sizeof(struct leveleditor_widget));
     a->type = WIDGET_MAP;
     a->rect.x = 0;
-    a->rect.y = 90;
+    a->rect.y = 68;
     a->rect.w = GameConfig.screen_width;
-    a->rect.h = GameConfig.screen_height-90;
+    a->rect.h = GameConfig.screen_height-68;
     a->mouseenter = leveleditor_map_mouseenter;
     a->mouseleave = leveleditor_map_mouseleave;
     a->mouserelease = leveleditor_map_mouserelease;
@@ -117,9 +117,9 @@ static struct leveleditor_widget * create_toolbar()
     struct leveleditor_widget * a = MyMalloc(sizeof(struct leveleditor_widget));
     a->type = WIDGET_TOOLBAR;
     a->rect.x = 0;
-    a->rect.y = 14;
+    a->rect.y = 0;
     a->rect.w = GameConfig.screen_width;
-    a->rect.h = 76;
+    a->rect.h = 73;
     a->mouseenter = leveleditor_toolbar_mouseenter;
     a->mouseleave = leveleditor_toolbar_mouseleave;
     a->mouserelease = leveleditor_toolbar_mouserelease;
@@ -141,9 +141,9 @@ static struct leveleditor_widget * create_objectselector(int x, char * text, enu
     struct leveleditor_widget * a = MyMalloc(sizeof(struct leveleditor_widget));
     a->type = WIDGET_OBJECTTYPESELECTORBUTTON;
     a->rect.x = x;
-    a->rect.y = 0;
+    a->rect.y = 73;
     a->rect.w = 80;
-    a->rect.h = 14;
+    a->rect.h = 17;
     a->mouseenter = leveleditor_typeselect_mouseenter;
     a->mouseleave = leveleditor_typeselect_mouseleave;
     a->mouserelease = leveleditor_typeselect_mouserelease;
@@ -222,10 +222,10 @@ void leveleditor_init_widgets()
 
     int i;
 
-    for (i = 0; i < sizeof(t) / sizeof(t[0]); i++) {
-	ShowGenericButtonFromList(t[i]); //we need that to have .w and .h of the button rect initialized.
-	list_add(&create_button(t[i])->node, &leveleditor_widget_list);
-    }
+	for (i = 0; i < sizeof(t) / sizeof(t[0]); i++) {
+		ShowGenericButtonFromList(t[i]); //we need that to have .w and .h of the button rect initialized.
+		list_add(&create_button(t[i])->node, &leveleditor_widget_list);
+	}
 
     /* The object type selectors */
     floor_selector = create_objectselector(0, _("FLOOR"), OBJECT_FLOOR, floor_tiles_list);
@@ -237,11 +237,10 @@ void leveleditor_init_widgets()
     list_add_tail(&create_objectselector(320, _("CONTAINER"), OBJECT_OBSTACLE, container_tiles_list)->node, &leveleditor_widget_list); 
     list_add_tail(&create_objectselector(400, _("PLANT"), OBJECT_OBSTACLE, plant_tiles_list)->node, &leveleditor_widget_list);
     for (i=0; i < NUMBER_OF_OBSTACLE_TYPES; i++) 
-	all_obstacles_list[i] = i;
+		all_obstacles_list[i] = i;
     all_obstacles_list[i] = -1;
     list_add_tail(&create_objectselector(480, _("ALLOBS."), OBJECT_OBSTACLE, all_obstacles_list)->node, &leveleditor_widget_list);
     list_add_tail(&create_objectselector(560, _("WAYPT"), OBJECT_WAYPOINT, waypoint_list)->node, &leveleditor_widget_list);
-    //list_add_tail(&create_objectselector(GameConfig.screen_width-80, _("QUICK"), OBJECT_ANY, NULL)->node, &leveleditor_widget_list); 
 
     /* The toolbar */
     list_add_tail(&create_toolbar()->node, &leveleditor_widget_list);
@@ -329,12 +328,13 @@ void leveleditor_update_button_states()
 struct leveleditor_widget * get_active_widget(int x, int y) 
 {
     struct leveleditor_widget *w;
-    list_for_each_entry(w, &leveleditor_widget_list, node) {
-	if (!w->enabled)
-	    continue;
-	if (MouseCursorIsInRect(&w->rect, x, y))
-	    return w;
-    }
+	list_for_each_entry(w, &leveleditor_widget_list, node) {
+		if (!w->enabled)
+			continue;
+		if (MouseCursorIsInRect(&w->rect, x, y)) {
+			return w;
+		}
+	}
 
     return NULL;
 }
