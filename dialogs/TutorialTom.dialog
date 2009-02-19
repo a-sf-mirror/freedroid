@@ -249,11 +249,11 @@ LuaCode={
 Nr=20  Text=_"Can you tell me how to fight the bots?"
 LuaCode={
 	npc_says(_"I will certainly try my best.")
+	npc_says(_"It's odd to think that a flightless bird would be such a scrapper, but you Linarians have been surprising us since the beginning.")
 	npc_says(_"We prefer to fight the damn droids at a distance. They're less likely to rend us limb from limb that way.")
 	npc_says(_"Unfortunately, guns and other ranged weaponry are hard to come by these days.")
-	npc_says(_"That goes double for ammunition. Because these are bots, you really can't effectively cause damage with an empty weapon.")
-	npc_says(_"With that in mind, your most reliable weapons are your fists. They never run out of ammo or wear down.")
-	npc_says(_"It's odd to think that a flightless bird would be such a scrapper, but you Linarians have been surprising us since the beginning.")
+	npc_says(_"That goes double for ammunition. Because these are bots, you really can't effectively keep them at bay by just waving around an empty gun.")
+	npc_says(_"With that in mind, your most reliable weapons are your fists. They never run out of ammo or wear down, but of course they don't do much damage either vs a metal body.")
 	hide(20) show(21, 23)
 }
 ---------------------------------------------------------------------
@@ -397,7 +397,7 @@ LuaCode={
 	else end
 	npc_says(_"I'll unlock the door to the south. Follow the corridor east to the shooting range.")
 	change_obstacle("TutorialMeleeOut", "opened")
-	hide(20, 24, 29) show(30, 39)
+	hide(20, ,21 , 22, 23, 24, 25, 26, 27, 28, 29) show(30, 39)
 	end_dialog()
 }
 ----------------------------------------------------------------------
@@ -505,11 +505,17 @@ LuaCode={
 	npc_says(_"As you achieve combat experience, you'll be able to apply it to better yourself.")
 	npc_says(_"As with most things, you view this as a panel in your HUD. Press C to open the Character panel.")
 	npc_says(_"Once you've gained enough experience, you'll level up. This will automatically improve some of your statistics.")
-	npc_says(_"You'll also be given 5 points to spend however you choose in four different areas.")
+	npc_says(_"You'll also be given 5 points to spend however you choose in three different areas. Characteristics, Skills and Programs.")
 	npc_says(_"Strength governs the amount of damage you do with each hit in melee combat.")
 	npc_says(_"Dexterity controls your hit rate, or how likely you are to hit the enemy. It also determines how likely you are to dodge.")
-	npc_says(_"CPU is your mental state, and controls how much heat you can take.")
-	npc_says(_"Finally, Life determines how much health you have.")
+	npc_says(_"CPU is your processors cooling/heat resilience, and determines how much processing you can take before your system starts overheating.")
+	npc_says(_"Finally, among your main characteristics, Life determines how much health you have.")
+	npc_says(_"You also have 3 main skills that you can improve with the use of your training points and a teacher.")
+	npc_says(_"They are general melee and ranged fighting skills, both of which increase the damage you inflict and how fast you attack as you improve them.")
+	npc_says(_"You also have the program skill, which essentially is about programing in an energy efficient manner so programs cause less heat.")
+	npc_says(_"Apart from this, a few programs also need a teacher and training points to improve.")
+	npc_says(_"Extract bot parts will increase the chance of you salvaging parts from bots you 'retire', which you can trade for money in the town.")
+	npc_says(_"The Hacking program we will talk a bit more of in a little while.")
 	hide(40) show(41)
 }
 ----------------------------------------------------------------------
@@ -657,7 +663,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=99  Text=_"Enough for now"
+Nr=99  Text=_"Let me take a short break and practice on my own for a while."
 LuaCode={
 	npc_says(_"Ok, I'll be around if you need any more questions answered. Don't hesitate to ask.")
 	end_dialog()
