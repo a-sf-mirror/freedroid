@@ -112,42 +112,68 @@ static void HandleLevelEditorCursorKeys ( )
  */
 static void level_editor_auto_scroll()
 {
-float chx = 0, chy = 0; /*Value of the change to player position*/
+	float chx = 0, chy = 0; /*Value of the change to player position*/
+	static int edgedate[4] = { 0, 0, 0, 0};
 
-if ( GameConfig . screen_width - GetMousePos_x() < 5 )
-	{ // scroll to the right
-	chx += 0.05;
-	chy -= 0.05;
+#define AUTOSCROLL_DELAY 500
+
+	if (GetMousePos_x() < 5) { 
+		// scroll to the left
+		if (edgedate[0] == 0) {
+			edgedate[0] = SDL_GetTicks();
+		} else if (SDL_GetTicks() - edgedate[0] > AUTOSCROLL_DELAY) {
+			chx -= 0.05;
+			chy += 0.05;
+		}
+	} else {
+		edgedate[0] = 0;
 	}
 
-if ( GetMousePos_x() < 5 )
-	{ // scroll to the left
-	chx -= 0.05;
-	chy += 0.05;
+	if (GameConfig . screen_width - GetMousePos_x() < 5) { 
+		// scroll to the right
+		if (edgedate[1] == 0) {
+			edgedate[1] = SDL_GetTicks();
+		} else if (SDL_GetTicks() - edgedate[1] > AUTOSCROLL_DELAY) {
+			chx += 0.05;
+			chy -= 0.05;
+		}
+	} else {
+		edgedate[1] = 0;
 	}
 
-if ( GameConfig . screen_height - GetMousePos_y() < 5 )
-	{ // scroll down
-	chx += 0.05;
-	chy += 0.05;
+	if (GameConfig . screen_height - GetMousePos_y() < 5) {
+		// scroll down
+		if (edgedate[2] == 0) {
+			edgedate[2] = SDL_GetTicks();
+		} else if (SDL_GetTicks() - edgedate[2] > AUTOSCROLL_DELAY) {
+			chx += 0.05;
+			chy += 0.05;
+		}
+	} else {
+		edgedate[2] = 0;
 	}
 
-if ( GetMousePos_y() < 5 )
-	{ //scroll up
-	chx -= 0.05;
-	chy -= 0.05;
+	if (GetMousePos_y() < 5) {
+		//scroll up
+		if (edgedate[3] == 0) {
+			edgedate[3] = SDL_GetTicks();
+		} else if (SDL_GetTicks() - edgedate[3] > AUTOSCROLL_DELAY) {
+			chx -= 0.05;
+			chy -= 0.05;
+		}
+	} else {
+		edgedate[3] = 0;
 	}
 
+	Me . pos . x += chx;
+	Me . pos . y += chy;
 
-Me . pos . x += chx;
-Me . pos . y += chy;
-
-if ( Me . pos . x >= curShip.AllLevels[Me.pos.z]->xlen-1 )
-	Me . pos . x = curShip.AllLevels[Me.pos.z]->xlen-1 ;
-if ( Me . pos . x <= 0 ) Me . pos . x = 0;
-if ( Me . pos . y >= curShip.AllLevels[Me.pos.z]->ylen-1 )
-        Me . pos . y = curShip.AllLevels[Me.pos.z]->ylen-1 ;
-if ( Me . pos . y <= 0 ) Me . pos . y = 0;
+	if ( Me . pos . x >= curShip.AllLevels[Me.pos.z]->xlen-1 )
+		Me . pos . x = curShip.AllLevels[Me.pos.z]->xlen-1 ;
+	if ( Me . pos . x <= 0 ) Me . pos . x = 0;
+	if ( Me . pos . y >= curShip.AllLevels[Me.pos.z]->ylen-1 )
+		Me . pos . y = curShip.AllLevels[Me.pos.z]->ylen-1 ;
+	if ( Me . pos . y <= 0 ) Me . pos . y = 0;
 }	
 
 void leveleditor_input_mouse_motion(SDL_Event *event)
