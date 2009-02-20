@@ -2334,7 +2334,7 @@ PerformTuxAttackRaw ( int use_mouse_cursor_for_targeting )
 	//
 	// SmashBox ( Weapon_Target_Vector.x , Weapon_Target_Vector.y );
 	if ( smash_obstacle ( Weapon_Target_Vector . x , Weapon_Target_Vector . y ) )
-	    melee_weapon_hit_something = TRUE;
+		melee_weapon_hit_something = TRUE;
 	
 	//--------------------
 	// Finally we add a new wait-counter, so that bullets or swings
@@ -2598,84 +2598,78 @@ void check_for_items_to_pickup ( int index_of_item_under_mouse_cursor )
 void
 check_for_barrels_to_smash ( int barrel_index ) 
 {
-    Level our_level = curShip . AllLevels [ Me . pos . z ] ;
-    int i;
-    moderately_finepoint step_vector;
-    float vec_len;
-    
-    if ( barrel_index != (-1) )
-    {
+	Level our_level = curShip . AllLevels [ Me . pos . z ] ;
+	int i;
+	moderately_finepoint step_vector;
+	float vec_len;
+
+	if ( barrel_index == (-1) ) return;
+	
 	//--------------------
 	// If the smash distance for a barrel is not yet reached, then we must set up
 	// a course that will lead us to the barrel and also a combo_action specification,
 	// that will cause the corresponding barrel to be smashed upon arrival.
 	//
 	if ( calc_euklid_distance ( Me . pos . x , Me . pos . y , 
-				    our_level -> obstacle_list [ barrel_index ] . pos . x ,
-				    our_level -> obstacle_list [ barrel_index ] . pos . y ) 
-	     > ( obstacle_map [ ISO_BARREL_1 ] . block_area_parm_1 * sqrt(2) ) / 2.0 + 0.5 )
+								our_level -> obstacle_list [ barrel_index ] . pos . x ,
+								our_level -> obstacle_list [ barrel_index ] . pos . y ) 
+		   > ( obstacle_map [ ISO_BARREL_1 ] . block_area_parm_1 * sqrt(2) ) / 2.0 + 0.5 )
 	{
-	    //--------------------
-	    // We set up a course, that will lead us directly to the barrel, that we are
-	    // supposed to smash (upon arrival, later).
-	    //
-	    // For this purpose, we take a vector and rotate it around the barrel center to
-	    // find the 'best' location to go to for the smashing motion...
-
-	    // First, if the barrel is in direct line with Tux, we search a position that the
-	    // Tux can reach.
-
-	    step_vector . x = Me . pos . x - 
-		our_level -> obstacle_list [ barrel_index ] . pos . x ;
-	    step_vector . y = Me . pos . y - 
-		our_level -> obstacle_list [ barrel_index ] . pos . y ;
-	    vec_len = vect_len ( step_vector );
-	    
-	    //--------------------
-	    // We normalize the distance of the final walk-point to the barrel center just
-	    // so, that it will be within the 'strike_distance' we have used just above in
-	    // the 'distance-met' query.
-	    //
-	    step_vector . x *= ( ( obstacle_map [ ISO_BARREL_1 ] . block_area_parm_1 * sqrt(2) ) 
-				 / 2.0 + 0.05 ) / vec_len ;
-	    step_vector . y *= ( ( obstacle_map [ ISO_BARREL_1 ] . block_area_parm_1 * sqrt(2) ) 
-				 / 2.0 + 0.05 ) / vec_len ;
-	    
-	    for ( i = 0 ; i < 8 ; i ++ )
-	    {
-		if ( DirectLineColldet( Me.pos.x, Me.pos.y,
-				                our_level->obstacle_list[barrel_index].pos.x + step_vector.x ,
-				                our_level->obstacle_list[barrel_index].pos.y + step_vector.y, 
-				                Me.pos.z, 
-				                &WalkablePassFilter ) )
-		{
-		    //--------------------
-		    // The obstacle plus the step vector give us the position to move the
-		    // Tux to for the optimal strike...
-		    //
-		    Me . mouse_move_target . x = 
-			our_level -> obstacle_list [ barrel_index ] . pos . x + 
-			step_vector . x ;
-		    Me . mouse_move_target . y = 
-			our_level -> obstacle_list [ barrel_index ] . pos . y + 
-			step_vector . y ;
-		    Me . mouse_move_target . z = Me . pos . z ;
-		    
-		    //--------------------
-		    // We set up the combo_action, so that the barrel can be smashed later...
-		    //
-		    enemy_set_reference(&Me . current_enemy_target_n, &Me . current_enemy_target_addr, NULL);
-		    Me . mouse_move_target_combo_action_type = COMBO_ACTION_SMASH_BARREL ;
-		    Me . mouse_move_target_combo_action_parameter = barrel_index ;
-		    break;
-		}
-		
 		//--------------------
-		// If this vector didn't bring us any luck, we rotate by 45 degrees and try anew...
+		// We set up a course, that will lead us directly to the barrel, that we are
+		// supposed to smash (upon arrival, later).
 		//
-		RotateVectorByAngle ( & ( step_vector ) , 45.0 ) ;
-	    }
-	    
+		// For this purpose, we take a vector and rotate it around the barrel center to
+		// find the 'best' location to go to for the smashing motion...
+
+		// First, if the barrel is in direct line with Tux, we search a position that the
+		// Tux can reach.
+
+		step_vector . x = Me . pos . x - our_level -> obstacle_list [ barrel_index ] . pos . x ;
+		step_vector . y = Me . pos . y - our_level -> obstacle_list [ barrel_index ] . pos . y ;
+		vec_len = vect_len ( step_vector );
+
+		//--------------------
+		// We normalize the distance of the final walk-point to the barrel center just
+		// so, that it will be within the 'strike_distance' we have used just above in
+		// the 'distance-met' query.
+		//
+		step_vector . x *= ( ( obstacle_map [ ISO_BARREL_1 ] . block_area_parm_1 * sqrt(2) ) 
+							 / 2.0 + 0.05 ) / vec_len ;
+		step_vector . y *= ( ( obstacle_map [ ISO_BARREL_1 ] . block_area_parm_1 * sqrt(2) ) 
+							 / 2.0 + 0.05 ) / vec_len ;
+
+		for ( i = 0 ; i < 8 ; i ++ )
+		{
+			if ( DirectLineColldet( Me.pos.x, Me.pos.y,
+									our_level->obstacle_list[barrel_index].pos.x + step_vector.x ,
+									our_level->obstacle_list[barrel_index].pos.y + step_vector.y, 
+									Me.pos.z, 
+									&WalkablePassFilter ) )
+			{
+				//--------------------
+				// The obstacle plus the step vector give us the position to move the
+				// Tux to for the optimal strike...
+				//
+				Me . mouse_move_target . x = our_level -> obstacle_list [ barrel_index ] . pos . x + step_vector . x ;
+				Me . mouse_move_target . y = our_level -> obstacle_list [ barrel_index ] . pos . y + step_vector . y ;
+				Me . mouse_move_target . z = Me . pos . z ;
+
+				//--------------------
+				// We set up the combo_action, so that the barrel can be smashed later...
+				//
+				enemy_set_reference(&Me . current_enemy_target_n, &Me . current_enemy_target_addr, NULL);
+				Me . mouse_move_target_combo_action_type = COMBO_ACTION_SMASH_BARREL ;
+				Me . mouse_move_target_combo_action_parameter = barrel_index ;
+				break;
+			}
+
+			//--------------------
+			// If this vector didn't bring us any luck, we rotate by 45 degrees and try anew...
+			//
+			RotateVectorByAngle ( & ( step_vector ) , 45.0 ) ;
+		}
+
 		// Second : if the barrel is not in direct line with Tux, we search a position
 		// near the barrel that is free of obstacle. However, it could happen that the
 		// pathfinder will not be able to find a way to go there, but it would be too
@@ -2697,26 +2691,26 @@ check_for_barrels_to_smash ( int barrel_index )
 		// half-size of the barrel
 		int barrel_type = our_level -> obstacle_list [ barrel_index ] . type;
 		moderately_finepoint half_size = { ( obstacle_map [ barrel_type ] . block_area_parm_1 * sqrt(2) ) / 2.0,
-		                                   ( obstacle_map [ barrel_type ] . block_area_parm_2 * sqrt(2) ) / 2.0
-		                                 };
+										   ( obstacle_map [ barrel_type ] . block_area_parm_2 * sqrt(2) ) / 2.0
+										 };
 
 		for ( i = 0 ; i < 8 ; i ++ )
 		{
 			// (no need to optimize this, the compiler will do its job...)
 			point_near_barrel . x      = our_level -> obstacle_list [ barrel_index ] . pos . x +
-			                               step_vector . x * ( half_size . x + 0.05 );
+										 step_vector . x * ( half_size . x + 0.05 );
 			point_near_barrel . y      = our_level -> obstacle_list [ barrel_index ] . pos . y +
-			                               step_vector . y * ( half_size . y + 0.05 );
+										 step_vector . y * ( half_size . y + 0.05 );
 			point_away_from_barrel . x = our_level -> obstacle_list [ barrel_index ] . pos . x +
-			                               step_vector . x * ( half_size . x + 0.2  );
+										 step_vector . x * ( half_size . x + 0.2  );
 			point_away_from_barrel . y = our_level -> obstacle_list [ barrel_index ] . pos . y +
-			                               step_vector . y * ( half_size . y + 0.2  );
+										 step_vector . y * ( half_size . y + 0.2  );
 
 			// check if the line from point_near_barrel to point_away_from_barrel is walkable
 			if ( DirectLineColldet( point_near_barrel.x, point_near_barrel.y,
-			                         point_away_from_barrel . x, point_away_from_barrel . y,
-			                        Me.pos.z, 
-			                        &WalkablePassFilter) )
+									point_away_from_barrel . x, point_away_from_barrel . y,
+									Me.pos.z, 
+									&WalkablePassFilter) )
 			{
 				//--------------------
 				// point_to_barrel seems good, move Tux there
@@ -2742,54 +2736,56 @@ check_for_barrels_to_smash ( int barrel_index )
 
 		return;
 	}
+
+	//===================
+	// The character is near enough from the barrel to smash it.
+	//
 	
 	//--------------------
 	// Before the barrel can get destroyed and we loose the position information,
-	// we record the vector of the Tux strike direction...
+	// we record the vector of the charecter's strike direction...
 	//
-	step_vector . x = - Me . pos . x + 
-	    our_level -> obstacle_list [ barrel_index ] . pos . x ;
-	step_vector . y = - Me . pos . y + 
-	    our_level -> obstacle_list [ barrel_index ] . pos . y ;
-	
+	step_vector . x = - Me . pos . x + our_level -> obstacle_list [ barrel_index ] . pos . x ;
+	step_vector . y = - Me . pos . y + our_level -> obstacle_list [ barrel_index ] . pos . y ;
+
 	//--------------------
-       // Check that the barrel is really reachable, and not behind an obstacle
+	// Check that the barrel is really reachable, and not behind an obstacle
+	//
 	colldet_filter filter = { ObstacleByIdPassFilterCallback, &barrel_index, NULL };
-       if ( DirectLineColldet( Me.pos.x, Me.pos.y,
-    		                our_level->obstacle_list[barrel_index].pos.x, our_level->obstacle_list[barrel_index].pos.y,
-    		                Me.pos.z, &filter) )
-       {
-	//--------------------
-	// We make sure the barrel gets smashed, even if the strike made by the
-	// Tux would be otherwise a miss...
-	//
-	smash_obstacle ( our_level -> obstacle_list [ barrel_index ] . pos . x , 
-			 our_level -> obstacle_list [ barrel_index ] . pos . y);
 	
-	//--------------------
-	// We start an attack motion...
-	//
-	tux_wants_to_attack_now ( FALSE ) ;
-	
-	//--------------------
-	// We set a direction of facing directly thowards the barrel in question
-	// so that the strike motion looks authentic...
-	//
-	Me . angle = - ( atan2 ( step_vector . y ,  step_vector . x ) * 180 / M_PI - 180 - 45 );
-	Me . angle += 360 / ( 2 * MAX_TUX_DIRECTIONS );
-	while ( Me . angle < 0 ) Me . angle += 360;
-       }
-	
-	//--------------------
-	// Maybe the barrel smashing came from a combo_action, i.e. the click made
-	// the tux come here and the same click should now also make the Tux smash
-	// the barrel.  So we smash the barrel. but that also means, that we can 
-	// now unset the combo_action back to normal state again.
-	//
+	if ( DirectLineColldet( Me.pos.x, Me.pos.y,
+							our_level->obstacle_list[barrel_index].pos.x, our_level->obstacle_list[barrel_index].pos.y,
+							Me.pos.z, &filter) )
+	{
+		//--------------------
+		// We make sure the barrel gets smashed, even if the strike made by the
+		// Tux would be otherwise a miss...
+		//
+		smash_obstacle ( our_level -> obstacle_list [ barrel_index ] . pos . x , 
+						 our_level -> obstacle_list [ barrel_index ] . pos . y);
+
+		//--------------------
+		// We start an attack motion...
+		// Since the character is just aside the barrel, we use a melee shot,
+		// in order to avoid the lost of an ammunition.
+		//
+		int store_weapon_type = Me.weapon_item.type;
+		Me.weapon_item.type = -1;
+		tux_wants_to_attack_now ( FALSE ) ;
+		Me.weapon_item.type = store_weapon_type;
+		
+		//--------------------
+		// We set a direction of facing directly thowards the barrel in question
+		// so that the strike motion looks authentic...
+		//
+		Me . angle = - ( atan2 ( step_vector . y ,  step_vector . x ) * 180 / M_PI - 180 - 45 );
+		Me . angle += 360 / ( 2 * MAX_TUX_DIRECTIONS );
+		while ( Me . angle < 0 ) Me . angle += 360;
+	}
+
 	Me . mouse_move_target_combo_action_type = NO_COMBO_ACTION_SET ;
 	Me . mouse_move_target_combo_action_parameter = ( -1 ) ;
 	DebugPrintf ( 2 , "\ncheck_for_barrels_to_smash(...):  combo_action now unset." );
-    }
 }; // void check_for_barrels_to_smash ( int barrel_index ) 
 
 /**
@@ -3008,26 +3004,31 @@ AnalyzePlayersMouseClick ( )
 	case GLOBAL_INGAME_MODE_NORMAL:
 	    if ( ButtonPressWasNotMeantAsFire( ) ) return;
 	    if ( handle_click_in_hud() ) return;
-	    tmp = closed_chest_below_mouse_cursor ( );
 	    if ( no_left_button_press_in_previous_analyze_mouse_click )
 		{
 		Me . mouse_move_target_combo_action_type = NO_COMBO_ACTION_SET;
+		
 		if ( (tmp = closed_chest_below_mouse_cursor ( )) != -1 )
 		    {
 		    check_for_chests_to_open ( tmp ) ;
 		    break;
 		    }
-		if (( tmp = smashable_barrel_below_mouse_cursor ( ) ) != -1 )
-		    {
+		
+		// Nota : If 'A' key is held down, we don't directly smash a barrel.
+		// This will possibly be the result of the character's attack.
+		if ( !APressed() && ( tmp = smashable_barrel_below_mouse_cursor ( ) ) != -1 )
+		    { 
 		    check_for_barrels_to_smash ( tmp );
 		    break;
 		    }
+		
 		if (( tmp = get_floor_item_index_under_mouse_cursor () ) != -1 )
 		    {
 		    check_for_items_to_pickup ( tmp );
 		    break;
 		    }
 		}
+	    
 	    check_for_droids_to_attack_or_talk_with ( ) ;
 	    break;
 	case GLOBAL_INGAME_MODE_EXAMINE:

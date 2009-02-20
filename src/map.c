@@ -920,10 +920,10 @@ static int smash_obstacles_only_on_tile ( float x , float y , int map_x , int ma
 {
     Level BoxLevel = curShip . AllLevels [ Me . pos . z ] ;
     int i ;
+    int target_idx;
     Obstacle target_obstacle;
     int smashed_something = FALSE ;
     moderately_finepoint blast_start_pos;
-    int stored_target_obstacle_type = 0;
 
     //--------------------
     // First some security checks against touching the outsides of the map...
@@ -940,10 +940,10 @@ static int smash_obstacles_only_on_tile ( float x , float y , int map_x , int ma
 	//--------------------
 	// First we see if there is something glued to this map tile at all.
 	//
-	if ( BoxLevel -> map [ map_y ] [ map_x ] . obstacles_glued_to_here [ i ] == (-1) ) continue;
+    target_idx = BoxLevel->map[map_y][map_x].obstacles_glued_to_here[i]; 
+	if (  target_idx == -1 ) continue;
 	
-	target_obstacle = & ( BoxLevel -> obstacle_list [ BoxLevel -> map [ map_y ] [ map_x ] . 
-							  obstacles_glued_to_here [ i ] ] );
+	target_obstacle = & ( BoxLevel -> obstacle_list [target_idx] );
 	
 	if ( ! ( obstacle_map [ target_obstacle -> type ] . flags & IS_SMASHABLE) ) continue;
 	
@@ -954,16 +954,13 @@ static int smash_obstacles_only_on_tile ( float x , float y , int map_x , int ma
 	if ( fabsf ( x - target_obstacle -> pos . x ) > 0.4 ) continue ;
 	if ( fabsf ( y - target_obstacle -> pos . y ) > 0.4 ) continue ;
 	
-	    stored_target_obstacle_type = target_obstacle -> type ;
-	    target_obstacle -> type = ISO_BLOOD_1 ; // something harmless concerning collisions
+	    colldet_filter filter = { ObstacleByIdPassFilterCallback, &target_idx, &FlyablePassFilter };
 	    if ( ! DirectLineColldet ( x , y , 
 					Me . pos . x , Me . pos . y , 
-					Me . pos . z, NULL ) )
+					Me . pos . z, &filter ) )
 	    {
-		target_obstacle -> type = stored_target_obstacle_type ;
 		continue;
 	    }
-            target_obstacle -> type = stored_target_obstacle_type ;
 
 	DebugPrintf ( 1 , "\nObject smashed at: (%f/%f) by hit/explosion at (%f/%f)." ,
 		      target_obstacle -> pos . x , target_obstacle -> pos . y ,
