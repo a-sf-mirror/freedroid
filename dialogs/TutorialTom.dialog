@@ -253,7 +253,7 @@ LuaCode={
 	npc_says(_"We prefer to fight the damn droids at a distance. They're less likely to rend us limb from limb that way.")
 	npc_says(_"Unfortunately, guns and other ranged weaponry are hard to come by these days.")
 	npc_says(_"That goes double for ammunition. Because these are bots, you really can't effectively keep them at bay by just waving around an empty gun.")
-	npc_says(_"With that in mind, your most reliable weapons are your fists. They never run out of ammo or wear down, but of course they don't do much damage either vs a metal body.")
+	npc_says(_"With that in mind, your most reliable weapons are your fists. They never run out of ammo or wear down, but of course they don't do much damage against a metal body, either.")
 	hide(20) show(21, 23)
 }
 ---------------------------------------------------------------------
@@ -507,15 +507,15 @@ LuaCode={
 	npc_says(_"Once you've gained enough experience, you'll level up. This will automatically improve some of your statistics.")
 	npc_says(_"You'll also be given 5 points to spend however you choose in three different areas. Characteristics, Skills and Programs.")
 	npc_says(_"Strength governs the amount of damage you do with each hit in melee combat.")
-	npc_says(_"Dexterity controls your hit rate, or how likely you are to hit the enemy. It also determines how likely you are to dodge.")
-	npc_says(_"CPU is your processors cooling/heat resilience, and determines how much processing you can take before your system starts overheating.")
+	npc_says(_"Dexterity controls your hit rate, or how likely you are to hit the enemy. It also determines how likely you are to dodge a hit from them.")
+	npc_says(_"CPU is your processors cooling. or heat resilience, and determines how much you can process before your system starts overheating.")
 	npc_says(_"Finally, among your main characteristics, Life determines how much health you have.")
 	npc_says(_"You also have 3 main skills that you can improve with the use of your training points and a teacher.")
-	npc_says(_"They are general melee and ranged fighting skills, both of which increase the damage you inflict and how fast you attack as you improve them.")
-	npc_says(_"You also have the program skill, which essentially is about programing in an energy efficient manner so programs cause less heat.")
-	npc_says(_"Apart from this, a few programs also need a teacher and training points to improve.")
-	npc_says(_"Extract bot parts will increase the chance of you salvaging parts from bots you 'retire', which you can trade for money in the town.")
-	npc_says(_"The Hacking program we will talk a bit more of in a little while.")
+	npc_says(_"They are general Melee and Ranged fighting skills, both of which increase the damage you inflict and how fast you attack as you improve them.")
+	npc_says(_"You also have the Programming skill, which essentially is about programming in an energy efficient manner so programs cause less heat.")
+	npc_says(_"Apart from this, a few programs require a teacher and training points to improve.")
+	npc_says(_"Extract bot parts is a special skill that will allow you to salvage parts from bots you 'retire', which you can trade for money in the town.")
+	npc_says(_"The Hacking program we will speak a bit more of in a little while.")
 	hide(40) show(41)
 }
 ----------------------------------------------------------------------
