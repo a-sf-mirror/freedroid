@@ -1292,7 +1292,7 @@ Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=250
 inventory_size_x=2
 inventory_size_y=4
-Item description text=_"An old standby of farmers and bird hunters.  While capable of causing a fair amount of damage to droid armor, the limited chamber capacity and fairly slow reloading time make this weapon preferable to melee weapons, but only just. Requires two hands to wield."
+Item description text=_"An old standby of farmers and bird hunters.  While capable of causing a fair amount of damage to droid armor, the limited rounds capacity and fairly slow reloading time make this weapon preferable to melee weapons, but only just. Requires two hands to wield."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.200000
 Item as gun: reloading time=4.000000
