@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: freedroidrpg_data\n"
 "Report-Msgid-Bugs-To: CHANGE THIS TOO\n"
-"POT-Creation-Date: 2009-02-17 17:13+0000\n"
-"PO-Revision-Date: 2009-02-17 22:24+0100\n"
+"POT-Creation-Date: 2009-02-20 12:42+0000\n"
+"PO-Revision-Date: 2009-02-20 18:23+0100\n"
 "Last-Translator: barbatrix <blue.bits@arcor.de>\n"
 "Language-Team: Deutsch\n"
 "MIME-Version: 1.0\n"
@@ -45,27 +45,24 @@ msgid "Great sword"
 msgstr "Breitschwert"
 
 #: ../map/freedroid.item_archetypes:248
-#, fuzzy
 msgid "The size and kinetic force achievable with this 2 handed sword is enough to cleave straight through the armor of a low level droid. The strain on the sword from high impact hits into metal will however require frequent maintenance to keep it from breaking in half exactly when it's most needed."
-msgstr "Seine Größe und die mit diesem 2-händigen Schwert erreichbare kinetische Energie reichen aus, um die Panzerung eines Bots der unteren Klassen mit einem einzigen Schlag zu zerteilen. Die Beanspruchung des Schwerts durch starke Hiebe in Metall erfordern allerdings regelmäßige Ausbesserungen, damit es einem nicht im falschen Moment entzwei bricht."
+msgstr "Seine Größe und die mit diesem 2-händigen Schwert erreichbare kinetische Energie reichen aus, um die Panzerung eines Bots der unteren Klassen mit einem einzigen Schlag zu zerteilen. Die Beanspruchung des Schwerts durch starke Hiebe in Metall erfordern allerdings regelmäßige Ausbesserungen, damit es nicht im falschen Moment entzwei bricht."
 
 #: ../map/freedroid.item_archetypes:270
 msgid "Chainsaw"
 msgstr "Kettensäge"
 
 #: ../map/freedroid.item_archetypes:286
-#, fuzzy
 msgid "Quite efficient at separating limbs from even a droid body, or digging through weaker armored parts to cause massive damage on internal electronics. But, the chain wears out very quickly when used on materials harder than wood, and supply shortages of new chains and other parts makes it expensive to maintain."
-msgstr "Sehr wirkungsvoll, sogar im Abtrennen der Gliedmaßen eines Androiden oder um sich durch schwächer gepanzerte Teile zu arbeiten, und damit massiven Schaden an der internen Elektronik anzurichten. Die Kette verschleißt leider sehr schnell, wenn sie an härteren Materialien als an Holz benutzt wird und Lieferschwierigkeiten bei neuen Ketten und anderen Ersatzteilen macht die Instandhaltung reichlich teuer."
+msgstr "Sehr wirkungsvoll, sogar im Abtrennen der Gliedmaßen eines Androiden oder um sich durch schwächer gepanzerte Teile zu arbeiten, und damit massiven Schaden an der internen Elektronik anzurichten. Allerdings verschleißt die Kette sehr schnell, wenn sie auf härtere Materialien als Holz trifft und Lieferschwierigkeiten bei neuen Ketten und anderen Ersatzteilen machen die Instandhaltung reichlich teuer."
 
 #: ../map/freedroid.item_archetypes:314
 msgid "Meat cleaver"
 msgstr "Metzgerbeil"
 
 #: ../map/freedroid.item_archetypes:330
-#, fuzzy
 msgid "Designed to chop through meat and bones, it's not as fragile as cutting blades when used against metal enemies. However, it is a bit slower and clumsier to use than more graceful weapons."
-msgstr "Dafür ausgelegt, Fleisch und Knochen zu zerteilen, und daher nicht so zerbrechlich wie Schnittklingen, wenn es bei Gegnern aus Metall eingesetzt wird. Jedoch etwas langsamer und schwerfälliger in der Benutzung, als elegantere Waffen."
+msgstr "Dafür ausgelegt, Fleisch und Knochen zu zerteilen, und daher nicht so zerbrechlich wie Schnittklingen, wenn es bei Gegnern aus Metall eingesetzt wird. Ist jedoch etwas langsamer und schwerfälliger in der Benutzung, als elegantere Waffen."
 
 #: ../map/freedroid.item_archetypes:352
 msgid "Small Axe"
@@ -80,45 +77,40 @@ msgid "Large Axe"
 msgstr "Große Axt"
 
 #: ../map/freedroid.item_archetypes:406
-#, fuzzy
 msgid "While this weapon is somewhat slow and cumbersome to use, it is as good at leaving big dents in droids as it is at felling trees. A good hit is often capable of taking out lesser droids in a single hit"
-msgstr "Diese Waffe ist zwar recht langsam und unhandlich, jedoch kann man damit problemlos große Beulen an großen Droiden hinterlassen. Ein gut platzierter Hieb kann für schwächere Droiden der erste und letzte sein."
+msgstr "Diese Waffe ist zwar recht langsam und unhandlich, jedoch kann man damit genauso problemlos große Beulen an großen Droiden hinterlassen, wie man damit Bäume fällen kann. Oft kann ein gut platzierter Hieb schwächere Droiden mit einem einzigen Schlag ausschalten."
 
 #: ../map/freedroid.item_archetypes:434
 msgid "Hunting knife"
 msgstr "Jagdmesser"
 
 #: ../map/freedroid.item_archetypes:450
-#, fuzzy
 msgid "A short stabbing dagger doesn't have much effect on the metal body of a droid, but with luck you might damage some wires or hoses in less protected areas, so it's still better than trying to take the machines on with bare hands."
-msgstr "Eine kurze Stichwaffe hat naturgemäß keinen großen Einfluss auf den Metallkörper eines Robots. Aber mit ein wenig Glück durchtrennt man damit einige Kabel oder Schläuche in weniger gut geschützten Bereichen, so dass es immer noch besser ist, den Maschinen hiermit, als mit bloßen Händen zu Leibe zu rücken."
+msgstr "Eine kurze Stichwaffe hat naturgemäß keinen großen Einfluss auf den Metallkörper eines Robots. Mit ein wenig Glück durchtrennt man damit jedoch einige Kabel oder Schläuche in weniger gut geschützten Bereichen, so dass es immer noch besser ist, den Maschinen hiermit, als mit bloßen Händen zu Leibe zu rücken."
 
 #: ../map/freedroid.item_archetypes:472
 msgid "Metal spear"
 msgstr "Metallspeer"
 
 #: ../map/freedroid.item_archetypes:488
-#, fuzzy
 msgid "A spear forged from metal considerably improves on a wooden spears damage and durability, but the increased weight does make it somewhat slower and more cumbersome to use. It's still a fast weapon though, compared to most others."
-msgstr "Ein aus Stahl geschmiedeter Speer ist entschieden besser als ein hölzerner, was Schaden und Beständigkeit angeht, aber das zusätzliche Gewicht macht die Handhabung etwas schwerfälliger. Im Vergleich zu den meisten anderen ist es jedoch allemal eine schnelle Waffe."
+msgstr "Ein aus Metall geschmiedeter Speer ist entschieden besser als ein hölzerner, was Schaden und Beständigkeit angeht, aber das zusätzliche Gewicht macht die Handhabung etwas schwerfälliger. Im Vergleich zu den meisten anderen ist es jedoch allemal eine schnelle Waffe."
 
 #: ../map/freedroid.item_archetypes:516
 msgid "Iron pipe"
 msgstr "Eisenrohr"
 
 #: ../map/freedroid.item_archetypes:532
-#, fuzzy
 msgid "A medium sized water pipe of iron can turn into an effective weapon even versus a metal opponent. While not likely to penetrate the armor of a bot, the impact force alone can still damage and shake loose circuit boards and weldings beneath the protective metal layer."
-msgstr "Ein Wasserleitungsrohr von mittlerer Größe aus Eisen kann eine recht brauchbare Waffe darstellen, auch wenn das Gegenüber aus Metall ist. Wenn man auch kaum den Panzer eines Bots damit zu durchschlagen vermag, so kann doch allein die Wucht des Aufpralls Schaden zufügen und Platinen oder Lötpunkte unter der schützenden Metallwandung lösen."
+msgstr "Ein Wasserleitungsrohr von mittlerer Größe aus Eisen kann eine brauchbare Waffe darstellen, selbst, wenn das Gegenüber aus Metall ist. Vermag man damit auch kaum den Panzer eines Bots zu durchschlagen, so kann doch allein die Wucht des Aufpralls Platinen oder Lötpunkte unter der schützenden Metallwandung lösen oder beschädigen."
 
 #: ../map/freedroid.item_archetypes:554
 msgid "Big wrench"
 msgstr "Großer Schraubenschlüssel"
 
 #: ../map/freedroid.item_archetypes:570
-#, fuzzy
 msgid "A big heavy wrench can be surprisingly efficient in turning a bot into second hand parts, in a hands on, brutal way if needed."
-msgstr "Ein großer, schwerer Schraubenschlüssel in der Hand kann sich als überraschend effizient erweisen, wenn es darum geht, einen Roboter in ein Ersatzteillager umzuwandeln - wenn nötig auf die brutale Art."
+msgstr "Ein großer, schwerer Schraubenschlüssel in der Hand kann sich als überraschend effizient erweisen, wenn es darum geht, einen Roboter in Ersatzteile zu verwandeln - wenn nötig auf die brutale Art."
 
 #: ../map/freedroid.item_archetypes:593
 msgid "Crowbar"
@@ -133,27 +125,24 @@ msgid "Golf club"
 msgstr "Golfschläger"
 
 #: ../map/freedroid.item_archetypes:647
-#, fuzzy
 msgid "It might not be so sturdy, but if you manage to get in a good hit, the kinetic energy might be enough to damage internal electronics even if there is only a small dent on the outside."
-msgstr "Ist vielleicht nicht ganz so robust, aber falls es gelingt, damit einen guten Treffer zu landen, kann die kinetische Energie ausreichen, um die innenliegenden elektronischen Schaltkreise zu ramponieren - auch wenn von außen nur eine kleine Delle zu sehen ist."
+msgstr "Vielleicht nicht allzu robust, aber falls es gelingt, damit einen guten Treffer zu landen, kann die kinetische Energie ausreichen, um die interne Elektronik zu ramponieren - auch wenn von außen nur eine kleine Delle zu sehen ist."
 
 #: ../map/freedroid.item_archetypes:669
 msgid "Tree branch"
 msgstr "Ast"
 
 #: ../map/freedroid.item_archetypes:685
-#, fuzzy
 msgid "A club from a tree branch is certainly not your preferred choice of weapon, but it might be your only one..."
-msgstr "Eine Keule - oder besser - ein abgebrochener Ast, ist sicher nicht die Waffe der Wahl. Aber es könnte die einzige sein..."
+msgstr "Eine Keule, vielmehr ein abgebrochener Ast, ist sicher nicht die Waffe der Wahl. Aber es könnte die einzige sein..."
 
 #: ../map/freedroid.item_archetypes:707
 msgid "Power hammer"
 msgstr "Servo-Bolznagler"
 
 #: ../map/freedroid.item_archetypes:723
-#, fuzzy
 msgid "The POWER NAIL DRIVER 3000 will, according to the advertisement, 'build your house for you'. While it's unclear how many nails your igloo will actually need, it sure can be handy nonetheless for bashing bot skulls. As long as the battery lasts, anyway."
-msgstr "Laut Werbung kann der POWER-BOLZNAGLER 3000 'Ihr Haus für Sie bauen'. Zwar ist unklar, wie viele Nägel dein Iglu nun eigentlich braucht - zum plätten von Robot-Köpfen ist er aber sicher allemal zu gebrauchen. Zumindest, solange die Batterie herhält..."
+msgstr "Laut Werbung kann der POWER-BOLZNAGLER 3000 'Ihr Haus für Sie bauen'. Obschon unklar ist, wie viele Nägel dein Iglu denn nun eigentlich braucht, zum plätten von Robot-Köpfen ist er sicherlich allemal zu gebrauchen. Zumindest, solange die Batterie herhält..."
 
 #: ../map/freedroid.item_archetypes:745
 msgid "Table leg"
@@ -168,36 +157,32 @@ msgid "Mace"
 msgstr "Streitkolben"
 
 #: ../map/freedroid.item_archetypes:799
-#, fuzzy
 msgid "The mace already proved on the medieval battlefield that it was good at crushing even heavily armored skulls. Unfortunately for the droids, this old knowledge still holds true."
-msgstr "Der Streitkolben bewies schon auf dem mittelalterlichen Schlachtfeld, dass er im Stande war, Knochen und Schädel unter schweren Rüstungen zu zertrümmern. Glücklicherweise gilt diese alte Weisheit auch für die Blechköpfe der Bots von heute."
+msgstr "Der Streitkolben bewies schon auf dem mittelalterlichen Schlachtfeld, dass er im Stande war, selbst dick gepanzerte Schädel zu zertrümmern. Glücklicherweise gilt diese alte Weisheit auch für die Blechköpfe der Bots von heute."
 
 #: ../map/freedroid.item_archetypes:821
 msgid "Baseball bat"
 msgstr "Baseballschläger"
 
 #: ../map/freedroid.item_archetypes:837
-#, fuzzy
 msgid "With 1-2 good two handed swings, a former droids head might fly far enough for you to score a home run. Just make sure to bring a backup weapon, because wooden bats have a predilection for splitting in two after too many hard hits."
-msgstr "Mit ein- bis zwei guten beidhändigen Schwingern könnte ein vorher fest angeschraubtes Androiden-Haupt weit genug fliegen, um einen Home-Run zu erzielen. Man sollte allerdings eine Zweitwaffe griffbereit haben, da Holzschläger mit Vorliebe nach zu vielen harten Schlägen auseinanderbrechen."
+msgstr "Mit ein- bis zwei guten beidhändigen Schwingern könnte ein Androiden-Haupt weit genug fliegen, um einen Home-Run zu erzielen. Man sollte allerdings eine Zweitwaffe griffbereit haben, da Holzschläger mit Vorliebe nach zu vielen harten Schlägen auseinanderbrechen."
 
 #: ../map/freedroid.item_archetypes:859
 msgid "Iron bar"
 msgstr "Eisenstange"
 
 #: ../map/freedroid.item_archetypes:875
-#, fuzzy
 msgid "A bit slow and cumbersome to use, and prohibiting the security of a shield to cower behind, this weapon isn't always a good option. But if you do hit, you are sure to do more damage than just a scratch."
-msgstr "Etwas langsam und umständlich zu benutzen und man ist der Möglichkeit beraubt, sich hinter einen Schild zu kauern - daher ist diese Waffe nicht immer eine gute Wahl. Wenn man dann aber trifft, kann man sicher sein, mehr Schaden als nur einen Kratzer zu hinterlassen."
+msgstr "Etwas langsam und umständlich zu benutzen und der Möglichkeit beraubt, sich hinter einen Schild zu kauern, ist diese Waffe nicht immer eine gute Wahl. Wenn man dann aber trifft, kann man sicher sein, mehr Schaden als nur einen Kratzer zu hinterlassen."
 
 #: ../map/freedroid.item_archetypes:897
 msgid "Sledgehammer"
 msgstr "Vorschlaghammer"
 
 #: ../map/freedroid.item_archetypes:913
-#, fuzzy
 msgid "Very slow and only for the strongest wielder, but only the tougher droids can survive more than 1-2 direct hits."
-msgstr "Sehr schwerfällig und nichts für Schwächlinge, aber dafür können nur die zäheren Roboter-Typen mehr als ein bis zwei direkte Treffer verkraften."
+msgstr "Sehr schwerfällig und nichts für Schwächlinge, dafür überstehen nur die zäheren Roboter-Typen mehr als ein bis zwei direkte Treffer."
 
 #: ../map/freedroid.item_archetypes:941
 msgid "Light saber"
@@ -236,36 +221,32 @@ msgid ".22 LR Ammunition"
 msgstr ".22 LR Munition"
 
 #: ../map/freedroid.item_archetypes:1137
-#, fuzzy
 msgid ".22 Long Rifle ammunition used to be a very common ammo for target practice, mainly because it was cheap and gave little recoil. It's just too weak to penetrate any real droid armor though."
-msgstr "Munition vom Typ .22 Langgewehr wurde sehr häufig für Schießübungen verwendet, hauptsächlich, da sie billig war und geringen Rückstoß erzeugte. Sie ist jedoch einfach zu schwach, um eine richtige Roboter-Panzerung zu durchschlagen."
+msgstr "Die Typ .22 Langgewehr Munition war sehr gebräuchlich für Schießübungen, hauptsächlich, da sie billig war und geringen Rückstoß erzeugte. Sie ist jedoch einfach zu schwach, um eine richtige Roboter-Panzerung zu durchschlagen."
 
 #: ../map/freedroid.item_archetypes:1141
 msgid ".22 Automatic"
 msgstr "Automatikwaffe für .22er Geschosse."
 
 #: ../map/freedroid.item_archetypes:1157
-#, fuzzy
 msgid "With .22 ammo, it's mostly dumb luck if you actually damage a bot with this pistol. On the bright side, you will get a LOT of target practise out of each bot before a bullet or two manages to find a weak enough spot to take the bot out."
-msgstr ".22er Munition verfeuernd, ist es hauptsächlich purem Zufall zu verdanken, sollte man einen Robot mit dieser Pistole wirklich beschädigen. Das Gute daran: man wird VIEL Gelegenheit für Schießübungen bei jedem einzelnen Bot haben, bevor eine Kugel oder zwei es schaffen, einen so schwachen Punkt zu finden, dass er den Geist aufgibt."
+msgstr "Bei .22er Munition ist es hauptsächlich purem Zufall zu verdanken, sollte man tatsächlich einen Robot mit dieser Pistole beschädigen. Das Gute daran: man wird VIEL Gelegenheit für Schießübungen bei jedem einzelnen Bot haben, bevor eine Kugel oder zwei es schaffen, einen so schwachen Punkt zu finden, dass er den Geist aufgibt."
 
 #: ../map/freedroid.item_archetypes:1179
 msgid ".22 Hunting Rifle"
 msgstr ".22er Jagdgewehr"
 
 #: ../map/freedroid.item_archetypes:1195
-#, fuzzy
 msgid "A .22 hunting rifle was mainly used for sports shooting and for cheap training. As a hunting weapon its main use was to kill small vermin such as rats and squirrels. It was also highly effective against rabbits. Unfortunately, you won't be hunting 'wabbits'..."
-msgstr "Ein .22er Jagdgewehr - oder Flobert - wurde vor allem beim Schießsport und Trainingsschießen verwendet. Als Jagdwaffe kam es in der Regel zum Einsatz, um kleine Schädlinge wie Ratten oder Eichhörnchen zu schießen. Auch gegen Hasen war es äußerst effektiv. Leider wirst du keine kleinen Häschen jagen..."
+msgstr "Ein .22er Jagdgewehr, bzw. Flobert, wurde vor allem beim Schießsport und für kostengünstiges Trainingsschießen verwendet. Als Jagdwaffe kam es in der Regel zum Einsatz, um kleine Schädlinge wie Ratten oder Eichhörnchen zu schießen. Auch gegen Hasen war es höchst effektiv. Leider wirst du keine kleinen Häschen jagen..."
 
 #: ../map/freedroid.item_archetypes:1217
 msgid "Shotgun shells"
 msgstr "Schrotpatronen"
 
 #: ../map/freedroid.item_archetypes:1232
-#, fuzzy
 msgid "While solid slugs, or possibly 8-10 Gauge shells, would be the most effective versus armored targets, beggars can't be choosers. One just has to use any type of shell one is lucky enough to stumble across. And even 20+ Gauge cartridges mostly used for bird hunting can, with luck, damage a bot."
-msgstr "Wären auch Bolzen- oder vielleicht 8- bis 10-Zoll-Geschosse am effektivsten gegen gepanzerte Ziele - Bettler können nicht wählerisch sein. Man muss schlicht jede greifbare Munition nehmen, über die man glücklich genug ist, zu stolpern..."
+msgstr "Wenn auch auch Bolzen- oder vielleicht 8- bis 10-Zoll-Geschosse am effektivsten gegen gepanzerte Ziele wären - Bettler können nicht wählerisch sein. Man muss schlicht jede greifbare Munition nehmen, über die man glücklich genug ist, zu stolpern. Und selbst 20er Schrotladungen, vorwiegend zur Vogeljagd verwendet, können, bei etwas Glück, einen Roboter beschädigen."
 
 #: ../map/freedroid.item_archetypes:1241
 msgid "Two Barrel sawn off shotgun"
@@ -280,8 +261,8 @@ msgid "Two Barrel shotgun"
 msgstr "Doppelläufige Schrotflinte"
 
 #: ../map/freedroid.item_archetypes:1295
-msgid "An old standby of farmers and bird hunters.  While capable of causing a fair amount of damage to droid armor, the limited clip capacity and fairly slow reloading time make this weapon preferable to melee weapons, but only just. Requires two hands to wield."
-msgstr "Ein alter Begleiter von Farmern und Vogeljägern. Wogegen es in der Lage ist, einem Robot-Panzer ordentlichen Schaden zuzufügen, ist es trotz der beschränkten Kapazität des Magazins und der ziemlich langsamen Nachladezeit Nahkampfwaffen vorzuziehen - jedoch auch nur solchen. Erfordert zwei Hände zur Handhabung."
+msgid "An old standby of farmers and bird hunters.  While capable of causing a fair amount of damage to droid armor, the limited rounds capacity and fairly slow reloading time make this weapon preferable to melee weapons, but only just. Requires two hands to wield."
+msgstr "Ein alter Begleiter von Farmern und Vogeljägern. Da es in der Lage ist, einem Robot-Panzer ordentlichen Schaden zuzufügen, ist es trotz der beschränkten Schuss-Kapazität und der ziemlich langsamen Nachladezeit Nahkampfwaffen vorzuziehen - jedoch auch nur solchen. Erfordert zwei Hände zur Handhabung."
 
 #: ../map/freedroid.item_archetypes:1317
 msgid "Pump action shotgun"
@@ -344,18 +325,16 @@ msgid ".50 BMG (12.7x99mm) Ammunition"
 msgstr "Kaliber .50 BMG Munition"
 
 #: ../map/freedroid.item_archetypes:1573
-#, fuzzy
 msgid "Browning Machine Gun ammo."
-msgstr "Browning Maschinengewehr-Munition"
+msgstr "Browning Maschinengewehr-Munition."
 
 #: ../map/freedroid.item_archetypes:1577
 msgid "Barrett M82 Sniper Rifle"
 msgstr "M82 'Barrett' Scharfschützengewehr"
 
 #: ../map/freedroid.item_archetypes:1593
-#, fuzzy
 msgid "Powerful enough to stop a truck, literally, the likelihood of even a battle droid surviving more than 2 hits by this weapon is quite slim. It doesn't even matter if the pesky droid is cowering behind a wall, the bullets will break right through and make the bot ready for the scrap heap in no time."
-msgstr "Praktisch mächtig genug, um einen Lastwagen aufzuhalten, reduziert sich die Wahrscheinlichkeit, dass selbst ein Kampfroboter mehr als 2 Treffer aus diesem Feuerprügel übersteht, auf ein Minimum. Es spielt nicht einmal eine Rolle, ob sich der verteufelte Bot hinter einer Mauer versteckt - die Geschosse durchschlagen sie einfach und verwandeln den Roboter dahinter in kürzester Zeit in einen Schrotthaufen."
+msgstr "Sprichwörtlich mächtig genug, um einen Lastwagen aufzuhalten, reduziert sich die Wahrscheinlichkeit, dass selbst ein Kampfroboter mehr als 2 Treffer aus diesem Feuerprügel übersteht, auf ein Minimum. Es spielt nicht einmal eine Rolle, ob sich der verteufelte Bot hinter einer Mauer versteckt - die Geschosse durchschlagen sie einfach und machen den Roboter dahinter in kürzester Zeit reif für den Schrotthaufen."
 
 #: ../map/freedroid.item_archetypes:1615
 msgid "Laser power pack"
@@ -370,9 +349,8 @@ msgid "Laser pistol"
 msgstr "Laser Pistole MK I"
 
 #: ../map/freedroid.item_archetypes:1650
-#, fuzzy
 msgid "A basic laser, but it has good uses in certain situations. No warranty of any kind, though."
-msgstr "Eine einfache Lichtorgel, kann aber in gewissen Situationen von Nutzen sein. Keine Garantie allerdings für irgendwas."
+msgstr "Eine einfache Lichtorgel, die aber in gewissen Situationen von Nutzen sein. Keine Garantie allerdings für irgendwas."
 
 #: ../map/freedroid.item_archetypes:1672
 msgid "Laser Rifle"
@@ -387,27 +365,24 @@ msgid "Laser Pulse Rifle"
 msgstr "Pulslaser-Gewehr MK I"
 
 #: ../map/freedroid.item_archetypes:1724
-#, fuzzy
 msgid "The pulse laser technology, allowing for many repeated short bursts without the weapon overheating, makes this quite a useful weapon. The damage from each shot is noticably less than from a Laser rifle, but the firing rate more than makes up for it."
-msgstr "Die Pulslaser-Technologie, welche viele aufeinanderfolgende, kurze Salven ohne Überhitzungsgefahr erlaubt, macht hieraus eine recht brauchbare Waffe. Der durch jeden Schuss verursachte Schaden ist signifikant geringer, als der durch ein Lasergewehr - die hohe Feuerrate macht diesen Nachteil allerdings mehr als wett."
+msgstr "Die Pulslaser-Technologie, welche viele aufeinanderfolgende, kurze Salven ohne Überhitzungsgefahr erlaubt, macht hieraus eine recht brauchbare Waffe. Der durch jeden Schuss verursachte Schaden ist signifikant geringer, als der durch ein Lasergewehr - die Feuerrate macht diesen Nachteil allerdings mehr als wett."
 
 #: ../map/freedroid.item_archetypes:1748
 msgid "Laser Pulse Cannon"
 msgstr "Pulslaser-Kanone MK II"
 
 #: ../map/freedroid.item_archetypes:1762
-#, fuzzy
 msgid "The pulse laser technology, allowing for many repeated short bursts without the weapon overheating, combined with a military design makes this weapon the preferred choice for most soldiers. Its quick no-recoil firing, large magazine, and awesome killing power makes it the ideal weapon for cleansing large droid infestations in mere minutes."
-msgstr "Die Pulslaser-Technologie, welche viele aufeinanderfolgende, kurze Salven ohne Überhitzungsgefahr erlaubt, in Verbindung mit einem für militärische Zwecke ausgelegten Design, macht sie zur Waffe der Wahl für den durchschnittlichen Soldaten. Rückstoßfreiheit bei hoher Feuerrate, ein großes Magazin & furchteinflößende Vernichtungskraft machen sie zur idealen Angriffswaffe, um stark Robot-verseuchtes Gebiet in Minutenschnelle zu säubern."
+msgstr "Die Pulslaser-Technologie, welche viele aufeinanderfolgende, kurze Salven ohne Überhitzungsgefahr erlaubt, in Verbindung mit einem für militärische Zwecke ausgelegten Design, macht sie zur Waffe der Wahl für den durchschnittlichen Soldaten. Seine hohe, rückstoßfreie Feuerrate, das große Magazin und furchteinflößende Vernichtungskraft machen sie zur idealen Angriffswaffe, um stark Robot-verseuchtes Gebiet in Minutenschnelle zu säubern."
 
 #: ../map/freedroid.item_archetypes:1786
 msgid "Plasma energy container"
 msgstr "Plasma-Energiebehälter"
 
 #: ../map/freedroid.item_archetypes:1801
-#, fuzzy
 msgid "A container filled with all materials and energy required to make plasma weapons work in one handy and relatively safe package. This is the most common way of loading a plasma weapon."
-msgstr "Ein Behälter, der in einer handlichen und relativ sicheren Kombination all die Materie und Energie vereint, die nötig ist, um Plasmawaffen zu betreiben. Am häufigsten für Plasma-Feuerwaffen verwendet."
+msgstr "Ein Behälter, der in einer handlichen und relativ sicheren Kombination all die Materie und Energie vereint, die nötig ist, um Plasmawaffen zu betreiben. Die am weitesten verbreitete Art, Plasma-Feuerwaffen zu beliefern."
 
 #: ../map/freedroid.item_archetypes:1805
 msgid "Plasma pistol"
@@ -422,18 +397,16 @@ msgid "Plasma gun"
 msgstr "Plasmakanone MK II"
 
 #: ../map/freedroid.item_archetypes:1859
-#, fuzzy
 msgid "A somewhat slow weapon, but once you do hit plenty a bot will just down on the spot. A good alternative to a pulse laser for the skilled marksman."
-msgstr "Ein etwas langsames Schießgerät, aber wenn man erst mal trifft, schmelzen an Ort und Stelle einige Bots zusammen. Für den geübten Schützen eine gute Alternative zum Pulslaser."
+msgstr "Ein etwas langsames Schießgerät, aber wenn man trifft, schmelzen an Ort und Stelle einige Bots zusammen. Für den geübten Schützen eine gute Alternative zum Pulslaser."
 
 #: ../map/freedroid.item_archetypes:1881
 msgid "Plasma cannon"
 msgstr "Plasmakanone"
 
 #: ../map/freedroid.item_archetypes:1897
-#, fuzzy
 msgid "The very slow firing rate is made up for by the awesome power of this weapon. Its main use in the military is as a close support weapon complementing the soldiers' bread and butter pulse lasers, especially when attacking enemies behind cover."
-msgstr "Die äußerst langsame Feuerrate wird durch die höllische Kraft dieser Waffe wieder ausgeglichen. Für gewöhnlich wird sie vom Militär unterstützend, zur Ergänzung der Brot- & Butter-Pulselaser der gemeinen Soldaten verwendet, vor allem beim Angriff auf gut verschanzte Gegner."
+msgstr "Die äußerst langsame Feuerrate wird durch die höllische Kraft dieser Waffe wieder ausgeglichen. Für gewöhnlich wird sie vom Militär unterstützend, zur Ergänzung der Brot- und Butter-Pulselaser der gemeinen Soldaten verwendet, vor allem beim Angriff auf gut verschanzte Gegner."
 
 #: ../map/freedroid.item_archetypes:1919
 msgid "2 mm Exterminator Ammunition"
@@ -456,9 +429,8 @@ msgid "The Super Exterminator!!!"
 msgstr "Der Super-Exterminator!!!"
 
 #: ../map/freedroid.item_archetypes:1991
-#, fuzzy
 msgid "This bad boy is known to blow away most enemies with a single blast. A dangerous weapon that you don't want to be on the receiving end of."
-msgstr "Dieser böse Eumel ist dafür bekannt, größere Gegner mit einem Schuss wegzupusten. Eine gefährliche Waffe, von deren Sendungen man nicht der Empfänger sein möchte..."
+msgstr "Dieser böse Eumel ist dafür bekannt, die meisten Gegner mit einem einzigen Schuss wegzupusten. Eine gefährliche Waffe, von deren Sendungen man nicht der Empfänger sein möchte..."
 
 #: ../map/freedroid.item_archetypes:2021
 msgid "VMX Gas Grenade"
@@ -581,9 +553,8 @@ msgid "Droid weaponry - 711,742 (Disruptor Class Alpha)"
 msgstr "Robotbewaffnung - 711,742: Disruptor Alpha-Klasse, Metallklauen (schwerste äußere und innere Verbrennungen, Erblindung, spontane Verdampfung, Schläge, Verstümmelungen)"
 
 #: ../map/freedroid.item_archetypes:2676
-#, fuzzy
 msgid " This weapons name speaks for itself-more of a brute force weapon than most, it is best used on well-defended enemies."
-msgstr " Der Name dieser Waffe spricht für sich selbst - mehr noch als die allermeisten anderen, ist diese Waffe von brutaler Gewalt. Am besten bei stark armierten Gegnern einsetzen."
+msgstr " Der Name dieser Waffe spricht für sich selbst - mehr noch als die meisten der anderen, ist diese Waffe von brutaler Gewalt. Am besten bei stark armierten Gegnern einsetzen."
 
 #: ../map/freedroid.item_archetypes:2698
 msgid "Droid weaponry - 883 (Bot exterminator)"
@@ -746,9 +717,8 @@ msgid "Reinforced Boots"
 msgstr "Syntholeder(TM)-Stiefel, schwere Ausführung"
 
 #: ../map/freedroid.item_archetypes:3138
-#, fuzzy
 msgid "These boots were originally normal boots, but have been fitted with some extra reinforcements to give better protection to the wearer.  Of course this makes them a bit less elegant and also less comfy to wear, but the extra protection might be worth it, at less than the price of hiking boots."
-msgstr "Die Stiefel wurden ursprünglich aus dem Kolonie-Standardmodell entwickelt, jedoch an verschiedenen Stellen zusätzlich verstärkt um dem Träger besseren Schutz zu gewährleisten. Natürlich sind sie dadurch weniger schön anzusehen und etwas unbequemer zu tragen - aber der höhere Schutzfaktor könnte es durchaus wert sein, zumal für einen geringeren Preis als bei richtigen Hochgebirgs-Stiefeln."
+msgstr "Die Stiefel wurden ursprünglich aus dem Standardmodell entwickelt, jedoch an verschiedenen Stellen zusätzlich verstärkt um dem Träger besseren Schutz zu bieten. Natürlich sind sie dadurch weniger schön anzusehen und etwas unbequemer zu tragen - aber die höhere Schutzwirkung könnte es durchaus wert sein, zumal für einen geringeren Preis als richtige Hochgebirgs-Stiefel."
 
 #: ../map/freedroid.item_archetypes:3142
 msgid "Hiking Boots"
@@ -771,9 +741,8 @@ msgid "Source Book of Check system integrity"
 msgstr "Quellbuch des System-Integritätstests"
 
 #: ../map/freedroid.item_archetypes:3195
-#, fuzzy
 msgid "An incredible healing program, probably the only one you will ever need."
-msgstr "Ein unglaublich wirksamer Heilungszauber - vielleicht der einzige, den man je benötigen wird."
+msgstr "Ein unglaublich wirksamer Heilspruch - vielleicht der einzige, den man je benötigen wird."
 
 #: ../map/freedroid.item_archetypes:3201
 msgid "Source Book of Analyze item"
@@ -788,18 +757,16 @@ msgid "Source Book of Sanctuary"
 msgstr "Quellbuch des Schutzes"
 
 #: ../map/freedroid.item_archetypes:3227
-#, fuzzy
 msgid "The art of rapidly moving away from danger is very useful. Even when used in reverse, it has its uses."
-msgstr "Die Kunst, sich akuter Gefahr zu entziehen ist sehr hilfreich - auch der umgekehrte Effekt hat seine Berechtigung. Teleportation bekommt ein völlig neues Gesicht mit diesem Buch. Man sollte es weise einsetzen."
+msgstr "Die Kunst, sich akuter Gefahr zu entziehen, ist sehr hilfreich - auch der umgekehrte Effekt hat seine Berechtigung. Teleportation in Vollendung."
 
 #: ../map/freedroid.item_archetypes:3233
 msgid "Source Book of Malformed packet"
 msgstr "Quellbuch der verstümmelten Datenpakete"
 
 #: ../map/freedroid.item_archetypes:3243
-#, fuzzy
 msgid "When computers are presented with the unexpected, they can damage themselves."
-msgstr "Werden Computer mit dem Unerwarteten konfrontiert, können sie Schaden nehmen..."
+msgstr "Werden Computer mit dem Unerwarteten konfrontiert, können sie Schaden nehmen."
 
 #: ../map/freedroid.item_archetypes:3249
 msgid "Source Book of Calculate Pi"
@@ -816,9 +783,8 @@ msgstr "Quellbuch des BSoD"
 
 #: ../map/freedroid.item_archetypes:3275
 #: ../map/freedroid.item_archetypes:3291
-#, fuzzy
 msgid "With a little touch a war machine comes crashing to a halt. For a while."
-msgstr "Mit geeigneten Mitteln kommt auch schweres Kriegsgerät zum stehen. Für ein Weilchen - bis zum Reboot."
+msgstr "Mit geeigneten Mitteln kommt auch schweres Kriegsgerät zum stehen. Für ein Weilchen."
 
 #: ../map/freedroid.item_archetypes:3281
 msgid "Source Book of Broadcast Blue Screen"
@@ -847,18 +813,16 @@ msgid "Source Book of Broadcast virus"
 msgstr "Quellbuch der Virenübertragung"
 
 #: ../map/freedroid.item_archetypes:3339
-#, fuzzy
 msgid "The network is wide and dangerous. Many traps await the weak and unprepared."
-msgstr "Das Netzwerk ist groß und gefährlich. Viele Fallen warten dort auf die Schwachen und Unvorbereiteten."
+msgstr "Das Netzwerk ist groß und gefährlich. Viele Fallen erwarten die Schwachen und Unvorbereiteten."
 
 #: ../map/freedroid.item_archetypes:3345
 msgid "Source Book of Dispel smoke"
 msgstr "Quellbuch der Auflösung von Rauch"
 
 #: ../map/freedroid.item_archetypes:3355
-#, fuzzy
 msgid "By heating up the chips with a malformed program, you can cause them to release the magic smoke which keeps the bot running."
-msgstr "Indem man die Chips mit einem Schadprogramm erhitzt, kann man ihnen den magischen Rauch entlocken, der die Robots am Laufen hält."
+msgstr "Indem man die Chips mit einem Schadprogramm erhitzt, kann man ihnen jenen magischen Rauch entlocken, der die Robots am Laufen hält."
 
 #: ../map/freedroid.item_archetypes:3361
 msgid "Source Book of Killer poke"
@@ -882,9 +846,8 @@ msgid "Source Book of Plasma discharge"
 msgstr "Quellbuch der Plasma-Entladung"
 
 #: ../map/freedroid.item_archetypes:3403
-#, fuzzy
 msgid "The overload setting exists for emergencies. Plasma does not discriminate between bots and humans. Everything is the same to it."
-msgstr "Die Überladungsfunktion ist für Notfälle gedacht. Das Plasma unterscheidet nicht zwischen Mensch und Maschine. Es behandelt alle gleich."
+msgstr "Die Überladungsfunktion ist für Notfälle gedacht. Plasma unterscheidet nicht zwischen Mensch und Maschine. Es behandelt alle gleich."
 
 #: ../map/freedroid.item_archetypes:3409
 msgid "Source Book of Ricer CFLAGS"
@@ -955,9 +918,8 @@ msgid "Industrial coolant"
 msgstr "Industrie-Kühlmittel"
 
 #: ../map/freedroid.item_archetypes:3561
-#, fuzzy
 msgid "Bartenders around the world add this to drinks to get them cold very fast. Plus, the coolant is much cheaper. It can keep you cool inside a nuclear reactor."
-msgstr "Barkeeper rund um die Welt mischen es ihren Drinks bei, damit sie blitzschnell abkühlen. Dazu ist das Kühlmittel recht billig. Hält dich selbst in einem Atomreaktor schön kalt."
+msgstr "Barkeeper in aller Welt mischen es ihren Drinks bei, um sie blitzschnell abkühlen. Dazu ist das Kühlmittel recht billig. Hält dich selbst in einem Atomreaktor schön kühl."
 
 #: ../map/freedroid.item_archetypes:3565
 msgid "Liquid nitrogen"
@@ -980,27 +942,24 @@ msgid "Running Power Capsule"
 msgstr "Marathon-Dopingkapsel"
 
 #: ../map/freedroid.item_archetypes:3605
-#, fuzzy
 msgid "These small containers hold purified running strength.  Each capsule can be used only once, but many of them can be grouped together like one item in your inventory."
-msgstr "Diese kleine Kapsel enthält konzentrierte Amphetamine für maximalen Konditionsschub - keine Gewährleistung bei Herz- oder Hirnschäden - Anwendung auf eigene Gefahr! Man kann ein kleines aufgedrucktes Kaninchen erkennen..."
+msgstr "Diese kleinen Kapseln enthalten konzentrierte Amphetamine für maximalen Konditionsschub - keine Gewährleistung bei Herz- oder Hirnschäden - Anwendung auf eigene Gefahr! Man kann ein kleines aufgedrucktes Kaninchen erkennen..."
 
 #: ../map/freedroid.item_archetypes:3609
 msgid "Strength Capsule"
 msgstr "Stärkungskapsel"
 
 #: ../map/freedroid.item_archetypes:3619
-#, fuzzy
 msgid "These small containers hold purified strength.  This item will give a temporary boost to strength.  Each capsule can be used only once, but many of them can be grouped together like one item in your inventory."
-msgstr "Diese kleine Bizoblast(TM)-Kapsel enthält konzentrierte Steroide - eine Einnahme erhöht kurzzeitig die physische Kraft. Daueranwendung über längeren Zeitraum kann zu schweren erektilen Dysfunktionen und Herzinsuffizienz führen."
+msgstr "Die kleinen Bizoblast(TM)-Kapsel enthalten konzentrierte Steroide - eine Einnahme erhöht kurzzeitig die physische Kraft. Daueranwendung über längeren Zeitraum kann zu schweren erektilen Dysfunktionen und Herzinsuffizienz führen."
 
 #: ../map/freedroid.item_archetypes:3623
 msgid "Dexterity Capsule"
 msgstr "Agilitätskapsel"
 
 #: ../map/freedroid.item_archetypes:3633
-#, fuzzy
 msgid "These small containers hold purified dexterity.  This item will give a temporary bonus to dexterity.  Each capsule can be used only once, but many of them can be grouped together like one item in your inventory."
-msgstr "Diese kleine Kapsel enthält konzentrierte koordinationsfördernde Stoffe. Die Einnahme erhöht vorübergehend die körperliche Geschicklichkeit. Längerfristige Anwendung kann unter anderem einen permanenten Verlust an Leistungsfähigkeit verursachen."
+msgstr "Diese kleine Kapsel enthält konzentrierte koordinationsfördernde Stoffe. Eine Einnahme erhöht vorübergehend die körperliche Geschicklichkeit. Längerfristige Anwendung kann unter anderem einen permanenten Verlust an Leistungsfähigkeit verursachen."
 
 #: ../map/freedroid.item_archetypes:3645
 msgid "Cyberbucks"
@@ -1023,9 +982,8 @@ msgid "Dixon's Toolbox"
 msgstr "Dixons AutoServ-Werkzeuge"
 
 #: ../map/freedroid.item_archetypes:3681
-#, fuzzy
 msgid "This is a teleporter service toolbox. It's complete and orderly, though a few dents on the outside give proof of frequent use. 'C. Dixon' is carved into the outside with fine print."
-msgstr "Dies ist ein Werkzeugkasten mit Teleporter-Wartungsgeräten. Alles ist vollzählig und wohlgeordnet, wenn auch einige Dellen auf der Außenseite Zeugnis von regelmäßiger Nutzung ablegen. Auf der Oberfläche ist in feiner Schrift 'C. Dixon' eingraviert."
+msgstr "Dies ist ein Werkzeugkasten mit Teleporter-Wartungsgeräten. Alles ist vollzählig und wohlgeordnet, wenn auch einige Dellen auf der Außenseite Zeugnis von regelmäßiger Nutzung ablegen. In die Oberfläche ist in feiner Schrift 'C. Dixon' eingraviert."
 
 #: ../map/freedroid.item_archetypes:3685
 msgid "Entropy Inverter"
@@ -1064,23 +1022,20 @@ msgid "What would modern science be without this important item?"
 msgstr "Was wäre die moderne Wissenschaft ohne diesen unentbehrlichen Gegenstand?"
 
 #: ../map/freedroid.item_archetypes:3763
-#, fuzzy
 msgid "Red Dilithium Crystal"
-msgstr "Roter Diliziumkristall"
+msgstr "Rötlicher Diliziumkristall"
 
 #: ../map/freedroid.item_archetypes:3772
-#, fuzzy
 msgid "These dilithium crystals are used as an energy source in many modern electricity or heat based devices. Energy is extracted from the crystal by making use of the ordering of the crystal molecules. This principle has allowed us to build devices that consume a lot of energy, but do not need to be connected to a power line."
-msgstr "Diese Diliziumkristalle finden in vielen modernen Geräten, die auf Elektrizität oder Hitzeentwicklung basieren, Verwendung. Dabei wird elektrischer Strom durch die Ausnutzung der in der besonderen Anordnung des molekularen Kristallgefüges gespeicherten Energie gewonnen. Dieses Prinzip erlaubte es, tragbare Geräte zu bauen, die sehr viel Energie verbrauchen, aber nicht an einer Stromleitung angeschlossen sein müssen."
+msgstr "Diese Diliziumkristalle finden in vielen modernen Geräten, die auf Elektrizität oder Hitzeentwicklung basieren, Verwendung. Dabei wird elektrischer Strom durch die Ausnutzung der in der besonderen Anordnung des molekularen Kristallgefüges gespeicherten Energie gewonnen. Dieses Prinzip erlaubte es, tragbare Geräte zu bauen, die sehr viel Energie verbrauchen, ohne an einer Stromleitung angeschlossen sein zu müssen."
 
 #: ../map/freedroid.item_archetypes:3776
 msgid "Map Maker"
 msgstr "Automap-Einheit"
 
 #: ../map/freedroid.item_archetypes:3787
-#, fuzzy
 msgid "This small device automatically collects data about the area within a range of 7 times 7 meters and draws a small-scale plan of the immediate surroundings. Because of its very tiny display, it needs to be held closely to the eye, and the image will then be projected directly into the eyeball of the user. Still, the collected map data will be split up by the device into several sectors for convenient viewing."
-msgstr "Dieses kleine Gerät sammelt automatisch Daten über das nähere Gelände, in einem Umkreis von 7x7 Metern und zeigt auf Wunsch einen Miniaturplan der unmittelbaren Umgebung an. Per Funk werden die Informationen an Nanobots übermittelt, welche am Sehnerv angedockt sind und die Bilder über diesen direkt ins Gehirn einspeisen. Für bessere Lesbarkeit wird die Karte automatisch in mehrere Sektoren aufgeteilt."
+msgstr "Dieses kleine Gerät sammelt automatisch Daten über das umliegende Gelände, in einem Umkreis von 7x7 Metern und zeigt auf Wunsch einen Miniaturplan der unmittelbaren Umgebung an. Per Funk werden die Informationen an Nanobots übermittelt, welche am Sehnerv angedockt sind und die Bilder über diesen direkt ins Gehirn einspeisen. Für bessere Lesbarkeit wird die Karte automatisch in mehrere Sektoren aufgeteilt."
 
 #: ../map/freedroid.item_archetypes:3791
 msgid "Strength Pill"
@@ -1103,9 +1058,8 @@ msgid "Code Pill"
 msgstr "Nanotech(NT) Coderpille"
 
 #: ../map/freedroid.item_archetypes:3829
-#, fuzzy
 msgid "Dude! This fab food will totally bump up your code skills, man! A real blast. Scarf these down to *see* the code."
-msgstr "Alter! Dieses Spezialfutter haut deine Coding-Skills nach oben, Mann! Ein echter Hammer... verputz die Dinger und du wirst den Code SEHEN! Arbeiten nach dem Nanotech(CT)-Prinzip und sind absolut sicher, Mann! (Garantie: keine, weil Privatverkauf!)."
+msgstr "Alter! Dieses Spezialfutter haut deine Coding-Skills nach oben, Mann! Ein echter Hammer... verputz die Dinger und du wirst den Code SEHEN! Arbeiten nach dem Nanotech(CT)-Prinzip und sind absolut sicher, Mann! (Garantie: keine, weil Privatverkauf!)"
 
 #: ../map/freedroid.item_archetypes:3833
 msgid "Brain Enlargement Pills Antidote"
@@ -1122,9 +1076,8 @@ msgstr "DSK.Gabel"
 #: ../map/freedroid.item_archetypes:3855
 #: ../map/freedroid.item_archetypes:3868
 #: ../map/freedroid.item_archetypes:3881
-#, fuzzy
 msgid "This item is part of the 'Self Cleaning Kitchen' (SCK) project from before the Great Assault.  All of the items in the SCK project have an inner mechanism that will clean the object automatically if left alone for a given time.  It comes with its own power supply, and has a supposed duration of 200 years."
-msgstr "Dieser Gegenstand ist Teil des Projekts 'Die Selbstreinigende Küche' (DSK), aus der Zeit vor dem Großen Angriff. Alle Teile des DSK-Projekts beinhalten einen Mechanismus, der den Gegenstand nach einer bestimmten Zeit der Nichtbenutzung automatisch reinigt. Enthält eine eigene Stromquelle, die laut Herstellerangaben eine Lebensdauer von 200 Jahren hat. Im Rahmen einer Werbeaktion brach sich der letzte amtierende Mr. Universum, beim Versuch eine DSK.Gabel zu verbiegen, die Handwurzel."
+msgstr "Dieser Gegenstand ist Teil des Projekts 'Die Selbstreinigende Küche' (DSK), aus der Zeit vor dem Großen Angriff. Alle Teile des DSK-Projekts beinhalten einen Mechanismus, der den Gegenstand nach einer bestimmten Zeit der Nichtbenutzung automatisch reinigt. Enthält eine eigene Stromquelle und hat, laut Herstellerangaben, eine Lebensdauer von 200 Jahren. Im Rahmen einer Werbeaktion brach sich der letzte amtierende Mr. Universum, beim Versuch eine DSK.Gabel zu verbiegen, die Handwurzel."
 
 #: ../map/freedroid.item_archetypes:3859
 msgid "Plate"
@@ -1147,18 +1100,16 @@ msgid "Teleporter homing beacon"
 msgstr "Rückteleportations-Skriptkarte"
 
 #: ../map/freedroid.item_archetypes:3911
-#, fuzzy
 msgid "This device sends a signal to a nearby teleporter requesting a transport, and then helps with locking on and boosting the signal to ensure the teleportation attempt is succcessful. The battery inside is sufficient for one use *only* and the device becomes useless afterwards. At least, most people don't try to use them twice... and those few who do usually end up with parts of their body missing or attached in the wrong place.  Note:  Multiple of these may be grouped together in the inventory."
-msgstr "Diese Einheit sendet ein Signal an einen Teleporter in der Nähe, fordert einen Transport an und hilft dann bei der Anpeilung und der Verstärkung des Signals, um den Erfolg des Teleport-Versuchs sicherzustellen. Die integrierte Batterie reicht nur für eine Anwendung aus, die Einheit ist nachher unbrauchbar. Zumindest versuchen die meisten gar nicht, die Dinger zweimal einzusetzen und die wenigen, die es tun, enden für gewöhnlich mit irgendwelchen fehlenden Körperteilen oder dass diese am falschen Platz sitzen."
+msgstr "Diese Einheit sendet ein Signal an einen Teleporter in der Nähe, fordert einen Transport an und hilft dann bei der Anpeilung und der Verstärkung des Signals, um den Erfolg des Teleport-Vorgangs sicherzustellen. Die integrierte Batterie reicht nur für *eine* Anwendung aus, und die Einheit wird dabei unbrauchbar. Zumindest versuchen die meisten gar nicht, die Dinger zweimal einzusetzen... und die wenigen, die es tun, enden für gewöhnlich mit irgendwelchen fehlenden oder am falschen Platz sitzenden Körperteilen. Anmerkung: mehrere davon können im Inventar zusammen gruppiert werden."
 
 #: ../map/freedroid.item_archetypes:3915
 msgid "Kevin's Data Cube"
 msgstr "Kevins Datenkubus"
 
 #: ../map/freedroid.item_archetypes:3924
-#, fuzzy
 msgid "This data cube contains confidential government data on the installations around the town. Kevin hopes that when the data is evaluated properly, a way out of the current crisis might be found. However, the amount of data is so vast, it can only be evaluated properly using a large cluster of computers. The Red Guard base is said to store an infrastructure suitable to this purpose."
-msgstr "Dieser Datenwürfel enthält vertrauliche Regierungsinformationen über geheime Einrichtungen der Kolonie. Kevin hofft, dass wenn das Datenmaterial entsprechend ausgewertet ist, ein Weg aus der derzeitigen Krise gefunden werden könnte. Jedoch ist die Datenmenge so gewaltig, dass sie nur von einem großen Computercluster zu bewältigen ist. Von der Basis der Roten Wache sagt man, sie stelle eine passende Infrastruktur für solche Zwecke bereit."
+msgstr "Dieser Datenwürfel enthält vertrauliche Regierungsinformationen über geheime Einrichtungen rund um die Stadt. Kevin hofft, dass wenn das Datenmaterial entsprechend ausgewertet ist, ein Weg aus der derzeitigen Krise gefunden werden könnte. Jedoch ist die Datenmenge so gewaltig, dass sie nur von einem großen Computercluster zu bewältigen ist. Von der Basis der Roten Wache sagt man, sie stelle eine passende Infrastruktur für solche Zwecke bereit."
 
 #: ../map/freedroid.item_archetypes:3928
 msgid "Pandora's Cube"
@@ -1169,109 +1120,93 @@ msgid "This is heavy. Cannot the end of the world come in a smaller package? It 
 msgstr "Das Teil ist schwer. Kann das Ende der Welt nicht in einem kleineren Paket daherkommen? Wäre eine gute Zeit für Duncan, um einige Dinge zu erklären..."
 
 #: ../map/freedroid.events:19
-#, fuzzy
 msgid "To maintenance tunnels"
-msgstr "Die Wartungstunnel"
+msgstr "Zu den Wartungstunneln"
 
 #: ../map/freedroid.events:28
-#, fuzzy
 msgid "Enter novice arena"
-msgstr "Anfänger-Arena"
+msgstr "Betrete Anfänger-Arena"
 
 #: ../map/freedroid.events:37
-#, fuzzy
 msgid "Enter master arena"
-msgstr "Experten-Arena"
+msgstr "Betrete Experten-Arena"
 
 #: ../map/freedroid.events:49
 msgid "Exit warehouse"
 msgstr "Lagerhaus verlassen"
 
 #: ../map/freedroid.events:58
-#, fuzzy
 msgid "To warehouse level 2"
-msgstr "Lagerhaus Untergeschoss 2"
+msgstr "Ins Lagerhaus-Untergeschoss 2"
 
 #: ../map/freedroid.events:70
-#, fuzzy
 msgid "To warehouse level 1"
-msgstr "Lagerhaus Untergeschoss 1"
+msgstr "Ins Lagerhaus-Untergeschoss 1"
 
 #: ../map/freedroid.events:82
 msgid "Back to Kevin's garden"
 msgstr "Zurück zu Kevins Garten"
 
 #: ../map/freedroid.events:91
-#, fuzzy
 msgid "To energy station"
-msgstr "Plasma-Energiebehälter"
+msgstr "Zur Energieversorgung"
 
 #: ../map/freedroid.events:103
 msgid "Escape from disruption deck"
 msgstr "Disruptor-Ebene verlassen"
 
 #: ../map/freedroid.events:112
-#, fuzzy
 msgid "Access disruptor shield control"
-msgstr "Disruptorschild-Kontrolle"
+msgstr "Zugang zur Disruptorschild-Kontrolle"
 
 #: ../map/freedroid.events:124
 #: ../map/freedroid.events:148
-#, fuzzy
 msgid "To disruption machine deck"
-msgstr "Disruptor-Maschinendeck"
+msgstr "Zum Disruptor-Maschinendeck"
 
 #: ../map/freedroid.events:136
-#, fuzzy
 msgid "Back from maintenance tunnels"
-msgstr "Die Wartungstunnel"
+msgstr "Rückkehr von den Wartungstunneln"
 
 #: ../map/freedroid.events:160
 msgid "Enter warehouse"
 msgstr "Lagerhaus betreten"
 
 #: ../map/freedroid.events:172
-#, fuzzy
 msgid "Down into Crystal Caves"
-msgstr "Kristallhöhlen"
+msgstr "Abstieg in die Kristallhöhlen"
 
 #: ../map/freedroid.events:184
-#, fuzzy
 msgid "To a forgotten bunker"
-msgstr "Vergessener Bunker"
+msgstr "Eintritt zu einem vergessenen Bunker"
 
 #: ../map/freedroid.events:193
 msgid "Unknown place"
 msgstr "Unbekannter Ort"
 
 #: ../map/freedroid.events:229
-#, fuzzy
 msgid "To Kevin's underground station"
-msgstr "Kevins Untergrundstation"
+msgstr "Zu Kevins Untergrundstation"
 
 #: ../map/freedroid.events:241
-#, fuzzy
 msgid "To underground station"
-msgstr "Kevins Untergrundstation"
+msgstr "Zur Untergrundstation"
 
 #: ../map/freedroid.events:293
-#, fuzzy
 msgid "Exit novice arena"
-msgstr "Anfänger-Arena"
+msgstr "Verlasse Anfänger-Arena"
 
 #: ../map/freedroid.events:305
-#, fuzzy
 msgid "Exit master arena"
-msgstr "Experten-Arena"
+msgstr "Verlasse Experten-Arena"
 
 #: ../map/freedroid.events:321
 msgid "FIXME2"
 msgstr "FIXME2"
 
 #: ../map/freedroid.events:334
-#, fuzzy
 msgid "Exit Crystal Caves"
-msgstr "Kristallhöhlen"
+msgstr "Verlasse Kristallhöhlen"
 
 #: ../map/freedroid.events:346
 msgid "Back from bunker"
@@ -1338,9 +1273,8 @@ msgid "Telemetry"
 msgstr "Telemetrie"
 
 #: ../map/freedroid.levels:15947
-#, fuzzy
 msgid "Scientists quarters and Telemetry"
-msgstr "Wissenschaftler-Quartiere"
+msgstr "Wissenschaftler-Quartiere und Telemetrie"
 
 #: ../map/freedroid.levels:17424
 msgid "Disruptor Base Access Tunnel"
@@ -1420,18 +1354,16 @@ msgid "Secret area service tunnels"
 msgstr "Geheimbereich-Wartungstunnel"
 
 #: ../map/freedroid.levels:35544
-#, fuzzy
 msgid "Tutorial"
-msgstr "Einführung 1"
+msgstr "Einführung"
 
 #: ../map/freedroid.program_archetypes:8
 msgid "Hacking"
 msgstr "Hacken"
 
 #: ../map/freedroid.program_archetypes:9
-#, fuzzy
 msgid "Tux is gifted with the ability to hack any machine in no time. With this program selected and activated by pressing down the right mouse button over a hostile machine, the takeover process will be initiated."
-msgstr "Tux hat die Fähigkeit, im Handumdrehen jede Maschine hacken zu können. Wenn eine Maschine nahe genug ist und diese Fähigkeit durch das Drücken der rechten Maustaste aktiviert wird, beginnt der Übernahmeprozess."
+msgstr "Tux hat die Fähigkeit, im Handumdrehen jede Maschine hacken zu können. Wenn dieses Programm ausgewählt und durch drücken der rechten Maustaste über einer gegnerischen Maschine aktiviert wird, beginnt der Übernahmeprozess."
 
 #: ../map/freedroid.program_archetypes:19
 msgid "Repair equipment"
@@ -1446,9 +1378,8 @@ msgid "Use weapon"
 msgstr "Benutze Waffe"
 
 #: ../map/freedroid.program_archetypes:29
-#, fuzzy
 msgid "Using this skill allows you to force an attack on something not normally a target or for firing single shots with automatic weapons."
-msgstr "Diese Aktion erlaubt es Ihnen, einen Angriff zu erzwingen oder mit einer automatischen Waffe einen Einzelschuss abzufeuern. Sie können mit dieser Fähigkeit auch freundliche Ziele angreifen."
+msgstr "Diese Aktion erlaubt es, einen Angriff auf ungewöhnliche Ziele zu erzwingen oder mit einer automatischen Waffe Einzelschüsse abzufeuern."
 
 #: ../map/freedroid.program_archetypes:37
 msgid "Emergency shutdown"
@@ -1575,18 +1506,16 @@ msgid "Reverse-engineer"
 msgstr "Reverse-Engineer"
 
 #: ../map/freedroid.program_archetypes:256
-#, fuzzy
 msgid "There is some dark magic in the art of turning devices or programs inside-out, picking them appart to learn all their secrets and putting them back again."
-msgstr "Da ist schon etwas dunkle Magie in der Kunst, Geräte von innen nach außen umzukrempeln, sie auseinanderzupflücken, um ihnen alle Geheimnisse zu entreißen und sie dann wieder zusammenzusetzen."
+msgstr "Da ist schon etwas dunkle Magie in der Kunst, Geräte oder Programme von innen nach außen umzukrempeln, sie auseinanderzupflücken, um ihnen alle Geheimnisse zu entreißen und sie wieder zusammenzusetzen."
 
 #: ../map/freedroid.program_archetypes:267
 msgid "Ricer CFLAGS"
 msgstr "Ricer CFLAGS"
 
 #: ../map/freedroid.program_archetypes:268
-#, fuzzy
 msgid "Optimization is the root of all evil. You can gain some temporary speed improvements to your system, but in the end you will likely overheat and cause permanent damage if you are not careful."
-msgstr "Optimierung ist die Wurzel allen Übels. Man kann dadurch vorübergehende Verbesserungen des Systems erzielen, aber am Ende richtet man damit sehr wahrscheinlich eher dauerhaften Schaden an."
+msgstr "Optimierung ist die Wurzel allen Übels. Man kann dadurch vorübergehende Geschwindigkeitsvorteile des Systems erzielen, aber am Ende ist die Gefahr von Überhitzung und dauerhaften Schäden sehr groß, wenn man keine Vorsicht walten lässt."
 
 #: ../map/freedroid.program_archetypes:276
 msgid "Light"
@@ -1623,24 +1552,20 @@ msgid "EMP grenade"
 msgstr "EMP-Granate"
 
 #: ../map/freedroid.droid_archetypes:121
-#, fuzzy
 msgid "A simple rubbish diposal robot. Common device in most space craft to maintain a clean ship."
-msgstr "Anmerkungen zu dieser Maschine: einfacher Abfallbeseitigungs-Roboter. Für gewöhnlich auf den meisten Raumgleitern vorhandene Einheit, um ein sauberes Schiff zu gewährleisten."
+msgstr "Ein einfacher Abfallbeseitigungs-Roboter. Für gewöhnlich auf den meisten Raumgleitern vorhandene Einheit, um ein sauberes Schiff zu gewährleisten."
 
 #: ../map/freedroid.droid_archetypes:155
-#, fuzzy
 msgid "Created by Dr. Masternak to clean up large heaps of rubbish. Its large scoop is used to collect rubbish. It is then crushed internally."
-msgstr "konstruiert von Dr. Masternak, um große Haufen an Müll zu beseitigen. Ein ausladender Schaufeltrichter wird zum Aufsammeln des Abfalls verwendet. Dieser wird dann intern zusammengepresst. Überarbeitete Modelle verfügen zusätzlich über einen Plasmastrahler zur direkten Verdampfung großer und solider Objekte."
+msgstr "Konstruiert von Dr. Masternak, um große Haufen an Müll zu beseitigen. Ein ausladender Schaufeltrichter wird zum Aufsammeln des Abfalls verwendet. Dieser wird dann intern zusammengepresst. Überarbeitete Modelle verfügen zusätzlich über einen Plasmastrahler zur direkten Verdampfung großer und solider Objekte."
 
 #: ../map/freedroid.droid_archetypes:188
-#, fuzzy
 msgid "A light duty servant robot. One of the first to use the anti-grav system."
-msgstr "Dienstrobot für leichte Aufgaben. Einer der ersten, die das Anti-Grav System verwendeten."
+msgstr "Ein Dienstrobot für leichte Aufgaben. Einer der ersten, die das Anti-Grav System verwendeten."
 
 #: ../map/freedroid.droid_archetypes:221
-#, fuzzy
 msgid "Cheaper version of the anti-grav servant robot."
-msgstr "Billigere Version des Anti-Grav Dienstrobots. Viele der früheren Sondermodelle wurden für individuelle Personenschutz-Zwecke mit Maschinengewehr-Modulen ausgerüstet."
+msgstr "Billigere Version des Anti-Grav Dienstrobots. Viele der früheren Sondermodelle wurden für individuelle Personenschutz-Zwecke mit Maschinenpistolen-Modulen ausgerüstet."
 
 #: ../map/freedroid.droid_archetypes:254
 #: ../map/freedroid.droid_archetypes:1184
@@ -1648,94 +1573,76 @@ msgid "Run away! This bot will kill you!"
 msgstr "Lauf weg! Dieser Robot wird dich kaltmachen!"
 
 #: ../map/freedroid.droid_archetypes:288
-#, fuzzy
 msgid "Common device for moving small packages. Clamp is mounted on the lower body."
-msgstr "Gebräuchlicher Boten-Roboter, um kleine Pakete zu transportieren. Ein Greifer ist auf der Gehäuse-Unterseite montiert. Neuere Modelle sind mit einem leistungsstarken Commlaser für Direktübertragungen bei Sichtverbindung ausgerüstet."
+msgstr "Gebräuchlicher Boten-Roboter, um kleine Pakete zu transportieren. Eine Klaue ist auf der Gehäuse-Unterseite montiert. Neuere Modelle sind mit einem leistungsstarken Commlaser für Direktübertragungen bei Sichtverbindung ausgerüstet."
 
 #: ../map/freedroid.droid_archetypes:322
-#, fuzzy
 msgid "Early type messenger robot. Large wheels impede motion on small craft."
-msgstr "Älteres Nachrichtenroboter-Modell. Große Räder verzögern die Bewegungen des kleinen Vehikels. Ab Werk ausgestattet mit Laserabtast- und Schreibfühlern."
+msgstr "Ein älteres Nachrichtenroboter-Modell. Große Räder verzögern die Bewegungen des kleinen Vehikels. Ab Werk ausgestattet mit Laserabtast- und Schreibfühlern."
 
 #: ../map/freedroid.droid_archetypes:356
-#, fuzzy
 msgid "A slow maintenance robot. Confined to drive maintenance during flight."
-msgstr "Langsamer Wartungsroboter. Auf Antriebswartung während des Fluges beschränkt. Ausgerüstet mit Plasmaschweißgerät."
+msgstr "Ein langsamer Wartungsroboter. Auf Antriebswartung während des Fluges beschränkt. Ausgerüstet mit Plasmaschweißgerät."
 
 #: ../map/freedroid.droid_archetypes:389
-#, fuzzy
 msgid "Ship maintenance robot. Fitted with multiple arms to carry out repairs to the ship efficiently. All craft built after the Jupiter-incident are supplied with a team of these."
-msgstr "Schiffswartungs-Robot. Mit mehreren Armen versehen, um Reparaturen am Schiff schnell und effizient auszuführen. Alle Raumer, die nach dem Jupiter-Zwischenfall gebaut wurden, sind mit einem Team von diesen ausgestattet."
+msgstr "Schiffswartungs-Robot. Mit mehreren Armen ausgerüstet, um Reparaturen am Schiff schnell und effizient auszuführen. Alle Raumer, die nach dem Jupiter-Zwischenfall gebaut wurden, sind mit einem Team von diesen ausgestattet."
 
 #: ../map/freedroid.droid_archetypes:422
-#, fuzzy
 msgid "Slave maintenance droid. Standard version will carry its own toolbox."
-msgstr "Untergeordneter Wartungsbot. Die Standardversion führt ihre eigene Werkzeugkiste mit sich."
+msgstr "Untergeordneter Wartungsbot. Die Standardversion führt seine eigene Werkzeugkiste mit sich."
 
 #: ../map/freedroid.droid_archetypes:455
-#, fuzzy
 msgid "Early crew droid. Able to carry out simple flight checks only. No longer supplied."
-msgstr "Veralteter Mannschafts-Androide. Nur in der Lage, einfache Flugtests durchzuführen. Wird nicht mehr länger hergestellt."
+msgstr "Veralteter Mannschafts-Androide. Ist lediglich in der Lage, einfache Flugtests durchzuführen. Nicht mehr lieferbar."
 
 #: ../map/freedroid.droid_archetypes:488
-#, fuzzy
 msgid "A standard crew droid. Supplied with the ship."
-msgstr "Standard-Mannschafts-Androide. Wird mit neuen Raumschiffen ausgeliefert."
+msgstr "Ein Standard-Mannschafts-Androide. Wird mit neuen Raumschiffen ausgeliefert."
 
 #: ../map/freedroid.droid_archetypes:521
-#, fuzzy
 msgid "A highly sophisticated device. Able to control the Robo-Freighter on its own."
-msgstr "Eine hochentwickelte Einheit. Ist in der Lage, einen Robotfrachter selbstständig zu fliegen."
+msgstr "Eine hochentwickelte Einheit. In der Lage, einen Robotfrachter selbstständig zu fliegen."
 
 #: ../map/freedroid.droid_archetypes:554
-#, fuzzy
 msgid "A low security sentinel droid. Used to protect areas of the ship from intruders. A slow but sure device."
-msgstr "Wächter-Androide für den unkritischen Sicherheitsbereich. Wird dazu verwendet, verschiedene Teile von Raumschiffen vor Eindringlingen zu schützen. Eine langsame aber zuverlässige Einheit."
+msgstr "Wächter-Androide für den unkritischen Sicherheitsbereich. Wird dazu verwendet, verschiedene Raumschiffs-Bereiche vor Eindringlingen zu schützen. Eine langsame aber zuverlässige Einheit."
 
 #: ../map/freedroid.droid_archetypes:587
-#, fuzzy
 msgid "Sophisticated sentinel droid. Only 2000 built by the Nicholson Company. These are now very rare."
-msgstr "hochentwickelter Wächterbot. Nur 2000 davon wurden vom Unternehmen Nicholson gebaut. Sie sind mittlerweile sehr rar."
+msgstr "Hochentwickelter Wächterbot. Nur 2000 davon wurden vom Unternehmen Nicholson gebaut. Sie sind mittlerweile sehr rar."
 
 #: ../map/freedroid.droid_archetypes:620
-#, fuzzy
 msgid "A low sentinel droid. Lasers are built into the turret. These are mounted on a small tank body. May be fitted with an auto-cannon on-the Gillen version."
-msgstr "Langsamer Wächter-Robot. Laser sind im Geschützturm eingebaut. Dieser ist auf einem kleinen Panzergefährt montiert. Kann in der Gillen-Version mit einer Automatik-Kanone ausgerüstet werden."
+msgstr "Flach konstruierter Wächter-Robot. Laser sind im Geschützturm eingebaut. Dieser ist auf einem kleinen Panzergefährt montiert. Kann in der Gillen-Version mit einer Automatik-Kanone ausgerüstet werden."
 
 #: ../map/freedroid.droid_archetypes:654
-#, fuzzy
 msgid "A heavy duty battle droid. Disruptor is built into the head. One of the first in service with the Military."
-msgstr "Schwerer Kampfandroide. Disruptor ist im Kopf eingebaut. Einer der ersten im Dienst des Militärs."
+msgstr "Schwerer Kampfandroide. Disruptor ist im Kopf eingebaut. Einer der ersten im Dienste des Militärs."
 
 #: ../map/freedroid.droid_archetypes:687
-#, fuzzy
 msgid "This version is the one mainly used by the military."
-msgstr "Schwerer Disruptor-Kampfandroide. Diese Version ist die am meisten verwendete des Militärs."
+msgstr "Schwerer Disruptor-Kampfandroide. Diese Version ist die meistverwendetste des Militärs."
 
 #: ../map/freedroid.droid_archetypes:720
-#, fuzzy
 msgid "A very heavy duty battle droid. Only a few have so far entered service. These are the most powerful battle units ever built."
-msgstr "Schwerer Hochleistungs-Kampfandroide. Nur wenige haben bislang ihren Dienst angetreten. Dieses sind die mächtigsten Kampfeinheiten, die je gebaut wurden."
+msgstr "Schwerer Hochleistungs-Kampfandroide. Nur wenige haben bislang ihren Dienst angetreten. Dies sind die mächtigsten Kampfeinheiten, die je gebaut wurden."
 
 #: ../map/freedroid.droid_archetypes:754
-#, fuzzy
 msgid "A very reliable anti-grav unit is fitted into this droid. It will patrol the ship and eliminate intruders as soon as detected by powerful sensors."
-msgstr "Eine sehr zuverlässige Anti-Grav Einheit wurde in diesem Robot verbaut. Er patroulliert Raumschiffe und liquidiert Eindringlinge, sobald diese von leistungsfähigen Sensoren erfasst werden."
+msgstr "Eine sehr zuverlässige Anti-Grav-Einheit wurde in diesem Robot verbaut. Er patroulliert Raumschiffe und liquidiert Eindringlinge, sobald diese von leistungsfähigen Sensoren erfasst werden."
 
 #: ../map/freedroid.droid_archetypes:786
-#, fuzzy
 msgid "Early type anti-grav security droid. Fitted with an over-driven anti-grav unit. This droid is very fast but is not reliable."
-msgstr "Veralteter Anti-Grav Sicherheitsbot. Mit einem überzüchteten Antigrav-Motor versehen. Dieser Robot ist sehr schnell, aber nicht zuverlässig."
+msgstr "Veralteter Anti-Grav Sicherheitsbot. Mit einem überzüchteten Antigrav-Motor ausgestattet. Dieser Robot ist sehr schnell, aber nicht zuverlässig."
 
 #: ../map/freedroid.droid_archetypes:819
-#, fuzzy
 msgid "This droid was designed from archive data. For some unknown reason it instils great fear in Human adversaries."
-msgstr "Dieser Roboter wurde von Archiv Data entworfen. Aus unbekannten Gründen flößt er menschlichen Gegnern große Furcht ein."
+msgstr "Dieser Roboter wurde von Archiv Data entworfen. Aus unerfindlichen Gründen flößt er menschlichen Gegnern große Furcht ein."
 
 #: ../map/freedroid.droid_archetypes:855
-#, fuzzy
 msgid "Experimental command cyborg. Fitted with a new type of brain. Mounted on a security droid anti-grav unit for convenience. warning: the influence device may not control a primode brain for long."
-msgstr "Experimenteller Kommando-Cyborg. Mit einer neuen Art von Gehirn ausgestattet. Wurde aus Bequemlichkeit auf die Antigrav-Plattform eines Sicherheitsbots montiert. Warnung: die 001 Steuereinheit kann ein Primode-Gehirn nicht sehr lange unter Kontrolle halten."
+msgstr "Experimenteller Kommando-Cyborg. Mit einer neuen Art von Gehirn ausgestattet. Wurde aus Bequemlichkeit auf die Antigrav-Plattform eines Sicherheitsbots montiert. Warnung: eine Fernsteuer-Einheit kann ein Primode-Gehirn nicht sehr lange unter Kontrolle halten."
 
 #: ../map/freedroid.droid_archetypes:885
 msgid "This is a typical professor/sage character of some older age.  They are not armed as powerfully as e.g. the red guards."
@@ -1766,9 +1673,8 @@ msgid "This is the cook."
 msgstr "Das ist der Koch."
 
 #: ../map/freedroid.droid_archetypes:1096
-#, fuzzy
 msgid "This is a typical professor/sage character of some older age. They are not armed as powerfully as e.g. the red guards."
-msgstr "Typischer Professor/Rats-Charakter fortgeschrittenen Alters. Nicht so schwer bewaffnet, wie z.B. die Roten Wachen."
+msgstr "Ein typischer Professor-/Rats-Charakter fortgeschrittenen Alters. Nicht so schwer bewaffnet, wie z.B. die Roten Wachen."
 
 #: ../map/freedroid.droid_archetypes:1126
 msgid "This is a typical sex bomb.  This one is even armed."
@@ -1783,9 +1689,8 @@ msgid "Bender's problem"
 msgstr "Benders Problem"
 
 #: ../map/freedroid.quests:49
-#, fuzzy
 msgid "I met a Red Guard named Bender. He poisoned himself with some brain enlargement pills, which turned out to be highly carcinogenic. The city doctor will not give him the antidote, so it is up to me to save him."
-msgstr "Ich habe eine der Roten Wachen getroffen, Bender ist sein Name. Er hat sich selbst mit irgendwelchen Gehirnbooster-Pillen vergiftet, die sich als höchst karzinogen herausgestellt haben. Der hiesige Doktor will ihm kein Gegenmittel verabreichen - deshalb ist es an mir, ihn zu retten."
+msgstr "Ich habe eine der Roten Wachen getroffen, Bender sein Name. Er hat sich selbst mit irgendwelchen Gehirnbooster-Pillen vergiftet, die sich als höchst karzinogen herausgestellt haben. Der hiesige Doktor will ihm kein Gegenmittel verabreichen - deshalb ist es an mir, ihn zu retten."
 
 #: ../map/freedroid.quests:50
 msgid "The doctor was easily fooled. I have the pills that Bender needs."
@@ -1804,9 +1709,8 @@ msgid "The yellow toolkit"
 msgstr "Das gelbe AutoServ-Werkzeugset"
 
 #: ../map/freedroid.quests:70
-#, fuzzy
 msgid "Dixon, the leader of the Red Guard technical division, lost his yellow toolkit in the city's maintenance tunnels. I am supposed to get it from there."
-msgstr "Dixon, der Leiter der technischen Abteilung der Roten Wache, hat sein gelbes Werkzeugset in den Wartungstunneln unter der Stadt verloren. Ich soll es von dort zurückbringen."
+msgstr "Dixon, der Leiter der technischen Abteilung der Roten Wache, hat sein gelbes Werkzeugset in den Wartungstunneln unter der Stadt verloren. Ich soll es von dort besorgen."
 
 #: ../map/freedroid.quests:71
 msgid "The bots in the tunnels might be sentient. I cannot wait to extinguish an emerging life form. This will be fun."
@@ -1821,9 +1725,8 @@ msgid "The tunnels bots seem to be working together with Dixon in keeping the ci
 msgstr "Die Tunnel-Roboter scheinen mit Dixon zusammenzuarbeiten, um das Leben in der Stadt aufrecht zu erhalten. Ende gut, alles gut!"
 
 #: ../map/freedroid.quests:74
-#, fuzzy
 msgid "Finally. I am tired, covered in bruises and oil... But I made sure that the all the bots are dead. It felt great to break their metal bodies and crush their circuits. Dixon didn't seem too happy about this solution, but I don't care. It was fun killing the bots. Nothing else matters."
-msgstr "Endlich. Ich bin müde, mit blauen Flecken und Öl bedeckt... Aber schließlich konnte ich sicherstellen, dass diese Blechteufel nicht überleben werden. War einfach grandios, ihre Metallkörper aufzureißen und ihre Schaltkreise zu zerfetzen..! Dixon schien über diese Lösung nicht sehr begeistert zu sein, aber was kümmert's mich. War ein Heidenspaß, die Robbies zu verschrotten! Nur das zählt."
+msgstr "Endlich. Ich bin müde, mit blauen Flecken und Öl bedeckt... Aber ich konnte sicherstellen, dass all diese Blechteufel zur Hölle fahren. War einfach grandios, ihre Metallkörper aufzureißen und ihre Schaltkreise zu zerfetzen..! Dixon schien über diese Lösung nicht sehr begeistert zu sein, aber was kümmert's mich. War ein Heidenspaß, die Robbies zu verschrotten! Nur das zählt."
 
 #: ../map/freedroid.quests:75
 msgid "I gave the toolkit to Dixon. He was very happy to have his autotools back. I got his helmet as a gift. I guess this is better than nothing."
@@ -1838,9 +1741,8 @@ msgid "I sold the toolkit to Dixon for a huge sum of money. Life is great."
 msgstr "Ich hab das Werkzeugset an Dixon verkauft - für einen riesen Batzen Geld... das Leben ist großartig!"
 
 #: ../map/freedroid.quests:78
-#, fuzzy
 msgid "I sold the toolkit to Dixon for a enormous sum of money. Life is truly grand. But, I better stay away from Dixon for now... He seemed very angry at me."
-msgstr "Ich hab das Werkzeugset an Dixon verkauft - für eine Wahnsinns-Summe! Das Leben ist einfach spitze! Ich halte mich fürs erste lieber von Dixon fern. Er schien ziemlich wütend auf mich zu sein..."
+msgstr "Ich hab das Werkzeugset für eine enorme Summe an Dixon verkauft. So macht das Leben Spaß! Ich halte mich aber fürs erste lieber von Dixon fern... Er schien ziemlich wütend auf mich zu sein."
 
 #: ../map/freedroid.quests:85
 msgid "Anything but the army snacks, please!"
@@ -1859,9 +1761,8 @@ msgid "Fighting in the arena is not something I would usually do, but I feel lik
 msgstr "In der Arena zu kämpfen ist nichts, was ich normalerweise machen würde, aber ich glaube, ich muss was für mein Image tun. Warum also nicht?"
 
 #: ../map/freedroid.quests:119
-#, fuzzy
 msgid "Now that was easy. *Yawn*. I nearly fell asleep. No problem at all, the bots are dead."
-msgstr "Also, das war ja wirklich einfach. Gähn. Bin fast dabei eingeschlafen. Überhaupt kein Problem, alle Bots sind hinüber."
+msgstr "Also, das war ja einfach. *Gähn*. Bin fast dabei eingeschlafen. Überhaupt kein Problem, alle Bots sind hinüber."
 
 #: ../map/freedroid.quests:126
 msgid "Time to say goodnight"
@@ -1884,43 +1785,38 @@ msgid "I am supposed to clean out the first level of some warehouse. Sounds easy
 msgstr "Ich soll das erste Untergeschoss irgendeines Lagerhauses von Robotern säubern. Hört sich einfach an."
 
 #: ../map/freedroid.quests:159
-#, fuzzy
 msgid "Ouch. It wasn't. At least I am alive, and the warehouse is clear. *Whew*."
-msgstr "Autsch. Wars gar nicht! Immerhin bin ich am Leben und das Lagerhaus ist ausgeräumt. Puh!"
+msgstr "Autsch. Wars gar nicht! Immerhin bin ich am Leben und das Lagerhaus ist gesäubert. *Puh*!"
 
 #: ../map/freedroid.quests:166
 msgid "And there was light..."
 msgstr "Und es wurde Licht..."
 
 #: ../map/freedroid.quests:176
-#, fuzzy
 msgid "Kevin has a problem with his energy supply. His bots keep rebooting the system, and he cannot conduct any experiments with an unstable power supply. My job is to stabilize the power. I think that implies removing the stupid bots."
-msgstr "Kevin hat ein Problem mit seiner Energieversorgung. Seine Roboter booten das System ständig neu und er kann keine Experimente bei unstabiler Stromzufuhr durchführen. Meine Aufgabe ist es, die Versorgung zu stabilisieren. Ich schätze, das beinhaltet das Entfernen der blöden Robots."
+msgstr "Kevin hat ein Problem mit seiner Energieversorgung. Seine Roboter booten das System ständig neu und er kann keine Experimente bei unstabiler Stromzufuhr durchführen. Meine Aufgabe ist es, die Versorgung zu stabilisieren. Ich schätze, das beinhaltet das Entfernen der blöden Bots."
 
 #: ../map/freedroid.quests:177
 msgid "The entrance is in Kevins garden. According to Kevin I also don't need to bother with bots on the first level, just go straight for the second level."
-msgstr "Der Eingang ist in Kevins Garten. Laut seinen Worten muss ich mich auch nicht mit den Robots im ersten Untergeschoss herumschlagen, sondern einfach nur direkt das zweite in Angriff nehmen."
+msgstr "Der Eingang ist in Kevins Garten. Laut seinen Worten muss ich mich auch nicht mit den Robots im ersten Untergeschoss herumschlagen, sondern kann einfach direkt das zweite in Angriff nehmen."
 
 #: ../map/freedroid.quests:178
-#, fuzzy
 msgid "Hope everything is back to normal now. I better go check with Kevin."
-msgstr "Jetzt ist erst mal alles wieder in Ordnung. Kevin kann in Frieden seine Arbeit verrichten."
+msgstr "Jetzt ist hoffentlich alles wieder in Ordnung. Ich sollte wohl besser mit Kevin reden."
 
 #: ../map/freedroid.quests:179
-#, fuzzy
 msgid "Everything *is* back to normal for now, so Kevin doesn't need to spend all his time monitoring the power levels."
-msgstr "Jetzt ist erst mal alles wieder in Ordnung. Kevin kann in Frieden seine Arbeit verrichten."
+msgstr "Jetzt IST alles wieder in Ordnung. Kevin muss nicht mehr seine ganze Zeit damit vergeuden, das Spannungsniveau im Auge zu behalten. "
 
 #: ../map/freedroid.quests:191
 msgid "A kingdom for a cluster!"
 msgstr "Ein Königreich für einen Cluster!"
 
 #: ../map/freedroid.quests:201
-#, fuzzy
 msgid ""
 "Kevin gave me a cube full of some kind of data. I am supposed to take it to a \n"
 "computer cluster for analysis. Ought to be simple."
-msgstr "Kevin gab mir einen Würfel, vollgestopft mit irgendwelchen Daten. Ich soll ihn zur Analyse zu einem Rechnercluster bringen. Sollte einfach sein."
+msgstr "Kevin gab mir einen Würfel, randvoll mit irgendwelchen Daten. Ich soll ihn zur Analyse zu einem Rechnercluster bringen. Sollte einfach sein."
 
 #: ../map/freedroid.quests:203
 msgid "Yes, that was simple. I wish everything else went as smoothly as this one did..."
@@ -1931,9 +1827,8 @@ msgid "Opening access to MS Office"
 msgstr "Öffne Zugang zum MS-Büro"
 
 #: ../map/freedroid.quests:221
-#, fuzzy
 msgid "Spencer has revealed the information from the data cube evaluation to me.  It seems there is an old military research facility near the town.  By taking over the control droid, I should be able to control the disruptor shield at the facility. I could activate it permanently, thereby locking off the Hell Fortress, and the bots it's producing, forever. Alternatively, I could disable it, and fight my way through the Hell Fortress droids until I reach the main control droid and update it, thereby disabling all bots in the entire area around town in one fell swoop."
-msgstr "Spencer hat mir die Informationen der Datenkubus-Auswertung enthüllt. Scheint so, als gäbe es da eine alte militärische Forschungseinrichtung in der Nähe der Kolonie. Durch die Übernahme der Steuerzentrale wäre ich in der Lage, den Disruptorschild dieses Komplexes zu kontrollieren. Ich kann ihn entweder dauerhaft aktivieren und dadurch die Höllenfestung und die Robots, die sie produziert, für immer von ihrer Verbindung zur Außenwelt abschneiden. Alternativ dazu könnte ich den Schild deaktivieren und mir einen Weg durch die Androiden in der Höllenfestung kämpfen, bis ich den Hauptrechner erreiche, um ihm ein Update zu verpassen, das sich gewaschen hat. Damit wären alle Bots in der gesamten Gegend um die Stadt herum auf einen Schlag ausgeschaltet."
+msgstr "Spencer hat mir die Informationen der Datenkubus-Auswertung enthüllt. Scheint so, als gäbe es da eine alte militärische Forschungseinrichtung in der Nähe des Orts. Durch die Übernahme des Steuer-Androiden wäre ich in der Lage, den Disruptorschild dieses Komplexes zu kontrollieren. Ich könnte ihn entweder dauerhaft aktivieren und dadurch die Höllenfestung und die Robots, die sie produziert, für immer von ihrer Verbindung zur Außenwelt abschneiden. Alternativ dazu könnte ich den Schild deaktivieren und mir einen Weg durch die Roboter in der Höllenfestung kämpfen, bis ich den Kontroll-Androiden erreiche, um ihm ein Update zu verpassen, das sich gewaschen hat. Damit wären alle Bots in der gesamten Gegend um die Stadt herum auf einen Schlag ausgeschaltet."
 
 #: ../map/freedroid.quests:222
 msgid "There, I've found and entered the base."
@@ -1944,32 +1839,28 @@ msgid "I've taken over the control droid and activated the disruptor shield. Now
 msgstr "Ich habe die Kontrolle über die Steuerzentrale erlangt und den Disruptorschild aktiviert. Jetzt ist die Stadt in Sicherheit!"
 
 #: ../map/freedroid.quests:224
-#, fuzzy
 msgid "I've taken over the control droid and disabled the disruptor shield. Now, I should go to the Hell Fortress and hack the MS firmware update system."
-msgstr "Ich habe die Kontrolle über die Steuerzentrale erlangt und den Disruptorschild deaktiviert. Nun sollte ich mich schleunigst zur Höllenfestung aufmachen, um das Firmware-Updatesystem von MS zu hacken."
+msgstr "Ich habe die Kontrolle über den Steuer-Androiden erlangt und den Disruptorschild deaktiviert. Nun sollte ich mich schleunigst zur Höllenfestung aufmachen, um das Firmware-Updatesystem von MS zu hacken."
 
 #: ../map/freedroid.quests:225
 msgid "I've killed the control droid. Now it will not be able to disable the disruptor shield to let bots through. The town is safe."
 msgstr "Die Steuerzentrale ist in meiner Gewalt. Nun kann der Disruptorschild nicht mehr deaktiviert werden, um die Roboter-Horden hindurchzulassen. Jetzt ist die Stadt in Sicherheit!"
 
 #: ../map/freedroid.quests:226
-#, fuzzy
 msgid "I've finally managed to propagate my firmware update. Now, all the hostile bots are nothing more than pieces of rusty metal."
-msgstr "Endlich, ich habe es geschafft, mein Firmware-Update zu verbreiten. Jetzt sind alle feindlichen Robots nichts mehr weiter, als vorsichhinrostende Blechhaufen."
+msgstr "Endlich, ich habe es geschafft, mein Firmware-Update zu verbreiten. Jetzt sind alle feindlichen Robots nur mehr vorsichhinrostende Blechhaufen!"
 
 #: ../map/freedroid.quests:234
 msgid "Propagating a faulty firmware"
 msgstr "Eine fehlerhafte Firmware verteilen"
 
 #: ../map/freedroid.quests:244
-#, fuzzy
 msgid "I can now enter the fortress and find the upgrade server bot. The fortress gates are in the Crystal Fields. Spencer told the guards to open the doors for me."
-msgstr "Jetzt kann ich in die Festung eindringen und den Upgrade-Server-Robot aufspüren. Die Festungs-Tore befinden sich auf den Kristallfeldern. Spencer hat die Wachen dort informiert, mich passieren zu lassen."
+msgstr "Jetzt kann ich in die Festung eindringen und den Upgrade-Server-Robot aufspüren. Die Festungs-Tore befinden sich auf den Kristallfeldern. Spencer hat die Wachen dort angewiesen, mich passieren zu lassen."
 
 #: ../map/freedroid.quests:245
-#, fuzzy
 msgid "I've managed to propagate my (slightly modified!) firmware update. Now the bots using this update server are nothing more than pieces of rusty metal."
-msgstr "Geschafft! Ich konnte mein (geringfügig modifiziertes) Firmware-Update verbreiten. Jetzt sind alle von diesem Updateserver abhängigen Robots nichts mehr weiter, als vor sich hin rostende Blechhaufen."
+msgstr "Geschafft! Ich konnte mein (leicht modifiziertes!) Firmware-Update verbreiten. Jetzt sind alle von diesem Update-Server abhängigen Robots nichts weiter, als vor sich hin rostende Blechhaufen..."
 
 #: ../map/freedroid.quests:252
 msgid "SADD's power supply"
@@ -1984,19 +1875,16 @@ msgid "Done. He looks happy."
 msgstr "Geschehen. Er scheint glücklich zu sein."
 
 #: ../map/freedroid.quests:271
-#, fuzzy
 msgid "Tania's sanitary"
-msgstr "Tanias Zuflucht"
+msgstr "Die Zuflucht Tanias"
 
 #: ../map/freedroid.quests:281
-#, fuzzy
 msgid "I have met a girl locked in a secret area. If I manage to disable the autoguns, she will be able to go to the surface and look at the sun again."
-msgstr "Ich habe ein Mädchen, das an einem geheimen Ort eingeschlossen war gefunden. Wenn ich es schaffe, die Selbstschuss-Anlagen abzuschalten, könnte sie zur Oberfläche gelangen und endlich wieder die Sonne sehen."
+msgstr "Ich habe ein Mädchen, das an einem geheimen Ort eingeschlossen war gefunden. Wenn ich es schaffe, die Selbstschuss-Anlagen abzuschalten, könnte sie zur Oberfläche gelangen und die Sonne wieder sehen."
 
 #: ../map/freedroid.quests:282
-#, fuzzy
 msgid "I have found that SACD and took him over."
-msgstr "Ich habe diesen KAGE gefunden und übernommen."
+msgstr "Ich habe diesen KAGE gefunden und gehackt."
 
 #: ../map/freedroid.quests:283
 msgid "Tania is free now!"
@@ -2028,7 +1916,7 @@ msgstr "Der Fremde östlich der Stadt"
 
 #: ../map/freedroid.quests:320
 msgid "I should probably try to find that strange guy rumoured to be living east of town. If he can manage to survive outside of town, he might have some useful information for me. But, maybe not right away, it might be too dangerous with all these bots around."
-msgstr "Ich sollte vielleicht versuchen, den seltsamen Burschen zu finden, von dem behauptet wird, er lebe irgendwo östlich der Ortschaft. Wenn er im Stande ist, außerhalb der Stadtmauern zu überleben, könnte er über für mich nützliche Informationen verfügen. Allerdings, vielleicht nicht jetzt sofort; es könnte zu gefährlich sein, bei all den Robotern da draußen."
+msgstr "Ich sollte vielleicht versuchen, den seltsamen Burschen zu finden, von dem behauptet wird, er lebe irgendwo östlich der Stadt. Wenn er im Stande ist, außerhalb der Stadtmauern zu überleben, könnte er über für mich nützliche Informationen verfügen. Allerdings, vielleicht nicht jetzt sofort; es könnte zu gefährlich sein, bei all den Robotern da draußen."
 
 #: ../map/freedroid.quests:321
 msgid "I seem to have found Kevins home."
@@ -2040,15 +1928,15 @@ msgstr "Duncan einen Gefallen erweisen"
 
 #: ../map/freedroid.quests:338
 msgid "Find Koan in the desert."
-msgstr "Koan in der Wüste ausfindig machen"
+msgstr "Koan in der Wüste aufspüren."
 
 #: ../map/freedroid.quests:339
 msgid "I took revenge for Duncan by killing Koan."
-msgstr "Ich habe Duncan gerächt, indem ich Koan tötete."
+msgstr "Ich habe Duncan gerächt, indem ich Koan auslöschte."
 
 #: ../map/freedroid.quests:340
 msgid "I met and talked to Koan, but didn't kill him."
-msgstr "Ich habe Koan gefunden und mit ihm gesprochen, aber ihn nicht getötet."
+msgstr "Ich habe Koan gefunden und mit ihm gesprochen, ihn aber nicht getötet."
 
 #: ../map/freedroid.prefix_archetypes:10
 #: ../map/freedroid.prefix_archetypes:37
@@ -2247,22 +2135,34 @@ msgstr " aus Eis"
 msgid " of chills"
 msgstr " vor Kälte"
 
+#~ msgid "This is a placeholder for a description. Feel free to help."
+#~ msgstr ""
+#~ "Platzhalter für eine Beschreibung. Ein persönlicher Beitrag ist jederzeit "
+#~ "willkommen."
+
+#, fuzzy
+#~ msgid ""
+#~ "The overload setting exists for emergencies. The plasma does not "
+#~ "discriminate between bots and humans. Everything is equal to it."
+#~ msgstr ""
+#~ "Die Überladungsfunktion existiert für Notfälle. Das Plasma unterscheidet "
+#~ "nicht zwischen Mensch und Maschine. Es behandelt alle gleich, auch Tux."
+
+#, fuzzy
+#~ msgid "Enter scientists quarters"
+#~ msgstr "Wissenschaftler-Quartiere"
+
+#, fuzzy
+#~ msgid "Back to scientists quarters"
+#~ msgstr "Wissenschaftler-Quartiere"
 #~ msgid "Scientists quarters"
 #~ msgstr "Wissenschaftler-Quartiere"
 #~ msgid "Private Goods Storage Cellar"
 #~ msgstr "Privater Warenlager-Keller"
 
 #, fuzzy
-#~ msgid "Back to scientists quarters"
-#~ msgstr "Wissenschaftler-Quartiere"
-
-#, fuzzy
-#~ msgid "Enter scientists quarters"
-#~ msgstr "Wissenschaftler-Quartiere"
-#~ msgid "This is a placeholder for a description. Feel free to help."
-#~ msgstr ""
-#~ "Platzhalter für eine Beschreibung. Ein persönlicher Beitrag ist jederzeit "
-#~ "willkommen."
+#~ msgid "Cry Stasis Lab"
+#~ msgstr "Kälteschlaf-Labor"
 #~ msgid "Droid weaponry - 614,GUA,MUM (Power Exterminator)"
 #~ msgstr ""
 #~ "Robotbewaffnung - 614,GUA,MUM: Power-Exterminator, Metallklauen (Schläge, "
