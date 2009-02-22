@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: freedroidrpg_dialogs\n"
 "Report-Msgid-Bugs-To: CHANGE THIS TOO\n"
 "POT-Creation-Date: 2009-02-20 12:42+0000\n"
-"PO-Revision-Date: 2009-02-22 01:08+0100\n"
+"PO-Revision-Date: 2009-02-22 23:51+0100\n"
 "Last-Translator: barbatrix <blue.bits@arcor.de>\n"
 "Language-Team: Deutsch\n"
 "MIME-Version: 1.0\n"
@@ -5672,35 +5672,35 @@ msgstr "Durch Verwendung derselben Nanotechnologie, die Rüstungen aufwerten, hab
 
 #: ../dialogs/TutorialTom.dialog:282
 msgid "There are many kinds, but all accomplish the same thing, to varying degrees."
-msgstr ""
+msgstr "Es gibt viele verschiedene Arten davon, aber alle bewirken das gleiche, in unterschiedlichen Graden."
 
 #: ../dialogs/TutorialTom.dialog:283
 msgid "Certain items, like health drinks, can be used directly without clicking on them."
-msgstr ""
+msgstr "Bestimmte Dinge, wie Gesundheits-Tränke, können direkt benutzt werden, ohne darauf zu klicken."
 
 #: ../dialogs/TutorialTom.dialog:284
 msgid "At the bottom of your HUD, you'll notice your item access belt. Small items can go here and be used by pressing the numbers 0 through 9."
-msgstr ""
+msgstr "Am unteren Rand deines HUDs kannst du deinen Ausrüstungsgürtel erkennen. Hier können kleine Gegenstände abgelegt und über die Tasten 0 bis 9 direkt eingesetzt werden."
 
 #: ../dialogs/TutorialTom.dialog:285
 msgid "Unlike armor or weapons, multiple of these items will group together in your inventory slots."
-msgstr ""
+msgstr "Anders als Rüstungsteile und Waffen, können mehrere davon in deinen Inventar-Steckplätzen zusammen gruppiert werden."
 
 #: ../dialogs/TutorialTom.dialog:286
 msgid "If you have Diet Supplements equipped in item slot 1, you can press 1 to use one."
-msgstr ""
+msgstr "Wenn sich Vitamintabletten im Ausrüstungs-Steckplatz 1 befinden, kannst du eine davon durch drücken der Taste 1 einnehmen.  "
 
 #: ../dialogs/TutorialTom.dialog:287
 msgid "This will restore your health, and will be invaluable in the heat of battle."
-msgstr ""
+msgstr "Dadurch regeneriert sich deine Gesundheit; eine unschätzbare Hilfe in der Hitze des Gefechts."
 
 #: ../dialogs/TutorialTom.dialog:292
 msgid "I'm ready to fight my first bot."
-msgstr ""
+msgstr "Ich bin bereit, meinen ersten Roboter anzugreifen!"
 
 #: ../dialogs/TutorialTom.dialog:294
 msgid "We keep two bots captive for melee practice."
-msgstr ""
+msgstr "Wir halten zwei Robots für Nahkampf-Zwecke gefangen."
 
 #: ../dialogs/TutorialTom.dialog:295
 #, fuzzy
@@ -5709,19 +5709,19 @@ msgstr "OK. Ich hab jetzt die Tür zur Experten-Arena geöffnet. Falls du gehst...
 
 #: ../dialogs/TutorialTom.dialog:296
 msgid "I'm also giving you some health drinks. Feel free to use them, though I can heal you if you need it."
-msgstr ""
+msgstr "Ich gebe dir auch zwei Gesundheits-Tränke mit. Du kannst sie nach Belieben einsetzen, obwohl ich dich auch heilen kann, wenn du es nötig hast."
 
 #: ../dialogs/TutorialTom.dialog:297
 msgid "Your health will also regenerate over time. I wish it were so easy for us humans."
-msgstr ""
+msgstr "Deine Gesundheit regeneriert sich auch von allein, mit der Zeit. Ich wünschte, es wäre so einfach für uns Menschen. "
 
 #: ../dialogs/TutorialTom.dialog:298
 msgid "The first bot is carrying an Entropy Inverter . Bring it to me to prove you've beaten it."
-msgstr ""
+msgstr "Der erste Robot trägt einen Entropie-Inverter. Bring ihn mir, um zu beweisen, dass du ihn besiegt hast."
 
 #: ../dialogs/TutorialTom.dialog:299
 msgid "Come back and talk to me when you have the Entropy Inverter."
-msgstr ""
+msgstr "Komm zurück und sprich mich an, wenn du den Entropie-Inverter hast."
 
 #: ../dialogs/TutorialTom.dialog:307
 #, fuzzy
@@ -5730,7 +5730,7 @@ msgstr " Können Sie mich wieder zusammenflicken?"
 
 #: ../dialogs/TutorialTom.dialog:309
 msgid "You should be more careful, Linarian. But yes, I can heal you."
-msgstr ""
+msgstr "Du solltest vorsichtiger sein, Linarianer. Aber, ja, ich kann dich selbstverständlich heilen."
 
 #: ../dialogs/TutorialTom.dialog:310
 #, fuzzy
@@ -5739,43 +5739,43 @@ msgstr "Hier, nehmen Sie."
 
 #: ../dialogs/TutorialTom.dialog:315
 msgid "I've beaten the first bot."
-msgstr ""
+msgstr "Ich habe den ersten Roboter besiegt!"
 
 #: ../dialogs/TutorialTom.dialog:318
 msgid "So you have. Well done."
-msgstr ""
+msgstr "Also hast du es geschafft. Gut gemacht!"
 
 #: ../dialogs/TutorialTom.dialog:319
 msgid "I'll trade you this wrench for it. I think you'll find it handy."
-msgstr ""
+msgstr "Dafür bekommst du diesen Schraubenschlüssel von mir. Ich denke, er wird sich als nützlich erweisen."
 
 #: ../dialogs/TutorialTom.dialog:320
 msgid "Now would be an appropriate time to mention bot parts, I guess."
-msgstr ""
+msgstr "Jetzt wäre der passende Zeitpunkt, die Roboter-Bauteile zu erwähnen, nehme ich an."
 
 #: ../dialogs/TutorialTom.dialog:321
 msgid "Certain parts in the bots are valuable. You can sell them at stores for cash."
-msgstr ""
+msgstr "Bestimmte Bauteile in den Bots sind nicht ohne Wert. Sie können in den Geschäften für Bares Geld verkauft werden."
 
 #: ../dialogs/TutorialTom.dialog:322
 msgid "If you can learn to extract these parts, it can help improve your lot in the world."
-msgstr ""
+msgstr "Wenn du lernst, diese Teile auszuschlachten, kann dir das helfen, dein Vermögen beträchtlich zu erweitern."
 
 #: ../dialogs/TutorialTom.dialog:323
 msgid "Hopefully, you can find someone to teach you."
-msgstr ""
+msgstr "Ich hoffe, du kannst jemanden finden, der dich unterweist."
 
 #: ../dialogs/TutorialTom.dialog:328
 msgid "Trying to cheat your way through the tutorial doesn't bode well for your chances in the real world."
-msgstr ""
+msgstr "Der Versuch, dir deinen Weg durch die Einführung zu ermogeln, lässt wenig Hoffnung für deine Chancen in der wirklichen Welt aufkommen."
 
 #: ../dialogs/TutorialTom.dialog:329
 msgid "I'll need proof that you've beaten the first bot."
-msgstr ""
+msgstr "Ich muss mich überzeugen, dass du den ersten Roboter geschlagen hast..."
 
 #: ../dialogs/TutorialTom.dialog:330
 msgid "Don't come back without the Entropy Inverter it was carrying."
-msgstr ""
+msgstr "Komm nicht ohne den Entropie-Inverter zurück, den er bei sich trug."
 
 #: ../dialogs/TutorialTom.dialog:336
 #, fuzzy
@@ -5784,27 +5784,27 @@ msgstr " Sie sprechen von einem Exterminator. Was ist das?"
 
 #: ../dialogs/TutorialTom.dialog:338
 msgid "That's correct. The second bot is a lot more dangerous, and you're not likely to make much headway against it with your fists."
-msgstr ""
+msgstr "Das ist richtig. Der zweite Robot ist wesentlich gefährlicher und du wirst kaum große Fortschritte gegen ihn erzielen, mit deinen Fäusten."
 
 #: ../dialogs/TutorialTom.dialog:339
 msgid "Lucky for you, there's another dimension to melee combat."
-msgstr ""
+msgstr "Zu deinem Glück gibt es eine andere Dimension für den Nahkampf."
 
 #: ../dialogs/TutorialTom.dialog:340
 msgid "Fighting bots with your fists is fine, but there are a number of items you can use for melee."
-msgstr ""
+msgstr "Robots mit deinen Fäusten zu vermöbeln ist eine tolle Sache, aber es gibt noch eine ganze Anzahl an Gegenständen, die du für den Nahkampf einsetzen kannst."
 
 #: ../dialogs/TutorialTom.dialog:341
 msgid "There are several traditional weapons in the world such as swords or light sabers that can be used against the bots."
-msgstr ""
+msgstr "Es gibt verschiedene traditionelle Waffen auf dieser Welt, so zum Beispiel Schwerter oder Lichtsäbel, die gegen Roboter zum Einsatz kommen können."
 
 #: ../dialogs/TutorialTom.dialog:342
 msgid "However, more common items you encounter everyday can often be used to bash or pry at droid armor."
-msgstr ""
+msgstr "Allerdings können auch oft gewöhlichere Alltagsgegenstände herhalten, um auf Bot-Panzerungen einzuschlagen oder sie aufzubrechen. "
 
 #: ../dialogs/TutorialTom.dialog:343
 msgid "For example, that wrench I just gave you will increase the damage you do, and should let you best the next bot."
-msgstr ""
+msgstr "Zum Beispiel erhöht der Schraubenschlüssel, den ich dir eben gab, den Schaden, den du verursachst und sollte dich den nächsten Roboter meistern lassen."
 
 #: ../dialogs/TutorialTom.dialog:348
 #, fuzzy
@@ -5813,67 +5813,67 @@ msgstr " Ich würde jetzt gern in die Stadt hinein..."
 
 #: ../dialogs/TutorialTom.dialog:350
 msgid "I certainly hope so. I will heal you before you go to the next room."
-msgstr ""
+msgstr "Das will ich hoffen! Ich werde dich heilen, bevor du in den nächsten Raum gehst."
 
 #: ../dialogs/TutorialTom.dialog:351
 msgid "I'm also giving you another healing drink, just in case."
-msgstr ""
+msgstr "Auch gebe ich dir einen weiteren Heiltrank, nur für den Fall."
 
 #: ../dialogs/TutorialTom.dialog:352
 msgid "A 247 is nothing to trifle with, so I'm giving you a shield in the hopes that it'll help keep you alive."
-msgstr ""
+msgstr "Ein 247er ist nichts, womit man seinen Spaß treibt, daher gebe ich dir einen Schild mit, in der Hoffnung, dass er hilft, dich am Leben zu halten."
 
 #: ../dialogs/TutorialTom.dialog:353
 msgid "Finally, I'm giving you couple of somewhat experimental pills that will temporarily increase your strength and dexterity, respectively."
-msgstr ""
+msgstr "Schließlich gebe ich dir ein paar gewissermaßen experimentelle Pillen, die deine Körperkraft und Geschicklichkeit vorübergehend steigern, je nachdem."
 
 #: ../dialogs/TutorialTom.dialog:354
 msgid "Use them in the same way you would use a health drink."
-msgstr ""
+msgstr "Benutze sie auf die gleiche Art und Weise, wie Heiltränke."
 
 #: ../dialogs/TutorialTom.dialog:355
 msgid "If I were you, I would think about using your repair skill on your armor and that wrench before you go into the room."
-msgstr ""
+msgstr "Wenn ich du wäre, würde ich es in Erwägung ziehen, meine Reparaturkenntnisse auf die Panzerung und den Schraubenschlüssel anzuwenden, bevor ich diesen Raum betrete. "
 
 #: ../dialogs/TutorialTom.dialog:356
 msgid "You'll also need to equip them. I won't do that for you."
-msgstr ""
+msgstr "Sie müssen natürlich auch angelegt werden. Das kann ich nicht für dich tun."
 
 #: ../dialogs/TutorialTom.dialog:357
 msgid "Like the last bot, this one will be carrying an item. Bring me the Tachyon Condensator it is carrying to continue."
-msgstr ""
+msgstr "Wie der letzte Robot, so wird auch dieser einen Gegenstand bei sich haben. Bring mir den Tachyonen-Kondensator, den er trägt, um fortzufahren. "
 
 #: ../dialogs/TutorialTom.dialog:358
 msgid "I've unlocked the door. Good luck, and talk to me when you have the Tachyon Condensator."
-msgstr ""
+msgstr "Ich habe die Türe aufgeschlossen. Viel Glück und sprich mich wieder an, wenn du den Tachyonen-Kondensator hast."
 
 #: ../dialogs/TutorialTom.dialog:370
 msgid "I've beaten the second bot."
-msgstr ""
+msgstr "Ich habe den zweiten Roboter erledigt!"
 
 #: ../dialogs/TutorialTom.dialog:373
 msgid "Very good! You've completed your melee training."
-msgstr ""
+msgstr "Sehr gut! Damit hast du dein Nahkampf-Training abgeschlossen."
 
 #: ../dialogs/TutorialTom.dialog:374
 msgid "These skills will serve you well in the future."
-msgstr ""
+msgstr "Diese Fähigkeiten werden dir in Zukunft gute Dienste leisten."
 
 #: ../dialogs/TutorialTom.dialog:375
 msgid "As a reward, I'm trading you a .22 Automatic pistol for that Tachyon Condensator."
-msgstr ""
+msgstr "Als Belohnung verkaufe ich dir eine .22er Automatik im Tausch für den Tachyonen-Kondensator."
 
 #: ../dialogs/TutorialTom.dialog:376
 msgid "Talk to me when you're ready to move on to the next part of the tutorial."
-msgstr ""
+msgstr "Sag mir Bescheid, wenn du bereit bist, zum nächsten Teil der Einführung überzugehen."
 
 #: ../dialogs/TutorialTom.dialog:383
 msgid "You didn't bring back the Tachyon Condensator. You'll need to bring it back before we can continue."
-msgstr ""
+msgstr "Du hast hast den Tachyonen-Kondensator nicht dabei. Den brauchen wir, bevor wir weitermachen können."
 
 #: ../dialogs/TutorialTom.dialog:384
 msgid "I'll go ahead and heal you. If your weapon or armor are in bad shape, perhaps you should repair them before going back in there."
-msgstr ""
+msgstr "Ich werde dich erst einmal heilen. Falls sich deine Rüstung oder die Waffe in schlechtem Zustand befinden, solltest du sie vielleicht reparieren, bevor du da wieder hinein gehst."
 
 #: ../dialogs/TutorialTom.dialog:385
 #, fuzzy
@@ -5888,19 +5888,19 @@ msgstr " Ich muss los."
 
 #: ../dialogs/TutorialTom.dialog:395
 msgid "I'll bet you're itching to try that pistol out on some bots."
-msgstr ""
+msgstr "Ich wette, dass es dir in den Fingern juckt, die Pistole an ein paar Robotern auszuprobieren..."
 
 #: ../dialogs/TutorialTom.dialog:396
 msgid "Our next destination is the ranged combat training area, so you're in luck."
-msgstr ""
+msgstr "Unser nächstes Ziel ist der Fernkampf-Trainingsbereich, also hast du Glück!"
 
 #: ../dialogs/TutorialTom.dialog:398
 msgid "I'll unlock the door to the south. Follow the corridor east to the shooting range."
-msgstr ""
+msgstr "Ich entriegle die südliche Tür. Folge dem Korridor östlich des Schießstands."
 
 #: ../dialogs/TutorialTom.dialog:405
 msgid "Ranged weaponry seems safer than getting up close and personal."
-msgstr ""
+msgstr "Fernwaffen scheinen sicherer zu sein, als den Bots persönlich auf den Leib zu rücken."
 
 #: ../dialogs/TutorialTom.dialog:407
 #, fuzzy
@@ -5909,7 +5909,7 @@ msgstr "Ah, Linarianer, Sie amüsieren mich wirklich..!"
 
 #: ../dialogs/TutorialTom.dialog:408
 msgid "There are some bots with ranged weaponry, but we don't have any of those in captivity."
-msgstr ""
+msgstr "Da draußen gibt es Bots mit Fernwaffen, aber wir haben keine davon in Gefangenschaft."
 
 #: ../dialogs/TutorialTom.dialog:413
 #, fuzzy
@@ -5918,95 +5918,95 @@ msgstr " Was können Sie mir über die Wachsoldaten hier sagen?"
 
 #: ../dialogs/TutorialTom.dialog:415
 msgid "The basic idea behind ranged weaponry is to hurt or kill an enemy without having to come in swinging range."
-msgstr ""
+msgstr "Die Grundidee hinter weitreichenden Waffen ist, den Gegner zu verletzen oder zu töten, ohne in Schlag-Reichweite zu kommen."
 
 #: ../dialogs/TutorialTom.dialog:416
 msgid "There are three basic ways to do this: traditional firearms, lasers, and plasma weapons."
-msgstr ""
+msgstr "Es gibt drei grundlegende Methoden, das zu tun: traditionelle Projektilwaffen, Laser und Plasmapistolen."
 
 #: ../dialogs/TutorialTom.dialog:417
 msgid "Traditional firearms are things that go bang. A small explosion accelerates the ammunition towards the target at a high velocity, causing injory."
-msgstr ""
+msgstr "Traditionelle Feuerwaffen sind solche mit Knalleffekt. Eine kleine Explosion beschleunigt das Projektil mit hoher Geschwindigkeit in Richtung des Ziels und verursacht Verletzungen."
 
 #: ../dialogs/TutorialTom.dialog:418
 msgid "Lasers use an intensified beam of light to burn through the intended victim. These operate on replaceable charge packs."
-msgstr ""
+msgstr "Laser verwenden einen gebündelten Lichtstrahl, um sich durch das anvisierte Opfer zu brennen. Sie arbeiten mit austauschbaren Ladungspacks."
 
 #: ../dialogs/TutorialTom.dialog:419
 msgid "Plasma weapons use superheated ionized gas to burn the target. The gas comes in loadable canisters."
-msgstr ""
+msgstr "Plasmawaffen nutzen superheißes, ionisiertes Gas, um das Ziel zu verbrennen. Das Gas wird in wiederbefüllbaren Kanistern aufbewahrt."
 
 #: ../dialogs/TutorialTom.dialog:420
 msgid "All the other weapons are variations of these three. We have a few in storage for training purposes."
-msgstr ""
+msgstr "All die anderen Schusswaffen sind Variationen dieser drei Klassen. Wir haben ein paar davon für Trainingszwecke auf Lager."
 
 #: ../dialogs/TutorialTom.dialog:425
 msgid "So how do I use guns?"
-msgstr ""
+msgstr "Wie gehe ich also mit Schusswaffen um?"
 
 #: ../dialogs/TutorialTom.dialog:427
 msgid "Well, firing is pretty simple. First, equip a ranged weapon that you have ammunition for."
-msgstr ""
+msgstr "Tja, das Abfeuern ist recht simpel. Zuerst nimm eine Fernwaffe, für die du Munition hast, in deine Schusshand."
 
 #: ../dialogs/TutorialTom.dialog:428
 msgid "Next, simply left click on your target, and you'll begin firing."
-msgstr ""
+msgstr "Als nächstes, klicke einfach mit der linken Maustaste auf dein Ziel und der Feuerhagel beginnt."
 
 #: ../dialogs/TutorialTom.dialog:429
 msgid "Alternatively, you can select the Fire Weapon skill, and right click on the enemy."
-msgstr ""
+msgstr "Alternativ dazu kannst du die Feuerwaffen-Fertigkeit auswählen und auf den Gegner rechts klicken."
 
 #: ../dialogs/TutorialTom.dialog:430
 msgid "There are a couple of new tricks with ranged weapons. If you want to move while firing, simply hold shift and left click your desired position."
-msgstr ""
+msgstr "Es gibt einige neue Tricks bei den Fernwaffen. Wenn du dich gleichzeitig bewegen und feuern willst, halte einfach SHIFT gedrückt und klicke mit der linken Maustaste auf die gewünschte Position."
 
 #: ../dialogs/TutorialTom.dialog:431
 msgid "If you'd rather stay in place, Hold A, then left click your target."
-msgstr ""
+msgstr "Falls du lieber an Ort und Stelle bleiben möchtest, halte die Taste A gedrückt und klicke mit der linken Maustaste auf dein Ziel."
 
 #: ../dialogs/TutorialTom.dialog:432
 msgid "When your weapon runs out of ammo during combat, it will try to automatically reload if you have extra ammunition for it."
-msgstr ""
+msgstr "Immer, wenn deiner Waffe während des Kampfes die Munition ausgeht, versucht sie automatisch nachzuladen, wenn du über einen weiteren Munitionsvorrat dafür verfügst."
 
 #: ../dialogs/TutorialTom.dialog:433
 msgid "Sometimes, you will need to manually reload. You can do this by pressing R."
-msgstr ""
+msgstr "Gelegentlich wirst du manuell nachladen müssen. Das kannst du mit der Taste R tun."
 
 #: ../dialogs/TutorialTom.dialog:438
 msgid "I think I understand how to use guns now."
-msgstr ""
+msgstr "Ich glaube, du hast jetzt verstanden, wie man Schusswaffen einsetzt."
 
 #: ../dialogs/TutorialTom.dialog:440
 msgid "In that case, I'll let you in to the armory. There are some crates and chests in there with weapons and ammunition."
-msgstr ""
+msgstr "In diesem Fall werde ich dich in die Rüstkammer einlassen. Dort befinden sich einige Kisten und Truhen mit Waffen und Munition."
 
 #: ../dialogs/TutorialTom.dialog:442
 msgid "You already got a .22 pistol from that 247 you killed earlier. It's not much as guns go, but it can do the trick."
-msgstr ""
+msgstr "Du besitzt bereits eine .22er Pistole, da du den 247er vorhin ausgeschaltet hast. Das ist nichts weltbewegendes, aber es kann ausreichend sein."
 
 #: ../dialogs/TutorialTom.dialog:444
 msgid "Here's my personal .22 Automatic pistol. It's not much as guns go, but it can do the trick."
-msgstr ""
+msgstr "Hier hast du meine eigene .22er Automatik. Nichts weltbewegendes, aber es kann ausreichend sein."
 
 #: ../dialogs/TutorialTom.dialog:446
 msgid "You'll no doubt get more mileage out of the plasma pistol, though. Or any other gun, for that matter."
-msgstr ""
+msgstr "Allerdings wirst du aus der Plasmapistole zweifellos mehr Nutzen ziehen. Oder auch aus jeder anderen Schusswaffe."
 
 #: ../dialogs/TutorialTom.dialog:447
 msgid "Practice switching weapons and reloading."
-msgstr ""
+msgstr "Übe das wechseln und nachladen von Waffen."
 
 #: ../dialogs/TutorialTom.dialog:448
 msgid "On the other side of that fence are some bots. Practice killing them off with various ranged weapons."
-msgstr ""
+msgstr "Auf der anderen Seite dieses Zauns befinden sich einige Roboter. Übe dich darin, sie mit unterschiedlichen weitreichenden Waffen außer Gefecht zu setzen."
 
 #: ../dialogs/TutorialTom.dialog:449
 msgid "Once you've gotten rid of them all, we can move on."
-msgstr ""
+msgstr "Sobald du sie alle beseitigt hast, geht es weiter."
 
 #: ../dialogs/TutorialTom.dialog:457
 msgid "I killed all the bots."
-msgstr ""
+msgstr "Ich habe alle Robots verschrottet!"
 
 #: ../dialogs/TutorialTom.dialog:460
 #, fuzzy
@@ -6015,43 +6015,43 @@ msgstr "Ah, exzellent!"
 
 #: ../dialogs/TutorialTom.dialog:461
 msgid "Keep shooting like that, and the bots will never stand a chance, as long as you still have ammo."
-msgstr ""
+msgstr "Schieß weiterhin so gut und die Robbies werden nie auch nur den Hauch einer Chance haben, solange du noch Munition hast."
 
 #: ../dialogs/TutorialTom.dialog:462
 msgid "Next, we'll be moving on to learning the TakeOver skill."
-msgstr ""
+msgstr "Wir werden jetzt mit dem Erlernen der Übernahme-Fähigkeit fortfahren."
 
 #: ../dialogs/TutorialTom.dialog:463
 msgid "But first, you'll need to give me your weapons."
-msgstr ""
+msgstr "Vorher musst du mir jedoch deine Waffen geben."
 
 #: ../dialogs/TutorialTom.dialog:464
 msgid "Unequip all your weapons, then talk to me and we'll move on."
-msgstr ""
+msgstr "Ziehe alle deine Waffen ins Inventar und sag mir Bescheid, wenn du soweit bist."
 
 #: ../dialogs/TutorialTom.dialog:468
 msgid "I don't mind if you don't want to do this, but please don't try to trick me."
-msgstr ""
+msgstr "Ich kann verstehen, wenn dir das widerstrebt, aber versuch bitte nicht, mich zu behumpsen."
 
 #: ../dialogs/TutorialTom.dialog:469
 msgid "I don't have verified kills on all those bots, so you're not moving on."
-msgstr ""
+msgstr "Ich kann dir noch nicht die Liquidierung aller Bots bestätigen; so kommen wir nicht weiter. "
 
 #: ../dialogs/TutorialTom.dialog:477
 msgid "Thank you, Linarian. We'll now move on to hacking."
-msgstr ""
+msgstr "Danke, Linarianer. Lass uns jetzt mit dem Hacken anfangen. "
 
 #: ../dialogs/TutorialTom.dialog:485
 msgid "I'll need you to surrender your guns. Unequip them all, then talk to me again."
-msgstr ""
+msgstr "Ich muss dir zuerst alle Waffen abnehmen. Leg sie ins Inventar und sag mir, wenn du damit fertig bist."
 
 #: ../dialogs/TutorialTom.dialog:486
 msgid "You will need to have the guns in your inventory to give them to me, so if you dropped them, please go get them."
-msgstr ""
+msgstr "Alle deine Waffen müssen im Inventar liegen, damit ich sie an mich nehmen kann. Falls du sie also weggelegt hast, hol sie bitte her."
 
 #: ../dialogs/TutorialTom.dialog:492
 msgid "I'd rather just move on to the next section of the tutorial."
-msgstr ""
+msgstr "Ich würde lieber zum nächsten Teil der Einführung übergehen."
 
 #: ../dialogs/TutorialTom.dialog:494
 #, fuzzy
@@ -6065,123 +6065,123 @@ msgstr " Warum sind Sie so freundlich?"
 
 #: ../dialogs/TutorialTom.dialog:503
 msgid "You've done well so far, Linarian. Let's take a little break."
-msgstr ""
+msgstr "Du hast dich soweit wacker gehalten Linarianer. Lass uns eine kleine Pause einlegen."
 
 #: ../dialogs/TutorialTom.dialog:504
 msgid "Once you get out into the real world, you'll find that your current abilities aren't always enough to survive."
-msgstr ""
+msgstr "Sobald du einmal in der wirklichen Welt da draußen bist, wirst du feststellen, dass deine momentanen Fähigkeiten nicht immer genügen, um zu überleben."
 
 #: ../dialogs/TutorialTom.dialog:505
 msgid "As you achieve combat experience, you'll be able to apply it to better yourself."
-msgstr ""
+msgstr "Indem du Kampferfahrung sammelst, wirst du diese zur Anwendung bringen und dich selbst verbessern können."
 
 #: ../dialogs/TutorialTom.dialog:506
 msgid "As with most things, you view this as a panel in your HUD. Press C to open the Character panel."
-msgstr ""
+msgstr "So wie mit vielem anderem, kannst du dies mittels einer Tafel auf deinem HUD anzeigen lassen. Drücke die Taste C, um die Charakter-Tafel anzuzeigen."
 
 #: ../dialogs/TutorialTom.dialog:507
 msgid "Once you've gained enough experience, you'll level up. This will automatically improve some of your statistics."
-msgstr ""
+msgstr "Sobald du genügend Erfahrung gesammelt hast, steigst du um eine Stufe auf. Dabei verbessern sich automatisch auch einige deiner Eigenschaften."
 
 #: ../dialogs/TutorialTom.dialog:508
 msgid "You'll also be given 5 points to spend however you choose in three different areas. Characteristics, Skills and Programs."
-msgstr ""
+msgstr "Du bekommst zudem 5 Punkte, die du auf drei verschiedene Gebiete verteilen kannst: Charakteristika, Fähigkeiten und Programme"
 
 #: ../dialogs/TutorialTom.dialog:509
 msgid "Strength governs the amount of damage you do with each hit in melee combat."
-msgstr ""
+msgstr "Stärke bestimmt die Höhe des Schadens, die du mit jedem Treffer im Nahkampf erzielen kannst."
 
 #: ../dialogs/TutorialTom.dialog:510
 msgid "Dexterity controls your hit rate, or how likely you are to hit the enemy. It also determines how likely you are to dodge a hit from them."
-msgstr ""
+msgstr "Geschicklichkeit beeinflusst deine Trefferquote, bzw., mit welcher Wahrscheinlichkeit du den Gegner triffst. Auch ergibt sich daraus, wie wahrscheinlich du einem Schlag des Gegners ausweichen kannst."
 
 #: ../dialogs/TutorialTom.dialog:511
 msgid "CPU is your processors cooling. or heat resilience, and determines how much you can process before your system starts overheating."
-msgstr ""
+msgstr "CPU spiegelt deine Prozessor-Kühlleistung oder Hitzebeständigkeit wider und bestimmt, wie viel du in der Lage bist zu berechnen, bevor dein System zu überhitzen beginnt."
 
 #: ../dialogs/TutorialTom.dialog:512
 msgid "Finally, among your main characteristics, Life determines how much health you have."
-msgstr ""
+msgstr "Leben schließlich sagt aus, wie viele Gesundheitspunkte dir zur Verfügung stehen. "
 
 #: ../dialogs/TutorialTom.dialog:513
 msgid "You also have 3 main skills that you can improve with the use of your training points and a teacher."
-msgstr ""
+msgstr "Du verfügst auch über 3 Haupt-Fähigkeiten, die du mit Hilfe deiner Trainingspunkte und eines Lehrers aufbauen kannst."
 
 #: ../dialogs/TutorialTom.dialog:514
 msgid "They are general Melee and Ranged fighting skills, both of which increase the damage you inflict and how fast you attack as you improve them."
-msgstr ""
+msgstr "Dies sind allgemeine Nah- und Fernkampf-Fähigkeiten, die beide den von dir verursachten Schaden und deine Angriffsgeschwindigkeit erhöhen, je mehr du sie ausbaust."
 
 #: ../dialogs/TutorialTom.dialog:515
 msgid "You also have the Programming skill, which essentially is about programming in an energy efficient manner so programs cause less heat."
-msgstr ""
+msgstr "Darüber hinaus gibt es auch die Programmier-Fertigkeit, die sich grundsätzlich um energie-effizientes Programmieren dreht, wodurch Programme weniger Hitze verursachen. "
 
 #: ../dialogs/TutorialTom.dialog:516
 msgid "Apart from this, a few programs require a teacher and training points to improve."
-msgstr ""
+msgstr "Davon abgesehen benötigt man für die Optimierung mancher Programme einen Code-Experten und Trainingspunkte."
 
 #: ../dialogs/TutorialTom.dialog:517
 msgid "Extract bot parts is a special skill that will allow you to salvage parts from bots you 'retire', which you can trade for money in the town."
-msgstr ""
+msgstr "Roboter auszuschlachten ist eine besondere Fertigkeit, die es erlaubt, Bauteile der Robots zu verwerten, welche du 'in Rente geschickt' hast. Der Verkauf der Teile in der Stadt bringt einiges an Geld ein. "
 
 #: ../dialogs/TutorialTom.dialog:518
 msgid "The Hacking program we will speak a bit more of in a little while."
-msgstr ""
+msgstr "Wir werden uns gleich näher mit dem Hack-Programm befassen."
 
 #: ../dialogs/TutorialTom.dialog:525
 msgid "Well, how about you try it out?"
-msgstr ""
+msgstr "Nun, wie wäre es, wenn du es ausprobierst?"
 
 #: ../dialogs/TutorialTom.dialog:526
 msgid "I'll give you some points to spend, and you can distribute them as you like."
-msgstr ""
+msgstr "Ich gebe dir einige Trainigspunkte, die du nach Belieben ausgeben kannst."
 
 #: ../dialogs/TutorialTom.dialog:527
 msgid "Since you'll be hacking up ahead, you should probably use a few of them on CPU."
-msgstr ""
+msgstr "Da du dich in Kürze durchhacken müssen wirst, solltest du eventuell einige in die CPU-Leistung investieren."
 
 #: ../dialogs/TutorialTom.dialog:528
 msgid "But, again, that's your choice."
-msgstr ""
+msgstr "Aber, wie gesagt, es ist deine Entscheidung."
 
 #: ../dialogs/TutorialTom.dialog:535
 msgid "Alright, I'm ready to go hack some bots."
-msgstr ""
+msgstr "Also gut, ich bin bereit, ein paar Blecheimer zu hacken."
 
 #: ../dialogs/TutorialTom.dialog:537
 msgid "I'll unlock the door then. Talk to me in the next area."
-msgstr ""
+msgstr "Dann werde ich mal die Türe aufsperren. Wir sehen uns im nächsten Bereich."
 
 #: ../dialogs/TutorialTom.dialog:544
 msgid "So how does this work?"
-msgstr ""
+msgstr "Also, wie funktioniert das jetzt?"
 
 #: ../dialogs/TutorialTom.dialog:546
 msgid "We talked about skills before. Now, we're going to focus on hacking skills in particular."
-msgstr ""
+msgstr "Wir sprachen vorhin über Fähigkeiten. Jetzt werden wir uns speziell auf das Hacken konzentrieren."
 
 #: ../dialogs/TutorialTom.dialog:547
 msgid "As I mentioned before, your brain works in a way remarkably similar to a central processing unit."
-msgstr ""
+msgstr "Wie ich bereits vorhin erwähnt hatte, funktioniert dein Gehirn in bemerkenswert ähnlicher Weise, wie eine zentrale Recheneinheit, eine CPU."
 
 #: ../dialogs/TutorialTom.dialog:548
 msgid "In many ways, you interact with the world around you as a virtual environment."
-msgstr ""
+msgstr "In vielerlei Hinsicht interagierst du mit deiner Umgebung wie mit einer virtuellen Umwelt."
 
 #: ../dialogs/TutorialTom.dialog:549
 msgid "You seem to have access to an API that isn't exposed to humans. You can interact with the environment in ways we only dream of."
-msgstr ""
+msgstr "Du scheinst zu einer API Zugang zu haben, die den Menschen verborgen bleibt und stehst mit der Umgebung in einer Weise in Verbindung, von der wir nur träumen können. "
 
 #: ../dialogs/TutorialTom.dialog:550
 msgid "Because of this, you can run various programs on the bots."
-msgstr ""
+msgstr "Daher kannst du auch verschiedenste Programme auf Roboter übertragen und starten."
 
 #: ../dialogs/TutorialTom.dialog:551
 msgid "You can attempt to take them over, or monkey with their programming, or even cause them to damage themselves."
-msgstr ""
+msgstr "Es ist dir möglich, Kontrolle über sie zu erlangen, mit ihrer Programmierung herumzuspielen und sogar, sie dazu zu bringen, sich selbst Schaden zuzufügen."
 
 #: ../dialogs/TutorialTom.dialog:552
 msgid "Likewise, there are certain programs that affect you or items around you."
-msgstr ""
+msgstr "Ebenso gibt es Programme, die dich selbst oder Gegenstände um dich herum beeinflussen."
 
 #: ../dialogs/TutorialTom.dialog:557
 #, fuzzy
@@ -6190,119 +6190,119 @@ msgstr " Erzählen Sie mir mehr über die kleine Stadt, die Sie erwähnt hatten."
 
 #: ../dialogs/TutorialTom.dialog:559
 msgid "I'm afraid that you will have to experience it for yourself to really understand."
-msgstr ""
+msgstr "Ich fürchte, du wirst es selbst erfahren müssen, um es wirklich zu verstehen."
 
 #: ../dialogs/TutorialTom.dialog:560
 msgid "However, you did leave yourself instructions before you went into stasis sleep."
-msgstr ""
+msgstr "Allerdings hattest du dir selbst Anweisungen hinterlassen, bevor du den Cryoschlaf angetreten hast."
 
 #: ../dialogs/TutorialTom.dialog:561
 msgid "Takeover, or hacking, comes in the form of a game or competition placing you against the bot."
-msgstr ""
+msgstr "Die Kontroll-Übernahme, bzw. das Hacken, wird dir wie ein Spiel oder ein Wettstreit gegen die Maschine erscheinen."
 
 #: ../dialogs/TutorialTom.dialog:562
 msgid "You initiate it by selecting the Hacking skill, then right-clicking on a hostile bot."
-msgstr ""
+msgstr "Initiiert wird dies durch Auswahl der Hacker-Fähigkeit und anschließendem Rechtsklick auf den feindlichen Bot."
 
 #: ../dialogs/TutorialTom.dialog:563
 msgid "The field of play is split into two sides, one green, one maroon, representing circuit boards."
-msgstr ""
+msgstr "Das Spielfeld ist in zwei Seiten aufgeteilt, eine grüne und eine rotbraune, die Ähnlichkeit mit Platinen aufweisen."
 
 #: ../dialogs/TutorialTom.dialog:564
 msgid "In the center of the field is a column of boxes known as logic cores. These cores have wires attached to them from both circuit boards."
-msgstr ""
+msgstr "Im Zentrum des Feldes befindet sich eine Säule aus farbigen Kästchen, sogenannten logischen Kernen. An diese Kerne sind von beiden Platinen her Leitungen angeschlossen."
 
 #: ../dialogs/TutorialTom.dialog:565
 msgid "Your objective is to activate as many cores in your chosen color as possible at the end of each round."
-msgstr ""
+msgstr "Dein Ziel ist es, am Ende jeder Runde so viele Kerne wie möglich in der von dir gewählten Farbe aktiviert zu haben."
 
 #: ../dialogs/TutorialTom.dialog:566
 msgid "This is accomplished by selecting a wire with the up or down buttons, then pressing spacebar to activate that core."
-msgstr ""
+msgstr "Dies wird erreicht, indem mittels der Tasten AUF und AB eine Leitung ausgewählt und dann SPACE gedrückt wird."
 
 #: ../dialogs/TutorialTom.dialog:567
 msgid "You will be given about 10 seconds initially to select which color you want with spacebar."
-msgstr ""
+msgstr "Es stehen dir ab Beginn etwa 10 Sekunden zur Verfügung, um dich für eine Farbseite zu entscheiden und mit SPACE zu bestätigen."
 
 #: ../dialogs/TutorialTom.dialog:568
 msgid "At that point, you have 10 more seconds in which to activate more cores than the bot."
-msgstr ""
+msgstr "Von diesem Zeitpunkt ab hast du weitere 10 Sekunden, um mehr Kerne als der Robot zu aktivieren."
 
 #: ../dialogs/TutorialTom.dialog:569
 msgid "You have a limited number of charges, 3 by default, so choose your targets carefully."
-msgstr ""
+msgstr "Beachte, dass du nur über eine begrenzte Anzahl an Ladungen verfügst, standardmäßig lediglich 3, also wähle deine Ziele geschickt aus."
 
 #: ../dialogs/TutorialTom.dialog:570
 msgid "I can tell you about some more advanced techniques, if you'd like."
-msgstr ""
+msgstr "Wenn du möchtest, kann ich dir fortgeschrittenere Techniken erklären."
 
 #: ../dialogs/TutorialTom.dialog:575
 msgid "What was that about activating more cores than the bot?"
-msgstr ""
+msgstr "Wie war das gemeint, mehr Kerne als der Roboter zu aktivieren?"
 
 #: ../dialogs/TutorialTom.dialog:577
 msgid "Ah, yes. While you are busy trying to take the bot over, it will be busy trying to stop you."
-msgstr ""
+msgstr "Ah ja. Während du damit beschäftigt bist, den Robot unter deine Kontrolle zu bringen, ist er natürlich damit beschäftigt, dich davon abzuhalten."
 
 #: ../dialogs/TutorialTom.dialog:578
 msgid "The truth is, if the bot programming was perfect, it would be almost impossible to defeat."
-msgstr ""
+msgstr "Die Wahrheit ist, wenn die Roboter-Programmierung perfekt wäre, könnte man ihn praktisch unmöglich besiegen."
 
 #: ../dialogs/TutorialTom.dialog:579
 msgid "Fortunately for you, software bugs do indeed exist, and therefore some cores will be on your side from the beginning."
-msgstr ""
+msgstr "Zu deinem Glück gibt es tatsächlich Softwarefehler und deswegen sind auch etliche der Kerne schon zu Beginn in deiner Farbe aktiviert."
 
 #: ../dialogs/TutorialTom.dialog:580
 msgid "Likewise, the bots only have a limited number of charges. Occasionally, they will have more than you, but that is a risk you have to take."
-msgstr ""
+msgstr "Genauso haben auch die Roboter nur eine limitierte Zahl an Ladungen parat. Gelegentlich werden sie auch mehr haben als du, aber das ist eben ein Risiko, das du eingehen musst."
 
 #: ../dialogs/TutorialTom.dialog:581
 msgid "Because you are initiating the attack, you do get to choose your side, which can let you handicap the bot greatly if used wisely."
-msgstr ""
+msgstr "Da du den Angriff startest, kannst du dir deine Seite aussuchen, wodurch du dem Bot einen großen Nachteil bescheren kannst, wenn du klug wählst."
 
 #: ../dialogs/TutorialTom.dialog:585
 msgid "Tell me about more advanced techniques."
-msgstr ""
+msgstr "Erzähle mir bitte mehr über die fortgeschrittenen Techniken!"
 
 #: ../dialogs/TutorialTom.dialog:587
 msgid "Each charge will activate and remain active for a certain amount of time. This will let you take over a core that a bot just took over."
-msgstr ""
+msgstr "Jede Ladung bleibt nach dem auslösen nur für eine bestimmte Zeit aktiv. Das ermöglicht es dir, einen Kern, den der Robot gerade aktiviert hat, zu übernehmen."
 
 #: ../dialogs/TutorialTom.dialog:588
 msgid "Sometimes, the bots will already have charges on the wires. When you activate one of these, it will increase the time that wire is activated for."
-msgstr ""
+msgstr "Manchmal werden die Roboter auch bereits Ladungen auf einige Leitungen gelegt haben. Wenn du einen solchen Draht aktivierst, verlängert sich die aktive Zeit der gegnerischen Ladung."
 
 #: ../dialogs/TutorialTom.dialog:589
 msgid "The bot can use this trick to, so it may be wise to give up a heavily guarded wire for an easier target."
-msgstr ""
+msgstr "Auch der Bot kann diesen Trick anwenden; es kann deshalb schlauer sein, eine schwer bewachte Leitung für ein leichteres Ziel aufzugeben."
 
 #: ../dialogs/TutorialTom.dialog:590
 msgid "The wiring inside the bots sometimes contain splitters. These can be used in two ways."
-msgstr ""
+msgstr "Die Verdrahtung in den Bots kann kann hin und wieder Verteiler enthalten. Diese können in zwei Ausführungen auftreten."
 
 #: ../dialogs/TutorialTom.dialog:591
 msgid "A 2-to-1 splitter is undesirable. This requires two charges to activate one core, halving your efficiency."
-msgstr ""
+msgstr "Ein 2-zu-1 Verteiler ist von Nachteil. Hier braucht es zwei Ladungen, um einen Kern zu aktivieren, was deine Effizienz halbiert."
 
 #: ../dialogs/TutorialTom.dialog:592
 msgid "A 1-to-2 splitter, however, will activate two nodes for the price of one charge."
-msgstr ""
+msgstr "Ein 1-zu-2 Verteiler jedoch aktiviert zwei Knoten zum Preis von nur einer Ladung."
 
 #: ../dialogs/TutorialTom.dialog:593
 msgid "Sometimes these splitters will be stacked. Tracing the route ahead of time will be crucial to your tactical success."
-msgstr ""
+msgstr "Gelegentlich treten solche Verteiler auch kaskadiert auf. Entscheidend für den taktischen Erfolg ist es, die richtigen Routen vor der Zeit ausfindig zu machen."
 
 #: ../dialogs/TutorialTom.dialog:594
 msgid "Ideally, you want to stick your opponent with 2-to-1 splitters, while you have 1-to-2 splitters at your disposal."
-msgstr ""
+msgstr "Idealerweise wirst du deinen Gegner mit 2-zu-1 Verteilern abspeisen wollen, wogegen du 1-zu-2 Verteiler zu deiner Verfügung hast."
 
 #: ../dialogs/TutorialTom.dialog:595
 msgid "Finally, remember that patience is often a virtue. Taking over all cores early on only to lose them later can be a crushing blow."
-msgstr ""
+msgstr "Schließlich, denke immer daran, dass Geduld oft eine Tugend ist. Alle Kerne frühzeitig zu übernehmen, nur um sie anschließend wieder zu verlieren, kann ein vernichtender Schlag sein."
 
 #: ../dialogs/TutorialTom.dialog:599
 msgid "I'm ready to try hacking bots."
-msgstr ""
+msgstr "Gut, ich bin bereit, einen Hack-Versuch zu wagen."
 
 #: ../dialogs/TutorialTom.dialog:601
 #, fuzzy
@@ -6311,83 +6311,83 @@ msgstr "Sicherlich."
 
 #: ../dialogs/TutorialTom.dialog:602
 msgid "I should, however, take the time to tell you a few more things."
-msgstr ""
+msgstr "Ich sollte mir jedoch die Zeit nehmen, dir noch ein paar Dinge zu sagen."
 
 #: ../dialogs/TutorialTom.dialog:603
 msgid "Hacking, like most other skills, incurs a cost to you."
-msgstr ""
+msgstr "Hacken geht, wie die meisten der anderen Fertigkeiten auch, mit gewissen Kosten einher."
 
 #: ../dialogs/TutorialTom.dialog:604
 msgid "Processing programs seems to heat up your brain."
-msgstr ""
+msgstr "Der Verarbeitungsprozess scheint dein Gehirn zu erhitzen."
 
 #: ../dialogs/TutorialTom.dialog:605
 msgid "You seem to be able to handle quite a bit of heat, but you have your limits."
-msgstr ""
+msgstr "Offenbar hälst du eine ganz ordentliche Wärmemenge aus, aber du hast deine Grenzen."
 
 #: ../dialogs/TutorialTom.dialog:606
 msgid "If you accumulate too much heat, you will automatically shut down in order to cool off."
-msgstr ""
+msgstr "Staust du zu viel Hitze auf, schaltet sich dein Gehirn zur automatischen Kühlung ab. "
 
 #: ../dialogs/TutorialTom.dialog:607
 msgid "Over time, the heat will seep away from your body naturally. However, there are ways to speed up the process."
-msgstr ""
+msgstr "Mit der Zeit wird sich die Wärme auch auf natürlichem Wege über deinen Körper verflüchtigen. Es gibt allerdings Möglichkeiten, den Vorgang zu beschleunigen."
 
 #: ../dialogs/TutorialTom.dialog:608
 msgid "If you can find them, cooling drinks will quickly relieve your thermal discomfort, in much the same way healing drinks help your health."
-msgstr ""
+msgstr "Wenn du welche finden kannst, sind Kühldrinks eine schnell wirkende Methode, um deine thermischen Probleme zu beseitigen, ganz ähnlich wie Heiltränke deiner Gesundheit auf die Sprünge helfen."
 
 #: ../dialogs/TutorialTom.dialog:609
 msgid "You also have a special program called Emergency Shutdown that will lower your heat level drastically, although not without cost."
-msgstr ""
+msgstr "Außerdem verfügst du über ein spezielles Programm, genannt 'Notabschaltung', welches deinen Hitzelevel beträchtlich absenkt, wenn auch zu einem gewissen Preis."
 
 #: ../dialogs/TutorialTom.dialog:610
 msgid "Using it will paralyze you for several seconds, during which you are a sitting duck... er, penguin."
-msgstr ""
+msgstr "Das auslösen des Programms wird dich für mehrere Sekunden paralysieren, während der du eine sitzende Ente... äh, Pinguin bist.  "
 
 #: ../dialogs/TutorialTom.dialog:611
 msgid "I take it that was a joke also?"
-msgstr ""
+msgstr "Ich nehme an, das war so etwas wie ein Witz?"
 
 #: ../dialogs/TutorialTom.dialog:612
 msgid "Quite. In addition to hacking, you have the ability to execute arbitrary code on bots."
-msgstr ""
+msgstr "So ungefähr. Zusätzlich zum Hacken hast du die Möglichkeit, beliebigen Code auf den Robot-Systemen auszuführen."
 
 #: ../dialogs/TutorialTom.dialog:613
 msgid "These scripts and programs can be learned through reading source code books. To read a book, right-click on it in inventory."
-msgstr ""
+msgstr "Diese Skripte und Programme können durch das lesen von Quellcode-Büchern erlernt werden. Um ein Buch zu lesen, welches sich in deinem Inventar befindet, klicke mit der rechten Maustaste darauf."
 
 #: ../dialogs/TutorialTom.dialog:614
 msgid "You should have recovered your hacking ability by now, and I'll give you a couple of source code books as well."
-msgstr ""
+msgstr "Du solltest deine Hacker-Fähigkeit mittlerweile wieder regeneriert haben. Ich gebe dir auch noch ein paar Quellcode-Bücher."
 
 #: ../dialogs/TutorialTom.dialog:619
 msgid "Thanks. I'm ready now."
-msgstr ""
+msgstr "Danke. Ich bin bereit!"
 
 #: ../dialogs/TutorialTom.dialog:621
 msgid "We have several bots behind that fence for you to practice on."
-msgstr ""
+msgstr "Wir haben mehrere Roboter hinter diesem Zaun für dich, mit denen du üben kannst."
 
 #: ../dialogs/TutorialTom.dialog:622
 msgid "Take them over, then talk to me when they're all dead, and we'll be done with the tutorial."
-msgstr ""
+msgstr "Übernimm die Kontrolle über sie und berichte mir, wenn sie alle ausgeschaltet sind. Dann sind wir mit der Einführung zu Ende."
 
 #: ../dialogs/TutorialTom.dialog:623
 msgid "If you need more help, don't hesitate to ask."
-msgstr ""
+msgstr "Solltest du weitere Hilfe benötigen, zögere nicht, mich zu fragen!"
 
 #: ../dialogs/TutorialTom.dialog:624
 msgid "Oh, and Linarian... If you fail when hacking, you'll receive an electrical shock."
-msgstr ""
+msgstr "Oh, und übrigens, Linarianer... wenn du beim Hacken versagst, bekommst du einen elektrischen Schlag."
 
 #: ../dialogs/TutorialTom.dialog:625
 msgid "It shouldn't kill you, but you need to be aware of it nonetheless."
-msgstr ""
+msgstr "Zwar ist er wohl nicht tödlich, aber du solltest dir dessen nichtsdestoweniger gewärtig sein."
 
 #: ../dialogs/TutorialTom.dialog:639
 msgid "I'm finished. I'm ready to move on."
-msgstr ""
+msgstr "Ich bin fertig, weiterzugehen."
 
 #: ../dialogs/TutorialTom.dialog:643
 #, fuzzy
@@ -6396,15 +6396,15 @@ msgstr " So, ihr könnt die Spielzeugbots jetzt zusammenkehren."
 
 #: ../dialogs/TutorialTom.dialog:644
 msgid "Come back and talk to me after they are."
-msgstr ""
+msgstr "Komm noch mal zu mir, wenn sie es sind."
 
 #: ../dialogs/TutorialTom.dialog:645
 msgid "If you're having trouble, you might try the Malformed packet program."
-msgstr ""
+msgstr "Falls du Schwierigkeiten haben solltest, könntest du einmal das 'deformierte Datenpakete'-Programm versuchen."
 
 #: ../dialogs/TutorialTom.dialog:647
 msgid "Well done! That concludes our tutorial."
-msgstr ""
+msgstr "Gut gemacht! Damit ist unsere Einführung abgeschlossen."
 
 #: ../dialogs/TutorialTom.dialog:652
 #, fuzzy
@@ -6413,39 +6413,39 @@ msgstr "Es gibt da etwas, das Sie wissen sollten..."
 
 #: ../dialogs/TutorialTom.dialog:653
 msgid "You Linarians can apparently withdraw from our world temporarily."
-msgstr ""
+msgstr "Ihr Linarianer könnt euch offensichtlich vorübergehend von unserer Welt zurückziehen."
 
 #: ../dialogs/TutorialTom.dialog:654
 msgid "Time stops, and everything freezes in place."
-msgstr ""
+msgstr "Die Zeit hält an und alles friert an Ort und Stelle ein."
 
 #: ../dialogs/TutorialTom.dialog:655
 msgid "This can be accomplished by using the Esc key."
-msgstr ""
+msgstr "Das kann mit der Taste ESC erreicht werden."
 
 #: ../dialogs/TutorialTom.dialog:656
 msgid "hacking_bots"
-msgstr ""
+msgstr "hacke_bots"
 
 #: ../dialogs/TutorialTom.dialog:657
 msgid "Your final task is to leave us using this menu."
-msgstr ""
+msgstr "Deine letzte Aufgabe ist es, uns durch dieses Menü zu verlassen."
 
 #: ../dialogs/TutorialTom.dialog:658
 msgid "I'm afraid there's nothing more I can teach you. I wish you good luck, Linarian."
-msgstr ""
+msgstr "Ich fürchte, es gibt da nichts mehr, dass ich dir noch beibringen könnte. Ich wünsche dir viel Glück, Linarianer."
 
 #: ../dialogs/TutorialTom.dialog:659
 msgid "You'll need it if our world is to survive."
-msgstr ""
+msgstr "Du wirst es brauchen, wenn unsere Welt überleben soll."
 
 #: ../dialogs/TutorialTom.dialog:666
 msgid "Let me take a short break and practice on my own for a while."
-msgstr ""
+msgstr "Lass mich eine kurze Pause einlegen und eine Weile für mich selbst üben."
 
 #: ../dialogs/TutorialTom.dialog:668
 msgid "Ok, I'll be around if you need any more questions answered. Don't hesitate to ask."
-msgstr ""
+msgstr "OK, ich bin da, wenn du noch irgendwelche Fragen beantwortet haben willst. Zögere nicht und frag einfach."
 
 #: ../dialogs/DocMoore.dialog:39
 msgid "Hello. I'm Doc Moore. I'm the medic of this town."
@@ -7177,7 +7177,7 @@ msgstr " Es nennt sich..."
 
 #: ../dialogs/SADD.dialog:265
 msgid "CONDEMNED TO DEATH!"
-msgstr ""
+msgstr "ZUM TODE VERURTEILT!"
 
 #: ../dialogs/SADD.dialog:270
 #, fuzzy
@@ -7216,7 +7216,7 @@ msgstr " Lässt du mich in die Basis rein?"
 
 #: ../dialogs/SADD.dialog:283
 msgid "I'm sorry %s, I'm afraid I can't do that."
-msgstr ""
+msgstr "Tut mir leid, %s, ich fürchte, das kann ich nicht tun."
 
 #: ../dialogs/SADD.dialog:284
 #, fuzzy
@@ -7341,27 +7341,27 @@ msgstr "Besser für dich. UND KOMM JA NICHT WIEDER!"
 
 #: ../dialogs/614_cryo.dialog:44
 msgid "Order Received. Inititiating proximity energy level scan..."
-msgstr ""
+msgstr "Anweisung angenommen. Initiiere Nahbereichs-Energieniveau-Sondierung..."
 
 #: ../dialogs/614_cryo.dialog:45
 msgid "***** Proximity Scan Results *****"
-msgstr ""
+msgstr "***** NAHBEREICHS-SONDIERUNGS-ERGEBNISSE *****"
 
 #: ../dialogs/614_cryo.dialog:46
 msgid "Hostile Numeric Presence: HIGH"
-msgstr ""
+msgstr "Numerische Feindpräsenz: HOCH"
 
 #: ../dialogs/614_cryo.dialog:47
 msgid "Enemy Energy Levels: LOW"
-msgstr ""
+msgstr "Gegnerische Energieniveaus: NIEDRIG"
 
 #: ../dialogs/614_cryo.dialog:48
 msgid "Threat Degree Analysis: MODERATE"
-msgstr ""
+msgstr "Bedrohungspotential-Analyse: MODERAT"
 
 #: ../dialogs/614_cryo.dialog:49
 msgid "Complex Gate Status: OPEN"
-msgstr ""
+msgstr "Komplex-Tor-Status: OFFEN"
 
 #: ../dialogs/614_cryo.dialog:54
 #, fuzzy
@@ -7375,7 +7375,7 @@ msgstr "Mein Befehl lautet, die Lebewesen in dieser Niederlassung vor den Angrif
 
 #: ../dialogs/614_cryo.dialog:67
 msgid "Secondary objective: Protect facility by locking outer gates if Threat Degree Analysis: HIGH."
-msgstr ""
+msgstr "Sekundärziel: Schütze Anlage durch Sperrung äußerer Tore, wenn Bedrohungspotential-Analyse: HOCH."
 
 #: ../dialogs/614_cryo.dialog:72
 #, fuzzy
@@ -8170,11 +8170,11 @@ msgstr "DAS ist Spaß, wenn Sie mich fragen! HAHAHA!"
 
 #: ../dialogs/Ewald.dialog:168
 msgid "Hey, I could use a refreshing drink!"
-msgstr ""
+msgstr "Hey, ich könnte einen erfrischenden Drink gebrauchen!"
 
 #: ../dialogs/Ewald.dialog:169
 msgid "Here, have a watery mary."
-msgstr ""
+msgstr "Hier, eine Wässrige Mary."
 
 #: ../dialogs/Ewald.dialog:177
 msgid "Goodbye and remember: My bar is always open."
@@ -8335,7 +8335,7 @@ msgstr "Nach allem was ich weiß, dürfte der Krieg bereits vorbei sein."
 
 #: ../dialogs/Francis.dialog:79
 msgid "The locals call this place the popsicle storage, because of all the people lying here frozen in cryogenic sleep. All were frozen down before the Great Assault."
-msgstr ""
+msgstr "Die Anwohner nennen diesen Ort den 'Eis am Stiel'-Speicher, weil sich alle Menschen, die hier liegen, im Kälteschlaf befinden. Sie wurden alle schon vor dem großen Angriff eingefroren."
 
 #: ../dialogs/Francis.dialog:80
 #, fuzzy
@@ -8344,11 +8344,11 @@ msgstr "Die hiesige Bevölkerung nennt diesen Ort Tempelwald. Wir befinden uns ni
 
 #: ../dialogs/Francis.dialog:81
 msgid "There are just too few humans alive and awake to allow us to properly protect this place, and nobody else is foolish enough to stay out here alone."
-msgstr ""
+msgstr "Es sind einfach zu wenige Menschen wach und am Leben, damit wir diesen Ort angemessen schützen könnten, und niemand sonst ist dumm genug, alleine hier draußen zu bleiben."
 
 #: ../dialogs/Francis.dialog:82
 msgid "I try to do my best to make sure nothing goes bad here and all these people die. Luckily, the outer gates of this place are quite sturdy."
-msgstr ""
+msgstr "Ich versuche mein Bestes, um sicherzustellen, dass hier nichts schiefläuft und alle diese Leute sterben. Glücklicherweise sind die äußeren Tore dieses Ortes sehr stabil."
 
 #: ../dialogs/Francis.dialog:86
 #, fuzzy
@@ -8506,19 +8506,19 @@ msgstr "Das ist völlig normal, wirklich."
 
 #: ../dialogs/Francis.dialog:148
 msgid "Why not wake up all these people and attack the bots?"
-msgstr ""
+msgstr "Warum nicht alle diese Menschen aufwecken und gemeinsam die Bots angreifen?"
 
 #: ../dialogs/Francis.dialog:149
 msgid "Well, some have a disease that can't be cured yet. Some are just old and want to be woken up when technology can give them an extended life. Some have other reasons."
-msgstr ""
+msgstr "Nun, manche haben Krankheiten und können immer noch nicht geheilt werden. Einige sind einfach alt und wollen aufgeweckt werden, wenn die Technologie ihnen ein verlängertes Leben bieten kann. Andere wiederum haben andere Gründe."
 
 #: ../dialogs/Francis.dialog:150
 msgid "But suffice it to say, most of these people are not really good at fighting. Besides, we don't have enough weapons to mount a full scale counter attack at present."
-msgstr ""
+msgstr "Überflüssig zu erwähnen, dass die meisten der Schläfer nicht wirklich gut im Kämpfen sind. Im Übrigen haben wir derzeit gar nicht genug Waffen, um einen großen Gegenangriff zu starten."
 
 #: ../dialogs/Francis.dialog:151
 msgid "And an even bigger problem would be to feed everyone. Our food resources are quite scarce. So for now they are better off sleeping."
-msgstr ""
+msgstr "Und ein noch größeres Problem wäre, alle zu ernähren. Unsere Lebensmittel-Reserven sind ein bisschen arg bescheiden. Daher sind sie zur Zeit besser dran, wenn sie schlafen."
 
 #: ../dialogs/Francis.dialog:155
 #, fuzzy
@@ -8527,15 +8527,15 @@ msgstr " Könnten Sie mir zeigen wie man kämpft?"
 
 #: ../dialogs/Francis.dialog:156
 msgid "Sure. You just need to follow the road outside. After the bridge, turn right and continue follow the road and you will soon be outside of the town main gate."
-msgstr ""
+msgstr "Sicher. du musst lediglich der Straße da draußen folgen. Nach der Brücke geht es rechts und dann immer weiter die Straße entlang, und du bist bald außerhalb des Haupttors der Stadt."
 
 #: ../dialogs/Francis.dialog:157
 msgid "If you run across too many bots, you can try to circle around them. But avoid getting too far off the road, so you don't get lost. It's very dangerous out there."
-msgstr ""
+msgstr "Wenn dir zu viele Roboter auf einmal über den Weg laufen, kannst du versuchen, sie zu umkreisen. Vermeide es aber, dich zu weit von der Straße zu entfernen, damit du dich nicht verirrst. Es ist sehr gefährlich da draußen."
 
 #: ../dialogs/Francis.dialog:158
 msgid "Once in town you will be able to purchase a few items for protection at Mrs. Stone's shop just inside the town gate."
-msgstr ""
+msgstr "Einmal in der Ortschaft angelangt, kannst du in Miss Stones Laden, gleich hinter dem Stadttor, einige schützende Sachen erstehen."
 
 #: ../dialogs/Francis.dialog:162
 #, fuzzy
@@ -8544,11 +8544,11 @@ msgstr " Dann verschwinde ich lieber von hier..."
 
 #: ../dialogs/Francis.dialog:163
 msgid "Oh, just take the small door and corridor out to the waiting room. And from there you can get out through the customer entrance."
-msgstr ""
+msgstr "Oh, nimm einfach die schmale Tür und den Gang hinaus zum Wartezimmer. Und von dort kannst du durch den Kundeneingang hinaus gelangen."
 
 #: ../dialogs/Francis.dialog:164
 msgid "I keep the back entrance, close to my sleeping quarters, locked at all times for safety reasons. Better safe than sorry."
-msgstr ""
+msgstr "Ich halte den Hintereingang, nahe meines Schlafzimmers, aus Sicherheitsgründen stets verriegelt. Besser sicher als bereut."
 
 #: ../dialogs/Francis.dialog:168
 #, fuzzy
@@ -8596,7 +8596,7 @@ msgstr "Schön, wenn ich dir helfen konnte. Du solltest vorsichtig sein da drauße
 
 #: ../dialogs/Francis.dialog:184
 msgid "Remember to not veer too far off the path, or your quest could be over before it begins."
-msgstr ""
+msgstr "Denk daran, dich nicht zu weit vom Weg zu entfernen oder deine Suche könnte vorbei sein, ehe sie beginnt."
 
 #: ../dialogs/Melfis.dialog:38
 #, fuzzy
