@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: freedroidrpg_data\n"
 "Report-Msgid-Bugs-To: CHANGE THIS TOO\n"
-"POT-Creation-Date: 2009-02-20 12:42+0000\n"
-"PO-Revision-Date: 2009-02-20 18:23+0100\n"
+"POT-Creation-Date: 2009-02-22 23:33+0000\n"
+"PO-Revision-Date: 2009-02-23 00:43+0100\n"
 "Last-Translator: barbatrix <blue.bits@arcor.de>\n"
 "Language-Team: Deutsch\n"
 "MIME-Version: 1.0\n"
@@ -1937,6 +1937,34 @@ msgstr "Ich habe Duncan gerächt, indem ich Koan auslöschte."
 #: ../map/freedroid.quests:340
 msgid "I met and talked to Koan, but didn't kill him."
 msgstr "Ich habe Koan gefunden und mit ihm gesprochen, ihn aber nicht getötet."
+
+#: ../map/freedroid.quests:347
+msgid "Tutorial Shooting"
+msgstr "Schusswaffen-Einführung"
+
+#: ../map/freedroid.quests:360
+msgid "Tutorial Tom wants me to shoot those bots."
+msgstr "Tutorial Tom will, dass ich diese Roboter zusammenschieße."
+
+#: ../map/freedroid.quests:361
+msgid "That was like shooting fish in a barrel. I could use a fish about now."
+msgstr "Das war, wie Fische in einem Faß zu erschießen. Ich könnte jetzt einen Fisch gut brauchen..."
+
+#: ../map/freedroid.quests:362
+msgid "I decided not to finish the shooting tutorial."
+msgstr "Ich habe mich entschieden, die Schusswaffen-Einführung nicht zu Ende zu führen."
+
+#: ../map/freedroid.quests:369
+msgid "Tutorial Hacking"
+msgstr "Hacker-Einführung"
+
+#: ../map/freedroid.quests:382
+msgid "Tutorial Tom wants me to hack those bots."
+msgstr "Tutorial Tom verlangt von mir, dass ich diese Bots hacke."
+
+#: ../map/freedroid.quests:383
+msgid "Well, it took a lot of work, but I showed those bots who's boss."
+msgstr "Also, war zwar ein Stück Arbeit, aber ich habe diesen Robos gezeigt, wer der Boss ist."
 
 #: ../map/freedroid.prefix_archetypes:10
 #: ../map/freedroid.prefix_archetypes:37
