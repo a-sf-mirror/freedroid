@@ -200,13 +200,13 @@ void find_position_near_obstacle( float* item_x, float* item_y, int obst_index, 
  *
  *
  */
-void
-throw_out_all_chest_content ( int obst_index )
+void throw_out_all_chest_content ( int obst_index )
 {
   Level chest_level;
   int i;
   int j;
   float item_x, item_y;
+  int icnt = 0;
 
   chest_level = curShip . AllLevels [ Me . pos . z ] ;
 
@@ -253,11 +253,15 @@ throw_out_all_chest_content ( int obst_index )
       chest_level -> ItemList [ j ] . pos . x = item_x;
       chest_level -> ItemList [ j ] . pos . y = item_y;
       chest_level -> ItemList [ j ] . throw_time = 0.01 ;
+
+	  icnt ++;
     }
 
-  // Maybe generate a random item to be dropped
-  find_position_near_obstacle( &item_x, &item_y, obst_index, chest_level );
-  DropRandomItem( Me.pos.z , item_x, item_y, 1 , FALSE );
+  // If the chest was empty, maybe generate a random item to be dropped
+  if (!icnt) {
+	  find_position_near_obstacle( &item_x, &item_y, obst_index, chest_level );
+	  DropRandomItem( Me.pos.z , item_x, item_y, 1 , FALSE );
+  }
 
   //--------------------
   // We play the sound, now that the chest is really opened...
