@@ -140,7 +140,7 @@ static struct leveleditor_widget * create_objectselector(int x, char * text, enu
 {
     struct leveleditor_widget * a = MyMalloc(sizeof(struct leveleditor_widget));
     a->type = WIDGET_OBJECTTYPESELECTORBUTTON;
-    a->rect.x = x;
+    a->rect.x = x * 80;
     a->rect.y = 73;
     a->rect.w = 80;
     a->rect.h = 17;
@@ -178,8 +178,8 @@ void leveleditor_destroy_widget(struct leveleditor_widget *w)
 
 void leveleditor_init_widgets()
 {
-    struct leveleditor_widget *floor_selector;
     struct leveleditor_widget *map;
+	struct leveleditor_widget *wall_selector;
 
     if (!list_empty(&leveleditor_widget_list)) {
 	/* Widgets already initialized, get out */
@@ -228,19 +228,19 @@ void leveleditor_init_widgets()
 	}
 
     /* The object type selectors */
-    floor_selector = create_objectselector(0, _("FLOOR"), OBJECT_FLOOR, floor_tiles_list);
-
-    list_add_tail(&floor_selector->node, &leveleditor_widget_list); 
-    list_add_tail(&create_objectselector(80, _("WALL"), OBJECT_OBSTACLE, wall_tiles_list)->node, &leveleditor_widget_list); 
-    list_add_tail(&create_objectselector(160, _("FURNITURE"), OBJECT_OBSTACLE, furniture_tiles_list)->node, &leveleditor_widget_list); 
-    list_add_tail(&create_objectselector(240, _("MACHINERY"), OBJECT_OBSTACLE, machinery_tiles_list)->node, &leveleditor_widget_list); 
-    list_add_tail(&create_objectselector(320, _("CONTAINER"), OBJECT_OBSTACLE, container_tiles_list)->node, &leveleditor_widget_list); 
-    list_add_tail(&create_objectselector(400, _("PLANT"), OBJECT_OBSTACLE, plant_tiles_list)->node, &leveleditor_widget_list);
+	wall_selector = create_objectselector(0, _("WALL"), OBJECT_OBSTACLE, wall_tiles_list);
+    list_add_tail(&wall_selector->node, &leveleditor_widget_list); 
+    list_add_tail(&create_objectselector(1, _("FURNITURE"), OBJECT_OBSTACLE, furniture_tiles_list)->node, &leveleditor_widget_list); 
+    list_add_tail(&create_objectselector(2, _("MACHINERY"), OBJECT_OBSTACLE, machinery_tiles_list)->node, &leveleditor_widget_list); 
+    list_add_tail(&create_objectselector(3, _("CONTAINER"), OBJECT_OBSTACLE, container_tiles_list)->node, &leveleditor_widget_list); 
+    list_add_tail(&create_objectselector(4, _("PLANT"), OBJECT_OBSTACLE, plant_tiles_list)->node, &leveleditor_widget_list);
     for (i=0; i < NUMBER_OF_OBSTACLE_TYPES; i++) 
 		all_obstacles_list[i] = i;
     all_obstacles_list[i] = -1;
-    list_add_tail(&create_objectselector(480, _("ALLOBS."), OBJECT_OBSTACLE, all_obstacles_list)->node, &leveleditor_widget_list);
-    list_add_tail(&create_objectselector(560, _("WAYPT"), OBJECT_WAYPOINT, waypoint_list)->node, &leveleditor_widget_list);
+    list_add_tail(&create_objectselector(4, _("ALLOBS."), OBJECT_OBSTACLE, all_obstacles_list)->node, &leveleditor_widget_list);
+    list_add_tail(&create_objectselector(5, _("FLOOR"), OBJECT_FLOOR, floor_tiles_list)->node, &leveleditor_widget_list);
+
+    list_add_tail(&create_objectselector(6, _("WAYPT"), OBJECT_WAYPOINT, waypoint_list)->node, &leveleditor_widget_list);
 
     /* The toolbar */
     list_add_tail(&create_toolbar()->node, &leveleditor_widget_list);
@@ -250,7 +250,7 @@ void leveleditor_init_widgets()
     list_add_tail(&map->node, &leveleditor_widget_list);
 
     /* Initialize elements of the interface */
-    leveleditor_typeselect_init_selected_list(floor_selector->ext);
+    leveleditor_typeselect_init_selected_list(wall_selector->ext);
 
     leveleditor_map_init();
 
