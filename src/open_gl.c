@@ -108,19 +108,23 @@ our_SDL_blit_surface_wrapper(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *d
 	    glDisable ( GL_TEXTURE_2D ); 
 	    glEnable( GL_ALPHA_TEST );  
 
-	    switch (bytes) {
-		    case 4:
-			    glDrawPixels( src -> w , src -> h, GL_BGRA , GL_UNSIGNED_BYTE , src -> pixels );		
-			    break;
-		    case 3: 
-			    glDrawPixels( src -> w , src -> h, GL_RGB , GL_UNSIGNED_BYTE , src -> pixels );
-			    break;
-		    case 2:
-			    glDrawPixels( src -> w , src -> h, GL_RGB , GL_UNSIGNED_SHORT_5_6_5 , src -> pixels );
-			    break;
-		    default:
-			    ErrorMessage(__FUNCTION__, "Surface has %d bytes per pixel. Doing nothing.", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
-	    }
+		switch (bytes) {
+			case 4:
+#if SDL_BYTEORDER == SDL_BIG_ENDIAN
+				glDrawPixels( src -> w , src -> h, GL_BGRA , GL_UNSIGNED_INT_8_8_8_8, src -> pixels );
+#else	
+				glDrawPixels( src -> w , src -> h, GL_BGRA , GL_UNSIGNED_BYTE, src -> pixels );	
+#endif
+				break;
+			case 3: 
+				glDrawPixels( src -> w , src -> h, GL_RGB , GL_UNSIGNED_BYTE , src -> pixels );
+				break;
+			case 2:
+				glDrawPixels( src -> w , src -> h, GL_RGB , GL_UNSIGNED_SHORT_5_6_5 , src -> pixels );
+				break;
+			default:
+				ErrorMessage(__FUNCTION__, "Surface has %d bytes per pixel. Doing nothing.", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
+		}
 
 	    glDisable( GL_ALPHA_TEST );  
 	    glEnable ( GL_TEXTURE_2D );  
