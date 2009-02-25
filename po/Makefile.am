@@ -23,7 +23,9 @@ DATAFILES = ../map/freedroid.*
 DIALOGFILES = ../dialogs/*.dialog
 
 SRCFILES = ../src/*.c\
-	   ../src/*.h
+	   ../src/*.h\
+	   ../src/lvledit/*.c\
+	   ../src/lvledit/*.h
 
 COPYRIGHT_HOLDER = Freedroid RPG Development Team
 
