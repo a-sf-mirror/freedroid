@@ -1456,119 +1456,116 @@ done_handling_scroll_updown:
 void
 move_tux ( )
 {
-    Level MoveLevel = curShip.AllLevels[ Me . pos . z ] ;
-    static moderately_finepoint last_given_course_target = { -2 , -2 };
+	Level MoveLevel = curShip.AllLevels[ Me . pos . z ] ;
+	static moderately_finepoint last_given_course_target = { -2 , -2 };
 
-    // check, if the influencer is still ok
-    CheckIfCharacterIsStillOk ( ) ;
+	// check, if the influencer is still ok
+	CheckIfCharacterIsStillOk ( ) ;
 
-    //--------------------
-    // We store the influencers position for the history record and so that others
-    // can follow his trail.
-    //
-    static int i = 0;
-    i++;
-    if ( i & 1 )
-	{
-	Me . current_zero_ring_index++;
-	Me . current_zero_ring_index %= MAX_INFLU_POSITION_HISTORY;
-	Me . Position_History_Ring_Buffer [ Me . current_zero_ring_index ] . x = Me .pos.x;
-	Me . Position_History_Ring_Buffer [ Me . current_zero_ring_index ] . y = Me .pos.y;
-	Me . Position_History_Ring_Buffer [ Me . current_zero_ring_index ] . z = MoveLevel->levelnum ;
-	}
-    
-    if  ( Me . paralyze_duration ) 
-	{
-	Me . speed . x = 0;
-	Me . speed . y = 0;
-        return;  //If tux is paralyzed, we do nothing more
-	}
-
-    //--------------------
-    // As a preparation for the later operations, we see if there is
-    // a living droid set as a target, and if yes, we correct the move
-    // target to something suiting that new droids position.
-    //
-    //
-    //
-
-    moderately_finepoint move_target;
-
-    tux_get_move_target_and_attack(&move_target);
-    
-    if ( move_target . x != -1 )
-	{
 	//--------------------
-	// For optimisation purposes, we'll not do anything unless a new target
-	// has been given.
+	// We store the influencers position for the history record and so that others
+	// can follow his trail.
 	//
-	if (!( ( fabsf ( move_target . x - last_given_course_target . x ) < 0.3 ) &&
-		( fabsf ( move_target . y - last_given_course_target . y ) < 0.3 ) ))
-	    {
-		freeway_context frw_ctx = { FALSE, { NULL, NULL } };
-		pathfinder_context pf_ctx = { &WalkablePassFilter, &frw_ctx };
-		set_up_intermediate_course_between_positions ( &Me.pos, &move_target, &Me.next_intermediate_point[0], MAX_INTERMEDIATE_WAYPOINTS_FOR_TUX, &pf_ctx ) ;
-		last_given_course_target . x = move_target . x ;
-		last_given_course_target . y = move_target . y ;
-	    }
+	static int i = 0;
+	i++;
+	if ( i & 1 )
+	{
+		Me . current_zero_ring_index++;
+		Me . current_zero_ring_index %= MAX_INFLU_POSITION_HISTORY;
+		Me . Position_History_Ring_Buffer [ Me . current_zero_ring_index ] . x = Me .pos.x;
+		Me . Position_History_Ring_Buffer [ Me . current_zero_ring_index ] . y = Me .pos.y;
+		Me . Position_History_Ring_Buffer [ Me . current_zero_ring_index ] . z = MoveLevel->levelnum ;
 	}
 
+	if  ( Me . paralyze_duration ) 
+	{
+		Me . speed . x = 0;
+		Me . speed . y = 0;
+		return;  //If tux is paralyzed, we do nothing more
+	}
 
-    // Perhaps the player has turned the mouse wheel.  In that case we might
-    // need to change the current global mode, depending on whether a change
-    // of global mode (with the current obstacles under the mouse cursor)
-    // makes sense or not.
-    // 
-    adapt_global_mode_for_player ( );
-    
-    //--------------------
-    // But in case of some mouse move target present, we proceed to move
-    // thowards this mouse move target.
-    //
-    move_tux_thowards_intermediate_point ( );
-    
-    //--------------------
-    // Perhaps the player has pressed the right mouse button, indicating the use
-    // of the currently selected special function or spell.
-    //
-    HandleCurrentlyActivatedSkill( );
-    
+	//--------------------
+	// As a preparation for the later operations, we see if there is
+	// a living droid set as a target, and if yes, we correct the move
+	// target to something suiting that new droids position.
+	//
+	//
+	//
+
+	moderately_finepoint move_target;
+
+	tux_get_move_target_and_attack(&move_target);
+
+	if ( move_target . x != -1 )
+	{
+		//--------------------
+		// For optimisation purposes, we'll not do anything unless a new target
+		// has been given.
+		//
+		if (!( ( fabsf ( move_target . x - last_given_course_target . x ) < 0.3 ) &&
+		       ( fabsf ( move_target . y - last_given_course_target . y ) < 0.3 ) ))
+		{
+			freeway_context frw_ctx = { FALSE, { NULL, NULL } };
+			pathfinder_context pf_ctx = { &WalkablePassFilter, &frw_ctx };
+			set_up_intermediate_course_between_positions ( &Me.pos, &move_target, &Me.next_intermediate_point[0], MAX_INTERMEDIATE_WAYPOINTS_FOR_TUX, &pf_ctx ) ;
+			last_given_course_target . x = move_target . x ;
+			last_given_course_target . y = move_target . y ;
+		}
+	}
+
+	// Perhaps the player has turned the mouse wheel.  In that case we might
+	// need to change the current global mode, depending on whether a change
+	// of global mode (with the current obstacles under the mouse cursor)
+	// makes sense or not.
+	// 
+	adapt_global_mode_for_player ( );
+
+	//--------------------
+	// But in case of some mouse move target present, we proceed to move
+	// thowards this mouse move target.
+	//
+	move_tux_thowards_intermediate_point ( );
+
+	//--------------------
+	// Perhaps the player has pressed the right mouse button, indicating the use
+	// of the currently selected special function or spell.
+	//
+	HandleCurrentlyActivatedSkill( );
    
-    // --------------------
-    // Maybe we need to fire a bullet or set a new mouse move target
-    // for the new move-to location
-    //
-    if ( MouseLeftPressed ()  )
+	// --------------------
+	// Maybe we need to fire a bullet or set a new mouse move target
+	// for the new move-to location
+	//
 	AnalyzePlayersMouseClick ( );
-    
-    if ( MouseLeftPressed () )
-	no_left_button_press_in_previous_analyze_mouse_click = FALSE ;
-    else
-	no_left_button_press_in_previous_analyze_mouse_click = TRUE ;
-    
-    //--------------------
-    // During inventory operations, there should not be any (new) movement
-    //
-    if ( Item_Held_In_Hand != (-1) )
-    {
-	Me . mouse_move_target . x = Me . pos . x ;
-	Me . mouse_move_target . y = Me . pos . y ;
-	Me . mouse_move_target . z = Me . pos . z ;
-	enemy_set_reference(&Me . current_enemy_target_n, &Me . current_enemy_target_addr, NULL);
-	return; 
-    }
-    
-    //--------------------
-    // The influ should lose some of his speed when no key is pressed and
-    // also no mouse move target is set.
-    //
-    tux_friction_with_air ( ) ;
-    
-    limit_tux_speed_to_a_maximum ( ) ;
-    
-    MoveTuxAccordingToHisSpeed ( );
-    
-    animate_tux ( ) ;	// move the "phase" of influencers rotation
+	
+	if ( MouseLeftPressed () )
+		no_left_button_press_in_previous_analyze_mouse_click = FALSE ;
+	else
+		no_left_button_press_in_previous_analyze_mouse_click = TRUE ;
+	
+	//--------------------
+	// During inventory operations, there should not be any (new) movement
+	//
+	if ( Item_Held_In_Hand != (-1) )
+	{
+		Me . mouse_move_target . x = Me . pos . x ;
+		Me . mouse_move_target . y = Me . pos . y ;
+		Me . mouse_move_target . z = Me . pos . z ;
+		enemy_set_reference(&Me . current_enemy_target_n, &Me . current_enemy_target_addr, NULL);
+		return; 
+	}
+	
+	//--------------------
+	// The influ should lose some of his speed when no key is pressed and
+	// also no mouse move target is set.
+	//
+	tux_friction_with_air ( ) ;
+	
+	limit_tux_speed_to_a_maximum ( ) ;
+	
+	MoveTuxAccordingToHisSpeed ( );
+	
+	animate_tux ( ) ;	// move the "phase" of influencers rotation
 }; // void move_tux( );
 
 /**
@@ -2975,80 +2972,108 @@ handle_player_examine_command ( void )
 void
 AnalyzePlayersMouseClick ( )
 {
-    DebugPrintf ( 2 , "\n===> void AnalyzePlayersMouseClick(): real function call confirmed. " ) ;
-    int tmp;
+	DebugPrintf ( 2 , "\n===> void AnalyzePlayersMouseClick(): real function call confirmed. " ) ;
+	int tmp;
 
-    switch ( global_ingame_mode )
-    {
+	// This flag avoids the mouse_move_target to change while the user presses
+	// LMB to start a combo action.
+	static int wait_mouseleft_release = FALSE;
+	
+	//---------------
+	// No action is associated to MouseLeftRelease event or state.
+	//
+	
+	if ( !MouseLeftPressed() ) 
+	{
+		wait_mouseleft_release = FALSE;
+		return;
+	}
+
+	//---------------
+	// The action associated to MouseLeftPress depends on the global game state
+	//
+	
+	switch ( global_ingame_mode )
+	{
 	case GLOBAL_INGAME_MODE_SCROLL_UP:
-	    if(no_left_button_press_in_previous_analyze_mouse_click)
-		    {
-		    game_message_protocol_scroll_override_from_user -- ;
-		    Activate_Conservative_Frame_Computation();
-		    }
-
-	    break;
+		if (no_left_button_press_in_previous_analyze_mouse_click)
+		{
+			game_message_protocol_scroll_override_from_user -- ;
+			Activate_Conservative_Frame_Computation();
+		}
+		break;
 
 	case GLOBAL_INGAME_MODE_SCROLL_DOWN:
-	    if(no_left_button_press_in_previous_analyze_mouse_click)
+		if (no_left_button_press_in_previous_analyze_mouse_click)
 		{
-    	        game_message_protocol_scroll_override_from_user ++ ;
-	        Activate_Conservative_Frame_Computation();
+			game_message_protocol_scroll_override_from_user ++ ;
+			Activate_Conservative_Frame_Computation();
 		}
-	    break;
+		break;
 
 	case GLOBAL_INGAME_MODE_IDENTIFY:
-	    handle_player_identification_command( );
-	    global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL ;
+		handle_player_identification_command( );
+		global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL ;
 
-	    while ( SpacePressed() || MouseLeftPressed() || MouseRightPressed());
-	    Activate_Conservative_Frame_Computation();
+		while ( SpacePressed() || MouseLeftPressed() || MouseRightPressed());
+		Activate_Conservative_Frame_Computation();
 
-	    break;
+		break;
+
 	case GLOBAL_INGAME_MODE_NORMAL:
-	    if ( ButtonPressWasNotMeantAsFire( ) ) return;
-	    if ( handle_click_in_hud() ) return;
-	    if ( no_left_button_press_in_previous_analyze_mouse_click )
+		if ( ButtonPressWasNotMeantAsFire( ) ) return;
+		if ( handle_click_in_hud() ) return;
+		if ( no_left_button_press_in_previous_analyze_mouse_click )
 		{
-		Me . mouse_move_target_combo_action_type = NO_COMBO_ACTION_SET;
-		
-		if ( (tmp = closed_chest_below_mouse_cursor ( )) != -1 )
-		    {
-		    check_for_chests_to_open ( tmp ) ;
-		    break;
-		    }
-		
-		// Nota : If 'A' key is held down, we don't directly smash a barrel.
-		// This will possibly be the result of the character's attack.
-		if ( !APressed() && ( tmp = smashable_barrel_below_mouse_cursor ( ) ) != -1 )
-		    { 
-		    check_for_barrels_to_smash ( tmp );
-		    break;
-		    }
-		
-		if (( tmp = get_floor_item_index_under_mouse_cursor () ) != -1 )
-		    {
-		    check_for_items_to_pickup ( tmp );
-		    break;
-		    }
+			Me . mouse_move_target_combo_action_type = NO_COMBO_ACTION_SET;
+
+			if ( (tmp = closed_chest_below_mouse_cursor ( )) != -1 )
+			{
+				check_for_chests_to_open ( tmp ) ;
+				if (Me . mouse_move_target_combo_action_type != NO_COMBO_ACTION_SET)
+					wait_mouseleft_release = TRUE;
+				break;
+			}
+
+			// Nota : If 'A' key is held down, we don't directly smash a barrel.
+			// This will possibly be the result of the character's attack.
+			if ( !APressed() && ( tmp = smashable_barrel_below_mouse_cursor ( ) ) != -1 )
+			{ 
+				check_for_barrels_to_smash ( tmp );
+				if (Me . mouse_move_target_combo_action_type != NO_COMBO_ACTION_SET)
+					wait_mouseleft_release = TRUE;
+				break;
+			}
+
+			if (( tmp = get_floor_item_index_under_mouse_cursor () ) != -1 )
+			{
+				check_for_items_to_pickup ( tmp );
+				if (Me . mouse_move_target_combo_action_type != NO_COMBO_ACTION_SET)
+					wait_mouseleft_release = TRUE;
+				break;
+			}
 		}
-	    
-	    check_for_droids_to_attack_or_talk_with ( ) ;
-	    break;
+
+		// Just after the beginning of a combo action, and while LMB is
+		// always pressed, mouse_move_target must not be changed (so that
+		// the player's character will actually move to the combo action's target)
+		
+		if ( !wait_mouseleft_release ) check_for_droids_to_attack_or_talk_with ( ) ;
+		
+		break;
+
 	case GLOBAL_INGAME_MODE_EXAMINE:
-	    handle_player_examine_command ( ) ;
-	    
-	    break;
+		handle_player_examine_command ( ) ;
+		break;
 
 	default:
-	    DebugPrintf ( -4 , "\n%s(): global_ingame_mode: %d." , __FUNCTION__ , 
-			  global_ingame_mode );
-	    ErrorMessage ( __FUNCTION__  , 
-				       "Illegal global ingame mode encountered!" ,
-				       PLEASE_INFORM, IS_FATAL );
-	    break;
-    }
-
+		DebugPrintf ( -4 , "\n%s(): global_ingame_mode: %d." , __FUNCTION__ , 
+				global_ingame_mode );
+		ErrorMessage ( __FUNCTION__  , 
+				"Illegal global ingame mode encountered!" ,
+				PLEASE_INFORM, IS_FATAL );
+		break;
+	}
     
 }; // void AnalyzePlayersMouseClick ( )
 
