@@ -451,7 +451,7 @@ There are more skills defined, than the maximum number specified in the code!",
 		& ProgramToFill -> heat_cost  , EndOfProgramData );
 	ReadValueFromStringWithDefault( ProgramPointer , "Cost per level=" , "%hd" , "0",
 		& ProgramToFill -> heat_cost_per_level  , EndOfProgramData );
-	ReadValueFromStringWithDefault( ProgramPointer , "Present at startup=" , "%hhd" , "0",
+	ReadValueFromStringWithDefault( ProgramPointer , "Present at startup=" , "%hd" , "0",
 		& ProgramToFill -> present_at_startup  , EndOfProgramData );
 	ReadValueFromStringWithDefault( ProgramPointer , "Artwork internal code=" , "%d" , "-1",
 		& ProgramToFill -> graphics_code  , EndOfProgramData );
