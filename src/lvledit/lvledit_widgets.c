@@ -237,10 +237,10 @@ void leveleditor_init_widgets()
     for (i=0; i < NUMBER_OF_OBSTACLE_TYPES; i++) 
 		all_obstacles_list[i] = i;
     all_obstacles_list[i] = -1;
-    list_add_tail(&create_objectselector(4, _("ALLOBS."), OBJECT_OBSTACLE, all_obstacles_list)->node, &leveleditor_widget_list);
-    list_add_tail(&create_objectselector(5, _("FLOOR"), OBJECT_FLOOR, floor_tiles_list)->node, &leveleditor_widget_list);
+    list_add_tail(&create_objectselector(5, _("ALLOBS."), OBJECT_OBSTACLE, all_obstacles_list)->node, &leveleditor_widget_list);
+    list_add_tail(&create_objectselector(6, _("FLOOR"), OBJECT_FLOOR, floor_tiles_list)->node, &leveleditor_widget_list);
 
-    list_add_tail(&create_objectselector(6, _("WAYPT"), OBJECT_WAYPOINT, waypoint_list)->node, &leveleditor_widget_list);
+    list_add_tail(&create_objectselector(7, _("WAYPT"), OBJECT_WAYPOINT, waypoint_list)->node, &leveleditor_widget_list);
 
     /* The toolbar */
     list_add_tail(&create_toolbar()->node, &leveleditor_widget_list);
