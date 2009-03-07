@@ -34,7 +34,11 @@ Groups that need to span several levels belong to level 999
 
 Note: 9999 is hardcoded in places, so dont change those 
 without "fixing" it elsewhere as well
-
+In the future we should probably use eg
+9999 for Red Guard faction
+8999 for resistance faction
+7999 for 2nd resistance faction
+and when "all go hostile" check which factions could still be friendly.
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
@@ -216,8 +220,6 @@ SForce: T=329 Fixed=0 Marker=1009 Friendly=0 StartLabel="Level9Stalker1StartGame
 SForce: T=302 Fixed=0 Marker=1009 Friendly=0 StartLabel="Level9Stalker2StartGameSquare" RushTux="no" UseDialog="StandardBotAfterTakeover" ShortLabel=_"Stalker" attack_run_only_when_direct_line="no"
 SForce: T=249 Fixed=0 Marker=1009 Friendly=0 StartLabel="Level9Stalker3StartGameSquare" RushTux="no" UseDialog="StandardBotAfterTakeover" ShortLabel=_"Stalker" attack_run_only_when_direct_line="no"
 SForce: T=247 Fixed=0 Marker=1009 Friendly=0 StartLabel="Level9Stalker4StartGameSquare" RushTux="no" UseDialog="StandardBotAfterTakeover" ShortLabel=_"Stalker" attack_run_only_when_direct_line="no"
-SForce: T=GUA Fixed=0 Marker=2009 Friendly=1 StartLabel="MSAreaGuardStartGameSquare" RushTux="no" UseDialog="StandardMSFacilityGateGuard" ShortLabel=_"Bot Factory Gate Guard" attack_run_only_when_direct_line="no"
-SForce: T=GUA Fixed=0 Marker=2009 Friendly=1 StartLabel="MSAreaGuardChiefStartGameSquare" RushTux="no" UseDialog="MSFacilityGateGuardLeader" ShortLabel=_"Bot Factory Gate Guard" attack_run_only_when_direct_line="no"
 ** End of this levels droid data **
 
 ----------------------------------------------------------------------
@@ -446,6 +448,10 @@ SForce: T=420 Fixed=0 Marker=2031 Friendly=1 StartLabel="MSOTestDroid2StartGameS
 SForce: T=420 Fixed=0 Marker=2031 Friendly=1 StartLabel="MSOTestDroid3StartGameSquare" RushTux="no" UseDialog="TestDroid" ShortLabel=_"TD" attack_run_only_when_direct_line="no"
 SForce: T=420 Fixed=0 Marker=2031 Friendly=1 StartLabel="MSOTestDroid4StartGameSquare" RushTux="no" UseDialog="TestDroid" ShortLabel=_"TD" attack_run_only_when_direct_line="no"
 SForce: T=883 Fixed=0 Marker=3031 Friendly=1 StartLabel="MSOfficeFirmwareUpdateServerStartPosition" RushTux="no" UseDialog="FirmwareUpdateServer" ShortLabel=_"Update Server" attack_run_only_when_direct_line="no"
+
+SForce: T=GUA Fixed=0 Marker=9999 Friendly=1 StartLabel="MSAreaGuardStartGameSquare" RushTux="no" UseDialog="StandardMSFacilityGateGuard" ShortLabel=_"Bot Factory Gate Guard" attack_run_only_when_direct_line="no"
+SForce: T=GUA Fixed=0 Marker=9999 Friendly=1 StartLabel="MSAreaGuardChiefStartGameSquare" RushTux="no" UseDialog="MSFacilityGateGuardLeader" ShortLabel=_"Bot Factory Gate Guard" attack_run_only_when_direct_line="no"
+
 ** End of this levels droid data **
 
 ----------------------------------------------------------------------
