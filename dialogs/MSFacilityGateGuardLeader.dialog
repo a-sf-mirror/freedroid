@@ -1,4 +1,3 @@
-% -*- mode: flyspell; mode: fill -*-
 ----------------------------------------------------------------------
  *  This file is part of Freedroid
  *
@@ -18,7 +17,6 @@
  *  MA  02111-1307  USA
 ----------------------------------------------------------------------
 
-
 If you have questions concerning FreedroidRPG, please send an email to:
 
 freedroid-discussion@lists.sourceforge.net
@@ -30,136 +28,88 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={
-    show(99)
-}
-----------------------------------------------------------------------
-
-Nr=0  Text="THIS WILL NEVER BE VISIBLE"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-NPC=_"Hey, Linarian! What do you want here?"
-LuaCode={
-    if (done_quest("Opening access to MS Office")) then next(6) else next(7) end
-    add_cookie("MS_guard_talked")
-    hide(0, 5, 99)
-    show(1, 3)
+FirstTime LuaCode={ show(1, 2, 3) }
+EveryTime LuaCode={
+    if (has_cookie("MS_guard_talked")) then
+		if (done_quest("Opening access to MS Office")) then
+		    if (has_cookie("MS_guard_informed")) then
+				next(20)
+			else
+				npc_says(_"Hey, Linarian! What do you want here?")
+			end
+		else 
+			npc_says(_"GET OUT OF HERE YOU IDIOT!")
+			next(99)
+		end
+	else 
+		npc_says(_"Hey, Linarian! What do you want here?")
+		add_cookie("MS_guard_talked")
+	end
 }
 ----------------------------------------------------------------------
 
 Nr=1  Text=_"Just taking a look around."
-NPC=_"Oh, look. The bird wants to go for a walk."
-NPC=_"We don't call this place 'hell' for nothing."
-NPC=_"Get outta here!"
 LuaCode={
-    next(99)
-    hide(1, 2, 3)
+	npc_says(_"Oh, look. The bird wants to go for a walk.", "NO_WAIT")
+	npc_says(_"We don't call this place 'hell' for nothing.")
+	npc_says(_"Get outta here!")
+	next(99) hide(1, 3)
 }
 ----------------------------------------------------------------------
 
 Nr=2  Text=_"I'd like to go through that gate."
-NPC=_"Are you totally out of your mind?"
-NPC=_"There are trillions of millions of quintillions of bots in there!"
-NPC=_"Besides that, on the other side of the door is a disruptor shield, which we can't control."
-NPC=_"* Throws a stone through the door"
-NPC=_"* Stone disappears leaving a small cloud of dust"
-NPC=_"Find a different gate to go through."
 LuaCode={
-    next(99)
-    hide(1, 2, 3)
+	npc_says(_"Are you totally out of your mind?", "NO_WAIT")
+	npc_says(_"There are trillions of millions of quintillions of bots in there!")
+	npc_says(_"Besides that, on the other side of the door is a disruptor shield, which we can't control.")
+	npc_says(_"* Throws a stone through the door")
+    if (done_quest("Opening access to MS Office")) then
+		npc_says(_"* Stone freely flies through the gate and drops on the ground on the other side")
+		npc_says(_"SHIT! SHIELD DISABLED! PREPARE FOR BOT ATTACK!")
+		next(10)
+	else 
+		npc_says(_"* Stone disappears leaving a small cloud of dust")
+		npc_says(_"Find a different gate to go through.")
+		next(99)
+	end
+	hide(1, 3)
 }
 ----------------------------------------------------------------------
 
 Nr=3  Text=_"I have some business on the other side!"
-NPC=_"Are you in a rush to die?"
-NPC=_"Go away!"
 LuaCode={
-    next(99)
-    hide(1, 2, 3, 8)
+	npc_says(_"Are you in a rush to die?")
+	npc_says(_"Go away!")
+	next(99) hide(1, 3)
 }
 ----------------------------------------------------------------------
 
-Nr=4  Text="TEST FOR MANY TALKS"
+Nr=10  Text=_"Calm down. This is not an attack. I've disabled the shield and I'm going to disable all bots around! Didn't Spencer inform you?"
+LuaCode={
+	npc_says(_"WHAT?! Not an attack?!")
+	npc_says(_"I hope you are honest. One second...")
+    if (has_quest("Propagating a faulty firmware")) then
+		change_obstacle("MSAreaDoor", "opened")
+		add_cookie("MS_guard_informed")
+		next(20)
+	else
+		npc_says(_"Nothing from Spencer, ya fat duck. Now leave.")
+		end_dialog()
+	end
+}
+----------------------------------------------------------------------
+
+Nr=20  Text="NEVER VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    if (has_cookie("MS_guard_talked")) then
-        if (done_quest("Opening access to MS Office")) then next(0) else next(5) end    -- TEST FOR DISABLED SHIELD
-    else next(0) end
-}
-AlwaysExecuteThisOptionPriorToDialogStart="yes"
-
-----------------------------------------------------------------------
-
-Nr=5  Text="NOTHING IS SAID HERE."
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-NPC=_"GET OUT OF HERE YOU IDIOT!"
-LuaCode={
-    end_dialog()
+		npc_says(_"Right, there is a message from Spencer, you can enter Hell Fortress. And may the source be with you!")
+		end_dialog()
 }
 ----------------------------------------------------------------------
-
-Nr=6  Text="SHIELD DISABLED"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-LuaCode={
-    hide(2)
-    show(8)
-}
-----------------------------------------------------------------------
-
-Nr=7  Text="SHIELD NOT DISABLED"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-LuaCode={
-    hide(2)
-    show(8)
-}
-----------------------------------------------------------------------
-
-Nr=8  Text=_"I'd like to go through that gate."
-NPC=_"Are you totally out of your mind?"
-NPC=_"There are trillions of millions of quintillions of bots in there!"
-NPC=_"Beside that on the other side of the door is disruptor shield, which we can't control."
-NPC=_"* Throws a stone through the door"
-NPC=_"* Stone freely flies thourgh the gate and drops on the ground on the other side"
-NPC=_"SHIT! SHIELD DISABLED! PREPARE FOR BOT ATTACK!"
-LuaCode={
-    next(9)
-    hide(1, 2, 3, 8)
-}
-----------------------------------------------------------------------
-
-Nr=9  Text=_"Calm down. This is not an attack. I've disabled the shield and I'm going to disable all bots around! Didn't Spencer inform you?"
-NPC=_"WHAT?! Not an attack?!"
-NPC=_"I hope you are honest. One second..."
-LuaCode={
-    if (has_quest("Propagating a faulty firmware")) then next(12) else next(11) end
-    hide(1, 2, 3, 9)
-    show(8)
-}
-----------------------------------------------------------------------
-
-Nr=11  Text="HF MISSION NOT YET ASSIGNED"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-NPC=_"Nothing from Spencer, ya fat duck. Now leave."
-LuaCode={
-    end_dialog()
-}
-----------------------------------------------------------------------
-
-Nr=12  Text="HF MISSION ASSIGNED"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-NPC=_"Right, there is a message from Spencer, you can enter Hell Fortress. And may the source be with you!"
-LuaCode={
-    change_obstacle("MSAreaDoor", "opened")
-    end_dialog()
-    hide(1, 2, 3, 8, 9)
-    show(8)
-}
-----------------------------------------------------------------------
-
 Nr=99  Text=_"Relax, I'm leaving."
-NPC=_"You better be. AND DON'T COME BACK!"
 LuaCode={
+	npc_says(_"You better be. AND DON'T COME BACK!")
     end_dialog()
-    hide(2, 99)
 }
 ----------------------------------------------------------------------
 
