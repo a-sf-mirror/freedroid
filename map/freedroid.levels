@@ -11611,7 +11611,6 @@ pobstaclelabelinfolvl
 obstacle_label.index=0 obstacle_label_name="brickWall"
 obstacle_label.index=1 obstacle_label_name="EastGateOfTown"
 obstacle_label.index=2 obstacle_label_name=""
-obstacle_label.index=3 obstacle_label_name="MSAreaDoor" states="closed:26 opened:6"
 /pobstaclelabelinfolvl
 pobsdescinfolvl
 /pobsdescinfolvl
@@ -30615,7 +30614,6 @@ obstacle_label.index=26 obstacle_label_name="MSOMillerEntrance03" states="closed
 obstacle_label.index=27 obstacle_label_name="MSOMillerEntranceCounterDoor" states="closed:26 opened:6"
 obstacle_label.index=28 obstacle_label_name="MSOCollapsingBrickWall2HFTunnel"
 obstacle_label.index=29 obstacle_label_name="MSONoReturnDoor" states="closed:26 opened:6"
-obstacle_label.index=30 obstacle_label_name="MSAreaDoor"
 obstacle_label.index=31 obstacle_label_name="Security system operator"
 obstacle_label.index=32 obstacle_label_name="MSAreaDoor"
 /pobstaclelabelinfolvl
