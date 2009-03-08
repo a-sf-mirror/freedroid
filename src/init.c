@@ -1712,8 +1712,6 @@ PrepareStartOfNewCharacter ( char * startpos )
     // take a little time.  Therefore we print some message so the user will not
     // panic and push the reset button :)
     //
-    PutStringFont ( Screen , Menu_BFont , ( GameConfig . screen_width / 2 ) - 180 , ( GameConfig . screen_height / 2 ) - 70 , _("Updating Tux images") );
-    PutStringFont ( Screen , Menu_BFont , ( GameConfig . screen_width / 2 ) - 250 , ( GameConfig . screen_height / 2 ) - 30 , _("(this may take a little while...)") );
     our_SDL_flip_wrapper();
     
     append_new_game_message ( _("Starting new game.") );
