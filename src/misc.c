@@ -639,10 +639,6 @@ void ShowGenericButtonFromList ( int ButtonIndex )
 	//
 	Copy_Rect ( AllMousePressButtons[ ButtonIndex ] . button_rect , Temp_Blitting_Rect );
 
-	if (ButtonIndex == LEVEL_EDITOR_NEW_ITEM_BUTTON || ButtonIndex == LEVEL_EDITOR_EDIT_CHEST_BUTTON) {
-		printf("got %d : %d %d %d %d\n", ButtonIndex, Temp_Blitting_Rect.x, Temp_Blitting_Rect.y, Temp_Blitting_Rect.w, Temp_Blitting_Rect.h);
-	}
-
 	if ( use_open_gl )
 		{
 		draw_gl_textured_quad_at_screen_position ( &AllMousePressButtons [ ButtonIndex ] . button_image , Temp_Blitting_Rect . x , Temp_Blitting_Rect . y ) ;
