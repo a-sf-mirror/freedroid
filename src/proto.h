@@ -466,6 +466,7 @@ void activate_nth_aquired_skill ( int skill_num );
 void ImproveSkill(int *skill);
 int get_program_index_with_name(const char *);
 int calculate_program_heat_cost ( int program_id );
+int CursorIsOnWhichSkillButton(int x, int y);
 
 // input.c 
 Uint8 * key_state_array;

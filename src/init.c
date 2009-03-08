@@ -1648,6 +1648,10 @@ PrepareStartOfNewCharacter ( char * startpos )
     {
 	strcpy ( Me . cookie_list [ j ] , "" ) ;
     }
+
+    for (j=0; j < 10; j++) {
+	Me.program_shortcuts[j] = -1;
+    }
     
     //--------------------
     // Now that the prime character stats have been initialized, we can

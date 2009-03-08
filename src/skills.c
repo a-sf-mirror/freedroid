@@ -474,7 +474,7 @@ return 1;
  * This function checks if a given screen position lies within the 
  * one of the skill icons and returns the number of that skill icon.
  */
-static int CursorIsOnWhichSkillButton( int x , int y )
+int CursorIsOnWhichSkillButton( int x , int y )
 {
     //--------------------
     // First we check if the cursor is in at least horizontally
@@ -774,11 +774,23 @@ ShowSkillsScreen ( void )
 		NULL , Screen , &ButtonRect );
 	}
 	
-	//--------------------
-	// First we write the name of the skill to the screen
-	//
-    //SetCurrentFont ( Menu_BFont );
 	SetCurrentFont ( FPS_Display_BFont );
+	
+	// Program shortcut
+	int sci;
+	for (sci = 0; sci < 10; sci++) {
+	    if (Me.program_shortcuts[sci] == SkillOfThisSlot)
+		break;
+	}
+
+	if (sci != 10) {
+	    // print the quick key number
+	    char str[10];
+		sprintf(str, "F%d\n", 5 + sci);
+	    DisplayText(str, ButtonRect.x + ButtonRect.w - 2 - TextWidth(str), ButtonRect.y, &SkillScreenRect , TEXT_STRETCH );
+	}
+
+	// Name of the skill
     
 	DisplayText( D_(SpellSkillMap [ SkillOfThisSlot ] . name) , 
 		     16 + 64 + 16 + SkillScreenRect.x , 
@@ -788,7 +800,7 @@ ShowSkillsScreen ( void )
 	SetCurrentFont ( Messagestat_BFont );
 	int tmp, tmp2;
 	int nextypos = FIRST_SKILLRECT_Y - 8 + i * ( 64 + INTER_SKILLRECT_DIST ) + SkillScreenRect.y + 2 * FontHeight( GetCurrentFont() );
-	
+
 	// Program revision
 	sprintf( CharText , _("Program revision: %c%d%c "), font_switchto_msgvar[0] ,  Me.SkillLevel[ SkillOfThisSlot ] , font_switchto_msgstat[0] );
 	DisplayText( CharText , 16 + 64 + 16 + SkillScreenRect.x , 
@@ -920,6 +932,5 @@ ShowSkillsScreen ( void )
     //
 
 }; // ShowSkillsScreen ( void )
-
 #undef _skills_c
 

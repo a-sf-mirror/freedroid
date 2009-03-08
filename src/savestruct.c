@@ -406,6 +406,7 @@ save_float_array("BigScreenMessageDuration", (target->BigScreenMessageDuration),
 save_float("slowdown_duration", &(target->slowdown_duration));
 save_float("paralyze_duration", &(target->paralyze_duration));
 save_float("invisible_duration", &(target->invisible_duration));
+save_int32_t_array("program_shortcuts", (target->program_shortcuts), 10);
 fprintf(SaveGameFile, "</%s>\n", tag);
 return 0;
 }
@@ -520,6 +521,7 @@ read_float_array(pos, "BigScreenMessageDuration",  (target->BigScreenMessageDura
 read_float(pos, "slowdown_duration",  &(target->slowdown_duration));
 read_float(pos, "paralyze_duration",  &(target->paralyze_duration));
 read_float(pos, "invisible_duration",  &(target->invisible_duration));
+read_int32_t_array(pos, "program_shortcuts",  (target->program_shortcuts), 10);
 *epos = '>'; 
 return 0;
 }
