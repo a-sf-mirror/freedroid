@@ -343,16 +343,30 @@ get_floor_boundaries(int mask, int* LineStart, int* LineEnd, int* ColStart, int*
 	*ColEnd = translate_pixel_to_map_location(UserCenter_x + iso_floor_tile_width - 1, UserCenter_y + iso_floor_tile_height - 1, TRUE) ;
     }
 }
+
+static void floor_vtx_color(map_tile *m, float *r, float *g, float *b)
+{
+	if (element_in_selection(m)) {
+		*r = ((SDL_GetTicks() >> 7) % 3) / 2.0;
+	    *g = (((SDL_GetTicks() >> 7) + 1) % 3) / 2.0;
+		*b = (((SDL_GetTicks() >> 7) + 2) % 3) / 2.0;
+	} else {
+		*r = 1.0;
+		*g = 1.0;
+		*b = 1.0;
+	}
+}
+
 /**
  * This function should assemble the pure floor tiles that will be visible
  * around the Tux or in the console map view.  Big map inserts and all that
  * will be handled later...
  */
-    void
-isometric_show_floor_around_tux_without_doublebuffering (int mask)
+void isometric_show_floor_around_tux_without_doublebuffering (int mask)
 {
     int LineStart, LineEnd, ColStart, ColEnd, line, col, MapBrick;
     static int use_atlas = -1;
+	float r, g, b;
 
     Level DisplayLevel = curShip.AllLevels[Me.pos.z];
 
@@ -360,99 +374,101 @@ isometric_show_floor_around_tux_without_doublebuffering (int mask)
 
     //  SDL_SetClipRect (Screen, &User_Rect);
 
-    if ( ! use_open_gl )
-	{ /* SDL rendering path */
-	for (line = LineStart; line < LineEnd; line++)
-	    {
-	    for (col = ColStart; col < ColEnd; col++)
-		{
-		MapBrick = GetMapBrick (DisplayLevel, col, line);
+	if (! use_open_gl) { 
+		/* SDL rendering path */
+		for (line = LineStart; line < LineEnd; line++) {
+			for (col = ColStart; col < ColEnd; col++) {
+				MapBrick = GetMapBrick (DisplayLevel, col, line);
 
-		if (mask & ZOOM_OUT)
-		    blit_zoomed_iso_image_to_map_position ( &(floor_iso_images[MapBrick % ALL_ISOMETRIC_FLOOR_TILES]),
-			    ((float) col) + 0.5, ((float) line) + 0.5);
-		else
-		    blit_iso_image_to_map_position ( &(floor_iso_images[MapBrick % ALL_ISOMETRIC_FLOOR_TILES]),
-			    ((float) col) + 0.5, ((float) line) + 0.5 ) ;
+				floor_vtx_color(&DisplayLevel->map[line][col], &r, &g, &b);
+
+				if (mask & ZOOM_OUT)
+					blit_zoomed_iso_image_to_map_position ( &(floor_iso_images[MapBrick % ALL_ISOMETRIC_FLOOR_TILES]),
+							((float) col) + 0.5, ((float) line) + 0.5);
+				else
+					blit_iso_image_to_map_position ( &(floor_iso_images[MapBrick % ALL_ISOMETRIC_FLOOR_TILES]),
+							((float) col) + 0.5, ((float) line) + 0.5 ) ;
+			}
 		}
-	    }
-	return;
-	}
-    else
-	{
-	if ( use_atlas == - 1 )
-	    { //determine if we are using a texture atlas for the ground
+		return;
+	} else {
+		if ( use_atlas == - 1 ) { 
+			//determine if we are using a texture atlas for the ground
 #ifdef HAVE_LIBGL
-    	    if ( floor_iso_images[0].texture == floor_iso_images[5].texture )
-		use_atlas = 1;
-	    else use_atlas = 0;
+			if ( floor_iso_images[0].texture == floor_iso_images[5].texture )
+				use_atlas = 1;
+			else use_atlas = 0;
 #else
-	    use_atlas = 0;
+			use_atlas = 0;
 #endif
-	    }
+		}
 
-	if ( use_atlas )
-	    {
+		if ( use_atlas ) {
 
 #ifdef HAVE_LIBGL
-	    glBindTexture( GL_TEXTURE_2D, floor_iso_images[0].texture );
-	    glEnable(GL_ALPHA_TEST);
-	    glBegin(GL_QUADS);
+			glBindTexture( GL_TEXTURE_2D, floor_iso_images[0].texture );
+			glEnable(GL_ALPHA_TEST);
+			glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+			glBegin(GL_QUADS);
 
-	    for (line = LineStart; line < LineEnd; line++)
-		{
-		for (col = ColStart; col < ColEnd; col++)
-		    {
-		    MapBrick = GetMapBrick (DisplayLevel, col, line);
+			for (line = LineStart; line < LineEnd; line++)
+				{
+				for (col = ColStart; col < ColEnd; col++)
+					{
+					MapBrick = GetMapBrick (DisplayLevel, col, line);
+					floor_vtx_color(&DisplayLevel->map[line][col], &r, &g, &b);
 
-		    iso_image * ourimg = &(floor_iso_images[MapBrick % ALL_ISOMETRIC_FLOOR_TILES]);
+					iso_image * ourimg = &(floor_iso_images[MapBrick % ALL_ISOMETRIC_FLOOR_TILES]);
 
-		    if ( MapBrick == ISO_COMPLETELY_DARK )
-			continue;
+					if ( MapBrick == ISO_COMPLETELY_DARK )
+						continue;
 
-		    int x, y;
-		    float zf =  ((mask & ZOOM_OUT) ?  ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT : 1.0);
+					int x, y;
+					float zf =  ((mask & ZOOM_OUT) ?  ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT : 1.0);
 
-		    translate_map_point_to_screen_pixel ( ((float) col) + 0.5 , ((float) line) + 0.5 , &x, &y, zf); 
-		    x +=  ourimg->offset_x * zf; 
-		    y +=  ourimg->offset_y * zf; 
+					translate_map_point_to_screen_pixel ( ((float) col) + 0.5 , ((float) line) + 0.5 , &x, &y, zf); 
+					x +=  ourimg->offset_x * zf; 
+					y +=  ourimg->offset_y * zf; 
 
+					glColor3f(r, g, b);
+					glTexCoord2f( ourimg->tx0, ourimg->ty1);
+					glVertex2i( x, y );
+					glTexCoord2f( ourimg->tx0, ourimg->ty0 );
+					glVertex2i( x, y + ourimg->original_image_height * zf);
+					glTexCoord2f( ourimg->tx1, ourimg->ty0 );
+					glVertex2i( x + ourimg->original_image_width * zf, y + ourimg->original_image_height * zf );
+					glTexCoord2f(  ourimg->tx1, ourimg->ty1 );
+					glVertex2i( x  + ourimg->original_image_width * zf, y);
 
-		    glTexCoord2f( ourimg->tx0, ourimg->ty1);
-		    glVertex2i( x, y );
-		    glTexCoord2f( ourimg->tx0, ourimg->ty0 );
-		    glVertex2i( x, y + ourimg->original_image_height * zf);
-		    glTexCoord2f( ourimg->tx1, ourimg->ty0 );
-		    glVertex2i( x + ourimg->original_image_width * zf, y + ourimg->original_image_height * zf );
-		    glTexCoord2f(  ourimg->tx1, ourimg->ty1 );
-		    glVertex2i( x  + ourimg->original_image_width * zf, y);
+					}
+				}
 
-		    }
-		}
-
-	    glEnd( );
-	    glDisable(GL_ALPHA_TEST);
+			glEnd( );
+			glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+			glDisable(GL_ALPHA_TEST);
 #endif
-	    } //use_atlas
-	else
-	    {
-	    for (line = LineStart; line < LineEnd; line++)
-		{
-		for (col = ColStart; col < ColEnd; col++)
-		    {
-		    MapBrick = GetMapBrick (DisplayLevel, col, line);
+		} //use_atlas
+		else
+			{
+			for (line = LineStart; line < LineEnd; line++)
+				{
+				for (col = ColStart; col < ColEnd; col++)
+					{
+					MapBrick = GetMapBrick (DisplayLevel, col, line);
 
-		    if ( MapBrick == ISO_COMPLETELY_DARK )
-			continue;
+					if ( MapBrick == ISO_COMPLETELY_DARK )
+						continue;
+				
+					floor_vtx_color(&DisplayLevel->map[line][col], &r, &g, &b);
 
-		    draw_gl_textured_quad_at_map_position ( &floor_iso_images[MapBrick % ALL_ISOMETRIC_FLOOR_TILES], 	 
-			    ((float) col) + 0.5, ((float) line) + 0.5, 1.0, 1.0, 1.0, FALSE, FALSE, 	 
-			    (mask & ZOOM_OUT) ?  ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT : 1.0);
+					draw_gl_textured_quad_at_map_position ( &floor_iso_images[MapBrick % ALL_ISOMETRIC_FLOOR_TILES], 	 
+							((float) col) + 0.5, ((float) line) + 0.5, r, g, b, FALSE, FALSE, 	 
+							(mask & ZOOM_OUT) ?  ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT : 1.0);
 
-		    }
-		}
+					}
+				}
 
-	    }
+			}
 	} 
 
 
