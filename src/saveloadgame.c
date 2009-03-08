@@ -65,23 +65,24 @@ jmp_buf saveload_jmpbuf;
 } while (0)
 
 
-void
-ShowSaveLoadGameProgressMeter( int Percentage , int IsSavegame ) 
+void ShowSaveLoadGameProgressMeter( int Percentage , int IsSavegame ) 
 {
-    SDL_Rect TargetRect;
+	SDL_Rect TargetRect;
 
-    TargetRect.x = AllMousePressButtons[ SAVE_GAME_BANNER ] . button_rect . x + ( AllMousePressButtons[ SAVE_GAME_BANNER ] . button_rect . w - 100 ) / 2 + 2 ;
-    TargetRect.y = AllMousePressButtons[ SAVE_GAME_BANNER ] . button_rect . y + 20 ;
-    TargetRect.w = Percentage ;
-    TargetRect.h = 20 ;
-    
-    if ( IsSavegame) 
-	ShowGenericButtonFromList ( SAVE_GAME_BANNER );
-    else
-	ShowGenericButtonFromList ( LOAD_GAME_BANNER );
-    our_SDL_fill_rect_wrapper ( Screen , &TargetRect , SDL_MapRGB ( Screen->format , 0x0FF , 0x0FF , 0x0FF ) ) ;
-    UpdateScreenOverButtonFromList ( SAVE_GAME_BANNER );
+	TargetRect.x = AllMousePressButtons[ SAVE_GAME_BANNER ] . button_rect . x + ( AllMousePressButtons[ SAVE_GAME_BANNER ] . button_rect . w - 100 ) / 2 + 2 ;
+	TargetRect.y = AllMousePressButtons[ SAVE_GAME_BANNER ] . button_rect . y + 20 ;
+	TargetRect.w = Percentage ;
+	TargetRect.h = 20 ;
 
+	RestoreMenuBackground(0);
+
+	if ( IsSavegame) 
+		ShowGenericButtonFromList ( SAVE_GAME_BANNER );
+	else
+		ShowGenericButtonFromList ( LOAD_GAME_BANNER );
+	our_SDL_fill_rect_wrapper ( Screen , &TargetRect , SDL_MapRGB ( Screen->format , 0x0FF , 0x0FF , 0x0FF ) ) ;
+	
+	our_SDL_flip_wrapper();
 }; // void ShowSaveGameProgressMeter( int Percentage ) 
 
 void LoadAndShowThumbnail ( char* CoreFilename )
@@ -269,7 +270,8 @@ int SaveGame( void )
 	return (OK);
     
     Activate_Conservative_Frame_Computation();
-    
+   
+    StoreMenuBackground(0);	
     ShowSaveLoadGameProgressMeter( 0 , TRUE ) ;
     
     sprintf ( Me . savegame_version_string , 
@@ -439,7 +441,8 @@ LoadGame( void )
     
     Activate_Conservative_Frame_Computation();
     global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL ;
-    
+   
+    StoreMenuBackground(0);	
     ShowSaveLoadGameProgressMeter( 0 , FALSE )  ;
  
     sprintf( filename , "%s/%s%s", our_config_dir, Me . character_name, ".shp");

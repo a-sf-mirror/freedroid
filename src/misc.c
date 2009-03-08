@@ -523,17 +523,6 @@ button index given exceeds the number of buttons defined in freedroid.",
  * This function blits a button to the screen.  The button must have been
  * defined prior to this in the above button list.
  */
-void 
-UpdateScreenOverButtonFromList ( int ButtonIndex )
-{ 
-  our_SDL_update_rect_wrapper ( Screen , 
-		   AllMousePressButtons[ ButtonIndex ] . button_rect . x ,
-		   AllMousePressButtons[ ButtonIndex ] . button_rect . y ,
-		   AllMousePressButtons[ ButtonIndex ] . button_rect . w ,
-		   AllMousePressButtons[ ButtonIndex ] . button_rect . h 
-		   );
-}; // void UpdateScreenOverButtonFromList ( int ButtonIndex )
-
 /**
  * This function blits a button to the screen.  The button must have been
  * defined prior to this in the above button list.

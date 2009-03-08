@@ -533,7 +533,6 @@ void print_trace ( int signum );
 void implant_backtrace_into_signal_handlers ( void ) ;
 void adapt_button_positions_to_screen_resolution( void );
 void ErrorMessage ( const char* FunctionName , const char* ProblemDescription, int InformDevelopers , int IsFatal, ... );
-void UpdateScreenOverButtonFromList ( int ButtonIndex );
 void ShowGenericButtonFromList ( int ButtonIndex );
 int MouseCursorIsInRect ( SDL_Rect* our_rect , int x , int y );
 int MouseCursorIsOnButton( int ButtonIndex , int x , int y );

@@ -640,25 +640,21 @@ char * GetString ( int MaxLen, int background_code , const char* text_for_overhe
 	key = getchar_raw (NULL);  
 
 	if ( key == SDLK_RETURN ) 
-	{
-#ifdef __WIN32__
-	    //--------------------
-	    // On win32 machines, we need to perform an extra screen update,
-	    // so that both buffers are in sync for future OpenGL operations
-	    //
-	    if ( use_open_gl )
-	    {
-		blit_special_background ( background_code );
-		DisplayText ( text_for_overhead_promt , 50 , 50 , NULL , TEXT_STRETCH );
-		x0 = MyCursorX;
-		y0 = MyCursorY;
-		PutString ( Screen, x0, y0, input);
-		our_SDL_flip_wrapper();
-	    }
-#endif
-	    input[curpos] = 0;
-	    finished = TRUE;
-	}
+		{
+		// Display the image again so both buffers are in sync
+		// useful for GL drivers that do true pageflipping (win32, nvidia 173.x, ...)
+		if ( use_open_gl )
+			{
+			blit_special_background ( background_code );
+			DisplayText ( text_for_overhead_promt , 50 , 50 , NULL , TEXT_STRETCH );
+			x0 = MyCursorX;
+			y0 = MyCursorY;
+			PutString ( Screen, x0, y0, input);
+			our_SDL_flip_wrapper();
+			}
+		input[curpos] = 0;
+		finished = TRUE;
+		}
 	else if ((key < SDLK_DELETE) && isprint (key) && (curpos < MaxLen) ) {
 	    DebugPrintf (3, "isprint() true for keycode: %d ('%c')\n", key, (char)key);
 	    /* printable characters are entered in string */

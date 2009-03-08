@@ -1311,6 +1311,8 @@ LoadShip (char *filename)
 
 #define END_OF_SHIP_DATA_STRING "*** End of Ship Data ***"
 
+	StoreMenuBackground(0); 
+
 	for ( i = 0 ; i < MAX_LEVELS ; i++ )
 	{
 		if(curShip . AllLevels [ i ] != NULL) 
@@ -1995,6 +1997,8 @@ SaveShip(const char *filename)
     
     DebugPrintf ( 2 , "\nint SaveShip(char *shipname): real function call confirmed." );
         
+	StoreMenuBackground(0);
+
     //--------------------
     // We open the ship file 
     //
