@@ -39,14 +39,6 @@
 
 #define SHOP_ROW_LENGTH 8
 
-typedef struct
-{
-  int shop_command;
-  int item_selected;
-  int number_selected;
-}
-shop_decision, *Shop_decision;
-
 SDL_Rect ShopItemRowRect;
 SDL_Rect TuxItemRowRect;
 
@@ -273,46 +265,45 @@ AssemblePointerListForItemShow ( item** ItemPointerListPointer , int IncludeWorn
  * players level and if it's coordinates are those of the current players
  * chest.
  */
-int
-AssemblePointerListForChestShow ( item** ItemPointerListPointer , moderately_finepoint chest_pos )
+int AssemblePointerListForChestShow ( item** ItemPointerListPointer , moderately_finepoint chest_pos )
 {
-    int i;
-    item** CurrentItemPointer;
-    int NumberOfItems = 0 ;
+	int i;
+	item** CurrentItemPointer;
+	int NumberOfItems = 0 ;
 
-    //--------------------
-    // First we clean out the new Show_Pointer_List
-    //
-    CurrentItemPointer = ItemPointerListPointer ;
-    for ( i = 0 ; i < MAX_ITEMS_IN_INVENTORY ; i ++ )
-    {
-	*CurrentItemPointer = NULL;
-	CurrentItemPointer++;
-    }
-    
-    CurrentItemPointer = ItemPointerListPointer;
-    
-    for ( i = 0 ; i < MAX_ITEMS_PER_LEVEL ; i ++ )
-    {
-	if ( curShip . AllLevels [ Me . pos . z ] -> ChestItemList [ i ] . type == (-1) ) continue;
-	
 	//--------------------
-	// All the items in chests within a range of 1 square around the Tux 
-	// will be collected together to be shown in the chest inventory.
+	// First we clean out the new Show_Pointer_List
 	//
-	if ( sqrt ( ( chest_pos . x - curShip . AllLevels [ Me . pos . z ] -> ChestItemList [ i ] . pos . x ) *
-		    ( chest_pos . x - curShip . AllLevels [ Me . pos . z ] -> ChestItemList [ i ] . pos . x ) +
-		    ( chest_pos . y - curShip . AllLevels [ Me . pos . z ] -> ChestItemList [ i ] . pos . y )  *
-		    ( chest_pos . y - curShip . AllLevels [ Me . pos . z ] -> ChestItemList [ i ] . pos . y )  ) < 1 )
-	{
-	    *CurrentItemPointer = & ( curShip . AllLevels [ Me . pos . z ] -> ChestItemList [ i ] );
-	    CurrentItemPointer ++;
-	    NumberOfItems ++;
-	}
-    }
-    
-    return ( NumberOfItems );
-    
+	CurrentItemPointer = ItemPointerListPointer ;
+	for (i = 0 ; i < MAX_CHEST_ITEMS_PER_LEVEL ; i ++)
+		{
+		*CurrentItemPointer = NULL;
+		CurrentItemPointer++;
+		}
+
+	CurrentItemPointer = ItemPointerListPointer;
+
+	for (i = 0 ; i < MAX_CHEST_ITEMS_PER_LEVEL ; i ++)
+		{
+		if ( curShip . AllLevels [ Me . pos . z ] -> ChestItemList [ i ] . type == (-1) ) continue;
+
+		//--------------------
+		// All the items in chests within a range of 1 square around the Tux 
+		// will be collected together to be shown in the chest inventory.
+		//
+		if ( sqrt ( ( chest_pos . x - curShip . AllLevels [ Me . pos . z ] -> ChestItemList [ i ] . pos . x ) *
+					( chest_pos . x - curShip . AllLevels [ Me . pos . z ] -> ChestItemList [ i ] . pos . x ) +
+					( chest_pos . y - curShip . AllLevels [ Me . pos . z ] -> ChestItemList [ i ] . pos . y )  *
+					( chest_pos . y - curShip . AllLevels [ Me . pos . z ] -> ChestItemList [ i ] . pos . y )  ) < 1 )
+			{
+			*CurrentItemPointer = & ( curShip . AllLevels [ Me . pos . z ] -> ChestItemList [ i ] );
+			CurrentItemPointer ++;
+			NumberOfItems ++;
+			}
+		}
+
+	return ( NumberOfItems );
+
 }; // void AssemblePointerListForChestShow ( .. )
   
 /**
@@ -839,8 +830,8 @@ static void ShowItemInfo ( item* ShowItem , int Displacement , char ShowArrows ,
  * show from the console menu.
  */
 int GreatShopInterface ( int NumberOfItems , item* ShowPointerList[ MAX_ITEMS_IN_INVENTORY ] , 
-		     int NumberOfItemsInTuxRow , item* TuxItemsList[ MAX_ITEMS_IN_INVENTORY] , 
-		     shop_decision* ShopOrder)
+		int NumberOfItemsInTuxRow , item* TuxItemsList[ MAX_ITEMS_IN_INVENTORY] , 
+		shop_decision* ShopOrder)
 {
     int Displacement=0;
     int i;
@@ -1619,25 +1610,6 @@ InitTradeWithCharacter( int CharacterCode )
 		break;
 	};
 	
-	//--------------------
-	// And since it can be assumed that the shop never runs
-	// out of supply for a certain good, we can as well restore
-	// the shop inventory list at this position.
-	//
-	/*
-	  if ( FIXED_SHOP_INVENTORY )
-	  {
-	  for ( i = 0 ; i < NUMBER_OF_ITEMS_IN_SHOP ; i++ )
-	  {
-	  SalesList[ i ].type = StandardShopInventory [ i ];
-	  SalesList[ i ].prefix_code = ( -1 );
-	  SalesList[ i ].suffix_code = ( -1 );
-	  FillInItemProperties( & ( SalesList[ i ] ) , TRUE , 0 );
-	  Buy_Pointer_List [ i ] = & ( SalesList[ i ] ) ;
-	  }
-	  Buy_Pointer_List [ i ] = NULL ; 
-	  }
-	*/
 	AssembleItemListForTradeCharacter ( & ( SalesList [ 0 ] ) , CharacterCode );
 	for ( i = 0 ; i < MAX_ITEMS_IN_INVENTORY ; i ++ )
 	{

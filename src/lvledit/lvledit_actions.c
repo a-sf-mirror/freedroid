@@ -759,7 +759,6 @@ void level_editor_place_aligned_obstacle ( int positionid )
 {
 	struct leveleditor_typeselect *ts = get_current_object_type();
 	int obstacle_id = -1;
-	int placement_is_possible = TRUE;
 	int obstacle_created = FALSE;
 	float position_offset_x[9] = { 0, 0.5, 1.0, 0, 0.5, 1.0, 0, 0.5, 1.0 };
 	float position_offset_y[9] = { 1.0, 1.0, 1.0, 0.5, 0.5, 0.5, 0, 0, 0 };
@@ -968,5 +967,71 @@ void delete_map_level(int lnum)
 	curShip.num_levels--;
 
 }
+
+void level_editor_edit_chest(obstacle *o)
+{
+	item *chest_items[MAX_CHEST_ITEMS_PER_LEVEL];
+	item *user_items[MAX_CHEST_ITEMS_PER_LEVEL]; 
+	int chest_nb_items;
+	int done = 0;
+	shop_decision shop_order;
+	item *tmp;
+	int idx;
+
+	item dummy_addtochest = { .type = 1, .suffix_code = -1, .prefix_code = -1, .is_identified = 1 }; 
+	FillInItemProperties (&dummy_addtochest, 2, 1);
+
+	user_items[0] = &dummy_addtochest;
+	user_items[1] = NULL;
+
+	// Safety check
+	switch (o->type) {
+		case ISO_H_CHEST_CLOSED:
+		case ISO_H_CHEST_OPEN:
+		case ISO_V_CHEST_CLOSED:
+		case ISO_V_CHEST_OPEN:
+			break;
+		default:
+			ErrorMessage(__FUNCTION__, "Tried to edit the contents of a chest, but the obstacle is not a chest.\n", PLEASE_INFORM, IS_FATAL);
+	}
+
+	while (!done) {
+
+		// Build the list of items in the chest
+		chest_nb_items = AssemblePointerListForChestShow(&chest_items[0], o->pos);
+
+		// Display the shop interface
+		done = GreatShopInterface (chest_nb_items, chest_items, 1, user_items, &shop_order);
+
+		// BUY removes an item from the chest
+		// SELL spaws the drop item interface
+		switch (shop_order.shop_command) {
+			case BUY_1_ITEM:
+				DeleteItem(chest_items[shop_order.item_selected]);
+				break;
+			case SELL_1_ITEM:
+				tmp = ItemDropFromLevelEditor();
+				if (tmp) {
+					tmp->pos.x = o->pos.x;
+					tmp->pos.y = o->pos.y;
+
+					for (idx = 0; idx < MAX_CHEST_ITEMS_PER_LEVEL; idx++) {
+						if (EditLevel()->ChestItemList[idx].type == -1)
+							break;
+					}
+					
+					if (idx == MAX_CHEST_ITEMS_PER_LEVEL) {
+						ErrorMessage(__FUNCTION__, "Chests on current level are full.", PLEASE_INFORM, IS_WARNING_ONLY);
+						idx = 0;
+					}
+					MoveItem(tmp, &EditLevel()->ChestItemList[idx]);
+				}
+				break;
+			default:
+				;
+		}
+	}
+}
+
 #undef _leveleditor_action_c
 

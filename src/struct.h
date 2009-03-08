@@ -955,4 +955,11 @@ typedef struct pathfinder_context_s
 }
 pathfinder_context;
 
+typedef struct
+{
+  int shop_command;
+  int item_selected;
+  int number_selected;
+} shop_decision;
+
 #endif

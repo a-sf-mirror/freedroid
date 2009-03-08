@@ -311,7 +311,7 @@ level_editor_item_drop_index ( int row_len , int line_len )
  * of item images and clicking with the mouse on an item image or on one
  * of the buttons presented to the person editing the level.
  */
-void ItemDropFromLevelEditor( void )
+item *ItemDropFromLevelEditor( void )
 {
     int SelectionDone = FALSE;
     int NewItemCode = ( -1 );
@@ -321,7 +321,8 @@ void ItemDropFromLevelEditor( void )
     int row_len = 5 ;
     int line_len = 8 ; 
     int our_multiplicity = 1 ;
-    int item_group = 0 ; 
+    int item_group = 0 ;
+	item *dropped_item;
     static int previous_mouse_position_index = (-1) ;
     static int previous_suffix_selected = (-1) ;
     static int previous_prefix_selected = (-1) ;
@@ -396,7 +397,7 @@ void ItemDropFromLevelEditor( void )
 	if ( EscapePressed() )
 	{ //Pressing escape cancels the dropping
 	    while ( EscapePressed() );
-	    return ;
+	    return NULL;
 	}
 
 	if ( MouseLeftClicked())
@@ -453,7 +454,7 @@ void ItemDropFromLevelEditor( void )
 	    else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_CANCEL_ITEM_DROP_BUTTON ,
 					 GetMousePos_x()  , GetMousePos_y()  ) )
 	    {
-		return ;
+		return NULL;
 	    }
 	    else if ( level_editor_item_drop_index ( row_len , line_len ) != (-1) )
 	    {
@@ -476,13 +477,15 @@ void ItemDropFromLevelEditor( void )
 	our_multiplicity = do_graphical_number_selection_in_range ( 1 , (!MatchItemWithName(NewItemCode, "Cyberbucks")) ? 100 : 1000, 1 );
 	if ( our_multiplicity == 0 ) our_multiplicity = 1;
     }
-    DropItemAt( NewItemCode , Me . pos . z , rintf( Me.pos.x ) , rintf( Me.pos.y ) , 
+    dropped_item = DropItemAt( NewItemCode , Me . pos . z , rintf( Me.pos.x ) , rintf( Me.pos.y ) , 
 		previous_prefix_selected , previous_suffix_selected , our_multiplicity );
     
     while ( MouseLeftPressed() ) SDL_Delay(1);
 
     save_mouse_state();
     game_status = INSIDE_LVLEDITOR;
+
+	return dropped_item;
 }; // void ItemDropFromLevelEditor( void )
 
 /**

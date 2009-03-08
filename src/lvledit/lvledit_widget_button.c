@@ -106,7 +106,7 @@ static void activate_button(struct leveleditor_button *b)
 	    level_editor_action_change_map_label_user (EditLevel());
 	    break;
 	case LEVEL_EDITOR_EDIT_CHEST_BUTTON:
-		GiveMouseAlertWindow("Implement that\n");
+		level_editor_edit_chest(single_tile_selection(OBJECT_OBSTACLE));
 		break;
 	case LEVEL_EDITOR_NEW_ITEM_BUTTON:
 	    ItemDropFromLevelEditor(  );

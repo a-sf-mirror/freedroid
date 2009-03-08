@@ -461,93 +461,94 @@ void write_full_item_name_into_string ( item* ShowItem , char* full_item_name )
  * This function drops an item at a given place, assigning it the given
  * suffix and prefix code.
  */
-void
-DropItemAt( int ItemType , int level_num , float x , float y , int prefix , int suffix , int multiplicity )
+item *DropItemAt (int ItemType , int level_num , float x , float y , int prefix , int suffix , int multiplicity)
 {
-    int i;
-    gps item_pos;
-    level* item_drop_map_level = NULL ;
-    
-    //--------------------
-    // Some check against illegal item types
-    //
-    if ( ( ItemType < 0 ) || ( ItemType >= Number_Of_Item_Types ) )
-    {
-	DebugPrintf ( -1000 , "\n\nItemType received: %d." , ItemType );
-	ErrorMessage ( __FUNCTION__  , "\
-Received an item type that was outside of range of the allowed item types.",
-				   PLEASE_INFORM, IS_FATAL );
-    }
+	int i;
+	gps item_pos;
+	level* item_drop_map_level = NULL ;
 
-    //--------------------
-    // Maybe the given position is from a virtual position of a dying robot.
-    // Then of course we must fix it first.  But fortunately we have suitable
-    // methods already...
-    //
-    item_pos . x = x ;
-    item_pos . y = y ;
-    item_pos . z = level_num ;
-    adapt_position_for_jump_thresholds ( & ( item_pos ) , & ( item_pos ) );
-    x = item_pos . x ;
-    y = item_pos . y ;
-    level_num = item_pos . z ;
+	//--------------------
+	// Some check against illegal item types
+	//
+	if ( ( ItemType < 0 ) || ( ItemType >= Number_Of_Item_Types ) )
+		{
+		DebugPrintf ( -1000 , "\n\nItemType received: %d." , ItemType );
+		ErrorMessage ( __FUNCTION__  , "\
+				Received an item type that was outside of range of the allowed item types.",
+				PLEASE_INFORM, IS_FATAL );
+		}
 
-    //--------------------
-    // Now we can properly set the level...
-    //
-    item_drop_map_level = curShip . AllLevels [ level_num ] ;
+	//--------------------
+	// Maybe the given position is from a virtual position of a dying robot.
+	// Then of course we must fix it first.  But fortunately we have suitable
+	// methods already...
+	//
+	item_pos . x = x ;
+	item_pos . y = y ;
+	item_pos . z = level_num ;
+	adapt_position_for_jump_thresholds ( & ( item_pos ) , & ( item_pos ) );
+	x = item_pos . x ;
+	y = item_pos . y ;
+	level_num = item_pos . z ;
 
-    //--------------------
-    // If given a non-existent item type, we don't do anything
-    // of course (and also don't produce a SEGFAULT or something...)
-    //
-    if ( ItemType == ( -1 ) ) return;
-    if ( ItemType >= Number_Of_Item_Types ) 
-    {
-	fprintf ( stderr, "\n\nItemType: '%d'.\n" , ItemType );
-	ErrorMessage ( __FUNCTION__  , "\
-There was an item code for an item to drop given to the function \n\
-DropItemAt( ... ), which is pointing beyond the scope of the known\n\
-item types.  This indicates a severe bug in Freedroid.",
-				   PLEASE_INFORM, IS_FATAL );
-    }
-    
-    //--------------------
-    // At first we must find a free item index on this level,
-    // so that we can enter the new item there.
-    //
-    for ( i = 0 ; i < MAX_ITEMS_PER_LEVEL ; i ++ )
-    {
-	if ( item_drop_map_level -> ItemList [ i ] . type == (-1) ) 
-	{
-	    break;
-	}
-    }
-    if ( i >= MAX_ITEMS_PER_LEVEL )
-    {
-	ErrorMessage ( __FUNCTION__  , "\
-Couldn't find another array entry to drop another item.",
-				   PLEASE_INFORM, IS_FATAL );
-    }
-    
-    //--------------------
-    // Now we can construct the new item
-    //
-    item_drop_map_level -> ItemList [ i ] . type = ItemType;
-    item_drop_map_level -> ItemList [ i ] . pos . x = x;
-    item_drop_map_level -> ItemList [ i ] . pos . y = y;
-    item_drop_map_level -> ItemList [ i ] . prefix_code = prefix;
-    item_drop_map_level -> ItemList [ i ] . suffix_code = suffix;
+	//--------------------
+	// Now we can properly set the level...
+	//
+	item_drop_map_level = curShip . AllLevels [ level_num ] ;
 
-    FillInItemProperties ( & ( item_drop_map_level->ItemList[ i ] ) , FALSE, multiplicity );
-    
-    item_drop_map_level -> ItemList [ i ] . throw_time = 0.01 ; // something > 0 
-    if ( ( prefix == (-1) ) && ( suffix == (-1) ) ) item_drop_map_level -> ItemList [ i ] . is_identified = TRUE ;
-    else item_drop_map_level -> ItemList [ i ] . is_identified = FALSE ;
-    
-    play_item_sound ( ItemType );
-    
-}; // void DropItemAt( int ItemType , int x , int y , int prefix , int suffix )
+	//--------------------
+	// If given a non-existent item type, we don't do anything
+	// of course (and also don't produce a SEGFAULT or something...)
+	//
+	if (ItemType == (-1)) 
+		return NULL;
+	if ( ItemType >= Number_Of_Item_Types ) 
+		{
+		fprintf ( stderr, "\n\nItemType: '%d'.\n" , ItemType );
+		ErrorMessage ( __FUNCTION__  , "\
+				There was an item code for an item to drop given to the function \n\
+				DropItemAt( ... ), which is pointing beyond the scope of the known\n\
+				item types.  This indicates a severe bug in Freedroid.",
+				PLEASE_INFORM, IS_FATAL );
+		}
+
+	//--------------------
+	// At first we must find a free item index on this level,
+	// so that we can enter the new item there.
+	//
+	for ( i = 0 ; i < MAX_ITEMS_PER_LEVEL ; i ++ )
+		{
+		if ( item_drop_map_level -> ItemList [ i ] . type == (-1) ) 
+			{
+			break;
+			}
+		}
+	if ( i >= MAX_ITEMS_PER_LEVEL )
+		{
+		ErrorMessage ( __FUNCTION__  , "\
+				Couldn't find another array entry to drop another item.",
+				PLEASE_INFORM, IS_FATAL );
+		}
+
+	//--------------------
+	// Now we can construct the new item
+	//
+	item_drop_map_level -> ItemList [ i ] . type = ItemType;
+	item_drop_map_level -> ItemList [ i ] . pos . x = x;
+	item_drop_map_level -> ItemList [ i ] . pos . y = y;
+	item_drop_map_level -> ItemList [ i ] . prefix_code = prefix;
+	item_drop_map_level -> ItemList [ i ] . suffix_code = suffix;
+
+	FillInItemProperties ( & ( item_drop_map_level->ItemList[ i ] ) , FALSE, multiplicity );
+
+	item_drop_map_level -> ItemList [ i ] . throw_time = 0.01 ; // something > 0 
+	if ( ( prefix == (-1) ) && ( suffix == (-1) ) ) item_drop_map_level -> ItemList [ i ] . is_identified = TRUE ;
+	else item_drop_map_level -> ItemList [ i ] . is_identified = FALSE ;
+
+	play_item_sound ( ItemType );
+
+	return &item_drop_map_level->ItemList[i];	
+};
 
 /**
  * This function checks whether a given item can be equipped.

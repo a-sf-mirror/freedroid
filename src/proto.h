@@ -415,7 +415,7 @@ unsigned long calculate_item_sell_price ( item* BuyItem );
 void FillInItemProperties( item* ThisItem , int FullDuration , int multiplicity);
 void DamageProtectiveEquipment( void ) ;
 void write_full_item_name_into_string ( item* ShowItem , char* full_item_name ); 
-void DropItemAt( int ItemType , int level_num , float x , float y , int prefix , int suffix , int multiplicity );
+item *DropItemAt( int ItemType , int level_num , float x , float y , int prefix , int suffix , int multiplicity );
 void Quick_ApplyItem( int ItemKey );
 int MatchItemWithName ( int type, const char * name );
 int GetItemIndexByName ( const char * name );
@@ -637,6 +637,7 @@ int TryToIntegrateItemIntoInventory ( item* BuyItem , int AmountToBuyAtMost );
 int AssemblePointerListForChestShow ( item** ItemPointerListPointer , moderately_finepoint chest_pos );
 int AssemblePointerListForItemShow ( item** ItemPointerListPointer , int IncludeWornItems );
 void InitTradeWithCharacter( int CharacterCode ) ;
+int GreatShopInterface (int, item *ShowPointerList[MAX_ITEMS_IN_INVENTORY], int, item *TuxItemsList[MAX_ITEMS_IN_INVENTORY], shop_decision *);
 
 // takeover.c 
 

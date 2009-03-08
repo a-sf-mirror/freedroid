@@ -57,6 +57,9 @@ void action_jump_to_level(int, double, double);
 void CreateNewMapLevel(int);
 void delete_map_level(int);
 
+/* Chest manipulation */
+void level_editor_edit_chest(obstacle *);
+
 #ifndef _leveleditor_actions_c
 #define EXTERN extern
 #else
