@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: freedroid-discussion@lists.sourceforge.net\n"
-"POT-Creation-Date: 2009-03-03 09:37+0100\n"
+"POT-Creation-Date: 2009-03-08 15:31+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1522,25 +1522,25 @@ msgstr ""
 msgid "Day %d  %02d:%02d"
 msgstr ""
 
-#: ../src/influ.c:522
+#: ../src/influ.c:524
 msgid "Clip empty, reloading..."
 msgstr ""
 
-#: ../src/influ.c:2433
+#: ../src/influ.c:2429
 msgid "No more ammunition !"
 msgstr ""
 
-#: ../src/influ.c:2917
+#: ../src/influ.c:2913
 #, c-format
 msgid "This is a %s. %s"
 msgstr ""
 
-#: ../src/influ.c:2946
+#: ../src/influ.c:2942
 #, c-format
 msgid "Examining %s. %s"
 msgstr ""
 
-#: ../src/influ.c:2958
+#: ../src/influ.c:2954
 #, c-format
 msgid "There is nothing here."
 msgstr ""

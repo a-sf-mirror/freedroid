@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: freedroidrpg\n"
 "Report-Msgid-Bugs-To: freedroid-discussion@lists.sourceforge.net\n"
-"POT-Creation-Date: 2009-01-17 09:41+0100\n"
+"POT-Creation-Date: 2009-03-08 15:31+0100\n"
 "PO-Revision-Date: 2008-09-08 07:34+0000\n"
 "Last-Translator: Arthur Huillet <arthur.huillet@free.fr>\n"
 "Language-Team: French\n"
@@ -18,26 +18,33 @@ msgstr ""
 "X-Launchpad-Export-Date: 2008-09-14 12:32+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
-#: ../src/automap.c:78
+#: ../src/automap.c:83
 msgid "Automap ON."
 msgstr "Carte automatique activée"
 
-#: ../src/automap.c:80
+#: ../src/automap.c:85
 msgid "Automap OFF."
 msgstr "Carte automatique désactivée"
 
-#: ../src/automap.c:84
-msgid "Sorry, you don't have automap yet:  map maker item not present."
+#: ../src/automap.c:90
+#, fuzzy
+msgid "Compass ON (no automap yet: map maker not present."
 msgstr ""
 "Désolé, vous ne pouvez pas encore utiliser la carte automatique : outil de "
 "cartographie non présent"
+
+#: ../src/automap.c:92
+#, fuzzy
+msgid "Compass OFF."
+msgstr "Carte automatique désactivée"
 
 #: ../src/blocks.c:1577 ../src/blocks.c:1584 ../src/blocks.c:1592
 msgid "Wall"
 msgstr "Mur"
 
 #: ../src/blocks.c:1578 ../src/blocks.c:1585
-msgid "Hey ! This looks like...a WALL !"
+#, fuzzy
+msgid "Hey! This looks like...a WALL!"
 msgstr "Hé ! Ça ressemble... à un mur !"
 
 #: ../src/blocks.c:1594
@@ -160,7 +167,8 @@ msgid "Chest"
 msgstr "Coffre"
 
 #: ../src/blocks.c:2029 ../src/blocks.c:2048
-msgid "This chest has already been opened"
+#, fuzzy
+msgid "This chest has already been opened."
 msgstr "Ce coffre a déjà été ouvert"
 
 #: ../src/blocks.c:2039 ../src/blocks.c:2057
@@ -175,7 +183,8 @@ msgstr "Arme automatique"
 
 #: ../src/blocks.c:2064 ../src/blocks.c:2070 ../src/blocks.c:2076
 #: ../src/blocks.c:2082
-msgid "A not-that-nice autogun. Beware : it could be harmful."
+#, fuzzy
+msgid "A not-that-nice autogun. Beware: it could be harmful."
 msgstr ""
 "Une arme automatique pas très rassurante. Attention : ça pourrait être "
 "dangereux."
@@ -344,7 +353,8 @@ msgid "Toilet"
 msgstr "Toilettes"
 
 #: ../src/blocks.c:2385
-msgid "Feel like defecating ?"
+#, fuzzy
+msgid "Feel like defecating?"
 msgstr "Envie de déféquer ?"
 
 #: ../src/blocks.c:2387
@@ -356,7 +366,8 @@ msgid "Yes, they are clean."
 msgstr "Oui, elles sont propres."
 
 #: ../src/blocks.c:2391
-msgid "Would you have something to empty ?"
+#, fuzzy
+msgid "Would you have something to empty?"
 msgstr "Auriez-vous quelque chose à vider ?"
 
 #: ../src/blocks.c:2399 ../src/blocks.c:2407 ../src/blocks.c:2415
@@ -365,6 +376,10 @@ msgid "Chair"
 msgstr "Chaise"
 
 #: ../src/blocks.c:2400 ../src/blocks.c:2408 ../src/blocks.c:2416
+#, fuzzy
+msgid "This is an orange chair which does not look too comfortable."
+msgstr "C'est une chaise orange qui ne semble pas très confortable."
+
 #: ../src/blocks.c:2424
 msgid "This is an orange chair which does not look too comfortable"
 msgstr "C'est une chaise orange qui ne semble pas très confortable."
@@ -452,11 +467,13 @@ msgid "Bath tub"
 msgstr "Baignoire"
 
 #: ../src/blocks.c:2661
-msgid "An idea of what comfort is"
+#, fuzzy
+msgid "An idea of what comfort is."
 msgstr "Une idée du confort présent"
 
 #: ../src/blocks.c:2669 ../src/blocks.c:2678 ../src/blocks.c:2687
-msgid "Taking a bath is not your current quest - what a pity !"
+#, fuzzy
+msgid "Taking a bath is not your current quest - what a pity!"
 msgstr ""
 "Prendre un bain ne fait pas partie de la quête en cours - quel dommage !"
 
@@ -578,9 +595,10 @@ msgstr "Mur gris"
 
 #: ../src/blocks.c:2950 ../src/blocks.c:2951 ../src/blocks.c:2952
 #: ../src/blocks.c:2953
+#, fuzzy
 msgid ""
 "This is grey and seems quite hard to destroy. People usually call it a wall. "
-"You have no chance to go through : there must be another path."
+"You have no chance to go through: there must be another path."
 msgstr ""
 "C'est gris, et semble assez dur à détruire. Les gens appellent ça un mur. "
 "Vous n'avez aucune chance de passer au travers : il doit y avoir un autre "
@@ -606,7 +624,7 @@ msgstr "Mur vert"
 #, fuzzy
 msgid ""
 "This wall is covered by an avocado-green wallpaper. You feel nausea when "
-"staring at it too long"
+"staring at it too long."
 msgstr "Ce mur est couvert par un papier peint vert asperge."
 
 #: ../src/blocks.c:3019 ../src/blocks.c:3027 ../src/blocks.c:3035
@@ -658,11 +676,12 @@ msgid "Crumbled wall"
 msgstr "Mur rouge"
 
 #: ../src/blocks.c:3217 ../src/blocks.c:3220
-msgid "Well ... it was not very resistant "
+#, fuzzy
+msgid "Well ... it was not very resistant..."
 msgstr "Et bien ... ce n'était pas très solide "
 
 #: ../src/blocks.c:3230 ../src/blocks.c:3238
-msgid "Hmm... something's odd about this wall "
+msgid "Hmm... something's odd about this wall..."
 msgstr ""
 
 #: ../src/blocks.c:3282
@@ -670,7 +689,8 @@ msgid "Blood"
 msgstr "Sang"
 
 #: ../src/blocks.c:3283
-msgid "Do droids bleed ? These do."
+#, fuzzy
+msgid "Do droids bleed? These do."
 msgstr "Est-ce que les droïdes saignent ? Ceux là, oui."
 
 #: ../src/blocks.c:3340
@@ -689,7 +709,8 @@ msgstr "Entrée"
 msgid "It leads into the dark tunnels below..."
 msgstr "On aperçoit les tunnels sombres en dessous..."
 
-#: ../src/blocks.c:3380 ../src/blocks.c:3389
+#: ../src/blocks.c:3380 ../src/blocks.c:3389 ../src/blocks.c:3397
+#: ../src/blocks.c:3405
 msgid "Ladder"
 msgstr "Echelle"
 
@@ -697,67 +718,73 @@ msgstr "Echelle"
 msgid "It leads to the surface world."
 msgstr "Ca mène à la surface du monde."
 
-#: ../src/blocks.c:3404 ../src/blocks.c:3464
+#: ../src/blocks.c:3398 ../src/blocks.c:3406
+#, fuzzy
+msgid "This is a ladder."
+msgstr "C'est un %s. %s"
+
+#: ../src/blocks.c:3419 ../src/blocks.c:3479
 #, fuzzy
 msgid "Exotic fungoid plant"
 msgstr "Plante exotique"
 
-#: ../src/blocks.c:3405
+#: ../src/blocks.c:3420
 #, fuzzy
-msgid "A wonderful exotic fungus. You can read \"Made by Basse\" on it"
+msgid "A wonderful exotic fungus. You can read \"Made by Basse\" on it."
 msgstr "Une merveilleuse plante exotique. On peut y lire \"Fait par Basse\""
 
-#: ../src/blocks.c:3428
+#: ../src/blocks.c:3443
 msgid "Rocks"
 msgstr "Rochers"
 
-#: ../src/blocks.c:3429
+#: ../src/blocks.c:3444
+#, fuzzy
 msgid ""
-"Do you think a rock can attack you ? No, MS droids can't hide themselves "
-"that way : they crash before."
+"Do you think a rock can attack you? No, MS droids can't hide themselves that "
+"way: they crash before."
 msgstr ""
 "Pensez-vous qu'un rocher peut vous attaquer ? Non, les droïdes MS ne peuvent "
 "se dissimuler de cette manière : ils plantent avant."
 
-#: ../src/blocks.c:3465
+#: ../src/blocks.c:3480
 #, fuzzy
 msgid "Eating too much of that could lead to a kernel panic..."
 msgstr "Trop en manger pourrait provoquer un plantage du noyau."
 
-#: ../src/blocks.c:3494 ../src/blocks.c:3495
+#: ../src/blocks.c:3509 ../src/blocks.c:3510
 msgid "Cosy wall in claret-red"
 msgstr ""
 
-#: ../src/blocks.c:3496 ../src/blocks.c:3497
+#: ../src/blocks.c:3511 ../src/blocks.c:3512
 #, fuzzy
 msgid "You think it would be better with a penguin on it. You are right!"
 msgstr ""
 "Vous pensez que ce serait mieux avec un manchot dessus. Vous avez raison."
 
-#: ../src/blocks.c:3498 ../src/blocks.c:3499
+#: ../src/blocks.c:3513 ../src/blocks.c:3514
 msgid "Gentle cyan-colored wall"
 msgstr ""
 
-#: ../src/blocks.c:3500 ../src/blocks.c:3501
+#: ../src/blocks.c:3515 ../src/blocks.c:3516
 msgid "A delight to the eye... could use a penguin on it, nevertheless."
 msgstr ""
 
-#: ../src/blocks.c:3512 ../src/blocks.c:3519
+#: ../src/blocks.c:3527 ../src/blocks.c:3534
 msgid "Shop counter"
 msgstr "Comptoir de magasin"
 
-#: ../src/blocks.c:3513 ../src/blocks.c:3520
+#: ../src/blocks.c:3528 ../src/blocks.c:3535
 msgid ""
 "This model of the counter features a built-in cash register and bright neon "
 "lights."
 msgstr ""
 "Ce modèle de comptoir intègre une caisse enregistreuse et un néon lumineux."
 
-#: ../src/blocks.c:3525 ../src/blocks.c:3530
+#: ../src/blocks.c:3540 ../src/blocks.c:3545
 msgid "Set of shelves"
 msgstr "Etagères"
 
-#: ../src/blocks.c:3526
+#: ../src/blocks.c:3541
 msgid ""
 "There is a lot of junk in here. Bot parts, medical supplies, scrap metal "
 "bits and other useless things like that."
@@ -765,7 +792,7 @@ msgstr ""
 "Il y a beaucoup de bibelots là-dessus. Morceaux de robots, médicaments, "
 "bouts de métal et d'autres choses inutiles du même genre."
 
-#: ../src/blocks.c:3531
+#: ../src/blocks.c:3546
 msgid ""
 "There is a lot of junk in here. Bot parts, gold bars, dead rodents, scrap "
 "metal bits and other useless things like that."
@@ -773,15 +800,15 @@ msgstr ""
 "Il y a beaucoup de bibelots là-dessus. Morceaux de robots, lingots d'or, "
 "rats morts, morceaux de métal et d'autres choses inutiles du même genre."
 
-#: ../src/blocks.c:3536 ../src/blocks.c:3541
+#: ../src/blocks.c:3551 ../src/blocks.c:3556
 msgid "Empty shelves"
 msgstr "Étagères vides"
 
-#: ../src/blocks.c:3537
+#: ../src/blocks.c:3552
 msgid "Whatever was here before, is not here anymore."
 msgstr "Quoi qu'il y ait eu ici, ça n'y est plus."
 
-#: ../src/blocks.c:3542
+#: ../src/blocks.c:3557
 msgid ""
 "These are empty shelves. Silent and hollow they sleep in Spring. No thing "
 "remains here now."
@@ -789,34 +816,34 @@ msgstr ""
 "Ce sont des étagères vides. Silencieuses et désertes, elles sommeillent. "
 "Plus rien ne reste maintenant."
 
-#: ../src/blocks.c:3550 ../src/blocks.c:3557
+#: ../src/blocks.c:3565 ../src/blocks.c:3572
 #, fuzzy
 msgid "A library counter"
 msgstr "Un comptoir."
 
-#: ../src/blocks.c:3551 ../src/blocks.c:3558
+#: ../src/blocks.c:3566 ../src/blocks.c:3573
 msgid ""
 "You wonder how such things can still exist in a fully computerized world.\n"
 "A faint glimmer of nostalgia is crossing your mind."
 msgstr ""
 
-#: ../src/blocks.c:3570 ../src/blocks.c:3577 ../src/blocks.c:3584
-#: ../src/blocks.c:3591 ../src/blocks.c:3598 ../src/blocks.c:3604
-#: ../src/blocks.c:3612 ../src/blocks.c:3619 ../src/blocks.c:3626
-#: ../src/blocks.c:3633 ../src/blocks.c:3640 ../src/blocks.c:3647
-#: ../src/blocks.c:3653 ../src/blocks.c:3659 ../src/blocks.c:3665
-#: ../src/blocks.c:3671 ../src/blocks.c:3678 ../src/blocks.c:3684
-#: ../src/blocks.c:3690 ../src/blocks.c:3696
+#: ../src/blocks.c:3585 ../src/blocks.c:3592 ../src/blocks.c:3599
+#: ../src/blocks.c:3606 ../src/blocks.c:3613 ../src/blocks.c:3619
+#: ../src/blocks.c:3627 ../src/blocks.c:3634 ../src/blocks.c:3641
+#: ../src/blocks.c:3648 ../src/blocks.c:3655 ../src/blocks.c:3662
+#: ../src/blocks.c:3668 ../src/blocks.c:3674 ../src/blocks.c:3680
+#: ../src/blocks.c:3686 ../src/blocks.c:3693 ../src/blocks.c:3699
+#: ../src/blocks.c:3705 ../src/blocks.c:3711
 msgid "Strong wall"
 msgstr "Mur robuste"
 
-#: ../src/blocks.c:3571 ../src/blocks.c:3578 ../src/blocks.c:3585
-#: ../src/blocks.c:3592 ../src/blocks.c:3599 ../src/blocks.c:3606
-#: ../src/blocks.c:3613 ../src/blocks.c:3620 ../src/blocks.c:3627
-#: ../src/blocks.c:3634 ../src/blocks.c:3641 ../src/blocks.c:3648
-#: ../src/blocks.c:3654 ../src/blocks.c:3660 ../src/blocks.c:3666
-#: ../src/blocks.c:3672 ../src/blocks.c:3679 ../src/blocks.c:3685
-#: ../src/blocks.c:3691 ../src/blocks.c:3697
+#: ../src/blocks.c:3586 ../src/blocks.c:3593 ../src/blocks.c:3600
+#: ../src/blocks.c:3607 ../src/blocks.c:3614 ../src/blocks.c:3621
+#: ../src/blocks.c:3628 ../src/blocks.c:3635 ../src/blocks.c:3642
+#: ../src/blocks.c:3649 ../src/blocks.c:3656 ../src/blocks.c:3663
+#: ../src/blocks.c:3669 ../src/blocks.c:3675 ../src/blocks.c:3681
+#: ../src/blocks.c:3687 ../src/blocks.c:3694 ../src/blocks.c:3700
+#: ../src/blocks.c:3706 ../src/blocks.c:3712
 msgid ""
 "This great wall can withstand a swarm of rogue bots madly attacking it for "
 "weeks*! It can belong to you for only 299.99C$ + tax, per section. *( Your "
@@ -826,47 +853,47 @@ msgstr ""
 "semaines* ! Vous pouvez l'acheter pour seulement 299.99C$ HT par section. *"
 "(La durée peut varier. Ce mur est vendu SANS AUCUNE GARANTIE !) "
 
-#: ../src/blocks.c:3706 ../src/blocks.c:3712 ../src/blocks.c:3718
-#: ../src/blocks.c:3724 ../src/blocks.c:3729 ../src/blocks.c:3738
-#: ../src/blocks.c:3744 ../src/blocks.c:3750 ../src/blocks.c:3756
-#: ../src/blocks.c:3761 ../src/blocks.c:3768 ../src/blocks.c:3775
-#: ../src/blocks.c:3783 ../src/blocks.c:3791
+#: ../src/blocks.c:3721 ../src/blocks.c:3727 ../src/blocks.c:3733
+#: ../src/blocks.c:3739 ../src/blocks.c:3744 ../src/blocks.c:3753
+#: ../src/blocks.c:3759 ../src/blocks.c:3765 ../src/blocks.c:3771
+#: ../src/blocks.c:3776 ../src/blocks.c:3783 ../src/blocks.c:3790
+#: ../src/blocks.c:3798 ../src/blocks.c:3806
 msgid "Gate"
 msgstr "Portail"
 
-#: ../src/blocks.c:3707 ../src/blocks.c:3713 ../src/blocks.c:3719
-#: ../src/blocks.c:3725 ../src/blocks.c:3730 ../src/blocks.c:3739
-#: ../src/blocks.c:3745 ../src/blocks.c:3751 ../src/blocks.c:3757
-#: ../src/blocks.c:3762 ../src/blocks.c:3784 ../src/blocks.c:3792
+#: ../src/blocks.c:3722 ../src/blocks.c:3728 ../src/blocks.c:3734
+#: ../src/blocks.c:3740 ../src/blocks.c:3745 ../src/blocks.c:3754
+#: ../src/blocks.c:3760 ../src/blocks.c:3766 ../src/blocks.c:3772
+#: ../src/blocks.c:3777 ../src/blocks.c:3799 ../src/blocks.c:3807
 msgid "This gate is little more than just a big door. A very big door."
 msgstr ""
 "Cette porte n'est pas simplement une grosse porte. C'est une très grosse "
 "porte."
 
-#: ../src/blocks.c:3769 ../src/blocks.c:3776
+#: ../src/blocks.c:3784 ../src/blocks.c:3791
 msgid ""
 "It is locked in order to keep something out. Or maybe to keep something in?"
 msgstr ""
 "C'est verrouillé afin d'empêcher quelque chose d'entrer. Ou peut-être de "
 "sortir ?"
 
-#: ../src/blocks.c:3799 ../src/blocks.c:3805 ../src/blocks.c:3811
-#: ../src/blocks.c:3817
+#: ../src/blocks.c:3814 ../src/blocks.c:3820 ../src/blocks.c:3826
+#: ../src/blocks.c:3832
 msgid "Lounge chair"
 msgstr ""
 
-#: ../src/blocks.c:3800 ../src/blocks.c:3806 ../src/blocks.c:3812
-#: ../src/blocks.c:3818
+#: ../src/blocks.c:3815 ../src/blocks.c:3821 ../src/blocks.c:3827
+#: ../src/blocks.c:3833
 #, fuzzy
 msgid "The yellow lounge chair looks very inviting."
 msgstr "Cette chaise jaune est attrayante."
 
-#: ../src/blocks.c:3825 ../src/blocks.c:3832 ../src/blocks.c:3839
-#: ../src/blocks.c:3846
+#: ../src/blocks.c:3840 ../src/blocks.c:3847 ../src/blocks.c:3854
+#: ../src/blocks.c:3861
 msgid "Red bench"
 msgstr "Banc rouge"
 
-#: ../src/blocks.c:3826
+#: ../src/blocks.c:3841
 msgid ""
 "It is a soft bench, commonly seen in hospitals, shops and houses all around "
 "the world."
@@ -874,7 +901,7 @@ msgstr ""
 "C'est un banc confortable, que l'on trouve souvent dans les hôpitaux, les "
 "magasins et les maisons du monde entier."
 
-#: ../src/blocks.c:3833
+#: ../src/blocks.c:3848
 msgid ""
 "It is a soft bench, commonly seen in hospitals, malls and houses all around "
 "the world."
@@ -882,7 +909,7 @@ msgstr ""
 "C'est un banc confortable, que l'on trouve souvent dans les hôpitaux, les "
 "centre commerciaux et les maisons du monde entier."
 
-#: ../src/blocks.c:3840
+#: ../src/blocks.c:3855
 msgid ""
 "It is a soft bench, commonly seen in hospitals, barber shops and houses all "
 "around the world."
@@ -890,7 +917,7 @@ msgstr ""
 "C'est un banc confortable, que l'on trouve souvent dans les hôpitaux, les "
 "échoppes de barbiers et les maisons du monde entier."
 
-#: ../src/blocks.c:3847
+#: ../src/blocks.c:3862
 msgid ""
 "It is a soft bench, commonly seen in hospitals, coffee shops and houses all "
 "around the world."
@@ -898,27 +925,27 @@ msgstr ""
 "C'est un banc confortable, que l'on trouve souvent dans les hôpitaux, les "
 "cafés et les maisons du monde entier."
 
-#: ../src/blocks.c:3854 ../src/blocks.c:3859 ../src/blocks.c:3864
-#: ../src/blocks.c:3869
+#: ../src/blocks.c:3869 ../src/blocks.c:3874 ../src/blocks.c:3879
+#: ../src/blocks.c:3884
 msgid "Dead member of the Red Guard"
 msgstr "Membre de la Garde Rouge décédé"
 
-#: ../src/blocks.c:3855
+#: ../src/blocks.c:3870
 msgid ""
 "If not for the terrible wounds, you could think that he is just asleep..."
 msgstr ""
 "Sans les terribles blessures, on pourrait penser qu'il est simplement "
 "endormi..."
 
-#: ../src/blocks.c:3860
+#: ../src/blocks.c:3875
 msgid "It looks like he fought to the bitter end..."
 msgstr "On dirait qu'il s'est battu jusqu'au bout...."
 
-#: ../src/blocks.c:3865
+#: ../src/blocks.c:3880
 msgid "Numerous wounds cover the body of this brave warrior..."
 msgstr "Beaucoup de blessures couvrent le corps de ce brave guerrier...."
 
-#: ../src/blocks.c:3870
+#: ../src/blocks.c:3885
 msgid ""
 "His body is charred and twisted... Such is the price of the service in the "
 "Red Guard..."
@@ -926,58 +953,58 @@ msgstr ""
 "Son corps est carbonisé et mutilé.... Tel est le prix du service dans la "
 "Garde Rouge...."
 
-#: ../src/blocks.c:3877 ../src/blocks.c:3884 ../src/blocks.c:3891
-#: ../src/blocks.c:3898
+#: ../src/blocks.c:3892 ../src/blocks.c:3899 ../src/blocks.c:3906
+#: ../src/blocks.c:3913
 msgid "Conference table"
 msgstr "Table de conférence"
 
-#: ../src/blocks.c:3878 ../src/blocks.c:3885 ../src/blocks.c:3892
-#: ../src/blocks.c:3899
+#: ../src/blocks.c:3893 ../src/blocks.c:3900 ../src/blocks.c:3907
+#: ../src/blocks.c:3914
 msgid "A round conference table with chairs and a computer at every seat."
 msgstr ""
 "Une table de conférence ronde avec des chaises et un ordinateur à chaque "
 "place."
 
-#: ../src/blocks.c:3906 ../src/blocks.c:3914
+#: ../src/blocks.c:3921 ../src/blocks.c:3929
 msgid "Massive fancy wall"
 msgstr ""
 
-#: ../src/blocks.c:3907 ../src/blocks.c:3915
+#: ../src/blocks.c:3922 ../src/blocks.c:3930
 msgid ""
 "That's some rather massive, yet fancy-looking type of wall.\n"
 "A second sight reveals lots of plastics, though."
 msgstr ""
 
-#: ../src/blocks.c:3922 ../src/blocks.c:3929 ../src/blocks.c:3936
-#: ../src/blocks.c:3943
+#: ../src/blocks.c:3937 ../src/blocks.c:3944 ../src/blocks.c:3951
+#: ../src/blocks.c:3958
 msgid "Modernized bed"
 msgstr ""
 
-#: ../src/blocks.c:3923 ../src/blocks.c:3930 ../src/blocks.c:3937
-#: ../src/blocks.c:3944
+#: ../src/blocks.c:3938 ../src/blocks.c:3945 ../src/blocks.c:3952
+#: ../src/blocks.c:3959
 msgid "This is a standard sleeping capsule."
 msgstr "C'est une capsule de sommeil standard."
 
-#: ../src/blocks.c:3949 ../src/blocks.c:3955 ../src/blocks.c:3961
-#: ../src/blocks.c:3967
+#: ../src/blocks.c:3964 ../src/blocks.c:3970 ../src/blocks.c:3976
+#: ../src/blocks.c:3982
 msgid "Modernized bunk beds"
 msgstr ""
 
-#: ../src/blocks.c:3950 ../src/blocks.c:3956 ../src/blocks.c:3962
-#: ../src/blocks.c:3968
+#: ../src/blocks.c:3965 ../src/blocks.c:3971 ../src/blocks.c:3977
+#: ../src/blocks.c:3983
 msgid ""
 "To save space on the floor two sleeping capsules were stacked vertically."
 msgstr ""
 "Pour économiser de l'espace, deux capsules de sommeil ont été positionnées "
 "verticalement."
 
-#: ../src/blocks.c:3974 ../src/blocks.c:3980 ../src/blocks.c:3986
-#: ../src/blocks.c:3992
+#: ../src/blocks.c:3989 ../src/blocks.c:3995 ../src/blocks.c:4001
+#: ../src/blocks.c:4007
 msgid "Projector"
 msgstr "Projecteur"
 
-#: ../src/blocks.c:3975 ../src/blocks.c:3981 ../src/blocks.c:3987
-#: ../src/blocks.c:3993
+#: ../src/blocks.c:3990 ../src/blocks.c:3996 ../src/blocks.c:4002
+#: ../src/blocks.c:4008
 msgid ""
 "This device is used for casting images onto a wall or a screen. It uses "
 "something looking like a film reel as a source of those images."
@@ -986,13 +1013,13 @@ msgstr ""
 "utilise quelque chose qui ressemble à une bobine de film comme source "
 "d'images."
 
-#: ../src/blocks.c:3998 ../src/blocks.c:4003 ../src/blocks.c:4008
-#: ../src/blocks.c:4013
+#: ../src/blocks.c:4013 ../src/blocks.c:4018 ../src/blocks.c:4023
+#: ../src/blocks.c:4028
 msgid "Projector screen"
 msgstr "Ecran de projection"
 
-#: ../src/blocks.c:3999 ../src/blocks.c:4004 ../src/blocks.c:4009
-#: ../src/blocks.c:4014
+#: ../src/blocks.c:4014 ../src/blocks.c:4019 ../src/blocks.c:4024
+#: ../src/blocks.c:4029
 msgid ""
 "This is a projector screen, it allows to get better image quality than the "
 "wall."
@@ -1000,12 +1027,12 @@ msgstr ""
 "C'est un écran de projection qui permet d'avoir une meilleur qualité d'image "
 "que sur le mur."
 
-#: ../src/blocks.c:4019 ../src/blocks.c:4024 ../src/blocks.c:4041
-#: ../src/blocks.c:4046
+#: ../src/blocks.c:4034 ../src/blocks.c:4039 ../src/blocks.c:4056
+#: ../src/blocks.c:4061
 msgid "Bookcase"
 msgstr "Etagère à livres"
 
-#: ../src/blocks.c:4020
+#: ../src/blocks.c:4035
 msgid ""
 "There are many interesting books here, but none of them is a switch opening "
 "a secret passage."
@@ -1013,92 +1040,93 @@ msgstr ""
 "Il y a beaucoup de livres intéressants ici, mais aucun d'eux est un "
 "interrupteur qui ouvre un passage secret."
 
-#: ../src/blocks.c:4025
+#: ../src/blocks.c:4040
 msgid "There are exactly 451 books here."
 msgstr "Il y a exactement 451 livres ici."
 
-#: ../src/blocks.c:4030 ../src/blocks.c:4035 ../src/blocks.c:4052
-#: ../src/blocks.c:4057
+#: ../src/blocks.c:4045 ../src/blocks.c:4050 ../src/blocks.c:4067
+#: ../src/blocks.c:4072
 msgid "Empty bookcase"
 msgstr "Bibliothèque vide"
 
-#: ../src/blocks.c:4031 ../src/blocks.c:4036
+#: ../src/blocks.c:4046 ../src/blocks.c:4051
 #, fuzzy
 msgid "No books here, only dust."
 msgstr "Aucun livre ici, seulement de la poussière."
 
-#: ../src/blocks.c:4042 ../src/blocks.c:4047
+#: ../src/blocks.c:4057 ../src/blocks.c:4062
 #, fuzzy
 msgid ""
 "Only boring books like the Necronomicon here. Yawn. Nothing of interest."
 msgstr ""
 "Que des livres ennuyeux comme le Necronomicon ! Bof. Rien d'intéressant."
 
-#: ../src/blocks.c:4053 ../src/blocks.c:4058
+#: ../src/blocks.c:4068 ../src/blocks.c:4073
 msgid "Dust to trees. Trees to pages. Pages to books. Books to dust."
 msgstr ""
 "De la poussière aux arbres. Des arbres au papier. Du papier aux livres. Des "
 "livres à la poussière."
 
-#: ../src/blocks.c:4065 ../src/blocks.c:4079
+#: ../src/blocks.c:4080 ../src/blocks.c:4094
 msgid "Sign"
 msgstr "Pancarte"
 
-#: ../src/blocks.c:4066
-msgid "An informational sign..?"
+#: ../src/blocks.c:4081
+msgid "An informational sign...?"
 msgstr ""
 
-#: ../src/blocks.c:4072
+#: ../src/blocks.c:4087
 #, fuzzy
 msgid "Sign!"
 msgstr "Pancarte"
 
-#: ../src/blocks.c:4073
+#: ../src/blocks.c:4088
 msgid "A warning sign! But where's the danger here?"
 msgstr ""
 
-#: ../src/blocks.c:4080
-msgid "The arrow points at a direction. Maybe you should follow it"
+#: ../src/blocks.c:4095
+#, fuzzy
+msgid "The arrow points at a direction. Maybe you should follow it..."
 msgstr ""
 "La flèche pointe indique une direction. Peut-être devriez-vous la suivre"
 
-#: ../src/blocks.c:4085 ../src/blocks.c:4094 ../src/blocks.c:4101
-#: ../src/blocks.c:4108 ../src/blocks.c:4116 ../src/blocks.c:4123
-#: ../src/blocks.c:4130 ../src/blocks.c:4137 ../src/blocks.c:4145
-#: ../src/blocks.c:4152 ../src/blocks.c:4159 ../src/blocks.c:4166
+#: ../src/blocks.c:4100 ../src/blocks.c:4109 ../src/blocks.c:4116
+#: ../src/blocks.c:4123 ../src/blocks.c:4131 ../src/blocks.c:4138
+#: ../src/blocks.c:4145 ../src/blocks.c:4152 ../src/blocks.c:4160
+#: ../src/blocks.c:4167 ../src/blocks.c:4174 ../src/blocks.c:4181
 msgid "Counter"
 msgstr "Comptoir"
 
-#: ../src/blocks.c:4086 ../src/blocks.c:4095 ../src/blocks.c:4102
-#: ../src/blocks.c:4109
+#: ../src/blocks.c:4101 ../src/blocks.c:4110 ../src/blocks.c:4117
+#: ../src/blocks.c:4124
 #, fuzzy
 msgid "A counter section."
 msgstr "Un comptoir."
 
-#: ../src/blocks.c:4117 ../src/blocks.c:4124 ../src/blocks.c:4131
-#: ../src/blocks.c:4138
+#: ../src/blocks.c:4132 ../src/blocks.c:4139 ../src/blocks.c:4146
+#: ../src/blocks.c:4153
 msgid "A rounded counter corner section."
 msgstr ""
 
-#: ../src/blocks.c:4146 ../src/blocks.c:4153 ../src/blocks.c:4160
-#: ../src/blocks.c:4167
+#: ../src/blocks.c:4161 ../src/blocks.c:4168 ../src/blocks.c:4175
+#: ../src/blocks.c:4182
 msgid "An orthogonal counter corner section."
 msgstr ""
 
-#: ../src/blocks.c:4175
+#: ../src/blocks.c:4190
 msgid "Bar table"
 msgstr "Table de bar"
 
-#: ../src/blocks.c:4176
+#: ../src/blocks.c:4191
 #, fuzzy
-msgid "You can still see some food stains on this yellow round table."
+msgid "You can still see some food stains on this yellow round table. Yummy!"
 msgstr "On peut voir des traces de nourriture sur cette table ronde jaune."
 
-#: ../src/blocks.c:4183 ../src/blocks.c:4191
+#: ../src/blocks.c:4198 ../src/blocks.c:4206
 msgid "Table"
 msgstr "Table"
 
-#: ../src/blocks.c:4184 ../src/blocks.c:4192
+#: ../src/blocks.c:4199 ../src/blocks.c:4207
 msgid ""
 "Tables such as this one have been used for centuries to store various items "
 "on top of them."
@@ -1106,38 +1134,38 @@ msgstr ""
 "Des tables comme celle-ci ont été utilisées durant des siècles pour placer "
 "divers objets dessus."
 
-#: ../src/blocks.c:4201 ../src/blocks.c:4209
+#: ../src/blocks.c:4216 ../src/blocks.c:4224
 msgid "Glass table"
 msgstr "Table en verre"
 
-#: ../src/blocks.c:4202 ../src/blocks.c:4210
+#: ../src/blocks.c:4217 ../src/blocks.c:4225
 msgid "This table is made out of see-through glass."
 msgstr "Cette table est faite en verre transparent."
 
-#: ../src/blocks.c:4218
+#: ../src/blocks.c:4233
 msgid "Water"
 msgstr "Eau"
 
-#: ../src/blocks.c:4219
+#: ../src/blocks.c:4234
 #, fuzzy
-msgid "This water seems dangerous. You'll want to avoid going there. "
+msgid "This water seems dangerous. You'll want to avoid going there."
 msgstr "Cette eau semble dangereuse. Vous devriez éviter d'aller dedans. "
 
-#: ../src/blocks.c:4227 ../src/blocks.c:4236
+#: ../src/blocks.c:4242 ../src/blocks.c:4251
 msgid "Restaurant & bar multipurpose counter (tm)"
 msgstr ""
 
-#: ../src/blocks.c:4228 ../src/blocks.c:4237
+#: ../src/blocks.c:4243 ../src/blocks.c:4252
 msgid ""
 "A perfect fusion of practical usability, appealing optics and durability has "
 "been fitted into the design of this counter."
 msgstr ""
 
-#: ../src/blocks.c:4243 ../src/blocks.c:4250
+#: ../src/blocks.c:4258 ../src/blocks.c:4265
 msgid "Restaurant & bar multipurpose furniture (tm)"
 msgstr ""
 
-#: ../src/blocks.c:4244 ../src/blocks.c:4251
+#: ../src/blocks.c:4259 ../src/blocks.c:4266
 msgid ""
 "In combination with the 'Restaurant & bar multipurpose counter (tm)',\n"
 "  this professional set of heavy-duty kitchen furniture adds up to a pretty "
@@ -1146,22 +1174,32 @@ msgid ""
 "business these days..."
 msgstr ""
 
-#: ../src/blocks.c:4257 ../src/blocks.c:4264 ../src/blocks.c:4271
-#: ../src/blocks.c:4278 ../src/blocks.c:4285 ../src/blocks.c:4292
+#: ../src/blocks.c:4272 ../src/blocks.c:4279 ../src/blocks.c:4286
+#: ../src/blocks.c:4293 ../src/blocks.c:4300 ../src/blocks.c:4307
 msgid "Crystal formation"
 msgstr ""
 
-#: ../src/blocks.c:4258 ../src/blocks.c:4265 ../src/blocks.c:4272
-#: ../src/blocks.c:4279 ../src/blocks.c:4286 ../src/blocks.c:4293
+#: ../src/blocks.c:4273 ../src/blocks.c:4280 ../src/blocks.c:4287
+#: ../src/blocks.c:4294 ../src/blocks.c:4301 ../src/blocks.c:4308
 msgid "An unusual and impressive formation of red crystals."
 msgstr ""
 
-#: ../src/blocks.c:4318
+#: ../src/blocks.c:4314 ../src/blocks.c:4320 ../src/blocks.c:4326
+#: ../src/blocks.c:4332
+#, fuzzy
+msgid "Washbasin"
+msgstr "Bassine"
+
+#: ../src/blocks.c:4338 ../src/blocks.c:4344 ../src/blocks.c:4350
+msgid "Desk chair"
+msgstr ""
+
+#: ../src/blocks.c:4374
 #, c-format
 msgid "unnamed_obstacle"
 msgstr "obstacle iconnu"
 
-#: ../src/blocks.c:4324
+#: ../src/blocks.c:4380
 #, c-format
 msgid "This obstacle seems solid."
 msgstr "Cet obstacle semble solide."
@@ -1196,7 +1234,8 @@ msgstr "Portée"
 msgid "Programming"
 msgstr "Programmation"
 
-#: ../src/character.c:672 ../src/leveleditor.c:2949 ../src/leveleditor.c:3281
+#: ../src/character.c:672 ../src/lvledit/lvledit_menu.c:643
+#: ../src/lvledit/lvledit_menu.c:950
 #, c-format
 msgid "Level"
 msgstr "Niveau"
@@ -1260,40 +1299,40 @@ msgstr "Attaque"
 msgid "Damage"
 msgstr "Dommages"
 
-#: ../src/chat.c:874
+#: ../src/chat.c:877
 msgid "Start of Dialog"
 msgstr ""
 
-#: ../src/chat.c:929
+#: ../src/chat.c:926
 msgid "What will you say?"
 msgstr "Qu'allez-vous dire ?"
 
-#: ../src/enemy.c:830
+#: ../src/enemy.c:831
 #, c-format
 msgid "Your friend %s was killed by %s."
 msgstr "Votre ami %s a été tué par %s."
 
-#: ../src/enemy.c:832
+#: ../src/enemy.c:833
 #, c-format
 msgid "You killed %s."
 msgstr "Vous avez tué %s."
 
-#: ../src/enemy.c:834
+#: ../src/enemy.c:835
 #, c-format
 msgid "%s is dead."
 msgstr "%s est mort."
 
-#: ../src/enemy.c:839
+#: ../src/enemy.c:840
 #, c-format
 msgid "For defeating %s, you receive %d experience."
 msgstr "Détruire %s vous rapporte %d point(s) d'expérience."
 
-#: ../src/enemy.c:842
+#: ../src/enemy.c:843
 #, c-format
 msgid "%s was killed by %s."
 msgstr "%s a été tué par %s."
 
-#: ../src/enemy.c:843
+#: ../src/enemy.c:844
 #, c-format
 msgid "%s died."
 msgstr "%s est mort."
@@ -1615,12 +1654,12 @@ msgstr " B A R I L "
 msgid " C R A T E "
 msgstr " C A I S S E "
 
-#: ../src/hud.c:1388
+#: ../src/hud.c:1385
 #, c-format
 msgid "--- Message Protocol ---"
 msgstr "--- Protocole de Messagerie ---"
 
-#: ../src/hud.c:1417
+#: ../src/hud.c:1414
 #, c-format
 msgid ""
 "This is the protocol.\n"
@@ -1635,50 +1674,51 @@ msgstr ""
 "C'est pas super ? Mais quelle longueur peut faire une ligne ? Y a-t-il une "
 "limite pour ça ? Quoi qu'il en soit, ça à l'air bon."
 
-#: ../src/hud.c:1499 ../src/hud.c:1510 ../src/mission.c:122
+#: ../src/hud.c:1496 ../src/hud.c:1507 ../src/mission.c:122
 #, c-format
 msgid "Day %d  %02d:%02d"
 msgstr ""
 
-#: ../src/influ.c:526
+#: ../src/influ.c:524
 msgid "Clip empty, reloading..."
 msgstr "Chargeur vide, rechargement..."
 
-#: ../src/influ.c:2928
+#: ../src/influ.c:2429
 msgid "No more ammunition !"
 msgstr "Plus de munitions !"
 
-#: ../src/influ.c:3417
+#: ../src/influ.c:2913
 #, c-format
 msgid "This is a %s. %s"
 msgstr "C'est un %s. %s"
 
-#: ../src/influ.c:3446
+#: ../src/influ.c:2942
 #, fuzzy, c-format
 msgid "Examining %s. %s"
 msgstr "Examine %s.  %s"
 
-#: ../src/influ.c:3458
+#: ../src/influ.c:2954
 #, c-format
 msgid "There is nothing here."
 msgstr ""
 
-#: ../src/init.c:128
+#: ../src/init.c:126
 msgid ""
 "My name is Bug. Software Bug. Please report me to the developers. Thank you."
 msgstr ""
 "Mon nom est Bogue. Bogue de Programme. Rapporter aux développeurs, s'il vous "
 "plait. Merci."
 
-#: ../src/init.c:131
+#: ../src/init.c:129
 msgid "Hmm... This must be the token town sage."
 msgstr "Hmm ... Ça doit être le sage de la ville."
 
-#: ../src/init.c:133
+#: ../src/init.c:131
+#, fuzzy
 msgid ""
-"You see a legend. Sorenson Clark. One of the best human programmers that "
-"have ever lived. Just like Paganini she is said to have sold her soul to the "
-"devil for her skill. Whatever is the truth, her code is like magic, and "
+"You see a legend. Sorenson Clark. One of the best human programmers that has "
+"ever lived. Just like Paganini, she is said to have sold her soul to the "
+"devil for her skill. Whatever the truth is, her code is like magic, and "
 "there is no denying that."
 msgstr ""
 "Vous voyez une légende. Sorenson Clark. Un des meilleurs programmeurs "
@@ -1686,22 +1726,23 @@ msgstr ""
 "son âme au diable pour sa compétence. Quelle que soit la vérité, son code "
 "semble magique, et ça, c'est indéniable."
 
-#: ../src/init.c:135
+#: ../src/init.c:133
 #, fuzzy
 msgid ""
-"He is either a college student, a drug addict or a hacker. You bet he did "
-"not have a warm meal for days, he looks totally malnourished. His body keeps "
+"He is either a college student, a drug addict or a hacker. You bet he has "
+"not had a warm meal for days, he looks totally malnourished. His body keeps "
 "twitching. Must be the caffeine. You hope."
 msgstr ""
 "C'est soit un étudiant de fac, un drogué ou un hacker. Je parie qu'il n'a "
 "pas eu un repas chaud depuis des jours, il semble très mal nourri. Son corps "
 "tremble en permanence. Ça doit être la caféine. J'espère."
 
-#: ../src/init.c:137
-msgid "Don't do steroids or you will be just like him."
+#: ../src/init.c:135
+#, fuzzy
+msgid "Don't do steroids, or you will be just like him."
 msgstr "Ne prenez jamais de stéroïdes, sinon vous finirez comme lui."
 
-#: ../src/init.c:139
+#: ../src/init.c:137
 msgid ""
 "There are at least 614 reasons to stay away from the 614 bot battle "
 "platform. There are also 614 reasons why a 614 bot battle platform can be "
@@ -1711,15 +1752,16 @@ msgstr ""
 "aussi 614 raisons pour lesquelles un robot de combat 614 peut être votre "
 "meilleur ami lors d'un combat..."
 
-#: ../src/init.c:141
+#: ../src/init.c:139
+#, fuzzy
 msgid ""
 "Francis is not looking so good today. His tattered coat is not looking that "
-"much better either. The war is taking its toll on them both."
+"much better. The war is taking its toll on them both."
 msgstr ""
 "Francis n'a pas l'air très bien aujourd'hui. Son manteau en lambeaux n'a pas "
 "l'air mieux, non plus. La guerre se répercute négativement sur eux-deux."
 
-#: ../src/init.c:143
+#: ../src/init.c:141
 msgid ""
 "What a strange person. He does not seem to really fit into this reality. "
 "There is something very eerie about him. And frightening."
@@ -1727,31 +1769,32 @@ msgstr ""
 "Quelle étrange personne. Il ne semble pas vraiment s'ajuster à la réalité. "
 "Il y a quelque chose de très inquiétant, le concernant. Et d'effrayant."
 
-#: ../src/init.c:145
+#: ../src/init.c:143
+#, fuzzy
 msgid ""
 "This person looks totally defeated. Tattered clothes surround his skeletal "
-"form. If there was a fifth raider of the apocalypse, it would be him and his "
+"form. If there was a fifth rider of the apocalypse, it would be him and his "
 "name would be Hard Work."
 msgstr ""
 "Cette personne semble totalement abattue. Des lambeaux entourent sa forme "
 "squelettique. S'il y avait un cinquième cavalier de l'apocalypse, ce serait "
 "lui et son nom serait Dur Labeur."
 
-#: ../src/init.c:147
+#: ../src/init.c:145
+#, fuzzy
 msgid ""
-"It seems that even during the end of the world the species known as "
-"'Salesman' is able to survive. Just his presence makes you want to kill all "
-"humans."
+"It seems that even at the end of the world the species known as 'Salesman' "
+"is able to survive. Just his presence makes you want to destroy all humans."
 msgstr ""
 "Il semble que même pendant la fin du monde, l'espèce connue sous le nom de "
 "'vendeurs' est capable de survivre. Sa simple présence vous donne envie de "
 "tuer tous les humains."
 
-#: ../src/init.c:149
+#: ../src/init.c:147
 msgid "He looks unexplicably happy."
 msgstr "Il a l'air inexplicablement heureux."
 
-#: ../src/init.c:151
+#: ../src/init.c:149
 msgid ""
 "In some places of the world there exists a very interesting saying. 'Tough "
 "as nails.' However, in every place where the Stone trader family stays for a "
@@ -1762,16 +1805,17 @@ msgstr ""
 "réside pendant quelques temps, un nouveau dicton apparaît : \"Dur comme les "
 "Stones\"."
 
-#: ../src/init.c:153
+#: ../src/init.c:151
+#, fuzzy
 msgid ""
 "It is very obvious that this is not a normal Red Guard. Most of them do not "
-"have oil stains on their armor and smell of alcohol."
+"have oil stains on their armor, or smell of alcohol."
 msgstr ""
 "Il est vraiment évident que ça n'est pas un Garde Rouge normal. La plupart "
 "d'entre eux n'ont pas de tâches d'huiles sur leur armure et ne sentent pas "
 "l'alcool."
 
-#: ../src/init.c:155
+#: ../src/init.c:153
 msgid ""
 "It looks like a 614. It moves like a 614. It even kills like a 614. Must be "
 "a 614 then."
@@ -1779,14 +1823,14 @@ msgstr ""
 "Ça ressemble à un 614. Ça bouge comme un 614. Ça tue même comme un 614. Ça "
 "doit donc être un 614."
 
-#: ../src/init.c:157
+#: ../src/init.c:155
 #, fuzzy
 msgid ""
 "He must be the resident scientist. The only thing keeping his body alive is "
-"the massive coffee overdose that he takes early in the morning every day. "
-"The amount of caffeine that he has in his blood right now would be enough to "
-"kill ten humans, but since computer scientists are a different species, he "
-"is unharmed."
+"the massive coffee overdose that he takes early every morning. The amount of "
+"caffeine that he has in his blood right now would be enough to kill ten "
+"humans, but since computer scientists are a different species, he is "
+"unharmed."
 msgstr ""
 "Ce doit être le scientifique de réserve. La seule chose qui garde son corps "
 "en vie est la surdose massive de café qu'il prend chaque matin. La quantité "
@@ -1794,7 +1838,7 @@ msgstr ""
 "d'humains, mais puisque les informaticiens sont d'une espèce différente, ça "
 "ne lui pose pas de problème."
 
-#: ../src/init.c:159
+#: ../src/init.c:157
 msgid ""
 "Something about him makes you think of angels. Except angels are usually "
 "sane, do not have an urge to kill everything around them and are much better "
@@ -1804,7 +1848,7 @@ msgstr ""
 "anges sont généralement sains d'esprit, n'ont pas le désir de tuer tout ce "
 "qui les entoure, et sont bien meilleurs pour chanter des chants religieux."
 
-#: ../src/init.c:161
+#: ../src/init.c:159
 msgid ""
 "As you look at him, you cannot really belive he is there. If you turn your "
 "back on him he will vanish like a ghost into thin air and you will never see "
@@ -1814,7 +1858,7 @@ msgstr ""
 "Si vous vous retournez, il va disparaître tel un fantôme et vous ne le "
 "reverrez jamais."
 
-#: ../src/init.c:163
+#: ../src/init.c:161
 msgid ""
 "His IQ is sometimes as high as a dog's. Only sometimes though. He smells "
 "like a dog too."
@@ -1822,7 +1866,7 @@ msgstr ""
 "Son QI semble aussi élevé que celui d'un chien. Mais, parfois seulement. Il "
 "a aussi l'odeur d'un chien."
 
-#: ../src/init.c:165
+#: ../src/init.c:163
 msgid ""
 "He seems to be the chief of the gate guards. Hard to say anything more, the "
 "armor hides his body."
@@ -1830,11 +1874,16 @@ msgstr ""
 "Il semble être le chef des gardes du portail. Difficile d'en dire plus, "
 "l'armure cache son corps."
 
-#: ../src/init.c:167
-msgid "Just an another Red Guard. The armor hides his body."
-msgstr "Juste un autre Garde Rouge. Son armure cache son corps."
+#: ../src/init.c:165
+#, fuzzy
+msgid ""
+"Yet another Red Guard, the ranged weapons instructor. The armor hides his "
+"body."
+msgstr ""
+"Encore un autre Garde Rouge. On ne peut pas en dire plus, l'armure cache son "
+"corps."
 
-#: ../src/init.c:169
+#: ../src/init.c:167
 msgid ""
 "Some people say that every doctor is addicted to drugs. You estimate that "
 "right now this one is high on at least four different narcotics. Doc Moore "
@@ -1844,7 +1893,7 @@ msgstr ""
 "en ce moment, être sous l'effet d'au moins quatre narcotiques différents. "
 "Docteur Moore semble très heureux, en effet..."
 
-#: ../src/init.c:171
+#: ../src/init.c:169
 msgid ""
 "Yet another Red Guard. You cannot say anything more, the armor hides his "
 "body."
@@ -1852,15 +1901,16 @@ msgstr ""
 "Encore un autre Garde Rouge. On ne peut pas en dire plus, l'armure cache son "
 "corps."
 
-#: ../src/init.c:173
+#: ../src/init.c:171
+#, fuzzy
 msgid ""
-"He looks taller than most of the Red Guards, but you cannot really say "
+"He looks taller than most of the Red Guards, but you cannot really determine "
 "anything more about him, the armor hides his body."
 msgstr ""
 "Il semble plus grand que la majeure partie des Gardes Rouges, mais on ne "
 "peut pas en dire plus, l'armure cache son corps."
 
-#: ../src/init.c:175
+#: ../src/init.c:173
 msgid ""
 "And now you know who is to be blamed for the truly awful food in here. You "
 "are in a killing mood. Oh yeah. The cook must die. The cook must die. Ha. "
@@ -1870,7 +1920,7 @@ msgstr ""
 "d'humeur massacrante. Oh oui. Le cuisinier doit mourir. Le cuisinier doit "
 "mourir. Ha. Ha. Ha."
 
-#: ../src/init.c:177
+#: ../src/init.c:175
 #, fuzzy
 msgid ""
 "This is a minor bug. Please report this incident to the developers. Thank "
@@ -1879,7 +1929,7 @@ msgstr ""
 "Ceci est un gros bogue. Rapporter cet incident aux développeurs, s'il vous "
 "plait. Merci."
 
-#: ../src/init.c:179
+#: ../src/init.c:177
 msgid ""
 "Blood. Stone. Cog. The Blood has made the Cog from the Stone. Now the Cog is "
 "making more Stone from the Blood. I wonder what is the next step of the "
@@ -1889,50 +1939,56 @@ msgstr ""
 "Maintenant, le Cran est en train de faire plus de Pierre à partir du Sang. "
 "Je me demande quelle est la prochaine étape de ce cycle...."
 
-#: ../src/init.c:181 ../src/init.c:183 ../src/init.c:185 ../src/init.c:187
+#: ../src/init.c:179 ../src/init.c:181 ../src/init.c:183 ../src/init.c:185
 msgid "The armor hides his body."
 msgstr "L'armure cache son corps."
 
-#: ../src/init.c:1605
+#: ../src/init.c:187
+msgid ""
+"This very well could be the most attractive human you've ever seen. There is "
+"something odd about her, though..."
+msgstr ""
+
+#: ../src/init.c:189
+msgid ""
+"This is Tom. He will introduce you to the game, and help you throughout this "
+"tutorial."
+msgstr ""
+
+#: ../src/init.c:191
+#, fuzzy
+msgid "Keeper of the Red Guard armory.  The armor hides his body."
+msgstr "Juste un autre Garde Rouge. Son armure cache son corps."
+
+#: ../src/init.c:193
+msgid ""
+"This must be the guy Duncan told you about. At least, he's the only one "
+"around."
+msgstr ""
+
+#: ../src/init.c:195
+msgid ""
+"A lonely scientist. The months she's spent trapped here seem to have taken "
+"their toll on her sanity."
+msgstr ""
+
+#: ../src/init.c:1608
 msgid "Huh? What?  Where am I?"
 msgstr "Hein ? Quoi ? Où suis-je ?"
 
-#: ../src/init.c:1708
+#: ../src/init.c:1711
 msgid "Updating Tux images"
 msgstr "Mise à jour des images de Tux"
 
-#: ../src/init.c:1709
+#: ../src/init.c:1712
 msgid "(this may take a little while...)"
 msgstr "(ceci peut prendre un peu de temps...)"
 
-#: ../src/init.c:1712
+#: ../src/init.c:1715
 msgid "Starting new game."
 msgstr "Commencer une nouvelle partie."
 
-#: ../src/init.c:2003
-#, fuzzy
-msgid ""
-"\n"
-"You are playing in 640x480.\n"
-"\n"
-"While this resolution mostly work correctly and will\n"
-"give you a great gaming experience, its support is\n"
-"in the process of being dropped, therefore you will\n"
-"want to consider using 800x600 or higher resolution.\n"
-"\n"
-"Thank you.\n"
-msgstr ""
-"\n"
-"Vous jouez actuellement avec une résolution de 640x480\n"
-"\n"
-"Malgré que cette résolution fonctionne correctement et vous \n"
-"donne une bonne expérience de jeu, elle est en train d'être\n"
-"supprimée. Vous pouvez utiliser les résolutions 800x600 ou\n"
-"1024x768.\n"
-"\n"
-"Merci.\n"
-
-#: ../src/init.c:2005
+#: ../src/init.c:1998
 #, fuzzy
 msgid ""
 "\n"
@@ -1951,11 +2007,11 @@ msgstr ""
 "discussion\n"
 " arobase lists.sourceforgenet.\n"
 
-#: ../src/init.c:2024
+#: ../src/init.c:2017
 msgid "Game over.\n"
 msgstr "Jeu terminé.\n"
 
-#: ../src/init.c:2111
+#: ../src/init.c:2104
 msgid "Game won.\n"
 msgstr "Vous avez gagné.\n"
 
@@ -1977,7 +2033,8 @@ msgid "drinking a potion!"
 msgstr "buvez une potion !"
 
 #: ../src/items.c:1149
-msgid "waiting for you weapon to fire again!"
+#, fuzzy
+msgid "waiting for your weapon to fire again!"
 msgstr "attendez que votre arme tire encore !"
 
 #: ../src/items.c:1152
@@ -2036,1073 +2093,160 @@ msgstr "Objet ramassé : %s."
 msgid "I can't carry any more."
 msgstr "Je ne peux plus rien porter."
 
-#: ../src/keyboard.c:294
+#: ../src/keyboard.c:308
 msgid "ARROWS to select, ENTER to remap, ESCAPE to exit"
 msgstr ""
 
-#: ../src/leveleditor.c:422
-#, c-format
-msgid "Sorry, don't know which waypoint you mean."
-msgstr ""
-
-#: ../src/leveleditor.c:427
-#, c-format
-msgid "You specified waypoint nr. %d."
-msgstr ""
-
-#: ../src/leveleditor.c:434
-msgid ""
-"\n"
-"It has been marked as the origin of the next connection."
-msgstr ""
-
-#: ../src/leveleditor.c:439
-#, c-format
-msgid ""
-"\n"
-"sORRY, MAXIMAL NUMBER OF WAYPOINT-CONNECTIONS (%d) REACHED!\n"
-msgstr ""
-
-#: ../src/leveleditor.c:448
-msgid ""
-"\n"
-"\n"
-"Origin==Target --> Connection Operation cancelled."
-msgstr ""
-
-#: ../src/leveleditor.c:453
-#, c-format
-msgid ""
-"\n"
-"\n"
-"Origin: %d Target: %d. Operation makes sense."
-msgstr ""
-
-#: ../src/leveleditor.c:455
-msgid ""
-"\n"
-"Operation done, connection removed."
-msgstr ""
-
-#: ../src/leveleditor.c:457
-msgid ""
-"\n"
-"Operation done, connection added."
-msgstr ""
-
-#: ../src/leveleditor.c:623
-msgid ""
-"\n"
-"Please enter name for this obstacle: \n"
-"\n"
-msgstr ""
-
-#: ../src/leveleditor.c:688
-msgid ""
-"\n"
-"No existing map label entry for this position found...\n"
-" Please enter new label for this map position: \n"
-"\n"
-msgstr ""
-
-#: ../src/leveleditor.c:699
-msgid ""
-"\n"
-"No more free map label entry found... using first on instead ...\n"
-msgstr ""
-
-#: ../src/leveleditor.c:704
-msgid ""
-"\n"
-"Using new map label list entry...\n"
-msgstr ""
-
-#: ../src/leveleditor.c:711
-msgid ""
-"\n"
-"Overwriting existing map label list entry...\n"
-" Please enter new label for this map position: \n"
-"\n"
-msgstr ""
-
-#: ../src/leveleditor.c:1688
-msgid "Cancel item drop"
-msgstr "Annuler le point de chute"
-
-#: ../src/leveleditor.c:1708
-msgid "NO PREFIX"
-msgstr ""
-
-#: ../src/leveleditor.c:1719
-msgid "NO SUFFIX"
-msgstr ""
-
-#: ../src/leveleditor.c:1990
-msgid "FLOOR"
-msgstr "SOL"
-
-#: ../src/leveleditor.c:1991
-msgid "WALLS"
-msgstr "MURS"
-
-#: ../src/leveleditor.c:1992
-msgid "MACHINERY"
-msgstr "MACHINERIE"
-
-#: ../src/leveleditor.c:1993
-msgid "FURNITURE"
-msgstr "MEUBLE"
-
-#: ../src/leveleditor.c:1994
-msgid "CONTAINERS"
-msgstr "CONTENEURS"
-
-#: ../src/leveleditor.c:1995
-msgid "NATURE"
-msgstr "NATURE"
-
-#: ../src/leveleditor.c:1996
-msgid "ALL"
-msgstr "TOUT(ES)"
-
-#: ../src/leveleditor.c:1997
-msgid "QUICK"
-msgstr "RAPIDE"
-
-#: ../src/leveleditor.c:2639 ../src/leveleditor.c:2663
-#: ../src/leveleditor.c:3982 ../src/leveleditor.c:4006
-#, c-format
-msgid "North"
-msgstr ""
-
-#: ../src/leveleditor.c:2641 ../src/leveleditor.c:2647
-#: ../src/leveleditor.c:2653 ../src/leveleditor.c:2659
-#: ../src/leveleditor.c:2961
-#, c-format
-msgid "Edge"
-msgstr ""
-
-#: ../src/leveleditor.c:2645 ../src/leveleditor.c:2669
-#: ../src/leveleditor.c:3988 ../src/leveleditor.c:4012
-#, fuzzy, c-format
-msgid "East"
-msgstr "maître"
-
-#: ../src/leveleditor.c:2651 ../src/leveleditor.c:2675
-#: ../src/leveleditor.c:3994 ../src/leveleditor.c:4018
-#, c-format
-msgid "South"
-msgstr ""
-
-#: ../src/leveleditor.c:2657 ../src/leveleditor.c:2681
-#: ../src/leveleditor.c:4000 ../src/leveleditor.c:4024
-#, fuzzy, c-format
-msgid "West"
-msgstr "Coffre"
-
-#: ../src/leveleditor.c:2665 ../src/leveleditor.c:2671
-#: ../src/leveleditor.c:2677 ../src/leveleditor.c:2683
-#: ../src/leveleditor.c:2963
-#, fuzzy, c-format
-msgid "Interface"
-msgstr "Entrée"
-
-#: ../src/leveleditor.c:2687
-#, c-format
-msgid "Current level size in X: %d."
-msgstr ""
-
-#: ../src/leveleditor.c:2689
-#, c-format
-msgid "Current level size in Y: %d."
-msgstr ""
-
-#: ../src/leveleditor.c:2691 ../src/leveleditor.c:3016
-#: ../src/leveleditor.c:3212 ../src/leveleditor.c:4030 ../src/menu.c:1500
-#: ../src/menu.c:1641 ../src/menu.c:1747 ../src/menu.c:1823 ../src/menu.c:1908
-#: ../src/menu.c:2023 ../src/menu.c:2081 ../src/menu.c:2341 ../src/menu.c:2460
-msgid "Back"
-msgstr "Retour"
-
-#: ../src/leveleditor.c:2953
-#, fuzzy, c-format
-msgid "Name"
-msgstr "Nouvelle partie"
-
-#: ../src/leveleditor.c:2957
-#, fuzzy, c-format
-msgid "Size"
-msgstr "Bouclier"
-
-#: ../src/leveleditor.c:2982
-#, c-format
-msgid "Light"
-msgstr ""
-
-#: ../src/leveleditor.c:2984
-msgid "Radius"
-msgstr ""
-
-#: ../src/leveleditor.c:2989 ../src/leveleditor.c:2996
-msgid "Minimum"
-msgstr ""
-
-#: ../src/leveleditor.c:3002
-#, fuzzy, c-format
-msgid "Background Music"
-msgstr "Volume de la musique de fond : %1.2f"
-
-#: ../src/leveleditor.c:3006
-#, fuzzy, c-format
-msgid "Comment"
-msgstr "Réussi"
-
-#: ../src/leveleditor.c:3010
-#, fuzzy, c-format
-msgid "Infinite Running"
-msgstr "Robots restant dans le niveau : %d"
-
-#: ../src/leveleditor.c:3012 ../src/menu.c:1740 ../src/menu.c:1889
-#: ../src/menu.c:1897 ../src/menu.c:1901 ../src/menu.c:1905
-msgid "YES"
-msgstr "OUI"
-
-#: ../src/leveleditor.c:3013 ../src/menu.c:1740 ../src/menu.c:1889
-#: ../src/menu.c:1897 ../src/menu.c:1901 ../src/menu.c:1905
-msgid "NO"
-msgstr "NON"
-
-#: ../src/leveleditor.c:3015
-#, fuzzy
-msgid "Add New Level"
-msgstr "Niveau suivant"
-
-#: ../src/leveleditor.c:3057
-msgid ""
-"\n"
-" Please enter new level name: \n"
-"\n"
-msgstr ""
-
-#: ../src/leveleditor.c:3087
-msgid ""
-"\n"
-" Please enter new music file name: \n"
-"\n"
-msgstr ""
-
-#: ../src/leveleditor.c:3093
-msgid ""
-"\n"
-" Please enter new level comment: \n"
-"\n"
-msgstr ""
-
-#: ../src/leveleditor.c:3210
-#, fuzzy
-msgid "Run Map Level Validator"
-msgstr "Éditeur de niveau"
-
-#: ../src/leveleditor.c:3211
-#, fuzzy
-msgid "Run Dialog Lua Validator"
-msgstr "Éditeur de niveau"
-
-#: ../src/leveleditor.c:3285
-#, fuzzy
-msgid "Level Options"
-msgstr "Sauvegarder les options"
-
-#: ../src/leveleditor.c:3286
-#, fuzzy
-msgid "Advanced Options"
-msgstr "Sauvegarder les options"
-
-#: ../src/leveleditor.c:3289
-msgid "Playtest Mapfile"
-msgstr ""
-
-#: ../src/leveleditor.c:3290
-#, fuzzy
-msgid "Save Mapfile"
-msgstr "Sauvegarder la partie"
-
-#: ../src/leveleditor.c:3295
-#, fuzzy
-msgid "Return to Game"
-msgstr "Éditeur de niveau"
-
-#: ../src/leveleditor.c:3296
-msgid "Saving disabled"
-msgstr ""
-
-#: ../src/leveleditor.c:3299
-msgid "Continue Editing"
-msgstr ""
-
-#: ../src/leveleditor.c:3300 ../src/menu.c:1559
-msgid "Quit to Main Menu"
-msgstr ""
-
-#: ../src/leveleditor.c:3301 ../src/menu.c:1431 ../src/menu.c:1562
-msgid "Exit FreedroidRPG"
-msgstr "Quitter FreedroidRPG"
-
-#: ../src/leveleditor.c:3325
-msgid ""
-"\n"
-" Please enter new level number: \n"
-"\n"
-msgstr ""
-
-#: ../src/leveleditor.c:3355
-msgid "Your ship was saved..."
-msgstr ""
-
-#: ../src/leveleditor.c:3456
-msgid ""
-"\n"
-"The list of inconsistencies of the jump interfaces for this level:\n"
-"\n"
-msgstr ""
-
-#: ../src/leveleditor.c:3468
-msgid "BACK-FORTH-MISMATCH: North doesn't lead back here (yet)!\n"
-msgstr ""
-
-#: ../src/leveleditor.c:3477
-msgid "BACK-FORTH-MISMATCH: South doesn't lead back here (yet)!\n"
-msgstr ""
-
-#: ../src/leveleditor.c:3486
-msgid "BACK-FORTH-MISMATCH: East doesn't lead back here (yet)!\n"
-msgstr ""
-
-#: ../src/leveleditor.c:3495
-msgid "BACK-FORTH-MISMATCH: West doesn't lead back here (yet)!\n"
-msgstr ""
-
-#: ../src/leveleditor.c:3499
-msgid ""
-"\n"
-"NO OTHER BACK-FORTH-MISMATCH ERRORS other than those listed above\n"
-"\n"
-msgstr ""
-
-#: ../src/leveleditor.c:3512
-msgid ""
-"INTERFACE SIZE MISMATCH: North doesn't lead so same-sized interface "
-"level!!!\n"
-msgstr ""
-
-#: ../src/leveleditor.c:3522
-msgid ""
-"INTERFACE SIZE MISMATCH: South doesn't lead so same-sized interface "
-"level!!!\n"
-msgstr ""
-
-#: ../src/leveleditor.c:3532
-msgid ""
-"INTERFACE SIZE MISMATCH: East doesn't lead so same-sized interface level!!!\n"
-msgstr ""
-
-#: ../src/leveleditor.c:3542
-msgid ""
-"INTERFACE SIZE MISMATCH: West doesn't lead so same-sized interface level!!!\n"
-msgstr ""
-
-#: ../src/leveleditor.c:3556
-msgid ""
-"LEVEL DIMENSION MISMATCH: North doesn't lead so same-sized level (non-fatal, "
-"but no good comes from this)!\n"
-msgstr ""
-
-#: ../src/leveleditor.c:3565
-msgid ""
-"LEVEL DIMENSION MISMATCH: South doesn't lead so same-sized level (non-fatal, "
-"but no good comes from this)!\n"
-msgstr ""
-
-#: ../src/leveleditor.c:3574
-msgid ""
-"LEVEL DIMENSION MISMATCH: East doesn't lead so same-sized level (non-fatal, "
-"but no good comes from this)!\n"
-msgstr ""
-
-#: ../src/leveleditor.c:3583
-msgid ""
-"LEVEL DIMENSION MISMATCH: West doesn't lead so same-sized level (non-fatal, "
-"but no good comes from this)!\n"
-msgstr ""
-
-#: ../src/leveleditor.c:3591
-msgid ""
-"\n"
-"\n"
-"--- End of List --- Press Space to return to menu ---\n"
-msgstr ""
-
-#: ../src/leveleditor.c:3980 ../src/leveleditor.c:3986
-#: ../src/leveleditor.c:3992 ../src/leveleditor.c:3998
-#, c-format
-msgid "Jump threshold"
-msgstr ""
-
-#: ../src/leveleditor.c:4004 ../src/leveleditor.c:4010
-#: ../src/leveleditor.c:4016 ../src/leveleditor.c:4022
-#, c-format
-msgid "Jump target"
-msgstr ""
-
-#: ../src/leveleditor.c:4028
-msgid "Export this level to other target levels"
-msgstr ""
-
-#: ../src/leveleditor.c:4029
-msgid "Report interface inconsistencies"
-msgstr ""
-
-#: ../src/leveleditor.c:4355
-#, c-format
-msgid ""
-"\n"
-" Map label information: \n"
-" label_name=\"%s\"."
-msgstr ""
-"\n"
-" Nom position carte: \n"
-" label_name=\"%s\""
-
-#: ../src/leveleditor.c:4580
-msgid "List of connection for this wp:\n"
-msgstr ""
-
-#: ../src/leveleditor.c:4602
-#, c-format
-msgid "To: X=%d Y=%d    "
-msgstr ""
-
-#: ../src/leveleditor.c:4835
-#, c-format
-msgid "Offset x %hd y %hd\n"
-msgstr ""
-
-#: ../src/leveleditor.c:4932
-msgid ""
-"Go level north\n"
-"\n"
-"Use this button to move one level north, i.e. to the level that is glued to "
-"the northern side of this level."
-msgstr ""
-"Va au niveau nord\n"
-"\n"
-"Utilisez ce bouton pour vous déplacer d'un niveau au nord, c'est-à-dire le "
-"prochain niveau au nord du niveau actuel."
-
-#: ../src/leveleditor.c:4937
-msgid ""
-"Go level south\n"
-"\n"
-"Use this button to move one level south, i.e. to the level that is glued to "
-"the southern side of this level."
-msgstr ""
-"Va au niveau sud\n"
-"\n"
-"Utilisez ce bouton pour vous déplacer d'un niveau vers le sud, c'est-à-dire "
-"vers le prochain niveau au sud de l'actuel."
-
-#: ../src/leveleditor.c:4942
-msgid ""
-"Go level east\n"
-"\n"
-"Use this button to move one level east, i.e. to the level that is glued to "
-"the eastern side of this level."
-msgstr ""
-"Va au niveau est\n"
-"\n"
-"Utilisez ce bouton pour vous déplacer d'un niveau vers l'est, c'est-à-dire "
-"vers le prochain niveau à l'est de l'actuel."
-
-#: ../src/leveleditor.c:4947
-msgid ""
-"Go level west\n"
-"\n"
-"Use this button to move one level west, i.e. to the level that is glued to "
-"the western side of this level."
-msgstr ""
-"Va au niveau ouest\n"
-"\n"
-"Utilisez ce bouton pour vous déplacer d'un niveau vers l'ouest, c'est-à-dire "
-"vers le prochain niveau à l'ouest de l'actuel."
-
-#: ../src/leveleditor.c:4952
-msgid ""
-"Export this level\n"
-"\n"
-"In FreedroidRPG maps can be glued together to form one big map.  But that "
-"requires that the maps are identical where they overlap.  This button will "
-"copy the borders of this level to the borders of the neighbouring levels, so "
-"that the maps are in sync again."
-msgstr ""
-"Exporter ce niveau\n"
-"\n"
-"Dans FreedroidRPG, les cartes peuvent être assemblées ensemble pour former "
-"une seule grande carte. Mais cela nécessite que les cartes coïncident sur "
-"leurs contours. Ce bouton va copier les bords de ce niveau vers les bords du "
-"niveau voisin, afin que les cartes coïncident toujours."
-
-#: ../src/leveleditor.c:4960
-msgid ""
-"Save Impossible!\n"
-"\n"
-"Playing on a map leaves the world in an unclean state not suitable for "
-"saving. Enter the editor directly from the main menu to be able to save any "
-"changes to the map file."
-msgstr ""
-
-#: ../src/leveleditor.c:4962
-#, fuzzy
-msgid ""
-"Save Map\n"
-"\n"
-"This button will save your current map over the file '../map/freedroid."
-"levels' from your current working directory."
-msgstr ""
-"Sauvegarder la carte\n"
-"\n"
-"Ce bouton sauvegardera votre carte actuelle dans le fichier '../map/Asteroid."
-"maps' de votre répertoire de travail actuel."
-
-#: ../src/leveleditor.c:4968
-msgid ""
-"Toggle waypoints\n"
-"\n"
-"Use this button to toggle waypoints on the current cursor location.  "
-"Waypoints are marked with a white (or multicolored) 4-direction arrow.\n"
-"\n"
-"You can also use the W key for this."
-msgstr ""
-"Placement des points de passage\n"
-"\n"
-"Utilisez ce bouton pour placer des points de passage à l'endroit courant du "
-"curseur. Les points de passage sont marqués par une flèche quadri-"
-"directionnelle blanche (ou multicouleurs).\n"
-"Vous pouvez faire la même chose en utilisant la touche W."
-
-#: ../src/leveleditor.c:4975
-msgid ""
-"Make waypoint connection\n"
-"\n"
-"Use this button to start a connection between waypoints, so that droids can "
-"move along this connection.\n"
-"\n"
-"You can also use the C key for this."
-msgstr ""
-"Fait des connexions entre les points de passage\n"
-"\n"
-"Utilisez dce bouton pour commencer une connexion entre des points de "
-"passage, pour que les droïdes voyagent le long de ce chement.\n"
-"\n"
-"Vous pouvez aussi utiliser la touche C pour le faire."
-
-#: ../src/leveleditor.c:4977
-msgid ""
-"Complete waypoint connection\n"
-"\n"
-"You have currently a connection attempt going on already.  Go to the desired "
-"destination waypoint and hit this button again to establish the connection.\n"
-"\n"
-"You can also use the C key for this."
-msgstr ""
-"Achève les connexions entre les points de passage\n"
-"\n"
-"Vous avez actuellement une connection qui est prête à être activée. Allez au "
-"point de passage de destination et utilisez encore ce bouton pour faire la "
-"connexion.\n"
-"\n"
-"Vous pouvez également utiliser la touche C pour cela."
-
-#: ../src/leveleditor.c:4983
-msgid ""
-"Delete selected obstacle\n"
-"\n"
-"Use this button to delete the currently marked obstacle.\n"
-"\n"
-"You can also use the X key for this."
-msgstr ""
-"Supprime l'obstacle sélectionné\n"
-"\n"
-"Utilisez ce bouton pour supprimer l'obstacles sélectionné.\n"
-"\n"
-"Vous pouvez aussi utiliser la touche X pour cela."
-
-#: ../src/leveleditor.c:4988
-msgid ""
-"Next obstacle on currently selected tile\n"
-"\n"
-"Use this button to cycle the currently marked obstacle on this tile.\n"
-"\n"
-"You can also use the N key for this."
-msgstr ""
-"Le prochain obstacle sur la dalle courante\n"
-"\n"
-"Utilisez ce bouton pour entourer l'obstacle sélectionné sur cette dalle.\n"
-"\n"
-"Vous pouvez aussi utiliser la touche N pour cela."
-
-#: ../src/leveleditor.c:4993
-msgid ""
-"Beautify grass button\n"
-"\n"
-"Use this button to 'beautify' rough edges of the grass-sand tiles on this "
-"entire level automatically.  The function will attempt to create 'round' "
-"borders and corners.\n"
-"\n"
-"You can also use Ctrl-B for this."
-msgstr ""
-"Enjoliver les hautes herbes\n"
-"\n"
-"Utilisez ce bouton pour \"enjoliver\" les hautes herbes par-dessus les "
-"dalles de sable du niveau entier. Cette fonction va essayer de créer des "
-"bordures et des coins arrondis.\n"
-"\n"
-"Vous pouvez également utiliser Ctrl-B pour cela."
-
-#: ../src/leveleditor.c:4999
-msgid ""
-"Zoom in/out\n"
-"\n"
-"Use this button to zoom INTO or OUT of the level.\n"
-"\n"
-"You can also use the hotkey 'O' for this."
-msgstr ""
-"Zoom avant/arrière\n"
-"\n"
-"Utilisez ce bouton pour faire un zoom AVANT ou ARRIERE du niveau.\n"
-"\n"
-"Vous pouvez également utiliser la touche 'O' pour cela."
-
-#: ../src/leveleditor.c:5004
-msgid ""
-"Fill\n"
-"\n"
-"Use this button to fill a concurrent area of the map with the currently "
-"selected map tile.  Filling will proceed from the cursor in all directions "
-"until a change of map tile is encountered."
-msgstr ""
-"Remplissage\n"
-"\n"
-"Utilisez ce bouton pour remplir une autre aire de la carte avec les dalles "
-"sélectionnées. Le remplissage va démarrer du curseur dans toutes les "
-"directions jusqu'à ce qu'un changement de dalles de la carte soit rencontré."
-
-#: ../src/leveleditor.c:5009
-msgid ""
-"New obstacle label\n"
-"\n"
-"Use this button to attach a label to the currently marked obstacle.  These "
-"obstacle labels can be used to define obstacles to be modified by events.\n"
-" Note that you can also use the hotkey 'h' for this."
-msgstr ""
-"Nouvelle étiquette d'obstacle\n"
-"\n"
-"Utilisez ce bouton pour fixer une étiquette à un obstacle actuellement "
-"sélectionné. Cette étiquette d'obstacle peut être utilisée pour définir des "
-"obstacles modifiés par des évènements.\n"
-" Remarquez que vous pouvez également utiliser la touche rapide 'h' pour cela."
-
-#: ../src/leveleditor.c:5014
-msgid ""
-"New obstacle description\n"
-"\n"
-"edits the description seen when the item is selected"
-msgstr ""
-"Nouvelle description d'obstacle\n"
-"\n"
-"Utilisez ce bouton pour éditer la description de l'obstacle sélectionné."
-
-#: ../src/leveleditor.c:5019
-msgid ""
-"New map label\n"
-"\n"
-"Use this button to attach a new map label to the current cursor position.  "
-"These map labels can be used to define starting points for bots and "
-"characters or also to define locations for events and triggers."
-msgstr ""
-"Nouvelle étiquette de carte\n"
-"\n"
-"Utilisez ce bouton pour fixer une nouvelle étiquette de carte à la position "
-"courante du curseur. Cette étiquette de carte peut être utilisée pour "
-"définir des points de départ pour des robots et des personnages et également "
-"pour définir des endroits pour des évènements et des déclencheurs."
-
-#: ../src/leveleditor.c:5024
-msgid ""
-"Add item\n"
-"\n"
-"Use this button to drop a new item to the floor.  You can also use the "
-"hotkey 'G' for this."
-msgstr ""
-"Ajouter objet\n"
-"\n"
-"Utilisez ce bouton pour poser un nouvel objet sur le sol. Vous pouvez "
-"également utilisez la touche rapide 'G' pour cela."
-
-#: ../src/leveleditor.c:5029
-msgid ""
-"Menu\n"
-"\n"
-"Use this button to enter the main menu of the level editor.\n"
-" Note, that you can also use the Escape key to enter the level editor main "
-"menu."
-msgstr ""
-"Menu\n"
-"\n"
-"Utilisez ce bouton pour entrer dans le menu principal de l'éditeur de "
-"niveau.\n"
-" Notez que vous pouvez également utiliser la touche Echap pour entrer dans "
-"le menu principal de l'éditeur de niveau."
-
-#: ../src/leveleditor.c:5034
-msgid ""
-"Level resize\n"
-"\n"
-"Use this button to enter the level resize menu.  Levels can be resized in "
-"various ways so as not to destroy your current map too much and so as to "
-"insert the new space where you would best like it to be."
-msgstr ""
-"Redimensionner le niveau\n"
-"\n"
-"Utilisez ce bouton pour entrer dans le menu de redimensionnement de niveau. "
-"Les niveaux peuvent être redimensionnés de différentes manières, pour ne pas "
-"trop endommager votre carte actuelle et insérer des espaces où vous aimeriez "
-"qu'ils soient situés."
-
-#: ../src/leveleditor.c:5039
-msgid ""
-"Level editor guide\n"
-"\n"
-"Use this button to enter the level editor keymap display."
-msgstr ""
-"Guide de l'éditeur de niveau\n"
-"\n"
-"Utilisez ce bouton pour entrer dans l'affichage du clavier de l'éditeur de "
-"niveau."
-
-#: ../src/leveleditor.c:5046
-msgid ""
-"Back to game\n"
-"\n"
-"Changes made to the world will be permanent for current Hero. To avoid, load "
-"a previous savegame."
-msgstr ""
-
-#: ../src/leveleditor.c:5048
-msgid ""
-"Test Map\n"
-"\n"
-"This will save your map and reload it after you finish testing, avoiding "
-"saving an unclean world state."
-msgstr ""
-
-#: ../src/leveleditor.c:5054
-msgid ""
-"Underground lighting\n"
-"\n"
-"Use this button to toggle underground lighting, i.e. shadows coming from the "
-"light that the tux emanates.\n"
-"\n"
-"There isn't any key to toggle this on the keyboard."
-msgstr ""
-"Éclairage de sous-sol\n"
-"\n"
-"Utilisez ce bouton pour placer de l'éclairage sous-terrain, par exemple, des "
-"ombres provenant de la lumière que Tux émane.\n"
-"\n"
-"Il n'y a pas de touche clavier rapide pour le placement."
-
-#: ../src/leveleditor.c:5060
-msgid ""
-"Toggle display enemies\n"
-"\n"
-"Use this button to toggle between enemies displayed in level editor or "
-"enemies hidden in level editor."
-msgstr ""
-"Commuter l'affichage des ennemis\n"
-"\n"
-"Utilisez ce bouton commuter l'affichage des ennemis dans l'éditeur de niveau."
-
-#: ../src/leveleditor.c:5066
-msgid ""
-"Toggle display obstacles\n"
-"\n"
-"Use this button to toggle between obstacles displayed in level editor or "
-"obstacles hidden in level editor."
-msgstr ""
-"Commuter l'affichage des obstacles\n"
-"\n"
-"Utilisez ce bouton pour basculer entre afficher les obstacles et cacher les "
-"obstacles dans l'éditeur de niveau."
-
-#: ../src/leveleditor.c:5072
-msgid ""
-"Undo\n"
-"\n"
-"Use this button to undo your last actions."
-msgstr ""
-"Annuler\n"
-"\n"
-"Utilisez ce bouton pour annuler vos dernières actions."
-
-#: ../src/leveleditor.c:5078
-msgid ""
-"Redo\n"
-"\n"
-"Use this button to redo an action."
-msgstr ""
-"Rétablir\n"
-"\n"
-"Utilisez ce bouton pour rétablir une action."
-
-#: ../src/leveleditor.c:5084
-msgid ""
-"Toggle display Tux\n"
-"\n"
-"Use this button to toggle between Tux displayed in level editor or Tux "
-"hidden in level editor."
-msgstr ""
-"Commuter l'affichage de Tux\n"
-"\n"
-"Utilisez ce bouton pour basculer entre afficher Tux ou cacher Tux dans "
-"l'éditeur de niveau."
-
-#: ../src/leveleditor.c:5090
-msgid ""
-"Toggle display tooltips\n"
-"\n"
-"Use this button to toggle these annoying help windows on and off."
-msgstr ""
-"Commutation de l'affichage des infobulles\n"
-"\n"
-"Utilisez ce bouton pour commuter l'apparition des infobulles."
-
-#: ../src/leveleditor.c:5096
-msgid ""
-"Toggle display colision rectangles\n"
-"\n"
-"Use this button to toggle the visible collision rectangles on and off."
-msgstr ""
-"Commute  l'affichage des rectangles de collision\n"
-"\n"
-"Utilisez ce bouton pour commuter l'affichage des rectangle frontalier aux "
-"objets."
-
-#: ../src/leveleditor.c:5103
-msgid "Change grid mode ( placement / full / off )"
-msgstr "Mode de grille (position/complet/off)"
-
-#: ../src/leveleditor.c:5189
-msgid ""
-"\n"
-"Please enter new description text for this obstacle: \n"
-"\n"
-msgstr ""
-
-#: ../src/leveleditor.c:5539
-msgid ""
-"\n"
-"M E S S A G E\n"
-"\n"
-"Your ship was saved to file 'freedroid.levels' in the map directory.\n"
-"\n"
-"If you have set up something cool and you wish to contribute it to "
-"FreedroidRPG, please contact the FreedroidRPG dev team."
-msgstr ""
-
-#: ../src/leveleditor.c:5542
-msgid ""
-"\n"
-"M E S S A G E\n"
-"\n"
-"E R R O R ! Your ship was not saved.\n"
-"\n"
-"Playing on a map leaves the world in an unclean state not suitable for "
-"saving. Enter the editor from the main menu to be able to save."
-msgstr ""
-
-#: ../src/leveleditor.c:6108
-#, c-format
-msgid " Source waypoint selected : NONE"
-msgstr " Point de passage source : AUCUN"
-
-#: ../src/leveleditor.c:6112
-#, c-format
-msgid " Source waypoint selected : X=%d Y=%d. "
-msgstr " Point de passage source : X=%d Y=%d. "
-
-#: ../src/leveleditor.c:6151
-msgid ""
-"\n"
-" Please enter new statement for this tile: \n"
-"\n"
-msgstr ""
-
-#: ../src/leveleditor.c:6159
-msgid ""
-"\n"
-"No more free comment position.  Using first. "
-msgstr ""
-
-#: ../src/lua.c:180
+#: ../src/lua.c:183
 msgid "Melee fighting ability improved!"
 msgstr ""
 
-#: ../src/lua.c:183
+#: ../src/lua.c:186
 msgid "Ranged combat ability improved!"
 msgstr ""
 
-#: ../src/lua.c:186
+#: ../src/lua.c:189
 msgid "Programming ability improved!"
 msgstr ""
 
-#: ../src/lua.c:254
+#: ../src/lua.c:266
 msgid "1 Item received (on floor)"
 msgstr "1 objet reçu (sur le sol)"
 
-#: ../src/lua.c:258
+#: ../src/lua.c:270
 msgid "1 Item received!"
 msgstr "1 objet reçu !"
 
-#: ../src/lua.c:353
+#: ../src/lua.c:365
 #, fuzzy, c-format
 msgid "+%d Experience Points"
 msgstr "Expérience"
 
-#: ../src/lua.c:363
+#: ../src/lua.c:375
 #, fuzzy, c-format
-msgid "%d training points spent!"
+msgid "%d training point(s) spent!"
 msgstr ""
 "Points\n"
 "d'entraînement"
 
-#: ../src/lua.c:380
+#: ../src/lua.c:399
 #, c-format
 msgid "Gained %d bucks!"
 msgstr ""
 
-#: ../src/lua.c:381
+#: ../src/lua.c:400
 #, c-format
 msgid "Lost %d bucks!"
 msgstr ""
 
-#: ../src/main.c:413
+#: ../src/main.c:414
 msgid "Overheating!"
 msgstr "Surchauffe !"
 
-#: ../src/main.c:417
+#: ../src/main.c:418
 msgid "Automatically shutting down due to near lethal overheat"
 msgstr ""
 
-#: ../src/main.c:439
+#: ../src/main.c:440
 msgid "Weapon reloaded"
 msgstr "Arme rechargée"
 
-#: ../src/map.c:2907
+#: ../src/map.c:2816
 msgid "123 Acolyte"
 msgstr "123 Acolyte"
 
-#: ../src/map.c:2908
+#: ../src/map.c:2817
 msgid "139 Templar"
 msgstr "139 Templier"
 
-#: ../src/map.c:2909
+#: ../src/map.c:2818
 msgid "247 Banshee"
 msgstr "247 La Banshee"
 
-#: ../src/map.c:2910
+#: ../src/map.c:2819
 msgid "249 Chicago"
 msgstr "249 Chicago"
 
-#: ../src/map.c:2911
+#: ../src/map.c:2820
 #, fuzzy
 msgid "296 Sawmill"
 msgstr "296 Broyeur"
 
-#: ../src/map.c:2912
+#: ../src/map.c:2821
 msgid "302 Nemesis"
 msgstr "302 Nemesis"
 
-#: ../src/map.c:2913
+#: ../src/map.c:2822
 msgid "329 Sparkie"
 msgstr "329 Sparkie"
 
-#: ../src/map.c:2914
+#: ../src/map.c:2823
 msgid "420 Surgeon"
 msgstr ""
 
-#: ../src/map.c:2915
+#: ../src/map.c:2824
 msgid "476 Coward"
 msgstr ""
 
-#: ../src/map.c:2916
+#: ../src/map.c:2825
 msgid "493 Spinster"
 msgstr ""
 
-#: ../src/map.c:2917
+#: ../src/map.c:2826
 msgid "516 Ghoul"
 msgstr ""
 
-#: ../src/map.c:2918
+#: ../src/map.c:2827
 msgid "543 Forest Harvester"
 msgstr ""
 
-#: ../src/map.c:2919
+#: ../src/map.c:2828
 msgid "571 Apollo"
 msgstr ""
 
-#: ../src/map.c:2920
+#: ../src/map.c:2829
 #, fuzzy
 msgid "598 Minister"
 msgstr "Spinster"
 
-#: ../src/map.c:2921
+#: ../src/map.c:2830
 msgid "615 Firedevil"
 msgstr ""
 
-#: ../src/map.c:2922
+#: ../src/map.c:2831
 #, fuzzy
 msgid "629 Spitfire"
 msgstr "329 Sparkie"
 
-#: ../src/map.c:2923
+#: ../src/map.c:2832
 msgid "711 Grillmeister"
 msgstr ""
 
-#: ../src/map.c:2924
+#: ../src/map.c:2833
 msgid "742 Zeus"
 msgstr ""
 
-#: ../src/map.c:2925
+#: ../src/map.c:2834
 msgid "751 Soviet"
 msgstr ""
 
-#: ../src/map.c:2926
+#: ../src/map.c:2835
 msgid "821 Ufo"
 msgstr ""
 
-#: ../src/map.c:2927
+#: ../src/map.c:2836
 msgid "834 Wisp"
 msgstr ""
 
-#: ../src/map.c:2928
+#: ../src/map.c:2837
 msgid "883 Dalex"
 msgstr ""
 
-#: ../src/map.c:2929
+#: ../src/map.c:2838
 msgid "999 Cerebrum"
 msgstr ""
 
-#: ../src/map.c:2930
+#: ../src/map.c:2839
 msgid "No Description For This One"
 msgstr "Aucune description pour celui-là"
 
@@ -3133,11 +2277,11 @@ msgstr " NON "
 msgid "OpenGL output active: "
 msgstr "Sortie OpenGL activée : "
 
-#: ../src/menu.c:251 ../src/menu.c:2338
+#: ../src/menu.c:251 ../src/menu.c:2344
 msgid "[down]"
 msgstr ""
 
-#: ../src/menu.c:252 ../src/menu.c:2327
+#: ../src/menu.c:252 ../src/menu.c:2333
 msgid "[up]"
 msgstr ""
 
@@ -3154,7 +2298,7 @@ msgstr "Terminal"
 msgid "Level Editor"
 msgstr "Éditeur de niveau"
 
-#: ../src/menu.c:1428 ../src/menu.c:1555
+#: ../src/menu.c:1428 ../src/menu.c:1561
 msgid "Options"
 msgstr "Options"
 
@@ -3166,7 +2310,11 @@ msgstr "Crédits"
 msgid "Contribute"
 msgstr "Contribuer"
 
-#: ../src/menu.c:1461
+#: ../src/menu.c:1431 ../src/menu.c:1568 ../src/lvledit/lvledit_menu.c:970
+msgid "Exit FreedroidRPG"
+msgstr "Quitter FreedroidRPG"
+
+#: ../src/menu.c:1465
 msgid ""
 "\n"
 "You cannot change the language\n"
@@ -3184,7 +2332,7 @@ msgstr ""
 "\n"
 "    Merci\n"
 
-#: ../src/menu.c:1470
+#: ../src/menu.c:1474
 msgid ""
 "\n"
 "The game has NOT been\n"
@@ -3200,61 +2348,77 @@ msgstr ""
 "pas disponibles.\n"
 "Merci\n"
 
-#: ../src/menu.c:1494
+#: ../src/menu.c:1498
 msgid "Graphics Options"
 msgstr "Options graphiques"
 
-#: ../src/menu.c:1495
+#: ../src/menu.c:1499
 msgid "Sound Options"
 msgstr "Options sonores"
 
-#: ../src/menu.c:1496
+#: ../src/menu.c:1500
+msgid "Keys"
+msgstr ""
+
+#: ../src/menu.c:1501
 msgid "Language"
 msgstr "Langue"
 
-#: ../src/menu.c:1497
+#: ../src/menu.c:1502
 msgid "Droid Talk"
 msgstr "Texte complémentaire"
 
-#: ../src/menu.c:1498
+#: ../src/menu.c:1503
 msgid "On-Screen Displays"
 msgstr "Affichage à l'écran"
 
-#: ../src/menu.c:1499
+#: ../src/menu.c:1504
 msgid "Performance Tweaks"
 msgstr "Optimisation des performances"
 
-#: ../src/menu.c:1551
+#: ../src/menu.c:1505 ../src/menu.c:1647 ../src/menu.c:1753 ../src/menu.c:1829
+#: ../src/menu.c:1914 ../src/menu.c:2029 ../src/menu.c:2087 ../src/menu.c:2347
+#: ../src/menu.c:2466 ../src/lvledit/lvledit_menu.c:131
+#: ../src/lvledit/lvledit_menu.c:350 ../src/lvledit/lvledit_menu.c:546
+#: ../src/lvledit/lvledit_menu.c:706 ../src/lvledit/lvledit_menu.c:876
+msgid "Back"
+msgstr "Retour"
+
+#: ../src/menu.c:1556
 #, fuzzy
 msgid "Resume Play"
 msgstr "Reprendre le jeu"
 
-#: ../src/menu.c:1553
+#: ../src/menu.c:1558
 #, fuzzy
 msgid "Resume Playtest"
 msgstr "Reprendre le jeu"
 
-#: ../src/menu.c:1554
+#: ../src/menu.c:1560
 #, fuzzy
 msgid "Save Hero"
 msgstr "Nouveau héros"
 
-#: ../src/menu.c:1556
+#: ../src/menu.c:1562
 #, fuzzy
 msgid "Load Latest"
 msgstr "Charger une partie"
 
-#: ../src/menu.c:1557
+#: ../src/menu.c:1563
 #, fuzzy
 msgid "Load Backup"
 msgstr "Charger une partie"
 
-#: ../src/menu.c:1561
+#: ../src/menu.c:1565 ../src/lvledit/lvledit_menu.c:969
+msgid "Quit to Main Menu"
+msgstr ""
+
+#: ../src/menu.c:1567
 #, fuzzy
 msgid "Return to Level Editor"
 msgstr "Éditeur de niveau"
 
-#: ../src/menu.c:1602
+#: ../src/menu.c:1608
 #, fuzzy, c-format
 msgid ""
 "\n"
@@ -3273,7 +2437,7 @@ msgstr ""
 "redémarrerez FreedroidRPG\n"
 "Merci.\n"
 
-#: ../src/menu.c:1684
+#: ../src/menu.c:1690
 msgid ""
 "\n"
 "This option will be taken into account after you restart the game.\n"
@@ -3286,137 +2450,147 @@ msgstr ""
 "\n"
 "   Merci\n"
 
-#: ../src/menu.c:1730
+#: ../src/menu.c:1736
 #, c-format
 msgid "Change Screen Resolution"
 msgstr "Changer la résolution"
 
-#: ../src/menu.c:1731
+#: ../src/menu.c:1737
 #, fuzzy, c-format
 msgid "Fullscreen Mode"
 msgstr "Mode plein ecran : %s"
 
-#: ../src/menu.c:1732 ../src/menu.c:2018 ../src/menu.c:2019 ../src/menu.c:2020
-#: ../src/menu.c:2062 ../src/menu.c:2066 ../src/menu.c:2070 ../src/menu.c:2074
-#: ../src/menu.c:2078
+#: ../src/menu.c:1738 ../src/menu.c:2024 ../src/menu.c:2025 ../src/menu.c:2026
+#: ../src/menu.c:2068 ../src/menu.c:2072 ../src/menu.c:2076 ../src/menu.c:2080
+#: ../src/menu.c:2084
 msgid "ON"
 msgstr "ON"
 
-#: ../src/menu.c:1732 ../src/menu.c:2018 ../src/menu.c:2019 ../src/menu.c:2020
-#: ../src/menu.c:2062 ../src/menu.c:2066 ../src/menu.c:2070 ../src/menu.c:2074
-#: ../src/menu.c:2078
+#: ../src/menu.c:1738 ../src/menu.c:2024 ../src/menu.c:2025 ../src/menu.c:2026
+#: ../src/menu.c:2068 ../src/menu.c:2072 ../src/menu.c:2076 ../src/menu.c:2080
+#: ../src/menu.c:2084
 msgid "OFF"
 msgstr "OFF"
 
-#: ../src/menu.c:1735
+#: ../src/menu.c:1741
 #, fuzzy, c-format
 msgid "Gamma Correction"
 msgstr "Correction gamma : %1.2f"
 
-#: ../src/menu.c:1739
+#: ../src/menu.c:1745
 #, fuzzy, c-format
 msgid "Show Blood"
 msgstr "Montrer le sang : %s"
 
-#: ../src/menu.c:1743
+#: ../src/menu.c:1746 ../src/menu.c:1895 ../src/menu.c:1903 ../src/menu.c:1907
+#: ../src/menu.c:1911 ../src/lvledit/lvledit_menu.c:702
+msgid "YES"
+msgstr "OUI"
+
+#: ../src/menu.c:1746 ../src/menu.c:1895 ../src/menu.c:1903 ../src/menu.c:1907
+#: ../src/menu.c:1911 ../src/lvledit/lvledit_menu.c:703
+msgid "NO"
+msgstr "NON"
+
+#: ../src/menu.c:1749
 #, fuzzy, c-format
 msgid "Automap Scale"
 msgstr "Échelle de la carte auto : %2.1f"
 
-#: ../src/menu.c:1815
+#: ../src/menu.c:1821
 #, fuzzy, c-format
 msgid "Background Music Volume"
 msgstr "Volume de la musique de fond : %1.2f"
 
-#: ../src/menu.c:1819
+#: ../src/menu.c:1825
 #, fuzzy, c-format
 msgid "Sound Effects Volume"
 msgstr "Volume des effets sonores : %1.2f"
 
-#: ../src/menu.c:1888
+#: ../src/menu.c:1894
 #, fuzzy, c-format
 msgid "Hog CPU for max. performance"
 msgstr "Monopoliser le CPU : %s"
 
-#: ../src/menu.c:1892
+#: ../src/menu.c:1898
 #, fuzzy, c-format
 msgid "Highlighting mode"
 msgstr "Mode de surlignage : %s"
 
-#: ../src/menu.c:1893
+#: ../src/menu.c:1899
 msgid "FULL"
 msgstr "COMPLET"
 
-#: ../src/menu.c:1893
+#: ../src/menu.c:1899
 msgid "REDUCED"
 msgstr "RÉDUIT"
 
-#: ../src/menu.c:1896
+#: ../src/menu.c:1902
 #, fuzzy, c-format
 msgid "Skip light radius"
 msgstr "Désactiver le halo lumineux : %s"
 
-#: ../src/menu.c:1900
+#: ../src/menu.c:1906
 #, fuzzy, c-format
 msgid "Skip shadow blitting"
 msgstr "Désactiver les ombrages : %s"
 
-#: ../src/menu.c:1904
+#: ../src/menu.c:1910
 #, fuzzy, c-format
 msgid "Skip fadings"
 msgstr "Désactiver les fondus : %s"
 
-#: ../src/menu.c:2018
+#: ../src/menu.c:2024
 #, c-format
 msgid "Show Position: %s"
 msgstr "Afficher la position : %s"
 
-#: ../src/menu.c:2019
+#: ../src/menu.c:2025
 #, c-format
 msgid "Show Framerate: %s"
 msgstr "Afficher les FPS : %s"
 
-#: ../src/menu.c:2020
+#: ../src/menu.c:2026
 #, fuzzy, c-format
 msgid "Show Energy Bars: %s"
 msgstr "Montrer l'energie des ennemis : %s"
 
-#: ../src/menu.c:2021
+#: ../src/menu.c:2027
 #, c-format
 msgid "Screen Messages at most: %d"
 msgstr "Maximum de messages affichés : %d"
 
-#: ../src/menu.c:2022
+#: ../src/menu.c:2028
 #, c-format
 msgid "Screen Message time: %3.1f"
 msgstr "Temps d'affichage d'un message : %3.1f"
 
-#: ../src/menu.c:2061
+#: ../src/menu.c:2067
 #, fuzzy, c-format
 msgid "Enemy Hit Texts"
 msgstr "Montrer lorsque l'ennemi tire : %s"
 
-#: ../src/menu.c:2065
+#: ../src/menu.c:2071
 #, fuzzy, c-format
 msgid "Enemy Bumped Texts"
 msgstr "Montre les collisions : %s"
 
-#: ../src/menu.c:2069
+#: ../src/menu.c:2075
 #, fuzzy, c-format
 msgid "Enemy Aim Texts"
 msgstr "Montrer lorsque l'ennemi vise : %s"
 
-#: ../src/menu.c:2073
+#: ../src/menu.c:2079
 #, fuzzy, c-format
 msgid "All in-game Speech"
 msgstr "Messages supplémentaires (debug) : %s"
 
-#: ../src/menu.c:2077
+#: ../src/menu.c:2083
 #, fuzzy, c-format
 msgid "Reprogram bots after takeover"
 msgstr "Reprogrammer les robots après les avoir piratés: %s"
 
-#: ../src/menu.c:2098
+#: ../src/menu.c:2104
 msgid ""
 "\n"
 "     Please enter a name\n"
@@ -3432,11 +2606,11 @@ msgstr ""
 "\n"
 "     > "
 
-#: ../src/menu.c:2372 ../src/menu.c:2401
+#: ../src/menu.c:2378 ../src/menu.c:2407
 msgid "BACK"
 msgstr "RETOUR"
 
-#: ../src/menu.c:2375
+#: ../src/menu.c:2381
 #, fuzzy
 msgid ""
 "\n"
@@ -3447,40 +2621,40 @@ msgstr ""
 "\n"
 "Aucune sauvegarde trouvée !! Chargement annulé. "
 
-#: ../src/menu.c:2400
+#: ../src/menu.c:2406
 msgid "Sure!"
 msgstr "D'accord !"
 
-#: ../src/menu.c:2403
+#: ../src/menu.c:2409
 #, c-format
 msgid "Really delete hero '%s'?"
 msgstr "Confirmez vous la suppression du héros '%s' ?"
 
-#: ../src/menu.c:2457
+#: ../src/menu.c:2463
 msgid "New Hero"
 msgstr "Nouveau héros"
 
-#: ../src/menu.c:2458
+#: ../src/menu.c:2464
 msgid "Load existing Hero"
 msgstr "Charger un héros existant"
 
-#: ../src/menu.c:2459
+#: ../src/menu.c:2465
 msgid "Delete existing Hero"
 msgstr "Supprimer un héros existant"
 
-#: ../src/misc.c:750
+#: ../src/misc.c:746
 msgid "Pausing game..."
 msgstr "Jeu en pause ..."
 
-#: ../src/misc.c:764
+#: ../src/misc.c:760
 msgid "GAME PAUSED"
 msgstr "JEU EN PAUSE"
 
-#: ../src/misc.c:778
+#: ../src/misc.c:774
 msgid "Game resumed."
 msgstr "Jeu repris."
 
-#: ../src/misc.c:1329
+#: ../src/misc.c:1325
 #, c-format
 msgid "Arrived at %s."
 msgstr "Arrivé à %s."
@@ -3959,71 +3133,977 @@ msgstr "Fin-%d"
 msgid "Score"
 msgstr "Score"
 
-#: ../src/text.c:177
+#: ../src/text.c:187
 msgid "Unhandled exception fault.  Press ok to reboot."
 msgstr "Exception non contolée. Appuyer sur ok pour redémarrer."
 
-#: ../src/text.c:180
+#: ../src/text.c:190
 msgid "System fault. Please buy a newer version."
 msgstr "Erreur système. Veuillez acheter une nouvelle version."
 
-#: ../src/text.c:183
+#: ../src/text.c:193
 msgid "System error. Might be a virus."
 msgstr "Erreur système. Cela pourrait être dû à un virus."
 
-#: ../src/text.c:186
+#: ../src/text.c:196
 msgid "System error. Please buy an upgrade from MS."
 msgstr "Erreur système. Veuiller acheter une mise à jour au près de MS."
 
-#: ../src/text.c:189
+#: ../src/text.c:199
 msgid "System error. Press any key to reboot."
 msgstr "Erreur système. Appuyer sur une touche pour redémarrer."
 
-#: ../src/text.c:193
+#: ../src/text.c:203
 msgid "Aargh, I got hit.  Ugh, I got a bad feeling..."
 msgstr "Aargh, j'ai été touché. Ugh, je me sens mal ..."
 
-#: ../src/view.c:255
+#: ../src/view.c:258
 #, c-format
 msgid "GPS: X=%3.1f Y=%3.1f Lev=%d"
 msgstr "GPS: X=%3.1f Y=%3.1f Niv=%d"
 
-#: ../src/view.c:272
+#: ../src/view.c:275
 #, c-format
 msgid "FPS: %d"
 msgstr "FPS : %d"
 
-#: ../src/view.c:293
+#: ../src/view.c:296
 #, fuzzy, c-format
 msgid "Time to hold out still: %2d:%2d"
 msgstr "Temps à tenir : %2d:%2d "
 
-#: ../src/view.c:311
+#: ../src/view.c:314
 #, fuzzy, c-format
 msgid "Bots remaining on level: %d\n"
 msgstr "Robots restant dans le niveau : %d"
 
 #: ../src/vars.h:128
+#, fuzzy
+msgid "untrained"
+msgstr "Entrée"
+
+#: ../src/vars.h:129
 msgid "novice"
 msgstr "débutant"
 
-#: ../src/vars.h:129
+#: ../src/vars.h:130
 #, fuzzy
 msgid "apprentice"
 msgstr "Expérience"
 
-#: ../src/vars.h:130
+#: ../src/vars.h:131
 msgid "professional"
 msgstr ""
 
-#: ../src/vars.h:131
+#: ../src/vars.h:132
 #, fuzzy
 msgid "master"
 msgstr "maître"
 
-#: ../src/vars.h:132
+#: ../src/vars.h:133
 msgid "god"
 msgstr ""
+
+#: ../src/lvledit/lvledit_actions.c:329
+msgid ""
+"\n"
+"Please enter name for this obstacle: \n"
+"\n"
+msgstr ""
+
+#: ../src/lvledit/lvledit_actions.c:384
+msgid ""
+"\n"
+"Please enter new description text for this obstacle: \n"
+"\n"
+msgstr ""
+
+#: ../src/lvledit/lvledit_actions.c:478
+#, c-format
+msgid "Sorry, don't know which waypoint you mean."
+msgstr ""
+
+#: ../src/lvledit/lvledit_actions.c:483
+#, c-format
+msgid "You specified waypoint nr. %d."
+msgstr ""
+
+#: ../src/lvledit/lvledit_actions.c:490
+msgid ""
+"\n"
+"It has been marked as the origin of the next connection."
+msgstr ""
+
+#: ../src/lvledit/lvledit_actions.c:495
+#, c-format
+msgid ""
+"\n"
+"sORRY, MAXIMAL NUMBER OF WAYPOINT-CONNECTIONS (%d) REACHED!\n"
+msgstr ""
+
+#: ../src/lvledit/lvledit_actions.c:504
+msgid ""
+"\n"
+"\n"
+"Origin==Target --> Connection Operation cancelled."
+msgstr ""
+
+#: ../src/lvledit/lvledit_actions.c:509
+#, c-format
+msgid ""
+"\n"
+"\n"
+"Origin: %d Target: %d. Operation makes sense."
+msgstr ""
+
+#: ../src/lvledit/lvledit_actions.c:511
+msgid ""
+"\n"
+"Operation done, connection removed."
+msgstr ""
+
+#: ../src/lvledit/lvledit_actions.c:513
+msgid ""
+"\n"
+"Operation done, connection added."
+msgstr ""
+
+#: ../src/lvledit/lvledit_actions.c:633
+msgid ""
+"\n"
+"No existing map label entry for this position found...\n"
+" Please enter new label for this map position: \n"
+"\n"
+msgstr ""
+
+#: ../src/lvledit/lvledit_actions.c:644
+msgid ""
+"\n"
+"No more free map label entry found... using first on instead ...\n"
+msgstr ""
+
+#: ../src/lvledit/lvledit_actions.c:649
+msgid ""
+"\n"
+"Using new map label list entry...\n"
+msgstr ""
+
+#: ../src/lvledit/lvledit_actions.c:656
+msgid ""
+"\n"
+"Overwriting existing map label list entry...\n"
+" Please enter new label for this map position: \n"
+"\n"
+msgstr ""
+
+#: ../src/lvledit/lvledit.c:360
+msgid "Cancel item drop"
+msgstr "Annuler le point de chute"
+
+#: ../src/lvledit/lvledit.c:380
+msgid "NO PREFIX"
+msgstr ""
+
+#: ../src/lvledit/lvledit.c:391
+msgid "NO SUFFIX"
+msgstr ""
+
+#: ../src/lvledit/lvledit.c:528
+msgid ""
+"\n"
+"The list of inconsistencies of the jump interfaces for this level:\n"
+"\n"
+msgstr ""
+
+#: ../src/lvledit/lvledit.c:540
+msgid "BACK-FORTH-MISMATCH: North doesn't lead back here (yet)!\n"
+msgstr ""
+
+#: ../src/lvledit/lvledit.c:549
+msgid "BACK-FORTH-MISMATCH: South doesn't lead back here (yet)!\n"
+msgstr ""
+
+#: ../src/lvledit/lvledit.c:558
+msgid "BACK-FORTH-MISMATCH: East doesn't lead back here (yet)!\n"
+msgstr ""
+
+#: ../src/lvledit/lvledit.c:567
+msgid "BACK-FORTH-MISMATCH: West doesn't lead back here (yet)!\n"
+msgstr ""
+
+#: ../src/lvledit/lvledit.c:571
+msgid ""
+"\n"
+"NO OTHER BACK-FORTH-MISMATCH ERRORS other than those listed above\n"
+"\n"
+msgstr ""
+
+#: ../src/lvledit/lvledit.c:584
+msgid ""
+"INTERFACE SIZE MISMATCH: North doesn't lead so same-sized interface "
+"level!!!\n"
+msgstr ""
+
+#: ../src/lvledit/lvledit.c:594
+msgid ""
+"INTERFACE SIZE MISMATCH: South doesn't lead so same-sized interface "
+"level!!!\n"
+msgstr ""
+
+#: ../src/lvledit/lvledit.c:604
+msgid ""
+"INTERFACE SIZE MISMATCH: East doesn't lead so same-sized interface level!!!\n"
+msgstr ""
+
+#: ../src/lvledit/lvledit.c:614
+msgid ""
+"INTERFACE SIZE MISMATCH: West doesn't lead so same-sized interface level!!!\n"
+msgstr ""
+
+#: ../src/lvledit/lvledit.c:628
+msgid ""
+"LEVEL DIMENSION MISMATCH: North doesn't lead so same-sized level (non-fatal, "
+"but no good comes from this)!\n"
+msgstr ""
+
+#: ../src/lvledit/lvledit.c:637
+msgid ""
+"LEVEL DIMENSION MISMATCH: South doesn't lead so same-sized level (non-fatal, "
+"but no good comes from this)!\n"
+msgstr ""
+
+#: ../src/lvledit/lvledit.c:646
+msgid ""
+"LEVEL DIMENSION MISMATCH: East doesn't lead so same-sized level (non-fatal, "
+"but no good comes from this)!\n"
+msgstr ""
+
+#: ../src/lvledit/lvledit.c:655
+msgid ""
+"LEVEL DIMENSION MISMATCH: West doesn't lead so same-sized level (non-fatal, "
+"but no good comes from this)!\n"
+msgstr ""
+
+#: ../src/lvledit/lvledit.c:663
+msgid ""
+"\n"
+"\n"
+"--- End of List --- Press Space to return to menu ---\n"
+msgstr ""
+
+#: ../src/lvledit/lvledit_display.c:61
+#, c-format
+msgid ""
+"\n"
+" Map label information: \n"
+" label_name=\"%s\"."
+msgstr ""
+"\n"
+" Nom position carte: \n"
+" label_name=\"%s\""
+
+#: ../src/lvledit/lvledit_display.c:282
+msgid "List of connection for this wp:\n"
+msgstr ""
+
+#: ../src/lvledit/lvledit_display.c:304
+#, c-format
+msgid "To: X=%d Y=%d    "
+msgstr ""
+
+#: ../src/lvledit/lvledit_display.c:441
+msgid ""
+"Go level north\n"
+"\n"
+"Use this button to move one level north, i.e. to the level that is glued to "
+"the northern side of this level."
+msgstr ""
+"Va au niveau nord\n"
+"\n"
+"Utilisez ce bouton pour vous déplacer d'un niveau au nord, c'est-à-dire le "
+"prochain niveau au nord du niveau actuel."
+
+#: ../src/lvledit/lvledit_display.c:446
+msgid ""
+"Go level south\n"
+"\n"
+"Use this button to move one level south, i.e. to the level that is glued to "
+"the southern side of this level."
+msgstr ""
+"Va au niveau sud\n"
+"\n"
+"Utilisez ce bouton pour vous déplacer d'un niveau vers le sud, c'est-à-dire "
+"vers le prochain niveau au sud de l'actuel."
+
+#: ../src/lvledit/lvledit_display.c:451
+msgid ""
+"Go level east\n"
+"\n"
+"Use this button to move one level east, i.e. to the level that is glued to "
+"the eastern side of this level."
+msgstr ""
+"Va au niveau est\n"
+"\n"
+"Utilisez ce bouton pour vous déplacer d'un niveau vers l'est, c'est-à-dire "
+"vers le prochain niveau à l'est de l'actuel."
+
+#: ../src/lvledit/lvledit_display.c:456
+msgid ""
+"Go level west\n"
+"\n"
+"Use this button to move one level west, i.e. to the level that is glued to "
+"the western side of this level."
+msgstr ""
+"Va au niveau ouest\n"
+"\n"
+"Utilisez ce bouton pour vous déplacer d'un niveau vers l'ouest, c'est-à-dire "
+"vers le prochain niveau à l'ouest de l'actuel."
+
+#: ../src/lvledit/lvledit_display.c:461
+msgid ""
+"Export this level\n"
+"\n"
+"In FreedroidRPG maps can be glued together to form one big map.  But that "
+"requires that the maps are identical where they overlap.  This button will "
+"copy the borders of this level to the borders of the neighbouring levels, so "
+"that the maps are in sync again."
+msgstr ""
+"Exporter ce niveau\n"
+"\n"
+"Dans FreedroidRPG, les cartes peuvent être assemblées ensemble pour former "
+"une seule grande carte. Mais cela nécessite que les cartes coïncident sur "
+"leurs contours. Ce bouton va copier les bords de ce niveau vers les bords du "
+"niveau voisin, afin que les cartes coïncident toujours."
+
+#: ../src/lvledit/lvledit_display.c:469
+msgid ""
+"Save Impossible!\n"
+"\n"
+"Playing on a map leaves the world in an unclean state not suitable for "
+"saving. Enter the editor directly from the main menu to be able to save any "
+"changes to the map file."
+msgstr ""
+
+#: ../src/lvledit/lvledit_display.c:471
+#, fuzzy
+msgid ""
+"Save Map\n"
+"\n"
+"This button will save your current map over the file '../map/freedroid."
+"levels' from your current working directory."
+msgstr ""
+"Sauvegarder la carte\n"
+"\n"
+"Ce bouton sauvegardera votre carte actuelle dans le fichier '../map/Asteroid."
+"maps' de votre répertoire de travail actuel."
+
+#: ../src/lvledit/lvledit_display.c:477
+msgid ""
+"Toggle waypoints\n"
+"\n"
+"Use this button to toggle waypoints on the current cursor location.  "
+"Waypoints are marked with a white (or multicolored) 4-direction arrow.\n"
+"\n"
+"You can also use the W key for this."
+msgstr ""
+"Placement des points de passage\n"
+"\n"
+"Utilisez ce bouton pour placer des points de passage à l'endroit courant du "
+"curseur. Les points de passage sont marqués par une flèche quadri-"
+"directionnelle blanche (ou multicouleurs).\n"
+"Vous pouvez faire la même chose en utilisant la touche W."
+
+#: ../src/lvledit/lvledit_display.c:484
+msgid ""
+"Make waypoint connection\n"
+"\n"
+"Use this button to start a connection between waypoints, so that droids can "
+"move along this connection.\n"
+"\n"
+"You can also use the C key for this."
+msgstr ""
+"Fait des connexions entre les points de passage\n"
+"\n"
+"Utilisez dce bouton pour commencer une connexion entre des points de "
+"passage, pour que les droïdes voyagent le long de ce chement.\n"
+"\n"
+"Vous pouvez aussi utiliser la touche C pour le faire."
+
+#: ../src/lvledit/lvledit_display.c:486
+msgid ""
+"Complete waypoint connection\n"
+"\n"
+"You have currently a connection attempt going on already.  Go to the desired "
+"destination waypoint and hit this button again to establish the connection.\n"
+"\n"
+"You can also use the C key for this."
+msgstr ""
+"Achève les connexions entre les points de passage\n"
+"\n"
+"Vous avez actuellement une connection qui est prête à être activée. Allez au "
+"point de passage de destination et utilisez encore ce bouton pour faire la "
+"connexion.\n"
+"\n"
+"Vous pouvez également utiliser la touche C pour cela."
+
+#: ../src/lvledit/lvledit_display.c:492
+msgid ""
+"Delete selected obstacle\n"
+"\n"
+"Use this button to delete the currently marked obstacle.\n"
+"\n"
+"You can also use the X key for this."
+msgstr ""
+"Supprime l'obstacle sélectionné\n"
+"\n"
+"Utilisez ce bouton pour supprimer l'obstacles sélectionné.\n"
+"\n"
+"Vous pouvez aussi utiliser la touche X pour cela."
+
+#: ../src/lvledit/lvledit_display.c:497
+msgid ""
+"Next obstacle on currently selected tile\n"
+"\n"
+"Use this button to cycle the currently marked obstacle on this tile.\n"
+"\n"
+"You can also use the N key for this."
+msgstr ""
+"Le prochain obstacle sur la dalle courante\n"
+"\n"
+"Utilisez ce bouton pour entourer l'obstacle sélectionné sur cette dalle.\n"
+"\n"
+"Vous pouvez aussi utiliser la touche N pour cela."
+
+#: ../src/lvledit/lvledit_display.c:502
+msgid ""
+"Beautify grass button\n"
+"\n"
+"Use this button to 'beautify' rough edges of the grass-sand tiles on this "
+"entire level automatically.  The function will attempt to create 'round' "
+"borders and corners.\n"
+"\n"
+"You can also use Ctrl-B for this."
+msgstr ""
+"Enjoliver les hautes herbes\n"
+"\n"
+"Utilisez ce bouton pour \"enjoliver\" les hautes herbes par-dessus les "
+"dalles de sable du niveau entier. Cette fonction va essayer de créer des "
+"bordures et des coins arrondis.\n"
+"\n"
+"Vous pouvez également utiliser Ctrl-B pour cela."
+
+#: ../src/lvledit/lvledit_display.c:508
+msgid ""
+"Zoom in/out\n"
+"\n"
+"Use this button to zoom INTO or OUT of the level.\n"
+"\n"
+"You can also use the hotkey 'O' for this."
+msgstr ""
+"Zoom avant/arrière\n"
+"\n"
+"Utilisez ce bouton pour faire un zoom AVANT ou ARRIERE du niveau.\n"
+"\n"
+"Vous pouvez également utiliser la touche 'O' pour cela."
+
+#: ../src/lvledit/lvledit_display.c:513
+msgid ""
+"Fill\n"
+"\n"
+"Use this button to fill a concurrent area of the map with the currently "
+"selected map tile.  Filling will proceed from the cursor in all directions "
+"until a change of map tile is encountered."
+msgstr ""
+"Remplissage\n"
+"\n"
+"Utilisez ce bouton pour remplir une autre aire de la carte avec les dalles "
+"sélectionnées. Le remplissage va démarrer du curseur dans toutes les "
+"directions jusqu'à ce qu'un changement de dalles de la carte soit rencontré."
+
+#: ../src/lvledit/lvledit_display.c:518
+msgid ""
+"New obstacle label\n"
+"\n"
+"Use this button to attach a label to the currently marked obstacle.  These "
+"obstacle labels can be used to define obstacles to be modified by events.\n"
+" Note that you can also use the hotkey 'h' for this."
+msgstr ""
+"Nouvelle étiquette d'obstacle\n"
+"\n"
+"Utilisez ce bouton pour fixer une étiquette à un obstacle actuellement "
+"sélectionné. Cette étiquette d'obstacle peut être utilisée pour définir des "
+"obstacles modifiés par des évènements.\n"
+" Remarquez que vous pouvez également utiliser la touche rapide 'h' pour cela."
+
+#: ../src/lvledit/lvledit_display.c:523
+msgid ""
+"New obstacle description\n"
+"\n"
+"edits the description seen when the item is selected"
+msgstr ""
+"Nouvelle description d'obstacle\n"
+"\n"
+"Utilisez ce bouton pour éditer la description de l'obstacle sélectionné."
+
+#: ../src/lvledit/lvledit_display.c:528
+msgid ""
+"New map label\n"
+"\n"
+"Use this button to attach a new map label to the current cursor position.  "
+"These map labels can be used to define starting points for bots and "
+"characters or also to define locations for events and triggers."
+msgstr ""
+"Nouvelle étiquette de carte\n"
+"\n"
+"Utilisez ce bouton pour fixer une nouvelle étiquette de carte à la position "
+"courante du curseur. Cette étiquette de carte peut être utilisée pour "
+"définir des points de départ pour des robots et des personnages et également "
+"pour définir des endroits pour des évènements et des déclencheurs."
+
+#: ../src/lvledit/lvledit_display.c:533
+msgid ""
+"Add item\n"
+"\n"
+"Use this button to drop a new item to the floor.  You can also use the "
+"hotkey 'G' for this."
+msgstr ""
+"Ajouter objet\n"
+"\n"
+"Utilisez ce bouton pour poser un nouvel objet sur le sol. Vous pouvez "
+"également utilisez la touche rapide 'G' pour cela."
+
+#: ../src/lvledit/lvledit_display.c:538
+msgid ""
+"Menu\n"
+"\n"
+"Use this button to enter the main menu of the level editor.\n"
+" Note, that you can also use the Escape key to enter the level editor main "
+"menu."
+msgstr ""
+"Menu\n"
+"\n"
+"Utilisez ce bouton pour entrer dans le menu principal de l'éditeur de "
+"niveau.\n"
+" Notez que vous pouvez également utiliser la touche Echap pour entrer dans "
+"le menu principal de l'éditeur de niveau."
+
+#: ../src/lvledit/lvledit_display.c:543
+msgid ""
+"Level resize\n"
+"\n"
+"Use this button to enter the level resize menu.  Levels can be resized in "
+"various ways so as not to destroy your current map too much and so as to "
+"insert the new space where you would best like it to be."
+msgstr ""
+"Redimensionner le niveau\n"
+"\n"
+"Utilisez ce bouton pour entrer dans le menu de redimensionnement de niveau. "
+"Les niveaux peuvent être redimensionnés de différentes manières, pour ne pas "
+"trop endommager votre carte actuelle et insérer des espaces où vous aimeriez "
+"qu'ils soient situés."
+
+#: ../src/lvledit/lvledit_display.c:550
+msgid ""
+"Back to game\n"
+"\n"
+"Changes made to the world will be permanent for current Hero. To avoid, load "
+"a previous savegame."
+msgstr ""
+
+#: ../src/lvledit/lvledit_display.c:552
+msgid ""
+"Test Map\n"
+"\n"
+"This will save your map and reload it after you finish testing, avoiding "
+"saving an unclean world state."
+msgstr ""
+
+#: ../src/lvledit/lvledit_display.c:558
+msgid ""
+"Underground lighting\n"
+"\n"
+"Use this button to toggle underground lighting, i.e. shadows coming from the "
+"light that the tux emanates.\n"
+"\n"
+"There isn't any key to toggle this on the keyboard."
+msgstr ""
+"Éclairage de sous-sol\n"
+"\n"
+"Utilisez ce bouton pour placer de l'éclairage sous-terrain, par exemple, des "
+"ombres provenant de la lumière que Tux émane.\n"
+"\n"
+"Il n'y a pas de touche clavier rapide pour le placement."
+
+#: ../src/lvledit/lvledit_display.c:564
+msgid ""
+"Toggle display enemies\n"
+"\n"
+"Use this button to toggle between enemies displayed in level editor or "
+"enemies hidden in level editor."
+msgstr ""
+"Commuter l'affichage des ennemis\n"
+"\n"
+"Utilisez ce bouton commuter l'affichage des ennemis dans l'éditeur de niveau."
+
+#: ../src/lvledit/lvledit_display.c:570
+msgid ""
+"Toggle display obstacles\n"
+"\n"
+"Use this button to toggle between obstacles displayed in level editor or "
+"obstacles hidden in level editor."
+msgstr ""
+"Commuter l'affichage des obstacles\n"
+"\n"
+"Utilisez ce bouton pour basculer entre afficher les obstacles et cacher les "
+"obstacles dans l'éditeur de niveau."
+
+#: ../src/lvledit/lvledit_display.c:576
+msgid ""
+"Undo\n"
+"\n"
+"Use this button to undo your last actions."
+msgstr ""
+"Annuler\n"
+"\n"
+"Utilisez ce bouton pour annuler vos dernières actions."
+
+#: ../src/lvledit/lvledit_display.c:582
+msgid ""
+"Redo\n"
+"\n"
+"Use this button to redo an action."
+msgstr ""
+"Rétablir\n"
+"\n"
+"Utilisez ce bouton pour rétablir une action."
+
+#: ../src/lvledit/lvledit_display.c:588
+msgid ""
+"Toggle display tooltips\n"
+"\n"
+"Use this button to toggle these annoying help windows on and off."
+msgstr ""
+"Commutation de l'affichage des infobulles\n"
+"\n"
+"Utilisez ce bouton pour commuter l'apparition des infobulles."
+
+#: ../src/lvledit/lvledit_display.c:594
+msgid ""
+"Toggle display colision rectangles\n"
+"\n"
+"Use this button to toggle the visible collision rectangles on and off."
+msgstr ""
+"Commute  l'affichage des rectangles de collision\n"
+"\n"
+"Utilisez ce bouton pour commuter l'affichage des rectangle frontalier aux "
+"objets."
+
+#: ../src/lvledit/lvledit_display.c:601
+msgid "Change grid mode ( placement / full / off )"
+msgstr "Mode de grille (position/complet/off)"
+
+#: ../src/lvledit/lvledit_display.c:642
+#, c-format
+msgid " Source waypoint selected : X=%d Y=%d. "
+msgstr " Point de passage source : X=%d Y=%d. "
+
+#: ../src/lvledit/lvledit_menu.c:79 ../src/lvledit/lvledit_menu.c:103
+#: ../src/lvledit/lvledit_menu.c:302 ../src/lvledit/lvledit_menu.c:326
+#, c-format
+msgid "North"
+msgstr ""
+
+#: ../src/lvledit/lvledit_menu.c:81 ../src/lvledit/lvledit_menu.c:87
+#: ../src/lvledit/lvledit_menu.c:93 ../src/lvledit/lvledit_menu.c:99
+#: ../src/lvledit/lvledit_menu.c:655
+#, c-format
+msgid "Edge"
+msgstr ""
+
+#: ../src/lvledit/lvledit_menu.c:85 ../src/lvledit/lvledit_menu.c:109
+#: ../src/lvledit/lvledit_menu.c:308 ../src/lvledit/lvledit_menu.c:332
+#, fuzzy, c-format
+msgid "East"
+msgstr "maître"
+
+#: ../src/lvledit/lvledit_menu.c:91 ../src/lvledit/lvledit_menu.c:115
+#: ../src/lvledit/lvledit_menu.c:314 ../src/lvledit/lvledit_menu.c:338
+#, c-format
+msgid "South"
+msgstr ""
+
+#: ../src/lvledit/lvledit_menu.c:97 ../src/lvledit/lvledit_menu.c:121
+#: ../src/lvledit/lvledit_menu.c:320 ../src/lvledit/lvledit_menu.c:344
+#, fuzzy, c-format
+msgid "West"
+msgstr "Coffre"
+
+#: ../src/lvledit/lvledit_menu.c:105 ../src/lvledit/lvledit_menu.c:111
+#: ../src/lvledit/lvledit_menu.c:117 ../src/lvledit/lvledit_menu.c:123
+#: ../src/lvledit/lvledit_menu.c:657
+#, fuzzy, c-format
+msgid "Interface"
+msgstr "Entrée"
+
+#: ../src/lvledit/lvledit_menu.c:127
+#, c-format
+msgid "Current level size in X: %d."
+msgstr ""
+
+#: ../src/lvledit/lvledit_menu.c:129
+#, c-format
+msgid "Current level size in Y: %d."
+msgstr ""
+
+#: ../src/lvledit/lvledit_menu.c:300 ../src/lvledit/lvledit_menu.c:306
+#: ../src/lvledit/lvledit_menu.c:312 ../src/lvledit/lvledit_menu.c:318
+#, c-format
+msgid "Jump threshold"
+msgstr ""
+
+#: ../src/lvledit/lvledit_menu.c:324 ../src/lvledit/lvledit_menu.c:330
+#: ../src/lvledit/lvledit_menu.c:336 ../src/lvledit/lvledit_menu.c:342
+#, c-format
+msgid "Jump target"
+msgstr ""
+
+#: ../src/lvledit/lvledit_menu.c:348
+msgid "Export this level to other target levels"
+msgstr ""
+
+#: ../src/lvledit/lvledit_menu.c:349
+msgid "Report interface inconsistencies"
+msgstr ""
+
+#: ../src/lvledit/lvledit_menu.c:522
+#, fuzzy
+msgid "Add New Level"
+msgstr "Niveau suivant"
+
+#: ../src/lvledit/lvledit_menu.c:545
+msgid "Remove Current Level"
+msgstr ""
+
+#: ../src/lvledit/lvledit_menu.c:647
+#, fuzzy, c-format
+msgid "Name"
+msgstr "Nouvelle partie"
+
+#: ../src/lvledit/lvledit_menu.c:651
+#, fuzzy, c-format
+msgid "Size"
+msgstr "Bouclier"
+
+#: ../src/lvledit/lvledit_menu.c:676
+#, c-format
+msgid "Light"
+msgstr ""
+
+#: ../src/lvledit/lvledit_menu.c:678
+msgid "Radius"
+msgstr ""
+
+#: ../src/lvledit/lvledit_menu.c:683 ../src/lvledit/lvledit_menu.c:690
+msgid "Minimum"
+msgstr ""
+
+#: ../src/lvledit/lvledit_menu.c:696
+#, fuzzy, c-format
+msgid "Background Music"
+msgstr "Volume de la musique de fond : %1.2f"
+
+#: ../src/lvledit/lvledit_menu.c:700
+#, fuzzy, c-format
+msgid "Infinite Running"
+msgstr "Robots restant dans le niveau : %d"
+
+#: ../src/lvledit/lvledit_menu.c:705
+#, fuzzy
+msgid "Add/Rem Level"
+msgstr "Niveau suivant"
+
+#: ../src/lvledit/lvledit_menu.c:747
+msgid ""
+"\n"
+" Please enter new level name: \n"
+"\n"
+msgstr ""
+
+#: ../src/lvledit/lvledit_menu.c:753
+msgid ""
+"\n"
+" Please enter new music file name: \n"
+"\n"
+msgstr ""
+
+#: ../src/lvledit/lvledit_menu.c:874
+#, fuzzy
+msgid "Run Map Level Validator"
+msgstr "Éditeur de niveau"
+
+#: ../src/lvledit/lvledit_menu.c:875
+#, fuzzy
+msgid "Run Dialog Lua Validator"
+msgstr "Éditeur de niveau"
+
+#: ../src/lvledit/lvledit_menu.c:954
+#, fuzzy
+msgid "Level Options"
+msgstr "Sauvegarder les options"
+
+#: ../src/lvledit/lvledit_menu.c:955
+#, fuzzy
+msgid "Advanced Options"
+msgstr "Sauvegarder les options"
+
+#: ../src/lvledit/lvledit_menu.c:958
+msgid "Playtest Mapfile"
+msgstr ""
+
+#: ../src/lvledit/lvledit_menu.c:959
+#, fuzzy
+msgid "Save Mapfile"
+msgstr "Sauvegarder la partie"
+
+#: ../src/lvledit/lvledit_menu.c:964
+#, fuzzy
+msgid "Return to Game"
+msgstr "Éditeur de niveau"
+
+#: ../src/lvledit/lvledit_menu.c:965
+msgid "Saving disabled"
+msgstr ""
+
+#: ../src/lvledit/lvledit_menu.c:968
+msgid "Continue Editing"
+msgstr ""
+
+#: ../src/lvledit/lvledit_menu.c:995
+msgid ""
+"\n"
+" Please enter new level number: \n"
+"\n"
+msgstr ""
+
+#: ../src/lvledit/lvledit_menu.c:1034
+msgid "Your ship was saved..."
+msgstr ""
+
+#: ../src/lvledit/lvledit_widget_button.c:69
+msgid ""
+"\n"
+"M E S S A G E\n"
+"\n"
+"Your ship was saved to file 'freedroid.levels' in the map directory.\n"
+"\n"
+"If you have set up something cool and you wish to contribute it to "
+"FreedroidRPG, please contact the FreedroidRPG dev team."
+msgstr ""
+
+#: ../src/lvledit/lvledit_widget_button.c:72
+msgid ""
+"\n"
+"M E S S A G E\n"
+"\n"
+"E R R O R ! Your ship was not saved.\n"
+"\n"
+"Playing on a map leaves the world in an unclean state not suitable for "
+"saving. Enter the editor from the main menu to be able to save."
+msgstr ""
+
+#: ../src/lvledit/lvledit_widgets.c:231
+#, fuzzy
+msgid "WALL"
+msgstr "MURS"
+
+#: ../src/lvledit/lvledit_widgets.c:233
+msgid "FURNITURE"
+msgstr "MEUBLE"
+
+#: ../src/lvledit/lvledit_widgets.c:234
+msgid "MACHINERY"
+msgstr "MACHINERIE"
+
+#: ../src/lvledit/lvledit_widgets.c:235
+#, fuzzy
+msgid "CONTAINER"
+msgstr "CONTENEURS"
+
+#: ../src/lvledit/lvledit_widgets.c:236
+msgid "PLANT"
+msgstr ""
+
+#: ../src/lvledit/lvledit_widgets.c:240
+#, fuzzy
+msgid "ALLOBS."
+msgstr "MURS"
+
+#: ../src/lvledit/lvledit_widgets.c:241
+msgid "FLOOR"
+msgstr "SOL"
+
+#: ../src/lvledit/lvledit_widgets.c:243
+msgid "WAYPT"
+msgstr ""
+
+#, fuzzy
+#~ msgid ""
+#~ "\n"
+#~ "You are playing in 640x480.\n"
+#~ "\n"
+#~ "While this resolution mostly work correctly and will\n"
+#~ "give you a great gaming experience, its support is\n"
+#~ "in the process of being dropped, therefore you will\n"
+#~ "want to consider using 800x600 or higher resolution.\n"
+#~ "\n"
+#~ "Thank you.\n"
+#~ msgstr ""
+#~ "\n"
+#~ "Vous jouez actuellement avec une résolution de 640x480\n"
+#~ "\n"
+#~ "Malgré que cette résolution fonctionne correctement et vous \n"
+#~ "donne une bonne expérience de jeu, elle est en train d'être\n"
+#~ "supprimée. Vous pouvez utiliser les résolutions 800x600 ou\n"
+#~ "1024x768.\n"
+#~ "\n"
+#~ "Merci.\n"
+
+#~ msgid "NATURE"
+#~ msgstr "NATURE"
+
+#~ msgid "ALL"
+#~ msgstr "TOUT(ES)"
+
+#~ msgid "QUICK"
+#~ msgstr "RAPIDE"
+
+#, fuzzy
+#~ msgid "Comment"
+#~ msgstr "Réussi"
+
+#~ msgid ""
+#~ "Level editor guide\n"
+#~ "\n"
+#~ "Use this button to enter the level editor keymap display."
+#~ msgstr ""
+#~ "Guide de l'éditeur de niveau\n"
+#~ "\n"
+#~ "Utilisez ce bouton pour entrer dans l'affichage du clavier de l'éditeur "
+#~ "de niveau."
+
+#~ msgid ""
+#~ "Toggle display Tux\n"
+#~ "\n"
+#~ "Use this button to toggle between Tux displayed in level editor or Tux "
+#~ "hidden in level editor."
+#~ msgstr ""
+#~ "Commuter l'affichage de Tux\n"
+#~ "\n"
+#~ "Utilisez ce bouton pour basculer entre afficher Tux ou cacher Tux dans "
+#~ "l'éditeur de niveau."
+
+#~ msgid " Source waypoint selected : NONE"
+#~ msgstr " Point de passage source : AUCUN"
 
 #, fuzzy
 #~ msgid "%d bucks received"
