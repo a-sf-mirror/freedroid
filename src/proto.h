@@ -231,7 +231,6 @@ void DrawLine ( SDL_Surface* Surface, int x1, int y1, int x2, int y2, int r, int
 void DrawHatchedQuad ( SDL_Surface* Surface, int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, int r, int g, int b );
 
 // saveloadgame.c 
-void ShowSaveLoadGameProgressMeter( int Percentage , int IsSavegame ) ;
 void LoadAndShowThumbnail ( char* CoreFilename );
 int SaveGame( void );
 int LoadBackupGame( void );

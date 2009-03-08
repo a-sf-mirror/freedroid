@@ -198,9 +198,6 @@ mouse_press_button AllMousePressButtons[ MAX_MOUSE_PRESS_BUTTONS ] =
     [LEVEL_EDITOR_REDO_BUTTON] =  { UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorRedoButton.png", { 520, 90, 0,0}, FALSE, FALSE },
     [LEVEL_EDITOR_REDO_BUTTON_PUSHED] =  { UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorRedoButtonPushed.png", { 520, 90, 0,0}, FALSE, FALSE },
 
-    [SAVE_GAME_BANNER] =     { UNLOADED_ISO_IMAGE , "backgrounds/SaveGameBanner.png"                 , { 0 , 0 , 200 , 50 } , FALSE , FALSE } ,
-    [LOAD_GAME_BANNER] =     { UNLOADED_ISO_IMAGE , "backgrounds/LoadGameBanner.png"                 , { 0 , 0 , 200 , 50 } , FALSE , FALSE } ,
-
     [WEAPON_RECT_BUTTON] =     { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { WEAPON_RECT_X , WEAPON_RECT_Y , WEAPON_RECT_WIDTH , WEAPON_RECT_HEIGHT } , FALSE , FALSE } ,
     [DRIVE_RECT_BUTTON] =     { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { DRIVE_RECT_X  , DRIVE_RECT_Y  , DRIVE_RECT_WIDTH  , DRIVE_RECT_HEIGHT } , FALSE , FALSE } ,
     [SHIELD_RECT_BUTTON] =     { UNLOADED_ISO_IMAGE , "THIS_DOESNT_NEED_BLITTING"                      , { SHIELD_RECT_X  , SHIELD_RECT_Y  , SHIELD_RECT_WIDTH , SHIELD_RECT_HEIGHT } , FALSE , FALSE } ,
@@ -429,11 +426,6 @@ adapt_button_positions_to_screen_resolution( void )
     AllMousePressButtons [ MORE_MAG_BUTTON ] . button_rect . x += CHARACTERRECT_X ;    
     AllMousePressButtons [ MORE_DEX_BUTTON ] . button_rect . x += CHARACTERRECT_X ;    
     AllMousePressButtons [ MORE_VIT_BUTTON ] . button_rect . x += CHARACTERRECT_X ;    
-
-    AllMousePressButtons [ LOAD_GAME_BANNER ] . button_rect . x = (GameConfig . screen_width-200)/2 ;
-    AllMousePressButtons [ LOAD_GAME_BANNER ] . button_rect . y = (GameConfig . screen_height-50)/2 ;
-    AllMousePressButtons [ SAVE_GAME_BANNER ] . button_rect . x = (GameConfig . screen_width-200)/2 ;
-    AllMousePressButtons [ SAVE_GAME_BANNER ] . button_rect . y = (GameConfig . screen_height-50)/2 ;
 
     Droid_Image_Window . x = 48*GameConfig . screen_width/640 ;
     Droid_Image_Window . y = 44*GameConfig . screen_height/480 ;

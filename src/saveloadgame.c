@@ -65,26 +65,6 @@ jmp_buf saveload_jmpbuf;
 } while (0)
 
 
-void ShowSaveLoadGameProgressMeter( int Percentage , int IsSavegame ) 
-{
-	SDL_Rect TargetRect;
-
-	TargetRect.x = AllMousePressButtons[ SAVE_GAME_BANNER ] . button_rect . x + ( AllMousePressButtons[ SAVE_GAME_BANNER ] . button_rect . w - 100 ) / 2 + 2 ;
-	TargetRect.y = AllMousePressButtons[ SAVE_GAME_BANNER ] . button_rect . y + 20 ;
-	TargetRect.w = Percentage ;
-	TargetRect.h = 20 ;
-
-	RestoreMenuBackground(0);
-
-	if ( IsSavegame) 
-		ShowGenericButtonFromList ( SAVE_GAME_BANNER );
-	else
-		ShowGenericButtonFromList ( LOAD_GAME_BANNER );
-	our_SDL_fill_rect_wrapper ( Screen , &TargetRect , SDL_MapRGB ( Screen->format , 0x0FF , 0x0FF , 0x0FF ) ) ;
-	
-	our_SDL_flip_wrapper();
-}; // void ShowSaveGameProgressMeter( int Percentage ) 
-
 void LoadAndShowThumbnail ( char* CoreFilename )
 {
     char filename[1000];
@@ -271,9 +251,6 @@ int SaveGame( void )
     
     Activate_Conservative_Frame_Computation();
    
-    StoreMenuBackground(0);	
-    ShowSaveLoadGameProgressMeter( 0 , TRUE ) ;
-    
     sprintf ( Me . savegame_version_string , 
 	      "%s;sizeof(tux_t)=%d;sizeof(enemy)=%d;sizeof(bullet)=%d;MAXBULLETS=%d\n", 
 	      VERSION , 
@@ -291,6 +268,9 @@ int SaveGame( void )
     if (ret && errno != ENOENT) {
 	ErrorMessage ( __FUNCTION__, "Unable to create the shipfile backup\n", PLEASE_INFORM, IS_WARNING_ONLY);
     }
+    
+    CenteredPutStringFont(Screen, Menu_BFont, 10, _("Saving"));	
+	our_SDL_flip_wrapper();
 
     if ( SaveShip( filename ) != OK )
     {
@@ -362,12 +342,8 @@ or file permissions of ~/.freedroid_rpg are somehow not right.",
     fprintf ( SaveGameFile, "End of freedroidRPG savefile\n");
     fclose( SaveGameFile );
     
-    ShowSaveLoadGameProgressMeter( 99 , TRUE ); 
-    
     SaveThumbnailOfGame ( );
     
-    ShowSaveLoadGameProgressMeter( 100 , TRUE ) ;
-
     append_new_game_message ( _("Game saved.") );
 
     DebugPrintf ( SAVE_LOAD_GAME_DEBUG , "\nint SaveGame( void ): end of function reached.");
@@ -436,15 +412,15 @@ LoadGame( void )
 	DebugPrintf (0, "No Config-directory, cannot load any games\n");
 	return (OK);
     }
-    
+   
+    CenteredPutStringFont(Screen, Menu_BFont, 10, _("Loading"));	
+	our_SDL_flip_wrapper();
+   
     DebugPrintf ( SAVE_LOAD_GAME_DEBUG , "\n%s(): function call confirmed...." , __FUNCTION__ );
     
     Activate_Conservative_Frame_Computation();
     global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL ;
    
-    StoreMenuBackground(0);	
-    ShowSaveLoadGameProgressMeter( 0 , FALSE )  ;
- 
     sprintf( filename , "%s/%s%s", our_config_dir, Me . character_name, ".shp");
     
     if ((DataFile = fopen ( filename , "rb")) == NULL )
@@ -458,7 +434,6 @@ LoadGame( void )
 	fclose (DataFile);
 	DebugPrintf ( 1 , "\nThe saved game file (.shp file) seems to be there at least.....");
     }
-   
     if ( setjmp(saveload_jmpbuf) )
 	{
 	if ( LoadGameData != NULL )
