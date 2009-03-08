@@ -121,7 +121,7 @@ iso_image *leveleditor_get_object_image(enum leveleditor_object_type type, int *
 	case OBJECT_FLOOR:
 	    return &(floor_iso_images[array[idx]]);
 	case OBJECT_OBSTACLE:
-	    return &(obstacle_map[array[idx]].image);
+	    return get_obstacle_image(array[idx]);
 	case OBJECT_WAYPOINT:
 	    return &(level_editor_waypoint_cursor[idx]);
 	case OBJECT_NPC:

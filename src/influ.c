@@ -316,18 +316,16 @@ mouse_cursor_is_on_that_iso_image ( float pos_x , float pos_y , iso_image* our_i
  * TRUE or FALSE is returned, depending on whether the cursor IS or 
  * IS NOT on that particular iso_image, if positioned on that obstacle.
  */
-int
-mouse_cursor_is_on_that_obstacle ( int obst_index ) 
+int mouse_cursor_is_on_that_obstacle ( int obst_index ) 
 {
 
-    if ( mouse_cursor_is_on_that_iso_image ( 
-	     CURLEVEL() -> obstacle_list [ obst_index ] . pos . x ,
-	     CURLEVEL() -> obstacle_list [ obst_index ] . pos . y ,
-	     & ( obstacle_map [ CURLEVEL() -> obstacle_list [ obst_index ] . type ] . image ) ) )
-    {
-	return ( TRUE ) ;
-    }
-    return ( FALSE );
+	if (mouse_cursor_is_on_that_iso_image ( 
+				CURLEVEL() -> obstacle_list [ obst_index ] . pos . x ,
+				CURLEVEL() -> obstacle_list [ obst_index ] . pos . y ,
+				get_obstacle_image(CURLEVEL()->obstacle_list[obst_index].type))) {
+		return ( TRUE ) ;
+	}
+	return ( FALSE );
 }; // int mouse_cursor_is_on_that_obstacle ( int obst_index ) 
 
 /**
@@ -1849,7 +1847,7 @@ GetObstacleBelowMouseCursor ( )
 		obstacle_index = our_level -> map [ y ] [ x ] . obstacles_glued_to_here [ i ] ;
 		if ( obstacle_index == (-1) ) continue;
 		our_obstacle = & ( our_level -> obstacle_list [ obstacle_index ] ) ;
-		our_iso_image = & ( obstacle_map [ our_obstacle -> type ] . image );
+		our_iso_image = get_obstacle_image(our_obstacle -> type);
 		
 		// DebugPrintf ( -4 , "\n%s(): rectangle check reached." , __FUNCTION__ );
 		if ( mouse_cursor_is_on_that_iso_image ( our_obstacle -> pos . x , 

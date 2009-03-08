@@ -630,7 +630,7 @@ There was an obstacle type given, that exceeds the number of\n\
 
 	if ( use_open_gl )
 	{
-	    draw_gl_textured_quad_at_map_position ( &obstacle_map [ our_obstacle -> type ] . image , 
+	    draw_gl_textured_quad_at_map_position ( get_obstacle_image(our_obstacle->type), 
 						   obs_onscreen_position . x , obs_onscreen_position . y , 
 						   ( (SDL_GetTicks() >> 7) % 3) / 2.0  , 
 						   ( ( (SDL_GetTicks() >> 7) + 1 ) % 3) / 2.0 , 
@@ -639,12 +639,12 @@ There was an obstacle type given, that exceeds the number of\n\
 	else
 	{
 	    DebugPrintf ( 1 , "\nColor filter for level editor invoked (via SDL!) for marked obstacle!" );
-	    tmp . surface = our_SDL_display_format_wrapperAlpha ( obstacle_map [ our_obstacle -> type ] . image . surface );
+	    tmp . surface = our_SDL_display_format_wrapperAlpha (get_obstacle_image(our_obstacle->type)->surface );
 	    tmp . surface -> format -> Bmask = 0x0 ; // 0FFFFFFFF ;
 	    tmp . surface -> format -> Rmask = 0x0 ; // FFFFFFFF ;
 	    tmp . surface -> format -> Gmask = 0x0FFFFFFFF ;
-	    tmp . offset_x = obstacle_map [ our_obstacle -> type ] . image . offset_x ;
-	    tmp . offset_y = obstacle_map [ our_obstacle -> type ] . image . offset_y ;
+	    tmp . offset_x = get_obstacle_image(our_obstacle->type)->offset_x ;
+	    tmp . offset_y = get_obstacle_image(our_obstacle->type)->offset_y ;
 	    blit_iso_image_to_map_position ( &tmp , obs_onscreen_position . x , obs_onscreen_position . y );
 	    SDL_FreeSurface ( tmp . surface );
 	}
@@ -668,14 +668,14 @@ There was an obstacle type given, that exceeds the number of\n\
 		       Me . pos . y + 1.5 ) )
 		{
 		draw_gl_textured_quad_at_map_position ( 
-		    &obstacle_map [ our_obstacle -> type ] . image , our_obstacle->pos.x, our_obstacle->pos.y, 1,1,1 , FALSE, 
+		    get_obstacle_image(our_obstacle->type), our_obstacle->pos.x, our_obstacle->pos.y, 1,1,1 , FALSE, 
 		    obstacle_map [ our_obstacle -> type ] . transparent, 1.0 ) ;
 
 		}
 		else
 		{
 		draw_gl_textured_quad_at_map_position ( 
-		    &obstacle_map [ our_obstacle -> type ] . image , our_obstacle->pos.x, our_obstacle->pos.y, 1,1,1 , FALSE, 
+		    get_obstacle_image(our_obstacle->type), our_obstacle->pos.x, our_obstacle->pos.y, 1,1,1 , FALSE, 
 		    0, 1.0 ) ;
 
 		}
@@ -683,13 +683,13 @@ There was an obstacle type given, that exceeds the number of\n\
 	    else
 	    {
 		draw_gl_textured_quad_at_map_position ( 
-		    &obstacle_map [ our_obstacle -> type ] . image , our_obstacle->pos.x, our_obstacle->pos.y, 1,1,1 , FALSE, 
+		    get_obstacle_image(our_obstacle->type), our_obstacle->pos.x, our_obstacle->pos.y, 1,1,1 , FALSE, 
 		    obstacle_map [ our_obstacle -> type ] . transparent, 1.000000000 ) ;
 	    }
 	}
 	else
 	{
-	    blit_iso_image_to_map_position ( &obstacle_map [ our_obstacle -> type ] . image , 
+	    blit_iso_image_to_map_position (get_obstacle_image(our_obstacle->type), 
 					     our_obstacle->pos.x, our_obstacle->pos.y );
 	}
     }
@@ -725,15 +725,15 @@ There was an obstacle type given, that exceeds the number of\n\
     
     if ( use_open_gl )
     {
-	draw_gl_textured_quad_at_map_position ( &obstacle_map [ our_obstacle -> type ] . image , 
+	draw_gl_textured_quad_at_map_position (get_obstacle_image(our_obstacle->type), 
 					       our_obstacle -> pos . x , our_obstacle -> pos . y , 1.0 , 1.0 , 1.0 , TRUE, FALSE, 1.0 ) ;
     }
     else
     {
 	DebugPrintf ( 0 , "\nNormal in-game SDL highlight invoked for marked obstacle!" );
-	blit_iso_image_to_map_position ( &obstacle_map [ our_obstacle -> type ] . image , 
+	blit_iso_image_to_map_position (get_obstacle_image(our_obstacle->type), 
 					 our_obstacle -> pos . x , our_obstacle -> pos . y );
-	blit_outline_of_iso_image_to_map_position ( &obstacle_map [ our_obstacle -> type ] . image , 
+	blit_outline_of_iso_image_to_map_position (get_obstacle_image(our_obstacle->type), 
 						    our_obstacle -> pos . x , our_obstacle -> pos . y );
     }
     
@@ -759,7 +759,7 @@ There was an obstacle type given, that exceeds the number of\n\
     }
     
     if ( ! use_open_gl )
-	make_sure_zoomed_surface_is_there ( & ( obstacle_map [ our_obstacle -> type ] . image ) );
+	make_sure_zoomed_surface_is_there (get_obstacle_image(our_obstacle->type));
 
     //--------------------
     // We blit the obstacle in question, but if we're in the level editor and this
@@ -771,7 +771,7 @@ There was an obstacle type given, that exceeds the number of\n\
 	
 	if ( use_open_gl )
 	{
-	    draw_gl_textured_quad_at_map_position ( &obstacle_map [ our_obstacle -> type ] . image ,
+	    draw_gl_textured_quad_at_map_position (get_obstacle_image(our_obstacle->type),
 							  our_obstacle -> pos . x , our_obstacle -> pos . y , 
 							  ( SDL_GetTicks() % 3) / 2.0, ( ( SDL_GetTicks() + 1 ) % 3) / 2.0, 
 							  ( ( SDL_GetTicks() + 2 ) % 3) / 2.0 , 0.25, FALSE, ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT );
@@ -780,35 +780,29 @@ There was an obstacle type given, that exceeds the number of\n\
 	else
 	{
 	    DebugPrintf ( 0 , "\nCOLOR FILTER INVOKED FOR MARKED OBSTACLE!" );
-	    tmp . surface = our_SDL_display_format_wrapperAlpha ( obstacle_map [ our_obstacle -> type ] . image . surface );
+	    tmp . surface = our_SDL_display_format_wrapperAlpha (get_obstacle_image(our_obstacle->type)->surface );
 	    tmp . surface -> format -> Bmask = 0x0 ; // 0FFFFFFFF ;
 	    tmp . surface -> format -> Rmask = 0x0 ; // FFFFFFFF ;
 	    tmp . surface -> format -> Gmask = 0x0FFFFFFFF ;
-	    tmp . offset_x = obstacle_map [ our_obstacle -> type ] . image . offset_x ;
-	    tmp . offset_y = obstacle_map [ our_obstacle -> type ] . image . offset_y ;
+	    tmp . offset_x = get_obstacle_image(our_obstacle->type)->offset_x ;
+	    tmp . offset_y = get_obstacle_image(our_obstacle->type)->offset_y ;
 	    tmp . zoomed_out_surface = NULL ;
-	    // obstacle_map [ our_obstacle -> type ] . image . surface -> format -> Gmask = 0x0FFFFFFFF ;
-	    // SDL_UnlockSurface ( obstacle_map [ our_obstacle -> type ] . image . surface );
 	    blit_zoomed_iso_image_to_map_position ( & ( tmp ) , 
 						    our_obstacle -> pos . x , our_obstacle -> pos . y );
 	    SDL_FreeSurface ( tmp . surface );
 	    SDL_FreeSurface ( tmp . zoomed_out_surface );
-	    // SDL_LockSurface ( obstacle_map [ our_obstacle -> type ] . image . surface );
-	    // obstacle_map [ our_obstacle -> type ] . image . surface -> format -> Bmask = temp_Bmask ; 
-	    // obstacle_map [ our_obstacle -> type ] . image . surface -> format -> Rmask = temp_Rmask ; 
-	    // SDL_UnlockSurface ( obstacle_map [ our_obstacle -> type ] . image . surface );
 	}
     }
     else
     {
 	if ( use_open_gl )
 	{
-	    draw_gl_textured_quad_at_map_position ( &obstacle_map [ our_obstacle -> type ] . image ,
+	    draw_gl_textured_quad_at_map_position (get_obstacle_image(our_obstacle->type),
 							  our_obstacle -> pos . x , our_obstacle -> pos . y , 1.0 , 1.0, 1.0 , 0.25, obstacle_map[our_obstacle->type].transparent,ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT  );
 	}
 	else
 	{
-	    blit_zoomed_iso_image_to_map_position ( & ( obstacle_map [ our_obstacle -> type ] . image ) , 
+	    blit_zoomed_iso_image_to_map_position (get_obstacle_image(our_obstacle->type) , 
 						    our_obstacle -> pos . x , our_obstacle -> pos . y );
 	}
     }

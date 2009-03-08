@@ -1111,8 +1111,10 @@ InitPictures (void)
     load_floor_tiles (  );
     
     ShowStartupPercentage ( 25 ) ; 
-    
-    load_all_obstacles (  ) ;
+   	
+	init_obstacle_data();
+	if (!GameConfig.lazyload)
+		load_all_obstacles();
     
     ShowStartupPercentage ( 26 ) ; 
     

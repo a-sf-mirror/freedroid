@@ -1761,6 +1761,7 @@ ResetGameConfigToDefaultValues ( void )
     GameConfig . automap_display_scale = 2.0 ;
     GameConfig . skip_shadow_blitting = FALSE ;
     GameConfig . xray_vision_for_tux = FALSE;
+	GameConfig . lazyload = 1;
  
     #if ENABLE_NLS
     char *lang = setlocale(LC_MESSAGES, NULL);

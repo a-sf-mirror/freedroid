@@ -1648,85 +1648,88 @@ Resolution_fill (char *MenuTexts[10])
     MenuTexts[j++][0]='\0';
 }
 
-static int
-Graphics_handle (int n)
+static int Graphics_handle (int n)
 {
-    enum
-    { 
-	CHANGE_SCREEN_RESOLUTION = 1,
-	SET_FULLSCREEN_FLAG, 
-	SET_GAMMA_CORRECTION,
-	SET_SHOW_BLOOD_FLAG,
-	SET_AUTOMAP_SCALE,
-	LEAVE_OPTIONS_MENU 
-    };
-    switch (n) 
-    {
-    case (-1):
-	return EXIT_MENU;
-    case SET_GAMMA_CORRECTION:
-	if ( RightPressed() ) 
-	{
-	    while ( RightPressed());
-	    GameConfig.current_gamma_correction+=0.05;
-	    SDL_SetGamma( GameConfig.current_gamma_correction , GameConfig.current_gamma_correction , GameConfig.current_gamma_correction );
-	}
-	
-	if ( LeftPressed() ) 
-	{
-	    while (LeftPressed());
-	    GameConfig.current_gamma_correction-=0.05;
-	    SDL_SetGamma( GameConfig.current_gamma_correction , GameConfig.current_gamma_correction , GameConfig.current_gamma_correction );
-	}
-	
-	break;
-	
-    case SET_FULLSCREEN_FLAG:
-	while ( EnterPressed( ) || SpacePressed( ) );
-	GameConfig . fullscreen_on = ! GameConfig . fullscreen_on;
+	enum
+		{ 
+		CHANGE_SCREEN_RESOLUTION = 1,
+		SET_FULLSCREEN_FLAG, 
+		SET_GAMMA_CORRECTION,
+		SET_SHOW_BLOOD_FLAG,
+		SET_AUTOMAP_SCALE,
+		TOGGLE_LAZYLOAD,
+		LEAVE_OPTIONS_MENU 
+		};
+	switch (n) 
+		{
+		case (-1):
+			return EXIT_MENU;
+		case SET_GAMMA_CORRECTION:
+			if ( RightPressed() ) 
+				{
+				while ( RightPressed());
+				GameConfig.current_gamma_correction+=0.05;
+				SDL_SetGamma( GameConfig.current_gamma_correction , GameConfig.current_gamma_correction , GameConfig.current_gamma_correction );
+				}
+
+			if ( LeftPressed() ) 
+				{
+				while (LeftPressed());
+				GameConfig.current_gamma_correction-=0.05;
+				SDL_SetGamma( GameConfig.current_gamma_correction , GameConfig.current_gamma_correction , GameConfig.current_gamma_correction );
+				}
+
+			break;
+
+		case SET_FULLSCREEN_FLAG:
+			while ( EnterPressed( ) || SpacePressed( ) );
+			GameConfig . fullscreen_on = ! GameConfig . fullscreen_on;
 #ifndef __WIN32__
-	SDL_WM_ToggleFullScreen ( Screen );
+			SDL_WM_ToggleFullScreen ( Screen );
 #else
-	GiveMouseAlertWindow(_("\nThis option will be taken into account after you restart the game.\n\n   Thank you.\n"));
+			GiveMouseAlertWindow(_("\nThis option will be taken into account after you restart the game.\n\n   Thank you.\n"));
 #endif
-		break;
-		
-    case CHANGE_SCREEN_RESOLUTION:
-	while ( EnterPressed() || SpacePressed() );
-	return MENU_RESOLUTION;
-	
-    case SET_SHOW_BLOOD_FLAG:
-	while (EnterPressed() || SpacePressed() );
-	GameConfig . show_blood = !GameConfig . show_blood;
-	break;
-	
-    case SET_AUTOMAP_SCALE:
-	if ( RightPressed() ) 
-	{
-	    while ( RightPressed() );
-	    if ( GameConfig . automap_display_scale < 9.1 )
-		GameConfig . automap_display_scale += 1.0 ;
-	}
-	
-	if ( LeftPressed() ) 
-	{
-	    while (LeftPressed());
-	    if ( GameConfig . automap_display_scale >= 1.9 )
-		GameConfig . automap_display_scale -= 1.0 ;
-	}
-	
-	break;
-	
-    case LEAVE_OPTIONS_MENU:
-	while (EnterPressed() || SpacePressed() );
-	return EXIT_MENU;
-	break;
-	
-    default: 
-	break;
-	
-    } 
-    return CONTINUE_MENU;
+			break;
+
+		case CHANGE_SCREEN_RESOLUTION:
+			while ( EnterPressed() || SpacePressed() );
+			return MENU_RESOLUTION;
+
+		case SET_SHOW_BLOOD_FLAG:
+			while (EnterPressed() || SpacePressed() );
+			GameConfig . show_blood = !GameConfig . show_blood;
+			break;
+
+		case SET_AUTOMAP_SCALE:
+			if ( RightPressed() ) 
+				{
+				while ( RightPressed() );
+				if ( GameConfig . automap_display_scale < 9.1 )
+					GameConfig . automap_display_scale += 1.0 ;
+				}
+
+			if ( LeftPressed() ) 
+				{
+				while (LeftPressed());
+				if ( GameConfig . automap_display_scale >= 1.9 )
+					GameConfig . automap_display_scale -= 1.0 ;
+				}
+
+			break;
+		case TOGGLE_LAZYLOAD:
+			GameConfig.lazyload = !GameConfig.lazyload;
+			break;
+
+		case LEAVE_OPTIONS_MENU:
+			while (EnterPressed() || SpacePressed() );
+			return EXIT_MENU;
+			break;
+
+		default: 
+			break;
+
+		} 
+	return CONTINUE_MENU;
 }    
 static void
 Graphics_fill (char *MenuTexts[10])
@@ -1734,22 +1737,35 @@ Graphics_fill (char *MenuTexts[10])
 	char Options [ 20 ] [1000];
 	int i = 0;
 	sprintf( MenuTexts[i++] , _("Change Screen Resolution"));
-		sprintf( Options [ i ] , _("Fullscreen Mode"));
-		sprintf( Options [ i+1 ] , ": %s", GameConfig.fullscreen_on ? _("ON") : _("OFF"));
-		strcat( Options [ i ] , Options [ i+1 ] );
+
+	sprintf( Options [ i ] , _("Fullscreen Mode"));
+	sprintf( Options [ i+1 ] , ": %s", GameConfig.fullscreen_on ? _("ON") : _("OFF"));
+
+	strcat( Options [ i ] , Options [ i+1 ] );
+
 	strncpy(MenuTexts[ i ], Options [ i ], 1024); i++ ;
-		sprintf( Options [ i ] , _("Gamma Correction"));
-		sprintf( Options [ i+1 ] , ": %1.2f", GameConfig.current_gamma_correction );
-		strcat( Options [ i ] , Options [ i+1 ] );
+	sprintf( Options [ i ] , _("Gamma Correction"));
+	sprintf( Options [ i+1 ] , ": %1.2f", GameConfig.current_gamma_correction );
+
+	strcat( Options [ i ] , Options [ i+1 ] );
+
 	strncpy(MenuTexts[ i ], Options [ i ], 1024); i++ ;
-		sprintf( Options [ i ] , _("Show Blood"));
-		sprintf( Options [ i+1 ] , ": %s", GameConfig.show_blood ? _("YES") : _("NO"));
-		strcat( Options [ i ] , Options [ i+1 ] );
+	sprintf( Options [ i ] , _("Show Blood"));
+
+	sprintf( Options [ i+1 ] , ": %s", GameConfig.show_blood ? _("YES") : _("NO"));
+
+	strcat( Options [ i ] , Options [ i+1 ] );
+
 	strncpy(MenuTexts[ i ], Options [ i ], 1024); i++ ;
-		sprintf( Options [ i ] , _("Automap Scale"));
-		sprintf( Options [ i+1 ] , ": %2.1f", GameConfig.automap_display_scale );
-		strcat( Options [ i ] , Options [ i+1 ] );
+	sprintf( Options [ i ] , _("Automap Scale"));
+	sprintf( Options [ i+1 ] , ": %2.1f", GameConfig.automap_display_scale );
+
+	strcat( Options [ i ] , Options [ i+1 ] );
+
 	strncpy(MenuTexts[ i ], Options [ i ], 1024); i++ ;
+
+	sprintf(MenuTexts[i], _("Obstacles lazy loading: %s"), GameConfig.lazyload ? _("YES") : _("NO")); i++;
+
 	strncpy(MenuTexts[i++], _("Back"), 1024);
 	MenuTexts[i++][0]='\0';
 }

@@ -1527,7 +1527,7 @@ This should be investigated as soon as possible.",
  *
  *
  */
-static void init_obstacle_data( void )
+void init_obstacle_data( void )
 {
     int i;
     float standard_wall_thickness = 0.4 ;
@@ -1552,6 +1552,7 @@ static void init_obstacle_data( void )
 	// collision information for obstacles...
 	//
 	memcpy ( & ( obstacle_map [ i ] . image ) , & ( empty_iso_image ) , sizeof ( iso_image ) );
+	obstacle_map [ i ] . image_loaded = 0;
 	
 	obstacle_map [ i ] . block_area_type = COLLISION_TYPE_RECTANGLE ;
 	obstacle_map [ i ] . flags |= BLOCKS_VISION_TOO ;
@@ -4406,42 +4407,54 @@ static void init_obstacle_data( void )
       }
 }; // void init_obstacle_data( void )
 
-/** 
- * This function should initialize all obstacle types that are known in
- * FreedroidRPG, such as walls and doors and pillars and teleporters and
- * the like...
- *
- * for now it will not load 'offset' files, but rather just use hard-coded
- * info...
- *
- */ 
-void load_all_obstacles ( void ) {
-    int i;
-    char fpath[2048];
-    char ConstructedFileName[2000];
-    char shadow_file_name[2000];
+/**
+ * Return a pointer towards the iso_image structure
+ * associated to the given obstacle type.
+ * Used for lazy loading.
+ */
+iso_image *get_obstacle_image(int type)
+{
+	if (!obstacle_map[type].image_loaded) {
+		//printf("Just in time loading for obstacle %d\n", type);
+		load_obstacle(type);
+	}
 
-    init_obstacle_data();
-    
-    for ( i = 0 ; i < NUMBER_OF_OBSTACLE_TYPES ; i ++ )
-    {
+	return &obstacle_map[type].image;
+}
+
+/**
+ * Load the images associated to the given
+ * obstacle type.
+ */
+void load_obstacle(int i)
+{
+	char fpath[2048];
+	char ConstructedFileName[2000];
+	char shadow_file_name[2000];
+
+	if (obstacle_map[i].image_loaded) {
+		ErrorMessage(__FUNCTION__, "Tried to load image for obstacle type %d that was already loaded.\n", PLEASE_INFORM, IS_WARNING_ONLY, i);
+		return;
+	}
+
 	//--------------------
 	// At first we construct the file name of the single tile file we are about to load...
 	//
 	strcpy ( ConstructedFileName , "obstacles/" );
 	strcat ( ConstructedFileName , obstacle_map [ i ] . filename ) ;
 	find_file ( ConstructedFileName , GRAPHICS_DIR , fpath, 0);
-	
-	if ( use_open_gl )
-	{
-	    get_iso_image_from_file_and_path ( fpath , & ( obstacle_map [ i ] . image ) , TRUE ); 
-	    make_sure_zoomed_surface_is_there ( & ( obstacle_map [ i ] . image ) ); 
-	    make_sure_automap_surface_is_there ( & ( obstacle_map [ i ] ) ); 
-	    
-	    make_texture_out_of_surface ( & ( obstacle_map [ i ] . image ) ) ;
+
+	if (use_open_gl) {
+		get_iso_image_from_file_and_path ( fpath , & ( obstacle_map [ i ] . image ) , TRUE ); 
+		make_sure_zoomed_surface_is_there ( & ( obstacle_map [ i ] . image ) ); 
+		make_sure_automap_surface_is_there ( & ( obstacle_map [ i ] ) ); 
+
+		make_texture_out_of_surface ( & ( obstacle_map [ i ] . image ) ) ;
 	}
 	else
-	    get_iso_image_with_colorkey_from_file_and_path ( fpath , & ( obstacle_map [ i ] . image ) ) ;
+		get_iso_image_with_colorkey_from_file_and_path ( fpath , & ( obstacle_map [ i ] . image ) ) ;
+
+	obstacle_map[i].image_loaded = 1;
 
 	//--------------------
 	// Maybe the obstacle in question also has a shadow image?  In that
@@ -4451,33 +4464,40 @@ void load_all_obstacles ( void ) {
 	//
 	// We need a new file name of course:  (this assumes, that the filename
 	// has been constructed above already...
-	if ( strlen ( ConstructedFileName ) >= 8 )
-	{
-	    strcpy ( shadow_file_name , ConstructedFileName ) ;
-	    shadow_file_name [ strlen ( shadow_file_name ) - 8 ] = 0 ;
-	    strcat ( shadow_file_name , "shadow_" ) ;
-	    strcat ( shadow_file_name , & ( ConstructedFileName [ strlen ( ConstructedFileName ) - 8 ] ) ) ;
-	    DebugPrintf ( 2 , "\n%s(): shadow file name: %s " , __FUNCTION__ , shadow_file_name ); 
-	    if ( find_file ( shadow_file_name , GRAPHICS_DIR , fpath, 1 )) 
-	    {
-		obstacle_map [ i ] . shadow_image . surface = NULL ;
-		obstacle_map [ i ] . shadow_image . texture_has_been_created = FALSE ;
-		DebugPrintf ( 2 , "\n%s(): no success with that last shadow image file name." , __FUNCTION__ ) ;
-		continue;
-	    }
+	if (strlen ( ConstructedFileName ) >= 8) {
+		strcpy ( shadow_file_name , ConstructedFileName ) ;
+		shadow_file_name [ strlen ( shadow_file_name ) - 8 ] = 0 ;
+		strcat ( shadow_file_name , "shadow_" ) ;
+		strcat ( shadow_file_name , & ( ConstructedFileName [ strlen ( ConstructedFileName ) - 8 ] ) ) ;
+		DebugPrintf ( 2 , "\n%s(): shadow file name: %s " , __FUNCTION__ , shadow_file_name ); 
+		if ( find_file ( shadow_file_name , GRAPHICS_DIR , fpath, 1 )) {
+			obstacle_map [ i ] . shadow_image . surface = NULL ;
+			obstacle_map [ i ] . shadow_image . texture_has_been_created = FALSE ;
+			DebugPrintf ( 2 , "\n%s(): no success with that last shadow image file name." , __FUNCTION__ ) ;
+			return;
+		}
 	}
-	
-	if ( use_open_gl )
-	{
-	    get_iso_image_from_file_and_path ( fpath , & ( obstacle_map [ i ] . shadow_image ) , TRUE ); 
-	    // make_sure_zoomed_surface_is_there ( & ( obstacle_map [ i ] . shadow_image ) ); 
-	    make_texture_out_of_surface ( & ( obstacle_map [ i ] . shadow_image ) ) ;
-	}
-	else
-	    get_iso_image_with_colorkey_from_file_and_path ( fpath , & ( obstacle_map [ i ] . shadow_image ) ) ;
+
+	if (use_open_gl) {
+		get_iso_image_from_file_and_path ( fpath , & ( obstacle_map [ i ] . shadow_image ) , TRUE ); 
+		// make_sure_zoomed_surface_is_there ( & ( obstacle_map [ i ] . shadow_image ) ); 
+		make_texture_out_of_surface ( & ( obstacle_map [ i ] . shadow_image ) ) ;
+	} else
+		get_iso_image_with_colorkey_from_file_and_path ( fpath , & ( obstacle_map [ i ] . shadow_image ) ) ;
 
 	DebugPrintf ( 1 , "\n%s(): shadow image %s loaded successfully." , __FUNCTION__ , shadow_file_name );
-    }
+
+
+}
+
+void load_all_obstacles ( void ) 
+{
+	int i;
+
+
+	for ( i = 0 ; i < NUMBER_OF_OBSTACLE_TYPES ; i ++ ) {
+		load_obstacle(i);
+	}
 
 }; // void load_all_obstacles ( void )
 

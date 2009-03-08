@@ -151,6 +151,10 @@ typedef struct configuration_for_freedroid_s
     int fullscreen_on;
     int talk_to_bots_after_takeover;
     int xray_vision_for_tux;
+	int lazyload;
+	// This must be the last element of the structure, because the
+	// input keybind parsing code uses strtok which messes with the
+	// string.
     keybind_t input_keybinds[100];
 }
 configuration_for_freedroid , *Configuration_for_freedroid;
@@ -252,6 +256,9 @@ typedef struct obstacle_spec_s
     iso_image image;
     iso_image shadow_image;
     SDL_Surface* automap_version;
+
+	char image_loaded;
+
     //--------------------
     // Some obstacles will block the Tux from walking through them.
     // Currently only rectangles are supported block areas.  The width
