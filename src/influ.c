@@ -42,6 +42,8 @@
 #define BEST_CHAT_DISTANCE (BEST_MELEE_DISTANCE+0.2)
 #define DISTANCE_TOLERANCE (0.00002)
 
+#define LEVEL_JUMP_DEBUG 1
+
 void limit_tux_speed_to_a_maximum ( );
 int autorun_activated = 0;
 void check_for_chests_to_open ( int chest_index ) ;
@@ -559,8 +561,6 @@ adapt_position_for_jump_thresholds ( gps* old_position, gps* new_position )
     float JumpThreshold;
     float JumpStartThreshold;
     
-#define LEVEL_JUMP_DEBUG 1
-    
     new_position -> x = old_position -> x ;
     new_position -> y = old_position -> y ;
     new_position -> z = old_position -> z ;
@@ -648,262 +648,258 @@ adapt_position_for_jump_thresholds ( gps* old_position, gps* new_position )
  * corresponding position inside the threshold area there.  This is what
  * this function is for.
  */
-void
+	void
 correct_tux_position_according_to_jump_thresholds ( )
 {
-    int JumpTarget;
-    float JumpThreshold;
-    float SafetyBonus = 0.0 ;
-    float JumpStartThreshold;
-    gps old_mouse_move_target ;
-    
-#define LEVEL_JUMP_DEBUG 1
-    
-    old_mouse_move_target . x = Me . mouse_move_target . x ;
-    old_mouse_move_target . y = Me . mouse_move_target . y ;
-    old_mouse_move_target . z = Me . mouse_move_target . z ;
-    
-    //--------------------
-    // First we check for the northern threshold
-    //
-    JumpThreshold = curShip.AllLevels [ Me . pos . z ] -> jump_threshold_north ;
-    JumpStartThreshold = JumpThreshold / 2.0 ;
-    
-    if ( Me . pos . y < JumpStartThreshold )
-    {
-	
-	JumpTarget = curShip.AllLevels [ Me . pos . z ] -> jump_target_north ; 
-	
-	DebugPrintf ( LEVEL_JUMP_DEBUG , "\nJUMP TO THE NORTH CONSIDERED!!" );
-	DebugPrintf ( LEVEL_JUMP_DEBUG , "\nJumpStartThreshold was: %f. " , JumpStartThreshold ); 
-	
-	if ( JumpTarget <= -1 ) return;
-	
-	Teleport ( JumpTarget , 
-		   Me . pos . x ,
-		   curShip.AllLevels [ JumpTarget ] -> ylen - 0 - JumpStartThreshold - SafetyBonus ,
-		   FALSE ) ; 
+	int JumpTarget;
+	float JumpThreshold;
+	float SafetyBonus = 0.0 ;
+	float JumpStartThreshold;
+	gps old_mouse_move_target ;
+	int oldz = Me.pos.z;
 
-	DebugPrintf ( LEVEL_JUMP_DEBUG , "\nReally doing it now.  Need to check the running target still..." );
-	
-	//--------------------
-	// We try to translate the mouse move target to the new levels
-	// coordinates (if it was a SIMPLE mouse move, NOT if it was a
-	// combo-action).
-	//
-	if ( ( Me . mouse_move_target_combo_action_type == NO_COMBO_ACTION_SET ) &&
-	     ( enemy_resolve_address(Me . current_enemy_target_n, &Me.current_enemy_target_addr) == NULL ) )
-	{
-	    Me . mouse_move_target . z = Me . pos . z ;
-	    Me . mouse_move_target . x = old_mouse_move_target . x ;
-	    
-	    //--------------------
-	    // The offset how far into the new levels map we must go is this:
-	    //
-	    Me . mouse_move_target . y = - ( JumpThreshold - old_mouse_move_target . y ) ;
-	    //--------------------
-	    // The correction because we're coming from south now it this:
-	    Me . mouse_move_target . y += curShip . AllLevels [ Me . pos . z ] -> ylen ;
-	    
-	    DebugPrintf (  LEVEL_JUMP_DEBUG , "\nJUMP TO THE NORTH:  target translated:  y=%f!" , Me . mouse_move_target . y );
-	    if ( !SinglePointColldet ( Me . mouse_move_target . x , Me . mouse_move_target . y , Me . mouse_move_target . z, NULL ) )
-	    {
-		Me . mouse_move_target . x = ( -1 ) ;
-		Me . mouse_move_target . y = ( -1 ) ;
-		Me . mouse_move_target . z = ( -1 ) ;
-	    }
-	    
-	}
-
-	DebugPrintf ( LEVEL_JUMP_DEBUG , "\nOk.  Jump done.  returning..." );
-	
-	return;
-	
-    }
-    
-    //--------------------
-    // Now we check for the southern threshold
-    //
-    JumpThreshold = curShip.AllLevels [ Me . pos . z ] -> jump_threshold_south ;
-    JumpStartThreshold = JumpThreshold / 2.0 ;
-    
-    if ( Me . pos . y > 
-	 curShip.AllLevels [ Me . pos . z ] -> ylen - 
-	 JumpStartThreshold ) 
-    {
-	
-	JumpTarget = curShip.AllLevels [ Me . pos . z ] -> jump_target_south ; 
-	
-	DebugPrintf ( LEVEL_JUMP_DEBUG , "\nJUMP TO THE SOUTH CONSIDERED!!" );
-	DebugPrintf ( LEVEL_JUMP_DEBUG , "\nJumpStartThreshold was: %f. " , JumpStartThreshold ); 
-	DebugPrintf ( LEVEL_JUMP_DEBUG , "\nCurrent Level Y-len: %d. " , curShip.AllLevels [ Me . pos . z ] -> ylen );
-	DebugPrintf ( LEVEL_JUMP_DEBUG , "\nCurrent Y-pos: %f. " , Me . pos . y );
-	
-	if ( JumpTarget <= -1 ) return;
-	
-	Teleport ( JumpTarget , 
-		   Me . pos . x ,
-		   0 + JumpStartThreshold + SafetyBonus ,
-		   FALSE ) ; 
-	
-	DebugPrintf ( LEVEL_JUMP_DEBUG , "\nReally doing it now.  Need to check the running target still..." );
+	old_mouse_move_target . x = Me . mouse_move_target . x ;
+	old_mouse_move_target . y = Me . mouse_move_target . y ;
+	old_mouse_move_target . z = Me . mouse_move_target . z ;
 
 	//--------------------
-	// We try to translate the mouse move target to the new levels
-	// coordinates (if it was a SIMPLE mouse move, NOT if it was a
-	// combo-action).
+	// First we check for the northern threshold
 	//
-	if ( ( Me . mouse_move_target_combo_action_type == NO_COMBO_ACTION_SET ) &&
-	     ( enemy_resolve_address(Me . current_enemy_target_n, &Me.current_enemy_target_addr) == NULL ) )
-	{
-	    Me . mouse_move_target . z = Me . pos . z ;
-	    Me . mouse_move_target . x = old_mouse_move_target . x ;
-	    
-	    //--------------------
-	    // The offset how far into the new levels map we must go is this:
-	    //
-	    Me . mouse_move_target . y = 
-		- ( curShip . AllLevels [ Me . pos . z ] -> ylen - JumpThreshold )
-		+ old_mouse_move_target . y ;
-	    //--------------------
-	    // The correction because we're coming from north is nothing:
-	    Me . mouse_move_target . y += 0 ;
-	    
-	    DebugPrintf ( LEVEL_JUMP_DEBUG , "\nJUMP TO THE SOUTH:  target translated to y=%f!" ,  Me . mouse_move_target . y );
-	    if ( ! SinglePointColldet ( Me . mouse_move_target . x , Me . mouse_move_target . y , Me . mouse_move_target . z, NULL ) )
-	    {
-		Me . mouse_move_target . x = ( -1 ) ;
-		Me . mouse_move_target . y = ( -1 ) ;
-		Me . mouse_move_target . z = ( -1 ) ;
-	    }
-	    
-	}
-	
-	DebugPrintf ( LEVEL_JUMP_DEBUG , "\nOk.  Jump done.  returning..." );
+	JumpThreshold = curShip.AllLevels [ Me . pos . z ] -> jump_threshold_north ;
+	JumpStartThreshold = JumpThreshold / 2.0 ;
 
-	return;
-    }
-    
-    //--------------------
-    // Now we check for the eastern threshold
-    //
-    JumpThreshold = curShip.AllLevels [ Me . pos . z ] -> jump_threshold_east ;
-    JumpStartThreshold = JumpThreshold / 2.0 ;
-    
-    if ( Me . pos . x > 
-	 curShip.AllLevels [ Me . pos . z ] -> xlen - 
-	 JumpStartThreshold ) 
-    {
-	
-	JumpTarget = curShip.AllLevels [ Me . pos . z ] -> jump_target_east ; 
-	
-	DebugPrintf ( LEVEL_JUMP_DEBUG , "\nJUMP TO THE EAST CONSIDERED!!" );
-	DebugPrintf ( LEVEL_JUMP_DEBUG , "\nJumpStartThreshold was: %f. " , JumpStartThreshold ); 
-	DebugPrintf ( LEVEL_JUMP_DEBUG , "\nCurrent Level X-len: %d. " , curShip.AllLevels [ Me . pos . z ] -> xlen );
-	DebugPrintf ( LEVEL_JUMP_DEBUG , "\nCurrent X-pos: %f. " , Me . pos . x );
-	
-	if ( JumpTarget <= -1 ) return;
-	
-	Teleport ( JumpTarget , 
-		   0 + JumpStartThreshold + SafetyBonus ,
-		   Me . pos . y ,
-		   FALSE ) ; 
-	
-	DebugPrintf ( LEVEL_JUMP_DEBUG , "\nReally doing it now.  Need to check the running target still..." );
+	if ( Me . pos . y < JumpStartThreshold )
+		{
+
+		JumpTarget = curShip.AllLevels [ Me . pos . z ] -> jump_target_north ; 
+
+		DebugPrintf ( LEVEL_JUMP_DEBUG , "\nJUMP TO THE NORTH CONSIDERED!!" );
+		DebugPrintf ( LEVEL_JUMP_DEBUG , "\nJumpStartThreshold was: %f. " , JumpStartThreshold ); 
+
+		if ( JumpTarget <= -1 ) return;
+
+		Teleport ( JumpTarget , 
+				Me . pos . x ,
+				curShip.AllLevels [ JumpTarget ] -> ylen - 0 - JumpStartThreshold - SafetyBonus ,
+				FALSE ) ; 
+
+		DebugPrintf ( LEVEL_JUMP_DEBUG , "\nReally doing it now.  Need to check the running target still..." );
+
+		//--------------------
+		// We try to translate the mouse move target to the new levels
+		// coordinates (if it was a SIMPLE mouse move, NOT if it was a
+		// combo-action).
+		//
+		if ( ( Me . mouse_move_target_combo_action_type == NO_COMBO_ACTION_SET ) &&
+				( enemy_resolve_address(Me . current_enemy_target_n, &Me.current_enemy_target_addr) == NULL ) )
+			{
+			Me . mouse_move_target . z = Me . pos . z ;
+			Me . mouse_move_target . x = old_mouse_move_target . x ;
+
+			//--------------------
+			// The offset how far into the new levels map we must go is this:
+			//
+			Me . mouse_move_target . y = - ( JumpThreshold - old_mouse_move_target . y ) ;
+			//--------------------
+			// The correction because we're coming from south now it this:
+			Me . mouse_move_target . y += curShip . AllLevels [ Me . pos . z ] -> ylen ;
+
+			DebugPrintf (  LEVEL_JUMP_DEBUG , "\nJUMP TO THE NORTH:  target translated:  y=%f!" , Me . mouse_move_target . y );
+			if ( !SinglePointColldet ( Me . mouse_move_target . x , Me . mouse_move_target . y , Me . mouse_move_target . z, NULL ) )
+				{
+				Me . mouse_move_target . x = ( -1 ) ;
+				Me . mouse_move_target . y = ( -1 ) ;
+				Me . mouse_move_target . z = ( -1 ) ;
+				}
+
+			}
+
+		DebugPrintf ( LEVEL_JUMP_DEBUG , "\nOk.  Jump done.  returning..." );
+
+		return;
+
+		}
 
 	//--------------------
-	// We try to translate the mouse move target to the new levels
-	// coordinates (if it was a SIMPLE mouse move, NOT if it was a
-	// combo-action).
+	// Now we check for the southern threshold
 	//
-	if ( ( Me . mouse_move_target_combo_action_type == NO_COMBO_ACTION_SET ) &&
-	     ( enemy_resolve_address ( Me.current_enemy_target_n, &Me.current_enemy_target_addr) == NULL ) )
-	{
-	    Me . mouse_move_target . z = Me . pos . z ;
-	    Me . mouse_move_target . y = old_mouse_move_target . y ;
-	    
-	    //--------------------
-	    // The offset how far into the new levels map we must go is this:
-	    //
-	    Me . mouse_move_target . x = 
-		- ( curShip . AllLevels [ Me . pos . z ] -> xlen - JumpThreshold )
-		+ old_mouse_move_target . x ;
-	    //--------------------
-	    // The correction because we're coming from west is nothing:
-	    Me . mouse_move_target . x += 0 ;
-	    
-	    DebugPrintf ( LEVEL_JUMP_DEBUG , "\nJUMP TO THE EAST:  target translated to x=%f!" ,  Me . mouse_move_target . x );
-	    if ( ! SinglePointColldet ( Me . mouse_move_target . x , Me . mouse_move_target . y , Me . mouse_move_target . z, NULL ) )
-	    {
-		Me . mouse_move_target . x = ( -1 ) ;
-		Me . mouse_move_target . y = ( -1 ) ;
-		Me . mouse_move_target . z = ( -1 ) ;
-	    }
-	    
-	}
-	
-	DebugPrintf ( LEVEL_JUMP_DEBUG , "\nOk.  Jump done.  returning..." );
+	JumpThreshold = curShip.AllLevels [ Me . pos . z ] -> jump_threshold_south ;
+	JumpStartThreshold = JumpThreshold / 2.0 ;
 
-	return;
-    }
-    
-    //--------------------
-    // Now we check for the western threshold
-    //
-    JumpThreshold = curShip.AllLevels [ Me . pos . z ] -> jump_threshold_west ;
-    JumpStartThreshold = JumpThreshold / 2.0 ;
-    
-    if ( Me . pos . x < JumpStartThreshold )
-    {
-	
-	JumpTarget = curShip.AllLevels [ Me . pos . z ] -> jump_target_west ; 
-	
-	DebugPrintf ( LEVEL_JUMP_DEBUG , "\nJUMP TO THE WEST CONSIDERED!!" );
-	DebugPrintf ( LEVEL_JUMP_DEBUG , "\nJumpStartThreshold was: %f. " , JumpStartThreshold ); 
-	
-	if ( JumpTarget <= -1 ) return;
-	
-	Teleport ( JumpTarget , 
-		   curShip.AllLevels [ JumpTarget ] -> xlen - 0 - JumpStartThreshold - SafetyBonus ,
-		   Me . pos . y ,
-		   FALSE ) ; 
-	
-	DebugPrintf ( LEVEL_JUMP_DEBUG , "\nReally doing it now.  Need to check the running target still..." );
+	if ( Me . pos . y > 
+			curShip.AllLevels [ Me . pos . z ] -> ylen - 
+			JumpStartThreshold ) 
+		{
+
+		JumpTarget = curShip.AllLevels [ Me . pos . z ] -> jump_target_south ; 
+
+		DebugPrintf ( LEVEL_JUMP_DEBUG , "\nJUMP TO THE SOUTH CONSIDERED!!" );
+		DebugPrintf ( LEVEL_JUMP_DEBUG , "\nJumpStartThreshold was: %f. " , JumpStartThreshold ); 
+		DebugPrintf ( LEVEL_JUMP_DEBUG , "\nCurrent Level Y-len: %d. " , curShip.AllLevels [ Me . pos . z ] -> ylen );
+		DebugPrintf ( LEVEL_JUMP_DEBUG , "\nCurrent Y-pos: %f. " , Me . pos . y );
+
+		if ( JumpTarget <= -1 ) return;
+
+		Teleport ( JumpTarget , 
+				Me . pos . x ,
+				0 + JumpStartThreshold + SafetyBonus ,
+				FALSE ) ; 
+
+
+		//--------------------
+		// We try to translate the mouse move target to the new levels
+		// coordinates (if it was a SIMPLE mouse move, NOT if it was a
+		// combo-action).
+		//
+		if ( ( Me . mouse_move_target_combo_action_type == NO_COMBO_ACTION_SET ) &&
+				( enemy_resolve_address(Me . current_enemy_target_n, &Me.current_enemy_target_addr) == NULL ) )
+			{
+			Me . mouse_move_target . z = Me . pos . z ;
+			Me . mouse_move_target . x = old_mouse_move_target . x ;
+
+			//--------------------
+			// The offset how far into the new levels map we must go is this:
+			//
+			Me . mouse_move_target . y = 
+				- ( curShip.AllLevels[oldz]->ylen - JumpThreshold )
+				+ old_mouse_move_target . y ;
+			//--------------------
+			// The correction because we're coming from north is nothing:
+			Me . mouse_move_target . y += 0 ;
+
+			DebugPrintf ( LEVEL_JUMP_DEBUG , "\nJUMP TO THE SOUTH:  target translated to y=%f!" ,  Me . mouse_move_target . y );
+			if ( ! SinglePointColldet ( Me . mouse_move_target . x , Me . mouse_move_target . y , Me . mouse_move_target . z, NULL ) )
+				{
+				Me . mouse_move_target . x = ( -1 ) ;
+				Me . mouse_move_target . y = ( -1 ) ;
+				Me . mouse_move_target . z = ( -1 ) ;
+				}
+
+			}
+
+		DebugPrintf ( LEVEL_JUMP_DEBUG , "\nOk.  Jump done.  returning..." );
+
+		return;
+		}
 
 	//--------------------
-	// We try to translate the mouse move target to the new levels
-	// coordinates (if it was a SIMPLE mouse move, NOT if it was a
-	// combo-action).
+	// Now we check for the eastern threshold
 	//
-	if ( ( Me . mouse_move_target_combo_action_type == NO_COMBO_ACTION_SET ) &&
-	     ( enemy_resolve_address ( Me.current_enemy_target_n, &Me.current_enemy_target_addr) == NULL ) )
-	{
-	    Me . mouse_move_target . z = Me . pos . z ;
-	    Me . mouse_move_target . y = old_mouse_move_target . y ;
-	    
-	    //--------------------
-	    // The offset how far into the new levels map we must go is this:
-	    //
-	    Me . mouse_move_target . x = - ( JumpThreshold - old_mouse_move_target . x ) ;
-	    //--------------------
-	    // The correction because we're coming from south now it this:
-	    Me . mouse_move_target . x += curShip . AllLevels [ Me . pos . z ] -> xlen ;
-	    
-	    DebugPrintf (  LEVEL_JUMP_DEBUG , "\nJUMP TO THE NORTH:  target translated:  x=%f!" , Me . mouse_move_target . x );
-	    if ( ! SinglePointColldet ( Me . mouse_move_target . x , Me . mouse_move_target . y , Me . mouse_move_target . z, NULL ) )
-	    {
-		Me . mouse_move_target . x = ( -1 ) ;
-		Me . mouse_move_target . y = ( -1 ) ;
-		Me . mouse_move_target . z = ( -1 ) ;
-	    }
-	    
-	}
-	
-	DebugPrintf ( LEVEL_JUMP_DEBUG , "\nOk.  Jump done.  returning..." );
+	JumpThreshold = curShip.AllLevels [ Me . pos . z ] -> jump_threshold_east ;
+	JumpStartThreshold = JumpThreshold / 2.0 ;
 
-	return;
-	
-    }
+	if ( Me . pos . x > 
+			curShip.AllLevels [ Me . pos . z ] -> xlen - 
+			JumpStartThreshold ) 
+		{
+
+		JumpTarget = curShip.AllLevels [ Me . pos . z ] -> jump_target_east ; 
+
+		DebugPrintf ( LEVEL_JUMP_DEBUG , "\nJUMP TO THE EAST CONSIDERED!!" );
+		DebugPrintf ( LEVEL_JUMP_DEBUG , "\nJumpStartThreshold was: %f. " , JumpStartThreshold ); 
+		DebugPrintf ( LEVEL_JUMP_DEBUG , "\nCurrent Level X-len: %d. " , curShip.AllLevels [ Me . pos . z ] -> xlen );
+		DebugPrintf ( LEVEL_JUMP_DEBUG , "\nCurrent X-pos: %f. " , Me . pos . x );
+
+		if ( JumpTarget <= -1 ) return;
+
+		Teleport ( JumpTarget , 
+				0 + JumpStartThreshold + SafetyBonus ,
+				Me . pos . y ,
+				FALSE ) ; 
+		DebugPrintf ( LEVEL_JUMP_DEBUG , "\nTeleported to level %d, xlen %d, at x %f\n", JumpTarget, curShip.AllLevels[JumpTarget]->xlen,  (float)(0 + JumpStartThreshold + SafetyBonus) );
+
+		DebugPrintf ( LEVEL_JUMP_DEBUG , "\nReally doing it now.  Need to check the running target still..." );
+
+		//--------------------
+		// We try to translate the mouse move target to the new levels
+		// coordinates (if it was a SIMPLE mouse move, NOT if it was a
+		// combo-action).
+		//
+		if ( ( Me . mouse_move_target_combo_action_type == NO_COMBO_ACTION_SET ) &&
+				( enemy_resolve_address ( Me.current_enemy_target_n, &Me.current_enemy_target_addr) == NULL ) )
+			{
+			Me . mouse_move_target . z = Me . pos . z ;
+			Me . mouse_move_target . y = old_mouse_move_target . y ;
+
+			//--------------------
+			// The offset how far into the new levels map we must go is this:
+			//
+			Me . mouse_move_target . x = 
+				- ( curShip.AllLevels[oldz]->xlen - JumpThreshold )
+				+ old_mouse_move_target . x ;
+
+			DebugPrintf ( LEVEL_JUMP_DEBUG , "\nJUMP TO THE EAST:  target translated to x=%f!" ,  Me . mouse_move_target . x );
+			if ( ! SinglePointColldet ( Me . mouse_move_target . x , Me . mouse_move_target . y , Me . mouse_move_target . z, NULL ) )
+				{
+				Me . mouse_move_target . x = ( -1 ) ;
+				Me . mouse_move_target . y = ( -1 ) ;
+				Me . mouse_move_target . z = ( -1 ) ;
+				}
+
+			}
+
+		DebugPrintf ( LEVEL_JUMP_DEBUG , "\nOk.  Jump done.  returning..." );
+
+		return;
+		}
+
+	//--------------------
+	// Now we check for the western threshold
+	//
+	JumpThreshold = curShip.AllLevels [ Me . pos . z ] -> jump_threshold_west ;
+	JumpStartThreshold = JumpThreshold / 2.0 ;
+
+	if ( Me . pos . x < JumpStartThreshold )
+		{
+
+		JumpTarget = curShip.AllLevels [ Me . pos . z ] -> jump_target_west ; 
+
+		DebugPrintf ( LEVEL_JUMP_DEBUG , "\nJUMP TO THE WEST CONSIDERED!!" );
+		DebugPrintf ( LEVEL_JUMP_DEBUG , "\nJumpStartThreshold was: %f. " , JumpStartThreshold ); 
+
+		if ( JumpTarget <= -1 ) return;
+
+		Teleport ( JumpTarget , 
+				curShip.AllLevels [ JumpTarget ] -> xlen - 0 - JumpStartThreshold - SafetyBonus ,
+				Me . pos . y ,
+				FALSE ) ; 
+
+		DebugPrintf ( LEVEL_JUMP_DEBUG , "\nTeleported to level %d, xlen %d, at x %d\n", JumpTarget, curShip.AllLevels[JumpTarget]->xlen,  curShip.AllLevels [ JumpTarget ] -> xlen - 0 - JumpStartThreshold - SafetyBonus);
+
+		//--------------------
+		// We try to translate the mouse move target to the new levels
+		// coordinates (if it was a SIMPLE mouse move, NOT if it was a
+		// combo-action).
+		//
+		if ( ( Me . mouse_move_target_combo_action_type == NO_COMBO_ACTION_SET ) &&
+				( enemy_resolve_address ( Me.current_enemy_target_n, &Me.current_enemy_target_addr) == NULL ) )
+			{
+			Me . mouse_move_target . z = Me . pos . z ;
+			Me . mouse_move_target . y = old_mouse_move_target . y ;
+
+			//--------------------
+			// The offset how far into the new levels map we must go is this:
+			//
+			Me . mouse_move_target . x = - ( JumpThreshold - old_mouse_move_target . x ) ;
+			//--------------------
+			// The correction because we're coming from south now it this:
+			Me . mouse_move_target . x += curShip . AllLevels [ Me . pos . z ] -> xlen ;
+
+			DebugPrintf (  LEVEL_JUMP_DEBUG , "\nJUMP TO THE NORTH:  target translated:  x=%f!" , Me . mouse_move_target . x );
+			if ( ! SinglePointColldet ( Me . mouse_move_target . x , Me . mouse_move_target . y , Me . mouse_move_target . z, NULL ) )
+				{
+				Me . mouse_move_target . x = ( -1 ) ;
+				Me . mouse_move_target . y = ( -1 ) ;
+				Me . mouse_move_target . z = ( -1 ) ;
+				}
+
+			}
+
+		DebugPrintf ( LEVEL_JUMP_DEBUG , "\nOk.  Jump done.  returning..." );
+
+		return;
+
+		}
 
 }; // void CheckForJumpThresholds ( )
 
