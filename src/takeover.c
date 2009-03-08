@@ -443,20 +443,6 @@ Takeover ( enemy * target )
 	    // SwitchBackgroundMusicTo (SILENCE);
 	    Takeover_Game_Won_Sound ();
 
-	    //--------------------
-	    // We allow to gain the current energy/full health that was still in the 
-	    // other droid, since all previous damage must be due to fighting damage,
-	    // and this is exactly the sort of damage can usually be cured in refreshes.
-	    //
-	    Me . energy += target->energy;
-
-	    //--------------------
-	    // We provide some security agains too high energy/health values gained
-	    // by very rapid successions of successful takeover attempts
-	    //
-	    if ( Me . energy > Me . maxenergy ) 
-		Me . energy = Me . maxenergy;
-
 	    Me . type = target->type;
 	    Me . marker = target->marker;
 
@@ -481,8 +467,6 @@ Takeover ( enemy * target )
 			target->pos . y , -1 , -1 , 1 );
 		target->on_death_drop_item_code = -1;
 		}  
-
-	    target->energy =  Druidmap [ target->type ] . maxenergy ; 
 
 	    target->is_friendly = TRUE ;
 	    target->has_been_taken_over = TRUE ; 
@@ -516,7 +500,6 @@ Takeover ( enemy * target )
 	    Takeover_Game_Lost_Sound ();
 	    message = _("Rejected");
 	    Me . energy *= 0.5 ;
-	    target->energy = Druidmap [ target->type ] . maxenergy ;
 	    FinishTakeover = TRUE;
 	    }			// if LeadColor == OpponentColor 
 	else
