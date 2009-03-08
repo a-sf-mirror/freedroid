@@ -76,17 +76,22 @@ int selection_empty()
 }
 
 /**
- * Check if there is exactly one element selected.
+ * Check if there is exactly one element selected of the given type.
  * Returns this element, or NULL.
  */
-void * single_tile_selection()
+void * single_tile_selection(int type)
 {
+	struct selected_element *s;
 	if (list_empty(&selected_elements))
 		return NULL;
 	if (selected_elements.next->next != &selected_elements)
 		return NULL;
 
-	return list_entry(selected_elements.next, struct selected_element, node)->data;
+	s = list_entry(selected_elements.next, struct selected_element, node);
+	if (s->type != type)
+		return NULL;
+
+	return s->data;
 }
 
 /**

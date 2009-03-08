@@ -93,18 +93,21 @@ static void activate_button(struct leveleditor_button *b)
 	    }
 	    break;
 	case LEVEL_EDITOR_NEW_OBSTACLE_LABEL_BUTTON:
-	    if (single_tile_selection()) {
-		action_change_obstacle_label_user(EditLevel(), single_tile_selection(), NULL);
-	    }
-	    break;
+		if (single_tile_selection(OBJECT_OBSTACLE)) {
+			action_change_obstacle_label_user(EditLevel(), single_tile_selection(OBJECT_OBSTACLE), NULL);
+		}
+		break;
 	case LEVEL_EDITOR_NEW_OBSTACLE_DESCRIPTION_BUTTON:
-	    if (single_tile_selection()) {
-		action_change_obstacle_description(EditLevel(), single_tile_selection(), NULL);
-	    }
-	    break;
+		if (single_tile_selection(OBJECT_OBSTACLE)) {
+			action_change_obstacle_description(EditLevel(), single_tile_selection(OBJECT_OBSTACLE), NULL);
+		}
+		break;
 	case LEVEL_EDITOR_NEW_MAP_LABEL_BUTTON:
 	    level_editor_action_change_map_label_user (EditLevel());
 	    break;
+	case LEVEL_EDITOR_EDIT_CHEST_BUTTON:
+		GiveMouseAlertWindow("Implement that\n");
+		break;
 	case LEVEL_EDITOR_NEW_ITEM_BUTTON:
 	    ItemDropFromLevelEditor(  );
 	    break;
