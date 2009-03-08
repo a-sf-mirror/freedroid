@@ -647,7 +647,7 @@ Get_Robot_Data ( void* DataPointer )
 			   &Druidmap[RobotIndex].time_spent_eyeing_tux , EndOfDataPointer );
 
       // Now we read in the flash immunity of this droid.
-      ReadValueFromStringWithDefault( RobotPointer , FLASHIMMUNE_BEGIN_STRING , "%hhd" , "0",
+      ReadValueFromStringWithDefault( RobotPointer , FLASHIMMUNE_BEGIN_STRING , "%hd" , "0",
 			   &Druidmap[RobotIndex].flashimmune , EndOfDataPointer );
 
       // Now we experience_reward to be had for destroying one droid of this type
@@ -663,31 +663,31 @@ Get_Robot_Data ( void* DataPointer )
 			   &Druidmap[RobotIndex].forced_magic_items , EndOfDataPointer );
 
       // Now we read in the brain of this droid of this type
-      ReadValueFromStringWithDefault( RobotPointer , BRAIN_BEGIN_STRING , "%hhd" , "1",
-			   &Druidmap[RobotIndex].brain, EndOfDataPointer );
+	  ReadValueFromStringWithDefault( RobotPointer , BRAIN_BEGIN_STRING , "%hd" , "1",
+			  &Druidmap[RobotIndex].brain, EndOfDataPointer );
 
-      // Now we read in the sensor 1, 2 and 3 of this droid type
-      ReadValueFromStringWithDefault( RobotPointer , SENSOR1_BEGIN_STRING , "%hhd" , "1",
-			   &Druidmap[RobotIndex].sensor1, EndOfDataPointer );
-      ReadValueFromStringWithDefault( RobotPointer , SENSOR2_BEGIN_STRING , "%hhd" , "5",
-			   &Druidmap[RobotIndex].sensor2, EndOfDataPointer );
-      ReadValueFromStringWithDefault( RobotPointer , SENSOR3_BEGIN_STRING , "%hhd" , "0",
-			   &Druidmap[RobotIndex].sensor3, EndOfDataPointer );
+	  // Now we read in the sensor 1, 2 and 3 of this droid type
+	  ReadValueFromStringWithDefault( RobotPointer , SENSOR1_BEGIN_STRING , "%hd" , "1",
+			  &Druidmap[RobotIndex].sensor1, EndOfDataPointer );
+	  ReadValueFromStringWithDefault( RobotPointer , SENSOR2_BEGIN_STRING , "%hd" , "5",
+			  &Druidmap[RobotIndex].sensor2, EndOfDataPointer );
+	  ReadValueFromStringWithDefault( RobotPointer , SENSOR3_BEGIN_STRING , "%hd" , "0",
+			  &Druidmap[RobotIndex].sensor3, EndOfDataPointer );
 
       char * tmp_item_name = ReadAndMallocStringFromData ( RobotPointer , WEAPON_ITEM_BEGIN_STRING , "\"" ) ;
       Druidmap[RobotIndex].weapon_item.type = GetItemIndexByName ( tmp_item_name );
       free ( tmp_item_name );
 
       // Now we read in the % chance for droid to drop botpart
-      ReadValueFromStringWithDefault( RobotPointer , "Percent to drop Entropy Inverter=" , "%hhd" , "0", 
+      ReadValueFromStringWithDefault( RobotPointer , "Percent to drop Entropy Inverter=" , "%hd" , "0", 
 			   &Druidmap[RobotIndex].amount_of_entropy_inverters , EndOfDataPointer );
-      ReadValueFromStringWithDefault( RobotPointer , "Percent to drop Plasma Transistor=" , "%hhd" , "0",
+      ReadValueFromStringWithDefault( RobotPointer , "Percent to drop Plasma Transistor=" , "%hd" , "0",
 			   &Druidmap[RobotIndex].amount_of_plasma_transistors , EndOfDataPointer );
-      ReadValueFromStringWithDefault( RobotPointer , "Percent to drop Superconducting Relay Unit=" , "%hhd" , "0", 
+      ReadValueFromStringWithDefault( RobotPointer , "Percent to drop Superconducting Relay Unit=" , "%hd" , "0", 
 			   &Druidmap[RobotIndex].amount_of_superconductors , EndOfDataPointer );
-      ReadValueFromStringWithDefault( RobotPointer , "Percent to drop Antimatter-Matter Converter=" , "%hhd" , "0", 
+      ReadValueFromStringWithDefault( RobotPointer , "Percent to drop Antimatter-Matter Converter=" , "%hd" , "0", 
 			   &Druidmap[RobotIndex].amount_of_antimatter_converters , EndOfDataPointer );
-      ReadValueFromStringWithDefault( RobotPointer , "Percent to drop Tachyon Condensator=" , "%hhd" , "0",
+      ReadValueFromStringWithDefault( RobotPointer , "Percent to drop Tachyon Condensator=" , "%hd" , "0",
 			   &Druidmap[RobotIndex].amount_of_tachyon_condensators , EndOfDataPointer );
 
       // Now we read in the greeting sound type of this droid type
@@ -707,7 +707,7 @@ Get_Robot_Data ( void* DataPointer )
 			   &Druidmap[RobotIndex] . recover_time_after_getting_hit , EndOfDataPointer );
 
       // Now we read in the is_human flag of this droid type
-      ReadValueFromString( RobotPointer , IS_HUMAN_SPECIFICATION_STRING , "%hhd" , 
+      ReadValueFromString( RobotPointer , IS_HUMAN_SPECIFICATION_STRING , "%hd" , 
 			   &Druidmap[RobotIndex].is_human , EndOfDataPointer );
 
       // Now we read in the is_human flag of this droid type
@@ -951,7 +951,7 @@ answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.",
 				 &ItemMap[ItemIndex].item_gun_speed , EndOfItemData );
 	    
 	    // Now we read in speed of melee application and melee offset from influ
-	    ReadValueFromStringWithDefault( ItemPointer ,  "Item as gun: is melee weapon=" , "%hhd" , "0", 
+	    ReadValueFromStringWithDefault( ItemPointer ,  "Item as gun: is melee weapon=" , "%hd" , "0", 
 				 &ItemMap[ItemIndex].item_weapon_is_melee , EndOfItemData );
 	    ReadValueFromStringWithDefault( ItemPointer ,  "Item as gun: modifier for starting angle=" , "%f" , "0.000000",
 				 &ItemMap[ItemIndex].item_gun_start_angle_modifier , EndOfItemData );

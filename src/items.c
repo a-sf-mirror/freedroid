@@ -2935,10 +2935,10 @@ int Get_Prefixes_Data ( char * DataPointer )
             ReadValueFromStringWithDefault( PrefixPointer , "Price factor=" , "%f" , "3.000000",
                              & BonusToFill -> price_factor  , EndOfPrefixData );
 
-            ReadValueFromStringWithDefault( PrefixPointer , "Light radius bonus=" , "%hhd" , "0",
+            ReadValueFromStringWithDefault( PrefixPointer , "Light radius bonus=" , "%hd" , "0",
                              & BonusToFill -> light_bonus_value  , EndOfPrefixData );
 
-            ReadValueFromStringWithDefault( PrefixPointer , "Level=" , "%hhd" , "1",
+            ReadValueFromStringWithDefault( PrefixPointer , "Level=" , "%hd" , "1",
                              & BonusToFill -> level  , EndOfPrefixData );
 
 

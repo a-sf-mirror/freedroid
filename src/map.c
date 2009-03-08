@@ -2601,10 +2601,10 @@ file you use.",
 		       TypeIndicationString , ListIndex );
 	}
 
-      ReadValueFromString ( SearchPointer ,"Fixed=","%hhd", &newen.CompletelyFixed , EndOfThisLevelData );
+      ReadValueFromString ( SearchPointer ,"Fixed=","%hd", &newen.CompletelyFixed , EndOfThisLevelData );
       ReadValueFromString ( SearchPointer ,"Marker=","%d", &newen . marker , EndOfThisLevelData );
       ReadValueFromStringWithDefault ( SearchPointer ,"MaxDistanceToHome=","%hd", "0", &newen.max_distance_to_home , EndOfThisLevelData );
-      ReadValueFromString ( SearchPointer ,"Friendly=","%hhd", &newen.is_friendly , EndOfThisLevelData );
+      ReadValueFromString ( SearchPointer ,"Friendly=","%hd", &newen.is_friendly , EndOfThisLevelData );
       StartMapLabel = 
 	ReadAndMallocStringFromData ( SearchPointer , "StartLabel=\"" , "\"" ) ;
       ResolveMapLabelOnShip ( StartMapLabel , &StartupLocation );

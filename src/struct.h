@@ -337,9 +337,9 @@ typedef struct item_bonus_s
     char base_bonus_to_resist_disruptor; // this is a percentage
     char modifier_to_bonus_to_resist_disruptor; // this is a percentage
     
-    char light_bonus_value;
+    short int light_bonus_value;
 
-    char level; //"level" of the prefix (is it good or not)
+    short int level; //"level" of the prefix (is it good or not)
     float price_factor;
 
 } item_bonus , *Item_bonus;
@@ -376,7 +376,7 @@ typedef struct itemspec_s
     short    item_gun_ammo_clip_size; //max. number of bullets in the charger
     
     // the following values have only relevance in case of a melee weapon
-    char item_weapon_is_melee;	
+    short int item_weapon_is_melee;	
     float item_gun_start_angle_modifier;	// where to start with a melee weapon swing
     char    item_gun_use_ammunition; // which ammunition does this gun use? - 1 laser 2 plasma 3 exterminator etc.
     char    item_gun_requires_both_hands; // is this a (strictly) 2-handed weapon?
@@ -458,12 +458,12 @@ typedef struct druidspec_s
     float maxspeed;
     float accel;
     
-    char flashimmune;		// is the droid immune to FLASH-bullets 
+    short flashimmune;		// is the droid immune to FLASH-bullets 
     short experience_reward;			// experience_reward for the elimination of one droid of this type 
-    unsigned char brain;
-    unsigned char sensor1;
-    unsigned char sensor2;
-    unsigned char sensor3;
+    short int brain;
+    short int sensor1;
+    short int sensor2;
+    short int sensor3;
     
     float aggression_distance;
     float time_spent_eyeing_tux;
@@ -473,18 +473,18 @@ typedef struct druidspec_s
     
     item weapon_item;
     
-    char amount_of_plasma_transistors;
-    char amount_of_superconductors;
-    char amount_of_antimatter_converters;
-    char amount_of_entropy_inverters;
-    char amount_of_tachyon_condensators;
+    short int amount_of_plasma_transistors;
+    short int amount_of_superconductors;
+    short int amount_of_antimatter_converters;
+    short int amount_of_entropy_inverters;
+    short int amount_of_tachyon_condensators;
     
     short greeting_sound_type;              // which sample to play in order to 'greet' the influencer?
     short got_hit_sound_type;               // which sample to play in order to 'greet' the influencer?
     short to_hit;                           // chance that this droid hits an unarmoured target
     float recover_time_after_getting_hit;
     char *notes;			        // notes on the druid of this type 
-    char is_human;
+    short int is_human;
     short individual_shape_nr;
 }
 druidspec, *Druidspec;
@@ -518,14 +518,14 @@ typedef struct enemy_s
     float firewait;		// time this robot still takes until its weapon will be fully reloaded
     short ammo_left; 		  // ammunition left in the charger
     
-    char CompletelyFixed;          // set this flag to make the robot entirely immobile
+    short int CompletelyFixed;          // set this flag to make the robot entirely immobile
     char follow_tux;               // does this robot try to follow tux via it's random movements?
     char SpecialForce;             // This flag will exclude the droid from initial shuffling of droids
     short on_death_drop_item_code;  // drop a pre-determined item when dying?
     
     int marker;                   // This provides a marker for special mission targets
     
-    char is_friendly;              // is this a friendly droid or is it a MS controlled one?
+    short int is_friendly;              // is this a friendly droid or is it a MS controlled one?
     char has_been_taken_over;      // has the Tux made this a friendly bot via takeover subgame?
     char attack_target_type ;      // attack NOTHING, PLAYER, or BOT
     short int bot_target_n;
