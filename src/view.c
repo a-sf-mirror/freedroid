@@ -578,115 +578,83 @@ blit_obstacle_collision_rectangle ( obstacle* our_obstacle )
 }; // void blit_obstacle_collision_rectangle ( obstacle* our_obstacle )
 
 /**
- * This function should blit an obstacle, that is given via it's address
- * in the parameter
+ * Draw an obstacle at its place on the screen.
+ *
+ * @param our_obstacle Point to the obstacle to blit.
  */
-void
-blit_one_obstacle ( obstacle* our_obstacle )
+void blit_one_obstacle(obstacle *our_obstacle)
 {
-    iso_image tmp;
-    moderately_finepoint obs_onscreen_position;
-
-    if ( ( our_obstacle-> type <= (-1) ) || ( our_obstacle-> type >= NUMBER_OF_OBSTACLE_TYPES ) )
-    {
-	fprintf ( stderr , "\nobstacle_type found=%d." , our_obstacle-> type ) ;
-	ErrorMessage ( __FUNCTION__  , "\
-There was an obstacle type given, that exceeds the number of\n\
- obstacle types allowed and loaded in Freedroid.",
-				   PLEASE_INFORM, IS_FATAL );
-	
-    }
-
-    //--------------------
-    // Maybe the children friendly version is desired.  Then the blood on the floor
-    // will not be blitted to the screen.
-
-    if ( ( ! GameConfig . show_blood ) && 
-	 ( our_obstacle-> type >= ISO_BLOOD_1 ) && 
-	 ( our_obstacle -> type <= ISO_BLOOD_8 ) )
-	return;
-
-    // blit_obstacle_collision_rectangle ( our_obstacle );
-
-
-    //--------------------
-    // We blit the obstacle in question, but if we're in the level editor and this
-    // obstacle has been marked, we apply a color filter to it.  Otherwise we blit
-    // it just so.
-    //
-    if (element_in_selection(our_obstacle))
-    {
-	obs_onscreen_position . x = our_obstacle -> pos . x ;
-	obs_onscreen_position . y = our_obstacle -> pos . y ;
-
-	if ( use_open_gl )
-	{
-	    draw_gl_textured_quad_at_map_position ( get_obstacle_image(our_obstacle->type), 
-						   obs_onscreen_position . x , obs_onscreen_position . y , 
-						   ( (SDL_GetTicks() >> 7) % 3) / 2.0  , 
-						   ( ( (SDL_GetTicks() >> 7) + 1 ) % 3) / 2.0 , 
-						   ( ( (SDL_GetTicks() >> 7) + 2 ) % 3) / 2.0 , TRUE , FALSE, 1.0) ;
+	iso_image tmp;
+	gps obs_screen_position;
+		
+	if ((our_obstacle->type <= -1) || (our_obstacle->type >= NUMBER_OF_OBSTACLE_TYPES)) {
+		ErrorMessage(__FUNCTION__, "The obstacle type %d that was given exceeds the number of\n\
+				obstacle types allowed and loaded in Freedroid.", PLEASE_INFORM, IS_FATAL, our_obstacle->type);
 	}
-	else
-	{
-	    DebugPrintf ( 1 , "\nColor filter for level editor invoked (via SDL!) for marked obstacle!" );
-	    tmp . surface = our_SDL_display_format_wrapperAlpha (get_obstacle_image(our_obstacle->type)->surface );
-	    tmp . surface -> format -> Bmask = 0x0 ; // 0FFFFFFFF ;
-	    tmp . surface -> format -> Rmask = 0x0 ; // FFFFFFFF ;
-	    tmp . surface -> format -> Gmask = 0x0FFFFFFFF ;
-	    tmp . offset_x = get_obstacle_image(our_obstacle->type)->offset_x ;
-	    tmp . offset_y = get_obstacle_image(our_obstacle->type)->offset_y ;
-	    blit_iso_image_to_map_position ( &tmp , obs_onscreen_position . x , obs_onscreen_position . y );
-	    SDL_FreeSurface ( tmp . surface );
-	}
-    }
-    else
-    {
-	if ( use_open_gl )
-	{
-	    //--------------------
-	    // Not in all cases does it make sense to make the walls transparent.
-	    // Only those walls, that are really blocking the Tux from view should
-	    // be made transparent.
-	    //
-	    if ( obstacle_map [ our_obstacle -> type ] . transparent == TRANSPARENCY_FOR_WALLS ) 
-	    {
-		if ( ( our_obstacle -> pos . x > Me . pos . x - 1.0 ) &&
-		     ( our_obstacle -> pos . y > Me . pos . y - 1.0 ) &&
-		     ( our_obstacle -> pos . x < 
-		       Me . pos . x + 1.5 ) &&
-		     ( our_obstacle -> pos . y < 
-		       Me . pos . y + 1.5 ) )
-		{
-		draw_gl_textured_quad_at_map_position ( 
-		    get_obstacle_image(our_obstacle->type), our_obstacle->pos.x, our_obstacle->pos.y, 1,1,1 , FALSE, 
-		    obstacle_map [ our_obstacle -> type ] . transparent, 1.0 ) ;
 
+	// Maybe the children friendly version is desired.  Then the blood on the floor
+	// will not be blitted to the screen.
+	if ((!GameConfig.show_blood) && (our_obstacle->type >= ISO_BLOOD_1) && 
+			(our_obstacle->type <= ISO_BLOOD_8))
+		return;
+
+	update_virtual_position(&obs_screen_position, &our_obstacle->pos, CURLEVEL()->levelnum);
+
+	// We blit the obstacle in question, but if we're in the level editor and this
+	// obstacle has been marked, we apply a color filter to it.  Otherwise we blit
+	// it just so.
+	if (element_in_selection(our_obstacle)) {
+
+		if (use_open_gl) {
+			draw_gl_textured_quad_at_map_position(get_obstacle_image(our_obstacle->type), 
+					obs_screen_position.x, obs_screen_position.y, 
+					((SDL_GetTicks() >> 7) % 3) / 2.0, 
+					(((SDL_GetTicks() >> 7) + 1 ) % 3) / 2.0, 
+					(((SDL_GetTicks() >> 7) + 2 ) % 3) / 2.0, TRUE, FALSE, 1.0);
+		} else {
+			DebugPrintf(1, "\nColor filter for level editor invoked (via SDL!) for marked obstacle!" );
+			tmp.surface = our_SDL_display_format_wrapperAlpha (get_obstacle_image(our_obstacle->type)->surface );
+			tmp.surface->format->Bmask = 0x0;
+			tmp.surface->format->Rmask = 0x0;
+			tmp.surface->format->Gmask = 0x0FFFFFFFF;
+			tmp.offset_x = get_obstacle_image(our_obstacle->type)->offset_x;
+			tmp.offset_y = get_obstacle_image(our_obstacle->type)->offset_y;
+			blit_iso_image_to_map_position(&tmp, obs_screen_position.x, obs_screen_position.y);
+			SDL_FreeSurface(tmp.surface);
 		}
-		else
-		{
-		draw_gl_textured_quad_at_map_position ( 
-		    get_obstacle_image(our_obstacle->type), our_obstacle->pos.x, our_obstacle->pos.y, 1,1,1 , FALSE, 
-		    0, 1.0 ) ;
+	} else {
+		if (use_open_gl) {
+			// Not in all cases does it make sense to make the walls transparent.
+			// Only those walls, that are really blocking the Tux from view should
+			// be made transparent.
+			if (obstacle_map[our_obstacle->type].transparent == TRANSPARENCY_FOR_WALLS) {
+				if ((obs_screen_position.x > Me.pos.x - 1.0) &&
+						(obs_screen_position.y > Me.pos.y - 1.0) &&
+						(obs_screen_position.x < 
+						 Me.pos.x + 1.5) &&
+						(obs_screen_position.y < 
+						 Me.pos.y + 1.5)) {
+					draw_gl_textured_quad_at_map_position( 
+							get_obstacle_image(our_obstacle->type), obs_screen_position.x, obs_screen_position.y, 1,1,1, FALSE, 
+							obstacle_map[our_obstacle->type].transparent, 1.0);
 
+				} else {
+					draw_gl_textured_quad_at_map_position ( 
+							get_obstacle_image(our_obstacle->type), obs_screen_position.x, obs_screen_position.y, 1,1,1, FALSE, 
+							0, 1.0);
+
+				}
+			} else {
+				draw_gl_textured_quad_at_map_position( 
+						get_obstacle_image(our_obstacle->type), obs_screen_position.x, obs_screen_position.y, 1,1,1 , FALSE, 
+						obstacle_map [our_obstacle->type].transparent, 1.000000000);
+			}
+		} else {
+			blit_iso_image_to_map_position (get_obstacle_image(our_obstacle->type), 
+					obs_screen_position.x, obs_screen_position.y );
 		}
-	    }
-	    else
-	    {
-		draw_gl_textured_quad_at_map_position ( 
-		    get_obstacle_image(our_obstacle->type), our_obstacle->pos.x, our_obstacle->pos.y, 1,1,1 , FALSE, 
-		    obstacle_map [ our_obstacle -> type ] . transparent, 1.000000000 ) ;
-	    }
 	}
-	else
-	{
-	    blit_iso_image_to_map_position (get_obstacle_image(our_obstacle->type), 
-					     our_obstacle->pos.x, our_obstacle->pos.y );
-	}
-    }
-
-
-}; // blit_one_obstacle ( obstacle* our_obstacle )
+}
 
 /**
  * This function should blit an obstacle, that is given via it's address
@@ -842,11 +810,8 @@ void insert_obstacles_into_blitting_list ( int mask )
 
 					update_virtual_position(&virtpos, &reference, CURLEVEL()->levelnum);
 
-					if (CURLEVEL() != obstacle_level) {
-						printf("pos %f %f -> %f %f norm %f\n", OurObstacle->pos.x, OurObstacle->pos.y, virtpos.x, virtpos.y, virtpos.x  + virtpos.y);
-					}
-					insert_new_element_into_blitting_list(virtpos.x + virtpos.y, 
-							BLITTING_TYPE_OBSTACLE, OurObstacle, obstacle_level -> map [py][px].obstacles_glued_to_here[i]) ;
+					insert_new_element_into_blitting_list(virtpos.x + virtpos.y, BLITTING_TYPE_OBSTACLE, 
+							OurObstacle, obstacle_level -> map [py][px].obstacles_glued_to_here[i]);
 				} else {
 					break;
 				}

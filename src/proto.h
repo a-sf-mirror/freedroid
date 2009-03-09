@@ -635,7 +635,7 @@ void toggle_game_config_screen_visibility ( int screen_visible );
 // shop.c 
 void ShowRescaledItem ( int position , int TuxItemRow , item* ShowItem );
 int TryToIntegrateItemIntoInventory ( item* BuyItem , int AmountToBuyAtMost );
-int AssemblePointerListForChestShow ( item** ItemPointerListPointer , moderately_finepoint chest_pos );
+int AssemblePointerListForChestShow(item **, gps);
 int AssemblePointerListForItemShow ( item** ItemPointerListPointer , int IncludeWornItems );
 void InitTradeWithCharacter( int CharacterCode ) ;
 int GreatShopInterface (int, item *ShowPointerList[MAX_ITEMS_IN_INVENTORY], int, item *TuxItemsList[MAX_ITEMS_IN_INVENTORY], shop_decision *);

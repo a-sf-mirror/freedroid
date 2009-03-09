@@ -390,7 +390,7 @@ Sorry, but unless this constant is raised, Freedroid will refuse to load this ma
  * WITHOUT destroying or damaging the human-readable data in the process!
  * This is an improved parser that is not quite readable but very performant.
  */
-static void decode_obstacles_of_this_level ( Level loadlevel , char* DataPointer )
+static void decode_obstacles_of_this_level(level *loadlevel, char* DataPointer)
 {
     int i;
     char* curfield = NULL;
@@ -402,11 +402,12 @@ static void decode_obstacles_of_this_level ( Level loadlevel , char* DataPointer
     //
     for ( i = 0 ; i < MAX_OBSTACLES_ON_MAP ; i ++ )
     {
-	loadlevel -> obstacle_list [ i ] . type = ( -1 ) ;
-	loadlevel -> obstacle_list [ i ] . pos . x = ( -1 ) ;
-	loadlevel -> obstacle_list [ i ] . pos . y = ( -1 ) ;
-	loadlevel -> obstacle_list [ i ] . name_index = ( -1 ) ;
-	loadlevel -> obstacle_list [ i ] . description_index = ( -1 ) ;
+	loadlevel->obstacle_list[i].type = -1;
+	loadlevel->obstacle_list[i].pos.x = -1;
+	loadlevel->obstacle_list[i].pos.y = -1;
+	loadlevel->obstacle_list[i].pos.z = loadlevel->levelnum;
+	loadlevel->obstacle_list[i].name_index = -1;
+	loadlevel->obstacle_list[i].description_index = -1;
     }
     
     //--------------------

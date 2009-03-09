@@ -831,7 +831,7 @@ waypoint, *Waypoint;
 typedef struct obstacle_s
 {
     int type;
-    moderately_finepoint pos;
+    gps pos;
     int name_index;
     int description_index;
 }

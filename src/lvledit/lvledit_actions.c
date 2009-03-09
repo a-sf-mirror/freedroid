@@ -150,7 +150,7 @@ void action_push (int type, ...)
     }
 }
 	
-obstacle * action_create_obstacle (Level EditLevel, double x, double y, int new_obstacle_type)
+obstacle * action_create_obstacle (level *EditLevel, double x, double y, int new_obstacle_type)
 {
     int i;
 
@@ -158,10 +158,11 @@ obstacle * action_create_obstacle (Level EditLevel, double x, double y, int new_
     {
 	if ( EditLevel -> obstacle_list [ i ] . type == (-1) )
 	{
-	    EditLevel -> obstacle_list [ i ] . type = new_obstacle_type ;
-	    EditLevel -> obstacle_list [ i ] . pos . x = x ;
-	    EditLevel -> obstacle_list [ i ] . pos . y = y ;
-	    EditLevel -> obstacle_list [ i] . name_index = (-1) ;
+	    EditLevel -> obstacle_list [i].type = new_obstacle_type ;
+	    EditLevel -> obstacle_list [i].pos.x = x ;
+	    EditLevel -> obstacle_list [i].pos.y = y ;
+	    EditLevel -> obstacle_list [i].pos.z = EditLevel->levelnum;
+	    EditLevel -> obstacle_list [i].name_index = (-1) ;
 	    glue_obstacles_to_floor_tiles_for_level ( EditLevel -> levelnum );
 	    DebugPrintf ( 0 , "\nNew obstacle has been added!!!" );
 	    fflush(stdout);
@@ -867,6 +868,7 @@ void CreateNewMapLevel( int level_num )
 	NewLevel -> obstacle_list [ i ] . type = ( -1 ) ;
 	NewLevel -> obstacle_list [ i ] . pos . x = ( -1 ) ;
 	NewLevel -> obstacle_list [ i ] . pos . y = ( -1 ) ;
+	NewLevel -> obstacle_list [ i ] . pos . z = level_num ;
 	NewLevel -> obstacle_list [ i ] . name_index = ( -1 ) ;
     }
     for ( i = 0 ; i < MAX_OBSTACLES_ON_MAP ; i ++ )

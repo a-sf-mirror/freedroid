@@ -265,7 +265,7 @@ AssemblePointerListForItemShow ( item** ItemPointerListPointer , int IncludeWorn
  * players level and if it's coordinates are those of the current players
  * chest.
  */
-int AssemblePointerListForChestShow ( item** ItemPointerListPointer , moderately_finepoint chest_pos )
+int AssemblePointerListForChestShow(item **ItemPointerListPointer, gps chest_pos)
 {
 	int i;
 	item** CurrentItemPointer;
