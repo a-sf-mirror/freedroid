@@ -1048,53 +1048,74 @@ smash_obstacle ( float x , float y )
  * This function returns the map brick code of the tile that occupies the
  * given position.
  */
-Uint16
-GetMapBrick ( Level deck , float x , float y )
+Uint16 GetMapBrick (level *lvl, float x, float y)
 {
-    Uint16 BrickWanted;
-    int RoundX, RoundY;
-    
-    //--------------------
-    // ATTENTION! BE CAREFUL HERE!  What we want is an integer division with rest, 
-    // not an exact foating point division!  Beware of "improvements" here!!!
-    //
-    RoundX = (int) rintf (x) ;
-    RoundY = (int) rintf (y) ;
+	Uint16 BrickWanted;
+	int RoundX, RoundY;
 
-    //--------------------
-    // First we check against the case of requests beyond the limits of
-    // the current level
-    //
-    if ( RoundY >= deck->ylen)
-	return ISO_COMPLETELY_DARK;
-    if ( RoundX >= deck->xlen)
-	return ISO_COMPLETELY_DARK;
-    if ( RoundY < 0)
-	return ISO_COMPLETELY_DARK;
-    if ( RoundX < 0)
-	return ISO_COMPLETELY_DARK;
+	RoundX = (int) rintf (x) ;
+	RoundY = (int) rintf (y) ;
 
-    //--------------------
-    // Now we can return the floor tile information, but again we
-    // do so with sanitiy check for the range of allowed floor tile
-    // types and that...
-    //
-    BrickWanted = deck -> map[ RoundY ][ RoundX ] . floor_value ;
-    if ( BrickWanted >= ALL_ISOMETRIC_FLOOR_TILES )
-    {
-	fprintf( stderr , "\nBrickWanted: %d at pos X=%d Y=%d Z=%d." , BrickWanted , RoundX , RoundY , deck->levelnum );
-	ErrorMessage ( __FUNCTION__  , "\
-A maplevel in Freedroid contained a brick type, that does not have a\n\
-real graphical representation.  This is a severe error, that really \n\
-shouldn't be occuring in normal game, except perhaps if the level editor\n\
-was just used to add/remove some new doors or refreshes or other animated\n\
-map tiles.",
-				   PLEASE_INFORM, IS_FATAL );
-    }
-    
-    return BrickWanted;
-    
-}; // int GetMapBrick( ... ) 
+	if (RoundY >= lvl->ylen) {
+		if (lvl->jump_target_south == -1)
+			return ISO_COMPLETELY_DARK;
+		else {
+			y += lvl->jump_threshold_south;
+			y -=  lvl->ylen;
+			lvl = curShip.AllLevels[lvl->jump_target_south];
+		}
+	}
+	if (RoundX >= lvl->xlen) {
+		if (lvl->jump_target_east == -1)
+			return ISO_COMPLETELY_DARK;
+		else {
+			x += lvl->jump_threshold_east;
+			x -= lvl->xlen;
+			lvl = curShip.AllLevels[lvl->jump_target_east];
+		}
+	}
+	if (RoundY < 0) {
+		if (lvl->jump_target_north == -1)
+			return ISO_COMPLETELY_DARK;
+		else {
+			y -= lvl->jump_threshold_north;
+			lvl = curShip.AllLevels[lvl->jump_target_north];
+			y = lvl->ylen + y;
+		}
+	}		
+	if (RoundX < 0) {
+		if (lvl->jump_target_west == -1)
+			return ISO_COMPLETELY_DARK;
+		else { 
+			x -= lvl->jump_threshold_west;
+			lvl = curShip.AllLevels[lvl->jump_target_west];
+			x = lvl->xlen + x;
+		}
+	}
+
+	// compute the rounded coordinates again in case we changed them	
+	RoundX = (int) rintf (x) ;
+	RoundY = (int) rintf (y) ;
+
+	//--------------------
+	// Now we can return the floor tile information, but again we
+	// do so with sanitiy check for the range of allowed floor tile
+	// types and that...
+	//
+	BrickWanted = lvl->map[RoundY][RoundX].floor_value ;
+	if (BrickWanted >= ALL_ISOMETRIC_FLOOR_TILES) {
+		fprintf( stderr , "\nBrickWanted: %d at pos X=%d Y=%d Z=%d.", BrickWanted, RoundX, RoundY, lvl->levelnum );
+		ErrorMessage ( __FUNCTION__  , "\
+				A maplevel in Freedroid contained a brick type, that does not have a\n\
+				real graphical representation.  This is a severe error, that really \n\
+				shouldn't be occuring in normal game, except perhaps if the level editor\n\
+				was just used to add/remove some new doors or refreshes or other animated\n\
+				map tiles.",
+				PLEASE_INFORM, IS_FATAL );
+	}
+
+	return BrickWanted;
+}
 
 /**
  * Some structures within Freedroid rpg maps are animated in the sense

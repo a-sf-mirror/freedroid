@@ -110,7 +110,6 @@ void update_virtual_position ( gps* target_pos , gps* source_pos , int level_num
 void FdFillRect (SDL_Rect rect, SDL_Color color);
 void ShowPosition (void);
 void ShowCombatScreenTexts ( int mask );
-void isometric_show_floor_around_tux_without_doublebuffering (int mask);
 void set_up_ordered_blitting_list ( int mask );
 void blit_preput_objects_according_to_blitting_list ( int mask );
 void blit_nonpreput_objects_according_to_blitting_list ( int mask );

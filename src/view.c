@@ -325,23 +325,19 @@ ShowCombatScreenTexts ( int mask )
 }; // void ShowCombatScreenTexts ( int mask )
 
 
-void
-get_floor_boundaries(int mask, int* LineStart, int* LineEnd, int* ColStart, int* ColEnd)
+static void get_floor_boundaries(int mask, int* LineStart, int* LineEnd, int* ColStart, int* ColEnd)
 {
-    if ( mask & ZOOM_OUT )
-    {
-	*LineStart = Me . pos . y - FLOOR_TILES_VISIBLE_AROUND_TUX * LEVEL_EDITOR_ZOOM_OUT_FACT ;
-	*LineEnd = Me . pos . y + FLOOR_TILES_VISIBLE_AROUND_TUX * LEVEL_EDITOR_ZOOM_OUT_FACT ;
-	*ColStart = Me . pos . x - FLOOR_TILES_VISIBLE_AROUND_TUX * LEVEL_EDITOR_ZOOM_OUT_FACT ;
-	*ColEnd = Me . pos . x + FLOOR_TILES_VISIBLE_AROUND_TUX * LEVEL_EDITOR_ZOOM_OUT_FACT ;
-    }
-    else
-    {
-	*LineStart = translate_pixel_to_map_location(UserCenter_x, -UserCenter_y, FALSE) ;
-	*LineEnd = translate_pixel_to_map_location(-UserCenter_x - iso_floor_tile_width + 1, UserCenter_y + iso_floor_tile_height - 1, FALSE) ;
-	*ColStart = translate_pixel_to_map_location(-UserCenter_x, -UserCenter_y, TRUE) ;
-	*ColEnd = translate_pixel_to_map_location(UserCenter_x + iso_floor_tile_width - 1, UserCenter_y + iso_floor_tile_height - 1, TRUE) ;
-    }
+	if (mask & ZOOM_OUT) {
+		*LineStart = Me . pos . y - FLOOR_TILES_VISIBLE_AROUND_TUX * LEVEL_EDITOR_ZOOM_OUT_FACT ;
+		*LineEnd = Me . pos . y + FLOOR_TILES_VISIBLE_AROUND_TUX * LEVEL_EDITOR_ZOOM_OUT_FACT ;
+		*ColStart = Me . pos . x - FLOOR_TILES_VISIBLE_AROUND_TUX * LEVEL_EDITOR_ZOOM_OUT_FACT ;
+		*ColEnd = Me . pos . x + FLOOR_TILES_VISIBLE_AROUND_TUX * LEVEL_EDITOR_ZOOM_OUT_FACT ;
+	} else {
+		*LineStart = translate_pixel_to_map_location(UserCenter_x, -UserCenter_y, FALSE) ;
+		*LineEnd = translate_pixel_to_map_location(-UserCenter_x - iso_floor_tile_width + 1, UserCenter_y + iso_floor_tile_height - 1, FALSE) ;
+		*ColStart = translate_pixel_to_map_location(-UserCenter_x, -UserCenter_y, TRUE) ;
+		*ColEnd = translate_pixel_to_map_location(UserCenter_x + iso_floor_tile_width - 1, UserCenter_y + iso_floor_tile_height - 1, TRUE) ;
+	}
 }
 
 static void floor_vtx_color(map_tile *m, float *r, float *g, float *b)
@@ -358,11 +354,9 @@ static void floor_vtx_color(map_tile *m, float *r, float *g, float *b)
 }
 
 /**
- * This function should assemble the pure floor tiles that will be visible
- * around the Tux or in the console map view.  Big map inserts and all that
- * will be handled later...
+ * This function displays floor on the screen.
  */
-void isometric_show_floor_around_tux_without_doublebuffering (int mask)
+static void show_floor(int mask)
 {
     int LineStart, LineEnd, ColStart, ColEnd, line, col, MapBrick;
     static int use_atlas = -1;
@@ -472,7 +466,7 @@ void isometric_show_floor_around_tux_without_doublebuffering (int mask)
 	} 
 
 
-}; // void isometric_show_floor_around_tux_without_doublebuffering ( int mask )
+};
 
 
 void blit_leveleditor_point ( int x, int y )
@@ -1905,7 +1899,7 @@ AssembleCombatPicture ( int mask )
     //
     update_light_list ( );
     
-    isometric_show_floor_around_tux_without_doublebuffering ( mask );
+    show_floor(mask);
 
     draw_grid_on_the_floor( mask );
     

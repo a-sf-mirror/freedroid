@@ -885,7 +885,7 @@ level, *Level;
 typedef struct ship_s
 {
     int num_levels;
-    Level AllLevels[MAX_LEVELS];
+    level *AllLevels[MAX_LEVELS];
 }
 ship, *Ship;
 
