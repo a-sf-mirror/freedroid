@@ -1044,6 +1044,52 @@ smash_obstacle ( float x , float y )
 
 }; // int smash_obstacle ( float x , float y );
 
+int update_level_pos(level **lvl, float *x, float *y)
+{
+	int RoundX, RoundY;
+#define dLVL (*lvl)
+	RoundX = (int) rintf (*x);
+	RoundY = (int) rintf (*y);
+	if (RoundY >= dLVL->ylen) {
+		if (dLVL->jump_target_south == -1) {
+			return 0;
+		} else {
+			*y += dLVL->jump_threshold_south;
+			*y -= dLVL->ylen;
+			dLVL = curShip.AllLevels[dLVL->jump_target_south];
+		}
+	}
+	if (RoundX >= dLVL->xlen) {
+		if (dLVL->jump_target_east == -1) {
+			return 0;
+		} else {
+			*x += dLVL->jump_threshold_east;
+			*x -= dLVL->xlen;
+			dLVL = curShip.AllLevels[dLVL->jump_target_east];
+		}
+	}
+	if (RoundY < 0) {
+		if (dLVL->jump_target_north == -1) {
+			return 0;
+		} else {
+			*y -= dLVL->jump_threshold_north;
+			dLVL = curShip.AllLevels[dLVL->jump_target_north];
+			*y = dLVL->ylen + *y;
+		}
+	}		
+	if (RoundX < 0) {
+		if (dLVL->jump_target_west == -1) {
+			return 0;
+		} else { 
+			*x -= dLVL->jump_threshold_west;
+			dLVL = curShip.AllLevels[dLVL->jump_target_west];
+			*x = dLVL->xlen + *x;
+		}
+	}
+
+	return 1;
+}
+
 /**
  * This function returns the map brick code of the tile that occupies the
  * given position.
@@ -1053,47 +1099,10 @@ Uint16 GetMapBrick (level *lvl, float x, float y)
 	Uint16 BrickWanted;
 	int RoundX, RoundY;
 
-	RoundX = (int) rintf (x) ;
-	RoundY = (int) rintf (y) ;
-
-	if (RoundY >= lvl->ylen) {
-		if (lvl->jump_target_south == -1)
-			return ISO_COMPLETELY_DARK;
-		else {
-			y += lvl->jump_threshold_south;
-			y -=  lvl->ylen;
-			lvl = curShip.AllLevels[lvl->jump_target_south];
-		}
-	}
-	if (RoundX >= lvl->xlen) {
-		if (lvl->jump_target_east == -1)
-			return ISO_COMPLETELY_DARK;
-		else {
-			x += lvl->jump_threshold_east;
-			x -= lvl->xlen;
-			lvl = curShip.AllLevels[lvl->jump_target_east];
-		}
-	}
-	if (RoundY < 0) {
-		if (lvl->jump_target_north == -1)
-			return ISO_COMPLETELY_DARK;
-		else {
-			y -= lvl->jump_threshold_north;
-			lvl = curShip.AllLevels[lvl->jump_target_north];
-			y = lvl->ylen + y;
-		}
-	}		
-	if (RoundX < 0) {
-		if (lvl->jump_target_west == -1)
-			return ISO_COMPLETELY_DARK;
-		else { 
-			x -= lvl->jump_threshold_west;
-			lvl = curShip.AllLevels[lvl->jump_target_west];
-			x = lvl->xlen + x;
-		}
+	if (!update_level_pos(&lvl, &x, &y)) {
+		return ISO_COMPLETELY_DARK;
 	}
 
-	// compute the rounded coordinates again in case we changed them	
 	RoundX = (int) rintf (x) ;
 	RoundY = (int) rintf (y) ;
 

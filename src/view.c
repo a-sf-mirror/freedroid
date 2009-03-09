@@ -91,19 +91,16 @@ EXTERN char *PrefixToFilename[ ENEMY_ROTATION_MODELS_AVAILABLE ];
 SDL_Color flashcolor1 = {100, 100, 100};
 SDL_Color flashcolor2 = {0, 0, 0};
 
-#define MAX_ELEMENTS_IN_BLITTING_LIST (MAX_OBSTACLES_ON_MAP+100) // some enemies might there too
-
-typedef struct
+struct blitting_list_element
 {
   int element_type;
   void *element_pointer;
   float norm_of_elements_position;
   int code_number;
-}
-blitting_list_element, *Blitting_list_element;
+  struct list_head node;
+};
 
-blitting_list_element blitting_list [ MAX_ELEMENTS_IN_BLITTING_LIST + 10 ] ;
-int number_of_objects_currently_in_blitting_list ;
+LIST_HEAD(blitting_list);
 
 enum
 {
@@ -806,139 +803,87 @@ There was an obstacle type given, that exceeds the number of\n\
  * In order for the obstacles to be blitted, they must first be inserted
  * into the correctly ordered list of objects to be blitted this frame.
  */
-void
-insert_obstacles_into_blitting_list ( int mask )
+void insert_obstacles_into_blitting_list ( int mask )
 {
-    int i;
-    level* obstacle_level = curShip . AllLevels [ Me . pos . z ];
-    int LineStart, LineEnd, ColStart, ColEnd , line, col;
-    obstacle* OurObstacle;
-    
-    //--------------------
-    // There are literally THOUSANDS of obstacles on some levels.
-    // Therefore we will not blit each and every one of them, but only those
-    // that are glued to one of the map tiles in the local area...
-    // That should give us some better performance...
-    //
-    
-    //--------------------
-    // We select the following area to be the map excerpt, that can be
-    // visible at most.  This is nescessare now that the Freedroid RPG is
-    // going to have larger levels and we don't want to do 100x100 cyles
-    // for nothing each frame.
-    //
-    if ( mask & ZOOM_OUT )
-    {
-	LineStart = Me . pos . y - FLOOR_TILES_VISIBLE_AROUND_TUX * LEVEL_EDITOR_ZOOM_OUT_FACT ;
-	LineEnd = Me . pos . y + FLOOR_TILES_VISIBLE_AROUND_TUX * LEVEL_EDITOR_ZOOM_OUT_FACT ;
-	ColStart = Me . pos . x - FLOOR_TILES_VISIBLE_AROUND_TUX * LEVEL_EDITOR_ZOOM_OUT_FACT ;
-	ColEnd = Me . pos . x + FLOOR_TILES_VISIBLE_AROUND_TUX * LEVEL_EDITOR_ZOOM_OUT_FACT ;
-    }
-    else
-    {
-	LineStart = Me . pos . y - FLOOR_TILES_VISIBLE_AROUND_TUX ;
-	LineEnd = Me . pos . y + FLOOR_TILES_VISIBLE_AROUND_TUX ;
-	ColStart = Me . pos . x - FLOOR_TILES_VISIBLE_AROUND_TUX ;
-	ColEnd = Me . pos . x + FLOOR_TILES_VISIBLE_AROUND_TUX ;
-    }
-    if ( LineStart < 0 ) LineStart = 0 ;
-    if ( ColStart < 0 ) ColStart = 0 ;
-    if ( LineEnd >= obstacle_level -> ylen ) LineEnd = obstacle_level -> ylen - 1 ;
-    if ( ColEnd >= obstacle_level -> xlen ) ColEnd = obstacle_level -> xlen - 1 ;
-    
-    for (line = LineStart; line < LineEnd; line++)
-    {
-	for (col = ColStart; col < ColEnd; col++)
-	{
-	    for ( i = 0 ; i < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE ; i ++ )
-	    {
-		if ( obstacle_level -> map [ line ] [ col ] . obstacles_glued_to_here [ i ] != (-1) )
-		{
-		    //--------------------
-		    // Now we have to insert this obstacle.  We do this of course respecting
-		    // the blitting order, as always...
-		    //
-		    OurObstacle = & ( obstacle_level -> obstacle_list [ obstacle_level -> map [ line ] [ col ] . obstacles_glued_to_here [ i ] ] ) ;
-		    insert_new_element_into_blitting_list ( OurObstacle -> pos . x + OurObstacle -> pos . y , 
-							    BLITTING_TYPE_OBSTACLE , OurObstacle , obstacle_level -> map [ line ] [ col ] . obstacles_glued_to_here [ i ] ) ;
+	int i;
+	level* obstacle_level;
+	int LineStart, LineEnd, ColStart, ColEnd , line, col;
+	float lx, ly;
+	int px, py;
+	obstacle* OurObstacle;
+	gps virtpos, reference;
+
+	get_floor_boundaries(mask, &LineStart, &LineEnd, &ColStart, &ColEnd);
+
+	for (line = LineStart; line < LineEnd; line++) {
+
+		for (col = ColStart; col < ColEnd; col++) {
+			obstacle_level = CURLEVEL();
+			lx = col;
+			ly = line;
+
+			if (!update_level_pos(&obstacle_level, &lx, &ly)) {
+				continue;
+			}
+
+			px = (int)rintf(lx);
+			py = (int)rintf(ly);
+
+			for (i = 0; i < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE; i++) {
+				if (obstacle_level->map[py][px].obstacles_glued_to_here[i] != (-1)) {
+					//--------------------
+					// Now we have to insert this obstacle.  We do this of course respecting
+					// the blitting order, as always...
+					OurObstacle = &(obstacle_level->obstacle_list[obstacle_level->map[py][px].obstacles_glued_to_here[i]]);
+
+					reference.x = OurObstacle->pos.x;
+					reference.y = OurObstacle->pos.y;
+					reference.z = obstacle_level->levelnum;
+
+					update_virtual_position(&virtpos, &reference, CURLEVEL()->levelnum);
+
+					if (CURLEVEL() != obstacle_level) {
+						printf("pos %f %f -> %f %f norm %f\n", OurObstacle->pos.x, OurObstacle->pos.y, virtpos.x, virtpos.y, virtpos.x  + virtpos.y);
+					}
+					insert_new_element_into_blitting_list(virtpos.x + virtpos.y, 
+							BLITTING_TYPE_OBSTACLE, OurObstacle, obstacle_level -> map [py][px].obstacles_glued_to_here[i]) ;
+				} else {
+					break;
+				}
+			}
 		}
-		else
-		    break;
-	    }
 	}
-    }
-    
-}; // void insert_obstacles_into_blitting_list ( void )
+}
 
 /**
  * Several different things must be inserted into the blitting list.
  * Therefore this function is an abstraction, that will insert a generic
  * object into the blitting list.
  */
-void
-insert_new_element_into_blitting_list ( float new_element_norm , 
-					int new_element_type , 
-					void* new_element_pointer , 
-					int code_number )
+void insert_new_element_into_blitting_list (float new_element_norm, 
+					int new_element_type, void* new_element_pointer, 
+					int code_number)
 {
-    int i;
+	struct blitting_list_element *e, *n;
+	struct blitting_list_element *newe;
 
-    for ( i = 0 ; i < MAX_ELEMENTS_IN_BLITTING_LIST ; i ++ )
-    {
+	newe = MyMalloc(sizeof(struct blitting_list_element));
+	newe->norm_of_elements_position = new_element_norm;
+	newe->element_type = new_element_type;
+	newe->element_pointer = new_element_pointer;
+	newe->code_number = code_number;
 
-	//--------------------
-	// Maybe the new element is the last entry that will be added.  This case
-	// must be handled specially.
-	//
-	if ( i == number_of_objects_currently_in_blitting_list )
-	{
-	    blitting_list [ number_of_objects_currently_in_blitting_list ] . norm_of_elements_position =
-		new_element_norm ;
-	    blitting_list [ number_of_objects_currently_in_blitting_list ] . element_type = new_element_type ;
-	    blitting_list [ number_of_objects_currently_in_blitting_list ] . element_pointer = new_element_pointer ;
-	    blitting_list [ number_of_objects_currently_in_blitting_list ] . code_number = code_number ;
-	    number_of_objects_currently_in_blitting_list ++ ;
-	    return;
+	list_for_each_entry_safe(e, n, &blitting_list, node) {
+
+		if (new_element_norm < e->norm_of_elements_position) {
+			// Insert before this element
+			list_add_tail(&newe->node, &e->node);
+			return;
+			}
 	}
 
-	//--------------------
-	// In this case we know, that the New_Element insertion position is not the last
-	// one and that therefore the other elements behind this position must be
-	// moved along by one.
-	//
-	if ( new_element_norm < blitting_list [ i ] . norm_of_elements_position )
-	{
-	    //--------------------
-	    // Before we can move the memory here, we must make sure that there
-	    // is room for our shift.  So we'll check that now...
-	    //
-	    if ( i >= MAX_ELEMENTS_IN_BLITTING_LIST - 1 )
-	    {
-		ErrorMessage ( __FUNCTION__  , "\
-The blitting list size was exceeded!",
-					   PLEASE_INFORM, IS_FATAL );
-	    }
-	    
-	    //--------------------
-	    // Note that we MUST NOT USE MEMCPY HERE BUT RATHER MUST USE MEM-MOVE!!
-	    // See the GNU C Manual for details!
-	    //
-	    memmove ( & ( blitting_list [ i + 1 ] ) , & ( blitting_list [ i ] ) , 
-		      sizeof ( blitting_list_element ) * ( number_of_objects_currently_in_blitting_list - i + 1 ) );
-	    
-	    //--------------------
-	    // Now we can insert the New_Element in the new free position that we have 
-	    // created.
-	    //
-	    blitting_list [ i ] . norm_of_elements_position =
-		new_element_norm ;
-	    blitting_list [ i ] . element_type = new_element_type ;
-	    blitting_list [ i ] . element_pointer = new_element_pointer ;
-	    blitting_list [ i ] . code_number = code_number ;
-	    number_of_objects_currently_in_blitting_list ++ ;	  
-	    return;
-	}
-    }
+	// Reached the end of the list?
+	list_add_tail(&newe->node, &blitting_list);
 }; // void insert_new_element_into_blitting_list ( ... )
 
 /**
@@ -1078,8 +1023,7 @@ level_is_visible ( int level_num )
  * with items or other stuff...
  *
  */
-void
-update_virtual_position ( gps* target_pos , gps* source_pos , int level_num )
+void update_virtual_position (gps *target_pos, gps *source_pos, int level_num)
 {
     int north_level, south_level, east_level, west_level;
 
@@ -1260,13 +1204,12 @@ insert_thrown_items_into_blitting_list ( void )
 void
 set_up_ordered_blitting_list ( int mask )
 {
-    //--------------------
-    // First we need to clear out the blitting list.  We do this using
-    // memset for optimal performance...
-    //
-    memset ( & ( blitting_list [ 0 ] ) , 0 , sizeof ( blitting_list_element ) * MAX_ELEMENTS_IN_BLITTING_LIST );
-    number_of_objects_currently_in_blitting_list = 0 ;
-    
+	struct blitting_list_element *e, *n;
+    list_for_each_entry_safe(e, n, &blitting_list, node) {
+		list_del(&e->node);
+		free(e);
+	}
+
     //--------------------
     // Now we can start to fill in the obstacles around the
     // tux...
@@ -1289,131 +1232,127 @@ set_up_ordered_blitting_list ( int mask )
  * Now that the blitting list has finally been assembled, we can start to
  * blit all the objects according to the blitting list set up.
  */
-void
-blit_preput_objects_according_to_blitting_list ( int mask )
+void blit_preput_objects_according_to_blitting_list (int mask)
 {
-    int i;
-    obstacle* our_obstacle = NULL;
+	obstacle* our_obstacle = NULL;
 
-    for ( i = 0 ; i < MAX_ELEMENTS_IN_BLITTING_LIST ; i ++ )
-    {
-	if ( blitting_list [ i ] . element_type == BLITTING_TYPE_NONE ) break;
-	if ( blitting_list [ i ] . element_type == BLITTING_TYPE_OBSTACLE )
-	{
+	struct blitting_list_element *e, *n;
+	list_for_each_entry_safe(e, n, &blitting_list, node) {
+		if (e->element_type == BLITTING_TYPE_NONE) 
+			break;
+		if (e->element_type == BLITTING_TYPE_OBSTACLE) {
 
-	    //--------------------
-	    // We do some sanity checking for illegal obstacle types.
-	    // Can't hurt to do that so as to be on the safe side.
-	    //
-	    if ( ( ( (obstacle*)  blitting_list [ i ] . element_pointer ) -> type <= (-1) ) ||
-		 ( (obstacle*)  blitting_list [ i ] . element_pointer ) -> type >= NUMBER_OF_OBSTACLE_TYPES )
-	    {
-		fprintf ( stderr , "\nerroneous obstacle type to blit: %d." , 
-			  ( (obstacle*)  blitting_list [ i ] . element_pointer ) -> type );
-		ErrorMessage ( __FUNCTION__  , 
-					   "The blitting list contained an illegal blitting object type.",
-					   PLEASE_INFORM, IS_FATAL );
-	    }
+			//--------------------
+			// We do some sanity checking for illegal obstacle types.
+			// Can't hurt to do that so as to be on the safe side.
+			//
+			if ( (((obstacle *) e->element_pointer)->type <= -1) ||
+					((obstacle *) e->element_pointer)->type >= NUMBER_OF_OBSTACLE_TYPES)
+				{
+				fprintf (stderr , "\nerroneous obstacle type to blit: %d." , 
+						((obstacle*) e->element_pointer)->type);
+				ErrorMessage (__FUNCTION__ , 
+						"The blitting list contained an illegal blitting object type.", PLEASE_INFORM, IS_FATAL);
+				}
 
-            our_obstacle = blitting_list [ i ] . element_pointer ;
-	    
-	    //--------------------
-	    // If the obstacle has a shadow, it seems like now would be a good time
-	    // to blit it.
-	    //
-	    if ( ! GameConfig . skip_shadow_blitting )
-	    {
-		if ( use_open_gl )
-		{
-		    if ( obstacle_map [ our_obstacle -> type ] . shadow_image . texture_has_been_created )
-		    {
-			if ( mask & ZOOM_OUT )
-			    draw_gl_textured_quad_at_map_position (   
-                            &obstacle_map [ our_obstacle -> type ] . shadow_image ,
-                            our_obstacle -> pos . x , our_obstacle -> pos . y ,   
-                            1.0 , 1.0, 1.0 , FALSE, TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS,ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT );
+			our_obstacle = e->element_pointer;
 
-			else draw_gl_textured_quad_at_map_position ( 
-			    &obstacle_map [ our_obstacle -> type ] . shadow_image , 
-			    our_obstacle -> pos . x , our_obstacle -> pos . y , 
-			    1.0 , 1.0, 1.0 , FALSE, TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS, 1.0 );
-			// DebugPrintf ( -4 , "\n%s(): shadow has been drawn." , __FUNCTION__ );
-		    }
+			//--------------------
+			// If the obstacle has a shadow, it seems like now would be a good time
+			// to blit it.
+			//
+			if (!GameConfig.skip_shadow_blitting)
+				{
+				if (use_open_gl)
+					{
+					if ( obstacle_map [ our_obstacle -> type ] . shadow_image . texture_has_been_created )
+						{
+						if ( mask & ZOOM_OUT )
+							draw_gl_textured_quad_at_map_position (   
+									&obstacle_map [ our_obstacle -> type ] . shadow_image ,
+									our_obstacle -> pos . x , our_obstacle -> pos . y ,   
+									1.0 , 1.0, 1.0 , FALSE, TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS,ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT );
+
+						else draw_gl_textured_quad_at_map_position ( 
+								&obstacle_map [ our_obstacle -> type ] . shadow_image , 
+								our_obstacle -> pos . x , our_obstacle -> pos . y , 
+								1.0 , 1.0, 1.0 , FALSE, TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS, 1.0 );
+						// DebugPrintf ( -4 , "\n%s(): shadow has been drawn." , __FUNCTION__ );
+						}
+					}
+				else
+					{
+					if ( obstacle_map [ our_obstacle -> type ] . shadow_image . surface != NULL )
+						{
+						if ( mask & ZOOM_OUT )      blit_zoomed_iso_image_to_map_position ( & (obstacle_map [ our_obstacle -> type ] . shadow_image) ,
+								our_obstacle -> pos . x , our_obstacle -> pos . y );
+						else blit_iso_image_to_map_position ( &obstacle_map [ our_obstacle -> type ] . shadow_image , 
+								our_obstacle -> pos . x , our_obstacle -> pos . y );
+						// DebugPrintf ( -4 , "\n%s(): shadow has been drawn." , __FUNCTION__ );
+						}
+					}
+				}
+
+			//--------------------
+			// If the obstacle in question does have a collision rectangle, then we
+			// draw that on the floor now.
+			//
+			blit_obstacle_collision_rectangle ( our_obstacle );
+
+			//--------------------
+			// If the obstacle isn't otherwise a preput obstacle, we're done here and can 
+			// move on to the next list element
+			//
+			if ( ! ( obstacle_map [ ((obstacle *)e->element_pointer ) -> type ] . flags & NEEDS_PRE_PUT ) ) continue ;
+
+			//--------------------
+			// So now we know that we must blit this one obstacle...
+			//
+			if ( ! ( mask & OMIT_OBSTACLES ) ) 
+				{
+				if ( mask & ZOOM_OUT )
+					blit_one_obstacle_zoomed ( (obstacle*)e->element_pointer );
+				else
+					{
+					// Do not blit "transp for water" obstacle when not in leveleditor mode (omit_blasts)
+					if ( ((obstacle*)e->element_pointer) -> type == ISO_TRANSP_FOR_WATER )
+						{
+						if ( mask & OMIT_BLASTS )
+							blit_one_obstacle ( (obstacle *)e->element_pointer );
+						}
+					else blit_one_obstacle ( (obstacle *)e->element_pointer );
+					}
+				}
 		}
-		else
-		{
-		    if ( obstacle_map [ our_obstacle -> type ] . shadow_image . surface != NULL )
-		    {
-			if ( mask & ZOOM_OUT )      blit_zoomed_iso_image_to_map_position ( & (obstacle_map [ our_obstacle -> type ] . shadow_image) ,
-                                                         our_obstacle -> pos . x , our_obstacle -> pos . y );
-			else blit_iso_image_to_map_position ( &obstacle_map [ our_obstacle -> type ] . shadow_image , 
-							 our_obstacle -> pos . x , our_obstacle -> pos . y );
-			// DebugPrintf ( -4 , "\n%s(): shadow has been drawn." , __FUNCTION__ );
-		    }
-		}
-	    }
-
-	    //--------------------
-	    // If the obstacle in question does have a collision rectangle, then we
-	    // draw that on the floor now.
-	    //
-	    blit_obstacle_collision_rectangle ( our_obstacle );
-
-	    //--------------------
-	    // If the obstacle isn't otherwise a preput obstacle, we're done here and can 
-	    // move on to the next list element
-	    //
-	    if ( ! ( obstacle_map [ ( (obstacle*)  blitting_list [ i ] . element_pointer ) -> type ] . flags & NEEDS_PRE_PUT ) ) continue ;
-	    
-	    //--------------------
-	    // So now we know that we must blit this one obstacle...
-	    //
-	    if ( ! ( mask & OMIT_OBSTACLES ) ) 
-	    {
-		if ( mask & ZOOM_OUT )
-		    blit_one_obstacle_zoomed ( (obstacle*)  blitting_list [ i ] . element_pointer );
-		else
-		    {
-		    // Do not blit "transp for water" obstacle when not in leveleditor mode (omit_blasts)
-		    if ( ((obstacle*)  blitting_list [ i ] . element_pointer) -> type == ISO_TRANSP_FOR_WATER )
-			{
-			if ( mask & OMIT_BLASTS )
-				blit_one_obstacle ( (obstacle*)  blitting_list [ i ] . element_pointer );
-			}
-		    else blit_one_obstacle ( (obstacle*)  blitting_list [ i ] . element_pointer );
-		    }
-	    }
+		//--------------------
+		// Enemies, which are dead already become like decoration on the floor.  
+		// They should never obscur the Tux, so we blit them beforehand and not
+		// again later from the list.
+		//
+		if ( (e->element_type == BLITTING_TYPE_ENEMY ) &&
+				// ( ( ( enemy* ) blitting_list [ i ] . element_pointer ) -> energy < 0 ) )
+			( ( (enemy *)e->element_pointer ) -> animation_type == DEATH_ANIMATION ) )
+				{
+				if ( ! ( mask & OMIT_ENEMIES ) ) 
+					{
+					PutEnemy ( (enemy *)(e->element_pointer), -1 , -1 , mask , FALSE ); 
+					}
+				}
 	}
-	//--------------------
-	// Enemies, which are dead already become like decoration on the floor.  
-	// They should never obscur the Tux, so we blit them beforehand and not
-	// again later from the list.
-	//
-	if ( ( blitting_list [ i ] . element_type == BLITTING_TYPE_ENEMY ) &&
-	     // ( ( ( enemy* ) blitting_list [ i ] . element_pointer ) -> energy < 0 ) )
-	     ( ( ( enemy* ) blitting_list [ i ] . element_pointer ) -> animation_type == DEATH_ANIMATION ) )
-	{
-	    if ( ! ( mask & OMIT_ENEMIES ) ) 
-	    {
-		PutEnemy ( (enemy *)(blitting_list [ i ] .  element_pointer), -1 , -1 , mask , FALSE ); 
-	    }
-	}
-    }
-    
+
 }; // void blit_preput_objects_according_to_blitting_list ( ... )
 
 /**
  * Now that the blitting list has finally been assembled, we can start to
  * blit all the objects according to the blitting list set up.
  */
-void
-blit_nonpreput_objects_according_to_blitting_list ( int mask )
+void blit_nonpreput_objects_according_to_blitting_list ( int mask )
 {
-    int i;
     enemy * enemy_under_cursor = NULL;
     int barrel_under_cursor = -1;
     int chest_under_cursor = -1;
     int item_under_cursor = -1; 
+	struct blitting_list_element *e, *n;
     
     //--------------------
     // We memorize which 'enemy' is currently under the mouse target, so that we
@@ -1427,100 +1366,100 @@ blit_nonpreput_objects_according_to_blitting_list ( int mask )
     //--------------------
     // Now it's time to blit all the elements from the list...
     //
-    for ( i = 0 ; i < MAX_ELEMENTS_IN_BLITTING_LIST ; i ++ )
-    {
-	if ( blitting_list [ i ] . element_type == BLITTING_TYPE_NONE ) break;
-	switch ( blitting_list [ i ] . element_type )
-	{
-	    case BLITTING_TYPE_OBSTACLE:
-		
-		//--------------------
-		// We do some sanity checking for illegal obstacle types.
-		// Can't hurt to do that so as to be on the safe side.
-		//
-		if ( ( ( (obstacle*)  blitting_list [ i ] . element_pointer ) -> type <= (-1) ) ||
-		     ( (obstacle*)  blitting_list [ i ] . element_pointer ) -> type >= NUMBER_OF_OBSTACLE_TYPES )
-		{
-		    fprintf ( stderr , "\nerroneous obstacle type to blit: %d." , 
-			      ( (obstacle*)  blitting_list [ i ] . element_pointer ) -> type );
-		    ErrorMessage ( __FUNCTION__  , 
-					       "The blitting list contained an illegal blitting object type.",
-					       PLEASE_INFORM, IS_FATAL );
-		}
+	list_for_each_entry_safe(e, n, &blitting_list, node) {
 
-		if ( obstacle_map [ ( (obstacle*)  blitting_list [ i ] . element_pointer ) -> type ] . flags & NEEDS_PRE_PUT ) break ;
-
-		if ( ! ( mask & OMIT_OBSTACLES ) ) 
-		{
-		    if ( mask & ZOOM_OUT )
-			blit_one_obstacle_zoomed ( (obstacle*)  blitting_list [ i ] . element_pointer );
-		    else
-		    {
-			if ( ( blitting_list [ i ] . code_number == barrel_under_cursor )  ||
-			     ( blitting_list [ i ] . code_number == chest_under_cursor ) )
-			    blit_one_obstacle_highlighted ( (obstacle*)  blitting_list [ i ] . element_pointer );
-			else
+		if (e->element_type == BLITTING_TYPE_NONE ) break;
+		switch (e->element_type )
 			{
-			// Do not blit "transp for water" obstacle when not in leveleditor mode (omit_blasts)
-                        if ( ((obstacle*)  blitting_list [ i ] . element_pointer) -> type == ISO_TRANSP_FOR_WATER )
-                        	{
-                        	if ( mask & OMIT_BLASTS )
-                         	       blit_one_obstacle ( (obstacle*)  blitting_list [ i ] . element_pointer );
-                        	}
-                    	else blit_one_obstacle ( (obstacle*)  blitting_list [ i ] . element_pointer );
-			}
+			case BLITTING_TYPE_OBSTACLE:
 
-		    }
-		}
-		break;
-	    case BLITTING_TYPE_TUX:
-		if ( ! ( mask & OMIT_TUX ) ) 
-		{
-		    if ( Me . energy > 0 )
-			blit_tux ( -1 , -1);
-		}
-		break;
-	    case BLITTING_TYPE_ENEMY:
-		if ( ! ( mask & OMIT_ENEMIES ) ) 
-		{
-		    if ( ( ( enemy* ) blitting_list [ i ] . element_pointer ) -> energy < 0 )
-			continue;
-		    if ( ( ( enemy* ) blitting_list [ i ] . element_pointer ) -> animation_type == DEATH_ANIMATION )
-			continue;
-		    
-		    //--------------------
-		    // A droid can either be rendered in normal mode or in highlighted
-		    // mode, depending in whether the mouse cursor is right over it or not.
-		    //
-		    if ( blitting_list [ i ] . element_pointer == enemy_under_cursor )
-			PutEnemy ( (enemy *)blitting_list [ i ] . element_pointer , -1 , -1 , mask , TRUE ); 
-		    else
-			PutEnemy ( (enemy*) blitting_list [ i ] . element_pointer , -1 , -1 , mask , FALSE ); 
-		}
-		break;
-	    case BLITTING_TYPE_BULLET:
-		// DebugPrintf ( -1000 , "Bullet code_number: %d. " , blitting_list [ i ] . code_number );
-		PutBullet ( blitting_list [ i ] . code_number , mask ); 
-		break;
-	    case BLITTING_TYPE_BLAST:
-		if ( ! ( mask & OMIT_BLASTS ) )
-		    PutBlast ( blitting_list [ i ] . code_number ); 
-		break;
-	    case BLITTING_TYPE_THROWN_ITEM:
-		if ( item_under_cursor == blitting_list [ i ] . code_number )
-		    PutItem ( blitting_list [ i ] . code_number , mask , PUT_ONLY_THROWN_ITEMS , TRUE ); 
-		else
-		    PutItem ( blitting_list [ i ] . code_number , mask , PUT_ONLY_THROWN_ITEMS , FALSE ); 
-		
-		// DebugPrintf ( -1 , "\nThrown item now blitted..." );
-		break;
-	    default:
-		ErrorMessage ( __FUNCTION__  , "\
-The blitting list contained an illegal blitting object type.",
-					   PLEASE_INFORM, IS_FATAL );
-		break;
+				//--------------------
+				// We do some sanity checking for illegal obstacle types.
+				// Can't hurt to do that so as to be on the safe side.
+				//
+				if ( ( ( (obstacle *) e->element_pointer ) -> type <= (-1) ) ||
+						( (obstacle *) e->element_pointer ) -> type >= NUMBER_OF_OBSTACLE_TYPES )
+					{
+					fprintf ( stderr , "\nerroneous obstacle type to blit: %d." , 
+							( (obstacle *) e->element_pointer ) -> type );
+					ErrorMessage ( __FUNCTION__  , 
+							"The blitting list contained an illegal blitting object type.",
+							PLEASE_INFORM, IS_FATAL );
+					}
+
+				if ( obstacle_map [ ( (obstacle *) e->element_pointer ) -> type ] . flags & NEEDS_PRE_PUT ) break ;
+
+				if ( ! ( mask & OMIT_OBSTACLES ) ) 
+					{
+					if ( mask & ZOOM_OUT )
+						blit_one_obstacle_zoomed ( (obstacle*) e->element_pointer );
+					else
+						{
+						if ( (e->code_number == barrel_under_cursor )  ||
+								(e->code_number == chest_under_cursor ) )
+							blit_one_obstacle_highlighted ( (obstacle *) e->element_pointer );
+						else
+							{
+							// Do not blit "transp for water" obstacle when not in leveleditor mode (omit_blasts)
+							if ( ((obstacle*) e->element_pointer) -> type == ISO_TRANSP_FOR_WATER )
+								{
+								if ( mask & OMIT_BLASTS )
+									blit_one_obstacle ( (obstacle*) e->element_pointer );
+								}
+							else blit_one_obstacle ( (obstacle*) e->element_pointer );
+							}
+
+						}
+					}
+				break;
+			case BLITTING_TYPE_TUX:
+				if ( ! ( mask & OMIT_TUX ) ) 
+					{
+					if ( Me . energy > 0 )
+						blit_tux ( -1 , -1);
+					}
+				break;
+			case BLITTING_TYPE_ENEMY:
+				if ( ! ( mask & OMIT_ENEMIES ) ) 
+					{
+					if ( ( (enemy *) e->element_pointer ) -> energy < 0 )
+						continue;
+					if ( ( (enemy *) e->element_pointer ) -> animation_type == DEATH_ANIMATION )
+						continue;
+
+					//--------------------
+					// A droid can either be rendered in normal mode or in highlighted
+					// mode, depending in whether the mouse cursor is right over it or not.
+					//
+					if (e->element_pointer == enemy_under_cursor )
+						PutEnemy ( (enemy *) e->element_pointer , -1 , -1 , mask , TRUE ); 
+					else
+						PutEnemy ( (enemy *) e->element_pointer , -1 , -1 , mask , FALSE ); 
+					}
+				break;
+			case BLITTING_TYPE_BULLET:
+				// DebugPrintf ( -1000 , "Bullet code_number: %d. " , blitting_list [ i ] . code_number );
+				PutBullet (e->code_number , mask ); 
+				break;
+			case BLITTING_TYPE_BLAST:
+				if ( ! ( mask & OMIT_BLASTS ) )
+					PutBlast (e->code_number ); 
+				break;
+			case BLITTING_TYPE_THROWN_ITEM:
+				if ( item_under_cursor == e->code_number )
+					PutItem (e->code_number , mask , PUT_ONLY_THROWN_ITEMS , TRUE ); 
+				else
+					PutItem (e->code_number , mask , PUT_ONLY_THROWN_ITEMS , FALSE ); 
+
+				// DebugPrintf ( -1 , "\nThrown item now blitted..." );
+				break;
+			default:
+				ErrorMessage ( __FUNCTION__  , "\
+						The blitting list contained an illegal blitting object type.",
+						PLEASE_INFORM, IS_FATAL );
+				break;
+			}
 	}
-    }
     
 }; // void blit_nonpreput_objects_according_to_blitting_list ( ... )
 
