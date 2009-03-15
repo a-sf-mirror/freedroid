@@ -29246,7 +29246,7 @@ obstacle_label.index=27 obstacle_label_name="MSOMillerEntranceCounterDoor" state
 obstacle_label.index=28 obstacle_label_name="MSOCollapsingBrickWall2HFTunnel"
 obstacle_label.index=29 obstacle_label_name="MSONoReturnDoor" states="closed:26 opened:6"
 obstacle_label.index=31 obstacle_label_name="Security system operator"
-obstacle_label.index=32 obstacle_label_name="MSAreaDoor"
+obstacle_label.index=32 obstacle_label_name="MSAreaDoor" states="closed:26 opened:6"
 /pobstaclelabelinfolvl
 pobsdescinfolvl
 obstacle_description.index=0 obstacle_description_text="Power consumption - 75 percent."
