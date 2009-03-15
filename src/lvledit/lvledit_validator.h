@@ -34,6 +34,7 @@
 #include "struct.h"
 #include "global.h"
 #include "proto.h"
+#include "lists.h"
 
 #undef EXTERN
 #ifdef _leveleditor_validator_c
@@ -42,19 +43,31 @@
 #define EXTERN extern
 #endif
 
-typedef struct level_validator_ctx_s {
-	SDL_Rect* report_rect;
+#ifdef _leveleditor_validator_c
+
+struct lvlval_ctx {
+	SDL_Rect *report_rect;
 	Level this_level;
-} level_validator_ctx;
+};
 
+struct lvlval_excpt_item
+{
+	int rule_id;
+	int caught;
+	void *opaque_data;
+	struct list_head node;
+};
 
-typedef int (*level_validator)(  level_validator_ctx* ValidatorCtx  );
-extern level_validator level_validators[];
+struct level_validator {
+	char             initial;
+	struct list_head  excpt_list;
+	int               (*execute)( struct level_validator *this, struct lvlval_ctx *validator_ctx );
+	void             *(*parse_excpt)( char *string );
+	int               (*cmp)( void *opaque_data1, void *opaque_data2 );
+};
 
-EXTERN int chest_reachable_validator( level_validator_ctx* ValidatorCtx );
-EXTERN int waypoint_validator(level_validator_ctx *ValidatorCtx);
-EXTERN int interface_validator(level_validator_ctx *ValidatorCtx);
-EXTERN int jumptarget_validator(level_validator_ctx *ValidatorCtx);
+#endif
+
 EXTERN void LevelValidation();
 
 #endif // _leveleditor_validator_h_
