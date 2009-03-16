@@ -1346,7 +1346,7 @@ This is perfectly normal if you have just upgraded your version of\n\
 freedroid.  But the loading of your settings will be cancelled now,\n\
 cause the format of the settings file is no longer supported.  \n\
 No need to panic.  The default settings will be used instead and a new\n\
-settings file will be generated.",
+settings file will be generated.\n",
 				   NO_NEED_TO_INFORM, IS_WARNING_ONLY );
 	ResetGameConfigToDefaultValues (  );
 	return (ERR);
