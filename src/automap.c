@@ -87,7 +87,7 @@ void toggle_automap( void )
     else
 	{
 	if ( GameConfig.Automap_Visible )
-	    append_new_game_message ( _("Compass ON (no automap yet: map maker not present.") );
+	    append_new_game_message ( _("Compass ON (no automap yet: map maker not present.)") );
 	else
 	    append_new_game_message ( _("Compass OFF.") );
 	}
