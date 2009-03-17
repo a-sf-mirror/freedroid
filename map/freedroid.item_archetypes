@@ -2,7 +2,7 @@
 Copyright (c) 2003, 2004 Johannes Prix
 Copyright (c) 2004-2007 Arthur Huillet
 Copyright (c) 2007 Karol Swietlicki
-Copyright (c) 2007 Stefan Huszics
+Copyright (c) 2007-2009 Stefan Huszics
 
 /****************************************************************************************
  * General file layout                                                                  *
@@ -11,9 +11,9 @@ Copyright (c) 2007 Stefan Huszics
  *       - Ranged                                                                       *
  *       - Grenades/bombs                                                               *
  *       - Droids & NPC                                                                 *
- *     Armor                                                                           *
- *     Potions                                                                          *
+ *     Armor                                                                            *
  *     Books                                                                            *
+ *     Pills & Potions                                                                  *
  *     Other                                                                            *
  ****************************************************************************************/
 
@@ -2751,13 +2751,13 @@ Item min class for drop=0
 Item max class for drop=4
 Item can be applied in combat="no"
 Item can be installed in slot with name="armour"
-Item uses rotation series with prefix="basic_armour"
+Item uses rotation series with prefix="armours/basic"
 Items of this type collect together in inventory="no"
 Item as defensive item: base_ac_bonus=3
 Item as defensive item: ac_bonus_modifier=4
 Base item duration=18
 plus duration modifier=1
-File or directory name for inventory image="basic_armour/inv_image.png"
+File or directory name for inventory image="armours/basic/inv_image.png"
 Item uses drop sound with filename="Item_Armour_Put_Sound_0.ogg"
 Base list price=40
 inventory_size_x=2
@@ -2771,13 +2771,13 @@ Item min class for drop=2
 Item max class for drop=6
 Item can be applied in combat="no"
 Item can be installed in slot with name="armour"
-Item uses rotation series with prefix="basic_armour2"
+Item uses rotation series with prefix="armours/basic2"
 Items of this type collect together in inventory="no"
 Item as defensive item: base_ac_bonus=8
 Item as defensive item: ac_bonus_modifier=4
 Base item duration=20
 plus duration modifier=10
-File or directory name for inventory image="basic_armour2/inv_image.png"
+File or directory name for inventory image="armours/basic2/inv_image.png"
 Item uses drop sound with filename="Item_Armour_Put_Sound_0.ogg"
 Base list price=75
 inventory_size_x=2
@@ -2791,13 +2791,13 @@ Item min class for drop=4
 Item max class for drop=7
 Item can be applied in combat="no"
 Item can be installed in slot with name="armour"
-Item uses rotation series with prefix="basic_armour3"
+Item uses rotation series with prefix="armours/basic3"
 Items of this type collect together in inventory="no"
 Item as defensive item: base_ac_bonus=13
 Item as defensive item: ac_bonus_modifier=4
 Base item duration=30
 plus duration modifier=10
-File or directory name for inventory image="basic_armour3/inv_image.png"
+File or directory name for inventory image="armours/basic3/inv_image.png"
 Item uses drop sound with filename="Item_Armour_Put_Sound_0.ogg"
 Base list price=200
 inventory_size_x=2
@@ -2811,13 +2811,13 @@ Item min class for drop=6
 Item max class for drop=9
 Item can be applied in combat="no"
 Item can be installed in slot with name="armour"
-Item uses rotation series with prefix="green_armour"
+Item uses rotation series with prefix="armours/green"
 Items of this type collect together in inventory="no"
 Item as defensive item: base_ac_bonus=18
 Item as defensive item: ac_bonus_modifier=6
 Base item duration=30
 plus duration modifier=10
-File or directory name for inventory image="inventory_image_26.png"
+File or directory name for inventory image="armours/green/inv_image_yellow.png"
 Item uses drop sound with filename="Item_Armour_Put_Sound_0.ogg"
 Base list price=300
 Item description text=_"Tough as nails and able to withstand most blows."
@@ -2829,14 +2829,14 @@ Item min class for drop=7
 Item max class for drop=9
 Item can be applied in combat="no"
 Item can be installed in slot with name="armour"
-Item uses rotation series with prefix="green_armour"
+Item uses rotation series with prefix="armours/green"
 Items of this type collect together in inventory="no"
 Strength minimum required to wear/wield this item=40
 Item as defensive item: base_ac_bonus=33
 Item as defensive item: ac_bonus_modifier=6
 Base item duration=30
 plus duration modifier=15
-File or directory name for inventory image="green_armour/inv_image.png"
+File or directory name for inventory image="armours/green/inv_image.png"
 Item uses drop sound with filename="Item_Armour_Put_Sound_0.ogg"
 Base list price=1001
 Item description text=_"Defense is acquired at a high level with this durable piece of armor."
@@ -3072,13 +3072,13 @@ Item min class for drop=0
 Item max class for drop=3
 Item can be applied in combat="no"
 Item can be installed in slot with name="drive"
-Item uses rotation series with prefix="boots_simple"
+Item uses rotation series with prefix="armours/boots"
 Items of this type collect together in inventory="no"
 Item as defensive item: base_ac_bonus=2
 Item as defensive item: ac_bonus_modifier=2
 Base item duration=10
 plus duration modifier=5
-File or directory name for inventory image="boots_simple/inv_image.png"
+File or directory name for inventory image="armours/boots/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_1.ogg"
 Base list price=27
 Item description text=_"These simple boots are designed for comfort of the wearer more than to give actual protection."
@@ -3090,13 +3090,13 @@ Item min class for drop=2
 Item max class for drop=5
 Item can be applied in combat="no"
 Item can be installed in slot with name="drive"
-Item uses rotation series with prefix="boots_simple"
+Item uses rotation series with prefix="armours/boots"
 Items of this type collect together in inventory="no"
 Item as defensive item: base_ac_bonus=4
 Item as defensive item: ac_bonus_modifier=3
 Base item duration=13
 plus duration modifier=5
-File or directory name for inventory image="boots_simple/inv_image.png"
+File or directory name for inventory image="armours/boots/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
 Base list price=65
 Item description text=_"These boots are a bit lighter than the normal version, giving of course worse protection but certainly extra comfort for the wearer."
@@ -3108,13 +3108,13 @@ Item min class for drop=4
 Item max class for drop=7
 Item can be applied in combat="no"
 Item can be installed in slot with name="drive"
-Item uses rotation series with prefix="boots_simple"
+Item uses rotation series with prefix="armours/boots"
 Items of this type collect together in inventory="no"
 Item as defensive item: base_ac_bonus=6
 Item as defensive item: ac_bonus_modifier=3
 Base item duration=23
 plus duration modifier=5
-File or directory name for inventory image="boots_simple/inv_image.png"
+File or directory name for inventory image="armours/boots/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
 Base list price=65
 Item description text=_"These boots are similar to the simple shoes, but the material they are made of is hardened for extra protection."
@@ -3126,13 +3126,13 @@ Item min class for drop=5
 Item max class for drop=8
 Item can be applied in combat="no"
 Item can be installed in slot with name="drive"
-Item uses rotation series with prefix="boots_simple"
+Item uses rotation series with prefix="armours/boots"
 Items of this type collect together in inventory="no"
 Item as defensive item: base_ac_bonus=12
 Item as defensive item: ac_bonus_modifier=5
 Base item duration=27
 plus duration modifier=5
-File or directory name for inventory image="boots_simple/inv_image.png"
+File or directory name for inventory image="armours/boots/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
 Base list price=175
 Item description text=_"These boots were originally normal boots, but have been fitted with some extra reinforcements to give better protection to the wearer.  Of course this makes them a bit less elegant and also less comfy to wear, but the extra protection might be worth it, at less than the price of hiking boots."
@@ -3144,13 +3144,13 @@ Item min class for drop=6
 Item max class for drop=9
 Item can be applied in combat="no"
 Item can be installed in slot with name="drive"
-Item uses rotation series with prefix="boots_simple"
+Item uses rotation series with prefix="armours/boots"
 Items of this type collect together in inventory="no"
 Item as defensive item: base_ac_bonus=17
 Item as defensive item: ac_bonus_modifier=5
 Base item duration=37
 plus duration modifier=5
-File or directory name for inventory image="boots_simple/inv_image.png"
+File or directory name for inventory image="armours/boots/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
 Base list price=275
 Item description text=_"These hiking boots are a very sophisticated product, combining optimal comfort for the wearer with a good protection from collisions with blunt objects like stones, which of course also makes for a higher price."
@@ -3474,12 +3474,65 @@ inventory_size_y=2
 
 
 /**********************************************************************************************************
- *       Potions                                                                                          *
+ *      Pills & Potions                                                                                   *
  **********************************************************************************************************/
 
 
 
+** Start of new item specification subsection **
+Item name=_"Strength Pill"
+Item min class for drop=2
+Item max class for drop=9
+Item can be applied in combat="yes"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="pill_strength"
+Items of this type collect together in inventory="yes"
+File or directory name for inventory image="pill_strength/inv_image.png"
+Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
+Base list price=250
+Item description text=_"These pills permanently raise strength within a person. They work on a nano-technological basis. Consult your physician, the receipt or pharmacy experts for details on intended effects, possible interactions and side effects of this drug."
+** End of new item specification subsection **
 
+** Start of new item specification subsection **
+Item name=_"Dexterity Pill"
+Item min class for drop=2
+Item max class for drop=9
+Item can be applied in combat="yes"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="pill_dexterity"
+Items of this type collect together in inventory="yes"
+File or directory name for inventory image="pill_dexterity/inv_image.png"
+Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
+Base list price=250
+Item description text=_"These pills permanently raise dexterity within a person. They work on a nano-technological basis. Consult your physician, the receipt or pharmacy experts for details on intended effects, possible interactions and side effects of this drug."
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
+Item name=_"Code Pill"
+Item min class for drop=2
+Item max class for drop=9
+Item can be applied in combat="yes"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="pill_magic"
+Items of this type collect together in inventory="yes"
+File or directory name for inventory image="pill_magic/inv_image.png"
+Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
+Base list price=250
+Item description text=_"Dude! This fab food will totally bump up your code skills, man! A real blast. Scarf these down to *see* the code."
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
+Item name=_"Brain Enlargement Pills Antidote"
+Item min class for drop=-1
+Item can be applied in combat="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="brain_enlargement_antidode"
+Items of this type collect together in inventory="yes"
+File or directory name for inventory image="brain_enlargement_antidode/inv_image.png"
+Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
+Base list price=0
+Item description text=_"These pills can reverse the harmful effects of the 'brain enlargement pills' that are publicly sold via the Internet. The planet-wide guild of medics has recommended not to respond to these ads at all, while attempts to entirely ban the distribution of those pills were never completely successful."
+** End of new item specification subsection **
 
 ** Start of new item specification subsection **
 Item name=_"Diet supplement"
@@ -3487,9 +3540,9 @@ Item min class for drop=0
 Item max class for drop=5
 Item can be applied in combat="yes"
 Item can be installed in slot with name="none"
-Item uses rotation series with prefix="health_capsule"
+Item uses rotation series with prefix="pills_potions/health_capsule"
 Items of this type collect together in inventory="yes"
-File or directory name for inventory image="health_capsule/inv_image_small.png"
+File or directory name for inventory image="pills_potions/health_capsule/inv_image_small.png"
 inventory_size_x=1
 inventory_size_y=1
 Item uses drop sound with filename="drop_potion_sound.ogg"
@@ -3503,9 +3556,9 @@ Item min class for drop=4
 Item max class for drop=7
 Item can be applied in combat="yes"
 Item can be installed in slot with name="none"
-Item uses rotation series with prefix="health_capsule"
+Item uses rotation series with prefix="pills_potions/health_capsule"
 Items of this type collect together in inventory="yes"
-File or directory name for inventory image="health_capsule/inv_image_medium.png"
+File or directory name for inventory image="pills_potions/health_capsule/inv_image_medium.png"
 inventory_size_x=1
 inventory_size_y=1
 Item uses drop sound with filename="drop_potion_sound.ogg"
@@ -3519,9 +3572,9 @@ Item min class for drop=6
 Item max class for drop=9
 Item can be applied in combat="yes"
 Item can be installed in slot with name="none"
-Item uses rotation series with prefix="health_capsule"
+Item uses rotation series with prefix="pills_potions/health_capsule"
 Items of this type collect together in inventory="yes"
-File or directory name for inventory image="health_capsule/inv_image_big.png"
+File or directory name for inventory image="pills_potions/health_capsule/inv_image_big.png"
 inventory_size_x=1
 inventory_size_y=1
 Item uses drop sound with filename="drop_potion_sound.ogg"
@@ -3535,9 +3588,9 @@ Item min class for drop=0
 Item max class for drop=5
 Item can be applied in combat="yes"
 Item can be installed in slot with name="none"
-Item uses rotation series with prefix="force_capsule"
+Item uses rotation series with prefix="pills_potions/force_capsule"
 Items of this type collect together in inventory="yes"
-File or directory name for inventory image="force_capsule/inv_image_small.png"
+File or directory name for inventory image="pills_potions/force_capsule/inv_image_small.png"
 inventory_size_x=1
 inventory_size_y=1
 Item uses drop sound with filename="drop_potion_sound.ogg"
@@ -3551,9 +3604,9 @@ Item min class for drop=4
 Item max class for drop=7
 Item can be applied in combat="yes"
 Item can be installed in slot with name="none"
-Item uses rotation series with prefix="force_capsule"
+Item uses rotation series with prefix="pills_potions/force_capsule"
 Items of this type collect together in inventory="yes"
-File or directory name for inventory image="force_capsule/inv_image_medium.png"
+File or directory name for inventory image="pills_potions/force_capsule/inv_image_medium.png"
 inventory_size_x=1
 inventory_size_y=1
 Item uses drop sound with filename="drop_potion_sound.ogg"
@@ -3567,9 +3620,9 @@ Item min class for drop=6
 Item max class for drop=9
 Item can be applied in combat="yes"
 Item can be installed in slot with name="none"
-Item uses rotation series with prefix="force_capsule"
+Item uses rotation series with prefix="pills_potions/force_capsule"
 Items of this type collect together in inventory="yes"
-File or directory name for inventory image="force_capsule/inv_image_big.png"
+File or directory name for inventory image="pills_potions/force_capsule/inv_image_big.png"
 inventory_size_x=1
 inventory_size_y=1
 Item uses drop sound with filename="drop_potion_sound.ogg"
@@ -3583,9 +3636,9 @@ Item min class for drop=2
 Item max class for drop=9
 Item can be applied in combat="yes"
 Item can be installed in slot with name="none"
-Item uses rotation series with prefix="blue_energy_drink"
+Item uses rotation series with prefix="pills_potions/blue_energy_drink"
 Items of this type collect together in inventory="yes"
-File or directory name for inventory image="blue_energy_drink/inv_image.png"
+File or directory name for inventory image="pills_potions/blue_energy_drink/inv_image.png"
 Item uses drop sound with filename="drop_potion_sound.ogg"
 Base list price=50
 Item description text=_"Warning! These energy drinks contain high doses of caffeine! The average person drops dead after consuming 12 grams of caffeine. One of these bottles contains over double that amount."
@@ -3597,9 +3650,9 @@ Item min class for drop=2
 Item max class for drop=9
 Item can be applied in combat="yes"
 Item can be installed in slot with name="none"
-Item uses rotation series with prefix="energy_capsule"
+Item uses rotation series with prefix="pills_potions/energy_capsule"
 Items of this type collect together in inventory="yes"
-File or directory name for inventory image="inventory_image_1.png"
+File or directory name for inventory image="pills_potions/energy_capsule/inv_image_E.png"
 Item uses drop sound with filename="drop_potion_sound.ogg"
 Base list price=45
 Item description text=_"These small containers hold purified running strength.  Each capsule can be used only once, but many of them can be grouped together like one item in your inventory."
@@ -3611,9 +3664,9 @@ Item min class for drop=2
 Item max class for drop=9
 Item can be applied in combat="yes"
 Item can be installed in slot with name="none"
-Item uses rotation series with prefix="energy_capsule"
+Item uses rotation series with prefix="pills_potions/energy_capsule"
 Items of this type collect together in inventory="yes"
-File or directory name for inventory image="inventory_image_1.png"
+File or directory name for inventory image="pills_potions/energy_capsule/inv_image_E.png"
 Item uses drop sound with filename="drop_potion_sound.ogg"
 Base list price=150
 Item description text=_"These small containers hold purified strength.  This item will give a temporary boost to strength.  Each capsule can be used only once, but many of them can be grouped together like one item in your inventory."
@@ -3625,9 +3678,9 @@ Item min class for drop=2
 Item max class for drop=9
 Item can be applied in combat="yes"
 Item can be installed in slot with name="none"
-Item uses rotation series with prefix="energy_capsule"
+Item uses rotation series with prefix="pills_potions/energy_capsule"
 Items of this type collect together in inventory="yes"
-File or directory name for inventory image="inventory_image_1.png"
+File or directory name for inventory image="pills_potions/energy_capsule/inv_image_E.png"
 Item uses drop sound with filename="drop_potion_sound.ogg"
 Base list price=150
 Item description text=_"These small containers hold purified dexterity.  This item will give a temporary bonus to dexterity.  Each capsule can be used only once, but many of them can be grouped together like one item in your inventory."
@@ -3785,61 +3838,6 @@ inventory_size_y=2
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=18
 Item description text=_"This small device automatically collects data about the area within a range of 7 times 7 meters and draws a small-scale plan of the immediate surroundings. Because of its very tiny display, it needs to be held closely to the eye, and the image will then be projected directly into the eyeball of the user. Still, the collected map data will be split up by the device into several sectors for convenient viewing."
-** End of new item specification subsection **
-
-** Start of new item specification subsection **
-Item name=_"Strength Pill"
-Item min class for drop=2
-Item max class for drop=9
-Item can be applied in combat="yes"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="pill_strength"
-Items of this type collect together in inventory="yes"
-File or directory name for inventory image="pill_strength/inv_image.png"
-Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
-Base list price=250
-Item description text=_"These pills permanently raise strength within a person. They work on a nano-technological basis. Consult your physician, the receipt or pharmacy experts for details on intended effects, possible interactions and side effects of this drug."
-** End of new item specification subsection **
-
-** Start of new item specification subsection **
-Item name=_"Dexterity Pill"
-Item min class for drop=2
-Item max class for drop=9
-Item can be applied in combat="yes"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="pill_dexterity"
-Items of this type collect together in inventory="yes"
-File or directory name for inventory image="pill_dexterity/inv_image.png"
-Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
-Base list price=250
-Item description text=_"These pills permanently raise dexterity within a person. They work on a nano-technological basis. Consult your physician, the receipt or pharmacy experts for details on intended effects, possible interactions and side effects of this drug."
-** End of new item specification subsection **
-
-** Start of new item specification subsection **
-Item name=_"Code Pill"
-Item min class for drop=2
-Item max class for drop=9
-Item can be applied in combat="yes"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="pill_magic"
-Items of this type collect together in inventory="yes"
-File or directory name for inventory image="pill_magic/inv_image.png"
-Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
-Base list price=250
-Item description text=_"Dude! This fab food will totally bump up your code skills, man! A real blast. Scarf these down to *see* the code."
-** End of new item specification subsection **
-
-** Start of new item specification subsection **
-Item name=_"Brain Enlargement Pills Antidote"
-Item min class for drop=-1
-Item can be applied in combat="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="brain_enlargement_antidode"
-Items of this type collect together in inventory="yes"
-File or directory name for inventory image="brain_enlargement_antidode/inv_image.png"
-Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
-Base list price=0
-Item description text=_"These pills can reverse the harmful effects of the 'brain enlargement pills' that are publicly sold via the Internet. The planet-wide guild of medics has recommended not to respond to these ads at all, while attempts to entirely ban the distribution of those pills were never completely successful."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
