@@ -325,15 +325,15 @@ ShowCombatScreenTexts ( int mask )
 static void get_floor_boundaries(int mask, int* LineStart, int* LineEnd, int* ColStart, int* ColEnd)
 {
 	if (mask & ZOOM_OUT) {
-		*LineStart = Me . pos . y - FLOOR_TILES_VISIBLE_AROUND_TUX * LEVEL_EDITOR_ZOOM_OUT_FACT ;
-		*LineEnd = Me . pos . y + FLOOR_TILES_VISIBLE_AROUND_TUX * LEVEL_EDITOR_ZOOM_OUT_FACT ;
-		*ColStart = Me . pos . x - FLOOR_TILES_VISIBLE_AROUND_TUX * LEVEL_EDITOR_ZOOM_OUT_FACT ;
-		*ColEnd = Me . pos . x + FLOOR_TILES_VISIBLE_AROUND_TUX * LEVEL_EDITOR_ZOOM_OUT_FACT ;
+		*LineStart = floor(Me.pos.y - (float)(FLOOR_TILES_VISIBLE_AROUND_TUX * LEVEL_EDITOR_ZOOM_OUT_FACT)) ;
+		*LineEnd =   floor(Me.pos.y + (float)(FLOOR_TILES_VISIBLE_AROUND_TUX * LEVEL_EDITOR_ZOOM_OUT_FACT)) ;
+		*ColStart =  floor(Me.pos.x - (float)(FLOOR_TILES_VISIBLE_AROUND_TUX * LEVEL_EDITOR_ZOOM_OUT_FACT)) ;
+		*ColEnd =    floor(Me.pos.x + (float)(FLOOR_TILES_VISIBLE_AROUND_TUX * LEVEL_EDITOR_ZOOM_OUT_FACT)) ;
 	} else {
-		*LineStart = translate_pixel_to_map_location(UserCenter_x, -UserCenter_y, FALSE) ;
-		*LineEnd = translate_pixel_to_map_location(-UserCenter_x - iso_floor_tile_width + 1, UserCenter_y + iso_floor_tile_height - 1, FALSE) ;
-		*ColStart = translate_pixel_to_map_location(-UserCenter_x, -UserCenter_y, TRUE) ;
-		*ColEnd = translate_pixel_to_map_location(UserCenter_x + iso_floor_tile_width - 1, UserCenter_y + iso_floor_tile_height - 1, TRUE) ;
+		*LineStart = floor(translate_pixel_to_map_location(UserCenter_x, -UserCenter_y, FALSE)) ;
+		*LineEnd =   floor(translate_pixel_to_map_location(-UserCenter_x - iso_floor_tile_width + 1,  UserCenter_y + iso_floor_tile_height - 1, FALSE)) ;
+		*ColStart =  floor(translate_pixel_to_map_location(-UserCenter_x, -UserCenter_y, TRUE)) ;
+		*ColEnd =    floor(translate_pixel_to_map_location(UserCenter_x + iso_floor_tile_width - 1,  UserCenter_y + iso_floor_tile_height - 1, TRUE)) ;
 	}
 }
 
