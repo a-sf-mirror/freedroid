@@ -272,15 +272,19 @@ static void DecodeInterfaceDataForThisLevel ( Level loadlevel , char* DataPointe
     ReadValueFromString( DataPointer , "jump threshold north: " , "%d" , 
 			 &(loadlevel->jump_threshold_north) , TempSectionPointer );
     DebugPrintf( DEBUG_LEVEL_INTERFACES , "\nSuccessfully read jump theshold north : %d ", loadlevel->jump_threshold_north );
+    if (loadlevel->jump_threshold_north < 0 ) loadlevel->jump_threshold_north = 0;
     ReadValueFromString( DataPointer , "jump threshold south: " , "%d" , 
 			 &(loadlevel->jump_threshold_south) , TempSectionPointer );
     DebugPrintf( DEBUG_LEVEL_INTERFACES , "\nSuccessfully read jump theshold south : %d ", loadlevel->jump_threshold_south );
+    if (loadlevel->jump_threshold_south < 0 ) loadlevel->jump_threshold_south = 0;
     ReadValueFromString( DataPointer , "jump threshold east: " , "%d" , 
 			 &(loadlevel->jump_threshold_east) , TempSectionPointer );
     DebugPrintf( DEBUG_LEVEL_INTERFACES , "\nSuccessfully read jump theshold east : %d ", loadlevel->jump_threshold_east );
+    if (loadlevel->jump_threshold_east < 0 ) loadlevel->jump_threshold_east = 0;
     ReadValueFromString( DataPointer , "jump threshold west: " , "%d" , 
 			 &(loadlevel->jump_threshold_west) , TempSectionPointer );
     DebugPrintf( DEBUG_LEVEL_INTERFACES , "\nSuccessfully read jump theshold west : %d ", loadlevel->jump_threshold_west );
+    if (loadlevel->jump_threshold_west < 0 ) loadlevel->jump_threshold_west = 0;
     
     ReadValueFromString( DataPointer , "jump target north: " , "%d" , 
 			 &(loadlevel->jump_target_north) , TempSectionPointer );

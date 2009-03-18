@@ -856,10 +856,10 @@ void CreateNewMapLevel( int level_num )
     NewLevel->jump_target_south = (-1) ;
     NewLevel->jump_target_east = (-1) ;
     NewLevel->jump_target_west = (-1) ;
-    NewLevel->jump_threshold_north = (-1) ;
-    NewLevel->jump_threshold_south = (-1) ;
-    NewLevel->jump_threshold_east = (-1) ;
-    NewLevel->jump_threshold_west = (-1) ;
+    NewLevel->jump_threshold_north = (0) ;
+    NewLevel->jump_threshold_south = (0) ;
+    NewLevel->jump_threshold_east = (0) ;
+    NewLevel->jump_threshold_west = (0) ;
     //--------------------
     // Now we initialize the map obstacles with 'empty' information
     //

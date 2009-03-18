@@ -390,7 +390,7 @@ static void SetLevelInterfaces ( void )
 		case JUMP_THRESHOLD_NORTH:
 		    if ( LeftPressed() )
 		    {
-			if ( EditLevel->jump_threshold_north >= 0 ) EditLevel->jump_threshold_north -- ;
+			if ( EditLevel->jump_threshold_north > 0 ) EditLevel->jump_threshold_north -- ;
 			while (LeftPressed());
 		    }
 		    if ( RightPressed() )
@@ -403,7 +403,7 @@ static void SetLevelInterfaces ( void )
 		case JUMP_THRESHOLD_SOUTH:
 		    if ( LeftPressed() )
 		    {
-			if ( EditLevel->jump_threshold_south >= 0 ) EditLevel->jump_threshold_south -- ;
+			if ( EditLevel->jump_threshold_south > 0 ) EditLevel->jump_threshold_south -- ;
 			while (LeftPressed());
 		    }
 		    if ( RightPressed() )
@@ -416,7 +416,7 @@ static void SetLevelInterfaces ( void )
 		case JUMP_THRESHOLD_EAST:
 		    if ( LeftPressed() )
 		    {
-			if ( EditLevel->jump_threshold_east >= 0 ) EditLevel->jump_threshold_east -- ;
+			if ( EditLevel->jump_threshold_east > 0 ) EditLevel->jump_threshold_east -- ;
 			while (LeftPressed());
 		    }
 		    if ( RightPressed() )
@@ -429,7 +429,7 @@ static void SetLevelInterfaces ( void )
 		case JUMP_THRESHOLD_WEST:
 		    if ( LeftPressed() )
 		    {
-			if ( EditLevel->jump_threshold_west >= 0 ) EditLevel->jump_threshold_west -- ;
+			if ( EditLevel->jump_threshold_west > 0 ) EditLevel->jump_threshold_west -- ;
 			while (LeftPressed());
 		    }
 		    if ( RightPressed() )
