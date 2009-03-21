@@ -1516,7 +1516,6 @@ InitHarmlessTuxStatusVariables( )
 {
     int i;
     
-    Me . type = DRUID001;
     Me . current_game_date = 0.0 ;
     Me . current_power_bonus = 0 ;
     Me . power_bonus_end_date = (-1); // negative dates are always in the past...

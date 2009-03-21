@@ -511,20 +511,6 @@ void CheckIfMissionIsComplete (void)
 	
 	
 	//--------------------
-	// Continue if the Mission target MustBeType is given but not fullfilled
-	//
-	if ( Me.AllMissions[ mis_num ].MustBeType != (-1) )
-	{
-	    DebugPrintf ( MIS_COMPLETE_DEBUG , "\nPlayer.type is now: %d.", Me.type );
-	    if ( Me.type != Me.AllMissions[ mis_num ].MustBeType ) 
-	    {
-		DebugPrintf ( MIS_COMPLETE_DEBUG , "\nPlayer.type does not match...");
-		continue;
-	    }
-	}
-	
-	
-	//--------------------
 	// Continue if the Mission target MustReachLevel is given but not fullfilled
 	//
 	if ( Me.AllMissions[ mis_num ].MustReachLevel != (-1) )
@@ -696,7 +682,6 @@ GetQuestList ( char* QuestListFilename )
 #define MISSION_TARGET_MUST_REACH_POINT_X_STRING "Mission target is to reach X-Pos : "
 #define MISSION_TARGET_MUST_REACH_POINT_Y_STRING "Mission target is to reach Y-Pos : "
 #define MISSION_TARGET_MUST_LIVE_TIME_STRING "Mission target is to live for how many seconds : "
-#define MISSION_TARGET_MUST_BE_TYPE_STRING "Mission target is to become type : "
 #define MISSION_TARGET_MUST_BE_ONE_STRING "Mission target is to overtake a droid with marker : "
 
 #define MISSION_ASSIGNMENT_LUACODE_STRING "Assignment LuaCode={"
@@ -756,9 +741,6 @@ GetQuestList ( char* QuestListFilename )
 	
 	ReadValueFromString( MissionTargetPointer , MISSION_TARGET_MUST_CLEAR_SECOND_LEVEL , "%d" , 
 			     &Me.AllMissions[ MissionTargetIndex ]. must_clear_second_level , EndOfMissionTargetPointer );
-	
-	ReadValueFromString( MissionTargetPointer , MISSION_TARGET_MUST_BE_TYPE_STRING , "%d" , 
-			     &Me.AllMissions[ MissionTargetIndex ].MustBeType , EndOfMissionTargetPointer );
 	
 	ReadValueFromString( MissionTargetPointer , MISSION_TARGET_MUST_BE_ONE_STRING , "%d" , 
 			     &Me.AllMissions[ MissionTargetIndex ].MustBeOne , EndOfMissionTargetPointer );

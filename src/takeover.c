@@ -443,7 +443,6 @@ Takeover ( enemy * target )
 	    // SwitchBackgroundMusicTo (SILENCE);
 	    Takeover_Game_Won_Sound ();
 
-	    Me . type = target->type;
 	    Me . marker = target->marker;
 
 	    reward = Druidmap [ target->type ] . experience_reward * 1 ;

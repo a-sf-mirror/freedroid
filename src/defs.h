@@ -883,7 +883,6 @@ enum _explosions
 };
 
 #define BLINKENERGY 25
-#define DRUID001 0
 
 //--------------------
 // possible states of the influencer as displayed in the top status banner

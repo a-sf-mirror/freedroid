@@ -40,7 +40,6 @@ Mission target is to fetch item : "Brain Enlargement Pills Antidote"
 Mission target is to kill droids with marker : -1
 Mission target is to kill all hostile droids this first level : -1
 Mission target is to also kill all hostile droids on second level : -1
-Mission target is to become type : -1
 Mission target is to overtake a droid with marker : -1
 Mission target is to reach level : 1
 Mission target is to reach X-Pos : 0
@@ -61,7 +60,6 @@ Mission target is to fetch item : "Dixon's Toolbox"
 Mission target is to kill droids with marker : -1
 Mission target is to kill all hostile droids this first level : -1
 Mission target is to also kill all hostile droids on second level : -1
-Mission target is to become type : -1
 Mission target is to overtake a droid with marker : -1
 Mission target is to reach level : 1
 Mission target is to reach X-Pos : 0
@@ -87,7 +85,6 @@ Mission target is to fetch item : "Red Dilithium Crystal"
 Mission target is to kill droids with marker : -1
 Mission target is to kill all hostile droids this first level : -1
 Mission target is to also kill all hostile droids on second level : -1
-Mission target is to become type : -1
 Mission target is to overtake a droid with marker : -1
 Mission target is to reach level : 1
 Mission target is to reach X-Pos : 0
@@ -105,7 +102,6 @@ Mission Name=_"Novice Arena"
 Mission target is to kill droids with marker : 1029
 Mission target is to kill all hostile droids this first level : -1
 Mission target is to also kill all hostile droids on second level : -1
-Mission target is to become type : -1
 Mission target is to overtake a droid with marker : -1
 Mission target is to reach level : -1
 Mission target is to reach X-Pos : -1
@@ -127,7 +123,6 @@ Mission Name=_"Time to say goodnight"
 Mission target is to kill droids with marker : 1030
 Mission target is to kill all hostile droids this first level : -1
 Mission target is to also kill all hostile droids on second level : -1
-Mission target is to become type : -1
 Mission target is to overtake a droid with marker : -1
 Mission target is to reach level : -1
 Mission target is to reach X-Pos : -1
@@ -149,7 +144,6 @@ Mission Name=_"Opening a can of bots..."
 Mission target is to kill droids with marker : -1
 Mission target is to kill all hostile droids this first level : 1
 Mission target is to also kill all hostile droids on second level : -1
-Mission target is to become type : -1
 Mission target is to overtake a droid with marker : -1
 Mission target is to reach level : -1
 Mission target is to reach X-Pos : -1
@@ -167,7 +161,6 @@ Mission Name=_"And there was light..."
 Mission target is to kill droids with marker : -1
 Mission target is to kill all hostile droids this first level : 18
 Mission target is to also kill all hostile droids on second level : -1
-Mission target is to become type : -1
 Mission target is to overtake a droid with marker : -1
 Mission target is to reach level : -1
 Mission target is to reach X-Pos : -1
@@ -192,7 +185,6 @@ Mission Name=_"A kingdom for a cluster!"
 Mission target is to kill droids with marker : -1
 Mission target is to kill all hostile droids this first level : -1
 Mission target is to also kill all hostile droids on second level : -1
-Mission target is to become type : -1
 Mission target is to overtake a droid with marker : -1
 Mission target is to reach level : 50
 Mission target is to reach X-Pos : 50
@@ -212,7 +204,6 @@ Mission Name=_"Opening access to MS Office"
 Mission target is to kill droids with marker : 1007
 Mission target is to kill all hostile droids this first level : -1
 Mission target is to also kill all hostile droids on second level : -1
-Mission target is to become type : -1
 Mission target is to overtake a droid with marker : -1
 Mission target is to reach level : 7
 Mission target is to reach X-Pos : -1
@@ -235,7 +226,6 @@ Mission Name=_"Propagating a faulty firmware"
 Mission target is to kill droids with marker : -1
 Mission target is to kill all hostile droids this first level : 31
 Mission target is to also kill all hostile droids on second level : 24
-Mission target is to become type : -1
 Mission target is to overtake a droid with marker : -1
 Mission target is to reach level : -1
 Mission target is to reach X-Pos : -1
@@ -254,7 +244,6 @@ Mission target is to fetch item : "Red Dilithium Crystal"
 Mission target is to kill droids with marker : -1
 Mission target is to kill all hostile droids this first level : -1
 Mission target is to also kill all hostile droids on second level : -1
-Mission target is to become type : -1
 Mission target is to overtake a droid with marker : -1
 Mission target is to reach level : 1
 Mission target is to reach X-Pos : 0
@@ -272,7 +261,6 @@ Mission Name=_"Tania's sanitary"
 Mission target is to kill droids with marker : -1
 Mission target is to kill all hostile droids this first level : -1
 Mission target is to also kill all hostile droids on second level : -1
-Mission target is to become type : -1
 Mission target is to overtake a droid with marker : 3035
 Mission target is to reach level : 1
 Mission target is to reach X-Pos : 0
@@ -291,7 +279,6 @@ Mission Name=_"Saving the shop"
 Mission target is to kill droids with marker : -1
 Mission target is to kill all hostile droids this first level : -1
 Mission target is to also kill all hostile droids on second level : -1
-Mission target is to become type : -1
 Mission target is to overtake a droid with marker : -1
 Mission target is to reach level : 1
 Mission target is to reach X-Pos : 0
@@ -311,7 +298,6 @@ Mission Name=_"The stranger east of town"
 Mission target is to kill droids with marker : -1
 Mission target is to kill all hostile droids this first level : -1
 Mission target is to also kill all hostile droids on second level : -1
-Mission target is to become type : -1
 Mission target is to overtake a droid with marker : -1
 Mission target is to reach level : 1
 Mission target is to reach X-Pos : 0
@@ -329,7 +315,6 @@ Mission Name=_"Doing Duncan a favour"
 Mission target is to kill droids with marker : -1
 Mission target is to kill all hostile droids this first level : -1
 Mission target is to also kill all hostile droids on second level : -1
-Mission target is to become type : -1
 Mission target is to overtake a droid with marker : -1
 Mission target is to reach level : 1
 Mission target is to reach X-Pos : 0
@@ -348,7 +333,6 @@ Mission Name=_"Tutorial Shooting"
 Mission target is to kill droids with marker : 3037
 Mission target is to kill all hostile droids this first level : -1
 Mission target is to also kill all hostile droids on second level : -1
-Mission target is to become type : -1
 Mission target is to overtake a droid with marker : -1
 Mission target is to reach level : -1
 Mission target is to reach X-Pos : -1
@@ -370,7 +354,6 @@ Mission Name=_"Tutorial Hacking"
 Mission target is to kill droids with marker : 4037
 Mission target is to kill all hostile droids this first level : -1
 Mission target is to also kill all hostile droids on second level : -1
-Mission target is to become type : -1
 Mission target is to overtake a droid with marker : -1
 Mission target is to reach level : -1
 Mission target is to reach X-Pos : -1

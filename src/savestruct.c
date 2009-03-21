@@ -259,7 +259,6 @@ save_int32_t("must_clear_second_level", &(target->must_clear_second_level));
 save_int32_t("MustReachLevel", &(target->MustReachLevel));
 save_point("MustReachPoint", &(target->MustReachPoint));
 save_double("MustLiveTime", &(target->MustLiveTime));
-save_int32_t("MustBeType", &(target->MustBeType));
 save_int32_t("MustBeOne", &(target->MustBeOne));
 save_luacode("completion_lua_code", &(target->completion_lua_code));
 save_luacode("assignment_lua_code", &(target->assignment_lua_code));
@@ -294,7 +293,6 @@ read_int32_t(pos, "must_clear_second_level",  &(target->must_clear_second_level)
 read_int32_t(pos, "MustReachLevel",  &(target->MustReachLevel));
 read_point(pos, "MustReachPoint",  &(target->MustReachPoint));
 read_double(pos, "MustLiveTime",  &(target->MustLiveTime));
-read_int32_t(pos, "MustBeType",  &(target->MustBeType));
 read_int32_t(pos, "MustBeOne",  &(target->MustBeOne));
 read_luacode(pos, "completion_lua_code",  &(target->completion_lua_code));
 read_luacode(pos, "assignment_lua_code",  &(target->assignment_lua_code));
@@ -308,7 +306,6 @@ return 0;
 int save_tux_t(char * tag, tux_t * target)
 {
 fprintf(SaveGameFile, "<%s>\n",tag);
-save_char("type", &(target->type));
 save_float("current_game_date", &(target->current_game_date));
 save_int32_t("current_power_bonus", &(target->current_power_bonus));
 save_float("power_bonus_end_date", &(target->power_bonus_end_date));
@@ -423,8 +420,7 @@ int read_tux_t(char* buffer, char * tag, tux_t * target)
 		char * epos = strstr(buffer, search);
 		if ( ! epos ) return 2;
 		*epos = 0;
-		read_char(pos, "type",  &(target->type));
-read_float(pos, "current_game_date",  &(target->current_game_date));
+		read_float(pos, "current_game_date",  &(target->current_game_date));
 read_int32_t(pos, "current_power_bonus",  &(target->current_power_bonus));
 read_float(pos, "power_bonus_end_date",  &(target->power_bonus_end_date));
 read_int32_t(pos, "current_dexterity_bonus",  &(target->current_dexterity_bonus));
