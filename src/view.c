@@ -582,11 +582,15 @@ blit_obstacle_collision_rectangle ( obstacle* our_obstacle )
  *
  * @param our_obstacle Point to the obstacle to blit.
  */
-void blit_one_obstacle(obstacle *our_obstacle)
+void blit_one_obstacle(obstacle *our_obstacle, int highlight, int zoom)
 {
+#define HIGHLIGHT 1
+#define NOHIGHLIGHT 0
+
 	iso_image tmp;
 	gps obs_screen_position;
-		
+	float zf = zoom ? ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT : 1.0;
+
 	if ((our_obstacle->type <= -1) || (our_obstacle->type >= NUMBER_OF_OBSTACLE_TYPES)) {
 		ErrorMessage(__FUNCTION__, "The obstacle type %d that was given exceeds the number of\n\
 				obstacle types allowed and loaded in Freedroid.", PLEASE_INFORM, IS_FATAL, our_obstacle->type);
@@ -598,19 +602,22 @@ void blit_one_obstacle(obstacle *our_obstacle)
 			(our_obstacle->type <= ISO_BLOOD_8))
 		return;
 
+	if (zoom && !use_open_gl) {
+		make_sure_zoomed_surface_is_there(get_obstacle_image(our_obstacle->type));
+	}
+
 	update_virtual_position(&obs_screen_position, &our_obstacle->pos, CURLEVEL()->levelnum);
 
 	// We blit the obstacle in question, but if we're in the level editor and this
 	// obstacle has been marked, we apply a color filter to it.  Otherwise we blit
 	// it just so.
 	if (element_in_selection(our_obstacle)) {
-
 		if (use_open_gl) {
 			draw_gl_textured_quad_at_map_position(get_obstacle_image(our_obstacle->type), 
 					obs_screen_position.x, obs_screen_position.y, 
 					((SDL_GetTicks() >> 7) % 3) / 2.0, 
 					(((SDL_GetTicks() >> 7) + 1 ) % 3) / 2.0, 
-					(((SDL_GetTicks() >> 7) + 2 ) % 3) / 2.0, TRUE, FALSE, 1.0);
+					(((SDL_GetTicks() >> 7) + 2 ) % 3) / 2.0, highlight, FALSE, zf);
 		} else {
 			DebugPrintf(1, "\nColor filter for level editor invoked (via SDL!) for marked obstacle!" );
 			tmp.surface = our_SDL_display_format_wrapperAlpha (get_obstacle_image(our_obstacle->type)->surface );
@@ -619,7 +626,16 @@ void blit_one_obstacle(obstacle *our_obstacle)
 			tmp.surface->format->Gmask = 0x0FFFFFFFF;
 			tmp.offset_x = get_obstacle_image(our_obstacle->type)->offset_x;
 			tmp.offset_y = get_obstacle_image(our_obstacle->type)->offset_y;
-			blit_iso_image_to_map_position(&tmp, obs_screen_position.x, obs_screen_position.y);
+			if (zoom)  {
+				tmp . zoomed_out_surface = NULL ;
+				blit_zoomed_iso_image_to_map_position ( & ( tmp ) , 
+						our_obstacle -> pos . x , our_obstacle -> pos . y );
+				SDL_FreeSurface ( tmp . zoomed_out_surface );
+			}
+
+			else {
+				blit_iso_image_to_map_position(&tmp, obs_screen_position.x, obs_screen_position.y);
+			}
 			SDL_FreeSurface(tmp.surface);
 		}
 	} else {
@@ -630,142 +646,33 @@ void blit_one_obstacle(obstacle *our_obstacle)
 			if (obstacle_map[our_obstacle->type].transparent == TRANSPARENCY_FOR_WALLS) {
 				if ((obs_screen_position.x > Me.pos.x - 1.0) &&
 						(obs_screen_position.y > Me.pos.y - 1.0) &&
-						(obs_screen_position.x < 
-						 Me.pos.x + 1.5) &&
-						(obs_screen_position.y < 
-						 Me.pos.y + 1.5)) {
+						(obs_screen_position.x < Me.pos.x + 1.5) &&
+						(obs_screen_position.y < Me.pos.y + 1.5)) {
 					draw_gl_textured_quad_at_map_position( 
-							get_obstacle_image(our_obstacle->type), obs_screen_position.x, obs_screen_position.y, 1,1,1, FALSE, 
-							obstacle_map[our_obstacle->type].transparent, 1.0);
+							get_obstacle_image(our_obstacle->type), obs_screen_position.x, obs_screen_position.y, 1,1,1, highlight, 
+							obstacle_map[our_obstacle->type].transparent, zf);
 
 				} else {
 					draw_gl_textured_quad_at_map_position ( 
-							get_obstacle_image(our_obstacle->type), obs_screen_position.x, obs_screen_position.y, 1,1,1, FALSE, 
-							0, 1.0);
+							get_obstacle_image(our_obstacle->type), obs_screen_position.x, obs_screen_position.y, 1,1,1, highlight, 
+							0, zf);
 
 				}
 			} else {
 				draw_gl_textured_quad_at_map_position( 
-						get_obstacle_image(our_obstacle->type), obs_screen_position.x, obs_screen_position.y, 1,1,1 , FALSE, 
-						obstacle_map [our_obstacle->type].transparent, 1.000000000);
+						get_obstacle_image(our_obstacle->type), obs_screen_position.x, obs_screen_position.y, 1,1,1 , highlight, 
+						obstacle_map [our_obstacle->type].transparent, zf);
 			}
 		} else {
 			blit_iso_image_to_map_position (get_obstacle_image(our_obstacle->type), 
 					obs_screen_position.x, obs_screen_position.y );
+			if (highlight)
+				blit_outline_of_iso_image_to_map_position (get_obstacle_image(our_obstacle->type), 
+						our_obstacle -> pos . x , our_obstacle -> pos . y );
+
 		}
 	}
 }
-
-/**
- * This function should blit an obstacle, that is given via it's address
- * in the parameter
- */
-void
-blit_one_obstacle_highlighted ( obstacle* our_obstacle )
-{
-
-    if ( ( our_obstacle-> type <= (-1) ) || ( our_obstacle-> type >= NUMBER_OF_OBSTACLE_TYPES ) )
-    {
-	ErrorMessage ( __FUNCTION__  , "\
-There was an obstacle type given, that exceeds the number of\n\
- obstacle types allowed and loaded in Freedroid.",
-				   PLEASE_INFORM, IS_FATAL );
-	
-    }
-    
-    //--------------------
-    // Maybe the children friendly version is desired.  Then the blood on the floor
-    // will not be blitted to the screen.
-    //
-    if ( ( ! GameConfig . show_blood ) && 
-	 ( our_obstacle-> type >= ISO_BLOOD_1 ) && 
-	 ( our_obstacle -> type <= ISO_BLOOD_8 ) ) 
-	return;
-    
-    if ( use_open_gl )
-    {
-	draw_gl_textured_quad_at_map_position (get_obstacle_image(our_obstacle->type), 
-					       our_obstacle -> pos . x , our_obstacle -> pos . y , 1.0 , 1.0 , 1.0 , TRUE, FALSE, 1.0 ) ;
-    }
-    else
-    {
-	DebugPrintf ( 0 , "\nNormal in-game SDL highlight invoked for marked obstacle!" );
-	blit_iso_image_to_map_position (get_obstacle_image(our_obstacle->type), 
-					 our_obstacle -> pos . x , our_obstacle -> pos . y );
-	blit_outline_of_iso_image_to_map_position (get_obstacle_image(our_obstacle->type), 
-						    our_obstacle -> pos . x , our_obstacle -> pos . y );
-    }
-    
-}; // blit_one_obstacle_highlighted ( obstacle* our_obstacle )
-
-/**
- * This function should blit an obstacle, that is given via it's address
- * in the parameter
- */
-void
-blit_one_obstacle_zoomed ( obstacle* our_obstacle )
-{
-    iso_image tmp;
-    // DebugPrintf ( 0 , "\nObstacle to be blitted: type=%d x=%f y=%f." , our_obstacle -> type ,
-    // our_obstacle -> pos . x , our_obstacle -> pos . y );
-    
-    if ( ( our_obstacle-> type <= (-1) ) || ( our_obstacle-> type >= NUMBER_OF_OBSTACLE_TYPES ) )
-    {
-	ErrorMessage ( __FUNCTION__  , "\
-There was an obstacle type given, that exceeds the number of\n\
- obstacle types allowed and loaded in Freedroid.",
-				   PLEASE_INFORM, IS_FATAL );
-    }
-    
-    if ( ! use_open_gl )
-	make_sure_zoomed_surface_is_there (get_obstacle_image(our_obstacle->type));
-
-    //--------------------
-    // We blit the obstacle in question, but if we're in the level editor and this
-    // obstacle has been marked, we apply a color filter to it.  Otherwise we blit
-    // it just so.
-    //
-    if (element_in_selection(our_obstacle))
-    {
-	
-	if ( use_open_gl )
-	{
-	    draw_gl_textured_quad_at_map_position (get_obstacle_image(our_obstacle->type),
-							  our_obstacle -> pos . x , our_obstacle -> pos . y , 
-							  ( SDL_GetTicks() % 3) / 2.0, ( ( SDL_GetTicks() + 1 ) % 3) / 2.0, 
-							  ( ( SDL_GetTicks() + 2 ) % 3) / 2.0 , 0.25, FALSE, ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT );
-
-	}
-	else
-	{
-	    DebugPrintf ( 0 , "\nCOLOR FILTER INVOKED FOR MARKED OBSTACLE!" );
-	    tmp . surface = our_SDL_display_format_wrapperAlpha (get_obstacle_image(our_obstacle->type)->surface );
-	    tmp . surface -> format -> Bmask = 0x0 ; // 0FFFFFFFF ;
-	    tmp . surface -> format -> Rmask = 0x0 ; // FFFFFFFF ;
-	    tmp . surface -> format -> Gmask = 0x0FFFFFFFF ;
-	    tmp . offset_x = get_obstacle_image(our_obstacle->type)->offset_x ;
-	    tmp . offset_y = get_obstacle_image(our_obstacle->type)->offset_y ;
-	    tmp . zoomed_out_surface = NULL ;
-	    blit_zoomed_iso_image_to_map_position ( & ( tmp ) , 
-						    our_obstacle -> pos . x , our_obstacle -> pos . y );
-	    SDL_FreeSurface ( tmp . surface );
-	    SDL_FreeSurface ( tmp . zoomed_out_surface );
-	}
-    }
-    else
-    {
-	if ( use_open_gl )
-	{
-	    draw_gl_textured_quad_at_map_position (get_obstacle_image(our_obstacle->type),
-							  our_obstacle -> pos . x , our_obstacle -> pos . y , 1.0 , 1.0, 1.0 , 0.25, obstacle_map[our_obstacle->type].transparent,ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT  );
-	}
-	else
-	{
-	    blit_zoomed_iso_image_to_map_position (get_obstacle_image(our_obstacle->type) , 
-						    our_obstacle -> pos . x , our_obstacle -> pos . y );
-	}
-    }
-}; // blit_one_obstacle_zoomed ( obstacle* our_obstacle )
 
 /**
  * In order for the obstacles to be blitted, they must first be inserted
@@ -1193,6 +1100,41 @@ set_up_ordered_blitting_list ( int mask )
 
 }; // void set_up_ordered_blitting_list ( void )
 
+static void show_obstacle(int mask, obstacle *o, int code_number)
+{
+	int barrel_under_cursor = -1;
+	int chest_under_cursor = -1;
+
+	barrel_under_cursor = smashable_barrel_below_mouse_cursor();
+	chest_under_cursor = closed_chest_below_mouse_cursor();
+
+	// Safety checks
+	if ((o-> type <= -1) ||	(o->type >= NUMBER_OF_OBSTACLE_TYPES)) {
+		ErrorMessage(__FUNCTION__, "The blitting list contained an illegal obstacle type %d.",
+				PLEASE_INFORM, IS_FATAL, o->type);
+	}
+
+	if (obstacle_map[o->type].flags & NEEDS_PRE_PUT) 
+		return;
+
+	if (!(mask & OMIT_OBSTACLES)) {
+		if (mask & ZOOM_OUT) {
+			blit_one_obstacle(o, NOHIGHLIGHT, ZOOM_OUT);
+		} else {
+			if ((code_number == barrel_under_cursor) || (code_number == chest_under_cursor)) {
+				blit_one_obstacle(o, HIGHLIGHT, !ZOOM_OUT);
+			} else {
+				// Do not blit "transp for water" obstacle when not in leveleditor mode
+				if (game_status != INSIDE_LVLEDITOR && o->type == ISO_TRANSP_FOR_WATER)
+					return;
+
+				// Normal display
+				blit_one_obstacle (o, NOHIGHLIGHT, !ZOOM_OUT);
+			}
+		}
+	}
+}
+
 /**
  * Now that the blitting list has finally been assembled, we can start to
  * blit all the objects according to the blitting list set up.
@@ -1203,8 +1145,6 @@ void blit_preput_objects_according_to_blitting_list (int mask)
 
 	struct blitting_list_element *e, *n;
 	list_for_each_entry_safe(e, n, &blitting_list, node) {
-		if (e->element_type == BLITTING_TYPE_NONE) 
-			break;
 		if (e->element_type == BLITTING_TYPE_OBSTACLE) {
 
 			//--------------------
@@ -1226,37 +1166,31 @@ void blit_preput_objects_according_to_blitting_list (int mask)
 			// If the obstacle has a shadow, it seems like now would be a good time
 			// to blit it.
 			//
-			if (!GameConfig.skip_shadow_blitting)
-				{
-				if (use_open_gl)
-					{
-					if ( obstacle_map [ our_obstacle -> type ] . shadow_image . texture_has_been_created )
-						{
-						if ( mask & ZOOM_OUT )
-							draw_gl_textured_quad_at_map_position (   
-									&obstacle_map [ our_obstacle -> type ] . shadow_image ,
-									our_obstacle -> pos . x , our_obstacle -> pos . y ,   
-									1.0 , 1.0, 1.0 , FALSE, TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS,ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT );
+			if (!GameConfig.skip_shadow_blitting) {
+				if (use_open_gl) {
+					if (obstacle_map[our_obstacle->type].shadow_image.texture_has_been_created)	{
+						if (mask & ZOOM_OUT)
+							draw_gl_textured_quad_at_map_position(   
+									&obstacle_map[our_obstacle->type].shadow_image,
+									our_obstacle->pos.x, our_obstacle->pos.y,   
+									1.0, 1.0, 1.0, FALSE, TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS, ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT);
 
-						else draw_gl_textured_quad_at_map_position ( 
-								&obstacle_map [ our_obstacle -> type ] . shadow_image , 
-								our_obstacle -> pos . x , our_obstacle -> pos . y , 
-								1.0 , 1.0, 1.0 , FALSE, TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS, 1.0 );
-						// DebugPrintf ( -4 , "\n%s(): shadow has been drawn." , __FUNCTION__ );
-						}
+						else draw_gl_textured_quad_at_map_position(
+								&obstacle_map[our_obstacle->type].shadow_image, 
+								our_obstacle->pos.x, our_obstacle->pos.y, 
+								1.0 , 1.0, 1.0 , FALSE, TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS, 1.0);
 					}
-				else
-					{
-					if ( obstacle_map [ our_obstacle -> type ] . shadow_image . surface != NULL )
-						{
-						if ( mask & ZOOM_OUT )      blit_zoomed_iso_image_to_map_position ( & (obstacle_map [ our_obstacle -> type ] . shadow_image) ,
-								our_obstacle -> pos . x , our_obstacle -> pos . y );
+				} else {
+					if ( obstacle_map [ our_obstacle -> type ] . shadow_image . surface != NULL ) {
+						if ( mask & ZOOM_OUT )      
+							blit_zoomed_iso_image_to_map_position ( & (obstacle_map [ our_obstacle -> type ] . shadow_image) ,
+									our_obstacle -> pos . x , our_obstacle -> pos . y );
 						else blit_iso_image_to_map_position ( &obstacle_map [ our_obstacle -> type ] . shadow_image , 
 								our_obstacle -> pos . x , our_obstacle -> pos . y );
 						// DebugPrintf ( -4 , "\n%s(): shadow has been drawn." , __FUNCTION__ );
-						}
 					}
 				}
+			}
 
 			//--------------------
 			// If the obstacle in question does have a collision rectangle, then we
@@ -1270,24 +1204,8 @@ void blit_preput_objects_according_to_blitting_list (int mask)
 			//
 			if ( ! ( obstacle_map [ ((obstacle *)e->element_pointer ) -> type ] . flags & NEEDS_PRE_PUT ) ) continue ;
 
-			//--------------------
-			// So now we know that we must blit this one obstacle...
-			//
-			if ( ! ( mask & OMIT_OBSTACLES ) ) 
-				{
-				if ( mask & ZOOM_OUT )
-					blit_one_obstacle_zoomed ( (obstacle*)e->element_pointer );
-				else
-					{
-					// Do not blit "transp for water" obstacle when not in leveleditor mode (omit_blasts)
-					if ( ((obstacle*)e->element_pointer) -> type == ISO_TRANSP_FOR_WATER )
-						{
-						if ( mask & OMIT_BLASTS )
-							blit_one_obstacle ( (obstacle *)e->element_pointer );
-						}
-					else blit_one_obstacle ( (obstacle *)e->element_pointer );
-					}
-				}
+			show_obstacle(mask, ((obstacle *)e->element_pointer), e->code_number);
+
 		}
 		//--------------------
 		// Enemies, which are dead already become like decoration on the floor.  
@@ -1295,8 +1213,7 @@ void blit_preput_objects_according_to_blitting_list (int mask)
 		// again later from the list.
 		//
 		if ( (e->element_type == BLITTING_TYPE_ENEMY ) &&
-				// ( ( ( enemy* ) blitting_list [ i ] . element_pointer ) -> energy < 0 ) )
-			( ( (enemy *)e->element_pointer ) -> animation_type == DEATH_ANIMATION ) )
+			( ((enemy *)e->element_pointer ) -> animation_type == DEATH_ANIMATION ) )
 				{
 				if ( ! ( mask & OMIT_ENEMIES ) ) 
 					{
@@ -1314,8 +1231,6 @@ void blit_preput_objects_according_to_blitting_list (int mask)
 void blit_nonpreput_objects_according_to_blitting_list ( int mask )
 {
     enemy * enemy_under_cursor = NULL;
-    int barrel_under_cursor = -1;
-    int chest_under_cursor = -1;
     int item_under_cursor = -1; 
 	struct blitting_list_element *e, *n;
     
@@ -1324,8 +1239,6 @@ void blit_nonpreput_objects_according_to_blitting_list ( int mask )
     // can properly highlight this enemy...
     //
     enemy_under_cursor = GetLivingDroidBelowMouseCursor ( ) ;
-    barrel_under_cursor = smashable_barrel_below_mouse_cursor ( ) ;
-    chest_under_cursor = closed_chest_below_mouse_cursor ( ) ;
     item_under_cursor = get_floor_item_index_under_mouse_cursor ( );
     
     //--------------------
@@ -1337,45 +1250,7 @@ void blit_nonpreput_objects_according_to_blitting_list ( int mask )
 		switch (e->element_type )
 			{
 			case BLITTING_TYPE_OBSTACLE:
-
-				//--------------------
-				// We do some sanity checking for illegal obstacle types.
-				// Can't hurt to do that so as to be on the safe side.
-				//
-				if ( ( ( (obstacle *) e->element_pointer ) -> type <= (-1) ) ||
-						( (obstacle *) e->element_pointer ) -> type >= NUMBER_OF_OBSTACLE_TYPES )
-					{
-					fprintf ( stderr , "\nerroneous obstacle type to blit: %d." , 
-							( (obstacle *) e->element_pointer ) -> type );
-					ErrorMessage ( __FUNCTION__  , 
-							"The blitting list contained an illegal blitting object type.",
-							PLEASE_INFORM, IS_FATAL );
-					}
-
-				if ( obstacle_map [ ( (obstacle *) e->element_pointer ) -> type ] . flags & NEEDS_PRE_PUT ) break ;
-
-				if ( ! ( mask & OMIT_OBSTACLES ) ) 
-					{
-					if ( mask & ZOOM_OUT )
-						blit_one_obstacle_zoomed ( (obstacle*) e->element_pointer );
-					else
-						{
-						if ( (e->code_number == barrel_under_cursor )  ||
-								(e->code_number == chest_under_cursor ) )
-							blit_one_obstacle_highlighted ( (obstacle *) e->element_pointer );
-						else
-							{
-							// Do not blit "transp for water" obstacle when not in leveleditor mode (omit_blasts)
-							if ( ((obstacle*) e->element_pointer) -> type == ISO_TRANSP_FOR_WATER )
-								{
-								if ( mask & OMIT_BLASTS )
-									blit_one_obstacle ( (obstacle*) e->element_pointer );
-								}
-							else blit_one_obstacle ( (obstacle*) e->element_pointer );
-							}
-
-						}
-					}
+				show_obstacle(mask, e->element_pointer, e->code_number);
 				break;
 			case BLITTING_TYPE_TUX:
 				if ( ! ( mask & OMIT_TUX ) ) 
