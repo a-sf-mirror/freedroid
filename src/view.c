@@ -664,11 +664,16 @@ void blit_one_obstacle(obstacle *our_obstacle, int highlight, int zoom)
 						obstacle_map [our_obstacle->type].transparent, zf);
 			}
 		} else {
-			blit_iso_image_to_map_position (get_obstacle_image(our_obstacle->type), 
-					obs_screen_position.x, obs_screen_position.y );
-			if (highlight)
-				blit_outline_of_iso_image_to_map_position (get_obstacle_image(our_obstacle->type), 
-						our_obstacle -> pos . x , our_obstacle -> pos . y );
+			if (!zoom) {
+				blit_iso_image_to_map_position (get_obstacle_image(our_obstacle->type), 
+						obs_screen_position.x, obs_screen_position.y );
+				if (highlight)
+					blit_outline_of_iso_image_to_map_position (get_obstacle_image(our_obstacle->type), 
+							our_obstacle -> pos . x , our_obstacle -> pos . y );
+			} else {
+				blit_zoomed_iso_image_to_map_position (get_obstacle_image(our_obstacle->type) , 	 
+						obs_screen_position.x, obs_screen_position.y);
+			}
 
 		}
 	}
