@@ -73,8 +73,8 @@ Other items can potentially be bigger
 
 -> * Cutting *
  Big kitchen knife    - 1H - Size 1x2 - lvl 0 - str 0 dex 0 - Dam: 0-2  - Recharge: 0.5  - Dur 10-15 -  30
-*Antique sword        - 1H - Size 1x4 - lvl 2 - str 0 dex20 - Dam: 2-4  - Recharge: 0.55 - Dur 20-30 - 100
-*Chainsaw             - 2H - Size 2x4 - lvl 4 - str15 dex20 - Dam: 2-3  - Recharge: 0.15 - Dur  6-8  - 500
+ Antique sword        - 1H - Size 1x4 - lvl 2 - str 0 dex20 - Dam: 2-4  - Recharge: 0.55 - Dur 20-30 - 100
+ Chainsaw             - 2H - Size 2x4 - lvl 4 - str15 dex20 - Dam: 2-3  - Recharge: 0.15 - Dur  6-8  - 500
 -> * Cleaving *
  Meat cleaver         - 1H - Size 2x2 - lvl 0 - str 0 dex 0 - Dam: 1-3  - Recharge: 0.6  - Dur 30-40 -  50
  Axe small            - 1H - Size 2x3 - lvl 2 - str14 dex15 - Dam: 2-6  - Recharge: 0.7  - Dur 40-60 -  80 
@@ -119,9 +119,9 @@ Conventional main disadvantage - Expensive ammo!!
  Sawn off shotgun     - 1H - Size 2x2 - lvl 4 - Dam: 2-10 - Recharge: 0.2 - Reload: 3.0 - Clip:  2 - Dur 50-60 - 200
  2 barrel shotgun     - 2H - Size 2x4 - lvl 4 - Dam: 2-18 - Recharge: 0.2 - Reload: 4.0 - Clip:  2 - Dur 50-60 - 250
  Pump action shotgun  - 2H - Size 2x4 - lvl 5 - Dam: 2-14 - Recharge: 0.75- Reload: 4.0 - Clip:  8 - Dur 45-55 - 300
-* 9x19mm Ammo                 Size 1x2 - lvl 5 - Speed: 30 - stack 60                                           - 18 
-* 9mm Automatic        - 1H - Size 1x2 - lvl 5 - Dam: 4-10 - Recharge: 0.5 - Reload: 3.0 - Clip: 19 - Dur 50-60 - 400
-* 9mm SMG              - 2H - Size 2x3 - lvl 6 - Dam: 3-8  - Recharge: 0.2 - Reload: 3.0 - Clip: 30 - Dur 60-70 - 950
+ 9x19mm Ammo                 Size 1x2 - lvl 5 - Speed: 30 - stack 60                                           - 18 
+ 9mm Automatic        - 1H - Size 2x1 - lvl 5 - Dam: 4-10 - Recharge: 0.5 - Reload: 3.0 - Clip: 19 - Dur 50-60 - 400
+ 9mm SMG              - 2H - Size 2x3 - lvl 6 - Dam: 3-8  - Recharge: 0.2 - Reload: 3.0 - Clip: 30 - Dur 60-70 - 950
  7.62x39mm Ammo              Size 2x2 - lvl 6 - Speed: 30 - stack 45                                           - 24 
 * 7.62mm Rifle         - 2H - Size 2x5 - lvl 6 - Dam:10-16 - Recharge: 0.8 - Reload: 5.0 - Clip:  5 - Dur 50-60 - 800
  7.62mm AK-47         - 2H - Size 2x5 - lvl 7 - Dam: 6-12 - Recharge: 0.2 - Reload: 3.0 - Clip: 30 - Dur 70-80 - 1400
@@ -266,19 +266,19 @@ Item as gun: weapon requires both hands="yes"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
-*disabled-v0.11* Start of new item specification subsection **
+** Start of new item specification subsection **
 Item name=_"Chainsaw"
 Item min class for drop=4
 Item max class for drop=9
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
-Item uses rotation series with prefix="weapons/laser_sword_yellow"
+Item uses rotation series with prefix="weapons/chainsaw"
 Items of this type collect together in inventory="no"
 Strength minimum required to wear/wield this item=20
 Dexterity minimum required to wear/wield this item=20
 Base item duration=6
 plus duration modifier=2
-File or directory name for inventory image="weapons/laser_sword_yellow/inv_image.png"
+File or directory name for inventory image="weapons/chainsaw/inv_image.png"
 inventory_size_x=2
 inventory_size_y=4
 Item uses drop sound with filename="drop_sword_sound.ogg"
@@ -1351,7 +1351,7 @@ Item as gun: weapon requires both hands="yes"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
-*disabled-v0.11* Start of new item specification subsection **
+** Start of new item specification subsection **
 Item name=_"9x19mm Ammunition"
 Item min class for drop=5
 Item max class for drop=8
@@ -1359,9 +1359,9 @@ Item number dropped min=10
 Item number dropped max=20
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
-Item uses rotation series with prefix="weapons/ammo_exterminator_sphere"
+Item uses rotation series with prefix="weapons/9mm_ammo"
 Items of this type collect together in inventory="yes"
-File or directory name for inventory image="weapons/ammo_exterminator_sphere/inv_image.png"
+File or directory name for inventory image="weapons/9mm_ammo/inv_image.png"
 inventory_size_x=1
 inventory_size_y=3
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
@@ -1369,31 +1369,23 @@ Base list price=18
 Item description text=_"Plasma crystal load. This is the most common way of loading a plasma weapon."
 ** End of new item specification subsection **
 
-/*
-Image inspiration
-Glock 17 (9mm) Automatic (5) - reliable 
-http://soldf.com/pistol88.html
-9mm Sub Machinegun (6) 30
-http://en.wikipedia.org/wiki/Heckler_%26_Koch_MP5
-*/
-
-*disabled-v0.11* Start of new item specification subsection **
+** Start of new item specification subsection **
 Item name=_"9mm Automatic"
 Item min class for drop=5
 Item max class for drop=7
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
-Item uses rotation series with prefix="weapons/laser_pulse_rifle"
+Item uses rotation series with prefix="weapons/9mm_pistol"
 Items of this type collect together in inventory="no"
 Strength minimum required to wear/wield this item=-1
 Dexterity minimum required to wear/wield this item=-1
 Base item duration=50
 plus duration modifier=10
-File or directory name for inventory image="weapons/laser_pulse_rifle/inv_image.png"
+File or directory name for inventory image="weapons/9mm_pistol/inv_image.png"
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=400
-inventory_size_x=1
-inventory_size_y=2
+inventory_size_x=2
+inventory_size_y=1
 Item description text=_"Nine millimeter ammo is a common caliber.  While not very powerful, it allows for more rounds per clip than bigger ammunition."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.500000
@@ -1415,19 +1407,19 @@ Item as gun: weapon requires both hands="no"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
-*disabled-v0.11* Start of new item specification subsection **
+** Start of new item specification subsection **
 Item name=_"9mm Sub Machine Gun"
 Item min class for drop=6
 Item max class for drop=8
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
-Item uses rotation series with prefix="weapons/laser_pulse_rifle"
+Item uses rotation series with prefix="weapons/9mm_smg"
 Items of this type collect together in inventory="no"
 Strength minimum required to wear/wield this item=-1
 Dexterity minimum required to wear/wield this item=-1
 Base item duration=60
 plus duration modifier=10
-File or directory name for inventory image="weapons/laser_pulse_rifle/inv_image.png"
+File or directory name for inventory image="weapons/9mm_smg/inv_image.png"
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=950
 inventory_size_x=2
@@ -2997,6 +2989,8 @@ Item as defensive item: ac_bonus_modifier=4
 Base item duration=10
 plus duration modifier=8
 File or directory name for inventory image="shields/small/inv_image.png"
+inventory_size_x=2
+inventory_size_y=2
 Item uses drop sound with filename="Item_Armour_Put_Sound_0.ogg"
 Base list price=90
 Item description text=_"A small, lightweight and pretty straightforward shield. Provides decent protection."
