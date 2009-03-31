@@ -122,7 +122,7 @@ Conventional main disadvantage - Expensive ammo!!
  9x19mm Ammo                 Size 1x2 - lvl 5 - Speed: 30 - stack 60                                           - 18 
  9mm Automatic        - 1H - Size 2x1 - lvl 5 - Dam: 4-10 - Recharge: 0.5 - Reload: 3.0 - Clip: 19 - Dur 50-60 - 400
  9mm SMG              - 2H - Size 2x3 - lvl 6 - Dam: 3-8  - Recharge: 0.2 - Reload: 3.0 - Clip: 30 - Dur 60-70 - 950
- 7.62x39mm Ammo              Size 2x2 - lvl 6 - Speed: 30 - stack 45                                           - 24 
+ 7.62x39mm Ammo              Size 1x3 - lvl 6 - Speed: 30 - stack 45                                           - 24 
 * 7.62mm Rifle         - 2H - Size 2x5 - lvl 6 - Dam:10-16 - Recharge: 0.8 - Reload: 5.0 - Clip:  5 - Dur 50-60 - 800
  7.62mm AK-47         - 2H - Size 2x5 - lvl 7 - Dam: 6-12 - Recharge: 0.2 - Reload: 3.0 - Clip: 30 - Dur 70-80 - 1400
 //5.56x45mm Ammo - Skipped due to too many & more common ammotypes already
@@ -1453,11 +1453,11 @@ Item number dropped min=10
 Item number dropped max=20
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
-Item uses rotation series with prefix="weapons/ammo_exterminator_sphere"
+Item uses rotation series with prefix="weapons/7_62mm_ammo"
 Items of this type collect together in inventory="yes"
-File or directory name for inventory image="weapons/ammo_exterminator_sphere/inv_image.png"
+File or directory name for inventory image="weapons/7_62mm_ammo/inv_image.png"
 inventory_size_x=1
-inventory_size_y=4
+inventory_size_y=3
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=24
 Item description text=_"7.62mm ammo."
