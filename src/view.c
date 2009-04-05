@@ -1629,16 +1629,16 @@ draw_grid_on_the_floor (int mask)
     SetCurrentFont (PreviousFont);
 
     // display level's interface edges
-    skew_and_blit_line ( our_level->jump_threshold_west, 0, our_level->jump_threshold_west, our_level->ylen, 0x0000FF, 3);
-    skew_and_blit_line ( our_level->xlen - our_level->jump_threshold_east, 0, our_level->xlen - our_level->jump_threshold_east, our_level->ylen, 0x0000FF, 3);
-    skew_and_blit_line ( 0, our_level->jump_threshold_north, our_level->xlen, our_level->jump_threshold_north, 0x0000FF, 3);
-    skew_and_blit_line ( 0, our_level->ylen - our_level->jump_threshold_south, our_level->xlen, our_level->ylen - our_level->jump_threshold_south, 0x0000FF, 3);
+    skew_and_blit_line (our_level->jump_threshold_west/2.0, 0, our_level->jump_threshold_west/2, our_level->ylen, 0x0000FF, 3);
+    skew_and_blit_line (our_level->xlen - our_level->jump_threshold_east/2.0, 0, our_level->xlen - our_level->jump_threshold_east/2.0, our_level->ylen, 0x0000FF, 3);
+    skew_and_blit_line (0, our_level->jump_threshold_north/2.0, our_level->xlen, our_level->jump_threshold_north/2.0, 0x0000FF, 3);
+    skew_and_blit_line (0, our_level->ylen - our_level->jump_threshold_south/2.0, our_level->xlen, our_level->ylen - our_level->jump_threshold_south/2.0, 0x0000FF, 3);
 
     // now display the level borders
-    skew_and_blit_line ( our_level->jump_threshold_west/2.0, 0, our_level->jump_threshold_west/2.0, our_level->ylen, 0xFF0000, 3);
-    skew_and_blit_line ( our_level->xlen - our_level->jump_threshold_east/2.0, 0, our_level->xlen - our_level->jump_threshold_east/2.0, our_level->ylen, 0xFF0000, 3);
-    skew_and_blit_line ( 0, our_level->jump_threshold_north/2.0, our_level->xlen, our_level->jump_threshold_north/2.0, 0xFF0000, 3);
-    skew_and_blit_line ( 0, our_level->ylen - our_level->jump_threshold_south/2.0, our_level->xlen, our_level->ylen - our_level->jump_threshold_south/2.0, 0xFF0000, 3);
+    skew_and_blit_line (0, 0, 0, our_level->ylen, 0xFF0000, 3);
+    skew_and_blit_line (our_level->xlen, 0, our_level->xlen, our_level->ylen, 0xFF0000, 3);
+    skew_and_blit_line (0, 0, our_level->xlen, 0, 0xFF0000, 3);
+    skew_and_blit_line (0, our_level->ylen, our_level->xlen, our_level->ylen, 0xFF0000, 3);
 }
 
 /* -----------------------------------------------------------------
