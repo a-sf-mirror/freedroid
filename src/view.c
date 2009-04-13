@@ -540,42 +540,44 @@ skew_and_blit_rect( float x1, float y1, float x2, float y2, Uint32 color)
 void 
 blit_obstacle_collision_rectangle ( obstacle* our_obstacle )
 {
-    float up, left, right, low,x,y;
+	float up, left, right, low ,x ,y;
 
-    up = obstacle_map [ our_obstacle -> type ] . upper_border;
-    left = obstacle_map [ our_obstacle -> type ] . left_border;
-    right = obstacle_map [ our_obstacle -> type ] . right_border;
-    low = obstacle_map [ our_obstacle -> type ] . lower_border;
-    x = our_obstacle -> pos . x;
-    y = our_obstacle -> pos . y;
-    //--------------------
-    // If collision rectangles are turned off, then we need not do 
-    // anything more here...
-    //
-    if ( ! draw_collision_rectangles ) return;
+	update_virtual_position(&our_obstacle->vpos, &our_obstacle->pos, Me.pos.z);
 
-    //--------------------
-    // If there is no collision rectangle to draw, we are done
-    //
-    if ( obstacle_map [ our_obstacle -> type ] . block_area_type == COLLISION_TYPE_NONE )
-	return;
-
-    
-    //--------------------
-    // Now we draw the collision rectangle.  We use the same parameters
-    // of the obstacle spec, that are also used for the collision checks.
-    skew_and_blit_rect(x+up,y+left,x+low,y+right, 0x00FEEAA);
-    
-//    x1 = translate_map_point_to_screen_pixel_x ( x + up , y + left );
-//    y1 = translate_map_point_to_screen_pixel_y ( x + up , y + left );
-//    x2 = translate_map_point_to_screen_pixel_x ( x + up , y + right);
-//    y2 = translate_map_point_to_screen_pixel_y ( x + up , y + right);
-//    x3 = translate_map_point_to_screen_pixel_x ( x + low , y + right);
-//    y3 = translate_map_point_to_screen_pixel_y ( x + low , y + right);
-//    x4 = translate_map_point_to_screen_pixel_x ( x + low , y + left);
-//    y4 = translate_map_point_to_screen_pixel_y ( x + low , y + left);
-//    blit_quad ( x1, y1, x2, y2, x3, y3, x4, y4, 0x00FEEAA ); 
-}; // void blit_obstacle_collision_rectangle ( obstacle* our_obstacle )
+	up    = obstacle_map[our_obstacle->type].upper_border;
+	left  = obstacle_map[our_obstacle->type].left_border;
+	right = obstacle_map[our_obstacle->type].right_border;
+	low   = obstacle_map [our_obstacle->type].lower_border;
+	x = our_obstacle->vpos.x;
+	y = our_obstacle->vpos.y;
+	
+	//--------------------
+	// If collision rectangles are turned off, then we need not do 
+	// anything more here...
+	//
+	if ( !draw_collision_rectangles ) return;
+	
+	//--------------------
+	// If there is no collision rectangle to draw, we are done
+	//
+	if ( obstacle_map[our_obstacle->type].block_area_type == COLLISION_TYPE_NONE )
+		return;	
+	
+	//--------------------
+	// Now we draw the collision rectangle.  We use the same parameters
+	// of the obstacle spec, that are also used for the collision checks.
+	skew_and_blit_rect(x+up,y+left,x+low,y+right, 0x00FEEAA);
+	
+	//    x1 = translate_map_point_to_screen_pixel_x ( x + up , y + left );
+	//    y1 = translate_map_point_to_screen_pixel_y ( x + up , y + left );
+	//    x2 = translate_map_point_to_screen_pixel_x ( x + up , y + right);
+	//    y2 = translate_map_point_to_screen_pixel_y ( x + up , y + right);
+	//    x3 = translate_map_point_to_screen_pixel_x ( x + low , y + right);
+	//    y3 = translate_map_point_to_screen_pixel_y ( x + low , y + right);
+	//    x4 = translate_map_point_to_screen_pixel_x ( x + low , y + left);
+	//    y4 = translate_map_point_to_screen_pixel_y ( x + low , y + left);
+	//    blit_quad ( x1, y1, x2, y2, x3, y3, x4, y4, 0x00FEEAA ); 
+} // void blit_obstacle_collision_rectangle ( obstacle* our_obstacle )
 
 /**
  * Draw an obstacle at its place on the screen.
@@ -1149,16 +1151,16 @@ void blit_preput_objects_according_to_blitting_list (int mask)
 	obstacle* our_obstacle = NULL;
 
 	struct blitting_list_element *e, *n;
-	list_for_each_entry_safe(e, n, &blitting_list, node) {
-		if (e->element_type == BLITTING_TYPE_OBSTACLE) {
-
+	list_for_each_entry_safe(e, n, &blitting_list, node) 
+	{
+		if (e->element_type == BLITTING_TYPE_OBSTACLE) 
+		{
 			//--------------------
 			// We do some sanity checking for illegal obstacle types.
 			// Can't hurt to do that so as to be on the safe side.
 			//
 			if ( (((obstacle *) e->element_pointer)->type <= -1) ||
-					((obstacle *) e->element_pointer)->type >= NUMBER_OF_OBSTACLE_TYPES)
-				{
+				 ((obstacle *) e->element_pointer)->type >= NUMBER_OF_OBSTACLE_TYPES ) {
 				fprintf (stderr , "\nerroneous obstacle type to blit: %d." , 
 						((obstacle*) e->element_pointer)->type);
 				ErrorMessage (__FUNCTION__ , 
@@ -1166,32 +1168,36 @@ void blit_preput_objects_according_to_blitting_list (int mask)
 				}
 
 			our_obstacle = e->element_pointer;
-
+			
 			//--------------------
 			// If the obstacle has a shadow, it seems like now would be a good time
 			// to blit it.
 			//
 			if (!GameConfig.skip_shadow_blitting) {
+				update_virtual_position(&our_obstacle->vpos, &our_obstacle->pos, Me.pos.z);
 				if (use_open_gl) {
 					if (obstacle_map[our_obstacle->type].shadow_image.texture_has_been_created)	{
-						if (mask & ZOOM_OUT)
+						if (mask & ZOOM_OUT) {
 							draw_gl_textured_quad_at_map_position(   
 									&obstacle_map[our_obstacle->type].shadow_image,
-									our_obstacle->pos.x, our_obstacle->pos.y,   
+									our_obstacle->vpos.x, our_obstacle->vpos.y,   
 									1.0, 1.0, 1.0, FALSE, TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS, ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT);
-
-						else draw_gl_textured_quad_at_map_position(
+						} else {
+							draw_gl_textured_quad_at_map_position(
 								&obstacle_map[our_obstacle->type].shadow_image, 
-								our_obstacle->pos.x, our_obstacle->pos.y, 
+								our_obstacle->vpos.x, our_obstacle->vpos.y, 
 								1.0 , 1.0, 1.0 , FALSE, TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS, 1.0);
+						}
 					}
 				} else {
-					if ( obstacle_map [ our_obstacle -> type ] . shadow_image . surface != NULL ) {
-						if ( mask & ZOOM_OUT )      
-							blit_zoomed_iso_image_to_map_position ( & (obstacle_map [ our_obstacle -> type ] . shadow_image) ,
-									our_obstacle -> pos . x , our_obstacle -> pos . y );
-						else blit_iso_image_to_map_position ( &obstacle_map [ our_obstacle -> type ] . shadow_image , 
-								our_obstacle -> pos . x , our_obstacle -> pos . y );
+					if ( obstacle_map[our_obstacle->type].shadow_image.surface != NULL ) {
+						if ( mask & ZOOM_OUT ) {
+							blit_zoomed_iso_image_to_map_position( &(obstacle_map[our_obstacle->type].shadow_image),
+									our_obstacle->vpos.x, our_obstacle->vpos.y);
+						} else {
+							blit_iso_image_to_map_position( &obstacle_map[our_obstacle->type].shadow_image,
+									our_obstacle->vpos.x, our_obstacle->vpos.y );
+						}
 						// DebugPrintf ( -4 , "\n%s(): shadow has been drawn." , __FUNCTION__ );
 					}
 				}
@@ -1201,33 +1207,32 @@ void blit_preput_objects_according_to_blitting_list (int mask)
 			// If the obstacle in question does have a collision rectangle, then we
 			// draw that on the floor now.
 			//
-			blit_obstacle_collision_rectangle ( our_obstacle );
+			blit_obstacle_collision_rectangle( our_obstacle );
 
 			//--------------------
 			// If the obstacle isn't otherwise a preput obstacle, we're done here and can 
 			// move on to the next list element
 			//
-			if ( ! ( obstacle_map [ ((obstacle *)e->element_pointer ) -> type ] . flags & NEEDS_PRE_PUT ) ) continue ;
-
+			if ( !(obstacle_map[((obstacle *)e->element_pointer)->type].flags & NEEDS_PRE_PUT) ) continue;
+			
 			show_obstacle(mask, ((obstacle *)e->element_pointer), e->code_number);
-
+			
 		}
+		
 		//--------------------
 		// Enemies, which are dead already become like decoration on the floor.  
 		// They should never obscur the Tux, so we blit them beforehand and not
 		// again later from the list.
 		//
 		if ( (e->element_type == BLITTING_TYPE_ENEMY ) &&
-			( ((enemy *)e->element_pointer ) -> animation_type == DEATH_ANIMATION ) )
-				{
-				if ( ! ( mask & OMIT_ENEMIES ) ) 
-					{
-					PutEnemy ( (enemy *)(e->element_pointer), -1 , -1 , mask , FALSE ); 
-					}
-				}
+			  (((enemy *)e->element_pointer)->animation_type == DEATH_ANIMATION ) ) {
+			if ( !(mask & OMIT_ENEMIES) ) {
+				PutEnemy( (enemy *)(e->element_pointer), -1, -1, mask, FALSE ); 
+			}
+		}
 	}
 
-}; // void blit_preput_objects_according_to_blitting_list ( ... )
+} // void blit_preput_objects_according_to_blitting_list ( ... )
 
 /**
  * Now that the blitting list has finally been assembled, we can start to
