@@ -829,6 +829,7 @@ typedef struct obstacle_s
 {
     int type;
     gps pos;
+    gps vpos;
     int name_index;
     int description_index;
 }
