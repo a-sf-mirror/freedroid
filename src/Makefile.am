@@ -41,7 +41,7 @@ freedroidRPG_SOURCES = menu.c shop.c items.c character.c skills.c saveloadgame.c
 	lvledit/lvledit_widgets.c lvledit/lvledit_widgets.h
 
 savestruct.c savestruct.h: struct.h
-	python2.5 gen_savestruct.py struct.h savestruct
+	python gen_savestruct.py struct.h savestruct
 
 clean-local:
 	cd ../lua; make clean
