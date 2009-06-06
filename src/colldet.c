@@ -116,7 +116,8 @@ int WalkablePassFilterCallback(colldet_filter* this, obstacle* obs, int obs_idx 
 	
 	return FALSE;
 }
-colldet_filter WalkablePassFilter = { WalkablePassFilterCallback, NULL, NULL };
+colldet_filter WalkablePassFilter           = { WalkablePassFilterCallback, NULL, 0, NULL };
+colldet_filter WalkableWithMarginPassFilter = { WalkablePassFilterCallback, NULL, 1, NULL };
 
 /**
  * This colldet filter is used to ignore the obstacles (such as water)
@@ -130,7 +131,7 @@ int FlyablePassFilterCallback(colldet_filter* this, obstacle* obs, int obs_idx )
 	
 	return FALSE;
 }
-colldet_filter FlyablePassFilter = { FlyablePassFilterCallback, NULL, NULL };
+colldet_filter FlyablePassFilter = { FlyablePassFilterCallback, NULL, 0, NULL };
 
 /**
  * This colldet filter is used to ignore the obstacles
@@ -145,7 +146,7 @@ int VisiblePassFilterCallback(colldet_filter* this, obstacle* obs, int obs_idx )
 	
 	return FALSE;
 }
-colldet_filter VisiblePassFilter = { VisiblePassFilterCallback, NULL, NULL };
+colldet_filter VisiblePassFilter = { VisiblePassFilterCallback, NULL, 0, NULL };
 
 /**
  * This colldet filter is used to ignore a given obstacle during
@@ -159,7 +160,9 @@ int ObstacleByIdPassFilterCallback(colldet_filter* this, obstacle* obs, int obs_
 
 	return FALSE;
 }
-colldet_filter ObstacleByIdPassFilter = { ObstacleByIdPassFilterCallback, NULL, NULL };
+colldet_filter ObstacleByIdPassFilter     = { ObstacleByIdPassFilterCallback, NULL, 0, NULL };
+colldet_filter WalkableExceptIdPassFilter = { ObstacleByIdPassFilterCallback, NULL, 0, &WalkablePassFilter };
+colldet_filter FlyableExceptIdPassFilter  = { ObstacleByIdPassFilterCallback, NULL, 0, &FlyablePassFilter };
 
 /**
  * This function checks if the connection between two points is free of
@@ -231,6 +234,8 @@ static inline char get_point_flag ( float xmin, float ymin, float xmax, float ym
 
 /**
  * This function checks if a given position is free of obstacles
+ * 
+ * Return FALSE if collision detected.
  */
 int SinglePointColldet ( float x, float y, int z, colldet_filter* filter )
 {
@@ -239,98 +244,112 @@ int SinglePointColldet ( float x, float y, int z, colldet_filter* filter )
 
 /** This function checks if the line can be traversed along directly against obstacles.
  * It also handles the case of point tests (x1 == x2 && y1 == y2) properly.
+ * 
+ * Return FALSE if collision detected.
  */
 int DirectLineColldet ( float x1, float y1, float x2, float y2, int z, colldet_filter* filter)
 {
 
-    //Browse all obstacles around the rectangle
-    int x_tile_start, y_tile_start;
-    int x_tile_end, y_tile_end;
-    int x_tile, y_tile;
-    Level PassLevel = curShip . AllLevels [ z ] ;
-
-    x_tile_start = floor(min(x1,x2)) - 2;
-    y_tile_start = floor(min(y1,y2)) - 2;
-    x_tile_end = ceil(max(x1,x2)) + 2;
-    y_tile_end = ceil(max(y1,y2)) + 2;
-    
-    if ( x_tile_start < 0 ) x_tile_start = 0 ;
-    if ( y_tile_start < 0 ) y_tile_start = 0 ;
-    if ( x_tile_end >= PassLevel -> xlen ) x_tile_end = PassLevel->xlen -1 ;
-    if ( y_tile_end >= PassLevel -> ylen ) y_tile_end = PassLevel->ylen -1 ;
-
+	//Browse all obstacles around the rectangle
+	int x_tile_start, y_tile_start;
+	int x_tile_end, y_tile_end;
+	int x_tile, y_tile;
+	Level PassLevel = curShip.AllLevels[z];
+	
+	x_tile_start = floor(min(x1,x2)) - 2;
+	y_tile_start = floor(min(y1,y2)) - 2;
+	x_tile_end = ceil(max(x1,x2)) + 2;
+	y_tile_end = ceil(max(y1,y2)) + 2;
+	
+	if ( x_tile_start < 0 ) x_tile_start = 0 ;
+	if ( y_tile_start < 0 ) y_tile_start = 0 ;
+	if ( x_tile_end >= PassLevel->xlen ) x_tile_end = PassLevel->xlen - 1;
+	if ( y_tile_end >= PassLevel->ylen ) y_tile_end = PassLevel->ylen - 1;
+	
 	char ispoint = ( (x1 == x2) && (y1 == y2) );
-
-	for ( y_tile = y_tile_start; y_tile <= y_tile_end; y_tile ++ )
+	
+	for ( y_tile = y_tile_start; y_tile <= y_tile_end; y_tile++ )
 	{
-    for ( x_tile = x_tile_start; x_tile <= x_tile_end; x_tile ++ )
-	{
-	    // We can list all obstacles here  
-	    int glue_index;
-	    
-	    for ( glue_index = 0 ; glue_index < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE ; glue_index ++ )
+		for ( x_tile = x_tile_start; x_tile <= x_tile_end; x_tile++ )
 		{
-		int obstacle_index = PassLevel -> map [ y_tile ] [ x_tile ] . obstacles_glued_to_here [ glue_index ] ;
-		
-		if ( obstacle_index == (-1) ) break;
+			// We can list all obstacles here  
+			int glue_index;
+			
+			for ( glue_index = 0 ; glue_index < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE ; glue_index++ )
+			{
+				int obstacle_index = PassLevel->map[y_tile][x_tile].obstacles_glued_to_here[glue_index];
 				
-		obstacle * our_obs = &(PassLevel -> obstacle_list [ obstacle_index ]);
-
-		// If the obstacle doesn't even have a collision rectangle, then
-		// of course it's easy, cause then there can't be any collsision
-		//
-		if ( obstacle_map [ our_obs->type ] . block_area_type == COLLISION_TYPE_NONE )
-		    continue;
-
-		// Filter out some obstacles, if asked
-		if ( filter && filter->callback(filter, our_obs, obstacle_index ) ) continue;
-
-		//So we have our obstacle 
-
-		//Check the flags of both points against the rectangle of the object
-		moderately_finepoint rect1 = { our_obs -> pos . x + obstacle_map [ our_obs->type ] . upper_border, 
-		                               our_obs -> pos . y + obstacle_map [ our_obs->type ] . left_border };
-		moderately_finepoint rect2 = { our_obs -> pos . x + obstacle_map [ our_obs->type ] . lower_border, 
-		                               our_obs -> pos . y + obstacle_map [ our_obs->type ] . right_border };
-
-		char p1flags = get_point_flag( rect1.x, rect1.y, rect2.x, rect2.y, x1, y1 );
-		char p2flags = get_point_flag( rect1.x, rect1.y, rect2.x, rect2.y, x2, y2 );
-
-		// Handle obvious cases
-		if ( p1flags & p2flags ) // both points on the same side, no collision
-		    continue;
-
-		if ( (p1flags == RECT_IN) || (p2flags == RECT_IN) ) //we're in? collision without a doubt
-		    return FALSE;
-
-		if ( ispoint ) // degenerated line, and outside the rectangle, no collision
-		    continue;
-		
-		//----------
-		// possible collision, check if the line is crossing the rectangle
-		// by looking if all vertices of the rectangle are in the same half-space
-		//
-		// 1- line equation : a*x + b*y + c = 0
-		float line_a = -(y1 - y2);
-		float line_b = x1 - x2;
-		float line_c = x2*y1 - y2*x1;
-
-		// 2- check each vertex, halt as soon as one is on the other halfspace -> collision
-		char first_vertex_sign = ( line_a * rect1.x + line_b * rect1.y + line_c ) > 0 ? 0 : 1;
-		char other_vertex_sign = ( line_a * rect2.x + line_b * rect1.y + line_c ) > 0 ? 0 : 1;
-		if ( first_vertex_sign != other_vertex_sign ) return FALSE;
-		other_vertex_sign = ( line_a * rect2.x + line_b * rect2.y + line_c ) > 0 ? 0 : 1;
-		if ( first_vertex_sign != other_vertex_sign ) return FALSE;
-		other_vertex_sign = ( line_a * rect1.x + line_b * rect2.y + line_c ) > 0 ? 0 : 1;
-		if ( first_vertex_sign != other_vertex_sign ) return FALSE;
-
-		}
-
-	    } //for x_tile
-	    } //for y_tile
-
-    return TRUE;
-
+				if ( obstacle_index == (-1) ) break;
+				
+				obstacle * our_obs = &(PassLevel->obstacle_list[obstacle_index]);
+				
+				// If the obstacle doesn't even have a collision rectangle, then
+				// of course it's easy, cause then there can't be any collsision
+				//
+				if ( obstacle_map[our_obs->type].block_area_type == COLLISION_TYPE_NONE )
+					continue;
+				
+				// Filter out some obstacles, if asked
+				if ( filter && filter->callback(filter, our_obs, obstacle_index ) ) continue;
+				
+				// So we have our obstacle 
+				
+				// Check the flags of both points against the rectangle of the object
+				moderately_finepoint rect1 = { our_obs->pos.x + obstacle_map[our_obs->type].upper_border, 
+				                               our_obs->pos.y + obstacle_map[our_obs->type].left_border };
+				moderately_finepoint rect2 = { our_obs->pos.x + obstacle_map[our_obs->type].lower_border, 
+				                               our_obs->pos.y + obstacle_map[our_obs->type].right_border };
+				
+				// When DLC is called by the pathfinder, we grow a bit the obstacle's size.
+				// Motivation: the path followed by a character (Tux or a bot) can diverge a bit
+				// from the path computed by the pathfinder. If that computed path is passing very close
+				// to an obstacle, then the actual path could go inside the obstacle, leading the character
+				// to be stuck.
+				if ( filter && filter->use_margin ) {
+					rect1.x -= COLLDET_MARGIN;
+					rect1.y -= COLLDET_MARGIN;
+					rect2.x += COLLDET_MARGIN;
+					rect2.y += COLLDET_MARGIN;
+				}
+				
+				char p1flags = get_point_flag( rect1.x, rect1.y, rect2.x, rect2.y, x1, y1 );
+				char p2flags = get_point_flag( rect1.x, rect1.y, rect2.x, rect2.y, x2, y2 );
+				
+				// Handle obvious cases
+				if ( p1flags & p2flags ) // both points on the same side, no collision
+					continue;
+				
+				if ( (p1flags == RECT_IN) || (p2flags == RECT_IN) ) //we're in? collision without a doubt
+					return FALSE;
+				
+				if ( ispoint ) // degenerated line, and outside the rectangle, no collision
+					continue;
+				
+				//----------
+				// possible collision, check if the line is crossing the rectangle
+				// by looking if all vertices of the rectangle are in the same half-space
+				//
+				// 1- line equation : a*x + b*y + c = 0
+				float line_a = -(y1 - y2);
+				float line_b = x1 - x2;
+				float line_c = x2*y1 - y2*x1;
+				
+				// 2- check each vertex, halt as soon as one is on the other halfspace -> collision
+				char first_vertex_sign = ( line_a * rect1.x + line_b * rect1.y + line_c ) > 0 ? 0 : 1;
+				char other_vertex_sign = ( line_a * rect2.x + line_b * rect1.y + line_c ) > 0 ? 0 : 1;
+				if ( first_vertex_sign != other_vertex_sign ) return FALSE;
+				other_vertex_sign = ( line_a * rect2.x + line_b * rect2.y + line_c ) > 0 ? 0 : 1;
+				if ( first_vertex_sign != other_vertex_sign ) return FALSE;
+				other_vertex_sign = ( line_a * rect1.x + line_b * rect2.y + line_c ) > 0 ? 0 : 1;
+				if ( first_vertex_sign != other_vertex_sign ) return FALSE;
+				
+			}
+			
+		} //for x_tile
+	} //for y_tile
+	
+	return TRUE;
+	
 }
 
 /**************************************************************

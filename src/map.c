@@ -959,7 +959,8 @@ static int smash_obstacles_only_on_tile ( float x , float y , int map_x , int ma
 	if ( fabsf ( x - target_obstacle -> pos . x ) > 0.4 ) continue ;
 	if ( fabsf ( y - target_obstacle -> pos . y ) > 0.4 ) continue ;
 	
-	    colldet_filter filter = { ObstacleByIdPassFilterCallback, &target_idx, &FlyablePassFilter };
+	    colldet_filter filter = FlyableExceptIdPassFilter;
+	    filter.data = &target_idx;
 	    if ( ! DirectLineColldet ( x , y , 
 					Me . pos . x , Me . pos . y , 
 					Me . pos . z, &filter ) )

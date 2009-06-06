@@ -417,7 +417,8 @@ static int lvlval_chest_execute( struct level_validator *this, struct lvlval_ctx
 				
 				if ( ! (IS_CHEST(this_obs->type) || IS_BARREL(this_obs->type))  ) continue;
     			
-				colldet_filter filter = { ObstacleByIdPassFilterCallback, &obs_index, &WalkablePassFilter };
+				colldet_filter filter = WalkableExceptIdPassFilter;
+				filter.data = &obs_index;
 				if ( !SinglePointColldet(this_obs->pos.x, this_obs->pos.y, validator_ctx->this_level->levelnum, &filter) )
 				{
 					if ( !is_invalid )

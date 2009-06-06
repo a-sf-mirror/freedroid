@@ -161,7 +161,8 @@ void find_position_near_obstacle( float* item_x, float* item_y, int obst_index, 
 	RotateVectorByAngle(&offset_vector, (float)MyRandom(8)*45.0);
 
 	// Step 2: rotate offset_vector by 45° until an available start position is found
-	colldet_filter filter = { ObstacleByIdPassFilterCallback, &obst_index, NULL };
+	colldet_filter filter = ObstacleByIdPassFilter;
+	filter.data = &obst_index;
 
 	tries = 0;
 	while ( ( !DirectLineColldet(obst_x, obst_y, obst_x + offset_vector.x, obst_y + offset_vector.y, Me.pos.z, &filter) ||
@@ -648,7 +649,7 @@ void correct_tux_position_according_to_jump_thresholds ( )
 	old_mouse_move_target.x = Me.mouse_move_target.x;
 	old_mouse_move_target.y = Me.mouse_move_target.y;
 	old_mouse_move_target.z = Me.mouse_move_target.z;
-	
+
 	adapt_position_for_jump_thresholds(&oldpos, &newpos);
 
 	if ( oldpos.z == newpos.z ) {
@@ -943,7 +944,7 @@ MoveTuxAccordingToHisSpeed ( )
       //--------------------
       // So there is no speed, so we check for passability...
       //
-		if ( ! SinglePointColldet( Me . pos . x , Me . pos . y , Me . pos . z, &WalkablePassFilter ) )
+	if ( ! SinglePointColldet( Me . pos . x , Me . pos . y , Me . pos . z, &WalkablePassFilter ) )
 	{
 	  //--------------------
 	  // Now it's time to launch the stuck-fallback handling...
@@ -1011,88 +1012,88 @@ MoveTuxAccordingToHisSpeed ( )
  */
 int move_tux_thowards_raw_position ( float x , float y )
 {
-    moderately_finepoint RemainingWay;
-    moderately_finepoint planned_step;
-    float length;
-
-    if ( Me . energy <= 0 ) return ( FALSE ) ;
-
-    RemainingWay . x = - Me . pos . x + x ;
-    RemainingWay . y = - Me . pos . y + y ;
-
-    length = vect_len ( RemainingWay );
-
-    //--------------------
-    // Maybe the remaining way is VERY!! small!  Then we must not do
-    // a division at all.  We also need not do any movement, so the
-    // speed can be eliminated and we're done here.
-    //
-    if ( length < 0.05 )
+	moderately_finepoint RemainingWay;
+	moderately_finepoint planned_step;
+	float squared_length, length;
+	
+	if ( Me.energy <= 0 ) return( FALSE );
+	
+	RemainingWay.x = - Me.pos.x + x;
+	RemainingWay.y = - Me.pos.y + y;
+	
+	squared_length = RemainingWay.x * RemainingWay.x + RemainingWay.y * RemainingWay.y;
+	
+	//--------------------
+	// Maybe the remaining way is VERY small!  Then we must not do
+	// a division at all.  We also need not do any movement, so the
+	// speed can be eliminated and we're done here.
+	//
+	if ( squared_length < DIST_TO_INTERM_POINT * DIST_TO_INTERM_POINT )
 	{
-	Me . speed . x = 0 ;
-	Me . speed . y = 0 ;
-	return ( TRUE ) ;
+		Me.speed.x = 0;
+		Me.speed.y = 0;
+		return( TRUE );
 	}
-
-    //--------------------
-    // Now depending on whether the running key is pressed or not,
-    // we have the Tux go on running speed or on walking speed.
-    //
-    if ( Me . running_power <= 0 ) {
-	Me . running_must_rest = TRUE ;
+	
+	//--------------------
+	// Now depending on whether the running key is pressed or not,
+	// we have the Tux go on running speed or on walking speed.
+	//
+	length = sqrt(squared_length);
+	
+	if ( Me.running_power <= 0 ) {
+		Me.running_must_rest = TRUE;
 	}
-
-    if (Me . running_must_rest)
+	
+	if ( Me.running_must_rest )	
 	{
-	autorun_activated = 0;
-	planned_step . x = RemainingWay . x * TUX_WALKING_SPEED / length ;
-	planned_step . y = RemainingWay . y * TUX_WALKING_SPEED / length ;
-	//DebugPrintf( -2, "\n Now walking...");
+		autorun_activated = 0;
+		planned_step.x = RemainingWay.x * TUX_WALKING_SPEED / length;
+		planned_step.y = RemainingWay.y * TUX_WALKING_SPEED / length;
+		//DebugPrintf( -2, "\n Now walking...");
 	}
-
-    if ( (LeftCtrlPressed() || autorun_activated ) && !( LeftCtrlPressed() && autorun_activated ) && ( ! Me . running_must_rest ) )
-	{ 
-	planned_step . x = RemainingWay . x * TUX_RUNNING_SPEED / length ;
-	planned_step . y = RemainingWay . y * TUX_RUNNING_SPEED / length ;
-	// DebugPrintf ( -2 , "\nNow running..." );
-	}
-    else
+	
+	if ( (LeftCtrlPressed() || autorun_activated ) && !( LeftCtrlPressed() && autorun_activated ) && ( ! Me.running_must_rest ) )
 	{
-	planned_step . x = RemainingWay . x * TUX_WALKING_SPEED / length ;
-	planned_step . y = RemainingWay . y * TUX_WALKING_SPEED / length ;
-	// DebugPrintf ( -2 , "\nNow walking..." );
+		planned_step.x = RemainingWay.x * TUX_RUNNING_SPEED / length;
+		planned_step.y = RemainingWay.y * TUX_RUNNING_SPEED / length;
+		// DebugPrintf ( -2 , "\nNow running..." );
 	}
-
-    //--------------------
-    // Now that the speed is set, we can start to make the step
-    //
-    Me . speed . x = planned_step . x ;
-    Me . speed . y = planned_step . y ;
-
-    // --------------------
-    // If we might step over the target,
-    // we reduce the speed.
-    //
-    if ( fabsf ( planned_step . x * Frame_Time() ) >= fabsf ( RemainingWay .x  ) )
-	Me . speed . x = RemainingWay . x / Frame_Time() ;
-    if ( fabsf ( planned_step . y * Frame_Time() ) >= fabsf ( RemainingWay .y  ) )
-	Me . speed . y = RemainingWay . y / Frame_Time() ;
-
-
-
-    //--------------------
-    // In case we have reached our target, we can remove this mouse_move_target again,
-    // but also if we have been thrown onto a different level, we cancel our current
-    // mouse move target...
-    //
-    if ( ( ( fabsf ( RemainingWay.y ) <= DISTANCE_TOLERANCE ) && 
-		( fabsf ( RemainingWay.x ) <= DISTANCE_TOLERANCE )     ) ||
-	    ( Me . mouse_move_target . z != Me . pos . z ) )
+	else
 	{
-	return ( TRUE );
+		planned_step.x = RemainingWay.x * TUX_WALKING_SPEED / length;
+		planned_step.y = RemainingWay.y * TUX_WALKING_SPEED / length;
+		// DebugPrintf ( -2 , "\nNow walking..." );
 	}
-
-    return ( FALSE );
+	
+	//--------------------
+	// Now that the speed is set, we can start to make the step
+	//
+	Me.speed.x = planned_step.x;
+	Me.speed.y = planned_step.y;
+	
+	// --------------------
+	// If we might step over the target,
+	// we reduce the speed.
+	//
+	if ( fabsf ( planned_step.x * Frame_Time() ) >= fabsf ( RemainingWay.x ) )
+		Me.speed.x = RemainingWay.x / Frame_Time();
+	if ( fabsf ( planned_step.y * Frame_Time() ) >= fabsf ( RemainingWay.y ) )
+		Me.speed.y = RemainingWay.y / Frame_Time();
+	
+	//--------------------
+	// In case we have reached our target, we can remove this mouse_move_target again,
+	// but also if we have been thrown onto a different level, we cancel our current
+	// mouse move target...
+	//
+	if ( ( ( fabsf ( RemainingWay.y ) <= DISTANCE_TOLERANCE ) && 
+		   ( fabsf ( RemainingWay.x ) <= DISTANCE_TOLERANCE )     ) ||
+		 ( Me.mouse_move_target.z != Me.pos.z ) )
+	{
+		return( TRUE );
+	}
+	
+	return( FALSE );
 }; // int move_tux_thowards_raw_position ( float x , float y )
 
 /**
@@ -1295,7 +1296,7 @@ move_tux ( )
 		       ( fabsf ( move_target . y - last_given_course_target . y ) < 0.3 ) ))
 		{
 			freeway_context frw_ctx = { FALSE, { NULL, NULL } };
-			pathfinder_context pf_ctx = { &WalkablePassFilter, &frw_ctx };
+			pathfinder_context pf_ctx = { &WalkableWithMarginPassFilter, &frw_ctx };
 			set_up_intermediate_course_between_positions ( &Me.pos, &move_target, &Me.next_intermediate_point[0], MAX_INTERMEDIATE_WAYPOINTS_FOR_TUX, &pf_ctx ) ;
 			last_given_course_target . x = move_target . x ;
 			last_given_course_target . y = move_target . y ;
@@ -2260,7 +2261,8 @@ check_for_chests_to_open ( int chest_index )
 	{
 	    //--------------------
 	    // Check that the chest is really reachable, and not behind an obstacle
-		colldet_filter filter = { ObstacleByIdPassFilterCallback, &chest_index, NULL };
+		colldet_filter filter = ObstacleByIdPassFilter;
+		filter.data = &chest_index;
 	    if ( DirectLineColldet( Me.pos.x, Me.pos.y,
                                 our_level->obstacle_list[chest_index].pos.x, our_level->obstacle_list[chest_index].pos.y,
                                 Me.pos.z, &filter) )
@@ -2541,7 +2543,8 @@ check_for_barrels_to_smash ( int barrel_index )
 	//--------------------
 	// Check that the barrel is really reachable, and not behind an obstacle
 	//
-	colldet_filter filter = { ObstacleByIdPassFilterCallback, &barrel_index, NULL };
+	colldet_filter filter = ObstacleByIdPassFilter;
+	filter.data = &barrel_index;
 	
 	if ( DirectLineColldet( Me.pos.x, Me.pos.y,
 							our_level->obstacle_list[barrel_index].pos.x, our_level->obstacle_list[barrel_index].pos.y,

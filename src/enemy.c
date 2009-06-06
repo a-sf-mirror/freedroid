@@ -1986,7 +1986,7 @@ update_enemy ( enemy * ThisRobot )
     // Default pathfinder execution context
     // Can eventually be changed by a state_machine_xxxx function
     freeway_context frw_ctx = { FALSE, { ThisRobot, NULL } };
-	pathfinder_context pf_ctx = { &WalkablePassFilter, &frw_ctx };
+	pathfinder_context pf_ctx = { &WalkableWithMarginPassFilter, &frw_ctx };
     
     switch ( ThisRobot -> combat_state )
 	{
@@ -2942,7 +2942,7 @@ static int is_potential_target( enemy* this_robot, gps* target_pos, float* squar
 	// Else (if melee_weapon or not shootable for a range_weapon), checks if a path exists to reach the target
 	moderately_finepoint mid_pos[40];
 	moderately_finepoint to_pos = { target_vpos.x, target_vpos.y };
-	pathfinder_context pf_ctx = { &WalkablePassFilter, NULL };
+	pathfinder_context pf_ctx = { &WalkableWithMarginPassFilter, NULL };
 	int path_found = set_up_intermediate_course_between_positions( &(this_robot->pos), &to_pos, mid_pos, 40, &pf_ctx) && (mid_pos[5].x == -1);
 	if (!path_found) return FALSE;
 

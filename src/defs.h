@@ -1626,7 +1626,14 @@ enum
 #define SQUARED_MELEE_APPROACH_DIST (16.0)
 // Minimum distance to shoot with a range weapon
 #define SQUARED_RANGE_SHOOT_MIN_DIST (7.0)
-  
+
+// Margin's size added to obstacles size when colldet is called by the pathfinder
+#define COLLDET_MARGIN (0.05)
+// Distance to next intermediate point before to follow the next subpath
+// It has to be smaller than COLLDET_MARGIN. Near half of COLLDET_MARGIN is a
+// good candidate
+#define DIST_TO_INTERM_POINT (0.03)
+
 //-----
 // Pathfinder constants
 #define DEBUG_TUX_PATHFINDING 1  // debug level for tux pathfinding...
