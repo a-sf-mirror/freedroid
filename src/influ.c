@@ -803,8 +803,8 @@ CheckForTuxOutOfMap ( )
   //--------------------
   // Now perhaps the influencer is out of bounds, i.e. outside of the map.
   //
-  if ( ( (int) rintf( Me . pos.y ) >= MoveLevel->ylen ) ||
-       ( (int) rintf( Me . pos.x ) >= MoveLevel->xlen ) ||
+  if ( ( (int) rintf( Me . pos.y ) > MoveLevel->ylen ) ||
+       ( (int) rintf( Me . pos.x ) > MoveLevel->xlen ) ||
        ( (int) rintf( Me . pos.y ) <  0              ) ||
        ( (int) rintf( Me . pos.x ) <  0              ) )
     {
