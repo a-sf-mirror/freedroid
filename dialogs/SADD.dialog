@@ -38,7 +38,7 @@ EveryTime LuaCode={
 		if (done_quest("SADD's power supply")) then hide(30, 31, 33) -- add in more lab missions here in the future
 		else
 			if (has_item_backpack("Red Dilithium Crystal") > 0) then
-				if (has_cookie("asked_SADD_for_exterminator")) then show(33) else show(30) end
+				if (has_cookie("asked_SADD_for_exterminator")) then show(30) else show(33) end
 			else
 				show(31)
 			end
@@ -147,7 +147,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=16  Text=_"I suggest a deal. You let me out, I bring you dilithium cristals. It will save both of us."
+Nr=16  Text=_"I suggest a deal. You let me out, I bring you dilithium crystals. It will save both of us."
 LuaCode={
 	npc_says(_"Why would I trust you?")
     hide(4, 8, 10, 15, 16)
@@ -166,7 +166,6 @@ Nr=21  Text=_"You must promise me a significant reward."
 LuaCode={
 	npc_says(_"Damn. Ok, I'll give you a super exterminator if you give me dilithium cristals.")
     add_cookie("asked_SADD_for_exterminator")
-    open_diary_entry("Propagating a faulty firmware", 1)
     next(23)
     hide(21, 22)
 }
@@ -185,7 +184,6 @@ LuaCode={
 	npc_says(_"Go, and bring dilithium. I badly need it.")
     end_dialog()
     add_quest("SADD's power supply")
-    open_diary_entry("Propagating a faulty firmware", 0)
     change_obstacle("SADDGun1", "disabled")
     change_obstacle("SADDGun2", "disabled")
     change_obstacle("BreakableWall1", "broken")
@@ -199,7 +197,7 @@ LuaCode={
     display_big_message("Restored SADD's power supply")
     add_xp(1000)
     end_quest("SADD's power supply")
-    open_diary_entry("Propagating a faulty firmware", 3)
+    --open_diary_entry("SADD's power supply", 3)
     del_item_backpack("Red Dilithium Crystal", 1)
     change_obstacle("SADDDepotDoor", "opened")
     hide(30)
@@ -222,7 +220,7 @@ LuaCode={
     display_big_message("Restored SADD's power supply")
     add_xp(1500)
     end_quest("SADD's power supply")
-    open_diary_entry("Propagating a faulty firmware", 2)
+    --open_diary_entry("SADD's power supply", 2)
     change_obstacle("SADDDepotDoor", "opened")
     change_obstacle("SADDBioDoor", "opened")
     del_item_backpack("Red Dilithium Crystal", 1)
@@ -241,7 +239,6 @@ LuaCode={
 	tux_says(_"I'll kill you if you don't give me my gun!")
 	npc_says(_"You are welcome. But you would never get out of here, my death won't help you.")
     end_dialog()
-    open_diary_entry("Propagating a faulty firmware", 4)
     change_obstacle("SADDGun1", "enabled")
     change_obstacle("SADDGun2", "enabled")
     change_obstacle("BreakableWall2", "broken")
