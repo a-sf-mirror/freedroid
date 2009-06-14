@@ -228,8 +228,8 @@ SForce: T=247 Fixed=0 Marker=1009 Friendly=0 StartLabel="Level9Stalker4StartGame
 
 ** Beginning of new Level **
 Level=10
-Maximum number of Random Droids=40
-Minimum number of Random Droids=40
+Maximum number of Random Droids=30
+Minimum number of Random Droids=30
 Allowed Type of Random Droid for this level: 543
 ** End of this levels droid data **
 
@@ -600,6 +600,35 @@ SForce: T=123 Fixed=0 Marker=4037 Friendly=0 StartLabel="takeover7" RushTux="no"
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
+
+** Beginning of new Level **
+Level=38
+Maximum number of Random Droids=30
+Minimum number of Random Droids=30
+Allowed Type of Random Droid for this level: 543
+** End of this levels droid data **
+
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+
+** Beginning of new Level **
+Level=39
+Maximum number of Random Droids=30
+Minimum number of Random Droids=30
+Allowed Type of Random Droid for this level: 543
+** End of this levels droid data **
+
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+
+** Beginning of new Level **
+Level=40
+Maximum number of Random Droids=30
+Minimum number of Random Droids=30
+Allowed Type of Random Droid for this level: 543
+** End of this levels droid data **
 
 //----------------------------------------------------------------------
 // This marker must mark the very end of this file.

@@ -180,23 +180,6 @@ LuaCode={
 ##############
 ## Level 10 ##
 ##############
-* New event trigger *
-Name=_"To a forgotten bunker"
-Trigger at label="ToBunker"
-Silent=0
-LuaCode={
-	teleport("BunkerEntry")
-}
-* End of trigger *
-
-* New event trigger *
-Name=_"Unknown place"
-Trigger at label="EnterSecretResearchCenter"
-Silent=0
-LuaCode={
-	teleport("SecretResearchCenterArrival")
-}
-* End of trigger *
 
 ##############
 ## Level 11 ##
@@ -344,10 +327,10 @@ LuaCode={
 ##############
 * New event trigger *
 Name=_"Back from bunker"
-Trigger at label="ExitBunker"
+Trigger at label="Lv34to38"
 Silent=0
 LuaCode={
-	teleport("ExitFromBunker");
+	teleport("Lv38from34");
 }
 * End of trigger *
 
@@ -356,10 +339,10 @@ LuaCode={
 ##############
 * New event trigger *
 Name=_"Back to the desert"
-Trigger at label="ExitFromSecretResearchCenter"
+Trigger at label="Lv35to40"
 Silent=0
 LuaCode={
-	teleport("BackFromSecretResearchCenter")
+	teleport("Lv40from35")
 }
 * End of trigger *
 
@@ -374,10 +357,30 @@ LuaCode={
 ##############
 ## Level 38 ##
 ##############
+* New event trigger *
+Name=_"To a forgotten bunker"
+Trigger at label="Lv38to34"
+Silent=0
+LuaCode={
+	teleport("Lv34from38")
+}
+* End of trigger *
 
 ##############
 ## Level 39 ##
 ##############
+
+##############
+## Level 40 ##
+##############
+* New event trigger *
+Name=_"Unknown place"
+Trigger at label="Lv40to35"
+Silent=0
+LuaCode={
+	teleport("Lv35from40")
+}
+* End of trigger *
 
 
 ** End of Mission Event Section **
