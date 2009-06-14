@@ -455,11 +455,6 @@ static void show_level_editor_tooltips ( void )
 		if ( time_spent_on_some_button > TICKS_UNTIL_TOOLTIP )
 			show_button_tooltip ( _("Go level west\n\nUse this button to move one level west, i.e. to the level that is glued to the western side of this level." ));
 		}
-	else if ( MouseCursorIsOnButton ( EXPORT_THIS_LEVEL_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
-		{
-		if ( time_spent_on_some_button > TICKS_UNTIL_TOOLTIP )
-			show_button_tooltip ( _("Export this level\n\nIn FreedroidRPG maps can be glued together to form one big map.  But that requires that the maps are identical where they overlap.  This button will copy the borders of this level to the borders of the neighbouring levels, so that the maps are in sync again." ));
-		}
 	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_SAVE_SHIP_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) ||
 			MouseCursorIsOnButton ( LEVEL_EDITOR_SAVE_SHIP_BUTTON_OFF , GetMousePos_x()  , GetMousePos_y()  )	)
 		{
