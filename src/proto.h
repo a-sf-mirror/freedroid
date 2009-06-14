@@ -646,8 +646,7 @@ int GreatShopInterface (int, item *ShowPointerList[MAX_ITEMS_IN_INVENTORY], int,
 // takeover.c 
 
 int droid_takeover(enemy *);
-int do_takeover(int, int);
-void PlayGame (void);
+int do_takeover(int, int, int);
 void EnemyMovements (void);
 
 int GetTakeoverGraphics (void);

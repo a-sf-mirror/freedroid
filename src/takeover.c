@@ -377,247 +377,8 @@ static void ChooseColor (void)
 	SDL_Delay(1);
 }; // void ChooseColor ( void ) 
 
-
-int do_takeover(int player_capsules, int opponent_capsules)
+static void PlayGame (int countdown)
 {
-	char *message;
-	int player_won = 0;
-	int FinishTakeover = FALSE;
-	int row;
-	int old_status;
-
-	old_status = game_status;
-	
-	Activate_Conservative_Frame_Computation ();
-	
-	//--------------------
-	// Maybe takeover graphics haven't been loaded yet.  Then we do this
-	// here now and for once.  Later calls will be ignored inside the function.
-	//
-	GetTakeoverGraphics ( ) ;
-
-	// eat pending events
-	input_handle();
-
-	while (!FinishTakeover)
-		{
-		//--------------------
-		// Init Color-column and Capsule-Number for each opponenet and your color 
-		//
-		for (row = 0; row < NUM_LINES; row++)
-			{
-			DisplayColumn[row] = (row % 2);
-			CapsuleCountdown[GELB][0][row] = -1;
-			CapsuleCountdown[VIOLETT][0][row] = -1;
-			} // for row 
-
-		YourColor = GELB;
-		OpponentColor = VIOLETT;
-
-		CapsuleCurRow[GELB] = 0;
-		CapsuleCurRow[VIOLETT] = 0;
-
-		NumCapsules[YOU] = player_capsules;
-		NumCapsules[ENEMY] = opponent_capsules;
-		InventPlayground ();
-
-		EvaluatePlayground ();
-
-		ShowPlayground ();
-		our_SDL_flip_wrapper();
-
-		ChooseColor ();
-
-		//--------------------
-		// This following function plays the takeover game, until one
-		// of THREE states is reached, i.e. until YOU WON, YOU LOST
-		// or until DEADLOCK is reached.  Well, so maybe after that
-		// the takeover game is finished, but if it's a deadlock, then
-		// the game must be played again in the next loop...
-		//
-		PlayGame ();
-
-		//--------------------
-		// We we evaluate the final score of the game.  Maybe we're done
-		// already, maybe not...
-		//
-		if (LeaderColor == YourColor) {
-			Takeover_Game_Won_Sound ();
-			message = _("Complete");
-			FinishTakeover = TRUE;
-			player_won = 1;
-		} else if (LeaderColor == OpponentColor) {
-			Takeover_Game_Lost_Sound ();
-			message = _("Rejected");
-			FinishTakeover = TRUE;
-			player_won = 0;
-		} else {
-			Takeover_Game_Deadlock_Sound ();
-			message = _("Deadlock");
-		}
-
-		ShowPlayground ();
-		to_show_banner (message, NULL);
-		our_SDL_flip_wrapper();
-		SDL_Delay(100);
-
-		}
-    
-	game_status = old_status;
-	return player_won;
-}
-
-/*-----------------------------------------------------------------
- *
- * This function manages the whole takeover game of Tux against 
- * some bot.
- *
- * The return value is TRUE/FALSE depending on whether the game was
- * finally won/lost.
- *
- *-----------------------------------------------------------------*/
-int droid_takeover(enemy *target)
-{
-	int Finished = FALSE;
-	int Displacement = 0 ;
-	int reward = 0;
-	char game_message_text [ 500 ] ;
-	SDL_Event event;
-
-	//--------------------
-	// Prevent distortion of framerate by the delay coming from 
-	// the time spent in the menu.
-	//
-	Activate_Conservative_Frame_Computation ();
-
-	//--------------------
-	// We set the UserRect to full again, no matter what other windows might
-	// be open right now...
-	//
-	User_Rect . x = 0 ;
-	User_Rect . y = 0 ;
-	User_Rect . w = GameConfig . screen_width ;
-	User_Rect . h = GameConfig . screen_height ;
-
-	while (SpacePressed () || MouseLeftPressed()) ;  // make sure space is release before proceed 
-
-	SwitchBackgroundMusicTo ( TAKEOVER_BACKGROUND_MUSIC_SOUND );
-
-	DisplayBanner ();
-
-	if (GameConfig . auto_display_to_help) {
-		PlayATitleFile ( "TakeoverInstructions.title" );
-		GameConfig . auto_display_to_help = 0;
-	}
-
-	while ( !Finished )	{
-		ShowDroidInfo ( target->type, Displacement , TRUE );
-		ShowGenericButtonFromList ( TAKEOVER_HELP_BUTTON ) ;
-		blit_our_own_mouse_cursor ( );
-		our_SDL_flip_wrapper();
-
-		while(SDL_PollEvent(&event)) {
-
-			if (event.type == SDL_QUIT) {
-				Terminate(0);
-			}
-
-			if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT) {
-				if ( MouseCursorIsOnButton( UP_BUTTON , GetMousePos_x()  , GetMousePos_y()  ))
-					{
-					MoveMenuPositionSound();
-					Displacement += FontHeight ( GetCurrentFont () );
-					}
-				else if ( MouseCursorIsOnButton( DOWN_BUTTON , GetMousePos_x()  , GetMousePos_y()  ))
-					{
-					MoveMenuPositionSound();
-					Displacement -= FontHeight ( GetCurrentFont () );
-					}
-				else if ( MouseCursorIsOnButton( DRUID_SHOW_EXIT_BUTTON , GetMousePos_x ( )  , GetMousePos_y ( )  )) 
-					{
-					Finished = TRUE;
-					}
-				else if ( MouseCursorIsOnButton( TAKEOVER_HELP_BUTTON , GetMousePos_x ( )  , GetMousePos_y ( )  )) 
-					{
-					PlayATitleFile ( "TakeoverInstructions.title" );
-					}
-			} else if (event.type == SDL_KEYDOWN && ((event.key.keysym.sym == SDLK_SPACE) || (event.key.keysym.sym == SDLK_ESCAPE))) {
-				Finished = TRUE ;
-			}	
-		}
-		SDL_Delay(1);
-	}
-
-	while ( !( !SpacePressed() && !EscapePressed() && !MouseLeftPressed() )) ;
-
-	cDroid = target;
-	int player_capsules = 2 + Me.base_skill_level[get_program_index_with_name("Hacking")];
-	int opponent_capsules = 2 + Druidmap[target->type].class;
-
-	if (do_takeover(player_capsules, opponent_capsules)) {
-		/* Won takeover */
-		Me . marker = target->marker;
-
-		reward = Druidmap [ target->type ] . experience_reward * 1 ;
-		Me . Experience += reward;
-		sprintf ( game_message_text , _("For taking control of your enemy, you receive %d experience."),
-				reward );
-		append_new_game_message ( game_message_text );
-
-		//--------------------
-		// Maybe the enemy in question was a kind of 'boss monster' or it had
-		// some special item, that is relevant to a mission or quest.  In that
-		// case (like also when the bot is finally destroyed, the quest item
-		// should be dropped after the successful takeover process, even if the
-		// enemy isn't completely dead yet...
-		//
-		if ( target->on_death_drop_item_code != (-1) )
-			{
-			DropItemAt(target->on_death_drop_item_code, target->pos.z, target->pos.x, 
-					target->pos.y, -1, -1, 1);
-			target->on_death_drop_item_code = -1;
-			}  
-
-		target->is_friendly = TRUE ;
-		target->has_been_taken_over = TRUE ; 
-
-		target->combat_state = WAYPOINTLESS_WANDERING ;
-
-		//--------------------
-		// When the bot is taken over, it should not turn hostile when
-		// the rest of his former combat group (identified by having the
-		// same marker) is attacked by the Tux.
-		//
-		target->marker = 0 ;
-	} else {
-		Me . energy *= 0.5 ;
-	}
-
-
-	cDroid = NULL;
-
-    ClearGraphMem();
-
-    SwitchBackgroundMusicTo ( CURLEVEL() -> Background_Song_Name );
-
-    if ( LeaderColor == YourColor )
-	return TRUE;
-    else
-	return FALSE;
-
-}; // int Takeover( int enemynum ) 
-
-
-
-/*-----------------------------------------------------------------
- * @Desc: the acutal Takeover game-playing is done here
- *
- *
- *-----------------------------------------------------------------*/
-void
-PlayGame (void)
-{
-  int countdown = 100;   /* lenght of Game in 1/10 seconds */
   char count_text[80];
   int FinishTakeover = FALSE;
   int row;
@@ -802,7 +563,236 @@ PlayGame (void)
 
     return;
 
-} /* PlayGame() */
+}
+
+int do_takeover(int player_capsules, int opponent_capsules, int game_length)
+{
+	char *message;
+	int player_won = 0;
+	int FinishTakeover = FALSE;
+	int row;
+	int old_status;
+
+	old_status = game_status;
+	
+	Activate_Conservative_Frame_Computation ();
+	
+	//--------------------
+	// Maybe takeover graphics haven't been loaded yet.  Then we do this
+	// here now and for once.  Later calls will be ignored inside the function.
+	//
+	GetTakeoverGraphics ( ) ;
+
+	// eat pending events
+	input_handle();
+
+	while (!FinishTakeover)
+		{
+		//--------------------
+		// Init Color-column and Capsule-Number for each opponenet and your color 
+		//
+		for (row = 0; row < NUM_LINES; row++)
+			{
+			DisplayColumn[row] = (row % 2);
+			CapsuleCountdown[GELB][0][row] = -1;
+			CapsuleCountdown[VIOLETT][0][row] = -1;
+			} // for row 
+
+		YourColor = GELB;
+		OpponentColor = VIOLETT;
+
+		CapsuleCurRow[GELB] = 0;
+		CapsuleCurRow[VIOLETT] = 0;
+
+		NumCapsules[YOU] = player_capsules;
+		NumCapsules[ENEMY] = opponent_capsules;
+		InventPlayground ();
+
+		EvaluatePlayground ();
+
+		ShowPlayground ();
+		our_SDL_flip_wrapper();
+
+		ChooseColor ();
+
+		//--------------------
+		// This following function plays the takeover game, until one
+		// of THREE states is reached, i.e. until YOU WON, YOU LOST
+		// or until DEADLOCK is reached.  Well, so maybe after that
+		// the takeover game is finished, but if it's a deadlock, then
+		// the game must be played again in the next loop...
+		//
+		PlayGame(game_length);
+
+		//--------------------
+		// We we evaluate the final score of the game.  Maybe we're done
+		// already, maybe not...
+		//
+		if (LeaderColor == YourColor) {
+			Takeover_Game_Won_Sound ();
+			message = _("Complete");
+			FinishTakeover = TRUE;
+			player_won = 1;
+		} else if (LeaderColor == OpponentColor) {
+			Takeover_Game_Lost_Sound ();
+			message = _("Rejected");
+			FinishTakeover = TRUE;
+			player_won = 0;
+		} else {
+			Takeover_Game_Deadlock_Sound ();
+			message = _("Deadlock");
+		}
+
+		ShowPlayground ();
+		to_show_banner (message, NULL);
+		our_SDL_flip_wrapper();
+		SDL_Delay(100);
+
+		}
+    
+	game_status = old_status;
+	return player_won;
+}
+
+/*-----------------------------------------------------------------
+ *
+ * This function manages the whole takeover game of Tux against 
+ * some bot.
+ *
+ * The return value is TRUE/FALSE depending on whether the game was
+ * finally won/lost.
+ *
+ *-----------------------------------------------------------------*/
+int droid_takeover(enemy *target)
+{
+	int Finished = FALSE;
+	int Displacement = 0 ;
+	int reward = 0;
+	char game_message_text [ 500 ] ;
+	SDL_Event event;
+
+	//--------------------
+	// Prevent distortion of framerate by the delay coming from 
+	// the time spent in the menu.
+	//
+	Activate_Conservative_Frame_Computation ();
+
+	//--------------------
+	// We set the UserRect to full again, no matter what other windows might
+	// be open right now...
+	//
+	User_Rect . x = 0 ;
+	User_Rect . y = 0 ;
+	User_Rect . w = GameConfig . screen_width ;
+	User_Rect . h = GameConfig . screen_height ;
+
+	while (SpacePressed () || MouseLeftPressed()) ;  // make sure space is release before proceed 
+
+	SwitchBackgroundMusicTo ( TAKEOVER_BACKGROUND_MUSIC_SOUND );
+
+	DisplayBanner ();
+
+	if (GameConfig . auto_display_to_help) {
+		PlayATitleFile ( "TakeoverInstructions.title" );
+		GameConfig . auto_display_to_help = 0;
+	}
+
+	while ( !Finished )	{
+		ShowDroidInfo ( target->type, Displacement , TRUE );
+		ShowGenericButtonFromList ( TAKEOVER_HELP_BUTTON ) ;
+		blit_our_own_mouse_cursor ( );
+		our_SDL_flip_wrapper();
+
+		while(SDL_PollEvent(&event)) {
+
+			if (event.type == SDL_QUIT) {
+				Terminate(0);
+			}
+
+			if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT) {
+				if ( MouseCursorIsOnButton( UP_BUTTON , GetMousePos_x()  , GetMousePos_y()  ))
+					{
+					MoveMenuPositionSound();
+					Displacement += FontHeight ( GetCurrentFont () );
+					}
+				else if ( MouseCursorIsOnButton( DOWN_BUTTON , GetMousePos_x()  , GetMousePos_y()  ))
+					{
+					MoveMenuPositionSound();
+					Displacement -= FontHeight ( GetCurrentFont () );
+					}
+				else if ( MouseCursorIsOnButton( DRUID_SHOW_EXIT_BUTTON , GetMousePos_x ( )  , GetMousePos_y ( )  )) 
+					{
+					Finished = TRUE;
+					}
+				else if ( MouseCursorIsOnButton( TAKEOVER_HELP_BUTTON , GetMousePos_x ( )  , GetMousePos_y ( )  )) 
+					{
+					PlayATitleFile ( "TakeoverInstructions.title" );
+					}
+			} else if (event.type == SDL_KEYDOWN && ((event.key.keysym.sym == SDLK_SPACE) || (event.key.keysym.sym == SDLK_ESCAPE))) {
+				Finished = TRUE ;
+			}	
+		}
+		SDL_Delay(1);
+	}
+
+	while ( !( !SpacePressed() && !EscapePressed() && !MouseLeftPressed() )) ;
+
+	cDroid = target;
+	int player_capsules = 2 + Me.base_skill_level[get_program_index_with_name("Hacking")];
+	int opponent_capsules = 2 + Druidmap[target->type].class;
+
+	if (do_takeover(player_capsules, opponent_capsules, 100)) {
+		/* Won takeover */
+		Me . marker = target->marker;
+
+		reward = Druidmap [ target->type ] . experience_reward * 1 ;
+		Me . Experience += reward;
+		sprintf ( game_message_text , _("For taking control of your enemy, you receive %d experience."),
+				reward );
+		append_new_game_message ( game_message_text );
+
+		//--------------------
+		// Maybe the enemy in question was a kind of 'boss monster' or it had
+		// some special item, that is relevant to a mission or quest.  In that
+		// case (like also when the bot is finally destroyed, the quest item
+		// should be dropped after the successful takeover process, even if the
+		// enemy isn't completely dead yet...
+		//
+		if ( target->on_death_drop_item_code != (-1) )
+			{
+			DropItemAt(target->on_death_drop_item_code, target->pos.z, target->pos.x, 
+					target->pos.y, -1, -1, 1);
+			target->on_death_drop_item_code = -1;
+			}  
+
+		target->is_friendly = TRUE ;
+		target->has_been_taken_over = TRUE ; 
+
+		target->combat_state = WAYPOINTLESS_WANDERING ;
+
+		//--------------------
+		// When the bot is taken over, it should not turn hostile when
+		// the rest of his former combat group (identified by having the
+		// same marker) is attacked by the Tux.
+		//
+		target->marker = 0 ;
+	} else {
+		Me . energy *= 0.5 ;
+	}
+
+
+	cDroid = NULL;
+
+    ClearGraphMem();
+
+    SwitchBackgroundMusicTo ( CURLEVEL() -> Background_Song_Name );
+
+    if ( LeaderColor == YourColor )
+	return TRUE;
+    else
+	return FALSE;
+
+}; // int Takeover( int enemynum ) 
 
 /*-----------------------------------------------------------------
  * This function performs the enemy movements in the takeover game.
