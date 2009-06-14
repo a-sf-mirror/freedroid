@@ -2782,9 +2782,8 @@ iso_put_tux_shieldarm ( int x , int y , int rotation_index )
 	}
     else
 	{
-	fprintf ( stderr , "Shield item code: %d " , Me . shield_item . type ) ;
-	ErrorMessage ( __FUNCTION__  , "This shield type is not yet rendered for Tux." ,
-		PLEASE_INFORM, IS_FATAL );
+	ErrorMessage ( __FUNCTION__  , "Shield type %d is not yet rendered for Tux." ,
+		PLEASE_INFORM, IS_FATAL, Me.shield_item.type );
 	}
 	
 
