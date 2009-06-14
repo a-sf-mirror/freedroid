@@ -609,6 +609,9 @@ void blit_one_obstacle(obstacle *our_obstacle, int highlight, int zoom)
 	}
 
 	update_virtual_position(&obs_screen_position, &our_obstacle->pos, CURLEVEL()->levelnum);
+	if (our_obstacle->type == 153) {
+		printf("displaying obstacle 153 at %f %f\n", obs_screen_position.x, obs_screen_position.y);
+	}
 
 	// We blit the obstacle in question, but if we're in the level editor and this
 	// obstacle has been marked, we apply a color filter to it.  Otherwise we blit
@@ -1120,9 +1123,6 @@ static void show_obstacle(int mask, obstacle *o, int code_number)
 		ErrorMessage(__FUNCTION__, "The blitting list contained an illegal obstacle type %d.",
 				PLEASE_INFORM, IS_FATAL, o->type);
 	}
-
-	if (obstacle_map[o->type].flags & NEEDS_PRE_PUT) 
-		return;
 
 	if (!(mask & OMIT_OBSTACLES)) {
 		if (mask & ZOOM_OUT) {
