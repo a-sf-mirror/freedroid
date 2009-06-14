@@ -290,6 +290,93 @@ Entry : %d\n"), Druidmap[droidtype].druidname, droidtype + 1);
     
 }; // void ShowDroidInfo ( ... )
 
+/**
+ * This function does the countdown where you still can changes your
+ * color.
+ */
+static void ChooseColor (void)
+{
+    int countdown = 100;  // duration in 1/10 seconds given for color choosing 
+    int ColorChosen = FALSE;
+    char count_text[80];
+    SDL_Event event;
+    
+    Uint32 prev_count_tick, count_tick_len;
+    
+    count_tick_len = 100; 	// countdown in 1/10 second steps 
+
+    prev_count_tick = SDL_GetTicks ();
+
+    while (!ColorChosen) {
+
+	// wait for next countdown tick 
+	while ( SDL_GetTicks() < prev_count_tick + count_tick_len );
+	
+	prev_count_tick += count_tick_len; // set for next tick 
+	
+	while (SDL_PollEvent(&event)) {
+
+	    if (event.type == SDL_QUIT) {
+		Terminate(0);
+	    }
+	    
+	    if (event.type == SDL_MOUSEBUTTONDOWN) {
+		switch(event.button.button) {
+		    //(clever?) hack : mouse wheel up and down behave
+		    //exactly like LEFT and RIGHT arrow, so we mangle the event
+		    case SDL_BUTTON_WHEELUP:
+			event.type = SDL_KEYDOWN;
+			event.key.keysym.sym = SDLK_LEFT;
+			break;
+		    case SDL_BUTTON_WHEELDOWN:
+			event.type = SDL_KEYDOWN;
+			event.key.keysym.sym = SDLK_RIGHT;
+			break;
+		    case SDL_BUTTON_LEFT:
+			ColorChosen = TRUE;
+			break;
+
+		    default: break;
+		}
+	    } 
+	    
+	    /* no else there! (mouse wheel) */
+	    if (event.type == SDL_KEYDOWN) { 
+		switch(event.key.keysym.sym) {
+		    case SDLK_RIGHT:
+			YourColor = VIOLETT;
+			OpponentColor = GELB;
+			break;
+		    case SDLK_LEFT:
+			YourColor = GELB;
+			OpponentColor = VIOLETT;
+			break;
+		    case SDLK_SPACE:
+			ColorChosen = TRUE;
+			break;
+		    default:
+			break;
+		}
+	    }
+	    
+	}
+	
+	countdown--; // Count down 
+	sprintf (count_text, _("Color-%d"), countdown);
+	
+	ShowPlayground ();
+	to_show_banner (count_text, NULL);
+	our_SDL_flip_wrapper();
+	
+	if (countdown == 0)
+	  ColorChosen = TRUE;
+      
+    } // while(!ColorChosen) 
+
+    while (MouseLeftPressed())
+	SDL_Delay(1);
+}; // void ChooseColor ( void ) 
+
 
 int do_takeover(int player_capsules, int opponent_capsules)
 {
@@ -297,6 +384,20 @@ int do_takeover(int player_capsules, int opponent_capsules)
 	int player_won = 0;
 	int FinishTakeover = FALSE;
 	int row;
+	int old_status;
+
+	old_status = game_status;
+	
+	Activate_Conservative_Frame_Computation ();
+	
+	//--------------------
+	// Maybe takeover graphics haven't been loaded yet.  Then we do this
+	// here now and for once.  Later calls will be ignored inside the function.
+	//
+	GetTakeoverGraphics ( ) ;
+
+	// eat pending events
+	input_handle();
 
 	while (!FinishTakeover)
 		{
@@ -361,7 +462,8 @@ int do_takeover(int player_capsules, int opponent_capsules)
 		SDL_Delay(100);
 
 		}
-
+    
+	game_status = old_status;
 	return player_won;
 }
 
@@ -381,9 +483,6 @@ int droid_takeover(enemy *target)
 	int reward = 0;
 	char game_message_text [ 500 ] ;
 	SDL_Event event;
-	int old_status;
-
-	old_status = game_status;
 
 	//--------------------
 	// Prevent distortion of framerate by the delay coming from 
@@ -400,17 +499,11 @@ int droid_takeover(enemy *target)
 	User_Rect . w = GameConfig . screen_width ;
 	User_Rect . h = GameConfig . screen_height ;
 
-	//--------------------
-	// Maybe takeover graphics haven't been loaded yet.  Then we do this
-	// here now and for once.  Later calls will be ignored inside the function.
-	//
-	GetTakeoverGraphics ( ) ;
-
 	while (SpacePressed () || MouseLeftPressed()) ;  // make sure space is release before proceed 
 
 	SwitchBackgroundMusicTo ( TAKEOVER_BACKGROUND_MUSIC_SOUND );
 
-	DisplayBanner ( ) ;
+	DisplayBanner ();
 
 	if (GameConfig . auto_display_to_help) {
 		PlayATitleFile ( "TakeoverInstructions.title" );
@@ -501,11 +594,11 @@ int droid_takeover(enemy *target)
 	}
 
 
+	cDroid = NULL;
+
     ClearGraphMem();
 
     SwitchBackgroundMusicTo ( CURLEVEL() -> Background_Song_Name );
-
-    game_status = old_status;
 
     if ( LeaderColor == YourColor )
 	return TRUE;
@@ -514,94 +607,6 @@ int droid_takeover(enemy *target)
 
 }; // int Takeover( int enemynum ) 
 
-
-/**
- * This function does the countdown where you still can changes your
- * color.
- */
-void
-ChooseColor (void)
-{
-    int countdown = 100;  // duration in 1/10 seconds given for color choosing 
-    int ColorChosen = FALSE;
-    char count_text[80];
-    SDL_Event event;
-    
-    Uint32 prev_count_tick, count_tick_len;
-    
-    count_tick_len = 100; 	// countdown in 1/10 second steps 
-
-    prev_count_tick = SDL_GetTicks ();
-
-    while (!ColorChosen) {
-
-	// wait for next countdown tick 
-	while ( SDL_GetTicks() < prev_count_tick + count_tick_len );
-	
-	prev_count_tick += count_tick_len; // set for next tick 
-	
-	while (SDL_PollEvent(&event)) {
-
-	    if (event.type == SDL_QUIT) {
-		Terminate(0);
-	    }
-	    
-	    if (event.type == SDL_MOUSEBUTTONDOWN) {
-		switch(event.button.button) {
-		    //(clever?) hack : mouse wheel up and down behave
-		    //exactly like LEFT and RIGHT arrow, so we mangle the event
-		    case SDL_BUTTON_WHEELUP:
-			event.type = SDL_KEYDOWN;
-			event.key.keysym.sym = SDLK_LEFT;
-			break;
-		    case SDL_BUTTON_WHEELDOWN:
-			event.type = SDL_KEYDOWN;
-			event.key.keysym.sym = SDLK_RIGHT;
-			break;
-		    case SDL_BUTTON_LEFT:
-			ColorChosen = TRUE;
-			break;
-
-		    default: break;
-		}
-	    } 
-	    
-	    /* no else there! (mouse wheel) */
-	    if (event.type == SDL_KEYDOWN) { 
-		switch(event.key.keysym.sym) {
-		    case SDLK_RIGHT:
-			YourColor = VIOLETT;
-			OpponentColor = GELB;
-			break;
-		    case SDLK_LEFT:
-			YourColor = GELB;
-			OpponentColor = VIOLETT;
-			break;
-		    case SDLK_SPACE:
-			ColorChosen = TRUE;
-			break;
-		    default:
-			break;
-		}
-	    }
-	    
-	}
-	
-	countdown--; // Count down 
-	sprintf (count_text, _("Color-%d"), countdown);
-	
-	ShowPlayground ();
-	to_show_banner (count_text, NULL);
-	our_SDL_flip_wrapper();
-	
-	if (countdown == 0)
-	  ColorChosen = TRUE;
-      
-    } // while(!ColorChosen) 
-
-    while (MouseLeftPressed())
-	SDL_Delay(1);
-}; // void ChooseColor ( void ) 
 
 
 /*-----------------------------------------------------------------
@@ -1112,8 +1117,9 @@ ShowPlayground ( void )
     blit_tux ( xoffs + DruidStart [ YourColor ] . x ,
 	       yoffs + DruidStart [ YourColor ] . y + 30);
 
-    PutEnemy (cDroid, xoffs + DruidStart[!YourColor].x,
-		  yoffs + DruidStart[!YourColor].y , FALSE , FALSE );
+	if (cDroid)
+		PutEnemy (cDroid, xoffs + DruidStart[!YourColor].x,
+				yoffs + DruidStart[!YourColor].y , FALSE , FALSE );
     
     Set_Rect ( Target_Rect, xoffs + LEFT_OFFS_X, yoffs + LEFT_OFFS_Y,
 	       User_Rect.w, User_Rect.h);
@@ -1914,7 +1920,6 @@ AnimateCurrents (void)
 void
 to_show_banner (const char* left, const char* right)
 {
-  char dummy[80];
   char left_box [LEFT_TEXT_LEN + 10];
   char right_box[RIGHT_TEXT_LEN + 10];
   int left_len, right_len;   // the actualy string lengths
@@ -1929,8 +1934,7 @@ to_show_banner (const char* left, const char* right)
 
   if ( right == NULL )
     {
-      sprintf ( dummy , _("Score"));
-      right = dummy;
+      right = "";
     }
 
   // Now fill in the text

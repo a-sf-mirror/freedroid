@@ -591,6 +591,18 @@ static int lua_chat_make_tux_red_guard(lua_State *L)
     return 0;
 }
 
+static int lua_chat_takeover(lua_State *L)
+{
+	int opponent_capsules = luaL_checkinteger(L, 1);
+	int player_capsules = 2 + Me.base_skill_level[get_program_index_with_name("Hacking")];
+	
+	int won = do_takeover(player_capsules, opponent_capsules);
+    
+	lua_pushboolean(L, won);
+
+	return 1;
+}
+
 luaL_reg lfuncs[] = {
     /* teleport(string map_label) 
      * Teleports the player to the given map label.
@@ -695,6 +707,8 @@ luaL_reg lfuncs[] = {
     { "everybody_hostile", lua_chat_everybody_hostile },
     { "set_bot_state", lua_chat_set_bot_state },
     { "make_tux_red_guard", lua_chat_make_tux_red_guard },
+
+	{"takeover", lua_chat_takeover },
 
     { NULL, NULL },
 };
