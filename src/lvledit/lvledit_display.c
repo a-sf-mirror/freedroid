@@ -182,7 +182,7 @@ void draw_connection_between_tiles ( float x1 , float y1 , float x2 , float y2 ,
 		draw_gl_textured_quad_at_map_position ( &level_editor_dot_cursor , x , y ,
 							      1.0 , 1.0 , 1.0 , 0.25 , FALSE, ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT);
 	    else
-		blit_iso_image_to_map_position ( &level_editor_dot_cursor , x , y);
+		blit_zoomed_iso_image_to_map_position ( &level_editor_dot_cursor , x , y);
 	}
 	else
 	{
