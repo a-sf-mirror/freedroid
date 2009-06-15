@@ -542,6 +542,7 @@ static void LevelOptions ( void )
 	EDIT_LEVEL_DIMENSIONS,
 	SET_LEVEL_INTERFACE_POSITION,
 	CHANGE_LIGHT,
+	CHANGE_INDOOR_OUTDOOR,
 	SET_BACKGROUND_SONG_NAME,
 	CHANGE_INFINITE_RUNNING,
 	ADD_REM_LEVEL,
@@ -608,6 +609,11 @@ static void LevelOptions ( void )
 	else sprintf( Options [ i+1 ] , "Im a bug" );
 	strcat( Options [ i ] , Options [ i+1 ] ); 
 	MenuTexts[ i ] = Options [ i ]; i++ ;
+	sprintf( Options [ i ] , _("Daylight cycle") );
+	strcat( Options [ i ] , ": " ); 
+	if ( EditLevel() -> use_underground_lighting ) strcat ( Options [ i ] , _("Indoors"));
+	else ( strcat ( Options [ i ] , _("Outdoors"))); //Or was it the opposite?
+	MenuTexts[ i ] = Options [ i ]; i++;
 	sprintf( Options [ i ] , _("Background Music") );
 	sprintf( Options [ i+1 ] , ": %s" , EditLevel()->Background_Song_Name );
 	strcat( Options [ i ] , Options [ i+1 ] ); 
@@ -684,6 +690,11 @@ static void LevelOptions ( void )
 	    case EDIT_LEVEL_DIMENSIONS:
 		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
 		EditLevelDimensions ( );
+		break;
+	    case CHANGE_INDOOR_OUTDOOR:
+		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
+		EditLevel() -> use_underground_lighting =
+		    ! EditLevel() -> use_underground_lighting ;
 		break;
 	    case CHANGE_INFINITE_RUNNING:
 		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
