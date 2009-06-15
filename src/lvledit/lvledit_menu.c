@@ -39,6 +39,28 @@
 #include "lvledit/lvledit_map.h"
 #include "lvledit/lvledit_validator.h"
 
+
+int EditLevelNrPopup ( void )
+{
+	char *str, *cstr;
+	int tgt = 0;
+	str =  GetEditableStringInPopupWindow ( 1000 , _("\n Please enter new level number: \n\n") , "");
+	cstr = str;
+	while(*cstr) {
+	    if(!isdigit(*cstr))
+		tgt = -1;
+	    cstr++;
+	}
+
+	if (!tgt)
+	    tgt = atoi(str);
+
+	    free(str);
+
+	return (tgt);
+
+} // int EditLevelNrPopup ( void )
+
 /**
  * This a a menu interface to allow to edit the level dimensions in a
  * convenient way, i.e. so that little stupid copying work or things like
@@ -61,10 +83,6 @@ void EditLevelDimensions ( void )
 		INSERTREMOVE_COLUMN_VERY_EAST,
 		INSERTREMOVE_LINE_VERY_SOUTH,
 		INSERTREMOVE_COLUMN_VERY_WEST,
-		INSERTREMOVE_LINE_NORTHERN_INTERFACE,
-		INSERTREMOVE_COLUMN_EASTERN_INTERFACE,
-		INSERTREMOVE_LINE_SOUTHERN_INTERFACE,
-		INSERTREMOVE_COLUMN_WESTERN_INTERFACE,
 		DUMMY_NO_REACTION1,
 		DUMMY_NO_REACTION2,
 		BACK_TO_LE_MAIN_MENU
@@ -100,30 +118,6 @@ void EditLevelDimensions ( void )
 		strcat( Options [ i ] , ": -/+  (<-/->)"); 
 		MenuTexts[ i ] = Options [ i ]; i++ ;
 
-		sprintf( Options [ i ] , _("North") );
-		strcat( Options [ i ] , " " );
-		strcat( Options [ i ] , _("Interface") );
-		strcat( Options [ i ] , ": -/+  (<-/->)"); 
-		MenuTexts[ i ] = Options [ i ]; i++ ;
-
-		sprintf( Options [ i ] , _("East") );
-		strcat( Options [ i ] , " " );
-		strcat( Options [ i ] , _("Interface") );
-		strcat( Options [ i ] , ": -/+  (<-/->)"); 
-		MenuTexts[ i ] = Options [ i ]; i++ ;
-
-		sprintf( Options [ i ] , _("South") );
-		strcat( Options [ i ] , " " );
-		strcat( Options [ i ] , _("Interface") );
-		strcat( Options [ i ] , ": -/+  (<-/->)"); 
-		MenuTexts[ i ] = Options [ i ]; i++ ;
-
-		sprintf( Options [ i ] , _("West") );
-		strcat( Options [ i ] , " " );
-		strcat( Options [ i ] , _("Interface") );
-		strcat( Options [ i ] , ": -/+  (<-/->)"); 
-		MenuTexts[ i ] = Options [ i ]; i++ ;
-
 		sprintf( Options [ i ] , _("Current level size in X: %d.") , EditLevel->xlen );
 		MenuTexts[ i ] = Options [ i ]; i++ ;
 		sprintf( Options [ i ] , _("Current level size in Y: %d.") , EditLevel->ylen  );
@@ -151,32 +145,6 @@ void EditLevelDimensions ( void )
 	    }
 	  break;
 
-	case INSERTREMOVE_COLUMN_EASTERN_INTERFACE:
-	  if ( RightPressed() )
-	    {
-	      InsertColumnEasternInterface( EditLevel );
-	      while (RightPressed());
-	    }
-	  if ( LeftPressed() )
-	    {
-	      RemoveColumnEasternInterface( EditLevel );
-	      while (LeftPressed());
-	    }
-	  break;
-
-	case INSERTREMOVE_COLUMN_WESTERN_INTERFACE:
-	  if ( RightPressed() )
-	    {
-	      InsertColumnWesternInterface( EditLevel );
-	      while (RightPressed());
-	    }
-	  if ( LeftPressed() )
-	    {
-	      RemoveColumnWesternInterface( EditLevel );
-	      while (LeftPressed());
-	    }
-	  break;
-	  
 	case INSERTREMOVE_COLUMN_VERY_WEST:
 	  if ( RightPressed() )
 	    {
@@ -201,32 +169,6 @@ void EditLevelDimensions ( void )
 	    {
 	      EditLevel->ylen--; // making it smaller is always easy:  just modify the value for size
 	      // allocation of new memory or things like that are not nescessary.
-	      while (LeftPressed());
-	    }
-	  break;
-
-	case INSERTREMOVE_LINE_SOUTHERN_INTERFACE:
-	  if ( RightPressed() )
-	    {
-	      InsertLineSouthernInterface ( EditLevel );
-	      while (RightPressed());
-	    }
-	  if ( LeftPressed() )
-	    {
-	      RemoveLineSouthernInterface ( EditLevel );
-	      while (LeftPressed());
-	    }
-	  break;
-
-	case INSERTREMOVE_LINE_NORTHERN_INTERFACE:
-	  if ( RightPressed() )
-	    {
-	      InsertLineNorthernInterface ( EditLevel );
-	      while (RightPressed());
-	    }
-	  if ( LeftPressed() )
-	    {
-	      RemoveLineNorthernInterface ( EditLevel );
 	      while (LeftPressed());
 	    }
 	  break;
@@ -269,6 +211,7 @@ static void SetLevelInterfaces ( void )
 	char *MenuTexts[ 100 ];
 	int proceed_now = FALSE;
 	int MenuPosition = 1 ;
+	int tgt = -1;
 	char Options [ 20 ] [ 500 ] ;
 	int i;
 	Level EditLevel;
@@ -277,15 +220,10 @@ static void SetLevelInterfaces ( void )
 
 	enum
 	{
-		JUMP_THRESHOLD_NORTH = 1,
-		JUMP_THRESHOLD_EAST ,
-		JUMP_THRESHOLD_SOUTH ,
-		JUMP_THRESHOLD_WEST ,
-		JUMP_TARGET_NORTH ,
+		JUMP_TARGET_NORTH = 1,
 		JUMP_TARGET_EAST ,
 		JUMP_TARGET_SOUTH ,
 		JUMP_TARGET_WEST ,
-		EXPORT_THIS_LEVEL , 
 		REPORT_INTERFACE_INCONSISTENCIES , 
 		QUIT_THRESHOLD_EDITOR_POSITION
 	};
@@ -297,30 +235,6 @@ static void SetLevelInterfaces ( void )
 
 		i = 0 ;
 
-		sprintf( Options [ i ] , _("Jump threshold") );
-			strcat( Options [ i ] , " " );
-			strcat( Options [ i ] , _("North") );
-			sprintf( Options [ i+1 ] , ": %d.  (<-/->)" , EditLevel->jump_threshold_north );
-			strcat( Options [ i ] , Options [ i+1 ] ); 
-		MenuTexts[ i ] = Options [ i ]; i++ ;
-		sprintf( Options [ i ] , _("Jump threshold") );
-			strcat( Options [ i ] , " " );
-			strcat( Options [ i ] , _("East") );
-			sprintf( Options [ i+1 ] , ": %d.  (<-/->)" , EditLevel->jump_threshold_east );
-			strcat( Options [ i ] , Options [ i+1 ] ); 
-		MenuTexts[ i ] = Options [ i ]; i++ ;
-		sprintf( Options [ i ] , _("Jump threshold") );
-			strcat( Options [ i ] , " " );
-			strcat( Options [ i ] , _("South") );
-			sprintf( Options [ i+1 ] , ": %d.  (<-/->)" , EditLevel->jump_threshold_south );
-			strcat( Options [ i ] , Options [ i+1 ] ); 
-		MenuTexts[ i ] = Options [ i ]; i++ ;
-		sprintf( Options [ i ] , _("Jump threshold") );
-			strcat( Options [ i ] , " " );
-			strcat( Options [ i ] , _("West") );
-			sprintf( Options [ i+1 ] , ": %d.  (<-/->)" , EditLevel->jump_threshold_west );
-			strcat( Options [ i ] , Options [ i+1 ] ); 
-		MenuTexts[ i ] = Options [ i ]; i++ ;
 		sprintf( Options [ i ] , _("Jump target") );
 			strcat( Options [ i ] , " " );
 			strcat( Options [ i ] , _("North") );
@@ -345,7 +259,6 @@ static void SetLevelInterfaces ( void )
 			sprintf( Options [ i+1 ] , ": %d.  (<-/->)" , EditLevel->jump_target_west );
 			strcat( Options [ i ] , Options [ i+1 ] ); 
 		MenuTexts[ i ] = Options [ i ]; i++ ;
-		MenuTexts [i++] = _("Export this level to other target levels") ;
 		MenuTexts [i++] = _("Report interface inconsistencies");
 		MenuTexts [i++] = _("Back") ;
 		MenuTexts [i++] = "" ;
@@ -360,11 +273,6 @@ static void SetLevelInterfaces ( void )
 		while ( EscapePressed() ) SDL_Delay(1);
 		proceed_now=!proceed_now;
 		break;
-	    case EXPORT_THIS_LEVEL:
-		while (EnterPressed() || MouseLeftPressed() ) SDL_Delay(1);
-		ExportLevelInterface ( Me . pos . z );
-		// proceed_now=!proceed_now;
-		break;
 	    case REPORT_INTERFACE_INCONSISTENCIES:
 		while (EnterPressed() || SpacePressed() || MouseLeftPressed() ) SDL_Delay(1) ;
 		ReportInconsistenciesForLevel ( Me . pos . z );
@@ -378,6 +286,63 @@ static void SetLevelInterfaces ( void )
 		break;
 	    default: 
 		break;
+
+		case JUMP_TARGET_NORTH:
+			if (LeftPressed() || RightPressed()) {//left or right arrow ? handled below 
+			    break;
+			}
+			while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
+
+			tgt = EditLevelNrPopup();
+
+			if ( tgt >= -1 && tgt < curShip.num_levels ) {
+			    EditLevel->jump_target_north = ( tgt );
+			    proceed_now=!proceed_now;
+				}
+			break;
+
+		case JUMP_TARGET_EAST:
+			if (LeftPressed() || RightPressed()) {//left or right arrow ? handled below 
+			    break;
+			}
+			while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
+
+			tgt = EditLevelNrPopup();
+
+			if ( tgt >= -1 && tgt < curShip.num_levels ) {
+			    EditLevel->jump_target_east = ( tgt );
+			    proceed_now=!proceed_now;
+				}
+			break;
+
+		case JUMP_TARGET_SOUTH:
+			if (LeftPressed() || RightPressed()) {//left or right arrow ? handled below 
+			    break;
+			}
+			while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
+
+			tgt = EditLevelNrPopup();
+
+			if ( tgt >= -1 && tgt < curShip.num_levels ) {
+			    EditLevel->jump_target_south = ( tgt );
+			    proceed_now=!proceed_now;
+				}
+			break;
+
+		case JUMP_TARGET_WEST:
+			if (LeftPressed() || RightPressed()) {//left or right arrow ? handled below 
+			    break;
+			}
+			while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
+
+			tgt = EditLevelNrPopup();
+
+			if ( tgt >= -1 && tgt < curShip.num_levels ) {
+			    EditLevel->jump_target_west = ( tgt );
+			    proceed_now=!proceed_now;
+				}
+			break;
+
 	} // switch
 	
 	  // If the user of the level editor pressed left or right, that should have
@@ -387,58 +352,6 @@ static void SetLevelInterfaces ( void )
 	{
 	    switch (MenuPosition)
 	    {
-		case JUMP_THRESHOLD_NORTH:
-		    if ( LeftPressed() )
-		    {
-			if ( EditLevel->jump_threshold_north > 0 ) EditLevel->jump_threshold_north -- ;
-			while (LeftPressed());
-		    }
-		    if ( RightPressed() )
-		    {
-			EditLevel->jump_threshold_north ++ ;
-			while (RightPressed());
-		    }
-		    break;
-		    
-		case JUMP_THRESHOLD_SOUTH:
-		    if ( LeftPressed() )
-		    {
-			if ( EditLevel->jump_threshold_south > 0 ) EditLevel->jump_threshold_south -- ;
-			while (LeftPressed());
-		    }
-		    if ( RightPressed() )
-		    {
-			EditLevel->jump_threshold_south ++ ;
-			while (RightPressed());
-		    }
-		    break;
-		    
-		case JUMP_THRESHOLD_EAST:
-		    if ( LeftPressed() )
-		    {
-			if ( EditLevel->jump_threshold_east > 0 ) EditLevel->jump_threshold_east -- ;
-			while (LeftPressed());
-		    }
-		    if ( RightPressed() )
-		    {
-			EditLevel->jump_threshold_east ++ ;
-			while (RightPressed());
-		    }
-		    break;
-		    
-		case JUMP_THRESHOLD_WEST:
-		    if ( LeftPressed() )
-		    {
-			if ( EditLevel->jump_threshold_west > 0 ) EditLevel->jump_threshold_west -- ;
-			while (LeftPressed());
-		    }
-		    if ( RightPressed() )
-		    {
-			EditLevel->jump_threshold_west ++ ;
-			while (RightPressed());
-		    }
-		    break;
-		    
 		case JUMP_TARGET_NORTH:
 		    if ( LeftPressed() )
 		    {
@@ -618,6 +531,7 @@ static void LevelOptions ( void )
     char Options [ 20 ] [1000];
     int proceed_now = FALSE ;
     int MenuPosition=1;
+    int tgt= -1;
     int i;
     int l = 0;
 
@@ -657,20 +571,21 @@ static void LevelOptions ( void )
 	sprintf( Options [ i+1 ] , _("Interface") );
 	strcat( Options [ i ] , Options [ i+1 ] ); 
 	strcat( Options [ i ] , ":" ); 
-	if ( EditLevel()->jump_target_north == -1 && EditLevel()->jump_target_east == -1 && EditLevel()->jump_target_south == -1 && EditLevel()->jump_target_west == -1 )
+	if ( EditLevel()->jump_target_north == -1 && EditLevel()->jump_threshold_north == 0 && EditLevel()->jump_target_east == -1 && EditLevel()->jump_threshold_east == 0 && EditLevel()->jump_target_south == -1 && EditLevel()->jump_threshold_south == 0 && EditLevel()->jump_target_west == -1 && EditLevel()->jump_threshold_west == 0 )
 	    {
 	    strcat( Options [ i ] , " none"); 
 	    }
 	else 
 	    {
 	    if ( EditLevel()->jump_target_north != -1 )
-		sprintf( Options [ i ] + strlen(Options [ i ]) , "  N: %d/%d", EditLevel()->jump_target_north, EditLevel()->jump_threshold_north ); 
-	    if ( EditLevel()->jump_target_east != -1 )
-		sprintf( Options [ i ] + strlen(Options [ i ]) , "  E: %d/%d", EditLevel()->jump_target_east, EditLevel()->jump_threshold_east ); 
+		sprintf( Options [ i ] + strlen(Options [ i ]) , "  N: %d", EditLevel()->jump_target_north ); 
+	    if ( EditLevel()->jump_target_east != -1  )
+		sprintf( Options [ i ] + strlen(Options [ i ]) , "  E: %d", EditLevel()->jump_target_east ); 
 	    if ( EditLevel()->jump_target_south != -1 )
-		sprintf( Options [ i ] + strlen(Options [ i ]) , "  S: %d/%d", EditLevel()->jump_target_south, EditLevel()->jump_threshold_south ); 
-	    if ( EditLevel()->jump_target_west != -1 )
-		sprintf( Options [ i ] + strlen(Options [ i ]) , "  W: %d/%d", EditLevel()->jump_target_west, EditLevel()->jump_threshold_west ); 
+		sprintf( Options [ i ] + strlen(Options [ i ]) , "  S: %d", EditLevel()->jump_target_south ); 
+	    if ( EditLevel()->jump_target_west != -1  )
+		sprintf( Options [ i ] + strlen(Options [ i ]) , "  W: %d", EditLevel()->jump_target_west ); 
+
 	    }
 	MenuTexts[ i ] = Options [ i ] ; i++ ;
 	sprintf( Options [ i ] , _("Light") );
@@ -714,14 +629,23 @@ static void LevelOptions ( void )
 
 	switch ( MenuPosition ) 
 	    {
-	    case (-1):
-		while ( EscapePressed() );
-		proceed_now=!proceed_now;
-		break;
-	    case CHANGE_LEVEL_POSITION: 
-		// if ( EditLevel()->levelnum ) Teleport ( EditLevel()->levelnum-1 , Me.pos.x , Me.pos.y );
-		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
-		break;
+		case (-1):
+			while ( EscapePressed() );
+			proceed_now=!proceed_now;
+			break;
+		case CHANGE_LEVEL_POSITION: 
+			if (LeftPressed() || RightPressed()) {//left or right arrow ? handled below 
+				break;
+			}
+			while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
+
+			tgt = EditLevelNrPopup();
+
+			if ( tgt >= 0 && tgt < curShip.num_levels ) {
+				if ( curShip.AllLevels[tgt] != NULL ) Teleport ( tgt , 3 , 3 , FALSE );
+				proceed_now=!proceed_now;
+			}
+			break;
 	    case CHANGE_LIGHT:
 		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
 		// Switch between Radius and Minimum modification mode.
@@ -919,6 +843,7 @@ int DoLevelEditorMainMenu ()
     char Options [ 20 ] [1000];
     int proceed_now = FALSE ;
     int MenuPosition=1;
+	int tgt = -1;
     int Done=FALSE;
     int i;
 
@@ -990,20 +915,9 @@ int DoLevelEditorMainMenu ()
 			    break;
 			}
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
-			char *str, *cstr;
-			int tgt = 0;
-			str =  GetEditableStringInPopupWindow ( 1000 , _("\n Please enter new level number: \n\n") , "");
-			cstr = str;
-			while(*cstr) {
-			    if(!isdigit(*cstr))
-				tgt = -1;
-			    cstr++;
-			}
 
-			if (!tgt)
-			    tgt = atoi(str);
-			
-			    free(str);
+			tgt = EditLevelNrPopup();
+
 			if ( tgt >= 0 && tgt < curShip.num_levels ) {
 			    if ( curShip.AllLevels[tgt] != NULL ) Teleport ( tgt , 3 , 3 , FALSE );
 			    proceed_now=!proceed_now;
