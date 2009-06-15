@@ -724,6 +724,10 @@ void insert_obstacles_into_blitting_list ( int mask )
 
 					update_virtual_position(&virtpos, &reference, CURLEVEL()->levelnum);
 
+					// Could not find virtual position? Give up drawing.
+					if (virtpos.z == -1)
+						continue;
+					
 					insert_new_element_into_blitting_list(virtpos.x + virtpos.y, BLITTING_TYPE_OBSTACLE, 
 							OurObstacle, obstacle_level -> map [py][px].obstacles_glued_to_here[i]);
 				} else {
