@@ -128,8 +128,6 @@ mouse_press_button AllMousePressButtons[ MAX_MOUSE_PRESS_BUTTONS ] =
     [LEVEL_EDITOR_NEXT_OBSTACLE_BUTTON] =     { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorNextObstacleButton.png" , { 00 , 270 , 0 ,  0 } , FALSE , FALSE } ,
     [LEVEL_EDITOR_NEXT_OBSTACLE_BUTTON_PUSHED] =     { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorNextObstacleButtonPushed.png" , { 00 , 270 , 0 ,  0 } , FALSE , FALSE } ,
 
-    [LEVEL_EDITOR_BEAUTIFY_GRASS_BUTTON] =     { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorBeautifyGrassButton.png" , { 00 , 90 , 0 ,  0 } , FALSE , FALSE } ,
-    [LEVEL_EDITOR_BEAUTIFY_GRASS_BUTTON_PUSHED] =     { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorBeautifyGrassButtonPushed.png" , { 00 , 90 , 0 ,  0 } , FALSE , FALSE } ,
     [LEVEL_EDITOR_ZOOM_IN_BUTTON] =     { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorZoomInButton.png"      , { 30 , 90 , 0 ,  0 } , FALSE , FALSE } ,
     [LEVEL_EDITOR_ZOOM_IN_BUTTON_PUSHED] =     { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorZoomInButtonPushed.png"      , { 30 , 90 , 0 ,  0 } , FALSE , FALSE } ,
     [LEVEL_EDITOR_ZOOM_OUT_BUTTON] =     { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorZoomOutButton.png"     , { 30 , 90 , 0 ,  0 } , FALSE , FALSE } ,
@@ -159,6 +157,8 @@ mouse_press_button AllMousePressButtons[ MAX_MOUSE_PRESS_BUTTONS ] =
     [LEVEL_EDITOR_UNDERGROUND_LIGHT_ON_BUTTON_PUSHED] =     { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorUndergroundLightButtonPushed.png"    , { -30 , 150 , 30 ,  30 } , FALSE , FALSE } ,
     [LEVEL_EDITOR_UNDERGROUND_LIGHT_OFF_BUTTON] =     { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorUndergroundLightOffButton.png" , { -30 , 150 , 30 ,  30 } , FALSE , FALSE } ,
     [LEVEL_EDITOR_UNDERGROUND_LIGHT_OFF_BUTTON_PUSHED] =     { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorUndergroundLightOffButtonPushed.png" , { -30 , 150 , 30 ,  30 } , FALSE , FALSE } ,
+    [LEVEL_EDITOR_BEAUTIFY_GRASS_BUTTON] =     { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorBeautifyGrassButton.png" , { -30 , 180 , 0 ,  0 } , FALSE , FALSE } ,
+    [LEVEL_EDITOR_BEAUTIFY_GRASS_BUTTON_PUSHED] =     { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorBeautifyGrassButtonPushed.png" , { -30 , 180 , 0 ,  0 } , FALSE , FALSE } ,
 
 
     [LEVEL_EDITOR_TOGGLE_ENEMIES_BUTTON] =     { UNLOADED_ISO_IMAGE , "mouse_buttons/LevelEditorToggleEnemiesButton.png"    , { 240 , 90 , 0 ,  0 } , FALSE , FALSE } ,
