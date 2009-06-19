@@ -143,6 +143,7 @@ void EditLevelDimensions ( void )
 	      // allocation of new memory or things like that are not nescessary
 	      while (LeftPressed());
 	    }
+	  gps_transform_map_dirty_flag = TRUE;
 	  break;
 
 	case INSERTREMOVE_COLUMN_VERY_WEST:
@@ -156,6 +157,7 @@ void EditLevelDimensions ( void )
 	      RemoveColumnVeryWest ( EditLevel );
 	      while (LeftPressed());
 	    }
+	  gps_transform_map_dirty_flag = TRUE;
 	  break;
 
 	case INSERTREMOVE_LINE_VERY_SOUTH:
@@ -171,6 +173,7 @@ void EditLevelDimensions ( void )
 	      // allocation of new memory or things like that are not nescessary.
 	      while (LeftPressed());
 	    }
+	  gps_transform_map_dirty_flag = TRUE;
 	  break;
 
 	case INSERTREMOVE_LINE_VERY_NORTH:
@@ -184,6 +187,8 @@ void EditLevelDimensions ( void )
 	      RemoveLineVeryNorth ( EditLevel );
 	      while (LeftPressed());
 	    }
+	  gps_transform_map_dirty_flag = TRUE;
+	  gps_transform_map_dirty_flag = TRUE;
 	  break;
 
 	case (-1):
@@ -198,6 +203,8 @@ void EditLevelDimensions ( void )
 
 	}
 
+	gps_transform_map_init();
+      
     } // while (!proceed_now)
     
 }; // void EditLevelDimensions ( void )
@@ -298,7 +305,8 @@ static void SetLevelInterfaces ( void )
 			if ( tgt >= -1 && tgt < curShip.num_levels ) {
 			    EditLevel->jump_target_north = ( tgt );
 			    proceed_now=!proceed_now;
-				}
+			}
+			gps_transform_map_dirty_flag = TRUE;
 			break;
 
 		case JUMP_TARGET_EAST:
@@ -312,7 +320,8 @@ static void SetLevelInterfaces ( void )
 			if ( tgt >= -1 && tgt < curShip.num_levels ) {
 			    EditLevel->jump_target_east = ( tgt );
 			    proceed_now=!proceed_now;
-				}
+			}
+			gps_transform_map_dirty_flag = TRUE;
 			break;
 
 		case JUMP_TARGET_SOUTH:
@@ -326,7 +335,8 @@ static void SetLevelInterfaces ( void )
 			if ( tgt >= -1 && tgt < curShip.num_levels ) {
 			    EditLevel->jump_target_south = ( tgt );
 			    proceed_now=!proceed_now;
-				}
+			}
+			gps_transform_map_dirty_flag = TRUE;
 			break;
 
 		case JUMP_TARGET_WEST:
@@ -340,7 +350,8 @@ static void SetLevelInterfaces ( void )
 			if ( tgt >= -1 && tgt < curShip.num_levels ) {
 			    EditLevel->jump_target_west = ( tgt );
 			    proceed_now=!proceed_now;
-				}
+			}
+			gps_transform_map_dirty_flag = TRUE;
 			break;
 
 	} // switch
@@ -363,7 +374,8 @@ static void SetLevelInterfaces ( void )
 			EditLevel->jump_target_north ++ ;
 			while (RightPressed());
 		    }
-		    break;
+			gps_transform_map_dirty_flag = TRUE;
+			break;
 		    
 		case JUMP_TARGET_SOUTH:
 		    if ( LeftPressed() )
@@ -376,7 +388,8 @@ static void SetLevelInterfaces ( void )
 			EditLevel->jump_target_south ++ ;
 			while (RightPressed());
 		    }
-		    break;
+			gps_transform_map_dirty_flag = TRUE;
+			break;
 		    
 		case JUMP_TARGET_EAST:
 		    if ( LeftPressed() )
@@ -389,7 +402,8 @@ static void SetLevelInterfaces ( void )
 			EditLevel->jump_target_east ++ ;
 			while (RightPressed());
 		    }
-		    break;
+			gps_transform_map_dirty_flag = TRUE;
+			break;
 		    
 		case JUMP_TARGET_WEST:
 		    if ( LeftPressed() )
@@ -402,12 +416,14 @@ static void SetLevelInterfaces ( void )
 			EditLevel->jump_target_west ++ ;
 			while (RightPressed());
 		    }
-		    break;
+			gps_transform_map_dirty_flag = TRUE;
+			break;
 		    
 		    
 	    }
 	} // if LeftPressed || RightPressed
 	
+	gps_transform_map_init();
     }
     
 }; // void SetLevelInterfaces ( void )
@@ -494,6 +510,7 @@ static void AddRemLevel ( void )
 				Me . pos . x = 3;
 				Me . pos . y = 3;
 		    }
+			gps_transform_map_dirty_flag = TRUE;
 			break;
 		case REMOVE_CURRENT_LEVEL:
 			if (game_root_mode == ROOT_IS_GAME)
@@ -510,6 +527,7 @@ static void AddRemLevel ( void )
 			Me.pos.z = 0;
 			Me.pos.x = 3;
 			Me.pos.y = 3;
+			gps_transform_map_dirty_flag = TRUE;
 			break;
 		case LEAVE_OPTIONS_MENU:
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);
@@ -519,6 +537,9 @@ static void AddRemLevel ( void )
 			break;
 
 	    } // switch
+
+	gps_transform_map_init();
+
 	}
 
     game_status = INSIDE_LVLEDITOR;

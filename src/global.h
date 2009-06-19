@@ -151,6 +151,16 @@ EXTERN int gmask;
 EXTERN int bmask;
 EXTERN int rmask;
 
+struct neighbor_data_cell {
+	int delta_x;
+	int delta_y;
+	int lvl_idx;
+	int valid;
+};
+EXTERN struct neighbor_data_cell gps_transform_matrix[MAX_LEVELS][MAX_LEVELS];
+EXTERN struct neighbor_data_cell* (level_neighbors_map[MAX_LEVELS][3][3]);
+EXTERN int gps_transform_map_dirty_flag;
+
 #undef EXTERN
 #ifdef _light_c
 #define EXTERN
@@ -326,4 +336,5 @@ enum {
     ROOT_IS_GAME,
     ROOT_IS_LVLEDIT,
 };
+
 #endif  // _global_h

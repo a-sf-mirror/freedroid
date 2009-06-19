@@ -127,48 +127,48 @@ main (int argc, char * argv[])
 {
 
 #if defined HAVE_UNISTD_H && defined HAVE_DIRNAME
-    // change working directory to the executable's directory
-    if ( chdir ( dirname ( argv [0] )))
-        fprintf ( stderr, "Couldn't change working directory to %s.\n", dirname ( argv [0]));
+	// change working directory to the executable's directory
+	if ( chdir ( dirname ( argv [0] )))
+		fprintf ( stderr, "Couldn't change working directory to %s.\n", dirname ( argv [0]));
 #endif
-
+	
 #if ENABLE_NLS
-    DIR *tmp_dir;
-    setlocale(LC_MESSAGES, "C");
-    setlocale(LC_CTYPE, "C");
-    tmp_dir = opendir("../po");
-    if(tmp_dir != NULL) 
+	DIR *tmp_dir;
+	setlocale(LC_MESSAGES, "C");
+	setlocale(LC_CTYPE, "C");
+	tmp_dir = opendir("../po");
+	if(tmp_dir != NULL) 
 	{
-	bindtextdomain("freedroidrpg", "../po");
-	bindtextdomain("freedroidrpg_data", "../po");
-	bindtextdomain("freedroidrpg_dialogs", "../po");
-	closedir(tmp_dir);
+		bindtextdomain("freedroidrpg", "../po");
+		bindtextdomain("freedroidrpg_data", "../po");
+		bindtextdomain("freedroidrpg_dialogs", "../po");
+		closedir(tmp_dir);
 	}
 #ifdef __WIN32__
-    else if( (tmp_dir = opendir("po") ) != NULL )/* win32 special: allow running the game from the root of the tree */
+	else if( (tmp_dir = opendir("po") ) != NULL )/* win32 special: allow running the game from the root of the tree */
 	{
-	printf("WIN32: binding gettext stuff to ./po\n");
-	bindtextdomain("freedroidrpg", "po");
-	bindtextdomain("freedroidrpg_data", "po");
-	bindtextdomain("freedroidrpg_dialogs", "po");
-	closedir(tmp_dir);
+		printf("WIN32: binding gettext stuff to ./po\n");
+		bindtextdomain("freedroidrpg", "po");
+		bindtextdomain("freedroidrpg_data", "po");
+		bindtextdomain("freedroidrpg_dialogs", "po");
+		closedir(tmp_dir);
 	}
 #endif
-    else 
+	else 
 	{
-	bindtextdomain("freedroidrpg", LOCALE_DIR);
-	bindtextdomain("freedroidrpg_data", LOCALE_DIR);
-	bindtextdomain("freedroidrpg_dialogs", LOCALE_DIR);
+		bindtextdomain("freedroidrpg", LOCALE_DIR);
+		bindtextdomain("freedroidrpg_data", LOCALE_DIR);
+		bindtextdomain("freedroidrpg_dialogs", LOCALE_DIR);
 	}
-    textdomain("freedroidrpg");
+	textdomain("freedroidrpg");
 #endif
-
-    //--------------------
-    // First we issue some message, that should appear in the debug log for
-    // windows users.
-    //
+	
+	//--------------------
+	// First we issue some message, that should appear in the debug log for
+	// windows users.
+	//
 #ifdef __WIN32__
-    fprintf ( stderr , "\n\
+	fprintf ( stderr , "\n\
 Hello!  This window contains the DEBUG OUTPUT of FreedroidRPG.\n\
 \n\
 Normally you would not see this message or this window, but apparently\n\
@@ -183,46 +183,45 @@ better than nothing.  Thanks anyway for your interest in FreedroidRPG.\n\
 \n\n\n\
 --start of real debug log--\n\n" );
 #endif
-    
-    QuitProgram = FALSE;
-    draw_collision_rectangles = FALSE ;
-    draw_grid = TRUE ;
-
-    /*
-     *  Parse command line and set global switches 
-     *  this function exits program when error, so we don't need to 
-     *  check its success  (dunno if that's good design?)
-     */
-    sound_on = TRUE;	 // default value, can be overridden by command-line 
-    use_open_gl = TRUE;	 // default value, can be overridden by command-line 
-    debug_level = -1;      // -1: shut up all debug ... 0=no debug 1=first debug level (at the moment=all) 
-    GameConfig . fullscreen_on = TRUE;  // use X11-window or full screen 
-    
-    InitFreedroid ( argc, argv);   // Initialisation of global variables and arrays
-    
-
-    while (!QuitProgram)
-    {
-	StartupMenu ( );
-	input_handle();
-	switch (game_root_mode) {
-	    case ROOT_IS_GAME:
-		Game ();
-		break;
-	    case ROOT_IS_LVLEDIT:
-		LevelEditor();
-		break;
-	    case ROOT_IS_UNKNOWN:
-		ErrorMessage(__FUNCTION__, "Game root mode is unknown - was not properly set to GAME or LVLEDIT.\n", PLEASE_INFORM, IS_FATAL);
-		break;
-	}
-		
-    } // while !QuitProgram 
-    
-    LightRadiusClean();
-    
-    Terminate (0);
-    return (0);
+	
+	QuitProgram = FALSE;
+	draw_collision_rectangles = FALSE ;
+	draw_grid = TRUE ;
+	gps_transform_map_dirty_flag = TRUE;
+	
+	/*
+	 *  Parse command line and set global switches 
+	 *  this function exits program when error, so we don't need to 
+	 *  check its success  (dunno if that's good design?)
+	 */
+	sound_on = TRUE;	 // default value, can be overridden by command-line 
+	use_open_gl = TRUE;	 // default value, can be overridden by command-line 
+	debug_level = -1;      // -1: shut up all debug ... 0=no debug 1=first debug level (at the moment=all) 
+	GameConfig . fullscreen_on = TRUE;  // use X11-window or full screen 
+	
+	InitFreedroid ( argc, argv);   // Initialisation of global variables and arrays
+	
+	while (!QuitProgram)
+	{
+		StartupMenu ( );
+		input_handle();
+		switch (game_root_mode) {
+		case ROOT_IS_GAME:
+			Game ();
+			break;
+		case ROOT_IS_LVLEDIT:
+			LevelEditor();
+			break;
+		case ROOT_IS_UNKNOWN:
+			ErrorMessage(__FUNCTION__, "Game root mode is unknown - was not properly set to GAME or LVLEDIT.\n", PLEASE_INFORM, IS_FATAL);
+			break;
+		}
+	} // while !QuitProgram 
+	
+	LightRadiusClean();
+	
+	Terminate (0);
+	return (0);
 }; // int main ( void )
 
 /**

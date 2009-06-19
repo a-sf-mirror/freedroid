@@ -106,7 +106,9 @@ int find_free_melee_shot_index ( void ) ;
 void delete_melee_shot ( melee_shot * );
 
 // view.c 
+void gps_transform_map_init (void);
 void update_virtual_position ( gps* target_pos , gps* source_pos , int level_num );
+int resolve_virtual_position ( gps *actual_pos, gps *virtual_pos );
 void FdFillRect (SDL_Rect rect, SDL_Color color);
 void ShowPosition (void);
 void ShowCombatScreenTexts ( int mask );

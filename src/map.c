@@ -1050,52 +1050,6 @@ smash_obstacle ( float x , float y )
 
 }; // int smash_obstacle ( float x , float y );
 
-int update_level_pos(level **lvl, float *x, float *y)
-{
-	int RoundX, RoundY;
-#define dLVL (*lvl)
-	RoundX = (int) rintf (*x);
-	RoundY = (int) rintf (*y);
-	if (RoundY >= dLVL->ylen) {
-		if (dLVL->jump_target_south == -1) {
-			return 0;
-		} else {
-			*y += dLVL->jump_threshold_south;
-			*y -= dLVL->ylen;
-			dLVL = curShip.AllLevels[dLVL->jump_target_south];
-		}
-	}
-	if (RoundX >= dLVL->xlen) {
-		if (dLVL->jump_target_east == -1) {
-			return 0;
-		} else {
-			*x += dLVL->jump_threshold_east;
-			*x -= dLVL->xlen;
-			dLVL = curShip.AllLevels[dLVL->jump_target_east];
-		}
-	}
-	if (RoundY < 0) {
-		if (dLVL->jump_target_north == -1) {
-			return 0;
-		} else {
-			*y -= dLVL->jump_threshold_north;
-			dLVL = curShip.AllLevels[dLVL->jump_target_north];
-			*y = dLVL->ylen + *y;
-		}
-	}		
-	if (RoundX < 0) {
-		if (dLVL->jump_target_west == -1) {
-			return 0;
-		} else { 
-			*x -= dLVL->jump_threshold_west;
-			dLVL = curShip.AllLevels[dLVL->jump_target_west];
-			*x = dLVL->xlen + *x;
-		}
-	}
-
-	return 1;
-}
-
 /**
  * This function returns the map brick code of the tile that occupies the
  * given position.
@@ -1104,22 +1058,23 @@ Uint16 GetMapBrick (level *lvl, float x, float y)
 {
 	Uint16 BrickWanted;
 	int RoundX, RoundY;
-
-	if (!update_level_pos(&lvl, &x, &y)) {
-		return ISO_COMPLETELY_DARK;
+	
+	gps vpos = { x, y, lvl->levelnum };
+	gps rpos;
+	if (!resolve_virtual_position(&rpos, &vpos)) {
+		return ISO_COMPLETELY_DARK;		
 	}
-
-	RoundX = (int) rintf (x) ;
-	RoundY = (int) rintf (y) ;
-
+	RoundX = (int)rintf(rpos.x);
+	RoundY = (int)rintf(rpos.y);
+	
 	//--------------------
 	// Now we can return the floor tile information, but again we
 	// do so with sanitiy check for the range of allowed floor tile
 	// types and that...
 	//
-	BrickWanted = lvl->map[RoundY][RoundX].floor_value ;
+	BrickWanted = curShip.AllLevels[rpos.z]->map[RoundY][RoundX].floor_value ;
 	if (BrickWanted >= ALL_ISOMETRIC_FLOOR_TILES) {
-		fprintf( stderr , "\nBrickWanted: %d at pos X=%d Y=%d Z=%d.", BrickWanted, RoundX, RoundY, lvl->levelnum );
+		fprintf( stderr , "\nBrickWanted: %d at pos X=%d Y=%d Z=%d.", BrickWanted, RoundX, RoundY, rpos.z );
 		ErrorMessage ( __FUNCTION__  , "\
 				A maplevel in Freedroid contained a brick type, that does not have a\n\
 				real graphical representation.  This is a severe error, that really \n\
@@ -1427,6 +1382,10 @@ LoadShip (char *filename)
 	//
 	free ( ShipData );
 
+	// Compute the gps transform acceleration data
+    gps_transform_map_dirty_flag = TRUE;
+    gps_transform_map_init();
+	
 	return OK;
 
 }; // int LoadShip ( ... ) 

@@ -394,84 +394,93 @@ DetermineAngleOfFacing ( enemy * e )
  * selected, this generic low_level movement function can be called to
  * actually move the robot towards this spot.
  */
-static void
-move_enemy_to_spot ( Enemy ThisRobot , moderately_finepoint next_target_spot )
+static void move_enemy_to_spot ( Enemy ThisRobot, moderately_finepoint next_target_spot )
 {
-    moderately_finepoint remaining_way;
-    float maxspeed;
-    int old_map_level;
+	moderately_finepoint remaining_way;
+	float maxspeed;
+	int old_map_level;
 
-    //--------------------
-    // According to properties of the robot like being frozen or not,
-    // we define the maximum speed of this machine for later use...
-    // A frozen robot is slow while a paralyzed robot can do absolutely nothing.
-    //
-    // if ( ThisRobot -> paralysation_duration_left != 0 ) return;
-    
-    if ( ThisRobot -> frozen == 0 )
-	maxspeed = Druidmap [ ThisRobot -> type ] . maxspeed;
-    else 
-	maxspeed = 0.2 * Druidmap [ ThisRobot->type ] . maxspeed;
-    
-    //--------------------
-    // While getting hit, the bot or person shouldn't be running, but
-    // when standing, it should move over to the 'walk' animation type...
-    //
-    if ( ThisRobot -> animation_type == GETHIT_ANIMATION ) return;
-    if ( ThisRobot -> animation_type == STAND_ANIMATION ) 
-    {
-	ThisRobot -> animation_type = WALK_ANIMATION ;
-	ThisRobot -> animation_phase = 0.0 ;
-    }
-    
-    remaining_way . x = next_target_spot . x - ThisRobot -> pos . x ;
-    remaining_way . y = next_target_spot . y - ThisRobot -> pos . y ;
-
-    float length = vect_len(remaining_way);
-    if ( length < 0.02 )
+	//--------------------
+	// According to properties of the robot like being frozen or not,
+	// we define the maximum speed of this machine for later use...
+	// A frozen robot is slow while a paralyzed robot can do absolutely nothing.
+	//
+	// if ( ThisRobot -> paralysation_duration_left != 0 ) return;
+	
+	if ( ThisRobot->frozen == 0 )
+		maxspeed = Druidmap[ThisRobot->type].maxspeed;
+	else 
+		maxspeed = 0.2 * Druidmap[ThisRobot->type].maxspeed;
+	
+	//--------------------
+	// While getting hit, the bot or person shouldn't be running, but
+	// when standing, it should move over to the 'walk' animation type...
+	//
+	if ( ThisRobot->animation_type == GETHIT_ANIMATION ) return;
+	if ( ThisRobot->animation_type == STAND_ANIMATION ) 
 	{
-	ThisRobot -> speed . x = 0;
-	ThisRobot -> pos . x = next_target_spot . x;
-	ThisRobot -> speed . y = 0;
-	ThisRobot -> pos . y = next_target_spot . y;
+		ThisRobot->animation_type = WALK_ANIMATION;
+		ThisRobot->animation_phase = 0.0;
 	}
-    else
+	
+	remaining_way.x = next_target_spot.x - ThisRobot->pos.x;
+	remaining_way.y = next_target_spot.y - ThisRobot->pos.y;
+	
+	float squared_length = remaining_way.x * remaining_way.x + remaining_way.y * remaining_way.y;
+	gps newpos = ThisRobot->pos;
+	
+	if ( squared_length < DIST_TO_INTERM_POINT * DIST_TO_INTERM_POINT )
 	{
-	if ( ( Frame_Time() > 0.001 ) )
-	    {
-	    ThisRobot -> speed . x = maxspeed * remaining_way . x / length;
-	    ThisRobot -> speed . y = maxspeed * remaining_way . y / length;
-	    if ( fabsf( ThisRobot -> speed . x * Frame_Time() ) >= fabsf ( remaining_way . x) )
-		ThisRobot -> speed . x = remaining_way . x / Frame_Time();
-	    if ( fabsf( ThisRobot -> speed . y * Frame_Time()) >= fabsf ( remaining_way .y ) )
-		ThisRobot->speed.y = remaining_way . y / Frame_Time();
-	    ThisRobot -> pos . x += ThisRobot -> speed . x * Frame_Time ();
-	    ThisRobot -> pos . y += ThisRobot -> speed . y * Frame_Time ();
-	    }
+		ThisRobot->speed.x = 0;
+		ThisRobot->speed.y = 0;
+		newpos.x = next_target_spot.x;
+		newpos.y = next_target_spot.y;
 	}
+	else
+	{
+		if ( ( Frame_Time() > 0.001 ) )
+		{
+			float length = sqrt(squared_length);
+			
+			ThisRobot->speed.x = maxspeed * remaining_way.x / length;
+			ThisRobot->speed.y = maxspeed * remaining_way.y / length;
+			if ( fabsf( ThisRobot->speed.x * Frame_Time() ) >= fabsf ( remaining_way.x) )
+				ThisRobot->speed.x = remaining_way.x / Frame_Time();
+			if ( fabsf( ThisRobot->speed.y * Frame_Time()) >= fabsf ( remaining_way.y ) )
+				ThisRobot->speed.y = remaining_way.y / Frame_Time();
+			newpos.x = ThisRobot->pos.x + ThisRobot->speed.x * Frame_Time();
+			newpos.y = ThisRobot->pos.y + ThisRobot->speed.y * Frame_Time();
+		}
+	}
+	
+	//--------------------
+	// Now the bot is moving, so maybe it's moving over a jump threshold?
+	// In any case, it might be best to check...
+	//
+	// In case a jump has taken place, we best also reset the current
+	// waypointless wandering target.  Otherwise the bot might want to
+	// walk to the end of the map before thinking again...
+	//
+	
+	if ( !resolve_virtual_position(&newpos, &newpos) )
+		return;
 
-    //--------------------
-    // Now the bot is moving, so maybe it's moving over a jump threshold?
-    // In any case, it might be best to check...
-    //
-    // In case a jump has taken place, we best also reset the current
-    // waypointless wandering target.  Otherwise the bot might want to
-    // walk to the end of the map before thinking again...
-    //
-    old_map_level = ThisRobot -> pos . z ;
-    adapt_position_for_jump_thresholds ( & ( ThisRobot -> pos ) , & ( ThisRobot -> pos ) );
-    if ( ThisRobot -> pos . z != old_map_level )
-    { /* if the bot has changed level */
-  
-        /* Prevent it from moving this frame */
-        clear_out_intermediate_points ( &ThisRobot->pos, &ThisRobot->PrivatePathway[0], 5);
-
-	/* Move it to the appropriate level list */
-	list_move(&ThisRobot->level_list, &(level_bots_head [ ThisRobot->pos.z ]));
-    }
-
-    DetermineAngleOfFacing ( ThisRobot );
-    
+	old_map_level = ThisRobot->pos.z;
+	ThisRobot->pos.x = newpos.x;
+	ThisRobot->pos.y = newpos.y;
+	ThisRobot->pos.z = newpos.z;
+	
+	if ( ThisRobot->pos.z != old_map_level )
+	{ /* if the bot has changed level */
+		/* Prevent it from moving this frame */
+		clear_out_intermediate_points ( &ThisRobot->pos, &ThisRobot->PrivatePathway[0], 5);
+	
+		/* Move it to the appropriate level list */
+		list_move(&ThisRobot->level_list, &(level_bots_head[ThisRobot->pos.z]));
+	}
+	
+	DetermineAngleOfFacing( ThisRobot );
+	
 }; // void move_enemy_to_spot ( Enemy ThisRobot , finepoint next_target_spot )
 
 /**
@@ -973,7 +982,7 @@ MoveThisEnemy( enemy * ThisRobot )
     //
     if ( ThisRobot -> pure_wait > 0 ) return;
     
-    moderately_finepoint oldpos = { ThisRobot -> pos . x, ThisRobot -> pos . y };
+    gps oldpos = { ThisRobot->pos.x, ThisRobot->pos.y, ThisRobot->pos.z };
 
     MoveThisRobotThowardsHisCurrentTarget( ThisRobot );
     
@@ -981,6 +990,7 @@ MoveThisEnemy( enemy * ThisRobot )
 	{
 	ThisRobot -> pos . x = oldpos . x ;
 	ThisRobot -> pos . y = oldpos . y;
+	ThisRobot -> pos . z = oldpos . z;
 	}
 }; 
 
@@ -1969,7 +1979,7 @@ update_enemy ( enemy * ThisRobot )
      *	  move (special case target = cur. position)
      *
      */
-  
+ 	
     /* Inconditional updates */
     state_machine_inconditional_updates(ThisRobot); 
     

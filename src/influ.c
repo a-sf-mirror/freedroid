@@ -550,90 +550,6 @@ tux_wants_to_attack_now ( int use_mouse_cursor_for_targeting )
 }; // void tux_wants_to_attack_now ( ) 
 
 /**
- * 
- *
- */
-void adapt_position_for_jump_thresholds ( gps* old_position, gps* new_position )
-{
-	int JumpTarget;
-	float JumpThreshold;
-	float JumpStartThreshold;
-	
-	new_position->x = old_position->x;
-	new_position->y = old_position->y;
-	new_position->z = old_position->z;
-	
-	//--------------------
-	// First we check for the northern threshold
-	//
-	JumpThreshold = curShip.AllLevels[old_position->z]->jump_threshold_north;
-	JumpStartThreshold = JumpThreshold / 2.0;
-	if ( old_position->y < JumpStartThreshold )
-	{
-		JumpTarget = curShip.AllLevels[old_position->z]->jump_target_north;
-		if ( JumpTarget > -1 ) 
-		{
-			new_position->x = old_position->x;
-			new_position->y = old_position->y + curShip.AllLevels[JumpTarget]->ylen - JumpThreshold;
-			new_position->z = JumpTarget;
-			return;
-		}
-	}
-	
-	//--------------------
-	// Now we check for the southern threshold
-	//
-	JumpThreshold = curShip.AllLevels[old_position->z]->jump_threshold_south;
-	JumpStartThreshold = JumpThreshold / 2.0;
-	if ( old_position->y > curShip.AllLevels[old_position->z]->ylen - JumpStartThreshold )
-	{
-		JumpTarget = curShip.AllLevels[old_position->z]->jump_target_south;
-		if ( JumpTarget > -1 )
-		{
-			new_position->x = old_position->x;
-			new_position->y = old_position->y - curShip.AllLevels[old_position->z]->ylen + JumpThreshold;
-			new_position->z = JumpTarget;
-			return;
-		}
-	}
-
-	//--------------------
-	// Now we check for the eastern threshold
-	//
-	JumpThreshold = curShip.AllLevels[old_position->z]->jump_threshold_east;
-	JumpStartThreshold = JumpThreshold / 2.0;
-	if ( old_position->x > curShip.AllLevels[old_position->z]->xlen - JumpStartThreshold )
-	{
-		JumpTarget = curShip.AllLevels[old_position->z]->jump_target_east;
-		if ( JumpTarget > -1 ) 
-		{
-			new_position->x = old_position->x - curShip.AllLevels[old_position->z]->xlen + JumpThreshold;
-			new_position->y = old_position->y;
-			new_position->z = JumpTarget;
-			return;
-		}
-	}
-	
-	//--------------------
-	// Now we check for the western threshold
-	//
-	JumpThreshold = curShip.AllLevels[old_position->z]->jump_threshold_west;
-	JumpStartThreshold = JumpThreshold / 2.0;
-	
-	if ( old_position->x < JumpStartThreshold )
-	{
-		JumpTarget = curShip.AllLevels[old_position->z]->jump_target_west;
-		if ( JumpTarget > -1 ) 
-		{
-			new_position->x = old_position->x + curShip.AllLevels[JumpTarget]->xlen - JumpThreshold;
-			new_position->y = old_position->y;
-			new_position->z = JumpTarget;
-			return;
-		}
-	}
-}; // void adapt_position_for_jump_thresholds ( gps* old_position, gps* new_position )
-
-/**
  * The Tux might be close to the borders of a level, so close in fact, 
  * that he has crossed the internal threshold area.  In that case, we 
  * must move the Tux silently to the corresponding other level to the
@@ -650,10 +566,11 @@ void correct_tux_position_according_to_jump_thresholds ( )
 	old_mouse_move_target.y = Me.mouse_move_target.y;
 	old_mouse_move_target.z = Me.mouse_move_target.z;
 
-	adapt_position_for_jump_thresholds(&oldpos, &newpos);
+	int rtn = resolve_virtual_position(&newpos, &oldpos);
 
-	if ( oldpos.z == newpos.z ) {
-		// We are on the same level - nothing happened
+	if ( !rtn || (oldpos.z == newpos.z) ) {
+		// Impossible to resolve the virtual adress, or
+		// we are on the same level - nothing happened
 		return;
 	} else {
 		// We are on another level
@@ -672,23 +589,8 @@ void correct_tux_position_according_to_jump_thresholds ( )
 				(enemy_resolve_address(Me.current_enemy_target_n, &Me.current_enemy_target_addr) == NULL)) 
 		{
  
-			Me.mouse_move_target.z = Me.pos.z ;
-			
-			if (newpos.z == curShip.AllLevels[oldpos.z]->jump_target_north) {
-				// We moved to the north
-				Me.mouse_move_target.y = old_mouse_move_target.y + CURLEVEL()->ylen - CURLEVEL()->jump_threshold_north;
-			} else if (newpos.z == curShip.AllLevels[oldpos.z]->jump_target_south) {
-				// We moved to the south
-				Me.mouse_move_target.y = old_mouse_move_target.y - curShip.AllLevels[oldpos.z]->ylen + curShip.AllLevels[oldpos.z]->jump_threshold_south;
-			} else if (newpos.z == curShip.AllLevels[oldpos.z]->jump_target_east) {
-				// We moved to the east
-				Me.mouse_move_target.x = old_mouse_move_target.x - curShip.AllLevels[oldpos.z]->xlen + curShip.AllLevels[oldpos.z]->jump_threshold_east;
-			} else if (newpos.z == curShip.AllLevels[oldpos.z]->jump_target_west) {
-				// We moved to the west
-				Me.mouse_move_target.x = old_mouse_move_target.x + CURLEVEL()->xlen - CURLEVEL()->jump_threshold_west;
-			}
-			
-			if (!SinglePointColldet(Me.mouse_move_target.x, Me.mouse_move_target.y, Me.mouse_move_target.z, NULL)) {
+			int rtn = resolve_virtual_position(&Me.mouse_move_target, &old_mouse_move_target);
+			if (rtn && !SinglePointColldet(Me.mouse_move_target.x, Me.mouse_move_target.y, Me.mouse_move_target.z, NULL)) {
 				Me.mouse_move_target.x = (-1);
 				Me.mouse_move_target.y = (-1);
 				Me.mouse_move_target.z = (-1);
@@ -931,7 +833,7 @@ MoveTuxAccordingToHisSpeed ( )
 
   Me . pos . x += planned_step_x;
   Me . pos . y += planned_step_y;
-
+ 
   //--------------------
   // If the Tux got stuck, i.e. if he got no speed at all and still is 
   // currently not in a 'passable' position, the fallback handling needs

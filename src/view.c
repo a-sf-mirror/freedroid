@@ -371,6 +371,10 @@ static void show_floor(int mask)
 			for (col = ColStart; col < ColEnd; col++) {
 				MapBrick = GetMapBrick (DisplayLevel, col, line);
 
+				// @TODO : the current position can be on an other level than DisplayLevel, so
+				// the following call is somehow wrong. To avoid transforming again the current
+				// position (already done inside GetMapBrick()) we should concatenate GetMapBrick() and
+				// floor_vtx_color().
 				floor_vtx_color(&DisplayLevel->map[line][col], &r, &g, &b);
 
 				if (mask & ZOOM_OUT)
@@ -690,26 +694,26 @@ void insert_obstacles_into_blitting_list ( int mask )
 	int i;
 	level* obstacle_level;
 	int LineStart, LineEnd, ColStart, ColEnd , line, col;
-	float lx, ly;
 	int px, py;
 	obstacle* OurObstacle;
+	gps tile_vpos, tile_rpos;
 	gps virtpos, reference;
 
 	get_floor_boundaries(mask, &LineStart, &LineEnd, &ColStart, &ColEnd);
 
+	tile_vpos.z = Me.pos.z;
+	
 	for (line = LineStart; line < LineEnd; line++) {
-
+		tile_vpos.y = line;
+		
 		for (col = ColStart; col < ColEnd; col++) {
-			obstacle_level = CURLEVEL();
-			lx = col;
-			ly = line;
-
-			if (!update_level_pos(&obstacle_level, &lx, &ly)) {
+			tile_vpos.x = col;
+			if (!resolve_virtual_position(&tile_rpos, &tile_vpos)) {
 				continue;
 			}
-
-			px = (int)rintf(lx);
-			py = (int)rintf(ly);
+			px = (int)rintf(tile_rpos.x);
+			py = (int)rintf(tile_rpos.y);
+			obstacle_level = curShip.AllLevels[tile_rpos.z];
 
 			for (i = 0; i < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE; i++) {
 				if (obstacle_level->map[py][px].obstacles_glued_to_here[i] != (-1)) {
@@ -720,16 +724,16 @@ void insert_obstacles_into_blitting_list ( int mask )
 
 					reference.x = OurObstacle->pos.x;
 					reference.y = OurObstacle->pos.y;
-					reference.z = obstacle_level->levelnum;
+					reference.z = tile_rpos.z;
 
-					update_virtual_position(&virtpos, &reference, CURLEVEL()->levelnum);
+					update_virtual_position(&virtpos, &reference, Me.pos.z);
 
 					// Could not find virtual position? Give up drawing.
 					if (virtpos.z == -1)
 						continue;
 					
 					insert_new_element_into_blitting_list(virtpos.x + virtpos.y, BLITTING_TYPE_OBSTACLE, 
-							OurObstacle, obstacle_level -> map [py][px].obstacles_glued_to_here[i]);
+							OurObstacle, obstacle_level->map[py][px].obstacles_glued_to_here[i]);
 				} else {
 					break;
 				}
@@ -885,98 +889,344 @@ level_is_visible ( int level_num )
 
 }; // int level_is_visible ( int level_num )
 
+/*
+ * Initialization of the 2 arrays used to accelerate gps transformations.
+ * 
+ * gps_transform_matrix[lvl1][lvl2] is a matrix used in update_virtual_position().
+ * It contains the data needed to transform a gps position defined relatively to one level
+ * into a gps position defined relatively to an other level.
+ * gps_transform_matrix[lvl1][lvl2] is used for a transformation from 'lvl1' to 'lvl2'.
+ * 
+ * level_neighbors_map[lvl][idY][idX] is used to retrieve all the neighbors (and the corresponding 
+ * transformation data) of one given level. It is used in resolve_virtual_position().
+ * The (idY, idX) pair defines one of the nine neighbors, using the following schema:
+ *              N
+ *    (0,0) | (0,1) | (0,2)
+ *   -------+-------+-------
+ *  W (1,0) |       | (1,2) E
+ *   -------+-------+-------
+ *    (2,0) | (2,1) | (2,2)
+ *              S
+ */
+
+// Some helper macros
+#define NEIGHBOR_TRANSFORM_NW(lvl) level_neighbors_map[lvl][0][0]
+#define NEIGHBOR_TRANSFORM_N(lvl)  level_neighbors_map[lvl][0][1]
+#define NEIGHBOR_TRANSFORM_NE(lvl) level_neighbors_map[lvl][0][2]
+#define NEIGHBOR_TRANSFORM_W(lvl)  level_neighbors_map[lvl][1][0]
+#define NEIGHBOR_TRANSFORM_E(lvl)  level_neighbors_map[lvl][1][2]
+#define NEIGHBOR_TRANSFORM_SW(lvl) level_neighbors_map[lvl][2][0]
+#define NEIGHBOR_TRANSFORM_S(lvl)  level_neighbors_map[lvl][2][1]
+#define NEIGHBOR_TRANSFORM_SE(lvl) level_neighbors_map[lvl][2][2]
+
+#define NEIGHBOR_ID_NW(lvl) level_neighbors_map[lvl][0][0]->lvl_idx
+#define NEIGHBOR_ID_N(lvl)  level_neighbors_map[lvl][0][1]->lvl_idx
+#define NEIGHBOR_ID_NE(lvl) level_neighbors_map[lvl][0][2]->lvl_idx
+#define NEIGHBOR_ID_W(lvl)  level_neighbors_map[lvl][1][0]->lvl_idx
+#define NEIGHBOR_ID_E(lvl)  level_neighbors_map[lvl][1][2]->lvl_idx
+#define NEIGHBOR_ID_SW(lvl) level_neighbors_map[lvl][2][0]->lvl_idx
+#define NEIGHBOR_ID_S(lvl)  level_neighbors_map[lvl][2][1]->lvl_idx
+#define NEIGHBOR_ID_SE(lvl) level_neighbors_map[lvl][2][2]->lvl_idx
+
+void gps_transform_map_init()
+{
+	int lvl_idx;
+	int x, y;
+	int ngb_idx, diag_idx;
+
+	if (!gps_transform_map_dirty_flag) return;
+	
+	//----------
+	// Reset maps
+	//
+	
+	for ( lvl_idx = 0; lvl_idx < MAX_LEVELS; lvl_idx++ )
+	{
+		for (ngb_idx = 0; ngb_idx < MAX_LEVELS; ngb_idx++) {
+			gps_transform_matrix[lvl_idx][ngb_idx].delta_x = 0;
+			gps_transform_matrix[lvl_idx][ngb_idx].delta_y = 0;
+			gps_transform_matrix[lvl_idx][ngb_idx].lvl_idx = -1;
+			gps_transform_matrix[lvl_idx][ngb_idx].valid   = FALSE;			
+		}
+
+		for ( y = 0; y < 3; y++ ) {
+			for ( x = 0; x < 3; x++ ) {
+				level_neighbors_map[lvl_idx][y][x] = NULL;
+			}
+		}
+	}
+	
+	//----------
+	// Scan direct neighbors and fill maps
+	//
+		
+	for ( lvl_idx = 0; lvl_idx < MAX_LEVELS; lvl_idx++ )
+	{
+		// Undefined level -> continue	
+		if ( curShip.AllLevels[lvl_idx] == NULL ) continue;
+		
+		// North
+		ngb_idx = curShip.AllLevels[lvl_idx]->jump_target_north;
+		if ( ngb_idx != -1 ) {
+			gps_transform_matrix[lvl_idx][ngb_idx].delta_x = 0;
+			gps_transform_matrix[lvl_idx][ngb_idx].delta_y = +curShip.AllLevels[ngb_idx]->ylen;
+			gps_transform_matrix[lvl_idx][ngb_idx].lvl_idx = ngb_idx;
+			gps_transform_matrix[lvl_idx][ngb_idx].valid   = TRUE;
+
+			NEIGHBOR_TRANSFORM_N(lvl_idx) = &gps_transform_matrix[lvl_idx][ngb_idx];
+		}
+		
+		// South
+		ngb_idx = curShip.AllLevels[lvl_idx]->jump_target_south;
+		if ( ngb_idx != -1 ) {
+			gps_transform_matrix[lvl_idx][ngb_idx].delta_x = 0;
+			gps_transform_matrix[lvl_idx][ngb_idx].delta_y = -curShip.AllLevels[lvl_idx]->ylen;
+			gps_transform_matrix[lvl_idx][ngb_idx].lvl_idx = ngb_idx;
+			gps_transform_matrix[lvl_idx][ngb_idx].valid   = TRUE;
+
+			NEIGHBOR_TRANSFORM_S(lvl_idx) = &gps_transform_matrix[lvl_idx][ngb_idx];
+		}
+		
+		// East
+		ngb_idx  = curShip.AllLevels[lvl_idx]->jump_target_east;
+		if ( ngb_idx != -1 ) {
+			gps_transform_matrix[lvl_idx][ngb_idx].delta_x = -curShip.AllLevels[lvl_idx]->xlen;
+			gps_transform_matrix[lvl_idx][ngb_idx].delta_y = 0;
+			gps_transform_matrix[lvl_idx][ngb_idx].lvl_idx = ngb_idx;
+			gps_transform_matrix[lvl_idx][ngb_idx].valid   = TRUE;
+
+			NEIGHBOR_TRANSFORM_E(lvl_idx) = &gps_transform_matrix[lvl_idx][ngb_idx];
+		}
+		
+		// West
+		ngb_idx  = curShip.AllLevels[lvl_idx]->jump_target_west;
+		if ( ngb_idx != -1 ) {
+			gps_transform_matrix[lvl_idx][ngb_idx].delta_x = +curShip.AllLevels[ngb_idx]->xlen;
+			gps_transform_matrix[lvl_idx][ngb_idx].delta_y = 0;
+			gps_transform_matrix[lvl_idx][ngb_idx].lvl_idx = ngb_idx;
+			gps_transform_matrix[lvl_idx][ngb_idx].valid   = TRUE;
+
+			NEIGHBOR_TRANSFORM_W(lvl_idx) = &gps_transform_matrix[lvl_idx][ngb_idx];			
+		}
+	}
+
+	//----------
+	// Scan diagonal levels and fill maps
+	//
+	// Now that we know the direct neighbors, we can use that knowledge to ease
+	// the finding of the diagonal levels.
+	// The main difficulty is that the north-west neighbor, for example, can be
+	// the west neighbor of the north neighbor or the north neighbor of the west neighbor.
+	// On a 4-connected corner (4 levels around a corner), the two cases are equivalent.
+	// However, on a 3-connected corner, one of the two cases is invalid. We thus have to
+	// try the 2 ways to reach each diagonal levels.
+	//
+	
+	for ( lvl_idx = 0; lvl_idx < MAX_LEVELS; lvl_idx++ )
+	{
+		// North-West neighbor.
+		if ( NEIGHBOR_TRANSFORM_N(lvl_idx) && NEIGHBOR_TRANSFORM_W( NEIGHBOR_ID_N(lvl_idx) ) ) {
+			diag_idx = NEIGHBOR_ID_W( NEIGHBOR_ID_N(lvl_idx) );
+			gps_transform_matrix[lvl_idx][diag_idx].delta_x = NEIGHBOR_TRANSFORM_N(lvl_idx)->delta_x + NEIGHBOR_TRANSFORM_W( NEIGHBOR_ID_N(lvl_idx) )->delta_x;
+			gps_transform_matrix[lvl_idx][diag_idx].delta_y = NEIGHBOR_TRANSFORM_N(lvl_idx)->delta_y + NEIGHBOR_TRANSFORM_W( NEIGHBOR_ID_N(lvl_idx) )->delta_y;
+			gps_transform_matrix[lvl_idx][diag_idx].lvl_idx = diag_idx;
+			gps_transform_matrix[lvl_idx][diag_idx].valid   = TRUE;
+
+			NEIGHBOR_TRANSFORM_NW(lvl_idx) = &gps_transform_matrix[lvl_idx][diag_idx];
+		}
+
+		// North-East neighbor.
+		if ( NEIGHBOR_TRANSFORM_N(lvl_idx) && NEIGHBOR_TRANSFORM_E( NEIGHBOR_ID_N(lvl_idx) ) ) {
+			diag_idx = NEIGHBOR_ID_E( NEIGHBOR_ID_N(lvl_idx) );
+			gps_transform_matrix[lvl_idx][diag_idx].delta_x = NEIGHBOR_TRANSFORM_N(lvl_idx)->delta_x + NEIGHBOR_TRANSFORM_E( NEIGHBOR_ID_N(lvl_idx) )->delta_x;
+			gps_transform_matrix[lvl_idx][diag_idx].delta_y = NEIGHBOR_TRANSFORM_N(lvl_idx)->delta_y + NEIGHBOR_TRANSFORM_E( NEIGHBOR_ID_N(lvl_idx) )->delta_y;
+			gps_transform_matrix[lvl_idx][diag_idx].lvl_idx = diag_idx;
+			gps_transform_matrix[lvl_idx][diag_idx].valid   = TRUE;
+
+			NEIGHBOR_TRANSFORM_NE(lvl_idx) = &gps_transform_matrix[lvl_idx][diag_idx];
+		}
+
+		// South-West neighbor.
+		if ( NEIGHBOR_TRANSFORM_S(lvl_idx) && NEIGHBOR_TRANSFORM_W( NEIGHBOR_ID_S(lvl_idx) ) ) {
+			diag_idx = NEIGHBOR_ID_W( NEIGHBOR_ID_S(lvl_idx) );
+			gps_transform_matrix[lvl_idx][diag_idx].delta_x = NEIGHBOR_TRANSFORM_S(lvl_idx)->delta_x + NEIGHBOR_TRANSFORM_W( NEIGHBOR_ID_S(lvl_idx) )->delta_x;
+			gps_transform_matrix[lvl_idx][diag_idx].delta_y = NEIGHBOR_TRANSFORM_S(lvl_idx)->delta_y + NEIGHBOR_TRANSFORM_W( NEIGHBOR_ID_S(lvl_idx) )->delta_y;
+			gps_transform_matrix[lvl_idx][diag_idx].lvl_idx = diag_idx;
+			gps_transform_matrix[lvl_idx][diag_idx].valid   = TRUE;
+
+			NEIGHBOR_TRANSFORM_SW(lvl_idx) = &gps_transform_matrix[lvl_idx][diag_idx];
+		}
+
+		// South-East neighbor.
+		if ( NEIGHBOR_TRANSFORM_S(lvl_idx) && NEIGHBOR_TRANSFORM_E( NEIGHBOR_ID_S(lvl_idx) ) ) {
+			diag_idx = NEIGHBOR_ID_E( NEIGHBOR_ID_S(lvl_idx) );
+			gps_transform_matrix[lvl_idx][diag_idx].delta_x = NEIGHBOR_TRANSFORM_S(lvl_idx)->delta_x + NEIGHBOR_TRANSFORM_E( NEIGHBOR_ID_S(lvl_idx) )->delta_x;
+			gps_transform_matrix[lvl_idx][diag_idx].delta_y = NEIGHBOR_TRANSFORM_S(lvl_idx)->delta_y + NEIGHBOR_TRANSFORM_E( NEIGHBOR_ID_S(lvl_idx) )->delta_y;
+			gps_transform_matrix[lvl_idx][diag_idx].lvl_idx = diag_idx;
+			gps_transform_matrix[lvl_idx][diag_idx].valid   = TRUE;
+
+			NEIGHBOR_TRANSFORM_SE(lvl_idx) = &gps_transform_matrix[lvl_idx][diag_idx];
+		}
+
+		// West-North neighbor, if needed (i.e. if north-west neighbor was not found).
+		if ( !NEIGHBOR_TRANSFORM_NW(lvl_idx) ) {
+			if ( NEIGHBOR_TRANSFORM_W(lvl_idx) && NEIGHBOR_TRANSFORM_N( NEIGHBOR_ID_W(lvl_idx) ) ) {
+				diag_idx = NEIGHBOR_ID_N( NEIGHBOR_ID_W(lvl_idx) );
+				gps_transform_matrix[lvl_idx][diag_idx].delta_x = NEIGHBOR_TRANSFORM_W(lvl_idx)->delta_x + NEIGHBOR_TRANSFORM_N( NEIGHBOR_ID_W(lvl_idx) )->delta_x;
+				gps_transform_matrix[lvl_idx][diag_idx].delta_y = NEIGHBOR_TRANSFORM_W(lvl_idx)->delta_y + NEIGHBOR_TRANSFORM_N( NEIGHBOR_ID_W(lvl_idx) )->delta_y;
+				gps_transform_matrix[lvl_idx][diag_idx].lvl_idx = diag_idx;
+				gps_transform_matrix[lvl_idx][diag_idx].valid   = TRUE;
+				
+				NEIGHBOR_TRANSFORM_NW(lvl_idx) = &gps_transform_matrix[lvl_idx][diag_idx];
+			}
+		}
+
+		// West-South neighbor, if needed (i.e. if south-west neighbor was not found).
+		if ( !NEIGHBOR_TRANSFORM_SW(lvl_idx) ) {
+			if ( NEIGHBOR_TRANSFORM_W(lvl_idx) && NEIGHBOR_TRANSFORM_S( NEIGHBOR_ID_W(lvl_idx) ) ) {
+				diag_idx = NEIGHBOR_ID_S( NEIGHBOR_ID_W(lvl_idx) );
+				gps_transform_matrix[lvl_idx][diag_idx].delta_x = NEIGHBOR_TRANSFORM_W(lvl_idx)->delta_x + NEIGHBOR_TRANSFORM_S( NEIGHBOR_ID_W(lvl_idx) )->delta_x;
+				gps_transform_matrix[lvl_idx][diag_idx].delta_y = NEIGHBOR_TRANSFORM_W(lvl_idx)->delta_y + NEIGHBOR_TRANSFORM_S( NEIGHBOR_ID_W(lvl_idx) )->delta_y;
+				gps_transform_matrix[lvl_idx][diag_idx].lvl_idx = diag_idx;
+				gps_transform_matrix[lvl_idx][diag_idx].valid   = TRUE;
+				
+				NEIGHBOR_TRANSFORM_SW(lvl_idx) = &gps_transform_matrix[lvl_idx][diag_idx];
+			}
+		}
+
+		// East-North neighbor, if needed (i.e. if north-east neighbor was not found).
+		if ( !NEIGHBOR_TRANSFORM_NE(lvl_idx) ) {
+			if ( NEIGHBOR_TRANSFORM_E(lvl_idx) && NEIGHBOR_TRANSFORM_N( NEIGHBOR_ID_E(lvl_idx) ) ) {
+				diag_idx = NEIGHBOR_ID_N( NEIGHBOR_ID_E(lvl_idx) );
+				gps_transform_matrix[lvl_idx][diag_idx].delta_x = NEIGHBOR_TRANSFORM_E(lvl_idx)->delta_x + NEIGHBOR_TRANSFORM_N( NEIGHBOR_ID_E(lvl_idx) )->delta_x;
+				gps_transform_matrix[lvl_idx][diag_idx].delta_y = NEIGHBOR_TRANSFORM_E(lvl_idx)->delta_y + NEIGHBOR_TRANSFORM_N( NEIGHBOR_ID_E(lvl_idx) )->delta_y;
+				gps_transform_matrix[lvl_idx][diag_idx].lvl_idx = diag_idx;
+				gps_transform_matrix[lvl_idx][diag_idx].valid   = TRUE;
+				
+				NEIGHBOR_TRANSFORM_NE(lvl_idx) = &gps_transform_matrix[lvl_idx][diag_idx];
+			}
+		}
+
+		// East-South neighbor, if needed (i.e. if south-east neighbor was not found).
+		if ( !NEIGHBOR_TRANSFORM_SE(lvl_idx) ) {
+			if ( NEIGHBOR_TRANSFORM_E(lvl_idx) && NEIGHBOR_TRANSFORM_S( NEIGHBOR_ID_E(lvl_idx) ) ) {
+				diag_idx = NEIGHBOR_ID_S( NEIGHBOR_ID_E(lvl_idx) );
+				gps_transform_matrix[lvl_idx][diag_idx].delta_x = NEIGHBOR_TRANSFORM_E(lvl_idx)->delta_x + NEIGHBOR_TRANSFORM_S( NEIGHBOR_ID_E(lvl_idx) )->delta_x;
+				gps_transform_matrix[lvl_idx][diag_idx].delta_y = NEIGHBOR_TRANSFORM_E(lvl_idx)->delta_y + NEIGHBOR_TRANSFORM_S( NEIGHBOR_ID_E(lvl_idx) )->delta_y;
+				gps_transform_matrix[lvl_idx][diag_idx].lvl_idx = diag_idx;
+				gps_transform_matrix[lvl_idx][diag_idx].valid   = TRUE;
+				
+				NEIGHBOR_TRANSFORM_SE(lvl_idx) = &gps_transform_matrix[lvl_idx][diag_idx];
+			}
+		}
+	}
+	
+	gps_transform_map_dirty_flag = FALSE;
+}
+
 /**
- * The Tux can change onto other levels via jump thresholds.  This was an
- * important step for gluing together several maps into one big map.
- *
- * However, enemies will want to follow the Tux.  They should become 
- * visible when they are technically still on other levels.  Later they
- * should even become clickable and even later they might even move and
- * react to the Tux.
- *
- * However, from a technical point of view, this is becoming increasingly
- * unconvenient to handle.  Therefore we introduce 'virtual' positions,
- * i.e. the position the bot would have, if the bot were in fact counted
- * as part of a neighbouring level, mostly the level of the Tux.  Using
- * this concept, we can more easily compute distances and compare 
- * positions.
+ * There are several cases where an object or a character (Tux or a bot)
+ * could become visible or active when they are technically still not on the
+ * current level.
+ * 
+ * Therefore we introduce 'virtual' positions, i.e. the position the object 
+ * would have, if the object were in fact counted as part of a neighbouring level,
+ * mostly the level of the Tux.  Using this concept, we can more easily compute 
+ * distances and compare positions.
  *
  * This function is an abstract approach to this problem, working with
- * the 'gps' notion, such that later it might also be used in conjunction
- * with items or other stuff...
+ * the 'gps' notion.
  *
  */
 void update_virtual_position (gps *target_pos, gps *source_pos, int level_num)
 {
-    int north_level, south_level, east_level, west_level;
-
-    //--------------------
-    // The case where the position in question is already directy on 
-    // the virtual level, things are really simple and we can quit
-    // almost immediately...
-    //
-    if ( source_pos -> z == level_num )
-    {
-	target_pos -> x = source_pos -> x ;
-	target_pos -> y = source_pos -> y ;
-	target_pos -> z = source_pos -> z ;
-	return;
-    }
-
-    //--------------------
-    // However, in case of a remote level, we need to compute a 
-    // bit more...
-    //
-    north_level = curShip . AllLevels [ level_num ] -> jump_target_north ;
-    south_level = curShip . AllLevels [ level_num ] -> jump_target_south ;
-    east_level =  curShip . AllLevels [ level_num ] -> jump_target_east ;
-    west_level =  curShip . AllLevels [ level_num ] -> jump_target_west ;
-    
-    if ( source_pos -> z == north_level )
-    {
-	target_pos -> z = level_num ;
-	target_pos -> x = source_pos -> x ;
-	target_pos -> y = source_pos -> y - curShip . AllLevels [ north_level ] -> ylen 
-	    + curShip . AllLevels [ north_level ] -> jump_threshold_south ;
-    }
-    else if ( source_pos -> z == south_level )
-    {
-	target_pos -> z = level_num ;
-	target_pos -> x = source_pos -> x ;
-	target_pos -> y = source_pos -> y + curShip . AllLevels [ level_num ] -> ylen 
-	    - curShip . AllLevels [ level_num ] -> jump_threshold_south ;
-
-	// DebugPrintf ( -4 , "\n%s(): assigning virtual position to bot on southern map." , __FUNCTION__ );
-    }
-    else if ( source_pos -> z == east_level )
-    {
-	target_pos -> z = level_num ;
-	target_pos -> y = source_pos -> y ;
-	target_pos -> x = source_pos -> x + curShip . AllLevels [ level_num ] -> xlen 
-	    - curShip . AllLevels [ level_num ] -> jump_threshold_east ;
-    }
-    else if ( source_pos -> z == west_level )
-    {
-	target_pos -> z = level_num ;
-	target_pos -> y = source_pos -> y ;
-	target_pos -> x = source_pos -> x - curShip . AllLevels [ west_level ] -> xlen 
-	    + curShip . AllLevels [ west_level ] -> jump_threshold_east ;
-    }
-    else
-    {
 	//--------------------
-	// In this case, we've reached the conclusion, that the position
-	// in question cannot be expressed in terms of the virtual level.
+	// The case where the position in question is already directly on 
+	// the virtual level, things are really simple and we can quit
+	// almost immediately...
+	//
+	if ( source_pos->z == level_num )
+	{
+		target_pos->x = source_pos->x;
+		target_pos->y = source_pos->y;
+		target_pos->z = source_pos->z;
+		return;
+	}
+
+	//--------------------
+	// Transform the gps position
+	//
+	struct neighbor_data_cell* ngb_data = &gps_transform_matrix[source_pos->z][level_num];
+	
+	if ( ngb_data->valid ) {
+		target_pos->x = source_pos->x + ngb_data->delta_x;
+		target_pos->y = source_pos->y + ngb_data->delta_y;
+		target_pos->z = level_num;
+		return;
+	}
+	
+	//--------------------
+	// The gps position cannot be expressed in terms of the virtual level.
 	// That means we'll best 'erase' the virtual positions, so that
 	// no 'phantoms' will occur...
 	//
-	target_pos -> x = (-1) ;
-	target_pos -> y = (-1) ;
-	target_pos -> z = (-1) ;
-	return;
-    }
-    
-}; // void update_virtual_position ( gps* target_pos , gps* source_pos , int level_num )
+	target_pos->x = (-1);
+	target_pos->y = (-1);
+	target_pos->z = (-1);
+
+} // void update_virtual_position ( gps* target_pos , gps* source_pos , int level_num )
+
+/*
+ * Transform a virtual position, defined in the 'lvl' coordinate system, into
+ * its real level and position
+ * 
+ * Note: this function only works if the real position is one of the 8 neighbors of 'lvl'.
+ * If not, the function returns FALSE. 
+ * (a recursive call could be used to remove this limitation)
+ */
+int resolve_virtual_position( gps *rpos, gps *vpos )
+{
+	int valid = FALSE;
+	level *lvl = curShip.AllLevels[vpos->z];
+
+	// Get the gps transformation data cell, according to virtual position value
+	
+	int idX = (vpos->x < 0) ? (0) : ( (vpos->x < lvl->xlen) ? (1) : (2) );
+	int idY = (vpos->y < 0) ? (0) : ( (vpos->y < lvl->ylen) ? (1) : (2) );
+	
+	// If we don't have to transform the position, return immediately
+	
+	if ( idX == 1 && idY == 1 ) {
+		rpos->x = vpos->x;
+		rpos->y = vpos->y;
+		rpos->z = vpos->z;              
+		return TRUE;		
+	}
+	
+	// Do the transformation
+	
+	struct neighbor_data_cell* ngb_data = level_neighbors_map[vpos->z][idY][idX];
+	
+	if ( ngb_data && ngb_data->valid )
+	{
+		rpos->x = vpos->x + ngb_data->delta_x;
+		rpos->y = vpos->y + ngb_data->delta_y;
+		rpos->z = ngb_data->lvl_idx;
+	
+		// Check that the transformed position is valid (i.e. inside level boundaries)
+		level *rlvl = curShip.AllLevels[rpos->z];
+		valid = ( rpos->x >= 0 ) && ( rpos->x <= rlvl->xlen ) && ( rpos->y >= 0 ) && ( rpos->y <= rlvl->ylen );
+	}
+	
+	if ( !valid ) {
+		rpos->x = vpos->x;
+		rpos->y = vpos->y;
+		rpos->z = vpos->z;              
+		return FALSE;
+	}
+
+	return TRUE;
+}
 
 /**
  * The blitting list must contain the enemies too.  This function is 
@@ -3288,9 +3538,15 @@ PrintCommentOfThisEnemy ( enemy * e )
 	//--------------------
 	// First we display the normal text to be displayed...
 	//
+#	if 0
+	char txt[256];
+	sprintf(txt, "%d - %s", e->id, e->TextToBeDisplayed);
+	PutStringFont ( Screen , FPS_Display_BFont , x_pos , y_pos , txt);  
+#	else	
 	PutStringFont ( Screen , FPS_Display_BFont , 
 			x_pos , y_pos ,  
 			e->TextToBeDisplayed );
+#	endif
     }
     
 }; // void PrintCommentOfThisEnemy ( int Enum, int x, int y )
