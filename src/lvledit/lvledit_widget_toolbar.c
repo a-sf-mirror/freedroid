@@ -174,7 +174,7 @@ void leveleditor_toolbar_display(struct leveleditor_widget *vt)
 			if (display_info) {
 				// Display information about the currently selected object
 				leveleditor_print_object_info(ts->type, ts->indices, cindex, VanishingMessage);
-				VanishingMessageEndDate = SDL_GetTicks() + 50;
+				VanishingMessageEndDate = SDL_GetTicks() + 100;
 			}
 		}
 
