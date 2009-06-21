@@ -245,28 +245,22 @@ int SinglePointColldet ( float x, float y, int z, colldet_filter* filter )
 /** This function checks if the line can be traversed along directly against obstacles.
  * It also handles the case of point tests (x1 == x2 && y1 == y2) properly.
  * 
+ * This function scans all the obstacles that are inside the bounding box of the
+ * segment, and check if the segment intersects these obstacles.
+ * 
+ * Note: this function compute the intersection between a segment and the obstacles
+ * of one given level. This is a helper function used by DirectLineColldet(), which
+ * is the real function to use. see below.
+ * 
  * Return FALSE if collision detected.
- */
-int DirectLineColldet ( float x1, float y1, float x2, float y2, int z, colldet_filter* filter)
+  */
+static int dlc_on_one_level ( int x_tile_start, int x_tile_end, int y_tile_start, int y_tile_end,
+                           gps *p1, gps *p2, level *lvl, 
+                           colldet_filter* filter)
 {
-
-	//Browse all obstacles around the rectangle
-	int x_tile_start, y_tile_start;
-	int x_tile_end, y_tile_end;
 	int x_tile, y_tile;
-	Level PassLevel = curShip.AllLevels[z];
 	
-	x_tile_start = floor(min(x1,x2)) - 2;
-	y_tile_start = floor(min(y1,y2)) - 2;
-	x_tile_end = ceil(max(x1,x2)) + 2;
-	y_tile_end = ceil(max(y1,y2)) + 2;
-	
-	if ( x_tile_start < 0 ) x_tile_start = 0 ;
-	if ( y_tile_start < 0 ) y_tile_start = 0 ;
-	if ( x_tile_end >= PassLevel->xlen ) x_tile_end = PassLevel->xlen - 1;
-	if ( y_tile_end >= PassLevel->ylen ) y_tile_end = PassLevel->ylen - 1;
-	
-	char ispoint = ( (x1 == x2) && (y1 == y2) );
+	char ispoint = ( (p1->x == p2->x) && (p1->y == p2->y) );
 	
 	for ( y_tile = y_tile_start; y_tile <= y_tile_end; y_tile++ )
 	{
@@ -277,11 +271,11 @@ int DirectLineColldet ( float x1, float y1, float x2, float y2, int z, colldet_f
 			
 			for ( glue_index = 0 ; glue_index < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE ; glue_index++ )
 			{
-				int obstacle_index = PassLevel->map[y_tile][x_tile].obstacles_glued_to_here[glue_index];
+				int obstacle_index = lvl->map[y_tile][x_tile].obstacles_glued_to_here[glue_index];
 				
 				if ( obstacle_index == (-1) ) break;
 				
-				obstacle * our_obs = &(PassLevel->obstacle_list[obstacle_index]);
+				obstacle * our_obs = &(lvl->obstacle_list[obstacle_index]);
 				
 				// If the obstacle doesn't even have a collision rectangle, then
 				// of course it's easy, cause then there can't be any collsision
@@ -312,8 +306,8 @@ int DirectLineColldet ( float x1, float y1, float x2, float y2, int z, colldet_f
 					rect2.y += COLLDET_MARGIN;
 				}
 				
-				char p1flags = get_point_flag( rect1.x, rect1.y, rect2.x, rect2.y, x1, y1 );
-				char p2flags = get_point_flag( rect1.x, rect1.y, rect2.x, rect2.y, x2, y2 );
+				char p1flags = get_point_flag( rect1.x, rect1.y, rect2.x, rect2.y, p1->x, p1->y );
+				char p2flags = get_point_flag( rect1.x, rect1.y, rect2.x, rect2.y, p2->x, p2->y );
 				
 				// Handle obvious cases
 				if ( p1flags & p2flags ) // both points on the same side, no collision
@@ -330,9 +324,9 @@ int DirectLineColldet ( float x1, float y1, float x2, float y2, int z, colldet_f
 				// by looking if all vertices of the rectangle are in the same half-space
 				//
 				// 1- line equation : a*x + b*y + c = 0
-				float line_a = -(y1 - y2);
-				float line_b = x1 - x2;
-				float line_c = x2*y1 - y2*x1;
+				float line_a = -(p1->y - p2->y);
+				float line_b = p1->x - p2->x;
+				float line_c = p2->x * p1->y - p2->y * p1->x;
 				
 				// 2- check each vertex, halt as soon as one is on the other halfspace -> collision
 				char first_vertex_sign = ( line_a * rect1.x + line_b * rect1.y + line_c ) > 0 ? 0 : 1;
@@ -350,6 +344,135 @@ int DirectLineColldet ( float x1, float y1, float x2, float y2, int z, colldet_f
 	
 	return TRUE;
 	
+}
+
+/** This function checks if the line can be traversed along directly against obstacles.
+ * It also handles the case of point tests (x1 == x2 && y1 == y2) properly.
+ * 
+ * Return FALSE if collision detected.
+ * 
+ * (see dlc_on_one_level() for the core collision detection)
+ * 
+ * The bounding box around the segment can span up to 4 levels. We thus have to use
+ * virtual gps coordinates.
+ * 
+ * The overall algorithm should be :
+ * foreach tile of the bounding box along Y axis {
+ *   foreach tile of the bounding box along X axis {
+ *     resolve virtual coord (X,Y,Z) into real coord (X1,Y1,Z1)
+ *     foreach obstacle at (X1,Y1,Z1) {
+ *       get obstacle's virtual position according to Z level
+ *       check collision between segment and obstacle
+ *     }
+ *   }
+ * }
+ * There will thus be a lot of gps transformations, with a real impact performance.
+ * 
+ * To avoid all those transformations, we will rather split the segment's bbox
+ * into (up to) 4 parts, one part per spanned level. We then just have to transform
+ * the segment's endpoints according to each level. For example, if part of the bbox
+ * is on the north neighbor, we will have :
+ * 
+ * get segment's virtual position according to north neighbor
+ * foreach tile of the bounding box on the north neighbor along Y axis {
+ *   foreach tile of the bounding box on the north neighbor along X axis {
+ *     foreach obstacle at (X,Y,north level) {
+ *       check collision between 'virtual segment' and obstacle
+ *     }
+ *   }
+ * }
+ * 
+ * We don't however want to check all the neighborhood (current level + its 8 neighbors), 
+ * since at most 4 levels can be spanned by the segment's bbox. 
+ * We will here use the same trick than the one in resolved_virtual_position():
+ *   conceptually, if (X,Y) is a virtual position, the (i,j) pair defined by i = (int)(X/xlen)
+ *   and j = (int)(Y/ylen), is a reference to one of the 9 levels in the neighborhood, where 
+ *   the (X,Y) point lies.
+ * 
+ * We can then transform the bbox's top-left and bottom-right points into 2 pairs
+ * that will reference the top-left and bottom-right levels spanned by the segment, and
+ * we just have to loop on those levels.
+ * 
+ * Small optimization : chances are that the biggest part of the bbox is on the current
+ * level. We will then first check collision on the current level, before to test neighbors.
+ */
+
+int DirectLineColldet( float x1, float y1, float x2, float y2, int z, colldet_filter* filter)
+{
+	gps p1 = { x1, y1, z };		// segment real starting gps point
+	gps p2 = { x2, y2, z };		// segment real ending gps point
+	gps vp1, vp2;				// segment's virtual endpoints
+
+	// Segment's bbox.
+	// We add 2 tiles around the segment's bbox, because some obstacles covers several tiles.
+	int x_tile_start = floor(min(x1,x2)) - 2;
+	int y_tile_start = floor(min(y1,y2)) - 2;
+	int x_tile_end = ceil(max(x1,x2)) - 1 + 2;
+	int y_tile_end = ceil(max(y1,y2)) - 1 + 2;
+	
+	int x_start, y_start, x_end, y_end;			// intersection between the bbox and one level's limits
+	struct neighbor_data_cell *ngb_cell = NULL;
+	
+	//--------------------
+	// First check on current level (small optimization)
+	//
+	
+	level *lvl = curShip.AllLevels[z];
+	
+	// compute the intersection between the bbox and the current level
+	x_start = max(0, x_tile_start);
+	x_end = min(lvl->xlen-1, x_tile_end);
+	y_start = max(0, y_tile_start);
+	y_end = min(lvl->ylen-1, y_tile_end);
+	
+	// check collision
+	if ( !dlc_on_one_level( x_start, x_end, y_start, y_end, &p1, &p2, lvl, filter) )
+		return FALSE;
+
+	//--------------------
+	// Get the neighborhood covered by the segment's bbox (see function's comment)
+	// and check each of the neighbors
+	//
+	int x_ngb_start = NEIGHBOR_IDX(x_tile_start, lvl->xlen);
+	int x_ngb_end   = NEIGHBOR_IDX(x_tile_end,   lvl->xlen);
+	int y_ngb_start = NEIGHBOR_IDX(y_tile_start, lvl->ylen);
+	int y_ngb_end   = NEIGHBOR_IDX(y_tile_end,   lvl->ylen);
+	
+	// Loop on the neighbors
+	
+	int j, i;
+	for (j = y_ngb_start; j <= y_ngb_end; j++) {
+		for (i = x_ngb_start; i <= x_ngb_end; i++ ) {
+			
+			if ( j == 1 && i == 1) continue; // this references the current level, already checked
+
+			// if the neighbor exists...
+			
+			if ( (ngb_cell = level_neighbors_map[z][j][i]) ) {
+
+				// get neighbor's level struct
+				lvl = curShip.AllLevels[ngb_cell->lvl_idx];
+				
+				// transform bbox corners into virtual positions according to lvl
+				// and compute intersection with lvl's limits
+				x_start = max(0, x_tile_start + ngb_cell->delta_x);
+				x_end   = min(lvl->xlen-1, x_tile_end + ngb_cell->delta_x);
+				y_start = max(0, y_tile_start + ngb_cell->delta_y);
+				y_end   = min(lvl->ylen-1, y_tile_end + ngb_cell->delta_y);
+			
+				// transform segment's endpoints into virtual positions according to lvl
+				update_virtual_position(&vp1, &p1, ngb_cell->lvl_idx);
+				update_virtual_position(&vp2, &p2, ngb_cell->lvl_idx);
+
+				// check collision
+				if ( !dlc_on_one_level( x_start, x_end, y_start, y_end, &vp1, &vp2, lvl, filter) )
+					return FALSE;
+			}
+			
+		}
+	}
+	
+	return TRUE;
 }
 
 /**************************************************************

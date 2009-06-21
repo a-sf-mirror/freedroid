@@ -1191,8 +1191,8 @@ int resolve_virtual_position( gps *rpos, gps *vpos )
 
 	// Get the gps transformation data cell, according to virtual position value
 	
-	int idX = (vpos->x < 0) ? (0) : ( (vpos->x < lvl->xlen) ? (1) : (2) );
-	int idY = (vpos->y < 0) ? (0) : ( (vpos->y < lvl->ylen) ? (1) : (2) );
+	int idX = NEIGHBOR_IDX(vpos->x, lvl->xlen);
+	int idY = NEIGHBOR_IDX(vpos->y, lvl->ylen);
 	
 	// If we don't have to transform the position, return immediately
 	
