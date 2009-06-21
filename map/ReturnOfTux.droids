@@ -350,8 +350,8 @@ Allowed Type of Random Droid for this level: 476
 
 ** Beginning of new Level **
 Level=19
-Maximum number of Random Droids=40
-Minimum number of Random Droids=40
+Maximum number of Random Droids=30
+Minimum number of Random Droids=30
 Allowed Type of Random Droid for this level: 123
 Allowed Type of Random Droid for this level: 139
 Allowed Type of Random Droid for this level: 247
@@ -410,8 +410,8 @@ S*Force: T=598 Fixed=0 Marker=1024 Friendly=0 StartLabel="MSCDStartGameSquare" R
 
 ** Beginning of new Level **
 Level=26
-Maximum number of Random Droids=1
-Minimum number of Random Droids=1
+Maximum number of Random Droids=0
+Minimum number of Random Droids=0
 Allowed Type of Random Droid for this level: 123
 ** End of this levels droid data **
 
