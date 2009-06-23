@@ -850,6 +850,7 @@ typedef struct level_s
     int light_radius_bonus;
     int minimum_light_value;
     int infinite_running_on_this_level;
+	int random_dungeon;
     char *Levelname;
     char *Background_Song_Name;
     char *obstacle_name_list [ MAX_OBSTACLE_NAMES_PER_LEVEL ];

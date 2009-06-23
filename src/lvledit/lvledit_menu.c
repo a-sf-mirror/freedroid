@@ -562,6 +562,7 @@ static void LevelOptions ( void )
 	SET_LEVEL_NAME,
 	EDIT_LEVEL_DIMENSIONS,
 	SET_LEVEL_INTERFACE_POSITION,
+	SET_RANDOM_LEVEL,
 	CHANGE_LIGHT,
 	CHANGE_INDOOR_OUTDOOR,
 	SET_BACKGROUND_SONG_NAME,
@@ -610,6 +611,10 @@ static void LevelOptions ( void )
 
 	    }
 	MenuTexts[ i ] = Options [ i ] ; i++ ;
+	
+	sprintf(Options[i], "%s: %s", _("Random dungeon"), EditLevel()->random_dungeon ? _("yes") : _("no"));
+    MenuTexts[i] = Options[i]; i++;
+
 	sprintf( Options [ i ] , _("Light") );
 	strcat( Options [ i ] , ":  " );
 	strcat( Options [ i ] , _("Radius") );
@@ -630,6 +635,7 @@ static void LevelOptions ( void )
 	else sprintf( Options [ i+1 ] , "Im a bug" );
 	strcat( Options [ i ] , Options [ i+1 ] ); 
 	MenuTexts[ i ] = Options [ i ]; i++ ;
+
 	sprintf( Options [ i ] , _("Daylight cycle") );
 	strcat( Options [ i ] , ": " ); 
 	if ( EditLevel() -> use_underground_lighting ) strcat ( Options [ i ] , _("Indoors"));
@@ -672,6 +678,9 @@ static void LevelOptions ( void )
 				if ( curShip.AllLevels[tgt] != NULL ) Teleport ( tgt , 3 , 3 , FALSE );
 				proceed_now=!proceed_now;
 			}
+			break;
+		case SET_RANDOM_LEVEL:
+			EditLevel()->random_dungeon = !EditLevel()->random_dungeon;
 			break;
 	    case CHANGE_LIGHT:
 		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);

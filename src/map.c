@@ -369,15 +369,14 @@ static void DecodeDimensionsOfThisLevel ( Level loadlevel , char* DataPointer )
     fp += off + 1;
     off = 0;
 
-/*
+    fp += strlen ("random dungeon:");
+    while ( * (fp + off) != '\n' ) off ++;
+    fp [ off ] = 0;
+    loadlevel -> random_dungeon = atoi ( fp );
+    fp [ off ] = '\n';
+    fp += off + 1;
+    off = 0;
 
-
-    loadlevel -> light_radius_bonus = atoi ( DataPointer );
-
-    loadlevel -> minimum_light_value = atoi ( DataPointer );
-
-    loadlevel -> infinite_running_on_this_level = atoi ( DataPointer );
-*/
     if ( loadlevel->ylen >= MAX_MAP_LINES ) 
     {
 	ErrorMessage ( __FUNCTION__  , "\
@@ -413,7 +412,10 @@ static void decode_obstacles_of_this_level(level *loadlevel, char* DataPointer)
 	loadlevel->obstacle_list[i].name_index = -1;
 	loadlevel->obstacle_list[i].description_index = -1;
     }
-    
+   
+    if (loadlevel->random_dungeon)
+		return;
+
     //--------------------
     // Now we look for the beginning and end of the obstacle section
     //
@@ -503,7 +505,10 @@ static void DecodeMapLabelsOfThisLevel ( Level loadlevel , char* DataPointer )
 		}
 	loadlevel -> labels [ i ] . label_name = "no_label_defined" ;
     }
-    
+   
+    if (loadlevel->random_dungeon)
+		return;
+
     //--------------------
     // Now we look for the beginning and end of the map labels section
     //
@@ -578,7 +583,10 @@ static void decode_obstacle_names_of_this_level ( Level loadlevel , char* DataPo
 	loadlevel -> obstacle_states_names [ i ] = NULL ;
 	loadlevel -> obstacle_states_values [ i ] = -1 ;
     }
-    
+   
+    if (loadlevel->random_dungeon)
+		return;
+
     //--------------------
     // Now we look for the beginning and end of the map labels section
     //
@@ -674,7 +682,10 @@ static void decode_obstacle_descriptions_of_this_level ( Level loadlevel , char*
     {
 	loadlevel -> obstacle_description_list [ i ] = NULL ;
     }
-    
+   
+    if (loadlevel->random_dungeon)
+		return;
+
     //--------------------
     // Now we look for the beginning and end of the obstacle descriptions section
     //
@@ -1486,7 +1497,7 @@ static void EncodeMapLabelsOfThisLevel ( char* LevelMem , Level Lev )
     strcat(LevelMem, MAP_LABEL_BEGIN_STRING);
     strcat(LevelMem, "\n");
     LevelMem += strlen(LevelMem);
-    
+   
     for ( i = 0 ; i < MAX_MAP_LABELS_PER_LEVEL ; i ++ )
     {
 	if ( Lev -> labels [ i ] . pos . x == (-1) ) continue;
@@ -1856,6 +1867,7 @@ ylen of this level: %d\n\
 light radius bonus of this level: %d\n\
 minimal light on this level: %d\n\
 infinite_running_on_this_level: %d\n\
+random dungeon: %d\n\
 jump threshold north: %d\n\
 jump threshold south: %d\n\
 jump threshold east: %d\n\
@@ -1868,6 +1880,7 @@ use underground lighting: %d\n",
 	     Lev -> levelnum, Lev->xlen, Lev->ylen, Lev -> light_radius_bonus , 
 	     Lev -> minimum_light_value, 
 	     Lev -> infinite_running_on_this_level,
+		 Lev -> random_dungeon,
 	     Lev -> jump_threshold_north, 
 	     Lev -> jump_threshold_south, 
 	     Lev -> jump_threshold_east, 
@@ -1907,19 +1920,20 @@ use underground lighting: %d\n",
     // vital for reading in the file again, but it adds clearness to the files structure.
     strcat(LevelMem, MAP_END_STRING);
     strcat(LevelMem, "\n");
-    
-    encode_obstacles_of_this_level ( LevelMem , Lev );
-    
-    EncodeMapLabelsOfThisLevel ( LevelMem , Lev );
-    
-    encode_obstacle_names_of_this_level ( LevelMem , Lev );
+   
+	if (!Lev->random_dungeon) {
+		encode_obstacles_of_this_level ( LevelMem , Lev );
 
-    encode_obstacle_descriptions_of_this_level ( LevelMem , Lev );
-    
-    EncodeItemSectionOfThisLevel ( LevelMem , Lev ) ;
-    
-    EncodeChestItemSectionOfThisLevel ( LevelMem , Lev ) ;
-    
+		EncodeMapLabelsOfThisLevel ( LevelMem , Lev );
+
+		encode_obstacle_names_of_this_level ( LevelMem , Lev );
+
+		encode_obstacle_descriptions_of_this_level ( LevelMem , Lev );
+
+		EncodeItemSectionOfThisLevel ( LevelMem , Lev ) ;
+
+		EncodeChestItemSectionOfThisLevel ( LevelMem , Lev ) ;
+	}
     // --------------------  
     // The next thing we must do is write the waypoints of this level also
     // to disk.
@@ -2146,6 +2160,9 @@ static void DecodeItemSectionOfThisLevel ( Level loadlevel , char* data )
       loadlevel->ItemList[ i ].currently_held_in_hand = FALSE;
     }
 
+  if (loadlevel->random_dungeon)
+	  return;
+
   // We look for the beginning and end of the items section
   ItemsSectionBegin = LocateStringInData( data , ITEMS_SECTION_BEGIN_STRING );
   ItemsSectionEnd = LocateStringInData( ItemsSectionBegin , ITEMS_SECTION_END_STRING );
@@ -2196,6 +2213,9 @@ static void DecodeChestItemSectionOfThisLevel ( Level loadlevel , char* data )
       loadlevel->ChestItemList[ i ].type = ( -1 ) ;
       loadlevel->ChestItemList[ i ].currently_held_in_hand = FALSE;
     }
+
+  if (loadlevel->random_dungeon)
+	  return;
 
   // We look for the beginning and end of the items section
   ItemsSectionBegin = LocateStringInData( data , CHEST_ITEMS_SECTION_BEGIN_STRING );
@@ -2288,23 +2308,23 @@ DecodeLoadedLeveldata ( char *data )
     
     loadlevel->Background_Song_Name = ReadAndMallocStringFromData ( data , BACKGROUND_SONG_NAME_STRING , "\n" );
 
-    decode_obstacles_of_this_level ( loadlevel , DataPointer );
+	decode_obstacles_of_this_level ( loadlevel , DataPointer );
 
-    DecodeMapLabelsOfThisLevel ( loadlevel , DataPointer );
-    
-    decode_obstacle_names_of_this_level ( loadlevel , DataPointer );
-    
-    decode_obstacle_descriptions_of_this_level ( loadlevel , DataPointer );
+	DecodeMapLabelsOfThisLevel ( loadlevel , DataPointer );
 
-    //--------------------
-    // Next we extract the statments of the influencer on this level WITHOUT destroying
-    // or damaging the data in the process!
-    //
-    DecodeItemSectionOfThisLevel ( loadlevel , data );
-    
-    DecodeChestItemSectionOfThisLevel ( loadlevel , data );
-    
-    //--------------------
+	decode_obstacle_names_of_this_level ( loadlevel , DataPointer );
+
+	decode_obstacle_descriptions_of_this_level ( loadlevel , DataPointer );
+
+	//--------------------
+	// Next we extract the statments of the influencer on this level WITHOUT destroying
+	// or damaging the data in the process!
+	//
+	DecodeItemSectionOfThisLevel ( loadlevel , data );
+
+	DecodeChestItemSectionOfThisLevel ( loadlevel , data );
+
+	//--------------------
     // find the map data
     // NOTE, that we here only set up a pointer to the map data
     // as they are stored in the file.  This is NOT the same format
@@ -2369,6 +2389,7 @@ DecodeLoadedLeveldata ( char *data )
     //--------------------
     // We decode the waypoint data from the data file into the waypoint
     // structs...
+	//
     curlinepos = 0;
     for ( i = 0 ; i < MAXWAYPOINTS ; i++ )
     {
@@ -2386,6 +2407,7 @@ DecodeLoadedLeveldata ( char *data )
 		if (!strcmp(this_line, LEVEL_END_STRING))
 		{
 		    loadlevel->num_waypoints = i;
+			printf("Got %d waypointsfor level %d\n", i, loadlevel->levelnum);
 		    break;
 		}
 	wp_rnd = 0 ;
@@ -2425,7 +2447,13 @@ DecodeLoadedLeveldata ( char *data )
 	loadlevel -> AllWaypoints [ i ] . num_connections = k;
 	
     } // for i < MAXWAYPOINTS
-    
+	
+	if (loadlevel->random_dungeon) {
+		// Generate random dungeon now
+		set_dungeon_output(loadlevel);
+		generate_dungeon(loadlevel->xlen, loadlevel->ylen, 1, 100);
+	}
+   
     free ( this_line ); 
     return (loadlevel);
     

@@ -10,7 +10,7 @@
 #include "mapgen/fd_hooks.h"
 
 /* Minimum surface of a room */
-static const int Smin = 12;
+static const int Smin = 40;
 
 /* Dimensions of the dungeon */
 static int dim_x_init;
