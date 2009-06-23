@@ -612,7 +612,7 @@ static void LevelOptions ( void )
 	    }
 	MenuTexts[ i ] = Options [ i ] ; i++ ;
 	
-	sprintf(Options[i], "%s: %s", _("Random dungeon"), EditLevel()->random_dungeon ? _("yes") : _("no"));
+	sprintf(Options[i], "%s: %s", _("Random"), EditLevel()->random_dungeon ? _("Dungeon - 2 connections") : _("no"));
     MenuTexts[i] = Options[i]; i++;
 
 	sprintf( Options [ i ] , _("Light") );
