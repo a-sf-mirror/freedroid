@@ -1215,7 +1215,7 @@ int resolve_virtual_position( gps *rpos, gps *vpos )
 	
 		// Check that the transformed position is valid (i.e. inside level boundaries)
 		level *rlvl = curShip.AllLevels[rpos->z];
-		valid = ( rpos->x >= 0 ) && ( rpos->x <= rlvl->xlen ) && ( rpos->y >= 0 ) && ( rpos->y <= rlvl->ylen );
+		valid = pos_inside_level( rpos->x, rpos->y, rlvl );
 	}
 	
 	if ( !valid ) {
@@ -1227,6 +1227,16 @@ int resolve_virtual_position( gps *rpos, gps *vpos )
 
 	return TRUE;
 }
+
+/**
+ * Check if a position is inside a level's boundaries
+ * 
+ * return TRUE if '(x,y)' is inside 'lvl'
+ */
+int pos_inside_level( float x, float y, level *lvl )
+{
+	return ( ( x >= 0 ) && ( x < (float)lvl->xlen ) && ( y >= 0 ) && ( y < (float)lvl->ylen ) );
+} // pos_inside_level()
 
 /**
  * The blitting list must contain the enemies too.  This function is 

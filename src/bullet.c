@@ -173,81 +173,68 @@ void DoMeleeDamage (void)
 void
 MoveBullets (void)
 {
-  int i;
-  int map_x;
-  int map_y;
-  Bullet CurBullet;
-  Level BulletLevel;
-
-  //--------------------
-  // We move all the bullets
-  //
-  for ( i = 0; i < MAXBULLETS; i++)
-    {
-      CurBullet = &AllBullets[i];
-      //--------------------
-      // We need not move any bullets, that are INFOUT already...
-      //
-      if ( CurBullet -> type == INFOUT )
-	continue;
-      
-      if ( CurBullet -> time_to_hide_still > 0 )
-	continue;
-      
-      if ( ! level_is_visible ( CurBullet -> pos . z ) )
+	int i;
+	Bullet CurBullet;
+	
+	//--------------------
+	// We move all the bullets
+	//
+	for ( i = 0; i < MAXBULLETS; i++)
 	{
-	// if the bullet is on an inactive level, silently kill it
-	DeleteBullet ( i, FALSE );
-	continue;
-	}
-
-      move_this_bullet_and_check_its_collisions ( i );
-
-      //--------------------
-      // WARNING!  The bullet collision check might have deleted the bullet, so 
-      //           maybe there's nothing sensible at the end of that 'CurBullet'
-      //           pointer any more at this point.  So we check AGAIN for 'OUT'
-      //           bullets, before we proceed with the safety out-of-map checks...
-      //
-      if ( CurBullet -> type == INFOUT )
-	continue;
-
-      //--------------------
-      // Maybe the bullet has a limited lifetime.  In that case we check if the
-      // bullet has expired yet or not.
-      //
-      if ( ( CurBullet->bullet_lifetime != (-1) ) && 
-	   ( CurBullet->time_in_seconds > CurBullet->bullet_lifetime ) )
-	{
-	  DeleteBullet( i , FALSE );
-	  continue;
-	}
-      CurBullet->time_in_frames++;
-      CurBullet->time_in_seconds += Frame_Time();
-
-      //--------------------
-      // Maybe the bullet is currently on a converyor belt.
-      // In this case, be must move on the bullet accordinly
-      //
-      map_x= (int) rintf( CurBullet->pos.x );
-      map_y= (int) rintf( CurBullet->pos.y );
-
-      //--------------------
-      // But maybe the bullet is also outside the map already, which would
-      // cause a SEGFAULT directly afterwards, when the map is queried.
-      // Therefore we introduce some extra security here...
-      //
-      BulletLevel = curShip.AllLevels [ CurBullet -> pos.z ];
-      if ( ( map_x < 0 ) || ( map_x >= BulletLevel->xlen ) ||
-	   ( map_y < 0 ) || ( map_y >= BulletLevel->ylen ) )
-	{
-	  DebugPrintf ( -1000 , "\nBullet outside of map: pos.x=%f, pos.y=%f, pos.z=%d, type=%d." ,
-			CurBullet -> pos . x , CurBullet -> pos . y , CurBullet -> pos . z , CurBullet -> type );
-	  DeleteBullet ( i , FALSE );
-	  return;
-	}
-      
-    }				/* for */
+		CurBullet = &AllBullets[i];
+		//--------------------
+		// We need not move any bullets, that are INFOUT already...
+		//
+		if ( CurBullet->type == INFOUT )
+			continue;
+		
+		if ( CurBullet->time_to_hide_still > 0 )
+			continue;
+		
+		if ( ! level_is_visible ( CurBullet->pos.z ) )
+		{
+			// if the bullet is on an inactive level, silently kill it
+			DeleteBullet ( i, FALSE );
+			continue;
+		}
+		
+		move_this_bullet_and_check_its_collisions ( i );
+		
+		//--------------------
+		// WARNING!  The bullet collision check might have deleted the bullet, so 
+		//           maybe there's nothing sensible at the end of that 'CurBullet'
+		//           pointer any more at this point.  So we check AGAIN for 'OUT'
+		//           bullets, before we proceed with the safety out-of-map checks...
+		//
+		if ( CurBullet->type == INFOUT )
+			continue;
+		
+		//--------------------
+		// Maybe the bullet has a limited lifetime.  In that case we check if the
+		// bullet has expired yet or not.
+		//
+		if ( ( CurBullet->bullet_lifetime != (-1) ) && 
+		     ( CurBullet->time_in_seconds > CurBullet->bullet_lifetime ) )
+		{
+			DeleteBullet( i , FALSE );
+			continue;
+		}
+		CurBullet->time_in_frames++;
+		CurBullet->time_in_seconds += Frame_Time();
+				
+		//--------------------
+		// But maybe the bullet is also outside the map already, which would
+		// cause a SEGFAULT directly afterwards, when the map is queried.
+		// Therefore we introduce some extra security here...
+		//
+		if ( !pos_inside_level( CurBullet->pos.x, CurBullet->pos.y, curShip.AllLevels[CurBullet->pos.z] ) ) {
+			DebugPrintf ( -1000 , "\nBullet outside of map: pos.x=%f, pos.y=%f, pos.z=%d, type=%d." ,
+			              CurBullet->pos.x, CurBullet->pos.y, CurBullet->pos.z, CurBullet->type );
+			DeleteBullet ( i , FALSE );
+			return;
+		}
+		
+	}				/* for */
 }; // void MoveBullets(void)
 
 /**
@@ -347,26 +334,21 @@ StartBlast ( float x, float y, int level , int type, int dmg)
 void
 animate_blasts (void)
 {
-  int i, map_x, map_y;
-  Blast CurBlast = AllBlasts;
-  Level BlastLevel;
-
-  for (i = 0; i < MAXBLASTS; i++, CurBlast++)
-    if (CurBlast->type != INFOUT)
-      {
+	int i;
+	Blast CurBlast = AllBlasts;
 	
-	//--------------------
-	// But maybe the bullet is also outside the map already, which would
-	// cause a SEGFAULT directly afterwards, when the map is queried.
-	// Therefore we introduce some extra security here...
-	//
-	map_x= (int) rintf( CurBlast->pos.x );
-	map_y= (int) rintf( CurBlast->pos.y );
-	BlastLevel = curShip.AllLevels[ CurBlast->pos.z ];
-	if ( ( map_x < 0 ) || ( map_x >= BlastLevel->xlen ) ||
-	     ( map_y < 0 ) || ( map_y >= BlastLevel->ylen ) )
-	  {
-	    ErrorMessage ( __FUNCTION__  , "\
+	for (i = 0; i < MAXBLASTS; i++, CurBlast++)
+		if (CurBlast->type != INFOUT)
+		{
+			
+			//--------------------
+			// But maybe the bullet is also outside the map already, which would
+			// cause a SEGFAULT directly afterwards, when the map is queried.
+			// Therefore we introduce some extra security here...
+			//
+			if ( !pos_inside_level( CurBlast->pos.x, CurBlast->pos.y, curShip.AllLevels[CurBlast->pos.z] ) )
+			{
+				ErrorMessage ( __FUNCTION__  , "\
 A BLAST WAS FOUND TO EXIST OUTSIDE THE BOUNDS OF THE MAP.\n\
 This is an idication for an inconsistency in Freedroid.\n\
 \n\
@@ -375,34 +357,34 @@ When reporting a problem to the Freedroid developers, please note if this\n\
 warning message was created prior to the error in your report.\n\
 However, it should NOT cause any serious trouble for Freedroid.",
 				       NO_NEED_TO_INFORM, IS_WARNING_ONLY );
-	    CurBlast->pos.x = 0 ;
-	    CurBlast->pos.y = 0 ;
-	    CurBlast->pos.z = 0 ;
-	    DeleteBlast( i );
-	    continue;
-	  }
-
-	//--------------------
-	// Druid blasts are dangerous, so we check if someone gets
-	// hurt by this particular droid explosion
-	//
-	if (CurBlast->type == DRUIDBLAST || CurBlast->type == OWNBLAST ) CheckBlastCollisions (i);
-
-	//--------------------
-	// And now we advance the phase of the blast according to the
-	// time that has passed since the last frame (approximately)
-	//
-	// CurBlast->phase += Frame_Time () * Blastmap[ CurBlast->type ].phases / Blastmap[ CurBlast->type ].total_animation_time;
-	CurBlast->phase += Frame_Time () * PHASES_OF_EACH_BLAST / Blastmap[ CurBlast->type ].total_animation_time;
-
-	//--------------------
-	// Maybe the blast has lived over his normal lifetime already.
-	// Then of course it's time to delete the blast, which is done
-	// here.
-	//
-	if ( ( (int) floorf (CurBlast->phase)) >= PHASES_OF_EACH_BLAST )
-	  DeleteBlast (i);
-      }				/* if */
+				CurBlast->pos.x = 0 ;
+				CurBlast->pos.y = 0 ;
+				CurBlast->pos.z = 0 ;
+				DeleteBlast( i );
+				continue;
+			}
+			
+			//--------------------
+			// Druid blasts are dangerous, so we check if someone gets
+			// hurt by this particular droid explosion
+			//
+			if (CurBlast->type == DRUIDBLAST || CurBlast->type == OWNBLAST ) CheckBlastCollisions (i);
+			
+			//--------------------
+			// And now we advance the phase of the blast according to the
+			// time that has passed since the last frame (approximately)
+			//
+			// CurBlast->phase += Frame_Time () * Blastmap[ CurBlast->type ].phases / Blastmap[ CurBlast->type ].total_animation_time;
+			CurBlast->phase += Frame_Time () * PHASES_OF_EACH_BLAST / Blastmap[ CurBlast->type ].total_animation_time;
+			
+			//--------------------
+			// Maybe the blast has lived over his normal lifetime already.
+			// Then of course it's time to delete the blast, which is done
+			// here.
+			//
+			if ( ( (int) floorf (CurBlast->phase)) >= PHASES_OF_EACH_BLAST )
+				DeleteBlast (i);
+		}				/* if */
 }; // void animate_blasts( ... )
 
 /**

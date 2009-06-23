@@ -221,8 +221,7 @@ static void start_rect_select()
 	state.rect_nbelem_selected = 0;    
 
 	// Create selected obstacles list
-	if ( state.rect_start.x < 0 || state.rect_start.x >= EditLevel()->xlen ) return;
-	if ( state.rect_start.y < 0 || state.rect_start.y >= EditLevel()->ylen ) return;
+	if ( !pos_inside_level( state.rect_start.x, state.rect_start.y, EditLevel) ) return;
 
 	// Select elements on the starting tile
 	switch (state.type) {

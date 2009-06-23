@@ -49,6 +49,7 @@ int autorun_activated = 0;
 void check_for_chests_to_open ( int chest_index ) ;
 void check_for_barrels_to_smash ( int index_of_barrel_below_mouse_cursor ) ;
 void check_for_items_to_pickup ( int );
+void CheckForTuxOutOfMap ( );
 
 int no_left_button_press_in_previous_analyze_mouse_click = FALSE ;
 
@@ -372,10 +373,7 @@ closed_chest_below_mouse_cursor ( )
     {
 	for ( y = MapPositionOfMouse . y + 3 ; y > MapPositionOfMouse . y - 3 ; y -- )
 	{
-	    if ( ( ( (int) x ) < 0 ) ||
-		 ( ( (int) y ) < 0 ) ||
-		 ( ( (int) x ) >= CURLEVEL() -> xlen ) ||
-		 ( ( (int) y ) >= CURLEVEL() -> ylen ) ) continue ;
+	    if ( !pos_inside_level( x, y, CURLEVEL() ) ) continue ;
 	    
 	    for ( i = 0 ; i < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE ; i++ )
 	    {
@@ -450,10 +448,7 @@ smashable_barrel_below_mouse_cursor ( )
     {
 	for ( y = MapPositionOfMouse . y + 3 ; y > MapPositionOfMouse . y - 3 ; y -- )
 	{
-	    if ( ( ( (int) x ) < 0 ) ||
-		 ( ( (int) y ) < 0 ) ||
-		 ( ( (int) x ) >= CURLEVEL() -> xlen ) ||
-		 ( ( (int) y ) >= CURLEVEL() -> ylen ) ) continue ;
+	    if ( !pos_inside_level( x, y, CURLEVEL() ) ) continue ;
 	    
 	    for ( i = 0 ; i < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE ; i++ )
 	    {
@@ -566,13 +561,9 @@ void correct_tux_position_according_to_jump_thresholds ( )
 	old_mouse_move_target.y = Me.mouse_move_target.y;
 	old_mouse_move_target.z = Me.mouse_move_target.z;
 
-	int rtn = resolve_virtual_position(&newpos, &oldpos);
+	int pos_valid = resolve_virtual_position(&newpos, &oldpos);
 
-	if ( !rtn || (oldpos.z == newpos.z) ) {
-		// Impossible to resolve the virtual adress, or
-		// we are on the same level - nothing happened
-		return;
-	} else {
+	if ( pos_valid && (oldpos.z != newpos.z) ) {
 		// We are on another level
 		// Move the player
 		Teleport (newpos.z, newpos.x, newpos.y, FALSE);
@@ -602,6 +593,13 @@ void correct_tux_position_according_to_jump_thresholds ( )
 			}
 		}
 	}
+	
+	//--------------------
+	// Even the Tux must not leave the map!  A sanity check is done
+	// here...
+	//
+	CheckForTuxOutOfMap();
+	  
 } // correct_tux_position_according_to_jump_thresholds ( )
 
 /**
@@ -702,29 +700,23 @@ CheckIfCharacterIsStillOk ( )
 /**
  * Even the Tux must not leave the map!  A sanity check is done here...
  */
-void
-CheckForTuxOutOfMap ( )
+void CheckForTuxOutOfMap ( )
 {
-  Level MoveLevel = curShip.AllLevels[ Me . pos . z ] ;
-
-  //--------------------
-  // Now perhaps the influencer is out of bounds, i.e. outside of the map.
-  //
-  if ( ( (int) rintf( Me . pos.y ) > MoveLevel->ylen ) ||
-       ( (int) rintf( Me . pos.x ) > MoveLevel->xlen ) ||
-       ( (int) rintf( Me . pos.y ) <  0              ) ||
-       ( (int) rintf( Me . pos.x ) <  0              ) )
-    {
-      fprintf ( stderr, "\n\nplayer's last position: X=%f, Y=%f, Z=%d.\n" , 
-		Me . pos . x ,
-		Me . pos . y ,
-		Me . pos . z );
-      ErrorMessage ( __FUNCTION__  , "\
+	Level MoveLevel = curShip.AllLevels[Me.pos.z];
+	
+	//--------------------
+	// Now perhaps the influencer is out of bounds, i.e. outside of the map.
+	//
+	if ( !pos_inside_level( Me.pos.x, Me.pos.y, MoveLevel ) )
+	{
+		fprintf ( stderr, "\n\nplayer's last position: X=%f, Y=%f, Z=%d.\n" , 
+		          Me.pos.x, Me.pos.y, Me.pos.z);
+		ErrorMessage ( __FUNCTION__  , "\
 A player's Tux was found outside the map.\n\
 This indicates either a bug in the Freedroid RPG code or\n\
 a bug in the currently used map system of Freedroid RPG.",
 				 PLEASE_INFORM, IS_FATAL );
-    }
+	}
 }; // void CheckForTuxOutOfMap ( )
 
 /**
@@ -899,12 +891,6 @@ MoveTuxAccordingToHisSpeed ( )
 		    }
 		}
 	    }
-
-  //--------------------
-  // Even the Tux must not leave the map!  A sanity check is done
-  // here...
-  //
-  CheckForTuxOutOfMap ( );
 
 }; // void MoveTuxAccordingToHisSpeed ( )
 

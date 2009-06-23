@@ -759,27 +759,22 @@ Item to be dropped (forced for this bot) is of illegal type!" ,
 int
 MakeSureEnemyIsInsideHisLevel ( Enemy ThisRobot )
 {
-    //--------------------
-    // If the enemy is outside of the current map, 
-    // that's an error and needs to be correted.
-    //
-    if ( ( ThisRobot -> pos . x <= 0 ) || 
-	 ( ThisRobot -> pos . x >= curShip . AllLevels [ ThisRobot -> pos . z ] -> xlen ) ||
-	 ( ThisRobot -> pos . y <= 0 ) || 
-	 ( ThisRobot -> pos . y >= curShip . AllLevels [ ThisRobot -> pos . z ] -> ylen ) )
-    {
-	
-	ErrorMessage ( __FUNCTION__  , "\
+	//--------------------
+	// If the enemy is outside of the current map, 
+	// that's an error and needs to be correted.
+	//
+	if ( !pos_inside_level( ThisRobot->pos.x, ThisRobot->pos.y, curShip.AllLevels[ThisRobot->pos.z] ) )
+	{
+		ErrorMessage ( __FUNCTION__  , "\
 There was a droid found outside the bounds of this level (when dying).\n\
 This is an error and should not occur, but most likely it does since\n\
 the bots are allowed some motion without respect to existing waypoints\n\
 in Freedroid RPG.\n",
 				   PLEASE_INFORM, IS_FATAL );
-	return ( FALSE );
-    }
-
-    return ( TRUE );
-
+		return ( FALSE );
+	}
+	
+	return ( TRUE );
 }; // int MakeSureEnemyIsInsideThisLevel ( int Enum )
 
 /**

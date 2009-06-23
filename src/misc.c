@@ -1208,10 +1208,8 @@ Teleport ( int LNum , float X , float Y , int with_sound_and_fading )
 	// locations (like outside of map that is)
 	//
 	if ( ( LNum < 0 ) || ( LNum >= curShip.num_levels ) || 
-	     ( Me . pos . x < 0 ) || ( Me . pos . y < 0 ) ||
 	     ( curShip.AllLevels[LNum] == NULL ) ||
-	     ( Me . pos . x > curShip.AllLevels[ LNum ] -> xlen ) ||
-	     ( Me . pos . y > curShip.AllLevels[ LNum ] -> ylen ) )
+	     !pos_inside_level( Me.pos.x, Me.pos.y, curShip.AllLevels[LNum] ) )
 	{
 	    fprintf( stderr, "\n\ntarget location was: lev=%d x=%f y=%f.\n" , LNum , X , Y );
 	    fprintf( stderr, "source location was: lev=%d x=%f y=%f." , Me . pos . z , 

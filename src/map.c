@@ -944,8 +944,8 @@ static int smash_obstacles_only_on_tile ( float x , float y , int map_x , int ma
     //--------------------
     // First some security checks against touching the outsides of the map...
     //
-    if ( ( map_x < 0 ) || ( map_y < 0 ) || ( map_x >= BoxLevel -> xlen ) || ( map_y >= BoxLevel -> ylen ) )
-	return ( FALSE ) ;
+    if ( !pos_inside_level( map_x, map_y, BoxLevel ) )
+    	return ( FALSE ) ;
     
     //--------------------
     // We check all the obstacles on this square if they are maybe destructable
