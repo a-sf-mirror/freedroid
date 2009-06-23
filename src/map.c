@@ -2407,7 +2407,6 @@ DecodeLoadedLeveldata ( char *data )
 		if (!strcmp(this_line, LEVEL_END_STRING))
 		{
 		    loadlevel->num_waypoints = i;
-			printf("Got %d waypointsfor level %d\n", i, loadlevel->levelnum);
 		    break;
 		}
 	wp_rnd = 0 ;
