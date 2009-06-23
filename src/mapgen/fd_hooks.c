@@ -120,14 +120,37 @@ void mapgen_convert(int w, int h, unsigned char *tiles, int *rooms)
 
 }
 
+static void add_label(int labelnum, int posx, int posy, const char *name)
+{
+	target_level->labels[labelnum].pos.x = posx;
+	target_level->labels[labelnum].pos.y = posy;
+	target_level->labels[labelnum].label_name = name;
+}
+
+static void add_teleport(int telnum, int x, int y, const char *type)
+{
+	char *warp, *fromwarp;
+	char tmp[500];
+	
+	sprintf(tmp, "RandomDungeon%d%sBack", target_level->levelnum, type);
+	warp = strdup(tmp);
+
+	sprintf(tmp, "RandomDungeon%d%sArrive", target_level->levelnum, type);
+	fromwarp = strdup(tmp);
+
+	add_obstacle(x, y, 16);
+	add_label(telnum*2, x, y, warp); 
+	add_label(telnum*2 + 1, x + 1, y, fromwarp);
+}
+
 void mapgen_entry_at(struct roominfo *r)
 {
-	add_obstacle( r->x + r->w / 2, r->y + r->h / 2, 16);
+	add_teleport(0, r->x + r->w / 2, r->y + r->h / 2, "Entry");
 }
 
 void mapgen_exit_at(struct roominfo *r)
 {
-	add_obstacle( r->x + r->w / 2, r->y + r->h / 2, 16);
+	add_teleport(1, r->x + r->w / 2, r->y + r->h / 2, "Exit");
 }
 
 void mapgen_gift(struct roominfo *r)
