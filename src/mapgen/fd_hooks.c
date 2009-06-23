@@ -120,7 +120,7 @@ void mapgen_convert(int w, int h, unsigned char *tiles, int *rooms)
 
 }
 
-static void add_label(int labelnum, int posx, int posy, const char *name)
+static void add_label(int labelnum, int posx, int posy, char *name)
 {
 	target_level->labels[labelnum].pos.x = posx;
 	target_level->labels[labelnum].pos.y = posy;
