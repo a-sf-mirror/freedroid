@@ -489,6 +489,75 @@ void MakeConnect(int x, int y, enum connection_type type)
 	action_toggle_waypoint_connection(target_level, wp2, wp1, 0);
 }
 
+static int find_waypoints(int x1, int y1, int x2, int y2, int *wps, int max)
+{
+	int total_wps = 0;
+	int i;
+
+	for (i = 0; i < target_level->num_waypoints; i++) {
+		if (target_level->AllWaypoints[i].x >= x1 && target_level->AllWaypoints[i].x < x2 &&
+				target_level->AllWaypoints[i].y >= y1 && target_level->AllWaypoints[i].y < y2) {
+			wps[total_wps] = i;
+			total_wps++;
+
+			if (total_wps == max)
+				break;
+		}
+	}
+
+	return total_wps;
+}
+
+static void connect_waypoints()
+{
+	int rn;
+
+	for (rn = 0; rn < total_rooms; rn++) {
+		int wps[25];
+		int max_wps = find_waypoints(rooms[rn].x, rooms[rn].y, rooms[rn].x + rooms[rn].w, rooms[rn].y + rooms[rn].h, wps, 25);
+		int nbconn = max_wps;
+
+		if (max_wps == 1 || max_wps == 0)
+			continue;
+
+		while (nbconn--) {
+			int wp1 = nbconn;
+			int wp2	= rand() % max_wps;
+
+			while (wp2 == wp1)
+				wp2 = rand() % max_wps;
+
+			if (wp1 != wp2) {
+				action_toggle_waypoint_connection(target_level, wps[wp1], wps[wp2], 0);
+				action_toggle_waypoint_connection(target_level, wps[wp2], wps[wp1], 0);
+			}
+		}
+	}
+}
+
+static void place_waypoints()
+{
+	int rn;
+	int nb;
+
+	for (rn = 0; rn < total_rooms; rn++) {
+		int func = sqrt(rooms[rn].w * rooms[rn].h);
+
+		nb = 1 + func / 3;
+
+		while (nb--) {
+			int newx =	rooms[rn].x + 1;
+			int newy =	rooms[rn].y + 1;
+			newx += (rand() % (rooms[rn].w - 2));
+			newy += (rand() % (rooms[rn].h - 2));
+
+			int useless;
+
+			CreateWaypoint(target_level, newx, newy, &useless);
+		}
+	}
+}
+
 int generate_dungeon(int w, int h, int nbexits, int difficulty)
 {
 	int i;
@@ -523,8 +592,14 @@ int generate_dungeon(int w, int h, int nbexits, int difficulty)
 		mapgen_exit_at(&rooms[exit_points[i]]);
 	}
 
-
 	mapgen_convert(w, h, map.m, map.r);
+
+	// Place random waypoints
+	place_waypoints();
+
+	// Connect waypoints
+	connect_waypoints();
+
 	free_level();
 	return 0;
 }
