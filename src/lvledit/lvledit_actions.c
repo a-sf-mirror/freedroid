@@ -178,8 +178,8 @@ obstacle * action_create_obstacle (level *EditLevel, double x, double y, int new
     }
     
     ErrorMessage ( __FUNCTION__  , "\
-	    Ran out of obstacle positions in target level!",
-			       PLEASE_INFORM , IS_FATAL );
+	    Ran out of obstacle positions (%d) in level %d!",
+			       PLEASE_INFORM , IS_FATAL, MAX_OBSTACLES_ON_MAP, EditLevel->levelnum);
     return ( NULL );
 }
 
