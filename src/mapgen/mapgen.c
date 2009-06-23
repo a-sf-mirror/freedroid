@@ -174,15 +174,15 @@ static void add_label(int labelnum, int posx, int posy, char *name)
 	target_level->labels[labelnum].label_name = name;
 }
 
-static void add_teleport(int telnum, int x, int y, const char *type)
+static void add_teleport(int telnum, int x, int y)
 {
 	char *warp, *fromwarp;
 	char tmp[500];
 	
-	sprintf(tmp, "RandomDungeon%d%sBack", target_level->levelnum, type);
+	sprintf(tmp, "Lv%dtoX%d", target_level->levelnum, telnum);
 	warp = strdup(tmp);
 
-	sprintf(tmp, "RandomDungeon%d%sArrive", target_level->levelnum, type);
+	sprintf(tmp, "Lv%dfromX%d", target_level->levelnum, telnum);
 	fromwarp = strdup(tmp);
 
 	add_obstacle(x, y, 16);
@@ -192,12 +192,12 @@ static void add_teleport(int telnum, int x, int y, const char *type)
 
 void mapgen_entry_at(struct roominfo *r)
 {
-	add_teleport(0, r->x + r->w / 2, r->y + r->h / 2, "Entry");
+	add_teleport(0, r->x + r->w / 2, r->y + r->h / 2, "0");
 }
 
 void mapgen_exit_at(struct roominfo *r)
 {
-	add_teleport(1, r->x + r->w / 2, r->y + r->h / 2, "Exit");
+	add_teleport(1, r->x + r->w / 2, r->y + r->h / 2, "1");
 }
 
 void mapgen_gift(struct roominfo *r)
