@@ -7,7 +7,6 @@
 #include "savestruct.h"
 
 #include "mapgen/mapgen.h"
-#include "mapgen/fd_hooks.h"
 
 /* Minimum surface of a room */
 static const int Smin = 40;
