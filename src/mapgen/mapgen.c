@@ -192,12 +192,12 @@ static void add_teleport(int telnum, int x, int y)
 
 void mapgen_entry_at(struct roominfo *r)
 {
-	add_teleport(0, r->x + r->w / 2, r->y + r->h / 2, "0");
+	add_teleport(0, r->x + r->w / 2, r->y + r->h / 2);
 }
 
 void mapgen_exit_at(struct roominfo *r)
 {
-	add_teleport(1, r->x + r->w / 2, r->y + r->h / 2, "1");
+	add_teleport(1, r->x + r->w / 2, r->y + r->h / 2);
 }
 
 void mapgen_gift(struct roominfo *r)
