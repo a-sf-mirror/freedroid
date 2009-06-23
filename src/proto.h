@@ -700,4 +700,7 @@ void leveleditor_input_mouse_motion(SDL_Event *);
 void leveleditor_input_mouse_button(SDL_Event *);
 void leveleditor_input_keybevent(SDL_Event *);
 
+// mapgen/fd_hooks.c
+void set_dungeon_output(level *);
+
 #endif
