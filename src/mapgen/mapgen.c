@@ -427,39 +427,48 @@ static void add_neighbor(struct roominfo *r, int neigh)
 void MakeConnect(int x, int y, enum connection_type type)
 {
 	int nx, ny;
-	int d1, d2;
+	int wp_x, wp_y, wp_nx, wp_ny;
+	int d1 = 0, d2 = 0;
 	int room_1, room_2;
+
+    nx = x;
+	ny = y;
+	wp_x = x;
+	wp_nx = nx;
+	wp_y = y;
+	wp_ny = ny;
 	
 	switch (type) {
 		case UP:
-			nx = x;
 			ny = y - 1;
+			wp_ny = ny - 1;
+			wp_y = y + 1;
 			d1 = 14;
 			d2 = 13;
 			break;
 		case DOWN:
-			nx = x;
 			ny = y + 1;
+			wp_ny = ny + 1;
+			wp_y = y - 1;
 			d1 = 13;
 			d2 = 14;
 			break;
 		case LEFT:
 			nx = x - 1;
-			ny = y;
+			wp_nx = nx - 1;
+			wp_x = x + 1;
 			d1 = 16;
 			d2 = 15;
 			break;
 		case RIGHT:
 			nx = x + 1;
-			ny = y;
+			wp_nx = nx + 1;
+			wp_x = x - 1;
 			d1 = 15;
 			d2 = 16;
 			break;
 		default:
-			nx = 0;
-			ny = 0;
-			d1 = 0;
-			d2 = 0;
+			ErrorMessage(__FUNCTION__, "Unknown connection type %d\n", PLEASE_INFORM, IS_FATAL, type);
 			break;
 	}
 	
@@ -472,6 +481,12 @@ void MakeConnect(int x, int y, enum connection_type type)
 	add_neighbor(&rooms[room_1], room_2);	
 	add_neighbor(&rooms[room_2], room_1);	
 
+	int useless;
+	int wp1 = CreateWaypoint(target_level, wp_x, wp_y, &useless);
+	int wp2 = CreateWaypoint(target_level, wp_nx, wp_ny, &useless);
+
+	action_toggle_waypoint_connection(target_level, wp1, wp2, 0);
+	action_toggle_waypoint_connection(target_level, wp2, wp1, 0);
 }
 
 int generate_dungeon(int w, int h, int nbexits, int difficulty)
