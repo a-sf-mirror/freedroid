@@ -1902,18 +1902,26 @@ use underground lighting: %d\n",
     // Now the beginning of the actual map data is marked:
     strcat(LevelMem, MAP_BEGIN_STRING);
     strcat(LevelMem, "\n");
-    
+   
+    	
     // Now in the loop each line of map data should be saved as a whole
-    for ( i = 0 ; i < ylen ; i++ ) 
-    {
-	//--------------------
-	// But before we can write this line of the map to the disk, we need to
-	// convert is back to human readable format.
-	//
-	TranslateToHumanReadable ( HumanReadableMapLine , Lev->map[i] , xlen );
-	strncat( LevelMem, (char*) HumanReadableMapLine , xlen * 4 * 2 ); // We need FOUR , no EIGHT chars per map tile
-	strcat(LevelMem, "\n");
-    }
+	for ( i = 0 ; i < ylen ; i++ ) {
+		//--------------------
+		// But before we can write this line of the map to the disk, we need to
+		// convert is back to human readable format.
+		//
+		if (!Lev->random_dungeon) {
+			TranslateToHumanReadable ( HumanReadableMapLine , Lev->map[i] , xlen );
+			strncat( LevelMem, (char*) HumanReadableMapLine , xlen * 4 * 2 ); // We need FOUR , no EIGHT chars per map tile
+			strcat(LevelMem, "\n");
+		} else {
+			int j = xlen;
+			while (j--) {
+				strcat(LevelMem, "  4 ");
+			}
+			strcat(LevelMem, "\n");
+		}
+	}
     
     //--------------------
     // Now we write out a marker at the end of the map data.  This marker is not really
