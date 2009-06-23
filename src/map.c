@@ -3312,9 +3312,7 @@ int CreateWaypoint (level *Lev, int x, int y, int *isnew)
 
   if ( Lev -> num_waypoints == MAXWAYPOINTS )
     {
-      DebugPrintf ( 0 , "WARNING: maximal number of waypoints (%d) reached on this level!!\n",
-		   MAXWAYPOINTS);
-      DebugPrintf ( 0 , "... cannot insert any more, sorry!\n");
+      ErrorMessage(__FUNCTION__, "Maximal number of waypoints (%d) reached on level %d when trying to add waypoint at x %d y %d\n", PLEASE_INFORM, IS_WARNING_ONLY, MAXWAYPOINTS, Lev->levelnum, x, y);
       return -1;
     }
     
