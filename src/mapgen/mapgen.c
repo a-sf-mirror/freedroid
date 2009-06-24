@@ -543,9 +543,9 @@ static void place_waypoints()
 	for (rn = 0; rn < total_rooms; rn++) {
 		int func = sqrt(rooms[rn].w * rooms[rn].h);
 
-		nb = 1 + func / 3;
+		nb = -1 + func / 3;
 
-		while (nb--) {
+		while ((nb--) >0) {
 			int newx =	rooms[rn].x + 1;
 			int newy =	rooms[rn].y + 1;
 			newx += (rand() % (rooms[rn].w - 2));
