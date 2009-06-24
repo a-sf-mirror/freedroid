@@ -612,7 +612,7 @@ static void LevelOptions ( void )
 	    }
 	MenuTexts[ i ] = Options [ i ] ; i++ ;
 	
-	sprintf(Options[i], "%s: %s", _("Random"), EditLevel()->random_dungeon ? _("Dungeon - 2 connections") : _("no"));
+	sprintf(Options[i], "%s: %s", _("Random dungeon"), EditLevel()->random_dungeon == 2 ? _("2 connections") : EditLevel()->random_dungeon == 1 ? _("1 connection") : _("no"));
     MenuTexts[i] = Options[i]; i++;
 
 	sprintf( Options [ i ] , _("Light") );
@@ -680,7 +680,8 @@ static void LevelOptions ( void )
 			}
 			break;
 		case SET_RANDOM_LEVEL:
-			EditLevel()->random_dungeon = !EditLevel()->random_dungeon;
+			EditLevel()->random_dungeon++;
+			EditLevel()->random_dungeon %= 3;
 			break;
 	    case CHANGE_LIGHT:
 		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) SDL_Delay(1);

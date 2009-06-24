@@ -38,8 +38,6 @@ void (*dungeonmap_exit_at)(struct roominfo *);
 void (*dungeonmap_place_enemies)(struct roominfo *);
 void (*dungeonmap_gift)(struct roominfo *);
 
-int generate_dungeon(int, int, int, int);
-
 int generate_dungeon_gram(int, int);
 
 int mapgen_add_room(int, int, int, int);

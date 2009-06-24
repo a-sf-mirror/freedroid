@@ -2458,7 +2458,7 @@ DecodeLoadedLeveldata ( char *data )
 	if (loadlevel->random_dungeon) {
 		// Generate random dungeon now
 		set_dungeon_output(loadlevel);
-		generate_dungeon(loadlevel->xlen, loadlevel->ylen, 1, 100);
+		generate_dungeon(loadlevel->xlen, loadlevel->ylen, loadlevel->random_dungeon);
 	}
    
     free ( this_line ); 

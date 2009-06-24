@@ -188,6 +188,7 @@ static void add_teleport(int telnum, int x, int y)
 	add_obstacle(x, y, 16);
 	add_label(telnum*2, x, y, warp); 
 	add_label(telnum*2 + 1, x + 1, y, fromwarp);
+
 }
 
 void mapgen_entry_at(struct roominfo *r)
@@ -558,7 +559,7 @@ static void place_waypoints()
 	}
 }
 
-int generate_dungeon(int w, int h, int nbexits, int difficulty)
+int generate_dungeon(int w, int h, int nbconnec)
 {
 	int i;
 	
@@ -571,8 +572,8 @@ int generate_dungeon(int w, int h, int nbexits, int difficulty)
 	mapgen_entry_at(&rooms[entrance]);
 
 	// Select random exits
-	int exit_points[nbexits];
-	for (i=0; i<nbexits; i++) {
+	int exit_points[nbconnec - 1];
+	for (i=0; i<nbconnec - 1; i++) {
 		int done;
 		do {
 			done = 1;
