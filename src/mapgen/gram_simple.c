@@ -509,6 +509,15 @@ static void launch_buldo()
 				for (n = 0; n < nbconn; n++) {
 					if (neigh[n].r == prevneigh)
 						continue;
+					else {
+						int next = 0;
+						while (next < nbconn && neigh[n + next].r == neigh[n].r)
+							next++;
+
+						int pick = n + rand() % next;
+
+						n = pick;	
+					}
 
 					prevneigh = neigh[n].r;
 					
