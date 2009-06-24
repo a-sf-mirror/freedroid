@@ -720,7 +720,7 @@ enum
 
 #define MAX_EVENT_TRIGGERS      500   // how many event triggers at most to allow
 
-#define MAXWAYPOINTS 		300
+#define MAXWAYPOINTS 		500
 #define MAX_DOORS_ON_LEVEL 	150
 #define MAX_AUTOGUNS_ON_LEVEL 	60
 #define MAX_REFRESHES_ON_LEVEL	39
