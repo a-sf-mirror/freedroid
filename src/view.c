@@ -849,43 +849,61 @@ insert_one_blast_into_blitting_list ( int blast_num )
 }; // void insert_one_blast_into_blitting_list ( int enemy_num )
 
 /**
- * We need to display bots that are on the current level or on one of the
+ * We need to display bots, objects, bullets... that are on the current level or on one of the
  * levels glued to this one.
+ * 
+ * To know if a level is visible, we have to :
+ * 1) find which level in the neighborhood has the 'level_num' id
+ * 2) check if Tux is near enough from this neighbor (given FLOOR_TILES_VISIBLE_AROUND_TUX)
+ * 
+ * We can however also do it in the reverse way :
+ * 1) find all the levels that are near enough from Tux to be visible
+ * 2) check if one of those levels is 'level_num'
+ * 
+ * A quick benchmark showed that the 2 forms have suite the same computational cost.
+ * The second one being smaller, and so less error-prone, we use it.
+ * 
+ * We use the level_neighbors_map to know the neighborhood of the current level.
  */
-int
-level_is_visible ( int level_num )
+int level_is_visible ( int level_num )
 {
-    int current_tux_level = Me . pos . z ;
+	// Current level is for sure visible
 
-    if ( level_num == current_tux_level ) 
-	return ( TRUE );
+	if ( level_num == Me.pos.z )
+		return TRUE;
 
-    if ( level_num == curShip . AllLevels [ current_tux_level ] -> jump_target_north &&
-	    2 * (Me . pos . y  - FLOOR_TILES_VISIBLE_AROUND_TUX) < curShip . AllLevels [ current_tux_level ] -> jump_threshold_north)
-	{
-	return ( TRUE );
+	// Find the 4 visible levels
+	//
+	// Those 4 levels form a square (eventually a degenerated one), one corner of the 
+	// square being the current level.
+	// The 2 corners are initialized to be on the current level, and we will extend
+	// one of them, depending on Tux's position.
+	// (see gps_transform_map_init() main comment for an explanation about neighbor index)
+
+	int left_idx = 1, right_idx = 1;
+	int top_idx = 1, bottom_idx = 1;
+	
+	if ( Me.pos.x < FLOOR_TILES_VISIBLE_AROUND_TUX ) left_idx = 0; 								// left neighbors are potentially visible
+	else if ( Me.pos.x >= CURLEVEL()->xlen - FLOOR_TILES_VISIBLE_AROUND_TUX ) right_idx = 2;	// right neighbors are potentially visible
+	
+	if ( Me.pos.y < FLOOR_TILES_VISIBLE_AROUND_TUX ) top_idx = 0; 								// top neighbors are potentially visible
+	else if ( Me.pos.y >= CURLEVEL()->ylen - FLOOR_TILES_VISIBLE_AROUND_TUX ) bottom_idx = 2;	// bottom neighbors are potentially visible
+
+	// Now loop on those levels and check if one is 'level_num'
+
+	int i, j;
+	
+	for ( j = top_idx; j<= bottom_idx; j++ ) {
+		for ( i = left_idx; i <= right_idx; i++ ) {
+			if ( level_neighbors_map[Me.pos.z][j][i] &&
+			     level_neighbors_map[Me.pos.z][j][i]->lvl_idx == level_num ) { 
+				return TRUE;
+			}
+		}
 	}
-
-    if ( level_num == curShip . AllLevels [ current_tux_level ] -> jump_target_south &&
-	    Me . pos . y + FLOOR_TILES_VISIBLE_AROUND_TUX > curShip . AllLevels [ current_tux_level ] -> ylen - curShip . AllLevels [ current_tux_level ] -> jump_threshold_south * 0.5) 
-	{
-	return ( TRUE );
-	}
-
-    if ( level_num == curShip . AllLevels [ current_tux_level ] -> jump_target_east &&
-	    Me . pos . x + FLOOR_TILES_VISIBLE_AROUND_TUX > curShip . AllLevels [ current_tux_level ] -> xlen - curShip . AllLevels [ current_tux_level ] -> jump_threshold_east * 0.5) 
-	{
-	return ( TRUE );
-	}
-
-    if ( level_num == curShip . AllLevels [ current_tux_level ] -> jump_target_west &&
-	    2 * (Me . pos . x  - FLOOR_TILES_VISIBLE_AROUND_TUX) < curShip . AllLevels [ current_tux_level ] -> jump_threshold_west)
-
-	{
-	return ( TRUE );
-	}
-
-    return ( FALSE );
+	// level_num not found
+	
+    return FALSE;
 
 }; // int level_is_visible ( int level_num )
 
